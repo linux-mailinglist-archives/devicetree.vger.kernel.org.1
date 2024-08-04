@@ -1,243 +1,130 @@
-Return-Path: <devicetree+bounces-90881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF5C4946FCF
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 18:30:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CCDBF946FD7
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 18:42:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0ECF21C203E2
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 16:30:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE7411C203A9
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 16:42:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53940558B7;
-	Sun,  4 Aug 2024 16:30:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A342770E2;
+	Sun,  4 Aug 2024 16:42:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="AMrbWufe"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gRO75MFU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4831E76025;
-	Sun,  4 Aug 2024 16:30:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.14
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722789044; cv=pass; b=KO1x5R8Z2cs2ME7C5B+GVKRKieZd1VN2e6+XOY31sktnczHDv2QnVLckE8fFL1QTUkhv/nINnCIR0mYnAJ791AxHrAY17KvZfPGw6TRG5SczEXDv0Yno7m9i4NM1qnO8dD78yr11EWzJsxtmkMdZ0FANXdtPuMcJA2SmvKxrNhM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722789044; c=relaxed/simple;
-	bh=kQKdMWe3MvPWs/iBEYQoVr58syp150UxqcwavQKQoR8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Oq+OZAC2BzSOAyOVtAClSouKoEsy+0UiSHBpDXoPDXiFRICdkC6SQPqHqmcfaHPyRRQY/0dz2ceigMdJWI0QH04VyypKOSpPFY4zR46/IpxvREYpnwh8hY6Hk3PHUI3SUykPSikJhdMMktJr5tE9fHBstz8toYxC2CLtibnsLPA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=AMrbWufe; arc=pass smtp.client-ip=136.143.188.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1722789006; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=nwje/47x9KaVtqaLL0x9JfB1uyv0xjezjL1JgVw191JI3w3bKebnLgfS1NI8frLPb5pc3a0X5cmnF8vYOrqYPt8JqyNVHyR3ya2WcQcVTa9FI2bveOCgsHI4ZA9F5pwtVB8LKnunM05oT9gJxR7/3cOnvOTfkWqhJT2YN6iicSA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1722789006; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=k83AKgKohjBrZOHcPcl1ds4ciQppXSWeH0BLAv75Agw=; 
-	b=N4LwckCvh1DS36oBCam3In4ZWTiB7Nvp0kLKR5oZvbVj8uHEkv56H5txuTLUMTUzBwzKyJXYvyzsqrMa4d7WZPyroZiuCRG964e3cbAMCJ7I3Pt9n9QBh/vdCgBm3EPQ6w1mEIT6ziWI5iCwpYaU/LmdsilKE4wJEMH+gBjXwtg=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1722789006;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=k83AKgKohjBrZOHcPcl1ds4ciQppXSWeH0BLAv75Agw=;
-	b=AMrbWufef61W362zeWt6joY4UHfkcqN8r6+iGgbsMlePkrgRDUA3CPzRfNY4iOgZ
-	CGnuqKI96NKx2E0X8NFOVBOkdi34qci86W4D/aiDioJbhR6ekf6OAYOPlRdt6J5afxz
-	DIqkJTgD653qMtX9NVZODt8R4/185rnW/YO+B+eQ=
-Received: by mx.zohomail.com with SMTPS id 1722789004041478.35275864340895;
-	Sun, 4 Aug 2024 09:30:04 -0700 (PDT)
-Received: by mercury (Postfix, from userid 1000)
-	id 5F8131060930; Sun, 04 Aug 2024 18:29:57 +0200 (CEST)
-Date: Sun, 4 Aug 2024 18:29:57 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: Chris Morgan <macromorgan@hotmail.com>, 
-	Chris Morgan <macroalpha82@gmail.com>, linux-rockchip@lists.infradead.org, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, jagan@edgeble.ai, andyshrk@163.com, jonas@kwiboo.se, 
-	t.schramm@manjaro.org, heiko@sntech.de, conor+dt@kernel.org, krzk+dt@kernel.org, 
-	robh@kernel.org
-Subject: Re: [PATCH 2/5] power: supply: cw2015: Add support for dual-cell
- configurations
-Message-ID: <3fgf7jyla6gtxqppjjnjb5dgciqqus2iwjunjavlmhy7fxdqv7@a2iycmzlgkbb>
-References: <20240726194948.109326-1-macroalpha82@gmail.com>
- <20240726194948.109326-3-macroalpha82@gmail.com>
- <eimocj6mlvo6u4x54heywblwrfnftxelzpvfcogpjp7vjmunor@5eqlqsszk6ni>
- <MN2PR16MB2941F5FFA92B056533586FBDA5B12@MN2PR16MB2941.namprd16.prod.outlook.com>
- <2eh5iqwtwlbpg5kpr4lvvhxo2tngw4w7qanelr6filcrru62le@o7cwpsahp2n7>
- <8c44fcf923c5697ca55c8e32f3938d3b@manjaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6928A953;
+	Sun,  4 Aug 2024 16:42:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722789738; cv=none; b=Mh8Xtb3M4DGyO7hTzz9zg9ZKuwYynulyA67bsLMK3K9Hil3zwyBuYync8t3raPSrB+gSdT/+FhC7Dxz5DlmUv/upxNGSHD3rJrrB6mXhoOEtbhg4jGcwNpqDil3Vjg3q7nXrmQplPOIXKiYLf6zvoaP6QONexc+fq2hjeakMnB8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722789738; c=relaxed/simple;
+	bh=1v3LzsVOoWXnGOgAzeYqaYj3V8aHQRRnUTqbMoaEoSw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bwkRvwtJJXuX8edudBVGJovGMKIVV/hxNzLLmX97Bn01Q4IC/zuxuzcx6HDEuCI9rAnWBdGRC9uxqd0T1vf0xcRMPeCL7ANCAWlsZT1Po6S83d98qlfTDJB1BkZd5GurnKJ6Tmi3fwAA8Jokf/0rUVLI4wI2qmF8pnwyRKGlynQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gRO75MFU; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-42816ca797fso60312985e9.2;
+        Sun, 04 Aug 2024 09:42:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722789735; x=1723394535; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5PmONzH0N6GHJK/evEMG5zaqLLbJAVtPmbQ/7DmQl0k=;
+        b=gRO75MFUj7MNIOwQs9RK2ECGdABb+U1xKOPGclLezOKRXNR1iMkfS0BD/aRHK4WQ58
+         rEW4a4/gZ7SIQULnjkv9o1cuPic5+Dy2UKc2mcMuz9QxQnkJN0AoR2Y4SsHUuqrLvFVV
+         6syEhgL+YpsAVh2RbKpVJGgPTVOQ3AYZgBnMJCJca/VimO4Cg7kq4GDSL1hftkK9njB9
+         MB9ommxHzQBh005Yo3ldTMPtk36wq6ikAIpe68HWeBWAA2iIZKMF2Dr33EDvLZYYsE8u
+         jdyPVUwLx8TvACErr3ZYtxpI5ic3Cza4c3PPgG+v0/rGFtVcEbWhyax1l0fvrWjtBm9W
+         VN5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722789735; x=1723394535;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5PmONzH0N6GHJK/evEMG5zaqLLbJAVtPmbQ/7DmQl0k=;
+        b=FgI2aUD208Dc/pmJ4m78jBwoU51HtlT3j/UvFR+jMhO1GUDxd9JPFHMeVhplGB0Im0
+         HUOLaZ5DYfo+67U4XsT40TQPVijL+zb9TwO0zNYWkbLHajXw1+QenMy0OnfKBNTnIp9Z
+         y1uJmL1O6nYxvS1gAIaqRN8/qtJB/v6NqsnjuO/gE9lZ5OfjAm+m/c3bYvanRDKyKCbF
+         nvWzXsQegNfW0XvC4qbnVC0E/l8q/sLvIAAAeJPW3XsKnQhWXLs978ndwdCsSleST+Ej
+         gIK/Q1iMnCIt0u3ksH1EpIl24AbajZmo3Fe8WtLuZonfzrwJPmsEhpMZBjglmSFkySfS
+         xhFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUs2FbWJDe0wFh2IofHaTSjzb1wMEqgHsK30VL2CBsZA+FhsDIN3jLx39t7kd+7MPPM5BvNe2glNO7nwgUb8yzWtpdoMxLKxJ0QSNpTTSfQ2UJ4NOZ+BFQiSL3qGCPW87EWdle3uRNxoq8k30E+OA9Bw5k7rspk8PU2uFU4EzqDbKGaVzup
+X-Gm-Message-State: AOJu0Yw2LGw3MDCJTCtcgNjvI4rt4PzBgN1gfjKnQMuo/GYSIBUNWwXj
+	ILmwuQO/Pnp5hDKKysXQeFCcvjlmnHivpskVGfrgI6S6gpcxWFg=
+X-Google-Smtp-Source: AGHT+IFqflsqzZhXnhI0XacoJn9GGWP851g5t/pGKC28fnPeseerjExCPtatHRdcqL0H+lp6KBCM9g==
+X-Received: by 2002:a05:600c:1552:b0:426:6822:861 with SMTP id 5b1f17b1804b1-428e6b925c7mr60093145e9.36.1722789734425;
+        Sun, 04 Aug 2024 09:42:14 -0700 (PDT)
+Received: from ?IPV6:2a02:810b:f40:4600:c804:e7dc:33a0:15b0? ([2a02:810b:f40:4600:c804:e7dc:33a0:15b0])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4282bb63f21sm166259275e9.29.2024.08.04.09.42.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 04 Aug 2024 09:42:14 -0700 (PDT)
+Message-ID: <8a5f1856-823b-4cf7-a9fa-1dc6b9b54cd2@gmail.com>
+Date: Sun, 4 Aug 2024 18:42:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="nr6obygdxvzehgev"
-Content-Disposition: inline
-In-Reply-To: <8c44fcf923c5697ca55c8e32f3938d3b@manjaro.org>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.3.1/222.613.84
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+Subject: Re: (subset) [PATCH 0/3] Add VPU support for RK3128
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ linux-media@vger.kernel.org, Ezequiel Garcia
+ <ezequiel@vanguardiasur.com.ar>, linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <20240523185633.71355-1-knaerzche@gmail.com>
+ <171690893336.1899981.5081114224300578276.b4-ty@sntech.de>
+Content-Language: en-US
+From: Alex Bee <knaerzche@gmail.com>
+In-Reply-To: <171690893336.1899981.5081114224300578276.b4-ty@sntech.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Hi Heiko
 
---nr6obygdxvzehgev
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Am 28.05.24 um 17:09 schrieb Heiko Stuebner:
+> On Thu, 23 May 2024 20:56:30 +0200, Alex Bee wrote:
+>> Similar to most Rockchip SoCs RK312x have hantro G1 based decoder and a
+>> hantro H1 based encoder with attached iommu.
+>>
+>> The existing drivers can be used as-is.
+>>
+>> Fluster scores:
+>>    - FFmpeg:
+>>      - H.264: 127/135
+>>      - VP8:    59/61
+>>    - GStreamer:
+>>      - H.264: 129/135
+>>      - VP8:    59/61
+>>
+>> [...]
+> Applied, thanks!
+>
+> [2/3] soc: rockchip: grf: Set RK3128's vpu main clock
+>        commit: b465223129f951d110e633a305085bd8430d7df0
+I just noticed this patch didn't make it in 6.11-rc1. While it's not really
+important for this patch as the media mainainters didn't manage to apply
+the vpu bindings patch for 6.11 anyways, it looks like all commits of your
+v6.11-armsoc/drivers aren't merged. I still haven't fully understand how
+the SoC tree *really* works, but I couldn't find a PR for this branch [0].
 
-Hi,
+Alex
 
-On Fri, Aug 02, 2024 at 11:39:24PM GMT, Dragan Simic wrote:
-> On 2024-07-31 19:02, Sebastian Reichel wrote:
-> > On Wed, Jul 31, 2024 at 11:02:11AM GMT, Chris Morgan wrote:
-> > > On Fri, Jul 26, 2024 at 11:06:21PM +0200, Sebastian Reichel wrote:
-> > > > On Fri, Jul 26, 2024 at 02:49:45PM GMT, Chris Morgan wrote:
-> > > > > From: Chris Morgan <macromorgan@hotmail.com>
-> > > > >
-> > > > > The Cellwise cw2015 datasheet reports that it can handle two cells
-> > > > > in a series configuration. Allow a device tree parameter to note
-> > > > > this condition so that the driver reports the correct voltage val=
-ues
-> > > > > to userspace.
-> > > >
-> > > > I found this:
-> > > >
-> > > > http://www.cellwise-semi.com/Public/assests/menu/20230302/640007680=
-6706.pdf
-> > > >
-> > > > Which says:
-> > > >
-> > > >   CW2015 can be used in 2 or more batteries connected in series, or
-> > > >   several cells connected in parallel.
-> > > >
-> > > > So dual-cell seems like a bad property name. Instead the number of
-> > > > serial cells should be provided. This property is then not really
-> > > > specific to the Cellwise fuel gauge and instead a property of the
-> > > > battery pack (i.e. simple-battery.yaml).
-> > >=20
-> > > It's conflicting information (which further confuses me). I see in
-> > > that
-> > > datasheet it says 2 or more, whereas the datasheet found here says
-> > > only
-> > > 2 cells:
-> > >=20
-> > > https://www.lestat.st/_media/informatique/projets/python-cw2015/cw201=
-5-power-management-datasheet.pdf
-> > >=20
-> > > But I agree in principle that we should be setting this as a property
-> > > of a simple-battery rather than a manufacturer specific parameter.
-> > >=20
-> > > >
-> > > > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > > > > ---
-> > > > >  drivers/power/supply/cw2015_battery.c | 7 +++++++
-> > > > >  1 file changed, 7 insertions(+)
-> > > > >
-> > > > > diff --git a/drivers/power/supply/cw2015_battery.c b/drivers/powe=
-r/supply/cw2015_battery.c
-> > > > > index f63c3c410451..b23a6d4fa4fa 100644
-> > > > > --- a/drivers/power/supply/cw2015_battery.c
-> > > > > +++ b/drivers/power/supply/cw2015_battery.c
-> > > > > @@ -77,6 +77,8 @@ struct cw_battery {
-> > > > >  	u32 poll_interval_ms;
-> > > > >  	u8 alert_level;
-> > > > >
-> > > > > +	bool dual_cell;
-> > > > > +
-> > > > >  	unsigned int read_errors;
-> > > > >  	unsigned int charge_stuck_cnt;
-> > > > >  };
-> > > > > @@ -325,6 +327,9 @@ static int cw_get_voltage(struct cw_battery *=
-cw_bat)
-> > > > >  	 */
-> > > > >  	voltage_mv =3D avg * 312 / 1024;
-> > > > >
-> > > > > +	if (cw_bat->dual_cell)
-> > > > > +		voltage_mv *=3D 2;
-> > > >
-> > > > Unfortunately there are no details in the document, but this looks
-> > > > very fishy. Does it only measure the first cell and hope that the
-> > > > other cells have the same voltage?
-> > > >
-> > > > This (unmerged) series also applies to your problem to some degree:
-> > > >
-> > > > https://lore.kernel.org/all/20240416121818.543896-3-mike.looijmans@=
-topic.nl/
-> > >=20
-> > > I think based on the application diagram it is in fact measuring the
-> > > cell voltage.
-> > >=20
-> > > That said, this ultimately boils down to a cosmetic thing
-> > > as not having this property simply means userspace sees the battery
-> > > voltage as 3.8v instead of 7.6v as is written on the side.
-> >=20
-> > With the cells being connected in serial, the voltage of both cells
-> > can be different. There is not "the cell voltage". Instead there is
-> > a voltage for cell 1 and a voltage for cell 2. In a perfect battery
-> > they are the same, but in reality they are not. In the extreme case
-> > one of the cells may be broken while the other is still fine. It
-> > sounds as if this is just measuring the voltage from the first
-> > cell and assumes the second cell has the same voltage.
-> >=20
-> > Ideally the voltage on these platforms is not exposed via the normal
-> > VOLTAGE property and instead uses a new property for telling
-> > userspace the voltage for a single cell. The kernel simply does not
-> > know the voltage of the whole battery pack.
-> >=20
-> > FWIW this is the worst battery measurement system I've seen so far
-> > if my understanding of the hardware design is correct.
->=20
-> Please note that two facts should be considered here:
->=20
->  - The GenBook schematic [1] clearly shows that the individual battery
->    cells aren't exposed at its internal battery connector and, as a
->    result, aren't available for individual cell voltage monitoring
->=20
->  - The GenBook uses a CW2013 as it fuel gauge, [1] instead of CW2015
->    as mentioned here a few times, but I haven't went through the CW2013
->    datasheet(s) yet to see what are the actual differences between it
->    and the CW2015
->=20
-> [1] https://wiki.cool-pi.com/notebook/coolpi-genbook-v20.pdf
-
-Ah, thanks for pointing to the schematics. So the fuel gauge can
-only measure the voltage of the whole battery, but VCELL register
-provides the voltage for 1 cell? What is the origin of the dual-cell
-property? Was this something you came up with yourself when noticing
-the wrong voltage?
-
-Based on the above information my guess would be that CW2013 uses a
-different voltage resolution than CW2015 for the VCELL register. The
-datasheet for CW2015 says 14bit ADC with 305uV resolution. Maybe
-the CW2013 simply uses a different ADC. Do you have the datasheet
-for the chip?
-
--- Sebastian
-
---nr6obygdxvzehgev
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmavrH0ACgkQ2O7X88g7
-+pr/qxAApdbotqU12LgNuKVPIMNCOH7Yh7rvIWQo+T5qKZ02AaK6/KMqHdXEeak6
-zeEpTOYH7It70HVoe04AXVCUxl2Nq1YtKZP1aWoeHbjuE8fQNqyAGk/C/X3Lv5uA
-MbjschmTykXt9iUc/7aQnLUjsKf6Oi1SnhQA6fMlXqZxxaEAaNvRyorx0JLSnNv9
-w13ijDtnhKY45jkYONftZr7KTSOFg8E3YqnG4Rzxmx58m5caL6kGDbiUbi3VksfL
-tooBQgLw6N4kbzY0Egwv6wkDKRmEcsgtm8+CylHa1IO7Pji0BZX1C19HxXp+eR4G
-ATkTXWkdDl4bhA0vuc0gIISLp/H//YzMBqIdd6jYXFxma0BwpWBGdeFdb2oYWea6
-JKmPpX2/XaMF0AQXFY9eckn/GD1Kq/ogvuni4fPHPppOfl6Q3lSl4R1N5Kunuxfy
-sE4Kby5004Eyl+etceuAEOfNvNxDO6HVIDzjVmBumwW2/bdG511zM7BeVX2nz1Jk
-DMXP0BLEHekROWv+vY3JYskD+Iuux0FPMOU8YFEw97nBXAvt7JNIruv4ROO1bMPW
-/Eg1WzAd41kVw1rPYdY+lfCX949L/LlXgPz+EXzynYzR5M8nDtaNIE9IaQ+r1aoX
-5jNA+6qaAtg5r4Jwo5QdHz+XHPS1dkN5qvCJh/kfjOV9341UFxY=
-=82He
------END PGP SIGNATURE-----
-
---nr6obygdxvzehgev--
+[0]
+https://patchwork.kernel.org/project/linux-soc/list/?submitter=24481&state=*
+> Best regards,
 
