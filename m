@@ -1,140 +1,276 @@
-Return-Path: <devicetree+bounces-90879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BD55946FA7
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 17:39:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90EFE946FB4
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 17:51:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E4181C20A51
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 15:39:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4AA04280D6E
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 15:51:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADD2AA953;
-	Sun,  4 Aug 2024 15:39:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aKFFO7ZB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B85A169DFF;
+	Sun,  4 Aug 2024 15:51:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E1569461;
-	Sun,  4 Aug 2024 15:39:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 852501DFDE;
+	Sun,  4 Aug 2024 15:51:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722785940; cv=none; b=WP1DszvSbZDx+4JXP3VbRoHyd6zvxmzKFA8ckkpGFzOMC4mOSe9D0N50ovz2ExAtT2Q6/mZuM0Oy4M2vQixOTQ3A3uoDibiXDvk5Eyr6A32nBh5IQcyztW0srBu7SIHtYKvxManoTyuE+4MlrmgW0yKtz1nfT0lSIy9tPW4HaYc=
+	t=1722786696; cv=none; b=ZBIfavS5ks7X3w82as4fYP4L4oq4t04O1WeGZr51eMQAW5DILYCKH/FxcIkrCnZXt6bRNqEOOZ2k5YbQ5OuO4W5gA6DdO6GnqLY8oH3P+6fIHaj/8615nPU5Z8XLb1Lxud8lN8T7tffmGPssIaLRhvfBHYHUP4rvSO1+sIAtIm0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722785940; c=relaxed/simple;
-	bh=0RcBONSyvTu2NeDfokbVG8c42Ck7qD/p+n3Ex+8p0Gw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LByHKLMDWp+BuJKgM9WFGTLLOwjZxIFsbg3/mBdXJLGVwv2H1ncVpDaNNwxXS7FelBPO+QfjVpO55dkIJ9pGmO78OLz0OU9QD5emQT2IfmKHCzKssN0GvZt7G1ZJaDO965H7L5p9Z1iKm8ZJ/N1Q67cmGzWT62HFMoV0IiQOIAg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aKFFO7ZB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 012DAC32786;
-	Sun,  4 Aug 2024 15:38:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722785940;
-	bh=0RcBONSyvTu2NeDfokbVG8c42Ck7qD/p+n3Ex+8p0Gw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aKFFO7ZBD9S9K33HLZY14nwEBO9VDI7jMf9lwwkzryJOcYZt188WUhDcxkwTdyDgs
-	 zmEY/sP5BD2j8qeIigBhV9DrVUZ53MgtNFOR2OeeHAb8dHpUsolUBrhXpIrNDwCJbR
-	 +4IyGJbD2MHgqfVh7LJ5Izalh2PpCHoX0lX0AnlMDe5V0SmHtvOwR+hNZNUc+9lc90
-	 kmDjEc9Q1ASzmHoeXifSFtw4UFyxoWSou3jtqJI+XvyY2Dmabvxwy1wCgI/AEn5Rsy
-	 iZqkLH9ZlY0eDzePLkjNL4dxtcgrNZ/Y/2NItwoOLkKpIpXOAaLoWyMi5ZhwlJiP5O
-	 iltO27ANSFDRg==
-Message-ID: <6318dd03-c41d-4675-af86-c509f02200f9@kernel.org>
-Date: Sun, 4 Aug 2024 17:38:52 +0200
+	s=arc-20240116; t=1722786696; c=relaxed/simple;
+	bh=GeN6veiciCRyl3DnFAeFZf+br87ledEqCi7HomNZhbo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=r5BmImDZAx/MB9JveNh5JEXtszpvDIeXcJc0auip4m7JvCLa44MXsyPV/IH73s9Eiz57Pv+UGocraxY21L/4BaFkhPVwOV7IHBV9f39q6zRhwcZ2gjitHBP25i43UD1pcfS/GKB8/rxVGBth0k88v4XrbHXdzD+H/w3r0Hharvs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875a9f.versanet.de ([83.135.90.159] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sadVp-0001Lx-IS; Sun, 04 Aug 2024 17:51:13 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: Yao Zi <ziyao@disroot.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Chris Morgan <macromorgan@hotmail.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>,
+ Andy Yan <andyshrk@163.com>, Muhammed Efe Cetin <efectn@protonmail.com>,
+ Jagan Teki <jagan@edgeble.ai>, Ondrej Jirman <megi@xff.cz>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-serial@vger.kernel.org
+Subject: Re: [PATCH 3/4] arm64: dts: rockchip: Add base DT for rk3528 SoC
+Date: Sun, 04 Aug 2024 17:51:12 +0200
+Message-ID: <10256980.nnTZe4vzsl@diego>
+In-Reply-To: <81147f0205c2a9555c9c64e4f7a69b6b@manjaro.org>
+References:
+ <20240803125510.4699-2-ziyao@disroot.org> <2408413.9XhxPE3A7Q@diego>
+ <81147f0205c2a9555c9c64e4f7a69b6b@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 10/15] dt-bindings: power: supply: axp20x: Add AXP717
- compatible
-To: Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev
-Cc: linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
- quentin.schulz@free-electrons.com, mripard@kernel.org,
- tgamblin@baylibre.com, aidanmacdonald.0x0@gmail.com,
- u.kleine-koenig@pengutronix.de, lee@kernel.org, samuel@sholland.org,
- jernej.skrabec@gmail.com, sre@kernel.org, wens@csie.org,
- conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, lars@metafoo.de,
- jic23@kernel.org, Chris Morgan <macromorgan@hotmail.com>
-References: <20240802192026.446344-1-macroalpha82@gmail.com>
- <20240802192026.446344-11-macroalpha82@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240802192026.446344-11-macroalpha82@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-On 02/08/2024 21:20, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
-> 
-> Add binding information for AXP717.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> ---
->  .../power/supply/x-powers,axp20x-battery-power-supply.yaml       | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/power/supply/x-powers,axp20x-battery-power-supply.yaml b/Documentation/devicetree/bindings/power/supply/x-powers,axp20x-battery-power-supply.yaml
-> index f196bf70b248..5ccd375eb294 100644
-> --- a/Documentation/devicetree/bindings/power/supply/x-powers,axp20x-battery-power-supply.yaml
-> +++ b/Documentation/devicetree/bindings/power/supply/x-powers,axp20x-battery-power-supply.yaml
-> @@ -23,6 +23,7 @@ properties:
->        - const: x-powers,axp202-battery-power-supply
->        - const: x-powers,axp209-battery-power-supply
->        - const: x-powers,axp221-battery-power-supply
-> +      - const: x-powers,axp717-battery-power-supply
+Am Sonntag, 4. August 2024, 15:59:19 CEST schrieb Dragan Simic:
+> On 2024-08-04 15:44, Heiko St=FCbner wrote:
+> > Am Sonntag, 4. August 2024, 15:25:47 CEST schrieb Dragan Simic:
+> >> On 2024-08-04 15:20, Yao Zi wrote:
+> >> > On Sun, Aug 04, 2024 at 12:05:11PM +0200, Krzysztof Kozlowski wrote:
+> >> >> On 03/08/2024 14:55, Yao Zi wrote:
+> >> >> > This initial device tree describes CPU, interrupts and UART on th=
+e chip
+> >> >> > and is able to boot into basic kernel with only UART. Cache infor=
+mation
+> >> >> > is omitted for now as there is no precise documentation. Support =
+for
+> >> >> > other features will be added later.
+> >> >> >
+> >> >> > Signed-off-by: Yao Zi <ziyao@disroot.org>
+> >> >> > ---
+> >> >> >  arch/arm64/boot/dts/rockchip/rk3528.dtsi | 182 +++++++++++++++++=
+++++++
+> >> >> >  1 file changed, 182 insertions(+)
+> >> >> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> >> >> >
+> >> >> > diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm6=
+4/boot/dts/rockchip/rk3528.dtsi
+> >> >> > new file mode 100644
+> >> >> > index 000000000000..77687d9e7e80
+> >> >> > --- /dev/null
+> >> >> > +++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> >> >> > @@ -0,0 +1,182 @@
+> >> >> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> >> >> > +/*
+> >> >> > + * Copyright (c) 2022 Rockchip Electronics Co., Ltd.
+> >> >> > + * Copyright (c) 2024 Yao Zi <ziyao@disroot.org>
+> >> >> > + */
+> >> >> > +
+> >> >> > +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> >> >> > +#include <dt-bindings/interrupt-controller/irq.h>
+> >> >> > +
+> >> >> > +/ {
+> >> >> > +	compatible =3D "rockchip,rk3528";
+> >> >> > +
+> >> >> > +	interrupt-parent =3D <&gic>;
+> >> >> > +	#address-cells =3D <2>;
+> >> >> > +	#size-cells =3D <2>;
+> >> >> > +
+> >> >> > +	aliases {
+> >> >> > +		serial0 =3D &uart0;
+> >> >> > +		serial1 =3D &uart1;
+> >> >> > +		serial2 =3D &uart2;
+> >> >> > +		serial3 =3D &uart3;
+> >> >> > +		serial4 =3D &uart4;
+> >> >> > +		serial5 =3D &uart5;
+> >> >> > +		serial6 =3D &uart6;
+> >> >> > +		serial7 =3D &uart7;
+> >> >> > +	};
+> >> >> > +
+> >> >> > +	cpus {
+> >> >> > +		#address-cells =3D <1>;
+> >> >> > +		#size-cells =3D <0>;
+> >> >> > +
+> >> >> > +		cpu-map {
+> >> >> > +			cluster0 {
+> >> >> > +				core0 {
+> >> >> > +					cpu =3D <&cpu0>;
+> >> >> > +				};
+> >> >> > +				core1 {
+> >> >> > +					cpu =3D <&cpu1>;
+> >> >> > +				};
+> >> >> > +				core2 {
+> >> >> > +					cpu =3D <&cpu2>;
+> >> >> > +				};
+> >> >> > +				core3 {
+> >> >> > +					cpu =3D <&cpu3>;
+> >> >> > +				};
+> >> >> > +			};
+> >> >> > +		};
+> >> >> > +
+> >> >> > +		cpu0: cpu@0 {
+> >> >> > +			device_type =3D "cpu";
+> >> >> > +			compatible =3D "arm,cortex-a53";
+> >> >> > +			reg =3D <0x0>;
+> >> >> > +			enable-method =3D "psci";
+> >> >> > +		};
+> >> >> > +
+> >> >> > +		cpu1: cpu@1 {
+> >> >> > +			device_type =3D "cpu";
+> >> >> > +			compatible =3D "arm,cortex-a53";
+> >> >> > +			reg =3D <0x1>;
+> >> >> > +			enable-method =3D "psci";
+> >> >> > +		};
+> >> >> > +
+> >> >> > +		cpu2: cpu@2 {
+> >> >> > +			device_type =3D "cpu";
+> >> >> > +			compatible =3D "arm,cortex-a53";
+> >> >> > +			reg =3D <0x2>;
+> >> >> > +			enable-method =3D "psci";
+> >> >> > +		};
+> >> >> > +
+> >> >> > +		cpu3: cpu@3 {
+> >> >> > +			device_type =3D "cpu";
+> >> >> > +			compatible =3D "arm,cortex-a53";
+> >> >> > +			reg =3D <0x3>;
+> >> >> > +			enable-method =3D "psci";
+> >> >> > +		};
+> >> >> > +	};
+> >> >> > +
+> >> >> > +	psci {
+> >> >> > +		compatible =3D "arm,psci-1.0", "arm,psci-0.2";
+> >> >> > +		method =3D "smc";
+> >> >> > +	};
+> >> >> > +
+> >> >> > +	timer {
+> >> >> > +		compatible =3D "arm,armv8-timer";
+> >> >> > +		interrupts =3D <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_=
+LEVEL_LOW)>,
+> >> >> > +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW=
+)>,
+> >> >> > +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW=
+)>,
+> >> >> > +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW=
+)>;
+> >> >> > +	};
+> >> >> > +
+> >> >> > +	xin24m: xin24m {
+> >> >>
+> >> >> Please use name for all fixed clocks which matches current format
+> >> >> recommendation: 'clock-([0-9]+|[a-z0-9-]+)+'
+> >> >
+> >> > Will be fixed in next revision.
+> >>=20
+> >> Hmm, why should we apply that rule to the xin24m clock, which is
+> >> named exactly like that everywhere else in Rockchip SoC dtsi files?
+> >> It's much better to remain consistent.
+> >=20
+> > bindings or how we write devicetrees evolve over time ... similarly the
+> > xin24m name comes from more than 10 years ago.
+> >=20
+> > We also name all those regulator nodes regulator-foo now, which in turn
+> > automatically does enforce a nice sorting rule to keep all the=20
+> > regulators
+> > around the same area ;-)
+> >=20
+> > So I don't see a problem of going with xin24m: clock-xin24m {}
+>=20
+> I agree that using "clock-xin24m" makes more sense in general, but the
+> trouble is that we can't rename the already existing instances of=20
+> "xin24m",
+> because that has become part of the ABI.  Thus, I'm not sure that=20
+> breaking
+> away from the legacy brings benefits in this particular case.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In the regulator case, we have _new_ boards using the new _node_-names
+but I don't see any renaming of old boards and also don't think we should.
 
-Best regards,
-Krzysztof
+But that still does not keep us from using the nicer naming convention in
+new boards ;-) .
+
+
+Same with xin24m. We're talking only about the node-name here. The
+phandle stays the same and also the actual clock name stays the same and
+really only the actual node name you need to look for in /proc/device-tree
+changes ;-) .
+
+So I don't see the need to go about changing all the old socs, but new
+additions should use improved naming conventions.
+
+xin24m: clock-xin24m {
+	compatible =3D "fixed-clock";
+	#clock-cells =3D <0>;
+	clock-frequency =3D <24000000>;
+	clock-output-names =3D "xin24m";
+};
+
+
+Heiko
+
+
+
+> >> >> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/=
+tree/Documentation/devicetree/bindings/clock/fixed-clock.yaml?h=3Dv6.11-rc1
+> >> >>
+> >> >> > +		compatible =3D "fixed-clock";
+> >> >> > +		#clock-cells =3D <0>;
+> >> >> > +		clock-frequency =3D <24000000>;
+> >> >> > +		clock-output-names =3D "xin24m";
+> >> >> > +	};
+> >> >> > +
+> >> >> > +	gic: interrupt-controller@fed01000 {
+> >> >>
+> >> >> Why this all is outside of SoC?
+> >> >
+> >> > Just as Heiko says, device tree for all other Rockchip SoCs don't ha=
+ve
+> >> > a "soc" node. I didn't know why before but just follow the style.
+> >> >
+> >> > If you prefer add a soc node, I am willing to.
+> >>=20
+> >=20
+> >=20
+> >=20
+> >=20
+> >=20
+> > _______________________________________________
+> > Linux-rockchip mailing list
+> > Linux-rockchip@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-rockchip
+>=20
+
+
+
 
 
