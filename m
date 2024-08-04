@@ -1,110 +1,151 @@
-Return-Path: <devicetree+bounces-90763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17C26946C09
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 05:19:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BD8F946C38
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 07:40:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE158281E34
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 03:19:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F5F11C214CA
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 05:40:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6C2AA94C;
-	Sun,  4 Aug 2024 03:18:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B10CBA4B;
+	Sun,  4 Aug 2024 05:40:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=kaechele.ca header.i=@kaechele.ca header.b="QDorUNt1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ims5R1Cm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.kaechele.ca (mail.kaechele.ca [54.39.219.105])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 269E46FB6;
-	Sun,  4 Aug 2024 03:18:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.39.219.105
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C7EF9445
+	for <devicetree@vger.kernel.org>; Sun,  4 Aug 2024 05:40:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722741527; cv=none; b=BIzMRUhovZzwgLaY58LNirUcdJYUb2JW8LxeVchRIc+UGkka1A9IFXiR/9jRtgehR+AfBpkMvPrqYKGH2E7ivAZgXocUnI8PoT6tZP+EbkRHqIp3niklqaUZrvB2JWdz4vsptuyX4QpXzhyLQqhpP0kspIFAu5q+bnM41xDw/58=
+	t=1722750022; cv=none; b=uNxrmhxHM9zkB90NQzab/HcM9uY3x/u3QEV1MAKEAGUTkKtzO9paPCrlgvcDxhqw8jfE3rw/2rwLv7qnJheZfpDIZmf5Qj9XedXQR5feE1r2aJJANO2vwDqi19Tc9GiKn78V2JPYmVRxENMnBUKkB2x0ZnFFtuz96M0nySuhlr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722741527; c=relaxed/simple;
-	bh=45pty/eZpML1yb7K8GkXSNck+koagf3u91ssApd9WkM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=r8FuOfoJBzuY90bKEpX9Sc8JO2I5AD9Iua34fYbuqIlDMVbz5oMnX0LuCCqJ2mhBLyqniENcNBAvvppOgWHCVZLzL9bVqy7ntmoFtE5+5JCpykkjI2Mi6m/BdcgfP4Jm/JCYsKySsDt5W1pMC8kHsrzp0sT9N1imFR5GdNoOBik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=kaechele.ca; spf=pass smtp.mailfrom=kaechele.ca; dkim=pass (1024-bit key) header.d=kaechele.ca header.i=@kaechele.ca header.b=QDorUNt1; arc=none smtp.client-ip=54.39.219.105
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=kaechele.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kaechele.ca
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 67E94C006E;
-	Sat,  3 Aug 2024 23:13:39 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kaechele.ca; s=201907;
-	t=1722741219; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=jIKDti4xNGbVdw8WRRwvN4RS6nL1CFIRo0ElCLglETU=;
-	b=QDorUNt1+9FSinJAN+Nf9y9sg4bfnsbI+T8mEAFNA3PBT85N/zdWeKOcMAAhJSnZnFvhv8
-	nnsXhDuulEJ3iSd3T7VLbW19yrTgqlLn7zDSNGVl9QwxcG2C6JcUOMoxAj1KP1pLW8+j2f
-	Pq9iitS78UMrrc1SF2D4nnN640mFrkk=
-From: Felix Kaechele <felix@kaechele.ca>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] Input: edt-ft5x06 - add support for FocalTech FT8201
-Date: Sat,  3 Aug 2024 23:13:10 -0400
-Message-ID: <20240804031310.331871-3-felix@kaechele.ca>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240804031310.331871-1-felix@kaechele.ca>
-References: <20240804031310.331871-1-felix@kaechele.ca>
+	s=arc-20240116; t=1722750022; c=relaxed/simple;
+	bh=lCsk1q0z8so6Y2tczVGuQeC5mXXz5zbJNYg4kt/XRZE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=cwol7vWa3C4myeQWzp4o+1A4pGx2OYea/xVUf4EoFK6VfXrLQPlpqIRSBQYJVr8bTOq2fHINiroROLB59Y1TrvJK6zSw+ZIRP6idpd3g7jrvbcM1GOtJzLjwFoCWB9uhnWBPKYhUpgHw6R3McdeNKmJttFTBHK7kdXLPcD+p1yA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ims5R1Cm; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5bb477e3a6dso159112a12.0
+        for <devicetree@vger.kernel.org>; Sat, 03 Aug 2024 22:40:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1722750018; x=1723354818; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bV2UO3BH+2H70FIcXfsxxSdrx6CyxPDxlREVUWkdsMc=;
+        b=ims5R1CmRk/+9v8j/kkYIiG/GrWJaqMxZ9vpqG7IotOzajfXxfPugz3Cw59y1EOnMK
+         qmzuChy1QmhwcleNFI+ATx7We0XHzdADUuCqeIsCmf2cDQ8u2vGlyVB9NqMCVeGtPbrZ
+         3GOtIJ1/0RpcaCscpH63s/NgKY2S0G9ifNFhNSK4ENMpoItMy+QHoKjBbBi0dv96kha3
+         hIqcZpPDfyHPoczxMNHPfK5C0eUqYLFhh0YH09v9JGG2dr53cU4FIR9ZiXA9YEbPPFHk
+         iM8tsK21j2O7yn/loeETcx0sBIlhNcNqquWTl1SCw7Ir9jcdNAWIerpTS1MDYwMc5Y1e
+         qSrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722750018; x=1723354818;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bV2UO3BH+2H70FIcXfsxxSdrx6CyxPDxlREVUWkdsMc=;
+        b=IfiDHx9uuquzVxzvrFDTueQkKE71unCoxpTDNUvZCOvkxUhpARCdsxXqkXaN1TuUi0
+         kTTDiK5fMi9MCG9LpqYPGRNi7jhC3wpznq4OwpTZIWoFmmHp0qtP7mEzWKC7i8ADaSm1
+         JCvj330cpuhY9YlumDJmhnIPJRa1B6wkvrK5onOImeCkqlA7/ALcuk+D0rXVmkZllv73
+         x5b5o1it9fBk+8WKZDt38+c5GBxMW/CUrfACe6PxbztoUL45KWVYND3dK4FFM58Ez7Gj
+         KbfnbWO2IuzvrRGLG6Eei2aW0tBEKBg2plhh/cCZ5ee0rZkULIuQMSHzghEG0c5Sxufg
+         KfOg==
+X-Forwarded-Encrypted: i=1; AJvYcCVX/gRv6ZkBv3GDBp3d4QvnQW7vWrCb6ivuPgqlGQ+iUAAg4gkyLPeo9oKbgT+vDhHunKEFE6S7bcUa8BhAYfxGpEU+RyVxbfhOnA==
+X-Gm-Message-State: AOJu0YzvVtuve5PM5t7ZLP/Wm8bNMqGWDCZxDb5tD1/7S765tJBIDKoo
+	DnobffGlRNhoiGMm4Ov0iaB4Me8rLKA9ubjWhgaWLAsh3b+4L2Vuhs+l7CD6OFM=
+X-Google-Smtp-Source: AGHT+IEDT12fiPA57xX+iwmImdIwGveXHkEDrvXHMWxFxiDJTGmsEb2kKmkBKuleVWzhzq6BApdEQg==
+X-Received: by 2002:a17:907:847:b0:a7a:9f78:fee with SMTP id a640c23a62f3a-a7dc4e282e9mr636574766b.17.1722750018105;
+        Sat, 03 Aug 2024 22:40:18 -0700 (PDT)
+Received: from umbar.lan ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7dc9bc3bd7sm292248466b.34.2024.08.03.22.40.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 03 Aug 2024 22:40:17 -0700 (PDT)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH 00/11] arm64: qcom: set of fixes for SM8350 platform
+Date: Sun, 04 Aug 2024 08:40:04 +0300
+Message-Id: <20240804-sm8350-fixes-v1-0-1149dd8399fe@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADQUr2YC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDCwMT3eJcC2NTA920zIrUYl3LVHNjwzRzy2RTszQloJaColSwBFBHdGx
+ tLQAQyxSaXgAAAA==
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Jonathan Marek <jonathan@marek.ca>, 
+ Robert Foss <rfoss@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+ Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Georgi Djakov <djakov@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Mike Tipton <quic_mdtipton@quicinc.com>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, linux-pm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, stable@vger.kernel.org
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1823;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=lCsk1q0z8so6Y2tczVGuQeC5mXXz5zbJNYg4kt/XRZE=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBmrxQ+ijSCqimrSzppba3nf7rGrom+4OOr65gak
+ B81n9SelkeJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZq8UPgAKCRCLPIo+Aiko
+ 1RR5B/4iOJI+9B8r8uW0dwnq5eyzrbGTG/K7BtAZIo/nD+BBhfxtcJV0VW6pVahOnRDsAUmSZIo
+ 9DyIqFj7WIQVwS50imsIIaN+Ew1UEyBQUf5YG8Af1F9v9BH72QF4t0eqXjqd9eNx5fmVWDUQg5n
+ UfP+ik8pv2e1UhQDo2uCMVuu1ykW+UjmT6HDkvWcAsIQQX6zsx1336csEg84SBdCftMLWwVjMEM
+ XgSIYKa8cg8UFT8V2eDhIapjv9KjdVk/cqRWltWw+rVLE69u6kyov69PqxcwOxcdmhmAR13Q7Hg
+ umSDRCCpkGoetDEmftKCAUbolR7wAwzzpjFLN0INL58sRJUi
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-The driver supports the FT8201 chip as well. It registers up to 10 touch
-points.
+A set of fixes that target stability of the SM8350 platform.
 
-Tested on: Lenovo ThinkSmart View (CD-18781Y), LCM: BOE TV080WXM-LL4
-
-Signed-off-by: Felix Kaechele <felix@kaechele.ca>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/input/touchscreen/edt-ft5x06.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+Dmitry Baryshkov (11):
+      clk: qcom: dispcc-sm8250: use CLK_SET_RATE_PARENT for branch clocks
+      clk: qcom: dispcc-sm8250: use special function for Lucid 5LPE PLL
+      drm/msm/dsi: correct programming sequence for SM8350 / SM8450
+      interconnect: qcom: sm8350: drop DISP nodes
+      interconnect: qcom: sm8450: drop DISP nodes
+      dt-bindings: interconnect: qcom,sm8350: drop DISP nodes
+      dt-bindings: interconnect: qcom,sm8450: drop DISP nodes
+      interconnect: qcom: sm8250: Enable sync_state
+      arm64: dts: qcom: sm8350: add MDSS registers interconnect
+      arm64: dts: qcom: sm8350: add refgen regulator
+      arm64: defconfig: build CONFIG_REGULATOR_QCOM_REFGEN as module
 
-diff --git a/drivers/input/touchscreen/edt-ft5x06.c b/drivers/input/touchscreen/edt-ft5x06.c
-index 42f99e57fbb7..e70415f189a5 100644
---- a/drivers/input/touchscreen/edt-ft5x06.c
-+++ b/drivers/input/touchscreen/edt-ft5x06.c
-@@ -1474,6 +1474,10 @@ static const struct edt_i2c_chip_data edt_ft6236_data = {
- 	.max_support_points = 2,
- };
- 
-+static const struct edt_i2c_chip_data edt_ft8201_data = {
-+	.max_support_points = 10,
-+};
-+
- static const struct edt_i2c_chip_data edt_ft8719_data = {
- 	.max_support_points = 10,
- };
-@@ -1485,6 +1489,7 @@ static const struct i2c_device_id edt_ft5x06_ts_id[] = {
- 	{ .name = "ft5452", .driver_data = (long)&edt_ft5452_data },
- 	/* Note no edt- prefix for compatibility with the ft6236.c driver */
- 	{ .name = "ft6236", .driver_data = (long)&edt_ft6236_data },
-+	{ .name = "ft8201", .driver_data = (long)&edt_ft8201_data },
- 	{ .name = "ft8719", .driver_data = (long)&edt_ft8719_data },
- 	{ /* sentinel */ }
- };
-@@ -1500,6 +1505,7 @@ static const struct of_device_id edt_ft5x06_of_match[] = {
- 	{ .compatible = "focaltech,ft5452", .data = &edt_ft5452_data },
- 	/* Note focaltech vendor prefix for compatibility with ft6236.c */
- 	{ .compatible = "focaltech,ft6236", .data = &edt_ft6236_data },
-+	{ .compatible = "focaltech,ft8201", .data = &edt_ft8201_data },
- 	{ .compatible = "focaltech,ft8719", .data = &edt_ft8719_data },
- 	{ /* sentinel */ }
- };
+ arch/arm64/boot/dts/qcom/sm8350.dtsi           |  16 ++-
+ arch/arm64/configs/defconfig                   |   1 +
+ drivers/clk/qcom/clk-alpha-pll.c               |  52 +++++++++
+ drivers/clk/qcom/clk-alpha-pll.h               |   2 +
+ drivers/clk/qcom/dispcc-sm8250.c               |  12 +-
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c      |  12 +-
+ drivers/interconnect/qcom/sm8350.c             | 155 +------------------------
+ drivers/interconnect/qcom/sm8350.h             |  10 --
+ drivers/interconnect/qcom/sm8450.c             | 145 -----------------------
+ drivers/interconnect/qcom/sm8450.h             |  12 --
+ include/dt-bindings/interconnect/qcom,sm8350.h |  10 --
+ include/dt-bindings/interconnect/qcom,sm8450.h |  10 --
+ 12 files changed, 91 insertions(+), 346 deletions(-)
+---
+base-commit: 668d33c9ff922c4590c58754ab064aaf53c387dd
+change-id: 20240804-sm8350-fixes-9e731f79c56f
+
+Best regards,
 -- 
-2.45.2
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 
