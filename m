@@ -1,108 +1,141 @@
-Return-Path: <devicetree+bounces-90776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98822946C89
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 07:44:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AED18946C98
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 08:16:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3AD8E1F21980
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 05:44:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 625AF281B3F
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 06:16:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E295712B6C;
-	Sun,  4 Aug 2024 05:40:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0BBCAD59;
+	Sun,  4 Aug 2024 06:16:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="c6oCsVeP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Va2233RB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50F24AD59;
-	Sun,  4 Aug 2024 05:40:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 021FE3C30;
+	Sun,  4 Aug 2024 06:16:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722750059; cv=none; b=U3YWYgDCDedwj6KPGT0hUQgvpIDPznPy5AGO2AQ+3+HR/h6UAR8D3AdyAXH5nr3YHwPPNhtHuPr7Y3hk02B4L1lMdfQECjMo6oij/qxDMtJorhu4h3vwFBskZX4Ogx/WObwTFlqXVeTLJRdhqJjqnb9dxw57AjxfQJekTEH3Q7Y=
+	t=1722752165; cv=none; b=J8VAsZAVNG34ojFOXf1dUbhGAAbF73o0vgmnpwYaF1iAvZjJFLPGFISNLkZQV56enbxOmzWRNJVcOYP7ieCWsvc7lfmT4vVYJ6catXZ4MVEH/S2VZBQvYW9aFi31EZg45VH/a6Psz34YgLHCN0g7PB10uSc3sB4c2UJJ4q8C4cc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722750059; c=relaxed/simple;
-	bh=0HRhv5yR2GM7y/9QAtXndsutKfzGnscC3iMEPFaBgb8=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=WsVto5AMqlF3X74Tlsbws5F2xM4bb7ckHrJEPMbdaAjjDv9hoti0B7M1/5RFcmNHAePFU0IcoiXhHg/l5SmRNIbPvNaYHKxVHWbIITws2eFJaLR4QJ+ybnShKLA/1t9dPpBq0aiq0/B3U3lUrfco6zedvsD55oBp0/Q5P18VufM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=c6oCsVeP; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1722752165; c=relaxed/simple;
+	bh=jxErJTRtsHFJthGZTc+iqfiRYB5vkGU09kQ+bN0waCA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=MmYlQqVDBMQ/rgZuN9Ts2brimtj1P5PW31yzorZR500dj8QYaHUuoZ5BHRnwPE23niijvzCWgavxLfUm8Cz8A7PC4P1d8bSTRj1dTaFJ+JMN4iek1ucBHE5XMHqkvIhICq3QUj/r/pbq1Xkfpno5OmxAOMwx647RynuJgoSIigg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Va2233RB; arc=none smtp.client-ip=209.85.167.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-3db130a872fso6605396b6e.2;
+        Sat, 03 Aug 2024 23:16:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722752160; x=1723356960; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=W+PeTNFmfRiiVfdD4fTEqR8T2Gwq0tebxgkS79dVtbw=;
+        b=Va2233RB/H6P2SLh6FfJF0iib+AAk/XJVC78NVT6PukqfLkhN+ztcFW4n//46HkeQ1
+         frq1zbBUmw3q7JPJfwj5cTcuopGSKwBs0Gi7I45goH7F/35Y0eqDViJqdJ4hs2Tk2tGZ
+         SJhuaa9wfTtDCQpRWAnAvYOMsBq3UR05DP52nrh43yU1ecn++lD6Gc0F17kGBuKKLPJp
+         cj2yKxzv7Q+Yw6m/xIeNGBVZTVuMcMpAy6LuCEU71UGGFATzIWr3xchR+fL4cnIyt6jN
+         p4XI0K4PFYmv2vl03LHu7nYRSeHLGFOf8S2F1lzM300gTVrelFFLA2Z3bIqGCWE+60HB
+         TXdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722752160; x=1723356960;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=W+PeTNFmfRiiVfdD4fTEqR8T2Gwq0tebxgkS79dVtbw=;
+        b=qxAmZXYqyzr0ICRkhMcg+hUBeV/SYF5xaIq89xK4397b/YoOAXQufDZwF5MN11Jnul
+         DgsQ1s9MoFEtT/bwe39bQSNnay3akNtWM+GIO8SGWNoF49JcTZd0ieidBBPmRSL3ptPY
+         zJ8ozgQrNNXgOmkEy3AF3ch2dRUn+AUXmm/QH1pkrQ8Jx+F8P84wCznR1BBq9ExfOaDK
+         DAsqxiJjVaJo9ZJnXtBkleQIOi4361Nr8ZMHI9a41mECwkqTrsjFfyUaNfEdUFylunz+
+         SH1b7FqU13E8oqOnY1Ma/aUVpM2nWjNXVlcbDy+bKxtpzqcnuuQp3U9de3wLvZM3aAJC
+         F9ow==
+X-Forwarded-Encrypted: i=1; AJvYcCXmGPLZ4LIZuGzQKR5sZFtgeTSUx82oIf/FmMYtTqQHr9sDyKWzKymOQblEQPFLM0Flw09TgLm07TepCsW2es3fQOqZy3Lu6FjmqQ==
+X-Gm-Message-State: AOJu0YxmIBf1uWXde8DUiDgaCTsv99Bm0AOdVTCDF5ZG6Y3zatmUxwdn
+	vWFIlDIDwuFwkTYz+4zgccgtrO3YVjikTTLOa6XCqfPTAbwk7CX9ED8+myHL
+X-Google-Smtp-Source: AGHT+IEMOeP1zK3q0PzdphJcoR2q9nwUOvs8Wff6/AmNerTKEGhqJokdQYaqcv/6lU4GTPuPMIwNPg==
+X-Received: by 2002:a05:6808:159d:b0:3da:ac85:3bd5 with SMTP id 5614622812f47-3db557ef9bemr11211096b6e.8.1722752160006;
+        Sat, 03 Aug 2024 23:16:00 -0700 (PDT)
+Received: from noel.flets-west.jp ([2405:6586:4480:a10:167:9818:d778:5c14])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1ff58f29ef4sm44194195ad.14.2024.08.03.23.15.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 03 Aug 2024 23:15:59 -0700 (PDT)
+From: Hironori KIKUCHI <kikuchan98@gmail.com>
+To: linux-kernel@vger.kernel.org
+Cc: Hironori KIKUCHI <kikuchan98@gmail.com>,
+	Jagan Teki <jagan@amarulasolutions.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v4 0/5] drm/panel: st7701: Add Anbernic RG28XX panel support
+Date: Sun,  4 Aug 2024 15:14:44 +0900
+Message-ID: <20240804061503.881283-1-kikuchan98@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1722750047;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+tX3JvGIYlx8csPMqWm0u4u7fIhbdLPz4xTLWRhyYx0=;
-	b=c6oCsVeP2bTK+Msyv/P1exnF7+kUkx5p/WsUrZWotPvOa0XmVdPIp8kE072+nTtYRWrryN
-	I06nFgWlycEFyp1DRJIyl2Ldew5Yun727GhOBdSKh7jus5zaB9gMkrmEauZN1Rct+71Q90
-	CeRQ0WK2CEp4YQSGJ+OtEDNmuwlIZwTwzU/6QJCSb07ew5Qz8lcx6FtB/s6Bt0HSFAMZHL
-	R8FZEXa7EDaEkyJJqblMJyphyylrN9yICfB8p1lAYW/vmipoLqsIePcWqYjkqpPaMOtR7L
-	PLqd++Wx/FZhP53R19siZulStRSMqu7B9QVLz3dXxgIR8rNVgpiXTIM62jkQrQ==
-Date: Sun, 04 Aug 2024 07:40:43 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Yao Zi <ziyao@disroot.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby
- <jirislaby@kernel.org>, Chris Morgan <macromorgan@hotmail.com>, Jonas
- Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>, Andy Yan
- <andyshrk@163.com>, Muhammed Efe Cetin <efectn@protonmail.com>, Jagan Teki
- <jagan@edgeble.ai>, Ondrej Jirman <megi@xff.cz>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org
-Subject: Re: [PATCH 0/4] Add initial support for Rockchip RK3528 SoC
-In-Reply-To: <20240803125510.4699-2-ziyao@disroot.org>
-References: <20240803125510.4699-2-ziyao@disroot.org>
-Message-ID: <0c77f99f4af96807a2a8c3028e3c1d4d@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Transfer-Encoding: 8bit
 
-Hello all,
+Add support for the display panel of the Anbernic RG28XX, a handheld
+gaming device from Anbernic. "RG28XX" is the actual name of the device.
 
-On 2024-08-03 14:55, Yao Zi wrote:
-> Rockchip RK3528 is a quad-core ARM Cortex-A53 SoC designed for
-> multimedia application. This series add a basic device tree with CPU,
-> interrupts and UART nodes for it and is able to boot into a kernel with
-> only UART console.
-> 
-> Has been tested on Radxa E20C board[1] with vendor U-boot, successfully
-> booted into initramfs with this log[2].
+This panel is driven by a variant of the ST7701 driver IC internally,
+and is connected via an RGB parallel interface for image transmission and
+an SPI interface for configuration.
 
-I wonder will at least the RK3528 datasheet become available publicly?
+Since the current code of the panel driver for ST7701 variants only
+supports MIPI DSI as the configuration interface, add support for SPI
+as well.
 
-> [1]: https://docs.radxa.com/en/e/e20c
-> [2]: https://gist.github.com/ziyao233/b74523a1e3e8bf36286a572e008ca319
-> 
-> Yao Zi (4):
->   dt-bindings: serial: snps-dw-apb-uart: Document Rockchip RK3528
->   dt-bindings: arm: rockchip: Add Radxa E20C board
->   arm64: dts: rockchip: Add base DT for rk3528 SoC
->   arm64: dts: rockchip: Add Radxa e20c board
-> 
->  .../devicetree/bindings/arm/rockchip.yaml     |   5 +
->  .../bindings/serial/snps-dw-apb-uart.yaml     |   1 +
->  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->  .../boot/dts/rockchip/rk3528-radxa-e20c.dts   |  22 +++
->  arch/arm64/boot/dts/rockchip/rk3528.dtsi      | 182 ++++++++++++++++++
->  5 files changed, 211 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> 
-> 
-> base-commit: 94ede2a3e9135764736221c080ac7c0ad993dc2d
+v4:
+  - Update a commit message for dt-bindings
+
+v3:
+  - Split commits
+  - Remove unnecessary changes
+  - Change Kconfig dependency and adjust for it
+  - Fix incorrect device variable in st7701_get_modes()
+
+v2:
+  - Update dt-bindings
+  - Rename DSI_CMD* macros to ST7701_CMD*
+  - Rename ST7701_DSI macro to ST7701_WRITE
+  - Fix incorrect dev_err_probe() usage
+  - Remove GPIOD_FLAGS_BIT_NONEXCLUSIVE flag
+  - Remove st7701_remove() and st7701_spi_remove()
+  - Call drm_panel_disable() and drm_panel_unprepare() on cleanup
+
+Hironori KIKUCHI (5):
+  drm/panel: st7701: Rename macros
+  drm/panel: st7701: Decouple DSI and DRM parts
+  dt-bindings: display: st7701: Add Anbernic RG28XX panel
+  drm/panel: st7701: Add support for SPI for configuration
+  drm/panel: st7701: Add Anbernic RG28XX panel support
+
+ .../display/panel/sitronix,st7701.yaml        |   69 +-
+ drivers/gpu/drm/panel/Kconfig                 |    3 +-
+ drivers/gpu/drm/panel/panel-sitronix-st7701.c | 1074 ++++++++++-------
+ 3 files changed, 734 insertions(+), 412 deletions(-)
+
+-- 
+2.45.2
+
 
