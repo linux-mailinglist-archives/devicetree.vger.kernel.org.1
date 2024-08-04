@@ -1,120 +1,115 @@
-Return-Path: <devicetree+bounces-90894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 115D69470A8
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 23:23:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB2639470AD
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 23:27:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADB42280E30
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 21:23:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED4C31C20A86
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 21:27:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C157768EC;
-	Sun,  4 Aug 2024 21:23:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F6BB13A265;
+	Sun,  4 Aug 2024 21:27:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=radojevic.rs header.i=@radojevic.rs header.b="L4pkWiCk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="j2E9yhaX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.radojevic.rs (radojevic.rs [139.162.187.67])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1928A2A;
-	Sun,  4 Aug 2024 21:23:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=139.162.187.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2772136358
+	for <devicetree@vger.kernel.org>; Sun,  4 Aug 2024 21:26:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722806631; cv=none; b=WPTNIVg4aMVqqNpYQG/d+ZXuy80UDruMfuY1FNOpmPIai3zlJ+uKMeQRB+c1sCFiMIgNzNV6O0iQtmSlPcj4tx1VX2Cw+pb2uV95mfpTZ7rAzLMnqeA+7CjlRMMPPeNJx7MRCTSNFZFQhqavDV6/7vfmvOi6STfzz0+inaOO5Hw=
+	t=1722806820; cv=none; b=JOvviNYnPtqQ0d/J5m7RCJGZ18FnXO8iuZss1CGNTcc+LJLSunaYE4xvWqKBKfCUEw8iEKr8FI33vLPXbhXJNg65f8ZiRGov5th8fIFSGf6Ul7uFnRZOgIPC4BbSgumKyuPli5j1sK2/ingscjqZxB4zybeGiXijEYZsGBIRiGk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722806631; c=relaxed/simple;
-	bh=FsKABYar5tCCmqGtOJLbGI3S+bt2cKoGgq3u7smejfU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cJhl5htLqClIc2BR/f6fpYDYue6a0SVo5XbIdUWDH4UM1KvHdKXJJB93GLOiKL2G77O1SCFh0uqtdYtEIf3FM/+FRvLTPfThn4+f4m4p2OBEs9d4fcGdXe35xv+HwtZ6En70UJjsLYYOC/sopK76fWn0H41gQZeSb/fHHgKTx9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=radojevic.rs; spf=pass smtp.mailfrom=radojevic.rs; dkim=pass (2048-bit key) header.d=radojevic.rs header.i=@radojevic.rs header.b=L4pkWiCk; arc=none smtp.client-ip=139.162.187.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=radojevic.rs
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radojevic.rs
-Received: from localhost (178-221-223-10.dynamic.isp.telekom.rs [178.221.223.10])
-	by mail.radojevic.rs (Postfix) with ESMTPSA id 33F222FD85;
-	Sun,  4 Aug 2024 23:14:19 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=radojevic.rs; s=mail;
-	t=1722806059; bh=FsKABYar5tCCmqGtOJLbGI3S+bt2cKoGgq3u7smejfU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=L4pkWiCkdTYqCKLJrt1kCBlMi6hwyY33b6YqUPLunaklLu9Wwj96oerV09xz0pXhZ
-	 sYAUxn8pesk/o1rpnyougzShnE8eSsH0+kL+vWnrpyrCs6TaMgW/WcYf8+/CK+8roH
-	 OowVwQiOa+JEEF+NgiUXWBjGIzEMdwJpFrZZMoHXf2U8BxO30NJS01nIMEA/eD2A2K
-	 xxmSAkX/eYVwZAWJbKecHBQsp6KOM5b3LuBIe+eE/tSwGShCGkjl525UkhUdQx3yhR
-	 i6jZI1z0P5YnTrxefO5YlW1RqIUOmxZjieOMUBcw8fWz/+GTDFpsqe8BvqWfBqa2BJ
-	 sQMxWz/R5UNEA==
-Date: Sun, 4 Aug 2024 23:14:17 +0200
-From: Nikola Radojevic <nikola@radojevic.rs>
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Raise Pinebook Pro's panel
- backlight PWM frequency
-Message-ID: <pydrzsz36br3e3cgdpvqwxbh3y2kk6z5tdkih7pmqgydq7utzl@ifiyxoegvjjc>
-References: <2a23b6cfd8c0513e5b233b4006ee3d3ed09b824f.1722805655.git.dsimic@manjaro.org>
+	s=arc-20240116; t=1722806820; c=relaxed/simple;
+	bh=ZARinnrZ8898vJ97LmefXiZ/D8Kujgb6eUAqVyijsuI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XusIPtQFO9+tbYXEshj9vInylWbX+P6or5pgh6CaukjtLd/nkx9Nz260CNtHp1OInbiMObHxuLbjV9bZyi6Q4y2bAwX+1S4oFQzT80ghLsqS+quHui241CFGj2Es19x64rB87L8bbCX2FjIlee7bAzDMftP5bpMYSL1mToPGAHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=j2E9yhaX; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2f166ec1265so3391501fa.3
+        for <devicetree@vger.kernel.org>; Sun, 04 Aug 2024 14:26:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1722806817; x=1723411617; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OoBXpPLc2r0a0UPJxEfi2oLrgzhk8wKgCqCsglbfDhQ=;
+        b=j2E9yhaXCcHlWXRU+KDbKWQ8Qc3QpcKBR4q4E250pOsfCIlUXKJS7GIuQfOVhvsJvk
+         XNkZcvyR44Lb5C6X4FGyPbycjNZDIa44zkRd3aXEWJQEjYX56DIAoZCGJFNa5SrzOfAv
+         NDJFCniUYDLZ9PXl4pWgShh1WLr1MXsaqkIdkWwcRSE78DvaLRMihX1WBVZYr2Z2hzHd
+         no9YutjdDAZ07ys74XJQBS/PU5YqRld21+kKSzqYMBt7yRrhZY9XSaUOisOuCndlMISh
+         9fEv8nZCSryJjz1C9aEJunqywvR8QTKanFORxIUfozgtCHV10f7xoXs6HNllFIJujnu4
+         qCBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722806817; x=1723411617;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OoBXpPLc2r0a0UPJxEfi2oLrgzhk8wKgCqCsglbfDhQ=;
+        b=n8YBbVCAsZrOE1HqA5s5KMSqI02CL7UaltwYGZhD/ezqMjl2TfVvQoP0jLtmQ93D7H
+         bREwfL3hGlx1+4oNE5V2pHpIPfxUOlrh8jIMh46uG+P0j4AckoQC6mil25yHgXX6rBaY
+         wZTCw1MLNCnEH3XUtXHx2691Gi/ENa8V4ZbSAVS9SkLWdS1hNhi+pmKfGywjY3A45x50
+         HyPyOaHNytKewm5ywKIbBBj64TUFMkbzNISF7OvzwYW3J8BQ7cWLlLJ6z9l+NTjSzYpv
+         hjInv0s4LthyGctC6IQ9FXQkX18VfcD/BV3mqzAkqeGQw69ZscKQVipK7ZzGJFVJYgbY
+         Qd1g==
+X-Forwarded-Encrypted: i=1; AJvYcCWxqV8yRPq0s2ahO2XSNtJmwbbNEvO9DRuqVWp/5JtIhnJalyDA03On7vBUTaHxZkbGqNvNuDJuLUjk@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx0hf2u7KkCa6RxzDFRNgaFoSjbAl6sHfv9W3Oo5Z8ORYvpctmZ
+	iWvwpGspS27jtMIjp8DDgyS9GRUBGeuKPELiMvgwv1SL+vTgKWxscFuJ3adWO84=
+X-Google-Smtp-Source: AGHT+IHAD9gnG+vrWMrfHWvKTKuTRgNKabB7Z6XbBoZLxcRN/KC+3/Pv5T08i9l2+eg3hX0oX5SEQQ==
+X-Received: by 2002:a05:6512:3ca4:b0:52f:c285:323d with SMTP id 2adb3069b0e04-530bb3b52a9mr3404779e87.5.1722806816947;
+        Sun, 04 Aug 2024 14:26:56 -0700 (PDT)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-530bba10f7dsm904228e87.112.2024.08.04.14.26.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 04 Aug 2024 14:26:56 -0700 (PDT)
+Message-ID: <4426c0e0-f877-409c-b2d2-a5aac5e8c645@linaro.org>
+Date: Mon, 5 Aug 2024 00:26:55 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2a23b6cfd8c0513e5b233b4006ee3d3ed09b824f.1722805655.git.dsimic@manjaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 04/13] media: qcom: camss: csiphy: Add an init callback to
+ CSI PHY devices
+Content-Language: en-US
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
+ todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: quic_eberman@quicinc.com, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@quicinc.com
+References: <20240709160656.31146-1-quic_depengs@quicinc.com>
+ <20240709160656.31146-5-quic_depengs@quicinc.com>
+ <6dfc2c79-fc6d-4eed-bf3f-94396130cb4f@linaro.org>
+ <fafda7d5-3853-428a-b0eb-9993fc2d4f56@linaro.org>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <fafda7d5-3853-428a-b0eb-9993fc2d4f56@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hello,
-I have tested this on my Pinebook Pro and I can confirm that
-everything seems to work alright.
+Hi Bryan,
 
-Tested-by: Nikola Radojević <nikola@radojevic.rs>
+On 8/1/24 11:16, Bryan O'Donoghue wrote:
+> On 01/08/2024 00:43, Vladimir Zapolskiy wrote:
+>>> +    ret = csiphy->res->hw_ops->init(csiphy);
+>>
+>> Here.
+> 
+> What name would make more sense to you ?
 
-On 24/08/04 11:10PM, Dragan Simic wrote:
-> Increase the frequency of the PWM signal that drives the LED backlight of
-> the Pinebook Pro's panel, from about 1.35 KHz (which equals to the PWM
-> period of 740,740 ns), to exactly 8 kHz (which equals to the PWM period of
-> 125,000 ns).  Using a higher PWM frequency for the panel backlight, which
-> reduces the flicker, can only be beneficial to the end users' eyes.
-> 
-> On top of that, increasing the backlight PWM signal frequency reportedly
-> eliminates the buzzing emitted from the Pinebook Pro's built-in speakers
-> when certain backlight levels are set, which cause some weird interference
-> with some of the components of the Pinebook Pro's audio chain.
-> 
-> The old value for the backlight PWM period, i.e. 740,740 ns, is pretty much
-> an arbitrary value that was selected during the very early bring-up of the
-> Pinebook Pro, only because that value seemed to minimize horizontal line
-> distortion on the display, which resulted from the old X.org drivers causing
-> screen tearing when dragging windows around.  That's no longer an issue, so
-> there are no reasons to stick with the old PWM period value.
-> 
-> The lower and the upper backlight PWM frequency limits for the Pinebook Pro's
-> panel, according to its datasheet, are 200 Hz and 10 kHz, respectively. [1]
-> These changes still leave some headroom, which may have some positive effects
-> on the lifetime expectancy of the panel's backlight LEDs.
-> 
-> [1] https://files.pine64.org/doc/datasheet/PinebookPro/NV140FHM-N49_Rev.P0_20160804_201710235838.pdf
-> 
-> Fixes: 5a65505a6988 ("arm64: dts: rockchip: Add initial support for Pinebook Pro")
-> Cc: stable@vger.kernel.org
-> Reported-by: Nikola Radojevic <nikola@radojevic.rs>
-> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-> index 294eb2de263d..b3f76cc2d6e1 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-> @@ -32,7 +32,7 @@ chosen {
->  	backlight: edp-backlight {
->  		compatible = "pwm-backlight";
->  		power-supply = <&vcc_12v>;
-> -		pwms = <&pwm0 0 740740 0>;
-> +		pwms = <&pwm0 0 125000 0>;
->  	};
->  
->  	bat: battery {
+according to the implementation the .init() call just fills some data in
+memory, so I believe this could be handled at build time, if it's done
+carefully enough...
+
+--
+Best wishes,
+Vladimir
 
