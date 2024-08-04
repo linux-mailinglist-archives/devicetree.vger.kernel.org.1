@@ -1,188 +1,162 @@
-Return-Path: <devicetree+bounces-90913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 648C4947127
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 00:04:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE80894717E
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 00:41:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CB5A1F21051
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 22:04:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E7261F21248
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 22:41:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46886139590;
-	Sun,  4 Aug 2024 22:04:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2EF913A3E6;
+	Sun,  4 Aug 2024 22:41:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fEYzsQh+"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Qfgejkp5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB0811755C;
-	Sun,  4 Aug 2024 22:04:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD4D874424;
+	Sun,  4 Aug 2024 22:41:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722809066; cv=none; b=syQ9rJ935FG1IwdG6/9J0vXnFtoZyA3BovNd8sdryN7heTkGlXRQTu1OpPTa95LmUvExAqB82tMzQ/cQX3exY8DnXySc3Xqn0SXfw/Wpsd35Jn/ir2fuF2SzRKPv9ffGJsE0Pv2KUf7mlTl4TICxJy6G2iS7ZWwqJkCXUoWEQnU=
+	t=1722811311; cv=none; b=onuAB6afzRb0otbZ4R8TB00cd3QhlchKjhgdEVfjQaD9AAXvm59f4TzLoA3FSfwhJ3EQBimyXP7ApQPmSVQgyBgwV56fYkcyVxjMOcE/Zzf57ofjiiHh950/uSNXA5h5OVBtx2LAcBTalmSymXdAUe0LTibe/l3lxG28z9HSUTY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722809066; c=relaxed/simple;
-	bh=z4wi75PNAboR2lxgQE3YdzgMCgupKn4VZ+ArK3acU9o=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=kcuWLcM5aUZZe2mpedqCmtX959+uI1UeQl9S+c7bs5EW9heyMnvEILgr/XbmZ8AcruOUg6aOHuNU8VaEmOIZT8a3J0X/A+RMyiKzAlgyNvVlLG2dnLYeIPp7Ogz6sRgF2FiYS66NHU1yUCt6HOPtdujqpoyq8O2ZriUT3C4SW1w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fEYzsQh+; arc=none smtp.client-ip=209.85.166.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-39b06af1974so21655515ab.2;
-        Sun, 04 Aug 2024 15:04:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722809064; x=1723413864; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=8vmMJjRMQd17EzBs/h7XMs1fJdBitfgzTOE4U25Q4t0=;
-        b=fEYzsQh+7cJuLSaTFTR7wYwS6QYxvwQ76JHc7aqN3up0rtk/AO8oQFz7GNeB2+mvxc
-         /rmowuGWm+SsPzXLSO4vJIsAlshUBW4SAkvHBe6+K38iS1OEnajChh2NreotH8EK7o5J
-         0cvkT/6cLu9FcTPBbtUSd3cbgvJXllTzTfUX8byd5FKL+GjWlOX75Pjt0rOlkzwILkeq
-         1A7ID1vsLOW9F9zy9tEhDXVpmlsKry4UGLZJuxCNDz3yu8q4IudTq49q7Ma/pl+WngSi
-         n+eaXhjkxkbIabvUNDDq3+lMIbBFMnqDMc8EBKT6p68cnYRZwahYhxFw5Lv1mxXSe9nU
-         h3CQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722809064; x=1723413864;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8vmMJjRMQd17EzBs/h7XMs1fJdBitfgzTOE4U25Q4t0=;
-        b=PSMEY90jMJxQAnVSYGOt0Kq1VMGADbooWKI2zwcqrwTi+SXq7W1bRcR1y9OdDkyw3u
-         +eFm+pPMC8o0+b+wfQpFhVmgN5Ezwr3UW0JY14o+H1egHMMwcBjZOHjBf93eaeA0VCZ2
-         B7Sw8r2SaKEjJ2TmXaMWnnScZEPdMUizbanITwT5u8xdDscrBBusWBM6lD/j0asnWV2/
-         2JEI25k3iAi0iz4YNzD6ZsKvFSrfoJHUnutde0oXnWn00PlWIsSGXZne6/uEkwKuKWvX
-         QzE4RKCU2BXLHSoRU5JMrsjMAiyFxmSVJ0e2VDQGG08gS4foLZFj4n90qsLbmgwOYui0
-         OJhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUV6n8TAoIXQRgY1rue0FTxfaDxaSrsqcZhAw1AU/9EimeoNliklJ+6lECwAmSygAb0BHJ1M1mc49iNmyrBatGylKQc5yGmAvHnrjELNh2sJOrtvGmV1XaQn8o6RcaFNAVJ986e0czyvw==
-X-Gm-Message-State: AOJu0YwtdR0SYNeTWAoB8lBDoQpSyaNt2TFxQYL+cGX7Uw8c6d3x4Wzr
-	ZFhHJ9Xx25bqRHEOKFfqdSvrWAOLyKoHXIXOJ+ShE/Jh2efbTy5X
-X-Google-Smtp-Source: AGHT+IGoccGsX8AZMUXX9KIyUx6+YwpekG7jw//dTqiyiehK3d9ozOQPa8v/xPF2Rnt7ED2EfEYV/A==
-X-Received: by 2002:a05:6e02:1a81:b0:39a:ebcd:f2fa with SMTP id e9e14a558f8ab-39b1fc2641cmr147513735ab.20.1722809063798;
-        Sun, 04 Aug 2024 15:04:23 -0700 (PDT)
-Received: from aford-System-Version.lan ([2601:447:d002:5be:80e7:218c:9d07:360])
-        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-39b3b7e6708sm7863495ab.36.2024.08.04.15.04.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 Aug 2024 15:04:23 -0700 (PDT)
-From: Adam Ford <aford173@gmail.com>
-To: linux-arm-kernel@lists.infradead.org
-Cc: aford@beaconembedded.com,
-	Adam Ford <aford173@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1722811311; c=relaxed/simple;
+	bh=x9dFSWS1m5DZ+vMj98CnMITJsEa4MZFFF5i1ylpdm6s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uODRarRbktmzgOP7EVfOIk/BztMOL4tqH7Mn/6Cwd1RTvbPt5l4RtsoIZsz2EQiTT9iLwuDiIJUHUYqb8xdjctzRDZ09EcyNE69s/RXbbotD6OK2OwsmTJnQMtfaoYIH9XBta1IGjbUEcoWKF2R95/mm04jAuGo1FAwXeg9YF2c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Qfgejkp5; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1722811310; x=1754347310;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=x9dFSWS1m5DZ+vMj98CnMITJsEa4MZFFF5i1ylpdm6s=;
+  b=Qfgejkp5f/dczpOhfNo/Pw3mnNYkqzL1MXXC22XzVQwwb7l1eAeC3fqR
+   fvJcBWc+uBXUA7DEZeqRcooRCDkKw1XxSwFATYZmovwpnjQmFZ7Ljd9IC
+   N3k3MX5hTjdLJ+VhKkufaKW1SKJY7T/lvT7uP21rAaARJY4t6GuxopHN9
+   aaCKIfjiLI+8PSwNjSBbHICosA0rLdE/IniEB+WFSPdD1fhM0lp0VMd4p
+   HUQgtWPA/iNav7Unc9UpJpTHLU/x8Z1Dh7GA5+TXdi3WQ9Z3bUNJV0YxQ
+   0yczmKtfIvmLx4nTx8XT0jUpooSt8pnMi8yl4XSSkJYAnDFvLgnUsizG4
+   g==;
+X-CSE-ConnectionGUID: jjgytsykShSMLW3+wknb7A==
+X-CSE-MsgGUID: X+lIrdzLRHuxW+0MV4QWFw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11154"; a="31386655"
+X-IronPort-AV: E=Sophos;i="6.09,263,1716274800"; 
+   d="scan'208";a="31386655"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Aug 2024 15:41:49 -0700
+X-CSE-ConnectionGUID: SXBm/78uSyGywqYaNiDvMg==
+X-CSE-MsgGUID: hVdafZAcTHmgjknCPHoUew==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,263,1716274800"; 
+   d="scan'208";a="60811074"
+Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
+  by orviesa005.jf.intel.com with ESMTP; 04 Aug 2024 15:41:44 -0700
+Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sajv3-0001dT-01;
+	Sun, 04 Aug 2024 22:41:41 +0000
+Date: Mon, 5 Aug 2024 06:41:40 +0800
+From: kernel test robot <lkp@intel.com>
+To: Christian Marangi <ansuelsmth@gmail.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: imx8mp-beacon: Enable DW HDMI Bridge
-Date: Sun,  4 Aug 2024 17:04:10 -0500
-Message-ID: <20240804220411.180264-1-aford173@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Joern Engel <joern@lazybastard.org>,
+	Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@kernel.dk>,
+	Christoph Hellwig <hch@lst.de>, Sagi Grimberg <sagi@grimberg.me>,
+	Wolfram Sang <wsa-dev@sang-engineering.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+	linux-nvme@lists.infradead.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v2 6/6] mtd: parser: add support for Airoha parser
+Message-ID: <202408050650.ScFbLl34-lkp@intel.com>
+References: <20240804174414.18171-7-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240804174414.18171-7-ansuelsmth@gmail.com>
 
-There is a second HDMI connector on the baseboard which is routed
-to the DW HDMI bridge through the PVI to the LCDIF3 and requires the
-HDMI PHY to be enabled too.
+Hi Christian,
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
+kernel test robot noticed the following build errors:
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-index cc9b81d46188..bd12420d9fd9 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-@@ -105,6 +105,17 @@ hdmi_con: endpoint {
- 		};
- 	};
- 
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector: endpoint {
-+				remote-endpoint = <&hdmi_to_connector>;
-+			};
-+		};
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 		pinctrl-names = "default";
-@@ -282,6 +293,24 @@ usb-mux-hog {
- 	};
- };
- 
-+&hdmi_tx {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_hdmi>;
-+	status = "okay";
-+
-+	ports {
-+		port@1 {
-+			hdmi_to_connector:endpoint {
-+				remote-endpoint = <&hdmi_connector>;
-+			};
-+		};
-+	};
-+};
-+
-+&hdmi_tx_phy {
-+	status = "okay";
-+};
-+
- &i2c2 {
- 	clock-frequency = <384000>;
- 	pinctrl-names = "default";
-@@ -344,6 +373,10 @@ pcieclk: clock-generator@68 {
- 	};
- };
- 
-+&hdmi_pvi {
-+	status = "okay";
-+};
-+
- &i2c3 {
- 	/* Connected to USB Hub */
- 	usb-typec@52 {
-@@ -464,6 +497,10 @@ &lcdif1 {
- 	status = "okay";
- };
- 
-+&lcdif3 {
-+	status = "okay";
-+};
-+
- &micfil {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_pdm>;
-@@ -646,6 +683,15 @@ MX8MP_IOMUXC_SAI1_TXD7__GPIO4_IO19	0x140
- 		>;
- 	};
- 
-+	pinctrl_hdmi: hdmigrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL	0x400001c2
-+			MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA	0x400001c2
-+			MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD		0x40000010
-+			MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC		0x40000010
-+		>;
-+	};
-+
- 	pinctrl_i2c2: i2c2grp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL	0x400001c2
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.11-rc1 next-20240802]
+[cannot apply to mtd/mtd/next mtd/mtd/fixes]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/dt-bindings-nvme-Document-nvme-card-compatible/20240805-014740
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20240804174414.18171-7-ansuelsmth%40gmail.com
+patch subject: [PATCH v2 6/6] mtd: parser: add support for Airoha parser
+config: arm-randconfig-003-20240805 (https://download.01.org/0day-ci/archive/20240805/202408050650.ScFbLl34-lkp@intel.com/config)
+compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project 423aec6573df4424f90555468128e17073ddc69e)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240805/202408050650.ScFbLl34-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408050650.ScFbLl34-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/mtd/parsers/ofpart_airoha.c:33:9: error: call to undeclared function 'kzalloc'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+      33 |         prop = kzalloc(sizeof(*prop), GFP_KERNEL);
+         |                ^
+>> drivers/mtd/parsers/ofpart_airoha.c:33:7: error: incompatible integer to pointer conversion assigning to 'struct property *' from 'int' [-Wint-conversion]
+      33 |         prop = kzalloc(sizeof(*prop), GFP_KERNEL);
+         |              ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   2 errors generated.
+
+
+vim +/kzalloc +33 drivers/mtd/parsers/ofpart_airoha.c
+
+    10	
+    11	int airoha_partitions_post_parse(struct mtd_info *mtd,
+    12					 struct mtd_partition *parts,
+    13					 int nr_parts)
+    14	{
+    15		struct mtd_partition *part;
+    16		int len, a_cells, s_cells;
+    17		struct device_node *pp;
+    18		struct property *prop;
+    19		const __be32 *reg;
+    20		__be32 *new_reg;
+    21	
+    22		part = &parts[nr_parts - 1];
+    23		pp = part->of_node;
+    24	
+    25		/* Skip if ART partition have a valid offset instead of a dynamic one */
+    26		if (!of_device_is_compatible(pp, "airoha,dynamic-art"))
+    27			return 0;
+    28	
+    29		/* ART partition is set at the end of flash - size */
+    30		part->offset = mtd->size - part->size;
+    31	
+    32		/* Update the offset with the new calculate value in DT */
+  > 33		prop = kzalloc(sizeof(*prop), GFP_KERNEL);
+
 -- 
-2.43.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
