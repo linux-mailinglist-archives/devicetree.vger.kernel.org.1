@@ -1,286 +1,354 @@
-Return-Path: <devicetree+bounces-90874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB3A9946F92
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 17:22:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2F6A946F98
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 17:33:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D84061C20C5A
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 15:22:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D941E1C2094C
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 15:33:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8500E61FE1;
-	Sun,  4 Aug 2024 15:22:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E57A24F218;
+	Sun,  4 Aug 2024 15:33:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="g2ZGQAdg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fo1E1CoL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7698B4CE05;
-	Sun,  4 Aug 2024 15:22:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2885A95B;
+	Sun,  4 Aug 2024 15:33:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722784927; cv=none; b=EBi7FzlwBANrwTBPbD8+zM7ep69eNPy/Nta7/sUg+Ga6NlUIthXWQk6RxZryoXKXkAVjuTrLeTi7DXohkD7Og7UTocuawDVZi57N1zaEdHbTRp0A1kBD7lkIRbZQbtdlWRU976vfddzgu/ChQmpmSj/mJ5zanYmmgVA5XH1TTUA=
+	t=1722785601; cv=none; b=gimSd+C+anPO40bA3Z8e6na59aPQPbZgf3lM9mnhGODIRSfwTzQGVqmjokJcuc/NGs4+USIbwgQuxxSzBGTdhbPcQI4Ri5xPsh6k4dUQKeTF5yGnNGLuDbnE8H6suOW7ZgmJftXEyXXhL4znjz+N86D+MlbAypw+qSWxqFxREIE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722784927; c=relaxed/simple;
-	bh=pMW2V5YCdfDRYopjZj7CafypLSiEa8//6/HwOwZDAaQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cuQaNUhjny8Zah7T8sYQnUuHeFG9w953v/lM6ISNwEbuQH8Eu8u6EF1m35Lfz6h2rbIrQnstOl3dZMSg4kqVlkoQwAoCe5duXWywQ5w63XR0u81RLfYRwvIYLHpOUDpwJUoN9ZJIAbbKC9RDpssQGU/9qyLLYXylSmiiANFW1Ws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=g2ZGQAdg; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1722784924; x=1754320924;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=pMW2V5YCdfDRYopjZj7CafypLSiEa8//6/HwOwZDAaQ=;
-  b=g2ZGQAdgoa+C1Nmuhw+Qdon5PwTLvRa21UgKT3h1A0ww9RN75dK+yLt7
-   d0EkHcx+V8cmaUDA6xDkkllwNh2WR35jn3oyjvj3zSJaruCke3bV1TZSC
-   QAS2Gvak1YiO6IxfskNlYXjy4ifoEEyJJdeQh2agvrq8xfi4fqQ0SBZx4
-   U1gq9BlcWCL9XT0nbrRzHDMk0OOoEdYLrcFge9UIi8S41wwo0ojRlEGN+
-   JkRSF9nnxIqj6KBhQ2XrbfVCATo/+wwC+gMxy3CeenNuvC7O25KdmPqw/
-   puo0oNwChVOBzlHkIMobUzoJt1MGREFh7p/x4QkOQPqOa9QKWvfMYghAi
-   A==;
-X-CSE-ConnectionGUID: uRZM58FoTdeqTlKqeRF2Ig==
-X-CSE-MsgGUID: 6SjXr1khTbicHuhEd4Xafw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11154"; a="20910270"
-X-IronPort-AV: E=Sophos;i="6.09,262,1716274800"; 
-   d="scan'208";a="20910270"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Aug 2024 08:22:04 -0700
-X-CSE-ConnectionGUID: g7fQh+VDQoWJtahEfnAHNg==
-X-CSE-MsgGUID: rFqPu/ZDQyOddIZtPRAcLg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,262,1716274800"; 
-   d="scan'208";a="60757645"
-Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
-  by orviesa005.jf.intel.com with ESMTP; 04 Aug 2024 08:21:58 -0700
-Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sad3T-0001Ty-1T;
-	Sun, 04 Aug 2024 15:21:55 +0000
-Date: Sun, 4 Aug 2024 23:21:25 +0800
-From: kernel test robot <lkp@intel.com>
-To: Christian Marangi <ansuelsmth@gmail.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Joern Engel <joern@lazybastard.org>,
-	Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@kernel.dk>,
-	Christoph Hellwig <hch@lst.de>, Sagi Grimberg <sagi@grimberg.me>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Wolfram Sang <wsa-dev@sang-engineering.com>,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-	linux-nvme@lists.infradead.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH 2/6] nvme: assign of_node to nvme device
-Message-ID: <202408042203.CNpuv8Wt-lkp@intel.com>
-References: <20240804114108.1893-3-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1722785601; c=relaxed/simple;
+	bh=pMFr/e0KsbkJrhJe9wfumPNt3xbbmQcMZktr3u4sg0o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=K4dxdSL97sBHcCBfZZ53MG7rsf/zgWDTq6kNnSRm/6Tz9DahagTdhY0MP2MJgs568xnIJN61xhT/gnY1aXZKdHDqtIi1twr8gMNgrx0yntoi+Ae73MYG3/85W7LuPmUECe8/5FiBcW/kIH+ANtg13nbc0GZL82KCHiFlsJYl+ys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fo1E1CoL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48220C32786;
+	Sun,  4 Aug 2024 15:33:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722785601;
+	bh=pMFr/e0KsbkJrhJe9wfumPNt3xbbmQcMZktr3u4sg0o=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Fo1E1CoLq7eWS5NjwZFhoaVmkfhTPdJKOGqgNsGzBcI0L+OYhiefH9kMAD3HqN05e
+	 N7iiV/LfbMEypsjssqAClEE1UTpYtuXb3mb+bissM1a91bnlfctIOGNFduqSelcPC8
+	 IF6cgBU7fEUmzOBv25b6jNNobjAkfqXMAT38/o4GCPsFUlSXqYAnc6J0OpnhCB92sv
+	 8gtGz+2a7dSkntKJwIwqWW5o1pNmYRwCqXf3GDiwAqiuF0pDAG8XQVhPTbwm5uQlC/
+	 ahTFR1gKoYbZeTTppzFzQkkcM8w4FM+Oe9/X2WfrVfZktssKiMKddPBYhvpyAP3F6v
+	 A6XM1tUes8lOQ==
+Message-ID: <84ff11bd-1d11-4d66-a56b-84bf915af346@kernel.org>
+Date: Sun, 4 Aug 2024 17:33:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240804114108.1893-3-ansuelsmth@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] tty: serial: 8250: Add loongson uart driver
+ support
+To: zhenghaowei@loongson.cn, gregkh@linuxfoundation.org,
+ jirislaby@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, chenhuacai@kernel.org, kernel@xen0n.name,
+ p.zabel@pengutronix.de
+Cc: linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, loongarch@lists.linux.dev
+References: <20240804063834.70022-1-zhenghaowei@loongson.cn>
+ <20240804063834.70022-2-zhenghaowei@loongson.cn>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240804063834.70022-2-zhenghaowei@loongson.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Christian,
+On 04/08/2024 08:38, zhenghaowei@loongson.cn wrote:
+> From: Haowei Zheng <zhenghaowei@loongson.cn>
+> 
+> Due to certain hardware design challenges, we have opted to
+> utilize a dedicated UART driver to probe the UART interface.
+> 
+> Presently, we have defined four parameters — 'fractional-division',
+> 'invert-rts', 'invert-dtr', 'invert-cts', and 'invert-dsr' — which
+> will be employed as needed.
+> 
+> Signed-off-by: Haowei Zheng <zhenghaowei@loongson.cn>
+> ---
+>  drivers/tty/serial/8250/8250_loongson.c | 208 ++++++++++++++++++++++++
+>  drivers/tty/serial/8250/8250_port.c     |   8 +
+>  drivers/tty/serial/8250/Kconfig         |   9 +
+>  drivers/tty/serial/8250/Makefile        |   1 +
+>  include/uapi/linux/serial_core.h        |   1 +
+>  5 files changed, 227 insertions(+)
+>  create mode 100644 drivers/tty/serial/8250/8250_loongson.c
+> 
+> diff --git a/drivers/tty/serial/8250/8250_loongson.c b/drivers/tty/serial/8250/8250_loongson.c
+> new file mode 100644
+> index 000000000000..eb16677f1dde
+> --- /dev/null
+> +++ b/drivers/tty/serial/8250/8250_loongson.c
+> @@ -0,0 +1,208 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Copyright (C) 2020-2024 Loongson Technology Corporation Limited
+> + */
+> +
+> +#include <linux/acpi.h>
 
-kernel test robot noticed the following build errors:
+How is this used?
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.11-rc1 next-20240802]
-[cannot apply to mtd/mtd/next mtd/mtd/fixes]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> +#include <linux/clk.h>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/dt-bindings-nvme-Document-nvme-card-compatible/20240804-194357
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240804114108.1893-3-ansuelsmth%40gmail.com
-patch subject: [PATCH 2/6] nvme: assign of_node to nvme device
-config: i386-buildonly-randconfig-005-20240804 (https://download.01.org/0day-ci/archive/20240804/202408042203.CNpuv8Wt-lkp@intel.com/config)
-compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240804/202408042203.CNpuv8Wt-lkp@intel.com/reproduce)
+And this?
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408042203.CNpuv8Wt-lkp@intel.com/
+> +#include <linux/console.h>
+> +#include <linux/delay.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/reset.h>
+> +
+> +#include "8250.h"
+> +
+> +struct loongson_uart_data {
+> +	struct reset_control *rst;
+> +	int line;
+> +	int mcr_invert;
+> +	int msr_invert;
+> +};
 
-All errors (new ones prefixed by >>):
+...
 
->> drivers/nvme/host/core.c:4654:2: error: call to undeclared function 'of_node_put'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-    4654 |         of_node_put(ctrl->device->of_node);
-         |         ^
->> drivers/nvme/host/core.c:4775:26: error: call to undeclared function 'of_get_compatible_child'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-    4775 |         ctrl->device->of_node = of_get_compatible_child(ctrl->dev->of_node,
-         |                                 ^
->> drivers/nvme/host/core.c:4775:24: error: incompatible integer to pointer conversion assigning to 'struct device_node *' from 'int' [-Wint-conversion]
-    4775 |         ctrl->device->of_node = of_get_compatible_child(ctrl->dev->of_node,
-         |                               ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    4776 |                                                         "nvme-card");
-         |                                                         ~~~~~~~~~~~~
-   3 errors generated.
+> +static int loongson_uart_probe(struct platform_device *pdev)
+> +{
+> +	struct uart_8250_port uart = {};
+> +	struct loongson_uart_data *data;
+> +	struct uart_port *port;
+> +	struct resource *res;
+> +	int ret;
+> +
+> +	port = &uart.port;
+> +	spin_lock_init(&port->lock);
+> +
+> +	port->flags		= UPF_SHARE_IRQ | UPF_FIXED_PORT | UPF_FIXED_TYPE;
+> +	port->iotype		= UPIO_MEM;
+> +	port->regshift		= 0;
+> +	port->dev		= &pdev->dev;
+> +	port->type		= (unsigned long)device_get_match_data(&pdev->dev);
+> +	port->serial_in		= loongson_serial_in;
+> +	port->serial_out	= loongson_serial_out;
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	if (!res)
+> +		return -ENODEV;
+> +
+> +	port->membase = devm_ioremap(&pdev->dev, res->start, resource_size(res));
+> +	if (!port->membase)
+> +		return -ENOMEM;
+> +
+
+Use wrapper combining both calls.
+
+> +	port->mapbase = res->start;
+> +	port->mapsize = resource_size(res);
+> +
+> +	port->irq = platform_get_irq(pdev, 0);
+> +	if (port->irq < 0)
+> +		return -EINVAL;
+> +
+> +	data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	port->private_data = data;
+> +
+> +	if (device_property_read_bool(&pdev->dev, "fractional-division")) {
+> +		port->get_divisor = loongson_frac_get_divisor;
+> +		port->set_divisor = loongson_frac_set_divisor;
+> +	}
+> +
+> +	if (device_property_read_bool(&pdev->dev, "rts-invert"))
+> +		data->mcr_invert |= UART_MCR_RTS;
+> +
+> +	if (device_property_read_bool(&pdev->dev, "dtr-invert"))
+> +		data->mcr_invert |= UART_MCR_DTR;
+> +
+> +	if (device_property_read_bool(&pdev->dev, "cts-invert"))
+> +		data->msr_invert |= UART_MSR_CTS;
+> +
+> +	if (device_property_read_bool(&pdev->dev, "dsr-invert"))
+> +		data->msr_invert |= UART_MSR_DSR;
+> +
+> +	data->rst = devm_reset_control_get_optional_shared(&pdev->dev, NULL);
+> +	if (IS_ERR(data->rst))
+> +		return PTR_ERR(data->rst);
+> +
+> +	device_property_read_u32(&pdev->dev, "clock-frequency", &port->uartclk);
+> +
+> +	ret = reset_control_deassert(data->rst);
+> +	if (ret)
+> +		goto err_unprepare;
+> +
+> +	ret = serial8250_register_8250_port(&uart);
+> +	if (ret < 0)
+> +		goto err_unprepare;
+> +
+> +	platform_set_drvdata(pdev, data);
+> +	data->line = ret;
+> +
+> +	return 0;
+> +
+> +err_unprepare:
+> +
+> +	return ret;
+> +}
+> +
+> +static void loongson_uart_remove(struct platform_device *pdev)
+> +{
+> +	struct loongson_uart_data *data = platform_get_drvdata(pdev);
+> +
+> +	serial8250_unregister_port(data->line);
+> +	reset_control_assert(data->rst);
+> +}
+> +
+> +#ifdef CONFIG_PM_SLEEP
+> +static int loongson_uart_suspend(struct device *dev)
+> +{
+> +	struct loongson_uart_data *data = dev_get_drvdata(dev);
+> +
+> +	serial8250_suspend_port(data->line);
+> +
+> +	return 0;
+> +}
+> +
+> +static int loongson_uart_resume(struct device *dev)
+> +{
+> +	struct loongson_uart_data *data = dev_get_drvdata(dev);
+> +
+> +	serial8250_resume_port(data->line);
+> +
+> +	return 0;
+> +}
+> +#endif
+> +
+> +static const struct dev_pm_ops loongson_uart_pm_ops = {
+> +	SET_SYSTEM_SLEEP_PM_OPS(loongson_uart_suspend, loongson_uart_resume)
+> +};
+> +
+> +static const struct of_device_id of_platform_serial_table[] = {
+> +	{.compatible = "loongson,ls7a-uart", .data = (void *)PORT_LOONGSON},
+
+Why do you need match data if there is no choice?
+
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, of_platform_serial_table);
+> +
+> +static struct platform_driver loongson_uart_driver = {
+> +	.probe = loongson_uart_probe,
+> +	.remove = loongson_uart_remove,
+> +	.driver = {
+> +		.name = "ls7a-uart",
+> +		.pm = &loongson_uart_pm_ops,
+> +		.of_match_table = of_match_ptr(of_platform_serial_table),
+
+Except that this does not build... drop of_match_ptr(), not needed and
+causes warnings.
+
+> +	},
+> +};
+> +
+> +module_platform_driver(loongson_uart_driver);
+> +
+> +MODULE_DESCRIPTION("LOONGSON 8250 Driver");
+> +MODULE_AUTHOR("Haowei Zheng <zhenghaowei@loongson.cn>");
+> +MODULE_LICENSE("GPL");
+> diff --git a/drivers/tty/serial/8250/8250_port.c b/drivers/tty/serial/8250/8250_port.c
+> index 2786918aea98..60b72c785028 100644
+> --- a/drivers/tty/serial/8250/8250_port.c
+> +++ b/drivers/tty/serial/8250/8250_port.c
+> @@ -319,6 +319,14 @@ static const struct serial8250_config uart_config[] = {
+>  		.rxtrig_bytes	= {1, 8, 16, 30},
+>  		.flags		= UART_CAP_FIFO | UART_CAP_AFE,
+>  	},
+> +	[PORT_LOONGSON] = {
+> +		.name		= "Loongson",
+> +		.fifo_size	= 16,
+> +		.tx_loadsz	= 16,
+> +		.fcr		= UART_FCR_ENABLE_FIFO | UART_FCR_R_TRIG_10,
+> +		.rxtrig_bytes   = {1, 4, 8, 14},
+> +		.flags		= UART_CAP_FIFO,
+> +	},
+>  };
+>  
+>  /* Uart divisor latch read */
+> diff --git a/drivers/tty/serial/8250/Kconfig b/drivers/tty/serial/8250/Kconfig
+> index 47ff50763c04..a696afc4f8a8 100644
+> --- a/drivers/tty/serial/8250/Kconfig
+> +++ b/drivers/tty/serial/8250/Kconfig
+> @@ -568,6 +568,15 @@ config SERIAL_8250_BCM7271
+>  	  including DMA support and high accuracy BAUD rates, say
+>  	  Y to this option. If unsure, say N.
+>  
+> +config SERIAL_8250_LOONGSON
+> +	tristate "Loongson 8250 serial port support"
+> +	default SERIAL_8250
+> +	depends on SERIAL_8250
+> +	depends on LOONGARCH || MIPS
+
+MIPS? Why?
+
+You also miss COMPILE_TEST.
 
 
-vim +/of_node_put +4654 drivers/nvme/host/core.c
 
-  4648	
-  4649	void nvme_uninit_ctrl(struct nvme_ctrl *ctrl)
-  4650	{
-  4651		nvme_hwmon_exit(ctrl);
-  4652		nvme_fault_inject_fini(&ctrl->fault_inject);
-  4653		dev_pm_qos_hide_latency_tolerance(ctrl->device);
-> 4654		of_node_put(ctrl->device->of_node);
-  4655		cdev_device_del(&ctrl->cdev, ctrl->device);
-  4656		nvme_put_ctrl(ctrl);
-  4657	}
-  4658	EXPORT_SYMBOL_GPL(nvme_uninit_ctrl);
-  4659	
-  4660	static void nvme_free_cels(struct nvme_ctrl *ctrl)
-  4661	{
-  4662		struct nvme_effects_log	*cel;
-  4663		unsigned long i;
-  4664	
-  4665		xa_for_each(&ctrl->cels, i, cel) {
-  4666			xa_erase(&ctrl->cels, i);
-  4667			kfree(cel);
-  4668		}
-  4669	
-  4670		xa_destroy(&ctrl->cels);
-  4671	}
-  4672	
-  4673	static void nvme_free_ctrl(struct device *dev)
-  4674	{
-  4675		struct nvme_ctrl *ctrl =
-  4676			container_of(dev, struct nvme_ctrl, ctrl_device);
-  4677		struct nvme_subsystem *subsys = ctrl->subsys;
-  4678	
-  4679		if (!subsys || ctrl->instance != subsys->instance)
-  4680			ida_free(&nvme_instance_ida, ctrl->instance);
-  4681		key_put(ctrl->tls_key);
-  4682		nvme_free_cels(ctrl);
-  4683		nvme_mpath_uninit(ctrl);
-  4684		cleanup_srcu_struct(&ctrl->srcu);
-  4685		nvme_auth_stop(ctrl);
-  4686		nvme_auth_free(ctrl);
-  4687		__free_page(ctrl->discard_page);
-  4688		free_opal_dev(ctrl->opal_dev);
-  4689	
-  4690		if (subsys) {
-  4691			mutex_lock(&nvme_subsystems_lock);
-  4692			list_del(&ctrl->subsys_entry);
-  4693			sysfs_remove_link(&subsys->dev.kobj, dev_name(ctrl->device));
-  4694			mutex_unlock(&nvme_subsystems_lock);
-  4695		}
-  4696	
-  4697		ctrl->ops->free_ctrl(ctrl);
-  4698	
-  4699		if (subsys)
-  4700			nvme_put_subsystem(subsys);
-  4701	}
-  4702	
-  4703	/*
-  4704	 * Initialize a NVMe controller structures.  This needs to be called during
-  4705	 * earliest initialization so that we have the initialized structured around
-  4706	 * during probing.
-  4707	 *
-  4708	 * On success, the caller must use the nvme_put_ctrl() to release this when
-  4709	 * needed, which also invokes the ops->free_ctrl() callback.
-  4710	 */
-  4711	int nvme_init_ctrl(struct nvme_ctrl *ctrl, struct device *dev,
-  4712			const struct nvme_ctrl_ops *ops, unsigned long quirks)
-  4713	{
-  4714		int ret;
-  4715	
-  4716		WRITE_ONCE(ctrl->state, NVME_CTRL_NEW);
-  4717		ctrl->passthru_err_log_enabled = false;
-  4718		clear_bit(NVME_CTRL_FAILFAST_EXPIRED, &ctrl->flags);
-  4719		spin_lock_init(&ctrl->lock);
-  4720		mutex_init(&ctrl->namespaces_lock);
-  4721	
-  4722		ret = init_srcu_struct(&ctrl->srcu);
-  4723		if (ret)
-  4724			return ret;
-  4725	
-  4726		mutex_init(&ctrl->scan_lock);
-  4727		INIT_LIST_HEAD(&ctrl->namespaces);
-  4728		xa_init(&ctrl->cels);
-  4729		ctrl->dev = dev;
-  4730		ctrl->ops = ops;
-  4731		ctrl->quirks = quirks;
-  4732		ctrl->numa_node = NUMA_NO_NODE;
-  4733		INIT_WORK(&ctrl->scan_work, nvme_scan_work);
-  4734		INIT_WORK(&ctrl->async_event_work, nvme_async_event_work);
-  4735		INIT_WORK(&ctrl->fw_act_work, nvme_fw_act_work);
-  4736		INIT_WORK(&ctrl->delete_work, nvme_delete_ctrl_work);
-  4737		init_waitqueue_head(&ctrl->state_wq);
-  4738	
-  4739		INIT_DELAYED_WORK(&ctrl->ka_work, nvme_keep_alive_work);
-  4740		INIT_DELAYED_WORK(&ctrl->failfast_work, nvme_failfast_work);
-  4741		memset(&ctrl->ka_cmd, 0, sizeof(ctrl->ka_cmd));
-  4742		ctrl->ka_cmd.common.opcode = nvme_admin_keep_alive;
-  4743		ctrl->ka_last_check_time = jiffies;
-  4744	
-  4745		BUILD_BUG_ON(NVME_DSM_MAX_RANGES * sizeof(struct nvme_dsm_range) >
-  4746				PAGE_SIZE);
-  4747		ctrl->discard_page = alloc_page(GFP_KERNEL);
-  4748		if (!ctrl->discard_page) {
-  4749			ret = -ENOMEM;
-  4750			goto out;
-  4751		}
-  4752	
-  4753		ret = ida_alloc(&nvme_instance_ida, GFP_KERNEL);
-  4754		if (ret < 0)
-  4755			goto out;
-  4756		ctrl->instance = ret;
-  4757	
-  4758		ret = nvme_auth_init_ctrl(ctrl);
-  4759		if (ret)
-  4760			goto out_release_instance;
-  4761	
-  4762		nvme_mpath_init_ctrl(ctrl);
-  4763	
-  4764		device_initialize(&ctrl->ctrl_device);
-  4765		ctrl->device = &ctrl->ctrl_device;
-  4766		ctrl->device->devt = MKDEV(MAJOR(nvme_ctrl_base_chr_devt),
-  4767				ctrl->instance);
-  4768		ctrl->device->class = &nvme_class;
-  4769		ctrl->device->parent = ctrl->dev;
-  4770		if (ops->dev_attr_groups)
-  4771			ctrl->device->groups = ops->dev_attr_groups;
-  4772		else
-  4773			ctrl->device->groups = nvme_dev_attr_groups;
-  4774		ctrl->device->release = nvme_free_ctrl;
-> 4775		ctrl->device->of_node = of_get_compatible_child(ctrl->dev->of_node,
-  4776								"nvme-card");
-  4777		dev_set_drvdata(ctrl->device, ctrl);
-  4778	
-  4779		return ret;
-  4780	
-  4781	out_release_instance:
-  4782		ida_free(&nvme_instance_ida, ctrl->instance);
-  4783	out:
-  4784		if (ctrl->discard_page)
-  4785			__free_page(ctrl->discard_page);
-  4786		cleanup_srcu_struct(&ctrl->srcu);
-  4787		return ret;
-  4788	}
-  4789	EXPORT_SYMBOL_GPL(nvme_init_ctrl);
-  4790	
+Best regards,
+Krzysztof
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
