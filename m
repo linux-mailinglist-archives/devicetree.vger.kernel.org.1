@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-90863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB8F9946F3D
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 16:09:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1EA6946F41
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 16:16:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F2A71F20CEA
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 14:09:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A87C280CE1
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 14:16:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E8B241A92;
-	Sun,  4 Aug 2024 14:09:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AE1E3BBC5;
+	Sun,  4 Aug 2024 14:16:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CH3vHGlE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CqtjtW/f"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 127AC28377;
-	Sun,  4 Aug 2024 14:09:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A39C1CA9F;
+	Sun,  4 Aug 2024 14:16:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722780558; cv=none; b=fXrYDljwdIGo2ieao1zQlVE9omlOGvqhb0p6jaIAOfpU23bLC2lQX1ddiVIgc6A8mnFyRz9TjYYycU/k/21BMO1nM+DEh0yKnceFxXi+7P5YfjN9FdpIrAWFGRHxydheMhy3pnyvOuE5QFdyIzc9x+fj/4yjaVaP5ghuEOyOrII=
+	t=1722781004; cv=none; b=GKcQ/77X1fRiJG5v7c+o6wBeOwdb2x6GXvb3VhACK5Pb50cZ74h9hQelRgbe7cP6LgWdy2iuklxowG7RhFZ7Mc2eFQVHVaxzLLCi6Qf6W9/hA7ff8cdE3wVegbW9hsOd8ezD7jd4tqERIikBnpW4zyBUjRjkflMsZcs0rjxW8Zg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722780558; c=relaxed/simple;
-	bh=o5+7NJb5+y+0KIXGDx9N7TnkkCwXzwrwVaHM98bw1UU=;
+	s=arc-20240116; t=1722781004; c=relaxed/simple;
+	bh=+yrDRlrOYDFtWrAPd7APp27cogwl15HKJx4AENWPh9U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NEr6rouaCvbiKzzAkAybjcLjphR14z8luoYnyTZGKn+Nbmy17x2Blrz8kxQwb0YjbP15MiJ8Y8+ShF3f7gS291uF1T9CV6S4UdEJbL/9DUOt6EK7FdgSlA0mJxGDA/1azutz7gvgFyt44bmfgjPZew+MiyVMhgTepAALCuO0eX8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CH3vHGlE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3643EC32786;
-	Sun,  4 Aug 2024 14:09:11 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=rcvPPcoYv1PUsIsVvfr6F1WPSTF485T4fGix71ZX9eGP8EH2gQNsOlt3o/EfCgYCy7oQXbQ1ux8yhpUyixqYK4NSNNzB6Mu+811BEndcn5V7QVNd+81el026avqRMHAmi0BAZYR5uB+0A9rUteO92ssBJua3+fbDOnHioOsD6nk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CqtjtW/f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96E6FC32786;
+	Sun,  4 Aug 2024 14:16:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722780557;
-	bh=o5+7NJb5+y+0KIXGDx9N7TnkkCwXzwrwVaHM98bw1UU=;
+	s=k20201202; t=1722781003;
+	bh=+yrDRlrOYDFtWrAPd7APp27cogwl15HKJx4AENWPh9U=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CH3vHGlEeUVaOlJQaJveplm61nbcK06xC6MjpzmyO5+0TtRJXiThmnxmtDerAGDZS
-	 RktoryuLPoBemsRTD4VC8scnx8K96AxZjPFNtbUYSLSOcK/IGFeh858IZ49Si23b/r
-	 6pYE5qH4IZCA7Ltz9Pcj66VmHD9o2kpFMvhsOWfTu2jI+lIlCRk+arx0WLa6sis2EG
-	 Ts4LvA8SNXZyQvo7g63g6ZvH5AfZdqFbulEDBRp33us0bteRy3mD55TjupVMkdkjit
-	 QHYVMsN4IxHn5iFu/Uwy3k9ze6efZJs7GgdnHqK/nrzcB8AX2Um76DNBDN/D39gvuK
-	 qoBwUM5EWJTkA==
-Message-ID: <6bba3607-04c6-4d6d-942c-21859bfa9b74@kernel.org>
-Date: Sun, 4 Aug 2024 16:09:09 +0200
+	b=CqtjtW/fYJtZKbWrdXYbDbVDA70a1eRNhXn3bCZSu6bEO1KOlT0aXmBq5pfX/aRQp
+	 hQxJnUaLu9fzFY506j5P0ZDrv6VKIX52OeKXrmW+x7i/bMXg2el2i1AnXBRgPjKGNn
+	 pjQWAuZZrYrXzUk73aJLDbbilYHoYKq+WjdRUJIK9pGcLC1Kox61a4Q2Z3BfiPNw54
+	 1iFbAx+OMD2rFTWVsyzWDoQiJ/22tmAX19hk0gorvKq2O77KB6mjhEIklw+VTLyO4o
+	 zN2+ygG9auqOwS37118DfQE3axh68aIRRjmOcGmdkhQkQdYhi1L7ixmnAyhQPu78RU
+	 pM3OwpylLRbmA==
+Message-ID: <21557eac-44f0-451d-a194-c5d545cacbee@kernel.org>
+Date: Sun, 4 Aug 2024 16:16:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: rockchip: Add base DT for rk3528 SoC
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Yao Zi <ziyao@disroot.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Chris Morgan <macromorgan@hotmail.com>,
- Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>,
- Andy Yan <andyshrk@163.com>, Muhammed Efe Cetin <efectn@protonmail.com>,
- Jagan Teki <jagan@edgeble.ai>, Dragan Simic <dsimic@manjaro.org>,
- Ondrej Jirman <megi@xff.cz>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-serial@vger.kernel.org
-References: <20240803125510.4699-2-ziyao@disroot.org>
- <20240803125510.4699-5-ziyao@disroot.org>
- <56bd1478-ce8c-4c1d-ab16-afe4ad462bf5@kernel.org> <10507028.U7f9L36N0a@diego>
+Subject: Re: [PATCH 1/5] dt-bindings: phy: imx8mq-usb: add compatible
+ "fsl,imx95-usb-phy"
+To: Xu Yang <xu.yang_2@nxp.com>, vkoul@kernel.org, kishon@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+ festevam@gmail.com, gregkh@linuxfoundation.org, Frank.Li@nxp.com,
+ jun.li@nxp.com, l.stach@pengutronix.de, aford173@gmail.com,
+ hongxing.zhu@nxp.com, alexander.stein@ew.tq-group.com
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-usb@vger.kernel.org
+References: <20240802091702.2057294-1-xu.yang_2@nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,40 +107,91 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <10507028.U7f9L36N0a@diego>
+In-Reply-To: <20240802091702.2057294-1-xu.yang_2@nxp.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 04/08/2024 14:49, Heiko Stübner wrote:
+On 02/08/2024 11:16, Xu Yang wrote:
+> The usb phy in i.MX95 is compatible with i.MX8MP's, this will add a
+> compatible "fsl,imx95-usb-phy" for i.MX95. Also change reg maxItems
+> to 2 since i.MX95 needs another regmap to control Type-C Assist (TCA)
+> block. Since i.MX95 usb phy is able to switch SS lanes, this will also
+> add orientation-switch and port property to the file.
 > 
->>> +		compatible = "fixed-clock";
->>> +		#clock-cells = <0>;
->>> +		clock-frequency = <24000000>;
->>> +		clock-output-names = "xin24m";
->>> +	};
->>> +
->>> +	gic: interrupt-controller@fed01000 {
->>
->> Why this all is outside of SoC?
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> ---
+>  .../bindings/phy/fsl,imx8mq-usb-phy.yaml      | 40 +++++++++++++++++--
+>  1 file changed, 36 insertions(+), 4 deletions(-)
 > 
-> I guess you mean outside of a "soc {}" node?
-> 
-> Here the rk3528 simply follows all other Rockchip SoCs :-) .
-> 
-> Digging into the history, the first rk3066a and initial rk3288 submission
-> did use a soc {} node, which later got removed as suggested by arm-soc
-> maintainers at the time [0].
-> 
-> I guess that changed since then?
+> diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+> index dc3a3f709fea..b0a614a9556d 100644
+> --- a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+> @@ -11,12 +11,17 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - fsl,imx8mq-usb-phy
+> -      - fsl,imx8mp-usb-phy
+> +    oneOf:
+> +      - enum:
+> +          - fsl,imx8mq-usb-phy
+> +          - fsl,imx8mp-usb-phy
+> +      - items:
+> +          - const: fsl,imx95-usb-phy
+> +          - const: fsl,imx8mp-usb-phy
+>  
+>    reg:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
+>  
+>    "#phy-cells":
+>      const: 0
+> @@ -28,6 +33,17 @@ properties:
+>      items:
+>        - const: phy
+>  
+> +  orientation-switch:
+> +    description:
+> +      Flag the PHY as possible handler of USB Type-C orientation switching
 
-Well, referenced patch was mixing MMIO with non-MMIO, so Olof's comment
-could be understood that this is not correct approach. Even though DT
-spec shows examples of "soc", it is not required. But then how do you
-implement any ordering? By name or by unit address?
+No need to duplicate definitions of properties.
 
-IOW, I think this is the only platform not using "soc" nodes.
+> +    type: boolean
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/properties/port
+> +    description:
+> +      A port node to link the PHY to a TypeC controller for the purpose of
+> +      handling orientation switching.
 
-Best regards,
+Same here. You probably miss reference to usb-switch.
+
+> +
+>    power-domains:
+>      maxItems: 1
+>  
+> @@ -89,6 +105,22 @@ required:
+>    - clocks
+>    - clock-names
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx95-usb-phy
+> +    then:
+> +      properties:
+> +        reg:
+> +          minItems: 2
+
+list and describe the items here, instead.
+
+
 Krzysztof
 
 
