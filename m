@@ -1,217 +1,138 @@
-Return-Path: <devicetree+bounces-90835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84A0E946E55
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 12:59:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD89B946E67
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 13:27:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 565EC281743
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 10:59:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5AC20B2179D
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 11:27:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4FBC28DC3;
-	Sun,  4 Aug 2024 10:59:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE5222E3EB;
+	Sun,  4 Aug 2024 11:27:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=grimler.se header.i=@grimler.se header.b="cbzRaOqp"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="QrLFVnQ9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-171.mta0.migadu.com (out-171.mta0.migadu.com [91.218.175.171])
+Received: from out-171.mta1.migadu.com (out-171.mta1.migadu.com [95.215.58.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA613219F6
-	for <devicetree@vger.kernel.org>; Sun,  4 Aug 2024 10:59:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0F0BB641
+	for <devicetree@vger.kernel.org>; Sun,  4 Aug 2024 11:27:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722769187; cv=none; b=o5qrUiqwBk4Gh3Jnd1qmWtbIWBhwAQsKIou9VUp9LhKreUcVtib/5950lEvNJy3kx2RuAqEf9mGukomtvXL3r9danEqSHz9+Grxl/LO2Lkb///8Ugpc/uA4KmWKvnXGY8fsDSFQePnH4watJ1jGq2qKsSCI53CRabeGj0wafzRg=
+	t=1722770870; cv=none; b=X88yFqfDv9Ziw6xjm8/1QVBj+ECL44z3RG8NlVtksvKPYju7QI34Lk6XihpqzSYLAtBYvWKOIbhuxxOxcwGbWtnMwrBSxq30dHoXX5IfO7iazitQOO3SjWs6M7sVn9CWsb2BSLIHGzjF1CbYsVlAmghXyy4S2M+H/BaJyIK/lBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722769187; c=relaxed/simple;
-	bh=L5Vrw3PKvawaKJnULY9jEBAZo/94igeafx99+6TgBFg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZY/deaNslXMXXqjy+hAsEnQeSjPZnu/ATRdoNAlN6simBTLn/h/u17PP1uownDD3AqDNn6HxgTLcBLFtXZF7uLT+ctLjxRenWkEzYrbg7ewDJr50gHfNkqVsoalFosbLrdMzpS3klKRoDElGQkJEN3tMFVCQvjqEAULkeM1O3Us=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=grimler.se; spf=pass smtp.mailfrom=grimler.se; dkim=pass (1024-bit key) header.d=grimler.se header.i=@grimler.se header.b=cbzRaOqp; arc=none smtp.client-ip=91.218.175.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=grimler.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=grimler.se
-Date: Sun, 4 Aug 2024 12:59:37 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=grimler.se; s=key1;
-	t=1722769181;
+	s=arc-20240116; t=1722770870; c=relaxed/simple;
+	bh=6WTWTv7xN+Wsf3mjUSvFKRctXZL7CXQtw0vVYnbC+eE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Opmrsl6tI7uSwR5wS2O8P3q39Vc+Q/wCR125c4GdBvOllf0cN1B6W8LcqnPDpV1IBtF1bk2PDgpOksPRC7+VBJvdDjz3lTH/yhatVlHLHY+ymOWyUdyVbF5529uzernkPndNaRXuE7FL8m85eu1GCMeB2gATHxthMfZXKB9Rf5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=QrLFVnQ9; arc=none smtp.client-ip=95.215.58.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1722770866;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=D73264s0rVgukFWFnLR+vhWZQ06smgTwC5awVs888Oo=;
-	b=cbzRaOqpNdt0nkCPe1REyNFoxFAt3LxF1sfg91oYwLswUpazCyM3ajF/GDqm52fr6A49ut
-	S2Z0/jlSgpicapb27uC9ISakign8gj+erkvowgPE/jVRKjQsRIEmVHz8vk1amegcFFTZv4
-	gBZpGNFFqaJgL28qqk5Tm1WWbX6b0xw=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Henrik Grimler <henrik@grimler.se>
-To: Artur Weber <aweber.kernel@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht,
-	Wolfgang Wiedmeyer <wolfgit@wiedmeyer.de>,
-	Denis 'GNUtoo' Carikli <GNUtoo@cyberdimension.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v3 00/10] power: supply: max77693: Toggle charging/OTG
- based on extcon status
-Message-ID: <20240804105937.GA20421@l14.localdomain>
-References: <20240729-max77693-charger-extcon-v3-0-02315a6869d4@gmail.com>
- <20240801062253.GA2681@l14.localdomain>
+	bh=MJQz41jQBJqqx/MG8xPjrVEqBddVWd1a3QNgEsqP5KI=;
+	b=QrLFVnQ9nxrML1Lv2rIBRIKWhtHtacXtXTTu6r401eRGTwSFkmtvi1WZkXyvqUy3YYVurY
+	TMnZeqPcvh2RegkaD01er2QqM7NCixV6KdIkkN/HdA6eB2tpIRxQtED7B9GL6Lv8Q1K3Jv
+	b9L4maSPSPQexki+f+3kaxqEe3ts6I0ohxGRHx2S/qhINivyTDkUPqFQCCUj8G6Uzh1Fi6
+	4TDZ6J08vBithTygoIsY0NabC1NxVfcJVAGbs3wO6Z/wKctIdza7DNDN9ZulzsgToIdjOn
+	M+8r8+ymfgEQGwyRmeVW7D6+k3HA3ll5UJNyuw+c0+KR25xkIvpOjDwEOGB6yA==
+From: Diederik de Haas <didi.debian@cknow.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Chris Morgan <macromorgan@hotmail.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>,
+ Andy Yan <andyshrk@163.com>, Muhammed Efe Cetin <efectn@protonmail.com>,
+ Jagan Teki <jagan@edgeble.ai>, Dragan Simic <dsimic@manjaro.org>,
+ Ondrej Jirman <megi@xff.cz>, linux-rockchip@lists.infradead.org
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-serial@vger.kernel.org, Yao Zi <ziyao@disroot.org>,
+ Yao Zi <ziyao@disroot.org>
+Subject: Re: [PATCH 3/4] arm64: dts: rockchip: Add base DT for rk3528 SoC
+Date: Sun, 04 Aug 2024 13:27:35 +0200
+Message-ID: <3483951.iGylCHCCq3@bagend>
+Organization: Connecting Knowledge
+In-Reply-To: <20240803125510.4699-5-ziyao@disroot.org>
+References:
+ <20240803125510.4699-2-ziyao@disroot.org>
+ <20240803125510.4699-5-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240801062253.GA2681@l14.localdomain>
+Content-Type: multipart/signed; boundary="nextPart2013840.3XhD2mlfif";
+ micalg="pgp-sha256"; protocol="application/pgp-signature"
 X-Migadu-Flow: FLOW_OUT
 
-Hi again Artur,
+--nextPart2013840.3XhD2mlfif
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Diederik de Haas <didi.debian@cknow.org>
+Date: Sun, 04 Aug 2024 13:27:35 +0200
+Message-ID: <3483951.iGylCHCCq3@bagend>
+Organization: Connecting Knowledge
+In-Reply-To: <20240803125510.4699-5-ziyao@disroot.org>
+MIME-Version: 1.0
 
-On Thu, Aug 01, 2024 at 08:23:26AM +0200, Henrik Grimler wrote:
-> Hi Artur,
-> 
-> On Mon, Jul 29, 2024 at 07:47:34PM +0200, Artur Weber wrote:
-> > This patchset does the following:
-> > 
-> > - Add CURRENT_MAX and INPUT_CURRENT_MAX power supply properties to
-> >   expose the "fast charge current" (maximum current from charger to
-> >   battery) and "CHGIN input current limit" (maximum current from
-> >   external supply to charger).
-> > 
-> > - Add functions for toggling charging and OTG modes.
-> > 
-> > - Add an extcon-based handler that enables charging or OTG depending
-> >   on the cable type plugged in. The extcon device to use for cable
-> >   detection can be specified in the device tree, and is entirely
-> >   optional.
-> > 
-> > The extcon listener implementation is inspired by the rt5033 charger
-> > driver (commit 8242336dc8a8 ("power: supply: rt5033_charger: Add cable
-> > detection and USB OTG supply")).
-> 
-> Tested on exynos4412-i9305 (after applying the changes in patch 8 - 10
-> to exynos4412-midas.dtsi).  It works well, device correctly identifies
-> a usb cable connected to charger or a usb cable connected to computer,
-> and sets a limit of 1.8 A and 0.5 A in the two cases.
-> 
-> I did notice that device does not always detect cable insertion, so I
-> can occassionally get two de-attach events in a row.  Cable was
-> inserted between 428 and 462 in below log snippet:
-> 
-> [  389.458399] max77693-muic max77693-muic: external connector is attached(chg_type:0x3, prev_chg_type:0x3)
-> [  389.469765] max77693-charger max77693-charger: fast charging. connector type: 6
-> [  428.151857] max77693-muic max77693-muic: external connector is detached(chg_type:0x3, prev_chg_type:0x0)
-> [  428.160319] max77693-charger max77693-charger: not charging. connector type: 13
-> [  462.156048] max77693-muic max77693-muic: external connector is detached(chg_type:0x0, prev_chg_type:0x0)
-> [  469.881925] max77693-muic max77693-muic: external connector is attached(chg_type:0x3, prev_chg_type:0x3)
-> [  469.890049] max77693-charger max77693-charger: fast charging. connector type: 6
-> 
-> but this is probably an issue in extcon driver though rather than
-> charger.
-> 
-> I have not tested so that MHL still works, as I do not have access to
-> that cable at the moment, will try it in a few days.
+On Saturday, 3 August 2024 14:55:10 CEST Yao Zi wrote:
+> +       gic: interrupt-controller@fed01000 {
+> +               compatible = "arm,gic-400";
+> +               #interrupt-cells = <3>;
+> +               #address-cells = <0>;
+> +               interrupt-controller;
+> +               reg = <0x0 0xfed01000 0 0x1000>,
+> +                     <0x0 0xfed02000 0 0x2000>,
+> +                     <0x0 0xfed04000 0 0x2000>,
+> +                     <0x0 0xfed06000 0 0x2000>;
+> +               interrupts = <GIC_PPI 9
+> +                       (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+> +       };
+> +
+> +       uart0: serial@ff9f0000 {
+> +               compatible = "rockchip,rk3528-uart", "snps,dw-apb-uart";
+> +               reg = <0x0 0xff9f0000 0x0 0x100>;
+> +               interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
+> +               reg-shift = <2>;
+> +               reg-io-width = <4>;
+> +               clock-frequency = <24000000>;
+> +               status = "disabled";
+> +       };
 
-MHL now tested on exynos4412-i9300 as well.  It works, and the series
-fixes so that we can hotplug the cable (with a few patches to make
-sii9324 use extcon as well), before we had to connect cable before
-boot and rely on bootloader to setup everything.  Thanks!
+The properties should be sorted as follows:
+- compatible
+- reg
+- <other properties sorted alphabetically>
+- status
 
-> > Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+This also applies to the other blocks which I didn't quote.
 
-Tested-by: Henrik Grimler <henrik@grimler.se>
+Cheers,
+  Diederik
+--nextPart2013840.3XhD2mlfif
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
-Best regards,
-Henrik Grimler
+-----BEGIN PGP SIGNATURE-----
 
-> > v3 no longer uses the CHARGER regulator to manage the power status, and
-> > that's for two reasons:
-> > 
-> > - Regulator enable/disable behavior was interfering with how the power
-> >   supply driver worked (we occasionally got "unbalanced disables"
-> >   errors when switching charging state, despite checking for the
-> >   regulator status with regulator_is_enabled() - the CHARGER reg would
-> >   report as enabled despite the enable count being 0).
-> >   This broke OTG insertion if the OTG cable was plugged in first, and
-> >   sometimes caused warnings on unsuspend.
-> > 
-> > - Changing the charging values directly in the power supply driver is
-> >   less opaque and lets us avoid bringing in a dependency on regulators.
-> > 
-> > It also splits the current limits back into two properties:
-> > INPUT_CURRENT_LIMIT and CONSTANT_CHARGE_CURRENT_MAX. Again, there are
-> > two reasons for this split:
-> > 
-> > - They are two separate current controls, one for USB->charger and one
-> >   for charger->battery, and they have different limits (0-2.1A for CC
-> >   vs 60mA-2.58A for input). Given that the power supply core has the
-> >   properties for both values separately, it's more logical to present
-> >   them as such.
-> > 
-> > - It's safer to keep these separate; CONSTANT_CHARGE_CURRENT_MAX is
-> >   pretty explicitly only set *once* - at probe time with a safe value
-> >   specified in the DT. This way, INPUT_CURRENT_LIMIT is safer to modify
-> >   since in the event of an invalid value the CC current will hold back
-> >   the extra current thus preventing damage to the battery.
-> > 
-> > The latter is relevant as I'm working on a follow-up patchset that
-> > allows for controlling the charging parameters using power supply
-> > properties/sysfs properties rather than the CHARGER regulator.
-> > 
-> > Note that the CHARGER regulator gets disabled automatically if it's
-> > not used, which will disable charging if it was auto-enabled by the
-> > extcon code. This can be worked around by re-attaching the cable, or
-> > more properly by removing the CHARGER regulator from DT for devices
-> > that use the extcon-based charger management, as has been done in the
-> > Galaxy Tab 3 8.0 DTSI.
-> > 
-> > See v1 for old description:
-> > 
-> > https://lore.kernel.org/r/20240530-max77693-charger-extcon-v1-0-dc2a9e5bdf30@gmail.com
-> > ---
-> > Changes in v3:
-> > - Drop uses of CHARGER regulator, manage registers directly in power
-> >   supply driver instead
-> > - Link to v2: https://lore.kernel.org/r/20240715-max77693-charger-extcon-v2-0-0838ffbb18c3@gmail.com
-> > 
-> > Changes in v2:
-> > - Changed to use monitored-battery for charge current value
-> > - Both current limit variables are now set by the CHARGER regulator
-> > - Link to v1: https://lore.kernel.org/r/20240530-max77693-charger-extcon-v1-0-dc2a9e5bdf30@gmail.com
-> > 
-> > ---
-> > Artur Weber (10):
-> >       dt-bindings: power: supply: max77693: Add monitored-battery property
-> >       dt-bindings: power: supply: max77693: Add maxim,usb-connector property
-> >       power: supply: max77693: Expose input current limit and CC current properties
-> >       power: supply: max77693: Set charge current limits during init
-> >       power: supply: max77693: Add USB extcon detection for enabling charging
-> >       power: supply: max77693: Add support for detecting and enabling OTG
-> >       power: supply: max77693: Set up charge/input current according to cable type
-> >       ARM: dts: samsung: exynos4212-tab3: Add battery node with charge current value
-> >       ARM: dts: samsung: exynos4212-tab3: Add USB connector node
-> >       ARM: dts: exynos4212-tab3: Drop CHARGER regulator
-> > 
-> >  .../bindings/power/supply/maxim,max77693.yaml      |  15 +
-> >  arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi     |  22 +-
-> >  drivers/power/supply/Kconfig                       |   1 +
-> >  drivers/power/supply/max77693_charger.c            | 302 ++++++++++++++++++++-
-> >  include/linux/mfd/max77693-private.h               |  12 +
-> >  5 files changed, 337 insertions(+), 15 deletions(-)
-> > ---
-> > base-commit: 0c3836482481200ead7b416ca80c68a29cfdaabd
-> > change-id: 20240525-max77693-charger-extcon-9ebb7bad83ce
-> > 
-> > Best regards,
-> > -- 
-> > Artur Weber <aweber.kernel@gmail.com>
-> > 
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZq9lpwAKCRDXblvOeH7b
+bnHyAQD8wsAMQjsb0Ikzu8H5TXIwKe/0e07lJCrzJlvovJaVzgD/WZBgbVZnTLND
+Y3HfPGfi3UhbL+6yrSDh/M0Qok4/9QU=
+=1NSP
+-----END PGP SIGNATURE-----
+
+--nextPart2013840.3XhD2mlfif--
+
+
+
 
