@@ -1,221 +1,140 @@
-Return-Path: <devicetree+bounces-90883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81617946FDB
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 18:42:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C385C946FDD
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 18:43:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C34A1C2095F
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 16:42:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 448D41F21435
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 16:43:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AB3C12FB1B;
-	Sun,  4 Aug 2024 16:42:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFF3412FB1B;
+	Sun,  4 Aug 2024 16:43:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="nwQhVRrk"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jVpPDQir"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 267CFA953;
-	Sun,  4 Aug 2024 16:42:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8E592D03B;
+	Sun,  4 Aug 2024 16:43:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722789763; cv=none; b=eCglgethhyBLSz84sSZ5uGm2U54QujpmuU7/2CV4iCPji1hF1hLO1nOkDzzAdcaBNE+LWvv+v1lVoZBNkWPTas61nEtspHhWV1mEAOqJ25FWCmhGb6MGRQ3oKBiNoAiKdPFO0zSMATtLUUQqbC0cov+4fhtdICs8u2feMYh7T9E=
+	t=1722789800; cv=none; b=canuI6Mc/vd1JUSqsDaSVHxgHutu5nu04W1sUubQtMKLRGOK3B0ruJXGWUkz+BCGPLlyvCbGKKs0ZjFywJFyh2QWbdB1DcM9s5JjCuESiP4Y0Fbc9NVFRno2Ljl5w+PBtKbcfj1a/yQRpj5PQ+4jaE1bLmmhRUh6/3nVtgPEXw0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722789763; c=relaxed/simple;
-	bh=LARGR0YvnxUUkWf2N80Ni345giEWSBrb+seJpdxHfJ4=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=g0Md8oEXuv4S1xNdh3z9dwKjPeTdFZERvvY9PahQgKL7xldbKZmvmaYecO1KRmYhOVzknuY6c/r8o1YszFslfMPkmquKlMQNyjtvzDoW4lCz7EBuVVjWc9J83NzYF/I2+0r5Qfahrmje3kv0Dq1q/lHIvGOuB3UCVkt00Jnlh00=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=nwQhVRrk; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1722789800; c=relaxed/simple;
+	bh=HNyFFfVNO+jBUsoZ+Wz9kLjM5s7uzZZ8sEH1bOQtruM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DEwzlv/m0eaUhWCAFuhuuiknIFg0g1bSTDgwyqZ55FnILvE7ykDQCwfMdLupoY+ayx3+DLZNAAlt+ksrnm96Tefuj8iBkjU1XaEP7oeLNCcXrm4WmWbAj7yUt1IUlVQVjSOYwEgfhq4Hzbv+YMCeAvmccoZAr6pv4ak652/2aIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jVpPDQir; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1722789799; x=1754325799;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=HNyFFfVNO+jBUsoZ+Wz9kLjM5s7uzZZ8sEH1bOQtruM=;
+  b=jVpPDQir7Pd9NT/6Xx0rwh+6XIbwPwSKtnblU3radQQU4y5rXt5aEKaI
+   Nevhw3QQVg7cEGx1C7kgSwqCuiD+dLfG3rrbJBLc3e+0hpA7Uktn+L5Gb
+   crVqxE0WsRTa0nuQ7Z56yyWUe5etXsa+8YMtxqxMp2WgEONzl/d7Iq7Yr
+   7JAKIQ45YLf0puMr+qs2EjHnHbj5lQRkkDiFMAZcX05tQkXmFg3N7d6qi
+   1MK1w0uR4jc9dMWUQh/TNRFZNOe7WTQ/kkUYEDphNd0kA2TSUMVqwQzVy
+   HND6618kjAj6xIcfKIIcf9084Mc3YxaYxT1J2yKwCdOG6vL82mA06XHOp
+   g==;
+X-CSE-ConnectionGUID: fu3yutisRdKB38R1JDCGNw==
+X-CSE-MsgGUID: nVZjtx9OSZyYrC0c+XElYQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11154"; a="31405545"
+X-IronPort-AV: E=Sophos;i="6.09,262,1716274800"; 
+   d="scan'208";a="31405545"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Aug 2024 09:43:18 -0700
+X-CSE-ConnectionGUID: u6Pnklg0TqWgDnh9Ko0luA==
+X-CSE-MsgGUID: ci8I1AuCRjmzQLt9AVKhOQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,262,1716274800"; 
+   d="scan'208";a="55884556"
+Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
+  by fmviesa009.fm.intel.com with ESMTP; 04 Aug 2024 09:43:15 -0700
+Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1saeK8-0001Xm-2A;
+	Sun, 04 Aug 2024 16:43:12 +0000
+Date: Mon, 5 Aug 2024 00:42:51 +0800
+From: kernel test robot <lkp@intel.com>
+To: zhenghaowei@loongson.cn, gregkh@linuxfoundation.org,
+	jirislaby@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, chenhuacai@kernel.org, kernel@xen0n.name,
+	p.zabel@pengutronix.de
+Cc: oe-kbuild-all@lists.linux.dev, linux-serial@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	loongarch@lists.linux.dev
+Subject: Re: [PATCH v2 2/3] tty: serial: 8250: Add loongson uart driver
+ support
+Message-ID: <202408050031.dYYkSqDM-lkp@intel.com>
+References: <20240804063834.70022-2-zhenghaowei@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1722789757;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=x+F7emmNBcXh0+ylTI7cNI8gyP1ykWrKeR7FpFCiKok=;
-	b=nwQhVRrkCCmt3H3QMTje70Mcu40bTsrr2z5hBROGBjkHNo4JTOnEtBZNgaC7udEV2gZsoT
-	2aoB1XxGWGekO9rn7bnEA0UYWopQhJQGc12XAOaATig25o0p1gaUByFkug50+w8dSKXpoe
-	HUZgPtvf/vM7cy4T433j8tml6G53qbJX1mlYVf/D+3YLZ28lIcU0ICHU+4r1aHkqRkCz+w
-	nERPBi7vDhTN4tHO5vpuNHqFQY64wCF2h8zOzU544Fuj0yisGVl13X3wwiqdeh12qg5MhH
-	zJ+2jxT1/uEJ8JGX1+IakqrWg5V/tav3DHLT/JjTe9nt5Hxd80Y0jCdpt7FJCg==
-Date: Sun, 04 Aug 2024 18:42:36 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Chris Morgan <macromorgan@hotmail.com>, Chris Morgan
- <macroalpha82@gmail.com>, linux-rockchip@lists.infradead.org,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org, jagan@edgeble.ai,
- andyshrk@163.com, jonas@kwiboo.se, t.schramm@manjaro.org, heiko@sntech.de,
- conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
- george@cool-pi.com, coolpi@cool-pi.com
-Subject: Re: [PATCH 2/5] power: supply: cw2015: Add support for dual-cell
- configurations
-In-Reply-To: <3fgf7jyla6gtxqppjjnjb5dgciqqus2iwjunjavlmhy7fxdqv7@a2iycmzlgkbb>
-References: <20240726194948.109326-1-macroalpha82@gmail.com>
- <20240726194948.109326-3-macroalpha82@gmail.com>
- <eimocj6mlvo6u4x54heywblwrfnftxelzpvfcogpjp7vjmunor@5eqlqsszk6ni>
- <MN2PR16MB2941F5FFA92B056533586FBDA5B12@MN2PR16MB2941.namprd16.prod.outlook.com>
- <2eh5iqwtwlbpg5kpr4lvvhxo2tngw4w7qanelr6filcrru62le@o7cwpsahp2n7>
- <8c44fcf923c5697ca55c8e32f3938d3b@manjaro.org>
- <3fgf7jyla6gtxqppjjnjb5dgciqqus2iwjunjavlmhy7fxdqv7@a2iycmzlgkbb>
-Message-ID: <20abe950c5e22a3fed4e0cbdb31089d8@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240804063834.70022-2-zhenghaowei@loongson.cn>
 
-Hello Sebastian,
+Hi,
 
-(I'm adding a couple of Cool Pi contacts to the Cc list.)
+kernel test robot noticed the following build errors:
 
-On 2024-08-04 18:29, Sebastian Reichel wrote:
-> On Fri, Aug 02, 2024 at 11:39:24PM GMT, Dragan Simic wrote:
->> On 2024-07-31 19:02, Sebastian Reichel wrote:
->> > On Wed, Jul 31, 2024 at 11:02:11AM GMT, Chris Morgan wrote:
->> > > On Fri, Jul 26, 2024 at 11:06:21PM +0200, Sebastian Reichel wrote:
->> > > > On Fri, Jul 26, 2024 at 02:49:45PM GMT, Chris Morgan wrote:
->> > > > > From: Chris Morgan <macromorgan@hotmail.com>
->> > > > >
->> > > > > The Cellwise cw2015 datasheet reports that it can handle two cells
->> > > > > in a series configuration. Allow a device tree parameter to note
->> > > > > this condition so that the driver reports the correct voltage values
->> > > > > to userspace.
->> > > >
->> > > > I found this:
->> > > >
->> > > > http://www.cellwise-semi.com/Public/assests/menu/20230302/6400076806706.pdf
->> > > >
->> > > > Which says:
->> > > >
->> > > >   CW2015 can be used in 2 or more batteries connected in series, or
->> > > >   several cells connected in parallel.
->> > > >
->> > > > So dual-cell seems like a bad property name. Instead the number of
->> > > > serial cells should be provided. This property is then not really
->> > > > specific to the Cellwise fuel gauge and instead a property of the
->> > > > battery pack (i.e. simple-battery.yaml).
->> > >
->> > > It's conflicting information (which further confuses me). I see in
->> > > that
->> > > datasheet it says 2 or more, whereas the datasheet found here says
->> > > only
->> > > 2 cells:
->> > >
->> > > https://www.lestat.st/_media/informatique/projets/python-cw2015/cw2015-power-management-datasheet.pdf
->> > >
->> > > But I agree in principle that we should be setting this as a property
->> > > of a simple-battery rather than a manufacturer specific parameter.
->> > >
->> > > >
->> > > > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
->> > > > > ---
->> > > > >  drivers/power/supply/cw2015_battery.c | 7 +++++++
->> > > > >  1 file changed, 7 insertions(+)
->> > > > >
->> > > > > diff --git a/drivers/power/supply/cw2015_battery.c b/drivers/power/supply/cw2015_battery.c
->> > > > > index f63c3c410451..b23a6d4fa4fa 100644
->> > > > > --- a/drivers/power/supply/cw2015_battery.c
->> > > > > +++ b/drivers/power/supply/cw2015_battery.c
->> > > > > @@ -77,6 +77,8 @@ struct cw_battery {
->> > > > >  	u32 poll_interval_ms;
->> > > > >  	u8 alert_level;
->> > > > >
->> > > > > +	bool dual_cell;
->> > > > > +
->> > > > >  	unsigned int read_errors;
->> > > > >  	unsigned int charge_stuck_cnt;
->> > > > >  };
->> > > > > @@ -325,6 +327,9 @@ static int cw_get_voltage(struct cw_battery *cw_bat)
->> > > > >  	 */
->> > > > >  	voltage_mv = avg * 312 / 1024;
->> > > > >
->> > > > > +	if (cw_bat->dual_cell)
->> > > > > +		voltage_mv *= 2;
->> > > >
->> > > > Unfortunately there are no details in the document, but this looks
->> > > > very fishy. Does it only measure the first cell and hope that the
->> > > > other cells have the same voltage?
->> > > >
->> > > > This (unmerged) series also applies to your problem to some degree:
->> > > >
->> > > > https://lore.kernel.org/all/20240416121818.543896-3-mike.looijmans@topic.nl/
->> > >
->> > > I think based on the application diagram it is in fact measuring the
->> > > cell voltage.
->> > >
->> > > That said, this ultimately boils down to a cosmetic thing
->> > > as not having this property simply means userspace sees the battery
->> > > voltage as 3.8v instead of 7.6v as is written on the side.
->> >
->> > With the cells being connected in serial, the voltage of both cells
->> > can be different. There is not "the cell voltage". Instead there is
->> > a voltage for cell 1 and a voltage for cell 2. In a perfect battery
->> > they are the same, but in reality they are not. In the extreme case
->> > one of the cells may be broken while the other is still fine. It
->> > sounds as if this is just measuring the voltage from the first
->> > cell and assumes the second cell has the same voltage.
->> >
->> > Ideally the voltage on these platforms is not exposed via the normal
->> > VOLTAGE property and instead uses a new property for telling
->> > userspace the voltage for a single cell. The kernel simply does not
->> > know the voltage of the whole battery pack.
->> >
->> > FWIW this is the worst battery measurement system I've seen so far
->> > if my understanding of the hardware design is correct.
->> 
->> Please note that two facts should be considered here:
->> 
->>  - The GenBook schematic [1] clearly shows that the individual battery
->>    cells aren't exposed at its internal battery connector and, as a
->>    result, aren't available for individual cell voltage monitoring
->> 
->>  - The GenBook uses a CW2013 as it fuel gauge, [1] instead of CW2015
->>    as mentioned here a few times, but I haven't went through the 
->> CW2013
->>    datasheet(s) yet to see what are the actual differences between it
->>    and the CW2015
->> 
->> [1] https://wiki.cool-pi.com/notebook/coolpi-genbook-v20.pdf
-> 
-> Ah, thanks for pointing to the schematics. So the fuel gauge can
-> only measure the voltage of the whole battery, but VCELL register
-> provides the voltage for 1 cell? What is the origin of the dual-cell
-> property? Was this something you came up with yourself when noticing
-> the wrong voltage?
+[auto build test ERROR on tty/tty-testing]
+[also build test ERROR on tty/tty-next tty/tty-linus robh/for-next usb/usb-testing usb/usb-next usb/usb-linus linus/master v6.11-rc1 next-20240802]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-I'm not sure where does the idea for the dual-cell property come from,
-but please note that it wasn't me who invented it, so to speak. :)
-I don't even have the required hardware to test and develop these 
-patches
-on, i.e. I don't have a CM5-based GenBook.
+url:    https://github.com/intel-lab-lkp/linux/commits/zhenghaowei-loongson-cn/tty-serial-8250-Add-loongson-uart-driver-support/20240804-145047
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git tty-testing
+patch link:    https://lore.kernel.org/r/20240804063834.70022-2-zhenghaowei%40loongson.cn
+patch subject: [PATCH v2 2/3] tty: serial: 8250: Add loongson uart driver support
+config: mips-lemote2f_defconfig (https://download.01.org/0day-ci/archive/20240805/202408050031.dYYkSqDM-lkp@intel.com/config)
+compiler: mips64el-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240805/202408050031.dYYkSqDM-lkp@intel.com/reproduce)
 
-> Based on the above information my guess would be that CW2013 uses a
-> different voltage resolution than CW2015 for the VCELL register. The
-> datasheet for CW2015 says 14bit ADC with 305uV resolution. Maybe
-> the CW2013 simply uses a different ADC. Do you have the datasheet
-> for the chip?
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408050031.dYYkSqDM-lkp@intel.com/
 
-I've managed to find a few (seemingly a bit different) CW2013 
-datasheets,
-but as usual with CellWise, some of them may contain a bit confusing or
-incomplete information.  I'd suggest that you wait for a couple of days
-until I sift through the obtained datasheets, to save you from doing the
-same. :)  Of course, I'll then send over the datasheet that seems 
-correct
-and the most complete to me.
+All error/warnings (new ones prefixed by >>):
 
-I'll see to add support for CW2013 to the cw2015 driver, for which I
-already have a couple of pending cleanup patches.
+>> drivers/tty/serial/8250/8250_loongson.c:200:35: error: implicit declaration of function 'of_match_ptr' [-Werror=implicit-function-declaration]
+     200 |                 .of_match_table = of_match_ptr(of_platform_serial_table),
+         |                                   ^~~~~~~~~~~~
+>> drivers/tty/serial/8250/8250_loongson.c:200:35: warning: initialization of 'const struct of_device_id *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+   drivers/tty/serial/8250/8250_loongson.c:200:35: note: (near initialization for 'loongson_uart_driver.driver.of_match_table')
+>> drivers/tty/serial/8250/8250_loongson.c:200:35: error: initializer element is not constant
+   drivers/tty/serial/8250/8250_loongson.c:200:35: note: (near initialization for 'loongson_uart_driver.driver.of_match_table')
+   cc1: some warnings being treated as errors
+
+
+vim +/of_match_ptr +200 drivers/tty/serial/8250/8250_loongson.c
+
+   193	
+   194	static struct platform_driver loongson_uart_driver = {
+   195		.probe = loongson_uart_probe,
+   196		.remove = loongson_uart_remove,
+   197		.driver = {
+   198			.name = "ls7a-uart",
+   199			.pm = &loongson_uart_pm_ops,
+ > 200			.of_match_table = of_match_ptr(of_platform_serial_table),
+   201		},
+   202	};
+   203	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
