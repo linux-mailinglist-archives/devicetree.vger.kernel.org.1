@@ -1,222 +1,287 @@
-Return-Path: <devicetree+bounces-90856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A4C3946F14
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 15:44:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4CF7946F1B
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 15:49:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31B9D2817C4
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 13:44:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 41A31B20FA7
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 13:49:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FBB23FBA5;
-	Sun,  4 Aug 2024 13:44:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D5463FBA5;
+	Sun,  4 Aug 2024 13:49:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="L6RaKhB2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EA02381B8;
-	Sun,  4 Aug 2024 13:44:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF70B1E4A4;
+	Sun,  4 Aug 2024 13:49:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722779068; cv=none; b=NlvS+wPxckmydpmOn7GHLH4OBRIbOcqO6rTUB+ghfep7n6CefiUU4j50Ws13AFO3TEmMhbkAcNqHVQY5nIGAfdnTl25pBl2nNi0X8+Dzz9OdHog9oDA0MUevmPpFwn3gjKOqRzBrkOVoG8fLtNTEJ9hHdHUGLE/nCmi+x5/J9no=
+	t=1722779351; cv=none; b=I0BG63c2EFstrNcLYiTPMw+7FR42tPcF1hfEODAwEB/IHJur0BXdw7Bxz+8vxj0vst7De5pB8VqXm+N2NlnxRt/OEW5XIsRMnHNkv+6ZYygx1ZoJPL4ZD/YwOhV/E+dnixT8EYo1UI/pVtb1iOpMfZikxu1Qun4ORj8+ZgoU9F8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722779068; c=relaxed/simple;
-	bh=ZMf49dbaIG1WCf0/RGIz34vDpT2JfDhgNivmyp1tvWo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aEFBEWzbcRO4GM/K354h4j17svW3n2+p2pgi9wQE7OqKiW1WmDRfjXBXejHlwBNApH8djdbcPqV/COfc18h/lR0cB8RzQFNiottLcxv0ePbQbZHUtB2+Xnz5006IVJW3YYoSX6vCj/8PCjHdVSxm0SeU+gRxoUNhbK4fDGSd5fY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875a9f.versanet.de ([83.135.90.159] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sabWj-0000Gv-Os; Sun, 04 Aug 2024 15:44:01 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Yao Zi <ziyao@disroot.org>, Dragan Simic <dsimic@manjaro.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Chris Morgan <macromorgan@hotmail.com>,
- Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>,
- Andy Yan <andyshrk@163.com>, Muhammed Efe Cetin <efectn@protonmail.com>,
- Jagan Teki <jagan@edgeble.ai>, Ondrej Jirman <megi@xff.cz>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-serial@vger.kernel.org
-Subject: Re: [PATCH 3/4] arm64: dts: rockchip: Add base DT for rk3528 SoC
-Date: Sun, 04 Aug 2024 15:44:00 +0200
-Message-ID: <2408413.9XhxPE3A7Q@diego>
-In-Reply-To: <88dd5910904c03280f37ca0051f5de4e@manjaro.org>
-References:
- <20240803125510.4699-2-ziyao@disroot.org>
- <Zq-AFWYaqu7zGuz-@ziyaolaptop.my.domain>
- <88dd5910904c03280f37ca0051f5de4e@manjaro.org>
+	s=arc-20240116; t=1722779351; c=relaxed/simple;
+	bh=ZEvV73YBlKrPcu6njYHmN/07ygxyiQcHWg7qogNJQPk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tOcZRHJPYumnXXfkCIpOQRiZlNa6yMM7MdGLXwde8EF14ha1y8pADagVc6aSwQx54LQOy84ba/Q3oY5oc8/ahJTPiIJg+1dnhAisJhywuaQRRN/NxR7JB2w1kDAjVm2bA7JuuQP28Euzi2xcPYHEl7ibrqemF4wYzzpqFHfdFPc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=L6RaKhB2; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1722779349; x=1754315349;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ZEvV73YBlKrPcu6njYHmN/07ygxyiQcHWg7qogNJQPk=;
+  b=L6RaKhB26HCjYiBxG1+lyJWCRnZqRCcipkFlMBmO7A0vCZZbHEAOFkgA
+   /+slJz6erwXuPSeBadjJFI86yLoImJMIpxMW8Xfnex4eVxlf2ZQx2dSBI
+   7lJZ+BkPrKUcVSdDXFuS8KyJtZonQK0TrZ/uNmXbkAG03aDShyvMoidoj
+   XuDF4FWbdJmz+P14yBQI9Ze0X/JoVIJB1LmGUIwPMvU8DVfPQkvraZDnM
+   0QrrzsBy7zZOeGJdbxF4JyMzPVS+jeaDj4GlX/Vumzd+ViWa8NKlAoWs4
+   3vfW8F7qiGuzxPihDqhdkTaSYLrK2D0G+j2RcTqYGTHXCbvOTGIqYwCZB
+   A==;
+X-CSE-ConnectionGUID: /1df4iaGTBSfBDi2qSAwpA==
+X-CSE-MsgGUID: 5udRq937QEK5Rx+E5BySCg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11154"; a="32117724"
+X-IronPort-AV: E=Sophos;i="6.09,262,1716274800"; 
+   d="scan'208";a="32117724"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Aug 2024 06:49:08 -0700
+X-CSE-ConnectionGUID: qtAM2HN1T0GeKA0Lann3AQ==
+X-CSE-MsgGUID: 9yukeT7/QKeGvvlkzvmkfw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,262,1716274800"; 
+   d="scan'208";a="56657427"
+Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
+  by orviesa008.jf.intel.com with ESMTP; 04 Aug 2024 06:49:02 -0700
+Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sabbX-0001Sg-1X;
+	Sun, 04 Aug 2024 13:48:59 +0000
+Date: Sun, 4 Aug 2024 21:48:10 +0800
+From: kernel test robot <lkp@intel.com>
+To: Christian Marangi <ansuelsmth@gmail.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Joern Engel <joern@lazybastard.org>,
+	Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@kernel.dk>,
+	Christoph Hellwig <hch@lst.de>, Sagi Grimberg <sagi@grimberg.me>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Wolfram Sang <wsa-dev@sang-engineering.com>,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+	linux-nvme@lists.infradead.org
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH 2/6] nvme: assign of_node to nvme device
+Message-ID: <202408042134.wVQ7VdU6-lkp@intel.com>
+References: <20240804114108.1893-3-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240804114108.1893-3-ansuelsmth@gmail.com>
 
-Am Sonntag, 4. August 2024, 15:25:47 CEST schrieb Dragan Simic:
-> On 2024-08-04 15:20, Yao Zi wrote:
-> > On Sun, Aug 04, 2024 at 12:05:11PM +0200, Krzysztof Kozlowski wrote:
-> >> On 03/08/2024 14:55, Yao Zi wrote:
-> >> > This initial device tree describes CPU, interrupts and UART on the chip
-> >> > and is able to boot into basic kernel with only UART. Cache information
-> >> > is omitted for now as there is no precise documentation. Support for
-> >> > other features will be added later.
-> >> >
-> >> > Signed-off-by: Yao Zi <ziyao@disroot.org>
-> >> > ---
-> >> >  arch/arm64/boot/dts/rockchip/rk3528.dtsi | 182 +++++++++++++++++++++++
-> >> >  1 file changed, 182 insertions(+)
-> >> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> >> >
-> >> > diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> >> > new file mode 100644
-> >> > index 000000000000..77687d9e7e80
-> >> > --- /dev/null
-> >> > +++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> >> > @@ -0,0 +1,182 @@
-> >> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> >> > +/*
-> >> > + * Copyright (c) 2022 Rockchip Electronics Co., Ltd.
-> >> > + * Copyright (c) 2024 Yao Zi <ziyao@disroot.org>
-> >> > + */
-> >> > +
-> >> > +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> >> > +#include <dt-bindings/interrupt-controller/irq.h>
-> >> > +
-> >> > +/ {
-> >> > +	compatible = "rockchip,rk3528";
-> >> > +
-> >> > +	interrupt-parent = <&gic>;
-> >> > +	#address-cells = <2>;
-> >> > +	#size-cells = <2>;
-> >> > +
-> >> > +	aliases {
-> >> > +		serial0 = &uart0;
-> >> > +		serial1 = &uart1;
-> >> > +		serial2 = &uart2;
-> >> > +		serial3 = &uart3;
-> >> > +		serial4 = &uart4;
-> >> > +		serial5 = &uart5;
-> >> > +		serial6 = &uart6;
-> >> > +		serial7 = &uart7;
-> >> > +	};
-> >> > +
-> >> > +	cpus {
-> >> > +		#address-cells = <1>;
-> >> > +		#size-cells = <0>;
-> >> > +
-> >> > +		cpu-map {
-> >> > +			cluster0 {
-> >> > +				core0 {
-> >> > +					cpu = <&cpu0>;
-> >> > +				};
-> >> > +				core1 {
-> >> > +					cpu = <&cpu1>;
-> >> > +				};
-> >> > +				core2 {
-> >> > +					cpu = <&cpu2>;
-> >> > +				};
-> >> > +				core3 {
-> >> > +					cpu = <&cpu3>;
-> >> > +				};
-> >> > +			};
-> >> > +		};
-> >> > +
-> >> > +		cpu0: cpu@0 {
-> >> > +			device_type = "cpu";
-> >> > +			compatible = "arm,cortex-a53";
-> >> > +			reg = <0x0>;
-> >> > +			enable-method = "psci";
-> >> > +		};
-> >> > +
-> >> > +		cpu1: cpu@1 {
-> >> > +			device_type = "cpu";
-> >> > +			compatible = "arm,cortex-a53";
-> >> > +			reg = <0x1>;
-> >> > +			enable-method = "psci";
-> >> > +		};
-> >> > +
-> >> > +		cpu2: cpu@2 {
-> >> > +			device_type = "cpu";
-> >> > +			compatible = "arm,cortex-a53";
-> >> > +			reg = <0x2>;
-> >> > +			enable-method = "psci";
-> >> > +		};
-> >> > +
-> >> > +		cpu3: cpu@3 {
-> >> > +			device_type = "cpu";
-> >> > +			compatible = "arm,cortex-a53";
-> >> > +			reg = <0x3>;
-> >> > +			enable-method = "psci";
-> >> > +		};
-> >> > +	};
-> >> > +
-> >> > +	psci {
-> >> > +		compatible = "arm,psci-1.0", "arm,psci-0.2";
-> >> > +		method = "smc";
-> >> > +	};
-> >> > +
-> >> > +	timer {
-> >> > +		compatible = "arm,armv8-timer";
-> >> > +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> >> > +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> >> > +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> >> > +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-> >> > +	};
-> >> > +
-> >> > +	xin24m: xin24m {
-> >> 
-> >> Please use name for all fixed clocks which matches current format
-> >> recommendation: 'clock-([0-9]+|[a-z0-9-]+)+'
-> > 
-> > Will be fixed in next revision.
-> 
-> Hmm, why should we apply that rule to the xin24m clock, which is
-> named exactly like that everywhere else in Rockchip SoC dtsi files?
-> It's much better to remain consistent.
+Hi Christian,
 
-bindings or how we write devicetrees evolve over time ... similarly the
-xin24m name comes from more than 10 years ago.
+kernel test robot noticed the following build errors:
 
-We also name all those regulator nodes regulator-foo now, which in turn
-automatically does enforce a nice sorting rule to keep all the regulators
-around the same area ;-)
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.11-rc1 next-20240802]
+[cannot apply to mtd/mtd/next mtd/mtd/fixes]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-So I don't see a problem of going with xin24m: clock-xin24m {}
+url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/dt-bindings-nvme-Document-nvme-card-compatible/20240804-194357
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20240804114108.1893-3-ansuelsmth%40gmail.com
+patch subject: [PATCH 2/6] nvme: assign of_node to nvme device
+config: i386-buildonly-randconfig-002-20240804 (https://download.01.org/0day-ci/archive/20240804/202408042134.wVQ7VdU6-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240804/202408042134.wVQ7VdU6-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408042134.wVQ7VdU6-lkp@intel.com/
+
+All error/warnings (new ones prefixed by >>):
+
+   drivers/nvme/host/core.c: In function 'nvme_uninit_ctrl':
+>> drivers/nvme/host/core.c:4654:9: error: implicit declaration of function 'of_node_put'; did you mean 'bpf_token_put'? [-Werror=implicit-function-declaration]
+    4654 |         of_node_put(ctrl->device->of_node);
+         |         ^~~~~~~~~~~
+         |         bpf_token_put
+   drivers/nvme/host/core.c: In function 'nvme_init_ctrl':
+>> drivers/nvme/host/core.c:4775:33: error: implicit declaration of function 'of_get_compatible_child' [-Werror=implicit-function-declaration]
+    4775 |         ctrl->device->of_node = of_get_compatible_child(ctrl->dev->of_node,
+         |                                 ^~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/nvme/host/core.c:4775:31: warning: assignment to 'struct device_node *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+    4775 |         ctrl->device->of_node = of_get_compatible_child(ctrl->dev->of_node,
+         |                               ^
+   cc1: some warnings being treated as errors
 
 
-Heiko
+vim +4654 drivers/nvme/host/core.c
 
-> 
-> >> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/clock/fixed-clock.yaml?h=v6.11-rc1
-> >> 
-> >> > +		compatible = "fixed-clock";
-> >> > +		#clock-cells = <0>;
-> >> > +		clock-frequency = <24000000>;
-> >> > +		clock-output-names = "xin24m";
-> >> > +	};
-> >> > +
-> >> > +	gic: interrupt-controller@fed01000 {
-> >> 
-> >> Why this all is outside of SoC?
-> > 
-> > Just as Heiko says, device tree for all other Rockchip SoCs don't have
-> > a "soc" node. I didn't know why before but just follow the style.
-> > 
-> > If you prefer add a soc node, I am willing to.
-> 
+  4648	
+  4649	void nvme_uninit_ctrl(struct nvme_ctrl *ctrl)
+  4650	{
+  4651		nvme_hwmon_exit(ctrl);
+  4652		nvme_fault_inject_fini(&ctrl->fault_inject);
+  4653		dev_pm_qos_hide_latency_tolerance(ctrl->device);
+> 4654		of_node_put(ctrl->device->of_node);
+  4655		cdev_device_del(&ctrl->cdev, ctrl->device);
+  4656		nvme_put_ctrl(ctrl);
+  4657	}
+  4658	EXPORT_SYMBOL_GPL(nvme_uninit_ctrl);
+  4659	
+  4660	static void nvme_free_cels(struct nvme_ctrl *ctrl)
+  4661	{
+  4662		struct nvme_effects_log	*cel;
+  4663		unsigned long i;
+  4664	
+  4665		xa_for_each(&ctrl->cels, i, cel) {
+  4666			xa_erase(&ctrl->cels, i);
+  4667			kfree(cel);
+  4668		}
+  4669	
+  4670		xa_destroy(&ctrl->cels);
+  4671	}
+  4672	
+  4673	static void nvme_free_ctrl(struct device *dev)
+  4674	{
+  4675		struct nvme_ctrl *ctrl =
+  4676			container_of(dev, struct nvme_ctrl, ctrl_device);
+  4677		struct nvme_subsystem *subsys = ctrl->subsys;
+  4678	
+  4679		if (!subsys || ctrl->instance != subsys->instance)
+  4680			ida_free(&nvme_instance_ida, ctrl->instance);
+  4681		key_put(ctrl->tls_key);
+  4682		nvme_free_cels(ctrl);
+  4683		nvme_mpath_uninit(ctrl);
+  4684		cleanup_srcu_struct(&ctrl->srcu);
+  4685		nvme_auth_stop(ctrl);
+  4686		nvme_auth_free(ctrl);
+  4687		__free_page(ctrl->discard_page);
+  4688		free_opal_dev(ctrl->opal_dev);
+  4689	
+  4690		if (subsys) {
+  4691			mutex_lock(&nvme_subsystems_lock);
+  4692			list_del(&ctrl->subsys_entry);
+  4693			sysfs_remove_link(&subsys->dev.kobj, dev_name(ctrl->device));
+  4694			mutex_unlock(&nvme_subsystems_lock);
+  4695		}
+  4696	
+  4697		ctrl->ops->free_ctrl(ctrl);
+  4698	
+  4699		if (subsys)
+  4700			nvme_put_subsystem(subsys);
+  4701	}
+  4702	
+  4703	/*
+  4704	 * Initialize a NVMe controller structures.  This needs to be called during
+  4705	 * earliest initialization so that we have the initialized structured around
+  4706	 * during probing.
+  4707	 *
+  4708	 * On success, the caller must use the nvme_put_ctrl() to release this when
+  4709	 * needed, which also invokes the ops->free_ctrl() callback.
+  4710	 */
+  4711	int nvme_init_ctrl(struct nvme_ctrl *ctrl, struct device *dev,
+  4712			const struct nvme_ctrl_ops *ops, unsigned long quirks)
+  4713	{
+  4714		int ret;
+  4715	
+  4716		WRITE_ONCE(ctrl->state, NVME_CTRL_NEW);
+  4717		ctrl->passthru_err_log_enabled = false;
+  4718		clear_bit(NVME_CTRL_FAILFAST_EXPIRED, &ctrl->flags);
+  4719		spin_lock_init(&ctrl->lock);
+  4720		mutex_init(&ctrl->namespaces_lock);
+  4721	
+  4722		ret = init_srcu_struct(&ctrl->srcu);
+  4723		if (ret)
+  4724			return ret;
+  4725	
+  4726		mutex_init(&ctrl->scan_lock);
+  4727		INIT_LIST_HEAD(&ctrl->namespaces);
+  4728		xa_init(&ctrl->cels);
+  4729		ctrl->dev = dev;
+  4730		ctrl->ops = ops;
+  4731		ctrl->quirks = quirks;
+  4732		ctrl->numa_node = NUMA_NO_NODE;
+  4733		INIT_WORK(&ctrl->scan_work, nvme_scan_work);
+  4734		INIT_WORK(&ctrl->async_event_work, nvme_async_event_work);
+  4735		INIT_WORK(&ctrl->fw_act_work, nvme_fw_act_work);
+  4736		INIT_WORK(&ctrl->delete_work, nvme_delete_ctrl_work);
+  4737		init_waitqueue_head(&ctrl->state_wq);
+  4738	
+  4739		INIT_DELAYED_WORK(&ctrl->ka_work, nvme_keep_alive_work);
+  4740		INIT_DELAYED_WORK(&ctrl->failfast_work, nvme_failfast_work);
+  4741		memset(&ctrl->ka_cmd, 0, sizeof(ctrl->ka_cmd));
+  4742		ctrl->ka_cmd.common.opcode = nvme_admin_keep_alive;
+  4743		ctrl->ka_last_check_time = jiffies;
+  4744	
+  4745		BUILD_BUG_ON(NVME_DSM_MAX_RANGES * sizeof(struct nvme_dsm_range) >
+  4746				PAGE_SIZE);
+  4747		ctrl->discard_page = alloc_page(GFP_KERNEL);
+  4748		if (!ctrl->discard_page) {
+  4749			ret = -ENOMEM;
+  4750			goto out;
+  4751		}
+  4752	
+  4753		ret = ida_alloc(&nvme_instance_ida, GFP_KERNEL);
+  4754		if (ret < 0)
+  4755			goto out;
+  4756		ctrl->instance = ret;
+  4757	
+  4758		ret = nvme_auth_init_ctrl(ctrl);
+  4759		if (ret)
+  4760			goto out_release_instance;
+  4761	
+  4762		nvme_mpath_init_ctrl(ctrl);
+  4763	
+  4764		device_initialize(&ctrl->ctrl_device);
+  4765		ctrl->device = &ctrl->ctrl_device;
+  4766		ctrl->device->devt = MKDEV(MAJOR(nvme_ctrl_base_chr_devt),
+  4767				ctrl->instance);
+  4768		ctrl->device->class = &nvme_class;
+  4769		ctrl->device->parent = ctrl->dev;
+  4770		if (ops->dev_attr_groups)
+  4771			ctrl->device->groups = ops->dev_attr_groups;
+  4772		else
+  4773			ctrl->device->groups = nvme_dev_attr_groups;
+  4774		ctrl->device->release = nvme_free_ctrl;
+> 4775		ctrl->device->of_node = of_get_compatible_child(ctrl->dev->of_node,
+  4776								"nvme-card");
+  4777		dev_set_drvdata(ctrl->device, ctrl);
+  4778	
+  4779		return ret;
+  4780	
+  4781	out_release_instance:
+  4782		ida_free(&nvme_instance_ida, ctrl->instance);
+  4783	out:
+  4784		if (ctrl->discard_page)
+  4785			__free_page(ctrl->discard_page);
+  4786		cleanup_srcu_struct(&ctrl->srcu);
+  4787		return ret;
+  4788	}
+  4789	EXPORT_SYMBOL_GPL(nvme_init_ctrl);
+  4790	
 
-
-
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
