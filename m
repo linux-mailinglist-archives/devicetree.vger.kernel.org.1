@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-90810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22492946DB0
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 10:58:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92226946DB9
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 11:02:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD030281201
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 08:58:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47F8C1F2147F
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 09:02:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB0FD219F6;
-	Sun,  4 Aug 2024 08:57:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93AA41D556;
+	Sun,  4 Aug 2024 09:01:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TreyUDPC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="clIDitS1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A0BB2135B;
-	Sun,  4 Aug 2024 08:57:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6315B79C8;
+	Sun,  4 Aug 2024 09:01:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722761878; cv=none; b=H8aKaNLIdcG9RLSK74hM1J6cSK6zsiM6XAjC5BdQ663PyHKsdlbnnVSX1KrUxraFoa1FZktjZ5dO2PBpjBp00dniL7S8yPKR4lOm/b92+e3YIV/ofKH4N6EXowOTdhiNnJdySoZWQS4q5KXgfuv2k8Xz8u95aOgXs+HKcFPBmmY=
+	t=1722762116; cv=none; b=WncTZNeMI4PKkbZTYvKvFTkwlv7Qj/f8mC0uocMz/KYqHW9dbAn2ExIR3IQCBPBSDiZeos7OwwQBlSd1RX0He1Z6a/b5MVqc4i6XvnPI0i2wvMWeh6GG4XG9+B3BPTut6WFAvxahUcGla3uip1f4bQ/SZGSs4BHnBA52Wxng6Dc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722761878; c=relaxed/simple;
-	bh=1r85qcdUbfhXGrxKc4482D93gj8QKaeVkNspvjU7qmQ=;
+	s=arc-20240116; t=1722762116; c=relaxed/simple;
+	bh=1WaAB5sWVc7ybadkiLUBjHCtuicTQRs+U4WKmYYNB68=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Diic+KPL2sV83ucfe3+JBK3Ka0u6SslxZGLI0/YodL/zSodTaS57k9G/TuGUAj94tWVIlK14wqKAUlBGSxb6c16D/TUwRBWo/3mvSJJSoywKC1l9CmdLDCdOgHt8b/pdH7PMe2fnO6mca7c+yV7m28xvEcXFeHMKezMccmcp91A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TreyUDPC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCA71C32786;
-	Sun,  4 Aug 2024 08:57:51 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Db0+35D78iv996/6QnHKvkcwqu+c6AbVRaZQ3XuCR5JkXr9s84EfREILWWx3a9CjivlwAQDKfCpzQ26j+gdE1vZPN6DHVfGEeIf++05CV9Q41hDkW5pBb8W6S0aA+yCETL6X45DZPamRbr/zbiwcfHEKK72fHXduzLy9TLc+4WE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=clIDitS1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0B60C4AF0C;
+	Sun,  4 Aug 2024 09:01:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722761878;
-	bh=1r85qcdUbfhXGrxKc4482D93gj8QKaeVkNspvjU7qmQ=;
+	s=k20201202; t=1722762115;
+	bh=1WaAB5sWVc7ybadkiLUBjHCtuicTQRs+U4WKmYYNB68=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TreyUDPCwHnDcKgEcTw+w6e1TaICRZk1vV7BVYE+iuqBl8uz1cGnYWzs7PCA5Bywo
-	 AEofteTfDZ7eOFg/MCCN6Yxb/W8jb1A/Sj08ZtQQMiVdg259GT+BO/0gqSpVAjca9V
-	 8VPFjBFZWK8ijel+uosHJQD9SctQkq+Z2AoWuvw5rRHCi4SgHGfzsSh9HVrMBccE1T
-	 6KxJX0gGDeKkrNbU/INT/zQgpLRYyu3Ptym9oFuuxBi8Ttx3f/ke8x1rTnVwv8AecG
-	 WujdRBpvxmoY59zFPB69w4J6JlFlsZroz3rP3D5biDRrj7hRTon5fWeTBHxoPgSy+7
-	 l7hRdjSxbI0JQ==
-Message-ID: <fcfe1ce3-6835-44e8-807d-290a641813ed@kernel.org>
-Date: Sun, 4 Aug 2024 10:57:49 +0200
+	b=clIDitS1geBwUdP7Of2Q7kHQ22SpAxQfpcNsIMhX6le+QK49GyDXEAplDMnjVq93Z
+	 xM77NR31yDSRoJf4zqltS+cz2e/PjPGgzvxhdotql8OTmGGZlNSg0iyNsgU8tsxGxb
+	 H+glAq9SPfykef2KkcJkEx2N6BnWXPZIvhDBAyCf8EtZjKyPXO2hLcKa2Lbk6/eemP
+	 hWeryFWWr2oRRIWd/QGuuTS827UYsUo/CsSJ2nrGeHrPc/wpdSI5MIazjrHoi3oYyp
+	 baGotNMm19ZlJTV1yVzStNyiAELhs+jyyGMFVXg1kVM0kQgpvFHxrjGOX2AJoGJzsq
+	 cQLF0BIVCAkoQ==
+Message-ID: <a35918fe-d0d5-4418-b6ad-0150873cb507@kernel.org>
+Date: Sun, 4 Aug 2024 11:01:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/8] PCI: Enable Power and configure the QPS615 PCIe
- switch
-To: Krishna chaitanya chundru <quic_krichai@quicinc.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+Subject: Re: [PATCH v2 0/9] clk: clocking-wizard: add user clock monitor
+ support
+To: Harry Austen <hpausten@protonmail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- cros-qcom-dts-watchers@chromium.org, Bartosz Golaszewski <brgl@bgdev.pl>,
- Jingoo Han <jingoohan1@gmail.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: andersson@kernel.org, quic_vbadigan@quicinc.com,
- linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20240803-qps615-v2-0-9560b7c71369@quicinc.com>
+ <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+ Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20240803105702.9621-1-hpausten@protonmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,54 +108,29 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240803-qps615-v2-0-9560b7c71369@quicinc.com>
+In-Reply-To: <20240803105702.9621-1-hpausten@protonmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/08/2024 05:22, Krishna chaitanya chundru wrote:
-> QPS615 is the PCIe switch which has one upstream and three downstream
-> ports. One of the downstream ports is used as endpoint device of Ethernet
-> MAC. Other two downstream ports are supposed to connect to external
-> device. One Host can connect to QPS615 by upstream port.
+On 03/08/2024 12:57, Harry Austen wrote:
+> Improve utilised clk/notifier APIs, making use of device managed versions
+> of functions, make dynamic reconfiguration support optional (because it is
+> in hardware) and add support for the clock monitor functionailty added in
+> version 6.0 of the Xilinx clocking wizard IP core, through use of the
+> auxiliary bus and UIO frameworks.
 > 
-> QPS615 switch power is controlled by the GPIO's. After powering on
-> the switch will immediately participate in the link training. if the
-> host is also ready by that time PCIe link will established. 
+> The combined addition of all of these patches allows, for example, to use
+> the clocking wizard solely for its user clock monitoring logic, keeping
+> dynamic reconfiguration support disabled.
 > 
-> The QPS615 needs to configured certain parameters like de-emphasis,
-> disable unused port etc before link is established.
+> This is currently untested on hardware, so any help testing this would be
+> much appreciated!
 > 
-> The device tree properties are parsed per node under pci-pci bridge in the
-> devicetree. Each node has unique bdf value in the reg property, driver
-> uses this bdf to differentiate ports, as there are certain i2c writes to
-> select particulat port.
->  
-> As the controller starts link training before the probe of pwrctl driver,
-> the PCIe link may come up before configuring the switch itself.
-> To avoid this introduce two functions in pci_ops to start_link() &
-> stop_link() which will disable the link training if the PCIe link is
-> not up yet.
-> 
-> Now PCI pwrctl device is the child of the pci-pcie bridge, if we want
-> to enable the suspend resume for pwrctl device there may be issues
-> since pci bridge will try to access some registers in the config which
-> may cause timeouts or Un clocked access as the power can be removed in
-> the suspend of pwrctl driver.
-> 
-> To solve this make PCIe controller as parent to the pci pwr ctrl driver
-> and create devlink between host bridge and pci pwrctl driver so that
-> pci pwrctl driver will go suspend only after all the PCIe devices went
-> to suspend.
-> 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> ---
-> Changes in V1:
-> - Fix the code as per the comments given.
+> v1 -> v2:
+> - Split and improve clk_hw+devres transition patch (2+3)
+> - Fix/improve DT binding patches (5+8)
 
-You did not implement the comments so such changelog is rather a joke.
-Respond to each comment from v1 and acknowledge it.
-
-Then write detailed changelog.
+Be specific, what did you change? Anything can be a fix or improvement.
 
 Best regards,
 Krzysztof
