@@ -1,128 +1,239 @@
-Return-Path: <devicetree+bounces-90865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74C97946F44
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 16:17:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEBC6946F5A
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 16:46:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AD4B1F2161B
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 14:17:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 79DFF1F215DA
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 14:46:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC9D04779D;
-	Sun,  4 Aug 2024 14:17:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30EA73BB21;
+	Sun,  4 Aug 2024 14:46:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G6p0KwNr"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="R4AuMlJc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EB2E1CA9F;
-	Sun,  4 Aug 2024 14:17:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1D2E57323;
+	Sun,  4 Aug 2024 14:46:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722781038; cv=none; b=LsLxK9ZFXhvCQz4+BNsLGXcuuwiE5h0ziFWF/HqnePYfKFgq7vw1wIHUP9811OrvZdrIz9m6kWcmukKwSBUIwhaBoH8PMwawLmieMnhV9ZxWF4hWV1PHIQ4bIMbQbI04kCCHRvhi72/qGZauHxVUHE2yw8IpuYTz8l9LjAHYi5g=
+	t=1722782786; cv=none; b=FCyUvfJ4HVyStL5RM9NxrxHsw/mqrrzOo+hWl8haV+FsSdXXFON1YavmCBnmywCCS+BJrJnmPogND9U7IywTMwKF+gyCKlzlfDYJ5vLsAXWXtD/f04x0i2JKYpq2+bYh/MNy6Jhdm5M8HsZ2Dc2/Nl17nZB26YPJRb9i4sUptA0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722781038; c=relaxed/simple;
-	bh=5L15IZLezpo71+FrtTDwECzrZ/wJ7q95MB/hD53PSDI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ozdpH3mk+64Aqo3TZSQ/neRrX7ddC1VtdUPpYEWIeEWfzZaqWKhS2cUad2GaEh+IVqaDl7nma1ByKppsoIA+pWbJnexjWjpupIxWfxWLbEzShOgi0DvDhMvlti5IKOcshD3ajzCVVdPjocWE0YLMjNkojYhqIV8we7NyhNDhZl8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G6p0KwNr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 395ABC32786;
-	Sun,  4 Aug 2024 14:17:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722781038;
-	bh=5L15IZLezpo71+FrtTDwECzrZ/wJ7q95MB/hD53PSDI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=G6p0KwNr080Q1JRpIazlx9cqz7LAZ+zQV17Lx8jzTrfjxVO6e1x/Qo7Hblx6zQjKs
-	 0TAdJcHA4Rq3TldPoEYgnU6xLzK9WaVl/B/oIS6OFuXyw6fFpzzsnaz+El+uTQcYex
-	 WA7eR3WfsO76u4+yKM3Ipw6Cg5pUsL1D/pey0gDV+UhAsUz0/C+RbHhSNqHG/hA85y
-	 D9FmgmmeZMMq4q/3e443h8srzLb0Or8VhfcJobLKg6AY+eVb6umfIX/WBec2bsEhvW
-	 dqQ48BSiDE40VuvDZhxhn8nOA/i0Fj0F+hakT8XYELAD2x4PGviFfusNjkNWpLy9+N
-	 v+dJsUxr4W+Cw==
-Message-ID: <a7ba4577-40e8-46d5-bde2-442e7100dc9b@kernel.org>
-Date: Sun, 4 Aug 2024 16:17:08 +0200
+	s=arc-20240116; t=1722782786; c=relaxed/simple;
+	bh=tr2hvW/r5N6TVdAKZ17CUyY3aWxwTcu2aswf6pSub4E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PHphtNEgGCZ0m3/vzFVnw0FOuG4sTZo/tKPEI/euMW9cGuoyYmOH4hxKfQ+oZs7ySPLPE1TK4sQUCjZ6QlaD05vd3IbS9Z7EcGGBDc7c6acTZ24D8AhwePnUUl0o4DaC3ybVe2mbOMv1FqGEQvihzSO8tCz1WLknMDGdfBp33e0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=R4AuMlJc; arc=none smtp.client-ip=1.95.21.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=2Q94fzLl3lSmFdIfJpIE1h4MlKx0ywkHDPte+ksg2FI=;
+	b=R4AuMlJcBZ8UfBtIXyM2Bw2P0p6SKG9SiSYXTbCUoAx4Uznm/YB7hXx/T54ncj
+	kPeOmH53nbbkTVc2XStCCqnT40Ba0qEr0p8NOeTIhknnLGj4w6n08yXI/DULNBgy
+	PEiVC+3Izg70MuT4/Raqr6jpQHlb0UiBjyv5uUvjfdW1k=
+Received: from dragon (unknown [117.62.10.86])
+	by gzsmtp1 (Coremail) with SMTP id Mc8vCgCXnyCvkK9mrxa9AQ--.57464S3;
+	Sun, 04 Aug 2024 22:31:13 +0800 (CST)
+Date: Sun, 4 Aug 2024 22:31:11 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Shengjiu Wang <shengjiu.wang@gmail.com>,
+	Xiubo Li <Xiubo.Lee@gmail.com>,
+	Nicolin Chen <nicoleotsuka@gmail.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+	linuxppc-dev@lists.ozlabs.org,
+	Philip-Dylan <philip-dylan.gleonec@savoirfairelinux.com>
+Subject: Re: [PATCH v6 6/7] arm64: dts: imx8m: update spdif sound card node
+ properties
+Message-ID: <Zq+QrxKFb3U1IEv/@dragon>
+References: <20240627083104.123357-1-elinor.montmasson@savoirfairelinux.com>
+ <20240627083104.123357-7-elinor.montmasson@savoirfairelinux.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] dt-bindings: usb: dwc3-imx8mp: add compatible string
- for imx95
-To: Xu Yang <xu.yang_2@nxp.com>, vkoul@kernel.org, kishon@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, gregkh@linuxfoundation.org, Frank.Li@nxp.com,
- jun.li@nxp.com, l.stach@pengutronix.de, aford173@gmail.com,
- hongxing.zhu@nxp.com, alexander.stein@ew.tq-group.com
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-usb@vger.kernel.org
-References: <20240802091702.2057294-1-xu.yang_2@nxp.com>
- <20240802091702.2057294-2-xu.yang_2@nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240802091702.2057294-2-xu.yang_2@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240627083104.123357-7-elinor.montmasson@savoirfairelinux.com>
+X-CM-TRANSID:Mc8vCgCXnyCvkK9mrxa9AQ--.57464S3
+X-Coremail-Antispam: 1Uf129KBjvJXoWxuryfAryfAFW7Wr45XFW8WFg_yoW7JF47pa
+	1vkFZ7Zr1xG3WIy345XF40v3s3Aa4rGFs09r17try8trs8Zry8twn7Krn5ur4UZr1Sqw4S
+	gF1DZFy8Wrn0qaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jbrcfUUUUU=
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEQoxZWavY9tYNAAAsS
 
-On 02/08/2024 11:16, Xu Yang wrote:
-> The i.MX95 is compatible with i.MX8MP's usb controller. This will add a
-> compatible string "fsl,imx95-dwc3" for i.MX95.
+On Thu, Jun 27, 2024 at 10:31:03AM +0200, Elinor Montmasson wrote:
+> The merge of imx-spdif driver into fsl-asoc-card brought
+> new DT properties that can be used with the "fsl,imx-audio-spdif"
+> compatible:
+> * The "spdif-controller" property from imx-spdif is named "audio-cpu"
+>   in fsl-asoc-card.
+> * fsl-asoc-card uses codecs explicitly declared in DT
+>   with "audio-codec".
+>   With an S/PDIF, codec drivers spdif_transmitter and
+>   spdif_receiver should be used.
+>   Driver imx-spdif used instead the dummy codec and a pair of
+>   boolean properties, "spdif-in" and "spdif-out".
 > 
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> While backward compatibility is kept to support properties
+> "spdif-controller", "spdif-in" and "spdif-out", using new properties has
+> several benefits:
+> * "audio-cpu" and "audio-codec" are more generic names reflecting
+>   that the fsl-asoc-card driver supports multiple hardware.
+>   They are properties already used by devices using the
+>   fsl-asoc-card driver.
+>   They are also similar to properties of simple-card: "cpu" and "codec".
+> * "spdif-in" and "spdif-out" imply the use of the dummy codec in the
+>   driver. However, there are already two codec drivers for the S/PDIF,
+>   spdif_transmitter and spdif_receiver.
+>   It is better to declare S/PDIF Tx and Rx devices in a DT, and then
+>   reference them with "audio-codec" than using the dummy codec.
+> 
+> For those reasons, this commit updates in-tree DTs to use the new
+> properties:
+> * Rename "spdif-controller" property to "audio-cpu".
+> * Declare S/PDIF transmitter and/or receiver devices, and use them with
+>   the "audio-codec" property instead of "spdif-out" and/or "spdif-in".
+> 
+> These modifications were tested only on an imx8mn-evk board.
+> 
+> Note that out-of-tree and old DTs are still supported.
+> 
+> Signed-off-by: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
 > ---
+>  arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi | 15 +++++++++---
+>  arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi | 15 +++++++++---
+>  arch/arm64/boot/dts/freescale/imx8mq-evk.dts  | 24 +++++++++++++++----
+>  3 files changed, 43 insertions(+), 11 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> index 90d1901df2b1..348855a41852 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> @@ -180,12 +180,21 @@ cpu {
+>  		};
+>  	};
+>  
+> +	spdif_out: spdif-out {
+> +		#sound-dai-cells = <0>;
+> +		compatible = "linux,spdif-dit";
 
+It's recommended that the property list begins with 'compatible'.  Could
+you flip them?
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Shawn
 
-Best regards,
-Krzysztof
+> +	};
+> +
+> +	spdif_in: spdif-in {
+> +		#sound-dai-cells = <0>;
+> +		compatible = "linux,spdif-dir";
+> +	};
+> +
+>  	sound-spdif {
+>  		compatible = "fsl,imx-audio-spdif";
+>  		model = "imx-spdif";
+> -		spdif-controller = <&spdif1>;
+> -		spdif-out;
+> -		spdif-in;
+> +		audio-cpu = <&spdif1>;
+> +		audio-codec = <&spdif_out>, <&spdif_in>;
+>  	};
+>  };
+>  
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
+> index 9e0259ddf4bc..6a47e09703a7 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
+> @@ -124,12 +124,21 @@ sound-wm8524 {
+>  			"Line Out Jack", "LINEVOUTR";
+>  	};
+>  
+> +	spdif_out: spdif-out {
+> +		#sound-dai-cells = <0>;
+> +		compatible = "linux,spdif-dit";
+> +	};
+> +
+> +	spdif_in: spdif-in {
+> +		#sound-dai-cells = <0>;
+> +		compatible = "linux,spdif-dir";
+> +	};
+> +
+>  	sound-spdif {
+>  		compatible = "fsl,imx-audio-spdif";
+>  		model = "imx-spdif";
+> -		spdif-controller = <&spdif1>;
+> -		spdif-out;
+> -		spdif-in;
+> +		audio-cpu = <&spdif1>;
+> +		audio-codec = <&spdif_out>, <&spdif_in>;
+>  	};
+>  
+>  	sound-micfil {
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
+> index 7507548cdb16..b953865f0b46 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
+> @@ -125,19 +125,33 @@ link_codec: simple-audio-card,codec {
+>  		};
+>  	};
+>  
+> +	spdif_out: spdif-out {
+> +		#sound-dai-cells = <0>;
+> +		compatible = "linux,spdif-dit";
+> +	};
+> +
+> +	spdif_in: spdif-in {
+> +		#sound-dai-cells = <0>;
+> +		compatible = "linux,spdif-dir";
+> +	};
+> +
+>  	sound-spdif {
+>  		compatible = "fsl,imx-audio-spdif";
+>  		model = "imx-spdif";
+> -		spdif-controller = <&spdif1>;
+> -		spdif-out;
+> -		spdif-in;
+> +		audio-cpu = <&spdif1>;
+> +		audio-codec = <&spdif_out>, <&spdif_in>;
+> +	};
+> +
+> +	hdmi_arc_in: hdmi-arc-in {
+> +		#sound-dai-cells = <0>;
+> +		compatible = "linux,spdif-dir";
+>  	};
+>  
+>  	sound-hdmi-arc {
+>  		compatible = "fsl,imx-audio-spdif";
+>  		model = "imx-hdmi-arc";
+> -		spdif-controller = <&spdif2>;
+> -		spdif-in;
+> +		audio-cpu = <&spdif2>;
+> +		audio-codec = <&hdmi_arc_in>;
+>  	};
+>  };
+>  
+> -- 
+> 2.34.1
+> 
 
 
