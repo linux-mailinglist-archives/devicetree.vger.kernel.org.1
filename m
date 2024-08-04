@@ -1,301 +1,128 @@
-Return-Path: <devicetree+bounces-90782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4055E946CA7
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 08:17:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73363946CB0
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 08:23:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F090B2818F0
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 06:17:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9C4BAB21043
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 06:23:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A214311712;
-	Sun,  4 Aug 2024 06:16:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6023D51A;
+	Sun,  4 Aug 2024 06:23:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Xt//HnYV"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="BAPOxYD2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E38E01CD00;
-	Sun,  4 Aug 2024 06:16:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1E923FC2;
+	Sun,  4 Aug 2024 06:22:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722752181; cv=none; b=bbzlPt48lUorvxk3BNuUJgbTswnUWQW9v/g9vt8jEhSsN7SFnjbY+SbLZ5c8uQxZS+PR/sQfkDvBVNHJN9nzFMMX5hYyxDpr5Zj5E+V/t+Kc5qxLzHtGqVgQ9bfL64ik4g6KTl82r3AviC5cnf9mqIl92rAMLmMGxnK2svVuqqE=
+	t=1722752581; cv=none; b=bixVaduZ4Ck7KgPMqMzbaOTDMB22NpOdVinKka/bKOAD77B4gNyLKWyaDjpXrEGZ1/71dtT5V/uG9Lv5Hl2IP5yu7mtP4SiJQO9rSfdrXhL4/leks8jBoNByn2RYEW9rx6QBmY0HFb37q/IaIvn+24FSZTsDuEGI0ge+rPNNL+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722752181; c=relaxed/simple;
-	bh=5d03ZuL6teJXOf/T1h1vDxrHa7R8OPBs+R4lJkRXRAc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=CpXS8GLHMSMQ5gchPtQk63c6V+1ZWROimwncZWiMZFhl9nuNxpXlN0ea9FjF2K4fspikl9sVmJtpp97IblFYuyaUwWbvVgfKkknCs4Hr2djpnRZesb/t9PQJ9PmBJJcgHmyqqdC/Ba/ZZJFX7zw8xUiSH4PUmVMwFGz9Zju+v8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Xt//HnYV; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-1ff1cd07f56so72808705ad.2;
-        Sat, 03 Aug 2024 23:16:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722752179; x=1723356979; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7h4gurbNkAwaSKOgdNMh5biS07+9cUKmRAWUYCPb8sQ=;
-        b=Xt//HnYVhLdSHRMfs22Qfjvc14ofzl7tJfLQiw4KGuDPVVjT0Cz7rWV9Hp2yZExTIc
-         mGwp1XxaA9Vud5sEKM7/0/8XP5nenBW/Pr45TDk2xqiV+y0LT/9EspwWdDSAihWtuzxv
-         Fr1XXSPjK+ZpQ89K46t2wlSYAER0bP7MnMd5vL2HVhh53u1NcytISQd2YbAWErzNPciJ
-         sJvWmFo2MwVzwWtidOKP17h0G9pMrJsxL28qK2VV/up/W8C/r1I2m91CG2kgCrkWvy7g
-         A8lrLXMf71ita3PwDurZXLZzg+NQ1uXpOXmnf6IxEMNoxLTuvkskxF0+6zmjgwIALIcM
-         Rdlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722752179; x=1723356979;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7h4gurbNkAwaSKOgdNMh5biS07+9cUKmRAWUYCPb8sQ=;
-        b=sQsDaYf03eboUfRqDkhlfNJeW5zrEWtjFZ22Ep44DBWfzuTolAoklZY/leMdqOIh3T
-         nzJFdhdcf3uWUxEbCiO5N/UZ00GJwsBpWpTpfz6lHdx2qFVvQMJFmz8Xkc3pJRx11fi5
-         QYB4X8c2yojbBtghwGopyxLdo1ZHO1fTHObkj2yDbJ2LRRqdNhFYsvfXWJTCKC2Jvy/7
-         KbOblTbo91rEu7FdVriTJkihBshuqUbs2POWfGstSMoVOfoeZU584akhT9Kp30ZaWHyT
-         +6LNioVtqu0hKB/NP7ltq6IPKCC4vkyyhgbkGB3t4idS1iVNqP4EXpxty2LtQW05RTH3
-         SKQw==
-X-Forwarded-Encrypted: i=1; AJvYcCX417hhY90bqvY8hxujofzE++dT+z6cXWfdy7FmoGq5jIxhP0wTRgpTJkUx0eiOYkIWBWntpDH0U9po9lMcm5TmB2fM14qJj1LtIQ==
-X-Gm-Message-State: AOJu0YxKkN2BFP3MJflgjtBKGjkaTtZEgW+aH4lFoppzH8lgPKpW8dv0
-	SHbeO0BurhG4rohZqFi3qlUzwrodW8vp17ubIbSyg5bFzPsqzJipxVsdel25
-X-Google-Smtp-Source: AGHT+IEhKZcig863me6/HrPur2+0JA0iqPzNUhbXEnzntX/uc0LPnfNuF+Ep/g1/TKoZsdTbVmXwKA==
-X-Received: by 2002:a17:903:283:b0:1fe:d72d:13e9 with SMTP id d9443c01a7336-1ff572bc3bdmr110464375ad.33.1722752179037;
-        Sat, 03 Aug 2024 23:16:19 -0700 (PDT)
-Received: from noel.flets-west.jp ([2405:6586:4480:a10:167:9818:d778:5c14])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1ff58f29ef4sm44194195ad.14.2024.08.03.23.16.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 03 Aug 2024 23:16:18 -0700 (PDT)
-From: Hironori KIKUCHI <kikuchan98@gmail.com>
-To: linux-kernel@vger.kernel.org
-Cc: Hironori KIKUCHI <kikuchan98@gmail.com>,
-	Jagan Teki <jagan@amarulasolutions.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1722752581; c=relaxed/simple;
+	bh=e2KwdmpAEeu/CxUB955zMwv6k2v7QDlGFFwf4VhPBZA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OQA1AVVV3+kTC6rquFvLPnwDz1UgBcpG2uHAygHh50AE5MqJ6xnkegrzr+jGhtxCVEX7aAHT/+vkUpftgVpFbQpuVMynws+j9kvltaSogrO1oJO51cqo3pbUryG7yoDrJiWXSk0of3fflhAawNv1Pm3WXc4FyLchfhfrJn/sKQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=BAPOxYD2; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from localhost (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id AC7A541943;
+	Sun,  4 Aug 2024 08:22:55 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+	by localhost (disroot.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id bfxzql5IWaIV; Sun,  4 Aug 2024 08:22:54 +0200 (CEST)
+Date: Sun, 4 Aug 2024 14:22:28 +0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1722752574; bh=e2KwdmpAEeu/CxUB955zMwv6k2v7QDlGFFwf4VhPBZA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=BAPOxYD2ErIWPwE9V9eroZvbUZjtUETM32iyvVLYXnNJrLwHODsPUGINv5AT46fzy
+	 5hgksWLOaCdHsfYGYpJczmnPTWzptsoQ0KORgHeQ8GUpKMeAaVhD5ootDDjfFtXA++
+	 87E6wFBgI1dehnR8fRZokTKmbc3hPnWmu5z3TK3d0ak2tvlkvPWlJeDgl8/Cd4jGw6
+	 HtCqVwY/zMfkdgix4TGzg6GgNqM6Pt9IXPb28avNrPQPLT2gLUHz/EiLi9gH/nNt7t
+	 cRQ4bGzultoUXW8jfov0BIFWr2l1hxVeJWqB4wO4h+QYbywG80aKtwuQXuRXF17cyf
+	 NJiemnfL4FG/w==
+From: Yao Zi <ziyao@disroot.org>
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v4 5/5] drm/panel: st7701: Add Anbernic RG28XX panel support
-Date: Sun,  4 Aug 2024 15:14:49 +0900
-Message-ID: <20240804061503.881283-6-kikuchan98@gmail.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240804061503.881283-1-kikuchan98@gmail.com>
-References: <20240804061503.881283-1-kikuchan98@gmail.com>
+	Heiko Stuebner <heiko@sntech.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>,
+	Andy Yan <andyshrk@163.com>,
+	Muhammed Efe Cetin <efectn@protonmail.com>,
+	Jagan Teki <jagan@edgeble.ai>, Ondrej Jirman <megi@xff.cz>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org
+Subject: Re: [PATCH 0/4] Add initial support for Rockchip RK3528 SoC
+Message-ID: <Zq8eJB7zqOvYQvmw@ziyaolaptop.my.domain>
+References: <20240803125510.4699-2-ziyao@disroot.org>
+ <0c77f99f4af96807a2a8c3028e3c1d4d@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0c77f99f4af96807a2a8c3028e3c1d4d@manjaro.org>
 
-The Anbernic RG28XX is a handheld gaming device with a 2.8 inch 480x640
-display. Add support for the display panel.
+On Sun, Aug 04, 2024 at 07:40:43AM +0200, Dragan Simic wrote:
+> Hello all,
+> 
+> On 2024-08-03 14:55, Yao Zi wrote:
+> > Rockchip RK3528 is a quad-core ARM Cortex-A53 SoC designed for
+> > multimedia application. This series add a basic device tree with CPU,
+> > interrupts and UART nodes for it and is able to boot into a kernel with
+> > only UART console.
+> > 
+> > Has been tested on Radxa E20C board[1] with vendor U-boot, successfully
+> > booted into initramfs with this log[2].
+> 
+> I wonder will at least the RK3528 datasheet become available publicly?
 
-This panel is driven by a variant of ST7701 driver IC internally,
-confirmed by dumping and analyzing its BSP initialization sequence
-by using a logic analyzer. It is very similar to the existing
-densitron,dmt028vghmcmi-1a panel, but differs in some unknown
-register values. Besides, it is connected via SPI, so add a new entry
-for the panel.
+I found none for now, and I am not someone from Rockchip, thus don't
+know whether they have a plan to make it public, either. But there has
+been some devices shipping it already and getting them mainlined will
+be a neat thing.
 
-Signed-off-by: Hironori KIKUCHI <kikuchan98@gmail.com>
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- drivers/gpu/drm/panel/panel-sitronix-st7701.c | 151 ++++++++++++++++++
- 1 file changed, 151 insertions(+)
+Just FYI, the vendor kernel is available here[1] on the "develop-5.10"
+branch.
 
-diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7701.c b/drivers/gpu/drm/panel/panel-sitronix-st7701.c
-index 9e83a760a8a..eef03d04e0c 100644
---- a/drivers/gpu/drm/panel/panel-sitronix-st7701.c
-+++ b/drivers/gpu/drm/panel/panel-sitronix-st7701.c
-@@ -471,6 +471,55 @@ static void rg_arc_gip_sequence(struct st7701 *st7701)
- 	msleep(120);
- }
- 
-+static void rg28xx_gip_sequence(struct st7701 *st7701)
-+{
-+	st7701_switch_cmd_bkx(st7701, true, 3);
-+	ST7701_WRITE(st7701, 0xEF, 0x08);
-+
-+	st7701_switch_cmd_bkx(st7701, true, 0);
-+	ST7701_WRITE(st7701, 0xC3, 0x02, 0x10, 0x02);
-+	ST7701_WRITE(st7701, 0xC7, 0x04);
-+	ST7701_WRITE(st7701, 0xCC, 0x10);
-+
-+	st7701_switch_cmd_bkx(st7701, true, 1);
-+	ST7701_WRITE(st7701, 0xEE, 0x42);
-+	ST7701_WRITE(st7701, 0xE0, 0x00, 0x00, 0x02);
-+
-+	ST7701_WRITE(st7701, 0xE1, 0x04, 0xA0, 0x06, 0xA0, 0x05, 0xA0, 0x07, 0xA0,
-+		   0x00, 0x44, 0x44);
-+	ST7701_WRITE(st7701, 0xE2, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-+		   0x00, 0x00, 0x00, 0x00);
-+	ST7701_WRITE(st7701, 0xE3, 0x00, 0x00, 0x22, 0x22);
-+	ST7701_WRITE(st7701, 0xE4, 0x44, 0x44);
-+	ST7701_WRITE(st7701, 0xE5, 0x0C, 0x90, 0xA0, 0xA0, 0x0E, 0x92, 0xA0, 0xA0,
-+		   0x08, 0x8C, 0xA0, 0xA0, 0x0A, 0x8E, 0xA0, 0xA0);
-+	ST7701_WRITE(st7701, 0xE6, 0x00, 0x00, 0x22, 0x22);
-+	ST7701_WRITE(st7701, 0xE7, 0x44, 0x44);
-+	ST7701_WRITE(st7701, 0xE8, 0x0D, 0x91, 0xA0, 0xA0, 0x0F, 0x93, 0xA0, 0xA0,
-+		   0x09, 0x8D, 0xA0, 0xA0, 0x0B, 0x8F, 0xA0, 0xA0);
-+	ST7701_WRITE(st7701, 0xEB, 0x00, 0x00, 0xE4, 0xE4, 0x44, 0x00, 0x40);
-+	ST7701_WRITE(st7701, 0xED, 0xFF, 0xF5, 0x47, 0x6F, 0x0B, 0xA1, 0xBA, 0xFF,
-+		   0xFF, 0xAB, 0x1A, 0xB0, 0xF6, 0x74, 0x5F, 0xFF);
-+	ST7701_WRITE(st7701, 0xEF, 0x08, 0x08, 0x08, 0x45, 0x3F, 0x54);
-+
-+	st7701_switch_cmd_bkx(st7701, false, 0);
-+
-+	st7701_switch_cmd_bkx(st7701, true, 3);
-+	ST7701_WRITE(st7701, 0xE6, 0x16);
-+	ST7701_WRITE(st7701, 0xE8, 0x00, 0x0E);
-+
-+	st7701_switch_cmd_bkx(st7701, false, 0);
-+	ST7701_WRITE(st7701, MIPI_DCS_SET_ADDRESS_MODE, 0x10);
-+	ST7701_WRITE(st7701, MIPI_DCS_EXIT_SLEEP_MODE);
-+	msleep(120);
-+
-+	st7701_switch_cmd_bkx(st7701, true, 3);
-+	ST7701_WRITE(st7701, 0xE8, 0x00, 0x0C);
-+	msleep(10);
-+	ST7701_WRITE(st7701, 0xE8, 0x00, 0x00);
-+	st7701_switch_cmd_bkx(st7701, false, 0);
-+}
-+
- static int st7701_prepare(struct drm_panel *panel)
- {
- 	struct st7701 *st7701 = panel_to_st7701(panel);
-@@ -986,6 +1035,106 @@ static const struct st7701_panel_desc rg_arc_desc = {
- 	.gip_sequence = rg_arc_gip_sequence,
- };
- 
-+static const struct drm_display_mode rg28xx_mode = {
-+	.clock		= 22325,
-+
-+	.hdisplay	= 480,
-+	.hsync_start	= 480 + 40,
-+	.hsync_end	= 480 + 40 + 4,
-+	.htotal		= 480 + 40 + 4 + 20,
-+
-+	.vdisplay	= 640,
-+	.vsync_start	= 640 + 2,
-+	.vsync_end	= 640 + 2 + 40,
-+	.vtotal		= 640 + 2 + 40 + 16,
-+
-+	.width_mm	= 44,
-+	.height_mm	= 58,
-+
-+	.flags		= DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
-+
-+	.type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
-+};
-+
-+static const struct st7701_panel_desc rg28xx_desc = {
-+	.mode = &rg28xx_mode,
-+
-+	.panel_sleep_delay = 80,
-+
-+	.pv_gamma = {
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC0_MASK, 0),
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC4_MASK, 0x10),
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC8_MASK, 0x17),
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC16_MASK, 0xd),
-+
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC24_MASK, 0x11),
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC52_MASK, 0x6),
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC80_MASK, 0x5),
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC108_MASK, 0x8),
-+
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC147_MASK, 0x7),
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC175_MASK, 0x1f),
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC203_MASK, 0x4),
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC231_MASK, 0x11),
-+
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC239_MASK, 0xe),
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC247_MASK, 0x29),
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC251_MASK, 0x30),
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC255_MASK, 0x1f)
-+	},
-+	.nv_gamma = {
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC0_MASK, 0),
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC4_MASK, 0xd),
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC8_MASK, 0x14),
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC16_MASK, 0xe),
-+
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC24_MASK, 0x11),
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC52_MASK, 0x6),
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC80_MASK, 0x4),
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC108_MASK, 0x8),
-+
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC147_MASK, 0x8),
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC175_MASK, 0x20),
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC203_MASK, 0x5),
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC231_MASK, 0x13),
-+
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC239_MASK, 0x13),
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC247_MASK, 0x26),
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC251_MASK, 0x30),
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
-+		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_VC255_MASK, 0x1f)
-+	},
-+	.nlinv = 7,
-+	.vop_uv = 4800000,
-+	.vcom_uv = 1512500,
-+	.vgh_mv = 15000,
-+	.vgl_mv = -11730,
-+	.avdd_mv = 6600,
-+	.avcl_mv = -4400,
-+	.gamma_op_bias = OP_BIAS_MIDDLE,
-+	.input_op_bias = OP_BIAS_MIN,
-+	.output_op_bias = OP_BIAS_MIN,
-+	.t2d_ns = 1600,
-+	.t3d_ns = 10400,
-+	.eot_en = true,
-+	.gip_sequence = rg28xx_gip_sequence,
-+};
-+
- static void st7701_cleanup(void *data)
- {
- 	struct st7701 *st7701 = (struct st7701 *)data;
-@@ -1120,11 +1269,13 @@ static const struct of_device_id st7701_dsi_of_match[] = {
- MODULE_DEVICE_TABLE(of, st7701_dsi_of_match);
- 
- static const struct of_device_id st7701_spi_of_match[] = {
-+	{ .compatible = "anbernic,rg28xx-panel", .data = &rg28xx_desc },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, st7701_spi_of_match);
- 
- static const struct spi_device_id st7701_spi_ids[] = {
-+	{ "rg28xx-panel" },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(spi, st7701_spi_ids);
--- 
-2.45.2
+Best regards,
+Yao Zi
 
+[1]: https://github.com/rockchip-linux/kernel
+
+> 
+> > [1]: https://docs.radxa.com/en/e/e20c
+> > [2]: https://gist.github.com/ziyao233/b74523a1e3e8bf36286a572e008ca319
+> > 
+> > Yao Zi (4):
+> >   dt-bindings: serial: snps-dw-apb-uart: Document Rockchip RK3528
+> >   dt-bindings: arm: rockchip: Add Radxa E20C board
+> >   arm64: dts: rockchip: Add base DT for rk3528 SoC
+> >   arm64: dts: rockchip: Add Radxa e20c board
+> > 
+> >  .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+> >  .../bindings/serial/snps-dw-apb-uart.yaml     |   1 +
+> >  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+> >  .../boot/dts/rockchip/rk3528-radxa-e20c.dts   |  22 +++
+> >  arch/arm64/boot/dts/rockchip/rk3528.dtsi      | 182 ++++++++++++++++++
+> >  5 files changed, 211 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> > 
+> > 
+> > base-commit: 94ede2a3e9135764736221c080ac7c0ad993dc2d
 
