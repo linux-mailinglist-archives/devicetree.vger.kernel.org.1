@@ -1,206 +1,162 @@
-Return-Path: <devicetree+bounces-90949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56E3D94745D
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 06:35:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8482694747A
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 06:59:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFD041F21092
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 04:35:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B0A981C20B95
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 04:59:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE8884CB2B;
-	Mon,  5 Aug 2024 04:35:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C09CA13F42A;
+	Mon,  5 Aug 2024 04:59:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JRKS2ea6"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mgTRFYPb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA7ACA3B;
-	Mon,  5 Aug 2024 04:35:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EBB213D50E;
+	Mon,  5 Aug 2024 04:59:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722832516; cv=none; b=NB12bckpFcti4r2u1EAF8T7veh8Lo/9HvUSCS4T5oyxW4X13BTEZeEQfljnwzLEBCraEHsbGCqNMY9yxf5p0P1AIx6tM1fKXyOLSumWLwWu6ssXvO1NMDjs8pN5NWnYxd0L+JjZT2kN75oMZK29MsSKNF440Z85awmwn9dkLZDo=
+	t=1722833990; cv=none; b=GxQgNTQPueO2RADyvq7fNuWxwoJLdHlquejQ0KB1wqhKHls8+pzGelUBQECDnP22LUjj5KmO31sh/LGD/MGRQnno48+Q4ArR13GDoEpsKtK7CsDza0YaLSfqPoybtXuhEXL0IuraAsGCJqyHgzMkMW4ggTTDtDxLy1mmKwrNV8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722832516; c=relaxed/simple;
-	bh=2KPdzFQw1w/YiSbNcR5VKd6YpSJptdoc3OyRJH3k6+Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=awTaWWLLe/ZSI/cAgMKm2w0RkTgrf9MwfDfesuDHxmnKeKBMFOsnDz2g+2mUphqsLWxosYU4s/MbRbQ/UP3GDL30x2Vxb9u6uTRMRPUy4keKYxvHdbskeDq1CPxOvon2/nmUBnXBwHaYqNtXjaHGUjavf30tIvDk4SB0Wcz86ss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JRKS2ea6; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4752Vh4h010422;
-	Mon, 5 Aug 2024 04:35:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	aNl20ubvftUYbfrnFN1yNrsKAtubMNZnCXumrlEcBlA=; b=JRKS2ea63C2pGkKX
-	4Kvz7cH/RNVkBW7ezED5qmAOzAlELgrB5Ld+1nWcbNoBn78mWY7v3W509fCITM5k
-	Uk2l6KP3tr7HWKP0frRfefiCusNsViLnjFyrKaWOhYEOIFW5qhFc/OT7uDobJFFx
-	DQGHZXwq/ZgN83oab8w8s71c1BH2idLrYSXugbRfr+HxQlN3VwI31STWNHXG4XU9
-	xgMJCnsaVSxADvDOQQxODZ+SuXVJDARFjtvqwED4u2huqN96vdXq7pY90tiZeUOa
-	+yWH9pxU8VmDk5N7hEBoDTiZZLolXZf32t07sRRO+e7UIBujqi8Bhg+D/MMA1wVZ
-	zvNaPA==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40sc4y2tsm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 05 Aug 2024 04:35:05 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 4754Z3WH001944
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 5 Aug 2024 04:35:03 GMT
-Received: from [10.216.50.161] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 4 Aug 2024
- 21:34:57 -0700
-Message-ID: <ae069a46-a1f4-e847-8b9b-81ca1329d2a3@quicinc.com>
-Date: Mon, 5 Aug 2024 10:04:54 +0530
+	s=arc-20240116; t=1722833990; c=relaxed/simple;
+	bh=OZ0x4CPR21u7kQqc2YahNoI50X1qL/GI/Bd9yBTu6G0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Uvw6M51pWoD4FZ5BTfSHeQO5vh0InfRyY+zDERN0+IEZ6BkqI0TSkmzAxUIUsxU/vDNHVAQrl8ZK8zZxsTU4VsX1PPJgFApW0EUi6NQugQgUqf/CISFUxz6e/ORHvHhGTtZUN7SiWliXoP4gVKL85phGzGJ1M21ZsbVQZUYBNhQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mgTRFYPb; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1722833989; x=1754369989;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=OZ0x4CPR21u7kQqc2YahNoI50X1qL/GI/Bd9yBTu6G0=;
+  b=mgTRFYPbav14qmvktAs94Frd8zskvi4DEVW3ickHeMHkQxH1OfLAG70M
+   Pau+cIeebZGL7bltq74wW4eXEWIxNvmVqWnCv9Bk205LZtr8i96jVeogJ
+   j2fOpAGu9xdvgCsuD3VbfhPsZc+SXyMPjq6kmzYrOtd/4C4tLLOwBIxXb
+   AwRtccvLFMQtAYbMNJOb26EiacrsFkL/xnbrDCowpqIWL6EZ2jdf8YE8l
+   6Vp4E/dbAntHpy01bKJSFAVL2KIhfN7UHntrinvFLz0MnLWR+IaZRylYd
+   yff47qiwlnBZ1XTD0MwuSPffAueWYCKi7myqxUM8SRfwhLZLTybrjN+in
+   A==;
+X-CSE-ConnectionGUID: fEAFV6nZTbaZQHaAXN+eNA==
+X-CSE-MsgGUID: FIQe1zL2Rki1BeZUGajgoA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11154"; a="20930651"
+X-IronPort-AV: E=Sophos;i="6.09,263,1716274800"; 
+   d="scan'208";a="20930651"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Aug 2024 21:59:48 -0700
+X-CSE-ConnectionGUID: Eye9zMIKRuipOV9VFKj7FQ==
+X-CSE-MsgGUID: AAUJR3eJT9OkleRqwjSRGQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,263,1716274800"; 
+   d="scan'208";a="86988225"
+Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
+  by fmviesa001.fm.intel.com with ESMTP; 04 Aug 2024 21:59:45 -0700
+Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sapos-0001js-1a;
+	Mon, 05 Aug 2024 04:59:42 +0000
+Date: Mon, 5 Aug 2024 12:58:49 +0800
+From: kernel test robot <lkp@intel.com>
+To: Keguang Zhang via B4 Relay <devnull+keguang.zhang.gmail.com@kernel.org>,
+	Keguang Zhang <keguang.zhang@gmail.com>,
+	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-mips@vger.kernel.org,
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Jiaxun Yang <jiaxun.yang@flygoat.com>
+Subject: Re: [PATCH v11 2/2] dmaengine: Loongson1: Add Loongson-1 APB DMA
+ driver
+Message-ID: <202408051242.8kGK28W7-lkp@intel.com>
+References: <20240802-loongson1-dma-v11-2-85392357d4e0@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v2 0/8] PCI: Enable Power and configure the QPS615 PCIe
- switch
-Content-Language: en-US
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Rob Herring
-	<robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        <cros-qcom-dts-watchers@chromium.org>,
-        "Bartosz
- Golaszewski" <brgl@bgdev.pl>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        "Manivannan
- Sadhasivam" <manivannan.sadhasivam@linaro.org>
-CC: <andersson@kernel.org>, <quic_vbadigan@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "Bartosz
- Golaszewski" <bartosz.golaszewski@linaro.org>
-References: <20240803-qps615-v2-0-9560b7c71369@quicinc.com>
-From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-In-Reply-To: <20240803-qps615-v2-0-9560b7c71369@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 0aOEQlq-a79jQKZ86MXTaeKTN21OUzI_
-X-Proofpoint-GUID: 0aOEQlq-a79jQKZ86MXTaeKTN21OUzI_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-04_14,2024-08-02_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 bulkscore=0
- spamscore=0 clxscore=1015 lowpriorityscore=0 impostorscore=0
- suspectscore=0 mlxscore=0 malwarescore=0 mlxlogscore=999 phishscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408050030
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240802-loongson1-dma-v11-2-85392357d4e0@gmail.com>
+
+Hi Keguang,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on 048d8cb65cde9fe7534eb4440bcfddcf406bb49c]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Keguang-Zhang-via-B4-Relay/dt-bindings-dma-Add-Loongson-1-APB-DMA/20240803-111220
+base:   048d8cb65cde9fe7534eb4440bcfddcf406bb49c
+patch link:    https://lore.kernel.org/r/20240802-loongson1-dma-v11-2-85392357d4e0%40gmail.com
+patch subject: [PATCH v11 2/2] dmaengine: Loongson1: Add Loongson-1 APB DMA driver
+config: sparc64-randconfig-r063-20240804 (https://download.01.org/0day-ci/archive/20240805/202408051242.8kGK28W7-lkp@intel.com/config)
+compiler: sparc64-linux-gcc (GCC) 14.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240805/202408051242.8kGK28W7-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408051242.8kGK28W7-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/dma/loongson1-apb-dma.c: In function 'ls1x_dma_chan_probe':
+>> drivers/dma/loongson1-apb-dma.c:520:34: warning: '%u' directive writing between 1 and 10 bytes into a region of size 2 [-Wformat-overflow=]
+     520 |         sprintf(pdev_irqname, "ch%u", chan_id);
+         |                                  ^~
+   drivers/dma/loongson1-apb-dma.c:520:31: note: directive argument in the range [0, 2147483646]
+     520 |         sprintf(pdev_irqname, "ch%u", chan_id);
+         |                               ^~~~~~
+   drivers/dma/loongson1-apb-dma.c:520:9: note: 'sprintf' output between 4 and 13 bytes into a destination of size 4
+     520 |         sprintf(pdev_irqname, "ch%u", chan_id);
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
+vim +520 drivers/dma/loongson1-apb-dma.c
 
-On 8/3/2024 8:52 AM, Krishna chaitanya chundru wrote:
-> QPS615 is the PCIe switch which has one upstream and three downstream
-> ports. One of the downstream ports is used as endpoint device of Ethernet
-> MAC. Other two downstream ports are supposed to connect to external
-> device. One Host can connect to QPS615 by upstream port.
-> 
-> QPS615 switch power is controlled by the GPIO's. After powering on
-> the switch will immediately participate in the link training. if the
-> host is also ready by that time PCIe link will established.
-> 
-> The QPS615 needs to configured certain parameters like de-emphasis,
-> disable unused port etc before link is established.
-> 
-> The device tree properties are parsed per node under pci-pci bridge in the
-> devicetree. Each node has unique bdf value in the reg property, driver
-> uses this bdf to differentiate ports, as there are certain i2c writes to
-> select particulat port.
->   
-> As the controller starts link training before the probe of pwrctl driver,
-> the PCIe link may come up before configuring the switch itself.
-> To avoid this introduce two functions in pci_ops to start_link() &
-> stop_link() which will disable the link training if the PCIe link is
-> not up yet.
-> 
-> Now PCI pwrctl device is the child of the pci-pcie bridge, if we want
-> to enable the suspend resume for pwrctl device there may be issues
-> since pci bridge will try to access some registers in the config which
-> may cause timeouts or Un clocked access as the power can be removed in
-> the suspend of pwrctl driver.
-> 
-> To solve this make PCIe controller as parent to the pci pwr ctrl driver
-> and create devlink between host bridge and pci pwrctl driver so that
-> pci pwrctl driver will go suspend only after all the PCIe devices went
-> to suspend.
-> 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> ---
-> Changes in V1:
-> - Fix the code as per the comments given.
-changes in v1:
-- Instead of referencing whole i2c-bus add i2c-client node and reference 
-it (Dmitry)
-- Change the regulator's as per the schematics as per offline review
-(bjorn Andresson)
-- Remove additional host check in bus.c (Bart)
-- For stop_link op change return type from int to void (Bart)
-- Remove firmware based approach for configuring sequence as suggested
-by multiple reviewers.
-- Introduce new dt-properties for the switch to configure the switch
-as we are replacing the firmware based approach.
-- The downstream ports add properties in the child nodes which will
-represented in PCIe hierarchy format.
-- Removed D3cold D0 sequence in suspend resume for now as it needs
-separate discussion.
+   510	
+   511	static int ls1x_dma_chan_probe(struct platform_device *pdev,
+   512				       struct ls1x_dma *dma, int chan_id)
+   513	{
+   514		struct device *dev = &pdev->dev;
+   515		struct ls1x_dma_chan *chan = &dma->chan[chan_id];
+   516		char pdev_irqname[4];
+   517		char *irqname;
+   518		int ret;
+   519	
+ > 520		sprintf(pdev_irqname, "ch%u", chan_id);
+   521		chan->irq = platform_get_irq_byname(pdev, pdev_irqname);
+   522		if (chan->irq < 0)
+   523			return -ENODEV;
+   524	
+   525		irqname = devm_kasprintf(dev, GFP_KERNEL, "%s:%s",
+   526					 dev_name(dev), pdev_irqname);
+   527		if (!irqname)
+   528			return -ENOMEM;
+   529	
+   530		ret = devm_request_irq(dev, chan->irq, ls1x_dma_irq_handler,
+   531				       IRQF_SHARED, irqname, chan);
+   532		if (ret)
+   533			return dev_err_probe(dev, ret, "failed to request IRQ %u\n",
+   534					     chan->irq);
+   535	
+   536		chan->reg_base = dma->reg_base;
+   537		chan->vchan.desc_free = ls1x_dma_free_desc;
+   538		vchan_init(&chan->vchan, &dma->ddev);
+   539		dev_info(dev, "%s (irq %d) initialized\n", pdev_irqname, chan->irq);
+   540	
+   541		return 0;
+   542	}
+   543	
 
-- Krishna Chaitanya.
-> - Removed D3cold D0 sequence in suspend resume for now as it needs
->    seperate discussion.
-> - change to dt approach for configuring the switch instead of request_firmware() approach
-> - Link to v1: https://lore.kernel.org/linux-pci/20240626-qps615-v1-4-2ade7bd91e02@quicinc.com/T/
-> ---
-> 
-> ---
-> Krishna chaitanya chundru (8):
->        dt-bindings: PCI: Add binding for qps615
->        dt-bindings: trivial-devices: Add qcom,qps615
->        arm64: dts: qcom: qcs6490-rb3gen2: Add node for qps615
->        PCI: Change the parent to correctly represent pcie hierarchy
->        PCI: Add new start_link() & stop_link function ops
->        PCI: dwc: Add support for new pci function op
->        PCI: qcom: Add support for host_stop_link() & host_start_link()
->        PCI: pwrctl: Add power control driver for qps615
-> 
->   .../devicetree/bindings/pci/qcom,qps615.yaml       | 191 ++++++
->   .../devicetree/bindings/trivial-devices.yaml       |   2 +
->   arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts       | 121 ++++
->   arch/arm64/boot/dts/qcom/sc7280.dtsi               |   2 +-
->   drivers/pci/bus.c                                  |   3 +-
->   drivers/pci/controller/dwc/pcie-designware-host.c  |  18 +
->   drivers/pci/controller/dwc/pcie-designware.h       |  16 +
->   drivers/pci/controller/dwc/pcie-qcom.c             |  39 ++
->   drivers/pci/pwrctl/Kconfig                         |   7 +
->   drivers/pci/pwrctl/Makefile                        |   1 +
->   drivers/pci/pwrctl/core.c                          |   9 +-
->   drivers/pci/pwrctl/pci-pwrctl-qps615.c             | 638 +++++++++++++++++++++
->   include/linux/pci.h                                |   2 +
->   13 files changed, 1046 insertions(+), 3 deletions(-)
-> ---
-> base-commit: 1722389b0d863056d78287a120a1d6cadb8d4f7b
-> change-id: 20240727-qps615-e2894a38d36f
-> 
-> Best regards,
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
