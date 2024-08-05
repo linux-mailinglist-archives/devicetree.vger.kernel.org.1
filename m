@@ -1,137 +1,136 @@
-Return-Path: <devicetree+bounces-91050-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 895D49479D1
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 12:29:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D9529479E3
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 12:33:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EBE14B218D1
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 10:29:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 96F8DB210A9
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 10:33:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41AAC14C5AF;
-	Mon,  5 Aug 2024 10:28:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA48415442D;
+	Mon,  5 Aug 2024 10:33:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PwVnUpdr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LzscwnAe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EAF51E505;
-	Mon,  5 Aug 2024 10:28:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2851714EC42
+	for <devicetree@vger.kernel.org>; Mon,  5 Aug 2024 10:33:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722853729; cv=none; b=griOaZ5GwTYsqEDuNB3TYAvzKXsh76Y25sjxXbEf8DlbfbqPdmqIy5BspGzUkHbqHnC60Uq0/+PNkLBS2DvTRjWfiRuIgIWSrgS1Fd86OO/4X/hXj9C9JlJW3OBtE1qAMCUCil+VG4q68quZBdk6NjAZj6bHdbKuKD/3Hz+d5No=
+	t=1722853993; cv=none; b=M6xgq0XC1+U3c6bUQIaKjyYQQIvl3O7p4PDf4ZzmTLUGr+iZKLfPE6ZfRzXEEj1+darPzqgJI2YVZWeGAULN1E5nfaDvoyiwPYsXDQ1qoBG08csyq2SNdVTezCR48MXn+JFH2OoH/OvFgXgd1d4D9U+UJIxQGfTYAsCOkcuKAA4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722853729; c=relaxed/simple;
-	bh=we3oxTn6hETz8INVEye2nJuMXpHgH2R91W0fDhDvYSM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rPAtAWx9B0MkM5BdWp0dplqruQszP7QH7OUyvlpLpOgik/aFWv0UH9S0xhVVeeVz8gmZ97cys14rsEPONkD4vleyklobr5a680RAV5tUX9ShgGR6ftTZ0hX+Y99GuV1xsounDola82mrEqArJY4UuTmTt46dTHEqTa4nk1uk0UM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PwVnUpdr; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2ef1c12ae23so115299561fa.0;
-        Mon, 05 Aug 2024 03:28:47 -0700 (PDT)
+	s=arc-20240116; t=1722853993; c=relaxed/simple;
+	bh=aCg8Y7NDdsxbBmImd9uRerZmF7tRLZUEY04gUZ817ow=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RM+43zcS3GU9Z7jiolTGI0vfpwupG3seUxA925kguY9gjFJLBn+ymNdUda8MzP6tzf+gevzMAVSlcEKXroE3+mZd2t5jTfIXfQ1AOOCFHw+VSr64ZWEIQb+dSGs7whTWctLbc0SVNYJ12sdieRgsW4srCYdrsu7tkM3kaizfnmg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LzscwnAe; arc=none smtp.client-ip=209.85.128.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-66a048806e6so87667297b3.3
+        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2024 03:33:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722853726; x=1723458526; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=T6AaE1bRufEKsPZbCdARUjQJfzT+p05vZdiBhOYyzZg=;
-        b=PwVnUpdrjuGM6v1CQZH9ZtT4BSoRKyDurgJi0hMgGBWFTSsgfV/Hco/0vG7p9baSrl
-         y+ZAT+W4znwgq2LO7W4D3WyxwSEQVNELMWTEQl1wKMagfQtTQM6Z1ufnXxIdDfpH4ayR
-         guQ1ppV/sy/H4EEyGI6fLSxwjFtdSkeiWi6YhOIzSxLW6dZpanEJrW9uJuXXi/LN9gB5
-         NyRlWe3J/CidBAljIx/dpwUdLNUutgYCWd4iWp7Ag6UTOGt88daAW9o3nfgNnKvRGOwL
-         Bg2R1RR8rCbfovkzjUZ/nhSilcb6coPpjz3lzRU7svgsJBTpeKqxAKDEs6QQRxcJjKgm
-         i0pw==
+        d=linaro.org; s=google; t=1722853991; x=1723458791; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=aCg8Y7NDdsxbBmImd9uRerZmF7tRLZUEY04gUZ817ow=;
+        b=LzscwnAeCjD4FYkC5yo3LvvbRDw+wo9vP077qbgTn6BJHnl/wGemPeZbcXWul3tdgb
+         Zi+cwUTLpe3StbSpVbBOa5cYXi+xqy8+eSFZZS7LOSIJo/jbBNyA/P8wMeU262S5uZc+
+         25uxquCylRTBEmhn+PSL9HIcGbiYTtXTq7tFSLaHBQe0g9GFR1O3mLDv90aKyWG9d8xX
+         ycV0fr1+CU8ArmionVbWTxjPKAMigIasC9eIov63Imjn0+dC1pAqA4mhcRfHpQhCRunu
+         CePEvUpOBQSXyWKCjtCzjl4lGJ5SrSuTKhrtmAZUvJPLssGA8EhPQJ/nV2aeIbJ4unVt
+         Xrcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722853726; x=1723458526;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=T6AaE1bRufEKsPZbCdARUjQJfzT+p05vZdiBhOYyzZg=;
-        b=BlzPiKGsiMKEGOBanmtRpkTrKe+QDIbuX1i2ft9JelmGp/UiqBSWPjIAkxwZi3hIAg
-         0SOxqCnn3z+O5T5z69xTWF1Tg8L9lqUfUCGT3L+BvsJc2Sgq88BcOn52haaLxY+Ceb1+
-         qmvHUToSylvYPx4xtd/Dq/y2FWg6hw5EZ4QFOlBzu+XAqbn8RkV+wzIKTh76RUvrCIyM
-         jvvZo7OOB9tLObW+SYu1TJ+3FZD/AxRmMKPYhXJgy08uN0BJsYeDUhhjkccXqT1Kx/G4
-         mi2SSnXm7PeFb5n3iZRkpef3vKyhwfaOH01LNj1xvu4Ty9KFs5gcwZ9gyko6HQB5UWI1
-         /Diw==
-X-Forwarded-Encrypted: i=1; AJvYcCWWRUnqnUJLFParnXhHaKk1k1J6imahYtj6CRM+n32oMcG5i+suACMUF+wnkhBslso9Q4AM1OzS752/FQxVphS5tVoqBksyzK3by3HBfZtvIXG/T6y5k+DoXeInLttthQflvS7CHA==
-X-Gm-Message-State: AOJu0YypRJFXdbgXa/vy1itbZfhBS4xyRQAFfOQDieWtQWdJoF3VIEZM
-	5beTkd7y3o6wAHWG5yWLIo4ycf090pj1dX5zzFSZagIXm5lT3HJhNSveOw==
-X-Google-Smtp-Source: AGHT+IEa6os5riobehR69li/EKLxp5m3BW1qc3/CoEYByRbHrHmIH06hpdZc7+HPrJf3bUqkGDudeg==
-X-Received: by 2002:a05:6512:3051:b0:52c:8206:b986 with SMTP id 2adb3069b0e04-530bb4d5720mr7508716e87.56.1722853724751;
-        Mon, 05 Aug 2024 03:28:44 -0700 (PDT)
-Received: from [172.16.183.82] ([213.255.186.46])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-530bba10fe4sm1094022e87.114.2024.08.05.03.28.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Aug 2024 03:28:44 -0700 (PDT)
-Message-ID: <5622f011-222a-459e-9086-138adf0796aa@gmail.com>
-Date: Mon, 5 Aug 2024 13:28:43 +0300
+        d=1e100.net; s=20230601; t=1722853991; x=1723458791;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aCg8Y7NDdsxbBmImd9uRerZmF7tRLZUEY04gUZ817ow=;
+        b=YobZHKhuJfJZ06nuBrtHar5yh7RWnohVcYUYVP5qYpfRzISkIOkF4SBU1UB2RNbg/0
+         fAi2KM9rzFS/rnc/QzFBraXhx+oTQEwRuGh6KkhwH4WbemP2UaPZS2qgu/t0zdqJ9ZxU
+         MTBz4ePM8N7OHkkkOxJzizQlL9txdOOa/900g+geHc2QAXF7Gv1xDHdruAaLSKXUBLLC
+         KCn6l7+Sr7Hv4nSnYWKArHoYK4eDi1I1Y6E6pkvc2wHYUyuaCCJuSPFKLYFFBrCLMHcL
+         DC4h+j46DnA8l7e5hRNJWYfyT01Uh1FBTjC0pfzv1dE8BpnX58OTVrLtYTO4TESV5fW3
+         3hYw==
+X-Forwarded-Encrypted: i=1; AJvYcCVINJIyeinbsU5mvyaaZBViY0XMIS3gtS9HhTse/SLlEbpXnl3MU0A5FPilhxiF+E30dhpLsUn4ojlpS2G5wZo7M3MXRBDuwSpvSA==
+X-Gm-Message-State: AOJu0YwNcLySvPongAbFgN3Urtff7F+5u4ezBUHE18SvQDSk/rLPQjqP
+	cFeOzZgfXtGKKPiGTbzntccmxTHKe7PKZo+IBDyhUdKUkNlNM/N+yNnLLtAH4OvAr09KwW1pcNm
+	vIRkwJL3Fcat3LxroYrJLdSAFmoNiT2wmjP1XFw==
+X-Google-Smtp-Source: AGHT+IGGEv61lZA9mh+6DUS9SFPSvDLpedgHfe82sAKsqEu8+0Y0OH2Uh3V5PtPQFVyIyuu+NY/A4IbZiEUJ+kCoNoQ=
+X-Received: by 2002:a05:6902:1441:b0:e0b:4e20:b592 with SMTP id
+ 3f1490d57ef6-e0bde21a393mr13367382276.6.1722853991091; Mon, 05 Aug 2024
+ 03:33:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/2] iio: light: ROHM BH1745 colour sensor
-To: Mudit Sharma <muditsharma.info@gmail.com>, jic23@kernel.org,
- lars@metafoo.de, krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, Ivan Orlov <ivan.orlov0322@gmail.com>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>
-References: <20240718220208.331942-1-muditsharma.info@gmail.com>
- <20240718220208.331942-2-muditsharma.info@gmail.com>
-Content-Language: en-US, en-GB
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20240718220208.331942-2-muditsharma.info@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240710061102.1323550-1-quic_varada@quicinc.com>
+ <20240710061102.1323550-6-quic_varada@quicinc.com> <d454e01f-3d6b-4a02-87cf-3d289bc6957c@linaro.org>
+ <ZpeLYG6vegJYZ5Rs@hu-varada-blr.qualcomm.com> <ZqCD3xtkLHbw9BHN@hu-varada-blr.qualcomm.com>
+ <iy3l3ybmvllqxtyqq7fifiokxaaedrs22davveel4ikjoqivdm@dinswoc52qpz>
+In-Reply-To: <iy3l3ybmvllqxtyqq7fifiokxaaedrs22davveel4ikjoqivdm@dinswoc52qpz>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Mon, 5 Aug 2024 12:32:34 +0200
+Message-ID: <CAPDyKFoSK4_gRtOY2_pZhT7AytZ4qpZpRTzg5cOrqJj7A22b6A@mail.gmail.com>
+Subject: Re: [PATCH v6 5/9] pmdomain: qcom: rpmpd: Add IPQ9574 power domains
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Varadarajan Narayanan <quic_varada@quicinc.com>, Konrad Dybcio <konrad.dybcio@linaro.org>, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org, 
+	mturquette@baylibre.com, sboyd@kernel.org, ilia.lin@kernel.org, 
+	rafael@kernel.org, viresh.kumar@linaro.org, quic_sibis@quicinc.com, 
+	quic_rjendra@quicinc.com, danila@jiaxyga.com, neil.armstrong@linaro.org, 
+	otto.pflueger@abscue.de, abel.vesa@linaro.org, luca@z3ntu.xyz, 
+	geert+renesas@glider.be, stephan.gerhold@kernkonzept.com, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	linux-clk@vger.kernel.org, Praveenkumar I <quic_ipkumar@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On 7/19/24 01:02, Mudit Sharma wrote:
-> Add support for BH1745, which is an I2C colour sensor with red, green,
-> blue and clear channels. It has a programmable active low interrupt
-> pin. Interrupt occurs when the signal from the selected interrupt
-> source channel crosses set interrupt threshold high or low level.
-> 
-> Interrupt source for the device can be configured by enabling the
-> corresponding event. Interrupt latch is always enabled when setting
-> up interrupt.
-> 
-> Add myself as the maintainer for this driver in MAINTAINERS.
-> 
-> Signed-off-by: Mudit Sharma <muditsharma.info@gmail.com>
-> Reviewed-by: Ivan Orlov <ivan.orlov0322@gmail.com>
-> Reviewed-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+On Wed, 24 Jul 2024 at 19:26, Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On Wed, Jul 24, 2024 at 10:02:31AM GMT, Varadarajan Narayanan wrote:
+> > On Wed, Jul 17, 2024 at 02:44:08PM +0530, Varadarajan Narayanan wrote:
+> > > On Tue, Jul 16, 2024 at 02:15:12PM +0200, Konrad Dybcio wrote:
+> > > > On 10.07.2024 8:10 AM, Varadarajan Narayanan wrote:
+> > > > > From: Praveenkumar I <quic_ipkumar@quicinc.com>
+> > > > >
+> > > > > Add the APC power domain definitions used in IPQ9574.
+> > > > >
+> > > > > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > > > Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> > > > > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> > > > > ---
+> > > >
+> > > > Could you please confirm [1]?
+> > > >
+> > > > Konrad
+> > > >
+> > > > [1] https://lore.kernel.org/linux-arm-msm/57dadb35-5dde-4127-87aa-962613730336@linaro.org/
+> > >
+> > > The author is off for a few days. Will get back to you once he is in.
+> >
+> > Have responded to that query. Please see https://lore.kernel.org/linux-arm-msm/ZqCCpf1FwLWulSgr@hu-varada-blr.qualcomm.com/
+>
+> If it responds to voltage values, please model it as a regulator rather
+> than a power domain.
 
-Hi Mudit & All :)
+Just wanted to give my brief opinion around this too.
 
-I know I am late. The series has already been applied (thanks 
-Jonathan!). I've mostly been offline for the last 1.5 months or so - 
-"all work and no play makes Jack a dull boy", you know ;)
+I agree that it seems to make sense to model it as a regulator, but
+that doesn't necessarily mean that we shouldn't model it as a
+power-domain too.
 
-Anyways, as Jonathan asked me to take a look at the GTS stuff (at v7), I 
-tried to quickly glance at this. It looks good to me!
+If it is a power-domain it should be modelled like that - and then the
+power-domain provider should be assigned as the consumer of that
+regulator.
 
-Well, the real test will be the users of the sensor driver - so please 
-let us know if GTS stuff brings problems to users. I am mostly 
-interested in knowing if gain changes caused by integration time changes 
-are handled gracefully by the users. :) Well, seeing there is no 
-per-channel gain or integration time setting, you should be safe from 
-the worst side-effects :)
-
-Nice driver!
-
-Yours,
-	-- Matti
-
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
-
+Kind regards
+Uffe
 
