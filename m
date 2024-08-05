@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-91132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74377947FC5
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 18:58:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25B12947FD6
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 19:02:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9729C1C20B97
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 16:58:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E9C61C20F8C
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 17:02:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C3E915CD79;
-	Mon,  5 Aug 2024 16:58:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDB0815C12E;
+	Mon,  5 Aug 2024 17:02:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AKiWMcy6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BGVipVjK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBD012AD13;
-	Mon,  5 Aug 2024 16:58:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9009450269;
+	Mon,  5 Aug 2024 17:02:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722877107; cv=none; b=mD4YJNUfkAiqtZIeHq3Xpv2sw4TNX/tbXQTMbs/DmQmc0T7p+GSFlTX2aQ+R+WD0wjMC2QovKyODP0uoAuLfHE/4TmRRYecQ0xtsEJGd9kQ0Lc5b6sWpEiML8MgjeJ5cHTaM47uQDFv6q7iVXmzhmOGcn0lN8FjEZaeCWH8kaQI=
+	t=1722877335; cv=none; b=Pe8KWAYEJXGm5Jv8YJ5hAMHY5bSyT1EyhwwqstLw7Q+e21Vmz7RFHMlnlzKaMCDrwDX+O8WBIGJLvbrey0/TyQgfUGtw8sTOkG+cCDHVZ9kFTjyQ/jMjs1zcLOPfRUXQzkGnZhqwEvbcqK9xsPpdYJvwaSwlQImVU7xd61QSJEA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722877107; c=relaxed/simple;
-	bh=e2Si5sut7DmttSWgVcMhrEheTHiHZQD91pGP51D3a5M=;
+	s=arc-20240116; t=1722877335; c=relaxed/simple;
+	bh=buWMdJiBFjNIl3Zdlss6nsnG6P87jRDiUQ9VCDRogio=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PZIenh0+Pq865vQ3N51I3wF5aLh20+HiWPcycBQ6vkovc0TuvcDRRm8Fl1h5OhZ8ste3z0BQAvLITdYSb77vVsLclqPZxzD4EqupzmsySsVFaNgj9T4IKNDpAazKE+uK42NkIXwZ40pNSLRiy7lKWXLtoSJlcnWWFwbhdpjl0Ak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AKiWMcy6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C5CBC32782;
-	Mon,  5 Aug 2024 16:58:19 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=KSokHc37+OiojDUK3aQsRLXqOYoVOzY9fMqlZiRkAYWF8X3vD9PhXWLx5upUjh+Bi7ySdSnI4FpjXvTmS3pxRJtmAt2VyG22ESJ4O0lVbw8bNZ0cD/GDb45zCDe0oWn/t8jja9eiSSngONBzlonFoqtnA+UiJjsrpwQyaT2i5JY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BGVipVjK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B400EC32782;
+	Mon,  5 Aug 2024 17:02:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722877105;
-	bh=e2Si5sut7DmttSWgVcMhrEheTHiHZQD91pGP51D3a5M=;
+	s=k20201202; t=1722877335;
+	bh=buWMdJiBFjNIl3Zdlss6nsnG6P87jRDiUQ9VCDRogio=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AKiWMcy64InhcLTQ24/G3T0WvujPUfjZH+Q5FuI2TV7wPqhiYTL9nl1rC0j+g187x
-	 lKp6cu542YnVerTt7Ak1cgl6wyZXUYe6wJDy25W9fkhdcVF48o+JFSA0BcPrJ27cM1
-	 UxhzJ4R2yyg62FQ0oFXkCtzA7jiWlztOrBOZBCyjg1DlRG10OFUu/3XvSws1+jUjlq
-	 1G89ndf1U0BUmXbYKWex3pTbNGEJMPtT3yp/JlOd2M2GaKJQG1ybX6YQffJ/aAhBFC
-	 Gb/9qpDT2fEccUAQXAR/q5e/2Rmmx0WJf4UNDHNy5tEN3l1DgrOp15m/RSWLnzau3j
-	 uhp+SzvQtn9Ag==
-Message-ID: <76472034-82ed-4002-a21d-bd84a054d8dd@kernel.org>
-Date: Mon, 5 Aug 2024 18:58:17 +0200
+	b=BGVipVjKalid41sRU8+kvk+mKajZEAjey0KD8qmCDhINhPijVCHEu9ER78gBH0QGG
+	 pW87cpO0nEo9l5Gyg8RozCUT8c4/5NeeBGO0q//2TqjKk/g/S09pGsLcZo+0OHEusg
+	 yVJbpqf+z6gf7UEHLlJY6lgc1RdHjMrdBO4xBgOkXziiXtrBw+ezScoRFG19pHaAMC
+	 n8QJzvMh3TfTAFJT+q1cEgI1Zh0DhewVry/NfvYWjBVAYzExvRBezfzr04g89q4eDm
+	 SloaBt+dfJ3G1kRlUSZmyAGskrMHARDI7lWrZf5DEd3ilUSw5zqW/EgFOwZApHBW60
+	 znWrKbdfgr2hQ==
+Message-ID: <e16df619-4309-45af-bd1e-883498be1b67@kernel.org>
+Date: Mon, 5 Aug 2024 19:02:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,27 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/8] dt-bindings: PCI: Add binding for qps615
-To: Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- cros-qcom-dts-watchers@chromium.org, Bartosz Golaszewski <brgl@bgdev.pl>,
- Jingoo Han <jingoohan1@gmail.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- andersson@kernel.org, quic_vbadigan@quicinc.com,
- linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20240803-qps615-v2-0-9560b7c71369@quicinc.com>
- <20240803-qps615-v2-1-9560b7c71369@quicinc.com>
- <0cdaa0b2-ae50-40a1-abbb-7a6702d54ad5@kernel.org>
- <027dc9f7-6e0d-e331-8f90-92a3d56350ab@quicinc.com>
- <132a0367-596b-4ff2-b35c-e81e77f14340@kernel.org>
- <ZrEAKxktYXFyxWXy@hu-bjorande-lv.qualcomm.com>
+Subject: Re: [PATCH 3/4] arm64: dts: rockchip: Add base DT for rk3528 SoC
+To: Yao Zi <ziyao@disroot.org>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>, Dragan Simic <dsimic@manjaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Chris Morgan <macromorgan@hotmail.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>,
+ Andy Yan <andyshrk@163.com>, Muhammed Efe Cetin <efectn@protonmail.com>,
+ Jagan Teki <jagan@edgeble.ai>, Ondrej Jirman <megi@xff.cz>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-serial@vger.kernel.org
+References: <20240803125510.4699-2-ziyao@disroot.org>
+ <ZrCwrWjRgvE0RS98@ziyaolaptop.my.domain>
+ <82e7e3a78f784b3ad63094c8a0ab1932@manjaro.org> <7941737.iedYuu7f5S@diego>
+ <ZrD8N7_tYAiKCg-C@ziyaolaptop.my.domain>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -116,39 +112,67 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ZrEAKxktYXFyxWXy@hu-bjorande-lv.qualcomm.com>
+In-Reply-To: <ZrD8N7_tYAiKCg-C@ziyaolaptop.my.domain>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 05/08/2024 18:39, Bjorn Andersson wrote:
+On 05/08/2024 18:22, Yao Zi wrote:
+> On Mon, Aug 05, 2024 at 01:47:45PM +0200, Heiko Stübner wrote:
+>> Am Montag, 5. August 2024, 13:37:11 CEST schrieb Dragan Simic:
+>>> On 2024-08-05 12:59, Yao Zi wrote:
+>>>> On Sun, Aug 04, 2024 at 04:05:24PM +0200, Krzysztof Kozlowski wrote:
+>>>>> On 04/08/2024 15:20, Yao Zi wrote:
+>>>>>>>
+>>>>>>>> +		compatible = "fixed-clock";
+>>>>>>>> +		#clock-cells = <0>;
+>>>>>>>> +		clock-frequency = <24000000>;
+>>>>>>>> +		clock-output-names = "xin24m";
+>>>>>>>> +	};
+>>>>>>>> +
+>>>>>>>> +	gic: interrupt-controller@fed01000 {
+>>>>>>>
+>>>>>>> Why this all is outside of SoC?
+>>>>>>
+>>>>>> Just as Heiko says, device tree for all other Rockchip SoCs don't have
+>>>>>> a "soc" node. I didn't know why before but just follow the style.
+>>>>>>
+>>>>>> If you prefer add a soc node, I am willing to.
+>>>>>
+>>>>> Surprising as usually we expect MMIO nodes being part of SoC to be 
+>>>>> under
+>>>>> soc@, but if that's Rockchip preference then fine.
+>>>>>
+>>>>
+>>>> Okay, then I would leave it as is.
+>>>>
+>>>> For the fixed-clock node, I think "xin24m: clock-24m { }" is okay and
+>>>> follows the new rule?
 >>>
->>> In patch1 we are trying to add reference of i2c-adapter, you suggested
->>> to use i2c-bus for that. we got comments on the driver code not to use
->>> adapter and instead use i2c client reference. I felt i2c-bus is not
->>> ideal to represent i2c client device so used this name.
+>>> I find "xin24m: clock-xin24m { }" better, because keeping the "xin24m"
+>>> part in /sys listing(s), for example, can only be helpful.
 >>
->> You did not respond to comment of using i2c-bus, just silently decided
->> to implement other property.
+>> I would second that :-) . Like on a number of boards we have for example
+>> 125MHz gmac clock generators ... with 2 gmacs, there are 2 of them.
 >>
-> 
-> I guess you totally ignored my comment when you reviewed the previous
-> version, where I asked him to represent the device on said bus.
-
-Hm, Rob suggested i2c-bus, you as well:
-<<I'd prefer you call it "i2c-adapter" or perhaps "i2c-bus", because
-it's not "the switch controller".>>
-
-and there was no response to any of these comments.
-
-> 
->> Anyway, why i2c-bus is not suitable here? I am quite surprised...
+>> I'm not sure the preferred name accounts for that?
+>>
+>> Similarly we also keep the naming in the regulator node,
+>> it's regulator-vcc3v3-somename {} instead of just regulator-3v3 {}.
 >>
 > 
-> I was not aware that i2c-bus was an acceptable solution, sorry for my
-> bad suggestion and guidance here.
+> "clock-xin24m" wouldn't be more descriptive than "clock-24m" and there
+> are usually only a few fixed clocks in dt, thus finding corresponding
+> definition isn't a problem I think.
+> 
+> For the gmac case, Krzysztof, do you think something like
+> "clock-125m-gmac1" is acceptable, just like what has been done for
+> regulators?
+>
 
-I think you suggested i2c-bus as well, but regardless what did you agree
-internally, response to Rob was expected.
+How both above fit the generic node naming rule? You add now specific
+part - purpose of the clock. The purpose is obvious from
+clock-output-names or label. Anyway, not important topic to nak these
+patches.
 
 Best regards,
 Krzysztof
