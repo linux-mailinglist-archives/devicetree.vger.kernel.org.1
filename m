@@ -1,109 +1,105 @@
-Return-Path: <devicetree+bounces-91062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F070947A8F
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 13:48:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3FF0947ADF
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 14:09:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C9E821F2185F
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 11:48:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 53D2AB21743
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 12:09:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1179154BE4;
-	Mon,  5 Aug 2024 11:48:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 916C41547E0;
+	Mon,  5 Aug 2024 12:09:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FzBy97Zm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0391C6A01E;
-	Mon,  5 Aug 2024 11:48:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E810514E2FA;
+	Mon,  5 Aug 2024 12:09:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722858489; cv=none; b=tPhCG5h8cZ9SDbuwtWKukr6mBfdiY7nfcVWGYhBvz499vOrLIZJaxDtCQMSNuRNf9Q3MwEZE8kcTzc7Z5HOtkWiUBXYJWQyAIsSu8z9Nm5h33l9htXOnQHr6DXgrGvdCfNZyPLK6c1XqhK6vby7MFR9Yvpo+OqgcvM+nZNl03pM=
+	t=1722859776; cv=none; b=ciRcxazLRlue4bmsd//2o6+rCUvUb5Q7VaC/35NtorN3nQ374PAsLhmjPx2Oe/L9Oc8R14hFFBDAXlb9MrYHnzT4ynNzj/6867taU+cTqe7qHpP2FQ0kadhi+tf+iBcptt0R37n3GlG3BXCACQba/hpFrvnj/b/aEh1S4OvjTiw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722858489; c=relaxed/simple;
-	bh=xWUzpUed0WtFaOwTnrWGivckLFH1J0Q2Ufzdyr5VCps=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Z5GrJVgS9xNBnt1B3kwQeZS61nrnMJRg6UJKmArgNDTdLDnZooS5nfXOYNOPshCcWIfBrOf38sHPLiuRyaQneP2o7p6rwv1pNlHD5ED+DySpREeu9L2njdkaT4yoE9fvLCZDOaOUtIka6La4afGneWNmVPBw5EcKXo5kLLCwK30=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875a9f.versanet.de ([83.135.90.159] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sawBm-0001Hv-Lc; Mon, 05 Aug 2024 13:47:46 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Yao Zi <ziyao@disroot.org>, Dragan Simic <dsimic@manjaro.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Chris Morgan <macromorgan@hotmail.com>,
- Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>,
- Andy Yan <andyshrk@163.com>, Muhammed Efe Cetin <efectn@protonmail.com>,
- Jagan Teki <jagan@edgeble.ai>, Ondrej Jirman <megi@xff.cz>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-serial@vger.kernel.org
-Subject: Re: [PATCH 3/4] arm64: dts: rockchip: Add base DT for rk3528 SoC
-Date: Mon, 05 Aug 2024 13:47:45 +0200
-Message-ID: <7941737.iedYuu7f5S@diego>
-In-Reply-To: <82e7e3a78f784b3ad63094c8a0ab1932@manjaro.org>
-References:
- <20240803125510.4699-2-ziyao@disroot.org>
- <ZrCwrWjRgvE0RS98@ziyaolaptop.my.domain>
- <82e7e3a78f784b3ad63094c8a0ab1932@manjaro.org>
+	s=arc-20240116; t=1722859776; c=relaxed/simple;
+	bh=ogmJyvZfxTS06hH32tvpvQqedGk3fvnc27s7vf6JNi0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=s51NJHBt4xFdpCy3ZlZu8GAz/caqF1mKVD0Zi3jgYc7QWRV1Ud6NjuD3vNqHdAP80mDVC/5NOlLOAogiKbUudweTdxSqKhJ/pJXKwroD+ed24S8qJ6W3RBrqEYAvPsJM60nfDJcGQfGjlTD+n3VLP9PsbpmM2EQ7W3bID+yQSkc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FzBy97Zm; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2ef243cc250so19668381fa.0;
+        Mon, 05 Aug 2024 05:09:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722859773; x=1723464573; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YQ7lo8YqKFEMphHR81LMQMxm/RrbZDOgGObtyKf2yQg=;
+        b=FzBy97Zm9iw4kpphKdnJRtRmStG02HPUhBIy0cC3w92k5+D4IlMSCknpxhjz/97gxX
+         7WzqBn+owcA0f2uJKqGcz0VMZCcgCcdJBOAmlbToC24UbpdOpYkLQgu319Foqv4T17AS
+         5Mk5fUAaZ2mo8wq5HUICTX4sz76JmyKbqbzQM393JFMxf32hyarATn5tnX7xzX1muKxE
+         gSI428joa4e6ORs3Np9isVsWc70U2w2Dt/P6Fk6zgjnXjtiKKgOQEJ600BAq/lPFGNsZ
+         JYb4F42qb/nzEy/0NXoLpX+DDOLODZIWKQxbVXAFZ2kYWbYsxOebz6ifzgLW3DQJ+vwa
+         /+gg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722859773; x=1723464573;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YQ7lo8YqKFEMphHR81LMQMxm/RrbZDOgGObtyKf2yQg=;
+        b=ENV+diOu1xtTGV9mVMs7liuyHQ7h7KBAzL3SpMUnpIriylOnScdNqsCPuSPlPbp1oR
+         huJGHAIM83M36Lu0v0Pou+VJKNkVh1Wy5uOS8CHwdPOZj8r7J1mzy+nlD5t03OFWb+mE
+         rCuUTaLW1hTWGr15qHyObyWhoM/DNmpgWTGsFw8C9HmERn9ArW2l2iQ8tJLf6n9veWiA
+         mooPJh2aZBWCY3y9STPUL4jPlZ07IV2QZMaBrkEGlkhXonA65FIeiqXgaDEMRsKBWuTn
+         EXU3zChZXLF2Fev+wV8Zzfy2GDSX59kN25E8/Am11TH8RVphF6wG5v3v1uqg8CTOI2Ct
+         VwZw==
+X-Forwarded-Encrypted: i=1; AJvYcCXDU157OENiJcYxr9Hs3HFsYfMzBevgXuWlqRb3E1lTaLqzo4TUbg7iqpRWWYlUi69Gh8CJj7ixRhvDd1+YzdgZ/Gmpyysiu01OP8R387jhuRO3BT8PXwD5+PuLxt03+usoH3snt6RkKA==
+X-Gm-Message-State: AOJu0YwAnRe0PSgx14aI5JGZdLegPuK9tOJVk/XFd0HvRNUNCfZIHJMK
+	sEb3BEnqtjXVuNRZ0Fz1LHi98OEgaQQ6WemU6b3HzIT76/9T+4hG+JdBh1ebjxSMp6nlKV/u0eO
+	AKsQHmrZMPo5At5Ug+NRW+vUgNQg=
+X-Google-Smtp-Source: AGHT+IHKQRB2DjDls5YqMHmNNIrRhBRmAg/WzIBHkG4d10FoiYze3cdrfQcwsmexvq1O9fFVw6vjs7v/P7nnuRyVTPY=
+X-Received: by 2002:a05:6512:2811:b0:52c:ce28:82bf with SMTP id
+ 2adb3069b0e04-530bb3b0e3dmr4358798e87.5.1722859771204; Mon, 05 Aug 2024
+ 05:09:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+References: <20240804220411.180264-1-aford173@gmail.com>
+In-Reply-To: <20240804220411.180264-1-aford173@gmail.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Mon, 5 Aug 2024 09:09:19 -0300
+Message-ID: <CAOMZO5DGB8LSvziHTCTEfM+hn2GOhhUA9juautRPibVK_a3qNg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8mp-beacon: Enable DW HDMI Bridge
+To: Adam Ford <aford173@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Am Montag, 5. August 2024, 13:37:11 CEST schrieb Dragan Simic:
-> On 2024-08-05 12:59, Yao Zi wrote:
-> > On Sun, Aug 04, 2024 at 04:05:24PM +0200, Krzysztof Kozlowski wrote:
-> >> On 04/08/2024 15:20, Yao Zi wrote:
-> >> >>
-> >> >>> +		compatible = "fixed-clock";
-> >> >>> +		#clock-cells = <0>;
-> >> >>> +		clock-frequency = <24000000>;
-> >> >>> +		clock-output-names = "xin24m";
-> >> >>> +	};
-> >> >>> +
-> >> >>> +	gic: interrupt-controller@fed01000 {
-> >> >>
-> >> >> Why this all is outside of SoC?
-> >> >
-> >> > Just as Heiko says, device tree for all other Rockchip SoCs don't have
-> >> > a "soc" node. I didn't know why before but just follow the style.
-> >> >
-> >> > If you prefer add a soc node, I am willing to.
-> >> 
-> >> Surprising as usually we expect MMIO nodes being part of SoC to be 
-> >> under
-> >> soc@, but if that's Rockchip preference then fine.
-> >> 
-> > 
-> > Okay, then I would leave it as is.
-> > 
-> > For the fixed-clock node, I think "xin24m: clock-24m { }" is okay and
-> > follows the new rule?
-> 
-> I find "xin24m: clock-xin24m { }" better, because keeping the "xin24m"
-> part in /sys listing(s), for example, can only be helpful.
+Hi Adam,
 
-I would second that :-) . Like on a number of boards we have for example
-125MHz gmac clock generators ... with 2 gmacs, there are 2 of them.
+On Sun, Aug 4, 2024 at 7:04=E2=80=AFPM Adam Ford <aford173@gmail.com> wrote=
+:
 
-I'm not sure the preferred name accounts for that?
+> +&hdmi_tx {
+> +       pinctrl-names =3D "default";
+> +       pinctrl-0 =3D <&pinctrl_hdmi>;
+> +       status =3D "okay";
+> +
+> +       ports {
+> +               port@1 {
 
-Similarly we also keep the naming in the regulator node,
-it's regulator-vcc3v3-somename {} instead of just regulator-3v3 {}.
+@1 without reg =3D <1> causes dtc warnings.
 
-
-
+Please fix it.
 
