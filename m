@@ -1,132 +1,152 @@
-Return-Path: <devicetree+bounces-91130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F401947F91
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 18:48:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AC95947FA0
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 18:53:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2948D283800
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 16:48:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5B861F21762
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 16:53:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49D0213AD26;
-	Mon,  5 Aug 2024 16:47:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C424015C12C;
+	Mon,  5 Aug 2024 16:53:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="rBuwlH8i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DsVKimyh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-170.mta0.migadu.com (out-170.mta0.migadu.com [91.218.175.170])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F6BD50269
-	for <devicetree@vger.kernel.org>; Mon,  5 Aug 2024 16:47:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 944062C684;
+	Mon,  5 Aug 2024 16:53:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722876478; cv=none; b=FWGFeTNhptjua2mkfp2z2CcaAVBTbWn0pruQloW91wOG1aL/ULt8gv+xKQeNERL2GjLX+2QW4cRokentarYC/MXlhIOtwElc/uElexcBVqjKxcWB3s5kdjHGVvYYvn1GKRnTT+Xr1R+yr5MptNdDW/F3VOj0i12dnUasprWaoJU=
+	t=1722876790; cv=none; b=K1APdFhdZ9Ki3whi1rtMYEmoi/b3BXXu4l7jWyZ06mMkC8XZtrbDdR7tOm+Rb2aDTwRDe0NGyFWxXUENZpNbU8vCByp38/EThbJ0rQ0MMsedAEZYnHZBbbpzcMOrAJfvQZVV13ew6wBiVggGex9gQiaOh0PfURw1e659EKNEWYc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722876478; c=relaxed/simple;
-	bh=c3SmaiVPPLs2hONey/aNVxcb17+6xPWlsjIFaONzPvU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CtIsvU3Wnh/gYbMQdA/lKT2taFN6GaeLyjKIkoiMyOZAJlYewGWQjZWrhzxj/T6+l1pIYcWJlgF49xR9sE51eQ41A2bc9GdtqTYBY5hWn34TUPwY9LeB49UeYVMCbWOt3uG2eFuMm3IcQUOaifBwrgJ6RAqnkvU7ley4gYiR70o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=rBuwlH8i; arc=none smtp.client-ip=91.218.175.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1722876473;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=c3SmaiVPPLs2hONey/aNVxcb17+6xPWlsjIFaONzPvU=;
-	b=rBuwlH8ij539SFwl2kqiJwb9CKVu8oZU+lMExFW/214tvhq5xCLr/0VR8x6Elj9trYDLR7
-	fnCd1Sk67+V6SxxOBIqUopcF242vSBRqJ3kN9wEt5GDazyrCC+W9P8XnkMfW5SrEKbDeoR
-	DaVAulBJK9knCcvN5VU44/v/MkCPyG96gK5ZqJ3wkS5XsXo5u7+CaCDbSqG88MH/eHVPbj
-	0sBgWVL9FYkIzlUvx+VKBMsVzBUiI7EHfDwP5QHYbqHepneC6fUpsh2YGVp3L37bHBKKfL
-	MFnEH/x0R0FbYhvS4zi9LwYfs6JeBdh2y9neRIUcL6e+10WZRy0nY3lHTrPOWw==
-From: Diederik de Haas <didi.debian@cknow.org>
-To: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-Cc: Chen-Yu Tsai <wens@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
- linux-rockchip@lists.infradead.org, linux-rockchip@lists.infradead.org,
- Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= <ukleinek@debian.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Andrew Lunn <andrew@lunn.ch>
-Subject:
- Re: [PATCH] arm64: dts: rockchip: qnap-ts433: Simplify network PHY connection
-Date: Mon, 05 Aug 2024 18:47:41 +0200
-Message-ID: <17406373.mzVfN28SmL@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <3723411.CpGBqz00pN@diego>
-References:
- <20240304084612.711678-2-ukleinek@debian.org> <1805269.IgJLvJe6uz@bagend>
- <3723411.CpGBqz00pN@diego>
+	s=arc-20240116; t=1722876790; c=relaxed/simple;
+	bh=o9ugM3P0drPcA1zifw1SGACj0yG51DJhSlYgmmJa+2o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P48f6SYFF/a0WK+lycHnlct6hVFaBTwCwaM9wKrUab/wZlDbRH8nDx/IWecwyFnjQTwBIqUkEYUzAK7bl8wtTvL6qEd7jO86qaIa8CGrVP64VqcNJOESjs3CDL3yGQ2AW+oRCwV8U09HEkMcEFElhF3wpNqQ3x1rWlEYMokGhps=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DsVKimyh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5472DC32782;
+	Mon,  5 Aug 2024 16:53:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722876790;
+	bh=o9ugM3P0drPcA1zifw1SGACj0yG51DJhSlYgmmJa+2o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DsVKimyh3athBWR61d5V+zWcMbrGm0KNFU0aqiYQyyEChSGD97CArvLf6R/PCv1Kx
+	 QJbMA5a3gBih/V0ziYR6u3/0LfI7tQdM+ZAN5L1l67k88eQwBIcrxl3JTJlk1j3jfc
+	 qYHfEzhESzRY1WWY6AL3BXPVG/rPjEnpJVIdQxy3yZnu+rLa//MdmQdIQ7rb70lUzF
+	 av9frt1FOdyg/C06WJdaSoztX4s3PwZzMDsVQ0kwOoBZvX3aiz/AbeDpiVQzvyzaWE
+	 XQxafxShE42D7/4Fh489pgfX1Wc9ANJmfrdXE1ObX+7aJFKj7UaxVBTs90eAEmJ2ZH
+	 dU2Z49Prd6JAg==
+Date: Mon, 5 Aug 2024 22:23:05 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Abin Joseph <abin.joseph@amd.com>
+Cc: michal.simek@amd.com, robh@kernel.org, u.kleine-koenig@pengutronix.de,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	radhey.shyam.pandey@amd.com, harini.katakam@amd.com, git@amd.com,
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] dmaengine: zynqmp_dma: Add support for AMD Versal
+ Gen 2 DMA IP
+Message-ID: <ZrEDcQLWCbKbCRaL@matsya>
+References: <20240726062639.2609974-1-abin.joseph@amd.com>
+ <20240726062639.2609974-3-abin.joseph@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart3973342.vqsyN3JNkh";
- micalg="pgp-sha256"; protocol="application/pgp-signature"
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240726062639.2609974-3-abin.joseph@amd.com>
 
---nextPart3973342.vqsyN3JNkh
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; protected-headers="v1"
-From: Diederik de Haas <didi.debian@cknow.org>
-To: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-Date: Mon, 05 Aug 2024 18:47:41 +0200
-Message-ID: <17406373.mzVfN28SmL@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <3723411.CpGBqz00pN@diego>
-MIME-Version: 1.0
+On 26-07-24, 11:56, Abin Joseph wrote:
+> ZynqMp DMA IP and AMD Versal Gen 2 DMA IP are similar but have different
+> interrupt register offset. Create a dedicated compatible string to
+> support Versal Gen 2 DMA IP with Irq register offset for interrupt
+> Enable/Disable/Status/Mask functionality.
+> 
+> Signed-off-by: Abin Joseph <abin.joseph@amd.com>
+> ---
+>  drivers/dma/xilinx/zynqmp_dma.c | 17 +++++++++++++----
+>  1 file changed, 13 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/dma/xilinx/zynqmp_dma.c b/drivers/dma/xilinx/zynqmp_dma.c
+> index f31631bef961..a5d84d746929 100644
+> --- a/drivers/dma/xilinx/zynqmp_dma.c
+> +++ b/drivers/dma/xilinx/zynqmp_dma.c
+> @@ -22,10 +22,10 @@
+>  #include "../dmaengine.h"
+>  
+>  /* Register Offsets */
+> -#define ZYNQMP_DMA_ISR			0x100
+> -#define ZYNQMP_DMA_IMR			0x104
+> -#define ZYNQMP_DMA_IER			0x108
+> -#define ZYNQMP_DMA_IDS			0x10C
+> +#define ZYNQMP_DMA_ISR			(chan->irq_offset + 0x100)
+> +#define ZYNQMP_DMA_IMR			(chan->irq_offset + 0x104)
+> +#define ZYNQMP_DMA_IER			(chan->irq_offset + 0x108)
+> +#define ZYNQMP_DMA_IDS			(chan->irq_offset + 0x10C)
 
-On Monday, 5 August 2024 18:33:52 CEST Heiko St=FCbner wrote:
-> Am Montag, 4. M=E4rz 2024, 17:47:22 CEST schrieb Diederik de Haas:
-> > On Monday, 4 March 2024 16:46:59 CET Jonas Karlman wrote:
-> > > Sorry for not getting back to you sooner, but yes I would check with
-> > > phy-mode =3D "rgmii-id". There is also a possible issue with rk gmac
-> > > driver in both U-Boot and linux, it always set enable tx/rx delay bit.
-> >=20
-> > > Please, try with following in U-Boot:
-> > No worries :)
-> > Will try your suggestions soon, but it's probably better to take that
-> > discussion somewhere else to not further clutter up this patch/thread.
->=20
-> did you get somewhere with your testing?
+Lower case please
 
-Yeah, none of the patches made a difference:
+>  #define ZYNQMP_DMA_CTRL0		0x110
+>  #define ZYNQMP_DMA_CTRL1		0x114
+>  #define ZYNQMP_DMA_DATA_ATTR		0x120
+> @@ -145,6 +145,9 @@
+>  #define tx_to_desc(tx)		container_of(tx, struct zynqmp_dma_desc_sw, \
+>  					     async_tx)
+>  
+> +/* IRQ Register offset for VersalGen2 */
+> +#define IRQ_REG_OFFSET			0x308
+> +
+>  /**
+>   * struct zynqmp_dma_desc_ll - Hw linked list descriptor
+>   * @addr: Buffer address
+> @@ -211,6 +214,7 @@ struct zynqmp_dma_desc_sw {
+>   * @bus_width: Bus width
+>   * @src_burst_len: Source burst length
+>   * @dst_burst_len: Dest burst length
+> + * @irq_offset: Irq register offset
+>   */
+>  struct zynqmp_dma_chan {
+>  	struct zynqmp_dma_device *zdev;
+> @@ -235,6 +239,7 @@ struct zynqmp_dma_chan {
+>  	u32 bus_width;
+>  	u32 src_burst_len;
+>  	u32 dst_burst_len;
+> +	u32 irq_offset;
+>  };
+>  
+>  /**
+> @@ -919,6 +924,9 @@ static int zynqmp_dma_chan_probe(struct zynqmp_dma_device *zdev,
+>  		return -EINVAL;
+>  	}
+>  
+> +	if (of_device_is_compatible(node, "amd,versal2-dma-1.0"))
+> +		chan->irq_offset = IRQ_REG_OFFSET;
 
-On zaterdag 9 maart 2024 15:51:50 CEST Diederik de Haas wrote:
-> I did the following tests based on 2024.01 on my Q64-B:
-> - conditional delay: FAIL
-> - grf fix: FAIL
-> - conditional delay + grf fix: FAIL
->=20
-> Then I rebased upon 2024.04-rc4:
-> - conditional delay + grf fix: FAIL
-> I skipped the other variations, but could do that if that could be useful.
+This should be added as driver_data
 
-After the 2024.07 release I checked again and it still failed and my=20
-workaround (partial revert) still worked, so I reported it to the u-boot ML:
+> +
+>  	chan->is_dmacoherent =  of_property_read_bool(node, "dma-coherent");
+>  	zdev->chan = chan;
+>  	tasklet_setup(&chan->tasklet, zynqmp_dma_do_tasklet);
+> @@ -1162,6 +1170,7 @@ static void zynqmp_dma_remove(struct platform_device *pdev)
+>  
+>  static const struct of_device_id zynqmp_dma_of_match[] = {
+>  	{ .compatible = "xlnx,zynqmp-dma-1.0", },
+> +	{ .compatible = "amd,versal2-dma-1.0", },
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, zynqmp_dma_of_match);
+> -- 
+> 2.25.1
 
-https://lore.kernel.org/u-boot/2086393.9F9pDXStbY@bagend/
---nextPart3973342.vqsyN3JNkh
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZrECLQAKCRDXblvOeH7b
-bqo2AQDPZcQ5p+p8UDgZcnwIoRd4WNAVMk4M1rqC2X8ZQ0ZyEAEAyKxpE9PRolVR
-sxppaamCj8Ku9ruBwrjxCn5AC5nI7w4=
-=jE67
------END PGP SIGNATURE-----
-
---nextPart3973342.vqsyN3JNkh--
-
-
-
+-- 
+~Vinod
 
