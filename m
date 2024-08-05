@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-91145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DDB9948029
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 19:18:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C9BD948043
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 19:28:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 40B241C2228C
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 17:18:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD2F81C20F0C
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 17:28:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8778115E5D4;
-	Mon,  5 Aug 2024 17:18:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 924AE15E5CB;
+	Mon,  5 Aug 2024 17:27:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gMdR76CX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jn9riv34"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 503A015E5BD;
-	Mon,  5 Aug 2024 17:18:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5890B2C684;
+	Mon,  5 Aug 2024 17:27:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722878291; cv=none; b=Cqw1nKOIe4XiMdRZspkCwkwGalkkiQ9QtkwXGOKlI059/rTbZgVafGRjKunomcHDIQ9MJJMS5C2AnjClytMJHeQEOKj6obvj3+jL/yx3BKJQzQnB14SHJKKASs0bfRIIk9Do19FUrJuVQi17cxtEeNg4AIUwxee534VEoMQm8ns=
+	t=1722878877; cv=none; b=a8gekEyFBdkepChgKPbnoruZ41LL/7LGGJx8j352oiBbSQZu81yJz2jib64gC99+7Dz+m/QlrPG1Ap8v9e2/+62Emgyea8p/urclP8dVCFB4Zb/S+i75gzcG54H+ESi7R5PLb/jQ9EYP6gUUjXCZFGKErSnWewp/LdCQU7KEgUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722878291; c=relaxed/simple;
-	bh=aqPHFht0h1h6CFOSYiIJSP0+ZfdrDcm2lDd1De0YOso=;
+	s=arc-20240116; t=1722878877; c=relaxed/simple;
+	bh=WCgP8hlNk0QcSt9lOyTkLO14E5HFaN8bJI79ZrmftSY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AhwX9h0eWUUbQsTsPsTpyln7A939l0lBgj/546r2LxJEeZGQTRVRW3sPiZxz0ef6HC7g63vkYqV9swLzy0vrrfaux5LDUVboF7R1m4qHXZzUMoJibMSVTN/aUS/px5epBlU6D16fmPybDfBd9abzrT9FfzfolEKyh5yEwVx7Fbw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gMdR76CX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5EB4C32782;
-	Mon,  5 Aug 2024 17:18:06 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ow597s9PtslsHeHCJeEraGT/8y6Td3GwB+vUKg5ugAW2+BruomeCodF0F3ud1udg0yXasila6HEsGkXyedsvCWXtadeO2a7X3okGElI14oQb1hrqlBbXBvzTMyEZcUchlW4fsukb1EvzBIdzgQzpU+hsf0/ZstgwKz7Xj8eyNfM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jn9riv34; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A82FBC32782;
+	Mon,  5 Aug 2024 17:27:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722878291;
-	bh=aqPHFht0h1h6CFOSYiIJSP0+ZfdrDcm2lDd1De0YOso=;
+	s=k20201202; t=1722878877;
+	bh=WCgP8hlNk0QcSt9lOyTkLO14E5HFaN8bJI79ZrmftSY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gMdR76CX7+cLlu146Y2zDfp8XSBcVFb5l1X4ttVGaxMiUJYyVTszI0VwTZUAu82mQ
-	 rTElSXv3SHr+jR7bcWUEyxJLPMVhLh834+rM/qJGC1FLC4SyLt55zriF6oOfMrAdci
-	 NHThQghNd7h/UfGCqZh4XO/jId+aVxImw/Em0t2Y+J35RzLMgtWhgsiz8xxD6ADYee
-	 gQ80z+xlMzGvBKP7IVav4lVgnoWF0xWSIEF9QP95Xc8EyKiP3O4i1lIIVU7cFWEKGg
-	 EW8S0uYe5aZAtwPn8418w6iskmE18rKILx+M7+LGynQebGLow98ZewrBEbn3akdUZn
-	 f5QC9cUAJs+NA==
-Message-ID: <90582c92-ca50-4776-918d-b7486cf942b0@kernel.org>
-Date: Mon, 5 Aug 2024 19:18:04 +0200
+	b=Jn9riv34WwWOFnIkvGeqfwUWe1Xr1imBQur8ZnUleqY3Bci7QFUOVMqTMDCQ5OAJD
+	 V/EcFZSFtO19rIsSkiRTYn++r+Y0cmiRxb3e987QbY4VGFA5qnz7qfI2D3zBDzYArw
+	 TwdB8+ORF5P+Y5hNSGUd4jcuz+Nsl8Qp7rLeBVeSVoWbPHEFPt8T6uqqf5759Aau7O
+	 Zjai3AeSRLXG0eJS6zCgi0D8XpCuiPPQKB6dTe4Y8bVRhPgcTFxt1KDkVgDXjvVz0y
+	 kpa0ZSLwemAZjeOAKc+k83lM+Lo+2bEiZr8sPr1eDSC6ceBLXeiE9xJ5M81Ny+NNHQ
+	 bkzfO6Xo3Sz7A==
+Message-ID: <cf67c1b3-82cf-408a-a51d-9a09d057dc70@kernel.org>
+Date: Mon, 5 Aug 2024 19:27:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,26 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/8] dt-bindings: PCI: Add binding for qps615
-To: Bjorn Andersson <quic_bjorande@quicinc.com>,
- Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- cros-qcom-dts-watchers@chromium.org, Bartosz Golaszewski <brgl@bgdev.pl>,
- Jingoo Han <jingoohan1@gmail.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- andersson@kernel.org, quic_vbadigan@quicinc.com,
- linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+Subject: Re: [PATCH v3 1/3] dt-bindings: net: bluetooth: Add support for
+ Amlogic Bluetooth
+To: yang.li@amlogic.com, Marcel Holtmann <marcel@holtmann.org>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
+ <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20240803-qps615-v2-0-9560b7c71369@quicinc.com>
- <20240803-qps615-v2-1-9560b7c71369@quicinc.com>
- <5f65905c-f1e4-4f52-ba7c-10c1a4892e30@kernel.org>
- <f8985c98-82a5-08c3-7095-c864516b66b9@quicinc.com>
- <ZrEGypbL85buXEsO@hu-bjorande-lv.qualcomm.com>
+ linux-arm-kernel@lists.infradead.org
+References: <20240802-btaml-v3-0-d8110bf9963f@amlogic.com>
+ <20240802-btaml-v3-1-d8110bf9963f@amlogic.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,31 +109,32 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ZrEGypbL85buXEsO@hu-bjorande-lv.qualcomm.com>
+In-Reply-To: <20240802-btaml-v3-1-d8110bf9963f@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/08/2024 19:07, Bjorn Andersson wrote:
-> On Mon, Aug 05, 2024 at 09:41:26AM +0530, Krishna Chaitanya Chundru wrote:
->> On 8/4/2024 2:23 PM, Krzysztof Kozlowski wrote:
->>> On 03/08/2024 05:22, Krishna chaitanya chundru wrote:
->>>> diff --git a/Documentation/devicetree/bindings/pci/qcom,qps615.yaml b/Documentation/devicetree/bindings/pci/qcom,qps615.yaml
-> [..]
->>>> +  qps615,axi-clk-freq-hz:
->>>> +    description:
->>>> +      AXI clock which internal bus of the switch.
->>>
->>> No need, use CCF.
->>>
->> ack
+On 02/08/2024 11:39, Yang Li via B4 Relay wrote:
+> From: Yang Li <yang.li@amlogic.com>
 > 
-> This is a clock that's internal to the QPS615, so there's no clock
-> controller involved and hence I don't think CCF is applicable.
+> Add binding document for Amlogic Bluetooth chipsets attached over UART.
+> 
+> Signed-off-by: Yang Li <yang.li@amlogic.com>
 
-AXI does not sound that internal. DT rarely needs to specify internal
-clock rates. What if you want to define rates for 20 clocks? Even
-clock-frequency is deprecated, so why this would be allowed?
-bus-frequency is allowed for buses, but that's not the case here, I guess?
+
+> +  firmware-name:
+> +    maxItems: 1
+> +    description: specify the path of firmware bin to load
+> +
+> +required:
+> +  - compatible
+> +  - enable-gpios
+> +  - vddio-supply
+> +  - clocks
+> +  - firmware-name
+
+Keep the same order as listed in properties section. With this fixed:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
