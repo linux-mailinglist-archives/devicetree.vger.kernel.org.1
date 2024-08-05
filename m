@@ -1,137 +1,80 @@
-Return-Path: <devicetree+bounces-91121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6902B947F36
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 18:23:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C421A947F45
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 18:24:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 142EB1F22B85
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 16:23:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DEF2281D75
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 16:24:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBEAE15C128;
-	Mon,  5 Aug 2024 16:23:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="UelkwFNf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0FC115CD60;
+	Mon,  5 Aug 2024 16:23:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5A961547DC;
-	Mon,  5 Aug 2024 16:23:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4488C15F3F2
+	for <devicetree@vger.kernel.org>; Mon,  5 Aug 2024 16:23:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722874988; cv=none; b=XGHbewDfrZTrPpJE6xZNANwwz/4Rj3jclzFkBWzJdR+Kt38TIIb2oRzKi19F+VEPe+SV8FS8GArPy8nKy4YLK5V7ZaWXYcmlxARDeq2kLVSwfTYmttHICvNR0FxR95wP1JX2Ih3zv6j1KCcKP0/bzCHCFaW6SacSUgxtM/7lnYw=
+	t=1722875035; cv=none; b=UxkNsmR4opMH8BOXs0FPgoNDGHBAv9fmAEM37CzVeOzZP14iosWhrKY/pmBTS4oxgVy+7QGOVp/E6YI1J2ugyNK+uFAWWUZv5YzJMXoy5eJz2AelS3Mwl0yiMLptGBiLUXznIIMnWb9DdTR3nKcDhTt2ApTuKay5ucviIqkqRNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722874988; c=relaxed/simple;
-	bh=6qIlI/ZA8suC3l92XJ5goqxx350QpUDQOkwCZyfLITo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SR6clozPMZm++qyy8txbsUaZiBXMMv0tMx70OWi0pOFdzTnX2MDiXKSkBYYFALf9YyVO7dPLoUSEHlOcSeoPV4iwBj9ttshIor/StqUgoCZ5OX9srOQY2LjRazSNpe3Y5SMw13edoVmxVFUfawSboSA4kbGKZDLvqipmvF2z0WY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=UelkwFNf; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from localhost (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 9CCCD40C91;
-	Mon,  5 Aug 2024 18:22:57 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
-	by localhost (disroot.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id qDXlvlnU29eC; Mon,  5 Aug 2024 18:22:56 +0200 (CEST)
-Date: Tue, 6 Aug 2024 00:22:15 +0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1722874976; bh=6qIlI/ZA8suC3l92XJ5goqxx350QpUDQOkwCZyfLITo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=UelkwFNfMZ5qaYl1Ax+fpc0ktTmc1h+H2/PvIEsUSB33ul2dVsoBrgWw2kfifxk+a
-	 ZNapY89XNiZFMyDuB/iJ/gOr53fmVm9WUJHtok7zl6dq8rSaDkqXgUYv4W0OcXfL2J
-	 L+gEybNbuYS0834qzBjTRxbXwSJdh8gSYVCcvfPSF2lHxU/Cl0fployJ+Ij2CXfzz/
-	 AUryQu2DN3o+Rq72zca20Fb2wP9QH1ZnPpCRME8Srt0maxdrvD3/uEDhIR5knSprg8
-	 WAwyvBfOIME16f7syGH7kCclq/Qb4xNSYQ1hIfjq33TEOzZWnhQcoWCT+2g0GZ/Gta
-	 Odf00auRkCe/g==
-From: Yao Zi <ziyao@disroot.org>
-To: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-	Dragan Simic <dsimic@manjaro.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1722875035; c=relaxed/simple;
+	bh=MpZ54PT2wK7R/QXLpJFcz5gp3tB8M/o0sPat1kSK5nI=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=R8tP9R9imHqoirhwSL2DKfxBhfa+xDWUfXRp4ddFJMSPoPWNFSlxWSOGIZADzv9NKOCIto5+rPOkhyCgH+VyGgOEFSLmCNL49jpzqHulvybo9doVbs6yQLgxE0yLqDbLXXbd3mcXKBgIp6rnhVUWlQDIlsxpO70uFhfW+tz6hP0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875a9f.versanet.de ([83.135.90.159] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sb0Un-0003eC-14; Mon, 05 Aug 2024 18:23:41 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@debian.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>,
-	Andy Yan <andyshrk@163.com>,
-	Muhammed Efe Cetin <efectn@protonmail.com>,
-	Jagan Teki <jagan@edgeble.ai>, Ondrej Jirman <megi@xff.cz>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org
-Subject: Re: [PATCH 3/4] arm64: dts: rockchip: Add base DT for rk3528 SoC
-Message-ID: <ZrD8N7_tYAiKCg-C@ziyaolaptop.my.domain>
-References: <20240803125510.4699-2-ziyao@disroot.org>
- <ZrCwrWjRgvE0RS98@ziyaolaptop.my.domain>
- <82e7e3a78f784b3ad63094c8a0ab1932@manjaro.org>
- <7941737.iedYuu7f5S@diego>
+	Rob Herring <robh@kernel.org>,
+	Andrew Lunn <andrew@lunn.ch>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: qnap-ts433: Simplify network PHY connection
+Date: Mon,  5 Aug 2024 18:23:37 +0200
+Message-Id: <172287498972.3346132.12448980671248585098.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20240304084612.711678-2-ukleinek@debian.org>
+References: <20240304084612.711678-2-ukleinek@debian.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <7941737.iedYuu7f5S@diego>
 
-On Mon, Aug 05, 2024 at 01:47:45PM +0200, Heiko Stübner wrote:
-> Am Montag, 5. August 2024, 13:37:11 CEST schrieb Dragan Simic:
-> > On 2024-08-05 12:59, Yao Zi wrote:
-> > > On Sun, Aug 04, 2024 at 04:05:24PM +0200, Krzysztof Kozlowski wrote:
-> > >> On 04/08/2024 15:20, Yao Zi wrote:
-> > >> >>
-> > >> >>> +		compatible = "fixed-clock";
-> > >> >>> +		#clock-cells = <0>;
-> > >> >>> +		clock-frequency = <24000000>;
-> > >> >>> +		clock-output-names = "xin24m";
-> > >> >>> +	};
-> > >> >>> +
-> > >> >>> +	gic: interrupt-controller@fed01000 {
-> > >> >>
-> > >> >> Why this all is outside of SoC?
-> > >> >
-> > >> > Just as Heiko says, device tree for all other Rockchip SoCs don't have
-> > >> > a "soc" node. I didn't know why before but just follow the style.
-> > >> >
-> > >> > If you prefer add a soc node, I am willing to.
-> > >> 
-> > >> Surprising as usually we expect MMIO nodes being part of SoC to be 
-> > >> under
-> > >> soc@, but if that's Rockchip preference then fine.
-> > >> 
-> > > 
-> > > Okay, then I would leave it as is.
-> > > 
-> > > For the fixed-clock node, I think "xin24m: clock-24m { }" is okay and
-> > > follows the new rule?
-> > 
-> > I find "xin24m: clock-xin24m { }" better, because keeping the "xin24m"
-> > part in /sys listing(s), for example, can only be helpful.
+On Mon, 4 Mar 2024 09:46:11 +0100, Uwe Kleine-KÃ¶nig wrote:
+> While it requires to have the right phy driver loaded (i.e. motorcomm)
+> to make the phy asserting the right delays, this is generally the
+> preferred way to define the MAC <-> PHY connection.
 > 
-> I would second that :-) . Like on a number of boards we have for example
-> 125MHz gmac clock generators ... with 2 gmacs, there are 2 of them.
-> 
-> I'm not sure the preferred name accounts for that?
-> 
-> Similarly we also keep the naming in the regulator node,
-> it's regulator-vcc3v3-somename {} instead of just regulator-3v3 {}.
 > 
 
-"clock-xin24m" wouldn't be more descriptive than "clock-24m" and there
-are usually only a few fixed clocks in dt, thus finding corresponding
-definition isn't a problem I think.
+Applied, thanks!
 
-For the gmac case, Krzysztof, do you think something like
-"clock-125m-gmac1" is acceptable, just like what has been done for
-regulators?
+[1/1] arm64: dts: rockchip: qnap-ts433: Simplify network PHY connection
+      commit: e8d45544f806f3b55c30345de84262cbb9504902
+
+Works nicely on my TS433 :-)
+
 
 Best regards,
-Yao Zi
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
