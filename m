@@ -1,106 +1,120 @@
-Return-Path: <devicetree+bounces-91053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91055-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F03FB9479EF
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 12:36:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4500F947A1D
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 12:58:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6EB98B216E0
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 10:36:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7645B1C20321
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 10:58:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E37B1547F2;
-	Mon,  5 Aug 2024 10:36:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 735F7154BE4;
+	Mon,  5 Aug 2024 10:58:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=radojevic.rs header.i=@radojevic.rs header.b="T7/eKliz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2E0D1547D9;
-	Mon,  5 Aug 2024 10:36:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from mail.radojevic.rs (radojevic.rs [139.162.187.67])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51CA41311AC;
+	Mon,  5 Aug 2024 10:58:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=139.162.187.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722854175; cv=none; b=kdHjGy+ZIZoI+98iY1dtPRsKeoPFnYs+97z3y5V2B7NRSPUWSABMNsh9RudcuxS3zxSbkOYGul2mmojWm/ZDV/QsnZQ42sKZlIl+Ep92J0KwPeepzEE2vj0ZqrvTNP0FmAmQ5ngsSeote/dDTHIoZJBSTeTY4hd3uPn2Q4Gc44k=
+	t=1722855534; cv=none; b=q3A2Yq4/8TsyLdYU3WKzWGqAl4b8LhVQYPqB5kOWJ5sXqXvdRGtxx036Rh4V3xq70E/fp5/+6GFD5CbEwy3axm4/Aflq9zpJvuVXvmqGeUqsManUKnaYWaB8tHze+DqJ8/s54n5ywynSGLMs3HL1cUtyMvZGwEY5G/4WwgFECF4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722854175; c=relaxed/simple;
-	bh=kBhmUclFzk726fT89zE3oK4ucx0reiqXAcJRjHeloQA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=XZH8iC4K9IbyMfsCT1XOpphj7Ih5ouiWUvtOv3Kd3J76vjCvAmRpC91tTmNSNme1bBQ9rVts36hXjyckksgTDrLG8OAyYTtZzxUzn0zgJR4Nte3E7Q+wKzLp4fJI8z87uBtTvucAQaQLTp29RfyRGvOOSrATSNcPKAm8D0opc8k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-IronPort-AV: E=Sophos;i="6.09,264,1716217200"; 
-   d="scan'208";a="214716803"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 05 Aug 2024 19:36:08 +0900
-Received: from localhost.localdomain (unknown [10.226.92.197])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id A083041FB3BB;
-	Mon,  5 Aug 2024 19:36:03 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-media@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Subject: [PATCH v3 2/2] media: dt-bindings: media: renesas,fcp: Document RZ/G2UL FCPVD bindings
-Date: Mon,  5 Aug 2024 11:35:44 +0100
-Message-ID: <20240805103549.92369-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240805103549.92369-1-biju.das.jz@bp.renesas.com>
-References: <20240805103549.92369-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1722855534; c=relaxed/simple;
+	bh=FsKABYar5tCCmqGtOJLbGI3S+bt2cKoGgq3u7smejfU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=j4B3P2C+murJkn5WwTeO+/2cibB3SQ8a338q6sxeC+QFa0FU/AHeFc9ouvK6hm9IwuFsZA6erTnRs9/JEaCFyG8/Z3UW8zWmUnLYiNYH8OAoTitjzPHxK2/4QfqLQSnVPdcAibz0UHWK0QHtYalcoc4kktizcSOETrNtnQR/eh4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=radojevic.rs; spf=pass smtp.mailfrom=radojevic.rs; dkim=pass (2048-bit key) header.d=radojevic.rs header.i=@radojevic.rs header.b=T7/eKliz; arc=none smtp.client-ip=139.162.187.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=radojevic.rs
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radojevic.rs
+Received: from localhost (unknown [91.143.223.193])
+	by mail.radojevic.rs (Postfix) with ESMTPSA id 587A52FC6D;
+	Mon,  5 Aug 2024 12:58:50 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=radojevic.rs; s=mail;
+	t=1722855530; bh=FsKABYar5tCCmqGtOJLbGI3S+bt2cKoGgq3u7smejfU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=T7/eKlizt7sdBNlSEix9YYz9TnlL5rIMAc2bi8FiZVnjgXQ6W3cIbuX3WM3cHra1l
+	 WzF3iMB30c+NtbhxFeiJiHtRFdahyRMi8hO9anLs39LOIuNZYSSt7DjuV8DqfOvJAU
+	 sq+mCtg+yUU1qg8brul9grOd9JBVtRi1MJd/lDpZsGd22OPY5dTC5egbEbzxoWw2jm
+	 Uu6nk4ZnQkPm60M6jhoJirs47BJSDuqcl8YoTMMNyf3/eovCI59Kv3VSstph0ruGQY
+	 OpRoZ99cFEk6TvfxkZrA5vgykJRkratRwqXvLluNFYLYfiDA3fFo8Z9tDR03aEEnzx
+	 JrERVef+hHZfQ==
+Date: Mon, 5 Aug 2024 12:58:45 +0200
+From: Nikola Radojevic <nikola@radojevic.rs>
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Raise Pinebook Pro's panel
+ backlight PWM frequency
+Message-ID: <xzzqimycxuwu7yg55pxfgb7sgtmxkjhsltpcst7y7toiwspjeg@jsahtppev3kg>
+References: <2a23b6cfd8c0513e5b233b4006ee3d3ed09b824f.1722805655.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <2a23b6cfd8c0513e5b233b4006ee3d3ed09b824f.1722805655.git.dsimic@manjaro.org>
 
-Document FCPVD found in RZ/G2UL SoC. FCPVD block is similar to FCP for
-VSP found on RZ/{G2L,G2LC,V2L} SoCs.
+Hello,
+I have tested this on my Pinebook Pro and I can confirm that
+everything seems to work alright.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v2->v3:
- * Added Rb tag from Geert and Laurent.
-v1->v2:
- * Added Ack from Conor.
----
- Documentation/devicetree/bindings/media/renesas,fcp.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Tested-by: Nikola Radojević <nikola@radojevic.rs>
 
-diff --git a/Documentation/devicetree/bindings/media/renesas,fcp.yaml b/Documentation/devicetree/bindings/media/renesas,fcp.yaml
-index c6abe719881b..f94dacd96278 100644
---- a/Documentation/devicetree/bindings/media/renesas,fcp.yaml
-+++ b/Documentation/devicetree/bindings/media/renesas,fcp.yaml
-@@ -27,6 +27,7 @@ properties:
-           - renesas,fcpf # FCP for FDP
-       - items:
-           - enum:
-+              - renesas,r9a07g043u-fcpvd # RZ/G2UL
-               - renesas,r9a07g044-fcpvd # RZ/G2{L,LC}
-               - renesas,r9a07g054-fcpvd # RZ/V2L
-           - const: renesas,fcpv         # Generic FCP for VSP fallback
-@@ -62,6 +63,7 @@ allOf:
-         compatible:
-           contains:
-             enum:
-+              - renesas,r9a07g043u-fcpvd
-               - renesas,r9a07g044-fcpvd
-               - renesas,r9a07g054-fcpvd
-     then:
--- 
-2.43.0
-
+On 24/08/04 11:10PM, Dragan Simic wrote:
+> Increase the frequency of the PWM signal that drives the LED backlight of
+> the Pinebook Pro's panel, from about 1.35 KHz (which equals to the PWM
+> period of 740,740 ns), to exactly 8 kHz (which equals to the PWM period of
+> 125,000 ns).  Using a higher PWM frequency for the panel backlight, which
+> reduces the flicker, can only be beneficial to the end users' eyes.
+> 
+> On top of that, increasing the backlight PWM signal frequency reportedly
+> eliminates the buzzing emitted from the Pinebook Pro's built-in speakers
+> when certain backlight levels are set, which cause some weird interference
+> with some of the components of the Pinebook Pro's audio chain.
+> 
+> The old value for the backlight PWM period, i.e. 740,740 ns, is pretty much
+> an arbitrary value that was selected during the very early bring-up of the
+> Pinebook Pro, only because that value seemed to minimize horizontal line
+> distortion on the display, which resulted from the old X.org drivers causing
+> screen tearing when dragging windows around.  That's no longer an issue, so
+> there are no reasons to stick with the old PWM period value.
+> 
+> The lower and the upper backlight PWM frequency limits for the Pinebook Pro's
+> panel, according to its datasheet, are 200 Hz and 10 kHz, respectively. [1]
+> These changes still leave some headroom, which may have some positive effects
+> on the lifetime expectancy of the panel's backlight LEDs.
+> 
+> [1] https://files.pine64.org/doc/datasheet/PinebookPro/NV140FHM-N49_Rev.P0_20160804_201710235838.pdf
+> 
+> Fixes: 5a65505a6988 ("arm64: dts: rockchip: Add initial support for Pinebook Pro")
+> Cc: stable@vger.kernel.org
+> Reported-by: Nikola Radojevic <nikola@radojevic.rs>
+> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
+> index 294eb2de263d..b3f76cc2d6e1 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
+> @@ -32,7 +32,7 @@ chosen {
+>  	backlight: edp-backlight {
+>  		compatible = "pwm-backlight";
+>  		power-supply = <&vcc_12v>;
+> -		pwms = <&pwm0 0 740740 0>;
+> +		pwms = <&pwm0 0 125000 0>;
+>  	};
+>  
+>  	bat: battery {
 
