@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-91147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAE54948049
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 19:29:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA67794805B
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 19:32:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 717661F237E4
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 17:29:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2666A284146
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 17:32:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04EF715EFBD;
-	Mon,  5 Aug 2024 17:29:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C302015ECF6;
+	Mon,  5 Aug 2024 17:32:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YMfvf/ZT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XxBPmuxE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9C0515EFAA;
-	Mon,  5 Aug 2024 17:29:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95F6515ECD5;
+	Mon,  5 Aug 2024 17:32:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722878962; cv=none; b=kdY4qVyIa20ZlV9LrXSgrkO7urxPVU7AdeK35PGwYpMDaUXENeXWydThOUF53i43lBHVU55GKMaei8emvPFItBQPJUUJcnZejYgRROt8IVB0RuhimWh5/QsVcSj4gdpX9Rv2Q++wpXQjQ74HY9EZdOpCK6VSv8fehQYPv+QDSlM=
+	t=1722879145; cv=none; b=FTCTFqV3A5TrydADpHHQrre3PJavTTp0qPItiyMFEdYxxC+4xOmYGFYfcTjcuNpejfL28iNGHubp2wnsXmWpDc1bHelu2MAv56JAMgkq3NHYZBk93wIMqFqr9bgJlL6A8Lb3wMh4ypSDAfJZqN8QcARCgfigHGXOGvtbHJHfE0Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722878962; c=relaxed/simple;
-	bh=6F/aB6kF73WOwcPDI1RWMRuhjTLBsn+Aln5CPPXhX40=;
+	s=arc-20240116; t=1722879145; c=relaxed/simple;
+	bh=pMAkXiNbBUmsuPlSu/xi41ZF0X3OiKy0+INh3KDU/Lw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Se1j/vc64PjzKum4wMkFLD2NaEDGMsH7beCr8v9nkPNmMpHeaXBeVGfxmafkReWhSpp2YlcjlU1iatJRO60rse8UC13XRqo7M+p0FHVHeYh7EADFjkS3MRyAKw84DLNlPUrdzaWnBFPXBUWYK3dJ6jL2Yl1r//K6Ln9F6/+SUyQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YMfvf/ZT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0639C32782;
-	Mon,  5 Aug 2024 17:29:16 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ghiVzmUgimQBgs9UxYMNxc15orj9ayPwOh5p/S6d5OI9z6c0dsjIQkbVNF43gcZ2cG2MdCKV5m+nVyF8TYnv5H9hTnHf0IL5EH3upIsQxHZEZZJlIM7lXZfH8rzseYOaA1QGMNMKrljtTDKcgathy9Xz/HlRzDLOcA78ry3dE58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XxBPmuxE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 294BCC32782;
+	Mon,  5 Aug 2024 17:32:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722878962;
-	bh=6F/aB6kF73WOwcPDI1RWMRuhjTLBsn+Aln5CPPXhX40=;
+	s=k20201202; t=1722879144;
+	bh=pMAkXiNbBUmsuPlSu/xi41ZF0X3OiKy0+INh3KDU/Lw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YMfvf/ZThBO2tnly4KEbbmCpo80YRUOojmgBJzSyrAqhNSoNsup1mqwPrSPTYc75B
-	 4RMopSTHWJSSsHffIk/R5od6iBalKpHCKTPWeAMnC7A9zz2lX+g3Z11ijCb5cMkF0J
-	 3avjm9BLgIQYX2yvr2M1tRcDFqli47L/6a4JvPI96DozqS/wgoO/yEIwTHA4tmi3fe
-	 XEv9pSV5mdhoe+/OS6LTfAwcjbmr2JcdGEwHLQRjiOzw0GwX2MXZpxpLJS0cxSSf19
-	 byCIoqy8/mUh4yh6COqlnqgZrZ1Bx1fFD6OIumN/ymBh5nxOEJVIwOIKMDxLK0CA76
-	 WbjFDrbeUTkOw==
-Message-ID: <2dee0055-49fe-4920-93d7-5462e88b8096@kernel.org>
-Date: Mon, 5 Aug 2024 19:29:14 +0200
+	b=XxBPmuxEpxjPm487FIPXynKk9dZV0VROU8jCszqfA7/+lwLNkzINHU8MLpKpdz91L
+	 s/YVhU1aRAAh/3MnZfwxwpcYjvf6aDpYNFpFLBQMRAJAgVfDkBxmQdQbJCii8X+6fl
+	 2KR+SBlrJyfr8ZEUvqg4BmqJ2JwJsq1fjkytTPlJBzfEisnHzKu8WoWh/jWuVrm8HP
+	 V73yA21RckElcmXs5JyTkJSq5aRIuzFp7kzkBqeJxaH2y4UwHlfKMCNoCtljmD9OvG
+	 igq8RX7G1+jFpqNaZl11jWWuiZiQTYUzzdJnGQDD3F4IolpuPGrSGTd5peJRPObEp3
+	 HliJ6kQukPU5w==
+Message-ID: <e0f7ee39-69e4-4a03-9908-96e383586800@kernel.org>
+Date: Mon, 5 Aug 2024 19:32:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] Bluetooth: hci_uart: Add support for Amlogic HCI
- UART
-To: yang.li@amlogic.com, Marcel Holtmann <marcel@holtmann.org>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+Subject: Re: [PATCH v9 1/3] dt-bindings: dmaengine: Add dma multiplexer for
+ CV18XX/SG200X series SoC
+To: Inochi Amaoto <inochiama@outlook.com>, Vinod Koul <vkoul@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
- <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Ye He <ye.he@amlogic.com>
-References: <20240802-btaml-v3-0-d8110bf9963f@amlogic.com>
- <20240802-btaml-v3-2-d8110bf9963f@amlogic.com>
+ Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <IA1PR20MB495332ACF71E3E8D631508B2BBB32@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <IA1PR20MB495360B076BE4DA4E66B48BABBB32@IA1PR20MB4953.namprd20.prod.outlook.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,31 +106,57 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240802-btaml-v3-2-d8110bf9963f@amlogic.com>
+In-Reply-To: <IA1PR20MB495360B076BE4DA4E66B48BABBB32@IA1PR20MB4953.namprd20.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 02/08/2024 11:39, Yang Li via B4 Relay wrote:
-> From: Yang Li <yang.li@amlogic.com>
+On 02/08/2024 10:32, Inochi Amaoto wrote:
+> The DMA IP of Sophgo CV18XX/SG200X is based on a DW AXI CORE, with
+> an additional channel remap register located in the top system control
+> area. The DMA channel is exclusive to each core.
 > 
+> In addition, the DMA multiplexer is a subdevice of system controller,
+> so this binding only contains necessary properties for the multiplexer
+> itself.
+> 
+> Add the dmamux binding for CV18XX/SG200X series SoC.
+> 
+> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+> ---
+>  .../bindings/dma/sophgo,cv1800-dmamux.yaml    | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.yaml
 
-...
+Filename should match compatible.
 
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.yaml b/Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.yaml
+> new file mode 100644
+> index 000000000000..11a098ed138a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/dma/sophgo,cv1800-dmamux.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +static const struct aml_device_data data_w155s2 = {
-> +	.iccm_offset = 256 * 1024,
-> +};
+> +title: Sophgo CV1800/SG200 Series DMA multiplexer
 > +
-> +static const struct aml_device_data data_w265s2 = {
-> +	.iccm_offset = 384 * 1024,
-> +};
+> +maintainers:
+> +  - Inochi Amaoto <inochiama@outlook.com>
 > +
-> +static const struct of_device_id aml_bluetooth_of_match[] = {
-> +	{ .compatible = "amlogic,w155s2-bt", .data = &data_w155s2 },
-> +	{ .compatible = "amlogic,w265s2-bt", .data = &data_w265s2 },
+> +description: |
 
-Your binding says these devices are compatible, but above suggests it is
-not. Confusing.
+Do not need '|' unless you need to preserve formatting.
+
+> +  The DMA multiplexer of CV1800 is a subdevice of the system
+> +  controller. It support mapping 8 channels, but each channel
+> +  can be mapped only once.
+> +
+
+
 
 Best regards,
 Krzysztof
