@@ -1,109 +1,152 @@
-Return-Path: <devicetree+bounces-91157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F80A948168
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 20:10:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BEE0948184
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 20:22:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6030E1C21FA1
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 18:10:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA78AB224AF
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 18:22:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BB17165EF1;
-	Mon,  5 Aug 2024 18:08:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80FED15DBB2;
+	Mon,  5 Aug 2024 18:22:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="SSCs4lzn"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KAryzmEP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 570BC15F3FB
-	for <devicetree@vger.kernel.org>; Mon,  5 Aug 2024 18:08:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABA72149DFC;
+	Mon,  5 Aug 2024 18:22:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722881303; cv=none; b=FuHVy3seq5zLOCcjgrWCC8xUqkNtFf3PeNV2OREtB0ZxIygJBzCF+fQg/ftz4mfV/MJl7gs9JyFNipwJ1AbuajG8DCMd3J2+av8giktdB9HGfHZEXDZC3QUUYQeSLNvY6knaMT1NVOqEIPUR5aZcXApaZuzSS4NkE7fhB1FZye4=
+	t=1722882161; cv=none; b=ZBB/1huyngkO9YgPPVQpf+AIfqNG+cUG5bb3w/r8H4a8eW/1y5vw2ZBayK6SbEnawCaxw6Y+sUO4GZ8P6Rjt5YFSYt7LkbdhNRhpQieWL6/yaKSI2y2NoOnCzoFTi6wiL6WlnxHq2Pwl5RnKeAtyzQYSYJ4ApFuRvqWkbJQCpoU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722881303; c=relaxed/simple;
-	bh=ex9sBU8+XcVlEm6Hd9Dn0bMTj3eYGBPFMvK5O/6QpcM=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=uQc4SllHIu6cO6TQq4L6QpfhaXaWjWM+gw3nebltq6wu7tR1+YAkFmqTdoAfXbXSxTRXMPkfSzkx5UH/ar1SIAdL1amzgphu9eddPBBQeCt/hXnadCf6zBB8n4sitvDItPjPo/mtxMnHMreruJhDjsch1nlkVQgbJIeK/NgcEUI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=SSCs4lzn; arc=none smtp.client-ip=209.85.210.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-70d1c655141so8016891b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2024 11:08:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1722881301; x=1723486101; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lCzUM1rBigdBY+gC/XBYAT7dRPZ12RALycpgAtuA5TM=;
-        b=SSCs4lznCXOCiTc2k3tcr4WsAZAtSZ0zymBQbA/WjDQyuSySycL8FKgL3hpwr4gY13
-         IaV4SpcDRC99xjJCfMaierFOxZdnc/nSSHBKUzutoIxyxm+PoMh2uFNKOZ9BRLBjpUUr
-         SW5TSIIrA9KM5dC16dH/zafiezglGBptP8w980csHgBzkkTY03NMMdAihyfAAgou0PYB
-         VIl/NMHnHBerbBFb2jab0eNDgjf7PQDmaKPQomj3HS2oUBHdm0QfSDqKxR9S43jPQDQ8
-         3CoA1KsTW7rOwIwMNsNvN3bzqKJ28Q54SGs6z9FlK13cTgizxxa6x6SkjhdFuid+PBfW
-         u7EA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722881301; x=1723486101;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lCzUM1rBigdBY+gC/XBYAT7dRPZ12RALycpgAtuA5TM=;
-        b=BYLjXVHksRx50tpJe1/sBJg0mkLgc3cC+wqQ0u+SWLtQclKwbTOt8cDoBxnwQqKrsx
-         dicb0XGe5WHo4m0v4gT/Dlh3pbfqjf5fp+zpXMkGGJNUpsDTaamd3dpLIXgcbmk9QGjX
-         tSC0t8kORYF/mErLrRDS6d2sQnyP1a6AoTb5WqKX48/3I0ZAdJk78yDBXa2rpElVnOOD
-         HHGqhJiNclnVdMXWSrpBg/+JDlYUzr9h/75i2B+2rhVH1mbfh9WyI7L69N1pB/hKw7Vc
-         0qFTk1HuzPigOqq8GnbGZsvFcvlrNYuqHPX5MVmddFP8VX8QBqg/ewX4U5cN3wjMWbAI
-         90YA==
-X-Forwarded-Encrypted: i=1; AJvYcCUCA5ERymc2YKueTcSOFAP6+ZU1RUr5bnlCHr0Y3yiKKatOJLz3ybjakxvqUSNQzCqbcoIj6sLD5tCgw6ZJ1in4T7KhLzG3WZt2qQ==
-X-Gm-Message-State: AOJu0YymoEJNqajUkUv+UAXDJ3ari3Rz01lqYlH6XVT/Kq9nas4Daju6
-	Q+uXPA8wfByaS8P8yNMgcpts4u5cs9B+mE7cLC7twrxukMMNQ2zSGSXZ/qYah4Y=
-X-Google-Smtp-Source: AGHT+IHapSxScv2hAxzYbUrvZzDgqNHTuyG79pbGtSxB0f6I8HdmyxGYQhsQh3jQYYr8CQUoAAQ7gw==
-X-Received: by 2002:a05:6a20:430d:b0:1c1:61a9:de65 with SMTP id adf61e73a8af0-1c6995510f2mr15157373637.9.1722881300731;
-        Mon, 05 Aug 2024 11:08:20 -0700 (PDT)
-Received: from localhost ([71.212.170.185])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7106ed151basm5669445b3a.169.2024.08.05.11.08.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Aug 2024 11:08:20 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: tony@atomide.com, linux-omap@vger.kernel.org, 
- "Sicelo A. Mhlongo" <absicsz@gmail.com>
-Cc: maemo-leste@lists.dyne.org, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20240722113137.3240847-1-absicsz@gmail.com>
-References: <20240722113137.3240847-1-absicsz@gmail.com>
-Subject: Re: [PATCH] ARM: dts: omap3-n900: correct the accelerometer
- orientation
-Message-Id: <172288129992.415194.13472157516748911125.b4-ty@baylibre.com>
-Date: Mon, 05 Aug 2024 11:08:19 -0700
+	s=arc-20240116; t=1722882161; c=relaxed/simple;
+	bh=fLhb7Bf6AnhAS2P94nRjDOP9ObCevjFpbZItCvZLoyg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TByyEmBMAjVcPXcexXG76SYHkjDBPEJglQta/eHDRFEJiq8p4+TLb8Cz/i8B3sPR5D+SWqa/e8CPyIBZ8U6Et4C4gY3SDQhNPKoQpXCmPAmy0rd3gMrDvORqqh5/tHRDsyKuHE80cmgIsPvUyUB9TZBXj56YHVoUSq8TcpZJJ6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KAryzmEP; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1722882159; x=1754418159;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=fLhb7Bf6AnhAS2P94nRjDOP9ObCevjFpbZItCvZLoyg=;
+  b=KAryzmEPre/PxEGn3AHUu0uaavrTmwJRuDOMNWINKxieSK5VeuvEtW2e
+   ZHZspfUhzaOG9HBIgBtTly3oBgCeX61qE3cwyOOiqdenOufRokjDG9xy4
+   d/HJUPZfDQnVTs6aeYURkEAa2uIy9ZVOX0oM8+jZI1fttbgz7LaOqAd+D
+   0yeIVa8YpP/ojWM4kiw+Srr2zieaYW+dl1Sm6+Ojp98ueqbDPS9PhDZ03
+   U/H006onzyYYnqQtG7J0OqJG3edb2FTk/RPxXBhorlOcwK/lmYOtHmKkU
+   hnPrhE3N7GRTNTS8dfHapPa0UKtywSbYnpgegchI9e4bdeHFH1fvdTVyf
+   Q==;
+X-CSE-ConnectionGUID: Q+1tO6VvTuSVcNt3yILIWg==
+X-CSE-MsgGUID: KCwAWSLESc+laNWQCS4p3Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11155"; a="20988008"
+X-IronPort-AV: E=Sophos;i="6.09,265,1716274800"; 
+   d="scan'208";a="20988008"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Aug 2024 11:22:38 -0700
+X-CSE-ConnectionGUID: G1VK7kmcS6eaNvWALDRf7w==
+X-CSE-MsgGUID: AVWAb0RNSSeuwU6n2SJGTA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,265,1716274800"; 
+   d="scan'208";a="87179083"
+Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
+  by fmviesa001.fm.intel.com with ESMTP; 05 Aug 2024 11:22:36 -0700
+Date: Tue, 6 Aug 2024 02:20:36 +0800
+From: Xu Yilun <yilun.xu@linux.intel.com>
+To: "Manne, Nava kishore" <nava.kishore.manne@amd.com>
+Cc: "git (AMD-Xilinx)" <git@amd.com>, "mdf@kernel.org" <mdf@kernel.org>,
+	"hao.wu@intel.com" <hao.wu@intel.com>,
+	"yilun.xu@intel.com" <yilun.xu@intel.com>,
+	"trix@redhat.com" <trix@redhat.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"saravanak@google.com" <saravanak@google.com>,
+	"linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [RFC 1/1] of-fpga-region: Add sysfs interface support for FPGA
+ configuration
+Message-ID: <ZrEX9HlAOlUtgnTj@yilunxu-OptiPlex-7050>
+References: <20240726063819.2274324-1-nava.kishore.manne@amd.com>
+ <20240726063819.2274324-2-nava.kishore.manne@amd.com>
+ <Zqe7yoAMIJ+Qv8YC@yilunxu-OptiPlex-7050>
+ <DS7PR12MB6070C9991ED88DFFADA7EC3CCDB22@DS7PR12MB6070.namprd12.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DS7PR12MB6070C9991ED88DFFADA7EC3CCDB22@DS7PR12MB6070.namprd12.prod.outlook.com>
 
-
-On Mon, 22 Jul 2024 13:31:11 +0200, Sicelo A. Mhlongo wrote:
-> Negate the values reported for the accelerometer z-axis in order to
-> match Documentation/devicetree/bindings/iio/mount-matrix.txt.
+On Thu, Aug 01, 2024 at 04:25:42AM +0000, Manne, Nava kishore wrote:
+> Hi Yilun,
 > 
-> Fixes: 14a213dcb004 ("ARM: dts: n900: use iio driver for accelerometer")
-> 
-> 
+> > -----Original Message-----
+> > From: Xu Yilun <yilun.xu@linux.intel.com>
+> > Sent: Monday, July 29, 2024 9:27 PM
+> > To: Manne, Nava kishore <nava.kishore.manne@amd.com>
+> > Cc: git (AMD-Xilinx) <git@amd.com>; mdf@kernel.org; hao.wu@intel.com;
+> > yilun.xu@intel.com; trix@redhat.com; robh@kernel.org;
+> > saravanak@google.com; linux-fpga@vger.kernel.org; linux-
+> > kernel@vger.kernel.org; devicetree@vger.kernel.org
+> > Subject: Re: [RFC 1/1] of-fpga-region: Add sysfs interface support for FPGA
+> > configuration
+> > 
+> > On Fri, Jul 26, 2024 at 12:08:19PM +0530, Nava kishore Manne wrote:
+> > > Adds sysfs interface as part of the of-fpga-region. This newly added
+> > > sysfs interface uses Device Tree Overlay (DTO) files to
+> > > configure/reprogram an FPGA while an operating system is running.This
+> > > solution will not change the existing sequence When a DT overlay that
+> > > targets an FPGA Region is applied.
+> > > 	- Disable appropriate FPGA bridges.
+> > > 	- Program the FPGA using the FPGA manager.
+> > > 	- Enable the FPGA bridges.
+> > > 	- The Device Tree overlay is accepted into the live tree.
+> > > 	- Child devices are populated.
+> > >
+> > > When the overlay is removed, the child nodes will be removed, and the
+> > > FPGA Region will disable the bridges.
+> > >
+> > > Usage:
+> > > To configure/reprogram an FPGA region:
+> > > echo "fpga.dtbo" > /sys/class/fpga_region/<region>/device/load
+> > 
+> > IIRC, last time we are considering some generic interface for both OF & non-
+> > OF FPGA region, but this is still OF specific.
+> > 
+> At AMD, we exclusively use OF for FPGA configuration/reconfiguration, utilizing overlay files as outlined in the fpga-region.txt documentation.
+> However, some devices, like dfl.c those relying solely on the FPGA region, do not use OF. 
+> For these non-OF devices, should we expect them to follow the fpga-region.txt guidelines for FPGA configuration/reconfiguration?
 
-Applied, thanks!
+I assume it is Documentation/devicetree/bindings/fpga/fpga-region.yaml.
 
-[1/1] ARM: dts: omap3-n900: correct the accelerometer orientation
-      commit: 5062d9c0cbbc202e495e9b20f147f64ef5cc2897
+No, Non-OF devices don't have to follow the DT binding.
 
-Best regards,
--- 
-Kevin Hilman <khilman@baylibre.com>
+> If so, it may be advantageous to develop a common interface for both OF and non-OF.
+> If not, it might be more appropriate to establish distinct interfaces to cater to their specific requirements.
 
+I think each vendor may have specific way for device enumeration, but
+that doesn't mean we need distinct user interfaces. For all FPGA
+devices, we should avoid the situation that the HW is changed but
+system SW knows nothing. So the common needs are:
+
+ - Find out and remove all devices within the fpga region before
+   reprograming.
+ - Re-enumerate devices in fpga region after reprograming.
+
+I expect the fpga region class could generally enforce a flow for
+the reprograming interface. And of-fpga-region could specifically
+implement it using DT overlay.
+
+Thanks,
+Yilun
 
