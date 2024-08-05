@@ -1,199 +1,92 @@
-Return-Path: <devicetree+bounces-90976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9E7594755B
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 08:39:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 021B4947583
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 08:43:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 674621F21651
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 06:39:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BE061F21A10
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 06:43:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 257781422D8;
-	Mon,  5 Aug 2024 06:39:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 655A014A617;
+	Mon,  5 Aug 2024 06:42:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TS8qDyov"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AZ3VSoO8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D8501E4B2;
-	Mon,  5 Aug 2024 06:39:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3762E14A606;
+	Mon,  5 Aug 2024 06:42:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722839967; cv=none; b=cMYNz+wOrfxEOi6GvPdkLIaG2XyVXkTHlokIT4NXkDDfOIlsq2pb5ljBc7BNE6wWNfka5oQ+xjdzbGQGQ8ipoH68AE9ourM8JEBS8FoNXvfXQvWdAW2s78YfemeeMu/oO5WTpImOpNMpwdiO90KaY8e6Pfy0UixsTCoX8Xmy+a0=
+	t=1722840157; cv=none; b=MgHlp2jZDY3hM5ZyBuHuDDxG16PnY+VbosuNFSQrTz85MCH5fzfmM5a75cm5R0bpFtIixque/0ZJ5eqVjiWHY2bwtk1i16FCYXMsEViiBuNM+17RR/gtBSfU//OQmU23pY50WGXXVR4qfapBMKMHsru88WeoBHtpUOrh0WEQI7I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722839967; c=relaxed/simple;
-	bh=bn0AatgpkDgkHcuUtx+tw+p/9a2qNxd7D4R5b72zfzw=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=QEA+VoDi1s8vsN5tVWvuL7eGqbGrzPtlOZqpW+dEL7yGhDUiBkpGGn6xf8zkydo/h9NdLsI/+78LWVHan6lLlHPDRu18O7P4o9xVJIPCs3ZnOafFSk5qkM/ZMtrw+jPbBz2UrVkRAmaEH7tvE5yZRZdhCuk9ytM+i9640EJr9C0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TS8qDyov; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-42816ca782dso68249145e9.2;
-        Sun, 04 Aug 2024 23:39:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722839964; x=1723444764; darn=vger.kernel.org;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4z+UOba0eJ/ZXfIeErXsQjYD7+Z5Me9jIMp/Hk00nSM=;
-        b=TS8qDyov+jhT8TnrHt0VH9wAUrDejwY2JRuDNFBA4oB7J7phbERta3oNGB+zzZKoK0
-         mjBgQmigdlltAtMkfIGOMgBzK283l9vn3StUQYMm//eOArP3R1JsrYtvyH/orBh1uK6c
-         2i5kyri9DlyJ1BMVHEOZFmy/zXB896psFrODAwXVqNQc6pr5xL+ZCs+2iCxvF0JcAl47
-         7bHFR3PMz7F0iYoNeci3lzi0D+gHG+iBxYrYNc/BcZlZR5ujN7BqAk2H78i1YjJ7zZkN
-         JZ/ehT1WMWZvbmwTyeVgzbKs4/qWya95DbT69G0E6brYkkkhuKfRrENkWZaR3kH9mm3G
-         uLpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722839964; x=1723444764;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4z+UOba0eJ/ZXfIeErXsQjYD7+Z5Me9jIMp/Hk00nSM=;
-        b=IleVAWK7kusFVK3PVh27wXnq14QAE11/e0ztdwjQjbCyZN+EqSPoumlUTJpJ4/vs6F
-         r1u+FIZEEQ+pPtG67Rn1tWyhF9pEsHVJ6ThORfq3Ja0c3SLmOe3qR94nbBv6BkDwFiKT
-         7QtXNtJPPw+7Xo2MVGWI0afzNbIk/yN/93fmtuBjROdHrMl69DQjYF/dMc+wtyK5rSOu
-         8K1mTonxOSBaZkh2qGg0RGPSb8lvAf30r7T8jLmd/34Rql51x2ozJUCc3bDBUpdW8Dgr
-         weZIuM6uFB2RUn0SwNEJJ4TyquU9LOYzs2N5vE6wi3cBvGxGocH5LAqnK4j5NF46dSAw
-         Cx0g==
-X-Forwarded-Encrypted: i=1; AJvYcCVnKaZ28THKH3nThXv2v0tAJ8rDHwvdyfmsFhjN3fxTS2PftSOVhxqNnDFoA/sQxBKusiEK6xYxIKGx5l+R0++6xXkG6+XfhKml2uu9FaJGzX8VrLgaz976PlycoBz26MAHkXueb1nozg==
-X-Gm-Message-State: AOJu0YwLHbk9F3/Ffdlf6tN+sxJt1XfBUt3VtOqdWX3QptpyQKsXxXid
-	x3GEtBrBJK1j43BbVJzPvMvA3VAHsbUgM1DEvXi9S8mILN7PEz3jf8lyfA==
-X-Google-Smtp-Source: AGHT+IG/ZujxIH2LNQw66CFBbrvHSl0lK/dRB9AccVwO9ui5EgFWDEWE1uVDMfINMD02ngQ4M6Lk3A==
-X-Received: by 2002:a05:600c:1c93:b0:426:5216:3247 with SMTP id 5b1f17b1804b1-428e6ae9f05mr71770275e9.6.1722839963358;
-        Sun, 04 Aug 2024 23:39:23 -0700 (PDT)
-Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-428e6e9cd4esm122844085e9.44.2024.08.04.23.39.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 Aug 2024 23:39:22 -0700 (PDT)
-Date: Mon, 5 Aug 2024 08:39:21 +0200
-From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Baolin Wang <baolin.wang7@gmail.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>
-Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: rtc: sprd,sc2731-rtc: convert to YAML
-Message-ID: <ZrBzmQI0IAL7LI3e@standask-GA-A55M-S2HP>
+	s=arc-20240116; t=1722840157; c=relaxed/simple;
+	bh=/x+BC882axidh+jiBZz2JrkoPRpTk9KLc9FmsPQGlaA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ivzL6t66hhs7LnNr6/8Pgx0bK/qU9vJxP1jpf8dWfa1OtQA/msi5SN83ccUT3Vx4l+ex/z++BbmcVwxPPUeTvJ9+BD01TS/80EkKlOQh/dx9w8lE3rMWMA2Hid58Eyi0fUwgcfGBMss3zyVYZRuGyzcMRhNJ/EVjeBCRIk8acw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AZ3VSoO8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E03CC32782;
+	Mon,  5 Aug 2024 06:42:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722840156;
+	bh=/x+BC882axidh+jiBZz2JrkoPRpTk9KLc9FmsPQGlaA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=AZ3VSoO8C5j7vvbEaj1zRHMCWruptt4vrVEfW/iC14cotzHFxcv1nBuxH3nDVbiOJ
+	 YueY15BpPY+mNspkkoPw23HYWIsO3q6dm6z3wc+N3w1Al8liu+kYcrcKV03u+hnNBM
+	 XeNFDSXpTJYQCq3pX/9o9zZXdff1NzxxWH/eLK+/Tmsck4TKq383ddAad43V4f4rsx
+	 nlFwy9yEISEawTRpFuB5Dtm+t4XrzqOSIEspY23yyXCCmNhvjtDsB5VNHJ3n6ktZcZ
+	 Q5ofzwWzuweVRCE3CSyiU5yKtyu2csTqGgemgpnG/lnZ6JsQeEwnPWOCuEzsJ/loVa
+	 aU9FYGuF3IjAg==
+Message-ID: <b6196edc-4e14-41e9-826e-7b58f9753ef5@kernel.org>
+Date: Mon, 5 Aug 2024 09:42:28 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/6] dt-bindings: soc: ti: pruss: Add documentation for
+ PA_STATS support
+To: MD Danish Anwar <danishanwar@ti.com>, Suman Anna <s-anna@ti.com>,
+ Sai Krishna <saikrishnag@marvell.com>, Jan Kiszka <jan.kiszka@siemens.com>,
+ Dan Carpenter <dan.carpenter@linaro.org>, Diogo Ivo <diogo.ivo@siemens.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>,
+ Kory Maincent <kory.maincent@bootlin.com>, Simon Horman <horms@kernel.org>,
+ Andrew Lunn <andrew@lunn.ch>, Paolo Abeni <pabeni@redhat.com>,
+ Jakub Kicinski <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ "David S. Miller" <davem@davemloft.net>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Santosh Shilimkar <ssantosh@kernel.org>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Tero Kristo <kristo@kernel.org>, srk@ti.com,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20240729113226.2905928-1-danishanwar@ti.com>
+ <20240729113226.2905928-2-danishanwar@ti.com>
+Content-Language: en-US
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20240729113226.2905928-2-danishanwar@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Convert the Spreadtrum SC2731 RTC bindings to DT schema.
-Rename file to match compatible.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
----
-Changes in V2:
-  - add Krzystof's R-b
-  - rebase on next-20240805
 
-Link to V1: https://lore.kernel.org/lkml/ZolsyEC8eeJWNIb6@standask-GA-A55M-S2HP/
+On 29/07/2024 14:32, MD Danish Anwar wrote:
+> Add documentation for pa-stats node which is syscon regmap for
+> PA_STATS registers. This will be used to dump statistics maintained by
+> ICSSG firmware.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
- .../bindings/rtc/sprd,sc2731-rtc.yaml         | 49 +++++++++++++++++++
- .../bindings/rtc/sprd,sc27xx-rtc.txt          | 26 ----------
- 2 files changed, 49 insertions(+), 26 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/rtc/sprd,sc2731-rtc.yaml
- delete mode 100644 Documentation/devicetree/bindings/rtc/sprd,sc27xx-rtc.txt
+Reviewed-by: tags should come after Author's Signed-off-by:
 
-diff --git a/Documentation/devicetree/bindings/rtc/sprd,sc2731-rtc.yaml b/Documentation/devicetree/bindings/rtc/sprd,sc2731-rtc.yaml
-new file mode 100644
-index 000000000000..f3d20e976965
---- /dev/null
-+++ b/Documentation/devicetree/bindings/rtc/sprd,sc2731-rtc.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/rtc/sprd,sc2731-rtc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Spreadtrum SC2731 Real Time Clock
-+
-+maintainers:
-+  - Orson Zhai <orsonzhai@gmail.com>
-+  - Baolin Wang <baolin.wang7@gmail.com>
-+  - Chunyan Zhang <zhang.lyra@gmail.com>
-+
-+properties:
-+  compatible:
-+    const: sprd,sc2731-rtc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+allOf:
-+  - $ref: rtc.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    pmic {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      rtc@280 {
-+        compatible = "sprd,sc2731-rtc";
-+        reg = <0x280>;
-+        interrupt-parent = <&sc2731_pmic>;
-+        interrupts = <2 IRQ_TYPE_LEVEL_HIGH>;
-+      };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/rtc/sprd,sc27xx-rtc.txt b/Documentation/devicetree/bindings/rtc/sprd,sc27xx-rtc.txt
-deleted file mode 100644
-index 1f5754299d31..000000000000
---- a/Documentation/devicetree/bindings/rtc/sprd,sc27xx-rtc.txt
-+++ /dev/null
-@@ -1,26 +0,0 @@
--Spreadtrum SC27xx Real Time Clock
--
--Required properties:
--- compatible: should be "sprd,sc2731-rtc".
--- reg: address offset of rtc register.
--- interrupts: rtc alarm interrupt.
--
--Example:
--
--	sc2731_pmic: pmic@0 {
--		compatible = "sprd,sc2731";
--		reg = <0>;
--		spi-max-frequency = <26000000>;
--		interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-controller;
--		#interrupt-cells = <2>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		rtc@280 {
--			compatible = "sprd,sc2731-rtc";
--			reg = <0x280>;
--			interrupt-parent = <&sc2731_pmic>;
--			interrupts = <2 IRQ_TYPE_LEVEL_HIGH>;
--		};
--	};
--- 
-2.34.1
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
 
+Reviewed-by: Roger Quadros <rogerq@kernel.org>
 
