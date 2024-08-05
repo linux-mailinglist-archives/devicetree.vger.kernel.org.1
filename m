@@ -1,152 +1,163 @@
-Return-Path: <devicetree+bounces-91038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91039-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C212A947918
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 12:11:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A79B594791A
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 12:11:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 729761F21F84
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 10:11:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 33AD01F21F0F
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 10:11:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99A6414F9D4;
-	Mon,  5 Aug 2024 10:11:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A8AB153803;
+	Mon,  5 Aug 2024 10:11:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sbv+3rne"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AMuU8+/o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7014454658;
-	Mon,  5 Aug 2024 10:11:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A05254658;
+	Mon,  5 Aug 2024 10:11:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722852681; cv=none; b=AyGnOKc2Ft7hqLRtwQ6FFoyiqYyQBSjvMuJ04K7MnK1O/HS8VwKKXrjSDNKL1llnBqxGLlNcxa42k+fmo0HUAOsSbkdJDzCFknojF1LChY61Kbg0FX1KsVSij8KYEJtZadeCy9zEViUlqKe58NMfgYwpNg+jflLq/co5AoPUfJ0=
+	t=1722852712; cv=none; b=mT5BKPN3UfB9LQJWn1kCy0/VM/37WzglzZSq5I5HxCtxaRZ5N0X4sB5psrvCdmrw0tKzLazSo8igFpxLVUuoDapTxiqOIEQDzucyL0V469jGxmBTo7hQKmC+MGZ3vYX7Hea+8nZzrFEBLaljGRgXneMs87bdTek5Rxz9OIdg3Eo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722852681; c=relaxed/simple;
-	bh=Y0Xi9lYKmT1BemQ3hyO64BittxZDFwIlR/Mz+JVojBE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Rf+1RDZpZovNglFkJTUksZeU5m20XIMcwSnenU9F4cZxVFNjAKn1E8Nf0hDMQvuMTgp0o2A9yP35EeK6B23uSCR+mzl4BCcxLLQO5i2l3NIa2luq+uWovxd0i3C8hItQUK4R/QhrwBW9Bzruf5nOFxY/JCTfjcZr44DQelZVg2k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sbv+3rne; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A092AC32782;
-	Mon,  5 Aug 2024 10:11:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722852681;
-	bh=Y0Xi9lYKmT1BemQ3hyO64BittxZDFwIlR/Mz+JVojBE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sbv+3rneucVIfs/QIVqv5N/lw/ShNIZSNt63f3w3XnwTYBCypUDdbP/DMLVWO2T7Z
-	 Ui9du5WInuuFGKbUlv6wwwUuFlU/0pNhGcasoIZrXDv5q2+Yk51hqo5Cjy/EL8s7yj
-	 jYeh0DXPPLkXdgyCZvf1aGkSmno9gIZ1kR+u0zUuujwDggvotVoJ7a3LIs2g7zuXbQ
-	 sX77ytC20GGjEPRNguj0WxbrwVFJyUXg62T2XUYAQ4QIxBEyfNvqYipXoJrs1ITUEp
-	 5JY7dynJpIx/FWGoFqvgANLpF7yR7l5ZGm7olvAm6v1W23Kb41vAOWreQojPm+1H3/
-	 8GgQ8YfUr6U7w==
-Date: Mon, 5 Aug 2024 11:11:16 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Ilya Orazov <ilordash02@gmail.com>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>, mkl@pengutronix.de,
-	mailhol.vincent@wanadoo.fr, vkoul@kernel.org, kishon@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, a-govindraju@ti.com,
-	linux-can@vger.kernel.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: phy: ti,tcan104x-can: Document
- Microchip ATA6561
-Message-ID: <20240805-fruit-chip-cf08a0e166a3@spud>
-References: <20240718210322.37492-2-ilordash02@gmail.com>
- <20240719-ahead-kiwi-995e52bf3e74@spud>
- <CAGCz5HkF_WNZBVpY2SWVf071Pi896BvKFk0jnfNAYX5AKx2Zcw@mail.gmail.com>
- <20240723-dinginess-john-608d0b28293b@spud>
- <CAGCz5H=Gncw+Tr0XaQQhhGWQER5Rs1BcxbkPaJwx9jJ-8j7LGQ@mail.gmail.com>
- <20240723-municipal-snowy-136b08b6db90@spud>
- <CAGCz5HnJKjNj7A0YD2fw20m-NrEs3MoCLwox86mC11Kudq8xbg@mail.gmail.com>
- <CAMuHMdUf=McxMLqb1hgu_-4QkSFJkdWrdtbwiwn9yJoMSi3YWA@mail.gmail.com>
- <20240801-disarray-gesture-ebad121272b0@spud>
- <CAGCz5H=gDfJpfAhH-QbxN5VSDyVtwGU6Zt16z7=sqpTdjkeGqA@mail.gmail.com>
+	s=arc-20240116; t=1722852712; c=relaxed/simple;
+	bh=uz3PDbQf/CwBdPu+FujzDuwVltGEBBlEGjdTm3NRYUk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pNNlwwcegOWfCffiH0RT6Un5+Piuyk1xM7dCU5nDdbCEtm4+fzm+qRHy02/GD2lIJSmQPHs9XDVvdEEBZ7DJX82uG23a4U4EHghxy3CQCYle49uNOEME0e/xXjxcnAATJ1m1g6Oe9A2cpmT/xLspfSJVhUg3lD0B1fmIBqGXPOU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AMuU8+/o; arc=none smtp.client-ip=209.85.221.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-4f6abcf0567so4004548e0c.0;
+        Mon, 05 Aug 2024 03:11:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722852710; x=1723457510; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wqFy68ctx8OCSrJN8siALtfuI02hTJzmjF8cLmFCihg=;
+        b=AMuU8+/o4hoMZCeooc4tnygU7WujjPGgc3o3YvsJ2PM7A/bKxG78gRD7l6OKZC31Rp
+         M+4KgAzQPU/9bIfJMHrhVftHYS/9KM6JiNX4PtCs54q4qH5/Bcy57mo6LcIdTq0UKERK
+         NOEEvq/Yv+aMzOYwqG3MzZidcZ12zb4h1htVsqfBx189ShSso5yqNz33rjAQuVftOMs/
+         +sQh0QGn/HRijkBWdHmS5hkiuYDgLMJ7yu29uVFauWbdxYBZ4mFiioLo73kxC08Uwese
+         vMCceK+Km9/5sHdrclS96Mky4tQzu/rOsp2NLxAcAhZZy+H8nSYwzWKTQqPb2PYgx1D2
+         0OOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722852710; x=1723457510;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wqFy68ctx8OCSrJN8siALtfuI02hTJzmjF8cLmFCihg=;
+        b=JqR1nTkoHW6QwsSD3w+Aid2zrpgLvpYysBtXoZxZw2pa+piB4+tmMz1vGC4XwYvb1T
+         E4tW5U9ryIzecNnd1O137cfGwt9WlVHU019xF/PX+BWQjzPIsJYa1QYa4XVCl3hbC2qF
+         Ii7oHpb8VYe4JKwRfQ2nya6CepqPgCUCtAGcu/cu2dMyhejPcvP7WDCyeAGW0LvGMYxn
+         5mFOgK8le1PYdTBD/zRmNYzVafDoVKeLCH957AGrKCOIwmuvtVPZ/ksAgZ2GEbXK5yhE
+         Rh0d5YbJZS77aRQrCPrFRAKnev8Ll/qX7QbSamVy4YaFiZxdPHTlfApyI3rzNwgZujYQ
+         Yk0w==
+X-Forwarded-Encrypted: i=1; AJvYcCWSVLOJexRN6bhLjiD6tfdiTN4XQ+Ak2Bfm4mn+M4uYJsGPrEZ8hRUgbZ0JNSawTs0J4DBEJaiBOXfCebxzHTAYxKwX2vLz01D4NY7TBLqG0eK9xQV1sDaFFHyVG8rewiMrV3khQo0HONtMpYvkjzMta93rNrXVKzBNdVWWMcEyQann95hB/lbdHRwqD4pDC/3A7rpvBAcRVrAPsv5obVJf3lyEmG7H
+X-Gm-Message-State: AOJu0YzSXo+TF8O84b9FTtgLJW6y2aNtkNJScX2dGOQf6gpcAOQz7IgR
+	dNywE6ej7O24kVTGvQ+KDfK+n3mzPFpMjYOzBT0VV5F7mXHMNyf0qdxHVlUR9fc1eCRBRv0h5fD
+	AUWkjz/7GMxJrnLS69WzctdVR4UE=
+X-Google-Smtp-Source: AGHT+IFg7GqQOIIN2kz6j2VWZtb0Tq4sECQzl2p977ZAZCgH3AQoNCnI8QcpGbtOt8/SiBP5RCfGJHndYciSyyiUG2w=
+X-Received: by 2002:a05:6122:2027:b0:4f6:b240:4af8 with SMTP id
+ 71dfb90a1353d-4f89ffc8d2cmr12151574e0c.11.1722852710137; Mon, 05 Aug 2024
+ 03:11:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="YyeTlPVfQTmwF6a8"
-Content-Disposition: inline
-In-Reply-To: <CAGCz5H=gDfJpfAhH-QbxN5VSDyVtwGU6Zt16z7=sqpTdjkeGqA@mail.gmail.com>
-
-
---YyeTlPVfQTmwF6a8
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20240724182119.652080-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240724182119.652080-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdXkPwfVT-iJp70pEi5ubpc5YBKt=a2C5NmL_tjbocXKRQ@mail.gmail.com>
+ <CA+V-a8ttfEHwXqUU2OqxhjJ3E2jt+xCBrbziHtOUs1g74tandA@mail.gmail.com> <CAPDyKFppZPadtEBocoVyQJkchKzQ4WgnLb0_CYgeHWk+noVbFg@mail.gmail.com>
+In-Reply-To: <CAPDyKFppZPadtEBocoVyQJkchKzQ4WgnLb0_CYgeHWk+noVbFg@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Mon, 5 Aug 2024 11:11:24 +0100
+Message-ID: <CA+V-a8tjDjaGMBgdyuxUxjA=O4DqXdpMjAu5GN3i+ADOFZoGKQ@mail.gmail.com>
+Subject: Re: [PATCH v5 1/3] dt-bindings: mmc: renesas,sdhi: Document RZ/V2H(P) support
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Aug 03, 2024 at 03:31:52PM +0300, Ilya Orazov wrote:
-> > > > > > I made my patch according to a similar one that adds support for
-> > > > > > nxp,tjr1443. You can find it's conversation on
-> > > > > > https://lore.kernel.org/all/6ee5e2ce00019bd3f77d6a702b38bab1a45=
-f3bb0.1674037830.git.geert+renesas@glider.be/t/#u.
-> > > > >
-> > > > > > I thought we want to hold all PHY chip names in one compatible =
-enum
-> > > > > > and each in its own of_device_id struct in driver and extend th=
-em
-> > > > > > where appropriate.
-> > > > >
-> > > > > Nah, fallbacks are preferred when the programming model is either
-> > > > > identical or a "compatible superset" of an existing device. New
-> > > > > of_device_id structs should only be used where we need to account=
- for
-> > > > > differences in the programming model.
-> > > >
-> > > > However, I am curious as to why the NXP CAN PHY transceiver was not
-> > > > included as fallback compatible. Geert, could you please share your
-> > > > thoughts on this matter?
-> > >
-> > > The TJR1443 looked sufficiently similar to the TCAN1043 to use the
-> > > same driver configuration (which is limited to having standby and/or
-> > > enable signals or not).  However, I'm not sure it behaves exactly
-> > > the same, e.g. in case of reporting an error condition (which is not
-> > > yet supported by the driver). The part numbers are also different,
-> > > so this is not a simple case of SN74HCxx vs. CD74HCxx.
-> > >
-> > > Summary: I don't know if they are identical, or if TJR1443 is a
-> > > compatible superset of TCAN1043, or vice versa. Hence I went for the
-> > > safest way....
+Hi Ulf,
+
+On Mon, Aug 5, 2024 at 11:09=E2=80=AFAM Ulf Hansson <ulf.hansson@linaro.org=
+> wrote:
+>
+> On Fri, 2 Aug 2024 at 11:32, Lad, Prabhakar <prabhakar.csengg@gmail.com> =
+wrote:
 > >
-> > If we don't know for sure what the craic is with compatibility, then we
-> > should leave the existing tjr1443 compatible as-is I think.
->=20
-> If I understood the kernel documentation correctly, we use fallback
-> compatibles when devices are similar or there is an iterative
-> relationship between them. In my case, the TCAN1042 and ATA6561 are
-> from different manufacturers, and I'm not sure about their fully
-> identical functionality.
-
-It's about programming models being compatible, not identical. The
-manufacturer also doesn't matter.
-
-> Therefore, I'll go back to the original idea where I shouldn't use a
-> fallback compatible here and must leave it as another compatible
-> property with its own of_device_id struct.
->=20
-> What do you think about it? In my opinion, this is not a case for
-> fallback compatibility.
-
-Why is it not a case, other than the reasons you already mentioned that
-I don't agree with?
+> > Hi Geert,
+> >
+> > On Fri, Aug 2, 2024 at 10:11=E2=80=AFAM Geert Uytterhoeven <geert@linux=
+-m68k.org> wrote:
+> > >
+> > > Hi Prabhakar,
+> > >
+> > > On Wed, Jul 24, 2024 at 8:22=E2=80=AFPM Prabhakar <prabhakar.csengg@g=
+mail.com> wrote:
+> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > >
+> > > > The SD/MMC block on the RZ/V2H(P) ("R9A09G057") SoC is similar to t=
+hat
+> > > > of the R-Car Gen3, but it has some differences:
+> > > > - HS400 is not supported.
+> > > > - It has additional SD_STATUS register to control voltage,
+> > > >   power enable and reset.
+> > > > - It supports fixed address mode.
+> > > >
+> > > > To accommodate these differences, a SoC-specific 'renesas,sdhi-r9a0=
+9g057'
+> > > > compatible string is added.
+> > > >
+> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.c=
+om>
+> > > > ---
+> > > > v4->v5
+> > > > - Dropped regulator node.
+> > >
+> > > Thanks for your patch, which is now commit 32842af74abc8ff9
+> > > ("dt-bindings: mmc: renesas,sdhi: Document RZ/V2H(P) support") in
+> > > mmc/next.
+> > >
+> > > > --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> > > > +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> > > > @@ -18,6 +18,7 @@ properties:
+> > > >            - renesas,sdhi-r7s9210 # SH-Mobile AG5
+> > > >            - renesas,sdhi-r8a73a4 # R-Mobile APE6
+> > > >            - renesas,sdhi-r8a7740 # R-Mobile A1
+> > > > +          - renesas,sdhi-r9a09g057 # RZ/V2H(P)
+> > > >            - renesas,sdhi-sh73a0  # R-Mobile APE6
+> > > >        - items:
+> > > >            - enum:
+> > > > @@ -66,6 +67,7 @@ properties:
+> > > >                - renesas,sdhi-r9a07g054 # RZ/V2L
+> > > >                - renesas,sdhi-r9a08g045 # RZ/G3S
+> > > >                - renesas,sdhi-r9a09g011 # RZ/V2M
+> > > > +              - renesas,sdhi-r9a09g057 # RZ/V2H(P)
+> > >
+> > > This looks wrong to me.
+> > > Did you want to add it to the clocks constraint, like the third hunk
+> > > in v4[1], and was it mangled in a rebase?
+> > >
+> > Oouch, yes you are correct, this had to go in the clock constraint.
+>
+> I am happy to apply a fix on top for that.
+>
+Thanks, I'll send out a fix today.
 
 Cheers,
-Conor.
-
---YyeTlPVfQTmwF6a8
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrClRAAKCRB4tDGHoIJi
-0hoDAQCY9tO8kPi4NhrIx+5mjOkSmk71Pj6nhwPqPT96T/A2HAD/fEckjh30gAdM
-GbuWPs3jBEGfjSY/AAttPREvcluSuQ0=
-=kMK7
------END PGP SIGNATURE-----
-
---YyeTlPVfQTmwF6a8--
+Prabhakar
 
