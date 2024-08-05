@@ -1,495 +1,245 @@
-Return-Path: <devicetree+bounces-91011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7DD09476FA
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 10:13:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2A26947718
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 10:23:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F3652813B5
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 08:13:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9D9C1C20D23
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 08:23:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43AC4150990;
-	Mon,  5 Aug 2024 08:13:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C891F14BF8D;
+	Mon,  5 Aug 2024 08:22:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b="b2Kx8jfg"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="eLMpfJEC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f65.google.com (mail-lf1-f65.google.com [209.85.167.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11011044.outbound.protection.outlook.com [52.101.65.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 673D914B976
-	for <devicetree@vger.kernel.org>; Mon,  5 Aug 2024 08:12:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.65
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722845581; cv=none; b=sjJyTEneBO63SuxQBFqKZBle/a1Tjb4SCwm4nxSbMuMcfUaqIAN+Uz06EruOwdz1u+EzVAM+FJpdF+famibKa4Tm4lbBItHbxEKWVWYxFFyaRrfeJ4x4aT1cNZTGcOXgFiAbfEBJASbcz3fWcpU+NTYn0X97lpTEKgU9DxdBVo4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722845581; c=relaxed/simple;
-	bh=1Khf1UDyTtXqMecMd/S+X2KpB0eMBbe3AtVxpeTXNtU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=QISfjSjHrSvPIBPbkPqSmoHRo/+zw17jvwHYPrxjVWNfrz8IG/tugt7cUCwcHetwdkjztSDqUeTXZUSZsRcjEOX8ajhujLQamfw0RqznRJMfWxJxxphVS6Ddqm7zCZnfh1Pq/oO0fDYvHz5SG3J5yVfe6sjIajX180I6z6inp9k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk; spf=pass smtp.mailfrom=thegoodpenguin.co.uk; dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b=b2Kx8jfg; arc=none smtp.client-ip=209.85.167.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thegoodpenguin.co.uk
-Received: by mail-lf1-f65.google.com with SMTP id 2adb3069b0e04-52efc60a6e6so15774718e87.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2024 01:12:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=thegoodpenguin-co-uk.20230601.gappssmtp.com; s=20230601; t=1722845577; x=1723450377; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=v78hwJU/wG48aw0B9DVAOmxqpaYmoS/29vW4dzbedZc=;
-        b=b2Kx8jfgDkpiGtnP8dHTOWHZc4n2dky0UQABJSaEmXUTrDWENjOSrHgujX9cek2i5w
-         YE3c+EYAWlQjQq6yFmVLz/lFjyUXTyj95DGQ72toKvuNTsYgOLQWDPYjgRlQYDCr7vae
-         hm8s//0B3DiEkbWNLr5v453eprXyF3YUElmgsNfsadmYmS+PS8nU9260SFHE9D0eKXQV
-         xOW5mMYi4ezqCcHx7Z5q0xEIVlRnWNzLU0IIEEhFDCHGpXOoU8XUpVc4JlEATzhtL9Id
-         o0l2+Au2eM5x8tFX28/lnNbIofGK3UJXctZ5Ayf6pstEwwMBYuaTgcibAA0DHAFfX7wh
-         sb5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722845577; x=1723450377;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=v78hwJU/wG48aw0B9DVAOmxqpaYmoS/29vW4dzbedZc=;
-        b=BYvT23p83HkRDuP5ja55d5sfJCrkgnFhvQqVqoQNR4P+hckXI3XZ6315WWNwhEIR8i
-         c32B4DQAHcmdMg2kFdij+mApNUgg8G4NOES8hCHJVpHE/3zLmK3mRgiIg7Xh3iPmsUo9
-         unFavCPUmsBCGucA3C7Oj77lkA8z4WvY5tIeM3IAeprohRmfb0FrdoFRA3qOOnQqpwqL
-         g0Ex8rlbr2qlq3UEoPQcqQyqEGsfxVonqD9+VmgSQB6DrLrNZpyB8gwcHCM0bcGcgSma
-         G9cfdgu2LY8aYjj8y2+S92UuXNACwJCbooHEbuWmACcJMglRBMtlVJxfCIdXgkSMGFm/
-         lfEg==
-X-Forwarded-Encrypted: i=1; AJvYcCXJw8PcqM2V9/qV0aA8zqCKYI03goXXW63siYsIjpusIkRqnGGQkdEZXUQJujNb5AiTapm65A2L529Lkke9+zxgdvTRgFo+ZkWtbA==
-X-Gm-Message-State: AOJu0Yy8poMKnVExt1Z2uS6UrWJTb4KfUmzvTMHPWuRYKpclVkSqoBiM
-	QJFzZx/9dRZ6eu+3lHJ0xF1a3w/v3UghjdvkG9KYADH/anOWHfhtXwK6a0yN0Op8b4DpVK711sr
-	I4Q1hrmmuHWY=
-X-Google-Smtp-Source: AGHT+IFzsUWEIKc4vSpNvJMhPzVZjxkOrm8Nem3Jp8LTg9dL+Wx0WJ5puE94crO+XIv3TqVP3iDetw==
-X-Received: by 2002:a05:6512:3dab:b0:52c:df9d:7cbe with SMTP id 2adb3069b0e04-530bb39d2dbmr7076160e87.39.1722845576265;
-        Mon, 05 Aug 2024 01:12:56 -0700 (PDT)
-Received: from carbon.local (catv-86-101-168-118.catv.fixed.vodafone.hu. [86.101.168.118])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5bb88d1d9a3sm1231565a12.26.2024.08.05.01.12.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Aug 2024 01:12:55 -0700 (PDT)
-From: Joshua Felmeden <jfelmeden@thegoodpenguin.co.uk>
-Date: Mon, 05 Aug 2024 09:12:53 +0100
-Subject: [PATCH v6 2/2] iio: humidity: Add support for ENS210
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 498B513D26B;
+	Mon,  5 Aug 2024 08:22:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.44
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722846178; cv=fail; b=aBPxcGnXQtTnXsgG5XQAsRm4wNCUVgtWTCf7rZJXa6kouNtDucpsYWLgB4h9rPLhvkR2vEHsRbgu7M8bTirp7Fz2TyUMxa7zUy2oSKycAm03G/D5OHznTVwP7jQjF2At/vXoNBkc37T+a7kA/Dxr26YRXBh9+QGRqJ2RBlGoGaM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722846178; c=relaxed/simple;
+	bh=hYPYpkv/wztRiwyjhYqbZQQzBGwD7NZ4Q7oltZ3H7is=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=fXK9hvaeI3JjoG/ISVY6N7NuZdbLTocMWWOTikfLCRf4Zn+vm3YVSIIzpZsTqz1pm9P3HZHcDbjqil+zQL80qbOelJKvTmwpsNC6uNMgeNmwqRrEXPTJa5xCXoZcB8bCIPjqFf3yw35/n9k4M/yohcGURUslrPzJlngR41D9abk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=eLMpfJEC; arc=fail smtp.client-ip=52.101.65.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=do1wD9NBzn5EWyVtG/UCAIXCZt12EFkw5QdXtSNVyvgMwFI881E/QAURumtFrtD/UkWLBRRNNLzdDyacCvmitsUqfknHPh73TPlZQvsckDhFcXm4Ds6Nys4C0ZjlaQnfbFlE1Ihm+p8ABQpgpTkZmDPnHFb36g2889PE/79NIbp7qRUE0tI10Sqwiy2RJzatil1TJk9VyNpYxYgjix+zTYQl9CzUWmgjkx2a2CLXHCOT+NlTQzzh9R0utm33ZfpRwgey68U5LRVgn9x5AMmfLa6VMAMU29Zy0NAOxOfnG0lpMW+GBOxkkPhfX+GfCfGlHi3m5bcLBEjCHYVhNouy3A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=G02YygDFqa+17AW1Rx4N5Cg4v1h9qx5amWsxBx1CurQ=;
+ b=BfcFRFn6OloV2jCgxYzhKk2xCkZf6sQL5xQhWgyMaZyWFw15KYkMZO0rESja0tLXm0RHku6DetD27joAmis08Fbsd7mg462+YFTXZgAvgIbclEQA7UASHs/aIWQSN6xLbTuYq2WGt9pTRdByKZyYL6mWZhTITDXO5+qn9o3ZcU2fmnKHYk1dx9QGvIY/RxeR7B8FEB8BGORvkRO8w2iMlv78saoipq8SuUPif8iERECxmbDNZfKWQe40JT0DvueALl2or3RmMzCqD2HxUwWuBV/4MEj9ojupcd1QjqRcQARpVIfG/oodv5+PCGw2gLFo1kAMmV5B8gu2FK+Ruba+/w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=G02YygDFqa+17AW1Rx4N5Cg4v1h9qx5amWsxBx1CurQ=;
+ b=eLMpfJEC49+5mN24Wq6OTNOeoHTJ6oMiLa20LNnd44gholBZ4e1/vSWUxLhzor11NpMBPRmjd+2leoJei98RWk2QMbakDZzq/ohqKZibWwWXTAwprYcwhl8tT1ZeglTdDwfKdc7k1GErP13pES82mtLya6JonHR7iy8LncEcoTKN0Fe3XgHAFNnRBuG62dmoiKTcw1xKP5jJK++XpCL30Zydj1v+Y/+n/MjpaW1xLAFAgSfeNT38aB42/cp8axfgypuNOhL8cI0jHTVTyroKx5/583DL7ns2w1bKOjitVx9AVFk+N2l2nR7CVVcrRHQ/7mVSMYJ3+PyfC9LIecUCGg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
+ by PA4PR04MB7599.eurprd04.prod.outlook.com (2603:10a6:102:ea::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.25; Mon, 5 Aug
+ 2024 08:22:52 +0000
+Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
+ ([fe80::4e24:c2c7:bd58:c5c7]) by DU2PR04MB8822.eurprd04.prod.outlook.com
+ ([fe80::4e24:c2c7:bd58:c5c7%5]) with mapi id 15.20.7828.024; Mon, 5 Aug 2024
+ 08:22:51 +0000
+Date: Mon, 5 Aug 2024 16:22:11 +0800
+From: Xu Yang <xu.yang_2@nxp.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+	gregkh@linuxfoundation.org, Frank.Li@nxp.com, jun.li@nxp.com,
+	l.stach@pengutronix.de, aford173@gmail.com, hongxing.zhu@nxp.com,
+	alexander.stein@ew.tq-group.com, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: phy: imx8mq-usb: add compatible
+ "fsl,imx95-usb-phy"
+Message-ID: <20240805082211.ngrokcmzuijnu26d@hippo>
+References: <20240802091702.2057294-1-xu.yang_2@nxp.com>
+ <21557eac-44f0-451d-a194-c5d545cacbee@kernel.org>
+ <20240805070429.rqykjd3ap5swd5vl@hippo>
+ <0e1b0f11-152e-402c-97ea-788c7830267f@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0e1b0f11-152e-402c-97ea-788c7830267f@kernel.org>
+X-ClientProxiedBy: SG2PR02CA0081.apcprd02.prod.outlook.com
+ (2603:1096:4:90::21) To DU2PR04MB8822.eurprd04.prod.outlook.com
+ (2603:10a6:10:2e1::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240805-ens21x-v6-2-5bb576ef26a6@thegoodpenguin.co.uk>
-References: <20240805-ens21x-v6-0-5bb576ef26a6@thegoodpenguin.co.uk>
-In-Reply-To: <20240805-ens21x-v6-0-5bb576ef26a6@thegoodpenguin.co.uk>
-To: Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Joshua Felmeden <jfelmeden@thegoodpenguin.co.uk>
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1722845573; l=11290;
- i=jfelmeden@thegoodpenguin.co.uk; s=20240709; h=from:subject:message-id;
- bh=1Khf1UDyTtXqMecMd/S+X2KpB0eMBbe3AtVxpeTXNtU=;
- b=8tl10uh9XTPHL2grhaw08Nu/s6Cq73Rk3uiMqZN4lxIRD2bOSGSPXufX7Tzek9FnlhwUil3pK
- jdjFcZYIYuiAyTVVq91MVuymm+22zjBQBn35FzykI2+oPmGF9WQC8Pk
-X-Developer-Key: i=jfelmeden@thegoodpenguin.co.uk; a=ed25519;
- pk=tePkZ5iJ3ejQ2O3vjhsj7GrLYcyJN1o1sMT3IEXvKo0=
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8822:EE_|PA4PR04MB7599:EE_
+X-MS-Office365-Filtering-Correlation-Id: 45f1b02d-a4ea-4db9-443b-08dcb527cc0e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|366016|7416014|376014|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?YsKs5JIek+mmNANsuouRffExJYNKhnrgm+XjCB2ti4iqCVXnQmaRm9gZW3Oy?=
+ =?us-ascii?Q?h5v4C/vDRIGSAnOv+U4GSV33MuJITUztjsgCU5ewlP2QA60hiLP6skSFTlC2?=
+ =?us-ascii?Q?20bgXfBgArtcwrIFgeNqVWI5UyDIKVJtXiex44ieB8Boa6PUkHpGB2U8Buvn?=
+ =?us-ascii?Q?ctYZy2/9YoyiAF7SExAI/abMUv03c5TyFBF35YxCfsbTO+KkN4Fd2k5ylX5O?=
+ =?us-ascii?Q?D44a1KmW6aZ+nGgEQQXdqKS8jlhRLtRLVZS7zATH+AWksc9Fw9i5rA2yxDeV?=
+ =?us-ascii?Q?/QLBn/3/6pdvTOkrJBJkzJGBHW+MD1RtF5rKX4eCHsN6a+nz1j54IcQ1msUu?=
+ =?us-ascii?Q?f9VxfnFbAnDBE5Yo4zgwz6vu3nI9eEIxcmD4sjFBXUUT9r8VcWFuOsDzXad8?=
+ =?us-ascii?Q?9EK4szMYNLF20a3OjVKasfxM2gvnILudPplvYMvZl1sgI7ZYOFLOHF1iRumd?=
+ =?us-ascii?Q?q8/XORLGUU7iva62mkCJnK+30oBEaGLuCckNxE82uS5vBiRsA76fhu365bpQ?=
+ =?us-ascii?Q?OwDtninL5cXaQ/+LlySgZ9C2m3gONdDWjp90tTxsJpNZ447yGQ2kudn+DQZJ?=
+ =?us-ascii?Q?ycYBnQFKj4aifUoN+B5fIBVeXP6+8EVBhc50r4CtAOe/TvnqUOtmCBi7cHef?=
+ =?us-ascii?Q?vUU3DEHK2UfAMaJxcsH5G5PwDSgOV77AzN/MQ8FiNfEj6aItQJfCMpr+aGPz?=
+ =?us-ascii?Q?HYBl+TnOTlUpLL2eEL5ASDKeBbGfiLWu1Nlq7A3G8puoUTAISnm2prV9aEfW?=
+ =?us-ascii?Q?xFiMjqoNm2nNzAlRuxVYjoEx9QeHbW4opIKiBQglA42FjPQtgByf6WQ0eqQp?=
+ =?us-ascii?Q?QugavargB12c+76hljR/za8m9EzerPiwU5SFwMaSenN7EcvPvpKgHt6IAKTq?=
+ =?us-ascii?Q?tgkZWz1PiQiakJ29WtbYkJGRKOMH4BcUhBXWnnmgLS7LHjw+du6kkcgXh9f/?=
+ =?us-ascii?Q?CApYmoOnGSMgqcHnc67XIaCyeKju5PYcIeZ/mZdK/BmvalfguYO4DME1fMhs?=
+ =?us-ascii?Q?jCeYEngZphxfUoHvGoPXBh0nuzF1k5NauyP04wi1hkNV1lNgHUgEx0Ne7PaJ?=
+ =?us-ascii?Q?P7uHTQLSyU2OzOj6Bd7cLFxz9NF4WHrT4okokgV2IeHGBGbHRytiGYFeuSa0?=
+ =?us-ascii?Q?AXFb+408Pp9SppZXmcJcI0AGuMGj2CbX2jhdYOVoMs8RuR3JB4SIXRgbqwMc?=
+ =?us-ascii?Q?R8qGntT+L6haAzixzmXaPnjVXiuCCr4R+DHii1PQZQYjoUej702V/rYjFyyE?=
+ =?us-ascii?Q?iFOM0wAmUDFEa1TftH3IzVd7IWD74VF03OxXpF0Y+VhkDcMXNyg3dD+7zsdv?=
+ =?us-ascii?Q?UYkpkBKcMt6s8FFUfnLqADIrSv5lV3jlmOV/fqoQ7S7vQ/DZ2MlwZqJRpAph?=
+ =?us-ascii?Q?3UOrL+NOGes2Y8zkD8AuDtNkMld9ci1uz9LZpobDYeYsWyPZSg=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(366016)(7416014)(376014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?hYnQL7NseWDQ4bF37Z/9v9VXROlBGanbvVF42gBRE/1kPA/tQZ1YLbYSd7rU?=
+ =?us-ascii?Q?kGolfZkcqgClswnf4Abi/uKrpkVnEqH3zd9SKbc+Stqp/SKLv6OR7sjA5Ccx?=
+ =?us-ascii?Q?oRcq4NsEnohIMyHDXR6W6Vy+w/4MJr32TB1yxK4EWmlURa6z+gQjfOXTninP?=
+ =?us-ascii?Q?URLajNCNCol1lA1izlt0vxCGKVa5jP+9wYpUjeRDsgryTJRTsgmn3C4AHOiw?=
+ =?us-ascii?Q?Pss58eqzAiGXtGFs0yj0x6vtJW0HofZkz0clvOBypmZQUyIgqFooDGJePHQ1?=
+ =?us-ascii?Q?RzYtN6xXIwduMSthk/CwvB0aFRSs76pTqdNWmuM+JCSWh8kGd3JrNawIkBni?=
+ =?us-ascii?Q?Wp9rmfocdL1dNY+ZVxo5q+x4o/Vj9ZZ51h+8BYsmhqpoAKIlGTOQx0O/JOYU?=
+ =?us-ascii?Q?Yg9xuSaAysJJkVbb2eanbmCkMnTjj5TSMNoArMU1b3KeROO3WyLXMnoQFxF5?=
+ =?us-ascii?Q?u44todrlUI/cZdx4SjAUvygc9DjOTSsng1UZcxNStQqJM6QS/2Pmgf8ZBipw?=
+ =?us-ascii?Q?vD9KC1r75tGz4EXJ7aBMdqCJ2NMpe77M16ggCZFvw8SLP/0wFpyD5sKkhYLm?=
+ =?us-ascii?Q?9riIR5uWznL4ONdVZpb7TEppZ5w359GNAaDa0Qhly9LZtw/qnkzUSD1m2J1o?=
+ =?us-ascii?Q?fwfJCxVAF9PYwjScN/z+q2JyDJDcBlXOsa4ElLZwbZAWCwnXdwgGXXQCf7oL?=
+ =?us-ascii?Q?eFIrYAlqSuCFmMj5xiGKHlZRzc5S9FvqvBNOetARPP9ak+8ZPfmiNe1zkjrs?=
+ =?us-ascii?Q?WRqRz3XtddPDfc1XfitN97FwFmDnt1GQ7C4i/f2qjGIA5Xm8YwHKW2MzmxkW?=
+ =?us-ascii?Q?AVyFIj4a21o2XHQt3kqkS5W6HbPnCs8/E9AyAMcSxSr/NsoWYHREOgKHWbRj?=
+ =?us-ascii?Q?oZzxONjI50fJyWrMHlcJASqSbw8qsCqqy5opqyHTwtSDiaA/JyWEIALtBpKn?=
+ =?us-ascii?Q?5j/e4OYbyLu8+XDEk2yY5YfS23Gc36MFULFw/JicT4LiW23MJECHn58bX5vM?=
+ =?us-ascii?Q?RDQqDqUCJT8uCvixCZGNlkIL9EJQ4snuXIjUaJEDaVbrzE+1PZgTCguHrjrX?=
+ =?us-ascii?Q?ySsh46ogxVC46kf2/3Vy8e4WuAbcDYIfTpbqABM5PuVPO8cTkIQbaj0tGx8t?=
+ =?us-ascii?Q?iIohQlwfa5BRfdp3nPjR4vtYGhT0RRhBG4BuoiT0zWB3a6/+qdXswc1qM75r?=
+ =?us-ascii?Q?mNbzdkLJJV/dlX3A7odbuVJpVQMjq+o7a20NX2vUX4DFK9cVRUp0sgz/IURC?=
+ =?us-ascii?Q?3bwIhuA0xTqreoj/Hy1tbMCCekAemtPX84LkfpBqKw8nmzVhmJd9ts0eEtpi?=
+ =?us-ascii?Q?kKsIgamNrB7TANW77gBVo708MPeq2V8raHnRWyfNKF8RITR5de5ZYrfz/k/i?=
+ =?us-ascii?Q?XW94jpHzvsKnvMtdcthbdjt0kEOjEPOKqE2WA9DtXMcBcgY1yobg0ShZ/J+Y?=
+ =?us-ascii?Q?+rcjTaQeIV15Iw7dnSZTNmp6D8Drw9EF9vK8xbTbQK/83CE2J4v0XIb65aQz?=
+ =?us-ascii?Q?xPxWxn/DELas9WUCjTOvtE8xkSjNPig2wh3PRQFtQm6G48ByL9rpkhgUt0Ac?=
+ =?us-ascii?Q?r/jwOwOuvAG5MyNQtpPhrvquJQU9GEGgkhyRaxcL?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 45f1b02d-a4ea-4db9-443b-08dcb527cc0e
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2024 08:22:51.5160
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1Sg8Eq7iH85pB1BFpKxs7NuwuRK97STRI6qeBfCoSproAXZ2+7JbVkG9xjVD96ZRjdUg1qzAmPbmBJnZS8MD5Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7599
 
-Add support for ENS210/ENS210A/ENS211/ENS212/ENS213A/ENS215.
+On Mon, Aug 05, 2024 at 09:22:18AM +0200, Krzysztof Kozlowski wrote:
+> On 05/08/2024 09:04, Xu Yang wrote:
+> > On Sun, Aug 04, 2024 at 04:16:34PM +0200, Krzysztof Kozlowski wrote:
+> >> On 02/08/2024 11:16, Xu Yang wrote:
+> >>> The usb phy in i.MX95 is compatible with i.MX8MP's, this will add a
+> >>> compatible "fsl,imx95-usb-phy" for i.MX95. Also change reg maxItems
+> >>> to 2 since i.MX95 needs another regmap to control Type-C Assist (TCA)
+> >>> block. Since i.MX95 usb phy is able to switch SS lanes, this will also
+> >>> add orientation-switch and port property to the file.
+> >>>
+> >>> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> >>> ---
+> >>>  .../bindings/phy/fsl,imx8mq-usb-phy.yaml      | 40 +++++++++++++++++--
+> >>>  1 file changed, 36 insertions(+), 4 deletions(-)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+> >>> index dc3a3f709fea..b0a614a9556d 100644
+> >>> --- a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+> >>> +++ b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+> >>> @@ -11,12 +11,17 @@ maintainers:
+> >>>  
+> >>>  properties:
+> >>>    compatible:
+> >>> -    enum:
+> >>> -      - fsl,imx8mq-usb-phy
+> >>> -      - fsl,imx8mp-usb-phy
+> >>> +    oneOf:
+> >>> +      - enum:
+> >>> +          - fsl,imx8mq-usb-phy
+> >>> +          - fsl,imx8mp-usb-phy
+> >>> +      - items:
+> >>> +          - const: fsl,imx95-usb-phy
+> >>> +          - const: fsl,imx8mp-usb-phy
+> >>>  
+> >>>    reg:
+> >>> -    maxItems: 1
+> >>> +    minItems: 1
+> >>> +    maxItems: 2
+> >>>  
+> >>>    "#phy-cells":
+> >>>      const: 0
+> >>> @@ -28,6 +33,17 @@ properties:
+> >>>      items:
+> >>>        - const: phy
+> >>>  
+> >>> +  orientation-switch:
+> >>> +    description:
+> >>> +      Flag the PHY as possible handler of USB Type-C orientation switching
+> >>
+> >> No need to duplicate definitions of properties.
+> > 
+> > I replace it with "orientation-switch: true".
+> > 
+> >>
+> >>> +    type: boolean
+> >>> +
+> >>> +  port:
+> >>> +    $ref: /schemas/graph.yaml#/properties/port
+> >>> +    description:
+> >>> +      A port node to link the PHY to a TypeC controller for the purpose of
+> >>> +      handling orientation switching.
+> >>
+> >> Same here. You probably miss reference to usb-switch.
+> > 
+> > How about port? Should I replace it with "port: true" or
+> > 
+> > "port:"
+> > "  $ref: /schemas/usb/usb-switch.yaml#/properties/port"
+> 
+> You can drop both if you add ref to usb-switch and use
+> unevaluatedProperties.
 
-The ENS21x is a family of temperature and relative humidity sensors with
-accuracies tailored to the needs of specific applications.
+Got it! It's helpful
 
-Signed-off-by: Joshua Felmeden <jfelmeden@thegoodpenguin.co.uk>
----
- drivers/iio/humidity/Kconfig  |  11 ++
- drivers/iio/humidity/Makefile |   1 +
- drivers/iio/humidity/ens210.c | 338 ++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 350 insertions(+)
+Thanks,
+Xu Yang
 
-diff --git a/drivers/iio/humidity/Kconfig b/drivers/iio/humidity/Kconfig
-index b15b7a3b66d5..54f11f000b6f 100644
---- a/drivers/iio/humidity/Kconfig
-+++ b/drivers/iio/humidity/Kconfig
-@@ -25,6 +25,17 @@ config DHT11
- 	  Other sensors should work as well as long as they speak the
- 	  same protocol.
- 
-+config ENS210
-+	tristate "ENS210 temperature and humidity sensor"
-+	depends on I2C
-+	select CRC7
-+	help
-+	  Say yes here to get support for the ScioSense ENS210 family of
-+	  humidity and temperature sensors.
-+
-+	  This driver can also be built as a module. If so, the module will be
-+	  called ens210.
-+
- config HDC100X
- 	tristate "TI HDC100x relative humidity and temperature sensor"
- 	depends on I2C
-diff --git a/drivers/iio/humidity/Makefile b/drivers/iio/humidity/Makefile
-index 5fbeef299f61..34b3dc749466 100644
---- a/drivers/iio/humidity/Makefile
-+++ b/drivers/iio/humidity/Makefile
-@@ -5,6 +5,7 @@
- 
- obj-$(CONFIG_AM2315) += am2315.o
- obj-$(CONFIG_DHT11) += dht11.o
-+obj-$(CONFIG_ENS210) += ens210.o
- obj-$(CONFIG_HDC100X) += hdc100x.o
- obj-$(CONFIG_HDC2010) += hdc2010.o
- obj-$(CONFIG_HDC3020) += hdc3020.o
-diff --git a/drivers/iio/humidity/ens210.c b/drivers/iio/humidity/ens210.c
-new file mode 100644
-index 000000000000..719fdac817cf
---- /dev/null
-+++ b/drivers/iio/humidity/ens210.c
-@@ -0,0 +1,338 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * ens210.c - Support for ScioSense ens210 temperature & humidity sensor family
-+ *
-+ * (7-bit I2C slave address 0x43 ENS210)
-+ * (7-bit I2C slave address 0x43 ENS210A)
-+ * (7-bit I2C slave address 0x44 ENS211)
-+ * (7-bit I2C slave address 0x45 ENS212)
-+ * (7-bit I2C slave address 0x46 ENS213A)
-+ * (7-bit I2C slave address 0x47 ENS215)
-+ *
-+ * Datasheet:
-+ *  https://www.sciosense.com/wp-content/uploads/2024/04/ENS21x-Datasheet.pdf
-+ *  https://www.sciosense.com/wp-content/uploads/2023/12/ENS210-Datasheet.pdf
-+ */
-+
-+#include <linux/crc7.h>
-+#include <linux/delay.h>
-+#include <linux/i2c.h>
-+#include <linux/iio/iio.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/types.h>
-+
-+#include <asm/unaligned.h>
-+
-+/* register definitions */
-+#define ENS210_REG_PART_ID		0x00
-+#define ENS210_REG_DIE_REV		0x02
-+#define ENS210_REG_UID			0x04
-+#define ENS210_REG_SYS_CTRL		0x10
-+#define ENS210_REG_SYS_STAT		0x11
-+#define ENS210_REG_SENS_RUN		0x21
-+#define ENS210_REG_SENS_START		0x22
-+#define ENS210_REG_SENS_STOP		0x23
-+#define ENS210_REG_SENS_STAT		0x24
-+#define ENS210_REG_T_VAL		0x30
-+#define ENS210_REG_H_VAL		0x33
-+
-+/* value definitions */
-+#define ENS210_SENS_START_T_START		BIT(0)
-+#define ENS210_SENS_START_H_START		BIT(1)
-+
-+#define ENS210_SENS_STAT_T_ACTIVE		BIT(0)
-+#define ENS210_SENS_STAT_H_ACTIVE		BIT(1)
-+
-+#define ENS210_SYS_CTRL_LOW_POWER_ENABLE	BIT(0)
-+#define ENS210_SYS_CTRL_SYS_RESET		BIT(7)
-+
-+#define ENS210_SYS_STAT_SYS_ACTIVE		BIT(0)
-+
-+enum ens210_partnumber {
-+	ENS210	= 0x0210,
-+	ENS210A	= 0xa210,
-+	ENS211	= 0x0211,
-+	ENS212	= 0x0212,
-+	ENS213A	= 0xa213,
-+	ENS215	= 0x0215,
-+};
-+
-+/**
-+ * struct ens210_chip_info - Humidity/Temperature chip specific information
-+ * @name:		name of device
-+ * @part_id:		chip identifier
-+ * @conv_time_msec:	time for conversion calculation in m/s
-+ */
-+struct ens210_chip_info {
-+	const char *name;
-+	enum ens210_partnumber part_id;
-+	unsigned int conv_time_msec;
-+};
-+
-+/**
-+ * struct ens210_data - Humidity/Temperature sensor device structure
-+ * @client:	i2c client
-+ * @chip_info:	chip specific information
-+ * @lock:	lock protecting against simultaneous callers of get_measurement
-+ *		since multiple uninterrupted transactions are required
-+ */
-+struct ens210_data {
-+	struct i2c_client *client;
-+	const struct ens210_chip_info *chip_info;
-+	struct mutex lock;
-+};
-+
-+/* calculate 17-bit crc7 */
-+static u8 ens210_crc7(u32 val)
-+{
-+	unsigned int val_be = (val & 0x1ffff) >> 0x8;
-+
-+	return crc7_be(0xde, (u8 *)&val_be, 3) >> 1;
-+}
-+
-+static int ens210_get_measurement(struct iio_dev *indio_dev, bool temp, int *val)
-+{
-+	struct ens210_data *data = iio_priv(indio_dev);
-+	struct device *dev = &data->client->dev;
-+	u32 regval;
-+	u8 regval_le[3];
-+	int ret;
-+
-+	/* assert read */
-+	ret = i2c_smbus_write_byte_data(data->client, ENS210_REG_SENS_START,
-+					temp ? ENS210_SENS_START_T_START :
-+					       ENS210_SENS_START_H_START);
-+	if (ret)
-+		return ret;
-+
-+	/* wait for conversion to be ready */
-+	msleep(data->chip_info->conv_time_msec);
-+
-+	ret = i2c_smbus_read_byte_data(data->client, ENS210_REG_SENS_STAT);
-+	if (ret < 0)
-+		return ret;
-+
-+	/* perform read */
-+	ret = i2c_smbus_read_i2c_block_data(
-+		data->client, temp ? ENS210_REG_T_VAL : ENS210_REG_H_VAL, 3,
-+		regval_le);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to read register");
-+		return -EIO;
-+	}
-+	if (ret != 3) {
-+		dev_err(dev, "expected 3 bytes, received %d\n", ret);
-+		return -EIO;
-+	}
-+
-+	regval = get_unaligned_le24(regval_le);
-+	if (ens210_crc7(regval) != ((regval >> 17) & 0x7f)) {
-+		dev_err(dev, "invalid crc\n");
-+		return -EIO;
-+	}
-+
-+	if (!((regval >> 16) & 0x1)) {
-+		dev_err(dev, "data is not valid");
-+		return -EIO;
-+	}
-+
-+	*val = regval & GENMASK(15, 0);
-+	return IIO_VAL_INT;
-+}
-+
-+static int ens210_read_raw(struct iio_dev *indio_dev,
-+			   struct iio_chan_spec const *channel, int *val,
-+			   int *val2, long mask)
-+{
-+	struct ens210_data *data = iio_priv(indio_dev);
-+	int ret;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		scoped_guard(mutex, &data->lock) {
-+			ret = ens210_get_measurement(
-+				indio_dev, channel->type == IIO_TEMP, val);
-+			if (ret)
-+				return ret;
-+			return IIO_VAL_INT;
-+		}
-+	case IIO_CHAN_INFO_SCALE:
-+		if (channel->type == IIO_TEMP) {
-+			*val = 15;
-+			*val2 = 625000;
-+		} else {
-+			*val = 1;
-+			*val2 = 953125;
-+		}
-+		return IIO_VAL_INT_PLUS_MICRO;
-+	case IIO_CHAN_INFO_OFFSET:
-+		*val = -17481;
-+		*val2 = 600000;
-+		return IIO_VAL_INT_PLUS_MICRO;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct iio_chan_spec ens210_channels[] = {
-+	{
-+		.type = IIO_TEMP,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				      BIT(IIO_CHAN_INFO_SCALE) |
-+				      BIT(IIO_CHAN_INFO_OFFSET),
-+	},
-+	{
-+		.type = IIO_HUMIDITYRELATIVE,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				      BIT(IIO_CHAN_INFO_SCALE),
-+	}
-+};
-+
-+static const struct iio_info ens210_info = {
-+	.read_raw = ens210_read_raw,
-+};
-+
-+static int ens210_probe(struct i2c_client *client)
-+{
-+	struct ens210_data *data;
-+	struct iio_dev *indio_dev;
-+	uint16_t part_id;
-+	int ret;
-+
-+	if (!i2c_check_functionality(client->adapter,
-+				     I2C_FUNC_SMBUS_WRITE_BYTE_DATA |
-+					     I2C_FUNC_SMBUS_WRITE_BYTE |
-+					     I2C_FUNC_SMBUS_READ_I2C_BLOCK)) {
-+		return dev_err_probe(&client->dev, -EOPNOTSUPP,
-+			"adapter does not support some i2c transactions\n");
-+	}
-+
-+	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	data = iio_priv(indio_dev);
-+	data->client = client;
-+	mutex_init(&data->lock);
-+	data->chip_info = i2c_get_match_data(client);
-+
-+	ret = devm_regulator_get_enable(&client->dev, "vdd");
-+	if (ret)
-+		return ret;
-+
-+	/* reset device */
-+	ret = i2c_smbus_write_byte_data(client, ENS210_REG_SYS_CTRL,
-+					ENS210_SYS_CTRL_SYS_RESET);
-+	if (ret)
-+		return ret;
-+
-+	/* wait for device to become active */
-+	usleep_range(4000, 5000);
-+
-+	/* disable low power mode */
-+	ret = i2c_smbus_write_byte_data(client, ENS210_REG_SYS_CTRL, 0x00);
-+	if (ret)
-+		return ret;
-+
-+	/* wait for device to finish */
-+	usleep_range(4000, 5000);
-+
-+	/* get part_id */
-+	ret = i2c_smbus_read_word_data(client, ENS210_REG_PART_ID);
-+	if (ret < 0)
-+		return ret;
-+	part_id = ret;
-+
-+	if (part_id != data->chip_info->part_id) {
-+		dev_info(&client->dev,
-+			 "Part ID does not match (0x%04x != 0x%04x)\n", part_id,
-+			 data->chip_info->part_id);
-+	}
-+
-+	/* reenable low power */
-+	ret = i2c_smbus_write_byte_data(client, ENS210_REG_SYS_CTRL,
-+					ENS210_SYS_CTRL_LOW_POWER_ENABLE);
-+	if (ret)
-+		return ret;
-+
-+	indio_dev->name = data->chip_info->name;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->channels = ens210_channels;
-+	indio_dev->num_channels = ARRAY_SIZE(ens210_channels);
-+	indio_dev->info = &ens210_info;
-+
-+	return devm_iio_device_register(&client->dev, indio_dev);
-+}
-+
-+static const struct ens210_chip_info ens210_chip_info_data = {
-+	.name = "ens210",
-+	.part_id = ENS210,
-+	.conv_time_msec = 130,
-+};
-+
-+static const struct ens210_chip_info ens210a_chip_info_data = {
-+	.name = "ens210a",
-+	.part_id = ENS210A,
-+	.conv_time_msec = 130,
-+};
-+
-+static const struct ens210_chip_info ens211_chip_info_data = {
-+	.name = "ens211",
-+	.part_id = ENS211,
-+	.conv_time_msec = 32,
-+};
-+
-+static const struct ens210_chip_info ens212_chip_info_data = {
-+	.name = "ens212",
-+	.part_id = ENS212,
-+	.conv_time_msec = 32,
-+};
-+
-+static const struct ens210_chip_info ens213a_chip_info_data = {
-+	.name = "ens213a",
-+	.part_id = ENS213A,
-+	.conv_time_msec = 130,
-+};
-+
-+static const struct ens210_chip_info ens215_chip_info_data = {
-+	.name = "ens215",
-+	.part_id = ENS215,
-+	.conv_time_msec = 130,
-+};
-+
-+static const struct of_device_id ens210_of_match[] = {
-+	{ .compatible = "sciosense,ens210", .data = &ens210_chip_info_data },
-+	{ .compatible = "sciosense,ens210a", .data = &ens210a_chip_info_data },
-+	{ .compatible = "sciosense,ens211", .data = &ens211_chip_info_data },
-+	{ .compatible = "sciosense,ens212", .data = &ens212_chip_info_data },
-+	{ .compatible = "sciosense,ens213a", .data = &ens213a_chip_info_data },
-+	{ .compatible = "sciosense,ens215", .data = &ens215_chip_info_data },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, ens210_of_match);
-+
-+static const struct i2c_device_id ens210_id_table[] = {
-+	{ "ens210", (kernel_ulong_t)&ens210_chip_info_data },
-+	{ "ens210a", (kernel_ulong_t)&ens210a_chip_info_data },
-+	{ "ens211", (kernel_ulong_t)&ens211_chip_info_data },
-+	{ "ens212", (kernel_ulong_t)&ens212_chip_info_data },
-+	{ "ens213a", (kernel_ulong_t)&ens213a_chip_info_data },
-+	{ "ens215", (kernel_ulong_t)&ens215_chip_info_data },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(i2c, ens210_id_table);
-+
-+static struct i2c_driver ens210_driver = {
-+	.probe = ens210_probe,
-+	.id_table = ens210_id_table,
-+	.driver = {
-+		.name = "ens210",
-+		.of_match_table = ens210_of_match,
-+	},
-+};
-+module_i2c_driver(ens210_driver);
-+
-+MODULE_DESCRIPTION("ScioSense ENS210 temperature and humidity sensor driver");
-+MODULE_AUTHOR("Joshua Felmeden <jfelmeden@thegoodpenguin.co.uk>");
-+MODULE_LICENSE("GPL");
-
--- 
-2.39.2
-
+> 
+> Best regards,
+> Krzysztof
+> 
 
