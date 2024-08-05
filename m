@@ -1,71 +1,72 @@
-Return-Path: <devicetree+bounces-90990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D1319475F1
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 09:23:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 606169475F7
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 09:24:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE3861C20C75
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 07:23:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F6001C21068
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 07:24:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45570149006;
-	Mon,  5 Aug 2024 07:23:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E86A21494C7;
+	Mon,  5 Aug 2024 07:24:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Dg2kHs7v"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PnfgFY0u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EA4E6A01E;
-	Mon,  5 Aug 2024 07:23:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63BBD37171;
+	Mon,  5 Aug 2024 07:24:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722842611; cv=none; b=hdB1VNdTLIQETSZOC3z6DUhavnfTaPM91YPEifvA+TO2rkokrQVXc4p9DFSO+6bUe/55cybEugGp+7urgje5IdABzNDUE0Mpnr3Gc1QNRT58pLGQN6qnWAOZ0y2aLXjPrznrqJynE/y6ba9NiiU6jAOiO3zUygygWvkn/N06eSg=
+	t=1722842647; cv=none; b=XmTBy+cQkBFXFkQH2GknCaN1Ij31luxrpNZdYwAwc4YP77cDLNp/61YwIiGMM/UFUDplHufpdNX32kgVC4aUGeKNMnWPa5UpPAPGhh1gZ7mvyb7OPM8U1jB8tOg7/qU5/FT0d6V3NAr43ggC0Z5d74JkPjN9tfiPf/8jCbTM6ks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722842611; c=relaxed/simple;
-	bh=bE6vT1oz47RyP1ZKna/Yjqooigkh/AXkqnqjBHKb1S8=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=Os2vWnE+gMZoEkvSyKURBKJQRX9zLjzwOiTLLDUjD1h4J0XruaaLEwr4iEjJK220dy5oyaVXgbOfnJilH0Y8Wk5zqH3Gn8twecnroGN1pzTM2bhTU6UfJkB7jD44tw+n2y6BB/+zyadH61MUfLyfm+Nzs7372Hb69E+oYlV9590=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Dg2kHs7v; arc=none smtp.client-ip=209.85.218.44
+	s=arc-20240116; t=1722842647; c=relaxed/simple;
+	bh=LcuVZZsY0RfLuEW4dwfUeRMbp+61GKGzXqHvjBrakKA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=n97ZKYpDjilL5QqmQQoPT3qYdHPImNNU+cLt15OqWpYGKDD/r05KxoCcQj4nSEdtkmiAiHTTgPxJinpkHDnLYZC85smFa7aDUmjzHtf3rMaiCFTt9bR/wNUuGRMlcqbmRuZ5/2Er9Wz5+6+z6VsPR9Fi+Uz+HYEiJ7IcQHDGGmY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PnfgFY0u; arc=none smtp.client-ip=209.85.222.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a7a8e73b29cso833957866b.3;
-        Mon, 05 Aug 2024 00:23:29 -0700 (PDT)
+Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-7a20c529c77so364754085a.1;
+        Mon, 05 Aug 2024 00:24:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722842608; x=1723447408; darn=vger.kernel.org;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VL4qgfbSXzVItgj0R+x3HYc3wNe2y/gTIFslMYwu46I=;
-        b=Dg2kHs7v5Jv/XhJKEMilJwmPv5BsI2C6JXLp0OfS6LXrqN2E+ypE7sCyWbK9okcxxp
-         AC2i1lEhorDVxqqfq2h89e4mBahCo8JlC8mtiGNVQfuzZYZig2QoRYAmqdJQcvsknnmr
-         vbEfLQ78p6YUtfNGxScIouk+QoNzgEiV1js7PdgyOjabKzqPGkUskHroMr1Fkb++wfIU
-         jo2w71EznNq6k3gCSxaZ9bVUVJF9C4JtXK97/aN9QIz6ZI/+3udMSBzeAWKhQZ0YwVRA
-         iZ4hHf05uyvJQFlBPss0ti+YKs4Ei7zksjCGq5K3T/qNN6IajKDSFbGIT3ZZOugLA0Uk
-         j3Hw==
+        d=gmail.com; s=20230601; t=1722842645; x=1723447445; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=bJCDkUm9uGos/S2yAhP9gTs32qLhxq1fJbQ2ttf0O/g=;
+        b=PnfgFY0uk1hC9VjSUCOT1uEoIc/GTSggcCmrYHhiieFh21n3MjCv/Shl7rXib0RQfX
+         8QT8/W10dyn17wZKHhKM68+78SRn/wLBAv7xSkHhRHjGCIeXbU8+5w73kF8sJ7yTX7pR
+         TLvmeibfX5VxLppTpABZ76WugpKKzHG7SvE5w83nOeQ/4kd48weXsLdeiOA7oz2dsQQX
+         VIi2pMqQUCTbsmJ79Cp+hSh/YiDRiB0knl7ieugxVDVIRN6i4OrcqbuuwpPcAdbPp3V3
+         weAjdObuliI8sx7WvVbU9YHYGt30fPJjEZjyT+nu6kGCZHhwOGRn3rZvKz1Gj42plO3c
+         4Q+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722842608; x=1723447408;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VL4qgfbSXzVItgj0R+x3HYc3wNe2y/gTIFslMYwu46I=;
-        b=NumZ8+JjfHYroGVdWpFeuKznfGTiyh23dOR2RvRsjd/tkN0VUbhNdKPCRDZ759MIKZ
-         cA8lMsaWxtfPIht2oGi8lljhj1CYLioFldPNKf6ei4BEExErJWF+pQwGIbDlT6XG4gZ+
-         04pxGpd+BjDJ/bxfaUj1WbyggdLxALMoltaOtH8nSMqvPR0OaKnTqQg6DXVsSA5GWtIv
-         HCbYxTg1jXOHXuhobHRHNgw1zebnhjJDJ+XDM7IBDI+4u5Q8cVbBexCekDDiFw0WypPT
-         bWaal9P5cnP5EOQjVQR5pC3jSty8LEtZLIVfK9TwzxOb0Nv01djJq/Eh1ogi4QK/JhS5
-         dsvw==
-X-Forwarded-Encrypted: i=1; AJvYcCUn9xHcLU4dkZu18JJSWI2wMkDlN+VSrFeyh5yaRL9IEVd4UeedheBqn/o3lna0ElqacNPua/pOxH49Ondos7upQDooGCz8cai8eaWY
-X-Gm-Message-State: AOJu0YzcVt3apGkgHHEP6DPFzV+HcW+xHxWMcHYzdbJEr5Zw1FhBLR71
-	O4p6OoHo62l5JgDcKiBglhN3CRMl9fU3qBNLkIO+/KRsBkXTkfmc
-X-Google-Smtp-Source: AGHT+IGxJTB4JXUUeXI44cYYcr/O1U0o6tduXjCfmkAS6HYqaXjObCqNXM+DDrBzgd7UeQHP4eiNQA==
-X-Received: by 2002:a17:906:6a13:b0:a77:c30c:341 with SMTP id a640c23a62f3a-a7dc4b3a665mr707202866b.0.1722842607639;
-        Mon, 05 Aug 2024 00:23:27 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1722842645; x=1723447445;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bJCDkUm9uGos/S2yAhP9gTs32qLhxq1fJbQ2ttf0O/g=;
+        b=LPsmKRCx3ijlYoD2zlagoh3QU9427Fn/iSCAqL8K0hzWYY6P05EJKlzaCbcOY763OR
+         aKtbD+hBj45TgnQZDTWBZY6v1+lHBQLrygX3Sn5wGBo9zZnNgheCnGIoaKwBTk3reUHf
+         BJQbp732II/UZrfG/C1I5jUu28CrcUiy6ymd5FSg1ewVYthNLaaFEbmx6KONEI+NsRej
+         k4wC+kPBguA2dn7taVn6pXQY8JjKzto1CmoRFPHe8fAmXsLuDFs0LHipvVakpjU6H1Zc
+         nLC6GSQWz2Ifg45PVtwurivoMpPBIXF99aPJAwNSFy5cdVgtkQ59OypMEQmcS0uyWCTb
+         gkTg==
+X-Forwarded-Encrypted: i=1; AJvYcCUfoQ/Xv+LumfE+i+eMpIAjUVXM4JAO26K6dhmxi10oh8cypOfzKKcq+6nd2DuJAMJ9X2FUikUj+fpGuD4=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz51medqCBr6SgTPHufALSaG1EGmr2uraYU/ZjVHHC2cRZ1gIvz
+	2Eo7zsNN8NvNaNEBXCKrv+8K9Q77RuYAF0/gbxjUEA/TLvRKqwlN
+X-Google-Smtp-Source: AGHT+IEsAe/Dk0azZ0HdPYMZsstncNy0glXwPpIIEDsYaCfC3xV4RjLoInunuPv0NkEthK733b2UEg==
+X-Received: by 2002:a05:6214:390c:b0:6b7:9a8a:2feb with SMTP id 6a1803df08f44-6bb983b8ffdmr116719916d6.26.1722842645249;
+        Mon, 05 Aug 2024 00:24:05 -0700 (PDT)
 Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7dc9bc3bccsm420199466b.16.2024.08.05.00.23.26
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6bb9c7b8665sm32510206d6.73.2024.08.05.00.24.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Aug 2024 00:23:27 -0700 (PDT)
-Date: Mon, 5 Aug 2024 09:23:25 +0200
+        Mon, 05 Aug 2024 00:24:04 -0700 (PDT)
+Date: Mon, 5 Aug 2024 09:24:00 +0200
 From: Stanislav Jakubek <stano.jakubek@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
@@ -75,8 +76,9 @@ To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Chunyan Zhang <zhang.lyra@gmail.com>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 0/4] Cleanup Spreadtum/Unisoc ARM64 DT
-Message-ID: <cover.1722842066.git.stano.jakubek@gmail.com>
+Subject: [PATCH v2 1/4] arm64: dts: sprd: rename SDHCI nodes to mmc
+Message-ID: <861648dea0d36017327e1742ef4ef42f54b971b8.1722842067.git.stano.jakubek@gmail.com>
+References: <cover.1722842066.git.stano.jakubek@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,37 +87,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <cover.1722842066.git.stano.jakubek@gmail.com>
 
-This series contains various minor cleanups for Spreadtum/Unisoc ARM64
-DeviceTrees. Also contains the 2nd patch from the SC2731 MFD cleanup series
-to reduce unnecessary noise and make these easier to apply.
+DT bindings expect SDHCI/MMC nodes to be called 'mmc', rename them.
 
-Changes in V2:
-  - add 2nd patch from the SC2731 MFD cleanup series (1st patch was dropped
-    due to not being correct, dt-bindings will have to get fixed up instead)
-  - add Baolin's R-b
-  - rebase on next-20240805
+Reviewed-by: Baolin Wang <baolin.wang@linux.alibaba.com>
+Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+---
+ arch/arm64/boot/dts/sprd/sc9863a.dtsi | 4 ++--
+ arch/arm64/boot/dts/sprd/whale2.dtsi  | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-Link to original V1: https://lore.kernel.org/lkml/cover.1720112081.git.stano.jakubek@gmail.com/
-Link to SC2731 MFD cleanup V1: https://lore.kernel.org/lkml/cover.1720957783.git.stano.jakubek@gmail.com/
-
-Stanislav Jakubek (4):
-  arm64: dts: sprd: rename SDHCI nodes to mmc
-  arm64: dts: sprd: reorder clock-names after clocks
-  arm64: dts: sprd: move/add SPDX license to top of the file
-  arm64: dts: sprd: sc2731: rename fuel gauge node to be generic
-
- arch/arm64/boot/dts/sprd/sc2731.dtsi          |  5 +--
- arch/arm64/boot/dts/sprd/sc9836-openphone.dts |  3 +-
- arch/arm64/boot/dts/sprd/sc9836.dtsi          |  3 +-
- arch/arm64/boot/dts/sprd/sc9860.dtsi          |  3 +-
- arch/arm64/boot/dts/sprd/sc9863a.dtsi         |  8 ++--
- arch/arm64/boot/dts/sprd/sharkl64.dtsi        |  3 +-
- arch/arm64/boot/dts/sprd/sp9860g-1h10.dts     |  3 +-
- arch/arm64/boot/dts/sprd/ums512.dtsi          |  4 +-
- arch/arm64/boot/dts/sprd/whale2.dtsi          | 43 ++++++++++---------
- 9 files changed, 36 insertions(+), 39 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/sprd/sc9863a.dtsi b/arch/arm64/boot/dts/sprd/sc9863a.dtsi
+index 53e5b77d70b5..a7b897966882 100644
+--- a/arch/arm64/boot/dts/sprd/sc9863a.dtsi
++++ b/arch/arm64/boot/dts/sprd/sc9863a.dtsi
+@@ -551,7 +551,7 @@ ap-ahb {
+ 			#size-cells = <2>;
+ 			ranges;
+ 
+-			sdio0: sdio@20300000 {
++			sdio0: mmc@20300000 {
+ 				compatible = "sprd,sdhci-r11";
+ 				reg = <0 0x20300000 0 0x1000>;
+ 				interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
+@@ -567,7 +567,7 @@ sdio0: sdio@20300000 {
+ 				no-mmc;
+ 			};
+ 
+-			sdio3: sdio@20600000 {
++			sdio3: mmc@20600000 {
+ 				compatible = "sprd,sdhci-r11";
+ 				reg = <0 0x20600000 0 0x1000>;
+ 				interrupts = <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/arch/arm64/boot/dts/sprd/whale2.dtsi b/arch/arm64/boot/dts/sprd/whale2.dtsi
+index 7068bfd2f4c3..cdf52fd78ee4 100644
+--- a/arch/arm64/boot/dts/sprd/whale2.dtsi
++++ b/arch/arm64/boot/dts/sprd/whale2.dtsi
+@@ -133,7 +133,7 @@ ap_dma: dma-controller@20100000 {
+ 				clocks = <&apahb_gate CLK_DMA_EB>;
+ 			};
+ 
+-			sdio3: sdio@50430000 {
++			sdio3: mmc@50430000 {
+ 				compatible = "sprd,sdhci-r11";
+ 				reg = <0 0x50430000 0 0x1000>;
+ 				interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
 -- 
 2.34.1
 
