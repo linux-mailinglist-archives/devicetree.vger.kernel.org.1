@@ -1,130 +1,110 @@
-Return-Path: <devicetree+bounces-91078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E9A7947C41
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 15:54:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15E9D947C4A
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 15:57:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 600581C21C9D
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 13:54:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC2C328275E
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 13:56:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5682674424;
-	Mon,  5 Aug 2024 13:54:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E61F478C91;
+	Mon,  5 Aug 2024 13:56:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="claQdTGS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XHNz8+TW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A59355E73;
-	Mon,  5 Aug 2024 13:54:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B57F1139D13;
+	Mon,  5 Aug 2024 13:56:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722866071; cv=none; b=fe4slpVp067hiDpNM3BS05mYbA1hKL4LmNWF07P42n4EKbZ4/MegnYj3Bml6f9O7pZIOLKxIo3CWMC0xbi9XmlW/iwLS9pRJAaaWJ9bPQ7CR/ft2elfQeLXWwWiPuBplogZPPLLkxBpbCG3Hi6ZetKmPPenixq2/1XjH1/p1CWo=
+	t=1722866208; cv=none; b=Gn8mCV/w2lQ2yVK/IaRweied48vKrc2VxQ5g2vyDwJf3fZr0fJdi5e5y5wf6ITuXPhrptSFsEK2LwIwNLEk3nQbal4ICGaWNVBL/T3geD521sViciNKWttv+apHxWgwVBSiUgA0xZx+ljebh7f6AnECuL3msWOfq/DqGX7q3o44=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722866071; c=relaxed/simple;
-	bh=BncnyQonmJ5+HmLoE7oS88pIgg0LaOFqG5VcpwZrO4E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Q5uaIe7YOPE+8ldV/il6hBQBWGGaRJqjhUFlIZ7ou3RcDqTmQk2fY4wDJMCbxbbJPdPos20vglAZPZv7u9LsOpMM95T9tCqyHsr4G6wMaWzcgUgV04uV0NKBB51zNx/96fLRtpk8gIjyfaLgmOyCehUQ8F/7yx7Qx2JlrouSCUk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=claQdTGS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA264C32782;
-	Mon,  5 Aug 2024 13:54:26 +0000 (UTC)
+	s=arc-20240116; t=1722866208; c=relaxed/simple;
+	bh=ZzRvUJNou+i5hkMbxOV7BIqtrsXZICZgOzgjNwX80rM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mJOSE2J9U/9/tzFSS4vtdzsJNWdUdUVVhfOHqXr9+YrP+yVWdeLg3kolbH3C+THA9liFRf3NR2uaJDQSYXZRGUKUNsmqLBzF2/ul31F2rpReUx2KaVn0tvATZYX2N7+hascdNRU8m6GNDPMfoTpttcexyQ/GIKexDMm9KvGi25s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XHNz8+TW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FB60C32782;
+	Mon,  5 Aug 2024 13:56:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722866071;
-	bh=BncnyQonmJ5+HmLoE7oS88pIgg0LaOFqG5VcpwZrO4E=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=claQdTGSpGAqM40GuXdBs1yWHEy4DZz79ft29R6GbokVsZ8F4XOHs18Q3ipoTQW7e
-	 oKWS8tgz1jwbs4lZAPqGvd3ZdySBQ63wMCp0t1c5YsYDOTkflkDJ+FZ/zO3WOdSmi9
-	 fMXflvuwb9Y46/u7kLpn9wlXuOdHblrj1a+kf/fhz3jXC0r/BYRT8p9CBXr2aUGP1Q
-	 Fn9SL24zBYBQNJr2deVfGnkeM8YWBS0g0QeKRoHkkhkFx3+KWc4jIjNDfyaaVjW2uj
-	 6MKfhha5LUxY0Hcg0s7LRVlccttt25IYLNmQt/36D+I4ha+ykur8DGaIqYfJAnLaAa
-	 t9bB3is/N0FBg==
-Message-ID: <0a634553-023c-4a46-8743-28357021c689@kernel.org>
-Date: Mon, 5 Aug 2024 16:54:24 +0300
+	s=k20201202; t=1722866208;
+	bh=ZzRvUJNou+i5hkMbxOV7BIqtrsXZICZgOzgjNwX80rM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XHNz8+TWZbjHPeLgerWFZ5aDNDyhFkHyfi+89/cAovwUMDba66piWWfnr2r1Nqub4
+	 Xk/PANpw88fjVLNhJkdpsm73V+8fhLSmGWZxPArhxrnOMrB8Oz1nYj1982qn6SybxJ
+	 E2SQBSj34ckGsSCFPlUtc4u+12ZWo5+9PkfsKMrk4xMP66n9t+gztwzOgIEhqm1u5F
+	 gZMZuoLBh+Gdw3fojqZqz3xKtdU3rBOpt5VD95sfSOYLIUNpl6559N4QYx6HLOWEkw
+	 o8vwEduvQSBk0rEZ3MRFLiYJDlNj+cBLICM2pVXkD7weoOdnc7uM4PTBqszE1wM7VM
+	 lU0XVI3cF3kgQ==
+Date: Mon, 5 Aug 2024 14:56:43 +0100
+From: Lee Jones <lee@kernel.org>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
+	linux-leds@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: leds: Document "netdev" trigger
+Message-ID: <20240805135643.GC1019230@google.com>
+References: <20240708114653.18566-1-marex@denx.de>
+ <20240725085042.GC501857@google.com>
+ <3c8bf807-8a8e-4704-a90a-d77ad3293b57@lunn.ch>
+ <20240801125309.GE6756@google.com>
+ <62cc3d64-c5e4-4af3-90ce-273ece6e8e57@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 07/12] usb: cdns3-ti: add J7200 support with
- reset-on-resume behavior
-To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Peter Chen <peter.chen@kernel.org>,
- Pawel Laszczak <pawell@cadence.com>, Mathias Nyman
- <mathias.nyman@intel.com>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Kevin Hilman <khilman@kernel.org>,
- =?UTF-8?Q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20240726-s2r-cdns-v5-0-8664bfb032ac@bootlin.com>
- <20240726-s2r-cdns-v5-7-8664bfb032ac@bootlin.com>
-Content-Language: en-US
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20240726-s2r-cdns-v5-7-8664bfb032ac@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <62cc3d64-c5e4-4af3-90ce-273ece6e8e57@lunn.ch>
 
+On Thu, 01 Aug 2024, Andrew Lunn wrote:
 
-
-On 26/07/2024 21:17, Théo Lebrun wrote:
-> Add ti,j7200-usb compatible. Match data indicates the controller resets
-> on resume which tells that to the cdns3 core. This in turn silences a
-> xHCI warning visible in cases of unexpected resets.
+> On Thu, Aug 01, 2024 at 01:53:09PM +0100, Lee Jones wrote:
+> > On Thu, 25 Jul 2024, Andrew Lunn wrote:
+> > 
+> > > > > diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+> > > > > index 8a3c2398b10ce..bf9a101e4d420 100644
+> > > > > --- a/Documentation/devicetree/bindings/leds/common.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/leds/common.yaml
+> > > > > @@ -113,6 +113,8 @@ properties:
+> > > > >              # LED indicates NAND memory activity (deprecated),
+> > > > >              # in new implementations use "mtd"
+> > > > >            - nand-disk
+> > > > > +            # LED indicates network activity
+> > > > > +          - netdev
+> > > > 
+> > > > netdev is the description of the network development ML/repo, right?
+> > > > 
+> > > > Seems like an odd name for an OS agnostic property?
+> > > 
+> > > I agree that one meaning is the network development community within
+> > > Linux.
+> > > 
+> > > But it also means a network device, which is OS agnostic. I don't
+> > > really see it be any different to a memory technology device, mtd.
+> > 
+> > MTD is an acronym.
+> > 
+> > The only dodgy one I see in there is 'kbd-capslock'.
+> > 
+> > How about, now go with me here: 'network'?
 > 
-> We also inherit the errata quirk CDNS3_DRD_SUSPEND_RESIDENCY_ENABLE from
-> the default `cdns_ti_auxdata` configuration.
-> 
-> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
-> ---
->  drivers/usb/cdns3/cdns3-ti.c | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/drivers/usb/cdns3/cdns3-ti.c b/drivers/usb/cdns3/cdns3-ti.c
-> index 159814dfc856..65b8b6f4c654 100644
-> --- a/drivers/usb/cdns3/cdns3-ti.c
-> +++ b/drivers/usb/cdns3/cdns3-ti.c
-> @@ -258,7 +258,21 @@ static const struct of_dev_auxdata cdns_ti_auxdata[] = {
->  	{},
->  };
->  
-> +static struct cdns3_platform_data cdns_ti_j7200_pdata = {
-> +	.quirks = CDNS3_RESET_ON_RESUME |
+> We could do, but we have to keep netdev around for backwards
+> compatibility. There are DT blobs using it which we cannot break.
 
-But you mentioned that the behavior can be different based on which
-idle state the system went into.
-Setting this flag will means Reset is required on every resume.
-
-
-Instead, you just need to rely on the runtime check and set the xhci->lost_power flag at resume.
-
-
-> +		  CDNS3_DRD_SUSPEND_RESIDENCY_ENABLE,   /* Errata i2409 */
-> +};
-> +
-> +static const struct of_dev_auxdata cdns_ti_j7200_auxdata[] = {
-> +	{
-> +		.compatible = "cdns,usb3",
-> +		.platform_data = &cdns_ti_j7200_pdata,
-> +	},
-> +	{},
-> +};
-> +
->  static const struct of_device_id cdns_ti_of_match[] = {
-> +	{ .compatible = "ti,j7200-usb", .data = cdns_ti_j7200_auxdata },
->  	{ .compatible = "ti,j721e-usb", .data = cdns_ti_auxdata },
->  	{ .compatible = "ti,am64-usb", .data = cdns_ti_auxdata },
->  	{},
-> 
+Oh, this 'just' a documentation patch?  'netdev' is already in use?
 
 -- 
-cheers,
--roger
+Lee Jones [李琼斯]
 
