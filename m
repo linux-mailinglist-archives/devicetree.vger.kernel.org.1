@@ -1,134 +1,162 @@
-Return-Path: <devicetree+bounces-91074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E06E947C02
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 15:40:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB941947C09
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 15:42:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD365281831
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 13:40:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1C13CB20A2D
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 13:42:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F08AE3611E;
-	Mon,  5 Aug 2024 13:40:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FF83381DF;
+	Mon,  5 Aug 2024 13:41:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PTHUHlN4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s0nU9vy2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4910B28366;
-	Mon,  5 Aug 2024 13:40:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D18836AEC;
+	Mon,  5 Aug 2024 13:41:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722865211; cv=none; b=dYoO6lidYZyqyay0MifY4o0SUZLO3yEAr/Ha1hyllImPF/wCt3g/AAz8FKMBV8wYdShecNTNKaqTDd9PerbfBKJOppUCHzZxeW5rc4IGoCbUQJQ1Id8KIK+AGQb6fzH0E88AWvy8Oa7ZXxdjggJwNRZ0WX51hGEexJAZ6e9zhY4=
+	t=1722865319; cv=none; b=O4NLVjuK/xycHcNj874ofV21goSbizHPLJ4a18vbsMAagvhfOLIwXVNF72/KSIbIjUmNrQjJEVn+0Ld9cZs9G9Klrsv8LF3eh7iamTa5p6y3IvNN0Cvrez5yT3XSmAguln6FjOFUrOUeGCnW6XfYgpVoonF/OFmk85wN/h8+Xz4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722865211; c=relaxed/simple;
-	bh=ruk6mOOD/J6EGS1DmhBnxOfoM7b7J30uZ5JPOGJ6aDg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UPBrEG4cxZV7ppKtbOJK2xghbKQy5E6feS0whx8vtLQRwzPovNMYbPIc2hRA4w4YzppsK5fySxUQQLri/w+7VAoLjuqbO4cfdQQnLfMm/LL7/Eak6jJIrFjtRUcQQQx01QVIglEffsL3AN6zMG34DlYp9WqHdACUiAx9cTz/QKk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PTHUHlN4; arc=none smtp.client-ip=209.85.208.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2f166ec1265so4467221fa.3;
-        Mon, 05 Aug 2024 06:40:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722865208; x=1723470008; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=b46iJ32H/7QhFKQjeBDvVn66a9XBRt1jPCCUgibPNOY=;
-        b=PTHUHlN41y6QYqeaGmx6NOUIga+RIfO6JuVkiDUv1VH7Je+P990vZ/pAYD31zhYOg5
-         5rKym9aEVa5V/3CayTQ9NgnpNFfT5uaHH3va+AX9k5Xc1N1PWx9L4qvPt1ksimPAtEcY
-         PD9zAf9Mwlqxma00X9ay58tgbwKDxiyoprXgGfQNrpuz2UTfGqKmFyPBWED3B1WXrkwz
-         mgJk+6tsIZ2qI4vr0lpt4Rf+3UCAklVkHfjxsW2tdDVkfbkmEaZ9BnD3cCV5tlcBe+5W
-         Z+dSVsahykiZT/EwdT24mQEYI9S3jIFIOZMAdMmJxmDz594/3v0N5gfMpxZNNuguXigD
-         obLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722865208; x=1723470008;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=b46iJ32H/7QhFKQjeBDvVn66a9XBRt1jPCCUgibPNOY=;
-        b=N+zNidqlgRgF80u42Do6UnBcj/e5+g67sTq3tm6XM2vzVDMOc1ETFdzW6/TbIJhnsB
-         851jfTemwvJ7zX7cLGTJG5dWmHBfgvug0tAi6kgij4/YnomAcfLHpuAp12soAkpffDEi
-         fPmy+lgEHs00n8XskfHZ5aN3kaOFWG7RMZve2JOGoA5CMMWhTKS//4/IRETckdyXPg8r
-         3iKttOqU/qbqHaoxKePoJPJAYODyLudZ9c0smlyqbYkzu8hKzZxUoKT6L+GFGgAJ/cwq
-         z6DPZqZC8rN7U3nC6NI6DoP68Fys1XNLy6FoPoN5Nf3X788MfHKvxPkigPWlWnfpurED
-         nJjQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVJ4HK/le+Ne5gKTJT6NtHRQoTMlcFpnyYzQgZ2GU9K/uAWc+bmlC7JD+q/YtnuVlwQGKMSUHFTOMW3@vger.kernel.org, AJvYcCX/NpbDNZBKIE3ZgMfHllaczcKe8UDAWFKNGOEDjKrplIO6tiDFlcoHmhv4T9VqtiLJXRqRc+BDUTKasoJD@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8E+WgiGg8vUqUbJZokc7tRQTaw/CtlvNkqZLe+GnBzp8HVkBr
-	xTSNLcgdAov00wfg616D6jEoEBz0fx3lbF2HJWzQ7L/jYoBSZenH3sApAsU6+EzeGjY6aYSH076
-	3wiRyizX3YfTpvC41KHbIihPkPio=
-X-Google-Smtp-Source: AGHT+IET0zibODSKGLqBpAyFlOzXNn5BGpAezMR6EMww3A49Me0AsCpIlHGcaMhKnEUXB8jG1dP1asr/bLudntWRt98=
-X-Received: by 2002:a05:6512:1307:b0:52e:ccf5:7c3e with SMTP id
- 2adb3069b0e04-530bb3bd143mr4066577e87.7.1722865207262; Mon, 05 Aug 2024
- 06:40:07 -0700 (PDT)
+	s=arc-20240116; t=1722865319; c=relaxed/simple;
+	bh=iTK51eVs3lIrDUEMAnPJgIK0M1ZWpTpCLF/jpClvAuM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=b4JNfTTqxb6VfpcuPfH1lgs7C1Q8UANOTnObpT7GWiFselE1F2aEAhBoGs4heORQuLYzhBW8LYqA9MOWT5ABe1EBcXSzgu1lmrI1lGIK5861ECvTtNBSgMCbh79YJjCgjx2C2VenfiLrogV9aPFl0gWUf4zNHaDzDR7Ulm6wKR0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s0nU9vy2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 039F3C32782;
+	Mon,  5 Aug 2024 13:41:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722865319;
+	bh=iTK51eVs3lIrDUEMAnPJgIK0M1ZWpTpCLF/jpClvAuM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=s0nU9vy22dh3PXweEa8DUwGXbYBl0DZe3NFoL5yI8om5TDVe7iULiWjljN2IyJKl/
+	 vu0hWSjfhuHkFdHnQwccEWHKr3aJQL/9n2pR0kUK2+zFV+l+8hO7rz+I6y21zsIw3C
+	 a2zgdFlBfT1a4yb2i/R+jMSIRQTT7njDnCKbIPKl913TDEpVOcr3FdZeKwL2lTrhxF
+	 BIkQjV5XizxCUfoM2puYE5pynK6SnX9j2itUSFaDahhix1fF4H11YuEEXtvKQCLGnJ
+	 kcWFhIR8Jlv1yjXfpeCJUSdohkKOEuUYBuDvlMrwZPQ1Unof3IwZcH20nKX4oA55W+
+	 ADEvBcyDRwevA==
+Message-ID: <1cd45625-84e4-43aa-ae2b-a59f10add898@kernel.org>
+Date: Mon, 5 Aug 2024 16:41:52 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240805-imx8mp-tpm-v1-1-1e89f0268999@phytec.de>
-In-Reply-To: <20240805-imx8mp-tpm-v1-1-1e89f0268999@phytec.de>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Mon, 5 Aug 2024 10:39:56 -0300
-Message-ID: <CAOMZO5DzH1Ldfg1rr7ET+2Y138Sv+G9HV6iRiTPOaOUgJ+asHQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: freescale: imx8mp-phyboard-pollux: Add and
- enable TPM
-To: Benjamin Hahn <B.Hahn@phytec.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Teresa Remmet <t.remmet@phytec.de>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 09/12] xhci: introduce xhci->lost_power flag
+To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Peter Chen <peter.chen@kernel.org>,
+ Pawel Laszczak <pawell@cadence.com>, Mathias Nyman
+ <mathias.nyman@intel.com>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Kevin Hilman <khilman@kernel.org>,
+ =?UTF-8?Q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20240726-s2r-cdns-v5-0-8664bfb032ac@bootlin.com>
+ <20240726-s2r-cdns-v5-9-8664bfb032ac@bootlin.com>
+Content-Language: en-US
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20240726-s2r-cdns-v5-9-8664bfb032ac@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Benjamin,
 
-On Mon, Aug 5, 2024 at 10:33=E2=80=AFAM Benjamin Hahn <B.Hahn@phytec.de> wr=
-ote:
 
-> +/* TPM */
-> +&ecspi1 {
-> +       #address-cells =3D <1>;
-> +       #size-cells =3D <0>;
-> +       cs-gpios =3D <&gpio5 9 GPIO_ACTIVE_LOW>;
-> +       num-cs =3D <1>;
+On 26/07/2024 21:17, Théo Lebrun wrote:
+> The XHCI_RESET_ON_RESUME quirk allows wrappers to signal that they
+> expect a reset after resume. It is also used by some to enforce a XHCI
+> reset on resume (see needs-reset-on-resume DT prop).
+> 
+> Some wrappers are unsure beforehands if they will reset. Add a mechanism
+> to signal *at resume* if power has been lost. Parent devices can set
+> this flag, that defaults to the XHCI_RESET_ON_RESUME value.
+> 
+> The XHCI_RESET_ON_RESUME quirk still triggers a runtime_pm_get() on the
+> controller. This is required as we do not know if a suspend will
+> trigger a reset, so the best guess is to avoid runtime PM.
+> 
+> Reset the xhci->lost_power value each time in xhci_resume(), making it
+> safe for devices to only set lost_power on some resumes.
+> 
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+> ---
+>  drivers/usb/host/xhci.c | 8 +++++++-
+>  drivers/usb/host/xhci.h | 6 ++++++
+>  2 files changed, 13 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/usb/host/xhci.c b/drivers/usb/host/xhci.c
+> index 0a8cf6c17f82..2c9b32d339f9 100644
+> --- a/drivers/usb/host/xhci.c
+> +++ b/drivers/usb/host/xhci.c
+> @@ -1029,9 +1029,12 @@ int xhci_resume(struct xhci_hcd *xhci, pm_message_t msg)
+>  
+>  	spin_lock_irq(&xhci->lock);
+>  
+> -	if (hibernated || xhci->quirks & XHCI_RESET_ON_RESUME || xhci->broken_suspend)
+> +	if (hibernated || xhci->lost_power || xhci->broken_suspend)
 
-num-cs is not needed.
+Why not treat xhci->lost_power and xhci->quriks & XHCI_RESET_ON_RESUME independently?
 
-The number of chip selects can be retrieved from cs-gpios.
+XHCI_RESET_ON_RESUME is sued by devices that know they always need to be reset on resume.
 
-> +       pinctrl-names =3D "default";
-> +       pinctrl-0 =3D <&pinctrl_ecspi1 &pinctrl_ecspi1_cs>;
-> +       status =3D "okay";
+xhci->lost_power is used by devices that don't have consistent behavior.
+
+
+>  		reinit_xhc = true;
+>  
+> +	/* Reset to default value, parent devices might correct it at next resume. */
+> +	xhci->lost_power = !!(xhci->quirks & XHCI_RESET_ON_RESUME);
 > +
-> +       tpm: tpm_tis@0 {
 
-Node names should be generic.
+then you don't need to do this.
 
-Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml suggests 'tpm', =
-so:
+>  	if (!reinit_xhc) {
+>  		/*
+>  		 * Some controllers might lose power during suspend, so wait
+> @@ -5228,6 +5231,9 @@ int xhci_gen_setup(struct usb_hcd *hcd, xhci_get_quirks_t get_quirks)
+>  	if (get_quirks)
+>  		get_quirks(dev, xhci);
+>  
+> +	/* Default value, that can be corrected at resume. */
+> +	xhci->lost_power = !!(xhci->quirks & XHCI_RESET_ON_RESUME);
+> + 
 
-tpm: tmp@0 {
+nor this.
 
->  &iomuxc {
-> +       pinctrl_ecspi1: ecspi1grp {
-> +               fsl,pins =3D <
-> +                       MX8MP_IOMUXC_ECSPI1_MISO__ECSPI1_MISO   0x80
-> +                       MX8MP_IOMUXC_ECSPI1_MOSI__ECSPI1_MOSI   0x80
-> +                       MX8MP_IOMUXC_ECSPI1_SCLK__ECSPI1_SCLK   0x80
-> +               >;
-> +       };
-> +
-> +       pinctrl_ecspi1_cs: ecspi1csgrp {
-> +               fsl,pins =3D <
-> +                       MX8MP_IOMUXC_ECSPI1_SS0__GPIO5_IO09     0x00
+>  	/* In xhci controllers which follow xhci 1.0 spec gives a spurious
+>  	 * success event after a short transfer. This quirk will ignore such
+>  	 * spurious event.
+> diff --git a/drivers/usb/host/xhci.h b/drivers/usb/host/xhci.h
+> index ebd0afd59a60..ec7c6061363f 100644
+> --- a/drivers/usb/host/xhci.h
+> +++ b/drivers/usb/host/xhci.h
+> @@ -1640,6 +1640,12 @@ struct xhci_hcd {
+>  	unsigned		broken_suspend:1;
+>  	/* Indicates that omitting hcd is supported if root hub has no ports */
+>  	unsigned		allow_single_roothub:1;
+> +	/*
+> +	 * Signal from upper stacks that we lost power during system-wide
+> +	 * suspend. Its default value is based on XHCI_RESET_ON_RESUME, meaning
+> +	 * it is safe for wrappers to not modify lost_power at resume.
+> +	 */
+> +	unsigned                lost_power:1;
+>  	/* cached extended protocol port capabilities */
+>  	struct xhci_port_cap	*port_caps;
+>  	unsigned int		num_port_caps;
+> 
 
-Maybe simpler to put MX8MP_IOMUXC_ECSPI1_SS0__GPIO5_IO09 as part of
-pinctrl_ecspi1.
+-- 
+cheers,
+-roger
 
