@@ -1,338 +1,192 @@
-Return-Path: <devicetree+bounces-91175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA99694830D
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 22:14:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EB68948311
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 22:15:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 26F01B2160F
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 20:14:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D7D44B222C9
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 20:15:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA96916C680;
-	Mon,  5 Aug 2024 20:14:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A66E416DC04;
+	Mon,  5 Aug 2024 20:14:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HlhC0TfQ"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="MCtjoS4E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010026.outbound.protection.outlook.com [52.101.69.26])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE27A16BE31;
-	Mon,  5 Aug 2024 20:14:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722888859; cv=none; b=WTctSLKlzP60PDtmirFNgI1DfaW8Le7b4phtcN6NoFIosQQjdx9Vrxi/hoDN9XWH/UiRPFp/bLdSjiSmN3wwRMlIN1S1Y8VIJqJbYy4F+fCKXjxCLBTxabGgFYxjCl1PJFqiUw9eX7PTdp4ZGfv78Bhpp6y6GwIwxBfUTrxr3QM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722888859; c=relaxed/simple;
-	bh=s3QTtugUD5bNK6uisPOgFIGSY7xh8ze4loCcgfW9MT8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Y+4Aa2iaxcWw6SFSSvtZ1sBWfuQhTCXK4gyGQJ/41YkN+gF1ohC/E574a2eoHmEmwefyXzTwnsyk5AlQA1ZvtRGpQfBVfQlRyk2Z4q/4bzzBi66jTyfEgIAHgOLkzgjUZY5XxUStBjoX9Rlrs4/zqYb54zTfcUpvwuf5Sr7Unos=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HlhC0TfQ; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a728f74c23dso1404691366b.1;
-        Mon, 05 Aug 2024 13:14:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722888856; x=1723493656; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4WviZuQsvNVo7JWzERxl8d3Y2S70JtnzKTZ1Bu4/KEY=;
-        b=HlhC0TfQ/ZUemcIAcWOl/y4pAoLYJbjS3eHOM/LH9KCvhb5puFeUrKQg9ZiqAsta+i
-         TIRb6MYSWhMTPxdgienGuGMxbIdlw4Ux/qYYGKpwAw3DgZdsWFR8kU698/9lYvZ9GIKa
-         kaZK+s2sGDPnufx28yrGQU+URO64re7TDG0A/K4VdFKOAwWS4IEXMsBNQcGBcVlNG0Z1
-         NFPWOeBWKCaQXS7e/tUMRJXSewvo7vK7m/B3I4+p2sT2b3D0SEOnxZN0dAOP4eYPrj3U
-         iHtc9vVh/gJDxXenz4KPSp9UqmdvjbMO4Zr4V/+VHjyKI09DU8HXaDlv0JjQ8FEP3RV7
-         XQlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722888856; x=1723493656;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4WviZuQsvNVo7JWzERxl8d3Y2S70JtnzKTZ1Bu4/KEY=;
-        b=MJOWz8WTM4eO8eH2a6JLxVAxaVRxsB1JXt3joq3wBUPVG7xrXvjPWDTiFJXh0nBK1k
-         9VmX1HT+y/O1/dpCeiTv99l3xSamqB6RF6x5s4Rdeav1HrKXn+YQzPAhkpXSRGiN/Gtk
-         +tQ0XFi4+GWzegcfyM9UUCYWJs9KTBtGcSDDGxfrWGZ/FW2G67gOzFOp97imCElJ25tT
-         YTlVxVc3/Y4+/4lnOT3gXlQ0hD7HuXt1QANEgEqCQ3V7XFmAZp1pgoeAzfPK7vT4DaRJ
-         7PKt2EYHuTo8y7yce99iJZVnBurSPDHtYyAyXDyq1sktcuuFV6YehEkG4J0f76214vRL
-         VdJw==
-X-Forwarded-Encrypted: i=1; AJvYcCU8NvQYC4M1uU+xPcjgMa2lWqw4baTJ55djbD8tJJ3lYC05OnhDiqoEfwLx24E6bJuYjTUwUT73wBZRa45lw6yQ7Igd9Pb15soayY/FxBoFrBJ3x789sqoEsUmcikOpdm2e9tuqjyKHYbPOfEbLpNii9gDzCUqOnYFv71x/0pCn9nVXPqc2N8vzjibvUJHxlAHn4eITeIxw6w6a4A==
-X-Gm-Message-State: AOJu0YxKm3LV+hQMpIwL11g1XeVbOqIm0QDwKCWO3jTnYmNys0caFRB7
-	UipB2+JRzEu5KvSTYRk3jM2yFqqLtnbpxAUXgVpjS0ou8tocUdST8JK337Qfsw/GTQDlfn6bh0n
-	gpiy3+0jyNiZLHzzn3X90WnGERm0=
-X-Google-Smtp-Source: AGHT+IG8L+hnxBlm6nuNrRGh8gTejr4GHsr9w05VOPVu0qqv3+yd4ladZ4MFFPo9eO+zcgGw0pzIuB6pVsbh080rWl4=
-X-Received: by 2002:a17:906:794e:b0:a77:d85c:86fa with SMTP id
- a640c23a62f3a-a7dc4d8fe0emr983248366b.13.1722888855752; Mon, 05 Aug 2024
- 13:14:15 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 163D016C6B1;
+	Mon,  5 Aug 2024 20:14:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.26
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722888878; cv=fail; b=fPpaPDKCCcCX87KGPEBcemt5nhJMWuYjRUtQsnPH4J2oGcFUfQV1tR5iXqWMmMM0AmpGBps9YhA1BlFQtreqT/66H+bxZPYqqDnBuQXJTZPq22Q4XS/rvXudDkHB9A4nzJyjIY9UYYLG6I1Axu2on1mjO8h3WHvC+KGjVZocn8w=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722888878; c=relaxed/simple;
+	bh=fb3ltD1vFllP7tSX+N4nWQq5eEFtKPqsEKUgZnDzxXk=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=DHtz8oTGQriWeVFl2Wc3hjLcJ/gVAALJGzQeK9BRbmmfWyDpsyAI2i+miJtJMFrNd6sXw9trG8FN5Mhhx1qYYkyw3uAX1nr4aMmc2/DrGGPa3TyNhT5Q2a9vgZWXHQ9Mb8jTXkytsdVEEWkNdL7bu3XqM/4mlugx4cctrrE58VI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=MCtjoS4E; arc=fail smtp.client-ip=52.101.69.26
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pbO2RHD69mPotCkYr96zWxe8XAmP8HzG9OtKL9Km8GLCUVH6U52YTNfQlDu99HjpsVcTEBP3lRy9A1e2sMzijmhySwNUKBWq+vaY7cUrQP0BqpQEYfKSk9eAIswVzg7NSEUkLdqBt1PSnD3BV+KvrOh7OZuHfUYQ6zA66zHsXOCvtMZTS6oR0wIMPqDvFYjOjpyEssiNwjZdWQ626Otn1StVGMR6wMdWn73a2e2xR7KEYcKJFdSymIuJBHNLWQeMvZ4l1WkRiUuvGU1FToPos3GgwnDNs0UREHS3TQhgvNqYarrFA4zM85cE7kSPcXUXOaoP8BXgMe7v2paRz81iLw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ljIhUU5t+sBRrrjGDmwYH3KfH9SmqHzPKtyrLBhUvwE=;
+ b=d7Usplfz5P3R2IUsYgnKtM7qmplvIRlGGV+TSPm1eyn5/c1g7cf3PsxRbDwzCIQAVjQUs2KW2C4Dw1N3HbZztNd8eSM65U4uVgoWcXnFkGFVQwwUnGXD8917a30BCWXU/d/K8YU/9QEYUIZmK1iqD7v1NxtcVsRTHyfngsJYnlv37vTx5FkrEOJBM1MQGT3UnGMRftRlPIQzpbcMAdkzz4ceHMhPVa2w+1SE9Bm7hA0T8qqBmdq3U9qzPMxXlXcKOiNXh5gIt3j+bOP6PmRFHixJTmO6cRo7jqEtgG7eequwnXNwrEY7X+zFdDlKzXTY0TbFJQkh5nPmS4jtx7oXdw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ljIhUU5t+sBRrrjGDmwYH3KfH9SmqHzPKtyrLBhUvwE=;
+ b=MCtjoS4ERMXJxp6I5RG54SjIsOlcKdM5qYvULymgnX8kMndhA3SF5zox6S+Vw4j667tREjPuSgOER6UrfqUHRm4anqFfAPFyP6yq4PCdN3DxiRABNqvPkX9fcTxe2MDQrsGOpzj+Uf9xkq9dGT3z1fr+PmANq6G1l9BDN4ta6WjR2k4y7NreZ9hLMu6D51zlqvtOGY0LbAs0FvSq3CxlSpAqgPJdOFirQZqkxCjKfSUu18Q4BwAk7D7PYFvbT9mPWobhHPJ9ebPyJgx9qiE1HCZh5a1XjRIrS9RMX9TYx4CmPTzbWEZLkO+Mi0OG9eohT01ZexlVCgE7ddKnnSfy3Q==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by VI0PR04MB10319.eurprd04.prod.outlook.com (2603:10a6:800:231::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.26; Mon, 5 Aug
+ 2024 20:14:32 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.7828.023; Mon, 5 Aug 2024
+ 20:14:32 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	imx@lists.linux.dev (open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH 1/2] arm64: dts: imx95: add DDR Perf Monitor node
+Date: Mon,  5 Aug 2024 16:14:15 -0400
+Message-Id: <20240805201416.2974996-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BY3PR04CA0013.namprd04.prod.outlook.com
+ (2603:10b6:a03:217::18) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240805101725.93947-1-herve.codina@bootlin.com> <20240805101725.93947-2-herve.codina@bootlin.com>
-In-Reply-To: <20240805101725.93947-2-herve.codina@bootlin.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Mon, 5 Aug 2024 22:13:38 +0200
-Message-ID: <CAHp75VdtFET87R9DZbz27vEeyv4K5bn7mxDCnBVdpFVJ=j6qtg@mail.gmail.com>
-Subject: Re: [PATCH v4 1/8] misc: Add support for LAN966x PCI device
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Simon Horman <horms@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Derek Kiernan <derek.kiernan@amd.com>, 
-	Dragan Cvetic <dragan.cvetic@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Lars Povlsen <lars.povlsen@microchip.com>, Steen Hegelund <Steen.Hegelund@microchip.com>, 
-	Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, 
-	Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Horatiu Vultur <horatiu.vultur@microchip.com>, Andrew Lunn <andrew@lunn.ch>, 
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
-	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>, 
-	Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VI0PR04MB10319:EE_
+X-MS-Office365-Filtering-Correlation-Id: 213367e7-efd9-4498-de31-08dcb58b37f0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|366016|7416014|376014|1800799024|38350700014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?pup45gybgnUQ69omP4oOxqMQ7EQ9Y24MkqOfwAOVVR1xlC+n6DMAaHDl9RAa?=
+ =?us-ascii?Q?tcKdsf3jjLu2TuNfFIz06LFSIxazd9isaV50Af5vQwnuKaJj4aGlySBAOHRu?=
+ =?us-ascii?Q?kr0y36pbQZvC0h99odU0ggCr4FtSgOLS/xjZVMc74iIQWBlxUa+5D+KQo41b?=
+ =?us-ascii?Q?2TE7JA+HZMCHUy6eFgLc7fqaikFVX/r+sZhM1W1QUpHk0FVnw0nGazQRuAPJ?=
+ =?us-ascii?Q?Yq6wdknLYKZux1FhGSmKdf2Xrp2zjczUgQGL75gnawR9nBdhud/dfL/VjvUF?=
+ =?us-ascii?Q?GXVaasDSrwXOgMKtmgEfuUVIrC4SJ9fMKIZ42RIibdXjQcN6i8z8um/A+h+S?=
+ =?us-ascii?Q?qjQKPWjfUUt5dicvj6/+zkYHvR/QCIqFUo8IzAlqUhclFyTvu0qXWmLyY6k9?=
+ =?us-ascii?Q?3D1pTf5ulG4YeLT3jzO/njeiGZmJhl6oXZUzBdICUiDW4czcqfdyNkkDRCOH?=
+ =?us-ascii?Q?N65LAOq0mZiqGZQwP/reFHa/1lbpnIu+kMI0mADHmMtMWXLMTh9L59oEzk1G?=
+ =?us-ascii?Q?4/j87hpKdI8XXaG2bkT4SujE7IidmZ5Q5XpMGBIVk3K58+iS9egOGKGtPV94?=
+ =?us-ascii?Q?Mq+78NfDMxzdOws5JosQbTRl2vAM+1TMWn9Cy/j89uFdj1nzRr5ft/VXTIBX?=
+ =?us-ascii?Q?cWcVN052bcYMsVGOErMT98mK6k1Ah9leNQNBHK14dXwBsk5rmt1hzDbJZQGV?=
+ =?us-ascii?Q?eK6pEZob6o2PyTpi4ZJDPD7BywGHOor4BNSom0j3Y8cJzjd0WbcOEJEIXvdm?=
+ =?us-ascii?Q?npmhSK9o6ROb9gumhrkHY/X9nlbjQTKt9xEZpAfeLPg5hmxAQJLDZHk5aes6?=
+ =?us-ascii?Q?rmddwgBxu8RVTnGXjY6BnA/a78LD/7mMhdk5bysZRDS7voqAbCLpDp/HVRxv?=
+ =?us-ascii?Q?lE/5+ZBLOO6Wgemy6XV8dnZbt9uo3aZoA1fgmF7SZhcc6Ua8nnnjtrjJ7hSF?=
+ =?us-ascii?Q?46o3qSeSa7aJUwPIKix088mwDij5odyM78rulRwuRjFltnUyOiFGZ/73rHt6?=
+ =?us-ascii?Q?tuh4yVvzwyP1XHCRcgiLLpfWyfV9+hP6+kk1oj1pMYaQYn4EkSivt2/wAcGh?=
+ =?us-ascii?Q?eYfhxODqgc1+JscqWZt7FHyDI/Zh1PjCrx7PX+YF9Kgmo8t699uRSrzWzc91?=
+ =?us-ascii?Q?vnr03QuBVQIiU+zxkCmW8AiIA2+xWIxHaBfgLata6g9Kr9d6E085d+pJhBzS?=
+ =?us-ascii?Q?gf6tkR75338YE9KOJGLrHvzb1fcQshGr5S8qWPZtWZJmujOTyZLP8Qc2wQhG?=
+ =?us-ascii?Q?LCpltXKjzysb5Ix73OImYZIog7owNmOcfWbDsOvQ/9581aopNSrXXV4lqfAb?=
+ =?us-ascii?Q?AFauiYN52IRAmRPZydXJhzU//zW8VhdrTdEpbo00p9t+5lpKoaIOmBXNLDo7?=
+ =?us-ascii?Q?I6g1HW0xlN5DDqO6HbDx/bK6tZD5SYk3GqXWwBzA4Qsiz92YXuBN5fNbsGsL?=
+ =?us-ascii?Q?0Rb/uPjm/Qk=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(366016)(7416014)(376014)(1800799024)(38350700014)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?DB+SFW0DM59DfskDt+fzu94b2NA/3KIxWoLmm7V8K2kgy8d00ZiwqYL3G0DT?=
+ =?us-ascii?Q?jx+3KoYUFQ0rbfIQag8rDsOOus+qIJuxmJQzFhDA/M5gQsq8cpO1F/tXo4r2?=
+ =?us-ascii?Q?sIUUK2QP3HId98GzTRV9nyUaVdFv62iI0BnPUT9i9F+U+fIYpECSY4S2nNCi?=
+ =?us-ascii?Q?5me+VSDoFF9wdHIDx1WjnBSFBUCcweBuxjOVcH8sk4DvDTaodas0kWaN/3TW?=
+ =?us-ascii?Q?dPmjRrR8ZPWZoV9i73gEXmO0Y/6C6OR8Sk/G50wfE1/zAvLucesNAXHoyPR/?=
+ =?us-ascii?Q?afzlPz4aHP/Rk2zpS9ToVMhMhshwfjyUVRTDRYGcPjUm9JJuq3a+bQB5YV/D?=
+ =?us-ascii?Q?TzEftbKatXiwhBx1IA7Y6WP/HSDUA5ktzAf53ePRnXbLDRW9zfwee8ks6cMS?=
+ =?us-ascii?Q?GAKLm0pvg63ZOreTADi7APv/5+3CNQZz6Jw5sHrWW5VvWR/E2hmhWklRWVde?=
+ =?us-ascii?Q?vYbhrs1mOoTFXaAlf1ZBZ7yF6bQJYpKqcsXezzLKQ1vDsKtuViEhiW+PnyXg?=
+ =?us-ascii?Q?XeFOE5MDRQORBdhX3nkz4139QIArQiJypa2c3ihvm3SxsY9D8eR7IltjFDRJ?=
+ =?us-ascii?Q?nhgkTec5Vctqmegmfj0rdw+Qmd0Ii4NDtNSz6btzwVzrjcsGo0qNXuQPJwV3?=
+ =?us-ascii?Q?DAsNPzq31LN52aQFtswlcqOIoOE/l4UGZMrzBcNFob8J9kbZkze4s4AM8IIy?=
+ =?us-ascii?Q?tADc9jwuH/IhfIeWo6Cwq3LUY7OZRgUCettgcftWjUkb+kxJ9SZa1a57oq+j?=
+ =?us-ascii?Q?MBIlt5/wf55e5sjBt/+nCY0mcXrrNKAjzx3UMbcvvCJsfVQdTSfarmonbh8U?=
+ =?us-ascii?Q?2EoKVMp56kiHNIGhHeSVHygA/Hc0iIePaYwOfZO2bNItzRy8wTlIT8caly8z?=
+ =?us-ascii?Q?75G9ndXIJB7XSwIGpIbVUiYCekmeZjjz+lclClqvzl4odKp1tGX6LDoi4DRP?=
+ =?us-ascii?Q?yKWw//U084hW3ZeXXk3v5lYi48JWYnHTfoZRUt74ElwpmHC3nAW6f81C95D5?=
+ =?us-ascii?Q?DnJE7GG3rlL3I2WWSVQs0t5liTHUUCBuSg5MFH/BjRflnYAs/HAD4+CCnfsH?=
+ =?us-ascii?Q?0B2WTzPRcKi9Z6jb5NTWcFv0V3VKFxkOncPVeACRsAph0Ghu3NslHDyyQydc?=
+ =?us-ascii?Q?zX3dIK00n32FprRTnxhxcD2OgoIfY0D2kGMWCCPR4TWnWDGDIj9AdKm8PCUt?=
+ =?us-ascii?Q?qP3KRbgpb3rZgPmd8FAanoECClAgm0WOXbogt/HMJFwjD7xhIpWaeF4ZEHx5?=
+ =?us-ascii?Q?GgzB/FoIhzxygtBQx68EMwVknlbp4QpraA3kwdef/IT2LGivXlT3odly592i?=
+ =?us-ascii?Q?0zGRcQhkA5gJXwn/Rsc5Zyou6m0gm1pSRXkfcUWWvGQ2rwHeWHD378BJ2xPS?=
+ =?us-ascii?Q?1yPNoIibefDqnpAWYqv1y8XLyf7ActxCoOOhcPm7jkbdwfS1ZN3gOs98Q/PN?=
+ =?us-ascii?Q?BAvMvnHXG3YPGbuN+owhR2o47m0XBt/Fo5V70JwbgYZxSgO719uQR4pyYUw7?=
+ =?us-ascii?Q?246eUMTYh1L1o5+++WEsH+dB1W9EGwTJMHcVV7h46YBB+O3ZCtWKDo+xywEj?=
+ =?us-ascii?Q?fq+ZUxrDq9t/7jxuPgY=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 213367e7-efd9-4498-de31-08dcb58b37f0
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2024 20:14:32.6303
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LYJlPmq6a31NbN5Si2IOrW7mx4PYEDPrx4ULwcLGKiw5vnuHG8vWsu+iJHZ0veQ/3iWW52UkPMjp8o3h45fh4g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10319
 
-On Mon, Aug 5, 2024 at 12:19=E2=80=AFPM Herve Codina <herve.codina@bootlin.=
-com> wrote:
->
-> Add a PCI driver that handles the LAN966x PCI device using a device-tree
-> overlay. This overlay is applied to the PCI device DT node and allows to
-> describe components that are present in the device.
->
-> The memory from the device-tree is remapped to the BAR memory thanks to
-> "ranges" properties computed at runtime by the PCI core during the PCI
-> enumeration.
->
-> The PCI device itself acts as an interrupt controller and is used as the
-> parent of the internal LAN966x interrupt controller to route the
-> interrupts to the assigned PCI INTx interrupt.
+From: Xu Yang <xu.yang_2@nxp.com>
 
-...
+Add DDR Perf Monitor for i.MX95.
 
-+ device.h
+Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+Reviewed-by: Peng Fan <peng.fan@nxp.com>
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/imx95.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-> +#include <linux/irq.h>
-> +#include <linux/irqdomain.h>
-> +#include <linux/module.h>
-> +#include <linux/of_platform.h>
+diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
+index 217565c960bba..d25465c947822 100644
+--- a/arch/arm64/boot/dts/freescale/imx95.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
+@@ -1555,5 +1555,11 @@ sai2: sai@4c880000 {
+ 			dma-names = "rx", "tx";
+ 			status = "disabled";
+ 		};
++
++		ddr-pmu@4e090dc0 {
++			compatible = "fsl,imx95-ddr-pmu", "fsl,imx93-ddr-pmu";
++			reg = <0x0 0x4e090dc0 0x0 0x200>;
++			interrupts = <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>;
++		};
+ 	};
+ };
+-- 
+2.34.1
 
-> +#include <linux/pci.h>
-
-> +#include <linux/pci_ids.h>
-
-AFAIU pci_ids..h is guaranteed to be included by pci.h, but having it
-here explicitly doesn't make it worse, so up to you.
-
-> +#include <linux/slab.h>
-
-...
-
-> +static irqreturn_t pci_dev_irq_handler(int irq, void *data)
-> +{
-> +       struct pci_dev_intr_ctrl *intr_ctrl =3D data;
-> +       int ret;
-> +
-> +       ret =3D generic_handle_domain_irq(intr_ctrl->irq_domain, 0);
-> +       return IRQ_RETVAL(!ret);
-
-Hmm... I dunno if it was me who suggested IRQ_RETVAL() here, but it
-usually makes sense for the cases where ret is not inverted.
-
-Perhaps
-
-  if (ret)
-    return NONE;
-  return HANDLED;
-
-is slightly better in this case?
-
-> +}
-
-...
-
-> +static struct pci_dev_intr_ctrl *pci_dev_create_intr_ctrl(struct pci_dev=
- *pdev)
-> +{
-> +       struct pci_dev_intr_ctrl *intr_ctrl;
-> +       struct fwnode_handle *fwnode;
-> +       int ret;
-
-> +       if (!pdev->irq)
-> +               return ERR_PTR(-EOPNOTSUPP);
-
-Before even trying to get it via APIs? (see below as well)
-Also, when is it possible to have 0 here?
-
-> +       fwnode =3D dev_fwnode(&pdev->dev);
-> +       if (!fwnode)
-> +               return ERR_PTR(-ENODEV);
-> +
-> +       intr_ctrl =3D kmalloc(sizeof(*intr_ctrl), GFP_KERNEL);
-
-Hmm... Why not use __free()?
-
-> +       if (!intr_ctrl)
-> +               return ERR_PTR(-ENOMEM);
-> +
-> +       intr_ctrl->pci_dev =3D pdev;
-> +
-> +       intr_ctrl->irq_domain =3D irq_domain_create_linear(fwnode, 1, &pc=
-i_dev_irq_domain_ops,
-> +                                                        intr_ctrl);
-> +       if (!intr_ctrl->irq_domain) {
-> +               pci_err(pdev, "Failed to create irqdomain\n");
-> +               ret =3D -ENOMEM;
-> +               goto err_free_intr_ctrl;
-> +       }
-
-> +       ret =3D pci_alloc_irq_vectors(pdev, 1, 1, PCI_IRQ_INTX);
-> +       if (ret < 0) {
-> +               pci_err(pdev, "Unable alloc irq vector (%d)\n", ret);
-> +               goto err_remove_domain;
-> +       }
-
-I am wondering if you even need this in case you want solely INTx.
-
-> +       intr_ctrl->irq =3D pci_irq_vector(pdev, 0);
-
-Don't remember documentation by heart for this, but the implementation
-suggests that it can be called without the above for retrieving INTx.
-
-> +       ret =3D request_irq(intr_ctrl->irq, pci_dev_irq_handler, IRQF_SHA=
-RED,
-> +                         dev_name(&pdev->dev), intr_ctrl);
-
-pci_name() ? (IIRC the macro name)
-
-> +       if (ret) {
-> +               pci_err(pdev, "Unable to request irq %d (%d)\n", intr_ctr=
-l->irq, ret);
-> +               goto err_free_irq_vector;
-> +       }
-> +
-> +       return intr_ctrl;
-> +
-> +err_free_irq_vector:
-> +       pci_free_irq_vectors(pdev);
-> +err_remove_domain:
-> +       irq_domain_remove(intr_ctrl->irq_domain);
-> +err_free_intr_ctrl:
-> +       kfree(intr_ctrl);
-> +       return ERR_PTR(ret);
-> +}
-
-...
-
-> +static void devm_pci_dev_remove_intr_ctrl(void *data)
-> +{
-
-> +       struct pci_dev_intr_ctrl *intr_ctrl =3D data;
-
-It can be eliminated
-
-static void devm_pci_...(void *intr_ctrl)
-
-> +       pci_dev_remove_intr_ctrl(intr_ctrl);
-> +}
-
-...
-
-> +static int lan966x_pci_load_overlay(struct lan966x_pci *data)
-> +{
-> +       u32 dtbo_size =3D __dtbo_lan966x_pci_end - __dtbo_lan966x_pci_beg=
-in;
-> +       void *dtbo_start =3D __dtbo_lan966x_pci_begin;
-> +       int ret;
-> +
-> +       ret =3D of_overlay_fdt_apply(dtbo_start, dtbo_size, &data->ovcs_i=
-d, dev_of_node(data->dev));
-> +       if (ret)
-> +               return ret;
-> +
-> +       return 0;
-
-return of_overlay_fdt_apply() ?
-
-> +}
-
-...
-
-> +static int lan966x_pci_probe(struct pci_dev *pdev, const struct pci_devi=
-ce_id *id)
-> +{
-> +       struct device *dev =3D &pdev->dev;
-> +       struct lan966x_pci *data;
-> +       int ret;
-> +
-> +       /*
-> +        * On ACPI system, fwnode can point to the ACPI node.
-> +        * This driver needs an of_node to be used as the device-tree ove=
-rlay
-> +        * target. This of_node should be set by the PCI core if it succe=
-eds in
-> +        * creating it (CONFIG_PCI_DYNAMIC_OF_NODES feature).
-> +        * Check here for the validity of this of_node.
-> +        */
-> +       if (!dev_of_node(dev)) {
-
-> +               dev_err(dev, "Missing of_node for device\n");
-> +               return -EINVAL;
-
-return dev_err_probe() ?
-
-> +       }
-> +
-> +       /* Need to be done before devm_pci_dev_create_intr_ctrl.
-> +        * It allocates an IRQ and so pdev->irq is updated.
-> +        */
-> +       ret =3D pcim_enable_device(pdev);
-> +       if (ret)
-> +               return ret;
-> +
-> +       ret =3D devm_pci_dev_create_intr_ctrl(pdev);
-> +       if (ret)
-> +               return ret;
-> +
-> +       data =3D devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-> +       if (!data)
-> +               return -ENOMEM;
-> +
-> +       pci_set_drvdata(pdev, data);
-> +       data->dev =3D dev;
-> +
-> +       ret =3D lan966x_pci_load_overlay(data);
-> +       if (ret)
-> +               return ret;
-> +
-> +       pci_set_master(pdev);
-> +
-> +       ret =3D of_platform_default_populate(dev_of_node(dev), NULL, dev)=
-;
-> +       if (ret)
-> +               goto err_unload_overlay;
-> +
-> +       return 0;
-> +
-> +err_unload_overlay:
-> +       lan966x_pci_unload_overlay(data);
-> +       return ret;
-> +}
-
-...
-
-> +#include <dt-bindings/clock/microchip,lan966x.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/mfd/atmel-flexcom.h>
-> +#include <dt-bindings/phy/phy-lan966x-serdes.h>
-
-> +#include <dt-bindings/gpio/gpio.h>
-
-Alphabetical order?
-
---=20
-With Best Regards,
-Andy Shevchenko
 
