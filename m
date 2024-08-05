@@ -1,98 +1,127 @@
-Return-Path: <devicetree+bounces-91123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C55DD947F4C
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 18:25:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB55C947F58
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 18:29:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 786A71F232FA
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 16:25:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86FA1283752
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 16:29:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D31B15E5C0;
-	Mon,  5 Aug 2024 16:25:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C202415C13D;
+	Mon,  5 Aug 2024 16:29:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GDhA+0oy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Nfn2YjAf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25DF5156C74;
-	Mon,  5 Aug 2024 16:25:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23F931547E7;
+	Mon,  5 Aug 2024 16:29:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722875111; cv=none; b=KCsIQb5fGMM9KQzKtVek7v9j5zp+7Q+KZIlXCBdNEGLM9GPxOTCmVHHg1rjV1WTzSYFAB+xiqJuZN9aLsED66+rrhgoAMmw4rU8I8ZLMzzAUKjgfLF3W4Mm41dDZNuaUD5zB6xyhiG5f0jmwTOmRC5kIbY01NNEb0vFdbOd03+Q=
+	t=1722875392; cv=none; b=Qmyl87gavYYv4IfN9KDEBczxV6GigFIhmeNRvh8+NuUdjzbmJEO6fcN+z5k+rCbq3hYk/kQLOGqtH/8LA3LGaAKkQn66XiMaGrTGnibh5Ts5opJF1dWgD6cLRjPGOQ28L4FDd3MF8Z5scmxaOHLAKt/xGAPUjMlvJWlTlxwMa2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722875111; c=relaxed/simple;
-	bh=zbN7KVijszQ1S5hPulI5G2cAOfeTI15A4gHSS9o6zoc=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=ftTEZymRdft6wntAh3Cd32iphvwk6eoHfJTq+7BD/XjZPh1xSKgbGQ2XuW2lXn+GEufbGO82LH6h7cYoc6E884m2MVUcetuutqnmp2u502KMqTLVdV+Gj4UUFyoIdkPLwXlfi3KJfBrigoCPyWroYKvennJ7/2ngNsPObgwM6os=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GDhA+0oy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E788FC32782;
-	Mon,  5 Aug 2024 16:25:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722875109;
-	bh=zbN7KVijszQ1S5hPulI5G2cAOfeTI15A4gHSS9o6zoc=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=GDhA+0oy7dmVAqooLzpx75FrWIZ86ZsUPeAHEKk4vFckpdf1AWNhNCB8poPpSJCBa
-	 6HPWSyJGI89mOcLXdpiUgRhnrLMTIU4nC8t/ofWGJZXKL4ct/PE5d6E8VA6m2vBlnG
-	 4TyiHhxN8QkIpuyLaEwBaZ54naGdFn4MRvLbGfCILmGJANq+nXlv5yxTAHPmfrgMqe
-	 hUzVOMwPtV/eMREmqvz7Hxaq7TKmx/2zOorqSSdclUwJzTwIjtHEDKFguC4OvEHvBQ
-	 qayHackhNfaS5qn1jRNO0wcyQ93Qg5jsA6HCrThZRiMPyHeoN5Zz7OY/nmPhrGRVXo
-	 u2KcG0Q/7ylpw==
-From: Vinod Koul <vkoul@kernel.org>
-To: Kishon Vijay Abraham I <kishon@kernel.org>, 
- Heiko Stuebner <heiko@sntech.de>, Algea Cao <algea.cao@rock-chips.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: kernel@collabora.com, linux-phy@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20240620-rk3588-hdmiphy-clkprov-v2-0-6a2d2164e508@collabora.com>
-References: <20240620-rk3588-hdmiphy-clkprov-v2-0-6a2d2164e508@collabora.com>
-Subject: Re: [PATCH v2 0/4] Add clock provider support to Rockchip RK3588
- HDMI TX PHY
-Message-Id: <172287510559.465699.10935386894693742033.b4-ty@kernel.org>
-Date: Mon, 05 Aug 2024 21:55:05 +0530
+	s=arc-20240116; t=1722875392; c=relaxed/simple;
+	bh=6n/BwWmHz9HA2C5pVuIOjFzS5AarAtnThowihIImGDU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=D6J3BmCP90hz8jWP+z7H1TpHZqrqOtgZPy+Wj4O8V7Syi8WtYJynVuVN5ALrgYhVNNr05oCHJUMNh3vq2OWDFtm0YCDJbdULQU7O87Ow3Qv1ZhJIHYiudNS6KtqZg88xcmZc+2Fh8Cqq3TE/1spQiUCJBaFNvMLvQL4A0Xe7ehU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Nfn2YjAf; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-428163f7635so73093325e9.2;
+        Mon, 05 Aug 2024 09:29:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722875389; x=1723480189; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=xjftlkl7OYf9Fw0jolvYbmlsp2ciqav+eg1pwXlyjI0=;
+        b=Nfn2YjAf/xiZpoh3NYiOJEHQOhJsoCsaXk52ZQuCdDfL2mVMvF4hsKQ67RxtFHyXhl
+         TkarTGwR899OHUhY3Ue1g00XRz0REscWErhy3yUmKS46pOKZUZJzq3R/PSFa0K2QEyXM
+         VbEQRC/YBZgLdOmQKLtiRpgDH6L96jHheiv5u6wRg1QwHDmn+rzwP1e7GaSceospIcz3
+         JQCk5X+jhgz+aPybOhaS3COk4i/l2TlQc6veLecbDmVC0PFZ2SG2yaRr05zZRUH8HW2J
+         Thn8EvrCEob5GymMAvwA7Ro+JsitHiorX6zoD/AXe4fS5xefGbuj8O2HPBMpDJo0W3QE
+         8DVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722875389; x=1723480189;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xjftlkl7OYf9Fw0jolvYbmlsp2ciqav+eg1pwXlyjI0=;
+        b=tAiAuDzI/5nUXB8Th2Nje7mvsmxn0S9fU/wmYQV9NabplFOAWLXUzCnE+s3z45FvM/
+         vm88t1Az+uwWQNQYaG05jEsnrHN3scSwKws7Mj4fndXcOV0T9EJDCcC4TrkuyYAp8zG0
+         dvGUh2W/6HSWGzJ3W5W2aCRJIPNfv07f4vhw8UlQ+IYIHto5K7aR+lcbdXXx90eukb1l
+         HhFnbl8PRbLMmxwuCcz2mqk+IgGOeQnPZtJmLdp3Y31tROs3nBdDGeJUgOYXC6EyVjh6
+         WdBZzjVDhG1JR8D7ZoUXIfWj3aJZpttBp09bzFFkqAkJLs8wgDvKvvppWuyYlrJDOIGQ
+         +mbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWRtEwAg+DwymoOss/mgVtQy2BVM5sP2TT8P9i1w4HUKcaQRwVyXtYkRrGtGQE0UxI0R8quE1jDtU83MLB9HUcF/bv+LCb0dwhVZnNmEcQNmt7o+9i98aPnDnTN1mJSalrtL7XjgwXa6g==
+X-Gm-Message-State: AOJu0Yxu/KMUw8kxeEAzgKRbPvmNOoTZKJAD42I1XpcpZZYkWGKzclWX
+	MIY4uQPBJiguiuO86tUYdFaKQnNbX5cMyKWtrt8Jqe/CadezItDf
+X-Google-Smtp-Source: AGHT+IGm2oABU+/DoYvpiLxfEo0XxrOcLmJErMbEk53pWTeHuE/FeDxvo5Yg9Q8fYC8DwCsBVnuT1Q==
+X-Received: by 2002:a05:600c:524f:b0:428:14b6:ce32 with SMTP id 5b1f17b1804b1-428e6aefb96mr78268625e9.9.1722875389065;
+        Mon, 05 Aug 2024 09:29:49 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4282b89aa4bsm207187865e9.7.2024.08.05.09.29.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Aug 2024 09:29:48 -0700 (PDT)
+Date: Mon, 5 Aug 2024 18:29:46 +0200
+From: Stanislav Jakubek <stano.jakubek@gmail.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Baolin Wang <baolin.wang7@gmail.com>, Orson Zhai <orsonzhai@gmail.com>,
+	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>
+Subject: Re: [PATCH v2 0/4] Cleanup Spreadtum/Unisoc ARM64 DT
+Message-ID: <ZrD9+oJW1icQlphq@standask-GA-A55M-S2HP>
+References: <cover.1722842066.git.stano.jakubek@gmail.com>
+ <172286967300.2710789.8114229281680847298.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <172286967300.2710789.8114229281680847298.robh@kernel.org>
 
+Hi all,
 
-On Thu, 20 Jun 2024 03:36:21 +0300, Cristian Ciocaltea wrote:
-> The HDMI PHY PLL can be used as an alternative clock source to RK3588
-> SoC CRU. Since it provides more accurate clock rates, it can be used by
-> VOP2 to improve display modes handling, such as supporting non-integer
-> refresh rates.
+On Mon, Aug 05, 2024 at 09:00:20AM -0600, Rob Herring (Arm) wrote:
 > 
-> The first two patches in the series provide a couple of fixes and
-> improvements to the existing HDPTX PHY driver, while the next two add
-> the necessary changes to support the clock provider functionality.
+[snip]
 > 
-> [...]
+> New warnings running 'make CHECK_DTBS=y sprd/sc9836-openphone.dtb sprd/sp9860g-1h10.dtb' for cover.1722842066.git.stano.jakubek@gmail.com:
+> 
+> arch/arm64/boot/dts/sprd/sp9860g-1h10.dtb: fuel-gauge@a00: 'battery-detect-gpios' is a required property
+> 	from schema $id: http://devicetree.org/schemas/power/supply/sc27xx-fg.yaml#
 
-Applied, thanks!
+This is a straigtforward fix, the sc2731.dtsi has ...-gpio instead of ...-gpios
+I can fix this in another patch, I'd like to get this series merged first.
 
-[1/4] phy: phy-rockchip-samsung-hdptx: Explicitly include pm_runtime.h
-      commit: 1b369ff94bc36d2e16c8a91c0ea8ebd329555976
-[2/4] phy: phy-rockchip-samsung-hdptx: Enable runtime PM at PHY core level
-      commit: 10ba8479f460e9256f7d884dc1b7d89006a89c7b
-[3/4] dt-bindings: phy: rockchip,rk3588-hdptx-phy: Add #clock-cells
-      commit: a652f2210054276990d45626a3b9ad5c99465f5a
-[4/4] phy: phy-rockchip-samsung-hdptx: Add clock provider support
-      commit: c4b09c562086f32588d962d30d0b7e93fe3e7cbb
+> arch/arm64/boot/dts/sprd/sp9860g-1h10.dtb: fuel-gauge@a00: 'sprd,calib-resistance-micro-ohms' is a required property
+> 	from schema $id: http://devicetree.org/schemas/power/supply/sc27xx-fg.yaml#
 
-Best regards,
--- 
-Vinod Koul <vkoul@kernel.org>
+SPRD folks will have to chime in here as I do not have the board or any
+other source of information about it, so I cannot add this property.
 
+> arch/arm64/boot/dts/sprd/sp9860g-1h10.dtb: fuel-gauge@a00: 'bat-detect-gpio', 'interrupt-parent', 'interrupts' do not match any of the regexes: 'pinctrl-[0-9]+'
+> 	from schema $id: http://devicetree.org/schemas/power/supply/sc27xx-fg.yaml#
+
+Looking at the driver, it seems to me that the interrupts are required, and
+thus should be added to the bindings. I can send a patch.
+
+Looking at the sc2731-fgu dtsi again, it seems like there's some further
+fixes/improvements that could be made (disable by default, move the
+monitored-battery to board DTS, etc.).
+
+Either way, this series should be good to go.
+
+Thanks,
+Stanislav
 
