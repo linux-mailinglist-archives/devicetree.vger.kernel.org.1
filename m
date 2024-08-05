@@ -1,107 +1,190 @@
-Return-Path: <devicetree+bounces-90988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBB9B9475E8
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 09:21:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BA039475EC
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 09:22:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B7251F21281
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 07:21:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95E7FB2145F
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 07:22:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBB23146A6F;
-	Mon,  5 Aug 2024 07:21:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F100146A6F;
+	Mon,  5 Aug 2024 07:22:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e+0t+A2N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GrfMdLxb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 271384D8B6
-	for <devicetree@vger.kernel.org>; Mon,  5 Aug 2024 07:21:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3B314D8B6;
+	Mon,  5 Aug 2024 07:22:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722842495; cv=none; b=lPrBzzyiKj8IqVvlWoyEsamBXAFDeIcSaN1kWl9wsZoqnfikUPT1F65RwdUmJJjeon1difTCrEFKTZJG1d7YN1PwxCVTh7kIm+XJJoLs3Olqe/mIs9ODn+nihRHYHo9IwotPrgKoMXkMLDZ/z5lTpYpPf69Hw3AvUzgn98y0nuk=
+	t=1722842548; cv=none; b=roFQsObWhg8k53BXQo9VlSD0jzkEFjWZXfhjDPEZ7y2IQ8wYUIlTl310DlDIRyXrvTb+OBGXxqVc3/uV5ZSsJ3cNds5KNnL+93KRE6B4YQZ+RaVeeOcXanPMGhiQDZ7C5r4sfkJ9q9+osbnlsf/dVwjrd2Yl/a37FAUOx+V1m7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722842495; c=relaxed/simple;
-	bh=tS2g0BDeznlfL8i/Fq7iBg8VhJey/mK8KgkqhdVLk2c=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RSgxFtZBroGX4Q/QEMfolc1JDQHrDdD+277kQWM3IrrWdO5bOCnsNsp/VS6SsfjEBb9ZxepET/JoEzPssn3Lb584XCmsd4fYlsWXEKXWEOKW0k5t+EWWSoMDKTu5G5kQx8fHbtaz103VSS09wmPcwDrOYaPST9JwLGnxvLIe9rI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=e+0t+A2N; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2ef7fef3ccfso117071561fa.3
-        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2024 00:21:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722842492; x=1723447292; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tS2g0BDeznlfL8i/Fq7iBg8VhJey/mK8KgkqhdVLk2c=;
-        b=e+0t+A2NIk5zsbEqAWM7+vrJkL47Dy+/rWFsDsBAu0Ynqd3JK4FkeqEAMODYe8/GVC
-         +2zEORPcV0XS056TyRh6pF2ZTb5RGuWSQMTXVFBqdmH5zeoEzeO9SobYRXliMt2WvH+0
-         W5H7/Sxdv6tdpkTz96fl2faas1RhE//IMmbgI51nyxfnGuaq9NDdAcKSqGjnz7R+B67v
-         oSapx9+lcf59M7/xDb2NwdNq8ruXcMT/UtNAkL/Fl4gGWDPRmUGSxktENG38OUPyV1CJ
-         ZA+TuBMeAST5g8lIggrAjIZqaR5KpMwknTUhKZhBeIN66FvXJBk4C7uMpgE7M86RutVf
-         ktTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722842492; x=1723447292;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tS2g0BDeznlfL8i/Fq7iBg8VhJey/mK8KgkqhdVLk2c=;
-        b=HkoQcylHTA5g+vQr0hqeVAFzarl+HerPYgnHzO7GS+KD579zhDSJGBglV3uyYu+r5X
-         K47cMW7Jyu3uLEHCcBku+9VXcbtgOxXJg4WDCj3BGN7h09tazF7dmks5q6D/E+DA7owx
-         w1JHNy/ExhfpmFz2AjR8FRbAr99Dwya1Xv1g1VrumwHHXEBsIEDGjp8Eu+PWxZSeSAhj
-         yvupDPbnezlKxnuaVeJL7Q7ndgwjO615IUmkyxwqep4gGOlW6n/avTcXqtKkt4EYD6Tx
-         j9mcCZnLdPL5tMObA1RAUeAPS9+sU/62AS4KDnn6kBYIgHG1ypFaBeoVzVFSPT4QHw3A
-         nx7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVYA+lMVtZE12Zy3lpYPAJSz9QR/mIMRbqh+AA9Rhcng7+XjlWxiZ5LI4Um+lae6r7ofiJ0nS2s7zgB5r8W/jz2XMkyLOTAULLSYA==
-X-Gm-Message-State: AOJu0YwuERR24rJ2Cm+50eQDctaROOmKrBFtEGjSNHPGjJaDP4gsLC9o
-	r7I6BW7aCdIFF7aj6fqJ3/tjp8C/zZGF1FAqpMYgaOsp0SIGKSPaZCYISk9TZQZ3LJgwNGqemQY
-	0lsCY5sFyuEqotvk5jRPpOjQRCd5JNlcXo095wA==
-X-Google-Smtp-Source: AGHT+IGaH2vxgMDkGFZUdIcxkBf0Ibf+rUGckbmfezHuVu51UfosuHDJtepAGGc5a9SNngpjBAKhdPsQUb6JWRvtMyQ=
-X-Received: by 2002:a2e:9794:0:b0:2ef:29f3:c9ee with SMTP id
- 38308e7fff4ca-2f15aafdcdamr67657951fa.35.1722842492103; Mon, 05 Aug 2024
- 00:21:32 -0700 (PDT)
+	s=arc-20240116; t=1722842548; c=relaxed/simple;
+	bh=gkzU71gwV9NOWBEDhdykWzyAwPSJx6HCNBlYUDmMQ4k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nLSMM6VQVIG9F5hkBhhbfOEokkhxqhV7dTQBKxGdBUXtDeY7TireclW0crmbXaA/5R9UttqqgziMMzxfk29bv83csj8dGcQKB6gf7CaV/K1xvfiNWLutZ7AokzK2w85rpHnElcqrGLjVEQyY+V+fCtmDG9UpbxrcCibHZ2/ROhw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GrfMdLxb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8BECC4AF0D;
+	Mon,  5 Aug 2024 07:22:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722842547;
+	bh=gkzU71gwV9NOWBEDhdykWzyAwPSJx6HCNBlYUDmMQ4k=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=GrfMdLxbUWEzrOxUZrAMduOAYLiUS+Q95Ab9qziw+lcD+cidKYOCo+lowJyBx70T9
+	 KAehLRGEYjZM9d6vS0p6JKS3m82oi/wvdnya/Z4XinGd8Hc4UKut2f32j1HSvDzXrd
+	 +hO8ZAg9/t8rkFLhlMvFhO9apl9X5b2Pezs+o34xTWD+CJzRcT3xLjfz6NTDKek/eU
+	 sVbYieHAiHSOp9eXnhB4IYmaJ4TUnh1DUv/k+jFzm7vZdi1vvwxDS/9ppuRDV9Dlhb
+	 jeOPNFmV0sgYpYWP/a51srYgnaZmvGX8b7OMfnF0kR8qywamk+3N9g1o/CjChhwGEl
+	 tqD5Faf6E1dXA==
+Message-ID: <0e1b0f11-152e-402c-97ea-788c7830267f@kernel.org>
+Date: Mon, 5 Aug 2024 09:22:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240709092354.191643-1-manikandan.m@microchip.com>
- <20240709092354.191643-5-manikandan.m@microchip.com> <172052434347.27822.16864713604407945517.b4-ty@linaro.org>
- <20240709155410.GA3589336-robh@kernel.org> <CAMRc=McwTgOjQrNtSVORWFS92tJA_G=26x-8E6U+=4qW0d6OWQ@mail.gmail.com>
-In-Reply-To: <CAMRc=McwTgOjQrNtSVORWFS92tJA_G=26x-8E6U+=4qW0d6OWQ@mail.gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 5 Aug 2024 09:21:21 +0200
-Message-ID: <CACRpkdaCb+GOG8W4gEqPYifXdAU9pxyOs1rPz9Gbpee+DUV-_g@mail.gmail.com>
-Subject: Re: [PATCH v3 4/5] dt-bindings: gpio: convert Atmel GPIO to json-schema
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Rob Herring <robh@kernel.org>, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, 
-	claudiu.beznea@tuxon.dev, arnd@arndb.de, durai.manickamkr@microchip.com, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Manikandan Muralidharan <manikandan.m@microchip.com>, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] dt-bindings: phy: imx8mq-usb: add compatible
+ "fsl,imx95-usb-phy"
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, festevam@gmail.com, gregkh@linuxfoundation.org,
+ Frank.Li@nxp.com, jun.li@nxp.com, l.stach@pengutronix.de,
+ aford173@gmail.com, hongxing.zhu@nxp.com, alexander.stein@ew.tq-group.com,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-usb@vger.kernel.org
+References: <20240802091702.2057294-1-xu.yang_2@nxp.com>
+ <21557eac-44f0-451d-a194-c5d545cacbee@kernel.org>
+ <20240805070429.rqykjd3ap5swd5vl@hippo>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240805070429.rqykjd3ap5swd5vl@hippo>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jul 9, 2024 at 6:05=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.pl> =
-wrote:
+On 05/08/2024 09:04, Xu Yang wrote:
+> On Sun, Aug 04, 2024 at 04:16:34PM +0200, Krzysztof Kozlowski wrote:
+>> On 02/08/2024 11:16, Xu Yang wrote:
+>>> The usb phy in i.MX95 is compatible with i.MX8MP's, this will add a
+>>> compatible "fsl,imx95-usb-phy" for i.MX95. Also change reg maxItems
+>>> to 2 since i.MX95 needs another regmap to control Type-C Assist (TCA)
+>>> block. Since i.MX95 usb phy is able to switch SS lanes, this will also
+>>> add orientation-switch and port property to the file.
+>>>
+>>> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+>>> ---
+>>>  .../bindings/phy/fsl,imx8mq-usb-phy.yaml      | 40 +++++++++++++++++--
+>>>  1 file changed, 36 insertions(+), 4 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+>>> index dc3a3f709fea..b0a614a9556d 100644
+>>> --- a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+>>> +++ b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+>>> @@ -11,12 +11,17 @@ maintainers:
+>>>  
+>>>  properties:
+>>>    compatible:
+>>> -    enum:
+>>> -      - fsl,imx8mq-usb-phy
+>>> -      - fsl,imx8mp-usb-phy
+>>> +    oneOf:
+>>> +      - enum:
+>>> +          - fsl,imx8mq-usb-phy
+>>> +          - fsl,imx8mp-usb-phy
+>>> +      - items:
+>>> +          - const: fsl,imx95-usb-phy
+>>> +          - const: fsl,imx8mp-usb-phy
+>>>  
+>>>    reg:
+>>> -    maxItems: 1
+>>> +    minItems: 1
+>>> +    maxItems: 2
+>>>  
+>>>    "#phy-cells":
+>>>      const: 0
+>>> @@ -28,6 +33,17 @@ properties:
+>>>      items:
+>>>        - const: phy
+>>>  
+>>> +  orientation-switch:
+>>> +    description:
+>>> +      Flag the PHY as possible handler of USB Type-C orientation switching
+>>
+>> No need to duplicate definitions of properties.
+> 
+> I replace it with "orientation-switch: true".
+> 
+>>
+>>> +    type: boolean
+>>> +
+>>> +  port:
+>>> +    $ref: /schemas/graph.yaml#/properties/port
+>>> +    description:
+>>> +      A port node to link the PHY to a TypeC controller for the purpose of
+>>> +      handling orientation switching.
+>>
+>> Same here. You probably miss reference to usb-switch.
+> 
+> How about port? Should I replace it with "port: true" or
+> 
+> "port:"
+> "  $ref: /schemas/usb/usb-switch.yaml#/properties/port"
 
-> > Patch 5 depends on this one.
-> >
-> > Rob
->
-> Oops. Linus, I see you already acked it. Do you mind me taking it via
-> the GPIO tree to avoid rebasing the tree?
+You can drop both if you add ref to usb-switch and use
+unevaluatedProperties.
 
-Too late response from me, go ahead now or I can merge it if
-that is better.
+Best regards,
+Krzysztof
 
-Linus Walleij
 
