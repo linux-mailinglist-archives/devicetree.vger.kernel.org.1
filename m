@@ -1,89 +1,80 @@
-Return-Path: <devicetree+bounces-90915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23EB4947185
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 00:53:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6F1F9471DC
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 02:13:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7C0EBB20AA2
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2024 22:53:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E8A3B20A75
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 00:13:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE18913A40F;
-	Sun,  4 Aug 2024 22:52:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97A75620;
+	Mon,  5 Aug 2024 00:13:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JcaVnDiE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SBpQDztc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECFD2AD59;
-	Sun,  4 Aug 2024 22:52:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F346365;
+	Mon,  5 Aug 2024 00:13:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722811976; cv=none; b=KzMf6cRydnf5GojpVVj1OmepC0rBknnO9lCAKiZ9PYuu6ySnp83FqrYj+1B/SM93dMUbAnZbqSrPYraKUrx2efZyeBRaLE6H4Znd/KlKS1qRiobRwjksIr6TdcnkUumD58gMjBG6gWw/Y1ZTaYxpQFjoZqJRyZWLIa0kwGNo1LU=
+	t=1722816823; cv=none; b=nL6rfV+umx2dXlV4U7L+Csg1XEAjV+OIU7VmvVRmk3AwoLBaU3KKVZHpTfoO7LuH9WoTSFLfQIKhhDI8QwLIXVWxAvNwFN1jDFbZPJ69fKCwJ3vsX9hu4u9l6/hxG0UMroK3k9YRksUCV6mPTVNKCF7sNJDJprAwCcaJsFkf9To=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722811976; c=relaxed/simple;
-	bh=SC6pWjsNLdf8Ha0Xw9lyvFenqRq2ilvJTWh9TexvBZI=;
+	s=arc-20240116; t=1722816823; c=relaxed/simple;
+	bh=uVorrCAduiKeWUTyairGtco+4A+09i2uq/mFF8crB1M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FfeyCk1YK4+XArktBhuDR9Ksix8gr2i0G17JWO8irzA+7q/iSHN2WWxeP0YlRYsGtFxmUTImuDe3f1wJjbMCQGjkBo7/J3aMH4qJIaiXBEMERon6wtOkuUC9zANaJdDNJoZcdkv2KK1Egipbnoy+bDoif1O+7C9clv+D97HiAag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JcaVnDiE; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1722811975; x=1754347975;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=SC6pWjsNLdf8Ha0Xw9lyvFenqRq2ilvJTWh9TexvBZI=;
-  b=JcaVnDiE5MS6GHCNA0i9kU72mLFRV51gumxoUetixmZx9wwJNa+HykrI
-   GU9kLuc7+YJoZSzScFJAT3F73y7a3feH+56MZLJwhbLk1oPUfry2lMYUW
-   hY5QbwQG/mruI+DSm5v0FTaX9OfRPm4+gGo/OdnJ9HP3wT5fkElFVGlnb
-   o1M8fG8vhwijtwKAjg1lGIu6nXHOzss0C+ppQugQWtmlr75pjMD41ywJT
-   tlCo9rh2DUP0EMQOpgxvR34+VcVH68Azq5ssiwM+Crc9Ts7T0tU4T6WrO
-   VYQETPZ3nSPy6jIkdllA1Kts+UctKfw6EamoBsuE1dfrlSsrHwT6Rsf0x
-   A==;
-X-CSE-ConnectionGUID: 5DI9d1HdQjarMMZuevPnCA==
-X-CSE-MsgGUID: kKPb9pkWT0Gm0KSVEnTyxg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11154"; a="20922605"
-X-IronPort-AV: E=Sophos;i="6.09,263,1716274800"; 
-   d="scan'208";a="20922605"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Aug 2024 15:52:54 -0700
-X-CSE-ConnectionGUID: BjEKeAYSTFOLZIjIvaRe3A==
-X-CSE-MsgGUID: VFBeEUHhSLuwRTbWMoIdOg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,263,1716274800"; 
-   d="scan'208";a="56720569"
-Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
-  by orviesa008.jf.intel.com with ESMTP; 04 Aug 2024 15:52:49 -0700
-Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sak5h-0001dc-0C;
-	Sun, 04 Aug 2024 22:52:42 +0000
-Date: Mon, 5 Aug 2024 06:52:04 +0800
-From: kernel test robot <lkp@intel.com>
-To: Christian Marangi <ansuelsmth@gmail.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Joern Engel <joern@lazybastard.org>,
-	Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@kernel.dk>,
-	Christoph Hellwig <hch@lst.de>, Sagi Grimberg <sagi@grimberg.me>,
-	Wolfram Sang <wsa-dev@sang-engineering.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-	linux-nvme@lists.infradead.org
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v2 6/6] mtd: parser: add support for Airoha parser
-Message-ID: <202408050612.Ya1m6REu-lkp@intel.com>
-References: <20240804174414.18171-7-ansuelsmth@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=DDkW2vdxum++N+fotmjl6qHV0JhkeybEIjxkeIE8rV2h7HnbgfyCtT+L6Yue3X8Psr/Tu7mCd4J80eBur51c6VKUPv+IdVCGVXLDQG9Vy58NmBCHXk5LtVQFamcNdCVpvsj9Gk559Vrd+YJIFc8ME6ml0aqSFDgRbZ3g0w2iZEw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SBpQDztc; arc=none smtp.client-ip=209.85.160.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-260e6dfc701so6068864fac.3;
+        Sun, 04 Aug 2024 17:13:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722816821; x=1723421621; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=dkFQnqc3Vckow7kxwkifKPwvvrqP8gds2NpG6dbOj/w=;
+        b=SBpQDztcChY3yiPpL5pAWAzv60fjoOTVPgqo7erduqujOdKEs19yjt6VhybOxNgVBf
+         ej9ZYwcAJ6xynJE+kX0B34tfr+c14SBvaNNPkugXJ6Du+Lw7iszZgeXdfVg4CkOHSpfx
+         xqMPd+0Dv+8wqB2u9iKM1AcOAO0iFW5BtpXLvlTCkuFbfp4b4WwT2wNmo7RxEVw4RufS
+         0uCZgVwI4BHO1YxWVUYkfgPG+pmhQJS/4FZ+H7fGvPHIULpnorRYGHgA53SLI1FT1ed0
+         iCAzsnnwNmMDuFMkDPi8yg6s84cIHRbTQLJYNhcxVUfC0D9UzMAXM61ge4G6N7Soej3T
+         VDPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722816821; x=1723421621;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dkFQnqc3Vckow7kxwkifKPwvvrqP8gds2NpG6dbOj/w=;
+        b=qE38wqKJ6RAD3V3rfCq8cIIIbsdgrxvrfiUnZplFyKxAMybk3RKY2VpZmdQDm3FlId
+         d35XADdhFOTieOF01I4lFf9LUsINYDkCQNtSaxqdfAIY7A8RW7b11o4+YQV9f7SIkDON
+         Gui1DNljSsyRZDT/g8ktL4HRal505upgk6ODsVuROtYSduKCDyjTcyz5V+/5Dijd7eaR
+         dCbVzaXUKuVM+fgLEOyWqSXuuE/NPA4skGoMXr4TA2iNbAWKWkUUaroAAoXEGwF1PU4J
+         g7+gSpeQ+UfGtwTP3JbPIU+NTZF1CoT3XbTohD850ZKPb6ib+YzWAon0QuIlRaE5uFFU
+         YCjw==
+X-Forwarded-Encrypted: i=1; AJvYcCXWAFFJUIdBQQ9XjiJvhpX+LgTyfqESicCKKb6sDYX5iqUzkrrlWWDPtrGbG0Jt2TfwHGvkywijqFwOMGgRmoa0oqEhCMS0D6DbRvRSd/A06VCLqp+Gm7RVtrWHMrXgkCSDC24+pTLfqND/acwDwCnGh7Qsx477SIo3RvFitqaB9ZrICbvQ
+X-Gm-Message-State: AOJu0YyyvRD0mH5iD5zxQOvi4do9RDsxJ8dsShalapSWkno4FCZU7xoq
+	kPcMxh3p9je7Aw54yr0BRSG8TmsgFN1njpODtmS20fFwRjMYJJxn
+X-Google-Smtp-Source: AGHT+IEmGHyJx5myGf7MwLAWtkQsDtVYfn30W5TGhMcIZJLXT8frvmlb96JUBDtbTa/JWaAlGDbzcQ==
+X-Received: by 2002:a05:6870:a689:b0:261:679:d7f4 with SMTP id 586e51a60fabf-26891d4b1c6mr12833570fac.25.1722816821062;
+        Sun, 04 Aug 2024 17:13:41 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:22e4:17a:28a:7497])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7b7653b4be2sm3709119a12.77.2024.08.04.17.13.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 04 Aug 2024 17:13:40 -0700 (PDT)
+Date: Sun, 4 Aug 2024 17:13:37 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Felix Kaechele <felix@kaechele.ca>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] Input: edt-ft5x06 - add support for FocalTech FT8201
+Message-ID: <ZrAZMVCt5w7ls4mO@google.com>
+References: <20240804031310.331871-1-felix@kaechele.ca>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,71 +83,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240804174414.18171-7-ansuelsmth@gmail.com>
+In-Reply-To: <20240804031310.331871-1-felix@kaechele.ca>
 
-Hi Christian,
+On Sat, Aug 03, 2024 at 11:13:08PM -0400, Felix Kaechele wrote:
+> The driver supports the FT8201 chip as well. It registers up to 10 touch
+> points.
+> 
+> Tested on: Lenovo ThinkSmart View (CD-18781Y), LCM: BOE TV080WXM-LL4
+> 
+> Felix Kaechele (2):
+>   dt-bindings: input: touchscreen: edt-ft5x06: Document FT8201 support
+>   Input: edt-ft5x06 - add support for FocalTech FT8201
 
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.11-rc1 next-20240802]
-[cannot apply to mtd/mtd/next mtd/mtd/fixes]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/dt-bindings-nvme-Document-nvme-card-compatible/20240805-014740
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240804174414.18171-7-ansuelsmth%40gmail.com
-patch subject: [PATCH v2 6/6] mtd: parser: add support for Airoha parser
-config: xtensa-allyesconfig (https://download.01.org/0day-ci/archive/20240805/202408050612.Ya1m6REu-lkp@intel.com/config)
-compiler: xtensa-linux-gcc (GCC) 14.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240805/202408050612.Ya1m6REu-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408050612.Ya1m6REu-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/mtd/parsers/ofpart_airoha.c: In function 'airoha_partitions_post_parse':
-   drivers/mtd/parsers/ofpart_airoha.c:33:16: error: implicit declaration of function 'kzalloc' [-Wimplicit-function-declaration]
-      33 |         prop = kzalloc(sizeof(*prop), GFP_KERNEL);
-         |                ^~~~~~~
->> drivers/mtd/parsers/ofpart_airoha.c:33:14: error: assignment to 'struct property *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-      33 |         prop = kzalloc(sizeof(*prop), GFP_KERNEL);
-         |              ^
-
-
-vim +33 drivers/mtd/parsers/ofpart_airoha.c
-
-    10	
-    11	int airoha_partitions_post_parse(struct mtd_info *mtd,
-    12					 struct mtd_partition *parts,
-    13					 int nr_parts)
-    14	{
-    15		struct mtd_partition *part;
-    16		int len, a_cells, s_cells;
-    17		struct device_node *pp;
-    18		struct property *prop;
-    19		const __be32 *reg;
-    20		__be32 *new_reg;
-    21	
-    22		part = &parts[nr_parts - 1];
-    23		pp = part->of_node;
-    24	
-    25		/* Skip if ART partition have a valid offset instead of a dynamic one */
-    26		if (!of_device_is_compatible(pp, "airoha,dynamic-art"))
-    27			return 0;
-    28	
-    29		/* ART partition is set at the end of flash - size */
-    30		part->offset = mtd->size - part->size;
-    31	
-    32		/* Update the offset with the new calculate value in DT */
-  > 33		prop = kzalloc(sizeof(*prop), GFP_KERNEL);
+Applied the lot, thank you.
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Dmitry
 
