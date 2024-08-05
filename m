@@ -1,152 +1,156 @@
-Return-Path: <devicetree+bounces-91131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AC95947FA0
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 18:53:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74377947FC5
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 18:58:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5B861F21762
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 16:53:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9729C1C20B97
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 16:58:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C424015C12C;
-	Mon,  5 Aug 2024 16:53:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C3E915CD79;
+	Mon,  5 Aug 2024 16:58:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DsVKimyh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AKiWMcy6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 944062C684;
-	Mon,  5 Aug 2024 16:53:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBD012AD13;
+	Mon,  5 Aug 2024 16:58:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722876790; cv=none; b=K1APdFhdZ9Ki3whi1rtMYEmoi/b3BXXu4l7jWyZ06mMkC8XZtrbDdR7tOm+Rb2aDTwRDe0NGyFWxXUENZpNbU8vCByp38/EThbJ0rQ0MMsedAEZYnHZBbbpzcMOrAJfvQZVV13ew6wBiVggGex9gQiaOh0PfURw1e659EKNEWYc=
+	t=1722877107; cv=none; b=mD4YJNUfkAiqtZIeHq3Xpv2sw4TNX/tbXQTMbs/DmQmc0T7p+GSFlTX2aQ+R+WD0wjMC2QovKyODP0uoAuLfHE/4TmRRYecQ0xtsEJGd9kQ0Lc5b6sWpEiML8MgjeJ5cHTaM47uQDFv6q7iVXmzhmOGcn0lN8FjEZaeCWH8kaQI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722876790; c=relaxed/simple;
-	bh=o9ugM3P0drPcA1zifw1SGACj0yG51DJhSlYgmmJa+2o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P48f6SYFF/a0WK+lycHnlct6hVFaBTwCwaM9wKrUab/wZlDbRH8nDx/IWecwyFnjQTwBIqUkEYUzAK7bl8wtTvL6qEd7jO86qaIa8CGrVP64VqcNJOESjs3CDL3yGQ2AW+oRCwV8U09HEkMcEFElhF3wpNqQ3x1rWlEYMokGhps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DsVKimyh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5472DC32782;
-	Mon,  5 Aug 2024 16:53:09 +0000 (UTC)
+	s=arc-20240116; t=1722877107; c=relaxed/simple;
+	bh=e2Si5sut7DmttSWgVcMhrEheTHiHZQD91pGP51D3a5M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PZIenh0+Pq865vQ3N51I3wF5aLh20+HiWPcycBQ6vkovc0TuvcDRRm8Fl1h5OhZ8ste3z0BQAvLITdYSb77vVsLclqPZxzD4EqupzmsySsVFaNgj9T4IKNDpAazKE+uK42NkIXwZ40pNSLRiy7lKWXLtoSJlcnWWFwbhdpjl0Ak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AKiWMcy6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C5CBC32782;
+	Mon,  5 Aug 2024 16:58:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722876790;
-	bh=o9ugM3P0drPcA1zifw1SGACj0yG51DJhSlYgmmJa+2o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DsVKimyh3athBWR61d5V+zWcMbrGm0KNFU0aqiYQyyEChSGD97CArvLf6R/PCv1Kx
-	 QJbMA5a3gBih/V0ziYR6u3/0LfI7tQdM+ZAN5L1l67k88eQwBIcrxl3JTJlk1j3jfc
-	 qYHfEzhESzRY1WWY6AL3BXPVG/rPjEnpJVIdQxy3yZnu+rLa//MdmQdIQ7rb70lUzF
-	 av9frt1FOdyg/C06WJdaSoztX4s3PwZzMDsVQ0kwOoBZvX3aiz/AbeDpiVQzvyzaWE
-	 XQxafxShE42D7/4Fh489pgfX1Wc9ANJmfrdXE1ObX+7aJFKj7UaxVBTs90eAEmJ2ZH
-	 dU2Z49Prd6JAg==
-Date: Mon, 5 Aug 2024 22:23:05 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Abin Joseph <abin.joseph@amd.com>
-Cc: michal.simek@amd.com, robh@kernel.org, u.kleine-koenig@pengutronix.de,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	radhey.shyam.pandey@amd.com, harini.katakam@amd.com, git@amd.com,
-	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] dmaengine: zynqmp_dma: Add support for AMD Versal
- Gen 2 DMA IP
-Message-ID: <ZrEDcQLWCbKbCRaL@matsya>
-References: <20240726062639.2609974-1-abin.joseph@amd.com>
- <20240726062639.2609974-3-abin.joseph@amd.com>
+	s=k20201202; t=1722877105;
+	bh=e2Si5sut7DmttSWgVcMhrEheTHiHZQD91pGP51D3a5M=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=AKiWMcy64InhcLTQ24/G3T0WvujPUfjZH+Q5FuI2TV7wPqhiYTL9nl1rC0j+g187x
+	 lKp6cu542YnVerTt7Ak1cgl6wyZXUYe6wJDy25W9fkhdcVF48o+JFSA0BcPrJ27cM1
+	 UxhzJ4R2yyg62FQ0oFXkCtzA7jiWlztOrBOZBCyjg1DlRG10OFUu/3XvSws1+jUjlq
+	 1G89ndf1U0BUmXbYKWex3pTbNGEJMPtT3yp/JlOd2M2GaKJQG1ybX6YQffJ/aAhBFC
+	 Gb/9qpDT2fEccUAQXAR/q5e/2Rmmx0WJf4UNDHNy5tEN3l1DgrOp15m/RSWLnzau3j
+	 uhp+SzvQtn9Ag==
+Message-ID: <76472034-82ed-4002-a21d-bd84a054d8dd@kernel.org>
+Date: Mon, 5 Aug 2024 18:58:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240726062639.2609974-3-abin.joseph@amd.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/8] dt-bindings: PCI: Add binding for qps615
+To: Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ cros-qcom-dts-watchers@chromium.org, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Jingoo Han <jingoohan1@gmail.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ andersson@kernel.org, quic_vbadigan@quicinc.com,
+ linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20240803-qps615-v2-0-9560b7c71369@quicinc.com>
+ <20240803-qps615-v2-1-9560b7c71369@quicinc.com>
+ <0cdaa0b2-ae50-40a1-abbb-7a6702d54ad5@kernel.org>
+ <027dc9f7-6e0d-e331-8f90-92a3d56350ab@quicinc.com>
+ <132a0367-596b-4ff2-b35c-e81e77f14340@kernel.org>
+ <ZrEAKxktYXFyxWXy@hu-bjorande-lv.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <ZrEAKxktYXFyxWXy@hu-bjorande-lv.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 26-07-24, 11:56, Abin Joseph wrote:
-> ZynqMp DMA IP and AMD Versal Gen 2 DMA IP are similar but have different
-> interrupt register offset. Create a dedicated compatible string to
-> support Versal Gen 2 DMA IP with Irq register offset for interrupt
-> Enable/Disable/Status/Mask functionality.
+On 05/08/2024 18:39, Bjorn Andersson wrote:
+>>>
+>>> In patch1 we are trying to add reference of i2c-adapter, you suggested
+>>> to use i2c-bus for that. we got comments on the driver code not to use
+>>> adapter and instead use i2c client reference. I felt i2c-bus is not
+>>> ideal to represent i2c client device so used this name.
+>>
+>> You did not respond to comment of using i2c-bus, just silently decided
+>> to implement other property.
+>>
 > 
-> Signed-off-by: Abin Joseph <abin.joseph@amd.com>
-> ---
->  drivers/dma/xilinx/zynqmp_dma.c | 17 +++++++++++++----
->  1 file changed, 13 insertions(+), 4 deletions(-)
+> I guess you totally ignored my comment when you reviewed the previous
+> version, where I asked him to represent the device on said bus.
+
+Hm, Rob suggested i2c-bus, you as well:
+<<I'd prefer you call it "i2c-adapter" or perhaps "i2c-bus", because
+it's not "the switch controller".>>
+
+and there was no response to any of these comments.
+
 > 
-> diff --git a/drivers/dma/xilinx/zynqmp_dma.c b/drivers/dma/xilinx/zynqmp_dma.c
-> index f31631bef961..a5d84d746929 100644
-> --- a/drivers/dma/xilinx/zynqmp_dma.c
-> +++ b/drivers/dma/xilinx/zynqmp_dma.c
-> @@ -22,10 +22,10 @@
->  #include "../dmaengine.h"
->  
->  /* Register Offsets */
-> -#define ZYNQMP_DMA_ISR			0x100
-> -#define ZYNQMP_DMA_IMR			0x104
-> -#define ZYNQMP_DMA_IER			0x108
-> -#define ZYNQMP_DMA_IDS			0x10C
-> +#define ZYNQMP_DMA_ISR			(chan->irq_offset + 0x100)
-> +#define ZYNQMP_DMA_IMR			(chan->irq_offset + 0x104)
-> +#define ZYNQMP_DMA_IER			(chan->irq_offset + 0x108)
-> +#define ZYNQMP_DMA_IDS			(chan->irq_offset + 0x10C)
+>> Anyway, why i2c-bus is not suitable here? I am quite surprised...
+>>
+> 
+> I was not aware that i2c-bus was an acceptable solution, sorry for my
+> bad suggestion and guidance here.
 
-Lower case please
+I think you suggested i2c-bus as well, but regardless what did you agree
+internally, response to Rob was expected.
 
->  #define ZYNQMP_DMA_CTRL0		0x110
->  #define ZYNQMP_DMA_CTRL1		0x114
->  #define ZYNQMP_DMA_DATA_ATTR		0x120
-> @@ -145,6 +145,9 @@
->  #define tx_to_desc(tx)		container_of(tx, struct zynqmp_dma_desc_sw, \
->  					     async_tx)
->  
-> +/* IRQ Register offset for VersalGen2 */
-> +#define IRQ_REG_OFFSET			0x308
-> +
->  /**
->   * struct zynqmp_dma_desc_ll - Hw linked list descriptor
->   * @addr: Buffer address
-> @@ -211,6 +214,7 @@ struct zynqmp_dma_desc_sw {
->   * @bus_width: Bus width
->   * @src_burst_len: Source burst length
->   * @dst_burst_len: Dest burst length
-> + * @irq_offset: Irq register offset
->   */
->  struct zynqmp_dma_chan {
->  	struct zynqmp_dma_device *zdev;
-> @@ -235,6 +239,7 @@ struct zynqmp_dma_chan {
->  	u32 bus_width;
->  	u32 src_burst_len;
->  	u32 dst_burst_len;
-> +	u32 irq_offset;
->  };
->  
->  /**
-> @@ -919,6 +924,9 @@ static int zynqmp_dma_chan_probe(struct zynqmp_dma_device *zdev,
->  		return -EINVAL;
->  	}
->  
-> +	if (of_device_is_compatible(node, "amd,versal2-dma-1.0"))
-> +		chan->irq_offset = IRQ_REG_OFFSET;
+Best regards,
+Krzysztof
 
-This should be added as driver_data
-
-> +
->  	chan->is_dmacoherent =  of_property_read_bool(node, "dma-coherent");
->  	zdev->chan = chan;
->  	tasklet_setup(&chan->tasklet, zynqmp_dma_do_tasklet);
-> @@ -1162,6 +1170,7 @@ static void zynqmp_dma_remove(struct platform_device *pdev)
->  
->  static const struct of_device_id zynqmp_dma_of_match[] = {
->  	{ .compatible = "xlnx,zynqmp-dma-1.0", },
-> +	{ .compatible = "amd,versal2-dma-1.0", },
->  	{}
->  };
->  MODULE_DEVICE_TABLE(of, zynqmp_dma_of_match);
-> -- 
-> 2.25.1
-
--- 
-~Vinod
 
