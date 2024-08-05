@@ -1,120 +1,102 @@
-Return-Path: <devicetree+bounces-91058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AE75947A3B
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 13:07:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 328F1947A6D
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 13:35:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 237762822B7
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 11:07:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6430B1C212C9
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 11:35:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FC3E155753;
-	Mon,  5 Aug 2024 11:07:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10779155753;
+	Mon,  5 Aug 2024 11:35:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=radojevic.rs header.i=@radojevic.rs header.b="owarYTnu"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=angelogioacchino.delregno@collabora.com header.b="QnoumxH7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.radojevic.rs (radojevic.rs [139.162.187.67])
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10AB2154BE4;
-	Mon,  5 Aug 2024 11:07:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=139.162.187.67
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722856035; cv=none; b=OX2iGVFQoqo/pdPD92cLB/jNWqssPg1ZsdfxeAq3Y4lpOSdTCnla/K/DZcjpPYsYWxiQJgH1xZmIXrQkKd2VCAG28Rh/pJjcplYR1MAJtyehE4JCg/+BVSL5d7l7ZoJr/SaYF2o8i12aBbbUdgjrAT40S6zVOHfB7RgG7KectIg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722856035; c=relaxed/simple;
-	bh=FsKABYar5tCCmqGtOJLbGI3S+bt2cKoGgq3u7smejfU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MZpjkcV8gze+Xd7Q1mT0g+fcNnTLkpagQKkbgqWhtHdK2U/gtXwiPlIfWIq837KzIl/lcLw6XZtBHDws+YAFKWsGYgZIIrU+otYqIuhwUSBhveEbzDuAaEczhhBTseP0DtciwGLnAg57ZTLpLc60Af1UI/Cotkche6iZ6Z9sy08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=radojevic.rs; spf=pass smtp.mailfrom=radojevic.rs; dkim=pass (2048-bit key) header.d=radojevic.rs header.i=@radojevic.rs header.b=owarYTnu; arc=none smtp.client-ip=139.162.187.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=radojevic.rs
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radojevic.rs
-Received: from localhost (unknown [91.143.223.193])
-	by mail.radojevic.rs (Postfix) with ESMTPSA id 618D51E1DF;
-	Mon,  5 Aug 2024 13:07:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=radojevic.rs; s=mail;
-	t=1722856032; bh=FsKABYar5tCCmqGtOJLbGI3S+bt2cKoGgq3u7smejfU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=owarYTnudqNQj3zzqpcAD1STQ5bEUj0ILZjbSJvK0hNiUpvR/Gyyr7fOKhAuPST7P
-	 50I9jyCORzNZQkrEHXd4qLRwe4wKHlUxj/pgpTMHJT+wNJnaRq8OOhY23W1Ngo1vJw
-	 mSOTWt9halv0WWjvcZGVoxo+x2E6twuW5NZSPcDgzZIcWoliVNWZWHg1vncDX0G5Q1
-	 zHjt7MfuOIS0P+rG+fETO9650G55ciXpUVEtQacydvaEfJcvPRuALMEGmu9M3OIESD
-	 c9gPjB8H3MbMj53XGqavnBdUn+Aaq1PDQBgQtokbDxHEw1mGYlsxNp7oQLlWlZ6SKy
-	 VGz+H3+7llQ+Q==
-Date: Mon, 5 Aug 2024 13:07:11 +0200
-From: Nikola Radojevic <nikola@radojevic.rs>
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Raise Pinebook Pro's panel
- backlight PWM frequency
-Message-ID: <fkiauvfki7kvmhs3g4aqatqcdtf6cko7xpgg7zfhgojnhoxa36@ruz5ywsdgr4c>
-References: <2a23b6cfd8c0513e5b233b4006ee3d3ed09b824f.1722805655.git.dsimic@manjaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72881155740;
+	Mon,  5 Aug 2024 11:35:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.14
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722857741; cv=pass; b=DiD9edXDdmo/JMVGdbYScpgLKZvjKUghq4S8eB5PUL+b6gGKweyhf6295QqK8HcXMWpPHVlTHDCTDD+57LjKru99ds6cbhSYstbisLUR/JIvcjwcn5nbhKGiM9uiU2h+0Zvo2dAdKLrMHhDMI27xOIqpEaTgGExDdtqXk3bBU5o=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722857741; c=relaxed/simple;
+	bh=aTfQaPgUYnAnCyFUn/5spSM/wKIQwZIArxndmplyzTk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=O+oTMxfmcS+S0/8ptjnyYufqmA7nTq/v4AxSXvtU1v/mU6/n/baLdeMPR/V4FeZhbn+1vlCj1Lgk38P0vxDIj7yc+i9MKTJi4dJma5KMSbbYLh9ExR7iZTUsL7rDha3ik8p8K947wVA1KIRM+e8EHL4AtqyES3Q21ojMJWRnVLw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=angelogioacchino.delregno@collabora.com header.b=QnoumxH7; arc=pass smtp.client-ip=136.143.188.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Delivered-To: kernel@collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1722857725; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=g/GnvcO8TsPWGNycqtXHcNwpaKWPUgO+exdWsluW8aGDtbvOS9DQgXJBpZ48e8S3f91KIa1xycPzv9VAKvxWgihaJQoMszv+gnieR4JZ6oN41ft0UwOuHaNhz2pTYYCH89jHL3ehRKOzkLnmnpsyNsJd5RZ1AH5MqHpyfihx5cE=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1722857725; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=D30+KTuVISNJkq8cu13QoORHjYLmp/rARmI7rVNmqNQ=; 
+	b=R8mbq4TT5iq9+/+jYht3D4p0uCqjZTNi2uhXx4mO9GfgFGyw+zLicn+CCUfAyaLNH9p80I/14cMHulKrwNiQFcKvbsCTKNUE9BV5FE07Gk+bOd227WytT8judpLLo0zH5VRA4DyB++CzpqGEtTzI8J27w4gdxcC6DeTdprCXE6M=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=angelogioacchino.delregno@collabora.com;
+	dmarc=pass header.from=<angelogioacchino.delregno@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1722857725;
+	s=zohomail; d=collabora.com;
+	i=angelogioacchino.delregno@collabora.com;
+	h=From:From:To:To:Cc:Cc:In-Reply-To:References:Subject:Subject:Message-Id:Message-Id:Date:Date:MIME-Version:Content-Type:Content-Transfer-Encoding:Reply-To;
+	bh=D30+KTuVISNJkq8cu13QoORHjYLmp/rARmI7rVNmqNQ=;
+	b=QnoumxH7L47I55LMXxRQ4/7i/EyzMfwsellRfRc1xz8A8yv+7mUpmMKmrOK9A8Es
+	W7i/QbMt4QphxswrzV0PB+cevZ0XZupFrBW0z7XVg3wLPDfM7GIPUZLiZIu6aGHxQqI
+	jjWIgTrGfhjmO/uiiT0hwoyiSI9eGltk/nA/3nek=
+Received: by mx.zohomail.com with SMTPS id 172285772333611.108724364058162;
+	Mon, 5 Aug 2024 04:35:23 -0700 (PDT)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Matthias Brugger <matthias.bgg@gmail.com>, 
+ =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Chen-Yu Tsai <wenst@chromium.org>, kernel@collabora.com, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+In-Reply-To: <20240803-mtk-socinfo-no-data-probe-err-v3-1-09cfffc7241a@collabora.com>
+References: <20240803-mtk-socinfo-no-data-probe-err-v3-1-09cfffc7241a@collabora.com>
+Subject: Re: [PATCH v3] arm64: dts: mediatek: mt8183-kukui: Disable unused
+ efuse at 8000000
+Message-Id: <172285772078.117243.12486644003118718427.b4-ty@collabora.com>
+Date: Mon, 05 Aug 2024 13:35:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <2a23b6cfd8c0513e5b233b4006ee3d3ed09b824f.1722805655.git.dsimic@manjaro.org>
+X-Mailer: b4 0.13.0
+X-ZohoMailClient: External
 
-Hello,
-I have tested this on my Pinebook Pro and I can confirm that
-everything seems to work alright.
+On Sat, 03 Aug 2024 10:33:25 -0400, Nícolas F. R. A. Prado wrote:
+> MT8183's Devicetree describes two eFuse regions: one at 8000000 and
+> another at 11f10000.
+> 
+> The efuse at 8000000, unlike the one at 11f10000 and the efuse on all
+> other MediaTek SoCs, does not define any cell, including the
+> socinfo-data ones which the mtk-efuse driver expects to always be
+> present, resulting in the following errors in the log:
+> 
+> [...]
 
-Tested-by: Nikola Radojević <nikola@radojevic.rs>
+Applied to v6.11-next/dts64, thanks!
 
-On 24/08/04 11:10PM, Dragan Simic wrote:
-> Increase the frequency of the PWM signal that drives the LED backlight of
-> the Pinebook Pro's panel, from about 1.35 KHz (which equals to the PWM
-> period of 740,740 ns), to exactly 8 kHz (which equals to the PWM period of
-> 125,000 ns).  Using a higher PWM frequency for the panel backlight, which
-> reduces the flicker, can only be beneficial to the end users' eyes.
-> 
-> On top of that, increasing the backlight PWM signal frequency reportedly
-> eliminates the buzzing emitted from the Pinebook Pro's built-in speakers
-> when certain backlight levels are set, which cause some weird interference
-> with some of the components of the Pinebook Pro's audio chain.
-> 
-> The old value for the backlight PWM period, i.e. 740,740 ns, is pretty much
-> an arbitrary value that was selected during the very early bring-up of the
-> Pinebook Pro, only because that value seemed to minimize horizontal line
-> distortion on the display, which resulted from the old X.org drivers causing
-> screen tearing when dragging windows around.  That's no longer an issue, so
-> there are no reasons to stick with the old PWM period value.
-> 
-> The lower and the upper backlight PWM frequency limits for the Pinebook Pro's
-> panel, according to its datasheet, are 200 Hz and 10 kHz, respectively. [1]
-> These changes still leave some headroom, which may have some positive effects
-> on the lifetime expectancy of the panel's backlight LEDs.
-> 
-> [1] https://files.pine64.org/doc/datasheet/PinebookPro/NV140FHM-N49_Rev.P0_20160804_201710235838.pdf
-> 
-> Fixes: 5a65505a6988 ("arm64: dts: rockchip: Add initial support for Pinebook Pro")
-> Cc: stable@vger.kernel.org
-> Reported-by: Nikola Radojevic <nikola@radojevic.rs>
-> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-> index 294eb2de263d..b3f76cc2d6e1 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-> @@ -32,7 +32,7 @@ chosen {
->  	backlight: edp-backlight {
->  		compatible = "pwm-backlight";
->  		power-supply = <&vcc_12v>;
-> -		pwms = <&pwm0 0 740740 0>;
-> +		pwms = <&pwm0 0 125000 0>;
->  	};
->  
->  	bat: battery {
+[1/1] arm64: dts: mediatek: mt8183-kukui: Disable unused efuse at 8000000
+      commit: c24025e978780f0a82f859356caa00cdf20ab28c
+
+Cheers,
+Angelo
+
+
 
