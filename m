@@ -1,115 +1,88 @@
-Return-Path: <devicetree+bounces-91190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4436948545
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 00:05:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6BAD9485AA
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 00:56:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DAFB281395
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 22:05:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37B1E28280B
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 22:56:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84E8E16C696;
-	Mon,  5 Aug 2024 22:05:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E6B7169AD0;
+	Mon,  5 Aug 2024 22:56:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M5/Y0dpF"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="wj5gBcBT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BE85155351;
-	Mon,  5 Aug 2024 22:05:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24EB3149C4E;
+	Mon,  5 Aug 2024 22:56:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722895556; cv=none; b=c/Do4hRuvj6BX6/XJWNEe7HWK5zTqCI9I1Wo+HwyqWWDbGH+65klcPc6Wf+aPDjlguTocO3PX708vFY7KKfYcvX825vbdym2u6ZoHNnBO3SW4AxqGiJov9q3RqXHOQtofbaZY4PSLeAQ3X+F4ysdNWICKOtZsEhcWcJkjkOTprg=
+	t=1722898587; cv=none; b=Ej45GPO7XrPJaI24rQ8VN9ddFksXaPpT20SJbA/YZkFh/U3qENdujollq+0sY51GWA1wDc1lpHrxAgcicA5JsmVw23eBPDsJD8Mx5fCL9b+RomidrQtD5mvDpEc8LOV2Xxv60waic6ZB2Egd7AraYRu0m8jU3o8YZtilkMAfqwY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722895556; c=relaxed/simple;
-	bh=Zg/Sf5WAfTbi3XGsP+JrB7ppZOFCAOIN59kksswka6I=;
+	s=arc-20240116; t=1722898587; c=relaxed/simple;
+	bh=IApU7eA9Vqk1pm5p0iTsDkpfr+qGAog943HK4ITXWhc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I+eDpUiSQ+XB99UWa8Gz7KH+p/JkL93RjB8C2ltJeN8Xs4H9fPPxlVabPr1//hl2IF9Q2Z5ASiagOwRDxblulGqx6Hmrjwp466e/EtwEWmzvSJiyw88V/3BmnNvERudetfKXo+mYdNqCqgj7K6DbPgU1BTuWlYfFAdB8bPS8I54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M5/Y0dpF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B21C2C4AF0E;
-	Mon,  5 Aug 2024 22:05:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722895555;
-	bh=Zg/Sf5WAfTbi3XGsP+JrB7ppZOFCAOIN59kksswka6I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=M5/Y0dpF/A8ELMzLz612WjJIyC3IO9waHdn15Zw/EIfAfTk6eGbAsY8w+ZHghJPoQ
-	 4jFtBXu8SHfTnk8D13dvY8ZnR/GSdfg3nGLRi4rwH2H0RHNiiKo+C5UT/HeMMke/N9
-	 odOoZty1UZjTJIS1ey5M8WrMd0z9pwLf5jONr+VBvKxbAy+jxMSb2/2bFxFOkQBVhn
-	 R8FeQOE/RFduv6y7VpPkp/YY0UIK+InGv81V+tYWO1FuVTvZMSRn45OchH9bjYF1xu
-	 tQ8L10b0AgGOibzkjwNQzsE21awIRVvs/1bmq3aB902UlO7LamloscO77v2PFBXJEB
-	 lGnmxg5tXxKCg==
-Date: Mon, 5 Aug 2024 23:05:51 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>, broonie@kernel.org,
-	linux-spi@vger.kernel.org, otavio.salvador@ossystems.com.br,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: trivial-devices: Document
- elgin,jg10309-01
-Message-ID: <20240805-humid-hurling-90f70757cea6@spud>
-References: <20240719111210.1287783-1-festevam@gmail.com>
- <20240719-unquote-query-a76fd9487bf9@spud>
- <28702815.czjnFlTdjD@diego>
- <CAOMZO5AkvxwRrs0BHk5qe_YM_=Up4OYpOrp6ECaLcfd=VhjV0A@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=U8g2X02PIC8cV0bPyLAOSld4uryxwEuir5QBPsF4rTXlO6CSAK/cvKDqOVEiO6ySYdQvSaiL5LgMzXmUzVqPj9mGcGUuCYxwvLtFt0G3Yp4c2+mKWABr0bHGZQdMtAZ1g4swzTx0v6WOMeDMrqrko+ciH87H9rC8b+vguBS4Fx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=wj5gBcBT; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=T6lqsIdxJoDvvVcbuG9ghR8XSHtqSqMI0Pkde1xUmXo=; b=wj5gBcBTKh1QzAmgo/GTNMr146
+	VU+Et446ApSAtEzpDk5YeTRkMPiPUfst7JxbdyrCMi1xxOePqy1r0Qbk4dz1vdBl8ZHmQNhUme9mH
+	ZMkpjMUPkEnuseppgT0+n2mv83I73IWX4eBw7Ln5a6EBggNfBpuZxUa9dRJjhJ3XZjtI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sb6ck-0044Xj-M1; Tue, 06 Aug 2024 00:56:18 +0200
+Date: Tue, 6 Aug 2024 00:56:18 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Lee Jones <lee@kernel.org>
+Cc: Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
+	linux-leds@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: leds: Document "netdev" trigger
+Message-ID: <ed20f083-90e1-406c-bcda-f9fc92807278@lunn.ch>
+References: <20240708114653.18566-1-marex@denx.de>
+ <20240725085042.GC501857@google.com>
+ <3c8bf807-8a8e-4704-a90a-d77ad3293b57@lunn.ch>
+ <20240801125309.GE6756@google.com>
+ <62cc3d64-c5e4-4af3-90ce-273ece6e8e57@lunn.ch>
+ <20240805135643.GC1019230@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="vE/3m6mdkevVa85B"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAOMZO5AkvxwRrs0BHk5qe_YM_=Up4OYpOrp6ECaLcfd=VhjV0A@mail.gmail.com>
+In-Reply-To: <20240805135643.GC1019230@google.com>
 
+> > We could do, but we have to keep netdev around for backwards
+> > compatibility. There are DT blobs using it which we cannot break.
+> 
+> Oh, this 'just' a documentation patch?  'netdev' is already in use?
+> 
 
---vE/3m6mdkevVa85B
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+A few examples:
 
-On Mon, Aug 05, 2024 at 10:18:24AM -0300, Fabio Estevam wrote:
-> Hi Heiko,
->=20
-> On Fri, Jul 26, 2024 at 6:57=E2=80=AFPM Heiko St=C3=BCbner <heiko@sntech.=
-de> wrote:
->=20
-> > with the error Rob's bot reported about the usage of spi-cpol and
-> > spi-cpha, it really looks like the bindings needs to be more fleshed ou=
-t.
->=20
-> I just wanted to let you know that the warning reported by Rob's bot
-> is very old.
->=20
-> Running "make dtbs_check DT_SCHEMA_FILES=3Dtrivial-devices.yaml" on the
-> existing tree:
->=20
->   DTC [C] arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dtb
-> rv1108-elgin-r1.dtb: dac@0: 'spi-cpha', 'spi-cpol' do not match any of
-> the regexes: 'pinctrl-[0-9]+'
-> from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
->=20
-> So we are not making things worse in this aspect.
->=20
-> I can work on removing the warnings as an incremental patch, if you agree.
+intel/ixp/intel-ixp42x-iomega-nas100d.dts:                      linux,default-trigger = "netdev";
+intel/ixp/intel-ixp42x-dlink-dsm-g600.dts:                      linux,default-trigger = "netdev";
+nxp/imx/imx53-m53menlo.dts:                     linux,default-trigger = "netdev";
+rockchip/rk3128-xpi-3128.dts:                    * linux,default-trigger = "netdev";
+ti/omap/am5729-beagleboneai.dts:                        linux,default-trigger = "netdev";
+ti/omap/am335x-netcan-plus-1xx.dts:                     linux,default-trigger = "netdev";
 
-Yeah, I acked it cos the issue would've been there before so it's not
-any worse. I think adding a "real" binding can be a follow on.
-
---vE/3m6mdkevVa85B
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrFMvwAKCRB4tDGHoIJi
-0lgaAP9yXy59ImkXa25VTWNy01HSFHbOS2UQGa4zDJScrnwrJAEAxMMr82GNs9xJ
-L+ouEDI2Hdead+t+upYZGSBzUANigwo=
-=ny+V
------END PGP SIGNATURE-----
-
---vE/3m6mdkevVa85B--
+	Andrew
 
