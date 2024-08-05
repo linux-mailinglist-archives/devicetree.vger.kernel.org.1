@@ -1,129 +1,117 @@
-Return-Path: <devicetree+bounces-91114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 460AB947ECB
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 17:56:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33ED8947F2B
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 18:22:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76E3C288E4C
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 15:56:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D31C11F22AEA
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 16:22:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29A4E15B104;
-	Mon,  5 Aug 2024 15:56:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ZCiF+qsC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35D8715B97A;
+	Mon,  5 Aug 2024 16:22:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94A59158DCC
-	for <devicetree@vger.kernel.org>; Mon,  5 Aug 2024 15:56:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C106115B155;
+	Mon,  5 Aug 2024 16:22:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722873391; cv=none; b=XTyal2sZtdtFNR+OptvXAy6JkjSP7/AQQRBijkGHIqaQPbTr5UrI1BeFCKdIez9+UtW5W62x9wgwHHiIoO7v6E+tNfC5W/Yr06FnK6V8tXwOVn/cxe5w1GMVDdmHYNb1zbzbmNpoyl2PDnCb/ZpcyfPeqnO9fS5lX7PA/AEYLII=
+	t=1722874926; cv=none; b=YEHS5+UgQnaa1I9SePvb+SyigMMbD8QofkHbN5w4ZY0S+r/SMkO71dXdluuyNBEBLsH+HNSvM1pR9flKQa6qN8ewkP0cArwA8ppp2pbQetWWgB2TWlEMF/aNEt4qObHGRW3Y+eg9IzJwdzg3CCUS0Z3dSgMYO/EW6JqXD9Cc5HA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722873391; c=relaxed/simple;
-	bh=GhxCvF/bdB7ARkocogWvdOYN1EHnCsxdnqmhWsHwq2A=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fsLUsiDPyWK38yTRA2xM+lP+lrkuMDQ9YjevkSBzJOu2No0revuYLklTHtNZZaROqvJtw4nYuZ/oGDJEzB8D5560uNRjVXfdExP5rxjbaUA9Z581PPkNm7sLDcZ8MJ7jXogiEbBPWi1hy5ueAdPqlT1L79wQlajtZeB+N/DMFws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=ZCiF+qsC; arc=none smtp.client-ip=209.85.219.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-6bb96ef0e96so23334226d6.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2024 08:56:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1722873386; x=1723478186; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GhxCvF/bdB7ARkocogWvdOYN1EHnCsxdnqmhWsHwq2A=;
-        b=ZCiF+qsCqxRMLED2+T/E8xIycEHjFUQY2Q3m2a5umDH3Q0EM7DnAcURZVX4jlu6hPZ
-         W/pkfZAa3o74oB6JEL1rmKm5GmJtCTTJ8qEdo+l0ctjyMt5TS5BRG2DP6gK7SEI5Lc3t
-         Ol6DeWRpdfNc3mB2K4US9uYEivmrfQ0Huv4jA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722873386; x=1723478186;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GhxCvF/bdB7ARkocogWvdOYN1EHnCsxdnqmhWsHwq2A=;
-        b=ZkB7/lXxDo1Ps9UTQ2/P/Y8U+ce3IwTyqiYU0Po4o+vp/aoHmSnzJybVj/ds5zoMRo
-         oOJrk/7VvgR2iwfJZhZowb0Wze6uzwDVt7tvQ7GyOj+12rqP51nj77y/91Td/44ruMM1
-         ThsGC0RX1QRoVB0WIr9MJy2/PoIoBMVUOY9BoFXZ2IZmM0ocfDYUxiDNGvcb9OtOr02x
-         ciW0rfF0iAF8qhaFZUmxWvWHf9eeH2BTpgrQGeuZ1/p/yuaeyJIKekvyp1upGV+6lnqx
-         /wn9LoGYE4c6zIyMC1r1Anfh1nkP5dLeH3MFW4+ykLgaVjXrFqdJHitQaCck+2lq34zD
-         cYmw==
-X-Forwarded-Encrypted: i=1; AJvYcCXF2fwoHCQ5j0gkAgtfpazH9WBjCDbL+h5NR2n6rhhrV2eoGDje3nHxYA1VM4EVhseXGEE9z/vIJI3+5NQXnfr8gLaBamm+BZaP0Q==
-X-Gm-Message-State: AOJu0YzERRr/PyFTeQDECsxSeobNM1roKi2fS+2Kl7vQGzxjX0sAUBAZ
-	+SGq/AtlXa5NFKMuz24CA5/c/DUnqmvMZY5mv5MkGLxiwQKI5WWdXsjr/XUoxMHiE/8lxdyk1o8
-	=
-X-Google-Smtp-Source: AGHT+IEwx9e+GqA0leGYKclHMAl1PbtzUOvvHPN/iNDPajig1I0aF9xs5/nvmV18kcl022LsrQwFUw==
-X-Received: by 2002:a05:6214:5f01:b0:6b5:3eb:6cf6 with SMTP id 6a1803df08f44-6bb98418c6cmr149141966d6.40.1722873385875;
-        Mon, 05 Aug 2024 08:56:25 -0700 (PDT)
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com. [209.85.160.177])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6bb9c87d8afsm36781846d6.132.2024.08.05.08.56.24
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Aug 2024 08:56:25 -0700 (PDT)
-Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-44fee2bfd28so466541cf.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2024 08:56:24 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUMrd9/QTtDvbIMZa7PtlKB+XbtfEx77/O4uwFYU7U9k7On9PH+0OCrX6HiogteouGnOsFXzSwatILF4TuM8SyNB8gnLvCgXefsmg==
-X-Received: by 2002:a05:622a:13cc:b0:447:eeb1:3d2 with SMTP id
- d75a77b69052e-4519b760378mr4844061cf.27.1722873384362; Mon, 05 Aug 2024
- 08:56:24 -0700 (PDT)
+	s=arc-20240116; t=1722874926; c=relaxed/simple;
+	bh=6a3BS3tV0Qv+SfzqBC0TevIcJzOJzC5EoJ12fFLAMS8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Qr6LVuNRT2rph8YXb0MoebzbTKYzSmq1ZfHdF2tlcu8+KBRTG6BqiV0lnPi32sh6zBgsISV/DgutFVetxnjECuWX1qTbErp8wMYQPkIOAG/r4MHNYMbN1NWUB2M91M6+o63hnIPkBGNOhtgIfLHuFHW/blmDzGPfs0ESIYCHkiY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-IronPort-AV: E=Sophos;i="6.09,265,1716217200"; 
+   d="scan'208";a="218709707"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 06 Aug 2024 01:22:01 +0900
+Received: from localhost.localdomain (unknown [10.226.92.197])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 273BC4009400;
+	Tue,  6 Aug 2024 00:52:44 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-media@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v3 0/4] Add support for RZ/G2UL Display Unit
+Date: Mon,  5 Aug 2024 16:52:34 +0100
+Message-ID: <20240805155242.151661-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240725083245.12253-1-lvzhaoxiong@huaqin.corp-partner.google.com>
- <20240725083245.12253-2-lvzhaoxiong@huaqin.corp-partner.google.com>
- <gq5fcttutomphgfrwrtloqzczia3uc5qpont3lrowocan2xjc5@ubfabhsh3mfl>
- <CA+6=WdQuFYbADjG0i_zWMGYmw95H1U_McqCw4CLW0+Gate50YA@mail.gmail.com>
- <CAA8EJppoj1Y2675UOp=JH=-HLdYuuzfr2Sxy1zzkvLosmrRQNw@mail.gmail.com> <CA+6=WdQ6q=Zmji8KxCPYK17pFY4UAUBOykd5Tx4N_RZ1MfgOdg@mail.gmail.com>
-In-Reply-To: <CA+6=WdQ6q=Zmji8KxCPYK17pFY4UAUBOykd5Tx4N_RZ1MfgOdg@mail.gmail.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Mon, 5 Aug 2024 08:56:12 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=V+bKW7aeD9hSkSE=pAOUpGyvhGqLhLmL6_z=+iBU8Urw@mail.gmail.com>
-Message-ID: <CAD=FV=V+bKW7aeD9hSkSE=pAOUpGyvhGqLhLmL6_z=+iBU8Urw@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] drm/panel: jd9365da: Move the sending location of
- the 11/29 command
-To: zhaoxiong lv <lvzhaoxiong@huaqin.corp-partner.google.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, neil.armstrong@linaro.org, 
-	quic_jesszhan@quicinc.com, maarten.lankhorst@linux.intel.com, 
-	mripard@kernel.org, tzimmermann@suse.de, hsinyi@google.com, airlied@gmail.com, 
-	daniel@ffwll.ch, jagan@edgeble.ai, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi,
+This patch series aims to add support for RZ/G2UL DU.
 
-On Sun, Aug 4, 2024 at 7:38=E2=80=AFPM zhaoxiong lv
-<lvzhaoxiong@huaqin.corp-partner.google.com> wrote:
->
-> Hi all
->
-> Do you have any other suggestions for this patch?
-> Looking forward to your reply, thank you
+The LCD controller is composed of Frame Compression Processor (FCPVD),
+Video Signal Processor (VSPD), and Display Unit (DU).
 
-Please make sure not to "top post". Folks on the mailing lists
-generally frown on this and it's a good way to get your email ignored
-by some people.
+The output of LCDC is connected display parallel interface (DPI) and
+supports a maximum resolution of WXGA along with 2 RPFs to support the
+blending of two picture layers and raster operations (ROPs)
 
-At this point I think folks are waiting for you to post the next
-version addressing comments. Specifically, things you'd want to change
-for the next version:
+It is similar to LCDC IP on RZ/G2L SoCs, but does not have DSI interface.
 
-* In the commit message (and subject), "refer to the commands with
-their names" (Jani)
+v2->v3:
+ * Split patch series based on subsystem from DU patch series [1].
+ * Replaced ports->port property for RZ/G2UL as it supports only DPI
+   and retained ports property for RZ/{G2L,V2L} as it supports both DSI
+   and DPI output interface.
+ * Added missing blank line before example.
+ * Dropped tags from Conor and Geert as there are new changes in bindings
+ * Avoided the line break in rzg2l_du_start_stop() for rstate.
+ * Replaced port->du_output in  struct rzg2l_du_output_routing and
+   dropped using the port number to indicate the output type in
+   rzg2l_du_encoders_init().
+ * Updated rzg2l_du_r9a07g043u_info and rzg2l_du_r9a07g044_info.
 
-* In the commit message, address Dmitry's concern. In other words, say
-something about the fact that this doesn't cause garbage being
-displayed on the panel during startup and why not.
+ [1] https://lore.kernel.org/all/20240709135152.185042-1-biju.das.jz@bp.renesas.com/
+v1->v2:
+ * Updated cover letter header "DU IP->Display Unit".
+ * Updated commit description related to non ABI breakage for patch#3.
+ * Added Ack from Conor for binding patches.
 
+Biju Das (4):
+  dt-bindings: display: renesas,rzg2l-du: Document RZ/G2UL DU bindings
+  drm: renesas: rz-du: Add RZ/G2UL DU Support
+  arm64: dts: renesas: r9a07g043u: Add DU node
+  arm64: dts: renesas: r9a07g043u11-smarc: Enable DU
 
-When sending v2, don't forget to include Jessica's "Ack" on patch #2.
+ .../bindings/display/renesas,rzg2l-du.yaml    |  35 +++++-
+ arch/arm64/boot/dts/renesas/r9a07g043u.dtsi   |  19 +++
+ .../boot/dts/renesas/r9a07g043u11-smarc.dts   | 109 ++++++++++++++++++
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_crtc.c |   8 +-
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c  |  18 ++-
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.h  |   5 +-
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c  |   4 +-
+ 7 files changed, 188 insertions(+), 10 deletions(-)
+
+-- 
+2.43.0
+
 
