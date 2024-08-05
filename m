@@ -1,64 +1,68 @@
-Return-Path: <devicetree+bounces-90935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D29B99473FF
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 05:52:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDAD5947408
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 05:59:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 102D21C20F72
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 03:52:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6854EB21016
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 03:59:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31DEF139D00;
-	Mon,  5 Aug 2024 03:52:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16E6C13D26B;
+	Mon,  5 Aug 2024 03:59:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="XmONgy++"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="jKpbVW81"
 X-Original-To: devicetree@vger.kernel.org
 Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA9BD225A2;
-	Mon,  5 Aug 2024 03:52:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8662225A2;
+	Mon,  5 Aug 2024 03:59:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722829948; cv=none; b=gKdL3vvi7HLUrXV/IRNs6gM0N65SjJt/fb1cJ0P/qz0nCMys5BOZqpFzDVnGKY8UUdOTXP48HAFilF5A1/jZ4tBRqE+cALgA/6HMOATylDqsgavUOnaa3uRXgkhzYOw962DP3a6198eA2rOSalIlqycLTjsnlUrWI5qg2wwyp8g=
+	t=1722830357; cv=none; b=pZLHmwJCz4w65tMacdZcKx53vCrOSVCVYHd7wKDzNtwsICL1Qsgwuo4cSlGiOdE2yIhR6Ll5yuRjmEPbLUIvl3dzZbfGiMYk7x2R6R15YG0u8A/cM+QGKkSZcSWnLOWxR1F78qPBT5/6u6e0URhtZsENRQGNEpFUhIpi73ZX7KY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722829948; c=relaxed/simple;
-	bh=ZwlnphfCoEMS+z+iQWMwIhBP6iE2KkGeJ1dcX4OZt88=;
+	s=arc-20240116; t=1722830357; c=relaxed/simple;
+	bh=wgdaB2bhnoOqyQl6QOkmntchgFIwDpJXI8lOZaejdLU=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=HwAJIJ38yzUipD2n3SOZttJSzYB0bvxkobg8wFKQZ5G5XNgY0GcXJFBStN20zTxYtokQmcYNMh1ajt7I9r6SL2jzCh7D/ER/hBrhZCGlLROGYjwhNjzl7uQTyhyKYm/N+rMq+PpSBmTTEc8957DY2x+Gn/zbLBfyxgfbDg8CXfA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=XmONgy++; arc=none smtp.client-ip=203.29.241.158
+	 Content-Type:MIME-Version; b=LkYeGh5PfUS+UrgTAiDDx39a42rFEPyhWx3gdh63dEQq/x8Q2cfGq235uWy2XP18zjUi5Wi46Vk/8WtfiWofhOG5WI0j/Id9LMor2MfVfnZwzVqm3hJO3GCcaPtHh2ebsDlOraW9V48SOM0YIojkyYK8+GjMyi3lLEWPSf2slYM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=jKpbVW81; arc=none smtp.client-ip=203.29.241.158
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1722829936;
-	bh=TZvll+HrPvEqH8y0dNSmG8aX1CRXxihPJx0XNGZTiG0=;
+	d=codeconstruct.com.au; s=2022a; t=1722830352;
+	bh=d7cqJ0kpF2PLR8wzbhUuvv4itxL+jcNpSGFs0wo8FIA=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=XmONgy++mPxu3VFgoGB6JR3uIFqenKM+jkKleyY5t+itipZDhN1oEQI5oxcJUZx9A
-	 ql/kTTc//AcRbkmm42wIdjhKPRnIFGerv5d5kjtQOuoqX70UlUceSa0eOBG98iXcwq
-	 qFEOnx0ybyvB1x1X4ZWsOvedJ/xTs4s4n/kVky3bbpu6u/jZoypvkKtA4787Q+U2Ki
-	 WKepPFMF90e8BdPx1MkxCy3Rbs/2aoKwqQGVx/FzFD+BkJB6xB5UfqRKTw8G27E6xZ
-	 sg8PAICL/lvZxWWEYxd/7UaMiGQbCXZc+5k9tolpHEIM760HOLtL7UDTvcmShlgqqc
-	 TCdi3toOBzu5Q==
+	b=jKpbVW81a98xwODMB958yRYYc2dBMtGxp65ewCsq9fmeq0KgtqovpBqP4KfaMKAdv
+	 1BwEGbS21AWmCKgGCMSze9Cu4pmaEHm0aVBYZEqKQSd1wfGo/2XQPPgnjK5By74MiK
+	 xHD2kKHxDGxvGBxKkxx4+NgWk3DxSK0f50AhuDfjCluwiIsW7djpEL/71lTjLPyLIH
+	 nPDZK1o362Jao7aqT515HrPpSsn2hKOcBpMyZ2lnSNPA0fathsmQTC//ZdRlGhC2FU
+	 +5uu9Ff81V2w+8CFvEN9MEPldfc8bfgL0WSXBvM1jiWr2dbLjbFF2NEXigC8Xh39Ey
+	 Ml5qVM+lUXbNQ==
 Received: from [192.168.68.112] (ppp14-2-105-65.adl-apt-pir-bras32.tpg.internode.on.net [14.2.105.65])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 73A2465665;
-	Mon,  5 Aug 2024 11:52:14 +0800 (AWST)
-Message-ID: <1176b2ddb609b462004fa7e7b36fe6657b89bbf0.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v6 2/2] ARM: dts: aspeed: catalina: add Meta Catalina BMC
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id BCAD465665;
+	Mon,  5 Aug 2024 11:59:10 +0800 (AWST)
+Message-ID: <6171be101ee10aa2a11e021caafe877eb428412a.camel@codeconstruct.com.au>
+Subject: Re: [PATCH 0/6] Update the device tree for Ampere's BMC platform
 From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Potin Lai <potin.lai.pt@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
-	 <joel@jms.id.au>, Patrick Williams <patrick@stwcx.xyz>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, Cosmo Chou
-	 <cosmo.chou@quantatw.com>, Potin Lai <potin.lai@quantatw.com>, Krzysztof
-	Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Mon, 05 Aug 2024 13:22:12 +0930
-In-Reply-To: <20240802-potin-catalina-dts-v6-2-0b8f61b80688@gmail.com>
-References: <20240802-potin-catalina-dts-v6-0-0b8f61b80688@gmail.com>
-	 <20240802-potin-catalina-dts-v6-2-0b8f61b80688@gmail.com>
+To: Chanh Nguyen <chanh@amperemail.onmicrosoft.com>, "Rob Herring (Arm)"
+	 <robh@kernel.org>, Chanh Nguyen <chanh@os.amperecomputing.com>
+Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ linux-aspeed@lists.ozlabs.org, Andrew Jeffery <andrew@aj.id.au>, OpenBMC
+ Maillist <openbmc@lists.ozlabs.org>, Thang Nguyen
+ <thang@os.amperecomputing.com>,  linux-kernel@vger.kernel.org, Phong Vo
+ <phong@os.amperecomputing.com>, Rob Herring <robh+dt@kernel.org>, Joel
+ Stanley <joel@jms.id.au>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Open Source Submission
+ <patches@amperecomputing.com>, linux-arm-kernel@lists.infradead.org, Quan
+ Nguyen <quan@os.amperecomputing.com>
+Date: Mon, 05 Aug 2024 13:29:09 +0930
+In-Reply-To: <1c2dca43-444d-44a7-b304-5fbd59b788a8@amperemail.onmicrosoft.com>
+References: <20240801091217.1408809-1-chanh@os.amperecomputing.com>
+	 <172252600912.120761.16384387883905749466.robh@kernel.org>
+	 <1c2dca43-444d-44a7-b304-5fbd59b788a8@amperemail.onmicrosoft.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -69,51 +73,82 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
-Hi Potin,
-
-On Fri, 2024-08-02 at 17:07 +0800, Potin Lai wrote:
-> Add linux device tree entry for Meta(Facebook) Catalina compute-tray
-> BMC using AT2600 SoC.
+On Sat, 2024-08-03 at 10:49 +0700, Chanh Nguyen wrote:
 >=20
-> Signed-off-by: Potin Lai <potin.lai@quantatw.com>
-
-Running this past checkpatch gave me the following:
-
-WARNING: From:/Signed-off-by: email address mismatch: 'From: Potin Lai <pot=
-in.lai.pt@gmail.com>' !=3D 'Signed-off-by: Potin Lai <potin.lai@quantatw.co=
-m>'
-
-If you can't send from potin.lai@quantatw.com then perhaps you could
-work around this by adding a `From: ...` line as the first line of your
-commit message body as documented here:
-
-https://docs.kernel.org/process/maintainer-tip.html#ordering-of-commit-tags
-
-Alternatively, change your S-o-B tag to potin.lai.pt@gmail.com
-
-...=20
-
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dts b/=
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dts
-> new file mode 100644
-> index 000000000000..70cec690f541
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dts
-> @@ -0,0 +1,965 @@
+> On 01/08/2024 22:29, Rob Herring (Arm) wrote:
+> >=20
+> > On Thu, 01 Aug 2024 09:12:10 +0000, Chanh Nguyen wrote:
+> > > Updates the device tree to support some features on Ampere's
+> > > Mt.Mitchell BMC and Ampere's Mt.Jade BMC.
+> > >=20
+> > > Chanh Nguyen (6):
+> > >    ARM: dts: aspeed: mtjade, mtmitchell: Add OCP temperature sensors
+> > >    ARM: dts: aspeed: mtmitchell: Add I2C temperature sensor alias por=
+ts
+> > >    ARM: dts: aspeed: mtmitchell: Add I2C Riser card alias ports
+> > >    ARM: dts: aspeed: mtmitchell: Enable i2c10 and i2c15
+> > >    ARM: dts: aspeed: mtmitchell: Add LEDs
+> > >    ARM: dts: aspeed: mtmitchell: Add I2C FAN controllers
+> > >=20
+> > >   .../dts/aspeed/aspeed-bmc-ampere-mtjade.dts   |  16 ++
+> > >   .../aspeed/aspeed-bmc-ampere-mtmitchell.dts   | 152 +++++++++++++++=
++++
+> > >   2 files changed, 168 insertions(+)
+> > >=20
+> > > --
+> > > 2.43.0
+> > >=20
+> > >=20
+> > >=20
+> >=20
+> >=20
+> > My bot found new DTB warnings on the .dts files added or changed in thi=
+s
+> > series.
+> >=20
+> > Some warnings may be from an existing SoC .dtsi. Or perhaps the warning=
+s
+> > are fixed by another series. Ultimately, it is up to the platform
+> > maintainer whether these warnings are acceptable or not. No need to rep=
+ly
+> > unless the platform maintainer has comments.
+> >=20
+> > If you already ran DT checks and didn't see these error(s), then
+> > make sure dt-schema is up to date:
+> >=20
+> >    pip3 install dtschema --upgrade
+> >=20
+> >=20
+> > New warnings running 'make CHECK_DTBS=3Dy aspeed/aspeed-bmc-ampere-mtja=
+de.dtb aspeed/aspeed-bmc-ampere-mtmitchell.dtb' for 20240801091217.1408809-=
+1-chanh@os.amperecomputing.com:
+> >=20
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dtb: /ahb/apb/bus=
+@1e78a000/i2c@480/fan-controller0@20: failed to match any schema with compa=
+tible: ['maxim,max31790']
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtmitchell.dtb: /ahb/apb/bus=
+@1e78a000/i2c@480/fan-controller1@2f: failed to match any schema with compa=
+tible: ['maxim,max31790']
+> >=20
+> >=20
+>=20
+> Thank Rob for your review!
+>=20
+> I am aware of the new warnings you mentioned. For more information, the=
+=20
+> schema binding of "maxim,max31790" is being progressed by other series=C2=
+=A0=20
+> https://lore.kernel.org/lkml/20240414042246.8681-2-chanh@os.amperecomputi=
+ng.com/=20
 >=20
 
-...
+For now can you please remove the `maxim,max31790` nodes from your
+devicetree and re-send? As it stands you've been asked to rework what
+you proposed in the thread that you linked, and a quick look at the
+hwmon trees suggests support for the max31790 hasn't been merged.
 
-> +&gpio0 {
-> +	pinctrl-names =3D "default";
-
-Not sure why you need this, but I think it also causes the following
-warning:
-
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-catalina.dtb: gpio@1e780000: '=
-pinctrl-0' is a dependency of 'pinctrl-names'
-
-Might be best to drop it.
+You can send a follow-up patch adding the nodes to your devicetree once
+the binding has been merged.
 
 Andrew
 
