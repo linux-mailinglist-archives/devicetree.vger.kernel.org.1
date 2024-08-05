@@ -1,214 +1,137 @@
-Return-Path: <devicetree+bounces-91116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E170A947F1D
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 18:20:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6902B947F36
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 18:23:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 992EE280D98
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 16:20:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 142EB1F22B85
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 16:23:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B971E15B552;
-	Mon,  5 Aug 2024 16:20:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBEAE15C128;
+	Mon,  5 Aug 2024 16:23:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gFYP4S9P"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="UelkwFNf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D18D15B13B;
-	Mon,  5 Aug 2024 16:20:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5A961547DC;
+	Mon,  5 Aug 2024 16:23:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722874831; cv=none; b=piQ/U+vmp1P9nwYgH9MkXRLeckd+EEGfp7gAK/pv08UxavL1uyW9dDZXVEQgcAn2zqdeK62Itob7FqoRjGLyQoJGTSFmOyR4qrPSkVVOzbGTDR5lnkEqLKWKL97g3z4Yc2fOllSSu4R55UELoc/uxzGKGlyC9MnvAcuIKPuzLxM=
+	t=1722874988; cv=none; b=XGHbewDfrZTrPpJE6xZNANwwz/4Rj3jclzFkBWzJdR+Kt38TIIb2oRzKi19F+VEPe+SV8FS8GArPy8nKy4YLK5V7ZaWXYcmlxARDeq2kLVSwfTYmttHICvNR0FxR95wP1JX2Ih3zv6j1KCcKP0/bzCHCFaW6SacSUgxtM/7lnYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722874831; c=relaxed/simple;
-	bh=t+q3WbU7wIAsybWvWN5h0cBn7cQzNFnLNEyrabNbg2Q=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jXQxr35bbVY0T+EsUgyji9tcSca44uTZhelSeyFPbgB0nuJFrMgVDwHuphBFq9UuECprnV/wal6nyuWlG2MFvdIME3SMFfaHl30qKk1JBDMdbfINRXKB4GbSOgh/0+qKwi9wta9Giu21T8DN12GIbWuRQMxMfirP5ZKcKmpWQVE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gFYP4S9P; arc=none smtp.client-ip=209.85.167.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-3db19caec60so7512986b6e.1;
-        Mon, 05 Aug 2024 09:20:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722874829; x=1723479629; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:subject:cc:to:from:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=o/2gcRJhRF+q0oumC+8pyXKRI+ru5NZw7+q3z+G4VQE=;
-        b=gFYP4S9P2Y/tBFBvV3qyWjyhbAIth6Xha8QIZUVz4ZzONqtzRReORiqwJAAbHyvHZn
-         NCi8pGrd+vRiZrSSQRtECYIxBkZUetbVJj9SCOtFc1bwVgmxq+HnyxBc3b7eKPiymBS+
-         EtK/W9xlnUdRZc2dxxt4EXBN107iqFklOw1mwfQA21oF2D2kbOaxNgNTeTA1YWWpgDnW
-         fSadApa+flykft0q+5GwXjvx9/UaFPvCYkJkEp1zqmWsMVRDt0Ng9B+vjRa+x6clWO3g
-         RQIKYQCTrorGSJqFl8jB+3Wb0zqWCIFcaHXqvw0SrK0DMeeC4vHNlXSyk8aPQT9lK7Qy
-         XRiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722874829; x=1723479629;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:subject:cc:to:from:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=o/2gcRJhRF+q0oumC+8pyXKRI+ru5NZw7+q3z+G4VQE=;
-        b=fVnKXqSPWdLORTob5w02TZEc3pwtA/FHanH0TRaFytT/p0z5mV4q1dBpemGjTaFO47
-         DW+fDQM9L7OoOelVr95iFmTrhPNkBDqDgD6WjZrKEadp+K9GTr/J/mnY35N10hw/c86J
-         cJ0GBZA1J4CsTJ6pindbO6xWlGLqlJYPrBtgx6NqQ6Ifn/SuAmqA+HudP9kT+Ex02XoT
-         wEZ0/T8q8TBgOa7IMDxJz2spO7qcp19VADvDorP8AlNpfodsnJKN/yGCChHElNENbtEV
-         xfMWR6hiy0+0HwcLjIRh2kFzQyG4wWstmIISiBh1nKB2cFoe4mJup55wzbKoKrIkGQp1
-         0Iwg==
-X-Forwarded-Encrypted: i=1; AJvYcCVVEKSo6vcCCssHw514T4x7dtziigACtLn4vjIrduUyXpAwjYCOf67uD44gmgzG8W6iLPaAj191ALvvNVm6CEMZ5cR9MCCRL5pWoMnU0DJDZd5vMdCH/ls6fzc/7d9JOSdQ25Sr+IN0Xw==
-X-Gm-Message-State: AOJu0YwghfdTm6p3BW3D1orO2pux9K7WDWGK09OKHFB9dFY89uAYevrj
-	ycQ/CHbFHEW6S8R97APBzyfV2w3IuU6CyKHWvtNl3jFnC8WR1PAX
-X-Google-Smtp-Source: AGHT+IGhrdCiVzHF4+sgL6JEIeJjR99KHrosaGVM3KVKN0FUNCYWFamuinYDjmTd4Ylqq3yvu2brxQ==
-X-Received: by 2002:a05:6808:1b2b:b0:3db:22aa:f565 with SMTP id 5614622812f47-3db558095ccmr16759128b6e.11.1722874829090;
-        Mon, 05 Aug 2024 09:20:29 -0700 (PDT)
-Received: from neuromancer. ([2600:1700:fb0:1bcf::54])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3db5637b487sm2728598b6e.29.2024.08.05.09.20.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Aug 2024 09:20:28 -0700 (PDT)
-Message-ID: <66b0fbcc.050a0220.30fac7.71ce@mx.google.com>
-X-Google-Original-Message-ID: <ZrD7y/cmGjV3Kpax@neuromancer.>
-Date: Mon, 5 Aug 2024 11:20:27 -0500
-From: Chris Morgan <macroalpha82@gmail.com>
-To: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Sandy Huang <hjc@rock-chips.com>,
-	Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-	Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1722874988; c=relaxed/simple;
+	bh=6qIlI/ZA8suC3l92XJ5goqxx350QpUDQOkwCZyfLITo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SR6clozPMZm++qyy8txbsUaZiBXMMv0tMx70OWi0pOFdzTnX2MDiXKSkBYYFALf9YyVO7dPLoUSEHlOcSeoPV4iwBj9ttshIor/StqUgoCZ5OX9srOQY2LjRazSNpe3Y5SMw13edoVmxVFUfawSboSA4kbGKZDLvqipmvF2z0WY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=UelkwFNf; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from localhost (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 9CCCD40C91;
+	Mon,  5 Aug 2024 18:22:57 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+	by localhost (disroot.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id qDXlvlnU29eC; Mon,  5 Aug 2024 18:22:56 +0200 (CEST)
+Date: Tue, 6 Aug 2024 00:22:15 +0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1722874976; bh=6qIlI/ZA8suC3l92XJ5goqxx350QpUDQOkwCZyfLITo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=UelkwFNfMZ5qaYl1Ax+fpc0ktTmc1h+H2/PvIEsUSB33ul2dVsoBrgWw2kfifxk+a
+	 ZNapY89XNiZFMyDuB/iJ/gOr53fmVm9WUJHtok7zl6dq8rSaDkqXgUYv4W0OcXfL2J
+	 L+gEybNbuYS0834qzBjTRxbXwSJdh8gSYVCcvfPSF2lHxU/Cl0fployJ+Ij2CXfzz/
+	 AUryQu2DN3o+Rq72zca20Fb2wP9QH1ZnPpCRME8Srt0maxdrvD3/uEDhIR5knSprg8
+	 WAwyvBfOIME16f7syGH7kCclq/Qb4xNSYQ1hIfjq33TEOzZWnhQcoWCT+2g0GZ/Gta
+	 Odf00auRkCe/g==
+From: Yao Zi <ziyao@disroot.org>
+To: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+	Dragan Simic <dsimic@manjaro.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Mark Yao <markyao0591@gmail.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	"open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-	devicetree@vger.kernel.org, kernel@collabora.com,
-	Alexandre ARNOUD <aarnoud@me.com>,
-	Luis de Arquer <ldearquer@gmail.com>,
-	Algea Cao <algea.cao@rock-chips.com>
-Subject: Re: [PATCH v2 0/3] Add initial support for the Rockchip RK3588 HDMI
- TX Controller
-References: <20240801-b4-rk3588-bridge-upstream-v2-0-9fa657a4e15b@collabora.com>
- <45B07EAF-4CBA-4DE4-A03B-109767D52B29@gmail.com>
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>,
+	Andy Yan <andyshrk@163.com>,
+	Muhammed Efe Cetin <efectn@protonmail.com>,
+	Jagan Teki <jagan@edgeble.ai>, Ondrej Jirman <megi@xff.cz>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org
+Subject: Re: [PATCH 3/4] arm64: dts: rockchip: Add base DT for rk3528 SoC
+Message-ID: <ZrD8N7_tYAiKCg-C@ziyaolaptop.my.domain>
+References: <20240803125510.4699-2-ziyao@disroot.org>
+ <ZrCwrWjRgvE0RS98@ziyaolaptop.my.domain>
+ <82e7e3a78f784b3ad63094c8a0ab1932@manjaro.org>
+ <7941737.iedYuu7f5S@diego>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <45B07EAF-4CBA-4DE4-A03B-109767D52B29@gmail.com>
+In-Reply-To: <7941737.iedYuu7f5S@diego>
 
-On Sat, Aug 03, 2024 at 03:24:06PM +0200, Piotr Oniszczuk wrote:
-> Hi Cristian,
+On Mon, Aug 05, 2024 at 01:47:45PM +0200, Heiko St�bner wrote:
+> Am Montag, 5. August 2024, 13:37:11 CEST schrieb Dragan Simic:
+> > On 2024-08-05 12:59, Yao Zi wrote:
+> > > On Sun, Aug 04, 2024 at 04:05:24PM +0200, Krzysztof Kozlowski wrote:
+> > >> On 04/08/2024 15:20, Yao Zi wrote:
+> > >> >>
+> > >> >>> +		compatible = "fixed-clock";
+> > >> >>> +		#clock-cells = <0>;
+> > >> >>> +		clock-frequency = <24000000>;
+> > >> >>> +		clock-output-names = "xin24m";
+> > >> >>> +	};
+> > >> >>> +
+> > >> >>> +	gic: interrupt-controller@fed01000 {
+> > >> >>
+> > >> >> Why this all is outside of SoC?
+> > >> >
+> > >> > Just as Heiko says, device tree for all other Rockchip SoCs don't have
+> > >> > a "soc" node. I didn't know why before but just follow the style.
+> > >> >
+> > >> > If you prefer add a soc node, I am willing to.
+> > >> 
+> > >> Surprising as usually we expect MMIO nodes being part of SoC to be 
+> > >> under
+> > >> soc@, but if that's Rockchip preference then fine.
+> > >> 
+> > > 
+> > > Okay, then I would leave it as is.
+> > > 
+> > > For the fixed-clock node, I think "xin24m: clock-24m { }" is okay and
+> > > follows the new rule?
+> > 
+> > I find "xin24m: clock-xin24m { }" better, because keeping the "xin24m"
+> > part in /sys listing(s), for example, can only be helpful.
 > 
-> Will you find some time and motivation to add CEC support to Quad-Pixel (QP) TX controller ?
+> I would second that :-) . Like on a number of boards we have for example
+> 125MHz gmac clock generators ... with 2 gmacs, there are 2 of them.
 > 
-> Probably you recall - I added initial CEC support to yours v1 series and i’m stuck with timing issue (cec pulses are 3x too long).
-> For me it looks like clock issue.
-> I’m out of ideas how to move forward with this timming issue….
+> I'm not sure the preferred name accounts for that?
+> 
+> Similarly we also keep the naming in the regulator node,
+> it's regulator-vcc3v3-somename {} instead of just regulator-3v3 {}.
+> 
 
-I wonder if using the cec-gpio on "GPIO4 RK_PC1" for the CEC gpio and
-"GPIO1 RK_PA5" for the HPD gpio is a possibility? Just a thought.
+"clock-xin24m" wouldn't be more descriptive than "clock-24m" and there
+are usually only a few fixed clocks in dt, thus finding corresponding
+definition isn't a problem I think.
 
-Chris
+For the gmac case, Krzysztof, do you think something like
+"clock-125m-gmac1" is acceptable, just like what has been done for
+regulators?
 
->  
-> 
-> 
-> > Wiadomość napisana przez Cristian Ciocaltea <cristian.ciocaltea@collabora.com> w dniu 01.08.2024, o godz. 04:25:
-> > 
-> > The Rockchip RK3588 SoC family integrates the Synopsys DesignWare HDMI
-> > 2.1 Quad-Pixel (QP) TX controller [4], which is a new IP block, quite
-> > different from those used in the previous generations of Rockchip SoCs.
-> > 
-> > This is the last component that needs to be supported in order to enable
-> > the HDMI output functionality on the RK3588 based SBCs, such as the
-> > RADXA Rock 5B. The other components are the Video Output Processor
-> > (VOP2) and the Samsung IP based HDMI/eDP TX Combo PHY, for which basic
-> > support has been already made available via [1] and [2], respectively.
-> > 
-> > Please note this is a reworked version of the original series, which
-> > relied on a commonized dw-hdmi approach.  Since the general consensus
-> > was to handle it as an entirely new IP, I dropped all patches related to
-> > the old dw-hdmi and Rockchip glue code - a few of them might still make
-> > sense as general improvements and will be submitted separately.
-> > 
-> > Additionally, as suggested by Neil, I've sent the reworked bridge driver
-> > as a separate patchset [4], hence this series handles now just the new
-> > Rockchip QP platform driver.
-> > 
-> > It's worth mentioning the HDMI output support is currently limited to
-> > RGB output up to 4K@60Hz, without audio, CEC or any of the HDMI 2.1
-> > specific features.  Moreover, the VOP2 driver is not able to properly
-> > handle all display modes supported by the connected screens, e.g. it
-> > doesn't cope with non-integer refresh rates.
-> > 
-> > A possible workaround consists of enabling the display controller to
-> > make use of the clock provided by the HDMI PHY PLL. This is still work
-> > in progress and will be submitted later, as well as the required DTS
-> > updates.
-> > 
-> > To facilitate testing and experimentation, all HDMI output related
-> > patches, including those part of this series, as well as the bridge
-> > driver, are available at [3].
-> > 
-> > So far I could only verify this on the RADXA Rock 5B board.
-> > 
-> > Thanks,
-> > Cristian
-> > 
-> > [1]: 5a028e8f062f ("drm/rockchip: vop2: Add support for rk3588")
-> > [2]: 553be2830c5f ("phy: rockchip: Add Samsung HDMI/eDP Combo PHY driver")
-> > [3]: https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/commits/rk3588-hdmi-bridge-v6.11-rc1
-> > [4]: https://lore.kernel.org/lkml/20240801-dw-hdmi-qp-tx-v1-0-148f542de5fd@collabora.com/
-> > 
-> > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> > ---
-> > Changes in v2:
-> > - Reworked the glue code for RK3588 into a new Rockchip platform driver
-> > - Moved bridge driver patches to a separate series [4]
-> > - Dropped all the patches touching to the old dw-hdmi and RK platform
-> >  drivers
-> > - Added connector creation to ensure the HDMI QP bridge driver does only
-> >  support DRM_BRIDGE_ATTACH_NO_CONNECTOR
-> > - Link to v1: https://lore.kernel.org/r/20240601-b4-rk3588-bridge-upstream-v1-0-f6203753232b@collabora.com
-> > 
-> > ---
-> > Cristian Ciocaltea (3):
-> >      dt-bindings: display: rockchip: Add schema for RK3588 HDMI TX Controller
-> >      drm/rockchip: Explicitly include bits header
-> >      drm/rockchip: Add basic RK3588 HDMI output support
-> > 
-> > .../display/rockchip/rockchip,dw-hdmi-qp.yaml      | 188 +++++++++
-> > drivers/gpu/drm/rockchip/Kconfig                   |   8 +
-> > drivers/gpu/drm/rockchip/Makefile                  |   1 +
-> > drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c     | 430 +++++++++++++++++++++
-> > drivers/gpu/drm/rockchip/rockchip_drm_drv.c        |   2 +
-> > drivers/gpu/drm/rockchip/rockchip_drm_drv.h        |   4 +-
-> > 6 files changed, 632 insertions(+), 1 deletion(-)
-> > ---
-> > base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
-> > change-id: 20240601-b4-rk3588-bridge-upstream-a27baff1b8fc
-> > 
-> > 
-> > _______________________________________________
-> > Linux-rockchip mailing list
-> > Linux-rockchip@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-rockchip
-> 
-> 
+Best regards,
+Yao Zi
 
