@@ -1,112 +1,117 @@
-Return-Path: <devicetree+bounces-91060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B3D7947A80
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 13:37:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 919D1947A8D
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 13:46:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 372E4281F10
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 11:37:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8830B1C20E30
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 11:46:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6F89155C88;
-	Mon,  5 Aug 2024 11:37:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7558B15383F;
+	Mon,  5 Aug 2024 11:46:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="qUUlxRPT"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=angelogioacchino.delregno@collabora.com header.b="XDfhqTdl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FB2113634B;
-	Mon,  5 Aug 2024 11:37:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722857845; cv=none; b=Kkwtjd06XOXdu5+6aGpOyaca/o1D+3vw0EEzuf3PvTkoDWYBsIYKTEsZFYnsis/WpkNz5m0J7Jbtx2RVnPVuuGtiGIBbarDkBiS+TTd0g3QqdGT5ckRII5/ODtriKsw8kaMPePQmLnEBluP2VhBEkWovZHu4IMoJPvKlnkagaEA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722857845; c=relaxed/simple;
-	bh=avZPHcmD5jG94fg14soRlNHA8bVHgs5gjw7IdSPWQ3c=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=fpkGaxYK3pSMLilo1R5jBITcs1jcgijYHAO4VkRKaISzRxhXZRl2zpiW4Qis9VdlTVTxQSSngCZXjPVmbR3ct6wplhXrEcVF4DCHvpWs6C+WvnsH/nuXiwB2Rl3LJRd8CzxGuFv6GKRWhWRv0iFo2O7cCLMtlPtHsibhfKyO1vI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=qUUlxRPT; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA1D66A01E;
+	Mon,  5 Aug 2024 11:46:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722858399; cv=pass; b=VxtmjkKcnmv/OAlpdFYTx5ASzxVFzgDDiM3ZEiS50UEFBNqR+lZz9mQwOiTBPOQ0ltVG8w3tcT8ST/ZI+dFnGNT/tNRQDUlearAFNiwWHvxU46vD7ZPmPvaPUUwx+wA6Of1TZUp1dTF/h8ipTmL8Y08WD5NOj3zO4GulWp1YtUM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722858399; c=relaxed/simple;
+	bh=n2RIdq0IhbLmXmjAwSSrkKNPZZqVEDlZIcgiYy6XeRg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jvwkPP54wEhY6OgWN/cJBGMI/3HUal057H9I61ga7sxql3G2+MxUgeeRF+v+77/fbIdF2p8oGMqu50NQRfU2WgmuvBkc7C7gSzaafUIO9wHJP08Lv2X16Ohy9lVarwiIn9B92ZuS3gbzyNI6IyhliIyLCB9gJJTYPM2N0Kyiqbo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=angelogioacchino.delregno@collabora.com header.b=XDfhqTdl; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1722858388; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=htvigfJC5EE5OUW4sYp3r5WBLqdNXcFAmIPRyp1SE9DlZ1c7gxDV62g1HfApsKF63nP9eboL/Mz/sgheTr/5nq8VLOeOm9HPJCcgIxM0XzDcOuCSU9RD52xh8iQOaOgZ/8wCd2KKxh3o4qdr3+fdqeKepz3LKgNkW2sqleCoiqI=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1722858388; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=X4Ff1KkmwJm2DOFKLyyKLVFzHm+3uoyXpl1wKGlTGBM=; 
+	b=QAdToZY6fesMjZctA4OtfUOm1ouu1PXwuNaoXg4MLQPOFLnoRBKfhl7d6id8l3c564BB2uuOPRICzppaEiURh/cdVCvGUtdQ4Nr8JHFYCsXilYZAIptM0NPPquLod7OoyeL3H7h4ttlocrQ2vSopRGohDYGfqeJzujW1z9ZTkf0=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=angelogioacchino.delregno@collabora.com;
+	dmarc=pass header.from=<angelogioacchino.delregno@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1722858388;
+	s=zohomail; d=collabora.com;
+	i=angelogioacchino.delregno@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=X4Ff1KkmwJm2DOFKLyyKLVFzHm+3uoyXpl1wKGlTGBM=;
+	b=XDfhqTdlISYLqA4ixKVW7Y7gbbMAkBx7gr27w681BTZeNhM6zNNj6bSwthcEYVce
+	rzCVttxHDVF1KPO5f1OftyGFth25N46u/sqzo85aRIthpIw/gZbxXLaMKXV0rKJoHoN
+	XKbDlwNQHLhh+a40VEjF43hiTlMNho9HcFI1MZTQ=
+Received: by mx.zohomail.com with SMTPS id 1722858386516862.2880586091179;
+	Mon, 5 Aug 2024 04:46:26 -0700 (PDT)
+Message-ID: <8e089dc0-9342-480f-ac8a-93b5bfe1241e@collabora.com>
+Date: Mon, 5 Aug 2024 13:46:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1722857833;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=eXUv4vhwwDrlK6OrMkKD/adJ3fBSeeUSyzbCZQ61tL0=;
-	b=qUUlxRPT1IMSC952YYeidmM0KBYMvEOIsbrWjX5Wcam1Tqn5KVnFKpwl8kQOgxOCNf+9fx
-	9WLIi3gt00vx7CwV0DbX2hhKD2/5mp3ir3ZOmOHaJ4c58zU5kLXPWjNpnyxsRtlnvi4u/7
-	WOrr4TD7UFyOEH3loM4VszSqwDGpAVOAwdgwD6fWnzOv1sRs+Dru7PRIW9byugYmu5pgVG
-	3I09LAldrwTsabdPnpYCVcgJ+eLOWKhToSd0N94QN/YwU39dCX5wjobRLuloLLMtT1vOFY
-	7Pp89kj2kr/0co2oV38y7Di/ruP30FVWjRab2fOwVxzjFQQRK4qtsK99Hdl4vg==
-Date: Mon, 05 Aug 2024 13:37:11 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Yao Zi <ziyao@disroot.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, Chris
- Morgan <macromorgan@hotmail.com>, Jonas Karlman <jonas@kwiboo.se>, Tim Lunn
- <tim@feathertop.org>, Andy Yan <andyshrk@163.com>, Muhammed Efe Cetin
- <efectn@protonmail.com>, Jagan Teki <jagan@edgeble.ai>, Ondrej Jirman
- <megi@xff.cz>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org
-Subject: Re: [PATCH 3/4] arm64: dts: rockchip: Add base DT for rk3528 SoC
-In-Reply-To: <ZrCwrWjRgvE0RS98@ziyaolaptop.my.domain>
-References: <20240803125510.4699-2-ziyao@disroot.org>
- <20240803125510.4699-5-ziyao@disroot.org>
- <56bd1478-ce8c-4c1d-ab16-afe4ad462bf5@kernel.org>
- <Zq-AFWYaqu7zGuz-@ziyaolaptop.my.domain>
- <b967ab05-dd0e-4fc5-bee6-ad7639e47bfb@kernel.org>
- <ZrCwrWjRgvE0RS98@ziyaolaptop.my.domain>
-Message-ID: <82e7e3a78f784b3ad63094c8a0ab1932@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8183: Remove clock from mfg_async
+ power domain
+To: Pin-yen Lin <treapking@chromium.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Rob Herring <robh@kernel.org>,
+ Kiwi Liu <kiwi.liu@mediatek.corp-partner.google.com>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ Enric Balletbo i Serra <eballetbo@kernel.org>,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Hsin-Te Yuan <yuanhsinte@chromium.org>, Chen-Yu Tsai <wenst@chromium.org>
+References: <20240805065051.3129354-1-treapking@chromium.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240805065051.3129354-1-treapking@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+X-ZohoMailClient: External
 
-On 2024-08-05 12:59, Yao Zi wrote:
-> On Sun, Aug 04, 2024 at 04:05:24PM +0200, Krzysztof Kozlowski wrote:
->> On 04/08/2024 15:20, Yao Zi wrote:
->> >>
->> >>> +		compatible = "fixed-clock";
->> >>> +		#clock-cells = <0>;
->> >>> +		clock-frequency = <24000000>;
->> >>> +		clock-output-names = "xin24m";
->> >>> +	};
->> >>> +
->> >>> +	gic: interrupt-controller@fed01000 {
->> >>
->> >> Why this all is outside of SoC?
->> >
->> > Just as Heiko says, device tree for all other Rockchip SoCs don't have
->> > a "soc" node. I didn't know why before but just follow the style.
->> >
->> > If you prefer add a soc node, I am willing to.
->> 
->> Surprising as usually we expect MMIO nodes being part of SoC to be 
->> under
->> soc@, but if that's Rockchip preference then fine.
->> 
+Il 05/08/24 08:50, Pin-yen Lin ha scritto:
+> This clock dependency introduced a mutual dependency between mfg_async
+> power domain and mt8183-mfgcfg clock, and Mediatek has confirmed that
+> this dependency is not needed. Remove this to avoid potential deadlock.
 > 
-> Okay, then I would leave it as is.
-> 
-> For the fixed-clock node, I think "xin24m: clock-24m { }" is okay and
-> follows the new rule?
 
-I find "xin24m: clock-xin24m { }" better, because keeping the "xin24m"
-part in /sys listing(s), for example, can only be helpful.
+Uhm, have you tested this upstream with Panfrost, or only downstream with the
+proprietary Mali stack?
+
+Regards,
+Angelo
+
+> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+> Fixes: 37fb78b9aeb7 ("arm64: dts: mediatek: Add mt8183 power domains controller")
+> 
+> ---
+> 
+>   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 2 --
+>   1 file changed, 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> index fbf145639b8c..267378fa46c0 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -872,8 +872,6 @@ power-domain@MT8183_POWER_DOMAIN_CONN {
+>   
+>   				mfg_async: power-domain@MT8183_POWER_DOMAIN_MFG_ASYNC {
+>   					reg = <MT8183_POWER_DOMAIN_MFG_ASYNC>;
+> -					clocks = <&topckgen CLK_TOP_MUX_MFG>;
+> -					clock-names = "mfg";
+>   					#address-cells = <1>;
+>   					#size-cells = <0>;
+>   					#power-domain-cells = <1>;
+
 
