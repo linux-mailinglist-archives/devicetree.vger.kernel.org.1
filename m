@@ -1,305 +1,179 @@
-Return-Path: <devicetree+bounces-90931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-90922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B92719473C6
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 05:18:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18A5C947355
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 04:22:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D55CA1C20E27
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 03:17:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6B8D4B20BCB
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 02:22:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 998EB13D24C;
-	Mon,  5 Aug 2024 03:17:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D77242A94;
+	Mon,  5 Aug 2024 02:22:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="jGNXpm4e"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="GZ+/1BCt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m102.netease.com (mail-m102.netease.com [154.81.10.2])
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10olkn2100.outbound.protection.outlook.com [40.92.40.100])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C0555589B;
-	Mon,  5 Aug 2024 03:17:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=154.81.10.2
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722827867; cv=none; b=aWxH2pkCEDGyGUhW8Y20KzPCMW6BuO+nVmnoWZafrQBoQL4Xq+VMUXqw996DYr/U6xP/8wC3WhwPkQPB4e4/ZDQvtBLKIgBeQQiMx6LbZZStjLcm2ASLmD9fJ9nHRkrKeTQWxyiM12cixqXG4ZqnL5LtBoXUzfZxm7RE99SMXe0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722827867; c=relaxed/simple;
-	bh=JB9cEamainRQayuIIKP8QoE3Q7NeLpHSyt4ffX47KTc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AhDYqL+EYhOHHhH71dF+bbjQtIws7RPlp8dLhkDDk5O9U/QqCdmAj+z9JRuYFVTzDRjI+LOLxJm1WMT6MyIb6iVnwm5NplK43YYJX/tSnGooBOuHG5u4HFW9RsOnHKiuhf8a510KhvFiY76n5pYro3/CL76HkZF1/8Icl58SK70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=jGNXpm4e; arc=none smtp.client-ip=154.81.10.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-DKIM-Signature: a=rsa-sha256;
-	b=jGNXpm4eEJnnDQ6HDu8pM04d2juDsBkM7XBWIfZtoUkA+mR8OtRL3PRtX0meVGgHyblQVEmD3codt64UuOc/UcdNLbcWZeP9PeqEc9bs1ug6QJsHk5zXGfieUq94KbYEf10XOFW1BFCYuvF/dtvtFdRY7mcoFP2H20jEFj0VOLk=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=Y0/hH3uagaxEC6Xi8wQOFeGwbmyZcR2iigSZoutT6D8=;
-	h=date:mime-version:subject:message-id:from;
-Received: from [172.16.12.49] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTPA id 1FC2FA028F;
-	Mon,  5 Aug 2024 09:22:13 +0800 (CST)
-Message-ID: <7b0d3bc3-4f23-4139-ac6b-10b6b9f85092@rock-chips.com>
-Date: Mon, 5 Aug 2024 09:22:12 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46700812;
+	Mon,  5 Aug 2024 02:22:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.40.100
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722824538; cv=fail; b=FFQRGCj/PimndbhMZtn1xvqItvAY45W/OCTkFBzYjccEjub3SU4IrTJCo3TckxGARYIaqUCHUk2xmJ8PlsIrfD99bRBMgyeOpHR1Atc4+BgW+Eg6secHbBtepQQK85cxLUpYCU8t8bKjgOFZypyqXknadBLRb1vB5XsUyrvqueQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722824538; c=relaxed/simple;
+	bh=l/VqQNjPD6abrxaRLozK8O4qGrExuIK46+rcev0OOQw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=YxvuoYGgbCAf2ZyZC3TG2lOy6dKiUqMJRFlhtPUwS37Tzh9Y2iisQjz2ywYQ1PahXhFB/v1eYC1TqFAmZdRIt3WLlSalNkpKk2vwP7Ryh4/M1zKf5dLsRxOT8gaRbZRI0GkSs9qiGz1yLNC7i3kp9ChxRtZ+mQ7MdIkd3NHAaK4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=GZ+/1BCt; arc=fail smtp.client-ip=40.92.40.100
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=qnwko1Oj6lPbekyRqAHlljTRLUitEAZ+JI6Jtm4PLtCmlQcpEHxTebm+hm66SD5attrp0bGUR8KwxP1lZAvWsXxSMJI7mk1+Q9EfohiB9Tw6Ubip+tJ935WeO2m/89wiFb/p1HceJfSgX2M1OI7mJQlSZpqXJk4OR+X0DtoDqLBfRXqcrYKY31Db2p06En8CqXZYWgGvOQeW87aBVa0WhETieVYbIgz/E7nrZ8WWCl3yPXfsi9p8VJoEavepPxjkNWDP0iJB5kYZG/KXMtSHMZE/CLpg/PAKaWc/4i25TcYAehfMiYnVr4LSmFH1+ofuAjDb1AWiCPrpBprHeCCvBA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TmtcRHCTGTFHD9ZgIf08U+rPDJ3cCn76gjvz5l8kkJo=;
+ b=llGqEetAdKQjC0X8ez/VReEwoOgi5v7xKL4B+0gAT/Ol8QqNuvL1dcua55upJ7NzgnPJSINI0ATm2p85JLU8RM3Lk4JndA4esR4sWSEfXXwXEMKdIkTaqtOTiditgC401di1rxc/HrFSDIzJ28bEaFiROv7fZbOJLPztmrb9nGk07gnhZz0zSP3m05l0KP8BWKMVnxS82+RqBqhQ1wq/V4ZQKzwxG2m6S1hTI11mFQujUWbBuQg/7yIWi6ss+txx+dyASdtOOOkwl7pQZ4FORRsulwtcEFm7rIG3CFHFuRXPsSqWJFgJgLmmxBSufFv2kktgudoiMLpLEEgTYvhmFg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TmtcRHCTGTFHD9ZgIf08U+rPDJ3cCn76gjvz5l8kkJo=;
+ b=GZ+/1BCtkyQGx5dziC2onBavb48Hbe5rUx9zOqypQ7jYfmN62oO2vejOnM5He43AcW6swPHklQz1Egq9DY+l2k9Q219LdpwX/IgRtQDp+bAmKdZNs7WVCkpaFjy7z3E+iafZl2eQF70VaepCkWk6r+FSpb926OG1Ab+AJg8PYymrWWScuukT7iDR74VKDGDINvVjUJ3wqYKw1fFLGo1jZdmhMuBwIChHvmXRbgHVMBMXnCvXR+OkjLdZXbaDgD73JscCVElgttL481PqBCxT5pTIXM02s4UJjkeB5nbsKTUr8dRVrASXFDV77vOjFFxQE6DZUhdpHBAzjtVbXIEq8w==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by DM4PR20MB4702.namprd20.prod.outlook.com (2603:10b6:8:ab::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.26; Mon, 5 Aug
+ 2024 02:22:14 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::ab0b:c0d3:1f91:d149]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::ab0b:c0d3:1f91:d149%4]) with mapi id 15.20.7828.023; Mon, 5 Aug 2024
+ 02:22:14 +0000
+Date: Mon, 5 Aug 2024 10:21:35 +0800
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Chen Wang <unicorn_wang@outlook.com>, 
+	Inochi Amaoto <inochiama@outlook.com>, Jean Delvare <jdelvare@suse.com>, 
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>, 
+	Chao Wei <chao.wei@sophgo.com>, Jinyu Tang <tangjinyu@tinylab.org>, 
+	Hal Feng <hal.feng@starfivetech.com>, Yangyu Chen <cyy@cyyself.name>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v9 4/4] riscv: defconfig: Enable MCU support for SG2042
+Message-ID:
+ <IA1PR20MB495318BAD08E97F0F3AA2672BBBE2@IA1PR20MB4953.namprd20.prod.outlook.com>
+References: <IA1PR20MB495337877FFC8D787A045C15BBB32@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <IA1PR20MB49530E505BAEC8F92B19F37FBBB32@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <MA0P287MB2822C3C5AC61D2A91542C33EFEBE2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <MA0P287MB2822C3C5AC61D2A91542C33EFEBE2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+X-TMN: [A386TxwYciR+eOBqbuGSLIVZVDvuUPc4vZMEjKgu+t8=]
+X-ClientProxiedBy: TYAPR01CA0139.jpnprd01.prod.outlook.com
+ (2603:1096:404:2d::31) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <t6ink2cn6ykpjh4gvh4nlsvpvqzljktl3yjfuihdojrn6iu7io@t6hd6oght6h2>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] soc: rockchip: power-domain: Add power domain support
- for rk3576
-To: Detlev Casanova <detlev.casanova@collabora.com>,
- linux-kernel@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Ulf Hansson <ulf.hansson@linaro.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- "Rafael J . Wysocki" <rafael@kernel.org>,
- Finley Xiao <finley.xiao@rock-chips.com>, Jagan Teki <jagan@edgeble.ai>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-pm@vger.kernel.org
-References: <20240802151647.294307-1-detlev.casanova@collabora.com>
- <20240802151647.294307-4-detlev.casanova@collabora.com>
-From: zhangqing <zhangqing@rock-chips.com>
-In-Reply-To: <20240802151647.294307-4-detlev.casanova@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkxOQ1ZMThofSBgYHRhKTk1WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a9120213eb903a8kunm1fc2fa028f
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Mkk6MAw5FzI9MR8zOjAuTlY8
-	UUkKCStVSlVKTElJQ0lLQkhOQkhPVTMWGhIXVQETGhUcChIVHDsJFBgQVhgTEgsIVRgUFkVZV1kS
-	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUpITktINwY+
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|DM4PR20MB4702:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1ef26e09-0083-45f0-592e-08dcb4f56b84
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|19110799003|461199028|5072599009|8060799006|440099028|3412199025|1710799026;
+X-Microsoft-Antispam-Message-Info:
+	nSrFeLc6IF7x+85Y3XIA2AsfhffSAPpSktgVPIXjVpGd4P6/aLO90CmZbYE2/70ArKNifMLg0/ohQ5nQxOSh5w0IK2W2taTfxFUNhGdPaSSDEhKmfbwWljEwMtifyewVSZU9oxVISmL6MKwcNtycRlpxIBcBwRKxx4kH3xjpJ19a91qiMEMdlP4hU+C5F/m4/goq5oVl8QIv8oWiSCq/J6CoebQqMTh8ctA0mhO8I4U9n9C36pVgAJ2eUHeuz3xOKysIC8aM8mzcDJRQLp76rhmQna8kt8yx4SnfdbQAIDStoDRpLzY8VFiF3BoBtTY2nRVFUP/XUh6t85EwsHBVDsIxqNzpHZn0XoQLEwhIWGh0sSjClJHPDQJRzwRnrSTTAsrurdIF7aTl0SFmIu9YNzLJr5kpvvFU5uFo6/VY2LTGjX/jSxHSjba/4jneTBfz6GiWUgfbDKufuGSKc8j711QvhPUm33VcVomPEHA7fZAKJdgcPUnc7bKvIVyqDnN3hhNkROuxXIslFUOhdi/0WDNM5oLGi5atMB2NNbRLzL9+Nxd5QE698EyXKCEsDxRfnnbhPsg7jzM6n2Yqy1s0h5fANxtzJFr2cLw+dwlP8XtugMcEUysCePEQY9vrrx2xhR6o2PvT1aYItwLYakl6BILJKZGNezPu68hfWMsqO7YlAv17pHNBYW6j0zY5dmuKxUEoog38izvYKMQ+4dYRdQ==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?dw4Qyp5ZLVmS0WqT0LKCG8z6hxEq4C0HMUocIYTVJTgHcqk42aC/DMyK9kVR?=
+ =?us-ascii?Q?E73GHqePIHaQTSFc0NfsNGV1wXzRYbiJdBvq8fmBCatPVrXyiSKBaevycRLW?=
+ =?us-ascii?Q?35/8RLWAApQ4rhUX+HjN9493e8aso0M9ZnLxhuewD5AMxIMLFfB34xIf9dTY?=
+ =?us-ascii?Q?Xjc0TsTrBP/LL7wurXxFCZJTuLyKdcCUJOiNcBTNLTE/QPq4HiRx45TN/kvU?=
+ =?us-ascii?Q?CmY5FkwbghR17ZeoRs+NQEcCMpKCYUK0qLZWWMfZrTa0fqx9lI/i3WUXBP1D?=
+ =?us-ascii?Q?E8XRwdoZ94uadOpAsfOtdTIkOYFqiF3E2Xi8Zr49XxcCsaN7t77UcYlD6NJH?=
+ =?us-ascii?Q?5cKD95E5bFjY4k2trxHJxi//nfeqLKaLgDr46XPQBcuebZLIxrbJna552BwG?=
+ =?us-ascii?Q?qF6Sb1KNmKBm0q2s/GlBq6YlUMbSLhdOtkLk8RAC8dC6+x3/ZJL4Wh2fnVyN?=
+ =?us-ascii?Q?/g3RX3ulbyEU0ry74cYyFHjZl96W73eJIQTfJsLs82x/ukxHOklN4S488j83?=
+ =?us-ascii?Q?ujiL6tBFV3FNoCfitxbg7lMpmNu8jvL2IWV6wJ2IRRx4SAHdrTynetrf4IG+?=
+ =?us-ascii?Q?XSSvULMHz45MOr/cPVw3o3WY6x4A2i+d64pcYhH8OzO86Q7SZkqyDJ4jj/Qf?=
+ =?us-ascii?Q?3CaXl57tPtj9s+3yC3NjJ+Zj7LGUU90kuwv6zvANcz+9cy3Ty3yCOY7+US//?=
+ =?us-ascii?Q?KNshdhdi/rqhxhkegWE9SyOPH/JRa21uzmpulNtGde1pzBzrovlloQNHeOcI?=
+ =?us-ascii?Q?wwF9UmA/ujfo9gc/yqHm42hxgNdT7mIbStxIi67l4n6gmKwlHSb/xBOQU7FL?=
+ =?us-ascii?Q?q/sBxElf9h+wE4eNzVwQ+kdnFenpLsb+C7lVz/Borbc6gACqVn51Pp3MNwU2?=
+ =?us-ascii?Q?M5cvEQ9eI0I/Mz3V67Jac8+Iuqny5ALjj4S4gY6/I8QYpfzsPOVvRyfybzcN?=
+ =?us-ascii?Q?OUOkT12O7KPSMC38AfyjWfb/BuALsMV5QtPviQVlnHkKAkYBcpW8u/miGZUg?=
+ =?us-ascii?Q?sEfkDiNPn0WgOx28HA05MkgfbK8bCwla0M41RanI2lHXNrBfxxkGAruFxegc?=
+ =?us-ascii?Q?0GmO/ppjxKVXr4smgdQR2Pe30mref4snb506xX9wqYbFdpuO6pz0s0/uC8Wd?=
+ =?us-ascii?Q?pEaIa6KF7uoVlfC/xaywvpB5XGr5N2VqqypLQatwEUDRinomdvbRX/gFqyFE?=
+ =?us-ascii?Q?KigEdx3XsOXCl3/UTK7Ip/YO/9kr02T01A0hXt1M5ygOlj/FoDo7cxUrkpC1?=
+ =?us-ascii?Q?X+HNuxCYA6ZV9Swj9TFv?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1ef26e09-0083-45f0-592e-08dcb4f56b84
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2024 02:22:14.5605
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR20MB4702
 
-hi,
+On Mon, Aug 05, 2024 at 09:31:24AM GMT, Chen Wang wrote:
+> Why this patch change the dts?
+> 
 
-This submission is also required for the pd of rk3576.
+My fault, this should be merged into the previous patch.
 
-commit feb16e5db3c5e6ff7f18bc3c850c3758fad87caa
-Author: Finley Xiao <finley.xiao@rock-chips.com>
-Date:   Tue May 14 17:40:24 2024 +0800
+Regards,
+Inochi
 
-     soc: rockchip: power-domain: Add memory reset support for rk3576
-
-     This fixes panic when pd power on.
-     rockchip-pm-domain 27380000.power-management:power-controller: 
-failed to set domain 'nputop', target_on= 1, val=0
-     Kernel panic - not syncing: panic_on_set_domain set ...
-     Call trace:
-     dump_backtrace+0xf4/0x114
-     show_stack+0x18/0x24
-     dump_stack_lvl+0x6c/0x90
-     dump_stack+0x18/0x38
-     panic+0x14c/0x338
-     rockchip_do_pmu_set_power_domain+0x640/0x644
-     rockchip_pd_power+0x154/0x350
-     rockchip_pd_power_on+0x24/0x30
-     genpd_power_on+0x1d4/0x2ec
-     genpd_power_on+0x7c/0x2ec
-     genpd_runtime_resume+0xb0/0x384
-     __rpm_callback+0x7c/0x3c4
-     rpm_resume+0x43c/0x678
-     __pm_runtime_resume+0x4c/0x90
-     rknpu_power_on+0xa0/0x2d8
-     __rknpu_action_ioctl+0x54/0x230
-     drm_ioctl_kernel+0x80/0xf8
-     drm_ioctl+0x2d4/0x554
-     __arm64_sys_ioctl+0x90/0xc8
-     invoke_syscall+0x40/0x104
-     el0_svc_common+0xbc/0x168
-     do_el0_svc+0x1c/0x28
-     el0_svc+0x1c/0x68
-     el0t_64_sync_handler+0x68/0xb4
-     el0t_64_sync+0x164/0x168
-
-     Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
-     Change-Id: Ic73413d48335ef6bc57f3793ba6e3b39d4ecd100
-
-diff --git a/drivers/soc/rockchip/pm_domains.c 
-b/drivers/soc/rockchip/pm_domains.c
-index 1bd9b8280667..8bb2a5904f83 100644
---- a/drivers/soc/rockchip/pm_domains.c
-+++ b/drivers/soc/rockchip/pm_domains.c
-@@ -341,6 +341,7 @@ static void rockchip_pmu_unlock(struct 
-rockchip_pm_domain *pd)
-         .pwr_w_mask = (pwr) << 16,                      \
-         .pwr_mask = (pwr),                              \
-         .status_mask = (status),                        \
-+       .mem_status_mask = (r_status),                  \
-         .repair_status_mask = (r_status),               \
-         .req_offset = r_offset,                         \
-         .req_w_mask = (req) << 16,                      \
-@@ -2287,6 +2288,9 @@ static const struct rockchip_pmu_info rk3568_pmu = {
-  static const struct rockchip_pmu_info rk3576_pmu = {
-         .pwr_offset = 0x210,
-         .status_offset = 0x230,
-+       .chain_status_offset = 0x248,
-+       .mem_status_offset = 0x250,
-+       .mem_pwr_offset = 0x300,
-         .req_offset = 0x110,
-         .idle_offset = 0x128,
-         .ack_offset = 0x120,
-
-在 2024/8/2 23:15, Detlev Casanova 写道:
-> From: Finley Xiao <finley.xiao@rock-chips.com>
->
-> This driver is modified to support RK3576 SoCs and lists the power domains.
->
-> Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
-> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> ---
->   drivers/pmdomain/rockchip/pm-domains.c | 69 ++++++++++++++++++++++++--
->   1 file changed, 66 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/pmdomain/rockchip/pm-domains.c b/drivers/pmdomain/rockchip/pm-domains.c
-> index 9b76b62869d0d..f0330bb51685f 100644
-> --- a/drivers/pmdomain/rockchip/pm-domains.c
-> +++ b/drivers/pmdomain/rockchip/pm-domains.c
-> @@ -33,6 +33,7 @@
->   #include <dt-bindings/power/rk3368-power.h>
->   #include <dt-bindings/power/rk3399-power.h>
->   #include <dt-bindings/power/rk3568-power.h>
-> +#include <dt-bindings/power/rk3576-power.h>
->   #include <dt-bindings/power/rk3588-power.h>
->   
->   struct rockchip_domain_info {
-> @@ -50,6 +51,7 @@ struct rockchip_domain_info {
->   	u32 pwr_offset;
->   	u32 mem_offset;
->   	u32 req_offset;
-> +	u32 delay_us;
->   };
->   
->   struct rockchip_pmu_info {
-> @@ -144,9 +146,26 @@ struct rockchip_pmu {
->   	.active_wakeup = wakeup,			\
->   }
->   
-> -#define DOMAIN_RK3036(_name, req, ack, idle, wakeup)		\
-> +#define DOMAIN_M_O_R_G(_name, p_offset, pwr, status, r_status, r_offset, req, idle, ack, g_mask, delay, wakeup)	\
->   {							\
-> -	.name = _name,				\
-> +	.name = _name,					\
-> +	.pwr_offset = p_offset,				\
-> +	.pwr_w_mask = (pwr) << 16,			\
-> +	.pwr_mask = (pwr),				\
-> +	.status_mask = (status),			\
-> +	.repair_status_mask = (r_status),		\
-> +	.req_offset = r_offset,				\
-> +	.req_w_mask = (req) << 16,			\
-> +	.req_mask = (req),				\
-> +	.idle_mask = (idle),				\
-> +	.ack_mask = (ack),				\
-> +	.delay_us = delay,				\
-> +	.active_wakeup = wakeup,			\
-> +}
-> +
-> +#define DOMAIN_RK3036(_name, req, ack, idle, wakeup)	\
-> +{							\
-> +	.name = _name,					\
->   	.req_mask = (req),				\
->   	.req_w_mask = (req) << 16,			\
->   	.ack_mask = (ack),				\
-> @@ -175,6 +194,9 @@ struct rockchip_pmu {
->   #define DOMAIN_RK3568(name, pwr, req, wakeup)		\
->   	DOMAIN_M(name, pwr, pwr, req, req, req, wakeup)
->   
-> +#define DOMAIN_RK3576(name, p_offset, pwr, status, r_status, r_offset, req, idle, g_mask, delay, wakeup)	\
-> +	DOMAIN_M_O_R_G(name, p_offset, pwr, status, r_status, r_offset, req, idle, idle, g_mask, delay, wakeup)
-> +
->   /*
->    * Dynamic Memory Controller may need to coordinate with us -- see
->    * rockchip_pmu_block().
-> @@ -552,7 +574,10 @@ static int rockchip_pd_power(struct rockchip_pm_domain *pd, bool power_on)
->   			/* if powering up, leave idle mode */
->   			rockchip_pmu_set_idle_request(pd, false);
->   
-> -			rockchip_pmu_restore_qos(pd);
-> +			if (pd->info->delay_us)
-> +				udelay(pd->info->delay_us);
-> +			else
-> +				rockchip_pmu_restore_qos(pd);
->   		}
->   
->   		clk_bulk_disable(pd->num_clks, pd->clks);
-> @@ -1106,6 +1131,28 @@ static const struct rockchip_domain_info rk3568_pm_domains[] = {
->   	[RK3568_PD_PIPE]	= DOMAIN_RK3568("pipe", BIT(8), BIT(11), false),
->   };
->   
-> +static const struct rockchip_domain_info rk3576_pm_domains[] = {
-> +	[RK3576_PD_NPU]		= DOMAIN_RK3576("npu",    0x0, BIT(0),  BIT(0), 0,       0x0, 0,       0,       0,       0,    false),
-> +	[RK3576_PD_NVM]		= DOMAIN_RK3576("nvm",    0x0, BIT(6),  0,      BIT(6),  0x4, BIT(2),  BIT(18), BIT(2),  0,    false),
-> +	[RK3576_PD_SDGMAC]	= DOMAIN_RK3576("sdgmac", 0x0, BIT(7),  0,      BIT(7),  0x4, BIT(1),  BIT(17), 0x6,     0,    false),
-> +	[RK3576_PD_AUDIO]	= DOMAIN_RK3576("audio",  0x0, BIT(8),  0,      BIT(8),  0x4, BIT(0),  BIT(16), BIT(0),  0,    false),
-> +	[RK3576_PD_PHP]		= DOMAIN_RK3576("php",    0x0, BIT(9),  0,      BIT(9),  0x0, BIT(15), BIT(15), BIT(15), 0,    false),
-> +	[RK3576_PD_SUBPHP]	= DOMAIN_RK3576("subphp", 0x0, BIT(10), 0,      BIT(10), 0x0, 0,       0,       0,       0,    false),
-> +	[RK3576_PD_VOP]		= DOMAIN_RK3576("vop",    0x0, BIT(11), 0,      BIT(11), 0x0, 0x6000,  0x6000,  0x6000,  15,   false),
-> +	[RK3576_PD_VO1]		= DOMAIN_RK3576("vo1",    0x0, BIT(14), 0,      BIT(14), 0x0, BIT(12), BIT(12), 0x7000,  0,    false),
-> +	[RK3576_PD_VO0]		= DOMAIN_RK3576("vo0",    0x0, BIT(15), 0,      BIT(15), 0x0, BIT(11), BIT(11), 0x6800,  0,    false),
-> +	[RK3576_PD_USB]		= DOMAIN_RK3576("usb",    0x4, BIT(0),  0,      BIT(16), 0x0, BIT(10), BIT(10), 0x6400,  0,    true),
-> +	[RK3576_PD_VI]		= DOMAIN_RK3576("vi",     0x4, BIT(1),  0,      BIT(17), 0x0, BIT(9),  BIT(9),  BIT(9),  0,    false),
-> +	[RK3576_PD_VEPU0]	= DOMAIN_RK3576("vepu0",  0x4, BIT(2),  0,      BIT(18), 0x0, BIT(7),  BIT(7),  0x280,   0,    false),
-> +	[RK3576_PD_VEPU1]	= DOMAIN_RK3576("vepu1",  0x4, BIT(3),  0,      BIT(19), 0x0, BIT(8),  BIT(8),  BIT(8),  0,    false),
-> +	[RK3576_PD_VDEC]	= DOMAIN_RK3576("vdec",   0x4, BIT(4),  0,      BIT(20), 0x0, BIT(6),  BIT(6),  BIT(6),  0,    false),
-> +	[RK3576_PD_VPU]		= DOMAIN_RK3576("vpu",    0x4, BIT(5),  0,      BIT(21), 0x0, BIT(5),  BIT(5),  BIT(5),  0,    false),
-> +	[RK3576_PD_NPUTOP]	= DOMAIN_RK3576("nputop", 0x4, BIT(6),  0,      BIT(22), 0x0, 0x18,    0x18,    0x18,    15,   false),
-> +	[RK3576_PD_NPU0]	= DOMAIN_RK3576("npu0",   0x4, BIT(7),  0,      BIT(23), 0x0, BIT(1),  BIT(1),  0x1a,    0,    false),
-> +	[RK3576_PD_NPU1]	= DOMAIN_RK3576("npu1",   0x4, BIT(8),  0,      BIT(24), 0x0, BIT(2),  BIT(2),  0x1c,    0,    false),
-> +	[RK3576_PD_GPU]		= DOMAIN_RK3576("gpu",    0x4, BIT(9),  0,      BIT(25), 0x0, BIT(0),  BIT(0),  BIT(0),  0,    false),
-> +};
-> +
->   static const struct rockchip_domain_info rk3588_pm_domains[] = {
->   	[RK3588_PD_GPU]		= DOMAIN_RK3588("gpu",     0x0, BIT(0),  0,       0x0, 0,       BIT(1),  0x0, BIT(0),  BIT(0),  false),
->   	[RK3588_PD_NPU]		= DOMAIN_RK3588("npu",     0x0, BIT(1),  BIT(1),  0x0, 0,       0,       0x0, 0,       0,       false),
-> @@ -1284,6 +1331,18 @@ static const struct rockchip_pmu_info rk3568_pmu = {
->   	.domain_info = rk3568_pm_domains,
->   };
->   
-> +static const struct rockchip_pmu_info rk3576_pmu = {
-> +	.pwr_offset = 0x210,
-> +	.status_offset = 0x230,
-> +	.req_offset = 0x110,
-> +	.idle_offset = 0x128,
-> +	.ack_offset = 0x120,
-> +	.repair_status_offset = 0x570,
-> +
-> +	.num_domains = ARRAY_SIZE(rk3576_pm_domains),
-> +	.domain_info = rk3576_pm_domains,
-> +};
-> +
->   static const struct rockchip_pmu_info rk3588_pmu = {
->   	.pwr_offset = 0x14c,
->   	.status_offset = 0x180,
-> @@ -1359,6 +1418,10 @@ static const struct of_device_id rockchip_pm_domain_dt_match[] = {
->   		.compatible = "rockchip,rk3568-power-controller",
->   		.data = (void *)&rk3568_pmu,
->   	},
-> +	{
-> +		.compatible = "rockchip,rk3576-power-controller",
-> +		.data = (void *)&rk3576_pmu,
-> +	},
->   	{
->   		.compatible = "rockchip,rk3588-power-controller",
->   		.data = (void *)&rk3588_pmu,
-
--- 
-张晴
-瑞芯微电子股份有限公司
-Rockchip Electronics Co.,Ltd
-地址：福建省福州市铜盘路软件大道89号软件园A区21号楼
-Add:No.21 Building, A District, No.89 Software Boulevard Fuzhou, Fujian 350003, P.R.China
-Tel:+86-0591-83991906-8601
-邮编：350003
-E-mail:elaine.zhang@rock-chips.com
-****************************************************************************
-保密提示：本邮件及其附件含有机密信息，仅发送给本邮件所指特定收件人。若非该特定收件人，请勿复制、使用或披露本邮件的任何内容。若误收本邮件，请从系统中永久性删除本邮件及所有附件，并以回复邮件或其他方式即刻告知发件人。福州瑞芯微电子有限公司拥有本邮件信息的著作权及解释权，禁止任何未经授权许可的侵权行为。
-
-IMPORTANT NOTICE: This email is from Fuzhou Rockchip Electronics Co., Ltd .The contents of this email and any attachments may contain information that is privileged, confidential and/or exempt from disclosure under applicable law and relevant NDA. If you are not the intended recipient, you are hereby notified that any disclosure, copying, distribution, or use of the information is STRICTLY PROHIBITED. Please immediately contact the sender as soon as possible and destroy the material in its entirety in any format. Thank you.
-
-****************************************************************************
-
+> On 2024/8/2 20:38, Inochi Amaoto wrote:
+> > Enable MCU driver for SG2042 to provide thermal and reboot support.
+> > 
+> > Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+> > Tested-by: Chen Wang <unicorn_wang@outlook.com>
+> > Reviewed-by: Chen Wang <unicorn_wang@outlook.com>
+> > ---
+> >   arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts | 2 +-
+> >   arch/riscv/configs/defconfig                        | 1 +
+> >   2 files changed, 2 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
+> > index 8b8fdf6243d4..76375e25a495 100644
+> > --- a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
+> > +++ b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
+> > @@ -67,7 +67,7 @@ soc_active3: soc-active3 {
+> >   				};
+> >   				soc_hot: soc-hot {
+> > -					temperature = <85000>;
+> > +					temperature = <80000>;
+> >   					hysteresis = <5000>;
+> >   					type = "hot";
+> >   				};
+> > diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
+> > index 0d678325444f..a0f346301df6 100644
+> > --- a/arch/riscv/configs/defconfig
+> > +++ b/arch/riscv/configs/defconfig
+> > @@ -170,6 +170,7 @@ CONFIG_SPI_SUN6I=y
+> >   CONFIG_GPIO_SIFIVE=y
+> >   CONFIG_POWER_RESET_GPIO_RESTART=y
+> >   CONFIG_SENSORS_SFCTEMP=m
+> > +CONFIG_SENSORS_SG2042_MCU=y
+> >   CONFIG_CPU_THERMAL=y
+> >   CONFIG_DEVFREQ_THERMAL=y
+> >   CONFIG_RZG2L_THERMAL=y
 
