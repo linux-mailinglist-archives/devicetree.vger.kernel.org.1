@@ -1,152 +1,267 @@
-Return-Path: <devicetree+bounces-91014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F55794776D
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 10:38:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCB17947784
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 10:44:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CF689B2199F
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 08:38:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1AA1DB216CF
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 08:44:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 515A914F9D4;
-	Mon,  5 Aug 2024 08:38:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB61314E2FD;
+	Mon,  5 Aug 2024 08:44:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="NbzH7i6G"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fBhRqAfC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBFD814D290
-	for <devicetree@vger.kernel.org>; Mon,  5 Aug 2024 08:38:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 093593FB3B;
+	Mon,  5 Aug 2024 08:44:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722847084; cv=none; b=syih+qBNwnch+mPIsr8x1bOBRMnbda6Z9ClIiP20Nqe60QBSw8QvdaM0BujqGAaBToSVykCrWTlrSY5pRUJiBUBEHqdpd/MwI88nKqBGKoQI/8wm1DhZWRxxdPYugk8LJ1Nmx2k+mX87frh61znBLp7Az3t7sIufih4vJe2cvIY=
+	t=1722847446; cv=none; b=Ow9gqDp0hEO0EzgzZawM+RxuNBzjrDo6YEjgnrsb3CWkp1F965D/He4dMzHCLSSltajweNjsnjecpw6jSnhIQj3WKf0Z/ukxqQ2R12sIx3GyFSVbsj5NpHG9d4X6LsSn/cP4M7zTBNgjIutGNulmUBmWGx+DhkUFbybqT3XGYE0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722847084; c=relaxed/simple;
-	bh=X6jcxMd+FRPQlkV1oJKr2Tp9S0aJ1mG8uhJOvWbeKWU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LO7mbi4i8D0x9f2Sos+TZ7073nn5Cf/OtpsufKqCPzpiTkoa4QntB0QKgFzFeAglFmvO8qqiFNEEhsjqTUoDCPKXn3BCoijzrDu4tMiiu7rjQg6p/xFg7ayyu1N65tR8XfzcDy6xWrvluA847jIZq+nhPxZrK4cIpjYYrC80SGI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=NbzH7i6G; arc=none smtp.client-ip=209.85.210.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-70eec5f2401so7346193b3a.3
-        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2024 01:38:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1722847081; x=1723451881; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=lwKaJV11ZNo64nhEmzjMhGqxhmedgN2za3+jM9f935A=;
-        b=NbzH7i6GIBVA6D5/Amznl0or0B2YuNWrfKP9AzZLLDQ0mzUY5atNs0IFB2tS3+fz5V
-         fAzrLRQRcHEvcvrYDx1yu/Ftvn3nU82eg62T05vqgS0Bdc2yAw6LDHSDP+A/i7QFcYR+
-         TVXM4hBBr4EdCgSO9wHLRtt4Nq3+ixl/Lqg7M=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722847081; x=1723451881;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lwKaJV11ZNo64nhEmzjMhGqxhmedgN2za3+jM9f935A=;
-        b=C/D3TGCrSEeQamr5sBOBgWJRAtCTFLNUSUdPOqjCgeXdelCuGq/oY/A7TCZ2WoREOw
-         GMtI4AyJ+8F/n7BsJdN14+8dqagbDlQt8qbLtyY57VQOCRHca0uDM5xlfi4ErheVN4SG
-         fZ1sFFR/eWKg4pqIHm3SZrtgdMyD1Nn8jLqTvuhj6znvhOS/fKNRnzLlyYgjCYpeR2Ci
-         562X6dVJ+6CMgk2QlW+5Nx+PuoWz554HE1lSsVVQ09jD1PRvbD0H4ehSke/7xoDSuUq3
-         HKGaMuVSwaspXwi1BYFccPu8UVxPi+d0dKkghefX1uFHpZYY1AhOK4vbh/beclxMC9mw
-         ENtw==
-X-Forwarded-Encrypted: i=1; AJvYcCXrOtMMEr9y3NWx5wjbEIAnPh4l2U0IdXJr7BQeQgElX2Q6bBlp/xbpmsHXLSnrGXhR9FODrXTxaKMwLYg+JYxxvClz4ECyuVmBnA==
-X-Gm-Message-State: AOJu0YxNudsyJ1gcVgmFeVXP1dv0Vg+4kF3PMa+FCdH1YR3Z/cyfqzA3
-	pjWEbZFxh7A8KGVpBk7nDj1BMEUsvN1SdeHFNM7ZYKxcuc72SfhXnGdMZF0ysw==
-X-Google-Smtp-Source: AGHT+IGkudqNL0fTBNkSAE89yZQ5MD4zd9FpMTyItlaPtVglqeJXDe8fDvsl1Fh4ANkwyM3hm/+jBQ==
-X-Received: by 2002:a05:6a20:9193:b0:1c2:8d91:634 with SMTP id adf61e73a8af0-1c6996b9324mr16846423637.45.1722847080953;
-        Mon, 05 Aug 2024 01:38:00 -0700 (PDT)
-Received: from [10.176.68.61] ([192.19.176.250])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1ff58f53c4csm62072535ad.72.2024.08.05.01.37.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Aug 2024 01:38:00 -0700 (PDT)
-Message-ID: <32ddf003-0547-4905-9c87-899b9074ede3@broadcom.com>
-Date: Mon, 5 Aug 2024 10:37:52 +0200
+	s=arc-20240116; t=1722847446; c=relaxed/simple;
+	bh=P84bufUvbb/baZkAvRM3QWoRYArVv5ltMMCmqVZkat4=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lq1XTnwTHCpMvExg5DRvCelijJ/jmBF2yb5ffb6xqWTqaKMhDe9TTgtw2RzQD3zEQiJLQi7n1EFyFJO9lXmGWop4P337bnIv4T3um0olzy01Sgmac/rPUIzKGkruJrXnD39PI5Gu7RXUq/iKtzFijLZAsL5F9AuEoUGudif2cLs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fBhRqAfC; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4752VWNe019109;
+	Mon, 5 Aug 2024 08:43:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=NzshO5L7CeE9rXcFLLTqTUx3
+	99CeB/gX9htehoLfPIY=; b=fBhRqAfCQbcjNZTrkStyWMMcv5mT5tOmj+K781u+
+	9REc2wAdWSWgu1GfEkpoBePo3gSnx4DAztYFRW97LE64vWuEjirc0AxThvp/kQ/0
+	ckCcqcBzxIlk4HJcVlQH6dZeZx7T/9Ysh2O36iz6vjqc4C8e7N2VA51uznLKJkqm
+	RFiy6FgXzMbjjEzV1iJtMAE3HvUp2IsSneweGMW9wyTFZDipy1EJOSi/VhPW2Hpx
+	vuQgrb/QhJBZBGCrgAqB5dN/RvrIT/J8TlCpUjc1qAkR0aWAHN3Qoglpr1YbKDJK
+	exeLIeCGVyJtdbxkBVGJ/pgugmQtbSwKVAOyEzvWNlFIgA==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40scs2uam3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 05 Aug 2024 08:43:50 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 4758hnUg031868
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 5 Aug 2024 08:43:49 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 5 Aug 2024 01:43:41 -0700
+Date: Mon, 5 Aug 2024 14:13:38 +0530
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+CC: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+        "Andy Gross" <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>, Niklas Cassel
+	<nks@flawful.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+	<broonie@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Rafael J. Wysocki"
+	<rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Ulf Hansson
+	<ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Robert Marko <robimarko@gmail.com>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, Jeffrey Hugo
+	<quic_jhugo@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@somainline.org>
+Subject: Re: [PATCH v15 09/10] soc: qcom: Add a driver for CPR3+
+Message-ID: <ZrCQunPL/BWYwaR3@hu-varada-blr.qualcomm.com>
+References: <20240708-topic-cpr3h-v15-0-5bc8b8936489@linaro.org>
+ <20240708-topic-cpr3h-v15-9-5bc8b8936489@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 3/5] arm64: dts: rockchip: Add AP6275P wireless support
- to Khadas Edge 2
-To: Jacobe Zang <jacobe.zang@wesion.com>, robh@kernel.org,
- krzk+dt@kernel.org, heiko@sntech.de, kvalo@kernel.org, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, conor+dt@kernel.org
-Cc: efectn@protonmail.com, dsimic@manjaro.org, jagan@edgeble.ai,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- arend@broadcom.com, linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- megi@xff.cz, duoming@zju.edu.cn, bhelgaas@google.com,
- minipli@grsecurity.net, brcm80211@lists.linux.dev,
- brcm80211-dev-list.pdl@broadcom.com, nick@khadas.com
-References: <20240805073425.3492078-1-jacobe.zang@wesion.com>
- <20240805073425.3492078-4-jacobe.zang@wesion.com>
-Content-Language: en-US
-From: Arend van Spriel <arend.vanspriel@broadcom.com>
-Autocrypt: addr=arend.vanspriel@broadcom.com; keydata=
- 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
-In-Reply-To: <20240805073425.3492078-4-jacobe.zang@wesion.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240708-topic-cpr3h-v15-9-5bc8b8936489@linaro.org>
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: N9JZ8-M-6k7DAkJm_uU1fADo1bv2mxZh
+X-Proofpoint-GUID: N9JZ8-M-6k7DAkJm_uU1fADo1bv2mxZh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-04_14,2024-08-02_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
+ suspectscore=0 adultscore=0 spamscore=0 priorityscore=1501 impostorscore=0
+ lowpriorityscore=0 mlxlogscore=999 phishscore=0 malwarescore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408050061
 
-On 8/5/2024 9:34 AM, Jacobe Zang wrote:
-> Khadas Edge2 uses the PCI-e Ampak AP6275P 2T2R Wi-Fi 6 module. The
-> pcie@0 node can be used as Bridge1, so the wifi@0 node is used as a
-> device under the Bridge1.
-
-Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
-> Co-developed-by: Muhammed Efe Cetin <efectn@protonmail.com>
-> Signed-off-by: Muhammed Efe Cetin <efectn@protonmail.com>
-> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
+On Mon, Jul 08, 2024 at 02:22:40PM +0200, Konrad Dybcio wrote:
+> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+>
+> Introduce a new driver (based on qcom-cpr for CPRv1 IP) for the newer
+> Qualcomm Core Power Reduction hardware, known downstream as CPR[34h]
+> (h for hardened).
+>
+> In these new CPR versions, support for various new features was introduced.
+> That includes:
+> * voltage reduction for the GPU
+> * security hardening
+> * a new way of controlling CPU DVFS, based on internal communication
+>   between CPRh and Operating State Manager MCUs.
+>
+> The CPR v3, v4 and CPRh are present in a broad range of SoCs, from the
+> mid-range to the high end ones including, but not limited to:
+> MSM8953/8996/8998 and SDM630/636/660/845.
+>
+> Note that to reduce the giant review and testing matrix of the driver, this
+> patch (admittedly, somewhat confusingly but for good reasons) omits support
+> for CPR*3* specifically, which is otherwise quite straightforward to add.
+>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> [Konrad: rebase, a whole lot of cleanup/fixes]
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->   .../boot/dts/rockchip/rk3588s-khadas-edge2.dts   | 16 ++++++++++++++++
->   1 file changed, 16 insertions(+)
+>  drivers/pmdomain/qcom/Kconfig      |   22 +
+>  drivers/pmdomain/qcom/Makefile     |    4 +-
+>  drivers/pmdomain/qcom/cpr-common.h |    2 +
+>  drivers/pmdomain/qcom/cpr3.c       | 2711 ++++++++++++++++++++++++++++++++++++
+>  include/soc/qcom/cpr.h             |   17 +
+>  5 files changed, 2755 insertions(+), 1 deletion(-)
+>
+	.
+	.
+	.
+> +/**
+> + * cpr_irq_handler() - Handle CPR3/CPR4 status interrupts
+> + * @irq: Number of the interrupt
+> + * @dev: Pointer to the cpr_thread structure
+> + *
+> + * Handle the interrupts coming from non-hardened CPR HW as to get
+> + * an ok to scale voltages immediately, or to pass error status to
+> + * the hardware (either success/ACK or failure/NACK).
+> + *
+> + * Return: IRQ_SUCCESS for success, IRQ_NONE if the CPR is disabled.
+> + */
+> +static irqreturn_t cpr_irq_handler(int irq, void *dev)
+> +{
+> +	struct cpr_thread *thread = dev;
+
+While registering this handler with devm_request_threaded_irq,
+'cpr_drv' pointer is used as the cookie. But, here the cookie is
+being assumed to be cpr_thread. Is that intentional?
+
+Getting this crash while testing:-
+
+	Unable to handle kernel NULL pointer dereference at virtual address 0000000000000010
+	Mem abort info:
+	  ESR = 0x0000000096000004
+	  EC = 0x25: DABT (current EL), IL = 32 bits
+	  SET = 0, FnV = 0
+	  EA = 0, S1PTW = 0
+	  FSC = 0x04: level 0 translation fault
+	Data abort info:
+	  ISV = 0, ISS = 0x00000004, ISS2 = 0x00000000
+	  CM = 0, WnR = 0, TnD = 0, TagAccess = 0
+	  GCS = 0, Overlay = 0, DirtyBit = 0, Xs = 0
+	user pgtable: 4k pages, 48-bit VAs, pgdp=0000000046efd000
+	[0000000000000010] pgd=0000000000000000, p4d=0000000000000000
+	Internal error: Oops: 0000000096000004 [#1] PREEMPT SMP
+	Modules linked in:
+	CPU: 0 UID: 0 PID: 72 Comm: irq/26-cpr Not tainted 6.11.0-rc1-next-20240729-00019-g244903f9355b-dirty #28
+	Hardware name: Qualcomm Technologies, Inc. IPQ9574/AP-AL02-C7 (DT)
+	pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+	pc : mutex_lock+0x20/0x54
+	lr : cpr_irq_handler+0x28/0x260
+	sp : ffff80008613bd80
+	x29: ffff80008613bd80 x28: ffff8000800b267c x27: ffff000006f92080
+	x26: ffff000002989200 x25: ffff000002b28000 x24: 0000000000000001
+	x23: ffff0000029892ac x22: ffff000002b28000 x21: 0000000000000000
+	x20: 0000000000000010 x19: ffff000002ba2880 x18: 0000000000000001
+	x17: 0000000073babcd7 x16: 0000000000000000 x15: ffff00003fc914c0
+	x14: 0000000000000000 x13: 0000000000000000 x12: 0000000000000000
+	x11: 0000000000000000 x10: 00000000000009b0 x9 : ffff80008613bd20
+	x8 : ffff000002b28a10 x7 : ffff00003fc91700 x6 : ffff00003fc90cc0
+	x5 : 00000000410fd090 x4 : 0000000000100000 x3 : 0000000000000000
+	x2 : ffff000002b28000 x1 : ffff000002ba2880 x0 : 0000000000000010
+	Call trace:
+	 mutex_lock+0x20/0x54
+	 irq_thread_fn+0x2c/0xa8
+	 irq_thread+0x16c/0x274
+	 kthread+0x110/0x114
+	 ret_from_fork+0x10/0x20
+	Code: b5000141 d65f03c0 d2800003 f9800011 (c85ffc01)
+	---[ end trace 0000000000000000 ]---
+
+Changing it to cpr_thread pointer in devm_request_threaded_irq
+fixes the above crash.
+
+> +	struct cpr_drv *drv = thread->drv;
+> +	irqreturn_t ret = IRQ_HANDLED;
+> +	int i, rc;
+> +	enum voltage_change_dir dir = NO_CHANGE;
+> +	u32 val;
+> +
+> +	guard(mutex)(&drv->lock);
+> +
+> +	val = cpr_read(thread, CPR3_REG_IRQ_STATUS);
+> +
+> +	dev_vdbg(drv->dev, "IRQ_STATUS = 0x%x\n", val);
+> +
+	.
+	.
+	.
+> +/**
+> + * cpr_thread_init() - Initialize CPR thread related parameters
+> + * @drv: Main driver structure
+> + * @tid: Thread ID
+> + *
+> + * Return: Zero for success, negative number on error
+> + */
+> +static int cpr_thread_init(struct cpr_drv *drv, int tid)
+> +{
+> +	const struct cpr_desc *desc = drv->desc;
+> +	const struct cpr_thread_desc *tdesc = desc->threads[tid];
+> +	struct cpr_thread *thread = &drv->threads[tid];
+> +	bool pd_registered = false;
+> +	int ret, i;
+	.
+	.
+	.
+> +	/* On CPRhardened, the interrupts are managed in firmware */
+> +	if (desc->cpr_type != CTRL_TYPE_CPRH) {
+> +		INIT_WORK(&thread->restart_work, cpr_restart_worker);
+> +
+> +		ret = devm_request_threaded_irq(drv->dev, drv->irq,
+> +						NULL, cpr_irq_handler,
+> +						IRQF_ONESHOT |
+> +						IRQF_TRIGGER_RISING,
+> +						"cpr", drv);
+
+'drv' or 'thread' ?
+
+Thanks
+Varada
+
+> +		if (ret)
+> +			goto fail;
+> +	}
+
 
