@@ -1,85 +1,225 @@
-Return-Path: <devicetree+bounces-91151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA3FA948076
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 19:39:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07417948080
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 19:39:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBE161C21E65
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 17:39:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78FC41F20F20
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 17:39:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EF2D166F0C;
-	Mon,  5 Aug 2024 17:38:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99824165F00;
+	Mon,  5 Aug 2024 17:38:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GnSchWyQ"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="VaBMSlaM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75AAD166F0B;
-	Mon,  5 Aug 2024 17:38:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93ABC16BE10
+	for <devicetree@vger.kernel.org>; Mon,  5 Aug 2024 17:38:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722879492; cv=none; b=WKKipWnCQyUiJ/5Qna+MTIVDm1BMOwDX/3KtTnqylrCL589ysWM8j1xI+dW24RfVkQN8TYLC23wNz7WpVXWQHE+3w5zrDy8Yt0PfDVQPu1a4fblI+Jwv1xhqDQYxIuGNJxh8qOFmEvPBtx6U6ZQaT+YHJjQpnxT/NDsR+F4XJoI=
+	t=1722879504; cv=none; b=DJC33B9tJHzXhdroSqHu9WhSBHzgKNKRARB4pqmzSbMWSIkoPVNsu7jxzU+1IGuBUhgQaQ742nMELWrlOZeh1EKiliR1Ueu+eSZc9OFcs+F7R9gRWyvBxUXHt0S6xZDMv3c01OvS85D1186zyzuNHeBC7fvtVryO0kKyzihuio4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722879492; c=relaxed/simple;
-	bh=nxR4LjhPkMaERMjLhviiy3Je47CLqyKxQkx8/VHzLyU=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=nymCzstBfWw1PHGyBWBnRXoqNvesTDH+W6JhvtS18CVORMBuDRZq15na/8evrFbIKA+NhpFPqgjWP2grwXF4LWeO/KdxvJJjZa9D3csnOOa1UdSN/bsRPwRZ4r2gZd6VQGYxEPTbnTFDCeqTqSgkSnmDsG0gV8PHx8hK9pWO1Mk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GnSchWyQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8DFEC4AF0E;
-	Mon,  5 Aug 2024 17:38:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722879492;
-	bh=nxR4LjhPkMaERMjLhviiy3Je47CLqyKxQkx8/VHzLyU=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=GnSchWyQmei4C5DSxKlakBV8+riOWo1hl8oNSySR4TDv708LwiVkqpXP+gJn6mvdy
-	 DG73mdxGuHB7n6+ht2PdPH9DLritHTMcfQPLT4uGQkCjbdLHVOCoyHLfNufnwN3rTo
-	 bO+SSLQmGILxHzORvZlPtfKUnOq1dB9yqKZSNACImgDfomrhBi5Q+emE6WYm4UAWGE
-	 yDC4kUYQQ8fkmU1c0hnMCx9EVQ0ER2+j0wC4jApHgtHb/acnZrIAm0zssifRwLLDWn
-	 kctPDj5l9Hryj5WVcN3mTTeESKvqjN0lk37KbQ2zMewa+hfjwc5ioNyQPIXEeGfgDG
-	 tWytBLoyHJ6hA==
-From: Vinod Koul <vkoul@kernel.org>
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- andrew@lunn.ch, Shresth Prasad <shresthprasad7@gmail.com>
-Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, skhan@linuxfoundation.org, 
- javier.carrasco.cruz@gmail.com
-In-Reply-To: <20240723095518.9364-2-shresthprasad7@gmail.com>
-References: <20240723095518.9364-2-shresthprasad7@gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: dma: mv-xor-v2: Convert to dtschema
-Message-Id: <172287948932.489137.16494399270709607927.b4-ty@kernel.org>
-Date: Mon, 05 Aug 2024 23:08:09 +0530
+	s=arc-20240116; t=1722879504; c=relaxed/simple;
+	bh=gzNYS6EG/C+/J22vSWSVkK/INf8H7WnGIxBg1zVunOc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=RAsp8C+VYwhuVYK7PDChilrWy6sNYstjghHTbeFywAUQW+5LxymiYbTrCEysDI9rBlfVGphYIRm8Fo3MJFs4rnKN8Sy3+eUEqJ6h4Ss8vQv6CZEcdX09x+R90kBORIe7WuOrUk8STpqXgio3sE1VGCSnKsAC/pkvmeCdReGYd88=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=VaBMSlaM; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1fec34f94abso86437525ad.2
+        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2024 10:38:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1722879502; x=1723484302; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yIqXJOcsWTmDQT18ltvBkvSKfPE+CI0ACIv+CWuAfhQ=;
+        b=VaBMSlaMR0hX6hVSyqusF1FI1H7DHUBlj8ECknqViRb9PSx55hIg4rlEMbB0/9/5YD
+         l74bRlrADBGdX2kWRysOX8URZ9ks+Vlw5PoJP0VoiDmyVQmNIrvUl3e14TEhF3YTkYnr
+         P/CKFYTnjZkWyiXGqkaX1wYej4di0Y/WeuTW7ly2Bpu2qKIY4q94agWyxj7fmXMCScul
+         jumnDHt2WJljzBY1hupEh+FXH9XZA2jq5yTVP0A4LAv6qKEJ+dSzoIufTkaWttKAJVeF
+         N0/q/drELwTdEIoqCR5TeeSkhyy8jvL9jkRuRhOVwfDcTuGvJVVapOWG/0sAkvkWJUMG
+         JuOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722879502; x=1723484302;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yIqXJOcsWTmDQT18ltvBkvSKfPE+CI0ACIv+CWuAfhQ=;
+        b=DRAmOULRGv+6Hyc4k0PLl+po5sJj+4CqvR9wi5DDw6LjzJlxE0cJ5OulvGfdZlNlR7
+         rCez4UaDUJIBT6Na38TaFEHdumLvhNnI94HE3ruTUohLmmB+1FdQDnCyC5Gxka4zRk1y
+         RqPwG1/CyPe3Y3fnqnQhjVoR7DDcssRUrUFDK7Xsx4xW/3HIHGEZY5Q/nbxUSZ2kYaI+
+         C9qEEaoqzA1GDJOjOULIbUTJNZBaMBnaBgG/zkkJpKLdfwj7DwuwU8CiI50dZ4Nn72E6
+         EGE5VbKaI9N9wHefTcrJML5/Pf2XzFt4mTSy+PaVPQ2eliAZSgvcmMwgHXIPeUodLQnx
+         bs+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXQxtetbbYcOK6YUoW8qZ0ejfed1YzUGIRUcj8gNgyi2zqcuMbCfeLjfcX/Ifthocca/xaZ9r9wwVS+UUL6SWdOj4ertTQBSVMb5g==
+X-Gm-Message-State: AOJu0YwCWSfIoOE8sNxA8BkM2nnk57rlpoSDy4w1gXN/GUnEU3/64ecH
+	5nrVfsEaXNy1/HNJEk5VI9gGgxsmA7ISVlKh6CHRoxQyAyDnN0eKTgZ1x8i2PMU=
+X-Google-Smtp-Source: AGHT+IGA4ao6KXpD/OA6uBRaBG7aAABpIJEYunLTtbMZ72A9gi5Guwmmt27eLbpuv2kqVPSBJEaCbw==
+X-Received: by 2002:a17:902:dac4:b0:1fb:90e1:c8c5 with SMTP id d9443c01a7336-1ff572c487fmr112872505ad.33.1722879501771;
+        Mon, 05 Aug 2024 10:38:21 -0700 (PDT)
+Received: from jesse-desktop.ba.rivosinc.com (pool-108-26-179-17.bstnma.fios.verizon.net. [108.26.179.17])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1ff5929407asm71128435ad.242.2024.08.05.10.38.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Aug 2024 10:38:21 -0700 (PDT)
+From: Jesse Taube <jesse@rivosinc.com>
+To: linux-riscv@lists.infradead.org
+Cc: Jonathan Corbet <corbet@lwn.net>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	=?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <cleger@rivosinc.com>,
+	Evan Green <evan@rivosinc.com>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Jesse Taube <jesse@rivosinc.com>,
+	Charlie Jenkins <charlie@rivosinc.com>,
+	Xiao Wang <xiao.w.wang@intel.com>,
+	Andy Chiu <andy.chiu@sifive.com>,
+	Eric Biggers <ebiggers@google.com>,
+	Greentime Hu <greentime.hu@sifive.com>,
+	=?UTF-8?q?Bj=C3=B6rn=20T=C3=B6pel?= <bjorn@rivosinc.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Costa Shulyupin <costa.shul@redhat.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Baoquan He <bhe@redhat.com>,
+	Anup Patel <apatel@ventanamicro.com>,
+	Zong Li <zong.li@sifive.com>,
+	Sami Tolvanen <samitolvanen@google.com>,
+	Ben Dooks <ben.dooks@codethink.co.uk>,
+	Alexandre Ghiti <alexghiti@rivosinc.com>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	Erick Archer <erick.archer@gmx.com>,
+	Joel Granados <j.granados@samsung.com>,
+	linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH 1/1] RISC-V: Add parameter to unaligned access speed
+Date: Mon,  5 Aug 2024 13:38:15 -0400
+Message-ID: <20240805173816.3722002-1-jesse@rivosinc.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13.0
+Content-Transfer-Encoding: 8bit
 
+Add a kernel parameter to the unaligned access speed. This allows
+skiping of the speed tests for unaligned accesses, which often is very
+slow.
 
-On Tue, 23 Jul 2024 15:25:19 +0530, Shresth Prasad wrote:
-> Convert txt bindings of Marvell XOR v2 engines to dtschema to allow
-> for validation.
-> 
-> Also add missing property `dma-coherent` as `drivers/dma/mv_xor_v2.c`
-> calls various dma-coherent memory functions.
-> 
-> 
-> [...]
+Signed-off-by: Jesse Taube <jesse@rivosinc.com>
+---
+ arch/riscv/kernel/unaligned_access_speed.c | 81 ++++++++++++++++++++++
+ 1 file changed, 81 insertions(+)
 
-Applied, thanks!
-
-[1/1] dt-bindings: dma: mv-xor-v2: Convert to dtschema
-      commit: 31c70e0b7b54016ecf2033f8166a385d2abaad15
-
-Best regards,
+diff --git a/arch/riscv/kernel/unaligned_access_speed.c b/arch/riscv/kernel/unaligned_access_speed.c
+index 1548eb10ae4f..02f7a92a5fa0 100644
+--- a/arch/riscv/kernel/unaligned_access_speed.c
++++ b/arch/riscv/kernel/unaligned_access_speed.c
+@@ -400,13 +400,94 @@ static int vec_check_unaligned_access_speed_all_cpus(void *unused __always_unuse
+ }
+ #endif
+ 
++static DEFINE_PER_CPU(long, unaligned_scalar_speed_param) = RISCV_HWPROBE_MISALIGNED_UNKNOWN;
++
++static int __init set_unaligned_scalar_speed_param(char *str)
++{
++	cpumask_var_t mask;
++	int ret, cpu;
++	long speed = RISCV_HWPROBE_MISALIGNED_UNKNOWN;
++
++	if (!strncmp(str, "fast,", 5)) {
++		str += 5;
++		speed = RISCV_HWPROBE_MISALIGNED_FAST;
++	}
++
++	if (!strncmp(str, "slow,", 5)) {
++		str += 5;
++		speed = RISCV_HWPROBE_MISALIGNED_SLOW;
++	}
++	if (speed == RISCV_HWPROBE_MISALIGNED_UNKNOWN) {
++		pr_warn("Invalid unaligned access speed parameter\n");
++		return 1;
++	}
++
++	if (!zalloc_cpumask_var(&mask, GFP_KERNEL))
++		return -ENOMEM;
++
++	ret = cpulist_parse(str, mask);
++
++	for_each_cpu(cpu, mask)
++		if (per_cpu(unaligned_scalar_speed_param, cpu) == RISCV_HWPROBE_MISALIGNED_UNKNOWN)
++			per_cpu(unaligned_scalar_speed_param, cpu) = speed;
++
++	free_cpumask_var(mask);
++	return ret == 0;
++}
++__setup("unaligned_scalar_speed=", set_unaligned_scalar_speed_param);
++
++static DEFINE_PER_CPU(long, unaligned_vector_speed_param) = RISCV_HWPROBE_VECTOR_MISALIGNED_UNKNOWN;
++
++static int __init set_unaligned_vector_speed_param(char *str)
++{
++	cpumask_var_t mask;
++	int ret, cpu;
++	long speed = RISCV_HWPROBE_VECTOR_MISALIGNED_UNKNOWN;
++
++	if (!strncmp(str, "fast,", 5)) {
++		str += 5;
++		speed = RISCV_HWPROBE_VECTOR_MISALIGNED_FAST;
++	}
++
++	if (!strncmp(str, "slow,", 5)) {
++		str += 5;
++		speed = RISCV_HWPROBE_VECTOR_MISALIGNED_SLOW;
++	}
++	if (speed == RISCV_HWPROBE_VECTOR_MISALIGNED_UNKNOWN) {
++		pr_warn("Invalid unaligned access speed parameter\n");
++		return 1;
++	}
++
++	if (!zalloc_cpumask_var(&mask, GFP_KERNEL))
++		return -ENOMEM;
++
++	ret = cpulist_parse(str, mask);
++
++	for_each_cpu(cpu, mask)
++		if (per_cpu(unaligned_vector_speed_param, cpu) == RISCV_HWPROBE_VECTOR_MISALIGNED_UNKNOWN)
++			per_cpu(unaligned_vector_speed_param, cpu) = speed;
++
++	free_cpumask_var(mask);
++	return ret == 0;
++}
++__setup("unaligned_vector_speed=", set_unaligned_vector_speed_param);
++
+ static int check_unaligned_access_all_cpus(void)
+ {
++	int cpu;
+ 	bool all_cpus_emulated, all_cpus_vec_unsupported;
+ 
+ 	all_cpus_emulated = check_unaligned_access_emulated_all_cpus();
+ 	all_cpus_vec_unsupported = check_vector_unaligned_access_emulated_all_cpus();
+ 
++	for_each_online_cpu(cpu) {
++		if (per_cpu(misaligned_access_speed, cpu) == RISCV_HWPROBE_MISALIGNED_UNKNOWN)
++			per_cpu(misaligned_access_speed, cpu) = per_cpu(unaligned_scalar_speed_param, cpu);
++
++		if (per_cpu(vector_misaligned_access, cpu) == RISCV_HWPROBE_VECTOR_MISALIGNED_UNKNOWN)
++			per_cpu(vector_misaligned_access, cpu) = per_cpu(unaligned_vector_speed_param, cpu);
++	}
++
+ 	pr_info("\e[31m%s vector unaligned access\e[0m\n",
+ 		all_cpus_vec_unsupported ? "All CPUs do not support" : "At least one cpu supports");
+ 	if (!all_cpus_vec_unsupported &&
 -- 
-Vinod Koul <vkoul@kernel.org>
+2.45.2
 
 
