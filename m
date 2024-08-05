@@ -1,142 +1,122 @@
-Return-Path: <devicetree+bounces-91083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01358947C8D
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 16:10:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09651947CB7
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 16:22:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B068C28255F
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 14:10:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2E38281FAF
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2024 14:21:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CACC4139CFC;
-	Mon,  5 Aug 2024 14:10:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 435E113A265;
+	Mon,  5 Aug 2024 14:21:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="IaOjWVR4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PEavpQ1B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46D6312EBCA
-	for <devicetree@vger.kernel.org>; Mon,  5 Aug 2024 14:10:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 114CC5339D;
+	Mon,  5 Aug 2024 14:21:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722867021; cv=none; b=IVB3CsH1iyle77crnMQVO10f+KIq78VG2Sf/33RhpIv6+8wEBJsOvl/HHhlYuKOZL/8Jgz9TfEr0eEF7WoDFMhmUwLI/aqDLaQ9FZCDvcUZOjPh42KxYYSFDbtw4C8uiq4qXcXh35hn8kt/rh1IESPCF0d25+9t6yOUoyjbhyWM=
+	t=1722867715; cv=none; b=Uw9tm31DmVf2fOOM+5T4cZ9TZUEEI4ySB35DUL23+2G4SMQMk/pIm7WL94Jure1QpmdYyXf86s99nTUNJKVsvwJcfs9liwXWWaq0dqACHe3zQmqFYrTIB0MAzwt+1tMKtlVCx8TYUqYbQ4i7RGUC5AvfvRa4xpiVfDrOc9M7L/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722867021; c=relaxed/simple;
-	bh=CRk+WSvg+8ew6Axl9UsveI8a1vmiJxVs2T0r9Dd2K6o=;
+	s=arc-20240116; t=1722867715; c=relaxed/simple;
+	bh=hen2BAOote4ovnEFkZpQyYc/wpKosPIuJ6C+p6n+xZE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bzpNS6jIYYFWIBO29FvauosFKMKA/kJCmFs9B/oixe4Qs8y2irSTRkxUl1TBjRGdv4P0w+NaDJVXpAPQ5bB33pQp12Et3gsZddlxQjK5dBtd6oXrNiRn+cxClve97oObifhSZEThKfjgdFL2SVuOze7E3ebGmgqUkfchPvx3OV4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=IaOjWVR4; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=VC7W
-	KpuwekykfBr8ihdjN8Kp943rQ0vp+Rxzc1f6dM4=; b=IaOjWVR4dCjLxNxJihk4
-	8UG0Q0HrzC69VPZNP0QdivZuHbUesoL1qKJj7otmMAMZovNP0FDhWci5noO5veaV
-	gRNh5BfTw8ClwNA2mrE/ditz7Ji1c+qgrzn8ra+HgAaoFIbdcws4iWqUhNxa/wuE
-	8uzPeAIHELZtA5wbas4yJee2xmaEM2ZAb+bubV6Wg5mrr90yWH5RoK5VLjgOcXWE
-	gJAf0tRV80nfD2HeHQBEVC4bE8iAVks0x+jeTHGC0sd1RFoflm+57a6/OvXXetub
-	gqR4mVLuUD4sp/NOHu8cwURS+tEjbzpyLSTa0LoD4+h33yroQ1fr0cfQ0eqb5v78
-	+w==
-Received: (qmail 2002488 invoked from network); 5 Aug 2024 16:10:14 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 5 Aug 2024 16:10:14 +0200
-X-UD-Smtp-Session: l3s3148p1@vMFdPPAeYskgAwDPXxLGAIH3oZkcU6AS
-Date: Mon, 5 Aug 2024 16:10:13 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v5 3/3] mmc: renesas_sdhi: Add RZ/V2H(P) compatible string
-Message-ID: <ZrDdRZOdXv4c6-P8@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20240724182119.652080-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240724182119.652080-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=NabiK9xhZ5FPZfw+v/b1kzxcNvlapE0CgEXE3efx/WG8ZAw7QwvPwK6dacho9mEhJlkNtDCEx54mL9LECzQdC2zzMRrKag6nVfFATWLwyde0lVMfCA4I8FvNup3acAKYDMQmU/w1O16Y8Q6HW7y+XJBOI14rmCCI5u1pNLh9E1I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PEavpQ1B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E7FBC32782;
+	Mon,  5 Aug 2024 14:21:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722867714;
+	bh=hen2BAOote4ovnEFkZpQyYc/wpKosPIuJ6C+p6n+xZE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PEavpQ1BjwqrHIFt/pEToIPtj3vmUU3xqVPzJ1rne0u8qoGXchczfZ1L84wxAjfqp
+	 dtDQ+/iFydr0/BaaRHNQI7IFqgN8hjqli1CQGTvx2bWvuKAcYg9ao4nzswW63fgSB+
+	 F7OxhjPDDmP9NJ6s/IU3oypuO7RsoxsVak4/ZQdbnbKVsqZmGS3x1H75G6BC3XqpGR
+	 9IHzMqxUu7yYDogZpR5jAjnRoJ/iMPEChECnVZveV++MOSD6z+WnffKl1qM5p6JxgH
+	 yg4A1EDC1dI1Vr+vPV1mJ7f5SHKvbGL0SouRZ83CoZs74i1h3zzwemvej3lUkplmy9
+	 xYxOO4D64MmbQ==
+Date: Mon, 5 Aug 2024 15:21:49 +0100
+From: Lee Jones <lee@kernel.org>
+To: Chen-Yu Tsai <wens@csie.org>
+Cc: Andre Przywara <andre.przywara@arm.com>,
+	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Ryan Walklin <ryan@testtoast.com>,
+	Chris Morgan <macroalpha82@gmail.com>
+Subject: Re: [PATCH v2 0/5] regulator: Fix AXP717 PMIC support
+Message-ID: <20240805142149.GD1019230@google.com>
+References: <20240418000736.24338-1-andre.przywara@arm.com>
+ <CAGb2v64DLez_FwH=Na=swQ30BdZa8JPaueFkM=ozjU56=f1DXQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="06jFUOUZfUFs2FzP"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240724182119.652080-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAGb2v64DLez_FwH=Na=swQ30BdZa8JPaueFkM=ozjU56=f1DXQ@mail.gmail.com>
 
+On Thu, 01 Aug 2024, Chen-Yu Tsai wrote:
 
---06jFUOUZfUFs2FzP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Hi,
+> 
+> On Thu, Apr 18, 2024 at 8:07 AM Andre Przywara <andre.przywara@arm.com> wrote:
+> >
+> > This is v2 of the fixes to the AXP717 PMIC support series. Lee put the
+> > original patches in an immutable branch already, so these here go on top.
+> > Patch 1 is new in v2, and adds the IRQ status and acknowledge registers
+> > to the writable range. Thanks to Chris for pointing this out.
+> > Patch 2 contains fixes to the regulator descriptions: the LDOs had the
+> > wrong supply source, and two numbers were wrong. The datasheet describes
+> > the voltage ranges and register values differently from what our macros
+> > expect, in a way that literally begs for off-by-ones, so here you go.
+> > Also there is an actual wrong number in the datasheet, add a comment to
+> > document this.
+> > I don't know if that's still feasible, but those two patches would be a
+> > good candidate to squash into the patches that they fix.
+> >
+> > The other three patches add the "boost" regulator, which is meant to
+> > provide the 5V USB VBUS power when operating from the battery. It's the
+> > usual trinity of binding/mfd/regulator patches.
+> > Again this could be squashed into the respective patches from the
+> > original series, if people agree.
+> >
+> > Please have a look and test!
+> >
+> > Based on mfd/ib-mfd-regulator-6.10, as detailed below.
+> >
+> > Cheers,
+> > Andre
+> >
+> > Changelog v1 .. v2:
+> > - add tags
+> > - add patch to add missing IRQ ack register range
+> > - add comment to document bug in datasheet
+> >
+> > Andre Przywara (5):
+> >   mfd: axp20x: AXP717: Fix missing IRQ status registers range
+> >   regulator: axp20x: AXP717: fix LDO supply rails and off-by-ones
+> >   dt-bindings: mfd: x-powers,axp152: add boost regulator
+> >   mfd: axp20x: AXP717: Add support for boost regulator
+> >   regulator: axp20x: AXP717: Add boost regulator
+> 
+> The latter three patches still haven't been merged.
+> 
+> Andre, can you resend them for Lee or Mark to merge? Otherwise I
+> can't take the RG35XXSP DT patches.
 
-On Wed, Jul 24, 2024 at 07:21:19PM +0100, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->=20
-> The SD/MMC block on the RZ/V2H(P) ("R9A09G057") SoC is similar to that
-> of the R-Car Gen3, but it has some differences:
-> - HS400 is not supported.
-> - It has additional SD_STATUS register to control voltage,
->   power enable and reset.
-> - It supports fixed address mode.
->=20
-> To accommodate these differences, a SoC-specific 'renesas,sdhi-r9a09g057'
-> compatible string is added.
->=20
-> Note for RZ/V2H(P), we are using the `of_rzg2l_compatible` OF data as it
-> already handles no HS400 and fixed address mode support. Since the SDxIOVS
-> and SDxPWEN pins can always be used as GPIO pins on the RZ/V2H(P) SoC, no
-> driver changes are done to control the SD_STATUS register.
+Right, please rebase and resubmit.  I've lost all context now.
 
-Okay, so you mux the pins as GPIOs and leave SD_STATUS alone. Smart
-move.
-
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-
-For the record:
-
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-
-
---06jFUOUZfUFs2FzP
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmaw3UEACgkQFA3kzBSg
-KbajIQ//cfYfi1vC75daca5woTDJICrAM8gVdOmFDa8hFFc0LKwgUQFYiWu6CjOE
-VPyCunnEM0YxAHOgc4pmBfysESH/qPnd78wLKDmFxabr8FUGGbRPxsM9nvNC/mlp
-Of5A2RSMayNAz+s15fcMwhZJT2V3U4rCDHVK+iZPjJ3Opfx5CzNta7aRVlvWBJC/
-dmX7Sh4g1RDsJ+52VVX4hPXOFjEoZSwFeRv68kBvXkXhGu8He8Z+kE3oe1N/uBwb
-mcML9RQQgH+pNHirTZPpMvyPtnQizCt6qEbWcQ5cIDkV1uGiZ/lIaztNIayB6zIu
-izS7YDVNWRsjvHERsGQz14XgphDFhDlHTnxcDThGtd4brt3GB1twsf5wuD6fnQO7
-vnQJnFHrgb7LoJqdg9v01NkoJ+7WSryPez2puxPGhWEQzGWBsThjsTQnsmnAXzcr
-Iy8tE66/sJUYWDjsZEMHKgaPnRlrUl6BYGIDSWRO7jCqGfi7bCc6iLh2/m1wN7Wi
-iqgd0grWq75DCxz2UVEZX/Zk2mhv7430QB34q1iRDErRu07UsM/+T3SoRafQtgFw
-CEOog9Hn4IIlNubE93JlJ7O4DBDb5ugc4Ogs8LSa7NURXix9vC4XcUGZmPLTetVA
-Ngtyhv7vfRplIR4Pu5HN08vLgz9QiS5cXx3rUW3g5hhHruOYI1o=
-=pRex
------END PGP SIGNATURE-----
-
---06jFUOUZfUFs2FzP--
+-- 
+Lee Jones [李琼斯]
 
