@@ -1,128 +1,94 @@
-Return-Path: <devicetree+bounces-91445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51B769495D5
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 18:45:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7E859495AE
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 18:39:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A1BF0B24B4B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 16:33:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5387F283171
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 16:39:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C23E63BB30;
-	Tue,  6 Aug 2024 16:33:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE91C3D966;
+	Tue,  6 Aug 2024 16:39:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="AqFJDYCd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L49ZGAD6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAD982C182;
-	Tue,  6 Aug 2024 16:33:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722962031; cv=pass; b=LlSZPGKKEZoQDd1C0nxe1sh+jSfj4K6C15aOAADgLAwzT7+vJGCDFqiIRvpgxbd3/yjznAa3oT/WTQtbzqCOG/za/3YITc2PN4UOLHW1PCiWg1Kb84qZDJfbN8vNSYDtwtNptvagewGcalNx5I97NThwgFvoDgptyi2SBMHZqlA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722962031; c=relaxed/simple;
-	bh=puiEd1SRm3ADc828HACBfKNH+QKdUIB7UI3diIKs2AA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IHwpMHVRcBoTmQx16ezizbI68nUnFobbKrX/E92WInnfyaw53PWq7VWyCmaLxmqU3KMKoczg1/6XdahN4Itawszkiv4YEOTiGorHnODhAGZrCUgvdz7eDpdge0OnmaXfTqSR2pmuF1xjYF6n8FAQfNAiRGb7nhBL0iAHdgvTx1k=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=AqFJDYCd; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1722962010; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=nVmjkx2NYYfGexWUTXG6+br7K+/tYNcm2BTNaHP0pmFRRUF6ugYmgQNdE1Z4TgZeOsBp4IWtKiRsYRVcx4LkEdgW5NMOcFdNYbTecmOXjMHwkj1saTbQw/ng9eOW0VYI7I9+0R3Xa0qXjOLqYMnRZAmrgi5gzUp/2gUkgllXlLc=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1722962010; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=l/JHjYFYD5hXu+XbGOm+SC68og+CQ6amBp7xMsiP/Lo=; 
-	b=CsIS/Zd0X+HOmXOqsWJsKqIQT07/9srdSQNwHL6RoqLJaMD9Y7UgQFJDZlOIfmDqWpuGwgErLkyLoDibyGeJbGBU4/MH4oUSKMRMUfT3DV8t98XX8dQFQcQEUv5AgtcB6RaxxkM77B4O7oCmvoyML5/04OYGhINcMrEJWljfpwI=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
-	dmarc=pass header.from=<detlev.casanova@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1722962010;
-	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=l/JHjYFYD5hXu+XbGOm+SC68og+CQ6amBp7xMsiP/Lo=;
-	b=AqFJDYCdobJ60Kpe/ZGzSVKMoNEWj3yVbIBcC+9Q5Pm9KxZG5CRvJ6KdXceQzpe0
-	oTPRGkOL6pPFlfJdmaHXdCx6ZHWo1MpTI8HyNji7wYzk/OsF9zTgIQ861Gn/BzZk1Gc
-	TNyFVoh6ilAbmNIrlRYMu/halSDBLbAqVtm76XCE=
-Received: by mx.zohomail.com with SMTPS id 1722962009873809.7480289049981;
-	Tue, 6 Aug 2024 09:33:29 -0700 (PDT)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Ulf Hansson <ulf.hansson@linaro.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- "Rafael J . Wysocki" <rafael@kernel.org>,
- Finley Xiao <finley.xiao@rock-chips.com>, Jagan Teki <jagan@edgeble.ai>,
- Elaine Zhang <zhangqing@rock-chips.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-pm@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: Add power-domain header for RK3576 SoCs
-Date: Tue, 06 Aug 2024 12:34:41 -0400
-Message-ID: <3310992.44csPzL39Z@trenzalore>
-In-Reply-To: <e04258dc-07c4-45c7-90d4-bc1ed9eb100b@kernel.org>
-References:
- <20240802151647.294307-1-detlev.casanova@collabora.com>
- <20240802151647.294307-3-detlev.casanova@collabora.com>
- <e04258dc-07c4-45c7-90d4-bc1ed9eb100b@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0C982C697;
+	Tue,  6 Aug 2024 16:39:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722962392; cv=none; b=JDiI7y4rb45FAkejBTrQ2q2eXemSIgvV5yf1UvN79mH5PuLKZwGfFXll3arkQS2rd/0LLGGWNi1BzS18lPASYrGm8qpcK95juZER0Z53RmU1WUKzqqU812w9+t2V8567+K1dDAVEdLY16i0/0hK4fylMkXObHGcl6QotNNta26Q=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722962392; c=relaxed/simple;
+	bh=I9H7A7FupsbFLzyt6LiuEeDW4TvHpRMJlvPZymABxTI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=jqUNafP7J8puJ/9nyfVi9VCA5LnZNF9gvopAqkLOwuVJA0nHc+4N94Lmscd9F6FdcRxKPnGGGmzvvJBYayf54zYlYj82qyzZHdn9D2fQd21zDCdxXSiUTMib18gwokYY4o3IV3FpzGT0vf+Lo8OPGLNK75L4AscnemFf6deWo3Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L49ZGAD6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBF5EC32786;
+	Tue,  6 Aug 2024 16:39:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722962392;
+	bh=I9H7A7FupsbFLzyt6LiuEeDW4TvHpRMJlvPZymABxTI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=L49ZGAD63IjjcOZfz6f+kmlxItx4dH5ZlZmPRi1pQrD4SFDcuw0rMcQykXH1HlpPX
+	 LIO+dBTHM5yhS25UTAHWoIBzXC2v7/POfhHmLo3Ob0JO4fbAisiNfeeh6BpZoFwjDl
+	 8aEsKq3GWz5ioLnQquf1Z6qyBtfakQD9gSeN+4oYJKZ4Y+M4nVCfujcp2TCR6zPjqq
+	 lAw2PkfFOpB+bYYXHJ6gDxEiC/mrnWCTLfF0gMJno61RMJKquADdswx4rTHbiuTixk
+	 Uiwly4lKczYfXmp0KXmHaEEg+fRKaWJrM3eWrFBjnbkUMlqO4N1ekG9V0zpjXI6y8+
+	 AjfLwz8L9W4FQ==
+Date: Tue, 6 Aug 2024 17:39:41 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Olivier Moysan <olivier.moysan@foss.st.com>
+Cc: <fabrice.gasnier@foss.st.com>, Lars-Peter Clausen <lars@metafoo.de>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Arnaud Pouliquen
+ <arnaud.pouliquen@foss.st.com>, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+ <alexandre.torgue@foss.st.com>, Nuno Sa <nuno.sa@analog.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+ <linux-stm32@st-md-mailman.stormreply.com>,
+ <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v6 0/9] iio: adc: dfsdm: add scaling support
+Message-ID: <20240806173941.074d37ee@jic23-huawei>
+In-Reply-To: <20240803161334.5e627178@jic23-huawei>
+References: <20240730084640.1307938-1-olivier.moysan@foss.st.com>
+	<20240803161334.5e627178@jic23-huawei>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Sunday, 4 August 2024 05:56:39 EDT Krzysztof Kozlowski wrote:
-> On 02/08/2024 17:14, Detlev Casanova wrote:
-> > From: Finley Xiao <finley.xiao@rock-chips.com>
-> > 
-> > Define power domain IDs as described in the TRM.
+On Sat, 3 Aug 2024 16:13:34 +0100
+Jonathan Cameron <jic23@kernel.org> wrote:
+
+> On Tue, 30 Jul 2024 10:46:30 +0200
+> Olivier Moysan <olivier.moysan@foss.st.com> wrote:
 > 
-> Please use subject prefixes matching the subsystem. You can get them for
-> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-> your patch is touching. For bindings, the preferred subjects are
-> explained here:
-> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patche
-> s.html#i-for-patch-submitters
-> > Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
-> > [reword]
-> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> > ---
-> > 
-> >  include/dt-bindings/power/rk3576-power.h | 30 ++++++++++++++++++++++++
-> >  1 file changed, 30 insertions(+)
-> >  create mode 100644 include/dt-bindings/power/rk3576-power.h
+> > The aim of this serie is to add scaling support to STM32 DFSDM
+> > peripheral in the analog context.
+> >   
+> All looks good to me.  I'll leave it a little longer though as
+> some of the dt-bindings patches don't have tags from the maintainers yet.
 > 
-> This is part of bindings.
+> Jonathan
 > 
-> > diff --git a/include/dt-bindings/power/rk3576-power.h
-> > b/include/dt-bindings/power/rk3576-power.h
-> Missing vendor prefix. This should be named after compatible.
 
-Looks like all other rockchip power bindings use the include/dt-bindings/
-power/rkXXXX.h format. Should I keep that way ?
+Applied to the togreg branch of iio.git and pushed out as testing for 0-day
+to poke at it etc.
 
-> > new file mode 100644
-> > index 0000000000000..cb33a32c1aed9
-> > --- /dev/null
-> > +++ b/include/dt-bindings/power/rk3576-power.h
-> > @@ -0,0 +1,30 @@
-> > +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> 
-> Weird license.
-> 
-> Best regards,
-> Krzysztof
+Thanks,
 
-
-
-
+Jonathan
 
