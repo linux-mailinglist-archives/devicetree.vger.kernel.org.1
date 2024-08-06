@@ -1,70 +1,73 @@
-Return-Path: <devicetree+bounces-91304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD476948E18
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 13:49:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B6B9948E1B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 13:49:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE4FB1C232AF
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 11:49:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 021B11F26A1E
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 11:49:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 356221C3F01;
-	Tue,  6 Aug 2024 11:49:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16DC61C3F3E;
+	Tue,  6 Aug 2024 11:49:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GvWXNBzZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wSNBgM19"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 702A91BDA83
-	for <devicetree@vger.kernel.org>; Tue,  6 Aug 2024 11:49:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40DF11C3F06
+	for <devicetree@vger.kernel.org>; Tue,  6 Aug 2024 11:49:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722944981; cv=none; b=rI3RYXiAndPRl2EUKVTeT76+IMtPrlPU3D9zteRgQltWX++3aANXoIphGDwav/PcqJOuXs/Uzb/c7ek7oA0XhrjxAAMaUkuNLk/u4OdlYC/Xo4AHhvDMn60CBcXcb5tjePmdNF5/bmshgQM+onvOBo3kNd6G8d7SvukdxG/ZAiA=
+	t=1722944982; cv=none; b=WPdX4WmJgxxgH93mgMeo8TIYyCzNnnhX3LfQ+OUVx8OEe6iV8LmASaxc6pZCutMHK16VkWKmvicSKUABY3f0+/I6J+s1BgEuz2wnSxP2CLgR4iJnGvQNhri+CNnsxbrY0X2zv0c2wtyc9ddkBBGGcnIYr2P/tVG9FWSFNCeMOBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722944981; c=relaxed/simple;
-	bh=c3lLdrRtY4V+BRsUGT6/6tMSRh9ZQZeDQGE6aMuniG0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cYxrISGY3pzLAQMv51MN0W5GKXiFCdBBzf+ARa7tBPR7KitRtbzBb/b30RlSMbZFm6kvRcrcLbyvSf+TvcvZJqbsLdZldk/2i9HVtN3Hb7QTwtrLJHF9GZbQFfvPPDK59yBVvS37dlbPKfPg6eUpbuSlpxS/Hf6RSzo+BFTj9j4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GvWXNBzZ; arc=none smtp.client-ip=209.85.128.43
+	s=arc-20240116; t=1722944982; c=relaxed/simple;
+	bh=6V65vXM8FQwUV7v0SXbiGpzXztfTEZwxdLqnBCxG6/Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=gpZlmy3miTkDlCxHeS7fqTsrn/k5AB1BZH4QnLciCMx0nCWlIU6hto4sQQV7H9WjC6QL+Sp7Phww+k3ilwMkVAOZQ5uoeAE0GcLbJ8otlYBsDyPcu83HiWX3KDUjPJRSdzAWvfo8adfwcWRMCV8n6CCXvW7lPJ8Vx/GGq+aQKnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wSNBgM19; arc=none smtp.client-ip=209.85.128.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-426526d30aaso3547915e9.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2024 04:49:39 -0700 (PDT)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-428141be2ddso3658655e9.2
+        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2024 04:49:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722944978; x=1723549778; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=kV0Yieskmet+YpNp74afVHBUJdlYUWak9w5VSG2Hzvo=;
-        b=GvWXNBzZ2Ov2nPfkZSiNXJuKk+1nWm+s8MAvw9aeN6+Ue0wnAxYjnGmYAd0Jtwjw/P
-         7y4VYhOOKLnG4AdyHch9c+o6+jvkPdCp4I7KSyTp0M8RGYt6R4I/u/pHRwVZR13axMxw
-         4STkcNe3/wMjAyN+/YkGKejvs2fzptm5nWM/KFDGLe1ageYBGq9T1f/6ArN0F0cNjNmp
-         E2iXpn5Wr+4qF0qyQUJ8BU9nZbfZttAC/4HhgKBhdKyv6QBAw29oK2NQTIIMOqQPmwU6
-         RN/zpktzEJOynZwnWUe92aQihXWRAVGhYKv/A6XJdIZsGN3rh4tP4XzdNAeNyCFv9KKt
-         D+6w==
+        d=linaro.org; s=google; t=1722944979; x=1723549779; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Zcyvcwsgz2iQmtLQWjshVBEVrR/YiNBp3RnZXLsmNgk=;
+        b=wSNBgM19l1rWghz/Y+iV07S+3KyuVFlPOmmltuNp1SW28LhGJgTUoWFpUpIvcvh1S6
+         0KbiDtj1TbK/UVaZqOmk+k7ZGnSRyFvDTw02mboKPHnQKOFFcQl+BJj+dgN5jWdI+s3o
+         9scMRHPYWFx0y8oyC8S64vVgwhi8DWUvBp0Ov9JNGEPsFPoUW6NSXZmRtPBA6df5Rb9S
+         kf8vEqr4OxQuwdTCB60I01fVWLVktzZkLsoDrfXPIGkLQOfvjyUndxxslmFrN8pN5Jl2
+         cG9pfHMqIABHhh+o1Ov/rkS4RhjFHGKzIkch2ks7gzlJO52YaDJYdK3EQJOqYUtFcBbd
+         cWjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722944978; x=1723549778;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kV0Yieskmet+YpNp74afVHBUJdlYUWak9w5VSG2Hzvo=;
-        b=JBxvlY3OfDR+dkcLBikV8C/agHHOEVrZ2KscJh6vOXSLhhCt73QOcILbXzQ1zIjzbF
-         acwvGtXDMk0pCjRomna8xtBezVP9KXvA/1tlDVioI8tfGHihZnutnUkS8QnDYFDywn9j
-         jC16IeKHWAKNL6J6t2CKj4ils6Pgk+BGMVAG/ERbX0+nTPr1+tTpdSF3eVDaB5koUnAt
-         iJe8r94y4Ld/W/W7QE2yt/Dvu2bn1RPURn34yDEDTB0HztmHl6L+S2aa2JdHy8WRfdcQ
-         xddm9vDhOjBlL++s2JCdGAlkdSlAtH4krsu5MYa1E3wQm35B3Law7n2CnYTM7Se4eLQN
-         7Skg==
-X-Forwarded-Encrypted: i=1; AJvYcCU4TMKdUUXFxLgA/PXNfpaOxugXJlzK89N5OjQiX37TmLg19nYSvmLazQiKdTCNEsS7X5pkmeQyaljC9+4pUZOUu+UvkqDp9fNeJg==
-X-Gm-Message-State: AOJu0Yyu/9nFCcLAHEKa6bVZfn3QD8OlYO/t54uTrK9rKgFCp6tkUsuY
-	i/Qxe4DaUO6ZgvSqEOkj/eTHJQHrKFWlG7qol/0lN7PJhg86czKS7aBuUlEalRY=
-X-Google-Smtp-Source: AGHT+IG6f1zuYkR8BiWbt1DwVLwptX02kZYv79SfSpx5HpKdmiMF2N9rQ48DNHj2wxnv0s2vMhHcaw==
-X-Received: by 2002:a05:600c:524e:b0:426:51ce:bb14 with SMTP id 5b1f17b1804b1-428e6b7f4abmr94039055e9.30.1722944977757;
-        Tue, 06 Aug 2024 04:49:37 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1722944979; x=1723549779;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Zcyvcwsgz2iQmtLQWjshVBEVrR/YiNBp3RnZXLsmNgk=;
+        b=w7KeV/YdLXXIdzLeEafXVFQ5LcwMBnoKRKwkQbGuUxYNgnKTzfmGJH8x+lyNuz4Kau
+         yf4PgiJWFaTVN4Q0UFeiwK1XgXYJKZV5spfxnN3QZVSt//sjBMruYpKddgP3fsaOK4Az
+         RecPN9qv0J4PUs5JPXjp8meA9PhCKmstO5OWXVS0R+ijXg7oP/Yz/wlqHayidI8Q3f/o
+         jkrMQOLngLr8Rj1gl5RgtltZKfwfh1RLQtEv5n3NeOoXsz+iZQ4hy2y7RDqP7TLwC1cV
+         mLP95bJWYe7zLCepOoAM2/GrWlXdNAU7MBkN/TN9FX3jUYBu/BlRMJkxRi/4uOHeHnE5
+         29iA==
+X-Forwarded-Encrypted: i=1; AJvYcCVWoNDn5LhSGuTGnzcUwLgo+KZiKnk7K7eY62UAAKmhbiYpbJb15O1p0DYI/XLDsLRBs6bj6lhhwZtHSa+2zw78kzl77/ImiU5ymw==
+X-Gm-Message-State: AOJu0YzNgDOQ9uxMbOY1/mBmG/gSUc6dPsqy1rPB3WUTAgH8FVgkVU3D
+	0ntZUy/U9swPAX36QsPKdfHKQYBOZwj8aIZsDj8Wq6RAEpn5BKRewL+GB43ixONeMpbwo5n+rV1
+	W
+X-Google-Smtp-Source: AGHT+IHdNQyl3G6YqRv/AULLacN9IkO3UKdGEkDTc1z/CSIyS1focn/fP6c1AdbO/8YkYsQAvDZDYA==
+X-Received: by 2002:a05:600c:4513:b0:426:63b4:73b0 with SMTP id 5b1f17b1804b1-428e6b96e50mr97378085e9.34.1722944979504;
+        Tue, 06 Aug 2024 04:49:39 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-428e6e0357asm180287485e9.12.2024.08.06.04.49.36
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-428e6e0357asm180287485e9.12.2024.08.06.04.49.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Aug 2024 04:49:37 -0700 (PDT)
+        Tue, 06 Aug 2024 04:49:39 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
 	Liam Girdwood <lgirdwood@gmail.com>,
@@ -77,12 +80,13 @@ To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
 	linux-sound@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Alexey Klimov <alexey.klimov@linaro.org>
-Subject: [PATCH 1/4] ASoC: dt-bindings: qcom,wcd937x: Correct reset GPIO polarity in example
-Date: Tue,  6 Aug 2024 13:49:28 +0200
-Message-ID: <20240806114931.40090-1-krzysztof.kozlowski@linaro.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/4] ASoC: dt-bindings: qcom,wcd934x: Correct reset GPIO polarity in example
+Date: Tue,  6 Aug 2024 13:49:29 +0200
+Message-ID: <20240806114931.40090-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240806114931.40090-1-krzysztof.kozlowski@linaro.org>
+References: <20240806114931.40090-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,32 +95,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The reset GPIO of WCD9370/WCD9375 is active low and that's how it is
+The reset GPIO of WCD9340/WCD9341 is active low and that's how it is
 routed on typical boards, so correct the example DTS to use expected
 polarity.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 ---
+ Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Cc: Alexey Klimov <alexey.klimov@linaro.org>
----
- Documentation/devicetree/bindings/sound/qcom,wcd937x.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/sound/qcom,wcd937x.yaml b/Documentation/devicetree/bindings/sound/qcom,wcd937x.yaml
-index de397d879acc..f94203798f24 100644
---- a/Documentation/devicetree/bindings/sound/qcom,wcd937x.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,wcd937x.yaml
-@@ -42,7 +42,7 @@ examples:
-         pinctrl-names = "default", "sleep";
-         pinctrl-0 = <&wcd_reset_n>;
-         pinctrl-1 = <&wcd_reset_n_sleep>;
--        reset-gpios = <&tlmm 83 GPIO_ACTIVE_HIGH>;
-+        reset-gpios = <&tlmm 83 GPIO_ACTIVE_LOW>;
-         vdd-buck-supply = <&vreg_l17b_1p8>;
-         vdd-rxtx-supply = <&vreg_l18b_1p8>;
-         vdd-px-supply = <&vreg_l18b_1p8>;
+diff --git a/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml b/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
+index beb0ff0245b0..a65b1d1d5fdd 100644
+--- a/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
++++ b/Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
+@@ -199,10 +199,11 @@ additionalProperties: false
+ 
+ examples:
+   - |
++    #include <dt-bindings/gpio/gpio.h>
+     codec@1,0{
+         compatible = "slim217,250";
+         reg = <1 0>;
+-        reset-gpios = <&tlmm 64 0>;
++        reset-gpios = <&tlmm 64 GPIO_ACTIVE_LOW>;
+         slim-ifc-dev = <&wcd9340_ifd>;
+         #sound-dai-cells = <1>;
+         interrupt-parent = <&tlmm>;
 -- 
 2.43.0
 
