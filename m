@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-91379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F52E9491BC
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 15:39:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 968879491C6
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 15:41:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 853FAB21E4E
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 13:34:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 20A6F1F21F25
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 13:41:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B8C41D1F76;
-	Tue,  6 Aug 2024 13:34:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0F051C4618;
+	Tue,  6 Aug 2024 13:41:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="c7Lhrcb9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WEbliOug"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CF161D1752
-	for <devicetree@vger.kernel.org>; Tue,  6 Aug 2024 13:34:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B096819F464
+	for <devicetree@vger.kernel.org>; Tue,  6 Aug 2024 13:41:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722951251; cv=none; b=cgnsfcmNt/OySBmTzRR0YbcZItGEzB6gE6uzCmNnetHpFSu6gLp6pOiPA1vDe1LDz1hlNkSI33g8x4ru72pa5dpUwXwAgygs+BQVoxyW6siOvwRCnGLNDdfGW2wQ2qEShfuM6OOb1gGh5H/QZ46tyVMpfKIGAoAoPMTzo8+49sw=
+	t=1722951671; cv=none; b=MKkG+YLaSeWJBYHx78ak0AQm+9cPItLEdt7kCkSYVn1+e2daZTYWGU9vZ5nVSgwo1cr/J8fJiN504a4xP9StrM1Tox0Sl5lcTw/6LPeYUZe/BIJxYnp6d45tiPbJjGwt6C0Obure4dweaum/hCsj0nyvXd2M5dc7Rv4lwAIfc24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722951251; c=relaxed/simple;
-	bh=CpabGOclz794me9vC08yCT0e3R0jqdi1QnOp5EOFKj0=;
+	s=arc-20240116; t=1722951671; c=relaxed/simple;
+	bh=vTKjrkoKXVk110tUASFUoc/c0YV0HsO6L6VCJYYu7A8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g2HlOUUF8ljcXG7SfGCMABPUx1URqjYLoZmRxXyELPPHPPOUQIQwwJG24r3I5NEpec87n7CaI9TsUG50cjcGoA20ltqFNuGtjMy+Wz2heC6csERnpHApbpCgj3ZTrlVSu0yc6msrjOvb+Qg5+sj8nZsZCycwOSc5+hlqAsKsGqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=c7Lhrcb9; arc=none smtp.client-ip=209.85.208.46
+	 In-Reply-To:Content-Type; b=FffF3GTwqTpo/whe/KZgj1JsR6+SsyVXb4xGdsbHmJqzazqpeGFSf4RX6hHqAqjk8V6pCkTf90ZFCkLRA8ZgAzjORy4mqRzpkDd+9ojynafhofNfsyD3MgPLLacdyfGa1qA5phZEb9Z20nvvmOhXLcS7tufJ3Jbl0QzpU9GDu90=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WEbliOug; arc=none smtp.client-ip=209.85.208.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5b5b67d0024so994722a12.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2024 06:34:08 -0700 (PDT)
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5ba43b433beso680384a12.1
+        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2024 06:41:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722951247; x=1723556047; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1722951668; x=1723556468; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=QSVsrvoCjLEz79FZLSkIkAUDkNILg/deIm1Ot+npm6g=;
-        b=c7Lhrcb94gsfesUO0mkmDeWQjnfylo9FFc77xlaa//XEmTgdbBIxbRbLlHn4RhBdNv
-         6tK/la5zIWRuiNZl/RFOyO3nsR1ScrzkuoEBUKiKFSiKgD5vlHUTDYdrn8cw/HumTaJs
-         FZIovdMk9efDHRgRveUkFcanFW7WY/0ln0ZZiUn3ZybeEhC2pcjlWFYPg4NvTO5yi9gR
-         +HI5PfFIqinWWFaoEsYvmn8cWvE0gMwxX6hQez2EL+om6BO2lkRIRSfqCPVaxGM60OcZ
-         uU4fWip4UfhIULK+AQYipD9p3OQG1ymtRJfFYz/IpJQEyx/OftkzEiALUR0D/SLxI+jN
-         RcOQ==
+        bh=KjZ+B7CJjhqP+m/bO5FTOcwF44QxPo4QaXX1t94Cl0s=;
+        b=WEbliOug2N7SqUG/u2RGo0hYPDRMTrgUkrjIebjFlsCocBzfjTMbSzT4YpBuEw/7hZ
+         mwCPDe+lmIpc40r/iivHdY/SXq5BqTwUDjZBHsFxg7WOsAT9iNKB2aKf3OGYhn+wtDoH
+         0+i73yYTAkCynKZ49jJmo3ACJqg5cbMd7bHV9XRzF9NkWoMm8VBHJCjgjDnkh1wY7G+Q
+         JHnVd0KnoNsmJ0YSsm4/dL59H3OnXAVzBnsYslAfa4iLcHC/62Ta5fe95jtK56uaMWxJ
+         j7PqaFUOIuI6QcNNaKqsk432iNNVY5dHRBKZASWg+6Rr7K4+TN+4puzGexis2dBRv22F
+         tfZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722951247; x=1723556047;
+        d=1e100.net; s=20230601; t=1722951668; x=1723556468;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=QSVsrvoCjLEz79FZLSkIkAUDkNILg/deIm1Ot+npm6g=;
-        b=lU/QiwRoqiLsEsRrAYd0IVlKML9/7Q8jmjWMy6DQSkdClMU8OcFfmU60AvjzDpPqaJ
-         A7BL1L//OFRAWYiSm1+FPdNMtCQbVy71ZhXO0rSeb8E+IDfctvi3xZmbK6zKxRpvAiRJ
-         GJCrbQ2F0zS4lWS8GIL0FY9dSvNXXdRw33k8hbCSi8issWr5NHfRfiFXzj3jzk8mqKSo
-         1IjyaYIKGgtf4zweg3sB46pbMGAKZpCTvCoVpWTCKIluRlPZg9xJ3UWOyZyMzzMK5Z3e
-         piSM7rJBj0Bcb3bllYDrbKDzmLNg381/xqwkLKqWh7E2zRGNoIzbxidK7t1bXKUGRrDQ
-         1AGg==
-X-Gm-Message-State: AOJu0YyI6v+770SMncXLEpbK/k4+/gGr0aIbsBidnJdGWamXhqrHLuYi
-	wFzOGUM8+tC7sykDDuto0Y01LDVfYiucyzBhYP/lFr1pWZowWvBIkZtYK/yYPMY=
-X-Google-Smtp-Source: AGHT+IFtxfYsxqeHRFGhjRraM802x/+pdBz2ozIVLH2lYKttiOc8ks9vmu30QNOTjyqJ/uaAaKZuVQ==
-X-Received: by 2002:a17:907:1c93:b0:a72:7736:9e03 with SMTP id a640c23a62f3a-a7dc509f7f9mr1047606166b.52.1722951240448;
-        Tue, 06 Aug 2024 06:34:00 -0700 (PDT)
+        bh=KjZ+B7CJjhqP+m/bO5FTOcwF44QxPo4QaXX1t94Cl0s=;
+        b=XerCoP4F8YU2GYsAUQEOqigWdzs4nGb6A2u/Rtv5DsV5fPXuHhfeesy7Vdjkr32uGj
+         eM47dTJw0XNCPEBEseaDk7c6bk1xdJG+wks79sZEtPy0JsQENHUvM2CSz4H6ezv/M1Rp
+         R68KXBHw9rLxBTS6Q5ZIpPsz9tnhj/Vy8wtMgqjWEOO+17f4l9zbWs/HiCWwp9aWpd6B
+         8FKMZNnKZ9MdNiaTMW0BMCDA92p0ON8qUNfptKW4BJxEKmx+5dnCGPT1bSf+LR/eHNK1
+         205NGdeKAelKDvFBJFgJI1qDlpFswb33JciuUg49CnoHgv3L2YooMBt676RaYmUOTG5g
+         Uxdg==
+X-Forwarded-Encrypted: i=1; AJvYcCX3TpFOzCnsmbNh1NXQ0E911hZASCu3vf0g4ckInRGId2flOLuglHGoIATszMMhnH28QuSxqyC1kI5FZCH+wfaPz7Hc1nV0NSaOwg==
+X-Gm-Message-State: AOJu0YwO1C2TMV8sV1yWHmttQecKfBcuKye2ndxxHfRWtiHluqPwEL7q
+	dGE4xcW5yuslbUbMfQB2IdEedZp8uAxR9IklWO6fh3R+lVgaenIx/nEdCovG1xM=
+X-Google-Smtp-Source: AGHT+IEr9YokcXMFBhP43yTLvzGZokvFgQOPmaCReSryinLWQzINmjuvffqaX2333pZrwtWihkAxXg==
+X-Received: by 2002:a50:e613:0:b0:5a2:6502:b2ff with SMTP id 4fb4d7f45d1cf-5b7f36f8ac8mr10861582a12.3.1722951667914;
+        Tue, 06 Aug 2024 06:41:07 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7dc9c12a79sm549512166b.60.2024.08.06.06.33.59
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5b83bc4b902sm5938140a12.79.2024.08.06.06.41.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Aug 2024 06:33:59 -0700 (PDT)
-Message-ID: <9dda725f-71f6-4f64-87a7-f7151fa1690c@linaro.org>
-Date: Tue, 6 Aug 2024 15:33:58 +0200
+        Tue, 06 Aug 2024 06:41:07 -0700 (PDT)
+Message-ID: <dcc40975-93f6-440e-8887-7a40a0cb3898@linaro.org>
+Date: Tue, 6 Aug 2024 15:41:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,15 +77,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 05/11] ARM: nvidia: tf701t: add Bluetooth node
-To: Svyatoslav Ryhel <clamor95@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH] dt-bindings: regulator: mediatek,mt6397-regulator:
+ convert to YAML
+To: Macpaul Lin <macpaul.lin@mediatek.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>
-Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240806123906.161218-1-clamor95@gmail.com>
- <20240806123906.161218-6-clamor95@gmail.com>
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+Cc: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+ Macpaul Lin <macpaul@gmail.com>, Sen Chu <sen.chu@mediatek.com>,
+ Jason-ch Chen <Jason-ch.Chen@mediatek.com>,
+ Chris-qj chen <chris-qj.chen@mediatek.com>,
+ MediaTek Chromebook Upstream
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+ Chen-Yu Tsai <wenst@chromium.org>
+References: <20240806122507.2766-1-macpaul.lin@mediatek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -131,31 +139,112 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240806123906.161218-6-clamor95@gmail.com>
+In-Reply-To: <20240806122507.2766-1-macpaul.lin@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/08/2024 14:39, Svyatoslav Ryhel wrote:
-> Add serial node along with bluetooth node to ASUS TF701T device-tree.
+On 06/08/2024 14:25, Macpaul Lin wrote:
+> Convert the MediaTek MT6397 regulator bindings to DT schema.
 > 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> ---
->  .../boot/dts/nvidia/tegra114-asus-tf701t.dts  | 28 ++++++++++++++++++-
->  1 file changed, 27 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dts b/arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dts
-> index fe1772250a85..00c3325878b9 100644
-> --- a/arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dts
-> +++ b/arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dts
-> @@ -1111,7 +1111,33 @@ serial@70006040 {
->  	};
->  
->  	serial@70006200 {
-> -		/* Bluetooth */
-> +		compatible = "nvidia,tegra114-hsuart", "nvidia,tegra30-hsuart";
+> Signed-off-by: Sen Chu <sen.chu@mediatek.com>
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
 
-Why do you override compatible? Boards do not come with different SoCs,
-do they?
+
+> +
+> +patternProperties:
+> +  "^(buck_)?v(core|drm|gpu|io18|pca(7|15)|sramca(7|15))$":
+> +    description: Buck regulators
+> +    type: object
+> +    $ref: regulator.yaml#
+> +    properties:
+> +      regulator-allowed-modes:
+> +        description: |
+> +          BUCK regulators can set regulator-initial-mode and regulator-allowed-modes to
+> +          values specified in dt-bindings/regulator/mediatek,mt6397-regulator.h
+> +        items:
+> +          enum: [0, 1]
+> +      regulator-compatible:
+> +        pattern: "^(buck_)?v(core|drm|gpu|io18|pca(7|15)|sramca(7|15))$"
+
+This should not be needed. Same in every other place.
+
+> +    unevaluatedProperties: false
+> +
+> +  "^(ldo_)?v(tcxo|(a|io)28)$":
+> +    description: LDOs with fixed 2.8V output and 0~100/10mV tuning
+> +    type: object
+> +    $ref: regulator.yaml#
+> +    properties:
+> +      regulator-allowed-modes: false
+> +      regulator-compatible:
+> +        pattern: "^(ldo_)?v(tcxo|(a|io)28)$"
+> +    unevaluatedProperties: false
+> +
+> +  "^(ldo_)?vusb$":
+> +    description: LDOs with fixed 3.0V output and 0~100/10mV tuning
+> +    type: object
+> +    $ref: regulator.yaml#
+> +    properties:
+> +      regulator-allowed-modes: false
+> +      regulator-compatible:
+> +        pattern: "^(ldo_)?vusb$"
+> +    unevaluatedProperties: false
+> +
+> +  "^(ldo_)?v(cama|emc3v3|gp[123456]|ibr|mc|mch)$":
+> +    description: LDOs with variable output and 0~100/10mV tuning
+> +    type: object
+> +    $ref: regulator.yaml#
+> +    properties:
+> +      regulator-allowed-modes: false
+> +      regulator-compatible:
+> +        pattern: "^(ldo_)?v(cama|emc3v3|gp[123456]|ibr|mc|mch)$"
+> +    unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    pwrap {
+> +       	pmic {
+> +            compatible = "mediatek,mt6397";
+
+Messed indentation.
+
+Use 4 spaces for example indentation.
+
+Anyway, drop top node or better move the example to the parent device
+schema making it complete.
+
+> +
+> +            mt6397regulator: mt6397regulator {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +                compatible = "mediatek,mt6397-regulator";
+> +
+> +                mt6397_vpca15_reg: buck_vpca15 {
+> +                    regulator-compatible = "buck_vpca15";
+
+Drop, same in other places
+
+> +                    regulator-name = "vpca15";
+> +                    regulator-min-microvolt = < 850000>;
+> +                    regulator-max-microvolt = <1350000>;
+> +                    regulator-ramp-delay = <12500>;
+> +                    regulator-enable-ramp-delay = <200>;
+> +                };
+> +
+
+
+;
 
 Best regards,
 Krzysztof
