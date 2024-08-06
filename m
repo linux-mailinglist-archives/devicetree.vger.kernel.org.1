@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-91240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA87094893F
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 08:12:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF3D5948948
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 08:18:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C57A41C22C9E
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 06:12:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 659FC1F24ADA
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 06:18:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD9821BC07C;
-	Tue,  6 Aug 2024 06:12:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 039B416E861;
+	Tue,  6 Aug 2024 06:18:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RgRbMqr9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GW7wamQp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A377C15D1;
-	Tue,  6 Aug 2024 06:12:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD5374A3E;
+	Tue,  6 Aug 2024 06:18:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722924738; cv=none; b=Y1tkkzDMJ5YHiq6liqSQM6lo02PAccVL9ndsiSpk07xKiPDYiXUwIHJtCy/bsIhGSWwhtJ8GsHURzkS0jtSUFzuc3mOdfW3852pU+pwAsDR3jiBXzKGHMaorEeOwq7iqA0PELqSam8Ts/kShJnubKqGXXBwuY/FLlFwEdXM0d7Y=
+	t=1722925088; cv=none; b=euNgdVHzS1buS0956BCK5xEsJuTNm842DGRQVblirsraBXIWMsvtYbLoebhRkMjeQAQ2qNG/dnkAwgJivpiWnI8/EdqeBV4qXKmyZfJXWMEN96HsCO3v9DXQuHk8B75VEX+ZTy6t3Jl1ttMFghS2xetZZePCPrHCmN1sOBqn55k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722924738; c=relaxed/simple;
-	bh=SklVUuAhXY+PsnnbLGAGBCzk9PJFBsWgkR90KoE1Mh4=;
+	s=arc-20240116; t=1722925088; c=relaxed/simple;
+	bh=NV99mgjM6wljm3QGvnJ03cHNAH+BezShT8cU1SvLKkQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ABgbit2vHz35zCUMEnAnICtfmC9FLywTYchTtaz86rE+1ip5qKhqUVjXJdioIsLeDuzxG1S84RBhPS2vNkfL1geyKjw4u08lJ1OFqlYeiNoU8B3BZCaZW5M2QOEo4SjzgLR2xSHw12QDBFmTRlOh6vH3vyuye8H0HgDeZc14iS4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RgRbMqr9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD22BC32786;
-	Tue,  6 Aug 2024 06:12:14 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=dOgMh5uQjMNGa0vUcbYdcecMA+8rP+5wA5ds3/NyNl2W4hBPVscLHBsmTqg7RPfLgB0RvmLG/IV5U7iC3DMfdG+07csDOgEpg+uyoM/0AhdKp1j10GGq+gnCfLSjmEaWStm4g42f269NitNsfRBQC7SezQNhxXm4cSy5axwr9tQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GW7wamQp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBCDEC32786;
+	Tue,  6 Aug 2024 06:18:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722924738;
-	bh=SklVUuAhXY+PsnnbLGAGBCzk9PJFBsWgkR90KoE1Mh4=;
+	s=k20201202; t=1722925088;
+	bh=NV99mgjM6wljm3QGvnJ03cHNAH+BezShT8cU1SvLKkQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RgRbMqr9IVNNOWCEzeFM5PngY9oAU3YYfIRKzR4ylThnB8KQrWLLQ/7B43dTuOi5m
-	 AWGyJI3KQ+v0HQQwgPHbooQAc6ddNSs33YJa5bq1ECVi8bRWJXGm8Mf5NYBEXO5d00
-	 4m2yGKMBF3FM16kXBQpJ6lVcKn/LA2tKtGHLMf/dFepWhXe75Tiq9WNuhIt9J3zJO0
-	 V33EIdcGgCl0oA9Kj3aenn2kDsbgmGjRPGDCm2NCli0oD+M3aBF8pa+0IKIryd3EIH
-	 MDx2R6t9tNrKFDMbEQ9CePRG8h53qJ7OD1xF0CyMeYItwU2/Y+TxwZxXjPQGbHJjq0
-	 nVoJeHvqP052Q==
-Message-ID: <ec19fe07-84bd-4c32-a886-e6126af52f4c@kernel.org>
-Date: Tue, 6 Aug 2024 08:12:12 +0200
+	b=GW7wamQpeqMg/ldPhF7+fsB+evypPbwbPEjG/ChZlMZ4AWerZROHgB3zNvypYUjHT
+	 vwppIh8RXATScS08jx99tKVbH46NRO4fMrCuvEpmHgdEKgLUVs9ZLts5Pu1T5Nxt1b
+	 UK3DvxzbU3tUHmH8Y9ekc2hSQdfdcL6qZ3J7ic/lZcTsAV56OVVarkW4ZtOpKGBTZ3
+	 BjPoCWEVk4NRf0Wcnho7lHYBDxCJZ9lbY8M0CxYObZPsRO6jOnQGDeWCqCxj91GUx5
+	 /po+CY47rfzipPPlZdiBLPd5xBIf5QDgTXtepTWwE54NqlPVrd7VEnVHXIyjAMDy2+
+	 b+umvezIe84EQ==
+Message-ID: <f0f60af7-8561-433a-a027-811015fc5e16@kernel.org>
+Date: Tue, 6 Aug 2024 08:18:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: misc: aspeed,ast2400-cvic: Convert to DT
- schema
-To: Andrew Jeffery <andrew@codeconstruct.com.au>,
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org
-References: <20240802-dt-warnings-irq-aspeed-dt-schema-v1-0-8cd4266d2094@codeconstruct.com.au>
- <20240802-dt-warnings-irq-aspeed-dt-schema-v1-2-8cd4266d2094@codeconstruct.com.au>
+Subject: Re: [PATCH v2 1/6] dt-bindings: ti, sci: Add property for
+ partial-io-wakeup-sources
+To: Markus Schneider-Pargmann <msp@baylibre.com>, Nishanth Menon <nm@ti.com>,
+ Tero Kristo <kristo@kernel.org>, Santosh Shilimkar <ssantosh@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>
+Cc: Vibhore Vardhan <vibhore@ti.com>, Kevin Hilman <khilman@baylibre.com>,
+ Dhruva Gole <d-gole@ti.com>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240729080101.3859701-1-msp@baylibre.com>
+ <20240729080101.3859701-2-msp@baylibre.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,68 +106,32 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240802-dt-warnings-irq-aspeed-dt-schema-v1-2-8cd4266d2094@codeconstruct.com.au>
+In-Reply-To: <20240729080101.3859701-2-msp@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 02/08/2024 07:36, Andrew Jeffery wrote:
-> Address warnings such as:
+On 29/07/2024 10:00, Markus Schneider-Pargmann wrote:
+> Partial-IO is a very low power mode in which nearly everything is
+> powered off. Only pins of a few hardware units are kept sensitive and
+> are capable to wakeup the SoC. The device nodes are marked as
+> 'wakeup-source' but so are a lot of other device nodes as well that are
+> not able to do a wakeup from Partial-IO. This creates the need to
+> describe the device nodes that are capable of wakeup from Partial-IO.
+> 
+> This patch adds a property with a list of these nodes defining which
+> devices can be used as wakeup sources in Partial-IO.
 > 
 
+<form letter>
+This is a friendly reminder during the review process.
 
-> +description:
-> +  The Aspeed AST2400 and AST2500 SoCs have a controller that provides interrupts
-> +  to the ColdFire coprocessor. It's not a normal interrupt controller and it
-> +  would be rather inconvenient to create an interrupt tree for it, as it
-> +  somewhat shares some of the same sources as the main ARM interrupt controller
-> +  but with different numbers.
-> +
-> +  The AST2500 also supports a software generated interrupt.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - aspeed,ast2400-cvic
-> +          - aspeed,ast2500-cvic
-> +      - const: aspeed,cvic
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  valid-sources:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    description:
-> +      One cell, bitmap of support sources for the implementation.
+It seems my or other reviewer's previous comments were not fully
+addressed. Maybe the feedback got lost between the quotes, maybe you
+just forgot to apply it. Please go back to the previous discussion and
+either implement all requested changes or keep discussing them.
 
-maxItems: 1
-(and drop "One cell" - no need to repeat constraints in free form text)
-
-BTW, for both bindings, I do not see any user in the kernel. Why is this
-property needed in the DTS?
-
-> +
-> +  copro-sw-interrupts:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-
-uint32? I do not see anywhere usage as an array. The in-kernel driver
-explicitly reads just uint32.
-
-Anyway, if this is supposed to stay as array, then min/maxItems.
-
-
-
-> +    description:
-> +      A list of interrupt numbers that can be used as software interrupts from
-> +      the ARM to the coprocessor.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - valid-sources> +
-> +allOf:
-> +  - $ref: /schemas/interrupt-controller.yaml#
-
+Thank you.
+</form letter>
 
 Best regards,
 Krzysztof
