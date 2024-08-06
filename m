@@ -1,217 +1,200 @@
-Return-Path: <devicetree+bounces-91497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9E849498C8
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 22:06:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 336379498EE
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 22:19:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 891881C217B8
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 20:06:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63EDC1C219BF
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 20:19:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E8F0129A7E;
-	Tue,  6 Aug 2024 20:06:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62710149DE2;
+	Tue,  6 Aug 2024 20:19:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="viv2J3mj"
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="POowLvBR";
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="POowLvBR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.mleia.com (mleia.com [178.79.152.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 615EC7E110
-	for <devicetree@vger.kernel.org>; Tue,  6 Aug 2024 20:06:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3651073451;
+	Tue,  6 Aug 2024 20:19:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.79.152.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722974776; cv=none; b=MVhrxmeJWCRFBxxIa/55X2bWPLYQaqYKJm8MuTxSnJfwrNBLmZmJjJ4mGEhipUZpsK6whj4rwhQ394LfUZX8FI4b4jKLHPL9sP26mcJUPfHENTETL3/OD5oD9EyMc2vMpUMMBDsGOizJR1azVZ1AixL1zlnWJmf/vvrOv+iudoU=
+	t=1722975581; cv=none; b=LGS59MLktmulaQLmz0SP10esx9wdIhGiHagtkrdvNu8ndJ7czo7AIE+rW2O4eZn1Nxuae7I2cSrLIuLY1dK5mAIBLQ53Xj8nXYQV/dDvQeMETz5dnxzh3gcyap23F3IogDK0r4L5qc2AH8DbAFV0DcdoY1bhlqNs2i4utlY/OxI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722974776; c=relaxed/simple;
-	bh=yQ0Giu6ZLYVh/LdTs+T3ZUjf0YBIJKRB4yekea9RufM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=F/u7CvbFWOU1hgEDtytpEmSG+DhVz8EgdnwbkiiE6qrfiiirzwG3SeK+DIKYjUvEMdYsy6VbuRR+/VEwp5c2dpzIurWWQJKoyqf74FH/yOf8YOaLyK+p/ET29arquS4YmwAxqBFVja0nmSQ+rIVTEd4RlBZW+rNSQYXCQ8Rcrho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=viv2J3mj; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2ef7fef3ccfso11944421fa.3
-        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2024 13:06:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1722974772; x=1723579572; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qihk0Nf6L1RJUimkyU5cI4Ujv7ORPdsY3hk78Fc0UME=;
-        b=viv2J3mjVRY4K7f6bzPA2MoZVIU7KxEo/mP9ZW5qFQK+qEealwlYiZlkMmEdnStn5s
-         hjDlsQy65dwwsxYXz1wTrgoC6lLSiKbgp5fa4BDQjTVHTJNwVNrnSjX+6emwYQ4qLAy/
-         zjfD0I+dqvXdoLmQXD526J3YWmGWW2fvpM0tM2bhH4m+CKczgx0kF+913V2Q+reELXYG
-         JZ50ZMWFp0ce1BU2O8SorRKt18wOBARRbexO73nHfQNs8MDmeq+SH0DvZtnEUY8yYeSi
-         hiW8unr1+CzKUb3JvIYRnWWWklle+AV7z5brSmtN4xmU+3Ny9XQHgue621aUXNJF88pA
-         F6Xg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722974772; x=1723579572;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qihk0Nf6L1RJUimkyU5cI4Ujv7ORPdsY3hk78Fc0UME=;
-        b=phkg+q9Vdxk+6ncYgAwk9j+oolPBuuUowyeS7886pRyfRcIZThprCivoD0ronMMSWC
-         VLKsVHv3jaeQ6xZLlXP/EJG1CEWwNEwTz50ULHSZRsNwpwGPJbrMBNGNGZfpVJYBXO86
-         nGJaRTzqOs806OEUFqX2MmLQCwh5en0JpZoIadkwliSfniMeq3ZGkEhw9frS8QhFuh4S
-         XMUSwQKkUMdGtXybjKbWRK0Uq5HryBd5IYn/os5PkZJy8aeQR8Ow0aRt/LSCZhvGbOSh
-         vOiKiaCNcaUWfIWNagwxSWGTAVANF/LCF7TJvlAXCG9RT7im60aHgVSZQ+MKWQE3zS4b
-         zLiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWCLuunHd+2kNlrn3Wo+onLIAYWfOzriER+BgX975gQq9xjlGZbwCGQ55GIpzP698X9HzADp4UlbtSuLSj8zT6fJ+zKdR4NcBv6dA==
-X-Gm-Message-State: AOJu0YxM5bIFjeXDOmIsugBrikuiohUHXu9Wt3sNjI2vv/C5EIOFuozK
-	ieCSza+92a5wTuIathyS4OSAz19GvRLwB0JLGmFH/zPuJfETp6GgSsJFZvJQ6mJuNNGSBXQa+nk
-	YTsiiKhTcfZDe66m6O2g9ep5jVWZDlr9rH+rQSQ==
-X-Google-Smtp-Source: AGHT+IFP7XQq6yFQZWCucBvitOmg1bLISrkcsDvqOEgO7fLkeug1MfJiguAhwxWA1ITFyBJJVj9DcL+Xi7dAcrBSaO0=
-X-Received: by 2002:a05:6512:2389:b0:52f:cce4:51f3 with SMTP id
- 2adb3069b0e04-530bb3bd8abmr11750075e87.44.1722974772149; Tue, 06 Aug 2024
- 13:06:12 -0700 (PDT)
+	s=arc-20240116; t=1722975581; c=relaxed/simple;
+	bh=stWwF0GuGn8B9mcQqlBa2jF5NZhyeHfpbpw1CaPXFHI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nORuH/EjyQZevna6QEhztrWCmocpU5phLsIwzqFZmY0sU4Y6/UCzBSCi7chSSxbHZ6Dy8EjCMSjwqMmQnXO7v2cnq2h9O+8wTJOPpeh2YMh3HK+AfqfRPIX3J8HY9qzZsEhMLcr0R8K5uhaCsFeJzb+15Jvwas4kKojrVoiOROE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=POowLvBR; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=POowLvBR; arc=none smtp.client-ip=178.79.152.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mleia.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+	t=1722975233; bh=stWwF0GuGn8B9mcQqlBa2jF5NZhyeHfpbpw1CaPXFHI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=POowLvBRKDgra8US0miJh7IqlgD9IuHN6LH1xR77PUW9WFLor18owg7hMPXm4CsP7
+	 DX48bKuF2/nEKKglLjLE1l6oJrYIqctQLrrZjsCExDlP7srwJmYDHu3qboF5YP3A8/
+	 rx9dMoJMd3kJJq18H53ZpM6VliPj0gPQH6bl4SKRNqpNiK/7s1bxTVe3VV4LfLUGab
+	 1NEjpJB6s7spLhFMHUxNtOn0YGQlUA+jXG3FBjDLhb9/0Fc3rMWeB4ZXuQJVqirJcc
+	 piBkeoQgzLj/eh9QcmXdIIqcbsI3hI3/6vn2fmKMRU5ztdVhzSnSYPiPYfRqOlT2xZ
+	 maPjOsJQ10oqA==
+Received: from mail.mleia.com (localhost [127.0.0.1])
+	by mail.mleia.com (Postfix) with ESMTP id CE3524793E2;
+	Tue,  6 Aug 2024 20:13:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+	t=1722975233; bh=stWwF0GuGn8B9mcQqlBa2jF5NZhyeHfpbpw1CaPXFHI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=POowLvBRKDgra8US0miJh7IqlgD9IuHN6LH1xR77PUW9WFLor18owg7hMPXm4CsP7
+	 DX48bKuF2/nEKKglLjLE1l6oJrYIqctQLrrZjsCExDlP7srwJmYDHu3qboF5YP3A8/
+	 rx9dMoJMd3kJJq18H53ZpM6VliPj0gPQH6bl4SKRNqpNiK/7s1bxTVe3VV4LfLUGab
+	 1NEjpJB6s7spLhFMHUxNtOn0YGQlUA+jXG3FBjDLhb9/0Fc3rMWeB4ZXuQJVqirJcc
+	 piBkeoQgzLj/eh9QcmXdIIqcbsI3hI3/6vn2fmKMRU5ztdVhzSnSYPiPYfRqOlT2xZ
+	 maPjOsJQ10oqA==
+Message-ID: <d1ac7446-143b-40d3-9f12-f734ab7cc31f@mleia.com>
+Date: Tue, 6 Aug 2024 23:13:52 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240803-qps615-v2-4-9560b7c71369@quicinc.com> <20240806190702.GA72614@bhelgaas>
-In-Reply-To: <20240806190702.GA72614@bhelgaas>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Tue, 6 Aug 2024 22:06:00 +0200
-Message-ID: <CAMRc=Mc3J_CRHSsU1ZowJxrx6V3Uici6iuJtTfR63Wt3xLrqAg@mail.gmail.com>
-Subject: Re: [PATCH v2 4/8] PCI: Change the parent to correctly represent pcie hierarchy
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Krishna chaitanya chundru <quic_krichai@quicinc.com>, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, cros-qcom-dts-watchers@chromium.org, 
-	Jingoo Han <jingoohan1@gmail.com>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, andersson@kernel.org, 
-	quic_vbadigan@quicinc.com, linux-arm-msm@vger.kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: timer: nxp,lpc3220-timer: Convert to
+ dtschema
+Content-Language: en-US
+To: Animesh Agarwal <animeshagarwal28@gmail.com>
+Cc: Daniel Baluta <daniel.baluta@nxp.com>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240731074544.208411-1-animeshagarwal28@gmail.com>
+From: Vladimir Zapolskiy <vz@mleia.com>
+In-Reply-To: <20240731074544.208411-1-animeshagarwal28@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
+X-CRM114-CacheID: sfid-20240806_201353_874826_6BDB1142 
+X-CRM114-Status: GOOD (  18.26  )
 
-On Tue, Aug 6, 2024 at 9:07=E2=80=AFPM Bjorn Helgaas <helgaas@kernel.org> w=
-rote:
->
-> On Sat, Aug 03, 2024 at 08:52:50AM +0530, Krishna chaitanya chundru wrote=
-:
-> > Currently the pwrctl driver is child of pci-pci bridge driver,
-> > this will cause issue when suspend resume is introduced in the pwr
-> > control driver. If the supply is removed to the endpoint in the
-> > power control driver then the config space access by the
-> > pci-pci bridge driver can cause issues like Timeouts.
->
-> If "pci-pci bridge driver" refers to portdrv, please use "portdrv" to
-> avoid confusion.
->
-> Can you be a little more specific about config accesses by the bridge
-> driver?  Generally portdrv wouldn't touch devices below the bridge.
-> It sounds like you've tripped over something here, so you probably
-> have an example of a timeout.
->
-> s/pcie/PCIe/ in subject, although it'd be nice if the whole subject
-> could be a little more specific.  I don't think pwrctl is directly
-> part of the PCIe hierarchy, so I don't quite understand what you're
-> saying there.
->
-> > For this reason change the parent to controller from pci-pci bridge.
-> >
-> > Fixes: 4565d2652a37 ("PCI/pwrctl: Add PCI power control core code")
->
-> Will need an ack from Bartosz, of course, since he added this.  Moved
-> from cc: to to: list to make sure he sees this.
->
+On 7/31/24 10:45, Animesh Agarwal wrote:
+> Convert the NXP LPC3220 timer bindings to yaml format.
+> Add missing resets property as it is already being used in dts.
+> 
+> Cc: Daniel Baluta <daniel.baluta@nxp.com>
+> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+> ---
+>   .../bindings/timer/nxp,lpc3220-timer.txt      | 26 ---------
+>   .../bindings/timer/nxp,lpc3220-timer.yaml     | 55 +++++++++++++++++++
+>   2 files changed, 55 insertions(+), 26 deletions(-)
+>   delete mode 100644 Documentation/devicetree/bindings/timer/nxp,lpc3220-timer.txt
+>   create mode 100644 Documentation/devicetree/bindings/timer/nxp,lpc3220-timer.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/timer/nxp,lpc3220-timer.txt b/Documentation/devicetree/bindings/timer/nxp,lpc3220-timer.txt
+> deleted file mode 100644
+> index 51b05a0e70d1..000000000000
+> --- a/Documentation/devicetree/bindings/timer/nxp,lpc3220-timer.txt
+> +++ /dev/null
+> @@ -1,26 +0,0 @@
+> -* NXP LPC3220 timer
+> -
+> -The NXP LPC3220 timer is used on a wide range of NXP SoCs. This
+> -includes LPC32xx, LPC178x, LPC18xx and LPC43xx parts.
+> -
+> -Required properties:
+> -- compatible:
+> -	Should be "nxp,lpc3220-timer".
+> -- reg:
+> -	Address and length of the register set.
+> -- interrupts:
+> -	Reference to the timer interrupt
+> -- clocks:
+> -	Should contain a reference to timer clock.
+> -- clock-names:
+> -	Should contain "timerclk".
+> -
+> -Example:
+> -
+> -timer1: timer@40085000 {
+> -	compatible = "nxp,lpc3220-timer";
+> -	reg = <0x40085000 0x1000>;
+> -	interrupts = <13>;
+> -	clocks = <&ccu1 CLK_CPU_TIMER1>;
+> -	clock-names = "timerclk";
+> -};
+> diff --git a/Documentation/devicetree/bindings/timer/nxp,lpc3220-timer.yaml b/Documentation/devicetree/bindings/timer/nxp,lpc3220-timer.yaml
+> new file mode 100644
+> index 000000000000..3ae2eb0625da
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/timer/nxp,lpc3220-timer.yaml
+> @@ -0,0 +1,55 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/timer/nxp,lpc3220-timer.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP LPC3220 timer
+> +
+> +maintainers:
+> +  - Animesh Agarwal <animeshagarwal28@gmail.com>
+> +
+> +description: |
+> +  The NXP LPC3220 timer is used on a wide range of NXP SoCs. This includes
+> +  LPC32xx, LPC178x, LPC18xx and LPC43xx parts.
+> +
+> +properties:
+> +  compatible:
+> +    const: nxp,lpc3220-timer
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: timerclk
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
 
-I would drop the Fixes tag altogether. This is a change in
-implementation but it doesn't really fix a bug or regression.
+Since there is always just a single supply clock, there is no need to
+specify "clock-names" as a required one, please change it.
 
-Other than that: please feel free to add
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/lpc32xx-clock.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    timer@4004c000 {
+> +        compatible = "nxp,lpc3220-timer";
+> +        reg = <0x4004c000 0x1000>;
+> +        interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
+> +        clocks = <&clk LPC32XX_CLK_TIMER1>;
+> +        clock-names = "timerclk";
+> +    };
 
-Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+I would appreciate, if you can use scripts/get_maintainer.pl in future.
 
-I will also review the pwrctl part of the series shortly.
-
-Bart
-
-> > Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> > ---
-> >  drivers/pci/bus.c         | 3 ++-
-> >  drivers/pci/pwrctl/core.c | 9 ++++++++-
-> >  2 files changed, 10 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/pci/bus.c b/drivers/pci/bus.c
-> > index 55c853686051..15b42f0f588f 100644
-> > --- a/drivers/pci/bus.c
-> > +++ b/drivers/pci/bus.c
-> > @@ -328,6 +328,7 @@ void __weak pcibios_bus_add_device(struct pci_dev *=
-pdev) { }
-> >   */
-> >  void pci_bus_add_device(struct pci_dev *dev)
-> >  {
-> > +     struct pci_host_bridge *host =3D pci_find_host_bridge(dev->bus);
-> >       struct device_node *dn =3D dev->dev.of_node;
-> >       int retval;
-> >
-> > @@ -352,7 +353,7 @@ void pci_bus_add_device(struct pci_dev *dev)
-> >
-> >       if (dev_of_node(&dev->dev) && pci_is_bridge(dev)) {
-> >               retval =3D of_platform_populate(dev_of_node(&dev->dev), N=
-ULL, NULL,
-> > -                                           &dev->dev);
-> > +                                           host->dev.parent);
->
-> I'm not sure host->dev.parent is always valid.  There are
-> pci_create_root_bus() callers that supply a NULL parent pointer.
->
-> >               if (retval)
-> >                       pci_err(dev, "failed to populate child OF nodes (=
-%d)\n",
-> >                               retval);
-> > diff --git a/drivers/pci/pwrctl/core.c b/drivers/pci/pwrctl/core.c
-> > index feca26ad2f6a..4f2ffa0b0a5f 100644
-> > --- a/drivers/pci/pwrctl/core.c
-> > +++ b/drivers/pci/pwrctl/core.c
-> > @@ -11,6 +11,8 @@
-> >  #include <linux/property.h>
-> >  #include <linux/slab.h>
-> >
-> > +#include "../pci.h"
-> > +
-> >  static int pci_pwrctl_notify(struct notifier_block *nb, unsigned long =
-action,
-> >                            void *data)
-> >  {
-> > @@ -64,18 +66,23 @@ static int pci_pwrctl_notify(struct notifier_block =
-*nb, unsigned long action,
-> >   */
-> >  int pci_pwrctl_device_set_ready(struct pci_pwrctl *pwrctl)
-> >  {
-> > +     struct pci_bus *bus;
-> >       int ret;
-> >
-> >       if (!pwrctl->dev)
-> >               return -ENODEV;
-> >
-> > +     bus =3D pci_find_bus(of_get_pci_domain_nr(pwrctl->dev->parent->of=
-_node), 0);
-> > +     if (!bus)
-> > +             return -ENODEV;
-> > +
-> >       pwrctl->nb.notifier_call =3D pci_pwrctl_notify;
-> >       ret =3D bus_register_notifier(&pci_bus_type, &pwrctl->nb);
-> >       if (ret)
-> >               return ret;
-> >
-> >       pci_lock_rescan_remove();
-> > -     pci_rescan_bus(to_pci_dev(pwrctl->dev->parent)->bus);
-> > +     pci_rescan_bus(bus);
-> >       pci_unlock_rescan_remove();
-> >
-> >       return 0;
-> >
-> > --
-> > 2.34.1
-> >
+--
+Best wishes,
+Vladimir
 
