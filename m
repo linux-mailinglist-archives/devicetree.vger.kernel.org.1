@@ -1,210 +1,125 @@
-Return-Path: <devicetree+bounces-91508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 243499499FB
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 23:22:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA4DF949A3F
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 23:34:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6B8D1F24153
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 21:22:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 54AF11F22A52
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 21:34:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24B21171E69;
-	Tue,  6 Aug 2024 21:21:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BE2C158DD0;
+	Tue,  6 Aug 2024 21:34:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="ZYH/46hv"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="EBVrfHvB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0290B16EB63;
-	Tue,  6 Aug 2024 21:21:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722979278; cv=pass; b=mmmxSYCJQl3gSavigvPfx/UQ+HmM1XZiQuq4lciajgFSUGolLNcGOXOCAkJXu4gTLhygMADLwOPZoA7n/9Fx53kohLvAB5d4shkY/4GxuZB/K0L1aNY3mQfTjAy/rGWkEmdQYwtD0DIlxdpLkZYegIQW8QoqeKaIlA03l7/zuoU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722979278; c=relaxed/simple;
-	bh=xvqb6qADmaVvF5wkQPJISye6IS2zi+WI4YOKJs6jReI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=b88nh4NtKprscsNc0JLi9TyNSdxPMyfYI15ZJZkUahRccRYX0+sObm++TpVRcVB7NRyjoGDShrMBDHVAhXAoJsl30loYbkKMhcPM0qMQTmDIkfVigNtdM8udsG+ibtCOrcKM9Tx1SGJ5X1Ry/3tPuGB5LhSOQGcKSBqSXK2ZypM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=ZYH/46hv; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-Delivered-To: kernel@collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1722979252; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=BMf2ZRFvtqi/sR13Gc59m+dMM+UrIaQjfzvHt/w/TtAtrfbrDjwxqIZdy43GRVczq3kSoc4u3i7kVIFcEGMvqDs3ykaK4njgc8RgXWxRRJ3QMHSnPjSbpHFOvu9UMXh8HFCg+p/B5n9gtX+qJUtdFTAAiZc2OW5ohWPOLu+G7Qg=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1722979252; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=ohjTRCVxkhKXSgrx3m+MPEhGY7a9HSyHDy3Be9j0/h4=; 
-	b=as4PYSvJHpawzeoKIOiKghAb3Q10+Hueo6mC49qrGYx9oCiWrUGCmp5QWkAvSbS7CsNdVvnDQFAkPTeuSf43fv3Ls2OVwuxNUGG+o5BEABohi9rihiYPEnq4zpnX73Uc3ZhQ7cKBWxlzLmuPPMvqzvytx5J0PfvfMwBlLyyfkJc=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
-	dmarc=pass header.from=<detlev.casanova@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1722979252;
-	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=ohjTRCVxkhKXSgrx3m+MPEhGY7a9HSyHDy3Be9j0/h4=;
-	b=ZYH/46hvnZV51VVqorVH3LiC7WuZwmTxVLc/nGongNTjLICSXR084ljtqdkNA+bq
-	JV1L4kc+ynO8+JgRqvok3f9lbrk32ZFQ4+EsZudEfgGCpDuGTmgVfY9f/9emGgLv4DN
-	coIyZRUQ0FrEFP7wTKsdYulpLLLTxQe/EO7Y8SCM=
-Received: by mx.zohomail.com with SMTPS id 17229792513511020.8164380601129;
-	Tue, 6 Aug 2024 14:20:51 -0700 (PDT)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, Philipp Zabel <p.zabel@pengutronix.de>,
- Elaine Zhang <zhangqing@rock-chips.com>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v2 1/3] dt-bindings: clock: add rk3576 cru bindings
-Date: Tue, 06 Aug 2024 17:22:03 -0400
-Message-ID: <1975336.PYKUYFuaPT@trenzalore>
-In-Reply-To: <87503c5b-95dc-463b-8363-3e1fab03f8f2@kernel.org>
-References:
- <20240802214053.433493-1-detlev.casanova@collabora.com>
- <20240802214053.433493-2-detlev.casanova@collabora.com>
- <87503c5b-95dc-463b-8363-3e1fab03f8f2@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3EC5374C4;
+	Tue,  6 Aug 2024 21:34:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722980077; cv=none; b=RS6uD8Im/nSccKgTpVzGPja3tZ9rZZWeboJUPZcvFk7LI9WWcJZwYieQl+8Z6xkz0XGjtYUykeybr+f0HVei4drRGVDXSSbDzYltnNk0igU5ckDtA5TFaRVWANfCSyoT2Ktbbuu7KGRvU1zR8ruxQhHdXJYjNKBm0DTWD4xH/6U=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722980077; c=relaxed/simple;
+	bh=/jTkFQ8ev6vvnwdDNVwixlkwQ69qyZwJEDKz4pu6HKE=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=lDRct6X07PDEtDiQ0PdizJOQV3CALh3B88zehO9SMd++Ect/BW87V/bccHGg/mdT+6DlAaeSSP5ck4Hn8vK4PE1IzjfGXxy1WMCrHhTlsMSwZJm+wyctBv8hYRczrniVl7lswmSRDsQRgQTI2kXfGrtyuU5wlsv91U+hghY7Fhg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=EBVrfHvB; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 476LYUGj122182;
+	Tue, 6 Aug 2024 16:34:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1722980070;
+	bh=UHFII3hknLPwvageK9iQOUyvT59K+4CNg5YM0uH1HDM=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=EBVrfHvByBNtn81TxrDTZTLfLAtO+6b2WrxEFyrEhk2tXuH0YAGp0v6eSAKkje9h7
+	 oFtJPMC29N0k15XyFX2GGyVlML0++X3bPcYHQHFdFC2LPofpo+QLGuL26Q29JB0urZ
+	 /Y0HDwZ5nITXDOLUTPFEvVBIR03y30JVsltZQrCg=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 476LYUcC101299
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 6 Aug 2024 16:34:30 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
+ Aug 2024 16:34:29 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 6 Aug 2024 16:34:29 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 476LYThK085253;
+	Tue, 6 Aug 2024 16:34:29 -0500
+From: Nishanth Menon <nm@ti.com>
+To: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Bhavya
+ Kapoor <b-kapoor@ti.com>
+CC: Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <conor+dt@kernel.org>, <krzk+dt@kernel.org>, <robh@kernel.org>,
+        <kristo@kernel.org>, <jm@ti.com>, <vigneshr@ti.com>
+Subject: Re: [PATCH 0/2] arm64: dts: ti: Update mux-controller node name
+Date: Tue, 6 Aug 2024 16:34:28 -0500
+Message-ID: <172298005662.488348.14948625003852817425.b4-ty@ti.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240729063411.1570930-1-b-kapoor@ti.com>
+References: <20240729063411.1570930-1-b-kapoor@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="utf-8"
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Krzysztof,
+Hi Bhavya Kapoor,
 
-On Sunday, 4 August 2024 05:52:53 EDT Krzysztof Kozlowski wrote:
-> On 02/08/2024 23:35, Detlev Casanova wrote:
-> > Document the device tree bindings of the rockchip rk3576 SoC
-> > clock and reset unit.
-> > 
-> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+On Mon, 29 Jul 2024 12:04:09 +0530, Bhavya Kapoor wrote:
+> There are 2 mux-controller nodes in J721S2 and J7200 which are
+> responsible for transferring can signals to the can phy but same
+> node names for both the mux-controllers on a platform led to errors
+> while setting up both mux-controllers for can phys simultaneously.
+> Thus, update node names for these mux-controller.
 > 
-> A nit, subject: drop second/last, redundant "bindings". The
-> "dt-bindings" prefix is already stating that these are bindings.
-> See also:
-> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bi
-> ndings/submitting-patches.rst#L18
-> > ---
-> > 
-> >  .../bindings/clock/rockchip,rk3576-cru.yaml   | 73 +++++++++++++++++++
-> >  1 file changed, 73 insertions(+)
-> >  create mode 100644
-> >  Documentation/devicetree/bindings/clock/rockchip,rk3576-cru.yaml> 
-> > diff --git
-> > a/Documentation/devicetree/bindings/clock/rockchip,rk3576-cru.yaml
-> > b/Documentation/devicetree/bindings/clock/rockchip,rk3576-cru.yaml new
-> > file mode 100644
-> > index 0000000000000..929eb6183bf18
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/rockchip,rk3576-cru.yaml
-> > @@ -0,0 +1,73 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/rockchip,rk3576-cru.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Rockchip rk3576 Family Clock and Reset Control Module
-> > +
-> > +maintainers:
-> > +  - Elaine Zhang <zhangqing@rock-chips.com>
-> > +  - Heiko Stuebner <heiko@sntech.de>
-> > +
-> > +description: |
-> > +  The RK3576 clock controller generates the clock and also implements a
-> > reset +  controller for SoC peripherals. For example it provides
-> > SCLK_UART2 and +  PCLK_UART2, as well as SRST_P_UART2 and SRST_S_UART2
-> > for the second UART +  module.
-> > +  Each clock is assigned an identifier and client nodes can use this
-> > identifier +  to specify the clock which they consume. All available
-> > clock and reset IDs +  are defined as preprocessor macros in dt-binding
-> > headers.
+> Rebased to next-20240729
 > 
-> Drop paragraph, it is obvious. You could provide here the name of the
-> header...
-> 
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - rockchip,rk3576-cru
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  "#clock-cells":
-> > +    const: 1
-> > +
-> > +  "#reset-cells":
-> > +    const: 1
-> > +
-> > +  clocks:
-> > +    minItems: 2
-> 
-> You can drop minitems
-> 
-> > +    maxItems: 2
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: xin24m
-> > +      - const: xin32k
-> > +
-> > +  assigned-clocks: true
-> > +
-> > +  assigned-clock-rates: true
-> > +
-> > +  assigned-clock-parents: true
-> 
-> Drop  all these three
+> [...]
 
-Why dro pthese if I need them in the device tree ? Should I remove them from 
-there as well ? It seems to be working without it.
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
-> > +
-> > +  rockchip,grf:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: >
-> > +      phandle to the syscon managing the "general register files". It is
-> > used +      for GRF muxes, if missing any muxes present in the GRF will
-> > not be +      available.
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - "#clock-cells"
-> > +  - "#reset-cells"
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    cru: clock-controller@27200000 {
-> 
-> Drop unused label
-> 
-> > +      compatible = "rockchip,rk3576-cru";
-> > +      reg = <0xfd7c0000 0x5c000>;
-> > +      #clock-cells = <1>;
-> > +      #reset-cells = <1>;
-> 
-> Make the example complete.
-> 
-> > +    };
-> 
+[1/2] arm64: dts: ti: k3-j721s2-som-p0: Update mux-controller node name
+      commit: c36f60772e2aeca253924572a9f348ba27192bd0
+[2/2] arm64: dts: ti: k3-j7200-som-p0: Update mux-controller node name
+      commit: e3cce1229c34b5c28f103361c4d6b3ef17302d5d
 
-Detlev.
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
 
