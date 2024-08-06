@@ -1,107 +1,129 @@
-Return-Path: <devicetree+bounces-91429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78CBF9494CF
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 17:49:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7E2D9494B6
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 17:41:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A93441C22E8E
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 15:49:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F9341F2554D
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 15:41:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F489374D1;
-	Tue,  6 Aug 2024 15:48:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 029D0537F8;
+	Tue,  6 Aug 2024 15:39:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b="pDRPXg4E"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="VfEMfp9v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.126.com (m16.mail.126.com [220.197.31.9])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25A0A21105;
-	Tue,  6 Aug 2024 15:48:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.9
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12F7E47A66;
+	Tue,  6 Aug 2024 15:39:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722959328; cv=none; b=WAZ1wKsX1XsSgMX6BVbSrAWkLtMSXvzBnJSHusDejxPxN73yTRlhdL/YuysPgjBSQP1nDodi6RvGNdn4hxQ7vwHR+1TckvWK5Y22+rUvQD77oYa8hWA75ZQEN0ouPWuo31WzDVpiBk8NTEh0dZ1NUDWL7vxrKekQeuoFDbndbxo=
+	t=1722958784; cv=none; b=eD0DqeTrIqAaQciijBY0N3mmwYuj8EyRHaNU3CsQobjvA9CUG9WWX0/S5iaV2biWfcGdGgMOjcIMlb6R8WRVDmAPCpvgWSlHWa4QbC8F1PJ02f/cYh733tXoI+kS3Jj5LilLBCfZYhGO3TXN4q3g4wDjh3jyymX2sH378rYA7Uo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722959328; c=relaxed/simple;
-	bh=LQSlOEeRpia51mks7wM1PoSQ6VCjEvqr9gvKV9MUKe8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=IMakHukoWKglIR4UwzivUR7zinGxFqZmXk/c51EQbibrDP7ogpNNapOt14wrOAkD/lvuQIuUq1zPpEK6Zjur3uYTZI77e9oP2u/p/Oq6H0zR7Dlki+AdaxVbbgWWnzLdY6r4DxVgB9YNYLjdvOReviW6pmuJokSruds/CEgeBWE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com; spf=pass smtp.mailfrom=126.com; dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b=pDRPXg4E; arc=none smtp.client-ip=220.197.31.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=126.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
-	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=s1a9a
-	AuiBzsbZG/XjQxHazfEVtr8j/hhLtoCBAGHVDE=; b=pDRPXg4ELyr3Ry7kw1TKV
-	Efy4a04hXu0vhtpVWhYJ7uD3dQiJHUftRiA1z//pM4x+Idx0zSNPjxWDNsDFBOgn
-	KA+qgTrpIeWewl+pIS7359obkLurVMeELAY46Fe2l52KKpAS73uCyxi6fJVcWtnU
-	RDkYFrawynUoPAncxZuDB4=
-Received: from nilq-virtual-machine.. (unknown [60.27.227.124])
-	by gzsmtp2 (Coremail) with SMTP id pikvCgD3n07HQbJmk6QOAA--.4296S2;
-	Tue, 06 Aug 2024 23:31:21 +0800 (CST)
-From: niliqiang <ni_liqiang@126.com>
-To: jean-philippe@linaro.org
-Cc: Jonathan.Cameron@huawei.com,
-	baolu.lu@linux.intel.com,
-	devicetree@vger.kernel.org,
-	eric.auger@redhat.com,
-	guohanjun@huawei.com,
-	iommu@lists.linux-foundation.org,
-	jacob.jun.pan@linux.intel.com,
-	joro@8bytes.org,
-	kevin.tian@intel.com,
-	lenb@kernel.org,
-	linux-accelerators@lists.ozlabs.org,
-	linux-acpi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	lorenzo.pieralisi@arm.com,
-	rjw@rjwysocki.net,
-	robh+dt@kernel.org,
-	robin.murphy@arm.com,
-	shameerali.kolothum.thodi@huawei.com,
-	sudeep.holla@arm.com,
-	vivek.gautam@arm.com,
-	wangzhou1@hisilicon.com,
-	will@kernel.org,
-	zhangfei.gao@linaro.org,
-	zhukeqian1@huawei.com,
-	ni.liqiang@zte.com.cn,
-	li.zhichao@zte.com.cn,
-	jin.qi@zte.com.cn
-Subject: Re: [PATCH v14 07/10] iommu/arm-smmu-v3: Maintain a SID->device structure
-Date: Tue,  6 Aug 2024 23:31:19 +0800
-Message-Id: <20240806153119.8089-1-ni_liqiang@126.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20210401154718.307519-8-jean-philippe@linaro.org>
-References: <20210401154718.307519-8-jean-philippe@linaro.org>
+	s=arc-20240116; t=1722958784; c=relaxed/simple;
+	bh=b7ozdsbwfMXW21Tyt4Tt33Hq8k141H7HbyANf37oXi0=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=Exu/7ZxuqQ50IVqnX8ulsJO0jY9g1patois89mH9Nw5tp7l5cEV+KJz/q1d4zd+NpV+DIn09g5ICvScnUBgFW0wo48mO3ts4E1OyH0MUZ6BJrKWQAZvR7CXoSI7lhwJIVctWkhRIq+oKsivU3C9afaS8/W59pMsnyZHmZqSRHDU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=VfEMfp9v; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:pikvCgD3n07HQbJmk6QOAA--.4296S2
-X-Coremail-Antispam: 1Uf129KBjvdXoW7Xr13KryUZF15Kw4rZr4xWFg_yoW3Cwc_KF
-	yDZrn7Jw4SyF48XanxKanruwsxKF40g34kX345XrWS93W7JFs8GrykGr9aqrZ7WrZrCwnI
-	yrn3ta9xWr1agjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU14xRPUUUUU==
-X-CM-SenderInfo: xqlbzxxtld0wa6rslhhfrp/1tbirwoz5WVLbKD00wAAs2
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1722958773;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=2Chn8ymlqazavJ1DZmXPdLBrye9DBk3cugxlezlxhvc=;
+	b=VfEMfp9veTf9vofJGHvARhjKJLQWxXoE6CZ4ZfPJBcyubeBt6RFYznvEmk0qhNLGaLcWIZ
+	V4ZVilXZpCU9C/H3Fj/ysZ/XgET0TF1ZDcxMeq8V3CyxyQdsNk7NIj2fbogg2t01z7WsLv
+	wvZqgRJCniv7XWLsHstRuSCgMls15R5RXpdkYXYEbuirc0/HNhXfXfbC+UTQp1+RTHuNyc
+	HQCGgdhhrNGrjo/ZN4a8er9JdyzG+eHz0KiwhMuHq/wV0VtW6AozR7DoRbDrDnLY5G34gi
+	SGgRl+hV/9eqi04hVkBzZk6CNzURj7hKvvnqvMopGb0w7ymNHesO9/LnmyrCtw==
+Date: Tue, 06 Aug 2024 17:39:32 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Christoph Hellwig <hch@lst.de>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Miquel Raynal
+ <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
+ Raghavendra <vigneshr@ti.com>, Joern Engel <joern@lazybastard.org>, Keith
+ Busch <kbusch@kernel.org>, Jens Axboe <axboe@kernel.dk>, Sagi Grimberg
+ <sagi@grimberg.me>, Wolfram Sang <wsa+renesas@sang-engineering.com>, Florian
+ Fainelli <f.fainelli@gmail.com>, Thomas Bogendoerfer
+ <tsbogend@alpha.franken.de>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-mtd@lists.infradead.org, linux-nvme@lists.infradead.org
+Subject: Re: [PATCH v3 2/6] nvme: assign of_node to nvme device
+In-Reply-To: <66b21f20.5d0a0220.200175.4b9b@mx.google.com>
+References: <20240806114118.17198-1-ansuelsmth@gmail.com>
+ <20240806114118.17198-3-ansuelsmth@gmail.com>
+ <20240806124312.GB10156@lst.de>
+ <66b21f20.5d0a0220.200175.4b9b@mx.google.com>
+Message-ID: <ceab3813dad635387e9f216203292fbe@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-> It is expected that a single SMMU instance is highly likely to have more 
-> than one device behind it, and therefore more than one StreamID to keep 
-> track of.
+Hello all,
 
-Thanks for your explanation. I now understand the role of the `mutex_lock` statement.
-However, I have a new question that I hope you can help me with: I noticed that the
-function `arm_smmu_insert_master`, which includes the `mutex_lock` statement, was
-introduced in Linux version 5.13. For kernel code before version 5.13, how do we
-ensure that there's no resource contention when multiple devices are loaded
-behind a single SMMU instance?
+On 2024-08-06 15:03, Christian Marangi wrote:
+> On Tue, Aug 06, 2024 at 02:43:12PM +0200, Christoph Hellwig wrote:
+>> On Tue, Aug 06, 2024 at 01:41:12PM +0200, Christian Marangi wrote:
+>> > Introduce support for a dedicated node for a nvme card. This will be a
+>> > subnode of the nvme controller node that will have the "nvme-card"
+>> > compatible.
+>> >
+>> > This follow a similar implementation done for mmc where the specific mmc
+>> > card have a dedicated of_node.
+>> >
+>> > This can be used for scenario where block2mtd module is used to declare
+>> > partition in DT and block2mtd is called on the root block of the nvme
+>> > card, permitting the usage of fixed-partition parser or alternative
+>> > ones.
+>> 
+>> Err, hell no.  Why would you wire up a purely PCIe device to OF?
+>> PCIe is self-discovering.
+>> 
+> 
+> Well on embedded pure PCIe card most of the time are not a thing...
+> Unless it's an enterprise product, everything is integrated in the pcb
+> and not detachable for cost saving measure or also if the thing use 
+> PCIe
+> protocol but it tighlty coupled with the SoC.
+> 
+> This implementation is already very common for all kind of pcie devices
+> like wireless card, gpio expander that are integrated in the PCB and
+> require property in DT like calibration data, quirks or GPIO pin
+> definitions, i2c...
+> 
+> In modern SoC we are seeing an influx of using cheap flash storage
+> option instead of NAND or NOR as modern hw require more space and price
+> increase is not that high... Almost any high tier device is switching 
+> to
+> using emmc and even attached NVME and simulating MTD with them for easy
+> usage.
+> 
+> Please consider this well used scenario in emebedded where PCIe is just
+> a comunication way and the concept of detachable doesn't exist at all
+> and things can be described in DT as static. Also these storage are 
+> used
+> for rootfs mount so userspace is not so viable.
 
-Currently, we're indeed encountering resource contention issues when loading
-multiple device drivers on the 5.10 kernel. Do you have any suggestions on
-how to resolve this issue?
+As a note, perhaps this is another good example of a "fixed layout"
+PCIe device found on an SBC:
 
-Thanks.
-
+https://lore.kernel.org/linux-rockchip/20240805073425.3492078-1-jacobe.zang@wesion.com/T/#u
 
