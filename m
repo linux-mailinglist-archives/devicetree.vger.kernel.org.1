@@ -1,173 +1,128 @@
-Return-Path: <devicetree+bounces-91489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35CF794980A
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 21:12:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDA95949812
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 21:15:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D1B311F243E5
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 19:12:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 977581F22631
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 19:15:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A503F823C3;
-	Tue,  6 Aug 2024 19:12:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eF7hcLy0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0953C47F4D;
+	Tue,  6 Aug 2024 19:15:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71A6A4F8A0;
-	Tue,  6 Aug 2024 19:12:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B94CB40856
+	for <devicetree@vger.kernel.org>; Tue,  6 Aug 2024 19:15:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722971525; cv=none; b=Oi4axgJle2a3XjzbjRWEZsqJWSaIu8wNkj27kXXWqHTbccu/gjhhyqAi9i6zebJnog2ri2PQnv/INIZNz2d6AWwTpnmYzNXnys4OtggD9aMRMWFugTd4ON3fHsObSY5qozUVa5xviItWxvLMk3RciNKRLYYIREYGb5BcSpbsfW0=
+	t=1722971729; cv=none; b=KnXm7wJSGSeSqBIFfjyWvGytn5++pePp5Y0tsazX7JcKv9E9kL2l/nL7l+eaM+ML+DLvOLVtvZ5zOC0T86NO3AkzTeSpd0HsZX+O9rCswUyL9LTUbaHySmEG+6fIiicF1ANdtfgnKblkR9zOdZILL0NqcJZOOQgTlaYIbOlXJNY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722971525; c=relaxed/simple;
-	bh=MUntDv2gD5+r+bQ9Gq55BzMlclzgUuGCotLVqMS29C8=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=VpF/Sa0qzQQ6mxbfAbTAe1YM33E1/6HTXn72FNM3dLpty3eJcd8ma+ID7HDADqcXYOLiKDyVV9Gpn5V9QmuYWzgOvM7OV4TtYIDr218c4QIl8auvmIA1fX0Zz7e6vJFYwi6W6cylysNJiAip+U17f+vqPnAlhm7I30SMSgRcax8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eF7hcLy0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAF02C32786;
-	Tue,  6 Aug 2024 19:12:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722971525;
-	bh=MUntDv2gD5+r+bQ9Gq55BzMlclzgUuGCotLVqMS29C8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=eF7hcLy04y8SklVvaENBicO1NsGIl5KbsF37nza/Xt5zlCAp60c00afp8+p72rvpF
-	 Cgx0mn1gWokiW68mKXvEIdBD42b2TMdsmbs1wedysOqm8GPdmIjWTWUtknEaNcb1Lf
-	 Ta8NGJOWxvP/AG0e7t41JjEl8/EuNWUuTXSU1AdQiGAXT50L3OAMoG6qIw+nHHeF7L
-	 ktM/Ly8qy4L9NUBZIuBaFpmNYg/F8G097FtCkwdOAZEqRFJ+YqMY+7c8rfM3w1DSsA
-	 iIK68nGhgRl3bdpEfSw71nf6iXxoKUbo41sSuLBF06X6+kU9gSaN0Mpg6jXe2uIQvr
-	 pC+AviepEa6QA==
-Date: Tue, 6 Aug 2024 14:12:03 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	cros-qcom-dts-watchers@chromium.org,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	andersson@kernel.org, quic_vbadigan@quicinc.com,
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v2 7/8] PCI: qcom: Add support for host_stop_link() &
- host_start_link()
-Message-ID: <20240806191203.GA73014@bhelgaas>
+	s=arc-20240116; t=1722971729; c=relaxed/simple;
+	bh=/KTY3Gaho72Tf3+2/vhp6C+9MfaiqfVEjgZtRJhZ9k0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UIBrsvJpEO70lwifYv7T8KtRDy2JCowZYpSFGx0E0xhaVvKl7mj5dU3c4Ne2rDQv3/4QCEPI5U17Hj5zHnn3jyGQOm6WYa6YnwauJkvuUgg2FIGa8EXcrzDxry6sibxzF1iKK04iWkA/FTy8RPdhlQj0dOOLnvxtS6VfhtpiJgQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1sbPeI-0004ET-0G; Tue, 06 Aug 2024 21:15:10 +0200
+Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1sbPeE-0051Tg-Pj; Tue, 06 Aug 2024 21:15:06 +0200
+Received: from pengutronix.de (p5de45302.dip0.t-ipconnect.de [93.228.83.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 6F10F31831F;
+	Tue, 06 Aug 2024 19:15:06 +0000 (UTC)
+Date: Tue, 6 Aug 2024 21:15:05 +0200
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, linux-can@vger.kernel.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Duy Nguyen <duy.nguyen.rh@renesas.com>
+Subject: Re: [PATCH v3] dt-bindings: can: renesas,rcar-canfd: Document R-Car
+ V4M support
+Message-ID: <20240806-fragrant-nimble-crane-c5a129-mkl@pengutronix.de>
+References: <68b5f910bef89508e3455c768844ebe859d6ff1d.1722520779.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="mknissrzzstlngmz"
 Content-Disposition: inline
-In-Reply-To: <20240803-qps615-v2-7-9560b7c71369@quicinc.com>
+In-Reply-To: <68b5f910bef89508e3455c768844ebe859d6ff1d.1722520779.git.geert+renesas@glider.be>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Sat, Aug 03, 2024 at 08:52:53AM +0530, Krishna chaitanya chundru wrote:
-> For the switches like QPS615 which needs to configure it before
-> the PCIe link is established.
-> 
-> if the link is not up assert the PERST# and disable LTSSM bit so
-> that PCIe controller will not participate in the link training
-> as part of host_stop_link().
-> 
-> De-assert the PERST# and enable LTSSM bit back in host_start_link().
-> 
-> Introduce ltssm_disable function op to stop the link training.
 
-pcie-qcom.c is a driver for a PCIe host controller.  Apparently QPS615
-is a switch in a hierarchy that could be below any PCIe host
-controller, so I'm missing the connection with pcie-qcom.c.
+--mknissrzzstlngmz
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Does this fix a problem that only occurs with pcie-qcom.c?  What
-happens if you put a QPS615 below some other controller?
+On 01.08.2024 16:03:17, Geert Uytterhoeven wrote:
+> From: Duy Nguyen <duy.nguyen.rh@renesas.com>
+>=20
+> Document support for the CAN-FD Interface on the Renesas R-Car V4M
+> (R8A779H0) SoC, which supports up to four channels.
+>=20
+> The CAN-FD module on R-Car V4M is very similar to the one on R-Car V4H,
+> but differs in some hardware parameters, as reflected by the Parameter
+> Status Information part of the Global IP Version Register.  However,
+> none of this parameterization should have any impact on the driver, as
+> the driver does not access any register that is impacted by the
+> parameterization (except for the number of channels).
+>=20
+> Signed-off-by: Duy Nguyen <duy.nguyen.rh@renesas.com>
+> [geert: Clarify R-Car V4M differences]
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 39 ++++++++++++++++++++++++++++++++++
->  1 file changed, 39 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index 0180edf3310e..f4a6df53139c 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -233,6 +233,7 @@ struct qcom_pcie_ops {
->  	void (*host_post_init)(struct qcom_pcie *pcie);
->  	void (*deinit)(struct qcom_pcie *pcie);
->  	void (*ltssm_enable)(struct qcom_pcie *pcie);
-> +	void (*ltssm_disable)(struct qcom_pcie *pcie);
->  	int (*config_sid)(struct qcom_pcie *pcie);
->  };
->  
-> @@ -555,6 +556,41 @@ static int qcom_pcie_post_init_1_0_0(struct qcom_pcie *pcie)
->  	return 0;
->  }
->  
-> +static int qcom_pcie_host_start_link(struct dw_pcie *pci)
-> +{
-> +	struct qcom_pcie *pcie = to_qcom_pcie(pci);
-> +
-> +	if (!dw_pcie_link_up(pcie->pci))  {
-> +		qcom_ep_reset_deassert(pcie);
-> +
-> +		if (pcie->cfg->ops->ltssm_enable)
-> +			pcie->cfg->ops->ltssm_enable(pcie);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void qcom_pcie_host_stop_link(struct dw_pcie *pci)
-> +{
-> +	struct qcom_pcie *pcie = to_qcom_pcie(pci);
-> +
-> +	if (!dw_pcie_link_up(pcie->pci))  {
-> +		qcom_ep_reset_assert(pcie);
-> +
-> +		if (pcie->cfg->ops->ltssm_disable)
-> +			pcie->cfg->ops->ltssm_disable(pcie);
-> +	}
-> +}
-> +
-> +static void qcom_pcie_2_3_2_ltssm_disable(struct qcom_pcie *pcie)
-> +{
-> +	u32 val;
-> +
-> +	val = readl(pcie->parf + PARF_LTSSM);
-> +	val &= ~LTSSM_EN;
-> +	writel(val, pcie->parf + PARF_LTSSM);
-> +}
-> +
->  static void qcom_pcie_2_3_2_ltssm_enable(struct qcom_pcie *pcie)
->  {
->  	u32 val;
-> @@ -1306,6 +1342,7 @@ static const struct qcom_pcie_ops ops_1_9_0 = {
->  	.host_post_init = qcom_pcie_host_post_init_2_7_0,
->  	.deinit = qcom_pcie_deinit_2_7_0,
->  	.ltssm_enable = qcom_pcie_2_3_2_ltssm_enable,
-> +	.ltssm_disable = qcom_pcie_2_3_2_ltssm_disable,
->  	.config_sid = qcom_pcie_config_sid_1_9_0,
->  };
->  
-> @@ -1363,6 +1400,8 @@ static const struct qcom_pcie_cfg cfg_sc8280xp = {
->  static const struct dw_pcie_ops dw_pcie_ops = {
->  	.link_up = qcom_pcie_link_up,
->  	.start_link = qcom_pcie_start_link,
-> +	.host_start_link = qcom_pcie_host_start_link,
-> +	.host_stop_link = qcom_pcie_host_stop_link,
->  };
->  
->  static int qcom_pcie_icc_init(struct qcom_pcie *pcie)
-> 
-> -- 
-> 2.34.1
-> 
+Added to linux-can-next.
+
+Thanks,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--mknissrzzstlngmz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmaydjYACgkQKDiiPnot
+vG+u2AgAn4+6wZaPame+miPr3sdkTEbM/Lg8mogLdoWmXvVo+Th8y/L03f4Toefj
+ms/W67M+6IKrmQ0knx6dvuxoqv2gm3nDDvaxl6cjbmob7bfRqgXgyMCkeQoLnHX3
+fQODaGqxPQUwJMVWkr2a1n22/0amEJS8rt5mJ3JB9q5ZbKomD600abjFBXi2CMiw
+rePQSVXAz7Xs8zliYk1fDUvPU7df+P+oTTFUOvl/6G38xnmRBYPHNEyPdSWN+cKZ
+p3LYYX0BcbjxovTUEx++/Ex9g9KX2OhVroi5C6He7to34xFYgMZmyiA35iZ4Zd8i
+PuyzFe7V+Qyl/4McRVkCyseIDq74Gw==
+=nZkM
+-----END PGP SIGNATURE-----
+
+--mknissrzzstlngmz--
 
