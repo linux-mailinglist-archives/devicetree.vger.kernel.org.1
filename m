@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-91242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91243-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EF6D94894A
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 08:19:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A14F948954
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 08:26:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30972283C0F
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 06:19:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C93F284511
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 06:26:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E4AC16E861;
-	Tue,  6 Aug 2024 06:19:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5D181BCA03;
+	Tue,  6 Aug 2024 06:26:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QqN9vRG7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="melHguTN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9FB68F77;
-	Tue,  6 Aug 2024 06:18:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CE9F33F6;
+	Tue,  6 Aug 2024 06:26:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722925139; cv=none; b=EaxCJJrNqeH85bMgVJ+kC9I14g0NSQjdj04l+kGFETkXX5fTWgP5ytI3yTW1q7q3a421fY+1+/RjOVBxkiB75zkVV1FKS8UjOh+GQ6uyj22rtsXWmXMEXx1hVN5C5+XqRoE8hJr+RS4UDLRb1ZcrmQ32s4134myNAsJ36xdtjbk=
+	t=1722925567; cv=none; b=YvpgOg0vSvz7a1IsjEZ2VbxOnfDMe0SB388kYJVKTP7HjO8bEeRV/j5bAzYoxlykC5tqMmZzuUYSg2ibbdYxTTgaS/DMRkl3+2AbUXRTdNvU4mYrexv7gNWTOM7I6opvLJrvqg0fRhpyPfojOLu9Nmo3j6cg1yZXr3jKQF5zvG0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722925139; c=relaxed/simple;
-	bh=yY4fnXtXuWF0xzNUIBkJcnqU5WwkDWKrHMGHO/yUq9s=;
+	s=arc-20240116; t=1722925567; c=relaxed/simple;
+	bh=BjqIFjSGsGg6TzXZZviieEcOrOvVXg+qMsTnamn2JCg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=U04JUL0dUM+wTRTIBPFWaTrQXOpxsyxzoBboit63/bZ7ZsguGFHUtUAp/JuqCR4xldUlrtJGY5VDVVFSePP38IneN7nBMrcJRsPVh8SDeNGcXFjQWeb+QqQqZ+mfQhMEpYJ9fKpi7kNucD07gNeGDpPOgpQlHr6K7QqIKSwehk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QqN9vRG7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC0A2C32786;
-	Tue,  6 Aug 2024 06:18:55 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=XXN+I0t4usWQcfzuj7WCQDyu8LscdQMduHbrYt38TjjHANSzjpSJ0iYXLa4Yk9Dj8FCJHIEYYvb8KzyDhtfWnniAf40KQloqqAVBphyIP7mAsnknYWLvyL1gOJJANCNGGdAu56aZlsXKZRXnHPGVGbLSf5+lVj1LYEX99HFrPRk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=melHguTN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDC83C32786;
+	Tue,  6 Aug 2024 06:26:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722925139;
-	bh=yY4fnXtXuWF0xzNUIBkJcnqU5WwkDWKrHMGHO/yUq9s=;
+	s=k20201202; t=1722925567;
+	bh=BjqIFjSGsGg6TzXZZviieEcOrOvVXg+qMsTnamn2JCg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QqN9vRG7qv7e3Jaxudo5T6qcqT1GfCavETRb1mXcYOjAU5jN+Cm/vesW4MQ2fjhNc
-	 aDghh/QggOyXQ9+p5QUyCU9TxAIasVZ3iQ+pKLFbNgiw64MgdDEjTejFo9ezjv7nI2
-	 dUDw0slCD06NrEFxSWDv9VzyUboku4xLDrpYmeWcymOrZPDB0nwXJNHKjpjdadu7wy
-	 IlQ97j1z04gfKGRcybajg2DkMxe3Ac/u4HL3fbuIAQoJS2gY6DIpDgYCC4BWSPESCJ
-	 VcmIM+pFf96bn2PAnjdksTtEiIlZ9tVaD4K8xbSaze/2WXaElj9/RRBjFCQgg9Z05Q
-	 Ei6nnVo2qXLPA==
-Message-ID: <3c6e5c60-7eb8-44c8-bed5-99f8dac760cc@kernel.org>
-Date: Tue, 6 Aug 2024 08:18:53 +0200
+	b=melHguTNIyGZrnUJaeEVXfoxJLzSFUSmimL7A0qZMciOU+/Tkmk3AgHDTbJ7zOnvW
+	 C+Eqg9s2fY38yjFZiW44GJROUQavSLBeCsJ7xaIuPKj+0p6CYTAe1rIbhfeO0FbM6A
+	 Vh9hlzCAoDpwj8Y9jmw+z/Byw0ziCXO5T2jzj9KdnHBoaKi+kk0bY6uTX7sWreLKI2
+	 6kaeEB8jY/cO5xnbWVPbPn6j6QGYaZqN2kc9vEVsg2dbw8DuhkIuqipWJd2ztG4NT7
+	 S9G0q7eDOceZWeOSN0YY0fKLFv8md78ztD/hPRNKssZ1/TG0U0hu+ZSRMyrAJ9dIo3
+	 Q+bgSsjClf3Cg==
+Message-ID: <654f76d5-e4e4-477d-becf-8157792557cc@kernel.org>
+Date: Tue, 6 Aug 2024 08:26:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,7 +50,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/6] firmware: ti_sci: Partial-IO support
+Subject: Re: [PATCH v2 2/6] firmware: ti_sci: Partial-IO support
 To: Markus Schneider-Pargmann <msp@baylibre.com>, Nishanth Menon <nm@ti.com>,
  Tero Kristo <kristo@kernel.org>, Santosh Shilimkar <ssantosh@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -59,6 +59,7 @@ Cc: Vibhore Vardhan <vibhore@ti.com>, Kevin Hilman <khilman@baylibre.com>,
  Dhruva Gole <d-gole@ti.com>, linux-arm-kernel@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20240729080101.3859701-1-msp@baylibre.com>
+ <20240729080101.3859701-3-msp@baylibre.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,20 +105,74 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240729080101.3859701-1-msp@baylibre.com>
+In-Reply-To: <20240729080101.3859701-3-msp@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 29/07/2024 10:00, Markus Schneider-Pargmann wrote:
-> Hi,
-> 
-> v2
-> --
-> In v2 I fixed the comments on the first version of this series and
-> rebased to v6.11-rc1. See below for a more detailed list.
+> +static int tisci_sys_off_handler(struct sys_off_data *data)
+> +{
+> +	struct ti_sci_info *info = data->cb_data;
+> +	int i;
+> +	int ret;
+> +	bool enter_partial_io = false;
+> +
+> +	for (i = 0; i != info->nr_wakeup_sources; ++i) {
+> +		struct platform_device *pdev =
+> +			of_find_device_by_node(info->wakeup_source_nodes[i]);
+> +
+> +		if (!pdev)
+> +			continue;
+> +
+> +		if (device_may_wakeup(&pdev->dev)) {
 
-I don't see you even caring to respond to comments, so how do you
-imagine comments were fixed?
+...
+
+> +			dev_dbg(info->dev, "%pOFp identified as wakeup source\n",
+> +				info->wakeup_source_nodes[i]);
+> +			enter_partial_io = true;
+> +		}
+> +	}
+> +
+> +	if (!enter_partial_io)
+> +		return NOTIFY_DONE;
+> +
+> +	ret = tisci_enter_partial_io(info);
+> +
+> +	if (ret) {
+> +		dev_err(info->dev,
+> +			"Failed to enter Partial-IO %pe, trying to do an emergency restart\n",
+> +			ERR_PTR(ret));
+> +		emergency_restart();
+> +	}
+> +
+> +	while (1);
+> +
+> +	return NOTIFY_DONE;
+> +}
+> +
+>  /* Description for K2G */
+>  static const struct ti_sci_desc ti_sci_pmmc_k2g_desc = {
+>  	.default_host_id = 2,
+> @@ -3398,6 +3485,35 @@ static int ti_sci_probe(struct platform_device *pdev)
+>  		goto out;
+>  	}
+>  
+> +	if (of_property_read_bool(dev->of_node, "ti,partial-io-wakeup-sources")) {
+> +		info->nr_wakeup_sources =
+> +			of_count_phandle_with_args(dev->of_node,
+> +						   "ti,partial-io-wakeup-sources",
+> +						   NULL);
+
+I don't see the point of this. You have quite a static list of devices -
+just look at your DTS. Then you don't even do anything useful with the
+phandles you got here.
+
+This property looks entirely useless. I already commented on the binding
+(which you did not respond to), so let's comment also here:
+
+No, it duplicates wakeup-source and your code shows that it is not even
+needed.
 
 Best regards,
 Krzysztof
