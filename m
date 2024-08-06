@@ -1,112 +1,143 @@
-Return-Path: <devicetree+bounces-91491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92BC894982D
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 21:24:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AD1994989B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 21:50:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3AEB11F23003
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 19:24:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B53AE1C21484
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 19:50:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E57A9144D29;
-	Tue,  6 Aug 2024 19:24:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D93281AC8;
+	Tue,  6 Aug 2024 19:49:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="SqXCxba7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MEwbl69g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7188047F4D;
-	Tue,  6 Aug 2024 19:24:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A449B770E8;
+	Tue,  6 Aug 2024 19:49:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722972283; cv=none; b=RVnDXwYA1QOhmK5PvXN5tPZS8Fe8/vBGHygwfpCoJ0UHoyP+FQ5Pl+fRhb5VA45BHTRmcHmT8JtaFOkdZCq0O4SKhY2XU2jruRTYyMM9oiEEXVhckejIjr4EEQw7NklanytnFE+jNjpa5SHtcAbzS0SgSno3R82+LMyLJ6nNcas=
+	t=1722973799; cv=none; b=rtJX4v9ggZBnLemIgfHRIpdwIK3i/rk63LID3h1+T3KRGmCE6bJoH3SwElRe/wWybJ1rYZO8IifyRJY8ACwVulEJBC3tU4VwtcZ5WMSn+WUei+9TLKr1IuitF3BLoy0iqwVWWW9YYmlSP1zxfZ0zn+OyyGpypXayaNewLLB8uDA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722972283; c=relaxed/simple;
-	bh=lx4SKSYG9IQt/tT0YU0rp35SXnpgN8Tt+kd6Z8utk2I=;
-	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=BiPhH57Nw+c5abNujH3Vt1e6PMnnO/5zmbTe5DdT8+dNeMA77imlTzLrQ4JekjN+AIDBzR18X2m7A8qvM1LKAAgDkdazat62ZRFGpaxdoYUOPrbP/6nd16CVOo2+Eekyq9rbd7v2GTh51sqjoA+6eGKf1S8b+0gieAZM8aXQnXg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=SqXCxba7; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: from [192.168.49.54] (c-73-118-245-227.hsd1.wa.comcast.net [73.118.245.227])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 8018920B7165;
-	Tue,  6 Aug 2024 12:24:40 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 8018920B7165
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1722972281;
-	bh=Qbx96xFbGoYdTWGhHn3B+cy2pNWGVzfzN21Xqhn+OSk=;
-	h=Date:Cc:Subject:To:References:From:In-Reply-To:From;
-	b=SqXCxba7R3fhOrXQIUZw3R4WO4OkqLSq0ky5wLl6zBu3kxtU4lSB7e0xih8mApH5E
-	 sCdfu13aveEjfkIQ9CMyGkjBs7+EvZF46Gr4HZ5p1dckvpOkNliR0kW2lXLKpCg8Km
-	 1KUtVl+grJYw+dT7Ck7tx9MIrgOovUzrlSZqbCI4=
-Message-ID: <389da90e-df78-4ea4-8453-ae2080a68956@linux.microsoft.com>
-Date: Tue, 6 Aug 2024 12:24:40 -0700
+	s=arc-20240116; t=1722973799; c=relaxed/simple;
+	bh=B/vP9wN2b0Lzujq46mPPrpNnbTESZoPBqKI5lHHsrEA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hrXH1DDQb/Oe2Zt9b4khaawe0TWyk6Ud1TdcuvxQf4td+ff/H29tr1+Gf9k7/4k8aYvhMU3bUi/iGdSfKnZNB6C+klExJMjLJ/0WOi+TmiYDjUtxdZZPwvpH/Q5jrgAHQmJSTIyvm3RRWPuz+E0XzgEeZ9WzAzl3BahuAu/O0Cg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MEwbl69g; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-52f01ec08d6so1304422e87.2;
+        Tue, 06 Aug 2024 12:49:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722973796; x=1723578596; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=3BIPnyjPKBcltoWwn+jJdksE5JCpEOSMNHCDp8ur6XA=;
+        b=MEwbl69gvKvhOkeYfhHFoaKp1fUEtiGpV6oAHGbViQmR5deGRA2VNTkVanSGyDSZBn
+         XsIHPRi07hkUQ+lYTbwXsFdutW4hBXwlX46kKB9rZJ+7iEAty2rq0KuyQgEtROsVA2Kw
+         2HgFp/ZCFz5YVChT6RFAnUTxIv+mydBicaDtwk3GM6pVYtzfJ/QOceJdzwXX7TLGjY6d
+         JovSylZb0xLLqLr4WKVTc8jRi+nxKX2M22xh8G3TmybCq3Y1MhRI6JGdrv1+GCVsXFxq
+         H6xxYQKlQTQMh8jXUVq0wISmLQDu/lxTQrk+ZJCpinwUi++PCJkQ6kalj3CKOFfz00pB
+         E96w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722973796; x=1723578596;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3BIPnyjPKBcltoWwn+jJdksE5JCpEOSMNHCDp8ur6XA=;
+        b=Bk3kOITlfkjMpwdeLz8VFNoFMsJdGfRs0jKj+22h795SdxfWDNLvZM/5WsdavKpEP0
+         O+A6Y/gMMO7LrDJvd7jgPAsJYVyS4fS99zvd83gREOs2c4qWK8vX/Fvbn0uXnNjyFeHJ
+         UhmKkynu9BZylS6S9eoAT3N90zJES4gNGPA8Lx16nJAojjbssXuY+DO7q80PoEMSNBil
+         Cx5qXh/ceo68fy6rO4BWy6DIM/BG6dQk/yj0IuwUokuVN2hCbkAqu4doq9Lau++VZu2n
+         t4zCUqSFdGm6qjC6xulQ+bYdZoO1HDOetuTlCQRbLFurKoY886AzrhrzLYfYmvBKv8oE
+         DfvQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV3dU3HwfY1/Bwwd+iS6KQynyuhp82EzujNTWWGppVi3mLcoA0quR3C8ak5YYuZlvrgtHqxlyai2MLIuXb5l8ohiUlHibbApKBofqGwtLioN1SRHY+6WE0kVVzWnwjAwwGLZRFs9tCf49HagUAxLED+eYW8CeGD3+mRtik1DvBtaXtQUp0=
+X-Gm-Message-State: AOJu0YwNULfhKyrCW0vWreuoT4sK7X/WpoPEY+jhf8JxznYb3ue6CL9G
+	QPFr3erh5a+fr3KeUZfuRkCFkdRNebcvTHyVtB8qeqTfOCyroMGC
+X-Google-Smtp-Source: AGHT+IGK2s8feMRbvkUaD4kViF7Q3kQxUMru3SGpK7yJIQ4CcspUgrPUj5ul3TWc//iGjdUBDK6Vuw==
+X-Received: by 2002:ac2:5bc5:0:b0:530:c239:6fad with SMTP id 2adb3069b0e04-530d07319e6mr4165367e87.0.1722973795304;
+        Tue, 06 Aug 2024 12:49:55 -0700 (PDT)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-530bba35aaasm1558385e87.230.2024.08.06.12.49.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Aug 2024 12:49:54 -0700 (PDT)
+Date: Tue, 6 Aug 2024 22:49:52 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Jiaxun Yang <jiaxun.yang@flygoat.com>
+Cc: Paul Burton <paulburton@kernel.org>, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-mips@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/6] MIPS: cm: Probe GCR address from devicetree
+Message-ID: <3wemwdkev7pafyfu3yxhpvvpqaplhlejbzxtmahcarrnoeelzr@747sgyl63kwj>
+References: <20240612-cm_probe-v2-0-a5b55440563c@flygoat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: eahariha@linux.microsoft.com, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Anup Patel <apatel@ventanamicro.com>,
- Sunil V L <sunilvl@ventanamicro.com>, Nick Kossifidis <mick@ics.forth.gr>,
- Sebastien Boeuf <seb@rivosinc.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org, iommu@lists.linux.dev,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux@rivosinc.com, Lu Baolu <baolu.lu@linux.intel.com>,
- Zong Li <zong.li@sifive.com>
-Subject: Re: [PATCH v8 7/7] iommu/riscv: Paging domain support
-To: Tomasz Jeznach <tjeznach@rivosinc.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Paul Walmsley <paul.walmsley@sifive.com>
-References: <cover.1718388908.git.tjeznach@rivosinc.com>
- <bdd1e0547e01d012bf40c5e33b752e77c6663c90.1718388909.git.tjeznach@rivosinc.com>
-Content-Language: en-US
-From: Easwar Hariharan <eahariha@linux.microsoft.com>
-In-Reply-To: <bdd1e0547e01d012bf40c5e33b752e77c6663c90.1718388909.git.tjeznach@rivosinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240612-cm_probe-v2-0-a5b55440563c@flygoat.com>
 
-On 6/14/2024 10:27 PM, Tomasz Jeznach wrote:
-> Introduce first-stage address translation support.
+Hi Jiaxun
+
+On Wed, Jun 12, 2024 at 11:08:52AM +0100, Jiaxun Yang wrote:
+> Hi all,
 > 
-> Page table configured by the IOMMU driver will use the highest mode
-> implemented by the hardware, unless not known at the domain allocation
-> time falling back to the CPU’s MMU page mode.
+> This series enabled mips-cm code to probe GCR address from devicetree.
 > 
-> This change introduces IOTINVAL.VMA command, required to invalidate
-> any cached IOATC entries after mapping is updated and/or removed from
-> the paging domain.  Invalidations for the non-leaf page entries use
-> IOTINVAL for all addresses assigned to the protection domain for
-> hardware not supporting more granular non-leaf page table cache
-> invalidations.
+> This feature has been implemented in MIPS's out-of-tree kernel for
+> a while, and MIPS's u-boot fork on boston will generate required
+> "mti,mips-cm" node as well.
 > 
-> Reviewed-by: Lu Baolu <baolu.lu@linux.intel.com>
-> Reviewed-by: Zong Li <zong.li@sifive.com>
-> Signed-off-by: Tomasz Jeznach <tjeznach@rivosinc.com>
+> Please review.
+> Thanks
+
+Got this tested on my P5600-based SoC implemented as non-generic
+platform. Alas the system hangs up on the early boot-up stage with no
+even a single char printed to the console. I'll be able to get back to
+the problem debugging on the next week.
+
+-Serge(y)
+
+> 
+> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
 > ---
->  drivers/iommu/riscv/iommu.c | 642 +++++++++++++++++++++++++++++++++++-
->  1 file changed, 639 insertions(+), 3 deletions(-)
+> Changes in v2:
+> - Fix probe order on malta (Serge)
+> - dt binding improvements (Conor)
+> - Build warning fix
+> - Link to v1: https://lore.kernel.org/r/20240507-cm_probe-v1-0-11dbfd598f3c@flygoat.com
 > 
-
-> @@ -856,7 +1473,7 @@ static struct iommu_domain riscv_iommu_identity_domain = {
->  
->  static int riscv_iommu_device_domain_type(struct device *dev)
->  {
-> -	return IOMMU_DOMAIN_IDENTITY;
-> +	return 0;
->  }
-
-<snip>
-Sorry for the drive by comment, I just happen to be in the nearby code
-context.
-
-Nit: It may be better to use IOMMU_DOMAIN_BLOCKED here for readability
-rather than the bare value.
-
-Thanks,
-Easwar
+> ---
+> Jiaxun Yang (6):
+>       MIPS: generic: Do __dt_setup_arch in prom_init
+>       MIPS: malta: Move SMP initialisation to device_tree_init
+>       MIPS: cm: Prefix probe functions with __init
+>       MIPS: Move mips_cm_probe after prom_init
+>       dt-bindings: mips: Document mti,mips-cm
+>       MIPS: cm: Probe GCR address from DeviceTree
+> 
+>  .../devicetree/bindings/mips/mti,mips-cm.yaml      | 38 ++++++++++++
+>  arch/mips/generic/init.c                           |  9 ++-
+>  arch/mips/include/asm/mips-cm.h                    |  4 +-
+>  arch/mips/kernel/mips-cm.c                         | 69 ++++++++++++++++++----
+>  arch/mips/kernel/setup.c                           |  2 +-
+>  arch/mips/mti-malta/malta-init.c                   |  8 ++-
+>  6 files changed, 111 insertions(+), 19 deletions(-)
+> ---
+> base-commit: 2b84edefcad14934796fad37b16512b6a2ca467e
+> change-id: 20240506-cm_probe-0c667c8b63bf
+> 
+> Best regards,
+> -- 
+> Jiaxun Yang <jiaxun.yang@flygoat.com>
+> 
 
