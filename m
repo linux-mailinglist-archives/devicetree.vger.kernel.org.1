@@ -1,64 +1,61 @@
-Return-Path: <devicetree+bounces-91433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 999CF9494EC
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 17:56:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C82094951D
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 18:03:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54370286D56
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 15:56:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CCB141C23901
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 16:03:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15D40381C4;
-	Tue,  6 Aug 2024 15:56:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AFC93BBF0;
+	Tue,  6 Aug 2024 16:00:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NgGZF8v7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RWMb8Din"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E174A182C5;
-	Tue,  6 Aug 2024 15:56:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EF3039855;
+	Tue,  6 Aug 2024 16:00:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722959766; cv=none; b=irxhjSio6O6SRb8r3mae9FoWJ9muBd908fQzWoeT2h7qjwcm3lM7jMgdNNFwOHvW4UTECNmt9HcKByWKsvGXkxxOP7IpkTmDHUpbCRu1uuP0VMLKjRWK21AqyJdh2l5yWUX7jMhLwm3wunV6l9xbbW5wiy7DZ3FrEZXdGzsqnsA=
+	t=1722960049; cv=none; b=Xask1lQm2JUno7Ku/dxJIxu3b8njdY0u8oLswESqf7oZbicIGnnKQhII/sKyBckLJNQSzO0DrTpZl6wYnKQU3yTs3PBVNRfyIrrOrmdTLq8Vllyzd5Ka2ZjEVH2+Jy67qflaPC0i543FY9n10CM9xU0uW/ElZbDzPRdYph3ASM0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722959766; c=relaxed/simple;
-	bh=8rg1qtbaF6u8ML2igTUCabcp6Um29EIlKxqDJ5sQxVA=;
+	s=arc-20240116; t=1722960049; c=relaxed/simple;
+	bh=dgWnsxsAvivSg1NsaUmrzHE9OVk8NSPXI08WSrXTbFg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ov6eNaBRMs848nyJV4rjXfMmycvkGKlnsNJa1KrB/Utn5UbDEr/trd51c46Bm+uLY6jyiHZfRYq9JzdqbJLdYSaskoKzElnybZSSBExSub4BHwuq/G6Ua9RKEBoxgr2ESAGJn559pIMHfZN+bEOwJKK1U7noeI/hvebWgvJWlpI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NgGZF8v7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06290C32786;
-	Tue,  6 Aug 2024 15:56:02 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=MHfxIKErfk+dsYO2X/JVt0tcIKFWUarfsNHV/EcNBQYbAkTBBPXNsUoHAMvHSbjkdlw1e3+wZegy0BJZnx+o355up9ZTff5fkZUDUR30W+cj5V3K95ztILlV3+Uwb71opXjUiTjRCWaW7RbFC0ENZpFqoddqXQ9RNjTO4p+NzGQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RWMb8Din; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8947BC32786;
+	Tue,  6 Aug 2024 16:00:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722959765;
-	bh=8rg1qtbaF6u8ML2igTUCabcp6Um29EIlKxqDJ5sQxVA=;
+	s=k20201202; t=1722960049;
+	bh=dgWnsxsAvivSg1NsaUmrzHE9OVk8NSPXI08WSrXTbFg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NgGZF8v7r4FPTlCGDBsOTuCxqSmc6BfuQyih2a3lr9dwrJ/ZVTJHkuSqGiw4jJUNT
-	 jm21emfGR0OfwOH8PmnF5PANY9G2xU/NX989pNoVi193VJv5Dhe11b7SGFCorgLpBo
-	 kwzO1iBXktMPCt2VX0CpxBeQtyp33OzPd5Kp73K9oxlGXEhqpeD8HhORzKry2ERpf3
-	 JuhWfhf7lKMCq5/X9RNUAzlSHwG+C2MViSj9gVFSqo6CK8k2XJA6zmR0CG3W5BHCDg
-	 cQpzsX+DnUZXyIixEc51poyr5wXOcaXMMkhjiAIw2BYSjUjZfWNw6WXHQUuhz0YfYM
-	 7ka05HO5cv/Ug==
-Date: Tue, 6 Aug 2024 16:56:00 +0100
+	b=RWMb8DinnsQDbExSXI48mqLZXdQfdEcahKloBdwJNTneK5rXsJPuherek4DNYhnQc
+	 nMuc+iI6iLE7WXm+KdHNQhklUwK/t36LzCVZrQC4RXPbxB+1gazxyAJCNV3titjVFI
+	 hKJ2JMkWMcrxKqK6gBrldhaI/z2x21prMAyYNFxF3+bqmPklGCbZv18l0MvIdM7jT9
+	 ho1bEKE2Td2MpRJ+ef2RIwybb1Syg+enLl97MB6eZFsFHxPRKbwHorGNg6YNrvWg8C
+	 OBqud50XwNj7nyU4q5hhOqi5rldeUvkjt/O42SJ/M/Td7Fhag0dMnc0d0QC724QenI
+	 TO6A9cfCgqyIw==
+Date: Tue, 6 Aug 2024 17:00:44 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Frieder Schrempf <frieder@fris.de>
-Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+To: =?iso-8859-1?B?QmFybmFi4XMgQ3rpbeFu?= <barnabas.czeman@mainlining.org>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Frieder Schrempf <frieder.schrempf@kontron.de>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Heiko Stuebner <heiko.stuebner@cherry.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH 1/4] dt-bindings: vendor-prefixes: Add Jenson Display
-Message-ID: <20240806-dispersed-cyclist-c2564e707535@spud>
-References: <20240806133352.440922-1-frieder@fris.de>
- <20240806133352.440922-2-frieder@fris.de>
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Albrieux <jonathan.albrieux@gmail.com>,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux@mainlining.org,
+	Danila Tikhonov <danila@jiaxyga.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: iio: imu: magnetometer: Add ak09118
+Message-ID: <20240806-paycheck-visibly-4e114692ae98@spud>
+References: <20240806-ak09918-v2-0-c300da66c198@mainlining.org>
+ <20240806-ak09918-v2-2-c300da66c198@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,57 +63,66 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="a3qlea3eYiFB4XEV"
+	protocol="application/pgp-signature"; boundary="3TllyQc2YYniCF7R"
 Content-Disposition: inline
-In-Reply-To: <20240806133352.440922-2-frieder@fris.de>
+In-Reply-To: <20240806-ak09918-v2-2-c300da66c198@mainlining.org>
 
 
---a3qlea3eYiFB4XEV
-Content-Type: text/plain; charset=us-ascii
+--3TllyQc2YYniCF7R
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 06, 2024 at 03:32:59PM +0200, Frieder Schrempf wrote:
-> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+On Tue, Aug 06, 2024 at 08:10:19AM +0200, Barnab=E1s Cz=E9m=E1n wrote:
+> From: Danila Tikhonov <danila@jiaxyga.com>
 >=20
-> Add vendor prefix for manufacturer Jenson Display.
+> Document asahi-kasei,ak09918 compatible.
 
-A link to their site etc here would be nice.
+Please explain what makes this device incompatible with those already in
+the binding and why a fallback is not suitable.
+
+Thanks,
+Conor.
 
 >=20
-> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+> Signed-off-by: Barnab=E1s Cz=E9m=E1n <barnabas.czeman@mainlining.org>
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../devicetree/bindings/iio/magnetometer/asahi-kasei,ak8975.yaml        =
+ | 1 +
+>  1 file changed, 1 insertion(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Doc=
-umentation/devicetree/bindings/vendor-prefixes.yaml
-> index a70ce43b3dc03..2b483eb5e364c 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -750,6 +750,8 @@ patternProperties:
->      description: Japan Display Inc.
->    "^jedec,.*":
->      description: JEDEC Solid State Technology Association
-> +  "^jenson,.*":
-> +    description: Jenson Display Co. Ltd.
->    "^jesurun,.*":
->      description: Shenzhen Jesurun Electronics Business Dept.
->    "^jethome,.*":
+> diff --git a/Documentation/devicetree/bindings/iio/magnetometer/asahi-kas=
+ei,ak8975.yaml b/Documentation/devicetree/bindings/iio/magnetometer/asahi-k=
+asei,ak8975.yaml
+> index 9790f75fc669..583cdd2fad7e 100644
+> --- a/Documentation/devicetree/bindings/iio/magnetometer/asahi-kasei,ak89=
+75.yaml
+> +++ b/Documentation/devicetree/bindings/iio/magnetometer/asahi-kasei,ak89=
+75.yaml
+> @@ -18,6 +18,7 @@ properties:
+>            - asahi-kasei,ak09911
+>            - asahi-kasei,ak09912
+>            - asahi-kasei,ak09916
+> +          - asahi-kasei,ak09918
+>        - enum:
+>            - ak8975
+>            - ak8963
+>=20
 > --=20
-> 2.45.2
+> 2.46.0
 >=20
 
---a3qlea3eYiFB4XEV
+--3TllyQc2YYniCF7R
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrJHkAAKCRB4tDGHoIJi
-0rgJAP0dL98eJuEZ8jBK1X8p8mo3/jNH6hGVlTGoGEbc1jog8AD/dsiXJ77UtiwY
-peWW8jMKS7AjwauhxYsn5zEx6ZOn+AE=
-=GopE
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrJIrAAKCRB4tDGHoIJi
+0uydAQDG0c2y7H6w4zozEzZ9VYi7IQyZI7ZDFm2zmKjet3UbjwEAkDB2RHT1yKvq
+QktGCWzF0cmqhwU+BMbBEe9J7IzyGAE=
+=BSEH
 -----END PGP SIGNATURE-----
 
---a3qlea3eYiFB4XEV--
+--3TllyQc2YYniCF7R--
 
