@@ -1,81 +1,48 @@
-Return-Path: <devicetree+bounces-91377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A535894917E
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 15:31:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70EE894918D
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 15:31:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2848B1F21140
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 13:31:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 931D71C221D7
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 13:31:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 405691D362B;
-	Tue,  6 Aug 2024 13:29:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEF871D2F5A;
+	Tue,  6 Aug 2024 13:31:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="b/P8CMlN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HrYDECWk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5F0E1D27AB
-	for <devicetree@vger.kernel.org>; Tue,  6 Aug 2024 13:29:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7700B1D1F7A;
+	Tue,  6 Aug 2024 13:31:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722950949; cv=none; b=O3I7IiXYmkws0wRBbWhHQu3u3znfxXYw+R1LwjQGkCGsRhpeh+z3HS6eod5ZTcZgeYRbB5yCRz48nW/zXplmUfdoBLG9CalbSjs7tlnGadEOosgtqYih2wSSG2WN/4gbiGNod3HtctJjpvsYW92aVMsAMGsebPO4InwO8V6JYYk=
+	t=1722951080; cv=none; b=VEpRuC8CQ07lQ70sIz9TRGOstuzmdFNKWnouyhbmeJIXdn+n/Gs5BZcSSxct3tkNrcNfqu8MT9LBdd1A3tImoQuhq7B3GHREp86v94rdKlTr0tmrZTiRZd89X7KXUV8KXtFajwZv77KFUdpNXHcBIYJbR/2ADskjud/qvvYZO7g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722950949; c=relaxed/simple;
-	bh=4NJ/yhkOnp0DgwZlQ2ar1giYsnoU0BxjF1CUE59RMzM=;
+	s=arc-20240116; t=1722951080; c=relaxed/simple;
+	bh=iedWgHU/R9gV4BNKU4jNeA5Lu3KR3ChJ1u6WabxWCuU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bOJUoZSDJxtw7iwNUrmGnFg7Z3ZfAmhciSsN7JkDKH5UdPSiklrHqkMsBME124FnkDLFAT63B4wRb1cCOsYBFtng51nxuBlhs5AGov4PlQRmB8LG7i5KKlhh1XALzt9j/tBcSDbZ5nyZzYsGYyzKrnzIk+/dC7TYSlz4DhcOE5M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=b/P8CMlN; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1722950946;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=mg8j1NdkC4QyJoy5NjpxqHT8Z7jh1Oox1ZezxJBmykE=;
-	b=b/P8CMlNUkpb9rwNLv+lI28z/vQPWrRCCWnyOwBfMgIkNxm4ePCGLWh4ghNzgEuvIOe+x6
-	lG7iqgLxDOgf8MYdenssMo/pC+NQvCDOOC+GqoSHxLa+WENuFj4x0jTAA7SCSFJ05jhVxH
-	e1/BZ06/JmDY/vUZnaNAvIzezJLI1sw=
-Received: from mail-lj1-f199.google.com (mail-lj1-f199.google.com
- [209.85.208.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-464-b30gbSeQMVGqnTWZuDtOZA-1; Tue, 06 Aug 2024 09:29:04 -0400
-X-MC-Unique: b30gbSeQMVGqnTWZuDtOZA-1
-Received: by mail-lj1-f199.google.com with SMTP id 38308e7fff4ca-2ef205d48ebso6330501fa.3
-        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2024 06:29:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722950943; x=1723555743;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:from:references:cc:to:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=mg8j1NdkC4QyJoy5NjpxqHT8Z7jh1Oox1ZezxJBmykE=;
-        b=fwgwEt+S69n43HSdm5vVRi+gX5hlY1H8walS3MfJk2ypMJADWl2LjiBBhFZL7AOvn3
-         UW2dVA0/x+i3bJVsuO/iphckh7rPNVdSQLFyjZZornGk4yYjFF63IOE8Yfr5MuhpvJpC
-         2g7XGnu7E7L4tZ6Id8tX9xDK39uqZLoLW95DRUZ5KBo9dHGRyhllLi8iJ5du9C9mcnMv
-         gb9vCgRJrQsp0hx9eBGBXWDnSazd3bZBz8Jt3MuH2xNjXGik4lwD3BLJ41XczTJ/mZ9f
-         Xp4UrpNsxbHCasx4seDXONZV0jjnYoT2DJjGH9JUv3aAkRbQ9zTVdhyWPXQkmQEeUR1T
-         iGUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXD0GOfA4qVa+c1dqAF5Mp0m1qhNmJkedvagIhCLglrtn/iQ0EACVIxoC3NfyMDNYlWUOplNvdU3GUJycutopaybvjxd/5rf2nZ7g==
-X-Gm-Message-State: AOJu0YwIAePQREQCtu7qMtEcDoH6kKgZTNsMhCe/8HGMMhTD1EmbWZLj
-	vCcEFK+tM1kZrL+FmlNVliepWwKycwxvZXu58Ulu+4exdmhSTYuitXF6HvD3mklIxw0YdFjIfp0
-	4LjGpm8XRPkz6PgnmW1RrlDp/lN2S07xj92M5uIGe+lTBET/Iv+iNMooRIUY=
-X-Received: by 2002:a2e:8696:0:b0:2ef:228a:1b86 with SMTP id 38308e7fff4ca-2f15aabd05fmr96389331fa.21.1722950943104;
-        Tue, 06 Aug 2024 06:29:03 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEUAkkY1eODz2H49AhHbcgbZMYiCb05Jg7YJ0JX+yoRtVdCbp9tatU0EHzUBQRP+lyJ7u1OEA==
-X-Received: by 2002:a2e:8696:0:b0:2ef:228a:1b86 with SMTP id 38308e7fff4ca-2f15aabd05fmr96388601fa.21.1722950942503;
-        Tue, 06 Aug 2024 06:29:02 -0700 (PDT)
-Received: from ?IPV6:2003:cb:c73f:8500:f83c:3602:5300:88af? (p200300cbc73f8500f83c3602530088af.dip0.t-ipconnect.de. [2003:cb:c73f:8500:f83c:3602:5300:88af])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-428e6e9cd4esm180274335e9.44.2024.08.06.06.29.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Aug 2024 06:29:02 -0700 (PDT)
-Message-ID: <87ca4550-ed4d-4373-8d4c-3f89ac03df91@redhat.com>
-Date: Tue, 6 Aug 2024 15:28:59 +0200
+	 In-Reply-To:Content-Type; b=hdqyXXMKnzWiXIdW8rXFKjwoq1GgU0rYee+3oZzb9qWKd9XtOaYUGFHQCq/gjOoh1FhxNWxzGkXb0tjiOrHTzb88JlVaUTflR8WSHwTK1TfTFUHH5K1Hnk2yVYoyMmQPIEgnJIZYoZ0848ngnVlBwPkX+W+MXdJbT9bQWImAcvQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HrYDECWk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C2BDC32786;
+	Tue,  6 Aug 2024 13:31:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722951080;
+	bh=iedWgHU/R9gV4BNKU4jNeA5Lu3KR3ChJ1u6WabxWCuU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=HrYDECWkWFb5g5nNXhYNiJGTmlqII2o/kc01WNYPYbAiZg+DlILn5nrYX7UcmI3v9
+	 fH3pSs+YpXfQqagn72CDEXHhghbjEYQ2uBs0NkWi0jHEc3RLZA9+th+CLUr42ZzCCq
+	 EcsEv7lxWoQeC0Vi5V55T0RuX1uxOMzpjkvoNHhWJxlVO/jbyM6HAyENQm9KSQh8hC
+	 wtiO2MStZWQQFqyqM6zHKwRGaJOV7bzteZiJ8tq7jH0M0Fe4WiBvw40fxXHhLYYaXm
+	 wu93+BYZVZizDPhVy/PokPFKAWN2ZZzBFB3MmBHhFEprM/OsiZVWFzI22/fLpCgYnR
+	 71mEaYwRy6faw==
+Message-ID: <17c21be3-5bdc-48e5-b005-be6018a49106@kernel.org>
+Date: Tue, 6 Aug 2024 15:31:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,113 +50,118 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 24/26] arch_numa: switch over to numa_memblks
-To: Mike Rapoport <rppt@kernel.org>, linux-kernel@vger.kernel.org
-Cc: Alexander Gordeev <agordeev@linux.ibm.com>,
- Andreas Larsson <andreas@gaisler.com>,
- Andrew Morton <akpm@linux-foundation.org>, Arnd Bergmann <arnd@arndb.de>,
- Borislav Petkov <bp@alien8.de>, Catalin Marinas <catalin.marinas@arm.com>,
- Christophe Leroy <christophe.leroy@csgroup.eu>,
- Dan Williams <dan.j.williams@intel.com>,
- Dave Hansen <dave.hansen@linux.intel.com>,
- "David S. Miller" <davem@davemloft.net>, Davidlohr Bueso
- <dave@stgolabs.net>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Heiko Carstens <hca@linux.ibm.com>, Huacai Chen <chenhuacai@kernel.org>,
- Ingo Molnar <mingo@redhat.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>,
- John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
- Jonathan Cameron <jonathan.cameron@huawei.com>,
- Jonathan Corbet <corbet@lwn.net>, Michael Ellerman <mpe@ellerman.id.au>,
- Palmer Dabbelt <palmer@dabbelt.com>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Rob Herring <robh@kernel.org>,
- Samuel Holland <samuel.holland@sifive.com>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Thomas Gleixner <tglx@linutronix.de>, Vasily Gorbik <gor@linux.ibm.com>,
- Will Deacon <will@kernel.org>, Zi Yan <ziy@nvidia.com>,
- devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
- linux-arch@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-cxl@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-mips@vger.kernel.org, linux-mm@kvack.org,
- linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
- linux-sh@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- loongarch@lists.linux.dev, nvdimm@lists.linux.dev,
- sparclinux@vger.kernel.org, x86@kernel.org
-References: <20240801060826.559858-1-rppt@kernel.org>
- <20240801060826.559858-25-rppt@kernel.org>
-From: David Hildenbrand <david@redhat.com>
+Subject: Re: [PATCH v1] arm: dts: st: Add MECIO1 and MECT1S board variants
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, David Jander <david@protonic.nl>,
+ kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org
+References: <20240806120332.405064-1-o.rempel@pengutronix.de>
+ <ae46118f-a692-4362-8e6b-4ef8c6369541@kernel.org>
+ <ZrIiCX89nRDLvXtC@pengutronix.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=david@redhat.com; keydata=
- xsFNBFXLn5EBEAC+zYvAFJxCBY9Tr1xZgcESmxVNI/0ffzE/ZQOiHJl6mGkmA1R7/uUpiCjJ
- dBrn+lhhOYjjNefFQou6478faXE6o2AhmebqT4KiQoUQFV4R7y1KMEKoSyy8hQaK1umALTdL
- QZLQMzNE74ap+GDK0wnacPQFpcG1AE9RMq3aeErY5tujekBS32jfC/7AnH7I0v1v1TbbK3Gp
- XNeiN4QroO+5qaSr0ID2sz5jtBLRb15RMre27E1ImpaIv2Jw8NJgW0k/D1RyKCwaTsgRdwuK
- Kx/Y91XuSBdz0uOyU/S8kM1+ag0wvsGlpBVxRR/xw/E8M7TEwuCZQArqqTCmkG6HGcXFT0V9
- PXFNNgV5jXMQRwU0O/ztJIQqsE5LsUomE//bLwzj9IVsaQpKDqW6TAPjcdBDPLHvriq7kGjt
- WhVhdl0qEYB8lkBEU7V2Yb+SYhmhpDrti9Fq1EsmhiHSkxJcGREoMK/63r9WLZYI3+4W2rAc
- UucZa4OT27U5ZISjNg3Ev0rxU5UH2/pT4wJCfxwocmqaRr6UYmrtZmND89X0KigoFD/XSeVv
- jwBRNjPAubK9/k5NoRrYqztM9W6sJqrH8+UWZ1Idd/DdmogJh0gNC0+N42Za9yBRURfIdKSb
- B3JfpUqcWwE7vUaYrHG1nw54pLUoPG6sAA7Mehl3nd4pZUALHwARAQABzSREYXZpZCBIaWxk
- ZW5icmFuZCA8ZGF2aWRAcmVkaGF0LmNvbT7CwZgEEwEIAEICGwMGCwkIBwMCBhUIAgkKCwQW
- AgMBAh4BAheAAhkBFiEEG9nKrXNcTDpGDfzKTd4Q9wD/g1oFAl8Ox4kFCRKpKXgACgkQTd4Q
- 9wD/g1oHcA//a6Tj7SBNjFNM1iNhWUo1lxAja0lpSodSnB2g4FCZ4R61SBR4l/psBL73xktp
- rDHrx4aSpwkRP6Epu6mLvhlfjmkRG4OynJ5HG1gfv7RJJfnUdUM1z5kdS8JBrOhMJS2c/gPf
- wv1TGRq2XdMPnfY2o0CxRqpcLkx4vBODvJGl2mQyJF/gPepdDfcT8/PY9BJ7FL6Hrq1gnAo4
- 3Iv9qV0JiT2wmZciNyYQhmA1V6dyTRiQ4YAc31zOo2IM+xisPzeSHgw3ONY/XhYvfZ9r7W1l
- pNQdc2G+o4Di9NPFHQQhDw3YTRR1opJaTlRDzxYxzU6ZnUUBghxt9cwUWTpfCktkMZiPSDGd
- KgQBjnweV2jw9UOTxjb4LXqDjmSNkjDdQUOU69jGMUXgihvo4zhYcMX8F5gWdRtMR7DzW/YE
- BgVcyxNkMIXoY1aYj6npHYiNQesQlqjU6azjbH70/SXKM5tNRplgW8TNprMDuntdvV9wNkFs
- 9TyM02V5aWxFfI42+aivc4KEw69SE9KXwC7FSf5wXzuTot97N9Phj/Z3+jx443jo2NR34XgF
- 89cct7wJMjOF7bBefo0fPPZQuIma0Zym71cP61OP/i11ahNye6HGKfxGCOcs5wW9kRQEk8P9
- M/k2wt3mt/fCQnuP/mWutNPt95w9wSsUyATLmtNrwccz63XOwU0EVcufkQEQAOfX3n0g0fZz
- Bgm/S2zF/kxQKCEKP8ID+Vz8sy2GpDvveBq4H2Y34XWsT1zLJdvqPI4af4ZSMxuerWjXbVWb
- T6d4odQIG0fKx4F8NccDqbgHeZRNajXeeJ3R7gAzvWvQNLz4piHrO/B4tf8svmRBL0ZB5P5A
- 2uhdwLU3NZuK22zpNn4is87BPWF8HhY0L5fafgDMOqnf4guJVJPYNPhUFzXUbPqOKOkL8ojk
- CXxkOFHAbjstSK5Ca3fKquY3rdX3DNo+EL7FvAiw1mUtS+5GeYE+RMnDCsVFm/C7kY8c2d0G
- NWkB9pJM5+mnIoFNxy7YBcldYATVeOHoY4LyaUWNnAvFYWp08dHWfZo9WCiJMuTfgtH9tc75
- 7QanMVdPt6fDK8UUXIBLQ2TWr/sQKE9xtFuEmoQGlE1l6bGaDnnMLcYu+Asp3kDT0w4zYGsx
- 5r6XQVRH4+5N6eHZiaeYtFOujp5n+pjBaQK7wUUjDilPQ5QMzIuCL4YjVoylWiBNknvQWBXS
- lQCWmavOT9sttGQXdPCC5ynI+1ymZC1ORZKANLnRAb0NH/UCzcsstw2TAkFnMEbo9Zu9w7Kv
- AxBQXWeXhJI9XQssfrf4Gusdqx8nPEpfOqCtbbwJMATbHyqLt7/oz/5deGuwxgb65pWIzufa
- N7eop7uh+6bezi+rugUI+w6DABEBAAHCwXwEGAEIACYCGwwWIQQb2cqtc1xMOkYN/MpN3hD3
- AP+DWgUCXw7HsgUJEqkpoQAKCRBN3hD3AP+DWrrpD/4qS3dyVRxDcDHIlmguXjC1Q5tZTwNB
- boaBTPHSy/Nksu0eY7x6HfQJ3xajVH32Ms6t1trDQmPx2iP5+7iDsb7OKAb5eOS8h+BEBDeq
- 3ecsQDv0fFJOA9ag5O3LLNk+3x3q7e0uo06XMaY7UHS341ozXUUI7wC7iKfoUTv03iO9El5f
- XpNMx/YrIMduZ2+nd9Di7o5+KIwlb2mAB9sTNHdMrXesX8eBL6T9b+MZJk+mZuPxKNVfEQMQ
- a5SxUEADIPQTPNvBewdeI80yeOCrN+Zzwy/Mrx9EPeu59Y5vSJOx/z6OUImD/GhX7Xvkt3kq
- Er5KTrJz3++B6SH9pum9PuoE/k+nntJkNMmQpR4MCBaV/J9gIOPGodDKnjdng+mXliF3Ptu6
- 3oxc2RCyGzTlxyMwuc2U5Q7KtUNTdDe8T0uE+9b8BLMVQDDfJjqY0VVqSUwImzTDLX9S4g/8
- kC4HRcclk8hpyhY2jKGluZO0awwTIMgVEzmTyBphDg/Gx7dZU1Xf8HFuE+UZ5UDHDTnwgv7E
- th6RC9+WrhDNspZ9fJjKWRbveQgUFCpe1sa77LAw+XFrKmBHXp9ZVIe90RMe2tRL06BGiRZr
- jPrnvUsUUsjRoRNJjKKA/REq+sAnhkNPPZ/NNMjaZ5b8Tovi8C0tmxiCHaQYqj7G2rgnT0kt
- WNyWQQ==
-Organization: Red Hat
-In-Reply-To: <20240801060826.559858-25-rppt@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <ZrIiCX89nRDLvXtC@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01.08.24 08:08, Mike Rapoport wrote:
-> From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+On 06/08/2024 15:15, Oleksij Rempel wrote:
+> On Tue, Aug 06, 2024 at 02:39:31PM +0200, Krzysztof Kozlowski wrote:
+>> On 06/08/2024 14:03, Oleksij Rempel wrote:
+>>> From: David Jander <david@protonic.nl>
+>>>
+>>> Introduce device tree support for the MECIO1 and MECT1S board variants.
+>>> MECIO1 is an I/O and motor control board used in blood sample analysis
+>>> machines. MECT1S is a 1000Base-T1 switch for internal machine networks
+>>> of blood sample analysis machines.
+>>>
+>>> Signed-off-by: David Jander <david@protonic.nl>
+>>> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+>>> ---
+>>>  .../devicetree/bindings/arm/stm32/stm32.yaml  |   8 +
+>>>  arch/arm/boot/dts/st/Makefile                 |   3 +
+>>>  arch/arm/boot/dts/st/stm32mp151c-mecio1r0.dts |  48 ++
+>>>  arch/arm/boot/dts/st/stm32mp151c-mect1s.dts   | 297 ++++++++++
+>>>  arch/arm/boot/dts/st/stm32mp153c-mecio1r1.dts |  48 ++
+>>>  .../arm/boot/dts/st/stm32mp15x-mecio1-io.dtsi | 533 ++++++++++++++++++
+>>>  6 files changed, 937 insertions(+)
+>>>  create mode 100644 arch/arm/boot/dts/st/stm32mp151c-mecio1r0.dts
+>>>  create mode 100644 arch/arm/boot/dts/st/stm32mp151c-mect1s.dts
+>>>  create mode 100644 arch/arm/boot/dts/st/stm32mp153c-mecio1r1.dts
+>>>  create mode 100644 arch/arm/boot/dts/st/stm32mp15x-mecio1-io.dtsi
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+>>> index 58099949e8f3a..703d4b574398d 100644
+>>> --- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+>>
+>> Please run scripts/checkpatch.pl and fix reported warnings. Then please
+>> run `scripts/checkpatch.pl --strict` and (probably) fix more warnings.
 > 
-> Until now arch_numa was directly translating firmware NUMA information
-> to memblock.
-> 
-> Using numa_memblks as an intermediate step has a few advantages:
-> * alignment with more battle tested x86 implementation
-> * availability of NUMA emulation
-> * maintaining node information for not yet populated memory
-> 
-> Replace current functionality related to numa_add_memblk() and
-> __node_distance() with the implementation based on numa_memblks and add
-> functions required by numa_emulation.
-> 
-> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-> Tested-by: Zi Yan <ziy@nvidia.com> # for x86_64 and arm64
-> ---
+> Ack, I see. stm32.yaml should be in separate patch.
 
-Acked-by: David Hildenbrand <david@redhat.com>
+Yes
 
--- 
-Cheers,
+> 
+>> Some warnings can be ignored, especially from --strict run, but the code
+>> here looks like it needs a fix. Feel free to get in touch if the warning
+>> is not clear.
+> 
+> What should be done with "ethernet-phy-id2000.a284" appears
+> un-documente warnings? Should it be handled by
+> Documentation/devicetree/bindings/net/ethernet-phy.yaml?
 
-David / dhildenb
+
+I think it is documented. checkpatch is not accurate for this one.
+
+Best regards,
+Krzysztof
 
 
