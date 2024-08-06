@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-91264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07338948B6A
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 10:37:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71BAC948B80
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 10:44:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 814F2B238E2
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 08:37:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AF90FB22EC4
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 08:44:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00EB21BD006;
-	Tue,  6 Aug 2024 08:37:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A1C81BD015;
+	Tue,  6 Aug 2024 08:44:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZNNS8TlD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h5CGQqF8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8918320C;
-	Tue,  6 Aug 2024 08:37:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D496C16BE0A;
+	Tue,  6 Aug 2024 08:44:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722933452; cv=none; b=gc+BgR5Pre4CQ+ymXPZK6F06Dc+k6hEV91ijlXmRMGx5Xz8Osq4V5NJ8rWTTI/N/ciL54t4K5ZbAfuknI71aFGsApfaaUcUH4da7lS94hDMT3QBAnkjIuarMkm5ucNlgHTmE7AWfoIZ6FVLskvvotQy7ZLPHr/5E/aSzanTTm4c=
+	t=1722933843; cv=none; b=nLhNpN6c1Hk5Xdexa3Dqy5jVaodXTmfNRfr0zOF6OohZXAxVOIQnY2n+/PDjW2xURzEwQAX5rwllj8qIbcrSgYTr8tdJduxMK2tq8C0vamIEe93HIpmJ12ICDOAAPgslG59WpuRzfBPy6MXx5dNG51/g40oRfdiHJNrWZu5tWNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722933452; c=relaxed/simple;
-	bh=tB25GGpFVdNjOp9gv8zUhstOP0zeAut2elCJwvIyLt0=;
+	s=arc-20240116; t=1722933843; c=relaxed/simple;
+	bh=B0WQPw973C3LVxYk5S53XmcEe0PD9+2JgOcuWSoxE+M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GZI12ldO1K3jvxnsLfUJfd0z0XPATNT84VMZaqFWH8tRm7FLxS28ERJblo/lw2I3dKKEKmsW0t6cbJWWDWuH5Bb5c0j62cq/jDJukZ1ErHL7M2y8+kPI9pH7ztP2DcSJw6x90k13oJ2zULr9biBhDD558YitcfA/7swW/OHNIGQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZNNS8TlD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D393C4AF09;
-	Tue,  6 Aug 2024 08:37:25 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=NQDpTbbn+IjJqPSJnjPBdQLmiBUyJl35Wl2Q+BiH3BYZVAdm49Q51+vY7mF2lJ8HD3Ak9rHxrtgX/CbpRvYnifytwAlbSGLCwo3/lAT+pGhnfxEPVjZz2A7l0ermDou3HNNDTZ5O7983ghNTgDnqAw36uN93G0FHr83iUFWBJvM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h5CGQqF8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA74FC32786;
+	Tue,  6 Aug 2024 08:43:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722933450;
-	bh=tB25GGpFVdNjOp9gv8zUhstOP0zeAut2elCJwvIyLt0=;
+	s=k20201202; t=1722933843;
+	bh=B0WQPw973C3LVxYk5S53XmcEe0PD9+2JgOcuWSoxE+M=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZNNS8TlDs8ugk2rczg/8Hg8A92Frx2Zb1zadJdsQW3bZlFDtmQko2BNjU1/qYtSi+
-	 30HZajI2sDFumzREHMgz4z8rxdMTBcSa2HeSH1iPjSw+32C62O6wJ2rhU39oPgyKJA
-	 v71QdSbyX+IeB++vIgBC5R8btUTpYG+BR8yRDXYO0iCFDX4ScXWp/QixB2pRMWKYvc
-	 T0Q9epzJYLq4XrKcZNX8Ljk+lPym2/1Uv6T4K8G1ZwvJThZECVeWiSWh84zByva1yL
-	 fSU7KyI2M7ufPycYA1iXK7UHZh7coM+HyFESBGr3Vb5rhbAYJvjpciJ6dFMueFL5YB
-	 UJ+Ybb6LlYKOg==
-Message-ID: <33f0f5cb-1b0f-42ce-9e5c-0cd09c564387@kernel.org>
-Date: Tue, 6 Aug 2024 10:37:22 +0200
+	b=h5CGQqF8n+gyRKnX92AoR975/Pi+PSNvgw3kAi84Iak6hDF24gIwz9Yb1MdxmPIP2
+	 ESsJlVZMSIGjb1c/yhJJ5RRov+fQtj2FQN97reAhf7PmN7u3wIW7JJNyZlpLAnBiZh
+	 izRQF37DE31yTEJjfzQi10kNXXbbyL+UUQfEUCAVI43F/XQo7n7T/2vyo60Q31+shy
+	 C6r81y9xdsNnVhvfsG7GZhEQ/DlkdRsZmf9KgVfS5GwWLesUBIV9MZ9cNS3hsTa3ch
+	 gntcMVXQNcJ/CvLlKp8g3LhRrwW8xuIAUvxK23cLuIPKiYll78v5OHVRK+WL+yKRP0
+	 pzPyWW2mM/3MQ==
+Message-ID: <ea136482-16bc-4e67-8370-de72ee0c034e@kernel.org>
+Date: Tue, 6 Aug 2024 10:43:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] Bluetooth: hci_uart: Add support for Amlogic HCI
- UART
-To: Yang Li <yang.li@amlogic.com>, Marcel Holtmann <marcel@holtmann.org>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
- <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Ye He <ye.he@amlogic.com>
-References: <20240802-btaml-v3-0-d8110bf9963f@amlogic.com>
- <20240802-btaml-v3-2-d8110bf9963f@amlogic.com>
- <2dee0055-49fe-4920-93d7-5462e88b8096@kernel.org>
- <dc41f009-6d05-4d8b-90e4-5e389f564a51@amlogic.com>
+Subject: Re: [PATCH v1 3/3] scsi: ufs: rockchip: init support for UFS
+To: Shawn Lin <shawn.lin@rock-chips.com>, Rob Herring <robh+dt@kernel.org>,
+ "Martin K . Petersen" <martin.petersen@oracle.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>,
+ YiFeng Zhao <zyf@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
+ linux-scsi@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org
+References: <1722928800-137042-1-git-send-email-shawn.lin@rock-chips.com>
+ <1722928800-137042-4-git-send-email-shawn.lin@rock-chips.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,52 +105,331 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <dc41f009-6d05-4d8b-90e4-5e389f564a51@amlogic.com>
+In-Reply-To: <1722928800-137042-4-git-send-email-shawn.lin@rock-chips.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 06/08/2024 10:33, Yang Li wrote:
+On 06/08/2024 09:20, Shawn Lin wrote:
+> RK3576 contains a UFS controller, add init support fot it.
 > 
-> On 2024/8/6 1:29, Krzysztof Kozlowski wrote:
->> On 02/08/2024 11:39, Yang Li via B4 Relay wrote:
->>> From: Yang Li <yang.li@amlogic.com>
->>>
->> ...
->>
->>> +
->>> +static const struct aml_device_data data_w155s2 = {
->>> +     .iccm_offset = 256 * 1024,
->>> +};
->>> +
->>> +static const struct aml_device_data data_w265s2 = {
->>> +     .iccm_offset = 384 * 1024,
->>> +};
->>> +
->>> +static const struct of_device_id aml_bluetooth_of_match[] = {
->>> +     { .compatible = "amlogic,w155s2-bt", .data = &data_w155s2 },
->>> +     { .compatible = "amlogic,w265s2-bt", .data = &data_w265s2 },
->> Your binding says these devices are compatible, but above suggests it is
->> not. Confusing.
+> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
 > 
-> Yes, the DT binding is incorrect. I will refer to 
-> broadcom-bluetooth.yaml to make the modifications as follows:
-> 
-> properties:
->    compatible:
->      oneOf:
->        - items:
->            - enum:
->                - amlogic,w265s1-bt
->                - amlogic,w265p1-bt
->            - const: amlogic,w155s2-bt
->        - enum:
->            - amlogic,w155s2-bt
->            - amlogic,w265s2-bt
-> 
-> Please let me know if these changes are acceptable or if there are any 
-> further adjustments needed.
+> ---
 
-Looks good, just please check which devices are compatible with which.
+
+
+> +
+> +static int ufs_rockchip_common_init(struct ufs_hba *hba)
+> +{
+> +	struct device *dev = hba->dev;
+> +	struct platform_device *pdev = to_platform_device(dev);
+> +	struct ufs_rockchip_host *host;
+> +	int err = 0;
+> +
+> +	host = devm_kzalloc(dev, sizeof(*host), GFP_KERNEL);
+> +	if (!host)
+> +		return -ENOMEM;
+> +
+> +	/* system control register for hci */
+> +	host->ufs_sys_ctrl = devm_platform_ioremap_resource_byname(pdev, "hci_grf");
+> +	if (IS_ERR(host->ufs_sys_ctrl)) {
+> +		dev_err(dev, "cannot ioremap for hci system control register\n");
+> +		return PTR_ERR(host->ufs_sys_ctrl);
+> +	}
+> +
+> +	/* system control register for mphy */
+> +	host->ufs_phy_ctrl = devm_platform_ioremap_resource_byname(pdev, "mphy_grf");
+> +	if (IS_ERR(host->ufs_phy_ctrl)) {
+> +		dev_err(dev, "cannot ioremap for mphy system control register\n");
+> +		return PTR_ERR(host->ufs_phy_ctrl);
+> +	}
+> +
+> +	/* mphy base register */
+> +	host->mphy_base = devm_platform_ioremap_resource_byname(pdev, "mphy");
+> +	if (IS_ERR(host->mphy_base)) {
+> +		dev_err(dev, "cannot ioremap for mphy base register\n");
+> +		return PTR_ERR(host->mphy_base);
+> +	}
+> +
+> +	host->rst = devm_reset_control_array_get_exclusive(dev);
+> +	if (IS_ERR(host->rst)) {
+> +		dev_err(dev, "failed to get reset control\n");
+> +		return PTR_ERR(host->rst);
+
+return dev_err_probe, assuming this is a probe path?
+
+> +	}
+> +
+> +	reset_control_assert(host->rst);
+> +	udelay(1);
+> +	reset_control_deassert(host->rst);
+> +
+> +	host->ref_out_clk = devm_clk_get(dev, "ref_out");
+> +	if (IS_ERR(host->ref_out_clk)) {
+> +		dev_err(dev, "ciu-drive not available\n");
+> +		return PTR_ERR(host->ref_out_clk);
+
+Ditto
+
+> +	}
+> +	err = clk_prepare_enable(host->ref_out_clk);
+> +	if (err) {
+> +		dev_err(dev, "failed to enable ref out clock %d\n", err);
+> +		return err;
+> +	}
+> +
+> +	host->rst_gpio = devm_gpiod_get(&pdev->dev, "reset", GPIOD_OUT_LOW);
+
+Hm? Test your DTS and bindings.
+
+> +	if (IS_ERR(host->rst_gpio)) {
+> +		dev_err(&pdev->dev, "invalid reset-gpios property in node\n");
+
+Post your DTS so we can review it. Post also results of dtbs_check...
+
+> +		err = PTR_ERR(host->rst_gpio);
+
+dev_err_probe
+
+> +		goto out;
+> +	}
+> +	udelay(20);
+> +	gpiod_set_value_cansleep(host->rst_gpio, 1);
+> +
+> +	host->clks[0].id = "core";
+> +	host->clks[1].id = "pclk";
+> +	host->clks[2].id = "pclk_mphy";
+> +	err = devm_clk_bulk_get_optional(dev, UFS_MAX_CLKS, host->clks);
+> +	if (err) {
+> +		dev_err(dev, "failed to get clocks %d\n", err);
+> +		goto out;
+> +	}
+> +
+> +	err = clk_bulk_prepare_enable(UFS_MAX_CLKS, host->clks);
+> +	if (err) {
+> +		dev_err(dev, "failed to enable clocks %d\n", err);
+> +		goto out;
+> +	}
+> +
+> +	if (device_property_read_u32(dev, "ufs-phy-config-mode",
+
+No, stop adding undocumented properties.
+
+> +				     &host->phy_config_mode))
+> +		host->phy_config_mode = 0;
+> +
+> +	pm_runtime_set_active(&pdev->dev);
+> +
+> +	host->hba = hba;
+> +	ufs_rockchip_set_pm_lvl(hba);
+> +
+> +	ufshcd_set_variant(hba, host);
+> +
+> +	return 0;
+> +out:
+> +	clk_disable_unprepare(host->ref_out_clk);
+> +	return err;
+> +}
+> +
+> +static int ufs_rockchip_rk3576_init(struct ufs_hba *hba)
+> +{
+> +	int ret = 0;
+> +	struct device *dev = hba->dev;
+> +
+> +	hba->quirks = UFSHCI_QUIRK_BROKEN_HCE | UFSHCD_QUIRK_SKIP_DEF_UNIPRO_TIMEOUT_SETTING;
+> +
+> +	/* Enable BKOPS when suspend */
+> +	hba->caps |= UFSHCD_CAP_AUTO_BKOPS_SUSPEND;
+> +	/* Enable putting device into deep sleep */
+> +	hba->caps |= UFSHCD_CAP_DEEPSLEEP;
+> +	/* Enable devfreq of UFS */
+> +	hba->caps |= UFSHCD_CAP_CLK_SCALING;
+> +	/* Enable WriteBooster */
+> +	hba->caps |= UFSHCD_CAP_WB_EN;
+> +
+> +	ret = ufs_rockchip_common_init(hba);
+> +	if (ret) {
+> +		dev_err(dev, "ufs common init fail\n");
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int ufs_rockchip_device_reset(struct ufs_hba *hba)
+> +{
+> +	struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
+> +
+> +	if (!host->rst_gpio)
+> +		return -EOPNOTSUPP;
+> +
+> +	gpiod_set_value_cansleep(host->rst_gpio, 0);
+> +	udelay(20);
+> +
+> +	gpiod_set_value_cansleep(host->rst_gpio, 1);
+> +	udelay(20);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct ufs_hba_variant_ops ufs_hba_rk3576_vops = {
+> +	.name = "rk3576",
+> +	.init = ufs_rockchip_rk3576_init,
+> +	.device_reset = ufs_rockchip_device_reset,
+> +	.hce_enable_notify = ufs_rockchip_hce_enable_notify,
+> +	.phy_initialization = ufs_rockchip_rk3576_phy_init,
+> +};
+> +
+> +static const struct of_device_id ufs_rockchip_of_match[] = {
+> +	{ .compatible = "rockchip,rk3576-ufs", .data = &ufs_hba_rk3576_vops},
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, ufs_rockchip_of_match);
+> +
+> +static int ufs_rockchip_probe(struct platform_device *pdev)
+> +{
+> +	int err;
+> +	struct device *dev = &pdev->dev;
+> +	const struct ufs_hba_variant_ops *vops;
+> +
+> +	vops = device_get_match_data(dev);
+> +	err = ufshcd_pltfrm_init(pdev, vops);
+> +	if (err)
+> +		dev_err(dev, "ufshcd_pltfrm_init() failed %d\n", err);
+> +
+> +	return err;
+> +}
+> +
+> +static void ufs_rockchip_remove(struct platform_device *pdev)
+> +{
+> +	struct ufs_hba *hba = platform_get_drvdata(pdev);
+> +	struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
+> +
+> +	pm_runtime_forbid(&pdev->dev);
+> +	pm_runtime_get_noresume(&pdev->dev);
+> +	ufshcd_remove(hba);
+> +	ufshcd_dealloc_host(hba);
+> +	clk_disable_unprepare(host->ref_out_clk);
+> +}
+> +
+> +static int ufs_rockchip_restore_link(struct ufs_hba *hba, bool is_store)
+> +{
+> +	struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
+> +	int err, retry = 3;
+> +
+> +	if (is_store) {
+> +		host->ie = ufshcd_readl(hba, REG_INTERRUPT_ENABLE);
+> +		host->ahit = ufshcd_readl(hba, REG_AUTO_HIBERNATE_IDLE_TIMER);
+> +		return 0;
+> +	}
+> +
+> +	/* Enable controller */
+> +	err = ufshcd_hba_enable(hba);
+> +	if (err)
+> +		return err;
+> +
+> +	/* Link startup and wait for DP */
+> +	do {
+> +		err = ufshcd_dme_link_startup(hba);
+> +		if (!err && ufshcd_is_device_present(hba)) {
+> +			dev_dbg_ratelimited(hba->dev, "rockchip link startup successfully.\n");
+> +			break;
+> +		}
+> +	} while (retry--);
+> +
+> +	if (retry < 0) {
+> +		dev_err(hba->dev, "rockchip link startup failed.\n");
+> +		return -ENXIO;
+> +	}
+> +
+> +	/* Restore negotiated power mode */
+> +	err = ufshcd_config_pwr_mode(hba, &(hba->pwr_info));
+> +	if (err)
+> +		dev_err(hba->dev, "Failed to restore power mode, err = %d\n", err);
+> +
+> +	/* Restore task and transfer list */
+> +	ufshcd_writel(hba, 0xffffffff, REG_INTERRUPT_STATUS);
+> +	ufshcd_make_hba_operational(hba);
+> +
+> +	/* Restore lost regs */
+> +	ufshcd_writel(hba, host->ie, REG_INTERRUPT_ENABLE);
+> +	ufshcd_writel(hba, host->ahit, REG_AUTO_HIBERNATE_IDLE_TIMER);
+> +	ufshcd_writel(hba, 0x1, REG_UTP_TRANSFER_REQ_LIST_RUN_STOP);
+> +	ufshcd_writel(hba, 0x1, REG_UTP_TASK_REQ_LIST_RUN_STOP);
+> +
+> +	return err;
+> +}
+> +
+> +static int ufs_rockchip_runtime_suspend(struct device *dev)
+> +{
+> +	struct ufs_hba *hba = dev_get_drvdata(dev);
+> +	struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
+> +
+> +	clk_disable_unprepare(host->ref_out_clk);
+> +	return ufs_rockchip_restore_link(hba, true);
+> +}
+> +
+> +static int ufs_rockchip_runtime_resume(struct device *dev)
+> +{
+> +	struct ufs_hba *hba = dev_get_drvdata(dev);
+> +	struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
+> +	int err;
+> +
+> +	err = clk_prepare_enable(host->ref_out_clk);
+> +	if (err) {
+> +		dev_err(hba->dev, "failed to enable ref out clock %d\n", err);
+> +		return err;
+> +	}
+> +
+> +	reset_control_assert(host->rst);
+> +	udelay(1);
+> +	reset_control_deassert(host->rst);
+> +
+> +	return ufs_rockchip_restore_link(hba, false);
+> +}
+> +
+> +static int ufs_rockchip_suspend(struct device *dev)
+> +{
+> +	struct ufs_hba *hba = dev_get_drvdata(dev);
+> +
+> +	if (pm_runtime_suspended(hba->dev))
+> +		return 0;
+> +
+> +	ufs_rockchip_restore_link(hba, true);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ufs_rockchip_resume(struct device *dev)
+> +{
+> +	struct ufs_hba *hba = dev_get_drvdata(dev);
+> +
+> +	if (pm_runtime_suspended(hba->dev))
+> +		return 0;
+> +
+> +	/* Reset device if possible */
+> +	ufs_rockchip_device_reset(hba);
+> +	ufs_rockchip_restore_link(hba, false);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct dev_pm_ops ufs_rockchip_pm_ops = {
+> +	SET_SYSTEM_SLEEP_PM_OPS(ufs_rockchip_suspend, ufs_rockchip_resume)
+> +	SET_RUNTIME_PM_OPS(ufs_rockchip_runtime_suspend, ufs_rockchip_runtime_resume, NULL)
+> +	.prepare	 = ufshcd_suspend_prepare,
+> +	.complete	 = ufshcd_resume_complete,
+> +};
+> +
+> +static struct platform_driver ufs_rockchip_pltform = {
+> +	.probe = ufs_rockchip_probe,
+> +	.remove = ufs_rockchip_remove,
+> +	.driver = {
+> +		.name = "ufshcd-rockchip",
+> +		.pm = &ufs_rockchip_pm_ops,
+> +		.of_match_table = of_match_ptr(ufs_rockchip_of_match),
+
+Drop of_match_ptr, you have here warnings.
 
 Best regards,
 Krzysztof
