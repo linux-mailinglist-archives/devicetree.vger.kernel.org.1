@@ -1,129 +1,116 @@
-Return-Path: <devicetree+bounces-91426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7E2D9494B6
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 17:41:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EB41949501
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 17:59:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F9341F2554D
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 15:41:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3AA89B2BB74
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 15:51:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 029D0537F8;
-	Tue,  6 Aug 2024 15:39:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61F52381AA;
+	Tue,  6 Aug 2024 15:51:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="VfEMfp9v"
+	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="uZ6lNLlc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12F7E47A66;
-	Tue,  6 Aug 2024 15:39:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27D321946F;
+	Tue,  6 Aug 2024 15:51:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.87.146.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722958784; cv=none; b=eD0DqeTrIqAaQciijBY0N3mmwYuj8EyRHaNU3CsQobjvA9CUG9WWX0/S5iaV2biWfcGdGgMOjcIMlb6R8WRVDmAPCpvgWSlHWa4QbC8F1PJ02f/cYh733tXoI+kS3Jj5LilLBCfZYhGO3TXN4q3g4wDjh3jyymX2sH378rYA7Uo=
+	t=1722959484; cv=none; b=Syxwo8As6Hd1lrUVsrJSSykfBXfYdfU2NQzW7X+Hm6gdUgKZsT+obfjA9q9o/S/seTPkxyVgws8WLKaPxmCVpoBMxVgCpGfSCk9eETxhwnmkcaplP9k8BFHJlCCzbx7+lzQpxmDF1ZtLPWZbxeqv0nZKsqPCUv6xC2/vlsg5Loc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722958784; c=relaxed/simple;
-	bh=b7ozdsbwfMXW21Tyt4Tt33Hq8k141H7HbyANf37oXi0=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=Exu/7ZxuqQ50IVqnX8ulsJO0jY9g1patois89mH9Nw5tp7l5cEV+KJz/q1d4zd+NpV+DIn09g5ICvScnUBgFW0wo48mO3ts4E1OyH0MUZ6BJrKWQAZvR7CXoSI7lhwJIVctWkhRIq+oKsivU3C9afaS8/W59pMsnyZHmZqSRHDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=VfEMfp9v; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1722959484; c=relaxed/simple;
+	bh=Bbum/diGjtj8IZG5fI5bEHheLxwVs7iMTYDIrvSrG28=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=TDANnYvNhZo3QugfWRhkPuMlnQhfM+blMmpI0IMb8yI+W/5czGekTEVhhP9oHj5uhGLToyhnO2VmvMfBJiTgo0F6HYPKFu/87ZEd1lEimRXx0ybCMozZCAksMLVngnPT+gjbFdE0pTBEk01UR4mS3OsxPC+lmtOhhhSRmIGOjMA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru; spf=pass smtp.mailfrom=trvn.ru; dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b=uZ6lNLlc; arc=none smtp.client-ip=194.87.146.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=trvn.ru
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	by box.trvn.ru (Postfix) with ESMTPSA id 49990408F5;
+	Tue,  6 Aug 2024 20:45:37 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+	t=1722959138; bh=Bbum/diGjtj8IZG5fI5bEHheLxwVs7iMTYDIrvSrG28=;
+	h=From:Date:Subject:To:Cc:From;
+	b=uZ6lNLlcInQZwiiqy8TBPnKywcBLkLe1Z2jevTFxvGhvmdxGivcUqr4W7zLkcppDL
+	 klnf9fMTUruCCNr/2sbyhDC0q5kAocvEslUb2P6ksIk0dc/p3kP407FNLBd7r7e9LJ
+	 EJrvLh5MfY6HBAohXtu7c2MSziDxB+2vqmGBizQqrEZmzjcVS/TEMTAx9BiM0zv/pv
+	 I2S2XNR5swOb31JzhcSADlPkJQMKsEHM8MntXyFK9X4ac140Y97VHQ+vgMO3VoFEpZ
+	 oKOl06v6dO99553oCPH17s6JjG+xNya3y9MlKsvyBy/PQ09PijYYWBpzTZ7g3VwHN+
+	 8HiCJzecNGUTQ==
+From: Nikita Travkin <nikita@trvn.ru>
+Date: Tue, 06 Aug 2024 20:45:29 +0500
+Subject: [PATCH] arm64: dts: qcom: msm8916-samsung-gt58: Enable the
+ touchkeys
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1722958773;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=2Chn8ymlqazavJ1DZmXPdLBrye9DBk3cugxlezlxhvc=;
-	b=VfEMfp9veTf9vofJGHvARhjKJLQWxXoE6CZ4ZfPJBcyubeBt6RFYznvEmk0qhNLGaLcWIZ
-	V4ZVilXZpCU9C/H3Fj/ysZ/XgET0TF1ZDcxMeq8V3CyxyQdsNk7NIj2fbogg2t01z7WsLv
-	wvZqgRJCniv7XWLsHstRuSCgMls15R5RXpdkYXYEbuirc0/HNhXfXfbC+UTQp1+RTHuNyc
-	HQCGgdhhrNGrjo/ZN4a8er9JdyzG+eHz0KiwhMuHq/wV0VtW6AozR7DoRbDrDnLY5G34gi
-	SGgRl+hV/9eqi04hVkBzZk6CNzURj7hKvvnqvMopGb0w7ymNHesO9/LnmyrCtw==
-Date: Tue, 06 Aug 2024 17:39:32 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Christoph Hellwig <hch@lst.de>, Ulf Hansson <ulf.hansson@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Miquel Raynal
- <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
- Raghavendra <vigneshr@ti.com>, Joern Engel <joern@lazybastard.org>, Keith
- Busch <kbusch@kernel.org>, Jens Axboe <axboe@kernel.dk>, Sagi Grimberg
- <sagi@grimberg.me>, Wolfram Sang <wsa+renesas@sang-engineering.com>, Florian
- Fainelli <f.fainelli@gmail.com>, Thomas Bogendoerfer
- <tsbogend@alpha.franken.de>, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mtd@lists.infradead.org, linux-nvme@lists.infradead.org
-Subject: Re: [PATCH v3 2/6] nvme: assign of_node to nvme device
-In-Reply-To: <66b21f20.5d0a0220.200175.4b9b@mx.google.com>
-References: <20240806114118.17198-1-ansuelsmth@gmail.com>
- <20240806114118.17198-3-ansuelsmth@gmail.com>
- <20240806124312.GB10156@lst.de>
- <66b21f20.5d0a0220.200175.4b9b@mx.google.com>
-Message-ID: <ceab3813dad635387e9f216203292fbe@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Message-Id: <20240806-msm8916-gt58-tkey-v1-1-8987b06c5921@trvn.ru>
+X-B4-Tracking: v=1; b=H4sIABhFsmYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDCwMz3dziXAtLQzPd9BJTC92S7NRK3ZSkRKPE1KSURNMUcyWgvoKi1LT
+ MCrCZ0bG1tQCnbKKIYwAAAA==
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ Nikita Travkin <nikita@trvn.ru>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=913; i=nikita@trvn.ru;
+ h=from:subject:message-id; bh=Bbum/diGjtj8IZG5fI5bEHheLxwVs7iMTYDIrvSrG28=;
+ b=owEBbQKS/ZANAwAIAUMc7O4oGb91AcsmYgBmskUf7/SqzK7INfpETXwvg0l8LOWlr5Hf+eKEh
+ hvOOyStXYaJAjMEAAEIAB0WIQTAhK9UUj+qg34uxUdDHOzuKBm/dQUCZrJFHwAKCRBDHOzuKBm/
+ dbTaD/4hlurx7w85pCVcDtMqthPLorfuvOYTLqYfdZ4dYf10225rgokunw9gaEQB1oMerJ+e1JC
+ w6bQwT3YIOF9dj+VWWD+RZMrZvILQ6n99yDLme00z8u4Iw8MpIUT+u3vAclyqTpCqdeL1P120wr
+ 7PS16zGgn2MALe9ZXg/DVc4iHhKcpDRFw1kPdbLSMh1aTDg9gUjPU5LbNJV6eryuSt+DEhqrryf
+ zgaplE1JZjOZ/PM1rGZVdzYzoaZPWgGZfLFJb3PJag+FjWcoG80d+m7KuGhU6Yyu87e+H0Pgr25
+ QK0r3Xe+m66KyfvlnaYkrwEbCvEKt914O9NNXu9wisaItjDCHI7IHzyzGMlcnLjFJ0qkPvbPvOp
+ 2lSPOrcSRAP5i2q9me5OPLHqpXJxA8Ff0jxNioPkEAeTXYv0HhTZBjdZG5MNl3aj0nOR1x2jNnH
+ AaFVdOXeBI+QZr/xO3i0V9QaCqad8bLXYWP0I8COcaT0cU1xQ+wC32wQqC2eieYWaLRBHgfhbm6
+ /9KLnnLdPKsn57GnIu2lVPD/digT9SGO1mx/x6D4cDOIzWZhHDWLPzwwGRNX0lwpZusUjWGHM2o
+ RQsKlh+FZmERkYtM5P/JKqpfFdmYGqxP3FDy6yDpiBDZrQc9X1OQkYHeTQZJtDAJD1yVnMxbB/x
+ FD/40b9dXjV4+jA==
+X-Developer-Key: i=nikita@trvn.ru; a=openpgp;
+ fpr=C084AF54523FAA837E2EC547431CECEE2819BF75
 
-Hello all,
+The tablet has two capacitive buttons on the scren bezel. Enable them by
+adding the keycodes in the dt.
 
-On 2024-08-06 15:03, Christian Marangi wrote:
-> On Tue, Aug 06, 2024 at 02:43:12PM +0200, Christoph Hellwig wrote:
->> On Tue, Aug 06, 2024 at 01:41:12PM +0200, Christian Marangi wrote:
->> > Introduce support for a dedicated node for a nvme card. This will be a
->> > subnode of the nvme controller node that will have the "nvme-card"
->> > compatible.
->> >
->> > This follow a similar implementation done for mmc where the specific mmc
->> > card have a dedicated of_node.
->> >
->> > This can be used for scenario where block2mtd module is used to declare
->> > partition in DT and block2mtd is called on the root block of the nvme
->> > card, permitting the usage of fixed-partition parser or alternative
->> > ones.
->> 
->> Err, hell no.  Why would you wire up a purely PCIe device to OF?
->> PCIe is self-discovering.
->> 
-> 
-> Well on embedded pure PCIe card most of the time are not a thing...
-> Unless it's an enterprise product, everything is integrated in the pcb
-> and not detachable for cost saving measure or also if the thing use 
-> PCIe
-> protocol but it tighlty coupled with the SoC.
-> 
-> This implementation is already very common for all kind of pcie devices
-> like wireless card, gpio expander that are integrated in the PCB and
-> require property in DT like calibration data, quirks or GPIO pin
-> definitions, i2c...
-> 
-> In modern SoC we are seeing an influx of using cheap flash storage
-> option instead of NAND or NOR as modern hw require more space and price
-> increase is not that high... Almost any high tier device is switching 
-> to
-> using emmc and even attached NVME and simulating MTD with them for easy
-> usage.
-> 
-> Please consider this well used scenario in emebedded where PCIe is just
-> a comunication way and the concept of detachable doesn't exist at all
-> and things can be described in DT as static. Also these storage are 
-> used
-> for rootfs mount so userspace is not so viable.
+Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+---
+ arch/arm64/boot/dts/qcom/msm8916-samsung-gt58.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-As a note, perhaps this is another good example of a "fixed layout"
-PCIe device found on an SBC:
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-gt58.dts b/arch/arm64/boot/dts/qcom/msm8916-samsung-gt58.dts
+index 579312ed53ce..3d6d9dd3b8a8 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-samsung-gt58.dts
++++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-gt58.dts
+@@ -75,6 +75,7 @@ touchscreen@20 {
+ 
+ 		touchscreen-size-x = <768>;
+ 		touchscreen-size-y = <1024>;
++		linux,keycodes = <KEY_APPSELECT KEY_BACK>;
+ 
+ 		vcca-supply = <&reg_vdd_tsp>;
+ 		vdd-supply = <&pm8916_l6>;
 
-https://lore.kernel.org/linux-rockchip/20240805073425.3492078-1-jacobe.zang@wesion.com/T/#u
+---
+base-commit: 1e391b34f6aa043c7afa40a2103163a0ef06d179
+change-id: 20240806-msm8916-gt58-tkey-dba2aebda5d7
+
+Best regards,
+-- 
+Nikita Travkin <nikita@trvn.ru>
+
 
