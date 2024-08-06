@@ -1,120 +1,94 @@
-Return-Path: <devicetree+bounces-91422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5316949433
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 17:07:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F825949443
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 17:13:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1CF801C21080
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 15:07:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CAE901F22996
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 15:13:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78EF61EA0BD;
-	Tue,  6 Aug 2024 15:07:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="NxOARqOs"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 299BF1EA0DE;
+	Tue,  6 Aug 2024 15:13:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B695A41C72;
-	Tue,  6 Aug 2024 15:07:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBEE11BCA09;
+	Tue,  6 Aug 2024 15:13:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722956828; cv=none; b=ZJALmBZEMrWgzzXshOdbHe+QXDKo973l1CkwDpwGFo2Oh3Hlizfp2wpqBnpck2/f0cEbCWbm1FIOfH/J7fMZ4eToo7vrT41LAZzaBDV/LLpFI+XHcS8q1dgbDNegYezNMPImmWxOg7PbIT+UYlEXWJJIUIqXT8PaGlB+NjF+qI0=
+	t=1722957223; cv=none; b=DuZlAogqptx5ZA07UdgAQEhnHxY5qm8jeWOhyLHzrt6gQWYSZ7pq2E/6cOK3WcG1kiPmpyRjT/7/n7XMbkmOQq18T369PVS5I9XZO6j60aozujNQ6Z2FJWiV7oYpnyuS5Dt4lb4BjB7S3WVqAGOU1ADJFsXu2YdOJxv8ydd4U/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722956828; c=relaxed/simple;
-	bh=E4T5iMgWla8u2bPDPyNq6jKw4BX8V6l0Y0+HoWrYLFo=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZeN716bnbPO+PnqXaY1PXpqZmDdS4pO1cTqxrqOyDltuiuusS0LSGwnlTfM0wu2BTHi6fFhqPwAKuzmkd9G8MSInc/sItbHJsGcD/TFiQTqpx8JF3CFJilaH/eJ+LdabGY7teHKbN7JsyxLLPnDXGWZKUblzPT0n+tYdMOcW3+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=NxOARqOs; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 476F71vU085165;
-	Tue, 6 Aug 2024 10:07:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1722956821;
-	bh=ZcDXjPxu0CrzKFKZS0pqzSaM6z2Ugwz648cU4XeZ/lM=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=NxOARqOsS8dcvHVjHZ0qRzoGc2Ugzb0XGw5s+2w/q+p0StdGlxMwFi/eYdDEp2wwY
-	 i0c9mW6zY46vzVuEtfraU7ACn5kywA5S0obgiOzLEjKrEqQABz+LA5R+kXMoHKPZVT
-	 lEZmnU+ImxmClicsBdB+Fy1moKkDazF7IFXtYns4=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 476F71wV006159
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 6 Aug 2024 10:07:01 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
- Aug 2024 10:07:00 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 6 Aug 2024 10:07:00 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 476F70bb113834;
-	Tue, 6 Aug 2024 10:07:00 -0500
-Date: Tue, 6 Aug 2024 10:07:00 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Andrew Davis <afd@ti.com>
-CC: Manorit Chawdhry <m-chawdhry@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Neha Malcom
- Francis <n-francis@ti.com>,
-        Aniket Limaye <a-limaye@ti.com>, Udit Kumar
-	<u-kumar1@ti.com>,
-        Beleswar Padhi <b-padhi@ti.com>,
-        Siddharth Vadapalli
-	<s-vadapalli@ti.com>
-Subject: Re: [PATCH v3 1/5] arm64: dts: ti: k3-j721s2*: Add bootph-*
- properties
-Message-ID: <20240806150700.uw4xdanjr4ypdvm3@rasping>
-References: <20240730-b4-upstream-bootph-all-v3-0-9bc2eccb6952@ti.com>
- <20240730-b4-upstream-bootph-all-v3-1-9bc2eccb6952@ti.com>
- <bcd96f9f-54bd-4793-b9f1-04a011f2df82@ti.com>
+	s=arc-20240116; t=1722957223; c=relaxed/simple;
+	bh=ZTi9W6KQUxZNG8bClo476MM7Nla8g1TY3m6qhrfsvZE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Rshgv2TOQglfdH+PDxCPLyAGamKJ0TBqsMm3TJ7iCsM8zE/Kn+dPWAUxDTHIbuHfpqffDWi2iLdWmJpQ8Azy/pvvOpa1tWRXtFiyrH1HZIe6mxARkZyiqeSFF+p8BD1NkTqIrppe8qSIRh9mAFdG7Hv7XG3/8Pub8yNNbtOujOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875a9f.versanet.de ([83.135.90.159] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sbLsT-0005t0-N2; Tue, 06 Aug 2024 17:13:33 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: linux-kernel@vger.kernel.org, zhangqing <zhangqing@rock-chips.com>,
+ Detlev Casanova <detlev.casanova@collabora.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, kernel@collabora.com,
+ Finley Xiao <finley.xiao@rock-chips.com>, YouMin Chen <cym@rock-chips.com>,
+ Liang Chen <cl@rock-chips.com>, Sugar Zhang <sugar.zhang@rock-chips.com>
+Subject: Re: [PATCH v2 3/3] clk: rockchip: Add clock controller for the RK3576
+Date: Tue, 06 Aug 2024 17:13:30 +0200
+Message-ID: <1936032.MyG8hOvIyE@diego>
+In-Reply-To: <2335430.ElGaqSPkdT@trenzalore>
+References:
+ <20240802214053.433493-1-detlev.casanova@collabora.com>
+ <a9a9219d-325c-4afa-b40c-b261ff95263c@rock-chips.com>
+ <2335430.ElGaqSPkdT@trenzalore>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <bcd96f9f-54bd-4793-b9f1-04a011f2df82@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 09:43-20240806, Andrew Davis wrote:
-> On 7/30/24 4:53 AM, Manorit Chawdhry wrote:
-> > Adds bootph-* properties to the leaf nodes to enable U-boot to
-> > utilise them.
+Hi Detlev,
+
+Am Dienstag, 6. August 2024, 16:15:41 CEST schrieb Detlev Casanova:
+> The suggestion from Heiko was that those reset should be managed by the 
+> subsystems that use them, because they are on a different offset and therefore 
+> seem to be on a different core.
 > 
-> U-Boot? Let's try to pretend like this is a generic property and
-> just say "bootloader" :)
-> > @@ -445,6 +446,7 @@ flash@0 {
-> >   		cdns,tchsh-ns = <60>;
-> >   		cdns,tslch-ns = <60>;
-> >   		cdns,read-delay = <4>;
-> > +		bootph-all;
+> But I think I will include them here like you suggested because:
+>  - That's actually how it is done for rk3588 (which is quite close th rk3576),
+>  - According to you and the TRM, those resets are on the same core, just with 
+> big offsets.
+> 
+> Having the same structure for both SoC makes sense for maintening them.
 
-Here and elsewhere, follow:
-	https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst#n117
+Just without the big offsets between areas please.
+Similar to how rk3588 does it already.
 
-> >   	};
-> >   };
-> > 
+And yep most likely they are in the same block. Just that huge block of
+space for the cru somehow suggested some algamation of multiple ones,
+but looking up the rk3588, you're right that it really seems to be one block.
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+I did request the rk3576 TRM from Rockchip - hopefully they'll follow up
+with that at some point ;-) .
+
+
+Heiko
+
+
+
 
