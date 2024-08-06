@@ -1,217 +1,196 @@
-Return-Path: <devicetree+bounces-91493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 182E29498A0
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 21:53:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96DC39498AC
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 21:56:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A5051C2166F
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 19:53:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B92201C2170B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 19:56:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8014D7E575;
-	Tue,  6 Aug 2024 19:53:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MDl3p4rP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A50413C677;
+	Tue,  6 Aug 2024 19:56:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D9D118D64E;
-	Tue,  6 Aug 2024 19:53:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C37781AC8
+	for <devicetree@vger.kernel.org>; Tue,  6 Aug 2024 19:56:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722973992; cv=none; b=Jl7fXXKfFziZX7IUz2QTzLoSZO+T3h/g3G/eX9Ygk+hSOnuoy3J7E4x1E/PMStd20MLjzG65JNePWMcLfIWpYtx3Q1booBehNrBEBVTGgi7hgF+1gOYvZlqnpHxcbkeSuTgTN3pEammO4131lymZnSggjmj+ZTnFS80bux2JHwc=
+	t=1722974170; cv=none; b=PA8ygdwnXCBp8BYrS7Rnn3cvVKxpSa5jS57KJMwkYiGOyjsoEVyTRp3zymf6vxi5EY+ZJiJYCXZ74J6CqP8BNEyeuU7FYbtxCCJQ+XwM+zX/osq5u0IKStavXtBvyqQTIWgUjkNCvOuNbIL207yM4uMd/yy66qXQbrrUouKr0Bc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722973992; c=relaxed/simple;
-	bh=OQLJiIkny94KECYHJtVp+i8bZZ1zlTH93kKv+2o8Aig=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=PowfxNnI//xHbNT+DNX2HzHZcbhyNMQUbIBKw1qmnYuOg9t5yOD0iTs1023LrHDWy3qGiWtt5kXx2plKYreFtSpR4vFbwFrqtjhDKPGJk4CmXNQyPP459eXSAoqyScx3Ak0wbRtym6V8YAeKb8/UXeCe0xhhd6Mz+YGNmzizVtI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MDl3p4rP; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 476H6Pju021361;
-	Tue, 6 Aug 2024 19:52:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	70Lq7orQebnxRFnaTzLwJ4HqQh/eJyGl2eF5/RFh48I=; b=MDl3p4rPzpT7t6iw
-	4Y8C7wRhe+/61+PIUUI+i8pI9ObxhFjvGAmP1rYwJQLkkUetmVMn1+potifLH05r
-	EyMO5QC+7L5sMbDh7WZbc2d8iryifpM20un7z4ND7uCISeNb3r6Xv9GtQFW5TLUY
-	Gv33Igscf2adDMF1BGY7DPW5qBSh6B4ucntiRZknXovtol3qZ0cyGo1GB1JAv1ng
-	Zwq81MA/haqAW1P6V3/QOUl6o0r+dXy/uPk5YaI5fIgHU1gz59IEqL2tyQYICn+/
-	S5yLbNy7K+/nMba+yoZMzrCBOS34bKMk1zOmXfEYgQy4AvGA4qaZiqBoDfHcyg5m
-	iXdIAQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40sbgs0jks-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 06 Aug 2024 19:52:46 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 476JqjB0008058
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 6 Aug 2024 19:52:45 GMT
-Received: from [10.71.113.127] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 6 Aug 2024
- 12:52:44 -0700
-Message-ID: <b323a813-b02e-488b-86f9-06796f9bbf50@quicinc.com>
-Date: Tue, 6 Aug 2024 12:52:44 -0700
+	s=arc-20240116; t=1722974170; c=relaxed/simple;
+	bh=u7BQVSOIInr31bt4SnPSp5X+E1sR/G4Z2tTnB19SYLo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nGBhOY9D8dY0t9jEFUjae5FxZU1zB4JM0nTIZyyOe7ryfKRlflC7k2RLF+s0LTbAdPxrkZnHL4KcYirShQJHiUtuGxiTS4h//SaRV3rpL91sr1K9RqQ6hexZ6Knic2s6S+AkCWUNDyiR8HPiMP9AFiZSUxORwSSNn8/NKn9pdNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1sbQHW-0005kO-0G; Tue, 06 Aug 2024 21:55:42 +0200
+Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1sbQHT-0051lZ-Gn; Tue, 06 Aug 2024 21:55:39 +0200
+Received: from pengutronix.de (p5de45302.dip0.t-ipconnect.de [93.228.83.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 1826D318370;
+	Tue, 06 Aug 2024 19:55:39 +0000 (UTC)
+Date: Tue, 6 Aug 2024 21:55:38 +0200
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Rob Herring <robh@kernel.org>
+Cc: kernel@pengutronix.de, Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Elaine Zhang <zhangqing@rock-chips.com>, David Jander <david.jander@protonic.nl>, 
+	Simon Horman <horms@kernel.org>, linux-can@vger.kernel.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH can-next v2 01/20] dt-bindings: can: rockchip_canfd: add
+ rockchip CAN-FD controller
+Message-ID: <20240806-hypersonic-malkoha-of-grandeur-1f5d81-mkl@pengutronix.de>
+References: <20240731-rockchip-canfd-v2-0-d9604c5b4be8@pengutronix.de>
+ <20240731-rockchip-canfd-v2-1-d9604c5b4be8@pengutronix.de>
+ <20240806165020.GA1664499-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v24 09/34] ASoC: Add SOC USB APIs for adding an USB
- backend
-To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
-        <broonie@kernel.org>, <lgirdwood@gmail.com>, <krzk+dt@kernel.org>,
-        <Thinh.Nguyen@synopsys.com>, <bgoswami@quicinc.com>, <tiwai@suse.com>,
-        <gregkh@linuxfoundation.org>, <robh@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>
-References: <20240801011730.4797-1-quic_wcheng@quicinc.com>
- <20240801011730.4797-10-quic_wcheng@quicinc.com>
- <09fde4e6-c3be-484d-a7a5-bd653dc42094@linux.intel.com>
- <f761530c-a49b-4dd5-b01c-97d08931e0ab@quicinc.com>
- <acf4de1d-d551-4539-8353-3c85aa3d965c@linux.intel.com>
-Content-Language: en-US
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <acf4de1d-d551-4539-8353-3c85aa3d965c@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: yYw0m-dlgfRq1_xa_E0JOK1i5VwHIAdk
-X-Proofpoint-GUID: yYw0m-dlgfRq1_xa_E0JOK1i5VwHIAdk
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-06_16,2024-08-06_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- impostorscore=0 malwarescore=0 suspectscore=0 phishscore=0 mlxscore=0
- priorityscore=1501 lowpriorityscore=0 bulkscore=0 adultscore=0 spamscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408060140
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="oqlbtdiwnzp33yvb"
+Content-Disposition: inline
+In-Reply-To: <20240806165020.GA1664499-robh@kernel.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Pierre,
 
-On 8/1/2024 11:26 PM, Pierre-Louis Bossart wrote:
->
-> On 8/1/24 23:43, Wesley Cheng wrote:
->> Hi Pierre,
->>
->> On 8/1/2024 1:02 AM, Pierre-Louis Bossart wrote:
->>>
->>>> +/**
->>>> + * struct snd_soc_usb_device
->>>> + * @card_idx - sound card index associated with USB device
->>>> + * @pcm_idx - PCM device index associated with USB device
->>>> + * @chip_idx - USB sound chip array index
->>>> + * @num_playback - number of playback streams
->>>> + * @num_capture - number of capture streams
->>> so here we have a clear separation between playback and capture...
->> Thanks for the quick review of the series, I know that its a lot of work, so its much appreciated.
->>
->> I guess in the past revisions there was some discussions that highlighted on the fact that, currently, in our QC USB offload implementation we're supporting playback only, and maybe it should be considered to also expand on the capture path.  I went ahead and added some sprinkles of that throughout the SOC USB layer, since its vendor agnostic, and some vendors may potentially have that type of support.  Is it safe to assume that this is the right thinking?  If so, I will go and review some of the spots that may need to consider both playback and capture paths ONLY for soc-usb. (as you highlighted one below)  Else, I can note an assumption somewhere that soc-usb supports playback only and add the capture path when implemented.
-> I don't think it's as simple as playback only or playback+capture. If
-> there is no support for capture, then there is also no support for
-> devices with implicit feedback - which uses the capture path. So you
-> gradually start drawing a jagged boundary of what is supported and what
-> isn't.
->
-> My preference would be to add capture in APIs where we can, with TODOs
-> added to make sure no one us under any illusion that the code is fully
-> tested. But at least some of the basic plumbing will be in place.
->
-> Takashi should chime in on this...
->
->>>> + * @list - list head for SoC USB devices
->>>> + **/
->>>> +struct snd_soc_usb_device {
->>>> +	int card_idx;
->>>> +	int pcm_idx;
->>>> +	int chip_idx;
->>>> +	int num_playback;
->>>> +	int num_capture;
->>>> +	struct list_head list;
->>>> +};
->>>> +
->>>> +/**
->>>> + * struct snd_soc_usb
->>>> + * @list - list head for SND SOC struct list
->>>> + * @component - reference to ASoC component
->>>> + * @num_supported_streams - number of supported concurrent sessions
->>> ... but here we don't. And it's not clear what the working 'sessions'
->>> means in the comment.
->>>
->>>> + * @connection_status_cb - callback to notify connection events
->>>> + * @priv_data - driver data
->>>> + **/
->>>> +struct snd_soc_usb {
->>>> +	struct list_head list;
->>>> +	struct snd_soc_component *component;
->>>> +	unsigned int num_supported_streams;
->>>> +	int (*connection_status_cb)(struct snd_soc_usb *usb,
->>>> +			struct snd_soc_usb_device *sdev, bool connected);
->>>> +	void *priv_data;
->>>> +};
->>>> +/**
->>>> + * snd_soc_usb_allocate_port() - allocate a SOC USB device
->>> USB port?
->> Noted, refer to the last comment.
->>>> + * @component: USB DPCM backend DAI component
->>>> + * @num_streams: number of offloading sessions supported
->>> same comment, is this direction-specific or not?
->> Depending on what you think about my first comment above, I'll also fix or remove the concept of direction entirely.
->>>> + * @data: private data
->>>> + *
->>>> + * Allocate and initialize a SOC USB device.  This will populate parameters that
->>>> + * are used in subsequent sequences.
->>>> + *
->>>> + */
->>>> +struct snd_soc_usb *snd_soc_usb_allocate_port(struct snd_soc_component *component,
->>>> +					      int num_streams, void *data)
->>>> +{
->>>> +	struct snd_soc_usb *usb;
->>>> +
->>>> +	usb = kzalloc(sizeof(*usb), GFP_KERNEL);
->>>> +	if (!usb)
->>>> +		return ERR_PTR(-ENOMEM);
->>>> +
->>>> +	usb->component = component;
->>>> +	usb->priv_data = data;
->>>> +	usb->num_supported_streams = num_streams;
->>>> +
->>>> +	return usb;
->>>> +}
->>>> +EXPORT_SYMBOL_GPL(snd_soc_usb_allocate_port);
->>>> +
->>>> +/**
->>>> + * snd_soc_usb_free_port() - free a SOC USB device
->>>> + * @usb: allocated SOC USB device
->>>> +
->>>> + * Free and remove the SOC USB device from the available list of devices.
->>> Now I am lost again on the device:port relationship. I am sure you've
->>> explained this before but I forget things and the code isn't
->>> self-explanatory.
->>>
->> Ok, I think the problem is that I'm interchanging the port and device terminology, because from the USB perspective its one device connected to a USB port, so its a one-to-one relation.  Removing that mindset, I think the proper term here would still be "port," because in the end SOC USB is always only servicing a port.  If this is the case, do you have any objections using this terminology in the Q6AFE as well as ASoC?  I will use consistent wording throughout SOC USB if so.
-> I am not sure USB uses 'port' at all. If by 'port' you meant 'connector'
-> it's not quite right, USB audio works across hubs.
->
-Remember, this is technically the term used to explain the channel created for ASoC to communicate w/ USB.  If we use a term like "device," USB devices come and go, but this ASoC path won't be unallocated along with the USB device, since it does service/know about all the available USB devices connected to the system. (ie through usb hubs)
+--oqlbtdiwnzp33yvb
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks
+On 06.08.2024 10:50:20, Rob Herring wrote:
+> On Wed, Jul 31, 2024 at 11:37:03AM +0200, Marc Kleine-Budde wrote:
+> > Add documentation for the rockchip rk3568 CAN-FD controller.
+> >=20
+> > Co-developed-by: Elaine Zhang <zhangqing@rock-chips.com>
+> > Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> > Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
+> > ---
+> >  .../bindings/net/can/rockchip,canfd.yaml           | 76 ++++++++++++++=
+++++++++
+>=20
+> rockchip,rk3568-canfd.yaml
 
-Wesley Cheng
+Thanks, will rename.
 
+> >  MAINTAINERS                                        |  7 ++
+> >  2 files changed, 83 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/net/can/rockchip,canfd.y=
+aml b/Documentation/devicetree/bindings/net/can/rockchip,canfd.yaml
+> > new file mode 100644
+> > index 000000000000..444269f630f4
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/net/can/rockchip,canfd.yaml
+> > @@ -0,0 +1,76 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/net/can/rockchip,canfd.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title:
+> > +  Rockchip CAN-FD controller
+> > +
+> > +maintainers:
+> > +  - Marc Kleine-Budde <mkl@pengutronix.de>
+> > +
+> > +allOf:
+> > +  - $ref: can-controller.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - const: rockchip,rk3568-canfd
+> > +      - items:
+> > +          - enum:
+> > +              - rockchip,rk3568v2-canfd
+> > +              - rockchip,rk3568v3-canfd
+> > +          - const: rockchip,rk3568-canfd
+>=20
+> Given you already know there are differences in the versions to handle=20
+> and there's no existing driver supporting the fallback, I don't know=20
+> that a fallback is too useful here.
+
+Let me re-think out loud about the compatibilities:
+
+There is a CAN-FD IP core in the rockchip,rk3568 SoC.
+=20
+In the silicon revision v2 of the SoC it has 12 documented errata und
+silicon revision v3 some of them are fixed. This means the driver can
+skip some of the workarounds.
+
+The v3 revision works with all the errata of the v2 active, currently
+with a probably not measurable increase of CPU load. This might change
+in the future, if more v2 workarounds are added. These might
+degrade performance.
+
+So it's for the v2 silicon revision:
+compatible =3D "rockchip,rk3568v2-canfd";
+
+And for the v3 silicon revision:
+compatible =3D "rockchip,rk3568v3-canfd", "rockchip,rk3568v2-canfd";
+
+Which is documented in the yaml as:
+
+properties:
+  compatible:
+    oneOf:
+      - const: rockchip,rk3568v2-canfd
+      - items:
+          - const: rockchip,rk3568v3-canfd
+          - const: rockchip,rk3568v2-canfd
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--oqlbtdiwnzp33yvb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmayf7cACgkQKDiiPnot
+vG8IPQf+LbC/VIPZu4gM2+A5GdbMSbKA+z4aGn1tNxv7siHocgF9WZUOcVXbJrLO
+fvDub7fQyHJcmJKmoeN3EqUH9Neh3w1W1yDelU19iuQ8EUC2TBWI52uINZ2U5AlW
+us1lapjelVoNnJjG24mjn4+VILOX2DlMKa4zFVdJ+eJmcKKz7MfZiNT60GE7Xgol
+jkVM989K7H20HS7+tvRAAAgtmTm/zQOcfZiB4owx3xIYByZVJyB7Pn+2IfIfF++Y
+jVUuTXbJxmkrhi4iY+JBZMdoz4ymLLvolJ3+3SnzVBos6cK1gztcdRozWnSNq0O0
+nmOkPEm+nNO+KzlGWm0IQhtcj4VaHw==
+=K7S6
+-----END PGP SIGNATURE-----
+
+--oqlbtdiwnzp33yvb--
 
