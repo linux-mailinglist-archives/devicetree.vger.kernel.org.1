@@ -1,143 +1,217 @@
-Return-Path: <devicetree+bounces-91492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AD1994989B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 21:50:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 182E29498A0
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 21:53:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B53AE1C21484
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 19:50:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A5051C2166F
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 19:53:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D93281AC8;
-	Tue,  6 Aug 2024 19:49:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8014D7E575;
+	Tue,  6 Aug 2024 19:53:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MEwbl69g"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MDl3p4rP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A449B770E8;
-	Tue,  6 Aug 2024 19:49:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D9D118D64E;
+	Tue,  6 Aug 2024 19:53:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722973799; cv=none; b=rtJX4v9ggZBnLemIgfHRIpdwIK3i/rk63LID3h1+T3KRGmCE6bJoH3SwElRe/wWybJ1rYZO8IifyRJY8ACwVulEJBC3tU4VwtcZ5WMSn+WUei+9TLKr1IuitF3BLoy0iqwVWWW9YYmlSP1zxfZ0zn+OyyGpypXayaNewLLB8uDA=
+	t=1722973992; cv=none; b=Jl7fXXKfFziZX7IUz2QTzLoSZO+T3h/g3G/eX9Ygk+hSOnuoy3J7E4x1E/PMStd20MLjzG65JNePWMcLfIWpYtx3Q1booBehNrBEBVTGgi7hgF+1gOYvZlqnpHxcbkeSuTgTN3pEammO4131lymZnSggjmj+ZTnFS80bux2JHwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722973799; c=relaxed/simple;
-	bh=B/vP9wN2b0Lzujq46mPPrpNnbTESZoPBqKI5lHHsrEA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hrXH1DDQb/Oe2Zt9b4khaawe0TWyk6Ud1TdcuvxQf4td+ff/H29tr1+Gf9k7/4k8aYvhMU3bUi/iGdSfKnZNB6C+klExJMjLJ/0WOi+TmiYDjUtxdZZPwvpH/Q5jrgAHQmJSTIyvm3RRWPuz+E0XzgEeZ9WzAzl3BahuAu/O0Cg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MEwbl69g; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-52f01ec08d6so1304422e87.2;
-        Tue, 06 Aug 2024 12:49:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722973796; x=1723578596; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=3BIPnyjPKBcltoWwn+jJdksE5JCpEOSMNHCDp8ur6XA=;
-        b=MEwbl69gvKvhOkeYfhHFoaKp1fUEtiGpV6oAHGbViQmR5deGRA2VNTkVanSGyDSZBn
-         XsIHPRi07hkUQ+lYTbwXsFdutW4hBXwlX46kKB9rZJ+7iEAty2rq0KuyQgEtROsVA2Kw
-         2HgFp/ZCFz5YVChT6RFAnUTxIv+mydBicaDtwk3GM6pVYtzfJ/QOceJdzwXX7TLGjY6d
-         JovSylZb0xLLqLr4WKVTc8jRi+nxKX2M22xh8G3TmybCq3Y1MhRI6JGdrv1+GCVsXFxq
-         H6xxYQKlQTQMh8jXUVq0wISmLQDu/lxTQrk+ZJCpinwUi++PCJkQ6kalj3CKOFfz00pB
-         E96w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722973796; x=1723578596;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3BIPnyjPKBcltoWwn+jJdksE5JCpEOSMNHCDp8ur6XA=;
-        b=Bk3kOITlfkjMpwdeLz8VFNoFMsJdGfRs0jKj+22h795SdxfWDNLvZM/5WsdavKpEP0
-         O+A6Y/gMMO7LrDJvd7jgPAsJYVyS4fS99zvd83gREOs2c4qWK8vX/Fvbn0uXnNjyFeHJ
-         UhmKkynu9BZylS6S9eoAT3N90zJES4gNGPA8Lx16nJAojjbssXuY+DO7q80PoEMSNBil
-         Cx5qXh/ceo68fy6rO4BWy6DIM/BG6dQk/yj0IuwUokuVN2hCbkAqu4doq9Lau++VZu2n
-         t4zCUqSFdGm6qjC6xulQ+bYdZoO1HDOetuTlCQRbLFurKoY886AzrhrzLYfYmvBKv8oE
-         DfvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV3dU3HwfY1/Bwwd+iS6KQynyuhp82EzujNTWWGppVi3mLcoA0quR3C8ak5YYuZlvrgtHqxlyai2MLIuXb5l8ohiUlHibbApKBofqGwtLioN1SRHY+6WE0kVVzWnwjAwwGLZRFs9tCf49HagUAxLED+eYW8CeGD3+mRtik1DvBtaXtQUp0=
-X-Gm-Message-State: AOJu0YwNULfhKyrCW0vWreuoT4sK7X/WpoPEY+jhf8JxznYb3ue6CL9G
-	QPFr3erh5a+fr3KeUZfuRkCFkdRNebcvTHyVtB8qeqTfOCyroMGC
-X-Google-Smtp-Source: AGHT+IGK2s8feMRbvkUaD4kViF7Q3kQxUMru3SGpK7yJIQ4CcspUgrPUj5ul3TWc//iGjdUBDK6Vuw==
-X-Received: by 2002:ac2:5bc5:0:b0:530:c239:6fad with SMTP id 2adb3069b0e04-530d07319e6mr4165367e87.0.1722973795304;
-        Tue, 06 Aug 2024 12:49:55 -0700 (PDT)
-Received: from mobilestation ([178.176.56.174])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-530bba35aaasm1558385e87.230.2024.08.06.12.49.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Aug 2024 12:49:54 -0700 (PDT)
-Date: Tue, 6 Aug 2024 22:49:52 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc: Paul Burton <paulburton@kernel.org>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-mips@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/6] MIPS: cm: Probe GCR address from devicetree
-Message-ID: <3wemwdkev7pafyfu3yxhpvvpqaplhlejbzxtmahcarrnoeelzr@747sgyl63kwj>
-References: <20240612-cm_probe-v2-0-a5b55440563c@flygoat.com>
+	s=arc-20240116; t=1722973992; c=relaxed/simple;
+	bh=OQLJiIkny94KECYHJtVp+i8bZZ1zlTH93kKv+2o8Aig=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=PowfxNnI//xHbNT+DNX2HzHZcbhyNMQUbIBKw1qmnYuOg9t5yOD0iTs1023LrHDWy3qGiWtt5kXx2plKYreFtSpR4vFbwFrqtjhDKPGJk4CmXNQyPP459eXSAoqyScx3Ak0wbRtym6V8YAeKb8/UXeCe0xhhd6Mz+YGNmzizVtI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MDl3p4rP; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 476H6Pju021361;
+	Tue, 6 Aug 2024 19:52:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	70Lq7orQebnxRFnaTzLwJ4HqQh/eJyGl2eF5/RFh48I=; b=MDl3p4rPzpT7t6iw
+	4Y8C7wRhe+/61+PIUUI+i8pI9ObxhFjvGAmP1rYwJQLkkUetmVMn1+potifLH05r
+	EyMO5QC+7L5sMbDh7WZbc2d8iryifpM20un7z4ND7uCISeNb3r6Xv9GtQFW5TLUY
+	Gv33Igscf2adDMF1BGY7DPW5qBSh6B4ucntiRZknXovtol3qZ0cyGo1GB1JAv1ng
+	Zwq81MA/haqAW1P6V3/QOUl6o0r+dXy/uPk5YaI5fIgHU1gz59IEqL2tyQYICn+/
+	S5yLbNy7K+/nMba+yoZMzrCBOS34bKMk1zOmXfEYgQy4AvGA4qaZiqBoDfHcyg5m
+	iXdIAQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40sbgs0jks-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 06 Aug 2024 19:52:46 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 476JqjB0008058
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 6 Aug 2024 19:52:45 GMT
+Received: from [10.71.113.127] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 6 Aug 2024
+ 12:52:44 -0700
+Message-ID: <b323a813-b02e-488b-86f9-06796f9bbf50@quicinc.com>
+Date: Tue, 6 Aug 2024 12:52:44 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240612-cm_probe-v2-0-a5b55440563c@flygoat.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v24 09/34] ASoC: Add SOC USB APIs for adding an USB
+ backend
+To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
+        <broonie@kernel.org>, <lgirdwood@gmail.com>, <krzk+dt@kernel.org>,
+        <Thinh.Nguyen@synopsys.com>, <bgoswami@quicinc.com>, <tiwai@suse.com>,
+        <gregkh@linuxfoundation.org>, <robh@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>
+References: <20240801011730.4797-1-quic_wcheng@quicinc.com>
+ <20240801011730.4797-10-quic_wcheng@quicinc.com>
+ <09fde4e6-c3be-484d-a7a5-bd653dc42094@linux.intel.com>
+ <f761530c-a49b-4dd5-b01c-97d08931e0ab@quicinc.com>
+ <acf4de1d-d551-4539-8353-3c85aa3d965c@linux.intel.com>
+Content-Language: en-US
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <acf4de1d-d551-4539-8353-3c85aa3d965c@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: yYw0m-dlgfRq1_xa_E0JOK1i5VwHIAdk
+X-Proofpoint-GUID: yYw0m-dlgfRq1_xa_E0JOK1i5VwHIAdk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-06_16,2024-08-06_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ impostorscore=0 malwarescore=0 suspectscore=0 phishscore=0 mlxscore=0
+ priorityscore=1501 lowpriorityscore=0 bulkscore=0 adultscore=0 spamscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408060140
 
-Hi Jiaxun
+Hi Pierre,
 
-On Wed, Jun 12, 2024 at 11:08:52AM +0100, Jiaxun Yang wrote:
-> Hi all,
-> 
-> This series enabled mips-cm code to probe GCR address from devicetree.
-> 
-> This feature has been implemented in MIPS's out-of-tree kernel for
-> a while, and MIPS's u-boot fork on boston will generate required
-> "mti,mips-cm" node as well.
-> 
-> Please review.
-> Thanks
+On 8/1/2024 11:26 PM, Pierre-Louis Bossart wrote:
+>
+> On 8/1/24 23:43, Wesley Cheng wrote:
+>> Hi Pierre,
+>>
+>> On 8/1/2024 1:02 AM, Pierre-Louis Bossart wrote:
+>>>
+>>>> +/**
+>>>> + * struct snd_soc_usb_device
+>>>> + * @card_idx - sound card index associated with USB device
+>>>> + * @pcm_idx - PCM device index associated with USB device
+>>>> + * @chip_idx - USB sound chip array index
+>>>> + * @num_playback - number of playback streams
+>>>> + * @num_capture - number of capture streams
+>>> so here we have a clear separation between playback and capture...
+>> Thanks for the quick review of the series, I know that its a lot of work, so its much appreciated.
+>>
+>> I guess in the past revisions there was some discussions that highlighted on the fact that, currently, in our QC USB offload implementation we're supporting playback only, and maybe it should be considered to also expand on the capture path.  I went ahead and added some sprinkles of that throughout the SOC USB layer, since its vendor agnostic, and some vendors may potentially have that type of support.  Is it safe to assume that this is the right thinking?  If so, I will go and review some of the spots that may need to consider both playback and capture paths ONLY for soc-usb. (as you highlighted one below)  Else, I can note an assumption somewhere that soc-usb supports playback only and add the capture path when implemented.
+> I don't think it's as simple as playback only or playback+capture. If
+> there is no support for capture, then there is also no support for
+> devices with implicit feedback - which uses the capture path. So you
+> gradually start drawing a jagged boundary of what is supported and what
+> isn't.
+>
+> My preference would be to add capture in APIs where we can, with TODOs
+> added to make sure no one us under any illusion that the code is fully
+> tested. But at least some of the basic plumbing will be in place.
+>
+> Takashi should chime in on this...
+>
+>>>> + * @list - list head for SoC USB devices
+>>>> + **/
+>>>> +struct snd_soc_usb_device {
+>>>> +	int card_idx;
+>>>> +	int pcm_idx;
+>>>> +	int chip_idx;
+>>>> +	int num_playback;
+>>>> +	int num_capture;
+>>>> +	struct list_head list;
+>>>> +};
+>>>> +
+>>>> +/**
+>>>> + * struct snd_soc_usb
+>>>> + * @list - list head for SND SOC struct list
+>>>> + * @component - reference to ASoC component
+>>>> + * @num_supported_streams - number of supported concurrent sessions
+>>> ... but here we don't. And it's not clear what the working 'sessions'
+>>> means in the comment.
+>>>
+>>>> + * @connection_status_cb - callback to notify connection events
+>>>> + * @priv_data - driver data
+>>>> + **/
+>>>> +struct snd_soc_usb {
+>>>> +	struct list_head list;
+>>>> +	struct snd_soc_component *component;
+>>>> +	unsigned int num_supported_streams;
+>>>> +	int (*connection_status_cb)(struct snd_soc_usb *usb,
+>>>> +			struct snd_soc_usb_device *sdev, bool connected);
+>>>> +	void *priv_data;
+>>>> +};
+>>>> +/**
+>>>> + * snd_soc_usb_allocate_port() - allocate a SOC USB device
+>>> USB port?
+>> Noted, refer to the last comment.
+>>>> + * @component: USB DPCM backend DAI component
+>>>> + * @num_streams: number of offloading sessions supported
+>>> same comment, is this direction-specific or not?
+>> Depending on what you think about my first comment above, I'll also fix or remove the concept of direction entirely.
+>>>> + * @data: private data
+>>>> + *
+>>>> + * Allocate and initialize a SOC USB device.  This will populate parameters that
+>>>> + * are used in subsequent sequences.
+>>>> + *
+>>>> + */
+>>>> +struct snd_soc_usb *snd_soc_usb_allocate_port(struct snd_soc_component *component,
+>>>> +					      int num_streams, void *data)
+>>>> +{
+>>>> +	struct snd_soc_usb *usb;
+>>>> +
+>>>> +	usb = kzalloc(sizeof(*usb), GFP_KERNEL);
+>>>> +	if (!usb)
+>>>> +		return ERR_PTR(-ENOMEM);
+>>>> +
+>>>> +	usb->component = component;
+>>>> +	usb->priv_data = data;
+>>>> +	usb->num_supported_streams = num_streams;
+>>>> +
+>>>> +	return usb;
+>>>> +}
+>>>> +EXPORT_SYMBOL_GPL(snd_soc_usb_allocate_port);
+>>>> +
+>>>> +/**
+>>>> + * snd_soc_usb_free_port() - free a SOC USB device
+>>>> + * @usb: allocated SOC USB device
+>>>> +
+>>>> + * Free and remove the SOC USB device from the available list of devices.
+>>> Now I am lost again on the device:port relationship. I am sure you've
+>>> explained this before but I forget things and the code isn't
+>>> self-explanatory.
+>>>
+>> Ok, I think the problem is that I'm interchanging the port and device terminology, because from the USB perspective its one device connected to a USB port, so its a one-to-one relation.  Removing that mindset, I think the proper term here would still be "port," because in the end SOC USB is always only servicing a port.  If this is the case, do you have any objections using this terminology in the Q6AFE as well as ASoC?  I will use consistent wording throughout SOC USB if so.
+> I am not sure USB uses 'port' at all. If by 'port' you meant 'connector'
+> it's not quite right, USB audio works across hubs.
+>
+Remember, this is technically the term used to explain the channel created for ASoC to communicate w/ USB.  If we use a term like "device," USB devices come and go, but this ASoC path won't be unallocated along with the USB device, since it does service/know about all the available USB devices connected to the system. (ie through usb hubs)
 
-Got this tested on my P5600-based SoC implemented as non-generic
-platform. Alas the system hangs up on the early boot-up stage with no
-even a single char printed to the console. I'll be able to get back to
-the problem debugging on the next week.
+Thanks
 
--Serge(y)
+Wesley Cheng
 
-> 
-> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-> ---
-> Changes in v2:
-> - Fix probe order on malta (Serge)
-> - dt binding improvements (Conor)
-> - Build warning fix
-> - Link to v1: https://lore.kernel.org/r/20240507-cm_probe-v1-0-11dbfd598f3c@flygoat.com
-> 
-> ---
-> Jiaxun Yang (6):
->       MIPS: generic: Do __dt_setup_arch in prom_init
->       MIPS: malta: Move SMP initialisation to device_tree_init
->       MIPS: cm: Prefix probe functions with __init
->       MIPS: Move mips_cm_probe after prom_init
->       dt-bindings: mips: Document mti,mips-cm
->       MIPS: cm: Probe GCR address from DeviceTree
-> 
->  .../devicetree/bindings/mips/mti,mips-cm.yaml      | 38 ++++++++++++
->  arch/mips/generic/init.c                           |  9 ++-
->  arch/mips/include/asm/mips-cm.h                    |  4 +-
->  arch/mips/kernel/mips-cm.c                         | 69 ++++++++++++++++++----
->  arch/mips/kernel/setup.c                           |  2 +-
->  arch/mips/mti-malta/malta-init.c                   |  8 ++-
->  6 files changed, 111 insertions(+), 19 deletions(-)
-> ---
-> base-commit: 2b84edefcad14934796fad37b16512b6a2ca467e
-> change-id: 20240506-cm_probe-0c667c8b63bf
-> 
-> Best regards,
-> -- 
-> Jiaxun Yang <jiaxun.yang@flygoat.com>
-> 
 
