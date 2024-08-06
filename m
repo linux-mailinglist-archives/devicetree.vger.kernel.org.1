@@ -1,137 +1,99 @@
-Return-Path: <devicetree+bounces-91292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD40A948CFD
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 12:43:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ADFD948D76
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 13:10:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D651287B14
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 10:43:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BC4B9B23A34
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 11:10:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6634E1BE87D;
-	Tue,  6 Aug 2024 10:43:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72D3C1C230B;
+	Tue,  6 Aug 2024 11:10:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bt8ykx4Z"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=angelogioacchino.delregno@collabora.com header.b="Bu1tmmLJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34DAE15B54C;
-	Tue,  6 Aug 2024 10:43:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722940996; cv=none; b=m5foWjvuGAjxyuenwaJotac3hkIXWnnyBjSpoUg7PeJD6qoapHPyJpo84DPblk0CleEaC+8AWmwg5tgCP9EHFpFGkFccho8kOdaZ/K4gNZ583tlnGQh/mN6LClhMQuJPqWtgM4fWGt+fT8Ie/0BhTL0PIyI2d9j6C/UnjcVd6sg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722940996; c=relaxed/simple;
-	bh=oMjhUs6NicrLk9Y7zgHx1PPeEfvMmvWbsd+FFnx2ekc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eaMM2oq1dRNJVQX1S5J+Fh8nQPr50m9vBr9+WHtW6g8HOv1AqvJsuuAI0AvIDmHPIWU3jQ9QSSQXXXdqrfZZNgwvUtsRhcrUQmMcnxsZ5XrPa+eP0VZ8StxPHLhnFjoc4yy0LXgIkm7Zs+uZWNhROXVgr9JU2PzV0MSXEd3Axzw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bt8ykx4Z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C75E9C32786;
-	Tue,  6 Aug 2024 10:43:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722940995;
-	bh=oMjhUs6NicrLk9Y7zgHx1PPeEfvMmvWbsd+FFnx2ekc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bt8ykx4Z4A2tEX2jXvx6y8tSVqe7V6pjrNXL65cIjiNpAknb5BR9ORhZrFUUsLc1o
-	 Od9NKyabNQEkIg/zs3MED6MTosMBI8h0F0pqF/RpsERzETirXvdmOrW6znbMrvkJmt
-	 d9UrNEQ3xtqh/FQ8Yq0VNoL9FTSVW9WgzIZBl5qIlV4d4jbdEMKnmKxHRHT09MVRSr
-	 CfS/yQY3nmqpGtfk62DkdsVVKWbN0Ja5qZiehzeprdaaLMA+Y8aKQZskrXfsiiUKYS
-	 8pPNOAr3Wx/Vg+ubjjZazfkgxmJkT4DvyGQI+I7TwOfVF/r/Yk+DqIYRge6cTFGSmd
-	 hLFAJ8ju2PcmA==
-Message-ID: <39e9fc4a-64f7-4695-bfd2-1f77740714c3@kernel.org>
-Date: Tue, 6 Aug 2024 12:43:07 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6EF9143C4B;
+	Tue,  6 Aug 2024 11:10:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.14
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722942648; cv=pass; b=R6RmdGs5CBm2G3L5XAPSlzRfbtRxaZRSCQa/cdwOTiK0Dc4VuYEGWR3fKg7/CUr+pRdMsmCS3LJQfYPmHdEPAv6lirsf0OTjSZo+j3ORwKXyCAkR6rQDYKoC0PxgfFPhwqXZdOUbHzfSamEOk5ra+fXSFpln4U6WYgoQrIfStsk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722942648; c=relaxed/simple;
+	bh=e+wbgqfDDNcxGYxQDkq0XzOj/7zncsCPwd1dGezPoB0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=LWgRreHjZlIZVtJM+ZSFkHGB+qurDuigKSENvDvToQY6MEvyypXi3eleJnFlRK9Ky0MLqQAw8LH86POCyaGiLmFS2Irgj4hQk14HUKsA73gCmlNEnMpupcfSP6Wdxe1yf5fcauG9Wwgnccp6JHYNkPsuxk0CekoYMW9gluvR9nM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=angelogioacchino.delregno@collabora.com header.b=Bu1tmmLJ; arc=pass smtp.client-ip=136.143.188.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1722942636; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=c8k9o4I1y1cdLbRmlbfHGPW5WEuMiNw87gnTegnFS3PCN8DSi+ce9tRESQBV2dkZ2nNFTnQfqJYrYaQsx1O/Dx8WK2ibEF2zOJY4qVdpb/aQfNRsyUd64OJ70H0TeiK4BW0HG7ExGts7iJSbV6ffDed9dVl7/8l87Na/VIQgMv4=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1722942636; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=tldYjeD6HK9bxcPewewNG/XgAT3v0NaPxmuaG4zO1Ko=; 
+	b=QPdiKFX+d0KJIe8be/OCSMB2W+pQzgmKS5cX2+/tutIA+u6qZdr8fhr+pAPzsFdFMFURNyBa2WBYvcIPrjDJd3O7K8snzlK/ciYR7NSyk7GD/MU1jWUzxIcedFE0HIYrKRn1gujauE8ynYUAX+sDI4arS9pgBzJ3qVFL/Xu2RHw=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=angelogioacchino.delregno@collabora.com;
+	dmarc=pass header.from=<angelogioacchino.delregno@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1722942636;
+	s=zohomail; d=collabora.com;
+	i=angelogioacchino.delregno@collabora.com;
+	h=From:From:To:To:Cc:Cc:In-Reply-To:References:Subject:Subject:Message-Id:Message-Id:Date:Date:MIME-Version:Content-Type:Content-Transfer-Encoding:Reply-To;
+	bh=tldYjeD6HK9bxcPewewNG/XgAT3v0NaPxmuaG4zO1Ko=;
+	b=Bu1tmmLJKycqTbsqWlfb1y8OozfcbVHAzzScDxR3k7dTCCY8VueULsUP3mpJCeo8
+	r8zwZEllQXU85Bm/bGxJrZztDfeXvI31Uyd6seKhwSM91z2j5UBnh9F3c8z+QknVQ2F
+	XCTj36mbY+bdAJsnkobMvdejrFUrPD51NtFiHjCE=
+Received: by mx.zohomail.com with SMTPS id 1722942635898618.9204526741114;
+	Tue, 6 Aug 2024 04:10:35 -0700 (PDT)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Chen-Yu Tsai <wenst@chromium.org>, Fei Shao <fshao@chromium.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+In-Reply-To: <20240719045823.3264974-1-fshao@chromium.org>
+References: <20240719045823.3264974-1-fshao@chromium.org>
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8186-corsola: Update ADSP
+ reserved memory region
+Message-Id: <172294263338.126161.6244258910224268535.b4-ty@collabora.com>
+Date: Tue, 06 Aug 2024 13:10:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: watchdog: fsl-imx-wdt: Add missing
- 'big-endian' property
-To: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
- <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, linux-watchdog@vger.kernel.org,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240806103819.10890-1-animeshagarwal28@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240806103819.10890-1-animeshagarwal28@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
+X-ZohoMailClient: External
 
-On 06/08/2024 12:38, Animesh Agarwal wrote:
-> Add missing big-endian property in watchdog/fsl-imx-wdt.yaml schema.
-> This fixes dtbs_check errors.
+On Fri, 19 Jul 2024 12:58:04 +0800, Fei Shao wrote:
+> Corsola firmware reserves the memory region of [0x60000000, 0x61100000)
+> exclusively for ADSP usage.
+> But in fact, a 6 MB "hole" of [0x60A00000, 0x61000000) didn't get
+> assigned to the ADSP node in the Corsola device tree, meaning no audio
+> tasks can access and utilize that memory section.
 > 
-> Cc: Daniel Baluta <daniel.baluta@nxp.com>
-> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
-> ---
-> There are 12 similar errors related to this missing property from
-> different blobs.
+> Update the reserved ADSP memory region to fill the gap.
 > 
-> ./arch/arm64/boot/dts/freescale/fsl-ls1012a-frdm.dtb: watchdog@2ad0000:
-> Unevaluated properties are not allowed ('big-endian' was unexpected)from
-> schema $id: http://devicetree.org/schemas/watchdog/fsl-imx-wdt.yaml#
-> ---
+> [...]
 
-Not sure if this is correct. I mean, technically it is, but Frank Li was
-removing big-endian properties so please choose consistent approach.
+Applied to v6.11-next/dts64, thanks!
 
-Best regards,
-Krzysztof
+[1/1] arm64: dts: mediatek: mt8186-corsola: Update ADSP reserved memory region
+      commit: d03521e6c18f62876b3b5c1fbf37e0d8ab9fd1b8
+
+Cheers,
+Angelo
+
 
 
