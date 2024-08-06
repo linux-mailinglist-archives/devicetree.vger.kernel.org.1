@@ -1,98 +1,146 @@
-Return-Path: <devicetree+bounces-91258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E87C948AE4
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 10:08:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8730A948B26
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 10:21:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 284B41F24C60
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 08:08:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99207281CA0
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 08:21:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2C0B166F31;
-	Tue,  6 Aug 2024 08:07:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3B831BB696;
+	Tue,  6 Aug 2024 08:21:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=angelogioacchino.delregno@collabora.com header.b="UsxKHhmf"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="pJXYDJ+2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 268C82AF12;
-	Tue,  6 Aug 2024 08:07:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.14
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722931666; cv=pass; b=GoTPErY/XqRo5Nt3R1EB59U9NkNxYV2RSXwRn/JVd1ZtVAB3Zz4l5Ch9bN6wLfDkULEQIBWOTbb815jlXnzExQwHFDBzGQcg4tmGirBm0ow0rf7xELcyGEAS+dfO4/ENxyaGK7/VrxWW94aGPsIDUucyixyoSZcgUJYNfJXG4EY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722931666; c=relaxed/simple;
-	bh=bwQKidI9pODrIEYPmfbCvwKKsalCr8dYWC/jTO11S1M=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=hIrU5cQCBpijiIUAJhD+1gn5trnGrfzlxI+opkxUazcJAQoLyNYK3q+dUZ5RvGc7pIPg+m7jPooItVmuSyfI7uk4fkG+HfihVjBbrQpgfqjHqedsuougtNRLVIiURFL1bHUQiTDe3kYAykV4/WMFetfv4ZV+UcLtxMydtW0EN/w=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=angelogioacchino.delregno@collabora.com header.b=UsxKHhmf; arc=pass smtp.client-ip=136.143.188.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1722931658; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=N2e1lk4kfrhaRAtgWbQXJRPDt1ynW5cjnde2J8ZysRQJUAOwqDdoiAdewFHCWjNhJEocwUPao313kYJ+Mmi56n3OPAy5jHX1WiBXpc4H8lT9L3hSxbESAjQB1ZVCknPQ5lpKNtivDR9p6qfTxgB15jq5iSb1VXgz2xGzAng372E=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1722931658; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=bSU/7Kz+oEIpxKjEzwo61RqKAafjCLDSroZXQNzm+mM=; 
-	b=PtzAXx+xwWGfy8n8MXnAcQHgDt+/Ap8wp5OOgQVXQBp4DlWEhu+pBRAd4D30EJzq0/mzh351q0k7OoA19WMEtHM4qaa5IrM+gr0ioP3ztz1zY4jlKWMcOSEMrA5VvhyIgnEyuNQ2AjoDho41kUStlW2E4wggMYm8Uv3cavmH5+E=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=angelogioacchino.delregno@collabora.com;
-	dmarc=pass header.from=<angelogioacchino.delregno@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1722931658;
-	s=zohomail; d=collabora.com;
-	i=angelogioacchino.delregno@collabora.com;
-	h=From:From:To:To:Cc:Cc:In-Reply-To:References:Subject:Subject:Message-Id:Message-Id:Date:Date:MIME-Version:Content-Type:Content-Transfer-Encoding:Reply-To;
-	bh=bSU/7Kz+oEIpxKjEzwo61RqKAafjCLDSroZXQNzm+mM=;
-	b=UsxKHhmfa6m19Dx1Hg90C9Ui3kMtV+xHQlf+B9NCEbbPjLwn/Hb8h+FSbGhJCmmD
-	lS6SFz+2HQ+g1PrVGoNc9rxjnLilWpB+/gwDmEzPPhCKPZABzE41E6mVHPZzO3Y1SwU
-	FZonMjhtDqjUH0TowkmUi2SLJxiGf1UNZ4pdShak=
-Received: by mx.zohomail.com with SMTPS id 1722931656834676.9532817394971;
-	Tue, 6 Aug 2024 01:07:36 -0700 (PDT)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: Matthias Brugger <matthias.bgg@gmail.com>, 
- Chen-Yu Tsai <wenst@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20240625095441.3474194-1-wenst@chromium.org>
-References: <20240625095441.3474194-1-wenst@chromium.org>
-Subject: Re: [PATCH] arm64: dts: mt8183-kukui: clean up regulator tree
-Message-Id: <172293165481.46149.12368879686778657908.b4-ty@collabora.com>
-Date: Tue, 06 Aug 2024 10:07:34 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7CF3166F17
+	for <devicetree@vger.kernel.org>; Tue,  6 Aug 2024 08:21:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722932486; cv=none; b=BjRbgmtkH/ZK/CA5lcRRh/OLuKA2/VEho8g1i1ZcmoGBIe/nViwAiHhBv8tfGxOjLx17SRTOAFT0hgss352RQfgSqEGyWkiKPSxtzKIXDpqkkP91hAhaJcuvN4uUITJbUTzGMAy7fiCtGxNTgVDGB4D5mA9W1BctNkybCRNYt7Y=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722932486; c=relaxed/simple;
+	bh=syvyItGOW35lUwEWTUTsWPkkLzz5x+BGqu6NrURaHm0=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=ukXWvpgqkKV7s3vWCBCNjXA7OXX3JMmEB/1OtFqUTlOm3PUZG69VQUToL3uchQaMdKd6aOyZnDGM3HyIHpwpPjwBaLl7CbegV8o58tEKW8dyOVeroY32iDStopDO84ETNZ1sr1UgKdrw9ptVwy6lhEDXChk0UKTJzp/aHYuIJcc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=pJXYDJ+2; arc=none smtp.client-ip=91.26.50.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+	q=dns/txt; i=@phytec.de; t=1722932480; x=1725524480;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=syvyItGOW35lUwEWTUTsWPkkLzz5x+BGqu6NrURaHm0=;
+	b=pJXYDJ+2BgGkz/w0Vu6xFvViR/RyVPf7R/Fuh3h0GfaWKII+uXucj+w6SbMmEXqF
+	mLrlUjVjk3jIBFXef4cPXGwLQINkCwcmMZ3xDLcLfcryQnMAuW+jDeUIvIKmPshB
+	vYwcmMMIHBIBGhxBkDM82+dLG3a3jSZO+7EhtRis83w=;
+X-AuditID: ac14000a-03251700000021bc-7c-66b1dcff91c9
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(Client did not present a certificate)
+	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 7D.AD.08636.FFCD1B66; Tue,  6 Aug 2024 10:21:19 +0200 (CEST)
+Received: from Berlix.phytec.de (172.25.0.12) by Berlix.phytec.de
+ (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Tue, 6 Aug 2024
+ 10:21:19 +0200
+Received: from Berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4]) by
+ berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4%4]) with mapi id 15.01.2507.006;
+ Tue, 6 Aug 2024 10:21:19 +0200
+From: Teresa Remmet <T.Remmet@phytec.de>
+To: "kernel@pengutronix.de" <kernel@pengutronix.de>, "festevam@gmail.com"
+	<festevam@gmail.com>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"robh@kernel.org" <robh@kernel.org>, "Frank.Li@nxp.com" <Frank.Li@nxp.com>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "shawnguo@kernel.org"
+	<shawnguo@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>
+CC: "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "imx@lists.linux.dev"
+	<imx@lists.linux.dev>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 9/9] arm64: dts: imx8mm-phygate: fix typo pinctrcl-0
+Thread-Topic: [PATCH 9/9] arm64: dts: imx8mm-phygate: fix typo pinctrcl-0
+Thread-Index: AQHa51ALGyMcVFYDTkWcFys00cmECrIZwxEA
+Date: Tue, 6 Aug 2024 08:21:19 +0000
+Message-ID: <9e87a9fda253e05740b0ba19f8f20eab6541d656.camel@phytec.de>
+References: <20240805-fsl_dts_warning-v1-0-055653dd5c96@nxp.com>
+	 <20240805-fsl_dts_warning-v1-9-055653dd5c96@nxp.com>
+In-Reply-To: <20240805-fsl_dts_warning-v1-9-055653dd5c96@nxp.com>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <173A460F69243844AED75BAB8F7EB062@phytec.de>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13.0
-X-ZohoMailClient: External
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrKIsWRmVeSWpSXmKPExsWyRpKBR/f/nY1pBg1TjSzW7D3HZDH/yDlW
+	i4dX/S3avuxksph5r5XNYtXUnSwWL2fdY7PY9Pgaq8XlXXPYLP7v2cFu8Xf7JhaLF1vEHXg8
+	ds66y+6xaVUnm8fmJfUeLzbPZPTY+G4Hk0f/XwOPz5vkAtijuGxSUnMyy1KL9O0SuDLWP9jM
+	VHBFquLZn8AGxj+SXYycHBICJhLd1+exdzFycQgJLGGS+Hj7BguEc49R4su6m4wQznpGiR8N
+	j5hAWtgENCRenuhmAkmICLxikvh+7SUbiMMs0MAksXTiGVaQKmEBD4nVyzYygtgiAp4SW64s
+	B4pzANlGEvuvZ4KEWQRUJBY8b2cBsXkF3CQuX7sBtkBIoEJi1rYtzCA2p4CjxKvPa9hBbEYB
+	WYkNG86DxZkFxCU2PfvOCvGDgMSSPRBxCQFRiZeP/0HF5SVO3JrGBLKWWUBTYv0ufYhWC4nj
+	7yFWMQsoSkzpfsgOcYKgxMmZT1gmMIrPQrJhFkL3LCTds5B0z0LSvYCRdRWjUG5mcnZqUWa2
+	XkFGZUlqsl5K6iZGUNSLMHDtYOyb43GIkYmD8RCjBAezkghvV+mGNCHelMTKqtSi/Pii0pzU
+	4kOM0hwsSuK8qzuCU4UE0hNLUrNTUwtSi2CyTBycUg2MkVefeFl8j7MxvvR5yqtAyWk/lfLr
+	LgW/Oxmn0Ki79uGFNGHLBSrnjv+W97zH7r379cULot8jb6yYcdf18bvb7xalXPR8eHBPq9nV
+	fJvZTWwPrA3X5nK9XV227oftwyTBTXZ6Z7I5tjLpWm08p5RVVW7oMZk55dcBRc7aO6pFjxcq
+	he6tmO41U4mlOCPRUIu5qDgRAKRa87DoAgAA
 
-On Tue, 25 Jun 2024 17:54:38 +0800, Chen-Yu Tsai wrote:
-> Some regulators in the kukui device tree are modeled incorrectly. Some
-> are missing supplies and some switches are incorrectly modeled as
-> voltage regulators. A pass-through was incorrectly modeled as a
-> regulator.
-> 
-> Add supplies where missing, remove voltage constraints for "switches",
-> and drop the "bl_pp5000" pass-through.
-> 
-> [...]
-
-Applied to v6.11-next/dts64, thanks!
-
-[1/1] arm64: dts: mt8183-kukui: clean up regulator tree
-      commit: f5843dc83583d58e13e6851c70ad8371f036dc35
-
-Cheers,
-Angelo
-
-
+QW0gTW9udGFnLCBkZW0gMDUuMDguMjAyNCB1bSAxMTo0OSAtMDQwMCBzY2hyaWViIEZyYW5rIExp
+Og0KPiBGaXggdHlwbyBwaW5jdHJjbC0wIHdpdGggcGluY3RybC0wLg0KPiBGaXggYmVsb3cgd2Fy
+bmluZzoNCj4gDQo+IGFyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtbS1waHlnYXRl
+LXRhdXJpLWwtcnMyMzItcnM0ODUuZHRiOg0KPiBncGlvQDMwMjIwMDAwOiAncGluY3RybC0wJyBp
+cyBhIGRlcGVuZGVuY3kgb2YgJ3BpbmN0cmwtbmFtZXMnDQo+IMKgwqDCoMKgwqDCoMKgIGZyb20g
+c2NoZW1hICRpZDoNCj4gaHR0cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMvcGluY3RybC9waW5j
+dHJsLWNvbnN1bWVyLnlhbWwjDQo+IGFyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDht
+bS1waHlnYXRlLXRhdXJpLWwtcnMyMzItcnM0ODUuZHRiOg0KPiB1YXJ0NF9yczQ4NV9lbjogJG5v
+ZGVuYW1lOjA6ICd1YXJ0NF9yczQ4NV9lbicgZG9lcyBub3QgbWF0Y2ggJ14oaG9nLQ0KPiBbMC05
+XSt8ListaG9nKC1bMC05XSspPykkDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBGcmFuayBMaSA8RnJh
+bmsuTGlAbnhwLmNvbT4NCg0KUmV2aWV3ZWQtYnk6IFRlcmVzYSBSZW1tZXQgPHQucmVtbWV0QHBo
+eXRlYy5kZT4NCg0KVGhhbmtzIGZvciBmaXhpbmcgdGhpcy4NCg0KVGVyZXNhDQoNCj4gLS0tDQo+
+IMKgYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1tLXBoeWdhdGUtdGF1cmktbC1y
+czIzMi0NCj4gcnMyMzIuZHRzbyB8IDIgKy0NCj4gwqBhcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVz
+Y2FsZS9pbXg4bW0tcGh5Z2F0ZS10YXVyaS1sLXJzMjMyLQ0KPiByczQ4NS5kdHNvIHwgMiArLQ0K
+PiDCoDIgZmlsZXMgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQ0KPiAN
+Cj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtbS1waHln
+YXRlLXRhdXJpLWwtDQo+IHJzMjMyLXJzMjMyLmR0c28gYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2Zy
+ZWVzY2FsZS9pbXg4bW0tcGh5Z2F0ZS0NCj4gdGF1cmktbC1yczIzMi1yczIzMi5kdHNvDQo+IGlu
+ZGV4IGYyNDZiMGJhNmFmMjkuLmNlMTk3MjY2MjYyYTUgMTAwNjQ0DQo+IC0tLSBhL2FyY2gvYXJt
+NjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtbS1waHlnYXRlLXRhdXJpLWwtcnMyMzItDQo+IHJz
+MjMyLmR0c28NCj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1tLXBo
+eWdhdGUtdGF1cmktbC1yczIzMi0NCj4gcnMyMzIuZHRzbw0KPiBAQCAtMjIsNyArMjIsNyBAQA0K
+PiDCoA0KPiDCoCZncGlvMyB7DQo+IMKgwqDCoMKgwqDCoMKgwqBwaW5jdHJsLW5hbWVzID0gImRl
+ZmF1bHQiOw0KPiAtwqDCoMKgwqDCoMKgwqBwaW5jdHJjbC0wID0gPCZwaW5jdHJsX2dwaW8zX2hv
+Zz47DQo+ICvCoMKgwqDCoMKgwqDCoHBpbmN0cmwtMCA9IDwmcGluY3RybF9ncGlvM19ob2c+Ow0K
+PiDCoA0KPiDCoMKgwqDCoMKgwqDCoMKgdWFydDRfcnM0ODVfZW4gew0KPiDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoGdwaW8taG9nOw0KPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9i
+b290L2R0cy9mcmVlc2NhbGUvaW14OG1tLXBoeWdhdGUtdGF1cmktbC0NCj4gcnMyMzItcnM0ODUu
+ZHRzbyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtbS1waHlnYXRlLQ0KPiB0
+YXVyaS1sLXJzMjMyLXJzNDg1LmR0c28NCj4gaW5kZXggNjc1MDhjYTE0Mjc2Zi4uZjJhNzgxMWYx
+YjlmMiAxMDA2NDQNCj4gLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1t
+LXBoeWdhdGUtdGF1cmktbC1yczIzMi0NCj4gcnM0ODUuZHRzbw0KPiArKysgYi9hcmNoL2FybTY0
+L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bW0tcGh5Z2F0ZS10YXVyaS1sLXJzMjMyLQ0KPiByczQ4
+NS5kdHNvDQo+IEBAIC0yMyw3ICsyMyw3IEBADQo+IMKgDQo+IMKgJmdwaW8zIHsNCj4gwqDCoMKg
+wqDCoMKgwqDCoHBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7DQo+IC3CoMKgwqDCoMKgwqDCoHBp
+bmN0cmNsLTAgPSA8JnBpbmN0cmxfZ3BpbzNfaG9nPjsNCj4gK8KgwqDCoMKgwqDCoMKgcGluY3Ry
+bC0wID0gPCZwaW5jdHJsX2dwaW8zX2hvZz47DQo+IMKgDQo+IMKgwqDCoMKgwqDCoMKgwqB1YXJ0
+NF9yczQ4NV9lbiB7DQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZ3Bpby1ob2c7
+DQo+IA0KDQotLSANClBIWVRFQyBNZXNzdGVjaG5payBHbWJIIHwgQmFyY2Vsb25hLUFsbGVlIDEg
+fCA1NTEyOSBNYWlueiwgR2VybWFueQ0KDQpHZXNjaMOkZnRzZsO8aHJlcjogRGlwbC4tSW5nLiBN
+aWNoYWVsIE1pdGV6a2ksIERpcGwuLUluZy4gQm9kbyBIdWJlciwNCkRpcGwuLUluZy4gKEZIKSBN
+YXJrdXMgTGlja2VzIHwgSGFuZGVsc3JlZ2lzdGVyIE1haW56IEhSQiA0NjU2IHwNCkZpbmFuemFt
+dCBNYWlueiB8IFN0Lk5yLiAyNjY1MDA2MDgsIERFIDE0OTA1OTg1NQ0K
 
