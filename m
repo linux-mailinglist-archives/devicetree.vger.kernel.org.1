@@ -1,339 +1,397 @@
-Return-Path: <devicetree+bounces-91500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA73A949926
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 22:34:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36E3C949943
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 22:38:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75D821F23648
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 20:34:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E184F286F56
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 20:38:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9158A15B147;
-	Tue,  6 Aug 2024 20:33:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5570F14F9D7;
+	Tue,  6 Aug 2024 20:37:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="IQosWs3v"
+	dkim=pass (2048-bit key) header.d=timsurber.de header.i=@timsurber.de header.b="2HJfUe7O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2076.outbound.protection.outlook.com [40.107.104.76])
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA460224CF;
-	Tue,  6 Aug 2024 20:33:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.104.76
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722976435; cv=fail; b=LdrU6bmMsRr/rRloenlinhhOKxZn71Ml7yeCDehrG+1dVQf2+ouFugy4NdY2rnpDdjXvkpVwBQIRWJRk/aESGVEHExS398JFs+B4UZQY2pIH/qvUxlNj2deSDaBP59VF/J58wxAxcTSK10Jyeck85yBxSCd+x8l4frIu1/ehzg0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722976435; c=relaxed/simple;
-	bh=g7Q8z2uGJg/pKsf9ZpESJQBP4AJ3ysS95UjEKh+onsQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=OLdYcmrkB0feIun+hemW0ZuEKOLOr/geujg9ElK8noaBoFpFg+h9BJKy7UxpTNiUEq+jjmvZ5NYCdisTzPEPjfoNX/Z33r7O5XpDRfKeg+7rSSE7l1xbloSSK8aDDuEqjsdpD4evZ6t9QROBGdcQ/3btsdl+S+Bwcvu5ka+NN7Q=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=IQosWs3v; arc=fail smtp.client-ip=40.107.104.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mFmTfD3skuwe6kwBTNOB7zY4qz6n19MA6GGPB3JYZEgByBMVcdbGr9vWjj8ruDb26X7oeZ4Yr9+qtXOcg9D5gK80/fCHEUlRVnvbCscO5CYf2/irGsP0sd6GayEbI0rU/gyVQYz7b+aa/3hLYFvuVTwHQ/IxSWRndmSjIlGf8c3UL30+RnhE2we62sxr4SoaNrbpu0Z3Zq4hjNwE4pbCCTWtugfj4r6srbqdIkZNWlwXl3RyBL/mOma/KvcwjjsU9ndxq5sS89KzYV/5xRH7bNOdjKeo/KcuUss6R6E2O7q1RKq5uaklNFGIplGaI8jbBY8lf5FA/D11cSm27ejVRQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8E+sEkA4nqUusZWZU7q6Kw0qzLd+asV2nlR87CRVfmg=;
- b=jcqK6g0WMeyAc/TB3LDy/ATcrtq0Md1lA813vUdlOnghl+fcBBkoPYyuXAzVpJl0+fpNetrNxBgMnqwplcH3EXf9BM9g70ivhiMJ8Et65KIKFtFiGOsQKsCgCvj3cwUtoM6SxdW7ppYe0qAalIPAGeiJWRoTIiYa28PNMhgpBW6gYAms61Ju9b9bZ4EoaJ+NdJziRhiIUoaaSex+DPxQd2ahOQNdCp1IKTyrrRatUGRQWer2qPpPEhIEQRMZNXwT2fBcQZz15BNlb2XP2w2ODr+oCl7nGIgRHmNhdakbURKN7bwPtPpmE7CPg8IL1VaZn0nsJLOs0V43k/0Pq70Cwg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8E+sEkA4nqUusZWZU7q6Kw0qzLd+asV2nlR87CRVfmg=;
- b=IQosWs3vibU7lqao8deonSXjwnCfCnU14v6kmgbS8vhYuar7VMoOOGeyp8qA0pBp2gu9eMkKg33fTmhPni2w4fqExSINbpPFDPUJEPpVqXTH12JaWrsEra46Ldfw9RQmlLwFCdbL6MiVVkFGogjwt8WtISqf/sEgkd8Z7hcv+SvbCnvH3zgmNJsi0tzB/oRo63l2Ghc1yDFQ7zVMCJXUb6OoJZnYK+k+8BmjqijfJlD7oWsVsaf1l71Ea94EedZbqJzh/6jgtrA9geF7heBvbzv69D/dZiGuXH5zNKWBydNI8ovBGbAae35NCihwch9MVoV42LuS7EhGuMpyfpDbqQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AS8PR04MB7975.eurprd04.prod.outlook.com (2603:10a6:20b:2a4::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.26; Tue, 6 Aug
- 2024 20:33:49 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.7828.023; Tue, 6 Aug 2024
- 20:33:49 +0000
-Date: Tue, 6 Aug 2024 16:33:38 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pci@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	bpf@vger.kernel.org, devicetree@vger.kernel.org,
-	Jason Liu <jason.hui.liu@nxp.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v8 00/11] PCI: imx6: Fix\rename\clean up and add lut
- information for imx95
-Message-ID: <ZrKIotkhvAnt87fX@lizhi-Precision-Tower-5810>
-References: <20240729-pci2_upstream-v8-0-b68ee5ef2b4d@nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240729-pci2_upstream-v8-0-b68ee5ef2b4d@nxp.com>
-X-ClientProxiedBy: SJ0PR03CA0294.namprd03.prod.outlook.com
- (2603:10b6:a03:39e::29) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEBB013A26F;
+	Tue,  6 Aug 2024 20:37:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722976679; cv=none; b=AVmh0zkoKfgvaKBiKlo+Ws1sdapeHDmXMe8IxLkgMb0GUpkNKjIZC5XLhifO0fcMJZwwI0MgKvfGfDM1PJb5ed67EsVdUNxdL8sUf6AQeS5hgRXc00lhPxThJmQSudaFpwWeulLK8KI0ewY0aigSCQVx14n+zQbIKV896wZewa0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722976679; c=relaxed/simple;
+	bh=vsFEpYHY2XViD4aWqCJKAAM4n0Tzbt/Aq9LLW81Zums=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gKWr+f/wIyh9IBksjMjzA3r//FPgzDxS3mk5pMX4u5JCgBu4Uf5KWBJbyn7ughfkw0mzxuNdn7S6Rswhse4C2k/5+sH65R/m5RaJZk44ejASRtnGfqlBK5Vu/tOKAc79EmgtxelQXhz2whiVkctjrwJ8PzkCpwadVNUTPNE9vI8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=timsurber.de; spf=pass smtp.mailfrom=timsurber.de; dkim=pass (2048-bit key) header.d=timsurber.de header.i=@timsurber.de header.b=2HJfUe7O; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=timsurber.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timsurber.de
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4WdlVd0YSxz9sHh;
+	Tue,  6 Aug 2024 22:37:45 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=timsurber.de;
+	s=MBO0001; t=1722976665;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=QydbXfG0xSwudrqCsqyAXww88zo6VkjmpfrC5bazW1Q=;
+	b=2HJfUe7OiV3HGAaD6mIifHGfh2CPiQcj48qQkZwLeO5LBAxldm1aJDQwqCLKw/N1fjhHOl
+	7ikoJa2zlBugKt/f7dSooMlAqpeo1zxLiR5rURX9siLSzVMYp1Dq+QRGV5JV19z4uzxb66
+	ov76PrB6dZAX5E0tN3GHcG86BfT8q0YtRfd6K+6HL9vwzhX8hSCnrd1DbYl4Oanf9RFh1v
+	dm/wBJa7B3LocNGEsYsqxJW9vutJqL4NGCDHScpoLS93VpM4AsXpQWur3hwAaKYY63laCo
+	6tCe1ZjjCkVdho68h3BssYFfysWlKdrGut6tcKTac8DIMN90vBuJiGiolyrv4A==
+Message-ID: <06838f40-881c-4301-826b-e29a4277e663@timsurber.de>
+Date: Tue, 6 Aug 2024 22:37:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB7975:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5447b24f-6955-4542-0822-08dcb65713fc
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|52116014|1800799024|366016|376014|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?ZGRsaXdiUERvd0tiUXNjMi9UWUkvVlpNampnZUZWeUhXTGhqdERjN1pqN0l2?=
- =?utf-8?B?Mi9nU3pxRERpeGpuM2tBcXhiZVFwQTFnSi9ITWQxNnUzL3VDbW8zT0Rma20r?=
- =?utf-8?B?WlR1elNVSWVQWVZuN0p3NmVEdVlWb1NCN2hpQ1ZWQ3dRd2FtdnVmUnlaWE1N?=
- =?utf-8?B?RG1DVEhBTW43UklkUTF4ZjB0T2VJUzBWT2d5d0FteXI1N0tkMDhjSGRIMVdV?=
- =?utf-8?B?dU5VMXRkb2daYTBMTi9aZzFiUFBlaDMxcDlJQThQVTh4aEFwd295STUrc3JR?=
- =?utf-8?B?eDBmYURSOFJsKzlhS29NdkYwTUhyNHFPMUQ1T3JjUCthVTVsb1ZKTDdUR25F?=
- =?utf-8?B?dHpreVJoR1hKT29YbmRjeFBHMmpGYWpHTlZPSHd1OGFvWVJmS0JWa09sZysz?=
- =?utf-8?B?U3o1cGMzQ2JscmdDdUY3MkVOTjcvZkN2UFZicXNGMVNwTExHNVBxdERIV09D?=
- =?utf-8?B?MFdFNzM5NW92RkhsU3YxM2ROK0xHUDRTaTFNVmRjVDFacjRnZ0Q5TklnRTBj?=
- =?utf-8?B?S3pmRU8vNi9xazh1SFRpNGRjeWdDdHRzZUljQTVBbUFxd2ZrdGVqY3A1cmFI?=
- =?utf-8?B?c0ZwcFlMRWdNcTNKeUd4NVByajZ4WmVsNFc0TjExV2IxcHVXOC9DZkZpSnM3?=
- =?utf-8?B?WVZrL0FVcmtQTkVRSXBIcjBQUCs3ZmxlaHVwSVlzb1IvUTFocWVYcUR0aENY?=
- =?utf-8?B?aTc0MzZHRklReitOK0dqQmh5d2lKV0tFS0MrSWhxWnZsajNuZW5jajAxZzFF?=
- =?utf-8?B?cVpCWFJWQXBnenVmTHNVYWxGdHdpcWhmUFllUzNBMWs1VHh2ZGpoZGVxVHNN?=
- =?utf-8?B?RHJQNFNhSGZNOU1qYmtueERwN1ZvVmRxMnBZczRuS0xJeGM5WHppUVBoRzZs?=
- =?utf-8?B?Ti9vcE5Ndk56VmJXSWF4dEdMSEI5Uk1rUVpWOXVMUzdQSWlOay9vWWhRSHVl?=
- =?utf-8?B?ZUQxOGdMOEZWWCtSVUZxeWlQQXV2d1R6QXM3akRXbm5xQ1dmTWtGRHB4eXg0?=
- =?utf-8?B?MFZYc2p3MURuM0twNC9lb2RLdWwraEt1b0pJc1NGWVJjVHRMck9pNWs5NGJ0?=
- =?utf-8?B?dHZDUWl4UldGNEZyRHJodDVidTRyRndNd1FWd3VhcWs5YnFXM2IrUTA0OWJE?=
- =?utf-8?B?bVBhZEUrSi9aeUNGNVRCZ005T0F2c0hNblE3Yy9PWE1VL00rWVdCTEpqNTUx?=
- =?utf-8?B?d0JGVkFNS1N5N1YycXg4VHJpSzkxSm1vWWkyakZZRlVDNjJQVFdUVlA5Sks0?=
- =?utf-8?B?QzNVd1lWWndUemxWZm5tdFlhcWlJUWltekJIMDBlazdZT3hxNGFHTExwUlRF?=
- =?utf-8?B?dWt1amM5NWNSQzBTejlZYnRtYzJPSTBqTDB1U0NvclNLZC8zNDhDTkUveWxm?=
- =?utf-8?B?SGpTNWxQSTkrcXdGNkZERnpkQmN1akMzQkY3RnIxeURPN3N3REF3NUV1am9K?=
- =?utf-8?B?bE90QVZTSjRqZndURVBJb1poZ2NHK0VYWXRBcnladDVjRG0yMkZyd2JlK1N5?=
- =?utf-8?B?RTVOM3h3eWVwREF4dlExcUQyelFKeWl0NVRBS0RWTFhUckcyL2Qxd0FJeWx4?=
- =?utf-8?B?NHNaUkFJTXZwNjVVTHgzVGF1T0RNOWxkdTNJVzZpLzVRWFdoWm5pcDExa0pU?=
- =?utf-8?B?elk3ZzJPU3JZTTlYNzdVdXhSQkphUnJubGV6VUdUWXhZSzNSamRUYTJXS2xD?=
- =?utf-8?B?aGYzQjgvdEZweFk1eUFFVjdQV2FXeHFDNFlGczVzQXFKYlhoZEhpZjgvZnZp?=
- =?utf-8?B?OVdWUDFuZDFudUFhQ3FrT3dSVjVMSXZranpMR0pDb1Q4SG9xL0RpUHRVZjNW?=
- =?utf-8?B?cmVLdXRUUFJsbUh5M1NuVjNONHBKNi93ZVFHVmtucmNmT2R3MWRUdk9RVmw5?=
- =?utf-8?Q?+7TO2fF2C0qyI?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(52116014)(1800799024)(366016)(376014)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?Q3ZneVNiS2ZLNHNZdStYYitXVGN6UzlOMjl6VEtXWUN5VWxhZ1NDclFaZVcz?=
- =?utf-8?B?RHBkaTBwb09WQjdhYUY0b3VKK1FFZHdsNllxbmkyeDlVdmNDRUFuNlcyMjV6?=
- =?utf-8?B?OG01SzBNVlhqTU9VNnBiTkowODlReXNXNTRmemJFbVd0UERpdkVWTldrbyt0?=
- =?utf-8?B?NURsL1FDdkoyQUVWZkZKbHhQbUZTY2ZjcGtLT0ZxNExTQ1VMdXFPQmdZZFM5?=
- =?utf-8?B?S1ZuSzQzT2hZSHU2djBwb3ZzbDhpTFlGWjZLK0tCNzhLanl6OENialk5WlhV?=
- =?utf-8?B?cXErWEcrZ09GZ3JITzY1R0tCaS9zZjViS3VENmlGQmc2UmpuNzhuNUxBUHVj?=
- =?utf-8?B?VWlrSHNQUi9hamNhcGhYQUVRNDhvRnJWSEFNVlZzMnlYWWJzbVNpaUd3TTJz?=
- =?utf-8?B?T0svRm5NVmVlanpGNVpydDVhUk0wcG9VazdaQzJvZEJqenMvc0tSbnQzV01N?=
- =?utf-8?B?UFpmRXlheTRGZlhYUlQ5anRNTHd6b3ZldjkrQzVBdkpPZEtMNWNHcHJOaldP?=
- =?utf-8?B?cVZhZ3BnR1UxY0wyMVJxTWE1ZVFzVG8zRTRlOWlZWDRnZkJBZlZIblc2Z1Rk?=
- =?utf-8?B?SDY4eXkyL3VBekFlcTdtaWdIVU1SMWtWeUw5Y3RpYkM5TTM3aE1tZjZ1Yk9Y?=
- =?utf-8?B?YmJSUitqUndmMm9LOThhWGlpUDNyZjNxcWJ6SHVHRm1aUHNtcFlaTXlTNEtH?=
- =?utf-8?B?UUtESFVTTlJJNzF5ZjVGc1Z0c1RCQVF1NTBVTDNjUG9hNG9lUldIakRiRmpL?=
- =?utf-8?B?Tmg5RGwwbG4zT0dnV1lvVmQyZ1BzaHczdmdSdFNCL0puNUdyRDlkcXBVWXJo?=
- =?utf-8?B?QjEvd2hYQmp4bkt0dDduSUpXc1B6L3d6OHlDTGZiejAveFZnYUg5dy90U3g4?=
- =?utf-8?B?bDNRYzVpZmIyclRncDlkNHBLWXM0MTV2M1d1QnhaSXNRU0gxUEgvMzMrc0NQ?=
- =?utf-8?B?N3p1bnJRMzIybi9oaEpYeUcxRU5oSERpNWw5MndXanAyRW15RzhlRk52L3pK?=
- =?utf-8?B?dm5mSCtCMDVvamdJek44UjRvak9pVWJ6b2Z4eXR1VWZTeklLdUtGSExmN3h1?=
- =?utf-8?B?bGJGSlBpMVNoYWRuSFN1MzFxL3E3WGk0bUluTDN0QWhGZTd3WG9hbFgxb1Uw?=
- =?utf-8?B?R1ZPOFlPVGU5bHdKUTlVT213QXpabjNQKy9EWDhCWTl1WnNlUU40c0ZndW11?=
- =?utf-8?B?VnJHQndGUVJDbVloTndoSzBjZTJMRUkrRnRRNW1rY3R1cWJMVWNpakhUdVd4?=
- =?utf-8?B?SkNkaU1rL2xaemkyc2hKOTdXbDQ5eWM2RnFxdlNpQWQ5Ty8zOXhYeFZHSUEv?=
- =?utf-8?B?bFY3U1VWRHFMU2dLbWVIeStXTXhiOHFBYjNqcDlxT2Y2eEUxRzFxNUN3aTIy?=
- =?utf-8?B?aWNXVUt1TktoMEZMYXRJeXFZUEFJYis2cWs1dDduTWRvcVBWYXJqZ0ZoNG9F?=
- =?utf-8?B?NzBJUy9pQ0E5N0dBWnM0ZU0vVThwZVBhMVpmWEZmd3VtZ2JNQWZKRGRyTTdi?=
- =?utf-8?B?dUdIY0hGTXN3dnFXV245ajRUZ2hHdlpRTG02RmhzMmswN096a3lKMnJYN3I3?=
- =?utf-8?B?ZDFKcnA1SGUzMkhJbTkzZGlBQlhSWG1YbEx2TjU0bzRHU0hTcTlGSUk2M0R6?=
- =?utf-8?B?MUhNUGRxdXp0YXFTN1BxSlFqRUxWWGQva3Q1SVBwNzNjVFJ5WmpZMVZwc1Zj?=
- =?utf-8?B?Ym1mam1pVHF5d0Y2VTJaQXZoU1dyWC8rak9ONDFPYWI4djg4aWRDaG8wWk40?=
- =?utf-8?B?eG1XN1FIU1FDajRoQTV4aGt3eWYyWU1GZGFlTTEvaklpWmNtWUI5Ni9KdExo?=
- =?utf-8?B?dmV4ZEtHRHRTRG03andqTDQrWlhwS094SzNXQTVMR3N0NWVCcGU1VzlxOVcv?=
- =?utf-8?B?azBSQXdkejYvaHFUYWgvRWFQT0xxTSs2aWgxS2NsTTVGaWdMaWNpUUp3VlRZ?=
- =?utf-8?B?VUoyQlZjMWtOSWM3d3E2VEZMKzVRMi9nSHVyVmdYdEp1T1cvMFB4b0kwdkIz?=
- =?utf-8?B?eDlmQnI1VnZzOVI1cmhacEVxNGFKa2dSS1M4WTA5ZHk3eUltT3I3S2ZzR2Mw?=
- =?utf-8?B?eDlGMGsrWmJhMWtwYWhveDIzMWkzTHlxNFRGcnJJcnJmTDVmaVkvZzZmcHdq?=
- =?utf-8?Q?VW/RfW6k4wJB64fUBmOyCQc3A?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5447b24f-6955-4542-0822-08dcb65713fc
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Aug 2024 20:33:49.4738
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EepMHjDIB21Luv+U4IyyqleF0wkRV69MggTdO4xFmxuL/a5m2chvh3Ua+yW7mLmWkTwPIUaNsaaU0asmOgm/qw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7975
+Subject: Re: [PATCH v4 0/4] Add Synopsys DesignWare HDMI RX Controller
+To: Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Shreeya Patel <shreeya.patel@collabora.com>, heiko@sntech.de,
+ mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+ p.zabel@pengutronix.de, jose.abreu@synopsys.com, nelson.costa@synopsys.com,
+ shawn.wen@rock-chips.com, nicolas.dufresne@collabora.com,
+ hverkuil@xs4all.nl, hverkuil-cisco@xs4all.nl
+Cc: kernel@collabora.com, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+References: <20240719124032.26852-1-shreeya.patel@collabora.com>
+ <6f5c4ebb-84ab-4b65-9817-ac5f6158911f@timsurber.de>
+ <929d2f50-6b0e-4d1e-a6d3-482d615bd06a@collabora.com>
+Content-Language: en-US
+From: Tim Surber <me@timsurber.de>
+In-Reply-To: <929d2f50-6b0e-4d1e-a6d3-482d615bd06a@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 4WdlVd0YSxz9sHh
 
-On Mon, Jul 29, 2024 at 04:18:07PM -0400, Frank Li wrote:
-> Fixed 8mp EP mode problem.
->
-> imx6 actaully for all imx chips (imx6*, imx7*, imx8*, imx9*). To avoid
-> confuse, rename all imx6_* to imx_*, IMX6_* to IMX_*. pci-imx6.c to
-> pci-imx.c to avoid confuse.
->
-> Using callback to reduce switch case for core reset and refclk.
->
-> Base on linux 6.11-rc1
->
-> To: Richard Zhu <hongxing.zhu@nxp.com>
-> To: Lucas Stach <l.stach@pengutronix.de>
-> To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> To: Krzysztof Wilczyński <kw@linux.com>
-> To: Rob Herring <robh@kernel.org>
-> To: Bjorn Helgaas <bhelgaas@google.com>
-> To: Shawn Guo <shawnguo@kernel.org>
-> To: Sascha Hauer <s.hauer@pengutronix.de>
-> To: Pengutronix Kernel Team <kernel@pengutronix.de>
-> To: Fabio Estevam <festevam@gmail.com>
-> To: NXP Linux Team <linux-imx@nxp.com>
-> To: Philipp Zabel <p.zabel@pengutronix.de>
-> To: Liam Girdwood <lgirdwood@gmail.com>
-> To: Mark Brown <broonie@kernel.org>
-> To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> To: Conor Dooley <conor+dt@kernel.org>
-> Cc: linux-pci@vger.kernel.org
-> Cc: imx@lists.linux.dev
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: bpf@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
->
-> Changes in v8:
-> - Rebase to 6.11-rc1
-> - Add Mani's review tags for 2, 6, 8, 9, 10
-> - Add fix patch PCI: imx6: Fix missing call to phy_power_off() in error handling
-> - keep enable_ref_clk(), I will add more code to make disabe/enable symtric
-> - Link to v7: https://lore.kernel.org/r/20240708-pci2_upstream-v7-0-ac00b8174f89@nxp.com
+Here are the results of some more debugging.
+I see that in the first example the pixel format is set to RGB888 and in 
+the second to NV12, I was not able to successfully change this on my 
+source, nevertheless the HDMI RX should work I think.
+
+###source set to 4k30fps####
+---------------------------
+v4l2-ctl --verbose -d /dev/video1 
+--set-fmt-video=width=3840,height=2160,pixelformat='NV12' 
+--stream-mmap=4 --stream-skip=3 --stream-count=100 --stream-poll
+---------------------------
+VIDIOC_QUERYCAP: ok
+VIDIOC_G_FMT: ok
+The pixelformat 'NV12' is invalid
+New timings found
+         VIDIOC_REQBUFS returned 0 (Success)
+         VIDIOC_CREATE_BUFS returned 0 (Success)
+         VIDIOC_QUERYBUF returned 0 (Success)
+         VIDIOC_QUERYBUF returned 0 (Success)
+         VIDIOC_QUERYBUF returned 0 (Success)
+         VIDIOC_QUERYBUF returned 0 (Success)
+         VIDIOC_G_FMT returned 0 (Success)
+         VIDIOC_QBUF returned 0 (Success)
+         VIDIOC_QBUF returned 0 (Success)
+         VIDIOC_QBUF returned 0 (Success)
+         VIDIOC_QBUF returned 0 (Success)
+         VIDIOC_STREAMON returned 0 (Success)
+cap dqbuf: 0 seq:      0 bytesused: 8294400 ts: 536.006261 field: Any 
+(ts-monotonic, ts-src-eof)
+cap dqbuf: 1 seq:      1 bytesused: 8294400 ts: 536.039574 delta: 33.313 
+ms field: Any (ts-monotonic, ts-src-eof)
+cap dqbuf: 2 seq:      2 bytesused: 8294400 ts: 536.072906 delta: 33.332 
+ms field: Any (ts-monotonic, ts-src-eof)
+cap dqbuf: 3 seq:      3 bytesused: 8294400 ts: 536.106239 delta: 33.333 
+ms field: Any (ts-monotonic, ts-src-eof)
+cap dqbuf: 0 seq:      4 bytesused: 8294400 ts: 536.139571 delta: 33.332 
+ms fps: 30.01 field: Any (ts-monotonic, ts-src-eof)
+cap dqbuf: 1 seq:      5 bytesused: 8294400 ts: 536.172903 delta: 33.332 
+ms fps: 30.00 field: Any (ts-monotonic, ts-src-eof)
+[...]
+
+---------------------------
+dmesg
+---------------------------
+[  529.266804] fdee0000.hdmi_receiver: hb
+[  530.280073] fdee0000.hdmi_receiver: hb
+[  531.293412] fdee0000.hdmi_receiver: hb
+[  532.306716] fdee0000.hdmi_receiver: hb
+[  533.319906] fdee0000.hdmi_receiver: hb
+[  534.333263] fdee0000.hdmi_receiver: hb
+[  535.346616] fdee0000.hdmi_receiver: hb
+[  535.739795] fdee0000.hdmi_receiver: C-Plane 0 size: 24883200, Total 
+imagesize: 24883200
+[  535.747733] fdee0000.hdmi_receiver: tx_5v_power_present: 1
+[  535.747750] fdee0000.hdmi_receiver: hdmirx_get_pix_fmt: pix_fmt: RGB888
+[  535.747760] fdee0000.hdmi_receiver: hdmirx_get_colordepth: 
+color_depth: 24, reg_val:4
+[  535.747780] fdee0000.hdmi_receiver: get timings from dma
+[  535.747787] fdee0000.hdmi_receiver: act:3840x2160, total:4400x2250, 
+fps:30, pixclk:297016000
+[  535.747799] fdee0000.hdmi_receiver: hfp:172, hs:92, hbp:296, vfp:8, 
+vs:10, vbp:72
+[  535.747809] fdee0000.hdmi_receiver: tmds_clk:297016000
+[  535.747816] fdee0000.hdmi_receiver: interlace:0, fmt:0, vic:127, 
+color:24, mode:hdmi
+[  535.747825] fdee0000.hdmi_receiver: deframer_st:0x11
+[  535.747833] fdee0000.hdmi_receiver: query_dv_timings: 3840x2160p30.00 
+(4400x2250)
+[  535.747854] fdee0000.hdmi_receiver: s_dv_timings: 3840x2160p30.00 
+(4400x2250)
+[  535.747875] fdee0000.hdmi_receiver: hdmirx_s_dv_timings: no change
+[  535.747924] fdee0000.hdmi_receiver: vid-cap-mplane: count 4, size 8294400
+[  535.752754] fdee0000.hdmi_receiver: C-Plane 0 size: 24883200, Total 
+imagesize: 24883200
+[  535.752884] fdee0000.hdmi_receiver: C-Plane 0 size: 24883200, Total 
+imagesize: 24883200
+[  535.752904] fdee0000.hdmi_receiver: hdmirx_start_streaming: 
+start_stream cur_buf y_addr:0xe0ea5000, uv_addr:0xe168e000
+[  535.752920] fdee0000.hdmi_receiver: hdmirx_start_streaming: enable dma
+[  535.780112] fdee0000.hdmi_receiver: dma_irq st1:0x100, st13:1085
+[  535.780128] fdee0000.hdmi_receiver: line_flag_int_handler: last have 
+no dma_idle_irq
+[  535.796093] fdee0000.hdmi_receiver: dma_irq st1:0x80, st13:2160
+[  535.813435] fdee0000.hdmi_receiver: dma_irq st1:0x100, st13:1085
+[  535.829423] fdee0000.hdmi_receiver: dma_irq st1:0x80, st13:2160
+[...]
+---------------------------
+
+###source set to 4k60fps####
+---------------------------
+v4l2-ctl --verbose -d /dev/video1 
+--set-fmt-video=width=3840,height=2160,pixelformat='NV12' 
+--stream-mmap=4 --stream-skip=3 --stream-count=100 --stream-poll
+---------------------------
+VIDIOC_QUERYCAP: ok
+VIDIOC_G_FMT: ok
+VIDIOC_S_FMT: ok
+Format Video Capture Multiplanar:
+     Width/Height      : 3840/2160
+     Pixel Format      : 'NV12' (Y/UV 4:2:0)
+     Field             : None
+     Number of planes  : 1
+     Flags             :
+     Colorspace        : sRGB
+     Transfer Function : Default
+     YCbCr/HSV Encoding: Default
+     Quantization      : Default
+     Plane 0           :
+        Bytes per Line : 3840
+        Size Image     : 8294400
+[stuck here, have to end with ctrl c]
 
 
-Manivannan:
+---------------------------
+dmesg
+---------------------------
+[ 1520.198123] fdee0000.hdmi_receiver: hb
+[ 1521.211383] fdee0000.hdmi_receiver: hb
+[ 1522.224680] fdee0000.hdmi_receiver: hb
+[ 1523.237936] fdee0000.hdmi_receiver: hb
+[ 1524.251313] fdee0000.hdmi_receiver: hb
+[ 1525.264606] fdee0000.hdmi_receiver: hb
+[ 1526.277937] fdee0000.hdmi_receiver: hb
+[ 1526.427540] fdee0000.hdmi_receiver: C-Plane 0 size: 8294400, Total 
+imagesize: 8294400
+[ 1526.427587] fdee0000.hdmi_receiver: C-Plane 0 size: 8294400, Total 
+imagesize: 8294400
+[ 1526.427598] fdee0000.hdmi_receiver: hdmirx_set_fmt: req(3840, 2160), 
+out(3840, 2160), fmt:0x3231564e
+[ 1526.435569] fdee0000.hdmi_receiver: tx_5v_power_present: 1
+[ 1526.435588] fdee0000.hdmi_receiver: hdmirx_get_pix_fmt: pix_fmt: YUV420
+[ 1526.435597] fdee0000.hdmi_receiver: hdmirx_get_colordepth: 
+color_depth: 24, reg_val:4
+[ 1526.435618] fdee0000.hdmi_receiver: get timings from dma
+[ 1526.435626] fdee0000.hdmi_receiver: act:3840x2160, total:4400x2250, 
+fps:60, pixclk:297008000
+[ 1526.435637] fdee0000.hdmi_receiver: hfp:4294965460, hs:48, hbp:148, 
+vfp:8, vs:10, vbp:72
+[ 1526.435648] fdee0000.hdmi_receiver: tmds_clk:297008000
+[ 1526.435656] fdee0000.hdmi_receiver: interlace:0, fmt:3, vic:127, 
+color:24, mode:hdmi
+[ 1526.435665] fdee0000.hdmi_receiver: deframer_st:0x11
+[ 1527.291212] fdee0000.hdmi_receiver: hb
+[ 1527.443533] fdee0000.hdmi_receiver: tx_5v_power_present: 1
+[ 1527.443550] fdee0000.hdmi_receiver: hdmirx_get_pix_fmt: pix_fmt: YUV420
+[ 1527.443560] fdee0000.hdmi_receiver: hdmirx_get_colordepth: 
+color_depth: 24, reg_val:4
+[ 1527.443579] fdee0000.hdmi_receiver: get timings from dma
+[ 1527.443586] fdee0000.hdmi_receiver: act:3840x2160, total:4400x2250, 
+fps:60, pixclk:297008000
+[ 1527.443597] fdee0000.hdmi_receiver: hfp:4294965460, hs:48, hbp:148, 
+vfp:8, vs:10, vbp:72
+[ 1527.443608] fdee0000.hdmi_receiver: tmds_clk:297008000
+[ 1527.443615] fdee0000.hdmi_receiver: interlace:0, fmt:3, vic:127, 
+color:24, mode:hdmi
+[ 1527.443625] fdee0000.hdmi_receiver: deframer_st:0x11
+[ 1528.304515] fdee0000.hdmi_receiver: hb
+[ 1528.451543] fdee0000.hdmi_receiver: tx_5v_power_present: 1
+[ 1528.451560] fdee0000.hdmi_receiver: hdmirx_get_pix_fmt: pix_fmt: YUV420
+[ 1528.451569] fdee0000.hdmi_receiver: hdmirx_get_colordepth: 
+color_depth: 24, reg_val:4
+[ 1528.451588] fdee0000.hdmi_receiver: get timings from dma
+[ 1528.451595] fdee0000.hdmi_receiver: act:3840x2160, total:4400x2250, 
+fps:60, pixclk:297008000
+[ 1528.451606] fdee0000.hdmi_receiver: hfp:4294965460, hs:48, hbp:148, 
+vfp:8, vs:10, vbp:72
+[ 1528.451617] fdee0000.hdmi_receiver: tmds_clk:297008000
+[ 1528.451624] fdee0000.hdmi_receiver: interlace:0, fmt:3, vic:127, 
+color:24, mode:hdmi
+[ 1528.451634] fdee0000.hdmi_receiver: deframer_st:0x11
+[ 1529.317814] fdee0000.hdmi_receiver: hb
+[ 1529.459549] fdee0000.hdmi_receiver: tx_5v_power_present: 1
+[ 1529.459566] fdee0000.hdmi_receiver: hdmirx_get_pix_fmt: pix_fmt: YUV420
+[ 1529.459575] fdee0000.hdmi_receiver: hdmirx_get_colordepth: 
+color_depth: 24, reg_val:4
+[ 1529.459593] fdee0000.hdmi_receiver: get timings from dma
+[ 1529.459601] fdee0000.hdmi_receiver: act:3840x2160, total:4400x2250, 
+fps:60, pixclk:297008000
+[ 1529.459612] fdee0000.hdmi_receiver: hfp:4294965460, hs:48, hbp:148, 
+vfp:8, vs:10, vbp:72
+[ 1529.459623] fdee0000.hdmi_receiver: tmds_clk:297008000
+[ 1529.459630] fdee0000.hdmi_receiver: interlace:0, fmt:3, vic:127, 
+color:24, mode:hdmi
+[ 1529.459640] fdee0000.hdmi_receiver: deframer_st:0x11
+[ 1530.331085] fdee0000.hdmi_receiver: hb
+[ 1530.467555] fdee0000.hdmi_receiver: tx_5v_power_present: 1
+[ 1530.467571] fdee0000.hdmi_receiver: hdmirx_get_pix_fmt: pix_fmt: YUV420
+[ 1530.467580] fdee0000.hdmi_receiver: hdmirx_get_colordepth: 
+color_depth: 24, reg_val:4
+[ 1530.467599] fdee0000.hdmi_receiver: get timings from dma
+[ 1530.467606] fdee0000.hdmi_receiver: act:3840x2160, total:4400x2250, 
+fps:60, pixclk:297008000
+[ 1530.467618] fdee0000.hdmi_receiver: hfp:4294965460, hs:48, hbp:148, 
+vfp:8, vs:10, vbp:72
+[ 1530.467628] fdee0000.hdmi_receiver: tmds_clk:297008000
+[ 1530.467635] fdee0000.hdmi_receiver: interlace:0, fmt:3, vic:127, 
+color:24, mode:hdmi
+[ 1530.467664] fdee0000.hdmi_receiver: deframer_st:0x11
+[ 1531.344437] fdee0000.hdmi_receiver: hb
+[ 1531.475649] fdee0000.hdmi_receiver: tx_5v_power_present: 1
+[ 1531.475665] fdee0000.hdmi_receiver: hdmirx_get_pix_fmt: pix_fmt: YUV420
+[ 1531.475674] fdee0000.hdmi_receiver: hdmirx_get_colordepth: 
+color_depth: 24, reg_val:4
+[ 1531.475693] fdee0000.hdmi_receiver: get timings from dma
+[ 1531.475700] fdee0000.hdmi_receiver: act:3840x2160, total:4400x2250, 
+fps:60, pixclk:297008000
+[ 1531.475711] fdee0000.hdmi_receiver: hfp:4294965460, hs:48, hbp:148, 
+vfp:8, vs:10, vbp:72
+[ 1531.475722] fdee0000.hdmi_receiver: tmds_clk:297008000
+[ 1531.475729] fdee0000.hdmi_receiver: interlace:0, fmt:3, vic:127, 
+color:24, mode:hdmi
+[ 1531.475739] fdee0000.hdmi_receiver: deframer_st:0x11
+[ 1532.357695] fdee0000.hdmi_receiver: hb
+[ 1532.483716] fdee0000.hdmi_receiver: tx_5v_power_present: 1
+[ 1532.483733] fdee0000.hdmi_receiver: hdmirx_get_pix_fmt: pix_fmt: YUV420
+[ 1532.483742] fdee0000.hdmi_receiver: hdmirx_get_colordepth: 
+color_depth: 24, reg_val:4
+[ 1532.483761] fdee0000.hdmi_receiver: get timings from dma
+[ 1532.483768] fdee0000.hdmi_receiver: act:3840x2160, total:4400x2250, 
+fps:60, pixclk:297008000
+[ 1532.483780] fdee0000.hdmi_receiver: hfp:4294965460, hs:48, hbp:148, 
+vfp:8, vs:10, vbp:72
+[ 1532.483790] fdee0000.hdmi_receiver: tmds_clk:297008000
+[ 1532.483797] fdee0000.hdmi_receiver: interlace:0, fmt:3, vic:127, 
+color:24, mode:hdmi
+[ 1532.483807] fdee0000.hdmi_receiver: deframer_st:0x11
+[ 1533.370994] fdee0000.hdmi_receiver: hb
+[ 1533.491726] fdee0000.hdmi_receiver: tx_5v_power_present: 1
+[ 1533.491743] fdee0000.hdmi_receiver: hdmirx_get_pix_fmt: pix_fmt: YUV420
+[ 1533.491752] fdee0000.hdmi_receiver: hdmirx_get_colordepth: 
+color_depth: 24, reg_val:4
+[ 1533.491770] fdee0000.hdmi_receiver: get timings from dma
+[ 1533.491778] fdee0000.hdmi_receiver: act:3840x2160, total:4400x2250, 
+fps:60, pixclk:297008000
+[ 1533.491789] fdee0000.hdmi_receiver: hfp:4294965460, hs:48, hbp:148, 
+vfp:8, vs:10, vbp:72
+[ 1533.491800] fdee0000.hdmi_receiver: tmds_clk:297008000
+[ 1533.491807] fdee0000.hdmi_receiver: interlace:0, fmt:3, vic:127, 
+color:24, mode:hdmi
+[ 1533.491816] fdee0000.hdmi_receiver: deframer_st:0x11
+[ 1534.384324] fdee0000.hdmi_receiver: hb
+[ 1534.499888] fdee0000.hdmi_receiver: tx_5v_power_present: 1
+[ 1534.499904] fdee0000.hdmi_receiver: hdmirx_get_pix_fmt: pix_fmt: YUV420
+[ 1534.499913] fdee0000.hdmi_receiver: hdmirx_get_colordepth: 
+color_depth: 24, reg_val:4
+[ 1534.499932] fdee0000.hdmi_receiver: get timings from dma
+[ 1534.499939] fdee0000.hdmi_receiver: act:3840x2160, total:4400x2250, 
+fps:60, pixclk:297008000
+[ 1534.499950] fdee0000.hdmi_receiver: hfp:4294965460, hs:48, hbp:148, 
+vfp:8, vs:10, vbp:72
+[ 1534.499960] fdee0000.hdmi_receiver: tmds_clk:297008000
+[ 1534.499968] fdee0000.hdmi_receiver: interlace:0, fmt:3, vic:127, 
+color:24, mode:hdmi
+[ 1534.499977] fdee0000.hdmi_receiver: deframer_st:0x11
+[ 1535.397596] fdee0000.hdmi_receiver: hb
+[ 1535.507961] fdee0000.hdmi_receiver: tx_5v_power_present: 1
+[ 1535.507977] fdee0000.hdmi_receiver: hdmirx_get_pix_fmt: pix_fmt: YUV420
+[ 1535.507986] fdee0000.hdmi_receiver: hdmirx_get_colordepth: 
+color_depth: 24, reg_val:4
+[ 1535.508005] fdee0000.hdmi_receiver: get timings from dma
+[ 1535.508012] fdee0000.hdmi_receiver: act:3840x2160, total:4400x2250, 
+fps:60, pixclk:297008000
+[ 1535.508023] fdee0000.hdmi_receiver: hfp:4294965460, hs:48, hbp:148, 
+vfp:8, vs:10, vbp:72
+[ 1535.508034] fdee0000.hdmi_receiver: tmds_clk:297008000
+[ 1535.508041] fdee0000.hdmi_receiver: interlace:0, fmt:3, vic:127, 
+color:24, mode:hdmi
+[ 1535.508051] fdee0000.hdmi_receiver: deframer_st:0x11
+[ 1536.410933] fdee0000.hdmi_receiver: hb
+[ 1537.424223] fdee0000.hdmi_receiver: hb
+[ 1538.437523] fdee0000.hdmi_receiver: hb
+[ 1539.450848] fdee0000.hdmi_receiver: hb
 
-	Do you have chance to review these again? Only few patch without
-your review tag.
+Best regards
+Tim
 
-Frank
-
->
-> Changes in v7:
-> - rework commit message for PCI: imx6: Fix i.MX8MP PCIe EP's occasional failure to trigger MSI
-> - Add Mani's review tags for patch 1, 5
-> - Fix errata number in commit message for patch 6
-> - replace set_ref_clk with enable_ref_clk in patch 4
-> - using regmap_set(clear)_bits in patch 4
-> - Use exactly the same logic with original code at patch 4
-> - Add errata doc link for patch 6
-> - Fix miss "." at comment form patch 6.
-> - order include header for patch 9
-> - use cap register to set_speed for patch 9
-> - use PCIe in error msg for patch 9
-> - Remove reduntant ':' at patch 9' subject.
-> - Change range to ranges for patch 10.
-> - Change error code to -ENODEV for patch 10.
-> - Link to v6: https://lore.kernel.org/r/20240617-pci2_upstream-v6-0-e0821238f997@nxp.com
->
-> Changes in v6:
-> - Base on Linux 6.10-rc1 by Bjorn's required.
-> - Remove imx95 LUT patch because it need more time to work out the
-> solution. This patch add 8qxp and 8qm and support and some bug fixes.
-> - Link to v5: https://lore.kernel.org/r/20240528-pci2_upstream-v5-0-750aa7edb8e2@nxp.com
->
-> Changes in v5:
-> - Rebase to linux-pci next. fix conflict with gpiod change
-> - Add rob and cornor's review tag
-> - Link to v4: https://lore.kernel.org/r/20240507-pci2_upstream-v4-0-e8c80d874057@nxp.com
->
-> Changes in v4:
-> - Improve comment message for patch 1 and 2.
-> - Rework commit message for patch 3 and add mani's review tag
-> - Remove file rename patch and update maintainer patch
-> - [PATCH v3 06/11] PCI: imx: Simplify switch-case logic by involve set_ref_clk callback
-> 	remove extra space.
-> 	keep original comments format (wrap at 80 column width)
-> 	update error message "'Failed to enable PCIe REFCLK'"
-> - PATCH v3 07/11] PCI: imx: Simplify switch-case logic by involve core_reset callback
-> 	keep exact the logic as original code
-> - Add patch to update comment about workaround ERR010728
-> - Add patch about help function imx_pcie_match_device()
-> - Using bus device notify to update LUT information for imx95 to avoid
-> parse iommu-map and msi-map in driver code.  Bus notify will better and
-> only update lut when device added.
-> - split patch call PHY interface function.
-> - Improve commit message for imx8q. remove local-address dts proptery. and
-> use standard "range" to convert cpu address to bus address.
-> - Check entry in cpu_fix function is too late. Check it at probe
-> - Link to v3: https://lore.kernel.org/r/20240402-pci2_upstream-v3-0-803414bdb430@nxp.com
->
-> Changes in v3:
-> - Add an EP fixed patch
->   PCI: imx6: Fix PCIe link down when i.MX8MM and i.MX8MP PCIe is EP mode
->   PCI: imx6: Fix i.MX8MP PCIe EP can not trigger MSI
-> - Add 8qxp rc support
-> dt-bing yaml pass binding check
-> make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j8  dt_binding_check DT_SCHEMA_FILES=fsl,imx6q-pcie.yaml
->   LINT    Documentation/devicetree/bindings
->   DTEX    Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.example.dts
->   CHKDT   Documentation/devicetree/bindings/processed-schema.json
->   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->   DTC_CHK Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.example.dtb
->
-> - Link to v2: https://lore.kernel.org/r/20240304-pci2_upstream-v2-0-ad07c5eb6d67@nxp.com
->
-> Changes in v2:
-> - remove file to 'pcie-imx.c'
-> - keep CONFIG unchange.
-> - Link to v1: https://lore.kernel.org/r/20240227-pci2_upstream-v1-0-b952f8333606@nxp.com
->
-> ---
-> Frank Li (7):
->       PCI: imx6: Fix missing call to phy_power_off() in error handling
->       PCI: imx6: Rename imx6_* with imx_*
->       PCI: imx6: Introduce SoC specific callbacks for controlling REFCLK
->       PCI: imx6: Simplify switch-case logic by involve core_reset callback
->       PCI: imx6: Improve comment for workaround ERR010728
->       PCI: imx6: Consolidate redundant if-checks
->       PCI: imx6: Call common PHY API to set mode, speed, and submode
->
-> Richard Zhu (4):
->       PCI: imx6: Fix establish link failure in EP mode for iMX8MM and iMX8MP
->       PCI: imx6: Fix i.MX8MP PCIe EP's occasional failure to trigger MSI
->       dt-bindings: imx6q-pcie: Add i.MX8Q pcie compatible string
->       PCI: imx6: Add i.MX8Q PCIe root complex (RC) support
->
->  .../devicetree/bindings/pci/fsl,imx6q-pcie.yaml    |  16 +
->  drivers/pci/controller/dwc/pci-imx6.c              | 989 +++++++++++----------
->  2 files changed, 542 insertions(+), 463 deletions(-)
-> ---
-> base-commit: c428091cdcf7f368ad9884f8caa68b79cd6c333a
-> change-id: 20240227-pci2_upstream-0cdd19a15163
->
-> Best regards,
-> ---
-> Frank Li <Frank.Li@nxp.com>
+On 06.08.24 13:58, Dmitry Osipenko wrote:
+> On 8/4/24 02:57, Tim Surber wrote:
+>> Hi Shreeya,
+>>
+>> I tested your patch and noticed problems when using 3840x2160 resolution
+>> at  60fps.
+>>
+>> For my testing I connected an HDMI source and set it to 4k60fps. I
+>> verified that this source and the cables work on a screen at this
+>> resolution.
+>>
+>> Using
+>> 'v4l2-ctl --verbose -d /dev/video1
+>> --set-fmt-video=width=3840,height=2160,pixelformat='NV12'
+>> --stream-mmap=4 --stream-skip=3 --stream-count=100 --stream-poll'
+>> I get the video format output, but not the periodic output which shows
+>> the fps.
+>>
+>> Using
+>> 'GST_DEBUG=4 gst-launch-1.0 -v v4l2src device=/dev/video1 !
+>> fpsdisplaysink text-overlay=false video-sink="fakevideosink"'
+>> I get the following error message:
+>>
+>> (gst-launch-1.0:3231): GStreamer-CRITICAL **: 01:34:39.137:
+>> gst_memory_resize: assertion 'size + mem->offset + offset <=
+>> mem->maxsize' failed
+>> 0:00:03.489382529  3231 0xffffa0000b90 WARN  v4l2bufferpool
+>> gstv4l2bufferpool.c:2209:gst_v4l2_buffer_pool_process:<v4l2src0:pool0:src> Dropping truncated buffer, this is likely a driver bug.
+>> 0:00:03.489421906  3231 0xffffa0000b90 WARN  bufferpool
+>> gstbufferpool.c:1252:default_reset_buffer:<v4l2src0:pool0:src> Buffer
+>> 0xffff98008e80 without the memory tag has maxsize (8294400) that is
+>> smaller than the configured buffer pool size (12441600). The buffer will
+>> be not be reused. This is most likely a bug in this GstBufferPool subclass
+>>
+>>
+>> Everything works with 4k30fps or 1080p 60fps. The hardware should
+>> support 4k60fps.
+> Please do `echo 3 > /sys/module/synopsys_hdmirx/parameters/debug` and
+> show the kernel log of capturing 4k@60 with v4l2-ctl.
 >
 
