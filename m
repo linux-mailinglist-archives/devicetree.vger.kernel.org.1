@@ -1,104 +1,124 @@
-Return-Path: <devicetree+bounces-91475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78F32949688
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 19:18:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AB8F94969E
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 19:24:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35F8A284CB9
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 17:18:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A2761C22591
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 17:24:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F2E346450;
-	Tue,  6 Aug 2024 17:18:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E2B33BB50;
+	Tue,  6 Aug 2024 17:24:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hrXaQzV5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MT9lOAVT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B4315A0F5;
-	Tue,  6 Aug 2024 17:18:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CAAB51C3E;
+	Tue,  6 Aug 2024 17:24:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722964719; cv=none; b=XTrZbRrhN9hZQNjE5HwrzIFNOkeQaf34Z1O3tHcOnZlzXo0YEH0LdU8vrDvsBYGEcQAgbu/R7gQmsGZzmCDPKInAMZjvMf4fbjbJFPf3raj6fpRi5qFrpSWuBCaQ64BASIOhUv1jZHpkaW/Vys5BnN8vPUWD7LDpehA2e6JxOP0=
+	t=1722965069; cv=none; b=XecBNjr1xubqYLR2cMXtQoFCbOBX3LMdSL24LLqu2nre5vMEQk35w62QJQyfL1rR0loqGszfURVtiiWcC8io1qKtvUFiiPyOijroLKS6nv3dRHvxXUhYeubQpHPQjqRPqNwPRbDQBLhAbcNagotfE0noEbXmcSRABQXmOWG2XGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722964719; c=relaxed/simple;
-	bh=1GTwqbPu1DRXS3CHjodb5Z+0yALaqUARNmOxa7+ibwQ=;
+	s=arc-20240116; t=1722965069; c=relaxed/simple;
+	bh=wPSRzRGpwzmF82mrv16loYp6AIiurWjq69qMI7IdNjQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Vr5bAK1v+TeOxGZou4fFQHSa/8ouMEapV2Iy/wQwcYsF9fHEjFKiny4aHHy99UPNRDJa/4MFtHG3Z0hkqV+bCoazwOOWHXF4IHOW9C7/vWsnc8ZI8VSM+nYOq2dm1ZQzWzwTTPQndKgG3k/bHulEOoGzdPWmAo5nk89F6oFBT3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hrXaQzV5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61097C4AF0C;
-	Tue,  6 Aug 2024 17:18:38 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=dvuVTLon/ac4Row2KKAv6cQ++9ve5cTgfOnZWVKlRrotUdGxHKZhODZMTMpxkO1EiVaXR+6DrngXdVGjJM/h0iC7OBK1rLvajrtzousy+aS8WuAxGOWXiNVCVLWDCd769qNN4pQLYmSzUqb6yzgVCDDHojZVs6yvS/zccwLcVJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MT9lOAVT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 251CCC32786;
+	Tue,  6 Aug 2024 17:24:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722964718;
-	bh=1GTwqbPu1DRXS3CHjodb5Z+0yALaqUARNmOxa7+ibwQ=;
+	s=k20201202; t=1722965068;
+	bh=wPSRzRGpwzmF82mrv16loYp6AIiurWjq69qMI7IdNjQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hrXaQzV5OLp1cBVoU02ep1rK415nwGP5UokWusAETNjwR76LaVhzspMByRxFuJWsT
-	 0fa2JgpjZ/J8Ac2HOsooKsQvvlPplyo2HhJv+OZoSY//oGoaDzdm7hpNqkGoePKvYg
-	 QoenUig9vGTPTMOLejYETyF1ICj2e+LQKM04cnTMnh9eKw+apMNA8bFXI7fBNzl5Zi
-	 9vKqZL3t7zaWQl6v1DBpMcig/FEhR8l5plJ302fo2bhExWaLnO9F+/BuYYQau7fZ9U
-	 OruGOAdoSqo7zExTwgHjz2mJfvDv1QH0MPmnmNSCikEh1vMgMbDR2AefhnGXyU6sJp
-	 /deUODRHopq2Q==
-Date: Tue, 6 Aug 2024 11:18:37 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	netdev@vger.kernel.org, Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	linux-can@vger.kernel.org, Duy Nguyen <duy.nguyen.rh@renesas.com>,
-	Eric Dumazet <edumazet@google.com>, devicetree@vger.kernel.org,
-	"David S . Miller" <davem@davemloft.net>,
-	linux-renesas-soc@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH v3] dt-bindings: can: renesas,rcar-canfd: Document R-Car
- V4M support
-Message-ID: <172296471618.1826539.5724224646610844294.robh@kernel.org>
-References: <68b5f910bef89508e3455c768844ebe859d6ff1d.1722520779.git.geert+renesas@glider.be>
+	b=MT9lOAVT/MW5+lKZD86HtDMYtX+lUJ4jVxLv6qHLRXYRvNAlABzMXBKj8m95OtZSl
+	 vRxHJZdv/sEY121ed37HSh6fR6F6sqxtWQOI5pFI4G9X1cs8kgKNXGY4qJHOX66WRZ
+	 GaDrku53SSEKzjR+0uRZoWBkUD5EtFK2svhO6Dkks329pkia9vY0O1+XSVh/xegXuS
+	 8LRbOtBTElzmfjiEyeAW2dR3WsUDzmQ6N9jtcc+nN032JFIU3wFBxIDCNOpWCtOFHN
+	 ArrFvUIYeurTB4yW42lLnQt0dO8eJThG9ZbS9GevKXGjetR6/wOdJD9Y+1K9QZ0L1N
+	 iVKwoogYU9A/w==
+Date: Tue, 6 Aug 2024 18:24:24 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, linux-kernel@vger.kernel.org,
+	Marc Zyngier <maz@kernel.org>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	linux-riscv@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [RFC v7 5/6] gpio: mpfs: pass gpio line number as irq data
+Message-ID: <20240806-baking-frustrate-32d0af5ed39c@spud>
+References: <20240723-supervise-drown-d5d3b303e7fd@wendy>
+ <20240723-handoff-race-33160609553f@wendy>
+ <CACRpkdYdxdLG8=_Xd7HLwQ5+pxwGw6Xte7=UNbknB8HR474bcQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="DLvlmKu678eDGQat"
 Content-Disposition: inline
-In-Reply-To: <68b5f910bef89508e3455c768844ebe859d6ff1d.1722520779.git.geert+renesas@glider.be>
+In-Reply-To: <CACRpkdYdxdLG8=_Xd7HLwQ5+pxwGw6Xte7=UNbknB8HR474bcQ@mail.gmail.com>
 
 
-On Thu, 01 Aug 2024 16:03:17 +0200, Geert Uytterhoeven wrote:
-> From: Duy Nguyen <duy.nguyen.rh@renesas.com>
-> 
-> Document support for the CAN-FD Interface on the Renesas R-Car V4M
-> (R8A779H0) SoC, which supports up to four channels.
-> 
-> The CAN-FD module on R-Car V4M is very similar to the one on R-Car V4H,
-> but differs in some hardware parameters, as reflected by the Parameter
-> Status Information part of the Global IP Version Register.  However,
-> none of this parameterization should have any impact on the driver, as
-> the driver does not access any register that is impacted by the
-> parameterization (except for the number of channels).
-> 
-> Signed-off-by: Duy Nguyen <duy.nguyen.rh@renesas.com>
-> [geert: Clarify R-Car V4M differences]
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> v3:
->   - Add more clarification,
-> 
-> v2:
->   - Drop RFC state now it works.
-> 
-> Changes compared to the BSP:
->   - Restrict number of channels to four.
-> ---
->  .../bindings/net/can/renesas,rcar-canfd.yaml  | 22 ++++++++++++++-----
->  1 file changed, 16 insertions(+), 6 deletions(-)
-> 
+--DLvlmKu678eDGQat
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+On Mon, Aug 05, 2024 at 10:11:09AM +0200, Linus Walleij wrote:
+> Hi Conor,
+>=20
+> thanks for your patch!
+>=20
+> On Tue, Jul 23, 2024 at 1:28=E2=80=AFPM Conor Dooley <conor.dooley@microc=
+hip.com> wrote:
+>=20
+> > Since the interrupt mux is going to provide us a 1:1 mapping for
+> > interrupts, and it is no longer correct to hit all of the set bits in
+> > the interrupt handler, store the GPIO that "owns" an interrupt in its
+> > data pointer, so that we can determine which bit to clear.
+> >
+> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+>=20
+> I don't quite get this, the irqchip of the GPIO is clearly hard-coded
+> hierarchical, then why don't you:
+>=20
+> select IRQ_DOMAIN_HIERARCHY
+>=20
+> And use e.g. girq->child_to_parent_hwirq() to handle the
+> hierarchy?
+>=20
+> See drivers/gpio/gpio-ixp4xx.c for a simple example of a hierarchical
+> GPIO interrupt controller.
 
+Cool, I'll check that out. I've got some re-figuring out of the
+interrupt controller to do given Thomas' comment there. Maybe the
+combination will solve the horrible % 32 hack...
+
+Cheers,
+Conor.
+
+--DLvlmKu678eDGQat
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrJcRwAKCRB4tDGHoIJi
+0uwCAP9KBPLktC1E1wnlwW7qvgZUaqUS4vNcQJ5ncTOE0NAcpgEA1Fb78h/UyI/0
+zjV8D2T7x8EesEC+pTd1Pr7+5l8KsAs=
+=8WPg
+-----END PGP SIGNATURE-----
+
+--DLvlmKu678eDGQat--
 
