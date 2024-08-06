@@ -1,78 +1,76 @@
-Return-Path: <devicetree+bounces-91320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F76C948EE7
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 14:16:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15FC3948EEA
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 14:17:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DEB6128CB6D
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 12:16:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C489828CD96
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 12:17:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C94E31C9EC3;
-	Tue,  6 Aug 2024 12:12:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00B2B1C3F30;
+	Tue,  6 Aug 2024 12:13:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="KszOxV6u"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="KT621vt6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 043591C4622;
-	Tue,  6 Aug 2024 12:12:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 154081C3F08;
+	Tue,  6 Aug 2024 12:13:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722946378; cv=none; b=aqg7DXews7n9q7+bOx482gdhTYno65P0cxwXmgVOfwMurXIKT320XCRVBoo8DOSTNpn3nSMxpVUFmsiMxOiuA+VrIOHcFKVYR/f2Hdlusccuahc2v4t7ZAaH8lG2tHVHnm5GOjPscU74LqLEsC4UX/42rAollYOd49wmQpn7l94=
+	t=1722946400; cv=none; b=eUvhawMWXG99ZkypX1nlvtQiQiirABiOdpSnahH9Se4OXFkEiufDcEHYhNzs30Ie6qB4WLYV2pWaX4CK2kaFZ4E5zTu6ToF02w4GQUqOZ33VcLh/GGFWzZoEzv8R8PCjuk+/Z0GFXuK1DZh2xQby2qxukOCImfshaxV+feAAByE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722946378; c=relaxed/simple;
-	bh=ij9sLePyaJY22skmN2sv317+IUd6trLmSCTEE9vl6wk=;
+	s=arc-20240116; t=1722946400; c=relaxed/simple;
+	bh=vDIYMNWUnBp2X+UXR1beZL/3sN5snPK3x8hJqnHf5Cc=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pnzPZNCUVJ58UppcIwqjVhXzj52+4WjZaM3T/b6ZW+sknjyoacF7xx49Ko4dyPGOvGvbEy3xffxbaGvi/uQsQUFY3+YfBr8E57TROSW8Y7GcFqUo13P9TMR3W3Rl34Q2ZIjUJTbvXyPWe36ZbV2qALMqZufEqgZTmmWWXHQ48Nw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=KszOxV6u; arc=none smtp.client-ip=198.47.23.248
+	 MIME-Version:Content-Type; b=uAzh+SwNdafYEhYiEkf3JecQU19Igo83EFW+xDPoaxOFwVNc7VDtPGe6zLii/WLJ9YK2xBflrxh7a2ouAWffdJxz5UZ4f8KGint5jcv5Yk87ep8H3LhXRls7EVGmKLaxf1NnV4z1FqCJtjBPASDtHd68cpHLDUwp3BZSWAroIk0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=KT621vt6; arc=none smtp.client-ip=198.47.19.142
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 476CCct7063931;
-	Tue, 6 Aug 2024 07:12:38 -0500
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 476CCtUA124393;
+	Tue, 6 Aug 2024 07:12:55 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1722946358;
-	bh=enREF7ItjJiUxrF5pFpnS1rZGxyVdchoSvuFJO/m2yQ=;
+	s=ti-com-17Q1; t=1722946375;
+	bh=p0WXhYHU2Q5VD4zKoqLsbmGP4zVGVJ14t95iABMkEHI=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=KszOxV6unmRdGvZDqWv+dS2JW3Fswk6CrdiX3tC/P8dpzUa9GIAaLXLNXeBt+qxFN
-	 OQcFcPPmCGCp0CjF68sBxVBONWTux0uODR1WVcGSktj5Gk7PKklwpuUEJyGUWWBnSA
-	 D1FDdQcOLKBsynR5rIKQywvW2+tl0Y8QU5QuRkVs=
+	b=KT621vt6KVXuvAjsx9gLIk8eL/nPwaBaNYviC+DG+B6JqRMHNju8gd07c3B4fPVwQ
+	 IViv6X1BNAeGi7AMrYbABKNhzZw0fwrRriAgaj7Z6x0peZ75xdhnQae3t7MplkOZ6+
+	 iZT6UCc2TYgMtm2QLrpqsziXwde9yjolw2MP9vqA=
 Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 476CCcaT023414
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 476CCtdA023460
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 6 Aug 2024 07:12:38 -0500
+	Tue, 6 Aug 2024 07:12:55 -0500
 Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE109.ent.ti.com
  (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
- Aug 2024 07:12:38 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE114.ent.ti.com
+ Aug 2024 07:12:54 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE114.ent.ti.com
  (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 6 Aug 2024 07:12:38 -0500
+ Frontend Transport; Tue, 6 Aug 2024 07:12:55 -0500
 Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 476CCcnM082165;
-	Tue, 6 Aug 2024 07:12:38 -0500
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 476CCsFE083782;
+	Tue, 6 Aug 2024 07:12:54 -0500
 From: Nishanth Menon <nm@ti.com>
-To: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Jared McArthur
-	<j-mcarthur@ti.com>
-CC: Nishanth Menon <nm@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Tero
- Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH v2 0/3] arm64: dts: ti: k3-am62p/j722s: Fix gpio-ranges
-Date: Tue, 6 Aug 2024 07:12:34 -0500
-Message-ID: <172294634855.366372.6539527201402606616.b4-ty@ti.com>
+To: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Parth Pancholi <parth105105@gmail.com>
+CC: Nishanth Menon <nm@ti.com>, Parth Pancholi <parth.pancholi@toradex.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4-main: Correct McASP DMAs
+Date: Tue, 6 Aug 2024 07:12:53 -0500
+Message-ID: <172294636781.366424.12556232446484144783.b4-ty@ti.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240801210414.715306-1-j-mcarthur@ti.com>
-References: <20240801210414.715306-1-j-mcarthur@ti.com>
+In-Reply-To: <20240730093754.1659782-1-parth105105@gmail.com>
+References: <20240730093754.1659782-1-parth105105@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,27 +81,21 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Jared McArthur,
+Hi Parth Pancholi,
 
-On Thu, 01 Aug 2024 16:04:11 -0500, Jared McArthur wrote:
-> Fixes issues within the am62p and j722s gpio-ranges. Adds the missing
-> holes within the ranges as well as the the missing gpio-ranges
-> property within the mcu_gpio0 node of the am62p.
+On Tue, 30 Jul 2024 11:37:54 +0200, Parth Pancholi wrote:
+> Correct the McASP nodes - mcasp3 and mcasp4 with the right
+> DMAs thread IDs as per TISCI documentation [1] for J784s4.
+> This fixes the related McASPs probe failure due to incorrect
+> DMA IDs.
 > 
-> v2 changes: Removes the duplicate ti,ngpio property from the mcu_gpio0
-> node of the k3-am62p-j722s-common-mcu.dtsi.
 > 
-> [...]
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/3] arm64: dts: ti: k3-am62p: Add gpio-ranges for mcu_gpio0
-      commit: 4e436f6fb95e507131df78c0d98052237db60ecc
-[2/3] arm64: dts: ti: k3-am62p: Fix gpio-range for main_pmx0
-      commit: 98897a300859dca62f834a5d1f60267032a9fe54
-[3/3] arm64: dts: ti: k3-j722s: Fix gpio-range for main_pmx0
-      commit: 04c90681144c40619524367c69e40736a6fa690c
+[1/1] arm64: dts: ti: k3-j784s4-main: Correct McASP DMAs
+      commit: 402d336053a5d827c70ec11109e079811e86e0e8
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
