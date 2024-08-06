@@ -1,194 +1,205 @@
-Return-Path: <devicetree+bounces-91211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44D8A94886C
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 06:37:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA86394888F
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 06:58:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07DDC283462
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 04:37:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76E421F235EE
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 04:58:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C230D176242;
-	Tue,  6 Aug 2024 04:36:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94E0D176252;
+	Tue,  6 Aug 2024 04:58:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="AofDpENf"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="cubo4W6k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010011.outbound.protection.outlook.com [52.101.228.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDFE2B663
-	for <devicetree@vger.kernel.org>; Tue,  6 Aug 2024 04:36:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722919019; cv=none; b=GbSuKy/UVwDze8d0NP1DnJ2PH2vyToPJyLdjQDEaYZxsg5Nsf6WiitGT7ipW6ZPrJDOVQWeM4k0LKS6YfYpQzy0Y+ERgFo32/1Tuncgw4W70i3x3cO0CD1Vj+T47ky7Ga8yxWkVjfJI5TqcxUiqIC5fZWGTjIZZfRLBr6G56/gg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722919019; c=relaxed/simple;
-	bh=C0XbZuk8zqHuNcCHOb0mh6FpNfUNRP/FVzL26YJzAgY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=h0SSwV3BkCYURaHXP+NqQkK3MZt0axomynMD6GwZeA/10PG5Rqb142X85CrGDlD9pc1zBQDgVGNsQnYgtFavvTawWOVLY52vCBqYRDjzqEjPFRxE1so/rImBNOHWGtIU224QBr+9mhtWAcPEE6JXV+cXJZLJicBvlgPb4HlgDrA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=AofDpENf; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-52efbb55d24so325475e87.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2024 21:36:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1722919016; x=1723523816; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TjQAjmGk1n7ajuQcs+KaJPCMDM2UdVWblEx6MXLoPhk=;
-        b=AofDpENfUp4qBUa7CJCBRyBEEiy+nvUdns4YxLuAObZrq7Uf04SKIZfPhb09pIda1n
-         WlOlEAUr7DymrFAlhzFGgBux+IX8alHXAqCCHQbddZVKymFRyaPdOepWjZYOGT3SxdzR
-         ggmJEEsFnmaQ/uCpInQyQmPh0JFzqsvFpd7n0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722919016; x=1723523816;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TjQAjmGk1n7ajuQcs+KaJPCMDM2UdVWblEx6MXLoPhk=;
-        b=Vwr258qsJBDD3gUQM486l3gUJNECz9aeIGV3/+25AwxivoER2Dm+ohFWFVuhPnsyq2
-         1FmPJDqe0PeDyR13HzxMhznU+ZJCSNkIZ+ZZGIRG+kSxYBBZA08SIthM22PmAzX9f2xs
-         7R/YMxzOGJGUv9U/NzPWdXwnjijrrX1ZENkewnWBJDA+3wszxCk9gNHHvMpncbLRBGDQ
-         oGw5pMu3R4FIArUVI45RmoOz2asuB/9XMefx2n/RZ5XtXLd2MrWkcMHeuD64yiDcqErw
-         zbCMk0E09c3mJR0ow7J7nSevD97WdbUzckkdz3VHQ0cIjl3BWOovhaKMLXGOiEbqFGGI
-         3u5g==
-X-Forwarded-Encrypted: i=1; AJvYcCUwDUaePAfhAc1SoTbOif1BSJilTJxTI7Mlq6CVNRU4RmNjs/fawInXFE5fQpxeXO90KxvvG9g4chK7+lX8M8BFGHM5xTVC8cxnrw==
-X-Gm-Message-State: AOJu0YyWiQniqSuv4JzMS2aDfUPRsSueZX7dxFC5tQ6yqlEcfEnXSp06
-	FGSoXecVkpSrJkkgS8bU6DQxTeK0LMNNlKoer4r1fuFKs7lsjXOIL1RTmhfdqUUMro3LJkJmfmj
-	oOg44UkktPhwktJOExxagrkFe5L4u7ytTkFcs
-X-Google-Smtp-Source: AGHT+IH6osN8AiHIsz3iGxVmsYDHTrZXNZkckgohptXBOcaV4KXsXzyqgFu5HOFrpie8oXsv/eCahc96/S2ayEDpeWY=
-X-Received: by 2002:a05:6512:2308:b0:52c:9ae0:beed with SMTP id
- 2adb3069b0e04-530bb3bc202mr11441300e87.52.1722919015831; Mon, 05 Aug 2024
- 21:36:55 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F28D3A35;
+	Tue,  6 Aug 2024 04:57:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.11
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722920283; cv=fail; b=lGf6ZwcihDe/K7/PAlUycXzkdSMAYKScb9idbb2PaBwfFm+STPBq0fNFm8TmZRdfWf21HJReWeSB8zLP6Bpxm3Ip3cTyFuiFrpbCTeofFNmGuVRz2JmXG8kKObaGNMP1Qr2K3R5PeQ4gnT8D8wpE/qHTybWoBb2MMJNe35XcDN0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722920283; c=relaxed/simple;
+	bh=TbZPUwKt1/PO10PVXORGjTxHsTsdyJA/CYQ3lr+ZzAk=;
+	h=Message-ID:To:From:Subject:Content-Type:Date:MIME-Version; b=TzAa7buB3GenorutNR8IPpaPAYNGwXZUvV4ae4QWsVio1N3byMyXG4r80EVu/6TuNZRn728d0c6vObiczML2UKA7ocKwbdmdwSCk93/EPnqS7i14/8IeyMkP+9wluynnu0yTnuiL1sPHbryYpqNRkNm9bF8shp5Wv6ef3WLgAbk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=cubo4W6k; arc=fail smtp.client-ip=52.101.228.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pO9gptSOUMwGA9xO9g3BY1EBETpGeNSNhjwXeQuJsHIHcSyPRRslsFVdILZo4dlWrYYfZBt2wRnNphbinp4BlhsFgc7BNa8alJEqZUd/OityImSAvrUTn1Fl7Jj6ZFfmbgDj+bzFKjADH8w0GHjNuGBO99+Om90PYEnH7ARkIFJ7BBJmYSDu4RinxZlnePJJWVoWEk1i2nliuvWyOh+X4ZfJtZKgmZpSBdzsSJvwl5f6ZA5Y+gBfibBSwH3QbFI5GeyAR9x5zCkbZAqvAQQtmHZJ6TLqNa9NR1/gONxg8GttqgF9KpLRs8Ltw+xwZikRkVAhcMRy1jU4ZUJeN4Z+vg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+8nD/5uyNe2wLHkJARAqr0/7o/rZUI6BDU20ibOgI6E=;
+ b=StJnOMHicbPsFUltpXHWfy3M8gagj4KR68pN0MFyeUgisMt2UUgEpqLTxZlD0WxfVC/E+V05Iqe6ksd2iPTOMGL1cKI74MdY+vKP9VIVlLPIrZh1a06ZYot2pfOn/fAX/iSMAxcOYmAt/cux+P2yD/9zTKMp1gtCnCmX7XbZnaBUrJuSTOJIk2dSSxxpTXIzxad6onsQ8uZV0IK0Z4tn4XUA7EgRs67bCS+8gYdeCNO4upNBl9XGTflumH7ZPhAm5Zcf3fOBBBmyb+6mjpar0ckhGm/JhvmNK1lA5SZZFSpjNCsrEYVUnZAlstTn/78sy1LtKeHcYFDfshiVUKadNA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+8nD/5uyNe2wLHkJARAqr0/7o/rZUI6BDU20ibOgI6E=;
+ b=cubo4W6kZnovnFmoQgmXg0lHPQirwK8RWu/cBegUJZBaM8EXYvwkDSK+T1JprRtbVA2pOschmR32IVTtyuQBY9bfROCRKfFpMo3jwAT9jz8vO4apdJfsCTT5dYRzN6b6FTk7pGIpwIYIXdvJrFla+hgaiyt9NNUsbqg3n0sKb6c=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by TYAPR01MB6380.jpnprd01.prod.outlook.com
+ (2603:1096:400:a1::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.25; Tue, 6 Aug
+ 2024 04:57:57 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11%5]) with mapi id 15.20.7828.023; Tue, 6 Aug 2024
+ 04:57:57 +0000
+Message-ID: <87mslqw8mj.wl-kuninori.morimoto.gx@renesas.com>
+To: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, Helge Deller <deller@gmx.de>, Jaroslav Kysela <perex@perex.cz>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Liam Girdwood <lgirdwood@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Mark Brown <broonie@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, Maxime Ripard <mripard@kernel.org>, Michal Simek <michal.simek@amd.com>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, Takashi Iwai <tiwai@suse.com>, Thomas Zimmermann <tzimmermann@suse.de>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org, linux-media@vger.kernel.org, linux-omap@vger.kernel.org, linux-sound@vger.kernel.org
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Subject: [PATCH 0/9] of: property: add of_graph_get_next_port/port_endpoint()
+Content-Type: text/plain; charset=US-ASCII
+Date: Tue, 6 Aug 2024 04:57:56 +0000
+X-ClientProxiedBy: TYCPR01CA0119.jpnprd01.prod.outlook.com
+ (2603:1096:405:4::35) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240805065051.3129354-1-treapking@chromium.org> <8e089dc0-9342-480f-ac8a-93b5bfe1241e@collabora.com>
-In-Reply-To: <8e089dc0-9342-480f-ac8a-93b5bfe1241e@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Tue, 6 Aug 2024 12:36:44 +0800
-Message-ID: <CAGXv+5GnkhyT+nKq7j50G+Lpm720wLX3Jqfa5QWP6p29yUKq7Q@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8183: Remove clock from mfg_async
- power domain
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Pin-yen Lin <treapking@chromium.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Kiwi Liu <kiwi.liu@mediatek.corp-partner.google.com>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	Enric Balletbo i Serra <eballetbo@kernel.org>, linux-mediatek@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Hsin-Te Yuan <yuanhsinte@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Aug 5, 2024 at 7:46=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 05/08/24 08:50, Pin-yen Lin ha scritto:
-> > This clock dependency introduced a mutual dependency between mfg_async
-> > power domain and mt8183-mfgcfg clock, and Mediatek has confirmed that
-> > this dependency is not needed. Remove this to avoid potential deadlock.
-> >
->
-> Uhm, have you tested this upstream with Panfrost, or only downstream with=
- the
-> proprietary Mali stack?
-
-Tested-by: Chen-Yu Tsai <wenst@chromium.org>
-
-With glmark2-es2-drm on linux-next-20240805:
-
-# glmark2-es2-drm
-Warning: DRM_CAP_ASYNC_PAGE_FLIP not supported, falling back to
-'mailbox' mode for SwapInterval(0).
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D
-    glmark2 2023.01
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D
-    OpenGL Information
-    GL_VENDOR:      Panfrost
-    GL_RENDERER:    Mali-G72 (Panfrost)
-    GL_VERSION:     OpenGL ES 3.1 Mesa 22.3.6
-    Surface Config: buf=3D32 r=3D8 g=3D8 b=3D8 a=3D8 depth=3D24 stencil=3D0=
- samples=3D0
-    Surface Size:   1366x768 fullscreen
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D
-[build] use-vbo=3Dfalse: FPS: 134 FrameTime: 7.485 ms
-[build] use-vbo=3Dtrue: FPS: 391 FrameTime: 2.559 ms
-[texture] texture-filter=3Dnearest: FPS: 378 FrameTime: 2.652 ms
-[texture] texture-filter=3Dlinear: FPS: 329 FrameTime: 3.046 ms
-[texture] texture-filter=3Dmipmap: FPS: 369 FrameTime: 2.717 ms
-[shading] shading=3Dgouraud: FPS: 367 FrameTime: 2.731 ms
-[shading] shading=3Dblinn-phong-inf: FPS: 372 FrameTime: 2.690 ms
-[shading] shading=3Dphong: FPS: 342 FrameTime: 2.930 ms
-[shading] shading=3Dcel: FPS: 338 FrameTime: 2.964 ms
-[bump] bump-render=3Dhigh-poly: FPS: 336 FrameTime: 2.978 ms
-[bump] bump-render=3Dnormals: FPS: 376 FrameTime: 2.663 ms
-[bump] bump-render=3Dheight: FPS: 328 FrameTime: 3.052 ms
-[effect2d] kernel=3D0,1,0;1,-4,1;0,1,0;: FPS: 316 FrameTime: 3.169 ms
-[effect2d] kernel=3D1,1,1,1,1;1,1,1,1,1;1,1,1,1,1;: FPS: 118 FrameTime: 8.5=
-11 ms
-[pulsar] light=3Dfalse:quads=3D5:texture=3Dfalse: FPS: 372 FrameTime: 2.692=
- ms
-[desktop] blur-radius=3D5:effect=3Dblur:passes=3D1:separable=3Dtrue:windows=
-=3D4:
-FPS: 51 FrameTime: 19.764 ms
-[desktop] effect=3Dshadow:windows=3D4: FPS: 191 FrameTime: 5.254 ms
-[buffer] columns=3D200:interleave=3Dfalse:update-dispersion=3D0.9:update-fr=
-action=3D0.5:update-method=3Dmap:
-FPS: 49 FrameTime: 20.746 ms
-[buffer] columns=3D200:interleave=3Dfalse:update-dispersion=3D0.9:update-fr=
-action=3D0.5:update-method=3Dsubdata:
-FPS: 49 FrameTime: 20.437 ms
-[buffer] columns=3D200:interleave=3Dtrue:update-dispersion=3D0.9:update-fra=
-ction=3D0.5:update-method=3Dmap:
-FPS: 53 FrameTime: 18.997 ms
-[ideas] speed=3Dduration: FPS: 117 FrameTime: 8.554 ms
-[jellyfish] <default>: FPS: 282 FrameTime: 3.559 ms
-...
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TYAPR01MB6380:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4ce5ab19-471e-46eb-671a-08dcb5d4568a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|366016|7416014|376014|1800799024|38350700014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?bIbzxOMsYRcp2+aneaYO9u3FGNuKTFQ959w32Ex2Qf1bJFqDB5LgqtGp6FAG?=
+ =?us-ascii?Q?KLCFyKx4syM4LtxgqectlOnEc0OSaihP/K3NTxs7MQCmn8jD0TTRNt5V6EoD?=
+ =?us-ascii?Q?mFzlZx9LxM3IXy14lF+51QsR8aGrCIKlWGCWts9CFhWdrdo5uTfiCvWvG5qo?=
+ =?us-ascii?Q?H5muYoAA1z1Zja1KApPb6HFxk8+vumTnYa1kkZx8p104q2y/zIKqfmRTyWu7?=
+ =?us-ascii?Q?bJkPxLRyYsl2CQtMsGVi9kdCjMCollwdlprD3J+ectSyE8nN4PErbLE2qyn/?=
+ =?us-ascii?Q?/0lMaj4PR6dYDjcu9x94MaYAdJS4oLU9brQjwdZJJGiUhYVHTjUc53BDuUCX?=
+ =?us-ascii?Q?lTnXZzgoVHOgmn5K0KtZKoM3+7oZPzWh3Avt9rHXvgRo7cSIUA2fah1T9gBf?=
+ =?us-ascii?Q?femOevbM8z1GeZ1cNdujDEwCpPhftXO8MSHj+hgnIRUCKv3hs4ea26YEpne1?=
+ =?us-ascii?Q?76GkG0gcl06b+F7j3yzqJMpG4/21Kw+g9vO2UwOOrfeihLAaAP5CsmydMNg8?=
+ =?us-ascii?Q?Iya9/ype3ussOFKXZ/nm56He0dMvb+a9MsO0HG4jvFdUFQswyuagpQDU3k/8?=
+ =?us-ascii?Q?G7BaZ0BX+zqO3hNzy0BITFMAamApEv452e6r6PRl2bwq/E48Vw6V/U1XiOLf?=
+ =?us-ascii?Q?SPodbdfRZtJXxITWvhWrTlD7ffZURsiUyRXAiufr5a9r5odzCiTaACxn7u1W?=
+ =?us-ascii?Q?hlakfMH2KwjQtXUMiTq9q5JcZHYSvEUVaPNGaiE5xABn3J6AS5w1RL3ZrhaY?=
+ =?us-ascii?Q?Jf6/P6sJlZHKczbR2kDroytDTigRf2+X/erwXxrdTfrqZMh88ddYoZ9vlARk?=
+ =?us-ascii?Q?fYehnLoX8DZQA8ELvS+l9+arOmntf8qUp2F99Ab5ZZyqTM1kBSJB9lM4bN8t?=
+ =?us-ascii?Q?aTp6ZpcM1uINXgEDKIoWJCzzV+on4RcYlmVEnjXHJn5yPjmWU0DJGc5N/BAz?=
+ =?us-ascii?Q?nJ4HIGMWkdEc1V8i6hA90x5J7fOqV28Z/qWNrsYa89gEVtGj7cTV89KkiM3C?=
+ =?us-ascii?Q?tsi3cj7XNQtIvTJRR8l5UhXiLno/QV9rpcnl4barcE0C+1hnsbM83wLZ2kpI?=
+ =?us-ascii?Q?FP6Qqjg53jUleDPVruHvLukKOPYMTPO//NW7fbXhQWtga+aIQ7jQlUWBhMbP?=
+ =?us-ascii?Q?LUBVHJ+ftFXc36CT/2gWOO6fNyBjODhXiiDW4tuAdXSPuBZe6udVs5xuhowm?=
+ =?us-ascii?Q?b/uv2bTKMzJkPI524ExAUhjR8R28RFj5NTN4oUVI0VeR7rC/gsIERgc5/pOp?=
+ =?us-ascii?Q?ke/KntkQh8zhittYthdjv98TXcIwzgEKS2K5y6AGV1kCwltepM8IlH0zW7Iw?=
+ =?us-ascii?Q?8tQq6UltSPtvjxZWhP3jUP+CtRpYak28tQY52bBBVi9HmXVVXhdeeE6Hj81f?=
+ =?us-ascii?Q?usnSMRFjo5e/7CVoJMPLV7LvbmCV4rF7B1fcL7eKiBPOThRBtRgmzDJZ9Jll?=
+ =?us-ascii?Q?srT/q598lFk=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(366016)(7416014)(376014)(1800799024)(38350700014)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?1V+Ookv4dpwnFFb7anNMiFAzSnw9qMCeE7cA54fmmc0l+dhwmABSxJKmjqZr?=
+ =?us-ascii?Q?SvqgTQizJByxn/oZPmJm0zfRAD9MY2N6SuqnpzZZOCpnQBBt+VVMnO7y5AS0?=
+ =?us-ascii?Q?gKcNUuDTyN5s1loHSstZacSM4+b2TgJKeSX5DxSqLAw0qUgf5t3zktJTujKD?=
+ =?us-ascii?Q?P70kfFjdi+b1YUkfdkoo5lMWXuRn67YxSG/2sDHmzCOQ77K9vwFHcQKzYcQ3?=
+ =?us-ascii?Q?itfJ4s2P7+Aztfx3OMmOk9O9JXoZ56KpliKRFXkKC2EmhtAFVFu0f/T1acOb?=
+ =?us-ascii?Q?lk23ramWJAe2T26csAYypLDtX7OwlA/7FbYF5IBHIoDAMipyO8zlvkrC7NQR?=
+ =?us-ascii?Q?of7M0Vgxd0fbxwkhC5vJqdF4VZau3v8XB5DTBZAlYILapHvGWPNb16atzORZ?=
+ =?us-ascii?Q?oxUAwwQUrf3dQtAyVrv3rAG5s++2T/z7tSTNmGSLYXcftMtnbfD/XnDh00Re?=
+ =?us-ascii?Q?JILKvz1L8siby8NV/i7374u3W2sF8lAd8dYo/RVftKjlL6NmwSZoJdb53zRV?=
+ =?us-ascii?Q?7xDN2OJCwgkscQRfvOt7axoXLsbFHnNuP0eqAK01J+qRproSsrjk6O1rg0ba?=
+ =?us-ascii?Q?zAYu4VAtQgtequXxtrwXhGYjplvaumbp5pU+nCl2uuzNJCQjU/olj2YZIYX0?=
+ =?us-ascii?Q?o0wPqJC68ma06Xsb/c5ez4x7XeOeMaHx+avV0ZGYrJ82X33EFXcMpIeA/Hsa?=
+ =?us-ascii?Q?1sM8VAVX5Ig3CG8WvEFhrpJRKctgKk8akO9AbYAk/z7i/vUBAud5dGeI2PCH?=
+ =?us-ascii?Q?qFthtSBeGViSl5+c+2ZqvH9JrXgrBTsJ4Lm/xmUdwoHaxtenLVMLyK96b7Wk?=
+ =?us-ascii?Q?dlHU4murXpjjrBCOjtAQSuZWX0SeqzdDo98mbq6YftN/wnn549I3XEj4WRin?=
+ =?us-ascii?Q?4f7jgxIDFMrTTLGKFH3x5UYuTv8AW867HYIDxWG8rLlDaqaOe+TT9c7FBvCR?=
+ =?us-ascii?Q?P/bW5IIr6MIdCAeZf18Vur65N6KAt59P0dtHo6e9ad7bi4I3U/f1NiVUjDhj?=
+ =?us-ascii?Q?021Bnx0aWobX+Bwr4Em1S/zrH4j641SOyf7d/tEQqv/oc2nyBg4hotqFtbMH?=
+ =?us-ascii?Q?Cq5sx7iKbtJvDaH2ECa4B1j2UDih5i6ESsGc9nMxAFs2Le+9MVTSqiDOznY/?=
+ =?us-ascii?Q?8D2itOSVHKrK7e7qlxsLMUdXn4/N5UHndBGp5lq2Ae7b9AD0MxDaiRNNXhYb?=
+ =?us-ascii?Q?1xPKTP2IP0d+vOEHIZQu81P7avXk6naNy86A7O4KXSh+6QUbthvGme3YcdfU?=
+ =?us-ascii?Q?IgM0QfHsHt9O087XKBL/HneRwWQx5humRqCiBqnKVtHwnDG23Z2csM04s12n?=
+ =?us-ascii?Q?Gmwd48CtVfyM93zwLsP2Dci51K+r/RMFG1cpfr1yaMCPCVOnwqqYi7xeOQPP?=
+ =?us-ascii?Q?spPYxtCFoO+xoXlj3u8a6Sx99BUWdzXPNDgFL7bpR4O4x2qANrLVk5n64g4P?=
+ =?us-ascii?Q?00v5s3v05Nol1nDvjgUiUfj9jgNgS9waiKONOKl0DEf2mMpXyOIYkJydddyT?=
+ =?us-ascii?Q?u3M4aAkSwhrbWLxryUXsZyoyC/EWMTKOz1+Sq5Hnmn/sEXeypDzcpd/g3E7f?=
+ =?us-ascii?Q?CAMI4bmi8IqgJYmUKoF5hhGyiVzK0S/NO92s4GLnLnTia+UD2P3cTAfqyL3q?=
+ =?us-ascii?Q?nPbEz5L8sc5OuEWhHrruykg=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4ce5ab19-471e-46eb-671a-08dcb5d4568a
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Aug 2024 04:57:57.0941
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: d6EOrTwJspgcDOnyPuDMlTQe00ai8+0uc7+f/bq7HPTYj4PT8Kgo1DLal6zyrjwo+IxSYc/h1CRJv0uPHX/HOZQ8MaNfbLWenmg8J3/99l4a5dW6BAH/5yKwWneUbN1S
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYAPR01MB6380
 
 
-Thanks
-ChenYu
+Hi Rob, Saravana
 
-> Regards,
-> Angelo
->
-> > Signed-off-by: Pin-yen Lin <treapking@chromium.org>
-> > Fixes: 37fb78b9aeb7 ("arm64: dts: mediatek: Add mt8183 power domains co=
-ntroller")
-> >
-> > ---
-> >
-> >   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 2 --
-> >   1 file changed, 2 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot=
-/dts/mediatek/mt8183.dtsi
-> > index fbf145639b8c..267378fa46c0 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > @@ -872,8 +872,6 @@ power-domain@MT8183_POWER_DOMAIN_CONN {
-> >
-> >                               mfg_async: power-domain@MT8183_POWER_DOMA=
-IN_MFG_ASYNC {
-> >                                       reg =3D <MT8183_POWER_DOMAIN_MFG_=
-ASYNC>;
-> > -                                     clocks =3D <&topckgen CLK_TOP_MUX=
-_MFG>;
-> > -                                     clock-names =3D "mfg";
-> >                                       #address-cells =3D <1>;
-> >                                       #size-cells =3D <0>;
-> >                                       #power-domain-cells =3D <1>;
->
->
+I have been posting to add new port base for loop function
+as below steps.
+
+[o] done
+[*] posting (A)
+[@] this patch set
+
+	[o] tidyup of_graph_get_endpoint_count()
+	[o] replace endpoint func - use endpoint_by_regs()
+	[*] replace endpoint func - use for_each()
+	[@] add new port function
+
+Because posting [*] patches are no update during this few month
+(I'm keeping re-posting), and it and [@] patches are independent,
+I try to post the patch.
+
+Current Of-graph has "endpoint base" for loop, but doesn't have
+"port base" loop. "endpoint base" loop only is not enough.
+This patch-set add new "port base" for loop, and use it.
+
+
+Kuninori Morimoto (9):
+  of: property: add of_graph_get_next_port()
+  of: property: add of_graph_get_next_port_endpoint()
+  ASoC: test-component: use new of_graph functions
+  ASoC: rcar_snd: use new of_graph functions
+  ASoC: audio-graph-card: use new of_graph functions
+  ASoC: audio-graph-card2: use new of_graph functions
+  gpu: drm: omapdrm: use new of_graph functions
+  fbdev: omapfb: use new of_graph functions
+  media: xilinx-tpg: use new of_graph functions
+
+ drivers/gpu/drm/omapdrm/dss/dpi.c             |   3 +-
+ drivers/gpu/drm/omapdrm/dss/sdi.c             |   3 +-
+ drivers/media/platform/xilinx/xilinx-tpg.c    |   3 +-
+ drivers/of/property.c                         | 108 +++++++++++++++++
+ drivers/video/fbdev/omap2/omapfb/dss/dpi.c    |   3 +-
+ drivers/video/fbdev/omap2/omapfb/dss/dss-of.c |  66 -----------
+ drivers/video/fbdev/omap2/omapfb/dss/dss.c    |   9 +-
+ drivers/video/fbdev/omap2/omapfb/dss/sdi.c    |   3 +-
+ include/linux/of_graph.h                      |  67 +++++++++++
+ include/video/omapfb_dss.h                    |   8 --
+ sound/soc/generic/audio-graph-card.c          |   5 +-
+ sound/soc/generic/audio-graph-card2.c         | 111 ++++++++----------
+ sound/soc/generic/test-component.c            |   2 +-
+ sound/soc/sh/rcar/core.c                      |  12 +-
+ 14 files changed, 244 insertions(+), 159 deletions(-)
+
+-- 
+2.43.0
+
 
