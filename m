@@ -1,124 +1,78 @@
-Return-Path: <devicetree+bounces-91476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AB8F94969E
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 19:24:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE0AA9496A1
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 19:24:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A2761C22591
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 17:24:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 631BC1F286DE
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 17:24:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E2B33BB50;
-	Tue,  6 Aug 2024 17:24:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5FC74205D;
+	Tue,  6 Aug 2024 17:24:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MT9lOAVT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nX5McNm4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CAAB51C3E;
-	Tue,  6 Aug 2024 17:24:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DA3C36AF5;
+	Tue,  6 Aug 2024 17:24:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722965069; cv=none; b=XecBNjr1xubqYLR2cMXtQoFCbOBX3LMdSL24LLqu2nre5vMEQk35w62QJQyfL1rR0loqGszfURVtiiWcC8io1qKtvUFiiPyOijroLKS6nv3dRHvxXUhYeubQpHPQjqRPqNwPRbDQBLhAbcNagotfE0noEbXmcSRABQXmOWG2XGI=
+	t=1722965091; cv=none; b=c909Cz5ekd5GdKs1x4w8HAeoRN50jA6hZkMrV2JO8nnshlV3XOaoS2f/hhWz08eNjRMGQWsmzrK0NqhHludyVAjKFyiunwx8/0pff6BzHsTjMESw9VynutxwVKZJETxP/wIu2Ve7wI9UeyZ/+lZyH/K/wf5S8a+kyNdyHpZnIxA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722965069; c=relaxed/simple;
-	bh=wPSRzRGpwzmF82mrv16loYp6AIiurWjq69qMI7IdNjQ=;
+	s=arc-20240116; t=1722965091; c=relaxed/simple;
+	bh=MCsRf95V/233ppFa+ogoZO+TKh+T4CSExd6cp5gIZw4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dvuVTLon/ac4Row2KKAv6cQ++9ve5cTgfOnZWVKlRrotUdGxHKZhODZMTMpxkO1EiVaXR+6DrngXdVGjJM/h0iC7OBK1rLvajrtzousy+aS8WuAxGOWXiNVCVLWDCd769qNN4pQLYmSzUqb6yzgVCDDHojZVs6yvS/zccwLcVJU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MT9lOAVT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 251CCC32786;
-	Tue,  6 Aug 2024 17:24:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=gL+DrmGpQMO3IjKoW1SqqH9XMu9M71r9/aAouQus0ZAICoXXQPQDiGv9kkYSsAVWUKFwl5WbP2ta9jPw3EHWIZYFQuG2AXybb7NdTsMJP48+PZvWwHoHn7ZhGGHypwY0NTVsTu2Ykfsl+1ts5JXDLW9dqn9yzAocYpKJedzzosk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nX5McNm4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E27CDC32786;
+	Tue,  6 Aug 2024 17:24:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722965068;
-	bh=wPSRzRGpwzmF82mrv16loYp6AIiurWjq69qMI7IdNjQ=;
+	s=k20201202; t=1722965091;
+	bh=MCsRf95V/233ppFa+ogoZO+TKh+T4CSExd6cp5gIZw4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MT9lOAVT/MW5+lKZD86HtDMYtX+lUJ4jVxLv6qHLRXYRvNAlABzMXBKj8m95OtZSl
-	 vRxHJZdv/sEY121ed37HSh6fR6F6sqxtWQOI5pFI4G9X1cs8kgKNXGY4qJHOX66WRZ
-	 GaDrku53SSEKzjR+0uRZoWBkUD5EtFK2svhO6Dkks329pkia9vY0O1+XSVh/xegXuS
-	 8LRbOtBTElzmfjiEyeAW2dR3WsUDzmQ6N9jtcc+nN032JFIU3wFBxIDCNOpWCtOFHN
-	 ArrFvUIYeurTB4yW42lLnQt0dO8eJThG9ZbS9GevKXGjetR6/wOdJD9Y+1K9QZ0L1N
-	 iVKwoogYU9A/w==
-Date: Tue, 6 Aug 2024 18:24:24 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>, linux-kernel@vger.kernel.org,
-	Marc Zyngier <maz@kernel.org>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	linux-riscv@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [RFC v7 5/6] gpio: mpfs: pass gpio line number as irq data
-Message-ID: <20240806-baking-frustrate-32d0af5ed39c@spud>
-References: <20240723-supervise-drown-d5d3b303e7fd@wendy>
- <20240723-handoff-race-33160609553f@wendy>
- <CACRpkdYdxdLG8=_Xd7HLwQ5+pxwGw6Xte7=UNbknB8HR474bcQ@mail.gmail.com>
+	b=nX5McNm4MWFmK0KGuU0aKb/nNbKdG468bU9lApVnGo7uzkscv+XRH9q2Aa0ZkiWHZ
+	 9v5Y6xnJ+4LDwrp1yrlQ1GOEpxDyq8bMe7XFMo5VvvH90uFV+q4yKJQX1RoRjNtLot
+	 YgouMUgnDxcqJ0FLVXbfWMqPxffDI9kCG5t/aHVq3Pu6e8arIBFPMemwH3GO9FN8/m
+	 T4H/kfn5JW+wuQ8fnMz19iUL92HF0R2MpjK/UcQdEJqEl+qwvA1LwYaMxKo87oQUiB
+	 2d+OvoY3xpgclfg3RPHwcqsGNIc+lY9nZZBN8LbeBX52Jcr+lYW3fU5OfRJmCcQVbA
+	 FjnEeo4XLNASQ==
+Date: Tue, 6 Aug 2024 11:24:49 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Sergey Bostandzhyan <jin@mediatomb.cc>
+Cc: linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+	heiko@sntech.de, linux-arm-kernel@lists.infradead.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH V2 2/2 RESEND] dt-bindings: arm: rockchip: Add NanoPi R2S
+ Plus
+Message-ID: <172296508945.1835210.9491608113074748962.robh@kernel.org>
+References: <22bbec28-41c1-4f36-b776-6e091bf118d9@kernel.org>
+ <20240801175736.16591-1-jin@mediatomb.cc>
+ <20240801175736.16591-3-jin@mediatomb.cc>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="DLvlmKu678eDGQat"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CACRpkdYdxdLG8=_Xd7HLwQ5+pxwGw6Xte7=UNbknB8HR474bcQ@mail.gmail.com>
+In-Reply-To: <20240801175736.16591-3-jin@mediatomb.cc>
 
 
---DLvlmKu678eDGQat
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, 01 Aug 2024 17:57:36 +0000, Sergey Bostandzhyan wrote:
+> Add the NanoPi R2S Plus variant, which is an R2S with eMMC.
+> 
+> Signed-off-by: Sergey Bostandzhyan <jin@mediatomb.cc>
+> ---
+>  Documentation/devicetree/bindings/arm/rockchip.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-On Mon, Aug 05, 2024 at 10:11:09AM +0200, Linus Walleij wrote:
-> Hi Conor,
->=20
-> thanks for your patch!
->=20
-> On Tue, Jul 23, 2024 at 1:28=E2=80=AFPM Conor Dooley <conor.dooley@microc=
-hip.com> wrote:
->=20
-> > Since the interrupt mux is going to provide us a 1:1 mapping for
-> > interrupts, and it is no longer correct to hit all of the set bits in
-> > the interrupt handler, store the GPIO that "owns" an interrupt in its
-> > data pointer, so that we can determine which bit to clear.
-> >
-> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
->=20
-> I don't quite get this, the irqchip of the GPIO is clearly hard-coded
-> hierarchical, then why don't you:
->=20
-> select IRQ_DOMAIN_HIERARCHY
->=20
-> And use e.g. girq->child_to_parent_hwirq() to handle the
-> hierarchy?
->=20
-> See drivers/gpio/gpio-ixp4xx.c for a simple example of a hierarchical
-> GPIO interrupt controller.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Cool, I'll check that out. I've got some re-figuring out of the
-interrupt controller to do given Thomas' comment there. Maybe the
-combination will solve the horrible % 32 hack...
-
-Cheers,
-Conor.
-
---DLvlmKu678eDGQat
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrJcRwAKCRB4tDGHoIJi
-0uwCAP9KBPLktC1E1wnlwW7qvgZUaqUS4vNcQJ5ncTOE0NAcpgEA1Fb78h/UyI/0
-zjV8D2T7x8EesEC+pTd1Pr7+5l8KsAs=
-=8WPg
------END PGP SIGNATURE-----
-
---DLvlmKu678eDGQat--
 
