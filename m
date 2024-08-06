@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-91540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 936B1949C5D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 01:38:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE439949C60
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 01:38:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AAF821C21397
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 23:38:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 890E42830C3
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 23:38:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64D0C17625F;
-	Tue,  6 Aug 2024 23:38:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 160B8176AD0;
+	Tue,  6 Aug 2024 23:38:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r2ScBFah"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="drBiarFB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3027739FE4;
-	Tue,  6 Aug 2024 23:38:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7917176ABF;
+	Tue,  6 Aug 2024 23:38:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722987507; cv=none; b=fihVs1I9oxkEfwEbHVS7z6+fGs+5gp2wmB6X+KwADjA6Pn3VS9XrzH6RKNjSdzDxsxTBmaxZW5O2osJiH7HjjmewHZzfJTor9i9aoaiDcinBhdkj1x5mHEGoF3v2eUfvFrscDhTKqjcgF/gcaEfRm8V0SXx3ohu/DXdJy7jp7Wo=
+	t=1722987509; cv=none; b=PqVOeRXi3kk5RlIjRVbjzZMpI4rZLyjMY12YyOihKBHW0mfB+LMakg4Mbc/mzTxoNJBfZprhhF2sDcxpxRzFGRreKev/aj2BxgbVuPJNJGQdd0QW7VBOD7Glt4nBB9io1xMrL0npcbtb0D1QudH1MPIiBwvnAZA9XLdx3f8z24Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722987507; c=relaxed/simple;
-	bh=sllvMRONd5dLDy11qt41CSgvoPDwkmpySOxYlwuKFl8=;
+	s=arc-20240116; t=1722987509; c=relaxed/simple;
+	bh=2udeCWwRySDMXUwFqaJkkz8hvQHfyXtdTtgxH9HlZls=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=SYTROjSlAE5fvgrO9S1GEW8NdZuHGWqOIzUIUNZd0F0lJqYO9Y3ktgHFmQT+lCaZFyWfRXpRaYeLZnQmJ4nsWa6757oRo1ehAW5Lm0ZpP+5K6UWJfh3R+/XHNTeJYRdHpUcizd6Il+xQkW/NdMfukNa1nX5js8hT8op1yCgO+O0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r2ScBFah; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76694C32786;
-	Tue,  6 Aug 2024 23:38:26 +0000 (UTC)
+	 Message-Id:Subject; b=Ij/xI2V7XfXP7qeEVcSZ8RPbm0YwfGkOC2TgKoJNSRWKOa7Y8MkX2EtApv70HqtZswRytBVb6KumhZLwQmYRXeAT3EvDylOZgClt+f/o47wXQdlAvCJwiNlKR9fms1cFI8L7mYApPI1F4YFK21Kv5S5HsnZHAw2BPNNAqtTfrsw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=drBiarFB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F82EC32786;
+	Tue,  6 Aug 2024 23:38:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722987506;
-	bh=sllvMRONd5dLDy11qt41CSgvoPDwkmpySOxYlwuKFl8=;
+	s=k20201202; t=1722987508;
+	bh=2udeCWwRySDMXUwFqaJkkz8hvQHfyXtdTtgxH9HlZls=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=r2ScBFahMGDxLt23xL1++2dAgjYj94CYWp6hBgwJqSCYauhVY/F0eB0kragCiKR6t
-	 WYyMkfVZXo+ldyW99KoSSulk/ihFP1gk+MtFRzaX9iIsrYhR5AmWDAOWT5ZxBFyff0
-	 gUfY5HMcf0Y5kyQT/UOC6pDbA+A+frhGQ7VybI2ogkOd/MaghjlYPRKZ5YK/Gp0cVV
-	 hXEGVNvz0qGES9whQySpwDxCcJd/IoJJ8UF5Un9eanIRsoi8BQf4pEM68vg5mxMa3j
-	 kayHImcV1ealn2S+bp9dh3vv055MugLin/GtvyJiealBx96uRlsyaVi7GoidhcnNwi
-	 nncEFBcTfKd+Q==
-Date: Tue, 06 Aug 2024 17:38:25 -0600
+	b=drBiarFBKnbGIKlURb5O1WFGpRyLHqPx1XJe8+VyZafaJuOmUW3v3dHxaFElg6CV8
+	 OXVBIUZfZrhEdxb4qBuHn/+z6bEhfrRJ0hZbbHFXNouGRPu5Bt0aEQM5rjTnmFMeWe
+	 YUjXo5ku2reEcQAYEnLuXSIpxqNzTH3ROlpgGssZo8gT/bYAsuYoPqJbWWuAas2ZXq
+	 B9Fg3zue+IsphJPyiRMDFqzNVTDT4LiHpfFCvhngEmBV3AtzPch1K3W0i3x6xLv94a
+	 UOQDx/5wV6ZFs2/yEuc3UWeZjV+o3l0ZdEd717DOGfzQ2U+Og5VmyFrGJQ+BlYdGBf
+	 +2+i2SJaQI7tA==
+Date: Tue, 06 Aug 2024 17:38:27 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,50 +51,50 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Yunhong Jiang <yunhong.jiang@linux.intel.com>
-Cc: linux-acpi@vger.kernel.org, linux-hyperv@vger.kernel.org, 
- haiyangz@microsoft.com, krzk+dt@kernel.org, x86@kernel.org, 
- wei.liu@kernel.org, dave.hansen@linux.intel.com, devicetree@vger.kernel.org, 
- hpa@zytor.com, linux-kernel@vger.kernel.org, bp@alien8.de, 
- tglx@linutronix.de, mingo@redhat.com, rafael@kernel.org, kys@microsoft.com, 
- kirill.shutemov@linux.intel.com, conor+dt@kernel.org, lenb@kernel.org, 
- decui@microsoft.com
-In-Reply-To: <20240806221237.1634126-3-yunhong.jiang@linux.intel.com>
-References: <20240806221237.1634126-1-yunhong.jiang@linux.intel.com>
- <20240806221237.1634126-3-yunhong.jiang@linux.intel.com>
-Message-Id: <172298750308.229414.6420535043181861002.robh@kernel.org>
-Subject: Re: [PATCH 2/7] dt-bindings: x86: Add ACPI wakeup mailbox
+To: Richard Acayan <mailingradian@gmail.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Andi Shyti <andi.shyti@kernel.org>, Robert Foss <rfoss@kernel.org>, 
+ linux-i2c@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ linux-arm-msm@vger.kernel.org, Todor Tomov <todor.too@gmail.com>, 
+ linux-media@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Loic Poulain <loic.poulain@linaro.org>, devicetree@vger.kernel.org
+In-Reply-To: <20240806224219.71623-9-mailingradian@gmail.com>
+References: <20240806224219.71623-7-mailingradian@gmail.com>
+ <20240806224219.71623-9-mailingradian@gmail.com>
+Message-Id: <172298750529.229501.1463215423957443688.robh@kernel.org>
+Subject: Re: [PATCH 2/4] dt-bindings: media: camss: Add qcom,sdm670-camss
 
 
-On Tue, 06 Aug 2024 15:12:32 -0700, Yunhong Jiang wrote:
-> Add the binding to use the ACPI wakeup mailbox mechanism to bringup APs.
+On Tue, 06 Aug 2024 18:42:23 -0400, Richard Acayan wrote:
+> Add the camera subsystem for the Snapdragon 670.
 > 
-> Signed-off-by: Yunhong Jiang <yunhong.jiang@linux.intel.com>
+> Adapted from SC8280XP camera subsystem.
+> 
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
 > ---
->  .../devicetree/bindings/x86/wakeup.yaml       | 41 +++++++++++++++++++
->  1 file changed, 41 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/x86/wakeup.yaml
+>  .../bindings/media/qcom,sdm670-camss.yaml     | 353 ++++++++++++++++++
+>  1 file changed, 353 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/x86/wakeup.yaml:4:1: [error] syntax error: expected '<document start>', but found '<block mapping start>' (syntax)
-./Documentation/devicetree/bindings/x86/wakeup.yaml:41:111: [warning] line too long (153 > 110 characters) (line-length)
 
 dtschema/dtc warnings/errors:
-make[2]: *** Deleting file 'Documentation/devicetree/bindings/x86/wakeup.example.dts'
-Documentation/devicetree/bindings/x86/wakeup.yaml:4:1: did not find expected <document start>
-make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/x86/wakeup.example.dts] Error 1
+Error: Documentation/devicetree/bindings/media/qcom,sdm670-camss.example.dts:50.31-32 syntax error
+FATAL ERROR: Unable to parse input tree
+make[2]: *** [scripts/Makefile.lib:427: Documentation/devicetree/bindings/media/qcom,sdm670-camss.example.dtb] Error 1
 make[2]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/x86/wakeup.yaml:4:1: did not find expected <document start>
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/x86/wakeup.yaml: ignoring, error parsing file
 make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt_binding_check] Error 2
 make: *** [Makefile:240: __sub-make] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240806221237.1634126-3-yunhong.jiang@linux.intel.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240806224219.71623-9-mailingradian@gmail.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
