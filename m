@@ -1,166 +1,549 @@
-Return-Path: <devicetree+bounces-91387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 347DF9491F9
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 15:47:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DDAC9491FE
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 15:48:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 78DAEB23655
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 13:44:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D22681F215AA
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 13:48:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 696731E7A2B;
-	Tue,  6 Aug 2024 13:43:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F1BB1D47C3;
+	Tue,  6 Aug 2024 13:48:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rq0SS4+v"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hFV2X6VH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 389121D54C4;
-	Tue,  6 Aug 2024 13:43:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 582F51D47A2;
+	Tue,  6 Aug 2024 13:48:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722951826; cv=none; b=NdwjUCNy++F4fzkzZOs/I6hEn0GivXTK4ZDtRx9MAqj2lM2LQZrBoSCeIqN+O62pkMGeBPmnlTsihn8KjMXcKh/5OFMg8VW6c+IJABRHybwuZsK+pNRsTwVq+TP2/oAsRlcKelxm5bMbD74wH95xTnl0nm51DjLcwNpcmlShYmg=
+	t=1722952093; cv=none; b=LC+ppo0XKpP/JbFO9fQ72mMsD/PYoXHDE4VEstybjfhPpW6a4ERpTX81iVtzn3/c5EbNLTr2RCNNhOzqHIB6vG5aSh2T2ySniWO9TUqG9P/POrqjmgWTfViPzzvRleMqN9U1fJmHi7gcASqeYcGlUDBGGtj0KGuI7v4xuLVmZf8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722951826; c=relaxed/simple;
-	bh=e9Cji46MWQ7EWSQqMp1wyVoIkqIoBXEY9CBa4vv+zeA=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=S6gogM/aoDbIQel5KnggihWkxi99AuAfoCxRU0CHAgrQ1jgZKaDT+8VlbX+/WCb8qsTOKmp7TCPPpzhnY2OfhSdbS7JAnBN48uZNwHdhqiMRQfJ2mcABahSUEVVa0nyYZYQJbSib99kn9bMa+mzjvhmypxKB3dO/EhitL9rTjkw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rq0SS4+v; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8408C4AF11;
-	Tue,  6 Aug 2024 13:43:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722951826;
-	bh=e9Cji46MWQ7EWSQqMp1wyVoIkqIoBXEY9CBa4vv+zeA=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=rq0SS4+vhHI4QOL7H79edwDK4WYuN5vYqw3exlD76hp/D8RU5xWph/5lqgI4PKyLz
-	 t9/+7OxwX9l1hGgIPLuNglSN6ZZ+odJO1ADQcvSzA5g7dfnCKcN8mKYIK65Rv77NdA
-	 4IswFwafAeqIgaN43tJcEe1dQ9oXlbUfaoiA1vFMjNOab9xIsoIp038UblRMf/hSRe
-	 faAnc3a5+RNem0hhKjJyY9gOYyk/zbm0QLP8U0MPwjlbKV9SG5X9rqASQFYkE2re+Q
-	 +DTabbGD5laQys/YlQYBReT45ATW3QP67+BasttE/BV93XecdQnOUcrbA9cF0NXJpy
-	 /ujHEyY2WFP8Q==
-Date: Tue, 06 Aug 2024 07:43:44 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1722952093; c=relaxed/simple;
+	bh=BqnKAUCWcDIjhm2+lTYpZTWTssaO70bBdk2S0yIbdWM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TdciUFfxeg0JXLA5HaRntozkBF5pEMKsGORY7roZxmikvxJjl31jU2dbAxdo5OkcIDrX94gu25QEhi8WZfDNb5j7ZaEVyNKiTD3r7vCi3dNmqZeSEzB72Sp3KZelzfFF2slHjbDNOQBiShY59+E0ivRno6giLxvByOhTB/yMZ4g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hFV2X6VH; arc=none smtp.client-ip=209.85.221.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-4f6b7250d6dso221923e0c.0;
+        Tue, 06 Aug 2024 06:48:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722952090; x=1723556890; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ECT70F8ui5lw6WNFO/lAOYt5X8TuJlJygMtjeEHBoFU=;
+        b=hFV2X6VH3pHV5jYXjBdiRrh3sRyOkTuZeoTAecDm+nZlOloC9oAkrJ1uAcpCYqGFvY
+         DQXP4V1pHKgOLR1O8RDlVtoaelkTyZSHjF12Kd9Wd15V2y3NOf+QgZUSdcSPURRxLfBA
+         FCVWg7E0ThmpdbF6PKrtx3mgvbpIas/VW9+bmA51EY/cpkNY+UQ0yjHBXx91EPvmUoWl
+         PHkiBwx+vOQIhM8YAgC4JI4vneQW4Ol2XGVR3bdmY42Vori+iw0g5CIArNp1kimK+ZXE
+         IyN2jmQWZrYy2DEOGR4NrtXMobiDM2mDYLTRAAdAWXsAn1K7AJESCdLxg75MKqMiSIzl
+         jyig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722952090; x=1723556890;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ECT70F8ui5lw6WNFO/lAOYt5X8TuJlJygMtjeEHBoFU=;
+        b=taS2mXRC8uKLqEcQiEfiptPQ8MUjSMQbfWuanhjfn+EBsLmPvckK5zgUqUViuTFeVm
+         TAjAnuvGdFIgQQxmQGN/XZPi/+5Utz/XksZl2vLaS2OBIWXrM04NrT5cljqxjjXXrfvB
+         cevJ6jCj92WbJP86oxzB49oaCSpLDOQMycidTxg2zPjoihJ52muuS1nZjzvZrTL+S49d
+         QLXhApno6nruIdPSrT+vt8DoYatlLwebh7+AGuSxLfX+AAYk12ba5Z95AEdiN3lBKJSm
+         PumHSf/TlRNG+VKKoySJSG4gpRzmf9A0Ig7TkQSK63OeKx+j6DbdBWiXyZb9VqTSkavj
+         2JgA==
+X-Forwarded-Encrypted: i=1; AJvYcCUX3atfEN03LQCXCisXilWZsLOwGN8rzsmr9F8oCJ86InsFDp37JgqwC+FERgPONz5ud679Nm7PCyk38vZ6m9MMzaIjt1kHiTxV8noYGyZvmNf1Sq+KCv7569CljNYZXXCOu4i3ZDr5hEgi/UyEsed/kIpC9nGsqRKBvxuzp9ijbypqgdnum+RjHbUldnRJPBjyhQZhFMc7852JPF5ICvcJ7o7lGddomEm3IWs=
+X-Gm-Message-State: AOJu0Yyls+gYDsu4s1ohKJUxLEJxhbWtGXrV07bRgQ/sLIBBQaFTwhRZ
+	qU85Hf+v8k3X9AnqwA8CCgfgZtr26Nf+JrF/+s8OLZ8f66NTKoj8ADst3yaIYDx+KQjUHnOfgHK
+	xoEpYL9sTp93wpK+yj3qrvB/yEKM=
+X-Google-Smtp-Source: AGHT+IHhElSupydm9Pu8Q2cCtAhcr2G+W8uC687+2vGI6V7+dLh4KkHCNjePrtfwGAhHDTl8L3bMjI5q6uAafHbuczU=
+X-Received: by 2002:a05:6122:a11:b0:4f5:130c:bef3 with SMTP id
+ 71dfb90a1353d-4f89ff3aca6mr18358968e0c.1.1722952090043; Tue, 06 Aug 2024
+ 06:48:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Jonathan Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org, 
- Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, linux-kernel@vger.kernel.org
-In-Reply-To: <20240806123906.161218-1-clamor95@gmail.com>
-References: <20240806123906.161218-1-clamor95@gmail.com>
-Message-Id: <172295171833.1220432.7828757275501895898.robh@kernel.org>
-Subject: Re: [PATCH v1 00/11] Tegra114: complete TF701T device tree
+References: <20240805200400.54267-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240805200400.54267-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <81ac76eb-8b43-457b-80be-c588ac4790e1@roeck-us.net>
+In-Reply-To: <81ac76eb-8b43-457b-80be-c588ac4790e1@roeck-us.net>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Tue, 6 Aug 2024 14:47:42 +0100
+Message-ID: <CA+V-a8u0dFGmNqJWuXXH3mVVTT6dWBhSr+SM7nFyu3DAeACjNA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] watchdog: Add Watchdog Timer driver for RZ/V2H(P)
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Guenter,
+
+Thank you for the review.
+
+On Mon, Aug 5, 2024 at 9:34=E2=80=AFPM Guenter Roeck <linux@roeck-us.net> w=
+rote:
+>
+> On 8/5/24 13:04, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Add Watchdog Timer driver for RZ/V2H(P) SoC.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> > v2->v3
+> > - Fixed dependency, ARCH_R9A09G011->ARCH_R9A09G057
+> > - Added dependency for PM
+> > - Added delay after de-assert operation as clks are halted temporarily
+> >    after de-assert operation
+> > - clearing WDTSR register
+> >
+> > v1->v2
+> > - Stopped using PM runtime calls in restart handler
+> > - Dropped rstc deassert from probe
+> > ---
+> >   drivers/watchdog/Kconfig     |   9 ++
+> >   drivers/watchdog/Makefile    |   1 +
+> >   drivers/watchdog/rzv2h_wdt.c | 259 ++++++++++++++++++++++++++++++++++=
++
+> >   3 files changed, 269 insertions(+)
+> >   create mode 100644 drivers/watchdog/rzv2h_wdt.c
+> >
+> > diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
+> > index bae1d97cce89..684b9fe84fff 100644
+> > --- a/drivers/watchdog/Kconfig
+> > +++ b/drivers/watchdog/Kconfig
+> > @@ -953,6 +953,15 @@ config RENESAS_RZG2LWDT
+> >         This driver adds watchdog support for the integrated watchdogs =
+in the
+> >         Renesas RZ/G2L SoCs. These watchdogs can be used to reset a sys=
+tem.
+> >
+> > +config RENESAS_RZV2HWDT
+> > +     tristate "Renesas RZ/V2H(P) WDT Watchdog"
+> > +     depends on ARCH_R9A09G057 || COMPILE_TEST
+> > +     depends on PM || COMPILE_TEST
+> > +     select WATCHDOG_CORE
+> > +     help
+> > +       This driver adds watchdog support for the integrated watchdogs =
+in the
+> > +       Renesas RZ/V2H(P) SoCs. These watchdogs can be used to reset a =
+system.
+> > +
+> >   config ASPEED_WATCHDOG
+> >       tristate "Aspeed BMC watchdog support"
+> >       depends on ARCH_ASPEED || COMPILE_TEST
+> > diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
+> > index b51030f035a6..ab6f2b41e38e 100644
+> > --- a/drivers/watchdog/Makefile
+> > +++ b/drivers/watchdog/Makefile
+> > @@ -86,6 +86,7 @@ obj-$(CONFIG_RENESAS_WDT) +=3D renesas_wdt.o
+> >   obj-$(CONFIG_RENESAS_RZAWDT) +=3D rza_wdt.o
+> >   obj-$(CONFIG_RENESAS_RZN1WDT) +=3D rzn1_wdt.o
+> >   obj-$(CONFIG_RENESAS_RZG2LWDT) +=3D rzg2l_wdt.o
+> > +obj-$(CONFIG_RENESAS_RZV2HWDT) +=3D rzv2h_wdt.o
+> >   obj-$(CONFIG_ASPEED_WATCHDOG) +=3D aspeed_wdt.o
+> >   obj-$(CONFIG_STM32_WATCHDOG) +=3D stm32_iwdg.o
+> >   obj-$(CONFIG_UNIPHIER_WATCHDOG) +=3D uniphier_wdt.o
+> > diff --git a/drivers/watchdog/rzv2h_wdt.c b/drivers/watchdog/rzv2h_wdt.=
+c
+> > new file mode 100644
+> > index 000000000000..b6183940b221
+> > --- /dev/null
+> > +++ b/drivers/watchdog/rzv2h_wdt.c
+> > @@ -0,0 +1,259 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Renesas RZ/V2H(P) WDT Watchdog Driver
+> > + *
+> > + * Copyright (C) 2024 Renesas Electronics Corporation.
+> > + */
+> > +#include <linux/bitops.h>
+> > +#include <linux/clk.h>
+> > +#include <linux/delay.h>
+> > +#include <linux/io.h>
+> > +#include <linux/kernel.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/pm_runtime.h>
+> > +#include <linux/reset.h>
+> > +#include <linux/units.h>
+> > +#include <linux/watchdog.h>
+> > +
+> > +#define WDTRR                        0x00    /* RW, 8  */
+> > +#define WDTCR                        0x02    /* RW, 16 */
+> > +#define WDTSR                        0x04    /* RW, 16 */
+> > +#define WDTRCR                       0x06    /* RW, 8  */
+> > +
+> > +#define WDTCR_TOPS_1024              0x00
+> > +#define WDTCR_TOPS_16384     0x03
+> > +
+> > +#define WDTCR_CKS_CLK_1              0x00
+> > +#define WDTCR_CKS_CLK_256    0x50
+> > +
+> > +#define WDTCR_RPES_0         0x300
+> > +#define WDTCR_RPES_75                0x000
+> > +
+> > +#define WDTCR_RPSS_25                0x00
+> > +#define WDTCR_RPSS_100               0x3000
+> > +
+> > +#define WDTRCR_RSTIRQS               BIT(7)
+> > +
+> > +#define CLOCK_DIV_BY_256     256
+> > +
+> > +#define WDT_DEFAULT_TIMEOUT  60U
+> > +
+> > +static bool nowayout =3D WATCHDOG_NOWAYOUT;
+> > +module_param(nowayout, bool, 0);
+> > +MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (d=
+efault=3D"
+> > +              __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
+> > +
+> > +struct rzv2h_wdt_priv {
+> > +     void __iomem *base;
+> > +     struct clk *pclk;
+> > +     struct clk *oscclk;
+> > +     struct reset_control *rstc;
+> > +     struct watchdog_device wdev;
+> > +     unsigned long oscclk_rate;
+> > +};
+> > +
+> > +static int rzv2h_wdt_ping(struct watchdog_device *wdev)
+> > +{
+> > +     struct rzv2h_wdt_priv *priv =3D watchdog_get_drvdata(wdev);
+> > +     static unsigned long delay;
+> > +
+> > +     writeb(0x0, priv->base + WDTRR);
+> > +     writeb(0xFF, priv->base + WDTRR);
+> > +
+> > +     /*
+> > +      * Refreshing the down-counter requires up to 4 cycles
+> > +      * of the signal for counting
+> > +      */
+>
+> That doesn't explain why the delay (after pinging the watchdog) is necess=
+ary.
+>
+> > +     if (!delay)
+> > +             delay =3D 4 * div64_ul(CLOCK_DIV_BY_256 * MICRO, priv->os=
+cclk_rate);
+>
+> "MICRO" is 1000000UL, and CLOCK_DIV_BY_256 is 256, making this 256000000 =
+which fits
+> into 32 bit. oscclk_rate is unsigned long. Please explain the need for us=
+ing div64_ul(),
+> because I don't see it.
+>
+> Besides that, please explain the benefit of storing "delay" in a static v=
+ariable
+> instead of calculating it with oscclk_rate and storing it in struct rzv2h=
+_wdt_priv.
+> This should better be a good explanation because it is very unlikely that=
+ I'll accept
+> the code as written.
+>
+As per the HW manual  we have, "After FFh is written to the WDT
+Refresh Register (WDTRR), refreshing the down-counter requires up to 4
+cycles of the signal for counting. To meet this requirement, complete
+writing FFh to WDTRR 4 count cycles before the ms", which I misread
+that delay is required as 4 cycles are required to reflect, but this
+isnt the case we can return as soon as FFh is written and let the HW
+to start down-counter after 4 cycles.
+
+So Ive now updated the code to drop any delay in ping operation.
+
+> > +     udelay(delay);
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static void rzv2h_wdt_setup(struct watchdog_device *wdev, u16 wdtcr)
+> > +{
+> > +     struct rzv2h_wdt_priv *priv =3D watchdog_get_drvdata(wdev);
+> > +
+> > +     writew(wdtcr, priv->base + WDTCR);
+> > +
+> > +     writeb(0, priv->base + WDTRCR);
+> > +
+> > +     writew(0, priv->base + WDTSR);
+> > +}
+> > +
+> > +static int rzv2h_wdt_start(struct watchdog_device *wdev)
+> > +{
+> > +     struct rzv2h_wdt_priv *priv =3D watchdog_get_drvdata(wdev);
+> > +     int ret;
+> > +
+> > +     ret =3D reset_control_deassert(priv->rstc);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     udelay(5);
+> > +
+> > +     ret =3D pm_runtime_resume_and_get(wdev->parent);
+> > +     if (ret) {
+> > +             reset_control_assert(priv->rstc);
+> > +             return ret;
+> > +     }
+> > +
+> > +     /*
+> > +      * WDTCR
+> > +      * - CKS[7:4] - Clock Division Ratio Select - 0101b: oscclk/256
+> > +      * - RPSS[13:12] - Window Start Position Select - 11b: 100%
+> > +      * - RPES[9:8] - Window End Position Select - 11b: 0%
+> > +      * - TOPS[1:0] - Timeout Period Select - 11b: 16384 cycles (3FFFh=
+)
+> > +      */
+> > +     rzv2h_wdt_setup(wdev, WDTCR_CKS_CLK_256 | WDTCR_RPSS_100 |
+> > +                     WDTCR_RPES_0 | WDTCR_TOPS_16384);
+> > +
+> > +     rzv2h_wdt_ping(wdev);
+> > +
+>
+> The need to ping the watchdog immediately after enabling it is unusual.
+> Please explain.
+>
+The down counting operation starts only after the ping operation, so
+after starting the wdt a ping is issued here.
+
+> > +     return 0;
+> > +}
+> > +
+> > +static int rzv2h_wdt_stop(struct watchdog_device *wdev)
+> > +{
+> > +     struct rzv2h_wdt_priv *priv =3D watchdog_get_drvdata(wdev);
+> > +     int ret;
+> > +
+> > +     ret =3D pm_runtime_put(wdev->parent);
+> > +     if (ret < 0)
+> > +             return ret;
+>
+> Shouldn't this be called _after_ stopping the watchdog ?
+>
+Ideally this should be the reverse of start operation, hence stopping
+the clocks first and then the assert operation. I did this because
+there is a temporary halt of clock after de-assert operation. To
+handle this now I ve update start and stop callbacks to below code:
+
+static int rzv2h_wdt_start(struct watchdog_device *wdev)
+{
+    struct rzv2h_wdt_priv *priv =3D watchdog_get_drvdata(wdev);
+    int ret;
+
+    ret =3D pm_runtime_resume_and_get(wdev->parent);
+    if (ret)
+        return ret;
+
+    ret =3D reset_control_deassert(priv->rstc);
+    if (ret) {
+        pm_runtime_put(wdev->parent);
+        return ret;
+    }
+
+    /* delay to handle clock halt after de-assert operation */
+    udelay(3);
+
+.....
+.....
+
+    return 0;
+}
+
+static int rzv2h_wdt_stop(struct watchdog_device *wdev)
+{
+    struct rzv2h_wdt_priv *priv =3D watchdog_get_drvdata(wdev);
+    int ret;
+
+    ret =3D reset_control_assert(priv->rstc);
+    if (ret)
+        return ret;
+
+    ret =3D pm_runtime_put(wdev->parent);
+    if (ret < 0)
+        return ret;
+
+    return 0;
+}
 
 
-On Tue, 06 Aug 2024 15:38:55 +0300, Svyatoslav Ryhel wrote:
-> Complete ASUS TF701T device tree with available information
-> about the device.
-> 
-> Svyatoslav Ryhel (11):
->   ARM: nvidia: tf701t: use unimomentary pinmux setup
->   ARM: nvidia: tf701t: bind VDE device
->   ARM: nvidia: tf701t: correct and complete PMIC and PMC bindings
->   ARM: nvidia: tf701t: add HDMI bindings
->   ARM: nvidia: tf701t: add Bluetooth node
->   ARM: nvidia: tf701t: adjust sensors nodes
->   ARM: nvidia: tf701t: complete sound bindings
->   ARM: nvidia: tf701t: bind WIFI SDIO and EMMC
->   ARM: nvidia: tf701t: re-group GPIO keys
->   ARM: nvidia: tf701t: use dedicated backlight regulator
->   ARM: nvidia: tf701t: configure USB
-> 
->  .../boot/dts/nvidia/tegra114-asus-tf701t.dts  | 1516 ++++++++++++++---
->  1 file changed, 1289 insertions(+), 227 deletions(-)
-> 
-> --
-> 2.43.0
-> 
-> 
-> 
+> > +
+> > +     return reset_control_assert(priv->rstc);
+> > +}
+> > +
+> > +static const struct watchdog_info rzv2h_wdt_ident =3D {
+> > +     .options =3D WDIOF_MAGICCLOSE | WDIOF_KEEPALIVEPING | WDIOF_SETTI=
+MEOUT,
+> > +     .identity =3D "Renesas RZ/V2H WDT Watchdog",
+> > +};
+> > +
+> > +static int rzv2h_wdt_restart(struct watchdog_device *wdev,
+> > +                          unsigned long action, void *data)
+> > +{
+> > +     struct rzv2h_wdt_priv *priv =3D watchdog_get_drvdata(wdev);
+> > +     int ret;
+> > +
+> > +     ret =3D reset_control_deassert(priv->rstc);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     /* delay to handle clock halt after de-assert operation */
+> > +     udelay(5);
+> > +
+> > +     ret =3D clk_enable(priv->pclk);
+> > +     if (ret) {
+> > +             reset_control_assert(priv->rstc);
+> > +             return ret;
+> > +     }
+> > +
+> > +     ret =3D clk_enable(priv->oscclk);
+> > +     if (ret) {
+> > +             clk_disable(priv->pclk);
+> > +             reset_control_assert(priv->rstc);
+> > +             return ret;
+> > +     }
+> > +
+> Please explain the need for enabling the clocks here.
+>
+When using the below from user space, while the watchdog service is
+not running, the below directly lands into restart callback, (please
+let me know if my understanding is wrong here)
+
+reboot(LINUX_REBOOT_CMD_RESTART);
+
+Ive now updated restart with below, so that we dont touch clocks if
+they are already ON,
+
+    if (!watchdog_active(wdev)) {
+        ret =3D clk_enable(priv->pclk);
+        if (ret)
+            return ret;
+
+        ret =3D clk_enable(priv->oscclk);
+        if (ret) {
+            clk_disable(priv->pclk);
+            return ret;
+        }
+    }
+
+    if (!watchdog_active(wdev))
+        ret =3D reset_control_deassert(priv->rstc);
+    else
+        ret =3D reset_control_reset(priv->rstc);
+    if (ret) {
+        clk_disable(priv->oscclk);
+        clk_disable(priv->pclk);
+        return ret;
+    }
+
+    /* delay to handle clock halt after de-assert operation */
+    udelay(3);
 
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+> > +     /*
+> > +      * WDTCR
+> > +      * - CKS[7:4] - Clock Division Ratio Select - 0000b: oscclk/1
+> > +      * - RPSS[13:12] - Window Start Position Select - 00b: 25%
+> > +      * - RPES[9:8] - Window End Position Select - 00b: 75%
+> > +      * - TOPS[1:0] - Timeout Period Select - 00b: 1024 cycles (03FFh)
+> > +      */
+> > +     rzv2h_wdt_setup(wdev, WDTCR_CKS_CLK_1 | WDTCR_RPSS_25 |
+> > +                     WDTCR_RPES_75 | WDTCR_TOPS_1024);
+> > +     rzv2h_wdt_ping(wdev);
+> > +
+> Why is the ping here necessary ?
+>
+The down counting starts after the refresh operation, hence the WDT is ping=
+ed.
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+> > +     /* wait for underflow to trigger... */
+> > +     mdelay(500);
+>
+> Does that really take 500 ms ?
+>
+Agreed this can be reduced as the WDT is configured to trigger asap.
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+> > +
+> > +     return 0;
+>
+>
+> > +}
+> > +
+> > +static const struct watchdog_ops rzv2h_wdt_ops =3D {
+> > +     .owner =3D THIS_MODULE,
+> > +     .start =3D rzv2h_wdt_start,
+> > +     .stop =3D rzv2h_wdt_stop,
+> > +     .ping =3D rzv2h_wdt_ping,
+> > +     .restart =3D rzv2h_wdt_restart,
+> > +};
+> > +
+> > +static int rzv2h_wdt_probe(struct platform_device *pdev)
+> > +{
+> > +     struct device *dev =3D &pdev->dev;
+> > +     struct rzv2h_wdt_priv *priv;
+> > +     unsigned long rate;
+> > +     int ret;
+> > +
+> > +     priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> > +     if (!priv)
+> > +             return -ENOMEM;
+> > +
+> > +     priv->base =3D devm_platform_ioremap_resource(pdev, 0);
+> > +     if (IS_ERR(priv->base))
+> > +             return PTR_ERR(priv->base);
+> > +
+> > +     priv->pclk =3D devm_clk_get_prepared(&pdev->dev, "pclk");
+> > +     if (IS_ERR(priv->pclk))
+> > +             return dev_err_probe(&pdev->dev, PTR_ERR(priv->pclk), "no=
+ pclk");
+> > +
+> > +     priv->oscclk =3D devm_clk_get_prepared(&pdev->dev, "oscclk");
+> > +     if (IS_ERR(priv->oscclk))
+> > +             return dev_err_probe(&pdev->dev, PTR_ERR(priv->oscclk), "=
+no oscclk");
+> > +
+> > +     priv->oscclk_rate =3D clk_get_rate(priv->oscclk);
+> > +     if (!priv->oscclk_rate)
+> > +             return dev_err_probe(&pdev->dev, -EINVAL, "oscclk rate is=
+ 0");
+> > +
+> > +     priv->rstc =3D devm_reset_control_get_exclusive(&pdev->dev, 16383=
+NULL);
+> > +     if (IS_ERR(priv->rstc))
+> > +             return dev_err_probe(&pdev->dev, PTR_ERR(priv->rstc),
+> > +                                  "failed to get cpg reset");
+> > +
+> > +     rate =3D priv->oscclk_rate / 256;
+> > +     priv->wdev.max_hw_heartbeat_ms =3D (1000 * 16383) / rate;
+>
+> Not accounting to rounding, this translates to
+>                 =3D (1000 * 16383) / (clk_rate / 256)
+>                 =3D (1000 * 16383 * 256) / clk_rate
+>
+> Why the added complexity ?
+>
+Agreed, I will update the above.
 
-  pip3 install dtschema --upgrade
+> Also, what is the value of storing oscclk_rate instead of the calculated =
+delay
+> in the private data structure ?
+>
+Agreed, as mentioned above I no longer need storing the oscclk_rate in
+priv structure as I have dropped adding delay in ping operation.
 
-
-New warnings running 'make CHECK_DTBS=y nvidia/tegra114-asus-tf701t.dtb' for 20240806123906.161218-1-clamor95@gmail.com:
-
-arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: hdmi@54280000: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/display/tegra/nvidia,tegra20-hdmi.yaml#
-arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: hdmi@54280000: 'nvidia,ddc-i2c-bus' is a required property
-	from schema $id: http://devicetree.org/schemas/display/tegra/nvidia,tegra20-hdmi.yaml#
-arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: hdmi@54280000: 'nvidia,hpd-gpio' is a required property
-	from schema $id: http://devicetree.org/schemas/display/tegra/nvidia,tegra20-hdmi.yaml#
-arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: pinmux@70000868: pinmux:gmi-cs4-clk:nvidia,pins:1: 'gmi_clk_lb' is not one of ['ulpi_data0_po1', 'ulpi_data1_po2', 'ulpi_data2_po3', 'ulpi_data3_po4', 'ulpi_data4_po5', 'ulpi_data5_po6', 'ulpi_data6_po7', 'ulpi_data7_po0', 'ulpi_clk_py0', 'ulpi_dir_py1', 'ulpi_nxt_py2', 'ulpi_stp_py3', 'dap3_fs_pp0', 'dap3_din_pp1', 'dap3_dout_pp2', 'dap3_sclk_pp3', 'pv0', 'pv1', 'sdmmc1_clk_pz0', 'sdmmc1_cmd_pz1', 'sdmmc1_dat3_py4', 'sdmmc1_dat2_py5', 'sdmmc1_dat1_py6', 'sdmmc1_dat0_py7', 'clk2_out_pw5', 'clk2_req_pcc5', 'hdmi_int_pn7', 'ddc_scl_pv4', 'ddc_sda_pv5', 'uart2_rxd_pc3', 'uart2_txd_pc2', 'uart2_rts_n_pj6', 'uart2_cts_n_pj5', 'uart3_txd_pw6', 'uart3_rxd_pw7', 'uart3_cts_n_pa1', 'uart3_rts_n_pc0', 'pu0', 'pu1', 'pu2', 'pu3', 'pu4', 'pu5', 'pu6', 'gen1_i2c_sda_pc5', 'gen1_i2c_scl_pc4', 'dap4_fs_pp4', 'dap4_din_pp5', 'dap4_dout_pp6', 'dap4_sclk_pp7', 'clk3_out_pee0', 'clk3_req_pee1', 'gmi_wp_n_pc7', 'gmi_iordy_pi5', 'gmi_wait_pi7', 'gmi_adv_
- n_pk0', 'gmi_clk_pk1', 'gmi_cs0_n_pj0', 'gmi_cs1_n_pj2', 'gmi_cs2_n_pk3', 'gmi_cs3_n_pk4', 'gmi_cs4_n_pk2', 'gmi_cs6_n_pi3', 'gmi_cs7_n_pi6', 'gmi_ad0_pg0', 'gmi_ad1_pg1', 'gmi_ad2_pg2', 'gmi_ad3_pg3', 'gmi_ad4_pg4', 'gmi_ad5_pg5', 'gmi_ad6_pg6', 'gmi_ad7_pg7', 'gmi_ad8_ph0', 'gmi_ad9_ph1', 'gmi_ad10_ph2', 'gmi_ad11_ph3', 'gmi_ad12_ph4', 'gmi_ad13_ph5', 'gmi_ad14_ph6', 'gmi_ad15_ph7', 'gmi_a16_pj7', 'gmi_a17_pb0', 'gmi_a18_pb1', 'gmi_a19_pk7', 'gmi_wr_n_pi0', 'gmi_oe_n_pi1', 'gmi_dqs_p_pj3', 'gmi_rst_n_pi4', 'gen2_i2c_scl_pt5', 'gen2_i2c_sda_pt6', 'sdmmc4_clk_pcc4', 'sdmmc4_cmd_pt7', 'sdmmc4_dat0_paa0', 'sdmmc4_dat1_paa1', 'sdmmc4_dat2_paa2', 'sdmmc4_dat3_paa3', 'sdmmc4_dat4_paa4', 'sdmmc4_dat5_paa5', 'sdmmc4_dat6_paa6', 'sdmmc4_dat7_paa7', 'cam_mclk_pcc0', 'pcc1', 'pbb0', 'cam_i2c_scl_pbb1', 'cam_i2c_sda_pbb2', 'pbb3', 'pbb4', 'pbb5', 'pbb6', 'pbb7', 'pcc2', 'pwr_i2c_scl_pz6', 'pwr_i2c_sda_pz7', 'kb_row0_pr0', 'kb_row1_pr1', 'kb_row2_pr2', 'kb_row3_pr3', 'kb_row4_pr4', 'kb_row5_pr5
- ', 'kb_row6_pr6', 'kb_row7_pr7', 'kb_row8_ps0', 'kb_row9_ps1', 'kb_row10_ps2', 'kb_col0_pq0', 'kb_col1_pq1', 'kb_col2_pq2', 'kb_col3_pq3', 'kb_col4_pq4', 'kb_col5_pq5', 'kb_col6_pq6', 'kb_col7_pq7', 'clk_32k_out_pa0', 'sys_clk_req_pz5', 'core_pwr_req', 'cpu_pwr_req', 'pwr_int_n', 'owr', 'dap1_fs_pn0', 'dap1_din_pn1', 'dap1_dout_pn2', 'dap1_sclk_pn3', 'clk1_req_pee2', 'clk1_out_pw4', 'spdif_in_pk6', 'spdif_out_pk5', 'dap2_fs_pa2', 'dap2_din_pa4', 'dap2_dout_pa5', 'dap2_sclk_pa3', 'dvfs_pwm_px0', 'gpio_x1_aud_px1', 'gpio_x3_aud_px3', 'dvfs_clk_px2', 'gpio_x4_aud_px4', 'gpio_x5_aud_px5', 'gpio_x6_aud_px6', 'gpio_x7_aud_px7', 'sdmmc3_clk_pa6', 'sdmmc3_cmd_pa7', 'sdmmc3_dat0_pb7', 'sdmmc3_dat1_pb6', 'sdmmc3_dat2_pb5', 'sdmmc3_dat3_pb4', 'hdmi_cec_pee3', 'sdmmc1_wp_n_pv3', 'sdmmc3_cd_n_pv2', 'gpio_w2_aud_pw2', 'gpio_w3_aud_pw3', 'usb_vbus_en0_pn4', 'usb_vbus_en1_pn5', 'sdmmc3_clk_lb_in_pee5', 'sdmmc3_clk_lb_out_pee4', 'reset_out_n', 'drive_ao1', 'drive_ao2', 'drive_at1', 'drive_at2', 'dri
- ve_at3', 'drive_at4', 'drive_at5', 'drive_cdev1', 'drive_cdev2', 'drive_dap1', 'drive_dap2', 'drive_dap3', 'drive_dap4', 'drive_dbg', 'drive_sdio3', 'drive_spi', 'drive_uaa', 'drive_uab', 'drive_uart2', 'drive_uart3', 'drive_sdio1', 'drive_ddc', 'drive_gma', 'drive_gme', 'drive_gmf', 'drive_gmg', 'drive_gmh', 'drive_owr', 'drive_uda']
-	from schema $id: http://devicetree.org/schemas/pinctrl/nvidia,tegra114-pinmux.yaml#
-arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: pinmux@70000868: pinmux:clk-32k-in:nvidia,pins:0: 'clk_32k_in' is not one of ['ulpi_data0_po1', 'ulpi_data1_po2', 'ulpi_data2_po3', 'ulpi_data3_po4', 'ulpi_data4_po5', 'ulpi_data5_po6', 'ulpi_data6_po7', 'ulpi_data7_po0', 'ulpi_clk_py0', 'ulpi_dir_py1', 'ulpi_nxt_py2', 'ulpi_stp_py3', 'dap3_fs_pp0', 'dap3_din_pp1', 'dap3_dout_pp2', 'dap3_sclk_pp3', 'pv0', 'pv1', 'sdmmc1_clk_pz0', 'sdmmc1_cmd_pz1', 'sdmmc1_dat3_py4', 'sdmmc1_dat2_py5', 'sdmmc1_dat1_py6', 'sdmmc1_dat0_py7', 'clk2_out_pw5', 'clk2_req_pcc5', 'hdmi_int_pn7', 'ddc_scl_pv4', 'ddc_sda_pv5', 'uart2_rxd_pc3', 'uart2_txd_pc2', 'uart2_rts_n_pj6', 'uart2_cts_n_pj5', 'uart3_txd_pw6', 'uart3_rxd_pw7', 'uart3_cts_n_pa1', 'uart3_rts_n_pc0', 'pu0', 'pu1', 'pu2', 'pu3', 'pu4', 'pu5', 'pu6', 'gen1_i2c_sda_pc5', 'gen1_i2c_scl_pc4', 'dap4_fs_pp4', 'dap4_din_pp5', 'dap4_dout_pp6', 'dap4_sclk_pp7', 'clk3_out_pee0', 'clk3_req_pee1', 'gmi_wp_n_pc7', 'gmi_iordy_pi5', 'gmi_wait_pi7', 'gmi_adv_n
- _pk0', 'gmi_clk_pk1', 'gmi_cs0_n_pj0', 'gmi_cs1_n_pj2', 'gmi_cs2_n_pk3', 'gmi_cs3_n_pk4', 'gmi_cs4_n_pk2', 'gmi_cs6_n_pi3', 'gmi_cs7_n_pi6', 'gmi_ad0_pg0', 'gmi_ad1_pg1', 'gmi_ad2_pg2', 'gmi_ad3_pg3', 'gmi_ad4_pg4', 'gmi_ad5_pg5', 'gmi_ad6_pg6', 'gmi_ad7_pg7', 'gmi_ad8_ph0', 'gmi_ad9_ph1', 'gmi_ad10_ph2', 'gmi_ad11_ph3', 'gmi_ad12_ph4', 'gmi_ad13_ph5', 'gmi_ad14_ph6', 'gmi_ad15_ph7', 'gmi_a16_pj7', 'gmi_a17_pb0', 'gmi_a18_pb1', 'gmi_a19_pk7', 'gmi_wr_n_pi0', 'gmi_oe_n_pi1', 'gmi_dqs_p_pj3', 'gmi_rst_n_pi4', 'gen2_i2c_scl_pt5', 'gen2_i2c_sda_pt6', 'sdmmc4_clk_pcc4', 'sdmmc4_cmd_pt7', 'sdmmc4_dat0_paa0', 'sdmmc4_dat1_paa1', 'sdmmc4_dat2_paa2', 'sdmmc4_dat3_paa3', 'sdmmc4_dat4_paa4', 'sdmmc4_dat5_paa5', 'sdmmc4_dat6_paa6', 'sdmmc4_dat7_paa7', 'cam_mclk_pcc0', 'pcc1', 'pbb0', 'cam_i2c_scl_pbb1', 'cam_i2c_sda_pbb2', 'pbb3', 'pbb4', 'pbb5', 'pbb6', 'pbb7', 'pcc2', 'pwr_i2c_scl_pz6', 'pwr_i2c_sda_pz7', 'kb_row0_pr0', 'kb_row1_pr1', 'kb_row2_pr2', 'kb_row3_pr3', 'kb_row4_pr4', 'kb_row5_pr5'
- , 'kb_row6_pr6', 'kb_row7_pr7', 'kb_row8_ps0', 'kb_row9_ps1', 'kb_row10_ps2', 'kb_col0_pq0', 'kb_col1_pq1', 'kb_col2_pq2', 'kb_col3_pq3', 'kb_col4_pq4', 'kb_col5_pq5', 'kb_col6_pq6', 'kb_col7_pq7', 'clk_32k_out_pa0', 'sys_clk_req_pz5', 'core_pwr_req', 'cpu_pwr_req', 'pwr_int_n', 'owr', 'dap1_fs_pn0', 'dap1_din_pn1', 'dap1_dout_pn2', 'dap1_sclk_pn3', 'clk1_req_pee2', 'clk1_out_pw4', 'spdif_in_pk6', 'spdif_out_pk5', 'dap2_fs_pa2', 'dap2_din_pa4', 'dap2_dout_pa5', 'dap2_sclk_pa3', 'dvfs_pwm_px0', 'gpio_x1_aud_px1', 'gpio_x3_aud_px3', 'dvfs_clk_px2', 'gpio_x4_aud_px4', 'gpio_x5_aud_px5', 'gpio_x6_aud_px6', 'gpio_x7_aud_px7', 'sdmmc3_clk_pa6', 'sdmmc3_cmd_pa7', 'sdmmc3_dat0_pb7', 'sdmmc3_dat1_pb6', 'sdmmc3_dat2_pb5', 'sdmmc3_dat3_pb4', 'hdmi_cec_pee3', 'sdmmc1_wp_n_pv3', 'sdmmc3_cd_n_pv2', 'gpio_w2_aud_pw2', 'gpio_w3_aud_pw3', 'usb_vbus_en0_pn4', 'usb_vbus_en1_pn5', 'sdmmc3_clk_lb_in_pee5', 'sdmmc3_clk_lb_out_pee4', 'reset_out_n', 'drive_ao1', 'drive_ao2', 'drive_at1', 'drive_at2', 'driv
- e_at3', 'drive_at4', 'drive_at5', 'drive_cdev1', 'drive_cdev2', 'drive_dap1', 'drive_dap2', 'drive_dap3', 'drive_dap4', 'drive_dbg', 'drive_sdio3', 'drive_spi', 'drive_uaa', 'drive_uab', 'drive_uart2', 'drive_uart3', 'drive_sdio1', 'drive_ddc', 'drive_gma', 'drive_gme', 'drive_gmf', 'drive_gmg', 'drive_gmh', 'drive_owr', 'drive_uda']
-	from schema $id: http://devicetree.org/schemas/pinctrl/nvidia,tegra114-pinmux.yaml#
-arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: pinmux@70000868: pinmux:clk-32k-in:nvidia,function:0: 'clk' is not one of ['blink', 'cec', 'cldvfs', 'clk12', 'cpu', 'dap', 'dap1', 'dap2', 'dev3', 'displaya', 'displaya_alt', 'displayb', 'dtv', 'emc_dll', 'extperiph1', 'extperiph2', 'extperiph3', 'gmi', 'gmi_alt', 'hda', 'hsi', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2cpwr', 'i2s0', 'i2s1', 'i2s2', 'i2s3', 'i2s4', 'irda', 'kbc', 'nand', 'nand_alt', 'owr', 'pmi', 'pwm0', 'pwm1', 'pwm2', 'pwm3', 'pwron', 'reset_out_n', 'rsvd1', 'rsvd2', 'rsvd3', 'rsvd4', 'sdmmc1', 'sdmmc2', 'sdmmc3', 'sdmmc4', 'soc', 'spdif', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5', 'spi6', 'sysclk', 'trace', 'uarta', 'uartb', 'uartc', 'uartd', 'ulpi', 'usb', 'vgp1', 'vgp2', 'vgp3', 'vgp4', 'vgp5', 'vgp6', 'vi', 'vi_alt1', 'vi_alt3']
-	from schema $id: http://devicetree.org/schemas/pinctrl/nvidia,tegra114-pinmux.yaml#
-arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: pinmux: pv0-gpio: {'nvidia,pins': ['pv0'], 'nvidia,function': ['rsvd2'], 'nvidia,pull': 2, 'nvidia,tristate': 0, 'nvidia,enable-input': 1} is not of type 'array'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
-arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: pinmux: pv1-gpio: {'nvidia,pins': ['pv1'], 'nvidia,function': ['rsvd1'], 'nvidia,pull': 2, 'nvidia,tristate': 0, 'nvidia,enable-input': 1} is not of type 'array'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
-arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: pinmux: pu0-gpio: {'nvidia,pins': ['pu0'], 'nvidia,function': ['rsvd3'], 'nvidia,pull': 0, 'nvidia,tristate': 0, 'nvidia,enable-input': 0} is not of type 'array'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
-arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: pinmux: pu2-gpio: {'nvidia,pins': ['pu2'], 'nvidia,function': ['rsvd1'], 'nvidia,pull': 2, 'nvidia,tristate': 0, 'nvidia,enable-input': 1} is not of type 'array'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
-arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: pinmux: pcc-gpio: {'nvidia,pins': ['pcc1', 'pcc2'], 'nvidia,function': ['rsvd2'], 'nvidia,pull': 1, 'nvidia,tristate': 0, 'nvidia,enable-input': 1} is not of type 'array'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
-arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: pinmux: pbb3-gpio: {'nvidia,pins': ['pbb3'], 'nvidia,function': ['rsvd4'], 'nvidia,pull': 0, 'nvidia,tristate': 0, 'nvidia,enable-input': 1} is not of type 'array'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
-arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: pinmux: pbb4-5-6-gpio: {'nvidia,pins': ['pbb4', 'pbb5', 'pbb6'], 'nvidia,function': ['rsvd4'], 'nvidia,pull': 0, 'nvidia,tristate': 0, 'nvidia,enable-input': 0} is not of type 'array'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
-arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: pinmux: pbb7-gpio: {'nvidia,pins': ['pbb7'], 'nvidia,function': ['rsvd2'], 'nvidia,pull': 0, 'nvidia,tristate': 0, 'nvidia,enable-input': 0} is not of type 'array'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-consumer.yaml#
-arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: serial@70006200: compatible: 'oneOf' conditional failed, one must be fixed:
-	['nvidia,tegra114-hsuart', 'nvidia,tegra30-hsuart'] is too long
-	'nvidia,tegra114-hsuart' is not one of ['nvidia,tegra20-hsuart', 'nvidia,tegra30-hsuart', 'nvidia,tegra186-hsuart', 'nvidia,tegra194-hsuart']
-	'nvidia,tegra124-hsuart' was expected
-	from schema $id: http://devicetree.org/schemas/serial/nvidia,tegra20-hsuart.yaml#
-arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: serial@70006200: Unevaluated properties are not allowed ('compatible' was unexpected)
-	from schema $id: http://devicetree.org/schemas/serial/nvidia,tegra20-hsuart.yaml#
-arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: /serial@70006200: failed to match any schema with compatible: ['nvidia,tegra114-hsuart', 'nvidia,tegra30-hsuart']
-arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: bluetooth: reset-gpios: False schema does not allow [[20, 134, 1]]
-	from schema $id: http://devicetree.org/schemas/net/broadcom-bluetooth.yaml#
-arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: /i2c@7000d000/pmic@58/extcon: failed to match any schema with compatible: ['ti,palmas-usb-vid']
-arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: /i2c@7000d000/pmic@58/palmas_clk32kg@0: failed to match any schema with compatible: ['ti,palmas-clk32kg']
-arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: sound: nvidia,audio-routing:14: 'IN1N' is not one of ['Headphones', 'Speakers', 'Mic Jack', 'DMIC1', 'DMIC2', 'MICBIAS1', 'IN1P', 'IN1R', 'IN2P', 'IN2R', 'HPOL', 'HPOR', 'LOUTL', 'LOUTR', 'MONOP', 'MONON', 'SPOLP', 'SPOLN', 'SPORP', 'SPORN']
-	from schema $id: http://devicetree.org/schemas/sound/nvidia,tegra-audio-rt5640.yaml#
-arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: sound: nvidia,audio-routing:17: 'Int Mic' is not one of ['Headphones', 'Speakers', 'Mic Jack', 'DMIC1', 'DMIC2', 'MICBIAS1', 'IN1P', 'IN1R', 'IN2P', 'IN2R', 'HPOL', 'HPOR', 'LOUTL', 'LOUTR', 'MONOP', 'MONON', 'SPOLP', 'SPOLN', 'SPORP', 'SPORN']
-	from schema $id: http://devicetree.org/schemas/sound/nvidia,tegra-audio-rt5640.yaml#
-arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dtb: sound: nvidia,audio-routing:19: 'Int Mic' is not one of ['Headphones', 'Speakers', 'Mic Jack', 'DMIC1', 'DMIC2', 'MICBIAS1', 'IN1P', 'IN1R', 'IN2P', 'IN2R', 'HPOL', 'HPOR', 'LOUTL', 'LOUTR', 'MONOP', 'MONON', 'SPOLP', 'SPOLN', 'SPORP', 'SPORN']
-	from schema $id: http://devicetree.org/schemas/sound/nvidia,tegra-audio-rt5640.yaml#
-
-
-
-
-
+Cheers,
+Prabhakar
 
