@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-91232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E67DB948905
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 07:45:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18AC8948912
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 07:55:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7510A1F23C88
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 05:45:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8659284423
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 05:55:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 243CA1BA88D;
-	Tue,  6 Aug 2024 05:45:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82B8C1BC085;
+	Tue,  6 Aug 2024 05:55:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UkmsdGL5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D1RuLWcg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E322D224EF;
-	Tue,  6 Aug 2024 05:45:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B1681BC07C;
+	Tue,  6 Aug 2024 05:55:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722923122; cv=none; b=Gob5iZHlhP2xA0VU5wYZCTrmAmrdUHISHpi2UQemSGfZhM/2QFStDn4wDxRdh+dzxzxLrIXBXDEO+bLKj8Gh2bX/RqivAkSpeGSJC2+n2D3cgLI+we0A/HCcYCyZSQIEuqr+toznSsgGLtWcmb3bbAcnYMC8IF5dquj2++K061M=
+	t=1722923716; cv=none; b=k3IiUJ4l479VAOAw3ubQSLvyzmjVq5ZXN8GioPWoiQ9EJHUp7Opi2jXgViy5JUiIulqbsOLInEyfmRDEpRENq+twuK1CWtq6iwnkZS0ieaYuqP5lWVHXV0mOOz4cA+3WJffgZDmlOAIqaa4VwmneS56ImULhfYP+fQR08/EGv9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722923122; c=relaxed/simple;
-	bh=8QBZkc1WIu784A5sISdhtLiWeGpKBHspI6RssO5hh+g=;
+	s=arc-20240116; t=1722923716; c=relaxed/simple;
+	bh=NQmXkhU3Hn2ExUohpNXfA1yRwH+B9cNfk9UPZJPR8RE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PewLwLIjpTAxtVFeCPTiqCVXK30U1z4vdJzzv8DzqfexJFSj9B/ISBBsXoZhH8s/sGsybeWF1O4oJfdk+Rrbysk6nGGITBoR3RX1jC9gBZCIYkbNoBdUxCHBHFuIkiXXL5bGTy/t6b7J4Jflf9iOOrWHRAyjE9CNFVi9nezn0fE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UkmsdGL5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD49CC32786;
-	Tue,  6 Aug 2024 05:45:14 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=DyQeoCWM1maWEtGF0dwVzNGxnUdQKnhi1HJzYCAhQPRtvSMIM4wyVyFYnuzVu2SRJWD0k+3x/akHJWRdtea8FHgqzlYEGbpeMZ4u1EnBFzhklgtJjBPZYl+QbyU7N46b/L8lBlnTzlB8RcfDaRE7uILzw6OGpJrsWgjvr1+6g4o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D1RuLWcg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FFCBC32786;
+	Tue,  6 Aug 2024 05:55:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722923121;
-	bh=8QBZkc1WIu784A5sISdhtLiWeGpKBHspI6RssO5hh+g=;
+	s=k20201202; t=1722923715;
+	bh=NQmXkhU3Hn2ExUohpNXfA1yRwH+B9cNfk9UPZJPR8RE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UkmsdGL5F80ZcGr1hTkqQiYcJnST18cfUI9pn71UMPtg8V3HmtUP497+NDJz9pJKL
-	 3+o7SFRJ1h3J5849T5k6Q+ZdIUKuOwV7wnkUqiGBRuVs20ipeb8DtaDbDHnWZC/XN9
-	 hOTb6AUClLwB523IscVAopvCkKK0D1H6RPq6D9QTxVeqtZMBYxWnVNcrKXn1FjZbRu
-	 SgFJIgHMffcrGGkjISosrTo4euIdqu3bE78Ohl+/z0bnub8zlYCkSFAgweUFywIKgh
-	 SJxCA0GkSmfk+MXP3uVphmJn1RKPJEgplvESRaMszfYpD+/s7aLODEMb+/GDx67Umt
-	 L5bZs10aUoB5Q==
-Message-ID: <da392b79-9221-4988-baee-704ce20a3d57@kernel.org>
-Date: Tue, 6 Aug 2024 07:45:12 +0200
+	b=D1RuLWcgqM03gIay4o1t2zYO9kWYs9TAOObGk4AI7TgOlA2oU2lLC5nLNlz4XIl4u
+	 dlG1zAwoNJaGBOxh76GvQY4v/dAlHX6JYFyOkN4EdWvxkPq1FJfAftAJ1VvgStqyTx
+	 Ez0atdB3zRGkFk2XVZrfP8gdYJ7zjyuONKzz4TbM9fB3zSv1AY4P1uzFQAb7QyjH2q
+	 k7oFptWu9xUXcRYkon1cPwVdf+ZyJy/qPBjusEHErz1wugMMZ81L06Q+t+1kU0GA0f
+	 1p+hdRLZiRLE86scjOgcyNRxVZozHlqxrY2tv9DWd6SiXIzj84j7z9b0YQB2GOZOEe
+	 g2+6/wvpLePjg==
+Message-ID: <9f459583-3530-4d5b-a6a5-d5fc1450af40@kernel.org>
+Date: Tue, 6 Aug 2024 07:55:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,26 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/6] dt-bindings: misc: qcom,fastrpc: increase the max
- number of iommus
-To: Bartosz Golaszewski <brgl@bgdev.pl>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Amol Maheshwari <amahesh@qti.qualcomm.com>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH] dt-bindings: mmc: renesas,sdhi: Remove duplicate
+ compatible and add clock checks
+To: Prabhakar <prabhakar.csengg@gmail.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Jassi Brar <jassisinghbrar@gmail.com>, Bjorn Andersson
- <andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>,
- Arnd Bergmann <arnd@arndb.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-remoteproc@vger.kernel.org,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Tengfei Fan <quic_tengfan@quicinc.com>, Ling Xu <quic_lxu5@quicinc.com>
-References: <20240805-topic-sa8775p-iot-remoteproc-v4-0-86affdc72c04@linaro.org>
- <20240805-topic-sa8775p-iot-remoteproc-v4-1-86affdc72c04@linaro.org>
+ <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ Biju Das <biju.das.jz@bp.renesas.com>,
+ Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ Geert Uytterhoeven <geert@linux-m68k.org>
+References: <20240805211257.61099-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,19 +110,18 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240805-topic-sa8775p-iot-remoteproc-v4-1-86affdc72c04@linaro.org>
+In-Reply-To: <20240805211257.61099-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/08/2024 19:08, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On 05/08/2024 23:12, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> The fastrpc components on the SA8775P SoC can require up to 10 IOMMU
-> entries. Bump the maxItems.
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> Remove the duplicate compatible entry `renesas,sdhi-r9a09g057` and add a
+> restriction for clocks and clock-names for the RZ/V2H(P) SoC, which has
+> four clocks similar to the RZ/G2L SoC.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
