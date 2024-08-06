@@ -1,136 +1,162 @@
-Return-Path: <devicetree+bounces-91335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90D8F948F5D
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 14:42:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84FC5948F42
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 14:40:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 376821F23F2D
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 12:42:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 350A2288268
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 12:40:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CAE41CB31E;
-	Tue,  6 Aug 2024 12:39:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD2581C7B7A;
+	Tue,  6 Aug 2024 12:39:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UQ8SPXXw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gPXeFIzs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89AD41C9EA5;
-	Tue,  6 Aug 2024 12:39:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DB3A1C68B7;
+	Tue,  6 Aug 2024 12:39:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722947984; cv=none; b=mS+mzpOf/ewB1UsxX0Qg0UiK9zt+IJIdHeMBMSSGv8qUo+7/OxT2FKW34P07FaCa0IIGzQX6PJ7VyJ3qXwJqIW/y5DitmWmaKzSU4uSpPn6lgglBb4eSb2acpcveTzIcOeNTUxRvayAVlMyelXFHMcn8pYEuHDssNJRBD9JiwUY=
+	t=1722947978; cv=none; b=j+jta3PWy1rnaz4cUuBmGalC+u/YKSPrEvN5TTvv+I9KJOKGcBeBb9eVX76dU0cgISvFshWK1JmmHJYR5G1UPyi73juGHXIgtOX2TsVIwi62HiJcyPkhXhUGbD22gl9ynGM76D5odyw2hIeUVS7xRnVCZIm/XZZvZ/Wh62BOxBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722947984; c=relaxed/simple;
-	bh=yPMDwHtB6xyMhjDEG6GPfVut3vH1K2hQubaFGpmcOJ0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=JVXFrGiRRnzeYt39Uua+zVikIvCtYIdpD6e+TQPWBmqiNsjE5iGIIuTokxJULcHnr/cN19nlJmVfIyRmjK/UC57vNj1OLSgMrSWKiNdN7JEZ6RUKfnnq8by6SgqDD5WS/L8iR91Fog49dFYSl/yeTyaiCR1moTrepokH4GAkEmM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UQ8SPXXw; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2ef2d96164aso6597761fa.3;
-        Tue, 06 Aug 2024 05:39:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722947981; x=1723552781; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ch4sivXa7WbxCan6nymUmIb/9rywiOLv8it/SNUMy/4=;
-        b=UQ8SPXXwgLsp+R+KrsPzR11KmCxF7fPJS1X3651Y2B9Gas888EONF/TThpJ7lzU0Fb
-         irlXNFqwx4+G7F6xXHTmkJdN1C9G7wE6+tjFYKJkzYwZpn+i5aKpWKgjF+cjUdgk0BXY
-         d46rG2rMlH/xlvEXD2Fpool+LxKDtldDm56L2GG/mLaCm/XKqyAO6aRx4MHNV1jryVOi
-         f+Qf+DDnMOs+eJUNoimqTH9UwLoVtgHQZ3hc+DSFGfZ73e0y6lIO90+KjZgRL/o7Ky6b
-         H3c4npxAMIZ+uufxbsjZvLQlFkcFYsVFjRuxoiXawfMrs2cIGqOJvIAVFYUlAnC4wrdw
-         eR9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722947981; x=1723552781;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ch4sivXa7WbxCan6nymUmIb/9rywiOLv8it/SNUMy/4=;
-        b=XSIdgswj2g39ukjD4FuwZBqP58tpExQ3YD60dqgMxG/iFrIwCq1a6FDIiLlGxKr7Nd
-         Q+uVVWDVV0n8Dymwmi07FBXHroeokC060enHHOWSUpewatg0u9ztR/I+kX4eZwchFSms
-         uMZ1v6kax5ZXR0m9boWz2goKYS6jDucFAcpyO7ershMpHCeDf4D3wP0B9uOZjbDVlGSx
-         jDe5nIrwaZU4oSvLhXoWJ4DyWMfu18BttUlVJxI/mjuS+Yjrvf4y9wLhir/3TCtzOZVT
-         4HfnVl47jdR+PZTWAd/Iop0jLm0561U9om4fXpfqDQ90EqH9diSeSr5JZW4v+tSeBFoB
-         6Ydg==
-X-Forwarded-Encrypted: i=1; AJvYcCUraeD4He6fxdhFbsZs/VSpGXBp9jgRJUvm3kzBqrZOXPM1iy3KQ9NsU9PlnTzEe14M6C391L0+eZiiMgCWO4jJaR9Ngcer5pL/d6g0clIXwnvY9N27Zu0gt6k6LsZ+XhrW8UXWfW1yA28=
-X-Gm-Message-State: AOJu0YwhgkztFAhZ8fhffhjBZff6iG9aL5KmP+cKz72kCAQGUiAajXtz
-	eX8yxdokc3ww1CzxdQN85iA2gmF3zaAC4Jw3M1U+q231+oxQOYvd
-X-Google-Smtp-Source: AGHT+IHGOafdBabYlP2c2x+Cz7k9sR9kUTAZvDXhK09l1VfhYbB9xjfqGlqK69PXXXc7UJFrWzQktg==
-X-Received: by 2002:a05:6512:3091:b0:530:aeea:27e1 with SMTP id 2adb3069b0e04-530bb39b760mr9505743e87.50.1722947980138;
-        Tue, 06 Aug 2024 05:39:40 -0700 (PDT)
-Received: from xeon.. ([188.163.112.54])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7dc9d8a4b1sm546428366b.151.2024.08.06.05.39.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Aug 2024 05:39:39 -0700 (PDT)
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 11/11] ARM: nvidia: tf701t: configure USB
-Date: Tue,  6 Aug 2024 15:39:06 +0300
-Message-ID: <20240806123906.161218-12-clamor95@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240806123906.161218-1-clamor95@gmail.com>
-References: <20240806123906.161218-1-clamor95@gmail.com>
+	s=arc-20240116; t=1722947978; c=relaxed/simple;
+	bh=eMNJjAYkh3YJudnzeODeG6NqHgyfSSZdW118XbHW6XE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gwK+DyVti9bmKoYMVA3TQZRi+RVcJVmaftrjIm1U8o/6jcVAM+r5tlmDdmqPdDZvuklMgzuV1zNca/3SBe63VG6bBUu3gmsTtfRgDwc+hdf8+AjHdNF+EQHruolQregrYgx1RdN6zHTQC1knxyqmfC1G30fk4jt4MGvsfaihCbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gPXeFIzs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A55BDC4AF10;
+	Tue,  6 Aug 2024 12:39:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722947978;
+	bh=eMNJjAYkh3YJudnzeODeG6NqHgyfSSZdW118XbHW6XE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=gPXeFIzsRzcyrz0Sc20Nf3wCzKS0TfphZoXELNTp8pBaduiPip83RFA8vZNoMMWnn
+	 LucecaWesGGmRFJrJWVPFgO8dQ6sDcl8OZYCNpKgbtdAuUM+xJGNVlFMxpeLaS0K0A
+	 Uh1h7e6EDGbhhkju4vFYWoPfxN2chPQ4i/9pm0QqUI6ojKKt2s0zQLcnyGp6Bt3pgV
+	 6XgRgQ0I2bju+Fs9WOCxiI4dIhvc/R5ldBXIZov3e3s+WetWo6Bwrdib1sDW7ckhhV
+	 NWkQOnxP0yOeyubdZHLSd6YhIxJeOQSzpaf93ptS3QhUB3tyMdde++KTY7UHB96R1S
+	 rcepJeyk1UR0w==
+Message-ID: <ae46118f-a692-4362-8e6b-4ef8c6369541@kernel.org>
+Date: Tue, 6 Aug 2024 14:39:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1] arm: dts: st: Add MECIO1 and MECT1S board variants
+To: Oleksij Rempel <o.rempel@pengutronix.de>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: David Jander <david@protonic.nl>, kernel@pengutronix.de,
+ linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org
+References: <20240806120332.405064-1-o.rempel@pengutronix.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240806120332.405064-1-o.rempel@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Fixes issue when resuming after suspend made USB in peripheral
-mode inaccessible.
+On 06/08/2024 14:03, Oleksij Rempel wrote:
+> From: David Jander <david@protonic.nl>
+> 
+> Introduce device tree support for the MECIO1 and MECT1S board variants.
+> MECIO1 is an I/O and motor control board used in blood sample analysis
+> machines. MECT1S is a 1000Base-T1 switch for internal machine networks
+> of blood sample analysis machines.
+> 
+> Signed-off-by: David Jander <david@protonic.nl>
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> ---
+>  .../devicetree/bindings/arm/stm32/stm32.yaml  |   8 +
+>  arch/arm/boot/dts/st/Makefile                 |   3 +
+>  arch/arm/boot/dts/st/stm32mp151c-mecio1r0.dts |  48 ++
+>  arch/arm/boot/dts/st/stm32mp151c-mect1s.dts   | 297 ++++++++++
+>  arch/arm/boot/dts/st/stm32mp153c-mecio1r1.dts |  48 ++
+>  .../arm/boot/dts/st/stm32mp15x-mecio1-io.dtsi | 533 ++++++++++++++++++
+>  6 files changed, 937 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/st/stm32mp151c-mecio1r0.dts
+>  create mode 100644 arch/arm/boot/dts/st/stm32mp151c-mect1s.dts
+>  create mode 100644 arch/arm/boot/dts/st/stm32mp153c-mecio1r1.dts
+>  create mode 100644 arch/arm/boot/dts/st/stm32mp15x-mecio1-io.dtsi
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+> index 58099949e8f3a..703d4b574398d 100644
+> --- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+> +++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
 
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
----
- arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dts | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Please run scripts/checkpatch.pl and fix reported warnings. Then please
+run `scripts/checkpatch.pl --strict` and (probably) fix more warnings.
+Some warnings can be ignored, especially from --strict run, but the code
+here looks like it needs a fix. Feel free to get in touch if the warning
+is not clear.
 
-diff --git a/arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dts b/arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dts
-index e6d0c834c0a2..fbe7eb1a5753 100644
---- a/arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dts
-+++ b/arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dts
-@@ -1604,22 +1604,22 @@ mmc@78000600 {
- 		vqmmc-supply = <&vdd_1v8_vio>;
- 	};
- 
-+	/* Peripheral USB via ASUS connector */
- 	usb@7d000000 {
- 		compatible = "nvidia,tegra114-udc";
- 		status = "okay";
- 		dr_mode = "peripheral";
--
--		/* Peripheral USB via ASUS connector */
- 	};
- 
- 	usb-phy@7d000000 {
- 		status = "okay";
-+		dr_mode = "peripheral";
-+		vbus-supply = <&avdd_usb>;
- 	};
- 
-+	/* Host USB via dock */
- 	usb@7d008000 {
- 		status = "okay";
--
--		/* Host USB via dock */
- 	};
- 
- 	usb-phy@7d008000 {
--- 
-2.43.0
+> @@ -54,6 +54,8 @@ properties:
+>        - description: ST STM32MP151 based Boards
+>          items:
+>            - enum:
+> +              - prt,mecio1r0 # Protonic MECIO1r0
+> +              - prt,mect1s   # Protonic MECT1S
+>                - prt,prtt1a   # Protonic PRTT1A
+>                - prt,prtt1c   # Protonic PRTT1C
+
+...
+
+
+Best regards,
+Krzysztof
 
 
