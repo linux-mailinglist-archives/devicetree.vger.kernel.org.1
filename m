@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-91233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18AC8948912
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 07:55:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FC2494891A
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 07:57:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8659284423
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 05:55:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 81D341C22511
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 05:57:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82B8C1BC085;
-	Tue,  6 Aug 2024 05:55:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28BA11BC9E3;
+	Tue,  6 Aug 2024 05:57:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D1RuLWcg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C4x0Z5Lz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B1681BC07C;
-	Tue,  6 Aug 2024 05:55:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F152915D1;
+	Tue,  6 Aug 2024 05:57:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722923716; cv=none; b=k3IiUJ4l479VAOAw3ubQSLvyzmjVq5ZXN8GioPWoiQ9EJHUp7Opi2jXgViy5JUiIulqbsOLInEyfmRDEpRENq+twuK1CWtq6iwnkZS0ieaYuqP5lWVHXV0mOOz4cA+3WJffgZDmlOAIqaa4VwmneS56ImULhfYP+fQR08/EGv9U=
+	t=1722923829; cv=none; b=lYddEf8hZZw4aP5UAPID0cEImr+6ICUlTgZSffc6aNOFzWiVop1QHsaNjbF/CxXH/gWu8umVxZ8Y5DeBlaoPG5XL00DFrP6V6xX9DQXZmiY3G+XSpFPOxSG3JyrQxy7RsbWUTGzUnxNkH86O9kb5g8YWDmApnHFbIdXcjYQHDJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722923716; c=relaxed/simple;
-	bh=NQmXkhU3Hn2ExUohpNXfA1yRwH+B9cNfk9UPZJPR8RE=;
+	s=arc-20240116; t=1722923829; c=relaxed/simple;
+	bh=Ru8Shg8lIwniuY8wKameyr5sDLRzIhyoJA3vrjy1zMI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DyQeoCWM1maWEtGF0dwVzNGxnUdQKnhi1HJzYCAhQPRtvSMIM4wyVyFYnuzVu2SRJWD0k+3x/akHJWRdtea8FHgqzlYEGbpeMZ4u1EnBFzhklgtJjBPZYl+QbyU7N46b/L8lBlnTzlB8RcfDaRE7uILzw6OGpJrsWgjvr1+6g4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D1RuLWcg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FFCBC32786;
-	Tue,  6 Aug 2024 05:55:10 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=iJ6qW8W4dE9aPjk0555fq1/qR/X82elpPwJW4R2qL2ukMj0De90gbTJAQr01+OJI17OukjVa/LbXXuEw7ERKIrnQbNFGJ0rHTWhPlWfRcIbvU3rA2OEZgyuwF3+OpDlyFmf2w5tPtbvhIcsbDdn+WhERWWQPZ2kInCctOvB52+Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C4x0Z5Lz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08D72C4AF09;
+	Tue,  6 Aug 2024 05:57:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722923715;
-	bh=NQmXkhU3Hn2ExUohpNXfA1yRwH+B9cNfk9UPZJPR8RE=;
+	s=k20201202; t=1722923828;
+	bh=Ru8Shg8lIwniuY8wKameyr5sDLRzIhyoJA3vrjy1zMI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=D1RuLWcgqM03gIay4o1t2zYO9kWYs9TAOObGk4AI7TgOlA2oU2lLC5nLNlz4XIl4u
-	 dlG1zAwoNJaGBOxh76GvQY4v/dAlHX6JYFyOkN4EdWvxkPq1FJfAftAJ1VvgStqyTx
-	 Ez0atdB3zRGkFk2XVZrfP8gdYJ7zjyuONKzz4TbM9fB3zSv1AY4P1uzFQAb7QyjH2q
-	 k7oFptWu9xUXcRYkon1cPwVdf+ZyJy/qPBjusEHErz1wugMMZ81L06Q+t+1kU0GA0f
-	 1p+hdRLZiRLE86scjOgcyNRxVZozHlqxrY2tv9DWd6SiXIzj84j7z9b0YQB2GOZOEe
-	 g2+6/wvpLePjg==
-Message-ID: <9f459583-3530-4d5b-a6a5-d5fc1450af40@kernel.org>
-Date: Tue, 6 Aug 2024 07:55:08 +0200
+	b=C4x0Z5LzJzhvZwqgXBB4OZ0POwM8SDhV2CjWAXR3Y+vWMBbD93Auz9suPAdtoFHns
+	 bSctw36U+bOeD8QqTk2VCXG0+rJXusyyyGf9yleosVMcQYbheYI0Z3uzMs4XNgYpi4
+	 fUWvFflqrWul0s+sX0md0x2gHeKcXsWHAr+aSsHUUmwMW+bRRaGyURKDRaCtS5ad/S
+	 4V5k9m3xuIPEGTGd2SoFM4NRLgtUDvlfDyKy9tiPJFts10xdA9uPNEsGTa6LcaM2Sb
+	 oE5CSaQ1HCy82zVRRT28ycCI9ufZ+nk4aOVf/nGo9XoI6GtLvSIuCqd8BEB0aLTUA0
+	 USqcuhmFWAetg==
+Message-ID: <77e65be3-a4d3-4b6a-991f-10dfb2db5f95@kernel.org>
+Date: Tue, 6 Aug 2024 07:57:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: mmc: renesas,sdhi: Remove duplicate
- compatible and add clock checks
-To: Prabhakar <prabhakar.csengg@gmail.com>,
- Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- Biju Das <biju.das.jz@bp.renesas.com>,
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>
-References: <20240805211257.61099-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 1/1] dt-bindings: soc: fsl: add missed compatible string
+ fsl,ls*-isc
+To: Frank Li <Frank.Li@nxp.com>,
+ Christophe Leroy <christophe.leroy@csgroup.eu>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ "open list:FREESCALE SOC DRIVERS" <linuxppc-dev@lists.ozlabs.org>,
+ "moderated list:FREESCALE SOC DRIVERS"
+ <linux-arm-kernel@lists.infradead.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+Cc: imx@lists.linux.dev
+References: <20240802171102.2812687-1-Frank.Li@nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,18 +108,18 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240805211257.61099-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240802171102.2812687-1-Frank.Li@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/08/2024 23:12, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> Remove the duplicate compatible entry `renesas,sdhi-r9a09g057` and add a
-> restriction for clocks and clock-names for the RZ/V2H(P) SoC, which has
-> four clocks similar to the RZ/G2L SoC.
+On 02/08/2024 19:11, Frank Li wrote:
+> Add compatible string, fsl,ls1088a-isc, fsl,ls2080a-isc, fsl,lx2160a-isc.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+git grep on fsl,lx2046a-isc gives me 0.
+
+> Fix the below warning:
+> arch/arm64/boot/dts/freescale/fsl-ls2080a-qds.dtb: /soc/syscon@1f70000: failed to match any schema with compatible: ['fsl,ls2080a-isc', 'syscon']
+> 
 
 Best regards,
 Krzysztof
