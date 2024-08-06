@@ -1,138 +1,222 @@
-Return-Path: <devicetree+bounces-91452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB37A949600
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 18:57:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5068949639
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 19:04:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F1170B24389
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 16:57:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3B88DB29A3B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 17:04:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AD3944C81;
-	Tue,  6 Aug 2024 16:57:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90C5B155352;
+	Tue,  6 Aug 2024 17:01:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mEJ2BzfM"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="OIivsS0I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B473548E1;
-	Tue,  6 Aug 2024 16:57:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23287824BD;
+	Tue,  6 Aug 2024 17:01:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722963437; cv=none; b=TPSSzpr6CWM9YLyIwUZTF0G0iQFvujEpVMJPAqwPA60Qxupr0jCsHx8CCbCgcSHgNuArKIW9t3qrnfmuuMpI72tdQouC75ubwGGs8cm3tR+8KXeldpAirE8eQWTPGLhF9znz/6PY2qicilkdkx9r3JeLTkdXvStIE8rDHMvnfes=
+	t=1722963709; cv=none; b=CkgBzf3oqWmF2D3K1ExCNQYLbTPu5i1lakT/GwmjCWSpkZ+JzmFDoL+cJ503Il2ztZQYDTTmVxM48Z9UzqiJmC/m5vKMkZw0cZE973FSHFy/72mNcO9x73JeDZyPZ33G2pg7rnFyD17+3IIJiOEH9oMxh2l311X1r/1QpP1iZho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722963437; c=relaxed/simple;
-	bh=hHPq16rmjF7qpZCyazK2YgxI+CLfMe1lVA2E8+OXKW8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rxkyopKY7F5JuHlc/WRrErTE07cGJV+tQs5zEnDWJtqx0P4klH6Dh2jMI6tvtBvq2n9jswbbiv4V8kDoEtS0f7XIEBIXNIhhSJA4BmEcTzCYDXY9K1s43HSI9ljbZJRavkcI+NUvEc9orILi7PX0Iesl9Z82wCst4Mye+Bi9Vto=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mEJ2BzfM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8A82C32786;
-	Tue,  6 Aug 2024 16:57:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722963436;
-	bh=hHPq16rmjF7qpZCyazK2YgxI+CLfMe1lVA2E8+OXKW8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=mEJ2BzfM1hqzVMjRH58L22TIWZLLkn6WFWzvp+vvePVZSlKzjnbJtIcT8DHncN/LQ
-	 whYRJffXlwKJ1uCurFuhUpr8UhCqS6T/GpUWWnvOUwLMXfevOTxrjigZnegrqRMsQK
-	 pblaI/48lNNnwr7NPHfYGY7TqerAXXqySyWtjxs7lJX4WGpbqGf8gmeJExjlyWVYHu
-	 XOaaDtGdMGNrD8tbqn1Kbzk1tzJyM08Ke+QZWEmfCX7htC/aSbhMaBuvAeDPZRY78U
-	 wo2ApxO89lIN8/eunHn8xC3eYOiuHjqTOOcaj7n+60a/YXT8jqVg4O1ThzXpA9zVyg
-	 DVojAVpSmDk5Q==
-Date: Tue, 6 Aug 2024 17:57:06 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Trevor Gamblin <tgamblin@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, David
- Lechner <dlechner@baylibre.com>, Uwe Kleine-Konig
- <u.kleine-koenig@baylibre.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>
-Subject: Re: [PATCH RFC 1/3] dt-bindings: iio: adc: add AD762x/AD796x ADCs
-Message-ID: <20240806175706.5ee7602c@jic23-huawei>
-In-Reply-To: <46be10c0-7ee9-489b-afc9-0e0411200d7e@baylibre.com>
-References: <20240731-ad7625_r1-v1-0-a1efef5a2ab9@baylibre.com>
-	<20240731-ad7625_r1-v1-1-a1efef5a2ab9@baylibre.com>
-	<20240803153540.17627489@jic23-huawei>
-	<46be10c0-7ee9-489b-afc9-0e0411200d7e@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1722963709; c=relaxed/simple;
+	bh=yirhGRV8z3dzeaOicxTi8mzJ0iWfFkm2TMlo4tNY++o=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=rQXwr7AfXiAGO7BKuOxFnBXGqJweQ+mQ/3b/LoR8V29hRNb3Fs4g/JX8KhXkgkWBamzVxUKuDi9kMECTdKhX0qcpbn5+hOcL2HKL0xLjTCHS5cVq5YNGlxPh7r0m6ej+ppFE2yLPcO8XjdPwE9hIPfoehhbrJJ4CzWcR3kEVhfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=OIivsS0I; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 476H1PE8117593;
+	Tue, 6 Aug 2024 12:01:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1722963685;
+	bh=DMqQCiCBes+KWaNgnlpy9KYLebMmh7WObGdpYCJSN/U=;
+	h=From:To:CC:Subject:Date;
+	b=OIivsS0IwrayvssOxNAliBL1QDib/KM9ZrKHPq7NusTWz1YS8IF3whBZj96o/0q+3
+	 4sMRsISEIbRlBUPWVCEXAUVd4K0z0ch29iYT+nvyzDA69sfsJNRofB9slvZR8RJUI1
+	 PfDjRwa4GgEVH7OOL4j0NvA3zMrt0rTvNZu3h6So=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 476H1PWf006203
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 6 Aug 2024 12:01:25 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
+ Aug 2024 12:01:25 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 6 Aug 2024 12:01:25 -0500
+Received: from localhost (udb0389739.dhcp.ti.com [137.167.1.149])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 476H1O8W038613;
+	Tue, 6 Aug 2024 12:01:24 -0500
+From: Michael Nemanov <michael.nemanov@ti.com>
+To: Kalle Valo <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo
+ Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-wireless@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: Sabeeh Khan <sabeeh-khan@ti.com>, Michael Nemanov <michael.nemanov@ti.com>
+Subject: [PATCH v3 00/17] wifi: cc33xx: Add driver for new TI CC33xx wireless device family
+Date: Tue, 6 Aug 2024 20:00:01 +0300
+Message-ID: <20240806170018.638585-1-michael.nemanov@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Tue, 6 Aug 2024 09:17:45 -0400
-Trevor Gamblin <tgamblin@baylibre.com> wrote:
+Hello everyone,
 
-> Hello,
->=20
-> On 2024-08-03 10:35 a.m., Jonathan Cameron wrote:
-> > On Wed, 31 Jul 2024 09:48:03 -0400
-> > Trevor Gamblin <tgamblin@baylibre.com> wrote:
-> > =20
-> >> This adds a binding specification for the Analog Devices Inc. AD7625,
-> >> AD7626, AD7960, and AD7961 ADCs. =20
-> > Given the RFC question is effectively about the binding and may influen=
-ce
-> > it a lot - make sure it's talked about here!
-> > =20
-> >> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
-> >> ---
-> >>   .../devicetree/bindings/iio/adc/adi,ad7625.yaml    | 176 +++++++++++=
-++++++++++
-> >>   MAINTAINERS                                        |   9 ++
-> >>   2 files changed, 185 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7625.yaml=
- b/Documentation/devicetree/bindings/iio/adc/adi,ad7625.yaml
-> >> new file mode 100644
-> >> index 000000000000..e88db0ac2534
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7625.yaml
-> >> @@ -0,0 +1,176 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7625.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: Analog Devices Fast PulSAR Analog to Digital Converters
-> >> +
-> >> +maintainers:
-> >> +  - Michael Hennerich <Michael.Hennerich@analog.com>
-> >> +  - Nuno S=C3=A1 <nuno.sa@analog.com>
-> >> +
-> >> +description: |
-> >> +  A family of single channel differential analog to digital converters
-> >> +  in a LFCSP package. Note that these bindings are for the device when
-> >> +  used with the PulSAR LVDS project:
-> >> +  http://analogdevicesinc.github.io/hdl/projects/pulsar_lvds/index.ht=
-ml. =20
-> > As per the discussion in the cover letter I think the need to represent
-> > if the DCO+ is connected between ADC and LVDS converter strongly sugges=
-ts
-> > we shouldn't represent it as one aggregate device. =20
->=20
-> Just to be sure, do you mean that the PulSAR LVDS functionality should=20
-> be split into its own driver and then utilized by ad7625?
+This series adds support for CC33xx which is a new family of WLAN IEEE802.11 a/b/g/n/ax
+and BLE 5.4 transceivers by Texas Instruments. These devices are 20MHz single spatial stream
+enabling STA (IEEE802.11ax) and AP (IEEE802.11n only) roles as well as both roles simultaneously.
+Communication to the CC33xx is done via 4-bit SDIO with two extra GPIOs: Enable and Interrupt.
 
-I think we'd need that just to provide a 'hook' to describe the wiring.
-That driver probably won't do anything other than give that information.
+This driver's architecture is a soft-MAC and derivative of existing wl18xx + wlcore code [1].
+It has been tested with the AM335x, AM625x, and i.MX8-MP evaluation kits.
 
-I'm not quite sure how it would all fit together though. Would need
-some experimentation to figure out. I can't immediately think of
-another bus with optional wires like this.  Anyone else have a suggestion
-on where to look?
+Data sheet: https://www.ti.com/lit/gpn/cc3301
 
-Jonathan
+All code passes sparse, smatch, coccicheck and checkpatch with very few pragmatic exceptions.
+
+Driver is split on file boundary as required by Linux-wireless wiki:
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches#new_driver
+
+
+Change log:
+v3:
+* Added missing sign-offs
+* Fixed multiple warnings for memcpy overflow
+* Fixed commit message and description of device-tree bindings
+
+v2:
+* Fixed build bug on non-ARM architectures
+* Removed driver version
+* Removed trivial debug traces
+* Removed debug parameters for cc33xx module
+* Fixed multiple type compatibility warnings
+* Minor fixes
+Link: https://lore.kernel.org/linux-wireless/20240609182102.2950457-1-michael.nemanov@ti.com/
+
+v1:
+* Added dt-bindings
+* Removed debugfs to ease review
+* Fix build issue with CONFIG_CFG80211_CERTIFICATION_ONUS
+* Fix multiple build warnings found with Clang 18 and W=12
+Link: https://lore.kernel.org/linux-wireless/20240521171841.884576-1-michael.nemanov@ti.com/
+
+
+Test log:
+https://0x0.st/XVBS.log
+
+[1] It was considered implementing CC33xx as another user of wlcore but The
+differences in HW, host interface, IRQ functionality, Rx/Tx behavior and supported features
+were too significant so this was abandoned.
+
+Michael Nemanov
+Texas Instruments
+
+Michael Nemanov (17):
+  wifi: cc33xx: Add cc33xx.h, cc33xx_i.h
+  wifi: cc33xx: Add debug.h
+  wifi: cc33xx: Add sdio.c, io.c, io.h
+  wifi: cc33xx: Add cmd.c, cmd.h
+  wifi: cc33xx: Add acx.c, acx.h
+  wifi: cc33xx: Add event.c, event.h
+  wifi: cc33xx: Add boot.c, boot.h
+  wifi: cc33xx: Add main.c
+  wifi: cc33xx: Add rx.c, rx.h
+  wifi: cc33xx: Add tx.c, tx.h
+  wifi: cc33xx: Add init.c, init.h
+  wifi: cc33xx: Add scan.c, scan.h
+  wifi: cc33xx: Add conf.h
+  wifi: cc33xx: Add ps.c, ps.h
+  wifi: cc33xx: Add testmode.c, testmode.h
+  wifi: cc33xx: Add Kconfig, Makefile
+  dt-bindings: net: wireless: cc33xx: Add ti,cc33xx.yaml
+
+ .../bindings/net/wireless/ti,cc33xx.yaml      |   56 +
+ drivers/net/wireless/ti/Kconfig               |    1 +
+ drivers/net/wireless/ti/Makefile              |    1 +
+ drivers/net/wireless/ti/cc33xx/Kconfig        |   24 +
+ drivers/net/wireless/ti/cc33xx/Makefile       |   10 +
+ drivers/net/wireless/ti/cc33xx/acx.c          | 1011 +++
+ drivers/net/wireless/ti/cc33xx/acx.h          |  835 +++
+ drivers/net/wireless/ti/cc33xx/boot.c         |  363 +
+ drivers/net/wireless/ti/cc33xx/boot.h         |   24 +
+ drivers/net/wireless/ti/cc33xx/cc33xx.h       |  483 ++
+ drivers/net/wireless/ti/cc33xx/cc33xx_i.h     |  459 ++
+ drivers/net/wireless/ti/cc33xx/cmd.c          | 2030 ++++++
+ drivers/net/wireless/ti/cc33xx/cmd.h          |  700 ++
+ drivers/net/wireless/ti/cc33xx/conf.h         | 1246 ++++
+ drivers/net/wireless/ti/cc33xx/debug.h        |   92 +
+ drivers/net/wireless/ti/cc33xx/event.c        |  385 ++
+ drivers/net/wireless/ti/cc33xx/event.h        |   71 +
+ drivers/net/wireless/ti/cc33xx/init.c         |  232 +
+ drivers/net/wireless/ti/cc33xx/init.h         |   15 +
+ drivers/net/wireless/ti/cc33xx/io.c           |  131 +
+ drivers/net/wireless/ti/cc33xx/io.h           |   26 +
+ drivers/net/wireless/ti/cc33xx/main.c         | 5853 +++++++++++++++++
+ drivers/net/wireless/ti/cc33xx/ps.c           |  117 +
+ drivers/net/wireless/ti/cc33xx/ps.h           |   16 +
+ drivers/net/wireless/ti/cc33xx/rx.c           |  393 ++
+ drivers/net/wireless/ti/cc33xx/rx.h           |   86 +
+ drivers/net/wireless/ti/cc33xx/scan.c         |  750 +++
+ drivers/net/wireless/ti/cc33xx/scan.h         |  363 +
+ drivers/net/wireless/ti/cc33xx/sdio.c         |  584 ++
+ drivers/net/wireless/ti/cc33xx/testmode.c     |  359 +
+ drivers/net/wireless/ti/cc33xx/testmode.h     |   12 +
+ drivers/net/wireless/ti/cc33xx/tx.c           | 1411 ++++
+ drivers/net/wireless/ti/cc33xx/tx.h           |  160 +
+ 33 files changed, 18299 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml
+ create mode 100644 drivers/net/wireless/ti/cc33xx/Kconfig
+ create mode 100644 drivers/net/wireless/ti/cc33xx/Makefile
+ create mode 100644 drivers/net/wireless/ti/cc33xx/acx.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/acx.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/boot.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/boot.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/cc33xx.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/cc33xx_i.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/cmd.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/cmd.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/conf.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/debug.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/event.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/event.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/init.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/init.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/io.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/io.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/main.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/ps.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/ps.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/rx.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/rx.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/scan.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/scan.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/sdio.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/testmode.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/testmode.h
+ create mode 100644 drivers/net/wireless/ti/cc33xx/tx.c
+ create mode 100644 drivers/net/wireless/ti/cc33xx/tx.h
+
+-- 
+2.34.1
 
 
