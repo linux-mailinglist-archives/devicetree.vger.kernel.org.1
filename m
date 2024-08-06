@@ -1,188 +1,208 @@
-Return-Path: <devicetree+bounces-91443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D173794956E
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 18:21:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CB8B949586
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 18:26:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87089282611
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 16:21:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1D041F2224C
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 16:26:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD5EE3612D;
-	Tue,  6 Aug 2024 16:21:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2004376E6;
+	Tue,  6 Aug 2024 16:26:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="WCcZIIvu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U5pMaJZs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011064.outbound.protection.outlook.com [52.101.70.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BD662C697;
-	Tue,  6 Aug 2024 16:21:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.64
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722961303; cv=fail; b=bHFt+XYzR8/WW47WYC6+T7lrqMX9LUeLcDQVqN+PhBnASq57j+H+kuxCDGIjQja5x1dZev+vNOzdHIOH9MBiw4iZy+v1p7kJ5rPe20CWknbHAWsu4//vZFrcAWKRqA1WdKEaj+TViCMwD1VQkdvnlAFzzCQeEK/fUxDsHriP/pQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722961303; c=relaxed/simple;
-	bh=uMyKFzFJaZgO6YYgB334vojQ5qjDZTSATZioHzp0uf0=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=C0A4B3ZTGQ4AgekxRcwWnxarmpeEOU4Mje6K1QNKkfjnA+lS+0ylSpW0gASC4+djLpRq6cuq2gDTRGVXJhBWkzEwKT3GPuNMLBQLeFeQsm9waB5UeZfAeLyE3Ya6TGGJf3eKA7OvkaPw52pJmvq7Uz3F0ZLFPn7XX10H8OXONNQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=WCcZIIvu; arc=fail smtp.client-ip=52.101.70.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=g7vhVIb1c75OFfrs+FY1Nkh8lS6fSDbP6Eh/cvxK0uV0294nn6s61xUYqUS+FR5UR5+D1gHLdm3JzYhr6ueldZ86y7RaWAf1q1WIWyZE0n6jwm4DwAAU8eNcnfCHf0u8heEkBdZFFYC4b/gJN4UUj5WpePLac0+PuumivGrr7nDG8n6HjVig3D1I1Cfzbp+9OQvsK1BvEmFsZfIYLU84iiLGsNH+6KE7BkPgfcPmpJwWftZQxbuLPxJAQPtsgUOH4K1kBdqVOCacEHxozzaFNe/8aK95NybcthfcfVyAwzJKnTuYIGIN5+SlzZqSz26wa13M0Xv4Rw8BdB22pLI5vQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bh/jRr6XPk7fEXSh4cPu9bRDHeMBoKS+Zru6h4bY8xA=;
- b=iuZNRQy+Plh3rqaGdueLRM0/MHo1kwTaDhnm6c8+UYHZC+BUQhUCrj8pDs5zHStVeeMC/o116tqUXQEaigSWjP9xmIhcm/bAlwJH4gjyFVnj0Twy7N5bliPgII1I1ra3pL7uZpb24Rh3eDdTwzdV5u3q3gOZju1RlOhjbXO1vRLclQvK+wGpFCT76QKBIHPBMuTwici4QQz8tFqLy+ue6YLxSRm0iLTtQnPkWdeEuvjITDQ7DBL97W/UiC2QGWS0TGzjJrkskABy5gurJPqYC66InesY/U6X7ji+699re7PXg0WniTl1ErmOdrbbw8b1r0/iQmggWqtoeQlcvwTe+w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bh/jRr6XPk7fEXSh4cPu9bRDHeMBoKS+Zru6h4bY8xA=;
- b=WCcZIIvu4IsfjsyvBrfhYKLUbQyyTwIOBupkiEM72SRiOTSulWa7Rrz2HJ2PpgMAlCu6GoOPGRcQwSb3PxDUAL1x8vfjT+WVa3+JTuSs4OzLFjk2fCRhysL6HWU2Mk6GYHT/F/Aes1T/2SZYlDyJ/pk8MEYfUKld3mCfGYyb95o76mgIQqLheQMy6syXdlXJ2AoBg31bplxg5E2aokP0vV+LHl8VsmNQ087CSUEb79lkJQTKd3xv9AylHtL4OZ9jFoDvz44OQgR8/NHFrQ4B8/uLn9Gx3sutazPOoE6DlZZYAn1mTUQgOzZG/WcgbupTtH7lO7IiJQQ539SQvPlf8A==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DU0PR04MB9465.eurprd04.prod.outlook.com (2603:10a6:10:359::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.26; Tue, 6 Aug
- 2024 16:21:37 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.7828.023; Tue, 6 Aug 2024
- 16:21:37 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	linuxppc-dev@lists.ozlabs.org (open list:FREESCALE SOC DRIVERS),
-	linux-arm-kernel@lists.infradead.org (moderated list:FREESCALE SOC DRIVERS),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH v2 1/1] dt-bindings: soc: fsl: add missed compatible string fsl,ls*-isc
-Date: Tue,  6 Aug 2024 12:21:21 -0400
-Message-Id: <20240806162121.2996442-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BYAPR11CA0105.namprd11.prod.outlook.com
- (2603:10b6:a03:f4::46) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93D852CCB4;
+	Tue,  6 Aug 2024 16:26:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722961574; cv=none; b=GevJgsfs++4ClQc3h2MlDt0dxDpY8CWl4wXXOhMZ49oh0ISMB1Gyzo33Wv4lhlXf9zDGxyryfaXIQ5lcQGqEChtyDJkYQoyyx0sWO3fJcQcu1tNEAwMvf3O1lh9c8vbcY9tiL4IeT9XqrPoERP/bqOVqa/oDKitXfkVY0F2b9FM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722961574; c=relaxed/simple;
+	bh=Vjv0V/uG16R4fZgzBaumYU0oSr4O7jzDA1OaNjUL4f0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=muw7O2TVip+COXQ8aJAPu/Ey5jFpYlggnwX9A4rqS6QrJJoCLB8J3Jx4tU2wfTyKRKTDJ7JGt2arJLS4oYoy9pVy5QXMM8te4wCk3Wkcz2+THD8Vlma+Hw9+/0jv9K3rxwncep4mEP1cqCbmxSwulPzGA8JwBZ0F0GsBaHe81FQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U5pMaJZs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B7E2C32786;
+	Tue,  6 Aug 2024 16:26:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722961574;
+	bh=Vjv0V/uG16R4fZgzBaumYU0oSr4O7jzDA1OaNjUL4f0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=U5pMaJZsEJTwg5xVcaxfM7y+ZDa03a9I+qJMxZ3MaEhwv9Y3PASfpa6+9BfvXkalp
+	 TJwwhdmA3aae/sKPrDoNYFWZnvyHFmS8VW0iwq3R3DXHhG2hRPdK9InNYRerLLGhn2
+	 lWN/2y1lYGjYymk/Lrn0SyNpqNmoTxM+0KsUI9U0SzoOBuzE+Z5hUXlowdTfFK42pv
+	 EMV3uK20gamsRSMQiweJ/mTil6TMCjVWSIDEIHZ0THtkB5omHo7NpTAAjrBKl4XBoS
+	 MIaxiH+L435YESynZhHaELO286IQ9m4J9E2HPeRe4A/0PzOitHZ/CBSJ1gGWA0q2in
+	 cTPDL/4uEZFTw==
+Date: Tue, 6 Aug 2024 17:26:06 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Albrieux <jonathan.albrieux@gmail.com>,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux@mainlining.org, Danila Tikhonov
+ <danila@jiaxyga.com>
+Subject: Re: [PATCH v2 3/3] iio: magnetometer: ak8975: Add AK09118 support
+Message-ID: <20240806172606.70a07084@jic23-huawei>
+In-Reply-To: <20240806-ak09918-v2-3-c300da66c198@mainlining.org>
+References: <20240806-ak09918-v2-0-c300da66c198@mainlining.org>
+	<20240806-ak09918-v2-3-c300da66c198@mainlining.org>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU0PR04MB9465:EE_
-X-MS-Office365-Filtering-Correlation-Id: 10240a6a-9a2a-4184-58d3-08dcb633d8ab
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|52116014|366016|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?0OqEWAJxF7nBvu1D92uUXZqq//j1xGfgVgJtVxBOFJLD4qqRsdGEvRGt52jD?=
- =?us-ascii?Q?mvPY+HujDsaCvJOoao4y1OCLm376zSep50YYyZCNbHIHEXlMItYbzjgFERYh?=
- =?us-ascii?Q?kIaZermjEGBDGKvyOjQFKGwZ++znQPae/FsGCM2g5qVIAjYpNBmfnX4Iytpq?=
- =?us-ascii?Q?oD6ZzAISoZQTyBwrVxzOCkgnb69iNbsJgUpPPDITAwzRwykEZfTisf0HKuDt?=
- =?us-ascii?Q?WXDyOiW24jXZ2YvxvljIBdhuDdWgWjqXYs4qEADYkd1v508tMkmkRe92DIk+?=
- =?us-ascii?Q?BsSoxEwjOA+8vXqT+DQh/DnlBVsKm0FcTKjV89t91W7sbzk9VjYQiMn4TPzk?=
- =?us-ascii?Q?byTEmuOIk3kJ2vkArimeD3SDaM+JSkSydSFmi8gAa1wmAJx+jnNAwXf8BXsU?=
- =?us-ascii?Q?J4wAK1OFjSJLgQ3YTcNw96XHmWFyiBoxk/m3ZxY4SZARFs97ilIKqS/bJifZ?=
- =?us-ascii?Q?jEQPqBnzR5S/VD3QkXaHj/uoJXr/B22EE3Thcb1YsLoYVp1yP6yOTWSACBtj?=
- =?us-ascii?Q?m6QpCDfJHJZChvoEjnVMhgMwNuchhFpBHvKuO+ZQYteaiJnZvZskECu1iLAF?=
- =?us-ascii?Q?o4IKZ+DOC1uVg4sOC7td9odKg3lngsWSosqI/+XH/NbbKt9uOZHGf9Cm2lHc?=
- =?us-ascii?Q?BoVqo3x48RDQY65FcCdXFpvT8GY/uBSawF7T1zr0pP5hhVGvWrhb0VZVdB7W?=
- =?us-ascii?Q?tA7ponrTMERiR3m4Mj9RFFP/soP8vwkHkRuHtEsD5ts6L3dDSQr/QaVVe5ny?=
- =?us-ascii?Q?W2qBcQWXbGtkxukQH+Kc2vclrS4j4b/C1j2O2q7yfWE7HobunoAS0iJy0P60?=
- =?us-ascii?Q?rSL+t2SD9LJQgj81Avtciog68vOfjbAhHGUq8r52GFYsUsVjM/jFrp6e+diJ?=
- =?us-ascii?Q?Tf4nYTTQ6h2ptJ/x/bty0OsBWMFgQYd+fFzMqrwOeezpHVvMyn5nTVlBvCYa?=
- =?us-ascii?Q?/W7Q17Q3mZRXToFHRwcJhGPL6s++Z2FCI515k5bRJXXAh2WmUSnTiGYfsbnE?=
- =?us-ascii?Q?R17uFfkdbQAVi88GmF8aVeNxN7RR8r6iRn1NXok+8zRFvTnjKrghn09Lh2FU?=
- =?us-ascii?Q?w9Vd4H45O1btyRltBFuXHDkw4X1eLPOjvJtKr5YIgB+BuVtIcVL+3PYFRoAe?=
- =?us-ascii?Q?WGgALjU7qfeJpSLG9h8nMrwwyPc/KLpNVMsI5c8vjcE3fnu+2HOW8q9OYXj7?=
- =?us-ascii?Q?D1cIf3LCwrYbvKhCHaKySsL1VfK1NfIfGUd9KnfDSv0ptx+13Ftf9BYUZy0E?=
- =?us-ascii?Q?mHZH3j2j09lUVudOY42kBzs2wV9cZS7Bja1RxYUoNS8lAcy3euestDexai/8?=
- =?us-ascii?Q?oq/G4R2tvohwwrGOQTTGHsjngwMjoJL/T7JFj619zmUfHmT13l9PDdjFdE1a?=
- =?us-ascii?Q?Hw3DO1YLos+um7FsimXNHxh0R/nNVXRR/DMdePadGDWFsef7+Q=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(52116014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?jUEmK/jCTzTa/HqMB0q3KftzV7BGwAfsdshiqnCc7BgDIjP2vOmcYl09aMyC?=
- =?us-ascii?Q?mjSsBdhs9NuFRcsQyZ+YxaGjDjx0p1vS5+C7f98DX6CSxmeIyyUw2cCDA7/V?=
- =?us-ascii?Q?wibjs8kKpoUlKfVm1AOH+2jxmDFQy8GDKENi3c812vd54zU5FjyUSzmru131?=
- =?us-ascii?Q?NalkA0Dd4DtMFrO/5adPymHwm5oi8BpEQUQkgtpGAC2sgQfF3Y824FPDVzPY?=
- =?us-ascii?Q?7n2cDVUnSnzIYy4yVW1Xil90A/X74oUCa1XfQCuA8/Ao0e6ytXvdVT+PFYfz?=
- =?us-ascii?Q?h8WhdkF+uFxyhKtmv5OtEwVAQBZYjGjkD4GNTazMnV8F/K4OLeF3yS84z4A7?=
- =?us-ascii?Q?07YOSGuus0BAhYNmYSUvS6gbB1nYg/NciaVNydnN2SW75YDH0FH50ZAZELUt?=
- =?us-ascii?Q?gn/7NjQcUxFlvEt4uEL2N2g6/A6Wsna1lBZOAoMqdyaPMwo4Z7O3mv0gMoqI?=
- =?us-ascii?Q?d6o8B1/V1eQyr1WMPnZze5wZORgWccMqgSkUzh6FMmYx8G4wUfmFcElSBqcX?=
- =?us-ascii?Q?xa5QDzUj+wXraN+MphwLGnTPhzEU7xhntJk7e/Vx1Tyx0glWj6HJNlsyvdDj?=
- =?us-ascii?Q?VdphUeUdsawNWYBBgINP8PTPELYG8FbTTso/y6lKFpKiiwi+HG1fVSCbbMPK?=
- =?us-ascii?Q?Q0FWxj6K8kfZcmEziH/F2kAKpQVB1zfRXKAHDoiG8V/7WZNYVpz1r1dWlyR6?=
- =?us-ascii?Q?xxq+nWrUv5sAUQkH+FYN0VrfvsQpLN98pUxuIdPokBxx7eHi3lrtEWTjfTQK?=
- =?us-ascii?Q?f0l7Ju4RNss4BQSmYZ87rfprlPYL7bT37ULBpDvGZXQl3pvHyY05vVQqJJAZ?=
- =?us-ascii?Q?vwleZfr5f9SIY4QHxZmf2WGE721U8ebRQ3ISz6r6vkdhap4t6nqSVkMQQj9R?=
- =?us-ascii?Q?jQmV1irERcs9eyiskLit1TJfUZbB8xgqoSG8yaOJpg5EtKPxW8QD9rjpOuMs?=
- =?us-ascii?Q?hh1Ipqe9vCqQfyO/WpmOllJoxUL2DJRWyqAlI/ioYgcfyv8jurgvm3VytPwI?=
- =?us-ascii?Q?PeBtBSH0fCsVbMlEK/rkK7k+IRqdPGquuHDW/3sQ+u9+RvO9S920sl3ZX5vn?=
- =?us-ascii?Q?+dzCcVXc75GB4j4la0hNVjnqgG3drhU/stDhGyDMU2gHg15Mx6il+gJvP1G+?=
- =?us-ascii?Q?3UURRGIRyi6dGXpftUzJowMpdpeCjpHg33hRYUEP7O5jA2HAGuMSG4L5JyF/?=
- =?us-ascii?Q?VwtqRN9Z9n7XG2LVQhmN15+sutsr6CgVrR1ZNy+iqfm7MwpbCfyaWWcE+lOu?=
- =?us-ascii?Q?dVYrEzQss05F/Ea3F7HY235NlFTCI2gJx2c0JunvvjkO/zVPOGJzriyyahHI?=
- =?us-ascii?Q?nROIwoFR+KfgSdapO9xwATr8YJ4WZ1fh5NlwNLTnaN6a/9IwpURsYlweNhOf?=
- =?us-ascii?Q?F2gWG6Ailh01Y3ap/9idUcCZglrAU3vVGmmYDMj3r5ZURMu4FuVe5bLXABPQ?=
- =?us-ascii?Q?EtgS0Mnq8z2s9a/2VWh6UonN0i0Unet9z3nMkH+OcX7vDlNIIQCooxiwpOQK?=
- =?us-ascii?Q?RVKkSCi3p7YAqqx1Mjna+QAFiu4w+/IJ5BMk0Ze8gPzj8NDdhGSsfdUvciOy?=
- =?us-ascii?Q?DjO7Ob2amhLtF1AO90/Sx4I53Cp9ToEugqa1Qj2v?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 10240a6a-9a2a-4184-58d3-08dcb633d8ab
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Aug 2024 16:21:37.7005
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SQki0XKjC9bSuOeu4a1cMbAevIM1zxn3pd7XSBfon31WzsUn26yf+mDs3S0uGH4n8jottJeBt7lFAkpcnBEOQg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9465
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Add compatible string, fsl,ls1088a-isc, fsl,ls2080a-isc, fsl,lx2160a-isc.
-Fix the below warning:
-arch/arm64/boot/dts/freescale/fsl-ls2080a-qds.dtb: /soc/syscon@1f70000: failed to match any schema with compatible: ['fsl,ls2080a-isc', 'syscon']
+On Tue, 06 Aug 2024 08:10:20 +0200
+Barnab=C3=A1s Cz=C3=A9m=C3=A1n <barnabas.czeman@mainlining.org> wrote:
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
-Change from v1 to v2
-- fixed typo lx2046a with lx2160a
----
- .../devicetree/bindings/soc/fsl/fsl,layerscape-scfg.yaml       | 3 +++
- 1 file changed, 3 insertions(+)
+> From: Danila Tikhonov <danila@jiaxyga.com>
+>=20
+> Add additional AK09118 to the magnetometer driver which has the same
+> register mapping and scaling as the AK09112 device.
+>=20
+> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+> Signed-off-by: Barnab=C3=A1s Cz=C3=A9m=C3=A1n <barnabas.czeman@mainlining=
+.org>
 
-diff --git a/Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-scfg.yaml b/Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-scfg.yaml
-index 2a456c8af992e..2958ef45b3e9b 100644
---- a/Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-scfg.yaml
-+++ b/Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-scfg.yaml
-@@ -23,6 +23,9 @@ properties:
-           - fsl,ls1028a-scfg
-           - fsl,ls1043a-scfg
-           - fsl,ls1046a-scfg
-+          - fsl,ls1088a-isc
-+          - fsl,ls2080a-isc
-+          - fsl,lx2160a-isc
-       - const: syscon
- 
-   reg:
--- 
-2.34.1
+It definitely seems like a fallback compatible is suitable, but we
+will still want the more precise match in the driver so that we can
+avoid printing an info message to say we saw an unexpected ID.
+
+Comments on that inline.
+
+> ---
+>  drivers/iio/magnetometer/Kconfig  |  2 +-
+>  drivers/iio/magnetometer/ak8975.c | 34 ++++++++++++++++++++++++++++++++++
+>  2 files changed, 35 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/iio/magnetometer/Kconfig b/drivers/iio/magnetometer/=
+Kconfig
+> index cd2917d71904..8eb718f5e50f 100644
+> --- a/drivers/iio/magnetometer/Kconfig
+> +++ b/drivers/iio/magnetometer/Kconfig
+> @@ -39,7 +39,7 @@ config AK8975
+>  	select IIO_TRIGGERED_BUFFER
+>  	help
+>  	  Say yes here to build support for Asahi Kasei AK8975, AK8963,
+> -	  AK09911, AK09912 or AK09916 3-Axis Magnetometer.
+> +	  AK09911, AK09912, AK09916 or AK09918 3-Axis Magnetometer.
+> =20
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called ak8975.
+> diff --git a/drivers/iio/magnetometer/ak8975.c b/drivers/iio/magnetometer=
+/ak8975.c
+> index 925d76062b3e..9871fea67ae3 100644
+> --- a/drivers/iio/magnetometer/ak8975.c
+> +++ b/drivers/iio/magnetometer/ak8975.c
+> @@ -78,6 +78,7 @@
+>   */
+>  #define AK09912_REG_WIA1		0x00
+>  #define AK09912_REG_WIA2		0x01
+> +#define AK09918_DEVICE_ID		0x0C
+>  #define AK09916_DEVICE_ID		0x09
+>  #define AK09912_DEVICE_ID		0x04
+>  #define AK09911_DEVICE_ID		0x05
+> @@ -209,6 +210,7 @@ enum asahi_compass_chipset {
+>  	AK09911,
+>  	AK09912,
+>  	AK09916,
+> +	AK09918,
+>  };
+> =20
+>  enum ak_ctrl_reg_addr {
+> @@ -371,6 +373,31 @@ static const struct ak_def ak_def_array[] =3D {
+>  			AK09912_REG_HXL,
+>  			AK09912_REG_HYL,
+>  			AK09912_REG_HZL},
+> +	},
+> +	[AK09918] =3D {
+> +		.type =3D AK09918,
+> +		.raw_to_gauss =3D ak09912_raw_to_gauss,
+> +		.range =3D 32752,
+> +		.ctrl_regs =3D {
+> +			AK09912_REG_ST1,
+> +			AK09912_REG_ST2,
+> +			AK09912_REG_CNTL2,
+> +			AK09912_REG_ASAX,
+> +			AK09912_MAX_REGS},
+> +		.ctrl_masks =3D {
+> +			AK09912_REG_ST1_DRDY_MASK,
+> +			AK09912_REG_ST2_HOFL_MASK,
+> +			0,
+> +			AK09912_REG_CNTL2_MODE_MASK},
+> +		.ctrl_modes =3D {
+> +			AK09912_REG_CNTL_MODE_POWER_DOWN,
+> +			AK09912_REG_CNTL_MODE_ONCE,
+> +			AK09912_REG_CNTL_MODE_SELF_TEST,
+> +			AK09912_REG_CNTL_MODE_FUSE_ROM},
+> +		.data_regs =3D {
+> +			AK09912_REG_HXL,
+> +			AK09912_REG_HYL,
+> +			AK09912_REG_HZL},
+>  	}
+>  };
+> =20
+> @@ -452,6 +479,7 @@ static int ak8975_who_i_am(struct i2c_client *client,
+>  	/*
+>  	 * Signature for each device:
+>  	 * Device   |  WIA1      |  WIA2
+> +	 * AK09918  |  DEVICE_ID_|  AK09918_DEVICE_ID
+>  	 * AK09916  |  DEVICE_ID_|  AK09916_DEVICE_ID
+>  	 * AK09912  |  DEVICE_ID |  AK09912_DEVICE_ID
+>  	 * AK09911  |  DEVICE_ID |  AK09911_DEVICE_ID
+> @@ -484,6 +512,10 @@ static int ak8975_who_i_am(struct i2c_client *client,
+>  		if (wia_val[1] =3D=3D AK09916_DEVICE_ID)
+>  			return 0;
+>  		break;
+> +	case AK09918:
+> +		if (wia_val[1] =3D=3D AK09918_DEVICE_ID)
+> +			return 0;
+> +		break;
+Whilst you are changing this code, please make it accept an unknown ID
+with at most a dev_info() print. We used to get this wrong in IIO, but
+this flexibility in matching Who Am I values is necessary to enable
+fallback compatibles in DT.
+
+Those allow you to use a newer DT with an older driver. It will
+use the fallback ID to probe, so will get the ak09912 who am I value
+and fail to probe currently.  We want it to succeed if they are
+completely compatible other than this ID.
+
+>  	default:
+>  		dev_err(&client->dev, "Type %d unknown\n", type);
+>  	}
+> @@ -1066,6 +1098,7 @@ static const struct i2c_device_id ak8975_id[] =3D {
+>  	{"ak09911", (kernel_ulong_t)&ak_def_array[AK09911] },
+>  	{"ak09912", (kernel_ulong_t)&ak_def_array[AK09912] },
+>  	{"ak09916", (kernel_ulong_t)&ak_def_array[AK09916] },
+> +	{"ak09918", (kernel_ulong_t)&ak_def_array[AK09918] },
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(i2c, ak8975_id);
+> @@ -1081,6 +1114,7 @@ static const struct of_device_id ak8975_of_match[] =
+=3D {
+>  	{ .compatible =3D "ak09912", .data =3D &ak_def_array[AK09912] },
+>  	{ .compatible =3D "asahi-kasei,ak09916", .data =3D &ak_def_array[AK0991=
+6] },
+>  	{ .compatible =3D "ak09916", .data =3D &ak_def_array[AK09916] },
+> +	{ .compatible =3D "asahi-kasei,ak09918", .data =3D &ak_def_array[AK0991=
+8] },
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, ak8975_of_match);
+>=20
 
 
