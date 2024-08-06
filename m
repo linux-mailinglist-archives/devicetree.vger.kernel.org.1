@@ -1,176 +1,120 @@
-Return-Path: <devicetree+bounces-91256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CB88948AC9
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 10:03:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31A84948BD6
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 11:01:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C306A1F24943
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 08:03:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 628D71C230A7
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 09:01:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0430415C133;
-	Tue,  6 Aug 2024 08:03:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8A351BDAB2;
+	Tue,  6 Aug 2024 09:00:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FGbIEqd+"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="a7+pmduT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m3276.qiye.163.com (mail-m3276.qiye.163.com [220.197.32.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDD5328F5;
-	Tue,  6 Aug 2024 08:03:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 560B71BDAA6;
+	Tue,  6 Aug 2024 09:00:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722931386; cv=none; b=CAODBkpqFnnE/b16ExxgXs4KsjNLOWocqPBGNDQcfSMLy65Z1DPgaoo721SbxOnQupZrXrVcsgBPYbAUk1s4K1jsDWL2eoX1sTqf4M/bExoOw8pYxHvtVGl2Fc4VBxw0Br19z7YAkjUVecMgUEkVx/upQnMmuSnkEnXV6oOGyy0=
+	t=1722934811; cv=none; b=gp3EoOM0dROsFTKEa0FVqnygmGSYmB0GsyxxBcZft5ZObp9m6MpiTP4zYCJ+xYZDZgfMj+i4xhd7wuNherjvA9PJl5NSRfaz7neJ3XcWoaWU/l6tExJ4tCfrqCXn2HdPpqzlZLICC4JoUeDRjcr7iSPTJZPYy+oo2ptikIte0Rs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722931386; c=relaxed/simple;
-	bh=zzIj/WeoufyPCZS4n+BtaPoscu4PNSn8rv3qu8QXx/M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XB3SH3i/AHgZ7l5vFi9PLihErovC7xHMPif33GpAaTGDm554TOzxDgBEDn165gIKqto6+exxOMdJ0hVid3HqAh5xWK23HZ+knaJdHwGi5gREd2AmW4nHGA6B11TIcf/nPYAbaYO28vf+vrxYl2gsUNZ/BDm10f1jy65vFS6kU/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FGbIEqd+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 686D6C32786;
-	Tue,  6 Aug 2024 08:03:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722931386;
-	bh=zzIj/WeoufyPCZS4n+BtaPoscu4PNSn8rv3qu8QXx/M=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FGbIEqd+Ke7Q41iLkgMjWrnfqm5F83dFisoYvBnWNCZzJhKGszTj3sWy3pDnc5DGb
-	 eei5rMib9qZ+5SaViL2gaY1yQc955ksw6AXZuiovU+MMC3wWyoC454rDfoMkxFUfmY
-	 d2LU92brDUbFQi0CRja0i6yjGmG2vifI/lK3oSvbwWYG6BZeBrEcuBjQOpzcwyB/jS
-	 NJkaWUkgAVNWo/1ymjWor0Jwm3MVfSkC503z/njSzG4aGGOgEUlHwSpwRJzkJtdvkv
-	 xwg5sJ8QRmd69zOTs8cVuqqYWMPIUYNnD3JFdlZdRHoJZrTUt9jfL/GUi49/QlpAuT
-	 UCB0+J0EBLczQ==
-Message-ID: <44feed5a-95a7-4baa-b17e-514c0f50dae6@kernel.org>
-Date: Tue, 6 Aug 2024 10:03:00 +0200
+	s=arc-20240116; t=1722934811; c=relaxed/simple;
+	bh=kMdWiSf/1boSmTUNkizBwwGriN3drglDRJ9RHmZOWBo=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=cLSG/MG9qQ1/RjeOAin0k62BOx2szO4tLMrjx0xkSwjybDSVGbpMNRcDJNPj87FsVsHN1GCByb/YIe1PacFTpi96VL3xI2ZmjAXtEKyajsiiyT5oO0VWgHkAgHbyX4Q/Oy5zjROnnTjAF2hkD2nu8Up8Qy6wMVEFe/5Ngtg7iP0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=a7+pmduT; arc=none smtp.client-ip=220.197.32.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+DKIM-Signature: a=rsa-sha256;
+	b=a7+pmduTfaZo0RXuqTOAD3tak+CNX30MER8fidFZ0XQAtSkmwBR0zgW6aeldCe751FPR+pcN8DnQzDgHun5M3GRPDkNVxhbY0hKiyUp3vZ3DBfAsbWOmKK+u1PoG+E6emaUCc7tzxX7sLaY0Kwa8U3af6qZfNXrAfqIjaT3h2Qk=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=oO6QiV9LFiusHne5Uw00k4qSuVf5cRytxrG80x+Kk2c=;
+	h=date:mime-version:subject:message-id:from;
+Received: from localhost.localdomain (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTPA id E04A64604F7;
+	Tue,  6 Aug 2024 15:20:15 +0800 (CST)
+From: Shawn Lin <shawn.lin@rock-chips.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	"Martin K . Petersen" <martin.petersen@oracle.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>,
+	YiFeng Zhao <zyf@rock-chips.com>,
+	Liang Chen <cl@rock-chips.com>,
+	linux-scsi@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Shawn Lin <shawn.lin@rock-chips.com>
+Subject: [PATCH v1 1/3] scsi: ufs: core: Export ufshcd_dme_link_startup() helper
+Date: Tue,  6 Aug 2024 15:19:58 +0800
+Message-Id: <1722928800-137042-2-git-send-email-shawn.lin@rock-chips.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1722928800-137042-1-git-send-email-shawn.lin@rock-chips.com>
+References: <1722928800-137042-1-git-send-email-shawn.lin@rock-chips.com>
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0MZGVYdGUsfSEpNGUlJGRpWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	NVSktLVUpCS0tZBg++
+X-HM-Tid: 0a91268f617403aekunme04a64604f7
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NDo6Ayo*NDIxCxIvCjgrSgod
+	A0saCQFVSlVKTElJQklDQ0pMT09KVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUhKTE43Bg++
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/6] dt-bindings: ti, sci: Add property for
- partial-io-wakeup-sources
-To: Markus Schneider-Pargmann <msp@baylibre.com>
-Cc: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
- Santosh Shilimkar <ssantosh@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
- Vibhore Vardhan <vibhore@ti.com>, Kevin Hilman <khilman@baylibre.com>,
- Dhruva Gole <d-gole@ti.com>, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240729080101.3859701-1-msp@baylibre.com>
- <20240729080101.3859701-2-msp@baylibre.com>
- <f0f60af7-8561-433a-a027-811015fc5e16@kernel.org>
- <ti4ffymrixcpptlrn3o5bytoyc4w5oovdrzgu442ychai2fjet@wtdhrmwrozee>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <ti4ffymrixcpptlrn3o5bytoyc4w5oovdrzgu442ychai2fjet@wtdhrmwrozee>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 06/08/2024 09:11, Markus Schneider-Pargmann wrote:
-> Hi Krzysztof,
-> 
-> On Tue, Aug 06, 2024 at 08:18:01AM GMT, Krzysztof Kozlowski wrote:
->> On 29/07/2024 10:00, Markus Schneider-Pargmann wrote:
->>> Partial-IO is a very low power mode in which nearly everything is
->>> powered off. Only pins of a few hardware units are kept sensitive and
->>> are capable to wakeup the SoC. The device nodes are marked as
->>> 'wakeup-source' but so are a lot of other device nodes as well that are
->>> not able to do a wakeup from Partial-IO. This creates the need to
->>> describe the device nodes that are capable of wakeup from Partial-IO.
->>>
->>> This patch adds a property with a list of these nodes defining which
->>> devices can be used as wakeup sources in Partial-IO.
->>>
->>
->> <form letter>
->> This is a friendly reminder during the review process.
->>
->> It seems my or other reviewer's previous comments were not fully
->> addressed. Maybe the feedback got lost between the quotes, maybe you
->> just forgot to apply it. Please go back to the previous discussion and
->> either implement all requested changes or keep discussing them.
->>
->> Thank you.
->> </form letter>
-> 
-> I tried to address your comment from last version by explaining more
-> thoroughly what the binding is for as it seemed that my previous
-> explanation wasn't really good.
-> 
-> You are suggesting to use 'wakeup-source' exclusively. Unfortunately
-> wakeup-source is a boolean property which covers two states. I have at
-> least three states I need to describe:
-> 
->  - wakeup-source for suspend to memory and other low power modes
->  - wakeup-source for Partial-IO
->  - no wakeup-source
+Export it for host drivers.
 
-Maybe we need generic property or maybe custom TI would be fine, but in
-any case - whether device is wakeup and what sort of wakeup it is, is a
-property of the device.
+Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+---
 
-> 
-> If something is a wakeup-source for Partial-IO it usually is a
-> wakeup-source for suspend to memory as well but not the other way
-> around.
+ drivers/ufs/core/ufshcd.c | 4 +++-
+ include/ufs/ufshcd.h      | 1 +
+ 2 files changed, 4 insertions(+), 1 deletion(-)
 
-I understand, makes sense. The trouble is that your driver code does not
-indicate any of this.
-
-> 
-> This is the reason why I added a property that lists the devicenodes
-> that are capable of wakeup from Partial-IO.
-
-This property looks purely to satisfy your driver design.
-
-Best regards,
-Krzysztof
+diff --git a/drivers/ufs/core/ufshcd.c b/drivers/ufs/core/ufshcd.c
+index 8f4abc5..e09f004 100644
+--- a/drivers/ufs/core/ufshcd.c
++++ b/drivers/ufs/core/ufshcd.c
+@@ -4019,7 +4019,7 @@ static void ufshcd_host_memory_configure(struct ufs_hba *hba)
+  *
+  * Return: 0 on success, non-zero value on failure.
+  */
+-static int ufshcd_dme_link_startup(struct ufs_hba *hba)
++int ufshcd_dme_link_startup(struct ufs_hba *hba)
+ {
+ 	struct uic_command uic_cmd = {
+ 		.command = UIC_CMD_DME_LINK_STARTUP,
+@@ -4032,6 +4032,8 @@ static int ufshcd_dme_link_startup(struct ufs_hba *hba)
+ 			"dme-link-startup: error code %d\n", ret);
+ 	return ret;
+ }
++EXPORT_SYMBOL_GPL(ufshcd_dme_link_startup);
++
+ /**
+  * ufshcd_dme_reset - UIC command for DME_RESET
+  * @hba: per adapter instance
+diff --git a/include/ufs/ufshcd.h b/include/ufs/ufshcd.h
+index cac0cdb..8bc28c1 100644
+--- a/include/ufs/ufshcd.h
++++ b/include/ufs/ufshcd.h
+@@ -1432,6 +1432,7 @@ int ufshcd_read_string_desc(struct ufs_hba *hba, u8 desc_index,
+ void ufshcd_hold(struct ufs_hba *hba);
+ void ufshcd_release(struct ufs_hba *hba);
+ 
++int ufshcd_dme_link_startup(struct ufs_hba *hba);
+ void ufshcd_clkgate_delay_set(struct device *dev, unsigned long value);
+ 
+ int ufshcd_get_vreg(struct device *dev, struct ufs_vreg *vreg);
+-- 
+2.7.4
 
 
