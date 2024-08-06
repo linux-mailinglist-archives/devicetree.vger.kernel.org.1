@@ -1,99 +1,118 @@
-Return-Path: <devicetree+bounces-91478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A49E9496A9
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 19:25:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 224F69495BB
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 18:41:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB0F31C2274D
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 17:25:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9712AB321B2
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 16:07:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD37C6F31C;
-	Tue,  6 Aug 2024 17:25:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0608A3FBB3;
+	Tue,  6 Aug 2024 16:07:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="QZbE1jdu"
+	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="KY90xx5s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m2424.xmail.ntesmail.com (mail-m2424.xmail.ntesmail.com [45.195.24.24])
+Received: from mail.fris.de (mail.fris.de [116.203.77.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64E2754FAD;
-	Tue,  6 Aug 2024 17:25:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.195.24.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1E1E2E414;
+	Tue,  6 Aug 2024 16:07:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.77.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722965111; cv=none; b=bmFJ6AZ19IgU2fvPy5WAhwO+KtPNjzwUpdQIvFLhFxQ2wIUWFlrZjZel/AG15QPpcwd7HxMvKNEKbfKMx5UmJWMIj5J7diVRE5GV+3LaY+3FFksP4zTKFyJhfBZ89FUI1Ne1gydjpeR8Rlk3dCkbCsyygYLjpbtVdtLGblqE+7s=
+	t=1722960431; cv=none; b=WH5A+JoQ3gUNasHKxd/6sMJLsiTvx3l/ZuRDelB56iyhbFU/+vtwrAUojgro3ceNqqyFQ2i/WYq5QZgcfu0UD7Z5vPBFRVtfmWodXbG7vCyxslw2yXvWPclReU+sfhcSr+TNj+u3NYQBqIMRNXmq6oFAZb6G0+ljG7kApiBcW/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722965111; c=relaxed/simple;
-	bh=3fZVWefqUk0Zjct/unBsJL/ObBr/A0DCpYGzqqMmyCw=;
-	h=From:To:Cc:Subject:Date:Message-Id; b=FC7fl0tE3Kw1qcuLuNrSUEXmyVMXMu6id6l1G6xK/fejh4c1+jXn5JrO72yqIu48NCfz/kY0aE1cNp5YeYpiRdDri/7MfvGZny1M0KyCDDo/hCAl6VjnEXV9XiZOh1agBj50btsCd1iNqUEZbqY0/9VhyTYk/HH+ofwFqFefPNI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=QZbE1jdu; arc=none smtp.client-ip=45.195.24.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-DKIM-Signature: a=rsa-sha256;
-	b=QZbE1jduuSrYrNsfD18oHCNymfgk2GS+DiFGz3wQZAB68x1DeLxvEdbpmgqcUyv6ifBt70Dgl+NJLKKt7kMR/uLD1q9Clr8T0tESW/QBwjMn0KeljylyEDc0scEh34uyK6CTDfWu1FBnliX3vXVm6y+jfkTjRUZIF1TjgDHXWDY=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=VoEidbWMgEaAD+w4sppjFIkcTnBtA/FRKYDmYz7yR08=;
-	h=date:mime-version:subject:message-id:from;
-Received: from localhost.localdomain (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTPA id 834F746051B;
-	Tue,  6 Aug 2024 15:20:13 +0800 (CST)
-From: Shawn Lin <shawn.lin@rock-chips.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	"Martin K . Petersen" <martin.petersen@oracle.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Avri Altman <avri.altman@wdc.com>,
-	Bart Van Assche <bvanassche@acm.org>,
-	YiFeng Zhao <zyf@rock-chips.com>,
-	Liang Chen <cl@rock-chips.com>,
-	linux-scsi@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
+	s=arc-20240116; t=1722960431; c=relaxed/simple;
+	bh=1FQ3LjegoDnlAhkNQHHzSWeJ7LVvwRA5e/urLwMVrco=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=e1HrnC2zExf+ktLs/hVwv5qCgf4Hr6mrjBDQjTWG6I7QzjjLOFsu2dM/dNEVgLV4HKFJKz4NeswTKzkZPTQW6+EhRkxQDMaBl7kjgWDCgd9NFKdLZVai/192ZZW6xOaUOyR88K+NyjBlo9nny1A4Abu1M70M30cofWO8n2sh2dM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=fail smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=KY90xx5s; arc=none smtp.client-ip=116.203.77.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=fris.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BF4BBBFB05;
+	Tue,  6 Aug 2024 18:07:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
+	t=1722960427; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=FoB6Tdx3LKAMF9L3+LsSYtSPwQuugctbgeePMvmfXEo=;
+	b=KY90xx5swM4QYf0pUvj+LTOcvrvuU6Pwrh0Rvr+1Pyq2tYpEVtkK38xACMLymcnkBGbmcZ
+	CgFo3wTyP2MoSMApN4qpjKHxv99ubbgHSXvsuup246a9p1PMWwgzZaEBVEMCYbweeKe+t6
+	yemDJKxspVyKkEBuTn42zW7rrha7SSfYusiDNtBGlDXYmJAA/YUN5u99GxpLX75EBZzkVf
+	mwR8vbPHm8n4zffctz6Obbqo4jrzI2nMHdnh4LNDeRTfGPJn5JGxh7pLfB5XFezORb9TvM
+	v/8XYBPdWMm/mBorF8FxwHnR+5qE6Wiv9W+dkmdCIuNZ4yi7HDsLpFXcvqyqhg==
+From: Frieder Schrempf <frieder@fris.de>
+To: Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org,
-	Shawn Lin <shawn.lin@rock-chips.com>
-Subject: [PATCH v1 0/3] Init support for RK3576 UFS controller
-Date: Tue,  6 Aug 2024 15:19:57 +0800
-Message-Id: <1722928800-137042-1-git-send-email-shawn.lin@rock-chips.com>
-X-Mailer: git-send-email 2.7.4
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQh5DS1ZMTx8eGk9DGk5ISk9WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
-	NVSktLVUpCS0tZBg++
-X-HM-Tid: 0a91268f583803aekunm834f746051b
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Mk06Fjo6DzI6SBI*GjpCShJK
-	GCsKFBhVSlVKTElJQklDQ0pPTE1OVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
-	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUlPS083Bg++
+	imx@lists.linux.dev,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>
+Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+	Hiago De Franco <hiago.franco@toradex.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Mathieu Othacehe <m.othacehe@gmail.com>,
+	Michael Walle <mwalle@kernel.org>,
+	Parthiban Nallathambi <parthiban@linumiz.com>,
+	Peng Fan <peng.fan@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: [PATCH v4 0/2] Add support for Kontron OSM-S i.MX93 SoM and carrier  board
+Date: Tue,  6 Aug 2024 18:02:40 +0200
+Message-ID: <20240806160353.823785-1-frieder@fris.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-This patchset add initial support UFS controller for RK3576 SoC.
-Patch 1 export ufshcd_dme_link_startup function for host drivers, and
-patch 2&3 add ufs-rockchip driver.
+Patch 1: board DT bindings
+Patch 2: add devicetrees
 
+Changes for v4:
+* Reorder enable-active-high property
+* Add dedicated pinctrl settings for different SDHC speed modes
+* Add SION bit for SDHC pinctrls as workaround for SoC erratum
 
+Changes for v3:
+* remove applied patches
+* rebase onto v6.11-rc1
 
-Shawn Lin (3):
-  scsi: ufs: core: Export ufshcd_dme_link_startup() helper
-  dt-bindings: ufs: Document Rockchip UFS host controller
-  scsi: ufs: rockchip: init support for UFS
+Changes for v2:
+* remove applied patches 1 and 2
+* add tags
+* improvements suggested by Krzysztof (thanks!)
+* add missing Makefile entry for DT
 
- .../devicetree/bindings/ufs/rockchip,ufs.yaml      |  78 ++++
- drivers/ufs/core/ufshcd.c                          |   4 +-
- drivers/ufs/host/Kconfig                           |  12 +
- drivers/ufs/host/Makefile                          |   1 +
- drivers/ufs/host/ufs-rockchip.c                    | 477 +++++++++++++++++++++
- drivers/ufs/host/ufs-rockchip.h                    |  52 +++
- include/ufs/ufshcd.h                               |   1 +
- 7 files changed, 624 insertions(+), 1 deletion(-)
- create mode 100644 Documentation/devicetree/bindings/ufs/rockchip,ufs.yaml
- create mode 100644 drivers/ufs/host/ufs-rockchip.c
- create mode 100644 drivers/ufs/host/ufs-rockchip.h
+Frieder Schrempf (2):
+  dt-bindings: arm: fsl: Add Kontron i.MX93 OSM-S based boards
+  arm64: dts: Add support for Kontron i.MX93 OSM-S SoM and BL carrier
+    board
+
+ .../devicetree/bindings/arm/fsl.yaml          |   6 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../dts/freescale/imx93-kontron-bl-osm-s.dts  | 165 +++++
+ .../dts/freescale/imx93-kontron-osm-s.dtsi    | 628 ++++++++++++++++++
+ 4 files changed, 800 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-kontron-bl-osm-s.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-kontron-osm-s.dtsi
 
 -- 
-2.7.4
+2.45.2
 
 
