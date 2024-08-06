@@ -1,159 +1,80 @@
-Return-Path: <devicetree+bounces-91470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 808CC949656
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 19:07:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDD3894960A
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 19:01:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40B9128AF28
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 17:07:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09D0B1C2197B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 17:01:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9127C178381;
-	Tue,  6 Aug 2024 17:02:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBAF8433D0;
+	Tue,  6 Aug 2024 17:01:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="O1aAvY4b"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P0fKF2zW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44371175D5D;
-	Tue,  6 Aug 2024 17:02:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DB4322331;
+	Tue,  6 Aug 2024 17:01:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722963722; cv=none; b=KDnmNGvY2H6dELqTkK/YO8yw6h/NtMBilpWj0nQQ0N7F5uA8JhPtZyXe5SEjdSSZk/gHWmJOXRQHwpqapXe4SK9DTv6APY4HRFb7h13la7B3MSthXJagbATs1j5YR5M+A0ETS71C3BDxAsCKy4DeYdWig0Jz0xvvvRYu6jys+1M=
+	t=1722963665; cv=none; b=YGeRlK6eHOjjptQdfB3TL1PJtyGfb+QIadezpJsE3fVl00U1xlLheb+yyAzHK8fP3uOYJJ8TDJv5BGNzkSd4eCKVCyGZuOqQAXzWRU3Aq2VUTtL9IWd6FSnjs6nDvUDhkQkP6yHhUsKQEQDyfqiseqeiWDjITWGSuBPY+Z+xhK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722963722; c=relaxed/simple;
-	bh=J0nkddXTq8UbBbnn7LdzSPXG8x1mRzcQEqfqo96r8rY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XjzTFbNvuz64d2Ou5MqUhF5s1ksgflifB3lP/3oMxa8ffWU2kZ8cs1dLLFsZZIrdlTDeR07Zjd+Wa92k7k2YJ4DzadztZjs37gL6VFxCz3dSfH755l2Do/nSHZs/eJqJcLOxviENRzoBZGsJAwhVtT5LUcbyqzCwrLhV+cM4NzY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=O1aAvY4b; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 476H1qDq055351;
-	Tue, 6 Aug 2024 12:01:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1722963712;
-	bh=JyXcTvEw/pzgeDH2+1Argds+FcQPaqNw9s6zMo1fbhg=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=O1aAvY4b0W0XnSRuIpZB9eBULycS1WIa2Tqs4Aoex/p3FL64tWrO6Oa+KCIVxYAJW
-	 SeuRf5WTZiNEieC4lHjJzJpZcBQAfrJeCPepCAGbf6jQh8OF0LutM4e0n1WAqg2vg3
-	 +njOlvJPOtguEyR8MdzUJ2L3XpqTTbu2vJqYxyhY=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 476H1pCG090738
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 6 Aug 2024 12:01:52 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
- Aug 2024 12:01:51 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 6 Aug 2024 12:01:51 -0500
-Received: from localhost (udb0389739.dhcp.ti.com [137.167.1.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 476H1oDD039255;
-	Tue, 6 Aug 2024 12:01:51 -0500
-From: Michael Nemanov <michael.nemanov@ti.com>
-To: Kalle Valo <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo
- Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-wireless@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: Sabeeh Khan <sabeeh-khan@ti.com>, Michael Nemanov <michael.nemanov@ti.com>
-Subject: [PATCH v3 17/17] dt-bindings: net: wireless: cc33xx: Add ti,cc33xx.yaml
-Date: Tue, 6 Aug 2024 20:00:18 +0300
-Message-ID: <20240806170018.638585-18-michael.nemanov@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240806170018.638585-1-michael.nemanov@ti.com>
-References: <20240806170018.638585-1-michael.nemanov@ti.com>
+	s=arc-20240116; t=1722963665; c=relaxed/simple;
+	bh=pM3b9Auvka/8pMpylfyKJfnfvvQhTGmGiWpgRX6L2uo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sdJgfb3EYAmAV/3W/mzzpv/dkg2roAth3PCsLBA5iILUExJgRkSuH92lHKwsge/fwxPwRtyAfAsfcRBKjrVH8+upINJJnG1U+r1tbrl5rPe7Yx8qUj8mbjdrZmIgW+3V+nhzeOLencTQvh5Jq8TgZssoB5GcNUMDCvdi96St2rM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P0fKF2zW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 049D5C32786;
+	Tue,  6 Aug 2024 17:01:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722963665;
+	bh=pM3b9Auvka/8pMpylfyKJfnfvvQhTGmGiWpgRX6L2uo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=P0fKF2zWu3WRgSt/5HcQ5Te5cwhsiJVa51TcSn13q47yHy4I+BA1TQwFrXiBCWrK5
+	 6G88pUL11WEK9c3VNXS9A7EaMe21IZ2h3hvX8DWvB4fLWxDmK2vDbnd1MfFX+jnAgp
+	 G4flSODMl1ACQ6DskPho8VpcU9kqHeb+uixarN6a43w0A118piUFqVdC5/qIb5DXI8
+	 uwma+F0MQOOGQ2xl8rVdo85jqmXpaPfB0VBmXgxMB6IkaAI5cxMgItrZLe1duXh19a
+	 NqqObLuDQpLISEsh1PRvF4kGClx/KbXMHR7aBM473UqExXAZ9KwwBiS5AHR04l1WCG
+	 kGHNT3jj53kwA==
+Date: Tue, 6 Aug 2024 11:01:04 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: matthew.gerlach@linux.intel.com
+Cc: bhelgaas@google.com, devicetree@vger.kernel.org, conor+dt@kernel.org,
+	linux-kernel@vger.kernel.org, krzk+dt@kernel.org, kw@linux.com,
+	joyce.ooi@intel.com, dinguyen@kernel.org, linux-pci@vger.kernel.org,
+	lpieralisi@kernel.org
+Subject: Re: [PATCH 3/7] dt-bindings: PCI: altera: Add binding for Agilex
+Message-ID: <172296366337.1688753.6901920449833549042.robh@kernel.org>
+References: <20240731143946.3478057-1-matthew.gerlach@linux.intel.com>
+ <20240731143946.3478057-4-matthew.gerlach@linux.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240731143946.3478057-4-matthew.gerlach@linux.intel.com>
 
-Add device-tree bindings for the CC33xx family.
 
-Signed-off-by: Michael Nemanov <michael.nemanov@ti.com>
----
- .../bindings/net/wireless/ti,cc33xx.yaml      | 56 +++++++++++++++++++
- 1 file changed, 56 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml
+On Wed, 31 Jul 2024 09:39:42 -0500, matthew.gerlach@linux.intel.com wrote:
+> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+> 
+> Add the compatible bindings for the three variants of Agilex
+> PCIe Hard IP.
+> 
+> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+> ---
+>  .../devicetree/bindings/pci/altr,pcie-root-port.yaml     | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml b/Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml
-new file mode 100644
-index 000000000000..402ff7ec9239
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml
-@@ -0,0 +1,56 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/wireless/ti,cc33xx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments CC33xx Wireless LAN Controller
-+
-+maintainers:
-+  - Michael Nemanov <michael.nemanov@ti.com>
-+
-+description:
-+  The CC33xx is a family of IEEE 802.11ax chips from Texas Instruments.
-+  These chips must be connected via SDIO and support in-band / out-of-band IRQ.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,cc3300
-+      - ti,cc3301
-+      - ti,cc3350
-+      - ti,cc3351
-+
-+  reg:
-+    description:
-+      must be set to 2
-+    maxItems: 1
-+
-+  interrupts:
-+    description:
-+      The out-of-band interrupt line.
-+      Can be IRQ_TYPE_EDGE_RISING or IRQ_TYPE_LEVEL_HIGH.
-+      If property is omitted, SDIO in-band IRQ will be used.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    // SDIO example:
-+    mmc {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        wifi@1{
-+            compatible = "ti,cc3300";
-+            reg = <2>;
-+            interrupts = <19 IRQ_TYPE_EDGE_RISING>;
-+        };
-+    };
--- 
-2.34.1
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
