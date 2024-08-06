@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-91342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1524E949009
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 15:06:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A4BC949018
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 15:06:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C157D280F18
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 13:06:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B2B5CB265AC
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 13:06:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 656081C9EC2;
-	Tue,  6 Aug 2024 13:06:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4600D1C9EBF;
+	Tue,  6 Aug 2024 13:06:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="fTrdvodp"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="V9ojRpMa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A36611C9EB6
-	for <devicetree@vger.kernel.org>; Tue,  6 Aug 2024 13:05:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E92B1C3F32
+	for <devicetree@vger.kernel.org>; Tue,  6 Aug 2024 13:06:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722949561; cv=none; b=jNXM+rC90JrIjFIgPIEKo+xfw9MmZoWiQBXOscqB5ZM0qFu0wB+m32gnBs8aBz8PJa40tqTy02GzDkdYlYJILFU2Q7GUbsjwErr/mCGVD1x1krK1mJFhw6SlWZwP+fefXILITZO6FHWprM9vNMBy52w/umbVDRP0ZBMAeRmrHQ8=
+	t=1722949606; cv=none; b=qLb0b4bhjCmbgP8XqL/YTSy7lwu1usLv01VJyd1GhQpPPrXciuUu8B1JzNjNG61UJxB+WziVeo1rsmiFpndgYE6aBocDzlbqhFaJs7KgVEmmBaSQ8tahU1pnE7pU5sX0dsRdjDdi9juc35xwXOQMFm/SDoejg2o18V7DvzcYvsQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722949561; c=relaxed/simple;
-	bh=e4CpkRaDkIeIjoB4xteVgHuGcE29XAudWUziuiUFx+M=;
+	s=arc-20240116; t=1722949606; c=relaxed/simple;
+	bh=67riA1J3K9tE3LNenxLWG+UUPNBbF29j9JBhUdIbc1Q=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Y5n7ZvY7XmnJC4/P2+UZmKa5khZ42bIOQQjHN75OoZ6qlgHx2meJR2Pz2HSLdY+h+rWN+ctYanSZVeKwsSWNLmubIfcbcQKISn2H8Vhts6hGaZ0E8ciqISU1uI3MzNufFv/Wb36rKrEEzjjQcr4xSGhhAqXImR7WBVCUGfeDsSE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=fTrdvodp; arc=none smtp.client-ip=170.10.133.124
+	 In-Reply-To:Content-Type; b=VGk3zMm9+ewduhjCbyRANnui81USDhwqvdK3WoUQUvgj0d7Vvlq9hJKyTzAb78FTTDsnctxtxoZwLaAtC04dIVwh8ETgndSCZrdVhzJdbby8pWtCKC6a7s72qlIuJDKkJeCuRZNmmNRw3qUgr5N3bp7ILX9Sk3ybGOqW9zVyR7E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=V9ojRpMa; arc=none smtp.client-ip=170.10.129.124
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1722949558;
+	s=mimecast20190719; t=1722949603;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=amUdH6WD2peIbES12J1M9oShVBbMVHMdTBU9HTYn0XQ=;
-	b=fTrdvodpxHCoWX9Eu6U7ZMI9/lm1zAITWAh2BsmAkL1vOTNe2rInU5utYr7qULFCiRfj52
-	7Lh2jteAIe4tYgyU3IS3Xeov1L8ERRXSkVnnfYCjzW9OebLc0i2NN6zA6njvx9biqTt2Uj
-	YT79f6B/ZdvFRCH3ZdnbZ/15fwnUWyI=
-Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com
- [209.85.167.71]) by relay.mimecast.com with ESMTP with STARTTLS
+	bh=sr/WFAiUbxLmydRkUjae4zjVw5l6VDeDJFLPLU0IVgE=;
+	b=V9ojRpManFvswREnKUJXDr8K0z9eh/MJvuEcD3zYpYxnXB9SwhOgv0Z4oj9uAd0uZSRlgM
+	UBq2UilHa/2C8MVxR/OxYt2H4GHlg4rPBEVKHb1pqGuQoCuN8L14FDb86fy1/9J53dB7NA
+	ehQUIZIA80+S8zLtnndeKijHMV09Jt8=
+Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com
+ [209.85.167.69]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-362-5O8XlHOePm21cfDUPLjP3w-1; Tue, 06 Aug 2024 09:05:57 -0400
-X-MC-Unique: 5O8XlHOePm21cfDUPLjP3w-1
-Received: by mail-lf1-f71.google.com with SMTP id 2adb3069b0e04-52ebdbf8a7cso646662e87.2
-        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2024 06:05:57 -0700 (PDT)
+ us-mta-275-mtK8ZeA_MQKbeUX9XO14MQ-1; Tue, 06 Aug 2024 09:06:42 -0400
+X-MC-Unique: mtK8ZeA_MQKbeUX9XO14MQ-1
+Received: by mail-lf1-f69.google.com with SMTP id 2adb3069b0e04-52f02f1773fso822593e87.3
+        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2024 06:06:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722949556; x=1723554356;
+        d=1e100.net; s=20230601; t=1722949601; x=1723554401;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:from:references:cc:to:subject:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=amUdH6WD2peIbES12J1M9oShVBbMVHMdTBU9HTYn0XQ=;
-        b=jiiylBmpjuzdTXOrN7p/ubGDH8pPW+hZ/WTeC9Tz21NTJrUilMF7tk9LATtg5se1BI
-         ZLKmT8TbFnT0NafRQRRj11EribD2aSQraMO1FR5eASRGwU10SdFEXCSxrsCmkcBQHOvl
-         /cxH2g2VboldhnzuDGBspPmGvYvIPGfScIEsVZN4mcCGrAg1bZX0D4qOFMEbMrf46TFr
-         Nh5nly4AMVuj8JPJR/6Gu7+ybAu3Hxv07tOTl4qCsNazWmUJNhZzFFX2o5/Sr33wI5Sv
-         g6/Y8uXvTKfX+Kjt6xsG4GrwvmOnF5/qTsh1g6ENLad6sfkmYkza47dybAylQVAuCSsS
-         O+/w==
-X-Forwarded-Encrypted: i=1; AJvYcCX6iDJmmQ78IQaq4Pf2DwacBxNpJGKouim4cflB90mKu7/o3VWdx4ZmEQki0H5a76XvLzYIpbJujlMsq95ydNfQYhOzcpCwnpYC6Q==
-X-Gm-Message-State: AOJu0YwfhZSsmpw4R/TGMVAqiRmbJHibFZO14IcynIo2Hx12ATPx56/7
-	nUUw/EcKXadrmxB4svUF570/7IGwEy6LBOV79jDiKh4pf9lzinXAcC0cfDuEKEVm4EP7r/dAvAC
-	MEwSdp8Z1kyWlqjNr8nLfG3vuUSHcHnDze80KIIcq04u4k5VbvgrcbmzaaiE=
-X-Received: by 2002:a05:6512:1083:b0:530:ab72:25ea with SMTP id 2adb3069b0e04-530bb379bf6mr9163721e87.28.1722949555790;
-        Tue, 06 Aug 2024 06:05:55 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFkjaQOfVJEScAZq9+YAUwXoibp+Fm1wSaYE9RKwEyv2etqDtoW48XkZgmkRBpBLQfLRzLp6Q==
-X-Received: by 2002:a05:6512:1083:b0:530:ab72:25ea with SMTP id 2adb3069b0e04-530bb379bf6mr9163670e87.28.1722949555176;
-        Tue, 06 Aug 2024 06:05:55 -0700 (PDT)
+        bh=sr/WFAiUbxLmydRkUjae4zjVw5l6VDeDJFLPLU0IVgE=;
+        b=JZaALmeCsNFIOpw3upzId0KuJZb1opL5yHv3Zj2KGe6T0YOf9WRt/Dhc5ciffd4lY8
+         2e/vWcKXzUgLPMpp3yuhypvJjJyiHTjfTogLMouX/7zQboqnlBTuCwWS8vWjyKq7c2tq
+         jJ25PNYIDB7iLy1cC3fiYHGKl2hM/OBUiXJTnKIpS3GzlVTn26mIcfA1X3Xur/MA6tfY
+         mUu4kLHZAQtLEOBzaHMPm7VLizsPNi8uZvclpanB10Gyw9n+ZjgKzDRzw80Xt3CWN+4T
+         5eoh6S/wlzp0t0YEFBxRreN6rpOOhtH+v5XTyIC+5lg1/2oRlfzt1fJKE4yrnHwUOe/B
+         Q11w==
+X-Forwarded-Encrypted: i=1; AJvYcCWtpkZa8dnewbSLtIifCGO5C3z3LhK4qg4wm2Nsxb3ThRA+bDVokVM7OkrLn1pryPXKwbtZrTI5weyTILvN/PIVRReez13C/0qMgw==
+X-Gm-Message-State: AOJu0Yy5eDba4n5YsPV70zJi1nYSLQoWqJxWQKbJ9Uk2RIMtf9D1hMj5
+	hhMh4N06AkXTlophAuRkLcTluK6nF7yKCX+ejmiabqGRBenRuDGFFINvlxWVcPneKE1OZUkK6ur
+	+6r9zBI1DNMqu0HAwcIdgtH6+pfuxVvN11XuVwI1QS5MMrMQcXbhq2k8kMCY=
+X-Received: by 2002:a05:6512:6c8:b0:52c:dc6f:75a3 with SMTP id 2adb3069b0e04-530bb3d42d4mr11417690e87.40.1722949600614;
+        Tue, 06 Aug 2024 06:06:40 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE8szkegVXe2o6JYrSp0ZSt3b1gbAeQlMRaoLLvTVivyK3zg1sVVyjw+3RLDIMZyOqUdDajMA==
+X-Received: by 2002:a05:6512:6c8:b0:52c:dc6f:75a3 with SMTP id 2adb3069b0e04-530bb3d42d4mr11417650e87.40.1722949600041;
+        Tue, 06 Aug 2024 06:06:40 -0700 (PDT)
 Received: from ?IPV6:2003:cb:c73f:8500:f83c:3602:5300:88af? (p200300cbc73f8500f83c3602530088af.dip0.t-ipconnect.de. [2003:cb:c73f:8500:f83c:3602:5300:88af])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7dc9ec6bb6sm545164366b.201.2024.08.06.06.05.52
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7dc9ec886esm547190766b.203.2024.08.06.06.06.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Aug 2024 06:05:54 -0700 (PDT)
-Message-ID: <0e076c60-d262-4c08-82c1-8f738aaeb80f@redhat.com>
-Date: Tue, 6 Aug 2024 15:05:51 +0200
+        Tue, 06 Aug 2024 06:06:39 -0700 (PDT)
+Message-ID: <c4ff4ce2-f28e-48cc-9260-bf3440da82e0@redhat.com>
+Date: Tue, 6 Aug 2024 15:06:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,8 +83,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 03/26] MIPS: sgi-ip27: ensure node_possible_map only
- contains valid nodes
+Subject: Re: [PATCH v3 04/26] MIPS: sgi-ip27: drop
+ HAVE_ARCH_NODEDATA_EXTENSION
 To: Mike Rapoport <rppt@kernel.org>, linux-kernel@vger.kernel.org
 Cc: Alexander Gordeev <agordeev@linux.ibm.com>,
  Andreas Larsson <andreas@gaisler.com>,
@@ -115,7 +115,7 @@ Cc: Alexander Gordeev <agordeev@linux.ibm.com>,
  loongarch@lists.linux.dev, nvdimm@lists.linux.dev,
  sparclinux@vger.kernel.org, x86@kernel.org
 References: <20240801060826.559858-1-rppt@kernel.org>
- <20240801060826.559858-4-rppt@kernel.org>
+ <20240801060826.559858-5-rppt@kernel.org>
 From: David Hildenbrand <david@redhat.com>
 Content-Language: en-US
 Autocrypt: addr=david@redhat.com; keydata=
@@ -163,17 +163,22 @@ Autocrypt: addr=david@redhat.com; keydata=
  jPrnvUsUUsjRoRNJjKKA/REq+sAnhkNPPZ/NNMjaZ5b8Tovi8C0tmxiCHaQYqj7G2rgnT0kt
  WNyWQQ==
 Organization: Red Hat
-In-Reply-To: <20240801060826.559858-4-rppt@kernel.org>
+In-Reply-To: <20240801060826.559858-5-rppt@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 01.08.24 08:08, Mike Rapoport wrote:
 > From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
 > 
-> For SGI IP27 machines node_possible_map is statically set to
-> NODE_MASK_ALL and it is not updated during NUMA initialization.
+> Commit f8f9f21c7848 ("MIPS: Fix build error for loongson64 and
+> sgi-ip27") added HAVE_ARCH_NODEDATA_EXTENSION to sgi-ip27 to silence a
+> compilation error that happened because sgi-ip27 didn't define array of
+> pg_data_t as node_data like most other architectures did.
 > 
-> Ensure that it only contains nodes present in the system.
+> After addition of node_data array that matches other architectures and
+> after ensuring that offline nodes do not appear on node_possible_map, it
+> is safe to drop arch_alloc_nodedata() and HAVE_ARCH_NODEDATA_EXTENSION
+> from sgi-ip27.
 > 
 > Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
 > ---
