@@ -1,105 +1,99 @@
-Return-Path: <devicetree+bounces-91435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C904949522
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 18:04:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A49E9496A9
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 19:25:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E34C286FF4
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 16:04:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB0F31C2274D
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 17:25:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8F8446444;
-	Tue,  6 Aug 2024 16:01:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD37C6F31C;
+	Tue,  6 Aug 2024 17:25:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JFI6D2Yc"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="QZbE1jdu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m2424.xmail.ntesmail.com (mail-m2424.xmail.ntesmail.com [45.195.24.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC92C28683;
-	Tue,  6 Aug 2024 16:01:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64E2754FAD;
+	Tue,  6 Aug 2024 17:25:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.195.24.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722960119; cv=none; b=CzLW8i/6NmaQ/weVStwHfeF+Xrb6DpaESpkfrNVSdmrXAh41vmRzXCEnbrA+QOVN8j9bMkaV/fallL8mN8j1k7lM9QaSZPadKVerEotpXZMKoRa81n2e5b9RYcMITK6oQLcmQaqX0ywjlRENo/zOn30knGD98cz4JWfZNU8JYoo=
+	t=1722965111; cv=none; b=bmFJ6AZ19IgU2fvPy5WAhwO+KtPNjzwUpdQIvFLhFxQ2wIUWFlrZjZel/AG15QPpcwd7HxMvKNEKbfKMx5UmJWMIj5J7diVRE5GV+3LaY+3FFksP4zTKFyJhfBZ89FUI1Ne1gydjpeR8Rlk3dCkbCsyygYLjpbtVdtLGblqE+7s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722960119; c=relaxed/simple;
-	bh=3vtD445Fm/8LAmd5d2AXOFWFQRMqgkclZ+9tFFTZK9A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=So00B9GXOiox6rnFeHmPXr+wYQTRcWA5MJVLJVzDFBgUc1QexRQ94+ye4Z+yn0MHr6SqWh6izjj5qn7hnzvJ+w08zjpWhon0DbbOlWPR0B5faKgcOBVWgNM6yiHC2ysuc9vmZyK/Rh+NN72WhUXZAJf5XIsXBGrn+CyWj9hUWDE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JFI6D2Yc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED39DC32786;
-	Tue,  6 Aug 2024 16:01:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722960119;
-	bh=3vtD445Fm/8LAmd5d2AXOFWFQRMqgkclZ+9tFFTZK9A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JFI6D2Yc54zRK1nBf87IgVWmaQXhaILSt/kgJeIR2uctGm+vOfMdyUlkifKnb5+Ui
-	 hNMXRGg4YKzk32Yq19mgn0X3MuobAKz79JUJM41iq48SLUWug0/LdRgvNOOOgu1cMf
-	 LkMf1njt5DrFhUDukAOZrNzF4N/D1ha7IaBrqwrFaarGiG8aOMqVTqg0WxR7dvuPki
-	 hz3fBV0xCqHYwbq4lcrQpYpVoDAoEFVDr+PJ79Eu8j3AArTRzI3uhAQM73FY+1m3qO
-	 w4gCtwePg9wzV/jp7GruD3SKojMHfZNEumJCuN1zWQwpuQ7tLCcxQUHWAQROP+g+fO
-	 Y73TugISbu6vw==
-Date: Tue, 6 Aug 2024 17:01:54 +0100
-From: Conor Dooley <conor@kernel.org>
-To: =?iso-8859-1?B?QmFybmFi4XMgQ3rpbeFu?= <barnabas.czeman@mainlining.org>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Albrieux <jonathan.albrieux@gmail.com>,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux@mainlining.org,
-	Danila Tikhonov <danila@jiaxyga.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: iio: imu: magnetometer: Add ak09118
-Message-ID: <20240806-crouch-poker-c8ae9cc07e7f@spud>
-References: <20240806-ak09918-v2-0-c300da66c198@mainlining.org>
- <20240806-ak09918-v2-2-c300da66c198@mainlining.org>
- <20240806-paycheck-visibly-4e114692ae98@spud>
+	s=arc-20240116; t=1722965111; c=relaxed/simple;
+	bh=3fZVWefqUk0Zjct/unBsJL/ObBr/A0DCpYGzqqMmyCw=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=FC7fl0tE3Kw1qcuLuNrSUEXmyVMXMu6id6l1G6xK/fejh4c1+jXn5JrO72yqIu48NCfz/kY0aE1cNp5YeYpiRdDri/7MfvGZny1M0KyCDDo/hCAl6VjnEXV9XiZOh1agBj50btsCd1iNqUEZbqY0/9VhyTYk/HH+ofwFqFefPNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=QZbE1jdu; arc=none smtp.client-ip=45.195.24.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+DKIM-Signature: a=rsa-sha256;
+	b=QZbE1jduuSrYrNsfD18oHCNymfgk2GS+DiFGz3wQZAB68x1DeLxvEdbpmgqcUyv6ifBt70Dgl+NJLKKt7kMR/uLD1q9Clr8T0tESW/QBwjMn0KeljylyEDc0scEh34uyK6CTDfWu1FBnliX3vXVm6y+jfkTjRUZIF1TjgDHXWDY=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=VoEidbWMgEaAD+w4sppjFIkcTnBtA/FRKYDmYz7yR08=;
+	h=date:mime-version:subject:message-id:from;
+Received: from localhost.localdomain (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTPA id 834F746051B;
+	Tue,  6 Aug 2024 15:20:13 +0800 (CST)
+From: Shawn Lin <shawn.lin@rock-chips.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	"Martin K . Petersen" <martin.petersen@oracle.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>,
+	YiFeng Zhao <zyf@rock-chips.com>,
+	Liang Chen <cl@rock-chips.com>,
+	linux-scsi@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Shawn Lin <shawn.lin@rock-chips.com>
+Subject: [PATCH v1 0/3] Init support for RK3576 UFS controller
+Date: Tue,  6 Aug 2024 15:19:57 +0800
+Message-Id: <1722928800-137042-1-git-send-email-shawn.lin@rock-chips.com>
+X-Mailer: git-send-email 2.7.4
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQh5DS1ZMTx8eGk9DGk5ISk9WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	NVSktLVUpCS0tZBg++
+X-HM-Tid: 0a91268f583803aekunm834f746051b
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Mk06Fjo6DzI6SBI*GjpCShJK
+	GCsKFBhVSlVKTElJQklDQ0pPTE1OVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUlPS083Bg++
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="4nDRdZT2HlgzMSJc"
-Content-Disposition: inline
-In-Reply-To: <20240806-paycheck-visibly-4e114692ae98@spud>
 
 
---4nDRdZT2HlgzMSJc
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Aug 06, 2024 at 05:00:44PM +0100, Conor Dooley wrote:
-> On Tue, Aug 06, 2024 at 08:10:19AM +0200, Barnab=E1s Cz=E9m=E1n wrote:
-> > From: Danila Tikhonov <danila@jiaxyga.com>
-> >=20
-> > Document asahi-kasei,ak09918 compatible.
->=20
-> Please explain what makes this device incompatible with those already in
-> the binding and why a fallback is not suitable.
-
-=46rom the driver patch:
-| Add additional AK09118 to the magnetometer driver which has the same
-| register mapping and scaling as the AK09112 device.
-
-Why isnt a fallback suitable here?
+This patchset add initial support UFS controller for RK3576 SoC.
+Patch 1 export ufshcd_dme_link_startup function for host drivers, and
+patch 2&3 add ufs-rockchip driver.
 
 
---4nDRdZT2HlgzMSJc
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+Shawn Lin (3):
+  scsi: ufs: core: Export ufshcd_dme_link_startup() helper
+  dt-bindings: ufs: Document Rockchip UFS host controller
+  scsi: ufs: rockchip: init support for UFS
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrJI8gAKCRB4tDGHoIJi
-0hOuAQDDjd6TSxLm8fYz8evmF1fhBUTWM9XpygUdvaSHLB3glAEAup0W2ySfBOwt
-xlNnOgTC++zpo+W/wf2KR5mfgcveCQ8=
-=bfXv
------END PGP SIGNATURE-----
+ .../devicetree/bindings/ufs/rockchip,ufs.yaml      |  78 ++++
+ drivers/ufs/core/ufshcd.c                          |   4 +-
+ drivers/ufs/host/Kconfig                           |  12 +
+ drivers/ufs/host/Makefile                          |   1 +
+ drivers/ufs/host/ufs-rockchip.c                    | 477 +++++++++++++++++++++
+ drivers/ufs/host/ufs-rockchip.h                    |  52 +++
+ include/ufs/ufshcd.h                               |   1 +
+ 7 files changed, 624 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/ufs/rockchip,ufs.yaml
+ create mode 100644 drivers/ufs/host/ufs-rockchip.c
+ create mode 100644 drivers/ufs/host/ufs-rockchip.h
 
---4nDRdZT2HlgzMSJc--
+-- 
+2.7.4
+
 
