@@ -1,81 +1,110 @@
-Return-Path: <devicetree+bounces-91420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20D9C94943B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 17:10:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A919F94942B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 17:05:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3354BB2C698
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 15:05:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 64AAD2889BD
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 15:05:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74BF71EA0CB;
-	Tue,  6 Aug 2024 15:05:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC5BC1D54FB;
+	Tue,  6 Aug 2024 15:05:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pzr3DGZw"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="GfFhatj1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C2C81D54FB;
-	Tue,  6 Aug 2024 15:05:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3649C1D6DDB;
+	Tue,  6 Aug 2024 15:05:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722956709; cv=none; b=K6melYKVbQBaBTvki9aQ8rUEnNOKrqKTUcc+BAUewm0N1gpdi+yx9GVTBRrrTeOuXoFXkPti0UvSaEQLlWcX1I5k97WqFPpMxVDevoGNhLdKbUbMpNthbBHrLFqLmaYwNnqpaqSYMPOfwRClkhb3tF3Hme6xI0WpvjKyxAPBS3U=
+	t=1722956733; cv=none; b=OJlbcgWenr/pUz+IUUSk4jmP+d7KgQ/wqwNPz1RJJ3MZc8EALYDk+RGlCA9SggCEt3gI/P291j2QH7z6t6lbaUs5rz7EM0soD6KPapRqoFE6ANa8IdWo/2npSIj+ZoUMmnQR0Ml9D3mCAmLHxDx7cay9eTDllMDyVB/6eyI3w98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722956709; c=relaxed/simple;
-	bh=2yZTrDqUX4cbeEWUZZcepAZ+rm3PXu+PP2tqkUoTQuw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dqtyxFPwAjEqdxLGEMUFcfHIU4sQGBseY9SiWZBdAgWlhe8eJMKf4yf+KfPnsvtcEvfin0jS9Pl+FzogyqI+aZgrWxIgGuPq82pth68pEC+9AvzGbaOTYEi7AUrJLzwl6N+KHM5APeAGqLcdfH7xR414HJbsPx3i3p+Y4K46ic0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pzr3DGZw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC26CC32786;
-	Tue,  6 Aug 2024 15:05:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722956708;
-	bh=2yZTrDqUX4cbeEWUZZcepAZ+rm3PXu+PP2tqkUoTQuw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pzr3DGZwmDisJAZoWjhEHney8AYqVCFkw1v99mWtchmgDnrBeOjDVKw7OiCiBp9Xe
-	 PkvSP9Io+C0UYiBu2DLn4JXrjyhyY1WKW3gVd3BTAfc7kIBSZJBUMsD9Rr2XKzWope
-	 4fPML74hQhxaIIf/B2jH3NhISE9XhQuVwSJmOvhihTpTivVNcOECdz/zGUcBPTIzuy
-	 jgTO/2+1fNlXCe3u+DkQ2muNnu/Ge1wxtf68UIjS1vuQN42uJVCV3RaxJJ9m3C2HEO
-	 6u47pQuWpw3qJTtdWsfeunFxCSAVxggcBDQCW3SR4z8obXUy/G1wGTTqDLcvWXWFYD
-	 RHjnWhZDtom6Q==
-Date: Tue, 6 Aug 2024 09:05:07 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>
-Subject: Re: [PATCH] dt-bindings: timer: fsl,ftm-timer: Convert to dtschema
-Message-ID: <172295670644.1526916.5235199527957758747.robh@kernel.org>
-References: <20240730171336.99090-1-animeshagarwal28@gmail.com>
+	s=arc-20240116; t=1722956733; c=relaxed/simple;
+	bh=cKLi7+6crt9HUr5A8M2ER4zioa92HQFRFtOAa82Xb0s=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kC6+TPb7zUSOZIGMpNV7hmJ7M2t0UYRfpl3eVo8gdVnKltyEqzTfNBu/Boo8rfAxIMljaI1spMC7EqZ4VfG5A4qZiPwtZhutOEmiCt+TS0Qik+KqIr0xp61eQY1jBWMNEEBj+LOaB0WZrJT8aJsxyjqmpbWCSzoKkC9kvHRLUIE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=GfFhatj1; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 476F5P63084874;
+	Tue, 6 Aug 2024 10:05:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1722956725;
+	bh=jRUVh2j7bRPlAnSp8fPUpjC66w/pHoa9+DKzEoGOPCo=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=GfFhatj1AH1w+I8hHz5eD57b8l+SyNRCcbQPYqYzm+fkPNangrGHipqyCHCCigd51
+	 o2PsQclEC/4fZVWjpysGkVNSXJnI3EbhnvnElIEidf6urCvJG9FJakTOhcVJbMaMrL
+	 Zm+1OSOrTuG9wHaYUKRTIFfgpABqyutJpJdBJYFc=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 476F5PbV005455
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 6 Aug 2024 10:05:25 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
+ Aug 2024 10:05:25 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 6 Aug 2024 10:05:25 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 476F5PMh109855;
+	Tue, 6 Aug 2024 10:05:25 -0500
+Date: Tue, 6 Aug 2024 10:05:25 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Andrew Davis <afd@ti.com>
+CC: Manorit Chawdhry <m-chawdhry@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Neha Malcom
+ Francis <n-francis@ti.com>,
+        Aniket Limaye <a-limaye@ti.com>, Udit Kumar
+	<u-kumar1@ti.com>,
+        Beleswar Padhi <b-padhi@ti.com>,
+        Siddharth Vadapalli
+	<s-vadapalli@ti.com>
+Subject: Re: [PATCH v3 1/5] arm64: dts: ti: k3-j721s2*: Add bootph-*
+ properties
+Message-ID: <20240806150525.5aj6hnqmzwir7j22@fruit>
+References: <20240730-b4-upstream-bootph-all-v3-0-9bc2eccb6952@ti.com>
+ <20240730-b4-upstream-bootph-all-v3-1-9bc2eccb6952@ti.com>
+ <bcd96f9f-54bd-4793-b9f1-04a011f2df82@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20240730171336.99090-1-animeshagarwal28@gmail.com>
+In-Reply-To: <bcd96f9f-54bd-4793-b9f1-04a011f2df82@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-
-On Tue, 30 Jul 2024 22:43:33 +0530, Animesh Agarwal wrote:
-> Convert the Freescale FlexTimer Module (FTM) Timer bindings to yaml.
+On 09:43-20240806, Andrew Davis wrote:
+> On 7/30/24 4:53 AM, Manorit Chawdhry wrote:
+> > Adds bootph-* properties to the leaf nodes to enable U-boot to
+> > utilise them.
 > 
-> Cc: Daniel Baluta <daniel.baluta@nxp.com>
-> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
-> ---
->  .../bindings/timer/fsl,ftm-timer.txt          | 31 ----------
->  .../bindings/timer/fsl,ftm-timer.yaml         | 59 +++++++++++++++++++
->  2 files changed, 59 insertions(+), 31 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/timer/fsl,ftm-timer.txt
->  create mode 100644 Documentation/devicetree/bindings/timer/fsl,ftm-timer.yaml
-> 
+> U-Boot? Let's try to pretend like this is a generic property and
+> just say "bootloader" :)
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Yes please - respin with wording fixup.
 
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
