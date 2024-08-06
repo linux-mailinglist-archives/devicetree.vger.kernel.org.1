@@ -1,200 +1,156 @@
-Return-Path: <devicetree+bounces-91498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 336379498EE
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 22:19:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC6D79498F6
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 22:22:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63EDC1C219BF
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 20:19:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84BAE28223C
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 20:22:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62710149DE2;
-	Tue,  6 Aug 2024 20:19:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C57E315572E;
+	Tue,  6 Aug 2024 20:22:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="POowLvBR";
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="POowLvBR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AWxPVLva"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mleia.com (mleia.com [178.79.152.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3651073451;
-	Tue,  6 Aug 2024 20:19:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.79.152.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57A4773451;
+	Tue,  6 Aug 2024 20:22:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722975581; cv=none; b=LGS59MLktmulaQLmz0SP10esx9wdIhGiHagtkrdvNu8ndJ7czo7AIE+rW2O4eZn1Nxuae7I2cSrLIuLY1dK5mAIBLQ53Xj8nXYQV/dDvQeMETz5dnxzh3gcyap23F3IogDK0r4L5qc2AH8DbAFV0DcdoY1bhlqNs2i4utlY/OxI=
+	t=1722975747; cv=none; b=ZHg4Bo+fuuGwPz+0TnEx/NZFjuE9VwO1IgmFdNKpnSBpLOrMQDRFREPL79sskA8Ah4xP5kGIbng/96riFnDFfEqP2LP1kc45tfKEkzIpe2r5lQjw0eXomol5290K7w/IvwcQQzJyIHFUXDRWB8dqHpRj/sMXvdg8exKDE3HNW0o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722975581; c=relaxed/simple;
-	bh=stWwF0GuGn8B9mcQqlBa2jF5NZhyeHfpbpw1CaPXFHI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nORuH/EjyQZevna6QEhztrWCmocpU5phLsIwzqFZmY0sU4Y6/UCzBSCi7chSSxbHZ6Dy8EjCMSjwqMmQnXO7v2cnq2h9O+8wTJOPpeh2YMh3HK+AfqfRPIX3J8HY9qzZsEhMLcr0R8K5uhaCsFeJzb+15Jvwas4kKojrVoiOROE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=POowLvBR; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=POowLvBR; arc=none smtp.client-ip=178.79.152.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mleia.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1722975233; bh=stWwF0GuGn8B9mcQqlBa2jF5NZhyeHfpbpw1CaPXFHI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=POowLvBRKDgra8US0miJh7IqlgD9IuHN6LH1xR77PUW9WFLor18owg7hMPXm4CsP7
-	 DX48bKuF2/nEKKglLjLE1l6oJrYIqctQLrrZjsCExDlP7srwJmYDHu3qboF5YP3A8/
-	 rx9dMoJMd3kJJq18H53ZpM6VliPj0gPQH6bl4SKRNqpNiK/7s1bxTVe3VV4LfLUGab
-	 1NEjpJB6s7spLhFMHUxNtOn0YGQlUA+jXG3FBjDLhb9/0Fc3rMWeB4ZXuQJVqirJcc
-	 piBkeoQgzLj/eh9QcmXdIIqcbsI3hI3/6vn2fmKMRU5ztdVhzSnSYPiPYfRqOlT2xZ
-	 maPjOsJQ10oqA==
-Received: from mail.mleia.com (localhost [127.0.0.1])
-	by mail.mleia.com (Postfix) with ESMTP id CE3524793E2;
-	Tue,  6 Aug 2024 20:13:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1722975233; bh=stWwF0GuGn8B9mcQqlBa2jF5NZhyeHfpbpw1CaPXFHI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=POowLvBRKDgra8US0miJh7IqlgD9IuHN6LH1xR77PUW9WFLor18owg7hMPXm4CsP7
-	 DX48bKuF2/nEKKglLjLE1l6oJrYIqctQLrrZjsCExDlP7srwJmYDHu3qboF5YP3A8/
-	 rx9dMoJMd3kJJq18H53ZpM6VliPj0gPQH6bl4SKRNqpNiK/7s1bxTVe3VV4LfLUGab
-	 1NEjpJB6s7spLhFMHUxNtOn0YGQlUA+jXG3FBjDLhb9/0Fc3rMWeB4ZXuQJVqirJcc
-	 piBkeoQgzLj/eh9QcmXdIIqcbsI3hI3/6vn2fmKMRU5ztdVhzSnSYPiPYfRqOlT2xZ
-	 maPjOsJQ10oqA==
-Message-ID: <d1ac7446-143b-40d3-9f12-f734ab7cc31f@mleia.com>
-Date: Tue, 6 Aug 2024 23:13:52 +0300
+	s=arc-20240116; t=1722975747; c=relaxed/simple;
+	bh=1UehH1pGCUFdoG0/yVfsbSMh9oR8Ng/paZVkFWPoBUk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QuQIpzSRK3kbUGc3jylow2AyvEwIst6rbAsQhARPjgyjquJ9BqWBrpHjbXulWWUdUHbc7EfCbPebjKYbPRTPAT8cuF9TpEt/WzfIaYPwjc5iDLI9yQBqqUC7o/1ekmu7QmCdHI618DTkiwAtI6qr/KLZgi7JQrz4uf4ri93Dzus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AWxPVLva; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-70d2b921cd1so863940b3a.1;
+        Tue, 06 Aug 2024 13:22:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722975744; x=1723580544; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hTE2LSD9ZCfRune++U0hEtyJGWxkgZISaVyuwocrVk0=;
+        b=AWxPVLvaTb/dMIoO/MmyVkixlJA9ECbl+2SlM2dUnASe4Nj6qYBPpOwY4LjL8GYWn3
+         yIxOQBYyOjohLH9dCkXUfGaox9iKzN39YacjukmReR6Y+a6erWjEa4NvELx3T8GT2RCp
+         IYu6wMX7acQC6K0SOYzPq2XCFKVTDNahz/eRkniUu73WCPMKJpxkMAgySZqjHaPXhqFu
+         VHarZPP4DPkMQOPrQugVQSgeetjUeWdRkv0bzbd27G2IG1yT3ShJW7XUbVbaYUAL9dpk
+         EqL98q4vahRMmpo5pxGZbGGMb7nkermc5Gh8epwM/9lo3rSf6QeZO3qGjTeOLQ2B+WRk
+         n5lg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722975744; x=1723580544;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hTE2LSD9ZCfRune++U0hEtyJGWxkgZISaVyuwocrVk0=;
+        b=u4R0RYyMrZXki038TgeepcetPGuICiiw047AxXFoGpm1SfQx28PJ8/NL/tLd8XPMtj
+         71aDFAaGCnAsWc9+wNOWLfUkbtuQnTkaurAwS1R/eAHOiF4UCYJV1TlmZQi1PKmC8VvQ
+         32z3vpg++mjveUe/M149iNPTfhzaVtlZhOFJZilTLF/1dPjQG3S5mN11nJccSxfSfu4X
+         YimLBFvipIoxstGe52i0qEsSh/5RJWUIG5C3BZDbELpMITsxDWmps9jj06jDAr8YsAV4
+         2CeBemAZ4IguWFLHaWFSrmva6nIMDjDi3zNwrtzt9kocuPZ0giNiZjiezgxBeaM6A7Ci
+         Vchw==
+X-Forwarded-Encrypted: i=1; AJvYcCX+rphnLCd2KIlAgHSEUsoh8cEazV4HTF3CHgIYBGSBVQdcAsHw6+ihC/+1cuYY0EOOkyNIajPO8lfeA0nFSs+PzGtfe3hvyJHZaIU3yCgZ2BlOidyj2Fr1+rGrNR0OeMysLfQmCJI2ZA==
+X-Gm-Message-State: AOJu0YyXOawvbWPCzoyW6r/KfnAEGnrnCdRI1thNkdwoXSJ1+kaPxekH
+	lRZlvHwNmZIEVd/P/vLea3Ym2XLQf4Fh9bP1hPoei6CqYuA2A2Pghql/Dg==
+X-Google-Smtp-Source: AGHT+IHH1qllS350PvhBadejZF+21WBuAZ+wsvQjJCk0aX65nDEnvaPdiw9c/ZGpuDrhp1N0zZzhyg==
+X-Received: by 2002:a05:6a00:190e:b0:70e:8d38:2845 with SMTP id d2e1a72fcca58-7106cf930b0mr20751638b3a.1.1722975743480;
+        Tue, 06 Aug 2024 13:22:23 -0700 (PDT)
+Received: from localhost ([2a00:79e1:2e00:1301:12e9:d196:a1e9:ab67])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7106ec05bf3sm7579626b3a.13.2024.08.06.13.22.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Aug 2024 13:22:22 -0700 (PDT)
+From: Rob Clark <robdclark@gmail.com>
+To: linux-arm-msm@vger.kernel.org
+Cc: Stephan Gerhold <stephan.gerhold@linaro.org>,
+	Abel Vesa <abel.vesa@linaro.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Clark <robdclark@chromium.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v4] arm64: dts: qcom: x1e80100-yoga: Update panel bindings
+Date: Tue,  6 Aug 2024 13:22:17 -0700
+Message-ID: <20240806202218.9060-1-robdclark@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: timer: nxp,lpc3220-timer: Convert to
- dtschema
-Content-Language: en-US
-To: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240731074544.208411-1-animeshagarwal28@gmail.com>
-From: Vladimir Zapolskiy <vz@mleia.com>
-In-Reply-To: <20240731074544.208411-1-animeshagarwal28@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
-X-CRM114-CacheID: sfid-20240806_201353_874826_6BDB1142 
-X-CRM114-Status: GOOD (  18.26  )
+Content-Transfer-Encoding: 8bit
 
-On 7/31/24 10:45, Animesh Agarwal wrote:
-> Convert the NXP LPC3220 timer bindings to yaml format.
-> Add missing resets property as it is already being used in dts.
-> 
-> Cc: Daniel Baluta <daniel.baluta@nxp.com>
-> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
-> ---
->   .../bindings/timer/nxp,lpc3220-timer.txt      | 26 ---------
->   .../bindings/timer/nxp,lpc3220-timer.yaml     | 55 +++++++++++++++++++
->   2 files changed, 55 insertions(+), 26 deletions(-)
->   delete mode 100644 Documentation/devicetree/bindings/timer/nxp,lpc3220-timer.txt
->   create mode 100644 Documentation/devicetree/bindings/timer/nxp,lpc3220-timer.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/timer/nxp,lpc3220-timer.txt b/Documentation/devicetree/bindings/timer/nxp,lpc3220-timer.txt
-> deleted file mode 100644
-> index 51b05a0e70d1..000000000000
-> --- a/Documentation/devicetree/bindings/timer/nxp,lpc3220-timer.txt
-> +++ /dev/null
-> @@ -1,26 +0,0 @@
-> -* NXP LPC3220 timer
-> -
-> -The NXP LPC3220 timer is used on a wide range of NXP SoCs. This
-> -includes LPC32xx, LPC178x, LPC18xx and LPC43xx parts.
-> -
-> -Required properties:
-> -- compatible:
-> -	Should be "nxp,lpc3220-timer".
-> -- reg:
-> -	Address and length of the register set.
-> -- interrupts:
-> -	Reference to the timer interrupt
-> -- clocks:
-> -	Should contain a reference to timer clock.
-> -- clock-names:
-> -	Should contain "timerclk".
-> -
-> -Example:
-> -
-> -timer1: timer@40085000 {
-> -	compatible = "nxp,lpc3220-timer";
-> -	reg = <0x40085000 0x1000>;
-> -	interrupts = <13>;
-> -	clocks = <&ccu1 CLK_CPU_TIMER1>;
-> -	clock-names = "timerclk";
-> -};
-> diff --git a/Documentation/devicetree/bindings/timer/nxp,lpc3220-timer.yaml b/Documentation/devicetree/bindings/timer/nxp,lpc3220-timer.yaml
-> new file mode 100644
-> index 000000000000..3ae2eb0625da
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/timer/nxp,lpc3220-timer.yaml
-> @@ -0,0 +1,55 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/timer/nxp,lpc3220-timer.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP LPC3220 timer
-> +
-> +maintainers:
-> +  - Animesh Agarwal <animeshagarwal28@gmail.com>
-> +
-> +description: |
-> +  The NXP LPC3220 timer is used on a wide range of NXP SoCs. This includes
-> +  LPC32xx, LPC178x, LPC18xx and LPC43xx parts.
-> +
-> +properties:
-> +  compatible:
-> +    const: nxp,lpc3220-timer
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: timerclk
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
+From: Rob Clark <robdclark@chromium.org>
 
-Since there is always just a single supply clock, there is no need to
-specify "clock-names" as a required one, please change it.
+Use the correct panel compatible, and wire up enable-gpio.  It is wired
+up in the same way as the x1e80100-crd.
 
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/lpc32xx-clock.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    timer@4004c000 {
-> +        compatible = "nxp,lpc3220-timer";
-> +        reg = <0x4004c000 0x1000>;
-> +        interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
-> +        clocks = <&clk LPC32XX_CLK_TIMER1>;
-> +        clock-names = "timerclk";
-> +    };
+Signed-off-by: Rob Clark <robdclark@chromium.org>
+Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+---
+Corresponding schema update is in drm-misc-fixes
 
-I would appreciate, if you can use scripts/get_maintainer.pl in future.
+[1/2] dt-bindings: display: panel: samsung,atna45dc02: Document ATNA45DC02
+      commit: 1c4a057d01f4432704c4dc8842b6e888a91d95df
 
---
-Best wishes,
-Vladimir
+ .../dts/qcom/x1e80100-lenovo-yoga-slim7x.dts    | 17 +++++++++++++++--
+ 1 file changed, 15 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+index 70977e9fa266..3c13331a9ef4 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+@@ -190,7 +190,6 @@ vreg_edp_3p3: regulator-edp-3p3 {
+ 		pinctrl-0 = <&edp_reg_en>;
+ 		pinctrl-names = "default";
+ 
+-		regulator-always-on;
+ 		regulator-boot-on;
+ 	};
+ 
+@@ -592,9 +591,13 @@ &mdss_dp3 {
+ 
+ 	aux-bus {
+ 		panel {
+-			compatible = "edp-panel";
++			compatible = "samsung,atna45dc02", "samsung,atna33xc20";
++			enable-gpios = <&pmc8380_3_gpios 4 GPIO_ACTIVE_HIGH>;
+ 			power-supply = <&vreg_edp_3p3>;
+ 
++			pinctrl-0 = <&edp_bl_en>;
++			pinctrl-names = "default";
++
+ 			port {
+ 				edp_panel_in: endpoint {
+ 					remote-endpoint = <&mdss_dp3_out>;
+@@ -669,6 +672,16 @@ &pcie6a_phy {
+ 	status = "okay";
+ };
+ 
++&pmc8380_3_gpios {
++	edp_bl_en: edp-bl-en-state {
++		pins = "gpio4";
++		function = "normal";
++		power-source = <0>;
++		input-disable;
++		output-enable;
++	};
++};
++
+ &qupv3_0 {
+ 	status = "okay";
+ };
+-- 
+2.45.2
+
 
