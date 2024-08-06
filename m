@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-91234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FC2494891A
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 07:57:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C74CE948928
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 08:08:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 81D341C22511
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 05:57:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 785EB28477B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 06:08:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28BA11BC9E3;
-	Tue,  6 Aug 2024 05:57:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 340C51BA87B;
+	Tue,  6 Aug 2024 06:08:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C4x0Z5Lz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g+juzmeJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F152915D1;
-	Tue,  6 Aug 2024 05:57:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 069EC2CA5;
+	Tue,  6 Aug 2024 06:08:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722923829; cv=none; b=lYddEf8hZZw4aP5UAPID0cEImr+6ICUlTgZSffc6aNOFzWiVop1QHsaNjbF/CxXH/gWu8umVxZ8Y5DeBlaoPG5XL00DFrP6V6xX9DQXZmiY3G+XSpFPOxSG3JyrQxy7RsbWUTGzUnxNkH86O9kb5g8YWDmApnHFbIdXcjYQHDJM=
+	t=1722924482; cv=none; b=TiWdn1diXdqYPs047GYlq93uaEzpdGtRO2MS4w1Cc/g9BBFX5fLN1GO0X+lQcTlflQIuGNY5JcoT9cHu28YjoO/mNL8YCJuuPMaWREDDrWO1Y1yQ6wF7GMVJU8crNjvkk1jAgxFTDzG3Jqsz2l2yZQX1Waprs4aRWFVUx4I61IY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722923829; c=relaxed/simple;
-	bh=Ru8Shg8lIwniuY8wKameyr5sDLRzIhyoJA3vrjy1zMI=;
+	s=arc-20240116; t=1722924482; c=relaxed/simple;
+	bh=mOzIDSoAAsLO7/601rZAJE7xHRiAlyD9Idw61008c7M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iJ6qW8W4dE9aPjk0555fq1/qR/X82elpPwJW4R2qL2ukMj0De90gbTJAQr01+OJI17OukjVa/LbXXuEw7ERKIrnQbNFGJ0rHTWhPlWfRcIbvU3rA2OEZgyuwF3+OpDlyFmf2w5tPtbvhIcsbDdn+WhERWWQPZ2kInCctOvB52+Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C4x0Z5Lz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08D72C4AF09;
-	Tue,  6 Aug 2024 05:57:04 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=B7U2FfR7qSgNuedRbVbNFd4gZceKaqaXPZzyGnytsK5wRw0W7vfyQDSaD3Yy/ximfFUxAOh1qsnPHZl283UfQWguOjgU7YC8ikuJqQaVaTmpE+LY0SqqvT2gQFE+XQYzNz4vpOl7EXw/9s6col7oP/p09p5FkmPWMIIkRq/seHk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g+juzmeJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D860CC32786;
+	Tue,  6 Aug 2024 06:07:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722923828;
-	bh=Ru8Shg8lIwniuY8wKameyr5sDLRzIhyoJA3vrjy1zMI=;
+	s=k20201202; t=1722924481;
+	bh=mOzIDSoAAsLO7/601rZAJE7xHRiAlyD9Idw61008c7M=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=C4x0Z5LzJzhvZwqgXBB4OZ0POwM8SDhV2CjWAXR3Y+vWMBbD93Auz9suPAdtoFHns
-	 bSctw36U+bOeD8QqTk2VCXG0+rJXusyyyGf9yleosVMcQYbheYI0Z3uzMs4XNgYpi4
-	 fUWvFflqrWul0s+sX0md0x2gHeKcXsWHAr+aSsHUUmwMW+bRRaGyURKDRaCtS5ad/S
-	 4V5k9m3xuIPEGTGd2SoFM4NRLgtUDvlfDyKy9tiPJFts10xdA9uPNEsGTa6LcaM2Sb
-	 oE5CSaQ1HCy82zVRRT28ycCI9ufZ+nk4aOVf/nGo9XoI6GtLvSIuCqd8BEB0aLTUA0
-	 USqcuhmFWAetg==
-Message-ID: <77e65be3-a4d3-4b6a-991f-10dfb2db5f95@kernel.org>
-Date: Tue, 6 Aug 2024 07:57:02 +0200
+	b=g+juzmeJ9lg65+ANKEEXUjJbUV/oK732V/qeGdzMKYAezNTxiskPZyZz+HFnsG1kv
+	 +wU9Y6RFZBOgFIzNGENsbIGFNBUcYNYEqNBseV0/HQfzdGmUXTzZiuPmtagAw1Rd4j
+	 ad7F0Et4q+/YNsjoi3BBhXUmsQa1iCSXKBaDXQioAtKYSJ7FEs1cd7UiTI8X566++l
+	 YE2CSna6TV1jLUrDI5hG4qn//SYN6jRSfh01mi8lMnwprNQNAZe1TmU7WTw/Pzp0CV
+	 ehU4l8ugbLx4+/3iNrA5Gze+PvfquDEFy6xe6YtudHhs4a0UO/pv6G46iuS2nJ7XH/
+	 w2IUf6aPhO2cg==
+Message-ID: <c51fb027-f8bd-4b10-b9c0-dbbe8e8cf4c1@kernel.org>
+Date: Tue, 6 Aug 2024 08:07:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] dt-bindings: soc: fsl: add missed compatible string
- fsl,ls*-isc
-To: Frank Li <Frank.Li@nxp.com>,
- Christophe Leroy <christophe.leroy@csgroup.eu>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- "open list:FREESCALE SOC DRIVERS" <linuxppc-dev@lists.ozlabs.org>,
- "moderated list:FREESCALE SOC DRIVERS"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Cc: imx@lists.linux.dev
-References: <20240802171102.2812687-1-Frank.Li@nxp.com>
+Subject: Re: [PATCH 1/2] dt-bindings: interrupt-controller:
+ aspeed,ast2400-vic: Convert to DT schema
+To: Andrew Jeffery <andrew@codeconstruct.com.au>,
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org
+References: <20240802-dt-warnings-irq-aspeed-dt-schema-v1-0-8cd4266d2094@codeconstruct.com.au>
+ <20240802-dt-warnings-irq-aspeed-dt-schema-v1-1-8cd4266d2094@codeconstruct.com.au>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,18 +105,86 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240802171102.2812687-1-Frank.Li@nxp.com>
+In-Reply-To: <20240802-dt-warnings-irq-aspeed-dt-schema-v1-1-8cd4266d2094@codeconstruct.com.au>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 02/08/2024 19:11, Frank Li wrote:
-> Add compatible string, fsl,ls1088a-isc, fsl,ls2080a-isc, fsl,lx2160a-isc.
-
-git grep on fsl,lx2046a-isc gives me 0.
-
-> Fix the below warning:
-> arch/arm64/boot/dts/freescale/fsl-ls2080a-qds.dtb: /soc/syscon@1f70000: failed to match any schema with compatible: ['fsl,ls2080a-isc', 'syscon']
+On 02/08/2024 07:36, Andrew Jeffery wrote:
+> Squash warnings such as:
 > 
+>     arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-galaxy100.dtb: /ahb/interrupt-controller@1e6c0080: failed to match any schema with compatible: ['aspeed,ast2400-vic']
+> 
+> The YAML DT schema defines an optional property, valid-sources, which
+> was not previously described in the prose binding. It is added to
+> document existing practice in the Aspeed devicetrees. Unfortunately
+> the property seems to predate the requirement that vendor-specific
+> properties be prefixed.
+> 
+> Signed-off-by: Andrew Jeffery <andrew@codeconstruct.com.au>
+
+
+> +
+> +description:
+> +  The AST2400 and AST2500 SoC families include a legacy register layout before
+> +  a redesigned layout, but the bindings do not prescribe the use of one or the
+> +  other.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - aspeed,ast2400-vic
+> +      - aspeed,ast2500-vic
+> +
+> +  interrupt-controller: true
+> +
+> +  "#interrupt-cells":
+> +    const: 1
+> +    description:
+> +      Specifies the number of cells needed to encode an interrupt source. It
+> +      must be 1 as the VIC has no configuration options for interrupt sources.
+> +      The single cell defines the interrupt number.
+> +
+> +  valid-sources:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description:
+> +      One cell, bitmap of support sources for the implementation.
+
+maxItems: 2
+What does "one cell" mean? uint32? DTS has two items.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+
+Is this correct? DTS does not have parent interrupt controller for this
+device.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupt-controller
+> +  - "#interrupt-cells"
+> +
+> +allOf:
+> +  - $ref: /schemas/interrupt-controller.yaml
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    interrupt-controller@1e6c0080 {
+> +         compatible = "aspeed,ast2400-vic";
+> +         reg = <0x1e6c0080 0x80>;
+> +         interrupt-controller;
+> +         #interrupt-cells = <1>;
+
+Make the example complete - add valid-sources interupts.
+
+
 
 Best regards,
 Krzysztof
