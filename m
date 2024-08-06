@@ -1,157 +1,180 @@
-Return-Path: <devicetree+bounces-91424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D382949465
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 17:22:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6049949472
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 17:24:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D80E01F259F4
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 15:22:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 231C41F21B2B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 15:24:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAA33182B4;
-	Tue,  6 Aug 2024 15:22:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B173117BD9;
+	Tue,  6 Aug 2024 15:24:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="QT6omPpk"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PgWJN4FZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender3-op-o17.zoho.com (sender3-op-o17.zoho.com [136.143.184.17])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCF9F18D63A;
-	Tue,  6 Aug 2024 15:22:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.184.17
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722957765; cv=pass; b=MfZff/RbFiPF56b+wMk3HpNlcH/k97/TamwW5bUSxL30m6a4Jy12MNv7n+cNAjsFg5tpBo6cNfCKepK3Ei8m3GvTgz8VnZQgclG6uQu4oxmhO6xVEG2i53dcjGbIzyKJlb7Q9JJvNlSCf0SsGgcJc/iQD4WZrPSU+N5n8KrS7j4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722957765; c=relaxed/simple;
-	bh=wn4DQPBiboqzNAW3MD+ufw1E2ANmJQ637kK8TsQ+G4s=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tNYiOWhNxwWhXh7L6lvtCovWC6JpqYeHtraAzdP6tUOzkSGSCJIgdI/yR8bIqmY2+kXsRzi3PzjAIgseV+uPczbmVtyJeI70ry4M0LIWT3xtRitzinHgvPWRWVkgJp0CRAXp8RJIhVKpqbspIxR3+5UXJbI4YAbFZoGQGt4uz14=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=QT6omPpk; arc=pass smtp.client-ip=136.143.184.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-Delivered-To: kernel@collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1722957739; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=X528A3SDqlxQS6uBuvYp/fY/an5pNhTKOg6VxX8/lV238DXnO7fkA2JqZDYq/Uw0UzFBzRNEcnt7VwJDRwZzQ9VGY34iuHdSPecS3hCDqXEOwXJtOYzv3hT3ci598zg7TNoh8Lj0M7vUB5ImS7xgqEtf6yLSXGvCJ+v35ZIWY9E=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1722957739; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=4E7YYytNxcERJA+P5c4RQhUBo3UBV2EKfxk7gX+2rTM=; 
-	b=TKo9JKPjy6afGWCkdn8B7MKOGG4ytVCihNakvPPNXhc3m4mt4gpY2HbqlrH1RsRGTUfcqxpDPDaRiaI84prLM3GoatssHJatedODQXHBfs9dm9fGbQL+s32OvQ1kp5nsRW5wqMKBoPu8yAUl3XOGhJZWaO8OUlBdOo8BLVZkijE=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
-	dmarc=pass header.from=<detlev.casanova@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1722957739;
-	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=4E7YYytNxcERJA+P5c4RQhUBo3UBV2EKfxk7gX+2rTM=;
-	b=QT6omPpk0QHjjuJfgBNeP66BFRUwXPimJeRjTSygjmdjXWvwmN0wUJrfWdFdAoKn
-	nzXgIyfDanTB9wv84E2jic3W9dgaLFmwBr5mIO4cfYpYC3tbhB3fECOEYeH/3wO8dJg
-	NpNPaiHc85uYtSu9Zeo7kkV4217sSzbwpkQ3/qb8=
-Received: by mx.zohomail.com with SMTPS id 1722957736998397.9644636527041;
-	Tue, 6 Aug 2024 08:22:16 -0700 (PDT)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, Philipp Zabel <p.zabel@pengutronix.de>,
- Elaine Zhang <zhangqing@rock-chips.com>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, kernel@collabora.com,
- Sugar Zhang <sugar.zhang@rock-chips.com>
-Subject: Re: [PATCH v2 2/3] clk: rockchip: Add dt-binding header for rk3576
-Date: Tue, 06 Aug 2024 11:23:28 -0400
-Message-ID: <2949191.e9J7NaK4W3@trenzalore>
-In-Reply-To: <1600ee06-ac19-436f-8229-1bb44b29c683@kernel.org>
-References:
- <20240802214053.433493-1-detlev.casanova@collabora.com>
- <20240802214053.433493-3-detlev.casanova@collabora.com>
- <1600ee06-ac19-436f-8229-1bb44b29c683@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A52D029422;
+	Tue,  6 Aug 2024 15:24:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722957878; cv=none; b=sfjtUWUt+/rFQ8EU1fCvAu4s40URQgGybd3PiFyX80jRQ2VqxijQ4XVMWCTjddhK82ri3RhtNewxLTjfFIiEgDFbSvxcKF9k3haHKM6H2hVU/leGuqeaItRs2omUhgqlXdGz9rKIqCe3m/2goyvZCbf7vcTvNQrrhQwhrUT+fgw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722957878; c=relaxed/simple;
+	bh=cHoGW2bSRG+At92kJxjnX7sq3vyRzPsHjO31vLo1vkI=;
+	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=b7rEHbxd3rfhahvqkevjyyYBIlS3tz2kyBZ42qXPMV10/hkJPQfdtS7A6LQ0WFMWvZpjs0BPSMy7wDFtvn7Wdzs5C5EqlUYDN4i7fCs3jUtajP2Y2FUDn+LWr+3EmzfBBJu365WDVX7yKW0u8ceTQFexDFsvFaLb3UYs66LdENo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PgWJN4FZ; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1722957877; x=1754493877;
+  h=from:date:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=cHoGW2bSRG+At92kJxjnX7sq3vyRzPsHjO31vLo1vkI=;
+  b=PgWJN4FZxqZdrZFZPGD8MxklIDW3Kv6cLCXDyQwP7B98u4nb7lu18Ps+
+   bjm/GB89SpxkKBBoDh3P5jbXtNenWk7xVxLJJgJ/X9hIH7gOo4mdO9nc1
+   XjncLp8WVcTnPdRH9SReJLjnXUVgXkmoByzmQcgTAfAd7fMu+Y5RHOg/w
+   ZBQRYhgUrnQxcNanaX7UIHmKkLvQmC9r1KhYcoDWrhcCnFKgESndPtNnz
+   LOdhNF1+qzunl/kWHGUVBqnQKWH3qQUOyNxuwXkUUyoxzyQ3BotPLdWay
+   kJjDxIOzxQmfm0EZA/HH/LmMVmUP6LYd30AMUc656EiVGdCIQKI6+1GAT
+   Q==;
+X-CSE-ConnectionGUID: oLGx2vbwQhWtk6mMboxKXQ==
+X-CSE-MsgGUID: WBXMfaSgT1mGWyIXS2ECmQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="23897074"
+X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; 
+   d="scan'208";a="23897074"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Aug 2024 08:24:36 -0700
+X-CSE-ConnectionGUID: oP9xTk7ZTrW4WS64qv3ivQ==
+X-CSE-MsgGUID: JCS2pyk0T5OFgqyooeC4Mw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; 
+   d="scan'208";a="61177807"
+Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost) ([10.245.244.72])
+  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Aug 2024 08:24:29 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Tue, 6 Aug 2024 18:24:26 +0300 (EEST)
+To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+    =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>, 
+    Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+    Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+    Conor Dooley <conor+dt@kernel.org>, 
+    Konrad Dybcio <konrad.dybcio@linaro.org>, 
+    cros-qcom-dts-watchers@chromium.org, Bartosz Golaszewski <brgl@bgdev.pl>, 
+    Jingoo Han <jingoohan1@gmail.com>, 
+    Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+    andersson@kernel.org, quic_vbadigan@quicinc.com, 
+    linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
+    devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, 
+    Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH v2 0/8] PCI: Enable Power and configure the QPS615 PCIe
+ switch
+In-Reply-To: <20240803-qps615-v2-0-9560b7c71369@quicinc.com>
+Message-ID: <f2cbdd06-0318-4be1-e8dc-b91ce103b34c@linux.intel.com>
+References: <20240803-qps615-v2-0-9560b7c71369@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=US-ASCII
 
-On Sunday, 4 August 2024 05:53:57 EDT Krzysztof Kozlowski wrote:
-> On 02/08/2024 23:35, Detlev Casanova wrote:
-> > From: Elaine Zhang <zhangqing@rock-chips.com>
-> > 
-> > Add the dt-bindings header for the rk3576, that gets shared between
-> > the clock controller and the clock references in the dts.
-> > 
-> > Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> > Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
-> > [rebased, separate clocks and resets]
-> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+On Sat, 3 Aug 2024, Krishna chaitanya chundru wrote:
+
+> QPS615 is the PCIe switch which has one upstream and three downstream
+> ports. One of the downstream ports is used as endpoint device of Ethernet
+> MAC. Other two downstream ports are supposed to connect to external
+> device. One Host can connect to QPS615 by upstream port.
 > 
-> Please use subject prefixes matching the subsystem. You can get them for
-> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-> your patch is touching. For bindings, the preferred subjects are
-> explained here:
-> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patche
-> s.html#i-for-patch-submitters
-> > ---
-> > 
-> >  .../dt-bindings/clock/rockchip,rk3576-cru.h   | 589 ++++++++++++++++++
-> >  .../dt-bindings/reset/rockchip,rk3576-cru.h   | 484 ++++++++++++++
-> >  2 files changed, 1073 insertions(+)
-> >  create mode 100644 include/dt-bindings/clock/rockchip,rk3576-cru.h
-> >  create mode 100644 include/dt-bindings/reset/rockchip,rk3576-cru.h
+> QPS615 switch power is controlled by the GPIO's. After powering on
+> the switch will immediately participate in the link training. if the
+> host is also ready by that time PCIe link will established. 
 > 
-> These are bindings. Must be squashed with previous patch.
-
-Ok, so you'd rather have a commit for reset definitions (dt-bindings: reset: 
-Add rk3576 reset definitions) and another one for clock definitions + 
-Documentation (dt-bindings: clock: Add rk3576 clock definitions and 
-documentation) ?
-
-> > diff --git a/include/dt-bindings/clock/rockchip,rk3576-cru.h
-> > b/include/dt-bindings/clock/rockchip,rk3576-cru.h new file mode 100644
-> > index 0000000000000..14b54543d1a11
-> > --- /dev/null
-> > +++ b/include/dt-bindings/clock/rockchip,rk3576-cru.h
-> > @@ -0,0 +1,589 @@
-> > +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> The QPS615 needs to configured certain parameters like de-emphasis,
+> disable unused port etc before link is established.
 > 
-> Weird license. Why not using recommended one?
+> The device tree properties are parsed per node under pci-pci bridge in the
+> devicetree. Each node has unique bdf value in the reg property, driver
+> uses this bdf to differentiate ports, as there are certain i2c writes to
+> select particulat port.
+>  
+> As the controller starts link training before the probe of pwrctl driver,
+> the PCIe link may come up before configuring the switch itself.
+> To avoid this introduce two functions in pci_ops to start_link() &
+> stop_link() which will disable the link training if the PCIe link is
+> not up yet.
 
-Oh right, I suppose "GPL-2.0 OR MIT" is better ? At least that is what I see 
-for rk3588. include/dt-bindings/clock/rockchip,rv1126-cru.h uses "GPL-2.0+ OR 
-MIT" though.
+???
 
-> > +/*
-> > + * Copyright (c) 2023 Rockchip Electronics Co. Ltd.
-> > + * Author: Elaine Zhang <zhangqing@rock-chips.com>
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_CLK_ROCKCHIP_RK3576_H
-> > +#define _DT_BINDINGS_CLK_ROCKCHIP_RK3576_H
-> > +
-> > +/* cru-clocks indices */
-> > +
-> > +/* cru plls */
-> > +#define PLL_BPLL			1
-> > +#define PLL_LPLL			3
-> > +#define PLL_VPLL			4
-> > +#define PLL_AUPLL			5
-> > +#define PLL_CPLL			6
-> > +#define PLL_GPLL			7
-> > +#define PLL_PPLL			9
+This paragraph contradicts with itself. First it says link training starts 
+and the link may come up, and then it says opposite, that is, disable the 
+link training if the link is not up yet. So which way it is?
+
+If link can come up, why do you need to disable link training at all? 
+Cannot you just trigger another link training after the configuration has 
+been done so the new configuration is captured? If not, why?
+
+-- 
+ i.
+
+> Now PCI pwrctl device is the child of the pci-pcie bridge, if we want
+> to enable the suspend resume for pwrctl device there may be issues
+> since pci bridge will try to access some registers in the config which
+> may cause timeouts or Un clocked access as the power can be removed in
+> the suspend of pwrctl driver.
 > 
-> Nope, indices start from 1 and are incremented continuously.
-
-Why start at 1 ? RK3588 starts at 0 for clocks and resets
-
-Regards,
-Detlev.
-
-
+> To solve this make PCIe controller as parent to the pci pwr ctrl driver
+> and create devlink between host bridge and pci pwrctl driver so that
+> pci pwrctl driver will go suspend only after all the PCIe devices went
+> to suspend.
+> 
+> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> ---
+> Changes in V1:
+> - Fix the code as per the comments given.
+> - Removed D3cold D0 sequence in suspend resume for now as it needs
+>   seperate discussion.
+> - change to dt approach for configuring the switch instead of request_firmware() approach
+> - Link to v1: https://lore.kernel.org/linux-pci/20240626-qps615-v1-4-2ade7bd91e02@quicinc.com/T/
+> ---
+> 
+> ---
+> Krishna chaitanya chundru (8):
+>       dt-bindings: PCI: Add binding for qps615
+>       dt-bindings: trivial-devices: Add qcom,qps615
+>       arm64: dts: qcom: qcs6490-rb3gen2: Add node for qps615
+>       PCI: Change the parent to correctly represent pcie hierarchy
+>       PCI: Add new start_link() & stop_link function ops
+>       PCI: dwc: Add support for new pci function op
+>       PCI: qcom: Add support for host_stop_link() & host_start_link()
+>       PCI: pwrctl: Add power control driver for qps615
+> 
+>  .../devicetree/bindings/pci/qcom,qps615.yaml       | 191 ++++++
+>  .../devicetree/bindings/trivial-devices.yaml       |   2 +
+>  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts       | 121 ++++
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi               |   2 +-
+>  drivers/pci/bus.c                                  |   3 +-
+>  drivers/pci/controller/dwc/pcie-designware-host.c  |  18 +
+>  drivers/pci/controller/dwc/pcie-designware.h       |  16 +
+>  drivers/pci/controller/dwc/pcie-qcom.c             |  39 ++
+>  drivers/pci/pwrctl/Kconfig                         |   7 +
+>  drivers/pci/pwrctl/Makefile                        |   1 +
+>  drivers/pci/pwrctl/core.c                          |   9 +-
+>  drivers/pci/pwrctl/pci-pwrctl-qps615.c             | 638 +++++++++++++++++++++
+>  include/linux/pci.h                                |   2 +
+>  13 files changed, 1046 insertions(+), 3 deletions(-)
+> ---
+> base-commit: 1722389b0d863056d78287a120a1d6cadb8d4f7b
+> change-id: 20240727-qps615-e2894a38d36f
+> 
+> Best regards,
+> 
 
