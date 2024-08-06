@@ -1,169 +1,205 @@
-Return-Path: <devicetree+bounces-91495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9DB89498AF
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 21:56:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C88ED9498BB
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 22:01:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 631811F22DE6
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 19:56:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8442B284731
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 20:01:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E8B613A3F0;
-	Tue,  6 Aug 2024 19:56:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F6FC74402;
+	Tue,  6 Aug 2024 20:01:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LzyNQVb9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YirUaony"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C419D155351;
-	Tue,  6 Aug 2024 19:56:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B10338DD8;
+	Tue,  6 Aug 2024 20:01:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722974175; cv=none; b=nb7S5xKGAzhpeiB41Tl4PYbkraPH9oYd5AiI56BqwGPGtt2+2R12fD8p9EOD3j21Lysnm0NMy1DLNqihZQLEVCrZHjUOhVkEmfmA0UhH9gJdTIY9F4etC9MJV+YDw2tDe6dV6BAc4KJLoFXSqpfXsSwc8OqxSGagfyoRqjsN7Gk=
+	t=1722974462; cv=none; b=uiawXHNKnnhZT7wnYgkpmKN2BXI7fMxxgXSM89ScUMlW3Hzy6Oa7FZTOfrvCAsDKV4tUK2Q0PBYTvdHkLNlQMIhMayM7eRwcenNEEts8nhogVE2nF36dt9S7MW+BleNbehbZrY7TapZWojy62nm1nE9KMhau7Fn3N3++EzCksJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722974175; c=relaxed/simple;
-	bh=1cb0R2KeOB4slldNjw57NpRZHh2ObyAzyGPArx+3mS8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N2rjpOUHvb4P6ljl43KJ1qXLojmq9HvNgEfJrUCm4HPPGJeo3U+pqGgTTeKGKFBcZk5gTFjVUyZwA4imqINb7zwEm/zOh29VNBZlNWJW0VGQpf2H8AmhrDKXvFNnI9B7c1xELVKKMTEcLGCaXKU3llTs/l27R5zCVFPIzqpuSrI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LzyNQVb9; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-52efd8807aaso1637000e87.3;
-        Tue, 06 Aug 2024 12:56:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722974172; x=1723578972; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=0lyz4ipeJgMy3VfY+GLdQlwpvsGVHWth9zowEA3zHrk=;
-        b=LzyNQVb9uToraRTK0d35HpGaj+8u51xGiMT5DBQ6UA6cS1VzDZAU8K4/cCrk3LAJO6
-         2skWxzfvYZw3Dtqod9aqgoWlfH1qhvGBpSUztMSaLdtEdHMN77qOfNhHxFJ2qKxIS7WT
-         cayHGiUtGQM56tkwgsqsfiD8l0h/9FKzc2awmXZgOesdwUH9yYSmyM5Snx5NzQ1aqcQ2
-         Cgxu3Zvjsz/Bv17e/cXpNqmRQVMla/NnJAgTkamrsP7M5ltDRxgdOTePdJhJTocI1tuq
-         E4ZiNhMjYLg9ujWxnSA3c3WZviTGWa2O7qtxfdcnpunQSJrNdGZs3Ga8F2sHvMgj5V4Y
-         vqhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722974172; x=1723578972;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0lyz4ipeJgMy3VfY+GLdQlwpvsGVHWth9zowEA3zHrk=;
-        b=LPOni5+TreB4lTMk1YIualezaWZcldxnuk5vP+h26S7LuYB4Fy7P7nhP8g1P+gvDun
-         L7If1CiKgiV6l9R1Sy9Ehh1yF5Yt/vuBwhE442OMEg02GwffMFqlJbXv8OiXGOXp9kT0
-         VQKAoCS/yxydenYeGA0pvuHA3zpdbt22RMWATqqOTtfN1hPOE0Le4boAyZd08szVeAZ0
-         4R0BkG8CnB9sEDckYU12cSTXLDpnJsAK/Lit7QTvnxf9QBwtifVvfeRZ6xaSqsrlh+dq
-         CROWoyVDERQuOGrSmU9gGz4vRLQ7A3bCHtmkD+Wr2tkeyCWcmKeWebi2O2dk+66ACPR/
-         qCtQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXPGiitVs7i/Hj4orWNNkGwVOxtdrgYHsyso8Chi7IfYBKJIDRBiPWJ5GeqOvBdkeY2Tw6PFzQLubN1oubrKYzk6nrDYyQWjzT3Hu4ghDIUNzGc+X3rVepERQ2k5CkRebdjeDvJ9QOyj1jSWhrtXx6I6gyx4wvoAPFEYGtJ9m0UuNvIt1s=
-X-Gm-Message-State: AOJu0YyojqPDblVz4HrNVkUy0s4XzV5vZzml8X7/lwx/BmAQWbE+X9Ec
-	BzvOXkC1nFWUUyR+4yRoNP25pO+QP6VK/qpGEPUvsahh3cJLQoIdoWIIKxa6
-X-Google-Smtp-Source: AGHT+IFDhVY770CCDtO0PGQv9l9zjATLUFHFY4HFugzwfVUkuc8BWi2VxQ7ANxWoMU6NZBltp5gq7w==
-X-Received: by 2002:a05:6512:234c:b0:52f:c24b:1767 with SMTP id 2adb3069b0e04-530bb391c54mr11399878e87.19.1722974171469;
-        Tue, 06 Aug 2024 12:56:11 -0700 (PDT)
-Received: from mobilestation ([178.176.56.174])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-530bba1102bsm1584039e87.97.2024.08.06.12.56.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Aug 2024 12:56:11 -0700 (PDT)
-Date: Tue, 6 Aug 2024 22:56:08 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc: Paul Burton <paulburton@kernel.org>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-mips@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 5/6] dt-bindings: mips: Document mti,mips-cm
-Message-ID: <hupbp2e5phpfvlnbqwbqxhssidyda5p247map437h4mcnbeynw@akf2fuq3jpy3>
-References: <20240612-cm_probe-v2-0-a5b55440563c@flygoat.com>
- <20240612-cm_probe-v2-5-a5b55440563c@flygoat.com>
+	s=arc-20240116; t=1722974462; c=relaxed/simple;
+	bh=t/hN2y1XYKOsn2IY/TkVfglq3EKviiTjFSjUkFXXSXA=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=d7w3gccldK/LY/prCr/NSh+uBPkkgw7Ete5TXNDBFeTjn9s3DENRI9WCrl5XhfKs97jFekX0HTbOgB7XYV+EPvt3U/U8AA1c641V8ht/1SiOZaNrhspFqx5apK3kFENdn+L37xwOQJFpxIr+804GUWp31ORKULtZ5itsZwElaCY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YirUaony; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54973C4AF0C;
+	Tue,  6 Aug 2024 20:01:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1722974461;
+	bh=t/hN2y1XYKOsn2IY/TkVfglq3EKviiTjFSjUkFXXSXA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=YirUaonym+NqN0rn16gxCaQZnUdURBfBbcCtm04Th4BJn6KIoX/5HL8SMT0Ani+tV
+	 3Z9Z48AFin+sbKkc6+MdfBdBuWxqCGysVXgsHafFmqh9n1gi2iPEnyTbuT0gWPx5tK
+	 Dj0rjzr4MMd4FRrRU9ePNjJrRDRL/hmHk5VDzemdUNxHPzRcJ5iVoa2uHb8Lgkw1NF
+	 2rZlSRWiCHINPSFjKBxWVYYp5JOS7G1lpmrZ+gEh+RifTI/GzNEDCtc5wXeE59BpXC
+	 5J51YO0gLxSo0r5h/JXKyUmK2Rca8+IZNyfIoBXMrb8ID2Pg/UdEnkbJH3Kj/WS81k
+	 gEHnuoZcQSURA==
+Date: Tue, 6 Aug 2024 15:00:59 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Amit Machhiwal <amachhiw@linux.ibm.com>, Rob Herring <robh@kernel.org>
+Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+	kvm-ppc@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+	Lizhi Hou <lizhi.hou@amd.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Vaibhav Jain <vaibhav@linux.ibm.com>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Vaidyanathan Srinivasan <svaidy@linux.ibm.com>,
+	Kowshik Jois B S <kowsjois@linux.ibm.com>,
+	Lukas Wunner <lukas@wunner.de>, kernel-team@lists.ubuntu.com,
+	Stefan Bader <stefan.bader@canonical.com>
+Subject: Re: [PATCH v3] PCI: Fix crash during pci_dev hot-unplug on pseries
+ KVM guest
+Message-ID: <20240806200059.GA74866@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240612-cm_probe-v2-5-a5b55440563c@flygoat.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240802183327.1309020-1-amachhiw@linux.ibm.com>
 
-On Wed, Jun 12, 2024 at 11:08:57AM +0100, Jiaxun Yang wrote:
-> Add devicetree binding documentation for MIPS Coherence Manager.
+On Sat, Aug 03, 2024 at 12:03:25AM +0530, Amit Machhiwal wrote:
+> With CONFIG_PCI_DYNAMIC_OF_NODES [1], a hot-plug and hot-unplug sequence
+> of a PCI device attached to a PCI-bridge causes following kernel Oops on
+> a pseries KVM guest:
+
+What is unique about pseries here?  There's nothing specific to
+pseries in the patch, so I would expect this to be a generic problem
+on any arch.
+
+>  RTAS: event: 2, Type: Hotplug Event (229), Severity: 1
+>  Kernel attempted to read user page (10ec00000048) - exploit attempt? (uid: 0)
+>  BUG: Unable to handle kernel data access on read at 0x10ec00000048
+
+Weird address.  I would expect NULL or something.  Where did this
+non-NULL pointer come from?
+
+>  Faulting instruction address: 0xc0000000012d8728
+>  Oops: Kernel access of bad area, sig: 11 [#1]
+>  LE PAGE_SIZE=64K MMU=Radix SMP NR_CPUS=2048 NUMA pSeries
+> <snip>
+>  NIP [c0000000012d8728] __of_changeset_entry_invert+0x10/0x1ac
+>  LR [c0000000012da7f0] __of_changeset_revert_entries+0x98/0x180
+>  Call Trace:
+>  [c00000000bcc3970] [c0000000012daa60] of_changeset_revert+0x58/0xd8
+>  [c00000000bcc39c0] [c000000000d0ed78] of_pci_remove_node+0x74/0xb0
+>  [c00000000bcc39f0] [c000000000cdcfe0] pci_stop_bus_device+0xf4/0x138
+>  [c00000000bcc3a30] [c000000000cdd140] pci_stop_and_remove_bus_device_locked+0x34/0x64
+>  [c00000000bcc3a60] [c000000000cf3780] remove_store+0xf0/0x108
+>  [c00000000bcc3ab0] [c000000000e89e04] dev_attr_store+0x34/0x78
+>  [c00000000bcc3ad0] [c0000000007f8dd4] sysfs_kf_write+0x70/0xa4
+>  [c00000000bcc3af0] [c0000000007f7248] kernfs_fop_write_iter+0x1d0/0x2e0
+>  [c00000000bcc3b40] [c0000000006c9b08] vfs_write+0x27c/0x558
+>  [c00000000bcc3bf0] [c0000000006ca168] ksys_write+0x90/0x170
+>  [c00000000bcc3c40] [c000000000033248] system_call_exception+0xf8/0x290
+>  [c00000000bcc3e50] [c00000000000d05c] system_call_vectored_common+0x15c/0x2ec
+> <snip>
 > 
-> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+> A git bisect pointed this regression to be introduced via [1] that added
+> a mechanism to create device tree nodes for parent PCI bridges when a
+> PCI device is hot-plugged.
+> 
+> The Oops is caused when `pci_stop_dev()` tries to remove a non-existing
+> device-tree node associated with the pci_dev that was earlier
+> hot-plugged and was attached under a pci-bridge. The PCI dev header
+> `dev->hdr_type` being 0, results a conditional check done with
+> `pci_is_bridge()` into false. Consequently, a call to
+> `of_pci_make_dev_node()` to create a device node is never made. When at
+> a later point in time, in the device node removal path, a memcpy is
+> attempted in `__of_changeset_entry_invert()`; since the device node was
+> never created, results in an Oops due to kernel read access to a bad
+> address.
+
+I'm sure this description is 100% correct, but it's at such a low
+level that it doesn't really help understand the underlying design
+problem.
+
+Will need an ack from Rob.
+
+> To fix this issue, the patch introduces a new flag OF_CREATE_WITH_CSET
+> to keep track of device nodes created via `of_pci_make_dev_node()` and
+> later attempt to destroy only such device nodes which have this flag
+> set.
+> 
+> [1] commit 407d1a51921e ("PCI: Create device tree node for bridge")
+> 
+> Fixes: 407d1a51921e ("PCI: Create device tree node for bridge")
+> Reported-by: Kowshik Jois B S <kowsjois@linux.ibm.com>
+> Signed-off-by: Lizhi Hou <lizhi.hou@amd.com>
+> Signed-off-by: Amit Machhiwal <amachhiw@linux.ibm.com>
 > ---
-> v2:
->  - Better wording for register desc
->  - cm -> coherency-manager
->  - schema matches compatible
-> ---
->  .../devicetree/bindings/mips/mti,mips-cm.yaml      | 38 ++++++++++++++++++++++
->  1 file changed, 38 insertions(+)
+> Changes since v2:
+>     * Drop v2 changes and introduce a different approach from Lizhi discussed
+>       over the v2 of this patch
+>     * V2: https://lore.kernel.org/all/20240715080726.2496198-1-amachhiw@linux.ibm.com/
+> Changes since v1:
+>     * Included Lizhi's suggested changes on V1
+>     * Fixed below two warnings from Lizhi's changes and rearranged the cleanup
+>       part a bit in `of_pci_make_dev_node`
+> 	drivers/pci/of.c:611:6: warning: no previous prototype for ‘of_pci_free_node’ [-Wmissing-prototypes]
+> 	  611 | void of_pci_free_node(struct device_node *np)
+> 	      |      ^~~~~~~~~~~~~~~~               
+> 	drivers/pci/of.c: In function ‘of_pci_make_dev_node’:
+> 	drivers/pci/of.c:696:1: warning: label ‘out_destroy_cset’ defined but not used [-Wunused-label]
+> 	  696 | out_destroy_cset:       
+> 	      | ^~~~~~~~~~~~~~~~  
+>     * V1: https://lore.kernel.org/all/20240703141634.2974589-1-amachhiw@linux.ibm.com/
 > 
-> diff --git a/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml b/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
-> new file mode 100644
-> index 000000000000..9f500804737d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
-> @@ -0,0 +1,38 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mips/mti,mips-cm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MIPS Coherence Manager
-> +
-> +description: |
-> +  Defines a location of the MIPS Coherence Manager registers.
-> +
-> +maintainers:
-> +  - Jiaxun Yang <jiaxun.yang@flygoat.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: mti,mips-cm
-> +
-
-> +  reg:
-> +    description:
-> +      Base address and size of an unoccupied region in system's MMIO address
-> +      space, which will be used to map the MIPS CM global control registers
-> +      block. It is conventionally decided by the system integrator.
-> +    maxItems: 1
-
-Could you please extend the reg array to containing two values: gcr and
-l2sync? The later is the L2-cache-only sync region which can be
-customized by the CM means.
-
-It's better to define the reg-names property too, so the node would
-look like this:
-
-        cm2: cm2@1fbf8000 {
-                compatible = "mti,mips-cm";
-                reg = <0 0x1fbf8000 0 0x8000>,
-                      <0 0x1fbf0000 0 0x1000>;
-                reg-names = "gcr", "l2sync";
-        };
-
--Serge(y)
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    coherency-manager@1fbf8000 {
-> +      compatible = "mti,mips-cm";
-> +      reg = <0x1bde8000 0x8000>;
-> +    };
-> +...
+>  drivers/pci/of.c   | 3 ++-
+>  include/linux/of.h | 1 +
+>  2 files changed, 3 insertions(+), 1 deletion(-)
 > 
-> -- 
-> 2.43.0
-> 
+> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+> index dacea3fc5128..bc455370143e 100644
+> --- a/drivers/pci/of.c
+> +++ b/drivers/pci/of.c
+> @@ -653,7 +653,7 @@ void of_pci_remove_node(struct pci_dev *pdev)
+>  	struct device_node *np;
+>  
+>  	np = pci_device_to_OF_node(pdev);
+> -	if (!np || !of_node_check_flag(np, OF_DYNAMIC))
+> +	if (!np || !of_node_check_flag(np, OF_CREATE_WITH_CSET))
+>  		return;
+>  	pdev->dev.of_node = NULL;
+
+of_pci_remove_node() goes on to call of_changeset_revert() and
+of_changeset_destroy().  of_pci_remove_node() has nothing PCI-specific
+in it.
+
+There are a few other callers of of_changeset_destroy(), but they
+don't look anything like of_pci_remove_node().  Seems like there
+should be some similarity across the callers, so it makes me a little
+nervous that there isn't.
+
+> @@ -712,6 +712,7 @@ void of_pci_make_dev_node(struct pci_dev *pdev)
+>  	if (ret)
+>  		goto out_free_node;
+>  
+> +	of_node_set_flag(np, OF_CREATE_WITH_CSET);
+>  	np->data = cset;
+>  	pdev->dev.of_node = np;
+>  	kfree(name);
+> diff --git a/include/linux/of.h b/include/linux/of.h
+> index 85b60ac9eec5..5faa5a1198c6 100644
+> --- a/include/linux/of.h
+> +++ b/include/linux/of.h
+> @@ -153,6 +153,7 @@ extern struct device_node *of_stdout;
+>  #define OF_POPULATED_BUS	4 /* platform bus created for children */
+>  #define OF_OVERLAY		5 /* allocated for an overlay */
+>  #define OF_OVERLAY_FREE_CSET	6 /* in overlay cset being freed */
+> +#define OF_CREATE_WITH_CSET	7 /* Created by of_changeset_create_node */
+
+Follow existing capitalization style.
 
