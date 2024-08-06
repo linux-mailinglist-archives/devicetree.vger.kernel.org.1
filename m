@@ -1,170 +1,121 @@
-Return-Path: <devicetree+bounces-91277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91257-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1AAB948BFF
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 11:15:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 050D0948AE1
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 10:07:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 366411F2247F
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 09:15:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B3016283844
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 08:07:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BC9A1BC9E8;
-	Tue,  6 Aug 2024 09:15:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E310B1BA895;
+	Tue,  6 Aug 2024 08:07:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="csuHE/b3"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=angelogioacchino.delregno@collabora.com header.b="krVhWrDw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m127175.xmail.ntesmail.com (mail-m127175.xmail.ntesmail.com [115.236.127.175])
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 129D91607BD;
-	Tue,  6 Aug 2024 09:15:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.236.127.175
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722935710; cv=none; b=l7bR6tE8c2jKN2uLlLaDfl+MDeN/b5JXtvsSvBi4NaL7h4Sz7N6hI06LJkfla5xFyxUeR9Nh8imXrjGT3C812SJl7qB3gb9ifR+McCZRJzSREUaxlntWXJHhNX+ES3cG6BbZAAFrxAIiWC78u5lgcke1MgLQwzNYGA2mCpZXpJU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722935710; c=relaxed/simple;
-	bh=U7CC4FRHymHCqssl1IA3pMgvF9xhzgHxO7SntYYtcGg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=D73yVWTfBSPYeW8AyeFeB0Jt7kiq6Ges2k39KGL359w2Brf05pufUUfa5wG5t6NCCbcqFRnhzSxzwqb61tO8l/LH+ui5N/ASR7mt8ZCPTCj9cnMSfExezx4csIvbgdXpeJYOv4oC6LKMXn8WRfurpzHjIdHcZNHeYkWeCzKP7+o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=csuHE/b3; arc=none smtp.client-ip=115.236.127.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-DKIM-Signature: a=rsa-sha256;
-	b=csuHE/b3StOi/ls1Sa2rMC6zBwf9yGJ+8oh4hx9GLHyKONb3p2jIQUQxXCkoEahXQ4LTycMkNtMhShTAZv3tpI8V8HcncE+roBDGSeMdtytyAdOHvdIbZ9uCUimKgvsiQJzGBYgK+QTBIEaneXVJlG1MQRyUZQSclixSHdTeTss=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=LMVMwH7LofqOvPfrqlYHp9W5j7CWVyj4pSOchCn8W2E=;
-	h=date:mime-version:subject:message-id:from;
-Received: from localhost.localdomain (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTPA id 48F154604F8;
-	Tue,  6 Aug 2024 15:20:19 +0800 (CST)
-From: Shawn Lin <shawn.lin@rock-chips.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	"Martin K . Petersen" <martin.petersen@oracle.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Avri Altman <avri.altman@wdc.com>,
-	Bart Van Assche <bvanassche@acm.org>,
-	YiFeng Zhao <zyf@rock-chips.com>,
-	Liang Chen <cl@rock-chips.com>,
-	linux-scsi@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Shawn Lin <shawn.lin@rock-chips.com>
-Subject: [PATCH v1 2/3] dt-bindings: ufs: Document Rockchip UFS host controller
-Date: Tue,  6 Aug 2024 15:19:59 +0800
-Message-Id: <1722928800-137042-3-git-send-email-shawn.lin@rock-chips.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1722928800-137042-1-git-send-email-shawn.lin@rock-chips.com>
-References: <1722928800-137042-1-git-send-email-shawn.lin@rock-chips.com>
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGUlNGVZLSUwdHRhDSB0eGkNWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
-	NVSktLVUpCS0tZBg++
-X-HM-Tid: 0a91268f6eaa03aekunm48f154604f8
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6N0k6Fyo4ODI*ExI4Cj8OSk0I
-	HTwwCShVSlVKTElJQklDQ0lLTkJPVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
-	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQU9JSE03Bg++
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3379A166F31;
+	Tue,  6 Aug 2024 08:07:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.14
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722931652; cv=pass; b=jIuaE7X/b1Eqb7eStkKkzyeGJTFQMNXzRRAZNoXwNPmpquTQdjjDUL2d0xDbVEpi6nSpJSH7/4fbc4EogPHPDRz5W4/YP1IxOfu/jROoQxg/jU7tkept4vFyTpEUwlosFUC+TTLQL3HBgxZO6dVX9AUUmrAZ9vsQzZktBsfPovU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722931652; c=relaxed/simple;
+	bh=sD9WEcsktwMCuhPTt/ntjvfTBsetdosDEqnhtFOTIfE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PS7r++AsK1dxOBEb2yCaQ13SgG4mJzV6+/UF0q+9/wjqVYdJulwMiILWPIFkkgfNVoWEQzf5xPqfGNzHMGFobq0TUu8+ud6gCqpvQLB77vJLjqFEphA0yEx11LtVMPO8jRcAaYRHN3mUo/EKstZL6nCqxhn5jpqJ6s0epkmA0y0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=angelogioacchino.delregno@collabora.com header.b=krVhWrDw; arc=pass smtp.client-ip=136.143.188.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1722931640; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=FBX9vhR+G7lHl4FudhYRBRVNw8pYIGZEC0olIX9FOaF3Me/MzJsBduEcGktCSNnioXZJM1HqrjFucWego2skit1v+tvnBhqRrSzzeskg4u9fOTkgS5X15hTM4KtYb1n6b5/ZrQdMFLt0bnUMuABQfTG0lIdThV8OkzfJIpv7sY4=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1722931640; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=IrE670yx+9odykcx3pr94NIhef7s04HUgnr8F28Op48=; 
+	b=EeP6szSJ4JNjbCW/4ES3dU6Us7gdD7U3UJDf+Pn2ifHP1Fd1/RaBUfVYH9B/s6UEKYfE7hgVbPE46Qwjwy+NubdMZ52zvWwcBjNmncxEMaGb1FbF1aF/xCiBRxeg65j3Fz3r3+iFbleyL9p4Hh5NPhR68/5+KFeZUyCakRwfOl8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=angelogioacchino.delregno@collabora.com;
+	dmarc=pass header.from=<angelogioacchino.delregno@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1722931640;
+	s=zohomail; d=collabora.com;
+	i=angelogioacchino.delregno@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=IrE670yx+9odykcx3pr94NIhef7s04HUgnr8F28Op48=;
+	b=krVhWrDwSdW8K00uqR4WQD8aZN6kPLEVS9s7/MWpwjcN7YCE+OMkxuisnz9RhBA3
+	kq1yDFpfnnFSy1sED6o1+YqZH0dZ/tO5KY3wRRwHJfDM0l5HpHXkYD0Iatajp6fX6/S
+	PyHa7MqXzRnhZceEyo85UcWU4yqr7a65SvQwXGyI=
+Received: by mx.zohomail.com with SMTPS id 1722931637559700.0955006196194;
+	Tue, 6 Aug 2024 01:07:17 -0700 (PDT)
+Message-ID: <b887b799-cd9c-441d-8b1f-cda24ad131de@collabora.com>
+Date: Tue, 6 Aug 2024 10:07:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/2] Add kukui-jacuzzi-cerise and kukui-jacuzzi-stern
+ DT and dt-binding
+To: Hsin-Te Yuan <yuanhsinte@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Sean Wang <sean.wang@mediatek.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20240731-jacuzzi_dt-v3-0-1c4314e8962f@chromium.org>
+ <172243932855.488108.1466847928167694223.b4-ty@collabora.com>
+ <CAHc4DNLwUAzrE-1-7oH2DHR6fvz4x9ZVaKbjUo6rOy3-kjUadQ@mail.gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <CAHc4DNLwUAzrE-1-7oH2DHR6fvz4x9ZVaKbjUo6rOy3-kjUadQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 
-Document Rockchip UFS host controller for RK3576 SoC.
+Il 06/08/24 07:05, Hsin-Te Yuan ha scritto:
+> On Wed, Jul 31, 2024 at 11:22 PM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
+>>
+>> On Wed, 31 Jul 2024 10:47:24 +0000, Hsin-Te Yuan wrote:
+>>> Cerise is known as ASUS Chromebook CZ1.
+>>> Stern is known as ASUS Chromebook Flip CZ1.
+>>>
+>>> They are almost identical. The only difference is that Cerise is a
+>>> clamshell device without touchscreen and Stern is a convertible device.
+>>>
+>>>
+>>> [...]
+>>
+>> Applied to v6.11-next/dts64, thanks!
+>>
+>> [1/2] arm64: dts: mt8183: Add kukui-jacuzzi-cerise series boards
+>>        commit: 4ba6d1539fdd709ea8e8478c37b014e663cd6894
+>> [2/2] dt-bindings: arm64: mediatek: Add kukui-jacuzzi-cerise board
+>>        commit: ac90896833b52ff58c81727f57ed3cf9ffb9db86
+>>
+>> Cheers,
+>> Angelo
+>>
+>>
+> I'm sorry that I just found out these two devices will not be
+> launched. I sincerely apologize for any inconvenience this may cause
+> and for taking up your valuable time. I kindly request that you
+> consider dropping this patch series.
+> 
+> Sincerely,
+> Hsin-Te
 
-Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
----
+It's okay, the commits weren't deep in the MediaTek trees, so I was able
+to drop them in a jiffy.
 
- .../devicetree/bindings/ufs/rockchip,ufs.yaml      | 78 ++++++++++++++++++++++
- 1 file changed, 78 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/ufs/rockchip,ufs.yaml
-
-diff --git a/Documentation/devicetree/bindings/ufs/rockchip,ufs.yaml b/Documentation/devicetree/bindings/ufs/rockchip,ufs.yaml
-new file mode 100644
-index 0000000..e2e492c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/ufs/rockchip,ufs.yaml
-@@ -0,0 +1,78 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/ufs/rockchip,ufs.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Rockchip UFS Host Controller
-+
-+maintainers:
-+  - Shawn Lin <shawn.lin@rock-chips.com>
-+
-+allOf:
-+  - $ref: ufs-common.yaml
-+
-+properties:
-+  compatible:
-+    const: rockchip,rk3576-ufs
-+
-+  reg:
-+    maxItems: 5
-+
-+  reg-names:
-+    items:
-+     - const: hci
-+     - const: mphy
-+     - const: hci_grf
-+     - const: mphy_grf
-+     - const: hci_apb
-+
-+  clocks:
-+    maxItems: 4
-+
-+  clock-names:
-+    items:
-+      - const: core
-+      - const: pclk
-+      - const: pclk_mphy
-+      - const: ref_out
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 4
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - power-domains
-+  - resets
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/rockchip,rk3576-cru.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/power/rk3576-power.h>
-+
-+    ufs: ufs@2a2d0000 {
-+            compatible = "rockchip,rk3576-ufs";
-+            reg = <0x0 0x2a2d0000 0 0x10000>,
-+	          <0x0 0x2b040000 0 0x10000>,
-+		  <0x0 0x2601f000 0 0x1000>,
-+		  <0x0 0x2603c000 0 0x1000>,
-+		  <0x0 0x2a2e0000 0 0x10000>;
-+            reg-names = "hci", "mphy", "hci_grf", "mphy_grf", "hci_apb";
-+            clocks = <&cru ACLK_UFS_SYS>, <&cru PCLK_USB_ROOT>, <&cru PCLK_MPHY>,
-+                     <&cru CLK_REF_UFS_CLKOUT>;
-+            clock-names = "core", "pclk", "pclk_mphy", "ref_out";
-+            interrupts = <GIC_SPI 361 IRQ_TYPE_LEVEL_HIGH>;
-+            power-domains = <&power RK3576_PD_USB>;
-+            resets = <&cru SRST_A_UFS_BIU>, <&cru SRST_A_UFS_SYS>, <&cru SRST_A_UFS>,
-+	             <&cru SRST_P_UFS_GRF>;
-+            reset-names = "biu", "sys", "ufs", "grf";
-+    };
--- 
-2.7.4
+Thank you!
+Angelo
 
 
