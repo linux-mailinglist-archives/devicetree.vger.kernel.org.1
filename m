@@ -1,180 +1,107 @@
-Return-Path: <devicetree+bounces-91425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6049949472
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 17:24:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78CBF9494CF
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 17:49:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 231C41F21B2B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 15:24:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A93441C22E8E
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 15:49:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B173117BD9;
-	Tue,  6 Aug 2024 15:24:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F489374D1;
+	Tue,  6 Aug 2024 15:48:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PgWJN4FZ"
+	dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b="pDRPXg4E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A52D029422;
-	Tue,  6 Aug 2024 15:24:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+Received: from m16.mail.126.com (m16.mail.126.com [220.197.31.9])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25A0A21105;
+	Tue,  6 Aug 2024 15:48:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722957878; cv=none; b=sfjtUWUt+/rFQ8EU1fCvAu4s40URQgGybd3PiFyX80jRQ2VqxijQ4XVMWCTjddhK82ri3RhtNewxLTjfFIiEgDFbSvxcKF9k3haHKM6H2hVU/leGuqeaItRs2omUhgqlXdGz9rKIqCe3m/2goyvZCbf7vcTvNQrrhQwhrUT+fgw=
+	t=1722959328; cv=none; b=WAZ1wKsX1XsSgMX6BVbSrAWkLtMSXvzBnJSHusDejxPxN73yTRlhdL/YuysPgjBSQP1nDodi6RvGNdn4hxQ7vwHR+1TckvWK5Y22+rUvQD77oYa8hWA75ZQEN0ouPWuo31WzDVpiBk8NTEh0dZ1NUDWL7vxrKekQeuoFDbndbxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722957878; c=relaxed/simple;
-	bh=cHoGW2bSRG+At92kJxjnX7sq3vyRzPsHjO31vLo1vkI=;
-	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=b7rEHbxd3rfhahvqkevjyyYBIlS3tz2kyBZ42qXPMV10/hkJPQfdtS7A6LQ0WFMWvZpjs0BPSMy7wDFtvn7Wdzs5C5EqlUYDN4i7fCs3jUtajP2Y2FUDn+LWr+3EmzfBBJu365WDVX7yKW0u8ceTQFexDFsvFaLb3UYs66LdENo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PgWJN4FZ; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1722957877; x=1754493877;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=cHoGW2bSRG+At92kJxjnX7sq3vyRzPsHjO31vLo1vkI=;
-  b=PgWJN4FZxqZdrZFZPGD8MxklIDW3Kv6cLCXDyQwP7B98u4nb7lu18Ps+
-   bjm/GB89SpxkKBBoDh3P5jbXtNenWk7xVxLJJgJ/X9hIH7gOo4mdO9nc1
-   XjncLp8WVcTnPdRH9SReJLjnXUVgXkmoByzmQcgTAfAd7fMu+Y5RHOg/w
-   ZBQRYhgUrnQxcNanaX7UIHmKkLvQmC9r1KhYcoDWrhcCnFKgESndPtNnz
-   LOdhNF1+qzunl/kWHGUVBqnQKWH3qQUOyNxuwXkUUyoxzyQ3BotPLdWay
-   kJjDxIOzxQmfm0EZA/HH/LmMVmUP6LYd30AMUc656EiVGdCIQKI6+1GAT
-   Q==;
-X-CSE-ConnectionGUID: oLGx2vbwQhWtk6mMboxKXQ==
-X-CSE-MsgGUID: WBXMfaSgT1mGWyIXS2ECmQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="23897074"
-X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; 
-   d="scan'208";a="23897074"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Aug 2024 08:24:36 -0700
-X-CSE-ConnectionGUID: oP9xTk7ZTrW4WS64qv3ivQ==
-X-CSE-MsgGUID: JCS2pyk0T5OFgqyooeC4Mw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; 
-   d="scan'208";a="61177807"
-Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost) ([10.245.244.72])
-  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Aug 2024 08:24:29 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Tue, 6 Aug 2024 18:24:26 +0300 (EEST)
-To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-    =?ISO-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>, 
-    Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-    Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-    Conor Dooley <conor+dt@kernel.org>, 
-    Konrad Dybcio <konrad.dybcio@linaro.org>, 
-    cros-qcom-dts-watchers@chromium.org, Bartosz Golaszewski <brgl@bgdev.pl>, 
-    Jingoo Han <jingoohan1@gmail.com>, 
-    Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-    andersson@kernel.org, quic_vbadigan@quicinc.com, 
-    linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
-    devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, 
-    Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v2 0/8] PCI: Enable Power and configure the QPS615 PCIe
- switch
-In-Reply-To: <20240803-qps615-v2-0-9560b7c71369@quicinc.com>
-Message-ID: <f2cbdd06-0318-4be1-e8dc-b91ce103b34c@linux.intel.com>
-References: <20240803-qps615-v2-0-9560b7c71369@quicinc.com>
+	s=arc-20240116; t=1722959328; c=relaxed/simple;
+	bh=LQSlOEeRpia51mks7wM1PoSQ6VCjEvqr9gvKV9MUKe8=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=IMakHukoWKglIR4UwzivUR7zinGxFqZmXk/c51EQbibrDP7ogpNNapOt14wrOAkD/lvuQIuUq1zPpEK6Zjur3uYTZI77e9oP2u/p/Oq6H0zR7Dlki+AdaxVbbgWWnzLdY6r4DxVgB9YNYLjdvOReviW6pmuJokSruds/CEgeBWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com; spf=pass smtp.mailfrom=126.com; dkim=pass (1024-bit key) header.d=126.com header.i=@126.com header.b=pDRPXg4E; arc=none smtp.client-ip=220.197.31.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=126.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=126.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
+	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=s1a9a
+	AuiBzsbZG/XjQxHazfEVtr8j/hhLtoCBAGHVDE=; b=pDRPXg4ELyr3Ry7kw1TKV
+	Efy4a04hXu0vhtpVWhYJ7uD3dQiJHUftRiA1z//pM4x+Idx0zSNPjxWDNsDFBOgn
+	KA+qgTrpIeWewl+pIS7359obkLurVMeELAY46Fe2l52KKpAS73uCyxi6fJVcWtnU
+	RDkYFrawynUoPAncxZuDB4=
+Received: from nilq-virtual-machine.. (unknown [60.27.227.124])
+	by gzsmtp2 (Coremail) with SMTP id pikvCgD3n07HQbJmk6QOAA--.4296S2;
+	Tue, 06 Aug 2024 23:31:21 +0800 (CST)
+From: niliqiang <ni_liqiang@126.com>
+To: jean-philippe@linaro.org
+Cc: Jonathan.Cameron@huawei.com,
+	baolu.lu@linux.intel.com,
+	devicetree@vger.kernel.org,
+	eric.auger@redhat.com,
+	guohanjun@huawei.com,
+	iommu@lists.linux-foundation.org,
+	jacob.jun.pan@linux.intel.com,
+	joro@8bytes.org,
+	kevin.tian@intel.com,
+	lenb@kernel.org,
+	linux-accelerators@lists.ozlabs.org,
+	linux-acpi@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	lorenzo.pieralisi@arm.com,
+	rjw@rjwysocki.net,
+	robh+dt@kernel.org,
+	robin.murphy@arm.com,
+	shameerali.kolothum.thodi@huawei.com,
+	sudeep.holla@arm.com,
+	vivek.gautam@arm.com,
+	wangzhou1@hisilicon.com,
+	will@kernel.org,
+	zhangfei.gao@linaro.org,
+	zhukeqian1@huawei.com,
+	ni.liqiang@zte.com.cn,
+	li.zhichao@zte.com.cn,
+	jin.qi@zte.com.cn
+Subject: Re: [PATCH v14 07/10] iommu/arm-smmu-v3: Maintain a SID->device structure
+Date: Tue,  6 Aug 2024 23:31:19 +0800
+Message-Id: <20240806153119.8089-1-ni_liqiang@126.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20210401154718.307519-8-jean-philippe@linaro.org>
+References: <20210401154718.307519-8-jean-philippe@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:pikvCgD3n07HQbJmk6QOAA--.4296S2
+X-Coremail-Antispam: 1Uf129KBjvdXoW7Xr13KryUZF15Kw4rZr4xWFg_yoW3Cwc_KF
+	yDZrn7Jw4SyF48XanxKanruwsxKF40g34kX345XrWS93W7JFs8GrykGr9aqrZ7WrZrCwnI
+	yrn3ta9xWr1agjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU14xRPUUUUU==
+X-CM-SenderInfo: xqlbzxxtld0wa6rslhhfrp/1tbirwoz5WVLbKD00wAAs2
 
-On Sat, 3 Aug 2024, Krishna chaitanya chundru wrote:
+> It is expected that a single SMMU instance is highly likely to have more 
+> than one device behind it, and therefore more than one StreamID to keep 
+> track of.
 
-> QPS615 is the PCIe switch which has one upstream and three downstream
-> ports. One of the downstream ports is used as endpoint device of Ethernet
-> MAC. Other two downstream ports are supposed to connect to external
-> device. One Host can connect to QPS615 by upstream port.
-> 
-> QPS615 switch power is controlled by the GPIO's. After powering on
-> the switch will immediately participate in the link training. if the
-> host is also ready by that time PCIe link will established. 
-> 
-> The QPS615 needs to configured certain parameters like de-emphasis,
-> disable unused port etc before link is established.
-> 
-> The device tree properties are parsed per node under pci-pci bridge in the
-> devicetree. Each node has unique bdf value in the reg property, driver
-> uses this bdf to differentiate ports, as there are certain i2c writes to
-> select particulat port.
->  
-> As the controller starts link training before the probe of pwrctl driver,
-> the PCIe link may come up before configuring the switch itself.
-> To avoid this introduce two functions in pci_ops to start_link() &
-> stop_link() which will disable the link training if the PCIe link is
-> not up yet.
+Thanks for your explanation. I now understand the role of the `mutex_lock` statement.
+However, I have a new question that I hope you can help me with: I noticed that the
+function `arm_smmu_insert_master`, which includes the `mutex_lock` statement, was
+introduced in Linux version 5.13. For kernel code before version 5.13, how do we
+ensure that there's no resource contention when multiple devices are loaded
+behind a single SMMU instance?
 
-???
+Currently, we're indeed encountering resource contention issues when loading
+multiple device drivers on the 5.10 kernel. Do you have any suggestions on
+how to resolve this issue?
 
-This paragraph contradicts with itself. First it says link training starts 
-and the link may come up, and then it says opposite, that is, disable the 
-link training if the link is not up yet. So which way it is?
+Thanks.
 
-If link can come up, why do you need to disable link training at all? 
-Cannot you just trigger another link training after the configuration has 
-been done so the new configuration is captured? If not, why?
-
--- 
- i.
-
-> Now PCI pwrctl device is the child of the pci-pcie bridge, if we want
-> to enable the suspend resume for pwrctl device there may be issues
-> since pci bridge will try to access some registers in the config which
-> may cause timeouts or Un clocked access as the power can be removed in
-> the suspend of pwrctl driver.
-> 
-> To solve this make PCIe controller as parent to the pci pwr ctrl driver
-> and create devlink between host bridge and pci pwrctl driver so that
-> pci pwrctl driver will go suspend only after all the PCIe devices went
-> to suspend.
-> 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> ---
-> Changes in V1:
-> - Fix the code as per the comments given.
-> - Removed D3cold D0 sequence in suspend resume for now as it needs
->   seperate discussion.
-> - change to dt approach for configuring the switch instead of request_firmware() approach
-> - Link to v1: https://lore.kernel.org/linux-pci/20240626-qps615-v1-4-2ade7bd91e02@quicinc.com/T/
-> ---
-> 
-> ---
-> Krishna chaitanya chundru (8):
->       dt-bindings: PCI: Add binding for qps615
->       dt-bindings: trivial-devices: Add qcom,qps615
->       arm64: dts: qcom: qcs6490-rb3gen2: Add node for qps615
->       PCI: Change the parent to correctly represent pcie hierarchy
->       PCI: Add new start_link() & stop_link function ops
->       PCI: dwc: Add support for new pci function op
->       PCI: qcom: Add support for host_stop_link() & host_start_link()
->       PCI: pwrctl: Add power control driver for qps615
-> 
->  .../devicetree/bindings/pci/qcom,qps615.yaml       | 191 ++++++
->  .../devicetree/bindings/trivial-devices.yaml       |   2 +
->  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts       | 121 ++++
->  arch/arm64/boot/dts/qcom/sc7280.dtsi               |   2 +-
->  drivers/pci/bus.c                                  |   3 +-
->  drivers/pci/controller/dwc/pcie-designware-host.c  |  18 +
->  drivers/pci/controller/dwc/pcie-designware.h       |  16 +
->  drivers/pci/controller/dwc/pcie-qcom.c             |  39 ++
->  drivers/pci/pwrctl/Kconfig                         |   7 +
->  drivers/pci/pwrctl/Makefile                        |   1 +
->  drivers/pci/pwrctl/core.c                          |   9 +-
->  drivers/pci/pwrctl/pci-pwrctl-qps615.c             | 638 +++++++++++++++++++++
->  include/linux/pci.h                                |   2 +
->  13 files changed, 1046 insertions(+), 3 deletions(-)
-> ---
-> base-commit: 1722389b0d863056d78287a120a1d6cadb8d4f7b
-> change-id: 20240727-qps615-e2894a38d36f
-> 
-> Best regards,
-> 
 
