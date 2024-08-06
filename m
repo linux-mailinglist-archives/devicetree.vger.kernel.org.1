@@ -1,397 +1,140 @@
-Return-Path: <devicetree+bounces-91501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36E3C949943
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 22:38:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47716949965
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 22:45:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E184F286F56
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 20:38:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9F6E1F250FD
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 20:45:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5570F14F9D7;
-	Tue,  6 Aug 2024 20:37:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E920B156993;
+	Tue,  6 Aug 2024 20:45:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=timsurber.de header.i=@timsurber.de header.b="2HJfUe7O"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fNmonm7D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEBB013A26F;
-	Tue,  6 Aug 2024 20:37:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2295447F6B;
+	Tue,  6 Aug 2024 20:45:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722976679; cv=none; b=AVmh0zkoKfgvaKBiKlo+Ws1sdapeHDmXMe8IxLkgMb0GUpkNKjIZC5XLhifO0fcMJZwwI0MgKvfGfDM1PJb5ed67EsVdUNxdL8sUf6AQeS5hgRXc00lhPxThJmQSudaFpwWeulLK8KI0ewY0aigSCQVx14n+zQbIKV896wZewa0=
+	t=1722977113; cv=none; b=muAMfp4Hpher3W29JyJavwn/Ef0demCKgYZc1cUe3BxtlAUaihLW6xDc1E8G9q5B0JRTWHZzXK7+dQ+km8SXhcvA40KWZxnMsBaDnofA8pEhtvOvPVdU9iQJV2AKF4ykM4D2ext2v39ESPn245Zv7w0BVq6UnWB6+uTjCAPdiKk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722976679; c=relaxed/simple;
-	bh=vsFEpYHY2XViD4aWqCJKAAM4n0Tzbt/Aq9LLW81Zums=;
+	s=arc-20240116; t=1722977113; c=relaxed/simple;
+	bh=KIuqqmJpBYBODsWb+cOMINZVAttBqf/tOMB2ESlS/cg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gKWr+f/wIyh9IBksjMjzA3r//FPgzDxS3mk5pMX4u5JCgBu4Uf5KWBJbyn7ughfkw0mzxuNdn7S6Rswhse4C2k/5+sH65R/m5RaJZk44ejASRtnGfqlBK5Vu/tOKAc79EmgtxelQXhz2whiVkctjrwJ8PzkCpwadVNUTPNE9vI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=timsurber.de; spf=pass smtp.mailfrom=timsurber.de; dkim=pass (2048-bit key) header.d=timsurber.de header.i=@timsurber.de header.b=2HJfUe7O; arc=none smtp.client-ip=80.241.56.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=timsurber.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timsurber.de
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4WdlVd0YSxz9sHh;
-	Tue,  6 Aug 2024 22:37:45 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=timsurber.de;
-	s=MBO0001; t=1722976665;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=QydbXfG0xSwudrqCsqyAXww88zo6VkjmpfrC5bazW1Q=;
-	b=2HJfUe7OiV3HGAaD6mIifHGfh2CPiQcj48qQkZwLeO5LBAxldm1aJDQwqCLKw/N1fjhHOl
-	7ikoJa2zlBugKt/f7dSooMlAqpeo1zxLiR5rURX9siLSzVMYp1Dq+QRGV5JV19z4uzxb66
-	ov76PrB6dZAX5E0tN3GHcG86BfT8q0YtRfd6K+6HL9vwzhX8hSCnrd1DbYl4Oanf9RFh1v
-	dm/wBJa7B3LocNGEsYsqxJW9vutJqL4NGCDHScpoLS93VpM4AsXpQWur3hwAaKYY63laCo
-	6tCe1ZjjCkVdho68h3BssYFfysWlKdrGut6tcKTac8DIMN90vBuJiGiolyrv4A==
-Message-ID: <06838f40-881c-4301-826b-e29a4277e663@timsurber.de>
-Date: Tue, 6 Aug 2024 22:37:39 +0200
+	 In-Reply-To:Content-Type; b=Or8h1/et6iMHxbhaW52bv2ageWHKpVUSpu88NSeWxUUU4tocNhMPPbkNc8DVIdw694St7nP2NRoLvGw5nObcO27FCY8gwVwJUsVYZ6h0fHJ+w1L/V1N3aUVSJQ45Gq+pXZH/1MKXsiWJFYInpO0mfUvIfWv2ooSY8zl0Sv3iYwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fNmonm7D; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-36ba3b06186so591658f8f.2;
+        Tue, 06 Aug 2024 13:45:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1722977110; x=1723581910; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dOg6CYStGsFYA3cE/78c/lPHwu3rcEs4hIt+mQogWrY=;
+        b=fNmonm7DFpvZTqN6chJOVCfxX3qFEJLnb4hM4pQIN89y09bEzn5QbNl0DgiE1vNR7g
+         UcDE2tTzcr02CKvcnPdjKUs7v6Y/QMCn/0ClmDmBZbNwk5Y5LMeKiQRFZW7hN+JUoAF9
+         IYPru+S/nzRf4C4sSJwDMlo70i95P86fbPxlkYIn6HQCPoWn+imu6gvNTJEhJWkvSLlK
+         syDEoWEunhCa+ez2y+twsbrlDVd+GMOEie8sdPy5Yq1nXukcROwoGMyroKPcME350tzS
+         yCLi9mf3q5IkKqqkJP+gdI/BwkCdqfdaegoD0vpEA/mEygm5I1alYhKSLfBA1SHXcSxX
+         m5GA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1722977110; x=1723581910;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dOg6CYStGsFYA3cE/78c/lPHwu3rcEs4hIt+mQogWrY=;
+        b=onEdx+UJFxgMfKwPllMhyE3/ci4EWPJ7KYkAV8HVXQuFg98O7AKQnO37h4E9M/XHuD
+         n9uB4F2BtZ3AFQ4TM+bKKQPSbotGfsymnTn3INTb5wamVc2/+i+MU4uGVxwsPXlqceph
+         V9gj68mRNmu3D0y8/o3pcohp9pEQVj+lujLnaXp8+0nuAU2i0Az3koDxTwvXeZASUJ7n
+         NSi8U36jjQVTPu8YCcFnMqbgTAxtnYbrbTR4oNypJkPb4HdW5I+dE+chz+YQZErOMdSu
+         wRBSZffxm/GYMwGc6Mv0X1lmt5/pxVu9aTfftTGTJa0RK8GHaat99fCtWObhFl2cYyxy
+         QqsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVrmj64p6STFQYb2Saqi/7aySe+Mstm3vfGPFJm5gNwYJl/nqtOO4qWPfuzTtjEdUkZx48bCnBqsbrnM2AELS54+rbC21nIn/VT5gwXD3fD7EbHfOtQdyAsvlBz0PgxD5s0Ool2mA==
+X-Gm-Message-State: AOJu0Yxn3ufyWCLO3/m5k/1MswyReE67HW8Aob5HWtj0tnnfsvOhgj7S
+	Z8dmKE0cC/NKmDikrcwcYXsNIzjWU4FHRCQ0jWfi2sS1SlV4bd9S
+X-Google-Smtp-Source: AGHT+IGZSd4SSanfsuHMDv/NQfTB4T/YAdjutfajpEpk6SceNnV3BqFIVTXztk1vx7VerGImtafjvA==
+X-Received: by 2002:adf:9794:0:b0:366:eb61:b47 with SMTP id ffacd0b85a97d-36bbc0c6b4bmr9775385f8f.8.1722977109710;
+        Tue, 06 Aug 2024 13:45:09 -0700 (PDT)
+Received: from ?IPV6:2a10:d582:37c5:0:24ff:23cd:356f:3efc? ([2a10:d582:37c5:0:24ff:23cd:356f:3efc])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36bbd26f8edsm13985739f8f.113.2024.08.06.13.45.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Aug 2024 13:45:09 -0700 (PDT)
+Message-ID: <23e8b9d9-d0e0-44df-b464-fc2d1f2d5507@gmail.com>
+Date: Tue, 6 Aug 2024 21:45:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v4 0/4] Add Synopsys DesignWare HDMI RX Controller
-To: Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Shreeya Patel <shreeya.patel@collabora.com>, heiko@sntech.de,
- mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
- p.zabel@pengutronix.de, jose.abreu@synopsys.com, nelson.costa@synopsys.com,
- shawn.wen@rock-chips.com, nicolas.dufresne@collabora.com,
- hverkuil@xs4all.nl, hverkuil-cisco@xs4all.nl
-Cc: kernel@collabora.com, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
-References: <20240719124032.26852-1-shreeya.patel@collabora.com>
- <6f5c4ebb-84ab-4b65-9817-ac5f6158911f@timsurber.de>
- <929d2f50-6b0e-4d1e-a6d3-482d615bd06a@collabora.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 2/2] iio: light: ROHM BH1745 colour sensor
+To: Matti Vaittinen <mazziesaccount@gmail.com>, jic23@kernel.org,
+ lars@metafoo.de, krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, Ivan Orlov <ivan.orlov0322@gmail.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>
+References: <20240718220208.331942-1-muditsharma.info@gmail.com>
+ <20240718220208.331942-2-muditsharma.info@gmail.com>
+ <5622f011-222a-459e-9086-138adf0796aa@gmail.com>
 Content-Language: en-US
-From: Tim Surber <me@timsurber.de>
-In-Reply-To: <929d2f50-6b0e-4d1e-a6d3-482d615bd06a@collabora.com>
+From: Mudit Sharma <muditsharma.info@gmail.com>
+In-Reply-To: <5622f011-222a-459e-9086-138adf0796aa@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 4WdlVd0YSxz9sHh
 
-Here are the results of some more debugging.
-I see that in the first example the pixel format is set to RGB888 and in 
-the second to NV12, I was not able to successfully change this on my 
-source, nevertheless the HDMI RX should work I think.
-
-###source set to 4k30fps####
----------------------------
-v4l2-ctl --verbose -d /dev/video1 
---set-fmt-video=width=3840,height=2160,pixelformat='NV12' 
---stream-mmap=4 --stream-skip=3 --stream-count=100 --stream-poll
----------------------------
-VIDIOC_QUERYCAP: ok
-VIDIOC_G_FMT: ok
-The pixelformat 'NV12' is invalid
-New timings found
-         VIDIOC_REQBUFS returned 0 (Success)
-         VIDIOC_CREATE_BUFS returned 0 (Success)
-         VIDIOC_QUERYBUF returned 0 (Success)
-         VIDIOC_QUERYBUF returned 0 (Success)
-         VIDIOC_QUERYBUF returned 0 (Success)
-         VIDIOC_QUERYBUF returned 0 (Success)
-         VIDIOC_G_FMT returned 0 (Success)
-         VIDIOC_QBUF returned 0 (Success)
-         VIDIOC_QBUF returned 0 (Success)
-         VIDIOC_QBUF returned 0 (Success)
-         VIDIOC_QBUF returned 0 (Success)
-         VIDIOC_STREAMON returned 0 (Success)
-cap dqbuf: 0 seq:      0 bytesused: 8294400 ts: 536.006261 field: Any 
-(ts-monotonic, ts-src-eof)
-cap dqbuf: 1 seq:      1 bytesused: 8294400 ts: 536.039574 delta: 33.313 
-ms field: Any (ts-monotonic, ts-src-eof)
-cap dqbuf: 2 seq:      2 bytesused: 8294400 ts: 536.072906 delta: 33.332 
-ms field: Any (ts-monotonic, ts-src-eof)
-cap dqbuf: 3 seq:      3 bytesused: 8294400 ts: 536.106239 delta: 33.333 
-ms field: Any (ts-monotonic, ts-src-eof)
-cap dqbuf: 0 seq:      4 bytesused: 8294400 ts: 536.139571 delta: 33.332 
-ms fps: 30.01 field: Any (ts-monotonic, ts-src-eof)
-cap dqbuf: 1 seq:      5 bytesused: 8294400 ts: 536.172903 delta: 33.332 
-ms fps: 30.00 field: Any (ts-monotonic, ts-src-eof)
-[...]
-
----------------------------
-dmesg
----------------------------
-[  529.266804] fdee0000.hdmi_receiver: hb
-[  530.280073] fdee0000.hdmi_receiver: hb
-[  531.293412] fdee0000.hdmi_receiver: hb
-[  532.306716] fdee0000.hdmi_receiver: hb
-[  533.319906] fdee0000.hdmi_receiver: hb
-[  534.333263] fdee0000.hdmi_receiver: hb
-[  535.346616] fdee0000.hdmi_receiver: hb
-[  535.739795] fdee0000.hdmi_receiver: C-Plane 0 size: 24883200, Total 
-imagesize: 24883200
-[  535.747733] fdee0000.hdmi_receiver: tx_5v_power_present: 1
-[  535.747750] fdee0000.hdmi_receiver: hdmirx_get_pix_fmt: pix_fmt: RGB888
-[  535.747760] fdee0000.hdmi_receiver: hdmirx_get_colordepth: 
-color_depth: 24, reg_val:4
-[  535.747780] fdee0000.hdmi_receiver: get timings from dma
-[  535.747787] fdee0000.hdmi_receiver: act:3840x2160, total:4400x2250, 
-fps:30, pixclk:297016000
-[  535.747799] fdee0000.hdmi_receiver: hfp:172, hs:92, hbp:296, vfp:8, 
-vs:10, vbp:72
-[  535.747809] fdee0000.hdmi_receiver: tmds_clk:297016000
-[  535.747816] fdee0000.hdmi_receiver: interlace:0, fmt:0, vic:127, 
-color:24, mode:hdmi
-[  535.747825] fdee0000.hdmi_receiver: deframer_st:0x11
-[  535.747833] fdee0000.hdmi_receiver: query_dv_timings: 3840x2160p30.00 
-(4400x2250)
-[  535.747854] fdee0000.hdmi_receiver: s_dv_timings: 3840x2160p30.00 
-(4400x2250)
-[  535.747875] fdee0000.hdmi_receiver: hdmirx_s_dv_timings: no change
-[  535.747924] fdee0000.hdmi_receiver: vid-cap-mplane: count 4, size 8294400
-[  535.752754] fdee0000.hdmi_receiver: C-Plane 0 size: 24883200, Total 
-imagesize: 24883200
-[  535.752884] fdee0000.hdmi_receiver: C-Plane 0 size: 24883200, Total 
-imagesize: 24883200
-[  535.752904] fdee0000.hdmi_receiver: hdmirx_start_streaming: 
-start_stream cur_buf y_addr:0xe0ea5000, uv_addr:0xe168e000
-[  535.752920] fdee0000.hdmi_receiver: hdmirx_start_streaming: enable dma
-[  535.780112] fdee0000.hdmi_receiver: dma_irq st1:0x100, st13:1085
-[  535.780128] fdee0000.hdmi_receiver: line_flag_int_handler: last have 
-no dma_idle_irq
-[  535.796093] fdee0000.hdmi_receiver: dma_irq st1:0x80, st13:2160
-[  535.813435] fdee0000.hdmi_receiver: dma_irq st1:0x100, st13:1085
-[  535.829423] fdee0000.hdmi_receiver: dma_irq st1:0x80, st13:2160
-[...]
----------------------------
-
-###source set to 4k60fps####
----------------------------
-v4l2-ctl --verbose -d /dev/video1 
---set-fmt-video=width=3840,height=2160,pixelformat='NV12' 
---stream-mmap=4 --stream-skip=3 --stream-count=100 --stream-poll
----------------------------
-VIDIOC_QUERYCAP: ok
-VIDIOC_G_FMT: ok
-VIDIOC_S_FMT: ok
-Format Video Capture Multiplanar:
-     Width/Height      : 3840/2160
-     Pixel Format      : 'NV12' (Y/UV 4:2:0)
-     Field             : None
-     Number of planes  : 1
-     Flags             :
-     Colorspace        : sRGB
-     Transfer Function : Default
-     YCbCr/HSV Encoding: Default
-     Quantization      : Default
-     Plane 0           :
-        Bytes per Line : 3840
-        Size Image     : 8294400
-[stuck here, have to end with ctrl c]
-
-
----------------------------
-dmesg
----------------------------
-[ 1520.198123] fdee0000.hdmi_receiver: hb
-[ 1521.211383] fdee0000.hdmi_receiver: hb
-[ 1522.224680] fdee0000.hdmi_receiver: hb
-[ 1523.237936] fdee0000.hdmi_receiver: hb
-[ 1524.251313] fdee0000.hdmi_receiver: hb
-[ 1525.264606] fdee0000.hdmi_receiver: hb
-[ 1526.277937] fdee0000.hdmi_receiver: hb
-[ 1526.427540] fdee0000.hdmi_receiver: C-Plane 0 size: 8294400, Total 
-imagesize: 8294400
-[ 1526.427587] fdee0000.hdmi_receiver: C-Plane 0 size: 8294400, Total 
-imagesize: 8294400
-[ 1526.427598] fdee0000.hdmi_receiver: hdmirx_set_fmt: req(3840, 2160), 
-out(3840, 2160), fmt:0x3231564e
-[ 1526.435569] fdee0000.hdmi_receiver: tx_5v_power_present: 1
-[ 1526.435588] fdee0000.hdmi_receiver: hdmirx_get_pix_fmt: pix_fmt: YUV420
-[ 1526.435597] fdee0000.hdmi_receiver: hdmirx_get_colordepth: 
-color_depth: 24, reg_val:4
-[ 1526.435618] fdee0000.hdmi_receiver: get timings from dma
-[ 1526.435626] fdee0000.hdmi_receiver: act:3840x2160, total:4400x2250, 
-fps:60, pixclk:297008000
-[ 1526.435637] fdee0000.hdmi_receiver: hfp:4294965460, hs:48, hbp:148, 
-vfp:8, vs:10, vbp:72
-[ 1526.435648] fdee0000.hdmi_receiver: tmds_clk:297008000
-[ 1526.435656] fdee0000.hdmi_receiver: interlace:0, fmt:3, vic:127, 
-color:24, mode:hdmi
-[ 1526.435665] fdee0000.hdmi_receiver: deframer_st:0x11
-[ 1527.291212] fdee0000.hdmi_receiver: hb
-[ 1527.443533] fdee0000.hdmi_receiver: tx_5v_power_present: 1
-[ 1527.443550] fdee0000.hdmi_receiver: hdmirx_get_pix_fmt: pix_fmt: YUV420
-[ 1527.443560] fdee0000.hdmi_receiver: hdmirx_get_colordepth: 
-color_depth: 24, reg_val:4
-[ 1527.443579] fdee0000.hdmi_receiver: get timings from dma
-[ 1527.443586] fdee0000.hdmi_receiver: act:3840x2160, total:4400x2250, 
-fps:60, pixclk:297008000
-[ 1527.443597] fdee0000.hdmi_receiver: hfp:4294965460, hs:48, hbp:148, 
-vfp:8, vs:10, vbp:72
-[ 1527.443608] fdee0000.hdmi_receiver: tmds_clk:297008000
-[ 1527.443615] fdee0000.hdmi_receiver: interlace:0, fmt:3, vic:127, 
-color:24, mode:hdmi
-[ 1527.443625] fdee0000.hdmi_receiver: deframer_st:0x11
-[ 1528.304515] fdee0000.hdmi_receiver: hb
-[ 1528.451543] fdee0000.hdmi_receiver: tx_5v_power_present: 1
-[ 1528.451560] fdee0000.hdmi_receiver: hdmirx_get_pix_fmt: pix_fmt: YUV420
-[ 1528.451569] fdee0000.hdmi_receiver: hdmirx_get_colordepth: 
-color_depth: 24, reg_val:4
-[ 1528.451588] fdee0000.hdmi_receiver: get timings from dma
-[ 1528.451595] fdee0000.hdmi_receiver: act:3840x2160, total:4400x2250, 
-fps:60, pixclk:297008000
-[ 1528.451606] fdee0000.hdmi_receiver: hfp:4294965460, hs:48, hbp:148, 
-vfp:8, vs:10, vbp:72
-[ 1528.451617] fdee0000.hdmi_receiver: tmds_clk:297008000
-[ 1528.451624] fdee0000.hdmi_receiver: interlace:0, fmt:3, vic:127, 
-color:24, mode:hdmi
-[ 1528.451634] fdee0000.hdmi_receiver: deframer_st:0x11
-[ 1529.317814] fdee0000.hdmi_receiver: hb
-[ 1529.459549] fdee0000.hdmi_receiver: tx_5v_power_present: 1
-[ 1529.459566] fdee0000.hdmi_receiver: hdmirx_get_pix_fmt: pix_fmt: YUV420
-[ 1529.459575] fdee0000.hdmi_receiver: hdmirx_get_colordepth: 
-color_depth: 24, reg_val:4
-[ 1529.459593] fdee0000.hdmi_receiver: get timings from dma
-[ 1529.459601] fdee0000.hdmi_receiver: act:3840x2160, total:4400x2250, 
-fps:60, pixclk:297008000
-[ 1529.459612] fdee0000.hdmi_receiver: hfp:4294965460, hs:48, hbp:148, 
-vfp:8, vs:10, vbp:72
-[ 1529.459623] fdee0000.hdmi_receiver: tmds_clk:297008000
-[ 1529.459630] fdee0000.hdmi_receiver: interlace:0, fmt:3, vic:127, 
-color:24, mode:hdmi
-[ 1529.459640] fdee0000.hdmi_receiver: deframer_st:0x11
-[ 1530.331085] fdee0000.hdmi_receiver: hb
-[ 1530.467555] fdee0000.hdmi_receiver: tx_5v_power_present: 1
-[ 1530.467571] fdee0000.hdmi_receiver: hdmirx_get_pix_fmt: pix_fmt: YUV420
-[ 1530.467580] fdee0000.hdmi_receiver: hdmirx_get_colordepth: 
-color_depth: 24, reg_val:4
-[ 1530.467599] fdee0000.hdmi_receiver: get timings from dma
-[ 1530.467606] fdee0000.hdmi_receiver: act:3840x2160, total:4400x2250, 
-fps:60, pixclk:297008000
-[ 1530.467618] fdee0000.hdmi_receiver: hfp:4294965460, hs:48, hbp:148, 
-vfp:8, vs:10, vbp:72
-[ 1530.467628] fdee0000.hdmi_receiver: tmds_clk:297008000
-[ 1530.467635] fdee0000.hdmi_receiver: interlace:0, fmt:3, vic:127, 
-color:24, mode:hdmi
-[ 1530.467664] fdee0000.hdmi_receiver: deframer_st:0x11
-[ 1531.344437] fdee0000.hdmi_receiver: hb
-[ 1531.475649] fdee0000.hdmi_receiver: tx_5v_power_present: 1
-[ 1531.475665] fdee0000.hdmi_receiver: hdmirx_get_pix_fmt: pix_fmt: YUV420
-[ 1531.475674] fdee0000.hdmi_receiver: hdmirx_get_colordepth: 
-color_depth: 24, reg_val:4
-[ 1531.475693] fdee0000.hdmi_receiver: get timings from dma
-[ 1531.475700] fdee0000.hdmi_receiver: act:3840x2160, total:4400x2250, 
-fps:60, pixclk:297008000
-[ 1531.475711] fdee0000.hdmi_receiver: hfp:4294965460, hs:48, hbp:148, 
-vfp:8, vs:10, vbp:72
-[ 1531.475722] fdee0000.hdmi_receiver: tmds_clk:297008000
-[ 1531.475729] fdee0000.hdmi_receiver: interlace:0, fmt:3, vic:127, 
-color:24, mode:hdmi
-[ 1531.475739] fdee0000.hdmi_receiver: deframer_st:0x11
-[ 1532.357695] fdee0000.hdmi_receiver: hb
-[ 1532.483716] fdee0000.hdmi_receiver: tx_5v_power_present: 1
-[ 1532.483733] fdee0000.hdmi_receiver: hdmirx_get_pix_fmt: pix_fmt: YUV420
-[ 1532.483742] fdee0000.hdmi_receiver: hdmirx_get_colordepth: 
-color_depth: 24, reg_val:4
-[ 1532.483761] fdee0000.hdmi_receiver: get timings from dma
-[ 1532.483768] fdee0000.hdmi_receiver: act:3840x2160, total:4400x2250, 
-fps:60, pixclk:297008000
-[ 1532.483780] fdee0000.hdmi_receiver: hfp:4294965460, hs:48, hbp:148, 
-vfp:8, vs:10, vbp:72
-[ 1532.483790] fdee0000.hdmi_receiver: tmds_clk:297008000
-[ 1532.483797] fdee0000.hdmi_receiver: interlace:0, fmt:3, vic:127, 
-color:24, mode:hdmi
-[ 1532.483807] fdee0000.hdmi_receiver: deframer_st:0x11
-[ 1533.370994] fdee0000.hdmi_receiver: hb
-[ 1533.491726] fdee0000.hdmi_receiver: tx_5v_power_present: 1
-[ 1533.491743] fdee0000.hdmi_receiver: hdmirx_get_pix_fmt: pix_fmt: YUV420
-[ 1533.491752] fdee0000.hdmi_receiver: hdmirx_get_colordepth: 
-color_depth: 24, reg_val:4
-[ 1533.491770] fdee0000.hdmi_receiver: get timings from dma
-[ 1533.491778] fdee0000.hdmi_receiver: act:3840x2160, total:4400x2250, 
-fps:60, pixclk:297008000
-[ 1533.491789] fdee0000.hdmi_receiver: hfp:4294965460, hs:48, hbp:148, 
-vfp:8, vs:10, vbp:72
-[ 1533.491800] fdee0000.hdmi_receiver: tmds_clk:297008000
-[ 1533.491807] fdee0000.hdmi_receiver: interlace:0, fmt:3, vic:127, 
-color:24, mode:hdmi
-[ 1533.491816] fdee0000.hdmi_receiver: deframer_st:0x11
-[ 1534.384324] fdee0000.hdmi_receiver: hb
-[ 1534.499888] fdee0000.hdmi_receiver: tx_5v_power_present: 1
-[ 1534.499904] fdee0000.hdmi_receiver: hdmirx_get_pix_fmt: pix_fmt: YUV420
-[ 1534.499913] fdee0000.hdmi_receiver: hdmirx_get_colordepth: 
-color_depth: 24, reg_val:4
-[ 1534.499932] fdee0000.hdmi_receiver: get timings from dma
-[ 1534.499939] fdee0000.hdmi_receiver: act:3840x2160, total:4400x2250, 
-fps:60, pixclk:297008000
-[ 1534.499950] fdee0000.hdmi_receiver: hfp:4294965460, hs:48, hbp:148, 
-vfp:8, vs:10, vbp:72
-[ 1534.499960] fdee0000.hdmi_receiver: tmds_clk:297008000
-[ 1534.499968] fdee0000.hdmi_receiver: interlace:0, fmt:3, vic:127, 
-color:24, mode:hdmi
-[ 1534.499977] fdee0000.hdmi_receiver: deframer_st:0x11
-[ 1535.397596] fdee0000.hdmi_receiver: hb
-[ 1535.507961] fdee0000.hdmi_receiver: tx_5v_power_present: 1
-[ 1535.507977] fdee0000.hdmi_receiver: hdmirx_get_pix_fmt: pix_fmt: YUV420
-[ 1535.507986] fdee0000.hdmi_receiver: hdmirx_get_colordepth: 
-color_depth: 24, reg_val:4
-[ 1535.508005] fdee0000.hdmi_receiver: get timings from dma
-[ 1535.508012] fdee0000.hdmi_receiver: act:3840x2160, total:4400x2250, 
-fps:60, pixclk:297008000
-[ 1535.508023] fdee0000.hdmi_receiver: hfp:4294965460, hs:48, hbp:148, 
-vfp:8, vs:10, vbp:72
-[ 1535.508034] fdee0000.hdmi_receiver: tmds_clk:297008000
-[ 1535.508041] fdee0000.hdmi_receiver: interlace:0, fmt:3, vic:127, 
-color:24, mode:hdmi
-[ 1535.508051] fdee0000.hdmi_receiver: deframer_st:0x11
-[ 1536.410933] fdee0000.hdmi_receiver: hb
-[ 1537.424223] fdee0000.hdmi_receiver: hb
-[ 1538.437523] fdee0000.hdmi_receiver: hb
-[ 1539.450848] fdee0000.hdmi_receiver: hb
-
-Best regards
-Tim
-
-On 06.08.24 13:58, Dmitry Osipenko wrote:
-> On 8/4/24 02:57, Tim Surber wrote:
->> Hi Shreeya,
+On 05/08/2024 11:28, Matti Vaittinen wrote:
+> On 7/19/24 01:02, Mudit Sharma wrote:
+>> Add support for BH1745, which is an I2C colour sensor with red, green,
+>> blue and clear channels. It has a programmable active low interrupt
+>> pin. Interrupt occurs when the signal from the selected interrupt
+>> source channel crosses set interrupt threshold high or low level.
 >>
->> I tested your patch and noticed problems when using 3840x2160 resolution
->> at  60fps.
+>> Interrupt source for the device can be configured by enabling the
+>> corresponding event. Interrupt latch is always enabled when setting
+>> up interrupt.
 >>
->> For my testing I connected an HDMI source and set it to 4k60fps. I
->> verified that this source and the cables work on a screen at this
->> resolution.
+>> Add myself as the maintainer for this driver in MAINTAINERS.
 >>
->> Using
->> 'v4l2-ctl --verbose -d /dev/video1
->> --set-fmt-video=width=3840,height=2160,pixelformat='NV12'
->> --stream-mmap=4 --stream-skip=3 --stream-count=100 --stream-poll'
->> I get the video format output, but not the periodic output which shows
->> the fps.
->>
->> Using
->> 'GST_DEBUG=4 gst-launch-1.0 -v v4l2src device=/dev/video1 !
->> fpsdisplaysink text-overlay=false video-sink="fakevideosink"'
->> I get the following error message:
->>
->> (gst-launch-1.0:3231): GStreamer-CRITICAL **: 01:34:39.137:
->> gst_memory_resize: assertion 'size + mem->offset + offset <=
->> mem->maxsize' failed
->> 0:00:03.489382529  3231 0xffffa0000b90 WARN  v4l2bufferpool
->> gstv4l2bufferpool.c:2209:gst_v4l2_buffer_pool_process:<v4l2src0:pool0:src> Dropping truncated buffer, this is likely a driver bug.
->> 0:00:03.489421906  3231 0xffffa0000b90 WARN  bufferpool
->> gstbufferpool.c:1252:default_reset_buffer:<v4l2src0:pool0:src> Buffer
->> 0xffff98008e80 without the memory tag has maxsize (8294400) that is
->> smaller than the configured buffer pool size (12441600). The buffer will
->> be not be reused. This is most likely a bug in this GstBufferPool subclass
->>
->>
->> Everything works with 4k30fps or 1080p 60fps. The hardware should
->> support 4k60fps.
-> Please do `echo 3 > /sys/module/synopsys_hdmirx/parameters/debug` and
-> show the kernel log of capturing 4k@60 with v4l2-ctl.
->
+>> Signed-off-by: Mudit Sharma <muditsharma.info@gmail.com>
+>> Reviewed-by: Ivan Orlov <ivan.orlov0322@gmail.com>
+>> Reviewed-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+> 
+> Hi Mudit & All :)
+> 
+> I know I am late. The series has already been applied (thanks 
+> Jonathan!). I've mostly been offline for the last 1.5 months or so - 
+> "all work and no play makes Jack a dull boy", you know ;)
+> 
+> Anyways, as Jonathan asked me to take a look at the GTS stuff (at v7), I 
+> tried to quickly glance at this. It looks good to me!
+> 
+> Well, the real test will be the users of the sensor driver - so please 
+> let us know if GTS stuff brings problems to users. I am mostly 
+> interested in knowing if gain changes caused by integration time changes 
+> are handled gracefully by the users. :) Well, seeing there is no per- 
+> channel gain or integration time setting, you should be safe from the 
+> worst side-effects :)
+> 
+> Nice driver!
+
+Hi Matti,
+
+Thank you for your review on this :)
+
+Best regards,
+Mudit Sharma
+> 
+> Yours,
+>      -- Matti
+> 
+
 
