@@ -1,126 +1,128 @@
-Return-Path: <devicetree+bounces-91307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24418948E23
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 13:50:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B0FB948E39
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 13:59:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF0471F265DB
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 11:50:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ACEF51F23655
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 11:59:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 540A31C57A2;
-	Tue,  6 Aug 2024 11:49:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6661B1C233C;
+	Tue,  6 Aug 2024 11:59:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zlZ41MIW"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b="bkh98zX1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DDF01C4618
-	for <devicetree@vger.kernel.org>; Tue,  6 Aug 2024 11:49:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722944987; cv=none; b=LbuA51/yP1rLVQKbe5tWLXYIdjZGIsLgxxy/cS+KDZ6rwYd0G3bzBWllb9sXrq3pgZhvZCFhySKV0LP+dNCjdOHwDAhm+LB9kO17j5MfGTIHdXV6Su3fFuyJQku7Y+rCusDOZP+UidFs/82uCniaSBwnio4PoOIcBeavc/9CDVA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722944987; c=relaxed/simple;
-	bh=Ezp1DEESNAuzSnaq1SG6uwRupUnI1fkxIZaCm2O+49I=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=n+uCI8FmsG5nRW/jXQmRujDHj86AcobAE1zv9z8aeDitrB8a7NzmpBlfcrDZ7R8aUdNyBBDDItAfcUxmsSggGmRQmjW8FkfRx7iO1re4TW+6l32c09iNwRbjT02mmexQaxtuO7aUXBtq4NCbDEcTgJTxG5pq3WRtWTZjw7hzU+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zlZ41MIW; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-428163f7635so4176985e9.2
-        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2024 04:49:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722944982; x=1723549782; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qMlV2qVo85xWYVBMYhrk0PfH/1B6nF4UrxaGSSozyTw=;
-        b=zlZ41MIW91eleJp6jQ/cNAGsszGoWa1MyQY2J9lpfpvVAHZJN5ygagEcVSmOHAh5EJ
-         MRhlrZNm9cpce2/bhCPIcHMSH/RDF3eABEiNm8Mkx2sX+SaVIJ8na8J4aToA60hf9Xdg
-         Tfyk/uKY0eggPguFHx42CUzxeqIrcQM4KmbD7cNvm7oT1Lm1qHfMO9i8WLVUtpEDfQ23
-         3JYIZpM7zSqBHPNTPpBRXmwafNJ30pwPubjlMFLnBjtRQlb7wZAMMi9zyNOyZ7zBzkqT
-         67IjJAzjeT0up639F395Qjb9t2HtgrYg8QGTQBAt4MSbYAI/kmd1Xuph80Yj9iJTh7id
-         /u+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722944982; x=1723549782;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qMlV2qVo85xWYVBMYhrk0PfH/1B6nF4UrxaGSSozyTw=;
-        b=G+7SD0eK/W0nXM3S9/Y+ZjCaYrkbExvkYr2t1gKkSvs8ByDY2EJMB5skFLZXBlifYj
-         lk3E6xA8xGZzPxYJU+PzvW6cMutBoYU80i4md6I5j+ca62oFc+Bdp24iJnWeujTFQsTQ
-         lkzfsj2dqIVRPzKtAaISwNr6qY5nn2hwf916o22smwJpRAtYArqajkLEUjqzpZhpToq6
-         e/GzAZZg3Omtl3IUMmfSU+xiM91SVGFrlZJqEeLUCLDsNoXAWEuoU20lp9MrhOQMycBy
-         Vatk/SLv814bnNgogzxIijOO45LztmN7GuWU5FobvhxbgjIQnghkpyOnb3I5BmJp/8ud
-         9+Rw==
-X-Forwarded-Encrypted: i=1; AJvYcCWimriZeKkMlLbslNXhkSzOhG9FCMzdFkxr0tWs6ftuS8g0vK1aWpOA/O+9h1opQt1lgSN+2C6/AkOYAZX+6EugDVDj2QAmIhbaDA==
-X-Gm-Message-State: AOJu0YzIzDVH1/u1HqZPcLLidQASR8Ruqb4gDl9HTN6wWMTZ0pdtzK5u
-	HvIwrwGHsWdxTbwHWc9i2QMHrJlr3GnbulyipqW6K/dMU7vRslu0nHJYpGO8qRE=
-X-Google-Smtp-Source: AGHT+IG0OfTvajOEg5ehvoF4v0jk7nAbAB0WzN58qCZhXcth2JhU2Xeyj9qeu3b8QEUJOcwwmdcrrw==
-X-Received: by 2002:a05:600c:444f:b0:426:5b3a:96c with SMTP id 5b1f17b1804b1-428e6b78e3amr101124575e9.28.1722944982501;
-        Tue, 06 Aug 2024 04:49:42 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-428e6e0357asm180287485e9.12.2024.08.06.04.49.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Aug 2024 04:49:42 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	alsa-devel@alsa-project.org,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 4/4] ASoC: dt-bindings: qcom,wcd939x: Correct reset GPIO polarity in example
-Date: Tue,  6 Aug 2024 13:49:31 +0200
-Message-ID: <20240806114931.40090-4-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240806114931.40090-1-krzysztof.kozlowski@linaro.org>
-References: <20240806114931.40090-1-krzysztof.kozlowski@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B2C31BDA83;
+	Tue,  6 Aug 2024 11:59:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722945546; cv=pass; b=r+Sio6rJlf4cCANHjGt1wRjblRTccoUY8wGktnxFVHFV9WlCeafuLKsXE50nk0xicx8eutUMXUMbDIvSQ5x/7P8pC+adETRj3VDfhOCrjVC8CUhpwc+cBtLSAEg/ChGe+UtxkUsWugp79PgWfkgQE2ZwBSj8W51yp4gBQA4fyoM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722945546; c=relaxed/simple;
+	bh=AZ80Ks/bzs21qDAXLNmuk7nUGrnOLl29vWE9nLhd84g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PNgaSMhXui/cpYtGi9+e5UQZ32rxfiGwI8iIRo1Za0rDWXVGlko4vPOpe2gFZl+mQG3+8rsR/YHQaF2Y3h90/LF0X9Y7KymieWid9Dif2XjZsJZUqXOsUGT/jm64b9WjLskU5nBJQnd1tHLmjGkoYeEb4YpiSbC9pDj2dhm9vUI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b=bkh98zX1; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Delivered-To: shreeya.patel@collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1722945497; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=OtfNcwuLHczvL3PGe4brG2g1/ATYA97GUqWrNCS/kqHaAIUyU72cHXqkBi99QibOGMTF3ox31D4V+j5tlTZUWOK6f3A1CO29Z172tYrnokLc2Jox7lUaAmZuPxAzbgZofHuGtfE+RWKhujZotdvgsGZmKXcgOfqHpd7DFa5pqeo=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1722945497; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=GUl7n+rnOu9EMuo1/gD5MP5eCxVNnOpkTAodKwwv4e4=; 
+	b=D6wxYgNk7hdmVztiEz/yP34x3N93lsoFngMqeTPkDNGl3eVbuZhVPuKtL4R2m6MKJ9N1bk54OsSsCwu5sgPX22ea4U6hyvwTKoegMgwIqzkIy+W4Rca6BOQtB7s9RcHhelBrThoSWgNw9r3PeZztsotU7caqFdlce42LiKmQWCk=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=dmitry.osipenko@collabora.com;
+	dmarc=pass header.from=<dmitry.osipenko@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1722945497;
+	s=zohomail; d=collabora.com; i=dmitry.osipenko@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=GUl7n+rnOu9EMuo1/gD5MP5eCxVNnOpkTAodKwwv4e4=;
+	b=bkh98zX1F1CBHoTSUQkD8/YaKz3/kdxoxgoAVVYS4lgnhSmRXKzMtugxJQXTTmDy
+	TepE5MqSGt9XcEpgHQpA4eQB8el87wBucUDXmlkJ2tIioRmL1baacIwojDSW45WoYQ+
+	qWwB3jg7KP6b25eVzzB+RYJ9I743gvVCZIlnI28I=
+Received: by mx.zohomail.com with SMTPS id 1722945495133332.7271484161171;
+	Tue, 6 Aug 2024 04:58:15 -0700 (PDT)
+Message-ID: <929d2f50-6b0e-4d1e-a6d3-482d615bd06a@collabora.com>
+Date: Tue, 6 Aug 2024 14:58:08 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/4] Add Synopsys DesignWare HDMI RX Controller
+To: Tim Surber <me@timsurber.de>, Shreeya Patel
+ <shreeya.patel@collabora.com>, heiko@sntech.de, mchehab@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+ jose.abreu@synopsys.com, nelson.costa@synopsys.com,
+ shawn.wen@rock-chips.com, nicolas.dufresne@collabora.com,
+ hverkuil@xs4all.nl, hverkuil-cisco@xs4all.nl
+Cc: kernel@collabora.com, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+References: <20240719124032.26852-1-shreeya.patel@collabora.com>
+ <6f5c4ebb-84ab-4b65-9817-ac5f6158911f@timsurber.de>
+Content-Language: en-US
+From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <6f5c4ebb-84ab-4b65-9817-ac5f6158911f@timsurber.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 
-The reset GPIO of WCD9390/WCD9395 is active low and that's how it is
-routed on typical boards, so correct the example DTS to use expected
-polarity, instead of IRQ flag (which is a logical mistake on its own).
+On 8/4/24 02:57, Tim Surber wrote:
+> Hi Shreeya,
+> 
+> I tested your patch and noticed problems when using 3840x2160 resolution
+> at  60fps.
+> 
+> For my testing I connected an HDMI source and set it to 4k60fps. I
+> verified that this source and the cables work on a screen at this
+> resolution.
+> 
+> Using
+> 'v4l2-ctl --verbose -d /dev/video1
+> --set-fmt-video=width=3840,height=2160,pixelformat='NV12'
+> --stream-mmap=4 --stream-skip=3 --stream-count=100 --stream-poll'
+> I get the video format output, but not the periodic output which shows
+> the fps.
+> 
+> Using
+> 'GST_DEBUG=4 gst-launch-1.0 -v v4l2src device=/dev/video1 !
+> fpsdisplaysink text-overlay=false video-sink="fakevideosink"'
+> I get the following error message:
+> 
+> (gst-launch-1.0:3231): GStreamer-CRITICAL **: 01:34:39.137:
+> gst_memory_resize: assertion 'size + mem->offset + offset <=
+> mem->maxsize' failed
+> 0:00:03.489382529  3231 0xffffa0000b90 WARN  v4l2bufferpool
+> gstv4l2bufferpool.c:2209:gst_v4l2_buffer_pool_process:<v4l2src0:pool0:src> Dropping truncated buffer, this is likely a driver bug.
+> 0:00:03.489421906  3231 0xffffa0000b90 WARN  bufferpool
+> gstbufferpool.c:1252:default_reset_buffer:<v4l2src0:pool0:src> Buffer
+> 0xffff98008e80 without the memory tag has maxsize (8294400) that is
+> smaller than the configured buffer pool size (12441600). The buffer will
+> be not be reused. This is most likely a bug in this GstBufferPool subclass
+> 
+> 
+> Everything works with 4k30fps or 1080p 60fps. The hardware should
+> support 4k60fps.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/sound/qcom,wcd939x.yaml | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Please do `echo 3 > /sys/module/synopsys_hdmirx/parameters/debug` and
+show the kernel log of capturing 4k@60 with v4l2-ctl.
 
-diff --git a/Documentation/devicetree/bindings/sound/qcom,wcd939x.yaml b/Documentation/devicetree/bindings/sound/qcom,wcd939x.yaml
-index 6e76f6a8634f..c69291f4d575 100644
---- a/Documentation/devicetree/bindings/sound/qcom,wcd939x.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,wcd939x.yaml
-@@ -52,10 +52,10 @@ unevaluatedProperties: false
- 
- examples:
-   - |
--    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/gpio/gpio.h>
-     codec {
-         compatible = "qcom,wcd9390-codec";
--        reset-gpios = <&tlmm 32 IRQ_TYPE_NONE>;
-+        reset-gpios = <&tlmm 32 GPIO_ACTIVE_LOW>;
-         #sound-dai-cells = <1>;
-         qcom,tx-device = <&wcd939x_tx>;
-         qcom,rx-device = <&wcd939x_rx>;
 -- 
-2.43.0
+Best regards,
+Dmitry
 
 
