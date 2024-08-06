@@ -1,208 +1,128 @@
-Return-Path: <devicetree+bounces-91444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CB8B949586
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 18:26:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51B769495D5
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 18:45:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1D041F2224C
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 16:26:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A1BF0B24B4B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 16:33:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2004376E6;
-	Tue,  6 Aug 2024 16:26:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C23E63BB30;
+	Tue,  6 Aug 2024 16:33:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U5pMaJZs"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="AqFJDYCd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93D852CCB4;
-	Tue,  6 Aug 2024 16:26:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722961574; cv=none; b=GevJgsfs++4ClQc3h2MlDt0dxDpY8CWl4wXXOhMZ49oh0ISMB1Gyzo33Wv4lhlXf9zDGxyryfaXIQ5lcQGqEChtyDJkYQoyyx0sWO3fJcQcu1tNEAwMvf3O1lh9c8vbcY9tiL4IeT9XqrPoERP/bqOVqa/oDKitXfkVY0F2b9FM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722961574; c=relaxed/simple;
-	bh=Vjv0V/uG16R4fZgzBaumYU0oSr4O7jzDA1OaNjUL4f0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=muw7O2TVip+COXQ8aJAPu/Ey5jFpYlggnwX9A4rqS6QrJJoCLB8J3Jx4tU2wfTyKRKTDJ7JGt2arJLS4oYoy9pVy5QXMM8te4wCk3Wkcz2+THD8Vlma+Hw9+/0jv9K3rxwncep4mEP1cqCbmxSwulPzGA8JwBZ0F0GsBaHe81FQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U5pMaJZs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B7E2C32786;
-	Tue,  6 Aug 2024 16:26:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1722961574;
-	bh=Vjv0V/uG16R4fZgzBaumYU0oSr4O7jzDA1OaNjUL4f0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=U5pMaJZsEJTwg5xVcaxfM7y+ZDa03a9I+qJMxZ3MaEhwv9Y3PASfpa6+9BfvXkalp
-	 TJwwhdmA3aae/sKPrDoNYFWZnvyHFmS8VW0iwq3R3DXHhG2hRPdK9InNYRerLLGhn2
-	 lWN/2y1lYGjYymk/Lrn0SyNpqNmoTxM+0KsUI9U0SzoOBuzE+Z5hUXlowdTfFK42pv
-	 EMV3uK20gamsRSMQiweJ/mTil6TMCjVWSIDEIHZ0THtkB5omHo7NpTAAjrBKl4XBoS
-	 MIaxiH+L435YESynZhHaELO286IQ9m4J9E2HPeRe4A/0PzOitHZ/CBSJ1gGWA0q2in
-	 cTPDL/4uEZFTw==
-Date: Tue, 6 Aug 2024 17:26:06 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Albrieux <jonathan.albrieux@gmail.com>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux@mainlining.org, Danila Tikhonov
- <danila@jiaxyga.com>
-Subject: Re: [PATCH v2 3/3] iio: magnetometer: ak8975: Add AK09118 support
-Message-ID: <20240806172606.70a07084@jic23-huawei>
-In-Reply-To: <20240806-ak09918-v2-3-c300da66c198@mainlining.org>
-References: <20240806-ak09918-v2-0-c300da66c198@mainlining.org>
-	<20240806-ak09918-v2-3-c300da66c198@mainlining.org>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAD982C182;
+	Tue,  6 Aug 2024 16:33:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1722962031; cv=pass; b=LlSZPGKKEZoQDd1C0nxe1sh+jSfj4K6C15aOAADgLAwzT7+vJGCDFqiIRvpgxbd3/yjznAa3oT/WTQtbzqCOG/za/3YITc2PN4UOLHW1PCiWg1Kb84qZDJfbN8vNSYDtwtNptvagewGcalNx5I97NThwgFvoDgptyi2SBMHZqlA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1722962031; c=relaxed/simple;
+	bh=puiEd1SRm3ADc828HACBfKNH+QKdUIB7UI3diIKs2AA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=IHwpMHVRcBoTmQx16ezizbI68nUnFobbKrX/E92WInnfyaw53PWq7VWyCmaLxmqU3KMKoczg1/6XdahN4Itawszkiv4YEOTiGorHnODhAGZrCUgvdz7eDpdge0OnmaXfTqSR2pmuF1xjYF6n8FAQfNAiRGb7nhBL0iAHdgvTx1k=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=AqFJDYCd; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1722962010; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=nVmjkx2NYYfGexWUTXG6+br7K+/tYNcm2BTNaHP0pmFRRUF6ugYmgQNdE1Z4TgZeOsBp4IWtKiRsYRVcx4LkEdgW5NMOcFdNYbTecmOXjMHwkj1saTbQw/ng9eOW0VYI7I9+0R3Xa0qXjOLqYMnRZAmrgi5gzUp/2gUkgllXlLc=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1722962010; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=l/JHjYFYD5hXu+XbGOm+SC68og+CQ6amBp7xMsiP/Lo=; 
+	b=CsIS/Zd0X+HOmXOqsWJsKqIQT07/9srdSQNwHL6RoqLJaMD9Y7UgQFJDZlOIfmDqWpuGwgErLkyLoDibyGeJbGBU4/MH4oUSKMRMUfT3DV8t98XX8dQFQcQEUv5AgtcB6RaxxkM77B4O7oCmvoyML5/04OYGhINcMrEJWljfpwI=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
+	dmarc=pass header.from=<detlev.casanova@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1722962010;
+	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=l/JHjYFYD5hXu+XbGOm+SC68og+CQ6amBp7xMsiP/Lo=;
+	b=AqFJDYCdobJ60Kpe/ZGzSVKMoNEWj3yVbIBcC+9Q5Pm9KxZG5CRvJ6KdXceQzpe0
+	oTPRGkOL6pPFlfJdmaHXdCx6ZHWo1MpTI8HyNji7wYzk/OsF9zTgIQ861Gn/BzZk1Gc
+	TNyFVoh6ilAbmNIrlRYMu/halSDBLbAqVtm76XCE=
+Received: by mx.zohomail.com with SMTPS id 1722962009873809.7480289049981;
+	Tue, 6 Aug 2024 09:33:29 -0700 (PDT)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Ulf Hansson <ulf.hansson@linaro.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ "Rafael J . Wysocki" <rafael@kernel.org>,
+ Finley Xiao <finley.xiao@rock-chips.com>, Jagan Teki <jagan@edgeble.ai>,
+ Elaine Zhang <zhangqing@rock-chips.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-pm@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: Add power-domain header for RK3576 SoCs
+Date: Tue, 06 Aug 2024 12:34:41 -0400
+Message-ID: <3310992.44csPzL39Z@trenzalore>
+In-Reply-To: <e04258dc-07c4-45c7-90d4-bc1ed9eb100b@kernel.org>
+References:
+ <20240802151647.294307-1-detlev.casanova@collabora.com>
+ <20240802151647.294307-3-detlev.casanova@collabora.com>
+ <e04258dc-07c4-45c7-90d4-bc1ed9eb100b@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+X-ZohoMailClient: External
 
-On Tue, 06 Aug 2024 08:10:20 +0200
-Barnab=C3=A1s Cz=C3=A9m=C3=A1n <barnabas.czeman@mainlining.org> wrote:
+On Sunday, 4 August 2024 05:56:39 EDT Krzysztof Kozlowski wrote:
+> On 02/08/2024 17:14, Detlev Casanova wrote:
+> > From: Finley Xiao <finley.xiao@rock-chips.com>
+> > 
+> > Define power domain IDs as described in the TRM.
+> 
+> Please use subject prefixes matching the subsystem. You can get them for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching. For bindings, the preferred subjects are
+> explained here:
+> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patche
+> s.html#i-for-patch-submitters
+> > Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
+> > [reword]
+> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> > ---
+> > 
+> >  include/dt-bindings/power/rk3576-power.h | 30 ++++++++++++++++++++++++
+> >  1 file changed, 30 insertions(+)
+> >  create mode 100644 include/dt-bindings/power/rk3576-power.h
+> 
+> This is part of bindings.
+> 
+> > diff --git a/include/dt-bindings/power/rk3576-power.h
+> > b/include/dt-bindings/power/rk3576-power.h
+> Missing vendor prefix. This should be named after compatible.
 
-> From: Danila Tikhonov <danila@jiaxyga.com>
->=20
-> Add additional AK09118 to the magnetometer driver which has the same
-> register mapping and scaling as the AK09112 device.
->=20
-> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
-> Signed-off-by: Barnab=C3=A1s Cz=C3=A9m=C3=A1n <barnabas.czeman@mainlining=
-.org>
+Looks like all other rockchip power bindings use the include/dt-bindings/
+power/rkXXXX.h format. Should I keep that way ?
 
-It definitely seems like a fallback compatible is suitable, but we
-will still want the more precise match in the driver so that we can
-avoid printing an info message to say we saw an unexpected ID.
+> > new file mode 100644
+> > index 0000000000000..cb33a32c1aed9
+> > --- /dev/null
+> > +++ b/include/dt-bindings/power/rk3576-power.h
+> > @@ -0,0 +1,30 @@
+> > +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> 
+> Weird license.
+> 
+> Best regards,
+> Krzysztof
 
-Comments on that inline.
 
-> ---
->  drivers/iio/magnetometer/Kconfig  |  2 +-
->  drivers/iio/magnetometer/ak8975.c | 34 ++++++++++++++++++++++++++++++++++
->  2 files changed, 35 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/iio/magnetometer/Kconfig b/drivers/iio/magnetometer/=
-Kconfig
-> index cd2917d71904..8eb718f5e50f 100644
-> --- a/drivers/iio/magnetometer/Kconfig
-> +++ b/drivers/iio/magnetometer/Kconfig
-> @@ -39,7 +39,7 @@ config AK8975
->  	select IIO_TRIGGERED_BUFFER
->  	help
->  	  Say yes here to build support for Asahi Kasei AK8975, AK8963,
-> -	  AK09911, AK09912 or AK09916 3-Axis Magnetometer.
-> +	  AK09911, AK09912, AK09916 or AK09918 3-Axis Magnetometer.
-> =20
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called ak8975.
-> diff --git a/drivers/iio/magnetometer/ak8975.c b/drivers/iio/magnetometer=
-/ak8975.c
-> index 925d76062b3e..9871fea67ae3 100644
-> --- a/drivers/iio/magnetometer/ak8975.c
-> +++ b/drivers/iio/magnetometer/ak8975.c
-> @@ -78,6 +78,7 @@
->   */
->  #define AK09912_REG_WIA1		0x00
->  #define AK09912_REG_WIA2		0x01
-> +#define AK09918_DEVICE_ID		0x0C
->  #define AK09916_DEVICE_ID		0x09
->  #define AK09912_DEVICE_ID		0x04
->  #define AK09911_DEVICE_ID		0x05
-> @@ -209,6 +210,7 @@ enum asahi_compass_chipset {
->  	AK09911,
->  	AK09912,
->  	AK09916,
-> +	AK09918,
->  };
-> =20
->  enum ak_ctrl_reg_addr {
-> @@ -371,6 +373,31 @@ static const struct ak_def ak_def_array[] =3D {
->  			AK09912_REG_HXL,
->  			AK09912_REG_HYL,
->  			AK09912_REG_HZL},
-> +	},
-> +	[AK09918] =3D {
-> +		.type =3D AK09918,
-> +		.raw_to_gauss =3D ak09912_raw_to_gauss,
-> +		.range =3D 32752,
-> +		.ctrl_regs =3D {
-> +			AK09912_REG_ST1,
-> +			AK09912_REG_ST2,
-> +			AK09912_REG_CNTL2,
-> +			AK09912_REG_ASAX,
-> +			AK09912_MAX_REGS},
-> +		.ctrl_masks =3D {
-> +			AK09912_REG_ST1_DRDY_MASK,
-> +			AK09912_REG_ST2_HOFL_MASK,
-> +			0,
-> +			AK09912_REG_CNTL2_MODE_MASK},
-> +		.ctrl_modes =3D {
-> +			AK09912_REG_CNTL_MODE_POWER_DOWN,
-> +			AK09912_REG_CNTL_MODE_ONCE,
-> +			AK09912_REG_CNTL_MODE_SELF_TEST,
-> +			AK09912_REG_CNTL_MODE_FUSE_ROM},
-> +		.data_regs =3D {
-> +			AK09912_REG_HXL,
-> +			AK09912_REG_HYL,
-> +			AK09912_REG_HZL},
->  	}
->  };
-> =20
-> @@ -452,6 +479,7 @@ static int ak8975_who_i_am(struct i2c_client *client,
->  	/*
->  	 * Signature for each device:
->  	 * Device   |  WIA1      |  WIA2
-> +	 * AK09918  |  DEVICE_ID_|  AK09918_DEVICE_ID
->  	 * AK09916  |  DEVICE_ID_|  AK09916_DEVICE_ID
->  	 * AK09912  |  DEVICE_ID |  AK09912_DEVICE_ID
->  	 * AK09911  |  DEVICE_ID |  AK09911_DEVICE_ID
-> @@ -484,6 +512,10 @@ static int ak8975_who_i_am(struct i2c_client *client,
->  		if (wia_val[1] =3D=3D AK09916_DEVICE_ID)
->  			return 0;
->  		break;
-> +	case AK09918:
-> +		if (wia_val[1] =3D=3D AK09918_DEVICE_ID)
-> +			return 0;
-> +		break;
-Whilst you are changing this code, please make it accept an unknown ID
-with at most a dev_info() print. We used to get this wrong in IIO, but
-this flexibility in matching Who Am I values is necessary to enable
-fallback compatibles in DT.
 
-Those allow you to use a newer DT with an older driver. It will
-use the fallback ID to probe, so will get the ak09912 who am I value
-and fail to probe currently.  We want it to succeed if they are
-completely compatible other than this ID.
-
->  	default:
->  		dev_err(&client->dev, "Type %d unknown\n", type);
->  	}
-> @@ -1066,6 +1098,7 @@ static const struct i2c_device_id ak8975_id[] =3D {
->  	{"ak09911", (kernel_ulong_t)&ak_def_array[AK09911] },
->  	{"ak09912", (kernel_ulong_t)&ak_def_array[AK09912] },
->  	{"ak09916", (kernel_ulong_t)&ak_def_array[AK09916] },
-> +	{"ak09918", (kernel_ulong_t)&ak_def_array[AK09918] },
->  	{}
->  };
->  MODULE_DEVICE_TABLE(i2c, ak8975_id);
-> @@ -1081,6 +1114,7 @@ static const struct of_device_id ak8975_of_match[] =
-=3D {
->  	{ .compatible =3D "ak09912", .data =3D &ak_def_array[AK09912] },
->  	{ .compatible =3D "asahi-kasei,ak09916", .data =3D &ak_def_array[AK0991=
-6] },
->  	{ .compatible =3D "ak09916", .data =3D &ak_def_array[AK09916] },
-> +	{ .compatible =3D "asahi-kasei,ak09918", .data =3D &ak_def_array[AK0991=
-8] },
->  	{}
->  };
->  MODULE_DEVICE_TABLE(of, ak8975_of_match);
->=20
 
 
