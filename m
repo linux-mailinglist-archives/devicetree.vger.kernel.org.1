@@ -1,77 +1,88 @@
-Return-Path: <devicetree+bounces-91517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 866AA949A77
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 23:46:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB15B949B08
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 00:13:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA26D1C21751
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 21:46:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC8341C21A7F
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 22:13:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CC7B16FF48;
-	Tue,  6 Aug 2024 21:46:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E750173357;
+	Tue,  6 Aug 2024 22:13:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Mae3DXWY"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="N8OhLlYj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C995416B3BC;
-	Tue,  6 Aug 2024 21:46:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64242172BAE;
+	Tue,  6 Aug 2024 22:13:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722980774; cv=none; b=hKNBrPZisg4rLtPYtbiOp8SmuZpUoiSwBNbv42LZ+v6pmg0mX/a+qtbp2XzjgQ+d9A8IMe82UZN/IEPXzVpmfZBWnSE9Lm4WfxUCEWdvrZ6ozHN/NIUoV4QgqhTmApzyUIXGpq13I4vK5wfs2hM1amQE5mwKlljpG0yI4echpaE=
+	t=1722982382; cv=none; b=Ra/dYh6+KoxQ+EYvuD8OPiUOBzacDJaZKhImPy8alOlUrHoMlFJ4vC/H56nXVqfhhXxgj1ZkZaogSNVFTcd3abhpHlv0qVilWTXh+l6iE1ttYT+ATHF0EgRkAg5rax+60q4St6rZj8i0iHvUQaVqO0oOPSSvXm0Ww8dSumXbmMs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722980774; c=relaxed/simple;
-	bh=ODh5FjWe1JqdkpwwaU/GHEAy6y/w4RhSQ0+B1+2KEQ0=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sOouRiMb9+PpRJ4vKESTUADS8ijSn+W9aal183hw7ygz41woSpn3eJ7Dh+aL/fmkFtLS8zH16GnCq2IobQto8nW/D2q8sUuMGVZxBLFpwtEpJjZQOayHjjnJC5+giGiTBqxBz/o4zkjFQCSAFzIXmOffD4sPHSzHcNSKutGfGjk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Mae3DXWY; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 476Lk5q8124337;
-	Tue, 6 Aug 2024 16:46:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1722980765;
-	bh=LyEbO1uoOEu8xNfXsExJEWUpZXeTCDFFEcwSVkSTzEw=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=Mae3DXWYbtgQvM5uq0MJ+1AEoUPupK8pxGHmjeHjrlm8oLed3+t2OkPSTwAVQz6Kn
-	 bLsAUO1x9APhliZBqeDxS9yxH20TSOlTQb4HaO9wUliKDzvbuqdOMwnTrZ6iii+veF
-	 G3OUeY+Tihex3AE5XOf9PghMIqo+Q2EtZZTVOlJU=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 476Lk5NX127333
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 6 Aug 2024 16:46:05 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
- Aug 2024 16:46:05 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 6 Aug 2024 16:46:05 -0500
-Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 476Lk5Qu100327;
-	Tue, 6 Aug 2024 16:46:05 -0500
-From: Judith Mendez <jm@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>
-CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Santhosh Kumar <s-k6@ti.com>,
-        Bryan Brattlof
-	<bb@ti.com>
-Subject: [PATCH 5/5] arm64: dts: ti: k3-am6*: Fix comment in watchdog nodes
-Date: Tue, 6 Aug 2024 16:46:04 -0500
-Message-ID: <20240806214605.3379881-6-jm@ti.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240806214605.3379881-1-jm@ti.com>
-References: <20240806214605.3379881-1-jm@ti.com>
+	s=arc-20240116; t=1722982382; c=relaxed/simple;
+	bh=eMfTwuERrN+nNbChcSkoO5cgQetqoZ0j/xiy1nJlAp4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=hoovj2R14BpCS/wInwz3eTP4NOujjxwx3QAP0WtcocS2bd4xKTa8FLjAyaEhTOwjr1ujZa2jD51/mkAFm8qn0JmsDzZBCpxmgniYtwzXR+1E2AQQXNwLXSHQvebdUX15Qj23l3xFJ4nNfQQOh3vm969/0gy8vDFaIP1UOpS7Xt8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=N8OhLlYj; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1722982381; x=1754518381;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=eMfTwuERrN+nNbChcSkoO5cgQetqoZ0j/xiy1nJlAp4=;
+  b=N8OhLlYjVsoNhVKNI0LMSsP4BDN4XASjjkvbIQv9F43cXHoTIoclr74T
+   MEsfvuNIaYF8Uwy8pvw6LWo6A1Gfj13gGTPqy1MwZjhaH9rJpIaeKAh6m
+   F4gxGPCt6NKynUpYa8R9UEmSHrrWGBNxoBkaDgA5A1l+BzlvFSorWHhq7
+   dttaritPOP2nynW+O1APmP/IBceJ1Zq0ieNOwcT72qDh4ijvXHxS1g4fG
+   1rcd9n1wQ156Mymwj/TzrwZGe2VsyA8usWFqZ4V8eDNcu2oAcC7hg0MTW
+   1Uhw7MB4NhcdaSXN+2rmJ/X2E2xbdCmVCWl2yNwj7faz9utwq+zwxlXaw
+   g==;
+X-CSE-ConnectionGUID: C2sAS/ogTSWYZ6hotc33vg==
+X-CSE-MsgGUID: 6qMAiggeQaW06gYR9F69mA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11156"; a="38534349"
+X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; 
+   d="scan'208";a="38534349"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Aug 2024 15:13:00 -0700
+X-CSE-ConnectionGUID: 21E0rOI9RbmLk7d1OXS1gQ==
+X-CSE-MsgGUID: 5Uaa+pBPQIu50xZSqL7CNA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,268,1716274800"; 
+   d="scan'208";a="61465620"
+Received: from yjiang5-dev1.sc.intel.com ([172.25.103.134])
+  by orviesa003.jf.intel.com with ESMTP; 06 Aug 2024 15:12:58 -0700
+From: Yunhong Jiang <yunhong.jiang@linux.intel.com>
+To: tglx@linutronix.de,
+	mingo@redhat.com,
+	bp@alien8.de,
+	dave.hansen@linux.intel.com,
+	x86@kernel.org,
+	hpa@zytor.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	kys@microsoft.com,
+	haiyangz@microsoft.com,
+	wei.liu@kernel.org,
+	decui@microsoft.com,
+	rafael@kernel.org,
+	lenb@kernel.org,
+	kirill.shutemov@linux.intel.com
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-hyperv@vger.kernel.org,
+	linux-acpi@vger.kernel.org,
+	yunhong.jiang@linux.intel.com
+Subject: [PATCH 0/7] x86/acpi: Move ACPI MADT wakeup to generic code
+Date: Tue,  6 Aug 2024 15:12:30 -0700
+Message-Id: <20240806221237.1634126-1-yunhong.jiang@linux.intel.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,51 +90,71 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-The am62ax and am62p devices have an MCU R5F and not an
-M4F, the following comment is not correct:
+This set of patches add ACPI multiprocessor wakeup support to TDX VMs
+booting with device tree instead of ACPI.
 
-/* Tightly coupled to M4F */
+Historically, x86 platforms have booted secondary processors (APs) using
+INIT followed by the start up IPI (SIPI) messages. However, TDX VMs
+can't use this protocol because this protocol requires assistance from
+VMMs while VMMs are not trusted by TDX guest.
 
-so fix the comment in watchdog nodes.
+ACPI specification version 6.4 introduced a new wakeup mailbox model to
+address this issue. A "Multiprocessor Wakeup Structure" has been added to
+an existing ACPI table (MADT). This structure provides the physical of a
+"Multiprocessor Wakeup Mailbox Structure". Message written to the mailbox
+structure steers the APs to the boot code.
 
-There is no functional change.
+With this new wakeup model, TDX VMs with ACPI support boot the APs
+securely. However, TDX VMs with the device tree have no ACPI support and
+still face the challenge.
 
-Signed-off-by: Judith Mendez <jm@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi              | 2 +-
- arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+To fix this challenge, either a new mechanism from scratch is
+introduced, or the TDX VMs with device tree can utilize the ACPI wakeup
+model.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
-index cea0e1d4caaa0..a5a33491b51bb 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
-@@ -146,7 +146,7 @@ mcu_rti0: watchdog@4880000 {
- 		power-domains = <&k3_pds 131 TI_SCI_PD_EXCLUSIVE>;
- 		assigned-clocks = <&k3_clks 131 0>;
- 		assigned-clock-parents = <&k3_clks 131 2>;
--		/* Tightly coupled to M4F */
-+		/* Tightly coupled to R5F */
- 		status = "reserved";
- 	};
- 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
-index d913e6319bad8..d5a498479cba2 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
-@@ -154,7 +154,7 @@ mcu_rti0: watchdog@4880000 {
- 		power-domains = <&k3_pds 131 TI_SCI_PD_EXCLUSIVE>;
- 		assigned-clocks = <&k3_clks 131 0>;
- 		assigned-clock-parents = <&k3_clks 131 2>;
--		/* Tightly coupled to M4F */
-+		/* Tightly coupled to R5F */
- 		status = "reserved";
- 	};
- 
+By reusing the ACPI wakeup mailbox model, the Multiprocessor Wakeup Mailbox
+Structure will be kept and the message mechanism will be the same as ACPI.
+This will reduce maintenance effort in the long term.
+
+The first patch moves the madt wakeup implementation to generic code.
+
+The second/third patches add the mailbox support to the device tree.
+
+The last four patches apply the mailbox support to the hyper-v TDX VMs
+with device tree.
+
+Yunhong Jiang (7):
+  x86/acpi: Move ACPI MADT wakeup to generic code
+  dt-bindings: x86: Add ACPI wakeup mailbox
+  x86/dt: Support the ACPI multiprocessor wakeup for device tree
+  x86/hyperv: Parse the ACPI wakeup mailbox
+  x86/hyperv: Mark ACPI wakeup mailbox page as private
+  x86/hyperv: Reserve real mode when ACPI wakeup mailbox is available
+  x86/hyperv: Use the ACPI wakeup mailbox for VTL2 guests when available
+
+ .../devicetree/bindings/x86/wakeup.yaml       | 41 ++++++++++++++++
+ MAINTAINERS                                   |  3 ++
+ arch/x86/Kconfig                              |  2 +-
+ arch/x86/hyperv/hv_vtl.c                      | 43 +++++++++++++++--
+ arch/x86/include/asm/acpi.h                   |  1 -
+ arch/x86/include/asm/madt_wakeup.h            | 16 +++++++
+ arch/x86/include/asm/mshyperv.h               |  3 ++
+ arch/x86/kernel/Makefile                      |  1 +
+ arch/x86/kernel/acpi/Makefile                 |  1 -
+ arch/x86/kernel/cpu/mshyperv.c                |  2 +
+ arch/x86/kernel/{acpi => }/madt_playdead.S    |  0
+ arch/x86/kernel/{acpi => }/madt_wakeup.c      | 47 ++++++++++++++++++-
+ drivers/hv/hv_common.c                        |  8 ++++
+ 13 files changed, 159 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/x86/wakeup.yaml
+ create mode 100644 arch/x86/include/asm/madt_wakeup.h
+ rename arch/x86/kernel/{acpi => }/madt_playdead.S (100%)
+ rename arch/x86/kernel/{acpi => }/madt_wakeup.c (87%)
+
+
+base-commit: 9ebdc7589cbb5c976e6c8807cbe13f263d70d32c
 -- 
-2.45.2
+2.25.1
 
 
