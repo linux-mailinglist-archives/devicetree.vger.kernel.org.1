@@ -1,186 +1,124 @@
-Return-Path: <devicetree+bounces-91740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 921C194A5A4
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 12:35:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4566B94A5FD
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 12:44:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFD021C2141C
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 10:35:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E44801F23154
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 10:44:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEDC71E3CBA;
-	Wed,  7 Aug 2024 10:34:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D28391E2125;
+	Wed,  7 Aug 2024 10:42:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="WEYDx+jQ"
+	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="v8KmmTDK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+Received: from mail.fris.de (mail.fris.de [116.203.77.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24B671DE841
-	for <devicetree@vger.kernel.org>; Wed,  7 Aug 2024 10:34:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB9041E2866;
+	Wed,  7 Aug 2024 10:42:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.77.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723026862; cv=none; b=N5lu1gGq5dNHj19uk56EhAW8VZX7ohj0d8wOpnoppQK+SuGMuuNLph2iWqyNfxNGDAAg581ZCQRBiaHRT/5swMSWpwRJ9fME3U/Xir0ZNbWZGyFipDKIofJP+r/qJhUVzhmHhS3RtqKuWnroFy9l6EoVWYjBFy3lSF9qUNiunCY=
+	t=1723027348; cv=none; b=X0wWcEf5V/tgQjsTdf1vv8pzSPDIkOiNXUNY5hn1wEvQ3utoAKWt6B7ioZlG0Er3Mw1aEZOAKiWn/trdGHUa9lGcCiSaLsTw+dIOi3dybCDTbv3wOMEUNSFzUQSAzMjX1OrmbetU7gQSBS7ECxBYs351Ve7afQ5/bIlcoHv4/fM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723026862; c=relaxed/simple;
-	bh=FblmGdf66eN+rJv+O3kISJs4VFmghorqhErApFpjvdE=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=fI1BeqtOh2XcpmcdrR54Xzn1JM9ZL0rf/GoZEv/WhS+bSTIgXsshrdw7ICcsJU8TYzRqwvjZ4NDqENz/tn9wyNA95by2s5jbmsvYBYdzZGPCSgc2Q6Ik48L+7wpkE6k8R4/ZOg6eVPXn56+FjbQcWYV+JPVK/fQSZIYrRB+V7KQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=WEYDx+jQ; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1723026849; x=1725618849;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=FblmGdf66eN+rJv+O3kISJs4VFmghorqhErApFpjvdE=;
-	b=WEYDx+jQzTrLDcYrIXbGhj6msUaLbjGSOqkKzL92CjVc67M6LB78LBVpXHK9qzdK
-	Iugyn+0LI/GaJ+6Rf1UhsMv9m9fiGSvSRj0ixuALCjW0y/4zEY44s0QwK8SojgjN
-	370dnkT5+wCBM2mKm1cJZRu2LCF0O8JC4k12iIeLKYU=;
-X-AuditID: ac14000a-03e52700000021bc-2e-66b34da00672
-Received: from florix.phytec.de (Unknown_Domain [172.25.0.13])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id D7.E4.08636.0AD43B66; Wed,  7 Aug 2024 12:34:08 +0200 (CEST)
-Received: from Florix.phytec.de (172.25.0.13) by Florix.phytec.de
- (172.25.0.13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Wed, 7 Aug 2024
- 12:34:08 +0200
-Received: from Florix.phytec.de ([fe80::a802:84f9:c56c:4c6d]) by
- florix.phytec.de ([fe80::a802:84f9:c56c:4c6d%5]) with mapi id 15.01.2507.006;
- Wed, 7 Aug 2024 12:34:08 +0200
-From: Yashwanth Varakala <Y.Varakala@phytec.de>
-To: "kernel@pengutronix.de" <kernel@pengutronix.de>, "s.hauer@pengutronix.de"
-	<s.hauer@pengutronix.de>, "peng.fan@nxp.com" <peng.fan@nxp.com>,
-	"robh@kernel.org" <robh@kernel.org>, "shawnguo@kernel.org"
-	<shawnguo@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"festevam@gmail.com" <festevam@gmail.com>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>
-CC: "imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, PHYTEC Upstream <upstream@lists.phytec.de>
-Subject: Re: [PATCH 3/3] arm64: dts: Add phyBOARD-Pollux dts for rpmsg
-Thread-Topic: [PATCH 3/3] arm64: dts: Add phyBOARD-Pollux dts for rpmsg
-Thread-Index: AQHa3nd2t62c2rb+I0yYD8HVBQhz47IRlkoAgAn16gA=
-Date: Wed, 7 Aug 2024 10:34:08 +0000
-Message-ID: <da0363d65457c1f1de26b9bc03117d667d6a578e.camel@phytec.de>
-References: <20240725094457.37739-1-y.varakala@phytec.de>
-	 <20240725094457.37739-4-y.varakala@phytec.de>
-	 <PAXPR04MB84593B109878D86B72DEB4AD88B22@PAXPR04MB8459.eurprd04.prod.outlook.com>
-In-Reply-To: <PAXPR04MB84593B109878D86B72DEB4AD88B22@PAXPR04MB8459.eurprd04.prod.outlook.com>
-Accept-Language: en-US, de-DE
-Content-Language: de-DE
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <6DB096743C16584EBE7C6329E744B239@phytec.de>
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1723027348; c=relaxed/simple;
+	bh=0TfCvzJgPoazultcYN9+hO/7yuwX5/8GGYM0pn/O5uk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=M7rXqwzHK7qfy4tZooLWuqhBwQCTc4GgBBs5A+bBtwDgA2O3b6lz9cSYfg40CwFBhmIRjVHKnA1qT+Yk4EvoDDz2v8qtup6gQq9ry78juG+Tfcy0CIpdmvg0q9DqsSWOW/N3+uE8XusCuI4zZVW1kMXAmxZ6G26EGPUY1xQsyN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=fail smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=v8KmmTDK; arc=none smtp.client-ip=116.203.77.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=fris.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 06401BFB46;
+	Wed,  7 Aug 2024 12:42:17 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
+	t=1723027341; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=jroDDOQR/0744C6J84EjLUXLcIWqH8y5RsHY256rmns=;
+	b=v8KmmTDKKCvJmUFehvx+O2+u39liWy4c4gnaklQsQycoY02ub0ZAQsMwBgEyhy0Yx+BNwQ
+	8cCL5HaJrzbgS89LaM052Cy9WMpsK6y7SKpAyk5CrhQc5UhImYJDR2iP4uJGy38KnBoZfz
+	Vqh1LLEJjcMQmHYFWnpssxfLA49g7s7VjGMqv16MV8Ll6xAyIQzNbDo9sEDIVSriAvNNE6
+	neihqVC2eTVHuPIgAt0OkXs9AT/utS+NqFoS4nipSQFcj/oHSF2jdyTEFrNnUtdgQOGrkX
+	z3bqM4O7PWksuCVcemfOzi/o37uc4c3t7dANB24xLUXmasXtuP7vQrCrvpG1UA==
+From: Frieder Schrempf <frieder@fris.de>
+To: Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>
+Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+	Hiago De Franco <hiago.franco@toradex.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Mathieu Othacehe <m.othacehe@gmail.com>,
+	Parthiban Nallathambi <parthiban@linumiz.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: [PATCH v2 0/3] Add support for Kontron OSM-S i.MX8MP SoM and carrier boards
+Date: Wed,  7 Aug 2024 12:38:45 +0200
+Message-ID: <20240807104137.558741-1-frieder@fris.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrIIsWRmVeSWpSXmKPExsWyRpKBV3eB7+Y0g+tTLC3W7D3HZDH/yDlW
-	i4dX/S1m3mtls1g1dSeLxctZ99gsNj2+xmpxedccNosfq76wWvzfs4Pd4u/2TSwWL7aIW3S/
-	U3fg9dg56y67x6ZVnWwem5fUe7zYPJPRo7+7hdVj47sdTB79fw08Pm+SC+CI4rJJSc3JLEst
-	0rdL4MqYtGA/S8EWw4qp+y8xNzBOMOhi5OSQEDCRuL/gH2sXIxeHkMASJokP2/dAOfcYJZ7P
-	3cQC4WxklNj75xI7SAubgL5E68TnbCAJEYE3TBLn17QzgjjMAmuYJNZN6WUBqRIWcJOYun8y
-	M4gtIuAu8aZ9DjuEbSXR1f2WEcRmEVCRONm7hA3E5gWqn9Z4GWrdPkaJY9vawYo4BWIlGu9c
-	ARvEKCAr0dnwjgnEZhYQl9j07DsrxBcCEkv2nGeGsEUlXj7+BxWXlzhxaxpQPQdQvabE+l36
-	EK0WEoce32eDsBUlpnQ/ZIe4QVDi5MwnLBMYxWch2TALoXsWku5ZSLpnIelewMi6ilEoNzM5
-	O7UoM1uvIKOyJDVZLyV1EyMoGYgwcO1g7JvjcYiRiYPxEKMEB7OSCG9z+KY0Id6UxMqq1KL8
-	+KLSnNTiQ4zSHCxK4ryrO4JThQTSE0tSs1NTC1KLYLJMHJxSDYzbuOa28cR9m/5iio4we6Y3
-	24JpM0NDvu8Vq0nX/LblVl77W0erlYmbQ4Nsiq1Z2L8zOvAvtly/uvNC+pSZRh+jsyo4imeb
-	sTLPuemhO/nznPs3leYt2zzL+mVQqN/iroMHnjoFl+xl2LJ2/9UVLB+/WddkN6xZ/VhqgrbA
-	2ZQISU5er4Z+JVclluKMREMt5qLiRAC2mQBv9AIAAA==
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-SGVsbG8gUGVuZywKCk9uIFRodSwgMjAyNC0wOC0wMSBhdCAwMjoyNyArMDAwMCwgUGVuZyBGYW4g
-d3JvdGU6Cj4gPiBTdWJqZWN0OiBbUEFUQ0ggMy8zXSBhcm02NDogZHRzOiBBZGQgcGh5Qk9BUkQt
-UG9sbHV4IGR0cyBmb3IgcnBtc2cKPiA+IAo+ID4gQWRkcyBhIGRldmljZXRyZWUgY29udGFpbmlu
-ZyByZXNlcnZlZCBtZW1vcnkgcmVnaW9ucyB1c2VkIGZvcgo+ID4gaW50ZXJjb3JlIGNvbW11bmlj
-YXRpb24gYmV0d2VlbiBBNTMgYW5kIE03IGNvcmVzLgo+ID4gCj4gPiBTaWduZWQtb2ZmLWJ5OiBZ
-YXNod2FudGggVmFyYWthbGEgPHkudmFyYWthbGFAcGh5dGVjLmRlPgo+ID4gLS0tCj4gPiDCoGFy
-Y2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL01ha2VmaWxlwqDCoMKgwqDCoMKgwqAgfMKgIDIg
-Kwo+ID4gwqAuLi4vZHRzL2ZyZWVzY2FsZS9pbXg4bXAtcGh5Y29yZS1ycG1zZy5kdHNvwqDCoCB8
-IDU3Cj4gPiArKysrKysrKysrKysrKysrKysrCj4gPiDCoDIgZmlsZXMgY2hhbmdlZCwgNTkgaW5z
-ZXJ0aW9ucygrKQo+ID4gwqBjcmVhdGUgbW9kZSAxMDA2NDQgYXJjaC9hcm02NC9ib290L2R0cy9m
-cmVlc2NhbGUvaW14OG1wLQo+ID4gcGh5Y29yZS1ycG1zZy5kdHNvCj4gPiAKPiA+IGRpZmYgLS1n
-aXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9NYWtlZmlsZQo+ID4gYi9hcmNoL2Fy
-bTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9NYWtlZmlsZQo+ID4gaW5kZXggZGVkZWE0YjVjMzE5Li44
-MGNjODdkNTAzMDEgMTAwNjQ0Cj4gPiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2Fs
-ZS9NYWtlZmlsZQo+ID4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvTWFrZWZp
-bGUKPiA+IEBAIC0xNzcsOSArMTc3LDExIEBAIGR0Yi0kKENPTkZJR19BUkNIX01YQykgKz0gaW14
-OG1wLQo+ID4gcGh5Ym9hcmQtcG9sbHV4LXJkay5kdGLCoCBpbXg4bXAtcGh5Ym9hcmQtcG9sbHV4
-LXJkay1uby1ldGgtZHRicyArPQo+ID4gaW14OG1wLXBoeWJvYXJkLXBvbGx1eC1yZGsuZHRiIGlt
-eDhtcC1waHljb3JlLW5vLWV0aC5kdGJvCj4gPiBpbXg4bXAtcGh5Ym9hcmQtcG9sbHV4LXJkay1u
-by1ydGMtZHRicyArPSBpbXg4bXAtcGh5Ym9hcmQtcG9sbHV4LQo+ID4gcmRrLmR0YiBpbXg4bXAt
-cGh5Y29yZS1uby1ydGMuZHRib8KgIGlteDhtcC1waHlib2FyZC1wb2xsdXgtcmRrLW5vLQo+ID4g
-c3BpZmxhc2gtZHRicyArPSBpbXg4bXAtcGh5Ym9hcmQtcG9sbHV4LXJkay5kdGIgaW14OG1wLXBo
-eWNvcmUtbm8tCj4gPiBzcGlmbGFzaC5kdGJvCj4gPiAraW14OG1wLXBoeWJvYXJkLXBvbGx1eC1y
-ZGstcnBtc2ctZHRicyArPSBpbXg4bXAtcGh5Ym9hcmQtCj4gPiBwb2xsdXgtcmRrLmR0Ygo+ID4g
-K2lteDhtcC1waHljb3JlLXJwbXNnLmR0Ym8KPiA+IMKgZHRiLSQoQ09ORklHX0FSQ0hfTVhDKSAr
-PSBpbXg4bXAtcGh5Ym9hcmQtcG9sbHV4LXJkay1uby0KPiA+IGV0aC5kdGIKPiA+IMKgZHRiLSQo
-Q09ORklHX0FSQ0hfTVhDKSArPSBpbXg4bXAtcGh5Ym9hcmQtcG9sbHV4LXJkay1uby1ydGMuZHRi
-Cj4gPiDCoGR0Yi0kKENPTkZJR19BUkNIX01YQykgKz0gaW14OG1wLXBoeWJvYXJkLXBvbGx1eC1y
-ZGstbm8tCj4gPiBzcGlmbGFzaC5kdGIKPiA+ICtkdGItJChDT05GSUdfQVJDSF9NWEMpICs9IGlt
-eDhtcC1waHlib2FyZC1wb2xsdXgtcmRrLQo+ID4gcnBtc2cuZHRiCj4gPiDCoGR0Yi0kKENPTkZJ
-R19BUkNIX01YQykgKz0gaW14OG1wLXNrb3YtcmV2Yi1oZG1pLmR0Ygo+ID4gwqBkdGItJChDT05G
-SUdfQVJDSF9NWEMpICs9IGlteDhtcC1za292LXJldmItbHQ2LmR0Ygo+ID4gwqBkdGItJChDT05G
-SUdfQVJDSF9NWEMpICs9IGlteDhtcC1za292LXJldmItbWkxMDEwYWl0LTFjcDEuZHRiCj4gPiBk
-aWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1wLXBoeWNvcmUt
-Cj4gPiBycG1zZy5kdHNvIGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1wLXBo
-eWNvcmUtCj4gPiBycG1zZy5kdHNvCj4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NAo+ID4gaW5kZXgg
-MDAwMDAwMDAwMDAwLi5hNTY5NGYzYWVjYWEKPiA+IC0tLSAvZGV2L251bGwKPiA+ICsrKyBiL2Fy
-Y2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtcC1waHljb3JlLXJwbXNnLmR0c28KPiA+
-IEBAIC0wLDAgKzEsNTcgQEAKPiA+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIu
-MAo+IAo+IER1YWwgbGljZW5zZSBpcyBiZXR0ZXIgZGV2aWNlIHRyZWUuCj4gCj4gPiArLyoKPiA+
-ICsgKiBDb3B5cmlnaHQgKEMpIDIwMjQgUEhZVEVDIE1lc3N0ZWNobmlrIEdtYkgKPiA+ICsgKiBB
-dXRob3I6IERvbWluaWsgSGFsbGVyIDxkLmhhbGxlckBwaHl0ZWMuZGU+Cj4gPiArICrCoMKgwqDC
-oMKgwqDCoCBDZW0gVGVucnVoIDxjLnRlbnJ1aEBwaHl0ZWMuZGU+Cj4gPiArICovCj4gPiArCj4g
-PiArL2R0cy12MS87Cj4gPiArL3BsdWdpbi87Cj4gPiArCj4gPiArI2luY2x1ZGUgPGR0LWJpbmRp
-bmdzL2Nsb2NrL2lteDhtcC1jbG9jay5oPgo+ID4gKwo+ID4gKyZ7L30gewo+ID4gK8KgwqDCoMKg
-wqDCoMKgaW14OG1wLWNtNyB7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgY29t
-cGF0aWJsZSA9ICJmc2wsaW14OG1uLWNtNyI7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgY2xvY2tzID0gPCZjbGsgSU1YOE1QX0NMS19NN19ESVY+Owo+ID4gK8KgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoG1ib3hlcyA9IDwmbXUgMCAxCj4gPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCZtdSAxIDEKPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgJm11IDMgMT47Cj4gCj4gwqDCoMKgwqDC
-oMKgwqAgbWJveGVzID0gPCZtdTEgMAo+IDE+LMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoAo+IMKgwqDCoMKg
-wqAgCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-PCZtdTEgMQo+IDE+LMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoAo+IMKgwqDCoMKgwqAgCj4gwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPCZtdTEgMyAxPjsKVGhh
-bmsgeW91IGZvciB0aGUgZmVlZGJhY2suIEkgY2hlY2tlZCBhbmQgZm91bmQgb25seSBtdSBhbmQg
-bXUyIGxhYmVscwpvZiBtYWlsYm94ZXMgYXJlIHByZXNlbnQuIG11MSBpcyBub3QgdXNlZCBpbiBp
-bXg4bXAuZHRzaS4gQ2FuIHlvdQpwbGVhc2UgdGVsbCBtZSB3aHkgSSBoYXZlIHRvIHVzZSBtdTEg
-aGVyZT8KCj4gCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgbWJveC1uYW1lcyA9
-ICJ0eCIsICJyeCIsICJyeGRiIjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBt
-ZW1vcnktcmVnaW9uID0gPCZ2ZGV2YnVmZmVyPiwgPCZ2ZGV2MHZyaW5nMD4sCj4gPiA8JnZkZXYw
-dnJpbmcxPiwgPCZyc2NfdGFibGU+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oHJzYy1kYSA9IDwweDU1MDAwMDAwPjsKPiAKPiBEcm9wIHRoaXMgInJzYy1kYSIuCj4gCj4gPiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgc3RhdHVzID0gIm9rYXkiOwo+IAo+IERyb3Ag
-aXQsIGRlZmF1bHQgaXMgIm9rYXkiLgo+IAo+ID4gK8KgwqDCoMKgwqDCoMKgfTsKPiA+ICsKPiA+
-ICvCoMKgwqDCoMKgwqDCoHJlc2VydmVkLW1lbW9yeSB7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgcmFuZ2VzOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCNh
-ZGRyZXNzLWNlbGxzID0gPDI+Owo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCNz
-aXplLWNlbGxzID0gPDI+Owo+ID4gKwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oG03X3Jlc2VydmVkOiBtN0AweDgwMDAwMDAwIHsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgbm8tbWFwOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZWcgPSA8MCAweDgwMDAwMDAwIDAgMHgxMDAwMDAw
-PjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB9Owo+ID4gKwo+ID4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJzY190YWJsZTogcnNjX3RhYmxlQDU1MGZmMDAwIHsK
-PiAKPiAicnNjLXRhYmxlQDU1MGZmMDAwIi4gU2VlbXMgeW91IG5vdCB0ZXN0IHRoaXMgcGF0Y2gg
-d2l0aCBsaW51eAo+IHJlbW90ZXByb2MsIG90aGVyd2lzZSB5b3Ugd2lsbCBzZWUgdnJpbmcgbm90
-IHNldCB1cC4KPiAKPiBSZWdhcmRzLAo+IFBlbmcuCgotLSAKLQpSZWdhcmRzLApZYXNod2FudGgK
-Cgo=
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
+
+Patch 1: board DT bindings
+Patch 2: OSM-S i.MX8MP SoM and BL carrier board devicetrees
+Patch 3: i.MX8MP SMARC module and eval carrier board devicetrees
+
+Changes for v2:
+
+DT bindings (patch1):
+* Add tags from Krzysztof and Conor (thanks!)
+
+SMARC DTs (patch 3):
+* Fix GPIO labels
+* Add support for TPM chip on SMARC module
+* Disable PWM in favor of GPIO5 on SMARC carrier
+* Enable LCDIF node to make HDMI work
+* Add support for GPIO expanders on SMARC carrier
+* Remove SPI flash as its removable and should be in an overlay
+* Add CAN regulators to fix transceiver enable
+
+Frieder Schrempf (3):
+  dt-bindings: arm: fsl: Add Kontron i.MX8MP OSM-S based boards
+  arm64: dts: Add support for Kontron OSM-S i.MX8MP SoM and BL carrier
+    board
+  arm64: dts: Add support for Kontron i.MX8MP SMARC module and eval
+    carrier
+
+ .../devicetree/bindings/arm/fsl.yaml          |  13 +
+ arch/arm64/boot/dts/freescale/Makefile        |   6 +
+ .../dts/freescale/imx8mp-kontron-bl-osm-s.dts | 307 ++++++
+ .../boot/dts/freescale/imx8mp-kontron-dl.dtso | 112 +++
+ .../dts/freescale/imx8mp-kontron-osm-s.dtsi   | 908 ++++++++++++++++++
+ .../imx8mp-kontron-smarc-eval-carrier.dts     | 258 +++++
+ .../dts/freescale/imx8mp-kontron-smarc.dtsi   | 281 ++++++
+ 7 files changed, 1885 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-kontron-bl-osm-s.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-kontron-dl.dtso
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-kontron-smarc-eval-carrier.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-kontron-smarc.dtsi
+
+-- 
+2.45.2
+
 
