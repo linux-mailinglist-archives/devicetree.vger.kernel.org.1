@@ -1,137 +1,142 @@
-Return-Path: <devicetree+bounces-91724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D07D94A468
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 11:35:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EF3194A46F
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 11:36:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 12B761F21BCA
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 09:35:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CFC691C21149
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 09:36:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B2E71CB320;
-	Wed,  7 Aug 2024 09:35:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70FA41CCB46;
+	Wed,  7 Aug 2024 09:36:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SaSJvAIP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBB921B86C2;
-	Wed,  7 Aug 2024 09:35:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 417161CB32D;
+	Wed,  7 Aug 2024 09:36:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723023319; cv=none; b=X9OUw6xLA3mudZMyZFjFB2NaUSDvIbC0+23Kml/OkCRweXTG84IPI8pZkv+m135ePXcEcUWRJUn6aWqlNkgJmoSAx72351SZNQacEXoSD1Od/RgMJLbefJ66VpWMl6V3odHIMywIQ3ybO8MGnkLzDGIiGzXb9PHNZ9iQzrDGemw=
+	t=1723023364; cv=none; b=lwpgFlkgMHJng/U75NPynDJ7ZGWd8ZAfkZXRihf4bm111dThAn7FjbO86OWT9mZMS30ivfmjMGFvdutdM5Fn6gpjtCn65gUizRydM5xJQp5otTnTyfT3HyKAwczSRBPt0uYugg/9PfxEEjd+NQKj32MS7sLFpKRvymrD2gMBIG0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723023319; c=relaxed/simple;
-	bh=0rhb2vRZQeOGURRtbcyH5apu/JN8DC3SqwjnxjklUAc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dX4UfjTjrcx9tge2ywAOPIenrQ0u/4lOWC/0kd4rhPlmGXHUWMCgcSglc9CvLZGil79khqfEMPjqQPdN1htdj+HdOBkIZ1CpEOVqoo3rYfOaBa/Nm9at9rW8e/cE7TfGhbkIjQZu/Yk33KXcQBp+2d3BdiGTCyDqSTqx9yA13Ik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875a9f.versanet.de ([83.135.90.159] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sbd4G-0006qI-Rp; Wed, 07 Aug 2024 11:34:52 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>
-Cc: lee@kernel.org, jdelvare@suse.com, linux@roeck-us.net,
- dmitry.torokhov@gmail.com, pavel@ucw.cz, krzk+dt@kernel.org,
- conor+dt@kernel.org, ukleinek@debian.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-hwmon@vger.kernel.org,
- linux-input@vger.kernel.org, linux-leds@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject:
- Re: [PATCH v3 1/7] dt-bindings: mfd: add binding for qnap,ts433-mcu devices
-Date: Wed, 07 Aug 2024 11:34:51 +0200
-Message-ID: <1895730.u6TykanW85@diego>
-In-Reply-To: <20240805191723.GA2636745-robh@kernel.org>
-References:
- <20240731212430.2677900-1-heiko@sntech.de>
- <20240731212430.2677900-2-heiko@sntech.de>
- <20240805191723.GA2636745-robh@kernel.org>
+	s=arc-20240116; t=1723023364; c=relaxed/simple;
+	bh=s0BB6Xm95D2yTCnXCwnPwK0Kmd+rCIh8lV2jXnkI5Dg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mdosTXrIxitTiItjtJJ8rnic6iu6BpLFG1Quug0H1hh9yn7HE+YgzSSTdGYXM0b8P19sQuKzQuc54vraPMVNcMn2RZdOVlbGR3X18pwwyEB62QjE4iLBaAmzd72bYTEt1gDZxLgnM1jJ9Eq5vGsPFXdWYx3noJsYjOHrW/t41Pw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SaSJvAIP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B837EC32782;
+	Wed,  7 Aug 2024 09:36:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723023363;
+	bh=s0BB6Xm95D2yTCnXCwnPwK0Kmd+rCIh8lV2jXnkI5Dg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=SaSJvAIPgNpQSyl2kQFG5cVaxnCCp5JvIAgTLLJnj5cxnZwhIHxVcyvzFbi0NGp0A
+	 l/NSb0X4P4oMiuQBpX0jSw84ocBYwNtOIwENdvMN67JgUC4JX469wuo/tq+TpyHJzf
+	 uMRYfo4fBgpDEWG6fQNcodzf/mmTD9005WVnuEivhEla62K3q1btlju+FPaOlR9Wr9
+	 1l1S0iae/tZo/YoQullZA5BS1Y5PmbD3VkT9+1GucYputHeZa+uVcMSElqTI+NyagL
+	 uh7DUGIMOZhkIzBPQN96M6BfZQxkek87RQklf0nEBVgRzIk5xE1qpinqjoMtTKVY4W
+	 G7v/uAU7rc3pA==
+Message-ID: <14ec06bd-0c27-4930-8bce-d3f5b68067ed@kernel.org>
+Date: Wed, 7 Aug 2024 11:35:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: sa8775p-ride: Add QCS9100
+ compatible
+To: Tengfei Fan <quic_tengfan@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240806-add_qcs9100_soc_id-v1-0-04d14081f304@quicinc.com>
+ <20240806-add_qcs9100_soc_id-v1-4-04d14081f304@quicinc.com>
+ <90eae361-7d5d-440f-a85d-dfd81b384fe7@kernel.org>
+ <4a350e94-3c95-48e1-9ea8-ced483c1aa45@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <4a350e94-3c95-48e1-9ea8-ced483c1aa45@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Rob,
-
-Am Montag, 5. August 2024, 21:17:23 CEST schrieb Rob Herring:
-> On Wed, Jul 31, 2024 at 11:24:24PM +0200, Heiko Stuebner wrote:
-> > These MCUs can be found in network attached storage devices made by QNAP.
-> > They are connected to a serial port of the host device and provide
-> > functionality like LEDs, power-control and temperature monitoring.
-> > 
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> > ---
-> >  .../bindings/mfd/qnap,ts433-mcu.yaml          | 43 +++++++++++++++++++
-> >  1 file changed, 43 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/mfd/qnap,ts433-mcu.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mfd/qnap,ts433-mcu.yaml b/Documentation/devicetree/bindings/mfd/qnap,ts433-mcu.yaml
-> > new file mode 100644
-> > index 0000000000000..5ae19d8faedbd
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mfd/qnap,ts433-mcu.yaml
-> > @@ -0,0 +1,43 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mfd/qnap,ts433-mcu.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: QNAP NAS on-board Microcontroller
-> > +
-> > +maintainers:
-> > +  - Heiko Stuebner <heiko@sntech.de>
-> > +
-> > +description:
-> > +  QNAP embeds a microcontroller on their NAS devices adding system feature
-> > +  as PWM Fan control, additional LEDs, power button status and more.
+On 07/08/2024 11:17, Tengfei Fan wrote:
 > 
-> Doesn't really look like the binding is complete.
-
-Hmm, apart from the fan subnode, anything else that is missing?
-
-Input device does not need data from devicetree, as the existence
-of the button and buzzer is attached to the specific mcu-compatible.
-
-Similar for the LEDs I guess, their number and color are a property
-of the MCU variant used. I guess one could do subnodes for the
-linux,default-trigger property?
-
-
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - qnap,ts433-mcu
-> > +
-> > +  "#cooling-cells":
-> > +    const: 2
-> > +
-> > +  cooling-levels:
-> > +    description: PWM duty cycle values corresponding to thermal cooling states.
-> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > +    items:
-> > +      maximum: 255
 > 
-> These are fan properties and should be in a "fan" node referencing 
-> hwmon/fan-common.yaml.
+> On 8/7/2024 3:28 PM, Krzysztof Kozlowski wrote:
+>> On 06/08/2024 06:19, Tengfei Fan wrote:
+>>> Add QCS9100 compatible in sa8775p ride and sa8775p ride r3 board DTS.
+>>> QCS9100 references SA8775p, they share the same SoC DTSI and board DTS.
+>>>
+>>
+>> I don't understand this. You claim here that QCS9100 references SA8775p
+>> but your diff says other way: SA8775p references QCS9100.
+>>
+>> Sorry, that's confusing.
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> 
+> I will update the compatible as follows to indicate that QCS9100 
+> references SA8775p.
+> 
+> compatible = "qcom,sa8775p-ride", "qcom,qcs9100", "qcom,sa8775p";
 
-ok, I'll add a fan-0 subnode as some hwmon already does and move the
-cooling properties into it.
+Is this still correct, though? sa8775p won't come with qcs9100 SoC.
 
-
-Heiko
-
+Best regards,
+Krzysztof
 
 
