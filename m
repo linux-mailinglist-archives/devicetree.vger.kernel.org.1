@@ -1,144 +1,196 @@
-Return-Path: <devicetree+bounces-91746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 851C994A68E
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 13:04:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF75594A6A6
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 13:08:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B78FC1C21531
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 11:04:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F335C1C20D24
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 11:08:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E69541DF681;
-	Wed,  7 Aug 2024 11:04:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EEEC1E2134;
+	Wed,  7 Aug 2024 11:08:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Z6xVnjFL"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b="GJJRaBdv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5130D1C9DC9;
-	Wed,  7 Aug 2024 11:04:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723028658; cv=none; b=PvoTgYVFtbSshjKKlPjbHEwngCo3aMrFL1ApBSfztJJOuf36IqQTrPiSX0JqvcLEqXLreVI94ln3BNqBfG9itOWlYQ3+3qO4Dilhq8MpKxUWYPGDyE14lKyUGwqCoz8Az87/B2P6s20rVVY7uJZtyqQX9PzNX+zXRlJBvndoObc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723028658; c=relaxed/simple;
-	bh=tZE9A7D7Qc4ABjafw02Q7U4Ejv1hoeHBVy7EEIcPMgY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=iRq2Jz+A6reXvi9RLz2nBdnar0ncR+n7PFNjEeH70g9K8MSSPXwYomI6lqjUL/o5LP5ztI/yr1wneni3I11maBO/B7h3HoshE8VA+mMrySQkAQgqhNcggaZTYdqyJ8An+vPmx+ikDmMLyOuhEFNJSWftjNO3gpOoO7wtFE0PUeU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Z6xVnjFL; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47789J2J019008;
-	Wed, 7 Aug 2024 11:04:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	5M2BR5QCUJ11BZbRjroJPti0NNlzXAvb/0+of+zkg58=; b=Z6xVnjFLZQK8AbyJ
-	nc9iA87fgjkxxfAzsr2BqNYQmNogyFPW78h2mXL6i5tLuIIkOY4u+UdvEJ/ziG+B
-	hqD30k2jF4Prh5mX7NZdYY0rSP3H4UuH0UpwpSBH0+n5fAUp/yKhKFMfjuE9YMZB
-	jfmmbzWUILJ3Cq4MiiAUPJ5F9qT8c30YeFyqT+Q1NZzT6SQTvZMqIUD4ZDEkSz7d
-	kn7rBZY2RxV682fBAk/1Tu2AL/hoFdjT+3GfvYXx6BGQ7HQ7veoloQrzbpUjrIBX
-	xoqPZKklgVZ+wSFuUZQP9v3AuakKxQs+wwVkLOawxf0zTCGjyxhbPuH2yk9YF5ys
-	sEy70A==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40u4cpne4h-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 07 Aug 2024 11:04:13 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 477B4CF8016792
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 7 Aug 2024 11:04:12 GMT
-Received: from [10.233.17.145] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 7 Aug 2024
- 04:04:07 -0700
-Message-ID: <ace5b3e1-f4a2-4c04-821a-e797d0f55cae@quicinc.com>
-Date: Wed, 7 Aug 2024 19:04:04 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1CF21B8E82;
+	Wed,  7 Aug 2024 11:08:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.14
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723028913; cv=pass; b=VSZE0fLw/fkhkiQBiLCfQW5CZp5Jg7ulS1J4AsNijORcMyqFLmK0pHFGLsJUGj7+cj0lqTVyb/FY8Tv0JIbrlLNqGhiBGldgm5g+C3tqhngbsuUnphg0Rp6s4Z+bL1kmWEleWPqBZkK4O9Fpent/OUJISHYGWXBQD3sQoYhT/cs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723028913; c=relaxed/simple;
+	bh=/biSKoGdghroZkIdSrcwVewXKoRZKmiJpXDCXLlf6/g=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=GH8WgoNaM4kjeZlnvGEI+Fuwev/3qm2MAq4GKywQWTCPIHo0uGqftHMYwBJgzNd3m3LcUtGWHn1pN/IwvFYwoXqjdq8IGCBTgmcm24ZA03ZGNX5525BNkGv/2rNKTqkb3IiknppfHX0XxMqoJ/PS8NaEs1bT8biCG6qlQE+A3t0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b=GJJRaBdv; arc=pass smtp.client-ip=136.143.188.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Delivered-To: kernel@collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1723028868; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=lsROZuLuYQNiSiT8rbwxvEW3hwLy7c0XhbIdtujDMI8a9Ajj87RTToWyfPCAYoAbS/OrLZSVIskb0PGFLw5fXyMXEIaTPRHlt1e8Dm5H4SZb2chXY2RcfA0c0nXkuH/j+q5ARU0LKozf9ANzws+obYyoPs/alhy31CIACVCfvNg=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1723028868; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=kLdQEDNBVXsEvksFLGhYH90bCM6T+iD6ZGhobATCzPw=; 
+	b=kmdzlbmSvJYDF4Fb8P7jqKcIiIBlwdOKmD/6eNtC2H8mBYJsJVBZ1O1ik6uJluoo5bjS03kiRI3ntWSKBEh//I9k8gzSo2wlV/ELIguDcAEwlz6vyIOC6x40hjaN24QDpIharR68XcFGEMAwhk4UuOR/h8Ia0ua/M9EKujOaP0U=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=cristian.ciocaltea@collabora.com;
+	dmarc=pass header.from=<cristian.ciocaltea@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1723028868;
+	s=zohomail; d=collabora.com; i=cristian.ciocaltea@collabora.com;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+	bh=kLdQEDNBVXsEvksFLGhYH90bCM6T+iD6ZGhobATCzPw=;
+	b=GJJRaBdvFjKGnmap8LXyeb/fWpSWyHgmRT7BnLCo0lMOvh3U2Ls+ti4A/hatEuya
+	QTNyonvdOF3gSnh4olhyFTLTD6UCx+AA5gA8giASEa5Cr8HABnRsr7f9AwKJ5+Awvlp
+	kgOmxVj0y/9XwybvwAx/Bk75sKJ7TbV7P0mPfls0=
+Received: by mx.zohomail.com with SMTPS id 1723028866565296.89284623296203;
+	Wed, 7 Aug 2024 04:07:46 -0700 (PDT)
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Subject: [PATCH v3 0/5] Add initial support for the Rockchip RK3588 HDMI TX
+ Controller
+Date: Wed, 07 Aug 2024 14:07:22 +0300
+Message-Id: <20240807-b4-rk3588-bridge-upstream-v3-0-60d6bab0dc7c@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: sa8775p-ride: Add QCS9100
- compatible
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Tengfei Fan
-	<quic_tengfan@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad
- Dybcio" <konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20240806-add_qcs9100_soc_id-v1-0-04d14081f304@quicinc.com>
- <20240806-add_qcs9100_soc_id-v1-4-04d14081f304@quicinc.com>
- <90eae361-7d5d-440f-a85d-dfd81b384fe7@kernel.org>
- <4a350e94-3c95-48e1-9ea8-ced483c1aa45@quicinc.com>
- <14ec06bd-0c27-4930-8bce-d3f5b68067ed@kernel.org>
-From: Tingwei Zhang <quic_tingweiz@quicinc.com>
-In-Reply-To: <14ec06bd-0c27-4930-8bce-d3f5b68067ed@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Vh9F86zSzFUruli9oGhjnINPSZ6NccLQ
-X-Proofpoint-GUID: Vh9F86zSzFUruli9oGhjnINPSZ6NccLQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-07_08,2024-08-06_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- suspectscore=0 phishscore=0 malwarescore=0 bulkscore=0 spamscore=0
- lowpriorityscore=0 mlxscore=0 clxscore=1011 adultscore=0
- priorityscore=1501 mlxlogscore=619 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2407110000 definitions=main-2408070077
+X-B4-Tracking: v=1; b=H4sIAGpVs2YC/43NwQ7CIAyA4VdZOIuBMrbpyfcwHgoDR5xjgUk0y
+ 95dtosHE+Pxb9OvM4kmOBPJsZhJMMlF54ccYlcQ3eFwNdS1uQkwKFnFOFUlDTchm4aq4Nq8f4x
+ xCgbvFKFWaC1XjdUk34/BWPfc7PMld+fi5MNre5X4Ov1HTZwyaitgopYCBKiT9n2Pygfca38nq
+ 5zgozW/NcjawWIlaywNl1/asixvfghpExQBAAA=
+To: Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Sandy Huang <hjc@rock-chips.com>, 
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ devicetree@vger.kernel.org, kernel@collabora.com, 
+ Alexandre ARNOUD <aarnoud@me.com>, Luis de Arquer <ldearquer@gmail.com>, 
+ Algea Cao <algea.cao@rock-chips.com>
+X-Mailer: b4 0.14.1
+X-ZohoMailClient: External
 
-On 8/7/2024 5:35 PM, Krzysztof Kozlowski wrote:
-> On 07/08/2024 11:17, Tengfei Fan wrote:
->>
->>
->> On 8/7/2024 3:28 PM, Krzysztof Kozlowski wrote:
->>> On 06/08/2024 06:19, Tengfei Fan wrote:
->>>> Add QCS9100 compatible in sa8775p ride and sa8775p ride r3 board DTS.
->>>> QCS9100 references SA8775p, they share the same SoC DTSI and board DTS.
->>>>
->>>
->>> I don't understand this. You claim here that QCS9100 references SA8775p
->>> but your diff says other way: SA8775p references QCS9100.
->>>
->>> Sorry, that's confusing.
->>>
->>> Best regards,
->>> Krzysztof
->>>
->>
->> I will update the compatible as follows to indicate that QCS9100
->> references SA8775p.
->>
->> compatible = "qcom,sa8775p-ride", "qcom,qcs9100", "qcom,sa8775p";
-> 
-> Is this still correct, though? sa8775p won't come with qcs9100 SoC.
-We have a new board. Hardware is same as sa877p-ride except sa8775p is 
-replaced with qcs9100. We add qcs9100 SoC compatible to sa8775p-ride 
-device tree to indicate this board can support both sa8775p SoC and 
-qcs9100 SoC.
-> 
-> Best regards,
-> Krzysztof
-> 
+The Rockchip RK3588 SoC family integrates the Synopsys DesignWare HDMI
+2.1 Quad-Pixel (QP) TX controller, which is a new IP block, quite
+different from those used in the previous generations of Rockchip SoCs.
 
--- 
+The controller supports the following features, among others:
+
+* Fixed Rate Link (FRL)
+* Display Stream Compression (DSC)
+* 4K@120Hz and 8K@60Hz video modes
+* Variable Refresh Rate (VRR) including Quick Media Switching (QMS)
+* Fast Vactive (FVA)
+* SCDC I2C DDC access
+* Multi-stream audio
+* Enhanced Audio Return Channel (EARC)
+
+This is the last component that needs to be supported in order to enable
+the HDMI output functionality on the RK3588 based SBCs, such as the
+RADXA Rock 5B.  The other components are the Video Output Processor
+(VOP2) and the Samsung IP based HDMI/eDP TX Combo PHY, for which basic
+support has been already made available via [1] and [2], respectively.
+
+Please note this is a reworked version of the original series, which
+relied on a commonized dw-hdmi approach.  Since the general consensus
+was to handle it as an entirely new IP, I dropped all patches related to
+the old dw-hdmi and Rockchip glue code - a few of them might still make
+sense as general improvements and will be submitted separately.
+
+It's worth mentioning the HDMI output support is currently limited to
+RGB output up to 4K@60Hz, without audio, CEC or any of the HDMI 2.1
+specific features.  Moreover, the VOP2 driver is not able to properly
+handle all display modes supported by the connected screens, e.g. it
+doesn't cope with non-integer refresh rates.
+
+A possible workaround consists of enabling the display controller to
+make use of the clock provided by the HDMI PHY PLL.  This is still work
+in progress and will be submitted later, as well as the required DTS
+updates.
+
+To facilitate testing and experimentation, all HDMI output related
+patches, including those part of this series, are available at [3].
+
+So far I could only verify this on the RADXA Rock 5B board.
+
 Thanks,
-Tingwei
+Cristian
+
+[1]: 5a028e8f062f ("drm/rockchip: vop2: Add support for rk3588")
+[2]: 553be2830c5f ("phy: rockchip: Add Samsung HDMI/eDP Combo PHY driver")
+[3]: https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/commits/rk3588-hdmi-bridge-v6.11-rc1
+[4]: https://lore.kernel.org/lkml/20240801-dw-hdmi-qp-tx-v1-0-148f542de5fd@collabora.com/
+
+Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+---
+Changes in v3:
+- Reintegrated bridge patchset [4] to allow automated testing and
+  simplify reviewing (Krzysztof); the after-split changes were:
+  * Made use of the new bridge HDMI helpers indicated by Dmitry
+  * Dropped connector creation to ensure driver does only support
+    DRM_BRIDGE_ATTACH_NO_CONNECTOR
+  * Updated I2C segment handling to properly handle connected DVI
+    displays (reported and fixed by Heiko)
+- Updated schema for DW HDMI QP TX IP providing some hardware details
+- Updated patch for DW HDMI QP TX Controller module referring to a
+  support library instead of a platform driver (Krzysztof)
+- Drop empty dw_hdmi_qp_unbind() export from the library and related
+  usage from RK platform driver
+- Drop Fixes tag from "drm/rockchip: Explicitly include bits header"
+  patch (Krzysztof)
+- Link to v2: https://lore.kernel.org/r/20240801-b4-rk3588-bridge-upstream-v2-0-9fa657a4e15b@collabora.com
+
+Changes in v2:
+- Reworked the glue code for RK3588 into a new Rockchip platform driver
+- Moved bridge driver patches to a separate series [4]
+- Dropped all the patches touching to the old dw-hdmi and RK platform
+  drivers
+- Added connector creation to ensure the HDMI QP bridge driver does only
+  support DRM_BRIDGE_ATTACH_NO_CONNECTOR
+- Link to v1: https://lore.kernel.org/r/20240601-b4-rk3588-bridge-upstream-v1-0-f6203753232b@collabora.com
+
+---
+Cristian Ciocaltea (5):
+      dt-bindings: display: bridge: Add schema for Synopsys DW HDMI QP TX IP
+      drm/bridge: synopsys: Add DW HDMI QP TX Controller support library
+      dt-bindings: display: rockchip: Add schema for RK3588 HDMI TX Controller
+      drm/rockchip: Explicitly include bits header
+      drm/rockchip: Add basic RK3588 HDMI output support
+
+ .../display/bridge/synopsys,dw-hdmi-qp.yaml        |  72 ++
+ .../display/rockchip/rockchip,dw-hdmi-qp.yaml      | 188 +++++
+ drivers/gpu/drm/bridge/synopsys/Kconfig            |   8 +
+ drivers/gpu/drm/bridge/synopsys/Makefile           |   2 +
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c       | 742 ++++++++++++++++++
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.h       | 834 +++++++++++++++++++++
+ drivers/gpu/drm/rockchip/Kconfig                   |   8 +
+ drivers/gpu/drm/rockchip/Makefile                  |   1 +
+ drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c     | 429 +++++++++++
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c        |   2 +
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.h        |   4 +-
+ include/drm/bridge/dw_hdmi_qp.h                    |  36 +
+ 12 files changed, 2325 insertions(+), 1 deletion(-)
+---
+base-commit: 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
+change-id: 20240601-b4-rk3588-bridge-upstream-a27baff1b8fc
 
 
