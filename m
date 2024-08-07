@@ -1,110 +1,87 @@
-Return-Path: <devicetree+bounces-91685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 784B094A311
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 10:41:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 875AB94A355
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 10:50:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 71AA6B25135
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 08:35:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40C862833AB
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 08:50:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BF911B86E5;
-	Wed,  7 Aug 2024 08:35:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04E1B1D0DC3;
+	Wed,  7 Aug 2024 08:49:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="SWLl9mL2"
+	dkim=pass (1024-bit key) header.d=xry111.site header.i=@xry111.site header.b="VeOTFGLY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from xry111.site (xry111.site [89.208.246.23])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC4692868D;
-	Wed,  7 Aug 2024 08:35:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6523B1C9ED1;
+	Wed,  7 Aug 2024 08:49:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.208.246.23
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723019733; cv=none; b=b8Ib4R/wUabAFmt2hpGLuqHAeXwEeVSsZrQ6MWK1NM1dJfrta6TGn8WvuUGXbgyvWK1PrEpm7zMzH0kZiUAHE6qvnB+wUrVzVT0tkaf7LSo6oU6GUXGjLUrY+xn0D+01K31vRGpuQZW9/GHIIfZ1xovTQ8M/9Zc1AX2OMdXjaW0=
+	t=1723020557; cv=none; b=grVHCBv9kqDgzn0DkkCRV1X2jcniHL339KBNSuT1dX80DhwjkUFTW7dBPjqMnNOYsUsoKZ7jdw9muRrIIO7gooCIp6FlGJsEx/Mf5ZNEQ87Y+gCRWmoh5D/b9VerABIBVzViloawQEbjyhDxl6oCI3srSjD2y1Hd0dTHqVJkAEQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723019733; c=relaxed/simple;
-	bh=hiDgDVwokVQeOjkS2BQGTUYHONZ7ZMc30SoWK70Sq4g=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D+9+mzxMUe6RW14ySBEr003c+tKp3scb8XRsEK6/UwR0eaPR7dyxfguJ91DS1qDR9dQdv7ZzbuuHlGxk0WUld0lnPGoRsCj+pLsrvr2zSGdEHqrznuVoU6vMLMV76xg4wp01r5LkR18jVocZFWWZZGwgo1XK84jTT2gf3jMPEqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=SWLl9mL2; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4778ZPdi077138;
-	Wed, 7 Aug 2024 03:35:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1723019725;
-	bh=fAOaZ4xLnSP5PmMNCdPVZTx2+2zABh1UiuzK+zbMX3o=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=SWLl9mL27HqUtB29m/w3IrTL/80Aun6O4w8ZZiCXi7spdi9hLkEOT/tsnKY87exT/
-	 hSvtZFOK8hfY4LT7d3O09xxIOLK1M+Ui6h0MiL3RbJWOXm7p1TBvtBWWLHYPtB4vtX
-	 PtwKDNaijQxZJjxZfSlWPXQW5Tpy6GMUzga2JKZE=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4778ZPI4104735
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 7 Aug 2024 03:35:25 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
- Aug 2024 03:35:25 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 7 Aug 2024 03:35:25 -0500
-Received: from localhost (uda0497581.dhcp.ti.com [10.24.68.185])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4778ZOP9073056;
-	Wed, 7 Aug 2024 03:35:25 -0500
-Date: Wed, 7 Aug 2024 14:05:24 +0530
-From: Manorit Chawdhry <m-chawdhry@ti.com>
-To: "Kumar, Udit" <u-kumar1@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Neha Malcom Francis <n-francis@ti.com>,
-        Aniket Limaye <a-limaye@ti.com>, Beleswar Padhi <b-padhi@ti.com>,
-        Siddharth
- Vadapalli <s-vadapalli@ti.com>
-Subject: Re: [PATCH v3 4/5] arm64: dts: ti: k3-j721e*: Add bootph-* properties
-Message-ID: <20240807083524.4ybzvvwch7e5jwck@uda0497581>
-References: <20240730-b4-upstream-bootph-all-v3-0-9bc2eccb6952@ti.com>
- <20240730-b4-upstream-bootph-all-v3-4-9bc2eccb6952@ti.com>
- <f042927d-b502-4124-aaee-4bddd94b8bf2@ti.com>
+	s=arc-20240116; t=1723020557; c=relaxed/simple;
+	bh=rCHPPbTWaPBj3q4qgNv6Q4boFMkM2mOM5k75QEyACsg=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=UJyaveSXc8xGPE4rv0yeyWxoXrtK9FXo8TeOeZRf5152RGMFkjH9o5JMvXWukCNlJDjuCrbeuHYkKZUUl4mYMEcmnddeXE2NQ0eAkBd7kGFXQd+jVMfN0n60dov3+7AI/liP47L3dS2HeUFrX4mPEH493qbSMRCs10uO6BHvjTw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=xry111.site; spf=pass smtp.mailfrom=xry111.site; dkim=pass (1024-bit key) header.d=xry111.site header.i=@xry111.site header.b=VeOTFGLY; arc=none smtp.client-ip=89.208.246.23
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=xry111.site
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xry111.site
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xry111.site;
+	s=default; t=1723020005;
+	bh=rCHPPbTWaPBj3q4qgNv6Q4boFMkM2mOM5k75QEyACsg=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=VeOTFGLYwvm/ckObBN2Y+5f4cHxrZx64RCbPSkM5WdpMN3WXUR2bXeRjsECmknLaq
+	 jc785ECVLrdshK20tO5vGTspi6NJD6EVeeqzmRHCeX/13qd4zgWo0Ji4cRr79GL+rp
+	 JxzJAvP9C5ewrIkvmYV6M3r9mLwkdKExufXxhQ5M=
+Received: from [127.0.0.1] (unknown [IPv6:2001:470:683e::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature ECDSA (P-384) server-digest SHA384)
+	(Client did not present a certificate)
+	(Authenticated sender: xry111@xry111.site)
+	by xry111.site (Postfix) with ESMTPSA id 7CB2366F24;
+	Wed,  7 Aug 2024 04:40:00 -0400 (EDT)
+Message-ID: <6c7ec8196fe01aa651f8b59b445b70de79137181.camel@xry111.site>
+Subject: Re: [PATCH v2 1/3] dt-bindings: serial: Add Loongson UART controller
+From: Xi Ruoyao <xry111@xry111.site>
+To: =?gb2312?Q?=D6=A3=BA=C0=CD=FE?= <zhenghaowei@loongson.cn>, Krzysztof
+ Kozlowski <krzk@kernel.org>, gregkh@linuxfoundation.org,
+ jirislaby@kernel.org, robh@kernel.org,  krzk+dt@kernel.org,
+ conor+dt@kernel.org, chenhuacai@kernel.org, kernel@xen0n.name, 
+ p.zabel@pengutronix.de
+Cc: linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, loongarch@lists.linux.dev
+Date: Wed, 07 Aug 2024 16:39:58 +0800
+In-Reply-To: <f31609c4-1e47-49bc-9231-5b0353d35dc9@loongson.cn>
+References: <20240804063834.70022-1-zhenghaowei@loongson.cn>
+	 <4d1f2426-b43c-4727-8387-f18edf937163@kernel.org>
+	 <f31609c4-1e47-49bc-9231-5b0353d35dc9@loongson.cn>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <f042927d-b502-4124-aaee-4bddd94b8bf2@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Udit,
+On Wed, 2024-08-07 at 16:23 +0800, =E9=83=91=E8=B1=AA=E5=A8=81 wrote:
+> The file "drivers/tty/serial/8250/8250_loongson.c" will be created in=20
+> the patch
+>=20
+> "tty: serial: 8250: Add loongson uart driver support". Is it=20
+> inappropriate to reference it here?
 
-On 13:07-20240807, Kumar, Udit wrote:
-> 
-> >   	};
-> >   	vdd_mmc1_en_pins_default: vdd-mmc1-en-default-pins {
-> > @@ -622,6 +627,7 @@ J721E_WKUP_IOPAD(0xf4, PIN_OUTPUT, 2)/* (D25) MCU_I3C0_SDA.MCU_UART0_RTSn */
-> >   			J721E_WKUP_IOPAD(0xe4, PIN_INPUT, 0) /* (H28) WKUP_GPIO0_13.MCU_UART0_RXD */
-> >   			J721E_WKUP_IOPAD(0xe0, PIN_OUTPUT, 0)/* (G29) WKUP_GPIO0_12.MCU_UART0_TXD */
-> >   		>;
-> > +		bootph-pre-ram;
-> 
-> 
-> Please make consistency between pin mux and node.
-> 
-> Here I see pin mux is bootph-pre-ram and mcu_uart is bootph-all
+You should add this line in the second patch then.  Separating a large
+change into multiple patches in a series is not for formalities' sake.=20
+Each patch should be logically intact on its own.
 
-Do we want it to be bootph-pre-ram or bootph-all?
-
-Regards,
-Manorit
+--=20
+Xi Ruoyao <xry111@xry111.site>
+School of Aerospace Science and Technology, Xidian University
 
