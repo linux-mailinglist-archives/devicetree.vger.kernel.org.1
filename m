@@ -1,153 +1,109 @@
-Return-Path: <devicetree+bounces-91823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6962A94ACCE
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 17:25:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFC9E94ACDA
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 17:26:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F39D6B2AC43
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 15:22:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C4ED1C223F0
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 15:26:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BECDE12C53B;
-	Wed,  7 Aug 2024 15:20:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87B0084E11;
+	Wed,  7 Aug 2024 15:26:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B7J4rpa8"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="T/KKV1T6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91E1E84A22;
-	Wed,  7 Aug 2024 15:20:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A2A078C92;
+	Wed,  7 Aug 2024 15:26:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723044031; cv=none; b=pxJjQLKu/34cznMn9PGxdwCaOQje1YoX9ybKWbuCzw1gcWZqC4xSoes78g1dymVsHAMS2gAi8pHNv01Ym3C4G/tjDDI+FT/abN/A2CBk2DAU9ZEWloEFH+1+geDhMxfIn2cvm24urs6CxMq+9ahwJL67DwFYOD9/oVNKXDQAkiA=
+	t=1723044372; cv=none; b=XoExtLog78CKi2+bv+9S8oyXvJ4mjPEkwMmT92eI78uaa9/MFZdc2UBcqwfaweavApUA9E49NThcjNmqG9+78qvrT82qpGz/PlJr+SvTCz7qhdW8LDA3Iky8XlK4NVPIk3DT1Gyq69iwal5Sa+c7PxQV+8L7Fvi1lHttZziuZK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723044031; c=relaxed/simple;
-	bh=JxBWdZG47Tqqae9MVZdBLLmCto0I5YOx82vyGjZCLzQ=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=gFQLlTMuwjId2r9xau8h54q3ERIz/3AoXmYsOVK89NOYfYVo5HnCeKcDQ2PETZPZ31htMnmWy3Igjo4XR9CJPdGa6TarzQRBGMxwduKlJwvCMBHgRFufH0CT9aeKPIZDykFqAdBbgmY+Lbt7NsYESCockLj+Y2vPFfgFpUKriIw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B7J4rpa8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32F4FC4AF0D;
-	Wed,  7 Aug 2024 15:20:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723044031;
-	bh=JxBWdZG47Tqqae9MVZdBLLmCto0I5YOx82vyGjZCLzQ=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=B7J4rpa8+EdoC2MJqgw7hncTeHgs7C6fj0KiwrUG8pJo8xBzFsg7QxRDwaqfeWXmp
-	 v9cYTWPx4uFBxZcNV3Bm32f8ZgOEmF0h9QWP63miQMIC0HIq7NQGqYjOOb2BQ8HMNT
-	 EoazbxNgU3GCrkWQGCuNWELdyjUiwXnMfuUG+9YE2gK7R7VoDo0OBzhk6tUttGE5iZ
-	 noGi87C3DawR9bPS2sZrMvRNrDHdomULs6Bz2yVxK2LZB5uYbmAVDFjLHaHQrCrGU2
-	 t/+xum7qDdKyC1tjUatdTupoAABjL1VZk/iCte8NkFigjwrUk+1y4UiaQRZ1UGW9g1
-	 WPZEj74+qhhlQ==
-Date: Wed, 07 Aug 2024 09:20:30 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1723044372; c=relaxed/simple;
+	bh=BqdA/vVc4uU03V7CULhvGqkbj4gcBtTlzMOz01n3C6k=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=W/XVJRQ5M5Nojd8FHZmsjQR+rQJK/QpiRahNcjmuuRH2tmWQmDspM5JG0T3Jvh7h/d0KoF4xRFrA+Dt3+sRkqidNvjA3VafFJIn1OpYr8WPWkKnMAIG3uREGdSTp7CAaNvgtl3O3s5OhaSZo4ncmGsMR/TOzzIl2UjyNWNgHyR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=T/KKV1T6; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 477FQ3TF032913;
+	Wed, 7 Aug 2024 10:26:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1723044363;
+	bh=88ErLMfQEURwB5Hpcxk5KSlv0G8FZKb8XyZA6cCQhl4=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=T/KKV1T6BNnl1D7ZoxqIiRbcY6BgMc21vmbzBTTKys+HjFnsV/XQzuVX/Kh9uGwAO
+	 yLiwYVeGcqasTFcP9OitpazZQVxq+AqU/gwqONusmxw1Utaw83ZeLjd5clum0ssOvu
+	 utuA0Eo72w3IyvFhbv54CTH5fIlxuRLuhdzg+yus=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 477FQ3RH054993
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 7 Aug 2024 10:26:03 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
+ Aug 2024 10:26:02 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 7 Aug 2024 10:26:02 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 477FQ25S075971;
+	Wed, 7 Aug 2024 10:26:02 -0500
+Date: Wed, 7 Aug 2024 10:26:02 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Judith Mendez <jm@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Santhosh Kumar
+	<s-k6@ti.com>,
+        Bryan Brattlof <bb@ti.com>
+Subject: Re: [PATCH 3/5] arm64: dts: ti: k3-am62p: Remove 'reserved' status
+Message-ID: <20240807152602.qtlqdne256mioogs@embroider>
+References: <20240806214605.3379881-1-jm@ti.com>
+ <20240806214605.3379881-4-jm@ti.com>
+ <20240807114605.ggieur532eh4usus@diagram>
+ <65047cc9-011b-46d3-939e-b7733c2f0fe2@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Frieder Schrempf <frieder@fris.de>
-Cc: Parthiban Nallathambi <parthiban@linumiz.com>, 
- devicetree@vger.kernel.org, Hugo Villeneuve <hvilleneuve@dimonoff.com>, 
- Bjorn Helgaas <bhelgaas@google.com>, 
- Gregor Herburger <gregor.herburger@ew.tq-group.com>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Joao Paulo Goncalves <joao.goncalves@toradex.com>, 
- Frieder Schrempf <frieder.schrempf@kontron.de>, 
- Conor Dooley <conor.dooley@microchip.com>, linux-kernel@vger.kernel.org, 
- Marco Felsch <m.felsch@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, imx@lists.linux.dev, 
- Shawn Guo <shawnguo@kernel.org>, 
- Francesco Dolcini <francesco.dolcini@toradex.com>, 
- Fabio Estevam <festevam@gmail.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- linux-arm-kernel@lists.infradead.org, 
- Mathieu Othacehe <m.othacehe@gmail.com>, 
- Alexander Stein <alexander.stein@ew.tq-group.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Hiago De Franco <hiago.franco@toradex.com>
-In-Reply-To: <20240807104137.558741-1-frieder@fris.de>
-References: <20240807104137.558741-1-frieder@fris.de>
-Message-Id: <172304386093.2508296.15187561674368738035.robh@kernel.org>
-Subject: Re: [PATCH v2 0/3] Add support for Kontron OSM-S i.MX8MP SoM and
- carrier boards
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <65047cc9-011b-46d3-939e-b7733c2f0fe2@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-
-On Wed, 07 Aug 2024 12:38:45 +0200, Frieder Schrempf wrote:
-> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+On 10:13-20240807, Judith Mendez wrote:
+> Hi Nishanth,
 > 
-> Patch 1: board DT bindings
-> Patch 2: OSM-S i.MX8MP SoM and BL carrier board devicetrees
-> Patch 3: i.MX8MP SMARC module and eval carrier board devicetrees
+> On 8/7/24 6:46 AM, Nishanth Menon wrote:
+> > On 16:46-20240806, Judith Mendez wrote:
+> > > From: Santhosh Kumar K <s-k6@ti.com>
+> > > 
+> > > Remove 'reserved' status for MCU ESM node in AM62P device tree.
+> > 
+> > Why?
 > 
-> Changes for v2:
-> 
-> DT bindings (patch1):
-> * Add tags from Krzysztof and Conor (thanks!)
-> 
-> SMARC DTs (patch 3):
-> * Fix GPIO labels
-> * Add support for TPM chip on SMARC module
-> * Disable PWM in favor of GPIO5 on SMARC carrier
-> * Enable LCDIF node to make HDMI work
-> * Add support for GPIO expanders on SMARC carrier
-> * Remove SPI flash as its removable and should be in an overlay
-> * Add CAN regulators to fix transceiver enable
-> 
-> Frieder Schrempf (3):
->   dt-bindings: arm: fsl: Add Kontron i.MX8MP OSM-S based boards
->   arm64: dts: Add support for Kontron OSM-S i.MX8MP SoM and BL carrier
->     board
->   arm64: dts: Add support for Kontron i.MX8MP SMARC module and eval
->     carrier
-> 
->  .../devicetree/bindings/arm/fsl.yaml          |  13 +
->  arch/arm64/boot/dts/freescale/Makefile        |   6 +
->  .../dts/freescale/imx8mp-kontron-bl-osm-s.dts | 307 ++++++
->  .../boot/dts/freescale/imx8mp-kontron-dl.dtso | 112 +++
->  .../dts/freescale/imx8mp-kontron-osm-s.dtsi   | 908 ++++++++++++++++++
->  .../imx8mp-kontron-smarc-eval-carrier.dts     | 258 +++++
->  .../dts/freescale/imx8mp-kontron-smarc.dtsi   | 281 ++++++
->  7 files changed, 1885 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-kontron-bl-osm-s.dts
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-kontron-dl.dtso
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-kontron-smarc-eval-carrier.dts
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-kontron-smarc.dtsi
-> 
-> --
-> 2.45.2
-> 
-> 
-> 
+> Main ESM reset is routed to the MCU ESM, hense enable
+> MCU ESM in DT to be able to reset the CPU.
 
+please document that in the commit message - please review the rest
+of the patches as well. Is this problem present on other related AM6
+products as well - will be good to audit and fixup in the series?
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y freescale/imx8mp-kontron-bl-osm-s.dtb freescale/imx8mp-kontron-smarc-eval-carrier.dtb' for 20240807104137.558741-1-frieder@fris.de:
-
-arch/arm64/boot/dts/freescale/imx8mp-kontron-bl-osm-s.dtb: /usbc: failed to match any schema with compatible: ['linux,extcon-usb-gpio']
-arch/arm64/boot/dts/freescale/imx8mp-kontron-smarc-eval-carrier.dtb: /usbc: failed to match any schema with compatible: ['linux,extcon-usb-gpio']
-
-
-
-
-
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
