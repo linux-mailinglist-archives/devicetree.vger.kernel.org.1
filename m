@@ -1,141 +1,197 @@
-Return-Path: <devicetree+bounces-91897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91898-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D91B694B31F
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 00:35:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 737F194B329
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 00:39:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4AC9EB20DAA
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 22:35:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 330FA281460
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 22:39:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1C0D14EC50;
-	Wed,  7 Aug 2024 22:35:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C00B145B26;
+	Wed,  7 Aug 2024 22:39:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gEGa2nht"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Le9xoYIs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B97FF84037;
-	Wed,  7 Aug 2024 22:35:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98C7584037
+	for <devicetree@vger.kernel.org>; Wed,  7 Aug 2024 22:39:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723070108; cv=none; b=XCnzPEfbbKSmE0FYqOCQHyXwbMCn28AsvM0J3px/m8XWLSt0kWYb/I2detg3cRCrE34Vs/BcM25TUONSj0JqcbczJh+3MkF8UngQZEKzqBLRF3bAbV2d5e66uQeob9wCuujiXedgv1Sbd6uGp2+n1dabASveplxG02D1FtgRM2k=
+	t=1723070373; cv=none; b=Gzskl132QJ1Uav9t9tUuzo3Y4UzMeNCiPf8eeVFpL7c8HplSJmAQqQ7m+JBwbZcj45rDw13LYpPE6GIZAbFx5UcUjnaLenDt/ym8b5jXa0NX6iDVnX1aYGcrnIN988ER1tOsbUn30EYMQkzC+DELJ8mTPOKGCJB30mds51VgvlY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723070108; c=relaxed/simple;
-	bh=4SW2koNLSR3UGJDCQ4tfaSCI1PPYQl+YNGBqJggCxkI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ilraU9e/cz3fYtA6PfXDaJc3wMJnj3TIe90njjQU1nbiPyxhezSoc+LrrJ+4EdTuKKOwD3sE8arkZxHwf3To27iRdbbXMoIUTvHQhUjJHk1ETTfohBMOdmZ/gx2F11VyVBjYXrfS8HHU2WZngxcM+EdpbPMs5RzGTHHPlpsVB/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gEGa2nht; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2001FC4AF0D;
-	Wed,  7 Aug 2024 22:35:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723070108;
-	bh=4SW2koNLSR3UGJDCQ4tfaSCI1PPYQl+YNGBqJggCxkI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gEGa2nhtWx0OmR2n5WPnJGF7lXEYDWPQbd9goc340or6vClcv7BK8g+LXX5K7zMbm
-	 7gTaJJ8GueY/qPpqV3LI6rPdh1sb9V818kNypu3NDb1MlunXw+/i98worzpGRUUy4O
-	 jhpHTyuOR3zUiKUoKU+DTQyGfnVKaLlWHXaKl8V2bNClU9NDY/s89LdDt0qOZo8oNF
-	 BLTgshL4skQl6QHFdslAxXtOFGYUfB0DpczeDbwAn5ciEjMXyfNDVhMO9DMFeQWF4e
-	 eRlSqLrTFOFFnwckjRICPqfoFNnUC744CAYuS2wtbHhxTCynLgeVJSLPWTvdHVWZLF
-	 RdiqgOdEPYXCA==
-Date: Thu, 8 Aug 2024 00:35:01 +0200
-From: Niklas Cassel <cassel@kernel.org>
-To: Hongxing Zhu <hongxing.zhu@nxp.com>
-Cc: "tj@kernel.org" <tj@kernel.org>,
-	"dlemoal@kernel.org" <dlemoal@kernel.org>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"shawnguo@kernel.org" <shawnguo@kernel.org>,
-	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-	"festevam@gmail.com" <festevam@gmail.com>,
-	"linux-ide@vger.kernel.org" <linux-ide@vger.kernel.org>,
-	"stable@vger.kernel.org" <stable@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>
-Subject: Re: [PATCH v4 4/6] ata: ahci_imx: Add 32bits DMA limit for i.MX8QM
- AHCI SATA
-Message-ID: <ZrP2lUjTAazBlUVO@x1-carbon.lan>
-References: <1721367736-30156-1-git-send-email-hongxing.zhu@nxp.com>
- <1721367736-30156-5-git-send-email-hongxing.zhu@nxp.com>
- <Zp/Uh/mavwo+755Q@x1-carbon.lan>
- <AS8PR04MB867612E75A6C08983F7031528CB32@AS8PR04MB8676.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1723070373; c=relaxed/simple;
+	bh=r4/jxIww+nd5h+9byFO08Nl1aAKEBgF9a8LwHunEN8Q=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=JMe5qfucXu3dwYJgEBii1lyZonAwCEuF53kff64xZcWoYWCTF9RFL5r2X7pFVbksnalkre68LGdCeCuMy6P1U0Y5zNlQdv6wxjW4jqF6VLYQZy6TK/W2o91KeNi3DB3EI5cwtNl+1S59XlOWlJPp2ZVA83/2nVFHgMo1e7niEU0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Le9xoYIs; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-428178fc07eso2102965e9.3
+        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2024 15:39:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723070368; x=1723675168; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TU5hUQMxj9H4EY9mz059Zma42JrexWcHaTTtOZTJBiU=;
+        b=Le9xoYIsY6nVIBoEkAE2bs6bN2adbA+92KENMJcaYNpVxhzx00k6RM9kDSeZWC2pHf
+         tXNT+347PrFyJurCs1KiYcpAKT7a/YX+c9yczQ56A1OlF2yR5wo4bX0m3zuvIcQeIS5/
+         Nx/42cL0wnwr9xs/DW+jYqhRSMN5rqzwiUirawez1S6ql2MCO8ioPzKx6MOP/EuXgrXE
+         rWWa/mYQueKud+cadV68ND2dwaSdPu6QFgnhpbqfhkEPSkZi5FncOueBmpJzPELYShCh
+         ws2NPIl6BSLWhziApSTg+uGn/JxkLqrBCMsEWvZPcPb+EsoQBsWhHg1Vis5OaM3Zk8pt
+         B2Wg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723070368; x=1723675168;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TU5hUQMxj9H4EY9mz059Zma42JrexWcHaTTtOZTJBiU=;
+        b=tSANL89uAU6giBv+vjmmfRYaVZjSLCbUZffyxydnqwylevt2j7oYOvS4nGztRVggiW
+         Z/4Kn1V1ThvpA+r7/fh+vL6UirYJe0Cgw5ZsuMpwJKPG182wIWM8IY8n98S5o0j37Mwp
+         COJhaQY+cbVVY6H6lBxSK6PwD3FZnYEz0DLPzlsH3yOB+UHVS8NfqKc05cWHnLbzJTM4
+         t8Xp4c4+0oGuSz5ldP6IwJgEGueGRpWKui4AhqNqm5BbZNVnZ7yIhittWmLdHyhlhTK0
+         CF4n5bx3P371nX+YePyJP+jQx+TJLYFJLSHund42sNDBonRjkz0eXQrhd864a5z7gADm
+         KROQ==
+X-Gm-Message-State: AOJu0YxkhNk9tyIVskObI/JpuLCpXqtGHWHhEq3LXyZNSeHdTK7m/7P3
+	c4zRLqEp3p3iIEVULPglNGHQbBqOKwSu5qex/rYWKeUTU6rgape1dfAMECcU
+X-Google-Smtp-Source: AGHT+IFudMy0cKw+eoSMpTMuKZS4Zn3kn2Xbh7zkFnyr25X0Xby6FtxoCs0JIJYYT5Lf9mse1wkEaw==
+X-Received: by 2002:a05:600c:5128:b0:426:64a2:5362 with SMTP id 5b1f17b1804b1-4290aee0421mr1107895e9.8.1723070367822;
+        Wed, 07 Aug 2024 15:39:27 -0700 (PDT)
+Received: from localhost.localdomain ([86.121.5.113])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429059cf83dsm45195405e9.47.2024.08.07.15.39.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Aug 2024 15:39:27 -0700 (PDT)
+From: Ioan-Vladut Voicu <vvlad424@gmail.com>
+To: devicetree@vger.kernel.org
+Cc: Ioan-Vladut Voicu <vvlad424@gmail.com>
+Subject: [PATCH] Modified the device tree for Tech Nexion's PICO-PI-IMX8M board to keep the power regulators always on, due to encountering problems after booting the kernel on the board (the power resistors would turn off shortly after being presented the login prompt).
+Date: Thu,  8 Aug 2024 01:38:14 +0300
+Message-Id: <20240807223814.88704-1-vvlad424@gmail.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <AS8PR04MB867612E75A6C08983F7031528CB32@AS8PR04MB8676.eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: 8bit
 
-On Fri, Aug 02, 2024 at 02:30:45AM +0000, Hongxing Zhu wrote:
-> >
-> > Does this solve your problem:
-> > diff --git a/drivers/ata/libahci_platform.c b/drivers/ata/libahci_platform.c
-> > index 581704e61f28..fc86e2c8c42b 100644
-> > --- a/drivers/ata/libahci_platform.c
-> > +++ b/drivers/ata/libahci_platform.c
-> > @@ -747,12 +747,11 @@ int ahci_platform_init_host(struct platform_device
-> > *pdev,
-> >                         ap->ops = &ata_dummy_port_ops;
-> >         }
-> >
-> > -       if (hpriv->cap & HOST_CAP_64) {
-> > -               rc = dma_coerce_mask_and_coherent(dev,
-> > DMA_BIT_MASK(64));
-> > -               if (rc) {
-> > -                       dev_err(dev, "Failed to enable 64-bit DMA.\n");
-> > -                       return rc;
-> > -               }
-> > +       rc = dma_coerce_mask_and_coherent(dev,
-> > +                       DMA_BIT_MASK((hpriv->cap & HOST_CAP_64) ? 64 :
-> > 32));
-> > +       if (rc) {
-> > +               dev_err(dev, "DMA enable failed\n");
-> > +               return rc;
-> >         }
-> >
-> >         rc = ahci_reset_controller(host);
-> >
-> Hi Niklas:
-> I'm so sorry to reply late.
-> About the 32bit DMA limitation of i.MX8QM AHCI SATA.
-> It's seems that one "dma-ranges" property in the DT can let i.MX8QM SATA
->  works fine in my past days tests without this commit.
-> How about drop these driver changes, and add "dma-ranges" for i.MX8QM SATA?
-> Thanks a lot for your kindly help.
+---
+ arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dts | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-Hello Richard,
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dts b/arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dts
+index ec89b5ade..27d81083d 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dts
+@@ -80,6 +80,7 @@ buck1: BUCK1 {
+ 				regulator-min-microvolt = <700000>;
+ 				regulator-max-microvolt = <1300000>;
+ 				regulator-boot-on;
++				regulator-always-on;
+ 				regulator-ramp-delay = <1250>;
+ 				rohm,dvs-run-voltage = <900000>;
+ 				rohm,dvs-idle-voltage = <850000>;
+@@ -91,6 +92,7 @@ buck2: BUCK2 {
+ 				regulator-min-microvolt = <700000>;
+ 				regulator-max-microvolt = <1300000>;
+ 				regulator-boot-on;
++				regulator-always-on;
+ 				regulator-ramp-delay = <1250>;
+ 				rohm,dvs-run-voltage = <1000000>;
+ 				rohm,dvs-idle-voltage = <900000>;
+@@ -101,6 +103,7 @@ buck3: BUCK3 {
+ 				regulator-min-microvolt = <700000>;
+ 				regulator-max-microvolt = <1300000>;
+ 				regulator-boot-on;
++				regulator-always-on;
+ 				rohm,dvs-run-voltage = <1000000>;
+ 			};
+ 
+@@ -109,6 +112,7 @@ buck4: BUCK4 {
+ 				regulator-min-microvolt = <700000>;
+ 				regulator-max-microvolt = <1300000>;
+ 				regulator-boot-on;
++				 regulator-always-on;
+ 				rohm,dvs-run-voltage = <1000000>;
+ 			};
+ 
+@@ -117,6 +121,7 @@ buck5: BUCK5 {
+ 				regulator-min-microvolt = <700000>;
+ 				regulator-max-microvolt = <1350000>;
+ 				regulator-boot-on;
++				regulator-always-on;
+ 			};
+ 
+ 			buck6: BUCK6 {
+@@ -124,6 +129,7 @@ buck6: BUCK6 {
+ 				regulator-min-microvolt = <3000000>;
+ 				regulator-max-microvolt = <3300000>;
+ 				regulator-boot-on;
++				regulator-always-on;
+ 			};
+ 
+ 			buck7: BUCK7 {
+@@ -131,6 +137,7 @@ buck7: BUCK7 {
+ 				regulator-min-microvolt = <1605000>;
+ 				regulator-max-microvolt = <1995000>;
+ 				regulator-boot-on;
++				regulator-always-on;
+ 			};
+ 
+ 			buck8: BUCK8 {
+@@ -138,6 +145,7 @@ buck8: BUCK8 {
+ 				regulator-min-microvolt = <800000>;
+ 				regulator-max-microvolt = <1400000>;
+ 				regulator-boot-on;
++				regulator-always-on;
+ 			};
+ 
+ 			ldo1: LDO1 {
+@@ -161,6 +169,7 @@ ldo3: LDO3 {
+ 				regulator-min-microvolt = <1800000>;
+ 				regulator-max-microvolt = <3300000>;
+ 				regulator-boot-on;
++				regulator-always-on;
+ 			};
+ 
+ 			ldo4: LDO4 {
+@@ -168,6 +177,7 @@ ldo4: LDO4 {
+ 				regulator-min-microvolt = <900000>;
+ 				regulator-max-microvolt = <1800000>;
+ 				regulator-boot-on;
++				regulator-always-on;
+ 			};
+ 
+ 			ldo5: LDO5 {
+@@ -175,6 +185,7 @@ ldo5: LDO5 {
+ 				regulator-min-microvolt = <1800000>;
+ 				regulator-max-microvolt = <3300000>;
+ 				regulator-boot-on;
++				regulator-always-on;
+ 			};
+ 
+ 			ldo6: LDO6 {
+@@ -182,6 +193,7 @@ ldo6: LDO6 {
+ 				regulator-min-microvolt = <900000>;
+ 				regulator-max-microvolt = <1800000>;
+ 				regulator-boot-on;
++				regulator-always-on;
+ 			};
+ 
+ 			ldo7: LDO7 {
+@@ -189,6 +201,7 @@ ldo7: LDO7 {
+ 				regulator-min-microvolt = <1800000>;
+ 				regulator-max-microvolt = <3300000>;
+ 				regulator-boot-on;
++				regulator-always-on;
+ 			};
+ 		};
+ 	};
+-- 
+2.39.2
 
-did you try my suggested patch above?
-
-
-If you look at dma-ranges:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#dma-ranges
-
-"dma-ranges" property should be used on a bus device node
-(such as PCI host bridges).
-
-It does not seem correct to add this property (describing the DMA limit
-of the AHCI controller, a PCI endpoint) on the PCI host bridge/controller.
-
-This property belongs to the AHCI controller, not the upstream PCI
-host bridge/controller.
-
-AHCI has a specific register to describe if the hardware can support
-64-bit DMA addresses or not, so if my suggested patch works for you,
-it seems like a more elegant solution (which also avoids having to
-abuse device tree properties).
-
-
-Kind regards,
-Niklas
 
