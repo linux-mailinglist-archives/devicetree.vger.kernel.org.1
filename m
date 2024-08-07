@@ -1,63 +1,48 @@
-Return-Path: <devicetree+bounces-91718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0A8494A412
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 11:19:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DAACA94A42C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 11:21:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D4CC1C22614
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 09:19:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 099FF1C2151E
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 09:21:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A46421CCB45;
-	Wed,  7 Aug 2024 09:18:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB0E31CCB45;
+	Wed,  7 Aug 2024 09:20:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="EDDcIwfj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BrU+LAnu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1ACF1CB33B;
-	Wed,  7 Aug 2024 09:17:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96C6B811E2;
+	Wed,  7 Aug 2024 09:20:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723022280; cv=none; b=Lc706bWk4RjM5bETlOaZh4xWLeFIZoeEMX6Zp4KeLwfI4q2CO2GrKbIk1mchOCkR/ILxcPKdfszjqKTlz0CzvstEavpCkePvaXYre2fe07+q32juv7gA8S9uhKOAxTpsZBeSsFCVWnOtJqtMLDwKW5mWKjmseQy2kNE6Uio9MHo=
+	t=1723022424; cv=none; b=h2m0IF8PY83x7GXETpRHOQD+bMBM7RiCzg/W9aeznMyH4QD56FZO4G44IY/SD78cZU7gNCPn2e0wiqmldFa5Ryk2kAT2CInsoiKtlE2tyRzrdfsYBQJVFT9G/PFqS3ZI2WW2S2NxdAPhEjQhoM25DI50GCh5RcIHWtG2cLlGhC8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723022280; c=relaxed/simple;
-	bh=39rohXLzeBEAAVexRO/WFbUOWZHEOX9q/m+xnCgiJCE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=mjlC4l/1SOz716nD7Q4OFSJtN/tcI+OJa2ZO53ZoK2dQrZsXegSLSj0G+C7PG/fhGvrvRPgF6zgMh+Xc8Glz474nbAH3mw+tiy8LpPOxEzAUvKVS39UhMHRdix2hG7tW8Kud181mEc5FMcPXJV8W2FQDn0nFbEGKCHfiNpDR7iM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=EDDcIwfj; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4778HZoN012996;
-	Wed, 7 Aug 2024 09:17:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ZmD5tpeiRe2KpqXR7PcrvWkwyuhQCJPv0WV/gdOctx0=; b=EDDcIwfjMHOPNxAm
-	W8ymKiLep1wAV6ckBDR65mIhyXBcpn0sH+cp7+UuPgLGoO9raLnb0mAwZUisciY+
-	fpcvDFvP5tVUiESwuKxqVNivdFHEQ6ngPeniNyoxixAvKVuTB21d+3GEXzbtT9QM
-	NgfVcLoq3lgEZwC8iuQ4wirz/JANi8HCKaoJZaftsGkIzCyBW/VeC/sUAgNEb37O
-	CEJaniGvTITwLwKmEju8pAUAX3EJoN7Nzte7K7Na1PlXYnoB7aH0/VE7vNl150Pr
-	FgY6Iw8N33Mc6V9yQZtqr5zbKnpjfN0ehgTxOGV4oyTqB4wLva47lA2u5Nab9J1q
-	4uRx5A==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40sbj6t7wk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 07 Aug 2024 09:17:53 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 4779Hqkd006638
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 7 Aug 2024 09:17:52 GMT
-Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 7 Aug 2024
- 02:17:47 -0700
-Message-ID: <4a350e94-3c95-48e1-9ea8-ced483c1aa45@quicinc.com>
-Date: Wed, 7 Aug 2024 17:17:45 +0800
+	s=arc-20240116; t=1723022424; c=relaxed/simple;
+	bh=gD+BO8KCPo5FlDSkmYt3b0GRFkK77JUKqOMdtZw1Tmo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=azmCgVh6iEj2ba4YYCt6w71TfwJkv4JUpXqTZB4jE/FbtzTGB2HukHAh8hL8siPMvnneZ4U4yG+flwkEPKaSynnvL+sr/NtLeSm0F4AqH4+VFlBxLgRIZqshewuGHOygOQDqLd8hvwxvK522PI2PWlienZGmVvQ5+/TCyl8TSfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BrU+LAnu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3462AC4AF0B;
+	Wed,  7 Aug 2024 09:20:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723022424;
+	bh=gD+BO8KCPo5FlDSkmYt3b0GRFkK77JUKqOMdtZw1Tmo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BrU+LAnuq3IOtevecR/MWHV/YXBKF6+8tqfmtn/ieL+jdVvmEihaxzgYX4JB4E8Cp
+	 LbFJfk2KVuDPAWChibfQpVZJdJWt2qYFq8TG7ntJEZB36aVvWeyKgTptciNwCvvHE+
+	 90L3kqpbXsxWvLAtDKgRAXPJc6yCwwtexcZZYKIxdy/n9Y+5tCt0MwiCN3RDYsc1Ye
+	 TQ3tnldpv5iYrhuoH4kTJF8fMA/Z/86ds64qLrfFbrIhlkWRZtrBim+qgrPD3XTNhj
+	 oObNScA0mciiDFnF2toL4tmFJHU+8bOPjTQRAcMtsLlxP1kLAE8KhTIh1PvUYnZix8
+	 3963bZDt2gkjg==
+Message-ID: <e6b4e0d8-7183-4ff4-a373-cb1c0c98d993@kernel.org>
+Date: Wed, 7 Aug 2024 11:20:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,64 +50,339 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: sa8775p-ride: Add QCS9100
- compatible
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20240806-add_qcs9100_soc_id-v1-0-04d14081f304@quicinc.com>
- <20240806-add_qcs9100_soc_id-v1-4-04d14081f304@quicinc.com>
- <90eae361-7d5d-440f-a85d-dfd81b384fe7@kernel.org>
-From: Tengfei Fan <quic_tengfan@quicinc.com>
-In-Reply-To: <90eae361-7d5d-440f-a85d-dfd81b384fe7@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Subject: Re: [PATCH v1 08/10] arm64: dts: exynos: Add initial support for
+ exynos8895 SoC
+To: ivo.ivanov.ivanov1@gmail.com, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>
+Cc: linux-samsung-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240807082843.352937-1-ivo.ivanov.ivanov1@gmail.com>
+ <20240807082843.352937-9-ivo.ivanov.ivanov1@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240807082843.352937-9-ivo.ivanov.ivanov1@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: ViJuM3OtyWxYv42I7O4gRJP9jnOAfWkd
-X-Proofpoint-GUID: ViJuM3OtyWxYv42I7O4gRJP9jnOAfWkd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-07_06,2024-08-06_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
- priorityscore=1501 adultscore=0 mlxscore=0 lowpriorityscore=0 bulkscore=0
- phishscore=0 mlxlogscore=673 clxscore=1015 malwarescore=0 impostorscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
- definitions=main-2408070064
 
-
-
-On 8/7/2024 3:28 PM, Krzysztof Kozlowski wrote:
-> On 06/08/2024 06:19, Tengfei Fan wrote:
->> Add QCS9100 compatible in sa8775p ride and sa8775p ride r3 board DTS.
->> QCS9100 references SA8775p, they share the same SoC DTSI and board DTS.
->>
+On 07/08/2024 10:28, ivo.ivanov.ivanov1@gmail.com wrote:
+> From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
 > 
-> I don't understand this. You claim here that QCS9100 references SA8775p
-> but your diff says other way: SA8775p references QCS9100.
+> Exynos 8895 SoC is an ARMv8 mobile SoC found in the Samsung Galaxy
+> S8 (dreamlte), S8 Plus (dream2lte), Note 8 (greatlte) and the Meizu
+> 15 Plus (m1891). Add minimal support for that SoC, including:
 > 
-> Sorry, that's confusing.
+> - All 8 cores via PSCI
+> - ChipID
+> - Generic ARMV8 Timer
+> - Enumarate all pinctrl nodes
 > 
-> Best regards,
-> Krzysztof
+> Further platform support will be added over time.
 > 
+> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+> ---
+>  .../boot/dts/exynos/exynos8895-pinctrl.dtsi   | 1378 +++++++++++++++++
+>  arch/arm64/boot/dts/exynos/exynos8895.dtsi    |  253 +++
+>  2 files changed, 1631 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/exynos/exynos8895-pinctrl.dtsi
+>  create mode 100644 arch/arm64/boot/dts/exynos/exynos8895.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/exynos/exynos8895-pinctrl.dtsi b/arch/arm64/boot/dts/exynos/exynos8895-pinctrl.dtsi
+> new file mode 100644
+> index 000000000..1dcb61e2e
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/exynos/exynos8895-pinctrl.dtsi
+> @@ -0,0 +1,1378 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Samsung's Exynos 8895 SoC pin-mux and pin-config device tree source
+> + *
+> + * Copyright (c) 2024, Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+> + */
+> +
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include "exynos-pinctrl.h"
+> +
+> +&pinctrl_alive {
+> +	gpa0: gpa0 {
 
-I will update the compatible as follows to indicate that QCS9100 
-references SA8775p.
+I do not believe this was tested. See maintainer SoC profile for Samsung
+Exynos.
 
-compatible = "qcom,sa8775p-ride", "qcom,qcs9100", "qcom,sa8775p";
+Limited review follows due to lack of testing.
 
--- 
-Thx and BRs,
-Tengfei Fan
+
+> +};
+> diff --git a/arch/arm64/boot/dts/exynos/exynos8895.dtsi b/arch/arm64/boot/dts/exynos/exynos8895.dtsi
+> new file mode 100644
+> index 000000000..3ed381ee5
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/exynos/exynos8895.dtsi
+> @@ -0,0 +1,253 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Samsung's Exynos 8895 SoC device tree source
+> + *
+> + * Copyright (c) 2024, Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+> + */
+> +
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +/ {
+> +	compatible = "samsung,exynos8895";
+> +	#address-cells = <2>;
+> +	#size-cells = <1>;
+> +
+> +	interrupt-parent = <&gic>;
+> +
+> +	aliases {
+> +		pinctrl0 = &pinctrl_alive;
+> +		pinctrl1 = &pinctrl_abox;
+> +		pinctrl2 = &pinctrl_vts;
+> +		pinctrl3 = &pinctrl_fsys0;
+> +		pinctrl4 = &pinctrl_fsys1;
+> +		pinctrl5 = &pinctrl_busc;
+> +		pinctrl6 = &pinctrl_peric0;
+> +		pinctrl7 = &pinctrl_peric1;
+> +	};
+> +
+> +	arm-a53-pmu {
+
+Are there two pmus?
+
+> +		compatible = "arm,cortex-a53-pmu";
+> +		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-affinity = <&cpu0>,
+> +				     <&cpu1>,
+> +				     <&cpu2>,
+> +				     <&cpu3>,
+> +				     <&cpu4>,
+> +				     <&cpu5>,
+> +				     <&cpu6>,
+> +				     <&cpu7>;
+> +	};
+> +
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpu-map {
+> +			cluster0 {
+> +				core0 {
+> +					cpu = <&cpu0>;
+> +				};
+> +				core1 {
+> +					cpu = <&cpu1>;
+> +				};
+> +				core2 {
+> +					cpu = <&cpu2>;
+> +				};
+> +				core3 {
+> +					cpu = <&cpu3>;
+> +				};
+> +			};
+> +
+> +			cluster1 {
+> +				core0 {
+> +					cpu = <&cpu4>;
+> +				};
+> +				core1 {
+> +					cpu = <&cpu5>;
+> +				};
+> +				core2 {
+> +					cpu = <&cpu6>;
+> +				};
+> +				core3 {
+> +					cpu = <&cpu7>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu0: cpu@100 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0x100>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu1: cpu@101 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0x101>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu2: cpu@102 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0x102>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu3: cpu@103 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0x103>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu4: cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "samsung,mongoose-m2";
+> +			reg = <0x0>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu5: cpu@1 {
+> +			device_type = "cpu";
+> +			compatible = "samsung,mongoose-m2";
+> +			reg = <0x1>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu6: cpu@2 {
+> +			device_type = "cpu";
+> +			compatible = "samsung,mongoose-m2";
+> +			reg = <0x2>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu7: cpu@3 {
+> +			device_type = "cpu";
+> +			compatible = "samsung,mongoose-m2";
+> +			reg = <0x3>;
+> +			enable-method = "psci";
+> +		};
+> +	};
+> +
+> +	psci {
+> +		compatible = "arm,psci";
+> +		method = "smc";
+> +		cpu_suspend = <0xc4000001>;
+> +		cpu_off = <0x84000002>;
+> +		cpu_on = <0xc4000003>;
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		/* Hypervisor Virtual Timer interrupt is not wired to GIC */
+> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
+> +		clock-frequency = <26000000>;
+
+Hm? I think this was explicitly disallowed.
+
+> +	};
+> +
+> +	fixed-rate-clocks {
+
+Keep order of properties, just like DTS coding style asks.
+
+Anyway, fixed-rate-clocks wrapper is not needed, drop.
+
+> +		oscclk: osc-clock {
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-output-names = "oscclk";
+> +		};
+> +	};
+> +
+> +	soc: soc@0 {
+> +		compatible = "simple-bus";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0x0 0x0 0x0 0x20000000>;
+> +
+> +		chipid@10000000 {
+> +			compatible = "samsung,exynos8895-chipid",
+> +				     "samsung,exynos850-chipid";
+> +			reg = <0x10000000 0x24>;
+> +		};
+> +
+> +		gic: interrupt-controller@10200000 {
+> +			compatible = "arm,gic-400";
+> +			#interrupt-cells = <3>;
+> +			#address-cells = <0>;
+> +			interrupt-controller;
+> +			reg = <0x10201000 0x1000>,
+> +			      <0x10202000 0x1000>,
+> +			      <0x10204000 0x2000>,
+> +			      <0x10206000 0x2000>;
+> +			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(8) |
+> +						 IRQ_TYPE_LEVEL_HIGH)>;
+> +		};
+> +
+> +		pinctrl_alive: pinctrl@164b0000 {
+> +			compatible = "samsung,exynos8895-pinctrl";
+> +			reg = <0x164b0000 0x1000>;
+> +
+> +			wakeup-interrupt-controller {
+> +				compatible = "samsung,exynos8895-wakeup-eint",
+> +					     "samsung,exynos7-wakeup-eint";
+> +				interrupt-parent = <&gic>;
+> +				interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
+> +			};
+> +		};
+> +
+> +		pinctrl_abox: pinctrl@13e60000 {
+
+This does not look ordered. See DTS coding style.
+
+Best regards,
+Krzysztof
+
 
