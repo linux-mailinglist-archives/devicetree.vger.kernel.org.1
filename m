@@ -1,107 +1,239 @@
-Return-Path: <devicetree+bounces-91763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED05294A78F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 14:13:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49FA094A79F
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 14:21:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9EFF71F21C65
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 12:13:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C86B1C21517
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 12:21:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3236B1E4EFD;
-	Wed,  7 Aug 2024 12:13:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FBE81E4EE6;
+	Wed,  7 Aug 2024 12:21:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pQLsIIhl"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="mfTfp811";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="d6Xurfcv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 690371DF666;
-	Wed,  7 Aug 2024 12:13:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 572481C37B0;
+	Wed,  7 Aug 2024 12:21:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723032807; cv=none; b=L5CwwVBZsvHTGWl98UM5BEwADPCsoGQRV6CakIc61+5/y5pzTD9VjlSyDqPGJxusUamNIByRXqyTnlEFUlfPCnpayibY8Vulm/6vowO7oYq6Rm8s8Ys8iZvCsJkERVfKlc0vgY67zpoDjtKB/F/y4r4/ZiQ44HlYed/XlrfBJgc=
+	t=1723033271; cv=none; b=CwuglKQebaPvjRmXYX4KDBkp5aVdPYHSXFrgRRfAOUFZUlGgjucAx/d2Hm9foFGvC2RtifRSqzEZ4fbzZqZgxmJ82tUjdtaAkjWUu/kPJ7LWeZGOOelrDADNNi3CCbBJF3V6vkx0cJJ4StT0jyB21s66OXQV3jOugAI6dJygbOk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723032807; c=relaxed/simple;
-	bh=3kfpJo+wMpggXMSS5agrf0k25FR9X/p3GXtFP3xVQNI=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ghTO6WjO7edUQ/bELi3HRaF0EYuvEvVp4IzbXGPSDRg5Iq8ZQXkLm2TscPDK6IId3jo2om/xRvFtMAc4Br7sMt1+5cHTrMNPfxrBqxplQHjAmHIGLMUXIPgI7WyFiMkjEw9WHeZTPKjXCj5A44eXF1xLXCfMKVsln+KZLOXXCCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=pQLsIIhl; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 477CD0TB052920;
-	Wed, 7 Aug 2024 07:13:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1723032780;
-	bh=76GhB039/pkZ+5h3Gud0EPB+m3ow6AVmf3vw1wZnOoA=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=pQLsIIhlsoEBaII3mLcMPvKOOntQjWJCdQoTJg3/GbYeWpnAaAcucfXpv4fdf5rR+
-	 7a/ZBu4OtAhqwob+lB765siBIHSK5vPdKPtfxEkHU5lI/xl2TWtpzR8k1yssyqCO7K
-	 mbxud8V2F/GGjGsuHcSrY695JOnP++1LSCKK9K5Y=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 477CCx6S094952
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 7 Aug 2024 07:12:59 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
- Aug 2024 07:12:59 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 7 Aug 2024 07:12:59 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 477CCxd4004855;
-	Wed, 7 Aug 2024 07:12:59 -0500
-Date: Wed, 7 Aug 2024 07:12:59 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux@ew.tq-group.com>
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am642-tqma64xxl-mbax4xxl: add PRU
- Ethernet support
-Message-ID: <20240807121259.fdu5eigadsanz43v@headpiece>
-References: <20240624134235.202243-1-matthias.schiffer@ew.tq-group.com>
- <3bce26bc327b4d1c63bf0ef32caae854893969a0.camel@ew.tq-group.com>
+	s=arc-20240116; t=1723033271; c=relaxed/simple;
+	bh=1A6K0pJ8eOSKcVLh3x1qr1Ju0aPsXSm3yyGHkt973JU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=It2uL9WwLDjsE+VTHpFBs0rdFh+DfvTwghOXzqlvScaL64nM/gQoXb6dUUTBNEQ34tuLUM58UOUffmX6oQaxRInUpwLyRjM1xtbyQwaEzHab860rQ9wiue53azm2A7bpC2ACtw93jheLrFkdKp2TC+akXZVOj0ARXNulMTTRZZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=mfTfp811; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=d6Xurfcv reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1723033265; x=1754569265;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=W9AoAUndBtl0FZOFTVxj/U4a/ipvfy1DskBxqtse6Ck=;
+  b=mfTfp811cugFyTwMiucItVG8bNHUNJhoDTcb6z8/8zuP8WXyctlok3ky
+   4MEbWeSd6Kg5k1oHoQte1vbqeCyIWwjoa6aFsvaHZssIUX0m5t4f+E7Su
+   fkzy+3+33w4LC4+bXvYrRB05AcORyofdktayAVNPFdFnzjiBgZWSN9ZWC
+   FAkzxfCt5hatAx8IsSvtyvv8pZ3TQ7CXzFzigdOaQsYxovlG4+D9T70wy
+   hTy3Aw80U0vIajsuijxVN3XCKktfFeFUbJzZiwJQl+2lZ2G6N3yqDgE06
+   p+5v/TuKxKb4T4TQxzSlJLEpoutDxp0vB5cVMnvGDpBtb5a2M0Hqu27Oh
+   Q==;
+X-CSE-ConnectionGUID: Fd6x0rHaSHaE8RRvLnygkQ==
+X-CSE-MsgGUID: Fn4xV/B5QCKZw1Y0KFIT4w==
+X-IronPort-AV: E=Sophos;i="6.09,269,1716242400"; 
+   d="scan'208";a="38292858"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 07 Aug 2024 14:21:03 +0200
+X-CheckPoint: {66B366AE-35-CC8A42C9-EEB26961}
+X-MAIL-CPID: E035F2E2B0B4EEB6A9ADCD96DF82BD37_2
+X-Control-Analysis: str=0001.0A782F28.66B366AF.0039,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 46CAB167598;
+	Wed,  7 Aug 2024 14:20:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1723033258;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=W9AoAUndBtl0FZOFTVxj/U4a/ipvfy1DskBxqtse6Ck=;
+	b=d6XurfcvyQJaIjifnCrU8gLOsTnA1AkDYGp/Z+dhweUxfDcWa4aHtYhJ3fd5uzk1voF1OI
+	Z7jv+kap0fFa+X6JN/aKvCim6MM2ZLsYjAVUApTkFFGVDbvv9LGEYL8qLPHHT9O08jcjlo
+	hIicu6t++ox1XzbzkZL8A7k3DzlgIc2N3nsR9w+llHc7cs1O6MseRuEC4NQrpLwhyDVnft
+	6gwMJqa+YRmHQZC/IF+h93aptCTD02+TqEMzcVOL1fGz8BxO9I7xquHdR+7wd4E8RsVMfD
+	zMpAGG+6+DwaZT8sPI4j8JCbg7X32g3RM5W/OehDNK7e9TQGK8nDfu7vW8fuZg==
+From: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+To: Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux@ew.tq-group.com,
+	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Subject: [PATCH v3] arm64: dts: ti: k3-am642-tqma64xxl-mbax4xxl: add PRU Ethernet support
+Date: Wed,  7 Aug 2024 14:19:21 +0200
+Message-ID: <20240807121922.3180213-1-matthias.schiffer@ew.tq-group.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <3bce26bc327b4d1c63bf0ef32caae854893969a0.camel@ew.tq-group.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 14:02-20240807, Matthias Schiffer wrote:
-> On Mon, 2024-06-24 at 15:42 +0200, Matthias Schiffer wrote:
-> > Add PRU Ethernet controller and PHY nodes, as it was previously done for
-> > the AM64x EVM Device Trees.
-> > 
-> > Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-> > ---
-> > 
-> > v2:
-> > - Dropped binding change patch
-> > - Moved prueth device node to DTS toplevel, matching the AM64x EVM
-> > - Update firmware filenames to match EVM
-> 
-> Hi, are there any issues remaining with this patch?
+Add PRU Ethernet controller and PHY nodes, as it was previously done for
+the AM64x EVM Device Trees.
 
-I think it just fell through the cracks with the last tag being applied
-around the same time. Can you rebase to v6.11-rc1 and resend? apologies
-on the troubles.
+Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+---
 
+v3:
+- Rebased to v6.11-rc1
+
+v2:
+- Dropped binding change patch
+- Moved prueth device node to DTS toplevel, matching the AM64x EVM
+- Update firmware filenames to match EVM
+
+ .../dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts    | 98 +++++++++++++++++++
+ 1 file changed, 98 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts b/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
+index c40ad67cee019..c2a62cb763a59 100644
+--- a/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
++++ b/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
+@@ -24,6 +24,8 @@ / {
+ 
+ 	aliases {
+ 		ethernet0 = &cpsw_port1;
++		ethernet1 = &icssg1_emac0;
++		ethernet2 = &icssg1_emac1;
+ 		i2c1 = &mcu_i2c0;
+ 		mmc1 = &sdhci1;
+ 		serial0 = &mcu_uart0;
+@@ -71,6 +73,66 @@ led-1 {
+ 		};
+ 	};
+ 
++	icssg1_eth: icssg1-eth {
++		compatible = "ti,am642-icssg-prueth";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pru_icssg1_rgmii1_pins>, <&pru_icssg1_rgmii2_pins>;
++		interrupt-parent = <&icssg1_intc>;
++		interrupts = <24 0 2>, <25 1 3>;
++		interrupt-names = "tx_ts0", "tx_ts1";
++		dmas = <&main_pktdma 0xc200 15>, /* egress slice 0 */
++		       <&main_pktdma 0xc201 15>, /* egress slice 0 */
++		       <&main_pktdma 0xc202 15>, /* egress slice 0 */
++		       <&main_pktdma 0xc203 15>, /* egress slice 0 */
++		       <&main_pktdma 0xc204 15>, /* egress slice 1 */
++		       <&main_pktdma 0xc205 15>, /* egress slice 1 */
++		       <&main_pktdma 0xc206 15>, /* egress slice 1 */
++		       <&main_pktdma 0xc207 15>, /* egress slice 1 */
++		       <&main_pktdma 0x4200 15>, /* ingress slice 0 */
++		       <&main_pktdma 0x4201 15>; /* ingress slice 1 */
++		dma-names = "tx0-0", "tx0-1", "tx0-2", "tx0-3",
++			    "tx1-0", "tx1-1", "tx1-2", "tx1-3",
++			    "rx0", "rx1";
++		sram = <&oc_sram>;
++		firmware-name = "ti-pruss/am64x-sr2-pru0-prueth-fw.elf",
++				"ti-pruss/am64x-sr2-rtu0-prueth-fw.elf",
++				"ti-pruss/am64x-sr2-txpru0-prueth-fw.elf",
++				"ti-pruss/am64x-sr2-pru1-prueth-fw.elf",
++				"ti-pruss/am64x-sr2-rtu1-prueth-fw.elf",
++				"ti-pruss/am64x-sr2-txpru1-prueth-fw.elf";
++		ti,prus = <&pru1_0>, <&rtu1_0>, <&tx_pru1_0>, <&pru1_1>, <&rtu1_1>, <&tx_pru1_1>;
++		ti,pruss-gp-mux-sel = <2>,	/* MII mode */
++				      <2>,
++				      <2>,
++				      <2>,	/* MII mode */
++				      <2>,
++				      <2>;
++		ti,mii-g-rt = <&icssg1_mii_g_rt>;
++		ti,mii-rt = <&icssg1_mii_rt>;
++		ti,iep = <&icssg1_iep0>,  <&icssg1_iep1>;
++
++		ethernet-ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			icssg1_emac0: port@0 {
++				reg = <0>;
++				phy-handle = <&icssg1_phy0c>;
++				phy-mode = "rgmii-id";
++				/* Filled in by bootloader */
++				local-mac-address = [00 00 00 00 00 00];
++			};
++
++			icssg1_emac1: port@1 {
++				reg = <1>;
++				phy-handle = <&icssg1_phy03>;
++				phy-mode = "rgmii-id";
++				/* Filled in by bootloader */
++				local-mac-address = [00 00 00 00 00 00];
++			};
++		};
++	};
++
+ 	fan0: pwm-fan {
+ 		compatible = "pwm-fan";
+ 		pinctrl-names = "default";
+@@ -154,6 +216,42 @@ &epwm5 {
+ 	status = "okay";
+ };
+ 
++&icssg1_mdio {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pru_icssg1_mdio_pins>;
++	status = "okay";
++
++	/* phy-mode is fixed up to rgmii-rxid by prueth driver to account for
++	 * the SoC integration, so the only rx-internal-delay and no
++	 * tx-internal-delay is set for the PHYs.
++	 */
++
++	icssg1_phy03: ethernet-phy@3 {
++		compatible = "ethernet-phy-ieee802.3-c22";
++		reg = <0x3>;
++		reset-gpios = <&main_gpio1 47 GPIO_ACTIVE_LOW>;
++		reset-assert-us = <1000>;
++		reset-deassert-us = <1000>;
++		ti,rx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
++		ti,tx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
++		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
++		ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
++	};
++
++	icssg1_phy0c: ethernet-phy@c {
++		compatible = "ethernet-phy-ieee802.3-c22";
++		reg = <0xc>;
++		reset-gpios = <&main_gpio1 51 GPIO_ACTIVE_LOW>;
++		reset-assert-us = <1000>;
++		reset-deassert-us = <1000>;
++		ti,rx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
++		ti,tx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
++		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
++		ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
++	};
++};
++
++
+ &main_gpio0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&main_gpio0_digital_pins>,
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+TQ-Systems GmbH | Mühlstraße 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht München, HRB 105018
+Geschäftsführer: Detlef Schneider, Rüdiger Stahl, Stefan Schneider
+https://www.tq-group.com/
+
 
