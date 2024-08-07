@@ -1,127 +1,117 @@
-Return-Path: <devicetree+bounces-91883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A30E94B018
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 20:55:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EF7694B05A
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 21:13:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44C8A28475D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 18:55:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C95421F23640
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 19:13:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F10E1422AD;
-	Wed,  7 Aug 2024 18:55:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEF4814430B;
+	Wed,  7 Aug 2024 19:12:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="K4ybcO5w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Blu8wwhl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23ACB85654
-	for <devicetree@vger.kernel.org>; Wed,  7 Aug 2024 18:55:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4C191419B5;
+	Wed,  7 Aug 2024 19:12:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723056937; cv=none; b=hnTLrNPJ/59GzuNflFV1V6e4a91gXU8zNmkcW7KRERsA7buGRjoNnJSLAlAYrR9D5wMFTlC69a0W4ttv7OpsnhgZEyRWPv9AK/tjRiQLpuh82pFw6CM9tPusFnXHg7VTI/QxcCBaNz5/oF8m6BaMidUXI8Bkqztp3yfAT+8O5vI=
+	t=1723057962; cv=none; b=H74lo3G9qcJhCjyEexuGdtWdhcLE4yZVJEA37IOSHikobadCrgXqYZOALGNDkPMegk3RVQB6+GGqalb1AM6KUXsCQN3kA1vxQ1gJgS71KFAh8TXSJSM5LbOa+Nn5zAsHWb5RxgvqB6F0+2EkBo0XOdUqgDB0m2txNEjBQnuc09M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723056937; c=relaxed/simple;
-	bh=QzhlHFhB1FlhGEk8gZPrNnM4az2SdvOjtcQi634hGIg=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=YGq29VnQp0hj9q2yQDg82Kr0zP/iTUxgdFRtkHFtNP6NVGPUgVNbCFNE3wlOJMBQXfahAUoeI/9SBS3Yrj54cDGeBnJpT2YibeKDjO2T7QBgyHHzSxrBQqCr84Ax/RP9qFEfG+64yEYlBYYNInmCFQA2kqqQF0ddoicypsNStVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=K4ybcO5w; arc=none smtp.client-ip=209.85.210.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-710afd56c99so140683b3a.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2024 11:55:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1723056934; x=1723661734; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZFMK304Cg4PQj4mJQ9LEOTK8TkHQhLXzoojwOreQ/Ok=;
-        b=K4ybcO5wEPjvJSXg2hs3VvuZiX6MvQowzIXetYqdlb1poo3K6RH9nAsVOajDuQwHgX
-         epKi1wdjKD0DG5vpiaxzQ06eqUfJfeSgyC1quEbnSWe6zweSR8z+tdO5KPPe+y9QYbpi
-         0adWKjOaNgagHUivC7i+ujbZ7r0A/c0TFzxAbARARwkj9t9G04DVC94+fPrAdI6GPt7J
-         8gqramJqlZ6R4scpq+rk9+8WWFptzm3fDDF3vGpQzsQ7VB8CVZgQqiuMu7H1nsQvR7gY
-         DJu/1zZwCU+xCN2Rc5eYtyJuUZFAPBWYXb7+kMTWl9LAb+hPVSLBFNpR/wobcZXLYJ3b
-         89zA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723056934; x=1723661734;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZFMK304Cg4PQj4mJQ9LEOTK8TkHQhLXzoojwOreQ/Ok=;
-        b=gQMALo/RpV0paZ5CgIbVUKVk3Yec46/ZKpSsgtIMeIJZZawhnNM2hrqBHarXLKqePJ
-         xhwoCyojDA/Lv/nCdXRpit01DnUArhGYZ1MIoXshwQVH4O8m0cTKdqqKtS74rZBgrz6N
-         yGS9ip3zJ6LLA/5BytAY+zmVpOjWYBsNbmbqZqRzOgYN51V/0Mhqo1oMrPgy9ATb9SfL
-         POic2fp+8DN2N17iH+oisDav0GfajkzpkWvaTIsqampk9woqOaBl5ixdVUwR5urXz+RH
-         zkJ+cXYrghJd25EJPhs0dYiH1ZPJbV5rktSwVT9Ev3hAxp70RhkCsga6RjRJNGgGDLT3
-         UWQg==
-X-Forwarded-Encrypted: i=1; AJvYcCUIW6dCqGJ7VI2jKfR4IuSEJt4f7ANql/1IBdClU4owowMH/16IHpqgndJWDOsdJOYpuAgVnyrBfha5@vger.kernel.org
-X-Gm-Message-State: AOJu0YxdyFuDAfVIyyzR6f0DP8UxdBS2SKarqaJrqHySwB+puAhtmOpb
-	AHB2x1Gg0Ahg9NGhEok8UvI6wekNJG5WTj3vmJRYpS0t97TbiHv2vyi/8ySPfq0=
-X-Google-Smtp-Source: AGHT+IEYK846WIyyA851lwFO0Thrl84W8t0gbyPKmjyyprzOtO6+L8KKdMUAaabzXjldmTOqaK+sQQ==
-X-Received: by 2002:a05:6a00:6f5b:b0:704:2516:8d17 with SMTP id d2e1a72fcca58-710bc85f5e3mr5133969b3a.8.1723056934390;
-        Wed, 07 Aug 2024 11:55:34 -0700 (PDT)
-Received: from localhost ([71.212.170.185])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7106ece4967sm8678435b3a.138.2024.08.07.11.55.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Aug 2024 11:55:33 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Markus Schneider-Pargmann <msp@baylibre.com>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Markus Schneider-Pargmann
- <msp@baylibre.com>, Tony Lindgren <tony@atomide.com>, Vignesh Raghavendra
- <vigneshr@ti.com>, Ronald Wahl <ronald.wahl@raritan.com>, Uwe =?utf-8?Q?K?=
- =?utf-8?Q?leine-K=C3=B6nig?=
- <u.kleine-koenig@pengutronix.de>, Thomas Richard
- <thomas.richard@bootlin.com>, Thomas Gleixner <tglx@linutronix.de>, Udit
- Kumar <u-kumar1@ti.com>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>
-Cc: Vibhore Vardhan <vibhore@ti.com>, Dhruva Gole <d-gole@ti.com>,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/5] serial: 8250: omap: Add am62 wakeup support
-In-Reply-To: <20240807141227.1093006-1-msp@baylibre.com>
-References: <20240807141227.1093006-1-msp@baylibre.com>
-Date: Wed, 07 Aug 2024 11:55:33 -0700
-Message-ID: <7hed70kvru.fsf@baylibre.com>
+	s=arc-20240116; t=1723057962; c=relaxed/simple;
+	bh=igA/R1dhPYSPH3SJW/wKLLEHcSURTRCtuSc+w8fGXoU=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=S+suequwdNAQZbM0DBzH5RgD0usgUHjjDpfY49uOJ6aC7nNiL9n7MkjZCHuEw2ghfdWb3qDwALANpysnB8qRBaGJPVYZ2kR4F27CGgzXgioX6/K3j7/S/dWpP5vyPlRI0giRv9I2aJt9M+Rdg82DrnvIXbRtTRsZXgey9bOzPyY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Blu8wwhl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC74EC32781;
+	Wed,  7 Aug 2024 19:12:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723057962;
+	bh=igA/R1dhPYSPH3SJW/wKLLEHcSURTRCtuSc+w8fGXoU=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=Blu8wwhls32sv5GkAteiD2Vn7Z48ZLthiIyrkpJkW5QliaI/pS+0SpzrTYQT0RdhG
+	 AxmnJv/1CGV+XfeQh5YXJtaE73mRaOrIGedX27UMqQOmcWLujzAFeUltkdRIN+Q5l4
+	 KynYiceG1JogP7DcpfG3g7AlNJnKywQbvMmSmXaWRnIhPsCpBmXdhG+tqUm4UNIsY9
+	 unr81+6FskrsIYFOhmscG+NGmi+CuHc5YsN0jOluGcJBAI6lX+RorkyVHXzw2NLD02
+	 FtN3ddFmGOhtrnIHPtVVJB0stzNXPNk1H+WeqAWCdus73TM9RYMd2fIIJ5oWH2fiqX
+	 ng0IqHkaCfY5A==
+Date: Wed, 07 Aug 2024 13:12:40 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Ilya Orazov <ilordash02@gmail.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, 
+ Vincent Mailhol <mailhol.vincent@wanadoo.fr>, Vinod Koul <vkoul@kernel.org>, 
+ Marc Kleine-Budde <mkl@pengutronix.de>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Aswath Govindraju <a-govindraju@ti.com>, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, Kishon Vijay Abraham I <kishon@kernel.org>, 
+ linux-can@vger.kernel.org
+In-Reply-To: <20240807180956.1341332-2-ilordash02@gmail.com>
+References: <20240807180210.1334724-2-ilordash02@gmail.com>
+ <20240807180956.1341332-1-ilordash02@gmail.com>
+ <20240807180956.1341332-2-ilordash02@gmail.com>
+Message-Id: <172305796084.3042321.10920811109606243151.robh@kernel.org>
+Subject: Re: [PATCH v2 1/1] dt-bindings: phy: ti,tcan104x-can: Document
+ Microchip ATA6561
 
-Markus Schneider-Pargmann <msp@baylibre.com> writes:
 
-> v2
-> --
->
-> In Version 2 I removed the Partial-IO specific patches as these can't be
-> tested due to power issues in Partial-IO on am62-lp-sk and similar
-> boards.
->
-> I added a patch to add DT 'wakeup-source' support.
->
-> Series
-> ------
->
-> To support wakeup from several low power modes on am62, don't always
-> enable device wakeup. Instead only set it to wakeup capable. A
-> devicetree property 'wakeup-source' can be used to enable wakeup. The
-> user is also able to control if wakeup is enabled through sysfs.
+On Wed, 07 Aug 2024 21:09:56 +0300, Ilya Orazov wrote:
+> Microchip ATA6561 is High-Speed CAN Transceiver with Standby Mode.
+> It is pin-compatible with TI TCAN1042 and has a compatible programming
+> model, therefore use ti,tcan1042 as fallback compatible.
+> 
+> Signed-off-by: Ilya Orazov <ilordash02@gmail.com>
+> ---
+>  .../devicetree/bindings/phy/ti,tcan104x-can.yaml    | 13 +++++++++----
+>  1 file changed, 9 insertions(+), 4 deletions(-)
+> 
 
-For my low-power constraints series[1], it's also important to not have
-the UART wakeups unconditionally enabled, so I like the defaults
-proposed in this series.  Thanks!
+My bot found errors running 'make dt_binding_check' on your patch:
 
-I tested on k3-am62a7-sk along with my constraints changes and all is well.
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml:19:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml:20:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
+./Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml:24:11: [error] duplication of key "const" in mapping (key-duplicates)
+./Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml:25:11: [error] duplication of key "const" in mapping (key-duplicates)
 
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
-Tested-by: Kevin Hilman <khilman@baylibre.com>
+dtschema/dtc warnings/errors:
+make[2]: *** Deleting file 'Documentation/devicetree/bindings/phy/ti,tcan104x-can.example.dts'
+Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml:24:11: found duplicate key "const" with value "ti,tcan1043" (original value: "ti,tcan1042")
+make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/phy/ti,tcan104x-can.example.dts] Error 1
+make[2]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml:24:11: found duplicate key "const" with value "ti,tcan1043" (original value: "ti,tcan1042")
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml: ignoring, error parsing file
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1430: dt_binding_check] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
 
-Kevin
+doc reference errors (make refcheckdocs):
 
-[1] https://lore.kernel.org/all/20240805-lpm-v6-10-constraints-pmdomain-v1-0-d186b68ded4c@baylibre.com/
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240807180956.1341332-2-ilordash02@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
