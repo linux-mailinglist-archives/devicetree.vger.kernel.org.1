@@ -1,281 +1,129 @@
-Return-Path: <devicetree+bounces-91890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2733494B1CA
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 23:12:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B25F594B229
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 23:29:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7BCB28381D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 21:12:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3BEF1C211F2
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 21:29:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F337149DFA;
-	Wed,  7 Aug 2024 21:12:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A2FA14A09F;
+	Wed,  7 Aug 2024 21:29:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=utexas.edu header.i=@utexas.edu header.b="k3Q7SKBm"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YtgaXFTb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C0D1149C6C
-	for <devicetree@vger.kernel.org>; Wed,  7 Aug 2024 21:12:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C159E14D2BD;
+	Wed,  7 Aug 2024 21:29:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723065164; cv=none; b=qBvYWCPlKpGhK8Vh5hhqSnIfZ9Ne0OGOn8yhdvf4KVKYsSfIidy68qoR6gDyi3pRCYi0x22OR2/g7w8efttml1DA6qfTw/bUE88VfkwVWbcyj12P8ihRt2uqXjHbaUNbR0yRwZ7qrGdNPFIXWwz5L+nLd2i47LewD79HTDnsTUA=
+	t=1723066169; cv=none; b=q/0nIBQgRBWvXYT3oTgdPBQ55R97/rhTxwb/SucJVJKmL4r/Whk5OmlSxirdmmw/A4k8p7RzBpAJu8V1sAExBdvNW4wxbg7SwRmKL9cd1nOPhuePJB54gXWFNixcRW4LFeNCX04ER+q/3LpQd9WxqUeuaRjcjMBsrr1xjWAdFrs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723065164; c=relaxed/simple;
-	bh=6RdR14YQnCNy5Uqon5vlLjnN5lpkw0T2VkO1LShfkEU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Uxrb6Rclf1imx4ubOBYHo5bbeyxYW7ibFIAH9eXfPZDa2hq/Um82JftuahtzaarWDbatDnvBkBZpG9+Retl7HmpjYqexE5Vt+byK5eYhY6qbIcXcl36uExbBIJnjvj9//b8gjqhpXi8JXUmJqXlbFMrXJ3yAa3bHVKhe0MTcavc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=utexas.edu; spf=pass smtp.mailfrom=utexas.edu; dkim=pass (2048-bit key) header.d=utexas.edu header.i=@utexas.edu header.b=k3Q7SKBm; arc=none smtp.client-ip=209.85.167.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=utexas.edu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=utexas.edu
-Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-3db51133978so228169b6e.3
-        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2024 14:12:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=utexas.edu; s=google; t=1723065161; x=1723669961; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=AXwUhI+px9bG8x8a7373Azh9yF/JI6Km39m5m866Ga0=;
-        b=k3Q7SKBmtthivSiRGc2xoolcQb+tTmf6hlI5jNibSrRYKX9fZ+nBVwgE6HpXTrYk18
-         Oa4QC8lzjtI9ljBTfi8rbxbeIRek9yTdtssKJDCJxwQJnuvq6k2UoM24R+kyIvI3R4dj
-         dbWDGGrLeZ2k7tYKZ4uMxDTlhWqOX3PLWRemnY5Ol71TaqeD5oO1Xq0ebFOxMS0Kk5vK
-         utV1Zp5pM/EqAs0nhZW5OxHDf3Tr/sjDAQ+EXtr4wqZAlSlQi0pgLTDgGgdG6I7zrmBJ
-         OkATMA3pkXwz6KWohFpz4I6itkR2fjoOqBn4XLFgnPAdqErTNlgSAUOFh1ZSh5yu82MV
-         SFZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723065161; x=1723669961;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AXwUhI+px9bG8x8a7373Azh9yF/JI6Km39m5m866Ga0=;
-        b=LaN1S1148rHTE+m6g/Y+MqEkRskovJLhsJUOJVLnr/ByCQj6sS1qB30n4dLOp83xr8
-         WBJOZqPonfff+swWTX4s45QEDbOcSvMh8bxlz2z6GhyJDhw5sDgxNXJ7J5c4Fo8yLM9A
-         /9M1plp+4jgFB/lEcQpAAF5u4l/ecBHorjFlX80ZWZHgIasoJXO4QKi2xqZTDUPWBSZF
-         in7f34kyjZaSPCn251wytAw5dWiUWDAj1ulerDpAtGSG6lr/5eCI1qY7e/1E/7a+OZbH
-         6CAEB0URLXI0tWa5fpsypp9UfY8cMbm4D9cTFaDyUkeUGcWwyBuXTIKNEYchEH6OThv+
-         4VkA==
-X-Forwarded-Encrypted: i=1; AJvYcCVhh2pkT5EZSELGEVAXlM6b+WCVFfqk8HjGISBckEVjDXrNUl6GEwWtBYzAAAforGUW/u9YBlT8nGQYzA4OggfR5SFnOgE9Dk7p7Q==
-X-Gm-Message-State: AOJu0Yx71Rp+UwcXgN1awx0NOgorbLA5NyVkzbxh14lmX90dkV87rFIH
-	ohYsQryWK5v5OfiGaZbTV0OuUJCoSkMx/VbzrKl+D4mYuzyTNhzAWUru5yBRZKE=
-X-Google-Smtp-Source: AGHT+IGDCZHcrXNbQTVAMrvv0Gg/GEchiJyNC8rzCGiOlRhg+QOoiz7aY3RnMoBS7+SxtLpmECCipQ==
-X-Received: by 2002:a05:6808:189a:b0:3db:1c0e:af55 with SMTP id 5614622812f47-3db55800ecfmr25869202b6e.13.1723065161188;
-        Wed, 07 Aug 2024 14:12:41 -0700 (PDT)
-Received: from localhost.localdomain ([2600:382:3517:d4e1:dc46:19f9:b4b7:9e75])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3db563b7142sm4415642b6e.37.2024.08.07.14.12.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Aug 2024 14:12:40 -0700 (PDT)
-From: Logan Bristol <logan.bristol@utexas.edu>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Nishanth Menon <nm@ti.com>
-Cc: Josua Mayer <josua@solid-run.com>,
-	Matt McKee <mmckee@phytec.com>,
-	Wadim Egorov <w.egorov@phytec.de>,
-	linux@ew.tq-group.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Logan Bristol <logan.bristol@utexas.edu>
-Subject: [PATCH] arm64: dts: ti: k3-am64* Disable ethernet by default at SoC level
-Date: Wed,  7 Aug 2024 16:13:42 -0500
-Message-ID: <20240807211342.1660-1-logan.bristol@utexas.edu>
-X-Mailer: git-send-email 2.46.0.windows.1
+	s=arc-20240116; t=1723066169; c=relaxed/simple;
+	bh=UMW8ZjWFYWzUMZlPzvOnD8SvOFmznM3WZ+q+ybh9Mtc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jcszDn5JeSZcSJQzdML2NaytVxoYMEh8FOLW1g25mraowkjLvwMn0kkwFx2JgKGNuAcNQVn0eCJA6SADjnZgJZRdlaO0J01z+7d7V48XIMrI5DHExdLlJ0qs14dCr8V70UIGpW+D3lexxbBNIqeMxaMKrw5+P9rl+UGkJOUZF1M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YtgaXFTb; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1723066167; x=1754602167;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=UMW8ZjWFYWzUMZlPzvOnD8SvOFmznM3WZ+q+ybh9Mtc=;
+  b=YtgaXFTbl2WKlZb85WFjKF7dCXqNxcqcD1YmuPoD9lnAAW25r2RKsKrF
+   TiudTXAsANPKJmneyo5NNqXvmlFUXUvNPdNBB/9cRbVfL6ehlpSYd4Dz4
+   yZoqhtvY3yooV+kQZBw9t8HkdNbAfq6fJ5rkRuNt6SwWPvTpJx/8gwsqk
+   k9NlIlJejVO08XcAz5G95RbYwRm7J+EkYQfGieRgo0295Q8lwzyYA8icN
+   iPUpdYtTrBsXX5i90iHyd7ZzkbYzkUjN3I1Jmsf33f7y2EtKTlwjAlLwG
+   B3ScCezU8UcaXpSlQwFpH8aBHkDGNqBSxNGJp/ywR6Yn9ThWrjg6TC9F3
+   g==;
+X-CSE-ConnectionGUID: dTAUbYRHTLa579q6pvozWg==
+X-CSE-MsgGUID: 6aLuHtLwR3WYBt1HdLsumw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11157"; a="21021117"
+X-IronPort-AV: E=Sophos;i="6.09,271,1716274800"; 
+   d="scan'208";a="21021117"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Aug 2024 14:29:26 -0700
+X-CSE-ConnectionGUID: atX5bEDeRKy13kZkUkgljQ==
+X-CSE-MsgGUID: yWU5z7LdRnifhCVpkR0W5w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,271,1716274800"; 
+   d="scan'208";a="56844713"
+Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
+  by orviesa010.jf.intel.com with ESMTP; 07 Aug 2024 14:29:22 -0700
+Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sboDY-0005jd-0B;
+	Wed, 07 Aug 2024 21:29:14 +0000
+Date: Thu, 8 Aug 2024 05:27:46 +0800
+From: kernel test robot <lkp@intel.com>
+To: Mao Jinlong <quic_jinlmao@quicinc.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Mike Leach <mike.leach@linaro.org>,
+	James Clark <james.clark@arm.com>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Paul Gazzillo <paul@pgazz.com>,
+	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+	oe-kbuild-all@lists.linux.dev,
+	Mao Jinlong <quic_jinlmao@quicinc.com>,
+	linux-kernel@vger.kernel.org, coresight@lists.linaro.org,
+	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] coresight: Add remote etm support
+Message-ID: <202408080511.RIKNKoHh-lkp@intel.com>
+References: <20240807071054.12742-3-quic_jinlmao@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240807071054.12742-3-quic_jinlmao@quicinc.com>
 
-External interfaces should be disabled at the SoC DTSI level, since 
-the node is incomplete. The node should then be enabled in the board DTS. 
-Disable ethernet switch and ports in SoC DTSI and enable them in the board 
-DTS.
+Hi Mao,
 
-Reflect this change in SoM DTSIs by removing ethernet port disable.
+kernel test robot noticed the following build warnings:
 
-Signed-off-by: Logan Bristol <logan.bristol@utexas.edu>
----
- arch/arm64/boot/dts/ti/k3-am64-main.dtsi                 | 3 +++
- arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi          | 4 ----
- arch/arm64/boot/dts/ti/k3-am642-evm.dts                  | 3 +++
- arch/arm64/boot/dts/ti/k3-am642-hummingboard-t.dts       | 8 ++++++++
- arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts | 8 ++++++++
- arch/arm64/boot/dts/ti/k3-am642-sk.dts                   | 3 +++
- arch/arm64/boot/dts/ti/k3-am642-sr-som.dtsi              | 4 ----
- arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts   | 6 ++----
- 8 files changed, 27 insertions(+), 12 deletions(-)
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v6.11-rc2 next-20240807]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-index f8370dd03350..69c5af58b727 100644
---- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-@@ -677,6 +677,7 @@ cpsw3g: ethernet@8000000 {
- 		assigned-clock-parents = <&k3_clks 13 9>;
- 		clock-names = "fck";
- 		power-domains = <&k3_pds 13 TI_SCI_PD_EXCLUSIVE>;
-+		status = "disabled";
- 
- 		dmas = <&main_pktdma 0xC500 15>,
- 		       <&main_pktdma 0xC501 15>,
-@@ -701,6 +702,7 @@ cpsw_port1: port@1 {
- 				phys = <&phy_gmii_sel 1>;
- 				mac-address = [00 00 00 00 00 00];
- 				ti,syscon-efuse = <&main_conf 0x200>;
-+				status = "disabled";
- 			};
- 
- 			cpsw_port2: port@2 {
-@@ -709,6 +711,7 @@ cpsw_port2: port@2 {
- 				label = "port2";
- 				phys = <&phy_gmii_sel 2>;
- 				mac-address = [00 00 00 00 00 00];
-+				status = "disabled";
- 			};
- 		};
- 
-diff --git a/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi b/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
-index ea7c58fb67e2..ec269742d060 100644
---- a/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
-@@ -210,10 +210,6 @@ &cpsw_port1 {
- 	phy-handle = <&cpsw3g_phy1>;
- };
- 
--&cpsw_port2 {
--	status = "disabled";
--};
--
- &mailbox0_cluster2 {
- 	status = "okay";
- 
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-index 6bb1ad2e56ec..82da21bd9aea 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-@@ -616,17 +616,20 @@ &cpsw3g {
- 	bootph-all;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&rgmii1_pins_default>, <&rgmii2_pins_default>;
-+	status = "okay";
- };
- 
- &cpsw_port1 {
- 	bootph-all;
- 	phy-mode = "rgmii-rxid";
- 	phy-handle = <&cpsw3g_phy0>;
-+	status = "okay";
- };
- 
- &cpsw_port2 {
- 	phy-mode = "rgmii-rxid";
- 	phy-handle = <&cpsw3g_phy3>;
-+	status = "okay";
- };
- 
- &cpsw3g_mdio {
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t.dts b/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t.dts
-index 5b5e9eeec5ac..90ffc426cae1 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-hummingboard-t.dts
-@@ -89,6 +89,14 @@ serdes_mux: mux-controller {
- 	};
- };
- 
-+&cpsw3g {
-+	status = "okay";
-+};
-+
-+&cpsw_port1 {
-+	status ="okay";
-+};
-+
- &main_gpio0 {
- 	m2-reset-hog {
- 		gpio-hog;
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts b/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts
-index 30729b49dd69..d43270fad441 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts
-@@ -198,6 +198,14 @@ AM64X_IOPAD(0x0040, PIN_OUTPUT, 7)	/* (U21) GPMC0_AD1.GPIO0_16 */
- 	};
- };
- 
-+&cpsw3g {
-+	status = "okay";
-+};
-+
-+&cpsw_port1 {
-+	status = "okay";
-+};
-+
- &main_i2c1 {
- 	status = "okay";
- 	pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-index 44ecbcf1c844..86369525259c 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-@@ -527,16 +527,19 @@ &usb0 {
- &cpsw3g {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&rgmii1_pins_default>, <&rgmii2_pins_default>;
-+	status = "okay";
- };
- 
- &cpsw_port1 {
- 	phy-mode = "rgmii-rxid";
- 	phy-handle = <&cpsw3g_phy0>;
-+	status = "okay";
- };
- 
- &cpsw_port2 {
- 	phy-mode = "rgmii-rxid";
- 	phy-handle = <&cpsw3g_phy1>;
-+	status = "okay";
- };
- 
- &cpsw3g_mdio {
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-sr-som.dtsi b/arch/arm64/boot/dts/ti/k3-am642-sr-som.dtsi
-index c19d0b8bbf0f..995e2703030b 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-sr-som.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am642-sr-som.dtsi
-@@ -212,10 +212,6 @@ &cpsw_port1 {
- 	phy-handle = <&ethernet_phy0>;
- };
- 
--&cpsw_port2 {
--	status = "disabled";
--};
--
- &icssg1_mdio {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pru1_mdio0_default_pins>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts b/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
-index c40ad67cee01..8d7a0283c391 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
-@@ -119,15 +119,13 @@ reg_sd: regulator-sd {
- &cpsw3g {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&cpsw_pins>;
-+	status = "okay";
- };
- 
- &cpsw_port1 {
- 	phy-mode = "rgmii-rxid";
- 	phy-handle = <&cpsw3g_phy0>;
--};
--
--&cpsw_port2 {
--	status = "disabled";
-+	status = "okay";
- };
- 
- &cpsw3g_mdio {
+url:    https://github.com/intel-lab-lkp/linux/commits/Mao-Jinlong/dt-bindings-arm-Add-qcom-inst-id-for-remote-etm/20240807-151315
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20240807071054.12742-3-quic_jinlmao%40quicinc.com
+patch subject: [PATCH v2 2/2] coresight: Add remote etm support
+config: arm-kismet-CONFIG_QCOM_QMI_HELPERS-CONFIG_CORESIGHT_REMOTE_ETM-0-0 (https://download.01.org/0day-ci/archive/20240808/202408080511.RIKNKoHh-lkp@intel.com/config)
+reproduce: (https://download.01.org/0day-ci/archive/20240808/202408080511.RIKNKoHh-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408080511.RIKNKoHh-lkp@intel.com/
+
+kismet warnings: (new ones prefixed by >>)
+>> kismet: WARNING: unmet direct dependencies detected for QCOM_QMI_HELPERS when selected by CORESIGHT_REMOTE_ETM
+   WARNING: unmet direct dependencies detected for QCOM_QMI_HELPERS
+     Depends on [n]: NET [=n]
+     Selected by [y]:
+     - CORESIGHT_REMOTE_ETM [=y] && CORESIGHT [=y]
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
