@@ -1,105 +1,217 @@
-Return-Path: <devicetree+bounces-91738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22D2F94A539
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 12:16:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1571C94A593
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 12:33:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C09771F21DC5
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 10:16:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D6C51F21D2F
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 10:33:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FEF31DD389;
-	Wed,  7 Aug 2024 10:16:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D5F11DE846;
+	Wed,  7 Aug 2024 10:32:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="hkHQz2bR"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="hjIQp5q/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB53D1C9DC9;
-	Wed,  7 Aug 2024 10:16:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 397431D1730
+	for <devicetree@vger.kernel.org>; Wed,  7 Aug 2024 10:32:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723025795; cv=none; b=ULar2xLJfCQZbu077mhADqZ4+UnMDTpMmGTsvvJYhILV4UDO5blNHT4hVS+pvDMOd36q2zVFdbefyVHFDvX2dfEUGDIN3UD8rPORSMMhXDORuO2eTH2WusIJOkxvPgE6ubij5TNWzhywr2/wGivMHLM2QzbMh53c4VIXzQ9df7Y=
+	t=1723026738; cv=none; b=GbDD93IW8QLMmbwO+sTCLsiUZveMubrIycD1iEsnKMDusHmI8eQhmB+SUJeW365ogGk03vkll+267XiCPTqijBZTBwl6yZSu8ifH/aVA0CSBa5dSGi5bdaC6X4eb7wkVdO+iQQDcLORU7jTGzcBk8jRStXRzj+dPD3Spg7gI5HQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723025795; c=relaxed/simple;
-	bh=YfR2jY2qscMa1IgoTaT68V9oQ6uc3HWH7CZnaqqVT6w=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=aGMmj4ShqMd1hOVnNgIDgvrtiPzuQKS3ZZ3caIO4GvPBGIRmqJzCOMXXYri/o0NBqn8AgdEhSxa3uIYiQ8tXymVSICqG19igqMMlEjaUueuPUvn7xfcVWz7AHHvB+Mk1YSP8z6tM0QSERa8m13R6/YfdFjRGUUjER0It0vsVz28=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=hkHQz2bR; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 477AGQtc098345;
-	Wed, 7 Aug 2024 05:16:26 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1723025786;
-	bh=jMbWo6iNh4Mauc1hFr13WYbvGFFAdwjRNSu0cDvnsf4=;
-	h=From:To:CC:Subject:Date;
-	b=hkHQz2bRJQnauPuejTgYs5mARGzPurx4cIm+dBjOQJ8Y0JJmCSQQe8oqu/NvVSw0O
-	 4+GzxoYHsl7P86BOZTVK06VaHLb7bwyNA1dRWcXXv8Ti4OrBHEVdiQ0BzXajql50f5
-	 /MCX99rvOxM9dbhxBY3boIonc7ZKzHDAKXqeeKw0=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 477AGQgW005714
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 7 Aug 2024 05:16:26 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
- Aug 2024 05:16:25 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 7 Aug 2024 05:16:25 -0500
-Received: from localhost (a0498981-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.68.216])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 477AGPH0096649;
-	Wed, 7 Aug 2024 05:16:25 -0500
-From: Bhavya Kapoor <b-kapoor@ti.com>
-To: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <conor+dt@kernel.org>,
-        <krzk+dt@kernel.org>, <robh@kernel.org>, <kristo@kernel.org>,
-        <b-kapoor@ti.com>, <m-chawdhry@ti.com>, <vigneshr@ti.com>, <nm@ti.com>,
-        <sinthu.raja@ti.com>, <n-francis@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-am68-sk-base-board: Add clklb pin mux for mmc1
-Date: Wed, 7 Aug 2024 15:46:24 +0530
-Message-ID: <20240807101624.2713490-1-b-kapoor@ti.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1723026738; c=relaxed/simple;
+	bh=aRML168McbfXXQc/cLp+6jloAgdo6tbmrv+VbX7mwhk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=W7FZ/n1Y2rjWWCj7YryOBVbYw+uvfJO86SknJ2f1tQk35H/g+skAXZemMT9BalikRm5zBa3wHybK5ipjSWOb8KBBFq99g789V2R9U2c9nVUCtu368DUbaAYnG2Mr6c7iB8uMjeUrc9QvbvOvy5Kh8bWvD+tWai+pStlxH4QOme8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=hjIQp5q/; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 4b7fa36c54a811ef9a4e6796c666300c-20240807
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=sf1S9oVkkutAs2zx8fudewRJ3coTfcL4YfvkKNpQpPA=;
+	b=hjIQp5q/IMlf5pV38H5mg9E5VGq+W7rD+QuXsUu4sMiZfZ9kUAf6aNIzuHdnOH7f+mYwH8H57Cn7JeD73M6y8DNBY59lUVncECIEfvAtBBVUKmas+fGftdUB4z/BisoViisiKEqUvrU2yIb81e25fmXbFOXWf53qohivt9OL6a8=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:d284386b-000d-4999-826c-85f3f93180ab,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:6dc6a47,CLOUDID:900e800e-581f-42a8-8c8e-0df96f3eec79,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: 4b7fa36c54a811ef9a4e6796c666300c-20240807
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1490027269; Wed, 07 Aug 2024 18:32:06 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 7 Aug 2024 03:32:07 -0700
+Received: from [172.21.84.99] (172.21.84.99) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
+ Transport; Wed, 7 Aug 2024 18:32:06 +0800
+Message-ID: <31f7251a-7759-1260-7cb7-e239c9baa0a7@mediatek.com>
+Date: Wed, 7 Aug 2024 18:32:04 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH] dt-bindings: regulator: mediatek,mt6397-regulator:
+ convert to YAML
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, AngeloGioacchino Del
+ Regno <angelogioacchino.delregno@collabora.com>, Matthias Brugger
+	<matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-mediatek@lists.infradead.org"
+	<linux-mediatek@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>
+CC: =?UTF-8?B?QmVhciBXYW5nICjokKnljp/mg5/lvrcp?= <bear.wang@mediatek.com>,
+	=?UTF-8?B?UGFibG8gU3VuICjlravmr5Pnv5Qp?= <pablo.sun@mediatek.com>, Macpaul
+ Lin <macpaul@gmail.com>, =?UTF-8?B?U2VuIENodSAo5YKo5qOuKQ==?=
+	<Sen.Chu@mediatek.com>, =?UTF-8?B?SmFzb24tY2ggQ2hlbiAo6Zmz5bu66LGqKQ==?=
+	<Jason-ch.Chen@mediatek.com>,
+	=?UTF-8?B?Q2hyaXMtcWogQ2hlbiAo6Zmz5aWH6YCyKQ==?=
+	<Chris-qj.Chen@mediatek.com>, Project_Global_Chrome_Upstream_Group
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai
+	<wenst@chromium.org>
+References: <20240806122507.2766-1-macpaul.lin@mediatek.com>
+ <dcc40975-93f6-440e-8887-7a40a0cb3898@linaro.org>
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+In-Reply-To: <dcc40975-93f6-440e-8887-7a40a0cb3898@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-mmc1 was not functional since pin mux for clklb was not present.
-Thus, add clklb pin mux to get MMC working.
+On 8/6/24 21:41, Krzysztof Kozlowski wrote:
+> 	
+> 
+> External email : Please do not click links or open attachments until you 
+> have verified the sender or the content.
+> 
+> On 06/08/2024 14:25, Macpaul Lin wrote:
+>> Convert the MediaTek MT6397 regulator bindings to DT schema.
+>> 
+>> Signed-off-by: Sen Chu <sen.chu@mediatek.com>
+>> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> 
+> 
+>> +
+>> +patternProperties:
+>> +  "^(buck_)?v(core|drm|gpu|io18|pca(7|15)|sramca(7|15))$":
+>> +    description: Buck regulators
+>> +    type: object
+>> +    $ref: regulator.yaml#
+>> +    properties:
+>> +      regulator-allowed-modes:
+>> +        description: |
+>> +          BUCK regulators can set regulator-initial-mode and regulator-allowed-modes to
+>> +          values specified in dt-bindings/regulator/mediatek,mt6397-regulator.h
+>> +        items:
+>> +          enum: [0, 1]
+>> +      regulator-compatible:
+>> +        pattern: "^(buck_)?v(core|drm|gpu|io18|pca(7|15)|sramca(7|15))$"
+> 
+> This should not be needed. Same in every other place.
+> 
+>> +    unevaluatedProperties: false
+>> +
+>> +  "^(ldo_)?v(tcxo|(a|io)28)$":
+>> +    description: LDOs with fixed 2.8V output and 0~100/10mV tuning
+>> +    type: object
+>> +    $ref: regulator.yaml#
+>> +    properties:
+>> +      regulator-allowed-modes: false
+>> +      regulator-compatible:
+>> +        pattern: "^(ldo_)?v(tcxo|(a|io)28)$"
+>> +    unevaluatedProperties: false
+>> +
+>> +  "^(ldo_)?vusb$":
+>> +    description: LDOs with fixed 3.0V output and 0~100/10mV tuning
+>> +    type: object
+>> +    $ref: regulator.yaml#
+>> +    properties:
+>> +      regulator-allowed-modes: false
+>> +      regulator-compatible:
+>> +        pattern: "^(ldo_)?vusb$"
+>> +    unevaluatedProperties: false
+>> +
+>> +  "^(ldo_)?v(cama|emc3v3|gp[123456]|ibr|mc|mch)$":
+>> +    description: LDOs with variable output and 0~100/10mV tuning
+>> +    type: object
+>> +    $ref: regulator.yaml#
+>> +    properties:
+>> +      regulator-allowed-modes: false
+>> +      regulator-compatible:
+>> +        pattern: "^(ldo_)?v(cama|emc3v3|gp[123456]|ibr|mc|mch)$"
+>> +    unevaluatedProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +
+>> +    pwrap {
+>> +       pmic {
+>> +            compatible = "mediatek,mt6397";
+> 
+> Messed indentation.
+> 
+> Use 4 spaces for example indentation.
+> 
+> Anyway, drop top node or better move the example to the parent device
+> schema making it complete.
+> 
+>> +
+>> +            mt6397regulator: mt6397regulator {
+> 
+> Node names should be generic. See also an explanation and list of
+> examples (not exhaustive) in DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation  <https://urldefense.com/v3/__https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html*generic-names-recommendation__;Iw!!CTRNKA9wMg0ARbw!ngXiiQwr5k1xuQ409K5BEaN120H9jRtwvbdy_u_VFuelciqoBoAYCD6Pi09Sy5YS3wfeZ5m876QLGXgDi-Pm8V4O08-MZ7s$>
+> 
+> 
+>> +                compatible = "mediatek,mt6397-regulator";
+>> +
+>> +                mt6397_vpca15_reg: buck_vpca15 {
+>> +                    regulator-compatible = "buck_vpca15";
+> 
+> Drop, same in other places
+> 
+>> +                    regulator-name = "vpca15";
+>> +                    regulator-min-microvolt = < 850000>;
+>> +                    regulator-max-microvolt = <1350000>;
+>> +                    regulator-ramp-delay = <12500>;
+>> +                    regulator-enable-ramp-delay = <200>;
+>> +                };
+>> +
+> 
+> 
+> ;
+> 
+> Best regards,
+> Krzysztof
+> 
 
-Fixes: a266c180b398 ("arm64: dts: ti: k3-am68-sk: Add support for AM68 SK base board")
-Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
----
+Thanks for the review.
+All above issues should be fixed in patch v2 [1]
+[1] https://lkml.org/lkml/2024/8/7/520
 
-rebased to next-20240807
-
- arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-index 90dbe31c5b81..d5ceab79536c 100644
---- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-@@ -204,6 +204,7 @@ main_mmc1_pins_default: main-mmc1-default-pins {
- 		pinctrl-single,pins = <
- 			J721S2_IOPAD(0x104, PIN_INPUT, 0) /* (P23) MMC1_CLK */
- 			J721S2_IOPAD(0x108, PIN_INPUT, 0) /* (N24) MMC1_CMD */
-+			J721S2_IOPAD(0x100, PIN_INPUT, 0) /* (###) MMC1_CLKLB */
- 			J721S2_IOPAD(0x0fc, PIN_INPUT, 0) /* (M23) MMC1_DAT0 */
- 			J721S2_IOPAD(0x0f8, PIN_INPUT, 0) /* (P24) MMC1_DAT1 */
- 			J721S2_IOPAD(0x0f4, PIN_INPUT, 0) /* (R24) MMC1_DAT2 */
--- 
-2.34.1
-
+Best regards,
+Macpaul Lin
 
