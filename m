@@ -1,104 +1,134 @@
-Return-Path: <devicetree+bounces-91838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7359594AE2F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 18:32:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE83294AE57
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 18:47:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 96B81B2235C
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 16:32:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56169283868
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 16:47:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C7A812F5B1;
-	Wed,  7 Aug 2024 16:32:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B334126F2A;
+	Wed,  7 Aug 2024 16:47:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wnr1K6FK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L8GMIDDu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 207132209B;
-	Wed,  7 Aug 2024 16:32:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32E2B2D05D;
+	Wed,  7 Aug 2024 16:47:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723048323; cv=none; b=nBfBj345nK3cxFT8N7cuWZUJeadfVbS4IClt2fpmVAisTIpN5WlB8Az2Gu9KFUxKUNlvZ0/Xkar8VCeQGBtP6gq4VmP6kVRsG3utTwAlV71u55+Plrj5bE9sKzyibe2kwFTAL1otoy9EyjJw+DhCQssHDUNmYtT3Gtit+fyqhWU=
+	t=1723049222; cv=none; b=bKbN76wqqLED08kwmOyU5rWxdjRMney3y/fr4FYcUBNaSDdClLJjGiVgb03WA6j7icNm7E6gqG7UFa8lUq4ZETGKhmFZgEy8ZXX+ojwYpdtGm8eY3NOh/QzfeS19PC/gmWv0rSd2TlCI7d5MS9j0eZ6X4FRg67xvtwqUfOCeI4U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723048323; c=relaxed/simple;
-	bh=Pz9LIqA2w9Dm+SFN1If7OeyusUM67h2aCExgxiL84hc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G5jx+ryszXXx9w2Fbq5OuS6k6Ss9AQ/jH72DDeSoah03K4TUlXKLjTo4pOldYZDRuvszFtIvjExdM01RjbP4PhQgeqkBCo8zwWZ/VyCiCUoUARJYS6KZyoNdKf2V+kE7/SZMF9EcQSV+mwehxiRJAZ60w1j7WQ9j5vZbBiVf4Fs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wnr1K6FK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7234C4AF13;
-	Wed,  7 Aug 2024 16:31:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723048322;
-	bh=Pz9LIqA2w9Dm+SFN1If7OeyusUM67h2aCExgxiL84hc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Wnr1K6FKtacUSftwUOvIq95lXyXwV4hFiem9fd92XELhHsZMnvJxk66f9x1D0jLj/
-	 jiCV8bBaEMZgblHCbAWGTJg4RXDHBHq/2SDdfTpaYvv4OXLdlNtX5s8+0e7XHbNdp1
-	 xvzSeagEBZI5LgitUpJU803NiQRpO2cPRjaYkOfPLUknSImTGgmLJkMg4JMnKp4aic
-	 x0gCeNnwNwc8KPhbLyxQZ07Fv1U42x2/wWFu0x3dkzr+2Si6ipwgEAH13eo/3kXt1B
-	 GnStFWYHb7qByrd9erKfTPlkMSzDIC9xPKbMPGoyd4YrYZsZ3KOyspVcDbSi6Y0DGm
-	 10BPq+18B34Ow==
-Date: Wed, 7 Aug 2024 17:31:56 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Markus Schneider-Pargmann <msp@baylibre.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Tony Lindgren <tony@atomide.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Ronald Wahl <ronald.wahl@raritan.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	Thomas Richard <thomas.richard@bootlin.com>,
-	Thomas Gleixner <tglx@linutronix.de>, Udit Kumar <u-kumar1@ti.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Vibhore Vardhan <vibhore@ti.com>,
-	Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>,
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/5] dt-bindings: serial: 8250_omap: Add wakeup-source
- property
-Message-ID: <20240807-daybed-unlocking-6a03de657e2a@spud>
-References: <20240807141227.1093006-1-msp@baylibre.com>
- <20240807141227.1093006-2-msp@baylibre.com>
+	s=arc-20240116; t=1723049222; c=relaxed/simple;
+	bh=dwWYm5RLTzDBW2iYB2I3Zd977yQSE9GENluUMyWCWw0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=kIHvvHg8ItdNscwI1gbI7+YR4byufbPlseQ36baa0dPwh+A70ziA0wVZM+hmblmAC7DWcd7CGfuooWpq8OCTBFSIYl3lZU66gbv4kHQrT7arGcdz+2cvaZps0gBNH1cmLv8pW71dEfdvALJ4XdbZVnoMK3Rwxe0ALUx0olvkxRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L8GMIDDu; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1fc57d0f15aso124355ad.2;
+        Wed, 07 Aug 2024 09:47:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723049220; x=1723654020; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fhZ/KU2xRJ7VzklvUFPO00NSkyxb1fAeyVcGv38Yjz8=;
+        b=L8GMIDDuJS73kW5SGTJ69wfFpzFesH9Jtydtcpq1tYcoQuKwsNJglZE8745N9ziusu
+         5yZzFr84VZ8zgxzD3TdPwzBQvYEm4yFHUkymy2sjpo3MCkqmw6++6y3lUl3LqkoM/hmD
+         fDzN4inCxMZ0+DmmiUbdiwwsNMnz34tv2I4mU/wyLa1WAmNBw16lGJjyg4hFSTsKKSTS
+         vsNCTWkT0DXQRQL6KATtbyyIHU+/JjfphMEVXkbMaC0lQmQdbSuiZiCy6Ty8TLLeWipg
+         5B2NSTisN2Y41MlUSgaVedNSeVJeGrOUy4JteekgN6eB+bPzoqYZaqB6VM6RQUPNaVyc
+         gy2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723049220; x=1723654020;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fhZ/KU2xRJ7VzklvUFPO00NSkyxb1fAeyVcGv38Yjz8=;
+        b=FsBc8gAcFtnQ3JCVB4ofLw7xcXXYN0HW0xlSvkPsg1IIVPfGKTpcN457Zw2R7U04K9
+         O5CRXuK2CeUqKA1yyoozgroX3NCE/kT6BFIYJNPA+QXeFLYGiI9MQ/o7U+Qx+irfYHOC
+         AxaEEtpb1Y+EOFKsuOJEnbc3viUNBDurwSetne3IUPjDO+aUlZmNkYs6jdCld0JcX+hy
+         Y2dc0irbj7ce8/AUzbO0ipYW35oIH5gbfB/q3pHpMe1h9UsCmh84BdcXRDNI18LZgkFL
+         1txWkQRIgBNfPTAcOy5L4ZPkw/piuohgJNCtkEPFskBKD5tGGFPEVB7JkGDyvg0P4z9+
+         6gKw==
+X-Forwarded-Encrypted: i=1; AJvYcCWH+DKglbWoAjuJYnSzujELEdBiMX71oiQ5qnx7Yp2pOG5RCV7yjdbj3hsfJu2shDQHBUIXRn4tgwEvNU8QlxUUE1eC5a/rhPZTkoKJrXT2/safeCpcd1TmOf4oujM5S6JCqKzDxA==
+X-Gm-Message-State: AOJu0YwfyDRzyB++D9tA0/wCc5GQUB6hJJYv5CUUxvGIcTGELGk2eCMR
+	g5YefkwlLKO4PkBeMhwwl41WquGG5SAPwTjypiZn8wqQhiuNRbo0
+X-Google-Smtp-Source: AGHT+IH3o23gRpRg0Q/HMUir8oyxHEa4lhoLc8wy5D5R+0IaQo0DbDFd8hmvk2gLUajh/swsv5ekAg==
+X-Received: by 2002:a17:903:247:b0:1fc:52f4:9486 with SMTP id d9443c01a7336-1ff5751c912mr144199885ad.10.1723049220390;
+        Wed, 07 Aug 2024 09:47:00 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:5e1c:17b4:a72d:e3b])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1ff59059f6dsm108332385ad.132.2024.08.07.09.46.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Aug 2024 09:46:59 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: vkoul@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH] dt-bindings: dma: fsl,imx-dma: Document the DMA clocks
+Date: Wed,  7 Aug 2024 13:46:54 -0300
+Message-Id: <20240807164654.53472-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="52z39HG9VPnBf+y4"
-Content-Disposition: inline
-In-Reply-To: <20240807141227.1093006-2-msp@baylibre.com>
+Content-Transfer-Encoding: 8bit
 
+From: Fabio Estevam <festevam@denx.de>
 
---52z39HG9VPnBf+y4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Document the IPG and AHB clocks that are needed by the DMA hardware.
 
-On Wed, Aug 07, 2024 at 04:12:23PM +0200, Markus Schneider-Pargmann wrote:
-> Add the wakeup-source to enable this device as a wakeup source if
-> defined in DT.
->=20
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ .../devicetree/bindings/dma/fsl,imx-dma.yaml         | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+diff --git a/Documentation/devicetree/bindings/dma/fsl,imx-dma.yaml b/Documentation/devicetree/bindings/dma/fsl,imx-dma.yaml
+index 902a11f65be2..5cf80040565f 100644
+--- a/Documentation/devicetree/bindings/dma/fsl,imx-dma.yaml
++++ b/Documentation/devicetree/bindings/dma/fsl,imx-dma.yaml
+@@ -28,6 +28,14 @@ properties:
+       - description: DMA Error interrupt
+     minItems: 1
+ 
++  clocks:
++    maxItems: 2
++
++  clock-names:
++    items:
++      - const: ipg
++      - const: ahb
++
+   "#dma-cells":
+     const: 1
+ 
+@@ -47,10 +55,14 @@ additionalProperties: false
+ 
+ examples:
+   - |
++    #include <dt-bindings/clock/imx27-clock.h>
++
+     dma-controller@10001000 {
+       compatible = "fsl,imx27-dma";
+       reg = <0x10001000 0x1000>;
+       interrupts = <32 33>;
+       #dma-cells = <1>;
+       dma-channels = <16>;
++      clocks = <&clks IMX27_CLK_DMA_IPG_GATE>, <&clks IMX27_CLK_DMA_AHB_GATE>;
++      clock-names = "ipg", "ahb";
+     };
+-- 
+2.34.1
 
---52z39HG9VPnBf+y4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrOhfAAKCRB4tDGHoIJi
-0rlZAQDjLr9nRoERRFl43TvDTHa7ITQSV3Jl2NxS22zdRneStwD/QIvMmlXa+WTJ
-TrIE/mOWXsBHMksg48dvcnnyPFx6VgY=
-=Z5nu
------END PGP SIGNATURE-----
-
---52z39HG9VPnBf+y4--
 
