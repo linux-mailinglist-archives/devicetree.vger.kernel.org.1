@@ -1,131 +1,137 @@
-Return-Path: <devicetree+bounces-91844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8212C94AE7B
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 18:57:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFB0894AE7F
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 18:57:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 126851F215DD
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 16:57:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A6381F21F69
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 16:57:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DE1613A3F6;
-	Wed,  7 Aug 2024 16:57:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3510113A3F6;
+	Wed,  7 Aug 2024 16:57:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iLACsGuJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gu6N9rJk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89A4D84D02;
-	Wed,  7 Aug 2024 16:57:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AF1713A276;
+	Wed,  7 Aug 2024 16:57:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723049825; cv=none; b=fZbJzokAI3151olyE62L88q6j+DOrpA84WWyPbgfR0AytY10hEMwFivGQ8cmo+IuYZJgnlVg2gyFFvFD29rJdafAyzI3SRZniVL4w47kbHCTewSvLVEqLKArHhouOhkLoX7s1VfXHfo+BKy2UCLGOzfGRt0E/gHE3JQMQJQdtLI=
+	t=1723049844; cv=none; b=UzuNxcEpZrmIpFYamVC1TL7x+ZPpEFr7dbSMiorAFmBRKximJN9I0pmLgiPQ89pVixOnaaOVDhxOqw0x1Ad4UPU0zMygEh7IL+tPzwvqBXH8T6Zh7tpd47oaIUQ38pAQEWOIPxQGHkeeQGGH3XUkM2DtghS+9/FGQHeaYMkicNs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723049825; c=relaxed/simple;
-	bh=xDm+ivfSN/HC2ca9CTYeLvWnqKmqIYVJSNyWdx/9SYM=;
+	s=arc-20240116; t=1723049844; c=relaxed/simple;
+	bh=keez4POY0NFqfBD0t3YaXqLe3R3SAlTbYgVCNpixHFQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TLrMqGdhVLQeFndOebkOgEkjotd7FMdxtQyq8Z9AEms5ipD7X4UBrf+8vz9NFhSJY12qk8XbCiu3pDNww9tVbKBUDIgLVRU9COxotdkLne3PjV3EN/OuNjlJIVMBVM3+yFXfJral6Jw8C0BYndiMlP/qnuY5bMeyMiV+MIkSpNU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iLACsGuJ; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1723049824; x=1754585824;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=xDm+ivfSN/HC2ca9CTYeLvWnqKmqIYVJSNyWdx/9SYM=;
-  b=iLACsGuJIaIjC0FK5qQa47qG7Zj8VmE7MwDTr//YwZtbaDJi6IUDLeVS
-   jpiickJJCo8aqvI6fO3ur4+i+TAvKgDOAAMb4mdZFyMyrIEcPsmFUVhXA
-   2VCDkFq0HMB7tT0b/loK65AvZAnFBrK59l7OyHYXrNrhWaWmHbM0gGLer
-   BGxKQBipG+4opppeTZ/JUVqoUl5TBIDY82pLtdiMt2dO+7GSgzDXrc74a
-   JlBKAWB71iuWfUR7XYj86UfFUm+R8pxVtxE76V5L27MgtvsitDPbJl1Ik
-   6AxiwcSDgO6Dz3x7zQ2S7AjhgqRLk+jC8ALdPqvGccKsOdDf1xV6laSTq
-   w==;
-X-CSE-ConnectionGUID: Gr5CoyC2Q1yfTJyrT/WBSg==
-X-CSE-MsgGUID: PZ+S5ZinT+K9IDT24kKG0A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11157"; a="32277178"
-X-IronPort-AV: E=Sophos;i="6.09,270,1716274800"; 
-   d="scan'208";a="32277178"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Aug 2024 09:57:03 -0700
-X-CSE-ConnectionGUID: FLWJikZ0TZyuhtQlQSPiog==
-X-CSE-MsgGUID: jT9W66pUT3qz+yOP4pslIw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,270,1716274800"; 
-   d="scan'208";a="56598375"
-Received: from yjiang5-mobl.amr.corp.intel.com (HELO localhost) ([10.124.166.194])
-  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Aug 2024 09:56:59 -0700
-Date: Wed, 7 Aug 2024 09:56:58 -0700
-From: Yunhong Jiang <yunhong.jiang@linux.intel.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: tglx@linutronix.de, mingo@redhat.com, bp@alien8.de,
-	dave.hansen@linux.intel.com, x86@kernel.org, hpa@zytor.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	kys@microsoft.com, haiyangz@microsoft.com, wei.liu@kernel.org,
-	decui@microsoft.com, rafael@kernel.org, lenb@kernel.org,
-	kirill.shutemov@linux.intel.com, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-hyperv@vger.kernel.org,
-	linux-acpi@vger.kernel.org
-Subject: Re: [PATCH 2/7] dt-bindings: x86: Add ACPI wakeup mailbox
-Message-ID: <20240807165658.GA17382@yjiang5-mobl.amr.corp.intel.com>
-References: <20240806221237.1634126-1-yunhong.jiang@linux.intel.com>
- <20240806221237.1634126-3-yunhong.jiang@linux.intel.com>
- <ce4903f2-2a9d-45c4-bd4d-ac5165211a83@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ghqi8k8RCs3/IqpzL4ne5GFW6xdCE57fYG6V9GLpI7fbPZikSaR4T2Frwz3zS4CfndMFcvDbuAmyfgqf6sQ2DVP9AriHFCBi46AYEdOERXDcAU5fKYclbNoZYnOtQbwUojpKeOY4UOyFRzCQSlJM9UF8LcRlx/XpXtnwBavT+jU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gu6N9rJk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1F0EC4AF0D;
+	Wed,  7 Aug 2024 16:57:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723049843;
+	bh=keez4POY0NFqfBD0t3YaXqLe3R3SAlTbYgVCNpixHFQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Gu6N9rJkJRbawh/2fmcp0vsA3EX9rkdrUtetaKCcSrbWh6/NZX+4gFV3xKmSI8MbL
+	 b1THXUMijTPcCtVkEdEpw6GCRISQ1jcaWMmu92LQjMYDsvaI8eIgPTjlAhHx+y7rbk
+	 YtfaMIK4PBV6wNj87COY88sFm1+Uxdhl7Nq+6kva3V3YAU/5xSHjoLuhI5BgCYk2q0
+	 fPc03r9p0IYI3FfqXvk65qb0hDlXw3AQCRsIk65Fc92TFS0kx3D1BosQwg5O9Xpbgo
+	 mlJst4IVmhSv5Cp6PjOi1Yy5LUDvDBZxIuwZzregV+6I3RBGQAA0ez5ppCWzp5cBw/
+	 4LMES6mcjonmQ==
+Date: Wed, 7 Aug 2024 17:57:19 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH] dt-bindings: dma: fsl,imx-dma: Document the DMA clocks
+Message-ID: <20240807-error-robin-9290e918d6ac@spud>
+References: <20240807164654.53472-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="lKp0K71b96koTt/A"
+Content-Disposition: inline
+In-Reply-To: <20240807164654.53472-1-festevam@gmail.com>
+
+
+--lKp0K71b96koTt/A
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ce4903f2-2a9d-45c4-bd4d-ac5165211a83@kernel.org>
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Aug 07, 2024 at 07:57:43AM +0200, Krzysztof Kozlowski wrote:
-> On 07/08/2024 00:12, Yunhong Jiang wrote:
-> > Add the binding to use the ACPI wakeup mailbox mechanism to bringup APs.
-> 
-> We do not have bindings for ACPI. I think in the past it was mentioned
-> pretty clear - we do not care what ACPI has in the wild.
+On Wed, Aug 07, 2024 at 01:46:54PM -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
+>=20
+> Document the IPG and AHB clocks that are needed by the DMA hardware.
 
-Thank you for review.
-Can you please give a bit more information on "do not have bindings for ACPI"?
-We don't put the ACPI table into the device tree, but reuse some existing ACPI
-mailbox mechanism. Is this acceptable for you?
+Sure it is an ABI break, but these clocks should be required if they are
+"needed" by the hardware, no? Obviously the driver would need to
+tolerate the absence.
 
-> 
-> > 
-> > Signed-off-by: Yunhong Jiang <yunhong.jiang@linux.intel.com>
-> > ---
-> >  .../devicetree/bindings/x86/wakeup.yaml       | 41 +++++++++++++++++++
-> >  1 file changed, 41 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/x86/wakeup.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/x86/wakeup.yaml b/Documentation/devicetree/bindings/x86/wakeup.yaml
-> > new file mode 100644
-> > index 000000000000..8af40dcdb592
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/x86/wakeup.yaml
-> > @@ -0,0 +1,41 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +
-> > +$id: http://devicetree.org/schemas/x86/wakeup.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> 
-> This was absolutely never tested and does not look like proper bindings
-> file. This just does not work. Go to example-schema and use it as template.
-> 
-> NAK
-> 
-> Best regards,
-> Krzysztof
-Oops, I used the example-schema but apparently did something wrong. Will have a
-check.
+>=20
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+>  .../devicetree/bindings/dma/fsl,imx-dma.yaml         | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/dma/fsl,imx-dma.yaml b/Doc=
+umentation/devicetree/bindings/dma/fsl,imx-dma.yaml
+> index 902a11f65be2..5cf80040565f 100644
+> --- a/Documentation/devicetree/bindings/dma/fsl,imx-dma.yaml
+> +++ b/Documentation/devicetree/bindings/dma/fsl,imx-dma.yaml
+> @@ -28,6 +28,14 @@ properties:
+>        - description: DMA Error interrupt
+>      minItems: 1
+> =20
+> +  clocks:
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ipg
+> +      - const: ahb
+> +
+>    "#dma-cells":
+>      const: 1
+> =20
+> @@ -47,10 +55,14 @@ additionalProperties: false
+> =20
+>  examples:
+>    - |
+> +    #include <dt-bindings/clock/imx27-clock.h>
+> +
+>      dma-controller@10001000 {
+>        compatible =3D "fsl,imx27-dma";
+>        reg =3D <0x10001000 0x1000>;
+>        interrupts =3D <32 33>;
+>        #dma-cells =3D <1>;
+>        dma-channels =3D <16>;
+> +      clocks =3D <&clks IMX27_CLK_DMA_IPG_GATE>, <&clks IMX27_CLK_DMA_AH=
+B_GATE>;
+> +      clock-names =3D "ipg", "ahb";
+>      };
+> --=20
+> 2.34.1
+>=20
 
---jyh
-> 
+--lKp0K71b96koTt/A
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrOnbwAKCRB4tDGHoIJi
+0uRNAP9cDOCh5Gq4ExBjJdkQjj/tCyZeKkR3LLTguUw1TrdVuQEAwcSR6iDdnXkY
+ZAIpLIU2izzg1n+9cggiSu+FoSxbtQc=
+=H0O/
+-----END PGP SIGNATURE-----
+
+--lKp0K71b96koTt/A--
 
