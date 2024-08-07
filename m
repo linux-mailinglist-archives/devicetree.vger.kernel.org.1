@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-91595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6DAA949F8A
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 08:02:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EC18949F8C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 08:03:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C8F71F26495
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 06:02:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0ABD91F266D9
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 06:03:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1D9C198E75;
-	Wed,  7 Aug 2024 06:02:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50EB2198E7F;
+	Wed,  7 Aug 2024 06:03:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AXjskSX9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l01cKGCE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA055198A05;
-	Wed,  7 Aug 2024 06:02:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22FC5198E65;
+	Wed,  7 Aug 2024 06:03:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723010534; cv=none; b=nxRVljqYwA82xPxwX45aMArtjeScu1g2mfoHPb6+KR2ula2pj2T2/kavWF/E9zxsaYSUcnzosG9TJN+vruW1jgw2SMnYBJDMA6LMlWY7BVIJwuidX4K2nncO0SVGGwOKeSOdkZRpDh7H1FmG9xtiVC42N6HRIDrKqTSbtkRRsk0=
+	t=1723010627; cv=none; b=pKz46lv5PnMHhNugEO6pQmcYwPlvs67FbU5lYre/KGcgy6vKv5oK1khsSFbre2H4t6JfUUcSSOs/uMuIUvAhe7HQ/Ca3Bl1eh2v29fAcr3NB0Wb2zP2+DnrFrcEaMEEFMKz2SbEpEJEZrvcrgF/8FPaVO1+M6DE1jaff2ndmdjA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723010534; c=relaxed/simple;
-	bh=z2V184Vmgmu32nS1TdXGmvemffUep3Ddffigp+4F4SQ=;
+	s=arc-20240116; t=1723010627; c=relaxed/simple;
+	bh=IEc2mV7A6vIowEmzOGh075D8LiQJm61pewOlwkPU7hU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cwSJ6B41KcJXbwYC0CLgg7MX0LaSaYAuOKzMdWYFdDjfm7/+euMd7VBELqOv1QFy6yFsJvL5tESiaTkWBxcSkZ5+5E7KOFrx3JKeoyUvFTO/E5CmzXlfRvR1poSpX5YCqOihi2mRzbncD82vlRBfNBcDccxc0lrCnlD+tzfJfqQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AXjskSX9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D588C32782;
-	Wed,  7 Aug 2024 06:02:10 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=HM2x7GxIHg+G8C6RwFmCgtU2CFV8sGs3bXSD3wgYJhoz8LXJTXHUPV8yr1RIb5ZbQOobcSlm5FKkZO6rc2S6bm5CWJrXVW5r59uO/o7oqH1C0ULzgc2cwNiAnZlvCTLeRi6FnNX59w+PffTPFLmM/REdsVMl2kTTnmQNvxPfp5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l01cKGCE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91047C32782;
+	Wed,  7 Aug 2024 06:03:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723010534;
-	bh=z2V184Vmgmu32nS1TdXGmvemffUep3Ddffigp+4F4SQ=;
+	s=k20201202; t=1723010626;
+	bh=IEc2mV7A6vIowEmzOGh075D8LiQJm61pewOlwkPU7hU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AXjskSX9JWyFQdlqOBxPh5behKlCeONHMxv5/KAmHFL/TMjMFgqxe6XM3W6MX5epX
-	 Zsn2zdiEf/UE8dt85HEgaGkBJbLaeea+UIDTJ/sLY6VOwZ6t9BglwvZjI1mJtLFpzL
-	 t1zHB3BU6WUIPzKnv0EBsMAoZsrE/Gvk+ZXesAaHPs7LPUD3EHYIIVb45ikd5eJzBT
-	 KboAuc8gqQSIqc7XgE352rbtnusGqfscR8b7C96iJilBUcd5qxZknop0Ddejgb3A/6
-	 P3QWb4RPV74r6g0QuH2j70GjTwpg5DTFBMFPla8ICOXW0JkWzKRf+WuJAWV17MoJBQ
-	 hxfPFXo0ec9HQ==
-Message-ID: <1477822a-9622-4e21-aaf4-92877050ee82@kernel.org>
-Date: Wed, 7 Aug 2024 08:02:08 +0200
+	b=l01cKGCECYJnWyz6zyzaa5irTcOZknMx+pEa/6bL6yK1Bcfvlu6c9TCCKtcLW+iZH
+	 2S1aipMUwo14LhM40mgBB9y3i6TsLm+miyUt/4DQRLPmUiuz1/0Q9aEwHdDB5sLfRu
+	 1e3w7u2E6dsnqDeJ49qmOsDP3k6rqUCbfO+5sJCTDcsPMGWvZdNGielHMmkqC6VpcQ
+	 +ZO4+R4bMApZM2MK3KZh+Subh0Cl/BvEubzpnO8lfKbkU0xZNgvkdaeLtyoGNy1sfj
+	 2YRRYsL+C6mC8kaHaUeZs1At7WLBBrN7Lw/0TswCLf1QMCOZiMt+OK74if4bmZfVv4
+	 5Divq4nlfLcYg==
+Message-ID: <0353a248-d637-41d9-9f7a-5d075bc8c4b3@kernel.org>
+Date: Wed, 7 Aug 2024 08:03:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: timer: nxp,lpc3220-timer: Convert to
- dtschema
-To: Vladimir Zapolskiy <vz@mleia.com>,
- Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240731074544.208411-1-animeshagarwal28@gmail.com>
- <d1ac7446-143b-40d3-9f12-f734ab7cc31f@mleia.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: iio: imu: magnetometer: Add ak09118
+To: =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Jonathan Albrieux <jonathan.albrieux@gmail.com>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux@mainlining.org,
+ Danila Tikhonov <danila@jiaxyga.com>
+References: <20240806-ak09918-v2-0-c300da66c198@mainlining.org>
+ <20240806-ak09918-v2-2-c300da66c198@mainlining.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,30 +106,19 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <d1ac7446-143b-40d3-9f12-f734ab7cc31f@mleia.com>
+In-Reply-To: <20240806-ak09918-v2-2-c300da66c198@mainlining.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 06/08/2024 22:13, Vladimir Zapolskiy wrote:
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/lpc32xx-clock.h>
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +
->> +    timer@4004c000 {
->> +        compatible = "nxp,lpc3220-timer";
->> +        reg = <0x4004c000 0x1000>;
->> +        interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
->> +        clocks = <&clk LPC32XX_CLK_TIMER1>;
->> +        clock-names = "timerclk";
->> +    };
+On 06/08/2024 08:10, Barnabás Czémán wrote:
+> From: Danila Tikhonov <danila@jiaxyga.com>
 > 
-> I would appreciate, if you can use scripts/get_maintainer.pl in future.
+> Document asahi-kasei,ak09918 compatible.
+> 
+> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
 
-It was used and everything is fine. What are you complaining here about?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
