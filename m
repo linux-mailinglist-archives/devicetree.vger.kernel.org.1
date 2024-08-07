@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-91641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9675F94A172
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 09:15:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52B3894A18B
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 09:20:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 184BC1F25948
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 07:15:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0ABC928653D
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 07:20:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF4A81C5788;
-	Wed,  7 Aug 2024 07:15:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0C7F1C68AC;
+	Wed,  7 Aug 2024 07:20:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VEFc7VAK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bQIUC97A"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CAA51B86DF;
-	Wed,  7 Aug 2024 07:15:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 934851C6891;
+	Wed,  7 Aug 2024 07:20:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723014945; cv=none; b=L+v1cGaDNGYU6ZHAHnmXEqOOBiuFVamxNOP4cVmooq7eEXvOcuMjJEhBZnWyGgJ9CIFkdK1hpB+jTOZFJ0l+jn6QA+g37gqB7q7YbsFS9ppgLHlfQbrYNgZMq2eQcKl38MVDj2dAqcqPTzLh19OwbSDhxD5AZEE147K/kMlEpE8=
+	t=1723015221; cv=none; b=p8eS82yKiY4cxtWRA+EKSxEUULZBWRRZZOfhcKdcaRibXsfiUnwFzKJYpBgOYK7atc/W2nO1tFe4QTwbiXrIVlNxRscV9LQkFoBzBxUosQkl7ru0Nh3NO9pDVbG/AGyKK8j3KgY5iaOMkMMK3yOt6SlAlAM8UXG+M2Mkj8tlhXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723014945; c=relaxed/simple;
-	bh=Xk6dx8bzGZxw8aFRwDE9tHPMgQyH5g3GPJ5x1bes/E8=;
+	s=arc-20240116; t=1723015221; c=relaxed/simple;
+	bh=bbnuzLz9A5UR1BFr7SjqKnblNq1aFKi3wf/G3ok/5xE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C6uyTCaIxEd79hQOpFm3pOY6Etur7VVKJLcY7f69lllDcHsS5jzqezZFmGAq3GiEkxvctjUf24wS50EqyqDYWvdCY+tJeIFuhkcTPbe1Od07EliaR5cxsMOUz33pyzPCnm4mLC2rIMEtk/gNrPtOHnve+COzoTgUftbIkGPMeCs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VEFc7VAK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2199FC32782;
-	Wed,  7 Aug 2024 07:15:39 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=BbH9KmE4HfWQ7el8UzRYCHwJAuqIq1IW93PyYaaEK/kBNxhCqszWLQtsGsCU/gJFMqU+KdE/OAh90/AivAmOG0DognEjK8lyXMbvfVPeFHU85gUIyyp0ZxDZ9r4PVMbyRpZ0ig11xYbg+ul/xnYNgXd3W6Qi+M6lTr2dlWr+s9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bQIUC97A; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFDEBC32782;
+	Wed,  7 Aug 2024 07:20:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723014945;
-	bh=Xk6dx8bzGZxw8aFRwDE9tHPMgQyH5g3GPJ5x1bes/E8=;
+	s=k20201202; t=1723015221;
+	bh=bbnuzLz9A5UR1BFr7SjqKnblNq1aFKi3wf/G3ok/5xE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VEFc7VAKVCpC6XARydznV+jDYqtpCy1+AkipfNJRcvLnu68ZJ3JMqZS3SnAN6riHG
-	 oKk5ooPu4d5tUhlF1keNAbPPEmJv5epBUm+yCELQLgUun8pkgg1RTILtqwqh3Vcw+s
-	 AvqUrM66C77asUffkEauB9OxwEhCbnw5wEN2uaB9pH+v9DKlDZDq8AagLgw28+iX7m
-	 0ms9lEZaZHKuq/ik3RYPp+tK21vTkbKi+jxYuiwbi6sXuECEX5TvOohynhbuIkCpjo
-	 Gj8aZ8w2Nzhf4ZhmWpur9twjoBbuGMXo5O+6Q+vS1pVu9Nyid8qPq+ld15WXKuCkgi
-	 wmeEHiyZI0nyA==
-Message-ID: <813f5d6b-eda8-46d6-b152-9e7cdf737729@kernel.org>
-Date: Wed, 7 Aug 2024 09:15:37 +0200
+	b=bQIUC97AH6ZqyRUpetm9wrxXjkfDCHiOOqj888NdqT9C56N9Y6SA8GSI5z8bPufeg
+	 Kwlr6k7/Oxcs5a79fJjnP7O2kCJQW3YFPYfe8uMqiXq1sRUrPqAK6PA3NfAYBIvuUS
+	 kxbF5Qj0mBQE8MfL96RK+dpCqa79eWgFi5UdnSV5BLzEYjKoZynLCn7gbUs1K68Lkj
+	 DLn1S/gED4oJZcHDRt5Xfuf65T84pjZN52LrJgG9ORXHvOytVDxdeqIgTtq8nlUViK
+	 dNIOGHcvFlMGJAimIbGPxSJc1LEWLicO1QkTePPaY8qf2t1rdJKsY+riRuRS8yhngS
+	 r/LDgeA3eyVFA==
+Message-ID: <f85de847-3476-4b6c-ae45-bb625061db94@kernel.org>
+Date: Wed, 7 Aug 2024 09:20:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 05/17] wifi: cc33xx: Add acx.c, acx.h
-To: Michael Nemanov <michael.nemanov@ti.com>, Kalle Valo <kvalo@kernel.org>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-wireless@vger.kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Sabeeh Khan <sabeeh-khan@ti.com>
-References: <20240806170018.638585-1-michael.nemanov@ti.com>
- <20240806170018.638585-6-michael.nemanov@ti.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: phy: imx8mq-usb: add compatible
+ "fsl,imx95-usb-phy"
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: Frank Li <Frank.li@nxp.com>, vkoul@kernel.org, kishon@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+ festevam@gmail.com, gregkh@linuxfoundation.org, jun.li@nxp.com,
+ l.stach@pengutronix.de, aford173@gmail.com, hongxing.zhu@nxp.com,
+ alexander.stein@ew.tq-group.com, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org
+References: <20240806050639.1013152-1-xu.yang_2@nxp.com>
+ <160dd5fc-83ba-4311-a173-44521342a3d8@kernel.org>
+ <ZrJLS37GFmvkQpml@lizhi-Precision-Tower-5810>
+ <bfe6430c-a022-4e8f-ab7f-8d8e8cb10fca@kernel.org>
+ <20240807055701.o7fo43efvv3jxlhv@hippo>
+ <9127e97e-64ad-47df-aa4f-03feafafdbb1@kernel.org>
+ <20240807071143.6njojidi75xsjkxr@hippo>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,49 +113,67 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240806170018.638585-6-michael.nemanov@ti.com>
+In-Reply-To: <20240807071143.6njojidi75xsjkxr@hippo>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/08/2024 19:00, Michael Nemanov wrote:
-> These file contain various WLAN-oriented APIs
+On 07/08/2024 09:11, Xu Yang wrote:
+> On Wed, Aug 07, 2024 at 07:59:02AM +0200, Krzysztof Kozlowski wrote:
+>> On 07/08/2024 07:57, Xu Yang wrote:
+>>> On Wed, Aug 07, 2024 at 07:48:43AM +0200, Krzysztof Kozlowski wrote:
+>>>> On 06/08/2024 18:11, Frank Li wrote:
+>>>>> On Tue, Aug 06, 2024 at 10:29:47AM +0200, Krzysztof Kozlowski wrote:
+>>>>>> On 06/08/2024 07:06, Xu Yang wrote:
+>>>>>>> The usb phy in i.MX95 is compatible with i.MX8MP's, this will add a
+>>>>>>> compatible "fsl,imx95-usb-phy" for i.MX95. Also change reg maxItems
+>>>>>>> to 2 since i.MX95 needs another regmap to control Type-C Assist (TCA)
+>>>>>>> block. Since i.MX95 usb phy is able to switch SS lanes, this will also
+>>>>>>> add orientation-switch and port property to the file.
+>>>>>>>
+>>>>>>> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+>>>>>>>
+>>>>>>> ---
+>>>>>>> Changes in v2:
+>>>>>>>  - replace minItems with description in reg property
+>>>>>>>  - remove orientation-switch and port
+>>>>>>>  - refer to usb-switch.yaml
+>>>>>>>  - use unevaluatedProperties
+>>>>>>>
+> [...]
+>>>>>>
+>>>>>> ref should be rather in top-level. You can always disallow certain
+>>>>>> properties for devices, if they are really not applicable.
+>>>>>
+>>>>> There are some "required" in usb-switch.yaml,
+>>>>>
+>>>>> oneOf:
+>>>>>   - required:
+>>>>>       - port
+>>>>>   - required:
+>>>>>       - ports
+>>>>>
+>>>>> If put on the top, it may cause DTB check warning for other compatible
+>>>>> strings, which have not support usb-switch.
+>>>>
+>>>> Hm, indeed, that's unusual case to have such different devices in one
+>>>> schema. Did you test that above $ref in if: actually works?
+>>>
+>>> Yes, it works and this yaml pass dt_binding_check and dtbs_check. 
+>>
+>> I know it passes, I am asking whether it actually works. Is the $ref
+>> actually effective? Is it properly applied?
 > 
-> Signed-off-by: Michael Nemanov <michael.nemanov@ti.com>
-> ---
->  drivers/net/wireless/ti/cc33xx/acx.c | 1011 ++++++++++++++++++++++++++
->  drivers/net/wireless/ti/cc33xx/acx.h |  835 +++++++++++++++++++++
->  2 files changed, 1846 insertions(+)
->  create mode 100644 drivers/net/wireless/ti/cc33xx/acx.c
->  create mode 100644 drivers/net/wireless/ti/cc33xx/acx.h
+> If imx95 usb phy node doesn't contain "orientation-switch" and "port", dtb check will
+> show below error:
 > 
-> diff --git a/drivers/net/wireless/ti/cc33xx/acx.c b/drivers/net/wireless/ti/cc33xx/acx.c
-> new file mode 100644
-> index 000000000000..3c9b590e69b1
-> --- /dev/null
-> +++ b/drivers/net/wireless/ti/cc33xx/acx.c
-> @@ -0,0 +1,1011 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2022-2024 Texas Instruments Incorporated - https://www.ti.com/
-> + */
-> +
-> +#include "acx.h"
-> +
-> +int cc33xx_acx_clear_statistics(struct cc33xx *cc)
-> +{
-> +	struct acx_header *acx;
-> +	int ret = 0;
-> +
-> +	cc33xx_debug(DEBUG_ACX, "acx clear statistics");
+> usb/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dtb: phy@4c1f0040: 'oneOf' conditional failed, one must be fixed:
+>         'port' is a required property
+>         'ports' is a required property
+>         from schema $id: http://devicetree.org/schemas/phy/fsl,imx8mq-usb-phy.yaml#
+> 
+> Do you want other test results?
 
-So you just re-implemented tracing.
-
-No, I asked to drop such silly entry/exit messages because you duplicate
-existing mechanisms in the kernel.
-
-That's a no everywhere. Do not write such code. You can have useful
-debug statements when tracing or kprobes or whatever you want is not
-sufficient.
+Thank you for confirmation, it's enough.
 
 Best regards,
 Krzysztof
