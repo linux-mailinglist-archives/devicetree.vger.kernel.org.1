@@ -1,156 +1,155 @@
-Return-Path: <devicetree+bounces-91784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A32EA94A97E
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 16:10:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A38A694A988
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 16:12:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 632E9284FBE
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 14:10:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D45301C20C97
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 14:12:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 229842C69B;
-	Wed,  7 Aug 2024 14:10:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 970B738DF9;
+	Wed,  7 Aug 2024 14:12:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B+DI1AyP"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="L5phjNjl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA19A2BD0D;
-	Wed,  7 Aug 2024 14:10:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A7A91DDE9
+	for <devicetree@vger.kernel.org>; Wed,  7 Aug 2024 14:12:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723039811; cv=none; b=qZ5pvaObxp47PyKAtB9Ls6gSVM9H5vDDIzEUUC5eApmpi0k/U3Q/lRV8B/+K8Xt7TbvswXAXeMBC+bs6aDNXtcEvTqmcYCRKKK3U17rXWNl3n5U1YRY7Ln4qv3xTzMyWwsC4QvjgiEdzhV+T1FYULqlH3DUluNNEXH5gEC4MqeI=
+	t=1723039972; cv=none; b=ccRR9XZT4SDuYPeyW520wttqHzowRzQ2MXmZKy2M7tPmmKQ8R91MyALNU4N0DC9ig+m0Wcp1vdp6YrRg1fkAbJ/zNG5fAAHJDrx/LOkE9a6YLUKEwtDArsYiV3PLS0rCuS0AmOCBi1k0RNjDNhmioNNnXn6ssRMl7QhyUSCF1nA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723039811; c=relaxed/simple;
-	bh=gPUG1/VZTWeXA9NVBdYdXwFhDcEr6wqbJist1704D94=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NVRBHRHazljT95L8BMnYGjqLQt3n4onumwauQcXoQn1thzS8+UZmDdQZkPXQubtHCyJZy1+LVkBuz1VAcRoOJGgU/30uSFXVmsOzST0m9QkcuWPx2tBsgJHOa4lYZzx08y0zIn+HII0maoQEIjpCQbvyOObzJFuAxKPxw1JbBHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B+DI1AyP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A41A0C4AF0B;
-	Wed,  7 Aug 2024 14:10:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723039810;
-	bh=gPUG1/VZTWeXA9NVBdYdXwFhDcEr6wqbJist1704D94=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=B+DI1AyPB53oW/pt0wzjhCpXn1Ptjw5ADybm/+TCvgupX6l05YwAY2Widg1KYz+pv
-	 xBeVHXWf70iX9phW8BeMcukDV4BvDZTn8Nv9udVMWFYfbp+QKgQgMq9VEqQxkqKX8I
-	 rhAMWQJNTvV69b9rQL/8H+enwrUj/NNKQOGFpNTLc6hivnRHelNzHQQ7w5ZvbDGcOA
-	 P/QXKl/F9zyI1+KgoeNGwL2/94gt6tLLcr5vGhjC04R0MKDhQmh88NsvPL96hJvruz
-	 yIzSBBMwrUGIyxNyG2opmUOL2k46FDTNBctZUWtYzzIq01f6QMABd9Bph3JoFbfXEv
-	 1t8XycWmQDzkg==
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2f032cb782dso17340091fa.3;
-        Wed, 07 Aug 2024 07:10:10 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWb5LrQu0VW4P+sfp3scoAHgiXMTE4tVXMxPPOWGwMfaEiEGWA8/OaIx5SseCngW+em3uNUbb9g4UO9/jFBv4jcTvwVC8zcOFyYFTVUx0lf/BVfBOM8TQxanXFwzVEk0Lzu4ge8/9rpOg==
-X-Gm-Message-State: AOJu0YwRbiB0iL4u3HPNcUQ712Zd3mJPimizhZFCRvICj0GN7AYi+Krk
-	gezd7wgCw+N50NWrEq9+vZwYp//r+wDWl/I1n67zx5OnGm0U2BApV87eC9Cjg8go5B156BU1Bkk
-	1vp2lFKJ0qzNtU5a8gkMa7uYPOw==
-X-Google-Smtp-Source: AGHT+IG/CdqHXL/y15Zm006Q+Vwf6hbCGoS9C7TZuoSQlOw+gCC2V6nSn1RNbxdYOcoMYEz/7YKlIwgt4VGLe2RmynU=
-X-Received: by 2002:a2e:9dc8:0:b0:2ef:3347:ee93 with SMTP id
- 38308e7fff4ca-2f15ab39668mr133431111fa.44.1723039809037; Wed, 07 Aug 2024
- 07:10:09 -0700 (PDT)
+	s=arc-20240116; t=1723039972; c=relaxed/simple;
+	bh=MwwwlILPBrJubGFy6q/y6XZ7ELEBOo3CsDbrxodDZtQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GN1WDdwoG5awrD+5H86kwn0PeDQj8Ayodv1X2DHh3Q4l3KW9rqAlR4nIl3r/XkK+r7BlGNvUSYewPxKbCCWmi2IrJTomdRAFohLRcgCaLGBvzcC6Mm2PC5ZJJlUl6xAQk5pjhgnT9CpZIFG35Sa4x0MtWSP6g+IgDLyz4aDuPTk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=L5phjNjl; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-52f04c29588so2462759e87.3
+        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2024 07:12:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1723039968; x=1723644768; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rhnBrsrtx8JhjXSaZo5MeZvYsFC+QghJ1OF9fPH+ytE=;
+        b=L5phjNjluLI/du9LQX4NRL8zcDidFj1bjJsF67/W7epwNpES3X1/P1oyqBZ8SfcDKB
+         sHQBbIUFybOsPsqRsRXtrUH8H6T+TMcOOO8qn6FzMX1s0KrJaiR3hnzyZvQJ6EHR+N9i
+         ZEPPL4bU9yG0R4igzB8g5sTciptxLkMzVFGiv2EAIDCoVJe2ldAQbdlIEZKe33HbXQid
+         PpkS9J5zrEv8Aq/HwsWjeiUBNTOXxP2rsxXljPoenGO2d0KXiETVVAQBQOoMUSSO5Nd8
+         RBzdZ2iUrRuUbZYZJ0d+FBKTiaD8lLNKz239xjhfcyNDqbaC03rEICcaVevCGX0LxwTP
+         S63w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723039968; x=1723644768;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rhnBrsrtx8JhjXSaZo5MeZvYsFC+QghJ1OF9fPH+ytE=;
+        b=A7Ef3lM6E2Bjd5pKO7LLzrr9y837LgosW0MX/h4IVeEjmawfjF3EuxHs7bzSfU76fK
+         irxXMzGnbW4JvF5FBLsBlNfMj0JnHuBPY6URHgAPwfd7dvDdrikCDqrcmFMhpEeICgnO
+         wM47LunnX1QlN7mTAIf+tqFPRjVzJsWDKV6SsMQBHNoba4W+j/jTigK0jjzrjdV+Nr+v
+         L1TB6bDja48zLjkv4oxaQldotRagcZckbX28eAwFHPbVyG6h5vF/RnBJKdwAZPIEiyHV
+         gRbYwGUfvDMpL7gq4UwHB2ggZEXDKO04xvEaYn+jAPOIPHzVk2EEazhrknIcrdAUGxY8
+         TnXw==
+X-Forwarded-Encrypted: i=1; AJvYcCWWqCdIXJR3mY6xNQVlEB7CWQaI9MmO4d/glTrjz32OHZi1I3picUaSjfWiuJZm2IHiBUu6tQHH6MEwGpuSLpQ98fK4E0hVFJSWVg==
+X-Gm-Message-State: AOJu0YyIMeG9oTQ4qSvPbKhJYo3P/ER1uYR2PqTyzhXS51RV9WxEoXPy
+	gk0QnP2x/iHbxbs8hl8djaLNUD0b2XPDgS49J31f8jmZS1/wklZKqcHPjmMEEZs=
+X-Google-Smtp-Source: AGHT+IEJyt0WGEXWzqRXsX8JTktfdH+4TvqQykj+Gjwr32tHfWEz80uMq7FNr1g7QseHu2DJb76PiQ==
+X-Received: by 2002:a05:6512:3d11:b0:52c:d750:bd19 with SMTP id 2adb3069b0e04-530bb39d200mr10835746e87.8.1723039968086;
+        Wed, 07 Aug 2024 07:12:48 -0700 (PDT)
+Received: from blmsp.fritz.box ([2001:4091:a245:8609:c1c4:a4f8:94c8:31f2])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5b83b92cbccsm7057525a12.68.2024.08.07.07.12.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Aug 2024 07:12:47 -0700 (PDT)
+From: Markus Schneider-Pargmann <msp@baylibre.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Markus Schneider-Pargmann <msp@baylibre.com>,
+	Tony Lindgren <tony@atomide.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Ronald Wahl <ronald.wahl@raritan.com>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+	Thomas Richard <thomas.richard@bootlin.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Udit Kumar <u-kumar1@ti.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Vibhore Vardhan <vibhore@ti.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Dhruva Gole <d-gole@ti.com>,
+	linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v2 0/5] serial: 8250: omap: Add am62 wakeup support
+Date: Wed,  7 Aug 2024 16:12:22 +0200
+Message-ID: <20240807141227.1093006-1-msp@baylibre.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240807134032.1364503-2-stefan.wiehler@nokia.com>
-In-Reply-To: <20240807134032.1364503-2-stefan.wiehler@nokia.com>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 7 Aug 2024 08:09:56 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKAotOxj59Hb-MbmXuaOq-kZaCxOn-wEQbz5h46MDj2nw@mail.gmail.com>
-Message-ID: <CAL_JsqKAotOxj59Hb-MbmXuaOq-kZaCxOn-wEQbz5h46MDj2nw@mail.gmail.com>
-Subject: Re: [PATCH v2] of/irq: Consider device address size in interrupt map walk
-To: Stefan Wiehler <stefan.wiehler@nokia.com>
-Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Wed, Aug 7, 2024 at 7:45=E2=80=AFAM Stefan Wiehler <stefan.wiehler@nokia=
-.com> wrote:
->
-> When of_irq_parse_raw() is invoked with a device address smaller than
-> the interrupt parent node (from #address-cells property), KASAN detects
-> the following out-of-bounds read when populating the initial match table
-> (dyndbg=3D"func of_irq_parse_* +p"):
->
->   OF: of_irq_parse_one: dev=3D/soc@0/picasso/watchdog, index=3D0
->   OF:  parent=3D/soc@0/pci@878000000000/gpio0@17,0, intsize=3D2
->   OF:  intspec=3D4
->   OF: of_irq_parse_raw: ipar=3D/soc@0/pci@878000000000/gpio0@17,0, size=
-=3D2
->   OF:  -> addrsize=3D3
->   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->   BUG: KASAN: slab-out-of-bounds in of_irq_parse_raw+0x2b8/0x8d0
->   Read of size 4 at addr ffffff81beca5608 by task bash/764
->
->   CPU: 1 PID: 764 Comm: bash Tainted: G           O       6.1.67-484c6135=
-61-nokia_sm_arm64 #1
->   Hardware name: Unknown Unknown Product/Unknown Product, BIOS 2023.01-12=
-.24.03-dirty 01/01/2023
->   Call trace:
->    dump_backtrace+0xdc/0x130
->    show_stack+0x1c/0x30
->    dump_stack_lvl+0x6c/0x84
->    print_report+0x150/0x448
->    kasan_report+0x98/0x140
->    __asan_load4+0x78/0xa0
->    of_irq_parse_raw+0x2b8/0x8d0
->    of_irq_parse_one+0x24c/0x270
->    parse_interrupts+0xc0/0x120
->    of_fwnode_add_links+0x100/0x2d0
->    fw_devlink_parse_fwtree+0x64/0xc0
->    device_add+0xb38/0xc30
->    of_device_add+0x64/0x90
->    of_platform_device_create_pdata+0xd0/0x170
->    of_platform_bus_create+0x244/0x600
->    of_platform_notify+0x1b0/0x254
->    blocking_notifier_call_chain+0x9c/0xd0
->    __of_changeset_entry_notify+0x1b8/0x230
->    __of_changeset_apply_notify+0x54/0xe4
->    of_overlay_fdt_apply+0xc04/0xd94
->    ...
->
->   The buggy address belongs to the object at ffffff81beca5600
->    which belongs to the cache kmalloc-128 of size 128
->   The buggy address is located 8 bytes inside of
->    128-byte region [ffffff81beca5600, ffffff81beca5680)
->
->   The buggy address belongs to the physical page:
->   page:00000000230d3d03 refcount:1 mapcount:0 mapping:0000000000000000 in=
-dex:0x0 pfn:0x1beca4
->   head:00000000230d3d03 order:1 compound_mapcount:0 compound_pincount:0
->   flags: 0x8000000000010200(slab|head|zone=3D2)
->   raw: 8000000000010200 0000000000000000 dead000000000122 ffffff810000c30=
-0
->   raw: 0000000000000000 0000000000200020 00000001ffffffff 000000000000000=
-0
->   page dumped because: kasan: bad access detected
->
->   Memory state around the buggy address:
->    ffffff81beca5500: 04 fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
->    ffffff81beca5580: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
->   >ffffff81beca5600: 00 fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
->                         ^
->    ffffff81beca5680: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
->    ffffff81beca5700: 00 00 00 00 00 00 fc fc fc fc fc fc fc fc fc fc
->   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->   OF:  -> got it !
->
-> Signed-off-by: Stefan Wiehler <stefan.wiehler@nokia.com>
-> ---
-> - Fixed of_get_address_cells() open brace found by checkpatch
+Hi,
 
-Please don't send new versions right after the prior version. Give
-people a chance to review.
+v2
+--
 
-Rob
+In Version 2 I removed the Partial-IO specific patches as these can't be
+tested due to power issues in Partial-IO on am62-lp-sk and similar
+boards.
+
+I added a patch to add DT 'wakeup-source' support.
+
+Series
+------
+
+To support wakeup from several low power modes on am62, don't always
+enable device wakeup. Instead only set it to wakeup capable. A
+devicetree property 'wakeup-source' can be used to enable wakeup. The
+user is also able to control if wakeup is enabled through sysfs.
+
+Base
+----
+v6.11-rc1
+
+Tests
+-----
+I tested these patches on am62-lp-sk.
+
+Previous versions
+-----------------
+v1: https://lore.kernel.org/lkml/20240523075819.1285554-1-msp@baylibre.com/
+
+Changes in v2
+-------------
+ - Remove Partial-IO patches
+ - Replace device_init_wakeup with device_set_wakeup_capable in
+   omap8250_remove as well
+
+Best,
+Markus
+
+Markus Schneider-Pargmann (5):
+  dt-bindings: serial: 8250_omap: Add wakeup-source property
+  serial: 8250: omap: Remove unused wakeups_enabled
+  serial: 8250: omap: Cleanup on error in request_irq
+  serial: 8250: omap: Set wakeup capable, do not enable
+  serial: 8250: omap: Parse DT wakeup-source proerty
+
+ .../devicetree/bindings/serial/8250_omap.yaml          |  1 +
+ drivers/tty/serial/8250/8250_omap.c                    | 10 ++++++----
+ 2 files changed, 7 insertions(+), 4 deletions(-)
+
+-- 
+2.45.2
+
 
