@@ -1,48 +1,40 @@
-Return-Path: <devicetree+bounces-91660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F10B094A25E
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 10:07:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDE3F94A29E
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 10:23:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7294F1F25667
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 08:07:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BCFD5B2B7AE
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 08:23:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 732EA1B4C55;
-	Wed,  7 Aug 2024 08:07:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="itGBJFb4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58BCE1C8FD1;
+	Wed,  7 Aug 2024 08:23:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EA592868D;
-	Wed,  7 Aug 2024 08:07:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E3EE1917E6;
+	Wed,  7 Aug 2024 08:23:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723018035; cv=none; b=iMRAtjj9YcvvW/g84dR7rLO1m+x4FJJ4G2vzY6xLAVcl3H3hQc2YkMfn6kM5naMJ9C/5K0dx4cup5e4KKJXNyx8A5IcuCz2YLS3yx0uBIVZebxV5mZfuz7o75h60mgV5nnSnlwljDl6kyCj4pssybFi2sIsqEknD9vOSkmF7dbs=
+	t=1723019011; cv=none; b=Ytgj0IzZtUr/2+ddfGsasVL2XxpV+DJFf/xP5dUlg7lKGDvg8LhNnrtRXjm8GxB246F7+6hmlZ94SynXoDz1mfjuHJPoSPjkpqRZweYpoDPFNj4x2YzJ69fXGiqoS6G+AJO4LSoDlmFvi5hA0BYL1yGl+9NJQACo1zq0fy3QcXg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723018035; c=relaxed/simple;
-	bh=dZuP4Cu5S3yhnTRNnkDlwHTqpIwMpWS8SnOJt3kSxpY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=t8eHewINqSYFAIyQpteLgBRLQLFEnT0KMCfXbxnQE/6LO62aei2T3QuihwePbWwjpDwPl5R50I+yPpu8DftJeALzd/eWeCs3QAp/6cS7Z02b0EXnmytQzwuqEtf8QKIBMcV8y5pZCHu8FPmXrmLcrutyF4T180CuXjeOO6nYra0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=itGBJFb4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39E9EC32782;
-	Wed,  7 Aug 2024 08:07:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723018034;
-	bh=dZuP4Cu5S3yhnTRNnkDlwHTqpIwMpWS8SnOJt3kSxpY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=itGBJFb47Q1wt/1ovpR5mue3PdJXTfS9mCXOmFI7oVFyxwxkYYNQAMOygjYeC4uCZ
-	 3iT7iLhitIg6PPKw3W9A+xoFVVoomae6Nsp0/UbDjXTBAbMf/uY7MXwFNw398c2PGX
-	 4xEQTZQVI6mNWqcBhZuEcxEvSZ0tqYjmYG0BQkU7H2ayavNBsQZzqMJIWM4pii4rrF
-	 oi4hm644f7HVUCN7UDewHy6mWyJlt9rwautkc/w9j/fHJuOrHPqB3rGWCtF1J3u5mf
-	 0VM5P9SgPCxdw6oOC1jPo4YY8bcGvnm0eoXKKPK4nt+2PWMgXM0SUm1urMaqY5wgEv
-	 ubW07EeJ8MG3g==
-Message-ID: <4ca79a32-55ab-4d38-96de-ff2fc8074f53@kernel.org>
-Date: Wed, 7 Aug 2024 10:07:09 +0200
+	s=arc-20240116; t=1723019011; c=relaxed/simple;
+	bh=bVpeD1TPk0eLXfpcVNkzHFDlsmDXfNiXac3DR+ChgkU=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=UCY1qDctRbxnveADFyOF5GRGTzJeLBVnyEV96akkLG/QKTcFsE9qdmNMtLKpiTMpC6pxGNqZm0r9mpn22YN4K2Q3xUmnaqYs8CpCwc9yj3GUrk/HavfSzD/P8OzbBj8xIP9JNR2FYyE7scyGhVpsXKzkc9GdNDw7+EziPRW5JP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [10.20.4.132])
+	by gateway (Coremail) with SMTP id _____8Dxi+r_LrNmoyYKAA--.32028S3;
+	Wed, 07 Aug 2024 16:23:27 +0800 (CST)
+Received: from [10.20.4.132] (unknown [10.20.4.132])
+	by front1 (Coremail) with SMTP id qMiowMBxsuH+LrNmGrUHAA--.10863S2;
+	Wed, 07 Aug 2024 16:23:26 +0800 (CST)
+Message-ID: <3b4f94d4-51f6-45ad-be22-52be0f5e39d6@loongson.cn>
+Date: Wed, 7 Aug 2024 16:23:26 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,93 +42,68 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: clock: fix C3 PLL input parameter
-To: Jerome Brunet <jbrunet@baylibre.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chuan Liu <chuan.liu@amlogic.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20240806-c3_add_node-v1-0-c0de41341632@amlogic.com>
- <20240806-c3_add_node-v1-1-c0de41341632@amlogic.com>
- <b63fe216-ee29-489e-a175-e1525ac12722@kernel.org>
- <86b01ecb-6ca8-496e-b3a8-0b21bb951a60@amlogic.com>
- <2da06dac-7a1a-461c-956d-13b74320723e@linaro.org>
- <1jikwczrys.fsf@starbuckisacylon.baylibre.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+From: =?UTF-8?B?6YOR6LGq5aiB?= <zhenghaowei@loongson.cn>
+Subject: Re: [PATCH v2 3/3] LoongArch: dts: Update UART driver to
+ Loongson-2K0500, Loongson-2K1000 and Loongson-2K2000.
+To: Krzysztof Kozlowski <krzk@kernel.org>, gregkh@linuxfoundation.org,
+ jirislaby@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, chenhuacai@kernel.org, kernel@xen0n.name,
+ p.zabel@pengutronix.de
+Cc: linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, loongarch@lists.linux.dev
+References: <20240804063834.70022-1-zhenghaowei@loongson.cn>
+ <20240804063834.70022-3-zhenghaowei@loongson.cn>
+ <bf6fbb80-95f5-4c9c-b7d4-dd7f432056c7@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <1jikwczrys.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <bf6fbb80-95f5-4c9c-b7d4-dd7f432056c7@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:qMiowMBxsuH+LrNmGrUHAA--.10863S2
+X-CM-SenderInfo: x2kh0w5kdr4v3l6o00pqjv00gofq/1tbiAQECBGayEXMQJQABsE
+X-Coremail-Antispam: 1Uk129KBj9xXoWrWF17tF4xXF13Zr18Ww1rAFc_yoWxGFg_XF
+	9Fyws293WkJrWrWwnIqFnrZr1avw1UXwnrCrs5Kr17Zw1UKFW5CFyDAryrGrW3uFWDKryr
+	Gr4kWF18AF43ZosvyTuYvTs0mTUanT9S1TB71UUUUjUqnTZGkaVYY2UrUUUUj1kv1TuYvT
+	s0mT0YCTnIWjqI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUI
+	cSsGvfJTRUUUbfkYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20x
+	vaj40_Wr0E3s1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxS
+	w2x7M28EF7xvwVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxV
+	W8JVWxJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
+	6r4UJVWxJr1ln4kS14v26r1Y6r17M2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12
+	xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1q
+	6rW5McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr4
+	1lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_
+	Gr1l4IxYO2xFxVAFwI0_Jrv_JF1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67
+	AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8I
+	cVAFwI0_Gr0_Xr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI
+	8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF7I0E14v2
+	6r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxU4ZqXDUUUU
 
-On 07/08/2024 09:56, Jerome Brunet wrote:
->>>> and that's not an ABI break because?
->>> This is "fixed" clock.
->>> I will modify "fix" to "fixed",in next version.
-> 
-> No keep the original name. No reason to change it and make more of a mess.
-> 
+
+在 2024/8/4 16:40, Krzysztof Kozlowski 写道:
+> On 04/08/2024 08:38,zhenghaowei@loongson.cn wrote:
+>> From: Haowei Zheng<zhenghaowei@loongson.cn>
 >>
->> With "fixed" it is still ABI break, right?
-> 
-> It is an ABI break but on a new and immature platform.
-> Noboby could really use that platform at this stage, so nothing is going
-> to break on anyone really.
+>> Change to use the Loongson UART driver by default.
+>>
+>> Signed-off-by: Haowei Zheng<zhenghaowei@loongson.cn>
+> No changelog? Nothing improved?
+>
+> Best regards,
+> Krzysztof
 
-Sure, this could be also used in commit msg saving us from this entire
-discussion.
+Sorry , I will include the update from V1 to V2 in the next patch update.
+
+Here is the content of the update from V1 to V2:
+
+Changes in V2:
+
+- The compatible property for the UART is changed from "ns16650,loongson"
+
+    to "loongson,ls7a-uart".
+
 
 Best regards,
-Krzysztof
+
+Haowei Zheng
 
 
