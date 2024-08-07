@@ -1,180 +1,230 @@
-Return-Path: <devicetree+bounces-91632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3757994A13C
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 08:59:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43ADE94A14B
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 09:02:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B3B11C251AF
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 06:59:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C44B11F28671
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 07:02:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDDBD1B8E82;
-	Wed,  7 Aug 2024 06:59:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82E901BE249;
+	Wed,  7 Aug 2024 07:01:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="kPhH75tf";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="DJX1D3Qs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OBjxDnLC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from flow8-smtp.messagingengine.com (flow8-smtp.messagingengine.com [103.168.172.143])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BC311B1428;
-	Wed,  7 Aug 2024 06:59:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.143
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F3B41BE225
+	for <devicetree@vger.kernel.org>; Wed,  7 Aug 2024 07:01:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723013966; cv=none; b=Djwwn5ID35CIECNpUEBLHlIg/F+awIPJcLokkrPze4fCY8ziIvZETyYqYUwtaAI/1gSWvEoknux5BQwTbzn1rKgcgxgWHtGHVjE6fUawToKWH73j6XGhs37EEyR1irjJI3GOPNE60hzxhnz1waIe5m5zNVz5GfxQantv55CpJhA=
+	t=1723014117; cv=none; b=Xy/QQKswm7/KkqJ3wn+KzUhr7qqtM6VGOwjR5akvz81GF8wP/Lkb03Me+x3p9q3ykYMZmVzlesnqKh5TYV1DunWokiHgCI/XCrQvGHdUh+34HnqWugbds2wdKVWfjZSvZPrAZ68lZbAGg4XLvMgOfOH2//FLvKTXoQp2PyLYTcA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723013966; c=relaxed/simple;
-	bh=Fl9m4Ozj+CcNQwpmEsdVmp/IsQZeCxwz9aNRBuKAPk8=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=ddeDM9gzmaGsvmTz0WxFzbp/kujBz8HqHAHq0igOUSmHwGZE7x2g8AkRiqMdhBu0dvCoBr331ecwIe39BTPdsrMDG/YtONXlo0KcB770RMLpx9C+iAz2x5VYHvtHdjGFG4MyQaZ6b8iW2ZPgOrEL3QDzsQXwzItrWGlk+O1/Yfk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=kPhH75tf; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=DJX1D3Qs; arc=none smtp.client-ip=103.168.172.143
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-	by mailflow.nyi.internal (Postfix) with ESMTP id 52279201084;
-	Wed,  7 Aug 2024 02:59:23 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute4.internal (MEProxy); Wed, 07 Aug 2024 02:59:23 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1723013963;
-	 x=1723021163; bh=FeNTTWWA5ehqGUK/ykoVQRn5aOHJYvmKcULV7Bb3w+o=; b=
-	kPhH75tfZYNQZZn5b4ZTyTUJkEwDswZvtVxsA4I1kYYHJT9hm6Y1VWq1tWoRdBr2
-	5gcBvejk5u6w6xKKbpBKwnhLRlsLhO9eQUqJWCA+btbwX9ngh+x0EMbsvrrTdurE
-	xpzX7LS9Lhl1ZeTCcGI88lLtBUG3WdAQOw0MkNqzmyryl38Rfs0Hxm5tgzSKr4jP
-	FndM/8x4bIHcTFdnwjdTaScHkNMTMQT6UWqmZgTXDn+FulQ3eTrzHm2J2m2zT0hd
-	lWadi0s/oUZYjUbYUYH3dBNHYNH5Hgd9tJnC9YxtPeG49Jb50z1u1bvmjUjO5Rw1
-	0pmH62zjtpVTK4nq8eJMFA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1723013963; x=
-	1723021163; bh=FeNTTWWA5ehqGUK/ykoVQRn5aOHJYvmKcULV7Bb3w+o=; b=D
-	JX1D3Qss3Ge1TnNidK/zkvKY/8JNrKtEIApToVgGiC42kGtqI8ow6AGVUOAMbazW
-	itBUjWk7aqA8yzNfj892AZR3IHGTb9zwLEgUzS+hIBK5Li2OvlE3ONpYl/0zE/5z
-	h3soTk1czdmBNxcV5RI4Do6avSG2cQvjSpC45gT6FmO3Qj+xS+dn/cKTfw+I2rct
-	z4jv6Eo5QqHEbksHHHuWMRpE/t4bFAn3fb2+Ygv0oUrdld/RpBq9urHfN3Vqc9tJ
-	gfZUDZDJt0uvrtjpGSdhW8XAeAu6OeyUi0Jj4EJz55jsk1Of/gddMR0clliKyyiD
-	Dz/tJMxY0o+kqe5Jqh2CQ==
-X-ME-Sender: <xms:SRuzZpFLEGrL01CvOzZ7NicPwEvIcv3ZOSAEwfT0KIc13xEWibFx_g>
-    <xme:SRuzZuWOdnwVN62CY7TMMAVOQnMMo0UnpkJQhkqGvrgUGWhp1vAWaBOYOG7_0rIRv
-    GBMBRlfs0GZCyqUvYc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrkeelgdduudekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhephfdthfdvtdefhedukeetgefggffhjeeggeetfefggfevudegudevledvkefh
-    vdeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvgdpnhgspghrtghpthhtoheptd
-X-ME-Proxy: <xmx:SRuzZrLtWMsNgz7w87FJP8TbwXCRbvNB3tiVt8c9qWjaR5ujVwWSEg>
-    <xmx:SRuzZvGMZjtlTl2iioVuNelCvksPQt_NUQQ8oxahwjUInjv5odRUjA>
-    <xmx:SRuzZvVMupVgHTmvlEfTDZFTFuqoKesigKTc9co5c2CZoJ90OcfE1g>
-    <xmx:SRuzZqN-OQqNrinlJf78x4O8VL12d16J4HsptuQe5s0rO9OiA3XUXg>
-    <xmx:SxuzZpwYl7eOyL1UyDIm9UU-ZJT7YdfL_32mlOGPjpZKCsOuYKvqpDmx>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 97D26B6008D; Wed,  7 Aug 2024 02:59:21 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1723014117; c=relaxed/simple;
+	bh=av+yhOilfbWKeFpOG6RbWtFK6IsS2/pamAjLRCRBXDc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=P0MuOjNz7WWPP1gXCQ8ed8+EsV0vCXPMTkoiCF2z+f2YB/4BBl2sBKPnNU6BQrMGUYcqCnr8J27DajAC3H5oEaxlkuTJUzbbcbaPaSozxwXKjJ7lAIDAiv/Fsoejr/WdxqRmfDfPBQWfjuZ5RJleSg2ASrD5UO3rOSWVpcrCWNE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OBjxDnLC; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2f16767830dso15114651fa.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2024 00:01:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1723014114; x=1723618914; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=YAXW1jLrla8ijt9mi/dpWXVSNou305aEMISH8Qz9pDc=;
+        b=OBjxDnLCDly+uabmDPLp1x2pOXYX2UTx/g1M07gl66VoI99wBaBsnhvTU642j6EmJc
+         x4LFIq6HesKO9UHGXwvukCQLaVm9iZrriz+ol25KPAvh1fm20nwZPMqzSV9rkHj8l/hc
+         B8k9UvF2LPFmLL3i8kaoVsIP36bIKaAnZ0mngsQbIaCjHE2cOsue1Vu35tz5PfJYetZo
+         qi0Wvsb01bVv+GCgcKTYCif3amMrxOXrgOPzc87hdCKog7Z6Q7K0sqQiwnt/+DbXdjHi
+         FeqjeuMQcnr9eRg4iiIqpu+rkeXWT41YIqT4qgPO1ZT/m3Dlcy/ZOk999SxVH18eiCAZ
+         V1uQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723014114; x=1723618914;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YAXW1jLrla8ijt9mi/dpWXVSNou305aEMISH8Qz9pDc=;
+        b=CVUE7hPTMHfEv1F+1xUkc6fFwLev256zBrEL6WUd1rUj1+8KDvNWCrUHwof7gbqgAD
+         izZg5IN/+ny9wfluKO2CEebHw6f4rZodRA4DU/F/jGC8vrT4VVsivr4pamU9hkX76b/0
+         uu10YjKg3wKvrTgmOUn4n6RjTOidbUx43ZrEvhPQZdH6mjDVQYuvl/ir4+/bphB4fuCh
+         smfWy0IV/2JXiP7Vo1Wkh+sbZMWY4sHbFmyiY6cSESBPrt5tdKiCCMQ/a40l2JjQjA7u
+         WigSgf2cXH0mre9jCyLfwBFhpsj9aGRiQ/EH/ProRq7RvXgz7M7dSsvpBU1SM84EGVgq
+         DZYQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXmfImwmDYL4LEyvUMZyezFYJRjYABk9zSpaRKhyb+8myDjw7d2V6ig5BeeZz1ZMPOA3hB4aZ7Ti79frFOFevfztT/TvzL7Aeykig==
+X-Gm-Message-State: AOJu0Yxtw9eTIzhbD3j0Tr/qxMudUbXcvp1AzbSxEUixP936Fyf0Oz5W
+	HHakRQXuUzb91fQZgOdYm7Mb5XFtQiX6RSXYlyprnNxBSr5hbDmuZoxehq5Rm6Y=
+X-Google-Smtp-Source: AGHT+IEhqkgC65vo0kh7KsKYLQ2+XSZm4JrXvwLGtjt9W3pwge4ImAMPw/K1N/FgVlqtCs6CCNh7+Q==
+X-Received: by 2002:a05:651c:212:b0:2ef:185d:e3d7 with SMTP id 38308e7fff4ca-2f15ab06524mr106390061fa.38.1723014113521;
+        Wed, 07 Aug 2024 00:01:53 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.137])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4290580c720sm14265135e9.41.2024.08.07.00.01.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Aug 2024 00:01:52 -0700 (PDT)
+Message-ID: <41aa85d2-a84d-4fea-9d48-ce137437203d@linaro.org>
+Date: Wed, 7 Aug 2024 09:01:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Wed, 07 Aug 2024 08:58:37 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Mike Rapoport" <rppt@kernel.org>, linux-kernel@vger.kernel.org
-Cc: "Alexander Gordeev" <agordeev@linux.ibm.com>,
- "Andreas Larsson" <andreas@gaisler.com>,
- "Andrew Morton" <akpm@linux-foundation.org>,
- "Borislav Petkov" <bp@alien8.de>,
- "Catalin Marinas" <catalin.marinas@arm.com>,
- "Christophe Leroy" <christophe.leroy@csgroup.eu>,
- "Dan Williams" <dan.j.williams@intel.com>,
- "Dave Hansen" <dave.hansen@linux.intel.com>,
- "David Hildenbrand" <david@redhat.com>,
- "David S . Miller" <davem@davemloft.net>,
- "Davidlohr Bueso" <dave@stgolabs.net>,
- "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- "Heiko Carstens" <hca@linux.ibm.com>,
- "Huacai Chen" <chenhuacai@kernel.org>, "Ingo Molnar" <mingo@redhat.com>,
- "Jiaxun Yang" <jiaxun.yang@flygoat.com>,
- "John Paul Adrian Glaubitz" <glaubitz@physik.fu-berlin.de>,
- "Jonathan Cameron" <jonathan.cameron@huawei.com>,
- "Jonathan Corbet" <corbet@lwn.net>,
- "Michael Ellerman" <mpe@ellerman.id.au>,
- "Palmer Dabbelt" <palmer@dabbelt.com>,
- "Rafael J . Wysocki" <rafael@kernel.org>,
- "Rob Herring" <robh@kernel.org>,
- "Samuel Holland" <samuel.holland@sifive.com>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- "Thomas Gleixner" <tglx@linutronix.de>,
- "Vasily Gorbik" <gor@linux.ibm.com>, "Will Deacon" <will@kernel.org>,
- "Zi Yan" <ziy@nvidia.com>, devicetree@vger.kernel.org,
- linux-acpi@vger.kernel.org, Linux-Arch <linux-arch@vger.kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-cxl@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-mips@vger.kernel.org,
- linux-mm@kvack.org, linux-riscv@lists.infradead.org,
- linux-s390@vger.kernel.org, linux-sh@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, loongarch@lists.linux.dev,
- nvdimm@lists.linux.dev, sparclinux@vger.kernel.org, x86@kernel.org
-Message-Id: <1befc540-8904-4c23-b0e6-e2c556fe22b9@app.fastmail.com>
-In-Reply-To: <20240807064110.1003856-25-rppt@kernel.org>
-References: <20240807064110.1003856-1-rppt@kernel.org>
- <20240807064110.1003856-25-rppt@kernel.org>
-Subject: Re: [PATCH v4 24/26] arch_numa: switch over to numa_memblks
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: clock: fix C3 PLL input parameter
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chuan Liu <chuan.liu@amlogic.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240806-c3_add_node-v1-0-c0de41341632@amlogic.com>
+ <20240806-c3_add_node-v1-1-c0de41341632@amlogic.com>
+ <b63fe216-ee29-489e-a175-e1525ac12722@kernel.org>
+ <86b01ecb-6ca8-496e-b3a8-0b21bb951a60@amlogic.com>
+ <2da06dac-7a1a-461c-956d-13b74320723e@linaro.org>
+ <43a600fb-8094-414d-8a3c-0573286a11f7@amlogic.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <43a600fb-8094-414d-8a3c-0573286a11f7@amlogic.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Wed, Aug 7, 2024, at 08:41, Mike Rapoport wrote:
-> From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
->
-> Until now arch_numa was directly translating firmware NUMA information
-> to memblock.
-
-I get a link time warning from this:
-
-    WARNING: modpost: vmlinux: section mismatch in reference: numa_set_cpumask+0x24 (section: .text.unlikely) -> early_cpu_to_node (section: .init.text)
-
-> @@ -142,7 +144,7 @@ void __init early_map_cpu_to_node(unsigned int cpu, int nid)
->  unsigned long __per_cpu_offset[NR_CPUS] __read_mostly;
->  EXPORT_SYMBOL(__per_cpu_offset);
+On 07/08/2024 08:40, Xianwei Zhao wrote:
+> Hi Krzysztof,
+>     Thank you for your reply.
 > 
-> -int __init early_cpu_to_node(int cpu)
-> +int early_cpu_to_node(int cpu)
->  {
->  	return cpu_to_node_map[cpu];
->  }
+> On 2024/8/7 13:44, Krzysztof Kozlowski wrote:
+>> [ EXTERNAL EMAIL ]
+>>
+>> On 07/08/2024 03:55, Xianwei Zhao wrote:
+>>> Hi Krzysztof,
+>>>       Thanks for your review.
+>>>
+>>> On 2024/8/6 21:10, Krzysztof Kozlowski wrote:
+>>>> [ EXTERNAL EMAIL ]
+>>>>
+>>>> On 06/08/2024 12:27, Xianwei Zhao via B4 Relay wrote:
+>>>>> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>>>>
+>>>>> Add C3 PLL controller input clock parameters "fix".
+>>>>
+>>>> What is "parameters" here? Why you are adding it? Is it missing?
+>>>> Something is not working?
+>>>>
+>>> Yes. The previous submission was lost.
+>>
+>> What submission is lost?
+>>
+>>>
+>>>>>
+>>>>> Fixes: 0e6be855a96d ("dt-bindings: clock: add Amlogic C3 PLL clock controller")
+>>>>
+>>>> Why? What bug are you fixing?
+>>>
+>>> The input clock of PLL clock controller need the clock whose fw_name is
+>>> called "fix".
+>>
+>> Then explain this in commit msg.
+>>
+> Will add this in commit msg.
+>>>>
+>>>>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>>>> ---
+>>>>>    Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml | 7 +++++--
+>>>>>    1 file changed, 5 insertions(+), 2 deletions(-)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml
+>>>>> index 43de3c6fc1cf..700865cc9792 100644
+>>>>> --- a/Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/clock/amlogic,c3-pll-clkc.yaml
+>>>>> @@ -24,11 +24,13 @@ properties:
+>>>>>        items:
+>>>>>          - description: input top pll
+>>>>>          - description: input mclk pll
+>>>>> +      - description: input fix pll
+>>>>>
+>>>>>      clock-names:
+>>>>>        items:
+>>>>>          - const: top
+>>>>>          - const: mclk
+>>>>> +      - const: fix
+>>>>
+>>>> and that's not an ABI break because?
+>>> This is "fixed" clock.
+>>> I will modify "fix" to "fixed",in next version.
+>>
+>> With "fixed" it is still ABI break, right?
+>> No. The clock named "fixed" was initially implemented in the PLL clock 
+> controller driver, but some registers needed secure zone access,
+> so we put it in secure zone(BL31) implemented and access it through the 
+> SCMI. but the PLL clock driver need uses this clock, so the "fixed" 
+> clock is input as an input source,
+> We changed the driver and forgot to change the binding, so we added it here.
 
-early_cpu_to_node() can no longer be __init here
+Fix your quoting or your email program - I don't understand what you are
+saying here.
 
-> +#endif /* CONFIG_NUMA_EMU */
-> diff --git a/include/asm-generic/numa.h b/include/asm-generic/numa.h
-> index c32e0cf23c90..c2b046d1fd82 100644
-> --- a/include/asm-generic/numa.h
-> +++ b/include/asm-generic/numa.h
-> @@ -32,8 +32,6 @@ static inline const struct cpumask *cpumask_of_node(int node)
-> 
->  void __init arch_numa_init(void);
->  int __init numa_add_memblk(int nodeid, u64 start, u64 end);
-> -void __init numa_set_distance(int from, int to, int distance);
-> -void __init numa_free_distance(void);
->  void __init early_map_cpu_to_node(unsigned int cpu, int nid);
->  int __init early_cpu_to_node(int cpu);
->  void numa_store_cpu_info(unsigned int cpu);
+Anyway, provide justification in the commit msg.
 
-but is still declared as __init in the header, so it is
-still put in that section and discarded after boot.
+Best regards,
+Krzysztof
 
-I was confused by this at first, since the 'early' name
-seems to imply that you shouldn't call it once the system
-is up, but now you do.
-
-     Arnd
 
