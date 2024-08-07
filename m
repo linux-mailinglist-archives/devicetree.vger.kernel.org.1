@@ -1,66 +1,55 @@
-Return-Path: <devicetree+bounces-91856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DAF494AEC4
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 19:22:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A40894AEC9
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 19:23:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A4DD11C2159D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 17:22:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9AB4D1C21901
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 17:23:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7882013B293;
-	Wed,  7 Aug 2024 17:22:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BA8F13C699;
+	Wed,  7 Aug 2024 17:23:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="owWgzSrk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HdK4Icsv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4849C6BB4B;
-	Wed,  7 Aug 2024 17:22:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 439156BB4B;
+	Wed,  7 Aug 2024 17:23:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723051349; cv=none; b=jy6Gs3451Z60NZqYFMKXAdGSaHxVtuA9NtXnPW8QVdfTQ/8jc7aX7kb9+uQteCCujrAf2sHA90l3UAVq1roWM46vPDHJtusfF94zwbIE5705o8AV8TEZ+PJNH/jEuGRe/Wf8wjpJMIKKPTJ6Jbjz12F87vBeSPS+DoZ846le3lU=
+	t=1723051385; cv=none; b=MXVjtGuZpi8hyT35dK2yeVBIggNepsVj0Eg8D/rFq4h1g3y3Y+iux3+eVdQha01ZPDlt3BhhxZvyvvu2eghCMSB1CEe287oF6ITkEmd1+3Kknrv8xYllIs6Efru0Xko39O1xkCUyxsKaX2rWGzZpqo/GnEGah5w222tW4tcpUPw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723051349; c=relaxed/simple;
-	bh=y6mJiL+/McAto5QWkflfrjZFdn6Y74RBYK1IE0EbZGw=;
+	s=arc-20240116; t=1723051385; c=relaxed/simple;
+	bh=RJ0Zesv/SIpAdtJA0TFDSMko+4aT6tcCI2CctQwQIA4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s6BsEtz2h7aLKPkSpN2DeFJ3B3/v9LCkZrqlsj9chPyPCmC/mP57MKXKLZdl9jzWO062bMLdiJZYp4xnT/CtwPk4ftCC7pzSPiHbW16UGYoEtmnzhJLRoGszkjS0J5AoJ01sT4uEL3uz+MHEVF4LQkvDEBrIQqyqccwLjsfn3wA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=owWgzSrk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D85A0C32781;
-	Wed,  7 Aug 2024 17:22:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tK01dKyrK06q2GzLHhP/6GUM/hZeckjd3Aj3AI9hZLlpB4HLYF85D++lPvCsEyaXV5ZZkTJw3wHQE8m+l5JM+BLhvwGgPNWeW+lE46IMkzv7bTfi2jk1e/yVazkg3zEwLkymar4KaI1o30pgjbBgsbbnc7wBLGhNRhTJMaVnEWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HdK4Icsv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E2CFC32781;
+	Wed,  7 Aug 2024 17:23:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723051348;
-	bh=y6mJiL+/McAto5QWkflfrjZFdn6Y74RBYK1IE0EbZGw=;
+	s=k20201202; t=1723051384;
+	bh=RJ0Zesv/SIpAdtJA0TFDSMko+4aT6tcCI2CctQwQIA4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=owWgzSrkOEo9kWqWUr5x4wRzvi88VoT4jyWIx4s9aUtJ4IjvpB5xpLTsI+nCi09gj
-	 lRw+2eWqz0Rg0CS59/LJD0bJA4JRd/koUNFZ+rZk+QVKEyxV4dRYPdjestJAO1Rhvp
-	 ZuchR+43Vc612jJdJlt1Yh3lJ4+2XOlsH5/KvZaAGspGfz2+m18CSPqCvM/H2OAbuA
-	 ksq7IdAiYcwfL2/TnfGSs/Cjilr0KZ6YWdoAUYo9j5gQTWOLWfS5RnMqFpDkx87Q3g
-	 Xssz6QmBN+iHUNaeVfuyzx/v29adPahGaDjVJyfjL2mtuZqa8/0vZPEQq+86pwdPGk
-	 J0JR7yRdGP2hg==
-Date: Wed, 7 Aug 2024 18:22:23 +0100
+	b=HdK4Icsv2/2pnfXPRi1T3yBDcNOiabPvr5WokVHvCdoqS6nCq73JdsLEvTRgL1aAI
+	 GWxGqe3+fIRU8uC13nCYvzw2VKmfHogNMTU8pMRA38o610pU7KFRgQo0oPIoM6PzqN
+	 Mw5k2ldGWuX6B7npIrzFL2lSsmVH9K05VHw7ZxeNY5Zf19UtO0WzloW0rAr9ysD4qN
+	 6bb7RuKDdsEIqrQjLJUJZJ27smOlm9oplH6RTc2luKqLfBpFeopQ8MWOjzi4L+WxnH
+	 +vHt84sq1VwEB9isOjRj9tNGMKinvMFvWEtw+mg5wd+BoYyqTYNuOXrY4maNeDMvFx
+	 horuo+dXHiZzw==
+Date: Wed, 7 Aug 2024 18:23:00 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>, linux-kernel@vger.kernel.org,
-	Marc Zyngier <maz@kernel.org>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	linux-riscv@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, Lewis Hanly <lewis.hanly@microchip.com>
-Subject: Re: [RFC v7 4/6] gpio: mpfs: add polarfire soc gpio support
-Message-ID: <20240807-epileptic-pessimism-a7866dbadae4@spud>
-References: <20240723-supervise-drown-d5d3b303e7fd@wendy>
- <20240723-underage-wheat-7dd65c2158e7@wendy>
- <CACRpkdbRE695f-+do1HYpOZ6e4qxgUBWJzEPO2hTCuZ3xxYHQg@mail.gmail.com>
- <20240806-breeze-crazily-84d4e4af8f4e@spud>
- <CACRpkdbMxuhe2HQZ-Av1R7JW94rS0FosPO-utYNsFO8avR3TbQ@mail.gmail.com>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH v2] dt-bindings: dma: fsl,imx-dma: Document the DMA clocks
+Message-ID: <20240807-naming-sanction-b51edd2b7276@spud>
+References: <20240807170517.64290-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,65 +57,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="2+uJzAu790xEQaKU"
+	protocol="application/pgp-signature"; boundary="IyEKhwbgMkTOPuJj"
 Content-Disposition: inline
-In-Reply-To: <CACRpkdbMxuhe2HQZ-Av1R7JW94rS0FosPO-utYNsFO8avR3TbQ@mail.gmail.com>
+In-Reply-To: <20240807170517.64290-1-festevam@gmail.com>
 
 
---2+uJzAu790xEQaKU
-Content-Type: text/plain; charset=utf-8
+--IyEKhwbgMkTOPuJj
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Aug 07, 2024 at 06:55:58PM +0200, Linus Walleij wrote:
-> On Tue, Aug 6, 2024 at 7:18=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
-ote:
-> > On Mon, Aug 05, 2024 at 10:04:53AM +0200, Linus Walleij wrote:
+On Wed, Aug 07, 2024 at 02:05:17PM -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 >=20
-> > > Is it possible to use augmented generic MMIO, i.e just override these
-> > > two functions that
-> > > need special handling?
-> >
-> > I'll look into it - as I mentioned under the --- line, I really didn't
-> > touch most of the driver and there's comments from Lewis' submission
-> > that still apply.
+> Document the IPG and AHB clocks that are needed by the DMA hardware
+> as required properties.
 >=20
-> Thanks Conor, thanks for taking this over, too many patch sets fall
-> on the floor.
+> It is not possible to have DMA functional without the DMA clocks
+> being turned on.
+>=20
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+> Changes since v1:
+> - Mark clock and clock-names as required properties (Conor).
 
-Meh, it always bugged me that upstreaming driver was given up on because
-fixing the interrupts was "hard". It'd be a poor example to others if I
-le the driver sit downstream as a result.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> I'm mostly fine merging it like this and then improving
-> it in-tree as well, I'm not as insistent on things being perfect before
-> merging as long as they are maintained.
-
-The gpio side of things might not be too bad, but the irqchip side is
-crap (it has an of_iomap() in it for example*), and if the irqchip driver
-needs work it feels sensible to improve on both before merging anything.
-Unless of course, you think it would be reasonable to rip the interrupt
-support out of the gpio driver, merge that and incrementally add it
-while also improving the things you and the earlier review mentioned
-w.r.t. regmap?
-
-Cheers,
-Conor.
-
-* Getting rid of the of_iomap() needs me to rewrite parts of the clock
-driver, which seemed overkill until I knew whether or not the approach
-was permitted.
-
---2+uJzAu790xEQaKU
+--IyEKhwbgMkTOPuJj
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrOtTwAKCRB4tDGHoIJi
-0gNfAQCL3AK7b7Rag0SuAREO6VHwuSZM26U4wr2nM7r1q6SmAwD9HTu8K4xzfaDX
-SbK/WfgJsXClolZ0GfJezsgv+yu4RAw=
-=Sm0o
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrOtdAAKCRB4tDGHoIJi
+0g/gAQDJoQgydMhC3VsKgN+tXVmmO2AchAXP6z6Yhfoh/AFcPQD/V88+3Unydlmx
+i/cTg2OwxvJsi+6Et6IMv03y5Qp0jgM=
+=UAVL
 -----END PGP SIGNATURE-----
 
---2+uJzAu790xEQaKU--
+--IyEKhwbgMkTOPuJj--
 
