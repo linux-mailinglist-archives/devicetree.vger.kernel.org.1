@@ -1,177 +1,260 @@
-Return-Path: <devicetree+bounces-91778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A253294A89C
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 15:29:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE56094A8A2
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 15:32:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 582F91F21007
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 13:29:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62758283709
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 13:32:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 730DB1E6742;
-	Wed,  7 Aug 2024 13:29:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5C911DD38E;
+	Wed,  7 Aug 2024 13:32:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="QKrFc1+1"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="R8+qSQ4O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C68E61BDAB0;
-	Wed,  7 Aug 2024 13:29:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DB0F1E3CBA
+	for <devicetree@vger.kernel.org>; Wed,  7 Aug 2024 13:31:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723037384; cv=none; b=eTFm6R2COhlBG3CEkfji2ZwNvXfMkMU2ELnrTWEe2qx8rncNlpTcYDvZuyZGCwgvw9ggWrQ4aJWx3/fjiLr5wVwLzrTOrhzaINw/R1Kltfpf76JzeQidYfS7e11EzntVNRX8E8AUxwwD3fig1IpUF3jzwtl6xpvNmLxPQHG8B/A=
+	t=1723037520; cv=none; b=FV7YYgi/gxKRQoz6Hkz+jF0gifWS5dluCA3dIjkiGUGkYTV2xOma0LM3J74mdD1OgVD3rhSq/k/3ME0dHU5iNgyrPlCaaAaZCFi23yD4xpKXrRpr06G+YPfgsRMoiYZS+xVo79Q8zG9X9I0PG1m9sRA6aMc217f0Vr5PYcfXB4Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723037384; c=relaxed/simple;
-	bh=qM9AJoWa5VmLYkAsAiKwksrHXv6FKgyEFWqPkI2GMqw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uU9roS21g7mC+2Zb6R9AWTp4usfu79HF2wCJBEec129f4pusLr+LnUI5glG4J+PYvzV4sVTHFO/LKAa/tkaZ6JmnPbF9KhB2T3bDRgZ2UJkGeXOelrHD4/QBeUDugWr4V8+nrB7uJhhDAMGIj86ibHkOSct+xGkWKX9OL0xSwy0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=QKrFc1+1; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 1BF49FF803;
-	Wed,  7 Aug 2024 13:29:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1723037373;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=cVTsGVO8WsmaD67opd83BfGFsRJNsmaLrq0szd22Jso=;
-	b=QKrFc1+1fIuGLesvgymIYwFwPnJVb+rjl/ZP2BoUrhJkQHOAu3stwDe1XaFP5f1eyJMV7Z
-	wFUrzvoCkJYAueAKr2mIol3f3K3XFnHB3lxhNmt73ny2WI/AA+vHckq86dKEJbVn8ZVTVP
-	fopVlsEIQ58rnvRhdDkm7fmuAUlvS2UPUxpGQt4oct1orI9nBrxSWPSwmG9Ie8+QR78NQ+
-	VQLK1LZZBKe5OaArKNDpzmXOn7Q0AyHGbd1bW8c7tpMilCRP7IHd69jdY9f1enEjVKs75E
-	WeC790m5b+uinjI8a4yCuVB45CSGfeUpl4gkjgfMvqsnv0jz1uiwlbo14cMdBg==
-Date: Wed, 7 Aug 2024 15:29:27 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Simon Horman
- <horms@kernel.org>, Lee Jones <lee@kernel.org>, Arnd Bergmann
- <arnd@arndb.de>, Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
- <dragan.cvetic@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Philipp Zabel
- <p.zabel@pengutronix.de>, Lars Povlsen <lars.povlsen@microchip.com>, Steen
- Hegelund <Steen.Hegelund@microchip.com>, Daniel Machon
- <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, Rob Herring
- <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, "David S.
- Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
- Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Horatiu Vultur
- <horatiu.vultur@microchip.com>, Andrew Lunn <andrew@lunn.ch>,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?=
- <clement.leger@bootlin.com>
-Subject: Re: [PATCH v4 3/8] mfd: syscon: Add reference counting and device
- managed support
-Message-ID: <20240807152927.22e40284@bootlin.com>
-In-Reply-To: <CAHp75VfKXEyHF25xRq8EDp5SeBdyPHLgzw=4s1xkjer=sNu7aw@mail.gmail.com>
-References: <20240805101725.93947-1-herve.codina@bootlin.com>
-	<20240805101725.93947-4-herve.codina@bootlin.com>
-	<CAHp75VfKXEyHF25xRq8EDp5SeBdyPHLgzw=4s1xkjer=sNu7aw@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1723037520; c=relaxed/simple;
+	bh=I0YOAeMMQ/RBgnuOGksJ5QaMn2vrXWE6rlYOy6/JtqE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=OKpNlb9VYUbnMi25C1P11hvkw1SwRY/rTRWwghAXnXIDhkHXeLjEaqA2h2q1AySzLyiM49PJ2mTjeSHdnkZe55lJYZ76Fxni27+Pl7Ra2C0VJzpwuaq+tSw7anlXCslciIV5FY2Da0Nvtp+/Jm4QspLOR6pMfuFa2ygblhQsn8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=R8+qSQ4O; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-428178fc07eso12316785e9.3
+        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2024 06:31:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1723037516; x=1723642316; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=164tr0yz7inawChH82oVEAaUXNqCqs8bMXCcFphhnjM=;
+        b=R8+qSQ4OviuAr6tkU1BYBmhxX8t5vFRzXrPXt4yj+6fDzyE1TYzyHA0jlzW388Q7BJ
+         AEercpD2riORcuUi4LNjoy50+4u+FgcZLvKoMk4O5xklCRl5K8cd+UhX6ToJrgR/sZgY
+         l29T8ewhmFX/7l8KdoEUddgY0xLej0WvmoNjUCjl6P+OFJebhGzEWk5BfyUw0Zhomvic
+         aJSQO4udYVdYieZgZPjjtYYhFdz4i+2N7gLgHKOYSLwGeaBXVVYIFx7bqhvz/tdRC6Jc
+         cosiuM02hwWhkV0MFSgrzsyjA2OSdRDwCQKlXTN+nlfmCcz46Z0hBZ7Qhj1a0XmKHfTd
+         zufQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723037516; x=1723642316;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=164tr0yz7inawChH82oVEAaUXNqCqs8bMXCcFphhnjM=;
+        b=VTnx1lXXPQzsB3jrsn1D1cGAP4NwBD+0/YNtILv/yknwfIs8WdXrgH9sTwmQxu+PT/
+         O7dDuXES4WnlYtjrr1XLDqyhThbC6XkiR4Gft0H9LbTu0gt33PwNKsZid5UWLH1QY2GM
+         kgl9+Z4jOGyzwEN0gpmcGGvZ1mjQxAuQLx0Q/ADJV7PYwWTSB/vVE3dFzMiANISb0HiW
+         KqLiE5XS/yS/m9W8hHmosQdMXWqURzuaWn+Z5A5glWVs4CNcrPdiiot4DMi94LYRjbwh
+         g0IWAYJXoyVbICM2ITLuWQoSVGZYLrvvfxdw02JF4HvF9kbFo3z4ZvW10WKmIVlomm6M
+         vEmg==
+X-Forwarded-Encrypted: i=1; AJvYcCW9iC/oiqWm76wW/hZ+sVBos0YuvITyEv6JWahmEOD6NoOGSRayjaLI9+CSg8f8iSDGqLjiMo+HsPrXkWEu4oXkfbwaNAYbw/X7mw==
+X-Gm-Message-State: AOJu0YxsqNLXP+CQ4bq80p6rgPSHsfp1R5LSyN60jp/oxe+bvPbw9i+C
+	T4WRhGTPL9yfUt8Yr9z6kaDz3Ueqc+WWHQlrrjRXyeKUkkhaPAaVns33+myxeJo=
+X-Google-Smtp-Source: AGHT+IHZ6j7eB4eff+ZU6Ljgi316Ng/lSjNPepGxFzSz5LPlCb6rjcJjFdNp87kEzPvobstUNi9b0g==
+X-Received: by 2002:a05:600c:358b:b0:427:d8f7:b718 with SMTP id 5b1f17b1804b1-428e6b7f0abmr127289625e9.24.1723037516192;
+        Wed, 07 Aug 2024 06:31:56 -0700 (PDT)
+Received: from [127.0.1.1] ([2a01:cb1d:dc:7e00:a3e7:be71:fe4f:c360])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429059cd2b3sm29360505e9.44.2024.08.07.06.31.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Aug 2024 06:31:55 -0700 (PDT)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Wed, 07 Aug 2024 15:31:43 +0200
+Subject: [PATCH] arm64: dts: qcom: sa8775p: add CPU idle states
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240807-sa8775p-idle-states-v1-1-f2b5fcdfa0b0@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAD53s2YC/x2MQQqAIBAAvxJ7TjBL0r4SHcTWWogSNyIQ/550n
+ IGZDIyJkGFqMiR8iOk6K3RtA35354aC1sqgpBqk7qVgZ8ZRx6oPFHy7G1kYZXyQ3lgbEGoZEwZ
+ 6/+u8lPIBvl3dzmUAAAA=
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4120;
+ i=bartosz.golaszewski@linaro.org; h=from:subject:message-id;
+ bh=EKlSo1FtkBt4LmDA1XAsl6pXZ1ICErv1hWvRoyPvAQk=;
+ b=owEBbQKS/ZANAwAKARGnLqAUcddyAcsmYgBms3dIxeBiVUpzBwdqkeLTAo2bBFKAJWFoDrocu
+ GEmOqxQfwKJAjMEAAEKAB0WIQQWnetsC8PEYBPSx58Rpy6gFHHXcgUCZrN3SAAKCRARpy6gFHHX
+ cjvpD/9HQSDQMSUE8M5EvCrys8L34H2quxpDiOKMwodwroCf2fNgjM60xBRanLfCcSXXnfJDMJU
+ jxJAtZVrz3flcf/TTBJgpId6hipemMZTPasYjuVvdMCR4+HkUcf0gA7Xy3mMdEzxG8Zo4y9b+Fl
+ sjj5n0zj3M53WdpSvUI7bRo6FWo23yl6NSxWuspMcAkE69tPVLa2WUfysBiPtIPcetcLJet6p3J
+ lF+wPcyB2i/myEVOdUYIKGlC8hxcFkOzwONdzsINZ8l4pARgZt+cP4ioiQUNeqeU0uPalVNqMNU
+ xkhll52MvKIs0cH0J867CKk/l2CPERCirvQ0g8pfNDfO48fmO8zwPP4gc8RPrvuoUYwpMBhFXtv
+ xXT6ckanim+pr5mRH2XL3U/tIfByxVqMLbZcyJ2xYBg28gyBpfXmHDNLd5j2kbptiHdQnzl6VSA
+ BanBZwwuGMyalbxgfMg61k6WUUWXbnddv0zT7oTJRoYRsnH7W/tBWm/fDYhPG+AGpT88jebFsKh
+ uQWh6GNvYtYakm9OJ2DLrX0F6dhEl/zmkuIkU7rheAM34RVZNS77B6ig0z2IjunpXeOq3Xa4Je4
+ AteYA5/jaaQUnJ6rfim1Uq6/PaEh3zQIasf4QIbs18PrfKPdaGLWnnNwwPkODQB/idc6BKEiPqf
+ tc3hMd8CYTuPXMA==
+X-Developer-Key: i=bartosz.golaszewski@linaro.org; a=openpgp;
+ fpr=169DEB6C0BC3C46013D2C79F11A72EA01471D772
 
-Hi Andy,
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-On Mon, 5 Aug 2024 22:20:56 +0200
-Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+Add CPU idle-state nodes and power-domains to the .dtsi for SA8775P.
 
-> On Mon, Aug 5, 2024 at 12:19 PM Herve Codina <herve.codina@bootlin.com> wrote:
-> >
-> > From: Clément Léger <clement.leger@bootlin.com>
-> >
-> > Syscon releasing is not supported.
-> > Without release function, unbinding a driver that uses syscon whether
-> > explicitly or due to a module removal left the used syscon in a in-use
-> > state.
-> >
-> > For instance a syscon_node_to_regmap() call from a consumer retrieve a  
-> 
-> retrieves?
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi | 115 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 115 insertions(+)
 
-Indeed, will be fixed.
+diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+index 602e20d5f1f7..6e50ee5f3578 100644
+--- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
++++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+@@ -219,6 +219,48 @@ core3 {
+ 				};
+ 			};
+ 		};
++
++		idle-states {
++			entry-method = "psci";
++
++			GOLD_CPU_SLEEP_0: cpu-sleep-0 {
++				compatible = "arm,idle-state";
++				idle-state-name = "gold-power-collapse";
++				arm,psci-suspend-param = <0x40000003>;
++				entry-latency-us = <549>;
++				exit-latency-us = <901>;
++				min-residency-us = <1774>;
++				local-timer-stop;
++			};
++
++			GOLD_RAIL_CPU_SLEEP_0: cpu-sleep-1 {
++				compatible = "arm,idle-state";
++				idle-state-name = "gold-rail-power-collapse";
++				arm,psci-suspend-param = <0x40000004>;
++				entry-latency-us = <702>;
++				exit-latency-us = <1061>;
++				min-residency-us = <4488>;
++				local-timer-stop;
++			};
++		};
++
++		domain-idle-states {
++			CLUSTER_SLEEP_GOLD: cluster-sleep-0 {
++				compatible = "domain-idle-state";
++				arm,psci-suspend-param = <0x41000044>;
++				entry-latency-us = <2752>;
++				exit-latency-us = <3048>;
++				min-residency-us = <6118>;
++			};
++
++			CLUSTER_SLEEP_APSS_RSC_PC: cluster-sleep-1 {
++				compatible = "domain-idle-state";
++				arm,psci-suspend-param = <0x42000144>;
++				entry-latency-us = <3263>;
++				exit-latency-us = <6562>;
++				min-residency-us = <9987>;
++			};
++		};
+ 	};
+ 
+ 	dummy-sink {
+@@ -348,6 +390,79 @@ pmu {
+ 	psci {
+ 		compatible = "arm,psci-1.0";
+ 		method = "smc";
++
++		CPU_PD0: power-domain-cpu0 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_0_PD>;
++			domain-idle-states = <&GOLD_CPU_SLEEP_0>,
++					     <&GOLD_RAIL_CPU_SLEEP_0>;
++		};
++
++		CPU_PD1: power-domain-cpu1 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_0_PD>;
++			domain-idle-states = <&GOLD_CPU_SLEEP_0>,
++					     <&GOLD_RAIL_CPU_SLEEP_0>;
++		};
++
++		CPU_PD2: power-domain-cpu2 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_0_PD>;
++			domain-idle-states = <&GOLD_CPU_SLEEP_0>,
++					     <&GOLD_RAIL_CPU_SLEEP_0>;
++		};
++
++		CPU_PD3: power-domain-cpu3 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_0_PD>;
++			domain-idle-states = <&GOLD_CPU_SLEEP_0>,
++					     <&GOLD_RAIL_CPU_SLEEP_0>;
++		};
++
++		CPU_PD4: power-domain-cpu4 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_1_PD>;
++			domain-idle-states = <&GOLD_CPU_SLEEP_0>,
++					     <&GOLD_RAIL_CPU_SLEEP_0>;
++		};
++
++		CPU_PD5: power-domain-cpu5 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_1_PD>;
++			domain-idle-states = <&GOLD_CPU_SLEEP_0>,
++					     <&GOLD_RAIL_CPU_SLEEP_0>;
++		};
++
++		CPU_PD6: power-domain-cpu6 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_1_PD>;
++			domain-idle-states = <&GOLD_CPU_SLEEP_0>,
++					     <&GOLD_RAIL_CPU_SLEEP_0>;
++		};
++
++		CPU_PD7: power-domain-cpu7 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_1_PD>;
++			domain-idle-states = <&GOLD_CPU_SLEEP_0>,
++					     <&GOLD_RAIL_CPU_SLEEP_0>;
++		};
++
++		CLUSTER_0_PD: power-domain-cluster0 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_2_PD>;
++			domain-idle-states = <&CLUSTER_SLEEP_GOLD>;
++		};
++
++		CLUSTER_1_PD: power-domain-cluster1 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_2_PD>;
++			domain-idle-states = <&CLUSTER_SLEEP_GOLD>;
++		};
++
++		CLUSTER_2_PD: power-domain-cluster2 {
++			#power-domain-cells = <0>;
++			domain-idle-states = <&CLUSTER_SLEEP_APSS_RSC_PC>;
++		};
+ 	};
+ 
+ 	reserved-memory {
 
-> 
-> > syscon regmap instance. Internally, syscon_node_to_regmap() can create
-> > syscon instance and add it to the existing syscon list. No API is
-> > available to release this syscon instance, remove it from the list and
-> > free it when it is not used anymore.
-> >
-> > Introduce reference counting in syscon in order to keep track of syscon
-> > usage using syscon_{get,put}() and add a device managed version of
-> > syscon_regmap_lookup_by_phandle(), to automatically release the syscon
-> > instance on the consumer removal.  
-> 
-> ...
-> 
-> > -       if (!syscon)
-> > +       if (!syscon) {
-> >                 syscon = of_syscon_register(np, check_res);
-> > +               if (IS_ERR(syscon))
-> > +                       return ERR_CAST(syscon);
-> > +       } else {
-> > +               syscon_get(syscon);
-> > +       }  
-> 
->   if (syscon)
->     return syscon_get();
-> 
-> ?
-> 
-> > +       return syscon;  
-
-Yes and further more, I will remove also the unneeded IS_ERR() and ERR_CAST().
-This will lead to just:
-
-	if (syscon)
-		return syscon_get(syscon);
-
-	return of_syscon_register(np, check_res);
-
-> 
-> ...
-> 
-> > +static struct regmap *__devm_syscon_get(struct device *dev,
-> > +                                       struct syscon *syscon)
-> > +{
-> > +       struct syscon **ptr;
-> > +
-> > +       if (IS_ERR(syscon))
-> > +               return ERR_CAST(syscon);
-> > +
-> > +       ptr = devres_alloc(devm_syscon_release, sizeof(struct syscon *), GFP_KERNEL);
-> > +       if (!ptr) {
-> > +               syscon_put(syscon);
-> > +               return ERR_PTR(-ENOMEM);
-> > +       }
-> > +
-> > +       *ptr = syscon;
-> > +       devres_add(dev, ptr);
-> > +
-> > +       return syscon->regmap;  
-> 
-> Can't the devm_add_action_or_reset() be used in this case? If so,
-> perhaps a comment to explain why?
-
-There is no reason to avoid the use of devm_add_action_or_reset() here.
-So, I will use it in the next iteration.
-
-Thanks for your review.
+---
+base-commit: eec5d86d5bac6b3e972eb9c1898af3c08303c52d
+change-id: 20240530-sa8775p-idle-states-828cf0c899fe
 
 Best regards,
-Hervé
+-- 
+Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+
 
