@@ -1,181 +1,141 @@
-Return-Path: <devicetree+bounces-91771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A89C94A84D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 15:07:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7917794A855
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 15:09:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9BBB281A88
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 13:07:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA7A21C203F3
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 13:09:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A17D21E4F03;
-	Wed,  7 Aug 2024 13:06:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EF401E6750;
+	Wed,  7 Aug 2024 13:08:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BXmmDjVo"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Czl9PXjl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A125155C83;
-	Wed,  7 Aug 2024 13:06:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D422155C83;
+	Wed,  7 Aug 2024 13:08:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723036018; cv=none; b=tGxsDPoRO/wtS77Hukjxlv/yYM9FFeHMPpkhFwzr9Q5KUpUZN/GZiv8Vmg0GpSVZi0qGx1rXLlm+488sHP3eubeZ2BYINz7F6LKNheB20WJqXHtUanl03zPpP0huLgPWAF5KkuYh1NGCHJ9Bfj4zglzX5Z89CH+KnYwqdlah5To=
+	t=1723036135; cv=none; b=M6FrQh7gXhRtPgtGbzE3dVCxL4IIQZqGV2t6igS8emCdr7j81zNR/8yEEDvBmSViBOomylmDzIcPz0AroekT+91tY2Z2jpY8meFqUcHLWBHyyEyB6T6fUbxoaAtbYCkm+SWtKUgNaZbV2yX4/MeypaCZr7khch4xQL/R5y+kMOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723036018; c=relaxed/simple;
-	bh=zdCHLivRBHeV2NYtAz5hBxGICgl+ldCZ4tiN7YTehV8=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZD51lxNNO+SfynRDn1NAkebJ1N+qck7Ho5Np5JnB1VVus0bkg7KsVvtwp3FyKLWT96UAQm4SHiTSNU+sWgoMJxk4wmDlY31Ebm319j/fDiNHxEi9WI3HM3RYlYgw/LjLa/EZc1x3jA5TJo/Ki9Ms9AABpvRpXaI6vxBCyvNnEyw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BXmmDjVo; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 477D6mwW096127;
-	Wed, 7 Aug 2024 08:06:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1723036008;
-	bh=sse7kT6azNByYduNdrThku4TmwDTwyJbiElkKLi6dtw=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=BXmmDjVozkVOHhPZ9ZXz7JYQ39/qYGBwnwuGzDButm06c5NQwQ2WB3x1FHsSYTU8b
-	 7NDlefGltcgbmhSCFPOV+Qh0qz5IgzRkui0lvvyxdsXNwLc35DkUbzgZT5POfgzG98
-	 dI9iiWOACoIWHTwLMyFvBljNzdYvGLjNBft2tV1E=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 477D6mIw122246
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 7 Aug 2024 08:06:48 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
- Aug 2024 08:06:48 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 7 Aug 2024 08:06:48 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 477D6mZE096327;
-	Wed, 7 Aug 2024 08:06:48 -0500
-Date: Wed, 7 Aug 2024 08:06:48 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Manorit Chawdhry <m-chawdhry@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Udit Kumar
-	<u-kumar1@ti.com>,
-        Neha Malcom Francis <n-francis@ti.com>,
-        Aniket Limaye
-	<a-limaye@ti.com>
-Subject: Re: [PATCH v3 6/9] arm64: dts: ti: Split
- k3-j784s4-j742s2-evm-common.dtsi
-Message-ID: <20240807130648.elyf66euunm6iowy@illusion>
-References: <20240731-b4-upstream-j742s2-v3-0-da7fe3aa9e90@ti.com>
- <20240731-b4-upstream-j742s2-v3-6-da7fe3aa9e90@ti.com>
+	s=arc-20240116; t=1723036135; c=relaxed/simple;
+	bh=lg7vIjv3U+4G+DCxTaheuhCyjfxyBQL1dS8IA/3ZP+E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Frdgaks3ylkyNJ3KtOzoi2ImpQuTojQH/4HJ2kdscLNlPW3JBM7Mt/qcJ5nYKBjXUwSxuoQPMDyYJFCrVUbQrSACRAQEwhnsGTxQZs3b1AOFfk3BItBkdrbcb3HxSpIdw2YTyBkWf+up6sS23VZYdbNmxxUCwQ8b8b7IEfXQRak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Czl9PXjl; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4778EAPP015715;
+	Wed, 7 Aug 2024 13:08:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Ux2RjKWv5kxPB3ZMa2HlizgJane9dvfGnlsalQv7QO0=; b=Czl9PXjlIOdzMw2i
+	4gDtmFpi6FxijxsuBUbpivzJrobAIGVxQ7dFy0GLXAensKkqZ+chEx0ChrRS97eg
+	HRbiGxMB8+AcKU3ppx45CrPfEhXfCUux2i6bbr2oLVpwYxc9yskWW5cTrJpPLMZ+
+	rrBFmfKQTPMNdI8Cds32N1flrcpD+5od9aXPBGcoWjNGZxlHPDCOcO59ITIOljUw
+	Lx4eB9zDTBmRz01fVuUFGvlvaMM9iazlvjbyBqrWkfsZJka0w7IIC8qYzl7NNlSK
+	F47bDFcHxvSC5Kmo6dyq9UY714EXuzzpQzY/GLDkPIrN2KaICP5PxlMuFZw4B0zv
+	ulov2Q==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40sc4yar4m-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 07 Aug 2024 13:08:49 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 477D8m97020818
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 7 Aug 2024 13:08:48 GMT
+Received: from [10.239.97.152] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 7 Aug 2024
+ 06:08:42 -0700
+Message-ID: <1226d080-d1fc-4e06-ac81-84e93cb314e0@quicinc.com>
+Date: Wed, 7 Aug 2024 21:08:40 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240731-b4-upstream-j742s2-v3-6-da7fe3aa9e90@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 04/13] media: qcom: camss: csiphy: Add an init callback to
+ CSI PHY devices
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Bryan O'Donoghue
+	<bryan.odonoghue@linaro.org>, <rfoss@kernel.org>,
+        <todor.too@gmail.com>, <mchehab@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <quic_eberman@quicinc.com>, <linux-media@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
+References: <20240709160656.31146-1-quic_depengs@quicinc.com>
+ <20240709160656.31146-5-quic_depengs@quicinc.com>
+ <6dfc2c79-fc6d-4eed-bf3f-94396130cb4f@linaro.org>
+ <fafda7d5-3853-428a-b0eb-9993fc2d4f56@linaro.org>
+ <4426c0e0-f877-409c-b2d2-a5aac5e8c645@linaro.org>
+Content-Language: en-US
+From: Depeng Shao <quic_depengs@quicinc.com>
+In-Reply-To: <4426c0e0-f877-409c-b2d2-a5aac5e8c645@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: yjw2aWuv5mqKqZUv-_gUwtkQZx64Fzsa
+X-Proofpoint-GUID: yjw2aWuv5mqKqZUv-_gUwtkQZx64Fzsa
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-07_09,2024-08-07_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 bulkscore=0
+ spamscore=0 clxscore=1015 lowpriorityscore=0 impostorscore=0
+ suspectscore=0 mlxscore=0 malwarescore=0 mlxlogscore=913 phishscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408070091
 
-On 22:40-20240731, Manorit Chawdhry wrote:
-> k3-j784s4-j742s2-evm-common.dtsi will be included in k3-j742s2-evm.dts
-> at a later point so move j784s4 related stuff to k3-j784s4-evm.dts
+Hi Vladimir,
 
-How about this:
-
-Refactor J784s2-evm to a common file which uses the
-superset device to allow reuse in j742s2-evm which uses the subset part.
-
-Use a similar style commit message in other refactoring patches as well.
-
+On 8/5/2024 5:26 AM, Vladimir Zapolskiy wrote:
+> Hi Bryan,
 > 
-> Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-j784s4-evm.dts           | 49 ++++++++++++++++++++++
->  .../boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi   | 42 -------------------
->  2 files changed, 49 insertions(+), 42 deletions(-)
+> On 8/1/24 11:16, Bryan O'Donoghue wrote:
+>> On 01/08/2024 00:43, Vladimir Zapolskiy wrote:
+>>>> +    ret = csiphy->res->hw_ops->init(csiphy);
+>>>
+>>> Here.
+>>
+>> What name would make more sense to you ?
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> index e3730b2bca92..2543983b7fe7 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> @@ -5,4 +5,53 @@
->   * EVM Board Schematics: https://www.ti.com/lit/zip/sprr458
->   */
->  
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/net/ti-dp83867.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include "k3-j784s4.dtsi"
->  #include "k3-j784s4-j742s2-evm-common.dtsi"
-> +
-> +/ {
-> +	compatible = "ti,j784s4-evm", "ti,j784s4";
-> +	model = "Texas Instruments J784S4 EVM";
-> +
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		bootph-all;
-> +		/* 32G RAM */
-> +		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
-> +		      <0x00000008 0x80000000 0x00000007 0x80000000>;
-I understand you are moving the nodes in and it is just copy paste, but
-we have an opportunity to clean the nodes up a bit here.
+> according to the implementation the .init() call just fills some data in
+> memory, so I believe this could be handled at build time, if it's done
+> carefully enough...
+> 
 
-Same as https://lore.kernel.org/all/20240807120629.3bo2cu3wlpkixwrp@flattered/
+This camss-csiphy-3ph-1-0.c is reused by many platforms, the old 
+platforms have same CSI_COMMON_CTR register offset, their offset are 
+0x800, but some new platforms may have different CSI_COMMON_CTR register 
+offset, for example, the CSI_COMMON_CTR register offset is 0x1000 in 
+sm8550, then we need to add new file to support the new csiphy HW, e.g., 
+camss-csiphy-3ph-2-0.c, so Bryan asked me to develop the CSIPHY driver 
+based on his changes, then we just need few code to enable new CSIPHY.
 
-> +	};
-> +
-> +	reserved_memory: reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +
-> +		c71_3_dma_memory_region: c71-dma-memory@ab000000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0xab000000 0x00 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		c71_3_memory_region: c71-memory@ab100000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0xab100000 0x00 0xf00000>;
-> +			no-map;
-> +		};
-> +	};
-> +};
-> +
-> +&mailbox0_cluster5 {
-> +	mbox_c71_3: mbox-c71-3 {
-> +		ti,mbox-rx = <2 0 0>;
-> +		ti,mbox-tx = <3 0 0>;
-> +	};
-> +};
-> +
-> +&c71_3 {
-> +	status = "okay";
+Regarding the hw_ops->init interface, since it fills HW register 
+configurations and HW register offset, then maybe, it also can be called 
+as HW operation.
 
-Status comes last. I know that these coding standards are new, and it
-takes a little getting used to and one wishes there was a linting tool
-of some sort to make this easier.. but for now, eyes are the only way
-out :(.
+And looks like we can't move it to camss-csiphy.c since it does platform 
+specific operation and it is related to the registers.
+
+Please feel free to share other comments if you don't agree with it. Thanks.
 
 
-> +	mboxes = <&mailbox0_cluster5 &mbox_c71_3>;
-> +	memory-region = <&c71_3_dma_memory_region>,
-> +			<&c71_3_memory_region>;
-> +};
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Thanks,
+Depeng
 
