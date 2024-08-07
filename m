@@ -1,140 +1,177 @@
-Return-Path: <devicetree+bounces-91777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61CD994A899
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 15:29:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A253294A89C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 15:29:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C704282801
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 13:29:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 582F91F21007
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 13:29:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BDAA1E7A51;
-	Wed,  7 Aug 2024 13:28:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 730DB1E6742;
+	Wed,  7 Aug 2024 13:29:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="x/7PjWS8"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="QKrFc1+1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A5F31E7A53;
-	Wed,  7 Aug 2024 13:28:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C68E61BDAB0;
+	Wed,  7 Aug 2024 13:29:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723037335; cv=none; b=B62ubno+q05+n0FiFCxI6I8mzsNEc7apBWTlMxxwuw6C9axbEjqMKSw/YqxhZdJS7RMnFYMfryRqTebrpUj70ZqYInwQLJQlKoDO7mw0vgFGBCm26YZJ9rureuSuvvEwCICqkmT4p144b6cVBOlT25zdIu5zLalqhNB4KdcmBU0=
+	t=1723037384; cv=none; b=eTFm6R2COhlBG3CEkfji2ZwNvXfMkMU2ELnrTWEe2qx8rncNlpTcYDvZuyZGCwgvw9ggWrQ4aJWx3/fjiLr5wVwLzrTOrhzaINw/R1Kltfpf76JzeQidYfS7e11EzntVNRX8E8AUxwwD3fig1IpUF3jzwtl6xpvNmLxPQHG8B/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723037335; c=relaxed/simple;
-	bh=yih2ooSQ90/is/H3Qh5VPfIz9YLQdaGqrpyUlzRNuxA=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=so9dgjdNOIhG5uhiFGzCnSKTmKBNsD/CSZC+T8EWIKlSlF3xExfG6vWwN+OtE13XURccJAlM7OzGo0Des6UWADzMZE0aXc5T83Th+7NrHWmB3WrY8X2GiWyUwwMmCGVa2CWuHgDqnnQ8J4NbEyXnqFd8nLAW6aii+muoEpL0XyY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=x/7PjWS8; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 477DSmGf068680;
-	Wed, 7 Aug 2024 08:28:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1723037328;
-	bh=NkkpVq0CuwgQWw4OlBnq3OtVXQR2J5cQP4ilZttmd6E=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=x/7PjWS8KUDGqBNUpDGNEvJjiU1jFlGx5EqzH+Za2ejS3VfI8F8E7mNsW8f5dGcDY
-	 1j2i8U97EPagovPZDx5CYRX8eFdrLYUEcoLZx+6IFy0lVnweVD1AI+PsWNmkZBuF9P
-	 Tepg3u4boxk7JfFvmKucL3kBWeMBdgRRvKZdduag=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 477DSm9F010900
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 7 Aug 2024 08:28:48 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
- Aug 2024 08:28:47 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 7 Aug 2024 08:28:48 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 477DSlWF014879;
-	Wed, 7 Aug 2024 08:28:47 -0500
-Date: Wed, 7 Aug 2024 08:28:47 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Siddharth Vadapalli <s-vadapalli@ti.com>
-CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4-evm: Use 4 lanes for PCIe0 on
- EVM
-Message-ID: <20240807132847.3qca5ijdwsasdf4y@legroom>
-References: <20240720110455.3043327-1-s-vadapalli@ti.com>
+	s=arc-20240116; t=1723037384; c=relaxed/simple;
+	bh=qM9AJoWa5VmLYkAsAiKwksrHXv6FKgyEFWqPkI2GMqw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=uU9roS21g7mC+2Zb6R9AWTp4usfu79HF2wCJBEec129f4pusLr+LnUI5glG4J+PYvzV4sVTHFO/LKAa/tkaZ6JmnPbF9KhB2T3bDRgZ2UJkGeXOelrHD4/QBeUDugWr4V8+nrB7uJhhDAMGIj86ibHkOSct+xGkWKX9OL0xSwy0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=QKrFc1+1; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 1BF49FF803;
+	Wed,  7 Aug 2024 13:29:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1723037373;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=cVTsGVO8WsmaD67opd83BfGFsRJNsmaLrq0szd22Jso=;
+	b=QKrFc1+1fIuGLesvgymIYwFwPnJVb+rjl/ZP2BoUrhJkQHOAu3stwDe1XaFP5f1eyJMV7Z
+	wFUrzvoCkJYAueAKr2mIol3f3K3XFnHB3lxhNmt73ny2WI/AA+vHckq86dKEJbVn8ZVTVP
+	fopVlsEIQ58rnvRhdDkm7fmuAUlvS2UPUxpGQt4oct1orI9nBrxSWPSwmG9Ie8+QR78NQ+
+	VQLK1LZZBKe5OaArKNDpzmXOn7Q0AyHGbd1bW8c7tpMilCRP7IHd69jdY9f1enEjVKs75E
+	WeC790m5b+uinjI8a4yCuVB45CSGfeUpl4gkjgfMvqsnv0jz1uiwlbo14cMdBg==
+Date: Wed, 7 Aug 2024 15:29:27 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Simon Horman
+ <horms@kernel.org>, Lee Jones <lee@kernel.org>, Arnd Bergmann
+ <arnd@arndb.de>, Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
+ <dragan.cvetic@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Philipp Zabel
+ <p.zabel@pengutronix.de>, Lars Povlsen <lars.povlsen@microchip.com>, Steen
+ Hegelund <Steen.Hegelund@microchip.com>, Daniel Machon
+ <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, Rob Herring
+ <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, "David S.
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
+ Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Horatiu Vultur
+ <horatiu.vultur@microchip.com>, Andrew Lunn <andrew@lunn.ch>,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?=
+ <clement.leger@bootlin.com>
+Subject: Re: [PATCH v4 3/8] mfd: syscon: Add reference counting and device
+ managed support
+Message-ID: <20240807152927.22e40284@bootlin.com>
+In-Reply-To: <CAHp75VfKXEyHF25xRq8EDp5SeBdyPHLgzw=4s1xkjer=sNu7aw@mail.gmail.com>
+References: <20240805101725.93947-1-herve.codina@bootlin.com>
+	<20240805101725.93947-4-herve.codina@bootlin.com>
+	<CAHp75VfKXEyHF25xRq8EDp5SeBdyPHLgzw=4s1xkjer=sNu7aw@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240720110455.3043327-1-s-vadapalli@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-On 16:34-20240720, Siddharth Vadapalli wrote:
-> The PCIe0 instance of the PCIe controller on J784S4 SoC supports up to 4
-> lanes. Additionally, all 4 lanes of PCIe0 can be utilized on J784S4-EVM
-> via SERDES1. Since SERDES1 is not being used by any peripheral apart
-> from PCIe0, use all 4 lanes of SERDES1 for PCIe0.
-> 
-> Fixes: 27ce26fe52d4 ("arm64: dts: ti: k3-j784s4-evm: Enable PCIe0 and PCIe1 in RC Mode")
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> ---
-> 
-> Hello,
-> 
-> This patch is based on linux-next tagged next-20240715.
-> Patch has been tested on J784S4-EVM. Logs:
-> https://gist.github.com/Siddharth-Vadapalli-at-TI/2b9b1196ff6b9eac895a7986e5ff4456
-> NOTE: Patch applies cleanly on Mainline Linux's latest commit
-> 3c3ff7be9729 Merge tag 'powerpc-6.11-1' of git://git.kernel.org/pub/scm/linux/kernel/git/powerpc/linux
-> 
-> Regards,
-> Siddharth.
-> 
->  arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> index ffa38f41679d..ea27519d7b89 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> @@ -1407,10 +1407,11 @@ &serdes1 {
->  
->  	serdes1_pcie0_link: phy@0 {
->  		reg = <0>;
-> -		cdns,num-lanes = <2>;
-> +		cdns,num-lanes = <4>;
->  		#phy-cells = <0>;
->  		cdns,phy-type = <PHY_TYPE_PCIE>;
-> -		resets = <&serdes_wiz1 1>, <&serdes_wiz1 2>;
-> +		resets = <&serdes_wiz1 1>, <&serdes_wiz1 2>,
-> +			 <&serdes_wiz1 3>, <&serdes_wiz1 4>;
->  	};
+Hi Andy,
 
-OK - I see the reason why
-https://lore.kernel.org/all/20240807132054.jcz5fdokc5yk3mbo@entrust/
-was missed.
+On Mon, 5 Aug 2024 22:20:56 +0200
+Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 
-Please sync with Manorit to make sure we sequence these correctly -
-looks to me that this fixup needs to get in first? have you also checked
-up on AM69-SK ?
-
->  };
->  
-> -- 
-> 2.40.1
+> On Mon, Aug 5, 2024 at 12:19 PM Herve Codina <herve.codina@bootlin.com> wrote:
+> >
+> > From: Clément Léger <clement.leger@bootlin.com>
+> >
+> > Syscon releasing is not supported.
+> > Without release function, unbinding a driver that uses syscon whether
+> > explicitly or due to a module removal left the used syscon in a in-use
+> > state.
+> >
+> > For instance a syscon_node_to_regmap() call from a consumer retrieve a  
 > 
+> retrieves?
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Indeed, will be fixed.
+
+> 
+> > syscon regmap instance. Internally, syscon_node_to_regmap() can create
+> > syscon instance and add it to the existing syscon list. No API is
+> > available to release this syscon instance, remove it from the list and
+> > free it when it is not used anymore.
+> >
+> > Introduce reference counting in syscon in order to keep track of syscon
+> > usage using syscon_{get,put}() and add a device managed version of
+> > syscon_regmap_lookup_by_phandle(), to automatically release the syscon
+> > instance on the consumer removal.  
+> 
+> ...
+> 
+> > -       if (!syscon)
+> > +       if (!syscon) {
+> >                 syscon = of_syscon_register(np, check_res);
+> > +               if (IS_ERR(syscon))
+> > +                       return ERR_CAST(syscon);
+> > +       } else {
+> > +               syscon_get(syscon);
+> > +       }  
+> 
+>   if (syscon)
+>     return syscon_get();
+> 
+> ?
+> 
+> > +       return syscon;  
+
+Yes and further more, I will remove also the unneeded IS_ERR() and ERR_CAST().
+This will lead to just:
+
+	if (syscon)
+		return syscon_get(syscon);
+
+	return of_syscon_register(np, check_res);
+
+> 
+> ...
+> 
+> > +static struct regmap *__devm_syscon_get(struct device *dev,
+> > +                                       struct syscon *syscon)
+> > +{
+> > +       struct syscon **ptr;
+> > +
+> > +       if (IS_ERR(syscon))
+> > +               return ERR_CAST(syscon);
+> > +
+> > +       ptr = devres_alloc(devm_syscon_release, sizeof(struct syscon *), GFP_KERNEL);
+> > +       if (!ptr) {
+> > +               syscon_put(syscon);
+> > +               return ERR_PTR(-ENOMEM);
+> > +       }
+> > +
+> > +       *ptr = syscon;
+> > +       devres_add(dev, ptr);
+> > +
+> > +       return syscon->regmap;  
+> 
+> Can't the devm_add_action_or_reset() be used in this case? If so,
+> perhaps a comment to explain why?
+
+There is no reason to avoid the use of devm_add_action_or_reset() here.
+So, I will use it in the next iteration.
+
+Thanks for your review.
+
+Best regards,
+Hervé
 
