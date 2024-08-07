@@ -1,129 +1,161 @@
-Return-Path: <devicetree+bounces-91598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB0D3949F94
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 08:04:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E58E949FAA
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 08:10:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6D6D5B212F7
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 06:04:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6FFED1C20BAB
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 06:10:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37418198E86;
-	Wed,  7 Aug 2024 06:04:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7771C19DF61;
+	Wed,  7 Aug 2024 06:10:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YFpYCuOy"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="AljFx5ES";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="L5baFq61"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AFB4198E78;
-	Wed,  7 Aug 2024 06:04:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7B7E19D8A3;
+	Wed,  7 Aug 2024 06:10:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723010667; cv=none; b=FzuAX+9YCW5bmdM2lN9PjBYU0Jiszp+Uh/19tqNRQPbchL3nb7dU9z+6c/f3Q6uQ7eaHAk6sJJrkcFtb5mbe2ZHPznI5aNQlse8yQUYcacHAAs5HkoNn25R6XUzNt1znclKDVE+B6C1eHL2IB5hZb7PIrd1YC5WP9aUtc30BjH0=
+	t=1723011008; cv=none; b=EpLCGIlJH9N+juW40oeigOA2NYktyxMxB/cQz92D1FD4bFapvcnMWQF6sLYgtCZeWp4ClHtZxFPlGfmDrUiDMxHR38OV90iW9aJfN9ofZ4890r0DYW3RqkwBKmhvKvqE+3oScq/ksJm6eTsbmUdUOQ4fSsyJsAN6XoJgrfby+8I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723010667; c=relaxed/simple;
-	bh=AEcHMJK0ZbkDnB1gO0Agyv3rxildNhYeM85nglJDFgY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G76Gvfg566XJyqcoIXyDmQsHupAIP4kRW6UMNlscvD66MWTqwczeFu6Qj+TN8g4D94jPEKiuVTH5xFpFQ2DI+fKrcKbYGJED6+V50OU4ZbNSTXUCpYtvY9SXWbQFkgpQkMjjIZsmNWIqfDQP80MTL57JxI+urrHY/qHIy2FN6Ng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YFpYCuOy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94DF1C32782;
-	Wed,  7 Aug 2024 06:04:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723010665;
-	bh=AEcHMJK0ZbkDnB1gO0Agyv3rxildNhYeM85nglJDFgY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YFpYCuOyov7H/jic7dOdmRhDiNObW+HVvCrYjLCAtIS3axldPo7l7qH9ZlfDb7V7e
-	 GCGommOaFL1H8NmL81W2NjBMQTJWbESwhHKyKBd4sqrA4OJrsu9yxCVU028BGexSB1
-	 UaYBVCVPjDU2CT0nOZbPIqjZRYHO0n65abUIruDQ260WizxN/YKAGcRHM/CJoWkauO
-	 gB1+Xm5q9mphseIYzlpXXCMMDLO/1krvr2/ORIOSpIQWW3jispAfjHi6M8mRt8PXVO
-	 XjL7h8aekvgJkViFMJ9KXnmUcwcwZM4Y/l074xDZ3da7crEnlkKAPb81Wuc4G/i5m9
-	 iDDjb6hpbtjFA==
-Message-ID: <2204a0e8-c9fc-446c-96f5-3dee1b92900e@kernel.org>
-Date: Wed, 7 Aug 2024 08:04:19 +0200
+	s=arc-20240116; t=1723011008; c=relaxed/simple;
+	bh=xYUq4mJv1M0iJFlQw49Ia19hd83rz3/8znS2az1pk+w=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=iOHrS0MmmK7qXhTvqF1uxa3EYp6tQNj2DIS76WTm3VpYVM3Jci9OKXkUtJaMexYp7WOgrs64uOIdyxnwXwo4rk8dQ+njO9vhoayzCvXFnTlGfWMRc+ma1holnDe1cHVVa8YIeORr45lypbHbqubiH1SXSfTEWjzNeF7iUVma2ho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=AljFx5ES; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=L5baFq61 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1723011004; x=1754547004;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=Ri6YVzAWj9lpW/HRkVGmES5Sunj5DDspxGsXPucqkdk=;
+  b=AljFx5ESmIa5BoAoV4V6/7wsIFDhezNO4gKJrXoXvwRxmpoSSkGuefms
+   SwXTOrrK23mMiFO4ReHGmESSnDpV1jevbA38dWvVbGpHlB+TefBC4U/bA
+   Km9rSQkJ5C+hTjrGdkNm28BBVQO0AV7/lGizTYuILN+D01vS9ziv2O726
+   ATua6PN9HhtYCv+1ytpYrRIYfvB+Bt5kGk43Mu96L+VXowKMe2eDzBq/x
+   33K1hUtvbiY+QL9gPDZHueUi1n6bTaO5FFlnUPLTEQuN+kYVNOIlfl01G
+   fo8T9eLFNAueS+IfALEXB0vvPIUb8cwfcU5oim+QXRFTwZXGN1Bbnp+YE
+   Q==;
+X-CSE-ConnectionGUID: GJUOMnAjTXGOzXlPkvTTJg==
+X-CSE-MsgGUID: j8ctx7BhTm+2MgvhlHS0ig==
+X-IronPort-AV: E=Sophos;i="6.09,269,1716242400"; 
+   d="scan'208";a="38281790"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 07 Aug 2024 08:09:55 +0200
+X-CheckPoint: {66B30FB3-32-CFE9415D-C7159436}
+X-MAIL-CPID: A584B594B3F10A6F26740B41B93F4F54_1
+X-Control-Analysis: str=0001.0A782F1F.66B30FB4.0021,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5692A16362E;
+	Wed,  7 Aug 2024 08:09:50 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1723010991;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=Ri6YVzAWj9lpW/HRkVGmES5Sunj5DDspxGsXPucqkdk=;
+	b=L5baFq617Qqdkkg5X0otVD1ulhjOxU3qcTcCuCMrXrnvCzoytJvsL0qyGyCSYVvHpm74cG
+	zzLVisQRyJ4dGMx8o9Dne0hjr02x7itvXVuqLMsmMe0qGoe/U0rptYNkkjdYLSQWXDOvNQ
+	oH/W3Y7KIE408X+wqxq5tHSb6jAYQFfDoKRXSnCtfZw2dqU2KqHRvLE5MY83Rl/hJUT/f2
+	OvWfhElj8WiOhYdAJMCY+Th1UyxDuVqG5hslH1cJ5mvnx6dGfpl6ufmQrdAyFLpNj1JkHF
+	HLWsQFkYK/Pn8CzMhqHvN6PS3ATjP6hSiKXVmgacH16BMKupURA/6c6VK65lwg==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, linux-arm-kernel@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, Frank Li <Frank.Li@nxp.com>, Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH 9/9] arm64: dts: imx8mm-phygate: fix typo pinctrcl-0
+Date: Wed, 07 Aug 2024 08:09:52 +0200
+Message-ID: <2744927.mvXUDI8C0e@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20240805-fsl_dts_warning-v1-9-055653dd5c96@nxp.com>
+References: <20240805-fsl_dts_warning-v1-0-055653dd5c96@nxp.com> <20240805-fsl_dts_warning-v1-9-055653dd5c96@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] iio: magnetometer: ak8975: Add AK09118 support
-To: =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Jonathan Albrieux <jonathan.albrieux@gmail.com>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux@mainlining.org,
- Danila Tikhonov <danila@jiaxyga.com>
-References: <20240806-ak09918-v2-0-c300da66c198@mainlining.org>
- <20240806-ak09918-v2-3-c300da66c198@mainlining.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240806-ak09918-v2-3-c300da66c198@mainlining.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 06/08/2024 08:10, Barnabás Czémán wrote:
->  };
->  MODULE_DEVICE_TABLE(i2c, ak8975_id);
-> @@ -1081,6 +1114,7 @@ static const struct of_device_id ak8975_of_match[] = {
->  	{ .compatible = "ak09912", .data = &ak_def_array[AK09912] },
->  	{ .compatible = "asahi-kasei,ak09916", .data = &ak_def_array[AK09916] },
->  	{ .compatible = "ak09916", .data = &ak_def_array[AK09916] },
-> +	{ .compatible = "asahi-kasei,ak09918", .data = &ak_def_array[AK09918] },
+Hi,
 
-I think you might need to rebase on top of Jonathan's branches...
+Am Montag, 5. August 2024, 17:49:51 CEST schrieb Frank Li:
+> Fix typo pinctrcl-0 with pinctrl-0.
+> Fix below warning:
+>=20
+> arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l-rs232-rs485.dtb: gpi=
+o@30220000: 'pinctrl-0' is a dependency of 'pinctrl-names'
+>         from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-co=
+nsumer.yaml#
+> arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l-rs232-rs485.dtb: uar=
+t4_rs485_en: $nodename:0: 'uart4_rs485_en' does not match '^(hog-[0-9]+|.+-=
+hog(-[0-9]+)?)$
+>=20
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l-rs232-rs232.dtso | =
+2 +-
+>  arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l-rs232-rs485.dtso | =
+2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l-rs232-r=
+s232.dtso b/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l-rs232-rs23=
+2.dtso
+> index f246b0ba6af29..ce197266262a5 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l-rs232-rs232.dt=
+so
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l-rs232-rs232.dt=
+so
+> @@ -22,7 +22,7 @@
+> =20
+>  &gpio3 {
+>  	pinctrl-names =3D "default";
+> -	pinctrcl-0 =3D <&pinctrl_gpio3_hog>;
+> +	pinctrl-0 =3D <&pinctrl_gpio3_hog>;
+> =20
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I think this commit should contain a Fixes tag.
 
-Best regards,
-Krzysztof
+best regards,
+Alexander
+
+>  	uart4_rs485_en {
+>  		gpio-hog;
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l-rs232-r=
+s485.dtso b/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l-rs232-rs48=
+5.dtso
+> index 67508ca14276f..f2a7811f1b9f2 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l-rs232-rs485.dt=
+so
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l-rs232-rs485.dt=
+so
+> @@ -23,7 +23,7 @@
+> =20
+>  &gpio3 {
+>  	pinctrl-names =3D "default";
+> -	pinctrcl-0 =3D <&pinctrl_gpio3_hog>;
+> +	pinctrl-0 =3D <&pinctrl_gpio3_hog>;
+> =20
+>  	uart4_rs485_en {
+>  		gpio-hog;
+>=20
+>=20
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
