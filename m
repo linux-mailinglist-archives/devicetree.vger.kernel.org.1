@@ -1,130 +1,164 @@
-Return-Path: <devicetree+bounces-91766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFB6094A7DD
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 14:39:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6423594A7F3
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 14:42:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D2261C20F9C
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 12:39:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 961C11C21AF9
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 12:42:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D90D1E6735;
-	Wed,  7 Aug 2024 12:39:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FC281E7A20;
+	Wed,  7 Aug 2024 12:42:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UIoJAty5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="C7VSnXZL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33EB01E6725;
-	Wed,  7 Aug 2024 12:39:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD1711E674B
+	for <devicetree@vger.kernel.org>; Wed,  7 Aug 2024 12:42:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723034383; cv=none; b=mtEKatywUnSlwPenQ6+H0aZx2av4yAz/HIUXpJ8rP6iV5b0b18W6jUfXfpXgd5ytrwqMxghxriybU9ZJUsCL2B73pUC/FOP8P2GE7e3qk4MQvMroDvZin1V1/QE+CK1ZUe7AseYMOJGk8sDqy9zgSdSJiu+d8BruTNYprN+5/MI=
+	t=1723034560; cv=none; b=Ygw2YoYLoc0cO8+2RwnnU6pTD/R1RKEkahs0cRgM1bRmsO0lQV2po/ZREgy6he2TVCB8XtoLMzbYpOhQAxHexnKwOie2cakljUWaL1NpimKuTfi0nzgksp8MjJ0P/Jnm3xWg/RdZoU1h3HxlwiRA22Hh4FtmAYDnCQ1sd1Fu6kU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723034383; c=relaxed/simple;
-	bh=Eqn14IBRJtx73uJB1xT2++xne0vqAkKUAtQPKTkKmTs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pUDUOHvGUE3BYuxH1POqLNtB5VRnbQ9RQUFWhYwhibm5Oaqa/vgCH10kv6FvNUvQlaXB04JG+N4LZoZYRCmYZLTLf0PoYrp04AK83P1NcRQcAfLNm3KZFaA0aYcyWRlwRQfvEfxzTopoQybmE5gKVEMj/dWuOUoi4gjRuF4LBNA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UIoJAty5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77C60C32782;
-	Wed,  7 Aug 2024 12:39:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723034382;
-	bh=Eqn14IBRJtx73uJB1xT2++xne0vqAkKUAtQPKTkKmTs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UIoJAty56mbdMDN9d0piijai7GKzzrRt9MLyktqpF5gnU6V52PAv0t5DzONeqZ9qS
-	 b3+6oLsPumsFyh2i11eO6tE9KPyDpt/uvq+CLaExXnDB5mesWG8ZzC0ePFQI7l8Wbj
-	 3SlZIJUjM+jGUY5aIU2XBqBtVa1uUSNeDKTqhAXCJr1BSYcKxnGX31VEQgsoaNForv
-	 EK6xwx0/ljMeBJy2LiHb0f46GbyUH75NBd447KRX74A/q5ALajBQ/lO5Xf1k90fNa0
-	 RqyRVXG4BMCOCCvGCOsybBQ2K0pO7cpUHtMuiUDO3na4FeUUzsGKYBRRyNNMhP0LpD
-	 +xI6zeQdhwO6A==
-Message-ID: <1c0ff0fa-73d3-400f-a58d-15fb9b0574d1@kernel.org>
-Date: Wed, 7 Aug 2024 14:39:36 +0200
+	s=arc-20240116; t=1723034560; c=relaxed/simple;
+	bh=9Y9fTcOhiBPuA873ux/LX6B5gN+erlEY8ha9Ck3axBE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Tcy3AWoyg8y/7aabyhGc2M/oy8cIwVddTWYU00yUq/fiEQB7sXgGMEN4AQYr3CpzRm6yK0MUJOPEn3kfCvr1XWPefJolPCmC4kow5e5gDU/hmvWJiRLzeRCu8t2fOTh1sTEdKdYZAp8+D9TTztBfqIgty8E8pw5csJiel6gJY8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=C7VSnXZL; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a7aa212c1c9so245850066b.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2024 05:42:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1723034557; x=1723639357; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=0KduDAjvBohMYXY4M8kHhofc2W7E+OIMPoPcc+Z3/tI=;
+        b=C7VSnXZLbDFH5/Rg5Z2EFXsmohkNxewbw7tPJuNo51LLW5dvUZ0NyPJObFKypCKz3b
+         zsnsiWfNvmDZ0KFLaXje+g81RrewzcLazHNiwYR8tMQMzEnpGRa7Q7BB2/vcz8XZemJR
+         HdFkNH66FPpPgyNS5xMkW0HvpLfP4uKXzQQXqJBuc1UPMmPwvbnyDdXGlSGodM833MO4
+         8TrR5ucC3CYBJfnKW/HmtvHaEXsqW1Vt682owUvGssqhRlYEmcmeeewlzmI7inKttE9i
+         db9fM7PW3MKT82kUu9eWVbu7/t1ZvDH/5THZZJKpXLtgVWCMAh6a4QsbcUK/MEJRXdKb
+         KIag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723034557; x=1723639357;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0KduDAjvBohMYXY4M8kHhofc2W7E+OIMPoPcc+Z3/tI=;
+        b=r3ox3NBm4VzYYsy2Pt5z5UYMfJbmdOT86Jm8fw6I8ZKKCRVsBMhoiOZZ1e8CttPmcX
+         7XyNI+14hKeY9w09ZyMV92sSgIOp4/5qGAiJTEB3915O/+J9ILEXGIPfcSgDYFa94hWO
+         0VITgCB/JWlBA75aEyPpXtW8YT5nDeDpvGHeQwQr/ulgaPTZKvq9BH1ONAEzVXcfCaoo
+         0g5IICcDmUvnRNbEW0V3dTU7X9hlr6jNNUwh4YcGOumYNv21F0/YMfNOlJN9gynqHif1
+         F5P+6fhxRK9V12HekXXaZz44jhJ7QaTDoI2yHcboW23q0oha2HJG6aUrLNWxxvaNRu+S
+         iQUg==
+X-Forwarded-Encrypted: i=1; AJvYcCWhxnxoIRlBw4GLfegmyrSYvbyQnh6Mii27TyzxJLKIp1W02A7UuATSJFrxV3WvCw+8csLIsulUiAMC@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6sfxLWWeTn9dUK7jdvg/zPxMV1zoWscP+LoXMQdvWHPeNtXFZ
+	FifBVbycdPF/2LgAzWLfYvb0dZTmr0qVI1x3NQ/j9MfNpkOjwMZbo8pAVun0dgU=
+X-Google-Smtp-Source: AGHT+IEqud0+ETf/nPRDTg2cemFiL5vHCF/0w2D2H92no4nW2InXkuGAQgnIeQpmeY4yEKkzHqEbSw==
+X-Received: by 2002:a17:906:7303:b0:a7a:b4bd:d0eb with SMTP id a640c23a62f3a-a7dc4e8764cmr1345394066b.24.1723034556901;
+        Wed, 07 Aug 2024 05:42:36 -0700 (PDT)
+Received: from linaro.org ([2a02:2454:ff1f:b280:dc22:8b8c:c079:b18e])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7dc9e841a7sm641107566b.179.2024.08.07.05.42.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Aug 2024 05:42:36 -0700 (PDT)
+Date: Wed, 7 Aug 2024 14:42:31 +0200
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Rob Clark <robdclark@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Clark <robdclark@chromium.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4] arm64: dts: qcom: x1e80100-yoga: Update panel bindings
+Message-ID: <ZrNrtx1qvPYatpsw@linaro.org>
+References: <20240806202218.9060-1-robdclark@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sm8550: camss: Add CAMSS block
- definition
-To: Depeng Shao <quic_depengs@quicinc.com>, andersson@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- bryan.odonoghue@linaro.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com,
- Yongsheng Li <quic_yon@quicinc.com>
-References: <20240807123333.2056518-1-quic_depengs@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240807123333.2056518-1-quic_depengs@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240806202218.9060-1-robdclark@gmail.com>
 
-On 07/08/2024 14:33, Depeng Shao wrote:
-> Add CAMSS block definition for sm8550.
+On Tue, Aug 06, 2024 at 01:22:17PM -0700, Rob Clark wrote:
+> From: Rob Clark <robdclark@chromium.org>
 > 
-> This drop contains definitions for the following components on sm8550:
+> Use the correct panel compatible, and wire up enable-gpio.  It is wired
+> up in the same way as the x1e80100-crd.
+> 
+> Signed-off-by: Rob Clark <robdclark@chromium.org>
+> Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
 
-1. Subject: there is no prefix camss. There is no such file, directory
-or module.
+Reviewed-by: Stephan Gerhold <stephan.gerhold@linaro.org>
 
-2. You already sent this, so this should be v2 or v3 or vX. Provide
-changelog under ---.
+Thanks for the update!
 
-If there is going to be resend, please fix above.
-
-3. If this was tested on aim300, I am surprised this being not enabled
-on aim300.
-
-Best regards,
-Krzysztof
-
+> ---
+> Corresponding schema update is in drm-misc-fixes
+> 
+> [1/2] dt-bindings: display: panel: samsung,atna45dc02: Document ATNA45DC02
+>       commit: 1c4a057d01f4432704c4dc8842b6e888a91d95df
+> 
+>  .../dts/qcom/x1e80100-lenovo-yoga-slim7x.dts    | 17 +++++++++++++++--
+>  1 file changed, 15 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+> index 70977e9fa266..3c13331a9ef4 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+> @@ -190,7 +190,6 @@ vreg_edp_3p3: regulator-edp-3p3 {
+>  		pinctrl-0 = <&edp_reg_en>;
+>  		pinctrl-names = "default";
+>  
+> -		regulator-always-on;
+>  		regulator-boot-on;
+>  	};
+>  
+> @@ -592,9 +591,13 @@ &mdss_dp3 {
+>  
+>  	aux-bus {
+>  		panel {
+> -			compatible = "edp-panel";
+> +			compatible = "samsung,atna45dc02", "samsung,atna33xc20";
+> +			enable-gpios = <&pmc8380_3_gpios 4 GPIO_ACTIVE_HIGH>;
+>  			power-supply = <&vreg_edp_3p3>;
+>  
+> +			pinctrl-0 = <&edp_bl_en>;
+> +			pinctrl-names = "default";
+> +
+>  			port {
+>  				edp_panel_in: endpoint {
+>  					remote-endpoint = <&mdss_dp3_out>;
+> @@ -669,6 +672,16 @@ &pcie6a_phy {
+>  	status = "okay";
+>  };
+>  
+> +&pmc8380_3_gpios {
+> +	edp_bl_en: edp-bl-en-state {
+> +		pins = "gpio4";
+> +		function = "normal";
+> +		power-source = <0>;
+> +		input-disable;
+> +		output-enable;
+> +	};
+> +};
+> +
+>  &qupv3_0 {
+>  	status = "okay";
+>  };
+> -- 
+> 2.45.2
+> 
 
