@@ -1,104 +1,123 @@
-Return-Path: <devicetree+bounces-91836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E55F94AE20
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 18:29:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 664A694AE1F
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 18:29:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23941283ADC
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 16:29:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87FEA2840AA
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 16:29:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D39B113C66F;
-	Wed,  7 Aug 2024 16:26:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FE2613B783;
+	Wed,  7 Aug 2024 16:26:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=flokli.de header.i=@flokli.de header.b="QnRpCDis"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="rNX7w5Ld"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.flokli.de (mail.flokli.de [116.203.226.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A41C13C676;
-	Wed,  7 Aug 2024 16:26:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.226.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2799613B286;
+	Wed,  7 Aug 2024 16:26:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723048008; cv=none; b=hcgfSci3r59hdrzoU6ppnqlIv6pf0eyW0Zqlhfx28S5+/af9mGiiB/zIwSd131F1xdc/76jYTFZuzBzqLIet5ry/BQ4O0KMuXPkL/QY4lOckG0ddpMScldKbFw1MIiZP1tH/6IE1HPtjnSqbSl4A4kR0qVgSqXPoEQuwQRhL9OE=
+	t=1723047989; cv=none; b=oyJ7FljAeVTixfS6EifSXfq/OwyG2GVEegrOlKmyxO71eeDi1Y3+d82xPoObFepeX3+HNx1LB5CwIX4djLSy4CiI4XqJuke2w4TNCubxA7Hh20TyD0rJEtAKNSyUzXQYAwQBNgg5P+vicgnAULgPHjzaUTrCmJ4zAPQTfY2yfnc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723048008; c=relaxed/simple;
-	bh=nRl6NFtv5qCjJ3bS1qt9Kk/vd3/H6TnGKCO7mHKrAg8=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version; b=afQfzBDQAFu/8KcAxSL/TV8RgwZgFxNyK6aIf0qkVKaStmZFebstNOeQ5eS3rlV7lsy+4jaRPhtEm1HxtktwYOtJzWncpCM0/cAt9kKJgMtp+JqazhkSMiMhSIOjfDwPU8GUipJsgu818HPrlc6MCGsF37rO6rr9RmE8rVL34CM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=flokli.de; spf=pass smtp.mailfrom=flokli.de; dkim=pass (1024-bit key) header.d=flokli.de header.i=@flokli.de header.b=QnRpCDis; arc=none smtp.client-ip=116.203.226.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=flokli.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flokli.de
-From: Florian Klink <flokli@flokli.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flokli.de; s=mail;
-	t=1723047609; bh=xzTHPU4ay+ojdbSyqF8Os8imRNbH54y0xGyqIDsp8TI=;
-	h=From:To:Subject:Date;
-	b=QnRpCDisb3Xljb/+6HX+YkFlvqGPXsLih7lMAmZPSgaasfWfoyu17PsMb2e+DiOJg
-	 Rs94BZfEa1ebxQys2TaZyGHDUC5bKO7JQTpEIyNN1MVbsqmha2kuODdpbkCPUNemfX
-	 52KZLRa0eB2XxhBOpagIccyxGhe0mRNHtTJPZ9zE=
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Florian Klink <flokli@flokli.de>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Muhammed Efe Cetin <efectn@protonmail.com>,
-	FUKAUMI Naoki <naoki@radxa.com>,
-	=?UTF-8?q?Tam=C3=A1s=20Sz=C5=B1cs?= <tszucs@protonmail.ch>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: add rfkill node for M.2 E wifi on orangepi-5-plus
-Date: Wed,  7 Aug 2024 19:20:01 +0300
-Message-ID: <20240807162001.1737829-1-flokli@flokli.de>
+	s=arc-20240116; t=1723047989; c=relaxed/simple;
+	bh=dc7k+wM+tIvKHomP6LszNjSqcE9JMYWNDT6NpNNX+yc=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=qz6MBQD+R2TVY8wgbcNxhyl3a/1Hmzn/LczEpfY/gCLs8gqpeGU4PgUfdL8RaWtS8A23kD3b+KFj1j/wyMdolhNioS2VZOkqN2y6ZbP3B/FXM1Gaf50wDCrOKVLLBdxXgAxUrX41ijdfkgNTBkrBE8pw7gLmnXvgV8RNu/HDv2g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=rNX7w5Ld; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1723047977;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=HXOkuk2X7XhAdN4/iJulCbZX6oDA273A62lKA1iIz4U=;
+	b=rNX7w5LdyQPZYZY2Ij9Nf5MxbaxBCKvwfGbKg/y6B8KW+6SdJ4C1CkCAv+zHELJqCuYoua
+	2MkHA+K1lu4Pij0s1iJfqJu6EUm5LUmyDznjQ7bPIRwfTqWf+y8hYNRHazlJkeFZtKEZjV
+	8VMfP82n1KpXrlvVm07RAOWeO7u/aROgXbi5miXRYpjtjw+Dn2fToK8bs9IuYtvdzYSW3K
+	fsqx9sSN3MoCWYcIhvcwcH0nBVxGiuaSevOiEPq/12+xEsAYypHbY6RqIwD5gKtuokzdqa
+	Dam1QSZ6yCGMjZEwX5YaToxAVHgdVZE4qQO0FG+UQlx4abPaII2nLuXxSdsS+g==
+Date: Wed, 07 Aug 2024 18:26:15 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Florian Klink <flokli@flokli.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>, Kever Yang
+ <kever.yang@rock-chips.com>, Muhammed Efe Cetin <efectn@protonmail.com>,
+ FUKAUMI Naoki <naoki@radxa.com>, =?UTF-8?Q?Tam=C3=A1s_Sz=C5=B1cs?=
+ <tszucs@protonmail.ch>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: add rfkill node for M.2 E wifi on
+ orangepi-5-plus
+In-Reply-To: <20240807162001.1737829-1-flokli@flokli.de>
+References: <20240807162001.1737829-1-flokli@flokli.de>
+Message-ID: <b897efe95b80f631d0e0fba70d08d7db@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-This follows the same logic as 82d40b141a4c7ab66, which did the same
-for rock-5b.
+Hello Florian,
 
-The GPIO pin connecting the WiFi enable signal inside the M.2 Key E slot
-is the same as there.
+On 2024-08-07 18:20, Florian Klink wrote:
+> This follows the same logic as 82d40b141a4c7ab66, which did the same
+> for rock-5b.
 
-This can be validated in
-arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dtsi from Armbian
-rk-5.10-rkr4 kernel, which contains a `wifi_disable` node with that same
-GPIO pin.
+Please use the standard format for referencing commits, i.e. 
+82d40b141a4c
+("arm64: dts: rockchip: add rfkill node for M.2 Key E WiFi on rock-5b").
 
-Signed-off-by: Florian Klink <flokli@flokli.de>
-Tested-by: Florian Klink <flokli@flokli.de>
----
- arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts | 7 +++++++
- 1 file changed, 7 insertions(+)
+> The GPIO pin connecting the WiFi enable signal inside the M.2 Key E 
+> slot
+> is the same as there.
+> 
+> This can be validated in
+> arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dtsi from Armbian
+> rk-5.10-rkr4 kernel, which contains a `wifi_disable` node with that 
+> same
+> GPIO pin.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
-index e74871491ef5..c3a6812cc93a 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
-@@ -105,6 +105,13 @@ led {
- 		};
- 	};
- 
-+	rfkill {
-+		compatible = "rfkill-gpio";
-+		label = "rfkill-pcie-wlan";
-+		radio-type = "wlan";
-+		shutdown-gpios = <&gpio0 RK_PC4 GPIO_ACTIVE_HIGH>;
-+	};
-+
- 	sound {
- 		compatible = "simple-audio-card";
- 		pinctrl-names = "default";
--- 
-2.45.2
+This might be used as a reference, but please provide a permanent link
+to the actual source code in the referenced downstream repository.
 
+> Signed-off-by: Florian Klink <flokli@flokli.de>
+> Tested-by: Florian Klink <flokli@flokli.de>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+> b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+> index e74871491ef5..c3a6812cc93a 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+> @@ -105,6 +105,13 @@ led {
+>  		};
+>  	};
+> 
+> +	rfkill {
+> +		compatible = "rfkill-gpio";
+> +		label = "rfkill-pcie-wlan";
+> +		radio-type = "wlan";
+> +		shutdown-gpios = <&gpio0 RK_PC4 GPIO_ACTIVE_HIGH>;
+> +	};
+> +
+>  	sound {
+>  		compatible = "simple-audio-card";
+>  		pinctrl-names = "default";
 
