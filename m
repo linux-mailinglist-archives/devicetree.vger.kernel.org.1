@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-91591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D10B8949F7F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 07:58:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E5F8949F83
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 07:59:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1A951B21DC2
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 05:57:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55451281403
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 05:59:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 734F5198A20;
-	Wed,  7 Aug 2024 05:57:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79E58197A97;
+	Wed,  7 Aug 2024 05:59:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XjYsKpHX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q1fqd1Ol"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40C6B197A97;
-	Wed,  7 Aug 2024 05:57:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C0181EEE4;
+	Wed,  7 Aug 2024 05:59:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723010272; cv=none; b=tLOY2h6So+Pv1lnezOW6jyruBnKwLfaJc7T+T7llPb5K5ewn+BXMLUleEn+qhM9QJbQ4o1Sw2x7T+KQrTFXAlcQ+XnTifsBPysBTR7FTHz+NHgJod3zmJh7Cy3JKOr9GzXM8qgPomHWG2bKBqGmLFFOLKbAg0IoL4/BY2agZs6g=
+	t=1723010351; cv=none; b=XmXMzJj8VQJF08q92UpaKmA60fOYCXKNtrPlOdlFEmp72mP5mkFTKfqny6clZ2Kr9nxeQJJ8sxADOqFLamxf3n0BUqj+sq0r1AnyROTS1oqD30hylgDVfkp++ZRQNwIh9AP9q5B9TGD98wRKGOGF+Tmwu3K47i5sqo2Q3EiAjdU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723010272; c=relaxed/simple;
-	bh=b/rKtsKlY/z26YjfH+lpDs3KGxCZKWo1yXIDC/g0Tjo=;
+	s=arc-20240116; t=1723010351; c=relaxed/simple;
+	bh=JgbfG4uRXAFRGGZ/fomaetxzIU+IsWrBA+wMVSnuc3g=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nRwO5xnU4JXhJY6n8EThc0IbRVH71meYhIgcuiPcr7BdnivJG2jJSfevs66HGLaXZ/6ttw3LwjltbL+jp/WMzzA3RzoLyfubkT081nJrkXYOYfhyVeRLzNyNX/Oq/etXazQYFloDZ072t/Y77UFQ7c2aUeqO9lfB7CadpHE0SLE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XjYsKpHX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BA7BC32782;
-	Wed,  7 Aug 2024 05:57:45 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=T21mNsAJz5tsOH6D0ACfHdMX2ept1+5SWDPLdzM3kfedEUS1Qz4CdY69Ies9sIlk8l70Ctsk47lnay+4aX5ad9bYHL66Cx3sZSG6MvWV+dC26I5mlk9YrXMPr1mNOSzclnpQzn7gQ4AgVTvMy1Zphqn0UcJ5twM+Mw/Umn3j57g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q1fqd1Ol; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46F59C32782;
+	Wed,  7 Aug 2024 05:59:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723010272;
-	bh=b/rKtsKlY/z26YjfH+lpDs3KGxCZKWo1yXIDC/g0Tjo=;
+	s=k20201202; t=1723010350;
+	bh=JgbfG4uRXAFRGGZ/fomaetxzIU+IsWrBA+wMVSnuc3g=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XjYsKpHXAnNUzZ2EfW16SzTpko9YTiHHUWecT2QoQeXlxSYYtgZouUZffyuuYWEHA
-	 njf/qmB5ieodoKpIp5RrX+lTtKnfMEobNPLwJL0riwZFnrM+ER2PzGo1ttMK9cqgNX
-	 RBdpvRHK4eDux4M/b0fveH8M8g7uGU7757ZKbAj16otJ3Gwx/hwN9TQFIXcN3Ckd9J
-	 3B77vXF+FgVLRkFHY80VQceOIrQHgUh9f+h2yGLyNG7YWRk+2hIauHlTHTNghFGVP2
-	 cHHxt7lbKnOHEtAWg7J4nkMQwyfh+Q/KpHRw92cBFtul/24znbQbe3LAVOgkzsImB1
-	 CWSQ1EEIR0MuA==
-Message-ID: <ce4903f2-2a9d-45c4-bd4d-ac5165211a83@kernel.org>
-Date: Wed, 7 Aug 2024 07:57:43 +0200
+	b=q1fqd1OlwRNp0hvH6VQySd6KCaNgioeIzOgl3y3tEfR5aTxWtslyEuHGArc4jNq3W
+	 HpJGAA4eduHTQ+nUrEegOUTc3Kr7mJz1E/SSeWFKs8nD8/XBu5qHnVWqg5OfChpLjF
+	 feY7FwENfMrR0kntOnedrA/X19s7D+4IDMTrjsBSmCA2IkgGPPXQS1i198aNQbfrOI
+	 HsPMX7vIVpjQjGzxm9g0chVN9sbDFFcmrW9dTbu1NLRmM9sDQ672OGZEhjoX8EOUpD
+	 0b3RSwulxy4aTj7nZEiIyso9Mu8+C58S2WHuBHBlLAExnluBjWksdfbdznAkaPQj54
+	 MrREHseCOpKkQ==
+Message-ID: <9127e97e-64ad-47df-aa4f-03feafafdbb1@kernel.org>
+Date: Wed, 7 Aug 2024 07:59:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/7] dt-bindings: x86: Add ACPI wakeup mailbox
-To: Yunhong Jiang <yunhong.jiang@linux.intel.com>, tglx@linutronix.de,
- mingo@redhat.com, bp@alien8.de, dave.hansen@linux.intel.com, x86@kernel.org,
- hpa@zytor.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- kys@microsoft.com, haiyangz@microsoft.com, wei.liu@kernel.org,
- decui@microsoft.com, rafael@kernel.org, lenb@kernel.org,
- kirill.shutemov@linux.intel.com
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-hyperv@vger.kernel.org, linux-acpi@vger.kernel.org
-References: <20240806221237.1634126-1-yunhong.jiang@linux.intel.com>
- <20240806221237.1634126-3-yunhong.jiang@linux.intel.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: phy: imx8mq-usb: add compatible
+ "fsl,imx95-usb-phy"
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: Frank Li <Frank.li@nxp.com>, vkoul@kernel.org, kishon@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+ festevam@gmail.com, gregkh@linuxfoundation.org, jun.li@nxp.com,
+ l.stach@pengutronix.de, aford173@gmail.com, hongxing.zhu@nxp.com,
+ alexander.stein@ew.tq-group.com, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org
+References: <20240806050639.1013152-1-xu.yang_2@nxp.com>
+ <160dd5fc-83ba-4311-a173-44521342a3d8@kernel.org>
+ <ZrJLS37GFmvkQpml@lizhi-Precision-Tower-5810>
+ <bfe6430c-a022-4e8f-ab7f-8d8e8cb10fca@kernel.org>
+ <20240807055701.o7fo43efvv3jxlhv@hippo>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,39 +111,112 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240806221237.1634126-3-yunhong.jiang@linux.intel.com>
+In-Reply-To: <20240807055701.o7fo43efvv3jxlhv@hippo>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/08/2024 00:12, Yunhong Jiang wrote:
-> Add the binding to use the ACPI wakeup mailbox mechanism to bringup APs.
-
-We do not have bindings for ACPI. I think in the past it was mentioned
-pretty clear - we do not care what ACPI has in the wild.
-
+On 07/08/2024 07:57, Xu Yang wrote:
+> On Wed, Aug 07, 2024 at 07:48:43AM +0200, Krzysztof Kozlowski wrote:
+>> On 06/08/2024 18:11, Frank Li wrote:
+>>> On Tue, Aug 06, 2024 at 10:29:47AM +0200, Krzysztof Kozlowski wrote:
+>>>> On 06/08/2024 07:06, Xu Yang wrote:
+>>>>> The usb phy in i.MX95 is compatible with i.MX8MP's, this will add a
+>>>>> compatible "fsl,imx95-usb-phy" for i.MX95. Also change reg maxItems
+>>>>> to 2 since i.MX95 needs another regmap to control Type-C Assist (TCA)
+>>>>> block. Since i.MX95 usb phy is able to switch SS lanes, this will also
+>>>>> add orientation-switch and port property to the file.
+>>>>>
+>>>>> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+>>>>>
+>>>>> ---
+>>>>> Changes in v2:
+>>>>>  - replace minItems with description in reg property
+>>>>>  - remove orientation-switch and port
+>>>>>  - refer to usb-switch.yaml
+>>>>>  - use unevaluatedProperties
+>>>>> ---
+>>>>>  .../bindings/phy/fsl,imx8mq-usb-phy.yaml      | 42 ++++++++++++++++---
+>>>>>  1 file changed, 37 insertions(+), 5 deletions(-)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+>>>>> index dc3a3f709fea..6d6d211883ae 100644
+>>>>> --- a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+>>>>> @@ -11,12 +11,17 @@ maintainers:
+>>>>>
+>>>>>  properties:
+>>>>>    compatible:
+>>>>> -    enum:
+>>>>> -      - fsl,imx8mq-usb-phy
+>>>>> -      - fsl,imx8mp-usb-phy
+>>>>> +    oneOf:
+>>>>> +      - enum:
+>>>>> +          - fsl,imx8mq-usb-phy
+>>>>> +          - fsl,imx8mp-usb-phy
+>>>>> +      - items:
+>>>>> +          - const: fsl,imx95-usb-phy
+>>>>> +          - const: fsl,imx8mp-usb-phy
+>>>>>
+>>>>>    reg:
+>>>>> -    maxItems: 1
+>>>>> +    minItems: 1
+>>>>> +    maxItems: 2
+>>>>>
+>>>>>    "#phy-cells":
+>>>>>      const: 0
+>>>>> @@ -89,7 +94,34 @@ required:
+>>>>>    - clocks
+>>>>>    - clock-names
+>>>>>
+>>>>> -additionalProperties: false
+>>>>> +allOf:
+>>>>> +  - if:
+>>>>> +      properties:
+>>>>> +        compatible:
+>>>>> +          contains:
+>>>>> +            enum:
+>>>>> +              - fsl,imx95-usb-phy
+>>>>> +    then:
+>>>>> +      properties:
+>>>>> +        reg:
+>>>>> +          items:
+>>>>> +            - description: USB PHY Control range
+>>>>> +            - description: USB PHY TCA Block range
+>>>>> +    else:
+>>>>> +      properties:
+>>>>> +        reg:
+>>>>> +          maxItems: 1
+>>>>> +
+>>>>> +  - if:
+>>>>> +      properties:
+>>>>> +        compatible:
+>>>>> +          contains:
+>>>>> +            enum:
+>>>>> +              - fsl,imx95-usb-phy
+>>>>> +    then:
+>>>>> +      $ref: /schemas/usb/usb-switch.yaml#
+>>>>
+>>>> ref should be rather in top-level. You can always disallow certain
+>>>> properties for devices, if they are really not applicable.
+>>>
+>>> There are some "required" in usb-switch.yaml,
+>>>
+>>> oneOf:
+>>>   - required:
+>>>       - port
+>>>   - required:
+>>>       - ports
+>>>
+>>> If put on the top, it may cause DTB check warning for other compatible
+>>> strings, which have not support usb-switch.
+>>
+>> Hm, indeed, that's unusual case to have such different devices in one
+>> schema. Did you test that above $ref in if: actually works?
 > 
-> Signed-off-by: Yunhong Jiang <yunhong.jiang@linux.intel.com>
-> ---
->  .../devicetree/bindings/x86/wakeup.yaml       | 41 +++++++++++++++++++
->  1 file changed, 41 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/x86/wakeup.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/x86/wakeup.yaml b/Documentation/devicetree/bindings/x86/wakeup.yaml
-> new file mode 100644
-> index 000000000000..8af40dcdb592
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/x86/wakeup.yaml
-> @@ -0,0 +1,41 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +
-> +$id: http://devicetree.org/schemas/x86/wakeup.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> Yes, it works and this yaml pass dt_binding_check and dtbs_check. 
 
-This was absolutely never tested and does not look like proper bindings
-file. This just does not work. Go to example-schema and use it as template.
-
-NAK
+I know it passes, I am asking whether it actually works. Is the $ref
+actually effective? Is it properly applied?
 
 Best regards,
 Krzysztof
