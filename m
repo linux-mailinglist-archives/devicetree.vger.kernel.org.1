@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-91593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E5F8949F83
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 07:59:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69178949F88
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 08:01:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55451281403
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 05:59:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 00D4CB2558B
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 06:01:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79E58197A97;
-	Wed,  7 Aug 2024 05:59:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A86BE198A3E;
+	Wed,  7 Aug 2024 06:01:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q1fqd1Ol"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IYb+Kc1j"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C0181EEE4;
-	Wed,  7 Aug 2024 05:59:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DA9218FDB2;
+	Wed,  7 Aug 2024 06:01:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723010351; cv=none; b=XmXMzJj8VQJF08q92UpaKmA60fOYCXKNtrPlOdlFEmp72mP5mkFTKfqny6clZ2Kr9nxeQJJ8sxADOqFLamxf3n0BUqj+sq0r1AnyROTS1oqD30hylgDVfkp++ZRQNwIh9AP9q5B9TGD98wRKGOGF+Tmwu3K47i5sqo2Q3EiAjdU=
+	t=1723010481; cv=none; b=KBzTdOG1gm+JoVAtFrXPawLoMVxkp0dbnfsilT7mZ3HpAtFlcP+eGGYoZL5SBHIthA1Vepp9qdT/chAvvhJT3eZF/xegiPExfLGSEhUm5xB2TTFqAuTq9hh1fWE5hsR1Zs4Ypj/NXa1lafi6ItRy8XFMlXbA5268mzWBqIV2A6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723010351; c=relaxed/simple;
-	bh=JgbfG4uRXAFRGGZ/fomaetxzIU+IsWrBA+wMVSnuc3g=;
+	s=arc-20240116; t=1723010481; c=relaxed/simple;
+	bh=6aCA53X5jzvfdeLem/L46yF1CP6EkhlWtgkMvl/xF4Q=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=T21mNsAJz5tsOH6D0ACfHdMX2ept1+5SWDPLdzM3kfedEUS1Qz4CdY69Ies9sIlk8l70Ctsk47lnay+4aX5ad9bYHL66Cx3sZSG6MvWV+dC26I5mlk9YrXMPr1mNOSzclnpQzn7gQ4AgVTvMy1Zphqn0UcJ5twM+Mw/Umn3j57g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q1fqd1Ol; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46F59C32782;
-	Wed,  7 Aug 2024 05:59:04 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=P6UVAA47rPoVkvwA5Fw8JN+xjbCdVW9fyVCuAm0cWmCceU2eOMRQxvWJWZZYHKIcMNM/imeUBJQJTIjOLC8Z+kN3grFIRLnfcVJkzVWAkqRcwxvuFIgxre0FmNcSlek+vN4plvV/hMd/abWxr0uO1R1fZwRSbC5j4kKTII7JvPA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IYb+Kc1j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00740C32782;
+	Wed,  7 Aug 2024 06:01:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723010350;
-	bh=JgbfG4uRXAFRGGZ/fomaetxzIU+IsWrBA+wMVSnuc3g=;
+	s=k20201202; t=1723010481;
+	bh=6aCA53X5jzvfdeLem/L46yF1CP6EkhlWtgkMvl/xF4Q=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=q1fqd1OlwRNp0hvH6VQySd6KCaNgioeIzOgl3y3tEfR5aTxWtslyEuHGArc4jNq3W
-	 HpJGAA4eduHTQ+nUrEegOUTc3Kr7mJz1E/SSeWFKs8nD8/XBu5qHnVWqg5OfChpLjF
-	 feY7FwENfMrR0kntOnedrA/X19s7D+4IDMTrjsBSmCA2IkgGPPXQS1i198aNQbfrOI
-	 HsPMX7vIVpjQjGzxm9g0chVN9sbDFFcmrW9dTbu1NLRmM9sDQ672OGZEhjoX8EOUpD
-	 0b3RSwulxy4aTj7nZEiIyso9Mu8+C58S2WHuBHBlLAExnluBjWksdfbdznAkaPQj54
-	 MrREHseCOpKkQ==
-Message-ID: <9127e97e-64ad-47df-aa4f-03feafafdbb1@kernel.org>
-Date: Wed, 7 Aug 2024 07:59:02 +0200
+	b=IYb+Kc1j1l4ERrOPZVC1Bq1OBDcIb1K0xbqon0Kpz3tcpcIUBb+W3Ue2ppnBGaKNL
+	 XV0RE2B7FuLnR/tcn+/Zo6fizLsBcz4di731ZVAr7DpLx5zvDU8S9u3T2z66dN2F99
+	 dObqxM7f70EK0hNL8COTh3Ghkf6wEN8RzX/XhVjNFrTAQXjW5qbXNu+l7azIsDO9vp
+	 EtAjjgzzpIjyd+rgC86Cu8i10A4TV9dGjic3k/XB9MSXUAMkb+HgHBRZI6mCVnM4d7
+	 VEi/DKuju0Ykq8efQp92wkp2WJM1EoAbmQa4x7KFh8vb0Q+ukI8tjYNcYBpx2yJLu5
+	 Ddw0Ah0ZZGrSw==
+Message-ID: <4210df09-1625-4865-a80c-8b38056ce172@kernel.org>
+Date: Wed, 7 Aug 2024 08:01:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: phy: imx8mq-usb: add compatible
- "fsl,imx95-usb-phy"
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: Frank Li <Frank.li@nxp.com>, vkoul@kernel.org, kishon@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, gregkh@linuxfoundation.org, jun.li@nxp.com,
- l.stach@pengutronix.de, aford173@gmail.com, hongxing.zhu@nxp.com,
- alexander.stein@ew.tq-group.com, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org
-References: <20240806050639.1013152-1-xu.yang_2@nxp.com>
- <160dd5fc-83ba-4311-a173-44521342a3d8@kernel.org>
- <ZrJLS37GFmvkQpml@lizhi-Precision-Tower-5810>
- <bfe6430c-a022-4e8f-ab7f-8d8e8cb10fca@kernel.org>
- <20240807055701.o7fo43efvv3jxlhv@hippo>
+Subject: Re: [PATCH] dt-bindings: timer: nxp,lpc3220-timer: Convert to
+ dtschema
+To: Vladimir Zapolskiy <vz@mleia.com>,
+ Animesh Agarwal <animeshagarwal28@gmail.com>
+Cc: Daniel Baluta <daniel.baluta@nxp.com>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240731074544.208411-1-animeshagarwal28@gmail.com>
+ <d1ac7446-143b-40d3-9f12-f734ab7cc31f@mleia.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,112 +107,39 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240807055701.o7fo43efvv3jxlhv@hippo>
+In-Reply-To: <d1ac7446-143b-40d3-9f12-f734ab7cc31f@mleia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/08/2024 07:57, Xu Yang wrote:
-> On Wed, Aug 07, 2024 at 07:48:43AM +0200, Krzysztof Kozlowski wrote:
->> On 06/08/2024 18:11, Frank Li wrote:
->>> On Tue, Aug 06, 2024 at 10:29:47AM +0200, Krzysztof Kozlowski wrote:
->>>> On 06/08/2024 07:06, Xu Yang wrote:
->>>>> The usb phy in i.MX95 is compatible with i.MX8MP's, this will add a
->>>>> compatible "fsl,imx95-usb-phy" for i.MX95. Also change reg maxItems
->>>>> to 2 since i.MX95 needs another regmap to control Type-C Assist (TCA)
->>>>> block. Since i.MX95 usb phy is able to switch SS lanes, this will also
->>>>> add orientation-switch and port property to the file.
->>>>>
->>>>> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
->>>>>
->>>>> ---
->>>>> Changes in v2:
->>>>>  - replace minItems with description in reg property
->>>>>  - remove orientation-switch and port
->>>>>  - refer to usb-switch.yaml
->>>>>  - use unevaluatedProperties
->>>>> ---
->>>>>  .../bindings/phy/fsl,imx8mq-usb-phy.yaml      | 42 ++++++++++++++++---
->>>>>  1 file changed, 37 insertions(+), 5 deletions(-)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
->>>>> index dc3a3f709fea..6d6d211883ae 100644
->>>>> --- a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
->>>>> +++ b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
->>>>> @@ -11,12 +11,17 @@ maintainers:
->>>>>
->>>>>  properties:
->>>>>    compatible:
->>>>> -    enum:
->>>>> -      - fsl,imx8mq-usb-phy
->>>>> -      - fsl,imx8mp-usb-phy
->>>>> +    oneOf:
->>>>> +      - enum:
->>>>> +          - fsl,imx8mq-usb-phy
->>>>> +          - fsl,imx8mp-usb-phy
->>>>> +      - items:
->>>>> +          - const: fsl,imx95-usb-phy
->>>>> +          - const: fsl,imx8mp-usb-phy
->>>>>
->>>>>    reg:
->>>>> -    maxItems: 1
->>>>> +    minItems: 1
->>>>> +    maxItems: 2
->>>>>
->>>>>    "#phy-cells":
->>>>>      const: 0
->>>>> @@ -89,7 +94,34 @@ required:
->>>>>    - clocks
->>>>>    - clock-names
->>>>>
->>>>> -additionalProperties: false
->>>>> +allOf:
->>>>> +  - if:
->>>>> +      properties:
->>>>> +        compatible:
->>>>> +          contains:
->>>>> +            enum:
->>>>> +              - fsl,imx95-usb-phy
->>>>> +    then:
->>>>> +      properties:
->>>>> +        reg:
->>>>> +          items:
->>>>> +            - description: USB PHY Control range
->>>>> +            - description: USB PHY TCA Block range
->>>>> +    else:
->>>>> +      properties:
->>>>> +        reg:
->>>>> +          maxItems: 1
->>>>> +
->>>>> +  - if:
->>>>> +      properties:
->>>>> +        compatible:
->>>>> +          contains:
->>>>> +            enum:
->>>>> +              - fsl,imx95-usb-phy
->>>>> +    then:
->>>>> +      $ref: /schemas/usb/usb-switch.yaml#
->>>>
->>>> ref should be rather in top-level. You can always disallow certain
->>>> properties for devices, if they are really not applicable.
->>>
->>> There are some "required" in usb-switch.yaml,
->>>
->>> oneOf:
->>>   - required:
->>>       - port
->>>   - required:
->>>       - ports
->>>
->>> If put on the top, it may cause DTB check warning for other compatible
->>> strings, which have not support usb-switch.
->>
->> Hm, indeed, that's unusual case to have such different devices in one
->> schema. Did you test that above $ref in if: actually works?
+On 06/08/2024 22:13, Vladimir Zapolskiy wrote:
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  clock-names:
+>> +    const: timerclk
+>> +
+>> +  resets:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - clocks
+>> +  - clock-names
 > 
-> Yes, it works and this yaml pass dt_binding_check and dtbs_check. 
+> Since there is always just a single supply clock, there is no need to
+> specify "clock-names" as a required one, please change it.
 
-I know it passes, I am asking whether it actually works. Is the $ref
-actually effective? Is it properly applied?
+??? That's a conversion. Why do you expect changing several DTS files
+and maybe also driver? That's not needed for conversion. No.
 
 Best regards,
 Krzysztof
