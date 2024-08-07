@@ -1,327 +1,167 @@
-Return-Path: <devicetree+bounces-91577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9C65949F38
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 07:35:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D452B949F45
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 07:43:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 254A2B24BEA
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 05:35:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4A1ECB250D7
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 05:43:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29193196C6C;
-	Wed,  7 Aug 2024 05:35:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A894194145;
+	Wed,  7 Aug 2024 05:42:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KsoaZxig"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="yDnYgMmf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B588192B73;
-	Wed,  7 Aug 2024 05:35:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D7E8194124;
+	Wed,  7 Aug 2024 05:42:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723008921; cv=none; b=VjT5XczPvReAz0fIES2fEH9XgCJLzE8Kve6vYbtSol9mGjpIllZy0kGAjelVSAynNhpuEssk36hxvPHwvTMaW5F+UjKIvejic6PdEscRQyWQpJIYGJ5fLUlevdzB2+KGJerV8LLiOazNGS7eniNrQ+qDeDUtd2c3blsB80X4/n0=
+	t=1723009374; cv=none; b=VXCYjZAif+lVx23vTSz0or8NxbRQ+cTDUN7aNLPrlOwMGyaQGn1JB/qsnCGw9ohZNk8RQLW9jTiNVTsufsjW8kCxYo2pWagjiyd/+VhLLY4bpUHowoNavuSAS3R0lkctJZzpoRHzRJCK1ND+ITr14NwOObufrnK1okdIVcPrG2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723008921; c=relaxed/simple;
-	bh=efnOEQDC0rXwUpa20GpPNBy6klilF65JJ7SYSG3HWoA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YGRux7gv/0s7akr6Klky1EQQT5LwmTBaFp+TyKh1HCjX7tjR22tNnSPxMCS6R31un9Yrr/s/3Z50cIgQcOw3C5Q42auDmhYnS0nOwYfpjnsc7PY/do3pn5Ta3HFqnPEx50CIr9MtT8sA9zlcl52gJLlfLNj4CTudsHBBCwcCueU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KsoaZxig; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 476H6rRt020486;
-	Wed, 7 Aug 2024 05:35:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	jRgXRFeJDCis8cPxN8UrXOSAz6qIJ8ZHtZYKdMkMbcw=; b=KsoaZxig+Fh0EQsh
-	GHNJd5Ln9UCcpCdp86ooutuJ1LPvmS1AMM+/NK8Gqlxt6dlqwgMM0r7aauzSlwK8
-	H1CRlc3vJ6m7/QvgJwAXg4iZTXYX4ffElT22QNdxFwoWgX9QVndjnB/hDqOD1UTO
-	ZXXpnErDVJhaPllHoWRRwHa3VOWXrzLfcm6EWilvEfw8pN042RZajXSaPEvw6z/S
-	qCU6wF2yhLs70YNEC3wlLXJKsqN/itlzzKuyszp0IWjKhDicwgcvZgTMBcX78HjR
-	nIAOkSD/3xJD623vu6Ert6nmdv+iOjyI6zj87qwTOvz93i9bY2yPiJd1lLcjVc4x
-	iO5D3Q==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40scmu1mtk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 07 Aug 2024 05:35:14 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 4775ZC5X018430
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 7 Aug 2024 05:35:12 GMT
-Received: from hu-depengs-sha.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 6 Aug 2024 22:35:06 -0700
-From: Depeng Shao <quic_depengs@quicinc.com>
-To: <rfoss@kernel.org>, <todor.too@gmail.com>, <bryan.odonoghue@linaro.org>,
-        <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>
-CC: <quic_depengs@quicinc.com>, <inux-media@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
-        Yongsheng Li
-	<quic_yon@quicinc.com>
-Subject: [PATCH 2/2] arm64: dts: qcom: sm8550: camss: Add CAMSS block definition
-Date: Wed, 7 Aug 2024 11:04:00 +0530
-Message-ID: <20240807053400.1916581-3-quic_depengs@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240807053400.1916581-1-quic_depengs@quicinc.com>
-References: <20240807053400.1916581-1-quic_depengs@quicinc.com>
+	s=arc-20240116; t=1723009374; c=relaxed/simple;
+	bh=8ceZ/gjp99Gn2ReZrP5n1e6TqhjqXr8pPQAmOwfo2+o=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=I2mP0RS6y6DtiFe10FEPeorg6WHA4w52AWrhR6Ip6IOvUT34v6dsWaFrv+dB1kZxIi5XyGdJ9M9XmXCq6qncXvuq/esj4JxuX3zy7Wgsg/k9Z1j6GF361vatHeENQg0EPfVSHjc5UPS59SLEkOgC3tUJA3+t/lYDzwCmCONVd8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=yDnYgMmf; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4775gjAc113409;
+	Wed, 7 Aug 2024 00:42:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1723009365;
+	bh=touyr6w7+hEqxR4kfJtt19bFm30aXZBbAZgaNwWFKIk=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=yDnYgMmfftQ5UmbCnVnz0EDlBGTBCnnPx393qIO9jWaAx2oDYOReD1yIg961QGHlX
+	 o6wo5TNhMdL0iKnv5GexIsCiWC/n/yMJjGfrC8gBM1zZtSBGxpZSGEy8InRA8KqSp0
+	 49M7F92vQxAWcaeMtq8iZjVGRPQgSDk2QXxA3fPc=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4775gj2A020883
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 7 Aug 2024 00:42:45 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
+ Aug 2024 00:42:45 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 7 Aug 2024 00:42:44 -0500
+Received: from localhost (uda0497581.dhcp.ti.com [10.24.68.185])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4775giF2044533;
+	Wed, 7 Aug 2024 00:42:44 -0500
+Date: Wed, 7 Aug 2024 11:12:43 +0530
+From: Manorit Chawdhry <m-chawdhry@ti.com>
+To: Neha Malcom Francis <n-francis@ti.com>
+CC: Nishanth Menon <nm@ti.com>, Andrew Davis <afd@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Aniket Limaye
+	<a-limaye@ti.com>,
+        Udit Kumar <u-kumar1@ti.com>, Beleswar Padhi
+	<b-padhi@ti.com>,
+        Siddharth Vadapalli <s-vadapalli@ti.com>
+Subject: Re: [PATCH v3 1/5] arm64: dts: ti: k3-j721s2*: Add bootph-*
+ properties
+Message-ID: <20240807054243.pvfgexgusahe7d4x@uda0497581>
+References: <20240730-b4-upstream-bootph-all-v3-0-9bc2eccb6952@ti.com>
+ <20240730-b4-upstream-bootph-all-v3-1-9bc2eccb6952@ti.com>
+ <bcd96f9f-54bd-4793-b9f1-04a011f2df82@ti.com>
+ <20240806150700.uw4xdanjr4ypdvm3@rasping>
+ <20240807052628.jclbmw4zs72jm6km@uda0497581>
+ <8a910e2f-aaf2-40cd-8131-a1a2531a12c8@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 2PMyoJ2rA7yDNScneD9toTIA7Z9tdQCg
-X-Proofpoint-GUID: 2PMyoJ2rA7yDNScneD9toTIA7Z9tdQCg
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-07_02,2024-08-06_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
- clxscore=1015 malwarescore=0 impostorscore=0 adultscore=0 phishscore=0
- lowpriorityscore=0 priorityscore=1501 suspectscore=0 spamscore=0
- mlxlogscore=992 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408070035
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <8a910e2f-aaf2-40cd-8131-a1a2531a12c8@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Add CAMSS block definition for sm8550.
+Hi Neha,
 
-This drop contains definitions for the following components on sm8550:
+On 11:03-20240807, Neha Malcom Francis wrote:
+> Hi Manorit
+> 
+> On 07/08/24 10:56, Manorit Chawdhry wrote:
+> > Hi Nishanth,
+> > 
+> > On 10:07-20240806, Nishanth Menon wrote:
+> > > On 09:43-20240806, Andrew Davis wrote:
+> > > > On 7/30/24 4:53 AM, Manorit Chawdhry wrote:
+> > > > > Adds bootph-* properties to the leaf nodes to enable U-boot to
+> > > > > utilise them.
+> > > > 
+> > > > U-Boot? Let's try to pretend like this is a generic property and
+> > > > just say "bootloader" :)
+> > > > > @@ -445,6 +446,7 @@ flash@0 {
+> > > > >    		cdns,tchsh-ns = <60>;
+> > > > >    		cdns,tslch-ns = <60>;
+> > > > >    		cdns,read-delay = <4>;
+> > > > > +		bootph-all;
+> > > 
+> > > Here and elsewhere, follow:
+> > > 	https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst#n117
+> > 
+> > Could you tell me what are you seeing wrong? The dts-coding-style that
+> > you shared doesn't tell a specific location for bootph-* properties so
+> > using the generic reasoning.
+> > 
+> > "1. Most important properties start the node: compatible then bus addressing to
+> >     match unit address."
+> > 
+> > This is the least important property considering Linux and hence the
+> > reasoning was that it should come in the last. Also, j722s and am62p
+> > follow the same convention so it was taken from there only.
+> > 
+> 
+> Not sure if this is what he meant, but bootph-* comes under standard/common
+> properties as per my understanding of the coding style. And status needs to
+> be at the very end if it's there (in this case it's not but just
+> mentioning).
 
-VFE * 3
-VFE Lite * 2
-CSID * 3
-CSID Lite * 2
-CSIPHY * 8
+I see status property being at the top of many nodes so I don't think
+it's even followed right now, with that reasoning, I don't think I can
+use that point for ordering the dt nodes. If it's under common nodes
+then also I think it's in the appropriate location considering that even
+in those properties it is the least important and should be coming in
+the last. If you see any problem with this node then please let me know
+in the ordering.
 
-Co-developed-by: Yongsheng Li <quic_yon@quicinc.com>
-Signed-off-by: Yongsheng Li <quic_yon@quicinc.com>
-Signed-off-by: Depeng Shao <quic_depengs@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sm8550.dtsi | 199 +++++++++++++++++++++++++++
- 1 file changed, 199 insertions(+)
+Regards,
+Manorit
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index 4c9820adcf52..58fc8792953d 100644
---- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -2747,6 +2747,205 @@ videocc: clock-controller@aaf0000 {
- 			#power-domain-cells = <1>;
- 		};
- 
-+		camss: camss@acb7000 {
-+			compatible = "qcom,sm8550-camss";
-+
-+			reg = <0 0x0acb7000 0 0xd00>,
-+			      <0 0x0acb9000 0 0xd00>,
-+			      <0 0x0acbb000 0 0xd00>,
-+			      <0 0x0acca000 0 0xa00>,
-+			      <0 0x0acce000 0 0xa00>,
-+			      <0 0x0acb6000 0 0x1000>,
-+			      <0 0x0ace4000 0 0x2000>,
-+			      <0 0x0ace6000 0 0x2000>,
-+			      <0 0x0ace8000 0 0x2000>,
-+			      <0 0x0acea000 0 0x2000>,
-+			      <0 0x0acec000 0 0x2000>,
-+			      <0 0x0acee000 0 0x2000>,
-+			      <0 0x0acf0000 0 0x2000>,
-+			      <0 0x0acf2000 0 0x2000>,
-+			      <0 0x0ac62000 0 0xf000>,
-+			      <0 0x0ac71000 0 0xf000>,
-+			      <0 0x0ac80000 0 0xf000>,
-+			      <0 0x0accb000 0 0x1800>,
-+			      <0 0x0accf000 0 0x1800>;
-+			reg-names = "csid0",
-+				    "csid1",
-+				    "csid2",
-+				    "csid_lite0",
-+				    "csid_lite1",
-+				    "csid_top",
-+				    "csiphy0",
-+				    "csiphy1",
-+				    "csiphy2",
-+				    "csiphy3",
-+				    "csiphy4",
-+				    "csiphy5",
-+				    "csiphy6",
-+				    "csiphy7",
-+				    "vfe0",
-+				    "vfe1",
-+				    "vfe2",
-+				    "vfe_lite0",
-+				    "vfe_lite1";
-+
-+			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-+				 <&camcc CAM_CC_CPAS_FAST_AHB_CLK>,
-+				 <&camcc CAM_CC_CPAS_IFE_LITE_CLK>,
-+				 <&camcc CAM_CC_CPAS_IFE_0_CLK>,
-+				 <&camcc CAM_CC_CPAS_IFE_1_CLK>,
-+				 <&camcc CAM_CC_CPAS_IFE_2_CLK>,
-+				 <&camcc CAM_CC_CSID_CLK>,
-+				 <&camcc CAM_CC_CSIPHY0_CLK>,
-+				 <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
-+				 <&camcc CAM_CC_CSIPHY1_CLK>,
-+				 <&camcc CAM_CC_CSI1PHYTIMER_CLK>,
-+				 <&camcc CAM_CC_CSIPHY2_CLK>,
-+				 <&camcc CAM_CC_CSI2PHYTIMER_CLK>,
-+				 <&camcc CAM_CC_CSIPHY3_CLK>,
-+				 <&camcc CAM_CC_CSI3PHYTIMER_CLK>,
-+				 <&camcc CAM_CC_CSIPHY4_CLK>,
-+				 <&camcc CAM_CC_CSI4PHYTIMER_CLK>,
-+				 <&camcc CAM_CC_CSIPHY5_CLK>,
-+				 <&camcc CAM_CC_CSI5PHYTIMER_CLK>,
-+				 <&camcc CAM_CC_CSIPHY6_CLK>,
-+				 <&camcc CAM_CC_CSI6PHYTIMER_CLK>,
-+				 <&camcc CAM_CC_CSIPHY7_CLK>,
-+				 <&camcc CAM_CC_CSI7PHYTIMER_CLK>,
-+				 <&camcc CAM_CC_CSID_CSIPHY_RX_CLK>,
-+				 <&camcc CAM_CC_IFE_0_CLK>,
-+				 <&camcc CAM_CC_IFE_0_FAST_AHB_CLK>,
-+				 <&camcc CAM_CC_IFE_1_CLK>,
-+				 <&camcc CAM_CC_IFE_1_FAST_AHB_CLK>,
-+				 <&camcc CAM_CC_IFE_2_CLK>,
-+				 <&camcc CAM_CC_IFE_2_FAST_AHB_CLK>,
-+				 <&camcc CAM_CC_IFE_LITE_CLK>,
-+				 <&camcc CAM_CC_IFE_LITE_AHB_CLK>,
-+				 <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>,
-+				 <&camcc CAM_CC_IFE_LITE_CSID_CLK>,
-+				 <&gcc GCC_CAMERA_HF_AXI_CLK>;
-+
-+			clock-names = "camnoc_axi",
-+				      "cpas_ahb",
-+				      "cpas_fast_ahb_clk",
-+				      "cpas_ife_lite",
-+				      "cpas_vfe0",
-+				      "cpas_vfe1",
-+				      "cpas_vfe2",
-+				      "csid",
-+				      "csiphy0",
-+				      "csiphy0_timer",
-+				      "csiphy1",
-+				      "csiphy1_timer",
-+				      "csiphy2",
-+				      "csiphy2_timer",
-+				      "csiphy3",
-+				      "csiphy3_timer",
-+				      "csiphy4",
-+				      "csiphy4_timer",
-+				      "csiphy5",
-+				      "csiphy5_timer",
-+				      "csiphy6",
-+				      "csiphy6_timer",
-+				      "csiphy7",
-+				      "csiphy7_timer",
-+				      "csiphy_rx",
-+				      "vfe0",
-+				      "vfe0_fast_ahb",
-+				      "vfe1",
-+				      "vfe1_fast_ahb",
-+				      "vfe2",
-+				      "vfe2_fast_ahb",
-+				      "vfe_lite",
-+				      "vfe_lite_ahb",
-+				      "vfe_lite_cphy_rx",
-+				      "vfe_lite_csid",
-+				      "gcc_axi_hf";
-+
-+			interconnects = <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_CAMERA_CFG 0>,
-+					<&mmss_noc MASTER_CAMNOC_HF 0 &mc_virt SLAVE_EBI1 0>,
-+					<&mmss_noc MASTER_CAMNOC_ICP 0 &mc_virt SLAVE_EBI1 0>,
-+					<&mmss_noc MASTER_CAMNOC_SF 0 &mc_virt SLAVE_EBI1 0>;
-+			interconnect-names = "ahb",
-+					     "hf_0_mnoc",
-+					     "icp_mnoc",
-+					     "sf_0_mnoc";
-+
-+			interrupts = <GIC_SPI 601 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 603 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 431 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 605 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 376 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 477 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 278 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 277 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 602 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 688 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 606 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 377 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			interrupt-names = "csid0",
-+					  "csid1",
-+					  "csid2",
-+					  "csid_lite0",
-+					  "csid_lite1",
-+					  "csiphy0",
-+					  "csiphy1",
-+					  "csiphy2",
-+					  "csiphy3",
-+					  "csiphy4",
-+					  "csiphy5",
-+					  "csiphy6",
-+					  "csiphy7",
-+					  "vfe0",
-+					  "vfe1",
-+					  "vfe2",
-+					  "vfe_lite0",
-+					  "vfe_lite1";
-+
-+			iommus = <&apps_smmu 0x800 0x20>;
-+
-+			power-domains = <&camcc CAM_CC_IFE_0_GDSC>,
-+					<&camcc CAM_CC_IFE_1_GDSC>,
-+					<&camcc CAM_CC_IFE_2_GDSC>,
-+					<&camcc CAM_CC_TITAN_TOP_GDSC>;
-+
-+			power-domain-names = "ife0",
-+					     "ife1",
-+					     "ife2",
-+					     "top";
-+
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+				};
-+
-+				port@3 {
-+					reg = <3>;
-+				};
-+			};
-+		};
-+
- 		camcc: clock-controller@ade0000 {
- 			compatible = "qcom,sm8550-camcc";
- 			reg = <0 0x0ade0000 0 0x20000>;
--- 
-2.34.1
-
+> 
+> > Regards,
+> > Manorit
+> > 
+> > > 
+> > > 
+> > > > >    	};
+> > > > >    };
+> > > > > 
+> > > 
+> > > -- 
+> > > Regards,
+> > > Nishanth Menon
+> > > Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+> 
+> -- 
+> Thanking You
+> Neha Malcom Francis
 
