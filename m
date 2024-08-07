@@ -1,106 +1,182 @@
-Return-Path: <devicetree+bounces-91798-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 412EA94AA9B
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 16:49:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C288394AAA1
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 16:51:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5FC3CB2407F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 14:44:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 522521F21ED8
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 14:51:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 357E081AB6;
-	Wed,  7 Aug 2024 14:44:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 245238062A;
+	Wed,  7 Aug 2024 14:51:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="OhRQgjLi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JDoWj/o3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E64181720;
-	Wed,  7 Aug 2024 14:44:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E67447E0E9;
+	Wed,  7 Aug 2024 14:51:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723041854; cv=none; b=CfCNyCbTBLxSmhxtdt8lSOQqj04p+fvqSTnj44VoeNvz13TSvk5qsr71LRVv/D+JUqvpldJq3BBDnjSd8HG8l/ddURiUdQy5r2N+n1Oj8jpcdzZf0gkggi2YA1UaBpPdSNflkx24jk6GL/OV63yZqMGPo2v3GtdmLz4ex0red28=
+	t=1723042297; cv=none; b=mdxeImqKg4xzfrUYvDo0u80Z00ZO8ox/0q1Q9AxuRVSfDL8uApuR/Pzfs6r3+zMO2JzA6VLqRU0PCRp3E/44r6QgUMQHnfymUaaX/PQHDhVSemNmyjjI269O7cUbmc1jERroFtQ9hoav9GeBC9QjLyrb/XBt4VzSuMj7z2YVBug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723041854; c=relaxed/simple;
-	bh=wmIyn56BZpdpmjgY4kNRO+10jMJjnSkzPVP/MHdF038=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=DcN2Eb3JmYXqL6ZcuCZ8WAMOB2uyWJ9gSlzM7MD6ejboOHPpxM/aRfWIGtDNsiNCU+ZkuWrF3n2NrrEKfi12gP4omEukyxAwk3coXjG2VXOfjXnrZerFUS8y9HuZgYU5S6nw76nehHVm7hEtIpnPBTgRgqAeoHESIEOFIh8OoFg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=OhRQgjLi; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 1F1C121B1A;
-	Wed,  7 Aug 2024 16:44:04 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1723041844;
-	bh=QXpRHSt5W22TldwCVm/7sHpUgKzH5tFrdkovYAxdjkw=; h=From:To:Subject;
-	b=OhRQgjLiRlK4TQ+9BDkIUYBD6CvZl9P/dCqvJ8oW/MIvpFXFSpbCfqflKBr/gTgMG
-	 tbPWmJAoXA+c8DAbBZm6mhcl9jEuDRwURUO9/TrXbARBeS+h4zwnFVuXTNLXHBD+Kz
-	 GJU80q/LXqocLv4QdMcsxn77nkGjaGZgQhULvbOfA+5R8LaSEsptujy6qZ9SjSSTHg
-	 +De+jqMBfOMlgdMmJ22M6yWdqYRH+3ZZRf03hvfetljmHX/VgxoHXQdsHxxTgB9Ro4
-	 3KVoul7zckPwn8LEyQBO5A4CxtAR8Iis+/x/BZ5qe/P8eReEL6oXzwmlEGZgYzydo/
-	 YeIuIEX6zNjDw==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 4/4] arm64: dts: imx8-ss-conn: add PPS channel to the FEC nodes
-Date: Wed,  7 Aug 2024 16:43:49 +0200
-Message-Id: <20240807144349.297342-5-francesco@dolcini.it>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240807144349.297342-1-francesco@dolcini.it>
-References: <20240807144349.297342-1-francesco@dolcini.it>
+	s=arc-20240116; t=1723042297; c=relaxed/simple;
+	bh=XObzYOPHhby3ggLwzGEaQzICqe4oj78DHpF5ya8vOCg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Dh2l2ZMfvhoHx56kBHpdfnyW5f15zuVXPgsdGGAs108JYPYxAY4mCtHx5FAbfbHRb0n3MkIGoDhQdjVTkyP4hKbiq8FR/II9kLQisBZHxeo2YsqoUX6PO0fSaGAZ9SqadO2R9BCjhaibh9vQkRfBCZ/tpGA4y38Kpdl+b5wPjDg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JDoWj/o3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 988B5C32781;
+	Wed,  7 Aug 2024 14:51:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723042296;
+	bh=XObzYOPHhby3ggLwzGEaQzICqe4oj78DHpF5ya8vOCg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=JDoWj/o3qbZAwXN8osA7o/fQR5rR2a9sf1glg85R5aDIHg3UcenfyND5ai2Qq09ds
+	 ASl7C5d2WRpFXDiGUCrwQSUyoPiFIQVP2YlJ1Whxfe8KyyoONMOOKbzz5rERB7JI7r
+	 wY92XhGA1DrYK3GiCzjOVAfH5SXsYcG/QG/dIFXVs09lASk9fk7wWDuyI7J2cv60Z4
+	 w2pTnfKEDwV85KCSgFc6wzIf/wQM/i/tEcLVnD6jJ5uqVoNiaSCc9Rh2udTEWZBsoO
+	 xvJBSjOWwaId4b7ifJVGwtfxmSzaM9jHc4B3hShYyV0aX2MDJ13pRHUsUKIDdmo/v3
+	 V+2RzEXdLSdLQ==
+Message-ID: <0fb55319-0bae-4bb0-bce6-ebdbdd68f765@kernel.org>
+Date: Wed, 7 Aug 2024 16:51:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: sm8550: camss: Add CAMSS block
+ definition
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Depeng Shao <quic_depengs@quicinc.com>, andersson@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@quicinc.com,
+ Yongsheng Li <quic_yon@quicinc.com>
+References: <20240807123333.2056518-1-quic_depengs@quicinc.com>
+ <1c0ff0fa-73d3-400f-a58d-15fb9b0574d1@kernel.org>
+ <c2a3e578-b098-450f-96f6-a3ae321f2b4c@kernel.org>
+ <85cc52aa-4593-49f5-9438-1ee3f09d2d71@quicinc.com>
+ <336e5679-f04e-47aa-9655-df88fde9de21@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <336e5679-f04e-47aa-9655-df88fde9de21@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Francesco Dolcini <francesco.dolcini@toradex.com>
+On 07/08/2024 16:17, Bryan O'Donoghue wrote:
+> On 07/08/2024 13:53, Depeng Shao wrote:
+>> Hi Krzysztof,
+>>
+>> On 8/7/2024 8:43 PM, Krzysztof Kozlowski wrote:
+>>> On 07/08/2024 14:39, Krzysztof Kozlowski wrote:
+>>>> On 07/08/2024 14:33, Depeng Shao wrote:
+>>>>> Add CAMSS block definition for sm8550.
+>>>>>
+>>>>> This drop contains definitions for the following components on sm8550:
+>>>>
+>>>> 1. Subject: there is no prefix camss. There is no such file, directory
+>>>> or module.
+>>>>
+>>
+>> Thanks for the comment, will remove this.
+>>
+>>>> 2. You already sent this, so this should be v2 or v3 or vX. Provide
+>>>> changelog under ---.
+>>>>
+>>>> If there is going to be resend, please fix above.
+>>>>
+>>
+>> Sure, I thought it might be a new series, so I didn't add v*, will add 
+>> v1, and v2 change log in new version series.
+>>
+>>>> 3. If this was tested on aim300, I am surprised this being not enabled
+>>>> on aim300.
+>>>
+>>
+>> It was tested long times ago, but the patches wasn't sent out for 
+>> reviewing early due to the team's internal schedule.
+>>
+>>> One more thing, bindings were not accepted, thus this patch should not
+>>> go in. There were no new bindings, so I assume patchset is using
+>>> rejected ones.
+>>>
+>>> It's fine to send it to get some comments, although would be nice to
+>>> mention to maintainer that this cannot be picked up as is. :(
+>>>
+>>
+>> Sure, I will resend the dtsi patch until the bindings are accepted, send 
+>> this patches because you posted the comments in other series.
+>>
+>> https://lore.kernel.org/all/0324e8e8-2ad4-4ce6-9616-3038b8e02ff9@quicinc.com/
+>>
+>> Thanks,
+>> Depeng
+>>
+>>
+> 
+> Recommend
+> 
+> 1. Send out your yaml and dts in one series
+> 
+> 2. Driver series can be posted in parallel
 
-On i.MX8 the FEC PPS channel is routed to the instance 1, not to the
-default 0.
+The binding should go with the driver. Also usually discussion about
+driver brings comments, thus changes, to the bindings.
 
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
- arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Sorry, DTSI and DTS should wait till bindings got accepted to media
+subsystem.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
-index a4a10ce03bfe..a9fd47041e3a 100644
---- a/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
-@@ -121,6 +121,7 @@ fec1: ethernet@5b040000 {
- 		assigned-clock-rates = <250000000>, <125000000>;
- 		fsl,num-tx-queues = <3>;
- 		fsl,num-rx-queues = <3>;
-+		fsl,pps-channel = <1>;
- 		power-domains = <&pd IMX_SC_R_ENET_0>;
- 		status = "disabled";
- 	};
-@@ -141,6 +142,7 @@ fec2: ethernet@5b050000 {
- 		assigned-clock-rates = <250000000>, <125000000>;
- 		fsl,num-tx-queues = <3>;
- 		fsl,num-rx-queues = <3>;
-+		fsl,pps-channel = <1>;
- 		power-domains = <&pd IMX_SC_R_ENET_1>;
- 		status = "disabled";
- 	};
--- 
-2.39.2
+
+Best regards,
+Krzysztof
 
 
