@@ -1,202 +1,225 @@
-Return-Path: <devicetree+bounces-91655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3BBA94A200
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 09:51:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5230994A203
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 09:52:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3F4A7B25623
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 07:50:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 706181C252FC
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 07:52:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7729D1C5781;
-	Wed,  7 Aug 2024 07:50:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B782F1C462C;
+	Wed,  7 Aug 2024 07:52:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BqKmT5RW"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="L4I6pX1V"
 X-Original-To: devicetree@vger.kernel.org
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A33919A28F;
-	Wed,  7 Aug 2024 07:50:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 821F33EA64;
+	Wed,  7 Aug 2024 07:52:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723017053; cv=none; b=Uf0hSvuaccZMzsbKh9izYuCm/OEwAsf8hdE73G3VSfvUHhr3z+JV1KEydoM5YnpymHPDzdQj8GTdCcPofYTHOyDFuzRyK1qb3Y5KpsdgTW2Uj3wShmrQ64GYQoCSZRY+NN74NY8JBUPWOkIyZl0oS5zabOCsJNKCgoZMdTFrF4A=
+	t=1723017129; cv=none; b=aEgap/SJ4kfLlgvTAoMrjC5x5UMuDGhP0Kq1UU/NE6CNqhHgMCPKWyYEd+xy432WkqGChERXzzPUc/OIMlTiDyBksh1hErU09pIqwle07ycXKw06HOTR+8GfRtt1tFMTJr0oNIFNVCAox2AgI43TPzTidI6uJBTFnsbAYGu/UB0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723017053; c=relaxed/simple;
-	bh=lgLKZc0GBq3W7pR0815eFTru0022sCuHCIqC3oVPyTM=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IYjsQ0wYTwwzLwbAWjZm3Nkbd5YWE6DkKws4q+SJrqjKSrEtccDfETZXXKPeopDPdKhuXgtXKM9yJW4/TgrK62C+TD+NdvKmnH8I57gGg5SF19beN++Rkl1yXceMbmgXReeJas4R2IqTxbeIBl5QokLlkYgwef/b+LvpKf40y3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BqKmT5RW; arc=none smtp.client-ip=198.47.19.141
+	s=arc-20240116; t=1723017129; c=relaxed/simple;
+	bh=TAPJZ5h6w1a5FTmmrZGOJISmzpiUh7fEzcCqu0Q+X+0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ivrExbboXUM40yk4Xzlpls5D2UUkhGdTxdhnC5Y9JA2WoJWErhEebX7gPCgAgMxKDVxyb5LVqt0I/O2SzRm3e/9F+EGbu7UEobFpRj8j92F5Y0g48WvNS9Ie1K12qRMbCOFrwBDKsR9IBjWeTrvs8vzPw15GvVEDBc7jX81/zzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=L4I6pX1V; arc=none smtp.client-ip=198.47.19.141
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4777ofjj019788;
-	Wed, 7 Aug 2024 02:50:41 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4777q2Ib020021;
+	Wed, 7 Aug 2024 02:52:02 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1723017041;
-	bh=hGB25P44iUebr0eKJQ+nwleNjhJmNmEeQsDF97OMdjc=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=BqKmT5RWMpAYvRGkZdj165R8ftp9iabXenNuxPW/cd+9iFHH5Y68XnvNFLhs4j+5I
-	 lw42MgELkgK0sFhIL6/IjDpbnGYD5Hn8q+x6b+6ipwq7slupa1sgmrG+CjcANWWst2
-	 39EhOCf14hwsXvZbE5Vx/UAjtp+J/TZayTPjRZxw=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4777ofMi049546
+	s=ti-com-17Q1; t=1723017122;
+	bh=fzjlbS714oZt+FwiYECCZl2QZkWAjpcYeuFj5G8nowg=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=L4I6pX1VlWfRmk3GuimLtMHEuRufFacRVWoTjsEDVoNwOIyGW4saei17hPHvT4jGH
+	 NmJC2K85iZgOLHt30qmCyoVptnhcFpiKMAzK/FOwbpVUIuCMc9cOucx8RYxuHYC6or
+	 OwoYr1SeL2+Z3hd+kM+XIaqelbFfRydRdkr6t3wo=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4777q2gv072886
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 7 Aug 2024 02:50:41 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 7 Aug 2024 02:52:02 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
- Aug 2024 02:50:40 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2024 02:52:01 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 7 Aug 2024 02:50:40 -0500
-Received: from localhost (uda0497581.dhcp.ti.com [10.24.68.185])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4777oexN107391;
-	Wed, 7 Aug 2024 02:50:40 -0500
-Date: Wed, 7 Aug 2024 13:20:39 +0530
-From: Manorit Chawdhry <m-chawdhry@ti.com>
-To: "Kumar, Udit" <u-kumar1@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Neha Malcom Francis <n-francis@ti.com>,
-        Aniket Limaye <a-limaye@ti.com>, Beleswar Padhi <b-padhi@ti.com>,
-        Siddharth
- Vadapalli <s-vadapalli@ti.com>
-Subject: Re: [PATCH v3 5/5] arm64: dts: ti: k3-j7200*: Add bootph-* properties
-Message-ID: <20240807075039.w56deberpo4rfhjc@uda0497581>
-References: <20240730-b4-upstream-bootph-all-v3-0-9bc2eccb6952@ti.com>
- <20240730-b4-upstream-bootph-all-v3-5-9bc2eccb6952@ti.com>
- <f80996c2-c3ee-430a-9ae6-2a9c524b5d60@ti.com>
+ Frontend Transport; Wed, 7 Aug 2024 02:52:01 -0500
+Received: from [172.24.30.93] (lt5cd2489kgj.dhcp.ti.com [172.24.30.93])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4777pv2J116667;
+	Wed, 7 Aug 2024 02:51:58 -0500
+Message-ID: <1d5252d5-ead1-4551-8723-2eb46d91faf0@ti.com>
+Date: Wed, 7 Aug 2024 13:21:57 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <f80996c2-c3ee-430a-9ae6-2a9c524b5d60@ti.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/5] arm64: dts: ti: k3-j784s4*: Remove bootph
+ properties from parent nodes
+To: Manorit Chawdhry <m-chawdhry@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Neha Malcom Francis <n-francis@ti.com>,
+        Aniket Limaye <a-limaye@ti.com>, Beleswar Padhi <b-padhi@ti.com>,
+        Siddharth
+ Vadapalli <s-vadapalli@ti.com>, <u-kumar1@ti.com>
+References: <20240730-b4-upstream-bootph-all-v3-0-9bc2eccb6952@ti.com>
+ <20240730-b4-upstream-bootph-all-v3-2-9bc2eccb6952@ti.com>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20240730-b4-upstream-bootph-all-v3-2-9bc2eccb6952@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Udit,
 
-On 12:58-20240807, Kumar, Udit wrote:
-> 
-> On 7/30/2024 3:23 PM, Manorit Chawdhry wrote:
-> > Adds bootph-* properties to the leaf nodes to enable U-boot to
-> > utilise them.
-> > 
-> > Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
-> > ---
-> >   .../arm64/boot/dts/ti/k3-j7200-common-proc-board.dts | 20 ++++++++++++++++++++
-> >   arch/arm64/boot/dts/ti/k3-j7200-main.dtsi            |  2 ++
-> >   arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 10 ++++++++++
-> >   arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi          |  7 +++++++
-> >   4 files changed, 39 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-> > index 6593c5da82c0..ec522595fc83 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-> > +++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-> > [..]
-> > 
-> > diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> > index 9386bf3ef9f6..b95656942412 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> > +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> > @@ -136,6 +136,7 @@ secure_proxy_main: mailbox@32c00000 {
-> >   			      <0x00 0x32800000 0x00 0x100000>;
-> >   			interrupt-names = "rx_011";
-> >   			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
-> > +			bootph-all;
-> >   		};
-> >   		hwspinlock: spinlock@30e00000 {
-> > @@ -1528,5 +1529,6 @@ main_esm: esm@700000 {
-> >   		compatible = "ti,j721e-esm";
-> >   		reg = <0x0 0x700000 0x0 0x1000>;
-> >   		ti,esm-pins = <656>, <657>;
-> > +		bootph-all;
-> 
-> Should be bootph-pre-ram
-> 
-> if you think otherwise then please update mcu_esm
+On 7/30/2024 3:23 PM, Manorit Chawdhry wrote:
+> Removes bootph-* properties from parent nodes and aligns the bootph-* to
+> other u-boot.dtsi
+>
+> Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
+> ---
+>   arch/arm64/boot/dts/ti/k3-j784s4-evm.dts         | 9 +--------
+>   arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi | 8 ++++----
+>   2 files changed, 5 insertions(+), 12 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> index ffa38f41679d..311844490027 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> @@ -461,7 +461,6 @@ J784S4_IOPAD(0x078, PIN_OUTPUT, 1) /* (AH37) MCAN2_RX.AUDIO_EXT_REFCLK1 */
+>   };
+>   
 
-Will update to bootph-pre-ram;
+main_pmx0 has bootph-all in parent node, please consider to clean that 
+as well
 
-> 
-[..]
-> > @@ -45,6 +48,7 @@ mcu_timer0: timer@40400000 {
-> >   		assigned-clock-parents = <&k3_clks 35 2>;
-> >   		power-domains = <&k3_pds 35 TI_SCI_PD_EXCLUSIVE>;
-> >   		ti,timer-pwm;
-> > +		bootph-pre-ram;
-> 
-> I see this node is marked as reserved
-> 
-> Do we plan to use in bootloader ?
 
-mcu_timer0 is used in R5 stage [0].
+>   &wkup_pmx2 {
+> -	bootph-all;
+>   	wkup_uart0_pins_default: wkup-uart0-default-pins {
+>   		bootph-all;
+>   		pinctrl-single,pins = <
+> @@ -577,7 +576,6 @@ J784S4_WKUP_IOPAD(0x028, PIN_INPUT, 7)
+>   };
+>   
+>   &wkup_pmx0 {
+> -	bootph-all;
+>   	mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-default-pins {
+>   		bootph-all;
+>   		pinctrl-single,pins = <
+> @@ -597,7 +595,6 @@ J784S4_WKUP_IOPAD(0x008, PIN_INPUT, 0) /* (C34) MCU_OSPI0_DQS */
+>   };
+>   
+>   &wkup_pmx1 {
+> -	bootph-all;
+>   	mcu_fss0_ospi0_1_pins_default: mcu-fss0-ospi0-1-default-pins {
+>   		bootph-all;
+>   		pinctrl-single,pins = <
+> @@ -668,6 +665,7 @@ bucka12: buck12 {
+>   				regulator-max-microvolt = <1100000>;
+>   				regulator-boot-on;
+>   				regulator-always-on;
+> +				bootph-pre-ram;
+>   			};
+>   
+>   			bucka3: buck3 {
+> @@ -769,18 +767,15 @@ &ufs_wrapper {
+>   };
+>   
+>   &fss {
+> -	bootph-all;
+>   	status = "okay";
+>   };
+>   
+>   &ospi0 {
+> -	bootph-all;
+>   	status = "okay";
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>, <&mcu_fss0_ospi0_1_pins_default>;
+>   
+>   	flash@0 {
+> -		bootph-all;
+>   		compatible = "jedec,spi-nor";
+>   		reg = <0x0>;
+>   		spi-tx-bus-width = <8>;
+> @@ -837,13 +832,11 @@ partition@3fc0000 {
+>   };
+>   
+>   &ospi1 {
+> -	bootph-all;
+>   	status = "okay";
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&mcu_fss0_ospi1_pins_default>;
+>   
+>   	flash@0 {
+> -		bootph-all;
+>   		compatible = "jedec,spi-nor";
+>   		reg = <0x0>;
+>   		spi-tx-bus-width = <1>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
+> index f3a6ed1c979d..3f89277e3c2c 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
+> @@ -7,7 +7,6 @@
+>   
+>   &cbass_mcu_wakeup {
+>   	sms: system-controller@44083000 {
+> -		bootph-all;
+>   		compatible = "ti,k2g-sci";
+>   		ti,host-id = <12>;
+>   
+> @@ -39,7 +38,6 @@ k3_reset: reset-controller {
+>   	};
+>   
+>   	wkup_conf: bus@43000000 {
+> -		bootph-all;
+>   		compatible = "simple-bus";
+>   		#address-cells = <1>;
+>   		#size-cells = <1>;
+> @@ -65,6 +63,7 @@ secure_proxy_sa3: mailbox@43600000 {
+>   		 * firmware on non-MPU processors
+>   		 */
+>   		status = "disabled";
+> +		bootph-pre-ram;
+>   	};
+>   
+>   	mcu_ram: sram@41c00000 {
+> @@ -175,10 +174,10 @@ mcu_timer0: timer@40400000 {
+>   		ti,timer-pwm;
+>   		/* Non-MPU Firmware usage */
+>   		status = "reserved";
+> +		bootph-all;
 
-[0]: https://github.com/u-boot/u-boot/blob/master/arch/arm/dts/k3-j7200-r5-common-proc-board.dts#L56
+both nodes mcu_timer0 and mcu_timer1 as marked as
 
-> 
-> >   	};
-[..]
-> >   		hbmc: hyperbus@47034000 {
-> 
-> I think you should consider to mark hbmc node for boot phase as well
-> 
+/* Non-MPU Firmware usage */, Please provide some message added bootph in first and removed from second
 
-It's already marked in k3-j7200-som-p0.dtsi file with bootph-all inside
-the flash node that describe it, is that okay?
-
-> 
-> > @@ -652,6 +661,7 @@ wkup_vtm0: temperature-sensor@42040000 {
-> >   		      <0x00 0x42050000 0x00 0x350>;
-> >   		power-domains = <&k3_pds 154 TI_SCI_PD_EXCLUSIVE>;
-> >   		#thermal-sensor-cells = <1>;
-> > +		bootph-pre-ram;
-> >   	};
-> >   	mcu_esm: esm@40800000 {
-> > diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-> > index 21fe194a5766..d78f86889bf9 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-> > +++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-> > @@ -121,6 +121,7 @@ J721E_WKUP_IOPAD(0x20, PIN_INPUT, 1) /* (B8) MCU_OSPI0_D5.MCU_HYPERBUS0_DQ5 */
-> >   			J721E_WKUP_IOPAD(0x24, PIN_INPUT, 1) /* (A8) MCU_OSPI0_D6.MCU_HYPERBUS0_DQ6 */
-> >   			J721E_WKUP_IOPAD(0x28, PIN_INPUT, 1) /* (A7) MCU_OSPI0_D7.MCU_HYPERBUS0_DQ7 */
-> >   		>;
-> > [..]
-> >   			bucka2: buck2 {
-> > @@ -464,6 +470,7 @@ flash@0 {
-> >   		cdns,tchsh-ns = <60>;
-> >   		cdns,tslch-ns = <60>;
-> >   		cdns,read-delay = <4>;
-> > +		bootph-all;
-> >   		partitions {
-> >   			compatible = "fixed-partitions";
-> 
-> 
-> Please consider, adding bootph in ospi0 node as well around
-> "ospi.phypattern"
-> 
-
-Okay sure, will move the bootph-all from flash@0 node to under
-ospi.phypattern node as putting it in the child node should propagate
-it.
-
-Thanks for reviewing Udit!
-
-Regards,
-Manorit
-> 
-> > 
+>   	};
+>   
+>   	mcu_timer1: timer@40410000 {
+> -		bootph-all;
+>   		compatible = "ti,am654-timer";
+>   		reg = <0x00 0x40410000 0x00 0x400>;
+>   		interrupts = <GIC_SPI 817 IRQ_TYPE_LEVEL_HIGH>;
+> @@ -458,7 +457,6 @@ mcu_spi2: spi@40320000 {
+>   	};
+> [..]
 
