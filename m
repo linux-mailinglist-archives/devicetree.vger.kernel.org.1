@@ -1,136 +1,142 @@
-Return-Path: <devicetree+bounces-91894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 984D394B22E
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 23:30:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9809394B279
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 23:56:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AC746B24F5B
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 21:30:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54C80280C0E
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 21:56:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1436145346;
-	Wed,  7 Aug 2024 21:30:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D116B13E409;
+	Wed,  7 Aug 2024 21:56:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="TWJcjB4H"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="mdq5QeKL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 412E812C53B;
-	Wed,  7 Aug 2024 21:30:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4229F77F1B
+	for <devicetree@vger.kernel.org>; Wed,  7 Aug 2024 21:56:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723066247; cv=none; b=IQPB/RH1JhYADqoCgEr6oQNzw0CW4TPQu6VbjYA2RqVrObTRID07qEn0BYvP1WREG69ayshQbh9JZin6SY42EGWcH1HXUdtRQoqiGcOtWyhrsRtvOc5/4nC6QCmWaBtDtLepN/Wn4xOoV9SWYHdSo0qA9abOgViyDEEAiTYNE0Q=
+	t=1723067786; cv=none; b=mtyABvL82sIEKe+MXru9aQkdgPMK4YHnG7u1ghHqLq9x2/Tnpr/ZvbncHeH0trmNeImnYlHMZ6TuzfT4q0iuujO4iX5ZH67mF4sc0k+jLP4M4rOjPA0NMNP4NlyCrCvlYwqhwEibbSXuVKhlWQN1dKm6sPj06Kz5CVIXBksdnkQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723066247; c=relaxed/simple;
-	bh=P0SbEBIZMjEgzWsPOhUAMMejF8jSFg0ZXrXkSfgsVe0=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=Lhcckf2sMBNXEElOyZ7cGap+aa8viNC4q9Tq4wH/XHECUT1+ezRt/YJ3iJgKd4h74ormK6nyXbV7qXKj4TvCjgfiY8hslh2O/flXxV3t26NKoGo9x0/ZDkUmDISOQ9LGxa5YfxqlRI0LrA3aiGggwugCrG5A+tjNVJSloNK81EE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=TWJcjB4H; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1723067786; c=relaxed/simple;
+	bh=XPRl8AKc7BvHuB3QMo2rImKhhrZI5XkY4l2t0/ndEuI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ThF4VV8D0S1bXqmt8VDrk6sJKYCEl4L2HFW6CabVihdUsTydreUxJxnAGrcx9XiPNOEonQrZ5fZfmDHyJBkbdtkUITJ+B2b9jxl/1UurPKkacH17ZF0kJJk+b2wtfrLzC9xXFDca6SOJy4jiztq6ou5t9UQbm1RGerqX8nS3cYg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=mdq5QeKL; arc=none smtp.client-ip=209.85.219.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-6bbbd25d216so8239306d6.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2024 14:56:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1723067783; x=1723672583; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OVodnowP0eaUum6OAuR4DXp0pjV1BAajzdmmLHEX8NY=;
+        b=mdq5QeKLuPhs0rkooCwz4hHjSL4EK2R1Gjbr7Trxj0YqP7TgHhMwNSAALxEnfU77tz
+         1ext3HnOzob5r7Ku/uNhWIOuZd64ddl5+JVSmzQQaBV0IDfKV3ZIgweMwhwzMG7QuItD
+         J0ojQcEBd6QAOUHOsV6Erum1/TISQkChsbEMU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723067783; x=1723672583;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=OVodnowP0eaUum6OAuR4DXp0pjV1BAajzdmmLHEX8NY=;
+        b=N/UwNPGGcmrG4muWIfgiEtQF7pK1/FLGfmQSRfLeVIpjKI/iDWkDh+0kYyfNU205zX
+         3s3qaU44UnMv1DG/FzXkpFLodcoQ8TL4MPn2gbjDCeTA+lr1Pb/+RGOBBKhGvdHy2Y4/
+         DP00SPUfnWaBIt5EkiL4mGa7tI38FBN5HNDXj3Ic//5J4Rek81SRWeQPhB9gOd1s/m5F
+         vndMboCv2xBNwitIni+ObGmlWsn8oc69D1MPIuywPLixKLaBF0CW28+386em6lw+PNRS
+         oW0FA1SZjSzmcS+TQICHKAaYx3pZ0cxJZftzeI2aAxe5CUbRI1c0IXQeaxceVezth1b6
+         oz3g==
+X-Forwarded-Encrypted: i=1; AJvYcCV55OUEmYykLTZCPSDzmtB0MQwDskFYAjhKZMa21svU0IbgQTYGUh+Dh1jTnqCXpEiyfO7v6B2q+KDCaKx6ZGIcPdtrGMnTdHrkZA==
+X-Gm-Message-State: AOJu0YwrEO/cNTwH2ZgptQ0uRN9Xq5YEMyCxpmhBqWtqhFN6tEwo+iZH
+	8EQnrB8ngNInlFaVweP/w3ktEYybrOJKdyJUI2nP9+d4gDmLcBWJrkt81+R5UDQn5kLLt5pz2b3
+	/GQ==
+X-Google-Smtp-Source: AGHT+IE9yXYu1Kjzv97X0j387KwiFi+waj5G1Jbzss1csfqSWY307ap7YDOOpbB+PC4sujpxVkWkww==
+X-Received: by 2002:ad4:4088:0:b0:6b5:82e1:f89e with SMTP id 6a1803df08f44-6bbbbddfa7fmr66962186d6.9.1723067782764;
+        Wed, 07 Aug 2024 14:56:22 -0700 (PDT)
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com. [209.85.160.180])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6bb9c862abasm59794126d6.105.2024.08.07.14.56.21
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Aug 2024 14:56:21 -0700 (PDT)
+Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-44fee2bfd28so57451cf.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2024 14:56:21 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUW76aqxQAWkFjK/nBkw0d5jg9eLI9BnmW6HJOak7wqRORt+rpo6y+tsQdytHc4zMVrx80OUeXUfolHuBYKGf/KXSrOQB2nmIwQbQ==
+X-Received: by 2002:a05:622a:1906:b0:441:5e6c:426c with SMTP id
+ d75a77b69052e-451d382a2cfmr401061cf.17.1723067781326; Wed, 07 Aug 2024
+ 14:56:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1723066241;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=clM14XZnCkKlnQEqf0XCli4TSu2XTFrkaDKcxnbToic=;
-	b=TWJcjB4HIYS5OdulQ4drZ+lzlqOnbRJxLXKcRvgYDUfl7Oo4+SVaOAJ37y12rQv1PuizBj
-	xkVpaoIubMZwlyVLqKiinxU7wgmaDbmwmqWNQCKNsBd+iJm65nie5Pl98C3a4Xcj3RBpvn
-	flURP7yCQdIyAC9VwCtr4pOfA898ShYn6uvnNSU05UY+S5UaQtHiAwwgJGIihKHP1ANd83
-	//vRPj1oPu81lYeZPTCtpcW60rPd5E5PT4Nlbr2vsbjIHZufHoIKzU+JajeiOGc5l50PWz
-	GORbm6cCJY1dcp64sHX5tny8bY8W4GCHkYGtL2T8hG1CsJg+P08dURHXVxAiMg==
-Date: Wed, 07 Aug 2024 23:30:40 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Florian Klink <flokli@flokli.de>, linux-rockchip@lists.infradead.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Sebastian Reichel <sebastian.reichel@collabora.com>, Kever Yang
- <kever.yang@rock-chips.com>, Muhammed Efe Cetin <efectn@protonmail.com>,
- FUKAUMI Naoki <naoki@radxa.com>, =?UTF-8?Q?Tam=C3=A1s_Sz=C5=B1cs?=
- <tszucs@protonmail.ch>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: rockchip: add rfkill node for M.2 E wifi
- on orangepi-5-plus
-In-Reply-To: <4888470.OV4Wx5bFTl@latitude-fedora>
-References: <20240807162001.1737829-1-flokli@flokli.de>
- <krvprzy3iz5b7n37eo2mb6sol6pcjkxsjdbdi6sxeebwveqtnr@e52cvrlkdjsa>
- <1b2e1b1b321f84f5cbff2ae18c3eba2e@manjaro.org>
- <4888470.OV4Wx5bFTl@latitude-fedora>
-Message-ID: <f524a2e5ddbec28dbbc0be4ef47a120b@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+References: <20240807100429.13260-1-lvzhaoxiong@huaqin.corp-partner.google.com>
+In-Reply-To: <20240807100429.13260-1-lvzhaoxiong@huaqin.corp-partner.google.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Wed, 7 Aug 2024 14:56:06 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WCw6pAump-PUFCW0cgbRY+5_2tPNLe=hN3-dnXD=B6MA@mail.gmail.com>
+Message-ID: <CAD=FV=WCw6pAump-PUFCW0cgbRY+5_2tPNLe=hN3-dnXD=B6MA@mail.gmail.com>
+Subject: Re: [PATCH v3 0/2] Modify the method of sending "exit sleep
+To: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
+Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
+	hsinyi@google.com, airlied@gmail.com, daniel@ffwll.ch, jagan@edgeble.ai, 
+	dmitry.baryshkov@linaro.org, jani.nikula@linux.intel.com, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello Alexey,
+Hi,
 
-On 2024-08-07 23:12, Alexey Charkov wrote:
-> On Wednesday, August 7, 2024 9:32:51 PM GMT+3 Dragan Simic wrote:
->> On 2024-08-07 20:14, Florian Klink wrote:
->> > On Wed, Aug 07, 2024 at 07:24:27PM GMT, Dragan Simic wrote:
->> >> On 2024-08-07 19:00, Florian Klink wrote:
->> >>> This follows the same logic as 82d40b141a4c ("arm64: dts: rockchip:
->> >>> add
->> >>> rfkill node for M.2 Key E WiFi on rock-5b").
->> >>>
->> >>> On the orangepi-5-plus, there's also a GPIO pin connecting the WiFi
->> >>> enable signal inside the M.2 Key E slot.
->> >>>
->> >>> The exact GPIO PIN can be validated in the Armbian rk-5.10-rkr4
->> >>> kernel
->> >>> rk3588-orangepi-5-plus.dtsi file [1], which contains a `wifi_disable`
->> >>> node referencing RK_PC4 on &gpio0.
->> >>>
->> >>> Signed-off-by: Florian Klink <flokli@flokli.de>
->> >>> Tested-by: Florian Klink <flokli@flokli.de>
->> >>
->> >> I forgot to mention that providing a Tested-by tag is redundant when
->> >> there's already a Signed-off-by tag, because the latter already
->> >> implies
->> >> the former.
->> >
->> > This came after I sent the v3. Generally I wish people would test
->> > things
->> > - though too often it's not. I explicitly tested this to work (with a
->> > wifi module added to that slot being unblock-able afterwards), and
->> > wanted to point that out, thus adding the Tested-by.
->> 
->> In general, some time should be allowed between sending consecutive
->> versions of the same patch, so people can provide their feedback.
->> 
->> When it comes to testing the submitted patches, please note that 
->> signing
->> off a patch implies that the signer has already, to the best of their
->> abilities, made sure that the patch works as described and expected.
->> 
->> With all that in mind, please allow me to repeat that a Tested-by tag
->> should not be provided from the same person that the Signed-off-by tag
->> is already coming from.  It's simply redundant.
-> 
-> Just two cents: perhaps dropping the tag and expanding the commit 
-> message a
-> bit could be the best of both worlds. Just state that you tested it 
-> with such
-> and such module, observing such and such results. That would also help 
-> if for
-> example another user tries a different module and that fails due to 
-> some
-> quirks: it's easier to debug a potential issue when one knows a working
-> configuration to compare a non-working one against.
+On Wed, Aug 7, 2024 at 3:04=E2=80=AFAM Zhaoxiong Lv
+<lvzhaoxiong@huaqin.corp-partner.google.com> wrote:
+>
+> This "exit sleep mode" and "set display on" command needs to
+> be sent in LP mode, so move "exit sleep mode" and "set display
+> on" command to the init() function.
+>
+> Modify the Melfas panel init code to satisfy the gamma value of 2.2.
+>
+> Changes between V3 and V2:
+> - PATCH 1/2: Modify the commit message and subject.
+> - PATCH 2/2: No changes.
+> - Link to v2: https://lore.kernel.org/all/20240806034015.11884-1-lvzhaoxi=
+ong@huaqin.corp-partner.google.com/
+>
+> Changes between V2 and V1:
+> - PATCH 1/2: Modify the commit message and subject.
+> - PATCH 2/2: No changes.
+> - Link to v1: https://lore.kernel.org/all/20240725083245.12253-1-lvzhaoxi=
+ong@huaqin.corp-partner.google.com/
+>
+> Zhaoxiong Lv (2):
+>   drm/panel: jd9365da: Move "exit sleep mode" and "set display on" cmds
+>   drm/panel: jd9365da: Modify the init code of Melfas
+>
+>  .../gpu/drm/panel/panel-jadard-jd9365da-h3.c  | 137 +++++++++---------
+>  1 file changed, 71 insertions(+), 66 deletions(-)
 
-Totally agreed.  Providing as much detail of the performed testing
-as possible in the patch description is always a good thing.
+As per my response in v2 [1], I feel like patch #1 would be best
+reviewed by someone with more MIPI DSI experience. My current plan for
+this series.
+
+* Snooze for 2 weeks. If someone else has reviewed / landed in the
+meantime then great!
+* After two weeks, send a warning that I'll apply the series soon
+unless someone yells.
+* After a few more days, apply the series.
+
+Please yell if you disagree with any of the above.
+
+[2] https://lore.kernel.org/r/CAD=3DFV=3DWrMxyxkuCYEbd=3DaYFaTJKNqGqXr6Re+V=
+=3DB_h9jnjHPvg@mail.gmail.com
 
