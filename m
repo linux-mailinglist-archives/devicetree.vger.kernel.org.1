@@ -1,84 +1,90 @@
-Return-Path: <devicetree+bounces-91757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18BE994A728
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 13:48:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 783C594A731
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 13:50:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A636BB224F5
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 11:48:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C1471F23C4B
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 11:50:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AAD71C9DEB;
-	Wed,  7 Aug 2024 11:47:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FB841E4855;
+	Wed,  7 Aug 2024 11:49:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="GVI+K5jT"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="u9IPYufL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A418171E69;
-	Wed,  7 Aug 2024 11:47:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6244171E69;
+	Wed,  7 Aug 2024 11:49:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723031276; cv=none; b=s2LHU2UfM89HGpHsITtWKB3UnJNaRXfCpdVCvYvmqFOaxMu9jBEgnPJRdtoE/eIwq864PaX+bXv7qR3/SKE5j+3jdvDTzKQ57cQl4kKivt/uXdltjwoujgOZaLnz+dSapJ1Br+ecvDARSa2jq2YCjvwW7b9uU8lSHlvTjwMiYmY=
+	t=1723031396; cv=none; b=o4Ka3r3Bi2R7mMdmRY6SIlgpubaznq202uc2HW2l0f+t0YXiXFmvgrVBm6t6NGn/dLcmWo4Hf67wrqjb0rITG+u/UZhpP1xsdoEjPzlw+vWewrW+FFk5aiWSBFbjCCMDWuqugv96WyjA2HmxiMaWxWyURMlekgEHFkZ6+QsK7cc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723031276; c=relaxed/simple;
-	bh=9ah2l3mOft7DOtFEzytv99Opoie129YPq+JSB9Blhl8=;
+	s=arc-20240116; t=1723031396; c=relaxed/simple;
+	bh=lGdHNNk9h6XWZpvkVmYh8i6y2fcDCUpV6CobdiYtP2o=;
 	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TppKwfAbZLxB2HDy0nHNkU+i6mx1BzCny/eklthu7bhKDWR6BXr0SyjSesbC5YqspqIRB7Z5NSQp7KRBEwUoPGIzHXg1XWtHgkcZJFBrSO721yjfQRKcRRrAVm6q1yRo6jwuG/B3He14uF5NGUE5mfYvURTr3mcpKPgqPhSQrqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=GVI+K5jT; arc=none smtp.client-ip=198.47.19.141
+	 Content-Type:Content-Disposition:In-Reply-To; b=UFfcoapQfc4R+JQ4LBCxz/2pTHr/PGirGys3Z/ROPpoDbGSKWHHBTZ/8NOCApScIDn5COiLLqhnVvBuLzEWEnMGmer56M7D/2X2M4ATlKvW+OEYNIrvhZ9Eapl3/sv0qY89HYn2HJPExd/j91yn+cB6S0Lht1k5VSgF5Lrwxox0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=u9IPYufL; arc=none smtp.client-ip=198.47.19.141
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 477BldaN070553;
-	Wed, 7 Aug 2024 06:47:39 -0500
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 477BnlVW071665;
+	Wed, 7 Aug 2024 06:49:47 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1723031259;
-	bh=KDuDkR3cT3auCGtVG7eO62xWbKsmQBAUL0KcQ/6RCEg=;
+	s=ti-com-17Q1; t=1723031387;
+	bh=M1Bcd1eXKm7KKW15MBceH1CEwN6f2fPzJ/u4GxXZU2E=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=GVI+K5jT4o+lzoMfz3SHmajJ4iRTzJXiDOM0ZMeKZ5iIwMe8a7inSLEptwWCq59OJ
-	 rJtuozJLYMMvATQo4d5nc/vNKfmh7XR5k37kxSJmrnjIbnMqEaMgbNbX1Q4afiKW8B
-	 0VBdVJd0z3S8GJM3JpJzp9jO5J0IrROGCXwuEeOc=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 477Bldv8058163
+	b=u9IPYufLnNzx3QQU7jvThUGsI9p9jAwyEIfms+UMAWpMNmvmwGCpg2JBnW2aDgwbb
+	 uViptqyXPUZ8EH3FzeznmybOfmnSxJOaRPS1UECWNj5ivrJEGMGvOd/HXUjURRUGa+
+	 Z5x4H9EeTz9aqm+IIWFwG3hYNXkZhXKpJ1+fD3Fs=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 477Bnljr058925
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 7 Aug 2024 06:47:39 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 7 Aug 2024 06:49:47 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
- Aug 2024 06:47:38 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2024 06:49:47 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 7 Aug 2024 06:47:38 -0500
+ Frontend Transport; Wed, 7 Aug 2024 06:49:47 -0500
 Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 477Blccd095790;
-	Wed, 7 Aug 2024 06:47:38 -0500
-Date: Wed, 7 Aug 2024 06:47:38 -0500
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 477BnlFF109039;
+	Wed, 7 Aug 2024 06:49:47 -0500
+Date: Wed, 7 Aug 2024 06:49:47 -0500
 From: Nishanth Menon <nm@ti.com>
 To: Manorit Chawdhry <m-chawdhry@ti.com>
-CC: Andrew Davis <afd@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
+CC: Neha Malcom Francis <n-francis@ti.com>, Andrew Davis <afd@ti.com>,
+        Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Neha Malcom Francis <n-francis@ti.com>,
-        Aniket Limaye <a-limaye@ti.com>, Udit Kumar <u-kumar1@ti.com>,
-        Beleswar Padhi
+        <linux-kernel@vger.kernel.org>, Aniket Limaye
+	<a-limaye@ti.com>,
+        Udit Kumar <u-kumar1@ti.com>, Beleswar Padhi
 	<b-padhi@ti.com>,
         Siddharth Vadapalli <s-vadapalli@ti.com>
 Subject: Re: [PATCH v3 1/5] arm64: dts: ti: k3-j721s2*: Add bootph-*
  properties
-Message-ID: <20240807114738.tu3cmiu3mmk65g4v@phoney>
+Message-ID: <20240807114947.tvkpo4k2ggncxcce@scouts>
 References: <20240730-b4-upstream-bootph-all-v3-0-9bc2eccb6952@ti.com>
  <20240730-b4-upstream-bootph-all-v3-1-9bc2eccb6952@ti.com>
  <bcd96f9f-54bd-4793-b9f1-04a011f2df82@ti.com>
  <20240806150700.uw4xdanjr4ypdvm3@rasping>
  <20240807052628.jclbmw4zs72jm6km@uda0497581>
+ <8a910e2f-aaf2-40cd-8131-a1a2531a12c8@ti.com>
+ <20240807054243.pvfgexgusahe7d4x@uda0497581>
+ <99da73bf-87a1-4402-9008-3d9076074d14@ti.com>
+ <20240807063624.2pmqr5t7qx6elk5j@uda0497581>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,44 +93,43 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20240807052628.jclbmw4zs72jm6km@uda0497581>
+In-Reply-To: <20240807063624.2pmqr5t7qx6elk5j@uda0497581>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 10:56-20240807, Manorit Chawdhry wrote:
-> Hi Nishanth,
-> 
-> On 10:07-20240806, Nishanth Menon wrote:
-> > On 09:43-20240806, Andrew Davis wrote:
-> > > On 7/30/24 4:53 AM, Manorit Chawdhry wrote:
-> > > > Adds bootph-* properties to the leaf nodes to enable U-boot to
-> > > > utilise them.
+On 12:06-20240807, Manorit Chawdhry wrote:
+[...]
+
+> > > > 
+> > > > Not sure if this is what he meant, but bootph-* comes under standard/common
+> > > > properties as per my understanding of the coding style. And status needs to
+> > > > be at the very end if it's there (in this case it's not but just
+> > > > mentioning).
 > > > 
-> > > U-Boot? Let's try to pretend like this is a generic property and
-> > > just say "bootloader" :)
-> > > > @@ -445,6 +446,7 @@ flash@0 {
-> > > >   		cdns,tchsh-ns = <60>;
-> > > >   		cdns,tslch-ns = <60>;
-> > > >   		cdns,read-delay = <4>;
-> > > > +		bootph-all;
+> > > I see status property being at the top of many nodes so I don't think
+> > > it's even followed right now, with that reasoning, I don't think I can
+> > > use that point for ordering the dt nodes. If it's under common nodes
+> > > then also I think it's in the appropriate location considering that even
+> > > in those properties it is the least important and should be coming in
+> > > the last. If you see any problem with this node then please let me know
+> > > in the ordering.
+> > > 
 > > 
-> > Here and elsewhere, follow:
-> > 	https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst#n117
+> > Aren't cdns,-* vendor specific properties?
+> > 
+> > Also I understand that most DTS aren't following majority of the rules, but
+> > considering it was a review comment I assume they want a check on what goes
+> > in at least so I've mentioned what I think they're asking for.
 > 
-> Could you tell me what are you seeing wrong? The dts-coding-style that
-> you shared doesn't tell a specific location for bootph-* properties so
-> using the generic reasoning.
+> I can fix it in places where it can be fixed ( I see few places where
+> order exist ) but where there is no order there this will be difficult
+> to handle. That'd require a total fix for ordering across all the places
+> and that will require a separate cleanup ig. So if people are okay, in
+> those places I'll be keeping bootph-* in the last like how it's followed
+> in right now.
 
-it falls under standard properties
-
-> 
-> "1. Most important properties start the node: compatible then bus addressing to
->    match unit address."
-> 
-> This is the least important property considering Linux and hence the
-> reasoning was that it should come in the last. Also, j722s and am62p
-> follow the same convention so it was taken from there only.
-
-follow the order - bootph-all is before the vendor properties
+Just make sure that when new properties or nodes are introduced, follow
+the convention. For new SoCs, this is mandatory for new nodes that are
+introduced (not when renaming file etc).
 
 -- 
 Regards,
