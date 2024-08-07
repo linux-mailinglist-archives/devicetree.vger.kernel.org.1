@@ -1,125 +1,173 @@
-Return-Path: <devicetree+bounces-91819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BE6394AC3C
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 17:13:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C70E794AC8C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 17:16:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD13C1C210F6
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 15:13:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA056B22098
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 15:15:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4C8684A27;
-	Wed,  7 Aug 2024 15:13:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E285479949;
+	Wed,  7 Aug 2024 15:15:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="wJsu56q/"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="WVUZ1oEw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00043374CC;
-	Wed,  7 Aug 2024 15:13:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE2D233CD2;
+	Wed,  7 Aug 2024 15:15:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723043596; cv=none; b=Ri3+9hjtNgkzycCECnsHG8uiIu03BQVghazNUrCqaU687AuYqJymPW8JF9TfnE6lFn+yxufcsc6gMm9ltGzQdF6a93jzdj4vKPQ3vUFpbU8bG55g42tQBMixwYYSP9tXyBn95ektEiU1tmK7uckQesPSu6bkz48gAS1Wf9LY6cs=
+	t=1723043756; cv=none; b=NdB2wS7pHeYR4KWrTQFy/Vbt63xnxNiMe8UgvclG9BsBPBPGgnDVkL4ga3TT7JrtTqhBIdlwv4/Ac46bnucI4tuvgsTcPjCbb/4a9RMN8FpS+aHsbrDR8syzCRTzvczYhaj/qVUtqU9jYGi6Bzkorop9BVT58H3zPz/p2wkueBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723043596; c=relaxed/simple;
-	bh=KOo4MZKjhP06xpv399bAglKdEuDUCZzAEeA0jCGjH/8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=KSO7IILzE+SBLlNdZvLJnxBT7xcOy/WGfadzRfyMWo4/AOy8zm1auw3VXfX2qL8nfYqoG625Ekn3eU5PmLmPWubmZ9Y6CZjWv6kISe+5Ow+S9s4iJOFoYm6XmcEUaD6gJO3+U9THIw2PUjCZpcrHJzU+rmQc1mPUGUII5nVtmAM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=wJsu56q/; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 477FD8OH044454;
-	Wed, 7 Aug 2024 10:13:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1723043588;
-	bh=EqiEi6gcJd1o/ec/55Ce7FhYxlxTZS8VSj9smEeEChM=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=wJsu56q/jWV5lgn3xRn4HuyoYcPNoiRIv5quwtVlZhB60X6zupjGlcAncWadqUPlN
-	 RWkJiTerXJfl9jAxe+Jq1Bxtng9da7MmDj9BL3pxUvxZNUF68k5txfoxw76ibhYBLY
-	 c9dbb7nWl4o1CNmrpzte+AgpWIiaq6/58iuKKsp0=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 477FD8ZY068513
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 7 Aug 2024 10:13:08 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
- Aug 2024 10:13:07 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 7 Aug 2024 10:13:08 -0500
-Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 477FD7Zg066163;
-	Wed, 7 Aug 2024 10:13:07 -0500
-Message-ID: <65047cc9-011b-46d3-939e-b7733c2f0fe2@ti.com>
-Date: Wed, 7 Aug 2024 10:13:07 -0500
+	s=arc-20240116; t=1723043756; c=relaxed/simple;
+	bh=fGBCywsutW3NjgrC9Ve6Qzx0bwXdOQ99qyoNgGNCcTI=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=PYdv89qTPQZC0+vj0IAJ8A1BB5o/FekoKhGK628esuzzmB954v+gxklRBarQQaSRdB+WLxx23WBMhBSNIAo0bksg+l00fh0XBpRi4dXgbrBo0Qx2HBw58PfBThGfoGUas+bA/Q90jxZFD8P2Vx8bnpAQDO0N3y1qqBjk2zrrNLo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=WVUZ1oEw; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+Received: from localhost (docker-mailserver-web-1.docker-mailserver_default [172.22.0.5])
+	by mail.mainlining.org (Postfix) with ESMTPSA id 5A57CE450D;
+	Wed,  7 Aug 2024 15:15:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
+	s=psm; t=1723043746;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=dK78BrKy6mLK/z1CVSmRJ+MbobVrp0HlEUG5n8TM4L4=;
+	b=WVUZ1oEwijeOty0DYuoRaSliKdYkd12+mmrEwx0GkRWgDPdrIqcDri69unLrul5a9SauP4
+	FOXH++okSgfma1ufH5ztSLh4iMFEqHR2n19e+sgCds4h4RbAAJBK2ptRTP79yyJhTF5rRC
+	qRB71Roy2W7psJBzOhbAGpXSERxAUSkzVrjxIHXU573H5ANmwWIieyhwhBs6DJgEvJkAYY
+	v9r/ct7LvsqP5zfek5KlNBZ6mQ9UT74EGoKR0kn2bKHdocXibQx2XxE9Frbi7cyrOPwpQE
+	lFaMGTZJM2ARFPQLMKIaWaJUECq9nrVVckihnw2nwR0vmPUSW4xw3vkqRwAEHQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] arm64: dts: ti: k3-am62p: Remove 'reserved' status
-To: Nishanth Menon <nm@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Santhosh Kumar
-	<s-k6@ti.com>,
-        Bryan Brattlof <bb@ti.com>
-References: <20240806214605.3379881-1-jm@ti.com>
- <20240806214605.3379881-4-jm@ti.com>
- <20240807114605.ggieur532eh4usus@diagram>
-Content-Language: en-US
-From: Judith Mendez <jm@ti.com>
-In-Reply-To: <20240807114605.ggieur532eh4usus@diagram>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Date: Wed, 07 Aug 2024 17:15:46 +0200
+From: barnabas.czeman@mainlining.org
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Albrieux <jonathan.albrieux@gmail.com>,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux@mainlining.org
+Subject: Re: [PATCH v2 1/3] iio: magnetometer: ak8975: Fix reading for ak099xx
+ sensors
+In-Reply-To: <20240806171925.7c512c63@jic23-huawei>
+References: <20240806-ak09918-v2-0-c300da66c198@mainlining.org>
+ <20240806-ak09918-v2-1-c300da66c198@mainlining.org>
+ <20240806171925.7c512c63@jic23-huawei>
+Message-ID: <96c2bcfbebc9e6d97d97f32aec9249db@mainlining.org>
+X-Sender: barnabas.czeman@mainlining.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Nishanth,
-
-On 8/7/24 6:46 AM, Nishanth Menon wrote:
-> On 16:46-20240806, Judith Mendez wrote:
->> From: Santhosh Kumar K <s-k6@ti.com>
->>
->> Remove 'reserved' status for MCU ESM node in AM62P device tree.
+On 2024-08-06 18:19, Jonathan Cameron wrote:
+> On Tue, 06 Aug 2024 08:10:18 +0200
+> Barnabás Czémán <barnabas.czeman@mainlining.org> wrote:
 > 
-> Why?
-
-Main ESM reset is routed to the MCU ESM, hense enable
-MCU ESM in DT to be able to reset the CPU.
-
-
->>
->> Signed-off-by: Santhosh Kumar K <s-k6@ti.com>
+> Hi Barnabás,
+> 
+> Welcome to IIO.
+> 
+>> ST2 register read should be placed after read measurment data,
+>> because it will get correct values after it.
+> 
+> What is the user visible result of this? Do we detect errors when none
+> are there?  Do we have a datasheet reference for the status being
+> update on the read command, not after the trigger?
+>> 
+> Needs a Fixes tag to let us know how far to backport the fix.
+> 
+> A few comments inline.
+> 
+>> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
 >> ---
->>   arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi | 1 -
->>   1 file changed, 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
->> index e65db6ce02bf6..d913e6319bad8 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
->> @@ -27,7 +27,6 @@ mcu_esm: esm@4100000 {
->>   		compatible = "ti,j721e-esm";
->>   		reg = <0x00 0x4100000 0x00 0x1000>;
->>   		ti,esm-pins = <0>, <1>, <2>, <85>;
->> -		status = "reserved";
->>   		bootph-pre-ram;
->>   	};
->>   
->> -- 
->> 2.45.2
->>
+>>  drivers/iio/magnetometer/ak8975.c | 31 
+>> +++++++++++++++----------------
+>>  1 file changed, 15 insertions(+), 16 deletions(-)
+>> 
+>> diff --git a/drivers/iio/magnetometer/ak8975.c 
+>> b/drivers/iio/magnetometer/ak8975.c
+>> index dd466c5fa621..925d76062b3e 100644
+>> --- a/drivers/iio/magnetometer/ak8975.c
+>> +++ b/drivers/iio/magnetometer/ak8975.c
+>> @@ -692,22 +692,7 @@ static int ak8975_start_read_axis(struct 
+>> ak8975_data *data,
+>>  	if (ret < 0)
+>>  		return ret;
+>> 
+>> -	/* This will be executed only for non-interrupt based waiting case 
+>> */
+>> -	if (ret & data->def->ctrl_masks[ST1_DRDY]) {
+>> -		ret = i2c_smbus_read_byte_data(client,
+>> -					       data->def->ctrl_regs[ST2]);
+>> -		if (ret < 0) {
+>> -			dev_err(&client->dev, "Error in reading ST2\n");
+>> -			return ret;
+>> -		}
+>> -		if (ret & (data->def->ctrl_masks[ST2_DERR] |
+>> -			   data->def->ctrl_masks[ST2_HOFL])) {
+>> -			dev_err(&client->dev, "ST2 status error 0x%x\n", ret);
+>> -			return -EINVAL;
+>> -		}
+>> -	}
+>> -
+> This completely removes the check from the _fill_buffer() path
 > 
-
+>> -	return 0;
+>> +	return !(ret & data->def->ctrl_masks[ST1_DRDY]);
+> returning a positive value here is unusual enough you should add a 
+> comment for
+> the function + use that return value.
+> 
+>>  }
+>> 
+>>  /* Retrieve raw flux value for one of the x, y, or z axis.  */
+>> @@ -731,6 +716,20 @@ static int ak8975_read_axis(struct iio_dev 
+>> *indio_dev, int index, int *val)
+>>  	ret = i2c_smbus_read_i2c_block_data_or_emulated(
+>>  			client, def->data_regs[index],
+>>  			sizeof(rval), (u8*)&rval);
+> No longer gated on ret & data->def->ctrl_masks[ST1_DRDY] which seems 
+> unintentional.
+It is checked exactly before the measurement data read, it is the return 
+value of ak8975_start_read_axis.
+The read section should be ST1 -> measurement -> ST2, exactly the same 
+can be found in the datasheets.
+> 
+> Still need a check on ret here.
+> 
+>> +	ret = i2c_smbus_read_byte_data(client,
+>> +				       data->def->ctrl_regs[ST2]);
+>> +	if (ret < 0) {
+>> +		dev_err(&client->dev, "Error in reading ST2\n");
+>> +		goto exit;
+>> +	}
+>> +
+>> +	if (ret & (data->def->ctrl_masks[ST2_DERR] |
+>> +		   data->def->ctrl_masks[ST2_HOFL])) {
+>> +		dev_err(&client->dev, "ST2 status error 0x%x\n", ret);
+>> +		ret = -EINVAL;
+>> +		goto exit;
+>> +	}
+>> +
+>>  	if (ret < 0)
+>>  		goto exit;
+> 
+> And this one ends up redundant I think which suggests to me the
+> code is inserted a few lines early.
+> 
+>> 
+>> 
 
