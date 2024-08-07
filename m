@@ -1,83 +1,86 @@
-Return-Path: <devicetree+bounces-91668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3772A94A2AF
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 10:25:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 701A094A2C6
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 10:28:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF0421F242C1
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 08:25:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22E09282240
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 08:28:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15E951CB315;
-	Wed,  7 Aug 2024 08:25:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2994C1C9DE1;
+	Wed,  7 Aug 2024 08:28:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="HHCTrY2v"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X0X2SmB8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A42711C9DEA;
-	Wed,  7 Aug 2024 08:24:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 521581C9DCF;
+	Wed,  7 Aug 2024 08:28:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723019100; cv=none; b=nUvOLwbV5JB3Narv1FE6IougwG0PU6ihBKy9qlu2yL4+m1v9mrVurynghxEJjQBxrcJOdsiQ8ZP1uhzy3n3gOk1UrLKs2ClS5/Hc0joI6isBjnHZ/lZuIGX99sXg7GMWbOGAj6lUPMQKQSYn0vEdDONYGtDL72lPBaTZW8IV2Zk=
+	t=1723019332; cv=none; b=uE8fMIKSTqbspAaGrnqHC9etr/bO/JLThlJtI2m7O8vIgZ/TiJRuzc4TVDBkJTlZOw0QTLjHLq6bVIfCaJiICVKDyMzXloZejUSebct6jVM+fFqL8EtDC1tc8V7UXwGOTa1jrbC63pKKWHKqyCSAY0mfgDjiRuc54ymZR0FdW78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723019100; c=relaxed/simple;
-	bh=Gl/EKx7yO1vkul547Exqpaz7H2DTdKyjY7O8EnanpsY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=O83D4x9Sci2IqcIb20lSDdIbf15aAyH5Yh/5B+4qJ/rRKJJs1425++vh3VvAdOca6HQY2vDLEbOA7fwHLG/TGCNjEOZgOFC89EFsnbL2qycnd6AO2m1VC3RqCtYX4FC1pkdjOg4OCB6XG1+V+edgIaM5JSONgwPnuZbo48WeqXE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=HHCTrY2v; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 85fa8104549611ef87684b57767b52b1-20240807
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=aqiZFSi5EnSePYja2fnDIcC64xYaXTpfX19e/xw33gI=;
-	b=HHCTrY2vG5D4iCvKw4s9gumYdGRGipKvFo+00lZgk4lTYf+FSGmNTEa4e67WaMlMBzJUL+57aOicWHupO0q+QOhux3qHUQPfZlq0F5heLrFX+0rfqdD0AH7KPZzDa01h4LiGGe1lfz2y2uAb5mzxm6izuplq0kvA2SGrROzlQYY=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.41,REQID:1d997b0d-5299-453e-8489-af96f59c3df7,IP:0,U
-	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-	N:release,TS:-25
-X-CID-META: VersionHash:6dc6a47,CLOUDID:29dfd53e-6019-4002-9080-12f7f4711092,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
-	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 85fa8104549611ef87684b57767b52b1-20240807
-Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw02.mediatek.com
-	(envelope-from <yunfei.dong@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 775536969; Wed, 07 Aug 2024 16:24:54 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Wed, 7 Aug 2024 16:24:54 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Wed, 7 Aug 2024 16:24:53 +0800
-From: Yunfei Dong <yunfei.dong@mediatek.com>
-To: =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
-	<nfraprado@collabora.com>, Sebastian Fricke <sebastian.fricke@collabora.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>, Hans Verkuil
-	<hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Benjamin Gaignard
-	<benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>,
-	Daniel Almeida <daniel.almeida@collabora.com>
-CC: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig <frkoenig@chromium.org>,
-	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>, Yunfei
- Dong <yunfei.dong@mediatek.com>, <linux-media@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v4 7/7] media: mediatek: vcodec: remove media request checking
-Date: Wed, 7 Aug 2024 16:24:37 +0800
-Message-ID: <20240807082444.21280-8-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240807082444.21280-1-yunfei.dong@mediatek.com>
-References: <20240807082444.21280-1-yunfei.dong@mediatek.com>
+	s=arc-20240116; t=1723019332; c=relaxed/simple;
+	bh=x+DSZanT0Z62jq7icA50jY0H3B2SM0juf/t2bXEtfVM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=JACMHmet9PEBM8Dusa3DlAzcWJTkK7XvJf0h2fEBbov9NTHWIBA/grK6ovLNIOYMFPirHyXSl2JvQgZWohaQ83C50CRfSZ7KPuPhHQhto+c8Nddx+mk4VaLhb8P8r9/64E9FdLKZM13vfwnfpoBM2KjoMvzG+8X6fBQzDF75oNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X0X2SmB8; arc=none smtp.client-ip=209.85.208.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2f0dfdc9e16so18328541fa.2;
+        Wed, 07 Aug 2024 01:28:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723019328; x=1723624128; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xHQXGFpfBnq0ynH+7iAXymSNRta5OaZ+nbnM9m911LU=;
+        b=X0X2SmB8R9ZpeJgu/y0uw4a9UUyWFaPktQc6HjekeK/iYj61+ORgKOoC/qdbLeEPxl
+         WEsFHIPnpxu8wrMs1NFX66cHXAR6ULlNEaHX/kp3zdjyFWUsoCFy3OcVOQS6ZL34/91b
+         J3UK4Ya0iESQ+SkeyvIOsZ3Y7StQtKDsP9bWYmIZ85qiU2ecR9Xjul6xyQ5huDNpsLfK
+         JQy1KNBSBxRcFC8fXEw06msxE8Xg8txynlM2J0dg7xbXbkOL5feH03orz5f18qDgCbPd
+         y0Ji7Lbz4Iyl2njDRzQ3gAP/2ljLsbv0dIRcndZEoInEy6fkuw0chFMARcnJH0pmyp+Z
+         VdXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723019328; x=1723624128;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xHQXGFpfBnq0ynH+7iAXymSNRta5OaZ+nbnM9m911LU=;
+        b=tkm6kzthYWKQm41Z1JqlitspYNniuep99XrI4Ohrnfgw39D5oxqRBngUR6v/1gWWfY
+         A1Al7AbcUDrU3f802LZlJU/1nodnKJAISQ8BD2eL/1JmDPezwqIdpJrPr3dQDuoGJqFu
+         FFzrKbgLK9IA263hhzm2xpj3pXAh3T2BjjyINaJb64+nXieWxJpRlkVI0nfch/EGuHEG
+         4Zc/r0NYVmrCLimYJNha33u11XqeUt+h4CbvGP/+5a3OUNs2UVo16l1jW8JDPqMUdWUm
+         0vPFq11OusB5BheNbRpZ4J4y2oPqLd6pwwjjclrLjGLG83qR/mGSEky9zvY88LKckmh6
+         +XRg==
+X-Forwarded-Encrypted: i=1; AJvYcCVou1mG9TSHMGGCXFC38oZ3JLVi8puDJAY1L3+dveybAQHom7ZA++flY/OQTlW9cuyMySRLGbzSNB59TURCQ9VWWbYw990+YPPW6MlTwtybywVxF+U+gdb/WpFuQcc+Uy+/0MMuiSsaPiIvO4oKbEFaOLOi/F8p25ULkWLwTPluFcuZZJ0=
+X-Gm-Message-State: AOJu0Yxmz0c3Fb7NJO/nau7+2Gcl3ZwIJvvsl9PJ2PGy+e5wKZh930S3
+	101danF8ZraHAIIGznVdSREQZUzAbcOxK6WdriONHovgAjmBTsgt
+X-Google-Smtp-Source: AGHT+IEK5dSBqWc3i7uzRm9tZ26iz9CxU/757qeiU79fIRrJyEIVR+ffQg9fJVHOwWedCLSRXyXq4Q==
+X-Received: by 2002:a2e:8703:0:b0:2ec:1810:e50a with SMTP id 38308e7fff4ca-2f15aafdc9fmr112987951fa.32.1723019327950;
+        Wed, 07 Aug 2024 01:28:47 -0700 (PDT)
+Received: from ivaylo-desktop.. (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4290579fb34sm18168505e9.14.2024.08.07.01.28.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Aug 2024 01:28:47 -0700 (PDT)
+From: ivo.ivanov.ivanov1@gmail.com
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>
+Cc: linux-samsung-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 00/10] Add minimal Exynos8895 SoC and SM-G950F support
+Date: Wed,  7 Aug 2024 11:28:32 +0300
+Message-Id: <20240807082843.352937-1-ivo.ivanov.ivanov1@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,60 +88,76 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
 
-Need to set the buffer status to error if the media request of
-each source buffer is NULL, then schedule the work to process
-again in case of access NULL pointer.
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
 
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
----
- .../vcodec/decoder/mtk_vcodec_dec_stateless.c      | 14 ++++++++------
- 1 file changed, 8 insertions(+), 6 deletions(-)
+Hi folks,
 
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c
-index 3dba3549000a..43af18df03ea 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c
-@@ -359,10 +359,14 @@ static void mtk_vdec_worker(struct work_struct *work)
- 			  ctx->id, bs_src->va, &bs_src->dma_addr, bs_src->size, vb2_src);
- 	/* Apply request controls. */
- 	src_buf_req = vb2_src->req_obj.req;
--	if (src_buf_req)
-+	if (src_buf_req) {
- 		v4l2_ctrl_request_setup(src_buf_req, &ctx->ctrl_hdl);
--	else
-+	} else {
- 		mtk_v4l2_vdec_err(ctx, "vb2 buffer media request is NULL");
-+		v4l2_m2m_buf_done(vb2_v4l2_src, VB2_BUF_STATE_ERROR);
-+		v4l2_m2m_job_finish(dev->m2m_dev_dec, ctx->m2m_ctx);
-+		return;
-+	}
- 
- 	ret = vdec_if_decode(ctx, bs_src, NULL, &res_chg);
- 	if (ret && ret != -EAGAIN) {
-@@ -380,8 +384,7 @@ static void mtk_vdec_worker(struct work_struct *work)
- 	state = ret ? VB2_BUF_STATE_ERROR : VB2_BUF_STATE_DONE;
- 	if (!IS_VDEC_LAT_ARCH(dev->vdec_pdata->hw_arch) ||
- 	    ctx->current_codec == V4L2_PIX_FMT_VP8_FRAME) {
--		if (src_buf_req)
--			v4l2_ctrl_request_complete(src_buf_req, &ctx->ctrl_hdl);
-+		v4l2_ctrl_request_complete(src_buf_req, &ctx->ctrl_hdl);
- 		vb2_v4l2_dst = v4l2_m2m_dst_buf_remove(ctx->m2m_ctx);
- 		v4l2_m2m_buf_done(vb2_v4l2_dst, state);
- 		v4l2_m2m_buf_done(vb2_v4l2_src, state);
-@@ -398,8 +401,7 @@ static void mtk_vdec_worker(struct work_struct *work)
- 	 */
- 	ctx->last_vb2_v4l2_src = (ret != -EAGAIN) ? NULL : vb2_v4l2_src;
- 	if (ret && ret != -EAGAIN) {
--		if (src_buf_req)
--			v4l2_ctrl_request_complete(src_buf_req, &ctx->ctrl_hdl);
-+		v4l2_ctrl_request_complete(src_buf_req, &ctx->ctrl_hdl);
- 		v4l2_m2m_buf_done(vb2_v4l2_src, state);
- 	}
- 
+This series adds initial SoC support for the Exynos 8895 SoC and also
+initial board support for Samsung Galaxy S8 phone (SM-G950F), codenamed
+dreamlte.
+
+The Exynos 8895 SoC is also used in S8 Plus (dream2lte), Note 8 (greatlte)
+and Meizu 15 Plus (m1891). Currently DT is added for the Exynos 8895 SoC
+and dreamlte, but it should be really easy to adapt for the other devices
+with the same SoC.
+
+The support added in this series consists of:
+* cpus
+* pinctrl
+* gpio
+* simple-framebuffer
+* pstore
+
+This is enough to reach a minimal initramfs shell using an upstream kernel.
+More platform support will be added in the future.
+
+The preferred way to boot this device is by using a small shim bl called
+uniLoader [1], which packages the mainline kernel and DT and jumps to
+the kernel. This is done in order to work around some issues caused by
+the stock, and non-replacable Samsung S-Boot bootloader. For example,
+S-Boot leaves the decon trigger control unset, which causes the framebuffer
+to not refresh. 
+
+[1] https://github.com/ivoszbg/uniLoader
+
+Kind regards,
+
+Ivaylo.
+
+Ivaylo Ivanov (10):
+  dt-bindings: arm: cpus: Add Samsung Mongoose M2
+  dt-bindings: hwinfo: samsung,exynos-chipid: add exynos8895 compatible
+  soc: samsung: exynos-chipid: add exynos8895 SoC support
+  dt-bindings: pinctrl: samsung: Add compatible for Exynos8895 SoC
+  pinctrl: samsung: Add exynos8895 SoC pinctrl configuration
+  dt-bindings: pinctrl: samsung: add exynos8895-wakeup-eint compatible
+  dt-bindings: soc: samsung: exynos-pmu: Add exynos8895 compatible
+  arm64: dts: exynos: Add initial support for exynos8895 SoC
+  dt-bindings: arm: samsung: Document dreamlte board binding
+  arm64: dts: exynos: Add initial support for Samsung Galaxy S8
+
+ .../devicetree/bindings/arm/cpus.yaml         |    1 +
+ .../bindings/arm/samsung/samsung-boards.yaml  |    6 +
+ .../hwinfo/samsung,exynos-chipid.yaml         |    1 +
+ .../samsung,pinctrl-wakeup-interrupt.yaml     |    1 +
+ .../bindings/pinctrl/samsung,pinctrl.yaml     |    1 +
+ .../bindings/soc/samsung/exynos-pmu.yaml      |    1 +
+ arch/arm64/boot/dts/exynos/Makefile           |    1 +
+ .../boot/dts/exynos/exynos8895-dreamlte.dts   |  126 ++
+ .../boot/dts/exynos/exynos8895-pinctrl.dtsi   | 1378 +++++++++++++++++
+ arch/arm64/boot/dts/exynos/exynos8895.dtsi    |  253 +++
+ .../pinctrl/samsung/pinctrl-exynos-arm64.c    |  137 ++
+ drivers/pinctrl/samsung/pinctrl-exynos.h      |   10 +
+ drivers/pinctrl/samsung/pinctrl-samsung.c     |    2 +
+ drivers/pinctrl/samsung/pinctrl-samsung.h     |    1 +
+ drivers/soc/samsung/exynos-chipid.c           |    1 +
+ 15 files changed, 1920 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dts
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos8895-pinctrl.dtsi
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos8895.dtsi
+
 -- 
-2.46.0
+2.34.1
 
 
