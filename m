@@ -1,74 +1,63 @@
-Return-Path: <devicetree+bounces-91829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C34194AD72
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 17:56:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2197594AD5C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 17:52:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 50DEFB2A194
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 15:37:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C9E571F22C28
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 15:52:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0834E12A177;
-	Wed,  7 Aug 2024 15:37:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87D5312BF24;
+	Wed,  7 Aug 2024 15:51:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="N/3co653"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CXsiJ7qa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BF3084DF8
-	for <devicetree@vger.kernel.org>; Wed,  7 Aug 2024 15:37:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F1DD84D0F;
+	Wed,  7 Aug 2024 15:51:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723045030; cv=none; b=qtD+5+DLY2c+4zQhNgW39qtZHIPXLG7V9AqcIvdlshCur0dovdegRWRZoRIV08qwYGYER9iuGzuZY1kzvncbsvzmhbl7un31BTQmnPFUHUt+M+LE2AD5QfCkQQ6SJaxFwKz/yDx/T4B/jSf7Edc9lKgnzB8tQ8KfltG88DZ3z4k=
+	t=1723045915; cv=none; b=GjIu8AN6svu6SXppv/FynxvhXBqbCcfPMHiATYgcx6hP6mB1baHW3IANRiT/qGfsrP0EDyWsO47QulOvHN45tpKT3FdnXdQO0SSJY/E3iywXZ4mXWHzwdyhsZGIVBsUqgnH0fMXKoxZ/L4+95QAawdFpcuqwf+uagMHjytPhqrM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723045030; c=relaxed/simple;
-	bh=TnQEyb0TlgRVKqCdGgpXS/fUm2oWRGW1oabB34py4bg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JqL4TRN1mlZGAcYTKbl7Z27V12gwQ702v1GXmai9ikpCqyUdLMvDkDfshSI4OCBbrb8FUwqUJ7UKy5ihiyVZboX93DIrOOGdgbH5L4CM69dQNHUHA37Jju8A7oY+iyV0M7QHYgXmxgwhBLmLZ5l1ohT6pvgROd96tVaa8Uut5qE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=N/3co653; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-42816ca797fso2105e9.2
-        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2024 08:37:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723045027; x=1723649827; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hbpU8BGJSDy9tSmR37aKx0UzOOARJ4TFknyzCo/3gdo=;
-        b=N/3co653IyjPYikGfIFszGhOtPFqaijB22y+1pXtpm2GURfC2INI4qJiosINxl8u0F
-         iX2xYIxV6P0neRNpopZrGZXD6GQfq4XyH4LzHlFnqNWDH5HVstW/s0BCYdHeAVQGN3VO
-         eWB/7NyjtDL9eFN2jEa1ghIUo+1PHXWa+yyJpqvauPI3AY8q4pk2IV9b8okdgTYvDM1h
-         n3W7v2nf0yPgc6YfNvCifJB8OSMQlsNxKFM7MvS5f7NVifLdnMoScHw2CRWCMDRgtYlQ
-         wAOWPpRQSGFgDN19qIzS1PaaVuWx8sYy9vakNwtftsTkgKrMlhvcR81rs+vftMr6uf72
-         r6Kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723045027; x=1723649827;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hbpU8BGJSDy9tSmR37aKx0UzOOARJ4TFknyzCo/3gdo=;
-        b=LkIAlOk1Z/WYLxu8Hzs80RCSRyuB1a3XD/7n8EMjopBlBFzmOXAk/Q9ZdVA92eAP6e
-         pDfzw3HWQJLJfQ4WPa/WkzfzWd13hYZa/wG1ArkHh0YL91amm+cDBX7jy8t0rJfgGOcU
-         u6kTiVFASAt+Or+11NZCm7A0eGxPTVTx6EirfYqcZzF4HnRVaK6Lu/FBvsEKPvXhoGE0
-         1FPovG7UTcNnpTRs/KGyD/v2aRKKdE6IJULF6huukfOB1Nvz7QhPfBT1n4OGXhdjwqbz
-         ZTnvjPu4ePp3AJjZ1vRJg0bP5rFJ3q3fCYzBE3f5lzKTvJaVLMC+pWtVCSlIQOdp4taw
-         NokA==
-X-Forwarded-Encrypted: i=1; AJvYcCVvtS7axDQ2JQ9LrfU2tujPjR3b8uUCaTcx9lapgN7xxpH5FVFVO3oJmhksE0q3/5dVEO0TW2OJr3lwLwFI1WoL8+ZilxD9gbXncA==
-X-Gm-Message-State: AOJu0YyjEIBhdWlG01O41W9EAEy43aQw+sZReRZqubz0nj/zNLwEumVw
-	Pq7jozIb7CsGthPIioTwcWYRgj3ADCo1+VXIg/58pYnBk63gxUM1brx69AWa3dc=
-X-Google-Smtp-Source: AGHT+IEqJQdYKe2aGkUMUTlf/XKpYzvifcfU8LhAtDUz7xW59bDxFNzJvVrYScEyagfTJNRrKgoQHA==
-X-Received: by 2002:a05:600c:3501:b0:427:9922:4526 with SMTP id 5b1f17b1804b1-428e6aebc74mr141633305e9.7.1723045027306;
-        Wed, 07 Aug 2024 08:37:07 -0700 (PDT)
-Received: from [192.168.0.25] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42905971993sm35089695e9.16.2024.08.07.08.37.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Aug 2024 08:37:06 -0700 (PDT)
-Message-ID: <ff12ce12-41d6-4aa5-ab97-222b07146e36@linaro.org>
-Date: Wed, 7 Aug 2024 16:37:05 +0100
+	s=arc-20240116; t=1723045915; c=relaxed/simple;
+	bh=tq1kRIdkXXLmifGbrLj+K4OAlODh+bgQQ+deN5tg44o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=K9qNOd4ClkocHc6fOo5RpNNYIJ/EVQWSvs5vto5NmI5C1hZtI0WORL18D6RZqUmcO1A3HjuqGEeTZCCtFoeHk+uCkI7lWIp58qqJ6Xw/nm4i1EFnoyMD3H/CmoO8Nmrw6jcYx7SLFd0UsYuTBjxqQUmlqqmX2w2MBsSAhV+i7ZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=CXsiJ7qa; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 477Fpjg1114243;
+	Wed, 7 Aug 2024 10:51:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1723045906;
+	bh=DFX4wIOpKaPspxP+zUbhiDATcnb9TKhja6y4k+FVRpc=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=CXsiJ7qaH+snf61hYdI72XYDQStBnZp5ZuQHwOJftzULiSWhDw7DOIQUFQxwiGlZj
+	 Af3dvHvbxJhaxTqiJNxrXhxhFLu2PcJY6v1NYd9GKx3eQZoCLYCcm4l55I8gW0Udp+
+	 j8GUB4pFq+eFbavXrLKx+vLMmQ0GjIDGZZ2H9nWQ=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 477Fpjcd097114
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 7 Aug 2024 10:51:45 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
+ Aug 2024 10:51:45 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 7 Aug 2024 10:51:45 -0500
+Received: from [137.167.6.133] (lt5cg1094w5k.dhcp.ti.com [137.167.6.133])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 477Fpg4I014276;
+	Wed, 7 Aug 2024 10:51:42 -0500
+Message-ID: <0da6f8ce-e220-47b9-86dd-537ad4b328e5@ti.com>
+Date: Wed, 7 Aug 2024 18:51:42 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,110 +65,94 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 04/13] media: qcom: camss: csiphy: Add an init callback to
- CSI PHY devices
-To: Depeng Shao <quic_depengs@quicinc.com>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, rfoss@kernel.org,
- todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: quic_eberman@quicinc.com, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com
-References: <20240709160656.31146-1-quic_depengs@quicinc.com>
- <20240709160656.31146-5-quic_depengs@quicinc.com>
- <6dfc2c79-fc6d-4eed-bf3f-94396130cb4f@linaro.org>
- <fafda7d5-3853-428a-b0eb-9993fc2d4f56@linaro.org>
- <4426c0e0-f877-409c-b2d2-a5aac5e8c645@linaro.org>
- <1226d080-d1fc-4e06-ac81-84e93cb314e0@quicinc.com>
- <8f935a7d-87b5-479c-a98e-c95671dbe259@linaro.org>
- <7c03280f-908d-435d-acef-b6bf4f865029@quicinc.com>
+Subject: Re: [PATCH v3 17/17] dt-bindings: net: wireless: cc33xx: Add
+ ti,cc33xx.yaml
+To: Krzysztof Kozlowski <krzk@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>, <linux-wireless@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: Sabeeh Khan <sabeeh-khan@ti.com>
+References: <20240806170018.638585-1-michael.nemanov@ti.com>
+ <20240806170018.638585-18-michael.nemanov@ti.com>
+ <40031203-63c6-46b5-b647-d344d4503bb7@kernel.org>
 Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <7c03280f-908d-435d-acef-b6bf4f865029@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: "Nemanov, Michael" <michael.nemanov@ti.com>
+In-Reply-To: <40031203-63c6-46b5-b647-d344d4503bb7@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 07/08/2024 16:03, Depeng Shao wrote:
-> Hi Bryan,
+On 8/7/2024 10:06 AM, Krzysztof Kozlowski wrote:
+> On 06/08/2024 19:00, Michael Nemanov wrote:
 > 
-> On 8/7/2024 10:04 PM, Bryan O'Donoghue wrote:
->> On 07/08/2024 14:08, Depeng Shao wrote:
->>> Hi Vladimir,
->>>
->>> On 8/5/2024 5:26 AM, Vladimir Zapolskiy wrote:
->>>> Hi Bryan,
->>>>
->>>> On 8/1/24 11:16, Bryan O'Donoghue wrote:
->>>>> On 01/08/2024 00:43, Vladimir Zapolskiy wrote:
->>>>>>> +    ret = csiphy->res->hw_ops->init(csiphy);
->>>>>>
->>>>>> Here.
->>>>>
->>>>> What name would make more sense to you ?
->>>>
->>>> according to the implementation the .init() call just fills some 
->>>> data in
->>>> memory, so I believe this could be handled at build time, if it's done
->>>> carefully enough...
->>>>
->>>
->>> This camss-csiphy-3ph-1-0.c is reused by many platforms, the old 
->>> platforms have same CSI_COMMON_CTR register offset, their offset are 
->>> 0x800, but some new platforms may have different CSI_COMMON_CTR 
->>> register offset, for example, the CSI_COMMON_CTR register offset is 
->>> 0x1000 in sm8550, then we need to add new file to support the new 
->>> csiphy HW, e.g., camss-csiphy-3ph-2-0.c, so Bryan asked me to develop 
->>> the CSIPHY driver based on his changes, then we just need few code to 
->>> enable new CSIPHY.
->>>
->>> Regarding the hw_ops->init interface, since it fills HW register 
->>> configurations and HW register offset, then maybe, it also can be 
->>> called as HW operation.
->>>
->>> And looks like we can't move it to camss-csiphy.c since it does 
->>> platform specific operation and it is related to the registers.
->>>
->>> Please feel free to share other comments if you don't agree with it. 
->>> Thanks.
->>>
->>>
->>> Thanks,
->>> Depeng
->>
->> So, I agree the phy init data could be obtained via resource structs 
->> but, rather than add yet more patches to this series, I'd say we can 
->> make the move to a separate resource struct pointer at a later date.
->>
->> Lets drop this patch and @Depeng we can then do
->>
+> Thank you for your patch. There is something to discuss/improve.
 > 
->> +    regs->offset = 0x800;
->>
->> media: qcom: camss: csiphy-3ph: Use an offset variable to find common 
->> control regs
->>
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - ti,cc3300
+>> +      - ti,cc3301
+>> +      - ti,cc3350
+>> +      - ti,cc3351
+>> +
+>> +  reg:
+>> +    description:
+>> +      must be set to 2
 > 
+> Then just const: 2 and drop free form text.
 > 
-> Do you mean only drop "[PATCH 04/13] media: qcom: camss: csiphy: Add an 
-> init callback to CSI PHY devices"?
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    description:
+>> +      The out-of-band interrupt line.
+>> +      Can be IRQ_TYPE_EDGE_RISING or IRQ_TYPE_LEVEL_HIGH.
+>> +      If property is omitted, SDIO in-band IRQ will be used.
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>> +
+>> +    // SDIO example:
 > 
+> Drop, obvious.
 > 
-> [PATCH 05/13] media: qcom: camss: csiphy-3ph: Move CSIPHY variables to 
-> data field inside csiphy struct
-> Do you mean this is still needed? Just don't move the code from 
-> csiphy_gen2_config_lanes to csiphy_init, right?
+>> +    mmc {
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +
+>> +        wifi@1{
 > 
+> Missing space.
 > 
-> [PATCH 06/13] media: qcom: camss: csiphy-3ph: Use an offset variable to 
-> find common control regs
-> The offset change is also needed, just need to add the offset for 
-> different platform in csiphy_gen2_config_lanes .
+> Also, this does not match reg. Test your DTS with W=1 and FIX ALL warnings.
 > 
-> Please correct me if my understanding is wrong. Thanks.
+> Best regards,
+> Krzysztof
+> 
 
-Correct.
+Will fix all above.
 
----
-bod
+I'm currently testing my .yaml with:
+make dt_binding_check DT_CHECKER_FLAGS=-m \ 
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml
 
+It reports no warnings. Adding W=1 doesn't seem to change anything. Am I 
+missing something?
+
+Thanks and regards,
+Michael.
 
