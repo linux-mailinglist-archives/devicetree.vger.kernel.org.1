@@ -1,239 +1,329 @@
-Return-Path: <devicetree+bounces-91764-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91765-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49FA094A79F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 14:21:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84B1D94A7CA
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 14:35:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C86B1C21517
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 12:21:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ED03AB22FBC
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 12:35:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FBE81E4EE6;
-	Wed,  7 Aug 2024 12:21:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A71B81E6720;
+	Wed,  7 Aug 2024 12:35:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="mfTfp811";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="d6Xurfcv"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JqdKIgBM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 572481C37B0;
-	Wed,  7 Aug 2024 12:21:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96D4A1E2101;
+	Wed,  7 Aug 2024 12:35:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723033271; cv=none; b=CwuglKQebaPvjRmXYX4KDBkp5aVdPYHSXFrgRRfAOUFZUlGgjucAx/d2Hm9foFGvC2RtifRSqzEZ4fbzZqZgxmJ82tUjdtaAkjWUu/kPJ7LWeZGOOelrDADNNi3CCbBJF3V6vkx0cJJ4StT0jyB21s66OXQV3jOugAI6dJygbOk=
+	t=1723034152; cv=none; b=GwRFkRr9YUZA80DO/tvxULykUAvAlk9YuLrDpM3ZV5073PJjboKim0kPCHPrZPRg+MBPj0i/GWfDlxcbGetXgx4bBQWv1v3C8M0nBE0T+4fPI3BlsHWT4JzNTLSbpQgmgqNr72u2MmfF7xV005xx4kvjvMuJ6IB2tLWHVa9udlY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723033271; c=relaxed/simple;
-	bh=1A6K0pJ8eOSKcVLh3x1qr1Ju0aPsXSm3yyGHkt973JU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=It2uL9WwLDjsE+VTHpFBs0rdFh+DfvTwghOXzqlvScaL64nM/gQoXb6dUUTBNEQ34tuLUM58UOUffmX6oQaxRInUpwLyRjM1xtbyQwaEzHab860rQ9wiue53azm2A7bpC2ACtw93jheLrFkdKp2TC+akXZVOj0ARXNulMTTRZZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=mfTfp811; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=d6Xurfcv reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1723033265; x=1754569265;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=W9AoAUndBtl0FZOFTVxj/U4a/ipvfy1DskBxqtse6Ck=;
-  b=mfTfp811cugFyTwMiucItVG8bNHUNJhoDTcb6z8/8zuP8WXyctlok3ky
-   4MEbWeSd6Kg5k1oHoQte1vbqeCyIWwjoa6aFsvaHZssIUX0m5t4f+E7Su
-   fkzy+3+33w4LC4+bXvYrRB05AcORyofdktayAVNPFdFnzjiBgZWSN9ZWC
-   FAkzxfCt5hatAx8IsSvtyvv8pZ3TQ7CXzFzigdOaQsYxovlG4+D9T70wy
-   hTy3Aw80U0vIajsuijxVN3XCKktfFeFUbJzZiwJQl+2lZ2G6N3yqDgE06
-   p+5v/TuKxKb4T4TQxzSlJLEpoutDxp0vB5cVMnvGDpBtb5a2M0Hqu27Oh
-   Q==;
-X-CSE-ConnectionGUID: Fd6x0rHaSHaE8RRvLnygkQ==
-X-CSE-MsgGUID: Fn4xV/B5QCKZw1Y0KFIT4w==
-X-IronPort-AV: E=Sophos;i="6.09,269,1716242400"; 
-   d="scan'208";a="38292858"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 07 Aug 2024 14:21:03 +0200
-X-CheckPoint: {66B366AE-35-CC8A42C9-EEB26961}
-X-MAIL-CPID: E035F2E2B0B4EEB6A9ADCD96DF82BD37_2
-X-Control-Analysis: str=0001.0A782F28.66B366AF.0039,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 46CAB167598;
-	Wed,  7 Aug 2024 14:20:58 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1723033258;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding; bh=W9AoAUndBtl0FZOFTVxj/U4a/ipvfy1DskBxqtse6Ck=;
-	b=d6XurfcvyQJaIjifnCrU8gLOsTnA1AkDYGp/Z+dhweUxfDcWa4aHtYhJ3fd5uzk1voF1OI
-	Z7jv+kap0fFa+X6JN/aKvCim6MM2ZLsYjAVUApTkFFGVDbvv9LGEYL8qLPHHT9O08jcjlo
-	hIicu6t++ox1XzbzkZL8A7k3DzlgIc2N3nsR9w+llHc7cs1O6MseRuEC4NQrpLwhyDVnft
-	6gwMJqa+YRmHQZC/IF+h93aptCTD02+TqEMzcVOL1fGz8BxO9I7xquHdR+7wd4E8RsVMfD
-	zMpAGG+6+DwaZT8sPI4j8JCbg7X32g3RM5W/OehDNK7e9TQGK8nDfu7vW8fuZg==
-From: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-To: Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux@ew.tq-group.com,
-	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-Subject: [PATCH v3] arm64: dts: ti: k3-am642-tqma64xxl-mbax4xxl: add PRU Ethernet support
-Date: Wed,  7 Aug 2024 14:19:21 +0200
-Message-ID: <20240807121922.3180213-1-matthias.schiffer@ew.tq-group.com>
-X-Mailer: git-send-email 2.46.0
+	s=arc-20240116; t=1723034152; c=relaxed/simple;
+	bh=XnakSmJSYzdOC65tVi+UeRuR5JsqvisVupHXus9ob5c=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=F3FPHcJdH37nDg124NBapC3fQUK1KpxEJjdjuUx5H2C8lF0zGCQoOUZ3WWsMlAJ59RgqDM8AQo1rVM/mxxxXEsoz1mFJxEqY7d9Ve42hk+I1aXAfjGzl7FOhMXVCr99DY+bIMvfKd+JfaOPZL2vNv3j1MxNphA3iSyj7VgTwFio=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JqdKIgBM; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4775SmUt020305;
+	Wed, 7 Aug 2024 12:35:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=zoJ3DaLKFdn76VyzYgoUBn
+	bpBNojCLHHAe42Ue/3U+I=; b=JqdKIgBMswWiXEgpICdVqBQHyRHtGUN1idWwiv
+	TAC4VEabfBSJPy9F/ruBqIUjfM71oNYdhZFsKV3cXEZsXLTp0GpafRNEBc8F0DNz
+	vQ1EMO9xoQQHm1TmCZCvPr63qxSt7wWbaxD08UnFPyDXg8LSVgEowHBxKkHhiClx
+	jGEEZJz1DHxhxdEqwx5eaqxQv1bMLxkt6r+PMwHTZwrh7YCy6vercHBac9bpHWDL
+	9lPwS6I/UQDW4YtL7yUtXulkqa9g57KnrskE4ckJ55CPR+RVvNr6XiQQSjTh0Jd/
+	Hf43iFqBKkUB726u799Z/k3X3dalv/crrGU/z0361hBOb3iQ==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40v2t714k2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 07 Aug 2024 12:35:46 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 477CZhoD008740
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 7 Aug 2024 12:35:43 GMT
+Received: from hu-depengs-sha.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 7 Aug 2024 05:35:38 -0700
+From: Depeng Shao <quic_depengs@quicinc.com>
+To: <andersson@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <bryan.odonoghue@linaro.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
+        Depeng Shao
+	<quic_depengs@quicinc.com>,
+        Yongsheng Li <quic_yon@quicinc.com>
+Subject: [PATCH] arm64: dts: qcom: sm8550: camss: Add CAMSS block definition
+Date: Wed, 7 Aug 2024 18:03:33 +0530
+Message-ID: <20240807123333.2056518-1-quic_depengs@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: icuAXYZ0HupTySfM1PJK0g91rD_pHmSh
+X-Proofpoint-ORIG-GUID: icuAXYZ0HupTySfM1PJK0g91rD_pHmSh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-07_08,2024-08-07_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
+ priorityscore=1501 lowpriorityscore=0 mlxlogscore=979 impostorscore=0
+ adultscore=0 bulkscore=0 spamscore=0 malwarescore=0 mlxscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408070088
 
-Add PRU Ethernet controller and PHY nodes, as it was previously done for
-the AM64x EVM Device Trees.
+Add CAMSS block definition for sm8550.
 
-Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+This drop contains definitions for the following components on sm8550:
+
+VFE * 3
+VFE Lite * 2
+CSID * 3
+CSID Lite * 2
+CSIPHY * 8
+
+Co-developed-by: Yongsheng Li <quic_yon@quicinc.com>
+Signed-off-by: Yongsheng Li <quic_yon@quicinc.com>
+Signed-off-by: Depeng Shao <quic_depengs@quicinc.com>
 ---
+This dtsi definition has been developed and validated on a AIM300 AIoT
+board, the description for this board can be found from below link.
+https://lore.kernel.org/lkml/20240618072202.2516025-1-quic_tengfan@quicinc.com/
 
-v3:
-- Rebased to v6.11-rc1
+The driver and bindings change can be found from below link.
+https://lore.kernel.org/all/20240709160656.31146-1-quic_depengs@quicinc.com/
+---
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 199 +++++++++++++++++++++++++++
+ 1 file changed, 199 insertions(+)
 
-v2:
-- Dropped binding change patch
-- Moved prueth device node to DTS toplevel, matching the AM64x EVM
-- Update firmware filenames to match EVM
-
- .../dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts    | 98 +++++++++++++++++++
- 1 file changed, 98 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts b/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
-index c40ad67cee019..c2a62cb763a59 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
-@@ -24,6 +24,8 @@ / {
- 
- 	aliases {
- 		ethernet0 = &cpsw_port1;
-+		ethernet1 = &icssg1_emac0;
-+		ethernet2 = &icssg1_emac1;
- 		i2c1 = &mcu_i2c0;
- 		mmc1 = &sdhci1;
- 		serial0 = &mcu_uart0;
-@@ -71,6 +73,66 @@ led-1 {
+diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+index 4c9820adcf52..58fc8792953d 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+@@ -2747,6 +2747,205 @@ videocc: clock-controller@aaf0000 {
+ 			#power-domain-cells = <1>;
  		};
- 	};
  
-+	icssg1_eth: icssg1-eth {
-+		compatible = "ti,am642-icssg-prueth";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pru_icssg1_rgmii1_pins>, <&pru_icssg1_rgmii2_pins>;
-+		interrupt-parent = <&icssg1_intc>;
-+		interrupts = <24 0 2>, <25 1 3>;
-+		interrupt-names = "tx_ts0", "tx_ts1";
-+		dmas = <&main_pktdma 0xc200 15>, /* egress slice 0 */
-+		       <&main_pktdma 0xc201 15>, /* egress slice 0 */
-+		       <&main_pktdma 0xc202 15>, /* egress slice 0 */
-+		       <&main_pktdma 0xc203 15>, /* egress slice 0 */
-+		       <&main_pktdma 0xc204 15>, /* egress slice 1 */
-+		       <&main_pktdma 0xc205 15>, /* egress slice 1 */
-+		       <&main_pktdma 0xc206 15>, /* egress slice 1 */
-+		       <&main_pktdma 0xc207 15>, /* egress slice 1 */
-+		       <&main_pktdma 0x4200 15>, /* ingress slice 0 */
-+		       <&main_pktdma 0x4201 15>; /* ingress slice 1 */
-+		dma-names = "tx0-0", "tx0-1", "tx0-2", "tx0-3",
-+			    "tx1-0", "tx1-1", "tx1-2", "tx1-3",
-+			    "rx0", "rx1";
-+		sram = <&oc_sram>;
-+		firmware-name = "ti-pruss/am64x-sr2-pru0-prueth-fw.elf",
-+				"ti-pruss/am64x-sr2-rtu0-prueth-fw.elf",
-+				"ti-pruss/am64x-sr2-txpru0-prueth-fw.elf",
-+				"ti-pruss/am64x-sr2-pru1-prueth-fw.elf",
-+				"ti-pruss/am64x-sr2-rtu1-prueth-fw.elf",
-+				"ti-pruss/am64x-sr2-txpru1-prueth-fw.elf";
-+		ti,prus = <&pru1_0>, <&rtu1_0>, <&tx_pru1_0>, <&pru1_1>, <&rtu1_1>, <&tx_pru1_1>;
-+		ti,pruss-gp-mux-sel = <2>,	/* MII mode */
-+				      <2>,
-+				      <2>,
-+				      <2>,	/* MII mode */
-+				      <2>,
-+				      <2>;
-+		ti,mii-g-rt = <&icssg1_mii_g_rt>;
-+		ti,mii-rt = <&icssg1_mii_rt>;
-+		ti,iep = <&icssg1_iep0>,  <&icssg1_iep1>;
++		camss: camss@acb7000 {
++			compatible = "qcom,sm8550-camss";
 +
-+		ethernet-ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
++			reg = <0 0x0acb7000 0 0xd00>,
++			      <0 0x0acb9000 0 0xd00>,
++			      <0 0x0acbb000 0 0xd00>,
++			      <0 0x0acca000 0 0xa00>,
++			      <0 0x0acce000 0 0xa00>,
++			      <0 0x0acb6000 0 0x1000>,
++			      <0 0x0ace4000 0 0x2000>,
++			      <0 0x0ace6000 0 0x2000>,
++			      <0 0x0ace8000 0 0x2000>,
++			      <0 0x0acea000 0 0x2000>,
++			      <0 0x0acec000 0 0x2000>,
++			      <0 0x0acee000 0 0x2000>,
++			      <0 0x0acf0000 0 0x2000>,
++			      <0 0x0acf2000 0 0x2000>,
++			      <0 0x0ac62000 0 0xf000>,
++			      <0 0x0ac71000 0 0xf000>,
++			      <0 0x0ac80000 0 0xf000>,
++			      <0 0x0accb000 0 0x1800>,
++			      <0 0x0accf000 0 0x1800>;
++			reg-names = "csid0",
++				    "csid1",
++				    "csid2",
++				    "csid_lite0",
++				    "csid_lite1",
++				    "csid_top",
++				    "csiphy0",
++				    "csiphy1",
++				    "csiphy2",
++				    "csiphy3",
++				    "csiphy4",
++				    "csiphy5",
++				    "csiphy6",
++				    "csiphy7",
++				    "vfe0",
++				    "vfe1",
++				    "vfe2",
++				    "vfe_lite0",
++				    "vfe_lite1";
 +
-+			icssg1_emac0: port@0 {
-+				reg = <0>;
-+				phy-handle = <&icssg1_phy0c>;
-+				phy-mode = "rgmii-id";
-+				/* Filled in by bootloader */
-+				local-mac-address = [00 00 00 00 00 00];
-+			};
++			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
++				 <&camcc CAM_CC_CPAS_AHB_CLK>,
++				 <&camcc CAM_CC_CPAS_FAST_AHB_CLK>,
++				 <&camcc CAM_CC_CPAS_IFE_LITE_CLK>,
++				 <&camcc CAM_CC_CPAS_IFE_0_CLK>,
++				 <&camcc CAM_CC_CPAS_IFE_1_CLK>,
++				 <&camcc CAM_CC_CPAS_IFE_2_CLK>,
++				 <&camcc CAM_CC_CSID_CLK>,
++				 <&camcc CAM_CC_CSIPHY0_CLK>,
++				 <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
++				 <&camcc CAM_CC_CSIPHY1_CLK>,
++				 <&camcc CAM_CC_CSI1PHYTIMER_CLK>,
++				 <&camcc CAM_CC_CSIPHY2_CLK>,
++				 <&camcc CAM_CC_CSI2PHYTIMER_CLK>,
++				 <&camcc CAM_CC_CSIPHY3_CLK>,
++				 <&camcc CAM_CC_CSI3PHYTIMER_CLK>,
++				 <&camcc CAM_CC_CSIPHY4_CLK>,
++				 <&camcc CAM_CC_CSI4PHYTIMER_CLK>,
++				 <&camcc CAM_CC_CSIPHY5_CLK>,
++				 <&camcc CAM_CC_CSI5PHYTIMER_CLK>,
++				 <&camcc CAM_CC_CSIPHY6_CLK>,
++				 <&camcc CAM_CC_CSI6PHYTIMER_CLK>,
++				 <&camcc CAM_CC_CSIPHY7_CLK>,
++				 <&camcc CAM_CC_CSI7PHYTIMER_CLK>,
++				 <&camcc CAM_CC_CSID_CSIPHY_RX_CLK>,
++				 <&camcc CAM_CC_IFE_0_CLK>,
++				 <&camcc CAM_CC_IFE_0_FAST_AHB_CLK>,
++				 <&camcc CAM_CC_IFE_1_CLK>,
++				 <&camcc CAM_CC_IFE_1_FAST_AHB_CLK>,
++				 <&camcc CAM_CC_IFE_2_CLK>,
++				 <&camcc CAM_CC_IFE_2_FAST_AHB_CLK>,
++				 <&camcc CAM_CC_IFE_LITE_CLK>,
++				 <&camcc CAM_CC_IFE_LITE_AHB_CLK>,
++				 <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>,
++				 <&camcc CAM_CC_IFE_LITE_CSID_CLK>,
++				 <&gcc GCC_CAMERA_HF_AXI_CLK>;
 +
-+			icssg1_emac1: port@1 {
-+				reg = <1>;
-+				phy-handle = <&icssg1_phy03>;
-+				phy-mode = "rgmii-id";
-+				/* Filled in by bootloader */
-+				local-mac-address = [00 00 00 00 00 00];
++			clock-names = "camnoc_axi",
++				      "cpas_ahb",
++				      "cpas_fast_ahb_clk",
++				      "cpas_ife_lite",
++				      "cpas_vfe0",
++				      "cpas_vfe1",
++				      "cpas_vfe2",
++				      "csid",
++				      "csiphy0",
++				      "csiphy0_timer",
++				      "csiphy1",
++				      "csiphy1_timer",
++				      "csiphy2",
++				      "csiphy2_timer",
++				      "csiphy3",
++				      "csiphy3_timer",
++				      "csiphy4",
++				      "csiphy4_timer",
++				      "csiphy5",
++				      "csiphy5_timer",
++				      "csiphy6",
++				      "csiphy6_timer",
++				      "csiphy7",
++				      "csiphy7_timer",
++				      "csiphy_rx",
++				      "vfe0",
++				      "vfe0_fast_ahb",
++				      "vfe1",
++				      "vfe1_fast_ahb",
++				      "vfe2",
++				      "vfe2_fast_ahb",
++				      "vfe_lite",
++				      "vfe_lite_ahb",
++				      "vfe_lite_cphy_rx",
++				      "vfe_lite_csid",
++				      "gcc_axi_hf";
++
++			interconnects = <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_CAMERA_CFG 0>,
++					<&mmss_noc MASTER_CAMNOC_HF 0 &mc_virt SLAVE_EBI1 0>,
++					<&mmss_noc MASTER_CAMNOC_ICP 0 &mc_virt SLAVE_EBI1 0>,
++					<&mmss_noc MASTER_CAMNOC_SF 0 &mc_virt SLAVE_EBI1 0>;
++			interconnect-names = "ahb",
++					     "hf_0_mnoc",
++					     "icp_mnoc",
++					     "sf_0_mnoc";
++
++			interrupts = <GIC_SPI 601 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 603 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 431 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 605 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 376 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 477 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 278 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 277 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 602 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 688 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 606 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 377 IRQ_TYPE_LEVEL_HIGH>;
++
++			interrupt-names = "csid0",
++					  "csid1",
++					  "csid2",
++					  "csid_lite0",
++					  "csid_lite1",
++					  "csiphy0",
++					  "csiphy1",
++					  "csiphy2",
++					  "csiphy3",
++					  "csiphy4",
++					  "csiphy5",
++					  "csiphy6",
++					  "csiphy7",
++					  "vfe0",
++					  "vfe1",
++					  "vfe2",
++					  "vfe_lite0",
++					  "vfe_lite1";
++
++			iommus = <&apps_smmu 0x800 0x20>;
++
++			power-domains = <&camcc CAM_CC_IFE_0_GDSC>,
++					<&camcc CAM_CC_IFE_1_GDSC>,
++					<&camcc CAM_CC_IFE_2_GDSC>,
++					<&camcc CAM_CC_TITAN_TOP_GDSC>;
++
++			power-domain-names = "ife0",
++					     "ife1",
++					     "ife2",
++					     "top";
++
++			status = "disabled";
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@0 {
++					reg = <0>;
++				};
++
++				port@1 {
++					reg = <1>;
++				};
++
++				port@2 {
++					reg = <2>;
++				};
++
++				port@3 {
++					reg = <3>;
++				};
 +			};
 +		};
-+	};
 +
- 	fan0: pwm-fan {
- 		compatible = "pwm-fan";
- 		pinctrl-names = "default";
-@@ -154,6 +216,42 @@ &epwm5 {
- 	status = "okay";
- };
- 
-+&icssg1_mdio {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pru_icssg1_mdio_pins>;
-+	status = "okay";
-+
-+	/* phy-mode is fixed up to rgmii-rxid by prueth driver to account for
-+	 * the SoC integration, so the only rx-internal-delay and no
-+	 * tx-internal-delay is set for the PHYs.
-+	 */
-+
-+	icssg1_phy03: ethernet-phy@3 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <0x3>;
-+		reset-gpios = <&main_gpio1 47 GPIO_ACTIVE_LOW>;
-+		reset-assert-us = <1000>;
-+		reset-deassert-us = <1000>;
-+		ti,rx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		ti,tx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+		ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
-+	};
-+
-+	icssg1_phy0c: ethernet-phy@c {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <0xc>;
-+		reset-gpios = <&main_gpio1 51 GPIO_ACTIVE_LOW>;
-+		reset-assert-us = <1000>;
-+		reset-deassert-us = <1000>;
-+		ti,rx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		ti,tx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+		ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
-+	};
-+};
-+
-+
- &main_gpio0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_gpio0_digital_pins>,
+ 		camcc: clock-controller@ade0000 {
+ 			compatible = "qcom,sm8550-camcc";
+ 			reg = <0 0x0ade0000 0 0x20000>;
 -- 
-TQ-Systems GmbH | Mühlstraße 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht München, HRB 105018
-Geschäftsführer: Detlef Schneider, Rüdiger Stahl, Stefan Schneider
-https://www.tq-group.com/
+2.34.1
 
 
