@@ -1,107 +1,141 @@
-Return-Path: <devicetree+bounces-91896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5718A94B2A8
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 00:04:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D91B694B31F
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 00:35:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 867021C2111E
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 22:04:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4AC9EB20DAA
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 22:35:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD56014830F;
-	Wed,  7 Aug 2024 22:04:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1C0D14EC50;
+	Wed,  7 Aug 2024 22:35:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WD8LeQVA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gEGa2nht"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A21A813D882;
-	Wed,  7 Aug 2024 22:04:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B97FF84037;
+	Wed,  7 Aug 2024 22:35:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723068279; cv=none; b=Db3eUBmaMMM6uHvnviGhqvy2hS98HHxtazVuiGJ5CoAth0qYwR+rEM4Smk+Wz7BnvGOlpRqDA+m4ruVBoOlTdR4sW6wJd0PsYtmT0BdTWwep0EInHmaRs3ixUwyyKOgWUVxtNh3ArjmgYqB+nanXjExtOKX6nrIbWVeOLaTlg/g=
+	t=1723070108; cv=none; b=XCnzPEfbbKSmE0FYqOCQHyXwbMCn28AsvM0J3px/m8XWLSt0kWYb/I2detg3cRCrE34Vs/BcM25TUONSj0JqcbczJh+3MkF8UngQZEKzqBLRF3bAbV2d5e66uQeob9wCuujiXedgv1Sbd6uGp2+n1dabASveplxG02D1FtgRM2k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723068279; c=relaxed/simple;
-	bh=Aun0C9qV6YJNK0y8IYWDwu6TzoJxNI1uGH6VUWDp41s=;
+	s=arc-20240116; t=1723070108; c=relaxed/simple;
+	bh=4SW2koNLSR3UGJDCQ4tfaSCI1PPYQl+YNGBqJggCxkI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XQ9hiNn7SO02MxwNrfWMNATh/iSbHFBILnoBP2zEFEsyuzPAdxYOj3zH2dIRbBXcTOqsCYRL1wPxHX4i5oVrNC8TEWLW19vEBrHL+Xlx9mCDWx5Abqyxtangj4+rqcP8fz28fZNXu3hbzWGaQrGJqCECZLYKpmmDGLGGUcnT2G4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WD8LeQVA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 499CCC32781;
-	Wed,  7 Aug 2024 22:04:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ilraU9e/cz3fYtA6PfXDaJc3wMJnj3TIe90njjQU1nbiPyxhezSoc+LrrJ+4EdTuKKOwD3sE8arkZxHwf3To27iRdbbXMoIUTvHQhUjJHk1ETTfohBMOdmZ/gx2F11VyVBjYXrfS8HHU2WZngxcM+EdpbPMs5RzGTHHPlpsVB/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gEGa2nht; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2001FC4AF0D;
+	Wed,  7 Aug 2024 22:35:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723068279;
-	bh=Aun0C9qV6YJNK0y8IYWDwu6TzoJxNI1uGH6VUWDp41s=;
+	s=k20201202; t=1723070108;
+	bh=4SW2koNLSR3UGJDCQ4tfaSCI1PPYQl+YNGBqJggCxkI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WD8LeQVAow1IdNnHwQBI+fkkL63wGuHbzaEJ0nXnuhL+yy7RdNJjlGaTdYy4rDM1R
-	 +dNgRJc4cW/QXP0gSUmvZYylu3Z6H/IVZalPLGCHMJ+tB/kTSKVtgquyvedXjsFyzx
-	 mb8AHYz2gq/QMPpaGRQ1bix2fJhe4Sw/AyzgM2W6LLenZRRZLCBlweMY4e30RytCO0
-	 JApEm+f7IHD2QrdD54FF6vi/2WxjNjofsfHBcfqDpDfmRYzHrAGutIFHXf4+sR3j8w
-	 hRWKrpGPD+sq7dpcFG79TxV1R7StPrMVCrl4I7ZqlccwSJXcjEScMp/7ZBuAVYl8LE
-	 fQHKhO0lJT+YA==
-Date: Wed, 7 Aug 2024 23:04:31 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Macpaul Lin <macpaul.lin@mediatek.com>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bear Wang <bear.wang@mediatek.com>,
-	Pablo Sun <pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
-	Sen Chu <sen.chu@mediatek.com>,
-	Jason-ch Chen <Jason-ch.Chen@mediatek.com>,
-	Chris-qj chen <chris-qj.chen@mediatek.com>,
-	MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	Chen-Yu Tsai <wenst@chromium.org>
-Subject: Re: [PATCH v2] dt-bindings: regulator: mediatek,mt6397-regulator:
- convert to YAML
-Message-ID: <ZrPvb_bT2ty-1V6-@finisterre.sirena.org.uk>
-References: <20240807091738.18387-1-macpaul.lin@mediatek.com>
+	b=gEGa2nhtWx0OmR2n5WPnJGF7lXEYDWPQbd9goc340or6vClcv7BK8g+LXX5K7zMbm
+	 7gTaJJ8GueY/qPpqV3LI6rPdh1sb9V818kNypu3NDb1MlunXw+/i98worzpGRUUy4O
+	 jhpHTyuOR3zUiKUoKU+DTQyGfnVKaLlWHXaKl8V2bNClU9NDY/s89LdDt0qOZo8oNF
+	 BLTgshL4skQl6QHFdslAxXtOFGYUfB0DpczeDbwAn5ciEjMXyfNDVhMO9DMFeQWF4e
+	 eRlSqLrTFOFFnwckjRICPqfoFNnUC744CAYuS2wtbHhxTCynLgeVJSLPWTvdHVWZLF
+	 RdiqgOdEPYXCA==
+Date: Thu, 8 Aug 2024 00:35:01 +0200
+From: Niklas Cassel <cassel@kernel.org>
+To: Hongxing Zhu <hongxing.zhu@nxp.com>
+Cc: "tj@kernel.org" <tj@kernel.org>,
+	"dlemoal@kernel.org" <dlemoal@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"shawnguo@kernel.org" <shawnguo@kernel.org>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"festevam@gmail.com" <festevam@gmail.com>,
+	"linux-ide@vger.kernel.org" <linux-ide@vger.kernel.org>,
+	"stable@vger.kernel.org" <stable@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>
+Subject: Re: [PATCH v4 4/6] ata: ahci_imx: Add 32bits DMA limit for i.MX8QM
+ AHCI SATA
+Message-ID: <ZrP2lUjTAazBlUVO@x1-carbon.lan>
+References: <1721367736-30156-1-git-send-email-hongxing.zhu@nxp.com>
+ <1721367736-30156-5-git-send-email-hongxing.zhu@nxp.com>
+ <Zp/Uh/mavwo+755Q@x1-carbon.lan>
+ <AS8PR04MB867612E75A6C08983F7031528CB32@AS8PR04MB8676.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="lDZc6TitRszOoInN"
-Content-Disposition: inline
-In-Reply-To: <20240807091738.18387-1-macpaul.lin@mediatek.com>
-X-Cookie: Your love life will be... interesting.
-
-
---lDZc6TitRszOoInN
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <AS8PR04MB867612E75A6C08983F7031528CB32@AS8PR04MB8676.eurprd04.prod.outlook.com>
 
-On Wed, Aug 07, 2024 at 05:17:38PM +0800, Macpaul Lin wrote:
-> Convert the MediaTek MT6397 regulator bindings to DT schema.
+On Fri, Aug 02, 2024 at 02:30:45AM +0000, Hongxing Zhu wrote:
+> >
+> > Does this solve your problem:
+> > diff --git a/drivers/ata/libahci_platform.c b/drivers/ata/libahci_platform.c
+> > index 581704e61f28..fc86e2c8c42b 100644
+> > --- a/drivers/ata/libahci_platform.c
+> > +++ b/drivers/ata/libahci_platform.c
+> > @@ -747,12 +747,11 @@ int ahci_platform_init_host(struct platform_device
+> > *pdev,
+> >                         ap->ops = &ata_dummy_port_ops;
+> >         }
+> >
+> > -       if (hpriv->cap & HOST_CAP_64) {
+> > -               rc = dma_coerce_mask_and_coherent(dev,
+> > DMA_BIT_MASK(64));
+> > -               if (rc) {
+> > -                       dev_err(dev, "Failed to enable 64-bit DMA.\n");
+> > -                       return rc;
+> > -               }
+> > +       rc = dma_coerce_mask_and_coherent(dev,
+> > +                       DMA_BIT_MASK((hpriv->cap & HOST_CAP_64) ? 64 :
+> > 32));
+> > +       if (rc) {
+> > +               dev_err(dev, "DMA enable failed\n");
+> > +               return rc;
+> >         }
+> >
+> >         rc = ahci_reset_controller(host);
+> >
+> Hi Niklas:
+> I'm so sorry to reply late.
+> About the 32bit DMA limitation of i.MX8QM AHCI SATA.
+> It's seems that one "dma-ranges" property in the DT can let i.MX8QM SATA
+>  works fine in my past days tests without this commit.
+> How about drop these driver changes, and add "dma-ranges" for i.MX8QM SATA?
+> Thanks a lot for your kindly help.
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+Hello Richard,
 
---lDZc6TitRszOoInN
-Content-Type: application/pgp-signature; name="signature.asc"
+did you try my suggested patch above?
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmaz728ACgkQJNaLcl1U
-h9D9XQf/eyGOxW1JkZAZL8CPVJKE1FXgdauk+Ue+UfyKHYdK6d+eRgfwjidtCKbE
-XDGKNI6EvMUzOR6n6VAYFSwJUOUcM5ErhW0JQbIWMlCWNbTxrMFvJAP8cx5LiNR2
-Ioms1PcpbZb+UTBQR4iR+W3KVBGeSvmIyhfkO4u0NtVT3TNPaofupAQJDx9esf3Z
-L5S5VLcR5P3hJ1bcugw1lhJNx4LF3a0bNunfJWRcKS0hQIkiSTjeRM7qcqMrIGfI
-vxLuBoP0+dW7G2JWdVZhWkjzDzAAyMvYlODNeHJjyrwyqwn9S8cQrEI0R3YALYs1
-r0GXGFxti79tGxYpqb3pwMJgZ6+lKA==
-=AjE1
------END PGP SIGNATURE-----
+If you look at dma-ranges:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#dma-ranges
 
---lDZc6TitRszOoInN--
+"dma-ranges" property should be used on a bus device node
+(such as PCI host bridges).
+
+It does not seem correct to add this property (describing the DMA limit
+of the AHCI controller, a PCI endpoint) on the PCI host bridge/controller.
+
+This property belongs to the AHCI controller, not the upstream PCI
+host bridge/controller.
+
+AHCI has a specific register to describe if the hardware can support
+64-bit DMA addresses or not, so if my suggested patch works for you,
+it seems like a more elegant solution (which also avoids having to
+abuse device tree properties).
+
+
+Kind regards,
+Niklas
 
