@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-91584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F70C949F5C
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 07:49:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8A60949F5E
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 07:49:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 250621F25F53
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 05:49:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC5051C2298D
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 05:49:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3600819753F;
-	Wed,  7 Aug 2024 05:48:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0902B19006F;
+	Wed,  7 Aug 2024 05:49:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M6RndzNe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m1TKo++0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F283538F91;
-	Wed,  7 Aug 2024 05:48:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC6A16BFA3;
+	Wed,  7 Aug 2024 05:49:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723009732; cv=none; b=ZnYA+cdBMx1yPW8aC+fs1Sc6d9DtI9HzX9vHfT5PgtnK5rRrd8Kgz8AGc9/rxbGBFWM2FKNOITjkpJHmaIO+UL48+odiOyr9eTNDSH/rca7i4MCB64EN9c3im8QbU3kdSCX1ergg48nHgT3+GVYp2cTf+vqjWCcCUG4m8HQEdNI=
+	t=1723009774; cv=none; b=m2AclW8Icqvw+qODt4C90jn7sqLcTyw5/so+AFOGkjbRxytR9nednn/MI8SevbxRCw0oLWRG89ISwFlum3NhCSCaRJVN6yhY7r9MipzrI/A3neu5E+ORO3aCCYkvK4nGVpbUE9adIFvNXXjgC6y4nS2QchiuEnGv+gTTXzPh+Xw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723009732; c=relaxed/simple;
-	bh=7TOy/TGX7VYmu/wSfP6QxOUeNZrbY4x1S85hALiXO+8=;
+	s=arc-20240116; t=1723009774; c=relaxed/simple;
+	bh=NfrOBcjO/1edtJr1f92xqBL5hzAd7ZcuUUv/ggnDR9k=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FL/duBzPYTGwU1rL+gANBYjvPc/A/5kapyJE0tQnqd6hOpCGTyCOjMpqYu6JaFmEZotNEOXubqEhOF3+lzPrJaQLkpluWVbkTLmgPXtTvce6Akd+hLJ4eSn/QruUDkMpq2UHyL7c8rKsVbYVDZeAPN34eUH/CWVAx6/Q/hd+W/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M6RndzNe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD96CC32782;
-	Wed,  7 Aug 2024 05:48:45 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=J8ihSW43EZVb19NelqRicd6Yr4pO7cdgT8e25ixtzuZlxfEFXPWdi4MMkGgIBupfGsUlSeLcBRLgCpixBzOEeprytzKSpPo/GRFlL8SAC2Tq2aVuKLSwmj0qkfmqaFQ/pJX6g5HH8M+98neVLjIqH2YXLoElINrgRX9nFuSHS04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m1TKo++0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E926C32782;
+	Wed,  7 Aug 2024 05:49:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723009731;
-	bh=7TOy/TGX7VYmu/wSfP6QxOUeNZrbY4x1S85hALiXO+8=;
+	s=k20201202; t=1723009774;
+	bh=NfrOBcjO/1edtJr1f92xqBL5hzAd7ZcuUUv/ggnDR9k=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=M6RndzNeQcxllWw9gQpD/pGRPhF5ceywT9a0uhA2XgozMkn7Nb8N5LjdaAiyGm92i
-	 h1jk4khpwi6XsHE5VKuYErHSkKDDFb2dUuNvX17mB8Grfx0v1hvreyfguxXJwLcTDg
-	 y5nTdbSWId2ImSs798jloU/u/40YvzfsRdAn3WOZzZqYv0K80kUgC9Yhxc/jdaZZpW
-	 YvbLCRgqu3W7wYc07vlV6Et3OqOd7tD5iSE1WjKxG9JZ/WRvGEYjDxU+vnfqW7DkyZ
-	 ezhV5bBjFWJn0/oUYMUi/NdU4eboexdn/eFG0ufuBUaJtfhQnHs+7nZfQ1tmy+CjW2
-	 bKlJ/TGVgTwSQ==
-Message-ID: <bfe6430c-a022-4e8f-ab7f-8d8e8cb10fca@kernel.org>
-Date: Wed, 7 Aug 2024 07:48:43 +0200
+	b=m1TKo++0oG4AuvFgbcX7Zd8lsvYZaSD5VQREoYuRyBL9UOmMw8NaTjxEXZ8E6Mxp/
+	 M23nhWPGk+9QsPjZWRZWVq0pSveUuu8MCFTHwEZr41luoWO28Zgawm7f1UyJDUjT3Z
+	 VeG1qrEi3eHrQlCSaQmkEAZ175EHtvzSdbTeO1PWy7p/S2wZ4vabV/KLy2ZZyer6Ze
+	 Gd1eAZN4zSd7REZJDZTZQqSbgwX1ZdDHMrPdKBYBDXCSELrxovpExoA2Jzwxmacgz5
+	 JjbfP45q3uuwOOibgDaewyPgAYamRzyr3+Bksk53uK0FC46DxVJpbS/SxnWOrgeqqQ
+	 cm5/vnS8qjzoA==
+Message-ID: <03b8a48c-e97e-4d7b-8378-66cc55ed56f7@kernel.org>
+Date: Wed, 7 Aug 2024 07:49:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: phy: imx8mq-usb: add compatible
- "fsl,imx95-usb-phy"
-To: Frank Li <Frank.li@nxp.com>
-Cc: Xu Yang <xu.yang_2@nxp.com>, vkoul@kernel.org, kishon@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, gregkh@linuxfoundation.org, jun.li@nxp.com,
- l.stach@pengutronix.de, aford173@gmail.com, hongxing.zhu@nxp.com,
- alexander.stein@ew.tq-group.com, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org
-References: <20240806050639.1013152-1-xu.yang_2@nxp.com>
- <160dd5fc-83ba-4311-a173-44521342a3d8@kernel.org>
- <ZrJLS37GFmvkQpml@lizhi-Precision-Tower-5810>
+Subject: Re: [PATCH v2 2/3] clk: rockchip: Add dt-binding header for rk3576
+To: Detlev Casanova <detlev.casanova@collabora.com>,
+ linux-kernel@vger.kernel.org
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Elaine Zhang <zhangqing@rock-chips.com>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, kernel@collabora.com,
+ Sugar Zhang <sugar.zhang@rock-chips.com>
+References: <20240802214053.433493-1-detlev.casanova@collabora.com>
+ <20240802214053.433493-3-detlev.casanova@collabora.com>
+ <1600ee06-ac19-436f-8229-1bb44b29c683@kernel.org>
+ <2949191.e9J7NaK4W3@trenzalore>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,105 +111,82 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ZrJLS37GFmvkQpml@lizhi-Precision-Tower-5810>
+In-Reply-To: <2949191.e9J7NaK4W3@trenzalore>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/08/2024 18:11, Frank Li wrote:
-> On Tue, Aug 06, 2024 at 10:29:47AM +0200, Krzysztof Kozlowski wrote:
->> On 06/08/2024 07:06, Xu Yang wrote:
->>> The usb phy in i.MX95 is compatible with i.MX8MP's, this will add a
->>> compatible "fsl,imx95-usb-phy" for i.MX95. Also change reg maxItems
->>> to 2 since i.MX95 needs another regmap to control Type-C Assist (TCA)
->>> block. Since i.MX95 usb phy is able to switch SS lanes, this will also
->>> add orientation-switch and port property to the file.
+On 06/08/2024 17:23, Detlev Casanova wrote:
+> On Sunday, 4 August 2024 05:53:57 EDT Krzysztof Kozlowski wrote:
+>> On 02/08/2024 23:35, Detlev Casanova wrote:
+>>> From: Elaine Zhang <zhangqing@rock-chips.com>
 >>>
->>> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+>>> Add the dt-bindings header for the rk3576, that gets shared between
+>>> the clock controller and the clock references in the dts.
 >>>
->>> ---
->>> Changes in v2:
->>>  - replace minItems with description in reg property
->>>  - remove orientation-switch and port
->>>  - refer to usb-switch.yaml
->>>  - use unevaluatedProperties
->>> ---
->>>  .../bindings/phy/fsl,imx8mq-usb-phy.yaml      | 42 ++++++++++++++++---
->>>  1 file changed, 37 insertions(+), 5 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
->>> index dc3a3f709fea..6d6d211883ae 100644
->>> --- a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
->>> +++ b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
->>> @@ -11,12 +11,17 @@ maintainers:
->>>
->>>  properties:
->>>    compatible:
->>> -    enum:
->>> -      - fsl,imx8mq-usb-phy
->>> -      - fsl,imx8mp-usb-phy
->>> +    oneOf:
->>> +      - enum:
->>> +          - fsl,imx8mq-usb-phy
->>> +          - fsl,imx8mp-usb-phy
->>> +      - items:
->>> +          - const: fsl,imx95-usb-phy
->>> +          - const: fsl,imx8mp-usb-phy
->>>
->>>    reg:
->>> -    maxItems: 1
->>> +    minItems: 1
->>> +    maxItems: 2
->>>
->>>    "#phy-cells":
->>>      const: 0
->>> @@ -89,7 +94,34 @@ required:
->>>    - clocks
->>>    - clock-names
->>>
->>> -additionalProperties: false
->>> +allOf:
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            enum:
->>> +              - fsl,imx95-usb-phy
->>> +    then:
->>> +      properties:
->>> +        reg:
->>> +          items:
->>> +            - description: USB PHY Control range
->>> +            - description: USB PHY TCA Block range
->>> +    else:
->>> +      properties:
->>> +        reg:
->>> +          maxItems: 1
->>> +
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            enum:
->>> +              - fsl,imx95-usb-phy
->>> +    then:
->>> +      $ref: /schemas/usb/usb-switch.yaml#
+>>> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+>>> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
+>>> [rebased, separate clocks and resets]
+>>> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
 >>
->> ref should be rather in top-level. You can always disallow certain
->> properties for devices, if they are really not applicable.
+>> Please use subject prefixes matching the subsystem. You can get them for
+>> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+>> your patch is touching. For bindings, the preferred subjects are
+>> explained here:
+>> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patche
+>> s.html#i-for-patch-submitters
+>>> ---
+>>>
+>>>  .../dt-bindings/clock/rockchip,rk3576-cru.h   | 589 ++++++++++++++++++
+>>>  .../dt-bindings/reset/rockchip,rk3576-cru.h   | 484 ++++++++++++++
+>>>  2 files changed, 1073 insertions(+)
+>>>  create mode 100644 include/dt-bindings/clock/rockchip,rk3576-cru.h
+>>>  create mode 100644 include/dt-bindings/reset/rockchip,rk3576-cru.h
+>>
+>> These are bindings. Must be squashed with previous patch.
 > 
-> There are some "required" in usb-switch.yaml,
+> Ok, so you'd rather have a commit for reset definitions (dt-bindings: reset: 
+> Add rk3576 reset definitions) and another one for clock definitions + 
+> Documentation (dt-bindings: clock: Add rk3576 clock definitions and 
+> documentation) ?
 > 
-> oneOf:
->   - required:
->       - port
->   - required:
->       - ports
+>>> diff --git a/include/dt-bindings/clock/rockchip,rk3576-cru.h
+>>> b/include/dt-bindings/clock/rockchip,rk3576-cru.h new file mode 100644
+>>> index 0000000000000..14b54543d1a11
+>>> --- /dev/null
+>>> +++ b/include/dt-bindings/clock/rockchip,rk3576-cru.h
+>>> @@ -0,0 +1,589 @@
+>>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+>>
+>> Weird license. Why not using recommended one?
 > 
-> If put on the top, it may cause DTB check warning for other compatible
-> strings, which have not support usb-switch.
+> Oh right, I suppose "GPL-2.0 OR MIT" is better ? At least that is what I see 
+> for rk3588. include/dt-bindings/clock/rockchip,rv1126-cru.h uses "GPL-2.0+ OR 
+> MIT" though.
+> 
+>>> +/*
+>>> + * Copyright (c) 2023 Rockchip Electronics Co. Ltd.
+>>> + * Author: Elaine Zhang <zhangqing@rock-chips.com>
+>>> + */
+>>> +
+>>> +#ifndef _DT_BINDINGS_CLK_ROCKCHIP_RK3576_H
+>>> +#define _DT_BINDINGS_CLK_ROCKCHIP_RK3576_H
+>>> +
+>>> +/* cru-clocks indices */
+>>> +
+>>> +/* cru plls */
+>>> +#define PLL_BPLL			1
+>>> +#define PLL_LPLL			3
+>>> +#define PLL_VPLL			4
+>>> +#define PLL_AUPLL			5
+>>> +#define PLL_CPLL			6
+>>> +#define PLL_GPLL			7
+>>> +#define PLL_PPLL			9
+>>
+>> Nope, indices start from 1 and are incremented continuously.
+> 
+> Why start at 1 ? RK3588 starts at 0 for clocks and resets
 
-Hm, indeed, that's unusual case to have such different devices in one
-schema. Did you test that above $ref in if: actually works?
+Or 0, even better, sure.
 
 Best regards,
 Krzysztof
