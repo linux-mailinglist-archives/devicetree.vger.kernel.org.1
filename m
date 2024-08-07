@@ -1,110 +1,108 @@
-Return-Path: <devicetree+bounces-91867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1099A94AF2D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 19:52:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F56594AF54
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 20:02:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC44B2824F6
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 17:52:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28285281FAF
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 18:02:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1365C13D25E;
-	Wed,  7 Aug 2024 17:51:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1789113C689;
+	Wed,  7 Aug 2024 18:02:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="U5Q2k14i"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dJCL1J8D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 805AD139579;
-	Wed,  7 Aug 2024 17:51:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61F565473E;
+	Wed,  7 Aug 2024 18:02:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723053119; cv=none; b=t+WoZ8P1bKaayNLS50mGmtFlG/VV/cy1UN4mTwNtUWL3QpxfBGOJsmoU/8gEpIDBdNWiTR81GIygoFDnwnMsdNvTn/QWkA8Bt/8NFtv1A0aNa0XrnJNPVudj5FTdCqTYZ/aXTEHPHPtyFhXnDhpf4+YfmjHYsbjjvyo5zJ6o14M=
+	t=1723053736; cv=none; b=qmSLeuVg9/YmFphPkPHncPzR8qQruzgoeyb7I6+oanp6CxURpQfj9rsAKeYdYypkjrloe3T/eNdeJVllFuOhXVsDYBJTdsb9E+DuWEh8gHgRZMYttZCAUmlEqXhftyPxZ3HNvBtYtUXhmzPGCxu/+VUFGeNelJKrmkFBofwiU0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723053119; c=relaxed/simple;
-	bh=M8/K05CsO4l9a/Gn9WAOFc2Erc//Aa0fx5Zns7lHDpI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YioT4p5elze0SV0Y2EOwl/B9ec6rBsH3SN9T/hMWs0UqKOZR40qMGe+U1fPdrd9nF1U4ztRrqin/lSxlUr7kMyGeeX08uNhpZ4XwoCeCeA3zZbc3SILYdTs0QqQ1hzqac3DbNMmZ4bZGP7okjxoMmCd30juSFHu/TSOBB+yIfIQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=U5Q2k14i; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id C1B1021356;
-	Wed,  7 Aug 2024 19:51:52 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1723053113;
-	bh=IgJHKpRaj1V7B1t0wb04bvKsKafQiNRW06ITclpickc=; h=From:To:Subject;
-	b=U5Q2k14iGALDwMSVpovpFXi3fT/nJ1yXasaFcCiURQ6pJ40vLo6OCcV6k5550AR5e
-	 JMqPkeCrAzAEF5BeUz+0OP6VvUxLxSVRef0t8RKtSgMRdMpLCMhRp2NxdfLc7sQDXe
-	 xS01WljEFvjwFW9kJ9D2pVMqw41+YJpPBxMIUE8tsA9COTz+dC/wKs8ys234+DK6/L
-	 PWM2USLynSG5qUSBge2HaDlV6maXqCOEZJ6/e6oHTgtPgB5CyDv+MzgP7J2QW6QzY7
-	 OvU4Is5kPueO8irwC80o+4V9VMRxWyrPxNGMscps6BrJrIMxrvAInhiNW7JrPmBepf
-	 9IdSHuKfwrRDA==
-Date: Wed, 7 Aug 2024 19:51:48 +0200
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Frank Li <Frank.li@nxp.com>, rafael.beims@toradex.com
-Cc: Francesco Dolcini <francesco@dolcini.it>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1723053736; c=relaxed/simple;
+	bh=Esnjti3QfSVKt62AOhiCTq+vWYBQZ3XztcpaynOs8SI=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=Ju0eud8IL6hrFgTmaAYA25XH8zNtrjgMgA//EiXo5IS+2Bo2VRqvmyLdIlXO6A0NQJfRjKZgcJptqkG/JwTFFHE5nkBnTwGwTvgMyxx12Vj6rvShBi/OWnqHU6eRt2kIx0EtvED5f3jUX10B0DGjdEQrzwenjFAJonoV0GNFfRI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dJCL1J8D; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-52f042c15e3so113002e87.0;
+        Wed, 07 Aug 2024 11:02:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723053732; x=1723658532; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=g2A9g7BZ+7ZlUH3giGRSRTBy0XcWPD03E9Hqr6OCk7w=;
+        b=dJCL1J8DljKA9bmgV0LsB4rBOpA+mrX2LrgqFVEfVU0WxjlqdfMFIK4XUd6nlCxJ3P
+         tTnJR08b0hLZGMptE5Vu86tpqpx0mDS8PeDdwnN8Yt7Oi+eg9KjC4nmK47LNfL7sd759
+         kZC9tldKZcSBae/kPp0ttIwc4sEbZ+4pxsGbkF7PKVjLJtrQZvig1kTe4b/wuPxOVN7W
+         JhwHrExvOUviyvEqfTKNqq7FLPPv9U7Y3rl/BJBc5iGo+K9vG8WGuQirYFGeVF3RQIH7
+         AUnHeIoWmjZxWFG+a90ITDYXJpY8OEttTjTjVjEXZwFuWcrAP8ZQ/mDQr0U7O6kdG7nH
+         1htg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723053732; x=1723658532;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=g2A9g7BZ+7ZlUH3giGRSRTBy0XcWPD03E9Hqr6OCk7w=;
+        b=OZKXiep2XhUdBETdv16itNZ3PAaVBLpgTDffzFUssDoH7vjSkghNW8l/ibrpGYkU7f
+         1lzgkpO6j6l/VsvwniN6cPEClj9vcCga2BdToUuGBMzEG6AcU/Lhld2kxFaAdCmJ7sJl
+         qqPTufeLQI/co8WIROIAb5QBvaWsy3rguoMiodJIUV3FSFQYlUC085FeV4mxR0lapva7
+         V51AEuc2i7Qb8RucWfm7pnE906zCrJeE/8ZzVI8+MPCmhuGi/rOV5jAoBX7mQUDswgM0
+         MKhiuSLe6AGi7OAB70uXsEFQwc9hjKMh3R5qUcDzDjaxmno0A7Mod5nYKDigPX1SKcfa
+         4zKg==
+X-Forwarded-Encrypted: i=1; AJvYcCX2nNqQZgWlUCEcn3zV+O1MVj+GycLbl51vbr7oLil0IKQA66uGFGdRFwiI9kCQ+tHMzq0TgV4hj8oo@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOwbJn1EmnorksJtcKb9kBwc52NbUWrmZ+SLdLv3eXRyKne7qM
+	3HiNCo1/dbLafyUCzBcIRTYMROAKhrAo8YW+SR+r1uwZGoMEkjSo
+X-Google-Smtp-Source: AGHT+IE2BAMAPFwwogEC7hzieoxMnxVgSx0NiFFKKZ6GnjLEufMNH6xnC18sqOZH3VFa6Qgw9qtuQA==
+X-Received: by 2002:a05:6512:2385:b0:52f:336:e846 with SMTP id 2adb3069b0e04-530dd9051acmr879884e87.14.1723053731989;
+        Wed, 07 Aug 2024 11:02:11 -0700 (PDT)
+Received: from ilordash-vm.mshome.net (broadband-109-173-124-203.ip.moscow.rt.ru. [109.173.124.203])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-530de3e2e18sm332454e87.34.2024.08.07.11.02.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Aug 2024 11:02:11 -0700 (PDT)
+From: Ilya Orazov <ilordash02@gmail.com>
+To: Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 4/4] arm64: dts: imx8-ss-conn: add PPS channel to the
- FEC nodes
-Message-ID: <20240807175148.GA299582@francesco-nb>
-References: <20240807144349.297342-1-francesco@dolcini.it>
- <20240807144349.297342-5-francesco@dolcini.it>
- <ZrOUGLJPYC/K4MlP@lizhi-Precision-Tower-5810>
+	Aswath Govindraju <a-govindraju@ti.com>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-can@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Ilya Orazov <ilordash02@gmail.com>
+Subject: [PATCH v2 0/1] phy: Add support for Microchip ATA6561 CAN Transceiver
+Date: Wed,  7 Aug 2024 21:02:09 +0300
+Message-Id: <20240807180210.1334724-1-ilordash02@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240805-fruit-chip-cf08a0e166a3@spud>
+References: <20240805-fruit-chip-cf08a0e166a3@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZrOUGLJPYC/K4MlP@lizhi-Precision-Tower-5810>
+Content-Transfer-Encoding: 8bit
 
-Hello Frank,
+Ok, I changed patch to allow ti,tcan1042 as fallback compatible.
 
-+Rafael
+Ilya Orazov (1):
+  dt-bindings: phy: ti,tcan104x-can: Document Microchip ATA6561
 
-On Wed, Aug 07, 2024 at 11:34:48AM -0400, Frank Li wrote:
-> On Wed, Aug 07, 2024 at 04:43:49PM +0200, Francesco Dolcini wrote:
-> > From: Francesco Dolcini <francesco.dolcini@toradex.com>
-> >
-> > On i.MX8 the FEC PPS channel is routed to the instance 1, not to the
-> > default 0.
-> 
-> According to my understand, it should be board level configuration. FEC
-> support output pps to any one. choose which one by board design.
+ .../devicetree/bindings/phy/ti,tcan104x-can.yaml    | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
 
-This seems different from the information we got from NXP some time ago,
-unfortunately this was happening over some private email exchange and
-not documented anywhere public. But the message was about SoC internal
-routing, not something at the board level, at least for i.MX8 SoCs that
-is what this patch is changing.
-
-For example to use PPS on i.MX8QXP we need to have this
-
-IMX8QM_ENET0_REFCLK_125M_25M_CONN_ENET0_PPS 0x06000020
-
-pinctrl configuration _and_ use PPS channel 1. Same is for i.MX8QP.
-
-Maybe Rafael can provide you some more details and the name of the
-person that provided this information.
-
-And maybe you can also try to double check this internally within NXP.
-
-Depending on what we find out we can decide if this patch needs to be
-dropped or not.
-
-Francesco
+-- 
+2.34.1
 
 
