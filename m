@@ -1,230 +1,374 @@
-Return-Path: <devicetree+bounces-91736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFAE494A50B
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 12:06:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECC8894A521
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 12:10:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 17329B247D7
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 10:05:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9ED59281CD4
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 10:10:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 154E01D365B;
-	Wed,  7 Aug 2024 10:04:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4380F1D3639;
+	Wed,  7 Aug 2024 10:10:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="CLeazjuC"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TUPmhRdW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3145B1D3653
-	for <devicetree@vger.kernel.org>; Wed,  7 Aug 2024 10:04:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C19F1C6899;
+	Wed,  7 Aug 2024 10:10:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723025092; cv=none; b=fmkSsZgyrdWRt5pV6PQNHrXsvms/ue/F/tUYQ/1O7uFnFR1AV3XhyozVMYIsxJumkkhdRA7xiDicW/HC3PQQ34i6Pv75Ve6seiwikuKmAeX07XrJWazqOT2zW7FR1ZmOo9ReFwyW+Sds83F0YgEcLidmBj0AJEP09do43o/ia6o=
+	t=1723025416; cv=none; b=kRCch11xVMBJn936x0toT5sfSLAcItxTLE3jub6sfY9yJYnS/eQQxOaNvME8biqssA2BBRixi3vCnouZd7U8DWYRmCjThrJRGqkwC5n4PmDHO8uL05EZlPW5uZTADSXMPCsVNaiA6c2EYRG1epfwgkowq9WCt9Pp5W9OC/VmvHs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723025092; c=relaxed/simple;
-	bh=+SO+kewOFTcQn2nqM40ixWdKUUYwpfn7ClOeFBE6OMM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=DuszXBazml59Z1SyqM4Q1puPw139R2iPFzQVxbYAHy9ywUOmgC72N9vYu6Cqu0llF6g265f68/QlKI2oa5Kri4gq5fZjO6ne2I73v3WB1ZcYp+RDBC5httv5+krfnhzyIwVwF9umOqCf8rweX8LQdPqOH1SzpBmS6WJBO3NOsJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=CLeazjuC; arc=none smtp.client-ip=209.85.210.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-71080f4c006so1239057b3a.2
-        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2024 03:04:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1723025089; x=1723629889; darn=vger.kernel.org;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=G8sD5tWPojbSoMGIcSaH0qeF9w3YLQb1BQMuSnaj9rk=;
-        b=CLeazjuClPFzszG7xZW25KllNYqeXJ3vkZLTdRXegQbMjpJ/lyMj1jM9QZNuIbN8IY
-         MmKh2DsaCwSobceokLSqWJVxMf+KlZ9ppxey0olyZnjTeI99Ao+zFcEVzXdmhFHJv5/s
-         NS6lylylYEgrmDYPZ5Rb3ehVgRUHDHFfxX+gZrE2or98LU3DvQqAUhSPIm1luBL6nYqW
-         wQXcC2U2YlpqzzAxkCX79ig5ZRRAKqyNuMSWSEDO/1yxBhDXgjDm5PKzcw5G8wYL9zG5
-         Uhwo4ZPyh42FTmYcIdF2ePHP1el4hurbgk0kaRTO7g7tsobi8MrCJJWAoNegHYlmrhXg
-         oQwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723025089; x=1723629889;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=G8sD5tWPojbSoMGIcSaH0qeF9w3YLQb1BQMuSnaj9rk=;
-        b=k+FDNRJ/cm0jezw+DtSdUWQgB+Wxi0fFBl39RyBNBz57lzyv64/DP1XdH/KxQBwSik
-         3LyKakaDsQHyuOpQMrK9oHfiwFH/1ALkd41QMt9MqBLIhoJ8aZiuTvCgxeYHxf8nuCPk
-         Vl1TQZHzDCgpPVUmFZ//kZhBxQV2aEjRW28ZdktSvv4m7nKBQ9uHCuIjNfKewbQXHww3
-         thEviqQcdTPIThYHUQKTKKbssHLYLnAZfYAGrwh2sgZXOb0mDOifGmf2wOjhyu8vAPjK
-         yPtymPf9BjaGtjQrl35H8paaR1tloVqZ8FyhGmD8Ey+/8t4yvslxS0t+D5mnZXoemNJf
-         SYSw==
-X-Forwarded-Encrypted: i=1; AJvYcCXUuM8bzAhNLQ0pUl0kqh6z6f6Vbtdwc2/226jxrT7S5o0IECGhyHOECpvH/ik+8SPjcsaBlZ0bEo+5Qdzxhrh5wvDDJKTlY0XUwA==
-X-Gm-Message-State: AOJu0YyEjjE38iYb2GxPsoIN6EExrE6XSxzDhufEn8jiI4j8dvln0Ssh
-	HUDtq+cMXgTIWyPGpsfeF9go0lS69C98Fc2/e3jXPZUjpVU0DiWVFZ4l5xRkpkE=
-X-Google-Smtp-Source: AGHT+IELjUmVEpYVv5wdEeeHbgamYsaeKFOxsCWc01Nmqe8Yl8RaZRDYduWqqEPdR0Xpy6I1WQodnQ==
-X-Received: by 2002:a05:6a20:258e:b0:1c4:ae14:4e3d with SMTP id adf61e73a8af0-1c6995809d9mr21497125637.13.1723025089264;
-        Wed, 07 Aug 2024 03:04:49 -0700 (PDT)
-Received: from lvzhaoxiong-KLVC-WXX9.huaqin.com ([116.66.212.162])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7106ecdff89sm8119248b3a.103.2024.08.07.03.04.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Aug 2024 03:04:48 -0700 (PDT)
-From: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
-To: neil.armstrong@linaro.org,
-	quic_jesszhan@quicinc.com,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	dianders@chromium.org,
-	hsinyi@google.com,
-	airlied@gmail.com,
-	daniel@ffwll.ch,
-	jagan@edgeble.ai,
-	dmitry.baryshkov@linaro.org,
-	jani.nikula@linux.intel.com
-Cc: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
-Subject: [PATCH v3 2/2] drm/panel: jd9365da: Modify the init code of Melfas
-Date: Wed,  7 Aug 2024 18:04:29 +0800
-Message-Id: <20240807100429.13260-3-lvzhaoxiong@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20240807100429.13260-1-lvzhaoxiong@huaqin.corp-partner.google.com>
-References: <20240807100429.13260-1-lvzhaoxiong@huaqin.corp-partner.google.com>
+	s=arc-20240116; t=1723025416; c=relaxed/simple;
+	bh=3geILOQKguehSc6CHYFbtZK9lmxQOnTTa3CMyswIst4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=QfLrY3GQ4Uka9aykRWFuoP73fzYsez9Q5avIKEBtP1QBZo5OlExY1Q65OdY7a74vxgUDnlWm2McnJRzfvCugZbxO9A2hnYop8cLSsgo3J++2utPRHKIonoKfQz5jOYGfoukGh5zNGjAvjAUzd86dG5kLSbzw87urV2sabGQAvew=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=TUPmhRdW; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 7C0821BF203;
+	Wed,  7 Aug 2024 10:09:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1723025403;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=k5BGqJI/ev/belov1hsrruBFGrYZxU1Unm6iwJDXADo=;
+	b=TUPmhRdWjO9JNhnOiRGL61xQIzPr5WsceG2EwvtaTxyj8uRQI95g+daK4eu9DM/BqXSzkK
+	8YNzgK3ImrLELTqobMwZ/7xfMMBl6IFDXVPea6GvQP1qbhCHCdSQz47hWiYHt8v01wasRY
+	rpWo2J0qeMP0Vm7L4lv4eMnRdSe5tz26dB7dL6Hs8hGtkQ2Dpdigm7AhZIAriO7AUQOX5A
+	jCYfHm2gS+/o+Od7CegM/vgVVOCdlKaneFthnJMxnu4l90ya2cMtx8lJPk9zFz/psPQVvc
+	9jH5QhFLfBwlPgLTYF8Ufg8xQzJOxvngmPLExruVRGcVqdLvMB1Pfv7l2G6ThQ==
+Date: Wed, 7 Aug 2024 12:09:56 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Simon Horman
+ <horms@kernel.org>, Lee Jones <lee@kernel.org>, Arnd Bergmann
+ <arnd@arndb.de>, Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
+ <dragan.cvetic@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Philipp Zabel
+ <p.zabel@pengutronix.de>, Lars Povlsen <lars.povlsen@microchip.com>, Steen
+ Hegelund <Steen.Hegelund@microchip.com>, Daniel Machon
+ <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, Rob Herring
+ <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, "David S.
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
+ Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Horatiu Vultur
+ <horatiu.vultur@microchip.com>, Andrew Lunn <andrew@lunn.ch>,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v4 1/8] misc: Add support for LAN966x PCI device
+Message-ID: <20240807120956.30c8264e@bootlin.com>
+In-Reply-To: <CAHp75VdtFET87R9DZbz27vEeyv4K5bn7mxDCnBVdpFVJ=j6qtg@mail.gmail.com>
+References: <20240805101725.93947-1-herve.codina@bootlin.com>
+	<20240805101725.93947-2-herve.codina@bootlin.com>
+	<CAHp75VdtFET87R9DZbz27vEeyv4K5bn7mxDCnBVdpFVJ=j6qtg@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-Modify the Melfas panel init code to satisfy the gamma
-value of 2.2
+Hi Andy,
 
-Acked-by: Jessica Zhang <quic_jesszhan@quicinc.com>
-Signed-off-by: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
----
-Changes between V3 and V2:
--  1. No changed.
-v2: https://lore.kernel.org/all/20240806034015.11884-3-lvzhaoxiong@huaqin.corp-partner.google.com/
+On Mon, 5 Aug 2024 22:13:38 +0200
+Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 
-Changes between V2 and V1:
--  1. No changed.
-v1: https://lore.kernel.org/all/20240725083245.12253-3-lvzhaoxiong@huaqin.corp-partner.google.com/
----
- .../gpu/drm/panel/panel-jadard-jd9365da-h3.c  | 78 +++++++++----------
- 1 file changed, 39 insertions(+), 39 deletions(-)
+> On Mon, Aug 5, 2024 at 12:19 PM Herve Codina <herve.codina@bootlin.com> wrote:
+> >
+> > Add a PCI driver that handles the LAN966x PCI device using a device-tree
+> > overlay. This overlay is applied to the PCI device DT node and allows to
+> > describe components that are present in the device.
+> >
+> > The memory from the device-tree is remapped to the BAR memory thanks to
+> > "ranges" properties computed at runtime by the PCI core during the PCI
+> > enumeration.
+> >
+> > The PCI device itself acts as an interrupt controller and is used as the
+> > parent of the internal LAN966x interrupt controller to route the
+> > interrupts to the assigned PCI INTx interrupt.  
+> 
+> ...
+> 
+> + device.h
 
-diff --git a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c b/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
-index ce73e8cb1db5..44897e5218a6 100644
---- a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
-+++ b/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
-@@ -873,22 +873,22 @@ static int melfas_lmfbx101117480_init_cmds(struct jadard *jadard)
- 	jd9365da_switch_page(&dsi_ctx, 0x01);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x0c, 0x74);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x17, 0x00);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x18, 0xbf);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x19, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x18, 0xd7);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x19, 0x01);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x1a, 0x00);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x1b, 0xbf);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x1c, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x1b, 0xd7);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x1c, 0x01);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x1f, 0x70);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x20, 0x2d);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x21, 0x2d);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x22, 0x7e);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x24, 0xfe);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x24, 0xfd);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x37, 0x19);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x35, 0x28);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x38, 0x05);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x39, 0x08);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x3a, 0x12);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x3c, 0x78);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x3c, 0x7e);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x3d, 0xff);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x3e, 0xff);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x3f, 0x7f);
-@@ -899,47 +899,47 @@ static int melfas_lmfbx101117480_init_cmds(struct jadard *jadard)
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x0c, 0x74);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x55, 0x02);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x56, 0x01);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x57, 0x8e);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x57, 0x6a);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x58, 0x09);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x59, 0x0a);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x5a, 0x2e);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x5b, 0x1a);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x5c, 0x15);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x5d, 0x7f);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x5e, 0x69);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x5f, 0x59);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x60, 0x4e);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x61, 0x4c);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x62, 0x40);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x63, 0x45);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x64, 0x30);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x65, 0x4a);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x66, 0x49);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x67, 0x4a);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x68, 0x68);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x69, 0x57);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6a, 0x5b);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6b, 0x4e);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6c, 0x49);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x5d, 0x73);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x5e, 0x56);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x5f, 0x43);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x60, 0x38);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x61, 0x36);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x62, 0x28);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x63, 0x2f);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x64, 0x19);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x65, 0x32);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x66, 0x31);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x67, 0x31);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x68, 0x4f);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x69, 0x3e);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6a, 0x47);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6b, 0x36);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6c, 0x31);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6d, 0x24);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6e, 0x12);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x6f, 0x02);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x70, 0x7f);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x71, 0x69);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x72, 0x59);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x73, 0x4e);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x74, 0x4c);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x75, 0x40);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x76, 0x45);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x77, 0x30);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x78, 0x4a);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x79, 0x49);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x7a, 0x4a);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x7b, 0x68);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x7c, 0x57);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x7d, 0x5b);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x7e, 0x4e);
--	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x7f, 0x49);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x70, 0x73);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x71, 0x56);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x72, 0x43);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x73, 0x38);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x74, 0x36);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x75, 0x28);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x76, 0x2f);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x77, 0x19);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x78, 0x32);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x79, 0x31);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x7a, 0x31);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x7b, 0x4f);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x7c, 0x3e);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x7d, 0x47);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x7e, 0x36);
-+	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x7f, 0x31);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x80, 0x24);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x81, 0x12);
- 	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x82, 0x02);
--- 
-2.17.1
+Will be added.
 
+> 
+> > +#include <linux/irq.h>
+> > +#include <linux/irqdomain.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of_platform.h>  
+> 
+> > +#include <linux/pci.h>  
+> 
+> > +#include <linux/pci_ids.h>  
+> 
+> AFAIU pci_ids..h is guaranteed to be included by pci.h, but having it
+> here explicitly doesn't make it worse, so up to you.
+
+I will keep pci_ids.h
+
+> 
+> > +#include <linux/slab.h>  
+> 
+> ...
+> 
+> > +static irqreturn_t pci_dev_irq_handler(int irq, void *data)
+> > +{
+> > +       struct pci_dev_intr_ctrl *intr_ctrl = data;
+> > +       int ret;
+> > +
+> > +       ret = generic_handle_domain_irq(intr_ctrl->irq_domain, 0);
+> > +       return IRQ_RETVAL(!ret);  
+> 
+> Hmm... I dunno if it was me who suggested IRQ_RETVAL() here, but it
+> usually makes sense for the cases where ret is not inverted.
+> 
+> Perhaps
+> 
+>   if (ret)
+>     return NONE;
+>   return HANDLED;
+> 
+> is slightly better in this case?
+
+Right. I will use a more compact version:
+  return ret ? IRQ_NONE : IRQ_HANDLED;
+
+> 
+> > +}  
+> 
+> ...
+> 
+> > +static struct pci_dev_intr_ctrl *pci_dev_create_intr_ctrl(struct pci_dev *pdev)
+> > +{
+> > +       struct pci_dev_intr_ctrl *intr_ctrl;
+> > +       struct fwnode_handle *fwnode;
+> > +       int ret;  
+> 
+> > +       if (!pdev->irq)
+> > +               return ERR_PTR(-EOPNOTSUPP);  
+> 
+> Before even trying to get it via APIs? (see below as well)
+> Also, when is it possible to have 0 here?
+
+pdev->irq can be 0 if the PCI device did not request any IRQ
+(i.e. PCI_INTERRUPT_PIN in PCI config header is 0).
+
+I use that to check whether or not INTx is supported.
+
+Even if this code is present in the LAN966x PCI driver, it can be use as a
+starting point for other drivers and may be moved to a common part in the
+future.
+
+Do you think I should remove it ?
+
+If keeping it is fine, I will add a comment.
+
+> 
+> > +       fwnode = dev_fwnode(&pdev->dev);
+> > +       if (!fwnode)
+> > +               return ERR_PTR(-ENODEV);
+> > +
+> > +       intr_ctrl = kmalloc(sizeof(*intr_ctrl), GFP_KERNEL);  
+> 
+> Hmm... Why not use __free()?
+
+Well, just because I am not used to using __free() and I didn't think
+about it.
+
+I will use it in the next operation.
+
+> 
+> > +       if (!intr_ctrl)
+> > +               return ERR_PTR(-ENOMEM);
+> > +
+> > +       intr_ctrl->pci_dev = pdev;
+> > +
+> > +       intr_ctrl->irq_domain = irq_domain_create_linear(fwnode, 1, &pci_dev_irq_domain_ops,
+> > +                                                        intr_ctrl);
+> > +       if (!intr_ctrl->irq_domain) {
+> > +               pci_err(pdev, "Failed to create irqdomain\n");
+> > +               ret = -ENOMEM;
+> > +               goto err_free_intr_ctrl;
+> > +       }  
+> 
+> > +       ret = pci_alloc_irq_vectors(pdev, 1, 1, PCI_IRQ_INTX);
+> > +       if (ret < 0) {
+> > +               pci_err(pdev, "Unable alloc irq vector (%d)\n", ret);
+> > +               goto err_remove_domain;
+> > +       }  
+> 
+> I am wondering if you even need this in case you want solely INTx.
+
+I have the feeling that it is needed.
+pci_alloc_irq_vectors() will call pci_intx() which in turn enables INT
+clearing PCI_COMMAND_INTX_DISABLE flag in the PCI_COMMAND config word.
+
+> 
+> > +       intr_ctrl->irq = pci_irq_vector(pdev, 0);  
+> 
+> Don't remember documentation by heart for this, but the implementation
+> suggests that it can be called without the above for retrieving INTx.
+
+So, with the above said, I will keep both pci_alloc_irq_vectors() and
+pci_irq_vector() calls.
+
+> 
+> > +       ret = request_irq(intr_ctrl->irq, pci_dev_irq_handler, IRQF_SHARED,
+> > +                         dev_name(&pdev->dev), intr_ctrl);  
+> 
+> pci_name() ? (IIRC the macro name)
+
+Indeed, will be changed.
+
+> 
+> > +       if (ret) {
+> > +               pci_err(pdev, "Unable to request irq %d (%d)\n", intr_ctrl->irq, ret);
+> > +               goto err_free_irq_vector;
+> > +       }
+> > +
+> > +       return intr_ctrl;
+> > +
+> > +err_free_irq_vector:
+> > +       pci_free_irq_vectors(pdev);
+> > +err_remove_domain:
+> > +       irq_domain_remove(intr_ctrl->irq_domain);
+> > +err_free_intr_ctrl:
+> > +       kfree(intr_ctrl);
+> > +       return ERR_PTR(ret);
+> > +}  
+> 
+> ...
+> 
+> > +static void devm_pci_dev_remove_intr_ctrl(void *data)
+> > +{  
+> 
+> > +       struct pci_dev_intr_ctrl *intr_ctrl = data;  
+> 
+> It can be eliminated
+> 
+> static void devm_pci_...(void *intr_ctrl)
+
+I will update.
+
+> 
+> > +       pci_dev_remove_intr_ctrl(intr_ctrl);
+> > +}  
+> 
+> ...
+> 
+> > +static int lan966x_pci_load_overlay(struct lan966x_pci *data)
+> > +{
+> > +       u32 dtbo_size = __dtbo_lan966x_pci_end - __dtbo_lan966x_pci_begin;
+> > +       void *dtbo_start = __dtbo_lan966x_pci_begin;
+> > +       int ret;
+> > +
+> > +       ret = of_overlay_fdt_apply(dtbo_start, dtbo_size, &data->ovcs_id, dev_of_node(data->dev));
+> > +       if (ret)
+> > +               return ret;
+> > +
+> > +       return 0;  
+> 
+> return of_overlay_fdt_apply() ?
+
+Yes indeed.
+
+> 
+> > +}  
+> 
+> ...
+> 
+> > +static int lan966x_pci_probe(struct pci_dev *pdev, const struct pci_device_id *id)
+> > +{
+> > +       struct device *dev = &pdev->dev;
+> > +       struct lan966x_pci *data;
+> > +       int ret;
+> > +
+> > +       /*
+> > +        * On ACPI system, fwnode can point to the ACPI node.
+> > +        * This driver needs an of_node to be used as the device-tree overlay
+> > +        * target. This of_node should be set by the PCI core if it succeeds in
+> > +        * creating it (CONFIG_PCI_DYNAMIC_OF_NODES feature).
+> > +        * Check here for the validity of this of_node.
+> > +        */
+> > +       if (!dev_of_node(dev)) {  
+> 
+> > +               dev_err(dev, "Missing of_node for device\n");
+> > +               return -EINVAL;  
+> 
+> return dev_err_probe() ?
+
+Yes, I will update.
+
+> 
+> > +       }
+> > +
+> > +       /* Need to be done before devm_pci_dev_create_intr_ctrl.
+> > +        * It allocates an IRQ and so pdev->irq is updated.
+> > +        */
+> > +       ret = pcim_enable_device(pdev);
+> > +       if (ret)
+> > +               return ret;
+> > +
+> > +       ret = devm_pci_dev_create_intr_ctrl(pdev);
+> > +       if (ret)
+> > +               return ret;
+> > +
+> > +       data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+> > +       if (!data)
+> > +               return -ENOMEM;
+> > +
+> > +       pci_set_drvdata(pdev, data);
+> > +       data->dev = dev;
+> > +
+> > +       ret = lan966x_pci_load_overlay(data);
+> > +       if (ret)
+> > +               return ret;
+> > +
+> > +       pci_set_master(pdev);
+> > +
+> > +       ret = of_platform_default_populate(dev_of_node(dev), NULL, dev);
+> > +       if (ret)
+> > +               goto err_unload_overlay;
+> > +
+> > +       return 0;
+> > +
+> > +err_unload_overlay:
+> > +       lan966x_pci_unload_overlay(data);
+> > +       return ret;
+> > +}  
+> 
+> ...
+> 
+> > +#include <dt-bindings/clock/microchip,lan966x.h>
+> > +#include <dt-bindings/interrupt-controller/irq.h>
+> > +#include <dt-bindings/mfd/atmel-flexcom.h>
+> > +#include <dt-bindings/phy/phy-lan966x-serdes.h>  
+> 
+> > +#include <dt-bindings/gpio/gpio.h>  
+> 
+> Alphabetical order?
+
+Yes indeed.
+
+Thanks for the review.
+
+Best regards,
+Hervé
 
