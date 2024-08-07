@@ -1,96 +1,89 @@
-Return-Path: <devicetree+bounces-91783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0431894A964
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 16:07:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A32EA94A97E
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 16:10:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC4E92898DB
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 14:07:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 632E9284FBE
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 14:10:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A8172209B;
-	Wed,  7 Aug 2024 14:07:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 229842C69B;
+	Wed,  7 Aug 2024 14:10:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HdAZwuvp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B+DI1AyP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E42E21DDEB;
-	Wed,  7 Aug 2024 14:07:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA19A2BD0D;
+	Wed,  7 Aug 2024 14:10:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723039642; cv=none; b=j9INneCU9J8QYD8mdc18bTBFEswdT6+9rNhAsV0VJxZL8AeVWYHvpJOvK1TuHOaEzLdltH6pbWQs987t5mA+G0Q4lDg71HKmaEm3h7ZA0TPX3BsLaqGJNXSn+ifwxwKz6JALPclHeL/BSjHb7K191W9R6999pNMJt/CZJTuSPfs=
+	t=1723039811; cv=none; b=qZ5pvaObxp47PyKAtB9Ls6gSVM9H5vDDIzEUUC5eApmpi0k/U3Q/lRV8B/+K8Xt7TbvswXAXeMBC+bs6aDNXtcEvTqmcYCRKKK3U17rXWNl3n5U1YRY7Ln4qv3xTzMyWwsC4QvjgiEdzhV+T1FYULqlH3DUluNNEXH5gEC4MqeI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723039642; c=relaxed/simple;
-	bh=qqVeEqsrCcmewoP0WAXwDudKGHI90bIbM4RAK2gdd24=;
+	s=arc-20240116; t=1723039811; c=relaxed/simple;
+	bh=gPUG1/VZTWeXA9NVBdYdXwFhDcEr6wqbJist1704D94=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=W0NsuaCZz/e4+NyP9eklOanP5YeWGi1CqV9TpNF9UXb1BErLZujiInZhCyIVn/iTQlE268Jfp/ebsbBLfX9YdHqun3BudlRjav/Wkr9Z9d8ONJYxGlxUd1k5YZBxkw1j6XOAGuK2Lsh5qDUBoVTVvsQyHzIXp/MSv9EhyJj/5ZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HdAZwuvp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 817F3C32782;
-	Wed,  7 Aug 2024 14:07:21 +0000 (UTC)
+	 To:Cc:Content-Type; b=NVRBHRHazljT95L8BMnYGjqLQt3n4onumwauQcXoQn1thzS8+UZmDdQZkPXQubtHCyJZy1+LVkBuz1VAcRoOJGgU/30uSFXVmsOzST0m9QkcuWPx2tBsgJHOa4lYZzx08y0zIn+HII0maoQEIjpCQbvyOObzJFuAxKPxw1JbBHM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B+DI1AyP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A41A0C4AF0B;
+	Wed,  7 Aug 2024 14:10:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723039641;
-	bh=qqVeEqsrCcmewoP0WAXwDudKGHI90bIbM4RAK2gdd24=;
+	s=k20201202; t=1723039810;
+	bh=gPUG1/VZTWeXA9NVBdYdXwFhDcEr6wqbJist1704D94=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=HdAZwuvpa4sb5B1IHztgfoeL4x3eIKZeKQpX5IljSs0sy5q8EFq63LXbymXu1KI4M
-	 DVL4UCGMBnOZJUG64DxDSCAIR5ert7tw5FpZjGS4Ecwo2lqOmC7MB21nX4MOxF3qwC
-	 t7oXdKnOcZCN7Din1O3kTX7AkQRbXZXHMEFylSS+9meXOScZyc/VsdonaZnpQFKf+/
-	 YA73jam/UsGFOrlSujiG/hUx2WfWw0kVlA8xu9anGNXicMnReJAcHrlPEhBCzR0JOV
-	 So6dymUQBn8yjAYlqVhhhIFmUJWvTnEvsF62GOpgeGnynNchxCNkaIPLupvH/RePOb
-	 CT4l7iJ67GhHg==
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2f149845d81so22751951fa.0;
-        Wed, 07 Aug 2024 07:07:21 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXuLYaSGPTB+N2aSatxKmxHD2skntdEmpX7cBkpsccJapjlcqe9qskOS/UJU9TADGI98iBNGO4TXzvJ1CUY/ZR+yzRX4bOU8dyTQ+mB7l8gOOT00Ia2uRb1DfiRr5J2eA/4tgezSSn4xw==
-X-Gm-Message-State: AOJu0YzjW8/6dReaCBwcYeiL1SEOTNL2fbQ9KcuUQXLzMvh6J7ShDGAw
-	qRLv/2G8PxYPSuhEQv0ucIAQirp0C5aLK7g1i3tTmv3BzKQ7ZV4VTeqUgNySL/cSXwphiSFA+Ms
-	Na75SPM4c5SgpacsrwXyE9IXybg==
-X-Google-Smtp-Source: AGHT+IHpozyU0Z7FIdFJ3BGe4HpmfanDVWMyyT/fY2I/p1GVhPRMBH1xX2J/1J+ECmDTGp5KVYzIy3jUTUZ6BPeGjAE=
-X-Received: by 2002:a2e:8015:0:b0:2ec:54ec:1741 with SMTP id
- 38308e7fff4ca-2f15aa99206mr112138211fa.18.1723039639802; Wed, 07 Aug 2024
- 07:07:19 -0700 (PDT)
+	b=B+DI1AyPB53oW/pt0wzjhCpXn1Ptjw5ADybm/+TCvgupX6l05YwAY2Widg1KYz+pv
+	 xBeVHXWf70iX9phW8BeMcukDV4BvDZTn8Nv9udVMWFYfbp+QKgQgMq9VEqQxkqKX8I
+	 rhAMWQJNTvV69b9rQL/8H+enwrUj/NNKQOGFpNTLc6hivnRHelNzHQQ7w5ZvbDGcOA
+	 P/QXKl/F9zyI1+KgoeNGwL2/94gt6tLLcr5vGhjC04R0MKDhQmh88NsvPL96hJvruz
+	 yIzSBBMwrUGIyxNyG2opmUOL2k46FDTNBctZUWtYzzIq01f6QMABd9Bph3JoFbfXEv
+	 1t8XycWmQDzkg==
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2f032cb782dso17340091fa.3;
+        Wed, 07 Aug 2024 07:10:10 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWb5LrQu0VW4P+sfp3scoAHgiXMTE4tVXMxPPOWGwMfaEiEGWA8/OaIx5SseCngW+em3uNUbb9g4UO9/jFBv4jcTvwVC8zcOFyYFTVUx0lf/BVfBOM8TQxanXFwzVEk0Lzu4ge8/9rpOg==
+X-Gm-Message-State: AOJu0YwRbiB0iL4u3HPNcUQ712Zd3mJPimizhZFCRvICj0GN7AYi+Krk
+	gezd7wgCw+N50NWrEq9+vZwYp//r+wDWl/I1n67zx5OnGm0U2BApV87eC9Cjg8go5B156BU1Bkk
+	1vp2lFKJ0qzNtU5a8gkMa7uYPOw==
+X-Google-Smtp-Source: AGHT+IG/CdqHXL/y15Zm006Q+Vwf6hbCGoS9C7TZuoSQlOw+gCC2V6nSn1RNbxdYOcoMYEz/7YKlIwgt4VGLe2RmynU=
+X-Received: by 2002:a2e:9dc8:0:b0:2ef:3347:ee93 with SMTP id
+ 38308e7fff4ca-2f15ab39668mr133431111fa.44.1723039809037; Wed, 07 Aug 2024
+ 07:10:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240807120153.1208858-2-stefan.wiehler@nokia.com>
-In-Reply-To: <20240807120153.1208858-2-stefan.wiehler@nokia.com>
+References: <20240807134032.1364503-2-stefan.wiehler@nokia.com>
+In-Reply-To: <20240807134032.1364503-2-stefan.wiehler@nokia.com>
 From: Rob Herring <robh@kernel.org>
-Date: Wed, 7 Aug 2024 08:07:07 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLciDTxfeKwuNNWEOZjrUDFp9g7ZAzTuY4nQ1GCwPmaow@mail.gmail.com>
-Message-ID: <CAL_JsqLciDTxfeKwuNNWEOZjrUDFp9g7ZAzTuY4nQ1GCwPmaow@mail.gmail.com>
-Subject: Re: [PATCH] of/irq: Consider device address size in interrupt map walk
+Date: Wed, 7 Aug 2024 08:09:56 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKAotOxj59Hb-MbmXuaOq-kZaCxOn-wEQbz5h46MDj2nw@mail.gmail.com>
+Message-ID: <CAL_JsqKAotOxj59Hb-MbmXuaOq-kZaCxOn-wEQbz5h46MDj2nw@mail.gmail.com>
+Subject: Re: [PATCH v2] of/irq: Consider device address size in interrupt map walk
 To: Stefan Wiehler <stefan.wiehler@nokia.com>
 Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Aug 7, 2024 at 6:04=E2=80=AFAM Stefan Wiehler <stefan.wiehler@nokia=
+On Wed, Aug 7, 2024 at 7:45=E2=80=AFAM Stefan Wiehler <stefan.wiehler@nokia=
 .com> wrote:
 >
 > When of_irq_parse_raw() is invoked with a device address smaller than
 > the interrupt parent node (from #address-cells property), KASAN detects
 > the following out-of-bounds read when populating the initial match table
 > (dyndbg=3D"func of_irq_parse_* +p"):
-
-You've missed a bunch of people/lists. Use get_maintainers.pl.
-
+>
 >   OF: of_irq_parse_one: dev=3D/soc@0/picasso/watchdog, index=3D0
 >   OF:  parent=3D/soc@0/pci@878000000000/gpio0@17,0, intsize=3D2
 >   OF:  intspec=3D4
 >   OF: of_irq_parse_raw: ipar=3D/soc@0/pci@878000000000/gpio0@17,0, size=
 =3D2
 >   OF:  -> addrsize=3D3
-
-Can you provide some details on what these nodes look like. The
-interrupt provider to an SoC device is a PCI device? That's weird...
-
-
 >   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
@@ -99,10 +92,6 @@ interrupt provider to an SoC device is a PCI device? That's weird...
 >
 >   CPU: 1 PID: 764 Comm: bash Tainted: G           O       6.1.67-484c6135=
 61-nokia_sm_arm64 #1
-
-Note that of_irq_parse_raw() was refactored in 6.10, so your patch is
-not going to apply.
-
 >   Hardware name: Unknown Unknown Product/Unknown Product, BIOS 2023.01-12=
 .24.03-dirty 01/01/2023
 >   Call trace:
@@ -126,10 +115,6 @@ not going to apply.
 >    __of_changeset_entry_notify+0x1b8/0x230
 >    __of_changeset_apply_notify+0x54/0xe4
 >    of_overlay_fdt_apply+0xc04/0xd94
-
-I wonder if it is possible for KASAN to detect this if it is a base DT
-given the allocation is done by memblock.
-
 >    ...
 >
 >   The buggy address belongs to the object at ffffff81beca5600
@@ -162,41 +147,10 @@ dex:0x0 pfn:0x1beca4
 >
 > Signed-off-by: Stefan Wiehler <stefan.wiehler@nokia.com>
 > ---
->  arch/powerpc/platforms/fsl_uli1575.c |  2 +-
->  drivers/bcma/main.c                  |  2 +-
->  drivers/of/irq.c                     | 64 ++++++++++++++++------------
->  drivers/pci/of.c                     |  2 +-
->  include/linux/of_irq.h               |  3 +-
->  5 files changed, 41 insertions(+), 32 deletions(-)
->
-> diff --git a/arch/powerpc/platforms/fsl_uli1575.c b/arch/powerpc/platform=
-s/fsl_uli1575.c
-> index b8d37a9932f1b..8da36f72b7b48 100644
-> --- a/arch/powerpc/platforms/fsl_uli1575.c
-> +++ b/arch/powerpc/platforms/fsl_uli1575.c
-> @@ -335,7 +335,7 @@ static void hpcd_final_uli5288(struct pci_dev *dev)
->         oirq.args_count =3D 1;
->         laddr[0] =3D (hose->first_busno << 16) | (PCI_DEVFN(31, 0) << 8);
->         laddr[1] =3D laddr[2] =3D 0;
-> -       of_irq_parse_raw(laddr, &oirq);
-> +       of_irq_parse_raw(laddr, ARRAY_SIZE(laddr), &oirq);
+> - Fixed of_get_address_cells() open brace found by checkpatch
 
-That's not the right information to parse the address correctly. You
-would need the device's #address-cells. However, in most cases we
-don't really need to parse the address. The address is not really used
-except in cases where interrupt routing matches the bus and so there
-is only one size. That's effectively only PCI devices today. In that
-case, the address size would always be equal, and the code implicitly
-assumes that. It would be better if we could just detect when to use
-the address or not. I think we'd have to look at 'interrupt-map-mask'
-first to see whether or not to read the address cells. Or maybe we
-could detect when the interrupt parent is the device's parent node.
-Either way, this code is tricky and hard to change without breaking
-something.
-
-A simpler way to fix this is just always pass in an address buffer of
-3 cells to of_irq_parse_raw. You would just need to copy the cells in
-of_irq_parse_one() to a temporary buffer.
+Please don't send new versions right after the prior version. Give
+people a chance to review.
 
 Rob
 
