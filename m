@@ -1,137 +1,114 @@
-Return-Path: <devicetree+bounces-91845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFB0894AE7F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 18:57:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D66094AE81
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 18:59:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A6381F21F69
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 16:57:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 352161F220EE
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 16:59:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3510113A3F6;
-	Wed,  7 Aug 2024 16:57:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 401B913AD1D;
+	Wed,  7 Aug 2024 16:59:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gu6N9rJk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CspDVK3w"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AF1713A276;
-	Wed,  7 Aug 2024 16:57:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0862C13A3F6;
+	Wed,  7 Aug 2024 16:59:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723049844; cv=none; b=UzuNxcEpZrmIpFYamVC1TL7x+ZPpEFr7dbSMiorAFmBRKximJN9I0pmLgiPQ89pVixOnaaOVDhxOqw0x1Ad4UPU0zMygEh7IL+tPzwvqBXH8T6Zh7tpd47oaIUQ38pAQEWOIPxQGHkeeQGGH3XUkM2DtghS+9/FGQHeaYMkicNs=
+	t=1723049946; cv=none; b=QxR4oPKCeGR8KWPD/VlOv5YDzKZlAw+gJPz5lsqOAq+VTfLnM7SNAK9VudNdxUTfrh/MgXJ6rY24JEBXoPJQ4ZAG8NUIxY8EQTAyh/eWyhD86uMpcN/qJBaUMyb+2WzeJsyTOz/Y+Jyb8FQUVJ87tazNQCd0doNtr/ObNXjMKHY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723049844; c=relaxed/simple;
-	bh=keez4POY0NFqfBD0t3YaXqLe3R3SAlTbYgVCNpixHFQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ghqi8k8RCs3/IqpzL4ne5GFW6xdCE57fYG6V9GLpI7fbPZikSaR4T2Frwz3zS4CfndMFcvDbuAmyfgqf6sQ2DVP9AriHFCBi46AYEdOERXDcAU5fKYclbNoZYnOtQbwUojpKeOY4UOyFRzCQSlJM9UF8LcRlx/XpXtnwBavT+jU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gu6N9rJk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1F0EC4AF0D;
-	Wed,  7 Aug 2024 16:57:21 +0000 (UTC)
+	s=arc-20240116; t=1723049946; c=relaxed/simple;
+	bh=dPEdhycVTOguP7QecWh2DLLxhHRJ4mnqR6lRY3q91o8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oTjNWdSiCEt97R7Uh0yziv54LgHHNcb472XF29T8+7Z/TbnZskx4YtezFQbHNcSg8iH6VD80fgEKdO8mz9oCaLkKt52qmhi/EBmSMFbOhErcPiPTwX3lOmwVbsK8A0e2YPRBReSWpYSaI9pidZileKA+hCXkPibKlU1MlFVwylQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CspDVK3w; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 905B9C32781;
+	Wed,  7 Aug 2024 16:59:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723049843;
-	bh=keez4POY0NFqfBD0t3YaXqLe3R3SAlTbYgVCNpixHFQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Gu6N9rJkJRbawh/2fmcp0vsA3EX9rkdrUtetaKCcSrbWh6/NZX+4gFV3xKmSI8MbL
-	 b1THXUMijTPcCtVkEdEpw6GCRISQ1jcaWMmu92LQjMYDsvaI8eIgPTjlAhHx+y7rbk
-	 YtfaMIK4PBV6wNj87COY88sFm1+Uxdhl7Nq+6kva3V3YAU/5xSHjoLuhI5BgCYk2q0
-	 fPc03r9p0IYI3FfqXvk65qb0hDlXw3AQCRsIk65Fc92TFS0kx3D1BosQwg5O9Xpbgo
-	 mlJst4IVmhSv5Cp6PjOi1Yy5LUDvDBZxIuwZzregV+6I3RBGQAA0ez5ppCWzp5cBw/
-	 4LMES6mcjonmQ==
-Date: Wed, 7 Aug 2024 17:57:19 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH] dt-bindings: dma: fsl,imx-dma: Document the DMA clocks
-Message-ID: <20240807-error-robin-9290e918d6ac@spud>
-References: <20240807164654.53472-1-festevam@gmail.com>
+	s=k20201202; t=1723049945;
+	bh=dPEdhycVTOguP7QecWh2DLLxhHRJ4mnqR6lRY3q91o8=;
+	h=From:Subject:Date:To:Cc:From;
+	b=CspDVK3wd+jRFcuLGCeShKTTd8tY+e04zAx8Y9cxjm7jKJMSUg44wQnhtjROu6/Y6
+	 /D7lNY6r1PqQoRzZhLG6nWmSmy/Pqu4rZhF6WRn3ODgnQ0QRxg+QKPfDQUrfugKl7u
+	 K9Tlb8IFGi/MtHxGpaGUEf+YXaq55OCAKF3y2pKTNyhNwZwwSi+xgmwZ8yCTjOXAJX
+	 la1s0001V4ghioc4GvSuw5l+apgiVWv05qwX5vTvSI/SN1ltea01Uk6UsY8wl5kfML
+	 /RMzhwCRCPBb5pTesnTLCey0BLJNLuNQXNWbsu2nIMEgm05+vj5rE2TRxGuqCNxrWn
+	 7/rBQq/sct6aQ==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Subject: [PATCH 0/3] dt-bindings: Convert and move Mediatek clock syscons
+Date: Wed, 07 Aug 2024 10:58:52 -0600
+Message-Id: <20240807-dt-mediatek-clk-v1-0-e8d568abfd48@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="lKp0K71b96koTt/A"
-Content-Disposition: inline
-In-Reply-To: <20240807164654.53472-1-festevam@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMyns2YC/x3MQQqAIBBA0avIrBtQiYquEi0GHWuoLDQiiO6et
+ HyL/x/InIQz9OqBxJdk2WOBqRS4meLEKL4YrLa17nSL/sSNvdDJC7p1wc4EarhtApGDUh2Jg9z
+ /cRjf9wNnlYZBYQAAAA==
+To: Stephen Boyd <sboyd@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Chun-Jie Chen <chun-jie.chen@mediatek.com>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org
+X-Mailer: b4 0.15-dev
 
+This series converts all the Mediatek syscon bindings which are clock 
+controllers to DT schema format moving them to 'clock' directory. The 
+existing schemas in arm/mediatek/ which are clock and reset controllers 
+are also moved to 'clock' directory.
 
---lKp0K71b96koTt/A
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+Rob Herring (Arm) (3):
+      dt-bindings: clock: mediatek,apmixedsys: Fix "mediatek,mt6779-apmixed" compatible
+      dt-bindings: Move Mediatek clock controllers to "clock" directory
+      dt-bindings: clock: mediatek: Convert MediaTek clock syscons to schema
 
-On Wed, Aug 07, 2024 at 01:46:54PM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
->=20
-> Document the IPG and AHB clocks that are needed by the DMA hardware.
+ .../bindings/arm/mediatek/mediatek,bdpsys.txt      | 24 ------
+ .../bindings/arm/mediatek/mediatek,camsys.txt      | 24 ------
+ .../bindings/arm/mediatek/mediatek,imgsys.txt      | 30 -------
+ .../bindings/arm/mediatek/mediatek,ipesys.txt      | 22 -----
+ .../bindings/arm/mediatek/mediatek,ipu.txt         | 43 ----------
+ .../bindings/arm/mediatek/mediatek,jpgdecsys.txt   | 22 -----
+ .../bindings/arm/mediatek/mediatek,mcucfg.txt      | 23 ------
+ .../bindings/arm/mediatek/mediatek,mfgcfg.txt      | 25 ------
+ .../bindings/arm/mediatek/mediatek,mipi0a.txt      | 28 -------
+ .../bindings/arm/mediatek/mediatek,vcodecsys.txt   | 27 -------
+ .../bindings/arm/mediatek/mediatek,vdecsys.txt     | 29 -------
+ .../bindings/arm/mediatek/mediatek,vencltsys.txt   | 22 -----
+ .../bindings/arm/mediatek/mediatek,vencsys.txt     | 26 ------
+ .../bindings/clock/mediatek,apmixedsys.yaml        |  2 +-
+ .../{arm/mediatek => clock}/mediatek,infracfg.yaml |  2 +-
+ .../mediatek => clock}/mediatek,mt8186-clock.yaml  |  2 +-
+ .../mediatek,mt8186-sys-clock.yaml                 |  2 +-
+ .../mediatek => clock}/mediatek,mt8192-clock.yaml  |  2 +-
+ .../mediatek,mt8192-sys-clock.yaml                 |  2 +-
+ .../mediatek => clock}/mediatek,mt8195-clock.yaml  |  2 +-
+ .../mediatek,mt8195-sys-clock.yaml                 |  2 +-
+ .../{arm/mediatek => clock}/mediatek,pericfg.yaml  |  2 +-
+ .../devicetree/bindings/clock/mediatek,syscon.yaml | 93 ++++++++++++++++++++++
+ 23 files changed, 102 insertions(+), 354 deletions(-)
+---
+base-commit: 8400291e289ee6b2bf9779ff1c83a291501f017b
+change-id: 20240807-dt-mediatek-clk-81fa6e76faac
 
-Sure it is an ABI break, but these clocks should be required if they are
-"needed" by the hardware, no? Obviously the driver would need to
-tolerate the absence.
+Best regards,
+-- 
+Rob Herring (Arm) <robh@kernel.org>
 
->=20
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
->  .../devicetree/bindings/dma/fsl,imx-dma.yaml         | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/dma/fsl,imx-dma.yaml b/Doc=
-umentation/devicetree/bindings/dma/fsl,imx-dma.yaml
-> index 902a11f65be2..5cf80040565f 100644
-> --- a/Documentation/devicetree/bindings/dma/fsl,imx-dma.yaml
-> +++ b/Documentation/devicetree/bindings/dma/fsl,imx-dma.yaml
-> @@ -28,6 +28,14 @@ properties:
->        - description: DMA Error interrupt
->      minItems: 1
-> =20
-> +  clocks:
-> +    maxItems: 2
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ipg
-> +      - const: ahb
-> +
->    "#dma-cells":
->      const: 1
-> =20
-> @@ -47,10 +55,14 @@ additionalProperties: false
-> =20
->  examples:
->    - |
-> +    #include <dt-bindings/clock/imx27-clock.h>
-> +
->      dma-controller@10001000 {
->        compatible =3D "fsl,imx27-dma";
->        reg =3D <0x10001000 0x1000>;
->        interrupts =3D <32 33>;
->        #dma-cells =3D <1>;
->        dma-channels =3D <16>;
-> +      clocks =3D <&clks IMX27_CLK_DMA_IPG_GATE>, <&clks IMX27_CLK_DMA_AH=
-B_GATE>;
-> +      clock-names =3D "ipg", "ahb";
->      };
-> --=20
-> 2.34.1
->=20
-
---lKp0K71b96koTt/A
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrOnbwAKCRB4tDGHoIJi
-0uRNAP9cDOCh5Gq4ExBjJdkQjj/tCyZeKkR3LLTguUw1TrdVuQEAwcSR6iDdnXkY
-ZAIpLIU2izzg1n+9cggiSu+FoSxbtQc=
-=H0O/
------END PGP SIGNATURE-----
-
---lKp0K71b96koTt/A--
 
