@@ -1,478 +1,265 @@
-Return-Path: <devicetree+bounces-91542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF237949C82
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 01:59:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FF43949CC8
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 02:31:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2559D1F226B0
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2024 23:59:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6B34285017
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 00:31:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6D78171E64;
-	Tue,  6 Aug 2024 23:59:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFABABE6F;
+	Wed,  7 Aug 2024 00:31:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mSn98dhR"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="e+cXRFb/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com [209.85.222.50])
+Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE795166F14;
-	Tue,  6 Aug 2024 23:59:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5DB18C06
+	for <devicetree@vger.kernel.org>; Wed,  7 Aug 2024 00:31:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722988781; cv=none; b=kLpud/sEDU/rdPIbL0ixYAMQ2ALJ0MgUJlgLh3K0vweHL/07uTeAyZhwiT1yiBJlth7WcfH4vpi07CIX7cdqPmkxf5dAMEAACN2EJ9ALShir9LRX88YcKwIzGf+QuzIJQ5k1Ot0hwb9NOTLvKt7ECWF5TEGNL67G3Osrb+WlUqY=
+	t=1722990706; cv=none; b=eKmiiEb5SZogb+FL/jxUWXaiZ19WKEF6dDtFnF0ANnWqVvDhdemB24C2vPWaA0X8QPnxPgNpTSdP0nN0BXX2J7dzVqQowY0RmgEtE4gs3AKlUE/fejOBnvYxmJ1IXdqE1h+ORCisvcPr1CAqbKNNJU0brd3OSXC6HJE5kxif49Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722988781; c=relaxed/simple;
-	bh=F9HB9+gELoDqyMcQyAGicOaQXm4xa9A8ZvMVUU1d1UM=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SOKLou61iPLf9LZ4Avi0KKLQ5sgpAgydjhZq+60lymP6xIEjXsvAp2AwWUaFCOg/LOtE52iWGXrMly/WaBBmfCt5NhxnMSFTAmY1inV/xqeuBZutaWrIVvtl3dnUPlqn63DsrvKNrxCkUtNRfzXbKUQ3CEUsKe4xRWKU4BzDoxg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mSn98dhR; arc=none smtp.client-ip=209.85.222.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-826fee202d3so428134241.1;
-        Tue, 06 Aug 2024 16:59:39 -0700 (PDT)
+	s=arc-20240116; t=1722990706; c=relaxed/simple;
+	bh=hacy5mno4SE477aLGkms4pcURrshsIYaghRvD/Vlia0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Nox/Alpf2bUE894JW6W7IF9pWwDBLNOU6XaRzBj2sZJ2rlqYuzx2ABF0AtU31EhquTdl2Kocfl7IGljB60tjMHPJk0dX4d9baOs6uJWr8nfnZs9wEX/HaM3GkmpW3omHQ6UH9tDmDjux5xyw2N/0F+pK8vWJUb4HNmPDyGI1ejo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=e+cXRFb/; arc=none smtp.client-ip=209.85.166.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-io1-f43.google.com with SMTP id ca18e2360f4ac-81f83b14d65so50863839f.1
+        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2024 17:31:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1722988779; x=1723593579; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=nQWOJiq4ozSo6+WgyCWHII+hN/N61qd/MPUPQQGGWfI=;
-        b=mSn98dhRUMvae7MiSH4BRzuMVBAbFnCMms+xs3PJPljIT1UV9Q0jjTViK887DHGHDo
-         YA/PcO5hwMPZ5hjHXCjUyqknVwAAUmtIU2KJpla404F6o2zWUcZbXxQj3RURzWRcM9x4
-         lN5jUS+H/5G7VCe3k+arDjHY311xiOEcK9YMUlpuvort+XvzxhHTvqksMZEYxbA19Phr
-         sIwCXy07cVUaMKeycTYV7H0RoOI7oSWL4KfpR+I5zKPLMEQ4eJQIv7sJBMNnJCYx1orp
-         M4f+Qsdy9j+MrBUVW9Vp5vjR6IouoTTWXTIAWfJ5brm8GKF9esHNCAODLwHFKCDmHbP3
-         5PDA==
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1722990704; x=1723595504; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qmFKXoGZwfZnYgj1DayB62f8TZphYzJ75TSkCe5doRI=;
+        b=e+cXRFb/YrWWLjN7GaQXB3mWK/C5389WVlrhRBbEbANoX/oVg8SoMJj3NpgmS3MhAy
+         7x+8WzGyCCPFKFNSQGdL+EZLnkH0RgaTG9wQkwLRNJicBnQwKEHiKC0i9zl0Ez1Z3IhM
+         I70+TgGJMdkhxiy+WVh406lbsohT7v6rBxgAXm4/L9Mju3tX7a4zxFrdjspNZQTXj9K0
+         fmKq0nAAqvMwkbKZG+150SPk8hT+xjado7osER9Os/dLyZzL/NMnEmx/XCPl1g5yIRUy
+         HFEt2FPRW9BK/nnNgucZMaV91ed/D8WNZl3ePsCK9cMOFoz09hATWWeLnYXCSAIlOdrV
+         jDjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722988779; x=1723593579;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nQWOJiq4ozSo6+WgyCWHII+hN/N61qd/MPUPQQGGWfI=;
-        b=XM1w+pC9TBW5Ms05t9SkY9s4mNFykmEcsTJFaAcWs8tLbgumBHX7T150hPL62WrsW0
-         VhUE5z0EDlM9yHILiWiAiz6DgdLOwi5IgZcLSz9EjDJewI9uVpyw65hP+X8B/e5STEjf
-         ii7JcpKNwsOfJ66c5DkCAYqdbMGowgIWkXbGx6GPXUnt5uW+l8W205Et8Ym7q9DBYvtp
-         TvseJZ1ZVlT74oPB7CReC5BglRgu9Rhr37d6w7FBzvjCNd2Lmo1dlJz8thv2qaqCxByf
-         kUF/SPCex/+5YOixGwEXZCI+uvLXfQNEPiemRjaYOV2XMhHPWCu6bAe0DbqMq6FKrULg
-         VRSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUltT4iDgOzPLnHCBpfYs9rlAKiv8IxViYQK61S16PwxleSacYqal98AfxJQDBgA3kN4QgZYzdr4rskywxtPhCLEE3Sw4BWG5fMVNOaYRHXUWtKawApimap+2hM7iyOdU2tijGeSgeO/rWdytG0SmBY03GyfxTtky3GP25vpSxQ8FL/HQA4tnWNEKw2osZ+Pss6GdmemcpUfmiIWUKT6upkIw==
-X-Gm-Message-State: AOJu0YxMIYaBWvtGvcOZY3SbHuFgQm9SgAvhro9OlVRQDO0jd4igiixX
-	hdzPTIMsZVoQzif/8q/b0wcihfcwfraIeXIHJfIUASZd2KSq3xOA
-X-Google-Smtp-Source: AGHT+IGa7103L8yy46EmGZh4u7uNzn5KPBfIoZuhVegS84mQWii4UkKirqkrCuo1OhDv/tp0XjxNpw==
-X-Received: by 2002:a05:6102:cc8:b0:48f:461c:ab86 with SMTP id ada2fe7eead31-4945bde73admr23791103137.12.1722988778557;
-        Tue, 06 Aug 2024 16:59:38 -0700 (PDT)
-Received: from localhost ([2607:fea8:52a3:d200:324c:b818:b179:79b])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7a3785e57adsm8608085a.50.2024.08.06.16.59.37
+        d=1e100.net; s=20230601; t=1722990704; x=1723595504;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qmFKXoGZwfZnYgj1DayB62f8TZphYzJ75TSkCe5doRI=;
+        b=klPBdDXhMH+ee222VlOoJ1SRRY0u2O8iKNhvfDBpdBShS9g3gSvx+XNOQOKCm4WRHv
+         i72cHBlmBS2cmjpgDaJTdXu6/rAHd7tC8UasXLY4VZtgGI+/YFXBmL27L6GXJ/E12qJY
+         fHtQx4QlqypVJu5wfPx9PCfcKEzP9Z9hPdANI46lb0FYJ39uMe4yy48edNDoj5nGFH5V
+         FBugy6/TvrfKeq3DxXED78PL8wpwTehLi8XLm18try/ULaoXve4q0jEC+oXq96Tbtznm
+         CgngnBHYTljSZvYU+XLuXUrQK5Y5EUFaLuGFKCpIps7DKElvJrFb9kbn/qOaylk++GjL
+         le1Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWP9qIoJNZppUMNyf3kgrniQAEQ+GYV5pdKmlW/FRP+8+uX6auaeAJtGz4gx9BglkixFU4Jn1I8fRqa@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3+IFR4k8ZIr35idU03//peRCXqTvnoG80udiuOB/JWpm+sBLd
+	BOFuyHVz4kDkoMLtUdgi5+qqSOc5mPCGFxhvB4g+Bm5gco9gph26McA1PJ5IKXs=
+X-Google-Smtp-Source: AGHT+IGwwyszG0CNT0JAFMndi0eaSYc/oFh0VHN9tlAF+a5IcvBOCM39f9Fn28nQRfIlK5+QN9fOxw==
+X-Received: by 2002:a05:6e02:1d95:b0:380:f340:ad66 with SMTP id e9e14a558f8ab-39b1fc1348dmr227275905ab.26.1722990703557;
+        Tue, 06 Aug 2024 17:31:43 -0700 (PDT)
+Received: from charlie.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7b762e9f5aasm7476174a12.6.2024.08.06.17.31.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Aug 2024 16:59:38 -0700 (PDT)
-Date: Tue, 6 Aug 2024 19:59:36 -0400
-From: Richard Acayan <mailingradian@gmail.com>
-To: Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>,
-	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Todor Tomov <todor.too@gmail.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>, linux-i2c@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: media: camss: Add qcom,sdm670-camss
-Message-ID: <ZrK46EnInqP0oKBX@radian>
-References: <20240806224219.71623-7-mailingradian@gmail.com>
- <20240806224219.71623-9-mailingradian@gmail.com>
+        Tue, 06 Aug 2024 17:31:42 -0700 (PDT)
+From: Charlie Jenkins <charlie@rivosinc.com>
+Subject: [PATCH v9 00/13] riscv: Add support for xtheadvector
+Date: Tue, 06 Aug 2024 17:31:36 -0700
+Message-Id: <20240806-xtheadvector-v9-0-62a56d2da5d0@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240806224219.71623-9-mailingradian@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGjAsmYC/33Qu07EMBAF0F9ZuSZoxuMnFf+BKPwkLtigZGUtW
+ uXfcZaCYCLKsXzu9fjGljSXtLCn043NqZalTOc22IcTC6M7v6WhxDYzDlyAJBiulzG5WFO4TPN
+ giCJF1F5wYo18zCmX6z3u5bXNY1natc97esXt9DtIgf0dVHGAgXKSFqPOCPZ5LnVayjk8humdb
+ VmV7zx2D6m8eaudMArJRSUOPO1930/N+5zJJm+VMunAix+vgXdeNM99azYcokc88HLn//TL5oU
+ XRuago5T5wKud532/aj5YlwEJsgM48HrvRef1tr8WaBFcdHS0v/nPm60/gyBsn4ekO7+u6xcBr
+ rZ2awIAAA==
+To: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Jisheng Zhang <jszhang@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, 
+ Samuel Holland <samuel.holland@sifive.com>, 
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, 
+ Guo Ren <guoren@kernel.org>, Evan Green <evan@rivosinc.com>, 
+ Andy Chiu <andy.chiu@sifive.com>, Jessica Clarke <jrtc27@jrtc27.com>, 
+ Andrew Jones <ajones@ventanamicro.com>
+Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev, 
+ linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ Charlie Jenkins <charlie@rivosinc.com>, 
+ Conor Dooley <conor.dooley@microchip.com>, Heiko Stuebner <heiko@sntech.de>, 
+ Heiko Stuebner <heiko@sntech.de>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1722990701; l=7570;
+ i=charlie@rivosinc.com; s=20231120; h=from:subject:message-id;
+ bh=hacy5mno4SE477aLGkms4pcURrshsIYaghRvD/Vlia0=;
+ b=mmnaEmpUee/f4Zf0LA0h354GYefY/89ORkPfp6B4DMo6T3hYWyAIF/pw7KmSeXh5yT8xKbSbV
+ 8QG+nKQVY5MD8/770ix9gLM9OCS/0STHcw/61Gavj1L9vA8AG6oE7Q6
+X-Developer-Key: i=charlie@rivosinc.com; a=ed25519;
+ pk=t4RSWpMV1q5lf/NWIeR9z58bcje60/dbtxxmoSfBEcs=
 
-On Tue, Aug 06, 2024 at 06:42:23PM -0400, Richard Acayan wrote:
-> Add the camera subsystem for the Snapdragon 670.
->
-> Adapted from SC8280XP camera subsystem.
->
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> ---
->  .../bindings/media/qcom,sdm670-camss.yaml     | 353 ++++++++++++++++++
->  1 file changed, 353 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml
->
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml
-> new file mode 100644
-> index 000000000000..543fad1b5cd7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml
-> @@ -0,0 +1,353 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause)
+xtheadvector is a custom extension that is based upon riscv vector
+version 0.7.1 [1]. All of the vector routines have been modified to
+support this alternative vector version based upon whether xtheadvector
+was determined to be supported at boot.
 
-Oops, forgot to correct this.
+vlenb is not supported on the existing xtheadvector hardware, so a
+devicetree property thead,vlenb is added to provide the vlenb to Linux.
 
-Don't worry if you have read the bindings already. It can be used under
-BSD-2-Clause.
+There is a new hwprobe key RISCV_HWPROBE_KEY_VENDOR_EXT_THEAD_0 that is
+used to request which thead vendor extensions are supported on the
+current platform. This allows future vendors to allocate hwprobe keys
+for their vendor.
 
-> +
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/qcom,sdm670-camss.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm SDM670 Camera Subsystem (CAMSS)
-> +
-> +maintainers:
-> +  - Richard Acayan <mailingradian@gmail.com>
-> +
-> +description:
-> +  The CAMSS IP is a CSI decoder and ISP present on Qualcomm platforms.
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,sdm670-camss
-> +
-> +  clocks:
-> +    maxItems: 33
-> +
-> +  clock-names:
-> +    items:
-> +      - const: camnoc_axi
-> +      - const: cpas_ahb
-> +      - const: cphy_rx_src
-> +      - const: csi0
-> +      - const: csi0_src
-> +      - const: csi1
-> +      - const: csi1_src
-> +      - const: csi2
-> +      - const: csi2_src
-> +      - const: csiphy0
-> +      - const: csiphy0_timer
-> +      - const: csiphy0_timer_src
-> +      - const: csiphy1
-> +      - const: csiphy1_timer
-> +      - const: csiphy1_timer_src
-> +      - const: csiphy2
-> +      - const: csiphy2_timer
-> +      - const: csiphy2_timer_src
-> +      - const: gcc_camera_ahb
-> +      - const: gcc_camera_axi
-> +      - const: slow_ahb_src
-> +      - const: soc_ahb
-> +      - const: vfe0_axi
-> +      - const: vfe0
-> +      - const: vfe0_cphy_rx
-> +      - const: vfe0_src
-> +      - const: vfe1_axi
-> +      - const: vfe1
-> +      - const: vfe1_cphy_rx
-> +      - const: vfe1_src
-> +      - const: vfe_lite
-> +      - const: vfe_lite_cphy_rx
-> +      - const: vfe_lite_src
-> +
-> +  interrupts:
-> +    maxItems: 9
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: csid0
-> +      - const: csid1
-> +      - const: csid2
-> +      - const: csiphy0
-> +      - const: csiphy1
-> +      - const: csiphy2
-> +      - const: vfe0
-> +      - const: vfe1
-> +      - const: vfe_lite
-> +
-> +  iommus:
-> +    maxItems: 4
-> +
-> +  power-domains:
-> +    items:
-> +      - description: IFE0 GDSC - Image Front End, Global Distributed Switch Controller.
-> +      - description: IFE1 GDSC - Image Front End, Global Distributed Switch Controller.
-> +      - description: Titan Top GDSC - Titan ISP Block, Global Distributed Switch Controller.
-> +
-> +  power-domain-names:
-> +    items:
-> +      - const: ife0
-> +      - const: ife1
-> +      - const: top
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    description:
-> +      CSI input ports.
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description:
-> +          Input port for receiving CSI data from CSIPHY0.
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              clock-lanes:
-> +                maxItems: 1
-> +
-> +              data-lanes:
-> +                minItems: 1
-> +                maxItems: 4
-> +
-> +            required:
-> +              - clock-lanes
-> +              - data-lanes
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description:
-> +          Input port for receiving CSI data from CSIPHY1.
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              clock-lanes:
-> +                maxItems: 1
-> +
-> +              data-lanes:
-> +                minItems: 1
-> +                maxItems: 4
-> +
-> +            required:
-> +              - clock-lanes
-> +              - data-lanes
-> +
-> +      port@2:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description:
-> +          Input port for receiving CSI data from CSIPHY2.
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              clock-lanes:
-> +                maxItems: 1
-> +
-> +              data-lanes:
-> +                minItems: 1
-> +                maxItems: 4
-> +
-> +            required:
-> +              - clock-lanes
-> +              - data-lanes
-> +
-> +  reg:
-> +    maxItems: 9
-> +
-> +  reg-names:
-> +    items:
-> +      - const: csid0
-> +      - const: csid1
-> +      - const: csid2
-> +      - const: vfe0
-> +      - const: csiphy0
-> +      - const: vfe1
-> +      - const: csiphy1
-> +      - const: vfe_lite
-> +      - const: csiphy2
-> +
-> +  vdda-phy-supply:
-> +    description:
-> +      Phandle to a regulator supply to PHY core block.
-> +
-> +  vdda-pll-supply:
-> +    description:
-> +      Phandle to 1.8V regulator supply to PHY refclk pll block.
-> +
-> +required:
-> +  - clock-names
-> +  - clocks
-> +  - compatible
-> +  - interconnects
-> +  - interconnect-names
-> +  - interrupts
-> +  - interrupt-names
-> +  - iommus
-> +  - power-domains
-> +  - power-domain-names
-> +  - reg
-> +  - reg-names
-> +  - vdda-phy-supply
-> +  - vdda-pll-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
+Support for xtheadvector is also added to the vector kselftests.
 
-Include directives are missing and will be added next version.
+Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
 
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        camss {
-> +            compatible = "qcom,sdm670-camss";
-> +
-> +            reg = <0 0x0ac65000 0 0x1000>,
-> +                  <0 0x0ac66000 0 0x1000>,
-> +                  <0 0x0ac67000 0 0x1000>,
-> +                  <0 0x0acaf000 0 0x4000>,
-> +                  <0 0x0acb3000 0 0x1000>,
-> +                  <0 0x0acb6000 0 0x4000>,
-> +                  <0 0x0acba000 0 0x1000>,
-> +                  <0 0x0acc4000 0 0x4000>,
-> +                  <0 0x0acc8000 0 0x1000>;
-> +            reg-names = "csiphy0",
-> +                        "csiphy1",
-> +                        "csiphy2",
-> +                        "vfe0",
-> +                        "csid0",
-> +                        "vfe1",
-> +                        "csid1",
-> +                        "vfe_lite",
-> +                        "csid2";
-> +
-> +            interrupts = <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 477 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>;
-> +            interrupt-names = "csid0",
-> +                              "csid1",
-> +                              "csid2",
-> +                              "csiphy0",
-> +                              "csiphy1",
-> +                              "csiphy2",
-> +                              "vfe0",
-> +                              "vfe1",
-> +                              "vfe_lite";
-> +
-> +            clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-> +                     <&camcc CAM_CC_CPAS_AHB_CLK>,
-> +                     <&camcc CAM_CC_CPHY_RX_CLK_SRC>,
-> +                     <&camcc CAM_CC_IFE_0_CSID_CLK>,
-> +                     <&camcc CAM_CC_IFE_0_CSID_CLK_SRC>,
-> +                     <&camcc CAM_CC_IFE_1_CSID_CLK>,
-> +                     <&camcc CAM_CC_IFE_1_CSID_CLK_SRC>,
-> +                     <&camcc CAM_CC_IFE_LITE_CSID_CLK>,
-> +                     <&camcc CAM_CC_IFE_LITE_CSID_CLK_SRC>,
-> +                     <&camcc CAM_CC_CSIPHY0_CLK>,
-> +                     <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
-> +                     <&camcc CAM_CC_CSI0PHYTIMER_CLK_SRC>,
-> +                     <&camcc CAM_CC_CSIPHY1_CLK>,
-> +                     <&camcc CAM_CC_CSI1PHYTIMER_CLK>,
-> +                     <&camcc CAM_CC_CSI1PHYTIMER_CLK_SRC>,
-> +                     <&camcc CAM_CC_CSIPHY2_CLK>,
-> +                     <&camcc CAM_CC_CSI2PHYTIMER_CLK>,
-> +                     <&camcc CAM_CC_CSI2PHYTIMER_CLK_SRC>,
-> +                     <&gcc GCC_CAMERA_AHB_CLK>,
-> +                     <&gcc GCC_CAMERA_AXI_CLK>,
-> +                     <&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-> +                     <&camcc CAM_CC_SOC_AHB_CLK>,
-> +                     <&camcc CAM_CC_IFE_0_AXI_CLK>,
-> +                     <&camcc CAM_CC_IFE_0_CLK>,
-> +                     <&camcc CAM_CC_IFE_0_CPHY_RX_CLK>,
-> +                     <&camcc CAM_CC_IFE_0_CLK_SRC>,
-> +                     <&camcc CAM_CC_IFE_1_AXI_CLK>,
-> +                     <&camcc CAM_CC_IFE_1_CLK>,
-> +                     <&camcc CAM_CC_IFE_1_CPHY_RX_CLK>,
-> +                     <&camcc CAM_CC_IFE_1_CLK_SRC>,
-> +                     <&camcc CAM_CC_IFE_LITE_CLK>,
-> +                     <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>,
-> +                     <&camcc CAM_CC_IFE_LITE_CLK_SRC>;
-> +            clock-names = "camnoc_axi",
-> +                          "cpas_ahb",
-> +                          "cphy_rx_src",
-> +                          "csi0",
-> +                          "csi0_src",
-> +                          "csi1",
-> +                          "csi1_src",
-> +                          "csi2",
-> +                          "csi2_src",
-> +                          "csiphy0",
-> +                          "csiphy0_timer",
-> +                          "csiphy0_timer_src",
-> +                          "csiphy1",
-> +                          "csiphy1_timer",
-> +                          "csiphy1_timer_src",
-> +                          "csiphy2",
-> +                          "csiphy2_timer",
-> +                          "csiphy2_timer_src",
-> +                          "gcc_camera_ahb",
-> +                          "gcc_camera_axi",
-> +                          "slow_ahb_src",
-> +                          "soc_ahb",
-> +                          "vfe0_axi",
-> +                          "vfe0",
-> +                          "vfe0_cphy_rx",
-> +                          "vfe0_src",
-> +                          "vfe1_axi",
-> +                          "vfe1",
-> +                          "vfe1_cphy_rx",
-> +                          "vfe1_src",
-> +                          "vfe_lite",
-> +                          "vfe_lite_cphy_rx",
-> +                          "vfe_lite_src";
-> +
-> +            iommus = <&apps_smmu 0x808 0x0>,
-> +                     <&apps_smmu 0x810 0x8>,
-> +                     <&apps_smmu 0xc08 0x0>,
-> +                     <&apps_smmu 0xc10 0x8>;
-> +
-> +            power-domains = <&camcc IFE_0_GDSC>,
-> +                            <&camcc IFE_1_GDSC>,
-> +                            <&camcc TITAN_TOP_GDSC>;
-> +            power-domain-names = "ife0",
-> +                                 "ife1",
-> +                                 "top";
-> +
-> +            vdda-phy-supply = <&vreg_l1a_1p225>;
-> +            vdda-pll-supply = <&vreg_l8a_1p8>;
-> +
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                port@0 {
-> +                    reg = <0>;
-> +                    #address-cells = <1>;
-> +                    #size-cells = <0>;
-> +
-> +                    csiphy_ep0: endpoint {
-> +                        reg = <0>;
-> +                        clock-lanes = <7>;
-> +                        data-lanes = <0 1 2 3>;
-> +                        remote-endpoint = <&front_sensor_ep>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-> -- 
-> 2.46.0
->
+[1] https://github.com/T-head-Semi/thead-extension-spec/blob/95358cb2cca9489361c61d335e03d3134b14133f/xtheadvector.adoc
+
+---
+This series is a continuation of a different series that was fragmented
+into two other series in an attempt to get part of it merged in the 6.10
+merge window. The split-off series did not get merged due to a NAK on
+the series that added the generic riscv,vlenb devicetree entry. This
+series has converted riscv,vlenb to thead,vlenb to remedy this issue.
+
+The original series is titled "riscv: Support vendor extensions and
+xtheadvector" [3].
+
+The series titled "riscv: Extend cpufeature.c to detect vendor
+extensions" is still under development and this series is based on that
+series! [4]
+
+I have tested this with an Allwinner Nezha board. I ran into issues
+booting the board after 6.9-rc1 so I applied these patches to 6.8. There
+are a couple of minor merge conflicts that do arrise when doing that, so
+please let me know if you have been able to boot this board with a 6.9
+kernel. I used SkiffOS [1] to manage building the image, but upgraded
+the U-Boot version to Samuel Holland's more up-to-date version [2] and
+changed out the device tree used by U-Boot with the device trees that
+are present in upstream linux and this series. Thank you Samuel for all
+of the work you did to make this task possible.
+
+[1] https://github.com/skiffos/SkiffOS/tree/master/configs/allwinner/nezha
+[2] https://github.com/smaeul/u-boot/commit/2e89b706f5c956a70c989cd31665f1429e9a0b48
+[3] https://lore.kernel.org/all/20240503-dev-charlie-support_thead_vector_6_9-v6-0-cb7624e65d82@rivosinc.com/
+[4] https://lore.kernel.org/lkml/20240719-support_vendor_extensions-v3-4-0af7587bbec0@rivosinc.com/T/
+
+---
+Changes in v9:
+- Rebase onto palmer's for-next
+- Fix sparse error in arch/riscv/kernel/vendor_extensions/thead.c
+- Fix maybe-uninitialized warning in arch/riscv/include/asm/vendor_extensions/vendor_hwprobe.h
+- Wrap some long lines
+- Link to v8: https://lore.kernel.org/r/20240724-xtheadvector-v8-0-cf043168e137@rivosinc.com
+
+Changes in v8:
+- Rebase onto palmer's for-next
+- Link to v7: https://lore.kernel.org/r/20240724-xtheadvector-v7-0-b741910ada3e@rivosinc.com
+
+Changes in v7:
+- Add defs for has_xtheadvector_no_alternatives() and has_xtheadvector()
+  when vector disabled. (Palmer)
+- Link to v6: https://lore.kernel.org/r/20240722-xtheadvector-v6-0-c9af0130fa00@rivosinc.com
+
+Changes in v6:
+- Fix return type of is_vector_supported()/is_xthead_supported() to be bool
+- Link to v5: https://lore.kernel.org/r/20240719-xtheadvector-v5-0-4b485fc7d55f@rivosinc.com
+
+Changes in v5:
+- Rebase on for-next
+- Link to v4: https://lore.kernel.org/r/20240702-xtheadvector-v4-0-2bad6820db11@rivosinc.com
+
+Changes in v4:
+- Replace inline asm with C (Samuel)
+- Rename VCSRs to CSRs (Samuel)
+- Replace .insn directives with .4byte directives
+- Link to v3: https://lore.kernel.org/r/20240619-xtheadvector-v3-0-bff39eb9668e@rivosinc.com
+
+Changes in v3:
+- Add back Heiko's signed-off-by (Conor)
+- Mark RISCV_HWPROBE_KEY_VENDOR_EXT_THEAD_0 as a bitmask
+- Link to v2: https://lore.kernel.org/r/20240610-xtheadvector-v2-0-97a48613ad64@rivosinc.com
+
+Changes in v2:
+- Removed extraneous references to "riscv,vlenb" (Jess)
+- Moved declaration of "thead,vlenb" into cpus.yaml and added
+  restriction that it's only applicable to thead cores (Conor)
+- Check CONFIG_RISCV_ISA_XTHEADVECTOR instead of CONFIG_RISCV_ISA_V for
+  thead,vlenb (Jess)
+- Fix naming of hwprobe variables (Evan)
+- Link to v1: https://lore.kernel.org/r/20240609-xtheadvector-v1-0-3fe591d7f109@rivosinc.com
+
+---
+Charlie Jenkins (12):
+      dt-bindings: riscv: Add xtheadvector ISA extension description
+      dt-bindings: cpus: add a thead vlen register length property
+      riscv: dts: allwinner: Add xtheadvector to the D1/D1s devicetree
+      riscv: Add thead and xtheadvector as a vendor extension
+      riscv: vector: Use vlenb from DT for thead
+      riscv: csr: Add CSR encodings for CSR_VXRM/CSR_VXSAT
+      riscv: Add xtheadvector instruction definitions
+      riscv: vector: Support xtheadvector save/restore
+      riscv: hwprobe: Add thead vendor extension probing
+      riscv: hwprobe: Document thead vendor extensions and xtheadvector extension
+      selftests: riscv: Fix vector tests
+      selftests: riscv: Support xtheadvector in vector tests
+
+Heiko Stuebner (1):
+      RISC-V: define the elements of the VCSR vector CSR
+
+ Documentation/arch/riscv/hwprobe.rst               |  10 +
+ Documentation/devicetree/bindings/riscv/cpus.yaml  |  19 ++
+ .../devicetree/bindings/riscv/extensions.yaml      |  10 +
+ arch/riscv/Kconfig.vendor                          |  26 ++
+ arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi      |   3 +-
+ arch/riscv/include/asm/cpufeature.h                |   2 +
+ arch/riscv/include/asm/csr.h                       |  15 +
+ arch/riscv/include/asm/hwprobe.h                   |   3 +-
+ arch/riscv/include/asm/switch_to.h                 |   2 +-
+ arch/riscv/include/asm/vector.h                    | 225 +++++++++++----
+ arch/riscv/include/asm/vendor_extensions/thead.h   |  42 +++
+ .../include/asm/vendor_extensions/thead_hwprobe.h  |  19 ++
+ .../include/asm/vendor_extensions/vendor_hwprobe.h |  37 +++
+ arch/riscv/include/uapi/asm/hwprobe.h              |   3 +-
+ arch/riscv/include/uapi/asm/vendor/thead.h         |   3 +
+ arch/riscv/kernel/cpufeature.c                     |  52 +++-
+ arch/riscv/kernel/kernel_mode_vector.c             |   8 +-
+ arch/riscv/kernel/process.c                        |   4 +-
+ arch/riscv/kernel/signal.c                         |   6 +-
+ arch/riscv/kernel/sys_hwprobe.c                    |   5 +
+ arch/riscv/kernel/vector.c                         |  24 +-
+ arch/riscv/kernel/vendor_extensions.c              |  10 +
+ arch/riscv/kernel/vendor_extensions/Makefile       |   2 +
+ arch/riscv/kernel/vendor_extensions/thead.c        |  18 ++
+ .../riscv/kernel/vendor_extensions/thead_hwprobe.c |  19 ++
+ tools/testing/selftests/riscv/vector/.gitignore    |   3 +-
+ tools/testing/selftests/riscv/vector/Makefile      |  17 +-
+ .../selftests/riscv/vector/v_exec_initval_nolibc.c |  94 +++++++
+ tools/testing/selftests/riscv/vector/v_helpers.c   |  68 +++++
+ tools/testing/selftests/riscv/vector/v_helpers.h   |   8 +
+ tools/testing/selftests/riscv/vector/v_initval.c   |  22 ++
+ .../selftests/riscv/vector/v_initval_nolibc.c      |  68 -----
+ .../selftests/riscv/vector/vstate_exec_nolibc.c    |  20 +-
+ .../testing/selftests/riscv/vector/vstate_prctl.c  | 305 +++++++++++++--------
+ 34 files changed, 901 insertions(+), 271 deletions(-)
+---
+base-commit: 7c08a2615f149f64fb1bb4660997e152fb3a11a7
+change-id: 20240530-xtheadvector-833d3d17b423
+-- 
+- Charlie
+
 
