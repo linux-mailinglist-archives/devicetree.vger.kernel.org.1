@@ -1,265 +1,214 @@
-Return-Path: <devicetree+bounces-91566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85A11949DD8
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 04:38:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7838F949E7A
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 05:43:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A8AA1C220B7
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 02:38:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3372C281294
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 03:43:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC62D18FDD5;
-	Wed,  7 Aug 2024 02:38:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CB441991AF;
+	Wed,  7 Aug 2024 03:41:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lJxkG45l"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="0cI2Ws1u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2073.outbound.protection.outlook.com [40.107.92.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFEB62119
-	for <devicetree@vger.kernel.org>; Wed,  7 Aug 2024 02:38:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1722998316; cv=none; b=b8PzN3NSLLqfZ/pBgko9j3a6D7h0pCzixQDj+vfI1b92U6kRoSkmSvMJgfmFDbQx2DPMAhHXY5qiue5By+8VMny6QtMdRye78/bi581RLIoRmipPtQffxbIIvE78kxN1wGKnRub4ZQCVdHosj4ZZHtFhIxka0rJptEgkieWiMpc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1722998316; c=relaxed/simple;
-	bh=H53QfNZ8ujjLxAzVaZqiEMr4h97nSljQkNpQ18CRFWU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uuYfB47DzZMCduaQCYmvfRUiLy2FSleQ8IOGKlmNFMV9Jje9YOIBfQnGOtF6BoMOypnnQAShf+3OA86sNF3FNStZ0JDEeis60YozZwSv3lGZfx1FUrdHxxFvRGelBh/ScbJbb++oWAYgzFtINPuS2aZzt1o7wynuYBe+BD50vyY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lJxkG45l; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1fd65aaac27so3122315ad.1
-        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2024 19:38:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1722998313; x=1723603113; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=mtp3NbD/YqRvTh1X6hVLatX9/l1nLSm5GP8YfNboPug=;
-        b=lJxkG45lIFKYh/N4NzKcxRaZAjyrEB4KprPbgIiG56ZhT1JLenUC+9scfD/WBOyCwn
-         1FHzq2GwcbnzqWbVPAWFWEgKGe1G8Yoemyy8A69kZ4YE5LtxujOE2Vx3g50g4ZzaK3Tj
-         kcDWj6L4u6KwntHlBIaVRUusUXo9RjuEYGlucmEXWoancKqRMc6bXWDQEdP61B3Woplx
-         /cUpk6QTl4TcEgCx6eI7WftcTBPzhkon3RFuuQFhj8EsASb/w7W+0x1xfZyN3cT38GzU
-         ydT2NuMmzcHdnBloRkiUFab7Htzgho4sA4KuWGl58w687aLSR/xV25BxaboRV+MGpkcw
-         rq9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1722998313; x=1723603113;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mtp3NbD/YqRvTh1X6hVLatX9/l1nLSm5GP8YfNboPug=;
-        b=CzT5RWeKz0rzEwJi2+ZTV1/LKDdMncUzq4MCW2GAEs4Tj12viQJ/aKdVWkTAfy3JHm
-         R1QrPWGs1XsrKVseOqVCmYa2/nk6BnRtODY2fdvXQfUgd7GBsip9sAVpGy0gqi/NIq3V
-         gvVHslPuaHlxyZN3I+UNkxcJsAXLTYtwcWWFMcInVvhGQAZvmkWQtmFLeCMBol9Ci3Hi
-         +5wk0WNsLz/MlkuDQaWztqwgGg1rJMMFFd1gJzzjwOOyTayTBPHPpxAI1a9/UY5c8lNk
-         5ykeGWmsg+TmwEEyVnCPljpr8m/Ytq1VjeSPcZyFMpjAfyqjNlt6CB6cxJUM9arl24qF
-         fujg==
-X-Forwarded-Encrypted: i=1; AJvYcCWagdfHxfq29CzXLphgVTy2awtJ39TLfu5f8rT7WF+Bxtr3NCcHaYND3l5Iqtx1HAnjJ3nbQTnXqg9QJhftnE4XIipPr9YH5sSnVg==
-X-Gm-Message-State: AOJu0YxW+bsg0gGSF2AspMIc7EMrIg+T5khO+4Jwy3ju4upS/nG0/BON
-	i0Om3AX787MRJ2Nmv8E9yGwcZcFAra0Z+kc1IHrt0YRsB0uo6EU7uw3sbtaVKw==
-X-Google-Smtp-Source: AGHT+IEd1qQTRt9UOIknRR+fvi02G2idHTW2IbPzXHNTiCav0Sk5mM6ZKvmCfShwLcwTUuICmygZSg==
-X-Received: by 2002:a17:902:da8d:b0:1fc:5b81:729f with SMTP id d9443c01a7336-200855706cemr10944935ad.32.1722998313089;
-        Tue, 06 Aug 2024 19:38:33 -0700 (PDT)
-Received: from thinkpad ([120.60.72.69])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1ff58f29d37sm94937275ad.48.2024.08.06.19.38.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Aug 2024 19:38:32 -0700 (PDT)
-Date: Wed, 7 Aug 2024 08:08:14 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
-	devicetree@vger.kernel.org, Jason Liu <jason.hui.liu@nxp.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v8 00/11] PCI: imx6: Fix\rename\clean up and add lut
- information for imx95
-Message-ID: <20240807023814.GD3412@thinkpad>
-References: <20240729-pci2_upstream-v8-0-b68ee5ef2b4d@nxp.com>
- <ZrKIotkhvAnt87fX@lizhi-Precision-Tower-5810>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C26B419007F;
+	Wed,  7 Aug 2024 03:41:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.92.73
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723002090; cv=fail; b=Gbj/SbPOkRdb3yZseqAZOlZ3kdfFOdKj//bAtBhyfODwkHUTQL6gNnAz1QIBG5rkOTOnaC7IgSBdZ7PDLohVjBfGhhg33vwywERCIppjj+Ijk9b6qOwwHsKs9yitjJ0risRctlor5sxpR1x4Gwco+lR5GHJZClK5bGnX8s8utws=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723002090; c=relaxed/simple;
+	bh=igx0DvlPqotvjp4kfQfez3n+hFXNeGFlWk8cOxXnPj0=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=n0KYgy4/mK1bVFz9koBLYYUwAeTBZGql93We4l0xTu7PuBg1Gf5RTB6BGxkPHwK114NiJbxkl2s+InJ0TtLtS1bLyGa3xPQ2NPSBKWIlI9EDObCJ3caLhXWCIQofJLPBqnQgP/C7uxzS+CWi/jpiU5JNuNSJ1C5pOyt6OwadIPE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=0cI2Ws1u; arc=fail smtp.client-ip=40.107.92.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=U5L9MqjxM6chm9GfultvnnSCykqa1J1MR2930gzrr/yE77CNBnMuJf5Ow9/ycTRGWbkcftYjKkQ8ns6wKMaSbSu2U0rbrjLU95tXAacVgzd5lUw7RldQMur9jjyUgrAelByj7HDZ1JORLkUqfeMpQG4QIeQrOlj6c9r3iitgpOhTptH9xfNMAMQIQWu6UmR+GluHQt9Jx5WG77DRvC71NTxsbZR59uRT87rrC07e2PQsBDyQaCo889s9NXDKGITaF32Yw+YufHeXYHzmpfWjo8MxUzXB+P1K7QsGQvpOa0jRy8gDMxniILJ9fO5gMAt+16elXiRQcoiIhK0uJ9yo9Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=igx0DvlPqotvjp4kfQfez3n+hFXNeGFlWk8cOxXnPj0=;
+ b=EMri9o5JxKefnEjS1f2NRy5EwhVobHlhr5cWYs25mI4SJBSMHrXSo/gzGPbeHp3uZ3Bhpv5FpHQ2PGJrRb+GugGwyCgh/rXn8IafZPFgq9Ld52K0wHj9y3R5eXu+NbkOp6QURtwqOuQO5QDFwqqZCi78QS4g9BzyNNF/tYTl8EjWMF6J/39tEdj2OkrdRmM8An4b+Lg/KLuzCaHpA7J/abX0k82p1klOlNqBIOq5O1b3AyLBaUzP6b9UTZy2LBn+WOFoimXhoJyiP0Ex+ZoNSdSdCwKLKrj03ELQcjko7HQDPVcPUzqUNLF5n6Q2E/EJ8Uwz5N0Azfq6losDxUwiSw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=igx0DvlPqotvjp4kfQfez3n+hFXNeGFlWk8cOxXnPj0=;
+ b=0cI2Ws1uX0M5Wp9iO3tKyPb9VEX9QxGstSVh5rcP2ZNMJq1t+ca3y8cUyUiWQt0wygS5SHKpQ9874KXC2cbFRP5N5qUOpe7HC2wC95J0z4jxJR1QbiEGwvxwu9CccxuBlAGyVLcfCIFwzeEzWdpIxdtsvpiImhmKoVNDememCdbto/2qUPtDc+YHuPe+fIqicnoZaD5IDD4UIKRvporBw9z2Zsw3Y94uBI4UI/PbdLJUsV0WWtcMhTNbvccj+ZB6OZOsAJmF8oElly2O+2Fa2IpAnIg8WzQDZRZUpYIil/+nD2a5TWnXaCU1rhZivLZ3xhhZRG6zyUYxmP/HNCYBsg==
+Received: from PH7PR11MB8033.namprd11.prod.outlook.com (2603:10b6:510:246::12)
+ by IA0PR11MB7329.namprd11.prod.outlook.com (2603:10b6:208:437::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.26; Wed, 7 Aug
+ 2024 03:41:21 +0000
+Received: from PH7PR11MB8033.namprd11.prod.outlook.com
+ ([fe80::22a1:16dd:eea9:330c]) by PH7PR11MB8033.namprd11.prod.outlook.com
+ ([fe80::22a1:16dd:eea9:330c%6]) with mapi id 15.20.7828.023; Wed, 7 Aug 2024
+ 03:41:21 +0000
+From: <Arun.Ramadoss@microchip.com>
+To: <andrew@lunn.ch>, <olteanv@gmail.com>, <davem@davemloft.net>,
+	<linux@armlinux.org.uk>, <conor+dt@kernel.org>, <Woojung.Huh@microchip.com>,
+	<robh@kernel.org>, <krzk+dt@kernel.org>, <f.fainelli@gmail.com>,
+	<kuba@kernel.org>, <vtpieter@gmail.com>, <UNGLinuxDriver@microchip.com>,
+	<marex@denx.de>, <edumazet@google.com>, <pabeni@redhat.com>
+CC: <pieter.van.trappen@cern.ch>, <devicetree@vger.kernel.org>,
+	<netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next v3 5/5] net: dsa: microchip: apply KSZ87xx family
+ fixes wrt datasheet
+Thread-Topic: [PATCH net-next v3 5/5] net: dsa: microchip: apply KSZ87xx
+ family fixes wrt datasheet
+Thread-Index: AQHa6ASck13yR/To50SJYqVM3E2BjrIbJ/4A
+Date: Wed, 7 Aug 2024 03:41:21 +0000
+Message-ID: <0ebe8136f9d088fc9968e5438af5640382c024ac.camel@microchip.com>
+References: <20240806132606.1438953-1-vtpieter@gmail.com>
+	 <20240806132606.1438953-6-vtpieter@gmail.com>
+In-Reply-To: <20240806132606.1438953-6-vtpieter@gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+user-agent: Evolution 3.36.5-0ubuntu1 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH7PR11MB8033:EE_|IA0PR11MB7329:EE_
+x-ms-office365-filtering-correlation-id: dbec9b61-bb1c-4a09-8500-08dcb692cde1
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR11MB8033.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(38070700018)(921020);DIR:OUT;SFP:1101;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|1800799024|376014|7416014|38070700018|921020;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?QmVJeE1lY0tqZnNsZ1pGdFFVUWVUWk5jV0w5bE5rWGMzUjQxYkxoWWl6dzBu?=
+ =?utf-8?B?WFRXdG9UanFzTXozVFdLUUtxK3FmTWxDc2VVazVZckxERklETzYzZkNteVNz?=
+ =?utf-8?B?ZU14dVlsRWwxdW96MThTNnJhYk1jR3NBZTlodFo5ZksrWWxyWFJnQnRCdExj?=
+ =?utf-8?B?UWxPR2MrWDFBSmpvVmROaHoxVkhzNTMrWkg4cS9HbkhsS2VnRzV6OElEb3RQ?=
+ =?utf-8?B?ZU9od1p4SHdJQXdEcUduYXg2d2kwalI3OG1SRE5QUkdoU242cG9HMnRLbHlL?=
+ =?utf-8?B?Y2R0Z09GVjY5NmlMdjdxZGNMZmhld2xQay9heDZVeTRYemlhcUp1T2MzVmxi?=
+ =?utf-8?B?bW5henJqb01TdTFNU2J4b25VaFRVeXBoSnF0ODNtODEvcEFHOFJjd2tJRnhr?=
+ =?utf-8?B?cncza2dXRzBwTWpTL1pYY1EyWDJHMW1CRGI3dFVqcy96UUozR2hkWGZiRkE4?=
+ =?utf-8?B?K0JtV2NOSGNuUURSWkVKeUZzREpyd1Q4TGJHc2IvR2NKQ1BJZU5IUnVIUFZo?=
+ =?utf-8?B?UW1tRnNwQllLcnJkL2hPRGNSc3VodW5FS0plb00zaitnY0UzMkNqOUoySStV?=
+ =?utf-8?B?SUtrQVh2cXFib2JkaitjN1RTME83dHhmVVA5WFg3Njd4KzRmZzZjcFFUVGw4?=
+ =?utf-8?B?Njh6TFROdUttWXByVGZLVmxmTm5MdHdCaDkwd2pIcXZteUxhdzEwRC9JQUNU?=
+ =?utf-8?B?VjlEb2FReC9Vb2p4YVFFc2xTQjlTZUVZTFR0dWJxZXRQK0hGNHdqZmtTVnVu?=
+ =?utf-8?B?T2RKSTRickhYd0hvLzEzVUtQOW1ZbmVMcFZRVjRwaW1WSThyLy9keGcxSGJH?=
+ =?utf-8?B?U2w1aVV0ank4c3dDazdtL2FaYXYrbEZReHNQVjl3U1VtTlU1L1NqTTkrUEJK?=
+ =?utf-8?B?UmdaL3UwWTYvcTNnYXlrbzFDbVdYT3JOZnl5a0ZZSmlOM245OWFPanNEdVJB?=
+ =?utf-8?B?UGZ3cVpxa2RvTlpua2E0aG1aNTVlbllmRFFuK1NuSW1kc3VkTmMwSkVMKzdz?=
+ =?utf-8?B?NUg1RUoySFNFYjVZTFJJeUZTNjNMUkxwNFFPUW5ONFNtQWxaa1JqNnlpZmto?=
+ =?utf-8?B?N1p0TUJwK2lqRWpVRk5vUFUraWVwWUVVQVhLN2FqV3dORWQ5Q3JwRWZUbkFZ?=
+ =?utf-8?B?dytzWnJ6eVV5UGJPVjNTbGJkUlU0TFVVekpJbVBvc1BSd3RPZ244cDNqYnc4?=
+ =?utf-8?B?VC9zZkdwTjlMRWZ1OXNMSXhETjM0K1VKUzBXT1AvZVhZQkd0RGlJaldrak1r?=
+ =?utf-8?B?S0FxVjZEOFB3M0EzWGVrVHJsd0d4MDhVS1hkTmJrbk90WjZ4WnBwQlNtWGVL?=
+ =?utf-8?B?M0s5aHN2STRGM2ROWWJwT0xyQ2J3STUyTURvelpLNFhWdXRzeDJPcGY1bEg0?=
+ =?utf-8?B?UExIWmZzTnRORWRkUXhEaW1SaFR1NWExUVE5TGc3NVRMREtyNzVHUS8wWUc4?=
+ =?utf-8?B?NXI5Vnp3Nkh3Q2JwMi82SS9NaGJ0SW4weTRUSEJHL3BlT2xZVVZCeHBueW1p?=
+ =?utf-8?B?RFM5QU5rUnloT3J0WDN1SWJIb2NXaFE2MzUwallRY05qQ0RLcTFQMzJONGRG?=
+ =?utf-8?B?OEpjUHZ0UHZJU3RQcHRGK0w5SzQwWlFGaXRhd3BZVy9iZE9kcFRrZnAxK1pi?=
+ =?utf-8?B?Z0IxdFl1cTIvMWVsd1dLc3ZzWHRQeFc0OXRRNzVKaXZGOUsyaXNOT2JLQjEr?=
+ =?utf-8?B?WlFpM0JtN2prSGVocTV3ZGlYRWFtekNUa2RubVNMK3FSSGtTMU5Ma2piWXZG?=
+ =?utf-8?B?a1dydWNBYy9uNzhFK3BJeDdpVFRiNWpibjNheXR6UVJ2Y2xJRTREaCtjdDBu?=
+ =?utf-8?B?L1JnSkZKTzVITlVmZ2FWVm41TW56dHNQelhjcGJPNTRicnkzcW16SjlVS1cz?=
+ =?utf-8?B?TDJYLzIvNVJUZ0FZUWlGbUp2eGVjaFdIOTFBQWZDMUZkdlJvSmpzcjdFTzVT?=
+ =?utf-8?Q?jgYKomZPTgM=3D?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?WU5GQnRQaEM5SUsyTHFVZUJJTlowL0cwcEVTa0c2QzVGVXRYTk5hc295YnBR?=
+ =?utf-8?B?ODI5TFRQSlJBNmFyVndpVkYzajhMK0lCOWsrUDJsSHVJOEZGQ1hXendyYjBL?=
+ =?utf-8?B?cWduL2lEckwzb1ZWNmM1WmxSTzNmWkYyT3o4RXA5dmRuYUFlUzZBNVRteXNB?=
+ =?utf-8?B?SXF3N3o3YThFRG9hamZ6Um1aRzd2WHhCbGNta1VkN1IvSnNmOG9rNmhrSjdw?=
+ =?utf-8?B?T1ppMXRZdW5QTDM3cktBZ0ZBQm5rZ01TL2JVb0VuVUJHclVnTjVQam41bVdn?=
+ =?utf-8?B?R2dmdUlYdFY3QS9PMkt0N05TTEVTUzZFNWh3MEsrQXl0dVZVV2dUcTRPS04r?=
+ =?utf-8?B?N0Z3ZjVVSGtOM2lYUjgyaVZxNW04Y2J3dWpBa0VOK2N3RCtoOGk2NkdTWVdw?=
+ =?utf-8?B?Q1hremVQQTJWbm5lUkxnQXJSd2d5c2xOZ1dRL2JWcVVkSjBWTzIzYVpjbk5J?=
+ =?utf-8?B?Z05UdDZ0YkRramkydnV4andZalYxMDdHT3lSZHYzMWxPWWJYZFRlL05HQmdO?=
+ =?utf-8?B?U1hxOEQzeFBHa3pnZDhrK0djQ3Fpa2lURUkvNjdtOEluRTdDVmxEdjV0QlZO?=
+ =?utf-8?B?ZTRseG5GWnRSYzdya0RRZkFBazRvY2RLNlEwaWhWUkE2bjZyVEh3cUsvMTYv?=
+ =?utf-8?B?Rng1QWlDTGlvWTFYSENtbnk5S0RVL0VWZHh6ZHNybmY2cDlOaTZlU0VHdjFw?=
+ =?utf-8?B?elVaNFlJcmtRSjBGUy9JSUJyUHhXbkJRaEtMRGxjbjNmUk1Bem9KREpKRXBu?=
+ =?utf-8?B?ZWtoOHpnNm04a0ltZ0FBWUIzMDAvRDlqdHVqK2pEWEFTTm84cVlMYnRraGEr?=
+ =?utf-8?B?a0tKSXpnUXFNZ0FGSHVHblRuSUxPSEliNzNjRTBudEVJM2xud0lFTnhKZ3Mw?=
+ =?utf-8?B?aUNMTkdMak1yRXRqZW5zSUxlTEpmVWZZKzArMDFqbTluNGdkeklSY084dFla?=
+ =?utf-8?B?OWlzSy9GSFhYVXMrQXVPcUdvc1FLakQ0cFFueU9kYVBLYlpWTUFpWEVwQ3h5?=
+ =?utf-8?B?Sk4vMkRoNTN2U1BFUmpTVlJNWnBuNE4zdTkzNHZlcFFFTlUwN2U4WDlXRXFy?=
+ =?utf-8?B?bnZIYVd0NjZzVEplZE56ODhKWVpCa2Z0MHp0NGM0ampWMUNjUGVlbFJtMVF2?=
+ =?utf-8?B?VXdWcHFIamUwcUk5bWhmbjcxMGtKT2FjL0hZLzZPOHdQMGFaSjB6MjB0RjM1?=
+ =?utf-8?B?ZkVHYU5RRGpzZzQrTWNxVStjSkZnZDJXYTMvcUlDNW01aE81N3BjQXplMTBr?=
+ =?utf-8?B?VWdWakhZRFJpM3E5S05WbmVPeE56T0d2NUE5UlpTR09NS0NIZ0dDekxBczRs?=
+ =?utf-8?B?UHhFQmZETDZIVUtKaGo3M2U5RklBQUEzOVZZRTlDK1djajVnbGdUOTJHSitD?=
+ =?utf-8?B?dFovbkh5Ym8zN2VBZ2R0bndpNGFTU2R5QUY0UnUyRDh6WERDUU41MkRTTU1t?=
+ =?utf-8?B?bThEMXFza1g2TmtkQk0rQmdoWTZLa3FMc09HcmdYWGdoVEZtNjMvN1JIY0JU?=
+ =?utf-8?B?UjJnMHRvcm5GRmxRNzhIcGsyN2F1Y0tXNWVyOHVKRm9vYUxoYVNydWVnVXkz?=
+ =?utf-8?B?dzBaSk9Wb0xLdkVpbmx3MGQzWE80em1haU5rSjhKZ1E1YXhybWhlR0ZGVVFT?=
+ =?utf-8?B?Tnh6SjJaY0dQT3pMNmhiYnJ5K3o2dzVCREtqaHoyRCtnUjJmSGM3YnBBMDlj?=
+ =?utf-8?B?dDNUVVBSZU1hM09uaU1DU2ZiUk80UW5RUm9RUnN5RHFybFd3bXlmMGVBaGZi?=
+ =?utf-8?B?TFBGVzgvdjl5TnU5aDA1TkVXN0dFcjZzSHo1UFVNMnRhZzhZbFQ2OW1IVXE3?=
+ =?utf-8?B?UXdxS0RFcU5NU045cUFNVVB6K1h6OTlBODN6eFV1SnA2cU1OcUZxajBKa1Vi?=
+ =?utf-8?B?ZmJjcWF0S3h1WkErd203U0hyU3Aydi9vOFd1Z2tMaDhBbDdKeGI2SGg2VFBQ?=
+ =?utf-8?B?akJLc2JDZSs0NTBiZVBOYnJjMk5PTzVpSkVuMURUUHQzR0JPanJHd0JZY0xo?=
+ =?utf-8?B?YVdUUjRkOWU0VGNNNDVkNUFSMmF5VTQvK0luMGtFTkVxN0UvRFJMOE9ka0dv?=
+ =?utf-8?B?TURiUzUzbkx3d2dxeXhrOWlKcmZKaThScWtOUjJJc0JITjRMZFZjb1FraVov?=
+ =?utf-8?B?cFF3TlRtVEFJOGY3cTR6d3N2L3A1aEJKZVh2RVY4YnFOOCtnQVZoV3VwWThz?=
+ =?utf-8?B?a2c9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <F73D80FC54B30F4FB419A5EDE379219C@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZrKIotkhvAnt87fX@lizhi-Precision-Tower-5810>
+X-OriginatorOrg: microchip.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB8033.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dbec9b61-bb1c-4a09-8500-08dcb692cde1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Aug 2024 03:41:21.4826
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: VP6h1dLlywwzOmkzUm58BIDS/mB+PwMyvas3QvQwJhSzSNtlpbgGmPsk5a5rUy9eIMJovynHuSSukUhQ5qS3Skp2fnCa7Im5Dzy93SA1vVU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7329
 
-On Tue, Aug 06, 2024 at 04:33:38PM -0400, Frank Li wrote:
-> On Mon, Jul 29, 2024 at 04:18:07PM -0400, Frank Li wrote:
-> > Fixed 8mp EP mode problem.
-> >
-> > imx6 actaully for all imx chips (imx6*, imx7*, imx8*, imx9*). To avoid
-> > confuse, rename all imx6_* to imx_*, IMX6_* to IMX_*. pci-imx6.c to
-> > pci-imx.c to avoid confuse.
-> >
-> > Using callback to reduce switch case for core reset and refclk.
-> >
-> > Base on linux 6.11-rc1
-> >
-> > To: Richard Zhu <hongxing.zhu@nxp.com>
-> > To: Lucas Stach <l.stach@pengutronix.de>
-> > To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> > To: Krzysztof Wilczyński <kw@linux.com>
-> > To: Rob Herring <robh@kernel.org>
-> > To: Bjorn Helgaas <bhelgaas@google.com>
-> > To: Shawn Guo <shawnguo@kernel.org>
-> > To: Sascha Hauer <s.hauer@pengutronix.de>
-> > To: Pengutronix Kernel Team <kernel@pengutronix.de>
-> > To: Fabio Estevam <festevam@gmail.com>
-> > To: NXP Linux Team <linux-imx@nxp.com>
-> > To: Philipp Zabel <p.zabel@pengutronix.de>
-> > To: Liam Girdwood <lgirdwood@gmail.com>
-> > To: Mark Brown <broonie@kernel.org>
-> > To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> > To: Conor Dooley <conor+dt@kernel.org>
-> > Cc: linux-pci@vger.kernel.org
-> > Cc: imx@lists.linux.dev
-> > Cc: linux-arm-kernel@lists.infradead.org
-> > Cc: linux-kernel@vger.kernel.org
-> > Cc: bpf@vger.kernel.org
-> > Cc: devicetree@vger.kernel.org
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> >
-> > Changes in v8:
-> > - Rebase to 6.11-rc1
-> > - Add Mani's review tags for 2, 6, 8, 9, 10
-> > - Add fix patch PCI: imx6: Fix missing call to phy_power_off() in error handling
-> > - keep enable_ref_clk(), I will add more code to make disabe/enable symtric
-> > - Link to v7: https://lore.kernel.org/r/20240708-pci2_upstream-v7-0-ac00b8174f89@nxp.com
-> 
-> 
-> Manivannan:
-> 
-> 	Do you have chance to review these again? Only few patch without
-> your review tag.
-> 
-
-Done, series LGTM.
-
-- Mani
-
-> Frank
-> 
-> >
-> > Changes in v7:
-> > - rework commit message for PCI: imx6: Fix i.MX8MP PCIe EP's occasional failure to trigger MSI
-> > - Add Mani's review tags for patch 1, 5
-> > - Fix errata number in commit message for patch 6
-> > - replace set_ref_clk with enable_ref_clk in patch 4
-> > - using regmap_set(clear)_bits in patch 4
-> > - Use exactly the same logic with original code at patch 4
-> > - Add errata doc link for patch 6
-> > - Fix miss "." at comment form patch 6.
-> > - order include header for patch 9
-> > - use cap register to set_speed for patch 9
-> > - use PCIe in error msg for patch 9
-> > - Remove reduntant ':' at patch 9' subject.
-> > - Change range to ranges for patch 10.
-> > - Change error code to -ENODEV for patch 10.
-> > - Link to v6: https://lore.kernel.org/r/20240617-pci2_upstream-v6-0-e0821238f997@nxp.com
-> >
-> > Changes in v6:
-> > - Base on Linux 6.10-rc1 by Bjorn's required.
-> > - Remove imx95 LUT patch because it need more time to work out the
-> > solution. This patch add 8qxp and 8qm and support and some bug fixes.
-> > - Link to v5: https://lore.kernel.org/r/20240528-pci2_upstream-v5-0-750aa7edb8e2@nxp.com
-> >
-> > Changes in v5:
-> > - Rebase to linux-pci next. fix conflict with gpiod change
-> > - Add rob and cornor's review tag
-> > - Link to v4: https://lore.kernel.org/r/20240507-pci2_upstream-v4-0-e8c80d874057@nxp.com
-> >
-> > Changes in v4:
-> > - Improve comment message for patch 1 and 2.
-> > - Rework commit message for patch 3 and add mani's review tag
-> > - Remove file rename patch and update maintainer patch
-> > - [PATCH v3 06/11] PCI: imx: Simplify switch-case logic by involve set_ref_clk callback
-> > 	remove extra space.
-> > 	keep original comments format (wrap at 80 column width)
-> > 	update error message "'Failed to enable PCIe REFCLK'"
-> > - PATCH v3 07/11] PCI: imx: Simplify switch-case logic by involve core_reset callback
-> > 	keep exact the logic as original code
-> > - Add patch to update comment about workaround ERR010728
-> > - Add patch about help function imx_pcie_match_device()
-> > - Using bus device notify to update LUT information for imx95 to avoid
-> > parse iommu-map and msi-map in driver code.  Bus notify will better and
-> > only update lut when device added.
-> > - split patch call PHY interface function.
-> > - Improve commit message for imx8q. remove local-address dts proptery. and
-> > use standard "range" to convert cpu address to bus address.
-> > - Check entry in cpu_fix function is too late. Check it at probe
-> > - Link to v3: https://lore.kernel.org/r/20240402-pci2_upstream-v3-0-803414bdb430@nxp.com
-> >
-> > Changes in v3:
-> > - Add an EP fixed patch
-> >   PCI: imx6: Fix PCIe link down when i.MX8MM and i.MX8MP PCIe is EP mode
-> >   PCI: imx6: Fix i.MX8MP PCIe EP can not trigger MSI
-> > - Add 8qxp rc support
-> > dt-bing yaml pass binding check
-> > make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j8  dt_binding_check DT_SCHEMA_FILES=fsl,imx6q-pcie.yaml
-> >   LINT    Documentation/devicetree/bindings
-> >   DTEX    Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.example.dts
-> >   CHKDT   Documentation/devicetree/bindings/processed-schema.json
-> >   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-> >   DTC_CHK Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.example.dtb
-> >
-> > - Link to v2: https://lore.kernel.org/r/20240304-pci2_upstream-v2-0-ad07c5eb6d67@nxp.com
-> >
-> > Changes in v2:
-> > - remove file to 'pcie-imx.c'
-> > - keep CONFIG unchange.
-> > - Link to v1: https://lore.kernel.org/r/20240227-pci2_upstream-v1-0-b952f8333606@nxp.com
-> >
-> > ---
-> > Frank Li (7):
-> >       PCI: imx6: Fix missing call to phy_power_off() in error handling
-> >       PCI: imx6: Rename imx6_* with imx_*
-> >       PCI: imx6: Introduce SoC specific callbacks for controlling REFCLK
-> >       PCI: imx6: Simplify switch-case logic by involve core_reset callback
-> >       PCI: imx6: Improve comment for workaround ERR010728
-> >       PCI: imx6: Consolidate redundant if-checks
-> >       PCI: imx6: Call common PHY API to set mode, speed, and submode
-> >
-> > Richard Zhu (4):
-> >       PCI: imx6: Fix establish link failure in EP mode for iMX8MM and iMX8MP
-> >       PCI: imx6: Fix i.MX8MP PCIe EP's occasional failure to trigger MSI
-> >       dt-bindings: imx6q-pcie: Add i.MX8Q pcie compatible string
-> >       PCI: imx6: Add i.MX8Q PCIe root complex (RC) support
-> >
-> >  .../devicetree/bindings/pci/fsl,imx6q-pcie.yaml    |  16 +
-> >  drivers/pci/controller/dwc/pci-imx6.c              | 989 +++++++++++----------
-> >  2 files changed, 542 insertions(+), 463 deletions(-)
-> > ---
-> > base-commit: c428091cdcf7f368ad9884f8caa68b79cd6c333a
-> > change-id: 20240227-pci2_upstream-0cdd19a15163
-> >
-> > Best regards,
-> > ---
-> > Frank Li <Frank.Li@nxp.com>
-> >
-
--- 
-மணிவண்ணன் சதாசிவம்
+SGkgUGlldGVyLA0KDQpPbiBUdWUsIDIwMjQtMDgtMDYgYXQgMTU6MjUgKzAyMDAsIHZ0cGlldGVy
+QGdtYWlsLmNvbSB3cm90ZToNCj4gRVhURVJOQUwgRU1BSUw6IERvIG5vdCBjbGljayBsaW5rcyBv
+ciBvcGVuIGF0dGFjaG1lbnRzIHVubGVzcyB5b3UNCj4ga25vdyB0aGUgY29udGVudCBpcyBzYWZl
+DQo+IA0KPiBGcm9tOiBQaWV0ZXIgVmFuIFRyYXBwZW4gPHBpZXRlci52YW4udHJhcHBlbkBjZXJu
+LmNoPg0KPiANCj4gVGhlIEtTWjg3eHggc3dpdGNoZXMgaGF2ZSAzMiBlbnRyaWVzIGFuZCBub3Qg
+OC4gVGhpcyBmaXhlcyAtRU5PU1BDDQo+IGVycm9ycyBmcm9tIGtzejhfYWRkX3N0YV9tYWMgd2hl
+biBjb25maWd1cmVkIGFzIGEgYnJpZGdlLg0KPiANCj4gQWRkIGEgbmV3IGtzejg3eHhfZGV2X29w
+cyBzdHJ1Y3R1cmUgdG8gYmUgYWJsZSB0byB1c2UgdGhlDQo+IGtzel9yX21pYl9zdGF0NjQgcG9p
+bnRlciBmb3IgdGhpcyBmYW1pbHk7IHRoaXMgY29ycmVjdHMgYSB3cm9uZw0KPiBtaWItPmNvdW50
+ZXJzIGNhc3QgdG8ga3N6ODh4eF9zdGF0c19yYXcuIFRoaXMgZml4ZXMgaXByb3V0ZTINCj4gc3Rh
+dGlzdGljcy4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IFBpZXRlciBWYW4gVHJhcHBlbiA8cGlldGVy
+LnZhbi50cmFwcGVuQGNlcm4uY2g+DQo+IC0tLQ0KPiAgDQo+ICBzdGF0aWMgdm9pZCBrc3o5NDc3
+X3BoeWxpbmtfbWFjX2xpbmtfdXAoc3RydWN0IHBoeWxpbmtfY29uZmlnDQo+ICpjb25maWcsDQo+
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBzdHJ1Y3QgcGh5X2Rldmlj
+ZSAqcGh5ZGV2LA0KPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdW5z
+aWduZWQgaW50IG1vZGUsDQo+IEBAIC0xMjYyLDEyICsxMjk3LDEyIEBAIGNvbnN0IHN0cnVjdCBr
+c3pfY2hpcF9kYXRhIGtzel9zd2l0Y2hfY2hpcHNbXQ0KPiA9IHsNCj4gICAgICAgICAgICAgICAg
+IC5kZXZfbmFtZSA9ICJLU1o4Nzk1IiwNCj4gICAgICAgICAgICAgICAgIC5udW1fdmxhbnMgPSA0
+MDk2LA0KPiAgICAgICAgICAgICAgICAgLm51bV9hbHVzID0gMCwNCj4gLSAgICAgICAgICAgICAg
+IC5udW1fc3RhdGljcyA9IDgsDQo+ICsgICAgICAgICAgICAgICAubnVtX3N0YXRpY3MgPSAzMiwN
+Cj4gICAgICAgICAgICAgICAgIC5jcHVfcG9ydHMgPSAweDEwLCAgICAgIC8qIGNhbiBiZSBjb25m
+aWd1cmVkIGFzIGNwdQ0KPiBwb3J0ICovDQo+ICAgICAgICAgICAgICAgICAucG9ydF9jbnQgPSA1
+LCAgICAgICAgICAvKiB0b3RhbCBjcHUgYW5kIHVzZXIgcG9ydHMNCj4gKi8NCj4gICAgICAgICAg
+ICAgICAgIC5udW1fdHhfcXVldWVzID0gNCwNCj4gICAgICAgICAgICAgICAgIC5udW1faXBtcyA9
+IDQsDQo+IC0gICAgICAgICAgICAgICAub3BzID0gJmtzejhfZGV2X29wcywNCg0KV2h5IGRvbid0
+IHdlIHJlbmFtZSBrc3o4X2Rldl9vcHMgYWxzbyBsaWtlIEtTWjg4eDNfZGV2X29wcyBvcg0KS1Na
+ODh4eF9kZXZfb3BzLCBzaW5jZSBpdCBpcyBub3cgdXNlZCBvbmx5IGJ5IEtTWjg4NjMgYW5kIEtT
+Wjg4NzMNCnN3aXRjaGVzLiANCg0KDQo=
 
