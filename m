@@ -1,100 +1,147 @@
-Return-Path: <devicetree+bounces-91769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5733B94A806
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 14:45:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC9AA94A819
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 14:53:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C5A79B2A69F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 12:45:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CB622870D8
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 12:53:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19FE71E3CCA;
-	Wed,  7 Aug 2024 12:45:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D311B1E6726;
+	Wed,  7 Aug 2024 12:53:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l29PCmRe"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kfMG+rQw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BACDA1C824B
-	for <devicetree@vger.kernel.org>; Wed,  7 Aug 2024 12:45:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D8FC1E3CBE;
+	Wed,  7 Aug 2024 12:53:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723034741; cv=none; b=HBJsKQRs7Ly3nG/kRvVz95lSpIeDPOEeT4VBFBifUrd7SUwG9xNeh0IlEi4mDaEzASA7ESVmR3LAg/QTzHKJC5L2WxJE//MUoa93atSmNhCrPwlmBz7r4TXcNKnIz+VkC+DcEKqN7PjQqElOgee0wffDsA5BW9i53M/gi+DvxPA=
+	t=1723035202; cv=none; b=hQrp+hz/ltOOGQ0pBwiSv2UW6A5TWG1E9Nd9wPv0v6d+ApBdJd4wwo406Kc9rXBvtsJedwxaGTk8lqpnaRO+8foIK86narDVNKihnzNUbxiut/JL+nLjPS2z1Vg4qhcGtCZH8vse/Ufaw+4q95FbWi8ktEIJdfgZdcW/WLiJxzw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723034741; c=relaxed/simple;
-	bh=ok7x5RJI7Mn1AEexsPqp5C0x7eYorrIzLLTgw98K8jU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FmVzl/MsqBfM8WfNd5bsXByt8cAOjyYYtZ3VLKDpvsl5+p4wuh4GLTITbt7s/PVeOJHR15uECDKpyPNgRFOt5BUpiuMzob0kLWcSCMdYWRNDJ6c72aH4fBKAPMZlKIZDwEglodOPa1hBt0w2nkLOZroo8DiBxSDEj6lGzCTQBRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l29PCmRe; arc=none smtp.client-ip=209.85.216.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-2cd5e3c27c5so1276937a91.3
-        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2024 05:45:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723034739; x=1723639539; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ok7x5RJI7Mn1AEexsPqp5C0x7eYorrIzLLTgw98K8jU=;
-        b=l29PCmReMhNJiPpIlRyrBGf+VCUVbScPXdzYyB06o9eGpYH9cNMl9WcEVfd4ZRtoQs
-         MY0venaSBGWstuMh1Hw4xZ+FL3JFQiI95gt93SBRHtPviymo7UTCHvE+2KKc4feyA6Hw
-         Pia1UZYrdtvgnxfYl5F7PAS3hdcqW95HGItYYj/Eu3e54nxqJQ8+aZPtAHYWXs8ZODfl
-         /JHtMlmMmj+kyxgnab7WoEEQEcY5MSC8cmVVngX/vAoZgv3nltf6CNqTmQy2/qPQk3WX
-         zorDksmco6Il1x8NkHa37ELbY89QioItwlNP1NVqbQL6+OaGa5emZgR5CgDrDH/4QnBS
-         DNUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723034739; x=1723639539;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ok7x5RJI7Mn1AEexsPqp5C0x7eYorrIzLLTgw98K8jU=;
-        b=Rc2/UlBbl1cRayJaaxW34g50XFeDD/wmZJoQp0tSovY5uagrZKbMYewqqIHYwA+jNz
-         pfa3Z6W2777PhVEoi37p1jj3Fjfm7BqrmW1oNm7hD0g+9oJiPWkcXDNPkZ1yQ8Jv8bT5
-         +Vp5EHESIPUTEUqsKdDkHg8EZ4Y/2YIor+LCaDxvjMKdJEHRPhz62t7HJ8WzwMjdsk++
-         pukCdf68ojLLmifpM5LqtIxlAGIqVUV6lNnGhB1JQG7G5eWLbX/uCks9MTEPPLTyXlvd
-         YiUpFlC2pW3MV7IAUbr0oKNf0nl/KDYKJ65N+6u4yOpVmLnfu2xGj5XM0k4qf1f83Ps3
-         +C5A==
-X-Gm-Message-State: AOJu0YziJ4W/jXxPYMQOVxxojJHX303Z+S5yVoh/ESVcsyNfn9WHbZXT
-	/wyDi7G2eBjy8Bgrd7CN5ia1B1X+hNubxAlO99sBwrcikpRlvCNP0lpxDK3J
-X-Google-Smtp-Source: AGHT+IEtgc/IfyM1hlCTxxmF58XsYDojlSbPF+RkdeCUdHQ1TcNs1V8jR+Qsv1B284ozMevCienU6A==
-X-Received: by 2002:a17:90a:c38a:b0:2cd:b938:770b with SMTP id 98e67ed59e1d1-2cff93c8c07mr16335855a91.5.1723034738709;
-        Wed, 07 Aug 2024 05:45:38 -0700 (PDT)
-Received: from joaog-nb ([67.159.246.222])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2d1b36d7a12sm1458989a91.25.2024.08.07.05.45.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Aug 2024 05:45:38 -0700 (PDT)
-Date: Wed, 7 Aug 2024 09:45:32 -0300
-From: =?utf-8?Q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <jpaulo.silvagoncalves@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	"linux-kernel @ vger . kernel . org" <joao.goncalves@toradex.com>
-Subject: Re: [PATCH v1] arm64: dts: imx8mp-verdin: add HDMI audio support
-Message-ID: <20240807124532.wcq36oshfce6lfbq@joaog-nb>
-References: <20240807112035.236036-1-jpaulo.silvagoncalves@gmail.com>
+	s=arc-20240116; t=1723035202; c=relaxed/simple;
+	bh=+RAv1xK1O//80d7+SmE4UhJKsNlh/o0paO2Kl5z3daM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=lDj48aiG2EemOsuKU3lGb0H+O7RJ8uMIIRgy1qmqb5K0fKVXM9JsccQhdS9lYFagy+r/OfFnL0GRvBXxNkoHQbtzeG8uXEROYA8NNB4+icWiIZ3mlNc2oeWKEQ0aDv2G1uXPi+As7kg4CQxP0hpgRanP/8TVjWBWKxednUe1kCY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kfMG+rQw; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4777p44c007142;
+	Wed, 7 Aug 2024 12:53:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	arEhPJHE9JoYwqT4CBPAFaPEevOFK+BW+jRxwcoZZnA=; b=kfMG+rQw1TDoz2op
+	x7mdewBK/22bi3/OLBICTC0Z54eyc0ybx7rhx4G0tI4bDQsf2QNBwF11n0yHqmLs
+	pFUq+RNxlUavparOjOzOMl8afvr6M/Ifh7ltGIetFHfhyYeI7R2DId+1vsQt/+Vl
+	Y26365+OXCZnTCpVqKSBtGz/OsFMg9px6srbkHDZgyapLbPnN6BWZlQRF5eS5Hbu
+	xxGhadRjz1RSGe958Is9TpfhTxLe86KUEDcrx6zGc0Dh62ILs732gLOQOZEfhoZK
+	UlvtCfGHUSPlEDR9UPwriafMZBl2nnDQGQLu7gz/V6BDFgV9c/32YzvR/xw2mQLg
+	IoCo6w==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40scx6tvme-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 07 Aug 2024 12:53:17 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 477CrGLT032154
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 7 Aug 2024 12:53:16 GMT
+Received: from [10.239.97.152] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 7 Aug 2024
+ 05:53:11 -0700
+Message-ID: <85cc52aa-4593-49f5-9438-1ee3f09d2d71@quicinc.com>
+Date: Wed, 7 Aug 2024 20:53:08 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240807112035.236036-1-jpaulo.silvagoncalves@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: sm8550: camss: Add CAMSS block
+ definition
+To: Krzysztof Kozlowski <krzk@kernel.org>, <andersson@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <bryan.odonoghue@linaro.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
+        Yongsheng Li
+	<quic_yon@quicinc.com>
+References: <20240807123333.2056518-1-quic_depengs@quicinc.com>
+ <1c0ff0fa-73d3-400f-a58d-15fb9b0574d1@kernel.org>
+ <c2a3e578-b098-450f-96f6-a3ae321f2b4c@kernel.org>
+Content-Language: en-US
+From: Depeng Shao <quic_depengs@quicinc.com>
+In-Reply-To: <c2a3e578-b098-450f-96f6-a3ae321f2b4c@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: bS02NkMoLW7ngBpBjA08ZU9qvxQw9r4X
+X-Proofpoint-GUID: bS02NkMoLW7ngBpBjA08ZU9qvxQw9r4X
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-07_09,2024-08-07_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ malwarescore=0 bulkscore=0 clxscore=1015 suspectscore=0 phishscore=0
+ spamscore=0 adultscore=0 lowpriorityscore=0 mlxscore=0 priorityscore=1501
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408070089
 
-Hello all,
+Hi Krzysztof,
 
-There was an issue with my e-mail and the "From:" for the patch is not
-correct. Ignore this patch. I will send a v2 with the issue fixed.
+On 8/7/2024 8:43 PM, Krzysztof Kozlowski wrote:
+> On 07/08/2024 14:39, Krzysztof Kozlowski wrote:
+>> On 07/08/2024 14:33, Depeng Shao wrote:
+>>> Add CAMSS block definition for sm8550.
+>>>
+>>> This drop contains definitions for the following components on sm8550:
+>>
+>> 1. Subject: there is no prefix camss. There is no such file, directory
+>> or module.
+>>
 
-Regards,
-João Paulo Gonçalves
+Thanks for the comment, will remove this.
+
+>> 2. You already sent this, so this should be v2 or v3 or vX. Provide
+>> changelog under ---.
+>>
+>> If there is going to be resend, please fix above.
+>>
+
+Sure, I thought it might be a new series, so I didn't add v*, will add 
+v1, and v2 change log in new version series.
+
+>> 3. If this was tested on aim300, I am surprised this being not enabled
+>> on aim300.
+> 
+
+It was tested long times ago, but the patches wasn't sent out for 
+reviewing early due to the team's internal schedule.
+
+> One more thing, bindings were not accepted, thus this patch should not
+> go in. There were no new bindings, so I assume patchset is using
+> rejected ones.
+> 
+> It's fine to send it to get some comments, although would be nice to
+> mention to maintainer that this cannot be picked up as is. :(
+> 
+
+Sure, I will resend the dtsi patch until the bindings are accepted, send 
+this patches because you posted the comments in other series.
+
+https://lore.kernel.org/all/0324e8e8-2ad4-4ce6-9616-3038b8e02ff9@quicinc.com/
+
+Thanks,
+Depeng
+
 
