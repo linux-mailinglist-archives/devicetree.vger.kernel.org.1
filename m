@@ -1,148 +1,122 @@
-Return-Path: <devicetree+bounces-91853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DF5994AEA0
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 19:05:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C64FF94AEB6
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 19:15:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 77471280CCA
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 17:05:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CAF61F2362C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 17:15:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1280A13342F;
-	Wed,  7 Aug 2024 17:05:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E945D12C475;
+	Wed,  7 Aug 2024 17:15:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="McpFit5Z"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="NIgkrNN4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9635812F398;
-	Wed,  7 Aug 2024 17:05:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16C3D13C66F;
+	Wed,  7 Aug 2024 17:15:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723050327; cv=none; b=taqD/vWttvcf+F235BLA4Xyg5CHeUxNttlqLq6LOyeu55OxkoEsNKXKB2eLzIRyTBEVvHUbODeXK6KA5ylKnA6oSuNitVTEjbaFS698pcfU/FjFzf9xY0dhKZttgLWuOIhyK9LRgJMSTtCAZNOC2tLgSzyjvCSg7s1Vmw5T8KYI=
+	t=1723050908; cv=none; b=rTzSOnglYbnqeVB4B+ImZINIbyFo2/r7uxUSli2w88Q7lIK57iJIijvG6EqD9V5bZIkEFf6Q4q+WZS4EcagnEm2EZbfYMso2iuYkAnRqjiviU9fKTsOVlWQpCg5pF0gJ0/r9MqfJI4kEsRkuLyPFpsv02ULv+ByW2AfLPO1XrNo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723050327; c=relaxed/simple;
-	bh=Ue9wCZbpVo7s2zBnb5ug6XQgRWWh4vsho1ZmwTILYeQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=B7i/ewahYw1USas+gwbdVvCj6LXoA9+S1tMa4JtsWcWfCMThzq8U3tqEIhv/h2w2mRUeRzzmZixmhCydWLMxPe3lNK0X+CGjevLGHAFaniHbIKSJopCwpDMvXmEURSeaQxf+BKWBNY6p/6G9ks568Nd0QX5OKMQD14URZ3OM6YE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=McpFit5Z; arc=none smtp.client-ip=209.85.216.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-2cb4e1dca7aso20156a91.0;
-        Wed, 07 Aug 2024 10:05:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723050325; x=1723655125; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=CPmn8VFdpUiz/zz7vsoeMUfjx+ry2BSVsn7uxfVJEj8=;
-        b=McpFit5Z8kiIQnUyaYyOQTKuEmmoL5DeR2I9uSG7o5ByAW7OpeXclDSx0EJKun2tc2
-         bp/kFoiboV/8gWTt5CGtBd2kz2eKq5R5CSWlWGLKjS99PHwSzVFoPEhP2Xvk7HyVqG+C
-         5+shUA5b8g5+5hQVUoJyfNjfmwx4cJWzl+IaRdQwml/TZPVJ7laUUNWf6AJMgWFdUijr
-         R8jGPPGKUo72Al3aRglBjgPDQvebSDzW3Eef50I0whDyssXETYQkGbfdsANgv+RAXW1v
-         KYgeXZOcELnodVdco3mB7WLQAWrDIDN2Ue4CQ081Le1NQ2icopyGojukntpP3nr0Jk7/
-         zD2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723050325; x=1723655125;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CPmn8VFdpUiz/zz7vsoeMUfjx+ry2BSVsn7uxfVJEj8=;
-        b=t3w+7rKCGrwCG1TvNe+n0Jz9MSE3we5jsKksQ+RCQwfMEjZXcLogaPnU3gctVMN6uM
-         79Dny6PDL4fCXkMD4ccGmT+DAaM2CqIMhAx+80Tc8kJt1z8sLIgGl52mA5bSsJI6hsN+
-         gQ6xhxVaoy3HiM6dXuA5RQhGBT/8c+LI5hy9XN3UVzt2eZoPv1LAgO/9TZQc7KPlwnIT
-         7jFpGpjnHjJEOMuYuy6QmM9lUD2vdCI3nYo1qjmOHL25uvkeB6oN0ORNN1pKNtKVNl71
-         iJsvmWwPZriV4zQ61TMt6Omrw7BJWuSAXVFsLPt0NC9A3cKuo+97pjAo0kyeBH7ABESJ
-         jchA==
-X-Forwarded-Encrypted: i=1; AJvYcCXIyG+MvmKccHQJBVm00KhFfPIWRWUesjjExr4iQcJIiqT7W+EIaGtpiqisHFZ9gz/najp65PVLcMb6nMb++uE2T1smTUlpozZh4G3MK3dET7BzT3dUDdqm1uABU6Me1LbWueGYCw==
-X-Gm-Message-State: AOJu0YyfTeDOzmPi+I38WzpIUAs79ZUNGgMaBjAJY1n/ksPtNSYzjalt
-	0J9aphf975E+Ap2LRUJMMsDEQZU47RScHhuKjjhAayam0qdcbwtdlRbODw==
-X-Google-Smtp-Source: AGHT+IF/PA1WGYg6scnVacIxbKK0JfJKKKSasZLzJxCRxj+gW51zclOe4xOjaGL2KmrM7/kAUJ89Ug==
-X-Received: by 2002:a17:90a:630b:b0:2cd:8fcd:8474 with SMTP id 98e67ed59e1d1-2cff9599f55mr13174318a91.5.1723050324839;
-        Wed, 07 Aug 2024 10:05:24 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:5e1c:17b4:a72d:e3b])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2d1b36c1cf1sm1844359a91.23.2024.08.07.10.05.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Aug 2024 10:05:24 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: vkoul@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v2] dt-bindings: dma: fsl,imx-dma: Document the DMA clocks
-Date: Wed,  7 Aug 2024 14:05:17 -0300
-Message-Id: <20240807170517.64290-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1723050908; c=relaxed/simple;
+	bh=evzsRSnoI8B+Q7K+wb+LQqpvXZVFZMep+7vOWo6xsVE=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=Zk5f1uwzG+hfBPCEv8BRhu8us5emSeVYVQsTqn8g+vVTLJI5u4tB2J2cPw+dak698aBkegHu3G/G7IzynAWBKkimHOgIlzcunlG0OOYtaB9xV3pvT8a6Dj9v2VdixqxS3yoSfd9W+D1+oIVNHrkSqCm4OL+kL62xnCz0V5CsDMY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=NIgkrNN4; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1723050904;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=6XcVj2Oh+3ROUG9TB7T4vDLi0jPcIksfZHJmSThpdHM=;
+	b=NIgkrNN48AxkAKnu9xZaO6uIC4wgeCmmdsCBiQen6ESjgJByDZU3wHHgpwsPY2LhURoTyu
+	BPUFrrGTXQ3m6MXFC8G07a5L8Y+NnGho8zdpQFJRZiV/L9KMH9OQ9unSBGPGqIIcqorbvN
+	NaYppQJjOayyIbJmdGb6gXSvL03eNHoE9bCRZRuIwzV0zjx2R0Yfc0coW+reO4Bqm1rLj8
+	Qo3JWHR3T4Icpb82yDC/lkx4/zCFoLfj33KH4dujc983Fr9CWAj0Lo1sHKMphpcU2Ldq+r
+	HgAYFtfFc9S5BLNJZofBxw1pmjRVtiZxGmaa2Opl5r0BJrYJ9YuGMiGly0EWSQ==
+Date: Wed, 07 Aug 2024 19:15:03 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Florian Klink <flokli@flokli.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>, Kever Yang
+ <kever.yang@rock-chips.com>, Muhammed Efe Cetin <efectn@protonmail.com>,
+ FUKAUMI Naoki <naoki@radxa.com>, =?UTF-8?Q?Tam=C3=A1s_Sz=C5=B1cs?=
+ <tszucs@protonmail.ch>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dts: rockchip: add rfkill node for M.2 E wifi
+ on orangepi-5-plus
+In-Reply-To: <20240807170030.1747381-1-flokli@flokli.de>
+References: <20240807162001.1737829-1-flokli@flokli.de>
+ <20240807170030.1747381-1-flokli@flokli.de>
+Message-ID: <c1cd51655f783d9ec2f6f068590c2a35@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-From: Fabio Estevam <festevam@denx.de>
+On 2024-08-07 19:00, Florian Klink wrote:
+> This follows the same logic as 82d40b141a4c ("arm64: dts: rockchip: add
+> rfkill node for M.2 Key E WiFi on rock-5b").
+> 
+> On the orangepi-5-plus, there's also a GPIO pin connecting the WiFi
+> enable signal inside the M.2 Key E slot.
+> 
+> The exact GPIO PIN can be validated in the Armbian rk-5.10-rkr4 kernel
+> rk3588-orangepi-5-plus.dtsi file [1], which contains a `wifi_disable`
+> node referencing RK_PC4 on &gpio0.
+> 
+> Signed-off-by: Florian Klink <flokli@flokli.de>
+> Tested-by: Florian Klink <flokli@flokli.de>
+> Link:
+> https://github.com/armbian/linux-rockchip/blob/9fbe23c9da24f236c6009f42d3f02c1ffb84c169/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+> [1]
 
-Document the IPG and AHB clocks that are needed by the DMA hardware
-as required properties.
+Unfortunately, this isn't how the "Link: ..." tag is to be used, or how
+a reference is to be provided.  Please see the patch submission linked
+below for a correct example of providing links as references.
 
-It is not possible to have DMA functional without the DMA clocks
-being turned on.
+https://lore.kernel.org/linux-rockchip/4449f7d4eead787308300e2d1d37b88c9d1446b2.1717308862.git.dsimic@manjaro.org/T/#u
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
-Changes since v1:
-- Mark clock and clock-names as required properties (Conor).
-
- .../devicetree/bindings/dma/fsl,imx-dma.yaml       | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/dma/fsl,imx-dma.yaml b/Documentation/devicetree/bindings/dma/fsl,imx-dma.yaml
-index 902a11f65be2..75957f9fb58b 100644
---- a/Documentation/devicetree/bindings/dma/fsl,imx-dma.yaml
-+++ b/Documentation/devicetree/bindings/dma/fsl,imx-dma.yaml
-@@ -28,6 +28,14 @@ properties:
-       - description: DMA Error interrupt
-     minItems: 1
- 
-+  clocks:
-+    maxItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: ipg
-+      - const: ahb
-+
-   "#dma-cells":
-     const: 1
- 
-@@ -42,15 +50,21 @@ required:
-   - reg
-   - interrupts
-   - "#dma-cells"
-+  - clocks
-+  - clock-names
- 
- additionalProperties: false
- 
- examples:
-   - |
-+    #include <dt-bindings/clock/imx27-clock.h>
-+
-     dma-controller@10001000 {
-       compatible = "fsl,imx27-dma";
-       reg = <0x10001000 0x1000>;
-       interrupts = <32 33>;
-       #dma-cells = <1>;
-       dma-channels = <16>;
-+      clocks = <&clks IMX27_CLK_DMA_IPG_GATE>, <&clks IMX27_CLK_DMA_AHB_GATE>;
-+      clock-names = "ipg", "ahb";
-     };
--- 
-2.34.1
-
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+> b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+> index e74871491ef5..c3a6812cc93a 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+> @@ -105,6 +105,13 @@ led {
+>  		};
+>  	};
+> 
+> +	rfkill {
+> +		compatible = "rfkill-gpio";
+> +		label = "rfkill-pcie-wlan";
+> +		radio-type = "wlan";
+> +		shutdown-gpios = <&gpio0 RK_PC4 GPIO_ACTIVE_HIGH>;
+> +	};
+> +
+>  	sound {
+>  		compatible = "simple-audio-card";
+>  		pinctrl-names = "default";
 
