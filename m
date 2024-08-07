@@ -1,173 +1,98 @@
-Return-Path: <devicetree+bounces-91695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CE2F94A363
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 10:50:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F64F94A385
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 11:01:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D04691F216A2
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 08:50:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BFDD1F2585A
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 09:01:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 286241D1F44;
-	Wed,  7 Aug 2024 08:49:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="cSPqMXr5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB6741C9DE1;
+	Wed,  7 Aug 2024 09:01:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66E801D175B
-	for <devicetree@vger.kernel.org>; Wed,  7 Aug 2024 08:49:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A53011A288;
+	Wed,  7 Aug 2024 09:01:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723020562; cv=none; b=nstdMg6eVk+MjOkL5v3gjQL978BWsWg3DICoRRwUgcPa3IFwG/y1/UE1xNRUiE3+xFB3WPzAbXqBNj4zQV7N15EX6dd2fg7RXhpNi2dlu07VeNjZHPwBZkX+lrDZU2Db9gEVJiRiRRpN7l5TmtykkZtxJG40+0ERzNCDcfRDA9s=
+	t=1723021277; cv=none; b=kzj5NhoSM0tlHARm5cZy4x/wNckAOuHXfeCR2+kDZKgXX0XfuKrQmwoyhnWrEAqrbFz2idfFbuqynAgXAxX3TARG0K78zUcYzf2xvlEeDefIzM/DP2KN8LwJPilHOGWCjQt5MUlLfWOTeYYuUQXt0qOiKTzXuSenVPQ+kgLfLlk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723020562; c=relaxed/simple;
-	bh=6zp2AKjGs39uCt5CueCwmJOX3eOvD7ilpXgKjzFAtWg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=hsiNvpcDBcnzIbOiqJhHLjuU8yVRPHxsRE493bMxnOc7lHbIoJZXrs4wLV0AlHbhRWTK/uiNBcbuPC1Pw8O3MKZ1hJxBedlktfZLqb3SwsGpZG7+cpMzoAjbO6xxEpN00aPtYwj0bgPDDwIBDbt69GZDt2gAA2Zb2DFdikfM5aY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=cSPqMXr5; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20240807084918euoutp02b39b834c304dcf07aa8b68d8d5482520~pZhG40KEX3051030510euoutp02X
-	for <devicetree@vger.kernel.org>; Wed,  7 Aug 2024 08:49:18 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20240807084918euoutp02b39b834c304dcf07aa8b68d8d5482520~pZhG40KEX3051030510euoutp02X
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1723020558;
-	bh=qLPy4vqwS3UYK5ED/m7wWzuPP6EHMShGRR/7bXdjUuk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=cSPqMXr5GxOfRCUdfrByGOCJFqIOyT4Mi1m7RPaqXRjGZyiLU33shMPb7x5+CP96Q
-	 N+ARd9OaCcSbIKLta1edj6x/RfykDkE94biqQWDdUmGl6skgXvfUOguokJBZQ/end0
-	 e43t00TYryewiZEd6wwP+3HlQh9V5LzJew7qsIEM=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-	20240807084918eucas1p2983c6169f3c321294ad5738d1e5ff21f~pZhGm6y3T2755327553eucas1p2K;
-	Wed,  7 Aug 2024 08:49:18 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-	eusmges2new.samsung.com (EUCPMTA) with SMTP id 65.6D.09875.E0533B66; Wed,  7
-	Aug 2024 09:49:18 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20240807084917eucas1p28c675c9da74f0de0bb09689819202c39~pZhGCjcHV2756427564eucas1p2V;
-	Wed,  7 Aug 2024 08:49:17 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20240807084917eusmtrp16e830202fa79ded18448cca1cfa911ab~pZhF_hFIP0287102871eusmtrp1a;
-	Wed,  7 Aug 2024 08:49:17 +0000 (GMT)
-X-AuditID: cbfec7f4-131ff70000002693-a7-66b3350e5b33
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-	eusmgms1.samsung.com (EUCPMTA) with SMTP id 5B.01.08810.D0533B66; Wed,  7
-	Aug 2024 09:49:17 +0100 (BST)
-Received: from AMDC4515.eu.corp.samsungelectronics.net (unknown
-	[106.120.51.28]) by eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20240807084916eusmtip225c4b7cc8c78e2c81c1b8f555d8dab3f~pZhFAmDNl1786617866eusmtip27;
-	Wed,  7 Aug 2024 08:49:16 +0000 (GMT)
-From: Mateusz Majewski <m.majewski2@samsung.com>
-To: linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Mateusz Majewski <m.majewski2@samsung.com>, Bartlomiej Zolnierkiewicz
-	<bzolnier@gmail.com>, Krzysztof Kozlowski <krzk@kernel.org>, "Rafael J.
- Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Rob
-	Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Alim Akhtar
-	<alim.akhtar@samsung.com>, Sam Protsenko <semen.protsenko@linaro.org>, Anand
-	Moon <linux.amoon@gmail.com>
-Subject: [PATCH v3 6/6] dt-bindings: thermal: samsung,exynos: remove
- driver-specific information
-Date: Wed,  7 Aug 2024 10:48:25 +0200
-Message-ID: <20240807084829.1037303-7-m.majewski2@samsung.com>
-X-Mailer: git-send-email 2.45.1
-In-Reply-To: <20240807084829.1037303-1-m.majewski2@samsung.com>
+	s=arc-20240116; t=1723021277; c=relaxed/simple;
+	bh=VrxUh8bJKgrlvtMlVbgyzBh6rB37ARtcuOLChGDiwds=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RP9jjus+PcBkQFxTDKXMItDvLbHvOuIBcyln3GvBrUB83RJKaZGHq2wD5AkF5YvdEB/lYuGo2ZjoKhWjIPDXQbhtpbdoLuQDqwtX1KS2/7DkObciNI+SVTXApMvjpdDkXsrkEKWBgrCDkZP4QVWYe7Ln7sfTOSGUHWYarLBf9pc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [10.20.4.132])
+	by gateway (Coremail) with SMTP id _____8DxfZvaN7Nm5jAKAA--.5744S3;
+	Wed, 07 Aug 2024 17:01:14 +0800 (CST)
+Received: from [10.20.4.132] (unknown [10.20.4.132])
+	by front1 (Coremail) with SMTP id qMiowMCxM+DZN7Nm+MEHAA--.10739S2;
+	Wed, 07 Aug 2024 17:01:13 +0800 (CST)
+Message-ID: <f14e56dc-8bbf-43f0-871c-f556abb563d9@loongson.cn>
+Date: Wed, 7 Aug 2024 17:01:13 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: serial: Add Loongson UART controller
+To: Xi Ruoyao <xry111@xry111.site>, Krzysztof Kozlowski <krzk@kernel.org>,
+ gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, chenhuacai@kernel.org,
+ kernel@xen0n.name, p.zabel@pengutronix.de
+Cc: linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, loongarch@lists.linux.dev
+References: <20240804063834.70022-1-zhenghaowei@loongson.cn>
+ <4d1f2426-b43c-4727-8387-f18edf937163@kernel.org>
+ <f31609c4-1e47-49bc-9231-5b0353d35dc9@loongson.cn>
+ <6c7ec8196fe01aa651f8b59b445b70de79137181.camel@xry111.site>
+Content-Language: en-US
+From: =?UTF-8?B?6YOR6LGq5aiB?= <zhenghaowei@loongson.cn>
+In-Reply-To: <6c7ec8196fe01aa651f8b59b445b70de79137181.camel@xry111.site>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrHKsWRmVeSWpSXmKPExsWy7djP87p8ppvTDPZ9FrF4MG8bm8X3LdeZ
-	LNbsPcdkMe+zrMX8I+dYLc6f38BusenxNVaLy7vmsFl87j3CaDHj/D4mi3Ubb7FbLGxqYbeY
-	eGwys8XcL1OZLf7v2cFu8eRhH5vF8759TA6CHmvmrWH02DnrLrvH4j0vmTw2repk87hzbQ+b
-	x+Yl9R59W1YxenzeJBfAEcVlk5Kak1mWWqRvl8CV8f7WXaaCPt6Kr0+9Ghifc3UxcnJICJhI
-	rJ/xnqmLkYtDSGAFo8SLjpPsEM4XRokFdxuZIZzPjBKbX25l62LkAGuZOCUHIr6cUaJhwSOo
-	9lYmiT9v7zCCzGUTMJB48GYZ2CgRgcWMEo0/3rGCOMwCT5glfr5aDFYlLJAk8fR2AzuIzSKg
-	KvG/rY8FxOYVsJPoOPyHCeJCeYne/X1gNqeAvcSS7m4miBpBiZMzn4DVMwPVNG+dDXarhMBk
-	TonOc7ugml0kzt/9xQJhC0u8Or6FHcKWkTg9uQcqni8xY/N7FojfKiTuHvSCMK0lPp5hBjGZ
-	BTQl1u/Shyh2lOh6uIMJooJP4sZbQYgD+CQmbZvODBHmlehoE4KoVpU4vmcSM4QtLfGk5TbU
-	WR4SG9ZcYJzAqDgLySuzkLwyC2HvAkbmVYziqaXFuempxUZ5qeV6xYm5xaV56XrJ+bmbGIFJ
-	7vS/4192MC5/9VHvECMTB+MhRgkOZiUR3ubwTWlCvCmJlVWpRfnxRaU5qcWHGKU5WJTEeVVT
-	5FOFBNITS1KzU1MLUotgskwcnFINTGVRxgwSsdzMmaKCP3pi9nVsfXQjulT69jRRRVb7RVOE
-	vBXKnYWNFy/Ki7+uLSn4Krs43mtSy2P155P+L13VNzW8Nur1gTVGP3l502JLu8QtOM4WRaxl
-	jS4rVJ3jJ/tltdcnv90vKtUnrY86zrbl/uYgxuCwr2wSv2JsLR7ESBpNOLJ15v2ThQ903b9a
-	7m58d1RuVuj81TVK4hdM6lOFGV5a32Y4v6PBetbMPns+bfN3YkdbhS/Hhm8WMpScIbMsLPnH
-	QoG2K51+AUk7vYUOb5u13TLmvUXBvKrn3at8ytoqv11jnsXiPmX6bh0v1rj938KOme1aeHG6
-	tCBn3czMj3or/b21XZe1SmS6sDYpsRRnJBpqMRcVJwIAtkV1VeEDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrLIsWRmVeSWpSXmKPExsVy+t/xe7q8ppvTDA5eV7N4MG8bm8X3LdeZ
-	LNbsPcdkMe+zrMX8I+dYLc6f38BusenxNVaLy7vmsFl87j3CaDHj/D4mi3Ubb7FbLGxqYbeY
-	eGwys8XcL1OZLf7v2cFu8eRhH5vF8759TA6CHmvmrWH02DnrLrvH4j0vmTw2repk87hzbQ+b
-	x+Yl9R59W1YxenzeJBfAEaVnU5RfWpKqkJFfXGKrFG1oYaRnaGmhZ2RiqWdobB5rZWSqpG9n
-	k5Kak1mWWqRvl6CX8f7WXaaCPt6Kr0+9Ghifc3UxcnBICJhITJyS08XIxSEksJRRYsffdUxd
-	jJxAcWmJw1+msEPYwhJ/rnWxQRQ1M0msbH8IlmATMJB48GYZmC0isJxRYnO7B4jNLPCOWaL9
-	vB+ILSyQILHxXS8biM0ioCrxv62PBcTmFbCT6Dj8B2qZvETv/j4wm1PAXmJJdzeYLQRU0/tl
-	JzNEvaDEyZlPWCDmy0s0b53NPIFRYBaS1CwkqQWMTKsYRVJLi3PTc4sN9YoTc4tL89L1kvNz
-	NzEC43HbsZ+bdzDOe/VR7xAjEwfjIUYJDmYlEd7m8E1pQrwpiZVVqUX58UWlOanFhxhNge6e
-	yCwlmpwPTAh5JfGGZgamhiZmlgamlmbGSuK8ngUdiUIC6YklqdmpqQWpRTB9TBycUg1MemEf
-	nO6Z6Qme19wmGzjLfI7pm4iDNkUf3518m9g3rS5FhMvtZmBEQJ9RbIrvsYzV6+8zJFxYcPfo
-	hsVeTaK6JjuYxc83OnNNuOF5e5LM/L5Hv/zKKvp/Na8oD94xY1eJ3hmlKf8f2b9+avMrptCS
-	Sbjuq+fRgPkL7JoyP6Q+N8haKnJ30srJ86p5LplM3lVxMmPm5vzkJ+wNCeoy190/HV2+1e1j
-	57WZN6zX8x5zS//PwRKjEbzw5Lao/LYa+SSxfQsCdi97tnqZtumfXUvn8R+udTuj0/2D41Uh
-	+8mLC72Y3LctuLr405JTzzxuTXecdnJ75acKL4GI23LX94cZ/xOf/VQkKNh69bPsqXWpTEos
-	xRmJhlrMRcWJAIRJbWdQAwAA
-X-CMS-MailID: 20240807084917eucas1p28c675c9da74f0de0bb09689819202c39
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20240807084917eucas1p28c675c9da74f0de0bb09689819202c39
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20240807084917eucas1p28c675c9da74f0de0bb09689819202c39
-References: <20240807084829.1037303-1-m.majewski2@samsung.com>
-	<CGME20240807084917eucas1p28c675c9da74f0de0bb09689819202c39@eucas1p2.samsung.com>
+X-CM-TRANSID:qMiowMCxM+DZN7Nm+MEHAA--.10739S2
+X-CM-SenderInfo: x2kh0w5kdr4v3l6o00pqjv00gofq/1tbiAQECBGayEXMQlAABs1
+X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
+	ZEXasCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29K
+	BjDU0xBIdaVrnRJUUU9ab4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26c
+	xKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vE
+	j48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxV
+	AFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x02
+	67AKxVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6x
+	ACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1Y6r17McIj6I8E
+	87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41l42xK82IYc2
+	Ij64vIr41l4c8EcI0En4kS14v26r1Y6r17MxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI
+	1I0E14v26r1q6r43MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_Jr
+	Wlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j
+	6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw20EY4v20xvaj40_Jr
+	0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUv
+	cSsGvfC2KfnxnUUI43ZEXa7IU8vApUUUUUU==
 
-The number of supported trip points was only limited by the driver
-implementation at the time, which mapped each trip point defined in the
-devicetree source file to a hardware trip point. An implementation that
-does not have this limitation is possible; indeed, that is how the
-driver works currently. Therefore, this information should be removed
-from the bindings description, which are meant to be independent of
-the details of the driver implementation.
 
-Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
-Signed-off-by: Mateusz Majewski <m.majewski2@samsung.com>
----
-v2 -> v3: reword the commit message to be easier to understand in
-  context of dt-bindings.
-v1 -> v2: remove an unnecessary sentence.
+在 2024/8/7 16:39, Xi Ruoyao 写道:
+> On Wed, 2024-08-07 at 16:23 +0800, 郑豪威 wrote:
+>> The file "drivers/tty/serial/8250/8250_loongson.c" will be created in
+>> the patch
+>>
+>> "tty: serial: 8250: Add loongson uart driver support". Is it
+>> inappropriate to reference it here?
+> You should add this line in the second patch then.  Separating a large
+> change into multiple patches in a series is not for formalities' sake.
+> Each patch should be logically intact on its own.
+>
+Thank you, I got it.
 
- .../devicetree/bindings/thermal/samsung,exynos-thermal.yaml | 6 +-----
- 1 file changed, 1 insertion(+), 5 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/thermal/samsung,exynos-thermal.yaml b/Documentation/devicetree/bindings/thermal/samsung,exynos-thermal.yaml
-index b8c0bb7f4263..b85b4c420cd3 100644
---- a/Documentation/devicetree/bindings/thermal/samsung,exynos-thermal.yaml
-+++ b/Documentation/devicetree/bindings/thermal/samsung,exynos-thermal.yaml
-@@ -40,11 +40,7 @@ properties:
-   interrupts:
-     description: |
-       The Exynos TMU supports generating interrupts when reaching given
--      temperature thresholds. Number of supported thermal trip points depends
--      on the SoC (only first trip points defined in DT will be configured)::
--       - most of SoC: 4
--       - samsung,exynos5433-tmu: 8
--       - samsung,exynos7-tmu: 8
-+      temperature thresholds.
-     maxItems: 1
- 
-   reg:
--- 
-2.45.1
+Best regards,
+
+Haowei Zheng
 
 
