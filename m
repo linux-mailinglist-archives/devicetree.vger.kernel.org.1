@@ -1,167 +1,251 @@
-Return-Path: <devicetree+bounces-91887-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91888-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECF5294B0DF
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 22:06:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6432194B13C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 22:25:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B1AE281873
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 20:06:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E93261F22C59
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 20:25:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B1CA1448C7;
-	Wed,  7 Aug 2024 20:06:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6481E13F45F;
+	Wed,  7 Aug 2024 20:25:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Gl8WZrpf"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="HQZ4WZx4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010014.outbound.protection.outlook.com [52.101.69.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6072E82499;
-	Wed,  7 Aug 2024 20:06:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723061167; cv=none; b=NV7EWT9RmnrDL7T3rhUI99mmEM3Nyc/9pzlU3zXSfgwZPKrgbQAGZZeqWQr04Bl27bb0C7yNU94McgxlssWF98+t8YWOKXpDXrUJ53nFRrByhATLxKXIQbDEG89HWb5f7WKMQU0k9S2IhGD2/Ds83xYFNlzOfgVIzBDA5dzs4mE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723061167; c=relaxed/simple;
-	bh=tP5PZPiSOfnHtE2NF+/nff/1qVnyTM8U4pN2u4dY22w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=a7ClPsAsJ9oGRm6mS1kW2SzmhgS8rJiJPz3NhSy9Ow15ETrJcFOvhURTvwmSPN64fzFvEFBkWglDz/bEOuNU/vu16Q0ZXhXstXEOIGoQCnncP5MXj5EnnndQfhNgw4HKUrIbRmWe3Msjl8Dy4qIcSYEr0qTj+o8Xy7waawHZOdg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Gl8WZrpf; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 477I2CCO016435;
-	Wed, 7 Aug 2024 20:05:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	BBQkqFMaehnNVf00RomtVqmkJg9WcgOkBeKwzL5TMP8=; b=Gl8WZrpfsq2WndmI
-	vq8ltohYyFRNsQAOOipCQh8AY3CKAU9orOFIjFKQy0/IwVK7qM++/1CFtBXWhRkI
-	+v8nzim8SsXu4MoDcH9kmgQ54yZ5v3ZrEibnkVVkI/+dehSKb/M98CvR18kk/0c5
-	HAj4B3v//ASNN1SES+XeGFR8sCMlhTu/fnsA2f5gHf5rAlgyl7cicSCOuqwA7sT9
-	oQ6yhVzdNyuAvwwlkLhqIQQC30k3WTXxL7nDr1OGyLaRs2Gxf3uqCx74qk3bqV6E
-	WbRtyPWvTvpZVUiBLhiBpS7XlswmpzGCJYPeVPdb9SKtenkhVelHRA6OpbxJ55bQ
-	DmgG7g==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40vdupg851-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 07 Aug 2024 20:05:37 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 477K5akV014973
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 7 Aug 2024 20:05:36 GMT
-Received: from [10.71.113.127] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 7 Aug 2024
- 13:05:35 -0700
-Message-ID: <09aa3611-42bb-413a-b5a6-6d08045e5c00@quicinc.com>
-Date: Wed, 7 Aug 2024 13:05:35 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 261DC364BC;
+	Wed,  7 Aug 2024 20:25:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.14
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723062344; cv=fail; b=OWY4fldiqtMrtNJTadRJQ9Q6uvCxzPlg9yPuMjx3YCeBZnBDOmmK4jgu14Bss7YZCemU2jQhBwP6rlfj+/KXy5KY33q2+gLKZbKwiLhmCVy7LcNgT+hp65Ym4t1flMK8Lz4ODJ/vN1ouzJlLblzQyHBoh1kbLTiszlDXRM8+R0A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723062344; c=relaxed/simple;
+	bh=n+WPo3hRRAAUCP8eMs6yUt+UyOBGzn/bF30+BGYQ+Uw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=a/1bb4EFK3kFsN7BD9z7tu+n+NMjHkeaH9L//L+41jWVZyOjb6frFvFCiuLW74Nj1YFbzfPoYDdaNa89W4mGd1GfaHvz7AUyUMBOAfbFjQTR/QNx3PXaagA6DG4vMpbFaeWrWNR02T5qYXR8os9twvMRJQ6v+CerXDMuDTikiIg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=HQZ4WZx4; arc=fail smtp.client-ip=52.101.69.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZT20f5sf8g0yc6/4Vcn+EF0rJMOZjx9uE3Ytq7Po9hopoFYg7FzkL4Ee3gHBPJX+x+0T0swUKwZiQCscPVKg8z7/AqIkjNEsHqvzP3Ku85NHw1jn9SLSDkwddeCZ/TVzP2lQzY4/LN1v4O0QrOJZhiAr2uGmZlIZougiI2tGEzg0fR5B5yc/LGuUUr3vQTb4Xwn97hJUS4UbRO/M8yFZIZhrsjzDx0fmgJFiUiZ0pAg2Azd6JxrK2nmjhbJjYS4ohv3JZTmm59+tjalceUBJeMHabroaFMXg5mvxq5kvw5jsQoo52gfm2YA+3+XI9qUjkm9pzH2669S9ey3JkT/Cmg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1FG5U6Prn8OB5lrBZICzOUlY/+jERG/Qn0mVAPf6+PQ=;
+ b=xI5Bac0G+sl2XaC/t5m8LPRWeMDR8JaMOd7iDUwgaoVBNFxC75i+OF2p2YCdhSnJ0pxQFo2YXPW53aNmeVqNmiCu31P3z9pzPXwj+cS3fRDfK02OF6jCzF3UK0Wg+El7PGKseoebCMMqCBZk0AUvP8d9UQPBc+mHz2KGkXslXsjpJN1JvbSgqaeVlxSwSPabTJBsevkZswXQ8MxGLE0TxtKAunbyrURuFsUohO8XKHv/biYVVmbasuBwfphnJTJtyfp5vncdmm2dBVMXe7cfNro2Kuw5DawYSa3jrHFD/38LSXJCyyn/9G2ve2Wup/GbHYxI6J5fcIK0NUbCTw6S5w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1FG5U6Prn8OB5lrBZICzOUlY/+jERG/Qn0mVAPf6+PQ=;
+ b=HQZ4WZx4hZS1OZPcwzJt+Z1VR80pGtgHy/EnEaBk8rmT7FUNYmle1o/ERCF24hSGpAH0QAzSt+N/Rwv8H02fo9ToHW/fgC5ZFZ+ecBg9v+GkSmoFJgl+1kl0ISzK5hG3UAXNqOIWX3d/zyV+S7zOTEXnDyy4lxnsv8bs6jqRTNcZ4M0/hSIMSsZM3QcDD7964KDLctNrqm5/WOKSMoZx9na9Pfm3N14fVSXwzhoQgPmKx5fx4QjeY8UIPmTDhin35au1DXMuVLvzIcoesQtOSkaH8/9ujkjab/UHceYv15cAxU2NFjer6u4mtusZhuG89Sioqbzsa/kiDMEXmC7cow==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by PAXPR04MB9399.eurprd04.prod.outlook.com (2603:10a6:102:2b3::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.13; Wed, 7 Aug
+ 2024 20:25:39 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.7828.023; Wed, 7 Aug 2024
+ 20:25:38 +0000
+Date: Wed, 7 Aug 2024 16:25:29 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Rafael Beims <rafael@beims.me>
+Cc: Francesco Dolcini <francesco@dolcini.it>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	rafael.beims@toradex.com
+Subject: Re: [PATCH v1 4/4] arm64: dts: imx8-ss-conn: add PPS channel to the
+ FEC nodes
+Message-ID: <ZrPYOWA3FESx197L@lizhi-Precision-Tower-5810>
+References: <20240807144349.297342-1-francesco@dolcini.it>
+ <20240807144349.297342-5-francesco@dolcini.it>
+ <ZrOUGLJPYC/K4MlP@lizhi-Precision-Tower-5810>
+ <20240807175148.GA299582@francesco-nb>
+ <ee39f8ce-683d-4144-909a-972ce74b95d8@beims.me>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ee39f8ce-683d-4144-909a-972ce74b95d8@beims.me>
+X-ClientProxiedBy: SJ0PR03CA0282.namprd03.prod.outlook.com
+ (2603:10b6:a03:39e::17) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v24 17/34] ASoC: qcom: qdsp6: Add USB backend ASoC driver
- for Q6
-To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
-        <broonie@kernel.org>, <lgirdwood@gmail.com>, <krzk+dt@kernel.org>,
-        <Thinh.Nguyen@synopsys.com>, <bgoswami@quicinc.com>, <tiwai@suse.com>,
-        <gregkh@linuxfoundation.org>, <robh@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>
-References: <20240801011730.4797-1-quic_wcheng@quicinc.com>
- <20240801011730.4797-18-quic_wcheng@quicinc.com>
- <5f37c04d-f564-40b9-a9f3-d071ea0a6f19@linux.intel.com>
- <1a284449-204a-4d01-90c9-ec6b1ed56e30@quicinc.com>
- <1a2d0962-405d-4ccf-a0da-00a624c0f3e8@linux.intel.com>
-Content-Language: en-US
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <1a2d0962-405d-4ccf-a0da-00a624c0f3e8@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: mjrcji4RzpWV_B4Ua1x-VexTrXY01KX0
-X-Proofpoint-GUID: mjrcji4RzpWV_B4Ua1x-VexTrXY01KX0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-07_11,2024-08-07_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
- priorityscore=1501 suspectscore=0 phishscore=0 impostorscore=0 mlxscore=0
- clxscore=1015 mlxlogscore=999 spamscore=0 bulkscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
- definitions=main-2408070141
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB9399:EE_
+X-MS-Office365-Filtering-Correlation-Id: f8e879ac-7659-4492-6426-08dcb71f19e0
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|1800799024|366016|7416014|52116014|376014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+ =?us-ascii?Q?CkqpLDlDtbqSLGMUJ5CtgQcRZdAwczNkp1EZtFFAckcjwPW5oX/KJzFV2Igr?=
+ =?us-ascii?Q?NPUcQ5YLnmdPPIVuICNSi+sD88fFC0YZJ4D3WWzscqy/gapllHLaOC6bct+p?=
+ =?us-ascii?Q?0vWcXx/PUE6/ecJxov0bZqYbQFierq25KkPqAtPbtdSm4EWmZfhWhPbyJIxb?=
+ =?us-ascii?Q?v8HSjFMJgfOA6U2RCMaCNk9SsWoyshn8zS1FzN2WHm4+mI79mUcguwHaU0f1?=
+ =?us-ascii?Q?Ja/PiuLGZ1h9l5OpK/ymO3hqir8l0Fq1rShIbZhWK7EreHcgGhCc7NCdDk14?=
+ =?us-ascii?Q?Li/NiVQR0PzjYGkSci1TbdT5ZcxuYpsGyT7r8mm8pC7AS8pYR/U+/DShMFUu?=
+ =?us-ascii?Q?rGSqT3HyR0FY8IOffZ+8DM/N7Wdh9rmU80d75NQl7HUETRvW1PX04e5vBVmY?=
+ =?us-ascii?Q?IuUEMT8RP5sBK+OHm5I9U2kvOwSFoI4KPXi8kkcdTump9OzaPfla8CcLtS3x?=
+ =?us-ascii?Q?muqE31I3+2ShoHVytruLzQHqSseQVFGvGlYvZLuWVWpRGvy7hM/0U6+NzRAp?=
+ =?us-ascii?Q?sJj7/MKyadlwO5N/sgHMsaZbr+qI6EsVGXKzmx6ECTHYUsNZgvUvAAOeVPEa?=
+ =?us-ascii?Q?nKkQiLLuMcslm0oWWuZ3eKEORf2hn8L28JuzIQXBOFvj7Jqh3KlFtgdvSpAQ?=
+ =?us-ascii?Q?vRG6QRYmittuuEPCB5H1u8JSrbqvp19ga+sCva0TihLvSISjxByR9zc1tFVN?=
+ =?us-ascii?Q?PPWD2PIeksJBt4rPGM3nHMssliu7KWSmAOdf6NR6ikpe7tU+Gj9/kOoXMKyr?=
+ =?us-ascii?Q?1BfL8qgqBez9IYj3ZzioIJtQM08ZU8AyhB82Wzp3YpEN6EJDjvx3jHxcqTCB?=
+ =?us-ascii?Q?8/+gSwg7xSY79R3bfRkQJ1On/AJZTJ4NgCqAc+r/mn4dq+Z8io5Ok13WqYfR?=
+ =?us-ascii?Q?feitRM4tzMp6Bzjgn6TQh0W2wSzCFrD7OKQTgYpNpOLp3rRB/JbSeDMgdlZY?=
+ =?us-ascii?Q?4Bz5wxd+Dm2JZb7QQBGWFoB2E1k30qYrOme5z02P0J7r+oaaDlcfx0QwCXUt?=
+ =?us-ascii?Q?zLE8Zw1Z3jReZWT4SAAGddqCZ0nTbimNukpKS7Pws92OScLlrfj3971My5lR?=
+ =?us-ascii?Q?HTMU4/qNumagsbHm7oz+RWQvU28ovtoXoG0pBBfe2OF+AIDDEj2RXRWWi7Fz?=
+ =?us-ascii?Q?LvuXPnG3eqog0QkETlh4yQ1jGBoq6yyUPzN9Uk+MEbHrI2TzDRFR0+KqMTcj?=
+ =?us-ascii?Q?osQ9NWMaedauLQ0vXSs2ovzII28+tzSx7YdWpQU3Daf0dbf+KHOc9BolJb2D?=
+ =?us-ascii?Q?yGkRvBuOGan2ZJoyEWglvKQlDchnHdVy6D7f3AwPPiAdYJESV2ctHYTsnIxU?=
+ =?us-ascii?Q?01lvfkTFf938gNzBiaRi2FFgDdji4pUoSkWG+jqfkKKpyUWeiKT0fcUEX8Y7?=
+ =?us-ascii?Q?Q+YKYC41HXswWHvfFpkBHUrMcH0v+clUzh8kSj52eKkTWvkf9A=3D=3D?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(52116014)(376014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?u50qLpnjGJt2i5MW3Vdv3wGd2YFMuBKneroREKFD9jgzVGVeO6U4EIsC6dLc?=
+ =?us-ascii?Q?8jtaTmrcedtNqw+cVViF8GK7nUVXcwF++4dRF1kmd6T2F0oyEZwpFzO0Yfjl?=
+ =?us-ascii?Q?w/AAYnXRnFrnxFbTG5skXrH5RK3zrDxkUhnPumewPyF9Bw/CxtTdEMze5trX?=
+ =?us-ascii?Q?5XOZFVjQb58P3UDzMffs4gXybatchoY7LAciStz/dRZ6nPHfxmZ0Sid14eFx?=
+ =?us-ascii?Q?JPzb4II1Zl8Q65Gm1FfU69UOc+5ohaNfNmfXKVERXO48D6QVyojKMk/D/tCq?=
+ =?us-ascii?Q?iMt9aQhJCQ4JC1YG0LBIRsGykry7qUYJnvb600JYhGleEuSmyRwR0EJ5cAQA?=
+ =?us-ascii?Q?K0ZhH1D3CltHqPxQakOxKsytUBpZ6LndL5zh2fyJJjLymWNrMhF7pZhYW/ia?=
+ =?us-ascii?Q?pcmSLLTVw8kjmPLJGD8fnfWFRsTMrJXB20Qq2/RghAwcoXZSkYDthtYZNzfJ?=
+ =?us-ascii?Q?hPdymoNrgp5ANvHSmBOA75t0ldp6pNvzjAfo+dAenzrPsBCS19GRyT48DxJZ?=
+ =?us-ascii?Q?wY879bCQnMjtS9oNrQuEFQPrLJn3+6y/Gj3R1sgMf8xwFg5OKNbPMM65UhFU?=
+ =?us-ascii?Q?YO4/yRA/6EeMAE3CSk1VtuKfIWc3krypbtBdB+MnWuccjzmIks1de/h+36Tw?=
+ =?us-ascii?Q?XAkcidytFlHjBpQYPotuY4drrfN6MkIyuKdHPaRg0lUOOED2yHM10R47IThb?=
+ =?us-ascii?Q?88lHLjCxt9ttEOeThY6alxtjZui2c0qaBUL+8DOvKy6Cn4i6iMtlPgkoXDVO?=
+ =?us-ascii?Q?+2b7eK9ty/4SP2z6R2r1IVxhB+xZmodcUv4Dsv5CFJj/BQ9LlLCvktXz2mEo?=
+ =?us-ascii?Q?Vv0YJ6fZD/YwbFe/ZAhE09uIshb+7wNpWZ8uIeYCUaHnEpXYhN4RrIP7SRzO?=
+ =?us-ascii?Q?XxH9IHlbl4IlXDZvTvARp9Ja4dFfsbDK1K+kSr/RYNmuxsAgTynTHOamXyio?=
+ =?us-ascii?Q?R3am2yrr1XY9Ob17pIA81ANqIPaSPnwsHZuswY+KXdmpLaBX1GzoTsqdEKci?=
+ =?us-ascii?Q?CWvW3zc0gclkL7VPmq04/o3V82u1Gro7VppNNilKpnQn6NUJdig/Qxf+Fss+?=
+ =?us-ascii?Q?Y2sDZu0WL5A/oF8LaUvbeBGK1lbQJT8ILUskbEUbIxkzrUPpdwCmAKTX0a2W?=
+ =?us-ascii?Q?7nvfwKgA/ra6bNtzsxM9I/0Dhiv97mD0zoheN3RHYDE5qqkw2VHDkiTIR9ti?=
+ =?us-ascii?Q?uCpTYpOxxwlkntUfWVhso3qSDl0eLmlEEeimqw+I57/JQj9r6w3Dpx8FmvT5?=
+ =?us-ascii?Q?cnM4h2PomFBc5cwMANsg9X6F0auJjL18FbCKFIzApUgBQ6TqKCER+7p7DDNe?=
+ =?us-ascii?Q?eT1BGFUD4JPgUk8i8IjUQe6KmkZ7dV93ztgOPS4+4wanOHTSQIYEf25ElChd?=
+ =?us-ascii?Q?KDsbLFvtVwqPNAECs0doW12uoWKOGBu/vns44CVfK1u/Gxo3NJCj1VWUfDTv?=
+ =?us-ascii?Q?w/hD6CFJlP1fIXDL4jCtvN7OanaPNoQActgv76bAIZ+IcXGlsgWcrSAIlI9E?=
+ =?us-ascii?Q?l7gEkbXDAMQXRDixLrTcx1DvMOvZuc5c7032yHB+2et1UKQMQoIcdzRjZBxS?=
+ =?us-ascii?Q?HsrBQBL1xlosV9eIOm/0IM27dc06AjanQBYEX/NO?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f8e879ac-7659-4492-6426-08dcb71f19e0
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Aug 2024 20:25:38.6910
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: o2INInEhtWtUSadeAwYchcslJUG1qxwORqzRsuMaSTuSL5PsamXwUfF9+d8k4w/faAcyOwEUlI/1K+/Eke7Zbg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9399
 
-Hi Pierre,
-
-On 8/1/2024 11:32 PM, Pierre-Louis Bossart wrote:
+On Wed, Aug 07, 2024 at 04:48:19PM -0300, Rafael Beims wrote:
+> On 07/08/2024 14:51, Francesco Dolcini wrote:
+> > Hello Frank,
+> >
+> > +Rafael
+> >
+> > On Wed, Aug 07, 2024 at 11:34:48AM -0400, Frank Li wrote:
+> > > On Wed, Aug 07, 2024 at 04:43:49PM +0200, Francesco Dolcini wrote:
+> > > > From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > > >
+> > > > On i.MX8 the FEC PPS channel is routed to the instance 1, not to the
+> > > > default 0.
+> > > According to my understand, it should be board level configuration. FEC
+> > > support output pps to any one. choose which one by board design.
+> > This seems different from the information we got from NXP some time ago,
+> > unfortunately this was happening over some private email exchange and
+> > not documented anywhere public. But the message was about SoC internal
+> > routing, not something at the board level, at least for i.MX8 SoCs that
+> > is what this patch is changing.
+> >
+> > For example to use PPS on i.MX8QXP we need to have this
+> >
+> > IMX8QM_ENET0_REFCLK_125M_25M_CONN_ENET0_PPS 0x06000020
+> >
+> > pinctrl configuration _and_ use PPS channel 1. Same is for i.MX8QP.
+> >
+> > Maybe Rafael can provide you some more details and the name of the
+> > person that provided this information.
+> >
+> > And maybe you can also try to double check this internally within NXP.
+> >
+> > Depending on what we find out we can decide if this patch needs to be
+> > dropped or not.
+> >
+> > Francesco
+> >
+> Hello Frank,
 >
-> On 8/2/24 01:10, Wesley Cheng wrote:
->> Hi Pierre,
->>
->> On 8/1/2024 1:40 AM, Pierre-Louis Bossart wrote:
->>>
->>>> +static int q6usb_hw_params(struct snd_pcm_substream *substream,
->>>> +			   struct snd_pcm_hw_params *params,
->>>> +			   struct snd_soc_dai *dai)
->>>> +{
->>>> +	struct q6usb_port_data *data = dev_get_drvdata(dai->dev);
->>>> +	struct snd_soc_pcm_runtime *rtd = substream->private_data;
->>>> +	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
->>>> +	struct q6afe_port *q6usb_afe;
->>>> +	struct snd_soc_usb_device *sdev;
->>>> +	int ret;
->>>> +
->>>> +	/* No active chip index */
->>>> +	if (list_empty(&data->devices))
->>>> +		return -EINVAL;
->>>> +
->>>> +	mutex_lock(&data->mutex);
->>>> +	sdev = list_last_entry(&data->devices, struct snd_soc_usb_device, list);
->>>> +
->>>> +	q6usb_afe = q6afe_port_get_from_id(cpu_dai->dev, USB_RX);
->>>> +	if (IS_ERR(q6usb_afe))
->>>> +		goto out;
->>>> +
->>>> +	/* Notify audio DSP about the devices being offloaded */
->>>> +	ret = afe_port_send_usb_dev_param(q6usb_afe, sdev->card_idx,
->>>> +						sdev->pcm_idx);
->>>> +
->>>> +out:
->>>> +	mutex_unlock(&data->mutex);
->>>> +
->>>> +	return ret;
->>>> +}
->>> Humm, multiple questions here
->>>
->>> a) is this intentional that the params are not used in a hw_params routine?
->> Think this was answered in patch#34.
-> yes, but that really begs the question if the format check shouldn't be
-> added here.
+> We have received the information from NXP support that the iMX8X only
+> supports channel 1. Here's the link of the public question I asked:
+>
+> https://community.nxp.com/t5/i-MX-Processors/IMX8X-PPS-output-configuration/m-p/1552154
+>
+> Unfortunately, the response came directly to my e-mail address with no
+> public update, but you can probably check the internal support case number
+> 00500877.
+>
+> Here's an excerpt from the response:
+>
+> > I have checked this issue from soc level, the pps signal is routed to
+> the 1588_timer1, not routed to 1588_timer0( being used in code default).
+>
+> At the time, I asked a followup question:
+>
+> > Can I assume that  IMX8QM_ENET0_REFCLK_125M_25M_CONN_ENET1_PPS is
+> > connected to
+> 1588_timer3 then?
+>
+> To which I got the reply:
+>
+> > No, ENET1_PPS is also routed through timer1. One can't use ENET0_PPS and
+> ENET1_PPS at a same time because of same routing path.
+>
+> I also asked for confirmation if this behavior was the same on the iMX8Q,
+> which I didn't get. However, we had another customer also reporting problems
+> getting the PPS output to work on our Apalis iMX8QM module, and in this
+> case, the change to channel 1 also made it work. This leads me to believe
+> that the iMX8X and iMX8Q are behaving the same way in this regard.
+>
+> We would really appreciate some clarification if we got some of the details
+> wrong.
 
-Sure, I'm not against squashing the format check to this patch.
+I checked some documents. channel0 route to internal eDMA as dma-request.
+If some boards use it as AVB/MCR. it should be set to 0. If need route
+out chip, it should use channel 1 as pps.
 
-Thanks
+So I prefer put it into board level files for difference user case.
 
-Wesley Cheng
+Frank
 
->>> b) if yes, could this be replaced by a .prepare callback
->>>
->>> c) along the same lines as b), is suspend-resume during playback
->>> supported? Usually this is handled with a .prepare callback to restore
->>> connections.
->> I don't see us supporting that throughout any of the QC based DAI drivers, so this probably isn't implemented yet.  In terms of supporting system PM suspend for this USB offload path, we're going to explicitly stop the audio stream from the USB offload driver (qc_audio_offload) before we suspend the usb device. (refer to qc_usb_audio_offload_suspend()
-> The system suspend-resume during playback is not enabled in all
-> platforms indeed, it mostly depends on what userspace does. IIRC this is
-> required for Chrome/CRAS and it's supported by aplay.
+>
+> Rafael
+>
 
