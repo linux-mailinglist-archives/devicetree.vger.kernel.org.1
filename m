@@ -1,610 +1,392 @@
-Return-Path: <devicetree+bounces-91752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C5D294A6AF
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 13:09:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAADD94A6C7
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 13:17:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27054282F71
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 11:09:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C5DA1F23657
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 11:17:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E2191E4EF9;
-	Wed,  7 Aug 2024 11:09:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 606781E289B;
+	Wed,  7 Aug 2024 11:17:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b="NZ2XS/uP"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="dre6zxsn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8581D1E3CD2;
-	Wed,  7 Aug 2024 11:09:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.14
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723028943; cv=pass; b=WoWwTdWu8oPLEz6+572njSlzbluum3SIHMtjAs4uUR5cH3VFsmd1Izi31dsjJ4UYo+xqPbF6bMNa/7TGhu6JW7Orf8dvBsobwy5CNjzbXEKMxBk9kNieKsQdTt/5HbpI+JHoUG6pRQMlSuQ4OmON0Xveh876XpYwojY1KSy06wY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723028943; c=relaxed/simple;
-	bh=H807/uavl0elYG5qfocYycb+I2C5HzYIJcaQ69HV4e0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=q9+fic3yHLA8/ZWZMS7yQhQtu+yiLhP9UYZ1Irl9xOyicjf+62K8oyDPXEKNby84BgW73wr/a9P40fjcPCL8FxNsG8wH2xfewm8E8clJeLUo4X7WmA/ScWM94eJqVU+k2n+c/trRlT6VIXGeGEdGT0Ty+RSYcxyZWpklcnxUtfE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b=NZ2XS/uP; arc=pass smtp.client-ip=136.143.188.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-Delivered-To: kernel@collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1723028904; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=UvUItshN3z0tkj1zgOECD5uMRyoQEqfwE4lLnoeph6OX6xyqKnPwlA860ceQttui1NlhxzjgWSy6cPecW3bjV0s5+VhQwuu2VPpXlVuXzS82Lgh29vgnlrBgcp8pgBJ79CauWBLW1FUbS2jKqMm/U10DwTcbrql9FKGy1GslVd4=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1723028904; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=UCNjTlYo/ZXmzwRsRdp2xc3dlcs5UQowpC5xGrZuK78=; 
-	b=P3WD90bxq/S1lL+0EfowEWZk2m9oqWqOVv9zjWO/f6nERBRZk10EYCubh7GtAqeEQq9T6ceRUw4p4+S6XaF0PJ/Qugo/kfG6cNWGW2rA36DvNSxT6nydVhkQFo71Ofl7MF9XZfB9GpEXws9knqBhpaTo2JZAtxnDsjhVy6sWtVI=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=cristian.ciocaltea@collabora.com;
-	dmarc=pass header.from=<cristian.ciocaltea@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1723028904;
-	s=zohomail; d=collabora.com; i=cristian.ciocaltea@collabora.com;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
-	bh=UCNjTlYo/ZXmzwRsRdp2xc3dlcs5UQowpC5xGrZuK78=;
-	b=NZ2XS/uPnRCGB/pfxv1f/zyGFRsu/d01b5iyD41WsFDdnJtgzfvMsU6mSKZi33P2
-	DAYojs9/TRTPc7ua6Qp3PiirxE58+d63gPmcZpKF3MTSGTNtRI1/KLhb26PMzoJdu6N
-	/AaQtYRx2YbJXr/WSDwgT2Jtqome4BTiJ9MQF9ck=
-Received: by mx.zohomail.com with SMTPS id 1723028903169519.7154500828105;
-	Wed, 7 Aug 2024 04:08:23 -0700 (PDT)
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Date: Wed, 07 Aug 2024 14:07:27 +0300
-Subject: [PATCH v3 5/5] drm/rockchip: Add basic RK3588 HDMI output support
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 626811E2878
+	for <devicetree@vger.kernel.org>; Wed,  7 Aug 2024 11:17:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723029472; cv=none; b=BySUXpkMpkbFBSv3kLLH65VhHmiUcIP+4Alw1D0JUcQBFHxSYq05iyrAeOlxixch0XJKPl+35SWsfPvy+E37Z0UpUtL1YU3+KNwYuDx9WIUF6AoENMfOkS9CTShW2mi+sdcjdDzolQno9fh/6cJ2u48EnpKfYSH6vwIPy/LBJlU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723029472; c=relaxed/simple;
+	bh=8iU/+U9M+gWXkRXjeKe+OIgB/LU4uPnMtIt0B8v/VXo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DCRfYYsFCFgToq6ejhpeOX7NTwc2c8ZCWG8b9KHHHcK/UHdpsqqnA0wCEYjomPZQjFNmqP1RV2Tm343AT51u/Pq8m1vHYaX5gmGk2DDPpuugB5sqWJmYSoQ9VrW6T/NReX05KYH76SCZzttaf3dbZFOAGA4GnUKgPeF+9f0L2XQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=dre6zxsn; arc=none smtp.client-ip=209.85.210.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-7091558067eso879138a34.3
+        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2024 04:17:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1723029469; x=1723634269; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=g8T58TMUroLjjn23XCwrJps87DMjljqz/cFcV/xQzLE=;
+        b=dre6zxsnXFbZRaPrsKme2aIU1KamFGzJHjO7AVnWBnbMZsuYTWUwy4CyOz7rr2L9ju
+         YTOQPQV6Zg+ZX21mOGPKSaLtnsmVWx8ur9Nvc6gF2iZy1CsXpF/DAHSR7ECiqL5DEdB0
+         wONYxooJ9173LDCua2bKmaxg7cZ9U9F97/nqs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723029469; x=1723634269;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=g8T58TMUroLjjn23XCwrJps87DMjljqz/cFcV/xQzLE=;
+        b=ELW9UayucqszTwYK0gRJaqIsOisViYoSwkUJWnC/U+5PDX/92JAjHX4fRysXQu6UAx
+         HzOuzubFdGOEHq98oCEaPPwMPP1HiyFyi1Eow/0UVZgfRmUQAOK1zYA4mfWIEZgIEgp5
+         2buDqee6sbtG/hIZtKlyAAdzB1+jRwDeHtFyKDJcPbumTEfXaaKDP0+pE/6Iw5puGIiy
+         HAvtnpWZ95jLpFtqB+tYj40qjUGIz7qLCDCYTj9MsPTWfjZBPPSLg8kbpNpABZbuejCo
+         UiECuIke2OohtPi4AfNpODP5Nk3ZUWot3QsodKOyL36KPFd7+ZQDknWxN/AyplxqDmW9
+         6oFg==
+X-Forwarded-Encrypted: i=1; AJvYcCUB/mc3cZj2gZo6tb+zK3ZhfJ7PaVqpTuBC0hAOnz/P6gGyObpB6hHuy8gcz0JNaaBPIvr7FhNsIFvSNJmpradep/3PCUcUkuAgjA==
+X-Gm-Message-State: AOJu0YwCbEn9HBSX6fF8Vwlu5Iy0wfUl1WqM6XjtGrqt0iASPdWrakD0
+	xuxvAn+e0iaE8Xnm4GN0MBtscvkimrPUB91Njiz9EhFmlKvRnPzbr/HrLG8Gaw==
+X-Google-Smtp-Source: AGHT+IF57MpjgiXGHcNN6VTpzeW23YTSDW+7bPvQ8c8TcM/qbxMruA/tL2if1MrdIwPIvEwz72O7hA==
+X-Received: by 2002:a05:6830:2654:b0:704:2dd4:362a with SMTP id 46e09a7af769-7099ea40342mr26878825a34.0.1723029469333;
+        Wed, 07 Aug 2024 04:17:49 -0700 (PDT)
+Received: from [10.176.68.61] ([192.19.176.250])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6bb9c7a7a53sm55589406d6.58.2024.08.07.04.17.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Aug 2024 04:17:48 -0700 (PDT)
+Message-ID: <b6551bf0-2ee9-4b79-af68-0677e3f0f915@broadcom.com>
+Date: Wed, 7 Aug 2024 13:17:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240807-b4-rk3588-bridge-upstream-v3-5-60d6bab0dc7c@collabora.com>
-References: <20240807-b4-rk3588-bridge-upstream-v3-0-60d6bab0dc7c@collabora.com>
-In-Reply-To: <20240807-b4-rk3588-bridge-upstream-v3-0-60d6bab0dc7c@collabora.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- devicetree@vger.kernel.org, kernel@collabora.com, 
- Alexandre ARNOUD <aarnoud@me.com>, Luis de Arquer <ldearquer@gmail.com>, 
- Algea Cao <algea.cao@rock-chips.com>
-X-Mailer: b4 0.14.1
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 4/5] wifi: brcmfmac: Add optional lpo clock enable
+ support
+To: Alexey Charkov <alchark@gmail.com>, Jacobe Zang <jacobe.zang@wesion.com>,
+ robh@kernel.org, krzk+dt@kernel.org, heiko@sntech.de, kvalo@kernel.org,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, conor+dt@kernel.org
+Cc: efectn@protonmail.com, dsimic@manjaro.org, jagan@edgeble.ai,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ arend@broadcom.com, linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+ megi@xff.cz, duoming@zju.edu.cn, bhelgaas@google.com,
+ minipli@grsecurity.net, brcm80211@lists.linux.dev,
+ brcm80211-dev-list.pdl@broadcom.com, nick@khadas.com
+References: <20240805073425.3492078-1-jacobe.zang@wesion.com>
+ <20240805073425.3492078-5-jacobe.zang@wesion.com>
+ <2e38c2bd-2cb2-4104-97ad-0355069606c0@gmail.com>
+Content-Language: en-US
+From: Arend van Spriel <arend.vanspriel@broadcom.com>
+Autocrypt: addr=arend.vanspriel@broadcom.com; keydata=
+ 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
+In-Reply-To: <2e38c2bd-2cb2-4104-97ad-0355069606c0@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-The RK3588 SoC family integrates the newer Synopsys DesignWare HDMI 2.1
-Quad-Pixel (QP) TX controller IP and a HDMI/eDP TX Combo PHY based on a
-Samsung IP block.
+On 8/7/2024 1:10 AM, Alexey Charkov wrote:
+> Hi Jacobe,
+> 
+> On 05/08/2024 10:34 am, Jacobe Zang wrote:
+>> WiFi modules often require 32kHz clock to function. Add support to
+>> enable the clock to PCIe driver and move "brcm,bcm4329-fmac" check
+>> to the top of brcmf_of_probe. Change function prototypes from void
+>> to int and add appropriate errno's for return values that will be
+>> send to bus when error occurred.
+>>
+>> Co-developed-by: Ondrej Jirman <megi@xff.cz>
+>> Signed-off-by: Ondrej Jirman <megi@xff.cz>
+>> Co-developed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+>> Signed-off-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+>> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
+>> ---
+>>   .../broadcom/brcm80211/brcmfmac/bcmsdh.c      |  4 +++
+>>   .../broadcom/brcm80211/brcmfmac/common.c      |  6 +++-
+>>   .../wireless/broadcom/brcm80211/brcmfmac/of.c | 28 +++++++++++++------
+>>   .../wireless/broadcom/brcm80211/brcmfmac/of.h |  9 +++---
+>>   .../broadcom/brcm80211/brcmfmac/pcie.c        |  3 ++
+>>   .../broadcom/brcm80211/brcmfmac/sdio.c        | 18 ++++++++----
+>>   .../broadcom/brcm80211/brcmfmac/usb.c         |  3 ++
+>>   7 files changed, 52 insertions(+), 19 deletions(-)
+>>
+>> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/bcmsdh.c 
+>> b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/bcmsdh.c
+>> index 13391c2d82aae..ee3ca85c4a47b 100644
+>> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/bcmsdh.c
+>> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/bcmsdh.c
+>> @@ -951,6 +951,10 @@ int brcmf_sdiod_probe(struct brcmf_sdio_dev 
+>> *sdiodev)
+>>           ret = -ENODEV;
+>>           goto out;
+>>       }
+>> +    if (IS_ERR(sdiodev->bus)) {
+>> +        ret = PTR_ERR(sdiodev->bus);
+>> +        goto out;
+>> +    }
+> 
+> Maybe return -ENODEV error pointer instead of NULL from brcmf_sdio_probe 
+> as the default for the fail path? Then you can condense these two checks 
+> into one
 
-Add just the basic support for now, i.e. RGB output up to 4K@60Hz,
-without audio, CEC or any of the HDMI 2.1 specific features.
+Sound reasonable.
 
-Co-developed-by: Algea Cao <algea.cao@rock-chips.com>
-Signed-off-by: Algea Cao <algea.cao@rock-chips.com>
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
----
- drivers/gpu/drm/rockchip/Kconfig               |   8 +
- drivers/gpu/drm/rockchip/Makefile              |   1 +
- drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c | 429 +++++++++++++++++++++++++
- drivers/gpu/drm/rockchip/rockchip_drm_drv.c    |   2 +
- drivers/gpu/drm/rockchip/rockchip_drm_drv.h    |   1 +
- 5 files changed, 441 insertions(+)
+>>       brcmf_sdiod_host_fixup(sdiodev->func2->card->host);
+>>   out:
+>>       if (ret)
+>> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/common.c 
+>> b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/common.c
+>> index b24faae35873d..6c5d26f9b7661 100644
+>> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/common.c
+>> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/common.c
+>> @@ -561,8 +561,12 @@ struct brcmf_mp_device 
+>> *brcmf_get_module_param(struct device *dev,
+>>       if (!found) {
+>>           /* No platform data for this device, try OF and DMI data */
+>>           brcmf_dmi_probe(settings, chip, chiprev);
+>> -        brcmf_of_probe(dev, bus_type, settings);
+>>           brcmf_acpi_probe(dev, bus_type, settings);
+>> +        i = brcmf_of_probe(dev, bus_type, settings);
+>> +        if (i < 0) {
+>> +            kfree(settings);
+>> +            settings = ERR_PTR(i);
+>> +        }
+> 
+> This looks wrong. First, you're calling brcmf_of_probe twice. Second, if 
+> either DMI or ACPI probe successfully but OF doesn't, then you return an 
+> error code instead of success, and also overwrite settings with an error 
+> pointer thus rendering both brcmf_dmi_probe and brcmf_acpi_probe useless
 
-diff --git a/drivers/gpu/drm/rockchip/Kconfig b/drivers/gpu/drm/rockchip/Kconfig
-index 1bf3e2829cd0..b60794aa0a9f 100644
---- a/drivers/gpu/drm/rockchip/Kconfig
-+++ b/drivers/gpu/drm/rockchip/Kconfig
-@@ -8,6 +8,7 @@ config DRM_ROCKCHIP
- 	select VIDEOMODE_HELPERS
- 	select DRM_ANALOGIX_DP if ROCKCHIP_ANALOGIX_DP
- 	select DRM_DW_HDMI if ROCKCHIP_DW_HDMI
-+	select DRM_DW_HDMI_QP if ROCKCHIP_DW_HDMI_QP
- 	select DRM_DW_MIPI_DSI if ROCKCHIP_DW_MIPI_DSI
- 	select GENERIC_PHY if ROCKCHIP_DW_MIPI_DSI
- 	select GENERIC_PHY_MIPI_DPHY if ROCKCHIP_DW_MIPI_DSI
-@@ -63,6 +64,13 @@ config ROCKCHIP_DW_HDMI
- 	  enable HDMI on RK3288 or RK3399 based SoC, you should select
- 	  this option.
- 
-+config ROCKCHIP_DW_HDMI_QP
-+	bool "Rockchip specific extensions for Synopsys DW HDMI QP"
-+	help
-+	  This selects support for Rockchip SoC specific extensions
-+	  for the Synopsys DesignWare HDMI QP driver. If you want to
-+	  enable HDMI on RK3588 based SoC, you should select this option.
-+
- config ROCKCHIP_DW_MIPI_DSI
- 	bool "Rockchip specific extensions for Synopsys DW MIPI DSI"
- 	select GENERIC_PHY_MIPI_DPHY
-diff --git a/drivers/gpu/drm/rockchip/Makefile b/drivers/gpu/drm/rockchip/Makefile
-index 3ff7b21c0414..3eab662a5a1d 100644
---- a/drivers/gpu/drm/rockchip/Makefile
-+++ b/drivers/gpu/drm/rockchip/Makefile
-@@ -11,6 +11,7 @@ rockchipdrm-$(CONFIG_ROCKCHIP_VOP) += rockchip_drm_vop.o rockchip_vop_reg.o
- rockchipdrm-$(CONFIG_ROCKCHIP_ANALOGIX_DP) += analogix_dp-rockchip.o
- rockchipdrm-$(CONFIG_ROCKCHIP_CDN_DP) += cdn-dp-core.o cdn-dp-reg.o
- rockchipdrm-$(CONFIG_ROCKCHIP_DW_HDMI) += dw_hdmi-rockchip.o
-+rockchipdrm-$(CONFIG_ROCKCHIP_DW_HDMI_QP) += dw_hdmi_qp-rockchip.o
- rockchipdrm-$(CONFIG_ROCKCHIP_DW_MIPI_DSI) += dw-mipi-dsi-rockchip.o
- rockchipdrm-$(CONFIG_ROCKCHIP_INNO_HDMI) += inno_hdmi.o
- rockchipdrm-$(CONFIG_ROCKCHIP_LVDS) += rockchip_lvds.o
-diff --git a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-new file mode 100644
-index 000000000000..93bb94f4084f
---- /dev/null
-+++ b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-@@ -0,0 +1,429 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (c) 2021-2022 Rockchip Electronics Co., Ltd.
-+ * Copyright (c) 2024 Collabora Ltd.
-+ *
-+ * Author: Algea Cao <algea.cao@rock-chips.com>
-+ * Author: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/phy/phy.h>
-+#include <linux/regmap.h>
-+
-+#include <drm/bridge/dw_hdmi_qp.h>
-+#include <drm/drm_bridge_connector.h>
-+#include <drm/drm_of.h>
-+#include <drm/drm_probe_helper.h>
-+#include <drm/drm_simple_kms_helper.h>
-+
-+#include "rockchip_drm_drv.h"
-+
-+#define RK3588_GRF_SOC_CON2		0x0308
-+#define RK3588_HDMI0_HPD_INT_MSK	BIT(13)
-+#define RK3588_HDMI0_HPD_INT_CLR	BIT(12)
-+#define RK3588_GRF_SOC_CON7		0x031c
-+#define RK3588_SET_HPD_PATH_MASK	GENMASK(13, 12)
-+#define RK3588_GRF_SOC_STATUS1		0x0384
-+#define RK3588_HDMI0_LEVEL_INT		BIT(16)
-+#define RK3588_GRF_VO1_CON3		0x000c
-+#define RK3588_SCLIN_MASK		BIT(9)
-+#define RK3588_SDAIN_MASK		BIT(10)
-+#define RK3588_MODE_MASK		BIT(11)
-+#define RK3588_I2S_SEL_MASK		BIT(13)
-+#define RK3588_GRF_VO1_CON9		0x0024
-+#define RK3588_HDMI0_GRANT_SEL		BIT(10)
-+
-+#define HIWORD_UPDATE(val, mask)	((val) | (mask) << 16)
-+
-+struct rockchip_hdmi_qp {
-+	struct device *dev;
-+	struct regmap *regmap;
-+	struct regmap *vo1_regmap;
-+	struct rockchip_encoder encoder;
-+	struct dw_hdmi_qp *hdmi;
-+	struct phy *phy;
-+	struct gpio_desc *enable_gpio;
-+	struct delayed_work hpd_work;
-+};
-+
-+static struct rockchip_hdmi_qp *to_rockchip_hdmi_qp(struct drm_encoder *encoder)
-+{
-+	struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
-+
-+	return container_of(rkencoder, struct rockchip_hdmi_qp, encoder);
-+}
-+
-+static void
-+dw_hdmi_qp_rockchip_encoder_mode_set(struct drm_encoder *encoder,
-+				     struct drm_display_mode *mode,
-+				     struct drm_display_mode *adj_mode)
-+{
-+	struct rockchip_hdmi_qp *hdmi = to_rockchip_hdmi_qp(encoder);
-+
-+	dw_hdmi_qp_set_refclk_rate(hdmi->hdmi, adj_mode->clock * 1000);
-+}
-+
-+static void dw_hdmi_qp_rockchip_encoder_enable(struct drm_encoder *encoder)
-+{
-+	struct rockchip_hdmi_qp *hdmi = to_rockchip_hdmi_qp(encoder);
-+	struct drm_crtc *crtc = encoder->crtc;
-+	int rate;
-+
-+	/* Unconditionally switch to TMDS as FRL is not yet supported */
-+	gpiod_set_value(hdmi->enable_gpio, 1);
-+
-+	if (crtc && crtc->state) {
-+		dw_hdmi_qp_set_refclk_rate(hdmi->hdmi,
-+					   crtc->state->adjusted_mode.crtc_clock * 1000);
-+		/*
-+		 * FIXME: Temporary workaround to pass pixel clock rate
-+		 * to the PHY driver until phy_configure_opts_hdmi
-+		 * becomes available in the PHY API. See also the related
-+		 * comment in rk_hdptx_phy_power_on() from
-+		 * drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
-+		 */
-+		rate = crtc->state->mode.clock * 10;
-+		phy_set_bus_width(hdmi->phy, rate);
-+		drm_dbg(hdmi, "%s set bus_width=%u\n", __func__, rate);
-+	}
-+}
-+
-+static int
-+dw_hdmi_qp_rockchip_encoder_atomic_check(struct drm_encoder *encoder,
-+					 struct drm_crtc_state *crtc_state,
-+					 struct drm_connector_state *conn_state)
-+{
-+	struct rockchip_crtc_state *s = to_rockchip_crtc_state(crtc_state);
-+
-+	s->output_mode = ROCKCHIP_OUT_MODE_AAAA;
-+	s->output_type = DRM_MODE_CONNECTOR_HDMIA;
-+
-+	return 0;
-+}
-+
-+static const struct
-+drm_encoder_helper_funcs dw_hdmi_qp_rockchip_encoder_helper_funcs = {
-+	.mode_set	= dw_hdmi_qp_rockchip_encoder_mode_set,
-+	.enable		= dw_hdmi_qp_rockchip_encoder_enable,
-+	.atomic_check	= dw_hdmi_qp_rockchip_encoder_atomic_check,
-+};
-+
-+static int dw_hdmi_qp_rk3588_phy_init(struct dw_hdmi_qp *dw_hdmi, void *data,
-+				      const struct drm_display_info *display)
-+{
-+	struct rockchip_hdmi_qp *hdmi = (struct rockchip_hdmi_qp *)data;
-+
-+	dw_hdmi_qp_set_high_tmds_clock_ratio(dw_hdmi, display);
-+
-+	return phy_power_on(hdmi->phy);
-+}
-+
-+static void dw_hdmi_qp_rk3588_phy_disable(struct dw_hdmi_qp *dw_hdmi,
-+					  void *data)
-+{
-+	struct rockchip_hdmi_qp *hdmi = (struct rockchip_hdmi_qp *)data;
-+
-+	phy_power_off(hdmi->phy);
-+}
-+
-+static enum drm_connector_status
-+dw_hdmi_qp_rk3588_read_hpd(struct dw_hdmi_qp *dw_hdmi, void *data)
-+{
-+	struct rockchip_hdmi_qp *hdmi = (struct rockchip_hdmi_qp *)data;
-+	u32 val;
-+
-+	regmap_read(hdmi->regmap, RK3588_GRF_SOC_STATUS1, &val);
-+
-+	return val & RK3588_HDMI0_LEVEL_INT ?
-+		connector_status_connected : connector_status_disconnected;
-+}
-+
-+static void dw_hdmi_qp_rk3588_setup_hpd(struct dw_hdmi_qp *dw_hdmi, void *data)
-+{
-+	struct rockchip_hdmi_qp *hdmi = (struct rockchip_hdmi_qp *)data;
-+
-+	regmap_write(hdmi->regmap,
-+		     RK3588_GRF_SOC_CON2,
-+		     HIWORD_UPDATE(RK3588_HDMI0_HPD_INT_CLR,
-+				   RK3588_HDMI0_HPD_INT_CLR |
-+				   RK3588_HDMI0_HPD_INT_MSK));
-+}
-+
-+static const struct dw_hdmi_qp_phy_ops rk3588_hdmi_phy_ops = {
-+	.init		= dw_hdmi_qp_rk3588_phy_init,
-+	.disable	= dw_hdmi_qp_rk3588_phy_disable,
-+	.read_hpd	= dw_hdmi_qp_rk3588_read_hpd,
-+	.setup_hpd	= dw_hdmi_qp_rk3588_setup_hpd,
-+};
-+
-+static void dw_hdmi_qp_rk3588_hpd_work(struct work_struct *work)
-+{
-+	struct rockchip_hdmi_qp *hdmi = container_of(work,
-+						     struct rockchip_hdmi_qp,
-+						     hpd_work.work);
-+	struct drm_device *drm = hdmi->encoder.encoder.dev;
-+	bool changed;
-+
-+	if (drm) {
-+		changed = drm_helper_hpd_irq_event(drm);
-+		if (changed)
-+			drm_dbg(hdmi, "connector status changed\n");
-+	}
-+}
-+
-+static irqreturn_t dw_hdmi_qp_rk3588_hardirq(int irq, void *dev_id)
-+{
-+	struct rockchip_hdmi_qp *hdmi = dev_id;
-+	u32 intr_stat, val;
-+
-+	regmap_read(hdmi->regmap, RK3588_GRF_SOC_STATUS1, &intr_stat);
-+
-+	if (intr_stat) {
-+		val = HIWORD_UPDATE(RK3588_HDMI0_HPD_INT_MSK,
-+				    RK3588_HDMI0_HPD_INT_MSK);
-+		regmap_write(hdmi->regmap, RK3588_GRF_SOC_CON2, val);
-+		return IRQ_WAKE_THREAD;
-+	}
-+
-+	return IRQ_NONE;
-+}
-+
-+static irqreturn_t dw_hdmi_qp_rk3588_irq(int irq, void *dev_id)
-+{
-+	struct rockchip_hdmi_qp *hdmi = dev_id;
-+	u32 intr_stat, val;
-+	int debounce_ms;
-+
-+	regmap_read(hdmi->regmap, RK3588_GRF_SOC_STATUS1, &intr_stat);
-+	if (!intr_stat)
-+		return IRQ_NONE;
-+
-+	val = HIWORD_UPDATE(RK3588_HDMI0_HPD_INT_CLR,
-+			    RK3588_HDMI0_HPD_INT_CLR);
-+	regmap_write(hdmi->regmap, RK3588_GRF_SOC_CON2, val);
-+
-+	debounce_ms = intr_stat & RK3588_HDMI0_LEVEL_INT ? 150 : 20;
-+	mod_delayed_work(system_wq, &hdmi->hpd_work,
-+			 msecs_to_jiffies(debounce_ms));
-+
-+	val |= HIWORD_UPDATE(0, RK3588_HDMI0_HPD_INT_MSK);
-+	regmap_write(hdmi->regmap, RK3588_GRF_SOC_CON2, val);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static const struct of_device_id dw_hdmi_qp_rockchip_dt_ids[] = {
-+	{ .compatible = "rockchip,rk3588-dw-hdmi-qp",
-+	  .data = &rk3588_hdmi_phy_ops },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, dw_hdmi_qp_rockchip_dt_ids);
-+
-+static int dw_hdmi_qp_rockchip_bind(struct device *dev, struct device *master,
-+				    void *data)
-+{
-+	static const char * const clk_names[] = { "hdp", "hclk_vo1" };
-+	struct platform_device *pdev = to_platform_device(dev);
-+	struct dw_hdmi_qp_plat_data plat_data;
-+	struct drm_device *drm = data;
-+	struct drm_connector *connector;
-+	struct drm_encoder *encoder;
-+	struct rockchip_hdmi_qp *hdmi;
-+	struct clk *clk;
-+	int ret, irq, i;
-+	u32 val;
-+
-+	if (!pdev->dev.of_node)
-+		return -ENODEV;
-+
-+	hdmi = devm_kzalloc(&pdev->dev, sizeof(*hdmi), GFP_KERNEL);
-+	if (!hdmi)
-+		return -ENOMEM;
-+
-+	plat_data.phy_ops = of_device_get_match_data(dev);
-+	if (!plat_data.phy_ops)
-+		return -ENODEV;
-+
-+	plat_data.phy_data = hdmi;
-+	hdmi->dev = &pdev->dev;
-+
-+	encoder = &hdmi->encoder.encoder;
-+	encoder->possible_crtcs = drm_of_find_possible_crtcs(drm, dev->of_node);
-+
-+	rockchip_drm_encoder_set_crtc_endpoint_id(&hdmi->encoder,
-+						  dev->of_node, 0, 0);
-+	/*
-+	 * If we failed to find the CRTC(s) which this encoder is
-+	 * supposed to be connected to, it's because the CRTC has
-+	 * not been registered yet.  Defer probing, and hope that
-+	 * the required CRTC is added later.
-+	 */
-+	if (encoder->possible_crtcs == 0)
-+		return -EPROBE_DEFER;
-+
-+	hdmi->regmap = syscon_regmap_lookup_by_phandle(dev->of_node,
-+						       "rockchip,grf");
-+	if (IS_ERR(hdmi->regmap)) {
-+		drm_err(hdmi, "Unable to get rockchip,grf\n");
-+		return PTR_ERR(hdmi->regmap);
-+	}
-+
-+	hdmi->vo1_regmap = syscon_regmap_lookup_by_phandle(dev->of_node,
-+							   "rockchip,vo1_grf");
-+	if (IS_ERR(hdmi->vo1_regmap)) {
-+		drm_err(hdmi, "Unable to get rockchip,vo1_grf\n");
-+		return PTR_ERR(hdmi->vo1_regmap);
-+	}
-+
-+	for (i = 0; i < ARRAY_SIZE(clk_names); i++) {
-+		clk = devm_clk_get_optional_enabled(hdmi->dev, clk_names[i]);
-+
-+		if (IS_ERR(clk)) {
-+			ret = PTR_ERR(clk);
-+			if (ret != -EPROBE_DEFER)
-+				drm_err(hdmi, "Failed to get %s clock: %d\n",
-+					clk_names[i], ret);
-+			return ret;
-+		}
-+	}
-+
-+	hdmi->enable_gpio = devm_gpiod_get_optional(hdmi->dev, "enable",
-+						    GPIOD_OUT_HIGH);
-+	if (IS_ERR(hdmi->enable_gpio)) {
-+		ret = PTR_ERR(hdmi->enable_gpio);
-+		drm_err(hdmi, "Failed to request enable GPIO: %d\n", ret);
-+		return ret;
-+	}
-+
-+	hdmi->phy = devm_phy_get(dev, "hdmi");
-+	if (IS_ERR(hdmi->phy)) {
-+		ret = PTR_ERR(hdmi->phy);
-+		if (ret != -EPROBE_DEFER)
-+			drm_err(hdmi, "failed to get phy: %d\n", ret);
-+		return ret;
-+	}
-+
-+	val = HIWORD_UPDATE(RK3588_SCLIN_MASK, RK3588_SCLIN_MASK) |
-+	      HIWORD_UPDATE(RK3588_SDAIN_MASK, RK3588_SDAIN_MASK) |
-+	      HIWORD_UPDATE(RK3588_MODE_MASK, RK3588_MODE_MASK) |
-+	      HIWORD_UPDATE(RK3588_I2S_SEL_MASK, RK3588_I2S_SEL_MASK);
-+	regmap_write(hdmi->vo1_regmap, RK3588_GRF_VO1_CON3, val);
-+
-+	val = HIWORD_UPDATE(RK3588_SET_HPD_PATH_MASK,
-+			    RK3588_SET_HPD_PATH_MASK);
-+	regmap_write(hdmi->regmap, RK3588_GRF_SOC_CON7, val);
-+
-+	val = HIWORD_UPDATE(RK3588_HDMI0_GRANT_SEL,
-+			    RK3588_HDMI0_GRANT_SEL);
-+	regmap_write(hdmi->vo1_regmap, RK3588_GRF_VO1_CON9, val);
-+
-+	val = HIWORD_UPDATE(RK3588_HDMI0_HPD_INT_MSK, RK3588_HDMI0_HPD_INT_MSK);
-+	regmap_write(hdmi->regmap, RK3588_GRF_SOC_CON2, val);
-+
-+	INIT_DELAYED_WORK(&hdmi->hpd_work, dw_hdmi_qp_rk3588_hpd_work);
-+
-+	irq = platform_get_irq_byname(pdev, "hpd");
-+	if (irq < 0)
-+		return irq;
-+
-+	ret = devm_request_threaded_irq(hdmi->dev, irq,
-+					dw_hdmi_qp_rk3588_hardirq,
-+					dw_hdmi_qp_rk3588_irq,
-+					IRQF_SHARED, "dw-hdmi-qp-hpd",
-+					hdmi);
-+	if (ret)
-+		return ret;
-+
-+	drm_encoder_helper_add(encoder, &dw_hdmi_qp_rockchip_encoder_helper_funcs);
-+	drm_simple_encoder_init(drm, encoder, DRM_MODE_ENCODER_TMDS);
-+
-+	platform_set_drvdata(pdev, hdmi);
-+
-+	hdmi->hdmi = dw_hdmi_qp_bind(pdev, encoder, &plat_data);
-+	if (IS_ERR(hdmi->hdmi)) {
-+		ret = PTR_ERR(hdmi->hdmi);
-+		drm_encoder_cleanup(encoder);
-+		return ret;
-+	}
-+
-+	connector = drm_bridge_connector_init(drm, encoder);
-+	if (IS_ERR(connector)) {
-+		ret = PTR_ERR(connector);
-+		drm_err(hdmi, "failed to init bridge connector: %d\n", ret);
-+		return ret;
-+	}
-+
-+	return drm_connector_attach_encoder(connector, encoder);
-+}
-+
-+static void dw_hdmi_qp_rockchip_unbind(struct device *dev,
-+				       struct device *master,
-+				       void *data)
-+{
-+	struct rockchip_hdmi_qp *hdmi = dev_get_drvdata(dev);
-+
-+	cancel_delayed_work_sync(&hdmi->hpd_work);
-+
-+	drm_encoder_cleanup(&hdmi->encoder.encoder);
-+}
-+
-+static const struct component_ops dw_hdmi_qp_rockchip_ops = {
-+	.bind	= dw_hdmi_qp_rockchip_bind,
-+	.unbind	= dw_hdmi_qp_rockchip_unbind,
-+};
-+
-+static int dw_hdmi_qp_rockchip_probe(struct platform_device *pdev)
-+{
-+	return component_add(&pdev->dev, &dw_hdmi_qp_rockchip_ops);
-+}
-+
-+static void dw_hdmi_qp_rockchip_remove(struct platform_device *pdev)
-+{
-+	component_del(&pdev->dev, &dw_hdmi_qp_rockchip_ops);
-+}
-+
-+static int __maybe_unused dw_hdmi_qp_rockchip_resume(struct device *dev)
-+{
-+	struct rockchip_hdmi_qp *hdmi = dev_get_drvdata(dev);
-+	u32 val;
-+
-+	val = HIWORD_UPDATE(RK3588_SCLIN_MASK, RK3588_SCLIN_MASK) |
-+	      HIWORD_UPDATE(RK3588_SDAIN_MASK, RK3588_SDAIN_MASK) |
-+	      HIWORD_UPDATE(RK3588_MODE_MASK, RK3588_MODE_MASK) |
-+	      HIWORD_UPDATE(RK3588_I2S_SEL_MASK, RK3588_I2S_SEL_MASK);
-+	regmap_write(hdmi->vo1_regmap, RK3588_GRF_VO1_CON3, val);
-+
-+	val = HIWORD_UPDATE(RK3588_SET_HPD_PATH_MASK,
-+			    RK3588_SET_HPD_PATH_MASK);
-+	regmap_write(hdmi->regmap, RK3588_GRF_SOC_CON7, val);
-+
-+	val = HIWORD_UPDATE(RK3588_HDMI0_GRANT_SEL,
-+			    RK3588_HDMI0_GRANT_SEL);
-+	regmap_write(hdmi->vo1_regmap, RK3588_GRF_VO1_CON9, val);
-+
-+	dw_hdmi_qp_resume(dev, hdmi->hdmi);
-+
-+	if (hdmi->encoder.encoder.dev)
-+		drm_helper_hpd_irq_event(hdmi->encoder.encoder.dev);
-+
-+	return 0;
-+}
-+
-+static const struct dev_pm_ops dw_hdmi_qp_rockchip_pm = {
-+	SET_SYSTEM_SLEEP_PM_OPS(NULL, dw_hdmi_qp_rockchip_resume)
-+};
-+
-+struct platform_driver dw_hdmi_qp_rockchip_pltfm_driver = {
-+	.probe  = dw_hdmi_qp_rockchip_probe,
-+	.remove_new = dw_hdmi_qp_rockchip_remove,
-+	.driver = {
-+		.name = "dwhdmiqp-rockchip",
-+		.pm = &dw_hdmi_qp_rockchip_pm,
-+		.of_match_table = dw_hdmi_qp_rockchip_dt_ids,
-+	},
-+};
-diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
-index ab55d7132550..3ec8ff5bf21f 100644
---- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
-+++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
-@@ -503,6 +503,8 @@ static int __init rockchip_drm_init(void)
- 	ADD_ROCKCHIP_SUB_DRIVER(cdn_dp_driver, CONFIG_ROCKCHIP_CDN_DP);
- 	ADD_ROCKCHIP_SUB_DRIVER(dw_hdmi_rockchip_pltfm_driver,
- 				CONFIG_ROCKCHIP_DW_HDMI);
-+	ADD_ROCKCHIP_SUB_DRIVER(dw_hdmi_qp_rockchip_pltfm_driver,
-+				CONFIG_ROCKCHIP_DW_HDMI_QP);
- 	ADD_ROCKCHIP_SUB_DRIVER(dw_mipi_dsi_rockchip_driver,
- 				CONFIG_ROCKCHIP_DW_MIPI_DSI);
- 	ADD_ROCKCHIP_SUB_DRIVER(inno_hdmi_driver, CONFIG_ROCKCHIP_INNO_HDMI);
-diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.h b/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
-index 8d566fcd80a2..24b4ce5ceaf1 100644
---- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
-+++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
-@@ -88,6 +88,7 @@ int rockchip_drm_encoder_set_crtc_endpoint_id(struct rockchip_encoder *rencoder,
- int rockchip_drm_endpoint_is_subdriver(struct device_node *ep);
- extern struct platform_driver cdn_dp_driver;
- extern struct platform_driver dw_hdmi_rockchip_pltfm_driver;
-+extern struct platform_driver dw_hdmi_qp_rockchip_pltfm_driver;
- extern struct platform_driver dw_mipi_dsi_rockchip_driver;
- extern struct platform_driver inno_hdmi_driver;
- extern struct platform_driver rockchip_dp_driver;
+Twice? it is removed and added few lines below. It does change the order 
+so that may not be best thing to do here. We actually only want to 
+handle the scenario where the clock resources are not yet available, ie. 
+when -EPROBE_DEFER is returned because that error value is taken into 
+account by the bus driver and tries to bind the driver again later.
 
--- 
-2.45.2
+>>       }
+>>       return settings;
+>>   }
+>> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c 
+>> b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
+>> index e406e11481a62..5f61363fb5d0e 100644
+>> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
+>> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
+>> @@ -6,6 +6,7 @@
+>>   #include <linux/of.h>
+>>   #include <linux/of_irq.h>
+>>   #include <linux/of_net.h>
+>> +#include <linux/clk.h>
+>>   #include <defs.h>
+>>   #include "debug.h"
+>> @@ -65,17 +66,21 @@ static int brcmf_of_get_country_codes(struct 
+>> device *dev,
+>>       return 0;
+>>   }
+>> -void brcmf_of_probe(struct device *dev, enum brcmf_bus_type bus_type,
+>> -            struct brcmf_mp_device *settings)
+>> +int brcmf_of_probe(struct device *dev, enum brcmf_bus_type bus_type,
+>> +           struct brcmf_mp_device *settings)
+>>   {
+>>       struct brcmfmac_sdio_pd *sdio = &settings->bus.sdio;
+>>       struct device_node *root, *np = dev->of_node;
+>> +    struct clk *clk;
+>>       const char *prop;
+>>       int irq;
+>>       int err;
+>>       u32 irqf;
+>>       u32 val;
+>> +    if (!np || !of_device_is_compatible(np, "brcm,bcm4329-fmac"))
+>> +        return 0;
+>> +
+> 
+> return 0 implies this function has completed successfully, while in this 
+> case it's obviously returned early due to not finding the correct device 
+> in DT. -ENODEV perhaps?
 
+This was a void function so returning 0 retains the behavior as before, 
+which is important to keep in mind here.
+
+This function will be called if the platform has CONFIG_OF enabled. 
+However, that does not mean that on every platform there is a node 
+defined for the struct device being probed. That is fine if it does not 
+require any DT properties to be functional. Hence we bail out here 
+without an error.
+
+>>       /* Apple ARM64 platforms have their own idea of board type, 
+>> passed in
+>>        * via the device tree. They also have an antenna SKU parameter
+>>        */
+>> @@ -105,7 +110,7 @@ void brcmf_of_probe(struct device *dev, enum 
+>> brcmf_bus_type bus_type,
+>>           board_type = devm_kstrdup(dev, tmp, GFP_KERNEL);
+>>           if (!board_type) {
+>>               of_node_put(root);
+>> -            return;
+>> +            return 0;
+> 
+> -ENOMEM?
+
+Retain behavior.
+
+>>           }
+>>           strreplace(board_type, '/', '-');
+>>           settings->board_type = board_type;
+>> @@ -113,8 +118,13 @@ void brcmf_of_probe(struct device *dev, enum 
+>> brcmf_bus_type bus_type,
+>>           of_node_put(root);
+>>       }
+>> -    if (!np || !of_device_is_compatible(np, "brcm,bcm4329-fmac"))
+>> -        return;
+>> +    clk = devm_clk_get_optional_enabled(dev, "lpo");
+>> +    if (!IS_ERR_OR_NULL(clk)) {
+>> +        brcmf_dbg(INFO, "enabling 32kHz clock\n");
+>> +        clk_set_rate(clk, 32768);
+>> +    } else if (PTR_ERR_OR_ZERO(clk) == -EPROBE_DEFER) {
+> 
+> PTR_ERR should be enough, no? Or better yet move this to the bottom of 
+> the function as was discussed on your previous submission, then you can 
+> return PTR_ERR_OR_ZERO(clk) right away, which would be a bit neater.
+> 
+>> +        return -EPROBE_DEFER;
+>> +    }
+>>       err = brcmf_of_get_country_codes(dev, settings);
+>>       if (err)
+>> @@ -123,23 +133,25 @@ void brcmf_of_probe(struct device *dev, enum 
+>> brcmf_bus_type bus_type,
+>>       of_get_mac_address(np, settings->mac);
+>>       if (bus_type != BRCMF_BUSTYPE_SDIO)
+>> -        return;
+>> +        return 0;
+>>       if (of_property_read_u32(np, "brcm,drive-strength", &val) == 0)
+>>           sdio->drive_strength = val;
+>>       /* make sure there are interrupts defined in the node */
+>>       if (!of_property_present(np, "interrupts"))
+>> -        return;
+>> +        return 0;
+> 
+> -ENOENT?
+
+That property is option in the binding so we return silently here as well.
+
+>>       irq = irq_of_parse_and_map(np, 0);
+>>       if (!irq) {
+>>           brcmf_err("interrupt could not be mapped\n");
+>> -        return;
+>> +        return 0;
+> 
+> -ENXIO?
+
+This is a bit more gray area. The interrupt is optional, but if it is in 
+the device tree this is clearly intended to succeed. When it does the 
+question is whether the error print is sufficient or should we use 
+WARN() instead or fail the probe entirely. This interrupt is optional 
+because it is only needed in some sleep scenarios where it can wake the 
+host.
+
+>>       }
+>>       irqf = irqd_get_trigger_type(irq_get_irq_data(irq));
+>>       sdio->oob_irq_supported = true;
+>>       sdio->oob_irq_nr = irq;
+>>       sdio->oob_irq_flags = irqf;
+>> +
+>> +    return 0;
+>>   }
+
+[...]
+
+>> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c 
+>> b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c
+>> index 6b38d9de71af6..7d79e2db201b5 100644
+>> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c
+>> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c
+
+[...]
+
+>> @@ -4446,6 +4448,7 @@ struct brcmf_sdio *brcmf_sdio_probe(struct 
+>> brcmf_sdio_dev *sdiodev)
+>>       struct brcmf_sdio *bus;
+>>       struct workqueue_struct *wq;
+>>       struct brcmf_fw_request *fwreq;
+>> +    int probe_attach_result;
+>>       brcmf_dbg(TRACE, "Enter\n");
+>> @@ -4474,7 +4477,8 @@ struct brcmf_sdio *brcmf_sdio_probe(struct 
+>> brcmf_sdio_dev *sdiodev)
+>>       bus->brcmf_wq = wq;
+>>       /* attempt to attach to the dongle */
+>> -    if (!(brcmf_sdio_probe_attach(bus))) {
+>> +    probe_attach_result = brcmf_sdio_probe_attach(bus);
+>> +    if (probe_attach_result < 0) {
+>>           brcmf_err("brcmf_sdio_probe_attach failed\n");
+>>           goto fail;
+>>       }
+>> @@ -4546,6 +4550,8 @@ struct brcmf_sdio *brcmf_sdio_probe(struct 
+>> brcmf_sdio_dev *sdiodev)
+>>   fail:
+>>       brcmf_sdio_remove(bus);
+>> +    if (probe_attach_result < 0)
+>> +        return ERR_PTR(probe_attach_result);
+>>       return NULL;
+> 
+> See my comment on the bcmsdh.c part above - perhaps initialize 
+> probe_attach_result to -ENODEV by default and just return 
+> ERR_PTR(probe_attach_result) here instead
+
+Yup. Let's do that.
+
+Thanks,
+Arend
 
