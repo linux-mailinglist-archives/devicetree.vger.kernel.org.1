@@ -1,142 +1,107 @@
-Return-Path: <devicetree+bounces-91895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91896-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9809394B279
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 23:56:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5718A94B2A8
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 00:04:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54C80280C0E
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 21:56:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 867021C2111E
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 22:04:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D116B13E409;
-	Wed,  7 Aug 2024 21:56:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD56014830F;
+	Wed,  7 Aug 2024 22:04:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="mdq5QeKL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WD8LeQVA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4229F77F1B
-	for <devicetree@vger.kernel.org>; Wed,  7 Aug 2024 21:56:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A21A813D882;
+	Wed,  7 Aug 2024 22:04:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723067786; cv=none; b=mtyABvL82sIEKe+MXru9aQkdgPMK4YHnG7u1ghHqLq9x2/Tnpr/ZvbncHeH0trmNeImnYlHMZ6TuzfT4q0iuujO4iX5ZH67mF4sc0k+jLP4M4rOjPA0NMNP4NlyCrCvlYwqhwEibbSXuVKhlWQN1dKm6sPj06Kz5CVIXBksdnkQ=
+	t=1723068279; cv=none; b=Db3eUBmaMMM6uHvnviGhqvy2hS98HHxtazVuiGJ5CoAth0qYwR+rEM4Smk+Wz7BnvGOlpRqDA+m4ruVBoOlTdR4sW6wJd0PsYtmT0BdTWwep0EInHmaRs3ixUwyyKOgWUVxtNh3ArjmgYqB+nanXjExtOKX6nrIbWVeOLaTlg/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723067786; c=relaxed/simple;
-	bh=XPRl8AKc7BvHuB3QMo2rImKhhrZI5XkY4l2t0/ndEuI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ThF4VV8D0S1bXqmt8VDrk6sJKYCEl4L2HFW6CabVihdUsTydreUxJxnAGrcx9XiPNOEonQrZ5fZfmDHyJBkbdtkUITJ+B2b9jxl/1UurPKkacH17ZF0kJJk+b2wtfrLzC9xXFDca6SOJy4jiztq6ou5t9UQbm1RGerqX8nS3cYg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=mdq5QeKL; arc=none smtp.client-ip=209.85.219.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-6bbbd25d216so8239306d6.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2024 14:56:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1723067783; x=1723672583; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OVodnowP0eaUum6OAuR4DXp0pjV1BAajzdmmLHEX8NY=;
-        b=mdq5QeKLuPhs0rkooCwz4hHjSL4EK2R1Gjbr7Trxj0YqP7TgHhMwNSAALxEnfU77tz
-         1ext3HnOzob5r7Ku/uNhWIOuZd64ddl5+JVSmzQQaBV0IDfKV3ZIgweMwhwzMG7QuItD
-         J0ojQcEBd6QAOUHOsV6Erum1/TISQkChsbEMU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723067783; x=1723672583;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OVodnowP0eaUum6OAuR4DXp0pjV1BAajzdmmLHEX8NY=;
-        b=N/UwNPGGcmrG4muWIfgiEtQF7pK1/FLGfmQSRfLeVIpjKI/iDWkDh+0kYyfNU205zX
-         3s3qaU44UnMv1DG/FzXkpFLodcoQ8TL4MPn2gbjDCeTA+lr1Pb/+RGOBBKhGvdHy2Y4/
-         DP00SPUfnWaBIt5EkiL4mGa7tI38FBN5HNDXj3Ic//5J4Rek81SRWeQPhB9gOd1s/m5F
-         vndMboCv2xBNwitIni+ObGmlWsn8oc69D1MPIuywPLixKLaBF0CW28+386em6lw+PNRS
-         oW0FA1SZjSzmcS+TQICHKAaYx3pZ0cxJZftzeI2aAxe5CUbRI1c0IXQeaxceVezth1b6
-         oz3g==
-X-Forwarded-Encrypted: i=1; AJvYcCV55OUEmYykLTZCPSDzmtB0MQwDskFYAjhKZMa21svU0IbgQTYGUh+Dh1jTnqCXpEiyfO7v6B2q+KDCaKx6ZGIcPdtrGMnTdHrkZA==
-X-Gm-Message-State: AOJu0YwrEO/cNTwH2ZgptQ0uRN9Xq5YEMyCxpmhBqWtqhFN6tEwo+iZH
-	8EQnrB8ngNInlFaVweP/w3ktEYybrOJKdyJUI2nP9+d4gDmLcBWJrkt81+R5UDQn5kLLt5pz2b3
-	/GQ==
-X-Google-Smtp-Source: AGHT+IE9yXYu1Kjzv97X0j387KwiFi+waj5G1Jbzss1csfqSWY307ap7YDOOpbB+PC4sujpxVkWkww==
-X-Received: by 2002:ad4:4088:0:b0:6b5:82e1:f89e with SMTP id 6a1803df08f44-6bbbbddfa7fmr66962186d6.9.1723067782764;
-        Wed, 07 Aug 2024 14:56:22 -0700 (PDT)
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com. [209.85.160.180])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6bb9c862abasm59794126d6.105.2024.08.07.14.56.21
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Aug 2024 14:56:21 -0700 (PDT)
-Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-44fee2bfd28so57451cf.1
-        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2024 14:56:21 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUW76aqxQAWkFjK/nBkw0d5jg9eLI9BnmW6HJOak7wqRORt+rpo6y+tsQdytHc4zMVrx80OUeXUfolHuBYKGf/KXSrOQB2nmIwQbQ==
-X-Received: by 2002:a05:622a:1906:b0:441:5e6c:426c with SMTP id
- d75a77b69052e-451d382a2cfmr401061cf.17.1723067781326; Wed, 07 Aug 2024
- 14:56:21 -0700 (PDT)
+	s=arc-20240116; t=1723068279; c=relaxed/simple;
+	bh=Aun0C9qV6YJNK0y8IYWDwu6TzoJxNI1uGH6VUWDp41s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XQ9hiNn7SO02MxwNrfWMNATh/iSbHFBILnoBP2zEFEsyuzPAdxYOj3zH2dIRbBXcTOqsCYRL1wPxHX4i5oVrNC8TEWLW19vEBrHL+Xlx9mCDWx5Abqyxtangj4+rqcP8fz28fZNXu3hbzWGaQrGJqCECZLYKpmmDGLGGUcnT2G4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WD8LeQVA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 499CCC32781;
+	Wed,  7 Aug 2024 22:04:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723068279;
+	bh=Aun0C9qV6YJNK0y8IYWDwu6TzoJxNI1uGH6VUWDp41s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WD8LeQVAow1IdNnHwQBI+fkkL63wGuHbzaEJ0nXnuhL+yy7RdNJjlGaTdYy4rDM1R
+	 +dNgRJc4cW/QXP0gSUmvZYylu3Z6H/IVZalPLGCHMJ+tB/kTSKVtgquyvedXjsFyzx
+	 mb8AHYz2gq/QMPpaGRQ1bix2fJhe4Sw/AyzgM2W6LLenZRRZLCBlweMY4e30RytCO0
+	 JApEm+f7IHD2QrdD54FF6vi/2WxjNjofsfHBcfqDpDfmRYzHrAGutIFHXf4+sR3j8w
+	 hRWKrpGPD+sq7dpcFG79TxV1R7StPrMVCrl4I7ZqlccwSJXcjEScMp/7ZBuAVYl8LE
+	 fQHKhO0lJT+YA==
+Date: Wed, 7 Aug 2024 23:04:31 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Macpaul Lin <macpaul.lin@mediatek.com>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bear Wang <bear.wang@mediatek.com>,
+	Pablo Sun <pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
+	Sen Chu <sen.chu@mediatek.com>,
+	Jason-ch Chen <Jason-ch.Chen@mediatek.com>,
+	Chris-qj chen <chris-qj.chen@mediatek.com>,
+	MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+	Chen-Yu Tsai <wenst@chromium.org>
+Subject: Re: [PATCH v2] dt-bindings: regulator: mediatek,mt6397-regulator:
+ convert to YAML
+Message-ID: <ZrPvb_bT2ty-1V6-@finisterre.sirena.org.uk>
+References: <20240807091738.18387-1-macpaul.lin@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240807100429.13260-1-lvzhaoxiong@huaqin.corp-partner.google.com>
-In-Reply-To: <20240807100429.13260-1-lvzhaoxiong@huaqin.corp-partner.google.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Wed, 7 Aug 2024 14:56:06 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WCw6pAump-PUFCW0cgbRY+5_2tPNLe=hN3-dnXD=B6MA@mail.gmail.com>
-Message-ID: <CAD=FV=WCw6pAump-PUFCW0cgbRY+5_2tPNLe=hN3-dnXD=B6MA@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] Modify the method of sending "exit sleep
-To: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
-Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
-	hsinyi@google.com, airlied@gmail.com, daniel@ffwll.ch, jagan@edgeble.ai, 
-	dmitry.baryshkov@linaro.org, jani.nikula@linux.intel.com, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="lDZc6TitRszOoInN"
+Content-Disposition: inline
+In-Reply-To: <20240807091738.18387-1-macpaul.lin@mediatek.com>
+X-Cookie: Your love life will be... interesting.
 
-Hi,
 
-On Wed, Aug 7, 2024 at 3:04=E2=80=AFAM Zhaoxiong Lv
-<lvzhaoxiong@huaqin.corp-partner.google.com> wrote:
->
-> This "exit sleep mode" and "set display on" command needs to
-> be sent in LP mode, so move "exit sleep mode" and "set display
-> on" command to the init() function.
->
-> Modify the Melfas panel init code to satisfy the gamma value of 2.2.
->
-> Changes between V3 and V2:
-> - PATCH 1/2: Modify the commit message and subject.
-> - PATCH 2/2: No changes.
-> - Link to v2: https://lore.kernel.org/all/20240806034015.11884-1-lvzhaoxi=
-ong@huaqin.corp-partner.google.com/
->
-> Changes between V2 and V1:
-> - PATCH 1/2: Modify the commit message and subject.
-> - PATCH 2/2: No changes.
-> - Link to v1: https://lore.kernel.org/all/20240725083245.12253-1-lvzhaoxi=
-ong@huaqin.corp-partner.google.com/
->
-> Zhaoxiong Lv (2):
->   drm/panel: jd9365da: Move "exit sleep mode" and "set display on" cmds
->   drm/panel: jd9365da: Modify the init code of Melfas
->
->  .../gpu/drm/panel/panel-jadard-jd9365da-h3.c  | 137 +++++++++---------
->  1 file changed, 71 insertions(+), 66 deletions(-)
+--lDZc6TitRszOoInN
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-As per my response in v2 [1], I feel like patch #1 would be best
-reviewed by someone with more MIPI DSI experience. My current plan for
-this series.
+On Wed, Aug 07, 2024 at 05:17:38PM +0800, Macpaul Lin wrote:
+> Convert the MediaTek MT6397 regulator bindings to DT schema.
 
-* Snooze for 2 weeks. If someone else has reviewed / landed in the
-meantime then great!
-* After two weeks, send a warning that I'll apply the series soon
-unless someone yells.
-* After a few more days, apply the series.
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
 
-Please yell if you disagree with any of the above.
+--lDZc6TitRszOoInN
+Content-Type: application/pgp-signature; name="signature.asc"
 
-[2] https://lore.kernel.org/r/CAD=3DFV=3DWrMxyxkuCYEbd=3DaYFaTJKNqGqXr6Re+V=
-=3DB_h9jnjHPvg@mail.gmail.com
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmaz728ACgkQJNaLcl1U
+h9D9XQf/eyGOxW1JkZAZL8CPVJKE1FXgdauk+Ue+UfyKHYdK6d+eRgfwjidtCKbE
+XDGKNI6EvMUzOR6n6VAYFSwJUOUcM5ErhW0JQbIWMlCWNbTxrMFvJAP8cx5LiNR2
+Ioms1PcpbZb+UTBQR4iR+W3KVBGeSvmIyhfkO4u0NtVT3TNPaofupAQJDx9esf3Z
+L5S5VLcR5P3hJ1bcugw1lhJNx4LF3a0bNunfJWRcKS0hQIkiSTjeRM7qcqMrIGfI
+vxLuBoP0+dW7G2JWdVZhWkjzDzAAyMvYlODNeHJjyrwyqwn9S8cQrEI0R3YALYs1
+r0GXGFxti79tGxYpqb3pwMJgZ6+lKA==
+=AjE1
+-----END PGP SIGNATURE-----
+
+--lDZc6TitRszOoInN--
 
