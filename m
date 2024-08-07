@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-91818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B78EF94ABF3
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 17:10:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BE6394AC3C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 17:13:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 29DF91F23274
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 15:10:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD13C1C210F6
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 15:13:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0E74824BB;
-	Wed,  7 Aug 2024 15:10:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4C8684A27;
+	Wed,  7 Aug 2024 15:13:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ZOS7uK7X"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="wJsu56q/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85B3678C92;
-	Wed,  7 Aug 2024 15:10:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00043374CC;
+	Wed,  7 Aug 2024 15:13:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723043439; cv=none; b=iSNn+ktH8lMkr2YmSrzpzlUrxaX2ypnAbT7v4cA0uE4EYhWYiW5PsO4CTXpiZgaKgHVXMm7MIi2EWZSGUKzuex3H2lnGF2aUe+OD0wQQi3IpAylvFakrRT4MjsKsWYo7aolkCv4cm0ZwXANHypKMKxMFRYWRsFg9a6VPIvHdfh4=
+	t=1723043596; cv=none; b=Ri3+9hjtNgkzycCECnsHG8uiIu03BQVghazNUrCqaU687AuYqJymPW8JF9TfnE6lFn+yxufcsc6gMm9ltGzQdF6a93jzdj4vKPQ3vUFpbU8bG55g42tQBMixwYYSP9tXyBn95ektEiU1tmK7uckQesPSu6bkz48gAS1Wf9LY6cs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723043439; c=relaxed/simple;
-	bh=bFOGSdwryYFIC/srt6z4KPB4f6lbDUwZwqMZ7LPxn9Q=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
-	 In-Reply-To:Content-Type; b=KKkyopoY/7hH2JK7MBKFbyOWNdufv98eNd7WtIdKnQI3lVLTBJLZ/tbl0brmzpTE0LgzWT+lmaf7UxURxef5AOIrxvF6AM+y3y5F4oa6+7wxwfk7zZ88vN9vfcEjAr9JduQLMV3/dpIIW3P7QjWqAuvNlAJDweNfD/Vtp37joHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ZOS7uK7X; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47784qWJ020486;
-	Wed, 7 Aug 2024 15:10:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	+sDHix3Eb6rHg/9spqlOX6zfPBQywPkh2CE1BgGedJ8=; b=ZOS7uK7XT9jkFkpu
-	FGih+mtaDvcnFbnx/t7fhEcC/yUOPIzes7XXybA5ZoNZf6O3YbKfLetXFJUSyySA
-	J/NptIIzrw85QmQ3TJwKpMFlqiNjHWdwpu8CtcxLPYwyRwACp2rpHETIMDa+gYHh
-	b1O4S7KwBsDADnB1GTRWQQLnIACDCQonG7+RivYhc1nCyU0AHBueGVtNTcOgduPP
-	VR/zUPIR2seMMlN57vgCsiDwSu8y5L5DE6eUHxDfoQJd5MR2Qas2e084rQnF9wmv
-	Qkhcm5cGx0x+ofZitqQFborjnIX2ZhbEa9hDLenB21NA2k3XnSzV33a9T8o159A1
-	60y+sw==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40scmu36jp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 07 Aug 2024 15:10:32 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 477FAV0Q025917
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 7 Aug 2024 15:10:31 GMT
-Received: from [10.239.97.152] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 7 Aug 2024
- 08:10:25 -0700
-Message-ID: <26eb0d02-06a5-4743-b828-01206c65e9dc@quicinc.com>
-Date: Wed, 7 Aug 2024 23:10:23 +0800
+	s=arc-20240116; t=1723043596; c=relaxed/simple;
+	bh=KOo4MZKjhP06xpv399bAglKdEuDUCZzAEeA0jCGjH/8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=KSO7IILzE+SBLlNdZvLJnxBT7xcOy/WGfadzRfyMWo4/AOy8zm1auw3VXfX2qL8nfYqoG625Ekn3eU5PmLmPWubmZ9Y6CZjWv6kISe+5Ow+S9s4iJOFoYm6XmcEUaD6gJO3+U9THIw2PUjCZpcrHJzU+rmQc1mPUGUII5nVtmAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=wJsu56q/; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 477FD8OH044454;
+	Wed, 7 Aug 2024 10:13:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1723043588;
+	bh=EqiEi6gcJd1o/ec/55Ce7FhYxlxTZS8VSj9smEeEChM=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=wJsu56q/jWV5lgn3xRn4HuyoYcPNoiRIv5quwtVlZhB60X6zupjGlcAncWadqUPlN
+	 RWkJiTerXJfl9jAxe+Jq1Bxtng9da7MmDj9BL3pxUvxZNUF68k5txfoxw76ibhYBLY
+	 c9dbb7nWl4o1CNmrpzte+AgpWIiaq6/58iuKKsp0=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 477FD8ZY068513
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 7 Aug 2024 10:13:08 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
+ Aug 2024 10:13:07 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 7 Aug 2024 10:13:08 -0500
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 477FD7Zg066163;
+	Wed, 7 Aug 2024 10:13:07 -0500
+Message-ID: <65047cc9-011b-46d3-939e-b7733c2f0fe2@ti.com>
+Date: Wed, 7 Aug 2024 10:13:07 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,259 +65,61 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 09/13] media: qcom: camss: Add CSID Gen3 support for
- SM8550
-From: Depeng Shao <quic_depengs@quicinc.com>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, <rfoss@kernel.org>,
-        <todor.too@gmail.com>, <mchehab@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <quic_eberman@quicinc.com>, <linux-media@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
-        Yongsheng Li
-	<quic_yon@quicinc.com>
-References: <20240709160656.31146-1-quic_depengs@quicinc.com>
- <20240709160656.31146-10-quic_depengs@quicinc.com>
- <e118f980-e10f-450c-8270-76602cc50b27@linaro.org>
- <eeaf4f4e-5200-4b13-b38f-3f3385fc2a2b@quicinc.com>
+Subject: Re: [PATCH 3/5] arm64: dts: ti: k3-am62p: Remove 'reserved' status
+To: Nishanth Menon <nm@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Santhosh Kumar
+	<s-k6@ti.com>,
+        Bryan Brattlof <bb@ti.com>
+References: <20240806214605.3379881-1-jm@ti.com>
+ <20240806214605.3379881-4-jm@ti.com>
+ <20240807114605.ggieur532eh4usus@diagram>
 Content-Language: en-US
-In-Reply-To: <eeaf4f4e-5200-4b13-b38f-3f3385fc2a2b@quicinc.com>
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <20240807114605.ggieur532eh4usus@diagram>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 1IrvqjEOudrCo0qOal0dE5GVLFrj5Sfv
-X-Proofpoint-GUID: 1IrvqjEOudrCo0qOal0dE5GVLFrj5Sfv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-07_11,2024-08-07_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
- clxscore=1015 malwarescore=0 impostorscore=0 adultscore=0 phishscore=0
- lowpriorityscore=0 priorityscore=1501 suspectscore=0 spamscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408070106
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Bryan,
+Hi Nishanth,
 
-Looks like you missed this mail, Could you please check again?
+On 8/7/24 6:46 AM, Nishanth Menon wrote:
+> On 16:46-20240806, Judith Mendez wrote:
+>> From: Santhosh Kumar K <s-k6@ti.com>
+>>
+>> Remove 'reserved' status for MCU ESM node in AM62P device tree.
+> 
+> Why?
+
+Main ESM reset is routed to the MCU ESM, hense enable
+MCU ESM in DT to be able to reset the CPU.
 
 
-On 7/11/2024 11:33 PM, Depeng Shao wrote:
-> Hi Bryan,
-> 
-> On 7/10/2024 7:28 PM, Bryan O'Donoghue wrote:
->> On 09/07/2024 17:06, Depeng Shao wrote:
->>> The CSID in SM8550 is gen3, it has new register offset and new
->>> functionality. The buf done irq,register update and reset are
->>> moved to CSID gen3. And CSID gen3 has a new register block which
->>> is named as CSID top, it controls the output of CSID, since the
->>> CSID can connect to Sensor Front End (SFE) or original VFE, the
->>> register in top block is used to control the HW connection.
->>>
->>> Co-developed-by: Yongsheng Li <quic_yon@quicinc.com>
->>> Signed-off-by: Yongsheng Li <quic_yon@quicinc.com>
->>> Signed-off-by: Depeng Shao <quic_depengs@quicinc.com>
->>> ---
->>>   drivers/media/platform/qcom/camss/Makefile    |   1 +
->>>   .../platform/qcom/camss/camss-csid-gen3.c     | 445 ++++++++++++++++++
->>>   .../platform/qcom/camss/camss-csid-gen3.h     |  26 +
->>>   .../media/platform/qcom/camss/camss-csid.h    |   2 +
->>>   4 files changed, 474 insertions(+)
->>>   create mode 100644 drivers/media/platform/qcom/camss/camss-csid-gen3.c
->>>   create mode 100644 drivers/media/platform/qcom/camss/camss-csid-gen3.h
->>>
-> 
->>> +
->>> +#define        REG_UPDATE_RDI        reg_update_rdi
->>> +
->>> +static void __csid_configure_rx(struct csid_device *csid,
->>> +                struct csid_phy_config *phy, int vc)
->>> +{
->>> +    int val;
->>> +
->>> +    val = (phy->lane_cnt - 1) << CSI2_RX_CFG0_NUM_ACTIVE_LANES;
->>> +    val |= phy->lane_assign << CSI2_RX_CFG0_DL0_INPUT_SEL;
->>> +    val |= (phy->csiphy_id + CSI2_RX_CFG0_PHY_SEL_BASE_IDX) << 
->>> CSI2_RX_CFG0_PHY_NUM_SEL;
->>> +
->>> +    writel_relaxed(val, csid->base + CSID_CSI2_RX_CFG0);
->>> +
->>> +    val = 1 << CSI2_RX_CFG1_PACKET_ECC_CORRECTION_EN;
->>> +    if (vc > 3)
->>> +        val |= 1 << CSI2_RX_CFG1_VC_MODE;
 >>
->> I realise downstream does these shifts but, I think in upstream we 
->> should just define a BIT(x)
+>> Signed-off-by: Santhosh Kumar K <s-k6@ti.com>
+>> ---
+>>   arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi | 1 -
+>>   1 file changed, 1 deletion(-)
 >>
->> #define CSI2_RX_CFG1_VC_MODE BIT(2)
->>
->> val |= CSI2_RX_CFG1_VC_MODE;
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
+>> index e65db6ce02bf6..d913e6319bad8 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi
+>> @@ -27,7 +27,6 @@ mcu_esm: esm@4100000 {
+>>   		compatible = "ti,j721e-esm";
+>>   		reg = <0x00 0x4100000 0x00 0x1000>;
+>>   		ti,esm-pins = <0>, <1>, <2>, <85>;
+>> -		status = "reserved";
+>>   		bootph-pre-ram;
+>>   	};
+>>   
+>> -- 
+>> 2.45.2
 >>
 > 
-> Here CSI2_RX_CFG1_VC_MODE just means a register bit offset, not a 
-> register configuration.
-> 
-> Some fixed configuration can do this, but some register bits value are 
-> configured based on actual parameter.
-> e.g.;  val = (phy->lane_cnt - 1) << CSI2_RX_CFG0_NUM_ACTIVE_LANES;
-> 
-> If we want to use macro definition, maybe we can do like below.
-> 
-> #define CSI2_RX_CFG1_VC_MODE(n) ((n) << 2)
-> val |= CSI2_RX_CFG1_VC_MODE(1);
-> 
-> 
-> #define CSI2_RX_CFG0_DL0_INPUT_SEL(n) ((n) << 4)
-> val |= CSI2_RX_CFG0_DL0_INPUT_SEL(phy->lane_assign)
-> 
-> Could you please comment if we really need to do like this?
-> 
-> 
->>> +    writel_relaxed(val, csid->base + CSID_CSI2_RX_CFG1);
->>> +}
->>> +
->>> +static void __csid_ctrl_rdi(struct csid_device *csid, int enable, u8 
->>> rdi)
->>> +{
->>> +    int val;
->>> +
->>> +    if (enable)
->>> +        val = 1 << RDI_CTRL_START_CMD;
->>> +    else
->>> +        val = 0 << RDI_CTRL_START_CMD;
->>
->> Here is an example of how the bit shifting is weird
->>
->> (0 << anything) is still zero
->>
-> 
-> Understood, the value is same, but we can know the configuration clearly 
-> on this register bit. If we do like above way, then it likes below.
-> 
-> #define RDI_CTRL_START_CMD(n) ((n) << 0)  --> it is same with (n), but 
-> we don't know the register bit offset clearly if we use (n).
-> 
-> if (enable)
->      val = RDI_CTRL_START_CMD(1);
-> else
->      val = RDI_CTRL_START_CMD(0);
-> 
->>> +    writel_relaxed(val, csid->base + CSID_RDI_CTRL(rdi));
->>> +}
->>> +
->>> +static void __csid_configure_top(struct csid_device *csid)
->>> +{
->>> +    u32 val;
->>> +
->>> +    /* CSID "top" is a new function in Titan780.
->>> +     * CSID can connect to VFE & SFE(Sensor Front End).
->>> +     * This connection is ontrolled by CSID "top".
->>> +     * Only enable VFE path in current driver.
->>> +     */
->>> +    if (csid->top_base) {
->>
->> When is csid->top_base NULL ?
->>
->> Its required in your yaml.
->>
-> 
-> csid->top_base is NULL when it is csid lite, I will add this info in yaml.
-> 
-> 
->>> +
->>> +static void csid_configure_stream(struct csid_device *csid, u8 enable)
->>> +{
->>> +    u8 i;
->>> +
->>> +    /* Loop through all enabled VCs and configure stream for each */
->>> +    for (i = 0; i < MSM_CSID_MAX_SRC_STREAMS; i++)
->>> +        if (csid->phy.en_vc & BIT(i)) {
->>> +            /* Configure CSID "top" */
->>> +            __csid_configure_top(csid);
->>> +            __csid_configure_rdi_stream(csid, enable, i);
->>> +            __csid_configure_rx(csid, &csid->phy, i);
->>> +            __csid_ctrl_rdi(csid, enable, i);
->>> +        }
->>> +}
->>
->> I really like this breakdown
-> 
-> Sorry, I don't get it, do you mean you like that configuring the 
-> different block use different functions, and no other meaning?
-> 
->>> +
->>> +static int csid_configure_testgen_pattern(struct csid_device *csid, 
->>> s32 val)
->>> +{
->>> +    if (val > 0 && val <= csid->testgen.nmodes)
->>> +        csid->testgen.mode = val;
->>
->> Surely you should just set the val parameter directly ?
->>
->> Also why is this a signed integer and how does it get assigned a 
->> negative value which we need to mitigate against here  >
-> 
-> This was copied from csid-gen2 driver, they are same, so we can move to 
-> common file.
-> 
-> And the val comes from ctrl->val, so I guess this is the reason why this 
-> agrument is signed integer.
-> 
-> struct v4l2_ctrl {
->      ...
->      s32 val;
->      ...
-> };
-> 
-> 
-> 
->>> +
->>> +static u32 csid_src_pad_code(struct csid_device *csid, u32 sink_code,
->>> +                 unsigned int match_format_idx, u32 match_code)
->>> +{
->>> +    switch (sink_code) {
->>> +    case MEDIA_BUS_FMT_SBGGR10_1X10:
->>> +    {
->>> +        u32 src_code[] = {
->>> +            MEDIA_BUS_FMT_SBGGR10_1X10,
->>> +            MEDIA_BUS_FMT_SBGGR10_2X8_PADHI_LE,
->>> +        };
->>> +
->>> +        return csid_find_code(src_code, ARRAY_SIZE(src_code),
->>> +                      match_format_idx, match_code);
->>> +    }
->>> +    case MEDIA_BUS_FMT_Y10_1X10:
->>> +    {
->>> +        u32 src_code[] = {
->>> +            MEDIA_BUS_FMT_Y10_1X10,
->>> +            MEDIA_BUS_FMT_Y10_2X8_PADHI_LE,
->>> +        };
->>> +
->>> +        return csid_find_code(src_code, ARRAY_SIZE(src_code),
->>> +                      match_format_idx, match_code);
->>> +    }
->>> +    default:
->>> +        if (match_format_idx > 0)
->>> +            return 0;
->>> +
->>> +        return sink_code;
->>> +    }
->>> +}
->>
->> Same code as in gen2.
->>
->> You could move the gen2 version of this into camss-csid.c and just 
->> reuse in both.
->>
-> 
-> Sure, it is same with the comments in vfe driver, I will try to move 
-> same code to camss-csid.c
-> 
-> Thanks,
-> Depeng
 
-Thanks,
-Depeng
 
