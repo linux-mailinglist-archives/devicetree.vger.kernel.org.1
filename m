@@ -1,161 +1,247 @@
-Return-Path: <devicetree+bounces-91902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91903-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D1D594B377
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 01:14:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77A0494B3DF
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 01:47:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E10621F226F9
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 23:14:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B6BB1C20B61
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 23:47:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCB6515574C;
-	Wed,  7 Aug 2024 23:14:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65B6D154445;
+	Wed,  7 Aug 2024 23:47:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MeKbRIwU"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QJ48A+MN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4318B1553BC;
-	Wed,  7 Aug 2024 23:14:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC1FD84037;
+	Wed,  7 Aug 2024 23:47:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723072484; cv=none; b=LqAYaZ7FSFrlxH38u81VQGbkxu675PawMM+ghAQifmW2CrFnv3EdgkYgznzGQ3K3sc9ghnZh16aWsiGYpPkKeffVbTZ9mYgaIhfo/NQfS0Gpk6WHwatN+KvEmac1VKEWZDzOz4MaVf3m7nwXdCAg4r7fvmtVFFHYUI3nUHRCoFA=
+	t=1723074449; cv=none; b=i/5Geac+p/cSqhwRaeXLZyWoHiHmV00J/eDF2qRAxDfHHW+ZMArcsmsfneH/LmNJok89iEPA8KbE2Oy8QClA/f6s3fEwFVQ06ABGZEnTWN1BAz1BbbsqWvK9aPwEcTgb6187NRzpi0yyn01Pq8F9kf6rbUjzMKtzzgpK5XiNkAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723072484; c=relaxed/simple;
-	bh=rlvbH7U0JcMra9lxPNNeEXVHhjO7TnrdcHTeom1Fcis=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uaVUvBuEcjDZT5JG7ox5gUQe2JnLJAVxXYBrZ0Ke516K5FKUVXBq98O5QFDdJio9qqsM2TWSSJFckVxy4exKipJcVRGFop+tzYwWiOWk0lRPtYKA0vo0fsLq3WC1SveiojVKngFNTMDAirCETke3gY6V5uZjHIV+LblSQCkz7ZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MeKbRIwU; arc=none smtp.client-ip=209.85.161.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-5d5d0535396so237607eaf.1;
-        Wed, 07 Aug 2024 16:14:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723072482; x=1723677282; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=nc+02bBxrPU3z7YbfbXPiG3TdH9ZHpsAB6H/P49aAMI=;
-        b=MeKbRIwUzsIgRJBK/akDoIunU0Ieoog7Dc3Z386RDPDYzIyIDW79UNlOzoSqrX3WVj
-         Jd1XBJ+D/LQG9rggxpb9rGc1Y+k8e4f2dsAQCBUNoAvcewNT/C7XKmtQksHpy1+JNZuz
-         xRSCC/ngOdBmc+SA331InpuL1eYv0ZDMQiwsVTU4QZZJcaYf9x/RQKkoyjxKTgVzdADJ
-         FC917216Gv5DETIT1Bj7Ef/qNZnXZjYQIUujmwH6qJvhPql3JextgQewgxJ+6SLJtwzl
-         kvWat90MJWgpJRbHJyiVGi+/pZmwoi47mTUyQH4lNpltip/Drib87HrCPkJgRBGj2AtK
-         vLaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723072482; x=1723677282;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nc+02bBxrPU3z7YbfbXPiG3TdH9ZHpsAB6H/P49aAMI=;
-        b=jfa7CkhScLCaXWJNUCsaDT6S2LreAzmKWBbja0587oF4u3TELUmkklomM/iPKPl6J7
-         TXS6dzd8Te21yFCKjQ0uxIS38UHGyGI7VYl9Aa5qOF2J//gKwck+E92HgFOGWVOAw1rM
-         ALF+z4pTeFaCtKPxtJXDGSF7QKiNNBMujVUBp8LxlYdh1/fsUQZe1IKf8bigfy/R2qLQ
-         M8/trgko666XXucIy9Rkk6fnqSN7rf/eSHPeubjtxUdmuEdYT3smOF+X4U9plC6TTsn3
-         lVWP0wl7R13CKu0RaifHRk/jzzh6nXME0AqkHveXlUWaHZaYHLxUIkuoRQ0t+mZ2sA0D
-         5NwQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWbmJPEvLsBVW3ieWZeEH4TkQ/g1jURjfUw4F/6vmAMFIHqksnPG+JGGz4NHuxtv/+NTppEGhP+Tamffb/4EdCUvQ8I1VupQM1+V9WHcetohNgWkDCmX7IpWvPlgRW31uHwg8pZPfpAMWu41U1F5oNL/gxsas4RwAj0Yz73wBOsTdYoGqWUVmsaeY/8J6OnZ9Ct8WQxc7EUhQsBO70Yh1V3dQ==
-X-Gm-Message-State: AOJu0YwvSRQDumGsc2/ZScnhkxbaSjd1m20UOtPxh+iwvKCGph5cpyC7
-	Xs3yGJBo86PN6JwL/mcDdvEdNqmo98DmQvfHj6L0IZtRKxhmLw92+R8rLPfK
-X-Google-Smtp-Source: AGHT+IFVKAcqwxIm7XFe0JFRilJfmv0FqcpDOsLEIsUbljBi0ODx1QcAQqBLXH+JSeqngoUP8VkUmQ==
-X-Received: by 2002:a05:6870:8a07:b0:25e:1711:90e3 with SMTP id 586e51a60fabf-2692b61b17cmr175018fac.2.1723072482302;
-        Wed, 07 Aug 2024 16:14:42 -0700 (PDT)
-Received: from localhost ([2607:fea8:52a3:d200:324c:b818:b179:79b])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7a3786b5680sm100993885a.100.2024.08.07.16.14.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Aug 2024 16:14:42 -0700 (PDT)
-Date: Wed, 7 Aug 2024 19:14:40 -0400
-From: Richard Acayan <mailingradian@gmail.com>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>,
-	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Todor Tomov <todor.too@gmail.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>, linux-i2c@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: media: camss: Add qcom,sdm670-camss
-Message-ID: <ZrP_4NRIfo71wDwo@radian>
-References: <20240806224219.71623-7-mailingradian@gmail.com>
- <20240806224219.71623-9-mailingradian@gmail.com>
- <81192a77-ec22-45bd-91d6-4a0ec381a6f3@linaro.org>
+	s=arc-20240116; t=1723074449; c=relaxed/simple;
+	bh=/qm83qDVxnY3QrhFxh2kmo0YUOGlFKEd9jGuhFx0DZY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=snE3qgMZOiVO5yZF1jPMrpo1+XL3ROZEwHg9WF4qDRkKCRxp3aOB84/6cWkoS8vPnrih4Q9KwsJdZo5iXMp3iDOMmaMk+WFHjktnKmKf9OV4Ch8peq/fkh30nIqoRSbrwMnCu7QUy6ZBzemeWcfPanqA7ZKJx+marXSm3WLzd9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QJ48A+MN; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 477Jh3f5000990;
+	Wed, 7 Aug 2024 23:46:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	mgbchAj6xcR2jFXLYmMGd4v6aq2N9KiFTX1IIgdca7w=; b=QJ48A+MNaGvSmfTw
+	YQsIzjqomBiC8XLpiFuqSs3SHBajHCFzPHVyP5kIx2J6TdDZShIXypzTg2Fx7jYJ
+	FonydqI34elfCglK12A2Bxg106DWGqK7EvkFHRYOcwH1KCPetx6jciOA3TVnxGEf
+	yQZUZq+FsAUGRvu8syhd2MEfQz+tFmCXav99tF6CNP52mSyRce1NoC+J7OrgQvpo
+	mVMco+jIbXv9DWyYRMfIfJQTudvENmyBtIaC0Rxkzt3PwdjgFLUXSc2sV6rEKsIt
+	QMTEDUZQKyITDr4zYb67LGLNIfaqmssRnrMZXnT/l6+OzM+s1RUykjl+630qfFSW
+	OkJ9xw==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40vfav0df2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 07 Aug 2024 23:46:55 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 477NksMn011658
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 7 Aug 2024 23:46:54 GMT
+Received: from [10.110.61.128] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 7 Aug 2024
+ 16:46:51 -0700
+Message-ID: <eddef7d0-9e3d-4c3f-8457-54b2eb8a3947@quicinc.com>
+Date: Wed, 7 Aug 2024 16:46:46 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <81192a77-ec22-45bd-91d6-4a0ec381a6f3@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] net: stmmac: Add interconnect support
+To: Serge Semin <fancer.lancer@gmail.com>
+CC: Vinod Koul <vkoul@kernel.org>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S.
+ Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        "Jakub
+ Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>, <kernel@quicinc.com>,
+        Andrew Halaney <ahalaney@redhat.com>, Andrew Lunn
+	<andrew@lunn.ch>,
+        <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20240708-icc_bw_voting_from_ethqos-v4-0-c6bc3db86071@quicinc.com>
+ <20240708-icc_bw_voting_from_ethqos-v4-2-c6bc3db86071@quicinc.com>
+ <zsdjc53fxh44bpra5cfishtvmyok2rprbtnbthimnu6quxkxyj@kvtijkxylwb3>
+Content-Language: en-US
+From: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
+In-Reply-To: <zsdjc53fxh44bpra5cfishtvmyok2rprbtnbthimnu6quxkxyj@kvtijkxylwb3>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 9hjmxXrOpSYZifNt35BEWYmSC-EDuTnJ
+X-Proofpoint-GUID: 9hjmxXrOpSYZifNt35BEWYmSC-EDuTnJ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-07_14,2024-08-07_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 adultscore=0
+ lowpriorityscore=0 mlxscore=0 bulkscore=0 phishscore=0 suspectscore=0
+ impostorscore=0 clxscore=1011 spamscore=0 priorityscore=1501
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408070166
 
-On Tue, Aug 06, 2024 at 11:57:38PM +0100, Bryan O'Donoghue wrote:
-> On 06/08/2024 23:42, Richard Acayan wrote:
->> Add the camera subsystem for the Snapdragon 670.
->> 
->> Adapted from SC8280XP camera subsystem.
->
-> Hmm, I'd like a little bit more of a commit log here. sdm670 as found in
-> "spiffy device X" contains N CSIDs, Y VFEs.
->
-> Its not super important but a description that is device specific would be
-> nice.
 
-Ok.
 
->> 
->> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+On 8/1/2024 11:32 AM, Serge Semin wrote:
+> Hi Sagar
+> 
+> On Mon, Jul 08, 2024 at 02:30:01PM -0700, Sagar Cheluvegowda wrote:
+>> Add interconnect support to vote for bus bandwidth based
+>> on the current speed of the driver.
+>> Adds support for two different paths - one from ethernet to
+>> DDR and the other from CPU to ethernet, Vote from each
+>> interconnect client is aggregated and the on-chip interconnect
+>> hardware is configured to the most appropriate bandwidth profile.
+>>
+>> Suggested-by: Andrew Halaney <ahalaney@redhat.com>
+>> Signed-off-by: Sagar Cheluvegowda <quic_scheluve@quicinc.com>
 >> ---
->>   .../bindings/media/qcom,sdm670-camss.yaml     | 353 ++++++++++++++++++
->>   1 file changed, 353 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml
->> 
->> diff --git a/Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml
->> new file mode 100644
->> index 000000000000..543fad1b5cd7
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml
->> @@ -0,0 +1,353 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause)
->> +
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/media/qcom,sdm670-camss.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm SDM670 Camera Subsystem (CAMSS)
->> +
->> +maintainers:
->> +  - Richard Acayan <mailingradian@gmail.com>
->> +
->> +description:
->> +  The CAMSS IP is a CSI decoder and ISP present on Qualcomm platforms.
->> +
->> +properties:
->> +  compatible:
->> +    const: qcom,sdm670-camss
->> +
->> +  clocks:
->> +    maxItems: 33
->> +
->> +  clock-names:
->> +    items:
->> +      - const: camnoc_axi
->> +      - const: cpas_ahb
->> +      - const: cphy_rx_src
->> +      - const: csi0
->> +      - const: csi0_src
->
-> These "_src" clocks should be dropped.
+>>  drivers/net/ethernet/stmicro/stmmac/stmmac.h          |  1 +
+>>  drivers/net/ethernet/stmicro/stmmac/stmmac_main.c     |  8 ++++++++
+>>  drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c | 12 ++++++++++++
+>>  include/linux/stmmac.h                                |  2 ++
+>>  4 files changed, 23 insertions(+)
+>>
+>> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac.h b/drivers/net/ethernet/stmicro/stmmac/stmmac.h
+>> index b23b920eedb1..56a282d2b8cd 100644
+>> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac.h
+>> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac.h
+>> @@ -21,6 +21,7 @@
+>>  #include <linux/ptp_clock_kernel.h>
+>>  #include <linux/net_tstamp.h>
+>>  #include <linux/reset.h>
+>> +#include <linux/interconnect.h>
+>>  #include <net/page_pool/types.h>
+>>  #include <net/xdp.h>
+>>  #include <uapi/linux/bpf.h>
+>> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+>> index b3afc7cb7d72..ec7c61ee44d4 100644
+>> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+>> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+>> @@ -985,6 +985,12 @@ static void stmmac_fpe_link_state_handle(struct stmmac_priv *priv, bool is_up)
+>>  	}
+>>  }
+>>  
+>> +static void stmmac_set_icc_bw(struct stmmac_priv *priv, unsigned int speed)
+>> +{
+> 
+>> +	icc_set_bw(priv->plat->axi_icc_path, Mbps_to_icc(speed), Mbps_to_icc(speed));
+>> +	icc_set_bw(priv->plat->ahb_icc_path, Mbps_to_icc(speed), Mbps_to_icc(speed));
+> 
+> I've got two questions in this regard:
+> 
+> 1. Don't we need to call icc_enable()/icc_disable() in someplace in
+> the driver? For instance the CPU-MEM path must be enabled before even
+> the stmmac_dvr_probe() is called, otherwise the CSR won't be
+> accessible. Right? For the same reason the CPU-MEM bandwidth should be
+> set in sync with that.
+> 
+> 2. Why is the CPU-MAC speed is specified to match the Ethernet link
+> speed? It doesn't seem reasonable. It's the CSR's access speed and
+> should be done as fast as possible. Shouldn't it?
+> 
+>> +}
 
-Hi, this will require dedicated definitions for SDM670 in the driver, as
-SDM845 lists (and requires) the src clocks. It's certainly possible to
-do so, but I'm just not sure if it's what you expected.
-
-Or I could send an RFT to drop them from SDM845...
+I am having internal discussions with clocks team, I will revert back soon with answers.
+>> +
+>>  static void stmmac_mac_link_down(struct phylink_config *config,
+>>  				 unsigned int mode, phy_interface_t interface)
+>>  {
+>> @@ -1080,6 +1086,8 @@ static void stmmac_mac_link_up(struct phylink_config *config,
+>>  	if (priv->plat->fix_mac_speed)
+>>  		priv->plat->fix_mac_speed(priv->plat->bsp_priv, speed, mode);
+>>  
+>> +	stmmac_set_icc_bw(priv, speed);
+>> +
+>>  	if (!duplex)
+>>  		ctrl &= ~priv->hw->link.duplex;
+>>  	else
+>> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+>> index 54797edc9b38..201f9dea6da9 100644
+>> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+>> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+>> @@ -642,6 +642,18 @@ stmmac_probe_config_dt(struct platform_device *pdev, u8 *mac)
+>>  		dev_dbg(&pdev->dev, "PTP rate %d\n", plat->clk_ptp_rate);
+>>  	}
+>>  
+>> +	plat->axi_icc_path = devm_of_icc_get(&pdev->dev, "mac-mem");
+>> +	if (IS_ERR(plat->axi_icc_path)) {
+>> +		ret = ERR_CAST(plat->axi_icc_path);
+>> +		goto error_hw_init;
+>> +	}
+>> +
+>> +	plat->ahb_icc_path = devm_of_icc_get(&pdev->dev, "cpu-mac");
+>> +	if (IS_ERR(plat->ahb_icc_path)) {
+>> +		ret = ERR_CAST(plat->ahb_icc_path);
+>> +		goto error_hw_init;
+>> +	}
+>> +
+>>  	plat->stmmac_rst = devm_reset_control_get_optional(&pdev->dev,
+>>  							   STMMAC_RESOURCE_NAME);
+>>  	if (IS_ERR(plat->stmmac_rst)) {
+>> diff --git a/include/linux/stmmac.h b/include/linux/stmmac.h
+>> index f92c195c76ed..385f352a0c23 100644
+>> --- a/include/linux/stmmac.h
+>> +++ b/include/linux/stmmac.h
+>> @@ -283,6 +283,8 @@ struct plat_stmmacenet_data {
+>>  	struct reset_control *stmmac_rst;
+>>  	struct reset_control *stmmac_ahb_rst;
+>>  	struct stmmac_axi *axi;
+> 
+>> +	struct icc_path *axi_icc_path;
+> 
+> The MAC<->MEM interface isn't always AXI (it can be AHB or custom) and
+> 
+>> +	struct icc_path *ahb_icc_path;
+> 
+> the CPU<->MAC isn't always AHB (it can also be APB, AXI, custom). So
+> the more generic naming would be:
+> 
+> axi_icc_path -> dma_icc_path
+> and
+> ahb_icc_path -> csr_icc_path
+> 
+> -Serge(y)
+> 
+>>  	int has_gmac4;
+>>  	int rss_en;
+>>  	int mac_port_sel_speed;
+>>
+>> -- 
+>> 2.34.1
+>>
+>>
 
