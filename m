@@ -1,146 +1,144 @@
-Return-Path: <devicetree+bounces-91745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 669A694A65B
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 12:54:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 851C994A68E
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 13:04:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1171E1F254FF
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 10:54:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B78FC1C21531
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 11:04:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 328381DE862;
-	Wed,  7 Aug 2024 10:54:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E69541DF681;
+	Wed,  7 Aug 2024 11:04:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="ULDjLgRm"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Z6xVnjFL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42AD515B57D;
-	Wed,  7 Aug 2024 10:54:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5130D1C9DC9;
+	Wed,  7 Aug 2024 11:04:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723028085; cv=none; b=CXKZnjn7tFllAVg405YfNEFQpiJ/CTZ3K++zX/SU8ZZdfzt3tF2NpMB3F+m818s5Gnn4Ae3fbrnVVnzyNuUQ5drXeE/NDRRl0agFubXqBuZDK/zwpNRnnM/MejdLgfXbAyX14VI1jMaRbk/OCEoAbBg/JzuHX6XPIuimWcAZ5IE=
+	t=1723028658; cv=none; b=PvoTgYVFtbSshjKKlPjbHEwngCo3aMrFL1ApBSfztJJOuf36IqQTrPiSX0JqvcLEqXLreVI94ln3BNqBfG9itOWlYQ3+3qO4Dilhq8MpKxUWYPGDyE14lKyUGwqCoz8Az87/B2P6s20rVVY7uJZtyqQX9PzNX+zXRlJBvndoObc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723028085; c=relaxed/simple;
-	bh=M0aJMIl1tKX6mdJ2CgRErtb3XgMV71w2eZ8MP2LQRoY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=maOcbSrHeL0xBc84kOI8MPKtp+4RPXaFE7ig0qvvr05+r057wUw6lbet8Vt/GgHfBXS1uEx9Du+gVatD8lXLlb2kIVh7PT167LoQIsiEhbiiukkXYK4BbwCoOuzDgugQdFYRDotR9jlRyP/9KzrVB604mCfxgAQOYtfRHQaLykM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=ULDjLgRm; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A59242EC;
-	Wed,  7 Aug 2024 12:53:48 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1723028028;
-	bh=M0aJMIl1tKX6mdJ2CgRErtb3XgMV71w2eZ8MP2LQRoY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ULDjLgRmJJFbLwcwFrRD7xwTygjJAlh6xUlTNiIgPqblfjmp2iV0ykeFjNLhRRo7S
-	 5jVC733XifjLE4II+3p+FG3iz8bXBCgeZGwJG99Z5L8SJEfXWZlahMgbnSQ1tHC/Ih
-	 qQexxA5j0aQF1QvBvZEqyZFCrPxgE+v4KINwcNc4=
-Date: Wed, 7 Aug 2024 13:54:18 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Lee Jones <lee@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Haibo Chen <haibo.chen@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>,
-	Frank Li <Frank.li@nxp.com>
-Subject: Re: [PATCH v7 0/4] ADP5585 GPIO expander, PWM and keypad controller
- support
-Message-ID: <20240807105418.GA8562@pendragon.ideasonboard.com>
-References: <20240722121100.2855-1-laurent.pinchart@ideasonboard.com>
- <20240725161616.GJ501857@google.com>
- <20240801131044.GF6756@google.com>
+	s=arc-20240116; t=1723028658; c=relaxed/simple;
+	bh=tZE9A7D7Qc4ABjafw02Q7U4Ejv1hoeHBVy7EEIcPMgY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=iRq2Jz+A6reXvi9RLz2nBdnar0ncR+n7PFNjEeH70g9K8MSSPXwYomI6lqjUL/o5LP5ztI/yr1wneni3I11maBO/B7h3HoshE8VA+mMrySQkAQgqhNcggaZTYdqyJ8An+vPmx+ikDmMLyOuhEFNJSWftjNO3gpOoO7wtFE0PUeU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Z6xVnjFL; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47789J2J019008;
+	Wed, 7 Aug 2024 11:04:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	5M2BR5QCUJ11BZbRjroJPti0NNlzXAvb/0+of+zkg58=; b=Z6xVnjFLZQK8AbyJ
+	nc9iA87fgjkxxfAzsr2BqNYQmNogyFPW78h2mXL6i5tLuIIkOY4u+UdvEJ/ziG+B
+	hqD30k2jF4Prh5mX7NZdYY0rSP3H4UuH0UpwpSBH0+n5fAUp/yKhKFMfjuE9YMZB
+	jfmmbzWUILJ3Cq4MiiAUPJ5F9qT8c30YeFyqT+Q1NZzT6SQTvZMqIUD4ZDEkSz7d
+	kn7rBZY2RxV682fBAk/1Tu2AL/hoFdjT+3GfvYXx6BGQ7HQ7veoloQrzbpUjrIBX
+	xoqPZKklgVZ+wSFuUZQP9v3AuakKxQs+wwVkLOawxf0zTCGjyxhbPuH2yk9YF5ys
+	sEy70A==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40u4cpne4h-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 07 Aug 2024 11:04:13 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 477B4CF8016792
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 7 Aug 2024 11:04:12 GMT
+Received: from [10.233.17.145] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 7 Aug 2024
+ 04:04:07 -0700
+Message-ID: <ace5b3e1-f4a2-4c04-821a-e797d0f55cae@quicinc.com>
+Date: Wed, 7 Aug 2024 19:04:04 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240801131044.GF6756@google.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: sa8775p-ride: Add QCS9100
+ compatible
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Tengfei Fan
+	<quic_tengfan@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad
+ Dybcio" <konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20240806-add_qcs9100_soc_id-v1-0-04d14081f304@quicinc.com>
+ <20240806-add_qcs9100_soc_id-v1-4-04d14081f304@quicinc.com>
+ <90eae361-7d5d-440f-a85d-dfd81b384fe7@kernel.org>
+ <4a350e94-3c95-48e1-9ea8-ced483c1aa45@quicinc.com>
+ <14ec06bd-0c27-4930-8bce-d3f5b68067ed@kernel.org>
+From: Tingwei Zhang <quic_tingweiz@quicinc.com>
+In-Reply-To: <14ec06bd-0c27-4930-8bce-d3f5b68067ed@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Vh9F86zSzFUruli9oGhjnINPSZ6NccLQ
+X-Proofpoint-GUID: Vh9F86zSzFUruli9oGhjnINPSZ6NccLQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-07_08,2024-08-06_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ suspectscore=0 phishscore=0 malwarescore=0 bulkscore=0 spamscore=0
+ lowpriorityscore=0 mlxscore=0 clxscore=1011 adultscore=0
+ priorityscore=1501 mlxlogscore=619 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2407110000 definitions=main-2408070077
 
-Hi Lee,
-
-On Thu, Aug 01, 2024 at 02:10:44PM +0100, Lee Jones wrote:
-> On Thu, 25 Jul 2024, Lee Jones wrote:
-> > On Mon, 22 Jul 2024, Laurent Pinchart wrote:
-> > 
-> > > Hello,
-> > > 
-> > > This patch series introduces support for the Analog Devices ADP5585, a
-> > > GPIO expander, PWM and keyboard controller. It models the chip as an MFD
-> > > device, and includes DT bindings (1/4), an MFD driver (2/4) and drivers
-> > > for the GPIO (3/4) and PWM (4/4) functions.
-> > > 
-> > > Support for the keypad controller is left out, as I have no means to
-> > > test it at the moment. The chip also includes a tiny reset controller,
-> > > as well as a 3-bit input programmable logic block, which I haven't tried
-> > > to support (and also have no means to test).
-> > > 
-> > > The driver is based on an initial version from the NXP BSP kernel, then
-> > > extensively and nearly completely rewritten, with added DT bindings. I
-> > > have nonetheless retained original authorship. Clark, Haibo, if you
-> > > would prefer not being credited and/or listed as authors, please let me
-> > > know.
-> > > 
-> > > Compared to v6, this version addresses small review comments. I believe
-> > > it is ready to go, as the PWM and GPIO drivers have been acked by the
-> > > respective subsystem maintainers, and I have addressed Lee's comments on
-> > > the MFD side. Lee, if there's no more issue, could you apply this to
-> > > your tree for v6.12 ?
-> > > 
-> > > Clark Wang (1):
-> > >   pwm: adp5585: Add Analog Devices ADP5585 support
-> > > 
-> > > Haibo Chen (2):
-> > >   mfd: adp5585: Add Analog Devices ADP5585 core support
-> > >   gpio: adp5585: Add Analog Devices ADP5585 support
-> > > 
-> > > Laurent Pinchart (1):
-> > >   dt-bindings: mfd: Add Analog Devices ADP5585
-> > > 
-> > >  .../devicetree/bindings/mfd/adi,adp5585.yaml  |  92 +++++++
-> > >  .../devicetree/bindings/trivial-devices.yaml  |   4 -
-> > >  MAINTAINERS                                   |  11 +
-> > >  drivers/gpio/Kconfig                          |   7 +
-> > >  drivers/gpio/Makefile                         |   1 +
-> > >  drivers/gpio/gpio-adp5585.c                   | 229 ++++++++++++++++++
-> > >  drivers/mfd/Kconfig                           |  12 +
-> > >  drivers/mfd/Makefile                          |   1 +
-> > >  drivers/mfd/adp5585.c                         | 205 ++++++++++++++++
-> > >  drivers/pwm/Kconfig                           |   7 +
-> > >  drivers/pwm/Makefile                          |   1 +
-> > >  drivers/pwm/pwm-adp5585.c                     | 184 ++++++++++++++
-> > >  include/linux/mfd/adp5585.h                   | 126 ++++++++++
-> > >  13 files changed, 876 insertions(+), 4 deletions(-)
-> > >  create mode 100644 Documentation/devicetree/bindings/mfd/adi,adp5585.yaml
-> > >  create mode 100644 drivers/gpio/gpio-adp5585.c
-> > >  create mode 100644 drivers/mfd/adp5585.c
-> > >  create mode 100644 drivers/pwm/pwm-adp5585.c
-> > >  create mode 100644 include/linux/mfd/adp5585.h
-> > 
-> > Note to self: This looks good to go.  Merge after -rc1 is released.
+On 8/7/2024 5:35 PM, Krzysztof Kozlowski wrote:
+> On 07/08/2024 11:17, Tengfei Fan wrote:
+>>
+>>
+>> On 8/7/2024 3:28 PM, Krzysztof Kozlowski wrote:
+>>> On 06/08/2024 06:19, Tengfei Fan wrote:
+>>>> Add QCS9100 compatible in sa8775p ride and sa8775p ride r3 board DTS.
+>>>> QCS9100 references SA8775p, they share the same SoC DTSI and board DTS.
+>>>>
+>>>
+>>> I don't understand this. You claim here that QCS9100 references SA8775p
+>>> but your diff says other way: SA8775p references QCS9100.
+>>>
+>>> Sorry, that's confusing.
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>
+>>
+>> I will update the compatible as follows to indicate that QCS9100
+>> references SA8775p.
+>>
+>> compatible = "qcom,sa8775p-ride", "qcom,qcs9100", "qcom,sa8775p";
 > 
-> Submitted for build testing.
-
-Are those tests public ? Will the series eventually be merged in
-https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git/ ?
-
-> Note to self: ib-mfd-gpio-pwm-6.12
+> Is this still correct, though? sa8775p won't come with qcs9100 SoC.
+We have a new board. Hardware is same as sa877p-ride except sa8775p is 
+replaced with qcs9100. We add qcs9100 SoC compatible to sa8775p-ride 
+device tree to indicate this board can support both sa8775p SoC and 
+qcs9100 SoC.
+> 
+> Best regards,
+> Krzysztof
+> 
 
 -- 
-Regards,
+Thanks,
+Tingwei
 
-Laurent Pinchart
 
