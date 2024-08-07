@@ -1,132 +1,136 @@
-Return-Path: <devicetree+bounces-91892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3BAE94B226
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 23:29:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 984D394B22E
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 23:30:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6CAF5B238D1
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 21:29:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AC746B24F5B
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 21:30:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C459714B087;
-	Wed,  7 Aug 2024 21:29:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1436145346;
+	Wed,  7 Aug 2024 21:30:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="oCiV7Iw8"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="TWJcjB4H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E02E149DFF;
-	Wed,  7 Aug 2024 21:29:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 412E812C53B;
+	Wed,  7 Aug 2024 21:30:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723066160; cv=none; b=O7KMeIYmZA8X+FkxGWSI46lA2qVKy1MiySQb5CW3iNOQ0IYzCnHMb3TmUFiVRDhJMxac/h/0UDJqaVsobOFfWVFDrH8b8VEUIM+GNsUlY5q6n4sXR2trUL5lJeVyZuPWpa1AA1dG9m/YvG8shCTLolCKK3pUPojPKr56jt8FJ7s=
+	t=1723066247; cv=none; b=IQPB/RH1JhYADqoCgEr6oQNzw0CW4TPQu6VbjYA2RqVrObTRID07qEn0BYvP1WREG69ayshQbh9JZin6SY42EGWcH1HXUdtRQoqiGcOtWyhrsRtvOc5/4nC6QCmWaBtDtLepN/Wn4xOoV9SWYHdSo0qA9abOgViyDEEAiTYNE0Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723066160; c=relaxed/simple;
-	bh=qzOKWUz41TYDR4cdz3l1k0/R2WuyA/BV//cD3NYMHPA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kHqwoUuclyVARk1f8XY5q5kOwr9TVgcw0ObrSL3bXE0Yti6EvHQp/PWD6wncSyIVB4IeXu1VUYp0lP/+ee8xaEfvDnfUHwW5GLloke+F/TooTeJIyq7xsAZwOvrpdaAKePF9a/xJlxPfQwtvmWUh0xv+Jc7aMEiWs1w5pnMec0g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=oCiV7Iw8; arc=none smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1723066157; x=1754602157;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=qzOKWUz41TYDR4cdz3l1k0/R2WuyA/BV//cD3NYMHPA=;
-  b=oCiV7Iw8+I8Odsc5z8PttO3CwpV4pEeWDLpYTzIOnNDyYGMVwSAlwflB
-   cn2nGi+S8mvbOEH9XzqtmpJYxADGhbN/9F5XBvv5+w9MNYisQsRCcRgfC
-   Qe75/r6iKwZXotwrUVI1RufpvITYwPfMSdd8Nsu38wjnLDwmWIF4YvBuN
-   mayBndEXcGGLpNnNns+67bbNsq54iD8MAiaXR0wY+8XqMA7W+kCN6p7QS
-   xvzW0C6dCFrkSlfLYs/gehtewCJjx280rmPw1SEIKCfcLPaZccH1lEVG4
-   Rci8tR71GLzfc/dpkJzw0DujfzSVa5OwwIElFOiRdnaKSADWGKLoPsmCU
-   Q==;
-X-CSE-ConnectionGUID: ujpH8Y4QSluMV/Hud3zBSg==
-X-CSE-MsgGUID: 5tEF9MG5S3KFyjf95R0Xnw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11157"; a="21286273"
-X-IronPort-AV: E=Sophos;i="6.09,271,1716274800"; 
-   d="scan'208";a="21286273"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Aug 2024 14:29:14 -0700
-X-CSE-ConnectionGUID: VO5TdQLCThqYeLxhxHYGww==
-X-CSE-MsgGUID: iSgMtuprRgqN7ExnMuFUDg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,271,1716274800"; 
-   d="scan'208";a="56947521"
-Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
-  by fmviesa008.fm.intel.com with ESMTP; 07 Aug 2024 14:29:08 -0700
-Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sboDM-0005jV-21;
-	Wed, 07 Aug 2024 21:29:02 +0000
-Date: Thu, 8 Aug 2024 05:27:46 +0800
-From: kernel test robot <lkp@intel.com>
-To: Christian Marangi <ansuelsmth@gmail.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Joern Engel <joern@lazybastard.org>,
-	Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@kernel.dk>,
-	Christoph Hellwig <hch@lst.de>, Sagi Grimberg <sagi@grimberg.me>,
-	Wolfram Sang <wsa-dev@sang-engineering.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-	linux-nvme@lists.infradead.org
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v3 6/6] mtd: parser: add support for Airoha parser
-Message-ID: <202408080559.nVw5Qez6-lkp@intel.com>
-References: <20240806114118.17198-7-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1723066247; c=relaxed/simple;
+	bh=P0SbEBIZMjEgzWsPOhUAMMejF8jSFg0ZXrXkSfgsVe0=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=Lhcckf2sMBNXEElOyZ7cGap+aa8viNC4q9Tq4wH/XHECUT1+ezRt/YJ3iJgKd4h74ormK6nyXbV7qXKj4TvCjgfiY8hslh2O/flXxV3t26NKoGo9x0/ZDkUmDISOQ9LGxa5YfxqlRI0LrA3aiGggwugCrG5A+tjNVJSloNK81EE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=TWJcjB4H; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240806114118.17198-7-ansuelsmth@gmail.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1723066241;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=clM14XZnCkKlnQEqf0XCli4TSu2XTFrkaDKcxnbToic=;
+	b=TWJcjB4HIYS5OdulQ4drZ+lzlqOnbRJxLXKcRvgYDUfl7Oo4+SVaOAJ37y12rQv1PuizBj
+	xkVpaoIubMZwlyVLqKiinxU7wgmaDbmwmqWNQCKNsBd+iJm65nie5Pl98C3a4Xcj3RBpvn
+	flURP7yCQdIyAC9VwCtr4pOfA898ShYn6uvnNSU05UY+S5UaQtHiAwwgJGIihKHP1ANd83
+	//vRPj1oPu81lYeZPTCtpcW60rPd5E5PT4Nlbr2vsbjIHZufHoIKzU+JajeiOGc5l50PWz
+	GORbm6cCJY1dcp64sHX5tny8bY8W4GCHkYGtL2T8hG1CsJg+P08dURHXVxAiMg==
+Date: Wed, 07 Aug 2024 23:30:40 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Florian Klink <flokli@flokli.de>, linux-rockchip@lists.infradead.org,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>, Kever Yang
+ <kever.yang@rock-chips.com>, Muhammed Efe Cetin <efectn@protonmail.com>,
+ FUKAUMI Naoki <naoki@radxa.com>, =?UTF-8?Q?Tam=C3=A1s_Sz=C5=B1cs?=
+ <tszucs@protonmail.ch>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dts: rockchip: add rfkill node for M.2 E wifi
+ on orangepi-5-plus
+In-Reply-To: <4888470.OV4Wx5bFTl@latitude-fedora>
+References: <20240807162001.1737829-1-flokli@flokli.de>
+ <krvprzy3iz5b7n37eo2mb6sol6pcjkxsjdbdi6sxeebwveqtnr@e52cvrlkdjsa>
+ <1b2e1b1b321f84f5cbff2ae18c3eba2e@manjaro.org>
+ <4888470.OV4Wx5bFTl@latitude-fedora>
+Message-ID: <f524a2e5ddbec28dbbc0be4ef47a120b@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hi Christian,
+Hello Alexey,
 
-kernel test robot noticed the following build errors:
+On 2024-08-07 23:12, Alexey Charkov wrote:
+> On Wednesday, August 7, 2024 9:32:51 PM GMT+3 Dragan Simic wrote:
+>> On 2024-08-07 20:14, Florian Klink wrote:
+>> > On Wed, Aug 07, 2024 at 07:24:27PM GMT, Dragan Simic wrote:
+>> >> On 2024-08-07 19:00, Florian Klink wrote:
+>> >>> This follows the same logic as 82d40b141a4c ("arm64: dts: rockchip:
+>> >>> add
+>> >>> rfkill node for M.2 Key E WiFi on rock-5b").
+>> >>>
+>> >>> On the orangepi-5-plus, there's also a GPIO pin connecting the WiFi
+>> >>> enable signal inside the M.2 Key E slot.
+>> >>>
+>> >>> The exact GPIO PIN can be validated in the Armbian rk-5.10-rkr4
+>> >>> kernel
+>> >>> rk3588-orangepi-5-plus.dtsi file [1], which contains a `wifi_disable`
+>> >>> node referencing RK_PC4 on &gpio0.
+>> >>>
+>> >>> Signed-off-by: Florian Klink <flokli@flokli.de>
+>> >>> Tested-by: Florian Klink <flokli@flokli.de>
+>> >>
+>> >> I forgot to mention that providing a Tested-by tag is redundant when
+>> >> there's already a Signed-off-by tag, because the latter already
+>> >> implies
+>> >> the former.
+>> >
+>> > This came after I sent the v3. Generally I wish people would test
+>> > things
+>> > - though too often it's not. I explicitly tested this to work (with a
+>> > wifi module added to that slot being unblock-able afterwards), and
+>> > wanted to point that out, thus adding the Tested-by.
+>> 
+>> In general, some time should be allowed between sending consecutive
+>> versions of the same patch, so people can provide their feedback.
+>> 
+>> When it comes to testing the submitted patches, please note that 
+>> signing
+>> off a patch implies that the signer has already, to the best of their
+>> abilities, made sure that the patch works as described and expected.
+>> 
+>> With all that in mind, please allow me to repeat that a Tested-by tag
+>> should not be provided from the same person that the Signed-off-by tag
+>> is already coming from.  It's simply redundant.
+> 
+> Just two cents: perhaps dropping the tag and expanding the commit 
+> message a
+> bit could be the best of both worlds. Just state that you tested it 
+> with such
+> and such module, observing such and such results. That would also help 
+> if for
+> example another user tries a different module and that fails due to 
+> some
+> quirks: it's easier to debug a potential issue when one knows a working
+> configuration to compare a non-working one against.
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on mtd/mtd/fixes linus/master v6.11-rc2 next-20240807]
-[cannot apply to mtd/mtd/next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/dt-bindings-nvme-Document-nvme-card-compatible/20240806-195029
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240806114118.17198-7-ansuelsmth%40gmail.com
-patch subject: [PATCH v3 6/6] mtd: parser: add support for Airoha parser
-config: arc-randconfig-r121-20240807 (https://download.01.org/0day-ci/archive/20240808/202408080559.nVw5Qez6-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20240808/202408080559.nVw5Qez6-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408080559.nVw5Qez6-lkp@intel.com/
-
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/devfreq/governor_performance.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fsi/fsi-core.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fsi/fsi-master-hub.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fsi/fsi-master-gpio.o
->> ERROR: modpost: "of_update_property" [drivers/mtd/parsers/ofpart.ko] undefined!
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Totally agreed.  Providing as much detail of the performed testing
+as possible in the patch description is always a good thing.
 
