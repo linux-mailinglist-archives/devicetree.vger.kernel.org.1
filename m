@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-91830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2197594AD5C
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 17:52:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD9AE94AD65
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 17:53:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C9E571F22C28
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 15:52:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF25D1C218BE
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 15:53:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87D5312BF24;
-	Wed,  7 Aug 2024 15:51:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5A3B12C54D;
+	Wed,  7 Aug 2024 15:53:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CXsiJ7qa"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="sqfp5Er6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F1DD84D0F;
-	Wed,  7 Aug 2024 15:51:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 088AB126F1E;
+	Wed,  7 Aug 2024 15:53:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723045915; cv=none; b=GjIu8AN6svu6SXppv/FynxvhXBqbCcfPMHiATYgcx6hP6mB1baHW3IANRiT/qGfsrP0EDyWsO47QulOvHN45tpKT3FdnXdQO0SSJY/E3iywXZ4mXWHzwdyhsZGIVBsUqgnH0fMXKoxZ/L4+95QAawdFpcuqwf+uagMHjytPhqrM=
+	t=1723046000; cv=none; b=Z2kxhLlRju4soI8WbOBtqlIkoenu/DZtPa2sR7B5uqmOfAjQyt27QI0F31tLdKVGNC8PdWgwd6aYiB8RPf2JFWDlIqtrF0qao2E/zkKfT7f0Xx0yf4ZIJ7ffaFD3IQq3CmN848B3kSNzROWlQ1EDYtVAiTQNbJ5A2NW2sGs2Eds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723045915; c=relaxed/simple;
-	bh=tq1kRIdkXXLmifGbrLj+K4OAlODh+bgQQ+deN5tg44o=;
+	s=arc-20240116; t=1723046000; c=relaxed/simple;
+	bh=bn47YP12kWc3dMpGor24aBlvQsD58IxcjXIZF4DC4a0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=K9qNOd4ClkocHc6fOo5RpNNYIJ/EVQWSvs5vto5NmI5C1hZtI0WORL18D6RZqUmcO1A3HjuqGEeTZCCtFoeHk+uCkI7lWIp58qqJ6Xw/nm4i1EFnoyMD3H/CmoO8Nmrw6jcYx7SLFd0UsYuTBjxqQUmlqqmX2w2MBsSAhV+i7ZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=CXsiJ7qa; arc=none smtp.client-ip=198.47.23.248
+	 In-Reply-To:Content-Type; b=sfcRVqcvD0btJPtI5jptWNYPlMrW8RDyr+keytX3osAbHR8gwl5zeOBR41N6UOb0u8Qji7i0fH0bUgsYuv48v7bc2G+xppMqO+Q3mXqV9UWr54Vq+FkSI+vr27T0fSDhWzjTCmI77WSDrh8lVhrNH1UZwMeN0/BM/W9B/xuZ2xE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=sqfp5Er6; arc=none smtp.client-ip=198.47.19.141
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 477Fpjg1114243;
-	Wed, 7 Aug 2024 10:51:45 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 477Fr67s011023;
+	Wed, 7 Aug 2024 10:53:06 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1723045906;
-	bh=DFX4wIOpKaPspxP+zUbhiDATcnb9TKhja6y4k+FVRpc=;
+	s=ti-com-17Q1; t=1723045986;
+	bh=cdp6OMt/4LGxz+51R6rlxVL7Veu1/+Etfqvh+ytE9us=;
 	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=CXsiJ7qaH+snf61hYdI72XYDQStBnZp5ZuQHwOJftzULiSWhDw7DOIQUFQxwiGlZj
-	 Af3dvHvbxJhaxTqiJNxrXhxhFLu2PcJY6v1NYd9GKx3eQZoCLYCcm4l55I8gW0Udp+
-	 j8GUB4pFq+eFbavXrLKx+vLMmQ0GjIDGZZ2H9nWQ=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 477Fpjcd097114
+	b=sqfp5Er6nrMxw2hOza2GCm+ltgqhTEUi6pHiu2uRbb45bPLt0EXpcEi+aJ7nbQI9S
+	 LmoNheEHeFGxXUvtQJf2wKqHO3Jd8VsSESWFfoObw88XoRFh6nWoGeCskOq4In4do9
+	 aiXoXBTvDngp+oFt8TiBv4N7TLJ0bdegit9X1k2M=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 477Fr6C5026058
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 7 Aug 2024 10:51:45 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 7 Aug 2024 10:53:06 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
- Aug 2024 10:51:45 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2024 10:53:06 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 7 Aug 2024 10:51:45 -0500
+ Frontend Transport; Wed, 7 Aug 2024 10:53:06 -0500
 Received: from [137.167.6.133] (lt5cg1094w5k.dhcp.ti.com [137.167.6.133])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 477Fpg4I014276;
-	Wed, 7 Aug 2024 10:51:42 -0500
-Message-ID: <0da6f8ce-e220-47b9-86dd-537ad4b328e5@ti.com>
-Date: Wed, 7 Aug 2024 18:51:42 +0300
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 477Fr3hr003276;
+	Wed, 7 Aug 2024 10:53:03 -0500
+Message-ID: <a596ead6-250d-4b7e-84c3-9c3dbf120cc6@ti.com>
+Date: Wed, 7 Aug 2024 18:53:02 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,78 +80,30 @@ To: Krzysztof Kozlowski <krzk@kernel.org>, Kalle Valo <kvalo@kernel.org>,
 CC: Sabeeh Khan <sabeeh-khan@ti.com>
 References: <20240806170018.638585-1-michael.nemanov@ti.com>
  <20240806170018.638585-18-michael.nemanov@ti.com>
- <40031203-63c6-46b5-b647-d344d4503bb7@kernel.org>
+ <a36b8ece-5e46-439e-8463-855394be69a7@kernel.org>
 Content-Language: en-US
 From: "Nemanov, Michael" <michael.nemanov@ti.com>
-In-Reply-To: <40031203-63c6-46b5-b647-d344d4503bb7@kernel.org>
+In-Reply-To: <a36b8ece-5e46-439e-8463-855394be69a7@kernel.org>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
 On 8/7/2024 10:06 AM, Krzysztof Kozlowski wrote:
 > On 06/08/2024 19:00, Michael Nemanov wrote:
+>> Add device-tree bindings for the CC33xx family.
+>>
+>> Signed-off-by: Michael Nemanov <michael.nemanov@ti.com>
+>> ---
+>>   .../bindings/net/wireless/ti,cc33xx.yaml      | 56 +++++++++++++++++++
 > 
-> Thank you for your patch. There is something to discuss/improve.
-> 
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - ti,cc3300
->> +      - ti,cc3301
->> +      - ti,cc3350
->> +      - ti,cc3351
->> +
->> +  reg:
->> +    description:
->> +      must be set to 2
-> 
-> Then just const: 2 and drop free form text.
-> 
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    description:
->> +      The out-of-band interrupt line.
->> +      Can be IRQ_TYPE_EDGE_RISING or IRQ_TYPE_LEVEL_HIGH.
->> +      If property is omitted, SDIO in-band IRQ will be used.
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +
->> +    // SDIO example:
-> 
-> Drop, obvious.
-> 
->> +    mmc {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        wifi@1{
-> 
-> Missing space.
-> 
-> Also, this does not match reg. Test your DTS with W=1 and FIX ALL warnings.
+> Also, bindings always come before users, but maybe the maintainers will
+> re-order things since you expect here some squashing.
 > 
 > Best regards,
 > Krzysztof
 > 
 
-Will fix all above.
-
-I'm currently testing my .yaml with:
-make dt_binding_check DT_CHECKER_FLAGS=-m \ 
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml
-
-It reports no warnings. Adding W=1 doesn't seem to change anything. Am I 
-missing something?
+Will hoist the bindings to be 1st.
 
 Thanks and regards,
 Michael.
