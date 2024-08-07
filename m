@@ -1,101 +1,132 @@
-Return-Path: <devicetree+bounces-91855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77C5494AEBC
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 19:18:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DAF494AEC4
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 19:22:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A83271C21807
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 17:18:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A4DD11C2159D
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 17:22:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C127813B295;
-	Wed,  7 Aug 2024 17:18:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7882013B293;
+	Wed,  7 Aug 2024 17:22:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="owWgzSrk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5440612C475;
-	Wed,  7 Aug 2024 17:18:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4849C6BB4B;
+	Wed,  7 Aug 2024 17:22:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723051097; cv=none; b=uvfdyPV94JQx3a23yfL/e7YxGq2ifwHAAZV94u/8zJav3qVn8Bmpjr6c6GoTev1Ku4dOsRUkg1zYwuKKDDgqW98LBfzRrDCGa1viI/br6oYztd/p1fBShr7dQ5EazOg1BbTRJ00EdcFYABG+wnbUlxswoDF2bk9C/U9Vouix8V8=
+	t=1723051349; cv=none; b=jy6Gs3451Z60NZqYFMKXAdGSaHxVtuA9NtXnPW8QVdfTQ/8jc7aX7kb9+uQteCCujrAf2sHA90l3UAVq1roWM46vPDHJtusfF94zwbIE5705o8AV8TEZ+PJNH/jEuGRe/Wf8wjpJMIKKPTJ6Jbjz12F87vBeSPS+DoZ846le3lU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723051097; c=relaxed/simple;
-	bh=99br1nIhd5bGZFA8uHRJ7NLi3hg7mbOfKCb2HfREdZ0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XJlpwQc0VdC6PuffQJe9S/yajSDtDvCfAE+uFjtNsPl41KQwQaphN/FZO1sbUfmYOEgwO2HSNdHsZ97Q9VQRrn3htlYLvy+VWeKODhL/Rc7JKXnqZqYJeOr0Eck7G3j4/dKSMirsNk5avGvRNng1tII/qxMHI0pGlBWqxiPRwuU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875a9f.versanet.de ([83.135.90.159] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sbkII-0002MU-H9; Wed, 07 Aug 2024 19:17:50 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Florian Klink <flokli@flokli.de>, Dragan Simic <dsimic@manjaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Kever Yang <kever.yang@rock-chips.com>,
- Muhammed Efe Cetin <efectn@protonmail.com>, FUKAUMI Naoki <naoki@radxa.com>,
- =?utf-8?B?VGFtw6FzIFN6xbFjcw==?= <tszucs@protonmail.ch>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH v2] arm64: dts: rockchip: add rfkill node for M.2 E wifi on
- orangepi-5-plus
-Date: Wed, 07 Aug 2024 19:17:49 +0200
-Message-ID: <4364452.rE2NhlSrgm@diego>
-In-Reply-To: <c1cd51655f783d9ec2f6f068590c2a35@manjaro.org>
-References:
- <20240807162001.1737829-1-flokli@flokli.de>
- <20240807170030.1747381-1-flokli@flokli.de>
- <c1cd51655f783d9ec2f6f068590c2a35@manjaro.org>
+	s=arc-20240116; t=1723051349; c=relaxed/simple;
+	bh=y6mJiL+/McAto5QWkflfrjZFdn6Y74RBYK1IE0EbZGw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=s6BsEtz2h7aLKPkSpN2DeFJ3B3/v9LCkZrqlsj9chPyPCmC/mP57MKXKLZdl9jzWO062bMLdiJZYp4xnT/CtwPk4ftCC7pzSPiHbW16UGYoEtmnzhJLRoGszkjS0J5AoJ01sT4uEL3uz+MHEVF4LQkvDEBrIQqyqccwLjsfn3wA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=owWgzSrk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D85A0C32781;
+	Wed,  7 Aug 2024 17:22:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723051348;
+	bh=y6mJiL+/McAto5QWkflfrjZFdn6Y74RBYK1IE0EbZGw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=owWgzSrkOEo9kWqWUr5x4wRzvi88VoT4jyWIx4s9aUtJ4IjvpB5xpLTsI+nCi09gj
+	 lRw+2eWqz0Rg0CS59/LJD0bJA4JRd/koUNFZ+rZk+QVKEyxV4dRYPdjestJAO1Rhvp
+	 ZuchR+43Vc612jJdJlt1Yh3lJ4+2XOlsH5/KvZaAGspGfz2+m18CSPqCvM/H2OAbuA
+	 ksq7IdAiYcwfL2/TnfGSs/Cjilr0KZ6YWdoAUYo9j5gQTWOLWfS5RnMqFpDkx87Q3g
+	 Xssz6QmBN+iHUNaeVfuyzx/v29adPahGaDjVJyfjL2mtuZqa8/0vZPEQq+86pwdPGk
+	 J0JR7yRdGP2hg==
+Date: Wed, 7 Aug 2024 18:22:23 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, linux-kernel@vger.kernel.org,
+	Marc Zyngier <maz@kernel.org>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	linux-riscv@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, Lewis Hanly <lewis.hanly@microchip.com>
+Subject: Re: [RFC v7 4/6] gpio: mpfs: add polarfire soc gpio support
+Message-ID: <20240807-epileptic-pessimism-a7866dbadae4@spud>
+References: <20240723-supervise-drown-d5d3b303e7fd@wendy>
+ <20240723-underage-wheat-7dd65c2158e7@wendy>
+ <CACRpkdbRE695f-+do1HYpOZ6e4qxgUBWJzEPO2hTCuZ3xxYHQg@mail.gmail.com>
+ <20240806-breeze-crazily-84d4e4af8f4e@spud>
+ <CACRpkdbMxuhe2HQZ-Av1R7JW94rS0FosPO-utYNsFO8avR3TbQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-
-Hi Florian,
-
-Am Mittwoch, 7. August 2024, 19:15:03 CEST schrieb Dragan Simic:
-> On 2024-08-07 19:00, Florian Klink wrote:
-> > This follows the same logic as 82d40b141a4c ("arm64: dts: rockchip: add
-> > rfkill node for M.2 Key E WiFi on rock-5b").
-> > 
-> > On the orangepi-5-plus, there's also a GPIO pin connecting the WiFi
-> > enable signal inside the M.2 Key E slot.
-> > 
-> > The exact GPIO PIN can be validated in the Armbian rk-5.10-rkr4 kernel
-> > rk3588-orangepi-5-plus.dtsi file [1], which contains a `wifi_disable`
-> > node referencing RK_PC4 on &gpio0.
-> > 
-> > Signed-off-by: Florian Klink <flokli@flokli.de>
-> > Tested-by: Florian Klink <flokli@flokli.de>
-> > Link:
-> > https://github.com/armbian/linux-rockchip/blob/9fbe23c9da24f236c6009f42d3f02c1ffb84c169/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
-> > [1]
-> 
-> Unfortunately, this isn't how the "Link: ..." tag is to be used, or how
-> a reference is to be provided.  Please see the patch submission linked
-> below for a correct example of providing links as references.
-> 
-> https://lore.kernel.org/linux-rockchip/4449f7d4eead787308300e2d1d37b88c9d1446b2.1717308862.git.dsimic@manjaro.org/T/#u
-
-please also don't post v2 patches as replies to v1.
-Instead start a new mail thread please.
-
-A lot of tooling cannot really find the correct version in such
-multiversion threads.
-
-Heiko
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="2+uJzAu790xEQaKU"
+Content-Disposition: inline
+In-Reply-To: <CACRpkdbMxuhe2HQZ-Av1R7JW94rS0FosPO-utYNsFO8avR3TbQ@mail.gmail.com>
 
 
+--2+uJzAu790xEQaKU
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Aug 07, 2024 at 06:55:58PM +0200, Linus Walleij wrote:
+> On Tue, Aug 6, 2024 at 7:18=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
+ote:
+> > On Mon, Aug 05, 2024 at 10:04:53AM +0200, Linus Walleij wrote:
+>=20
+> > > Is it possible to use augmented generic MMIO, i.e just override these
+> > > two functions that
+> > > need special handling?
+> >
+> > I'll look into it - as I mentioned under the --- line, I really didn't
+> > touch most of the driver and there's comments from Lewis' submission
+> > that still apply.
+>=20
+> Thanks Conor, thanks for taking this over, too many patch sets fall
+> on the floor.
+
+Meh, it always bugged me that upstreaming driver was given up on because
+fixing the interrupts was "hard". It'd be a poor example to others if I
+le the driver sit downstream as a result.
+
+> I'm mostly fine merging it like this and then improving
+> it in-tree as well, I'm not as insistent on things being perfect before
+> merging as long as they are maintained.
+
+The gpio side of things might not be too bad, but the irqchip side is
+crap (it has an of_iomap() in it for example*), and if the irqchip driver
+needs work it feels sensible to improve on both before merging anything.
+Unless of course, you think it would be reasonable to rip the interrupt
+support out of the gpio driver, merge that and incrementally add it
+while also improving the things you and the earlier review mentioned
+w.r.t. regmap?
+
+Cheers,
+Conor.
+
+* Getting rid of the of_iomap() needs me to rewrite parts of the clock
+driver, which seemed overkill until I knew whether or not the approach
+was permitted.
+
+--2+uJzAu790xEQaKU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrOtTwAKCRB4tDGHoIJi
+0gNfAQCL3AK7b7Rag0SuAREO6VHwuSZM26U4wr2nM7r1q6SmAwD9HTu8K4xzfaDX
+SbK/WfgJsXClolZ0GfJezsgv+yu4RAw=
+=Sm0o
+-----END PGP SIGNATURE-----
+
+--2+uJzAu790xEQaKU--
 
