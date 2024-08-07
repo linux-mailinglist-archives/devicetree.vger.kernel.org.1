@@ -1,142 +1,100 @@
-Return-Path: <devicetree+bounces-91833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D19C194ADBA
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 18:10:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0785094ADCD
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 18:12:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 032C51C21237
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 16:10:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 350E41C2132B
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2024 16:12:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 024FC13A89A;
-	Wed,  7 Aug 2024 16:09:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F55212DD8A;
+	Wed,  7 Aug 2024 16:11:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="a2boA3KY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B3gCmAAK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCE6D126F1E;
-	Wed,  7 Aug 2024 16:09:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5B85364BC;
+	Wed,  7 Aug 2024 16:11:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723046955; cv=none; b=KjEGIEnxu97y91W0lZMdLbL9hr3pqcFj9SMHbmusHho5wD79dhRv0hu/XvVIzvpCsC/S5hPMOizuKqn/uyYFvr2n+35mO5BxGAD/gYXD5UbZ0Y1IYGeS0/SnAJpMUEzF3Bs3cmbw5cPFDiy72U8saqv380+unjK16q31LGP02L8=
+	t=1723047072; cv=none; b=QSNPlz8MS+u/lrxCD773ASmBbOVOBMVOoXDTVRS3lrqu3vZcuc3OsvxIcgFfQqdxDf7LGGR+n6PbDvVDqpN2pUD1d5ni13AAMjJyXsRNtllsWE3gQhgt5+8AflAJYizTpWdRhSSsPdnsppfr4bSXDWqXaDNoG7b42azREshmy9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723046955; c=relaxed/simple;
-	bh=YA2ZuyFNRNxqyBRIOQWI6/ABTXBLPVPilssOyCvAofk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=dfnBByU34cyojtmFdbLOIs4oXPgrB+tg+wT1/41VRoEjR5erFLfFHhg57PI7oEbUibRDdF/xM+Q5PHB9G1bkj821sQmje30bi3c9Pu9TaiQkI8TGEzKJEK8E4LE+qKryanv1wc24My8MBr77HQIIySJrEfKX5JmgUzRHbjQZLKQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=a2boA3KY; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 477G95JY071948;
-	Wed, 7 Aug 2024 11:09:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1723046945;
-	bh=jzPSemYePbBHFr/+nsxFkMDC+tdgXWS4uZbaeSlS+mQ=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=a2boA3KY/mGKS5/ZM3OendLtaEOet8Nx/703NuGD7QWvF3XD8R1XjdfBXq5m1JopM
-	 dhh9O4e8gX5GU5360YSum2yzRaYDuwaQrYYHTKV9bi2ExDyIxum9UXn+FylkBjY/v/
-	 j004mCliaSmt2+weLv9WRm9bqoXPOZ0lzxumRTTA=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 477G95NQ106351
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 7 Aug 2024 11:09:05 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
- Aug 2024 11:09:05 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 7 Aug 2024 11:09:05 -0500
-Received: from [137.167.6.133] (lt5cg1094w5k.dhcp.ti.com [137.167.6.133])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 477G92jj042671;
-	Wed, 7 Aug 2024 11:09:02 -0500
-Message-ID: <e91645a1-aa5e-49bc-915b-f1bf9805ef51@ti.com>
-Date: Wed, 7 Aug 2024 19:09:01 +0300
+	s=arc-20240116; t=1723047072; c=relaxed/simple;
+	bh=7PYhDLkb5CGgKvkzWQlcN4kr1/hoOgEEWyscq7uwhBY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lCgJXbsBnJaVKccN/pYTBUtjTPQcL6LbGf3AqwnOSSDshbzfOWsnoZNAszjqz/qYK7H+dDKUlqKUk/vPagBcKv1MjsVOZY/L7zfvyQ6JOmfirsO2mMqBVQkAoyaWerCfADE680wa8/AvSCiGKnPoeSc2dTHw35cbWhsbVm3Fwa4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B3gCmAAK; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-52ef9714673so277508e87.0;
+        Wed, 07 Aug 2024 09:11:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723047069; x=1723651869; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7PYhDLkb5CGgKvkzWQlcN4kr1/hoOgEEWyscq7uwhBY=;
+        b=B3gCmAAK0k7zYwoQVsp2m3x4v89rX7gKyk/ZAauhoUk0+vV0X3LhLSBi2fdV1FE44r
+         r2vi2KU8Sguk9iHpvDwSTGIf7eQEfi/QlCQ/wlJN/E35r/sW06HNGqT041AIlYn1hGzr
+         Vqxdj8dQOLVYqUAjyGc2vB+YEFUG4ug3t88u+3OJmT64YLySDlLyJykGK65FuwU6wxaI
+         JHqp186awAPjV64tXPWTKxOKVmIPjhGWaXib5hSicU0ilyJRXDeMo2jsf3xqG9Lsls2E
+         tSt6x83bvdeOSIxl6czf+/DgaabBZ0cQ+2qWVcUfMJwjy/A6U4ABL8B0foVTFCbBUL2c
+         x+xw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723047069; x=1723651869;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7PYhDLkb5CGgKvkzWQlcN4kr1/hoOgEEWyscq7uwhBY=;
+        b=qiAmAftbGSMkB7uoshrk3bp/RmA/9D2GTMqWdCioV3gutj7fD/8bl2qETCCZkA0/Yq
+         23NSzKyvO+x7xHEz03AQT6Reqb+HeYk26MKdGWNSmEs1+MvljuMA4EK++I6WfQ/+fexe
+         xxqbuN8Wx9hBp6DDWhK28BJh0keIBABw/SaBxPwvd/coW99h3df81b50xsOxsLIgVKHP
+         z5Rx+Z5n3vZ3/X7kcE/0ECCSm1Nku9+CYqo4aJuOfpPe9t6a3ouso7KQNYq8JDB2yJoj
+         OT5ux+nLLATZPEqBBurC8/GJiFylR44vfYz06wpErfbdZEIZUyQqrCjC3xjtYG0xj8hE
+         XeJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUlLDTOIoPvcfFLU9UojYMIUNLiI6jtQAV3DZgjFv08b30iZ4WiWQRwFQ5U9KDI6z8dhfwvagYzWACYYSFQ6yZzfzGsjswz5Ez10ftf2CVPO3HkCaKu1bb7B5/OXyxOD3GL1961/ug2tw==
+X-Gm-Message-State: AOJu0YyUch326h2rrad7ZKEg408Xi5suelKEmoV0UUWIXfPcmHNNTADl
+	eDX0xbpU8/RCQwgNXXyBruba8DaMFmMlZLZvvW6tGmRzbi/oQ8W4GJXzQOZerL7+CpFquYFpSs+
+	oEsrhJDnrsJh3ygCGbp4VomHEkCs=
+X-Google-Smtp-Source: AGHT+IHox9JCDaYxyNIZTGdSOmDp4HMcrEkIpYcD5GhRVV++7cQDvoYE/rWhIq9QG/msfeowwn5UpIyCKEG2ETJ1dw0=
+X-Received: by 2002:a05:6512:39ca:b0:52f:3c:a81 with SMTP id
+ 2adb3069b0e04-530bb36e47dmr6914029e87.3.1723047068457; Wed, 07 Aug 2024
+ 09:11:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 05/17] wifi: cc33xx: Add acx.c, acx.h
-To: Krzysztof Kozlowski <krzk@kernel.org>, Kalle Valo <kvalo@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>, <linux-wireless@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: Sabeeh Khan <sabeeh-khan@ti.com>
-References: <20240806170018.638585-1-michael.nemanov@ti.com>
- <20240806170018.638585-6-michael.nemanov@ti.com>
- <813f5d6b-eda8-46d6-b152-9e7cdf737729@kernel.org>
-Content-Language: en-US
-From: "Nemanov, Michael" <michael.nemanov@ti.com>
-In-Reply-To: <813f5d6b-eda8-46d6-b152-9e7cdf737729@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20240807-imx8mp-tpm-v2-1-d43f1e8f70ac@phytec.de>
+In-Reply-To: <20240807-imx8mp-tpm-v2-1-d43f1e8f70ac@phytec.de>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Wed, 7 Aug 2024 13:10:57 -0300
+Message-ID: <CAOMZO5AYRgao=1i1hnLCN1ZX8G66ysphykeikoDLEb420vs3pw@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: freescale: imx8mp-phyboard-pollux: Add and
+ enable TPM
+To: Benjamin Hahn <B.Hahn@phytec.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Teresa Remmet <t.remmet@phytec.de>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 8/7/2024 10:15 AM, Krzysztof Kozlowski wrote:
-> On 06/08/2024 19:00, Michael Nemanov wrote:
->> These file contain various WLAN-oriented APIs
->>
->> Signed-off-by: Michael Nemanov <michael.nemanov@ti.com>
->> ---
->>   drivers/net/wireless/ti/cc33xx/acx.c | 1011 ++++++++++++++++++++++++++
->>   drivers/net/wireless/ti/cc33xx/acx.h |  835 +++++++++++++++++++++
->>   2 files changed, 1846 insertions(+)
->>   create mode 100644 drivers/net/wireless/ti/cc33xx/acx.c
->>   create mode 100644 drivers/net/wireless/ti/cc33xx/acx.h
->>
->> diff --git a/drivers/net/wireless/ti/cc33xx/acx.c b/drivers/net/wireless/ti/cc33xx/acx.c
->> new file mode 100644
->> index 000000000000..3c9b590e69b1
->> --- /dev/null
->> +++ b/drivers/net/wireless/ti/cc33xx/acx.c
->> @@ -0,0 +1,1011 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Copyright (C) 2022-2024 Texas Instruments Incorporated - https://www.ti.com/
->> + */
->> +
->> +#include "acx.h"
->> +
->> +int cc33xx_acx_clear_statistics(struct cc33xx *cc)
->> +{
->> +	struct acx_header *acx;
->> +	int ret = 0;
->> +
->> +	cc33xx_debug(DEBUG_ACX, "acx clear statistics");
-> 
-> So you just re-implemented tracing.
-> 
-> No, I asked to drop such silly entry/exit messages because you duplicate
-> existing mechanisms in the kernel.
-> 
-> That's a no everywhere. Do not write such code. You can have useful
-> debug statements when tracing or kprobes or whatever you want is not
-> sufficient.
-> 
-> Best regards,
-> Krzysztof
-> 
+Hi Benjamin,
 
-OK, I misunderstood the previous exchange with you and Kalle Valo. I'll 
-remove all entry / exit cc33xx_debug traces. Non-trivial ones are OK 
-tough, right?
+On Wed, Aug 7, 2024 at 12:18=E2=80=AFPM Benjamin Hahn <B.Hahn@phytec.de> wr=
+ote:
+>
+> Add support for TPM for phyBOARD Pollux.
+>
+> Signed-off-by: Benjamin Hahn <B.Hahn@phytec.de>
 
-Thanks and regards,
-Michael.
-
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
 
