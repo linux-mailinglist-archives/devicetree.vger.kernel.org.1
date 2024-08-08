@@ -1,108 +1,134 @@
-Return-Path: <devicetree+bounces-92072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3060794BB0A
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:31:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60E4794BB0D
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:32:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DDED0284162
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:31:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0560E1F26351
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:32:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CB0018A6AB;
-	Thu,  8 Aug 2024 10:31:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D93C18A6CA;
+	Thu,  8 Aug 2024 10:31:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=flokli.de header.i=@flokli.de header.b="md9sUA+9"
+	dkim=pass (1024-bit key) header.d=flokli.de header.i=@flokli.de header.b="i205RKxT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.flokli.de (mail.flokli.de [116.203.226.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84BCE143723;
-	Thu,  8 Aug 2024 10:31:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15646146584;
+	Thu,  8 Aug 2024 10:31:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.226.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723113063; cv=none; b=suDIyfshTcpSxwIh3BSr3VPGuQbhMRQ8ghagPNcWVgVoIq1OMINqr0l6ARt23hVz5fe6Fshv/RdZ7tBGZzCHDjgEqyI/yiGzM1efNkBICam8Xjn5oFnuY6XnTt3gxGZwh1yayNmQB+tkmFOC+UUREqVipUl8ru0jcukPeaOvdrM=
+	t=1723113104; cv=none; b=iZwUgmHc48n0WdrX7BL74vygrTGljZRGx3nN4e1M7ltJE2SQD6EiqdOEFgs/W4KC/8KmyqWCRbob1+adG58pHWIgfV8hGi7OdCr4fFv+jl3YdK9iUsSpN8R9Jd73/rscY1f3ThOXjnvh/zrAKVohI6sxrBkMPTBQZwl3db3kZQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723113063; c=relaxed/simple;
-	bh=XiJgQD6YSJrRRaTO7bqHls0JhDWNh89QYFfC94qvyMM=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version; b=GEfCEzBqzcgkdapzPmfU5ra2KZHKgyxgqbbCe51m1sXH6PgFBY4LI1oYD2ZJBqlpfcUcga7jKqtt/sE/MnCja6F+klNuYACK31iHYJTCrE76mR9RoGlFsE0nj0FMhwrMYiAGYnkVwG7HpD/gEoC2erYq1Pd70sLx34erpo5/O3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=flokli.de; spf=pass smtp.mailfrom=flokli.de; dkim=pass (1024-bit key) header.d=flokli.de header.i=@flokli.de header.b=md9sUA+9; arc=none smtp.client-ip=116.203.226.116
+	s=arc-20240116; t=1723113104; c=relaxed/simple;
+	bh=1diQP0QbSi5Jld7PuoM6ZJFf+WRHuMBZZY/mv3hPKqQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ttTsilm7cXpmN3mqryLp4CgxQttoKtTvfNNhJM7KEuLjCvE74Yx7B4E3BiF3ZAQWiJGOkxFdawjtlFJR7OsOTYtGie1tNrmgO4f7WR4I5Q8AWh5oiwPvR5QwkWdaaajETgP1VhU+jMI3aAVYRd8bbaCc0pYjaoYUXrAessrDhlg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=flokli.de; spf=pass smtp.mailfrom=flokli.de; dkim=pass (1024-bit key) header.d=flokli.de header.i=@flokli.de header.b=i205RKxT; arc=none smtp.client-ip=116.203.226.116
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=flokli.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flokli.de
-From: Florian Klink <flokli@flokli.de>
+Date: Thu, 8 Aug 2024 13:31:37 +0300
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flokli.de; s=mail;
-	t=1723113056; bh=XouRIGdjjotaC4BSAJBWtJ4WaLP4kN9KpTcsRMgKXws=;
-	h=From:To:Subject:Date;
-	b=md9sUA+9yyh9QQ5SPV9t4UgE/WqdAfdjxs+gA3SLEqx7i5N6NdfHMR51Ap7FzTz93
-	 SDXsWanI0f186fJx4dwDzSk/9m6GGL/2zKQEiYJ4IZb9qp/mdamsrr7yHHz5n2JYES
-	 tycF30XZ5ETFeHcicaTLCkvvnJuEEuN8/yh9EBDw=
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Florian Klink <flokli@flokli.de>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Muhammed Efe Cetin <efectn@protonmail.com>,
-	FUKAUMI Naoki <naoki@radxa.com>,
-	=?UTF-8?q?Tam=C3=A1s=20Sz=C5=B1cs?= <tszucs@protonmail.ch>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
+	t=1723113099; bh=D0j9fkFtDjrlhyFzMZPQzhRxftT0Q3FnZnmN7j+B9Pw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=i205RKxTpP4tv6wMWD1Jce9K8qen8yv4IabytzUKijFGBTO9F4k2Tjml8t7dzcONp
+	 FPMZUMT1bqE6TDHhhZk2ALFF496eLBe+iPtHbZoU9a759l4970l+ioxFknBUZW/QS9
+	 9wfExnwsENjBYTtF0Y+iZkaDd6VchA89rFF6rpKU=
+From: Florian Klink <flokli@flokli.de>
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: Alexey Charkov <alchark@gmail.com>, linux-rockchip@lists.infradead.org, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, Kever Yang <kever.yang@rock-chips.com>, 
+	Muhammed Efe Cetin <efectn@protonmail.com>, FUKAUMI Naoki <naoki@radxa.com>, 
+	=?utf-8?B?VGFtw6FzIFN6xbFjcw==?= <tszucs@protonmail.ch>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v4] arm64: dts: rockchip: add rfkill node for M.2 E wifi on orangepi-5-plus
-Date: Thu,  8 Aug 2024 13:30:47 +0300
-Message-ID: <20240808103052.1894764-1-flokli@flokli.de>
+Subject: Re: [PATCH v2] arm64: dts: rockchip: add rfkill node for M.2 E wifi
+ on orangepi-5-plus
+Message-ID: <bukq6244owje5ih3uo6gg2d2nkg4xwipsgbn4r5abos36g46xz@uauybbkf7y4z>
+References: <20240807162001.1737829-1-flokli@flokli.de>
+ <krvprzy3iz5b7n37eo2mb6sol6pcjkxsjdbdi6sxeebwveqtnr@e52cvrlkdjsa>
+ <1b2e1b1b321f84f5cbff2ae18c3eba2e@manjaro.org>
+ <4888470.OV4Wx5bFTl@latitude-fedora>
+ <f524a2e5ddbec28dbbc0be4ef47a120b@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <f524a2e5ddbec28dbbc0be4ef47a120b@manjaro.org>
 
-This follows the same logic as 82d40b141a4c ("arm64: dts: rockchip: add
-rfkill node for M.2 Key E WiFi on rock-5b").
+On Wed, Aug 07, 2024 at 11:30:40PM GMT, Dragan Simic wrote:
+>Hello Alexey,
+>
+>On 2024-08-07 23:12, Alexey Charkov wrote:
+>>On Wednesday, August 7, 2024 9:32:51 PM GMT+3 Dragan Simic wrote:
+>>>On 2024-08-07 20:14, Florian Klink wrote:
+>>>> On Wed, Aug 07, 2024 at 07:24:27PM GMT, Dragan Simic wrote:
+>>>>> On 2024-08-07 19:00, Florian Klink wrote:
+>>>>>> This follows the same logic as 82d40b141a4c ("arm64: dts: rockchip:
+>>>>>> add
+>>>>>> rfkill node for M.2 Key E WiFi on rock-5b").
+>>>>>>
+>>>>>> On the orangepi-5-plus, there's also a GPIO pin connecting the WiFi
+>>>>>> enable signal inside the M.2 Key E slot.
+>>>>>>
+>>>>>> The exact GPIO PIN can be validated in the Armbian rk-5.10-rkr4
+>>>>>> kernel
+>>>>>> rk3588-orangepi-5-plus.dtsi file [1], which contains a `wifi_disable`
+>>>>>> node referencing RK_PC4 on &gpio0.
+>>>>>>
+>>>>>> Signed-off-by: Florian Klink <flokli@flokli.de>
+>>>>>> Tested-by: Florian Klink <flokli@flokli.de>
+>>>>>
+>>>>> I forgot to mention that providing a Tested-by tag is redundant when
+>>>>> there's already a Signed-off-by tag, because the latter already
+>>>>> implies
+>>>>> the former.
+>>>>
+>>>> This came after I sent the v3. Generally I wish people would test
+>>>> things
+>>>> - though too often it's not. I explicitly tested this to work (with a
+>>>> wifi module added to that slot being unblock-able afterwards), and
+>>>> wanted to point that out, thus adding the Tested-by.
+>>>
+>>>In general, some time should be allowed between sending consecutive
+>>>versions of the same patch, so people can provide their feedback.
+>>>
+>>>When it comes to testing the submitted patches, please note that 
+>>>signing
+>>>off a patch implies that the signer has already, to the best of their
+>>>abilities, made sure that the patch works as described and expected.
+>>>
+>>>With all that in mind, please allow me to repeat that a Tested-by tag
+>>>should not be provided from the same person that the Signed-off-by tag
+>>>is already coming from.  It's simply redundant.
+>>
+>>Just two cents: perhaps dropping the tag and expanding the commit 
+>>message a
+>>bit could be the best of both worlds. Just state that you tested it 
+>>with such
+>>and such module, observing such and such results. That would also 
+>>help if for
+>>example another user tries a different module and that fails due to 
+>>some
+>>quirks: it's easier to debug a potential issue when one knows a working
+>>configuration to compare a non-working one against.
+>
+>Totally agreed.  Providing as much detail of the performed testing
+>as possible in the patch description is always a good thing.
 
-On the orangepi-5-plus, there's also a GPIO pin connecting the WiFi
-enable signal inside the M.2 Key E slot.
+Just sent out a v4 including more information about my testing, and
+dropping the explicit Tested-By tag.
 
-The exact GPIO PIN can be validated in the Armbian rk-5.10-rkr4 kernel
-rk3588-orangepi-5-plus.dtsi file [1], which contains a `wifi_disable`
-node referencing RK_PC4 on &gpio0.
-
-With this change, I was able to get a "Intel Corporation Wi-Fi
-6E(802.11ax) AX210/AX1675* 2x2 [Typhoon Peak] (rev 1a)" up, while
-`rfkill` previously only mentioned to be hardware blocked.
-
-[1] https://github.com/armbian/linux-rockchip/blob/9fbe23c9da24f236c6009f42d3f02c1ffb84c169/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
-
-Signed-off-by: Florian Klink <flokli@flokli.de>
----
- arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
-index e74871491ef5..c3a6812cc93a 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
-@@ -105,6 +105,13 @@ led {
- 		};
- 	};
- 
-+	rfkill {
-+		compatible = "rfkill-gpio";
-+		label = "rfkill-pcie-wlan";
-+		radio-type = "wlan";
-+		shutdown-gpios = <&gpio0 RK_PC4 GPIO_ACTIVE_HIGH>;
-+	};
-+
- 	sound {
- 		compatible = "simple-audio-card";
- 		pinctrl-names = "default";
--- 
-2.45.2
-
+Thanks,
+Florian
 
