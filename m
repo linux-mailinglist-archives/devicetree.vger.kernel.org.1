@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-92090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2543094BBBC
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:55:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7962C94BBC7
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:57:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C08421F219A1
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:55:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 249181F21CA2
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:57:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C60418A934;
-	Thu,  8 Aug 2024 10:55:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E46F818A94C;
+	Thu,  8 Aug 2024 10:57:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F/ic0qY+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wgw7xFqS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26D6013A257
-	for <devicetree@vger.kernel.org>; Thu,  8 Aug 2024 10:55:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFC2313A257
+	for <devicetree@vger.kernel.org>; Thu,  8 Aug 2024 10:57:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723114527; cv=none; b=fOwm7QEc43LQ34kPJ5/G0bjKLMbG3Wsu8OnsaDqWeYpKSi4Ksuz7hAtLe/oCY5Can8BVLTac8aFjqmih+h/uvu3Mmsp4mqajY06PuL3qI2KtXCwbDdKsCttdkdeNDjLlBxDsQk2pghlixbTqCaTdjHn6PiNhv22LVcUYf+1/NBA=
+	t=1723114636; cv=none; b=LFiEtbCi4QBb2oOmf9G1zQJathZUSvHrYM74WDCI+693s4o7YRfKRg0Io1ZiDQzQXloVvUQqDG5iBX2UB0JznDLs/xHmwzVKE9PVEJLQSVf9NzxyO1TecSK01C4Gzk5MrihamE2/WBXTDLY6ynJwT4gjWFiTmcRp9MI4Q8mnQh8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723114527; c=relaxed/simple;
-	bh=V1+HKybTS2kAJJUlb1sobippbtPh16P5AaYs+/hvglM=;
+	s=arc-20240116; t=1723114636; c=relaxed/simple;
+	bh=wYy0whA1soGcHzTknUfhbM0xv3q/Gn8RXLBTbW1JJ1c=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ce56lDY9JjzRYYYpKwL9OZcKSUamLOWybBTFEikBApFFmWiEhM3oE1m9DArnXXppv0LWbADpc5o83TD429H8GKOPn6usoD9CI4PZAYdIRnbBqyUe0tJKSfHAhNTQda/KIS0XNz6HZqLMK9M7dkHLoteEYswelbea1K6Bicisr3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F/ic0qY+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5417BC32782;
-	Thu,  8 Aug 2024 10:55:24 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=SJPursj3EWsLMzRHu1nhZCwR8Y2tEN8BussFd6sjoV5L8yO2Juxo4Cldd0/pL0SsJ487QpIKgPpFYA+BiiV3C3p4Mi8izdpGS3F50MudT/yiVq9ryZtMSfAxGv/B+NNSHanqWGUZTVKtAnmUNbpyLIpkdvpoFq/QSri6V0lAbo0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wgw7xFqS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABADDC32782;
+	Thu,  8 Aug 2024 10:57:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723114527;
-	bh=V1+HKybTS2kAJJUlb1sobippbtPh16P5AaYs+/hvglM=;
+	s=k20201202; t=1723114636;
+	bh=wYy0whA1soGcHzTknUfhbM0xv3q/Gn8RXLBTbW1JJ1c=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=F/ic0qY+RwFHzTZswDl8pE53la31BOwyyij64Gdox9SUaiRrMBVtDu2lMYXTACzTQ
-	 SIX3b4qPCXBjiHcDbRDZBdP3QVZwdqdZ2PSwaHoZROb4RUaiysUWKlpzCUe0Z43gEL
-	 /BrG5Ro0NnOmKBngq58RErLN6aQcU7epD7IfsyRdNuOQRDWzCuLJchN5Erto7mls1X
-	 9vhgFofEXgG/OhNMqLtlaHr1qPwPeog0CNqG7JkoC3/t6mhpQgUma4PHqeszqYGmcN
-	 bKXmvDrUJX/0Y8ynUOfpREhuD4S06mweP9YpF/bMmdAkvqq/V4PFAeQXL27nx2u7k6
-	 E2YSvitJSaIJg==
-Message-ID: <0e5194c5-9e23-45e9-97a5-8d7441ab7223@kernel.org>
-Date: Thu, 8 Aug 2024 12:55:21 +0200
+	b=Wgw7xFqSJkgxFZxlFgvoeRfcGE5PaIAS9VsCM2kHHO9RskLxPbO3lb79/yhN++nak
+	 kOqJuS1aGgytfNksbuYR3CRKbWuQRWxZ4QrH78mLzCrNl7p0CWR+4rTzsW8idtf+JR
+	 6q8VvwxVmgpa4yMnWBwSAUTcKFdpe5nfEZhlEUA3QbBbt9ifDidjH172ytu9FT/OT9
+	 VxW9Ej0CAUZz1zQoSBw5+YA6x1svEMIQ8AclM8cUn+V13gk9v2ri4G9lkYGkQKOEen
+	 f1vTWhNQMWqCrm6VUIFWl9ek0lqMDgO+fzVZ+li8NnKq1CxMOM6UGqedATjyTgJutD
+	 H0qhw/fjb3ldg==
+Message-ID: <291b87b0-4701-4743-aed9-adbef7cf3b77@kernel.org>
+Date: Thu, 8 Aug 2024 12:57:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,11 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 08/10] arm64: dts: rockchip: standardize the definition of
- LEDs for Radxa ROCK 3A
+Subject: Re: [RFC v2 1/2] dt-bindings: arm: rockchip: add Radxa E52C
 To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
  devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20240808093808.1740-1-naoki@radxa.com>
- <20240808093808.1740-9-naoki@radxa.com>
+References: <20240808090405.738-1-naoki@radxa.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,32 +100,22 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240808093808.1740-9-naoki@radxa.com>
+In-Reply-To: <20240808090405.738-1-naoki@radxa.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/08/2024 11:38, FUKAUMI Naoki wrote:
-> - move pinctrl properties
-> - sort properties
-> - add default-state
+On 08/08/2024 11:04, FUKAUMI Naoki wrote:
+> Add devicetree binding for the Radxa E52C.
+> 
+> Radxa E52C is a compact network computer using the Rockchip RK3582
+> chip.
 > 
 > Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
 > ---
->  arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts | 9 +++++----
->  1 file changed, 5 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-> index 59f1403b4fa5..4fd6096f16ea 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts
-> @@ -42,14 +42,15 @@ gmac1_clkin: external-gmac1-clock {
->  
->  	leds {
->  		compatible = "gpio-leds";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&led_user_en>;
+> Changes in v2:
+> - none
 
-Weird order. names never precede the property.
+Why this is not ready for review? Why this is RFC?
 
 Best regards,
 Krzysztof
