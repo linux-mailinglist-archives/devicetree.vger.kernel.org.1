@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-92088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8281494BBB9
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:54:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B5AC94BBBA
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:55:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C20E281894
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:54:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C9111C21008
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:55:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0998218A934;
-	Thu,  8 Aug 2024 10:54:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45AF418A6CD;
+	Thu,  8 Aug 2024 10:55:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qaohk+/m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ND/2JDiz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7B7618A6CD
-	for <devicetree@vger.kernel.org>; Thu,  8 Aug 2024 10:54:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 203A213A257
+	for <devicetree@vger.kernel.org>; Thu,  8 Aug 2024 10:55:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723114469; cv=none; b=JL5On/BmZF3OsPRiEtV3ZT5TUTnvAQCkfDnd5au1h/idYf1+qyoZeu/JDkynSVHa7wtepfMNxR8URfmnL2osoXo4peicQWU3RPF6diBr08EZ4hNNSECn7ZKRtOVV04PAFyMqOHie6+ZOS2hDp/P1CwPdmKGs9Oq7d6v4ceDQ0bw=
+	t=1723114500; cv=none; b=LwJoz2hshftmyJBGPLskSoh+Oz5e8PY7WDpiX8LR7z7lOqwPvNgVI4Dbp092GIi1c7xrYUNsdeY2AgrYDnPBj/nk3zRjRr19KD0tNqphbKS/kqOzFIFmKU+Ku6MSgVzDlkKaL6AFc0aSG/bjmF1569DDMvPYaqukHTp3aZaqKwA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723114469; c=relaxed/simple;
-	bh=zKvKC2kKm707nMzw/ht3NkKwNiFEgmSQmCJZPucqhN8=;
+	s=arc-20240116; t=1723114500; c=relaxed/simple;
+	bh=JaCPHWurPRxIu7uk1U4/MSovCxOrfLWNcmaqNS+s6wA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WSF5/f4O26TXl7wntHie1VGBxgcnnTs5FIoAA8JEu9TlJXWr5BDIOecisL/naymB0WIHpmNTaPEv7pZKuScTzvXgxEbjzKEVa1wpp21LDrliHf3E9DnmASYnD2nxC8BZi97xw1N66qmlMNX4ywHQqde03yzsDghvWUymQEPJpOk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qaohk+/m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 442F5C4AF0F;
-	Thu,  8 Aug 2024 10:54:27 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Bop7qyXA7spK1rb+OHvZsoxyJVz1Z4jqbyhrSigKoK/ThKlL8IUnOQF2RxgNN5zFZDg/UPd1i3n57dSg1DL2sci1jRjoocJrD71R1JH0tIZ303fuKiASxhaBbN95L78ECZsmGz+vFNnnIdeAq+yPmgdlyVUd36E28FmE8J4CNF0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ND/2JDiz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADFA6C32782;
+	Thu,  8 Aug 2024 10:54:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723114469;
-	bh=zKvKC2kKm707nMzw/ht3NkKwNiFEgmSQmCJZPucqhN8=;
+	s=k20201202; t=1723114500;
+	bh=JaCPHWurPRxIu7uk1U4/MSovCxOrfLWNcmaqNS+s6wA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qaohk+/mU5a+awo2S3PWKmNzaGa4VPaZt3OMkyTqmFkUEYpqMyQ0K5BYZaQQyCtT5
-	 96SwT3aZL31hMHpEryZYcK1kCW7RYrun15I2AIcYEMwuVghERfWUFqYvdIke4RG5JM
-	 PxT1cKwwKGyS5q0zgJrabZvtgyjveJT+w2hbkaFUjWOS08KjmCpt0Ac4mg4NdVghID
-	 oc7Ql32VKPUIeD/6zgN0fG6rxk1g06zuWBa8RjJBIS/2dMk4eJWcuOd433WagupdjC
-	 /vvLGEBaOeqa9hmaOS/TAWuNz8MF+1w+kxGx3qovFHBM27KqXLgQF/qbMq0zBvJUZ6
-	 4339GxJa1RxZQ==
-Message-ID: <7637582e-6821-47ef-8135-aa15a0d1b50e@kernel.org>
-Date: Thu, 8 Aug 2024 12:54:25 +0200
+	b=ND/2JDiztgmMLBg2IdopsEf22W+adsG/0sLQWK2drdMtm2aBYBenVmNiKVrpT/mf2
+	 827OV7l9cmGsMEFbIXWjsICiSdaUoZcR2y0cZzO2YNqe6FODWC9Nf/kxemtl4W96f9
+	 8IoCl/c6TVjtS71cIBm2tDcJb4cCI1kZf9DZW+oKM0SSzyWyfTjW9qUNNU+EeD+CHx
+	 PI6CpwBbTifVzpEdPPxObsZtUlXm6YUjiLMaHZQPhPWbvC4/eha7dhm1ALi+xvjwbX
+	 bf196V8+vbT7fcyAiwuCabfVdXrKEX5sIHEkX73bbQ/od4uUuwVztss/NjA24jBNh3
+	 serJTtdE6pTaQ==
+Message-ID: <7188d54a-87c6-4abd-9df0-0432263381c0@kernel.org>
+Date: Thu, 8 Aug 2024 12:54:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 07/10] arm64: dts: rockchip: standardize the definition of
- LEDs for Radxa E25
+Subject: Re: [PATCH 10/10] arm64: dts: rockchip: standardize the definition of
+ LEDs for Radxa ROCK 5A
 To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
  devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
 References: <20240808093808.1740-1-naoki@radxa.com>
- <20240808093808.1740-8-naoki@radxa.com>
+ <20240808093808.1740-11-naoki@radxa.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,23 +102,18 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240808093808.1740-8-naoki@radxa.com>
+In-Reply-To: <20240808093808.1740-11-naoki@radxa.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 08/08/2024 11:38, FUKAUMI Naoki wrote:
-> - sort properties
 > - add default-state
-> - add function for multi-led
-> - remove redundant parameters from pwms
+> - change function from STATUS to HEARTBEAT
 
-This does not match commit subject at all. Anyway, one commit per
-logical change. Trivial cleanups are not per board, but per entire
-subsystem. Changes with impact can be per board.
+Why? Explain in ALL YOUR COMMITS why you are doing this.
 
-The way you split your work makes review, bisecting and backporting
-unnecessary difficult. It's not even logical. There is no logical change
-like "I will do 10 things for board X".
+What you are doing is visible from the diff.
+
 
 Best regards,
 Krzysztof
