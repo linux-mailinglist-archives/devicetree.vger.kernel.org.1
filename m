@@ -1,223 +1,194 @@
-Return-Path: <devicetree+bounces-91943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD01794B6ED
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 08:50:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8144F94B72A
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 09:12:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15F731F21B1A
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 06:50:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2DB1A1F23925
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 07:12:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55174186289;
-	Thu,  8 Aug 2024 06:50:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D270188CA4;
+	Thu,  8 Aug 2024 07:11:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="N+4N1keE"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Ey0H8fSc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11022116.outbound.protection.outlook.com [52.101.66.116])
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 511615228;
-	Thu,  8 Aug 2024 06:50:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.116
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723099814; cv=fail; b=Nts9e3gf6JA3geQIQ3AtyiVbCVDb5Lbh6ODaTfcc54olAsJ7/R7CwqYJis697n2akbOuTD2ngDAQHE0XhY/+vFwlx24YtxUEhOjfNLB5WU01iCoIWljY//tVGrCLm2Nrn79lGxDBEW73cNYBtLXf/c/Rrp7ClrMeW6ksyDM08Qw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723099814; c=relaxed/simple;
-	bh=2L+VDZ5NU3OuM0VB5MG0XNbKNk/nqblLhSR0rv6FDVQ=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=EAk8+7KvoVvAtsM8EX+jgnkxqQzLi2O1sjbbltKUTOYJaY7ESnavxsCKNOngje45j3lbndEIxIypt1Vf3r4F6nEnffktsXlKmPpUQVAbGNZGrCXZaSCxVPJgpC+OAOxaqsn3Hoa1swCApsTAIZ2X9BMHaX9bAGJoW+kKjtjmH9o=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com; spf=pass smtp.mailfrom=solid-run.com; dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b=N+4N1keE; arc=fail smtp.client-ip=52.101.66.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ROIzmgjDEpSqyxqU3OvR3b58Mcl81YJZeB1R7hHEGZaQ/OOzshGBotqU/FrnXer482WNjZxE0mDjIizmQR+N8cYte6zpLWRsUluQMPe97JQzp/AMSrWrVYf2ZXKzRBXSlv3msvNcc9L+8ABWkYTp9JhDe2HHnUEmxCamrowkqhGq4imN99lo47dfFfFZM/Jpcd3CKdprHHYi4ApIf17yWN4yW4ziJv/UB7M+nHSBjABuAcKTxq7lxI6YmftrjGVN5jolHnrWrivV2Kf+Hr2a1gf3h6GOqdbWoqLL83Va9mAwDIfPUUrDmbPqicdW4YCyBI2MT3SwWtGijrYeqGuQng==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2L+VDZ5NU3OuM0VB5MG0XNbKNk/nqblLhSR0rv6FDVQ=;
- b=i4MfZz13qvOH/4THIZWV2YUMaPrSrHmarEaHYbPO4zp+UvB03qSxfJdzQjfs0/Q//PlGFV9rTFAuWgHopZuI3buHezYfFQiU/sJzy/1/g/0737wYrFYf/10zSAVw1D/fysqAfHyiyaBBSyUelDyMZU8edXK0cFTDtrCvM0rtOzWbiWeauAkG+oODlx7i8ZYCI+zQrktkmKlXELMwhqAni/2oraaxZf+9wiQn7M0d7LvHkMJMRM+3pVxSIdaIAcSfsIeg+kausGemp1WPr8yViahmpmrFCg2zpUW2v1gE122gnUa9+Qhz+dbsIRogEptAL1mfTndeOIYD77FYw85YRw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=solid-run.com; dmarc=pass action=none
- header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2L+VDZ5NU3OuM0VB5MG0XNbKNk/nqblLhSR0rv6FDVQ=;
- b=N+4N1keEegkBfHSsA4XWOftWOK2gxdeXqmeGwKeBA5E8+bHvCYs3dUTcwPpzsRtRTiqtlKI744t+vTAJSDmqGW8sUVEsvYANtFWvnF7fDlAbPY3N443XRxC2Ww1sVVXd8YOKWzDWELGsKFSpIa9zW/cpv+Pq1ICV1lPeG9cBhP4=
-Received: from AM9PR04MB7586.eurprd04.prod.outlook.com (2603:10a6:20b:2d5::17)
- by AS8PR04MB7703.eurprd04.prod.outlook.com (2603:10a6:20b:23c::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.13; Thu, 8 Aug
- 2024 06:50:08 +0000
-Received: from AM9PR04MB7586.eurprd04.prod.outlook.com
- ([fe80::c04e:8a97:516c:5529]) by AM9PR04MB7586.eurprd04.prod.outlook.com
- ([fe80::c04e:8a97:516c:5529%5]) with mapi id 15.20.7849.008; Thu, 8 Aug 2024
- 06:50:08 +0000
-From: Josua Mayer <josua@solid-run.com>
-To: Logan Bristol <logan.bristol@utexas.edu>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Vignesh Raghavendra
-	<vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
-CC: Matt McKee <mmckee@phytec.com>, Wadim Egorov <w.egorov@phytec.de>,
-	"linux@ew.tq-group.com" <linux@ew.tq-group.com>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am64* Disable ethernet by default at
- SoC level
-Thread-Topic: [PATCH] arm64: dts: ti: k3-am64* Disable ethernet by default at
- SoC level
-Thread-Index: AQHa6Q6Xslxv/i17FUeDMsR7xIZ7BLIc7EuA
-Date: Thu, 8 Aug 2024 06:50:08 +0000
-Message-ID: <16f9ab4a-62ce-4406-94d4-1441e459469b@solid-run.com>
-References: <20240807211342.1660-1-logan.bristol@utexas.edu>
-In-Reply-To: <20240807211342.1660-1-logan.bristol@utexas.edu>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=solid-run.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM9PR04MB7586:EE_|AS8PR04MB7703:EE_
-x-ms-office365-filtering-correlation-id: 64714654-1070-4d69-7c0d-08dcb77657af
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|7416014|376014|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-8?B?TzRZcHdVMk90QTZULzhzK3NBS0JCdklpVXRxcHFsd21xMDFEeS9uSlU4RkVF?=
- =?utf-8?B?YzZBWlN2M0ZrcFdjS3B2eTlBZFRxYytuQ0gvME1zQ0NXcDR0dE9WOG5mRERK?=
- =?utf-8?B?QTJtOWJXZ0k0V28zMzFiWDYyNDA3VW50Y3JUam1pZEVTbHltS0pMVnZ4aXpk?=
- =?utf-8?B?RThKbmVKaFNiYmd5MkhDYk15bGlJTU5yZktBU3JQQTVBTDQ0MEJvdG1xYXRx?=
- =?utf-8?B?TDRhK29MQlcxc3Y0cUdBbDg0NnpydlZ2Mk5sdDROYkcyTnVwcGV1OXMrYm56?=
- =?utf-8?B?YTB3cC9JT01DNytlRHJmbXZqZ1dqdkFWMi8rR0ljY3FYek1IOUJDNzNUN0NR?=
- =?utf-8?B?RFdFMFJ6dlZiQXhpaFExWE02SndQSklHNUxUUkRhWXRZMTk1VkllejZqVUF1?=
- =?utf-8?B?aENSeUY3cFpQZGtnRFZlNXNHNmkweWs5MjE0S1BkMDUzYUJVd252MXlZanNE?=
- =?utf-8?B?QnR4Qit4ZU9rc0grL0xWQlhDWEJVRzNTNFdRSGJVV2VMTGttYk1oS0FieFdF?=
- =?utf-8?B?YmZHWURwRlVDdTNkVmR0ZzFSTkxXY3gxUHZ2ZldQR2FaeVNTV1BlMnFieCtu?=
- =?utf-8?B?ZkhKWkRzdFFJQmtFSXZPVDB4ZjgxbHRUZTlqbTA3d1JOc1pCMkQxOWNkZWN2?=
- =?utf-8?B?eDlEOW16d29KeU1oNnhRdnVFYVZwT0MrOWpVQjV5R1JrLzB3YzhPdUtEU1U1?=
- =?utf-8?B?Q1I2ZG5OQ0ZOcXN5L3JEdms5c2hsVWJVQUVINTNtU3k3RzNzSDRnem16cG1G?=
- =?utf-8?B?amU4VzJGbGlNQlZpeCsvOENqR1NzemwzY0dFQm52VDNPbTJXbUFJTkxOUzE4?=
- =?utf-8?B?ZTZ2cnhxQW1uZ0EwK0duaWpRZUNuSjFpRXpralhodEM4ZmNLZkNIUTM3cEdJ?=
- =?utf-8?B?K1JTK2JZcjg5cE5jcDJPckd3cy9rR2lFK21NVEZFOWs0eFZyMS9kUGc0VGpw?=
- =?utf-8?B?NDJocm5pcUM3b1pLMHhjMFdOT2trNTM0ZTF5b3lYSmpoZmIvZlB1U0IzRjJv?=
- =?utf-8?B?akR3ZEF3aWd3NHlmVDIyTzZCaWwra3Z5Y3JUSHhJUnJEeXFlKyswSzB3OTlE?=
- =?utf-8?B?Snk4Y1kySjh6aTVicGtXeSsvV2s4T2lzMlNMbW9HbnhJcm5lanZSSTJJbU9K?=
- =?utf-8?B?T0g5SWIxeWwyejB1alFWcnNpZmRBSU5YWVNHODdkU2wvQ0RzdW5TWlRvSjVT?=
- =?utf-8?B?Z3Rwbm9BTkIvd25KSEN6NDZKWitXZlpGeXNPWkRiYm9QR3lCT0p6UFozM2Jt?=
- =?utf-8?B?Z0FOUHlxUlUvQWdKSW9nazVjc2FrYUwrUFdWWHZPNjNDbTFFZE1uMUlTY3BT?=
- =?utf-8?B?ZjhyWW11cTRiSEI4Wm9nQlVzUk9ZVmwvQU1ZSFhlL2w3azNkNFpQUTF2b2JZ?=
- =?utf-8?B?bEZxSFhuM0VsK1pWMFZGOExPbEFBVVVHazNibnpBOStaVHFNa29OTEZ1Z2Fm?=
- =?utf-8?B?a0lZMTl6bHE3UTFjbm9EN3hBU3BybGhxbE9LRHJsWml5aU8wWENSaitLZTFH?=
- =?utf-8?B?QSticTdpZTdCOTFGc2NJWDF6b01EaEdLQVFWTTlrQis5R2p6dlRtbFNtbDBq?=
- =?utf-8?B?VUJub1dCSUFNenhWQk0rVEc0UmFjOU0rOHVTMitteXZMZXQ3UU5objBpRXVt?=
- =?utf-8?B?NVFqTXdEZ2Frc1NvZUt3WlJiVlByWDRKemRGaWlxMFV1aUFFL0tsTktwL05X?=
- =?utf-8?B?VDJaU29LdHF5dG1SbER3SVZzOWQ1bGVIUmsybkdneVp0WWQrRzZBcmo1Y0dz?=
- =?utf-8?B?VW52a0QwbktkZHgzeHZIWldjNGpVeGVPQ1dlbVZSYVdEdTVYWVB6ZzBuRGli?=
- =?utf-8?B?UzJNSllpcGxzdXg1RjJBeHd4Uzg3WVJFQlRrSEZ6VFA1S1ZtaTJic1M5QUhV?=
- =?utf-8?B?MnAyMnlLd1BuUUJwYnJseFg2NHVTRDMwaUdXMy9Fcm5TYXc9PQ==?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB7586.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?ZWZtVDAxejRzMThPTHdhOS9JT2RsNWdyeXcwdDV2ZHlEalBZeDJsTnNDdDJr?=
- =?utf-8?B?RmZyM1NJaVkzblFpL3oxQmJvcWJaNUhzOEdYTzVrRW4xMFRjOUxiR0h0eWQ0?=
- =?utf-8?B?cUptTFc3alVsN3R6amkzOGFqK2F3VXVFY0xEbWVhTzI2eTNxZkNhZEZUVXg3?=
- =?utf-8?B?aTFHbVg2NlYwcXZPQ0hZbHcvcmRlYytsLzhpeUtPOWlxRjhWOGdhQys3OUpX?=
- =?utf-8?B?OTU5RUhyY05kenViaDc2NTdQZVVKRnUyZ0dPbUNYaWVLSTl6SXJIMFNRU0Jj?=
- =?utf-8?B?NHRQZTgvTWRMdW83aWVxdjJtVnJFdklxRDVBTE8xY0JXR1dEbm5IQXFGSG0z?=
- =?utf-8?B?MCt2WnVHTGFnczdNQkhvUzRYMzZDTG5Sekp0UkZISCtObmU1YmF1dkNRVDhH?=
- =?utf-8?B?UnpmRXY1UzFqSVhsQ1lYVUMzbEFBazh1Y1Zodnc4TVF3ak05OGZVcldGTmx6?=
- =?utf-8?B?MlZjbE5XRTREWkIwUFdLRit0d0VpSEFQYk1GMnVhaXdkZGtRb3NhSGx0ekIv?=
- =?utf-8?B?Z0wxbzg4ZjNlZllzalc4cXhzOWtmTE5QMUVRNGtFRCtmczlqR2pGRk1ucEZH?=
- =?utf-8?B?S3FiMFZCM1IzNVJ1VDBleWlnakZxK1dPVVB4YlJaWEJpaFp3SlA2TjMvemlP?=
- =?utf-8?B?NFF0S0gxVmI5b0tKTnZPMlNxa25vakFyS05NdFFXTXg4VVR4Z21LVjUzODlt?=
- =?utf-8?B?SitwRnRya0VhbEw2Z3p4M0tva2ZqeExtMU5FR1VLeWVRMzdUL0tqMUlwK0Ns?=
- =?utf-8?B?VXJZenVGMDMwM0t0UFJKQjRFTVJubnZQSm5Eak5yb2dNRFBUUUJUd1lpYk5l?=
- =?utf-8?B?STlIWXd1MzFYU25PZjB0UDlJWTQxYjhwa3p3VERmMzZEQXNtRDc1UDU3MXU3?=
- =?utf-8?B?MHhSUXpEQmREcmdCM0E1MnlTTXVXT05Ebi9pUmRHd3NDTGdNQk84SkVseURN?=
- =?utf-8?B?dDZ0QkVWY3BLeFVWU0ZYTmd6ZlIvaWQwTHRRU2t1aXF5S0hqWmNHeGtCOE1J?=
- =?utf-8?B?S0wwWE5tVW0xY3dsL3hmTFVwSXRpdVg0b0VOM2lReUk1MzFZZjUxSmg3MWM1?=
- =?utf-8?B?b0IyRlR0QXZUTzl2Y3dPU2VEbzV6Ym9ESHJQenZ1RURZNHBiZXoyNlBOWU83?=
- =?utf-8?B?akVlMkFvbGVYZEw5OW1NdnYxMlpnaWVkQzNMQXpjSm0vbDQvUW9WWFAyeHAw?=
- =?utf-8?B?eGh2by9qbEFHNUFCOUFvc1REcGg2VDVrcXVMcTFhL0Jwd2RuTHRyQVVhZmFi?=
- =?utf-8?B?UHF5aXpPdzNHNnhjNHBlcTVjTm11cDVMSEtQcW9yR2tGaVZydnE5eXVrU2Jl?=
- =?utf-8?B?V3lkL2pUMnNqRXBzQjVnOFV0Ky8rbnUvcy8vRll4RkwvbEZhYnFTT3FZODBZ?=
- =?utf-8?B?ODkrcG5XanhkNWxZS0Nrc2NSMW9Td1hhVURJTFZIeGFUVkgwSnoxV0tDMVhN?=
- =?utf-8?B?bkFUazBGeWllSU5BZ05wTURXZFByelpKbitqZU1ndXMwWWRxVEx4UE9CUmNW?=
- =?utf-8?B?K2cxeHFOMDhzWDM5YngyOVpTZ1pFdGlXQ3ZURTNmV0xONkN2SWpMN3NQQWVw?=
- =?utf-8?B?dFVpZUQrZEZYejJkM2hwZTVoVEdINDczVEpCSTlwSVdyZ1ZCajRIMUpEZnpx?=
- =?utf-8?B?NG5uSFpnVDJvYnJTZkZsTHZDcHV3cDRBbjMwcXpqTVdyZnVDY3oyUnBFcnMx?=
- =?utf-8?B?bWJ6cHRsRytMcEE1OXd4UVRWWVFDTGFiNHJJSjFDQXNvZHRlUkxUWDlaNGJw?=
- =?utf-8?B?ajArSVpDQ1RvTTgwV2NNbGM4SkRnVjhMS2NhaGh4U2NBNkR0Rkp2TWc2SU5s?=
- =?utf-8?B?RFdIYTVuVGVZVmRKdTVMYnZVMGFNcDBOTmJBMnBkTFdOR2FWclNISU5FNUdT?=
- =?utf-8?B?ZC9VTzN0cDNNd0FiWTQzTTFNcjVReDE4YkdWVHl1OGFIWXptWFR2Ri9BbjZv?=
- =?utf-8?B?dkJEUzQrMll2QWlwVWIvK2xMNE5KeUdTbURxOU9ZWEJzREhKN294ZEtwY0s3?=
- =?utf-8?B?QXh4TXhqaVd6YVlsVVFtLzQyNnVaRkpMUDJWWGhPMDkwL3B5SzdpTHdraVdw?=
- =?utf-8?B?SFFrN3dubnZWQ3B3VWttSlprb3Y2YXlwVjdCeFdQempnRm5lSnBVaHJyWjdx?=
- =?utf-8?Q?0Q4w=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <2F4FA294E724B84DAD68236EC7A0D5DE@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DC88187871;
+	Thu,  8 Aug 2024 07:11:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723101109; cv=none; b=MVVg6eDfFm7dr7fHcp2kYTGkslGzCv2Md3Dgue41lKS+FozJ7CHDBbtuqa3CCEvN3aDuy/BJOKWPfh8zhG07NxO2hibjvczZbCTAj/2vVsaQHeNQLLlfBZEQxCdLfULkL4ZhDp+9zdRX0lgoi9ZnOIqecgCbR299L/LHNQ6s380=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723101109; c=relaxed/simple;
+	bh=DhrDKHkJHBo1f/bvMdXIYN6rXqYcgpZrabqQS9PetR4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Iu4TLuQbjATyxARUuxXlExtWBrymnczuIzVUps95dEFc55EmZgWt4ljNfXr+Rd3QugclUz4/iIP58ksKIM2DUjxHfTyrQqqeC4O247U4OPuj/VNaG1yBitLv+K4foY7xdZapg8kIJ7pgQCAZDs8JDwmFvAzKOvFHIOqJBcLccWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Ey0H8fSc; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPA id CAD03C0003;
+	Thu,  8 Aug 2024 07:11:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1723101098;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=0t/o0co0d1KQA15WVvII8idKUoygO67sZkZArazSEUc=;
+	b=Ey0H8fScvVWHJDOw4UD96x/pxP0Mvii7cO2j8RzqYOed14eVRrc+EQaMahc9azEqb6+GGI
+	ymwgCyZEWAr1vr1iqrhzElJWNWn2EsTOYPUYVTqv0MVSYyrFGI54HmxqOnk5EM5CKmKkyn
+	bMQNYRqf5yu8oLkwOBYeGHO1ZuC1xs2fxSh+i3/VQ8nGib1nNKqgeqAHABAfEkhuFRpqmC
+	mzTTKU8411WW4fLodKecEhSwiCuY4X0rp/e0PRbey7UM8phfaJXzWAIMcV/ww6m4Vb+Y3D
+	Mnp2pw5Fnt1E7pNq6Ro3eLvdOAXqwy9DCA9VupSXXV3maiHukulTzPiYvWzDkA==
+From: Herve Codina <herve.codina@bootlin.com>
+To: Herve Codina <herve.codina@bootlin.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Qiang Zhao <qiang.zhao@nxp.com>,
+	Li Yang <leoyang.li@nxp.com>,
+	Mark Brown <broonie@kernel.org>
+Cc: linuxppc-dev@lists.ozlabs.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH v2 00/36] soc: fsl: Add support for QUICC Engine TSA and QMC
+Date: Thu,  8 Aug 2024 09:10:53 +0200
+Message-ID: <20240808071132.149251-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.45.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: solid-run.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB7586.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 64714654-1070-4d69-7c0d-08dcb77657af
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Aug 2024 06:50:08.4864
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: CBuo4PxhUcIfThlwi+fNU2gJGa8WsEGPDgfAcVpZccno+yF9nPBRK7BnyuG5K+FyQVg3ZMTLvNU43OnpGdKNaA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7703
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-QW0gMDguMDguMjQgdW0gMDA6MTMgc2NocmllYiBMb2dhbiBCcmlzdG9sOg0KPiBFeHRlcm5hbCBp
-bnRlcmZhY2VzIHNob3VsZCBiZSBkaXNhYmxlZCBhdCB0aGUgU29DIERUU0kgbGV2ZWwsIHNpbmNl
-DQo+IHRoZSBub2RlIGlzIGluY29tcGxldGUuIFRoZSBub2RlIHNob3VsZCB0aGVuIGJlIGVuYWJs
-ZWQgaW4gdGhlIGJvYXJkIERUUy4NCj4gRGlzYWJsZSBldGhlcm5ldCBzd2l0Y2ggYW5kIHBvcnRz
-IGluIFNvQyBEVFNJIGFuZCBlbmFibGUgdGhlbSBpbiB0aGUgYm9hcmQNCj4gRFRTLg0KPg0KPiBS
-ZWZsZWN0IHRoaXMgY2hhbmdlIGluIFNvTSBEVFNJcyBieSByZW1vdmluZyBldGhlcm5ldCBwb3J0
-IGRpc2FibGUuDQo+DQo+IFNpZ25lZC1vZmYtYnk6IExvZ2FuIEJyaXN0b2wgPGxvZ2FuLmJyaXN0
-b2xAdXRleGFzLmVkdT4NCj4gLS0tDQo+ICAgYXJjaC9hcm02NC9ib290L2R0cy90aS9rMy1hbTY0
-LW1haW4uZHRzaSAgICAgICAgICAgICAgICAgfCAzICsrKw0KPiAgIGFyY2gvYXJtNjQvYm9vdC9k
-dHMvdGkvazMtYW02NC1waHljb3JlLXNvbS5kdHNpICAgICAgICAgIHwgNCAtLS0tDQo+ICAgYXJj
-aC9hcm02NC9ib290L2R0cy90aS9rMy1hbTY0Mi1ldm0uZHRzICAgICAgICAgICAgICAgICAgfCAz
-ICsrKw0KPiAgIGFyY2gvYXJtNjQvYm9vdC9kdHMvdGkvazMtYW02NDItaHVtbWluZ2JvYXJkLXQu
-ZHRzICAgICAgIHwgOCArKysrKysrKw0KPiAgIGFyY2gvYXJtNjQvYm9vdC9kdHMvdGkvazMtYW02
-NDItcGh5Ym9hcmQtZWxlY3RyYS1yZGsuZHRzIHwgOCArKysrKysrKw0KPiAgIGFyY2gvYXJtNjQv
-Ym9vdC9kdHMvdGkvazMtYW02NDItc2suZHRzICAgICAgICAgICAgICAgICAgIHwgMyArKysNCj4g
-ICBhcmNoL2FybTY0L2Jvb3QvZHRzL3RpL2szLWFtNjQyLXNyLXNvbS5kdHNpICAgICAgICAgICAg
-ICB8IDQgLS0tLQ0KPiAgIGFyY2gvYXJtNjQvYm9vdC9kdHMvdGkvazMtYW02NDItdHFtYTY0eHhs
-LW1iYXg0eHhsLmR0cyAgIHwgNiArKy0tLS0NCj4gICA4IGZpbGVzIGNoYW5nZWQsIDI3IGluc2Vy
-dGlvbnMoKyksIDEyIGRlbGV0aW9ucygtKQ0KY3V0DQo+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0
-L2Jvb3QvZHRzL3RpL2szLWFtNjQyLWh1bW1pbmdib2FyZC10LmR0cyBiL2FyY2gvYXJtNjQvYm9v
-dC9kdHMvdGkvazMtYW02NDItaHVtbWluZ2JvYXJkLXQuZHRzDQo+IGluZGV4IDViNWU5ZWVlYzVh
-Yy4uOTBmZmM0MjZjYWUxIDEwMDY0NA0KPiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL3RpL2sz
-LWFtNjQyLWh1bW1pbmdib2FyZC10LmR0cw0KPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL3Rp
-L2szLWFtNjQyLWh1bW1pbmdib2FyZC10LmR0cw0KPiBAQCAtODksNiArODksMTQgQEAgc2VyZGVz
-X211eDogbXV4LWNvbnRyb2xsZXIgew0KPiAgIAl9Ow0KPiAgIH07DQo+ICAgDQo+ICsmY3BzdzNn
-IHsNCj4gKwlzdGF0dXMgPSAib2theSI7DQo+ICt9Ow0KPiArDQo+ICsmY3Bzd19wb3J0MSB7DQo+
-ICsJc3RhdHVzID0ib2theSI7DQo+ICt9Ow0KPiArDQpTb2xpZFJ1biBBTTY0MiBTb00gaGFzIGV0
-aGVybmV0IHBoeXMgb24gdGhlIFNvTSBpdHNlbGYsDQpjYXJyaWVyIG9ubHkgcHJvdmlkZXMgcGh5
-c2ljYWwgY29ubmVjdG9yLg0KDQpUaGVyZWZvcmUgdGhlIHBvcnRzIHN0YXR1cyBzaG91bGQgYmUg
-c2V0IGluIHNvbSBkdHNpLA0Kd2hlcmUgd2UgYWxzbyBzZXQgcGluY3RybCBhbmQgcGh5LWhhbmRs
-ZS4NCg0KPiAgICZtYWluX2dwaW8wIHsNCj4gICAJbTItcmVzZXQtaG9nIHsNCj4gICAJCWdwaW8t
-aG9nOw0KY3V0DQo+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL3RpL2szLWFtNjQy
-LXNyLXNvbS5kdHNpIGIvYXJjaC9hcm02NC9ib290L2R0cy90aS9rMy1hbTY0Mi1zci1zb20uZHRz
-aQ0KPiBpbmRleCBjMTlkMGI4YmJmMGYuLjk5NWUyNzAzMDMwYiAxMDA2NDQNCj4gLS0tIGEvYXJj
-aC9hcm02NC9ib290L2R0cy90aS9rMy1hbTY0Mi1zci1zb20uZHRzaQ0KPiArKysgYi9hcmNoL2Fy
-bTY0L2Jvb3QvZHRzL3RpL2szLWFtNjQyLXNyLXNvbS5kdHNpDQo+IEBAIC0yMTIsMTAgKzIxMiw2
-IEBAICZjcHN3X3BvcnQxIHsNCj4gICAJcGh5LWhhbmRsZSA9IDwmZXRoZXJuZXRfcGh5MD47DQo+
-ICAgfTsNCj4gICANClBsZWFzZSBlbmFibGUgY3BzdzNnIGFuZCBjcHN3X3BvcnQxIHN0YXR1cyBo
-ZXJlLg0KPiAtJmNwc3dfcG9ydDIgew0KPiAtCXN0YXR1cyA9ICJkaXNhYmxlZCI7DQo+IC19Ow0K
-PiAtDQo+ICAgJmljc3NnMV9tZGlvIHsNCj4gICAJcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsN
-Cj4gICAJcGluY3RybC0wID0gPCZwcnUxX21kaW8wX2RlZmF1bHRfcGlucz47DQoNCg==
+Hi,
+
+This series add support for the QUICC Engine (QE) version of TSA and QMC
+components.
+
+CPM1 version is already supported and, as the QE version of those
+component are pretty similar to the CPM1 version, the series extend
+the already existing drivers to support for the QE version.
+
+The TSA and QMC components are tightly coupled and so the series
+provides modifications on both components.
+Of course, this series can be split if it is needed. Let me know.
+
+The series is composed of:
+- Patches 1 and 2: Fixes related to TRNSYNC in the QMC driver
+- Patches 3..6: Fixes of checkpatch detected issues in the TSA driver
+- Patch 7: The QE TSA device-tree binding
+- Patches 8..13: TSA driver preparations for adding support for QE
+- Patches 14 and 15: The support for QE in TSA + MAINTAINERS update
+- Patch 16: A TSA API improvement needed for the QE QMC driver
+- Patch 17: A clarification in the QE QMC driver
+- Patches 18..22: Fixes of checkpatch detected issues in the QMC driver
+- Patch 23: The QE QMC device-tree binding
+- Patches 24..31: QMC driver preparations for adding support for QE
+- Patches 32 and 33: Missing features additions in QE code
+- Patches 34..36: The QMC support for QE in QMC + MAINTAINERS update
+
+Compared to the previous iteration, this v2 series updates device-tree
+bindings and fixes issues detected by kernel test robots.
+
+Related to the QE QMC device-tree binding, I kept the unit address in
+decimal and the 3 compatible strings in order to avoid blocking the
+review waiting for a confirmation. Of course, this can be change in a
+next iteration.
+
+Best regards,
+Hervé
+
+Changes v1 -> v2
+v1: https://lore.kernel.org/lkml/20240729142107.104574-1-herve.codina@bootlin.com/
+  - patch 7
+    Removed redundant sentences
+    Removed unneeded property names from property descriptions.
+
+  - patch 13
+    Fixed issue detected by a kernel test robot:
+    cast to smaller integer type 'enum tsa_version' from 'const void *'
+
+  - patch 23
+    Moved channel compatible string to the first item in the channel
+    property list.
+
+  - patch 32
+    Added missing device.h header for devres_* function declarations
+    (issue detected by kernel test robots).
+
+  - Other patches
+    No changes
+
+Herve Codina (36):
+  soc: fsl: cpm1: qmc: Update TRNSYNC only in transparent mode
+  soc: fsl: cpm1: qmc: Enable TRNSYNC only when needed
+  soc: fsl: cpm1: tsa: Fix tsa_write8()
+  soc: fsl: cpm1: tsa: Use BIT(), GENMASK() and FIELD_PREP() macros
+  soc: fsl: cpm1: tsa: Fix blank line and spaces
+  soc: fsl: cpm1: tsa: Add missing spinlock comment
+  dt-bindings: soc: fsl: cpm_qe: Add QUICC Engine (QE) TSA controller
+  soc: fsl: cpm1: tsa: Remove unused registers offset definition
+  soc: fsl: cpm1: tsa: Use ARRAY_SIZE() instead of hardcoded integer
+    values
+  soc: fsl: cpm1: tsa: Make SIRAM entries specific to CPM1
+  soc: fsl: cpm1: tsa: Introduce tsa_setup() and its CPM1 compatible
+    version
+  soc: fsl: cpm1: tsa: Isolate specific CPM1 part from
+    tsa_serial_{dis}connect()
+  soc: fsl: cpm1: tsa: Introduce tsa_version
+  soc: fsl: cpm1: tsa: Add support for QUICC Engine (QE) implementation
+  MAINTAINERS: Add QE files related to the Freescale TSA controller
+  soc: fsl: cpm1: tsa: Introduce tsa_serial_get_num()
+  soc: fsl: cpm1: qmc: Rename QMC_TSA_MASK
+  soc: fsl: cpm1: qmc: Use BIT(), GENMASK() and FIELD_PREP() macros
+  soc: fsl: cpm1: qmc: Fix blank line and spaces
+  soc: fsl: cpm1: qmc: Remove unneeded parenthesis
+  soc: fsl: cpm1: qmc: Fix 'transmiter' typo
+  soc: fsl: cpm1: qmc: Add missing spinlock comment
+  dt-bindings: soc: fsl: cpm_qe: Add QUICC Engine (QE) QMC controller
+  soc: fsl: cpm1: qmc: Introduce qmc_data structure
+  soc: fsl: cpm1: qmc: Re-order probe() operations
+  soc: fsl: cpm1: qmc: Introduce qmc_init_resource() and its CPM1
+    version
+  soc: fsl: cpm1: qmc: Introduce qmc_{init,exit}_xcc() and their CPM1
+    version
+  soc: fsl: cpm1: qmc: Rename qmc_chan_command()
+  soc: fsl: cpm1: qmc: Handle RPACK initialization
+  soc: fsl: cpm1: qmc: Rename SCC_GSMRL_MODE_QMC
+  soc: fsl: cpm1: qmc: Introduce qmc_version
+  soc: fsl: qe: Add resource-managed muram allocators
+  soc: fsl: qe: Add missing PUSHSCHED command
+  soc: fsl: cpm1: qmc: Add support for QUICC Engine (QE) implementation
+  soc: fsl: cpm1: qmc: Handle QUICC Engine (QE) soft-qmc firmware
+  MAINTAINERS: Add QE files related to the Freescale QMC controller
+
+ .../bindings/soc/fsl/cpm_qe/fsl,qe-tsa.yaml   | 210 ++++++
+ .../soc/fsl/cpm_qe/fsl,qe-ucc-qmc.yaml        | 197 ++++++
+ MAINTAINERS                                   |   3 +
+ drivers/soc/fsl/qe/Kconfig                    |  18 +-
+ drivers/soc/fsl/qe/qe_common.c                |  80 +++
+ drivers/soc/fsl/qe/qmc.c                      | 667 +++++++++++++-----
+ drivers/soc/fsl/qe/tsa.c                      | 659 ++++++++++++-----
+ drivers/soc/fsl/qe/tsa.h                      |   3 +
+ include/dt-bindings/soc/qe-fsl,tsa.h          |  13 +
+ include/soc/fsl/qe/qe.h                       |  23 +-
+ 10 files changed, 1549 insertions(+), 324 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-tsa.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-ucc-qmc.yaml
+ create mode 100644 include/dt-bindings/soc/qe-fsl,tsa.h
+
+-- 
+2.45.0
+
 
