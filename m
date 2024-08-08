@@ -1,173 +1,217 @@
-Return-Path: <devicetree+bounces-92114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68B5694BDB4
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 14:41:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEAB994BDFB
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 14:54:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED30D1F21B1C
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:41:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 194D5B20CB4
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:54:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 059A418C929;
-	Thu,  8 Aug 2024 12:41:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BB2318C357;
+	Thu,  8 Aug 2024 12:54:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xq9yiwAV"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="FoX53nRn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66E5F18C357
-	for <devicetree@vger.kernel.org>; Thu,  8 Aug 2024 12:41:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CA4B149DFA;
+	Thu,  8 Aug 2024 12:54:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723120900; cv=none; b=M5Czj1chYBFF9rmA97TmAGkienggv8wuFItQRHUdGnpiB1xr6ya4cPRzpxGHGyvNupRfB5yaB0LSoao/NbwGI+/RoDysGu8ONdUdwxIlmBAysxlBhyjVHvS2/EzcRzoeLjDqKZerzIWqcdu/qdvS2PptGMPfhwlQ4+4JX73wF40=
+	t=1723121655; cv=none; b=XPWKcogpVLEznQuuxLCZEQF1X9zsfeZxebGEjfgRFmffOozWjDVbXt8nGZaYuSEmEKVIBtuUJz2BEfP5yUpcq0wRYQsHUoorY6Y2RbbuLrDM43H0M4QRE1UvZYrzCYxsEwBqutlVWW5Q479HoEj8QAxqYnVrHTZtNEbkL3LqC0Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723120900; c=relaxed/simple;
-	bh=hkr9WGJyGQYdEgES+RHkmsEEcDQ7Ewuv/VkdQZ3r+oY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TAvxweMw+4TJMHRI7tkJSGOVZlrUNQw7XY0Sc/4haWeokuYyOdJTtMlEdIKNXDYFk8WOI589m6p0DsxhxDoxRjHmzZ3mvbQHlX3pu4+CxwTRH4s5Qk1rKfawB5k5HkrdEmC+tDi+b2gCs6NKQJjd9owvMrV6+LGBwRGD62ARIos=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xq9yiwAV; arc=none smtp.client-ip=209.85.216.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-2d1c1fb5cafso487261a91.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Aug 2024 05:41:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723120899; x=1723725699; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=JDkeMjSSE/q2/D8tDcbbL2oQ2eQNUSlKo6jAVgmOk6M=;
-        b=xq9yiwAVNUmug7tzVNyD33SU45x0/3u8ee3a+Sib94iycdgFESyDcRX3OhtlXJRA+v
-         05eSprXbrC9JwbK7TUfl3TvEoqmHRxpuhdEIAwk7PHL+tDUrH9Ht8Fhzn6asggZMF/ZW
-         +yvrOrODoOyzlHfudj3tg4vw0jKgZDLvBQ4EXNomCmKlFUiadNrDw2oE+Rz5d6mTuyXt
-         2nbLNcN+PpKm+5VYpatYYNXsClOTRwJ2VcuX1dg9CP3PzVGVt1nXniZwK45Ikpq7wNkx
-         lrT1URgIc/MfjZnjhx27IeX+zp+u7QTVdM5Ly50VX1MyAGax7m9JiVrKxUr46gRiaJSW
-         hzzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723120899; x=1723725699;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JDkeMjSSE/q2/D8tDcbbL2oQ2eQNUSlKo6jAVgmOk6M=;
-        b=WJw7yz4vxp/tHKpG30M2NXeuCVhFIr2TPhHhSFKAjKjM6BcgG9lKz3OERJEawUkKf6
-         1k+eiGpU7/LrwrHK4n/lKSXa9J/hKPXhabHoPrDf1iKTDu9dZgtes7991i3FywmPsxbG
-         wdjxXT3BEgkJidot5IBeY5OxQJENCg9LgEwwi5tOXQIa1kaWuKKUv7j6lfSnqVqfllb/
-         x/Rk9vqwaPElBHE6cRNZq+iqiuL528pooJsJUGyQjn1jxn+6nLj7fBF+0N1P3UpZ6Ia7
-         Ow1CyUL/SnvFdh70cavw1dMiD4kl7Go0AI25WFqQOCDo6+iZXWPElemTy+gXy74GvqfS
-         kEVw==
-X-Forwarded-Encrypted: i=1; AJvYcCV2K5oZMlCU/HGePTE6H12hRH4T7/1HiDSdDeTdLVjlcuSNw7pazoBwOaC5Fo6fPgCtyofuQiHm5LpZFe7ZBaKVYG036jrHVen0pQ==
-X-Gm-Message-State: AOJu0Yyzh/kI8XluRXM8BSBnvtnLpaKTV8d67nh0Mc0v+OhUQXtYS/Kz
-	9VbD/f066pVlYSKRI7VKKk8zgzN+7IanDjE0/HyYzyz1xAkpupy2Lon+UPmmGA==
-X-Google-Smtp-Source: AGHT+IHhEQXIaC4hSwtqImtR0VaMhf/q4UqBwMBcF5Q5CSvQc/aZj4QJVZX5anT30C7V8NQ1r/Dw/A==
-X-Received: by 2002:a17:90a:17e2:b0:2cb:4c06:8f11 with SMTP id 98e67ed59e1d1-2d1c33f070fmr2059832a91.22.1723120898644;
-        Thu, 08 Aug 2024 05:41:38 -0700 (PDT)
-Received: from thinkpad ([120.60.136.4])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2d1b3ab9b3fsm3391453a91.20.2024.08.08.05.41.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Aug 2024 05:41:38 -0700 (PDT)
-Date: Thu, 8 Aug 2024 18:11:21 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Bjorn Andersson <quic_bjorande@quicinc.com>,
-	Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	cros-qcom-dts-watchers@chromium.org,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Jingoo Han <jingoohan1@gmail.com>, andersson@kernel.org,
-	quic_vbadigan@quicinc.com, linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v2 1/8] dt-bindings: PCI: Add binding for qps615
-Message-ID: <20240808124121.GB18983@thinkpad>
-References: <20240803-qps615-v2-0-9560b7c71369@quicinc.com>
- <20240803-qps615-v2-1-9560b7c71369@quicinc.com>
- <5f65905c-f1e4-4f52-ba7c-10c1a4892e30@kernel.org>
- <f8985c98-82a5-08c3-7095-c864516b66b9@quicinc.com>
- <ZrEGypbL85buXEsO@hu-bjorande-lv.qualcomm.com>
- <90582c92-ca50-4776-918d-b7486cf942b0@kernel.org>
- <20240808120109.GA18983@thinkpad>
- <cb69c01b-08d0-40a1-9ea2-215979fb98c8@kernel.org>
+	s=arc-20240116; t=1723121655; c=relaxed/simple;
+	bh=CEyhPGSkXrl72ZDwTH2u/j1kNow6Xs5EFtfn4KS/qHs=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Z1CVeQG0+ecZiPgri5s6c1/v1HuJNO8wPPzg3/9JuZO8qGOSBS2KUc1NcSiMslqNsXK0xYmgUtUNC3aTxWnd9EmEgjj2L06C3JsQfBcA/U1v06LI+ymDHTgQ6qfmUSIXN2vBeLsp2B6rhj8+oPIr+CYTaQ4ysUAbnjww8Xbu7dc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=FoX53nRn; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-156-87-48.elisa-laajakaista.fi [91.156.87.48])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 17761124E;
+	Thu,  8 Aug 2024 14:53:17 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1723121598;
+	bh=CEyhPGSkXrl72ZDwTH2u/j1kNow6Xs5EFtfn4KS/qHs=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=FoX53nRnOS71ENjY0hXdwC1hxQ3n2cru453tGxW1xwdDMxtjnKrjrHoRQVtvYlECM
+	 r7KUmItIBAUbiS2w2m44AQQn4GisPNGBpDb/ZGty3DGX6dRjDkDz67rGeLqD7INCDv
+	 Lpq7HGSHR7q81lwOq0vj+nFCroBI9d/lzFe05DLA=
+Message-ID: <d32d9229-9b40-4ebd-adf3-9ae9ef75b58b@ideasonboard.com>
+Date: Thu, 8 Aug 2024 15:54:07 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/4] dt-bindings: display/xlnx/zynqmp-dpsub: Add audio
+ DMAs
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>,
+ linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Vishal Sagar <vishal.sagar@amd.com>,
+ Anatoliy Klymenko <anatoliy.klymenko@amd.com>,
+ =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
+References: <20240319-xilinx-dp-audio-v2-0-92d6d3a7ca7e@ideasonboard.com>
+ <20240319-xilinx-dp-audio-v2-2-92d6d3a7ca7e@ideasonboard.com>
+ <20240320153725.GA1771730-robh@kernel.org>
+ <4073c6b5-629e-4e9c-86c2-a4b476fe775e@ideasonboard.com>
+Content-Language: en-US
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ xsFNBE6ms0cBEACyizowecZqXfMZtnBniOieTuFdErHAUyxVgtmr0f5ZfIi9Z4l+uUN4Zdw2
+ wCEZjx3o0Z34diXBaMRJ3rAk9yB90UJAnLtb8A97Oq64DskLF81GCYB2P1i0qrG7UjpASgCA
+ Ru0lVvxsWyIwSfoYoLrazbT1wkWRs8YBkkXQFfL7Mn3ZMoGPcpfwYH9O7bV1NslbmyJzRCMO
+ eYV258gjCcwYlrkyIratlHCek4GrwV8Z9NQcjD5iLzrONjfafrWPwj6yn2RlL0mQEwt1lOvn
+ LnI7QRtB3zxA3yB+FLsT1hx0va6xCHpX3QO2gBsyHCyVafFMrg3c/7IIWkDLngJxFgz6DLiA
+ G4ld1QK/jsYqfP2GIMH1mFdjY+iagG4DqOsjip479HCWAptpNxSOCL6z3qxCU8MCz8iNOtZk
+ DYXQWVscM5qgYSn+fmMM2qN+eoWlnCGVURZZLDjg387S2E1jT/dNTOsM/IqQj+ZROUZuRcF7
+ 0RTtuU5q1HnbRNwy+23xeoSGuwmLQ2UsUk7Q5CnrjYfiPo3wHze8avK95JBoSd+WIRmV3uoO
+ rXCoYOIRlDhg9XJTrbnQ3Ot5zOa0Y9c4IpyAlut6mDtxtKXr4+8OzjSVFww7tIwadTK3wDQv
+ Bus4jxHjS6dz1g2ypT65qnHen6mUUH63lhzewqO9peAHJ0SLrQARAQABzTBUb21pIFZhbGtl
+ aW5lbiA8dG9taS52YWxrZWluZW5AaWRlYXNvbmJvYXJkLmNvbT7CwY4EEwEIADgWIQTEOAw+
+ ll79gQef86f6PaqMvJYe9QUCX/HruAIbAwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgAAKCRD6
+ PaqMvJYe9WmFD/99NGoD5lBJhlFDHMZvO+Op8vCwnIRZdTsyrtGl72rVh9xRfcSgYPZUvBuT
+ VDxE53mY9HaZyu1eGMccYRBaTLJSfCXl/g317CrMNdY0k40b9YeIX10feiRYEWoDIPQ3tMmA
+ 0nHDygzcnuPiPT68JYZ6tUOvAt7r6OX/litM+m2/E9mtp8xCoWOo/kYO4mOAIoMNvLB8vufi
+ uBB4e/AvAjtny4ScuNV5c5q8MkfNIiOyag9QCiQ/JfoAqzXRjVb4VZG72AKaElwipiKCWEcU
+ R4+Bu5Qbaxj7Cd36M/bI54OrbWWETJkVVSV1i0tghCd6HHyquTdFl7wYcz6cL1hn/6byVnD+
+ sR3BLvSBHYp8WSwv0TCuf6tLiNgHAO1hWiQ1pOoXyMEsxZlgPXT+wb4dbNVunckwqFjGxRbl
+ Rz7apFT/ZRwbazEzEzNyrBOfB55xdipG/2+SmFn0oMFqFOBEszXLQVslh64lI0CMJm2OYYe3
+ PxHqYaztyeXsx13Bfnq9+bUynAQ4uW1P5DJ3OIRZWKmbQd/Me3Fq6TU57LsvwRgE0Le9PFQs
+ dcP2071rMTpqTUteEgODJS4VDf4lXJfY91u32BJkiqM7/62Cqatcz5UWWHq5xeF03MIUTqdE
+ qHWk3RJEoWHWQRzQfcx6Fn2fDAUKhAddvoopfcjAHfpAWJ+ENc7BTQROprNHARAAx0aat8GU
+ hsusCLc4MIxOQwidecCTRc9Dz/7U2goUwhw2O5j9TPqLtp57VITmHILnvZf6q3QAho2QMQyE
+ DDvHubrdtEoqaaSKxKkFie1uhWNNvXPhwkKLYieyL9m2JdU+b88HaDnpzdyTTR4uH7wk0bBa
+ KbTSgIFDDe5lXInypewPO30TmYNkFSexnnM3n1PBCqiJXsJahE4ZQ+WnV5FbPUj8T2zXS2xk
+ 0LZ0+DwKmZ0ZDovvdEWRWrz3UzJ8DLHb7blPpGhmqj3ANXQXC7mb9qJ6J/VSl61GbxIO2Dwb
+ xPNkHk8fwnxlUBCOyBti/uD2uSTgKHNdabhVm2dgFNVuS1y3bBHbI/qjC3J7rWE0WiaHWEqy
+ UVPk8rsph4rqITsj2RiY70vEW0SKePrChvET7D8P1UPqmveBNNtSS7In+DdZ5kUqLV7rJnM9
+ /4cwy+uZUt8cuCZlcA5u8IsBCNJudxEqBG10GHg1B6h1RZIz9Q9XfiBdaqa5+CjyFs8ua01c
+ 9HmyfkuhXG2OLjfQuK+Ygd56mV3lq0aFdwbaX16DG22c6flkkBSjyWXYepFtHz9KsBS0DaZb
+ 4IkLmZwEXpZcIOQjQ71fqlpiXkXSIaQ6YMEs8WjBbpP81h7QxWIfWtp+VnwNGc6nq5IQDESH
+ mvQcsFS7d3eGVI6eyjCFdcAO8eMAEQEAAcLBXwQYAQIACQUCTqazRwIbDAAKCRD6PaqMvJYe
+ 9fA7EACS6exUedsBKmt4pT7nqXBcRsqm6YzT6DeCM8PWMTeaVGHiR4TnNFiT3otD5UpYQI7S
+ suYxoTdHrrrBzdlKe5rUWpzoZkVK6p0s9OIvGzLT0lrb0HC9iNDWT3JgpYDnk4Z2mFi6tTbq
+ xKMtpVFRA6FjviGDRsfkfoURZI51nf2RSAk/A8BEDDZ7lgJHskYoklSpwyrXhkp9FHGMaYII
+ m9EKuUTX9JPDG2FTthCBrdsgWYPdJQvM+zscq09vFMQ9Fykbx5N8z/oFEUy3ACyPqW2oyfvU
+ CH5WDpWBG0s5BALp1gBJPytIAd/pY/5ZdNoi0Cx3+Z7jaBFEyYJdWy1hGddpkgnMjyOfLI7B
+ CFrdecTZbR5upjNSDvQ7RG85SnpYJTIin+SAUazAeA2nS6gTZzumgtdw8XmVXZwdBfF+ICof
+ 92UkbYcYNbzWO/GHgsNT1WnM4sa9lwCSWH8Fw1o/3bX1VVPEsnESOfxkNdu+gAF5S6+I6n3a
+ ueeIlwJl5CpT5l8RpoZXEOVtXYn8zzOJ7oGZYINRV9Pf8qKGLf3Dft7zKBP832I3PQjeok7F
+ yjt+9S+KgSFSHP3Pa4E7lsSdWhSlHYNdG/czhoUkSCN09C0rEK93wxACx3vtxPLjXu6RptBw
+ 3dRq7n+mQChEB1am0BueV1JZaBboIL0AGlSJkm23kw==
+In-Reply-To: <4073c6b5-629e-4e9c-86c2-a4b476fe775e@ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <cb69c01b-08d0-40a1-9ea2-215979fb98c8@kernel.org>
 
-On Thu, Aug 08, 2024 at 02:13:01PM +0200, Krzysztof Kozlowski wrote:
-> On 08/08/2024 14:01, Manivannan Sadhasivam wrote:
-> > On Mon, Aug 05, 2024 at 07:18:04PM +0200, Krzysztof Kozlowski wrote:
-> >> On 05/08/2024 19:07, Bjorn Andersson wrote:
-> >>> On Mon, Aug 05, 2024 at 09:41:26AM +0530, Krishna Chaitanya Chundru wrote:
-> >>>> On 8/4/2024 2:23 PM, Krzysztof Kozlowski wrote:
-> >>>>> On 03/08/2024 05:22, Krishna chaitanya chundru wrote:
-> >>>>>> diff --git a/Documentation/devicetree/bindings/pci/qcom,qps615.yaml b/Documentation/devicetree/bindings/pci/qcom,qps615.yaml
-> >>> [..]
-> >>>>>> +  qps615,axi-clk-freq-hz:
-> >>>>>> +    description:
-> >>>>>> +      AXI clock which internal bus of the switch.
-> >>>>>
-> >>>>> No need, use CCF.
-> >>>>>
-> >>>> ack
-> >>>
-> >>> This is a clock that's internal to the QPS615, so there's no clock
-> >>> controller involved and hence I don't think CCF is applicable.
-> >>
-> >> AXI does not sound that internal.
-> > 
-> > Well, AXI is applicable to whatever entity that implements it. We mostly seen it
-> > in ARM SoCs (host), but in this case the PCIe switch also has a microcontroller
-> > /processor of some sort, so AXI is indeed relevant for it. The naming actually
-> > comes from the switch's i2c register name that is being configured in the driver
-> > based on this property value.
-> > 
-> >> DT rarely needs to specify internal
-> >> clock rates. What if you want to define rates for 20 clocks? Even
-> >> clock-frequency is deprecated, so why this would be allowed?
-> >> bus-frequency is allowed for buses, but that's not the case here, I guess?
-> >>
-> > 
-> > This clock frequency is for the switch's internal AXI bus that runs at default
-> > 200MHz. And this property is used to specify a frequency that is configured over
-> > the i2c interface so that the switch's AXI bus can operate in a low frequency
-> > there by reducing the power consumption of the switch.
-> > 
-> > It is not strictly needed for the switch operation, but for power optimization.
-> > So this property can also be dropped for the initial submission and added later
-> > if you prefer.
+Hi Rob,
+
+On 21/03/2024 07:52, Tomi Valkeinen wrote:
+> On 20/03/2024 17:37, Rob Herring wrote:
+>> On Tue, Mar 19, 2024 at 10:22:37AM +0200, Tomi Valkeinen wrote:
+>>> The DP subsystem for ZynqMP support audio via two channels, and the DP
+>>> DMA has dma-engines for those channels. For some reason the DT binding
+>>> has not specified those channels, even if the picture included in
+>>> xlnx,zynqmp-dpsub.yaml shows "2 x aud" DMAs.
+>>
+>> New required entries is an ABI change. This message kind of indicates it
+>> was a mistake, but should be a lot more explicit. Are things broken
+>> without the entries? Need 'Fixes'?
 > 
-> So if the clock rate can change, why this is static in DTB? Or why this
-> is configurable per-board?
+> I'll improve the desc for the next version.
+> 
+> So, yes, it's an ABI change, and as far as I can guess (I can't figure 
+> out any other reason), the audio DMAs were left out by mistake or 
+> misunderstanding. The Linux driver has not supported audio, so this has 
+> not been an issue and nothing is broken.
+> 
+> Now that this series adds the audio support, I had to add the audio 
+> DMAs. I considered making the DMAs optional in the DT, but that doesn't 
+> sound right, even if that would keep the ABI compatibility (wouldn't 
+> it?). The driver I add in this series does consider the audio DMAs as 
+> optional, though. If they're not present, the driver will continue 
+> without audio support.
+> 
+> So, strictly speaking I think this is a fix to the original commit that 
+> adds the DT node, but as the driver using the audio DMAs comes in only 
+> now, I think there's no need for the 'Fixes' and backporting.
+> 
+> I'm happy to change the approach if you think some other way is better.
+
+Do you have any feedback on the above? Should I mark the audio DMAs as 
+optional in the binding?
+
+  Tomi
+
+>   Tomi
+> 
+>>>
+>>> Add the two audio DMAs to the binding.
+>>>
+>>> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+>>> ---
+>>>   .../devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.yaml    | 10 
+>>> ++++++++--
+>>>   1 file changed, 8 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/display/xlnx/ 
+>>> xlnx,zynqmp-dpsub.yaml b/Documentation/devicetree/bindings/display/ 
+>>> xlnx/xlnx,zynqmp-dpsub.yaml
+>>> index 554f9d5809d4..6b754d4f260e 100644
+>>> --- a/Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp- 
+>>> dpsub.yaml
+>>> +++ b/Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp- 
+>>> dpsub.yaml
+>>> @@ -100,12 +100,16 @@ properties:
+>>>         - description: Video layer, plane 1 (U/V or U)
+>>>         - description: Video layer, plane 2 (V)
+>>>         - description: Graphics layer
+>>> +      - description: Audio channel 0
+>>> +      - description: Audio channel 1
+>>>     dma-names:
+>>>       items:
+>>>         - const: vid0
+>>>         - const: vid1
+>>>         - const: vid2
+>>>         - const: gfx0
+>>> +      - const: aud0
+>>> +      - const: aud1
+>>>     phys:
+>>>       description: PHYs for the DP data lanes
+>>> @@ -194,11 +198,13 @@ examples:
+>>>           power-domains = <&pd_dp>;
+>>>           resets = <&reset ZYNQMP_RESET_DP>;
+>>> -        dma-names = "vid0", "vid1", "vid2", "gfx0";
+>>> +        dma-names = "vid0", "vid1", "vid2", "gfx0", "aud0", "aud1";
+>>>           dmas = <&xlnx_dpdma 0>,
+>>>                  <&xlnx_dpdma 1>,
+>>>                  <&xlnx_dpdma 2>,
+>>> -               <&xlnx_dpdma 3>;
+>>> +               <&xlnx_dpdma 3>,
+>>> +               <&xlnx_dpdma 4>,
+>>> +               <&xlnx_dpdma 5>;
+>>>           phys = <&psgtr 1 PHY_TYPE_DP 0 3>,
+>>>                  <&psgtr 0 PHY_TYPE_DP 1 3>;
+>>>
+>>> -- 
+>>> 2.34.1
+>>>
 > 
 
-Because, board manufacturers can change the frequency depending on the switch
-configuration (enablement of DSP's etc...)
-
-> There is a reason why clock-frequency property is not welcomed and you
-> are re-implementing it.
-> 
-
-Hmm, I'm not aware that 'clock-frequency' is not encouraged these days. So you
-are suggesting to change the rate in the driver itself based on the switch
-configuration? If so, what difference does it make?
-
-And no more *-freq properties are allowed?
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
 
