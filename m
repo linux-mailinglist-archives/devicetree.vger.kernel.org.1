@@ -1,196 +1,141 @@
-Return-Path: <devicetree+bounces-92008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F43294B8E9
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:21:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A155194B8ED
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:22:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 07D531C24592
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 08:21:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66DB728A739
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 08:22:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38060188CA4;
-	Thu,  8 Aug 2024 08:21:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E27431891BD;
+	Thu,  8 Aug 2024 08:22:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="qZjuODV4"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="OU6xRf2s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EEA2145336;
-	Thu,  8 Aug 2024 08:21:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEB11145336;
+	Thu,  8 Aug 2024 08:22:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723105281; cv=none; b=aevliKjfuxhUhBCOZVPv+lSlr7hIXIaMJDYiFDnaeJG70/CBN+6xBLi88DCQwskoioB3kcDS3dIY7SLZs+dvLOYKhvJU497oltHdGJwiMRXrSEKOev7ySNDIutJWNnBtFFTe8XSyZlWp/iVV/v/SdZJOzIpEiWrHwdVVP9/g4Og=
+	t=1723105356; cv=none; b=QtsfFcwrsy0pLfFa2qmOZZcGcfQrZJdPWhaN9zGQ7cN+sHTw/FgCVAsdBM2wZ9GBc5T1B5kxuCyj6Ael2sAriqMH1IlFtxmtF9k54KtwcpZI2r+MT4T9lvduLwLlfplxYa7eIBSnM+idKf6HJ9Ne3ETkmNrmn/wf4mAN6XZMyAU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723105281; c=relaxed/simple;
-	bh=zW4gXRl9j7t4LD6ZiJAERuv8KT7u29VEcU2dhh5LRqY=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=NbTZu3HnCysoJAqq3+1gFNW/gkeW9TBaZYLycxji/s2LxHwyPNeC4xo0xLjVghBfTBALe01S2frK/nKUm06OpVAYUKhGP7TjMQHG+MAwuafpb1VvG5h6aXCenM4IDEhMuEsI/VAVJXrncRl+u9ycX2XqPWWwnDHbk21d7BfAyJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=qZjuODV4; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4788KWe7060032;
-	Thu, 8 Aug 2024 03:20:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1723105232;
-	bh=/1xyuDyfSwA12wuJAyb3Q+WDU/YmPBcJ/cd3RNWmHg8=;
-	h=From:To:CC:Subject:Date;
-	b=qZjuODV4MrPzS2PPjJ0bt++qQ4bBm5GcvnSEf28fwnJemnl2FLCXfXKrRJUNjZH8G
-	 z0hRlPUT70KVk0fkQjO/d05z3+aUIzfcKNDffQEYDklLgyrZWyDJZ5Y1khXL65eqP2
-	 xxw4jalbayABc0XlcugfKj9yaPVl8dZ9ifXZdomI=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4788KWqS113373
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 8 Aug 2024 03:20:32 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 8
- Aug 2024 03:20:31 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 8 Aug 2024 03:20:31 -0500
-Received: from localhost (a0498981-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.68.216])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4788KVeP092084;
-	Thu, 8 Aug 2024 03:20:31 -0500
-From: Bhavya Kapoor <b-kapoor@ti.com>
-To: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <conor+dt@kernel.org>,
-        <krzk+dt@kernel.org>, <robh@kernel.org>, <kristo@kernel.org>,
-        <b-kapoor@ti.com>, <jm@ti.com>, <vigneshr@ti.com>, <nm@ti.com>
-Subject: [RESEND PATCH] arm64: dts: ti: k3-j722s-evm: Add support for multiple CAN instances
-Date: Thu, 8 Aug 2024 13:50:30 +0530
-Message-ID: <20240808082030.2812216-1-b-kapoor@ti.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1723105356; c=relaxed/simple;
+	bh=2488M6qNYP0lwXNFrjsG9Nh3hWzY6hPo+i/FhLpDmgg=;
+	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=set2lDYWFBV8y9DBPENfSINRGJ3OCYH+khOCWw0bVR4DLb8AzIuZsY1ftHFxMzjg09Bnt5XP/h4jZ5DStSuc6a19UenOD4lqYU5lvcl3mK0nlYCo1HNhGWGFaDvlCLwNbbD7AP9sV/latrdvTUM51MsdeBNl/H7KxTbRxuiheuo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=OU6xRf2s; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1723105354; x=1754641354;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:content-transfer-encoding:mime-version;
+  bh=2488M6qNYP0lwXNFrjsG9Nh3hWzY6hPo+i/FhLpDmgg=;
+  b=OU6xRf2sycuTHp1a+aRayHftlnknPA/eb/ouu3vicxCGyMLSPQCaDt0R
+   H6wv2IDQx9Yzet5+gGrsrhIK8DSIavmmjNsfsEg9ZozUShAAjZ+EqRKeD
+   OzJ0MbCa4U3UBX0/tbdekzduigczpDKLLFKdQlG1wt6HuIsigIRSF3/yN
+   452pm4vXLgAzEyFBDlykEbehaVVL0t88xGCAI8MTkGYUMoY1sMJhsIIVI
+   5O1O7Bk76eCxM0qkNnPwwiQnVsOQtZp2vk3VJtLN5Nvn9r5REoLoyIwFO
+   Q/+gUO8BydMGJE1GXxhhqBU5mtCAkBPN2Wbefx8hgERncS1LWDqaIAvys
+   A==;
+X-CSE-ConnectionGUID: Je4g5QipTv6hZwyDxvIfog==
+X-CSE-MsgGUID: ztRBfumgSjOF5Sno8g7hyw==
+X-IronPort-AV: E=Sophos;i="6.09,272,1716274800"; 
+   d="scan'208";a="30208235"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 08 Aug 2024 01:22:33 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 8 Aug 2024 01:22:28 -0700
+Received: from DEN-DL-M31857.microsemi.net (10.10.85.11) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Thu, 8 Aug 2024 01:22:23 -0700
+Message-ID: <f97296c967211a6a8f6f40996e3ed74b76bad935.camel@microchip.com>
+Subject: Re: [PATCH v4 8/8] reset: mchp: sparx5: set the dev member of the
+ reset controller
+From: Steen Hegelund <steen.hegelund@microchip.com>
+To: Herve Codina <herve.codina@bootlin.com>, Geert Uytterhoeven
+	<geert@linux-m68k.org>, Andy Shevchenko <andy.shevchenko@gmail.com>, "Simon
+ Horman" <horms@kernel.org>, Lee Jones <lee@kernel.org>, Arnd Bergmann
+	<arnd@arndb.de>, Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
+	<dragan.cvetic@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Bjorn Helgaas <bhelgaas@google.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+	Lars Povlsen <lars.povlsen@microchip.com>, Daniel Machon
+	<daniel.machon@microchip.com>, <UNGLinuxDriver@microchip.com>, Rob Herring
+	<robh@kernel.org>, Saravana Kannan <saravanak@google.com>
+CC: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>, Horatiu Vultur <horatiu.vultur@microchip.com>, "Andrew
+ Lunn" <andrew@lunn.ch>, <linux-kernel@vger.kernel.org>,
+	<netdev@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>, "Allan
+ Nielsen" <allan.nielsen@microchip.com>, Luca Ceresoli
+	<luca.ceresoli@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	=?ISO-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
+Date: Thu, 8 Aug 2024 10:22:23 +0200
+In-Reply-To: <20240805101725.93947-9-herve.codina@bootlin.com>
+References: <20240805101725.93947-1-herve.codina@bootlin.com>
+	 <20240805101725.93947-9-herve.codina@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4-0ubuntu2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-CAN instances 0 and 1 in the mcu domain and 0 in the main domain are
-brought on the evm through headers J5, J8 and J10 respectively. Thus,
-add their respective transceiver's 0, 1 and 2 dt nodes as well as
-add the required pinmux to add support for these CAN instances.
+Hi Herve,
 
-Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
-Reviewed-by: Judith Mendez <jm@ti.com>
----
+On Mon, 2024-08-05 at 12:17 +0200, Herve Codina wrote:
+> EXTERNAL EMAIL: Do not click links or open attachments unless you
+> know the content is safe
+>=20
+> From: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
+>=20
+> In order to guarantee the device will not be deleted by the reset
+> controller consumer, set the dev member of the reset controller.
+>=20
+> Signed-off-by: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> ---
+> =C2=A0drivers/reset/reset-microchip-sparx5.c | 1 +
+> =C2=A01 file changed, 1 insertion(+)
+>=20
+> diff --git a/drivers/reset/reset-microchip-sparx5.c
+> b/drivers/reset/reset-microchip-sparx5.c
+> index c4fe65291a43..1ef2aa1602e3 100644
+> --- a/drivers/reset/reset-microchip-sparx5.c
+> +++ b/drivers/reset/reset-microchip-sparx5.c
+> @@ -117,6 +117,7 @@ static int mchp_sparx5_reset_probe(struct
+> platform_device *pdev)
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 return err;
+>=20
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ctx->rcdev.owner =3D THIS_MODU=
+LE;
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ctx->rcdev.dev =3D &pdev->dev;
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ctx->rcdev.nr_resets =3D 1;
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ctx->rcdev.ops =3D &sparx5_res=
+et_ops;
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ctx->rcdev.of_node =3D dn;
+> --
+> 2.45.0
+>=20
 
-Rebased to next-20240808
+Looks good to me.
 
-Resend of - https://lore.kernel.org/all/d1d7f693-1dd6-4aea-bdbd-4385dc35d462@ti.com/
+Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
 
- arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 74 +++++++++++++++++++++++++
- 1 file changed, 74 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-index dd3b5f7039d7..24e9f2ea509b 100644
---- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
-@@ -162,10 +162,39 @@ sound_master: simple-audio-card,codec {
- 			clocks = <&audio_refclk1>;
- 		};
- 	};
-+
-+	transceiver0: can-phy0 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&mcu_mcan0_gpio_pins_default>;
-+		standby-gpios = <&mcu_gpio0 12 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	transceiver1: can-phy1 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+	};
-+
-+	transceiver2: can-phy2 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+		standby-gpios = <&exp1 17 GPIO_ACTIVE_HIGH>;
-+	};
- };
- 
- &main_pmx0 {
- 
-+	main_mcan0_pins_default: main-mcan0-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x1dc, PIN_INPUT, 0) /* (C22) MCAN0_RX */
-+			J722S_IOPAD(0x1d8, PIN_OUTPUT, 0) /*(D22) MCAN0_TX */
-+		>;
-+	};
-+
- 	main_i2c0_pins_default: main-i2c0-default-pins {
- 		pinctrl-single,pins = <
- 			J722S_IOPAD(0x01e0, PIN_INPUT_PULLUP, 0) /* (D23) I2C0_SCL */
-@@ -303,6 +332,26 @@ &main_uart0 {
- 
- &mcu_pmx0 {
- 
-+	mcu_mcan0_pins_default: mcu-mcan0-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_MCU_IOPAD(0x038, PIN_INPUT, 0) /* (D8) MCU_MCAN0_RX */
-+			J722S_MCU_IOPAD(0x034, PIN_OUTPUT, 0) /* (B2) MCU_MCAN0_TX */
-+		>;
-+	};
-+
-+	mcu_mcan1_pins_default: mcu-mcan1-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_MCU_IOPAD(0x040, PIN_INPUT, 0) /* (B1) MCU_MCAN1_RX */
-+			J722S_MCU_IOPAD(0x03C, PIN_OUTPUT, 0) /*(C1) MCU_MCAN1_TX */
-+		>;
-+	};
-+
-+	mcu_mcan0_gpio_pins_default: mcu-mcan0-gpio-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_MCU_IOPAD(0x0030, PIN_OUTPUT, 7) /* (C3) MCU_GPIO0_12 */
-+		>;
-+	};
-+
- 	wkup_uart0_pins_default: wkup-uart0-default-pins {
- 		pinctrl-single,pins = <
- 			J722S_MCU_IOPAD(0x02c, PIN_INPUT, 0)	/* (C7) WKUP_UART0_CTSn */
-@@ -566,3 +615,28 @@ &mcasp1 {
- 	       0 0 0 0
- 	>;
- };
-+
-+&mcu_mcan0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_mcan0_pins_default>;
-+	phys = <&transceiver0>;
-+};
-+
-+&mcu_mcan1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_mcan1_pins_default>;
-+	phys = <&transceiver1>;
-+};
-+
-+&main_mcan0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mcan0_pins_default>;
-+	phys = <&transceiver2>;
-+};
-+
-+&mcu_gpio0 {
-+	status = "okay";
-+};
--- 
-2.34.1
-
+BR
+Steen
 
