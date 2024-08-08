@@ -1,201 +1,130 @@
-Return-Path: <devicetree+bounces-91930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E25C94B5D4
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 06:15:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4936294B601
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 06:52:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9105428250F
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 04:15:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC16D1F230DE
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 04:52:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73A3913BC3F;
-	Thu,  8 Aug 2024 04:14:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A05D784D3E;
+	Thu,  8 Aug 2024 04:52:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="ew2a9bdp"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="K6SUYA0X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BE5083A18;
-	Thu,  8 Aug 2024 04:14:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26A2B43152;
+	Thu,  8 Aug 2024 04:52:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723090491; cv=none; b=ODCE2exQObLdf9ObBpdQWxUg4gkUOEPrj1Eb0Te+gse1M2VBeKkk6ab3mvtMvmldkiVLrIK/krauqm56RYnyE4hvCWJAMohIXEOeApNlrAOBEhRW4PWeSEHoc91PgnF3xv/opGknr9Crm8wZVIo/qmJk/LzBtc5QecVJ/hVNGng=
+	t=1723092759; cv=none; b=r0mG+Er/J+Soey30/ord9IrOcQMN9SogrPcHvIIm8UfoFlQhOWdsTzcuqWDT146KU7SuR3sXHAxZteGlydfRCJ4BkCNJE2J/T7oCBr4e9Rs8o9xDSz13n/cvQMKtpzZfuxin1nIDAsRCtO0xmvx7Wu2EHHQQkKmUuRWMYQWDwCw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723090491; c=relaxed/simple;
-	bh=x3KYHMcmxxGHTVG9a9xtFf27MrMH8W+Dmosr0UY6m0U=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=YImPNdnlDNlLHqoD09oMlncIusF4gxAHJbRdbkNqdlXkwfYI+Cdw7CPvIj9DCGrKyG6kWVkNlAN8gUWA6CiiHa6DprSjQJrfoNgWwiQpKQAmG70crg3yOI1feM2ZaYczqmGzkqbg4/NWKdHgA7veclmcA1IRnXoLH8MKaf/aANk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=ew2a9bdp; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1723090487;
-	bh=zIjev60vJCRiNsPPi+LvlB3D8Ln+9QLJSlUZ5NQKHQI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=ew2a9bdpziluTiV6kHB2atR+og2mPO0pHxrTP1ctbg3pgwE/hmJm1+w47oQQz1hBp
-	 mskBNAjhkczrTfhJkZ/o5YJEr7dNHWzPqk6045hmHMQ48W4gh1KJvytSrPE3Tg3WM6
-	 VX09XihxIfsHw7yX8YthTWsScEMoqME79V9EZwk5kXrgv1G7nYybYnHWFTaGZnfqwp
-	 NP2b+/fZ83xPtnUi2PgPkVdAtBILI21zubJaRsOTq+sQmQS/k/PhRSRrowtNOdciWn
-	 cC2vAwvLwu/LwJ9boPxtjpzRqJ3PM+4+YCYmeRb+4fUhvGKRYOpJe2nVZj/OdM/T79
-	 sdYd/ElAkkUtQ==
-Received: from [127.0.1.1] (203-57-213-111.dyn.iinet.net.au [203.57.213.111])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id D2EEF66FA3;
-	Thu,  8 Aug 2024 12:14:46 +0800 (AWST)
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-Date: Thu, 08 Aug 2024 13:44:25 +0930
-Subject: [PATCH v2 2/2] dt-bindings: misc: aspeed,ast2400-cvic: Convert to
- DT schema
+	s=arc-20240116; t=1723092759; c=relaxed/simple;
+	bh=W+bPGJjAKPxVPN0keA7T/Zakm/6Kt6tYu69zeJwiEnY=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CfnQPeGipgGbl//emtWtx/wRO8isffstBzHWTSCCdPQf8wWhNOPrGUXw19jZFfk0CWke+AdVRE4Qf1O9nZZJ3CxX9kPrr5ryMTsntMxGI/91FRtWVPaFiwaKK/JE58A4QcvzBklk7qx1OM/f3zzicK9I4fsy9SHrQLsyUgPGdGM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=K6SUYA0X; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4784qTfP084353;
+	Wed, 7 Aug 2024 23:52:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1723092749;
+	bh=GpoFVbvgf9n1I26bMtC5jBl2LFO9UwiJs5Uvq/Xceu8=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=K6SUYA0XMfpeOfLspa0jGpgy409BbnYuHhPrRWXAdPTA5j9IcpJwNAbn++t193UDd
+	 /rAMFVwZJw98OVd715dUCWH9lsKO63hgzT7tIXPmgFTOkmzrwwucCW+I9eQgNJpuLE
+	 4xgK3WKVv0cWVqPabVI/l/BuHvOHEZa+O1lFcQ20=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4784qTrr108405
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 7 Aug 2024 23:52:29 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
+ Aug 2024 23:52:29 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 7 Aug 2024 23:52:28 -0500
+Received: from localhost (uda0497581.dhcp.ti.com [10.24.68.185])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4784qSGS025365;
+	Wed, 7 Aug 2024 23:52:28 -0500
+Date: Thu, 8 Aug 2024 10:22:27 +0530
+From: Manorit Chawdhry <m-chawdhry@ti.com>
+To: Nishanth Menon <nm@ti.com>, Siddharth Vadapalli <s-vadapalli@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Udit Kumar
+	<u-kumar1@ti.com>,
+        Neha Malcom Francis <n-francis@ti.com>,
+        Aniket Limaye
+	<a-limaye@ti.com>
+Subject: Re: [PATCH v3 4/9] arm64: dts: ti: Split
+ k3-j784s4-j742s2-main-common.dtsi
+Message-ID: <20240808045227.apxwcpi5b3w6n4xo@uda0497581>
+References: <20240731-b4-upstream-j742s2-v3-0-da7fe3aa9e90@ti.com>
+ <20240731-b4-upstream-j742s2-v3-4-da7fe3aa9e90@ti.com>
+ <20240807132054.jcz5fdokc5yk3mbo@entrust>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240808-dt-warnings-irq-aspeed-dt-schema-v2-2-c2531e02633d@codeconstruct.com.au>
-References: <20240808-dt-warnings-irq-aspeed-dt-schema-v2-0-c2531e02633d@codeconstruct.com.au>
-In-Reply-To: <20240808-dt-warnings-irq-aspeed-dt-schema-v2-0-c2531e02633d@codeconstruct.com.au>
-To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org
-X-Mailer: b4 0.14.1
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240807132054.jcz5fdokc5yk3mbo@entrust>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Address warnings such as:
+Hi Nishanth,
 
-    arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-galaxy100.dtb: interrupt-controller@1e6c0080: 'valid-sources' does not match any of the regexes: 'pinctrl-[0-9]+'
+> > diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> > new file mode 100644
+> > index 000000000000..2ea470d1206d
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> > @@ -0,0 +1,21 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+> > +/*
+> > + * Device Tree Source for J784S4 SoC Family Main Domain peripherals
+> > + *
+> > + * Copyright (C) 2022-2024 Texas Instruments Incorporated - https://www.ti.com/
+> > + */
+> > +
+> > +&cbass_main {
+> > +	c71_3: dsp@67800000 {
+> > +		compatible = "ti,j721s2-c71-dsp";
+> > +		reg = <0x00 0x67800000 0x00 0x00080000>,
+> > +		      <0x00 0x67e00000 0x00 0x0000c000>;
+> > +		reg-names = "l2sram", "l1dram";
+> > +		ti,sci = <&sms>;
+> > +		ti,sci-dev-id = <40>;
+> > +		ti,sci-proc-ids = <0x33 0xff>;
+> > +		resets = <&k3_reset 40 1>;
+> > +		firmware-name = "j784s4-c71_3-fw";
+> > +		status = "disabled";
+> > +	};
+> > +};
+> 
+> I am looking at https://www.ti.com/lit/ug/spruje3/spruje3.pdf (page 26),
+> Device Comparison:
+> 
+> CPSW/Serdes, PCIE is also different? Was that missed?
 
-and
+I had talked to Siddharth in the past regarding that and he had
+mentioned that no change would be required with the previous patchsets
+that I had shared, adding him to the thread 
 
-    arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-galaxy100.dtb: /ahb/copro-interrupt-controller@1e6c2000: failed to match any schema with compatible: ['aspeed,ast2400-cvic', 'aspeed-cvic']
-
-Note that the conversion to DT schema causes some further warnings to
-be emitted, because the Aspeed devicetrees are not in great shape. These
-new warnings are resolved in a separate series:
-
-https://lore.kernel.org/lkml/20240802-dt-warnings-bmc-dts-cleanups-v1-0-1cb1378e5fcd@codeconstruct.com.au/
-
-Signed-off-by: Andrew Jeffery <andrew@codeconstruct.com.au>
----
- .../bindings/misc/aspeed,ast2400-cvic.yaml         | 60 ++++++++++++++++++++++
- .../devicetree/bindings/misc/aspeed,cvic.txt       | 35 -------------
- 2 files changed, 60 insertions(+), 35 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/misc/aspeed,ast2400-cvic.yaml b/Documentation/devicetree/bindings/misc/aspeed,ast2400-cvic.yaml
-new file mode 100644
-index 000000000000..accf1a7ecf12
---- /dev/null
-+++ b/Documentation/devicetree/bindings/misc/aspeed,ast2400-cvic.yaml
-@@ -0,0 +1,60 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/misc/aspeed,ast2400-cvic.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Aspeed Coprocessor Vectored Interrupt Controller
-+
-+maintainers:
-+  - Andrew Jeffery <andrew@codeconstruct.com.au>
-+
-+description:
-+  The Aspeed AST2400 and AST2500 SoCs have a controller that provides interrupts
-+  to the ColdFire coprocessor. It's not a normal interrupt controller and it
-+  would be rather inconvenient to create an interrupt tree for it, as it
-+  somewhat shares some of the same sources as the main ARM interrupt controller
-+  but with different numbers.
-+
-+  The AST2500 also supports a software generated interrupt.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - aspeed,ast2400-cvic
-+          - aspeed,ast2500-cvic
-+      - const: aspeed,cvic
-+
-+  reg:
-+    maxItems: 1
-+
-+  valid-sources:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    maxItems: 1
-+    description:
-+      A bitmap of supported sources for the implementation.
-+
-+  copro-sw-interrupts:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    minItems: 1
-+    maxItems: 32
-+    description:
-+      A list of interrupt numbers that can be used as software interrupts from
-+      the ARM to the coprocessor.
-+
-+required:
-+  - compatible
-+  - reg
-+  - valid-sources
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    interrupt-controller@1e6c2000 {
-+        compatible = "aspeed,ast2500-cvic", "aspeed,cvic";
-+        reg = <0x1e6c2000 0x80>;
-+        valid-sources = <0xffffffff>;
-+        copro-sw-interrupts = <1>;
-+    };
-diff --git a/Documentation/devicetree/bindings/misc/aspeed,cvic.txt b/Documentation/devicetree/bindings/misc/aspeed,cvic.txt
-deleted file mode 100644
-index d62c783d1d5e..000000000000
---- a/Documentation/devicetree/bindings/misc/aspeed,cvic.txt
-+++ /dev/null
-@@ -1,35 +0,0 @@
--* ASPEED AST2400 and AST2500 coprocessor interrupt controller
--
--This file describes the bindings for the interrupt controller present
--in the AST2400 and AST2500 BMC SoCs which provides interrupt to the
--ColdFire coprocessor.
--
--It is not a normal interrupt controller and it would be rather
--inconvenient to create an interrupt tree for it as it somewhat shares
--some of the same sources as the main ARM interrupt controller but with
--different numbers.
--
--The AST2500 supports a SW generated interrupt
--
--Required properties:
--- reg: address and length of the register for the device.
--- compatible: "aspeed,cvic" and one of:
--		"aspeed,ast2400-cvic"
--	      or
--		"aspeed,ast2500-cvic"
--
--- valid-sources: One cell, bitmap of supported sources for the implementation
--
--Optional properties;
--- copro-sw-interrupts: List of interrupt numbers that can be used as
--		       SW interrupts from the ARM to the coprocessor.
--		       (AST2500 only)
--
--Example:
--
--	cvic: copro-interrupt-controller@1e6c2000 {
--		compatible = "aspeed,ast2500-cvic";
--		valid-sources = <0xffffffff>;
--		copro-sw-interrupts = <1>;
--		reg = <0x1e6c2000 0x80>;
--	};
-
--- 
-2.39.2
-
+Regards,
+Manorit
 
