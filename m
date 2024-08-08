@@ -1,149 +1,159 @@
-Return-Path: <devicetree+bounces-92086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E50E94BBB0
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:53:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3552B94BBB7
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:54:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 90AFD1C21BF4
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:53:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58A211C21B72
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:54:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 722D918A934;
-	Thu,  8 Aug 2024 10:53:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01BAF18A92C;
+	Thu,  8 Aug 2024 10:54:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="HBG9tYpv"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Vs1DHuz6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC11C18A6CD;
-	Thu,  8 Aug 2024 10:53:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12B6218B462;
+	Thu,  8 Aug 2024 10:54:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723114393; cv=none; b=K41CAssStfad5ZoFgMTvI/SGDFSjAoVZKFQ/7BBq2NyOfNyF49gAWCgz2+NpZYz58BIq7mJ+cu0QB9WwRNyvQWvKmMuAalrcBtNyTwUHgXbul9LmTxSziUlvi0CFtgIPLWjUUvkJiBLewxtown2A6caTzjq839aX7E0trXgDYMo=
+	t=1723114465; cv=none; b=YeI4wca2k7CisXjtdjNKL0e986nMqgz/6CCsh8HdIsHxokVi+qxncWjk6+XazMxQqP+Z1Q39RqH9jkk/8GhaflTOlsfDu/CSvNUJak244g35ukcxpWOZeWOXLlUq+W77PS7xp/FbM9Y5rCwxJLFjFCkYh1jm2aGMCtvjYhKGDBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723114393; c=relaxed/simple;
-	bh=wz6VfZxt63c9DtHqIc2OsLJG6x/b0G4bHEdbEZmRaos=;
+	s=arc-20240116; t=1723114465; c=relaxed/simple;
+	bh=8HgPvyoY6wCFiNfdtRkudqzw/3dvpaQ/tVEDtAaOtKI=;
 	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MKPhMhDmL6rRDtyS6WF501xc1f/eSgDU93Lsdm3ATsxR6GZZn5y8zpZUNYnfniQL+eotCcmhMkM5TUQckHwWTvXardQcdppeNtRxHeL5shFqaqEBZPlsenPHR+j76Fhm5Djjq5zKmhUci+8TzLq3+WAxIqMDHC3HNK6sJ2aIsH8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=HBG9tYpv; arc=none smtp.client-ip=198.47.23.248
+	 Content-Type:Content-Disposition:In-Reply-To; b=ic8KXnyhz94+99qQ5pUDkmjJwNEsk4rYnwruY195BsMGvRnRkZihbfzHr3C7oGYcbC5HjCbWuqLX1JF1tn1gBXMrFRVaBeqQZH98CJQUUt53nWNN1fa7MRmi7w3/5p2Wr8ibByYUn/fWxE1rLdzveiuqg8qyWkMevk4h97ICZfU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Vs1DHuz6; arc=none smtp.client-ip=198.47.19.142
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 478Ar68p125594;
-	Thu, 8 Aug 2024 05:53:06 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 478AsHer044625;
+	Thu, 8 Aug 2024 05:54:17 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1723114386;
-	bh=dWxdi8HTTXFR+eyz0Ut/74IaZvXdRjO+e8qgAdYq/GA=;
+	s=ti-com-17Q1; t=1723114457;
+	bh=XQVOyYw+ALCdemwS1tkNko11Pdu0J+2HzF7/ISYYGNM=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=HBG9tYpv7bUVZkRJPIE5onpJYl+f92Y4q6kykZFaDDPfL9phjG2G6nGsRdHhZiuD9
-	 ZdSMYRGocW/40Wjor/Tm6Xi/jeHt8m0MzI2kDqNtZo2eXJYJDdwpxqrddQgcWdfVuR
-	 D6TehEWHGSDxFulpSj9BODwyKx+bOM5/UWf0J4C4=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 478Ar6au073671
+	b=Vs1DHuz6BXhZoJgc1I+bXG1fMfvt4aawi/li5G2H2bYniupJfTLGAl7iTHoIb2n3M
+	 v9oyvW9/u0SVZYu65kB7Ge1tzaN9/YZpA5gKJTHf58AGbijlrEg3u7ebb1BDdLMILf
+	 rmEQvJ5d+LuZmODWK+rGs3FAnYNQfm5FJswUe0xI=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 478AsHmf009556
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 8 Aug 2024 05:53:06 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 8 Aug 2024 05:54:17 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 8
- Aug 2024 05:53:06 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2024 05:54:17 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 8 Aug 2024 05:53:06 -0500
+ Frontend Transport; Thu, 8 Aug 2024 05:54:17 -0500
 Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 478Ar6Ix063841;
-	Thu, 8 Aug 2024 05:53:06 -0500
-Date: Thu, 8 Aug 2024 05:53:06 -0500
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 478AsHGc065005;
+	Thu, 8 Aug 2024 05:54:17 -0500
+Date: Thu, 8 Aug 2024 05:54:17 -0500
 From: Nishanth Menon <nm@ti.com>
-To: Neha Malcom Francis <n-francis@ti.com>
-CC: Bhavya Kapoor <b-kapoor@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <conor+dt@kernel.org>, <krzk+dt@kernel.org>, <robh@kernel.org>,
-        <kristo@kernel.org>, <m-chawdhry@ti.com>, <vigneshr@ti.com>,
-        <sinthu.raja@ti.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am68-sk-base-board: Add clklb pin mux
- for mmc1
-Message-ID: <20240808105306.clwdgrfulqhsyeyt@studied>
-References: <20240807101624.2713490-1-b-kapoor@ti.com>
- <8fa39624-9a92-404d-8651-9ade5700a7d3@ti.com>
- <1319a6ac-6784-45d6-8a0e-170e40d3aa18@ti.com>
- <2279305f-2efa-4320-866a-fc4340d2e70c@ti.com>
+To: Siddharth Vadapalli <s-vadapalli@ti.com>
+CC: Manorit Chawdhry <m-chawdhry@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Udit Kumar
+	<u-kumar1@ti.com>,
+        Neha Malcom Francis <n-francis@ti.com>,
+        Aniket Limaye
+	<a-limaye@ti.com>
+Subject: Re: [PATCH v3 4/9] arm64: dts: ti: Split
+ k3-j784s4-j742s2-main-common.dtsi
+Message-ID: <20240808105417.e37xggi3xr3hoptx@polar>
+References: <20240731-b4-upstream-j742s2-v3-0-da7fe3aa9e90@ti.com>
+ <20240731-b4-upstream-j742s2-v3-4-da7fe3aa9e90@ti.com>
+ <20240807132054.jcz5fdokc5yk3mbo@entrust>
+ <20240808045227.apxwcpi5b3w6n4xo@uda0497581>
+ <8cf2f7aa-1c57-40bd-80cc-14e5bd5623a8@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2279305f-2efa-4320-866a-fc4340d2e70c@ti.com>
+In-Reply-To: <8cf2f7aa-1c57-40bd-80cc-14e5bd5623a8@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 13:19-20240808, Neha Malcom Francis wrote:
-> Hi Bhavya
-> 
-> On 08/08/24 13:08, Bhavya Kapoor wrote:
-> > Hi Neha,
+On 10:58-20240808, Siddharth Vadapalli wrote:
+> On Thu, Aug 08, 2024 at 10:22:27AM +0530, Manorit Chawdhry wrote:
+> > Hi Nishanth,
 > > 
-> > On 08/08/24 11:51 am, Neha Malcom Francis wrote:
-> > > Hi Bhavya
+> > > > diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> > > > new file mode 100644
+> > > > index 000000000000..2ea470d1206d
+> > > > --- /dev/null
+> > > > +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> > > > @@ -0,0 +1,21 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+> > > > +/*
+> > > > + * Device Tree Source for J784S4 SoC Family Main Domain peripherals
+> > > > + *
+> > > > + * Copyright (C) 2022-2024 Texas Instruments Incorporated - https://www.ti.com/
+> > > > + */
+> > > > +
+> > > > +&cbass_main {
+> > > > +	c71_3: dsp@67800000 {
+> > > > +		compatible = "ti,j721s2-c71-dsp";
+> > > > +		reg = <0x00 0x67800000 0x00 0x00080000>,
+> > > > +		      <0x00 0x67e00000 0x00 0x0000c000>;
+> > > > +		reg-names = "l2sram", "l1dram";
+> > > > +		ti,sci = <&sms>;
+> > > > +		ti,sci-dev-id = <40>;
+> > > > +		ti,sci-proc-ids = <0x33 0xff>;
+> > > > +		resets = <&k3_reset 40 1>;
+> > > > +		firmware-name = "j784s4-c71_3-fw";
+> > > > +		status = "disabled";
+> > > > +	};
+> > > > +};
 > > > 
-> > > On 07/08/24 15:46, Bhavya Kapoor wrote:
-> > > > mmc1 was not functional since pin mux for clklb was not present.
-> > > > Thus, add clklb pin mux to get MMC working.
-> > > > 
-> > > > Fixes: a266c180b398 ("arm64: dts: ti: k3-am68-sk: Add support
-> > > > for AM68 SK base board")
-> > > > Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
-> > > > ---
-> > > > 
-> > > > rebased to next-20240807
-> > > > 
-> > > >   arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts | 1 +
-> > > >   1 file changed, 1 insertion(+)
-> > > > 
-> > > > diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> > > > b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> > > > index 90dbe31c5b81..d5ceab79536c 100644
-> > > > --- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> > > > +++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> > > > @@ -204,6 +204,7 @@ main_mmc1_pins_default: main-mmc1-default-pins {
-> > > >           pinctrl-single,pins = <
-> > > >               J721S2_IOPAD(0x104, PIN_INPUT, 0) /* (P23) MMC1_CLK */
-> > > >               J721S2_IOPAD(0x108, PIN_INPUT, 0) /* (N24) MMC1_CMD */
-> > > > +            J721S2_IOPAD(0x100, PIN_INPUT, 0) /* (###) MMC1_CLKLB */
-> > > >               J721S2_IOPAD(0x0fc, PIN_INPUT, 0) /* (M23) MMC1_DAT0 */
-> > > >               J721S2_IOPAD(0x0f8, PIN_INPUT, 0) /* (P24) MMC1_DAT1 */
-> > > >               J721S2_IOPAD(0x0f4, PIN_INPUT, 0) /* (R24) MMC1_DAT2 */
+> > > I am looking at https://www.ti.com/lit/ug/spruje3/spruje3.pdf (page 26),
+> > > Device Comparison:
 > > > 
-> > > How is this different from the P23 pinmux for MMC1_CLK? Could you
-> > > explain what CLKLB is, since it doesn't have a ball number I'm
-> > > finding it difficult to understand what it is?
-> > > 
-> > This pin needs to be setup so that MMC_CLK is looped back at pad level
-> > for highspeed SDIO operations (has been same across K3 family). MMC0/1
-> > has this pin configured as INPUT by reset default as these have boot
-> > media
+> > > CPSW/Serdes, PCIE is also different? Was that missed?
 > > 
-
-Please update the commit message with the explanation of what CLKLB pin
-is. the "reset default" is a bit confusing description.
-
-
-> >   These pinmuxes are derived from pinmux file shared by EVM team during
-> > wakeup/board bringup.
-> > 
+> > I had talked to Siddharth in the past regarding that and he had
+> > mentioned that no change would be required with the previous patchsets
+> > that I had shared, adding him to the thread 
 > 
-> Thank you for explaining.
+> Manorit,
 > 
-> Reviewed-by: Neha Malcom Francis <n-francis@ti.com>
+> Since J784S4-EVM enables only PCIe0 and PCIe1 which matches the
+> instances enabled/supported on J742S2-EVM, I had informed you that for
+> the purpose of validation, no changes will be required w.r.t. PCIe, if
+> k3-j742s2-evm.dts is including k3-j784s4-evm.dts. However, considering
+> that the device-tree should describe the hardware, when upstreaming the
+> device-tree for J742S2, PCIe2 and PCIe3 should be deleted
+> (if k3-j784s4-evm.dts is included by k3-j742s2-evm.dts) OR dropped
+> (if there is a "common" file that is used to describe the peripherals
+> common to J742S2 and J784S4 as done in the current series).
 > 
+> Also, SERDES2 is not present on J742S2 SoC while J784S4 has SERDES0,
+> SERDES1, SERDES2 and SERDES4. There is no difference w.r.t. CPSW9G in
+> terms of the CPSW9G instance itself, but the difference is that CPSW9G
+> cannot use SERDES2. So CPSW9G can only be used with SERDES4 on J742S2
+> SoC, but J742S2-EVM has the SERDES4 lines connected to Display Ports,
+> due to which CPSW9G is essentially non-functional on J742S2-EVM.
 
 
+Thanks Siddharth. Manorit: Please address the above in the next rev.
 
 -- 
 Regards,
