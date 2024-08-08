@@ -1,132 +1,119 @@
-Return-Path: <devicetree+bounces-92233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7B9094C630
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 23:12:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5C3B94C65A
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 23:38:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3425284BF3
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 21:12:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C8C42862A3
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 21:38:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E5D215921B;
-	Thu,  8 Aug 2024 21:12:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FBD21465BA;
+	Thu,  8 Aug 2024 21:38:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="EeyQJAZi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XNzZOTNc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8537E1494CF
-	for <devicetree@vger.kernel.org>; Thu,  8 Aug 2024 21:12:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 641302F23;
+	Thu,  8 Aug 2024 21:38:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723151536; cv=none; b=EI/dKxBZYsZvsSW3Hq0URGV2q8WuSzKEKznRYUjSucwMdW2UhxRZB4gobUs9aHDTfwiw9luvNYJIjve6WZ7UEqaY7TDyBxPk31W6yDRyp/YZtFXBfocLXDoVVGEVahQoQDJJ4+DfWKeh7xnL/IogkEOmbbC5D3ERTJ5MyS7tAyE=
+	t=1723153122; cv=none; b=qPxR59M5Lz2Sk+dZqsPg7PAO8PQHDK/Js96kdsSqIHesFdryd92801In3duB3ZTc1Kt1sEh0U2KmYXjPSeIXewd8D5KBf9pW38gxRG1mdabE4t+9srvOQfDzlAtpaC7tgqx0vLrgPYNmAtVM5zmH/EA7XpTb4SHYB44yPsplfBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723151536; c=relaxed/simple;
-	bh=BXCnPubHWZHh8bqWj73fx8w+O7f72GJPlz6ECgIDpj4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=h8+fU/i/r9yJl/b+PRSl1XVH1vKz3MdeYhSKJeGj9z72RxNwGp+C/ha40msWbZK/hgzYbcH/YKaobjSBF5hD44Y5s/ef0Dnv8IH+G9A9ki+Yp7olrEveBlRkDjkCzbdL55JRge+fYdc+gRuIxHQIqI9XwvdGECmT99nXR1eW/Q8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=EeyQJAZi; arc=none smtp.client-ip=209.85.161.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f48.google.com with SMTP id 006d021491bc7-5d82eb2c4feso850724eaf.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Aug 2024 14:12:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1723151532; x=1723756332; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=iYsdvDV2WF5FlF8GKdTNudC9k0UxewQK/gFCEgnC2i0=;
-        b=EeyQJAZiWfxSPr9y5sxKO4Tu+enGGBCdnWObC9Cnx63WCKfPirBwRgGvi8vlq20w+S
-         AGL8Goh4JVHZgmT5JiGRoJZsVnde50XZhZIZa429Fe93btG35XIN5i6Egx93xCYJoH+B
-         iD8k840dokW7th4J8cqTxY1dZKTsVKn91N93Hohi2vw8EQgqr4zaGDYEZFYuzkfUDs3v
-         7zVU30I3tvoUTd7Soh5ZXzTm7bvhfzNAuvVe5XVsO4E+bJ03HlYV8j0UVfPUZ1iNrIc0
-         2Ov/Pgok+NkBKIV4o7lAwkes339VeDebekEu8xglLePB44TxRnoMSRhgmzbDKsQsXjY2
-         CKdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723151532; x=1723756332;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iYsdvDV2WF5FlF8GKdTNudC9k0UxewQK/gFCEgnC2i0=;
-        b=UerntQrHzxMONtQTMnA3agvj92t0dl2P8ib6EJpwuuIE9tebvmznwc4gKiToZv6u6f
-         X1V+RQiX3BuZUDaB396DfDOqN+V0d+Vc4X2/UVmP6cLpNNzXQvsSq1/UG/a+j2A/IRct
-         bzo4oyy+tJaSeYLtVzIcCZYXzLuWDbt++0UZLEtXPRxwCShwEq1D+lzeAAuil28QhwOy
-         tTNs5pw1Q2ELQpIKrdK/ycvHXg8xcoqUKjyt2K036pJHCPbLmvLhkF1blI5RZcyU8sQZ
-         0lbErQVX3f+tvjSaqN6ssEy2qJmqnHzthNDdmgMGJcY1A3S2mJgm7bD5cE2Oq9NG5kAc
-         YLNw==
-X-Forwarded-Encrypted: i=1; AJvYcCWsCaEgU3UG2MpOHB6AD0PWOb46r2Uy3HMWFU/7UU/XszOy5nTlWI4RiBMVXDZAA0kRim4LhwV00ANG5LLhXRV8OpcF8IJEGq9/vg==
-X-Gm-Message-State: AOJu0YxYYasQLXuQBBf5PleuM77YipMSwxY8tO74Jsg4mWu1KUbFOZrt
-	yEg5gMd/5okBqJw6zTWRG8JqNBJ+xYCT/R1dl4hOjW+Guzo+0fGUirFELUV9608=
-X-Google-Smtp-Source: AGHT+IF/7lNrPD7DeC4xdkrtYHEkdNoglsIWOfvBsfOx/jqlrW9GV+eLobq26DnYJ0NDU4qYjb0GTg==
-X-Received: by 2002:a05:6820:178a:b0:5d6:1082:4f4e with SMTP id 006d021491bc7-5d855b50576mr4577013eaf.4.1723151532516;
-        Thu, 08 Aug 2024 14:12:12 -0700 (PDT)
-Received: from freyr.lechnology.com (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5d757179759sm3851188eaf.8.2024.08.08.14.12.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Aug 2024 14:12:12 -0700 (PDT)
-From: David Lechner <dlechner@baylibre.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	=?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: iio: ad4695: fix common-mode-channel
-Date: Thu,  8 Aug 2024 16:12:08 -0500
-Message-ID: <20240808-iio-adc-ad4695-fix-dt-bindings-v1-1-5cf37b9547b0@baylibre.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1723153122; c=relaxed/simple;
+	bh=kOoVeCQRzz5AEUzNBWPxw4tJpCN8l/YGJXAKuoLdmy8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MkuPssMTel0jrNepwOkBnYMP97RJpnnerkqK3nQDA2aKKVvK5zybkkUfehdgIQs/Jc/zmagX2bWTC8fDajYxsGwS0WV23GwVLD6HGV8eAYww9XZQlu6Gjc8SkqoWJzeyiZ3x0YV7e4PLMgqXsBE+hsKJ9T4jsHD6Vfq//a17BOc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XNzZOTNc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B38F0C32782;
+	Thu,  8 Aug 2024 21:38:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723153122;
+	bh=kOoVeCQRzz5AEUzNBWPxw4tJpCN8l/YGJXAKuoLdmy8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XNzZOTNca4FvaUnhia8RoUWo4GJJZV+LBzM3V6NhHnmk5Od6CQg4Nmfnpwo0dlsdj
+	 A2meofjwULYCPbuKaQlUjb6LKZbZCkE+9mJ9MIN7hGbzPsY4Cku03pCIcH8ShHS+3b
+	 39X4E51AKXEwldgRpeljVYgDTBbsPGTkKCHH4ieMYUnymQbU6y+Pa6v1bfusqv6wa7
+	 zDJHgVEx7JUOO7eMAgNJcCFNdDcBOkbmPvo2C57rPPxmVQobPCoWebcB6bzUaV4Qap
+	 vnj/aGHgnglb3g5I67NmtpF4aV0FSmcsvRZ6eEbSfqB1YZALowMnIvAWYcskiGN6jC
+	 6UnXuOlOQAVRg==
+Date: Thu, 8 Aug 2024 15:38:40 -0600
+From: Rob Herring <robh@kernel.org>
+To: Danila Tikhonov <danila@jiaxyga.com>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
+	konradybcio@kernel.org, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, rafael@kernel.org,
+	viresh.kumar@linaro.org, kees@kernel.org, tony.luck@intel.com,
+	gpiccoli@igalia.com, ulf.hansson@linaro.org, andre.przywara@arm.com,
+	quic_rjendra@quicinc.com, davidwronek@gmail.com,
+	neil.armstrong@linaro.org, heiko.stuebner@cherry.de,
+	rafal@milecki.pl, macromorgan@hotmail.com, linus.walleij@linaro.org,
+	lpieralisi@kernel.org, dmitry.baryshkov@linaro.org,
+	fekz115@gmail.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	netdev@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-hardening@vger.kernel.org
+Subject: Re: [PATCH v2 08/11] arm64: dts: qcom: Add SM7325 device tree
+Message-ID: <20240808213840.GA2186890-robh@kernel.org>
+References: <20240808184048.63030-1-danila@jiaxyga.com>
+ <20240808184048.63030-9-danila@jiaxyga.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.14.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240808184048.63030-9-danila@jiaxyga.com>
 
-The common-mode-channel property is a scalar, not an array, so we should
-not be using items: in the schema when specifying allowable values.
+On Thu, Aug 08, 2024 at 09:40:22PM +0300, Danila Tikhonov wrote:
+> From: Eugene Lepshy <fekz115@gmail.com>
+> 
+> The Snapdragon 778G (SM7325) / 778G+ (SM7325-AE) / 782G (SM7325-AF)
+> is software-wise very similar to the Snapdragon 7c+ Gen 3 (SC7280).
+> 
+> It uses the Kryo670.
+> 
+> Signed-off-by: Eugene Lepshy <fekz115@gmail.com>
+> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm7325.dtsi | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sm7325.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm7325.dtsi b/arch/arm64/boot/dts/qcom/sm7325.dtsi
+> new file mode 100644
+> index 000000000000..5b4574484412
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sm7325.dtsi
+> @@ -0,0 +1,17 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2024, Eugene Lepshy <fekz115@gmail.com>
+> + * Copyright (c) 2024, Danila Tikhonov <danila@jiaxyga.com>
+> + */
+> +
+> +#include "sc7280.dtsi"
+> +
+> +/* SM7325 uses Kryo 670 */
+> +&CPU0 { compatible = "qcom,kryo670"; };
+> +&CPU1 { compatible = "qcom,kryo670"; };
+> +&CPU2 { compatible = "qcom,kryo670"; };
+> +&CPU3 { compatible = "qcom,kryo670"; };
+> +&CPU4 { compatible = "qcom,kryo670"; };
+> +&CPU5 { compatible = "qcom,kryo670"; };
+> +&CPU6 { compatible = "qcom,kryo670"; };
+> +&CPU7 { compatible = "qcom,kryo670"; };
 
-Reported-by: Rob Herring <robh@kernel.org>
-Closes: https://lore.kernel.org/linux-iio/CAL_JsqKaddw8FnPfdnhKhHUb8AcTxFadc_eZmxjX0QxFR80=mw@mail.gmail.com/
-Fixes: b40cafc11436 ("dt-bindings: iio: adc: add AD4695 and similar ADCs")
-Signed-off-by: David Lechner <dlechner@baylibre.com>
----
- Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+No PMU? Because PMUs are also a per CPU model compatible string.
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml
-index a2e824e26691..310f046e139f 100644
---- a/Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml
-@@ -136,8 +136,7 @@ patternProperties:
-           and OxFE is COM. Macros are available for these values in
-           dt-bindings/iio/adi,ad4695.h. Values 1 to 15 correspond to INx inputs.
-           Only odd numbered INx inputs can be used as common mode channels.
--        items:
--          enum: [1, 3, 5, 7, 9, 11, 13, 15, 0xFE, 0xFF]
-+        enum: [1, 3, 5, 7, 9, 11, 13, 15, 0xFE, 0xFF]
-         default: 0xFF
- 
-       adi,no-high-z:
-@@ -202,8 +201,7 @@ allOf:
-             reg:
-               maximum: 7
-             common-mode-channel:
--              items:
--                enum: [1, 3, 5, 7, 0xFE, 0xFF]
-+              enum: [1, 3, 5, 7, 0xFE, 0xFF]
-         "^channel@[8-9a-f]$": false
- 
- unevaluatedProperties: false
+I fixed most QCom platforms recently.
 
----
-base-commit: 7cad163c39cb642ed587d3eeb37a5637ee02740f
-change-id: 20240808-iio-adc-ad4695-fix-dt-bindings-520ade561235
+Rob
 
