@@ -1,128 +1,115 @@
-Return-Path: <devicetree+bounces-92023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDBFD94B9BC
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 11:35:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D51994B9C7
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 11:37:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 754611F224A9
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 09:35:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17973282E72
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 09:37:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1D00189B95;
-	Thu,  8 Aug 2024 09:35:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2A1C14900F;
+	Thu,  8 Aug 2024 09:37:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="T3Qqp8+q"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HP8Kxm60"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 753D01487C8
-	for <devicetree@vger.kernel.org>; Thu,  8 Aug 2024 09:35:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DF7742042;
+	Thu,  8 Aug 2024 09:37:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723109702; cv=none; b=ILLfPugNSOSAZ+a5ILzangNsLtOEW6X4WE/kuQFy+MxuqVS0mVLuJebkplHJzL0ERyECCGjL39vFHLO0DOJbqLPuWGfbMFV3lKEEz0uqsgIKOmOWxEMG47Uz0RsmGR1C23iRQ3iSe6CkB7ge8a2xrTeYfx3p5FsjXHHJve+IG64=
+	t=1723109866; cv=none; b=gsCol8FPd0eixx90YDvrXZ86v5H/RTjwLgRhU1UuznXhZqHSHXHbOiLNVbGfgc5yHU1tsSvdb+mNxzWEeoxbGe3ay0g2rxYpZCvPA8AHS05ybC6lf2t4eDnz1SoLYVRJ+UErE+i0Mk7LywZc8c8iA7tdXs/X7GGJ7rt9PThFs/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723109702; c=relaxed/simple;
-	bh=dw0hDc4N+New1YNkCHwaTg6SvF73/Z+JYHmdWlzrch4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=D8k0Yt/MatOP5ala5436EqdCmtXPfurLCBVwsE9QqDbpYRbAyIV9RPZf8ge9lcNDobsWaQ/rF/NMpwtECw6OiSOqHOMDisPEGThZHklJszQW0aFedkoJizmOKqa6S3gmwcJDmr5DF6EpKqO56qO1saX3OyT73sEV/5gXHknjn/o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=T3Qqp8+q; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1723109695; x=1725701695;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=dw0hDc4N+New1YNkCHwaTg6SvF73/Z+JYHmdWlzrch4=;
-	b=T3Qqp8+qDQafcon5AQkU2eNNw7G3N572fFXiUFm3BPem8HLw9HEUfJsj+T8PT7z4
-	3Snc6P2qAlcV7GYO4EGECa63kODKb8buNtk21sGOZtKjKK7QKxpu7mA/H4O92c6k
-	NoqeLOgqwT8AINXHEL2bl7ZUamycL5LkTCLLZ9bIbBc=;
-X-AuditID: ac14000a-03251700000021bc-a5-66b4913fd30a
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 81.3B.08636.F3194B66; Thu,  8 Aug 2024 11:34:55 +0200 (CEST)
-Received: from llp-hahn.phytec.de (172.25.0.11) by Berlix.phytec.de
- (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Thu, 8 Aug 2024
- 11:34:54 +0200
-From: Benjamin Hahn <B.Hahn@phytec.de>
-Date: Thu, 8 Aug 2024 11:34:49 +0200
-Subject: [PATCH] dts: freescale: imx8mp-phyboard-pollux-rdk: Add console
- UART bootargs
+	s=arc-20240116; t=1723109866; c=relaxed/simple;
+	bh=S8NqB5edpUzquDamEYQKbeP3NbfzNxNHCg1WSoHn5Q8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KwDR31mQ9ds4MpGOnPyd1xHFIwgekCL/q1cRAV6qXHqfigJHS4Wd0qMG6RpiZxdbN5GBUBkk6cXdNrx2eO21xzsQyTEMq1mCpn3ivJYVI3v1Qr4qPhiI+lgPY7FfHhEYStGWLsbiJjpvIZFX8SUjNR6B1mxGUco3pE0Uup+mYDo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HP8Kxm60; arc=none smtp.client-ip=209.85.167.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3db19caec60so524702b6e.1;
+        Thu, 08 Aug 2024 02:37:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723109864; x=1723714664; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=8CoJAdfolSHrKUuk8Pizjh2lfVY8QKV5cVkq2MObhqU=;
+        b=HP8Kxm60boCpbusNGCr4ZpZ6tSkBd8kFX7tWgwCO2AFc5R/bJXIQMl37CHT/weXIhV
+         6jheOJ2tHg+d87udvl4jHa5UnbcyJso8aRO59mtyo4qLMXFFyxIyrTKegSZ0NWYmBGMR
+         muO/k4iUOcccsROGE7dqU3RsL17BYHOzWAh1HLWyE1UR01L87O6VGZhIhRWhfi+ybIZl
+         tBOD4qXsZUbPNLHQNhk0a57i8jOhl1t6bAGOzgMlEWBqUdA4boAw91ldx3mDkGjUjYt7
+         dA7FmveRvW21mjwLarjOsVWSoPj0acG8i6U44yrV2LKapf+AHqEkZto24qE+0MJDK2Wp
+         YyCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723109864; x=1723714664;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8CoJAdfolSHrKUuk8Pizjh2lfVY8QKV5cVkq2MObhqU=;
+        b=BW6WBBKbSd+/ki3qYxGUpP+JmFF38mvJ1jrIcM5VtrqaGV/vQbkElk9bq20sNX+5XL
+         XnRzpNMWnT2f3smzwjnQN49+76zoredRLckZH5B7gdsY7m/d6Dsd04fGWsCre7EdZHMd
+         e+c8sfWwPuEzyRGa2SMYMUUC4jKBtXyIam94+OLWpMbNsGuzjGZ9byL6OF2v+i9Wfack
+         5BB3SHjLcmLvWk61vams2lRC0pPnmDEy7qY2uvjBJnxTLZJKpZ8H+72k4NzismKLYBsX
+         WrV3Gef+bwA3eeicfPNiokn8AeCrxfo3h1CH5PygQWlfdTn2HZkbMWysvMqdWhuMjETR
+         q5Iw==
+X-Forwarded-Encrypted: i=1; AJvYcCWWuPGQ1OYK0UEVaS+8X2Dc/n64On7g/cKRrmGSWeQvEUjJzC+Bpokxs2pzPisyLf+wbSssHLpkxuoGNjEl@vger.kernel.org, AJvYcCX0n1nQ08u+/PuoEjQiEymkxtiOgFWpgJ+lVOWsj1HYNNNfmEsQtWi/CflvJREp7IVpADLub2Z4/6yH@vger.kernel.org, AJvYcCXe16x9cH5IUVNQ/vQyPQrZqQR3QD1VtNnw4ubaOD2PasbCPd0QxGQcLc0fC1+mWfcXsA/DjQYS@vger.kernel.org
+X-Gm-Message-State: AOJu0YyC+BATZHna4tKI6Zk9KwajkblXY7bGQo/oWbF9BWI1E8ejCYIs
+	WlJkwUOhL5DDGP2aLTkq9ndLbotIZqPJJ6EC2JkDK1l75rY6ARBvzmLB0B/QwFwT2y1zC/RBb9N
+	j4rUGnjID1NZ2I959pkiF6ObjerI=
+X-Google-Smtp-Source: AGHT+IGdkqjz0I7UQhYkeyj7wADwjGseQQpqsea+Rs79ImylNKFsV+YqnLZMBL6QBGdQQmyhzJKDWWmw7wlM/Dyl8f0=
+X-Received: by 2002:a05:6808:bd3:b0:3dc:299d:c4f9 with SMTP id
+ 5614622812f47-3dc3b47869fmr1491407b6e.42.1723109864464; Thu, 08 Aug 2024
+ 02:37:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240808-add_bootargs_to_devicetree-v1-1-79f7ba50b174@phytec.de>
-X-B4-Tracking: v=1; b=H4sIADiRtGYC/x3MMQqAMAxA0atIZgtRRKxXESm1iZrFSlpEEO9uc
- XzD/w8kVuEEY/WA8iVJ4lHQ1BWE3R8bG6FiaLHtcMDBeCK3xJi9bsnl6KhEgbMym94ikrWLX/s
- AZXAqr3L/82l+3w/z6RcnbAAAAA==
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Teresa Remmet
-	<t.remmet@phytec.de>
-CC: <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<upstream@lists.phytec.de>, Benjamin Hahn <B.Hahn@phytec.de>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1723109694; l=908;
- i=B.Hahn@phytec.de; s=20240126; h=from:subject:message-id;
- bh=dw0hDc4N+New1YNkCHwaTg6SvF73/Z+JYHmdWlzrch4=;
- b=zHbYCNKN6V6oVjk8YRE4jWVidcoXg+5EeelHNDOy2Sr6nb7KcKqfYg5x3Bi6xMZyKQnwZ9khf
- aAFarcE98nEBDMmtWxlFGniDZKMVKAGAlqGQ2LXUF9LHuaZ5oGHos0S
-X-Developer-Key: i=B.Hahn@phytec.de; a=ed25519;
- pk=r04clMulHz6S6js6elPBA+U+zVdDAqJyEyoNd8I3pSw=
-X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
- (172.25.0.12)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFuplkeLIzCtJLcpLzFFi42JZI8nAo2s/cUuaQf9zDos1e88xWcw/co7V
-	4uFVf4uZ91rZLFZN3cli8XLWPTaLTY+vsVpc3jWHzeL/nh3sFn+3b2KxeLFF3KL7nboDj8fO
-	WXfZPTat6mTz2Lyk3uPF5pmMHv3dLawe/X8NPD5vkgtgj+KySUnNySxLLdK3S+DK+PRvBnNB
-	H3vFss/7mBsYJ7F1MXJySAiYSHzq6WTtYuTiEBJYwiSx4+J8dgjnAaPEmc+vmUGq2ATUJHa9
-	ec0KYrMIqEhsPfYOLC4sECGx8/ZfdhCbV0BQ4uTMJyxdjBwczAKaEut36YOEmQXkJba/ncMM
-	UeIr0b72Mdh8CYEdjBKbFuwFu0JEYAeTxON+Q5AEs8BBRon153cyQ5wnLPF59xo2iI5dTBLd
-	v+8wg2yQEEiU2PlaDqRGSEBW4ub5LVDvyEtMO/caqjdUYuuX7UwTGIVnIblvFsJ9s5Dct4CR
-	eRWjUG5mcnZqUWa2XkFGZUlqsl5K6iZGUJSJMHDtYOyb43GIkYmD8RCjBAezkghvc/imNCHe
-	lMTKqtSi/Pii0pzU4kOM0hwsSuK8qzuCU4UE0hNLUrNTUwtSi2CyTBycUg2MG488v1L4Vevo
-	o2+1U4ujj39/xXzr1e+1XzqCwssE2eJF/7dqZTxz+Ken9er4zyhe9xmHFHqTdk6endOyb/t8
-	y2kZitN55lx4fnZn0q7qXyb58lUq/xlYZQ49fTA7dsrvexniavJObdflOK+sD6zqCf/w+fr1
-	mtxiJUmGlVel+zjj5n/9yXxkiRJLcUaioRZzUXEiAO21qEugAgAA
+References: <20240806132606.1438953-1-vtpieter@gmail.com> <20240806132606.1438953-5-vtpieter@gmail.com>
+ <adf5cdde46c829519c07cfe466923ecac1033451.camel@microchip.com>
+In-Reply-To: <adf5cdde46c829519c07cfe466923ecac1033451.camel@microchip.com>
+From: Pieter <vtpieter@gmail.com>
+Date: Thu, 8 Aug 2024 11:37:33 +0200
+Message-ID: <CAHvy4Aoo6ej11vYMG2jwe8VO6ZmWbO49zBHOLYmHvxmr2nF3PQ@mail.gmail.com>
+Subject: Re: [PATCH net-next v3 4/5] net: dsa: microchip: add WoL support for
+ KSZ87xx family
+To: Arun.Ramadoss@microchip.com
+Cc: andrew@lunn.ch, olteanv@gmail.com, davem@davemloft.net, 
+	linux@armlinux.org.uk, conor+dt@kernel.org, Woojung.Huh@microchip.com, 
+	robh@kernel.org, krzk+dt@kernel.org, f.fainelli@gmail.com, kuba@kernel.org, 
+	UNGLinuxDriver@microchip.com, marex@denx.de, edumazet@google.com, 
+	pabeni@redhat.com, pieter.van.trappen@cern.ch, devicetree@vger.kernel.org, 
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Pass the console UART bootargs parameter via the devicetree for booting
-EFI binaries.
+On Wed 7 Aug 2024 at 05:56, <Arun.Ramadoss@microchip.com> wrote:
+>
+> Hi Pieter,
+>
+>
+> >
+> > +               if (ksz_is_ksz87xx(dev))
+> > +                       ksz_write8(dev, KSZ8795_REG_INT_EN,
+> > KSZ8795_INT_PME_MASK);
+>
+> nitpick:
+> Do we need to rename register like KSZ87xx_REG_INT_EN since it is
+> common to other switches as well?
 
-Signed-off-by: Benjamin Hahn <B.Hahn@phytec.de>
----
- arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts | 1 +
- 1 file changed, 1 insertion(+)
+Hi Arun, well it's all a bit confusing already I have to admit. There is a
+filename ksz8795.c that contains code for ksz88x3 and ksz87xx devices.
+Also the tag protocol is named DSA_TAG_PROTO_KSZ8795.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-index 00a240484c25..552b528fb663 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-@@ -16,6 +16,7 @@ / {
- 		     "phytec,imx8mp-phycore-som", "fsl,imx8mp";
- 
- 	chosen {
-+		bootargs = "console=ttymxc0,115200";
- 		stdout-path = &uart1;
- 	};
- 
+Now it seems from function prefixes and ksz_common.h `is_ksz8`
+that in many places `ksz8795` should be replaced by `ksz8` instead.
+I don't it's up to me to make this kind of decisions so I went along with
+the existing naming convention as much as I could but indeed, this
+specific register I will rename to KSZ87xx_REG_INT_EN.
 
----
-base-commit: 17712b7ea0756799635ba159cc773082230ed028
-change-id: 20240808-add_bootargs_to_devicetree-6900d99baf6c
-
-Best regards,
--- 
-Benjamin Hahn <B.Hahn@phytec.de>
-
+Thanks, Pieter
 
