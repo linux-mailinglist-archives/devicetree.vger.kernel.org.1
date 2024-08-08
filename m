@@ -1,149 +1,139 @@
-Return-Path: <devicetree+bounces-92019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8FB094B97D
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 11:09:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5DC194B992
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 11:21:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21DE01F21447
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 09:09:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E040F1C2106F
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 09:21:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08782189BAA;
-	Thu,  8 Aug 2024 09:09:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D9D61465BF;
+	Thu,  8 Aug 2024 09:21:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="QyBedtPD"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="JAGTyR6C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEE8A1891D9
-	for <devicetree@vger.kernel.org>; Thu,  8 Aug 2024 09:09:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F65D2575F;
+	Thu,  8 Aug 2024 09:21:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723108173; cv=none; b=Rx+JVm5hdqBV3bRCNDBny43BOONrAsp/6YGKdYXehA/S5v5dpCuJ/LbZDAY9D54fyfDvGuBuFFy3rtgD04p4JHivS47pgZ59G+VT6jRFO9PIiLBtARB2S1C2qLWz4R6LJnGbAPBbwILKmIZHcDTLeW/jd0umML0v1IyBVjh9oMc=
+	t=1723108866; cv=none; b=NXXEjgLBi1OBVBvrDZ+XfvrM58x3e1vACdyP9APC475OyQBUZ6azDoAaUr8tH6B8Mci+qtC+d6eMBHWOdSFit6T2oWpQP7XJgnx3p80MB4qvIMcja+yyJhvPV7yzD36z5jPHzPiPbuXdOfBhWyOl85pLiXHB/uECmKqixwaOoR0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723108173; c=relaxed/simple;
-	bh=l+TMunnaDzYEBDNbqkyGomfHVtIf7SPRSveFE+c8bCE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=pTlov8ICGnKNawJixcBVcdciPiwqy85DqzeFUgJOZ6Z4SxAbVFmXIg2UbFeI5oKYpwauwNc9779IzNYMI/Fd/RhnEkz7na+fGjQHgM40Q/EW96WBc1l9UY8fjsbpDhn1gy8OIZYne25JPRMzqMRQXH/4H3hTU0mgsBrDwNafk6c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=QyBedtPD; arc=none smtp.client-ip=209.85.215.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-7b93883666dso357461a12.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Aug 2024 02:09:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1723108171; x=1723712971; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=L6K1xKrigqLUKfosZWg5PePAmCLxQRgMDc7IWF6RGgE=;
-        b=QyBedtPDXa1SBAY3HAWIEX3HWunEOjnk5mfau0UX3fvVBYYk9qmdiCvCqIxDk9YUs5
-         rpo3Y/YCs83UoEWDcWm8nKxr0XbWvTorsAJ9GSCxgrRSU4vNr03u5CXE5xS7m4dDU0dU
-         /GnGmbLNkFgxlmvKY5Q7lBwq7DNL36UI/3JZg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723108171; x=1723712971;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=L6K1xKrigqLUKfosZWg5PePAmCLxQRgMDc7IWF6RGgE=;
-        b=UDhKxNAjQh4h2AaefZyLrpJY/esEgkMsEyfImde8XDlSdiRuKrLj18E1hlKVew2lrb
-         NiexO3ocMjyucADjHF874p3hZy2l5rQMJQ+NB+mE1zpoB+KmXAoQRRwf96pl14ipBNCc
-         +xbuNnA33gaNSVnN+qQbkNzs9oR2FpeV+iL3c+0YD7mUrh6UX87xH7aeMY7eXwnifq1P
-         z5XrnWNUow5aaDqG5ly0osThihCuL3974q+eqTZ/MqAya+FVC+i2ROzLzYSJNcASBH5K
-         dMmXlR24b10e/jaxbZi9EYOWAUZkWTpSoq+wfhkfY8Koda5EHFpWsG+aJrXYSNp4+5bP
-         FzaQ==
-X-Gm-Message-State: AOJu0Yy3UZ3/oKFHz/PzbWf/OneCQ3k38VbdKEdCm73iqHF2h6VgiUxk
-	AV1L4e6xT78MEmQlhN9ZcBtjbh+oER129QS37OsPowigkw6aRMMKnpDPSlJ+dQ==
-X-Google-Smtp-Source: AGHT+IEpIPr/0CxKkHq6jZNXwMVmpNr4/DF3EQ3KKvxR+I1+GgdpapQxRaKB/YWa0tZ6ccU9yAFqBg==
-X-Received: by 2002:a17:902:d488:b0:1fd:7ff5:c673 with SMTP id d9443c01a7336-200967f6b7cmr16916805ad.2.1723108170942;
-        Thu, 08 Aug 2024 02:09:30 -0700 (PDT)
-Received: from yuanhsinte.c.googlers.com (46.165.189.35.bc.googleusercontent.com. [35.189.165.46])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1ff5927f40dsm119661445ad.229.2024.08.08.02.09.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Aug 2024 02:09:30 -0700 (PDT)
-From: Hsin-Te Yuan <yuanhsinte@chromium.org>
-Date: Thu, 08 Aug 2024 09:09:25 +0000
-Subject: [PATCH] arm64: dts: mt8183-kukui: Add trip points to each thermal
- zone
+	s=arc-20240116; t=1723108866; c=relaxed/simple;
+	bh=imq1AiFHmG2TQHVtGq0TdcADRTAqGvAXQKIy6Q6VUBA=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A8NBkEipTGTdoZkjx1PEg5kBnDgrTNDQjMtP0L1U//iFrr9YdU2XN4RboWRiu+QAA3HcbIkk0e0OYDu+uYmxFIE/omdzSlPiWeQNSMOnGuo4DmM+mWznc1TFSYL8xdxgjqdgFFZcOSdKxVCfoT+sTILx8W4yXnOr0z73bBMruBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=JAGTyR6C; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4789KtS3107112;
+	Thu, 8 Aug 2024 04:20:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1723108855;
+	bh=W0/THron0rfDFCIl1FOT38fmOl3uIJ4DHfKFYOF/uTo=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=JAGTyR6CssW6R+7F6TvXdrb8MY2X3x2eCUTXlypRNFNXi69xhbk3LEIkJ6BDQFnUJ
+	 +ea2OfWejF+otcYEVQs4OptZQx2o/BCeHVhAiVW21tPwktQWeBLv4PfNzOV9pSEO9k
+	 7E7UaDT7PtZOE1+E74eECEfJl1FYetLWPKim0+y8=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4789Kt5l021688
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 8 Aug 2024 04:20:55 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 8
+ Aug 2024 04:20:55 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 8 Aug 2024 04:20:55 -0500
+Received: from localhost (uda0497581.dhcp.ti.com [10.24.68.185])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4789KstJ059303;
+	Thu, 8 Aug 2024 04:20:55 -0500
+Date: Thu, 8 Aug 2024 14:50:54 +0530
+From: Manorit Chawdhry <m-chawdhry@ti.com>
+To: "Limaye, Aniket" <a-limaye@ti.com>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Neha Malcom Francis <n-francis@ti.com>,
+        Udit
+ Kumar <u-kumar1@ti.com>, Beleswar Padhi <b-padhi@ti.com>,
+        Siddharth Vadapalli
+	<s-vadapalli@ti.com>
+Subject: Re: [PATCH v3 5/5] arm64: dts: ti: k3-j7200*: Add bootph-* properties
+Message-ID: <20240808092054.7x62hy5twrwmadv6@uda0497581>
+References: <20240730-b4-upstream-bootph-all-v3-0-9bc2eccb6952@ti.com>
+ <20240730-b4-upstream-bootph-all-v3-5-9bc2eccb6952@ti.com>
+ <1cee1ebf-8281-440a-bf45-baa9b0e3b68f@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240808-kukui_trip-v1-1-6a73c8e0b79a@chromium.org>
-X-B4-Tracking: v=1; b=H4sIAESLtGYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxMDCwND3ezS7NLM+JKizAJdMzMj02SDRFOTZFMDJaCGgqLUtMwKsGHRsbW
- 1AEhUmk5cAAAA
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Hsin-Te Yuan <yuanhsinte@chromium.org>
-X-Mailer: b4 0.15-dev-37811
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <1cee1ebf-8281-440a-bf45-baa9b0e3b68f@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Add trip points to the tboard1 and tboard2 thermal zones to ensure they
-are registered successfully.
+Hi Aniket,
 
-Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
----
- arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+On 20:07-20240807, Limaye, Aniket wrote:
+> Hi Manorit,
+> 
+> On 7/30/2024 3:23 PM, Manorit Chawdhry wrote:
+> > Adds bootph-* properties to the leaf nodes to enable U-boot to
+> > utilise them.
+> > 
+> > Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
+> > ---
+> >   .../arm64/boot/dts/ti/k3-j7200-common-proc-board.dts | 20 ++++++++++++++++++++
+> >   arch/arm64/boot/dts/ti/k3-j7200-main.dtsi            |  2 ++
+> >   arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 10 ++++++++++
+> >   arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi          |  7 +++++++
+> >   4 files changed, 39 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> > index 5097d192c2b2..f8a5ad4737da 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+> > @@ -21,16 +21,19 @@ dmsc: system-controller@44083000 {
+> 
+> Referring to the thread from v2 [0], I see that you have removed the
+> bootph-all from the parent dmsc node. With current patch j7200-evm fails to
+> boot (Stuck somewhere in tispl or right after that) as discussed in the same
+> thread [0].
+> 
+> I have boot tested this patch (SD boot) and the device boots with an
+> additional bootph-all at dmsc node.
+> 
+> I assume the removal was done intentionally, meaning we intend to fix the
+> bug in u-boot or carry the one extra bootph-all there. If NOT, please add
+> the same in the parent dmsc node here as well.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-index 6345e969efae..1593ea14f81f 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-@@ -978,12 +978,38 @@ tboard1 {
- 		polling-delay = <1000>; /* milliseconds */
- 		polling-delay-passive = <0>; /* milliseconds */
- 		thermal-sensors = <&tboard_thermistor1>;
-+		trips {
-+			tboard1_alert: trip-alert {
-+				temperature = <85000>;
-+				hysteresis = <2000>;
-+				type = "passive";
-+			};
-+
-+			tboard1_crit: trip-crit {
-+				temperature = <100000>;
-+				hysteresis = <2000>;
-+				type = "critical";
-+			};
-+		};
- 	};
- 
- 	tboard2 {
- 		polling-delay = <1000>; /* milliseconds */
- 		polling-delay-passive = <0>; /* milliseconds */
- 		thermal-sensors = <&tboard_thermistor2>;
-+		trips {
-+			tboard2_alert: trip-alert {
-+				temperature = <85000>;
-+				hysteresis = <2000>;
-+				type = "passive";
-+			};
-+
-+			tboard2_crit: trip-crit {
-+				temperature = <100000>;
-+				hysteresis = <2000>;
-+				type = "critical";
-+			};
-+		};
- 	};
- };
- 
+Yes, the removal was intentional and there is a fix that can be done in
+U-boot for this so we'll take that up there.
 
----
-base-commit: 21b136cc63d2a9ddd60d4699552b69c214b32964
-change-id: 20240801-kukui_trip-6625c0a54c50
+Thanks for reviewing!
 
-Best regards,
--- 
-Hsin-Te Yuan <yuanhsinte@chromium.org>
+Regards,
+Manorit
 
+> 
+> So taking care of the above,
+> 
+> Reviewed-by: Aniket Limaye <a-limaye@ti.com>
+> 
+> [0]: https://lore.kernel.org/all/20240709084857.nf7c57mi6miajeau@uda0497581/
 
