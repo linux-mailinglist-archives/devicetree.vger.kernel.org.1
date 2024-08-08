@@ -1,48 +1,63 @@
-Return-Path: <devicetree+bounces-91994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3873F94B822
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 09:45:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFDBD94B83A
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 09:50:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E91B82894F4
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 07:45:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 943581F2562D
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 07:50:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAB5218757F;
-	Thu,  8 Aug 2024 07:45:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE3AF1891C7;
+	Thu,  8 Aug 2024 07:49:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rSjzOH8P"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="O+XXULCd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8A5A1373;
-	Thu,  8 Aug 2024 07:45:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB8371891A8;
+	Thu,  8 Aug 2024 07:49:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723103145; cv=none; b=Fi7cyn+4EBg9dxrw4OaYOcoRjJXSWFtnileUnE3eZ+7lE6k/4JXynH6+KrnaokCsEU8zeZgkk6gwdvAQf7mLgNoV8g/NSK66syiXCqQVzGHBSbkm+X5POa1743Fyc56dqP/9GR7wpErSHGDdOn5kR5d8+d2uy8bWeEJaXQyrddY=
+	t=1723103389; cv=none; b=G/n0S3ivQBVINyRSD2VnA2u3E2/aIusEuC4Q5bZ3j8QV/cbkHTQRbhUEjoqWYKLOsA1NCwglblIhGpYuqx5GRQ95hFfx+EAxGQBfYOctyl1woIrHP6aMZQ+afukjTD8OQthYMjrN3RMIPkY0oPZnVw9WTAjN7IawYkI9qeG5TPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723103145; c=relaxed/simple;
-	bh=GaziUuowzvNdFYxe3L0FWdTA+XXUKkthzkrZzoXQewQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HJV9yGz6ObSgWP3XWu7ZLJdyfTlJ86K/+Z2H3hd2Rr9m5E6x3Ric1NdftbCFrGmHOShrsgA/ZzX8VpMsVz2jcBO0zHcww4qg3exS11KOqkbTbb+aRLPrEM8D7emQquHrGbKdyBBXpP9nuazeEOtvvYLKFUyprWIBkC/DiEDfwhE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rSjzOH8P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0B40C32782;
-	Thu,  8 Aug 2024 07:45:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723103145;
-	bh=GaziUuowzvNdFYxe3L0FWdTA+XXUKkthzkrZzoXQewQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rSjzOH8Pv1wdMVp2IkGjWfQyFaxJNy+TNgb4O/zaRRTc1jkEgOU8BU6vtEEJJtUWp
-	 Re+vwvFVbxY+ACMayD1/77vpTGTH37r7cX/qu2oh/VDGN5griLTMe5Ck9YU0EfulpX
-	 0G7+XMlOdAWRTABR5z6I2+PY6Hhv/aiAuGTDtRJqTnIKl6CzVwYV0pWoaxl1lWlrCX
-	 UbaE7MIobjsVY3h0cHg0z4Q/aLmSNEWlrxIxlI9Pg5RtpGtiGuXiWUiMeeKF4G/m/s
-	 tk7Qb+aTolYKBaxxYu3UdFrFTmcJs4Zwu/mSjIVeGFdCBCi+aoedR7HPVGqCgTxbT6
-	 zTG2BIK3VqpfA==
-Message-ID: <ec9c0623-4cb1-4c38-b910-01ef779f47e4@kernel.org>
-Date: Thu, 8 Aug 2024 09:45:38 +0200
+	s=arc-20240116; t=1723103389; c=relaxed/simple;
+	bh=s8fY14FP2au4OI9Pd0PqlNL5+vnBAoXk/GyfNrqMLMw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=uGcT+VFtidj9e8UBGX2hFXNMRn91IIuG6XI7e4zZ6tOVluFz9SlCCJWyOIvQGDqcCtlJmNE9zrXuPFLzrkU5FFk1NhZORFoak0xPuOgHpZlag0VxxZZtQm8ncZL/wHYL7V56M9gT41J3+pHYfTV5vNxLxfOedpb6H7bAp9spOY4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=O+XXULCd; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4787ne2k082898;
+	Thu, 8 Aug 2024 02:49:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1723103380;
+	bh=xcMuxQlqM4fwgDu27RoNo25IlIqXsjiIwi0e5ZtBcJQ=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=O+XXULCd6zkUJFNaUIIzuMGQ83eD9QE4j8cpTnbZyiHvIilJbbZZ+yQSrznfyklqC
+	 wVoWRQ5AIN30ri2UuzesPRe+u1oCFdUKAmIXAcDIr7y0dpb5yanTbS2iiQJKK6lNcX
+	 vdsKZ7Fl2r7se4P0PX7Zj78uXm7eqMdeI/2lX6i8=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4787neD5091880
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 8 Aug 2024 02:49:40 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 8
+ Aug 2024 02:49:40 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 8 Aug 2024 02:49:40 -0500
+Received: from [172.24.227.36] (a0497641-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.227.36] (may be forged))
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4787naki016627;
+	Thu, 8 Aug 2024 02:49:36 -0500
+Message-ID: <2279305f-2efa-4320-866a-fc4340d2e70c@ti.com>
+Date: Thu, 8 Aug 2024 13:19:35 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,139 +65,80 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 17/17] dt-bindings: net: wireless: cc33xx: Add
- ti,cc33xx.yaml
-To: "Nemanov, Michael" <michael.nemanov@ti.com>, Kalle Valo
- <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-wireless@vger.kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Sabeeh Khan <sabeeh-khan@ti.com>
-References: <20240806170018.638585-1-michael.nemanov@ti.com>
- <20240806170018.638585-18-michael.nemanov@ti.com>
- <40031203-63c6-46b5-b647-d344d4503bb7@kernel.org>
- <0da6f8ce-e220-47b9-86dd-537ad4b328e5@ti.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am68-sk-base-board: Add clklb pin mux
+ for mmc1
+To: Bhavya Kapoor <b-kapoor@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <conor+dt@kernel.org>,
+        <krzk+dt@kernel.org>, <robh@kernel.org>, <kristo@kernel.org>,
+        <m-chawdhry@ti.com>, <vigneshr@ti.com>, <nm@ti.com>,
+        <sinthu.raja@ti.com>
+References: <20240807101624.2713490-1-b-kapoor@ti.com>
+ <8fa39624-9a92-404d-8651-9ade5700a7d3@ti.com>
+ <1319a6ac-6784-45d6-8a0e-170e40d3aa18@ti.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <0da6f8ce-e220-47b9-86dd-537ad4b328e5@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Neha Malcom Francis <n-francis@ti.com>
+In-Reply-To: <1319a6ac-6784-45d6-8a0e-170e40d3aa18@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 07/08/2024 17:51, Nemanov, Michael wrote:
-> On 8/7/2024 10:06 AM, Krzysztof Kozlowski wrote:
->> On 06/08/2024 19:00, Michael Nemanov wrote:
->>
->> Thank you for your patch. There is something to discuss/improve.
->>
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - ti,cc3300
->>> +      - ti,cc3301
->>> +      - ti,cc3350
->>> +      - ti,cc3351
->>> +
->>> +  reg:
->>> +    description:
->>> +      must be set to 2
->>
->> Then just const: 2 and drop free form text.
->>
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    description:
->>> +      The out-of-band interrupt line.
->>> +      Can be IRQ_TYPE_EDGE_RISING or IRQ_TYPE_LEVEL_HIGH.
->>> +      If property is omitted, SDIO in-band IRQ will be used.
->>> +    maxItems: 1
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/interrupt-controller/irq.h>
->>> +
->>> +    // SDIO example:
->>
->> Drop, obvious.
->>
->>> +    mmc {
->>> +        #address-cells = <1>;
->>> +        #size-cells = <0>;
->>> +
->>> +        wifi@1{
->>
->> Missing space.
->>
->> Also, this does not match reg. Test your DTS with W=1 and FIX ALL warnings.
->>
->> Best regards,
->> Krzysztof
->>
+Hi Bhavya
+
+On 08/08/24 13:08, Bhavya Kapoor wrote:
+> Hi Neha,
 > 
-> Will fix all above.
+> On 08/08/24 11:51 am, Neha Malcom Francis wrote:
+>> Hi Bhavya
+>>
+>> On 07/08/24 15:46, Bhavya Kapoor wrote:
+>>> mmc1 was not functional since pin mux for clklb was not present.
+>>> Thus, add clklb pin mux to get MMC working.
+>>>
+>>> Fixes: a266c180b398 ("arm64: dts: ti: k3-am68-sk: Add support for AM68 SK 
+>>> base board")
+>>> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+>>> ---
+>>>
+>>> rebased to next-20240807
+>>>
+>>>   arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts | 1 +
+>>>   1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts 
+>>> b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+>>> index 90dbe31c5b81..d5ceab79536c 100644
+>>> --- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+>>> +++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+>>> @@ -204,6 +204,7 @@ main_mmc1_pins_default: main-mmc1-default-pins {
+>>>           pinctrl-single,pins = <
+>>>               J721S2_IOPAD(0x104, PIN_INPUT, 0) /* (P23) MMC1_CLK */
+>>>               J721S2_IOPAD(0x108, PIN_INPUT, 0) /* (N24) MMC1_CMD */
+>>> +            J721S2_IOPAD(0x100, PIN_INPUT, 0) /* (###) MMC1_CLKLB */
+>>>               J721S2_IOPAD(0x0fc, PIN_INPUT, 0) /* (M23) MMC1_DAT0 */
+>>>               J721S2_IOPAD(0x0f8, PIN_INPUT, 0) /* (P24) MMC1_DAT1 */
+>>>               J721S2_IOPAD(0x0f4, PIN_INPUT, 0) /* (R24) MMC1_DAT2 */
+>>
+>> How is this different from the P23 pinmux for MMC1_CLK? Could you explain what 
+>> CLKLB is, since it doesn't have a ball number I'm finding it difficult to 
+>> understand what it is?
+>>
+> This pin needs to be setup so that MMC_CLK is looped back at pad level for 
+> highspeed SDIO operations (has been same across K3 family). MMC0/1 has this pin 
+> configured as INPUT by reset default as these have boot media
 > 
-> I'm currently testing my .yaml with:
-> make dt_binding_check DT_CHECKER_FLAGS=-m \ 
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml
+>   These pinmuxes are derived from pinmux file shared by EVM team during 
+> wakeup/board bringup.
 > 
-> It reports no warnings. Adding W=1 doesn't seem to change anything. Am I 
-> missing something?
 
-I said test your DTS, not bindings.
+Thank you for explaining.
 
-Best regards,
-Krzysztof
+Reviewed-by: Neha Malcom Francis <n-francis@ti.com>
 
+> Regards
+> 
+
+-- 
+Thanking You
+Neha Malcom Francis
 
