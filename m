@@ -1,153 +1,196 @@
-Return-Path: <devicetree+bounces-92012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E5E994B90E
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:31:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F43294B8E9
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:21:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41C04281979
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 08:31:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 07D531C24592
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 08:21:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA456189535;
-	Thu,  8 Aug 2024 08:31:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38060188CA4;
+	Thu,  8 Aug 2024 08:21:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="j3AuVirU"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="qZjuODV4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6133314533F
-	for <devicetree@vger.kernel.org>; Thu,  8 Aug 2024 08:31:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EEA2145336;
+	Thu,  8 Aug 2024 08:21:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723105870; cv=none; b=SqmgR9gdzO+pwU+qaE6jbvrPo6bLXq9a6i0yhCl3diiHsL4GeNeYMW89hLUBPJUHI/DtkVFV5LnietkqF2D3axVZgio9+NALRyOBSWfH1PuExKv2Rhu2xI5TrSOS5Cpg7sD/QLCPpRUHtUpOodVB2+IQtKH7YBKtzqyzxkQZ5zM=
+	t=1723105281; cv=none; b=aevliKjfuxhUhBCOZVPv+lSlr7hIXIaMJDYiFDnaeJG70/CBN+6xBLi88DCQwskoioB3kcDS3dIY7SLZs+dvLOYKhvJU497oltHdGJwiMRXrSEKOev7ySNDIutJWNnBtFFTe8XSyZlWp/iVV/v/SdZJOzIpEiWrHwdVVP9/g4Og=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723105870; c=relaxed/simple;
-	bh=Q+a6uAoUzOJfNJlLqKiW9bOJctnF6d0eXCj+TgP69rg=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:References; b=ixHkqFCkQmy45kWHAynETauXopebHWm8fJNAuueLGIN9gFuRzc/dnFtAZFZ4cQLAGYCWd30ecNFXPDboXuhhgA4IyphJ/DKTzhTqvhuzDMsaxeLqOGMOqnz9tV/E8i5DHfwx47oHWSsmu8wuQm47LnEWhKhcbYBMD+Tfe7bzoag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=j3AuVirU; arc=none smtp.client-ip=203.254.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20240808083104epoutp048cfed12d2525d25345dc51d8c20099eb~ps6ech8xV0361103611epoutp04k
-	for <devicetree@vger.kernel.org>; Thu,  8 Aug 2024 08:31:04 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20240808083104epoutp048cfed12d2525d25345dc51d8c20099eb~ps6ech8xV0361103611epoutp04k
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1723105864;
-	bh=sy99WQrEArLB2GVHVM3NcSs6PqK16OI98ozU/DmWpwg=;
-	h=From:To:Cc:Subject:Date:References:From;
-	b=j3AuVirU5xsKnXWVvij/JwFMA6Q+rmR8oFsVvv0go96mDCdKfypYxDjxfRcUJ687t
-	 LxTBd3jt4b/P+zhV2bhEkap1LQfd3Eeh5iWBYHwrgD/6fMfkYkhWnjlHxyBhXFTonY
-	 kVs7P+p732llHJ0UwcDCVCaZuReV8f1hOqDKd0H0=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTP id
-	20240808083104epcas5p46c53678e6566ab4be853214002c36ac8~ps6eA4fxx0482004820epcas5p4D;
-	Thu,  8 Aug 2024 08:31:04 +0000 (GMT)
-Received: from epsmgec5p1-new.samsung.com (unknown [182.195.38.180]) by
-	epsnrtp3.localdomain (Postfix) with ESMTP id 4WfgHB5pGnz4x9Q1; Thu,  8 Aug
-	2024 08:31:02 +0000 (GMT)
-Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
-	epsmgec5p1-new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	A4.7F.19863.64284B66; Thu,  8 Aug 2024 17:31:02 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-	20240808083027epcas5p153e64139a5e71448b1ea3f04af1df2bd~ps57ZZ5ZQ1632116321epcas5p1j;
-	Thu,  8 Aug 2024 08:30:27 +0000 (GMT)
-Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20240808083027epsmtrp1792e9837461341a1756c4fc6532dda71~ps57YUnui2600726007epsmtrp13;
-	Thu,  8 Aug 2024 08:30:27 +0000 (GMT)
-X-AuditID: b6c32a50-ef5fe70000004d97-52-66b482468aee
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	25.B2.19367.32284B66; Thu,  8 Aug 2024 17:30:27 +0900 (KST)
-Received: from cheetah.sa.corp.samsungelectronics.net (unknown
-	[107.109.115.53]) by epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20240808083025epsmtip26002044a67fd5e12a21da265afeb47dd~ps55cL1Ew2734327343epsmtip27;
-	Thu,  8 Aug 2024 08:30:25 +0000 (GMT)
-From: Aakarsh Jain <aakarsh.jain@samsung.com>
-To: linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc: m.szyprowski@samsung.com, hverkuil-cisco@xs4all.nl, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux-samsung-soc@vger.kernel.org, gost.dev@samsung.com,
-	aswani.reddy@samsung.com, pankaj.dubey@samsung.com, Aakarsh Jain
-	<aakarsh.jain@samsung.com>
-Subject: [PATCH V3] dt-bindings: media: s5p-mfc: Remove s5p-mfc.txt binding
-Date: Thu,  8 Aug 2024 13:48:15 +0530
-Message-Id: <20240808081815.88711-1-aakarsh.jain@samsung.com>
-X-Mailer: git-send-email 2.17.1
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrNKsWRmVeSWpSXmKPExsWy7bCmpq5b05Y0g3XPtC2e7pjJanFo81Z2
-	izV7zzFZzD9yjtXi5oGdTBYXZ95lseh78ZDZYtPja6wWl3fNYbPo2bCV1WLG+X1MFmuP3GW3
-	WLT1C7tF694j7A58HptWdbJ53Lm2h81j85J6j74tqxg9Pm+S8zj19TN7AFtUtk1GamJKapFC
-	al5yfkpmXrqtkndwvHO8qZmBoa6hpYW5kkJeYm6qrZKLT4CuW2YO0LVKCmWJOaVAoYDE4mIl
-	fTubovzSklSFjPziElul1IKUnAKTAr3ixNzi0rx0vbzUEitDAwMjU6DChOyM/Xu3MxWsYq+4
-	M3E+UwPjLrYuRk4OCQETiYX3J7J2MXJxCAnsYZRofDyVGcL5xCjRtmkWE5wze8MrRpiW/XtP
-	skMkdjJKdDy4yAbhtDJJLL37FaiKg4NNQFfi7PYckAYRgUZGiccdJSA1zAILmCS2vL/FBJIQ
-	FvCWmDdrKjtIPYuAqsSliRYgYV4BW4k3M98yQyyTl1i94QDYSRICL9kl/j3axAKRcJGYu/gx
-	O4QtLPHq+BYoW0riZX8blJ0s8XjRS6hBORLr90yB6rWXOHBlDgvIXmYBTYn1u/QhwrISU0+t
-	AzuNWYBPovf3EyaIOK/EjnkwtprEnDs/WCFsGYnDq5dCA8VDYsub9WC2kECsxIF3rxknMMrO
-	QtiwgJFxFaNUakFxbnpqsmmBoW5eajk8ppLzczcxglOhVsAOxtUb/uodYmTiYDzEKMHBrCTC
-	2xy+KU2INyWxsiq1KD++qDQntfgQoykwzCYyS4km5wOTcV5JvKGJpYGJmZmZiaWxmaGSOO/r
-	1rkpQgLpiSWp2ampBalFMH1MHJxSDUz+6/dG9CgW/Dj/63G13+ayVMNzJ9e+nxe8cWaC1ZaP
-	fCLCm43vtKgLaOyXD57wNy/WijMkpic3Vehl6uOnq90Yv3ZwfXdeq+vlbPnS/2XuuYWauWKn
-	f36ZJC1i8jRH8JnZ6rUeIVzPxSYbvjgV6FlRstkw5PvUN6Wn7j6wDbRaGLhUqaeD8TKL7NOJ
-	WRoM0TdZcg/M+HHjgs2fpGa/nzrZUZYGXSahX3iaDvDsPZBl4aKzYGK0tmfIWY/nXPw2B7ae
-	bqnmmX95r8QzRgvLVU+cjmoc6Nx9gsF7ycE9rTyTD8TMXW6+Ztnzpze8bhX9cI2qnJw1ye3T
-	C1svsddW81v3dqy44zo9Sj3xllXs9RYlluKMREMt5qLiRAA3UjXbDgQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrELMWRmVeSWpSXmKPExsWy7bCSvK5y05Y0g9Z2DounO2ayWhzavJXd
-	Ys3ec0wW84+cY7W4eWAnk8XFmXdZLPpePGS22PT4GqvF5V1z2Cx6NmxltZhxfh+Txdojd9kt
-	Fm39wm7RuvcIuwOfx6ZVnWwed67tYfPYvKTeo2/LKkaPz5vkPE59/cwewBbFZZOSmpNZllqk
-	b5fAlbF/73amglXsFXcmzmdqYNzF1sXIySEhYCKxf+9J9i5GLg4hge2MErefPmWCSMhI/G87
-	xg5hC0us/PccqqiZSWLP/kWMXYwcHGwCuhJnt+eAxEUEWhklrq/sZAJxmAVWMUlMePcJbIWw
-	gLfEvFlT2UEaWARUJS5NtAAJ8wrYSryZ+ZYZYoG8xOoNB5gnMPIsYGRYxSiaWlCcm56bXGCo
-	V5yYW1yal66XnJ+7iREcjFpBOxiXrf+rd4iRiYPxEKMEB7OSCG9z+KY0Id6UxMqq1KL8+KLS
-	nNTiQ4zSHCxK4rzKOZ0pQgLpiSWp2ampBalFMFkmDk6pBiaW0N2dxzmKH6yUmv9ZwenDIu2A
-	KStSg8qeFQafNjizbrfW94PXq7Nbb6i57uxaWFl8cErUXZUtjIH/HA0qVff94J+66tzDRpvy
-	khd/yqUPf3/3Krpxzc+w/VGFkUs66tiLfLrt9jkmcr6veL2Fk+P78adL1lzzudiRu2ZKVH6/
-	c7/4rfu8V44u5X35edrJhS+jBM+zlqiHHq2fs2Hanpd23gpcT4327GheIek3Z8+Nq1duitRa
-	X7nRse2O2PYUKem7S24kXfqzkWn7yaVmio8rY58+m3dXJP/xhg3Vh9VL2fY95PRb/XxNRtHK
-	q2zHTzaYW3zKUnC9v9OxOmq5jJdIgN62nPXpJqXb7kvJJigVK7EUZyQaajEXFScCAA3LIsm1
-	AgAA
-X-CMS-MailID: 20240808083027epcas5p153e64139a5e71448b1ea3f04af1df2bd
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20240808083027epcas5p153e64139a5e71448b1ea3f04af1df2bd
-References: <CGME20240808083027epcas5p153e64139a5e71448b1ea3f04af1df2bd@epcas5p1.samsung.com>
+	s=arc-20240116; t=1723105281; c=relaxed/simple;
+	bh=zW4gXRl9j7t4LD6ZiJAERuv8KT7u29VEcU2dhh5LRqY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=NbTZu3HnCysoJAqq3+1gFNW/gkeW9TBaZYLycxji/s2LxHwyPNeC4xo0xLjVghBfTBALe01S2frK/nKUm06OpVAYUKhGP7TjMQHG+MAwuafpb1VvG5h6aXCenM4IDEhMuEsI/VAVJXrncRl+u9ycX2XqPWWwnDHbk21d7BfAyJE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=qZjuODV4; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4788KWe7060032;
+	Thu, 8 Aug 2024 03:20:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1723105232;
+	bh=/1xyuDyfSwA12wuJAyb3Q+WDU/YmPBcJ/cd3RNWmHg8=;
+	h=From:To:CC:Subject:Date;
+	b=qZjuODV4MrPzS2PPjJ0bt++qQ4bBm5GcvnSEf28fwnJemnl2FLCXfXKrRJUNjZH8G
+	 z0hRlPUT70KVk0fkQjO/d05z3+aUIzfcKNDffQEYDklLgyrZWyDJZ5Y1khXL65eqP2
+	 xxw4jalbayABc0XlcugfKj9yaPVl8dZ9ifXZdomI=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4788KWqS113373
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 8 Aug 2024 03:20:32 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 8
+ Aug 2024 03:20:31 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 8 Aug 2024 03:20:31 -0500
+Received: from localhost (a0498981-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.68.216])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4788KVeP092084;
+	Thu, 8 Aug 2024 03:20:31 -0500
+From: Bhavya Kapoor <b-kapoor@ti.com>
+To: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <conor+dt@kernel.org>,
+        <krzk+dt@kernel.org>, <robh@kernel.org>, <kristo@kernel.org>,
+        <b-kapoor@ti.com>, <jm@ti.com>, <vigneshr@ti.com>, <nm@ti.com>
+Subject: [RESEND PATCH] arm64: dts: ti: k3-j722s-evm: Add support for multiple CAN instances
+Date: Thu, 8 Aug 2024 13:50:30 +0530
+Message-ID: <20240808082030.2812216-1-b-kapoor@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-s5p-mfc bindings to json-schema is already merged with
-this commit 538af6e5856b ("dt-bindings: media: s5p-mfc:
-convert bindings to json-schema"). Remove s5p-mfc.txt
-file.
+CAN instances 0 and 1 in the mcu domain and 0 in the main domain are
+brought on the evm through headers J5, J8 and J10 respectively. Thus,
+add their respective transceiver's 0, 1 and 2 dt nodes as well as
+add the required pinmux to add support for these CAN instances.
 
-Fixes: 538af6e5856b ("dt-bindings: media: s5p-mfc: convert bindings to json-schema")
-Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
-changelog:
-v1->v2
-Add Fixes tag suggested by Krzysztof
-v2->v3
-Aligned Fixes tag in oneline and corrected commit message
-Link: https://patchwork.kernel.org/project/linux-media/patch/20240213045733.63876-1-aakarsh.jain@samsung.com/
+Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+Reviewed-by: Judith Mendez <jm@ti.com>
 ---
- Documentation/devicetree/bindings/media/s5p-mfc.txt | 0
- 1 file changed, 0 insertions(+), 0 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/media/s5p-mfc.txt
 
-diff --git a/Documentation/devicetree/bindings/media/s5p-mfc.txt b/Documentation/devicetree/bindings/media/s5p-mfc.txt
-deleted file mode 100644
-index e69de29bb2d1..000000000000
+Rebased to next-20240808
+
+Resend of - https://lore.kernel.org/all/d1d7f693-1dd6-4aea-bdbd-4385dc35d462@ti.com/
+
+ arch/arm64/boot/dts/ti/k3-j722s-evm.dts | 74 +++++++++++++++++++++++++
+ 1 file changed, 74 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+index dd3b5f7039d7..24e9f2ea509b 100644
+--- a/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
++++ b/arch/arm64/boot/dts/ti/k3-j722s-evm.dts
+@@ -162,10 +162,39 @@ sound_master: simple-audio-card,codec {
+ 			clocks = <&audio_refclk1>;
+ 		};
+ 	};
++
++	transceiver0: can-phy0 {
++		compatible = "ti,tcan1042";
++		#phy-cells = <0>;
++		max-bitrate = <5000000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&mcu_mcan0_gpio_pins_default>;
++		standby-gpios = <&mcu_gpio0 12 GPIO_ACTIVE_HIGH>;
++	};
++
++	transceiver1: can-phy1 {
++		compatible = "ti,tcan1042";
++		#phy-cells = <0>;
++		max-bitrate = <5000000>;
++	};
++
++	transceiver2: can-phy2 {
++		compatible = "ti,tcan1042";
++		#phy-cells = <0>;
++		max-bitrate = <5000000>;
++		standby-gpios = <&exp1 17 GPIO_ACTIVE_HIGH>;
++	};
+ };
+ 
+ &main_pmx0 {
+ 
++	main_mcan0_pins_default: main-mcan0-default-pins {
++		pinctrl-single,pins = <
++			J722S_IOPAD(0x1dc, PIN_INPUT, 0) /* (C22) MCAN0_RX */
++			J722S_IOPAD(0x1d8, PIN_OUTPUT, 0) /*(D22) MCAN0_TX */
++		>;
++	};
++
+ 	main_i2c0_pins_default: main-i2c0-default-pins {
+ 		pinctrl-single,pins = <
+ 			J722S_IOPAD(0x01e0, PIN_INPUT_PULLUP, 0) /* (D23) I2C0_SCL */
+@@ -303,6 +332,26 @@ &main_uart0 {
+ 
+ &mcu_pmx0 {
+ 
++	mcu_mcan0_pins_default: mcu-mcan0-default-pins {
++		pinctrl-single,pins = <
++			J722S_MCU_IOPAD(0x038, PIN_INPUT, 0) /* (D8) MCU_MCAN0_RX */
++			J722S_MCU_IOPAD(0x034, PIN_OUTPUT, 0) /* (B2) MCU_MCAN0_TX */
++		>;
++	};
++
++	mcu_mcan1_pins_default: mcu-mcan1-default-pins {
++		pinctrl-single,pins = <
++			J722S_MCU_IOPAD(0x040, PIN_INPUT, 0) /* (B1) MCU_MCAN1_RX */
++			J722S_MCU_IOPAD(0x03C, PIN_OUTPUT, 0) /*(C1) MCU_MCAN1_TX */
++		>;
++	};
++
++	mcu_mcan0_gpio_pins_default: mcu-mcan0-gpio-default-pins {
++		pinctrl-single,pins = <
++			J722S_MCU_IOPAD(0x0030, PIN_OUTPUT, 7) /* (C3) MCU_GPIO0_12 */
++		>;
++	};
++
+ 	wkup_uart0_pins_default: wkup-uart0-default-pins {
+ 		pinctrl-single,pins = <
+ 			J722S_MCU_IOPAD(0x02c, PIN_INPUT, 0)	/* (C7) WKUP_UART0_CTSn */
+@@ -566,3 +615,28 @@ &mcasp1 {
+ 	       0 0 0 0
+ 	>;
+ };
++
++&mcu_mcan0 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&mcu_mcan0_pins_default>;
++	phys = <&transceiver0>;
++};
++
++&mcu_mcan1 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&mcu_mcan1_pins_default>;
++	phys = <&transceiver1>;
++};
++
++&main_mcan0 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_mcan0_pins_default>;
++	phys = <&transceiver2>;
++};
++
++&mcu_gpio0 {
++	status = "okay";
++};
 -- 
-2.17.1
+2.34.1
 
 
