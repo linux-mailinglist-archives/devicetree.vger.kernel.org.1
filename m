@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-92207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D41994C3F3
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 19:54:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F42F94C3F9
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 19:55:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF6EF1F26DF0
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 17:54:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EE121B231F1
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 17:55:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0648E145B21;
-	Thu,  8 Aug 2024 17:54:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C159E145B21;
+	Thu,  8 Aug 2024 17:55:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="koz3p7Xm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RVt8d5SU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C923E12CDAE;
-	Thu,  8 Aug 2024 17:54:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BAEB12CDAE
+	for <devicetree@vger.kernel.org>; Thu,  8 Aug 2024 17:55:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723139679; cv=none; b=H73VCxB2e04ir7Z6YOAGr3hJI2BrdJBsHge/ID4fTrJIyaUcIYMsuJxYfxoBKfzsNzmuDeI474CuQe+g1rWC8ajuw7PUK1DcAuowm6WsbMaBAPJXxWr0hbVral/y91dRVOEBzpsbt6uLXvGSM+/SXLVlTbuY95L6SX+9jcPtjK0=
+	t=1723139729; cv=none; b=qK11HI24n4AYXKjB8UwXOE4WNxHKVtrvJWxWymjkpqus9tE5I+HhcuPUzCSWiL/Jt6b2rBDdWG4IbD0PoHQGpIi2zh+CmvEgL+Yg5dP2GWSzlHYhLZxx+/wCFsYdCVWjZLXusgeoTXg/GwNa2cGilkN1PLNVytE9VEnEYQGhSrE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723139679; c=relaxed/simple;
-	bh=XfKJm34ejhy7gyJBoH0L9ZTqoacWaLvJPTszpV01X9w=;
+	s=arc-20240116; t=1723139729; c=relaxed/simple;
+	bh=e2Qsr9jv5ZSuiivqkfD48WpnpeS2H2+o7CeK1rJ723E=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=V0xjNIVZeUo7TgdaWuD1BRQjuI+zVG2+tKuQCMSDqYly/A1Tf5pSgsxWTio2ZC7MfNDUA14AjBPPhDiqb686atspdfHBaEn71rCLxJ8t6Vw0MP+TBNpVzYj4WV9KXLINUAWF6saJFRpB+NXDiqBHLmWm7pSHrEPFAMOmRZ+Fr6o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=koz3p7Xm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81CD4C32782;
-	Thu,  8 Aug 2024 17:54:29 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=TUNdgTMA+qEvxQSXQ9Y/vDbSOm/MP1PO4iOVy2EI4c7BJU3Y0LjPwyrKtSGuWRBlHeV1d0PMYA3D3/iN0DSsg+5xD/iHWABwuReXaEKWmEAOh0K16X2Gage1Is7lO5yrVA59pzxiQ3Fh4fD+YUGZWmVma7V8jvig4WyyJvHxF8c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RVt8d5SU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBC7FC4AF0D;
+	Thu,  8 Aug 2024 17:55:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723139679;
-	bh=XfKJm34ejhy7gyJBoH0L9ZTqoacWaLvJPTszpV01X9w=;
-	h=Date:Subject:List-Id:To:Cc:References:From:In-Reply-To:From;
-	b=koz3p7XmsiXX8vzeOkk5XRC4GEGuHNrMziQzzlW7vRl8zuybW5DacO33u4csq8RGS
-	 jNAWDzFY7qn6xOiNIB/4Z3lmX/XWXborSfTue9N92C34NAmIPxbMKCugGiFvvFxNWr
-	 T0+DFF6AxTZU3lQmXVXK3zDVTPayjiPhsErBIcDmg41kjKHFySXddrsEu2sijdBpUh
-	 V001jNX7U+7YLrc7D18taFbL8D1SapPFHFICJs9yfc4KvXcHDCJGHqqf39y2ssDyLf
-	 aO7Nff19+3YhJqj0xh1ZseBFTq9KGxDQxcnrj2ni6qJ3YsyVFhsYby3NstalAc3I+Z
-	 fFW72zpqW+g5A==
-Message-ID: <b23f6a36-df9e-4a70-9980-9bfe224868c3@kernel.org>
-Date: Thu, 8 Aug 2024 19:54:26 +0200
+	s=k20201202; t=1723139729;
+	bh=e2Qsr9jv5ZSuiivqkfD48WpnpeS2H2+o7CeK1rJ723E=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=RVt8d5SULboSZCDAr43OEbQKxiQdo0LT1nqEWsByFoPRqFsWT3OYZ1T5bew8QnSqM
+	 3V7wjk6Jttrx+kcJaB7E0JYHX9VOJTDWgyVjN+z7hskrSY9TtrAyzxaoI6EHJhf2Ee
+	 F4i0oQx+MbLT1GJnp2HgxYJtvQPseH97JkgglxqCwzbK6zTKvIrQXFTPQ8XJto6Ytq
+	 cAAAshppySIS2CTgVAdxAqaprXt1PAn/f9p2pRYte09oEF0TRtmAZ++Atn/p8GLonA
+	 d1UmCjcrz8UFNoFk0BlxL7VWymV6YJu9Ko0LpoaWNpjcFnPg+g1JIXvh7aYnkjwqX7
+	 VtkrS1joOMeqw==
+Message-ID: <f4cf42b6-61d1-4759-b3c0-c96e01b00e53@kernel.org>
+Date: Thu, 8 Aug 2024 19:55:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,26 +50,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: Fix undocumented LM75 compatible nodes
-To: "Rob Herring (Arm)" <robh@kernel.org>, soc@kernel.org,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>,
- Dinh Nguyen <dinguyen@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Gregory Clement <gregory.clement@bootlin.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>,
- Tali Perry <tali.perry1@gmail.com>, Patrick Venture <venture@google.com>,
- Nancy Yuen <yuenn@google.com>, Benjamin Fair <benjaminfair@google.com>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Vladimir Zapolskiy <vz@mleia.com>,
- Mark Jackson <mpfj@newflow.co.uk>, Tony Lindgren <tony@atomide.com>,
- Michal Simek <michal.simek@amd.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
- openbmc@lists.ozlabs.org, imx@lists.linux.dev, linux-omap@vger.kernel.org
-References: <20240808164941.1407327-1-robh@kernel.org>
+Subject: Re: [PATCH 07/10] arm64: dts: rockchip: standardize the definition of
+ LEDs for Radxa E25
+To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+References: <20240808093808.1740-1-naoki@radxa.com>
+ <20240808093808.1740-8-naoki@radxa.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,38 +102,17 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240808164941.1407327-1-robh@kernel.org>
+In-Reply-To: <20240808093808.1740-8-naoki@radxa.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/08/2024 18:49, Rob Herring (Arm) wrote:
-> "lm75" without any vendor is undocumented. It works with the Linux
-> kernel since the I2C subsystem will do matches of the compatible string
-> without a vendor prefix to the i2c_device_id and/or driver name.
-> 
-> Mostly replace "lm75" with "national,lm75" as that's the original part
-> vendor and the compatible which matches what "lm75" matched with. In a
-> couple of cases the node name or compatible gives a clue to the actual
-> part and vendor and a more specific compatible can be used. In these
-> cases, it does change the variant the kernel picks.
-> 
-> "nct75" is an OnSemi part which is compatible with TI TMP75C based on
-> a comparison of the OnSemi NCT75 datasheet and configuration the Linux
-> driver uses. Adding an OnSemi compatible would be an ABI change.
-> 
-> "nxp,lm75" is most likely an NXP part. NXP makes a LM75A and LM75B.
-> Both are 11-bit resolution and 100ms sample time, so "national,lm75b" is
-> the closest match.
-> 
-> While we're here, fix the node names to use the generic name
-> "temperature-sensor".
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
-> SoC maintainers, Please take this directly.
-> ---
+On 08/08/2024 11:38, FUKAUMI Naoki wrote:
+> - sort properties
+> - add default-state
+> - add function for multi-led
+> - remove redundant parameters from pwms
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Why redundant? I don't think this was tested. :(
 
 Best regards,
 Krzysztof
