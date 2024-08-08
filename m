@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-92039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 281C094BA01
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 11:49:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB48B94BA08
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 11:49:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C22751F22549
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 09:49:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BF4E1F21459
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 09:49:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 979A7189F5D;
-	Thu,  8 Aug 2024 09:48:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 720DF18A6DD;
+	Thu,  8 Aug 2024 09:48:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FRxeQddw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xEzB7Yfy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FDC4189F27
-	for <devicetree@vger.kernel.org>; Thu,  8 Aug 2024 09:48:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C5FB189F59
+	for <devicetree@vger.kernel.org>; Thu,  8 Aug 2024 09:48:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723110519; cv=none; b=a05sClxeElp/I9Z7jkpzNC4TMnps4v1VJ+yq3XXxQENYC07NNkO+RoWk4bJdcHOFtu1+nSDcmPt4Aa4H1DhMG1ZTmN/05IMK1cf4I2LWWhRJS8U38cEjtXBrEL2FvaXOqttjQJKX6R2/tY63DIYk3BBeCxYKgx1BrztKeE0sVR4=
+	t=1723110521; cv=none; b=SPeZj/p+9EJ7Q5+BUHXKumB6HxTpIxGEa9lYfoCEw+UGICSnMzrliOQhSYoU5S8WrWeC/aMG2I06QhwtxZJ0o4V5OjlzGw6T2pM/W7b7irSJJWT7WACIuk5kNmYJhiPQQ8ULALqdCs+jGdTqQXwNFS7RWXMW3VIvIKdCbzB6eNM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723110519; c=relaxed/simple;
-	bh=t4Oi6qrhhn59SzTgCUimyxAUyoyLx7ZjHE7Smpgi1Wc=;
+	s=arc-20240116; t=1723110521; c=relaxed/simple;
+	bh=tYgAmU1dlhccZqcNUyi27/tGhXE4LKclbQYuSvQ45g8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fF86tL28XQX6A4iU+r/374Dw+ZgqMngOCA4mKsvGeDHVl4R27Zc3DWK5FMANqxJuy5V49UO/mcTFs4SBXKXKS85H4S9+Exr+vYDg1HXknAG371RFohO9RZH9pvw4WRvRHOxyzfX9Mu2S1RtsCnlciAqn318lVnaCs2Evd9aRaI4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FRxeQddw; arc=none smtp.client-ip=209.85.208.44
+	 MIME-Version:Content-Type; b=NqlWvLw9ZioReOhzalVHihI/jScgFnQfix9vjT4k1tbfixnLfoxJEfAeizcr1KFhbs3IRMzRtUUpGwRltBkPqm8Fd8J3j7oknFqLnyWiefTErzyltMrEVyVdDj22r0JzH8Rzj9QHmNZFEjnITMnSdCr28aNTllkrx0rRVYdjKb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xEzB7Yfy; arc=none smtp.client-ip=209.85.167.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5af6a1afa7bso872565a12.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Aug 2024 02:48:37 -0700 (PDT)
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-52efd08e6d9so861106e87.1
+        for <devicetree@vger.kernel.org>; Thu, 08 Aug 2024 02:48:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723110516; x=1723715316; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1723110517; x=1723715317; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=XTXsOp2Q2opTktrwF5DF7pgCqzg6HCRDQctoBjhR6tk=;
-        b=FRxeQddwVbqWOW+u4SFetDSrpWXuf3dnjFmETwobPf+DaVuMkNQDFIrQpHxN0myNJU
-         rGJwvn/DIkeUaexE8kJBzyTB0w1wX44NtPZFbQMln/ZSfu484EkeclOBkr8COgJZ1r3D
-         /hAX+2klHbdHApL4qlbfcmd+jX5Cu+Liq0haecav2JPdxCJSPwQIRnAX30mFIHx37Gir
-         Ju0jh81NnB21dI51cioCCzD55eq1bsOb2VJGAdO1l+L/VsJ7190E+mfnc3NW7eZKlQXq
-         TPha6zoVJZy5muczJ/ZopcT7Il2xYSmUZH75USyyTGVVi1minM6lXjI106CmwwrKCGaY
-         5Nrw==
+        bh=C0BJ7RL6i1hu6kypPK6EZLbNRGROSmLUvIQdzrrc9Vg=;
+        b=xEzB7YfyAbCtOqfasdMK2mPr80KUiiXnpFiotnk9HDQ6VP5PyeTljYrK5Akw3gAwlE
+         kryC/TFtVfBVcBDqeqCJdafQDkdNmUwLFyZYGLUFFEzpjmHI6REcVtwBcWt13pDkEo4G
+         tNU7mPTGL1eOzGParZqzHcW3lGJcl/6MO3D966Jx3RYUDwsDN84fFkiEQRfyzi493LIJ
+         FdeGAGM+qjh7Qp5w4LdR3oRoGtPbeMzY89EkmAH9EWSy6efDiIOF77ixjCZWB+LSbebk
+         Kv29DpXo2JpleLx1J4Cpy70GprnzaylYsapCCIF4dR7CP+l4YpOJ78zLHhCIMubEEkYh
+         eyXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723110516; x=1723715316;
+        d=1e100.net; s=20230601; t=1723110517; x=1723715317;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=XTXsOp2Q2opTktrwF5DF7pgCqzg6HCRDQctoBjhR6tk=;
-        b=AtZ31YV5fE/jiYPcBeZ79I4GHj0pE2ZCyvnUOD+vc4Lj8RAn8Oo5JFfazhU7MlHhE/
-         kCXujMpiHRD2+bDYIokdKJQqRJ8bhke8NMtn926xzrIObBA8bzvR77/FyLVr3rMGqfXx
-         GacLaIfA0wc1KqMZ6PRPxCkaVelTbNt9Rd9fHGZJG4F51kPKN/fZuSfi/4c0AELfqW5y
-         /2jFxfCSdWl6iWwnsxmgkE3KZhJ+wlVN125hhAMjazePxV6xdZhNPX19UMRvueFZiHsG
-         G7Qj7s7JaeiLQONdq6lm1t1jxEJrwoZ4LEuUjKJLjkKo9wh2R6w5gXg7ulUkT3GsmUf4
-         podQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWJwT8XpW10FLuNVuiFiumX6CR/sbOJ3npFOyxLBzQZEdxP5eS5gf6p5AoAJtQ7ciHRNP3AAXpldICH0ekXxEy0hVPR1psBCBAuhg==
-X-Gm-Message-State: AOJu0YxgOvAt0ima1xPQfRTSnhKxuZ0O4MYxEo3Oymh4Iwy5uELXiySV
-	J0Zxtyhe9fyBWkZgDmkgPN6Xqfrexrz5UTaNSzmFGXy8I6uEGmV11qgEHMQT05s=
-X-Google-Smtp-Source: AGHT+IF3xoL+kb9I8cnpq9kAoMaPYR5z6cI5EjyOnhfkzCaXFnxM87pPrTSXdTQKrmq9f9JMKookJw==
-X-Received: by 2002:a17:907:f788:b0:a7d:a29e:5c33 with SMTP id a640c23a62f3a-a8090d7d46cmr92028466b.28.1723110515904;
-        Thu, 08 Aug 2024 02:48:35 -0700 (PDT)
+        bh=C0BJ7RL6i1hu6kypPK6EZLbNRGROSmLUvIQdzrrc9Vg=;
+        b=KpLPJq48qhzs+X/t8uKur+mQOqGqjBGDAlpZeucmGV4R/R3DHk8OSTKZYFcO0jVPFW
+         rVppHFP9jbV9SBnuuORDvi5hQZ+sHLyEUJpx/ORPt/SVYmU7c0I8+XoyZTkl8y7796O6
+         bLOzOmkiMQs3rJ0iMk7NO5vWxIP+KgdhednkrrznU7DhLbqKcU2fJNbkl0nXn6z7sEJn
+         mZXwLiAI/tdaR0x5Ltl3tFE7ivVI8qTcn1DU+utv/HzYhaqGhP2UOQ2PuduzScgCdKqN
+         eg1LE4eC9h/Aon3UWEFXpEK6kobAD8zQ6kJqw+Aic6mlM9aiMXCeVZdGkuEzpzKCYO29
+         +ifw==
+X-Forwarded-Encrypted: i=1; AJvYcCUbXIgXaaGPNgCjl4BGRWKMtaWbPKEAWo4Hi78GwLDjXD8d5+5lYms4NoNu35k1RhgXTyocZgVYvG67jCf92pDu2eEaM7h4/nN2TA==
+X-Gm-Message-State: AOJu0Yw6csU2kh8nbjV/h975qQKSuoxd0WxrRsZx2dN6FrKEiezoQGct
+	SBzz9Zz0CtTU0Y9PFbePpPFiio1GfpxUQHN78zO7gsLW92+7kKhZ1rVCRpT9gQQ=
+X-Google-Smtp-Source: AGHT+IF4YjK8zrHFMoWt/gQTkh4LphPSnVEM0mvSyWZxJgihuSSukPuWz2bZ7wqSvD6BqPRZW734cA==
+X-Received: by 2002:a05:6512:3f04:b0:52e:9b92:4990 with SMTP id 2adb3069b0e04-530e584527cmr1083412e87.32.1723110517476;
+        Thu, 08 Aug 2024 02:48:37 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7dc9e849a0sm719911966b.186.2024.08.08.02.48.34
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7dc9e849a0sm719911966b.186.2024.08.08.02.48.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Aug 2024 02:48:35 -0700 (PDT)
+        Thu, 08 Aug 2024 02:48:36 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Krzysztof Kozlowski <krzk@kernel.org>,
 	Sylwester Nawrocki <s.nawrocki@samsung.com>,
@@ -83,12 +83,12 @@ Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: Re: (subset) [PATCH v2 2/7] dt-bindings: clock: exynos7885: Add CMU_TOP PLL MUX indices
-Date: Thu,  8 Aug 2024 11:48:26 +0200
-Message-ID: <172311048731.12963.10299933550707027039.b4-ty@linaro.org>
+Subject: Re: (subset) [PATCH v2 3/7] dt-bindings: clock: exynos7885: Add indices for USB clocks
+Date: Thu,  8 Aug 2024 11:48:27 +0200
+Message-ID: <172311048731.12963.1935261580196077122.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240806121157.479212-3-virag.david003@gmail.com>
-References: <20240806121157.479212-1-virag.david003@gmail.com> <20240806121157.479212-3-virag.david003@gmail.com>
+In-Reply-To: <20240806121157.479212-4-virag.david003@gmail.com>
+References: <20240806121157.479212-1-virag.david003@gmail.com> <20240806121157.479212-4-virag.david003@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,15 +99,20 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Tue, 06 Aug 2024 14:11:45 +0200, David Virag wrote:
-> Add indices for missing MUX clocks from PLLs in CMU_TOP.
+On Tue, 06 Aug 2024 14:11:46 +0200, David Virag wrote:
+> Exynos7885 SoC has a DWC3 USB Controller with Exynos USB PHY which in
+> theory supports USB3 SuperSpeed, but is only used as USB2 in all known
+> devices.
 > 
+> These, of course, need some clocks.
+> Add indices for these clocks.
 > 
+> [...]
 
 Applied, thanks!
 
-[2/7] dt-bindings: clock: exynos7885: Add CMU_TOP PLL MUX indices
-      https://git.kernel.org/krzk/linux/c/59baa83e30f82b74b4c7dc07c20eac9899b6c0c6
+[3/7] dt-bindings: clock: exynos7885: Add indices for USB clocks
+      https://git.kernel.org/krzk/linux/c/b9dee49cc6f9efa97eee059d03b704dec0f45658
 
 Best regards,
 -- 
