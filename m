@@ -1,153 +1,171 @@
-Return-Path: <devicetree+bounces-91909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5423494B4A1
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 03:24:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A99E594B4CD
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 04:02:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B7E81F2294B
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 01:24:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F1A11C210CE
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 02:02:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9581F8BE8;
-	Thu,  8 Aug 2024 01:24:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5246C8C0B;
+	Thu,  8 Aug 2024 02:02:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Ah0E6BPM"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="hbNSVSS8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13AD6DF78;
-	Thu,  8 Aug 2024 01:24:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF0F38F6E;
+	Thu,  8 Aug 2024 02:02:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723080285; cv=none; b=Y6hViz9kGlb2RnsBfJnx5Y1z7U3wzGoXpsSczhAZ7HCjw/Wu7NV+H9420T1m0VvsjLjFlU7eA+DjFPqooNvnlg4ZQC0i97JiSCPtwD90vVbtxW1AyJOrXL04NPbldgft6HMKlVvP7cLtiuSjr/YrdZJ0DK38Z/hcftYcSApokjk=
+	t=1723082538; cv=none; b=U/8pGTAAL9rlg7vzmrtWjkSf3x+9r18XGOLn+Kd96SFAYAb2PVpjdaweOim2AvTUV6dB7oH1g5NI4mXzHbIMCtwnSdXH+wnNt6rOLXJX9tNkS4bhuNqfStVd8aooqxIoZBGwTu2RAsO4swVx8JiC07NOiERb6ickMtAYrsYQ5TE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723080285; c=relaxed/simple;
-	bh=uY+8Y/Agn+9e5ldI3aoUfK7ieopcbzJ+c8ye/sX78Pg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=rv+WLcQE+/q6qSzwCyfDwmZOOhOOIOVVdvE0SFG0NkM7bQbQCLFUh96v6ct1WnlsMQZ5u4LQd76d+TsUaygtJl/CGjLcHOS4KvaeczRsWbEP709Ci+PiEAITEeAE6VYiD5g5eIo/VY29yDDqv+dVHG61boXXUJUAycechc0bY/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Ah0E6BPM; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4781Mtn8020983;
-	Thu, 8 Aug 2024 01:24:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	uY+8Y/Agn+9e5ldI3aoUfK7ieopcbzJ+c8ye/sX78Pg=; b=Ah0E6BPMsdBKq6RV
-	MmZxTC2HKx6OHTP45noB3dssMs4+NeqYWO1BfLFLzp372ufe1AcJ6jkkbdnv5ucO
-	bgV1/ur4b37m7aBumKlV+6xqSQtWS61H8FfIDxzuVGpWgrJxzR6WOG5AUWiwQWlA
-	7hdxt3rtuYgC5Rx0Z6ggbxDwo1I8fbOhXoTVQV12FbkaOKPpT8DKbkVc2IJ1Ob4o
-	d32RTAYulbr73bkM9Nh6oX9rte9RlmWEzSRBFAF/g7otuC7sXfuRP0utNvNIvKNa
-	n9wbe6K9iH7iAEQFTa1BrngxubQcHufn75GtuEm2d5MakuXg+iTq3QCRyTxrxPbC
-	zl3fOg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40v79j9v77-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 08 Aug 2024 01:24:27 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 4781OQl1002152
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 8 Aug 2024 01:24:26 GMT
-Received: from [10.71.113.127] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 7 Aug 2024
- 18:24:25 -0700
-Message-ID: <847f65bb-3d09-461c-b2dd-7ce5babf76c2@quicinc.com>
-Date: Wed, 7 Aug 2024 18:24:24 -0700
+	s=arc-20240116; t=1723082538; c=relaxed/simple;
+	bh=Nu5WgkpUo7byHQ6juT2SsED31AyTDd20my9mSyBHT+k=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ruZr/kwdc95IjFiSIAa2k7PI82kN0HyDPzJzrImya/Jpm0JNMAalbPgmo8sXc1tdLpRFg5Dq0enOzMHf5jGg37GIttkVDABjVjekkOaWq0dFPI52MO88iqioLcpsBrgXrYW8e8KMqtSiJDpEUTIO2CFYSarGKyiFmisBg+PPay8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=hbNSVSS8; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1723082527;
+	bh=xeBzGU5DTBwHDca/OreT1bQLesgiFRjH3NSbGQuJpLs=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=hbNSVSS8FuAodoVkZ0Ir/7WxJyNLX++H51FwksLk0g2vg35TWCVxko2msf1QFIE9G
+	 VVKVkTt1P+rlM5gSWQP33zTNY2wAxqHrqHobycDEKBTQq42NPHVEmcNzLD2IXJu5M9
+	 mwlJskVx3MisbQexHG4i9Lf/2WMPMtelC+INwEG3w81LgGZxJmXP/VJQxjlscmowxD
+	 FFKyLTXRjooNTBBg3udS7FIZY2n6bkQrOYCgO4yjgvZu5+tsVlWcNxNjnhUbRhL/Bo
+	 /ok4e7iWt5adUfNSZGoFnXOADNXDAkTmCqfM04ZyZmcquee6JOzQmAvrdWTMc7lK7w
+	 8WUuvlc1c6qKQ==
+Received: from [192.168.68.112] (203-57-213-111.dyn.iinet.net.au [203.57.213.111])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 09C95656AB;
+	Thu,  8 Aug 2024 10:02:04 +0800 (AWST)
+Message-ID: <18a932d777d1b3b86af15e80af82b50d2189872f.camel@codeconstruct.com.au>
+Subject: Re: [PATCH 1/2] dt-bindings: interrupt-controller:
+ aspeed,ast2400-vic: Convert to DT schema
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Thomas Gleixner
+ <tglx@linutronix.de>,  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,  Joel Stanley
+ <joel@jms.id.au>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org
+Date: Thu, 08 Aug 2024 11:32:04 +0930
+In-Reply-To: <c51fb027-f8bd-4b10-b9c0-dbbe8e8cf4c1@kernel.org>
+References: 
+	<20240802-dt-warnings-irq-aspeed-dt-schema-v1-0-8cd4266d2094@codeconstruct.com.au>
+	 <20240802-dt-warnings-irq-aspeed-dt-schema-v1-1-8cd4266d2094@codeconstruct.com.au>
+	 <c51fb027-f8bd-4b10-b9c0-dbbe8e8cf4c1@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v24 10/34] ASoC: usb: Create SOC USB SND jack kcontrol
-To: =?UTF-8?Q?Amadeusz_S=C5=82awi=C5=84ski?=
-	<amadeuszx.slawinski@linux.intel.com>,
-        Pierre-Louis Bossart
-	<pierre-louis.bossart@linux.intel.com>,
-        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
-        <broonie@kernel.org>, <lgirdwood@gmail.com>, <krzk+dt@kernel.org>,
-        <Thinh.Nguyen@synopsys.com>, <bgoswami@quicinc.com>, <tiwai@suse.com>,
-        <gregkh@linuxfoundation.org>, <robh@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>
-References: <20240801011730.4797-1-quic_wcheng@quicinc.com>
- <20240801011730.4797-11-quic_wcheng@quicinc.com>
- <89b10ddb-9d0e-480e-846f-64f2a4592f6f@linux.intel.com>
- <2141c04d-953b-47a5-a105-8a60ec370371@quicinc.com>
- <5c882055-85d5-41ba-98bf-da375a490c5b@linux.intel.com>
-Content-Language: en-US
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <5c882055-85d5-41ba-98bf-da375a490c5b@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: -mK0MTBDKPfXCrSUD_CZ12ZRIkve007M
-X-Proofpoint-ORIG-GUID: -mK0MTBDKPfXCrSUD_CZ12ZRIkve007M
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-07_15,2024-08-07_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 phishscore=0 adultscore=0 malwarescore=0
- lowpriorityscore=0 bulkscore=0 impostorscore=0 mlxlogscore=999
- suspectscore=0 spamscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2407110000 definitions=main-2408080008
 
-Hi Amadeusz,
+On Tue, 2024-08-06 at 08:07 +0200, Krzysztof Kozlowski wrote:
+> On 02/08/2024 07:36, Andrew Jeffery wrote:
+> > Squash warnings such as:
+> >=20
+> >     arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-galaxy100.dtb: /ahb/in=
+terrupt-controller@1e6c0080: failed to match any schema with compatible: ['=
+aspeed,ast2400-vic']
+> >=20
+> > The YAML DT schema defines an optional property, valid-sources, which
+> > was not previously described in the prose binding. It is added to
+> > document existing practice in the Aspeed devicetrees. Unfortunately
+> > the property seems to predate the requirement that vendor-specific
+> > properties be prefixed.
+> >=20
+> > Signed-off-by: Andrew Jeffery <andrew@codeconstruct.com.au>
+>=20
+>=20
+> > +
+> > +description:
+> > +  The AST2400 and AST2500 SoC families include a legacy register layou=
+t before
+> > +  a redesigned layout, but the bindings do not prescribe the use of on=
+e or the
+> > +  other.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - aspeed,ast2400-vic
+> > +      - aspeed,ast2500-vic
+> > +
+> > +  interrupt-controller: true
+> > +
+> > +  "#interrupt-cells":
+> > +    const: 1
+> > +    description:
+> > +      Specifies the number of cells needed to encode an interrupt sour=
+ce. It
+> > +      must be 1 as the VIC has no configuration options for interrupt =
+sources.
+> > +      The single cell defines the interrupt number.
+> > +
+> > +  valid-sources:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +    description:
+> > +      One cell, bitmap of support sources for the implementation.
+>=20
+> maxItems: 2
 
-On 8/6/2024 7:51 AM, Amadeusz Sławiński wrote:
-> On 8/2/2024 12:43 AM, Wesley Cheng wrote:
->> Hi Pierre,
->>
->> On 8/1/2024 1:07 AM, Pierre-Louis Bossart wrote:
->>>
->>>
->>>> +static inline int snd_soc_usb_setup_offload_jack(struct snd_soc_component *component,
->>>> +                         struct snd_soc_jack *jack)
->>>> +{
->>>> +    return -ENODEV;
->>>> +}
->>>> +
->>>> +static inline int snd_soc_usb_disable_offload_jack(struct snd_soc_component *component)
->>>> +{
->>>> +    return -ENODEV;
->>>> +}
->>> usually fallback functions return 0, is the error code intentional?
->> ACK.
->>>
->>>> +int snd_soc_usb_setup_offload_jack(struct snd_soc_component *component,
->>>> +                    struct snd_soc_jack *jack)
->>>> +{
->>>> +    int ret;
->>>> +
->>>> +    ret = snd_soc_card_jack_new(component->card, "USB Offload Playback Jack",
->>> do we need the reference to Playback?
->> No, will remove.
->>>> +                    SND_JACK_HEADPHONE, jack);
->>> wondering if there would be any merit in defining a new type of jack,
->>> e.g. SND_JACK_USB since here the purpose is to notify that there's a USB
->>> device connected. The type of device does not really matter, does it?
->>>
->> Not as of now, but I think we discussed in the past that maybe depending on if playback and capture is supported, we can notify SND_JACK_HEADSET?  That is something I will need to change depending on how we want to handle the comments on patch#9
->>
->
-> I agree with Pierre that SND_JACK_HEADPHONE is too specific in this case, adding SND_JACK_USB sounds like good solution, as there are more device types than headset and headphones. Alternatively you could also consider defining some type of USB Audio Class mapping to existing SND_JACK types. (Look for UAC_INPUT_TERMINAL_*, UAC_OUTPUT_TERMINAL_* & UAC_BIDIR_TERMINAL_*.)
+Ack.
 
-Let me take a look at this and get back to you if I have any questions.
+> What does "one cell" mean? uint32? DTS has two items.
 
-Thanks
+Hah, I think that was a process error :) Two is correct here. I'll
+rework the description.
 
-Wesley Cheng
+>=20
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+>=20
+> Is this correct? DTS does not have parent interrupt controller for this
+> device.
 
+I'll removed it, it's not necessary.
+
+>=20
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupt-controller
+> > +  - "#interrupt-cells"
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/interrupt-controller.yaml
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    interrupt-controller@1e6c0080 {
+> > +         compatible =3D "aspeed,ast2400-vic";
+> > +         reg =3D <0x1e6c0080 0x80>;
+> > +         interrupt-controller;
+> > +         #interrupt-cells =3D <1>;
+>=20
+> Make the example complete - add valid-sources interupts.
+>=20
+
+Ack.
+
+Thanks for the review.
+
+Andrew
 
