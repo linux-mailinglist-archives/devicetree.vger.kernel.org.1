@@ -1,48 +1,55 @@
-Return-Path: <devicetree+bounces-92011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC7CF94B908
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:30:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F9F194B91B
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:35:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B0751C22B2A
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 08:30:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0CC95283BA0
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 08:35:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96720143C7D;
-	Thu,  8 Aug 2024 08:30:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5D801891AE;
+	Thu,  8 Aug 2024 08:35:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="FPIV4LW0"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="FFlGJReH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from msa.smtpout.orange.fr (msa-212.smtpout.orange.fr [193.252.23.212])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBF93208C4;
-	Thu,  8 Aug 2024 08:30:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D52DA1465B3;
+	Thu,  8 Aug 2024 08:35:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.252.23.212
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723105851; cv=none; b=B2XbcVyuKc1WgNJcrF2D9zXPDtCZAlWJS6aXjNp1GXW8EbO5jrf9C0nR5RBiU918BAN0z+884doD3XZ2A5+7REwOElh9sBoWU2InKTLY6sGUp58v61rng2pteKUNRFO5EGdK/Vhlg6KVL3mCA53xHHribwS8HkUlKW1lkfslPus=
+	t=1723106149; cv=none; b=CMSNp6Nn1k2VURzQ9PBPpkUOx8gSYFFW9kw/bCVZVqj9Df18hjaa29KkQ1VYt+QTEcpCbMNe83YkFMGhMB1RvxeBhShZeR1kz3/kazqzOhnEX9T3O5IPmKTiL6r2PZxxqnyxrH/il4kyVJ7hM5+IuvUqpetwWOYKDRGzfWTAzKs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723105851; c=relaxed/simple;
-	bh=iw8pXmLylE4KGP42R3MzLrnRBWr85UiBhxBLckD70Uo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:Cc:
-	 In-Reply-To:Content-Type; b=cmneigN52ZAIyTapKOE7hbny4evYrApDErOj7QasRAcRqyEYf2XAOdaDc77+MheIhUTQTaMTAT6QAHUAWKqeVhM9KcJV7XmvbaiV2jfnMTZXsjD2FVj3KSgQm0g+GeB+SH3/THJOhmPud0T+wIn/sB6BONUmDCY2k866sEdKZ18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=FPIV4LW0; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-156-87-48.elisa-laajakaista.fi [91.156.87.48])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id DE4AE581;
-	Thu,  8 Aug 2024 10:29:52 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1723105793;
-	bh=iw8pXmLylE4KGP42R3MzLrnRBWr85UiBhxBLckD70Uo=;
-	h=Date:Subject:To:References:From:Cc:In-Reply-To:From;
-	b=FPIV4LW0nQkirIWclJ0Gw3AOFSdLT4qp3YNkwRD9MenO1ZE9QQ22vG24wTMCVNp/j
-	 tSGAX9XBcwqtDTJ+J05WeqFWx3nfifFa71ljaz7wMURugaAfdI29dhRCmckRgYiDuv
-	 u89HVnwy/iaXaSfr+iSIS6hosvs9TLJJFhqH5fUI=
-Message-ID: <49d736c4-1964-4f51-a951-6e98319181c2@ideasonboard.com>
-Date: Thu, 8 Aug 2024 11:30:42 +0300
+	s=arc-20240116; t=1723106149; c=relaxed/simple;
+	bh=N1qrktCO+PnnJLGH/JzHZB2CZag+z4/xUv4WppOomdQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=rQ5MIm/sVfFgcEgBTJH1j51MvbHmniZZBQbY8fT/evAHhTEQTUqlZlnw8Z0BqjVaSnrLBRziimdhRcbQH978eelG88qlDy79Ah6vrk/g6zuySm8S1VAeiX0QHOxE/OV0U3/i1m4PDzsbK6K7meXjIPEzNhq/ArqV96rGJwabQAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=FFlGJReH; arc=none smtp.client-ip=193.252.23.212
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id bycMs4ANs6NRTbycMshqWM; Thu, 08 Aug 2024 10:35:39 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1723106139;
+	bh=EjZqCORS57HDZjbd4db9mB4VKAis0rKj0Ik5Pz95TOU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=FFlGJReH+xdtjt4bd3YXAhR6QkakNjz5a/+1Bg7g1InkfmNA8igskSUTBKI5I3hI+
+	 2k2HfjjMfRb7cS952A8iEkwYfWBr13xPpwY2FiggVxQhFVCNz+zACjscWpVIGJnLV1
+	 hmQq5T/Jm1stTFE7606bH48YgcfiQchiWxRu3OdCpKZj2d6I/WpuPPzFsqK+Oq/pJi
+	 5DUPFaglEqFBicjY+LJF47eckY+Pcz64de/4aJ9b3DqhsqKA4mq2ZVMhPXIFgFebcZ
+	 AtRA+mrTQCJfH9y9ffI7GJeDfjOlrfg4rsOt9vjD+sQzR6EbKpA132ctW/y/b9S5B6
+	 l3e9Dwlg2n7fA==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Thu, 08 Aug 2024 10:35:39 +0200
+X-ME-IP: 90.11.132.44
+Message-ID: <0f227033-4818-4ff5-9140-851c6d802fb2@wanadoo.fr>
+Date: Thu, 8 Aug 2024 10:35:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,229 +57,177 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/9] of: property: add of_graph_get_next_port_endpoint()
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-References: <87mslqw8mj.wl-kuninori.morimoto.gx@renesas.com>
- <87jzguw8ln.wl-kuninori.morimoto.gx@renesas.com>
-Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
- Helge Deller <deller@gmx.de>, Jaroslav Kysela <perex@perex.cz>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Liam Girdwood <lgirdwood@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Mark Brown <broonie@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Maxime Ripard <mripard@kernel.org>, Michal Simek <michal.simek@amd.com>,
- Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
- Takashi Iwai <tiwai@suse.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org,
- linux-media@vger.kernel.org, linux-omap@vger.kernel.org,
- linux-sound@vger.kernel.org
-In-Reply-To: <87jzguw8ln.wl-kuninori.morimoto.gx@renesas.com>
+Subject: Re: [PATCH 2/4] dt-bindings: reset Add AST2700 reset bindings
+To: Ryan Chen <ryan_chen@aspeedtech.com>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20240808075937.2756733-1-ryan_chen@aspeedtech.com>
+ <20240808075937.2756733-3-ryan_chen@aspeedtech.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20240808075937.2756733-3-ryan_chen@aspeedtech.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 06/08/2024 07:58, Kuninori Morimoto wrote:
-> We already have of_graph_get_next_endpoint(), but it is not
-> intuitive to use.
+Le 08/08/2024 à 09:59, Ryan Chen a écrit :
+> Add dt bindings for AST2700 reset driver.
 > 
-> (X)	node {
-> (Y)		ports {
-> 			port@0 { endpoint { remote-endpoint = ...; };};
-> (A1)			port@1 { endpoint { remote-endpoint = ...; };
-> (A2)				 endpoint { remote-endpoint = ...; };};
-> (B)			port@2 { endpoint { remote-endpoint = ...; };};
-> 		};
-> 	};
-> 
-> For example, if I want to handle port@1's 2 endpoints (= A1, A2),
-> I want to use like below
-> 
-> 	A1 = of_graph_get_next_endpoint(port1, NULL);
-> 	A2 = of_graph_get_next_endpoint(port1, A1);
-> 
-> But 1st one will be error, because of_graph_get_next_endpoint()
-> requested "parent" means "node" (X) or "ports" (Y), not "port".
-> Below are OK
-> 
-> 	/* These will be node/ports/port@0/endpoint */
-> 	of_graph_get_next_endpoint(node,  NULL);
-> 	of_graph_get_next_endpoint(ports, NULL);
-> 
-> In other words, we can't handle A1/A2 directly via
-> of_graph_get_next_endpoint() so far.
-> 
-> There is another non intuitive behavior on of_graph_get_next_endpoint().
-> In case of if I could get A1 pointer for some way, and if I want to
-> handle port@1 things, I would like use it like below
-> 
-> 	/*
-> 	 * "ep" is now A1, and handle port1 things here,
-> 	 * but we don't know how many endpoints port1 has.
-> 	 *
-> 	 * Because "ep" is non NULL, we can use port1
-> 	 * as of_graph_get_next_endpoint(port1, xxx)
-> 	 */
-> 	do {
-> 		/* do something for port1 specific things here */
-> 	} while (ep = of_graph_get_next_endpoint(port1, ep))
-> 
-> But it also not worked as I expected.
-> I expect it will be A1 -> A2 -> NULL,
-> but      it will be A1 -> A2 -> B,    because
-> of_graph_get_next_endpoint() will fetch "endpoint" beyond the "port".
-> 
-> It is not useful on generic driver like Generic Sound Card.
-> It uses of_get_next_child() instead for now, but it is not intuitive.
-> And it doesn't check node name (= "endpoint").
-> 
-> To handle endpoint more intuitive, create of_graph_get_next_port_endpoint()
-> 
-> 	of_graph_get_next_port_endpoint(port1, NULL); // A1
-> 	of_graph_get_next_port_endpoint(port1, A1);   // A2
-> 	of_graph_get_next_port_endpoint(port1, A2);   // NULL
-> 
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
 > ---
->   drivers/of/property.c    | 22 ++++++++++++++++++++++
->   include/linux/of_graph.h | 20 ++++++++++++++++++++
->   2 files changed, 42 insertions(+)
+>   .../dt-bindings/reset/aspeed,ast2700-reset.h  | 132 ++++++++++++++++++
+>   1 file changed, 132 insertions(+)
+>   create mode 100644 include/dt-bindings/reset/aspeed,ast2700-reset.h
 > 
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index 3b2d09c0376a..de56795a7362 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -692,6 +692,28 @@ struct device_node *of_graph_get_next_port(struct device_node *parent,
->   }
->   EXPORT_SYMBOL(of_graph_get_next_port);
->   
-> +/**
-> + * of_graph_get_next_port_endpoint() - get next endpoint node in port.
-> + * If it reached to end of the port, it will return NULL.
-> + * @port: pointer to the target port node
-> + * @endpoint: current endpoint node, or NULL to get first
+> diff --git a/include/dt-bindings/reset/aspeed,ast2700-reset.h b/include/dt-bindings/reset/aspeed,ast2700-reset.h
+> new file mode 100644
+> index 000000000000..ea261108abfb
+> --- /dev/null
+> +++ b/include/dt-bindings/reset/aspeed,ast2700-reset.h
+> @@ -0,0 +1,132 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * Device Tree binding constants for AST2700 reset controller.
 > + *
-> + * Return: An 'endpoint' node pointer with refcount incremented. Refcount
-> + * of the passed @prev node is decremented.
+> + * Copyright (c) 2024 Aspeed Technology Inc.
 > + */
-
-Same issues here too. No "prev" parameter, and I suggest using 
-"previous", not "current", to be consistent with 
-of_graph_get_next_endpoint(). (or alternatively, change 
-of_graph_get_next_endpoint()).
-
-Oh, the declaration of the function uses "prev", but the implementation 
-"endpoint". Please make the naming same.
-
-> +struct device_node *of_graph_get_next_port_endpoint(const struct device_node *port,
-> +						    struct device_node *endpoint)
-> +{
-> +	do {
-> +		endpoint = of_get_next_child(port, endpoint);
-> +		if (!endpoint)
-> +			break;
-> +	} while (!of_node_name_eq(endpoint, "endpoint"));
 > +
-> +	return endpoint;
-> +}
-> +EXPORT_SYMBOL(of_graph_get_next_port_endpoint);
+> +#ifndef _MACH_ASPEED_AST2700_RESET_H_
+> +#define _MACH_ASPEED_AST2700_RESET_H_
 > +
->   /**
->    * of_graph_get_next_endpoint() - get next endpoint node
->    *
-> diff --git a/include/linux/of_graph.h b/include/linux/of_graph.h
-> index 30169b50b042..8b4777938c5e 100644
-> --- a/include/linux/of_graph.h
-> +++ b/include/linux/of_graph.h
-> @@ -59,6 +59,17 @@ struct of_endpoint {
->   	for (child = of_graph_get_next_port(parent, NULL); child != NULL; \
->   	     child = of_graph_get_next_port(parent, child))
->   
-> +/**
-> + * for_each_of_graph_port_endpoint - iterate over every endpoint in a port node
-> + * @parent: parent device or ports node
+> +/* SOC0 */
+> +#define SCU0_RESET_SDRAM		(0)
+> +#define SCU0_RESET_DDRPHY		(1)
+> +#define SCU0_RESET_RSA			(2)
+> +#define SCU0_RESET_SHA3			(3)
+> +#define SCU0_RESET_HACE			(4)
+> +#define SCU0_RESET_SOC			(5)
+> +#define SCU0_RESET_VIDEO		(6)
+> +#define SCU0_RESET_2D			(7)
+> +#define SCU0_RESET_PCIS			(8)
+> +#define SCU0_RESET_RVAS0		(9)
+> +#define SCU0_RESET_RVAS1		(10)
+> +#define SCU0_RESET_SM3			(11)
+> +#define SCU0_RESET_SM4			(12)
+> +#define SCU0_RESET_CRT0			(13)
+> +#define SCU0_RESET_ECC			(14)
+> +#define SCU0_RESET_DP_PCI		(15)
+> +#define SCU0_RESET_UFS			(16)
+> +#define SCU0_RESET_EMMC			(17)
+> +#define SCU0_RESET_PCIE1RST		(18)
+> +#define SCU0_RESET_PCIE1RSTOE		(19)
+> +#define SCU0_RESET_PCIE0RST		(20)
+> +#define SCU0_RESET_PCIE0RSTOE		(21)
+> +#define SCU0_RESET_JTAG			(22)
+> +#define SCU0_RESET_MCTP0		(23)
+> +#define SCU0_RESET_MCTP1		(24)
+> +#define SCU0_RESET_XDMA0		(25)
+> +#define SCU0_RESET_XDMA1		(26)
+> +#define SCU0_RESET_H2X1			(27)
+> +#define SCU0_RESET_DP			(28)
+> +#define SCU0_RESET_DP_MCU		(29)
+> +#define SCU0_RESET_SSP			(30)
+> +#define SCU0_RESET_H2X0			(31)
+> +#define SCU0_RESET_PORTA_VHUB1		(32)
+> +#define SCU0_RESET_PORTA_PHY3		(33)
+> +#define SCU0_RESET_PORTA_XHCI		(34)
+> +#define SCU0_RESET_PORTB_VHUB1		(35)
+> +#define SCU0_RESET_PORTB_PHY3		(36)
+> +#define SCU0_RESET_PORTB_XHCI		(37)
+> +#define SCU0_RESET_PORTA_EHCI		(38)
+> +#define SCU0_RESET_PORTA_VHUB0		(38)
 
-Hmm, shouldn't the parent be a port node?
+Is having 38 twice expected?
+If not, why not use an enum, BTW?
 
-> + * @child: loop variable pointing to the current endpoint node
-> + *
-> + * When breaking out of the loop, of_node_put(child) has to be called manually.
-> + */
-> +#define for_each_of_graph_port_endpoint(parent, child)			\
-> +		for (child = of_graph_get_next_port_endpoint(parent, NULL); child != NULL; \
-> +		     child = of_graph_get_next_port_endpoint(parent, child))
+> +#define SCU0_RESET_PORTB_EHCI		(39)
+> +#define SCU0_RESET_PORTB_VHUB0		(39)
+> +#define SCU0_RESET_UHCI			(40)
+> +#define SCU0_RESET_TSP			(41)
+> +#define SCU0_RESET_E2M0			(42)
+> +#define SCU0_RESET_E2M1			(43)
+> +#define SCU0_RESET_VLINK		(44)
 > +
->   #ifdef CONFIG_OF
->   bool of_graph_is_present(const struct device_node *node);
->   int of_graph_parse_endpoint(const struct device_node *node,
-> @@ -73,6 +84,8 @@ struct device_node *of_graph_get_next_ports(struct device_node *parent,
->   					    struct device_node *ports);
->   struct device_node *of_graph_get_next_port(struct device_node *parent,
->   					   struct device_node *port);
-> +struct device_node *of_graph_get_next_port_endpoint(const struct device_node *port,
-> +						    struct device_node *prev);
->   struct device_node *of_graph_get_endpoint_by_regs(
->   		const struct device_node *parent, int port_reg, int reg);
->   struct device_node *of_graph_get_remote_endpoint(
-> @@ -133,6 +146,13 @@ static inline struct device_node *of_graph_get_next_port(
->   	return NULL;
->   }
->   
-> +static inline struct device_node *of_graph_get_next_port_endpoint(
-> +					const struct device_node *parent,
-> +					struct device_node *previous)
-> +{
-> +	return NULL;
-> +}
+> +#define SCU0_RESET_NUMS		(SCU0_RESET_VLINK + 1)
 > +
->   static inline struct device_node *of_graph_get_endpoint_by_regs(
->   		const struct device_node *parent, int port_reg, int reg)
->   {
+> +/* SOC1 */
+> +#define SCU1_RESET_LPC0			(0)
+> +#define SCU1_RESET_LPC1			(1)
+> +#define SCU1_RESET_MII			(2)
+> +#define SCU1_RESET_PECI			(3)
+> +#define SCU1_RESET_PWM			(4)
+> +#define SCU1_RESET_MAC0			(5)
+> +#define SCU1_RESET_MAC1			(6)
+> +#define SCU1_RESET_MAC2			(7)
+> +#define SCU1_RESET_ADC			(8)
+> +#define SCU1_RESET_SD			(9)
+> +#define SCU1_RESET_ESPI0		(10)
+> +#define SCU1_RESET_ESPI1		(11)
+> +#define SCU1_RESET_JTAG1		(12)
+> +#define SCU1_RESET_SPI0			(13)
+> +#define SCU1_RESET_SPI1			(14)
+> +#define SCU1_RESET_SPI2			(15)
+> +#define SCU1_RESET_I3C0			(16)
+> +#define SCU1_RESET_I3C1			(17)
+> +#define SCU1_RESET_I3C2			(18)
+> +#define SCU1_RESET_I3C3			(19)
+> +#define SCU1_RESET_I3C4			(20)
+> +#define SCU1_RESET_I3C5			(21)
+> +#define SCU1_RESET_I3C6			(22)
+> +#define SCU1_RESET_I3C7			(23)
+> +#define SCU1_RESET_I3C8			(24)
+> +#define SCU1_RESET_I3C9			(25)
+> +#define SCU1_RESET_I3C10		(26)
+> +#define SCU1_RESET_I3C11		(27)
+> +#define SCU1_RESET_I3C12		(28)
+> +#define SCU1_RESET_I3C13		(29)
+> +#define SCU1_RESET_I3C14		(30)
+> +#define SCU1_RESET_I3C15		(31)
+> +#define SCU1_RESET_I3C15		(31)
 
-  Tomi
+SCU1_RESET_I3C15 is defined twice.
+
+> +#define SCU1_RESET_MCU0			(32)
+> +#define SCU1_RESET_MCU1			(33)
+> +#define SCU1_RESET_H2A_SPI1		(34)
+> +#define SCU1_RESET_H2A_SPI2		(35)
+> +#define SCU1_RESET_UART0		(36)
+> +#define SCU1_RESET_UART1		(37)
+> +#define SCU1_RESET_UART2		(38)
+> +#define SCU1_RESET_UART3		(39)
+> +#define SCU1_RESET_I2C_FILTER		(40)
+> +#define SCU1_RESET_CALIPTRA		(41)
+> +#define SCU1_RESET_XDMA			(42)
+> +/* reserved 43 */
+> +#define SCU1_RESET_FSI			(44)
+> +#define SCU1_RESET_CAN			(45)
+> +#define SCU1_RESET_MCTP			(46)
+> +#define SCU1_RESET_I2C			(47)
+> +#define SCU1_RESET_UART6		(48)
+> +#define SCU1_RESET_UART7		(49)
+> +#define SCU1_RESET_UART8		(50)
+> +#define SCU1_RESET_UART9		(51)
+> +#define SCU1_RESET_LTPI			(52)
+> +#define SCU1_RESET_VGAL			(53)
+> +#define SCU1_RESET_LTPI1		(54)
+> +#define SCU1_RESET_ACE			(55)
+> +#define SCU1_RESET_E2M			(56)
+> +#define SCU1_RESET_UHCI			(57)
+> +#define SCU1_RESET_PORTC_EHCI		(58)
+> +#define SCU1_RESET_PORTC_VHUB		(59)
+> +#define SCU1_RESET_PORTD_EHCI		(60)
+> +#define SCU1_RESET_PORTD_VHUB		(61)
+> +#define SCU1_RESET_H2X			(62)
+> +#define SCU1_RESET_I3CDMA		(63)
+> +#define SCU1_RESET_PCIE2RST		(64)
+> +
+> +#define SCU1_RESET_NUMS		(SCU1_RESET_PCIE2RST + 1)
+> +
+> +#endif  /* _MACH_ASPEED_AST2700_RESET_H_ */
 
 
