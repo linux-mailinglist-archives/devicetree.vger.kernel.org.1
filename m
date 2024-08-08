@@ -1,140 +1,124 @@
-Return-Path: <devicetree+bounces-92205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C117E94C3E5
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 19:49:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4150694C3EB
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 19:52:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F1B221C2220B
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 17:49:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC9C81F230BA
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 17:52:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 928C784A5C;
-	Thu,  8 Aug 2024 17:49:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 710891448DD;
+	Thu,  8 Aug 2024 17:52:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PwLljYqW"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="SUf2zPf8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 686E1635;
-	Thu,  8 Aug 2024 17:49:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723139395; cv=none; b=J/Lhnd3XPbicoD/KEojlEZxHcALWHYzd4IoCMO4GRReLkNlrodutqNrLXkW/9WCHJwvmjN8ebwfQ41Guc76P4PsA4SPAnDM1SKzTt3QEMtgkvMiBxHnL4JS9wCrn6QhHt+itmzBxJE+qbYyc7I92UEIV30EuNk3JDw3HSy3nkXo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723139395; c=relaxed/simple;
-	bh=5+aelMbURuH5w4Acf65OlNYwqYxFl+suSWuEQ7s74BE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h67bZvYstD5DC3mSpOx97w1VSNriEfbJBB7VfoMr+ZYU7HXnIpCOg3USNipALwAhC2yQyFA9xqAeJwIKjNmTKsUH65l5ir99MK07dCaoAAnZG0e10HIgrwcKq6TrLPL1gMANDCUKSoj4A5F8/UN2A6hrDiWIymJGVyYGk3lqIVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PwLljYqW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C34B8C32782;
-	Thu,  8 Aug 2024 17:49:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723139395;
-	bh=5+aelMbURuH5w4Acf65OlNYwqYxFl+suSWuEQ7s74BE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PwLljYqWdV99qq+FG4d7s+pMQofwnCrgZrhqdxNEaERupcsqgSXWjCcDiecrinZ3L
-	 0Fg7w3GiirSCJMSe10umnH3WujARsfzSk9HmhiFDpCIU4Xhho4zeB/3oQ3Nen3oqVZ
-	 5DCNp6Rnq5TDRnEdKKm4LKdEQMSnzfo9PGI4y+wMCzgZGBSqtk5QB2ho9jmLWT6Icu
-	 zFZCwiFEA8tvUyxHf2asLiotHTh2dG2Z+Wl5lBYfSLFCHLNtiTW70aCCjjYt2UVIzL
-	 NUBW4mcFRxoPVTliV5RqKs6NKh4Do4aR02DBNQDa7hWQi+xhPIKO4HHvK5IFjKokjp
-	 bPoUloCM1Gvpg==
-Date: Thu, 8 Aug 2024 11:49:53 -0600
-From: Rob Herring <robh@kernel.org>
-To: Stefan Wiehler <stefan.wiehler@nokia.com>
-Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] of/irq: Consider device address size in interrupt map
- walk
-Message-ID: <20240808174953.GA1670999-robh@kernel.org>
-References: <20240807120153.1208858-2-stefan.wiehler@nokia.com>
- <CAL_JsqLciDTxfeKwuNNWEOZjrUDFp9g7ZAzTuY4nQ1GCwPmaow@mail.gmail.com>
- <9d19cec9-3e40-471c-8c76-8842a5d86973@nokia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A989C12CDAE;
+	Thu,  8 Aug 2024 17:52:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723139549; cv=pass; b=anBePdCG7naHPHH4OutKUlVUfaJegeX/lkGR+xNY5EOluQt/e2Y+QpVugRDVbCgqECUskrQivnk3Q4AC3w0bNpEHkSb7PxaW7l5lK73L2X04+uwliSKboLjoOsh1qhkb5URHWp/IUEAHBFYyZwvXxvVfAJTZXe1z6RZA4k/yTxw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723139549; c=relaxed/simple;
+	bh=J+kCj9xB02trLEDSGjOa+PeGNVfgddKIWq+oSVKBPIQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=oXepOc84lEDNM2gq0utbRlHLOveJJ7c1w/bEDsEmhP5246gYJbXN8+IMU3bpvhmUXiLRrfpj1zaS0YJ9cBSRgtbbrzMAPjRoV8+Y+CtR8+bsqixd9ZScupKx/lsYzsZO2Lrr8WwukGvVIsNVp0e6PTLhoswsp4pittbNil2qB7I=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=SUf2zPf8; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Delivered-To: kernel@collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1723139524; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=Z5RkGYweZDCj33L+9XVp7NUsy9qorTJumRZa1LgxuRjS80WUvyI0CLLtoi/YIn+y7pVZ8Q4wYe6/yIUvFdioWrfBZKhanGSSAOjDqOvP1Bh/CjXQTpRnJnLObqFyLsEgo/BG+d3YEHASnTjmU1AZ4c6oFG5ZtnPcmfdjDZ8uKA0=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1723139524; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=ZPWX9nQFc4zdu6yspZOvI5jMNY9Ewabr9vrBLea3YM4=; 
+	b=V1ep5TXuqay3hF4BdasanLQtOeW0lGjl02E0MCusyLESdyoUGbnEHRu6U3pwcWx76ZOAU3MbjAfz+5hpY9xH47RtRSqgGQ1qjy4UU/hlDS3RfkjHVTGU4U/B9wl3wc0VVIIruOhvIuxSPqkpdeiBrTrVxaq/R+vRntZ0Gue+Q34=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
+	dmarc=pass header.from=<detlev.casanova@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1723139524;
+	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=ZPWX9nQFc4zdu6yspZOvI5jMNY9Ewabr9vrBLea3YM4=;
+	b=SUf2zPf8ofT0XUr+yvKRzZjdSOZkiv/HcHz6jC112prhVEf3TDQ8+QJCqXXkrhb1
+	0LbtgkeoyybsSLxaRYrYYrGqTJt1wGXpS3lVq2RuAEnICwk2lkbGu8LlqjhQMBVrcti
+	IwJBAERJ4k3P7/WIzfHVKJa9VS9z7xWgKF6dLD+4=
+Received: by mx.zohomail.com with SMTPS id 1723139522203254.50577975633348;
+	Thu, 8 Aug 2024 10:52:02 -0700 (PDT)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: linux-kernel@vger.kernel.org,
+ Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Finley Xiao <finley.xiao@rock-chips.com>, Jagan Teki <jagan@edgeble.ai>,
+ Arnd Bergmann <arnd@arndb.de>, Elaine Zhang <zhangqing@rock-chips.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-pm@vger.kernel.org,
+ kernel@collabora.com
+Subject: Re: [PATCH v2 2/2] pmdomain: rockchip: Add support for rk3576 SoC
+Date: Thu, 08 Aug 2024 13:53:20 -0400
+Message-ID: <5805279.DvuYhMxLoT@trenzalore>
+In-Reply-To: <17766579.lhrHg4fidi@diego>
+References:
+ <20240808163451.80750-1-detlev.casanova@collabora.com>
+ <20240808163451.80750-3-detlev.casanova@collabora.com>
+ <17766579.lhrHg4fidi@diego>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9d19cec9-3e40-471c-8c76-8842a5d86973@nokia.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-ZohoMailClient: External
 
-On Thu, Aug 08, 2024 at 09:53:59AM +0200, Stefan Wiehler wrote:
-> > You've missed a bunch of people/lists. Use get_maintainers.pl.
-> 
-> Sorry, indeed, did not think about about PCI...
-> 
-> > Can you provide some details on what these nodes look like. The
-> > interrupt provider to an SoC device is a PCI device? That's weird...
-> 
-> The DTO looks like this:
-> 
-> watchdog {
-> 	...
-> 	reg = <0x00002064 0x00000028>;
-> 	...
-> 	interrupt-parent = <&gpio_17_0>;
-> 	interrupts = <4 0x8>; // 8 -> IRQ_TYPE_LEVEL_LOW
-> 	...
-> };
-> 
-> And the base DT:
-> 
-> ecam0: pci@878000000000 {
-> 	...
-> 	#size-cells = <2>;
-> 	#address-cells = <3>;
-> 	...
-> 	gpio_17_0: gpio0@17,0 {
-> 		...
-> 		reg = <0x8800 0 0 0 0>; /*  DEVFN = 0x88 (17:0) */
-> 		...
-> 	};
-> 	...
-> };
-> 
-> I completely agree it's a bit sketchy, but it's not me who came up with
-> this ;-) Nevertheless I think other people might run into this issue of
-> mismatching address sizes as well when no interrupt mapping was intended.
-> 
-> > Note that of_irq_parse_raw() was refactored in 6.10, so your patch is
-> > not going to apply.
-> 
-> I'm aware of that and have adapted the patch accordingly.
-> 
-> > That's not the right information to parse the address correctly. You
-> > would need the device's #address-cells. However, in most cases we
-> > don't really need to parse the address. The address is not really used
-> > except in cases where interrupt routing matches the bus and so there
-> > is only one size. That's effectively only PCI devices today. In that
-> > case, the address size would always be equal, and the code implicitly
-> > assumes that. It would be better if we could just detect when to use
-> > the address or not. I think we'd have to look at 'interrupt-map-mask'
-> > first to see whether or not to read the address cells. Or maybe we
-> > could detect when the interrupt parent is the device's parent node.
-> > Either way, this code is tricky and hard to change without breaking
-> > something.
-> 
-> Thanks for confirming that it's PCI only and no address size mismatch
-> should occur. I also was thinking in the direction of checking first if
-> interrupt mapping is intended and return early otherwise, but was
-> worried to break something along the way...
-> 
-> > A simpler way to fix this is just always pass in an address buffer of
-> > 3 cells to of_irq_parse_raw. You would just need to copy the cells in
-> > of_irq_parse_one() to a temporary buffer.
-> 
-> That indeed sounds like the easiest solution to me; I'll send a new patch
-> shortly. However I don't understand how you came up with an address
-> buffer size of 3 - shouldn't it be MAX_PHANDLE_ARGS
-> (addrsize = MAX_PHANDLE_ARGS and intsize = 0 in the worst case)?
+Hi Heiko,
 
-There is simply no supported case of more than 3 address-cells. If 
-someone has 4, then their address translation is not going to work and 
-we won't even get to worrying about interrupts...
+On Thursday, 8 August 2024 12:41:05 EDT Heiko St=C3=BCbner wrote:
+> Hi Detlev,
+>=20
+> >=20
+> > @@ -552,7 +575,10 @@ static int rockchip_pd_power(struct
+> > rockchip_pm_domain *pd, bool power_on)>=20
+> >  			/* if powering up, leave idle mode */
+> >  			rockchip_pmu_set_idle_request(pd, false);
+> >=20
+> > -			rockchip_pmu_restore_qos(pd);
+> > +			if (pd->info->delay_us)
+> > +				udelay(pd->info->delay_us);
+> > +			else
+> > +				rockchip_pmu_restore_qos(pd);
+>=20
+> I still want this behaviour change in a separate patch with adequate
+> commit message please.
+>=20
+> Going from always handling qos to allowing to just wait a specific time
+> needs explanation and is not part of "just" adding rk3576 support.
 
-Rob
+You are right, I didn't takle this issue.
+This is actually a bug, the else is not supposed to be there, it should onl=
+y=20
+be an added delay for some PDs.
+
+Unfortunately, I'm not sure why that delay is needed exactly, so I'm willin=
+g=20
+to remove it for now (only used by nputop and vop, both unsupported) and co=
+me=20
+back to it if needed when VOP/NPU support is added.
+
+Would that work for this upstream ?
+
+Detlev.
+
+
+
+
 
