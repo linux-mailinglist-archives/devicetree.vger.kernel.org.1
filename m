@@ -1,1184 +1,464 @@
-Return-Path: <devicetree+bounces-92004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF19694B875
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:01:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47AA494B88B
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:06:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B902B26A6B
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 08:00:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7EBC9B23326
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 08:06:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DA05189BBA;
-	Thu,  8 Aug 2024 08:00:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24AA8188CDB;
+	Thu,  8 Aug 2024 08:06:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="azIVX33y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F835189917;
-	Thu,  8 Aug 2024 08:00:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04C4C13CA8A;
+	Thu,  8 Aug 2024 08:06:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723104004; cv=none; b=MmbbcSn3YIkJ28fIhOh1V5HjPMJ5M5fJLCpm4YXk++I+UaTsk0FDxUc7ystBi7yDpNPDguQ+8atJxbeMBk5G2LCVGHMGW573tjsI+QTEHV7DA4iNULzOZFjhdUr9b7OT5hWRhdKEVIAvaeuaWwa+BBCCFjXZAwGqEEc0Z6DVSnI=
+	t=1723104396; cv=none; b=SVguV6bedkD0Vb2Z+2iR+vWdp3Ed1bOLbnyAO8tYHi4NU59KB/0pr1Oa8TxPViTcBBrlpFtlY8DiU3rvEl2ylxhV3qmiV6eicwZ/9/AKVT8NBCtTcXwHrIDSEPxnvtaIp0fR7H+C8Wt2dIuqDyAmD5QaMwEpbrSJQ3SzQyB7Pjk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723104004; c=relaxed/simple;
-	bh=Ru0NpqBUL4GjNtKvnOOh7XRBnggWkBsNt5ohRkEBJEI=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HtWctzBiP+KdB/ZgFaQ9/R/zUefFsi27BbXSk2D2LnK3KVbTl7BZglC8P5oAG3pTX1m1HMxZPGViHAKwZQJ6Qw1ck752kB8kYc7h4Euox6ca6yuCS1Uyd+CFX54QWdeFOwZYhT2G/d440D+4IXIdCGtT4LY2y1RwXTDLotKMr5k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.12; Thu, 8 Aug
- 2024 15:59:38 +0800
-Received: from twmbx02.aspeed.com (192.168.10.152) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server id 15.2.1258.12 via Frontend
- Transport; Thu, 8 Aug 2024 15:59:37 +0800
-From: Ryan Chen <ryan_chen@aspeedtech.com>
-To: <ryan_chen@aspeedtech.com>, Lee Jones <lee@kernel.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery
-	<andrew@codeconstruct.com.au>, Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-	<linux-clk@vger.kernel.org>
-Subject: [PATCH 4/4] dt-bindings: clock: Add AST2700 clock bindings
-Date: Thu, 8 Aug 2024 15:59:37 +0800
-Message-ID: <20240808075937.2756733-5-ryan_chen@aspeedtech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240808075937.2756733-1-ryan_chen@aspeedtech.com>
-References: <20240808075937.2756733-1-ryan_chen@aspeedtech.com>
+	s=arc-20240116; t=1723104396; c=relaxed/simple;
+	bh=m6WZVcmXq3vqWWwuRnSDzja+for6m0HnYPAgXqeXz5o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:Cc:From:
+	 In-Reply-To:Content-Type; b=fHlQGIRxokdl4tqDb8VRNXXSjp0nOLT/skkc7PcBFit5IrWOXa27FZpk4ou7vPuEBCe0yqKjp20J7GEU6AvpZk8kCqfJ3BfvQttq8FgxM048wgvZqeyRBnnfoIW4VR1vaGC91IcaXmQ3EI6hty3+fJpAGbyfFaJhRuIVVG4yGAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=azIVX33y; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-156-87-48.elisa-laajakaista.fi [91.156.87.48])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1907B581;
+	Thu,  8 Aug 2024 10:05:37 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1723104338;
+	bh=m6WZVcmXq3vqWWwuRnSDzja+for6m0HnYPAgXqeXz5o=;
+	h=Date:Subject:To:References:Cc:From:In-Reply-To:From;
+	b=azIVX33ys0qGXuYpExnWr/+oel+rutrd5DhWpCWpKEAwsu5XFWcHJSKQslegVTsSg
+	 R8rcVfw8m35jHsw5XwHLcgYL9px8Vj9ncfjA+Mhoc0djqrnpYm3b+2GULj/DngMZ7Z
+	 6DEF88Uvm+OYBviUSVdfZOeLfWUicCs6EYEW+EUE=
+Message-ID: <ca216286-b09a-4faf-8221-c88c21f4de0c@ideasonboard.com>
+Date: Thu, 8 Aug 2024 11:06:26 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/9] of: property: add of_graph_get_next_port()
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+References: <87mslqw8mj.wl-kuninori.morimoto.gx@renesas.com>
+ <87le1aw8lw.wl-kuninori.morimoto.gx@renesas.com>
+Content-Language: en-US
+Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ Helge Deller <deller@gmx.de>, Jaroslav Kysela <perex@perex.cz>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Liam Girdwood <lgirdwood@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Mark Brown <broonie@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Maxime Ripard <mripard@kernel.org>, Michal Simek <michal.simek@amd.com>,
+ Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+ Takashi Iwai <tiwai@suse.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-omap@vger.kernel.org,
+ linux-sound@vger.kernel.org
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <87le1aw8lw.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add dt bindings for AST2700 clock controller
+On 06/08/2024 07:58, Kuninori Morimoto wrote:
+> We have endpoint base functions
+> 	- of_graph_get_next_device_endpoint()
+> 	- of_graph_get_device_endpoint_count()
+> 	- for_each_of_graph_device_endpoint()
+> 
+> Here, for_each_of_graph_device_endpoint() loop finds each endpoints
+> 
+> 	ports {
+> 		port@0 {
+> (1)			endpoint {...};
+> 		};
+> 		port@1 {
+> (2)			endpoint {...};
+> 		};
+> 		...
+> 	};
+> 
+> In above case, it finds endpoint as (1) -> (2) -> ...
+> 
+> Basically, user/driver knows which port is used for what, but not in
+> all cases. For example on flexible/generic driver case, how many ports
+> are used is not fixed.
+> 
+> For example Sound Generic Card driver which is used from many venders
+> can't know how many ports are used. Because the driver is very
+> flexible/generic, it is impossible to know how many ports are used,
+> it depends on each vender SoC and/or its used board.
+> 
+> And more, the port can have multi endpoints. For example Generic Sound
+> Card case, it supports many type of connection between CPU / Codec, and
+> some of them uses multi endpoint in one port.
+> Then, Generic Sound Card want to handle each connection via "port"
+> instead of "endpoint".
+> But, it is very difficult to handle each "port" via
+> for_each_of_graph_device_endpoint(). Getting "port" by using
+> of_get_parent() from "endpoint" doesn't work. see below.
+> 
+> 	ports {
+> 		port@0 {
+> (1)			endpoint@0 {...};
+> (2)			endpoint@1 {...};
+> 		};
+> 		port@1 {
+> (3)			endpoint {...};
+> 		};
+> 		...
+> 	};
+> 
+> In the same time, same reason, we want to handle "ports" same as "port".
+> 
+> 	node {
+> =>		ports@0 {
+> 			port@0 {
+> 				endpoint@0 {...};
+> 				endpoint@1 {...};
+> 				...
+> 			};
+> 			port@1 {
+> 				endpoint@0 {...};
+> 				endpoint@1 {...};
+> 				...
+> 			};
+> 			...
+> 		};
+> =>		ports@1 {
+> 			...
+> 		};
+> 	};
+> 
+> Add "ports" / "port" base functions.
+> For above case, we can use
+> 
+> 	for_each_of_graph_ports(node, ports) {
+> 		for_each_of_graph_port(ports, port) {
+> 			...
+> 		}
+> 	}
+> 
+> This loop works in case of "node" doesn't have "ports" also.
+> 
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>   drivers/of/property.c    | 86 ++++++++++++++++++++++++++++++++++++++++
+>   include/linux/of_graph.h | 47 ++++++++++++++++++++++
+>   2 files changed, 133 insertions(+)
+> 
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index 164d77cb9445..3b2d09c0376a 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -625,8 +625,76 @@ struct device_node *of_graph_get_port_by_id(struct device_node *parent, u32 id)
+>   }
+>   EXPORT_SYMBOL(of_graph_get_port_by_id);
+>   
+> +/**
+> + * of_graph_get_next_ports() - get next ports node.
+> + * @parent: pointer to the parent device node
+> + * @ports: current ports node, or NULL to get first
+> + *
+> + * Return: A 'ports' node pointer with refcount incremented. Refcount
+> + * of the passed @prev node is decremented.
 
-Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
----
- drivers/clk/Makefile      |    1 +
- drivers/clk/clk-ast2700.c | 1091 +++++++++++++++++++++++++++++++++++++
- 2 files changed, 1092 insertions(+)
- create mode 100644 drivers/clk/clk-ast2700.c
+No "prev" argument in the code.
 
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index f793a16cad40..0d5992ea0fa4 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -38,6 +38,7 @@ obj-$(CONFIG_COMMON_CLK_FSL_SAI)	+= clk-fsl-sai.o
- obj-$(CONFIG_COMMON_CLK_GEMINI)		+= clk-gemini.o
- obj-$(CONFIG_COMMON_CLK_ASPEED)		+= clk-aspeed.o
- obj-$(CONFIG_MACH_ASPEED_G6)		+= clk-ast2600.o
-+obj-$(CONFIG_MACH_ASPEED_G7)		+= clk-ast2700.o
- obj-$(CONFIG_ARCH_HIGHBANK)		+= clk-highbank.o
- obj-$(CONFIG_CLK_HSDK)			+= clk-hsdk-pll.o
- obj-$(CONFIG_COMMON_CLK_K210)		+= clk-k210.o
-diff --git a/drivers/clk/clk-ast2700.c b/drivers/clk/clk-ast2700.c
-new file mode 100644
-index 000000000000..59c5df822de3
---- /dev/null
-+++ b/drivers/clk/clk-ast2700.c
-@@ -0,0 +1,1091 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2024 ASPEED Technology Inc.
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/of_address.h>
-+#include <linux/of_device.h>
-+#include <linux/reset-controller.h>
-+#include <linux/slab.h>
-+
-+#include <dt-bindings/clock/aspeed,ast2700-clk.h>
-+#include <dt-bindings/reset/aspeed,ast2700-reset.h>
-+
-+#define SCU_CLK_24MHZ 24000000
-+#define SCU_CLK_25MHZ 25000000
-+#define SCU_CLK_192MHZ 192000000
-+/* SOC0 USB2 PHY CLK*/
-+#define SCU_CLK_12MHZ 12000000
-+/* SOC0 */
-+#define SCU0_HWSTRAP1 0x010
-+#define SCU0_CLK_STOP 0x240
-+#define SCU0_CLK_SEL1 0x280
-+#define SCU0_CLK_SEL2 0x284
-+#define GET_USB_REFCLK_DIV(x) ((GENMASK(23, 20) & (x)) >> 20)
-+#define UART_DIV13_EN BIT(30)
-+#define SCU0_HPLL_PARAM 0x300
-+#define SCU0_DPLL_PARAM 0x308
-+#define SCU0_MPLL_PARAM 0x310
-+#define SCU0_D1CLK_PARAM 0x320
-+#define SCU0_D2CLK_PARAM 0x330
-+#define SCU0_CRT1CLK_PARAM 0x340
-+#define SCU0_CRT2CLK_PARAM 0x350
-+#define SCU0_MPHYCLK_PARAM 0x360
-+
-+/* SOC1 */
-+#define SCU1_CLK_STOP 0x240
-+#define SCU1_CLK_STOP2 0x260
-+#define SCU1_CLK_SEL1 0x280
-+#define SCU1_CLK_SEL2 0x284
-+#define UXCLK_MASK GENMASK(1, 0)
-+#define HUXCLK_MASK GENMASK(4, 3)
-+#define SCU1_HPLL_PARAM 0x300
-+#define SCU1_APLL_PARAM 0x310
-+#define SCU1_DPLL_PARAM 0x320
-+#define SCU1_UXCLK_CTRL 0x330
-+#define SCU1_HUXCLK_CTRL 0x334
-+#define SCU1_MAC12_CLK_DLY 0x390
-+#define SCU1_MAC12_CLK_DLY_100M 0x394
-+#define SCU1_MAC12_CLK_DLY_10M 0x398
-+
-+/* Globally visible clocks */
-+static DEFINE_SPINLOCK(ast2700_clk_lock);
-+
-+/* Division of RGMII Clock */
-+static const struct clk_div_table ast2700_rgmii_div_table[] = {
-+	{ 0x0, 4 },
-+	{ 0x1, 4 },
-+	{ 0x2, 6 },
-+	{ 0x3, 8 },
-+	{ 0x4, 10 },
-+	{ 0x5, 12 },
-+	{ 0x6, 14 },
-+	{ 0x7, 16 },
-+	{ 0 }
-+};
-+
-+/* Division of RMII Clock */
-+static const struct clk_div_table ast2700_rmii_div_table[] = {
-+	{ 0x0, 8 },
-+	{ 0x1, 8 },
-+	{ 0x2, 12 },
-+	{ 0x3, 16 },
-+	{ 0x4, 20 },
-+	{ 0x5, 24 },
-+	{ 0x6, 28 },
-+	{ 0x7, 32 },
-+	{ 0 }
-+};
-+
-+/* Division of HCLK/SDIO/MAC/apll_divn CLK */
-+static const struct clk_div_table ast2700_clk_div_table[] = {
-+	{ 0x0, 2 },
-+	{ 0x1, 2 },
-+	{ 0x2, 3 },
-+	{ 0x3, 4 },
-+	{ 0x4, 5 },
-+	{ 0x5, 6 },
-+	{ 0x6, 7 },
-+	{ 0x7, 8 },
-+	{ 0 }
-+};
-+
-+/* Division of PCLK/EMMC CLK */
-+static const struct clk_div_table ast2700_clk_div_table2[] = {
-+	{ 0x0, 2 },
-+	{ 0x1, 4 },
-+	{ 0x2, 6 },
-+	{ 0x3, 8 },
-+	{ 0x4, 10 },
-+	{ 0x5, 12 },
-+	{ 0x6, 14 },
-+	{ 0x7, 16 },
-+	{ 0 }
-+};
-+
-+/* HPLL/DPLL: 2000Mhz(default) */
-+static struct clk_hw *ast2700_soc0_hw_pll(const char *name, const char *parent_name, u32 val)
-+{
-+	unsigned int mult, div;
-+
-+	if (val & BIT(24)) {
-+		/* Pass through mode */
-+		mult = 1;
-+		div = 1;
-+	} else {
-+		/* F = CLKIN(25MHz) * [(M+1) / 2(N+1)] / (P+1) */
-+		u32 m = val & 0x1fff;
-+		u32 n = (val >> 13) & 0x3f;
-+		u32 p = (val >> 19) & 0xf;
-+
-+		mult = (m + 1) / (2 * (n + 1));
-+		div = (p + 1);
-+	}
-+
-+	return clk_hw_register_fixed_factor(NULL, name, parent_name, 0, mult, div);
-+};
-+
-+/* MPLL 1600Mhz(default) */
-+static struct clk_hw *ast2700_calc_mpll(const char *name, const char *parent_name, u32 val)
-+{
-+	unsigned int mult, div;
-+
-+	if (val & BIT(24)) {
-+		/* Pass through mode */
-+		mult = 1;
-+		div = 1;
-+	} else {
-+		/* F = CLKIN(25MHz) * [CLKF/(CLKR+1)] /(CLKOD+1) */
-+		u32 m = val & 0x1fff;
-+		u32 n = (val >> 13) & 0x3f;
-+		u32 p = (val >> 19) & 0xf;
-+
-+		mult = m / (n + 1);
-+		div = (p + 1);
-+	}
-+	return clk_hw_register_fixed_factor(NULL, name, parent_name, 0, mult, div);
-+};
-+
-+static struct clk_hw *ast2700_calc_uclk(const char *name, u32 val)
-+{
-+	unsigned int mult, div;
-+
-+	/* UARTCLK = UXCLK * R / (N * 2) */
-+	u32 r = val & 0xff;
-+	u32 n = (val >> 8) & 0x3ff;
-+
-+	mult = r;
-+	div = n * 2;
-+
-+	return clk_hw_register_fixed_factor(NULL, name, "uxclk", 0, mult, div);
-+};
-+
-+static struct clk_hw *ast2700_calc_huclk(const char *name, u32 val)
-+{
-+	unsigned int mult, div;
-+
-+	/* UARTCLK = UXCLK * R / (N * 2) */
-+	u32 r = val & 0xff;
-+	u32 n = (val >> 8) & 0x3ff;
-+
-+	mult = r;
-+	div = n * 2;
-+
-+	return clk_hw_register_fixed_factor(NULL, name, "huxclk", 0, mult, div);
-+};
-+
-+static struct clk_hw *ast2700_calc_soc1_pll(const char *name, const char *parent_name, u32 val)
-+{
-+	unsigned int mult, div;
-+
-+	if (val & BIT(24)) {
-+		/* Pass through mode */
-+		mult = 1;
-+		div = 1;
-+	} else {
-+		/* F = 25Mhz * [(M + 1) / (n + 1)] / (p + 1) */
-+		u32 m = val & 0x1fff;
-+		u32 n = (val >> 13) & 0x3f;
-+		u32 p = (val >> 19) & 0xf;
-+
-+		mult = (m + 1) / (n + 1);
-+		div = (p + 1);
-+	}
-+	return clk_hw_register_fixed_factor(NULL, name, parent_name, 0, mult, div);
-+};
-+
-+static int ast2700_clk_is_enabled(struct clk_hw *hw)
-+{
-+	struct clk_gate *gate = to_clk_gate(hw);
-+	u32 clk = BIT(gate->bit_idx);
-+	u32 reg;
-+
-+	reg = readl(gate->reg);
-+
-+	return !(reg & clk);
-+}
-+
-+static int ast2700_clk_enable(struct clk_hw *hw)
-+{
-+	struct clk_gate *gate = to_clk_gate(hw);
-+	u32 clk = BIT(gate->bit_idx);
-+
-+	if (readl(gate->reg) & clk)
-+		writel(clk, gate->reg + 0x04);
-+
-+	return 0;
-+}
-+
-+static void ast2700_clk_disable(struct clk_hw *hw)
-+{
-+	struct clk_gate *gate = to_clk_gate(hw);
-+	u32 clk = BIT(gate->bit_idx);
-+
-+	/* Clock is set to enable, so use write to set register */
-+	writel(clk, gate->reg);
-+}
-+
-+static const struct clk_ops ast2700_clk_gate_ops = {
-+	.enable = ast2700_clk_enable,
-+	.disable = ast2700_clk_disable,
-+	.is_enabled = ast2700_clk_is_enabled,
-+};
-+
-+static struct clk_hw *ast2700_clk_hw_register_gate(struct device *dev, const char *name,
-+						   const char *parent_name, unsigned long flags,
-+						   void __iomem *reg, u8 clock_idx,
-+						   u8 clk_gate_flags, spinlock_t *lock)
-+{
-+	struct clk_gate *gate;
-+	struct clk_hw *hw;
-+	struct clk_init_data init;
-+	int ret = -EINVAL;
-+
-+	gate = kzalloc(sizeof(*gate), GFP_KERNEL);
-+	if (!gate)
-+		return ERR_PTR(-ENOMEM);
-+
-+	init.name = name;
-+	init.ops = &ast2700_clk_gate_ops;
-+	init.flags = flags;
-+	init.parent_names = parent_name ? &parent_name : NULL;
-+	init.num_parents = parent_name ? 1 : 0;
-+
-+	gate->reg = reg;
-+	gate->bit_idx = clock_idx;
-+	gate->flags = clk_gate_flags;
-+	gate->lock = lock;
-+	gate->hw.init = &init;
-+
-+	hw = &gate->hw;
-+	ret = clk_hw_register(dev, hw);
-+	if (ret) {
-+		kfree(gate);
-+		hw = ERR_PTR(ret);
-+	}
-+
-+	return hw;
-+}
-+
-+struct ast2700_reset {
-+	void __iomem *base;
-+	struct reset_controller_dev rcdev;
-+};
-+
-+#define to_rc_data(p) container_of(p, struct ast2700_reset, rcdev)
-+
-+static int ast2700_reset_assert(struct reset_controller_dev *rcdev, unsigned long id)
-+{
-+	struct ast2700_reset *rc = to_rc_data(rcdev);
-+	u32 rst = BIT(id % 32);
-+	u32 reg = id >= 32 ? 0x220 : 0x200;
-+
-+	if (id == SCU1_RESET_PCIE2RST)
-+		writel(readl(rc->base + 0x908) & ~BIT(0), rc->base + 0x908);
-+	else
-+		writel(rst, rc->base + reg);
-+	return 0;
-+}
-+
-+static int ast2700_reset_deassert(struct reset_controller_dev *rcdev, unsigned long id)
-+{
-+	struct ast2700_reset *rc = to_rc_data(rcdev);
-+	u32 rst = BIT(id % 32);
-+	u32 reg = id >= 32 ? 0x220 : 0x200;
-+
-+	if (id == SCU1_RESET_PCIE2RST)
-+		writel(readl(rc->base + 0x908) | BIT(0), rc->base + 0x908);
-+	else
-+		/* Use set to clear register */
-+		writel(rst, rc->base + reg + 0x04);
-+	return 0;
-+}
-+
-+static int ast2700_reset_status(struct reset_controller_dev *rcdev, unsigned long id)
-+{
-+	struct ast2700_reset *rc = to_rc_data(rcdev);
-+	u32 rst = BIT(id % 32);
-+	u32 reg = id >= 32 ? 0x220 : 0x200;
-+
-+	return (readl(rc->base + reg) & rst);
-+}
-+
-+static const struct reset_control_ops ast2700_reset_ops = {
-+	.assert = ast2700_reset_assert,
-+	.deassert = ast2700_reset_deassert,
-+	.status = ast2700_reset_status,
-+};
-+
-+static const char *const sdclk_sel[] = {
-+	"soc1-hpll",
-+	"soc1-apll",
-+};
-+
-+static const char *const uartclk_sel[] = {
-+	"uartxclk",
-+	"huartxclk",
-+};
-+
-+static const char *const uxclk_sel[] = {
-+	"soc1-apll_div4",
-+	"soc1-apll_div2",
-+	"soc1-apll",
-+	"soc1-hpll",
-+};
-+
-+static int ast2700_soc1_clk_init(struct device_node *soc1_node)
-+{
-+	struct clk_hw_onecell_data *clk_data;
-+	struct ast2700_reset *reset;
-+	u32 uart_clk_source = 0;
-+	void __iomem *clk_base;
-+	struct clk_hw **clks;
-+	u32 val, id;
-+	int ret;
-+
-+	clk_base = of_iomap(soc1_node, 0);
-+	WARN_ON(!clk_base);
-+
-+	clk_data = kzalloc(struct_size(clk_data, hws, SCU1_NUM_CLKS), GFP_KERNEL);
-+	if (!clk_data)
-+		return -ENOMEM;
-+
-+	clk_data->num = SCU1_NUM_CLKS;
-+	clks = clk_data->hws;
-+
-+	reset = kzalloc(sizeof(*reset), GFP_KERNEL);
-+	if (!reset)
-+		return -ENOMEM;
-+
-+	reset->base = clk_base;
-+
-+	reset->rcdev.owner = THIS_MODULE;
-+	reset->rcdev.nr_resets = SCU1_RESET_NUMS;
-+	reset->rcdev.ops = &ast2700_reset_ops;
-+	reset->rcdev.of_node = soc1_node;
-+
-+	ret = reset_controller_register(&reset->rcdev);
-+	if (ret) {
-+		pr_err("soc1 failed to register reset controller\n");
-+		return ret;
-+	}
-+	/*
-+	 * Ast2700 A0 workaround:
-+	 * I3C reset should assert all of the I3C controllers simultaneously.
-+	 * Otherwise, it may lead to failure in accessing I3C registers.
-+	 */
-+	for (id = SCU1_RESET_I3C0; id <= SCU1_RESET_I3C15; id++)
-+		ast2700_reset_assert(&reset->rcdev, id);
-+
-+	clks[SCU1_CLKIN] =
-+		clk_hw_register_fixed_rate(NULL, "soc1-clkin", NULL, 0, SCU_CLK_25MHZ);
-+
-+	/* HPLL 1000Mhz */
-+	val = readl(clk_base + SCU1_HPLL_PARAM);
-+	clks[SCU1_CLK_HPLL] = ast2700_calc_soc1_pll("soc1-hpll", "soc1-clkin", val);
-+
-+	/* HPLL 800Mhz */
-+	val = readl(clk_base + SCU1_APLL_PARAM);
-+	clks[SCU1_CLK_APLL] = ast2700_calc_soc1_pll("soc1-apll", "soc1-clkin", val);
-+
-+	clks[SCU1_CLK_APLL_DIV2] =
-+		clk_hw_register_fixed_factor(NULL, "soc1-apll_div2", "soc1-apll", 0, 1, 2);
-+
-+	clks[SCU1_CLK_APLL_DIV4] =
-+		clk_hw_register_fixed_factor(NULL, "soc1-apll_div4", "soc1-apll", 0, 1, 4);
-+
-+	val = readl(clk_base + SCU1_DPLL_PARAM);
-+	clks[SCU1_CLK_DPLL] = ast2700_calc_soc1_pll("dpll", "soc1-clkin", val);
-+
-+	/* uxclk mux selection */
-+	clks[SCU1_CLK_UXCLK] =
-+		clk_hw_register_mux(NULL, "uxclk", uxclk_sel, ARRAY_SIZE(uxclk_sel),
-+				    0, clk_base + SCU1_CLK_SEL2,
-+				    0, 2, 0, &ast2700_clk_lock);
-+
-+	val = readl(clk_base + SCU1_UXCLK_CTRL);
-+	clks[SCU1_CLK_UARTX] = ast2700_calc_uclk("uartxclk", val);
-+
-+	/* huxclk mux selection */
-+	clks[SCU1_CLK_HUXCLK] =
-+		clk_hw_register_mux(NULL, "huxclk", uxclk_sel, ARRAY_SIZE(uxclk_sel),
-+				    0, clk_base + SCU1_CLK_SEL2,
-+				    3, 2, 0, &ast2700_clk_lock);
-+
-+	val = readl(clk_base + SCU1_HUXCLK_CTRL);
-+	clks[SCU1_CLK_HUARTX] = ast2700_calc_huclk("huartxclk", val);
-+
-+	/* AHB CLK = 200Mhz */
-+	clks[SCU1_CLK_AHB] =
-+		clk_hw_register_divider_table(NULL, "soc1-ahb", "soc1-hpll",
-+					      0, clk_base + SCU1_CLK_SEL2,
-+					      20, 3, 0, ast2700_clk_div_table, &ast2700_clk_lock);
-+
-+	/* APB CLK = 100Mhz */
-+	clks[SCU1_CLK_APB] =
-+		clk_hw_register_divider_table(NULL, "soc1-apb", "soc1-hpll",
-+					      0, clk_base + SCU1_CLK_SEL1,
-+					      18, 3, 0, ast2700_clk_div_table2, &ast2700_clk_lock);
-+
-+	/* RMII */
-+	clks[SCU1_CLK_RMII] =
-+		clk_hw_register_divider_table(NULL, "rmii", "soc1-hpll",
-+					      0, clk_base + SCU1_CLK_SEL1,
-+					      21, 3, 0, ast2700_rmii_div_table, &ast2700_clk_lock);
-+
-+	/* RMII0 50MHz (RCLK) output enable */
-+	clks[SCU1_CLK_MAC0RCLK] =
-+		clk_hw_register_gate(NULL, "mac0rclk", "rmii", 0,
-+				     clk_base + SCU1_MAC12_CLK_DLY, 29,
-+				     0, &ast2700_clk_lock);
-+
-+	/* RMII1 50MHz (RCLK) output enable */
-+	clks[SCU1_CLK_MAC1RCLK] =
-+		clk_hw_register_gate(NULL, "mac1rclk", "rmii", 0,
-+				     clk_base + SCU1_MAC12_CLK_DLY, 30,
-+				     0, &ast2700_clk_lock);
-+
-+	/* RGMII */
-+	clks[SCU1_CLK_RGMII] =
-+		clk_hw_register_divider_table(NULL, "rgmii", "soc1-hpll",
-+					      0, clk_base + SCU1_CLK_SEL1,
-+					      25, 3, 0, ast2700_rgmii_div_table, &ast2700_clk_lock);
-+
-+	/* MAC HCLK */
-+	clks[SCU1_CLK_MACHCLK] =
-+		clk_hw_register_divider_table(NULL, "machclk", "soc1-hpll",
-+					      0, clk_base + SCU1_CLK_SEL1,
-+					      29, 3, 0, ast2700_clk_div_table, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_LCLK0] =
-+		ast2700_clk_hw_register_gate(NULL, "lclk0-gate", NULL,
-+					     CLK_IS_CRITICAL, clk_base + SCU1_CLK_STOP,
-+					     0, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_LCLK0] =
-+		ast2700_clk_hw_register_gate(NULL, "lclk1-gate", NULL,
-+					     CLK_IS_CRITICAL, clk_base + SCU1_CLK_STOP,
-+					     1, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_ESPI0CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "espi0clk-gate", NULL,
-+					     CLK_IS_CRITICAL, clk_base + SCU1_CLK_STOP,
-+					     2, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_ESPI1CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "espi1clk-gate", NULL,
-+					     CLK_IS_CRITICAL, clk_base + SCU1_CLK_STOP,
-+					     3, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_APLL_DIVN] =
-+		clk_hw_register_divider_table(NULL, "soc1-apll_divn", "soc1-apll",
-+					      0, clk_base + SCU1_CLK_SEL2,
-+					      8, 3, 0, ast2700_clk_div_table, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_SDMUX] =
-+		clk_hw_register_mux(NULL, "sdclk-mux", sdclk_sel, ARRAY_SIZE(sdclk_sel),
-+				    0, clk_base + SCU1_CLK_SEL1,
-+				    13, 1, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_SDCLK] =
-+		clk_hw_register_divider_table(NULL, "sdclk", "sdclk-mux",
-+					      0, clk_base + SCU1_CLK_SEL1,
-+					      14, 3, 0, ast2700_clk_div_table, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_SDCLK] =
-+		ast2700_clk_hw_register_gate(NULL, "sdclk-gate", "sdclk",
-+					     0, clk_base + SCU1_CLK_STOP,
-+					     4, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_IPEREFCLK] =
-+		ast2700_clk_hw_register_gate(NULL, "soc1-refclk-gate", NULL,
-+					     CLK_IS_CRITICAL, clk_base + SCU1_CLK_STOP,
-+					     6, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_LPCHCLK] =
-+		ast2700_clk_hw_register_gate(NULL, "lpchclk-gate", NULL,
-+					     CLK_IS_CRITICAL, clk_base + SCU1_CLK_STOP,
-+					     7, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_MAC0CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "mac0clk-gate", NULL,
-+					     0, clk_base + SCU1_CLK_STOP,
-+					     8, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_MAC1CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "mac1clk-gate", NULL,
-+					     0, clk_base + SCU1_CLK_STOP,
-+					     9, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_MAC2CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "mac2clk-gate", NULL,
-+					     0, clk_base + SCU1_CLK_STOP,
-+					     10, 0, &ast2700_clk_lock);
-+
-+	of_property_read_u32(soc1_node, "uart-clk-source", &uart_clk_source);
-+	if (uart_clk_source) {
-+		val = readl(clk_base + SCU1_CLK_SEL1) & ~GENMASK(12, 0);
-+		uart_clk_source &= GENMASK(12, 0);
-+		writel(val | uart_clk_source, clk_base + SCU1_CLK_SEL1);
-+	}
-+
-+	//UART0
-+	clks[SCU1_CLK_UART0] =
-+		clk_hw_register_mux(NULL, "uart0clk", uartclk_sel, ARRAY_SIZE(uartclk_sel),
-+				    0, clk_base + SCU1_CLK_SEL1,
-+				    0, 1, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_UART0CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "uart0clk-gate", "uart0clk",
-+					     CLK_IS_CRITICAL, clk_base + SCU1_CLK_STOP,
-+					     11, 0, &ast2700_clk_lock);
-+
-+	//UART1
-+	clks[SCU1_CLK_UART1] =
-+		clk_hw_register_mux(NULL, "uart1clk", uartclk_sel, ARRAY_SIZE(uartclk_sel),
-+				    0, clk_base + SCU1_CLK_SEL1,
-+				    1, 1, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_UART1CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "uart1clk-gate", "uart1clk",
-+					     CLK_IS_CRITICAL, clk_base + SCU1_CLK_STOP,
-+					     12, 0, &ast2700_clk_lock);
-+
-+	//UART2
-+	clks[SCU1_CLK_UART2] =
-+		clk_hw_register_mux(NULL, "uart2clk", uartclk_sel, ARRAY_SIZE(uartclk_sel),
-+				    0, clk_base + SCU1_CLK_SEL1,
-+				    2, 1, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_UART2CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "uart2clk-gate", "uart2clk",
-+					     CLK_IS_CRITICAL, clk_base + SCU1_CLK_STOP,
-+					     13, 0, &ast2700_clk_lock);
-+
-+	//UART3
-+	clks[SCU1_CLK_UART3] =
-+		clk_hw_register_mux(NULL, "uart3clk", uartclk_sel, ARRAY_SIZE(uartclk_sel),
-+				    0, clk_base + SCU1_CLK_SEL1,
-+				    3, 1, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_UART3CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "uart3clk-gate", "uart3clk",
-+					     CLK_IS_CRITICAL, clk_base + SCU1_CLK_STOP,
-+					     14, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_I3C0CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "i3c0clk-gate", "soc1-ahb",
-+					     0, clk_base + SCU1_CLK_STOP,
-+					     16, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_I3C1CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "i3c1clk-gate", "soc1-ahb",
-+					     0, clk_base + SCU1_CLK_STOP,
-+					     17, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_I3C2CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "i3c2clk-gate", "soc1-ahb",
-+					     0, clk_base + SCU1_CLK_STOP,
-+					     18, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_I3C3CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "i3c3clk-gate", "soc1-ahb",
-+					     0, clk_base + SCU1_CLK_STOP,
-+					     19, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_I3C4CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "i3c4clk-gate", "soc1-ahb",
-+					     0, clk_base + SCU1_CLK_STOP,
-+					     20, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_I3C5CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "i3c5clk-gate", "soc1-ahb",
-+					     0, clk_base + SCU1_CLK_STOP,
-+					     21, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_I3C6CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "i3c6clk-gate", "soc1-ahb",
-+					     0, clk_base + SCU1_CLK_STOP,
-+					     22, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_I3C7CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "i3c7clk-gate", "soc1-ahb",
-+					     0, clk_base + SCU1_CLK_STOP,
-+					     23, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_I3C8CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "i3c8clk-gate", "soc1-ahb",
-+					     0, clk_base + SCU1_CLK_STOP,
-+					     24, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_I3C9CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "i3c9clk-gate", "soc1-ahb",
-+					     0, clk_base + SCU1_CLK_STOP,
-+					     25, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_I3C10CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "i3c10clk-gate", "soc1-ahb",
-+					     0, clk_base + SCU1_CLK_STOP,
-+					     26, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_I3C11CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "i3c11clk-gate", "soc1-ahb",
-+					     0, clk_base + SCU1_CLK_STOP,
-+					     27, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_I3C12CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "i3c12clk-gate", "soc1-ahb",
-+					     0, clk_base + SCU1_CLK_STOP,
-+					     28, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_I3C13CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "i3c13clk-gate", "soc1-ahb",
-+					     0, clk_base + SCU1_CLK_STOP,
-+					     29, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_I3C14CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "i3c14clk-gate", "soc1-ahb",
-+					     0, clk_base + SCU1_CLK_STOP,
-+					     30, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_I3C15CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "i3c15clk-gate", "soc1-ahb",
-+					     0, clk_base + SCU1_CLK_STOP,
-+					     31, 0, &ast2700_clk_lock);
-+
-+	/*clk stop 2 */
-+	//UART5
-+	clks[SCU1_CLK_UART5] =
-+		clk_hw_register_mux(NULL, "uart5clk", uartclk_sel, ARRAY_SIZE(uartclk_sel),
-+				    0, clk_base + SCU1_CLK_SEL1,
-+				    5, 1, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_UART5CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "uart5clk-gate", "uart5clk",
-+					     CLK_IS_CRITICAL, clk_base + SCU1_CLK_STOP2,
-+					     0, 0, &ast2700_clk_lock);
-+
-+	//UART6
-+	clks[SCU1_CLK_UART6] =
-+		clk_hw_register_mux(NULL, "uart6clk", uartclk_sel, ARRAY_SIZE(uartclk_sel),
-+				    0, clk_base + SCU1_CLK_SEL1,
-+				    6, 1, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_UART6CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "uart6clk-gate", "uart6clk",
-+					     CLK_IS_CRITICAL, clk_base + SCU1_CLK_STOP2,
-+					     1, 0, &ast2700_clk_lock);
-+
-+	//UART7
-+	clks[SCU1_CLK_UART7] =
-+		clk_hw_register_mux(NULL, "uart7clk", uartclk_sel, ARRAY_SIZE(uartclk_sel),
-+				    0, clk_base + SCU1_CLK_SEL1,
-+				    7, 1, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_UART7CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "uart7clk-gate", "uart7clk",
-+					     CLK_IS_CRITICAL, clk_base + SCU1_CLK_STOP2,
-+					     2, 0, &ast2700_clk_lock);
-+
-+	//UART8
-+	clks[SCU1_CLK_UART8] =
-+		clk_hw_register_mux(NULL, "uart8clk", uartclk_sel, ARRAY_SIZE(uartclk_sel),
-+				    0, clk_base + SCU1_CLK_SEL1,
-+				    8, 1, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_UART8CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "uart8clk-gate", "uart8clk",
-+					     CLK_IS_CRITICAL, clk_base + SCU1_CLK_STOP2,
-+					     3, 0, &ast2700_clk_lock);
-+
-+	//UART9
-+	clks[SCU1_CLK_UART9] =
-+		clk_hw_register_mux(NULL, "uart9clk", uartclk_sel, ARRAY_SIZE(uartclk_sel),
-+				    0, clk_base + SCU1_CLK_SEL1,
-+				    9, 1, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_UART9CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "uart9clk-gate", "uart9clk",
-+					     0, clk_base + SCU1_CLK_STOP2,
-+					     4, 0, &ast2700_clk_lock);
-+
-+	//UART10
-+	clks[SCU1_CLK_UART10] =
-+		clk_hw_register_mux(NULL, "uart10clk", uartclk_sel, ARRAY_SIZE(uartclk_sel),
-+				    0, clk_base + SCU1_CLK_SEL1,
-+				    10, 1, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_UART10CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "uart10clk-gate", "uart10clk",
-+					     0, clk_base + SCU1_CLK_STOP2,
-+					     5, 0, &ast2700_clk_lock);
-+
-+	//UART11
-+	clks[SCU1_CLK_UART11] =
-+		clk_hw_register_mux(NULL, "uart11clk", uartclk_sel, ARRAY_SIZE(uartclk_sel),
-+				    0, clk_base + SCU1_CLK_SEL1,
-+				    11, 1, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_UART11CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "uart11clk-gate", "uart11clk",
-+					     CLK_IS_CRITICAL, clk_base + SCU1_CLK_STOP2,
-+					     6, 0, &ast2700_clk_lock);
-+
-+	//uart12: call bmc uart
-+	clks[SCU1_CLK_UART12] =
-+		clk_hw_register_mux(NULL, "uart12clk", uartclk_sel, ARRAY_SIZE(uartclk_sel),
-+				    0, clk_base + SCU1_CLK_SEL1,
-+				    12, 1, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_UART12CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "uart12clk-gate", "uart12clk",
-+					     CLK_IS_CRITICAL, clk_base + SCU1_CLK_STOP2,
-+					     7, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_FSICLK] =
-+		ast2700_clk_hw_register_gate(NULL, "fsiclk-gate", NULL,
-+					     0, clk_base + SCU1_CLK_STOP2,
-+					     8, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_LTPIPHYCLK] =
-+		ast2700_clk_hw_register_gate(NULL, "ltpiphyclk-gate", NULL,
-+					     0, clk_base + SCU1_CLK_STOP2,
-+					     9, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_LTPICLK] =
-+		ast2700_clk_hw_register_gate(NULL, "ltpiclk-gate", NULL,
-+					     0, clk_base + SCU1_CLK_STOP2,
-+					     10, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_VGALCLK] =
-+		ast2700_clk_hw_register_gate(NULL, "vgalclk-gate", NULL,
-+					     CLK_IS_CRITICAL, clk_base + SCU1_CLK_STOP2,
-+					     11, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_USBUARTCLK] =
-+		ast2700_clk_hw_register_gate(NULL, "usbuartclk-gate", NULL,
-+					     0, clk_base + SCU1_CLK_STOP2,
-+					     12, 0, &ast2700_clk_lock);
-+
-+	clk_hw_register_fixed_factor(NULL, "canclk", "soc1-apll", 0, 1, 10);
-+
-+	clks[SCU1_CLK_GATE_CANCLK] =
-+		ast2700_clk_hw_register_gate(NULL, "canclk-gate", "canclk",
-+					     0, clk_base + SCU1_CLK_STOP2,
-+					     13, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_PCICLK] =
-+		ast2700_clk_hw_register_gate(NULL, "pciclk-gate", NULL,
-+					     0, clk_base + SCU1_CLK_STOP2,
-+					     14, 0, &ast2700_clk_lock);
-+
-+	clks[SCU1_CLK_GATE_SLICLK] =
-+		ast2700_clk_hw_register_gate(NULL, "sliclk-gate", NULL,
-+					     CLK_IS_CRITICAL, clk_base + SCU1_CLK_STOP2,
-+					     15, 0, &ast2700_clk_lock);
-+
-+	of_clk_add_hw_provider(soc1_node, of_clk_hw_onecell_get, clk_data);
-+
-+	return 0;
-+};
-+
-+static const char *const pspclk_sel[] = {
-+	"soc0-mpll",
-+	"soc0-hpll",
-+};
-+
-+static const char *const soc0_uartclk_sel[] = {
-+	"soc0-clk24Mhz",
-+	"soc0-clk192Mhz",
-+};
-+
-+static const char *const emmcclk_sel[] = {
-+	"soc0-mpll_div4",
-+	"soc0-hpll_div4",
-+};
-+
-+static int ast2700_soc0_clk_init(struct device_node *soc0_node)
-+{
-+	struct clk_hw_onecell_data *clk_data;
-+	void __iomem *clk_base;
-+	struct ast2700_reset *reset;
-+	struct clk_hw **clks;
-+	int div;
-+	u32 val;
-+	int ret;
-+
-+	clk_data = kzalloc(struct_size(clk_data, hws, SCU0_NUM_CLKS), GFP_KERNEL);
-+	if (!clk_data)
-+		return -ENOMEM;
-+
-+	clk_data->num = SCU0_NUM_CLKS;
-+	clks = clk_data->hws;
-+
-+	clk_base = of_iomap(soc0_node, 0);
-+	if (WARN_ON(IS_ERR(clk_base)))
-+		return PTR_ERR(clk_base);
-+
-+	reset = kzalloc(sizeof(*reset), GFP_KERNEL);
-+	if (!reset)
-+		return -ENOMEM;
-+
-+	reset->base = clk_base;
-+
-+	reset->rcdev.owner = THIS_MODULE;
-+	reset->rcdev.nr_resets = SCU0_RESET_NUMS;
-+	reset->rcdev.ops = &ast2700_reset_ops;
-+	reset->rcdev.of_node = soc0_node;
-+
-+	ret = reset_controller_register(&reset->rcdev);
-+	if (ret) {
-+		pr_err("soc0 failed to register reset controller\n");
-+		return ret;
-+	}
-+
-+	//refclk
-+	clks[SCU0_CLKIN] =
-+		clk_hw_register_fixed_rate(NULL, "soc0-clkin", NULL, 0, SCU_CLK_25MHZ);
-+
-+	clks[SCU0_CLK_24M] =
-+		clk_hw_register_fixed_rate(NULL, "soc0-clk24Mhz", NULL, 0, SCU_CLK_24MHZ);
-+
-+	clks[SCU0_CLK_192M] =
-+		clk_hw_register_fixed_rate(NULL, "soc0-clk192Mhz", NULL, 0, SCU_CLK_192MHZ);
-+
-+	//hpll
-+	val = readl(clk_base + SCU0_HWSTRAP1);
-+	if ((val & GENMASK(3, 2)) != 0) {
-+		switch ((val & GENMASK(3, 2)) >> 2) {
-+		case 1:
-+			clks[SCU0_CLK_HPLL] =
-+				clk_hw_register_fixed_rate(NULL, "soc0-hpll", NULL, 0, 1900000000);
-+			break;
-+		case 2:
-+			clks[SCU0_CLK_HPLL] =
-+				clk_hw_register_fixed_rate(NULL, "soc0-hpll", NULL, 0, 1800000000);
-+			break;
-+		case 3:
-+			clks[SCU0_CLK_HPLL] =
-+				clk_hw_register_fixed_rate(NULL, "soc0-hpll", NULL, 0, 1700000000);
-+			break;
-+		}
-+	} else {
-+		val = readl(clk_base + SCU0_HPLL_PARAM);
-+		clks[SCU0_CLK_HPLL] = ast2700_soc0_hw_pll("soc0-hpll", "soc0-clkin", val);
-+	}
-+	clks[SCU0_CLK_HPLL_DIV2] =
-+			clk_hw_register_fixed_factor(NULL, "soc0-hpll_div2", "soc0-hpll", 0, 1, 2);
-+	clks[SCU0_CLK_HPLL_DIV4] =
-+			clk_hw_register_fixed_factor(NULL, "soc0-hpll_div4", "soc0-hpll", 0, 1, 4);
-+
-+	//dpll
-+	val = readl(clk_base + SCU0_DPLL_PARAM);
-+	clks[SCU0_CLK_DPLL] = ast2700_soc0_hw_pll("dpll", "soc0-clkin", val);
-+
-+	//mpll
-+	val = readl(clk_base + SCU0_MPLL_PARAM);
-+	clks[SCU0_CLK_MPLL] = ast2700_calc_mpll("soc0-mpll", "soc0-clkin", val);
-+	clks[SCU0_CLK_MPLL_DIV2] =
-+			clk_hw_register_fixed_factor(NULL, "soc0-mpll_div2", "soc0-mpll", 0, 1, 2);
-+	clks[SCU0_CLK_MPLL_DIV4] =
-+			clk_hw_register_fixed_factor(NULL, "soc0-mpll_div4", "soc0-mpll", 0, 1, 4);
-+	clks[SCU0_CLK_MPLL_DIV8] =
-+			clk_hw_register_fixed_factor(NULL, "soc0-mpll_div8", "soc0-mpll", 0, 1, 8);
-+
-+	val = readl(clk_base + SCU0_D1CLK_PARAM);
-+	clks[SCU0_CLK_VGA0] = ast2700_soc0_hw_pll("d1clk", "soc0-clkin", val);
-+
-+	val = readl(clk_base + SCU0_D2CLK_PARAM);
-+	clks[SCU0_CLK_VGA1] = ast2700_soc0_hw_pll("d2clk", "soc0-clkin", val);
-+
-+	val = readl(clk_base + SCU0_CRT1CLK_PARAM);
-+	clks[SCU0_CLK_CRT0] = ast2700_soc0_hw_pll("crt0clk", "soc0-clkin", val);
-+
-+	val = readl(clk_base + SCU0_CRT2CLK_PARAM);
-+	clks[SCU0_CLK_CRT1] = ast2700_soc0_hw_pll("crt1clk", "soc0-clkin", val);
-+
-+	val = readl(clk_base + SCU0_MPHYCLK_PARAM);
-+	clks[SCU0_CLK_MPHY] =
-+		clk_hw_register_fixed_factor(NULL, "mphyclk", "soc0-hpll", 0, 1, val + 1);
-+
-+	clks[SCU0_CLK_PSP] =
-+		clk_hw_register_mux(NULL, "pspclk", pspclk_sel, ARRAY_SIZE(pspclk_sel),
-+				    0, clk_base + SCU0_HWSTRAP1,
-+				    4, 1, 0, &ast2700_clk_lock);
-+
-+	clks[SCU0_CLK_AXI0] =
-+		clk_hw_register_fixed_factor(NULL, "axi0clk", "pspclk", 0, 1, 2);
-+
-+	val = readl(clk_base + SCU0_HWSTRAP1);
-+	if (val & BIT(7)) {
-+		clks[SCU0_CLK_AHB] =
-+			clk_hw_register_divider_table(NULL, "soc0-ahb", "soc0-hpll",
-+						      0, clk_base + SCU0_HWSTRAP1,
-+						      5, 2, 0, ast2700_clk_div_table,
-+						      &ast2700_clk_lock);
-+	} else {
-+		clks[SCU0_CLK_AHB] =
-+			clk_hw_register_divider_table(NULL, "soc0-ahb", "soc0-mpll",
-+						      0, clk_base + SCU0_HWSTRAP1,
-+						      5, 2, 0, ast2700_clk_div_table,
-+						      &ast2700_clk_lock);
-+	}
-+
-+	clks[SCU0_CLK_AXI1] =
-+		clk_hw_register_fixed_factor(NULL, "axi1clk", "soc0-ahb", 0, 1, 2);
-+
-+	clks[SCU0_CLK_APB] =
-+		clk_hw_register_divider_table(NULL, "soc0-apb", "axi0clk",
-+					      0, clk_base + SCU0_CLK_SEL1,
-+					      23, 3, 0, ast2700_clk_div_table2, &ast2700_clk_lock);
-+
-+	clks[SCU0_CLK_GATE_MCLK] =
-+		ast2700_clk_hw_register_gate(NULL, "mclk", "soc0-mpll",
-+					     CLK_IS_CRITICAL, clk_base + SCU0_CLK_STOP,
-+					     0, 0, &ast2700_clk_lock);
-+
-+	clks[SCU0_CLK_GATE_ECLK] =
-+		ast2700_clk_hw_register_gate(NULL, "eclk", NULL,
-+					     0, clk_base + SCU0_CLK_STOP,
-+					     1, 0, &ast2700_clk_lock);
-+
-+	clks[SCU0_CLK_GATE_2DCLK] =
-+		ast2700_clk_hw_register_gate(NULL, "gclk", NULL,
-+					     CLK_IS_CRITICAL, clk_base + SCU0_CLK_STOP,
-+					     2, 0, &ast2700_clk_lock);
-+
-+	clks[SCU0_CLK_GATE_VCLK] =
-+		ast2700_clk_hw_register_gate(NULL, "vclk", NULL,
-+					     0, clk_base + SCU0_CLK_STOP,
-+					     3, 0, &ast2700_clk_lock);
-+
-+	clks[SCU0_CLK_GATE_BCLK] =
-+		ast2700_clk_hw_register_gate(NULL, "bclk", NULL,
-+					     CLK_IS_CRITICAL, clk_base + SCU0_CLK_STOP,
-+					     4, 0, &ast2700_clk_lock);
-+
-+	clks[SCU0_CLK_GATE_VGA0CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "d1clk-gate", NULL,
-+					     CLK_IS_CRITICAL, clk_base + SCU0_CLK_STOP,
-+					     5, 0, &ast2700_clk_lock);
-+
-+	clks[SCU0_CLK_GATE_REFCLK] =
-+		ast2700_clk_hw_register_gate(NULL, "soc0-refclk-gate", "soc0-clkin",
-+					     CLK_IS_CRITICAL, clk_base + SCU0_CLK_STOP,
-+					     6, 0, &ast2700_clk_lock);
-+
-+	div = (GET_USB_REFCLK_DIV(readl(clk_base + SCU0_CLK_SEL2)) + 1) * 2;
-+	clks[SCU0_CLK_U2PHY_REFCLK] =
-+		clk_hw_register_fixed_factor(NULL, "xhci_ref_clk", "soc0-mpll_div8", 0, 1, div);
-+
-+	clks[SCU0_CLK_U2PHY_CLK12M] =
-+		clk_hw_register_fixed_rate(NULL, "xhci_suspend_clk", NULL, 0, SCU_CLK_12MHZ);
-+
-+	clks[SCU0_CLK_GATE_PORTBUSB2CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "portb-usb2clk", NULL,
-+					     0, clk_base + SCU0_CLK_STOP,
-+					     7, 0, &ast2700_clk_lock);
-+
-+	clks[SCU0_CLK_GATE_UHCICLK] =
-+		ast2700_clk_hw_register_gate(NULL, "uhciclk", NULL,
-+					     0, clk_base + SCU0_CLK_STOP,
-+					     9, 0, &ast2700_clk_lock);
-+
-+	clks[SCU0_CLK_GATE_VGA1CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "d2clk-gate", NULL,
-+					     CLK_IS_CRITICAL, clk_base + SCU0_CLK_STOP,
-+					     10, 0, &ast2700_clk_lock);
-+
-+	clks[SCU0_CLK_GATE_HACCLK] =
-+		ast2700_clk_hw_register_gate(NULL, "hac-clk", NULL,
-+					     0, clk_base + SCU0_CLK_STOP,
-+					     13, 0, &ast2700_clk_lock);
-+
-+	clks[SCU0_CLK_GATE_PORTAUSB2CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "porta-usb2clk", NULL,
-+					     0, clk_base + SCU0_CLK_STOP,
-+					     14, 0, &ast2700_clk_lock);
-+
-+	clks[SCU0_CLK_UART] =
-+		clk_hw_register_mux(NULL, "soc0-uartclk", soc0_uartclk_sel,
-+				    ARRAY_SIZE(soc0_uartclk_sel),
-+				    0, clk_base + SCU0_CLK_SEL2,
-+				    14, 1, 0, &ast2700_clk_lock);
-+
-+	if (readl(clk_base + SCU0_CLK_SEL2) & UART_DIV13_EN)
-+		div = 13;
-+	else
-+		div = 1;
-+
-+	clks[SCU0_CLK_UART4] =
-+		clk_hw_register_fixed_factor(NULL, "uart4clk", "soc0-uartclk", 0, 1, div);
-+
-+	clks[SCU0_CLK_GATE_UART4CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "uart4clk-gate", "uart4clk",
-+					     CLK_IS_CRITICAL, clk_base + SCU0_CLK_STOP,
-+					     15, 0, &ast2700_clk_lock);
-+
-+	clks[SCU0_CLK_GATE_DACCLK] =
-+		ast2700_clk_hw_register_gate(NULL, "dacclk", NULL,
-+					     CLK_IS_CRITICAL, clk_base + SCU0_CLK_STOP,
-+					     17, 0, &ast2700_clk_lock);
-+
-+	clks[SCU0_CLK_GATE_CRT0CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "crt0clk-gate", NULL,
-+					     0, clk_base + SCU0_CLK_STOP,
-+					     20, 0, &ast2700_clk_lock);
-+
-+	clks[SCU0_CLK_GATE_CRT1CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "crt1clk-gate", NULL,
-+					     0, clk_base + SCU0_CLK_STOP,
-+					     21, 0, &ast2700_clk_lock);
-+
-+	clks[SCU0_CLK_GATE_ECDSACLK] =
-+		ast2700_clk_hw_register_gate(NULL, "eccclk", NULL,
-+					     0, clk_base + SCU0_CLK_STOP,
-+					     23, 0, &ast2700_clk_lock);
-+
-+	clks[SCU0_CLK_GATE_RSACLK] =
-+		ast2700_clk_hw_register_gate(NULL, "rsaclk", NULL,
-+					     0, clk_base + SCU0_CLK_STOP,
-+					     24, 0, &ast2700_clk_lock);
-+
-+	clks[SCU0_CLK_GATE_RVAS0CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "rvasclk", NULL,
-+					     0, clk_base + SCU0_CLK_STOP,
-+					     25, 0, &ast2700_clk_lock);
-+
-+	clks[SCU0_CLK_GATE_UFSCLK] =
-+		ast2700_clk_hw_register_gate(NULL, "ufsclk", NULL,
-+					     0, clk_base + SCU0_CLK_STOP,
-+					     26, 0, &ast2700_clk_lock);
-+
-+	clks[SCU0_CLK_EMMCMUX] =
-+		clk_hw_register_mux(NULL, "emmcsrc-mux", emmcclk_sel, ARRAY_SIZE(emmcclk_sel),
-+				    0, clk_base + SCU0_CLK_SEL1,
-+				    11, 1, 0, &ast2700_clk_lock);
-+
-+	clks[SCU0_CLK_EMMC] =
-+		clk_hw_register_divider_table(NULL, "emmcclk", "emmcsrc-mux",
-+					      0, clk_base + SCU0_CLK_SEL1,
-+					      12, 3, 0, ast2700_clk_div_table2,
-+					      &ast2700_clk_lock);
-+
-+	clks[SCU0_CLK_GATE_EMMCCLK] =
-+		ast2700_clk_hw_register_gate(NULL, "emmcclk-gate", "emmcclk",
-+					     0, clk_base + SCU0_CLK_STOP,
-+					     27, 0, &ast2700_clk_lock);
-+
-+	clks[SCU0_CLK_GATE_RVAS1CLK] =
-+		ast2700_clk_hw_register_gate(NULL, "rvas2clk", NULL,
-+					     0, clk_base + SCU0_CLK_STOP,
-+					     28, 0, &ast2700_clk_lock);
-+
-+	of_clk_add_hw_provider(soc0_node, of_clk_hw_onecell_get, clk_data);
-+
-+	return 0;
-+};
-+
-+CLK_OF_DECLARE_DRIVER(ast2700_soc0, "aspeed,ast2700-scu0", ast2700_soc0_clk_init);
-+CLK_OF_DECLARE_DRIVER(ast2700_soc1, "aspeed,ast2700-scu1", ast2700_soc1_clk_init);
--- 
-2.34.1
+The of_graph_get_next_endpoint() function uses "previous" as the 
+argument name (well, the function declaration uses "previous", the 
+implementation uses "prev"...), and I would use the same naming here.
+
+Also of_graph_get_next_endpoint() talks about "previous endpoint node", 
+whereas here it's "current ports node". I'd use the same style here, so 
+"previous ports node".
+
+The same comments for the of_graph_get_next_port().
+
+> + */
+> +struct device_node *of_graph_get_next_ports(struct device_node *parent,
+> +					    struct device_node *ports)
+> +{
+> +	if (!parent)
+> +		return NULL;
+> +
+> +	if (!ports) {
+> +		ports = of_get_child_by_name(parent, "ports");
+> +
+> +		/* use parent as its ports of this device if it not exist */
+
+I think this needs to be described in the kernel doc. I understand the 
+need for this, but it's somewhat counter-intuitive that this returns the 
+parent node if there are no ports nodes, so it must be highlighted in 
+the documentation.
+
+I wonder if a bit more complexity here would be good... I think here we 
+could:
+
+- If there are no 'ports' nodes in the parent, but there is a 'port' 
+node in the parent, return the parent node
+- If there are no 'ports' nor 'port' nodes in the parent, return NULL
+
+> +		if (!ports) {
+> +			ports = parent;
+> +			of_node_get(ports);
+> +		}
+
+You could just do "ports = of_node_get(parent);"
+
+> +
+> +		return ports;
+> +	}
+> +
+> +	do {
+> +		ports = of_get_next_child(parent, ports);
+> +		if (!ports)
+> +			break;
+> +	} while (!of_node_name_eq(ports, "ports"));
+> +
+> +	return ports;
+> +}
+> +EXPORT_SYMBOL(of_graph_get_next_ports);
+> +
+> +/**
+> + * of_graph_get_next_port() - get next port node.
+> + * @parent: pointer to the parent device node
+> + * @port: current port node, or NULL to get first
+> + *
+> + * Return: A 'port' node pointer with refcount incremented. Refcount
+> + * of the passed @prev node is decremented.
+> + */
+> +struct device_node *of_graph_get_next_port(struct device_node *parent,
+> +					   struct device_node *port)
+> +{
+> +	if (!parent)
+> +		return NULL;
+> +
+> +	if (!port) {
+> +		struct device_node *ports __free(device_node) =
+> +			of_graph_get_next_ports(parent, NULL);
+> +
+> +		return of_get_child_by_name(ports, "port");
+> +	}
+> +
+> +	do {
+> +		port = of_get_next_child(parent, port);
+> +		if (!port)
+> +			break;
+> +	} while (!of_node_name_eq(port, "port"));
+> +
+> +	return port;
+> +}
+
+Hmm... So if I call this with of_graph_get_next_port(dev_node, NULL) 
+(dev_node being the device node of the device), it'll give me the first 
+port in the first ports node, or the first port in the dev_node if there 
+are no ports nodes?
+
+And if I then continue iterating with of_graph_get_next_port(dev_node, 
+prev_port)... The call will return NULL if the dev_node contains "ports" 
+node (because the dev_node does not contain any "port" nodes)?
+
+So if I understand right, of_graph_get_next_port() must always be called 
+with a parent that contains port nodes. Sometimes that's the device's 
+node (if there's just one port) and sometimes that's ports node. If it's 
+called with a parent that contains ports node, it will not work correctly.
+
+If the above is right, then should this just return 
+"of_get_child_by_name(parent, "port")" if !port, instead of calling 
+of_graph_get_next_ports()?
+
+Or maybe I'm just getting confused here. But in any case, I think it 
+would be very good to describe the behavior on the kernel doc for the 
+different ports/port structure cases (also for 
+of_graph_get_next_ports()), and be clear on what the parameters can be, 
+i.e. what kind of device nodes can be given as parent, and how the 
+function iterates over the ports.
+
+> +EXPORT_SYMBOL(of_graph_get_next_port);
+> +
+>   /**
+>    * of_graph_get_next_endpoint() - get next endpoint node
+> + *
+
+Extra change.
+
+>    * @parent: pointer to the parent device node
+>    * @prev: previous endpoint node, or NULL to get first
+>    *
+> @@ -823,6 +891,24 @@ unsigned int of_graph_get_endpoint_count(const struct device_node *np)
+>   }
+>   EXPORT_SYMBOL(of_graph_get_endpoint_count);
+>   
+> +/**
+> + * of_graph_get_port_count() - get count of port
+
+Perhaps "get the number of port nodes".
+
+> + * @np: pointer to the parent device node
+> + *
+> + * Return: count of port of this device node
+> + */
+> +unsigned int of_graph_get_port_count(struct device_node *np)
+> +{
+> +	struct device_node *port = NULL;
+> +	int num = 0;
+> +
+> +	for_each_of_graph_port(np, port)
+> +		num++;
+> +
+> +	return num;
+> +}
+
+I my analysis above is right, calling of_graph_get_port_count(dev_node) 
+will return 1, if the dev_node contains "ports" node which contains one 
+or more "port" nodes.
+
+> +EXPORT_SYMBOL(of_graph_get_port_count);
+> +
+>   /**
+>    * of_graph_get_remote_node() - get remote parent device_node for given port/endpoint
+>    * @node: pointer to parent device_node containing graph port/endpoint
+> diff --git a/include/linux/of_graph.h b/include/linux/of_graph.h
+> index a4bea62bfa29..30169b50b042 100644
+> --- a/include/linux/of_graph.h
+> +++ b/include/linux/of_graph.h
+> @@ -37,14 +37,42 @@ struct of_endpoint {
+>   	for (child = of_graph_get_next_endpoint(parent, NULL); child != NULL; \
+>   	     child = of_graph_get_next_endpoint(parent, child))
+>   
+> +/**
+> + * for_each_of_graph_ports - iterate over every ports in a device node
+> + * @parent: parent device node containing ports
+> + * @child: loop variable pointing to the current ports node
+> + *
+> + * When breaking out of the loop, of_node_put(child) has to be called manually.
+> + */
+> +#define for_each_of_graph_ports(parent, child)				\
+> +	for (child = of_graph_get_next_ports(parent, NULL); child != NULL; \
+> +	     child = of_graph_get_next_ports(parent, child))
+> +
+> +/**
+> + * for_each_of_graph_port - iterate over every port in a device or ports node
+> + * @parent: parent device or ports node containing port
+> + * @child: loop variable pointing to the current port node
+> + *
+> + * When breaking out of the loop, of_node_put(child) has to be called manually.
+> + */
+> +#define for_each_of_graph_port(parent, child)			\
+> +	for (child = of_graph_get_next_port(parent, NULL); child != NULL; \
+> +	     child = of_graph_get_next_port(parent, child))
+> +
+>   #ifdef CONFIG_OF
+>   bool of_graph_is_present(const struct device_node *node);
+>   int of_graph_parse_endpoint(const struct device_node *node,
+>   				struct of_endpoint *endpoint);
+> +
+
+Extra change.
+
+>   unsigned int of_graph_get_endpoint_count(const struct device_node *np);
+> +unsigned int of_graph_get_port_count(struct device_node *np);
+>   struct device_node *of_graph_get_port_by_id(struct device_node *node, u32 id);
+>   struct device_node *of_graph_get_next_endpoint(const struct device_node *parent,
+>   					struct device_node *previous);
+> +struct device_node *of_graph_get_next_ports(struct device_node *parent,
+> +					    struct device_node *ports);
+> +struct device_node *of_graph_get_next_port(struct device_node *parent,
+> +					   struct device_node *port);
+>   struct device_node *of_graph_get_endpoint_by_regs(
+>   		const struct device_node *parent, int port_reg, int reg);
+>   struct device_node *of_graph_get_remote_endpoint(
+> @@ -73,6 +101,11 @@ static inline unsigned int of_graph_get_endpoint_count(const struct device_node
+>   	return 0;
+>   }
+>   
+> +static inline unsigned int of_graph_get_port_count(struct device_node *np)
+> +{
+> +	return 0;
+> +}
+> +
+>   static inline struct device_node *of_graph_get_port_by_id(
+>   					struct device_node *node, u32 id)
+>   {
+> @@ -86,6 +119,20 @@ static inline struct device_node *of_graph_get_next_endpoint(
+>   	return NULL;
+>   }
+>   
+> +static inline struct device_node *of_graph_get_next_ports(
+> +					struct device_node *parent,
+> +					struct device_node *previous)
+> +{
+> +	return NULL;
+> +}
+> +
+> +static inline struct device_node *of_graph_get_next_port(
+> +					struct device_node *parent,
+> +					struct device_node *previous)
+> +{
+> +	return NULL;
+> +}
+> +
+>   static inline struct device_node *of_graph_get_endpoint_by_regs(
+>   		const struct device_node *parent, int port_reg, int reg)
+>   {
+
+  Tomi
 
 
