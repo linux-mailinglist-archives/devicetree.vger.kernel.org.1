@@ -1,155 +1,341 @@
-Return-Path: <devicetree+bounces-92066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABA8794BAE0
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:27:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7D4094BB24
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:34:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC61A1C21DA5
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:27:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 964B6283182
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:34:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2888189F5F;
-	Thu,  8 Aug 2024 10:27:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WvwpToDv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB7C218A93E;
+	Thu,  8 Aug 2024 10:33:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out198-27.us.a.mail.aliyun.com (out198-27.us.a.mail.aliyun.com [47.90.198.27])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95E60184526;
-	Thu,  8 Aug 2024 10:27:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BB5F18A6C7;
+	Thu,  8 Aug 2024 10:33:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=47.90.198.27
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723112827; cv=none; b=Pjpvqx2HjH4Dm6IuiNBDR8K2rCqa9WZPac79BtKW+01TN8U3F1MrC9G6LAiuFLe/3qZlIAlpcXKFU0do66kdg2oP8xjWR9zd/o1jYMJkX4/gRdDADDLv+IEdT4vC36lgnLfvymPGpRdBIyGh91m/5DswwoHlvAjsmSblHmICMN4=
+	t=1723113225; cv=none; b=ORbDuBOiNaqSMp4fRayxlvMz55zIaSv9xKbRZvksvediD9Bg8JgMUct/kNTssHEqDbc/kDifF8kx23YC2zmM/4gPEW+FtU3sX8SLkLAZt8t7ZnElyX4UQnIOg63NzDZFsczM334pno/HcVeZwxxVZgFXwCNdx56sqMZqP8Tq89M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723112827; c=relaxed/simple;
-	bh=3N/3C7uYxmY0AxlsVDlje+AyMBX1BRmPAcw6TVCfc0A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=itkAgQmlZ9Rtqx0ZLORhk141edG+A2rMF+YkBybj/rlUc6YCxrlyyIC10QTUPmGtX3hHXkV2v4fbh4scel4S1xTRL6K61syx0pQLL42SKd6Gu7rnD1np6im4PbImy/m92u5MZ3PWYUFihxC371gxYcpRA6/h2empunh7HA7b8ZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WvwpToDv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4670C32782;
-	Thu,  8 Aug 2024 10:27:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723112827;
-	bh=3N/3C7uYxmY0AxlsVDlje+AyMBX1BRmPAcw6TVCfc0A=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WvwpToDvj7MZTbumcrJzlLyqm9KpSwOjVO1rCjfuznApo9Uy+xzl1RgRmSwDVlJ4/
-	 dV8Oa4xlB+ehoWyPEQ1abHkDHVQsOZ5Fm88iO0Ry7S10aUomy1B1sPwY/eI4Bj0Qs3
-	 5ZK+yc0K4rYS/Jx368H4h/k7VW5tiYudoS1HrtBdqfg6KDaad2StwzwGRR3WRBj9sH
-	 PRIH8WxnZM2gHVLh6fbbMrMl48ykEynsDcEY9Dp57Rjexvy6BTjXPGju7xf8m6jNjq
-	 RPWO+Zikh4lVPTF1huZxHiqGl3DnG8WKBuAV4bGqvbwbr7jvmWe7/DwEB3chaEgk6x
-	 2oiPol2yZdT6g==
-Message-ID: <311d8a95-33bf-4549-812a-db52debc7487@kernel.org>
-Date: Thu, 8 Aug 2024 12:27:01 +0200
+	s=arc-20240116; t=1723113225; c=relaxed/simple;
+	bh=sB5eVYzozK5UeLkzKGb11rMntIwr6+yqbwdmr59szCc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=TGVjcHQGJxxcCfgEM6rlUghPAWwYyDUZRu69aWf7xGOgf1emZEFXVl5pyHhtc2lcr5OGKMUY9tA8jazHkTzAqcA82Q2kZCEDdnuSn4jBF/KiLMlHivS/arqaUfNs4AOUduMXvOnhI3QKGSZR9wfjIZe236ePvvCu22ZXQ0W4xPA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com; spf=pass smtp.mailfrom=awinic.com; arc=none smtp.client-ip=47.90.198.27
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=awinic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=awinic.com
+X-Alimail-AntiSpam:AC=CONTINUE;BC=0.07436259|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.0415989-0.0246649-0.933736;FP=7446490164482491419|0|0|0|0|-1|-1|-1;HT=maildocker-contentspam033023181100;MF=wangshuaijie@awinic.com;NM=1;PH=DS;RN=12;RT=12;SR=0;TI=SMTPD_---.Ylkb51Q_1723112873;
+Received: from awinic..(mailfrom:wangshuaijie@awinic.com fp:SMTPD_---.Ylkb51Q_1723112873)
+          by smtp.aliyun-inc.com;
+          Thu, 08 Aug 2024 18:28:03 +0800
+From: wangshuaijie@awinic.com
+To: jic23@kernel.org
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	kangjiajun@awinic.com,
+	krzk+dt@kernel.org,
+	lars@metafoo.de,
+	linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	liweilei@awinic.com,
+	robh@kernel.org,
+	wangshuaijie@awinic.com,
+	waqar.hameed@axis.com
+Subject: Re: [PATCH V5 2/2] iio: proximity: aw9610x: Add support for aw9610x proximity sensor
+Date: Thu,  8 Aug 2024 10:27:52 +0000
+Message-ID: <20240808102753.4023286-1-wangshuaijie@awinic.com>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20240727160216.2488ed29@jic23-huawei>
+References: <20240727160216.2488ed29@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: freescale: imx8mp-phyboard-pollux: Add and
- enable TPM
-To: Benjamin Hahn <B.Hahn@phytec.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Teresa Remmet <t.remmet@phytec.de>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240807-imx8mp-tpm-v2-1-d43f1e8f70ac@phytec.de>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240807-imx8mp-tpm-v2-1-d43f1e8f70ac@phytec.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-On 07/08/2024 17:18, Benjamin Hahn wrote:
-> Add support for TPM for phyBOARD Pollux.
-> 
-> Signed-off-by: Benjamin Hahn <B.Hahn@phytec.de>
-> ---
-> Changes in v2:
-> - renamed tpm node to tpm@0
-> - removed num-cs
-> - cleanup pinctrl
-> - Link to v1: https://lore.kernel.org/r/20240805-imx8mp-tpm-v1-1-1e89f0268999@phytec.de
-> ---
->  .../dts/freescale/imx8mp-phyboard-pollux-rdk.dts   | 26 ++++++++++++++++++++++
->  1 file changed, 26 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-> index 00a240484c25..0e8200413557 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-> @@ -103,6 +103,23 @@ reg_vcc_3v3_sw: regulator-vcc-3v3-sw {
->  	};
->  };
->  
-> +/* TPM */
-> +&ecspi1 {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	cs-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_ecspi1>;
-> +	status = "okay";
-> +
-> +	tpm: tpm@0 {
-> +		compatible = "infineon,slb9670", "tcg,tpm_tis-spi";
-> +		reg = <0>;
-> +		spi-max-frequency = <38000000>;
-> +		status = "okay";
-
-Did you disabled it anywhere?
-
-Best regards,
-Krzysztof
-
+Hi Jonathan,=0D
+=0D
+On Sat, 27 Jul 2024 16:02:16 +0100, jic23@kernel.org wrote:=0D
+>On Fri, 26 Jul 2024 06:13:12 +0000=0D
+>wangshuaijie@awinic.com wrote:=0D
+>=0D
+>> From: shuaijie wang <wangshuaijie@awinic.com>=0D
+>> =0D
+>> AW9610X is a low power consumption capacitive touch and proximity contro=
+ller.=0D
+>> Each channel can be independently config as sensor input, shield output.=
+=0D
+>=0D
+>Needs more information, particularly what the USB powersupply notification=
+ is about.=0D
+>It's unlikely that belongs directly in an IIO driver, unless that supply i=
+s=0D
+>part of this same chip.=0D
+>=0D
+>> =0D
+>> Channel Information:=0D
+>>   aw96103: 3-channel=0D
+>>   aw96105: 5-channel=0D
+>I don't see where this is implemented. Seems to assume 5 channels for both=
+.=0D
+>=0D
+>> =0D
+>> Signed-off-by: shuaijie wang <wangshuaijie@awinic.com>=0D
+>> ---=0D
+>>  drivers/iio/proximity/Kconfig   |  11 +=0D
+>>  drivers/iio/proximity/Makefile  |   1 +=0D
+>>  drivers/iio/proximity/aw9610x.c | 791 ++++++++++++++++++++++++++++++++=
+=0D
+>>  drivers/iio/proximity/aw9610x.h | 140 ++++++=0D
+>>  4 files changed, 943 insertions(+)=0D
+>>  create mode 100644 drivers/iio/proximity/aw9610x.c=0D
+>>  create mode 100644 drivers/iio/proximity/aw9610x.h=0D
+>> =0D
+>>  =0D
+=0D
+...=0D
+=0D
+=0D
+>> +static int aw9610x_cfg_all_loaded(const struct firmware *cont,=0D
+>> +		struct aw9610x *aw9610x)=0D
+>> +{=0D
+>> +	struct aw_bin *aw_bin;=0D
+>> +	int ret;=0D
+>> +=0D
+>> +	if (!cont)=0D
+>> +		return -EINVAL;=0D
+>> +=0D
+>> +	aw_bin =3D kzalloc(cont->size + sizeof(*aw_bin), GFP_KERNEL);=0D
+>Use __free(kfree) =0D
+>=0D
+>lots of examples in tree, but will avoid need to manually free and=0D
+>simplify this code a little.=0D
+>=0D
+=0D
+I'm sorry, I didn't quite understand what you meant. Are you suggesting=0D
+the use of devm_? Could you please provide more detailed suggestions?=0D
+Thank you!=0D
+=0D
+>> +	if (!aw_bin)=0D
+>> +		return -ENOMEM;=0D
+>> +=0D
+>> +	aw_bin->len =3D cont->size;=0D
+>> +	memcpy(aw_bin->data, cont->data, cont->size);=0D
+>> +	aw9610x_parsing_bin_file(aw_bin);=0D
+>> +=0D
+>> +	snprintf(aw9610x->chip_type, sizeof(aw9610x->chip_type), "%s",=0D
+>> +			aw_bin->chip_type);=0D
+>> +	ret =3D aw9610x_bin_valid_loaded(aw9610x, aw_bin);=0D
+>> +	kfree(aw_bin);=0D
+>> +=0D
+>> +	return ret;=0D
+>> +}=0D
+>> +=0D
+>> +static int aw9610x_cfg_update(struct aw9610x *aw9610x)=0D
+>> +{=0D
+>> +	const struct firmware *fw;=0D
+>> +	int ret;=0D
+>> +=0D
+>> +	ret =3D request_firmware(&fw, "aw9610x_0.bin", aw9610x->dev);=0D
+>=0D
+>No wild cards in this either.=0D
+>=0D
+>> +	if (ret)=0D
+>> +		return ret;=0D
+>> +	ret =3D aw9610x_cfg_all_loaded(fw, aw9610x);=0D
+>> +	if (ret)=0D
+>> +		ret =3D aw9610x_para_loaded(aw9610x);=0D
+>> +	release_firmware(fw);=0D
+>> +=0D
+>> +	return ret;=0D
+>> +}=0D
+>> +=0D
+>> +static void aw9610x_cfg_work_routine(struct work_struct *work)=0D
+>> +{=0D
+>> +	struct aw9610x *aw9610x =3D container_of(work, struct aw9610x,=0D
+>> +			cfg_work.work);=0D
+>> +=0D
+>> +	aw9610x_cfg_update(aw9610x);=0D
+>=0D
+>So this is polling in driver.   We'd normally hook up to a hrtimer=0D
+>trigger for that.  Perhaps you need this for your events sampling though?=
+=0D
+>If so that may be fine to do somewhat like this. I'm just not sure=0D
+>of the usecase currently.=0D
+>=0D
+=0D
+The primary objective of this delayed task is to load the register=0D
+configuration file. The chip needs to load the register configuration=0D
+file during power-on initialization. In cases where the driver is compiled=
+=0D
+directly into the kernel, rather than existing as a dynamically loaded=0D
+module, there may be a situation where the driver attempts to load before=0D
+the file system is fully prepared, resulting in an inability to access the=
+=0D
+register configuration file. Therefore, a delayed task mechanism is employe=
+d=0D
+to ensure the register configuration file is loaded properly.=0D
+=0D
+If there are any concerns about my understanding or approach, please feel=0D
+free to offer suggestions. Thank you very much!=0D
+=0D
+>> +}=0D
+>> +=0D
+>> +static int aw9610x_sar_cfg_init(struct aw9610x *aw9610x)=0D
+>> +{=0D
+>> +	INIT_DELAYED_WORK(&aw9610x->cfg_work, aw9610x_cfg_work_routine);=0D
+>> +	schedule_delayed_work(&aw9610x->cfg_work, msecs_to_jiffies(5000));=0D
+>> +=0D
+>> +	return 0;=0D
+>> +}=0D
+>> +=0D
+>> +static int aw9610x_sw_reset(struct aw9610x *aw9610x)=0D
+>> +{=0D
+>> +	int ret;=0D
+>> +=0D
+>> +	ret =3D aw9610x_i2c_write(aw9610x, REG_RESET, 0);=0D
+>> +	msleep(20);=0D
+>> +=0D
+>> +	return ret;=0D
+>> +}=0D
+>> +=0D
+>> +static ssize_t update_store(struct device *dev, struct device_attribute=
+ *attr,=0D
+>> +		const char *buf, size_t count)=0D
+>> +{=0D
+>> +	struct aw9610x *aw9610x =3D dev_get_drvdata(dev);=0D
+>> +	unsigned int state;=0D
+>> +	ssize_t ret;=0D
+>> +=0D
+>> +	ret =3D kstrtouint(buf, 10, &state);=0D
+>> +	if (ret)=0D
+>> +		return ret;=0D
+>> +	if (state) {=0D
+>> +		aw9610x_i2c_write(aw9610x, REG_IRQEN, 0);=0D
+>> +		aw9610x_sw_reset(aw9610x);=0D
+>> +		schedule_delayed_work(&aw9610x->cfg_work,=0D
+>> +					msecs_to_jiffies(10));=0D
+>> +	}=0D
+>> +=0D
+>> +	return count;=0D
+>> +}=0D
+>> +=0D
+>> +static DEVICE_ATTR_WO(update);=0D
+>> +=0D
+>> +static struct attribute *aw9610x_sar_attributes[] =3D {=0D
+>> +	&dev_attr_update.attr,=0D
+>=0D
+>This needs documenting as it's custom ABI.=0D
+>Note that we don't often accept custom ABI.=0D
+>Particularly not a hook that seems to reset the device.=0D
+>If you want to do that, unbind and rebind the whole drive so=0D
+>we are in a known state etc.=0D
+>=0D
+>=0D
+>> +	NULL=0D
+>> +};=0D
+>> +=0D
+>> +static struct attribute_group aw9610x_sar_attribute_group =3D {=0D
+>> +	.attrs =3D aw9610x_sar_attributes=0D
+>> +};=0D
+>> +=0D
+>> +static void aw9610x_irq_handle(struct aw9610x *aw9610x)=0D
+>> +{=0D
+>> +	u32 curr_status_val;=0D
+>> +	u32 curr_status;=0D
+>> +	unsigned char i;=0D
+>> +	int ret;=0D
+>> +=0D
+>> +	ret =3D aw9610x_i2c_read(aw9610x, REG_STAT0, &curr_status_val);=0D
+>> +	if (ret)=0D
+>> +		return;=0D
+>> +=0D
+>> +	for (i =3D 0; i < AW_CHANNEL_MAX; i++) {=0D
+>> +		curr_status =3D (((curr_status_val >> (24 + i)) & 0x1)) |=0D
+>> +			(((curr_status_val >> (16 + i)) & 0x1) << 1) |=0D
+>> +			(((curr_status_val >> (8 + i)) & 0x1) << 2) |=0D
+>> +			(((curr_status_val >> (i)) & 0x1) << 3);=0D
+>=0D
+>Add a comment on what is going on here as it's tricky to read.=0D
+>Also, no brackets around the i in last line.=0D
+>Probably better expressed as a series of FIELD_GET() calls with appropriat=
+=0D
+>masks of the 32 bit value.=0D
+>=0D
+>=0D
+=0D
+The work processed here is to parse the interrupt status of different chann=
+els.=0D
+bit0/bit8/bit16/bit24 represent the interrupt status of channel 0, with eac=
+h of=0D
+the 4 bits corresponding to an interrupt status for approaching a threshold=
+.=0D
+Similarly, bit1/bit9/bit17/bit25 represent the interrupt status of channel =
+1.=0D
+To facilitate subsequent interrupt status judgments, the 4 interrupt status=
+es=0D
+of the same channel are combined into a single data.=0D
+=0D
+Sorry, I have not found a suitable way to utilize FIELD_GET for this purpos=
+e.=0D
+=0D
+>> +=0D
+>> +		if (!aw9610x->channels_arr[i].used ||=0D
+>> +				(aw9610x->channels_arr[i].last_channel_info =3D=3D=0D
+>> +				curr_status))=0D
+>Align as=0D
+>		if (!aw=0D
+>		    (aw9610...=0D
+>=0D
+>> +			continue;=0D
+>> +=0D
+>> +		switch (curr_status) {=0D
+>> +		case FAR:=0D
+>> +			iio_push_event(aw9610x->aw_iio_dev,=0D
+>> +					IIO_UNMOD_EVENT_CODE(IIO_PROXIMITY, i,=0D
+>> +						IIO_EV_TYPE_THRESH,=0D
+>> +						IIO_EV_DIR_RISING),=0D
+>> +					iio_get_time_ns(aw9610x->aw_iio_dev));=0D
+>> +			break;=0D
+>> +		case TRIGGER_TH0:=0D
+>> +		case TRIGGER_TH1:=0D
+>> +		case TRIGGER_TH2:=0D
+>> +		case TRIGGER_TH3:=0D
+>4 thresholds on the same channel? This is confusing given we are reporting=
+ them=0D
+>as events on different channels. but this loop is over the channels.=0D
+>=0D
+>=0D
+=0D
+There are 4 proximity thresholds on the same channel, each representing=0D
+a different level of proximity. TRIGGER_TH0/TRIGGER_TH1/TRIGGER_TH2/TRIGGER=
+_TH3=0D
+all represent proximity states, but with varying degrees of proximity.=0D
+=0D
+Here I have a question to ask. I'm not sure how to use iio to report=0D
+different proximity states. Can you give me some suggestions? Thank you!=0D
+=0D
+>> +			iio_push_event(aw9610x->aw_iio_dev,=0D
+>> +					IIO_UNMOD_EVENT_CODE(IIO_PROXIMITY, i,=0D
+>> +						IIO_EV_TYPE_THRESH,=0D
+>> +						IIO_EV_DIR_FALLING),=0D
+>> +					iio_get_time_ns(aw9610x->aw_iio_dev));=0D
+>> +			break;=0D
+>> +		default:=0D
+>> +			return;=0D
+>> +		}=0D
+>> +		aw9610x->channels_arr[i].last_channel_info =3D curr_status;=0D
+>> +	}=0D
+>> +}=0D
+>> +=0D
+=0D
+Kind regards,=0D
+Wang Shuaijie=
 
