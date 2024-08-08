@@ -1,119 +1,109 @@
-Return-Path: <devicetree+bounces-92180-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92181-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FFA094C2A3
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 18:24:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD18994C2CC
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 18:34:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A08641C22C01
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 16:24:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 190E61C20D2D
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 16:34:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B9CF18FC93;
-	Thu,  8 Aug 2024 16:24:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13C33190679;
+	Thu,  8 Aug 2024 16:34:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U5biSwfs"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="W08eMFc3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0691F18E752;
-	Thu,  8 Aug 2024 16:24:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723134258; cv=none; b=KwdlOU4OmpGYATK7iWQGRhfW6/CW5Decad+33bzY3qDqIEg7OHsl4KwvrLiCfO2Qdavbam0Y2lyYVwV6WqNqfdI4jVGFKb5vnCpRav7Vlnlp574iG7vEyMu/YdyCLlzv5fvPA8vC3vQOAWZAaRGeRyCnakXJx8UCuA6ZFEA6WmM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723134258; c=relaxed/simple;
-	bh=LbWQSf2pCqgQzt6P1kYq5tJgjgYEyq/E5jxvh5xYMUg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XKkFfF1oj287AZOQn5V04tag7nFoFlpoNLR6oAiQdp/xPyNf+TPS2bMooGrkNCek9B8tvolBg4k7if7xAgmz1wX0mETk+zBiOv/qaTKQCn+ZlQKx9tlemMmC0GD7FUo5XMzPOvfl2wD8m7imni4EARCIdnGuPwzun0ifzd1eMUs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U5biSwfs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 110CDC32782;
-	Thu,  8 Aug 2024 16:24:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723134257;
-	bh=LbWQSf2pCqgQzt6P1kYq5tJgjgYEyq/E5jxvh5xYMUg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=U5biSwfsv1UsPpfRXmOPczwEe60uQvDeFR5QlpcCRqx0bGPO/3GVP7Ya9zh18RWb3
-	 v1KDbkAxaGCTUBpbmknrEENObrTtn0ICTamJcd19NnIMl9mHLP/kIlbOG5ynxCFPzn
-	 iennuszdwVpygz2v6EESemjsqM0+1agEX10SNtIjUIn0dIH9yHOge/oYzjDS1BQRst
-	 oviixmWkD786bhGSrRfmOsdBBgkER6xZ9xd0ye2TPi4kxIZMg8psyFEpZAkfI61zw9
-	 SZYvAqp5hfDx+wYvzFo+2hsG33RYJFoD4LfVQjM84CtsLlSEPpV5arXHR+uof7U3cg
-	 paFjyroAbmtIA==
-Date: Thu, 8 Aug 2024 18:24:07 +0200
-From: Niklas Cassel <cassel@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Hongxing Zhu <hongxing.zhu@nxp.com>, "tj@kernel.org" <tj@kernel.org>,
-	"dlemoal@kernel.org" <dlemoal@kernel.org>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"shawnguo@kernel.org" <shawnguo@kernel.org>,
-	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-	"festevam@gmail.com" <festevam@gmail.com>,
-	"linux-ide@vger.kernel.org" <linux-ide@vger.kernel.org>,
-	"stable@vger.kernel.org" <stable@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>
-Subject: Re: [PATCH v4 4/6] ata: ahci_imx: Add 32bits DMA limit for i.MX8QM
- AHCI SATA
-Message-ID: <ZrTxJzmWJyH2P0Ba@x1-carbon.lan>
-References: <1721367736-30156-1-git-send-email-hongxing.zhu@nxp.com>
- <1721367736-30156-5-git-send-email-hongxing.zhu@nxp.com>
- <Zp/Uh/mavwo+755Q@x1-carbon.lan>
- <AS8PR04MB867612E75A6C08983F7031528CB32@AS8PR04MB8676.eurprd04.prod.outlook.com>
- <ZrP2lUjTAazBlUVO@x1-carbon.lan>
- <ZrTQJSjxaQglSgmX@lizhi-Precision-Tower-5810>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DF94190079;
+	Thu,  8 Aug 2024 16:33:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.14
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723134839; cv=pass; b=WQZb/u0MHifgBQysXeyieKqo9tJfNC0ptyIoI4tkUgMm8/Cck6pYzXYWK8j9F86qBlcSW7D80u4yaOjHEnPGMQlyuPsefCKgIsqN5hUTBftlHi20RwJ7WY00TI5I8M7vDwB3ec8IvPhHFtS95zi1RVjH70rKDEbsmEITuJ4Cg+c=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723134839; c=relaxed/simple;
+	bh=7chZuhTNmRrjrIC+yqjL8bk0QnvRVNVfEvzzu7jPKYY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=RRclCaxzMN9ZkpNfNun73JpaotS65TyA8hiefFLokK/baVXLmhHnErkTfW9Li7Ro8999H9MM1Bxqd25HF3JygEUIjCWiI6aoX4r+3yZ4otUTXI28gjtxdUGm0D7yBJXbad3ltoTHe+lZ55vXjq2twvju+j89ruj3vUfbtu3QLCc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=W08eMFc3; arc=pass smtp.client-ip=136.143.188.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Delivered-To: detlev.casanova@collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1723134816; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=iDPWYWlOfe54Ce5X5GyGC3aRRR4PDVqFhM4E8MpQuGrgTA+/B7Fz8mJPuzvzFQW1vaFbF941UvuAc7pTfmbAw62cNJXHlcqgWVxaSvCKFPJBvhBCMSeP0DpzH9fSNaM6wwcc/HR2fIZCfMhIYlyP6d+W/4ZeP3p411ARR2TXJR4=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1723134816; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=NmqcV9imI6SfgcIxSQfScmTXomw4vtotLJTJkgfLYDA=; 
+	b=f6O5ysVa4OLVPFzF34YFfUYIKsG4QskrNH4JxANXVMSZ+712mYZhEAYO1pIr143myYNfavCg0EF6wDqohgW+Xfw43ADQJhEkrXqs6LwMV2JBQfHedBZ7AdZ80JveCNXvuhFLLNQ9ECNfb//d2pVrW21DafSK90zrMj/LueDcVDo=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
+	dmarc=pass header.from=<detlev.casanova@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1723134816;
+	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=NmqcV9imI6SfgcIxSQfScmTXomw4vtotLJTJkgfLYDA=;
+	b=W08eMFc3zFZm/8nWGANJGr7fWFSowSiV30h0usWckR1QpSi6cRqQCFEkM/X8U7Ml
+	rI+ChtmX8xm9XkXQ71V6Y0l0YzjOR76APf2x2OTibbGtYuvsOfS5Y7RlGlF1Sl04rAs
+	RBSeFf4sMNGQ6y5EcsJlYJHAqsWUrYjPNYwTQJOw=
+Received: by mx.zohomail.com with SMTPS id 1723134814543747.8071954226422;
+	Thu, 8 Aug 2024 09:33:34 -0700 (PDT)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: linux-kernel@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	Finley Xiao <finley.xiao@rock-chips.com>,
+	Jagan Teki <jagan@edgeble.ai>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Elaine Zhang <zhangqing@rock-chips.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-pm@vger.kernel.org,
+	kernel@collabora.com
+Subject: [PATCH v2 0/2] Add power-controller support for rk3576
+Date: Thu,  8 Aug 2024 12:31:03 -0400
+Message-ID: <20240808163451.80750-1-detlev.casanova@collabora.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZrTQJSjxaQglSgmX@lizhi-Precision-Tower-5810>
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 
-On Thu, Aug 08, 2024 at 10:03:17AM -0400, Frank Li wrote:
-> On Thu, Aug 08, 2024 at 12:35:01AM +0200, Niklas Cassel wrote:
-> > On Fri, Aug 02, 2024 at 02:30:45AM +0000, Hongxing Zhu wrote:
-> > > >
-> > > Hi Niklas:
-> > > I'm so sorry to reply late.
-> > > About the 32bit DMA limitation of i.MX8QM AHCI SATA.
-> > > It's seems that one "dma-ranges" property in the DT can let i.MX8QM SATA
-> > >  works fine in my past days tests without this commit.
-> > > How about drop these driver changes, and add "dma-ranges" for i.MX8QM SATA?
-> > > Thanks a lot for your kindly help.
-> >
-> > Hello Richard,
-> >
-> > did you try my suggested patch above?
-> >
-> >
-> > If you look at dma-ranges:
-> > https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#dma-ranges
-> >
-> > "dma-ranges" property should be used on a bus device node
-> > (such as PCI host bridges).
-> 
-> Yes, 32bit is limited by internal bus farbic, not AHCI controller.
+Add support for the power domain controller on the rk3576 SoC.
+Patches from downstream have been rebased.
 
-If the limit is by the interconnect/bus, then the limit will affect all
-devices connected to that bus, i.e. both the PCIe controller and the AHCI
-controller, and using "dma-ranges" in that case is of course correct.
+Note that the mentioned TRM is not publicly available.
 
-I guess I'm mostly surprised that i.MX8QM doesn't already have this
-property defined in its device tree.
+Changes since v1:
+- Rename rk3576-power.h to rockchip,rk3576-power.h
+- Add memory reset support
+- Squashed header files with bindings commit
+- Updated license
+- Fix commit messages for subsystem.
 
-Anyway, please send a v5 of this series without the patch in $subject,
-and we should be able to queue it up for 6.12.
+Finley Xiao (2):
+  dt-bindings: power: Add support for RK3576 SoC
+  pmdomain: rockchip: Add support for rk3576 SoC
 
+ .../power/rockchip,power-controller.yaml      |  1 +
+ drivers/pmdomain/rockchip/pm-domains.c        | 73 ++++++++++++++++++-
+ .../dt-bindings/power/rockchip,rk3576-power.h | 30 ++++++++
+ 3 files changed, 101 insertions(+), 3 deletions(-)
+ create mode 100644 include/dt-bindings/power/rockchip,rk3576-power.h
 
-Kind regards,
-Niklas
+-- 
+2.46.0
+
 
