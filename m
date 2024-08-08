@@ -1,152 +1,387 @@
-Return-Path: <devicetree+bounces-92103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92104-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3542994BCCA
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 14:01:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AA6394BCE0
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 14:04:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 65B8A1C22B15
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:01:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12091280D7C
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:04:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC73D18C33F;
-	Thu,  8 Aug 2024 12:01:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37F1B188CCF;
+	Thu,  8 Aug 2024 12:04:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oG4ktlny"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XUhch7z6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A6D615624D
-	for <devicetree@vger.kernel.org>; Thu,  8 Aug 2024 12:01:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D89F126F1E;
+	Thu,  8 Aug 2024 12:04:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723118483; cv=none; b=bllEuwwqjyX8XK1MvF4QHbBoZsBgNs7pLV/Ej/2qJycKs5YD2hsGnMONslPLvqWQLuMehmJUBrWc/u44GPPIquqHwQnKVy1DfL/HS8jxyg60XCwdurhyUb5+tFt3QZ24Vpg4Dcib8KdYy62dfW33ITgo0416jh6LwyPQSVjTVVQ=
+	t=1723118681; cv=none; b=NHUhK8JATzsbTnYYtb+nHKTwtDAvkytThSQNJz8l03IKYxuPMNfHcW6KMeY/9NaBuefp4lMb8FsQ3G3uVSspRDGjkBASnFNyA/0ClJCoGEhXYcQyxjA7jcAS4loVMf21Kxgjos+ZY3WZz7E+p3jCwCeOAbkEV6TpkHVxrXWGriU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723118483; c=relaxed/simple;
-	bh=v1/ezKij1Xb1/LM0FzxebKnX6GG097BFMwzk7oYzp/o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PjtDsYZk69QUZKwbdafhD0ZUQ1X414QNmEyMo0K3yjnkRHk+vHJDHvRuhMNmDCsvh4pZCrMffY3IhwMAy1jSxAXeag2PZHWb1sUWG8GVYQrerceazag99osOP568gTRWjrFV1KTjlTeHWwvTM/B+YUph3M/10bAa2ay5rL+SO2U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oG4ktlny; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-1fc5296e214so9205175ad.0
-        for <devicetree@vger.kernel.org>; Thu, 08 Aug 2024 05:01:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723118481; x=1723723281; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=x56HaYfAguqXwkXH/W0VkzCpF6NMLJ6hsKX1WsF80Hc=;
-        b=oG4ktlnyivgSythmARtVDS0DcvSmdkuwukckwShy20aF0fGS76+jy5OpA7uJUrvy3e
-         KhpCdWg+kvqulKeRS+twAoDDrSROJmn2/5WiCavoXJRPi6C+RYPH3kdZocKInrIwp0/S
-         clGJ9jZeHMXfCAriAE+sgRdN2+PQJM+NV+/brsYNT+RpoGQh8/isJ9cu/a1k/Pcn2Flf
-         vVR1Yqf8as1rbta0++So2bXS1QGup015HSyXHzYKRDAS6gYs0GrXQ1fnVJ3AqAiy2iV1
-         qTK4bZrmRoBASnuNCzjluyuEHIIyd0WfD6gLyxsZ3orAKczP4jpx1Qe1Rdhp2FZ4kkMf
-         RiFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723118481; x=1723723281;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=x56HaYfAguqXwkXH/W0VkzCpF6NMLJ6hsKX1WsF80Hc=;
-        b=V9IdQXqSkNpxeK3TZlq4wTLCQx2caHCcdalaEvfUso73cyd20SoylMQwrflXxES4xW
-         LJT6v4LCQHL3Q8diyGphyscAo5Vl32SzXBGTnLVBy56cxMygNLX4iORZj7c2OYmW5r9B
-         IJADWw47K+hlHyQVpKvwY/F6WD4U7qYgAn5vH4cjNYqHohhGJver5xNX+cBrXO0A4Irg
-         2OTWkV8BhB1h44MetUZ9++jZR59uhgK5+9+/R20X0r4wqFi1lwQKmXpNIZ4jsSzI1+6h
-         lQXqHK3MOZTdn/j4omZgyq4XiW97w6d/MhCL9lcFza9t5jUOa9hCTLbCfXs9Mfei8e8i
-         KVKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV4iuhFv2jny088G6Gj7pgbmKjpG1Uy0pzVl6XavgWK7TpimfoFMEXj5Y3Pigd2YV6v4auq9TjAK0xUcjuR0JIwn4JLLCuGClvisA==
-X-Gm-Message-State: AOJu0Ywbc7q0ptcLW3eD/kUrKy6deVCtW6DhlQLfgUXzwInMEbfhhy6a
-	dBUT1WowEodpSRyQaJcNkcwV53ebI4M1M6uguZfPPwjVrdA3joCTE6MmzXTbAg==
-X-Google-Smtp-Source: AGHT+IHer9Cx3RKHDR+QrEa4bUNXipYY8dzX3QCoI0MnxJJA0/SxKpWCbY7pKxl6gWV8lep00FD9dg==
-X-Received: by 2002:a17:902:f605:b0:1fd:6766:6877 with SMTP id d9443c01a7336-20095224b8dmr25116925ad.2.1723118480848;
-        Thu, 08 Aug 2024 05:01:20 -0700 (PDT)
-Received: from thinkpad ([120.60.136.4])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2d1b3ad01d4sm3285656a91.23.2024.08.08.05.01.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Aug 2024 05:01:20 -0700 (PDT)
-Date: Thu, 8 Aug 2024 17:31:09 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Bjorn Andersson <quic_bjorande@quicinc.com>,
-	Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	cros-qcom-dts-watchers@chromium.org,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Jingoo Han <jingoohan1@gmail.com>, andersson@kernel.org,
-	quic_vbadigan@quicinc.com, linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v2 1/8] dt-bindings: PCI: Add binding for qps615
-Message-ID: <20240808120109.GA18983@thinkpad>
-References: <20240803-qps615-v2-0-9560b7c71369@quicinc.com>
- <20240803-qps615-v2-1-9560b7c71369@quicinc.com>
- <5f65905c-f1e4-4f52-ba7c-10c1a4892e30@kernel.org>
- <f8985c98-82a5-08c3-7095-c864516b66b9@quicinc.com>
- <ZrEGypbL85buXEsO@hu-bjorande-lv.qualcomm.com>
- <90582c92-ca50-4776-918d-b7486cf942b0@kernel.org>
+	s=arc-20240116; t=1723118681; c=relaxed/simple;
+	bh=CuuuqrCpe3lD6WoXCd4Ve65BdO8B/nlv4zg4EVOsj2E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QCcmnQdqDgYbUjlI22OaN08bGBxLvljtIzdS6isKziiMKb9ZwtKNSwXBU69n/MdYVpmJ/K4orun44oRMZQYyKfx7Be/VobC7LwWq0WOvFeOPEH6UU4H2pug8bSikpqY2i6vVLN4bciKIcLMwr8zj0SqkYF3au9Pc0whuFk20pcM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XUhch7z6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87AC2C32782;
+	Thu,  8 Aug 2024 12:04:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723118680;
+	bh=CuuuqrCpe3lD6WoXCd4Ve65BdO8B/nlv4zg4EVOsj2E=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=XUhch7z637LfBfCSYLIrMwJfOURvB9rzd/X9a/6/qRtX0BFkGcl9KkzgelzeYmcEw
+	 m0xRTZMdJYA+CKbHQBE+gSaOEodBoNQ+Q3WrTOeaTyhH+4GQQUAlA58mznv9RMY+14
+	 oJ5y7AxA+0sM03KSROCQ8crXwEs5q8fknuB2jJuxrbY78w4GEbMqUlTfiGdvrLtlGo
+	 GanQf8vtg5THk5jHR5TQEgzz035Temq9/sG+qIJd2w2HN4WhSccTzYfs5eBl/j4OKf
+	 1HHXXzshBgOkVGcsx3UeNCR8yQEg05tvrR1vIJOipcRg68/Va9OgNe8GGiiBDqdVGR
+	 6zQhYAvDOiYLw==
+Message-ID: <2d89c86b-28b4-439f-824b-1d0560ff36bd@kernel.org>
+Date: Thu, 8 Aug 2024 14:04:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <90582c92-ca50-4776-918d-b7486cf942b0@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: mfd: mediatek: mt6397: Convert to DT schema
+ format
+To: Macpaul Lin <macpaul.lin@mediatek.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>
+Cc: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+ Macpaul Lin <macpaul@gmail.com>, Sen Chu <sen.chu@mediatek.com>,
+ Jason-ch Chen <Jason-ch.Chen@mediatek.com>,
+ Chris-qj chen <chris-qj.chen@mediatek.com>,
+ MediaTek Chromebook Upstream
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+ Alexandre Mergnat <amergnat@baylibre.com>, Chen-Yu Tsai <wenst@chromium.org>
+References: <20240808105722.7222-1-macpaul.lin@mediatek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240808105722.7222-1-macpaul.lin@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Aug 05, 2024 at 07:18:04PM +0200, Krzysztof Kozlowski wrote:
-> On 05/08/2024 19:07, Bjorn Andersson wrote:
-> > On Mon, Aug 05, 2024 at 09:41:26AM +0530, Krishna Chaitanya Chundru wrote:
-> >> On 8/4/2024 2:23 PM, Krzysztof Kozlowski wrote:
-> >>> On 03/08/2024 05:22, Krishna chaitanya chundru wrote:
-> >>>> diff --git a/Documentation/devicetree/bindings/pci/qcom,qps615.yaml b/Documentation/devicetree/bindings/pci/qcom,qps615.yaml
-> > [..]
-> >>>> +  qps615,axi-clk-freq-hz:
-> >>>> +    description:
-> >>>> +      AXI clock which internal bus of the switch.
-> >>>
-> >>> No need, use CCF.
-> >>>
-> >> ack
-> > 
-> > This is a clock that's internal to the QPS615, so there's no clock
-> > controller involved and hence I don't think CCF is applicable.
+On 08/08/2024 12:57, Macpaul Lin wrote:
+> Convert the mfd: mediatek: mt6397 binding to DT schema format.
 > 
-> AXI does not sound that internal.
-
-Well, AXI is applicable to whatever entity that implements it. We mostly seen it
-in ARM SoCs (host), but in this case the PCIe switch also has a microcontroller
-/processor of some sort, so AXI is indeed relevant for it. The naming actually
-comes from the switch's i2c register name that is being configured in the driver
-based on this property value.
-
-> DT rarely needs to specify internal
-> clock rates. What if you want to define rates for 20 clocks? Even
-> clock-frequency is deprecated, so why this would be allowed?
-> bus-frequency is allowed for buses, but that's not the case here, I guess?
+> New updates in this conversion:
+>  - Align generic names of DT schema "audio-codec" and "regulators".
+>  - mt6397-regulators: Replace the "txt" reference with newly added DT
+>    schema.
 > 
+> Signed-off-by: Sen Chu <sen.chu@mediatek.com>
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> ---
+>  .../bindings/mfd/mediatek,mt6397.yaml         | 202 ++++++++++++++++++
+>  .../devicetree/bindings/mfd/mt6397.txt        | 110 ----------
 
-This clock frequency is for the switch's internal AXI bus that runs at default
-200MHz. And this property is used to specify a frequency that is configured over
-the i2c interface so that the switch's AXI bus can operate in a low frequency
-there by reducing the power consumption of the switch.
+You are doing conversions in odd order... and ignore my comments. The
+example from your regulator binding is supposed to be here - I wrote it
+last time.
 
-It is not strictly needed for the switch operation, but for power optimization.
-So this property can also be dropped for the initial submission and added later
-if you prefer.
+Due to doing changes totally unsynchronized, this CANNOT be merged
+without unnecessary maintainer coordination, because of dependency.
 
-- Mani
+Sorry, that's not how it works for MFD devices.
 
--- 
-மணிவண்ணன் சதாசிவம்
+Perform conversion of entire device in ONE patchset.
+
+>  2 files changed, 202 insertions(+), 110 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mfd/mt6397.txt
+> 
+> Changes for v1:
+>  - This patch depends on conversion of mediatek,mt6397-regulator.yaml
+>    [1] https://lore.kernel.org/lkml/20240807091738.18387-1-macpaul.lin@mediatek.com/T/
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml b/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
+> new file mode 100644
+> index 0000000..cfbf2215
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
+> @@ -0,0 +1,202 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/mediatek,mt6397.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek MT6397/MT6323 Multifunction Device
+> +
+> +maintainers:
+> +  - Sen Chu <sen.chu@mediatek.com>
+> +  - Macpaul Lin <macpaul.lin@mediatek.com>
+> +
+> +description: |
+> +  MT6397/MT6323 is a multifunction device with the following sub modules:
+
+MFD is Linuxism, avoid it.
+
+> +  - Regulator
+> +  - RTC
+> +  - Audio codec
+> +  - GPIO
+> +  - Clock
+> +  - LED
+> +  - Keys
+> +  - Power controller
+> +
+> +  It is interfaced to host controller using SPI interface by a proprietary hardware
+> +  called PMIC wrapper or pwrap. MT6397/MT6323 MFD is a child device of pwrap.
+> +  See the following for pwarp node definitions:
+> +  ../soc/mediatek/mediatek,pwrap.yaml
+
+Drop, instead add proper ref or compatible in parent node.
+
+> +
+> +  This document describes the binding for MFD device and its sub module.
+
+Drop
+
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - mediatek,mt6323
+> +          - mediatek,mt6331 # "mediatek,mt6331" for PMIC MT6331 and MT6332.
+> +          - mediatek,mt6357
+> +          - mediatek,mt6358
+> +          - mediatek,mt6359
+> +          - mediatek,mt6397
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt6366 # "mediatek,mt6366", "mediatek,mt6358" for PMIC MT6366
+
+Drop comment, it is obvious. Don't repeat constraints in free form text.
+
+> +          - const: mediatek,mt6358
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  "#interrupt-cells":
+> +    const: 2
+> +
+> +  rtc:
+> +    type: object
+> +    unevaluatedProperties: false
+> +    description:
+> +      Real Time Clock (RTC)
+> +      See ../rtc/rtc-mt6397.txt
+
+No, convert the binding.
+
+> +    properties:
+> +      compatible:
+> +        oneOf:
+> +          - enum:
+> +              - mediatek,mt6323-rtc
+> +              - mediatek,mt6331-rtc
+> +              - mediatek,mt6358-rtc
+> +              - mediatek,mt6397-rtc
+> +          - items:
+> +              - enum:
+> +                  - mediatek,mt6366-rtc # RTC MT6366
+
+Drop all such comments.
+
+> +              - const: mediatek,mt6358-rtc
+> +
+> +  regulators:
+> +    type: object
+> +    oneOf:
+> +      - $ref: /schemas/regulator/mediatek,mt6358-regulator.yaml
+> +      - $ref: /schemas/regulator/mediatek,mt6397-regulator.yaml
+
+And how is it supposed to be tested?
+
+
+
+> +    unevaluatedProperties: false
+> +    description:
+> +      Regulators
+> +      For mt6323, see ../regulator/mt6323-regulator.txt
+
+Drop, useless.
+
+> +    properties:
+> +      compatible:
+> +        oneOf:
+> +          - enum:
+> +              - mediatek,mt6323-regulator
+> +              - mediatek,mt6358-regulator
+> +              - mediatek,mt6397-regulator
+> +          - items:
+> +              - enum:
+> +                  - mediatek,mt6366-regulator # Regulator MT6366
+> +              - const: mediatek,mt6358-regulator
+> +
+> +  audio-codec:
+> +    type: object
+> +    unevaluatedProperties: false
+
+This does not make sense. You do not have any ref here.
+
+> +    description:
+> +      Audio codec
+> +    properties:
+> +      compatible:
+> +        oneOf:
+> +          - enum:
+> +              - mediatek,mt6397-codec
+> +              - mediatek,mt6358-sound
+> +          - items:
+> +              - enum:
+> +                  - mediatek,mt6366-sound # Codec MT6366
+> +              - const: mediatek,mt6358-sound
+
+This wasn't in the old binding. Commit msg also does not explain why you
+are doing changes from conversion.
+
+> +
+> +  clk:
+> +    type: object
+> +    unevaluatedProperties: false
+
+Again, no, it does not work like this. See example schema for
+explanation of this.
+
+Convert all children - entire device. Then either use ref or
+additionalProperties: true. See Qualcomm mdss bindings for example.
+
+> +    description:
+> +      Clock
+
+Your descriptions are useless. You just said "clk" node is "clock". Really?
+
+> +    properties:
+> +      compatible:
+> +        const: mediatek,mt6397-clk
+> +
+> +  led:
+> +    type: object
+> +    unevaluatedProperties: false
+> +    description:
+> +      LED
+> +      See ../leds/leds-mt6323.txt for more information
+
+No
+
+> +    properties:
+> +      compatible:
+> +        const: mediatek,mt6323-led
+> +
+> +  keys:
+> +    type: object
+> +    $ref: /schemas/input/mediatek,pmic-keys.yaml
+> +    unevaluatedProperties: false
+> +    description: Keys
+
+Keys are keys? Could keys be anything else?
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    pwrap {
+
+Drop
+
+> +        pmic {
+> +            compatible = "mediatek,mt6397";
+> +            interrupts-extended = <&pio 222 IRQ_TYPE_LEVEL_HIGH>;
+> +            interrupt-controller;
+> +            #interrupt-cells = <2>;
+> +
+> +            mt6397_codec: audio-codec {
+> +                compatible = "mediatek,mt6397-codec";
+> +            };
+> +
+> +            mt6397_regulators: regulators {
+> +                compatible = "mediatek,mt6397-regulator";
+> +
+> +                mt6397_vpca15_reg: buck_vpca15 {
+> +                    regulator-name = "vpca15";
+> +                    regulator-min-microvolt = <850000>;
+> +                    regulator-max-microvolt = <1400000>;
+> +                    regulator-ramp-delay = <12500>;
+> +                    regulator-always-on;
+> +                };
+> +
+> +                mt6397_vgp4_reg: ldo_vgp4 {
+> +                    regulator-name = "vgp4";
+> +                    regulator-min-microvolt = <1200000>;
+> +                    regulator-max-microvolt = <3300000>;
+> +                    regulator-enable-ramp-delay = <218>;
+> +                };
+> +            };
+
+Incomplete.
+
+The parent device example is supposed to be 100% complete.
+
+Best regards,
+Krzysztof
+
 
