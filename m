@@ -1,139 +1,106 @@
-Return-Path: <devicetree+bounces-92109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E62C94BD8C
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 14:32:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB1A394BD97
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 14:35:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 06ED0B21539
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:32:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66D65287CAC
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:35:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 276F418A92B;
-	Thu,  8 Aug 2024 12:32:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACB7318B483;
+	Thu,  8 Aug 2024 12:35:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PowFAQPT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QiFwmG6W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FD8F18A937;
-	Thu,  8 Aug 2024 12:32:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D48126AFF;
+	Thu,  8 Aug 2024 12:35:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723120368; cv=none; b=NGcB4LXB/Wp98jyerC7SZcXRELBYi/lmiKDR2r47Xab1K8TRoMkPm1DG08SC9p3M4a4KvNIU6Akp0EsnQW705dPHp+RmYqSw5yDdYf1vD9LKhNRN7sqi3lwVC5093Eau+feRf/ktsJCfESlJqXOpvgE6k0jHaYiK4kDmIdslzi0=
+	t=1723120530; cv=none; b=RyhNUXmMAa3Nzj/goRJHVJefSX3ySQJ9gav7eH/o4eN+0/1QP5og8IfoRz2ee06Y/CbBa+/3DCOpDJB0WhV1rO7Zrg6FDBVoW1tDfONC6UkqnUhL4pYneGsFOf94g1xnHSTBAu9eOAOrjfQZZiRzbNC1y2WxVTnLJQZiI9tihsk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723120368; c=relaxed/simple;
-	bh=nTalzfrNCjKlLWKsns4urkDENdMZzxYdv7NUi8Kvc44=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RpqPdAVL6wxvNiXtiHXIxPLWCLB+TRGUXpWj0NFjQ5wVfdYC1RA6HqDEB8VvDd4ggOrsyFTLiLIV8OPuvgaKGP0n/pbrpyvTyYCMaUzzj8ZKSWUSqm0TZZS/+vfqK92voZcf6UFrTpwjA8FwKr8OKGYkxhFhmoyM3kUA7dLS1l8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PowFAQPT; arc=none smtp.client-ip=209.85.218.51
+	s=arc-20240116; t=1723120530; c=relaxed/simple;
+	bh=uKQOm2SBha/Im1yZQMaKmqXPXDOIeCDU1/a4R247f3Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mxU++6GySlWRvdEnHzT7xFwJq+0xDdKUMQChs9n6qgWHKkn/UqjnEc/Ah34IKtrOolIdJdsizuOG47ydPCqd1jm7IQUD5UbzNB+24KGWydD8PVYtzqda1HtxMcEaVC29YpyRp57huDbt3JAhIoM7g4OAKtE/E5MjTmJ51lRsxJk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QiFwmG6W; arc=none smtp.client-ip=209.85.208.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a7ab76558a9so135751866b.1;
-        Thu, 08 Aug 2024 05:32:46 -0700 (PDT)
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2f01e9f53e3so14189391fa.1;
+        Thu, 08 Aug 2024 05:35:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723120365; x=1723725165; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4VV1dTykEhoT9nZ9CwTmUeuc8Dm5mUMbxnCuJKvSQ9M=;
-        b=PowFAQPTSvAo8ZIZLmJrS81YbkAw5dOH3HcnYHUwdvh/HdVzMUI4np9voemjs3OVN8
-         +r+29aWlyTzMptJ7L/2fYqZoNo0w3tkGfkTaoZ5UuyMhxiPcJQEgWbgJQcYKAqRqLL24
-         ReNzvFVUPDdJYcrY7IjUUtXmd6vK7QPmZoYV5igzFJDj6eCwrRdbA40lgiluiGxRrmSw
-         vFI6D6yusp3vjSb8Ih/SHpVOGvhvcgYPiGXHrXuZJpzGvduX+8VtE/OskzCawE3aEBBY
-         LDqMFEo3jaC8BW5eV6zX2r4fTIbFPjy1a1TZBWwCZSTpbZPgPK5FpGIgpSHksH7I3ErZ
-         RShQ==
+        d=gmail.com; s=20230601; t=1723120527; x=1723725327; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nbjZvVaCZ0386E9l/US1czroDOauP6L7rtIUKqoC7PI=;
+        b=QiFwmG6WGw95pn+SFu0sqCsSsJ60Ww1E5Fbv6Ug9CcBHgFh46/1YyAxXKwVqZJn4fy
+         7Zh6z0wYQd3LCuqi8rqnvEpL3vZ/by1V+xqUAG0KmUTeZyFdcl0lZYmPa63ErNC5EyGr
+         mxY3vVXKpfKaMkPd9cVTimdR563u8wwhbhBXgBWhYkCrCAuEy0Pxx2iXnl6HMfV01CQR
+         2Vo2k26CgdQnu9Ay6w7ejkN3SMVP+0Vyk3WGmQAR6NjTMEgKzfXMneXZYx/VQxxNwKwm
+         k/dnz5PwzOsAkTc/1as8I+K0eahh4SL6JF2R+KUO46oMn8mwAKCia6mmD2jY05/IjDM0
+         yWLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723120365; x=1723725165;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4VV1dTykEhoT9nZ9CwTmUeuc8Dm5mUMbxnCuJKvSQ9M=;
-        b=bgT43rji0zjvaix7IksgytcxsY9uJKBhjewFD+Bu7pFhmlr58fZMotfAVwhL6uXfeU
-         s4cWCRVUUGM96nLXfWIQ6YMBIMIM1EKCouHk6ca4i7+hRuHF8m/HwW+OwC7G6G3vKmh8
-         LL4SM8n7tN0nlCefTJxXL6HrFu7CGV8PuIgfpMG/ZZdyU61gVvZIfB3v4FltFasRO1Jx
-         muenoAOBL573+njhemnXk9V3dWoJMZxuvc7x0Sgytltaeze3JBLYXYLW7mimJO7PDyQV
-         tBz24hlQqp0d528xqN3QeVHiHdSpkZC35VQ79eDfqmuCImlz3ak4FvH/Q7vTDj6+eeeX
-         nRQg==
-X-Forwarded-Encrypted: i=1; AJvYcCVjnBfAUWJDEimTka8baJRt9XMIXkb9e4Vp0s4caRemyVT6BzQuFxfhUzJoBqf3v6oc+3tUOgJYLOo6@vger.kernel.org, AJvYcCWZChc3AXZXNr2RK/PgbNVyK3lABBus+TbbY34vB157VKlVAvA16hX6oAdcbL8mBLY0G0EFBieU@vger.kernel.org, AJvYcCWxIUwOeyQAWbmvoKdif+1gl4wCqROg/R3Vzu5mqOkYeGqC/AHf0L9Uv21giZti0ezyV7+vqBn/NbAkMVbF@vger.kernel.org, AJvYcCXnnkOvM5B7NWlU8Eeknl0JaSJhMqbGlU5GWWTIl5sVXCawXAwFc9kvyi2iMG207r9PuRQR6r70n6rx@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxq5FGYZV4RAtco7vxDFoX6zZLRVnpfJSacXJPvRHPVKzyrRYfE
-	UN35iS5p0wGw1cvemw+rsobIMpDVFIFqXB/rsmeqtI+xCuLALpJstBuRWBPWUCY8fLzQBpCiN+B
-	6QmB5/DiytDTSqLCfsjwu9xa6kb4=
-X-Google-Smtp-Source: AGHT+IFUNX1ekCclzfjH7BCH130vbtHkmXnzNDQGQNHgUQtZNFLCYl0pxpBbwHki1DFA7Qhthd0swzZQZh7Gam147QY=
-X-Received: by 2002:a17:907:7f9f:b0:a77:cdae:6a59 with SMTP id
- a640c23a62f3a-a8092016903mr164012466b.21.1723120364320; Thu, 08 Aug 2024
- 05:32:44 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1723120527; x=1723725327;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nbjZvVaCZ0386E9l/US1czroDOauP6L7rtIUKqoC7PI=;
+        b=X7Zp951ADeQTdqYoYN6aRrSqgQ8VPvISPscvXXVoSHowv4kPyBTrjG92HaJvxoTmyG
+         OR1QU9ahTd2l+VXVSHZiuAH2k/dahjRwsj3u0x4yX1U2tJci6N6WtLkKWqGkA9z2tDsT
+         41XZIGKczDPBjv2kPE5G5tXeAzpNuneJL1g5ol6qE+KztWAr4u22S9rEwr0uJpx8HQCd
+         WjqPMMAEnIYw8D9djKegyXoERvoR+m+KQyaFoQuZKRYB0/eYnVFqOIDQySfTz7dFNgmQ
+         ZpP411fncL6+cBTKTN+x+YYvQTQkl+aSVNqBRVRMVWF/ZZ+oYECA69tqH0gHEC/hJUSW
+         3zzg==
+X-Forwarded-Encrypted: i=1; AJvYcCV/4YieSzoEwmitFdJ6Ncd8z7ycxVIUV+reWl4avxE6FBRvBDHlwHhLBhUP9sWiyBt0d+KhUh0IHOL71unD5MUN8sY+G7P3pfNQm7o4
+X-Gm-Message-State: AOJu0YzG4vmpwMAdncEyhLqdr0/kbah8nqs0KIeRv17e0kbyBWgDG9Ah
+	NvQvwVgd3ZsxlNYzNK+UkQKCM/eSaK1VS/Qw+78My/xP03rPZfYCI7z08g==
+X-Google-Smtp-Source: AGHT+IFWR771BHx21zDBqFhqt9dwZYU9slY+FeBuWcmPV7TkCmsXiwID11FP/YAZkPYNwIe+tvMpbA==
+X-Received: by 2002:a2e:5152:0:b0:2f0:1f15:5a16 with SMTP id 38308e7fff4ca-2f19de2a52dmr12155621fa.13.1723120526732;
+        Thu, 08 Aug 2024 05:35:26 -0700 (PDT)
+Received: from yoga-710.tas.nnz-ipc.net ([178.218.200.115])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f15e17e835sm21072261fa.21.2024.08.08.05.35.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Aug 2024 05:35:26 -0700 (PDT)
+From: Dmitry Yashin <dmt.yashin@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Dmitry Yashin <dmt.yashin@gmail.com>
+Subject: [PATCH 0/2] dts: rockchip: add USB-C support to OK3588-C
+Date: Thu,  8 Aug 2024 17:33:52 +0500
+Message-ID: <20240808123354.260797-1-dmt.yashin@gmail.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240805101725.93947-1-herve.codina@bootlin.com>
- <20240805101725.93947-2-herve.codina@bootlin.com> <CAHp75VdtFET87R9DZbz27vEeyv4K5bn7mxDCnBVdpFVJ=j6qtg@mail.gmail.com>
- <20240807120956.30c8264e@bootlin.com>
-In-Reply-To: <20240807120956.30c8264e@bootlin.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Thu, 8 Aug 2024 15:32:07 +0300
-Message-ID: <CAHp75Ve0SVSzM36srTY7DwqY5_T9Bkqa0_xyDC2RzU=D1nsTwg@mail.gmail.com>
-Subject: Re: [PATCH v4 1/8] misc: Add support for LAN966x PCI device
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Simon Horman <horms@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Derek Kiernan <derek.kiernan@amd.com>, 
-	Dragan Cvetic <dragan.cvetic@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Lars Povlsen <lars.povlsen@microchip.com>, Steen Hegelund <Steen.Hegelund@microchip.com>, 
-	Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, 
-	Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Horatiu Vultur <horatiu.vultur@microchip.com>, Andrew Lunn <andrew@lunn.ch>, 
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
-	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>, 
-	Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Wed, Aug 7, 2024 at 1:10=E2=80=AFPM Herve Codina <herve.codina@bootlin.c=
-om> wrote:
-> On Mon, 5 Aug 2024 22:13:38 +0200
-> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > On Mon, Aug 5, 2024 at 12:19=E2=80=AFPM Herve Codina <herve.codina@boot=
-lin.com> wrote:
+This series adds support for USB-C ports (labeled as TypeC0 and TypeC1)
+found on Forlinx OK3588-C board. The changes are split into two 
+commits for better readability.
 
-...
+Dmitry Yashin (2):
+  arm64: dts: rockchip: add USB-C port 0 to OK3588-C
+  arm64: dts: rockchip: add USB-C port 1 to OK3588-C
 
-> > > +       if (!pdev->irq)
-> > > +               return ERR_PTR(-EOPNOTSUPP);
-> >
-> > Before even trying to get it via APIs? (see below as well)
-> > Also, when is it possible to have 0 here?
->
-> pdev->irq can be 0 if the PCI device did not request any IRQ
-> (i.e. PCI_INTERRUPT_PIN in PCI config header is 0).
-
-> I use that to check whether or not INTx is supported.
-
-But why do you need that? What happens if you get a new device that
-supports let's say MSI?
-
-> Even if this code is present in the LAN966x PCI driver, it can be use as =
-a
-> starting point for other drivers and may be moved to a common part in the
-> future.
->
-> Do you think I should remove it ?
-
-I think pci_alloc_vectors() should be enough. Make it to be the first
-call, if you think it's better.
-
-> If keeping it is fine, I will add a comment.
+ .../boot/dts/rockchip/rk3588-ok3588-c.dts     | 217 ++++++++++++++++++
+ 1 file changed, 217 insertions(+)
 
 
---=20
-With Best Regards,
-Andy Shevchenko
+base-commit: e8054c08dada20f1bfb4d41a7f3902ae053d4499
+-- 
+2.39.2
+
 
