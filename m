@@ -1,141 +1,155 @@
-Return-Path: <devicetree+bounces-92009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A155194B8ED
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:22:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE7A594B905
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:30:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66DB728A739
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 08:22:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5635EB251F1
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 08:30:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E27431891BD;
-	Thu,  8 Aug 2024 08:22:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3882189513;
+	Thu,  8 Aug 2024 08:29:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="OU6xRf2s"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="EBco8W3I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEB11145336;
-	Thu,  8 Aug 2024 08:22:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1191188004;
+	Thu,  8 Aug 2024 08:29:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723105356; cv=none; b=QtsfFcwrsy0pLfFa2qmOZZcGcfQrZJdPWhaN9zGQ7cN+sHTw/FgCVAsdBM2wZ9GBc5T1B5kxuCyj6Ael2sAriqMH1IlFtxmtF9k54KtwcpZI2r+MT4T9lvduLwLlfplxYa7eIBSnM+idKf6HJ9Ne3ETkmNrmn/wf4mAN6XZMyAU=
+	t=1723105797; cv=none; b=msAvshW6QvS+e4M9r/IGHYgtbPMEZbHutd1+S3CA4UCalqzPWh85aAphLgqNrwLabmWv+EImiZ3eXS4F5UaiAp6i+pcX7PCabChOKQDs1SolT0HkICiQWFILqElFM/jFf7lDYk/Y61NAuj2Vrlvgs0qCdV9hqfa4jXLx8CynE4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723105356; c=relaxed/simple;
-	bh=2488M6qNYP0lwXNFrjsG9Nh3hWzY6hPo+i/FhLpDmgg=;
-	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=set2lDYWFBV8y9DBPENfSINRGJ3OCYH+khOCWw0bVR4DLb8AzIuZsY1ftHFxMzjg09Bnt5XP/h4jZ5DStSuc6a19UenOD4lqYU5lvcl3mK0nlYCo1HNhGWGFaDvlCLwNbbD7AP9sV/latrdvTUM51MsdeBNl/H7KxTbRxuiheuo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=OU6xRf2s; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1723105354; x=1754641354;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:content-transfer-encoding:mime-version;
-  bh=2488M6qNYP0lwXNFrjsG9Nh3hWzY6hPo+i/FhLpDmgg=;
-  b=OU6xRf2sycuTHp1a+aRayHftlnknPA/eb/ouu3vicxCGyMLSPQCaDt0R
-   H6wv2IDQx9Yzet5+gGrsrhIK8DSIavmmjNsfsEg9ZozUShAAjZ+EqRKeD
-   OzJ0MbCa4U3UBX0/tbdekzduigczpDKLLFKdQlG1wt6HuIsigIRSF3/yN
-   452pm4vXLgAzEyFBDlykEbehaVVL0t88xGCAI8MTkGYUMoY1sMJhsIIVI
-   5O1O7Bk76eCxM0qkNnPwwiQnVsOQtZp2vk3VJtLN5Nvn9r5REoLoyIwFO
-   Q/+gUO8BydMGJE1GXxhhqBU5mtCAkBPN2Wbefx8hgERncS1LWDqaIAvys
-   A==;
-X-CSE-ConnectionGUID: Je4g5QipTv6hZwyDxvIfog==
-X-CSE-MsgGUID: ztRBfumgSjOF5Sno8g7hyw==
-X-IronPort-AV: E=Sophos;i="6.09,272,1716274800"; 
-   d="scan'208";a="30208235"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 08 Aug 2024 01:22:33 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 8 Aug 2024 01:22:28 -0700
-Received: from DEN-DL-M31857.microsemi.net (10.10.85.11) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Thu, 8 Aug 2024 01:22:23 -0700
-Message-ID: <f97296c967211a6a8f6f40996e3ed74b76bad935.camel@microchip.com>
-Subject: Re: [PATCH v4 8/8] reset: mchp: sparx5: set the dev member of the
- reset controller
-From: Steen Hegelund <steen.hegelund@microchip.com>
-To: Herve Codina <herve.codina@bootlin.com>, Geert Uytterhoeven
-	<geert@linux-m68k.org>, Andy Shevchenko <andy.shevchenko@gmail.com>, "Simon
- Horman" <horms@kernel.org>, Lee Jones <lee@kernel.org>, Arnd Bergmann
-	<arnd@arndb.de>, Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
-	<dragan.cvetic@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Bjorn Helgaas <bhelgaas@google.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-	Lars Povlsen <lars.povlsen@microchip.com>, Daniel Machon
-	<daniel.machon@microchip.com>, <UNGLinuxDriver@microchip.com>, Rob Herring
-	<robh@kernel.org>, Saravana Kannan <saravanak@google.com>
-CC: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
-	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
-	<pabeni@redhat.com>, Horatiu Vultur <horatiu.vultur@microchip.com>, "Andrew
- Lunn" <andrew@lunn.ch>, <linux-kernel@vger.kernel.org>,
-	<netdev@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>, "Allan
- Nielsen" <allan.nielsen@microchip.com>, Luca Ceresoli
-	<luca.ceresoli@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?ISO-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
-Date: Thu, 8 Aug 2024 10:22:23 +0200
-In-Reply-To: <20240805101725.93947-9-herve.codina@bootlin.com>
-References: <20240805101725.93947-1-herve.codina@bootlin.com>
-	 <20240805101725.93947-9-herve.codina@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4-0ubuntu2 
+	s=arc-20240116; t=1723105797; c=relaxed/simple;
+	bh=5rAKlKGzGydrprOOzglAQhYQrMbE5Ti2sS1sDTFQXy0=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=L+t5yHb1HcsMqaYm7Hf4qm28oXZnSxFEBv/9cFRlNQfiS/Bv+zzlhu58xIUUHsbBmMDRvARBfI4717LzYjcMLEacCrFZgqs5Tn62zwooeObihHg9Jna359l93JsfwrXA3SU4mBRu3z8+3dwtxwwMLeECZKqzl9slUvxuRYIuc1o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=EBco8W3I; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4788Tmf5016834;
+	Thu, 8 Aug 2024 03:29:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1723105788;
+	bh=FKX809N1Z2e/jn5gGGfjwgllKlIy5ezWa1gnW+9XNvE=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=EBco8W3Iq3OgIyRR0lAG2WUQTE11ExL5NeX26j9zBZEQ4fMvvkspLLcfkePvtosTQ
+	 rC60qoxsDie+PODgLYeBIplKiXrw4hJFo5J+GQOdB/HGsWuTx+TKS/lJ4N4A/PCpkM
+	 gNFB5TXTWQr9Dgw6uzgTEE8gP6bILncaA7IzCaPk=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4788TmPl119069
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 8 Aug 2024 03:29:48 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 8
+ Aug 2024 03:29:48 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 8 Aug 2024 03:29:48 -0500
+Received: from localhost (uda0497581.dhcp.ti.com [10.24.68.185])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4788TlBt090632;
+	Thu, 8 Aug 2024 03:29:47 -0500
+Date: Thu, 8 Aug 2024 13:59:46 +0530
+From: Manorit Chawdhry <m-chawdhry@ti.com>
+To: Neha Malcom Francis <n-francis@ti.com>
+CC: Bhavya Kapoor <b-kapoor@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <conor+dt@kernel.org>, <krzk+dt@kernel.org>, <robh@kernel.org>,
+        <kristo@kernel.org>, <vigneshr@ti.com>, <nm@ti.com>,
+        <sinthu.raja@ti.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am68-sk-base-board: Add clklb pin mux
+ for mmc1
+Message-ID: <20240808082946.pkmztwz6dthhnm57@uda0497581>
+References: <20240807101624.2713490-1-b-kapoor@ti.com>
+ <8fa39624-9a92-404d-8651-9ade5700a7d3@ti.com>
+ <1319a6ac-6784-45d6-8a0e-170e40d3aa18@ti.com>
+ <2279305f-2efa-4320-866a-fc4340d2e70c@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2279305f-2efa-4320-866a-fc4340d2e70c@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Herve,
+Hi Bhavya,
 
-On Mon, 2024-08-05 at 12:17 +0200, Herve Codina wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you
-> know the content is safe
->=20
-> From: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
->=20
-> In order to guarantee the device will not be deleted by the reset
-> controller consumer, set the dev member of the reset controller.
->=20
-> Signed-off-by: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> ---
-> =C2=A0drivers/reset/reset-microchip-sparx5.c | 1 +
-> =C2=A01 file changed, 1 insertion(+)
->=20
-> diff --git a/drivers/reset/reset-microchip-sparx5.c
-> b/drivers/reset/reset-microchip-sparx5.c
-> index c4fe65291a43..1ef2aa1602e3 100644
-> --- a/drivers/reset/reset-microchip-sparx5.c
-> +++ b/drivers/reset/reset-microchip-sparx5.c
-> @@ -117,6 +117,7 @@ static int mchp_sparx5_reset_probe(struct
-> platform_device *pdev)
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 return err;
->=20
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ctx->rcdev.owner =3D THIS_MODU=
-LE;
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ctx->rcdev.dev =3D &pdev->dev;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ctx->rcdev.nr_resets =3D 1;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ctx->rcdev.ops =3D &sparx5_res=
-et_ops;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ctx->rcdev.of_node =3D dn;
-> --
-> 2.45.0
->=20
+On 13:19-20240808, Neha Malcom Francis wrote:
+> Hi Bhavya
+> 
+> On 08/08/24 13:08, Bhavya Kapoor wrote:
+> > Hi Neha,
+> > 
+> > On 08/08/24 11:51 am, Neha Malcom Francis wrote:
+> > > Hi Bhavya
+> > > 
+> > > On 07/08/24 15:46, Bhavya Kapoor wrote:
+> > > > mmc1 was not functional since pin mux for clklb was not present.
+> > > > Thus, add clklb pin mux to get MMC working.
+> > > > 
+> > > > Fixes: a266c180b398 ("arm64: dts: ti: k3-am68-sk: Add support
+> > > > for AM68 SK base board")
+> > > > Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+> > > > ---
+> > > > 
+> > > > rebased to next-20240807
+> > > > 
+> > > >   arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts | 1 +
+> > > >   1 file changed, 1 insertion(+)
+> > > > 
+> > > > diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+> > > > b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+> > > > index 90dbe31c5b81..d5ceab79536c 100644
+> > > > --- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+> > > > +++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+> > > > @@ -204,6 +204,7 @@ main_mmc1_pins_default: main-mmc1-default-pins {
+> > > >           pinctrl-single,pins = <
+> > > >               J721S2_IOPAD(0x104, PIN_INPUT, 0) /* (P23) MMC1_CLK */
+> > > >               J721S2_IOPAD(0x108, PIN_INPUT, 0) /* (N24) MMC1_CMD */
+> > > > +            J721S2_IOPAD(0x100, PIN_INPUT, 0) /* (###) MMC1_CLKLB */
+> > > >               J721S2_IOPAD(0x0fc, PIN_INPUT, 0) /* (M23) MMC1_DAT0 */
+> > > >               J721S2_IOPAD(0x0f8, PIN_INPUT, 0) /* (P24) MMC1_DAT1 */
+> > > >               J721S2_IOPAD(0x0f4, PIN_INPUT, 0) /* (R24) MMC1_DAT2 */
+> > > 
+> > > How is this different from the P23 pinmux for MMC1_CLK? Could you
+> > > explain what CLKLB is, since it doesn't have a ball number I'm
+> > > finding it difficult to understand what it is?
+> > > 
+> > This pin needs to be setup so that MMC_CLK is looped back at pad level
+> > for highspeed SDIO operations (has been same across K3 family). MMC0/1
+> > has this pin configured as INPUT by reset default as these have boot
+> > media
+> > 
+> >   These pinmuxes are derived from pinmux file shared by EVM team during
+> > wakeup/board bringup.
 
-Looks good to me.
+I think it'd be good to put this in the commit message as well for more
+clarity.
 
-Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
+Regards,
+Manorit
 
-BR
-Steen
+> > 
+> 
+> Thank you for explaining.
+> 
+> Reviewed-by: Neha Malcom Francis <n-francis@ti.com>
+> 
+> > Regards
+> > 
+> 
+> -- 
+> Thanking You
+> Neha Malcom Francis
 
