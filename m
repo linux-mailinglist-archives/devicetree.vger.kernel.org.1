@@ -1,150 +1,155 @@
-Return-Path: <devicetree+bounces-92015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B88A194B926
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:39:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E989C94B976
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 11:03:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7C261C22FB9
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 08:39:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CDA41F227C3
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 09:03:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A8B4189511;
-	Thu,  8 Aug 2024 08:39:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADF41188004;
+	Thu,  8 Aug 2024 09:03:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="YwrCK3Bi"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="bqbP4YhC";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="a7buNEdN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-15.smtpout.orange.fr [80.12.242.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76766188017;
-	Thu,  8 Aug 2024 08:39:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E62D145FE0;
+	Thu,  8 Aug 2024 09:03:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723106395; cv=none; b=kY+y9qRFLCqjwS6fNLENlDwshyopgRxptcNGO1o+2hlmmtvFqw2R1IQ2IKM74ON0+dpZoZt1OW31q0Dxo5jJAlLEdt+U/KT6in2jhlH1jT2FeGXvdf6upa180KwIDvSVs9Xtze1ENeV4yqaSn9S8/DPkvb4ojS7Iy+pmHOER/8o=
+	t=1723107835; cv=none; b=fK6VhXEtEZWt+IokJmoN0KThfvp6GUDh6uU4k0ZZ49ybDy1q96Pk6RbP7it772rw7SJXyPoUQvHwbzEeRdcoNMmdek93lFUr4JKEJOQZLSD2pNv6vEbfZU0BjIx7omDXo03KYTAe2pfYqxNgToM6k+LH+W3m+Ee/ikRiU4NzVC4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723106395; c=relaxed/simple;
-	bh=TFrnilnjgD0a8YA9+CwPjBQv8dy23a/EUbo4mRdjaQM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=qnLzFlaBIlACnbrHw50x4R5GwrqMchKx9RqA0WWO2uTmR4UrDc6WyJe/8AIYC+kdq/A1Am06xwKeSlaUl5mnPNCqNpbNTAawGA58oFuXdo3LLVaX1Tno8hezkFqXNHTC11qOH/0zsYBOWHDh9fjzzjv7ayxPnH5CF1rdAjJSwR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=YwrCK3Bi; arc=none smtp.client-ip=80.12.242.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [192.168.1.37] ([90.11.132.44])
-	by smtp.orange.fr with ESMTPA
-	id bygMs1WA1j4pfbygMs0Sl1; Thu, 08 Aug 2024 10:39:45 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1723106386;
-	bh=clc8+qLSQc4IJ8Eo2E+itAv4AyWz9hMSaxLRJC2XBVc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=YwrCK3Bi5RAPUYYMryFqaR6gycvmvqQyJoABzpvaKJP9Alp4S7xH90da/Bl2/iSrd
-	 R7Znr7Lc7e+SMUj7mjTih3bx87fLwArT4ln67hCZSEzpgc5MmtL46H3ZCOnLKYteow
-	 UKLwavmCtKkQP8Z16FZGY3FtAB9n/uJHGYOLbFa/cisUoY/sV6Ed/U0mGH9AOY/Z6A
-	 ashps3bKtm+l9L2jYkxQaV42ItTccRHgb6fUpNcbh5UzbqAX8yX9AFgJTWuJO8rTC9
-	 rJPK1pucj0tKABXFwJdxnof2Co72wdFhisgiJsbPBRoRKjKivLbjEOq2byKOYviNqk
-	 4eS7rL/Xwdi7Q==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Thu, 08 Aug 2024 10:39:46 +0200
-X-ME-IP: 90.11.132.44
-Message-ID: <14ef9485-54ba-402b-9b90-5f10c1523d4e@wanadoo.fr>
-Date: Thu, 8 Aug 2024 10:39:38 +0200
+	s=arc-20240116; t=1723107835; c=relaxed/simple;
+	bh=3Nuh7Ymw4p9mmj/hmi80A9HOla1TJH0HdtM2MSn63Go=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=kKoX4HTY68FHRMUultj2CI91L6l2YL+yfLZjpJB0htaqt47gjBd3Agjc6Cgsp06i32bEzbKN2Cay/hRAaHdPd2x6Y3y3zE7gv73o4AnjtkJEuxwtb8VlXwNfn04bIfWkdDkmD3FpW31yLfUU/hr0Te6ccSTTFiE5YtzUs8z00Kw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=bqbP4YhC; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=a7buNEdN reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1723107831; x=1754643831;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=e/440+A8dXK0xe7E7t1UQYOm04r40gqeXMmIrOnIwgE=;
+  b=bqbP4YhCss9U8dLmMZ7/ivVrRGfHBkvp69bkVShXKEp1dnfggqCLmsXP
+   KkJunVp2fldfdxJ8xGtyWJMIJR2e4+U6hnM+y1Znwa3xr8MkKjLERe9kT
+   TMiGK8NWYYkNVr+j18KdXoY/XZCeybHOQwdWVnHIgkMMlqbMcW4EjLB+u
+   QCoolS0d8s3dCrdIZ5Xqr16oQAUFIlTzAdbIb3i/pKl3Xeu2j5oMHedub
+   QCb3xDW0ATDPMED5ZooQkomyQzruS+p4SGmZhzMsQVUh/aOBvS/ykWIvf
+   opMNM6V2lV7scSoV9xiU4lHAFknJNWYs4s3sSAWMtSznwqfdax1F+FTgJ
+   Q==;
+X-CSE-ConnectionGUID: bgTlkpRNTKqBVidGHiHAMA==
+X-CSE-MsgGUID: KkxzrK0GSZO28hfEUSbJwA==
+X-IronPort-AV: E=Sophos;i="6.09,272,1716242400"; 
+   d="scan'208";a="38310522"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 08 Aug 2024 11:03:43 +0200
+X-CheckPoint: {66B489EF-1-CFE9415D-C7159436}
+X-MAIL-CPID: CD2309DF6539872ED09BA5D025073AB1_1
+X-Control-Analysis: str=0001.0A782F1E.66B489EF.0049,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8C5F6161356;
+	Thu,  8 Aug 2024 11:03:37 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1723107818; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=e/440+A8dXK0xe7E7t1UQYOm04r40gqeXMmIrOnIwgE=;
+	b=a7buNEdN+opiCalsy34kFxBfiwjK1gA2b6STxzvvF76LaIslywzc+N7Iun9tTUDkitLAIQ
+	FLa33GmNpJ+Qtj6kDU2rp30qyfUWubP3AxSLpSyruJKPcltQUXXs+cjLFk/jE4ALpBMOJn
+	6pTWrEMMhVOJTaRmQnPrP1ehK+hzWQtwiPRtXZ1pQo2onN6UVf4oFoq65S2Ih8oQeQGSBN
+	meazJRrIh44MCri4KZk0doMEEwnIx7V6D5GYY5DQDAQ1+WC8IohIO6N36G7yUw/s7PO4qj
+	EcXW3gRaVzdbd0mNqFvTuFvmp0Nx5oVelXhb1Pb98tM8Yn6gINrdUihVj0c69g==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/1] arm64: dts: imx8-ss-vpu: Fix imx8qm VPU IRQs
+Date: Thu,  8 Aug 2024 11:03:26 +0200
+Message-Id: <20240808090326.425296-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] dt-bindings: clock: Add AST2700 clock bindings
-To: Ryan Chen <ryan_chen@aspeedtech.com>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org
-References: <20240808075937.2756733-1-ryan_chen@aspeedtech.com>
- <20240808075937.2756733-4-ryan_chen@aspeedtech.com>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20240808075937.2756733-4-ryan_chen@aspeedtech.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Le 08/08/2024 à 09:59, Ryan Chen a écrit :
-> Add dt bindings for AST2700 clock controller
-> 
-> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
-> ---
->   .../dt-bindings/clock/aspeed,ast2700-clk.h    | 175 ++++++++++++++++++
->   1 file changed, 175 insertions(+)
->   create mode 100644 include/dt-bindings/clock/aspeed,ast2700-clk.h
-> 
-> diff --git a/include/dt-bindings/clock/aspeed,ast2700-clk.h b/include/dt-bindings/clock/aspeed,ast2700-clk.h
-> new file mode 100644
-> index 000000000000..facf72352c3e
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/aspeed,ast2700-clk.h
-> @@ -0,0 +1,175 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Device Tree binding constants for AST2700 clock controller.
-> + *
-> + * Copyright (c) 2024 Aspeed Technology Inc.
-> + */
-> +
-> +#ifndef __DT_BINDINGS_CLOCK_AST2700_H
-> +#define __DT_BINDINGS_CLOCK_AST2700_H
-> +
-> +/* SOC0 clk-gate */
-> +#define SCU0_CLK_GATE_MCLK	(0)
-> +#define SCU0_CLK_GATE_ECLK	(1)
-> +#define SCU0_CLK_GATE_2DCLK	(2)
-> +#define SCU0_CLK_GATE_VCLK	(3)
-> +#define SCU0_CLK_GATE_BCLK	(4)
-> +#define SCU0_CLK_GATE_VGA0CLK	(5)
-> +#define SCU0_CLK_GATE_REFCLK	(6)
-> +#define SCU0_CLK_GATE_PORTBUSB2CLK	(7)
-> +#define SCU0_CLK_GATE_RSV8	(8)
-> +#define SCU0_CLK_GATE_UHCICLK	(9)
-> +#define SCU0_CLK_GATE_VGA1CLK	(10)
-> +#define SCU0_CLK_GATE_DDRPHYCLK	(11)
-> +#define SCU0_CLK_GATE_E2M0CLK	(12)
-> +#define SCU0_CLK_GATE_HACCLK	(13)
-> +#define SCU0_CLK_GATE_PORTAUSB2CLK	(14)
-> +#define SCU0_CLK_GATE_UART4CLK	(15)
-> +#define SCU0_CLK_GATE_SLICLK	(16)
-> +#define SCU0_CLK_GATE_DACCLK	(17)
-> +#define SCU0_CLK_GATE_DP	(18)
-> +#define SCU0_CLK_GATE_E2M1CLK	(19)
-> +#define SCU0_CLK_GATE_CRT0CLK	(20)
-> +#define SCU0_CLK_GATE_CRT1CLK	(21)
-> +#define SCU0_CLK_GATE_VLCLK	(22)
-> +#define SCU0_CLK_GATE_ECDSACLK	(23)
-> +#define SCU0_CLK_GATE_RSACLK	(24)
-> +#define SCU0_CLK_GATE_RVAS0CLK	(25)
-> +#define SCU0_CLK_GATE_UFSCLK	(26)
-> +#define SCU0_CLK_GATE_EMMCCLK	(27)
-> +#define SCU0_CLK_GATE_RVAS1CLK	(28)
-> +/* reserved 29 ~ 31*/
-> +#define SCU0_CLK_GATE_NUM	(SCU0_CLK_GATE_RVAS1CLK + 1)
-> +
-> +/* SOC0 clk */
-> +#define SCU0_CLKIN		(SCU0_CLK_GATE_NUM + 0)
+imx8-ss-vpu only contained imx8qxp IRQ numbers, only mu2_m0 uses the
+correct imx8qm IRQ number, as imx8qxp lacks this MU.
+Fix this by providing imx8qm IRQ numbers in the main imx8-ss-vpu.dtsi
+and override the IRQ numbers in SoC-specific imx8qxp-ss-vpu.dtsi, similar
+to reg property for VPU core devices.
 
-So SCU0_CLKIN is 28+1+0 = 29 which is said to be reserved in the comment 
-above.
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+I did not include a Fixes tag as adding support for imx8qxp and imx8qm
+is split into several commits. It's at lease the combination of the
+following commits:
 
-> +#define SCU0_CLK_24M		(SCU0_CLK_GATE_NUM + 1)
-> +#define SCU0_CLK_192M		(SCU0_CLK_GATE_NUM + 2)
-> +#define SCU0_CLK_UART		(SCU0_CLK_GATE_NUM + 3)
-> +#define SCU0_CLK_PSP		(SCU0_CLK_GATE_NUM + 4)
-> +#define SCU0_CLK_HPLL		(SCU0_CLK_GATE_NUM + 5)
+0d9968d98467d ("arm64: dts: freescale: imx8q: add imx vpu codec entries")
+b4efce453f0ca ("arm64: dts: imx8qm: add vpu decoder and encoder")
 
-...
+ arch/arm64/boot/dts/freescale/imx8-ss-vpu.dtsi    | 4 ++--
+ arch/arm64/boot/dts/freescale/imx8qxp-ss-vpu.dtsi | 8 ++++++++
+ 2 files changed, 10 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-vpu.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-vpu.dtsi
+index c6540768bdb92..87211c18d65a9 100644
+--- a/arch/arm64/boot/dts/freescale/imx8-ss-vpu.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8-ss-vpu.dtsi
+@@ -15,7 +15,7 @@ vpu: vpu@2c000000 {
+ 	mu_m0: mailbox@2d000000 {
+ 		compatible = "fsl,imx6sx-mu";
+ 		reg = <0x2d000000 0x20000>;
+-		interrupts = <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>;
++		interrupts = <GIC_SPI 472 IRQ_TYPE_LEVEL_HIGH>;
+ 		#mbox-cells = <2>;
+ 		power-domains = <&pd IMX_SC_R_VPU_MU_0>;
+ 		status = "disabled";
+@@ -24,7 +24,7 @@ mu_m0: mailbox@2d000000 {
+ 	mu1_m0: mailbox@2d020000 {
+ 		compatible = "fsl,imx6sx-mu";
+ 		reg = <0x2d020000 0x20000>;
+-		interrupts = <GIC_SPI 470 IRQ_TYPE_LEVEL_HIGH>;
++		interrupts = <GIC_SPI 473 IRQ_TYPE_LEVEL_HIGH>;
+ 		#mbox-cells = <2>;
+ 		power-domains = <&pd IMX_SC_R_VPU_MU_1>;
+ 		status = "disabled";
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-ss-vpu.dtsi b/arch/arm64/boot/dts/freescale/imx8qxp-ss-vpu.dtsi
+index 7894a3ab26d6b..f81937b5fb720 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-ss-vpu.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-ss-vpu.dtsi
+@@ -5,6 +5,14 @@
+  * Author: Alexander Stein
+  */
+ 
++&mu_m0 {
++	interrupts = <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>;
++};
++
++&mu1_m0 {
++	interrupts = <GIC_SPI 470 IRQ_TYPE_LEVEL_HIGH>;
++};
++
+ &vpu_core0 {
+ 	reg = <0x2d040000 0x10000>;
+ };
+-- 
+2.34.1
 
 
