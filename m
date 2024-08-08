@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-91992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CBDB94B806
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 09:41:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30C4E94B81E
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 09:45:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BEBAD283C0B
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 07:41:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1601288F12
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 07:45:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 480FC18757F;
-	Thu,  8 Aug 2024 07:41:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02CF818756D;
+	Thu,  8 Aug 2024 07:45:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ihRLBV2x"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UnIJMwtN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A24E7464;
-	Thu,  8 Aug 2024 07:41:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7E9D1373;
+	Thu,  8 Aug 2024 07:45:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723102886; cv=none; b=gGK2YselL1Iymhgxpdfr9+oWyvruAx3bY6CR4o+/Fk/Fz6mW8cQnJnI+vBUZO6Tjyiq5/t++gA2ur54948xc+fNTqSbSTbBiUuiJ/m34wJ9P+9Vd2DJetGAzNWmOil67SUO0Q5wcGKLTukGVWi9+3dDg+jgrumamWHHdaqJ5gM4=
+	t=1723103122; cv=none; b=SRtJKT3AsxBrlM1graE3AR5IdgthnZg5RCn7VYAXeSBp+dSUXhVCkTwRoftPtLr8lqEExip1y4uvF6y7NR81icJf7zuynABv8EP4rvrinjyZU5KYisv5RP4/MDDcIbmbzjIHeVP0oyiHjBsF0IogHRgVeaQHejvcj89NSkluOPw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723102886; c=relaxed/simple;
-	bh=t5N9T8xEia2siECJTMsRWguXbC34r9Rct6OyQFGhP9o=;
+	s=arc-20240116; t=1723103122; c=relaxed/simple;
+	bh=Ji1rWP1Fc8ibwtETj7Rzu0jAsVwOvyhTs6fPFh/zhk4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iTyPmW9KG1vVYCBUKBUv736xx5VeyQByzoAysfUtJuTbMnLcfCGd3Mlg1uNlLkiV+B9HpObPUJg6vJ5+8Mq01Pk+5NKjgGKux1blmYKAgj50oJpNMouAEMM47l9+CeR2wlWY6I/9FHAJd++fr7XENKRKIeNyxCr1PsPFI9ybuoI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ihRLBV2x; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB6D0C32782;
-	Thu,  8 Aug 2024 07:41:18 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=jDltUYtoqXIxpdIuEnP5Cj3BbBAkQStwlqmqLxwdMpqpGw3UM8LVSrwyXtUTG4+m4mWwt4hi3TiaOk/LMSPOATSacygG5TD+vv73UQ5REMQfLwzsTG5HG90P4WBmadHAB+VUGUrq/L7F9kAYTsbY6S3002ktYtqyjWLanwEX0gA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UnIJMwtN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F1CDC32782;
+	Thu,  8 Aug 2024 07:45:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723102885;
-	bh=t5N9T8xEia2siECJTMsRWguXbC34r9Rct6OyQFGhP9o=;
+	s=k20201202; t=1723103122;
+	bh=Ji1rWP1Fc8ibwtETj7Rzu0jAsVwOvyhTs6fPFh/zhk4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ihRLBV2xENNc6I36F7U9ysx1gpHzl99qCakbmON5ZGiNh0UPMp3SCOcbypmQxj85E
-	 kvjxWexdHLd0JGzbSiBA5k6/A8M+dY687iCczdVJtURHLVtgHJcZuM5D/7pTg39qpC
-	 te0yYk/MYaYkX4a7bIZYipzYvuVyjUz8bQVE6ovTO++/oZU2IMeN+6u+ST3RA04eLn
-	 gINAJ2TJ2Hrlte7Fm5B+dMtTfAYjjTbjwVOqJwhItRW9Ylr2nCHyDNoTL5o7wGH2RI
-	 H1zfdJTMjdXlYKLhPGoufODiIZmpYxt3b8exl+hdgdhPkSZ1/T98fuvkGcxB7O5Ytc
-	 Ryh3RLi+jbU8w==
-Message-ID: <624e1985-7dd2-4abe-a918-78cb43556967@kernel.org>
-Date: Thu, 8 Aug 2024 09:41:16 +0200
+	b=UnIJMwtNgLNw6gtRTffhLWErMrfTTWwgvdx+srUhL3llXwodtL0ufS/E12nK/6fC4
+	 oHNCXJIIrZRuWw1JrwSrFbfHI5EJjRpqD+GzdePSXwKo/Rr63rEteY+IAAX+MC3Oe2
+	 5owXd+SZioa9ASjaYr4hZf6Lm+sKYG+X+EHikIW9EPOlNktHOYqr3tx4ijsTEU7mxB
+	 0NAMxwlMQuHmHXnUzR2covWuENNPLsxr8qxPVM8zCr5IXIDjrn5DPPdm4qp2e8FirP
+	 aC9Zk02nMzKey66E3aIBQX3Bpz8gyQLeIfypt4mF+/KmfqAzFgBEW4Q2KQuOZgetsy
+	 vR+ec5JVRqOsw==
+Message-ID: <d682bc48-5ba5-4031-a0e6-ad1beedd1057@kernel.org>
+Date: Thu, 8 Aug 2024 09:45:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/7] dt-bindings: x86: Add ACPI wakeup mailbox
-To: Yunhong Jiang <yunhong.jiang@linux.intel.com>
-Cc: tglx@linutronix.de, mingo@redhat.com, bp@alien8.de,
- dave.hansen@linux.intel.com, x86@kernel.org, hpa@zytor.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, kys@microsoft.com,
- haiyangz@microsoft.com, wei.liu@kernel.org, decui@microsoft.com,
- rafael@kernel.org, lenb@kernel.org, kirill.shutemov@linux.intel.com,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-hyperv@vger.kernel.org, linux-acpi@vger.kernel.org
-References: <20240806221237.1634126-1-yunhong.jiang@linux.intel.com>
- <20240806221237.1634126-3-yunhong.jiang@linux.intel.com>
- <ce4903f2-2a9d-45c4-bd4d-ac5165211a83@kernel.org>
- <20240807165658.GA17382@yjiang5-mobl.amr.corp.intel.com>
+Subject: Re: [PATCH v3 03/17] wifi: cc33xx: Add sdio.c, io.c, io.h
+To: "Nemanov, Michael" <michael.nemanov@ti.com>, Kalle Valo
+ <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-wireless@vger.kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: Sabeeh Khan <sabeeh-khan@ti.com>
+References: <20240806170018.638585-1-michael.nemanov@ti.com>
+ <20240806170018.638585-4-michael.nemanov@ti.com>
+ <5020193f-64f5-48ff-8597-8e6a5ca0fb36@kernel.org>
+ <68d0852a-2390-4fe4-be16-3f691e99bd86@ti.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,30 +109,46 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240807165658.GA17382@yjiang5-mobl.amr.corp.intel.com>
+In-Reply-To: <68d0852a-2390-4fe4-be16-3f691e99bd86@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/08/2024 18:56, Yunhong Jiang wrote:
-> On Wed, Aug 07, 2024 at 07:57:43AM +0200, Krzysztof Kozlowski wrote:
->> On 07/08/2024 00:12, Yunhong Jiang wrote:
->>> Add the binding to use the ACPI wakeup mailbox mechanism to bringup APs.
->>
->> We do not have bindings for ACPI. I think in the past it was mentioned
->> pretty clear - we do not care what ACPI has in the wild.
+On 07/08/2024 16:55, Nemanov, Michael wrote:
+> On 8/7/2024 10:12 AM, Krzysztof Kozlowski wrote:
 > 
-> Thank you for review.
-> Can you please give a bit more information on "do not have bindings for ACPI"?
-> We don't put the ACPI table into the device tree, but reuse some existing ACPI
-> mailbox mechanism. Is this acceptable for you?
+> 
+> 
+>>> +static const struct of_device_id cc33xx_sdio_of_match_table[] = {
+>>> +	{ .compatible = "ti,cc3300", .data = &cc33xx_data },
+>>> +	{ .compatible = "ti,cc3301", .data = &cc33xx_data },
+>>> +	{ .compatible = "ti,cc3350", .data = &cc33xx_data },
+>>> +	{ .compatible = "ti,cc3351", .data = &cc33xx_data },
+>>> +	{ }
+>>> +};
+>>
+>>
+>> Eh? What happened here? So devices are compatibles thus make them
+>> compatible in the bindings.
+>>
+> 
+> I thought this is the right way to do it (originally taken from [1]).
+> How can I solve it via DT bindings?
 
-I understood that rationale behind this patch is "ACPI" thus that reply.
-This one sentence in commit msg is not helping. Entire binding
-description speaks about ACPI, so yeah - I don't care what ACPI does.
-Provide proper explanation/description of firmware or hardware, then
-sure. But the patch saying ACPI is doing something, so bindings will be
-doing the same is for me NAK. Whatever ACPI is doing is never a reason
-alone to do the same in Devicetree.
+It's all over the bindings (also example-schema). Use fallback and oneOf.
+
+> 
+>>
+>>> +
+>>> +module_param(dump, bool, 0600);
+>>> +MODULE_PARM_DESC(dump, "Enable sdio read/write dumps.");
+>>
+>> This should be rather debug interface, not module param.
+>>
+> 
+> Meaning debugFS?
+
+Yes.
+
 
 Best regards,
 Krzysztof
