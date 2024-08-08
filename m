@@ -1,147 +1,152 @@
-Return-Path: <devicetree+bounces-92117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64D5A94BE2F
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 15:08:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCBC694BE46
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 15:14:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 115B21F2607E
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 13:08:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0075C1C23C81
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 13:14:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C932018CBF9;
-	Thu,  8 Aug 2024 13:08:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3405818CC0E;
+	Thu,  8 Aug 2024 13:14:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="e7jDBb0G"
+	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="LMfCCbHd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA14D18B462;
-	Thu,  8 Aug 2024 13:08:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E24663D
+	for <devicetree@vger.kernel.org>; Thu,  8 Aug 2024 13:14:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723122492; cv=none; b=ou706FB4/Bbu5a2e/KwsQu2y6AP6lEHPR+WTXJsbpcHDCaCRVWqtZ3t9f4U9WWqB05dPGfIe8DOgL0gR7PKB9s476ql5VU+0xklzsDuO1SCWdiic5eR8TlNHqFh5uaU68MDlZzi3czftb3wd5tXSBySybjVLjglWSczFiBYh8Ug=
+	t=1723122877; cv=none; b=PuIiu7dLMDuM/c50udCMDKk0jtAIxpxN9hrw3I61piyDFl57WorJoVA71gEv0aUbw4djI6HBBkptd+sagGXlk8NB5cGeKTDwCeLm/Jx/YI+Lb5iuI2vmTQF83Q8XiyaGeMA1CErec1TtFz/UJ5g+xyiQmhefK2DWbuyQQ1ZQjz8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723122492; c=relaxed/simple;
-	bh=5K2F4rsZYfk3sYfK5CndNYcC/zss3mQ4xvZ/Gur/9EE=;
+	s=arc-20240116; t=1723122877; c=relaxed/simple;
+	bh=9BcU6Etuy+F9fzT7V09q69yexo+bi/TCqSACAPExzgY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G/Cf/pYyWda3LLzWCGVh5wavzxrxkSyVwlXcQAyy2i3e11LiyK4m8lGgRSy1sgW2/OzCvV1uBM453/ktb3tghpgiAgV9+C89Hz0OS1GGnwR+SPyeaLIfOZDDXkPsW/6uO3gPF5AQbKoj6v/VceBsqP3B1281x45bUr0KQiirxm8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=e7jDBb0G; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1723122491; x=1754658491;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=5K2F4rsZYfk3sYfK5CndNYcC/zss3mQ4xvZ/Gur/9EE=;
-  b=e7jDBb0G/AjOoHWDKt73PFh78cXhN2+SmyjwnTstd7f9QzbiUmWTKIEL
-   XM048FxEJpnWvgHglsiL1yAk9zATb+JQ2e3G9wGeemaYbjzuibtgWDN7B
-   jtFve0DdxiPjjFINt2Yr6Gdkn5kt4YaPZ5wxLqEk4plluvvaR8uEze8jl
-   R35ldQBQyloofDYm0CdTJGc/eEtZys9RX78Vh7lFvaWl22I8uscVm+bWT
-   R6zSDPuXVqr7VdiCOxJjSlIxjwQeZG6ZfmJCK9UZuTNx0m7qOwBWwb0Jv
-   G6JhVnqLlaqDYJL1ZOgbsgDe0XCjRyHtwoXJvGhGv1LZhnEETYebO8KXI
-   Q==;
-X-CSE-ConnectionGUID: IJ/TDQvSR8eJth3wMqyF6Q==
-X-CSE-MsgGUID: 7Ho2MKmJTEud+/fuwVfk/g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11158"; a="21387378"
-X-IronPort-AV: E=Sophos;i="6.09,273,1716274800"; 
-   d="scan'208";a="21387378"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Aug 2024 06:08:09 -0700
-X-CSE-ConnectionGUID: 921N21g3Qb+uU0QMl5ztPg==
-X-CSE-MsgGUID: nyDTDXpWRXeoeiBgufgoPg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,273,1716274800"; 
-   d="scan'208";a="57921909"
-Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
-  by orviesa008.jf.intel.com with ESMTP; 08 Aug 2024 06:08:06 -0700
-Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sc2ry-0006C4-12;
-	Thu, 08 Aug 2024 13:07:55 +0000
-Date: Thu, 8 Aug 2024 21:06:39 +0800
-From: kernel test robot <lkp@intel.com>
-To: Marco Felsch <m.felsch@pengutronix.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Matthias Kaehlcke <mka@chromium.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, kernel@pengutronix.de,
-	linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, Marco Felsch <m.felsch@pengutronix.de>
-Subject: Re: [PATCH 1/3] usb: hub: add infrastructure to pass onboard_dev
- port features
-Message-ID: <202408082050.BjhmZIt6-lkp@intel.com>
-References: <20240807-b4-v6-10-topic-usb-onboard-dev-v1-1-f33ce21353c9@pengutronix.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=DWrSJKgXo8MWlowZihD5nqFIB8mkbYgvQVCiBFeeUoJS9ioyDz84ibNZZoPYJMUBEyL0zoCx91MClQ7U443g2fQmhwmViAM2gi03WQutGe/PSu7i8MJWavzm1DzWxlESkgZFBCivPFpeJWd0JFLWZv81hGtMe0eoBht3LooCNEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=LMfCCbHd; arc=none smtp.client-ip=209.85.222.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
+Received: by mail-qk1-f173.google.com with SMTP id af79cd13be357-7a1dcba8142so144996985a.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Aug 2024 06:14:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ziepe.ca; s=google; t=1723122874; x=1723727674; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=dgXGNnW/b5f9t+CKB4b5Vyo8s9dDJsUrC85u/qccVjs=;
+        b=LMfCCbHdM6018lHYcjvO3Lnav0zhDzfwjKvtcVnYWWTzv86mgGtYDKPPOkR+gx0xhc
+         278dURVA6wklEgv8Wm0JoSb30DSW4rTTU8i4/pt9+6h89sXa2X95u+6KSJCh7tnWUGka
+         7AvMld6bgy9lfZFlUNNRK+ns+dH5axv9GJ3hRob6UryMXtvo4xgYPRQLS3Sdfk1nzG4t
+         yuCBKeuLsxbUdNSQ9aNt/R2rohPc5G0J3604SaUs0IPPMsqAm0rsi/gUXI33aSkw6alt
+         1OfuFuGScqMWBKcd7XMPBckCS0EPlaNILiOLtQV2wZzHDXdmDVISTZYq5lmBkXt2vRx3
+         o/SA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723122874; x=1723727674;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dgXGNnW/b5f9t+CKB4b5Vyo8s9dDJsUrC85u/qccVjs=;
+        b=dn0b19WO4X7eqaeESTWE4eDpGzJLxUASZcAbpagl5oSHmdMfhfcNj8BkZEbgi20Mpa
+         H6Pn5a/uhpdo9h36xr35oNaddTdBthPs4hRO41r8g1pvYggr0qqKs9lGwgbUPVuXGdeK
+         YXvjbHO5hGwPnhS98h0En5+vU3S+rLkUARLzCtQSrhF3p/nceJE5cAlCILE/EthhcAwS
+         zME3VVBoiHnpahU2/2RofzQGbGNv8k5q+6xxPVc7BX+du0OBqjmFIJ6wNpP3ZqEfB3H0
+         dN8LwM7HCVgAxSi31jf9ftQ53d3mwYUpOEAjz1Wna02e3IANwGDuLA82U2ijmmvWhI4D
+         srBg==
+X-Forwarded-Encrypted: i=1; AJvYcCV1y2ym+gRDl2to9Qd5Z0mJm/tvxfFKGo+tmulvjbJCJOKuVV20tym1tqHEEoi9E6GnP58OTG9/EUS37gyZ4XNr1h8U1zNEGcZOqQ==
+X-Gm-Message-State: AOJu0YxAUrBMW6jP+dKR3gYOE35Sz2KzYtQxtolAUKxLzniPfCwUSbAC
+	EEGlSTafDkcRGrQsJ9Oe+3OrKIwb+2vBdDnJT2wtegcpIfGSR59n8+G/jEqGN58=
+X-Google-Smtp-Source: AGHT+IHnezL7bVQyZ4vj2ahY4vzl5lMTpzGek5s6d8TdzvnwI8VOuUhjJYFi4WFfdbdI8ZW2URnzyQ==
+X-Received: by 2002:a05:620a:4612:b0:79e:fec7:d6e9 with SMTP id af79cd13be357-7a38278a9a4mr249030285a.32.1723122874374;
+        Thu, 08 Aug 2024 06:14:34 -0700 (PDT)
+Received: from ziepe.ca ([128.77.69.90])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7a3785e5744sm156520485a.51.2024.08.08.06.14.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Aug 2024 06:14:33 -0700 (PDT)
+Received: from jgg by wakko with local (Exim 4.95)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1sc2yO-008v8L-5V;
+	Thu, 08 Aug 2024 10:14:32 -0300
+Date: Thu, 8 Aug 2024 10:14:32 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Easwar Hariharan <eahariha@linux.microsoft.com>
+Cc: Tomasz Jeznach <tjeznach@rivosinc.com>, Joerg Roedel <joro@8bytes.org>,
+	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Anup Patel <apatel@ventanamicro.com>,
+	Sunil V L <sunilvl@ventanamicro.com>,
+	Nick Kossifidis <mick@ics.forth.gr>,
+	Sebastien Boeuf <seb@rivosinc.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	iommu@lists.linux.dev, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux@rivosinc.com,
+	Lu Baolu <baolu.lu@linux.intel.com>, Zong Li <zong.li@sifive.com>
+Subject: Re: [PATCH v8 7/7] iommu/riscv: Paging domain support
+Message-ID: <20240808131432.GB1985367@ziepe.ca>
+References: <cover.1718388908.git.tjeznach@rivosinc.com>
+ <bdd1e0547e01d012bf40c5e33b752e77c6663c90.1718388909.git.tjeznach@rivosinc.com>
+ <389da90e-df78-4ea4-8453-ae2080a68956@linux.microsoft.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240807-b4-v6-10-topic-usb-onboard-dev-v1-1-f33ce21353c9@pengutronix.de>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <389da90e-df78-4ea4-8453-ae2080a68956@linux.microsoft.com>
 
-Hi Marco,
+On Tue, Aug 06, 2024 at 12:24:40PM -0700, Easwar Hariharan wrote:
+> On 6/14/2024 10:27 PM, Tomasz Jeznach wrote:
+> > Introduce first-stage address translation support.
+> > 
+> > Page table configured by the IOMMU driver will use the highest mode
+> > implemented by the hardware, unless not known at the domain allocation
+> > time falling back to the CPU’s MMU page mode.
+> > 
+> > This change introduces IOTINVAL.VMA command, required to invalidate
+> > any cached IOATC entries after mapping is updated and/or removed from
+> > the paging domain.  Invalidations for the non-leaf page entries use
+> > IOTINVAL for all addresses assigned to the protection domain for
+> > hardware not supporting more granular non-leaf page table cache
+> > invalidations.
+> > 
+> > Reviewed-by: Lu Baolu <baolu.lu@linux.intel.com>
+> > Reviewed-by: Zong Li <zong.li@sifive.com>
+> > Signed-off-by: Tomasz Jeznach <tjeznach@rivosinc.com>
+> > ---
+> >  drivers/iommu/riscv/iommu.c | 642 +++++++++++++++++++++++++++++++++++-
+> >  1 file changed, 639 insertions(+), 3 deletions(-)
+> > 
+> 
+> > @@ -856,7 +1473,7 @@ static struct iommu_domain riscv_iommu_identity_domain = {
+> >  
+> >  static int riscv_iommu_device_domain_type(struct device *dev)
+> >  {
+> > -	return IOMMU_DOMAIN_IDENTITY;
+> > +	return 0;
+> >  }
+> 
+> <snip>
+> Sorry for the drive by comment, I just happen to be in the nearby code
+> context.
+> 
+> Nit: It may be better to use IOMMU_DOMAIN_BLOCKED here for readability
+> rather than the bare value.
 
-kernel test robot noticed the following build errors:
+It is weird and confusing, but 0 means "I have nothing to add" not
+BLOCKED.
 
-[auto build test ERROR on 0c3836482481200ead7b416ca80c68a29cfdaabd]
+You can't return BLOCKED from this op right now..
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Marco-Felsch/usb-hub-add-infrastructure-to-pass-onboard_dev-port-features/20240807-224100
-base:   0c3836482481200ead7b416ca80c68a29cfdaabd
-patch link:    https://lore.kernel.org/r/20240807-b4-v6-10-topic-usb-onboard-dev-v1-1-f33ce21353c9%40pengutronix.de
-patch subject: [PATCH 1/3] usb: hub: add infrastructure to pass onboard_dev port features
-config: arm64-defconfig (https://download.01.org/0day-ci/archive/20240808/202408082050.BjhmZIt6-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 14.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240808/202408082050.BjhmZIt6-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408082050.BjhmZIt6-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   aarch64-linux-ld: Unexpected GOT/PLT entries detected!
-   aarch64-linux-ld: Unexpected run-time procedure linkages detected!
-   aarch64-linux-ld: drivers/usb/core/hub.o: in function `set_port_feature':
->> drivers/usb/core/hub.c:481:(.text+0x121c): undefined reference to `onboard_dev_port_feature'
-   aarch64-linux-ld: drivers/usb/core/hub.o: in function `usb_clear_port_feature':
-   drivers/usb/core/hub.c:462:(.text+0x23b0): undefined reference to `onboard_dev_port_feature'
-
-
-vim +481 drivers/usb/core/hub.c
-
-   466	
-   467	/*
-   468	 * USB 2.0 spec Section 11.24.2.13
-   469	 */
-   470	static int set_port_feature(struct usb_device *hdev, int port1, int feature)
-   471	{
-   472		int ret;
-   473	
-   474		ret = usb_control_msg(hdev, usb_sndctrlpipe(hdev, 0),
-   475			USB_REQ_SET_FEATURE, USB_RT_PORT, feature, port1,
-   476			NULL, 0, 1000);
-   477		if (ret)
-   478			return ret;
-   479	
-   480		if (!is_root_hub(hdev))
- > 481			ret = onboard_dev_port_feature(hdev, true, feature, port1);
-   482	
-   483		return ret;
-   484	}
-   485	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Jason
 
