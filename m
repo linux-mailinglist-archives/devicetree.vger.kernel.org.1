@@ -1,47 +1,48 @@
-Return-Path: <devicetree+bounces-92184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F2C694C2DA
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 18:40:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34DFE94C2E6
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 18:41:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EC445B224D4
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 16:40:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D53861F238E0
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 16:41:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BE7218FDA5;
-	Thu,  8 Aug 2024 16:40:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64B7F1917D7;
+	Thu,  8 Aug 2024 16:40:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="PzG10cld"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gvzjGSu8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8691B18FC8E;
-	Thu,  8 Aug 2024 16:40:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AAA31917D0;
+	Thu,  8 Aug 2024 16:40:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723135229; cv=none; b=ObcywE3wbFiQXPIbWLnL12AGv83tus5SO3WsSfhPiOWlVU/cc3gDK+3MhWVal2/5wifgQYlNUpj/DiAgdkVXUj6wihLhBrM5fWAGJybog/TGIOhKK3q1SXSYXd/KIqIwXHgcCGuCdrMYHA50Qq8FveIYBD+kw7lKmfJ7cN5+wj0=
+	t=1723135243; cv=none; b=TQ1kwe1ye4eog+6NlfzZWGIvEBz2HP8uMveRbmkVkbC/E/NauzvzFWfn3om5lU6ydHX+Jb/VZuaWhaDfzvW7MTm4+AWJi5uMw+ian5DDVEX23G8Q8c5aClEs1EGxwvZYuZqxdZUMtyo3Sn/J3WTGr9mq+nn6GWE94Yl5TLRBQMU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723135229; c=relaxed/simple;
-	bh=tJHROCF5FIFH333VZcXU5J5IzhpJm677qL7yxSNpeu4=;
-	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=uAuW/3Goq50WA8vRkQtln7p1UoihuuSuxGHXOJjMe0+aZLDar6KdTaHbJmErHSDzZHoOqFCGD5YT0JvGyAir6otVpJo2esNh7v0YUz8sVEBEl9O82s8v4KBv4uuuRNVq0VlNwUejF2/uH0m62sWHGVUCkTINF206KYxagWExXtY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=PzG10cld; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: from [100.65.224.131] (unknown [20.236.10.163])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 7F15220B7165;
-	Thu,  8 Aug 2024 09:40:26 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 7F15220B7165
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1723135227;
-	bh=pNSyKAAFSaByPF2gZY6jQTEMrj9M3d4OIOtRITHeq2M=;
-	h=Date:Cc:Subject:To:References:From:In-Reply-To:From;
-	b=PzG10cldv/Tk+MgEh4nS+eROzyXE6w8cgUoROcA4GmIs13++8agdcClHJjbxidRRy
-	 nkoLbnPDXPxTaCyWCFmNBbexGH1nWJtNJwXe1emvT9Q8Pka/vPOatVx7jRmy1v2nf/
-	 XmiFwcy3ncserwcahCn4oKWurg9NWbyTkVFcVNEo=
-Message-ID: <7dfff1ba-44a6-465a-a47c-d344ef00c6d5@linux.microsoft.com>
-Date: Thu, 8 Aug 2024 09:40:25 -0700
+	s=arc-20240116; t=1723135243; c=relaxed/simple;
+	bh=GabQLabEhyqsEdXaRUGJtB8v7uR1Pxm6GPCYYfNZLEY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hG8SXCc+QG1at7N68HIGRwYDkvht5n/Li438nJ3nPImaMGMHBpLAgBFllGB9XCG9lw8VOdWsVACxx2USm6N34lw/qo5EpQS0w0NXm3Pmdwcl/wi20INZyRXTfbH2j7TcP16LNhiX2oUwcjNbv39oXtcbJ63P7dWiklZoXBa4HmM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gvzjGSu8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F98DC4AF09;
+	Thu,  8 Aug 2024 16:40:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723135242;
+	bh=GabQLabEhyqsEdXaRUGJtB8v7uR1Pxm6GPCYYfNZLEY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=gvzjGSu87QOZpXsgGWPIkVpIp2PL3nctHlUORkTsUpyYlsCkYW8JdV/QHjHwK9LWr
+	 tLQu8aH4ZcclV5rTVcmxJA77+fywVIcQBvxLyl9v3oMEx4c9NuwDdt7P63hM1RM73O
+	 hC2r9ZmrMFcAhrAZo3lZvwTx0NncMb07ZTRGWoy/aYWa01xrbjT8CPjWes6mJemuiX
+	 FtGTuzP76De+mea2DjFZ6uCfIAUIUufLiKwonL8wAhTUw2XI+dy2JuASECR7XDXG+Q
+	 vUrXtobIy/cX01oZOiv7ckcqxnmIFLXznvO6ithaisJTaH2leEMS+oisOalrKRW3Qo
+	 N+/SMJpawJhmg==
+Message-ID: <56a52c81-68de-438d-94ae-9decc799d824@kernel.org>
+Date: Thu, 8 Aug 2024 18:40:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -49,62 +50,113 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Cc: eahariha@linux.microsoft.com, Tomasz Jeznach <tjeznach@rivosinc.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Anup Patel <apatel@ventanamicro.com>,
- Sunil V L <sunilvl@ventanamicro.com>, Nick Kossifidis <mick@ics.forth.gr>,
- Sebastien Boeuf <seb@rivosinc.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org, iommu@lists.linux.dev,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux@rivosinc.com, Lu Baolu <baolu.lu@linux.intel.com>,
- Zong Li <zong.li@sifive.com>
-Subject: Re: [PATCH v8 7/7] iommu/riscv: Paging domain support
-To: Jason Gunthorpe <jgg@ziepe.ca>
-References: <cover.1718388908.git.tjeznach@rivosinc.com>
- <bdd1e0547e01d012bf40c5e33b752e77c6663c90.1718388909.git.tjeznach@rivosinc.com>
- <389da90e-df78-4ea4-8453-ae2080a68956@linux.microsoft.com>
- <20240808131432.GB1985367@ziepe.ca>
+Subject: Re: [PATCH v2 1/1] dt-bindings: phy: ti,tcan104x-can: Document
+ Microchip ATA6561
+To: Conor Dooley <conor@kernel.org>, Ilya Orazov <ilordash02@gmail.com>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>,
+ Vincent Mailhol <mailhol.vincent@wanadoo.fr>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Aswath Govindraju <a-govindraju@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+ linux-can@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org
+References: <20240807180210.1334724-2-ilordash02@gmail.com>
+ <20240807180956.1341332-1-ilordash02@gmail.com>
+ <20240807180956.1341332-2-ilordash02@gmail.com>
+ <20240808-caucasian-cartridge-f728ed4982cd@spud>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Easwar Hariharan <eahariha@linux.microsoft.com>
-In-Reply-To: <20240808131432.GB1985367@ziepe.ca>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240808-caucasian-cartridge-f728ed4982cd@spud>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 8/8/2024 6:14 AM, Jason Gunthorpe wrote:
-> On Tue, Aug 06, 2024 at 12:24:40PM -0700, Easwar Hariharan wrote:
->> On 6/14/2024 10:27 PM, Tomasz Jeznach wrote:
+On 08/08/2024 17:48, Conor Dooley wrote:
+> On Wed, Aug 07, 2024 at 09:09:56PM +0300, Ilya Orazov wrote:
+>> Microchip ATA6561 is High-Speed CAN Transceiver with Standby Mode.
+>> It is pin-compatible with TI TCAN1042 and has a compatible programming
+>> model, therefore use ti,tcan1042 as fallback compatible.
 >>
->>> @@ -856,7 +1473,7 @@ static struct iommu_domain riscv_iommu_identity_domain = {
->>>  
->>>  static int riscv_iommu_device_domain_type(struct device *dev)
->>>  {
->>> -	return IOMMU_DOMAIN_IDENTITY;
->>> +	return 0;
->>>  }
+>> Signed-off-by: Ilya Orazov <ilordash02@gmail.com>
+>> ---
+>>  .../devicetree/bindings/phy/ti,tcan104x-can.yaml    | 13 +++++++++----
+>>  1 file changed, 9 insertions(+), 4 deletions(-)
 >>
->> <snip>
->> Sorry for the drive by comment, I just happen to be in the nearby code
->> context.
->>
->> Nit: It may be better to use IOMMU_DOMAIN_BLOCKED here for readability
->> rather than the bare value.
+>> diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+>> index 79dad3e89aa6..f6f1fd843874 100644
+>> --- a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+>> +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+>> @@ -14,10 +14,15 @@ properties:
+>>      pattern: "^can-phy"
+>>  
+>>    compatible:
+>> -    enum:
+>> -      - nxp,tjr1443
+>> -      - ti,tcan1042
+>> -      - ti,tcan1043
+>> +    oneOf:
+>> +      - items:
+>> +        - enum:
+>> +          - microchip,ata6561
+>> +        - const: ti,tcan1042
+>> +      - enum:
+>> +          const: ti,tcan1042
+>> +          const: ti,tcan1043
+>> +          const: nxp,tjr1443
 > 
-> It is weird and confusing, but 0 means "I have nothing to add" not
-> BLOCKED.
-> 
-> You can't return BLOCKED from this op right now..
-> 
-> Jason
+> The enum doesn't need the "const:s", just a "-", hence the bot
+> complaining.
 
-Ok, that's weird and confusing as you say. I went back and looked at the
-kerneldoc for iommu_ops and it IS called out, but it's confusing that a
-function named get_default_domain_type() can return a value that's a
-valid domain type but isn't treated as one.
+Plus indentation is broken, which is important for YAML. Before posting
+the patch, please test it.
 
-This was useful to fill in my mental model, thanks!
+Please run `make dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+Maybe you need to update your dtschema and yamllint.
 
-Easwar
+Best regards,
+Krzysztof
+
 
