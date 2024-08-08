@@ -1,64 +1,63 @@
-Return-Path: <devicetree+bounces-92160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D0E294C1CD
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 17:49:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 902BC94C1FA
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 17:52:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6EE221C22C3A
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 15:49:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C13861C20FC0
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 15:52:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 950A318FDA2;
-	Thu,  8 Aug 2024 15:48:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0DEA18FDD9;
+	Thu,  8 Aug 2024 15:51:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GfS1VluF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZCT5eUnH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D12618FC93;
-	Thu,  8 Aug 2024 15:48:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C762A18FDD0;
+	Thu,  8 Aug 2024 15:51:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723132099; cv=none; b=sZMYDAAn1E4ckvg0j/5KbRH8qlfF+inUjQPM9ZxXQUhmfRQmiHTB1letLK6JIIPqwWtKjHtWHlVnNIc2nnces4ComJVD9VgjEJipWgi1abrYSJO7XeeNs5Kb+VnWhDjDda8Wbyc/2LIA+8UUdPomkloEHIYclPfszXIGLptXxh4=
+	t=1723132298; cv=none; b=al2BKIKrE4axmjaYp8jKcR0uubsneI2ztOchBWDypbBQz0UgSuR3J4aHaVbm4sU3Wms3pSba6GSC4eFoHBcrfCYPFFjXjbmjxib5cPlDL3o4SQOb5Xo3n6seuCBXztVxOH/PySJ4Oo5N7FIIriKyHKqVWUlIuIz3LsaxPCb1Bh8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723132099; c=relaxed/simple;
-	bh=LGQaDws2R6YDe+LE/QWfXHcmATfrM492U4rphHVB1Ew=;
+	s=arc-20240116; t=1723132298; c=relaxed/simple;
+	bh=R6c8rl7ufutyWXm8jkvNyo62VDrI1v9HB3PzuzT63dA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tIdzteg9uawn/PLEktmaSpa+OOhnySTiMQreVUXQ6vywn5A+aF+FaAk8wCz2S0OQgDBassRLCVrRBUPL0X8APLhZD1nCKNoEyifORh/G307zblx2iz99OYZyAyQtRDr+9yJ8oGcZsojtqSunSLhDKANSBbXkhMxlObP5ufV2uH4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GfS1VluF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E409C32782;
-	Thu,  8 Aug 2024 15:48:16 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=mxfo5GgYicPY+e8mZDxFA7M8tT0Er5uat148JI5cf9aeUJdP+UDpK9+R9bl+soqTWrjFUkKmBlZxRoPdfq0/bC9CjQsmWjIx5Tx+D2BEJGtvJGGKYlwT6UDmiGO/z0yaBGtXWTGOL6F/3hYIwNZ9OPRE+NB/lo2UCMIS6oQxvY4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZCT5eUnH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A62AC32782;
+	Thu,  8 Aug 2024 15:51:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723132098;
-	bh=LGQaDws2R6YDe+LE/QWfXHcmATfrM492U4rphHVB1Ew=;
+	s=k20201202; t=1723132298;
+	bh=R6c8rl7ufutyWXm8jkvNyo62VDrI1v9HB3PzuzT63dA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GfS1VluF4yyTx2lYEtwJQ7GCbKwFEW41kHIfoG7zTx9LHZfCAd9OqsCoHebbLH8Jw
-	 wIi5MqaUJRCHZQoGFC1DDu4hcBoMn68p1+hgS+zSZCROOLjaFasE3KZZ5598jWjJU+
-	 LeWcQ+WbtjfW2uwQUIrBjkNgm++cime5f2jZIKLL1M3/g0DbWbvxbTnZSOwxtT191q
-	 OFlPag20JUv96jSap9pyhYZMrAwAfKAeIJGSXH2Uu7ndh4KOlEqtPnOuL/f/JSb145
-	 PMOFoAWWoOsEzY/1LbUjoIrOXo4hgmeX+t6N0xtC2B96Bou8NnKKJsgt6xVeNLIdjK
-	 aYB/lWyYQO9CQ==
-Date: Thu, 8 Aug 2024 16:48:14 +0100
+	b=ZCT5eUnHA8t96DLMfc3GAXJdZwpI2f8X1lnkIxNIj1/vA19Xb/yS/03fAQ6oevcpo
+	 XtB+CVKIeGs0qH73wIep7MUQM9471p6wpt2BmcrDFXlD/4ZT4/CcAup/x/8g4u1FEQ
+	 jK3Zt7kgq1lgXuev1bCauNCXkQRVMqLvnp3feqqRdAsG7J8/737X413MMsEwZWW9oW
+	 KPdqi+IVhxq2D0I13mVb0Xi5Z7NEz/SARqmWgxIADS0WkDdCE101kSP1S0cRnKWch0
+	 XIZV2KgtGe6KMLUabhXN6ZjCDE5J4nNEXD24Ma+/61ZS76YDUSnCnHxhYCFPuysbpx
+	 a3jERvF83dLQg==
+Date: Thu, 8 Aug 2024 16:51:33 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Ilya Orazov <ilordash02@gmail.com>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+To: Michal Simek <michal.simek@amd.com>
+Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
+	git@xilinx.com, robh@kernel.org,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Kalyani Akula <kalyani.akula@amd.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Aswath Govindraju <a-govindraju@ti.com>,
-	Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/1] dt-bindings: phy: ti,tcan104x-can: Document
- Microchip ATA6561
-Message-ID: <20240808-caucasian-cartridge-f728ed4982cd@spud>
-References: <20240807180210.1334724-2-ilordash02@gmail.com>
- <20240807180956.1341332-1-ilordash02@gmail.com>
- <20240807180956.1341332-2-ilordash02@gmail.com>
+	Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"moderated list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2] dt-bindings: nvmem: Use soc-nvmem node name instead
+ of nvmem
+Message-ID: <20240808-imply-backroom-b5a9aaf44db8@spud>
+References: <1184b2799ecdeef04128f4bab3db7460fd8edb10.1723114978.git.michal.simek@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,62 +65,97 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="QnEpDUSyh44tmswU"
+	protocol="application/pgp-signature"; boundary="Jk3H8VNe9y+Nh+rN"
 Content-Disposition: inline
-In-Reply-To: <20240807180956.1341332-2-ilordash02@gmail.com>
+In-Reply-To: <1184b2799ecdeef04128f4bab3db7460fd8edb10.1723114978.git.michal.simek@amd.com>
 
 
---QnEpDUSyh44tmswU
+--Jk3H8VNe9y+Nh+rN
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Aug 07, 2024 at 09:09:56PM +0300, Ilya Orazov wrote:
-> Microchip ATA6561 is High-Speed CAN Transceiver with Standby Mode.
-> It is pin-compatible with TI TCAN1042 and has a compatible programming
-> model, therefore use ti,tcan1042 as fallback compatible.
+On Thu, Aug 08, 2024 at 01:02:59PM +0200, Michal Simek wrote:
+> Based on commit d8764d347bd7 ("dt-bindings: firmware: xilinx: Describe
+> soc-nvmem subnode") soc-nvmem should be used instead of simple nvmem that=
+'s
+> why also update example to have it described correctly everywhere.
 >=20
-> Signed-off-by: Ilya Orazov <ilordash02@gmail.com>
+> Fixes: c7f99cd8fb6b ("dt-bindings: nvmem: Convert xlnx,zynqmp-nvmem.txt t=
+o yaml")
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
->  .../devicetree/bindings/phy/ti,tcan104x-can.yaml    | 13 +++++++++----
->  1 file changed, 9 insertions(+), 4 deletions(-)
 >=20
-> diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml b=
-/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> index 79dad3e89aa6..f6f1fd843874 100644
-> --- a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> @@ -14,10 +14,15 @@ properties:
->      pattern: "^can-phy"
+> Changes in v2:
+> - Fix sha1 in Fixes tag - reported by Stephen
+>=20
+> Adding comments from origin version
+> https://lore.kernel.org/r/42c21f3bcd75f821061d047730dbbcd40233e256.171680=
+0023.git.michal.simek@amd.com
+>=20
+> Rob:
+>  This doesn't seem like an improvement. Is there another nvmem node at
+>  this level? I would fix the binding instead if not.
+>=20
+> Michal:
+> That name came from discussion with Conor.
+
+Did it? I don't recall that, only discussion about adding a "real"
+example to the binding and noting a typo in the commit message.
+
+> None suggested to fix dt-schema that's why soc-nvmem has been propagated =
+to DT already and this patch is just fixing last occurrence.
+>=20
+> commit d8764d347bd737efec00fae81133ffad0ae084bb (tag: zynqmp-dt-for-6.9)
+> Author:     Michal Simek <michal.simek@amd.com>
+> AuthorDate: Wed Jan 31 10:17:28 2024 +0100
+>=20
+>     dt-bindings: firmware: xilinx: Describe soc-nvmem subnode
+>=20
+>     Describe soc-nvmem subnode as the part of firmware node. The name can=
+'t be
+>     pure nvmem because dt-schema already defines it as array property tha=
+t's
+>     why different name should be used.
+>=20
+>     Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>     Link: https://lore.kernel.org/r/24fe6adbf2424360618e8f5ca541ebfd8bb07=
+23e.1706692641.git.michal.simek@amd.com
+>     Signed-off-by: Michal Simek <michal.simek@amd.com>
+>=20
+> ---
+>  Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.ya=
+ml b/Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.yaml
+> index 917c40d5c382..1cbe44ab23b1 100644
+> --- a/Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.yaml
+> +++ b/Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.yaml
+> @@ -28,7 +28,7 @@ unevaluatedProperties: false
 > =20
->    compatible:
-> -    enum:
-> -      - nxp,tjr1443
-> -      - ti,tcan1042
-> -      - ti,tcan1043
-> +    oneOf:
-> +      - items:
-> +        - enum:
-> +          - microchip,ata6561
-> +        - const: ti,tcan1042
-> +      - enum:
-> +          const: ti,tcan1042
-> +          const: ti,tcan1043
-> +          const: nxp,tjr1443
+>  examples:
+>    - |
+> -    nvmem {
+> +    soc-nvmem {
+>          compatible =3D "xlnx,zynqmp-nvmem-fw";
+>          nvmem-layout {
+>              compatible =3D "fixed-layout";
+> --=20
+> 2.43.0
+>=20
 
-The enum doesn't need the "const:s", just a "-", hence the bot
-complaining.
-
---QnEpDUSyh44tmswU
+--Jk3H8VNe9y+Nh+rN
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrTovgAKCRB4tDGHoIJi
-0qexAP4qBwVjLrfdjcWcHp0z0iuokytwqiwpClLFlWIPv5uIIAD/Z0QqnlccIfdk
-AUSp0QtDDJLAbtjBwCkroY6vSBQg6wA=
-=7lOE
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrTphQAKCRB4tDGHoIJi
+0kAMAQC683gInc/ymUfVB/jtg22GLt2gWZYNyAM0KKWoaMoXawD+IKWGwsHkBsck
+u7JwbvrU4Oj5+UmpMeXMX7Ux+ztR+wE=
+=tVbK
 -----END PGP SIGNATURE-----
 
---QnEpDUSyh44tmswU--
+--Jk3H8VNe9y+Nh+rN--
 
