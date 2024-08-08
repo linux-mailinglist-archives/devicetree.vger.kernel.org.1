@@ -1,1008 +1,290 @@
-Return-Path: <devicetree+bounces-91922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDA7394B57B
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 05:30:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 38BFB94B59B
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 05:46:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94FAD283200
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 03:30:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDD7F2840A5
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 03:46:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 700D478C98;
-	Thu,  8 Aug 2024 03:30:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E80B84317B;
+	Thu,  8 Aug 2024 03:46:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ufnTADZf"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="Kdv8xBGN";
+	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="YyqRzj7a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f68.google.com (mail-ot1-f68.google.com [209.85.210.68])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF640433A9
-	for <devicetree@vger.kernel.org>; Thu,  8 Aug 2024 03:30:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.68
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723087835; cv=none; b=iVtHtBYFs16lbibva6/nJyFziRP+hv1fa33fVkr6F94gJj4IP5YFHpkFqbITVQYx61xVNMSb6gevH7BWuMEJiS+cwbvcR16BNWXuHYkDNxeEAQFkuMaP+E7Ahp20pLH40Xxrzs8Fo6QgEbZiKIotC++wBTT5rBIouXLSeKSOy9k=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723087835; c=relaxed/simple;
-	bh=TWHRNAH0Kok1D3KYw0IL/8wPtq4gzco2MJXrgv0dQFM=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=F76spXHu5Nw5mDh8EBGJlXE34kd6zwDkwAuK/UBM6U/d5J2UNmZD7OHDWs+AGEaiQy6U1lwdMjFoLlJzBLWnaFYG8pOEVxmKPBBq3SaqoCiSm8kgPuBjbaR51oWcfWgSCxPZmcH0aRLBfO/ZP6vBH45xD728zNEJOHSeEbZtgqo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ufnTADZf; arc=none smtp.client-ip=209.85.210.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ot1-f68.google.com with SMTP id 46e09a7af769-70942ebcc29so298702a34.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2024 20:30:32 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3890265C;
+	Thu,  8 Aug 2024 03:45:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=210.61.82.184
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723088761; cv=fail; b=dGwlQNU/trpUEvg3EDguKropykFKLLx06b+YEQXmo638fOe2XT1s88n3S4uy8wygZ+YEdzGAcNbo3pWO7x7fwLiumSN7DR0Iil1Fd7V2LxcAww6QQ90ic+AibusaiCC5Iq1/wyJUO5ovSosKiW2n/35jF9+e/4To+aIWucAOhss=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723088761; c=relaxed/simple;
+	bh=IE0Iq/gcawy/th+dIlnSyijMFEilAKXqoxjf6ckrO54=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=hE0MQINnc+yPWmEtd3kzHn9Fm8WZthFXEtWydFMOsFQB+yRwK7rqIGngL9Z3Pfr4yy0i/gF/clV7KtvzVdsSgXOEGaRaMBhHZNtET/oU80/Es/PzKpfwZD6cK5Fmd165rAoQ2G32LDofB3YqyfyGBbD0O/u5pink/pCVZggkhmw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=Kdv8xBGN; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=YyqRzj7a; arc=fail smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: b4aa0c8e553811ef87684b57767b52b1-20240808
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=IE0Iq/gcawy/th+dIlnSyijMFEilAKXqoxjf6ckrO54=;
+	b=Kdv8xBGND7gwcJ02BPRa+o1BIsU2Qq0y2XKfAghyC6Sb8lLv50G1d8GJ/qin2T56THq5fRoE2AZ/Vz/deggCobxrsNGAshZvlpka7AD/XwGK9xX/gc44eauaRLUXTNn/F5V+cbyAG1v8uQrRFCMtU3ZRBOY5qQToFAtWMsR9Afg=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:ab3f2932-fb27-4796-bed3-03fbf7d03ae4,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:6dc6a47,CLOUDID:ea53e73d-6aa5-4057-84d5-0e7d47251781,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: b4aa0c8e553811ef87684b57767b52b1-20240808
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
+	(envelope-from <ck.hu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 847663998; Thu, 08 Aug 2024 11:45:50 +0800
+Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Thu, 8 Aug 2024 11:45:48 +0800
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Thu, 8 Aug 2024 11:45:48 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tbLidpJrFPfzYMYjxOPe4m8bizp7fTNiKT/u/PHpkbO54B41QMmYBZLsmlYSZTPlgGc4SJjZhKkims3uvGBLqZG/7jdvKJ8qysY7ELEE3Fl4KFbFLRUH1uBj8jTK39vVjp7PBAaizB1OKnXkElAoj6BuBySGBeGpSmHRNti37Ho0Pxuz6ihbA1V/gOQkJIBX7f+MWvrcGnOjbnYQTojksvBpc06X06+7NIsLgZr1EOVUST1+GWGTLBrqm7FBK4idYypuybyabepcdDQXl99p4lTCLiLo5nUFPSypFnCfUtKkK/JPGhTTVjiX0ucHXu2df3uP5jaDK3HTLdDXJN0qeg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IE0Iq/gcawy/th+dIlnSyijMFEilAKXqoxjf6ckrO54=;
+ b=ZJuxnobaYtjYIM0kZamHJhKwuSnJe7SmBUuYyCnsFNELoesMJNE36HfYpj00qERTScxMkVBbgZAHK91Sc0MKHptp7NxntOgYQ+blA3IQ3xE651coETWx4mjxHTezfR8x9q3LjObLFm0bAf4+lKxKrMrqAAm1rKGgpdnnwmfE19nj7M1hD33FI0PcjAJN5iq3cWksu4CE1j15jPGIOSKwia2ai5DXBVgASlwlI6LkgRr+0T53Wg/c60nErrPM/U6D8v7azV6RLwJw8aa2qEpaOIH0dV4Yhuw2TYAp8u/KABW2taWCrKFG/OmzNPHAVEdVLVmIAjJlUFXs1goVtpMsVw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723087832; x=1723692632; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=0BhmOX8P4M5pYESd8Qa1JFTF6VZL9OuIxN8r0qkc6VA=;
-        b=ufnTADZfx9ti9mEj6I4oVlIiu/oHY8Mzp31VGGpKpmzYCRhT4O6DyAqkSSuEG6wNDY
-         NiedZuF1L6oVQ6KeyjrNlJyNS7mVFfJvxHETqAHAfO/CVc2MJA66F/3X3OkEI0WXdhC5
-         JLqxzuCYB5I5z2pxPX0mDczmO9HP4McodtkhaNL82h4PcmG6QkiFj+WHEXsabdv+3qeq
-         NSMq5OG2VM+yGhFz4ED7vFr4Vgs5lteR93XTYBKKteOUN7ZjXQqgwU1ScjBCD0ab/R8R
-         l0ElN9yzehgyWWo3C/1SmfjFMA3bsUVXA+DWXFQm8U8aZFWVb6e09B/zFyII6kYJpQAr
-         3nEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723087832; x=1723692632;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0BhmOX8P4M5pYESd8Qa1JFTF6VZL9OuIxN8r0qkc6VA=;
-        b=o+niBSKJI/2ZHuwQijG+t1KtSjL0NUBE2AyC8RCCSVENJ57P5kGKOaRSj2d6Qn0X58
-         UPwsLYv55tKWPejReAlXeFkZ30dw/qA83P0lKy/nLaGcM6WwNonnhE7GpNPJkCvbWmbP
-         LgxA3njU45BAfKHOpQ177AHJoPX0kAHvv0TJkHEgWPIWK/MIpqTwrwxSxgNAkUrT0/T6
-         L3nEpxIKrc7BZUgeNG/0zEuxRza7q+o9Lq3qrHnuRaeiHXCBBlv3gMINYBeQ5cDVY2sd
-         MDSwhz33Bv743adrlqDkDS6VB/uiSiwfTkgMrOFKm1QzHyCWgd1nA/zvD8Dl2aVFEyWA
-         FJUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXg67t4zyfo/zHOiH4tVrhiGT3QT2LoIxv8SGX33aOpfgqUz5J7rE8I3NdUcalM03pz+9NLbyZImQ0s4jWOTz6cT7IRAvH4jgCFtw==
-X-Gm-Message-State: AOJu0YxWELrRBYmdvL6ZYEsk/qFkVw3e8GhCSbrsDq2vOiXNJQAvu78h
-	jpr8RY1o+7XSa/ZRSmU2sT8cNCZ5UDNwvs1oS2mNaq+BcS/MyZ4FH5selhaA5BA=
-X-Google-Smtp-Source: AGHT+IHbIR3A3r+KkVpAkU49LUJldYpI2oPUMbnU7lPotoq8CZ1Kd8P2SG4rb3FLpPm1ehBKBBd5aA==
-X-Received: by 2002:a05:6830:6084:b0:703:6a59:b52b with SMTP id 46e09a7af769-70b4fc2315bmr905331a34.3.1723087831903;
-        Wed, 07 Aug 2024 20:30:31 -0700 (PDT)
-Received: from [127.0.0.1] ([182.232.174.245])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7b7635660ecsm7723120a12.38.2024.08.07.20.30.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Aug 2024 20:30:31 -0700 (PDT)
-Date: Thu, 08 Aug 2024 10:30:26 +0700
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-CC: Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- cros-qcom-dts-watchers@chromium.org, Bartosz Golaszewski <brgl@bgdev.pl>,
- Jingoo Han <jingoohan1@gmail.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- andersson@kernel.org, quic_vbadigan@quicinc.com,
- linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v2 8/8] PCI: pwrctl: Add power control driver for qps615
-User-Agent: K-9 Mail for Android
-In-Reply-To: <872e1c39-4547-7cd3-ba49-bbbe59e52087@quicinc.com>
-References: <20240803-qps615-v2-0-9560b7c71369@quicinc.com> <20240803-qps615-v2-8-9560b7c71369@quicinc.com> <spaudnuoam3cj7glxmnlw7y3m46d2vsm42s576jqwrcrmywl2n@oyrynorzhddg> <872e1c39-4547-7cd3-ba49-bbbe59e52087@quicinc.com>
-Message-ID: <32488500-05B7-4D25-9AAF-06A249CC6B1D@linaro.org>
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IE0Iq/gcawy/th+dIlnSyijMFEilAKXqoxjf6ckrO54=;
+ b=YyqRzj7am0u7H0wrK8A3Ob2OhcYghb9qn7u2ozbSGeFB0BSuRgw5oSglqb5WEDzmlzCa80pmG2t+qdYTUFHJMvUlW36pXAm+iqTRNc6X8mLXg7OreaTlfo8EQFrUSk98tj3NJB2Ps0xd0vzzB5V3paVmf1FI0om9AsPiT2PprPk=
+Received: from TYZPR03MB6624.apcprd03.prod.outlook.com (2603:1096:400:1f4::13)
+ by SI6PR03MB8686.apcprd03.prod.outlook.com (2603:1096:4:24b::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.13; Thu, 8 Aug
+ 2024 03:45:46 +0000
+Received: from TYZPR03MB6624.apcprd03.prod.outlook.com
+ ([fe80::9ce6:1e85:c4a7:2a54]) by TYZPR03MB6624.apcprd03.prod.outlook.com
+ ([fe80::9ce6:1e85:c4a7:2a54%4]) with mapi id 15.20.7828.023; Thu, 8 Aug 2024
+ 03:45:46 +0000
+From: =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
+To: "angelogioacchino.delregno@collabora.com"
+	<angelogioacchino.delregno@collabora.com>, "chunkuang.hu@kernel.org"
+	<chunkuang.hu@kernel.org>
+CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"sui.jingfeng@linux.dev" <sui.jingfeng@linux.dev>, "wenst@chromium.org"
+	<wenst@chromium.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "tzimmermann@suse.de" <tzimmermann@suse.de>,
+	=?utf-8?B?U2hhd24gU3VuZyAo5a6L5a2d6KyZKQ==?= <Shawn.Sung@mediatek.com>,
+	"mripard@kernel.org" <mripard@kernel.org>,
+	=?utf-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?= <jitao.shi@mediatek.com>,
+	"michael@walle.cc" <michael@walle.cc>, "daniel@ffwll.ch" <daniel@ffwll.ch>,
+	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "maarten.lankhorst@linux.intel.com"
+	<maarten.lankhorst@linux.intel.com>, "robh@kernel.org" <robh@kernel.org>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"airlied@gmail.com" <airlied@gmail.com>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>, "kernel@collabora.com"
+	<kernel@collabora.com>, "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+	=?utf-8?B?WXUtY2hhbmcgTGVlICjmnY7nprnnkosp?= <Yu-chang.Lee@mediatek.com>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "amergnat@baylibre.com"
+	<amergnat@baylibre.com>
+Subject: Re: [PATCH v8 1/3] dt-bindings: display: mediatek: Add OF graph
+ support for board path
+Thread-Topic: [PATCH v8 1/3] dt-bindings: display: mediatek: Add OF graph
+ support for board path
+Thread-Index: AQHawWjULtrUVY6uy0y5VZzyp9Vfs7IdCA+A
+Date: Thu, 8 Aug 2024 03:45:46 +0000
+Message-ID: <3e58a224e6323e28c370d460fa72e23b958bcf62.camel@mediatek.com>
+References: <20240618101726.110416-1-angelogioacchino.delregno@collabora.com>
+	 <20240618101726.110416-2-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240618101726.110416-2-angelogioacchino.delregno@collabora.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYZPR03MB6624:EE_|SI6PR03MB8686:EE_
+x-ms-office365-filtering-correlation-id: 3bac15a8-b03e-4368-2d81-08dcb75c962c
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|7416014|366016|376014|1800799024|38070700018;
+x-microsoft-antispam-message-info: =?utf-8?B?OHNUa09NWGhKZm5GVmJkVnRCdDB4Y2lpdHE1eCtPZityeE5FSVBjTUlrSTFB?=
+ =?utf-8?B?SXhoczJWbWR6MkVQenZXOFM0Zk5HMzFHekUxTTJqcTZMUDF1THNIY0h3ZUl5?=
+ =?utf-8?B?Tjh1MWhRdTJmZnRpMUJNQWsxVm5FTG0wL2J1bE0vcG5FWnhocXdVeUd4NGpU?=
+ =?utf-8?B?Z1NqQ2dUU29COFliMTFxRWVEVjArWUM5Z0h0d243OW1iTjVYZnpsTG5FMUlv?=
+ =?utf-8?B?K0UvZ3hpZ3Jrb0VoajcweVlUOTlBMjg4cFBvV0wyZW12cVpCbFM3N3hxS1hl?=
+ =?utf-8?B?eG9qUVlFUUJHVFYrajBDU3BScHRQR05oTXdQUS9xTXFiNTB1OGRFajczTGo3?=
+ =?utf-8?B?MDFoYVJvQ2g3Mm1kdlJrMktUbi9ScWs5cDB2emtSazNxRWd2WWwzS2pCNFJL?=
+ =?utf-8?B?Wk92MmRtRm05eU95WGNlcDc1Y2l6YzdQRE82QXBXb2hrd0M3dDJrUzRUT3hY?=
+ =?utf-8?B?U0RMaDBGNm92K1NTUlpESmtGS1l3NE8xV01oVzV2eVZUWlNFdXRiU2pUVlZQ?=
+ =?utf-8?B?aFlLaGp1WjJpZXlBL3RtYjlRamFZTitSWXU5T3lkSStUWVZuQUI1S3VuQkE2?=
+ =?utf-8?B?azRuQkdPaDNkQjROaHgvZDhiVTgwZXMxQWkzSXNOZFJ2SXp3N3h5cWdwcmZa?=
+ =?utf-8?B?MXVvZXNLNE1kWHVZRzAreUg2cThGSjY0YXVxWENrWmsrV2FDVTM5VGhNTnlS?=
+ =?utf-8?B?VzlncWtUekdKNzZzSDRQMlgvQXFwTmFQTGJjTTFUVEJsSU1OUVRVQkZmOGUw?=
+ =?utf-8?B?QlhTVjlJVTQrOWg0NWhheWxkSURobE1TM283UzJrdkhJSE5oWFViaHJOOG1Y?=
+ =?utf-8?B?N05oTnZBNGY3em5DeHdEY3c5TktOdjliZkp3ZUxTZmVJYWVTdmc4N0VSZVJC?=
+ =?utf-8?B?YUY4ZlFGb284aGdwMjl4YUowVXQvVGpZSkdteGM5TER4dUllbmNnckR4czE0?=
+ =?utf-8?B?ZFpLQVpVRzNTRzVPeHhpSTJpNnJPbWN4cmU0TTl2bnJqb2I0Rk9aMnkvVkY1?=
+ =?utf-8?B?RllGT08zUytFQXNEM3U5Y1NiN1AvOEVCSGhVQThOcUN0eFp2cmNKWk9rcDhS?=
+ =?utf-8?B?YVd2RWF3LzIzL3hxTS83aUo4VEpCNVNHdWc2SlJFTEVIaTdhOVBGSWlneCtJ?=
+ =?utf-8?B?UzdqQlNocXo0WGc5QTk3eHVFc24zNGJXZDhLSnVLamFCSWpWWXdXd2xKeDBG?=
+ =?utf-8?B?R05reXpya2FjNGNnZExGdlIwNVlVTGJuQmRWa0N5SEJZenowLyt2MG1DdXhR?=
+ =?utf-8?B?cjczaC9oWG9IbXNTZEU1K3ltUktLbEVGMjMyM0ZFcytqK003Wi9aVm94bWV0?=
+ =?utf-8?B?UmxMQzNlclc5Njh1RVEyaVc4ZHY1dGp1b3VvdkVqTjdQeFVwWlZ6Y29tT3Rq?=
+ =?utf-8?B?bHBxTEh4a3JmQXNQVUNwYldFYXBtUkhIOHg0N1M0M01RVXVjL0cxalY5VW5R?=
+ =?utf-8?B?Z3Z5SU9HTkVjVjNrZ0RXUmxBZ0V2WW5XcU5iUU1mZW9UaHVNTGVqNVZYb0tV?=
+ =?utf-8?B?UjZoMTlsTldiT2h6MGd2d2NybXVlRnZaNkFrdmhzS1RCbFlzcjJnZ1lIeVVW?=
+ =?utf-8?B?UWhBdUhDVkJwbUJtVURqNWlLUUJjdXVIYWNZMnZrZ0JUTkNmWHQ3b2o3MXY4?=
+ =?utf-8?B?UFhUTmMxSzhCZ0FpZ2o4Rld1NWl3elQ5c2pWRFNtOTdiWEMyc1ZQbmFHU21R?=
+ =?utf-8?B?SDROZ3RrRUlTWVE4eEY1WUNNVTFMeTYrNjcxaEV6SS9yRmZadEZaZkhDdUtL?=
+ =?utf-8?B?OWJySUowVVpmdEtENUloc25sZE94WWU0dGg3Q1hoNHNJMjIwUjhKNFZZSFlo?=
+ =?utf-8?B?bFRjbkpUa0cvL3ZDUUZFL1p6WXYwc2pVWk5vNnE3T3A5Z2taSjUwT1JTSXMx?=
+ =?utf-8?B?cGFFcnRGUVE3RWJna0JObkpaRTNaRjBwbUlXOE9uU1pSaHc9PQ==?=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6624.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(366016)(376014)(1800799024)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?M3ZjTTI0M3M5SGNmNmwxdDFvb00yaGF3WVZ6OW5SUlJjOWpxaTgwMTJaRis0?=
+ =?utf-8?B?bzZ5dDN2cnlsa1lONWZaakNLMnNYQ1RvYVpTeGdZMWZyYkFMdEYxTGloQ1JF?=
+ =?utf-8?B?VmEzN3dEa2hLSGwybE9hZVluUG1jN2V1b0I3REZ1NVhJVmcwYzhZUFNPcTJx?=
+ =?utf-8?B?VUNuUTVCdzk0U0J5TVJFd1ZYUFcyMGdCQURNRHJHSTE3R3JNMm4rUGUyT1hv?=
+ =?utf-8?B?a3cwL2wxVzlMdGU2azVQY0h1MDIxaVpUdFlORUplMk5PVzcxeHA2cVVxaDFM?=
+ =?utf-8?B?cGthOVhLbVNTc1FEd213WWNKSzliczRSczNNL2dZdU83dDdReUtlTWxvZlVS?=
+ =?utf-8?B?TUhtMVl2SjdZdVd1TmF4dG80dEpMaTdaZWZ6T1hZd3JyMHV2cHR5TFJNOG12?=
+ =?utf-8?B?ckVGemJyTmt4Q2RDeWdRTHFsc0JVZTBMZzR5NHozMmZzVEM0OFpiR0Ztdmcy?=
+ =?utf-8?B?TEQzelFXMUNsUGt2TEpyR0Y1cXBUZ3dMVktqR3BoV0tseWpDUW43enNReGt6?=
+ =?utf-8?B?bEpLVmVaYm5jLzU2aVpQK0ZUcGRqVElwWmVUNzVYZFY2SCtYZDBjeTEycVVl?=
+ =?utf-8?B?ZGRjaGNmeG1pZ1lxUlVRRW5pcmJCQlExLzNrNW45eGNrcHFOVFprNjA2RDRn?=
+ =?utf-8?B?WmRydjJ4NGQ1OXlkZm5QWlV5QkdkTGRFYURpM09HNE1mY1EvZ1gwNW53SWhS?=
+ =?utf-8?B?Qnh5STZlcDZ6MTZqQWRzWWRjVWlHRHlLUWZpS3JYdmRWdmZ3RU9JVVpzTXN0?=
+ =?utf-8?B?VkRNTkFYUm9oRmk3Wjd1QkprUTdUVUJlU1pFaHcyQ1dqczlaQW9WMGRFdXhn?=
+ =?utf-8?B?c1FjZzR1cWFsZkJDMnRJQlR1b3k4VXJsVHkycHJIbUhhNzRLK0pzMG1qME85?=
+ =?utf-8?B?TjQybkF1S3dXUW8rdENjdzhEbUpIaXNqakg0Z0lia0c5blcvNk5BWnFCZFA0?=
+ =?utf-8?B?TlhCeEpKZCs1aDhUZ0NhWGNwdWgrMCtuVWtRWUZ1SVdnWE1SekY0UnBlN1hy?=
+ =?utf-8?B?TEo1TExuV1hOOWQ4NjFJZHd4TE5KN1g3YndJbjJWQVBzcUdpL0ozdHFUcHdw?=
+ =?utf-8?B?eXgrV1VCSW5tWHBGZE1vWmtBalhPRStlMjdxUXhoUzJoaVVLbEJvTWwwb2l5?=
+ =?utf-8?B?d1o1U0d4eE90cXlBR0R5SXhLNEtYTkcva1RLRzAvcHViTFNhbXp1NHNXcGFL?=
+ =?utf-8?B?RlpXOWlSVGZxWW1wdlJMQktvTm5LT3FRa0p5ZktvQ2tDRVJ0SStiSzI1bXZr?=
+ =?utf-8?B?L3lVMGNVb1lNRDgwOTVoN3hnam1SRkF6OTRTeVNJVlhNb3czdEpURmlUbEhr?=
+ =?utf-8?B?cWhDUktZVEoyRFNMM1FycktadlJEZlp5NmtpL2JENUZ4Smh6T2ZrS2NkcENB?=
+ =?utf-8?B?b3p3YlUvbFR6R044bnpXSERLRXJvNUhGNmtQUk0yTzJST2pOeENDVUFGVjZn?=
+ =?utf-8?B?WldjUC8reWtPUEp6NjRIajM2dDloVVlEcVZsRndQNlhMZlFIRGU2OGNHd2xD?=
+ =?utf-8?B?OVNRSFdvNmJBTzBrRkU0dUY1SGJ1RXAxK3RzQm5Nanp5SmF0VEhVMm1aanNj?=
+ =?utf-8?B?eGpzYm91Ymw0ZUIyS1N5YUk4UFphUDd6cWRta1RiS01iQ1lvbGZSNUhXb2d2?=
+ =?utf-8?B?ZXFsUCt6WW5RL2thTzZkVHdTalcyOGVmM1dyY1JPTUcyWkxoQzVLTWhMVVRy?=
+ =?utf-8?B?dEhsU1kyRVI4b1ZFNTg4SXdLR0FRMjdMcFRHendVMUNyS0l0L2xRK01yRW9s?=
+ =?utf-8?B?S2RIb1NxWmRnY3ljZFhha0tpdWQrYkswUk9qbDZNWHpFc1ZFSHNMbTl4ZFk0?=
+ =?utf-8?B?NERxWWtvQXBTczVRUzRZL0dTL3JnbUp5SEhRVmpDWDhoQ2twWjRad1Y5Ym44?=
+ =?utf-8?B?d1o3Q0VBbFR2Nk1OWXVEenRDOXdBNTRaN1djUkF1QW9qSzd5TFVBUzUzRG9G?=
+ =?utf-8?B?Q1pkZUp2bFdTeUgyTitva1VKRHpzRVp2TnB6K01QaW9ZSmNpM0RCdGQ4VVRI?=
+ =?utf-8?B?ZXNWRnFvQmpRTVluOENsUzJGejNwNW52MyswaVB3eVBaVFJuYXk3bFNVU21k?=
+ =?utf-8?B?SVZaKzYyS3hVWE1vOW5lUG83UVdsZnkvcENUQnZwVlJrYzcvOUhPWkdiWGpQ?=
+ =?utf-8?Q?OfFjSj97GY9oNCq1iM5PAlOXv?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <0E8918FA4156C24E8C306354C616D87F@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6624.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3bac15a8-b03e-4368-2d81-08dcb75c962c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Aug 2024 03:45:46.3875
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 3SpGk1PZ29UNUArHN646WXRaKssdKMwvRZi9GvH4DYfXlmfzLJKoPTEzwPGt5PJV3Wjc7S+j7yVqKcoYdaEpRA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI6PR03MB8686
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--8.776700-8.000000
+X-TMASE-MatchedRID: oTBA/+sdKaYNtKv7cnNXnSa1MaKuob8PC/ExpXrHizyPaLJ/Ca3ST4GT
+	VkkPip/KE1tQkshZ9Vl5hD87adIXFTEV1fJb8/5d22QSll0Gqg3UqhJbkmLVezhgoAzehG32SAK
+	UIhfaB7BwoX9mlif33h9K6LGpAwss1Lt7MpzUCiRVTfJWlqPdDFsChor7BLiN2viB/Jr4D1S1QY
+	NwWHqTDAFrmwEN0Uo0A8Xz/sPdZR6ZdH+xzatcBJ4CIKY/Hg3AwWulRtvvYxTUHQeTVDUrItRnE
+	QCUU+jzjoczmuoPCq1og+wraeJpj04G8QsFBOqJhsidtag//D/sc7NMUSK0cF47FWCCEZB4vsu/
+	v77ZWuV5dK9rhfAjRWvnpYBsspzBjqo8hT2fvI9zloxQudlFT/XnUyc3kkvb4uuYo4M+pOhghix
+	YhrO7v4iiSiO3Fb3zlExlQIQeRG0=
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--8.776700-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP:
+	91A64FF191189FDF52898F1D7894B284321551B9EB4A4E6E146C936016CBCA232000:8
 
-On August 5, 2024 1:14:47 PM GMT+07:00, Krishna Chaitanya Chundru <quic_kri=
-chai@quicinc=2Ecom> wrote:
->
->
->On 8/3/2024 5:04 PM, Dmitry Baryshkov wrote:
->> On Sat, Aug 03, 2024 at 08:52:54AM GMT, Krishna chaitanya chundru wrote=
-:
->>> QPS615 switch needs to be configured after powering on and before
->>> PCIe link was up=2E
->>>=20
->>> As the PCIe controller driver already enables the PCIe link training
->>> at the host side, stop the link training=2E Otherwise the moment we tu=
-rn
->>> on the switch it will participate in the link training and link may co=
-me
->>> up before switch is configured through i2c=2E
->>>=20
->>> The device tree properties are parsed per node under pci-pci bridge in=
- the
->>> driver=2E Each node has unique bdf value in the reg property, driver
->>> uses this bdf to differentiate ports, as there are certain i2c writes =
-to
->>> select particular port=2E
->>>=20
->>> Based up on dt property and port, qps615 is configured through i2c=2E
->>>=20
->>> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc=2Ecom>
->>> ---
->>>   drivers/pci/pwrctl/Kconfig             |   7 +
->>>   drivers/pci/pwrctl/Makefile            |   1 +
->>>   drivers/pci/pwrctl/pci-pwrctl-qps615=2Ec | 638 +++++++++++++++++++++=
-++++++++++++
->>>   3 files changed, 646 insertions(+)
->>>=20
->>> diff --git a/drivers/pci/pwrctl/Kconfig b/drivers/pci/pwrctl/Kconfig
->>> index 54589bb2403b=2E=2E6a1352af918c 100644
->>> --- a/drivers/pci/pwrctl/Kconfig
->>> +++ b/drivers/pci/pwrctl/Kconfig
->>> @@ -10,3 +10,10 @@ config PCI_PWRCTL_PWRSEQ
->>>   	tristate
->>>   	select POWER_SEQUENCING
->>>   	select PCI_PWRCTL
->>> +
->>> +config PCI_PWRCTL_QPS615
->>> +	tristate "PCI Power Control driver for QPS615"
->>> +	select PCI_PWRCTL
->>> +	help
->>> +	  Say Y here to enable the pwrctl driver for Qualcomm
->>> +	  QPS615 PCIe switch=2E
->>> diff --git a/drivers/pci/pwrctl/Makefile b/drivers/pci/pwrctl/Makefile
->>> index d308aae4800c=2E=2Eac563a70c023 100644
->>> --- a/drivers/pci/pwrctl/Makefile
->>> +++ b/drivers/pci/pwrctl/Makefile
->>> @@ -4,3 +4,4 @@ obj-$(CONFIG_PCI_PWRCTL)		+=3D pci-pwrctl-core=2Eo
->>>   pci-pwrctl-core-y			:=3D core=2Eo
->>>     obj-$(CONFIG_PCI_PWRCTL_PWRSEQ)		+=3D pci-pwrctl-pwrseq=2Eo
->>> +obj-$(CONFIG_PCI_PWRCTL_QPS615)		+=3D pci-pwrctl-qps615=2Eo
->>> diff --git a/drivers/pci/pwrctl/pci-pwrctl-qps615=2Ec b/drivers/pci/pw=
-rctl/pci-pwrctl-qps615=2Ec
->>> new file mode 100644
->>> index 000000000000=2E=2E9dabb82787d5
->>> --- /dev/null
->>> +++ b/drivers/pci/pwrctl/pci-pwrctl-qps615=2Ec
->>> @@ -0,0 +1,638 @@
->>> +// SPDX-License-Identifier: GPL-2=2E0-only
->>> +/*
->>> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc=2E All rights r=
-eserved=2E
->>> + */
->>> +
->>> +#include <linux/delay=2Eh>
->>> +#include <linux/device=2Eh>
->>> +#include <linux/firmware=2Eh>
->>> +#include <linux/i2c=2Eh>
->>> +#include <linux/mod_devicetable=2Eh>
->>> +#include <linux/module=2Eh>
->>> +#include <linux/of=2Eh>
->>> +#include <linux/pci=2Eh>
->>> +#include <linux/pci-pwrctl=2Eh>
->>> +#include <linux/platform_device=2Eh>
->>> +#include <linux/regulator/consumer=2Eh>
->>> +#include <linux/string=2Eh>
->>> +#include <linux/types=2Eh>
->>> +
->>> +#include "=2E=2E/pci=2Eh"
->>> +
->>> +#define QPS615_GPIO_CONFIG		0x801208
->>> +#define QPS615_RESET_GPIO		0x801210
->>> +
->>> +#define QPS615_BUS_CONTROL		0x801014
->>> +
->>> +#define QPS615_PORT_L0S_DELAY		0x82496c
->>> +#define QPS615_PORT_L1_DELAY		0x824970
->>> +
->>> +#define QPS615_EMBEDDED_ETH_DELAY	0x8200d8
->>> +#define QPS615_ETH_L1_DELAY_MASK	GENMASK(27, 18)
->>> +#define QPS615_ETH_L1_DELAY_VALUE(x)	FIELD_PREP(QPS615_ETH_L1_DELAY_M=
-ASK, x)
->>> +#define QPS615_ETH_L0S_DELAY_MASK	GENMASK(17, 13)
->>> +#define QPS615_ETH_L0S_DELAY_VALUE(x)	FIELD_PREP(QPS615_ETH_L0S_DELAY=
-_MASK, x)
->>> +
->>> +#define QPS615_NFTS_2_5_GT		0x824978
->>> +#define QPS615_NFTS_5_GT		0x82497c
->>> +
->>> +#define QPS615_PORT_LANE_ACCESS_ENABLE	0x828000
->>> +
->>> +#define QPS615_PHY_RATE_CHANGE_OVERRIDE	0x828040
->>> +#define QPS615_PHY_RATE_CHANGE		0x828050
->>> +
->>> +#define QPS615_TX_MARGIN		0x828234
->>> +
->>> +#define QPS615_DFE_ENABLE		0x828a04
->>> +#define QPS615_DFE_EQ0_MODE		0x828a08
->>> +#define QPS615_DFE_EQ1_MODE		0x828a0c
->>> +#define QPS615_DFE_EQ2_MODE		0x828a14
->>> +#define QPS615_DFE_PD_MASK		0x828254
->>> +
->>> +#define QPS615_PORT_SELECT		0x82c02c
->>> +#define QPS615_PORT_ACCESS_ENABLE	0x82c030
->>> +
->>> +#define QPS615_POWER_CONTROL		0x82b09c
->>> +#define QPS615_POWER_CONTROL_OVREN	0x82b2c8
->>> +
->>> +#define QPS615_AXI_CLK_FREQ_MHZ		125
->>> +
->>> +struct qps615_pwrctl_reg_setting {
->>> +	unsigned int offset;
->>> +	unsigned int val;
->>> +};
->>> +
->>> +struct qps615_pwrctl_bdf_info {
->>> +	u16 usp_bdf;
->>> +	u16 dsp1_bdf;
->>> +	u16 dsp2_bdf;
->>> +	u16 dsp3_bdf;
->>=20
->> Why are these values dynamic? Please use #define's for now=2E If there
->> ever comes a similar bridge, it most likely will have a different ports
->> configuration, so it will need additional changes anyway=2E
->>=20
->We added this for future use case only, we felt it is easier to support
->at the time if we add this way=2E
-
-Please don't=2E You are hardcoding distinct roles into the structure that =
-is supposed to be generic=2E Possible future use cases might have different=
- number of ports or different port roles=2E
-
->
->>> +};
->>> +
->>> +enum qps615_pwrctl_ports {
->>> +	QPS615_USP,
->>> +	QPS615_DSP1,
->>> +	QPS615_DSP2,
->>> +	QPS615_DSP3,
->>> +	QPS615_ETHERNET,
->>> +	QPS615_MAX
->>> +};
->>> +
->>> +struct qps615_pwrctl_cfg {
->>> +	u32 l0s_delay;
->>> +	u32 l1_delay;
->>> +	u32 tx_amp;
->>> +	u32 axi_freq;
->>> +	u8  nfts;
->>> +	bool disable_dfe;
->>> +	bool disable_port;
->>> +};
->>> +
->>> +#define QPS615_PWRCTL_MAX_SUPPLY	6
->>> +
->>> +struct qps615_pwrctl_ctx {
->>> +	struct regulator_bulk_data supplies[QPS615_PWRCTL_MAX_SUPPLY];
->>> +	const struct qps615_pwrctl_bdf_info *bdf;
->>> +	struct qps615_pwrctl_cfg cfg[QPS615_MAX];
->>> +	struct gpio_desc *reset_gpio;
->>> +	struct i2c_client *client;
->>> +	struct pci_pwrctl pwrctl;
->>> +	struct device_link *link;
->>> +};
->>> +
->>> +/*
->>> + * downstream port power off sequence, hardcoding the address
->>> + * as we don't know register names for these register offsets=2E
->>=20
->> It is hard to believe that Qualcomm engineers don't know register names
->> for the Qualcomm device=2E
->>=20
->The switch IP is from the another vendor and the vendor provided these
->settings=2E The databook doesn't have the register names in it=2E
->>> + */
->>> +static const struct qps615_pwrctl_reg_setting common_pwroff_seq[] =3D=
- {
->>> +	{0x82900c, 0x1},
->>> +	{0x829010, 0x1},
->>> +	{0x829018, 0x0},
->>> +	{0x829020, 0x1},
->>> +	{0x82902c, 0x1},
->>> +	{0x829030, 0x1},
->>> +	{0x82903c, 0x1},
->>> +	{0x829058, 0x0},
->>> +	{0x82905c, 0x1},
->>> +	{0x829060, 0x1},
->>> +	{0x8290cc, 0x1},
->>> +	{0x8290d0, 0x1},
->>> +	{0x8290d8, 0x1},
->>> +	{0x8290e0, 0x1},
->>> +	{0x8290e8, 0x1},
->>> +	{0x8290ec, 0x1},
->>> +	{0x8290f4, 0x1},
->>> +	{0x82910c, 0x1},
->>> +	{0x829110, 0x1},
->>> +	{0x829114, 0x1},
->>> +};
->>> +
->>> +static const struct qps615_pwrctl_reg_setting dsp1_pwroff_seq[] =3D {
->>> +	{QPS615_PORT_ACCESS_ENABLE, 0x2},
->>> +	{QPS615_PORT_LANE_ACCESS_ENABLE, 0x3},
->>> +	{QPS615_POWER_CONTROL, 0x014f4804},
->>> +	{QPS615_POWER_CONTROL_OVREN, 0x1},
->>> +	{QPS615_PORT_ACCESS_ENABLE, 0x4},
->>> +};
->>> +
->>> +static const struct qps615_pwrctl_reg_setting dsp2_pwroff_seq[] =3D {
->>> +	{QPS615_PORT_ACCESS_ENABLE, 0x8},
->>> +	{QPS615_PORT_LANE_ACCESS_ENABLE, 0x1},
->>> +	{QPS615_POWER_CONTROL, 0x014f4804},
->>> +	{QPS615_POWER_CONTROL_OVREN, 0x1},
->>> +	{QPS615_PORT_ACCESS_ENABLE, 0x8},
->>> +};
->>> +
->>> +static int qps615_pwrctl_i2c_write(struct i2c_client *client,
->>> +				   u32 reg_addr, u32 reg_val)
->>> +{
->>> +	struct i2c_msg msg;
->>> +	u8 msg_buf[7];
->>> +	int ret;
->>> +
->>> +	msg=2Eaddr =3D client->addr;
->>> +	msg=2Elen =3D 7;
->>> +	msg=2Eflags =3D 0;
->>> +
->>> +	/* Big Endian for reg addr */
->>> +	reg_addr =3D cpu_to_be32(reg_addr);
->>=20
->> This is incorrect=2E After cpu_to_be32() the value depends on the CPU
->> endianness=2E So reg_addr >> 8 will return different values for LE and =
-BE
->> CPUs=2E
->> I had following impression
->If reg address is 0x828a0c in big endian sytem it will be 0c8a8200
->and in litte endian it will be 0x828a0c only=2E
->If cpu uses big endian cpu_to_be32 will not change this value
->and in little endian case cpu_to_be32 will convert 0x828a0c to 0c8a8200=
-=2E
->
->Now the output is same for both the systems I tried to use
->(reg_addr >> 8) directly=2E
->
->Are you saying (reg_addr >> 8) output will be different based upon
->LE and BE ? If that is the case I will remove the conversions
->in next patch=2E
-
-Reg address is always 0x00828a0c=2E Then on little-endian system you conve=
-rt it to to BE32, which results in the value 0x0c8a8200=2E Finally you use =
-shifts to get {0x82, 0x8a, 0x0c}, which is supposedly correct=2E=20
-
-On big-endian system cpu_to_be32 returns the same value,  0x00828a0c, sinc=
-e it is BE32 already=2E So after shifts msg_buf will get {0x8a, 0x82, 0x00}=
-, which is obviously incorrect=2E
-
->>> +
->>> +	msg_buf[0] =3D (u8)(reg_addr >> 8);
->>> +	msg_buf[1] =3D (u8)(reg_addr >> 16);
->>> +	msg_buf[2] =3D (u8)(reg_addr >> 24);
->>> +
->>> +	/* Little Endian for reg val */
->>> +	reg_val =3D cpu_to_le32(reg_val);
->>> +
->>> +	msg_buf[3] =3D (u8)(reg_val);
->>> +	msg_buf[4] =3D (u8)(reg_val >> 8);
->>> +	msg_buf[5] =3D (u8)(reg_val >> 16);
->>> +	msg_buf[6] =3D (u8)(reg_val >> 24);
->>=20
->> Same issue here=2E
->>=20
->>> +
->>> +	msg=2Ebuf =3D msg_buf;
->>> +	ret =3D i2c_transfer(client->adapter, &msg, 1);
->>> +	return ret =3D=3D 1 ? 0 : ret;
->>> +}
->>> +
->>> +static int qps615_pwrctl_i2c_read(struct i2c_client *client,
->>> +				  u32 reg_addr, u32 *reg_val)
->>> +{
->>> +	struct i2c_msg msg[2];
->>> +	u8 wr_data[3];
->>> +	u32 rd_data;
->>> +	int ret;
->>> +
->>> +	msg[0]=2Eaddr =3D client->addr;
->>> +	msg[0]=2Elen =3D 3;
->>> +	msg[0]=2Eflags =3D 0;
->>> +
->>> +	/* Big Endian for reg addr */
->>> +	reg_addr =3D cpu_to_be32(reg_addr);
->>> +
->>> +	wr_data[0] =3D (u8)(reg_addr >> 8);
->>> +	wr_data[1] =3D (u8)(reg_addr >> 16);
->>> +	wr_data[2] =3D (u8)(reg_addr >> 24);
->>=20
->> And here=2E
->>=20
->>> +
->>> +	msg[0]=2Ebuf =3D wr_data;
->>> +
->>> +	msg[1]=2Eaddr =3D client->addr;
->>> +	msg[1]=2Elen =3D 4;
->>> +	msg[1]=2Eflags =3D I2C_M_RD;
->>> +
->>> +	msg[1]=2Ebuf =3D (u8 *)&rd_data;
->>> +
->>> +	ret =3D i2c_transfer(client->adapter, &msg[0], 2);
->>> +	if (ret =3D=3D 2) {
->>> +		*reg_val =3D le32_to_cpu(rd_data);
->>> +		return 0;
->>> +	}
->>> +
->>> +	/* If only one message successfully completed, return -ENODEV */
->>> +	return ret =3D=3D 1 ? -ENODEV : ret;
->>> +}
->>> +
->>> +static int qps615_pwrctl_i2c_bulk_write(struct i2c_client *client,
->>> +					const struct qps615_pwrctl_reg_setting *seq, int len)
->>> +{
->>> +	int ret, i;
->>> +
->>> +	for (i =3D 0; i < len; i++) {
->>> +		ret =3D qps615_pwrctl_i2c_write(client, seq[i]=2Eoffset, seq[i]=2Ev=
-al);
->>> +		if (ret)
->>> +			return ret;
->>> +	}
->>> +
->>> +	return 0;
->>> +}
->>> +
->>> +static int of_pci_get_bdf(struct device_node *np)
->>> +{
->>> +	u32 reg[5];
->>> +	int error;
->>> +
->>> +	error =3D of_property_read_u32_array(np, "reg", reg, ARRAY_SIZE(reg)=
-);
->>=20
->> Please use of_property_read_u32_index() instead=2E
->>=20
->ack=2E
->>> +	if (error)
->>> +		return error;
->>> +
->>> +	return (reg[0] >> 8) & 0xffff;
->>> +}
->>> +
->>> +static int qps615_pwrctl_disable_port(struct qps615_pwrctl_ctx *ctx,
->>> +				      enum qps615_pwrctl_ports port)
->>> +{
->>> +	const struct qps615_pwrctl_reg_setting *seq;
->>> +	int ret, len;
->>> +
->>> +	seq =3D (port =3D=3D QPS615_DSP1) ? dsp1_pwroff_seq : dsp2_pwroff_se=
-q;
->>> +	len =3D (port =3D=3D QPS615_DSP1) ? ARRAY_SIZE(dsp1_pwroff_seq) : AR=
-RAY_SIZE(dsp2_pwroff_seq);
->>> +
->>> +	ret =3D qps615_pwrctl_i2c_bulk_write(ctx->client, seq, len);
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	return qps615_pwrctl_i2c_bulk_write(ctx->client,
->>> +					    common_pwroff_seq, ARRAY_SIZE(common_pwroff_seq));
->>> +}
->>> +
->>> +static int qps615_pwrctl_set_l0s_l1_entry_delay(struct qps615_pwrctl_=
-ctx *ctx,
->>> +						enum qps615_pwrctl_ports port, bool is_l1, u32 ns)
->>> +{
->>> +	u32 rd_val, units;
->>> +	int ret;
->>> +
->>> +	/* convert to units of 256ns */
->>> +	units =3D ns / 256;
->>> +
->>> +	if (port =3D=3D QPS615_ETHERNET) {
->>> +		ret =3D qps615_pwrctl_i2c_read(ctx->client, QPS615_EMBEDDED_ETH_DEL=
-AY, &rd_val);
->>> +		if (ret)
->>> +			return ret;
->>> +		rd_val =3D u32_replace_bits(rd_val, units,
->>> +					  is_l1 ?
->>> +					  QPS615_ETH_L1_DELAY_MASK : QPS615_ETH_L0S_DELAY_MASK);
->>> +		return qps615_pwrctl_i2c_write(ctx->client, QPS615_EMBEDDED_ETH_DEL=
-AY, rd_val);
->>> +	}
->>> +
->>> +	ret =3D qps615_pwrctl_i2c_write(ctx->client, QPS615_PORT_SELECT, BIT=
-(port));
->>> +	if (ret)
->>> +		return ret;
->>=20
->> What if there is a concurrent call? The port_select / write_value
->> statements should use a lock to remove the possible race condition=2E
->>=20
->There should not be any concurrent calls since all calls come from the
->probe itself=2E
-
-Comment this in the driver, since somebody might decide to call the functi=
-on later=20
-
->>> +
->>> +	return qps615_pwrctl_i2c_write(ctx->client,
->>> +				       is_l1 ? QPS615_PORT_L1_DELAY : QPS615_PORT_L0S_DELAY, unit=
-s);
->>> +}
->>> +
->>> +static int qps615_pwrctl_set_tx_amplitude(struct qps615_pwrctl_ctx *c=
-tx,
->>> +					  enum qps615_pwrctl_ports port, u32 amp)
->>> +{
->>> +	int port_access;
->>> +
->>> +	switch (port) {
->>> +	case QPS615_USP:
->>> +		port_access =3D 0x1;
->>> +		break;
->>> +	case QPS615_DSP1:
->>> +		port_access =3D 0x2;
->>> +		break;
->>> +	case QPS615_DSP2:
->>> +		port_access =3D 0x8;
->>> +		break;
->>> +	default:
->>> +		return -EINVAL;
->>> +	};
->>> +
->>> +	struct qps615_pwrctl_reg_setting tx_amp_seq[] =3D {
->>> +		{QPS615_PORT_ACCESS_ENABLE, port_access},
->>=20
->> Hmm, this looks like another port selection, so most likely it should
->> also be under the same lock=2E
->>=20
->>> +		{QPS615_PORT_LANE_ACCESS_ENABLE, 0x3},
->>> +		{QPS615_TX_MARGIN, amp},
->>> +	};
->>> +
->>> +	return qps615_pwrctl_i2c_bulk_write(ctx->client, tx_amp_seq, ARRAY_S=
-IZE(tx_amp_seq));
->>> +}
->>> +
->>> +static int qps615_pwrctl_disable_dfe(struct qps615_pwrctl_ctx *ctx,
->>> +				     enum qps615_pwrctl_ports port)
->>> +{
->>> +	int port_access, lane_access =3D 0x3;
->>> +	u32 phy_rate =3D 0x21;
->>> +
->>> +	switch (port) {
->>> +	case QPS615_USP:
->>> +		phy_rate =3D 0x1;
->>> +		port_access =3D 0x1;
->>> +		break;
->>> +	case QPS615_DSP1:
->>> +		port_access =3D 0x2;
->>> +		break;
->>> +	case QPS615_DSP2:
->>> +		port_access =3D 0x8;
->>> +		lane_access =3D 0x1;
->>> +		break;
->>> +	default:
->>> +		return -EINVAL;
->>> +	};
->>> +
->>> +	struct qps615_pwrctl_reg_setting disable_dfe_seq[] =3D {
->>> +		{QPS615_PORT_ACCESS_ENABLE, port_access},
->>> +		{QPS615_PORT_LANE_ACCESS_ENABLE, lane_access},
->>> +		{QPS615_DFE_ENABLE, 0x0},
->>> +		{QPS615_DFE_EQ0_MODE, 0x411},
->>> +		{QPS615_DFE_EQ1_MODE, 0x11},
->>> +		{QPS615_DFE_EQ2_MODE, 0x11},
->>> +		{QPS615_DFE_PD_MASK, 0x7},
->>> +		{QPS615_PHY_RATE_CHANGE_OVERRIDE, 0x10},
->>> +		{QPS615_PHY_RATE_CHANGE, phy_rate},
->>> +		{QPS615_PHY_RATE_CHANGE, 0x0},
->>> +		{QPS615_PHY_RATE_CHANGE_OVERRIDE, 0x0},
->>> +
->>> +	};
->>> +
->>> +	return qps615_pwrctl_i2c_bulk_write(ctx->client,
->>> +					    disable_dfe_seq, ARRAY_SIZE(disable_dfe_seq));
->>> +}
->>> +
->>> +static int qps615_pwrctl_set_nfts(struct qps615_pwrctl_ctx *ctx,
->>> +				  enum qps615_pwrctl_ports port, u32 nfts)
->>> +{
->>> +	int ret;
->>> +	struct qps615_pwrctl_reg_setting nfts_seq[] =3D {
->>> +		{QPS615_NFTS_2_5_GT, nfts},
->>> +		{QPS615_NFTS_5_GT, nfts},
->>> +	};
->>> +
->>> +	ret =3D  qps615_pwrctl_i2c_write(ctx->client, QPS615_PORT_SELECT, BI=
-T(port));
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	return qps615_pwrctl_i2c_bulk_write(ctx->client, nfts_seq, ARRAY_SIZ=
-E(nfts_seq));
->>> +}
->>> +
->>> +static int qps615_pwrctl_assert_deassert_reset(struct qps615_pwrctl_c=
-tx *ctx, bool deassert)
->>> +{
->>> +	int ret, val =3D 0;
->>> +
->>> +	if (deassert)
->>> +		val =3D 0xc;
->>> +
->>> +	ret =3D qps615_pwrctl_i2c_write(ctx->client, QPS615_GPIO_CONFIG, 0xf=
-ffffff3);
->>=20
->> It's a kind of magic
->>=20
->I will add a macro in next patch=2E
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	return qps615_pwrctl_i2c_write(ctx->client, QPS615_RESET_GPIO, val);
->>> +}
->>> +
->>> +static int qps615_pwrctl_parse_device_dt(struct qps615_pwrctl_ctx *ct=
-x, struct device_node *node)
->>> +{
->>> +	enum qps615_pwrctl_ports port;
->>> +	struct qps615_pwrctl_cfg *cfg;
->>> +	struct device_node *np;
->>> +	int bdf, fun_no;
->>> +
->>> +	bdf =3D of_pci_get_bdf(node);
->>> +	if (bdf < 0) {
->>=20
->> This is incorrect, it will fail if at any point BDF uses the most
->> significant bit (which is permitted by the spec, if I'm not mistaken)=
-=2E
->>=20
->As per the reg property as described in the binding document we are not
->expecting any change here=2E
->https://elixir=2Ebootlin=2Ecom/linux/v6=2E10=2E3/source/Documentation/dev=
-icetree/bindings/pci/pci=2Etxt#L50=2E
-
-What will this function return if the bus no is 256?
-
-Also please either move the function to the generic PCI code is change its=
- name to match the rest of the driver=2E The of_pci_ prefix is reserved for=
- the generic code=2E
-
-
->>> +		dev_err(ctx->pwrctl=2Edev, "Getting BDF failed\n");
->>> +		return 0;
->>> +	}
->>> +
->>> +	fun_no =3D bdf & 0x7;
->>=20
->> I assume that ARI is not supported?
->>=20
->Yes this doesn't support ARI=2E
->>> +
->>> +	/* In multi function node, ignore function 1 node */
->>> +	if (of_pci_get_bdf(of_get_parent(node)) =3D=3D ctx->bdf->dsp3_bdf &&=
- !fun_no)
->>> +		port =3D QPS615_ETHERNET;
->>> +	else if (bdf =3D=3D ctx->bdf->usp_bdf)
->>> +		port =3D QPS615_USP;
->>=20
->> The function is being called for child device nodes=2E Thus upstream
->> facing port (I assume that this is what USP means) can not be enumerate=
-d
->> in this way=2E
->Sorry, but I didn't your question=2E
->
->These settings will not affect the enumeration sequence these are
->for configuring ports only=2E
-
-You are handling the case of bdf equal to the USP=2E Is it possible at all=
-?
-
-
->>=20
->>> +	else if (bdf =3D=3D ctx->bdf->dsp1_bdf)
->>> +		port =3D QPS615_DSP1;
->>> +	else if (bdf =3D=3D ctx->bdf->dsp2_bdf)
->>> +		port =3D QPS615_DSP2;
->>> +	else if (bdf =3D=3D ctx->bdf->dsp3_bdf)
->>> +		port =3D QPS615_DSP3;
->>> +	else
->>> +		return 0;
->>=20
->> -EINVAL >
->There are can be nodes describing endpoints also,
->for those nodes bdf will not match and we are not
->returning since it is expected for endpoint nodes=2E
-
-Which endpoints? Bindings don't describe them=2E
-
-
->
->>> +
->>> +	cfg =3D &ctx->cfg[port];
->>> +
->>> +	if (!of_device_is_available(node)) {
->>> +		cfg->disable_port =3D true;
->>> +		return 0;
->>> +	};
->>> +
->>> +	of_property_read_u32(node, "qcom,axi-clk-freq-hz", &cfg->axi_freq);
->>> +
->>> +	of_property_read_u32(node, "qcom,l0s-entry-delay-ns", &cfg->l0s_dela=
-y);
->>> +
->>> +	of_property_read_u32(node, "qcom,l1-entry-delay-ns", &cfg->l1_delay)=
-;
->>> +
->>> +	of_property_read_u32(node, "qcom,tx-amplitude-millivolt", &cfg->tx_a=
-mp);
->>> +
->>> +	cfg->disable_dfe =3D of_property_read_bool(node, "qcom,no-dfe");
->>> +
->>> +	of_property_read_u8(node, "qcom,nfts", &cfg->nfts);
->>> +
->>> +	for_each_child_of_node(node, np)
->>> +		qps615_pwrctl_parse_device_dt(ctx, np);
->>> +
->>> +	of_node_put(np);
->>> +	return 0;
->>> +}
->>> +
->>> +static void qps615_pwrctl_power_off(struct qps615_pwrctl_ctx *ctx)
->>> +{
->>> +	gpiod_set_value(ctx->reset_gpio, 1);
->>> +
->>> +	regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
->>> +}
->>> +
->>> +static int qps615_pwrctl_power_on(struct qps615_pwrctl_ctx *ctx)
->>> +{
->>> +	struct qps615_pwrctl_cfg *cfg;
->>> +	int ret, i;
->>> +
->>> +	ret =3D regulator_bulk_enable(ARRAY_SIZE(ctx->supplies), ctx->suppli=
-es);
->>> +	if (ret < 0)
->>> +		return dev_err_probe(ctx->pwrctl=2Edev, ret, "cannot enable regulat=
-ors\n");
->>> +
->>> +	gpiod_set_value(ctx->reset_gpio, 0);
->>> +
->>> +	if (!ctx->client)
->>> +		return 0;
->>=20
->> really?
->>=20
->Even if we don't do i2c configuration PCIe enumeration will happen, for
->some reason i2c client is not found, driver ignores the error and return
->since basic functionality will work=2E
-
-So what is the point of such misconfiguration? If "something works" even i=
-n the default case, then we don't need this driver at all, do we?
-
-Even worse=2E With the modular kernels you can not guarantee probe order=
-=2E However the user expects that if the driver is probed, it has configure=
-d the hardware correctly=2E=20
-
-Linux has special return value for such cases, please return it instead if=
- 0=2E
-
-
->>> +
->>> +	/*
->>> +	 * Don't have a way to see if the reset has completed=2E
->>> +	 * Wait for some time=2E
->>> +	 */
->>> +	usleep_range(1000, 1001);
->>> +
->>> +	ret =3D qps615_pwrctl_assert_deassert_reset(ctx, false);
->>> +	if (ret)
->>> +		goto out;
->>> +
->>> +	if (ctx->cfg[QPS615_USP]=2Eaxi_freq =3D=3D QPS615_AXI_CLK_FREQ_MHZ) =
-{
->>> +		ret =3D qps615_pwrctl_i2c_write(ctx->client, QPS615_BUS_CONTROL, BI=
-T(16));
->>> +		if (ret)
->>> +			dev_err(ctx->pwrctl=2Edev, "Setting axi clk freq failed %d\n", ret=
-);
->>=20
->> AXI, not axi
->>=20
->ack=2E
->>> +	}
->>> +
->>> +	for (i =3D 0; i < QPS615_MAX; i++) {
->>> +		cfg =3D &ctx->cfg[i];
->>> +		if (cfg->disable_port) {
->>> +			ret =3D qps615_pwrctl_disable_port(ctx, i);
->>> +			if (ret) {
->>> +				dev_err(ctx->pwrctl=2Edev, "Disabling port failed\n");
->>> +				goto out;
->>> +			}
->>> +		}
->>> +
->>> +		if (cfg->l0s_delay) {
->>> +			ret =3D qps615_pwrctl_set_l0s_l1_entry_delay(ctx, i, false, cfg->l=
-0s_delay);
->>> +			if (ret) {
->>> +				dev_err(ctx->pwrctl=2Edev, "Setting L0s entry delay failed\n");
->>> +				goto out;
->>> +			}
->>> +		}
->>> +
->>> +		if (cfg->l1_delay) {
->>> +			ret =3D qps615_pwrctl_set_l0s_l1_entry_delay(ctx, i, true, cfg->l1=
-_delay);
->>> +			if (ret) {
->>> +				dev_err(ctx->pwrctl=2Edev, "Setting L1 entry delay failed\n");
->>> +				goto out;
->>> +			}
->>> +		}
->>> +
->>> +		if (cfg->tx_amp) {
->>> +			ret =3D qps615_pwrctl_set_tx_amplitude(ctx, i, cfg->tx_amp);
->>> +			if (ret) {
->>> +				dev_err(ctx->pwrctl=2Edev, "Setting Tx amplitube failed\n");
->>> +				goto out;
->>> +			}
->>> +		}
->>> +
->>> +		if (cfg->nfts) {
->>> +			ret =3D qps615_pwrctl_set_nfts(ctx, i, cfg->nfts);
->>> +			if (ret) {
->>> +				dev_err(ctx->pwrctl=2Edev, "Setting nfts failed\n");
->>> +				goto out;
->>> +			}
->>> +		}
->>> +
->>> +		if (cfg->disable_dfe) {
->>> +			ret =3D qps615_pwrctl_disable_dfe(ctx, i);
->>> +			if (ret) {
->>> +				dev_err(ctx->pwrctl=2Edev, "Disabling DFE failed\n");
->>> +				goto out;
->>> +			}
->>> +		}
->>> +	}
->>> +
->>> +	ret =3D qps615_pwrctl_assert_deassert_reset(ctx, true);
->>> +	if (!ret)
->>> +		return 0;
->>> +
->>> +out:
->>> +	qps615_pwrctl_power_off(ctx);
->>> +	return ret;
->>> +}
->>> +
->>> +static int qps615_pwrctl_probe(struct platform_device *pdev)
->>> +{
->>> +	struct device *dev =3D &pdev->dev;
->>> +	struct pci_host_bridge *bridge;
->>> +	struct qps615_pwrctl_ctx *ctx;
->>> +	struct device_node *node;
->>> +	struct pci_bus *bus;
->>> +	int ret;
->>> +
->>> +	bus =3D pci_find_bus(of_get_pci_domain_nr(dev->parent->of_node), 0);
->>> +	if (!bus)
->>> +		return -ENODEV;
->>> +
->>> +	bridge =3D pci_find_host_bridge(bus);
->>> +
->>> +	ctx =3D devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
->>> +	if (!ctx)
->>> +		return -ENOMEM;
->>> +
->>> +	node =3D of_parse_phandle(pdev->dev=2Eof_node, "qcom,qps615-controll=
-er", 0);
->>> +	if (node) {
->>=20
->> And if !node?
->>=20
->>> +		ctx->client =3D of_find_i2c_device_by_node(node);
->>=20
->> Leaks the reference count, see the comment at the function definition=
-=2E
->> Also what if the I2C bus gets unbound? Will it crash the driver?
->>=20
->I will fix in next patch=2E
->
->Driver is not expected to crash when i2c bus gets unbound=2E
->It should be properly handled in i2c driver=2E
-
-Please verify it=2E
-
-
->
->- Krishna Chaitanya=2E
->>> +		of_node_put(node);
->>> +		if (!ctx->client)
->>> +			return dev_err_probe(dev, -EPROBE_DEFER,
->>> +					     "failed to parse qcom,qps615-controller\n");
->>> +	}
->>> +
->>> +	ctx->bdf =3D of_device_get_match_data(dev);
->>> +	ctx->pwrctl=2Edev =3D dev;
->>> +
->>> +	ctx->supplies[0]=2Esupply =3D "vddc";
->>> +	ctx->supplies[1]=2Esupply =3D "vdd18";
->>> +	ctx->supplies[2]=2Esupply =3D "vdd09";
->>> +	ctx->supplies[3]=2Esupply =3D "vddio1";
->>> +	ctx->supplies[4]=2Esupply =3D "vddio2";
->>> +	ctx->supplies[5]=2Esupply =3D "vddio18";
->>> +	ret =3D devm_regulator_bulk_get(dev, ARRAY_SIZE(ctx->supplies), ctx-=
->supplies);
->>> +	if (ret)
->>> +		return dev_err_probe(dev, ret,
->>> +				     "failed to get supply regulator\n");
->>> +
->>> +	ctx->reset_gpio =3D devm_gpiod_get(dev, "reset", GPIOD_ASIS);
->>> +	if (IS_ERR(ctx->reset_gpio))
->>> +		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio), "failed to get =
-reset GPIO\n");
->>> +
->>> +	ctx->link =3D device_link_add(&bridge->dev, dev, DL_FLAG_AUTOREMOVE_=
-CONSUMER);
->>> +
->>> +	platform_set_drvdata(pdev, ctx);
->>> +
->>> +	qps615_pwrctl_parse_device_dt(ctx, pdev->dev=2Eof_node);
->>> +
->>> +	if (bridge->ops->stop_link)
->>> +		bridge->ops->stop_link(bus);
->>> +
->>> +	ret =3D qps615_pwrctl_power_on(ctx);
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	if (bridge->ops->start_link) {
->>> +		ret =3D bridge->ops->start_link(bus);
->>> +		if (ret)
->>> +			return ret;
->>> +	}
->>> +
->>> +	return devm_pci_pwrctl_device_set_ready(dev, &ctx->pwrctl);
->>> +}
->>> +
->>> +static void qps615_pwrctl_remove(struct platform_device *pdev)
->>> +{
->>> +	struct device *dev =3D &pdev->dev;
->>> +	struct qps615_pwrctl_ctx *ctx =3D dev_get_drvdata(dev);
->>> +
->>> +	device_link_del(ctx->link);
->>> +	qps615_pwrctl_power_off(ctx);
->>> +}
->>> +
->>> +static const struct qps615_pwrctl_bdf_info bdf_info =3D {
->>> +	=2Eusp_bdf	=3D 0x100,
->>> +	=2Edsp1_bdf	=3D 0x208,
->>> +	=2Edsp2_bdf	=3D 0x210,
->>> +	=2Edsp3_bdf	=3D 0x218,
->>> +};
->>> +
->>> +static const struct of_device_id qps615_pwrctl_of_match[] =3D {
->>> +	{ =2Ecompatible =3D "pci1179,0623", =2Edata =3D &bdf_info },
->>> +	{ }
->>> +};
->>> +MODULE_DEVICE_TABLE(of, qps615_pwrctl_of_match);
->>> +
->>> +static struct platform_driver qps615_pwrctl_driver =3D {
->>> +	=2Edriver =3D {
->>> +		=2Ename =3D "pwrctl-qps615",
->>> +		=2Eof_match_table =3D qps615_pwrctl_of_match,
->>> +		=2Eprobe_type =3D PROBE_PREFER_ASYNCHRONOUS,
->>> +	},
->>> +	=2Eprobe =3D qps615_pwrctl_probe,
->>> +	=2Eremove_new =3D qps615_pwrctl_remove,
->>> +};
->>> +module_platform_driver(qps615_pwrctl_driver);
->>> +
->>> +MODULE_AUTHOR("Krishna chaitanya chundru <quic_krichai@quicinc=2Ecom>=
-");
->>> +MODULE_DESCRIPTION("Qualcomm QPS615 power control driver");
->>> +MODULE_LICENSE("GPL");
->>>=20
->>> --=20
->>> 2=2E34=2E1
->>>=20
->>=20
-
-
---=20
-With best wishes
-Dmitry
+SGksIEFuZ2VsbzoNCg0KT24gVHVlLCAyMDI0LTA2LTE4IGF0IDEyOjE3ICswMjAwLCBBbmdlbG9H
+aW9hY2NoaW5vIERlbCBSZWdubyB3cm90ZToNCj4gVGhlIGRpc3BsYXkgSVBzIGluIE1lZGlhVGVr
+IFNvQ3Mgc3VwcG9ydCBiZWluZyBpbnRlcmNvbm5lY3RlZCB3aXRoDQo+IGRpZmZlcmVudCBpbnN0
+YW5jZXMgb2YgRERQIElQcyAoZm9yIGV4YW1wbGUsIG1lcmdlMCBvciBtZXJnZTEpIGFuZC9vcg0K
+PiB3aXRoIGRpZmZlcmVudCBERFAgSVBzIChmb3IgZXhhbXBsZSwgcmRtYSBjYW4gYmUgY29ubmVj
+dGVkIHdpdGggZWl0aGVyDQo+IGNvbG9yLCBkcGksIGRzaSwgbWVyZ2UsIGV0YyksIGZvcm1pbmcg
+YSBmdWxsIERpc3BsYXkgRGF0YSBQYXRoIHRoYXQNCj4gZW5kcyB3aXRoIGFuIGFjdHVhbCBkaXNw
+bGF5Lg0KPiANCj4gVGhlIGZpbmFsIGRpc3BsYXkgcGlwZWxpbmUgaXMgZWZmZWN0aXZlbHkgYm9h
+cmQgc3BlY2lmaWMsIGFzIGl0IGRvZXMNCj4gZGVwZW5kIG9uIHRoZSBkaXNwbGF5IHRoYXQgaXMg
+YXR0YWNoZWQgdG8gaXQsIGFuZCBldmVudHVhbGx5IG9uIHRoZQ0KPiBzZW5zb3JzIHN1cHBvcnRl
+ZCBieSB0aGUgYm9hcmQgKGZvciBleGFtcGxlLCBBZGFwdGl2ZSBBbWJpZW50IExpZ2h0DQo+IHdv
+dWxkIG5lZWQgYW4gQW1iaWVudCBMaWdodCBTZW5zb3IsIG90aGVyd2lzZSBpdCdzIHBvaW50bGVz
+cyEpLCBvdGhlcg0KPiB0aGFuIHRoZSBvdXRwdXQgdHlwZS4NCj4gDQo+IEFkZCBzdXBwb3J0IGZv
+ciBPRiBncmFwaHMgdG8gbW9zdCBvZiB0aGUgTWVkaWFUZWsgRERQIChkaXNwbGF5KSBiaW5kaW5n
+cw0KPiB0byBhZGQgZmxleGliaWxpdHkgdG8gYnVpbGQgY3VzdG9tIGhhcmR3YXJlIHBhdGhzLCBo
+ZW5jZSBlbmFibGluZyBib2FyZA0KPiBzcGVjaWZpYyBjb25maWd1cmF0aW9uIG9mIHRoZSBkaXNw
+bGF5IHBpcGVsaW5lIGFuZCBhbGxvd2luZyB0byBmaW5hbGx5DQo+IG1pZ3JhdGUgYXdheSBmcm9t
+IHVzaW5nIGhhcmRjb2RlZCBwYXRocy4NCj4gDQo+IFJldmlld2VkLWJ5OiBSb2IgSGVycmluZyAo
+QXJtKSA8cm9iaEBrZXJuZWwub3JnPg0KPiBSZXZpZXdlZC1ieTogQWxleGFuZHJlIE1lcmduYXQg
+PGFtZXJnbmF0QGJheWxpYnJlLmNvbT4NCj4gVGVzdGVkLWJ5OiBBbGV4YW5kcmUgTWVyZ25hdCA8
+YW1lcmduYXRAYmF5bGlicmUuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBBbmdlbG9HaW9hY2NoaW5v
+IERlbCBSZWdubyA8YW5nZWxvZ2lvYWNjaGluby5kZWxyZWdub0Bjb2xsYWJvcmEuY29tPg0KPiAt
+LS0NCg0KW3NuaXBdDQoNCj4gIA0KPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0
+cmVlL2JpbmRpbmdzL2Rpc3BsYXkvbWVkaWF0ZWsvbWVkaWF0ZWssZXRoZHIueWFtbCBiL0RvY3Vt
+ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L21lZGlhdGVrL21lZGlhdGVrLGV0
+aGRyLnlhbWwNCj4gaW5kZXggNjc3ODgyMzQ4ZWRlLi45OGRiNDc4OTRlZWIgMTAwNjQ0DQo+IC0t
+LSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L21lZGlhdGVrL21l
+ZGlhdGVrLGV0aGRyLnlhbWwNCj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
+bmdzL2Rpc3BsYXkvbWVkaWF0ZWsvbWVkaWF0ZWssZXRoZHIueWFtbA0KPiBAQCAtMTEwLDYgKzEx
+MCwyOCBAQCBwcm9wZXJ0aWVzOg0KPiAgICAgICAgaW5jbHVkZS9kdC1iaW5kaW5ncy9nY2UvPGNo
+aXA+LWdjZS5oLCBtYXBwaW5nIHRvIHRoZSByZWdpc3RlciBvZiBkaXNwbGF5DQo+ICAgICAgICBm
+dW5jdGlvbiBibG9jay4NCj4gIA0KPiArICBwb3J0czoNCj4gKyAgICAkcmVmOiAvc2NoZW1hcy9n
+cmFwaC55YW1sIy9wcm9wZXJ0aWVzL3BvcnRzDQo+ICsgICAgZGVzY3JpcHRpb246DQo+ICsgICAg
+ICBJbnB1dCBhbmQgb3V0cHV0IHBvcnRzIGNhbiBoYXZlIG11bHRpcGxlIGVuZHBvaW50cywgZWFj
+aCBvZiB0aG9zZQ0KPiArICAgICAgY29ubmVjdHMgdG8gZWl0aGVyIHRoZSBwcmltYXJ5LCBzZWNv
+bmRhcnksIGV0YywgZGlzcGxheSBwaXBlbGluZS4NCj4gKw0KPiArICAgIHByb3BlcnRpZXM6DQo+
+ICsgICAgICBwb3J0QDA6DQo+ICsgICAgICAgICRyZWY6IC9zY2hlbWFzL2dyYXBoLnlhbWwjL3By
+b3BlcnRpZXMvcG9ydA0KPiArICAgICAgICBkZXNjcmlwdGlvbjogRVRIRFIgaW5wdXQsIHVzdWFs
+bHkgZnJvbSBvbmUgb2YgdGhlIE1FUkdFIGJsb2Nrcy4NCg0KU29ycnksIEkgZmluZCBvbmUgcXVl
+c3Rpb24gbm93Lg0KSSB0aGluayBFVEhEUiBtYXkgaGF2ZSBtdWx0aXBsZSBpbnB1dCwgYW5kIEVU
+SERSIHJlY2VpdmUgZGF0YSBmcm9tIGFsbCBpbnB1dCBhdCB0aGUgc2FtZSB0aW1lLg0KV2h5IGhl
+cmUgaGFzIG9ubHkgb25lIGlucHV0IHBvcnQ/DQoNCk1FUkdFIC0tPistLS0tLS0tLS0tLS0tLS0t
+LSsNCiAgICAgICAgIHwgICAgICAgICAgICAgICAgIHwNCk1FUkdFIC0tPnwgICAgICAgICAgICAg
+ICAgIHwNCiAgICAgICAgIHwgICAgICBFVEhEUiAgICAgIHwNCk1FUkdFIC0tPnwgICAgICAgICAg
+ICAgICAgIHwNCiAgICAgICAgIHwgICAgICAgICAgICAgICAgIHwNCk1FUkdFIC0tPistLS0tLS0t
+LS0tLS0tLS0tLSsNCg0KUmVnYXJkcywNCkNLDQoNCj4gKw0KPiArICAgICAgcG9ydEAxOg0KPiAr
+ICAgICAgICAkcmVmOiAvc2NoZW1hcy9ncmFwaC55YW1sIy9wcm9wZXJ0aWVzL3BvcnQNCj4gKyAg
+ICAgICAgZGVzY3JpcHRpb246DQo+ICsgICAgICAgICAgRVRIRFIgb3V0cHV0IHRvIHRoZSBpbnB1
+dCBvZiB0aGUgbmV4dCBkZXNpcmVkIGNvbXBvbmVudCBpbiB0aGUNCj4gKyAgICAgICAgICBkaXNw
+bGF5IHBpcGVsaW5lLCBmb3IgZXhhbXBsZSBvbmUgb2YgdGhlIGF2YWlsYWJsZSBNRVJHRSBibG9j
+a3MsDQo+ICsgICAgICAgICAgb3Igb3RoZXJzLg0KPiArDQo+ICsgICAgcmVxdWlyZWQ6DQo+ICsg
+ICAgICAtIHBvcnRAMA0KPiArICAgICAgLSBwb3J0QDENCj4gKw0KPiAgcmVxdWlyZWQ6DQo+ICAg
+IC0gY29tcGF0aWJsZQ0KPiAgICAtIHJlZw0KPiANCg==
 
