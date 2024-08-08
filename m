@@ -1,127 +1,199 @@
-Return-Path: <devicetree+bounces-91938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6554794B663
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 07:57:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 071EC94B881
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:05:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 307801F22C61
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 05:57:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B34F1287CF9
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 08:05:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0958184526;
-	Thu,  8 Aug 2024 05:57:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CBCA188CDB;
+	Thu,  8 Aug 2024 08:05:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NP0YGdQe"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="YF9fGd4r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m12742.qiye.163.com (mail-m12742.qiye.163.com [115.236.127.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EC0A18306C;
-	Thu,  8 Aug 2024 05:57:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D99BF188CAC;
+	Thu,  8 Aug 2024 08:05:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.236.127.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723096648; cv=none; b=IRg2wBhq54bTC6/Ur1PPJmPT8oLazm7v4fWRIgVck5mbQqdZYf73ZHu0U5dSLyEYl2+s9tg/XLn7+nxy0+DqbbvDBaN5gFjTNx0vx10h31yPcP+UBLRKs0E2uEAMWTMt/5goBfqml1SYny6dU8ZwoINia4p0svuTONeFZPTIrPY=
+	t=1723104305; cv=none; b=bxsZ7X1xBjQDvs5LSwXcDhXTNlph3TAbeC6nwrBc2T7PMnvp3cFwH18PmlVkekfGFPd2oKewhScwhW9ukkeDELQDdZqSDsqCACUpCHzpaxLwTBZIKJYuhvpiX3Hex+p2iTLEGIswoY3iBHH8ra6lu9VOgTpiTubhFcXyWzBqsdo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723096648; c=relaxed/simple;
-	bh=rnRFuT1S86rsgbUn2JH+zS6oMXRegY+0glfMWQU6zuE=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=MiUfIXmMTLlwn8cF3cVQu4NovWDXdPpPCjX8NdlaVrOszmFbxmHhu/K2QZ18mQnXkZkOlUhi/W+3PF2LKlPOReW0lMMaXdcDSwq7tI3cCg/l17UQ3AdAVosXVNUJtI6x7bSTUAX660rpJNSC8/L3ctSnSfH8H19KQBpdkeHCRRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NP0YGdQe; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a7a8a4f21aeso66299066b.2;
-        Wed, 07 Aug 2024 22:57:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723096645; x=1723701445; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=bPiAoXpK0JdsQyNpaN7hZCrHpa0VhsUUiY7QeEceZ+E=;
-        b=NP0YGdQe3JL03ehA0Kh3ith9jrnA9w9znZklebVw+lb2S1yiTFdJ3raIoMFJKEVK5b
-         YjTGwB/FYbbw1yxhYjIgYw4ecitSAKuczbI/Ka3c+61TnHoMBXfZmLgYmXV+r8FrdIpj
-         ZOr35VHIVG44gdk7c+c7nwfJk5lMSAX3k+DBdISmWjIGvQujwc2AvyG5cYZZH7vMClq0
-         27qUFnyQLQ71JNrxBzh+m6RBuAqSMDwdZ49LWi2JuIJntAka51AYOjvu/aPh7mdlQhIN
-         JIdfjtoVKtUvMvPRCNX64UQrxjZtn0EwIijySOaDwkuGH5XkdWpkiWlfgPU9iDQZuC1U
-         I8NA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723096645; x=1723701445;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bPiAoXpK0JdsQyNpaN7hZCrHpa0VhsUUiY7QeEceZ+E=;
-        b=PRfnBglvDUSrJjcglxLHroQmxzJhNOAP0xyZyhk14MTxukwuVawH2ucrvLSCZ4JeJI
-         AFoLi0tC/05mS5+HreKuPeZp5/md3bSPNXhIcwlXETiXi+tSzIxf4ekqkJYfp7R5wDc7
-         T0Nc/nS3Uvchs9ByO9TpP52mfl/3eLpdKdj7arfWJnSIcvfkxx8MXKI8TgBzCNV0E13n
-         /azrW28s8Ky507TSIOfaS0LXFeWyQ/fCXSarjkxq/iDZ5naXO7vf4PITO7T6UQ7obhsR
-         K3t6QGcApo1g+SV+6Q+RESbq0YdTp1MXxsP8R5M4/yuhcRHvbHi+gDGUzpok+kqQSgFS
-         d5rw==
-X-Forwarded-Encrypted: i=1; AJvYcCXXnzcv0uEdQzPbksAaDM7d7fx59ejklMuLQI00Tt0L2d5cq1iChoJ+i0iNCY6l2NrV873B3G5A22aHK27UVXBeIQi5j0XL0y1uX+QqAHuvxsydTaptFR5QbIU3nCe12i62PyZorwGh7Q==
-X-Gm-Message-State: AOJu0Yyb/eqkV/S1tt9mxvSmp7SVO+bsu6f/y95Oh95FkPZMPhusKYiV
-	EJxq6F58gaq112TL9stDpMOuDD1hbuTXSQPlwHLDjg2/0Sx/oIw5
-X-Google-Smtp-Source: AGHT+IFOK5O6efGExDbiRRC8zbPf8APmGN3SBFAmHarWVs0d/h+onpCcwSHzigQsOOkJQdmzBFsYXg==
-X-Received: by 2002:a17:906:d249:b0:a7a:8cb9:7490 with SMTP id a640c23a62f3a-a8090e4e094mr42616166b.47.1723096645018;
-        Wed, 07 Aug 2024 22:57:25 -0700 (PDT)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7dc9ec8cc7sm704287066b.215.2024.08.07.22.57.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Aug 2024 22:57:24 -0700 (PDT)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1723104305; c=relaxed/simple;
+	bh=L+r/HPZRMIHvW6UsJFyhRES7VCZ6aY4gERAkeuL3nTE=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=MhlWyO/Ntrx9LK8XhMkmoVsc+1QuOyhNk2H8yRIVyZK7DM4Z83GP09Ywd+P4eNvlfOgUQ+U20XkfSIeQ6BRLE3OuGjweYi4nW0sjbw2CXc9PxfDK3w1i5hRC8h1um7nqO0VBvxVKEU10Bwz91C/Nu2ZXXbeCeURQ3fdjXgHzWBo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=YF9fGd4r; arc=none smtp.client-ip=115.236.127.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+DKIM-Signature: a=rsa-sha256;
+	b=YF9fGd4rIGl5OkA3atjMC+2dfHT2JPYHLMiFvZddJo9D7ZuOvCBnoEK5gUH2DBp0wDhUVdY0RKzg+O18jk3jMn5wlOQXnb4SsM/GumU0v8CL5Jjq5XzhKD9fKt/CHdbxav1an3zVdd4vP/QTw2bzgGckAH3G5nv3xBVxprS4dbw=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=dQ73/rM8eDJWygK5o939zObKIeQ3hk5HLMMw1WM662Q=;
+	h=date:mime-version:subject:message-id:from;
+Received: from localhost.localdomain (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTPA id A3F054602E9;
+	Thu,  8 Aug 2024 12:27:06 +0800 (CST)
+From: Shawn Lin <shawn.lin@rock-chips.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	"James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
+	"Martin K . Petersen" <martin.petersen@oracle.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Michael Walle <michael@walle.cc>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	devicetree@vger.kernel.org,
-	linux-mtd@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	u-boot@lists.denx.de,
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>,
+	YiFeng Zhao <zyf@rock-chips.com>,
+	Liang Chen <cl@rock-chips.com>,
+	linux-scsi@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] MAINTAINERS: Update path for U-Boot environment variables YAML
-Date: Thu,  8 Aug 2024 07:57:10 +0200
-Message-Id: <20240808055710.19292-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
+	devicetree@vger.kernel.org,
+	Shawn Lin <shawn.lin@rock-chips.com>
+Subject: [RESEND PATCH v2 2/3] dt-bindings: ufs: Document Rockchip UFS host controller
+Date: Thu,  8 Aug 2024 12:27:00 +0800
+Message-Id: <1723091220-29291-1-git-send-email-shawn.lin@rock-chips.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1723089163-28983-1-git-send-email-shawn.lin@rock-chips.com>
+References: <1723089163-28983-1-git-send-email-shawn.lin@rock-chips.com>
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGR0YSlZKTUMZHhgeS0ofGBhWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	NVSktLVUpCS0tZBg++
+X-HM-Tid: 0a91303d936e03aekunma3f054602e9
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MDI6Agw6DjIzOQsdFylNIzMC
+	LRgaCQlVSlVKTElIS0JKSUlDS0lKVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQU5IT0o3Bg++
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Document Rockchip UFS host controller for RK3576 SoC.
 
-This file was moved to the layouts/ subdirectory.
+Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
-I missed this MAINTAINERS change in the commit 1b3f5b88c541
-("dt-bindings: nvmem: convert U-Boot env to a layout").
 
-Srini: I believe your policy is to rebase your tree and send PATCHes to
-Greg during merge window. Could you fixup above patch with this change,
-please?
+Changes in v2:
+- renmae file name
+- fix all errors and pass the dt_binding_check:
+  make dt_binding_check DT_SCHEMA_FILES=rockchip,rk3576-ufs.yaml
 
- MAINTAINERS | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../bindings/ufs/rockchip,rk3576-ufs.yaml          | 96 ++++++++++++++++++++++
+ 1 file changed, 96 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/ufs/rockchip,rk3576-ufs.yaml
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 760cb3966643..e299bcabe2e8 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -23444,7 +23444,7 @@ F:	drivers/media/pci/tw686x/
- U-BOOT ENVIRONMENT VARIABLES
- M:	Rafał Miłecki <rafal@milecki.pl>
- S:	Maintained
--F:	Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
-+F:	Documentation/devicetree/bindings/nvmem/layouts/u-boot,env.yaml
- F:	drivers/nvmem/layouts/u-boot-env.c
- F:	drivers/nvmem/u-boot-env.c
- 
+diff --git a/Documentation/devicetree/bindings/ufs/rockchip,rk3576-ufs.yaml b/Documentation/devicetree/bindings/ufs/rockchip,rk3576-ufs.yaml
+new file mode 100644
+index 0000000..1844fe3
+--- /dev/null
++++ b/Documentation/devicetree/bindings/ufs/rockchip,rk3576-ufs.yaml
+@@ -0,0 +1,96 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/ufs/rockchip,rk3576-ufs.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Rockchip UFS Host Controller
++
++maintainers:
++  - Shawn Lin <shawn.lin@rock-chips.com>
++
++allOf:
++  - $ref: ufs-common.yaml
++
++properties:
++  compatible:
++    const: rockchip,rk3576-ufs
++
++  reg:
++    maxItems: 5
++
++  reg-names:
++    items:
++      - const: hci
++      - const: mphy
++      - const: hci_grf
++      - const: mphy_grf
++      - const: hci_apb
++
++  clocks:
++    maxItems: 4
++
++  clock-names:
++    items:
++      - const: core
++      - const: pclk
++      - const: pclk_mphy
++      - const: ref_out
++
++  power-domains:
++    maxItems: 1
++
++  resets:
++    maxItems: 4
++
++  reset-names:
++    items:
++      - const: biu
++      - const: sys
++      - const: ufs
++      - const: grf
++
++  reset-gpios:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - clocks
++  - clock-names
++  - interrupts
++  - power-domains
++  - resets
++  - reset-names
++  - reset-gpios
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/rockchip,rk3576-cru.h>
++    #include <dt-bindings/reset/rockchip,rk3576-cru.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/power/rk3576-power.h>
++    #include <dt-bindings/pinctrl/rockchip.h>
++    #include <dt-bindings/gpio/gpio.h>
++
++    ufs: ufs@2a2d0000 {
++          compatible = "rockchip,rk3576-ufs";
++          reg = <0x2a2d0000 0x10000>,
++                <0x2b040000 0x10000>,
++                <0x2601f000 0x1000>,
++                <0x2603c000 0x1000>,
++                <0x2a2e0000 0x10000>;
++          reg-names = "hci", "mphy", "hci_grf", "mphy_grf", "hci_apb";
++          clocks = <&cru ACLK_UFS_SYS>, <&cru PCLK_USB_ROOT>, <&cru PCLK_MPHY>,
++                  <&cru CLK_REF_UFS_CLKOUT>;
++          clock-names = "core", "pclk", "pclk_mphy", "ref_out";
++          interrupts = <GIC_SPI 361 IRQ_TYPE_LEVEL_HIGH>;
++          power-domains = <&power RK3576_PD_USB>;
++          resets = <&cru SRST_A_UFS_BIU>, <&cru SRST_A_UFS_SYS>, <&cru SRST_A_UFS>,
++                    <&cru SRST_P_UFS_GRF>;
++          reset-names = "biu", "sys", "ufs", "grf";
++          reset-gpios = <&gpio4 RK_PD0 GPIO_ACTIVE_HIGH>;
++    };
 -- 
-2.35.3
+2.7.4
 
 
