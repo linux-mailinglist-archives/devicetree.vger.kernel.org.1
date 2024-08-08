@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-92079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C29094BB96
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:48:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56F9694BBA1
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:49:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 470381C21289
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:48:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F3D681F22149
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:49:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFFFD18A6BA;
-	Thu,  8 Aug 2024 10:48:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97A4218B49B;
+	Thu,  8 Aug 2024 10:49:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="APZYVq+Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MhONrxd1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97D4F14D2BD;
-	Thu,  8 Aug 2024 10:48:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D6C118B479;
+	Thu,  8 Aug 2024 10:49:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723114115; cv=none; b=HGWI84LmioTzYbcWkZ5AejxalAZPELfiWLpk7LbU9MmH20xqdc2Uh2c0b6jF8c4PFlMzsS5MXDfZCcLenenr+wFlxshMwago6+Q3TH3AhD8MFKv7Ot2adW7q0DxpllVm7oP0qYFPNoqec0cBviLCNJHsvS9iyoOK/1llOa59wwo=
+	t=1723114143; cv=none; b=ZiFyEw7eWS2FX/Oy8LKxnOiDGruj8LmKsieEN7pY6gJ0kCG8h5Sy0UK5xsQaCvBokbZWy22/blLseKoBcfLL0I8/yUEurOREufj+F23H5bOkkxqIFbBg7ioH2SsWUyTcXIrgc6G4650EtiIxjrBYyLsifXukBcxanDS+Iq9Jutw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723114115; c=relaxed/simple;
-	bh=06JKLLBSTblzHtiOx5e0iowMvxnqI1lBugrzskA8WGg=;
+	s=arc-20240116; t=1723114143; c=relaxed/simple;
+	bh=/bC1IqJacp3w9+CSOHYGfzeCrsJ+I9PC2x7fK+54vII=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hPH92ND/7CZYRyn64jynII2uDbR+51h9Dp0mh40Ex4hVzFJ8bnS5C2inaPMPQNPmP9Cix1na9zUv6XaucvefMSS7dnUsNSh9q5rduSewA0BUdwGB+u3SzjHxzOSMVi1xaww6VUoEy9oKALYd3P6NliUuBkNXwVQnjpmzhBBLr7E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=APZYVq+Y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3A02C4AF09;
-	Thu,  8 Aug 2024 10:48:31 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=rrA12Y/XUTB5jaDFnx17L+hoLVtjaLOpSFqJZePo2engURH2s77n+s0ysObFYVRSBVxWCN/eNcNUb6m3G3dCCyXxVrtOOg0opjrBqUo/nJ4oJjp9tfORCwcB5tu7ISpHvMDmQgl2YGYPLAZGN6QNG1TO4gX9VXv1830JjfDnzGg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MhONrxd1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F3ECC4AF0E;
+	Thu,  8 Aug 2024 10:48:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723114115;
-	bh=06JKLLBSTblzHtiOx5e0iowMvxnqI1lBugrzskA8WGg=;
+	s=k20201202; t=1723114142;
+	bh=/bC1IqJacp3w9+CSOHYGfzeCrsJ+I9PC2x7fK+54vII=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=APZYVq+Yf4mdPZJpWifwY/pXerl7z8Ks2/puu2rn0meqR9lHOVGc+XK5psPcwmwAm
-	 L1zYYJoA7e+vwm9Rf7NS4+QKfrtr9osw7GkdgAgg7RhdarBOsRs1NxeGQemZR+kM+c
-	 tsYXwYEDQswI48m8dfE/D3UYzEryOubRjJ95ijK9NEGs9I1/337aQ3lsbdWULzF1BJ
-	 Mxs6/40d8iMcCTxWC9TS3xeykgltm0mjGSBrZC54gDgiYr0YiFgiQadTotMkcr8yuG
-	 Kr27zyP3r5K63zik6EBpTnUPTElGUqXlaxI9av8FQWlwOf7MdKtwNg04ujya6gsAyj
-	 NRyXCK6D0eJFg==
-Message-ID: <721f2102-0f2b-4d01-aadc-15aa6d1d837f@kernel.org>
-Date: Thu, 8 Aug 2024 12:48:29 +0200
+	b=MhONrxd1ix6A3TjLItwzxvnOGbXBdShcYq5W08JKduoIlcbGFb//OL11hmmFGLTc6
+	 B8eCAyskc2/UBw12jinuJQE99rA5mPsedJQwK2VK4mFGuald00gyuAYNcwhUkYfRze
+	 nNQ2cCFxrsBZbMYR1GOdaQJ4Oeo7oQc71v4NDg13M2zBEkozBUwPAR5cSAov7o/E+U
+	 LH4qQ1lN45oWfQ9aYaofsouK0ZdJ8+j/xr7LrnON55a/8PVMGRmORUFX/pJfYZmkkT
+	 345iUbkaSrW9EeEhBur4fp7Crur41SJWHwApYUsYvnd2PuGE/JHs/7+TFS7mghtsOF
+	 VKQYPeqVoxqOw==
+Message-ID: <ade9d7f3-a74d-4e64-8f9c-62e0678fcf03@kernel.org>
+Date: Thu, 8 Aug 2024 12:48:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,8 +50,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller:
- aspeed,ast2400-vic: Convert to DT schema
+Subject: Re: [PATCH v2 2/2] dt-bindings: misc: aspeed,ast2400-cvic: Convert to
+ DT schema
 To: Andrew Jeffery <andrew@codeconstruct.com.au>,
  Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
@@ -59,7 +59,7 @@ To: Andrew Jeffery <andrew@codeconstruct.com.au>,
 Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org
 References: <20240808-dt-warnings-irq-aspeed-dt-schema-v2-0-c2531e02633d@codeconstruct.com.au>
- <20240808-dt-warnings-irq-aspeed-dt-schema-v2-1-c2531e02633d@codeconstruct.com.au>
+ <20240808-dt-warnings-irq-aspeed-dt-schema-v2-2-c2531e02633d@codeconstruct.com.au>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,20 +105,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240808-dt-warnings-irq-aspeed-dt-schema-v2-1-c2531e02633d@codeconstruct.com.au>
+In-Reply-To: <20240808-dt-warnings-irq-aspeed-dt-schema-v2-2-c2531e02633d@codeconstruct.com.au>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 08/08/2024 06:14, Andrew Jeffery wrote:
-> Squash warnings such as:
+> Address warnings such as:
 > 
->     arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-galaxy100.dtb: /ahb/interrupt-controller@1e6c0080: failed to match any schema with compatible: ['aspeed,ast2400-vic']
+>     arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-galaxy100.dtb: interrupt-controller@1e6c0080: 'valid-sources' does not match any of the regexes: 'pinctrl-[0-9]+'
 > 
-> The YAML DT schema defines an optional property, valid-sources, which
-> was not previously described in the prose binding. It is added to
-> document existing practice in the Aspeed devicetrees. Unfortunately
-> the property seems to predate the requirement that vendor-specific
-> properties be prefixed.
+> and
+> 
+>     arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-galaxy100.dtb: /ahb/copro-interrupt-controller@1e6c2000: failed to match any schema with compatible: ['aspeed,ast2400-cvic', 'aspeed-cvic']
+> 
+> Note that the conversion to DT schema causes some further warnings to
+> be emitted, because the Aspeed devicetrees are not in great shape. These
+> new warnings are resolved in a separate series:
+> 
+> https://lore.kernel.org/lkml/20240802-dt-warnings-bmc-dts-cleanups-v1-0-1cb1378e5fcd@codeconstruct.com.au/
 > 
 > Signed-off-by: Andrew Jeffery <andrew@codeconstruct.com.au>
 
