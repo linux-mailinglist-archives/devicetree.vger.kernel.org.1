@@ -1,139 +1,139 @@
-Return-Path: <devicetree+bounces-92020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5DC194B992
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 11:21:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7036694B9AC
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 11:28:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E040F1C2106F
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 09:21:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 28C8D1F22234
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 09:28:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D9D61465BF;
-	Thu,  8 Aug 2024 09:21:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57B611482E7;
+	Thu,  8 Aug 2024 09:28:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="JAGTyR6C"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y/G0irLd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F65D2575F;
-	Thu,  8 Aug 2024 09:21:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD35C146D55;
+	Thu,  8 Aug 2024 09:28:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723108866; cv=none; b=NXXEjgLBi1OBVBvrDZ+XfvrM58x3e1vACdyP9APC475OyQBUZ6azDoAaUr8tH6B8Mci+qtC+d6eMBHWOdSFit6T2oWpQP7XJgnx3p80MB4qvIMcja+yyJhvPV7yzD36z5jPHzPiPbuXdOfBhWyOl85pLiXHB/uECmKqixwaOoR0=
+	t=1723109337; cv=none; b=R01GnZaIuIUdyVi69GFIKq8uCOkvRUmCd0kWGHS/Wrn1Y3t3M7eA4rc820EHosk0BiUpqrwbxaoMJuO9zHyoLnPbRumFKXfYaEI0W5O4e9Og1xfEC5cA6+4iETPrUHLqNadAbGhlMWQcE8MyVHHFS+oYoU10jATHLCqCMAFCEwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723108866; c=relaxed/simple;
-	bh=imq1AiFHmG2TQHVtGq0TdcADRTAqGvAXQKIy6Q6VUBA=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A8NBkEipTGTdoZkjx1PEg5kBnDgrTNDQjMtP0L1U//iFrr9YdU2XN4RboWRiu+QAA3HcbIkk0e0OYDu+uYmxFIE/omdzSlPiWeQNSMOnGuo4DmM+mWznc1TFSYL8xdxgjqdgFFZcOSdKxVCfoT+sTILx8W4yXnOr0z73bBMruBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=JAGTyR6C; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4789KtS3107112;
-	Thu, 8 Aug 2024 04:20:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1723108855;
-	bh=W0/THron0rfDFCIl1FOT38fmOl3uIJ4DHfKFYOF/uTo=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=JAGTyR6CssW6R+7F6TvXdrb8MY2X3x2eCUTXlypRNFNXi69xhbk3LEIkJ6BDQFnUJ
-	 +ea2OfWejF+otcYEVQs4OptZQx2o/BCeHVhAiVW21tPwktQWeBLv4PfNzOV9pSEO9k
-	 7E7UaDT7PtZOE1+E74eECEfJl1FYetLWPKim0+y8=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4789Kt5l021688
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 8 Aug 2024 04:20:55 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 8
- Aug 2024 04:20:55 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 8 Aug 2024 04:20:55 -0500
-Received: from localhost (uda0497581.dhcp.ti.com [10.24.68.185])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4789KstJ059303;
-	Thu, 8 Aug 2024 04:20:55 -0500
-Date: Thu, 8 Aug 2024 14:50:54 +0530
-From: Manorit Chawdhry <m-chawdhry@ti.com>
-To: "Limaye, Aniket" <a-limaye@ti.com>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Neha Malcom Francis <n-francis@ti.com>,
-        Udit
- Kumar <u-kumar1@ti.com>, Beleswar Padhi <b-padhi@ti.com>,
-        Siddharth Vadapalli
-	<s-vadapalli@ti.com>
-Subject: Re: [PATCH v3 5/5] arm64: dts: ti: k3-j7200*: Add bootph-* properties
-Message-ID: <20240808092054.7x62hy5twrwmadv6@uda0497581>
-References: <20240730-b4-upstream-bootph-all-v3-0-9bc2eccb6952@ti.com>
- <20240730-b4-upstream-bootph-all-v3-5-9bc2eccb6952@ti.com>
- <1cee1ebf-8281-440a-bf45-baa9b0e3b68f@ti.com>
+	s=arc-20240116; t=1723109337; c=relaxed/simple;
+	bh=ZSJC+ElrR0KuJIX8DXufJLcKD19TF5flBV8yJMH4etE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=c0NPnUWlxr4R6TJo6gEo+8yNorvmyQSzIsdXEvLyVze6BM2uLIYborkfFvLVNLdOc8Q1aEbgT9Y31hEvsejzZZzGpvAXSNFKWTsj+2IyAENCPPY7kWTR3UKCfbISYwAXgzTsyd4ZXcq7GNIHv+Lr4g/oaOUwUuvnIgrMGNfv9Qo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y/G0irLd; arc=none smtp.client-ip=209.85.167.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-3db1e4219f8so506553b6e.3;
+        Thu, 08 Aug 2024 02:28:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723109335; x=1723714135; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=tTXttIbpKY7MN+ev3dcFwcWi8Hz7dGmwuXBqb7RF9P8=;
+        b=Y/G0irLdXZFVpsjgP2x9i4ATtt00lvyJHjUDAsG/pNd9IJBJcHewD+89ZE84474RVf
+         18Y13vQkPGYWRVtsR6WZ3z7hZ1LQqNoCSTXKcK8xCFC29ZVgU4gExCnt9Sxr0mFxxc/W
+         R2Xl3/HO87QWaYP6l1bFPpCTZG6+cl2WGVtOE+N8COqYjxQzmDiUD/JRemRy1BAbh0XR
+         IMa4lFpW0aE8F8AVJilFtDPP4JtvgEkrzMc+a7WicZAb1DKmbRFcaUB31dstR8Nuzmiv
+         TpBdrMigU2LJrapMcziEMyYJ7uAVKv4v2Wm/OQdvtGCuaTmdsIU8JdwlpzgYPZRUvNCK
+         dm/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723109335; x=1723714135;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tTXttIbpKY7MN+ev3dcFwcWi8Hz7dGmwuXBqb7RF9P8=;
+        b=vMdClLo+tPcI4VvqX9nwulbU7At4/nIGhcorj5VMxSMET7gkz21SDwmes/4vSdxanm
+         UDb9qqhhme8myIn3VF7gPWP7pXy2hBghJKO4hTiE6TO20q21Jz9ZykmhTmGw5FrliUtR
+         vb0gRLRsJO9louEvnWCcCUUo2umg4Zhbl1bRMQTv7oh2OAWgS2TDI9jEWN6wKDEztmX0
+         RtG3H5Gj3a8BS869eO5x5NIarnMmEbyRPR5xn4fURhI5kcpGfHbwucxTXfGK7yRD//Gc
+         yDlmX4wEfE6aULlRJLfjAd3fIA5ieYiAo0fFKPq/of57dKGJMhJ2kbZSusF7JdHBE0Rg
+         lAmA==
+X-Forwarded-Encrypted: i=1; AJvYcCXP7MxkNemTE8RZ6b88w24w1a9IpVrzQwEikYdHh1KwTOU/VuD/jPPo1NbG/d11hhoFUSeA13cPz02QBfhxBwTZadx/QzHQ3UcgY0B3YP/XB2NFC9g8RXQN67CJmYCYLDol8V8mwfxIoP0OA6KANMFJ+WaxsWFWfiSDIpl+xRMgRw==
+X-Gm-Message-State: AOJu0YxffOhUjv1jmPaSp1FSSeHv5DsMngfNumVpMtRM1qunttGNU1KN
+	kTupV+45P+OJ93o4vJ53wFW745XwSh7gh1GYIeXdxcJ39WI6+LWFzql3QDOWA521sZ1EelPkpfl
+	hn3YvhAcca5Rc9CM0NSbDY4eRahrD0PtLfLo=
+X-Google-Smtp-Source: AGHT+IELeAEaCYCuwKauWQXUSejmhg8TXmGjaShYGhkXGpm2rHcwLDaVZ7fwoGSLtsnHtZeQXbuQLXpQClVNfU+Z0oY=
+X-Received: by 2002:a05:6808:16a0:b0:3dc:1b09:55c9 with SMTP id
+ 5614622812f47-3dc3b41d26cmr1592841b6e.12.1723109334667; Thu, 08 Aug 2024
+ 02:28:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <1cee1ebf-8281-440a-bf45-baa9b0e3b68f@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20240806132606.1438953-1-vtpieter@gmail.com> <20240806132606.1438953-6-vtpieter@gmail.com>
+ <0ebe8136f9d088fc9968e5438af5640382c024ac.camel@microchip.com>
+In-Reply-To: <0ebe8136f9d088fc9968e5438af5640382c024ac.camel@microchip.com>
+From: Pieter <vtpieter@gmail.com>
+Date: Thu, 8 Aug 2024 11:28:43 +0200
+Message-ID: <CAHvy4AoSJb24ZX4QjFS7UJ2a1nXXnfu7v-7p6FNyC_jCwADA6Q@mail.gmail.com>
+Subject: Re: [PATCH net-next v3 5/5] net: dsa: microchip: apply KSZ87xx family
+ fixes wrt datasheet
+To: Arun.Ramadoss@microchip.com
+Cc: andrew@lunn.ch, olteanv@gmail.com, davem@davemloft.net, 
+	linux@armlinux.org.uk, conor+dt@kernel.org, Woojung.Huh@microchip.com, 
+	robh@kernel.org, krzk+dt@kernel.org, f.fainelli@gmail.com, kuba@kernel.org, 
+	UNGLinuxDriver@microchip.com, marex@denx.de, edumazet@google.com, 
+	pabeni@redhat.com, pieter.van.trappen@cern.ch, devicetree@vger.kernel.org, 
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Aniket,
-
-On 20:07-20240807, Limaye, Aniket wrote:
-> Hi Manorit,
-> 
-> On 7/30/2024 3:23 PM, Manorit Chawdhry wrote:
-> > Adds bootph-* properties to the leaf nodes to enable U-boot to
-> > utilise them.
-> > 
-> > Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
+On Wed 7 Aug 2024 at 05:41, <Arun.Ramadoss@microchip.com> wrote:
+>
+> Hi Pieter,
+>
+> On Tue, 2024-08-06 at 15:25 +0200, vtpieter@gmail.com wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you
+> > know the content is safe
+> >
+> > From: Pieter Van Trappen <pieter.van.trappen@cern.ch>
+> >
+> > The KSZ87xx switches have 32 entries and not 8. This fixes -ENOSPC
+> > errors from ksz8_add_sta_mac when configured as a bridge.
+> >
+> > Add a new ksz87xx_dev_ops structure to be able to use the
+> > ksz_r_mib_stat64 pointer for this family; this corrects a wrong
+> > mib->counters cast to ksz88xx_stats_raw. This fixes iproute2
+> > statistics.
+> >
+> > Signed-off-by: Pieter Van Trappen <pieter.van.trappen@cern.ch>
 > > ---
-> >   .../arm64/boot/dts/ti/k3-j7200-common-proc-board.dts | 20 ++++++++++++++++++++
-> >   arch/arm64/boot/dts/ti/k3-j7200-main.dtsi            |  2 ++
-> >   arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 10 ++++++++++
-> >   arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi          |  7 +++++++
-> >   4 files changed, 39 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> > index 5097d192c2b2..f8a5ad4737da 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> > +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> > @@ -21,16 +21,19 @@ dmsc: system-controller@44083000 {
-> 
-> Referring to the thread from v2 [0], I see that you have removed the
-> bootph-all from the parent dmsc node. With current patch j7200-evm fails to
-> boot (Stuck somewhere in tispl or right after that) as discussed in the same
-> thread [0].
-> 
-> I have boot tested this patch (SD boot) and the device boots with an
-> additional bootph-all at dmsc node.
-> 
-> I assume the removal was done intentionally, meaning we intend to fix the
-> bug in u-boot or carry the one extra bootph-all there. If NOT, please add
-> the same in the parent dmsc node here as well.
+> >
+> >  static void ksz9477_phylink_mac_link_up(struct phylink_config
+> > *config,
+> >                                         struct phy_device *phydev,
+> >                                         unsigned int mode,
+> > @@ -1262,12 +1297,12 @@ const struct ksz_chip_data ksz_switch_chips[]
+> > = {
+> >                 .dev_name = "KSZ8795",
+> >                 .num_vlans = 4096,
+> >                 .num_alus = 0,
+> > -               .num_statics = 8,
+> > +               .num_statics = 32,
+> >                 .cpu_ports = 0x10,      /* can be configured as cpu
+> > port */
+> >                 .port_cnt = 5,          /* total cpu and user ports
+> > */
+> >                 .num_tx_queues = 4,
+> >                 .num_ipms = 4,
+> > -               .ops = &ksz8_dev_ops,
+>
+> Why don't we rename ksz8_dev_ops also like KSZ88x3_dev_ops or
+> KSZ88xx_dev_ops, since it is now used only by KSZ8863 and KSZ8873
+> switches.
 
-Yes, the removal was intentional and there is a fix that can be done in
-U-boot for this so we'll take that up there.
+Hi Arun, indeed that would make more sense. Will rename to
+ksz88x3_dev_ops, consistent with the ksz_is_* function names
+in ksz_common.h.
 
-Thanks for reviewing!
-
-Regards,
-Manorit
-
-> 
-> So taking care of the above,
-> 
-> Reviewed-by: Aniket Limaye <a-limaye@ti.com>
-> 
-> [0]: https://lore.kernel.org/all/20240709084857.nf7c57mi6miajeau@uda0497581/
+Thanks, Pieter
 
