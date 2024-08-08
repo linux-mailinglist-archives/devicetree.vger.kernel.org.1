@@ -1,118 +1,118 @@
-Return-Path: <devicetree+bounces-92064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB60994BAD3
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:24:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FE1994BAD8
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:25:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C9E52832BF
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:24:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 14EE7282B58
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:25:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91182189BB3;
-	Thu,  8 Aug 2024 10:24:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P5DBtPhO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4885518A6D1;
+	Thu,  8 Aug 2024 10:25:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2ED4188002;
-	Thu,  8 Aug 2024 10:24:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.50
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8D1018A6C8;
+	Thu,  8 Aug 2024 10:25:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723112662; cv=none; b=tVywlqQT7YkSPWaelUXgDTvyjDeTGIaYTKYytflEB/LU2gljzATit6o3KbnpkhreAqx/YgxEgJEqGaP8A3QqhVcDJH0Dytb2SxkpOFOb1F9UmfBm2KscQ04ZatOlEXRdxrkIybJHFtrcLpXBiV2zH7Qta0TQFgwmQ0YaAbu/MEo=
+	t=1723112720; cv=none; b=hFc9hk4kteDF+lEUf+9yXSfb7ClDq/q7K5qbgLvIYH1zGMmwWLR3aONHrW+ZH3XYKliElfIlqHZxKeKH/bBxTFnvYVmDwWr2rmhn1Hd+jg+66XZkDYUw9iScN4lzoWraE7yoUh88SUlviN6jeYN0YEdSyLILuHL/L3PsEJOGpsA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723112662; c=relaxed/simple;
-	bh=0h8X65a3TGdk6XooFBukyv3OsQLApBPzylo8BcV2a7U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VB8ZsbbRD8724qRDAs2NwGwqjYqGdrBEPBFQdPfB0AotkkrHolOws1oM1cI0HwQW8RAxYB6WQIEsCMXq/IlehYeO6FMTFzN00ulMvhBgXFBUTISygfjuFQax4QMwheM7nYnePT+PdcsaeCwqxq3tUAZwd6B2nO9WzjSc9p+AgTU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P5DBtPhO; arc=none smtp.client-ip=209.85.161.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f50.google.com with SMTP id 006d021491bc7-5d5bb03fe42so401854eaf.3;
-        Thu, 08 Aug 2024 03:24:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723112660; x=1723717460; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=0h8X65a3TGdk6XooFBukyv3OsQLApBPzylo8BcV2a7U=;
-        b=P5DBtPhOSPuX8JMUg9v8Ojd8cMdFpkCEfKwgd8Ig+r3VDQUqOSu5Jmec3h22AHE4YO
-         jvFJDjtM+LtKUjSuszR9Wgsw/LMdNCWubusi2EG9jo3lULrDhlrcQhdR2iCfnPdtHosg
-         +2pSv7x2nABW0iWeI8AJS2b0HVeOWpAQkHDb59VYLreUkmld/KizONNPiRd2G+0J5EXj
-         aMWg9hloa/w5Dz3quqi8dN5/zC2AI/yHbpaEYWTxel1iLoM9tlY7MPkELDT8kINEWmKm
-         IKaseEUJlbh+WvEvhoB3KNoCFQ87Ul24DCF7nLp0i0u+y5S76eFVIsITwkyv+eZ/X+7t
-         vtsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723112660; x=1723717460;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0h8X65a3TGdk6XooFBukyv3OsQLApBPzylo8BcV2a7U=;
-        b=VL71MMCGDoSUQR2693wvDL74sogwAuKVjz3kja2yI3795N63W27WYwdLMV/nI5biXu
-         ZGGV8IT/se21cay++1XOBPXauEB/ZuRgcMVANZBxaO70zdHjKHfz8Q2jEHjbgZF23ofI
-         krY4wBEIdq4gW4XJOMV/nOSTMpkNHZNO57AvVDtwVOIk496NKnWu/r4wIH3mmcKL+IMN
-         IUG/aOP8tAJYtF0CWtKE7jKnANXittUUWZQE28fp1gn+fXnZOaD1qqyZ42mwUv4ILlgP
-         o2qzJIrphulqGhDw7PrwwXB3vDVBptvflwHGYtGvmQfifa3AYCA4BvtdYQBmTuGrSVTH
-         BHtg==
-X-Forwarded-Encrypted: i=1; AJvYcCVKpNQBavWAX6VKcoxVoHMw3XFch9v1pLTcK9lDsTQMwJy5CC9PdhhqXDXHe55c8Xvf4HDbdRgLjLq0ww6m38Ph0hI8Cdl9
-X-Gm-Message-State: AOJu0Yykp7eINajRV/QQLvdie+cd/p+KC9Se597OMW9Q/cIxR4rIFEHy
-	ZMQOtEhwBi+Y1JhrezpIJTEfNwM98bNo1KYa/13oI1j1+FfQTcvFMV+CSdNKfdHzEcSJeOctpCV
-	xwH1aMezj/y5HPLRpN5OeNMZE4cc=
-X-Google-Smtp-Source: AGHT+IFFTVlETuCO1Zr41NPyxcUtGZspcfL11K8SvlTW/f6SCXULvKar2Vf0iEjkjnLj50/QR/kiNT5Qeuk862Q2yOk=
-X-Received: by 2002:a05:6820:2710:b0:5c4:144b:1ff9 with SMTP id
- 006d021491bc7-5d855c90e79mr1325427eaf.5.1723112659798; Thu, 08 Aug 2024
- 03:24:19 -0700 (PDT)
+	s=arc-20240116; t=1723112720; c=relaxed/simple;
+	bh=HyjKYMIGAL4Z2kGzUdViDxY5IvayIFVXwuk8LcAI4YU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Y6Kt61kJsdjeYToOJfYmKu8C1ap8NlUk68/Xnnd4QtQ24tCeUsCdM35prO3Z+FW+yG0XDjYiXNX3RcOwN9Qf498yliYBO5O7SSd4wNpksaUcvvEP6Geq3n8dVOgDheV2eP7dcCxpO32uA4b0HjJqlrpqJDwPDAXYG0vYC6gL4kI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 07D61FEC;
+	Thu,  8 Aug 2024 03:25:44 -0700 (PDT)
+Received: from [10.1.197.1] (ewhatever.cambridge.arm.com [10.1.197.1])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DB1F13F766;
+	Thu,  8 Aug 2024 03:25:15 -0700 (PDT)
+Message-ID: <d72622bb-7dd8-4674-a2db-6c605e388ddb@arm.com>
+Date: Thu, 8 Aug 2024 11:25:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240801123143.622037-1-vtpieter@gmail.com> <20240801123143.622037-2-vtpieter@gmail.com>
- <20240806171704.GA1749400-robh@kernel.org>
-In-Reply-To: <20240806171704.GA1749400-robh@kernel.org>
-From: Pieter <vtpieter@gmail.com>
-Date: Thu, 8 Aug 2024 12:24:08 +0200
-Message-ID: <CAHvy4AqNzvXG+DVZ0-mwaYbgpLcUhcXEvFo8+ODftr8tprAF0w@mail.gmail.com>
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: dsa: microchip: add
- microchip,no-tag-protocol flag
-To: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, woojung.huh@microchip.com, 
-	UNGLinuxDriver@microchip.com, netdev@vger.kernel.org, o.rempel@pengutronix.de, 
-	Pieter Van Trappen <pieter.van.trappen@cern.ch>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: Add qcom,inst-id for remote etm
+To: Mao Jinlong <quic_jinlmao@quicinc.com>, Mike Leach
+ <mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, coresight@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240807071054.12742-1-quic_jinlmao@quicinc.com>
+ <20240807071054.12742-2-quic_jinlmao@quicinc.com>
+Content-Language: en-US
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <20240807071054.12742-2-quic_jinlmao@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed 6 Aug 2024 at 19:17, Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Aug 01, 2024 at 02:31:42PM +0200, vtpieter@gmail.com wrote:
-> > From: Pieter Van Trappen <pieter.van.trappen@cern.ch>
-> >
-> > Add microchip,no-tag-protocol flag to allow disabling the switch'
->
-> What is the ' for?
-Typo
->
-> > tagging protocol. For cases where the CPU MAC does not support MTU
-> > size > 1500 such as the Zynq GEM.
->
-> What is "switch tag protocol"? Not defined anywhere? Is that VLAN
-> tagging?
->
-> It seems to me that this doesn't need to be in DT. You know you have
-> Zynq GEM because it should have a specific compatible. If it doesn't
-> support some feature, then that should get propagated to the switch
-> somehow.
+On 07/08/2024 08:10, Mao Jinlong wrote:
+> qcom,inst-id is the instance id used by qmi API to communicate with
+> remote processor.
+> 
+> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+> ---
+>   .../bindings/arm/qcom,coresight-remote-etm.yaml        | 10 ++++++++++
+>   1 file changed, 10 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml
+> index 4fd5752978cd..a65121505c68 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml
+> @@ -20,6 +20,13 @@ properties:
+>     compatible:
+>       const: qcom,coresight-remote-etm
 
-Hi Rob, indeed and as indicated by Vladimir Oltean in a reply to this
-patch, such a property exists already, dsa-port's `dsa-tag-protocol`.
+That is a generic name, without any clue of the QMI transport. Are there 
+other ways in which an ETM could be connected ? Given how this QMI 
+inst-id is added, I wonder if this is an after thought ? Why was the dt
+pushed without a proper driver for it ?
 
-Driver support is to be added but rather I'm changing the Zynq GEM
-driver to support MTU > 1500 as in fact it turns our the harware does.
 
-Pieter
+Suzuki
 
->
-> Rob
+
+>   
+> +  qcom,inst-id:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      This id is used by qmi API to communicate with remote processor for
+> +      enabling and disabling remote etm. Each processor has its unique instance
+> +      id.
+> +
+>     out-ports:
+>       $ref: /schemas/graph.yaml#/properties/ports
+>       additionalProperties: false
+> @@ -31,6 +38,7 @@ properties:
+>   
+>   required:
+>     - compatible
+> +  - qcom,inst-id
+>     - out-ports
+>   
+>   additionalProperties: false
+> @@ -40,6 +48,8 @@ examples:
+>       etm {
+>           compatible = "qcom,coresight-remote-etm";
+>   
+> +        qcom,inst-id = <5>;
+> +
+>           out-ports {
+>               port {
+>                   modem_etm0_out_funnel_modem: endpoint {
+
 
