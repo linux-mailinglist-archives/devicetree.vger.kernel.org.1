@@ -1,239 +1,120 @@
-Return-Path: <devicetree+bounces-92141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E1E294C045
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 16:54:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C5EB94C066
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 16:59:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42AA62824FC
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 14:54:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CDFA1C255D8
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 14:59:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C93D18EFC4;
-	Thu,  8 Aug 2024 14:54:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BFD118E778;
+	Thu,  8 Aug 2024 14:59:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="StbB78cD"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="BAgGdpoI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E292B674;
-	Thu,  8 Aug 2024 14:54:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2884718C906
+	for <devicetree@vger.kernel.org>; Thu,  8 Aug 2024 14:59:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723128858; cv=none; b=KJxdEIvP6QaEjCOzEE8H7m6fW6qd4vFaIogdAexHXuk8lroAdStPQ1g4U1+C5qdibeR0h3URpuoLBrj9NyXc/zOGoPc479thHslEF7iUS2KKoZ69uuv5mIuzcm0D1KfpgzQ7RdT5OlD0u0DpiaEO6/KQ+79FHi56bcCmvZGoGes=
+	t=1723129155; cv=none; b=FrXjD4QdCRogHzJ6RUZnFhaS4wv/tOtPihknjAz7CGAhMG0i2VFFCY9fSgxsRAeVdnp7SQU7stBq23NYr+dGiu6FdxfbEkaC00U0nGmVXlwXbYuj3DqmTBGruh5SkJBUmCUq5DjtIgWnncl96xGTLx7UC3F77fiu+2BnrzZH1m4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723128858; c=relaxed/simple;
-	bh=r985UfwqL1h8K9aokwCyDd3V5rJtD93Nf43KfmOuQsk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cjsQ22HRNf1c/VovRMwLEHOOXGbOEwDtiaVRpt6xkHOm98sogaAKG99XPT2hASlV426fUCYEUAguS6w23TDdl9YzIFkFPby05L0zIxO4lSxuDpHOB07Jhw45BIDswzYTjFalPCGC0EA5gXyjqk2HJwO4xXOelvlfE6tt5OsH5M0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=StbB78cD; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1723128858; x=1754664858;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=r985UfwqL1h8K9aokwCyDd3V5rJtD93Nf43KfmOuQsk=;
-  b=StbB78cDyGwI3l3Zg+JuJWei9kxLJIzF88h89xtNkxw8c+0UFtveJLQm
-   QO6+4JcevlFXNi9aI87bW+k0uXejFDvNVM6429ECyyCU0PcmcVNbfMZ5g
-   wSBySy3/yFp0v4qQlejNLqAUjqaHDpEG+9xstDilUdsHFwaY/XiRGgvRS
-   3c/3hmeT1ej3PupImHdtXEQ6oHjQcmc8cp17Yd8QdHDcCjz0dgJSF97lD
-   HygUizzRoaMXN+JbX4e6J6tFdJRcttCeOfSyxugdakRiqP5VW3Rwdqu7h
-   CHAyoK+m+a3JoZciEitN+N60xFtyl+6zOeWBOfKMJLvH5TLuDKboWBMwk
-   w==;
-X-CSE-ConnectionGUID: POAV5kFsQHOi7fyEr9oiOA==
-X-CSE-MsgGUID: YYEwmt0GQQOpdjIVuOXN8A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11158"; a="21427405"
-X-IronPort-AV: E=Sophos;i="6.09,273,1716274800"; 
-   d="scan'208";a="21427405"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Aug 2024 07:54:16 -0700
-X-CSE-ConnectionGUID: vAjEFa4ERGyjqZz2qHyCrg==
-X-CSE-MsgGUID: IlJ73vWWTuWjDaL6uohR8g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,273,1716274800"; 
-   d="scan'208";a="57486370"
-Received: from aslawinx-mobl.ger.corp.intel.com (HELO [10.94.8.107]) ([10.94.8.107])
-  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Aug 2024 07:54:11 -0700
-Message-ID: <e5cd1a9d-0a16-4c80-b9b9-1c63b8e818cc@linux.intel.com>
-Date: Thu, 8 Aug 2024 16:54:07 +0200
+	s=arc-20240116; t=1723129155; c=relaxed/simple;
+	bh=gIrobRG6cp9epmRS0lXlVeQtskaNnwNFxb/z6eMhSqc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kJaeRKC3VS+kwLGq+6kaWpuV5VWIHNrFEhmTonIYn8W53VdTAWAQB8owP8HifyW2SwhLHWSshdAtys6OIVf4S+pSGqtjTOC1wkz6Mt1qh79uwRsGmowdTlEfb+CHPdpkbVQgvm9u3kKe8a3mkm7aR5gEizWgXD+78na+xQIgeqc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=BAgGdpoI; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=gIro
+	bRG6cp9epmRS0lXlVeQtskaNnwNFxb/z6eMhSqc=; b=BAgGdpoISHuS0a7gwFNO
+	Xx+yqDEpNIRseTkSLLWB8W9kG5YCY3AAaSek3JQaN8YsqmOfP2BWQccslwhIje7e
+	Fan93urothc01k9DmGi+hTkWEynFN1xS+SRIGK5HCS1MhbO1YlnXeU+VC7TXxC2Z
+	Re1v5jLJEpvsDmsbv8ZG7/z+UVf+194uSNoQwyTuR673PxSUwNXTljAPchoiAjCJ
+	DgLEcd7eHiOCPsPEIViBeeM5ry1Eb9ZNCVAxJJj/VmYIKagymvHACQ0nVhunes2p
+	rsoUW11mm6sOkoXT43qDdK3s2bQt0l14dIb1M5cgw5lZvbLydcNkh+A/CG9hMeti
+	8A==
+Received: (qmail 348998 invoked from network); 8 Aug 2024 16:59:03 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 8 Aug 2024 16:59:03 +0200
+X-UD-Smtp-Session: l3s3148p1@5/l1RC0fFCptKPBr
+Date: Thu, 8 Aug 2024 16:59:02 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: chris.brandt@renesas.com, andi.shyti@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, geert+renesas@glider.be,
+	magnus.damm@gmail.com, p.zabel@pengutronix.de,
+	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: Re: [PATCH v3 01/11] i2c: riic: Use temporary variable for struct
+ device
+Message-ID: <ZrTdNiFLYoZecmjX@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Claudiu <claudiu.beznea@tuxon.dev>, chris.brandt@renesas.com,
+	andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
+	p.zabel@pengutronix.de, linux-renesas-soc@vger.kernel.org,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20240711115207.2843133-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240711115207.2843133-2-claudiu.beznea.uj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v24 23/34] ALSA: usb-audio: Prevent starting of audio
- stream if in use
-Content-Language: en-US
-To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
- Wesley Cheng <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org,
- mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
- corbet@lwn.net, broonie@kernel.org, lgirdwood@gmail.com, krzk+dt@kernel.org,
- Thinh.Nguyen@synopsys.com, bgoswami@quicinc.com, tiwai@suse.com,
- gregkh@linuxfoundation.org, robh@kernel.org
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
- alsa-devel@alsa-project.org
-References: <20240801011730.4797-1-quic_wcheng@quicinc.com>
- <20240801011730.4797-24-quic_wcheng@quicinc.com>
- <186ae30f-678c-423a-a56f-74510a184f99@linux.intel.com>
- <43e9850c-3e34-4582-aadd-4a6dcbd3ce8d@quicinc.com>
- <c3b6ac24-6359-4809-83d9-ac62ec64b396@linux.intel.com>
- <24a224a2-0600-4ee2-989e-02224ef849ba@linux.intel.com>
-From: =?UTF-8?Q?Amadeusz_S=C5=82awi=C5=84ski?=
- <amadeuszx.slawinski@linux.intel.com>
-In-Reply-To: <24a224a2-0600-4ee2-989e-02224ef849ba@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="d06YuoTTMO2glfO+"
+Content-Disposition: inline
+In-Reply-To: <20240711115207.2843133-2-claudiu.beznea.uj@bp.renesas.com>
 
-On 8/8/2024 2:36 PM, Pierre-Louis Bossart wrote:
-> 
-> 
-> On 8/8/24 14:11, Amadeusz Sławiński wrote:
->> On 8/8/2024 3:19 AM, Wesley Cheng wrote:
->>> Hi Amadeusz,
->>>
->>> On 8/6/2024 7:51 AM, Amadeusz Sławiński wrote:
->>>> On 8/1/2024 3:17 AM, Wesley Cheng wrote:
->>>>> With USB audio offloading, an audio session is started from the ASoC
->>>>> platform sound card and PCM devices.  Likewise, the USB SND path is
->>>>> still
->>>>> readily available for use, in case the non-offload path is desired.  In
->>>>> order to prevent the two entities from attempting to use the USB bus,
->>>>> introduce a flag that determines when either paths are in use.
->>>>>
->>>>
->>>> How can this happen? Can you provide some example with list of
->>>> devices and which one should block the other? If I recall correctly
->>>> devices are already exclusive unless you support substreams which
->>>> ASoC does not at the moment.
->>>>
->>>   From past discussions, I think so far everyone is on board with the
->>> idea of having both the USB sound card and PCM devices exist in
->>> conjunction w/ the USB offload path, which is going to be done over
->>> the ASoC platform card.  So for example,
->>>
->>
->> Sorry, I must have missed that and examples in documentation could
->> probably be a bit better, it is bit late at patchset 24 that I
->> understood about this now. And is part of a reason why I was confused
->> about kcontrol implementation.
->>
->>> / # cat /proc/asound/cards
->>>    0 [SM8250MTPWCD938]: sm8250 - SM8250-MTP-WCD9380-WSA8810-VA-D
->>>                         SM8250-MTP-WCD9380-WSA8810-VA-DMIC
->>>    1 [C320M          ]: USB-Audio - Plantronics C320-M
->>>                         Plantronics Plantronics C320-M at usb-xhci-
->>> hcd.1.auto-1.2, full speed
->>>
->>> This device currently has the following sound cards within the system:
->>>
->>> - card#0 - ASoC platform card: handles USB offload, speaker, etc...
->>>
->>> - card#1 - USB SND card: card created for interacting with the
->>> connected USB device.
->>>
->>> So now, with USB offloading in the picture, there are basically two
->>> paths that can start attempting to utilize the same USB device
->>> endpoints.  Let's keep it simple and assume the device only has one
->>> playback substream (which means only one PCM device)
->>>
->>> /proc/asound/card1 # cat stream0
->>> Plantronics Plantronics C320-M at usb-xhci-hcd.1.auto-1.2, full
->>> speed : USB Audio
->>>
->>> Playback:
->>>     Status: Stop
->>>     Interface 2
->>>       Altset 1
->>>       Format: S16_LE
->>>       Channels: 2
->>>       Endpoint: 0x01 (1 OUT) (ADAPTIVE)
->>>       Rates: 8000, 16000, 24000, 32000, 44100, 48000
->>>       Bits: 16
->>>       Channel map: FL FR
->>>
->>> So the patch here will prevent transfers from happening from both the
->>> offload path and directly over the USB SND PCM device, which
->>> correlates to the following paths:
->>>
->>> - offload: card#0 pcm#0
->>>
->>> - USB SND: card#1 pcm#0
->>
->> Well, it's one way to do that.
->>
->> Personally I would just reuse USB FEs and when opening one check if it
->> can be offloaded:
->> * check if someone disabled Offload on FE
->> * check if it is connected to HW that can do Offload at all
->> * check if Offload streams are available on backing HW
->> * check if audio formats are supported by above HW
->> * do any other checks that may be needed
->> and then just redirect FE setup to relevant driver doing offload if
->> able, otherwise just go standard path.
-> 
-> How would userspace know which 'USB FE' to use?
-> 
 
-That's my point, the same one as it would use doing normal 
-playback/capture on systems which don't have Offload.
+--d06YuoTTMO2glfO+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-If I attach USB Headphones, as a user my expectation would be to use 
-playback FE on USB card it exposes, not to spend time setting some 
-controls and telling it to use some FE from other card.
+On Thu, Jul 11, 2024 at 02:51:57PM +0300, Claudiu wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>=20
+> Use a temporary variable for the struct device pointers to avoid
+> dereferencing.
+>=20
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-With current design there are _two_ separate FEs, on _two_ separate 
-cards, which are linked by kcontrol and which block each other. I'm 
-rather confused how basic userspace application knows which one to use 
-in this case. (By now of course I know that it needs to read kcontrol to 
-see if and where it is offloaded and then open the FE on the card, but 
-in my opinion it is unnecessarily convoluted.)
+Looks good, builds fine:
 
-> The discovery and mapping between cards and devices is the main problem.
-> 
+Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-And "offloading" decision to the user/sound server/HAL doesn't help in 
-my opinion.
 
-> It's much simpler to start from a generic "USB-Audio" card, and check if
-> the functionality exposed by one PCM device is offloaded to another
-> ASoC-based card. Then all the interaction can start with this offloaded
-> device without any guesswork on the mapping between cards/devices.
-> 
+--d06YuoTTMO2glfO+
+Content-Type: application/pgp-signature; name="signature.asc"
 
-That's the point, currently there needs to be some guesswork involved, 
-because you need to check kcontrols to see if the endpoint can be 
-offloaded and open the other FE it points at, instead of directly 
-opening the one you usually would, and having it Offloaded by kernel. It 
-is adding more work on userspace side, which will require special 
-handling to work correctly.
+-----BEGIN PGP SIGNATURE-----
 
-> The point is that the USB-Audio card will always be there, whereas those
-> ASoC cards will have different names and implementation restrictions. In
-> the example we have here, if you want to capture audio you *have* to use
-> the USB-Audio card.
-> 
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAma03TIACgkQFA3kzBSg
+Kbay/w//db6OvA9ALA6AXjG8d2g4xuBaL8F0n4jECB/2eNvFnl1qJImwbDvESf/y
+Eg2lJTu0Ut3eDdXyf69YElC9oi+zrMrxKaWNkYSPc8UgyNKr0gKyGyVK+GheqH5t
+1wyc3YFr7faAiDSl8zF8MILdqNdQNvtxsYzD4hr/lSLZnowBouseMFSIRNHHX8NE
+I9TPaB9w7M2a/VOcFPbjGWWsjgEfSmL27KMvLC0BSQU4wxr+cn1POMVkX4ajew82
+ZxLWEeC8xvgQTmm+EC2UZXMdtQQyilWlRz/Su7vuMVlgYd4beQhlzhOIbgr4n/Ww
+r6kzQ4LV6PFppuXkm/d1KHo1j2IsOclpJQru5Ax645/mVDAVUSg1npPq/iuLg8AZ
+1UhGCQ+tsOkna1whSCruH9yUMw9t9JNzSnw3TF9wmnI7KicqCFWZEnCTlni8Ua0M
+8YExrVfMTKFny4IeluPFhEccs7+yJ/o0ixgsdE2j1vOdGIux558iwLioSlKCApCr
+BV8izvVHxjyRGY3QcHqHfb7aay7YyuN23MetSI8Tuyd/7OoL5OpYEO8erpiT92jY
+IqoHTc2C+/K07EFxrZ3dlzICC4iSf0o/cvGBqymRcXhPpEbfqThBw6AzuAkQmvDd
+/YmwNKb/ApVTn/8cVs0+zt2ZQOWlpPrrCruEjYYKw6fUX8tXz+0=
+=b6nv
+-----END PGP SIGNATURE-----
 
-Yes and with the description above it would be just one of the checks 
-after which it would decide that it can't do Offload on capture path and 
-open it in standard way, I see no problem?
-
-> In other words, it's just an endianness type of debate with no clear
-> difference between solutions and a matter of personal preference. The
-> reality is that there's a clear asymmetrical pattern. The USB-Audio card
-> is always present and usable, the ASoC offloaded cards are only present
-> in specific implementations and only usable if conditions are met.
-
-In my opinion even if it is specific use case, there is no reason to 
-make it more complicated than it needs to be. From my point of view 
-problem with current design is that instead of being mostly transparent 
-to userspace (when it could be), it adds more work for it.
-
+--d06YuoTTMO2glfO+--
 
