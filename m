@@ -1,255 +1,175 @@
-Return-Path: <devicetree+bounces-92053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06E9D94BA67
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:02:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F6CD94BA70
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:04:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E7DC280DE2
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:02:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2480B280A47
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:04:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A2BD18A6DB;
-	Thu,  8 Aug 2024 10:00:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C6A41482E9;
+	Thu,  8 Aug 2024 10:04:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="0ZK9lamf"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="g3pWo0DM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04on2078.outbound.protection.outlook.com [40.107.102.78])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5142B18A920;
-	Thu,  8 Aug 2024 10:00:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.102.78
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723111255; cv=fail; b=mDNOmrgMVzuIWMH+iyCAJsp3HpQ5SrID6Cn5Aw7mPZ3md9wVjdNjKY7fktk67JSXGR0aMlwsa8eK3SOroyLnYz4l3QC6LorY7f1ngHrTJ1bGpNN9NyyLC6kAhMcLr48g2c1XZIgm8wCVpnoTursiIOxGsx3Q3AN+AnrXuOn7dfo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723111255; c=relaxed/simple;
-	bh=+grviH9hsua3pOKuEBdCXKe8a6f8zJNBNGVMx1HdeQc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jq15jvInrHlLAHlSz7W7jG1y/382EsCeBJD05KATXvVV/6af6PdH/pbvgR468nWprw8sicouItcPttSXyyi9oOEGwbbCOUkO6CB3lVfat0MAuR7Ju0bjisyYn1xLIWV2h8OAeI3kavTsl5etyLBf+JwGSjNRM3+H+fQG+c99TPc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=0ZK9lamf; arc=fail smtp.client-ip=40.107.102.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=x8I0NNo2QYpgJz0H/51Oea88M/6FJfpeq6EUhGJPyVmOwwz96bUo2sOnwbv4HKKh+X8Eo+66NFehA0wjqfo297OEtxRjNez7hkHiWFIGKjppWhu5Kja6hhrqDeMhLmSjUiW/C8aS3Jr6IQNLQ0SHQinacEx2rBhPYPBBfMJNkzxZXt3Sx651Bdv7fE/xBhE2Jc4RKwW8nzZIwzK4nb75Pb53bkczfX8dNqeUYHikV5zKagAXvUPiOjcWQ1YLklJUXtYthvn1H64B39Qw/gJH5Qyx+6EgH531if0R5IH3D8y8bCX/rE6XcY/eWWBpbbHVRs9kxL+zMUpCaEdOQvUi7w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=I+yLsT/rgd1sjU1pIzB4eCDXjKH9umJk5+tIAoYKlXw=;
- b=BIpBF5kfUpDZr+48zhP+/2DAMlgqrWTFvW823AME0kdHiIO5AkmWaOO9nHzKiS/NxTMgUeGf924uFLYs/Ddy6gqL4uLrwBWaNeXKgnAIL8faWsEB/ZJFr15Id556IKR8Uq4Nl92eJ0rSlwb2CPtQKK01P1pmtnymcSso28L/t3K2mAlLb7KFWW37vWN4iLKkucoFqUXP6NfrJeBFBuIVWnvlK5foR7z41wP19fayr/iUXLxO0wuMDkqfmLMCF+Kc/UBnYRzHLFy9XjknTZLU79MF/ZzZK4n1SnoAyqPsND0CTcfat86WggSLsS3j42cEY9jMXvGz5VxtvmfRnCAsZg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=I+yLsT/rgd1sjU1pIzB4eCDXjKH9umJk5+tIAoYKlXw=;
- b=0ZK9lamfle89Xmd4i8Ay5B6sSQHBDFd1vezfkI1jAV/hHRkn7u2MASI7r+dyJEUktk42A5o+ojo84nNs7CWoUeIaRDDS7+d+FKKv6ZJyyDrVs2x71GYYHRGEne3FBxICJCnl2eZ7AW1F07mmcioXO04LL02IXFzTIMl5f9p2CCs=
-Received: from PH7P222CA0008.NAMP222.PROD.OUTLOOK.COM (2603:10b6:510:33a::35)
- by SJ0PR12MB7005.namprd12.prod.outlook.com (2603:10b6:a03:486::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.22; Thu, 8 Aug
- 2024 10:00:45 +0000
-Received: from CY4PEPF0000FCC0.namprd03.prod.outlook.com
- (2603:10b6:510:33a:cafe::28) by PH7P222CA0008.outlook.office365.com
- (2603:10b6:510:33a::35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.14 via Frontend
- Transport; Thu, 8 Aug 2024 10:00:45 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CY4PEPF0000FCC0.mail.protection.outlook.com (10.167.242.102) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7828.19 via Frontend Transport; Thu, 8 Aug 2024 10:00:45 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 8 Aug
- 2024 05:00:40 -0500
-Received: from xhdsneeli40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Thu, 8 Aug 2024 05:00:36 -0500
-From: Abin Joseph <abin.joseph@amd.com>
-To: <vkoul@kernel.org>, <michal.simek@amd.com>, <robh@kernel.org>,
-	<conor+dt@kernel.org>, <krzk+dt@kernel.org>,
-	<u.kleine-koenig@pengutronix.de>, <radhey.shyam.pandey@amd.com>,
-	<harini.katakam@amd.com>
-CC: <git@amd.com>, <abin.joseph@amd.com>, <dmaengine@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 2/2] dmaengine: zynqmp_dma: Add support for AMD Versal Gen 2 DMA IP
-Date: Thu, 8 Aug 2024 15:30:24 +0530
-Message-ID: <20240808100024.317497-3-abin.joseph@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240808100024.317497-1-abin.joseph@amd.com>
-References: <20240808100024.317497-1-abin.joseph@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4538F33E8;
+	Thu,  8 Aug 2024 10:04:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723111491; cv=none; b=KZC6jxdHgmVdtf00KSq4KEOdHsaZnPNGcX2jXDVRdhG6jwL4hqUvxLQ6YIVOZDltebQtu8V68zgDlZ7Tu/ENzFNETz9VWUjl0qQa7XdmBPFS/TxJ4VN6dPlLOQoKc7qYDI9jamuknDABl+QayAihITJpUcBC4+eOTz1en5SGGqk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723111491; c=relaxed/simple;
+	bh=37p0M0TLlm+TT63fiy+xRY316v479tmW3lWup3+5e00=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:Cc:From:
+	 In-Reply-To:Content-Type; b=QwMG3Ybh2SnPWfkZ1NbOGadP7afUhYEiksgXIuuUkqGGJ8IYgLg2PI5vh6qR2B0IonGO28ay/+U2P7q9wT5COIPk0ysnD8Je4PVK+Rs8N/Rp2QZOazF70K2eW+VujRzCGNpjo7XMwgPxQ5SGBs0b4dXZIpSmNxYvn3grE9rTV4g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=g3pWo0DM; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-156-87-48.elisa-laajakaista.fi [91.156.87.48])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2AA6C581;
+	Thu,  8 Aug 2024 12:03:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1723111434;
+	bh=37p0M0TLlm+TT63fiy+xRY316v479tmW3lWup3+5e00=;
+	h=Date:Subject:To:References:Cc:From:In-Reply-To:From;
+	b=g3pWo0DM8CffEzGthyfhto+TuYP665VNsQ7Cu5mKBf203MNyQtmZsA8qT8a4Ai7bq
+	 lvyvBP8xDEXLMAY7A1k3VV0ugjgwhCNfNIW6tiwMRUrUeVAfw2QftcBwILrwdX0sx+
+	 /JMDIw9LlWA6GB1O9LFR4/4U2D3kDROhD3W4EG5E=
+Message-ID: <b825a95f-1f1d-419b-983d-e70b693f6520@ideasonboard.com>
+Date: Thu, 8 Aug 2024 13:04:43 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB03.amd.com: abin.joseph@amd.com does not designate
- permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCC0:EE_|SJ0PR12MB7005:EE_
-X-MS-Office365-Filtering-Correlation-Id: 368365b8-d47e-40f3-eb4a-08dcb790f8a8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|1800799024|36860700013|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?FK2w+RJ0FlhyWNoSeAKigL7ZMgl3HWqWloF8kAzhfLajOExfk4Nd++P9tsZO?=
- =?us-ascii?Q?qKI5t8GflYsKmthChtGrCf9hcpwi9zzUUHzsOmSQfxu5Y82myJZFfqq76hnZ?=
- =?us-ascii?Q?xfNysIim44RzsrLYiy4NXahdCA/BjedYdl+aysw0TlEuvAA1nva0S4/1kl6M?=
- =?us-ascii?Q?vhiEZG3HTpST8f73snevWajQ8hW+nNpmrrwQtUFWQK8qNI3lD5xBmzCVVzel?=
- =?us-ascii?Q?79Ff0TDz+/zGDu2XfCTvmEraDCJxoYCAs617e/67l4hEqqMkjaTA+u7ntp79?=
- =?us-ascii?Q?wVLqY5r3u2tw/0cNTo3N2bj9qelyVsPL6XgYWGKdu2gW/bbN55poNUZMXoCY?=
- =?us-ascii?Q?UfkW4rxMBYBhVwgmExwhsQZwemX3mipmZDuehpKoctg26N8roJaXP48xBf9H?=
- =?us-ascii?Q?PAFIX7S/L3TiW4N3DeaFa3GDMaQkg087A6oW2apBHqlPOhq59Z9VvRey95Oe?=
- =?us-ascii?Q?6aeQF0X7jeoH9nOQ7VsDDcF3hpCsRCheUQPpctSEVcr5RyUPWJjMzykg6x7t?=
- =?us-ascii?Q?9c7rvO1J+FlwKIZmDVhDkquwgZe15aHvJ8nDBCfXYaTMNAWfqlAaArKziblw?=
- =?us-ascii?Q?16bzfkY6LUZXEiQTc7GoCnSEWWZpJoPxFo0nEN0KeznjFTcjZ41ycZ/vcb7+?=
- =?us-ascii?Q?B5vqgiuCVOxqYYndjAujwTx15UzuEFeIKEmEgNTaEKWVC++tTuIjKgr9nKP4?=
- =?us-ascii?Q?xQvgthwpEYvLCLoIPwrzRCeXUXrbHTctoR9SV5/VC71leTaShdSSsIN3mxno?=
- =?us-ascii?Q?pgLyRTcuNrmSlvW4ZHpX8X2QX2tVt2ks/XkNg4x4p3UY5lcWbU7wHNj2dm+e?=
- =?us-ascii?Q?d1qXN8H2UsQw1LVBmdcjHKqUO/r8p7qwGGOq7m9qcOY4NRSH8QYPwfx3hcWw?=
- =?us-ascii?Q?Q6gGI/W/IlK+d/WjH5kaPOIh67i1yq1YvkB23SdEJROYBH8lKOIU+RE9p5/G?=
- =?us-ascii?Q?4ZqmhYkkPIzN7ouGrfr7uecpK+gAWD/kI+1f2jdMEzhRuTliiDj2pteJ8gz4?=
- =?us-ascii?Q?BHt56IVBC1L+zjkyM/zR7olCrKtSx7cSYImO6Q5JGoAwiH6pRUtlRawWsOvL?=
- =?us-ascii?Q?egwLBupy+Fvrhi9KeLyF3d0nRiGOoVFECSK+P9RM4v/CPr5QtjYveHeXMiEI?=
- =?us-ascii?Q?RhFELxVgh3UWy11NHwwqYJqP4bzIBuan1AExrldxK1H7bFBy2SYruZnMp6g7?=
- =?us-ascii?Q?w/rKSg4SLiQxogc/unLrhenNn6DGDBK8HMfc3q79fveUcc2bZwBIyhHMI3gD?=
- =?us-ascii?Q?7vobPUI+AyRPrVFNEoHMX62xgdZcC7VVx9N980H/JatOjQUMuiCsWqRIwhKL?=
- =?us-ascii?Q?CQdq/PY5I9Ez57axgkUhmFjgijEFndNPgM82kuJvp33BaHtV78BZ11AY4/jJ?=
- =?us-ascii?Q?y8KG6O6tOkRZ01tQiQCgsIyBLOtHWsctLyd3BKmrzqtp1kWh/o89M+vRsojl?=
- =?us-ascii?Q?5JsU/s0TbrdcYLSXXJRzWyWXsxoiJqqg?=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(36860700013)(376014);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2024 10:00:45.3042
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 368365b8-d47e-40f3-eb4a-08dcb790f8a8
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CY4PEPF0000FCC0.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB7005
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 7/9] gpu: drm: omapdrm: use new of_graph functions
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+References: <87mslqw8mj.wl-kuninori.morimoto.gx@renesas.com>
+ <87cymmw8l1.wl-kuninori.morimoto.gx@renesas.com>
+Content-Language: en-US
+Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ Helge Deller <deller@gmx.de>, Jaroslav Kysela <perex@perex.cz>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Liam Girdwood <lgirdwood@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Mark Brown <broonie@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Maxime Ripard <mripard@kernel.org>, Michal Simek <michal.simek@amd.com>,
+ Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+ Takashi Iwai <tiwai@suse.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-omap@vger.kernel.org,
+ linux-sound@vger.kernel.org
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <87cymmw8l1.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-ZynqMP DMA IP and AMD Versal Gen 2 DMA IP are similar but have different
-interrupt register offset. Create a dedicated compatible string to
-support Versal Gen 2 DMA IP with Irq register offset for interrupt
-Enable/Disable/Status/Mask functionality.
+On 06/08/2024 07:58, Kuninori Morimoto wrote:
+> Now we can use new port related functions for port parsing. Use it.
+> 
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>   drivers/gpu/drm/omapdrm/dss/dpi.c | 3 ++-
+>   drivers/gpu/drm/omapdrm/dss/sdi.c | 3 ++-
+>   2 files changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/omapdrm/dss/dpi.c b/drivers/gpu/drm/omapdrm/dss/dpi.c
+> index 030f997eccd0..b17e77f700dd 100644
+> --- a/drivers/gpu/drm/omapdrm/dss/dpi.c
+> +++ b/drivers/gpu/drm/omapdrm/dss/dpi.c
+> @@ -16,6 +16,7 @@
+>   #include <linux/export.h>
+>   #include <linux/kernel.h>
+>   #include <linux/of.h>
+> +#include <linux/of_graph.h>
+>   #include <linux/platform_device.h>
+>   #include <linux/regulator/consumer.h>
+>   #include <linux/string.h>
+> @@ -709,7 +710,7 @@ int dpi_init_port(struct dss_device *dss, struct platform_device *pdev,
+>   	if (!dpi)
+>   		return -ENOMEM;
+>   
+> -	ep = of_get_next_child(port, NULL);
+> +	ep = of_graph_get_next_port_endpoint(port, NULL);
+>   	if (!ep)
+>   		return 0;
+>   
+> diff --git a/drivers/gpu/drm/omapdrm/dss/sdi.c b/drivers/gpu/drm/omapdrm/dss/sdi.c
+> index 91eaae3b9481..f9ae358e8e52 100644
+> --- a/drivers/gpu/drm/omapdrm/dss/sdi.c
+> +++ b/drivers/gpu/drm/omapdrm/dss/sdi.c
+> @@ -11,6 +11,7 @@
+>   #include <linux/export.h>
+>   #include <linux/kernel.h>
+>   #include <linux/of.h>
+> +#include <linux/of_graph.h>
+>   #include <linux/platform_device.h>
+>   #include <linux/regulator/consumer.h>
+>   #include <linux/string.h>
+> @@ -346,7 +347,7 @@ int sdi_init_port(struct dss_device *dss, struct platform_device *pdev,
+>   	if (!sdi)
+>   		return -ENOMEM;
+>   
+> -	ep = of_get_next_child(port, NULL);
+> +	ep = of_graph_get_next_port_endpoint(port, NULL);
+>   	if (!ep) {
+>   		r = 0;
+>   		goto err_free;
 
-Signed-off-by: Abin Joseph <abin.joseph@amd.com>
----
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
 
-Changes in v2:
-- Update the logic to use of_device_get_match_data
-instead of of_device_is_compatible.
-- Use lower case hexa decimal value for macros.
-
----
- drivers/dma/xilinx/zynqmp_dma.c | 27 +++++++++++++++++++++++----
- 1 file changed, 23 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/dma/xilinx/zynqmp_dma.c b/drivers/dma/xilinx/zynqmp_dma.c
-index f31631bef961..9ae46f1198fe 100644
---- a/drivers/dma/xilinx/zynqmp_dma.c
-+++ b/drivers/dma/xilinx/zynqmp_dma.c
-@@ -22,10 +22,10 @@
- #include "../dmaengine.h"
- 
- /* Register Offsets */
--#define ZYNQMP_DMA_ISR			0x100
--#define ZYNQMP_DMA_IMR			0x104
--#define ZYNQMP_DMA_IER			0x108
--#define ZYNQMP_DMA_IDS			0x10C
-+#define ZYNQMP_DMA_ISR			(chan->irq_offset + 0x100)
-+#define ZYNQMP_DMA_IMR			(chan->irq_offset + 0x104)
-+#define ZYNQMP_DMA_IER			(chan->irq_offset + 0x108)
-+#define ZYNQMP_DMA_IDS			(chan->irq_offset + 0x10c)
- #define ZYNQMP_DMA_CTRL0		0x110
- #define ZYNQMP_DMA_CTRL1		0x114
- #define ZYNQMP_DMA_DATA_ATTR		0x120
-@@ -145,6 +145,9 @@
- #define tx_to_desc(tx)		container_of(tx, struct zynqmp_dma_desc_sw, \
- 					     async_tx)
- 
-+/* IRQ Register offset for Versal Gen 2 */
-+#define IRQ_REG_OFFSET			0x308
-+
- /**
-  * struct zynqmp_dma_desc_ll - Hw linked list descriptor
-  * @addr: Buffer address
-@@ -211,6 +214,7 @@ struct zynqmp_dma_desc_sw {
-  * @bus_width: Bus width
-  * @src_burst_len: Source burst length
-  * @dst_burst_len: Dest burst length
-+ * @irq_offset: Irq register offset
-  */
- struct zynqmp_dma_chan {
- 	struct zynqmp_dma_device *zdev;
-@@ -235,6 +239,7 @@ struct zynqmp_dma_chan {
- 	u32 bus_width;
- 	u32 src_burst_len;
- 	u32 dst_burst_len;
-+	u32 irq_offset;
- };
- 
- /**
-@@ -253,6 +258,14 @@ struct zynqmp_dma_device {
- 	struct clk *clk_apb;
- };
- 
-+struct zynqmp_dma_config {
-+	u32 offset;
-+};
-+
-+static const struct zynqmp_dma_config versal2_dma_config = {
-+	.offset = IRQ_REG_OFFSET,
-+};
-+
- static inline void zynqmp_dma_writeq(struct zynqmp_dma_chan *chan, u32 reg,
- 				     u64 value)
- {
-@@ -892,6 +905,7 @@ static int zynqmp_dma_chan_probe(struct zynqmp_dma_device *zdev,
- {
- 	struct zynqmp_dma_chan *chan;
- 	struct device_node *node = pdev->dev.of_node;
-+	const struct zynqmp_dma_config *match_data;
- 	int err;
- 
- 	chan = devm_kzalloc(zdev->dev, sizeof(*chan), GFP_KERNEL);
-@@ -919,6 +933,10 @@ static int zynqmp_dma_chan_probe(struct zynqmp_dma_device *zdev,
- 		return -EINVAL;
- 	}
- 
-+	match_data = of_device_get_match_data(&pdev->dev);
-+	if (match_data)
-+		chan->irq_offset = match_data->offset;
-+
- 	chan->is_dmacoherent =  of_property_read_bool(node, "dma-coherent");
- 	zdev->chan = chan;
- 	tasklet_setup(&chan->tasklet, zynqmp_dma_do_tasklet);
-@@ -1161,6 +1179,7 @@ static void zynqmp_dma_remove(struct platform_device *pdev)
- }
- 
- static const struct of_device_id zynqmp_dma_of_match[] = {
-+	{ .compatible = "amd,versal2-dma-1.0", .data = &versal2_dma_config },
- 	{ .compatible = "xlnx,zynqmp-dma-1.0", },
- 	{}
- };
--- 
-2.34.1
+  Tomi
 
 
