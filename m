@@ -1,162 +1,126 @@
-Return-Path: <devicetree+bounces-92087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92088-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3552B94BBB7
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:54:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8281494BBB9
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:54:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58A211C21B72
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:54:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C20E281894
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:54:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01BAF18A92C;
-	Thu,  8 Aug 2024 10:54:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0998218A934;
+	Thu,  8 Aug 2024 10:54:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Vs1DHuz6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qaohk+/m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12B6218B462;
-	Thu,  8 Aug 2024 10:54:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7B7618A6CD
+	for <devicetree@vger.kernel.org>; Thu,  8 Aug 2024 10:54:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723114465; cv=none; b=YeI4wca2k7CisXjtdjNKL0e986nMqgz/6CCsh8HdIsHxokVi+qxncWjk6+XazMxQqP+Z1Q39RqH9jkk/8GhaflTOlsfDu/CSvNUJak244g35ukcxpWOZeWOXLlUq+W77PS7xp/FbM9Y5rCwxJLFjFCkYh1jm2aGMCtvjYhKGDBQ=
+	t=1723114469; cv=none; b=JL5On/BmZF3OsPRiEtV3ZT5TUTnvAQCkfDnd5au1h/idYf1+qyoZeu/JDkynSVHa7wtepfMNxR8URfmnL2osoXo4peicQWU3RPF6diBr08EZ4hNNSECn7ZKRtOVV04PAFyMqOHie6+ZOS2hDp/P1CwPdmKGs9Oq7d6v4ceDQ0bw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723114465; c=relaxed/simple;
-	bh=8HgPvyoY6wCFiNfdtRkudqzw/3dvpaQ/tVEDtAaOtKI=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ic8KXnyhz94+99qQ5pUDkmjJwNEsk4rYnwruY195BsMGvRnRkZihbfzHr3C7oGYcbC5HjCbWuqLX1JF1tn1gBXMrFRVaBeqQZH98CJQUUt53nWNN1fa7MRmi7w3/5p2Wr8ibByYUn/fWxE1rLdzveiuqg8qyWkMevk4h97ICZfU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Vs1DHuz6; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 478AsHer044625;
-	Thu, 8 Aug 2024 05:54:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1723114457;
-	bh=XQVOyYw+ALCdemwS1tkNko11Pdu0J+2HzF7/ISYYGNM=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=Vs1DHuz6BXhZoJgc1I+bXG1fMfvt4aawi/li5G2H2bYniupJfTLGAl7iTHoIb2n3M
-	 v9oyvW9/u0SVZYu65kB7Ge1tzaN9/YZpA5gKJTHf58AGbijlrEg3u7ebb1BDdLMILf
-	 rmEQvJ5d+LuZmODWK+rGs3FAnYNQfm5FJswUe0xI=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 478AsHmf009556
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 8 Aug 2024 05:54:17 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 8
- Aug 2024 05:54:17 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 8 Aug 2024 05:54:17 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 478AsHGc065005;
-	Thu, 8 Aug 2024 05:54:17 -0500
-Date: Thu, 8 Aug 2024 05:54:17 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Siddharth Vadapalli <s-vadapalli@ti.com>
-CC: Manorit Chawdhry <m-chawdhry@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Udit Kumar
-	<u-kumar1@ti.com>,
-        Neha Malcom Francis <n-francis@ti.com>,
-        Aniket Limaye
-	<a-limaye@ti.com>
-Subject: Re: [PATCH v3 4/9] arm64: dts: ti: Split
- k3-j784s4-j742s2-main-common.dtsi
-Message-ID: <20240808105417.e37xggi3xr3hoptx@polar>
-References: <20240731-b4-upstream-j742s2-v3-0-da7fe3aa9e90@ti.com>
- <20240731-b4-upstream-j742s2-v3-4-da7fe3aa9e90@ti.com>
- <20240807132054.jcz5fdokc5yk3mbo@entrust>
- <20240808045227.apxwcpi5b3w6n4xo@uda0497581>
- <8cf2f7aa-1c57-40bd-80cc-14e5bd5623a8@ti.com>
+	s=arc-20240116; t=1723114469; c=relaxed/simple;
+	bh=zKvKC2kKm707nMzw/ht3NkKwNiFEgmSQmCJZPucqhN8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WSF5/f4O26TXl7wntHie1VGBxgcnnTs5FIoAA8JEu9TlJXWr5BDIOecisL/naymB0WIHpmNTaPEv7pZKuScTzvXgxEbjzKEVa1wpp21LDrliHf3E9DnmASYnD2nxC8BZi97xw1N66qmlMNX4ywHQqde03yzsDghvWUymQEPJpOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qaohk+/m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 442F5C4AF0F;
+	Thu,  8 Aug 2024 10:54:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723114469;
+	bh=zKvKC2kKm707nMzw/ht3NkKwNiFEgmSQmCJZPucqhN8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=qaohk+/mU5a+awo2S3PWKmNzaGa4VPaZt3OMkyTqmFkUEYpqMyQ0K5BYZaQQyCtT5
+	 96SwT3aZL31hMHpEryZYcK1kCW7RYrun15I2AIcYEMwuVghERfWUFqYvdIke4RG5JM
+	 PxT1cKwwKGyS5q0zgJrabZvtgyjveJT+w2hbkaFUjWOS08KjmCpt0Ac4mg4NdVghID
+	 oc7Ql32VKPUIeD/6zgN0fG6rxk1g06zuWBa8RjJBIS/2dMk4eJWcuOd433WagupdjC
+	 /vvLGEBaOeqa9hmaOS/TAWuNz8MF+1w+kxGx3qovFHBM27KqXLgQF/qbMq0zBvJUZ6
+	 4339GxJa1RxZQ==
+Message-ID: <7637582e-6821-47ef-8135-aa15a0d1b50e@kernel.org>
+Date: Thu, 8 Aug 2024 12:54:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <8cf2f7aa-1c57-40bd-80cc-14e5bd5623a8@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 07/10] arm64: dts: rockchip: standardize the definition of
+ LEDs for Radxa E25
+To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+References: <20240808093808.1740-1-naoki@radxa.com>
+ <20240808093808.1740-8-naoki@radxa.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240808093808.1740-8-naoki@radxa.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 10:58-20240808, Siddharth Vadapalli wrote:
-> On Thu, Aug 08, 2024 at 10:22:27AM +0530, Manorit Chawdhry wrote:
-> > Hi Nishanth,
-> > 
-> > > > diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> > > > new file mode 100644
-> > > > index 000000000000..2ea470d1206d
-> > > > --- /dev/null
-> > > > +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> > > > @@ -0,0 +1,21 @@
-> > > > +// SPDX-License-Identifier: GPL-2.0-only OR MIT
-> > > > +/*
-> > > > + * Device Tree Source for J784S4 SoC Family Main Domain peripherals
-> > > > + *
-> > > > + * Copyright (C) 2022-2024 Texas Instruments Incorporated - https://www.ti.com/
-> > > > + */
-> > > > +
-> > > > +&cbass_main {
-> > > > +	c71_3: dsp@67800000 {
-> > > > +		compatible = "ti,j721s2-c71-dsp";
-> > > > +		reg = <0x00 0x67800000 0x00 0x00080000>,
-> > > > +		      <0x00 0x67e00000 0x00 0x0000c000>;
-> > > > +		reg-names = "l2sram", "l1dram";
-> > > > +		ti,sci = <&sms>;
-> > > > +		ti,sci-dev-id = <40>;
-> > > > +		ti,sci-proc-ids = <0x33 0xff>;
-> > > > +		resets = <&k3_reset 40 1>;
-> > > > +		firmware-name = "j784s4-c71_3-fw";
-> > > > +		status = "disabled";
-> > > > +	};
-> > > > +};
-> > > 
-> > > I am looking at https://www.ti.com/lit/ug/spruje3/spruje3.pdf (page 26),
-> > > Device Comparison:
-> > > 
-> > > CPSW/Serdes, PCIE is also different? Was that missed?
-> > 
-> > I had talked to Siddharth in the past regarding that and he had
-> > mentioned that no change would be required with the previous patchsets
-> > that I had shared, adding him to the thread 
-> 
-> Manorit,
-> 
-> Since J784S4-EVM enables only PCIe0 and PCIe1 which matches the
-> instances enabled/supported on J742S2-EVM, I had informed you that for
-> the purpose of validation, no changes will be required w.r.t. PCIe, if
-> k3-j742s2-evm.dts is including k3-j784s4-evm.dts. However, considering
-> that the device-tree should describe the hardware, when upstreaming the
-> device-tree for J742S2, PCIe2 and PCIe3 should be deleted
-> (if k3-j784s4-evm.dts is included by k3-j742s2-evm.dts) OR dropped
-> (if there is a "common" file that is used to describe the peripherals
-> common to J742S2 and J784S4 as done in the current series).
-> 
-> Also, SERDES2 is not present on J742S2 SoC while J784S4 has SERDES0,
-> SERDES1, SERDES2 and SERDES4. There is no difference w.r.t. CPSW9G in
-> terms of the CPSW9G instance itself, but the difference is that CPSW9G
-> cannot use SERDES2. So CPSW9G can only be used with SERDES4 on J742S2
-> SoC, but J742S2-EVM has the SERDES4 lines connected to Display Ports,
-> due to which CPSW9G is essentially non-functional on J742S2-EVM.
+On 08/08/2024 11:38, FUKAUMI Naoki wrote:
+> - sort properties
+> - add default-state
+> - add function for multi-led
+> - remove redundant parameters from pwms
 
+This does not match commit subject at all. Anyway, one commit per
+logical change. Trivial cleanups are not per board, but per entire
+subsystem. Changes with impact can be per board.
 
-Thanks Siddharth. Manorit: Please address the above in the next rev.
+The way you split your work makes review, bisecting and backporting
+unnecessary difficult. It's not even logical. There is no logical change
+like "I will do 10 things for board X".
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Best regards,
+Krzysztof
+
 
