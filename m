@@ -1,125 +1,127 @@
-Return-Path: <devicetree+bounces-92159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CBF094C1CA
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 17:48:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D0E294C1CD
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 17:49:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4C2F28688E
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 15:48:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6EE221C22C3A
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 15:49:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5206919149A;
-	Thu,  8 Aug 2024 15:47:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 950A318FDA2;
+	Thu,  8 Aug 2024 15:48:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FTcbuWxF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GfS1VluF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0F2818FDC5;
-	Thu,  8 Aug 2024 15:47:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D12618FC93;
+	Thu,  8 Aug 2024 15:48:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723132068; cv=none; b=rRGV5oeXLOHzhXdJRwSn384snpIq5aaEoKPlEeVOFSrV/CPeXzUOvin+l+F1Dt1VAf4j2l3/WCRQTpfiCDq/sdHJtOTd8k1uhbjEFeRFJDMo2YuL3awARW3VmR7h8I/E4OkKpR4kms/VkHF59HL8lJW458w+4M24j5sVGqE6xRc=
+	t=1723132099; cv=none; b=sZMYDAAn1E4ckvg0j/5KbRH8qlfF+inUjQPM9ZxXQUhmfRQmiHTB1letLK6JIIPqwWtKjHtWHlVnNIc2nnces4ComJVD9VgjEJipWgi1abrYSJO7XeeNs5Kb+VnWhDjDda8Wbyc/2LIA+8UUdPomkloEHIYclPfszXIGLptXxh4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723132068; c=relaxed/simple;
-	bh=A3wCMdYHNoumXNzbYsxpr8D8ELhXRhnFZU9NU1TgzT8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Vy4wpgzW9YmP+9youzDzDSpeZEg8Jk97oRntH/zslkDolT6sOTpJHOWtdYb2aUTkSubAGkYUHZWioQvvyHZraI7hqdonKzAhZTU2uu59MArfUX5Rnm5O2SgybfY6MaU5g01Q/acFlhMHufhPBFs+hc4B+HwJNt+FVUX1PjZHrgQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FTcbuWxF; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPA id DF16920005;
-	Thu,  8 Aug 2024 15:47:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1723132064;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=yVeQ7PlO4X+v9TEpBxk1CG/ZinM6HCdKh29wvuZH2Tk=;
-	b=FTcbuWxFusgrheVlDMoEMACUixHpdCsRJyishEUKw8xgblCZ9vgyqaRT2BRVLksUi9OcnJ
-	4QkWOarfhAkgfbcRntuVJYthY9XYpkcLVDWMuGAaJ0glsxNN5w6HRW3OEeVXkndqAgjOUu
-	QcwkFG1eP/jdxPj71z35zbOdRWddKecqnI72kjWAEvsgtHqYQCR1fdkK1MSJsL51MdloR1
-	nYeQRyCVHtVKxs1w4DNHuM4zUcNxdzr2IX/ppRh39SitDDcA9zL2x2qmCmoAL3YrNkSslt
-	6sym2fMpxQirze+Y8Qij4+tWHBxtOfV6edr9zSh+CZ+eJSWD136cy8ctPuPnyQ==
-From: Herve Codina <herve.codina@bootlin.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>,
-	Andy Shevchenko <andy.shevchenko@gmail.com>,
-	Simon Horman <horms@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Lars Povlsen <lars.povlsen@microchip.com>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	UNGLinuxDriver@microchip.com,
+	s=arc-20240116; t=1723132099; c=relaxed/simple;
+	bh=LGQaDws2R6YDe+LE/QWfXHcmATfrM492U4rphHVB1Ew=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tIdzteg9uawn/PLEktmaSpa+OOhnySTiMQreVUXQ6vywn5A+aF+FaAk8wCz2S0OQgDBassRLCVrRBUPL0X8APLhZD1nCKNoEyifORh/G307zblx2iz99OYZyAyQtRDr+9yJ8oGcZsojtqSunSLhDKANSBbXkhMxlObP5ufV2uH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GfS1VluF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E409C32782;
+	Thu,  8 Aug 2024 15:48:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723132098;
+	bh=LGQaDws2R6YDe+LE/QWfXHcmATfrM492U4rphHVB1Ew=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GfS1VluF4yyTx2lYEtwJQ7GCbKwFEW41kHIfoG7zTx9LHZfCAd9OqsCoHebbLH8Jw
+	 wIi5MqaUJRCHZQoGFC1DDu4hcBoMn68p1+hgS+zSZCROOLjaFasE3KZZ5598jWjJU+
+	 LeWcQ+WbtjfW2uwQUIrBjkNgm++cime5f2jZIKLL1M3/g0DbWbvxbTnZSOwxtT191q
+	 OFlPag20JUv96jSap9pyhYZMrAwAfKAeIJGSXH2Uu7ndh4KOlEqtPnOuL/f/JSb145
+	 PMOFoAWWoOsEzY/1LbUjoIrOXo4hgmeX+t6N0xtC2B96Bou8NnKKJsgt6xVeNLIdjK
+	 aYB/lWyYQO9CQ==
+Date: Thu, 8 Aug 2024 16:48:14 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Ilya Orazov <ilordash02@gmail.com>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Steen Hegelund <steen.hegelund@microchip.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>
-Subject: [PATCH v5 8/8] reset: mchp: sparx5: set the dev member of the reset controller
-Date: Thu,  8 Aug 2024 17:46:57 +0200
-Message-ID: <20240808154658.247873-9-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.45.0
-In-Reply-To: <20240808154658.247873-1-herve.codina@bootlin.com>
-References: <20240808154658.247873-1-herve.codina@bootlin.com>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Aswath Govindraju <a-govindraju@ti.com>,
+	Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/1] dt-bindings: phy: ti,tcan104x-can: Document
+ Microchip ATA6561
+Message-ID: <20240808-caucasian-cartridge-f728ed4982cd@spud>
+References: <20240807180210.1334724-2-ilordash02@gmail.com>
+ <20240807180956.1341332-1-ilordash02@gmail.com>
+ <20240807180956.1341332-2-ilordash02@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="QnEpDUSyh44tmswU"
+Content-Disposition: inline
+In-Reply-To: <20240807180956.1341332-2-ilordash02@gmail.com>
 
-From: Clément Léger <clement.leger@bootlin.com>
 
-In order to guarantee the device will not be deleted by the reset
-controller consumer, set the dev member of the reset controller.
+--QnEpDUSyh44tmswU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Clément Léger <clement.leger@bootlin.com>
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
----
- drivers/reset/reset-microchip-sparx5.c | 1 +
- 1 file changed, 1 insertion(+)
+On Wed, Aug 07, 2024 at 09:09:56PM +0300, Ilya Orazov wrote:
+> Microchip ATA6561 is High-Speed CAN Transceiver with Standby Mode.
+> It is pin-compatible with TI TCAN1042 and has a compatible programming
+> model, therefore use ti,tcan1042 as fallback compatible.
+>=20
+> Signed-off-by: Ilya Orazov <ilordash02@gmail.com>
+> ---
+>  .../devicetree/bindings/phy/ti,tcan104x-can.yaml    | 13 +++++++++----
+>  1 file changed, 9 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml b=
+/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> index 79dad3e89aa6..f6f1fd843874 100644
+> --- a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> @@ -14,10 +14,15 @@ properties:
+>      pattern: "^can-phy"
+> =20
+>    compatible:
+> -    enum:
+> -      - nxp,tjr1443
+> -      - ti,tcan1042
+> -      - ti,tcan1043
+> +    oneOf:
+> +      - items:
+> +        - enum:
+> +          - microchip,ata6561
+> +        - const: ti,tcan1042
+> +      - enum:
+> +          const: ti,tcan1042
+> +          const: ti,tcan1043
+> +          const: nxp,tjr1443
 
-diff --git a/drivers/reset/reset-microchip-sparx5.c b/drivers/reset/reset-microchip-sparx5.c
-index c4fe65291a43..1ef2aa1602e3 100644
---- a/drivers/reset/reset-microchip-sparx5.c
-+++ b/drivers/reset/reset-microchip-sparx5.c
-@@ -117,6 +117,7 @@ static int mchp_sparx5_reset_probe(struct platform_device *pdev)
- 		return err;
- 
- 	ctx->rcdev.owner = THIS_MODULE;
-+	ctx->rcdev.dev = &pdev->dev;
- 	ctx->rcdev.nr_resets = 1;
- 	ctx->rcdev.ops = &sparx5_reset_ops;
- 	ctx->rcdev.of_node = dn;
--- 
-2.45.0
+The enum doesn't need the "const:s", just a "-", hence the bot
+complaining.
 
+--QnEpDUSyh44tmswU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrTovgAKCRB4tDGHoIJi
+0qexAP4qBwVjLrfdjcWcHp0z0iuokytwqiwpClLFlWIPv5uIIAD/Z0QqnlccIfdk
+AUSp0QtDDJLAbtjBwCkroY6vSBQg6wA=
+=7lOE
+-----END PGP SIGNATURE-----
+
+--QnEpDUSyh44tmswU--
 
