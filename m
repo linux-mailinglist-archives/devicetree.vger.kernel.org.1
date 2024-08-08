@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-91931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-91932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4936294B601
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 06:52:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07A0F94B607
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 06:56:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC16D1F230DE
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 04:52:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1AAAD1C21CBB
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 04:56:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A05D784D3E;
-	Thu,  8 Aug 2024 04:52:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1729781751;
+	Thu,  8 Aug 2024 04:56:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="K6SUYA0X"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="B7hcekMw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26A2B43152;
-	Thu,  8 Aug 2024 04:52:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14867635;
+	Thu,  8 Aug 2024 04:56:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723092759; cv=none; b=r0mG+Er/J+Soey30/ord9IrOcQMN9SogrPcHvIIm8UfoFlQhOWdsTzcuqWDT146KU7SuR3sXHAxZteGlydfRCJ4BkCNJE2J/T7oCBr4e9Rs8o9xDSz13n/cvQMKtpzZfuxin1nIDAsRCtO0xmvx7Wu2EHHQQkKmUuRWMYQWDwCw=
+	t=1723092986; cv=none; b=sno/57YcP8DpukAwmShVDbUxTMwN2a3ZTaSLfinS2ozMwELkVySHXy8A+Sqgq7EXR0KRQpAPI5VDvppOjDZ1neQ7s7egpU8hOpqI+gcnshTR6lHMMVTh69Ja5O/lx3iyDDLdOB0vtERtaJY5DCLSW/Cl4JSSWAq6K71XLCBUqOw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723092759; c=relaxed/simple;
-	bh=W+bPGJjAKPxVPN0keA7T/Zakm/6Kt6tYu69zeJwiEnY=;
+	s=arc-20240116; t=1723092986; c=relaxed/simple;
+	bh=sEvfivmQ5fZOOSTKJxCsqHx32NVM4zjmf+rnIXMcTYI=;
 	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CfnQPeGipgGbl//emtWtx/wRO8isffstBzHWTSCCdPQf8wWhNOPrGUXw19jZFfk0CWke+AdVRE4Qf1O9nZZJ3CxX9kPrr5ryMTsntMxGI/91FRtWVPaFiwaKK/JE58A4QcvzBklk7qx1OM/f3zzicK9I4fsy9SHrQLsyUgPGdGM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=K6SUYA0X; arc=none smtp.client-ip=198.47.19.142
+	 Content-Type:Content-Disposition:In-Reply-To; b=Mnf/+INITKBdK0E0DkkpRFIE/qFuifCSiuhCVQl2G4JVjAnRiIGKZGtGowGdfJemuTgx1U9y3BCPoauk1MpH86fSRi7K1tlPCNQjLuaWQyRveGkmqkCqSL9TQ5uYikadsHsE5rDrYGYWMsP4OvZLRGR5eOJbQ0zVu6NM5ZIidIg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=B7hcekMw; arc=none smtp.client-ip=198.47.19.141
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4784qTfP084353;
-	Wed, 7 Aug 2024 23:52:29 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4784uHgw075970;
+	Wed, 7 Aug 2024 23:56:17 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1723092749;
-	bh=GpoFVbvgf9n1I26bMtC5jBl2LFO9UwiJs5Uvq/Xceu8=;
+	s=ti-com-17Q1; t=1723092977;
+	bh=VAdtftoSs5eScm7ugQhNKeowSuhKher/yWMg/2LqW2U=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=K6SUYA0XMfpeOfLspa0jGpgy409BbnYuHhPrRWXAdPTA5j9IcpJwNAbn++t193UDd
-	 /rAMFVwZJw98OVd715dUCWH9lsKO63hgzT7tIXPmgFTOkmzrwwucCW+I9eQgNJpuLE
-	 4xgK3WKVv0cWVqPabVI/l/BuHvOHEZa+O1lFcQ20=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4784qTrr108405
+	b=B7hcekMwkUR4q8L4pINhBMI7m0JEYoA3TOhhyDUO5jCISRLDXgPgilgoKp+oN7Y6p
+	 5Ud86NohsFkOm9lkc/ECk6ysZPwroga3EFxYwEFHdgMS1COLJAfh1wzGDfnhreI6v1
+	 X3AN225b0TfcdtzKU6ychMCY+jEkUn6UZRBvDOu8=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4784uH8h004438
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 7 Aug 2024 23:52:29 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 7 Aug 2024 23:56:17 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
- Aug 2024 23:52:29 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2024 23:56:17 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 7 Aug 2024 23:52:28 -0500
+ Frontend Transport; Wed, 7 Aug 2024 23:56:17 -0500
 Received: from localhost (uda0497581.dhcp.ti.com [10.24.68.185])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4784qSGS025365;
-	Wed, 7 Aug 2024 23:52:28 -0500
-Date: Thu, 8 Aug 2024 10:22:27 +0530
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4784uGhQ029600;
+	Wed, 7 Aug 2024 23:56:17 -0500
+Date: Thu, 8 Aug 2024 10:26:16 +0530
 From: Manorit Chawdhry <m-chawdhry@ti.com>
-To: Nishanth Menon <nm@ti.com>, Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Nishanth Menon <nm@ti.com>
 CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -71,7 +71,7 @@ CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
 	<a-limaye@ti.com>
 Subject: Re: [PATCH v3 4/9] arm64: dts: ti: Split
  k3-j784s4-j742s2-main-common.dtsi
-Message-ID: <20240808045227.apxwcpi5b3w6n4xo@uda0497581>
+Message-ID: <20240808045616.xpgs6ayzpzcpevdp@uda0497581>
 References: <20240731-b4-upstream-j742s2-v3-0-da7fe3aa9e90@ti.com>
  <20240731-b4-upstream-j742s2-v3-4-da7fe3aa9e90@ti.com>
  <20240807132054.jcz5fdokc5yk3mbo@entrust>
@@ -88,42 +88,48 @@ X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
 Hi Nishanth,
 
-> > diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> > new file mode 100644
-> > index 000000000000..2ea470d1206d
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> > @@ -0,0 +1,21 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only OR MIT
-> > +/*
-> > + * Device Tree Source for J784S4 SoC Family Main Domain peripherals
-> > + *
-> > + * Copyright (C) 2022-2024 Texas Instruments Incorporated - https://www.ti.com/
-> > + */
-> > +
-> > +&cbass_main {
-> > +	c71_3: dsp@67800000 {
-> > +		compatible = "ti,j721s2-c71-dsp";
-> > +		reg = <0x00 0x67800000 0x00 0x00080000>,
-> > +		      <0x00 0x67e00000 0x00 0x0000c000>;
-> > +		reg-names = "l2sram", "l1dram";
-> > +		ti,sci = <&sms>;
-> > +		ti,sci-dev-id = <40>;
-> > +		ti,sci-proc-ids = <0x33 0xff>;
-> > +		resets = <&k3_reset 40 1>;
-> > +		firmware-name = "j784s4-c71_3-fw";
-> > +		status = "disabled";
-> > +	};
-> > +};
+On 08:20-20240807, Nishanth Menon wrote:
+> On 22:40-20240731, Manorit Chawdhry wrote:
+> > k3-j784s4-j742s2-main-common.dtsi will be included in k3-j742s2-main.dtsi at a
+> > later point so move j784s4 related stuff to k3-j784s4-main.dtsi
+> > 
+> > Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
+> > ---
+> >  .../boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi   | 13 -------------
+> >  arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi          | 21 +++++++++++++++++++++
+> >  arch/arm64/boot/dts/ti/k3-j784s4.dtsi               |  2 ++
+> >  3 files changed, 23 insertions(+), 13 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+> > index 17abd0f1560a..91352b1f63d2 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+> > @@ -2405,19 +2405,6 @@ c71_2: dsp@66800000 {
+> >  		status = "disabled";
+> >  	};
+> >  
+> > -	c71_3: dsp@67800000 {
+> > -		compatible = "ti,j721s2-c71-dsp";
+> > -		reg = <0x00 0x67800000 0x00 0x00080000>,
+> > -		      <0x00 0x67e00000 0x00 0x0000c000>;
+> > -		reg-names = "l2sram", "l1dram";
+> > -		ti,sci = <&sms>;
+> > -		ti,sci-dev-id = <40>;
+> > -		ti,sci-proc-ids = <0x33 0xff>;
+> > -		resets = <&k3_reset 40 1>;
+> > -		firmware-name = "j784s4-c71_3-fw";
+> > -		status = "disabled";
+> > -	};
+> > -
 > 
-> I am looking at https://www.ti.com/lit/ug/spruje3/spruje3.pdf (page 26),
-> Device Comparison:
+> This patch can be squashed in.
 > 
-> CPSW/Serdes, PCIE is also different? Was that missed?
 
-I had talked to Siddharth in the past regarding that and he had
-mentioned that no change would be required with the previous patchsets
-that I had shared, adding him to the thread 
+The idea was that we can see what changes are happening and where are
+things getting moved and hence had kept the patch like this, would be
+easier to review I believe, do you want it squashed right now or should
+I be doing it later once you are fine with all the changes and all the
+reviews are done?
 
 Regards,
 Manorit
