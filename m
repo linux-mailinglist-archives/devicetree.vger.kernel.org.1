@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-92059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4C2394BA9D
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:15:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6054C94BAA3
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 12:16:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 49BFF1F221AD
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:15:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C938286711
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 10:16:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F0AA189F48;
-	Thu,  8 Aug 2024 10:14:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBB22188016;
+	Thu,  8 Aug 2024 10:16:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="USu59iT5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fp6HRaaz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D85C5189F3B;
-	Thu,  8 Aug 2024 10:14:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1AB6146A7B;
+	Thu,  8 Aug 2024 10:16:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723112096; cv=none; b=sg5mTVsDRqCcJ2njrIDHCZ7xQlM0rD9rL7Ai3TFmlwetxsgTBylT9hSMJlQg05dFSw5xD1H6QEpzmfx5bBq6Zh3Y8+q9VRZmue9l6k+zdPAqPLrp+kghybj0pnQaDW903H8zCdA+NIgpIcruZutqecA8NTpcDbqUDbztRl1zbZw=
+	t=1723112194; cv=none; b=u/kunp2Bspa8ksYwJfjCyTIlyWjb6yqEyj/9GFQmfOO5dguAA7nAwY+pzDpqBYL5Twvbg7DbHptt2Uk2mMIiiNxsSeFC2JQn2YBvta2EnN8IVOHuntKfIokyIKWQ6mTf8dlrNj2kkZb9Z4w9MLbDKgiJHqV9wOn9pW884HzFZdQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723112096; c=relaxed/simple;
-	bh=dh7oDQEDvsFMBMEJeKdrDyxS2nNFjJ1jhncBVJEXWvk=;
+	s=arc-20240116; t=1723112194; c=relaxed/simple;
+	bh=hTCk4wpPzNUni6maFCT90aDu+9oeYO7rJkKxJ0gCKaY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Mpzj62S3tU7lj5BnPyeF5TuI2qrZO+aRpqTHJosnOlwYBVxho8DwLSB8sIJfhXiMQiJDf0RjbIzxDnK83QaSzkb6CrIEqdczsoql+L2d6kB2pBVFOlsg9Z4cjrd3ZeKccFNpeegL8KOTTNVM53SJKurxpTHUQ4VKVqkg5V3ExQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=USu59iT5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D9C0C32782;
-	Thu,  8 Aug 2024 10:14:51 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Fk7tkW1sk3FY8LgkP1goa0VTLs/9bOm6ftY/wwF6/2TQuqYt2whKBcjYkJ7NIAM8ah+CxW8QVhmR6EtjFUUDw8RVrq3/OkZyxgJLOphy53yji3AAze2w9hcv+niFV6gufruIZ7ejpVOommSR+YhO5S6JowPW0919ZKHGYaIZ/H0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fp6HRaaz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F1B6C4AF10;
+	Thu,  8 Aug 2024 10:16:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723112096;
-	bh=dh7oDQEDvsFMBMEJeKdrDyxS2nNFjJ1jhncBVJEXWvk=;
+	s=k20201202; t=1723112194;
+	bh=hTCk4wpPzNUni6maFCT90aDu+9oeYO7rJkKxJ0gCKaY=;
 	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=USu59iT5F9bjAZLxN8x+aiv+4UKzeBd2i+ZhhGw+oH0+Kn4qHjFChEeicybHlMdaN
-	 MsMracGpQZfygEFueqj0mKdIFqMrxg8NizjxFIc6/tsI77RmYrj1kKfI1afeNEBXyY
-	 B0T6qyjJWnOv0QzTV7hMJUKcaGc1awYv+UaaA6I/fXpt1uGbPl/9GEDuoB3QWMu0k4
-	 eS2rDePBvD9t88VjUtXq6ouWGINWyDsxt2tHkx9eEsR4E94ql4V+mqQHoPxkWbCowx
-	 KgU4EU0HYo6Ui380nNSHSf/3kwfISVPnQ271X+gzmF4Hw3S4Y3sQP+q57l5RjaFYeN
-	 G7LgzByd6nY2w==
-Message-ID: <2f27285e-6aa5-4e42-b361-224d8d164113@kernel.org>
-Date: Thu, 8 Aug 2024 12:14:49 +0200
+	b=fp6HRaazTuZz4DwS2+M+WZXJp/6qPoCJM5AygmmHTNVJ2Gnb+JTNPRNz4DhFH5V9B
+	 ZRNj2wER0OMXRYYSTTUPb9ZmbslYitcAyNCX3EF2CLcokTDcMABHyGl3FHmTIC9P/A
+	 ys3iSIZrO4dGEwznuV9ZDRudghuXbiT13x5qsh3tVWk22jL22YhbjYbCUb+BfGTmpy
+	 BOFjl33m2hIDxdP/qCcurhBFdmRt1ZaXJ1btXzfovJMGyDY8kq005PdH5kdUdDFFbb
+	 aUvHODvDxlL23++F3gxF+2wMal6s7aBvAYoBUdglcrviRGTz0CZezfrfESqs7p0FdC
+	 Ye/jJ2f2gueYQ==
+Message-ID: <f12dd5c4-3b0f-4997-8368-1eef919d0cb0@kernel.org>
+Date: Thu, 8 Aug 2024 12:16:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,7 +50,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: mfd: aspeed: support for AST2700
+Subject: Re: [PATCH 2/4] dt-bindings: reset Add AST2700 reset bindings
 To: Ryan Chen <ryan_chen@aspeedtech.com>, Lee Jones <lee@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
@@ -61,7 +61,7 @@ To: Ryan Chen <ryan_chen@aspeedtech.com>, Lee Jones <lee@kernel.org>,
  linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
  linux-clk@vger.kernel.org
 References: <20240808075937.2756733-1-ryan_chen@aspeedtech.com>
- <20240808075937.2756733-2-ryan_chen@aspeedtech.com>
+ <20240808075937.2756733-3-ryan_chen@aspeedtech.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,77 +107,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240808075937.2756733-2-ryan_chen@aspeedtech.com>
+In-Reply-To: <20240808075937.2756733-3-ryan_chen@aspeedtech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 08/08/2024 09:59, Ryan Chen wrote:
-> Add compatible support for AST2700 clk, reset, pinctrl, silicon-id
-> and example for AST2700 scu.
+> Add dt bindings for AST2700 reset driver.
 > 
 > Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
-> ---
->  .../bindings/mfd/aspeed,ast2x00-scu.yaml      | 31 +++++++++++++++++--
->  1 file changed, 29 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml b/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml
-> index 86ee69c0f45b..c0965f08ae8c 100644
-> --- a/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml
-> @@ -21,6 +21,8 @@ properties:
->            - aspeed,ast2400-scu
->            - aspeed,ast2500-scu
->            - aspeed,ast2600-scu
-> +          - aspeed,ast2700-scu0
-> +          - aspeed,ast2700-scu1
 
-What are the differences between these two?
 
->        - const: syscon
->        - const: simple-mfd
->  
-> @@ -30,10 +32,12 @@ properties:
->    ranges: true
->  
->    '#address-cells':
-> -    const: 1
-> +    minimum: 1
-> +    maximum: 2
->  
->    '#size-cells':
-> -    const: 1
-> +    minimum: 1
-> +    maximum: 2
->  
->    '#clock-cells':
->      const: 1
-> @@ -56,6 +60,8 @@ patternProperties:
->              - aspeed,ast2400-pinctrl
->              - aspeed,ast2500-pinctrl
->              - aspeed,ast2600-pinctrl
-> +            - aspeed,ast2700-soc0-pinctrl
-> +            - aspeed,ast2700-soc1-pinctrl
->  
->      required:
->        - compatible
-> @@ -76,6 +82,7 @@ patternProperties:
->                - aspeed,ast2400-silicon-id
->                - aspeed,ast2500-silicon-id
->                - aspeed,ast2600-silicon-id
-> +              - aspeed,ast2700-silicon-id
->            - const: aspeed,silicon-id
->  
->        reg:
-> @@ -115,4 +122,24 @@ examples:
->              reg = <0x7c 0x4>, <0x150 0x8>;
->          };
->      };
-> +  - |
-> +    soc0 {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
+No, that's not how it works. Aspeed already sent it and recieved
+feedback. Do not send duplicated patches, without history/changelog. You
+keep avoiding discussion, do not reply and then send something again
+without changes.
 
-That's the same example as previous, right? The drop, no need.
+Respond to feedback you got and implement it.
+
+NAK
 
 Best regards,
 Krzysztof
