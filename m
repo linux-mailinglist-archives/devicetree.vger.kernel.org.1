@@ -1,214 +1,168 @@
-Return-Path: <devicetree+bounces-92537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B31094D88E
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 00:01:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68AA494D8DB
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 01:02:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6E510B22FCE
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 22:01:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDA161F21EA2
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 23:02:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5696B16B736;
-	Fri,  9 Aug 2024 22:01:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D906F16B74B;
+	Fri,  9 Aug 2024 23:02:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="G/qOu1qW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g7pmf7OV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0785115F40D;
-	Fri,  9 Aug 2024 22:01:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C8CE2232A;
+	Fri,  9 Aug 2024 23:02:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723240889; cv=none; b=Gw99E/l2OtxJqidBTZPouyrS2RD5HR2bcT7Z9B4d02rRQQ0sPUi+/LtcGZ0kXDAUcaAOKSq9Ek8NN8FDSNppyBWajVNGb8+tA4QzY92+4z+BwPY7V/WuB/Wygqp4E6MeE2NKY85f8Wa0JOIPDsjjxBMcLuM2EF4bKJHVUwvJuAs=
+	t=1723244549; cv=none; b=pguIC+TvCxyo76siFP5/+laRfFxc0kBMkWb5AC5u0tNxLy81t7xcir6PWr3RLwoRqans26+WG2aNgEl3+gJuL8073YL+1P/yscPw16VjrQI7A7/S39srWvUjSKEliigT5M2OERYGyXi5zjVQczuRemDX73tMW2bzeHyufCPvuNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723240889; c=relaxed/simple;
-	bh=kPUBFc3gL4aQxSALgtlf3psejtyZadc6wbO5HmzUKw4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=M6yEiiZUfwNxvoo5r8PyUQpn6hwb6S9CoiZ2FsXCjNL2b+jQPMY+HfhYq7Mff1mkJCyKYs5wnqm3O7J2wOwPreEvSgaqZjfA6aHeNlIltuqdFBaYEHnJpRxyrAdMGYVAS9gKmJ+PKRQaO7KZKwToyTfXNsHOGTVE8MHiVQjUH4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=G/qOu1qW; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 479M1IDY094979;
-	Fri, 9 Aug 2024 17:01:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1723240878;
-	bh=oM3oTiJ9q/R4ZIrl2h+ElHphY0hZ4oiQrD0yvWw3fuU=;
-	h=From:Date:Subject:References:In-Reply-To:To:CC;
-	b=G/qOu1qWi9ITEDK4M5AVuq6rOrq8KEhCc26it+AHPNu2+AfSE7Wh0edDYZC9d7sCv
-	 Zewp2uFS1tGIpmewJpDP9JfNNSmFAlChMaooUr28vGtpM6eJ9fmq9DdtC1r/14su5/
-	 uAe98FNtlCO02ZUhiHZ2bgv/Zq6UcbxqpvrBNXTQ=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 479M1I0E066447
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 9 Aug 2024 17:01:18 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 9
- Aug 2024 17:01:18 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 9 Aug 2024 17:01:18 -0500
-Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 479M1IJk110316;
-	Fri, 9 Aug 2024 17:01:18 -0500
-From: Bryan Brattlof <bb@ti.com>
-Date: Fri, 9 Aug 2024 17:01:14 -0500
-Subject: [PATCH 2/2] arm64: dts: ti: k3-am62p: add opp frequencies
+	s=arc-20240116; t=1723244549; c=relaxed/simple;
+	bh=RvTbMp33rkaKJUsrR0AK0iMSWIXeFbpaWs9RMYiB9DQ=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=F4a2/5ugE+vDfQeAEa4Fkta+1BmTfBfZgT2B8VTM7Ac9ztOGBH8p8PdYrez9OT649+SDXrm+8OSxa2ncVGyJO7mZn6svJasZ5Z6xE8zRZ0yU6laQJ5TZMS+qYHqGfedSm8c1qmqzuZxzfOfoLqL4q2w1bg3PAYuZYgykLYnLWbk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g7pmf7OV; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-428f5c0833bso20614245e9.0;
+        Fri, 09 Aug 2024 16:02:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723244546; x=1723849346; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wODkYjjXLHu7LoIUK6vdyDoix1Qpc0/A1JJtwyuj/Us=;
+        b=g7pmf7OV0d7/x7Mii16uOSM2mNL95/3XIXENnFS2duHfR3SMZGkhxuzCICnSjUzXap
+         572fNsKiY65wQKAm1asXIBoe3rtQRT3La43MBy9lPbS8x0KJG+PLwCpbHU1IPQuIQEnM
+         UWIhTFN8gwvwy9HcgebSioUhKvU7mENogv9xHWs9o2wCOp8xNiwa/cGF0AjY+T5uRB/S
+         7pTywvz3rUs9078Oks0tC3inoqyPsaOiBu/WInAcAcjbYdkjyng07gn/DAQOn8dMHjra
+         zGGdBspPAKUYD/mNQfY4zYn84pJW44887Vni4mxu5YlUCdD6T2t0Qn81mz0EcJMCoj28
+         tUkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723244546; x=1723849346;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wODkYjjXLHu7LoIUK6vdyDoix1Qpc0/A1JJtwyuj/Us=;
+        b=XUkNyH4h0C+hJHa1CgCSM6jp/p6e0bnZX1t/vZxzJvBrZiEcN5ATccBW1XvFKczXgE
+         5j+tXTO5gH3BxXu6KFdMJqKQhGsEykNfV0YLGnO7tWokblHUGgYle3whjilL9KOyTpoN
+         ezPVM9Xx8iNmZKgncdyONNkj+2+xkXYIbPB7Aet4Q3F+4C8NUIAlV6HY9W1/HkRLzZfh
+         W4qBMYeLFfkpyyiJvBSf06OrWKbZw6TeWtp3CWs062EzYCHh93NOGFmxtjyajKYbp5PR
+         47Ot+sZkZarIv/GLyrGjXifipXnafnCDYn7PekMxL/qW0G4FRy05mhf4pdAY6cPT/ZM1
+         QBHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVRG2/7s4y7jUdvQkl+WNeO/aEe0WtYQXOp1NYY4//+OAJK5m0TRDczeFKFCMn1sSv9QoOOVmhgvhI0o9x3sfiHpV7SHyISMpi34uMXOSwwmvqP0yssHtc71NKDdpUIt7V6R7IJBu7wqUrsGMH5AeteXUK0HlO9plMMnHJfSi2Wa8wAHg==
+X-Gm-Message-State: AOJu0Yzk2VCkhQAejR5xATvI8cWbRAFGMVpydN5lZvLAGGUb6d0P7jYl
+	DrZOmGXV3TiwJUXQm61CF4+l0rcLFoqZKAi+fnx8Fvu53wEVC+mp
+X-Google-Smtp-Source: AGHT+IGgtArHY1Ccvu81bZyYnJJ7slG0Epa/7R5YAnQKAsSgIp4DXcbt2NtFFMJrnz0a9ioEQ+VSXg==
+X-Received: by 2002:a05:600c:1c92:b0:428:b4a:7001 with SMTP id 5b1f17b1804b1-429c847ffb9mr1527355e9.15.1723244545925;
+        Fri, 09 Aug 2024 16:02:25 -0700 (PDT)
+Received: from localhost.localdomain (host-87-10-253-138.retail.telecomitalia.it. [87.10.253.138])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-429c75044a8sm7987485e9.9.2024.08.09.16.02.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Aug 2024 16:02:25 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Joern Engel <joern@lazybastard.org>,
+	Keith Busch <kbusch@kernel.org>,
+	Jens Axboe <axboe@kernel.dk>,
+	Christoph Hellwig <hch@lst.de>,
+	Sagi Grimberg <sagi@grimberg.me>,
+	Saravana Kannan <saravanak@google.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-mtd@lists.infradead.org,
+	linux-nvme@lists.infradead.org
+Subject: [PATCH v4 0/7] mtd: improve block2mtd + airoha parser
+Date: Fri,  9 Aug 2024 19:20:58 +0200
+Message-ID: <20240809172106.25892-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240809-opp-v1-2-fea8efeaf963@ti.com>
-References: <20240809-opp-v1-0-fea8efeaf963@ti.com>
-In-Reply-To: <20240809-opp-v1-0-fea8efeaf963@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Bryan Brattlof <bb@ti.com>
-X-Mailer: b4 0.13.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 
-Add OPP table for the am62px-sk allowing us to slow down CPUs when idle
+This small series handle 2 problems.
 
-Signed-off-by: Bryan Brattlof <bb@ti.com>
----
- .../boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi  |  5 +++
- arch/arm64/boot/dts/ti/k3-am62p5-sk.dts            |  9 +++++
- arch/arm64/boot/dts/ti/k3-am62p5.dtsi              | 47 ++++++++++++++++++++++
- 3 files changed, 61 insertions(+)
+It does try to ""standardize"" the usage of block2mtd module with
+MTD OF nodes.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi
-index 315d0092e7366..6f32135f00a55 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi
-@@ -20,6 +20,11 @@ chipid: chipid@14 {
- 			bootph-all;
- 		};
- 
-+		opp_efuse_table: syscon@18 {
-+			compatible = "ti,am62-opp-efuse-table", "syscon";
-+			reg = <0x18 0x4>;
-+		};
-+
- 		cpsw_mac_syscon: ethernet-mac-syscon@200 {
- 			compatible = "ti,am62p-cpsw-mac-efuse", "syscon";
- 			reg = <0x200 0x8>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-index ff65955551a32..ab5d7a5fc6118 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-@@ -128,6 +128,15 @@ led-0 {
- 		};
- 	};
- 
-+	opp-table {
-+		/* Requires VDD_CORE at 0v85 */
-+		opp-1400000000 {
-+			opp-hz = /bits/ 64 <1400000000>;
-+			opp-supported-hw = <0x01 0x0004>;
-+			clock-latency-ns = <6000000>;
-+		};
-+	};
-+
- 	tlv320_mclk: clk-0 {
- 		#clock-cells = <0>;
- 		compatible = "fixed-clock";
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p5.dtsi b/arch/arm64/boot/dts/ti/k3-am62p5.dtsi
-index 41f479dca4555..140587d02e88e 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p5.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62p5.dtsi
-@@ -47,6 +47,7 @@ cpu0: cpu@0 {
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
- 			next-level-cache = <&l2_0>;
-+			operating-points-v2 = <&a53_opp_table>;
- 			clocks = <&k3_clks 135 0>;
- 		};
- 
-@@ -62,6 +63,7 @@ cpu1: cpu@1 {
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
- 			next-level-cache = <&l2_0>;
-+			operating-points-v2 = <&a53_opp_table>;
- 			clocks = <&k3_clks 136 0>;
- 		};
- 
-@@ -77,6 +79,7 @@ cpu2: cpu@2 {
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
- 			next-level-cache = <&l2_0>;
-+			operating-points-v2 = <&a53_opp_table>;
- 			clocks = <&k3_clks 137 0>;
- 		};
- 
-@@ -92,10 +95,54 @@ cpu3: cpu@3 {
- 			d-cache-line-size = <64>;
- 			d-cache-sets = <128>;
- 			next-level-cache = <&l2_0>;
-+			operating-points-v2 = <&a53_opp_table>;
- 			clocks = <&k3_clks 138 0>;
- 		};
- 	};
- 
-+	a53_opp_table: opp-table {
-+		compatible = "operating-points-v2-ti-cpu";
-+		opp-shared;
-+		syscon = <&opp_efuse_table>;
-+
-+		opp-200000000 {
-+			opp-hz = /bits/ 64 <200000000>;
-+			opp-supported-hw = <0x01 0x0007>;
-+			clock-latency-ns = <6000000>;
-+		};
-+
-+		opp-400000000 {
-+			opp-hz = /bits/ 64 <400000000>;
-+			opp-supported-hw = <0x01 0x0007>;
-+			clock-latency-ns = <6000000>;
-+		};
-+
-+		opp-600000000 {
-+			opp-hz = /bits/ 64 <600000000>;
-+			opp-supported-hw = <0x01 0x0007>;
-+			clock-latency-ns = <6000000>;
-+		};
-+
-+		opp-800000000 {
-+			opp-hz = /bits/ 64 <800000000>;
-+			opp-supported-hw = <0x01 0x0007>;
-+			clock-latency-ns = <6000000>;
-+		};
-+
-+		opp-1000000000 {
-+			opp-hz = /bits/ 64 <1000000000>;
-+			opp-supported-hw = <0x01 0x0006>;
-+			clock-latency-ns = <6000000>;
-+		};
-+
-+		opp-1250000000 {
-+			opp-hz = /bits/ 64 <1250000000>;
-+			opp-supported-hw = <0x01 0x0004>;
-+			clock-latency-ns = <6000000>;
-+			opp-suspend;
-+		};
-+	};
-+
- 	l2_0: l2-cache0 {
- 		compatible = "cache";
- 		cache-unified;
+It is very easy to add support for MTD parser by just adding an
+OF node to the mtd created for block2mtd.
+
+This apply only if the root block is used for block2mtd to allow
+scenario where the full eMMC or an NVME is used for MTD and it doesn't
+have any partition table.
+
+To also support NVME, similar to how it's done with eMMC, we introduce
+a subnode to the NVME controller that needs to have the "nvme-card"
+compatible where a dev can define fixed-paritions for MTD parser usage.
+
+This series also add support for the Airoha partition table where
+the last partition is always ART and is placed at the end of the flash.
+
+This require dynamic calculation of the offset as some dedicated
+driver for bad block management might be used that reserve some space
+at the end of the flash for block accounting.
+
+New aarch64 Airoha SoC make use of this partition table and use block2mtd
+for eMMC to treat them as MTD with custom bad block management and block
+tracking.
+
+Changes v4:
+- Add additional patch for ofpart kmod with of_update_property
+  not exported
+Changes v3:
+- Fix compilation error for missing slab.h header
+- Add compatible to partitions.yaml
+Changes v2:
+- Fix typo in DT patch
+- Fix compilation error for non-OF platform
+- Fix compilation error due to recent changes in block2mtd module
+
+Christian Marangi (7):
+  dt-bindings: nvme: Document nvme-card compatible
+  nvme: assign of_node to nvme device
+  dt-bindings: mmc: add property for partitions node in mmc-card node
+  block2mtd: attach device OF node to MTD device
+  of: also export of_update_property
+  dt-bindings: mtd: Add Documentation for Airoha fixed-partitions
+  mtd: parser: add support for Airoha parser
+
+ .../devicetree/bindings/mmc/mmc-card.yaml     | 40 ++++++++++
+ .../partitions/airoha,fixed-partitions.yaml   | 80 +++++++++++++++++++
+ .../bindings/mtd/partitions/partitions.yaml   |  1 +
+ .../devicetree/bindings/nvme/nvme-card.yaml   | 78 ++++++++++++++++++
+ drivers/mtd/devices/block2mtd.c               | 12 +++
+ drivers/mtd/parsers/Kconfig                   | 10 +++
+ drivers/mtd/parsers/Makefile                  |  1 +
+ drivers/mtd/parsers/ofpart_airoha.c           | 57 +++++++++++++
+ drivers/mtd/parsers/ofpart_airoha.h           | 18 +++++
+ drivers/mtd/parsers/ofpart_core.c             |  6 ++
+ drivers/nvme/host/core.c                      |  4 +
+ drivers/of/base.c                             |  1 +
+ 12 files changed, 308 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mtd/partitions/airoha,fixed-partitions.yaml
+ create mode 100644 Documentation/devicetree/bindings/nvme/nvme-card.yaml
+ create mode 100644 drivers/mtd/parsers/ofpart_airoha.c
+ create mode 100644 drivers/mtd/parsers/ofpart_airoha.h
 
 -- 
 2.45.2
