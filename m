@@ -1,64 +1,63 @@
-Return-Path: <devicetree+bounces-92450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E50494D2D4
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 17:00:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3E2094D2EC
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 17:07:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61CA21C20983
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 15:00:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99AB61F21C27
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 15:07:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15A7E198A11;
-	Fri,  9 Aug 2024 15:00:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CF96197A66;
+	Fri,  9 Aug 2024 15:07:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U/GAU1Kz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C+ZMHH7/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCD3D197512;
-	Fri,  9 Aug 2024 15:00:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6184A155A25;
+	Fri,  9 Aug 2024 15:07:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723215604; cv=none; b=H2JfgoeDAC7A3RWQhT2/7p0peLolvPRrL2YcXSW4monYEkIyGdSmCMTmJ0fhJH/UBWrz165j0e4Ay16PXNanwwAV3ze+Dz7x5Alr26vv3NB9wwzJ8UCodfLU07R1LL8fDydZQRYjNRC1RQVVOOJBHtA+vw1QxKye+fw054ONAFA=
+	t=1723216050; cv=none; b=V5lEzdzHtzjcPQTB0+fvMwBIL7QroujDoF31DRq7R7ANmIRUnBwZI805792raHVMy6DtcMsWIGxMjGgbHkGqHqg1bjJeNQO28bzwJFRKhhoJzkxdTsCxT0jHvoKnwzhvOaEHEKYj4WLI8ARV70CYhi0DuPXsaccTHQuvKUrH9Tg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723215604; c=relaxed/simple;
-	bh=yhbalDZ4n+KXBlHEaICRjuhrGYBlgbXbkFlbN8T+NME=;
+	s=arc-20240116; t=1723216050; c=relaxed/simple;
+	bh=jZLAqxbDw1Q7Bre45+Qasn0USRspIPfzQt7t2DwZdu0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gPU+ANx5pCMan9x6zyTBFXn5Ailudq7oBFA3+u6+X7qLDLE3G4+/CJm3WJt1xJc4Ga9IsCcHpbvz0esAoM1AyfocBCFkBvuSKZ343J35a2GsYegs28WpFEqPgpbM7NmYFMNJscrL5CZDT7/T9TaaTIm4mZ8LltcCYHDnNV2Jvso=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U/GAU1Kz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 430ADC32782;
-	Fri,  9 Aug 2024 15:00:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ocA7+1tOOLnWG9ZHI5xBH6LKNkdl+2+mRYGG8N33F9bTilcvUDxaAJIyeaVJL+odd52QzS6v1EnNv4ny7VvcdprEw9B5LrjEHQ7VpmGuBtZzDAFvRQl/zM8k+m+hl0w6O9Lg8sXf6Fflbzfu+9ql/sCbIE7li3A3FkqIlvHYBkM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C+ZMHH7/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 003D0C32782;
+	Fri,  9 Aug 2024 15:07:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723215603;
-	bh=yhbalDZ4n+KXBlHEaICRjuhrGYBlgbXbkFlbN8T+NME=;
+	s=k20201202; t=1723216049;
+	bh=jZLAqxbDw1Q7Bre45+Qasn0USRspIPfzQt7t2DwZdu0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=U/GAU1KzMAacdiUBmE1dxn6Jy7KKiIRrEDuWVrMaQ1RM9ouvlOTP/kqh/IgXd+5oS
-	 rgiJyjktTWrxRqUY0gDEGTak3cdei1x9Sm+JqJSWETn3dR3Zn91b3lVNSENafy+z5y
-	 loRH3clod5GDAT0/YTSjSsBeBYUPrb62U20vwO1dovDPaQ9L1OSfZ+0YbX2s7tcw3p
-	 nuRNPzcUBjUs5lovUAuq2RFZdDgql0zd/PyQZPd+Ts831K4b9XX/yLc1G5QUwTusGQ
-	 J4WX8c+X+9mqAJni7GlnYUmfBMhD9ctmDmCY7hiPZSr8wMMdDhEkatGUdwsilK7M4U
-	 RIa5rs3b0IaHg==
-Date: Fri, 9 Aug 2024 15:59:58 +0100
+	b=C+ZMHH7/Ky1jYRed3dGXymjDrDX1nSAuHkGWFTYxh5gmyk79O5BJBjfjHL5eh9nHm
+	 dMQ32ZSffgri8/8+zEESezP94mOfiLlZL7P6tb2NkAEsgnXNyQfson7LP7ySmLq5KD
+	 Kk02AvfO4JDT0409ElPGc6nmdlbWu1ppM6Q1NHbAZ2qj3JMUM5D6Ua4fjHbJOUa8q7
+	 ONmUwcTkttL9h8y1Nm9SUGhhpbcfCybvsTVJue5w5Y+eSzOch0Ai2k+KthpRELhbdA
+	 ylcPTr0dQdtTmWpnVDmMB9CjK6hiCgZZuBlJNt1gaCTNiN0yT9G2St5BOclCguuRaq
+	 ZlbCIdrE8tQeA==
+Date: Fri, 9 Aug 2024 16:07:25 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Detlev Casanova <detlev.casanova@collabora.com>
-Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+To: Frank Li <Frank.li@nxp.com>
+Cc: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Finley Xiao <finley.xiao@rock-chips.com>,
-	Jagan Teki <jagan@edgeble.ai>, Arnd Bergmann <arnd@arndb.de>,
-	Elaine Zhang <zhangqing@rock-chips.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-pm@vger.kernel.org,
-	kernel@collabora.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: power: Add support for RK3576 SoC
-Message-ID: <20240809-constant-oxidize-8aed145179c7@spud>
-References: <20240808163451.80750-1-detlev.casanova@collabora.com>
- <20240808163451.80750-2-detlev.casanova@collabora.com>
+	"moderated list:ARM/FREESCALE LAYERSCAPE ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] arm64: dts: lx2160a: Change PCIe compatible string
+ to fsl,ls2088a-pcie
+Message-ID: <20240809-freewill-compactor-4f441a4a60bb@spud>
+References: <20240808153120.3305203-1-Frank.Li@nxp.com>
+ <20240808-frosted-voicing-883f4f728527@spud>
+ <ZrTphsdTZVsbiGo/@lizhi-Precision-Tower-5810>
+ <20240808-linoleum-evasion-ad7111a2afc4@spud>
+ <ZrTvB/3GGIhEOItT@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,104 +65,75 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="+eX86es6cMT9cLlU"
+	protocol="application/pgp-signature"; boundary="UqI6MOyeE0fEpu25"
 Content-Disposition: inline
-In-Reply-To: <20240808163451.80750-2-detlev.casanova@collabora.com>
+In-Reply-To: <ZrTvB/3GGIhEOItT@lizhi-Precision-Tower-5810>
 
 
---+eX86es6cMT9cLlU
+--UqI6MOyeE0fEpu25
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 08, 2024 at 12:31:04PM -0400, Detlev Casanova wrote:
-> From: Finley Xiao <finley.xiao@rock-chips.com>
+On Thu, Aug 08, 2024 at 12:15:03PM -0400, Frank Li wrote:
+> On Thu, Aug 08, 2024 at 04:55:14PM +0100, Conor Dooley wrote:
+> > On Thu, Aug 08, 2024 at 11:51:34AM -0400, Frank Li wrote:
+> > > On Thu, Aug 08, 2024 at 04:34:32PM +0100, Conor Dooley wrote:
+> > > > On Thu, Aug 08, 2024 at 11:31:20AM -0400, Frank Li wrote:
+> > > > > The mass production lx2160 rev2 use designware PCIe Controller. O=
+ld Rev1
+> > > > > which use mobivel PCIe controller was not supported. Although ubo=
+ot
+> > > > > fixup can change compatible string fsl,lx2160a-pcie to fsl,ls2088=
+a-pcie
+> > > > > since 2019, it is quite confused and should correctly reflect har=
+dware
+> > > > > status in fsl-lx2160a.dtsi.
+> > > >
+> > > > This does not begin to explain why removing the soc-specific compat=
+ible,
+> > > > and instead putting the compatible for another soc is the right fix.
+> > > > Come up with a new compatible for this device, that perhaps falls b=
+ack
+> > > > to the ls2088a, but this change doesn't seem right to me.
+> > >
+> > > It can't fallback to fsl,ls2088a-pcie if fsl,lx2160a-pcie exist, whic=
+h are
+> > > totally imcompatible between fsl,ls2088a-pcie and fsl,lx2160a-pcie.
+> > >
+> > > Previous dtb can work just because uboot dynamtic change fsl,lx2160a-=
+pcie
+> > > to fsl,ls2088a-pcie when boot kernel.
+> > >
+> > > fsl,lx2160a-pcie should be removed because Rev1 have not mass product=
+ioned.
+> >
+> > Please re-read what I wrote. I said to come up with a new compatible for
+> > this device, not fall back from the existing fsl,lx2160a-pcie to
+> > fsl,ls2088a-pcie.
 >=20
-> Define power domain IDs as described in the TRM and add compatible for
-> rockchip,rk3576-power-controller
->=20
-> Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
-> [reword, add yaml]
+> According to my understand, It needn't add new compatible string if nothi=
+ng
+> difference. for example, it use fsl,vf610-i2c for all i2c without add
+> new soc-specific fsl,lx2160-i2c.
 
-To be honest, both here and in your other patch, you should remove this
-[] section and add a co-develop-ed-by instead.
+No, you should have soc-specific compatibles regardless. Just because
+you got away with it once, doesn't mean I'm not going to complain about
+it here!
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> So far lx2160a-pcie is the same as ls2088a-pcie.
 
-> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> ---
->  .../power/rockchip,power-controller.yaml      |  1 +
->  .../dt-bindings/power/rockchip,rk3576-power.h | 30 +++++++++++++++++++
->  2 files changed, 31 insertions(+)
->  create mode 100644 include/dt-bindings/power/rockchip,rk3576-power.h
->=20
-> diff --git a/Documentation/devicetree/bindings/power/rockchip,power-contr=
-oller.yaml b/Documentation/devicetree/bindings/power/rockchip,power-control=
-ler.yaml
-> index 0d5e999a58f1b..650dc0aae6f51 100644
-> --- a/Documentation/devicetree/bindings/power/rockchip,power-controller.y=
-aml
-> +++ b/Documentation/devicetree/bindings/power/rockchip,power-controller.y=
-aml
-> @@ -41,6 +41,7 @@ properties:
->        - rockchip,rk3368-power-controller
->        - rockchip,rk3399-power-controller
->        - rockchip,rk3568-power-controller
-> +      - rockchip,rk3576-power-controller
->        - rockchip,rk3588-power-controller
->        - rockchip,rv1126-power-controller
-> =20
-> diff --git a/include/dt-bindings/power/rockchip,rk3576-power.h b/include/=
-dt-bindings/power/rockchip,rk3576-power.h
-> new file mode 100644
-> index 0000000000000..324a056aa8512
-> --- /dev/null
-> +++ b/include/dt-bindings/power/rockchip,rk3576-power.h
-> @@ -0,0 +1,30 @@
-> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-> +#ifndef __DT_BINDINGS_POWER_RK3576_POWER_H__
-> +#define __DT_BINDINGS_POWER_RK3576_POWER_H__
-> +
-> +/* VD_NPU */
-> +#define RK3576_PD_NPU		0
-> +#define RK3576_PD_NPUTOP	1
-> +#define RK3576_PD_NPU0		2
-> +#define RK3576_PD_NPU1		3
-> +
-> +/* VD_GPU */
-> +#define RK3576_PD_GPU		4
-> +
-> +/* VD_LOGIC */
-> +#define RK3576_PD_NVM		5
-> +#define RK3576_PD_SDGMAC	6
-> +#define RK3576_PD_USB		7
-> +#define RK3576_PD_PHP		8
-> +#define RK3576_PD_SUBPHP	9
-> +#define RK3576_PD_AUDIO		10
-> +#define RK3576_PD_VEPU0		11
-> +#define RK3576_PD_VEPU1		12
-> +#define RK3576_PD_VPU		13
-> +#define RK3576_PD_VDEC		14
-> +#define RK3576_PD_VI		15
-> +#define RK3576_PD_VO0		16
-> +#define RK3576_PD_VO1		17
-> +#define RK3576_PD_VOP		18
-> +
-> +#endif
-> --=20
-> 2.46.0
->=20
 
---+eX86es6cMT9cLlU
+--UqI6MOyeE0fEpu25
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrYu7gAKCRB4tDGHoIJi
-0s5UAP4vbdzxFL2Sgz8Fv4uo4X1C/GLB38OueD06clnzoinFwAD/YJlXEhpLtmS6
-dr1+zxPIPJNrVC00le0J90ylsJjcLwc=
-=SrCh
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrYwrQAKCRB4tDGHoIJi
+0kFZAQDhZtW3Gh4EocWE0cDSarMnBHPDLutlvuYc7HAvPYLSJQD7BZstVgOrE24z
+F/qic6aIukQGRBClY+6y9FD4k33rUgw=
+=nqIL
 -----END PGP SIGNATURE-----
 
---+eX86es6cMT9cLlU--
+--UqI6MOyeE0fEpu25--
 
