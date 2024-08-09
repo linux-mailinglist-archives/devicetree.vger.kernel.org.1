@@ -1,116 +1,112 @@
-Return-Path: <devicetree+bounces-92321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B569694CB19
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 09:20:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF83694CB2F
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 09:23:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74CD8283537
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 07:20:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A9551C21E88
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 07:23:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFBAB173336;
-	Fri,  9 Aug 2024 07:20:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEC5617556C;
+	Fri,  9 Aug 2024 07:22:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Qq5mQAtp"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="IHORrpWS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 324C512FB34
-	for <devicetree@vger.kernel.org>; Fri,  9 Aug 2024 07:20:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07A631741D5;
+	Fri,  9 Aug 2024 07:22:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723188029; cv=none; b=jNOnhL4DagbQ1Nsh6ZVkY0HQ3iV9C8KJfSjXgX43xdiJvjSPo9V4BfE+WsVxD18pI5ndYkDrbiREtiW0aQ4VIksgih4lE/o897r5nQQ4Y0k2u5Ee5vkuq35NPHrvmvCqd3Af+UyKtXGgP6YcB3/PS2HOYhXeg4YbZnNG6liyo04=
+	t=1723188164; cv=none; b=nzb74v95ds/BNKpJ4WJ/kMFzxTYhprc+Vy2wqy5ErnvH5Zr6bBKWVdowx0eH+e0OR/uXLAZ3fNSeydnKgeKOqtH4PeE8YX+EGQn+ZdHnhst9XchAT+nTqR7NkLmdfChlcDyiLI4Zg9Jhmaz/NCmpyYvK8lxZZmXUbd7LJJDQvbU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723188029; c=relaxed/simple;
-	bh=LCQjMCGu/NtAGIDdzcexTOBsi+0vUqa7B0DD5sAYYr8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=IBYFPnxKA4v+iTjNVZTaG8xSRyfemH2fyQHQLIRPhlb/gsKR4mnKWw6kW5Z0y3OC1iWQX6WXUaX2YkPoR3L90LcH9CdZ6Pj2K668qfRDLMKcvPJpxQToSO8yGaDsbHEo1gtTfD3Q0i/UpZaeoCEPZh+McgRf/sz5WRXiRKNE+2s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Qq5mQAtp; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3685b9c8998so785452f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2024 00:20:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1723188026; x=1723792826; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=d47CUelTnreJC+PfHZ3JAzMPsN6JTZHLt6cE64vISVI=;
-        b=Qq5mQAtpdNfdlpCpGTDIgXHwpVnmlrHcRvxkgzwNFdab415YIUsJ/3bt8p40r8ouv9
-         bfhwROBKcRqosR/s07FQxqsXDAG/24KJnLLJ2n8lGBvNyOQrjgYIdwVOiJ2KY7ZpdIht
-         T+epW2u7VXPH1wyUIMaUrv1jGYkdlIczyBOljkitz7so5p5pw1kjqiERqLugvu6KGYz/
-         Kyscj3dcLhUye38X8VYdiPw7PgFz0I9weMLHXNILjlz17nPBRP66Dj4i/K2ngjcYDP3h
-         3fy0KAixMuYcjEIKzv+xGjP7W7gOZEzl+WhT+JNHOAA5SfyRLkbU4NcvYB+JPZERJKvd
-         JzGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723188026; x=1723792826;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d47CUelTnreJC+PfHZ3JAzMPsN6JTZHLt6cE64vISVI=;
-        b=BhKovvI8hbLivbO+NG+30mEqFhz/E2935fvtdY4NYMUADcSP8Pjsz9B6sS/dfw+ODe
-         f32u+XwRl4Yu3tm3fbHZr7dsWvg4CFq9B1f59HflbV3/oD32k4/ZqQoKn8ZFmIgm3dnJ
-         TaNFG0dfqiF97xuUCy3FCzF5cban7LfrQVtl+PV1fY1Blft8IGmE2TYVerMt9WTncRdE
-         B9V/+1DtkYnRBunwaCof6KnNJ7CxwRAU8BnMINzP9OON2C2Za8bsiBAfoZMJcFwonHkf
-         zlQA2Or2nJKyLbLM04c+Gzmv5Rs7+WHaYqzfegUdMVdt83+fbnDN1ORmFG2xIQbtZSe+
-         Ww1w==
-X-Forwarded-Encrypted: i=1; AJvYcCXpqLBeAHzRZfPOlnogV5T1HyZQfG9zSu3YHvFPNmQo2pSwqLYjXumfs3unht7qB0QaROg/Hu8Sbtby2wFCwMQ1iEUD3cE39CarqA==
-X-Gm-Message-State: AOJu0YxAqAgCDpkSTvZCG96iv0KkN6iHvle0V2lBN0fC9+9qRvTkleoR
-	E3C0UWs5csqqy+VKeBwcySzKWgpHWQ2/LWh34xJ/qooTx/NgF+HcyMDnmhHMPcY=
-X-Google-Smtp-Source: AGHT+IFHpW92jqjIYi2miDOsQE5JPxAd01QY2fBqHylu2JwNHdLR7v5WkJ4KHtbzJ9eJlICDWlTF1Q==
-X-Received: by 2002:adf:fc12:0:b0:36b:d3bc:af03 with SMTP id ffacd0b85a97d-36d5e3c30acmr376684f8f.15.1723188026393;
-        Fri, 09 Aug 2024 00:20:26 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.180])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36d2718bfb9sm4360112f8f.54.2024.08.09.00.20.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Aug 2024 00:20:25 -0700 (PDT)
-Message-ID: <e39ab10e-8e95-4fce-b75f-10fe918e81a5@tuxon.dev>
-Date: Fri, 9 Aug 2024 10:20:23 +0300
+	s=arc-20240116; t=1723188164; c=relaxed/simple;
+	bh=TuMqrgVIr8E9q9EsdFB9v+Jx0nSxfmCGPiIHOQEftz0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=rM1D3w5Yw/vwqSekVLQLQlEyZTin4DTTJXjsHzT7e4rBKicrgNxWrJRvYeJRnh03Ea8fEfnIlrsqTidUbaTDYkRUwzSNFKgpmUyBd3UP1f1WOUp8a0CaXp8dUGIHozmSA/yt/xN2r13K+OX1SbwM4M1SdbUamBD4z9kGBrRvYCY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=IHORrpWS; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4797MXi1117657;
+	Fri, 9 Aug 2024 02:22:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1723188153;
+	bh=ZG/0jB8mWL0o3rsWjfA5iA0GkrLkxAWfJWlNCkuR2Cc=;
+	h=From:To:CC:Subject:Date;
+	b=IHORrpWSviqSByHVC/JEoYJEwCQMCNDw9jS7+5tSYo/7IGeY5sSuoYmFnoomKJuOC
+	 J+ypqHTlnRlrZp6v5/J4SdqptrhEPwo6+o0tyEq0dktp0yN66A42a7zBvceaO66tdl
+	 G0vcjUxCC2IWA2yEGX8NU8NKT0scZK6XoB1ML8xc=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4797MWRY096737
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 9 Aug 2024 02:22:33 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 9
+ Aug 2024 02:22:32 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 9 Aug 2024 02:22:32 -0500
+Received: from localhost (a0498981-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.68.216])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4797MVBf072002;
+	Fri, 9 Aug 2024 02:22:32 -0500
+From: Bhavya Kapoor <b-kapoor@ti.com>
+To: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <conor+dt@kernel.org>,
+        <krzk+dt@kernel.org>, <robh@kernel.org>, <kristo@kernel.org>,
+        <b-kapoor@ti.com>, <m-chawdhry@ti.com>, <vigneshr@ti.com>, <nm@ti.com>,
+        <sinthu.raja@ti.com>, <n-francis@ti.com>
+Subject: [PATCH v2] arm64: dts: ti: k3-am68-sk-base-board: Add clklb pin mux for mmc1
+Date: Fri, 9 Aug 2024 12:52:31 +0530
+Message-ID: <20240809072231.2931206-1-b-kapoor@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 07/11] dt-bindings: i2c: renesas,riic: Document the
- R9A08G045 support
-Content-Language: en-US
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- chris.brandt@renesas.com, andi.shyti@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, geert+renesas@glider.be,
- magnus.damm@gmail.com, p.zabel@pengutronix.de,
- linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
- Conor Dooley <conor.dooley@microchip.com>
-References: <20240711115207.2843133-1-claudiu.beznea.uj@bp.renesas.com>
- <20240711115207.2843133-8-claudiu.beznea.uj@bp.renesas.com>
- <ZrTiZtD9U4I2LYZj@shikoro>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <ZrTiZtD9U4I2LYZj@shikoro>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+mmc1 is not functional and needs clock loopback so that it can
+create sampling clock from this for high speed SDIO operations.
+Thus, add clklb pin mux to get mmc1 working.
 
+Fixes: a266c180b398 ("arm64: dts: ti: k3-am68-sk: Add support for AM68 SK base board")
+Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+Reviewed-by: Neha Malcom Francis <n-francis@ti.com>
+---
 
-On 08.08.2024 18:21, Wolfram Sang wrote:
-> 
->> +          - const: renesas,riic-r9a08g045   # RZ/G3S
->> +          - const: renesas,riic-r9a09g057
-> 
-> Why no comment after the latter one?
-> 
+changelog v1->v2 : 
+- updated the commit message for better explanation
 
-I kept it like this to avoid confusion b/w RZ/G3S and RZ/V2H(P) documented
-below, as the RZ/G3S falls back to renesas,riic-r9a09g057 (RZ/V2H(P)).
+link to v1 : https://lore.kernel.org/all/20240807101624.2713490-1-b-kapoor@ti.com/
 
-I can add a comment here, too, if you still consider necessary. Please let
-me know.
+Rebased to next-20240809
 
-Thank you,
-Claudiu Beznea
+ arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+index 90dbe31c5b81..d5ceab79536c 100644
+--- a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+@@ -204,6 +204,7 @@ main_mmc1_pins_default: main-mmc1-default-pins {
+ 		pinctrl-single,pins = <
+ 			J721S2_IOPAD(0x104, PIN_INPUT, 0) /* (P23) MMC1_CLK */
+ 			J721S2_IOPAD(0x108, PIN_INPUT, 0) /* (N24) MMC1_CMD */
++			J721S2_IOPAD(0x100, PIN_INPUT, 0) /* (###) MMC1_CLKLB */
+ 			J721S2_IOPAD(0x0fc, PIN_INPUT, 0) /* (M23) MMC1_DAT0 */
+ 			J721S2_IOPAD(0x0f8, PIN_INPUT, 0) /* (P24) MMC1_DAT1 */
+ 			J721S2_IOPAD(0x0f4, PIN_INPUT, 0) /* (R24) MMC1_DAT2 */
+-- 
+2.34.1
+
 
