@@ -1,142 +1,172 @@
-Return-Path: <devicetree+bounces-92487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E8A294D4C1
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 18:33:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 188A094D520
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 18:58:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A2C2281A2E
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 16:33:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C2231F21C1B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 16:58:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DFE01CAAC;
-	Fri,  9 Aug 2024 16:33:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 362162941B;
+	Fri,  9 Aug 2024 16:58:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NpANO2kj"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dxAT5BAN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1F823D551;
-	Fri,  9 Aug 2024 16:33:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82E082110E;
+	Fri,  9 Aug 2024 16:58:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723221199; cv=none; b=CCBBu0ZtC5p3lmMO6pOO7B2Swjai8vHoCux76x4aawAVZYQ4jObwyJBRAEjnfXe8Jpsdkxc6j5maV+jwO+WHoj9qQQl4DF8nCuWa8iP8GcpjYfXCgecPvIPAqAACq64LVm0hFInvxVYNIzNgrkU0WAfqd0fBO/KIm5TXYiooh2g=
+	t=1723222732; cv=none; b=KPla5HdXNBRjomMMEYDWAy/3IJ1gfKiQLerhiYgAFQY0KtJwWCd4ZgMy8vCBtBctvEr/q612WKuIgKrfhqJKvJHlDc0JydchfMme6RvH7SkmqmRlBjPDRnsOhuNnbvDqrACKfeLiipfcAGsqWWgzxAcIW0FSXU09EF+D5FMROv0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723221199; c=relaxed/simple;
-	bh=XC/qQpmOshEYF8U7yU/VK9HlEgr0jSs2SieZLK7Pjz0=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=CsKOiWJYoFckT2DFStBOnre8zHT+LCXZvb0d5uTYlLBzLlAr6uv9N2IQetj13fqpZ1FMz1A9+LJ9gHRFY4lr65CK7Pgrh9SZ8eE+EOqIs6svkFpnvaa5S1Z8LDLuLn9XrSuKtGznhZNFMCMgcuGwRupJuFNu4CfnRkjdTPxxAQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NpANO2kj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64940C32782;
-	Fri,  9 Aug 2024 16:33:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723221198;
-	bh=XC/qQpmOshEYF8U7yU/VK9HlEgr0jSs2SieZLK7Pjz0=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=NpANO2kj24mAtvtCGVfgh2YWortGOLuvsgc+gej7F3/whHAxdt2HmbBfXVzJ3uy26
-	 4tYzKQyC16nNxjAKQ6ZWLxyL6aUVbqXNgQXtinv+xzCN/xO5wYPQX4M/tfR8+YX7Hm
-	 Js7Coz3CUkJZbvnnFcmPsmiM7wqDuj85eK7UzW5/yE4upXRfDlVRiYHvjxzc/Ddw6U
-	 pevMiIWz/d5NKn/aNMGdB/GOa0iv5qgnQCw9MtrwOPAwpABrswkmZKBE/Sw+TnTYs9
-	 8+vwxX4XmPQ9gSlICvDGYD2n7gKIHYTlGTYxLSpu+JBcFGnbmjtrnZmBHZ2BCGlaSV
-	 SvRavsP9VP30Q==
-Date: Fri, 09 Aug 2024 10:33:17 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1723222732; c=relaxed/simple;
+	bh=uVoM+Z03V9OE/jbP+7tzb2gna/edfwvWyI5ASOFeUrQ=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RAZX3F4UTXcj4HFYYmDCzaADvW2Il1rpGAIc/36HLgEjzQ07V4CWZwO+yp78c0zcrqZz3u3SbJlBWXQEBMWYPidS3P7m6irVHSxCxoHuwrY1z3nbR7gwRRK0JzUln3Wjhwqv+S4LGRlRyspNorFiEzhY1LtUq6sfhESiiQCU9w8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dxAT5BAN; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4799VXUC022485;
+	Fri, 9 Aug 2024 16:58:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=h9DRBCCxu+e57buH42hiurbX
+	S7WfhL8DeR+9AHOx9JE=; b=dxAT5BANsZpHl90PVQIh5C3WtTdrUL65Tyw7Uiwi
+	IpYNwsceqv0TQvozbpTWXDrAEzhgx6vEEp+zXlFd59QHHOzisyQuMsdFbgeqz5zz
+	5u8VNpZeWUj4aPMZPmfnROqaEziaYj3H8hVJOqGYCMvBF+vT9Mw3+Qvlsp90Ght9
+	RuYwdmx7OAA3m9vROSMLgDrYNSoKARUJ5wF+V3PhlYC8yXyYeTZGOw5Zn7evQut1
+	/uDPJTB4bdeNrpezGkbIChKigUntun5S5RpQYBUYe7vyX1893ZQ5kHe8NskwTF41
+	ID9BXke3o0mtCu0WbL15iMgBiiNT3DxJiSQQAofn3nYASA==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40vtbcvj64-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 09 Aug 2024 16:58:33 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 479GwWVc004409
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 9 Aug 2024 16:58:32 GMT
+Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Fri, 9 Aug 2024 09:58:31 -0700
+Date: Fri, 9 Aug 2024 09:58:31 -0700
+From: Elliot Berman <quic_eberman@quicinc.com>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Andy Yan
+	<andy.yan@rock-chips.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Bartosz
+ Golaszewski" <bartosz.golaszewski@linaro.org>,
+        Satya Durga Srinivasu Prabhala
+	<quic_satyap@quicinc.com>,
+        Melody Olvera <quic_molvera@quicinc.com>,
+        Shivendra Pratap <quic_spratap@quicinc.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        <linux-pm@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+Subject: Re: [PATCH v5 3/4] firmware: psci: Read and use vendor reset types
+Message-ID: <20240809090339647-0700.eberman@hu-eberman-lv.qualcomm.com>
+References: <20240617-arm-psci-system_reset2-vendor-reboots-v5-0-086950f650c8@quicinc.com>
+ <20240617-arm-psci-system_reset2-vendor-reboots-v5-3-086950f650c8@quicinc.com>
+ <ZrOMjomTTWZ91Uzf@lpieralisi>
+ <20240807103245593-0700.eberman@hu-eberman-lv.qualcomm.com>
+ <ZrYZ/i1QFhfmv0zi@lpieralisi>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Paul Kocialkowski <contact@paulk.fr>, Maxime Ripard <mripard@kernel.org>, 
- Wolfram Sang <wsa+renesas@sang-engineering.com>, 
- dri-devel@lists.freedesktop.org, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- linux-i2c@vger.kernel.org, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Robert Foss <rfoss@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Dragan Cvetic <dragan.cvetic@amd.com>, Jonas Karlman <jonas@kwiboo.se>, 
- Derek Kiernan <derek.kiernan@amd.com>, 
- Saravana Kannan <saravanak@google.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Arnd Bergmann <arnd@arndb.de>, 
- =?utf-8?q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>, 
- Paul Kocialkowski <paul.kocialkowski@bootlin.com>, 
- David Airlie <airlied@gmail.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Conor Dooley <conor+dt@kernel.org>, 
- linux-kernel@vger.kernel.org, Andrzej Hajda <andrzej.hajda@intel.com>, 
- devicetree@vger.kernel.org
-In-Reply-To: <20240809-hotplug-drm-bridge-v3-1-b4c178380bc9@bootlin.com>
-References: <20240809-hotplug-drm-bridge-v3-0-b4c178380bc9@bootlin.com>
- <20240809-hotplug-drm-bridge-v3-1-b4c178380bc9@bootlin.com>
-Message-Id: <172322119734.685133.9977747524284458277.robh@kernel.org>
-Subject: Re: [PATCH v3 1/7] dt-bindings: connector: add GE SUNH hotplug
- addon connector
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <ZrYZ/i1QFhfmv0zi@lpieralisi>
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: llwYJ0vMFu-vntO1KVctchycT4UnaPa_
+X-Proofpoint-ORIG-GUID: llwYJ0vMFu-vntO1KVctchycT4UnaPa_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-09_13,2024-08-07_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
+ mlxscore=0 mlxlogscore=999 clxscore=1015 impostorscore=0 adultscore=0
+ bulkscore=0 priorityscore=1501 phishscore=0 spamscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
+ definitions=main-2408090121
 
-
-On Fri, 09 Aug 2024 17:34:49 +0200, Luca Ceresoli wrote:
-> Add bindings for the GE SUNH add-on connector. This is a physical,
-> hot-pluggable connector that allows to attach and detach at runtime an
-> add-on adding peripherals on non-discoverable busses.
+On Fri, Aug 09, 2024 at 03:30:38PM +0200, Lorenzo Pieralisi wrote:
+> On Wed, Aug 07, 2024 at 11:10:50AM -0700, Elliot Berman wrote:
 > 
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> [...]
 > 
-> ---
+> > > > +static void psci_vendor_sys_reset2(unsigned long action, void *data)
+> > > 
+> > > 'action' is unused and therefore it is not really needed.
+> > > 
+> > > > +{
+> > > > +	const char *cmd = data;
+> > > > +	unsigned long ret;
+> > > > +	size_t i;
+> > > > +
+> > > > +	for (i = 0; i < num_psci_reset_params; i++) {
+> > > > +		if (!strcmp(psci_reset_params[i].mode, cmd)) {
+> > > > +			ret = invoke_psci_fn(PSCI_FN_NATIVE(1_1, SYSTEM_RESET2),
+> > > > +					     psci_reset_params[i].reset_type,
+> > > > +					     psci_reset_params[i].cookie, 0);
+> > > > +			pr_err("failed to perform reset \"%s\": %ld\n",
+> > > > +				cmd, (long)ret);
+> > > > +		}
+> > > > +	}
+> > > > +}
+> > > > +
+> > > >  static int psci_sys_reset(struct notifier_block *nb, unsigned long action,
+> > > >  			  void *data)
+> > > >  {
+> > > > +	if (data && num_psci_reset_params)
+> > > 
+> > > So, reboot_mode here is basically ignored; if there is a vendor defined
+> > > reset, we fire it off.
+> > > 
+> > > I think Mark mentioned his concerns earlier related to REBOOT_* mode and
+> > > reset type (granted, the context was different):
+> > > 
+> > > https://lore.kernel.org/all/20200320120105.GA36658@C02TD0UTHF1T.local/
+> > > 
+> > > I would like to understand if this is the right thing to do before
+> > > accepting this patchset.
+> > > 
+> > 
+> > I don't have any concerns to move this part below checking reboot_mode.
+> > Or, I could add reboot_mode == REBOOT_COLD check.
 > 
-> Changed in v3:
->  - change the layout to only add subnodes, not properties
->  - add the 'nobus-devices' node description to hold devices not on any bus
->  - add 'i2c-*' nodes for the I2C busses, using a i2c-parent phandle
->  - and the 'dsi' node for the DSI bus
->  - move the entire port@1 node to the overlay (not only the remote-endpoint
->    property)
->  - remove the overlay examples (Overlays in examples are not supported)
->  - add more clarifying descriptions and comments for examples
->  - some rewording
-> 
-> This patch was added in v2.
-> ---
->  .../connector/ge,sunh-addon-connector.yaml         | 185 +++++++++++++++++++++
->  MAINTAINERS                                        |   5 +
->  2 files changed, 190 insertions(+)
+> The question is how can we map vendor specific reboot magic to Linux
+> reboot modes sensibly in generic PSCI code - that's by definition
+> vendor specific.
 > 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+I don't think it's a reasonable thing to do. "reboot bootloader" or
+"reboot edl" don't make sense to the Linux reboot modes.
 
-yamllint warnings/errors:
+I believe the Linux reboot modes enum is oriented to perspective of
+Linux itself and the vendor resets are oriented towards behavior of the
+SoC.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/connector/ge,sunh-addon-connector.example.dtb: /: 'compatible' is a required property
-	from schema $id: http://devicetree.org/schemas/root-node.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/connector/ge,sunh-addon-connector.example.dtb: /: 'model' is a required property
-	from schema $id: http://devicetree.org/schemas/root-node.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/connector/ge,sunh-addon-connector.example.dtb: /: '#address-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/root-node.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/connector/ge,sunh-addon-connector.example.dtb: /: '#size-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/root-node.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240809-hotplug-drm-bridge-v3-1-b4c178380bc9@bootlin.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Thanks,
+Elliot
 
 
