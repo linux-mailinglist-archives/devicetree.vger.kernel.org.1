@@ -1,199 +1,144 @@
-Return-Path: <devicetree+bounces-92529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA19094D813
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 22:26:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3E3F94D83B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 22:49:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 917731F22A3B
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 20:26:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 653B61F23777
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 20:49:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44FC716ABF3;
-	Fri,  9 Aug 2024 20:26:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 821E616A94F;
+	Fri,  9 Aug 2024 20:48:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="SEV308Ix"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kkG67kbi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5387A1649CC;
-	Fri,  9 Aug 2024 20:26:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8AAE167DA8;
+	Fri,  9 Aug 2024 20:48:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723235186; cv=none; b=OyMJxdlwAORIzjrRjN0eXa/go/AmiODA1/32qAr1IW/tXFVWSbtmCOJi3s+RsWszvjz3BMQAHIBn3fLH7qIythV7jQJvMJ12tuGbCnpczBYrAtAJpvbHudB+9OrD+MD7+0xTHk8quvokChBnHVBIjVMX5gRdlusWPuLkVIllJAs=
+	t=1723236539; cv=none; b=Q42IRL2JUkK5/C5UN1/DGyDqMN9unRvgA+BIFVzWNzVKE0EXZj3/0XU4dUpWQ+LP839RI6HWMu0ZEegy+yAe4g5dE3cWLosAvkgMti+tKWO1u1ytnLYU1tarIiI4zUIjAFbcG4uxHzFDFjlIFyM8drY7rDn65uFB2dQJH9WFnaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723235186; c=relaxed/simple;
-	bh=oTPUdkbSifnUudZU1FCLqFsUUM8AWwwkPdn1+1Y7lno=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=NAwPBC9GuVUfQEA9KYwehSY5TliH6mrP8shsYr5FLuoJyS5WvGiW5SMP3zqdjt0JGKmGpIEMgLqjrhJsgesJHAijtqGtF0D8FRD96r+YyTsB0IZ/xPOkUJvap0hoegdnVE5gv4qljhXTfvLRg99bV/v9jmX+P3D/FmGtSI4JukM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=SEV308Ix; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-Received: from [192.168.1.130] (BC2494A8.dsl.pool.telekom.hu [188.36.148.168])
-	by mail.mainlining.org (Postfix) with ESMTPSA id B7187E4523;
-	Fri,  9 Aug 2024 20:26:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
-	s=psm; t=1723235177;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=eAAFy/br4jZfA1m8JM7qJ0ggdGzxKlNBuOGkivJqglI=;
-	b=SEV308Ix/4i3Tirwy/LH3TowWeiEBIiXwZgHI4WsTv6gNjG28Cc73fgeygpZVICyJKyL4e
-	YmMxkXj3fLpa0fGhHXle+qbL9Yr1gBX+OltXwvkjJpNIGmGQ1BP0V0uOWsO7q9JdWL8G6B
-	gGmCYLVVJCQpWs8P/2yAP+qeeSn4r0Nf1Uo8Mu5BG41qO0vSaZPfgn2GHeEPSOgwD80Z+d
-	M6nUMOsm1owlIdwZtWy/4n8Pvjb27qv5brzDvKHI/YLAVCLDOYrP35+bbICV8QKkB4wTp7
-	ILTWOHoHXAk6gk7Ompl/P5lFz8uzoJM+uf57uxsCB+ERyQ4eJp/TaP+vWJPZ2w==
-From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
-Date: Fri, 09 Aug 2024 22:25:42 +0200
-Subject: [PATCH v3 4/4] iio: magnetometer: ak8975: Add AK09118 support
+	s=arc-20240116; t=1723236539; c=relaxed/simple;
+	bh=LQRpGUBrP4WLVH27RipF1PGbuYLU8ZOry99cQeZsWgc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FWEwN/OeswbdIzgqdHyJfmPnM7SYbVxqosfd4cH0cXCLXSqlmax8deE1QAN8SBY9MNU1Jd32uc/QekOWffNFWaVeAP4vL6ZhAbRbjkR1UZWd/fWvsZncGH+tQWQbtMPjVlnn7/Xm1kEuCd3evAra+5/tMNaS3Azrq3L9vqJrsa0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kkG67kbi; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1723236538; x=1754772538;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=LQRpGUBrP4WLVH27RipF1PGbuYLU8ZOry99cQeZsWgc=;
+  b=kkG67kbi+AmK42UkUQbQ+l6W+i4z7RlhA4g9mHawUoTK8sUZiqFpOb6M
+   sgyRRMxvg8BPC+pMHUHAd7QzE3sqcB/DK+Sv6N3DhFkwhewVqna0IaPlI
+   fvo4ZXqr8CszCndrdcIxc/WfQ/i45jjYOw9e8tVqnOdqXIofITceXW6aU
+   L0X9/t6rZafFhj0VMLeMXijcbuzowHcIxVW0pNpMBGhLYiuB7wSAvSxQ2
+   JJDuroIlogLKyKiqTcK3u19MnXcXPo5xK2MfzO/THUyvKXdqo99pD/Zu0
+   NK4/1lKei8FJJK9ZvirdWV1lqBokCm65cEYfQv61AyOvNgupFmiGoFW11
+   A==;
+X-CSE-ConnectionGUID: jSbrKuEERuSzNiosA4Brlw==
+X-CSE-MsgGUID: M7etKZk3Tn+gRkKaDNxWMQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11159"; a="21086007"
+X-IronPort-AV: E=Sophos;i="6.09,277,1716274800"; 
+   d="scan'208";a="21086007"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Aug 2024 13:48:57 -0700
+X-CSE-ConnectionGUID: nZZWNeEBS0uGLtOZIanY+w==
+X-CSE-MsgGUID: UOaZEDifTu2Qhnfc1lsqJA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,277,1716274800"; 
+   d="scan'208";a="88528687"
+Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
+  by fmviesa001.fm.intel.com with ESMTP; 09 Aug 2024 13:48:52 -0700
+Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1scWXZ-0009Fz-0o;
+	Fri, 09 Aug 2024 20:48:49 +0000
+Date: Sat, 10 Aug 2024 04:48:46 +0800
+From: kernel test robot <lkp@intel.com>
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Sandy Huang <hjc@rock-chips.com>,
+	Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+	Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mark Yao <markyao0591@gmail.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>
+Cc: oe-kbuild-all@lists.linux.dev, dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+	kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>,
+	Luis de Arquer <ldearquer@gmail.com>,
+	Algea Cao <algea.cao@rock-chips.com>
+Subject: Re: [PATCH v2 3/3] drm/rockchip: Add basic RK3588 HDMI output support
+Message-ID: <202408100456.yY6K40pK-lkp@intel.com>
+References: <20240801-b4-rk3588-bridge-upstream-v2-3-9fa657a4e15b@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240809-ak09918-v3-4-6b036db4d5ec@mainlining.org>
-References: <20240809-ak09918-v3-0-6b036db4d5ec@mainlining.org>
-In-Reply-To: <20240809-ak09918-v3-0-6b036db4d5ec@mainlining.org>
-To: Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Jonathan Albrieux <jonathan.albrieux@gmail.com>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux@mainlining.org, 
- =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>, 
- Danila Tikhonov <danila@jiaxyga.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1723235174; l=3809;
- i=barnabas.czeman@mainlining.org; s=20240730; h=from:subject:message-id;
- bh=ZUi8BWKXk89wukRrT04yqKLpG1CBX5zIxX84rb1HxfM=;
- b=jQXypfyTHBdVYt/pFUgFSmqGswy8EDOTYus5UBxsD9Dkf3UKCl30e1IqHVi/UTA7/IMJU4lrW
- P+KR2b1Sh1NC58duMoiJAjy4L3Efgb6Ad+pO1W1BJYqaruLXJIsGqGr
-X-Developer-Key: i=barnabas.czeman@mainlining.org; a=ed25519;
- pk=TWUSIGgwW/Sn4xnX25nw+lszj1AT/A3bzkahn7EhOFc=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240801-b4-rk3588-bridge-upstream-v2-3-9fa657a4e15b@collabora.com>
 
-From: Danila Tikhonov <danila@jiaxyga.com>
+Hi Cristian,
 
-Add additional AK09118 to the magnetometer driver which has the same
-register mapping and scaling as the AK09112 device.
+kernel test robot noticed the following build errors:
 
-Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
----
- drivers/iio/magnetometer/Kconfig  |  2 +-
- drivers/iio/magnetometer/ak8975.c | 34 ++++++++++++++++++++++++++++++++++
- 2 files changed, 35 insertions(+), 1 deletion(-)
+[auto build test ERROR on 1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0]
 
-diff --git a/drivers/iio/magnetometer/Kconfig b/drivers/iio/magnetometer/Kconfig
-index cd2917d71904..8eb718f5e50f 100644
---- a/drivers/iio/magnetometer/Kconfig
-+++ b/drivers/iio/magnetometer/Kconfig
-@@ -39,7 +39,7 @@ config AK8975
- 	select IIO_TRIGGERED_BUFFER
- 	help
- 	  Say yes here to build support for Asahi Kasei AK8975, AK8963,
--	  AK09911, AK09912 or AK09916 3-Axis Magnetometer.
-+	  AK09911, AK09912, AK09916 or AK09918 3-Axis Magnetometer.
- 
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called ak8975.
-diff --git a/drivers/iio/magnetometer/ak8975.c b/drivers/iio/magnetometer/ak8975.c
-index f8355170f529..f9af5bffc9e3 100644
---- a/drivers/iio/magnetometer/ak8975.c
-+++ b/drivers/iio/magnetometer/ak8975.c
-@@ -78,6 +78,7 @@
-  */
- #define AK09912_REG_WIA1		0x00
- #define AK09912_REG_WIA2		0x01
-+#define AK09918_DEVICE_ID		0x0C
- #define AK09916_DEVICE_ID		0x09
- #define AK09912_DEVICE_ID		0x04
- #define AK09911_DEVICE_ID		0x05
-@@ -209,6 +210,7 @@ enum asahi_compass_chipset {
- 	AK09911,
- 	AK09912,
- 	AK09916,
-+	AK09918,
- };
- 
- enum ak_ctrl_reg_addr {
-@@ -371,6 +373,31 @@ static const struct ak_def ak_def_array[] = {
- 			AK09912_REG_HXL,
- 			AK09912_REG_HYL,
- 			AK09912_REG_HZL},
-+	},
-+	[AK09918] = {
-+		.type = AK09918,
-+		.raw_to_gauss = ak09912_raw_to_gauss,
-+		.range = 32752,
-+		.ctrl_regs = {
-+			AK09912_REG_ST1,
-+			AK09912_REG_ST2,
-+			AK09912_REG_CNTL2,
-+			AK09912_REG_ASAX,
-+			AK09912_MAX_REGS},
-+		.ctrl_masks = {
-+			AK09912_REG_ST1_DRDY_MASK,
-+			AK09912_REG_ST2_HOFL_MASK,
-+			0,
-+			AK09912_REG_CNTL2_MODE_MASK},
-+		.ctrl_modes = {
-+			AK09912_REG_CNTL_MODE_POWER_DOWN,
-+			AK09912_REG_CNTL_MODE_ONCE,
-+			AK09912_REG_CNTL_MODE_SELF_TEST,
-+			AK09912_REG_CNTL_MODE_FUSE_ROM},
-+		.data_regs = {
-+			AK09912_REG_HXL,
-+			AK09912_REG_HYL,
-+			AK09912_REG_HZL},
- 	}
- };
- 
-@@ -452,6 +479,7 @@ static int ak8975_who_i_am(struct i2c_client *client,
- 	/*
- 	 * Signature for each device:
- 	 * Device   |  WIA1      |  WIA2
-+	 * AK09918  |  DEVICE_ID_|  AK09918_DEVICE_ID
- 	 * AK09916  |  DEVICE_ID_|  AK09916_DEVICE_ID
- 	 * AK09912  |  DEVICE_ID |  AK09912_DEVICE_ID
- 	 * AK09911  |  DEVICE_ID |  AK09911_DEVICE_ID
-@@ -484,6 +512,10 @@ static int ak8975_who_i_am(struct i2c_client *client,
- 		if (wia_val[1] == AK09916_DEVICE_ID)
- 			return 0;
- 		break;
-+	case AK09918:
-+		if (wia_val[1] == AK09918_DEVICE_ID)
-+			return 0;
-+		break;
- 	}
- 
- 	dev_info(&client->dev, "Device ID %x is unknown.\n", wia_val[1]);
-@@ -1066,6 +1098,7 @@ static const struct i2c_device_id ak8975_id[] = {
- 	{"ak09911", (kernel_ulong_t)&ak_def_array[AK09911] },
- 	{"ak09912", (kernel_ulong_t)&ak_def_array[AK09912] },
- 	{"ak09916", (kernel_ulong_t)&ak_def_array[AK09916] },
-+	{"ak09918", (kernel_ulong_t)&ak_def_array[AK09918] },
- 	{}
- };
- MODULE_DEVICE_TABLE(i2c, ak8975_id);
-@@ -1081,6 +1114,7 @@ static const struct of_device_id ak8975_of_match[] = {
- 	{ .compatible = "ak09912", .data = &ak_def_array[AK09912] },
- 	{ .compatible = "asahi-kasei,ak09916", .data = &ak_def_array[AK09916] },
- 	{ .compatible = "ak09916", .data = &ak_def_array[AK09916] },
-+	{ .compatible = "asahi-kasei,ak09918", .data = &ak_def_array[AK09918] },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, ak8975_of_match);
+url:    https://github.com/intel-lab-lkp/linux/commits/Cristian-Ciocaltea/dt-bindings-display-rockchip-Add-schema-for-RK3588-HDMI-TX-Controller/20240802-173018
+base:   1613e604df0cd359cf2a7fbd9be7a0bcfacfabd0
+patch link:    https://lore.kernel.org/r/20240801-b4-rk3588-bridge-upstream-v2-3-9fa657a4e15b%40collabora.com
+patch subject: [PATCH v2 3/3] drm/rockchip: Add basic RK3588 HDMI output support
+config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20240810/202408100456.yY6K40pK-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 13.3.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240810/202408100456.yY6K40pK-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408100456.yY6K40pK-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c:18:10: fatal error: drm/bridge/dw_hdmi_qp.h: No such file or directory
+      18 | #include <drm/bridge/dw_hdmi_qp.h>
+         |          ^~~~~~~~~~~~~~~~~~~~~~~~~
+   compilation terminated.
+
+
+vim +18 drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
+
+    17	
+  > 18	#include <drm/bridge/dw_hdmi_qp.h>
+    19	#include <drm/drm_bridge_connector.h>
+    20	#include <drm/drm_of.h>
+    21	#include <drm/drm_probe_helper.h>
+    22	#include <drm/drm_simple_kms_helper.h>
+    23	
 
 -- 
-2.46.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
