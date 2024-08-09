@@ -1,230 +1,264 @@
-Return-Path: <devicetree+bounces-92411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0436C94D0C3
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 15:02:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B26494D102
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 15:17:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 294941C21D15
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 13:02:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F3B211F21F19
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 13:17:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBE9719412C;
-	Fri,  9 Aug 2024 13:02:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BMXdtn49"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7B2A194AEC;
+	Fri,  9 Aug 2024 13:17:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD52E1917F7;
-	Fri,  9 Aug 2024 13:02:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF1F92F37;
+	Fri,  9 Aug 2024 13:16:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723208530; cv=none; b=pacYoHcGotdcDO3Ne/TXPoX7ysXtWTNmaqeRF3B1WXkXEcoUHr6YxMUVid9VCY+akAwM8aOG/HFdBQcYEzD0YXfBom+4qtNjFmOjOLGtyydH9mS4Aw+mwl2E3EUIA7OGt1wcN2Z/eH9mKvC5/jNIJ2MS5Etntfm8WqKzanyRcHU=
+	t=1723209422; cv=none; b=cmchyC3HKc4tfd+l3wGsn6k6U6mabs8DLQAMaaVouX2xBGJzmuYmBHyyUVzYjm5qGxUBhtPn3zJcAZu69bzCEECq3Iqqr7XrjRJMfdUqY6aP1a3M93UmX4ruvOuSXwILFxuFgdvCLpEPSZsAZgYyCG1jRrf/FvdUyj4aNI9rvD4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723208530; c=relaxed/simple;
-	bh=0JIgO0RDJpCIh6eOO85xcuuqnaghxCx0BS/wi4vV7UQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=n39pE3eu2YR4CxoioOXCTrnq1NY2RqbIODGTQUbsPHEuKfPIQNynnzdlcPG1KVnrvC1OsRiw2BksTOmuceK0QK6BHaTU683reKd1i9MZyu0iP9PSv1D4ulNUERsEMzGsbob6e/IcYNGSNbMKwvFiL+w8j47/S8bq86FFRQ17g4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BMXdtn49; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 479AkrdB000990;
-	Fri, 9 Aug 2024 13:01:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	V709B2quZWGXt+emlcthA4aQUlL8/vH27lYx4Vkru8k=; b=BMXdtn49PRpSBq3x
-	hef4KLV1ZqJfctxb48amz8AtEmrweU8ZLy5qD91Y2URT5FWLXJrjVtF+i1jV4lRT
-	28uN1G/VXpYGuPpLVvmRDpWOFakpPxxAkl+mTa3L4ac3p6bIQFhTDD0YJfllw+dP
-	XcA/EpH7h4lSkVDHnPCp8+8kKSjs5vwH96nHI78wVYrKXaf1PVpVQROx1NoxzAh9
-	dBXTy5HGHY8OkWaCpO3jKO6Y3h1xqb37rlF/Gl1AhLAqOct8elA+r0pB1o8ZjUCR
-	TFt9rThjZrPFlMprcI4Xc184LYWoUF9HeuOroG5OnR8TPrc7y05cWre2/cLrsg68
-	2z9uDg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40vfav5c54-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 09 Aug 2024 13:01:54 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 479D1r9V007903
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 9 Aug 2024 13:01:53 GMT
-Received: from [10.253.72.235] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 9 Aug 2024
- 06:01:49 -0700
-Message-ID: <a0fe7735-76fd-4a53-9446-5371e341ba17@quicinc.com>
-Date: Fri, 9 Aug 2024 21:01:46 +0800
+	s=arc-20240116; t=1723209422; c=relaxed/simple;
+	bh=QHLWQ9mpMsfHRRIAi/pbTsHewE4sjulFRdL77xUI7ds=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mmCzzvciZ1fFdeEtr8+sO+q2EtHr1Rp5iXLoGQbeOgoPwOtj/kZU6eckvGHVdWGciYe/Z7M995A2Wfrxz83RTYCKKiZ3RCtgYwKx/qdPWijTRypdxfy/ZGeF1KPQuQCZ0rRxtpptC1dSCCnEcJBikda17o5XVk83f+K0bQsMaao=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875b02.versanet.de ([83.135.91.2] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1scPU5-00076L-DZ; Fri, 09 Aug 2024 15:16:45 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: linux-kernel@vger.kernel.org,
+ Detlev Casanova <detlev.casanova@collabora.com>
+Cc: "David S . Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ David Wu <david.wu@rock-chips.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
+ kernel@collabora.com, Detlev Casanova <detlev.casanova@collabora.com>
+Subject:
+ Re: [PATCH v2 2/2] ethernet: stmmac: dwmac-rk: Add GMAC support for RK3576
+Date: Fri, 09 Aug 2024 15:16:44 +0200
+Message-ID: <3724132.9z1YWOviru@diego>
+In-Reply-To: <20240808170113.82775-3-detlev.casanova@collabora.com>
+References:
+ <20240808170113.82775-1-detlev.casanova@collabora.com>
+ <20240808170113.82775-3-detlev.casanova@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: clock: qcom: Add common PLL clock
- controller for IPQ SoC
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Stephen
- Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas
-	<catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Konrad Dybcio
-	<konradybcio@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <quic_kkumarcs@quicinc.com>,
-        <quic_suruchia@quicinc.com>, <quic_pavir@quicinc.com>,
-        <quic_linchen@quicinc.com>, <quic_leiwei@quicinc.com>
-References: <20240808-qcom_ipq_cmnpll-v1-0-b0631dcbf785@quicinc.com>
- <20240808-qcom_ipq_cmnpll-v1-1-b0631dcbf785@quicinc.com>
- <81524fee-c32c-405b-b63b-d048dde6ae33@kernel.org>
-Content-Language: en-US
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <81524fee-c32c-405b-b63b-d048dde6ae33@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: pNmHF6kDYnutGDt0tXCqo5BBii1zfhDE
-X-Proofpoint-GUID: pNmHF6kDYnutGDt0tXCqo5BBii1zfhDE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-09_10,2024-08-07_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 adultscore=0
- lowpriorityscore=0 mlxscore=0 bulkscore=0 phishscore=0 suspectscore=0
- impostorscore=0 clxscore=1015 spamscore=0 priorityscore=1501
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408090095
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
+Hi Detlev,
 
-
-On 8/8/2024 10:38 PM, Krzysztof Kozlowski wrote:
-> On 08/08/2024 16:03, Luo Jie wrote:
->> The common PLL controller provides clocks to networking hardware
->> blocks on Qualcomm IPQ SoC. It receives input clock from the on-chip
->> Wi-Fi, and produces output clocks at fixed rates. These output rates
->> are predetermined, and are unrelated to the input clock rate. The
->> output clocks are supplied to the Ethernet hardware such as PPE
->> (packet process engine) and the externally connected switch or PHY
->> device.
->>
->> The common PLL driver is initially being supported for IPQ9574 SoC.
+Am Donnerstag, 8. August 2024, 19:00:18 CEST schrieb Detlev Casanova:
+> From: David Wu <david.wu@rock-chips.com>
 > 
-> Drop references to driver and explain the hardware.
+> Add constants and callback functions for the dwmac on RK3576 soc.
 > 
-> Above with the usage of "common" looks like this is all for some common
-> driver, not for particular hardware.
-
-Understand, will remove this driver reference.
-
+> Signed-off-by: David Wu <david.wu@rock-chips.com>
+> [rebase, extracted bindings]
+> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> ---
+>  .../net/ethernet/stmicro/stmmac/dwmac-rk.c    | 156 ++++++++++++++++++
+>  1 file changed, 156 insertions(+)
 > 
->>
->> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
->> ---
->>   .../bindings/clock/qcom,ipq-cmn-pll.yaml           | 87 ++++++++++++++++++++++
->>   1 file changed, 87 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/clock/qcom,ipq-cmn-pll.yaml b/Documentation/devicetree/bindings/clock/qcom,ipq-cmn-pll.yaml
->> new file mode 100644
->> index 000000000000..c45b3a201751
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/clock/qcom,ipq-cmn-pll.yaml
-> 
-> Use compatible as filename.
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
+> index 7ae04d8d291c8..e1fa8fc9f4012 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
+> @@ -1116,6 +1116,161 @@ static const struct rk_gmac_ops rk3568_ops = {
+>  	},
+>  };
+>  
+> +/* VCCIO0_1_3_IOC */
+> +#define RK3576_VCCIO0_1_3_IOC_CON2		0X6408
+> +#define RK3576_VCCIO0_1_3_IOC_CON3		0X640c
+> +#define RK3576_VCCIO0_1_3_IOC_CON4		0X6410
+> +#define RK3576_VCCIO0_1_3_IOC_CON5		0X6414
+> +
+> +#define RK3576_GMAC_RXCLK_DLY_ENABLE		GRF_BIT(15)
+> +#define RK3576_GMAC_RXCLK_DLY_DISABLE		GRF_CLR_BIT(15)
+> +#define RK3576_GMAC_TXCLK_DLY_ENABLE		GRF_BIT(7)
+> +#define RK3576_GMAC_TXCLK_DLY_DISABLE		GRF_CLR_BIT(7)
+> +
+> +#define RK3576_GMAC_CLK_RX_DL_CFG(val)		HIWORD_UPDATE(val, 0x7F, 8)
+> +#define RK3576_GMAC_CLK_TX_DL_CFG(val)		HIWORD_UPDATE(val, 0x7F, 0)
+> +
+> +/* SDGMAC_GRF */
+> +#define RK3576_GRF_GMAC_CON0			0X0020
+> +#define RK3576_GRF_GMAC_CON1			0X0024
+> +
+> +#define RK3576_GMAC_RMII_MODE			GRF_BIT(3)
+> +#define RK3576_GMAC_RGMII_MODE			GRF_CLR_BIT(3)
+> +
+> +#define RK3576_GMAC_CLK_SELET_IO		GRF_BIT(7)
+> +#define RK3576_GMAC_CLK_SELET_CRU		GRF_CLR_BIT(7)
 
-OK.
+nit: typos _CLK_SELECT_ ... missing the C in select
 
-> 
->> @@ -0,0 +1,87 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/clock/qcom,ipq-cmn-pll.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm Common PLL Clock Controller on IPQ SoC
->> +
->> +maintainers:
->> +  - Bjorn Andersson <andersson@kernel.org>
->> +  - Luo Jie <quic_luoj@quicinc.com>
->> +
->> +description:
->> +  The common PLL clock controller expects a reference input clock.
->> +  This reference clock is from the on-board Wi-Fi. The CMN PLL
->> +  supplies a number of fixed rate output clocks to the Ethernet
->> +  devices including PPE (packet process engine) and the connected
->> +  switch or PHY device.
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - qcom,ipq9574-cmn-pll
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    items:
->> +      - description: The reference clock, the supported clock rates include
->> +          25000000, 31250000, 40000000, 48000000, 50000000 and 96000000 HZ.
->> +      - description: The AHB clock
->> +      - description: The SYS clock
->> +    description:
->> +      The reference clock is the source clock of CMN PLL, which is from the
->> +      Wi-Fi. The AHB and SYS clocks must be enabled to access common PLL
->> +      clock registers.
->> +
->> +  clock-names:
->> +    items:
->> +      - const: ref
->> +      - const: ahb
->> +      - const: sys
->> +
->> +  clock-output-names:
->> +    items:
->> +      - const: ppe-353mhz
->> +      - const: eth0-50mhz
->> +      - const: eth1-50mhz
->> +      - const: eth2-50mhz
->> +      - const: eth-25mhz
-> 
-> Drop entire property. If the names are fixed, what's the point of having
-> it in DTS? There is no.
+> +
+> +#define RK3576_GMAC_CLK_RMII_DIV2		GRF_BIT(5)
+> +#define RK3576_GMAC_CLK_RMII_DIV20		GRF_CLR_BIT(5)
 
-We had added the output names here for the reasons below. Can you please
-let us know your suggestion whether keeping these here is fine?
+I think those are backwards
+The TRM says bit[5]=0: 25MHz (DIV2) and bit[5]=1: 2.5MHz (DIV20)
 
-1.) These output clocks are used as input reference clocks to other
-consumer blocks. For example, an on-board Ethernet PHY device may be
-wired to receive a specific clock from the above output clocks as
-reference clock input, and hence the PHY's DTS node would need to
-reference a particular index in this output clock array.
+I guess nobody also on Rockchip's side tested a RMII phy on those controllrs
 
-Without these output clocks being made available in this DTS, the PHY
-driver in above case would not know the clock specifier to access the
-handle for the desired input clock.
 
-2.) One of the suggestions from the internal code review with Linaro was
-to name the output clocks specifically based on rate and destination
-(Ex: 'ppe-353mhz' for fixed rate 353 MHZ output clock connected to
-Packet Process Engine block), so that the dt-bindings describe the
-input/output clocks clearly.
+> +
+> +#define RK3576_GMAC_CLK_RGMII_DIV1		\
+> +			(GRF_CLR_BIT(6) | GRF_CLR_BIT(5))
+> +#define RK3576_GMAC_CLK_RGMII_DIV5		\
+> +			(GRF_BIT(6) | GRF_BIT(5))
+> +#define RK3576_GMAC_CLK_RGMII_DIV50		\
+> +			(GRF_BIT(6) | GRF_CLR_BIT(5))
+> +
 
-> 
-> Best regards,
-> Krzysztof
-> 
+in contrast, these are correct and match the TRM
+
+
+> +#define RK3576_GMAC_CLK_RMII_GATE		GRF_BIT(4)
+> +#define RK3576_GMAC_CLK_RMII_NOGATE		GRF_CLR_BIT(4)
+> +
+> +static void rk3576_set_to_rgmii(struct rk_priv_data *bsp_priv,
+> +				int tx_delay, int rx_delay)
+> +{
+> +	struct device *dev = &bsp_priv->pdev->dev;
+> +	unsigned int offset_con;
+> +
+> +	if (IS_ERR(bsp_priv->grf) || IS_ERR(bsp_priv->php_grf)) {
+> +		dev_err(dev, "Missing rockchip,grf or rockchip,php_grf property\n");
+> +		return;
+> +	}
+> +
+> +	offset_con = bsp_priv->id == 1 ? RK3576_GRF_GMAC_CON1 :
+> +					 RK3576_GRF_GMAC_CON0;
+> +
+> +	regmap_write(bsp_priv->grf, offset_con, RK3576_GMAC_RGMII_MODE);
+> +
+> +	offset_con = bsp_priv->id == 1 ? RK3576_VCCIO0_1_3_IOC_CON4 :
+> +					 RK3576_VCCIO0_1_3_IOC_CON2;
+> +
+> +	/* m0 && m1 delay enabled */
+> +	regmap_write(bsp_priv->php_grf, offset_con,
+> +		     DELAY_ENABLE(RK3576, tx_delay, rx_delay));
+> +	regmap_write(bsp_priv->php_grf, offset_con + 0x4,
+> +		     DELAY_ENABLE(RK3576, tx_delay, rx_delay));
+> +
+> +	/* m0 && m1 delay value */
+> +	regmap_write(bsp_priv->php_grf, offset_con,
+> +		     RK3576_GMAC_CLK_TX_DL_CFG(tx_delay) |
+> +		     RK3576_GMAC_CLK_RX_DL_CFG(rx_delay));
+> +	regmap_write(bsp_priv->php_grf, offset_con + 0x4,
+> +		     RK3576_GMAC_CLK_TX_DL_CFG(tx_delay) |
+> +		     RK3576_GMAC_CLK_RX_DL_CFG(rx_delay));
+> +}
+> +
+> +static void rk3576_set_to_rmii(struct rk_priv_data *bsp_priv)
+> +{
+> +	struct device *dev = &bsp_priv->pdev->dev;
+> +	unsigned int offset_con;
+> +
+> +	if (IS_ERR(bsp_priv->php_grf)) {
+> +		dev_err(dev, "%s: Missing rockchip,php_grf property\n", __func__);
+> +		return;
+> +	}
+> +
+> +	offset_con = bsp_priv->id == 1 ? RK3576_GRF_GMAC_CON1 :
+> +					 RK3576_GRF_GMAC_CON0;
+> +
+> +	regmap_write(bsp_priv->grf, offset_con, RK3576_GMAC_RMII_MODE);
+> +}
+> +
+> +static void rk3576_set_gmac_speed(struct rk_priv_data *bsp_priv, int speed)
+> +{
+> +	struct device *dev = &bsp_priv->pdev->dev;
+> +	unsigned int val = 0, offset_con;
+> +
+> +	switch (speed) {
+> +	case 10:
+> +		if (bsp_priv->phy_iface == PHY_INTERFACE_MODE_RMII)
+> +			val = RK3576_GMAC_CLK_RMII_DIV20;
+> +		else
+> +			val = RK3576_GMAC_CLK_RGMII_DIV50;
+
+		val = bsp_priv->phy_iface == PHY_INTERFACE_MODE_RMII ?
+				RK3576_GMAC_CLK_RMII_DIV20 :
+				RK3576_GMAC_CLK_RGMII_DIV50;
+perhaps?
+
+> +		break;
+> +	case 100:
+> +		if (bsp_priv->phy_iface == PHY_INTERFACE_MODE_RMII)
+> +			val = RK3576_GMAC_CLK_RMII_DIV2;
+> +		else
+> +			val = RK3576_GMAC_CLK_RGMII_DIV5;
+
+same as above?
+
+> +		break;
+> +	case 1000:
+> +		if (bsp_priv->phy_iface != PHY_INTERFACE_MODE_RMII)
+> +			val = RK3576_GMAC_CLK_RGMII_DIV1;
+> +		else
+> +			goto err;
+
+		if (bsp_priv->phy_iface == PHY_INTERFACE_MODE_RMII)
+			goto err;
+
+		val = RK3576_GMAC_CLK_RGMII_DIV1;
+
+
+> +		break;
+> +	default:
+> +		goto err;
+> +	}
+> +
+> +	offset_con = bsp_priv->id == 1 ? RK3576_GRF_GMAC_CON1 :
+> +					 RK3576_GRF_GMAC_CON0;
+> +
+> +	regmap_write(bsp_priv->grf, offset_con, val);
+> +
+> +	return;
+> +err:
+> +	dev_err(dev, "unknown speed value for GMAC speed=%d", speed);
+> +}
+> +
+> +static void rk3576_set_clock_selection(struct rk_priv_data *bsp_priv, bool input,
+> +				       bool enable)
+> +{
+> +	unsigned int val = input ? RK3576_GMAC_CLK_SELET_IO :
+> +				   RK3576_GMAC_CLK_SELET_CRU;
+> +	unsigned int offset_con;
+> +
+> +	val |= enable ? RK3576_GMAC_CLK_RMII_NOGATE :
+> +			RK3576_GMAC_CLK_RMII_GATE;
+> +
+> +	offset_con = bsp_priv->id == 1 ? RK3576_GRF_GMAC_CON1 :
+> +					 RK3576_GRF_GMAC_CON0;
+
+nit: alignment of both looks like it could be nicer
+
+Heiko
+
 
 
