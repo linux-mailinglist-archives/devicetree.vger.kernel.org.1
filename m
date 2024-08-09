@@ -1,128 +1,126 @@
-Return-Path: <devicetree+bounces-92314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E5A894CADC
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 08:59:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD9E794CAE4
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 09:03:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92F6E1F24819
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 06:59:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 73EE51F2657C
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 07:03:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A25216D4DA;
-	Fri,  9 Aug 2024 06:58:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFE9216C440;
+	Fri,  9 Aug 2024 07:03:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="ksmHMeM2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W77Cw5OG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C44B16C440
-	for <devicetree@vger.kernel.org>; Fri,  9 Aug 2024 06:58:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 840432905;
+	Fri,  9 Aug 2024 07:03:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723186732; cv=none; b=BcyYil2y7JIAG2oMRcPlwOeHrZXUoLUt50Af1W6gYhKEzEKZSQoWklAh200Q5pTXp6zWiASlNr5jP3qSBmAGs6/O8o3hLhkLDAYuGor0a+FUwZalMT8H00UQmqFyANICb11PA3ThkLWzi0fiKbpGxOzbGqDqp/g0/W+nfWl+vIk=
+	t=1723186982; cv=none; b=g4lATok42Dj35tAFhFkgT3Ld19zlmpFa7Fgu2MIRY8hF2xgEGomx3Gd/LQX+Efct3ZVBBQhgFG7N3XK7l7R9xqhCjq11EY0mkpSIW7aM6QDHeMrP74ot1L++GcHHVUC/bktwM0KrDyzPayXkGHGptUPs3wtOtRTG/k7+EpU2Uvg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723186732; c=relaxed/simple;
-	bh=TxEuo8PSvKW7sduTd2C/87bj5Lf0zFoWEoWYisJcNJA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=QNbNidWGnBgAPAZqMtb0efEBdqn15rpGjNLsVHMONK+VxkYyxXkAZTPC+8ELuSFHxQI75EDbCJpIvB62TUbKgW9g2E6/+5VbJPfQqBG54tp7uCWBUX38niOc3D66UVlZ+ICt6wIAhZCObCH1ipE00piCdRhYQDiDFl8/MjF7SZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=ksmHMeM2; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-428e1915e18so11571855e9.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Aug 2024 23:58:49 -0700 (PDT)
+	s=arc-20240116; t=1723186982; c=relaxed/simple;
+	bh=k4x5T0MieqJ09ZNfbjNF9VKFJcCuwoT1Sorug5O3vUE=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version; b=Y+DPbYHQs/t9eNcG88vWsNS2PErX3Z+W8RuRxvd1tiaGb+ws4HQRUc5HdD6UYei6UqJIXBzoJBHP1GzSrcNA7VUfM2BuiDsBKKYahtYM0ujgIxZxuFLU3IFeNkFn7OtZD/T7raWimKdprToq1cc3Q3+sDxHM5vBC1gwX+bWtK+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W77Cw5OG; arc=none smtp.client-ip=209.85.216.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2cb55418470so1510926a91.1;
+        Fri, 09 Aug 2024 00:03:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1723186728; x=1723791528; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uGc5A46qV6UquRjkM3ksrI4LyOrgPjryvM1vbGxiy2w=;
-        b=ksmHMeM2e8uvc8yogRehvFr1Ign4n0h2lQ81ghIlONzkHeIMO15w3ujKcuplxYx8cM
-         ligaw2GhyOiT3Hi6G+7Znb6YAB3mRtlYJ9woD3O5zpNynn77Jzbtw92SBSVS4oSM7jLZ
-         /KHyuaa5WcyTEuKAqESU18VeY0KPYldQEYd+oYFDAcdq4JeY6X/qqSVfNUDTWfc9zUst
-         HspSXIxMfwvAeV/o7rxJjDV8WMV5c3qzwJdVmJzDGIEzX+9n1dFqfNnazHogCWdQRDVX
-         fjNejHrioNcC3z2snm8Rp9XV3aFnSJJjSbDL8eHgZ51aRdHtIXk5RXYe5JEr02Lnw2AP
-         VrZg==
+        d=gmail.com; s=20230601; t=1723186981; x=1723791781; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0BfdVbYhSOGX9L5+SEe9oTBYxIcSn2KcXGJDrTLXXyg=;
+        b=W77Cw5OGNVbMNEtsPBxBltXqU7VG7MMaiM9dEKuQ4zDTyuISyDnbc2vQITHB4CEpRR
+         NHo8uyJWE9y/o/vPB4zjDSIoT4dlz/bg3FYdVFABs+98f/zcFuMIcbZ7lKD6YLzZkTtC
+         PqfhYG6YvWke0UG3IjwLfksiw8/q1+jstu+68IZfeAr9+oEkvtFdm3lCQY3knCvL1vPQ
+         jo5+d39Rd/yvnqeluI3BPpa/SMYUEAk+7gCtUdAMrKdDQyZYWC/QM8e6kirD4r9Fv9Pd
+         YVCHrhtnZjZU/YMxiSEff9nTOTMl+xlj4ObjqzFxUG/o89Qwx7XUAcKOi5CIqcMXP6lm
+         wIaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723186728; x=1723791528;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uGc5A46qV6UquRjkM3ksrI4LyOrgPjryvM1vbGxiy2w=;
-        b=LsMO15dgC6oCpvc5HQ0OvqirWa8wul+bqpL5838Pe9HRx8t8LWShBeq9BL3oCuT46f
-         h2A/O1J1CCxcvfq6rX3+lnPuQyqDVUncD3SunV5uV46/RyLZae+q1y8oeIF0PthsUHBG
-         La/rJIXTmzlhsfK7FxHiqB5ahAvRTj9Ptxu6ec1qV/+ef/6Qx2gtl25zAe5cbdYwu4Sj
-         eKMvWwCNy3P4hNYSIqVfFHpXDF1JcIxumK/J3O75pUc1xjAI2D2aGGeG+bc5pKu1MyAS
-         jDaQgVmuLkBOvW0JUc1Fv3oarQmGmCSKwoVwHFExkwgn5iL970JNkjJbUwbT6+SceA3A
-         +Vxg==
-X-Forwarded-Encrypted: i=1; AJvYcCWoH0e5FFyKoAaty7gPCA/on2+58U/L6pr7hV9C0AvWj1wZvITogYIGZ43/ZE9+hYnqJH3yfa+WS4Ul@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0A6kyVq/1GzUxgb50dACdfVckLNR8yYiUBfDl/ZsLDG3SydA5
-	zFj/HwulfJ8NleOjX4XTurIHpTboJvMIWcLC0JQ5G69aadBYy3ZZjZPD0+uaT94=
-X-Google-Smtp-Source: AGHT+IGm/y8RDXHzdicUeoWix6eAGqqwf0eYXZPWoxOm/P5yFySKVcqSkslxkgIrKK/4iP9LU3HPEA==
-X-Received: by 2002:a05:600c:1d01:b0:426:593c:9351 with SMTP id 5b1f17b1804b1-429c3a179ddmr3569475e9.6.1723186727736;
-        Thu, 08 Aug 2024 23:58:47 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.180])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4290597199fsm115055415e9.14.2024.08.08.23.58.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Aug 2024 23:58:47 -0700 (PDT)
-Message-ID: <58117740-1414-49fa-b58c-db228079f406@tuxon.dev>
-Date: Fri, 9 Aug 2024 09:58:43 +0300
+        d=1e100.net; s=20230601; t=1723186981; x=1723791781;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0BfdVbYhSOGX9L5+SEe9oTBYxIcSn2KcXGJDrTLXXyg=;
+        b=p6nHuvygxrNsaluzEEDhJLEQxioxXKTZ2Hg3gyVWlQfnlmMIER7PpVjB176Fu1qVPg
+         39PVfUQTRYWkibiy8Iz0dBIUDhSITaQngdaCwbsZbwhz0DKJrhU3fqJTKsr2nLRMN7ps
+         zl+OSfxilI529OfFjG0Y3dmK8lOgpLihIUbYF0B9HdZaXBKrFdeWpU4fZ0yGFJccsd5/
+         9p4vf3q6lUGLeyQedCFLq776HdUnbV0a30uhOdju8oOoa5Ji3PSmFW09N0b+A0slO+Mx
+         7gZALzBKnUv9RUdLDkzmdgsOPs0zaCzNS0GbxXZk57aIbE4Bc2SW6lPFpYdxZCPBxiqu
+         GDVg==
+X-Forwarded-Encrypted: i=1; AJvYcCXN/OaXF5IQOoxEe7zCf90JIK1AqxOzihPEkVbm1PpND0s5rYYxL3c6mxWgMaUIOutX3FbEp7Ok4pel@vger.kernel.org, AJvYcCXaMwaurZXsv13aKh75CF3Z4l/AM+lF3vmm0WrF0FeIgjK0uEz0ShyptwyQ6zJEPy8OVtSskAaoepAlXedR@vger.kernel.org
+X-Gm-Message-State: AOJu0YwpbLH2myJPOKEIrP4st5lisXpdnHn36vg9ZiqVqnoPeRFVhBxE
+	emAI3MeEO2x91aDe22F+h3MgwyNcX9Oh+dPHd/S8H9ePyO76gD4t
+X-Google-Smtp-Source: AGHT+IGmu1//tWp7p2kQUU5NMHo6xEX7ajfRCrdddMTpWCuQHzziAjeVwc1F4ZUZWh9IwhcZE02ZxA==
+X-Received: by 2002:a17:90b:4b0d:b0:2c9:6f03:6fd6 with SMTP id 98e67ed59e1d1-2d1e7fecba4mr579582a91.17.1723186980525;
+        Fri, 09 Aug 2024 00:03:00 -0700 (PDT)
+Received: from peter-bmc.dhcpserver.bu9bmc.local (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2d1c9c7ad59sm2248233a91.13.2024.08.09.00.02.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Aug 2024 00:03:00 -0700 (PDT)
+From: Peter Yin <peteryin.openbmc@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Noah Wang <noahwang.wang@outlook.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	Patrick Rudolph <patrick.rudolph@9elements.com>,
+	Lukas Wunner <lukas@wunner.de>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: trivial-devices: add isil,isl69260
+Date: Fri,  9 Aug 2024 15:00:54 +0800
+Message-Id: <20240809070056.3588694-1-peteryin.openbmc@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 04/11] i2c: riic: Enable runtime PM autosuspend support
-Content-Language: en-US
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- chris.brandt@renesas.com, andi.shyti@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, geert+renesas@glider.be,
- magnus.damm@gmail.com, p.zabel@pengutronix.de,
- linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240711115207.2843133-1-claudiu.beznea.uj@bp.renesas.com>
- <20240711115207.2843133-5-claudiu.beznea.uj@bp.renesas.com>
- <ZrTfc5imZgvduGc8@shikoro>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <ZrTfc5imZgvduGc8@shikoro>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Hi, Wolfram,
+Document the "isl,isl69260" compatible, which is already used in the
+DTS files but was not previously documented in the bindings.
+The ISL69260 is a digital dual output multiphase controller
+that supports Intel VR13, VR13.HC, and VR14 specifications.
 
-On 08.08.2024 18:08, Wolfram Sang wrote:
-> On Thu, Jul 11, 2024 at 02:52:00PM +0300, Claudiu wrote:
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->> Enable runtime PM autosuspend support for the RIIC driver. With this, in
->> case there are consecutive xfer requests the device wouldn't be runtime
->> enabled/disabled after each consecutive xfer but after the
->> the delay configured by user. With this, we can avoid touching hardware
->> registers involved in runtime PM suspend/resume saving in this way some
->> cycles. The default chosen autosuspend delay is zero to keep the
->> previous driver behavior.
->>
->> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> 
-> Basically, OK with me. I'd just like a comment here like:
-> 
-> /* Default 0 to save power. Can be overridden via sysfs for lower latency */
+Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
+---
 
-Ok, I'll update it in the next version.
+Change log:
 
-Thank you,
-Claudiu Beznea
+v1 -> v2:
+ - Fixed the binding format.
 
->> +	pm_runtime_set_autosuspend_delay(dev, 0);
->> +	pm_runtime_use_autosuspend(dev);
-> 
-> Other than that:
-> 
-> Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> 
+v1:
+ - Created the isl69260 binding.
+
+ Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index 7913ca9b6b54..6ec8b4cc9e56 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -164,6 +164,8 @@ properties:
+           - isil,isl29030
+             # Intersil ISL68137 Digital Output Configurable PWM Controller
+           - isil,isl68137
++            # Intersil ISL69260 PMBus Voltage Regulator
++          - isil,isl69260
+             # Intersil ISL69269 PMBus Voltage Regulator
+           - isil,isl69269
+             # Intersil ISL76682 Ambient Light Sensor
+-- 
+2.25.1
+
 
