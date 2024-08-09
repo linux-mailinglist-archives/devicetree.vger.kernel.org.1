@@ -1,113 +1,85 @@
-Return-Path: <devicetree+bounces-92515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92517-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A851D94D6FC
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 21:10:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A64B294D718
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 21:17:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 35DA31F23231
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 19:10:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6207D282FC3
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 19:17:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC0D115EFA3;
-	Fri,  9 Aug 2024 19:06:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IT/3DQFG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9700116C869;
+	Fri,  9 Aug 2024 19:16:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BFAF14D29B;
-	Fri,  9 Aug 2024 19:06:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 288A116B75C;
+	Fri,  9 Aug 2024 19:16:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723230381; cv=none; b=V6uJrWneSjFOrqmM+7srCTWiD4VR/4edzUbyE5poGy9oyjUgxWD6g66i1MYlDzAJd+ZMo4xuqCCParEF3n4AL/LZx3FVm59DPN0guPwIoHTso3r2KbPL3LcRA6K8Nqz2rrNXmtPlCm+KxnQ/mg3NbTsFRmoqi5e5ShQC0a1LSdU=
+	t=1723230964; cv=none; b=chZfaYe4D+FWPdSreInL6HJ+I9HnrJzBzO+fciRY+fcxb6QjuBCkEj2L9/E6XrPcK+IrsFF2yz2NofrOrkzAh7ndWR+tre0dD+BvM9L1alPIRThyvliHvc+U+CswAC9bg/EJ24QfxXxPDTNVrIiWrurrVb4BRR0A+4BDdBE6QNo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723230381; c=relaxed/simple;
-	bh=u34Xd5rz4JWanX5zVdA6gtjHYqcgdi9xC5E30BaCsAY=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=UAOPEqtn3YHmPO6pGLmjcwBrOURjGzqwJ03q36GVfVCWDG8Hu4xH6tq1olLcB6w4hb++bZhVGMUPDc4dtBLxTENh8YSwmfq+S/Hg1iHaGUnH6r7vokNC4sdYiBVom/7s+GjIE2aM19O880trbZ+IJWblKhAEcf6JY3LRtIls1y4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IT/3DQFG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9A92C32782;
-	Fri,  9 Aug 2024 19:06:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723230381;
-	bh=u34Xd5rz4JWanX5zVdA6gtjHYqcgdi9xC5E30BaCsAY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=IT/3DQFGDQ8SVxZaUY9e6nFJ2+iyjayjEKDu0s+jObgn5SICq7pFm6MLMrPQjhf/D
-	 UZAautMAmpXEcEvWn95POQrgsQjROAmHBaGhP0PDVTkXsZTa0arr98g7nzHHh12ZaR
-	 E8naemEdZqiYSdrndo1jeMEAJvoeMHfZLhatP9THP1awIZDvJBZua018u9d1WGOYA3
-	 Om8m54pRk8d4Nd0RImnWrNKtrAz9I0nNCnF4WX9xJ9GsTZMfEn3vaHAw1hXfq0wNMK
-	 JPPn2fXLlXjbLBDjqRSUXinnAGF+FXRr3j0e68S4ICJdFY9+NvRywjIxp4ImGffGiu
-	 7+ebQXNRKQOAg==
-Date: Fri, 9 Aug 2024 14:06:19 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"open list:PCI DRIVER FOR GENERIC OF HOSTS" <linux-pci@vger.kernel.org>,
-	"moderated list:PCI DRIVER FOR GENERIC OF HOSTS" <linux-arm-kernel@lists.infradead.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH v2 1/1] dt-bindings: PCI: host-generic-pci: Drop minItems
- and maxItems of ranges
-Message-ID: <20240809190619.GA206533@bhelgaas>
+	s=arc-20240116; t=1723230964; c=relaxed/simple;
+	bh=mQG4EkxvpGIgH8SkmbXczVm5EQzJrZs9/CQUdWaHImo=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=eRGLLN+1haJEYPuS+Y6EA+RXUOj6b8dDthC9qoRgvKFd1yRyzcOgk9hf2fcz8KMrHyw41X7JiGAABn98z8am9z3fefnYXpR6lPTXi7A509M+1mPb1tmG/Wlvo3gmJSun+Xw4tc/eX+c+NIIhyycnC3KrK8quDlnPiA/umjXMSnk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 636E413D5;
+	Fri,  9 Aug 2024 12:16:28 -0700 (PDT)
+Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id AD6F13F71E;
+	Fri,  9 Aug 2024 12:16:01 -0700 (PDT)
+From: Robin Murphy <robin.murphy@arm.com>
+To: will@kernel.org
+Cc: mark.rutland@arm.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	ilkka@os.amperecomputing.com,
+	devicetree@vger.kernel.org
+Subject: [PATCH 7/8] dt-bindings: perf: arm-cmn: Add CMN S3
+Date: Fri,  9 Aug 2024 20:15:46 +0100
+Message-Id: <ec64f4d13b3b30c2ff242deddd302b1d1e256bd1.1723229941.git.robin.murphy@arm.com>
+X-Mailer: git-send-email 2.39.2.101.g768bb238c484.dirty
+In-Reply-To: <cover.1723229941.git.robin.murphy@arm.com>
+References: <cover.1723229941.git.robin.murphy@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240704164019.611454-1-Frank.Li@nxp.com>
+Content-Transfer-Encoding: 8bit
 
-On Thu, Jul 04, 2024 at 12:40:19PM -0400, Frank Li wrote:
-> The ranges description states that "at least one non-prefetchable memory
-> and one or both of prefetchable memory and IO space may also be provided."
-> 
-> However, it should not limit the maximum number of ranges to 3.
-> 
-> Freescale LS1028 and iMX95 use more than 3 ranges because the space splits
-> some discontinuous prefetchable and non-prefetchable segments.
-> 
-> Drop minItems and maxItems. The number of entries will be limited to 32
-> in pci-bus-common.yaml in dtschema, which should be sufficient.
-> 
-> Fix the below CHECK_DTBS warning.
-> arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dtb: pcie@1f0000000: ranges: [[2181038080, 1, 4160749568, 1, 4160749568, 0, 1441792], [3254779904, 1, 4162191360, 1, 4162191360, 0, 458752], [2181038080, 1, 4162650112, 1, 4162650112, 0, 131072], [3254779904, 1, 4162781184, 1, 4162781184, 0, 131072], [2181038080, 1, 4162912256, 1, 4162912256, 0, 131072], [3254779904, 1, 4163043328, 1, 4163043328, 0, 131072], [2181038080, 1, 4227858432, 1, 4227858432, 0, 4194304]] is too long
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+The CMN S3 PMU is functionally still very similar to CMN-700, however
+while the register contents are compatible, many of them are moved to
+different offsets. While this is technically discoverable by a careful
+driver that understands the part number in the peripheral ID registers
+(which do at least remain in the same place), a new unique compatible
+seems warranted to avoid any surprises.
 
-Applied with Rob's Reviewed-by to pci/dt-bindings for v6.12, thanks!
+CC: <devicetree@vger.kernel.org>
+Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+---
+ Documentation/devicetree/bindings/perf/arm,cmn.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-> ---
-> Change from v1 to v2
-> - Rework commit message
-> - drop minItems and maxItems according to Rob's comments.
-> ---
->  Documentation/devicetree/bindings/pci/host-generic-pci.yaml | 2 --
->  1 file changed, 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
-> index 3484e0b4b412e..3be1fff411f8d 100644
-> --- a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
-> +++ b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
-> @@ -102,8 +102,6 @@ properties:
->        As described in IEEE Std 1275-1994, but must provide at least a
->        definition of non-prefetchable memory. One or both of prefetchable Memory
->        and IO Space may also be provided.
-> -    minItems: 1
-> -    maxItems: 3
->  
->    dma-coherent: true
->    iommu-map: true
-> -- 
-> 2.34.1
-> 
+diff --git a/Documentation/devicetree/bindings/perf/arm,cmn.yaml b/Documentation/devicetree/bindings/perf/arm,cmn.yaml
+index 2e51072e794a..0e9d665584e6 100644
+--- a/Documentation/devicetree/bindings/perf/arm,cmn.yaml
++++ b/Documentation/devicetree/bindings/perf/arm,cmn.yaml
+@@ -16,6 +16,7 @@ properties:
+       - arm,cmn-600
+       - arm,cmn-650
+       - arm,cmn-700
++      - arm,cmn-s3
+       - arm,ci-700
+ 
+   reg:
+-- 
+2.39.2.101.g768bb238c484.dirty
+
 
