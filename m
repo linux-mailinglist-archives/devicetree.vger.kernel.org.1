@@ -1,134 +1,172 @@
-Return-Path: <devicetree+bounces-92494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61E5894D5A3
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 19:52:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A509D94D5E8
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 19:59:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89AC51C21601
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 17:52:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FCAF282784
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 17:59:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD5AC132132;
-	Fri,  9 Aug 2024 17:52:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1108F145FEF;
+	Fri,  9 Aug 2024 17:58:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="J202LTRA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QRvROvl2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26E9B17557;
-	Fri,  9 Aug 2024 17:52:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723225935; cv=pass; b=Laqsn1o9jNGIRBBzUFYIHmIJiJ/+N14TQECfOL5T4gWYz3pPGomxj6HivFknpXIvSwpLnsXdX3g1TpnR6uUg7+o5rFqelQngkrHIXicTT4fRV439RYt94utQQPWbsMiyTY4XiLPuYKPCIcH6GMBW8AFfD6cHreOmwCIdAGps90k=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723225935; c=relaxed/simple;
-	bh=XLk8QV2h25tpkRf7tqF0QdkUpiBTzGtozwcq58yZFg0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dSKZmm01DvjF9dkwALl9UUy71C1He3qfci47EdS6fXZSwy/rQ13dngt2ef/ECAik3h/UCuxsxEDuqbSiz6GydPXfLZMrLfRu/CHH2DUD8FsqTfy2Zonbxemx2zTA352jlAyNzSuOXoFqJyLrs5Yx95qkq4AGUuVjRa658RrfjO0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=J202LTRA; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-Delivered-To: kernel@collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1723225918; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=S+A9AILRdKvrlCGFSy00odNQG9O2FFEPDfwA4EBO4Iolg6H++cqpyDiDT4ZqftB3s4fNU0ZCdTf8jE8wKIpEOmHdieEqTVGrjq8GJpXQVkPuvXlX5/TruuLKW9zbst4QmvIPoCVKrGV3J1oe6mDIgHKNpplOjQpdGFPr1mxPpu4=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1723225918; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=1ql2EfSTUecIUIaUErNOW0M2LCtEFtewoUZd3lUg5SE=; 
-	b=JkDNR4/Cq/ztLtHH/aHRuodAtw5XtbKrUvLmkZndhAEzvmSnK5NoDlcfLixq3RdP65WtShzm1u1VBIEDvK2sAuZmA47W4Bi5XI4eS/52ccYSVrTgjtrWjQprFID/cqE9Ury2IJkR4WleOtymck5VubsLgaBsni3Lenv6VslU+vk=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
-	dmarc=pass header.from=<detlev.casanova@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1723225918;
-	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=1ql2EfSTUecIUIaUErNOW0M2LCtEFtewoUZd3lUg5SE=;
-	b=J202LTRAanUypzJNuBchc173ecIXUZaNwBMvzG7CAEIPJFFCPdosOgURloAmgIdx
-	NbXE+CEf0Shy7ced7eK9xAqgxhbhRJV/H8dt7Ay4rOnRrkBuXRXw54oXS1USyqUR9mw
-	2Ib47arDAZI4JgtkF0kPtxA0sYDO4a7RrcHR2C2I=
-Received: by mx.zohomail.com with SMTPS id 1723225916646903.4101544239923;
-	Fri, 9 Aug 2024 10:51:56 -0700 (PDT)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- kernel@collabora.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: Add rk3576 pinctrl bindings
-Date: Fri, 09 Aug 2024 13:53:16 -0400
-Message-ID: <22382840.EfDdHjke4D@trenzalore>
-In-Reply-To: <20240809-dexterity-attention-8376b3b16d59@spud>
-References:
- <20240808164132.81306-1-detlev.casanova@collabora.com>
- <20240808164132.81306-2-detlev.casanova@collabora.com>
- <20240809-dexterity-attention-8376b3b16d59@spud>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9EB113A260;
+	Fri,  9 Aug 2024 17:58:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723226303; cv=none; b=OvG/YwIaOLt7GvwN94CqS4N5bfch5+KZEEJq3T3XrsY44RwddpBtIoHUvY2cMPKQh4ctzO6ctziVybV5nhPGRMZNQ7Uy0gXICuMJWW3xUHZHQsc24ow0nEe/mlXwds9WDFbdAb7BnhpyounJlY8A5LACgPtxpYIG6Wd0g4PoO2g=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723226303; c=relaxed/simple;
+	bh=DxL8HNz0O+ryzWyfsA6C9wCd/wXfyjYBBqmvUecssDs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QMCKVIwm/lmICJ5bcI1QAzS/WPmMz8ae7mi5wyrJWUwyvrHa2wsF3KelhxKfr/+PAOi449zVkV1anmQ1UEmZ6UMZK0KFvtHhWmSWBhhtHVowgCmbI+meOR7ydFzyHImUMec5cr+hqI12iy104S35XLR/pCL5HeH/9hB5a6/PDNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QRvROvl2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E3FAC32782;
+	Fri,  9 Aug 2024 17:58:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723226302;
+	bh=DxL8HNz0O+ryzWyfsA6C9wCd/wXfyjYBBqmvUecssDs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QRvROvl2bllmqnyALF6Jeo8hS9QwzJFnJd6kZz4GU0FurSczGU5xIZm6FMJDPZLjS
+	 jiDwv1zLwa1MWipXGKWM5Yf57/ESflyM+1sssCbbwL/fAzXZ/pOL66nZ6kirhhZiu4
+	 IsG/xYPFERP6tgPzKtNTgB1WjUUZwesYU1JzKeyg2kOkwJwNYjcMVP4pZQHtc85gjl
+	 VTRPe6rFRIj9r6WhhjYce9S3d/i4ArNh7cY+Uq7boC1RPmrBWbCHn+V0H/fP54rcbk
+	 N/JZG5IENLbDqZyMFJEigryEHnkFGslZGg4ihPF2sDjnSEr41pFSXCmro01IOaz4+e
+	 BnOiONSsXjfDg==
+Date: Fri, 9 Aug 2024 11:58:21 -0600
+From: Rob Herring <robh@kernel.org>
+To: Yannick Fertre <yannick.fertre@foss.st.com>
+Cc: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+	Philippe Cornu <philippe.cornu@foss.st.com>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: display: st,stm32-ltdc: Document
+ stm32mp25 compatible
+Message-ID: <20240809175821.GA927825-robh@kernel.org>
+References: <20240809151314.221746-1-yannick.fertre@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240809151314.221746-1-yannick.fertre@foss.st.com>
 
-On Friday, 9 August 2024 10:58:38 EDT Conor Dooley wrote:
-> On Thu, Aug 08, 2024 at 12:39:55PM -0400, Detlev Casanova wrote:
-> > Add the compatible string as well as the optional rockchip,sys-grf field.
+On Fri, Aug 09, 2024 at 05:13:14PM +0200, Yannick Fertre wrote:
+> Add "st,stm32mp25-ltdc" compatible for SOC MP25. This new SOC introduce
+> new clocks (bus, ref & lvds). Bus clock was separated from lcd clock.
+> New sources are possible for lcd clock (lvds / ref).
 > 
-> Optional for all rockchip devices supported by this binding, or just the
-> one you're adding?
+> Signed-off-by: Yannick Fertre <yannick.fertre@foss.st.com>
+> ---
+> Changes in v2: Rework clock property.
+>  .../bindings/display/st,stm32-ltdc.yaml       | 51 +++++++++++++++----
+>  1 file changed, 41 insertions(+), 10 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml b/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
+> index d6ea4d62a2cf..cc578ad9f040 100644
+> --- a/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
+> +++ b/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
+> @@ -12,7 +12,9 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    const: st,stm32-ltdc
+> +    enum:
+> +      - st,stm32-ltdc
+> +      - st,stm32mp25-ltdc
+>  
+>    reg:
+>      maxItems: 1
+> @@ -23,13 +25,6 @@ properties:
+>        - description: errors interrupt line.
+>      minItems: 1
+>  
+> -  clocks:
+> -    maxItems: 1
+> -
+> -  clock-names:
+> -    items:
+> -      - const: lcd
 
-It is only optionally used by rk3576. I can add it in an 'if:', or update the 
-description with somthing like "It is used on rk3576 for i3c software 
-controlled weak pull-up"
+No, keep these at the top-level. Add to the list and add 'minItems: 1'. 
+Then in the if/then schema, just use minItems/maxItems to limit the 
+number of entries.
 
-> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> > ---
-> > 
-> >  .../devicetree/bindings/pinctrl/rockchip,pinctrl.yaml      | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
-> > b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml index
-> > 20e806dce1ecb..cd527ccc9e6bf 100644
-> > --- a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
-> > +++ b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
-> > 
-> > @@ -45,6 +45,7 @@ properties:
-> >        - rockchip,rk3368-pinctrl
-> >        - rockchip,rk3399-pinctrl
-> >        - rockchip,rk3568-pinctrl
-> > 
-> > +      - rockchip,rk3576-pinctrl
-> > 
-> >        - rockchip,rk3588-pinctrl
-> >        - rockchip,rv1108-pinctrl
-> >        - rockchip,rv1126-pinctrl
-> > 
-> > @@ -54,6 +55,12 @@ properties:
-> >      description:
-> >        The phandle of the syscon node for the GRF registers.
-> > 
-> > +  rockchip,sys-grf:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description:
-> > +      The phandle of the syscon node for the SYS GRF registers.
-> > +      It is used for i3c software controlled weak pull-up.
-> > +
-> > 
-> >    rockchip,pmu:
-> >      $ref: /schemas/types.yaml#/definitions/phandle
-> >      description:
-
-
-
-
+> -
+>    resets:
+>      maxItems: 1
+>  
+> @@ -46,11 +41,47 @@ required:
+>    - compatible
+>    - reg
+>    - interrupts
+> -  - clocks
+> -  - clock-names
+>    - resets
+>    - port
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - st,stm32mp25-ltdc
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 4
+> +          items:
+> +            - description: Lcd Clock
+> +            - description: Bus Clock
+> +            - description: Reference Clock
+> +            - description: Lvds Clock
+> +        clock-names:
+> +          items:
+> +            - const: lcd
+> +            - const: bus
+> +            - const: ref
+> +            - const: lvds
+> +      required:
+> +        - clocks
+> +        - clock-names
+> +    else:
+> +      properties:
+> +        clocks:
+> +          maxItems: 1
+> +          items:
+> +            - description: Lcd Clock
+> +        clock-names:
+> +          items:
+> +            - const: lcd
+> +      required:
+> +        - clocks
+> +        - clock-names
+> +
+>  additionalProperties: false
+>  
+>  examples:
+> -- 
+> 2.34.1
+> 
 
