@@ -1,262 +1,138 @@
-Return-Path: <devicetree+bounces-92524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA4CF94D7DC
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 22:09:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF3A394D812
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 22:26:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4353A1F21508
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 20:09:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ABA581F21884
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 20:26:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4915516132E;
-	Fri,  9 Aug 2024 20:09:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2795B16A934;
+	Fri,  9 Aug 2024 20:26:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LnGDYd68"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="LG599ayR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CCF215EFD0;
-	Fri,  9 Aug 2024 20:09:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5601815ECD2;
+	Fri,  9 Aug 2024 20:26:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723234156; cv=none; b=XFCwg/N1pJXB2tLjpIYzw6aqBYlnxsiCIZ7JKHX+v4AjulfCNVshvz0J4j2BWV7om9gN+A3pFXN6mep38ecYxKtkVyVRg93V3Ik1NUz3AXmYeOFcQbetCjyY0t7ubEbSUAOVLY3J7uagmrTCrHgqaGAcFsD5tdsFstXwDrrEGXQ=
+	t=1723235186; cv=none; b=dnafMTizXUHyjfXV7hV3QeGm+jRZvIj1jH2lHIH5FqvyavYW/Q5Wub97eNT48BVBOyENXXFTulk7XXo+CwkH06cw5ig58GFpnIsezJqGdn60G3XSZV6dd0Dso3unLHStDuXlblcxKoQuwAUXJatDKFa7wjZBfof2NoI/jEKSOgY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723234156; c=relaxed/simple;
-	bh=YYL+Tm+xSF544+4Uj8jAxd5IyskAv/6PRlppzHw96O4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=O4+NZNCFMEIiz8C8nY4kcKhWxYo4C8/3CV6xpbJf7J/DY6Io191beBGIKMORVMCZRdmaXBfBl6R30JA8UUtn/a1/uyZ1lFP1SZ7/AQlLZPtGzQC52gEH7LMjjbqkHzCOrLd+TUODVlLWMeMqwfPWzl/FcXv+HN4NJN8o6JZyRik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LnGDYd68; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-530e2235688so2616063e87.3;
-        Fri, 09 Aug 2024 13:09:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723234152; x=1723838952; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kbCw2OHW6bxgsmEaRNrnro77X+kz6gP2JISLqvSzSh0=;
-        b=LnGDYd68ln/F2gt+QRRzJfvJgR8SFV3EBH32RB8jSkklmMvenKhLoYT+cVIN+64txA
-         WL64yOJCKmiBGDtDv5kFYtQfvZcKKTOe5Tyx7K25ubqqKNwwNLz+7LBbCSA9g/0ZpOY2
-         nGmWZF6JG6YVG9G+MebfTKNeqJAmBruO5Ya2RIGkLqbC/p1FHGVvmcnTVV3DurHtpr7A
-         4ro2LJl7uTIp5JBb+Lis3y49iK1vb0TCMuuqdq8UJicZHhBr93vF+A2ESRmlZWw0KipA
-         LC8tt0BoQENdUERnK5+/ST6c008OjJOLiw/eX6CymZj0PGsG4T/M68pjws3HS1W0XRy+
-         q2Jw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723234152; x=1723838952;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kbCw2OHW6bxgsmEaRNrnro77X+kz6gP2JISLqvSzSh0=;
-        b=OB8696L76Ewk+WqbKtP7Wx7c+aqVzbGHPOGsH1Y8SJ5GCFl4I1Ed6ApKuMwQKVrjaK
-         zFbcdu/JIb4ytVklJwaswuyxai6YntdE1EedDybZii7q/a2hkHfHQ5rAf7z+46DqZMEW
-         PbnYN/+oFbHltoSCgLEKqnh7pQm+PVB0gm8FCl0HLDPgINbNMNKdora0GPE3r/3tkcrQ
-         S9azp58xkJ5DhduGB1REmM3qPHVRL12RbZaMVjM9aocY68BnGCjHK2UgYyJMWiJyE9Xz
-         4X+7rOgY6euEZs8TG5/8h0o0AkXn099X8zgcillqqEcFMZvp5tuRWZbgxz5UE412VLv5
-         dA4A==
-X-Forwarded-Encrypted: i=1; AJvYcCWqJqexqQJd3q5Vr5LeJLHhcRNrexPLce20+bzop1quQHDw13fOu5AY/EryN3AFwv3e7Vyl4dcqS1EImTu4M20bAsuUE9+bpC50WPhmlZ3hyOpgSlmwHMtyjdc8E052QcOYCWegsXiUaQ==
-X-Gm-Message-State: AOJu0YzieyfPnnjm7VEGrC9AjpZfRMMpZHUwIAL/iCGyeFooqWgVhDBV
-	moTXrPQ19BNC0J8bj0Z50SyIidsddaTJJoTIOwoCU2Rlcl+ndGyn
-X-Google-Smtp-Source: AGHT+IGtD9fwgDO1QCAG/TU600BWSqmUCV8VPZVyEjzxHLENlKiu3All+0Qr3XQg2RUdoCChrFj22w==
-X-Received: by 2002:a05:6512:3b9c:b0:52e:76d5:9504 with SMTP id 2adb3069b0e04-530ee9909c6mr1999981e87.3.1723234151175;
-        Fri, 09 Aug 2024 13:09:11 -0700 (PDT)
-Received: from ?IPV6:2001:678:a5c:1202:4fb5:f16a:579c:6dcb? (soda.int.kasm.eu. [2001:678:a5c:1202:4fb5:f16a:579c:6dcb])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53200ec3abdsm21261e87.80.2024.08.09.13.09.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Aug 2024 13:09:10 -0700 (PDT)
-Message-ID: <58ea9e04-d3a8-42e1-9cc3-18c8f141adaf@gmail.com>
-Date: Fri, 9 Aug 2024 22:09:09 +0200
+	s=arc-20240116; t=1723235186; c=relaxed/simple;
+	bh=pJOj3I+1WYRt4u/xk9Puogg+uhLXAydx/fsPRWIpHIs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Lm0Pi/+9Oi87HUUno/wm47fFndkW6yhE2rT89XBZVY4xGvaWsep5ip5XEjBtUxtSV2HgXQSn1rVx1AoiUyT0bX8n1ZTyfzqmg1McqqdfFBX+4vc4BWenRJyw18yVH60/rKVgp4s9bdP/CFJurU0hVdJIY7Og8Sa4NUf14nUq5XE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=LG599ayR; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+Received: from [192.168.1.130] (BC2494A8.dsl.pool.telekom.hu [188.36.148.168])
+	by mail.mainlining.org (Postfix) with ESMTPSA id 2514FE450D;
+	Fri,  9 Aug 2024 20:26:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
+	s=psm; t=1723235174;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=3UpBynITifOtGQ+JTyMz1lNTDAi+fw+DIc0dQaABNH0=;
+	b=LG599ayRAVk+9hbZF/ZYdcNoI3fDd43ICq76jYgx7XteURLzUokl5zqwQkBUcODDMeg+l4
+	SV2UfhvJQ8yKXLcPHzm7aJYuAk1SYTOtBIkmz6mhXPyBn5VSTXS2wmMVqNksBW3ocUK3IM
+	0jK1gO6z509zN8cAr9cqqhnETB2jw3ZNgfBL2OzZD29XL4S+QcvWC8XF/QZzP+k2u/3BNE
+	6avt3sbS5saqUeQ8BVbh2GNf4e3C3XCDx4DmAHIk1JWDVNodd4FPQiKShJn5PRvS/isbgb
+	QxlFsXrWSS+dK4Sov14ZwbfwU7e2CyYoygTpqn3nIg25x0fq4DLFJIJxgY1mvw==
+From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
+Subject: [PATCH v3 0/4] Add support for AK09918
+Date: Fri, 09 Aug 2024 22:25:38 +0200
+Message-Id: <20240809-ak09918-v3-0-6b036db4d5ec@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 0/2] Dynamic Allocation of the reserved_mem array
-To: Oreoluwa Babatunde <quic_obabatun@quicinc.com>, robh@kernel.org,
- saravanak@google.com
-Cc: aisheng.dong@nxp.com, hch@lst.de, m.szyprowski@samsung.com,
- robin.murphy@arm.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, iommu@lists.linux.dev, will@kernel.org,
- catalin.marinas@arm.com, kernel@quicinc.com
-References: <20240809184814.2703050-1-quic_obabatun@quicinc.com>
-Content-Language: en-US, sv-SE
-From: Klara Modin <klarasmodin@gmail.com>
-In-Reply-To: <20240809184814.2703050-1-quic_obabatun@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAEJ7tmYC/2WMwQ7CIBAFf6XhLGaBSqkn/8N4QNi2G5UaMETT9
+ N+lvWjS47y8mYkljISJHauJRcyUaAwF1K5ibrChR06+MJMgazBw4PYGbSsMr612HXatcEqy8n5
+ G7Oi9ls6XwgOl1xg/aziLZd02suDAGzCqQbz6xpvTw1K4U6DQ78fYsyWU5b+sf7IsslMA3mrtR
+ LuV53n+AprfsEPgAAAA
+To: Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Jonathan Albrieux <jonathan.albrieux@gmail.com>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux@mainlining.org, 
+ =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>, 
+ Danila Tikhonov <danila@jiaxyga.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1723235174; l=1997;
+ i=barnabas.czeman@mainlining.org; s=20240730; h=from:subject:message-id;
+ bh=pJOj3I+1WYRt4u/xk9Puogg+uhLXAydx/fsPRWIpHIs=;
+ b=sWT1Nxhak7TPGFUxcri9Iiy1f9//zEmFuuvgE+bySYGFdiAJAH7d9Cqp4/nxfqxli5ZxRUGAy
+ HJwVyQwAi8YBNHBTFRaXG6beRf09dnqAfs3KBnDr26x+lMnYCAXDiqI
+X-Developer-Key: i=barnabas.czeman@mainlining.org; a=ed25519;
+ pk=TWUSIGgwW/Sn4xnX25nw+lszj1AT/A3bzkahn7EhOFc=
 
-Hi,
+Add support for AK09918 which is register and scaling compatible with
+AK09912.
 
-On 2024-08-09 20:48, Oreoluwa Babatunde wrote:
-> The reserved_mem array is used to store data for the different
-> reserved memory regions defined in the DT of a device.  The array
-> stores information such as region name, node reference, start-address,
-> and size of the different reserved memory regions.
-> 
-> The array is currently statically allocated with a size of
-> MAX_RESERVED_REGIONS(64). This means that any system that specifies a
-> number of reserved memory regions greater than MAX_RESERVED_REGIONS(64)
-> will not have enough space to store the information for all the regions.
-> 
-> This can be fixed by making the reserved_mem array a dynamically sized
-> array which is allocated using memblock_alloc() based on the exact
-> number of reserved memory regions defined in the DT.
-> 
-> On architectures such as arm64, memblock allocated memory is not
-> writable until after the page tables have been setup.
-> This is an issue because the current implementation initializes the
-> reserved memory regions and stores their information in the array before
-> the page tables are setup. Hence, dynamically allocating the
-> reserved_mem array and attempting to write information to it at this
-> point will fail.
-> 
-> Therefore, the allocation of the reserved_mem array will need to be done
-> after the page tables have been setup, which means that the reserved
-> memory regions will also need to wait until after the page tables have
-> been setup to be stored in the array.
-> 
-> When processing the reserved memory regions defined in the DT, these
-> regions are marked as reserved by calling memblock_reserve(base, size).
-> Where:  base = base address of the reserved region.
-> 	size = the size of the reserved memory region.
-> 
-> Depending on if that region is defined using the "no-map" property,
-> memblock_mark_nomap(base, size) is also called.
-> 
-> The "no-map" property is used to indicate to the operating system that a
-> mapping of the specified region must NOT be created. This also means
-> that no access (including speculative accesses) is allowed on this
-> region of memory except when it is coming from the device driver that
-> this region of memory is being reserved for.[1]
-> 
-> Therefore, it is important to call memblock_reserve() and
-> memblock_mark_nomap() on all the reserved memory regions before the
-> system sets up the page tables so that the system does not unknowingly
-> include any of the no-map reserved memory regions in the memory map.
-> 
-> There are two ways to define how/where a reserved memory region is
-> placed in memory:
-> i) Statically-placed reserved memory regions
-> i.e. regions defined with a set start address and size using the
->       "reg" property in the DT.
-> ii) Dynamically-placed reserved memory regions.
-> i.e. regions defined by specifying a range of addresses where they can
->       be placed in memory using the "alloc_ranges" and "size" properties
->       in the DT.
-> 
-> The dynamically-placed reserved memory regions get assigned a start
-> address only at runtime. And this needs to  be done before the page
-> tables are setup so that memblock_reserve() and memblock_mark_nomap()
-> can be called on the allocated region as explained above.
-> Since the dynamically allocated reserved_mem array can only be
-> available after the page tables have been setup, the information for
-> the dynamically-placed reserved memory regions needs to be stored
-> somewhere temporarily until the reserved_mem array is available.
-> 
-> Therefore, this series makes use of a temporary static array to store
-> the information of the dynamically-placed reserved memory regions until
-> the reserved_mem array is allocated.
-> Once the reserved_mem array is available, the information is copied over
-> from the temporary array into the reserved_mem array, and the memory for
-> the temporary array is freed back to the system.
-> 
-> The information for the statically-placed reserved memory regions does
-> not need to be stored in a temporary array because their starting
-> address is already stored in the devicetree.
-> Once the reserved_mem array is allocated, the information for the
-> statically-placed reserved memory regions is added to the array.
-> 
-> Note:
-> Because of the use of a temporary array to store the information of the
-> dynamically-placed reserved memory regions, there still exists a
-> limitation of 64 for this particular kind of reserved memory regions.
->  From my observation, these regions are typically small in number and
-> hence I expect this to not be an issue for now.
-> 
-> Patch Versions:
-> v7:
-> - Make changes to initialize the reserved memory regions earlier in
->    response to issue reported in v6:
->    https://lore.kernel.org/all/20240610213403.GA1697364@thelio-3990X/
-> 
-> - For the reserved regions to be setup properly,
->    fdt_init_reserved_mem_node() needs to be called on each of the regions
->    before the page tables are setup. Since the function requires a
->    refernece to the devicetree node of each region, we are not able to
->    use the unflattened_devicetree APIs since they are not available until
->    after the page tables have been setup.
->    Hence, revert the use of the unflatten_device APIs as a result of this
->    limitation which was discovered in v6:
->    https://lore.kernel.org/all/986361f4-f000-4129-8214-39f2fb4a90da@gmail.com/
->    https://lore.kernel.org/all/DU0PR04MB9299C3EC247E1FE2C373440F80DE2@DU0PR04MB9299.eurprd04.prod.outlook.com/
-> 
-> v6:
-> https://lore.kernel.org/all/20240528223650.619532-1-quic_obabatun@quicinc.com/
-> - Rebased patchset on top of v6.10-rc1.
-> - Addressed comments received in v5 such as:
->    1. Switched to using relevant typed functions such as
->       of_property_read_u32(), of_property_present(), etc.
->    2. Switched to using of_address_to_resource() to read the "reg"
->       property of nodes.
->    3. Renamed functions using "of_*" naming scheme instead of "dt_*".
-> 
-> v5:
-> https://lore.kernel.org/all/20240328211543.191876-1-quic_obabatun@quicinc.com/
-> - Rebased changes on top of v6.9-rc1.
-> - Addressed minor code comments from v4.
-> 
-> v4:
-> https://lore.kernel.org/all/20240308191204.819487-2-quic_obabatun@quicinc.com/
-> - Move fdt_init_reserved_mem() back into the unflatten_device_tree()
->    function.
-> - Fix warnings found by Kernel test robot:
->    https://lore.kernel.org/all/202401281219.iIhqs1Si-lkp@intel.com/
->    https://lore.kernel.org/all/202401281304.tsu89Kcm-lkp@intel.com/
->    https://lore.kernel.org/all/202401291128.e7tdNh5x-lkp@intel.com/
-> 
-> v3:
-> https://lore.kernel.org/all/20240126235425.12233-1-quic_obabatun@quicinc.com/
-> - Make use of __initdata to delete the temporary static array after
->    dynamically allocating memory for reserved_mem array using memblock.
-> - Move call to fdt_init_reserved_mem() out of the
->    unflatten_device_tree() function and into architecture specific setup
->    code.
-> - Breaking up the changes for the individual architectures into separate
->    patches.
-> 
-> v2:
-> https://lore.kernel.org/all/20231204041339.9902-1-quic_obabatun@quicinc.com/
-> - Extend changes to all other relevant architectures by moving
->    fdt_init_reserved_mem() into the unflatten_device_tree() function.
-> - Add code to use unflatten devicetree APIs to process the reserved
->    memory regions.
-> 
-> v1:
-> https://lore.kernel.org/all/20231019184825.9712-1-quic_obabatun@quicinc.com/
-> 
-> References:
-> [1]
-> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/reserved-memory/reserved-memory.yaml#L79
-> 
-> Oreoluwa Babatunde (2):
->    of: reserved_mem: Restruture how the reserved memory regions are
->      processed
->    of: reserved_mem: Add code to dynamically allocate reserved_mem array
-> 
->   drivers/of/fdt.c             |   5 +-
->   drivers/of/of_private.h      |   3 +-
->   drivers/of/of_reserved_mem.c | 231 +++++++++++++++++++++++++++--------
->   3 files changed, 188 insertions(+), 51 deletions(-)
-> 
+It was tested in Xiaomi Redmi 5 Plus (vince).
 
-I did not see anything suspicious on my relevant machines with this 
-patch series (Raspberry Pi 1 and 3, Edgerouter 6P).
+magnetometer@c {
+  compatible = "asahi-kasei,ak09918", "asahi-kasei,ak09912";
+  reg = <0x0c>;
+  vdd-supply = <&pm8953_l6>;
+  mount-matrix = "1", "0", "0",
+                 "0", "1", "0",
+                 "0", "0", "1";
+};
 
-Regards,
-Tested-by: Klara Modin <klarasmodin@gmail.com>
+Add a fix for data reading according to datasheet [1] (9.4.3.2.) 
+ST2 register have to be read out after read measurment data as third step
+because ST2 will realasing the lock on the measurment data. Without it
+the next reading will fail.
+
+[1] https://www.akm.com/content/dam/documents/products/electronic-compass/ak09918c/ak09918c-en-datasheet.pdf
+
+Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+---
+Changes in v3:
+- Relax failure on unknown device id
+for support more register compatible variants.
+- Change to fallback compatible.
+- Make ST2 to be always read after measuremnt read.
+- Reword fix commit with more explanation.
+- Link to v2: https://lore.kernel.org/r/20240806-ak09918-v2-0-c300da66c198@mainlining.org
+
+Changes in v2:
+- Remove unnecessary ak09918 compatbile.
+- Link to v1: https://lore.kernel.org/r/20240805-ak09918-v1-0-70837eebd7d8@mainlining.org
+
+---
+Barnabás Czémán (2):
+      iio: magnetometer: ak8975: Relax failure on unknown id
+      iio: magnetometer: ak8975: Fix reading for ak099xx sensors
+
+Danila Tikhonov (2):
+      dt-bindings: iio: imu: magnetometer: Add ak09118
+      iio: magnetometer: ak8975: Add AK09118 support
+
+ .../iio/magnetometer/asahi-kasei,ak8975.yaml       |  3 +
+ drivers/iio/magnetometer/Kconfig                   |  2 +-
+ drivers/iio/magnetometer/ak8975.c                  | 73 ++++++++++++++++------
+ 3 files changed, 57 insertions(+), 21 deletions(-)
+---
+base-commit: 61c01d2e181adfba02fe09764f9fca1de2be0dbe
+change-id: 20240805-ak09918-4a6cfef91c32
+
+Best regards,
+-- 
+Barnabás Czémán <barnabas.czeman@mainlining.org>
+
 
