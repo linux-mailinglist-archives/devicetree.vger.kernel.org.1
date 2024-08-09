@@ -1,202 +1,310 @@
-Return-Path: <devicetree+bounces-92370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED13B94CEB5
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 12:33:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCA1A94CECE
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 12:38:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1CBD2814CD
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 10:33:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3AF381F2150E
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 10:38:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 538C21922EE;
-	Fri,  9 Aug 2024 10:33:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EFC7191F89;
+	Fri,  9 Aug 2024 10:38:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u/GF28fz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kSZ/h6II"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2938C1922DD;
-	Fri,  9 Aug 2024 10:33:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7918D15ECE2;
+	Fri,  9 Aug 2024 10:38:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723199609; cv=none; b=StFypLWaUY5JvkNBPzQmJn/M9mOcimU0zMdEnY6HGp00YAQl4J5HIxV54v6/jgdhj1d1YbiTI7JVARmmo1lN0aEgqEBk4eI9yApOtvVWtSojjrF+B/PP5TRbgFg9hzax+Z9VVpx0yQuPAx07/sZxtCWkmng0VXhx0BzqF/NusxQ=
+	t=1723199897; cv=none; b=IkQLtqGT9PlCYcxibgnnZTCl/6D10tC18cY9pUsbxMeBDP4apAsriYa2kO97ozdHFApr5HKhAQVWXchwlHW94+RxiXdHRmtLH1/2/pD6pvvJFyzj6ZYIgHV1vhU0/1DlP25kIGzAoiNjR26G1XO0j2+QK2QBRGq90VyHxOPCvok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723199609; c=relaxed/simple;
-	bh=geVEm2YehZbOESu8VR6yjnHQDT1Lw9EqxnbH3cILeYs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Cqb16CF+D8BheWv6LBKRQrncRAVq80EhqqvfMnIVeluhg5siKrk1e+B1IaYku3AxUVhEHNuHEtxVnikT2D4Qw192evVkASRH43Jtck44ByjKOImHZB295Qb2TlPZ4JWl+qrDCxwxl9T/eTHHXSsm4QdU6NIV09bAPXLKqi+4MIo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u/GF28fz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id AFA2BC4AF0E;
-	Fri,  9 Aug 2024 10:33:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723199608;
-	bh=geVEm2YehZbOESu8VR6yjnHQDT1Lw9EqxnbH3cILeYs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=u/GF28fzW9/ueizSev1IJ1Hc4DfNsPvoSv3ImqmF/5aOJRUez/F1cT0S+8tluDwVH
-	 nBEwnbeI71WlhQiMZXXBddJqPzd2txoI/EkAm2yjj1nEOTDBkzPW7oilM7LEwR4fwt
-	 1w417XnIom4fmSbGQ/jjC/VmeFBgL+ecFptzU01eAbNiRXJGiLR46z65135cd3ksJP
-	 2iX3+Y1ggD1rq1W6sv8O88M5d1+GIHsJkfGv6r1jQBM2oT8+699TdIUczerCdQJztT
-	 rnzdF+/1RpDGLo5YULNruAapP4wlhEAFK4XJ5ZKUNXynApxNl4kwkcDJY5qIpEwYTA
-	 7tVpwL6Vu9D8w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A2B4DC3DA4A;
-	Fri,  9 Aug 2024 10:33:28 +0000 (UTC)
-From: Dumitru Ceclan via B4 Relay <devnull+dumitru.ceclan.analog.com@kernel.org>
-Date: Fri, 09 Aug 2024 13:33:25 +0300
-Subject: [PATCH v2 2/2] iio: adc: ad7173: add support for ad4113
+	s=arc-20240116; t=1723199897; c=relaxed/simple;
+	bh=Mb6b1bjV9sanf6V4GLnxt2bYlvQGbzNEo1khvjRoC/A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Lw+oOVo63TWZQ1RcJ3CtufOJVuPgrwXQfWIQ4wEx8+70J6KyWuPDAU8VFvIsZsyBuDKEKdhPX2evVEfDRgCMV/Vr2LDqaPNqxMlcFH122d/NUx8MFmpNiPS2/AbOqI/UAzPcb5F7YRfdbErhDKHukkvK6AEDMA1J2CB0g+qZ6zw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kSZ/h6II; arc=none smtp.client-ip=209.85.219.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-e02b79c6f21so1832376276.2;
+        Fri, 09 Aug 2024 03:38:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723199894; x=1723804694; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=HTE6RJlGQR3VkcjzNcrQi3tTe1y8STXMCk1EgDfvt5k=;
+        b=kSZ/h6IIMN+4FLOqJcI5xZZZWBuTB1Vyp0CDXxKWyOtm7FG8NtfrdmulOXXH9sN/Cl
+         OTp5clWU3fNh1ZNeP+bI96fBgy/PbPLxjEs/vQYT/ji2d4U+4LTN6kznJYCfwxxCBHoL
+         xd9nTWhxgZsnAujZ3amTqXLd50GYYBBSeleoau52w7w69cABATC/PFKr4QX9eEqfJIx4
+         Hg8WhsnJU6qIgoqr8cTHJlWC5zBWM+MMT9A5fvFR+mmMEtjKMZwy2Xu58jitS+62f9ti
+         m3aWnJyZqU3qwr/F6/3C9SXAevGPk3XnAfWimZqnM8IiRbA1SSyWbeGjic6GqGfYlIiU
+         icAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723199894; x=1723804694;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HTE6RJlGQR3VkcjzNcrQi3tTe1y8STXMCk1EgDfvt5k=;
+        b=KurL314iFLnBfrvDURa1NLAeqllNJH2W/OBpwDKFGc2ovHzgTbtNjWnYR3WWDHqssU
+         tyxM7Mb6tZCGrlFNPm/Zt5dgyPkW1mEN0GpIUQ7pEvrKFKnWg/Vi5UC5mN/nXAy88yPu
+         ITiJ10q4Ua0p8LL3luNTbGUJ7jpZRQ6pE157KPnkgmj3ChOkE7Wpn9bITxjC8ZyUbXYe
+         cniRNWZyjmXrbaxfazle0ZAnjqw3KSW6PxFLMl6k87plSda6HL2/7RXXlJyrDCqXfydk
+         eKiAsyLANHIRbpN6wxWTE7EQrySbQlR/W1lgxsEDk7/SLcdq1Aky3zoo3METE40zOc58
+         cMjg==
+X-Forwarded-Encrypted: i=1; AJvYcCXLYxLZnYyJ37ve6DRiOdxc3PwKWZRdb6k51ne5uMIOK5XQghua6X+jq2kzY1FDhUW7/7VYt4icCs1NeG4g7/G1XWzK5KJMmmeYP4LbqicVI6+AZ4m0omZylsPLy8FRbsHePNxOVVwZn0ZlwGufSqZf49qfKv0bp4RY93zIs5SLAurDesA=
+X-Gm-Message-State: AOJu0YxujT6aUsv5KKNusgZyslm9kNa5rmVxxtyfFIqGIY7EQP8J7VWR
+	OzZBsrWXvAdAie2WU62ZkATm9zfGPbZXxAgH6hB/Xh8e3SpK8haLic7YNnlUVHOyDD5tz5B/5PG
+	KtRpSQTb0dCmcygen+nLsgELFLEU=
+X-Google-Smtp-Source: AGHT+IEUT8qEhh7QYzPUL8lRLTrpcjaj8X9TF3Ou11D5OJfX1LaJQcxiJAD85RM9dPrKwQ1c19GDWjKGIS9v1tPRMwg=
+X-Received: by 2002:a05:6902:102c:b0:e0b:bd20:1f00 with SMTP id
+ 3f1490d57ef6-e0eb98e5d76mr1282096276.9.1723199894233; Fri, 09 Aug 2024
+ 03:38:14 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240809-ad4113-v2-2-2a70c101a1f4@analog.com>
-References: <20240809-ad4113-v2-0-2a70c101a1f4@analog.com>
-In-Reply-To: <20240809-ad4113-v2-0-2a70c101a1f4@analog.com>
-To: Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: mitrutzceclan@gmail.com, linux-iio@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Dumitru Ceclan <dumitru.ceclan@analog.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1723199607; l=4113;
- i=dumitru.ceclan@analog.com; s=20240313; h=from:subject:message-id;
- bh=XNirFVk/IgAks7eJNE8bejsqAHhIlbFNHDBB4sRAHMA=;
- b=xP1OxyAi3LACR6xX59ytuCCBbvHT405z2WuQJV4HmLYM6yP6l+OK7bToljCSxKYAtTZepXWbL
- 8J9flSGgzExA2V4OP39/oc0ODkVyl6ARlm4b/dqMzCOd6i2fs5qmIfI
-X-Developer-Key: i=dumitru.ceclan@analog.com; a=ed25519;
- pk=HdqMlVyrcazwoiai7oN6ghU+Bj1pusGUFRl30jhS7Bo=
-X-Endpoint-Received: by B4 Relay for dumitru.ceclan@analog.com/20240313
- with auth_id=140
-X-Original-From: Dumitru Ceclan <dumitru.ceclan@analog.com>
-Reply-To: dumitru.ceclan@analog.com
+References: <20240620144217.124733-1-iansdannapel@gmail.com>
+ <20240628152348.61133-1-iansdannapel@gmail.com> <20240628152348.61133-2-iansdannapel@gmail.com>
+ <ZpDSz5dp+zFPYjVw@yilunxu-OptiPlex-7050> <CAKrir7iHjxnRvZvch8ADgGFymm_z1=rU8gOM+Q==xpe64G6xkA@mail.gmail.com>
+ <ZqUZK14ROqNvVuiO@yilunxu-OptiPlex-7050> <CAKrir7jU4dAWREMVLbe1A3a1TGOb8r-UM2zviZEXYY9nzJrm7A@mail.gmail.com>
+ <ZqesIi6pW12TlPlc@yilunxu-OptiPlex-7050>
+In-Reply-To: <ZqesIi6pW12TlPlc@yilunxu-OptiPlex-7050>
+From: Ian Dannapel <iansdannapel@gmail.com>
+Date: Fri, 9 Aug 2024 12:38:03 +0200
+Message-ID: <CAKrir7h4bSMQ=TkP=a+4sG6OK7NVn=dj2k6ypCF6TJUd_JiOcw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] fpga: Add Efinix Trion & Titanium serial SPI
+ programming driver
+To: Xu Yilun <yilun.xu@linux.intel.com>
+Cc: Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>, Xu Yilun <yilun.xu@intel.com>, 
+	Tom Rix <trix@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko.stuebner@cherry.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Sebastian Reichel <sre@kernel.org>, Chris Morgan <macromorgan@hotmail.com>, 
+	Michael Riesch <michael.riesch@wolfvision.net>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	Andre Przywara <andre.przywara@arm.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	linux-fpga@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-From: Dumitru Ceclan <dumitru.ceclan@analog.com>
+Am Mo., 29. Juli 2024 um 16:52 Uhr schrieb Xu Yilun <yilun.xu@linux.intel.com>:
+>
+> On Sun, Jul 28, 2024 at 01:44:03PM +0200, Ian Dannapel wrote:
+> > Am Sa., 27. Juli 2024 um 18:00 Uhr schrieb Xu Yilun <yilun.xu@linux.intel.com>:
+> > >
+> > > On Thu, Jul 25, 2024 at 03:44:54PM +0200, Ian Dannapel wrote:
+> > > > Hi Yilun, thanks for the review.
+> > > >
+> > > > Am Fr., 12. Juli 2024 um 09:00 Uhr schrieb Xu Yilun <yilun.xu@linux.intel.com>:
+> > > > >
+> > > > > On Fri, Jun 28, 2024 at 05:23:46PM +0200, iansdannapel@gmail.com wrote:
+> > > > > > From: Ian Dannapel <iansdannapel@gmail.com>
+> > > > > >
+> > > > >
+> > > > > Please don't reply to the previous series when you post a new version.
+> > > > sure
+> > > > >
+> > > > > > Add a new driver for loading binary firmware using "SPI passive
+> > > > >
+> > > > > Loading to some nvram or reporgraming to FPGA logic blocks.
+> > >
+> > > Sorry for typo, this is a question:
+> > >
+> > >   Loading to some nvram or reporgraming to FPGA logic blocks?
+> > The datasheet refers to it as configuration RAM (CRAM) and must be
+> > loaded on every boot up.
+>
+> The FPGA reprogramming is about loading the FPGA logic blocks, and from
+> the POV of the System, it is about runtime changing the HW and
+> re-enumerate the devices.
+>
+> But some submitted fpga-mgr drivers are just used to to write nvram
+> backend for FPGA, don't affect any running device at all. I think these
+> drivers virtually have nothing to do with fpga-mgr. Some generic
+> storage (e.g. nvram, mtd) or firmware image loading interfaces better
+> fit them. I assume this driver is also of this kind.
+To clarify, this driver does not write to a nvram or any persistent
+memory. Programming or reprogramming at runtime is necessary, but
+partial reprogramming is not supported.
+>
+> > >
+> > > > >
+> > > > > > programming" on Efinix FPGAs.
+> > > > > >
+> > > > > > Signed-off-by: Ian Dannapel <iansdannapel@gmail.com>
+> > > > > > ---
+> > > > > >  drivers/fpga/Kconfig                    |   8 +
+> > > > > >  drivers/fpga/Makefile                   |   1 +
+> > > > > >  drivers/fpga/efinix-trion-spi-passive.c | 219 ++++++++++++++++++++++++
+> > > > > >  3 files changed, 228 insertions(+)
+> > > > > >  create mode 100644 drivers/fpga/efinix-trion-spi-passive.c
+> > > > > >
+> > > > > > diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
+> > > > > > index 37b35f58f0df..25579510e49e 100644
+> > > > > > --- a/drivers/fpga/Kconfig
+> > > > > > +++ b/drivers/fpga/Kconfig
+> > > > > > @@ -83,6 +83,14 @@ config FPGA_MGR_XILINX_SPI
+> > > > > >         FPGA manager driver support for Xilinx FPGA configuration
+> > > > > >         over slave serial interface.
+> > > > > >
+> > > > > > +config FPGA_MGR_EFINIX_SPI
+> > > > > > +     tristate "Efinix FPGA configuration over SPI passive"
+> > > > > > +     depends on SPI
+> > > > > > +     help
+> > > > > > +       This option enables support for the FPGA manager driver to
+> > > > > > +       configure Efinix Trion and Titanium Series FPGAs over SPI
+> > > > > > +       using passive serial mode.
+> > > > > > +
+> > > > > >  config FPGA_MGR_ICE40_SPI
+> > > > > >       tristate "Lattice iCE40 SPI"
+> > > > > >       depends on OF && SPI
+> > > > > > diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
+> > > > > > index aeb89bb13517..1a95124ff847 100644
+> > > > > > --- a/drivers/fpga/Makefile
+> > > > > > +++ b/drivers/fpga/Makefile
+> > > > > > @@ -18,6 +18,7 @@ obj-$(CONFIG_FPGA_MGR_TS73XX)               += ts73xx-fpga.o
+> > > > > >  obj-$(CONFIG_FPGA_MGR_XILINX_CORE)   += xilinx-core.o
+> > > > > >  obj-$(CONFIG_FPGA_MGR_XILINX_SELECTMAP)      += xilinx-selectmap.o
+> > > > > >  obj-$(CONFIG_FPGA_MGR_XILINX_SPI)    += xilinx-spi.o
+> > > > > > +obj-$(CONFIG_FPGA_MGR_EFINIX_SPI)    += efinix-trion-spi-passive.o
+> > > > > >  obj-$(CONFIG_FPGA_MGR_ZYNQ_FPGA)     += zynq-fpga.o
+> > > > > >  obj-$(CONFIG_FPGA_MGR_ZYNQMP_FPGA)   += zynqmp-fpga.o
+> > > > > >  obj-$(CONFIG_FPGA_MGR_VERSAL_FPGA)   += versal-fpga.o
+> > > > > > diff --git a/drivers/fpga/efinix-trion-spi-passive.c b/drivers/fpga/efinix-trion-spi-passive.c
+> > > > > > new file mode 100644
+> > > > > > index 000000000000..eb2592e788b9
+> > > > > > --- /dev/null
+> > > > > > +++ b/drivers/fpga/efinix-trion-spi-passive.c
+> > > > > > @@ -0,0 +1,219 @@
+> > > > > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > > > > +/*
+> > > > > > + * Trion and Titanium Series FPGA SPI Passive Programming Driver
+> > > > > > + *
+> > > > > > + * Copyright (C) 2024 iris-GmbH infrared & intelligent sensors
+> > > > > > + *
+> > > > > > + * Ian Dannapel <iansdannapel@gmail.com>
+> > > > > > + *
+> > > > > > + * Manage Efinix FPGA firmware that is loaded over SPI using
+> > > > > > + * the serial configuration interface.
+> > > > > > + */
+> > > > > > +
+> > > > > > +#include <linux/delay.h>
+> > > > > > +#include <linux/device.h>
+> > > > > > +#include <linux/fpga/fpga-mgr.h>
+> > > > > > +#include <linux/gpio/consumer.h>
+> > > > > > +#include <linux/module.h>
+> > > > > > +#include <linux/mod_devicetable.h>
+> > > > > > +#include <linux/of.h>
+> > > > > > +#include <linux/spi/spi.h>
+> > > > > > +#include <linux/sizes.h>
+> > > > > > +
+> > > > > > +struct efinix_spi_conf {
+> > > > > > +     struct spi_device *spi;
+> > > > > > +     struct gpio_desc *cdone;
+> > > > > > +     struct gpio_desc *creset;
+> > > > > > +     struct gpio_desc *cs;
+> > > > > > +};
+> > > > > > +
+> > > > > > +static int get_cdone_gpio(struct fpga_manager *mgr)
+> > > > >
+> > > > > Is it better use 'struct efinix_spi_conf *conf' as parameter?
+> > > > >
+> > > > > Same for the following functions.
+> > > > >
+> > > > > > +{
+> > > > > > +     struct efinix_spi_conf *conf = mgr->priv;
+> > > > > > +     int ret;
+> > > > > > +
+> > > > > > +     ret = gpiod_get_value(conf->cdone);
+> > > > > > +     if (ret < 0)
+> > > > > > +             dev_err(&mgr->dev, "Error reading CDONE (%d)\n", ret);
+> > > > > > +
+> > > > > > +     return ret;
+> > > > > > +}
+> > > > > > +
+> > > > > > +static void reset(struct fpga_manager *mgr)
+> > > > >
+> > > > > Please unify the naming of the internal functions. You use
+> > > > > 'efinix_spi_apply_clk_cycles()' below.
+> > > > >
+> > > > > > +{
+> > > > > > +     struct efinix_spi_conf *conf = mgr->priv;
+> > > > > > +
+> > > > > > +     gpiod_set_value(conf->creset, 1);
+> > > > > > +     /* wait tCRESET_N */
+> > > > > > +     usleep_range(5, 15);
+> > > > > > +     gpiod_set_value(conf->creset, 0);
+> > > > > > +}
+> > > > > > +
+> > > > > > +static enum fpga_mgr_states efinix_spi_state(struct fpga_manager *mgr)
+> > > > > > +{
+> > > > > > +     struct efinix_spi_conf *conf = mgr->priv;
+> > > > > > +
+> > > > > > +     if (conf->cdone && get_cdone_gpio(mgr) == 1)
+> > > > > > +             return FPGA_MGR_STATE_OPERATING;
+> > > > > > +
+> > > > > > +     return FPGA_MGR_STATE_UNKNOWN;
+> > > > > > +}
+> > > > > > +
+> > > > > > +static int efinix_spi_apply_clk_cycles(struct fpga_manager *mgr)
+> > > > > > +{
+> > > > > > +     struct efinix_spi_conf *conf = mgr->priv;
+> > > > > > +     char data[13] = {0};
+> > > > > > +
+> > > > > > +     return spi_write(conf->spi, data, sizeof(data));
+> > > > > > +}
+> > > > > > +
+> > > > > > +static int efinix_spi_write_init(struct fpga_manager *mgr,
+> > > > > > +                              struct fpga_image_info *info,
+> > > > > > +                              const char *buf, size_t count)
+> > > > > > +{
+> > > > > > +     struct efinix_spi_conf *conf = mgr->priv;
+> > > > > > +
+> > > > > > +     if (info->flags & FPGA_MGR_PARTIAL_RECONFIG) {
+> > > > > > +             dev_err(&mgr->dev, "Partial reconfiguration not supported\n");
+> > > > > > +             return -EINVAL;
+> > > > > > +     }
+> > > > > > +
+> > > > > > +     /* reset with chip select active */
+> > > > > > +     gpiod_set_value(conf->cs, 1);
+> > > > >
+> > > > > Why operating chip selective at SPI client driver? Isn't it the job for SPI
+> > > > > controller?
+> > > > to enter the passive programming mode, a reset must be executed while
+> > > > the chip select is active.
+> > > > The is controlling the chip select from here, since I expect that the
+> > > > SPI controller to only activate
+> > > > the CS when communicating.
+> > >
+> > > The concern is, it may conflict with the underlying cs control in spi
+> > > controller.
+> > >
+> > > There are several control flags in struct spi_transfter to affect cs. Is
+> > > there any chance using them, or try to improve if they doesn't meet your
+> > > request?
+> > The main problem of this chip is that probably the of SPI is out of
+> > spec, so would like to avoid changes in the spi contoller for this
+> > edge case.
+> > That is probably one the reasons that the datasheet does not recommend
+> > other devices on the same SPI bus.
+>
+> I think anyway you need to communicate with spi controller driver and
+> have one voice how/who to take control of cs, rather than blindly
+> operate at both sides.
+I did not find a clear solution yet. This FGPA device requires an SPI
+without a chip-select signal and no other device transaction should be
+allowed in between reprogramming, which seems to be a very specific
+case for the SPI Controller to manage
+>
+> Thanks,
+> Yilun
 
-This commit adds support for the AD4113 ADC.
-The AD4113 is a low power, low noise, 16-bit, Σ-Δ analog-to-digital
-converter (ADC) that integrates an analog front end (AFE) for four
-fully differential or eight single-ended inputs.
-
-Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
----
- drivers/iio/adc/ad7173.c | 36 +++++++++++++++++++++++++++++++++++-
- 1 file changed, 35 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/iio/adc/ad7173.c b/drivers/iio/adc/ad7173.c
-index a854f2d30174..3ac09d326472 100644
---- a/drivers/iio/adc/ad7173.c
-+++ b/drivers/iio/adc/ad7173.c
-@@ -3,7 +3,7 @@
-  * AD717x and AD411x family SPI ADC driver
-  *
-  * Supported devices:
-- *  AD4111/AD4112/AD4114/AD4115/AD4116
-+ *  AD4111/AD4112/AD4113/AD4114/AD4115/AD4116
-  *  AD7172-2/AD7172-4/AD7173-8/AD7175-2
-  *  AD7175-8/AD7176-2/AD7177-2
-  *
-@@ -84,6 +84,7 @@
- #define AD4111_ID			AD7173_ID
- #define AD4112_ID			AD7173_ID
- #define AD4114_ID			AD7173_ID
-+#define AD4113_ID			0x31D0
- #define AD4116_ID			0x34d0
- #define AD4115_ID			0x38d0
- #define AD7175_8_ID			0x3cd0
-@@ -170,6 +171,7 @@ struct ad7173_device_info {
- 	bool has_temp;
- 	/* ((AVDD1 − AVSS)/5) */
- 	bool has_pow_supply_monitoring;
-+	bool data_reg_only_16bit;
- 	bool has_input_buf;
- 	bool has_int_ref;
- 	bool has_ref2;
-@@ -294,6 +296,24 @@ static const struct ad7173_device_info ad4112_device_info = {
- 	.num_sinc5_data_rates = ARRAY_SIZE(ad7173_sinc5_data_rates),
- };
- 
-+static const struct ad7173_device_info ad4113_device_info = {
-+	.name = "ad4113",
-+	.id = AD4113_ID,
-+	.num_voltage_in_div = 8,
-+	.num_channels = 16,
-+	.num_configs = 8,
-+	.num_voltage_in = 8,
-+	.num_gpios = 2,
-+	.data_reg_only_16bit = true,
-+	.higher_gpio_bits = true,
-+	.has_vincom_input = true,
-+	.has_input_buf = true,
-+	.has_int_ref = true,
-+	.clock = 2 * HZ_PER_MHZ,
-+	.sinc5_data_rates = ad7173_sinc5_data_rates,
-+	.num_sinc5_data_rates = ARRAY_SIZE(ad7173_sinc5_data_rates),
-+};
-+
- static const struct ad7173_device_info ad4114_device_info = {
- 	.name = "ad4114",
- 	.id = AD4114_ID,
-@@ -988,6 +1008,13 @@ static const struct iio_info ad7173_info = {
- 	.update_scan_mode = ad7173_update_scan_mode,
- };
- 
-+static const struct iio_scan_type ad4113_scan_type = {
-+	.sign = 'u',
-+	.realbits = 16,
-+	.storagebits = 16,
-+	.endianness = IIO_BE,
-+};
-+
- static const struct iio_chan_spec ad7173_channel_template = {
- 	.type = IIO_VOLTAGE,
- 	.indexed = 1,
-@@ -1229,6 +1256,8 @@ static int ad7173_fw_parse_channel_config(struct iio_dev *indio_dev)
- 		chan_st_priv->cfg.input_buf = st->info->has_input_buf;
- 		chan_st_priv->cfg.ref_sel = AD7173_SETUP_REF_SEL_INT_REF;
- 		st->adc_mode |= AD7173_ADC_MODE_REF_EN;
-+		if (st->info->data_reg_only_16bit)
-+			chan_arr[chan_index].scan_type = ad4113_scan_type;
- 
- 		chan_index++;
- 	}
-@@ -1309,6 +1338,9 @@ static int ad7173_fw_parse_channel_config(struct iio_dev *indio_dev)
- 			chan_st_priv->ain = AD7173_CH_ADDRESS(ain[0], ain[1]);
- 		}
- 
-+		if (st->info->data_reg_only_16bit)
-+			chan_arr[chan_index].scan_type = ad4113_scan_type;
-+
- 		chan_index++;
- 	}
- 	return 0;
-@@ -1437,6 +1469,7 @@ static int ad7173_probe(struct spi_device *spi)
- static const struct of_device_id ad7173_of_match[] = {
- 	{ .compatible = "adi,ad4111",	.data = &ad4111_device_info },
- 	{ .compatible = "adi,ad4112",	.data = &ad4112_device_info },
-+	{ .compatible = "adi,ad4113",	.data = &ad4113_device_info },
- 	{ .compatible = "adi,ad4114",	.data = &ad4114_device_info },
- 	{ .compatible = "adi,ad4115",	.data = &ad4115_device_info },
- 	{ .compatible = "adi,ad4116",	.data = &ad4116_device_info },
-@@ -1454,6 +1487,7 @@ MODULE_DEVICE_TABLE(of, ad7173_of_match);
- static const struct spi_device_id ad7173_id_table[] = {
- 	{ "ad4111",   (kernel_ulong_t)&ad4111_device_info },
- 	{ "ad4112",   (kernel_ulong_t)&ad4112_device_info },
-+	{ "ad4113",   (kernel_ulong_t)&ad4113_device_info },
- 	{ "ad4114",   (kernel_ulong_t)&ad4114_device_info },
- 	{ "ad4115",   (kernel_ulong_t)&ad4115_device_info },
- 	{ "ad4116",   (kernel_ulong_t)&ad4116_device_info },
-
--- 
-2.43.0
-
-
+Thank
+Ian
 
