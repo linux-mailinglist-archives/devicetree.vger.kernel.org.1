@@ -1,148 +1,115 @@
-Return-Path: <devicetree+bounces-92518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12A1094D756
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 21:32:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E53994D76B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 21:38:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C3A6B281BBB
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 19:32:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1B3C1C22620
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 19:38:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8700F8289C;
-	Fri,  9 Aug 2024 19:32:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E009016D4E5;
+	Fri,  9 Aug 2024 19:36:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GNQiG746"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CL7uYEYQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA3CBA41;
-	Fri,  9 Aug 2024 19:31:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADFF316D4DA;
+	Fri,  9 Aug 2024 19:36:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723231921; cv=none; b=S9bhfTspnyxhXZGlbJnznfYmWMncFzBWC0v+hYomGWMFv+rIjTjywjdv0v8C3kzDFxqG27cqucmUX4Eq2deuh6vzWoLjqC+pO4WWGCpb+zN456D/8DIne/L3hlpxRVMizje0Bef34JWwKHlVtxc+frAOy9dzj7rUrh299n9SsAk=
+	t=1723232200; cv=none; b=gay9H1mWtBjreWWn0sKe1sJqi/bmfFKONJS1Bg32GTiE/H2ImBFRnW3iYBV8kMrncgtIlXmBn49KA5qT9TPAypBwnlzheIW9jqLzMVIDJCX+gd64DNk/nIYNcvs3V24ul1hfRwiDY9LidbjOjzYVwSh3Zv4LG49NeLPMbaxKaKI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723231921; c=relaxed/simple;
-	bh=Z8Bptl+71weUnjMsyHX2MTnzwIckzoc5DzXu0D3tp6Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MUeI2k8JCHpQLNSt1t4O8IKrbHTf1MF43vInoRFy+Lm+5xkdPNuUchi+X+886iK0ibONEP7+NWWN+DGB2I9bkCIWVuJp2NBrDn6KfzG1DsDM1NO8Z7URN9juRTrgykKB6kg9dX/Gu9mshRrcCpWoT+hcJWeYNTp9tXFsxvE4r6w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GNQiG746; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-52f04b4abdcso3527582e87.2;
-        Fri, 09 Aug 2024 12:31:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723231918; x=1723836718; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VITcg2JB4ebTYpwzqfOR5OkOphumGh3Os/L25Fs1FSk=;
-        b=GNQiG746aSMF5qfBiY2ShN5pmmwHI2G7cMWu7JwR08Q8zo+OksQnor3P30M7EWzfqj
-         BUZW/E8n+B/rg0MZGHm3JX/Xq4gdWJ3kWEnK4kAt/CDVfNuqLhf7Izw7SINg5VooLukn
-         CpjZHRc/hjC+gp0JkA3GXSblko0zzKChBZDihcp5HzEl9652nS9xPC2mht+ZpJWtFuF/
-         3NY7J/suMau7I9XwXfBPYo7U1Yuupoyttv/Rk8pu1HX8AJ5TDow8vHDbTM8AAcKKJBPP
-         gX172wmX0HcWTQ5JmbOurogndSpfUfCi3U+GbQQBat1AK3F0JZliEcz9bokn1VMXtpDu
-         3FNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723231918; x=1723836718;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VITcg2JB4ebTYpwzqfOR5OkOphumGh3Os/L25Fs1FSk=;
-        b=rZw/cI8kYalaBz76E+YYhI/0RUd9BFaCGLWL+qmsWO33AdhIbtXX9r/VLWsZWBblZ7
-         xlUsy7FzdZto+fkwbBcIKcT247iCZqFNZun9LeBUOfNjgjIGFZtVe6vBYYx/800PHyj/
-         VzPCacrMRszf6obDeLYEyeCF1p9tLaOZcahBMLObpHb1qIbYcyIuPyVphXm/nFnUupX8
-         6NksHDq1rwpr5BnZRW8zNgbpcdf2VQyTfoYpl2GSO3S6/dJf+Cf9nsZoPADa+UN0DBRL
-         Uf9/ECKiWMtc9ROrdSL9cIR6qbL/sqh5RooeZdn8jiKP4Yb5kAg+QOSc8oxqOW2TMSra
-         tkNg==
-X-Forwarded-Encrypted: i=1; AJvYcCXnGfZTrr91HHnkCl5RzyR2pO6YrNocyOgSFsakOd7JBsRHvr+e2B2rXiz/Ymsk78ALUrIN6vwW2z2OfBZVsYdeGBDGj0EF4WT/rRdXFG0IH86j2cvroH6nENqMa7f4s/rHdSFr7Qqoc4u8RtlR+RlidiTvWGmPLNmIFQV/WeET6u7y9ZHt58sgYS0Mrp8Qu/Buw59VmY0yrZoZ/0p3V3Xf9OuDHw==
-X-Gm-Message-State: AOJu0YyhnzAGOkXyR2W4JFiNtibUtcdKTY4vZuI+7uex2206M9D6vExV
-	hC7GgP0zES58bDVlgpjcWcKRsxbVLMB+qwNbdMGxzkzMSiDgS0iu
-X-Google-Smtp-Source: AGHT+IEZZsOEzp4Al5LE7fCwp/ly55/+1pBPiX1vVF7xSc8+G0b5Ei5+RKBJQUfEphDPas9pOvnYiw==
-X-Received: by 2002:a05:6512:3989:b0:52e:9382:a36 with SMTP id 2adb3069b0e04-530ee993e35mr1936647e87.30.1723231917565;
-        Fri, 09 Aug 2024 12:31:57 -0700 (PDT)
-Received: from [192.168.42.76] (public-gprs548729.centertel.pl. [37.225.6.186])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53200f3602bsm12316e87.239.2024.08.09.12.31.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Aug 2024 12:31:56 -0700 (PDT)
-Message-ID: <a109d7a3-bfc8-49ea-8ca1-c7b1c517fa4f@gmail.com>
-Date: Fri, 9 Aug 2024 21:31:53 +0200
+	s=arc-20240116; t=1723232200; c=relaxed/simple;
+	bh=mkPEFV98KvnOaAAN7g/wYK5Tu1zCY+dlV5z7gwpWU2g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fTemm6MF5uEU7E3wXwzfe14tuIa/SJnC7PeCSVVo/jAJo1eD7STjl+sxeeH4KQYetgIj6JiQEvZpOFNSErYbiXvc/9gv7cxScBjrS6wdFQvU1TMTsxbLvl9r/P5ZXlX6aeZnBk0TtPoGwkHTMGb/fxHoKK4Pz3yUiNOuQx5F9Nc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CL7uYEYQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AC19C4AF0F;
+	Fri,  9 Aug 2024 19:36:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723232200;
+	bh=mkPEFV98KvnOaAAN7g/wYK5Tu1zCY+dlV5z7gwpWU2g=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=CL7uYEYQAr/juursVo6E/rVuKkgEgzuoszPNBzBAKJAI6fLASZ2N6PLbQon0a2JcN
+	 C+5re9FhKI8DGNfI8noiYet6fLox5J/PnZoFeOCss7rkFqIak+1c2Mi6/tCmg0TNOR
+	 3JcPglXTOZP3Er2zQib/SKVfTqWuHWXXT/gS6zMY2TYJTOG6J5lUQVmCQkRRTQdBWH
+	 dkEaZipMeFFEz0zk0W7lPBXIcdxVX80hfPVzMovcm0kdX6XE4yboPsiDJc6n5OkIGN
+	 /L7Ua83mB7Ux4Qgt0XGvrb156rP3/WCIo8fVs8JjNHuf1LGrdnyTIll0oIcQDOIgDb
+	 ct6G8Du9dHIfQ==
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-66c7aeac627so24790977b3.1;
+        Fri, 09 Aug 2024 12:36:40 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXPvcHj0NYN/y+286SZBHxdVPdnSDh+cy8tjpbO6wQg+Jko8C5qhnbolyEQUvzGQWsT49P7shGXEtfQMzczvD6piUTKKo8hltwbIKT+ubwP7FEU6Bd+j+k70WUba6MSJmRsrhUTaQCDfkLw8kKpoIckYcIBaVhjzY616uWnO5IJz9x/UA==
+X-Gm-Message-State: AOJu0YzqOqgVf03hVVNTrx6uxEQ980ty9DAech2qsm5yxzBaItsY6G6Q
+	B/PyH8G++cYUss7C25vDDO1RhnguNvlmtQikSvvSIM1owZ0mzEBEjhsmjye1ZlWsw3Buy3Huj5M
+	qt+57doxbNmp748lHcCLL9mzokg==
+X-Google-Smtp-Source: AGHT+IHBGl9q4G8F8pliJY8Zk++lUNGSb02vw079AJRuY1yoNpvNqDe4xQYpgv06h2WkxHSBvtV3ggLblPSN7rtiP4s=
+X-Received: by 2002:a05:6902:230d:b0:e0b:ab0b:6ec6 with SMTP id
+ 3f1490d57ef6-e0eb9946e2bmr2664155276.19.1723232199336; Fri, 09 Aug 2024
+ 12:36:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/8] ASoC: qcom: apq8016_sbc: Add support for msm8953
- SoC
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Stephan Gerhold <stephan@gerhold.net>, alsa-devel@alsa-project.org,
- linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Vladimir Lypak <vladimir.lypak@gmail.com>
-References: <20240731-msm8953-msm8976-asoc-v3-0-163f23c3a28d@gmail.com>
- <20240731-msm8953-msm8976-asoc-v3-6-163f23c3a28d@gmail.com>
- <ZqtnyWAXTsSGAg0i@linaro.org>
-Content-Language: en-US
-From: Adam Skladowski <a39.skl@gmail.com>
-In-Reply-To: <ZqtnyWAXTsSGAg0i@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240809151213.94533-1-matthew.gerlach@linux.intel.com>
+ <20240809151213.94533-2-matthew.gerlach@linux.intel.com> <20240809181401.GA973841-robh@kernel.org>
+ <98185d65-805f-f09d-789-6eda61c4b36d@linux.intel.com>
+In-Reply-To: <98185d65-805f-f09d-789-6eda61c4b36d@linux.intel.com>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 9 Aug 2024 13:36:25 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJg_ahW451sBht1k5SxP9s4dE09F-EWrgdXdDpUPFDfcQ@mail.gmail.com>
+Message-ID: <CAL_JsqJg_ahW451sBht1k5SxP9s4dE09F-EWrgdXdDpUPFDfcQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/7] dt-bindings: PCI: altera: Convert to YAML
+To: matthew.gerlach@linux.intel.com
+Cc: lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, dinguyen@kernel.org, 
+	joyce.ooi@intel.com, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, Aug 9, 2024 at 12:43=E2=80=AFPM <matthew.gerlach@linux.intel.com> w=
+rote:
+> On Fri, 9 Aug 2024, Rob Herring wrote:
+>
+> > On Fri, Aug 09, 2024 at 10:12:07AM -0500, matthew.gerlach@linux.intel.c=
+om wrote:
+> >> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+> >>
+> >> Convert the device tree bindings for the Altera Root Port PCIe control=
+ler
+> >> from text to YAML. Update the entries in the interrupt-map field to ha=
+ve
+> >> the correct number of address cells for the interrupt parent.
+> >>
+> >> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+> >> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> >> ---
+> >> v8:
+> >
+> > v2 or v8 or ??? I'm confused and tools will be too.
+>
+> Sorry for the confusion. Patch 1 and patch 2 were individually reviewed
+> previously. Patch 1 was previously reviewed up to v8, and I included them
+> in the greater patch set for convience and completeness, and this is v2 o=
+f
+> the entire patch set.
+>
+> How should this be handled for better clarity? Would it be better to not
+> to include Patch 1 and 2 in the patch set and refer to them, or would it
+> better to remove the history in patch 1 and 2, or something else?
 
-On 8/1/24 12:47, Stephan Gerhold wrote:
-> On Wed, Jul 31, 2024 at 05:25:30PM +0200, Adam Skladowski wrote:
->> From: Vladimir Lypak <vladimir.lypak@gmail.com>
->>
->> Introduce support for audio card on MSM8953 platform.
->> Main difference between MSM8953 and MSM8916 is Q6AFE CLK API
->> supported by firmware which influence way we set codec clocks.
->> SoCs shipping on at least msm-3.18 should use v2 clocks.
->>
->> Signed-off-by: Vladimir Lypak <vladimir.lypak@gmail.com>
->> [Adam: rename functions, add msg]
->> Co-developed-by: Adam Skladowski <a39.skl@gmail.com>
->> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
->> ---
->>  sound/soc/qcom/apq8016_sbc.c | 43 +++++++++++++++++++++++++++++++++++++++++--
->>  1 file changed, 41 insertions(+), 2 deletions(-)
->>
->> diff --git a/sound/soc/qcom/apq8016_sbc.c b/sound/soc/qcom/apq8016_sbc.c
->> index 5a29adbd3f82..3ed35beb671a 100644
->> --- a/sound/soc/qcom/apq8016_sbc.c
->> +++ b/sound/soc/qcom/apq8016_sbc.c
->> @@ -22,6 +22,11 @@
->>  
-> Is there a particular reason why you decided to hardcode the
-> q6afe_clk_ver for the SoCs rather than finishing up the dynamic
-> detection Otto proposed [1]?
->
-> This works for MSM8953 but there are a few SoCs like MSM8909 where
-> both clock API versions exist (depending on the firmware versions).
-> If we want to support them at some point, we will need the dynamic
-> detection anyway. It would be nice to finish up that patch set.
->
-> Thanks,
-> Stephan
->
-> [1]: https://lore.kernel.org/linux-arm-msm/20231029165716.69878-1-otto.pflueger@abscue.de/
-This probably sound obvious but i don't understand takes Srinivas
-had on these patches.
-On top i don't feel good sending code i don't understand much.
-On a note i managed to slightly modify fallback commit
-and provide match table translating new clks into v1.
-In theory if we want we can drop snd_soc_component_set_sysclk()
-from soundcard driver and use devm_clk_get/clk_set_rate/clk_prepare_enable
-to manage clocks provided by q6afe_clocks.
-Biggest issue for me is lack of people who i can even discuss with about,
-even here i fail to see much feedback.
+Generally, if you added new patches you keep the versioning and say
+"vN: new patch" in the new patches.
+
+If this was 2 prior series, combined, there's not really a good answer
+other than don't do that.
+
+Rob
 
