@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-92286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 493D694C9D9
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 07:49:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A47A94C9E6
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 07:53:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB7C8280FD0
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 05:49:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A495E1F22A70
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 05:53:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9D1416C841;
-	Fri,  9 Aug 2024 05:49:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 197EA16C847;
+	Fri,  9 Aug 2024 05:53:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EEHpStzt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aDmnZlXe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8734934CDD;
-	Fri,  9 Aug 2024 05:49:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD0C312E7E;
+	Fri,  9 Aug 2024 05:53:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723182566; cv=none; b=kKw3uZbAo+pTM9jz3cwREOV0yLrro5lK8EBxTUwU8hTreuDm8g1b/kP5Q/VCITatv1pY8HCnzMf+m+SRx9MvioHnqDY9bonxJWQJrS7rsSmK5yyQFf2avErrrM3S+2Uqzg0eKf6Bz0J+OJpYzkkPLoJbyXAakzYDiov6OECKnbU=
+	t=1723182811; cv=none; b=dT8KymI9ZT4F7tDbjEgUF2h0oGbDf7cyXS34B9gnLae7CqWsvgAORf3G4tEBqHxISNKtiAyeVNEKZvDmxfGH4uvQzEIodS4TU/UPXfL3wQ3vUUHfiCe21S6kNS31mPvR1P1VXBdn1pcJqgqa+2iKHIvcY5JPtGd2KbCxb6bBywU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723182566; c=relaxed/simple;
-	bh=12XbqWay4D68Qp40QHYpSukXZCMh8XhXyK8jkIHuWzA=;
+	s=arc-20240116; t=1723182811; c=relaxed/simple;
+	bh=WPtOAuV9aswhmETP6KB3Lze/3iFuPjnW3egrPbSzqJQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QZiyueiRZHjEgbV0YS7k+z+UybHNlftftQyxyffOiJBaX5bzqk5Zs0XnruAXWmcpjWtm5mC0g97Xe04xwFIIj03Fgn5J/l0w67PMCJtB4YaD4pHvQrf9lKh+U4pvExMN8sfx4lhoL4kYRfbh61e7TAD9fpBPkZ/9pyl39pYzhhY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EEHpStzt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7857AC32782;
-	Fri,  9 Aug 2024 05:49:21 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=J0CMipgd4FFY+YH2i8fVtmYUVrIoSr2H4Iwqy8B9hk/WzdmhpVwp99rZyykeX7mZxI4enVcLmgeZCh9LpL5LExhZ+dfmZiZvxeYzbXRp68ykQho7zQ6XW/t0fME4bh8V6E2uJxmJEUUS8ZLasPMnOWjypR0hgvAcwoC7E6b9418=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aDmnZlXe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59810C4AF0D;
+	Fri,  9 Aug 2024 05:53:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723182566;
-	bh=12XbqWay4D68Qp40QHYpSukXZCMh8XhXyK8jkIHuWzA=;
+	s=k20201202; t=1723182810;
+	bh=WPtOAuV9aswhmETP6KB3Lze/3iFuPjnW3egrPbSzqJQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EEHpStztJHMpUTADsJGXfHr7x9SGMACJQ7l6nIy6P6tjKLzrWEvBr3HwdXyrDSpLG
-	 b96p3F7rJbFpuRFCU6n20oO4c33OEUIXiYhSwYSz3Tf+BPjEOOZcxIO6Ra+5xBWRv9
-	 MXFc2+Gmo6LdSFbiyTjdX6QjuyEYiNit0qb+xMK/H7ADhpLVBbmXTZ44pZzFdhVzyw
-	 CNfSk0c6ul1ADKfMUhxLTpEwL9s//Xzd81ssImJMRH6D+6ynrekaNLkbYclyx/VheZ
-	 kCIqI+JoTd//YLADS4+iJCDCFJR4sWlNatranNA51M6ve/3njfHCEZYNek59xyHeZw
-	 o5RTNtLHZPhMQ==
-Message-ID: <a29c1c92-0f22-4fe3-a965-8561f6dba059@kernel.org>
-Date: Fri, 9 Aug 2024 07:49:19 +0200
+	b=aDmnZlXeCEO3tHifcSQMguhtDDfJ+JF3K9nfD+p4O7uCus75dPUrMZKJbVR9VaktW
+	 dLa8HNIqkFVfbu5f0udFDUhymTSsAiaXWNwHPlxTMhB43oTDx3Odg9NmezTnYCPRF4
+	 7BEu6I/800tTW8D5ve8TcYDsrk1kcl89cRSWcBVJxr5RQHO8Wj29rvP0Nldw4zNgDZ
+	 rEaeGm4TMKTa1Egg7d3ZQAkYVuU736YW6WBxt3k/fcpjuiHTNtg3/zLBskSidKLTAK
+	 SHAi7gmqahvwIKRLMzJbzxQK5WNbnce1FaT8bFnB40ExpKNXcUQQ93x+eGoBhiMM85
+	 cc8Q7v3ltxnxw==
+Message-ID: <601adbfd-fbb6-48c6-b755-da1b5d321d6b@kernel.org>
+Date: Fri, 9 Aug 2024 07:53:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 08/10] arm64: dts: exynos: Add initial support for
- exynos8895 SoC
-To: David Virag <virag.david003@gmail.com>,
- Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>
-Cc: linux-samsung-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240807082843.352937-1-ivo.ivanov.ivanov1@gmail.com>
- <20240807082843.352937-9-ivo.ivanov.ivanov1@gmail.com>
- <e6b4e0d8-7183-4ff4-a373-cb1c0c98d993@kernel.org>
- <5274b8a1-b81c-3979-ed6c-3572f6a6cfc2@gmail.com>
- <225a94c3d0e8f70238aa9a486e7752ad6cb20283.camel@gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: serial: Add Loongson UART controller
+To: =?UTF-8?B?6YOR6LGq5aiB?= <zhenghaowei@loongson.cn>,
+ gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, chenhuacai@kernel.org,
+ kernel@xen0n.name, p.zabel@pengutronix.de
+Cc: linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, loongarch@lists.linux.dev
+References: <20240804063834.70022-1-zhenghaowei@loongson.cn>
+ <4d1f2426-b43c-4727-8387-f18edf937163@kernel.org>
+ <f31609c4-1e47-49bc-9231-5b0353d35dc9@loongson.cn>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,65 +105,129 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <225a94c3d0e8f70238aa9a486e7752ad6cb20283.camel@gmail.com>
+In-Reply-To: <f31609c4-1e47-49bc-9231-5b0353d35dc9@loongson.cn>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 07/08/2024 19:29, David Virag wrote:
-> On Wed, 2024-08-07 at 14:20 +0300, Ivaylo Ivanov wrote:
->>
->> On 8/7/24 12:20, Krzysztof Kozlowski wrote:
->>> On 07/08/2024 10:28, ivo.ivanov.ivanov1@gmail.com wrote:
->>>> From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-> [snip]
->>>>
->>>> +
->>>> +	timer {
->>>> +		compatible = "arm,armv8-timer";
->>>> +		/* Hypervisor Virtual Timer interrupt is not
->>>> wired to GIC */
->>>> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8)
->>>> | IRQ_TYPE_LEVEL_LOW)>,
->>>> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8)
->>>> | IRQ_TYPE_LEVEL_LOW)>,
->>>> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8)
->>>> | IRQ_TYPE_LEVEL_LOW)>,
->>>> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8)
->>>> | IRQ_TYPE_LEVEL_LOW)>;
->>>> +		clock-frequency = <26000000>;
->>> Hm? I think this was explicitly disallowed.
->>
->> It's weird. Without the clock-frequency property it fails early
->> during the
->>
->> boot process and I can't get any logs from pstore or simple-
->> framebuffer.
->>
->> Yet it's not set on similar platforms (exynos7885, autov9). Perhaps I
->>
->> could alias the node and set it in the board device tree..? That
->> doesn't
->>
->> sound right.
+On 07/08/2024 10:23, 郑豪威 wrote:
 > 
-> This sounds like CNTFRQ_EL0 is not set properly by the firmware.
-> Now, if I read the documentation properly, this can be only set from
-> EL3, which in your case is... not easy.
+> 在 2024/8/4 16:43, Krzysztof Kozlowski 写道:
+>> On 04/08/2024 08:38,zhenghaowei@loongson.cn wrote:
+>>
+>> Due to lack of changelog, I assume you send the same patch, so:
+>>
+>> <form letter>
+>> This is a friendly reminder during the review process.
+>>
+>> It seems my or other reviewer's previous comments were not fully
+>> addressed. Maybe the feedback got lost between the quotes, maybe you
+>> just forgot to apply it. Please go back to the previous discussion and
+>> either implement all requested changes or keep discussing them.
+>>
+>> Thank you.
+>> </form letter>
+>>
+>> Also:
+>>
+>>> +
+>>> +  clocks:
+>>> +    maxItems: 1
+>>> +
+>>> +  fractional-division:
+>> Where are this and following defined? In which schema?
+>>
+> These and the ones below are new definitions, can I use them like this?
 > 
-> On my Galaxy A8 2018 (Exynos7885) I remember the old Android 8
-> bootloader not being able to boot mainline, but Android 9 bootloaders
-> did. I did not take the time to check if it was related to this, but it
-> is my guess.
+> +  fractional-division:
+> +    description: Enables fractional-N division. Currently,
+> +      only LS2K1500 and LS2K2000 support this feature.
+> +    type: boolean
 > 
-> Your best bet is that maybe Samsung decided to fix this on the latest
-> bootloader, and upgrading will fix it. (Though if it's already on an
-> Android 9 based bootloader and it's still broken, my guess is a newer
-> version won't fix it, but who knows)
 
-If you can update your device to newer Android and it fixes the issue,
-then please drop the property. If this does not work, then please add a
-comment like: /* Non-updatable, broken stock Samsung bootloader does not
-configure CNTFRQ_EL0 */
+Missing vendor prefix, but what's more important, why would this be
+property of DT? Just enable it always...
+
+>>> +    description: Enables fractional-N division. Currently,
+>>> +      only LS2K1500 and LS2K2000 support this feature.
+>>> +
+>>> +  rts-invert:
+>>> +    description: Inverts the RTS value in the MCR register.
+>>> +      This should be used on Loongson-3 series CPUs, Loongson-2K
+>>> +      series CPUs, and Loongson LS7A bridge chips.
+>>> +
+>>> +  dtr-invert:
+>>> +    description: Inverts the DTR value in the MCR register.
+>>> +      This should be used on Loongson-3 series CPUs, Loongson-2K
+>>> +      series CPUs, and Loongson LS7A bridge chips.
+>>> +
+>>> +  cts-invert:
+>>> +    description: Inverts the CTS value in the MSR register.
+>>> +      This should be used on Loongson-2K0500, Loongson-2K1000,
+>>> +      and Loongson LS7A bridge chips.
+>>> +
+>>> +  dsr-invert:
+>>> +    description: Inverts the DSR value in the MSR register.
+>>> +      This should be used on Loongson-2K0500, Loongson-2K1000,
+>>> +      and Loongson LS7A bridge chips.
+
+Same questions for all these. Why choosing invert is a board level
+decision? If it "should be used" then why it is not used always?
+
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - interrupts
+>>> +  - clocks
+>>> +
+>>> +allOf:
+>>> +  - $ref: serial.yaml
+>>> +
+>>> +unevaluatedProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>>> +    #include <dt-bindings/clock/loongson,ls2k-clk.h>
+>>> +
+>>> +    serial@1fe001e0 {
+>>> +        compatible = "loongson,ls7a-uart";
+>>> +        reg = <0x0 0x1fe001e0 0x0 0x10>;
+>>> +        clock-frequency = <100000000>;
+>>> +        interrupt-parent = <&liointc>;
+>>> +        interrupts = <10 IRQ_TYPE_LEVEL_HIGH>;
+>>> +        fractional-division;
+>>> +        rts-invert;
+>>> +        dtr-invert;
+>>> +    };
+>>> diff --git a/MAINTAINERS b/MAINTAINERS
+>>> index 8766f3e5e87e..a6306327dba5 100644
+>>> --- a/MAINTAINERS
+>>> +++ b/MAINTAINERS
+>>> @@ -13189,6 +13189,13 @@ S:	Maintained
+>>>   F:	Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
+>>>   F:	drivers/i2c/busses/i2c-ls2x.c
+>>>   
+>>> +LOONGSON UART DRIVER
+>>> +M:	Haowei Zheng<zhenghaowei@loongson.cn>
+>>> +L:	linux-serial@vger.kernel.org
+>>> +S:	Maintained
+>>> +F:	Documentation/devicetree/bindings/serial/loongson,ls7a-uart.yaml
+>>> +F:	drivers/tty/serial/8250/8250_loongson.c
+>> There is no such file.
+>>
+>> Best regards,
+>> Krzysztof
+> 
+> The file "drivers/tty/serial/8250/8250_loongson.c" will be created in 
+> the patch
+> 
+> "tty: serial: 8250: Add loongson uart driver support". Is it 
+> inappropriate to reference it here?
+
+Apply this patch and run get_maintainers self tests. What do you see?
+
+Of course it is not appropriate here. The file does not exist.
 
 Best regards,
 Krzysztof
