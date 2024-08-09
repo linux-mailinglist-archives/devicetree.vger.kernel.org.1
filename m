@@ -1,123 +1,116 @@
-Return-Path: <devicetree+bounces-92320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67AC494CB18
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 09:20:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B569694CB19
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 09:20:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA8C01F21D4A
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 07:20:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74CD8283537
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 07:20:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9F86176AAD;
-	Fri,  9 Aug 2024 07:19:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFBAB173336;
+	Fri,  9 Aug 2024 07:20:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="NxdcLwIH"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Qq5mQAtp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ED92176224
-	for <devicetree@vger.kernel.org>; Fri,  9 Aug 2024 07:19:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 324C512FB34
+	for <devicetree@vger.kernel.org>; Fri,  9 Aug 2024 07:20:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723187974; cv=none; b=XrQxx2fGQ7rmoflshWrWfosSgGtEGrLGfCf6mCLCzMOkIZh/NG9iOSW2JvElfTGySlRkkgtfjfwFliPk8K9nBlNjbG0f/sLCNk0z3vn7w+yFtYpHebNVu6Ybu61+6tp0BogFxAWHFB8LqK23OLXMnmPClDMYIthKfFIeqjDyPlI=
+	t=1723188029; cv=none; b=jNOnhL4DagbQ1Nsh6ZVkY0HQ3iV9C8KJfSjXgX43xdiJvjSPo9V4BfE+WsVxD18pI5ndYkDrbiREtiW0aQ4VIksgih4lE/o897r5nQQ4Y0k2u5Ee5vkuq35NPHrvmvCqd3Af+UyKtXGgP6YcB3/PS2HOYhXeg4YbZnNG6liyo04=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723187974; c=relaxed/simple;
-	bh=Q4nFREltywLWvp+a+YLS9t960MM8zA7CGo+yKV63lqA=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=crUlVpCDAOS7Gk3QKXHGVmF1M+qhaP8Fii1GUokHbGowwiI0pswl3daAl9iGI/KiRzZHAdZQ+VfmCYujD9CyOXhQTYBMI0lqz4r1K6jPNpgcJR4XfbxAQ0mAdHr4nu/zq+3k0Se8+iBnh6j3gbhwLjgVBbvx9poc4fSowmPDdi4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=NxdcLwIH; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1723187968; x=1725779968;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=Q4nFREltywLWvp+a+YLS9t960MM8zA7CGo+yKV63lqA=;
-	b=NxdcLwIH+vcNQJb48JT/7hfHKkDdBwpE/OKxNSEZO9svPH3zlZC1jzSow/mYkBWB
-	8XtgpWYKEUDIi0SBLa2V+6N3BOOsgPrEdcCA+OVbpUbm/rE/Xwupw62wygEmvqgx
-	/8e1y3ovSUf5JQQ6A33VP8JlbIAgMLM6sG925m72xEs=;
-X-AuditID: ac14000a-03e52700000021bc-e4-66b5c300ff77
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 81.00.08636.003C5B66; Fri,  9 Aug 2024 09:19:28 +0200 (CEST)
-Received: from Berlix.phytec.de (172.25.0.12) by Berlix.phytec.de
- (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Fri, 9 Aug 2024
- 09:19:28 +0200
-Received: from Berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4]) by
- berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4%4]) with mapi id 15.01.2507.006;
- Fri, 9 Aug 2024 09:19:28 +0200
-From: Benjamin Hahn <B.Hahn@phytec.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
-	<festevam@gmail.com>, Teresa Remmet <T.Remmet@phytec.de>
-CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, PHYTEC Upstream <upstream@lists.phytec.de>
-Subject: Re: [PATCH] dts: freescale: imx8mp-phyboard-pollux-rdk: Add console
- UART bootargs
-Thread-Topic: [PATCH] dts: freescale: imx8mp-phyboard-pollux-rdk: Add console
- UART bootargs
-Thread-Index: AQHa6XY6kPt5aw6SZ02VFTHA/V1iaLIdAsMAgAFhugA=
-Date: Fri, 9 Aug 2024 07:19:28 +0000
-Message-ID: <eaf09c81-58d8-4e70-ac58-e69bca617398@phytec.de>
-References: <20240808-add_bootargs_to_devicetree-v1-1-79f7ba50b174@phytec.de>
- <ebc46895-6d46-4c24-ac1f-9aecfd2617d6@kernel.org>
-In-Reply-To: <ebc46895-6d46-4c24-ac1f-9aecfd2617d6@kernel.org>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <A59B266772063941A9EBF04143087086@phytec.de>
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1723188029; c=relaxed/simple;
+	bh=LCQjMCGu/NtAGIDdzcexTOBsi+0vUqa7B0DD5sAYYr8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=IBYFPnxKA4v+iTjNVZTaG8xSRyfemH2fyQHQLIRPhlb/gsKR4mnKWw6kW5Z0y3OC1iWQX6WXUaX2YkPoR3L90LcH9CdZ6Pj2K668qfRDLMKcvPJpxQToSO8yGaDsbHEo1gtTfD3Q0i/UpZaeoCEPZh+McgRf/sz5WRXiRKNE+2s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Qq5mQAtp; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3685b9c8998so785452f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2024 00:20:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1723188026; x=1723792826; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=d47CUelTnreJC+PfHZ3JAzMPsN6JTZHLt6cE64vISVI=;
+        b=Qq5mQAtpdNfdlpCpGTDIgXHwpVnmlrHcRvxkgzwNFdab415YIUsJ/3bt8p40r8ouv9
+         bfhwROBKcRqosR/s07FQxqsXDAG/24KJnLLJ2n8lGBvNyOQrjgYIdwVOiJ2KY7ZpdIht
+         T+epW2u7VXPH1wyUIMaUrv1jGYkdlIczyBOljkitz7so5p5pw1kjqiERqLugvu6KGYz/
+         Kyscj3dcLhUye38X8VYdiPw7PgFz0I9weMLHXNILjlz17nPBRP66Dj4i/K2ngjcYDP3h
+         3fy0KAixMuYcjEIKzv+xGjP7W7gOZEzl+WhT+JNHOAA5SfyRLkbU4NcvYB+JPZERJKvd
+         JzGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723188026; x=1723792826;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=d47CUelTnreJC+PfHZ3JAzMPsN6JTZHLt6cE64vISVI=;
+        b=BhKovvI8hbLivbO+NG+30mEqFhz/E2935fvtdY4NYMUADcSP8Pjsz9B6sS/dfw+ODe
+         f32u+XwRl4Yu3tm3fbHZr7dsWvg4CFq9B1f59HflbV3/oD32k4/ZqQoKn8ZFmIgm3dnJ
+         TaNFG0dfqiF97xuUCy3FCzF5cban7LfrQVtl+PV1fY1Blft8IGmE2TYVerMt9WTncRdE
+         B9V/+1DtkYnRBunwaCof6KnNJ7CxwRAU8BnMINzP9OON2C2Za8bsiBAfoZMJcFwonHkf
+         zlQA2Or2nJKyLbLM04c+Gzmv5Rs7+WHaYqzfegUdMVdt83+fbnDN1ORmFG2xIQbtZSe+
+         Ww1w==
+X-Forwarded-Encrypted: i=1; AJvYcCXpqLBeAHzRZfPOlnogV5T1HyZQfG9zSu3YHvFPNmQo2pSwqLYjXumfs3unht7qB0QaROg/Hu8Sbtby2wFCwMQ1iEUD3cE39CarqA==
+X-Gm-Message-State: AOJu0YxAqAgCDpkSTvZCG96iv0KkN6iHvle0V2lBN0fC9+9qRvTkleoR
+	E3C0UWs5csqqy+VKeBwcySzKWgpHWQ2/LWh34xJ/qooTx/NgF+HcyMDnmhHMPcY=
+X-Google-Smtp-Source: AGHT+IFHpW92jqjIYi2miDOsQE5JPxAd01QY2fBqHylu2JwNHdLR7v5WkJ4KHtbzJ9eJlICDWlTF1Q==
+X-Received: by 2002:adf:fc12:0:b0:36b:d3bc:af03 with SMTP id ffacd0b85a97d-36d5e3c30acmr376684f8f.15.1723188026393;
+        Fri, 09 Aug 2024 00:20:26 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.180])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36d2718bfb9sm4360112f8f.54.2024.08.09.00.20.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Aug 2024 00:20:25 -0700 (PDT)
+Message-ID: <e39ab10e-8e95-4fce-b75f-10fe918e81a5@tuxon.dev>
+Date: Fri, 9 Aug 2024 10:20:23 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrFIsWRmVeSWpSXmKPExsWyRpKBR5fh8NY0g4+t5hZr9p5jsph/5Byr
-	xcOr/hYz77WyWayaupPF4uWse2wW589vYLfY9Pgaq8XlXXPYLP7v2cFu8Xf7JhaLF1vELbrf
-	qTvweuycdZfdY9OqTjaPzUvqPV5snsno0d/dwurR/9fA4/MmuQD2KC6blNSczLLUIn27BK6M
-	y2susxcc4q64fWEKcwPjHO4uRk4OCQETidl9h5i6GLk4hASWMEm8+bWeDcK5xyhx7P9tFghn
-	PaPElqO/WUFa2ATUJHa9ec0KkhARuM8kcX7bYrAWZoE1TBI9e5YxgVQJC8RI3Gg6wwxiiwjE
-	SkxacYEdwraS+NS5Dcjm4GARUJE4ukAZxOQVsJG40iYEsayRUWLqy6UsIOWcAnYSL89PBGtl
-	FJCV2LDhPNhIZgFxiU3PvrNC/CAgsWQPRFxCQFTi5eN/UHF5iRO3pjGBzGcW0JRYv0sfotVC
-	4sKriVBjFCWmdD8EG88rIChxcuYTlgmM4rOQbJiF0D0LSfcsJN2zkHQvYGRdxSiUm5mcnVqU
-	ma1XkFFZkpqsl5K6iREU/yIMXDsY++Z4HGJk4mA8xCjBwawkwtscvilNiDclsbIqtSg/vqg0
-	J7X4EKM0B4uSOO/qjuBUIYH0xJLU7NTUgtQimCwTB6dUA+OWPfpstzxaJ9l0aB+W1y1azLND
-	pCf4Y6bR3iW321fl3vRo3t3w4Sanzo+qm5yZG7xPuvtsKJ4ddJz5EEPsZV3Hqi2rghpjk2wj
-	GUIPn9vS1hlQski/N+TXrjnPtrIF2sTemJ6+VmG1x6TZazMTTUtmsxueEIm4M726Zurht/7x
-	Sxbtu6Hfs0yJpTgj0VCLuag4EQC5mnww7QIAAA==
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 07/11] dt-bindings: i2c: renesas,riic: Document the
+ R9A08G045 support
+Content-Language: en-US
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ chris.brandt@renesas.com, andi.shyti@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, geert+renesas@glider.be,
+ magnus.damm@gmail.com, p.zabel@pengutronix.de,
+ linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20240711115207.2843133-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240711115207.2843133-8-claudiu.beznea.uj@bp.renesas.com>
+ <ZrTiZtD9U4I2LYZj@shikoro>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <ZrTiZtD9U4I2LYZj@shikoro>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-T24gMDguMDguMjQgMTI6MTMsIEtyenlzenRvZiBLb3psb3dza2kgd3JvdGU6DQo+IE9uIDA4LzA4
-LzIwMjQgMTE6MzQsIEJlbmphbWluIEhhaG4gd3JvdGU6DQo+PiBQYXNzIHRoZSBjb25zb2xlIFVB
-UlQgYm9vdGFyZ3MgcGFyYW1ldGVyIHZpYSB0aGUgZGV2aWNldHJlZSBmb3IgYm9vdGluZw0KPj4g
-RUZJIGJpbmFyaWVzLg0KPj4NCj4+IFNpZ25lZC1vZmYtYnk6IEJlbmphbWluIEhhaG4gPEIuSGFo
-bkBwaHl0ZWMuZGU+DQo+PiAtLS0NCj4+ICAgYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUv
-aW14OG1wLXBoeWJvYXJkLXBvbGx1eC1yZGsuZHRzIHwgMSArDQo+PiAgIDEgZmlsZSBjaGFuZ2Vk
-LCAxIGluc2VydGlvbigrKQ0KPj4NCj4+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRz
-L2ZyZWVzY2FsZS9pbXg4bXAtcGh5Ym9hcmQtcG9sbHV4LXJkay5kdHMgYi9hcmNoL2FybTY0L2Jv
-b3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXAtcGh5Ym9hcmQtcG9sbHV4LXJkay5kdHMNCj4+IGluZGV4
-IDAwYTI0MDQ4NGMyNS4uNTUyYjUyOGZiNjYzIDEwMDY0NA0KPj4gLS0tIGEvYXJjaC9hcm02NC9i
-b290L2R0cy9mcmVlc2NhbGUvaW14OG1wLXBoeWJvYXJkLXBvbGx1eC1yZGsuZHRzDQo+PiArKysg
-Yi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXAtcGh5Ym9hcmQtcG9sbHV4LXJk
-ay5kdHMNCj4+IEBAIC0xNiw2ICsxNiw3IEBAIC8gew0KPj4gICAJCSAgICAgInBoeXRlYyxpbXg4
-bXAtcGh5Y29yZS1zb20iLCAiZnNsLGlteDhtcCI7DQo+PiAgIA0KPj4gICAJY2hvc2VuIHsNCj4+
-ICsJCWJvb3RhcmdzID0gImNvbnNvbGU9dHR5bXhjMCwxMTUyMDAiOw0KPiBTb3JyeSwgYnV0IHN0
-ZG91dCBpcyBzdWZmaWNpZW50LiBJZiBpdCBpcyBub3QsIHNvbWV0aGluZyBlbHNlIG5lZWRzIGZp
-eGluZy4NCg0KT2ssIGxvb2tzIGxpa2Ugc3Rkb3V0LXBhdGNoIHNob3VsZCBpbmRlZWQgYmUgc3Vm
-ZmljaWVudCBmb3IgVUVGSSBib290LCANCnNvIHRoaXMgaXMgbm90IG5lZWRlZCB0aGVuLg0KDQpC
-ZW5qYW1pbg0KDQo+DQo+IEJlc3QgcmVnYXJkcywNCj4gS3J6eXN6dG9mDQo+DQoNCg==
+
+
+On 08.08.2024 18:21, Wolfram Sang wrote:
+> 
+>> +          - const: renesas,riic-r9a08g045   # RZ/G3S
+>> +          - const: renesas,riic-r9a09g057
+> 
+> Why no comment after the latter one?
+> 
+
+I kept it like this to avoid confusion b/w RZ/G3S and RZ/V2H(P) documented
+below, as the RZ/G3S falls back to renesas,riic-r9a09g057 (RZ/V2H(P)).
+
+I can add a comment here, too, if you still consider necessary. Please let
+me know.
+
+Thank you,
+Claudiu Beznea
 
