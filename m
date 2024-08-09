@@ -1,265 +1,153 @@
-Return-Path: <devicetree+bounces-92424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 003BA94D1B8
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 15:58:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0B6D94D1C7
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 16:07:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB13A28451C
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 13:58:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 041D0B20995
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 14:07:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7B22195980;
-	Fri,  9 Aug 2024 13:58:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6283195FEA;
+	Fri,  9 Aug 2024 14:06:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=utexas.edu header.i=@utexas.edu header.b="m0JAHFal"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s+qvF8sC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB466146D6A
-	for <devicetree@vger.kernel.org>; Fri,  9 Aug 2024 13:58:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76EA11957FF;
+	Fri,  9 Aug 2024 14:06:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723211910; cv=none; b=BR/hrBnEY5u6PvSMeg0fzTSMyOPYartgPgchqLLouNncnlsj5c7TiLDkioXw0hf31Td0ElnAANscCesWJbIhsGf4nD9eTGXsq04k1tw4Ezd+LOx1X4mEbTxPwLfdqgxXhLWowASlNW5kFAEWhLyOEeuVybTxYMISKwu8ysc3GmY=
+	t=1723212414; cv=none; b=EawcI5IijBv43Qzu86KNQrKDTTRBwCysje6/gk6OIzv7lUvJ6JeHiKxQjvEP7GySM7/mPoq4scXOIPrOS02QEt2ry/o0QcrrMzNIIdCEI5duDe11cN4yFamlaFNJUV9fWiSjjqQeZCklNlddiFR9yqWKmDF2DZwl0EqIj7kRG6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723211910; c=relaxed/simple;
-	bh=MVIfln3Z+zvYYQz9jOUHrPhHIC8YpceZV2gN7q6dj/U=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=kAnIROAjIpQ1WemjGW40M/M+7DPyr6jC4u4xvloassacQ79xt0CSX27aC+oXo3Lp98A0Y6h/uSI19NcDax4ujQJ8EQCZrRALAGATkblc9KGkRLfqQbAe+gFAXV0+DSvaOBdxqgh17PyqGa5KBxfhv2HYiLLPzG/kZYBHYs9pLt8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=utexas.edu; spf=pass smtp.mailfrom=utexas.edu; dkim=pass (2048-bit key) header.d=utexas.edu header.i=@utexas.edu header.b=m0JAHFal; arc=none smtp.client-ip=209.85.160.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=utexas.edu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=utexas.edu
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-260e6dfc701so1381652fac.3
-        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2024 06:58:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=utexas.edu; s=google; t=1723211908; x=1723816708; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=bv+LnZmWIQXzJV1hc1KEjtrX5OHdF1ATbROCbkW1Hj4=;
-        b=m0JAHFal+lXlnsP3CLsy90UC2xtNGSBh+YbvFWYsNJ72TLydIw7BT5mhprTwS8Kfsi
-         874/5N8KOhRIiOO4E9ih45CBEpmT480QETpkf7zNQjWKHQP/hTygYJ/Nm5BD/H6fIqMC
-         GQj6lBOGneofGZfcLiNgB/KCtubGPojOmBCnSGerrfuhlhK7eUHZVjH4Bilq041AwvSV
-         rOjeRfn+SbQCvGQZ3b51sarQSQRkQ6puLvuftz835cCHTaQCoOIXT1EAdnsUgqmz9xPs
-         ZnJpta1JjfstCvdlmNEdVPls9BhW89HfBhUNiHL6E5VTcyB4kJFUWzwYjQ7jrL5jQMW6
-         XaBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723211908; x=1723816708;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bv+LnZmWIQXzJV1hc1KEjtrX5OHdF1ATbROCbkW1Hj4=;
-        b=bwwE1j9/30xy/CCNq6dnS5uYLH69km+1Y1YR2aPQxDBujLsrupVPEGw1m4HdqlRbJA
-         WC0ltBbgqUHG35vvfezyVda7I1ynCXFP/6RN73+i4PReam97aRNJe5ttOWwEmndV41wW
-         OWapz0nB7LZQps/bm8+kuvS5Y4eaWUQ7hVjbwb8QiupDTUrnoA7gMDlv+PpmKUz+cwdw
-         ZNeVcoRiJc5bzsRzPs3ZBiTC5XDLmzpRXniQpwJVwOj5CkQUW4w4bF6pGSIyVlInpwIa
-         /VeTUiOGVRPeWjSBprnseXKpZrUFw3mYtKAQlUQFOrbfzfQXKP92lFz/p/Oe2UYnkQHy
-         I21w==
-X-Forwarded-Encrypted: i=1; AJvYcCWZTzVAtKC+m7f7bx9eX/h3T19521hQCIQd/53oeBewhOgRqPHijh/4MnZ3xu4SErHpIRanHht50kmJKqoLIBi9DAIYrC+TLb2N1A==
-X-Gm-Message-State: AOJu0YxFFuiFVx55RxDaJF/A/v/XzgDPc1zsha+vdcFU/JjMeavLu+Qe
-	O2I/zJb84oRH+CtwLmk+2L6gpcRbcLlwa6cvJBnOBYALtPLKF7tZyZufgRK8eXE=
-X-Google-Smtp-Source: AGHT+IHyurHKq3ZZ7uOCVLaQ/a61K8VNmkGFOaAN1YpgvEASyNUBqDR4WWDZVAQTbSu5YtVe4UHOIg==
-X-Received: by 2002:a05:6871:3a25:b0:261:1be0:b5b9 with SMTP id 586e51a60fabf-26c6291fc7fmr1875417fac.0.1723211907949;
-        Fri, 09 Aug 2024 06:58:27 -0700 (PDT)
-Received: from localhost.localdomain ([2600:381:6610:1ad2:1d6a:366:5acb:d5b0])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2689a438db3sm5265734fac.32.2024.08.09.06.58.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Aug 2024 06:58:27 -0700 (PDT)
-From: Logan Bristol <logan.bristol@utexas.edu>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Nishanth Menon <nm@ti.com>
-Cc: Josua Mayer <josua@solid-run.com>,
-	Matt McKee <mmckee@phytec.com>,
-	Wadim Egorov <w.egorov@phytec.de>,
-	linux@ew.tq-group.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Logan Bristol <logan.bristol@utexas.edu>
-Subject: [PATCH v2] arm64: dts: ti: k3-am64* Disable ethernet by default at SoC level
-Date: Fri,  9 Aug 2024 08:57:53 -0500
-Message-ID: <20240809135753.1186-1-logan.bristol@utexas.edu>
-X-Mailer: git-send-email 2.46.0.windows.1
+	s=arc-20240116; t=1723212414; c=relaxed/simple;
+	bh=evwGZM4eri1U2eONrdZCQoX8mPAcQhXgLT4ZmuyFzRc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Gr/P0bTxFUP8MZaBqpTc24bnw5pS+jbCDm8CcisdHDKPUSMYbOXJxl3xDFf7a0sgKRqi2kDGdbyIkEy9s6U9fTFTwBmJMyjomxRDmg0b030tGEn0lStIOgyTwz4w/ABK+aN01EPMpnp5uGcTUXu8UsBxRBH6pyRoHGA78HT+8tE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s+qvF8sC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAB26C4AF14;
+	Fri,  9 Aug 2024 14:06:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723212414;
+	bh=evwGZM4eri1U2eONrdZCQoX8mPAcQhXgLT4ZmuyFzRc=;
+	h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
+	b=s+qvF8sCtTwyHF56WPQ3eeP2cl8zaXyGa9z49t8SyXv/r7gWKxYShMecPk6ykQVnZ
+	 n4kXCa2PTcoMeq17unwFqmzXgPR7MMu/5lFWXv5TXVXCvgne8conJzRw+WgtCDqSFt
+	 75MSJbIMMSsLhlOUf8VzdsVtTD7ZHCffuRMDXZF8GqHtWOyIEGM37x0ZYrMqvzPWzV
+	 GrdDai06QRpYTPF+2EDN60xa2yY6LakkeFlhW+p1X4ce420yzSZuej2hKmjX3c1dQt
+	 YP6bD7GqRN2fGNGcnQGGFQBzK28lY0exqwq1+aVhvdTDCxi/VbsBU2TgGSOtF9Xbf4
+	 +haFnWpWIs1Uw==
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-52f024f468bso2412855e87.1;
+        Fri, 09 Aug 2024 07:06:53 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXfDS7HgcDjSwKVqyHrzVm98wcfTO+gSDa8S2M3Pt3Krdh+eFQczKO9Ok7fRO8WTznNXnoF3XULuyGc3p8lsdSNrgb+AGKZeOtQg6EE/zmiygfd9o/UsWrXSuiTyuOPSghbQOJSVwL/p6TvMYfTYc6QQSEzWABOKmNabCgewbG5Gr4Kufk=
+X-Gm-Message-State: AOJu0Yx0DkLi1aEN6ahdwqwYmLSPluMGQ6tXDR4v/+YPqa26POyp0slo
+	6IgX1UGiRGbGR/Vim1YllC+Bb4h56f8ZVHF0sUeC/IyT5ZYjSZqo6rcoSm93ymKI3M5/huGeTtm
+	GojrrEUuy/Z0l7IpisA9vUycXVQ==
+X-Google-Smtp-Source: AGHT+IFQIYRhSbBm0KnlMj4fnTjoQ3tTreJgwt28LbqvrHl4ZHzIAIYZ/MVmHdZ+lof70cxLYPm635tiKaTvUDOAZSg=
+X-Received: by 2002:a05:6512:3c98:b0:530:e228:77ae with SMTP id
+ 2adb3069b0e04-530eea14613mr1284391e87.40.1723212412160; Fri, 09 Aug 2024
+ 07:06:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240808164941.1407327-1-robh@kernel.org> <22384730.EfDdHjke4D@steina-w>
+In-Reply-To: <22384730.EfDdHjke4D@steina-w>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 9 Aug 2024 08:06:37 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+tyKxaDsM2ThXctHhXLXUjCAbDH+90gqDrmMV_-z5PvQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+tyKxaDsM2ThXctHhXLXUjCAbDH+90gqDrmMV_-z5PvQ@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: Fix undocumented LM75 compatible nodes
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: soc@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, 
+	Dinh Nguyen <dinguyen@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
+	Gregory Clement <gregory.clement@bootlin.com>, 
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Avi Fishman <avifishman70@gmail.com>, 
+	Tomer Maimon <tmaimon77@gmail.com>, Tali Perry <tali.perry1@gmail.com>, 
+	Patrick Venture <venture@google.com>, Nancy Yuen <yuenn@google.com>, 
+	Benjamin Fair <benjaminfair@google.com>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Vladimir Zapolskiy <vz@mleia.com>, Mark Jackson <mpfj@newflow.co.uk>, 
+	Tony Lindgren <tony@atomide.com>, Michal Simek <michal.simek@amd.com>, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+	openbmc@lists.ozlabs.org, imx@lists.linux.dev, linux-omap@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-External interfaces should be disabled at the SoC DTSI level, since
-the node is incomplete. Disable Ethernet switch and ports in SoC DTSI 
-and enable them in the board DTS. If the board DTS includes a SoM DTSI 
-that completes the node description, enable the Ethernet switch and ports 
-in SoM DTSI.
+On Fri, Aug 9, 2024 at 1:51=E2=80=AFAM Alexander Stein
+<alexander.stein@ew.tq-group.com> wrote:
+>
+> Am Donnerstag, 8. August 2024, 18:49:38 CEST schrieb Rob Herring (Arm):
+> > "lm75" without any vendor is undocumented. It works with the Linux
+> > kernel since the I2C subsystem will do matches of the compatible string
+> > without a vendor prefix to the i2c_device_id and/or driver name.
+> >
+> > Mostly replace "lm75" with "national,lm75" as that's the original part
+> > vendor and the compatible which matches what "lm75" matched with. In a
+> > couple of cases the node name or compatible gives a clue to the actual
+> > part and vendor and a more specific compatible can be used. In these
+> > cases, it does change the variant the kernel picks.
+> >
+> > "nct75" is an OnSemi part which is compatible with TI TMP75C based on
+> > a comparison of the OnSemi NCT75 datasheet and configuration the Linux
+> > driver uses. Adding an OnSemi compatible would be an ABI change.
+> >
+> > "nxp,lm75" is most likely an NXP part. NXP makes a LM75A and LM75B.
+> > Both are 11-bit resolution and 100ms sample time, so "national,lm75b" i=
+s
+> > the closest match.
+> >
+> > While we're here, fix the node names to use the generic name
+> > "temperature-sensor".
+> >
+> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> > ---
+> > SoC maintainers, Please take this directly.
+> > ---
+> >  .../aspeed/aspeed-bmc-facebook-greatlakes.dts |  2 +-
+> >  .../socfpga/socfpga_cyclone5_vining_fpga.dts  |  4 +--
+> >  .../dts/marvell/armada-385-clearfog-gtr.dtsi  |  8 ++---
+> >  .../boot/dts/nuvoton/nuvoton-npcm730-kudo.dts | 32 +++++++++----------
+> >  .../boot/dts/nuvoton/nuvoton-npcm750-evb.dts  |  6 ++--
+> >  arch/arm/boot/dts/nxp/imx/imx53-mba53.dts     |  4 +--
+> >  arch/arm/boot/dts/nxp/imx/imx53-tqma53.dtsi   |  4 +--
+> >  .../dts/nxp/lpc/lpc4357-ea4357-devkit.dts     |  4 +--
+> >  .../boot/dts/nxp/lpc/lpc4357-myd-lpc4357.dts  |  2 +-
+> >  arch/arm/boot/dts/ti/omap/am335x-nano.dts     |  2 +-
+> >  .../boot/dts/xilinx/zynq-zturn-common.dtsi    |  4 +--
+> >  11 files changed, 36 insertions(+), 36 deletions(-)
+> >
+> < [snip]
+> > diff --git a/arch/arm/boot/dts/nxp/imx/imx53-mba53.dts b/arch/arm/boot/=
+dts/nxp/imx/imx53-mba53.dts
+> > index 2117de872703..d155b3ec22ef 100644
+> > --- a/arch/arm/boot/dts/nxp/imx/imx53-mba53.dts
+> > +++ b/arch/arm/boot/dts/nxp/imx/imx53-mba53.dts
+> > @@ -175,8 +175,8 @@ expander: pca9554@20 {
+> >               gpio-controller;
+> >       };
+> >
+> > -     sensor2: lm75@49 {
+> > -             compatible =3D "lm75";
+> > +     sensor2: temperature-sensor@49 {
+> > +             compatible =3D "national,lm75";
+>
+> I checked the old schematics. This is an NXP LM75A, so 'national,lm75a'
+> would be the correct compatible.
 
-Reflect this change in SoM DTSIs by removing ethernet port disable.
+Thanks for checking. That doesn't change the configuration in the
+driver. lm75 and lm75a are treated the same as both are 9-bit
+resolution. The NXP LM75A is 11-bit resolution and 10Hz which
+corresponds to lm75b in the driver. Though it looks to me like the
+original lm75b was also 9-bit resolution.
 
-Signed-off-by: Logan Bristol <logan.bristol@utexas.edu>
----
-Changes since v1:
-- Enabled cpsw3g and cpsw_port1 in SoM DTSI instead of board DTS
-if board DTS included SoM DTSI
----
- arch/arm64/boot/dts/ti/k3-am64-main.dtsi               | 3 +++
- arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi        | 6 ++----
- arch/arm64/boot/dts/ti/k3-am642-evm.dts                | 3 +++
- arch/arm64/boot/dts/ti/k3-am642-sk.dts                 | 3 +++
- arch/arm64/boot/dts/ti/k3-am642-sr-som.dtsi            | 6 ++----
- arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts | 6 ++----
- 6 files changed, 15 insertions(+), 12 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-index f8370dd03350..69c5af58b727 100644
---- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-@@ -677,6 +677,7 @@ cpsw3g: ethernet@8000000 {
- 		assigned-clock-parents = <&k3_clks 13 9>;
- 		clock-names = "fck";
- 		power-domains = <&k3_pds 13 TI_SCI_PD_EXCLUSIVE>;
-+		status = "disabled";
- 
- 		dmas = <&main_pktdma 0xC500 15>,
- 		       <&main_pktdma 0xC501 15>,
-@@ -701,6 +702,7 @@ cpsw_port1: port@1 {
- 				phys = <&phy_gmii_sel 1>;
- 				mac-address = [00 00 00 00 00 00];
- 				ti,syscon-efuse = <&main_conf 0x200>;
-+				status = "disabled";
- 			};
- 
- 			cpsw_port2: port@2 {
-@@ -709,6 +711,7 @@ cpsw_port2: port@2 {
- 				label = "port2";
- 				phys = <&phy_gmii_sel 2>;
- 				mac-address = [00 00 00 00 00 00];
-+				status = "disabled";
- 			};
- 		};
- 
-diff --git a/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi b/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
-index ea7c58fb67e2..6bece2fb4e95 100644
---- a/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
-@@ -185,6 +185,7 @@ AM64X_IOPAD(0x0278, PIN_INPUT, 7)	/* (C19) EXTINTn.GPIO1_70 */
- &cpsw3g {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&cpsw_rgmii1_pins_default>;
-+	status = "okay";
- };
- 
- &cpsw3g_mdio {
-@@ -208,10 +209,7 @@ cpsw3g_phy1: ethernet-phy@1 {
- &cpsw_port1 {
- 	phy-mode = "rgmii-rxid";
- 	phy-handle = <&cpsw3g_phy1>;
--};
--
--&cpsw_port2 {
--	status = "disabled";
-+	status = "okay";
- };
- 
- &mailbox0_cluster2 {
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-index 6bb1ad2e56ec..82da21bd9aea 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-@@ -616,17 +616,20 @@ &cpsw3g {
- 	bootph-all;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&rgmii1_pins_default>, <&rgmii2_pins_default>;
-+	status = "okay";
- };
- 
- &cpsw_port1 {
- 	bootph-all;
- 	phy-mode = "rgmii-rxid";
- 	phy-handle = <&cpsw3g_phy0>;
-+	status = "okay";
- };
- 
- &cpsw_port2 {
- 	phy-mode = "rgmii-rxid";
- 	phy-handle = <&cpsw3g_phy3>;
-+	status = "okay";
- };
- 
- &cpsw3g_mdio {
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-index 44ecbcf1c844..86369525259c 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-@@ -527,16 +527,19 @@ &usb0 {
- &cpsw3g {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&rgmii1_pins_default>, <&rgmii2_pins_default>;
-+	status = "okay";
- };
- 
- &cpsw_port1 {
- 	phy-mode = "rgmii-rxid";
- 	phy-handle = <&cpsw3g_phy0>;
-+	status = "okay";
- };
- 
- &cpsw_port2 {
- 	phy-mode = "rgmii-rxid";
- 	phy-handle = <&cpsw3g_phy1>;
-+	status = "okay";
- };
- 
- &cpsw3g_mdio {
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-sr-som.dtsi b/arch/arm64/boot/dts/ti/k3-am642-sr-som.dtsi
-index c19d0b8bbf0f..a5cec9a07510 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-sr-som.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am642-sr-som.dtsi
-@@ -177,6 +177,7 @@ vdd_mmc0: regulator-vdd-mmc0 {
- &cpsw3g {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&rgmii1_default_pins>;
-+	status = "okay";
- };
- 
- &cpsw3g_mdio {
-@@ -210,10 +211,7 @@ ethernet_phy0: ethernet-phy@0 {
- &cpsw_port1 {
- 	phy-mode = "rgmii-id";
- 	phy-handle = <&ethernet_phy0>;
--};
--
--&cpsw_port2 {
--	status = "disabled";
-+	status = "okay";
- };
- 
- &icssg1_mdio {
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts b/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
-index c40ad67cee01..8d7a0283c391 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
-@@ -119,15 +119,13 @@ reg_sd: regulator-sd {
- &cpsw3g {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&cpsw_pins>;
-+	status = "okay";
- };
- 
- &cpsw_port1 {
- 	phy-mode = "rgmii-rxid";
- 	phy-handle = <&cpsw3g_phy0>;
--};
--
--&cpsw_port2 {
--	status = "disabled";
-+	status = "okay";
- };
- 
- &cpsw3g_mdio {
--- 
-2.34.1
-
+Rob
 
