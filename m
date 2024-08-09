@@ -1,218 +1,254 @@
-Return-Path: <devicetree+bounces-92507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFD6394D675
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 20:42:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 315E794D6AB
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 20:49:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D26061C212B3
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 18:42:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 49B7D1C21C66
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 18:49:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70E3C16132A;
-	Fri,  9 Aug 2024 18:41:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26D5D13C8F4;
+	Fri,  9 Aug 2024 18:49:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="z26bnmt5"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SdE1XGxM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 662B315FD1B
-	for <devicetree@vger.kernel.org>; Fri,  9 Aug 2024 18:41:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FD833A27E;
+	Fri,  9 Aug 2024 18:49:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723228882; cv=none; b=BPse4XDOdYjMF0dv5KNWzvwJpn+tIXJiG9y9vYIRfjqGsW2F4gY27kJmVxErtD3NNUuu89/gcKiJMMAHouKWZfF7aLO2g5d7BPREm/0XsN0tJRC5dzCZfqQ3jwWcwoxqwbAgqEDPoaIJN7tnekMAo/1qt7HCx3m5paeZZstp2IA=
+	t=1723229344; cv=none; b=mtwUJzyOyLPHtqGzbgf7c2yEG+sCauJpB/GDGo5ZmYUZJo8U34ZQTwZV3K7muXpS88mE94GiIIPuzrzqyJNiBkqzrqt96h3F/TcncJb+FfUy2a93483D7Jq5MDde/qSQniCXe0RhGNcQ2n34jy2pycDLpC5/53I30xdNsMYYFzk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723228882; c=relaxed/simple;
-	bh=GKmFo3bmFk2IVwRE7ksCrTnyul2s0DsTqMziI0uIR6M=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=kij4dWqNXe0XhvVElaPseRLQMANKqZVYoVyKAyjLDAbYHkZu9BX51YUNmgVvoVcE0xyGJ37pFodZiMXvB/+T+LwNsrc7+EOODQW9wk3pLeFTJy4u6EIkGNsuY64m/mihAAsXd3Ij81cnOKJDoghhoMyC5IvE3mn7Cs+zWQF/qlA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=z26bnmt5; arc=none smtp.client-ip=209.85.160.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-451b7e1d157so13457541cf.3
-        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2024 11:41:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1723228879; x=1723833679; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/5uzNUVmRh9vWTdDmOIKmWFbEDxFk4bBzY+xGs2C1kM=;
-        b=z26bnmt57rTDtXR28mANK0oVIKhQB2gMLDLaJsY6iB42x6f2AwDNLua2i3haVObLIP
-         wydabmCS+EAqr12mtHqwbEYZIZxPGqTn5NVTMYUWR+Rx9YXAu09TfwEF+27sbU5mVcdK
-         gPsXXlzYysJ8mUdTwdJaNiTUw4bCSU3719rAUjqpmuVpBvOydG+kfPEHD28Ms84FXi3x
-         vK6TEW6bWObfrc4x6UCigj+eGeKUhprwPCrbvMN31lrNKCa+uxddwokfx/DRggllKMUO
-         vYF1VLWTu69Zgw66QCAsebPA/vTHvLNiBlEwHOKZDDjKQWBV/Vo+a88OPilQ/nkqMq+0
-         330Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723228879; x=1723833679;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/5uzNUVmRh9vWTdDmOIKmWFbEDxFk4bBzY+xGs2C1kM=;
-        b=HgoDD5WhoTEZj9Ov0No4Kyp8ae3q1/jROp91q3uz+HGbB2t3zb13X1VOyAvr/LD8pG
-         L4Dj5k+lIb+gveTjUmUXe6VVU9OIr95VIQO5G6i9jvbzrOI8UB82jn+5UZG7wzwcAmGs
-         SCuOsGW9zlOIXOCIwScwXLT/bDJLemDyScV7JTv1O9IrgrmH75gLwAIa8dLmr0jGuZIC
-         ninFu9lCFFjdxTRqyi5av42WSazcAlXEmpj76d2PubCVYP2mryW6p+oYKalBIglJ/e6q
-         R5LGhEK4aLQ/pBlA5DnXxOUUTNnpIY62oFWyxN7wrmR/mnTTAIn8HPOIY6unowojNDbQ
-         YbHA==
-X-Forwarded-Encrypted: i=1; AJvYcCXTqADJmLw9coML5QYeQ6Gfou4AQISSr8FX4wqpBXYD7q+kJ4s8YiDAnfaB4PQrNCDpmDtjlP3X+ULTSnAHFSFuQY/qbu94ipSvBQ==
-X-Gm-Message-State: AOJu0YwW1/HEE+fAW8cVRKT2yprxirPhfIOtDgzsp4O3EZ2qMEEzQ/OK
-	sOzOqe8jYkp9UW7kRc40fQ0QL9kAHhIyb4nRZBzZ3pIzaz0Xp6Dma479Hu8Blzw=
-X-Google-Smtp-Source: AGHT+IEH6rBg8rXSvuwRkWBK6lSt3cf/9vZ3CI2KSvFnC2fju7qVpHmtGUnb5onX/VEKhf3izdyAMA==
-X-Received: by 2002:a05:622a:258e:b0:451:9f75:4667 with SMTP id d75a77b69052e-453125a7e84mr28836101cf.28.1723228879272;
-        Fri, 09 Aug 2024 11:41:19 -0700 (PDT)
-Received: from [127.0.1.1] (d24-150-219-207.home.cgocable.net. [24.150.219.207])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4531c1d723asm370381cf.44.2024.08.09.11.41.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Aug 2024 11:41:19 -0700 (PDT)
-From: Trevor Gamblin <tgamblin@baylibre.com>
-Date: Fri, 09 Aug 2024 14:41:10 -0400
-Subject: [PATCH v2 3/3] docs: iio: new docs for ad7625 driver
+	s=arc-20240116; t=1723229344; c=relaxed/simple;
+	bh=n6XRzIqKKwXATC/WHqP7HHiLzXtfbTP8hmRtqjdY0DQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=K4cvVXnKYSlyd/OPqQO6d0fXeZa3lb0iwR6DbpatgQvnm7JI3RxJzvjlze3Z50aWU6jyDNLiesNW8Cul/jqeqjQGMTGOuQM/xmgnNQR2k7a4W4CrqURiLfGvCIdkwv/mmNSHn7MXxSbCSOutLgQBsi0Zy3FOMzUK654N6GRNny0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SdE1XGxM; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 479H0XbV010737;
+	Fri, 9 Aug 2024 18:48:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=X8h2evmFgQsz3+h/E8bx0l
+	DJtxsnH+gwkI09lsgzynk=; b=SdE1XGxMuTA+KI8bLCM4SUBzNZY9eiB+mw9xiJ
+	yI7cdVVNcg7v+Hrf+R8LreNVqIngD8HsVar4zqwZrdEKwLuIuOr+6pgvxFrRDfjX
+	T2SgYJUpEQnLMXE91caweUVKH102yDvZ67N4wE8Feg8yyqK8SFEiYmZmrBSPEBFq
+	FAfEOT33CBlY93LjgYo37MVr+2dx/TXgd8A6eebT+NVqXNJiBf59qWvIjC/SKI/k
+	zMalCCWP1Bw8g3EbajUyId1zWrFyrUQFfJG98GuZvoGDMU2z3/6FCthjHlmXdhPW
+	CLu+nUtwMvBDbYYe3TepDydGhChoMfF7h6orIKqJQXcbd+mg==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40vpuvn84d-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 09 Aug 2024 18:48:41 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 479Imf6t000644
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 9 Aug 2024 18:48:41 GMT
+Received: from hu-obabatun-lv.qualcomm.com (10.49.16.6) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Fri, 9 Aug 2024 11:48:37 -0700
+From: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+To: <robh@kernel.org>, <saravanak@google.com>
+CC: <klarasmodin@gmail.com>, <aisheng.dong@nxp.com>, <hch@lst.de>,
+        <m.szyprowski@samsung.com>, <robin.murphy@arm.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <iommu@lists.linux.dev>, <will@kernel.org>, <catalin.marinas@arm.com>,
+        <kernel@quicinc.com>, Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+Subject: [PATCH v7 0/2] Dynamic Allocation of the reserved_mem array
+Date: Fri, 9 Aug 2024 11:48:12 -0700
+Message-ID: <20240809184814.2703050-1-quic_obabatun@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240809-ad7625_r1-v2-3-f85e7ac83150@baylibre.com>
-References: <20240809-ad7625_r1-v2-0-f85e7ac83150@baylibre.com>
-In-Reply-To: <20240809-ad7625_r1-v2-0-f85e7ac83150@baylibre.com>
-To: Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
- David Lechner <dlechner@baylibre.com>, 
- Uwe Kleine-Konig <u.kleine-koenig@baylibre.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
- Trevor Gamblin <tgamblin@baylibre.com>
-X-Mailer: b4 0.14.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: SF-0pPUMjkrIVmWUzn5EpyZ0KyIAol6A
+X-Proofpoint-GUID: SF-0pPUMjkrIVmWUzn5EpyZ0KyIAol6A
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-09_15,2024-08-07_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
+ spamscore=0 lowpriorityscore=0 suspectscore=0 priorityscore=1501
+ clxscore=1011 bulkscore=0 mlxscore=0 phishscore=0 mlxlogscore=999
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408090135
 
-Add documentation for the AD7625/AD7626/AD7960/AD7961 ADCs.
+The reserved_mem array is used to store data for the different
+reserved memory regions defined in the DT of a device.  The array
+stores information such as region name, node reference, start-address,
+and size of the different reserved memory regions.
 
-Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
----
- Documentation/iio/ad7625.rst | 91 ++++++++++++++++++++++++++++++++++++++++++++
- MAINTAINERS                  |  1 +
- 2 files changed, 92 insertions(+)
+The array is currently statically allocated with a size of
+MAX_RESERVED_REGIONS(64). This means that any system that specifies a
+number of reserved memory regions greater than MAX_RESERVED_REGIONS(64)
+will not have enough space to store the information for all the regions.
 
-diff --git a/Documentation/iio/ad7625.rst b/Documentation/iio/ad7625.rst
-new file mode 100644
-index 000000000000..61761e3b75c3
---- /dev/null
-+++ b/Documentation/iio/ad7625.rst
-@@ -0,0 +1,91 @@
-+.. SPDX-License-Identifier: GPL-2.0-only
-+
-+====================
-+AD7625 driver
-+====================
-+
-+ADC driver for Analog Devices Inc. AD7625, AD7626, AD7960, and AD7961
-+devices. The module name is ``ad7625``.
-+
-+Supported devices
-+=================
-+
-+The following chips are supported by this driver:
-+
-+* `AD7625 <https://www.analog.com/AD7625>`_
-+* `AD7626 <https://www.analog.com/AD7626>`_
-+* `AD7960 <https://www.analog.com/AD7960>`_
-+* `AD7961 <https://www.analog.com/AD7961>`_
-+
-+The driver requires use of the Pulsar LVDS HDL project:
-+
-+* `Pulsar LVDS HDL <http://analogdevicesinc.github.io/hdl/projects/pulsar_lvds/index.html>`_
-+
-+To trigger conversions and enable subsequent data transfer, the devices
-+require coupled PWM signals with a phase offset.
-+
-+Supported features
-+==================
-+
-+Conversion control modes
-+------------------------
-+
-+The driver currently supports one of two possible LVDS conversion control methods.
-+
-+Echoed-Clock interface mode
-+^^^^^^^^^^^^^^^^^^^^^^^^^^^
-+
-+.. code-block::
-+
-+                                                +----------------+
-+                     +xxxxxxxxxxxxxxxxxxxxxxxxxx| CNV            |
-+                     X                          |                |
-+                     v                          |    HOST        |
-+          +----------------------------+        |                |
-+          |      CNV+/CNV-   DCO+/DCO- |xxxxxxx>| CLK_IN         |
-+          |                            |        |                |
-+          |                            |        |                |
-+          |       AD7625         D+/D- |xxxxxxx>| DATA_IN        |
-+          |                            |        |                |
-+          |                            |        |                |
-+          |                  CLK+/CLK- |<xxxxxxx| CLK & CLK_GATE |
-+          +----------------------------+        |                |
-+                                                +----------------+
-+
-+Reference voltage
-+-----------------
-+
-+Three possible reference voltage sources are supported:
-+
-+- Internal reference (only available on AD7625 and AD7626)
-+- External reference and internal buffer
-+- External reference
-+
-+The source is determined by the device tree. If ``ref-supply`` is present, then
-+the external reference is used. If ``refin-supply`` is present, then the internal
-+buffer is used. If neither is present, then the internal reference is used.
-+
-+Unimplemented features
-+----------------------
-+
-+- Self-clocked mode
-+
-+
-+Device attributes
-+=================
-+
-+The AD762x is a fully-differential ADC and has the following attributes:
-+
-++---------------------------------------+--------------------------------------------------------------+
-+| Attribute                             | Description                                                  |
-++=======================================+==============================================================+
-+| ``scale``                             | Scale factor to convert raw value from buffered reads to mV. |
-++---------------------------------------+--------------------------------------------------------------+
-+
-+
-+Device buffers
-+==============
-+
-+This driver supports IIO triggered buffers.
-+
-+See :doc:`iio_devbuf` for more information.
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a90972e1c5c5..97c9b03e1cf0 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1268,6 +1268,7 @@ S:	Supported
- W:	https://ez.analog.com/linux-software-drivers
- W:	http://analogdevicesinc.github.io/hdl/projects/pulsar_lvds/index.html
- F:	Documentation/devicetree/bindings/iio/adc/adi,ad7625.yaml
-+F:	Documentation/iio/ad7625.rst
- F:	drivers/iio/adc/ad7625.c
- 
- ANALOG DEVICES INC AD7768-1 DRIVER
+This can be fixed by making the reserved_mem array a dynamically sized
+array which is allocated using memblock_alloc() based on the exact
+number of reserved memory regions defined in the DT.
+
+On architectures such as arm64, memblock allocated memory is not
+writable until after the page tables have been setup.
+This is an issue because the current implementation initializes the
+reserved memory regions and stores their information in the array before
+the page tables are setup. Hence, dynamically allocating the
+reserved_mem array and attempting to write information to it at this
+point will fail.
+
+Therefore, the allocation of the reserved_mem array will need to be done
+after the page tables have been setup, which means that the reserved
+memory regions will also need to wait until after the page tables have
+been setup to be stored in the array.
+
+When processing the reserved memory regions defined in the DT, these
+regions are marked as reserved by calling memblock_reserve(base, size).
+Where:  base = base address of the reserved region.
+	size = the size of the reserved memory region.
+
+Depending on if that region is defined using the "no-map" property,
+memblock_mark_nomap(base, size) is also called.
+
+The "no-map" property is used to indicate to the operating system that a
+mapping of the specified region must NOT be created. This also means
+that no access (including speculative accesses) is allowed on this
+region of memory except when it is coming from the device driver that
+this region of memory is being reserved for.[1]
+
+Therefore, it is important to call memblock_reserve() and
+memblock_mark_nomap() on all the reserved memory regions before the
+system sets up the page tables so that the system does not unknowingly
+include any of the no-map reserved memory regions in the memory map.
+
+There are two ways to define how/where a reserved memory region is
+placed in memory:
+i) Statically-placed reserved memory regions
+i.e. regions defined with a set start address and size using the
+     "reg" property in the DT.
+ii) Dynamically-placed reserved memory regions.
+i.e. regions defined by specifying a range of addresses where they can
+     be placed in memory using the "alloc_ranges" and "size" properties
+     in the DT.
+
+The dynamically-placed reserved memory regions get assigned a start
+address only at runtime. And this needs to  be done before the page
+tables are setup so that memblock_reserve() and memblock_mark_nomap()
+can be called on the allocated region as explained above.
+Since the dynamically allocated reserved_mem array can only be
+available after the page tables have been setup, the information for
+the dynamically-placed reserved memory regions needs to be stored
+somewhere temporarily until the reserved_mem array is available.
+
+Therefore, this series makes use of a temporary static array to store
+the information of the dynamically-placed reserved memory regions until
+the reserved_mem array is allocated.
+Once the reserved_mem array is available, the information is copied over
+from the temporary array into the reserved_mem array, and the memory for
+the temporary array is freed back to the system.
+
+The information for the statically-placed reserved memory regions does
+not need to be stored in a temporary array because their starting
+address is already stored in the devicetree.
+Once the reserved_mem array is allocated, the information for the
+statically-placed reserved memory regions is added to the array.
+
+Note:
+Because of the use of a temporary array to store the information of the
+dynamically-placed reserved memory regions, there still exists a
+limitation of 64 for this particular kind of reserved memory regions.
+From my observation, these regions are typically small in number and
+hence I expect this to not be an issue for now.
+
+Patch Versions:
+v7:
+- Make changes to initialize the reserved memory regions earlier in
+  response to issue reported in v6:
+  https://lore.kernel.org/all/20240610213403.GA1697364@thelio-3990X/
+
+- For the reserved regions to be setup properly,
+  fdt_init_reserved_mem_node() needs to be called on each of the regions
+  before the page tables are setup. Since the function requires a
+  refernece to the devicetree node of each region, we are not able to
+  use the unflattened_devicetree APIs since they are not available until
+  after the page tables have been setup.
+  Hence, revert the use of the unflatten_device APIs as a result of this
+  limitation which was discovered in v6:
+  https://lore.kernel.org/all/986361f4-f000-4129-8214-39f2fb4a90da@gmail.com/
+  https://lore.kernel.org/all/DU0PR04MB9299C3EC247E1FE2C373440F80DE2@DU0PR04MB9299.eurprd04.prod.outlook.com/
+
+v6:
+https://lore.kernel.org/all/20240528223650.619532-1-quic_obabatun@quicinc.com/
+- Rebased patchset on top of v6.10-rc1.
+- Addressed comments received in v5 such as:
+  1. Switched to using relevant typed functions such as
+     of_property_read_u32(), of_property_present(), etc.
+  2. Switched to using of_address_to_resource() to read the "reg"
+     property of nodes.
+  3. Renamed functions using "of_*" naming scheme instead of "dt_*".
+
+v5:
+https://lore.kernel.org/all/20240328211543.191876-1-quic_obabatun@quicinc.com/
+- Rebased changes on top of v6.9-rc1.
+- Addressed minor code comments from v4.
+
+v4:
+https://lore.kernel.org/all/20240308191204.819487-2-quic_obabatun@quicinc.com/
+- Move fdt_init_reserved_mem() back into the unflatten_device_tree()
+  function.
+- Fix warnings found by Kernel test robot:
+  https://lore.kernel.org/all/202401281219.iIhqs1Si-lkp@intel.com/
+  https://lore.kernel.org/all/202401281304.tsu89Kcm-lkp@intel.com/
+  https://lore.kernel.org/all/202401291128.e7tdNh5x-lkp@intel.com/
+
+v3:
+https://lore.kernel.org/all/20240126235425.12233-1-quic_obabatun@quicinc.com/
+- Make use of __initdata to delete the temporary static array after
+  dynamically allocating memory for reserved_mem array using memblock.
+- Move call to fdt_init_reserved_mem() out of the
+  unflatten_device_tree() function and into architecture specific setup
+  code.
+- Breaking up the changes for the individual architectures into separate
+  patches.
+
+v2:
+https://lore.kernel.org/all/20231204041339.9902-1-quic_obabatun@quicinc.com/
+- Extend changes to all other relevant architectures by moving
+  fdt_init_reserved_mem() into the unflatten_device_tree() function.
+- Add code to use unflatten devicetree APIs to process the reserved
+  memory regions.
+
+v1:
+https://lore.kernel.org/all/20231019184825.9712-1-quic_obabatun@quicinc.com/
+
+References:
+[1]
+https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/reserved-memory/reserved-memory.yaml#L79
+
+Oreoluwa Babatunde (2):
+  of: reserved_mem: Restruture how the reserved memory regions are
+    processed
+  of: reserved_mem: Add code to dynamically allocate reserved_mem array
+
+ drivers/of/fdt.c             |   5 +-
+ drivers/of/of_private.h      |   3 +-
+ drivers/of/of_reserved_mem.c | 231 +++++++++++++++++++++++++++--------
+ 3 files changed, 188 insertions(+), 51 deletions(-)
 
 -- 
-2.39.2
+2.34.1
 
 
