@@ -1,55 +1,56 @@
-Return-Path: <devicetree+bounces-92417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 055A194D152
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 15:34:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B466594D158
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 15:35:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD5081F2309C
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 13:34:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7122B283ABC
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 13:35:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38F85194C6E;
-	Fri,  9 Aug 2024 13:34:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B08B195FE5;
+	Fri,  9 Aug 2024 13:34:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19EFB18C93F;
-	Fri,  9 Aug 2024 13:34:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65D23194C75;
+	Fri,  9 Aug 2024 13:34:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723210458; cv=none; b=jVXqpHFvA+s7VgXBhRF2Wi6P5fuwZV3BiJ5/uykwAxUKkldhz6zB2GiXSHMeXwIJQRzPlI5CDuRBUYbJAu3UJyNHG9dw1UDJeDRikN5se5a4sr8rWIZx8weCiA1GIdbCSxy16C05dcqn3QRmkruaEkWEtJBg48Ct1ZebLIOZTZk=
+	t=1723210495; cv=none; b=gfIWQHu+vBQq+rCBbAl+LWK7hlZzuRmZHmzMVBriNEtLQWmc6PEhx1maQa0KgtUBrglmgJalKkcqJD/eGlbWAnWPV0BNuqNhmdILb+kz2ehfH3x8VzP9pb3/mWAfi8X8I7zFYAhbRdvRlmF8Fs3U45nunBPvIqyIw7mMcWQ8bYE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723210458; c=relaxed/simple;
-	bh=xTIPNnNqHm8kBzq4Vchu+bZszGcedwE3GmPS02bHwDE=;
+	s=arc-20240116; t=1723210495; c=relaxed/simple;
+	bh=h68FbGqF2Jwvv6zHo7eWJ+ZWln0DuIKXZPCoBibFDcw=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pb/qG4fE7rPBkgb4pUqhu9Y5OFFEvAehogyZSJDBz9YtL+V7Ilf2HPmSxSKCcgZNWRsOiWYvGlUv2eTJmoPVDJYLhBq818EEieC2mamBZC5y9WFMePyR/BvjCZ/ktT/F01nNO/OiKY17Sle4k3k3Ve2MCAmCpA93+l3C+bfNIEc=
+	 MIME-Version:Content-Type; b=skhIfX75Om/OlfbN2MXhZ7FyHmm+lb5v0QNBYfl65oNdXfZG2sJm5h4Am/W8nXwz2Hsm9WtBqJv3pxEuj+LpNNSNGL7PgkIO55wc5fSLL5r/Ez2n2Av+saUYA/yvaMzzUkn/mvYlcctDvdMPd/LV9hIhpve15Yi9c07UEEi4Cls=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EAE9713D5;
-	Fri,  9 Aug 2024 06:34:40 -0700 (PDT)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A279F13D5;
+	Fri,  9 Aug 2024 06:35:19 -0700 (PDT)
 Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id CE4DF3F6A8;
-	Fri,  9 Aug 2024 06:34:12 -0700 (PDT)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 19F813F6A8;
+	Fri,  9 Aug 2024 06:34:51 -0700 (PDT)
 From: Sudeep Holla <sudeep.holla@arm.com>
-To: liviu.dudau@arm.com,
-	lpieralisi@kernel.org,
+To: cristian.marussi@arm.com,
 	robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
-	Debbie Martin <Debbie.Martin@arm.com>
+	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>
 Cc: Sudeep Holla <sudeep.holla@arm.com>,
 	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: arm: Add stdout-path
-Date: Fri,  9 Aug 2024 14:33:54 +0100
-Message-ID: <172321027997.1572956.9970711317320804588.b4-ty@arm.com>
+	linux-kernel@vger.kernel.org,
+	arm-scmi@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH RESEND] dt-bindings: firmware: arm,scmi: support system power protocol
+Date: Fri,  9 Aug 2024 14:34:43 +0100
+Message-ID: <172320989711.1571076.299636747129025085.b4-ty@arm.com>
 X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240730103758.907950-1-Debbie.Martin@arm.com>
-References: <20240730103758.907950-1-Debbie.Martin@arm.com>
+In-Reply-To: <20240628030309.1162012-1-peng.fan@oss.nxp.com>
+References: <20240628030309.1162012-1-peng.fan@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,17 +60,14 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-On Tue, 30 Jul 2024 11:37:58 +0100, Debbie Martin wrote:
-> Add stdout-path to the Arm devicetrees to specify the primary console.
-> This means that distributions can boot without the need for
-> platform-specific command line parameters i.e. they can use earlycon
-> with no parameters and no console argument is needed at all.
+On Fri, 28 Jun 2024 11:03:09 +0800, Peng Fan (OSS) wrote:
+> Add SCMI System Power Protocol bindings, and the protocol id is 0x12.
 >
 
-Applied to sudeep.holla/linux (for-next/juno/updates), thanks!
+Applied to sudeep.holla/linux (for-next/scmi/updates), thanks!
 
-[1/1] arm64: dts: arm: Add stdout-path
-      https://git.kernel.org/sudeep.holla/c/9d4a984a53be
+[1/1] dt-bindings: firmware: arm,scmi: support system power protocol
+      https://git.kernel.org/sudeep.holla/c/4d5921a39f67
 --
 Regards,
 Sudeep
