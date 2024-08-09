@@ -1,215 +1,230 @@
-Return-Path: <devicetree+bounces-92410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 657E094D0B0
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 14:59:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0436C94D0C3
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 15:02:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B0AE28425C
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 12:59:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 294941C21D15
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 13:02:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0080194A61;
-	Fri,  9 Aug 2024 12:58:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBE9719412C;
+	Fri,  9 Aug 2024 13:02:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="cuNkd5rk"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BMXdtn49"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB3CD194A57;
-	Fri,  9 Aug 2024 12:58:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.14
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723208319; cv=pass; b=ZQ0GOdnvi8eapkzbUFc9Xdbve9YL33CBFHnT1LVlPH2TKROIwK40Vmggrpptr21CkEYe+JboQ4FM3cQ43j/7eUFbV8Subop0lS26h27h8i7WyCqQa8ylzp7vSIgPOmGgQYt3u6afHVhHmqlxyf/lVe1EwcXzH+V1HTtS5WPOurc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723208319; c=relaxed/simple;
-	bh=vB1vihcZ0eEkgl8Qk+c4jcfU4v+ZHhL5OcdGuAd6xKE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=oRoKoFfO8ego8i0whWn6CYG2FI74kV5UD+74arAkP69Kageo+9V28GOr0lXWAywCy+5DP2AutVbjGzYUbW2zJawuD+jrZxMgjyivQgvcuNeTes+O0kPKkJ6gC5pQshOba867Lp2f3nI05qBKdiiT3NANzvVkMfr4Kk1lJp24DlI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=cuNkd5rk; arc=pass smtp.client-ip=136.143.188.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-Delivered-To: detlev.casanova@collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1723208297; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=d417bd6DIN2FFSG6FZquvHBfJ7o0uQ1cjE1id4i61djT9MPy9RgUIZNcnZ2CTnc/lE2VdCos6T1X0BPWzjHae6Qdh41/+YYNYr/tmjFQ774skSd1KpInem1J4eDB7O1LUOfDqbNf4KunlZmKUuxn/nOeYP1gTtx2nEPuQyYTEMY=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1723208297; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=ZAm373FW8SSRcdPW3Co+g9V2mPAp48MIYJ8wFwNFSmk=; 
-	b=lHXjPoEwNnV06DNN+83HwvM6bV39HKePFD3BVX1wh4jtwmdt9dnqIVfszoGhvf5jUGdOQMnR1yVNHEPafF3Y0NEl3sC/s1t7x+EdiKeCU4+Dt9cSxg5Z3xvAccsdNsdqLxmD1qW0g7bpsnUoSuZJp2uT0Ua6xtReoq9yysz9Hw0=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
-	dmarc=pass header.from=<detlev.casanova@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1723208297;
-	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=ZAm373FW8SSRcdPW3Co+g9V2mPAp48MIYJ8wFwNFSmk=;
-	b=cuNkd5rkQtvgRNMhWmbtTBxQQPLd7WEMentl+aBrDV8MCnd+HxIUFz2hdKIGZMFh
-	UHfX4U9SuZNCU8Pp2GeFV5aSddhFLARxEqFkXvFjlqnnjKvEXWVOgG8v3MfNWLekVXX
-	YZplKve9sojFnKUVSU2N3OXG5hOhCn98zoysmwoY=
-Received: by mx.zohomail.com with SMTPS id 1723208296397381.82442922141547;
-	Fri, 9 Aug 2024 05:58:16 -0700 (PDT)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: linux-kernel@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Detlev Casanova <detlev.casanova@collabora.com>,
-	Finley Xiao <finley.xiao@rock-chips.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Jagan Teki <jagan@edgeble.ai>,
-	Elaine Zhang <zhangqing@rock-chips.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-pm@vger.kernel.org,
-	kernel@collabora.com
-Subject: [PATCH v3 2/2] pmdomain: rockchip: Add support for rk3576 SoC
-Date: Fri,  9 Aug 2024 08:58:05 -0400
-Message-ID: <20240809125925.4295-3-detlev.casanova@collabora.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240809125925.4295-1-detlev.casanova@collabora.com>
-References: <20240809125925.4295-1-detlev.casanova@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD52E1917F7;
+	Fri,  9 Aug 2024 13:02:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723208530; cv=none; b=pacYoHcGotdcDO3Ne/TXPoX7ysXtWTNmaqeRF3B1WXkXEcoUHr6YxMUVid9VCY+akAwM8aOG/HFdBQcYEzD0YXfBom+4qtNjFmOjOLGtyydH9mS4Aw+mwl2E3EUIA7OGt1wcN2Z/eH9mKvC5/jNIJ2MS5Etntfm8WqKzanyRcHU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723208530; c=relaxed/simple;
+	bh=0JIgO0RDJpCIh6eOO85xcuuqnaghxCx0BS/wi4vV7UQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=n39pE3eu2YR4CxoioOXCTrnq1NY2RqbIODGTQUbsPHEuKfPIQNynnzdlcPG1KVnrvC1OsRiw2BksTOmuceK0QK6BHaTU683reKd1i9MZyu0iP9PSv1D4ulNUERsEMzGsbob6e/IcYNGSNbMKwvFiL+w8j47/S8bq86FFRQ17g4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BMXdtn49; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 479AkrdB000990;
+	Fri, 9 Aug 2024 13:01:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	V709B2quZWGXt+emlcthA4aQUlL8/vH27lYx4Vkru8k=; b=BMXdtn49PRpSBq3x
+	hef4KLV1ZqJfctxb48amz8AtEmrweU8ZLy5qD91Y2URT5FWLXJrjVtF+i1jV4lRT
+	28uN1G/VXpYGuPpLVvmRDpWOFakpPxxAkl+mTa3L4ac3p6bIQFhTDD0YJfllw+dP
+	XcA/EpH7h4lSkVDHnPCp8+8kKSjs5vwH96nHI78wVYrKXaf1PVpVQROx1NoxzAh9
+	dBXTy5HGHY8OkWaCpO3jKO6Y3h1xqb37rlF/Gl1AhLAqOct8elA+r0pB1o8ZjUCR
+	TFt9rThjZrPFlMprcI4Xc184LYWoUF9HeuOroG5OnR8TPrc7y05cWre2/cLrsg68
+	2z9uDg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40vfav5c54-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 09 Aug 2024 13:01:54 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 479D1r9V007903
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 9 Aug 2024 13:01:53 GMT
+Received: from [10.253.72.235] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 9 Aug 2024
+ 06:01:49 -0700
+Message-ID: <a0fe7735-76fd-4a53-9446-5371e341ba17@quicinc.com>
+Date: Fri, 9 Aug 2024 21:01:46 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] dt-bindings: clock: qcom: Add common PLL clock
+ controller for IPQ SoC
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Stephen
+ Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas
+	<catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Konrad Dybcio
+	<konradybcio@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <quic_kkumarcs@quicinc.com>,
+        <quic_suruchia@quicinc.com>, <quic_pavir@quicinc.com>,
+        <quic_linchen@quicinc.com>, <quic_leiwei@quicinc.com>
+References: <20240808-qcom_ipq_cmnpll-v1-0-b0631dcbf785@quicinc.com>
+ <20240808-qcom_ipq_cmnpll-v1-1-b0631dcbf785@quicinc.com>
+ <81524fee-c32c-405b-b63b-d048dde6ae33@kernel.org>
+Content-Language: en-US
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <81524fee-c32c-405b-b63b-d048dde6ae33@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: pNmHF6kDYnutGDt0tXCqo5BBii1zfhDE
+X-Proofpoint-GUID: pNmHF6kDYnutGDt0tXCqo5BBii1zfhDE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-09_10,2024-08-07_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 adultscore=0
+ lowpriorityscore=0 mlxscore=0 bulkscore=0 phishscore=0 suspectscore=0
+ impostorscore=0 clxscore=1015 spamscore=0 priorityscore=1501
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408090095
 
-From: Finley Xiao <finley.xiao@rock-chips.com>
 
-Add configuration for RK3576 SoC and list the power domains.
 
-Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
-[rebase, reword, squash]
-Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
----
- drivers/pmdomain/rockchip/pm-domains.c | 66 +++++++++++++++++++++++++-
- 1 file changed, 64 insertions(+), 2 deletions(-)
+On 8/8/2024 10:38 PM, Krzysztof Kozlowski wrote:
+> On 08/08/2024 16:03, Luo Jie wrote:
+>> The common PLL controller provides clocks to networking hardware
+>> blocks on Qualcomm IPQ SoC. It receives input clock from the on-chip
+>> Wi-Fi, and produces output clocks at fixed rates. These output rates
+>> are predetermined, and are unrelated to the input clock rate. The
+>> output clocks are supplied to the Ethernet hardware such as PPE
+>> (packet process engine) and the externally connected switch or PHY
+>> device.
+>>
+>> The common PLL driver is initially being supported for IPQ9574 SoC.
+> 
+> Drop references to driver and explain the hardware.
+> 
+> Above with the usage of "common" looks like this is all for some common
+> driver, not for particular hardware.
 
-diff --git a/drivers/pmdomain/rockchip/pm-domains.c b/drivers/pmdomain/rockchip/pm-domains.c
-index 9b76b62869d0d..466c0aab72060 100644
---- a/drivers/pmdomain/rockchip/pm-domains.c
-+++ b/drivers/pmdomain/rockchip/pm-domains.c
-@@ -33,6 +33,7 @@
- #include <dt-bindings/power/rk3368-power.h>
- #include <dt-bindings/power/rk3399-power.h>
- #include <dt-bindings/power/rk3568-power.h>
-+#include <dt-bindings/power/rockchip,rk3576-power.h>
- #include <dt-bindings/power/rk3588-power.h>
- 
- struct rockchip_domain_info {
-@@ -144,9 +145,26 @@ struct rockchip_pmu {
- 	.active_wakeup = wakeup,			\
- }
- 
--#define DOMAIN_RK3036(_name, req, ack, idle, wakeup)		\
-+#define DOMAIN_M_O_R_G(_name, p_offset, pwr, status, r_status, r_offset, req, idle, ack, g_mask, wakeup)	\
- {							\
--	.name = _name,				\
-+	.name = _name,					\
-+	.pwr_offset = p_offset,				\
-+	.pwr_w_mask = (pwr) << 16,			\
-+	.pwr_mask = (pwr),				\
-+	.status_mask = (status),			\
-+	.mem_status_mask = (r_status),			\
-+	.repair_status_mask = (r_status),		\
-+	.req_offset = r_offset,				\
-+	.req_w_mask = (req) << 16,			\
-+	.req_mask = (req),				\
-+	.idle_mask = (idle),				\
-+	.ack_mask = (ack),				\
-+	.active_wakeup = wakeup,			\
-+}
-+
-+#define DOMAIN_RK3036(_name, req, ack, idle, wakeup)	\
-+{							\
-+	.name = _name,					\
- 	.req_mask = (req),				\
- 	.req_w_mask = (req) << 16,			\
- 	.ack_mask = (ack),				\
-@@ -175,6 +193,9 @@ struct rockchip_pmu {
- #define DOMAIN_RK3568(name, pwr, req, wakeup)		\
- 	DOMAIN_M(name, pwr, pwr, req, req, req, wakeup)
- 
-+#define DOMAIN_RK3576(name, p_offset, pwr, status, r_status, r_offset, req, idle, g_mask, wakeup)	\
-+	DOMAIN_M_O_R_G(name, p_offset, pwr, status, r_status, r_offset, req, idle, idle, g_mask, wakeup)
-+
- /*
-  * Dynamic Memory Controller may need to coordinate with us -- see
-  * rockchip_pmu_block().
-@@ -1106,6 +1127,28 @@ static const struct rockchip_domain_info rk3568_pm_domains[] = {
- 	[RK3568_PD_PIPE]	= DOMAIN_RK3568("pipe", BIT(8), BIT(11), false),
- };
- 
-+static const struct rockchip_domain_info rk3576_pm_domains[] = {
-+	[RK3576_PD_NPU]		= DOMAIN_RK3576("npu",    0x0, BIT(0),  BIT(0), 0,       0x0, 0,       0,       0,       false),
-+	[RK3576_PD_NVM]		= DOMAIN_RK3576("nvm",    0x0, BIT(6),  0,      BIT(6),  0x4, BIT(2),  BIT(18), BIT(2),  false),
-+	[RK3576_PD_SDGMAC]	= DOMAIN_RK3576("sdgmac", 0x0, BIT(7),  0,      BIT(7),  0x4, BIT(1),  BIT(17), 0x6,     false),
-+	[RK3576_PD_AUDIO]	= DOMAIN_RK3576("audio",  0x0, BIT(8),  0,      BIT(8),  0x4, BIT(0),  BIT(16), BIT(0),  false),
-+	[RK3576_PD_PHP]		= DOMAIN_RK3576("php",    0x0, BIT(9),  0,      BIT(9),  0x0, BIT(15), BIT(15), BIT(15), false),
-+	[RK3576_PD_SUBPHP]	= DOMAIN_RK3576("subphp", 0x0, BIT(10), 0,      BIT(10), 0x0, 0,       0,       0,       false),
-+	[RK3576_PD_VOP]		= DOMAIN_RK3576("vop",    0x0, BIT(11), 0,      BIT(11), 0x0, 0x6000,  0x6000,  0x6000,  false),
-+	[RK3576_PD_VO1]		= DOMAIN_RK3576("vo1",    0x0, BIT(14), 0,      BIT(14), 0x0, BIT(12), BIT(12), 0x7000,  false),
-+	[RK3576_PD_VO0]		= DOMAIN_RK3576("vo0",    0x0, BIT(15), 0,      BIT(15), 0x0, BIT(11), BIT(11), 0x6800,  false),
-+	[RK3576_PD_USB]		= DOMAIN_RK3576("usb",    0x4, BIT(0),  0,      BIT(16), 0x0, BIT(10), BIT(10), 0x6400,  true),
-+	[RK3576_PD_VI]		= DOMAIN_RK3576("vi",     0x4, BIT(1),  0,      BIT(17), 0x0, BIT(9),  BIT(9),  BIT(9),  false),
-+	[RK3576_PD_VEPU0]	= DOMAIN_RK3576("vepu0",  0x4, BIT(2),  0,      BIT(18), 0x0, BIT(7),  BIT(7),  0x280,   false),
-+	[RK3576_PD_VEPU1]	= DOMAIN_RK3576("vepu1",  0x4, BIT(3),  0,      BIT(19), 0x0, BIT(8),  BIT(8),  BIT(8),  false),
-+	[RK3576_PD_VDEC]	= DOMAIN_RK3576("vdec",   0x4, BIT(4),  0,      BIT(20), 0x0, BIT(6),  BIT(6),  BIT(6),  false),
-+	[RK3576_PD_VPU]		= DOMAIN_RK3576("vpu",    0x4, BIT(5),  0,      BIT(21), 0x0, BIT(5),  BIT(5),  BIT(5),  false),
-+	[RK3576_PD_NPUTOP]	= DOMAIN_RK3576("nputop", 0x4, BIT(6),  0,      BIT(22), 0x0, 0x18,    0x18,    0x18,    false),
-+	[RK3576_PD_NPU0]	= DOMAIN_RK3576("npu0",   0x4, BIT(7),  0,      BIT(23), 0x0, BIT(1),  BIT(1),  0x1a,    false),
-+	[RK3576_PD_NPU1]	= DOMAIN_RK3576("npu1",   0x4, BIT(8),  0,      BIT(24), 0x0, BIT(2),  BIT(2),  0x1c,    false),
-+	[RK3576_PD_GPU]		= DOMAIN_RK3576("gpu",    0x4, BIT(9),  0,      BIT(25), 0x0, BIT(0),  BIT(0),  BIT(0),  false),
-+};
-+
- static const struct rockchip_domain_info rk3588_pm_domains[] = {
- 	[RK3588_PD_GPU]		= DOMAIN_RK3588("gpu",     0x0, BIT(0),  0,       0x0, 0,       BIT(1),  0x0, BIT(0),  BIT(0),  false),
- 	[RK3588_PD_NPU]		= DOMAIN_RK3588("npu",     0x0, BIT(1),  BIT(1),  0x0, 0,       0,       0x0, 0,       0,       false),
-@@ -1284,6 +1327,21 @@ static const struct rockchip_pmu_info rk3568_pmu = {
- 	.domain_info = rk3568_pm_domains,
- };
- 
-+static const struct rockchip_pmu_info rk3576_pmu = {
-+	.pwr_offset = 0x210,
-+	.status_offset = 0x230,
-+	.chain_status_offset = 0x248,
-+	.mem_status_offset = 0x250,
-+	.mem_pwr_offset = 0x300,
-+	.req_offset = 0x110,
-+	.idle_offset = 0x128,
-+	.ack_offset = 0x120,
-+	.repair_status_offset = 0x570,
-+
-+	.num_domains = ARRAY_SIZE(rk3576_pm_domains),
-+	.domain_info = rk3576_pm_domains,
-+};
-+
- static const struct rockchip_pmu_info rk3588_pmu = {
- 	.pwr_offset = 0x14c,
- 	.status_offset = 0x180,
-@@ -1359,6 +1417,10 @@ static const struct of_device_id rockchip_pm_domain_dt_match[] = {
- 		.compatible = "rockchip,rk3568-power-controller",
- 		.data = (void *)&rk3568_pmu,
- 	},
-+	{
-+		.compatible = "rockchip,rk3576-power-controller",
-+		.data = (void *)&rk3576_pmu,
-+	},
- 	{
- 		.compatible = "rockchip,rk3588-power-controller",
- 		.data = (void *)&rk3588_pmu,
--- 
-2.46.0
+Understand, will remove this driver reference.
+
+> 
+>>
+>> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+>> ---
+>>   .../bindings/clock/qcom,ipq-cmn-pll.yaml           | 87 ++++++++++++++++++++++
+>>   1 file changed, 87 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/qcom,ipq-cmn-pll.yaml b/Documentation/devicetree/bindings/clock/qcom,ipq-cmn-pll.yaml
+>> new file mode 100644
+>> index 000000000000..c45b3a201751
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/qcom,ipq-cmn-pll.yaml
+> 
+> Use compatible as filename.
+
+OK.
+
+> 
+>> @@ -0,0 +1,87 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/clock/qcom,ipq-cmn-pll.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm Common PLL Clock Controller on IPQ SoC
+>> +
+>> +maintainers:
+>> +  - Bjorn Andersson <andersson@kernel.org>
+>> +  - Luo Jie <quic_luoj@quicinc.com>
+>> +
+>> +description:
+>> +  The common PLL clock controller expects a reference input clock.
+>> +  This reference clock is from the on-board Wi-Fi. The CMN PLL
+>> +  supplies a number of fixed rate output clocks to the Ethernet
+>> +  devices including PPE (packet process engine) and the connected
+>> +  switch or PHY device.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - qcom,ipq9574-cmn-pll
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: The reference clock, the supported clock rates include
+>> +          25000000, 31250000, 40000000, 48000000, 50000000 and 96000000 HZ.
+>> +      - description: The AHB clock
+>> +      - description: The SYS clock
+>> +    description:
+>> +      The reference clock is the source clock of CMN PLL, which is from the
+>> +      Wi-Fi. The AHB and SYS clocks must be enabled to access common PLL
+>> +      clock registers.
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: ref
+>> +      - const: ahb
+>> +      - const: sys
+>> +
+>> +  clock-output-names:
+>> +    items:
+>> +      - const: ppe-353mhz
+>> +      - const: eth0-50mhz
+>> +      - const: eth1-50mhz
+>> +      - const: eth2-50mhz
+>> +      - const: eth-25mhz
+> 
+> Drop entire property. If the names are fixed, what's the point of having
+> it in DTS? There is no.
+
+We had added the output names here for the reasons below. Can you please
+let us know your suggestion whether keeping these here is fine?
+
+1.) These output clocks are used as input reference clocks to other
+consumer blocks. For example, an on-board Ethernet PHY device may be
+wired to receive a specific clock from the above output clocks as
+reference clock input, and hence the PHY's DTS node would need to
+reference a particular index in this output clock array.
+
+Without these output clocks being made available in this DTS, the PHY
+driver in above case would not know the clock specifier to access the
+handle for the desired input clock.
+
+2.) One of the suggestions from the internal code review with Linaro was
+to name the output clocks specifically based on rate and destination
+(Ex: 'ppe-353mhz' for fixed rate 353 MHZ output clock connected to
+Packet Process Engine block), so that the dt-bindings describe the
+input/output clocks clearly.
+
+> 
+> Best regards,
+> Krzysztof
+> 
 
 
