@@ -1,171 +1,197 @@
-Return-Path: <devicetree+bounces-92340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C1AD94CCDA
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 11:02:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C468B94CCED
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 11:08:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D6A411F21E14
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 09:02:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8E251C20B2A
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 09:08:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9036818F2F2;
-	Fri,  9 Aug 2024 09:02:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8565D18FDC5;
+	Fri,  9 Aug 2024 09:08:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="BQvzHAlZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="L6H7IMr/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5406118FC8D
-	for <devicetree@vger.kernel.org>; Fri,  9 Aug 2024 09:02:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A328516CD23
+	for <devicetree@vger.kernel.org>; Fri,  9 Aug 2024 09:08:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723194174; cv=none; b=HUB0MMgbEaPtnbOA6GZCF1BgPDT0D75JTqoUytbNNWsYAB1/6xHPivR8xny+/eZVGBdiKg5WjjSHSlWszcCQnZ32tNwjEatEJfWkFKyg3nvJez4MeAMos+Iqe49g+1diQVICb7hvh3vvF1cbNBa/dHhVAYB0YmY0W0E09fX4BKY=
+	t=1723194482; cv=none; b=fdvklUtehlIqsap/MXnHgB6vvjo16ZwiUpxwVbPDvp0HaLYK9vVqDQUt0Q7YbQ9u14jSzNNelYw9Fvnvfp+wIuEGArMfZrOERAYcQ90IS/aOpXQrD2+NaNlAoRY61ON2cz2jdt8AAZYflKBZkejIBacLRm3z17bnEe4SJeNSReM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723194174; c=relaxed/simple;
-	bh=hUutMxc7Exclw5WuhTQlzC/S71ST0PeZg6Nw//eMU10=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=klRANK4hwb8iWomGiDe4Pk02ia6NkF7DwIvFZGMc2DsgzrZ0XGzl1CMXyw/yzVR6B4MuxJ78GgWfaQ8ug7/7ls8oei01oSZs4nDaSB4cztKu12FhCJZjYFIB5f+wafblSpQduQ02wm09ECrilpX76BgLOsvhf15IeBRx5MQIb68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=BQvzHAlZ; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1723194170; x=1725786170;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=hUutMxc7Exclw5WuhTQlzC/S71ST0PeZg6Nw//eMU10=;
-	b=BQvzHAlZWYHq1V1GMjSicWBtQqcB2qga1v90CP5iJ/24UTyHPXVX/ZtKMc66+kLV
-	qEPzcfCnAf8+2HGQoja014OGT66AFvbcF0XNer3DUQ6peetZk4GGINH4hQP8vnmU
-	1bT79A/QMjRK2TV5SrGzs58f49z30Ii+m/mVZ2kdpTE=;
-X-AuditID: ac14000a-03e52700000021bc-46-66b5db3937b4
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id CC.80.08636.93BD5B66; Fri,  9 Aug 2024 11:02:50 +0200 (CEST)
-Received: from llp-hahn.hahn.test (172.25.0.11) by Berlix.phytec.de
- (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Fri, 9 Aug 2024
- 11:02:49 +0200
-From: Benjamin Hahn <B.Hahn@phytec.de>
-Date: Fri, 9 Aug 2024 11:02:31 +0200
-Subject: [PATCH v3] arm64: dts: freescale: imx8mp-phyboard-pollux: Add and
- enable TPM
+	s=arc-20240116; t=1723194482; c=relaxed/simple;
+	bh=xIqKlPFTBOJ+6voM4SrfjSL0L9WwiYk4J/CQwLdYuIE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pTWvD4RUo+Q8pKNOB29GvMqUCaj0FCtZuwKJaonVrDo+YPdQWAXzRMV9R+2IpCQYlKIDheDLiirijtIeG0iRZvx6kSkx9wk/NV3qNtSmiuXiUNHjANcwf/CC9N0xCdw7CTSSNaZ99OzoiB4YWfTlJ7FLeCo+aS103hEBWKpQxu8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=L6H7IMr/; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a7aada2358fso451996566b.0
+        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2024 02:08:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1723194479; x=1723799279; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=B7RTNFF0UhhRSGM9SKE+tATW/EB8i2VcQtdYWBx4S0Y=;
+        b=L6H7IMr/z4a3LgmHLmRSn5Ss8ObViO7bYJqmFwENJYtuIJCRwOMqFCEnzBBuZmGMPH
+         yMD9/ym8w/7/ob85FPE8yc+FzehnTHb10bZ9U+qMhduwvO+v8pwdELLwSMjVIBUvfHAp
+         TddU0PtdcMCGitU7QSrqRsYSCycLWVBH7kxo5LwIyQRqVIsWhsaOT8b26zPTu11/1bxG
+         OF+8KRnZAiYQrLJweCyDTcdDS1tLTrKPI7iVLsJhbWsTGIqVf9o6G8UGyntER38NpcfR
+         OtdxSvECq6JzWp1wmM6SN7d8aswAuSI/aPStoLjWEKgLM6aVfg2Xq0eaQ5x4oO0CQLDM
+         xn/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723194479; x=1723799279;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=B7RTNFF0UhhRSGM9SKE+tATW/EB8i2VcQtdYWBx4S0Y=;
+        b=NSHl14TMqMLo/KZBXZmf75i//CRJa5/9ET3KjYExdqs1ZB8p5KEm6NAkS29VKvsWV6
+         9hN+buFxuZWJGtAHUPwMZSVfKIsGertXA/a+lh1cEHY2FqhLbiiE2mrArTZbD92Zn3Db
+         WG/do92LyvCEWDGAPebvBcwq6Of3Yx4RR91/phLNb99o7ioLrmILtsMShsMH2qLmM22T
+         r+p56Xo7oNgk6EbuXCxYbR/Y4qxKmK/e57Y3MYcg9yDf00ubLqooyEhueaR6lyCmmHBS
+         SdbwGteVPBsFjZMd3IDTGJr6bEcVIc2ujA4FNJkaSdFFsogkYStff+mW45Zbdme/CG8U
+         xqcQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVDe6HEKW7ld/1nPX7W21elUYmutsrmOpAw3xijy8gtc5WcU6dmP3prOXbBIPN8sXipW3yVdubgbT0VrI5zp8YgniKWb0Ch30Gnwg==
+X-Gm-Message-State: AOJu0YzSysZX6To8vyEKNUNhKBhw0PPG9LOo/jAs0U+e3UXWkP0J2aFn
+	0tMSLQi/7jcozcsT0AzCwhlRWuOGFU8U7njjbZ97JJSvopnxOPbZ5nB6GU03Sns=
+X-Google-Smtp-Source: AGHT+IGvhsQpUPKxCm1iJvnax5p0Tv9cMnpIDD0F666gPAGCWco4tbsfdWHtGRtszjZDAr/Ui59qDQ==
+X-Received: by 2002:a17:906:6a1f:b0:a7a:130e:fb6e with SMTP id a640c23a62f3a-a8091f1bdf7mr387496766b.15.1723194478853;
+        Fri, 09 Aug 2024 02:07:58 -0700 (PDT)
+Received: from linaro.org ([2a02:2454:ff1f:b280:8395:bc08:2fce:1f21])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7dc9d437a5sm818414866b.101.2024.08.09.02.07.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Aug 2024 02:07:58 -0700 (PDT)
+Date: Fri, 9 Aug 2024 11:07:56 +0200
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Konrad Dybcio <quic_kdybcio@quicinc.com>
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: Add support for X1-based Surface
+ Laptop 7 devices
+Message-ID: <ZrXcbHWXPvVj-lQd@linaro.org>
+References: <20240809-topic-sl7-v1-0-2090433d8dfc@quicinc.com>
+ <20240809-topic-sl7-v1-4-2090433d8dfc@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240809-imx8mp-tpm-v3-1-c1cd80deff16@phytec.de>
-X-B4-Tracking: v=1; b=H4sIACbbtWYC/23MTQ6DIBCG4asY1qUB/ANXvUfThZWZykIlYIjGe
- PeOrmzSzOqb5Hk3FiE4iKzJNhYgueimkUZ+y1jXt+MHuLO0mRKqEFqU3A2LHjyf/cBzi5Wo3xJ
- LlIyAD4BuOWPPF+3exXkK69lO8vj+zSTJ6UAbFKrSxpiH79cZursFdmSSutL6hyqitsiRONai7
- a503/cvjL3vZ98AAAA=
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Teresa Remmet
-	<t.remmet@phytec.de>
-CC: <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>, Peng
- Fan <peng.fan@nxp.com>, Benjamin Hahn <B.Hahn@phytec.de>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1723194169; l=1993;
- i=B.Hahn@phytec.de; s=20240126; h=from:subject:message-id;
- bh=hUutMxc7Exclw5WuhTQlzC/S71ST0PeZg6Nw//eMU10=;
- b=3blqmdmkHdaXVLvFAjvZZJTgizxxHa2X0wLB6qx0355Z27tKrCewTj/4XM+kVTPBi9qemS1bb
- gwf+qB5xLqJBSPABywWDaOPyYMkLvgjvT8F3Z6AUAwXUN1pZVXNMgi+
-X-Developer-Key: i=B.Hahn@phytec.de; a=ed25519;
- pk=r04clMulHz6S6js6elPBA+U+zVdDAqJyEyoNd8I3pSw=
-X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
- (172.25.0.12)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFuphkeLIzCtJLcpLzFFi42JZI8nAo2t1e2uawaooizV7zzFZzD9yjtXi
-	4VV/i5n3WtksVk3dyWLxctY9NotNj6+xWlzeNYfN4seqL6wW//fsYLf4u30Ti8WLLeIOPB47
-	Z91l99i0qpPNY/OSeo8Xm2cyemx8t4PJo/+vgcfnTXIB7FFcNimpOZllqUX6dglcGdOvrmUu
-	OM1fcb/3K1sDYxNvFyMnh4SAiURr9xkWEFtIYAmTxMbJQV2MXED2A0aJ91dXMYMk2ATUJHa9
-	ec0KYrMIqEhcvjGTDcQWFgiX+L7zNiOIzSsgKHFy5hOgQRwczAKaEut36YOEmQXkJba/ncMM
-	UWIr8fLBURaQ+RICvxklNi7fD9YrIrCDSeJxvyFIglngEKPEoq6TLBDXCUt83r2GDaJjN5PE
-	7R87WUE2SAgkSux8LQdxtazEzfNb2CDq5SWmnXvNDGGHSmz9sp1pAqPwLCT3zUK4bxaS+xYw
-	Mq9iFMrNTM5OLcrM1ivIqCxJTdZLSd3ECIoxEQauHYx9czwOMTJxMALdx8GsJMLbHL4pTYg3
-	JbGyKrUoP76oNCe1+BCjNAeLkjjv6o7gVCGB9MSS1OzU1ILUIpgsEwenVAOjlobl7Jd3Zmhz
-	3rwQ2dr6a5nO1PbIRQdeNd3aO9XhgObTB+y3l0R/Nf5xnu///mWzdmzZ+b6nyFijqlg7ed4B
-	94QjV1yc5ocxKhf86lcpiDO/cShvqq1czk8v8+3sZumXNn01SDll9scsY1luXdjSizPXv33S
-	dD5iWq7xuX09cdUbHm8wEWV9rMRSnJFoqMVcVJwIALBf8GafAgAA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240809-topic-sl7-v1-4-2090433d8dfc@quicinc.com>
 
-Add support for TPM for phyBOARD Pollux.
+On Fri, Aug 09, 2024 at 03:43:23AM +0200, Konrad Dybcio wrote:
+> From: Konrad Dybcio <quic_kdybcio@quicinc.com>
+> 
+> Add support for Surface Laptop 7 machines, based on X1E80100.
+> 
+> The feature status is mostly on par with other X Elite machines,
+> notably lacking:
+> 
+> - USB-A and probably USB-over-Surface-connector
+> - SD card reader (Realtek RTS5261 connected over PCIe)
+> - Touchscreen and touchpad support (hid-over-SPI [1])
+> - Keyboard support (low-hanging fruit, works with pending Surface EC
+>   changes)
+> - Audio (a quick look suggests the setup is very close to the one in
+>   X1E CRD)
+> 
+> The two Surface Laptop 7 SKUs (13.8" and 15") only have very minor
+> differences, amounting close to none on the software side. Even the
+> MBN firmware files and ACPI tables are shared between the two machines.
+> 
+> With that in mind, support is added for both, although only the larger
+> one was physically tested. Display differences will be taken care of
+> through fused-in EDID and other matters should be solved within the
+> EC and boot firmware.
+> 
+> [1] https://www.microsoft.com/en-us/download/details.aspx?id=103325
+> 
+> Signed-off-by: Konrad Dybcio <quic_kdybcio@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/Makefile                  |   2 +
+>  .../boot/dts/qcom/x1e80100-microsoft-romulus.dtsi  | 818 +++++++++++++++++++++
+>  .../boot/dts/qcom/x1e80100-microsoft-romulus13.dts |  13 +
+>  .../boot/dts/qcom/x1e80100-microsoft-romulus15.dts |  13 +
+>  arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi       |   8 +
+>  5 files changed, 854 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index e534442620a1..820b768cdb71 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -270,4 +270,6 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-qrd.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-asus-vivobook-s15.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-crd.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-lenovo-yoga-slim7x.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-microsoft-romulus13.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-microsoft-romulus15.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-qcp.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
+> new file mode 100644
+> index 000000000000..3f6d4b93db50
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
+> @@ -0,0 +1,818 @@
+> [...]
+> +	backlight: backlight {
+> +		compatible = "pwm-backlight";
+> +		pwms = <&pmk8550_pwm 0 5000000>;
+> +		enable-gpios = <&pmc8380_3_gpios 4 GPIO_ACTIVE_HIGH>;
+> +		/* TODO: power-supply? */
 
-Reviewed-by: Peng Fan <peng.fan@nxp.com>
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
-Signed-off-by: Benjamin Hahn <B.Hahn@phytec.de>
----
-Changes in v3:
-- remove status okay for tpm node
-- Link to v2: https://lore.kernel.org/r/20240807-imx8mp-tpm-v2-1-d43f1e8f70ac@phytec.de
+There seems to be something at <&pmc8380_3_gpios 10>, any idea what?
 
-Changes in v2:
-- renamed tpm node to tpm@0
-- removed num-cs
-- cleanup pinctrl
-- Link to v1: https://lore.kernel.org/r/20240805-imx8mp-tpm-v1-1-1e89f0268999@phytec.de
----
- .../dts/freescale/imx8mp-phyboard-pollux-rdk.dts   | 25 ++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+> [...]
+> +&pmk8550_gpios {
+> +	edp_bl_pwm: edp-bl-pwm-state {
+> +		pins = "gpio5";
+> +		function = "func3";
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-index 00a240484c25..09bd10627b11 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-@@ -103,6 +103,22 @@ reg_vcc_3v3_sw: regulator-vcc-3v3-sw {
- 	};
- };
- 
-+/* TPM */
-+&ecspi1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	cs-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ecspi1>;
-+	status = "okay";
-+
-+	tpm: tpm@0 {
-+		compatible = "infineon,slb9670", "tcg,tpm_tis-spi";
-+		reg = <0>;
-+		spi-max-frequency = <38000000>;
-+	};
-+};
-+
- &eqos {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_eqos>;
-@@ -300,6 +316,15 @@ &gpio4 {
- };
- 
- &iomuxc {
-+	pinctrl_ecspi1: ecspi1grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_ECSPI1_MISO__ECSPI1_MISO   0x80
-+			MX8MP_IOMUXC_ECSPI1_MOSI__ECSPI1_MOSI   0x80
-+			MX8MP_IOMUXC_ECSPI1_SCLK__ECSPI1_SCLK   0x80
-+			MX8MP_IOMUXC_ECSPI1_SS0__GPIO5_IO09     0x00
-+		>;
-+	};
-+
- 	pinctrl_eqos: eqosgrp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_ENET_MDC__ENET_QOS_MDC			0x2
+Can you add the power-source here to make this more complete?
 
----
-base-commit: 17712b7ea0756799635ba159cc773082230ed028
-change-id: 20240805-imx8mp-tpm-3df607b1f5f1
+> +	};
+> +
+> [...]
+> +
+> +&uart2 {
+> +	status = "okay";
+> +};
 
-Best regards,
--- 
-Benjamin Hahn <B.Hahn@phytec.de>
+Any idea what this UART is used for?
 
+> [...]
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi b/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
+> index a5ca0fa4e5ae..5b54ee79f048 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
+> @@ -249,6 +249,14 @@ pmk8550_gpios: gpio@8800 {
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+>  		};
+> +
+> +		pmk8550_pwm: pwm {
+> +			compatible = "qcom,pmk8550-pwm";
+> +
+> +			#pwm-cells = <2>;
+> +
+> +			status = "disabled";
+> +		};
+
+I don't mind personally but usually we would have this non-device
+addition in a separate patch. :-)
+
+Thanks,
+Stephan
 
