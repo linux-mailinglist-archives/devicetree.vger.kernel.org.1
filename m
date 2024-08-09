@@ -1,141 +1,109 @@
-Return-Path: <devicetree+bounces-92440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88CD994D258
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 16:41:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E63C994D27E
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 16:49:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 26A4DB222F1
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 14:41:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A02F9281801
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 14:49:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B6EA19754A;
-	Fri,  9 Aug 2024 14:40:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCCA4196C7C;
+	Fri,  9 Aug 2024 14:49:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OyuITf38"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="Vld4p26j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E85D6193090;
-	Fri,  9 Aug 2024 14:40:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0D84195809;
+	Fri,  9 Aug 2024 14:49:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723214450; cv=none; b=EEQsG29uy1AjjMDbzg5QgxMd8YorNGwLwN1S3tjIBcdyzwG3DBqN0No62iKRUbu8Ze/dS1hXBnY0Va/5KW3huggrQhXHbrrc+e/7bX0UbpXWeOzK5CIgsmHSQHTnSMj7gen+u051TkkkEA63GtMMjIQYztkXDXPtyrM6UXMhrdI=
+	t=1723214964; cv=none; b=SmBBFZYAsddq1/0nqJV+A1eiwVqzAKSdqMO2uVztpwhfL5HHXgWMN5XzWR0Qd/Zo4uTLYus5fk7r1b8foQGwYEvVPptJmDNwiAgTYb4Yi+JXvTt/fPML+3GCbWxrXLQOTqteBrU06bZrTURG0DWG7AMF5evmScNQTUviRNP2l+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723214450; c=relaxed/simple;
-	bh=G+m2bqPCB8ujCDWrF6jpqwQcNEOclbrBMDxFlf2/sfU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FvjY48cD/+AmVVp3Py4ddTORNsh65D6upNPOlfDI0edvQjc1sIHSXZeoE0EIa50GWiciltecwwDyJdamgY1j5UD2jyj6H37sTfzFHwNgUp0fvWTZ+1njJ4UksepX3QfxEL1i+FvLPRynA10xyq/lfYDLhIFRlSG7h5tNrv3vba0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OyuITf38; arc=none smtp.client-ip=209.85.222.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-7a1d0dc869bso129216385a.2;
-        Fri, 09 Aug 2024 07:40:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723214448; x=1723819248; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gHjiVQuYfgWbGsVCPXBC3WBTw9YCJU6IrbvqLsBt5vE=;
-        b=OyuITf38uYfMWgC3pN6EVVJbaGE/xUov50HzMfEFARyho9MqHxSxHkYQXJaSUiU0WO
-         KkOMhe6ogytR3Q8lnNkquyRd4DlzJJEVD0aR0OI6j2t6n4eq3xSEcNRg/0/djST70Km/
-         xFZ8eqnO6mS+JycFU4tBypq//wJXdkt3goQsAfElo+oHyGGWOV7RV9CpwtQN5UP9ZzIY
-         5ejNbJ0STfoik1EbqVj4lS8z/nln9QnEhSThOlOIlcVmWBdj8S+h1sSY+knmcw2sH0Sk
-         KAe5t268zrYom9Ni2FaCTjdfduwci2tSUEsytHBmFBIq2OSmpIEbYhgD0QynXMvCGO8c
-         C6aQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723214448; x=1723819248;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gHjiVQuYfgWbGsVCPXBC3WBTw9YCJU6IrbvqLsBt5vE=;
-        b=iFZeWDJEQFWzIfjTjygX/vldDqUf9egacsfMmx0B+v6DauE4hFAdFbEIJmBXTW04hx
-         18HyjHngJ+OpeGBW8dhuLKrC+ag1Tf+KYfBLm3zh1YnYmM+gvHdmUfa7euWvfix5r1T4
-         FxKhNaIn1lhPitZsJm23GKXpRpn32s2X02BYDnTxD+IwfAW/AHaPQ90ReypotAnK+9JC
-         jLF1B7AC1y7Wq7wsrd+QIWRft305HYCt8XPlAbT7dsIkAgfQ74Z1XM3HzfOt7UYS/ins
-         3BVJWPR4SSVNftbgm5sYBiEvkj2vPV8fm9xB7LgaQaetQUoQDz6e0Yjf4li8jHvgVttA
-         AOuQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUto6VJ/vrxhmV4P+i5sAA1L4Wo6ke/uMmAByQon3sTev2yCYZ/8mrk+nbqF3DtTf3RxRrhj4pFk3/tTEewwJErzC5UEOuz5err7wQytIaw2Vr99vHOPjisgHLnD4TD1oH1aw2nStA0+FNL6WUkPY7kBzE/v2mpAjXrSGMhgVQ0EvxReQ==
-X-Gm-Message-State: AOJu0YyEnJvNXftDeD7K/h4sfHwX7Bme8difrws1Txsug2qNHXDg/RlL
-	4NUpuG6YSPTIaQqAHQaYMVDZ1tmrK7sLgFCg+RyJQAYmOafI/Dej
-X-Google-Smtp-Source: AGHT+IEywtLzOaTDz89Q6pwDNWHnnCVF3LlQKIrvaF1Z2oiNS7RIbF7IxdMFkle1HzNO2GCgNZKoog==
-X-Received: by 2002:a05:620a:31a3:b0:79d:7ae3:4560 with SMTP id af79cd13be357-7a4c182f7b4mr192433085a.55.1723214447683;
-        Fri, 09 Aug 2024 07:40:47 -0700 (PDT)
-Received: from [192.168.0.220] ([83.103.132.21])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7a3785d3cedsm268424885a.15.2024.08.09.07.40.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Aug 2024 07:40:47 -0700 (PDT)
-Message-ID: <93d79fbd-8d1c-4a80-bf65-d4e597247573@gmail.com>
-Date: Fri, 9 Aug 2024 17:40:44 +0300
+	s=arc-20240116; t=1723214964; c=relaxed/simple;
+	bh=22tE3bcxOV4XQUyxYBM8SclBMeZRi8d9Ee40iy2gYwE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YxsI+UZ9Z8bYrWEv3bcB6bbkCNd5X4q9UpbVSqBr0+knDonN2pqVy6OukRbICwbJZ4rAyEAaS+y7KIt+OOwfSYvnYuT/p2oR6QzqvGEYNlMIdJlHvevzGu8feSwKmbcpobf7N6r56zmFIMtWEWcoSsyuDVaqQgdV45V5uhpP9tE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=Vld4p26j; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 2CD7C1F8BD;
+	Fri,  9 Aug 2024 16:49:19 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1723214959;
+	bh=vqTV2il+IVohltGgzCzW6B4mCGXHGDpJVmefQp88URU=; h=From:To:Subject;
+	b=Vld4p26j0w6i6/Wg3NX21IYkJ+teBsKRvXvoXaYpJv5mTvAmKOIF4tIBvUx4Z10ec
+	 N8NfuGQGrkHEuk4ajEUc7NYzOZ14RibmCjvj12eV6PjtDsublnI2cwO48jBYp10E3D
+	 NMl/Gm5Ew1cfzu+hr7FPxRz+OrzrhxWoy+TnZLDSnwyjtR9dFi7+yt6mBENywxsh4+
+	 lBQCpzo4rk7Gca84OthJp1GfoRLuWL3uqJFz/8vU3YUnur86x/UaLnyCZ1SXzj4REr
+	 +D6+d42NChiQoEQSB1TLuxUFCzQsthr0uCJpUfjv8mGnwNeef/5kL6s5ozCh9CoEoL
+	 FSI/NreBAG3gA==
+Date: Fri, 9 Aug 2024 16:49:14 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Conor Dooley <conor@kernel.org>
+Cc: Francesco Dolcini <francesco@dolcini.it>, Wei Fang <wei.fang@nxp.com>,
+	Shenwei Wang <shenwei.wang@nxp.com>,
+	Clark Wang <xiaoning.wang@nxp.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Linux Team <linux-imx@nxp.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	imx@lists.linux.dev, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v3 1/3] dt-bindings: net: fec: add pps channel
+ property
+Message-ID: <20240809144914.GA418297@francesco-nb>
+References: <20240809094804.391441-1-francesco@dolcini.it>
+ <20240809094804.391441-2-francesco@dolcini.it>
+ <20240809-bunt-undercook-3bb1b5da084f@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] iio: adc: ad7173: add support for ad4113
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- devnull+dumitru.ceclan.analog.com@kernel.org
-Cc: Michael.Hennerich@analog.com, conor+dt@kernel.org,
- devicetree@vger.kernel.org, dumitru.ceclan@analog.com, jic23@kernel.org,
- krzk+dt@kernel.org, lars@metafoo.de, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, robh@kernel.org
-References: <20240809-ad4113-v2-0-2a70c101a1f4@analog.com>
- <20240809-ad4113-v2-2-2a70c101a1f4@analog.com>
- <37357b8a-1995-473d-a6fb-168fc38e0641@wanadoo.fr>
-Content-Language: en-US
-From: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
-In-Reply-To: <37357b8a-1995-473d-a6fb-168fc38e0641@wanadoo.fr>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240809-bunt-undercook-3bb1b5da084f@spud>
 
-On 09/08/2024 17:30, Christophe JAILLET wrote:
-> Le 09/08/2024 à 12:33, Dumitru Ceclan via B4 Relay a écrit :
->> From: Dumitru Ceclan <dumitru.ceclan-OyLXuOCK7orQT0dZR+AlfA@public.gmane.org>
->>
->> This commit adds support for the AD4113 ADC.
->> The AD4113 is a low power, low noise, 16-bit, Σ-Δ analog-to-digital
->> converter (ADC) that integrates an analog front end (AFE) for four
->> fully differential or eight single-ended inputs.
->>
->> Signed-off-by: Dumitru Ceclan <dumitru.ceclan-OyLXuOCK7orQT0dZR+AlfA@public.gmane.org>
->> ---
->>   drivers/iio/adc/ad7173.c | 36 +++++++++++++++++++++++++++++++++++-
->>   1 file changed, 35 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/iio/adc/ad7173.c b/drivers/iio/adc/ad7173.c
->> index a854f2d30174..3ac09d326472 100644
->> --- a/drivers/iio/adc/ad7173.c
->> +++ b/drivers/iio/adc/ad7173.c
->> @@ -3,7 +3,7 @@
->>    * AD717x and AD411x family SPI ADC driver
->>    *
->>    * Supported devices:
->> - *  AD4111/AD4112/AD4114/AD4115/AD4116
->> + *  AD4111/AD4112/AD4113/AD4114/AD4115/AD4116
->>    *  AD7172-2/AD7172-4/AD7173-8/AD7175-2
->>    *  AD7175-8/AD7176-2/AD7177-2
->>    *
->> @@ -84,6 +84,7 @@
->>   #define AD4111_ID            AD7173_ID
->>   #define AD4112_ID            AD7173_ID
->>   #define AD4114_ID            AD7173_ID
->> +#define AD4113_ID            0x31D0
+On Fri, Aug 09, 2024 at 03:27:39PM +0100, Conor Dooley wrote:
+> On Fri, Aug 09, 2024 at 11:48:02AM +0200, Francesco Dolcini wrote:
+> > From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > 
+> > Add fsl,pps-channel property to specify to which timer instance the PPS
+> > channel is connected to.
 > 
-> Nitpick: others are in lowercase --> 0x31d0
+> In the driver patch you say "depending on the soc ... might be routed to
+> different timer instances", why is a soc-specific compatible
+> insufficient to determine which timer instance is in use?
+> I think I know what you mean, but I'm not 100%.
 > 
->>   #define AD4116_ID            0x34d0
->>   #define AD4115_ID            0x38d0
->>   #define AD7175_8_ID            0x3cd0
-> 
-> Other than that, is there any reason to have this "random" order for these defines?
-> 
-> CJ
-> 
+> That said, the explanation in the driver patch is better than the one
+> here, so a commit message improvement is required.
 
-It's not random, it was requested to order these defines by the ID value:
-https://lore.kernel.org/all/CAHp75VcjcgnLkQWim1AVnyeRGFwwKpaWSCvrmqdv41Lx87hMKw@mail.gmail.com/
+This was clarified by NXP during the discussion on this series [1] and the
+commit messages were not amended to take this new information into
+account, my fault.
+
+I would propose something like this here:
+
+```
+Add fsl,pps-channel property to select where to connect the PPS
+signal. This depends on the internal SoC routing and on the board, for
+example on the i.MX8 SoC it can be connected to an external pin (using
+channel 1) or to internal eDMA as DMA request (channel 0).
+```
+
+Francesco
+
+[1] https://lore.kernel.org/all/ZrPYOWA3FESx197L@lizhi-Precision-Tower-5810/
 
