@@ -1,153 +1,113 @@
-Return-Path: <devicetree+bounces-92247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B9B094C808
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 03:26:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B80594C80D
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 03:29:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 005B22839B5
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 01:26:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8175A1C21D89
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 01:29:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A88F8BFF;
-	Fri,  9 Aug 2024 01:26:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2D458BFF;
+	Fri,  9 Aug 2024 01:29:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Dxoq6RQ9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uz2Nwnvs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AAF12905;
-	Fri,  9 Aug 2024 01:26:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 772148F49;
+	Fri,  9 Aug 2024 01:29:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723166796; cv=none; b=Uikal7Oz3LMfTo1SsPDl2w6xckaAkLKhBnXmogXcFa3LQH12FOJtKJrsSR1McefbBC+/edLgbusHBMUVLPlfNrAMDy7TyjRMdTohrlywUgjbenCvSLTkkysvWdHjTN5+7SmEv0hcyJBDzn4/lq+NYfWo8IFqVP3GG9/jRgc7lOs=
+	t=1723166991; cv=none; b=qi0+IJ4mrK7wAIjRU/m+mw0E/ja/FlyAuWo1XzZMGM9SSKvD9XDk+6cT3YSHFHTET6ycvwq4O4WJCoiyQj3hDUKZD2Psm/qN9qh1xwYPjPPPUwZosJVUzquxa08o7LoSZ4XB4p2IqS6UE1aYgAK00buV8M7U21167amwr0DynYI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723166796; c=relaxed/simple;
-	bh=t4Kxw+OVg7XockFwmHnqd3O4dZONmVYviHD+66OcYik=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hFkWTAHGB62TvrfirrkxwHpJrxVds0YCwnKB7efCdDPaJ4TulEIVaQVPGkB75RVQcx8eYVn7g52ZNI+G0PCW+0jXF7wejoHnocgmSor/R4qlH9jQfFA18PaddKi+9JYEU4DNPfXy5LPCtx2ynFkHM4W9fR71OPwYTnuNNesgJbs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dxoq6RQ9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83B66C32782;
-	Fri,  9 Aug 2024 01:26:32 +0000 (UTC)
+	s=arc-20240116; t=1723166991; c=relaxed/simple;
+	bh=WpZAolvuAbbkHmlwrfLzGI6UGMpXjvkIIJmACSdZHOc=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=OlzbFOXQ4k8zvHFpz/66tMHp04YqOCEAjDar8kE8DbL1yqHbTdGc58hQKp+gsPo8UUDbrAJ4yfOQ753JQWrjwJ1o6fivAOXi2v1AjdohB7RY1oPmyZhHmITCWOLdKMlKjNSB6ox7p6NoWzUb87rjne9zQX7cqdUIKZgDWa2a0Yc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uz2Nwnvs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F5B7C32782;
+	Fri,  9 Aug 2024 01:29:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723166795;
-	bh=t4Kxw+OVg7XockFwmHnqd3O4dZONmVYviHD+66OcYik=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Dxoq6RQ9C/ka5+gpSg523ncPJUeOb5YvXLj6yhC0K2bGFL8RRFUWDqdUc4sPDEN+Z
-	 HM5IWV15KVS+ZmrDFgFEI+4xa3Moc0mQ9edZVahWNz8DZQ/KJtFQNJ6+wRM9wLcjXN
-	 UWvPxzrrLMg/fb+YHFmR3mBPw1DKUdVZM9iVjIQBhKzk/U1h+T4k9/1AgLSkzVkrtf
-	 lmxfnXlFkrjag6zOAEX8+fonRhZ87Wwn7aFT+raNjHJDGBu+NJz/4E/RsgzfyVsruV
-	 XS9zj2JLsTM9ECf4+HVsylHNsFQxYFEiP++Nq/UFCT5tfxaHjzYe47dl2AnzaiUhpN
-	 +6oQdoB71K1lg==
-Date: Fri, 9 Aug 2024 09:26:25 +0800
-From: Peter Chen <peter.chen@kernel.org>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-	gregkh@linuxfoundation.org, herve.codina@bootlin.com,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-usb@vger.kernel.org, jun.li@nxp.com
-Subject: Re: [PATCH v2 1/6] usb: phy: mxs: enable regulator phy-3p0 to
- improve signal qualilty
-Message-ID: <20240809012625.GC2673490@nchen-desktop>
-References: <20240726113207.3393247-1-xu.yang_2@nxp.com>
+	s=k20201202; t=1723166991;
+	bh=WpZAolvuAbbkHmlwrfLzGI6UGMpXjvkIIJmACSdZHOc=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=uz2NwnvsTc3GcEEH02TxnR/VvdC/+ee5YneYtMZRmy+qx6nw+kDgqCwviy6SmxeNu
+	 uqTV1R0olusPy11IbExGDKdN50247XHhrO7tNyuz85Wz0xLYWtOT62v66FP30i7JOS
+	 H+LHChNTRA5qr6RL0I7z+BFFRv0CNSCKDF1jjp3vmb3P7xreUTlPsRVrhxGUIYz3G0
+	 qZr0B0sARFyCRh82JyMnOOEUBeQKS+jLu47bGkiGALSraGtDqQUcjqiwb9FwgR0jr7
+	 C4fxN3zJWqt13jCNRz8gsREftIiaICjaPxnsDWylCf2wprfAbfMSNVbt88e/J1Ub+1
+	 cgoJi4Zp+ZEsw==
+Date: Thu, 08 Aug 2024 19:29:49 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240726113207.3393247-1-xu.yang_2@nxp.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Tristram.Ha@microchip.com
+Cc: "David S. Miller" <davem@davemloft.net>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Woojung Huh <woojung.huh@microchip.com>, 
+ Tristram Ha <tristram.ha@microchip.com>, Andrew Lunn <andrew@lunn.ch>, 
+ netdev@vger.kernel.org, Marek Vasut <marex@denx.de>, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Vladimir Oltean <olteanv@gmail.com>, UNGLinuxDriver@microchip.com, 
+ Florian Fainelli <f.fainelli@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
+ Jakub Kicinski <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>, 
+ Paolo Abeni <pabeni@redhat.com>, Oleksij Rempel <o.rempel@pengutronix.de>
+In-Reply-To: <20240809004310.239242-2-Tristram.Ha@microchip.com>
+References: <20240809004310.239242-1-Tristram.Ha@microchip.com>
+ <20240809004310.239242-2-Tristram.Ha@microchip.com>
+Message-Id: <172316698916.2542023.14755989610157748245.robh@kernel.org>
+Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: dsa: microchip: Add
+ KSZ8895/KSZ8864 switch support
 
-On 24-07-26 19:32:02, Xu Yang wrote:
-> Enable regulator 'phy-3p0' to pass eye diagram test since it improve signal
-> qualilty.
+
+On Thu, 08 Aug 2024 17:43:09 -0700, Tristram.Ha@microchip.com wrote:
+> From: Tristram Ha <tristram.ha@microchip.com>
 > 
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-
-Reviewed-by: Peter Chen <peter.chen@kernel.org>
-
+> KSZ8895/KSZ8864 is a switch family developed before KSZ8795 and after
+> KSZ8863, so it shares some registers and functions in those switches.
+> KSZ8895 has 5 ports and so is more similar to KSZ8795.
 > 
+> KSZ8864 is a 4-port version of KSZ8895.  The first port is removed
+> while port 5 remains as a host port.
+> 
+> Signed-off-by: Tristram Ha <tristram.ha@microchip.com>
 > ---
-> Changes in v2:
->  - rewrite commit message
->  - use dev_err_probe() as suggested by Frank Li
-> ---
->  drivers/usb/phy/phy-mxs-usb.c | 26 ++++++++++++++++++++++++++
->  1 file changed, 26 insertions(+)
+>  Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/drivers/usb/phy/phy-mxs-usb.c b/drivers/usb/phy/phy-mxs-usb.c
-> index 920a32cd094d..d9d29f0b37de 100644
-> --- a/drivers/usb/phy/phy-mxs-usb.c
-> +++ b/drivers/usb/phy/phy-mxs-usb.c
-> @@ -18,6 +18,7 @@
->  #include <linux/regmap.h>
->  #include <linux/mfd/syscon.h>
->  #include <linux/iopoll.h>
-> +#include <linux/regulator/consumer.h>
->  
->  #define DRIVER_NAME "mxs_phy"
->  
-> @@ -204,6 +205,7 @@ struct mxs_phy {
->  	int port_id;
->  	u32 tx_reg_set;
->  	u32 tx_reg_mask;
-> +	struct regulator *phy_3p0;
->  };
->  
->  static inline bool is_imx6q_phy(struct mxs_phy *mxs_phy)
-> @@ -288,6 +290,16 @@ static int mxs_phy_hw_init(struct mxs_phy *mxs_phy)
->  	if (ret)
->  		goto disable_pll;
->  
-> +	if (mxs_phy->phy_3p0) {
-> +		ret = regulator_enable(mxs_phy->phy_3p0);
-> +		if (ret) {
-> +			dev_err(mxs_phy->phy.dev,
-> +				"Failed to enable 3p0 regulator, ret=%d\n",
-> +				ret);
-> +			return ret;
-> +		}
-> +	}
-> +
->  	/* Power up the PHY */
->  	writel(0, base + HW_USBPHY_PWD);
->  
-> @@ -448,6 +460,9 @@ static void mxs_phy_shutdown(struct usb_phy *phy)
->  	if (is_imx7ulp_phy(mxs_phy))
->  		mxs_phy_pll_enable(phy->io_priv, false);
->  
-> +	if (mxs_phy->phy_3p0)
-> +		regulator_disable(mxs_phy->phy_3p0);
-> +
->  	clk_disable_unprepare(mxs_phy->clk);
->  }
->  
-> @@ -789,6 +804,17 @@ static int mxs_phy_probe(struct platform_device *pdev)
->  	mxs_phy->clk = clk;
->  	mxs_phy->data = of_device_get_match_data(&pdev->dev);
->  
-> +	mxs_phy->phy_3p0 = devm_regulator_get(&pdev->dev, "phy-3p0");
-> +	if (PTR_ERR(mxs_phy->phy_3p0) == -ENODEV)
-> +		/* not exist */
-> +		mxs_phy->phy_3p0 = NULL;
-> +	else if (IS_ERR(mxs_phy->phy_3p0))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(mxs_phy->phy_3p0),
-> +				"Getting regulator error\n");
-> +
-> +	if (mxs_phy->phy_3p0)
-> +		regulator_set_voltage(mxs_phy->phy_3p0, 3200000, 3200000);
-> +
->  	platform_set_drvdata(pdev, mxs_phy);
->  
->  	device_set_wakeup_capable(&pdev->dev, true);
-> -- 
-> 2.34.1
-> 
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml:24:26: [error] syntax error: found character '\t' that cannot start any token (syntax)
+
+dtschema/dtc warnings/errors:
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240809004310.239242-2-Tristram.Ha@microchip.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
