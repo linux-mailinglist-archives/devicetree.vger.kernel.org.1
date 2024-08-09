@@ -1,211 +1,170 @@
-Return-Path: <devicetree+bounces-92359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5382194CE82
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 12:20:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA69994CE5F
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 12:13:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9CE5CB21265
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 10:20:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 51D46B20950
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 10:13:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C359818C926;
-	Fri,  9 Aug 2024 10:20:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0FBD190059;
+	Fri,  9 Aug 2024 10:12:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="k9Ni1dmH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XHUP5RYo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 155141922E4
-	for <devicetree@vger.kernel.org>; Fri,  9 Aug 2024 10:20:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B923EADA
+	for <devicetree@vger.kernel.org>; Fri,  9 Aug 2024 10:12:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723198849; cv=none; b=r9Mgq7EpVdDmF0EHdL1QvBRQnRcexfsE54go0FQXiaiHxS1Q6NUuTaKZ7Nf2QvhZq8C/PHa9WrikFk6kvBzv+v5eZ7fPmGeYFgqCBWVul1yByOw5DW4GC4632/X6uOtByhUwTRjhThV5kj3K2/rRq84XrBAClAFKoffEYolHFfE=
+	t=1723198379; cv=none; b=Jxcbp0zDC8VsCrHoJ5FHFoHQ9oVD+ExpCjHgIltDW4LIqNLmRljznt1DwhocxeudMVbUoAjk/WTfEYh3l+xI1BCcxvhUi96sEmKeE6byMVuDC7Ik1xpEFpxCeLiq7TABwQ44Ytl40slfz/GRJEakEzvxUH3GINOfHzipQ3yebiI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723198849; c=relaxed/simple;
-	bh=SMzcdYFvMjTzaYN1elvm5cK56QJk4Z4R1xqPoyL0vho=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DL2rWSVYwZ6Tk+C4HpwwrPsb2jcuBGhZju5aoYF7TWVxC1STC8Djf0QrH3cRRZlDgC7gmAh0R0j99Eodb3euLx//DNuJ2rO2Xmg7s+U4pvn5ZglB4TKGXcisdmlTRmMMnyojL344jkOeprhKKlKzHZQ7ExwCLjQBkyV0J05hLI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=k9Ni1dmH; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1723198842;
- bh=OO67g+83piiNdnui6ZP/Dz8vFOwmBNOFhFvNVMXIXKM=;
- b=k9Ni1dmH4apkeZzlNLmVAUWgb8Q0ITEvQiQnoWM+dKP8FgyKV7po0IO/ih4Qmyw9OGzKbvY/p
- vsRs+CFCLus/7SIJG85795AXrL8OnXijgmNWudiSEV3CvXMXw1E2EROzcg5Of8RQHZgHX3YVjow
- yQNp4TSl+LC4CQmhIcar11YWXVOFovsOIOsGzpc3+kPcAx2WsbJ0GfLKaje0sDSigFb+mwDJsNU
- bn3x5e4Eia4QfRWWqHtrO5rHkQ75UQdmtWXmVRTc9RtYVikxY80b7YQmkSJPfaiX482FeZJ1UH2
- 3bJH7WjgBAOPQSOB0bHhrgIxKx/0Bx1aXUq6R3V0XgiA==
-Message-ID: <17c5e90e-a99d-4e4d-bc18-0366019f0bcf@kwiboo.se>
-Date: Fri, 9 Aug 2024 11:59:48 +0200
+	s=arc-20240116; t=1723198379; c=relaxed/simple;
+	bh=aQW9daCK+DazrmP2CfvTcxBVOXT8VzUcSmts4V69YMk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=VSLUvoCFoHoc5bTebvom+36okB9feCEXZpRNLLvhmQMMHKa6wO2DghHX6K+RrBipCHnSKhft5W3YTwNRGpdEovkS3/gRjPNOlkQLhwmrv2SQXkIyE9EmVRc4L/UuiYmEWCrA2bpQYocsguiaG17exnhJttbCG3N0dPsQ4cesMek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XHUP5RYo; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5a10835487fso2512106a12.1
+        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2024 03:12:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1723198376; x=1723803176; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rilrT7/IjMbXVgMURnQL8NL/sfhS1Oc4diIFcldpBSs=;
+        b=XHUP5RYoLOt6CR29AY3FL0zjedJGJf7e5eBwTEcBTzNUOyTtye8Ymror22iDp5UdFG
+         IbEZgqkBSA4wzLOaI2YzK/4XNdkYSMZ5wqSgObV5TIB3/7YRdhmQST2jiAMYtRzlq7RP
+         LRo3LfkFdDCRg1nUMhr7a7lUqjtPA2CpA+FvL9VnyTXAvRbEdQBy+muaJH1mE10NfA+e
+         fFg3UiGqxM4pHlcdQJGGDGi9c/MSWuptT6iE2MW/EsXRqbchrJh8s9cZIt4PuUAoaocU
+         6ZieDY72W0IBx+GqZ5qFTJ7gLqodDECQSkDQXIzQ9W7odDMJKRkF7wTyIntPjvrn1S6h
+         p7dQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723198376; x=1723803176;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rilrT7/IjMbXVgMURnQL8NL/sfhS1Oc4diIFcldpBSs=;
+        b=UeCNK58UU5GqvHx5EEix3MjhVh+wC4w59Oo4r6nrQwMHLJ2H7lTCkUcVPEsZ+qyk5f
+         7HDFeICPxYwtFMA/jgXDrPtHv2u9d3yQJk6nZMIvpURRPAmaSphH3ecX5J8Q/MY+3uzh
+         uihCq2IyozfHW3yJ1/3QGXXXqV4bSaFGeS7Q/Oaj+wicNAlELxzBVvdYDxAPTrTnUULg
+         8Uga1VRpnVSiT0T3g+4fyMjqCJIPgKJphnF61W55mVHVdU3yV9YDtKs8h9IwOP27k6vd
+         ZpGQtkoJRkSn94JBdEvVC6o18hQS2+7fcDhVle3kJ9EzKBIqYhH/0NLzXk8bSns3YuJZ
+         9l9w==
+X-Forwarded-Encrypted: i=1; AJvYcCXCRJ8vF4Rqnnoa51H2Kz6bON/3MUJ88+8byCgHFCawvjIwq/0ijnGyUQM/TKs6Fmby/Uwr4ZxtKxiCumPcuHkDOWeT0hfomNUtwQ==
+X-Gm-Message-State: AOJu0YznxDkqEzqb3zEw8BiLcnEMUXJ+59b8xm40SFvGqSmo2jJh5n17
+	LlqcIOBrT3QYUdxOedByPmwMEDbzzDKD4etoKclq1/IttY0DtvUZSeDFRwqSyAc=
+X-Google-Smtp-Source: AGHT+IEmnaJ9bQ5ZBdtVQd2FJNPVrknPU4mVC2unYQXy8BxmPv05p8cNt1l4yXZYx3UlWxty34jg0w==
+X-Received: by 2002:a17:906:f59b:b0:a7a:acae:340c with SMTP id a640c23a62f3a-a80aa542aefmr86457766b.13.1723198376265;
+        Fri, 09 Aug 2024 03:12:56 -0700 (PDT)
+Received: from [127.0.1.1] ([82.79.186.176])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7dc9bc4230sm828105766b.32.2024.08.09.03.12.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Aug 2024 03:12:55 -0700 (PDT)
+From: Abel Vesa <abel.vesa@linaro.org>
+Date: Fri, 09 Aug 2024 13:12:43 +0300
+Subject: [PATCH] arm64: dts: qcom: x1e80100: Add HS PHY IRQs to USB1
+ SS[0-2]
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5] arm64: dts: rockchip: Add missing pinctrl wake and
- clkreq for PCIe node
-To: Anand Moon <linux.amoon@gmail.com>, Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Dragan Simic
- <dsimic@manjaro.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240729123709.2981-1-linux.amoon@gmail.com>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20240729123709.2981-1-linux.amoon@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-ForwardEmail-ID: 66b5e899527e81fbd62263f5
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240809-x1e80100-dts-usb-1-ss0-2-add-hs-phy-irqs-v1-1-9e1bc62fa407@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAJrrtWYC/x2NwQ6CQAwFf4X07Eu6KyrxV4wHpMXtBXELZg3h3
+ 914nDnMbOSaTZ2uzUZZP+b2miqEQ0ND6qenwqQyRY4tX+IZJWjHgRmyOFZ/IMCdEdGLIDnm9IX
+ lt4Ol7Y5VjjycqObmrKOV/+p23/cfC9rNk3oAAAA=
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>, 
+ Rajendra Nayak <quic_rjendra@quicinc.com>
+Cc: Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Abel Vesa <abel.vesa@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2082; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=aQW9daCK+DazrmP2CfvTcxBVOXT8VzUcSmts4V69YMk=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBmteuhqUsDsoM+KQ5k+IjJzJyZ6CRVsRtFrSZK5
+ bZ8ivG9+L2JAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZrXroQAKCRAbX0TJAJUV
+ Vh+xD/0S/5l4vZvltDwRrT4pUJiLVGhpPxTIDBfj/6Rqbr7mm0Q78H6fpcZrQ5X3k2s/CMTmGzU
+ fzNy9POZA7KdG7YfwOUnI42+O/UHkgNdLcuQt0QyLpnXDJZbYYER1ikylDXqgZIZ8n8dWoCzOjz
+ 2mGMiIg5eIx9w28Eu/36HWpOqVYJv5xddbP0ggwuknzuKTgfpJPDOjqBdNdK4LRrZXvedytcCm5
+ fLmNVOtNN70r3nEgLwAZY4W0SzZL9CAm6N5dgOCj8a4Zq3hQgfDHfOXgyjGGdCqxZMXo1N5OOeS
+ RQOFipqdu5QxEYAYcXUUGitEe7JTjjsCZA7UO7YSFqD7njmA5c7vQUnjYd1QMfxkTY0OjGJSxOg
+ GOsHRSGunmgt1D/kHSLIyD0UmKM3bq1RVKHK+O6oPFchAMruw0LoS0NvQ/gcPjW5PmSqUo0rCWV
+ UT0GpcjGawCerIhDUioqbD69aag+hJ4zZLSlp5APH3RuaNGQRUEfHXAGshdTGcbob7TOs9zBLA+
+ qG9KD//FIpwAZuwKZJ6FhRJa/PDOpihRRIwgRd+VTwvS7ggd+HQyJNFVJh/6Z9g0qBXsrwDZXmd
+ dIKlpz0HW6juKud2Ie8G02O+lp/0oLvtncDHcMHAvbEPW/5YyzDK39M6XVmEnsS+57tB+g3ZK5h
+ OowA1L8wRVS3nRQ==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-Hi Anand,
+Add missing HS PHY IRQs to all 3 USB1 SS instances.
 
-On 2024-07-29 14:37, Anand Moon wrote:
-> Add missing pinctrl settings WAKE and CLKREQ for PCIe 3.0 x4, PCIe 3.0 x1
-> and PCIe 2.1 x1 nodes. Each component of PCIe communication have the
-> following control signals: PERST, WAKE, CLKREQ, and REFCLK.
-> These signals work to generate high-speed signals and communicate with
-> other PCIe devices. Used by root complex to endpoint depending on
-> the power state.
-> 
-> PERST# is referred to as a fundamental reset. PERST should be held
-> low until all the power rails in the system and the reference clock
-> are stable. A transition from low to high in this signal usually
-> indicates the beginning of link initialization.
-> 
-> WAKE# signal is an active-low signal that is used to return the PCIe
-> interface to an active state when in a low-power state.
-> 
-> CLKREQ# signal is also an active-low signal and is used to request the
-> reference clock.  L1 sub-states is providing a digital signal
-> (CLKREQ#) for PHYs to use to wake up and resume normal operation.
-> 
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> ---
-> v5: Merged all 3 patch into single patch, reabse on master
->     Fix the $subject and commit message.
->     Drop the RK_FUNC_GPIO for WAKE and CLKREQ as these seignal are
->     ment for was introduced to allow PCI Express devices to enter
->     even deeper power savings states (“L1.1” and “L1.2”) while still
->      appearing to legacy software to be in the “L1” state
-> ---
->  .../boot/dts/rockchip/rk3588-rock-5b.dts      | 46 +++++++++++++------
->  1 file changed, 33 insertions(+), 13 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> index 966bbc582d89..a1e83546f1be 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> @@ -318,7 +318,7 @@ map2 {
->  
->  &pcie2x1l0 {
->  	pinctrl-names = "default";
-> -	pinctrl-0 = <&pcie2_0_rst>;
-> +	pinctrl-0 = <&pcie30x1_pins>;
->  	reset-gpios = <&gpio4 RK_PA5 GPIO_ACTIVE_HIGH>;
->  	vpcie3v3-supply = <&vcc3v3_pcie2x1l0>;
->  	status = "okay";
-> @@ -326,7 +326,7 @@ &pcie2x1l0 {
->  
->  &pcie2x1l2 {
->  	pinctrl-names = "default";
-> -	pinctrl-0 = <&pcie2_2_rst>;
-> +	pinctrl-0 = <&pcie20x12_pins>;
->  	reset-gpios = <&gpio3 RK_PB0 GPIO_ACTIVE_HIGH>;
->  	vpcie3v3-supply = <&vcc3v3_pcie2x1l2>;
->  	status = "okay";
-> @@ -338,7 +338,7 @@ &pcie30phy {
->  
->  &pcie3x4 {
->  	pinctrl-names = "default";
-> -	pinctrl-0 = <&pcie3_rst>;
-> +	pinctrl-0 = <&pcie30x4_pins>;
->  	reset-gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
->  	vpcie3v3-supply = <&vcc3v3_pcie30>;
->  	status = "okay";
-> @@ -363,28 +363,48 @@ hp_detect: hp-detect {
->  		};
->  	};
->  
-> -	pcie2 {
-> -		pcie2_0_rst: pcie2-0-rst {
-> -			rockchip,pins = <4 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>;
-> +	pcie20x1 {
-> +		pcie20x12_pins: pcie20x12-pins {
-> +			rockchip,pins =
-> +				/* PCIE20_1_2_CLKREQn_M1_L */
-> +				<3 RK_PC7 4 &pcfg_pull_up>,
-> +				/* PCIE_PERST_L */
-> +				<3 RK_PB0 RK_FUNC_GPIO &pcfg_pull_up>,
-> +				/* PCIE20_1_2_WAKEn_M1_L */
-> +				<3 RK_PD0 4 &pcfg_pull_up>;
+Fixes: 4af46b7bd66f ("arm64: dts: qcom: x1e80100: Add USB nodes")
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Some unanswered questions from v4:
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+index 326283822aee..254643650fa7 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+@@ -3871,10 +3871,12 @@ usb_1_ss2: usb@a0f8800 {
+ 					       <200000000>;
+ 
+ 			interrupts-extended = <&intc GIC_SPI 370 IRQ_TYPE_LEVEL_HIGH>,
++					      <&intc GIC_SPI 363 IRQ_TYPE_LEVEL_HIGH>,
+ 					      <&pdc 58 IRQ_TYPE_EDGE_BOTH>,
+ 					      <&pdc 57 IRQ_TYPE_EDGE_BOTH>,
+ 					      <&pdc 10 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "pwr_event",
++					  "hs_phy_irq",
+ 					  "dp_hs_phy_irq",
+ 					  "dm_hs_phy_irq",
+ 					  "ss_phy_irq";
+@@ -4045,10 +4047,12 @@ usb_1_ss0: usb@a6f8800 {
+ 					       <200000000>;
+ 
+ 			interrupts-extended = <&intc GIC_SPI 371 IRQ_TYPE_LEVEL_HIGH>,
++					      <&intc GIC_SPI 368 IRQ_TYPE_LEVEL_HIGH>,
+ 					      <&pdc 61 IRQ_TYPE_EDGE_BOTH>,
+ 					      <&pdc 15 IRQ_TYPE_EDGE_BOTH>,
+ 					      <&pdc 17 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "pwr_event",
++					  "hs_phy_irq",
+ 					  "dp_hs_phy_irq",
+ 					  "dm_hs_phy_irq",
+ 					  "ss_phy_irq";
+@@ -4136,10 +4140,12 @@ usb_1_ss1: usb@a8f8800 {
+ 					       <200000000>;
+ 
+ 			interrupts-extended = <&intc GIC_SPI 372 IRQ_TYPE_LEVEL_HIGH>,
++					      <&intc GIC_SPI 369 IRQ_TYPE_LEVEL_HIGH>,
+ 					      <&pdc 60 IRQ_TYPE_EDGE_BOTH>,
+ 					      <&pdc 11 IRQ_TYPE_EDGE_BOTH>,
+ 					      <&pdc 47 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "pwr_event",
++					  "hs_phy_irq",
+ 					  "dp_hs_phy_irq",
+ 					  "dm_hs_phy_irq",
+ 					  "ss_phy_irq";
 
-How come you use internal pull-up/down on these pins?
-And why do they differ for each pcie node in this series?
+---
+base-commit: 61c01d2e181adfba02fe09764f9fca1de2be0dbe
+change-id: 20240726-x1e80100-dts-usb-1-ss0-2-add-hs-phy-irqs-0d483addf0c5
 
-Regards,
-Jonas
-
->  		};
-> +	};
->  
-> +	pcie30x1 {
->  		pcie2_0_vcc3v3_en: pcie2-0-vcc-en {
->  			rockchip,pins = <1 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
->  		};
->  
-> -		pcie2_2_rst: pcie2-2-rst {
-> -			rockchip,pins = <3 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		pcie30x1_pins: pcie30x1-pins {
-> +			rockchip,pins =
-> +				/* PCIE30x1_0_CLKREQn_M1_L */
-> +				<4 RK_PA3 4 &pcfg_pull_down>,
-> +				/* PCIE30x1_0_PERSTn_M1_L */
-> +				<4 RK_PA5 RK_FUNC_GPIO &pcfg_pull_down>,
-> +				/* PCIE30x1_0_WAKEn_M1_L */
-> +				<4 RK_PA4 4 &pcfg_pull_down>;
->  		};
->  	};
->  
-> -	pcie3 {
-> -		pcie3_rst: pcie3-rst {
-> -			rockchip,pins = <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
-> -		};
-> -
-> +	pcie30x4 {
->  		pcie3_vcc3v3_en: pcie3-vcc3v3-en {
->  			rockchip,pins = <1 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
->  		};
-> +
-> +		pcie30x4_pins: pcie30x4-pins {
-> +			rockchip,pins =
-> +				/* PCIE30X4_CLKREQn_M1_L */
-> +				<4 RK_PB4 4 &pcfg_pull_up>,
-> +				/* PCIE30X4_PERSTn_M1_L */
-> +				<4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_down>,
-> +				/* PCIE30X4_WAKEn_M1_L */
-> +				<4 RK_PB5 4 &pcfg_pull_down>;
-> +		};
->  	};
->  
->  	usb {
-> 
-> base-commit: dc1c8034e31b14a2e5e212104ec508aec44ce1b9
+Best regards,
+-- 
+Abel Vesa <abel.vesa@linaro.org>
 
 
