@@ -1,167 +1,114 @@
-Return-Path: <devicetree+bounces-92490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD9AC94D564
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 19:26:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4288994D58E
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 19:38:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5D83BB20BB0
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 17:26:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 757611C213BA
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 17:38:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8294D4C634;
-	Fri,  9 Aug 2024 17:26:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC3E76EB64;
+	Fri,  9 Aug 2024 17:38:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="Hi/QJeSM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vOk3wxoG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9349B14F70;
-	Fri,  9 Aug 2024 17:26:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723224386; cv=pass; b=AptnPjM/aYlNWMCdn0QcOM07NP2/VNvLrkJSy5KBdXSqy4K54baFhf73Poo4sDkPzDcEUwX8z37k8radj/ulmeiXsg6ViIvRycfkceYb42e2ffcJOCBJwdqiTKDyb5P/iyLv4h1US4jt46X66wOpU8fwCkrvH3QH7OKmFWAwMao=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723224386; c=relaxed/simple;
-	bh=gIsbDqSuaUfGJi7NYRIeUHylwOZj9S28wR+BNU+1whE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dL7Ucun6EYSgOiaK1lPaUff5Ul09DUul3pZK/413C/Cp7CLbutv15RfFYUD5rb5XMHjFxVhVo+bEDtLRup9a2HcBsa+p4f50OCcIbNebQwF7m/E1PZRB4fGtj9ffH/bQM5XM/r7yIdGJQoclAwPaNURJIQQhYc9MHL3hjxxzlGg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=Hi/QJeSM; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-Delivered-To: kernel@collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1723224360; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=iQBBvpC8vMJ99e7tPEJeC1lrhmU+/jexmlTqOoZ+995lMWieOIKa/s5uDT9qXsjWf8zbCmSTshziCVldb3YGDNMPxPMCC0CxD2wiBS8K25JTJrCAXZwkk4g5S9llOyHhQ3ieDE5XPC2cv/hU9G/MRT0893l3SFiUXLzMRBYzXHk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1723224360; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=MlUROrStYAoAJMglAHXmhXbY9RBE077SVTGfqsg6ysY=; 
-	b=R/1KB4AjFWPrhfm0PTCJmc1udbrhIScvCEelUDcMcAN+K95GEIVQe3Mef0ESN7xBXHeUo8BemfLOUk58A4+TPj1NrlynxjrdunusR6icUouuOE6cQwUCl5q8WOv+nfFz62/zRas73EE9RVYdmW2MbubJwl4hSet+q++ohPR8phs=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
-	dmarc=pass header.from=<detlev.casanova@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1723224360;
-	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=MlUROrStYAoAJMglAHXmhXbY9RBE077SVTGfqsg6ysY=;
-	b=Hi/QJeSMAgrDib/xF0r0jqeTdhA/dx5DYQRYIqiN/kKk+tEj7N40lK5lSGQbz/I7
-	xHJcJty4BTWS/oGygqhUnh38BJdmcvM0nZI5oLrGMTqTSxWYIcylKqxhckllaCcdZsc
-	KbfRapariThTbf4Rm3Wung1JlRuwJyV/mMimDmNY=
-Received: by mx.zohomail.com with SMTPS id 1723224359034870.4612231906191;
-	Fri, 9 Aug 2024 10:25:59 -0700 (PDT)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, Ulf Hansson <ulf.hansson@linaro.org>,
- Finley Xiao <finley.xiao@rock-chips.com>, Jagan Teki <jagan@edgeble.ai>,
- Arnd Bergmann <arnd@arndb.de>, Elaine Zhang <zhangqing@rock-chips.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-pm@vger.kernel.org,
- kernel@collabora.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: power: Add support for RK3576 SoC
-Date: Fri, 09 Aug 2024 13:27:18 -0400
-Message-ID: <2276665.iZASKD2KPV@trenzalore>
-In-Reply-To: <20240809-constant-oxidize-8aed145179c7@spud>
-References:
- <20240808163451.80750-1-detlev.casanova@collabora.com>
- <20240808163451.80750-2-detlev.casanova@collabora.com>
- <20240809-constant-oxidize-8aed145179c7@spud>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F2508289C
+	for <devicetree@vger.kernel.org>; Fri,  9 Aug 2024 17:38:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723225117; cv=none; b=GxUOJ3xWfGdzk5PI5/M1liEhLh2W6oQDOIwI5HbsE5JMaF4S/KxygLToqOcHZKl9d4xMc08NeQjIg9VcyjFp7wGDrCC3Anz+DQngGGu+h83GVDcu4UomvnGTolca0x3sQZmh/ObirzJj/DQI0tiuzwIVhbhL8s8I2FwourzQBnc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723225117; c=relaxed/simple;
+	bh=cXxYEXZARGsajeKNP9d0RS9azqEcBNcFd0GgIoMO+s4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=ejjenQQX7aQiAQHl24UoTCYMeHOn/oo0FmrxyXN7Cb8AmmBN/H9BXjE8SitM8SMn44I/3EiC9osLG9SGSDzMDpRxFRUeeae4WWgddONVq2rDgO9Q3qZVq3GQlr8ol2I9E8HXT/dzg4IWf9n2Wvxh6kNFAVAy+LDb+MPY1bfpNTA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vOk3wxoG; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4257d5fc9b7so22222775e9.2
+        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2024 10:38:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1723225114; x=1723829914; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wK/eXbtSXt7i7qGRvp4JY5MYm4mTg33gbZoavV57C+w=;
+        b=vOk3wxoG5dxVz2yYdtRQByI9uhxIBAoQXyjJBT73BETSm1yQlAo6+AisyYu1zsedgr
+         tKr8+4XknMzR8xz2r2BJDMwj5ahbZY07WuB2VljglD/byP3eogB39XJMa8TXlUl1zvcG
+         4+6FEA9tMpkoODxqaJzALjHMAOayy3pxfHHohyTcjJdGssPhtlZsSGImPkFK/xHOXiNJ
+         kGZHl6gQ068xIpKbH7x7qCZQYRmZdeqONKdf+ja9dwzs7ZIMqWHwawkIS9GmM+BGny0f
+         0mN050LUyOUkt/Aqxs8kCi21KvY/XM/v4DunsG0Y1HoEFDXcA9tNEmuJmB3GheR95bUz
+         7cvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723225114; x=1723829914;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wK/eXbtSXt7i7qGRvp4JY5MYm4mTg33gbZoavV57C+w=;
+        b=GS/8ov47O7Daq43t4sY4v9B6549nP3WJv7twidRuIimUDOZ04C7N1tbHAqEAJ41OGj
+         MshbU4rtjtCmR2YuOqTz1EudDedsEa2/tR6ZD5iTz95IBjxVWeaYcSLALgQ4R6nH8a5/
+         TXszRxdSahMhOCqPJkQfN8Dmi3E7ucCoYTeZuB8nR0lIHKX/mUxGlFjxrnRi4wfUbJWs
+         s8ZZSWv/aiQpAVVZmLH2gCKfocITnETuiE0WE5RUbeMFD40SGKkfkKFhG6GFmrbJ1UDc
+         6JKDkWgsRAR005RmzwcXPAm6n4zWEswEk6AZ0MxrEmYiidi3eewuT8ec2tROg69MikDW
+         AMpA==
+X-Forwarded-Encrypted: i=1; AJvYcCU44MWSO/KW21XlEF4WU0StX5aO34jzHd0bbfyKXyI+ZH6YoD2jzH9Bx/8UszVDUtazOWk28iD01cz11tDXVUVXHEvwlzBGt1FXTw==
+X-Gm-Message-State: AOJu0YyBqbRcAPLIE0olRCNzOTAU3cuxQP/aovXC3URycHJJYu9HHIup
+	/QyAL0xbCqw7/nVQoUNBzzFusuU3GceoelgkRUffEeQkBcKbBd5t9FtHQTDHcuQ=
+X-Google-Smtp-Source: AGHT+IHlKsFJK5FyeGImDhFZElsrrYy4iv5r7ySzQHymljAVd0WoJ9rnFzjR1TGdbNLOS209wzEC4w==
+X-Received: by 2002:a05:600c:1f81:b0:426:5269:982c with SMTP id 5b1f17b1804b1-429c3a52e1cmr22944565e9.28.1723225114348;
+        Fri, 09 Aug 2024 10:38:34 -0700 (PDT)
+Received: from [192.168.68.116] ([5.133.47.210])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36e4efae579sm40543f8f.111.2024.08.09.10.38.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Aug 2024 10:38:33 -0700 (PDT)
+From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To: linux-kernel@vger.kernel.org, monstr@monstr.eu, git@xilinx.com, 
+ robh@kernel.org, Michal Simek <michal.simek@amd.com>, 
+ Michal Simek <michal.simek@amd.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Kalyani Akula <kalyani.akula@amd.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>, 
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+ "moderated list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
+In-Reply-To: <1184b2799ecdeef04128f4bab3db7460fd8edb10.1723114978.git.michal.simek@amd.com>
+References: <1184b2799ecdeef04128f4bab3db7460fd8edb10.1723114978.git.michal.simek@amd.com>
+Subject: Re: [PATCH v2] dt-bindings: nvmem: Use soc-nvmem node name instead
+ of nvmem
+Message-Id: <172322511112.401904.15547829402297792628.b4-ty@linaro.org>
+Date: Fri, 09 Aug 2024 18:38:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="utf-8"
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.2
 
-On Friday, 9 August 2024 10:59:58 EDT Conor Dooley wrote:
-> On Thu, Aug 08, 2024 at 12:31:04PM -0400, Detlev Casanova wrote:
-> > From: Finley Xiao <finley.xiao@rock-chips.com>
-> > 
-> > Define power domain IDs as described in the TRM and add compatible for
-> > rockchip,rk3576-power-controller
-> > 
-> > Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
-> > [reword, add yaml]
+
+On Thu, 08 Aug 2024 13:02:59 +0200, Michal Simek wrote:
+> Based on commit d8764d347bd7 ("dt-bindings: firmware: xilinx: Describe
+> soc-nvmem subnode") soc-nvmem should be used instead of simple nvmem that's
+> why also update example to have it described correctly everywhere.
 > 
-> To be honest, both here and in your other patch, you should remove this
-> [] section and add a co-develop-ed-by instead.
-
-That seems to be used quite often though, I like how it gives an idea of what 
-has been adapted from downstream patches.
-
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 > 
-> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> > ---
-> > 
-> >  .../power/rockchip,power-controller.yaml      |  1 +
-> >  .../dt-bindings/power/rockchip,rk3576-power.h | 30 +++++++++++++++++++
-> >  2 files changed, 31 insertions(+)
-> >  create mode 100644 include/dt-bindings/power/rockchip,rk3576-power.h
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
-> > b/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
-> > index 0d5e999a58f1b..650dc0aae6f51 100644
-> > ---
-> > a/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
-> > +++
-> > b/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml> 
-> > @@ -41,6 +41,7 @@ properties:
-> >        - rockchip,rk3368-power-controller
-> >        - rockchip,rk3399-power-controller
-> >        - rockchip,rk3568-power-controller
-> > 
-> > +      - rockchip,rk3576-power-controller
-> > 
-> >        - rockchip,rk3588-power-controller
-> >        - rockchip,rv1126-power-controller
-> > 
-> > diff --git a/include/dt-bindings/power/rockchip,rk3576-power.h
-> > b/include/dt-bindings/power/rockchip,rk3576-power.h new file mode 100644
-> > index 0000000000000..324a056aa8512
-> > --- /dev/null
-> > +++ b/include/dt-bindings/power/rockchip,rk3576-power.h
-> > @@ -0,0 +1,30 @@
-> > +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-> > +#ifndef __DT_BINDINGS_POWER_RK3576_POWER_H__
-> > +#define __DT_BINDINGS_POWER_RK3576_POWER_H__
-> > +
-> > +/* VD_NPU */
-> > +#define RK3576_PD_NPU		0
-> > +#define RK3576_PD_NPUTOP	1
-> > +#define RK3576_PD_NPU0		2
-> > +#define RK3576_PD_NPU1		3
-> > +
-> > +/* VD_GPU */
-> > +#define RK3576_PD_GPU		4
-> > +
-> > +/* VD_LOGIC */
-> > +#define RK3576_PD_NVM		5
-> > +#define RK3576_PD_SDGMAC	6
-> > +#define RK3576_PD_USB		7
-> > +#define RK3576_PD_PHP		8
-> > +#define RK3576_PD_SUBPHP	9
-> > +#define RK3576_PD_AUDIO		10
-> > +#define RK3576_PD_VEPU0		11
-> > +#define RK3576_PD_VEPU1		12
-> > +#define RK3576_PD_VPU		13
-> > +#define RK3576_PD_VDEC		14
-> > +#define RK3576_PD_VI		15
-> > +#define RK3576_PD_VO0		16
-> > +#define RK3576_PD_VO1		17
-> > +#define RK3576_PD_VOP		18
-> > +
-> > +#endif
 
+Applied, thanks!
 
+[1/1] dt-bindings: nvmem: Use soc-nvmem node name instead of nvmem
+      commit: 972bbba114bd45c7526f88512c277b1a1c4fc3c8
 
+Best regards,
+-- 
+Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 
 
