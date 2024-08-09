@@ -1,145 +1,120 @@
-Return-Path: <devicetree+bounces-92433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94C2694D22D
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 16:29:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3C7C94D251
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 16:40:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EF512B21A0A
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 14:29:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 541F0B21C8A
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 14:40:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EAA319753F;
-	Fri,  9 Aug 2024 14:29:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B333F195985;
+	Fri,  9 Aug 2024 14:39:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t2/ZK9nf"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="F37FGskT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from msa.smtpout.orange.fr (msa-217.smtpout.orange.fr [193.252.23.217])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 254DF195FEA;
-	Fri,  9 Aug 2024 14:29:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3100156676;
+	Fri,  9 Aug 2024 14:39:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.252.23.217
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723213745; cv=none; b=ulKOHDkPBw9IEUwwx9hfwfZTBY5eRJacbrmQogfyyokhkP9o+ANKT6MdH6rW6raFOn7NmZmFER5ath7YvjibfAs8UztawVJ4zydblFkQgigSHgWvHIRiAv9xouqKmtVMed4y2rFkqBQCY3gZIbRSM0meZEEoXCrvbGJm+rlyPFs=
+	t=1723214399; cv=none; b=Y3buqakBwuik6qfLaq+BYDUSXFYP6olssuPxZSWSxei3XMgLSAXmHnxksxSfbAK1BlUnQu++pT6svV8epAJiH0Y1ZxEgtGiSYAWJZL0jhhY0su9OryDvNjKe8OXeG2mUwVNc1m9iXWDmtleWHfb28E95IJv0CG8SHaab1Qspzu0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723213745; c=relaxed/simple;
-	bh=ye0R2hjTypvg1eR6sUjuQGWIAQgBCYND9cAGA6VUVw4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ok7GNfCDruxWGLPdo6Ob026vrWpe/3oVfwKoJet2rOgtAH17k+bRQSmxFUtaRuTpoe6gDG4LiXTIf2NY+JUn1eisOOlqunlr4qBMuAu+DK2dLFWwkHatRRoSvjSrJUVeW7CIVuMlWI5vUP3lylOoSSmsfjCHGxwN9MAtHI7jSdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t2/ZK9nf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F12C6C32782;
-	Fri,  9 Aug 2024 14:29:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723213744;
-	bh=ye0R2hjTypvg1eR6sUjuQGWIAQgBCYND9cAGA6VUVw4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=t2/ZK9nfOQtkRoL9D46jZexwvKvaKfHuWW5+K5SfAh8YVJvq6luCjq8ovxHI0aKEH
-	 O8xIku7Z6kE/v6OcCx3+0871A1qUlsIX6C/SQbr0EhEGcG6ZJ21nRipMbcODtlKKMZ
-	 mvHjM9bA+4uBiYqoy2xpcu9T0AYcUmpeprZtoLNSSh2Zgb3oXzJA7734tkuoQC3hOM
-	 v3LXX8gkz75CsJrh7rxL9KCoRZSNR2uHw3bCxW7KkcL5zkdxA6yy7ojGybqFnpPkh8
-	 5y+34VVsZiSJ3jBw9D5+GrrZRHwq7PoSeu6NJMbB8FnMOOz2gMYRKhQgV1b9n8NY/E
-	 Xg59G4unk1Q4w==
-Date: Fri, 9 Aug 2024 15:28:59 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Michal Simek <michal.simek@amd.com>
-Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
-	git@xilinx.com, robh@kernel.org,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Kalyani Akula <kalyani.akula@amd.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"moderated list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2] dt-bindings: nvmem: Use soc-nvmem node name instead
- of nvmem
-Message-ID: <20240809-emporium-haziness-e98208c39990@spud>
-References: <1184b2799ecdeef04128f4bab3db7460fd8edb10.1723114978.git.michal.simek@amd.com>
- <20240808-imply-backroom-b5a9aaf44db8@spud>
- <18da4d46-68f2-4419-ab60-8df09c0cc7f4@amd.com>
+	s=arc-20240116; t=1723214399; c=relaxed/simple;
+	bh=8eJnSf+WzgK/g/GHQkGpnjWagYrg//HOUOW4nYKbG3I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hbiCIFQIWvH/BEXnY1NNvE/Sypdnr5xoNNhwaouaZz+go4KaR+Tgaml/BAcHHKPo9Afma8FO5qvW2TwC/JLuXX2QsbCtPceWAKVLZs6m0i0KlM/opfd0qDScPUiFQtcdZerfu82VpBHyLw9O4HoUMdjcTc2w4HLm6zi0JpegmLw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=F37FGskT; arc=none smtp.client-ip=193.252.23.217
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id cQdfsPE1NEQ85cQdfsE7xu; Fri, 09 Aug 2024 16:30:44 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1723213844;
+	bh=QquEDRsc4XE1jvfUtvrYehdl3AqPbLD0343ayILx//A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=F37FGskTklVOb3g1pk481ccM+eUk76018/FVrzTMBiPTw5NV7jYxJV7AR/ckwe+35
+	 ExW4zk/CGW7IOzXdaOoQqkwGEg7mSu8FAVAz41VLdoVdBkygic9OTY4ESD98aaPf6J
+	 yJSUO6fkcLXR04v08Khu9MmvocJwvI0VAeWrogpPzXG/zzUmIdnotf8dq03zepMQpE
+	 vcgHrA1kxF8Id4L+gOCQHHwG9pZa6wrClOfP9HQlsawekraVYUeZxRWcsCfS7lqTpF
+	 neQGaIS9RyPwtpGou7r99/6bAy0LRHwugMD/viTdqMrkNYf/y4X/wzXIBr9EL9WHmB
+	 X6eI63n5p8RJA==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Fri, 09 Aug 2024 16:30:44 +0200
+X-ME-IP: 90.11.132.44
+Message-ID: <37357b8a-1995-473d-a6fb-168fc38e0641@wanadoo.fr>
+Date: Fri, 9 Aug 2024 16:30:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="b0jWOPiZeg+8EDbB"
-Content-Disposition: inline
-In-Reply-To: <18da4d46-68f2-4419-ab60-8df09c0cc7f4@amd.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] iio: adc: ad7173: add support for ad4113
+To: devnull+dumitru.ceclan.analog.com@kernel.org
+Cc: Michael.Hennerich@analog.com, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, dumitru.ceclan@analog.com, jic23@kernel.org,
+ krzk+dt@kernel.org, lars@metafoo.de, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, mitrutzceclan@gmail.com, robh@kernel.org
+References: <20240809-ad4113-v2-0-2a70c101a1f4@analog.com>
+ <20240809-ad4113-v2-2-2a70c101a1f4@analog.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20240809-ad4113-v2-2-2a70c101a1f4@analog.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Le 09/08/2024 à 12:33, Dumitru Ceclan via B4 Relay a écrit :
+> From: Dumitru Ceclan <dumitru.ceclan-OyLXuOCK7orQT0dZR+AlfA@public.gmane.org>
+> 
+> This commit adds support for the AD4113 ADC.
+> The AD4113 is a low power, low noise, 16-bit, Σ-Δ analog-to-digital
+> converter (ADC) that integrates an analog front end (AFE) for four
+> fully differential or eight single-ended inputs.
+> 
+> Signed-off-by: Dumitru Ceclan <dumitru.ceclan-OyLXuOCK7orQT0dZR+AlfA@public.gmane.org>
+> ---
+>   drivers/iio/adc/ad7173.c | 36 +++++++++++++++++++++++++++++++++++-
+>   1 file changed, 35 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/iio/adc/ad7173.c b/drivers/iio/adc/ad7173.c
+> index a854f2d30174..3ac09d326472 100644
+> --- a/drivers/iio/adc/ad7173.c
+> +++ b/drivers/iio/adc/ad7173.c
+> @@ -3,7 +3,7 @@
+>    * AD717x and AD411x family SPI ADC driver
+>    *
+>    * Supported devices:
+> - *  AD4111/AD4112/AD4114/AD4115/AD4116
+> + *  AD4111/AD4112/AD4113/AD4114/AD4115/AD4116
+>    *  AD7172-2/AD7172-4/AD7173-8/AD7175-2
+>    *  AD7175-8/AD7176-2/AD7177-2
+>    *
+> @@ -84,6 +84,7 @@
+>   #define AD4111_ID			AD7173_ID
+>   #define AD4112_ID			AD7173_ID
+>   #define AD4114_ID			AD7173_ID
+> +#define AD4113_ID			0x31D0
+
+Nitpick: others are in lowercase --> 0x31d0
+
+>   #define AD4116_ID			0x34d0
+>   #define AD4115_ID			0x38d0
+>   #define AD7175_8_ID			0x3cd0
+
+Other than that, is there any reason to have this "random" order for 
+these defines?
+
+CJ
 
 
---b0jWOPiZeg+8EDbB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Aug 09, 2024 at 08:38:46AM +0200, Michal Simek wrote:
->=20
->=20
-> On 8/8/24 17:51, Conor Dooley wrote:
-> > On Thu, Aug 08, 2024 at 01:02:59PM +0200, Michal Simek wrote:
-> > > Based on commit d8764d347bd7 ("dt-bindings: firmware: xilinx: Describe
-> > > soc-nvmem subnode") soc-nvmem should be used instead of simple nvmem =
-that's
-> > > why also update example to have it described correctly everywhere.
-> > >=20
-> > > Fixes: c7f99cd8fb6b ("dt-bindings: nvmem: Convert xlnx,zynqmp-nvmem.t=
-xt to yaml")
-> > > Signed-off-by: Michal Simek <michal.simek@amd.com>
-> > > Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> > > ---
-> > >=20
-> > > Changes in v2:
-> > > - Fix sha1 in Fixes tag - reported by Stephen
-> > >=20
-> > > Adding comments from origin version
-> > > https://lore.kernel.org/r/42c21f3bcd75f821061d047730dbbcd40233e256.17=
-16800023.git.michal.simek@amd.com
-> > >=20
-> > > Rob:
-> > >   This doesn't seem like an improvement. Is there another nvmem node =
-at
-> > >   this level? I would fix the binding instead if not.
-> > >=20
-> > > Michal:
-> > > That name came from discussion with Conor.
-> >=20
-> > Did it? I don't recall that, only discussion about adding a "real"
-> > example to the binding and noting a typo in the commit message.
->=20
-> Definitely you ack it and description was saying the reason for soc-nvmem=
- name
-> https://lore.kernel.org/all/20240131-portal-glazing-16fa36efb3cb@spud/
 
-Yeah, to be clear I wasn't complaining about being name-dropped, just
-was pointing out that it wasn't my idea, just something I didn't object
-to :)
-
->=20
-> And I found and sorry it wasn't you. It was Krzysztof over IRC who sugges=
-ted it.
-> I can c&p paste our discussion if he agrees.
->=20
-> Thanks,
-> Michal
->=20
->=20
->=20
-
---b0jWOPiZeg+8EDbB
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrYnqwAKCRB4tDGHoIJi
-0m1AAP9+sOz212VUhdbThli+7K93jUlwyNVh/yyDryxOGzXHkAD/ZycZV9FFxGOj
-Sv/xvdGg75g47zyQuyJlWHqJ3u4XHwk=
-=8Snp
------END PGP SIGNATURE-----
-
---b0jWOPiZeg+8EDbB--
 
