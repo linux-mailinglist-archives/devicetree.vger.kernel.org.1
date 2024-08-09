@@ -1,159 +1,103 @@
-Return-Path: <devicetree+bounces-92251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD83994C815
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 03:36:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7842D94C819
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 03:43:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DBC711C21511
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 01:36:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 865401C21538
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 01:43:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 265758F54;
-	Fri,  9 Aug 2024 01:36:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D9FE8F66;
+	Fri,  9 Aug 2024 01:43:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FgH7tSZW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Spfv4JHT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDA368801;
-	Fri,  9 Aug 2024 01:36:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D56A8801;
+	Fri,  9 Aug 2024 01:43:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723167412; cv=none; b=TVrSkdYuROcmJVujoZ7U8vjrdA7N32KZTntGTLmlDzWXOsp8Q1Jp67z0wQr5y6miV55USLWwW4oDGbY7VmxX1RvJMZ4deKeZc65uuDcyw5lmvObdLbxfmdXmOU9t4zUygTCawfh/+g8r5UBSjVXK4sY0tVKFc0NKP5bsDRFfWhs=
+	t=1723167807; cv=none; b=VaDpZmSl2FscBWFvKFbameBE+7YPQejAvDxGutFxYXzotflL5Ym5uRbJopbW7fw2OlTzE7kl2WVoLJgDEfp9rmBPpPZRVbbmnLgl3UM93V1Q8o8b6nRXZf1p+GjT+W6EOGfpsMCS/LyeYVSUaqcTue9+G0nfriWq3lwZm/PDjbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723167412; c=relaxed/simple;
-	bh=xluVK0tHO9NNdylwkimcBkO3o8kPzPqVXhIbqDXILzQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jJL6jc8/Jclj8Dbk9vofutyRozTp3Rs4EtDDfOaBC7bJavpyIufAhLfley0Me3F/hkpZxvgcEi7LfLTcdxQHTAKEw0pPT7nEsrkbjqNem5ssnaZoWMSqMgrUKgK9eObZCGrA6M8YEWTM0tJAARe5V940AOwjDhG5olsjU69DKEc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FgH7tSZW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1ED2EC32782;
-	Fri,  9 Aug 2024 01:36:47 +0000 (UTC)
+	s=arc-20240116; t=1723167807; c=relaxed/simple;
+	bh=K/5f88Am9z6FZMxNzjwlV1oo2W3lkvEmTWBR0JGnnBU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=EAgcQAJIHltDL4sCUoP8yN/KXgv55B2J1FGTW3VKWVJemO02eo5oz8zstN3qIFtJFJPAtp2EE+OqSmznrnNcNWbXbRpBMohLhUWe4T+eDR/dPdwnXTBbnIQPDOd7t2o3Dy1hzYBDAlDk5Xdz/SZQ11Qx+e1nv5ehkKvSxklqagk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Spfv4JHT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4FEBC32782;
+	Fri,  9 Aug 2024 01:43:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723167411;
-	bh=xluVK0tHO9NNdylwkimcBkO3o8kPzPqVXhIbqDXILzQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FgH7tSZWD2XBgI51fyuFDm9ja8Fnpj6WGe42SVK5B+2PewUTLmn0Hk+CY7ZvKmuTY
-	 u5ZzuAFGnFxDX5Cln8xO09AWl/Hd8qCOKISVf509sjkDCbwnHZKE3wglITFj3qy0AT
-	 ifVdMQbQ/YRx4MXhNKR42O6NAX3lIEU5flNdiS0pZVRG2u4EOVbUNKn+gosedrvruy
-	 Uzv9MXgq6Xxrm1uanay7P0lro3APD5myVC/Di0VesQ8H7hBaHI0Ue1waabDJex/Llt
-	 dUAEOP9uEdPG5kmMlvNaXYTXcIIj10ZhUZF8Gf8D+8OyPS3l1SXasupnMi7dTO3opr
-	 2cL8hzX/2vgJA==
-Date: Fri, 9 Aug 2024 09:36:42 +0800
-From: Peter Chen <peter.chen@kernel.org>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-	gregkh@linuxfoundation.org, herve.codina@bootlin.com,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-usb@vger.kernel.org, jun.li@nxp.com
-Subject: Re: [PATCH v2 2/6] usb: phy: mxs: keep USBPHY2's clk always on
-Message-ID: <20240809013642.GF2673490@nchen-desktop>
-References: <20240726113207.3393247-1-xu.yang_2@nxp.com>
- <20240726113207.3393247-2-xu.yang_2@nxp.com>
+	s=k20201202; t=1723167807;
+	bh=K/5f88Am9z6FZMxNzjwlV1oo2W3lkvEmTWBR0JGnnBU=;
+	h=From:Subject:Date:To:Cc:From;
+	b=Spfv4JHTODCwijQ0JOwqbh89/6yUXwm+Z3ffddPSRURUng9MXoEkzrtQ6XoEdatVl
+	 v+vz11SFPEZemqPPyDTuokZ/dHkpBDwrJJ454vQ+jAUgryNBvh7gVwJhunYJec7e2M
+	 rGFlNWAlRjm5Dljy+mFYtNRNLy8hBQmn5S8BVhVO68wPD/DZclkLCj9CylINIZjygk
+	 u9Q0QleFlPBV/gBcVdk7wt5TXTy9pneQ/at4Nxityyj9hfN9vRTohadMbttt4EVSSV
+	 k4HcKKxHFhwYF3jzIzOTYq/xs/f/dCKNEcI9OgJ+okCzW78vXE9+Zc8rtWh0sc5rOg
+	 gwd22xoAUWnhw==
+From: Konrad Dybcio <konradybcio@kernel.org>
+Subject: [PATCH 0/4] X1E Surface Laptop 7 support
+Date: Fri, 09 Aug 2024 03:43:19 +0200
+Message-Id: <20240809-topic-sl7-v1-0-2090433d8dfc@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240726113207.3393247-2-xu.yang_2@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADd0tWYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDCwNL3ZL8gsxk3eIcc92UJOPU1DSDxJREsxQloPqCotS0zAqwWdGxtbU
+ AaZ9jY1sAAAA=
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Konrad Dybcio <quic_kdybcio@quicinc.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1723167803; l=1175;
+ i=quic_kdybcio@quicinc.com; s=20230215; h=from:subject:message-id;
+ bh=K/5f88Am9z6FZMxNzjwlV1oo2W3lkvEmTWBR0JGnnBU=;
+ b=AZdlvxPWG8Gld7VMj9wu6GdJcWhjhAzfio406P4hIqccNR+DtnithNYDOsBgGgrZXU78QytUM
+ mPyqI0yvOoNDinqHiaQuenUHpYBsEfKoZ1urCONaQCUbN4WNCk08FeK
+X-Developer-Key: i=quic_kdybcio@quicinc.com; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-On 24-07-26 19:32:03, Xu Yang wrote:
-> IP require keep USBPHY2's clk always on, so USBPHY2 (PLL7) power can be
-> controlled by suspend signal. USB remote wakeup needs resume signal be
-> sent out as soon as possible to match USB requirements.
-> 
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+This series brings support for X Elite-based Surface Laptop 7 devices.
 
-Reviewed-by: Peter Chen <peter.chen@kernel.org>
-> 
-> ---
-> Changes in v2:
->  - modify commit message
->  - remove hardware_control_phy2_clk
-> ---
->  drivers/usb/phy/phy-mxs-usb.c | 33 ++++++++++++++++++++++++++-------
->  1 file changed, 26 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/usb/phy/phy-mxs-usb.c b/drivers/usb/phy/phy-mxs-usb.c
-> index d9d29f0b37de..e172af75f602 100644
-> --- a/drivers/usb/phy/phy-mxs-usb.c
-> +++ b/drivers/usb/phy/phy-mxs-usb.c
-> @@ -150,6 +150,15 @@
->  #define MXS_PHY_TX_D_CAL_MIN			79
->  #define MXS_PHY_TX_D_CAL_MAX			119
->  
-> +/*
-> + * At imx6q/6sl/6sx, the PHY2's clock is controlled by hardware directly,
-> + * eg, according to PHY's suspend status. In these PHYs, we only need to
-> + * open the clock at the initialization and close it at its shutdown routine.
-> + * These PHYs can send resume signal without software interfere if not
-> + * gate clock.
-> + */
-> +#define MXS_PHY_HARDWARE_CONTROL_PHY2_CLK	BIT(4)
-> +
->  struct mxs_phy_data {
->  	unsigned int flags;
->  };
-> @@ -161,12 +170,14 @@ static const struct mxs_phy_data imx23_phy_data = {
->  static const struct mxs_phy_data imx6q_phy_data = {
->  	.flags = MXS_PHY_SENDING_SOF_TOO_FAST |
->  		MXS_PHY_DISCONNECT_LINE_WITHOUT_VBUS |
-> -		MXS_PHY_NEED_IP_FIX,
-> +		MXS_PHY_NEED_IP_FIX |
-> +		MXS_PHY_HARDWARE_CONTROL_PHY2_CLK,
->  };
->  
->  static const struct mxs_phy_data imx6sl_phy_data = {
->  	.flags = MXS_PHY_DISCONNECT_LINE_WITHOUT_VBUS |
-> -		MXS_PHY_NEED_IP_FIX,
-> +		MXS_PHY_NEED_IP_FIX |
-> +		MXS_PHY_HARDWARE_CONTROL_PHY2_CLK,
->  };
->  
->  static const struct mxs_phy_data vf610_phy_data = {
-> @@ -175,7 +186,8 @@ static const struct mxs_phy_data vf610_phy_data = {
->  };
->  
->  static const struct mxs_phy_data imx6sx_phy_data = {
-> -	.flags = MXS_PHY_DISCONNECT_LINE_WITHOUT_VBUS,
-> +	.flags = MXS_PHY_DISCONNECT_LINE_WITHOUT_VBUS |
-> +		MXS_PHY_HARDWARE_CONTROL_PHY2_CLK,
->  };
->  
->  static const struct mxs_phy_data imx6ul_phy_data = {
-> @@ -518,12 +530,19 @@ static int mxs_phy_suspend(struct usb_phy *x, int suspend)
->  		}
->  		writel(BM_USBPHY_CTRL_CLKGATE,
->  		       x->io_priv + HW_USBPHY_CTRL_SET);
-> -		clk_disable_unprepare(mxs_phy->clk);
-> +		if (!(mxs_phy->port_id == 1 &&
-> +			(mxs_phy->data->flags &
-> +				MXS_PHY_HARDWARE_CONTROL_PHY2_CLK)))
-> +			clk_disable_unprepare(mxs_phy->clk);
->  	} else {
->  		mxs_phy_clock_switch_delay();
-> -		ret = clk_prepare_enable(mxs_phy->clk);
-> -		if (ret)
-> -			return ret;
-> +		if (!(mxs_phy->port_id == 1 &&
-> +			(mxs_phy->data->flags &
-> +				MXS_PHY_HARDWARE_CONTROL_PHY2_CLK))) {
-> +			ret = clk_prepare_enable(mxs_phy->clk);
-> +			if (ret)
-> +				return ret;
-> +		}
->  		writel(BM_USBPHY_CTRL_CLKGATE,
->  		       x->io_priv + HW_USBPHY_CTRL_CLR);
->  		writel(0, x->io_priv + HW_USBPHY_PWD);
-> -- 
-> 2.34.1
-> 
+See patch 4 for a more detailed status explanation
+
+Signed-off-by: Konrad Dybcio <quic_kdybcio@quicinc.com>
+---
+Konrad Dybcio (4):
+      dt-bindings: arm: qcom: Add Surface Laptop 7 devices
+      firmware: qcom: scm: Allow QSEECOM on Surface Laptop 7 models
+      arm64: dts: qcom: x1e80100: Add UART2
+      arm64: dts: qcom: Add support for X1-based Surface Laptop 7 devices
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |   2 +
+ arch/arm64/boot/dts/qcom/Makefile                  |   2 +
+ .../boot/dts/qcom/x1e80100-microsoft-romulus.dtsi  | 818 +++++++++++++++++++++
+ .../boot/dts/qcom/x1e80100-microsoft-romulus13.dts |  13 +
+ .../boot/dts/qcom/x1e80100-microsoft-romulus15.dts |  13 +
+ arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi       |   8 +
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi             |  52 ++
+ drivers/firmware/qcom/qcom_scm.c                   |   2 +
+ 8 files changed, 910 insertions(+)
+---
+base-commit: 1e391b34f6aa043c7afa40a2103163a0ef06d179
+change-id: 20240809-topic-sl7-db3eef0ada6d
+
+Best regards,
+-- 
+Konrad Dybcio <quic_kdybcio@quicinc.com>
+
 
