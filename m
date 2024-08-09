@@ -1,310 +1,255 @@
-Return-Path: <devicetree+bounces-92371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCA1A94CECE
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 12:38:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54A9A94CED6
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 12:41:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3AF381F2150E
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 10:38:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4ADA81C20E7B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 10:41:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EFC7191F89;
-	Fri,  9 Aug 2024 10:38:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41BD01922DB;
+	Fri,  9 Aug 2024 10:41:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kSZ/h6II"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L17EBObD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7918D15ECE2;
-	Fri,  9 Aug 2024 10:38:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9902815ECE2;
+	Fri,  9 Aug 2024 10:41:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723199897; cv=none; b=IkQLtqGT9PlCYcxibgnnZTCl/6D10tC18cY9pUsbxMeBDP4apAsriYa2kO97ozdHFApr5HKhAQVWXchwlHW94+RxiXdHRmtLH1/2/pD6pvvJFyzj6ZYIgHV1vhU0/1DlP25kIGzAoiNjR26G1XO0j2+QK2QBRGq90VyHxOPCvok=
+	t=1723200093; cv=none; b=HA1U6E9uOvZTwcLUwONNAtCjEW8mJPAQA18OGZj4hwtEhpszOMkuFwr5Yq/PGt11Hj69anXP0Ffge0JvfOqj7RfJNHSDLHK9FtvSwQ55KbBnnzx+koIay8uYAJUwcO9YnMJH1PJJFyEQKwmq3yC1KckMbtTgnh8Fz6c+2ch6dTY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723199897; c=relaxed/simple;
-	bh=Mb6b1bjV9sanf6V4GLnxt2bYlvQGbzNEo1khvjRoC/A=;
+	s=arc-20240116; t=1723200093; c=relaxed/simple;
+	bh=mzRx+HY5t6Wie2KFsGNeamXf1EWIWdNoeo8LP1R+9Pk=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Lw+oOVo63TWZQ1RcJ3CtufOJVuPgrwXQfWIQ4wEx8+70J6KyWuPDAU8VFvIsZsyBuDKEKdhPX2evVEfDRgCMV/Vr2LDqaPNqxMlcFH122d/NUx8MFmpNiPS2/AbOqI/UAzPcb5F7YRfdbErhDKHukkvK6AEDMA1J2CB0g+qZ6zw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kSZ/h6II; arc=none smtp.client-ip=209.85.219.175
+	 To:Cc:Content-Type; b=SuqENNjFR3rpOyA22Orp1n/8NLM8AWUetCiUwJKGtW1F5YW44r91DVxKvncPQsXbQoagClEQdzJkvsY38CwrbRXPAgIUDw2YcCFrvGPml81uh25cIhtVzu6OUbEBEG6fl+E3910POldUsJsmJ8Ea3d5x3UR27VNth1+MA8LwWsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L17EBObD; arc=none smtp.client-ip=209.85.160.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-e02b79c6f21so1832376276.2;
-        Fri, 09 Aug 2024 03:38:15 -0700 (PDT)
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-264988283a3so1073159fac.0;
+        Fri, 09 Aug 2024 03:41:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723199894; x=1723804694; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=HTE6RJlGQR3VkcjzNcrQi3tTe1y8STXMCk1EgDfvt5k=;
-        b=kSZ/h6IIMN+4FLOqJcI5xZZZWBuTB1Vyp0CDXxKWyOtm7FG8NtfrdmulOXXH9sN/Cl
-         OTp5clWU3fNh1ZNeP+bI96fBgy/PbPLxjEs/vQYT/ji2d4U+4LTN6kznJYCfwxxCBHoL
-         xd9nTWhxgZsnAujZ3amTqXLd50GYYBBSeleoau52w7w69cABATC/PFKr4QX9eEqfJIx4
-         Hg8WhsnJU6qIgoqr8cTHJlWC5zBWM+MMT9A5fvFR+mmMEtjKMZwy2Xu58jitS+62f9ti
-         m3aWnJyZqU3qwr/F6/3C9SXAevGPk3XnAfWimZqnM8IiRbA1SSyWbeGjic6GqGfYlIiU
-         icAw==
+        d=gmail.com; s=20230601; t=1723200090; x=1723804890; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=P/0D7SlJyEWvZp2TIWQ24w8pUyGFffXsilki1ZPLHEw=;
+        b=L17EBObDqTDJEqTJ9sVWrWSUQM4F8oW6bZpXLd79xBc3+GxIuxAiddP0E7lB7pXw5s
+         VOCEOFAqh3GyOOVa0EjG6IQZVlz+N7cLFmceYinPI5ed/z66WTqgM/O4lLA/Bo+5nd7H
+         DE4qJ12AY5zPTx9AhCssPM+5hp7iRUsTWqgKfvX4avlkD26NZ0r1al1GgHBnhK9D4VOU
+         eQY0+/bokO8bATnr9BC4/oKCVDlpYbf0CN3yXvj+bic265a4KmKSSbAVxA4mRlwrU36w
+         Ycfp7IpW7QiUARh6C2EwXnf/cay/rx1B+3cXfrYvyZCGxHPa7FJHsaMSg3cgzPI34YVY
+         Aaxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723199894; x=1723804694;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HTE6RJlGQR3VkcjzNcrQi3tTe1y8STXMCk1EgDfvt5k=;
-        b=KurL314iFLnBfrvDURa1NLAeqllNJH2W/OBpwDKFGc2ovHzgTbtNjWnYR3WWDHqssU
-         tyxM7Mb6tZCGrlFNPm/Zt5dgyPkW1mEN0GpIUQ7pEvrKFKnWg/Vi5UC5mN/nXAy88yPu
-         ITiJ10q4Ua0p8LL3luNTbGUJ7jpZRQ6pE157KPnkgmj3ChOkE7Wpn9bITxjC8ZyUbXYe
-         cniRNWZyjmXrbaxfazle0ZAnjqw3KSW6PxFLMl6k87plSda6HL2/7RXXlJyrDCqXfydk
-         eKiAsyLANHIRbpN6wxWTE7EQrySbQlR/W1lgxsEDk7/SLcdq1Aky3zoo3METE40zOc58
-         cMjg==
-X-Forwarded-Encrypted: i=1; AJvYcCXLYxLZnYyJ37ve6DRiOdxc3PwKWZRdb6k51ne5uMIOK5XQghua6X+jq2kzY1FDhUW7/7VYt4icCs1NeG4g7/G1XWzK5KJMmmeYP4LbqicVI6+AZ4m0omZylsPLy8FRbsHePNxOVVwZn0ZlwGufSqZf49qfKv0bp4RY93zIs5SLAurDesA=
-X-Gm-Message-State: AOJu0YxujT6aUsv5KKNusgZyslm9kNa5rmVxxtyfFIqGIY7EQP8J7VWR
-	OzZBsrWXvAdAie2WU62ZkATm9zfGPbZXxAgH6hB/Xh8e3SpK8haLic7YNnlUVHOyDD5tz5B/5PG
-	KtRpSQTb0dCmcygen+nLsgELFLEU=
-X-Google-Smtp-Source: AGHT+IEUT8qEhh7QYzPUL8lRLTrpcjaj8X9TF3Ou11D5OJfX1LaJQcxiJAD85RM9dPrKwQ1c19GDWjKGIS9v1tPRMwg=
-X-Received: by 2002:a05:6902:102c:b0:e0b:bd20:1f00 with SMTP id
- 3f1490d57ef6-e0eb98e5d76mr1282096276.9.1723199894233; Fri, 09 Aug 2024
- 03:38:14 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1723200090; x=1723804890;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=P/0D7SlJyEWvZp2TIWQ24w8pUyGFffXsilki1ZPLHEw=;
+        b=btG+zMBWD7cyWGTUT2U4lWnGH2xwEdTZcg/JPO1Q3IsrMBITaOT8dSZ8E0/lPDfDPp
+         yTSVAmRctqwa/5qtkzxPGbxkuJriNqFS5osqDY+niAoPg86AvJyNienWZCMj/vMNxIqS
+         knBJOGx8K2MBbpeuv+HZeo/oe2oGPmZqKfSJHMXQjM3jq9t3d/XnxwyUvIEsaLieyaPs
+         K/olic9qPeUgV8cekJ8tnRnOiUFTEHkjiB50ZN2X2nnRkoupFPFDsC3+9vPpeckTuFZF
+         l7Jd/5p8Axls3BRZxzCOjBJziENIXP+9nGfYDHIPlhoCkIzJxQ3syd1Libv+mtkkfIjq
+         +9xQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV+Xvuqu+R6j0ntrLTVmbcClCPffM4eNjkdBediGCzmQhHIvB3IRd7OQLgGRSAQwxljsT8ow/KdF8I/N+S5eLKqLUpV1MFU16hWyodcBBUB2CxxnrJ+mzXIbrAr+QmEoOzujk59cVy98w==
+X-Gm-Message-State: AOJu0YwYKGiFYipWlQqWbwi1WsPqpL+Mv8Ga8baHJPuUeK10f6MOTbtC
+	33IDXzRlQy7gCXJSkd0eR9LF9yyzoYr5+vJ8BJBjWM7cN8MtsDIn7PuDGcavys0T8AU/Hy1cMUj
+	fE6Zr9JWHz8y/NV8SRrvBiV5yPlg=
+X-Google-Smtp-Source: AGHT+IGH8NOCeTlZMxn75fyG0afkB+59N6O7DH1dIMeDzn66FMmYVOsrWlUDhiAtoroDUki1LLFizsp2KqWz82XJJQc=
+X-Received: by 2002:a05:6870:211:b0:261:8c:da1e with SMTP id
+ 586e51a60fabf-26c62cb7211mr1146336fac.28.1723200090516; Fri, 09 Aug 2024
+ 03:41:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240620144217.124733-1-iansdannapel@gmail.com>
- <20240628152348.61133-1-iansdannapel@gmail.com> <20240628152348.61133-2-iansdannapel@gmail.com>
- <ZpDSz5dp+zFPYjVw@yilunxu-OptiPlex-7050> <CAKrir7iHjxnRvZvch8ADgGFymm_z1=rU8gOM+Q==xpe64G6xkA@mail.gmail.com>
- <ZqUZK14ROqNvVuiO@yilunxu-OptiPlex-7050> <CAKrir7jU4dAWREMVLbe1A3a1TGOb8r-UM2zviZEXYY9nzJrm7A@mail.gmail.com>
- <ZqesIi6pW12TlPlc@yilunxu-OptiPlex-7050>
-In-Reply-To: <ZqesIi6pW12TlPlc@yilunxu-OptiPlex-7050>
-From: Ian Dannapel <iansdannapel@gmail.com>
-Date: Fri, 9 Aug 2024 12:38:03 +0200
-Message-ID: <CAKrir7h4bSMQ=TkP=a+4sG6OK7NVn=dj2k6ypCF6TJUd_JiOcw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] fpga: Add Efinix Trion & Titanium serial SPI
- programming driver
-To: Xu Yilun <yilun.xu@linux.intel.com>
-Cc: Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>, Xu Yilun <yilun.xu@intel.com>, 
-	Tom Rix <trix@redhat.com>, Rob Herring <robh@kernel.org>, 
+References: <20240729123709.2981-1-linux.amoon@gmail.com> <17c5e90e-a99d-4e4d-bc18-0366019f0bcf@kwiboo.se>
+In-Reply-To: <17c5e90e-a99d-4e4d-bc18-0366019f0bcf@kwiboo.se>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Fri, 9 Aug 2024 16:11:14 +0530
+Message-ID: <CANAwSgTr-FAF63LK3Ac5fTMFYcS3caUXWY5PQSWYDxCwFdDgyA@mail.gmail.com>
+Subject: Re: [PATCH v5] arm64: dts: rockchip: Add missing pinctrl wake and
+ clkreq for PCIe node
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko.stuebner@cherry.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Sebastian Reichel <sre@kernel.org>, Chris Morgan <macromorgan@hotmail.com>, 
-	Michael Riesch <michael.riesch@wolfvision.net>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Andre Przywara <andre.przywara@arm.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	linux-fpga@vger.kernel.org, devicetree@vger.kernel.org, 
+	Dragan Simic <dsimic@manjaro.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
 	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Am Mo., 29. Juli 2024 um 16:52 Uhr schrieb Xu Yilun <yilun.xu@linux.intel.com>:
->
-> On Sun, Jul 28, 2024 at 01:44:03PM +0200, Ian Dannapel wrote:
-> > Am Sa., 27. Juli 2024 um 18:00 Uhr schrieb Xu Yilun <yilun.xu@linux.intel.com>:
-> > >
-> > > On Thu, Jul 25, 2024 at 03:44:54PM +0200, Ian Dannapel wrote:
-> > > > Hi Yilun, thanks for the review.
-> > > >
-> > > > Am Fr., 12. Juli 2024 um 09:00 Uhr schrieb Xu Yilun <yilun.xu@linux.intel.com>:
-> > > > >
-> > > > > On Fri, Jun 28, 2024 at 05:23:46PM +0200, iansdannapel@gmail.com wrote:
-> > > > > > From: Ian Dannapel <iansdannapel@gmail.com>
-> > > > > >
-> > > > >
-> > > > > Please don't reply to the previous series when you post a new version.
-> > > > sure
-> > > > >
-> > > > > > Add a new driver for loading binary firmware using "SPI passive
-> > > > >
-> > > > > Loading to some nvram or reporgraming to FPGA logic blocks.
-> > >
-> > > Sorry for typo, this is a question:
-> > >
-> > >   Loading to some nvram or reporgraming to FPGA logic blocks?
-> > The datasheet refers to it as configuration RAM (CRAM) and must be
-> > loaded on every boot up.
->
-> The FPGA reprogramming is about loading the FPGA logic blocks, and from
-> the POV of the System, it is about runtime changing the HW and
-> re-enumerate the devices.
->
-> But some submitted fpga-mgr drivers are just used to to write nvram
-> backend for FPGA, don't affect any running device at all. I think these
-> drivers virtually have nothing to do with fpga-mgr. Some generic
-> storage (e.g. nvram, mtd) or firmware image loading interfaces better
-> fit them. I assume this driver is also of this kind.
-To clarify, this driver does not write to a nvram or any persistent
-memory. Programming or reprogramming at runtime is necessary, but
-partial reprogramming is not supported.
->
-> > >
-> > > > >
-> > > > > > programming" on Efinix FPGAs.
-> > > > > >
-> > > > > > Signed-off-by: Ian Dannapel <iansdannapel@gmail.com>
-> > > > > > ---
-> > > > > >  drivers/fpga/Kconfig                    |   8 +
-> > > > > >  drivers/fpga/Makefile                   |   1 +
-> > > > > >  drivers/fpga/efinix-trion-spi-passive.c | 219 ++++++++++++++++++++++++
-> > > > > >  3 files changed, 228 insertions(+)
-> > > > > >  create mode 100644 drivers/fpga/efinix-trion-spi-passive.c
-> > > > > >
-> > > > > > diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
-> > > > > > index 37b35f58f0df..25579510e49e 100644
-> > > > > > --- a/drivers/fpga/Kconfig
-> > > > > > +++ b/drivers/fpga/Kconfig
-> > > > > > @@ -83,6 +83,14 @@ config FPGA_MGR_XILINX_SPI
-> > > > > >         FPGA manager driver support for Xilinx FPGA configuration
-> > > > > >         over slave serial interface.
-> > > > > >
-> > > > > > +config FPGA_MGR_EFINIX_SPI
-> > > > > > +     tristate "Efinix FPGA configuration over SPI passive"
-> > > > > > +     depends on SPI
-> > > > > > +     help
-> > > > > > +       This option enables support for the FPGA manager driver to
-> > > > > > +       configure Efinix Trion and Titanium Series FPGAs over SPI
-> > > > > > +       using passive serial mode.
-> > > > > > +
-> > > > > >  config FPGA_MGR_ICE40_SPI
-> > > > > >       tristate "Lattice iCE40 SPI"
-> > > > > >       depends on OF && SPI
-> > > > > > diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
-> > > > > > index aeb89bb13517..1a95124ff847 100644
-> > > > > > --- a/drivers/fpga/Makefile
-> > > > > > +++ b/drivers/fpga/Makefile
-> > > > > > @@ -18,6 +18,7 @@ obj-$(CONFIG_FPGA_MGR_TS73XX)               += ts73xx-fpga.o
-> > > > > >  obj-$(CONFIG_FPGA_MGR_XILINX_CORE)   += xilinx-core.o
-> > > > > >  obj-$(CONFIG_FPGA_MGR_XILINX_SELECTMAP)      += xilinx-selectmap.o
-> > > > > >  obj-$(CONFIG_FPGA_MGR_XILINX_SPI)    += xilinx-spi.o
-> > > > > > +obj-$(CONFIG_FPGA_MGR_EFINIX_SPI)    += efinix-trion-spi-passive.o
-> > > > > >  obj-$(CONFIG_FPGA_MGR_ZYNQ_FPGA)     += zynq-fpga.o
-> > > > > >  obj-$(CONFIG_FPGA_MGR_ZYNQMP_FPGA)   += zynqmp-fpga.o
-> > > > > >  obj-$(CONFIG_FPGA_MGR_VERSAL_FPGA)   += versal-fpga.o
-> > > > > > diff --git a/drivers/fpga/efinix-trion-spi-passive.c b/drivers/fpga/efinix-trion-spi-passive.c
-> > > > > > new file mode 100644
-> > > > > > index 000000000000..eb2592e788b9
-> > > > > > --- /dev/null
-> > > > > > +++ b/drivers/fpga/efinix-trion-spi-passive.c
-> > > > > > @@ -0,0 +1,219 @@
-> > > > > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > > > > +/*
-> > > > > > + * Trion and Titanium Series FPGA SPI Passive Programming Driver
-> > > > > > + *
-> > > > > > + * Copyright (C) 2024 iris-GmbH infrared & intelligent sensors
-> > > > > > + *
-> > > > > > + * Ian Dannapel <iansdannapel@gmail.com>
-> > > > > > + *
-> > > > > > + * Manage Efinix FPGA firmware that is loaded over SPI using
-> > > > > > + * the serial configuration interface.
-> > > > > > + */
-> > > > > > +
-> > > > > > +#include <linux/delay.h>
-> > > > > > +#include <linux/device.h>
-> > > > > > +#include <linux/fpga/fpga-mgr.h>
-> > > > > > +#include <linux/gpio/consumer.h>
-> > > > > > +#include <linux/module.h>
-> > > > > > +#include <linux/mod_devicetable.h>
-> > > > > > +#include <linux/of.h>
-> > > > > > +#include <linux/spi/spi.h>
-> > > > > > +#include <linux/sizes.h>
-> > > > > > +
-> > > > > > +struct efinix_spi_conf {
-> > > > > > +     struct spi_device *spi;
-> > > > > > +     struct gpio_desc *cdone;
-> > > > > > +     struct gpio_desc *creset;
-> > > > > > +     struct gpio_desc *cs;
-> > > > > > +};
-> > > > > > +
-> > > > > > +static int get_cdone_gpio(struct fpga_manager *mgr)
-> > > > >
-> > > > > Is it better use 'struct efinix_spi_conf *conf' as parameter?
-> > > > >
-> > > > > Same for the following functions.
-> > > > >
-> > > > > > +{
-> > > > > > +     struct efinix_spi_conf *conf = mgr->priv;
-> > > > > > +     int ret;
-> > > > > > +
-> > > > > > +     ret = gpiod_get_value(conf->cdone);
-> > > > > > +     if (ret < 0)
-> > > > > > +             dev_err(&mgr->dev, "Error reading CDONE (%d)\n", ret);
-> > > > > > +
-> > > > > > +     return ret;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static void reset(struct fpga_manager *mgr)
-> > > > >
-> > > > > Please unify the naming of the internal functions. You use
-> > > > > 'efinix_spi_apply_clk_cycles()' below.
-> > > > >
-> > > > > > +{
-> > > > > > +     struct efinix_spi_conf *conf = mgr->priv;
-> > > > > > +
-> > > > > > +     gpiod_set_value(conf->creset, 1);
-> > > > > > +     /* wait tCRESET_N */
-> > > > > > +     usleep_range(5, 15);
-> > > > > > +     gpiod_set_value(conf->creset, 0);
-> > > > > > +}
-> > > > > > +
-> > > > > > +static enum fpga_mgr_states efinix_spi_state(struct fpga_manager *mgr)
-> > > > > > +{
-> > > > > > +     struct efinix_spi_conf *conf = mgr->priv;
-> > > > > > +
-> > > > > > +     if (conf->cdone && get_cdone_gpio(mgr) == 1)
-> > > > > > +             return FPGA_MGR_STATE_OPERATING;
-> > > > > > +
-> > > > > > +     return FPGA_MGR_STATE_UNKNOWN;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static int efinix_spi_apply_clk_cycles(struct fpga_manager *mgr)
-> > > > > > +{
-> > > > > > +     struct efinix_spi_conf *conf = mgr->priv;
-> > > > > > +     char data[13] = {0};
-> > > > > > +
-> > > > > > +     return spi_write(conf->spi, data, sizeof(data));
-> > > > > > +}
-> > > > > > +
-> > > > > > +static int efinix_spi_write_init(struct fpga_manager *mgr,
-> > > > > > +                              struct fpga_image_info *info,
-> > > > > > +                              const char *buf, size_t count)
-> > > > > > +{
-> > > > > > +     struct efinix_spi_conf *conf = mgr->priv;
-> > > > > > +
-> > > > > > +     if (info->flags & FPGA_MGR_PARTIAL_RECONFIG) {
-> > > > > > +             dev_err(&mgr->dev, "Partial reconfiguration not supported\n");
-> > > > > > +             return -EINVAL;
-> > > > > > +     }
-> > > > > > +
-> > > > > > +     /* reset with chip select active */
-> > > > > > +     gpiod_set_value(conf->cs, 1);
-> > > > >
-> > > > > Why operating chip selective at SPI client driver? Isn't it the job for SPI
-> > > > > controller?
-> > > > to enter the passive programming mode, a reset must be executed while
-> > > > the chip select is active.
-> > > > The is controlling the chip select from here, since I expect that the
-> > > > SPI controller to only activate
-> > > > the CS when communicating.
-> > >
-> > > The concern is, it may conflict with the underlying cs control in spi
-> > > controller.
-> > >
-> > > There are several control flags in struct spi_transfter to affect cs. Is
-> > > there any chance using them, or try to improve if they doesn't meet your
-> > > request?
-> > The main problem of this chip is that probably the of SPI is out of
-> > spec, so would like to avoid changes in the spi contoller for this
-> > edge case.
-> > That is probably one the reasons that the datasheet does not recommend
-> > other devices on the same SPI bus.
->
-> I think anyway you need to communicate with spi controller driver and
-> have one voice how/who to take control of cs, rather than blindly
-> operate at both sides.
-I did not find a clear solution yet. This FGPA device requires an SPI
-without a chip-select signal and no other device transaction should be
-allowed in between reprogramming, which seems to be a very specific
-case for the SPI Controller to manage
->
-> Thanks,
-> Yilun
+Hi Jonas
 
-Thank
-Ian
+On Fri, 9 Aug 2024 at 15:29, Jonas Karlman <jonas@kwiboo.se> wrote:
+>
+> Hi Anand,
+>
+> On 2024-07-29 14:37, Anand Moon wrote:
+> > Add missing pinctrl settings WAKE and CLKREQ for PCIe 3.0 x4, PCIe 3.0 =
+x1
+> > and PCIe 2.1 x1 nodes. Each component of PCIe communication have the
+> > following control signals: PERST, WAKE, CLKREQ, and REFCLK.
+> > These signals work to generate high-speed signals and communicate with
+> > other PCIe devices. Used by root complex to endpoint depending on
+> > the power state.
+> >
+> > PERST# is referred to as a fundamental reset. PERST should be held
+> > low until all the power rails in the system and the reference clock
+> > are stable. A transition from low to high in this signal usually
+> > indicates the beginning of link initialization.
+> >
+> > WAKE# signal is an active-low signal that is used to return the PCIe
+> > interface to an active state when in a low-power state.
+> >
+> > CLKREQ# signal is also an active-low signal and is used to request the
+> > reference clock.  L1 sub-states is providing a digital signal
+> > (CLKREQ#) for PHYs to use to wake up and resume normal operation.
+> >
+> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > ---
+> > v5: Merged all 3 patch into single patch, reabse on master
+> >     Fix the $subject and commit message.
+> >     Drop the RK_FUNC_GPIO for WAKE and CLKREQ as these seignal are
+> >     ment for was introduced to allow PCI Express devices to enter
+> >     even deeper power savings states (=E2=80=9CL1.1=E2=80=9D and =E2=80=
+=9CL1.2=E2=80=9D) while still
+> >      appearing to legacy software to be in the =E2=80=9CL1=E2=80=9D sta=
+te
+> > ---
+> >  .../boot/dts/rockchip/rk3588-rock-5b.dts      | 46 +++++++++++++------
+> >  1 file changed, 33 insertions(+), 13 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm=
+64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > index 966bbc582d89..a1e83546f1be 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > @@ -318,7 +318,7 @@ map2 {
+> >
+> >  &pcie2x1l0 {
+> >       pinctrl-names =3D "default";
+> > -     pinctrl-0 =3D <&pcie2_0_rst>;
+> > +     pinctrl-0 =3D <&pcie30x1_pins>;
+> >       reset-gpios =3D <&gpio4 RK_PA5 GPIO_ACTIVE_HIGH>;
+> >       vpcie3v3-supply =3D <&vcc3v3_pcie2x1l0>;
+> >       status =3D "okay";
+> > @@ -326,7 +326,7 @@ &pcie2x1l0 {
+> >
+> >  &pcie2x1l2 {
+> >       pinctrl-names =3D "default";
+> > -     pinctrl-0 =3D <&pcie2_2_rst>;
+> > +     pinctrl-0 =3D <&pcie20x12_pins>;
+> >       reset-gpios =3D <&gpio3 RK_PB0 GPIO_ACTIVE_HIGH>;
+> >       vpcie3v3-supply =3D <&vcc3v3_pcie2x1l2>;
+> >       status =3D "okay";
+> > @@ -338,7 +338,7 @@ &pcie30phy {
+> >
+> >  &pcie3x4 {
+> >       pinctrl-names =3D "default";
+> > -     pinctrl-0 =3D <&pcie3_rst>;
+> > +     pinctrl-0 =3D <&pcie30x4_pins>;
+> >       reset-gpios =3D <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
+> >       vpcie3v3-supply =3D <&vcc3v3_pcie30>;
+> >       status =3D "okay";
+> > @@ -363,28 +363,48 @@ hp_detect: hp-detect {
+> >               };
+> >       };
+> >
+> > -     pcie2 {
+> > -             pcie2_0_rst: pcie2-0-rst {
+> > -                     rockchip,pins =3D <4 RK_PA5 RK_FUNC_GPIO &pcfg_pu=
+ll_none>;
+> > +     pcie20x1 {
+> > +             pcie20x12_pins: pcie20x12-pins {
+> > +                     rockchip,pins =3D
+> > +                             /* PCIE20_1_2_CLKREQn_M1_L */
+> > +                             <3 RK_PC7 4 &pcfg_pull_up>,
+> > +                             /* PCIE_PERST_L */
+> > +                             <3 RK_PB0 RK_FUNC_GPIO &pcfg_pull_up>,
+> > +                             /* PCIE20_1_2_WAKEn_M1_L */
+> > +                             <3 RK_PD0 4 &pcfg_pull_up>;
+>
+> Some unanswered questions from v4:
+>
+> How come you use internal pull-up/down on these pins?
+
+As per the schematic radxa_rock5b_v13_sch.pdf [1] pin description
+
+GPIO3_B0_u    pin for PCIE_PERST_L                      (pcfg_pull_up)
+GPIO3_D0_u    pin for PCIE20_1_2_WAKEn_M1_L  (pcfg_pull_up)
+GPIO4_A4_d    pin for PCIE30x1_0_WAKEn_M1_L  (pcfg_pull_down)
+
+[1] https://dl.radxa.com/rock5/5b/docs/hw/radxa_rock5b_v13_sch.pdf
+
+> And why do they differ for each pcie node in this series?
+
+It also depends on how the pins are defined in the schematics.
+I have not made many changes in this series combined in a single patch.
+
+>
+> Regards,
+> Jonas
+
+Thanks
+-Anand
+>
+> >               };
+> > +     };
+> >
+> > +     pcie30x1 {
+> >               pcie2_0_vcc3v3_en: pcie2-0-vcc-en {
+> >                       rockchip,pins =3D <1 RK_PD2 RK_FUNC_GPIO &pcfg_pu=
+ll_none>;
+> >               };
+> >
+> > -             pcie2_2_rst: pcie2-2-rst {
+> > -                     rockchip,pins =3D <3 RK_PB0 RK_FUNC_GPIO &pcfg_pu=
+ll_none>;
+> > +             pcie30x1_pins: pcie30x1-pins {
+> > +                     rockchip,pins =3D
+> > +                             /* PCIE30x1_0_CLKREQn_M1_L */
+> > +                             <4 RK_PA3 4 &pcfg_pull_down>,
+> > +                             /* PCIE30x1_0_PERSTn_M1_L */
+> > +                             <4 RK_PA5 RK_FUNC_GPIO &pcfg_pull_down>,
+> > +                             /* PCIE30x1_0_WAKEn_M1_L */
+> > +                             <4 RK_PA4 4 &pcfg_pull_down>;
+> >               };
+> >       };
+> >
+> > -     pcie3 {
+> > -             pcie3_rst: pcie3-rst {
+> > -                     rockchip,pins =3D <4 RK_PB6 RK_FUNC_GPIO &pcfg_pu=
+ll_none>;
+> > -             };
+> > -
+> > +     pcie30x4 {
+> >               pcie3_vcc3v3_en: pcie3-vcc3v3-en {
+> >                       rockchip,pins =3D <1 RK_PA4 RK_FUNC_GPIO &pcfg_pu=
+ll_none>;
+> >               };
+> > +
+> > +             pcie30x4_pins: pcie30x4-pins {
+> > +                     rockchip,pins =3D
+> > +                             /* PCIE30X4_CLKREQn_M1_L */
+> > +                             <4 RK_PB4 4 &pcfg_pull_up>,
+> > +                             /* PCIE30X4_PERSTn_M1_L */
+> > +                             <4 RK_PB6 RK_FUNC_GPIO &pcfg_pull_down>,
+> > +                             /* PCIE30X4_WAKEn_M1_L */
+> > +                             <4 RK_PB5 4 &pcfg_pull_down>;
+> > +             };
+> >       };
+> >
+> >       usb {
+> >
+> > base-commit: dc1c8034e31b14a2e5e212104ec508aec44ce1b9
+>
 
