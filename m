@@ -1,170 +1,245 @@
-Return-Path: <devicetree+bounces-92393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F15E94CFBC
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 14:03:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67C8894CFCE
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 14:07:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8292C1F2474A
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 12:03:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B77C1C214A4
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 12:07:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB8D218E021;
-	Fri,  9 Aug 2024 12:03:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22DB219309D;
+	Fri,  9 Aug 2024 12:07:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Nzvd/IuM"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="XK4dzRPn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11012064.outbound.protection.outlook.com [52.101.66.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.smtpout.orange.fr (smtp-21.smtpout.orange.fr [80.12.242.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2FD9155CA5;
-	Fri,  9 Aug 2024 12:03:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.64
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723204988; cv=fail; b=VrOnTBgW4UR4JzcPpruYevFY03UKkJvJ3EY9nwsrygwwwEyvpLneeKZdQn5k+xAYu0OvqcnlL1nipVL4qzZ7mAaKOQIJYqfFqV1FxllweqiLt0UtAJq1bKmw5NL6rThMjmFBPjYfPTtDTpfOTCY40V5YYDXDTBGCynWbuuaa2L8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723204988; c=relaxed/simple;
-	bh=qac2YFFHpNE+19jrm1kbQhFgO3vnpATEBH1XIFUQFEI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=nIO6pJR0oPk03g+dsj5kprZz/R46WN45SE7Y//ZxpfZa347BSujJCo6xQ99Pcxr92kAVEceIfPRS/uxZd2FuhhVlsWaZ0uAQaqexfBbjOmQnuGJeZ2jI2we7fCvoYz7DECZrKnslWe6yOjP9NHP7ccdOxpgDoYGnXXF6J+ZK9ao=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Nzvd/IuM; arc=fail smtp.client-ip=52.101.66.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OA0oU0w8ptqtHF5kDmjk2t/CVRxZbjd1eIjak3P0HNqGvxPZvrIh6I5dXymBQ53ASujBCgDAjMzCTYUPna33oBHfe6h7C8bhSDdkFLihDpG5yOWtwbPZaW/RW6eN/l2w9mI8PLzhJiSfaXRJbevpVMUnRzwhtcUCvmh68u31C/0NtQs4dLEdA0Pc7EE2u3GfMiEpydctOpIE6ClIm29F9bVPHAR/hRsdHX1R7JvBIX9kYHli7fnKevVZbry7H5ur1Vkf0PHMUAglWiwa88QIYh7Ac/e6a/wO33MJH4Gd97kEbU2orJueSwtTY/wtUt6R0dEYhYFyj7RYpIIpIbwKrw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KVuyW0uDW+b/7+h+fdPzXZErgVI6Ueo5JUnCuSiymIo=;
- b=VIRLubFlXYxNgJgKTbODOniLXBwTpSZhi+6RnQGjI8cVPt/c6ZaAtUvjrPEYKBJpluLs1Cz8xnp/znF7oF7AAQpZjo3jsVDyOML71xfN9dymI8jMJfsdmsjt60U66syfj/UKqj4noi8BmMMFw4VyuM0Rfa1wg6qu7OdMRAnQ+gBXikP1XPhjdxh5XenmxxTkcybphkAJj1xhbofvLAxXPdIj1PtGVUma0BtA2OyVwd5dDkWKhl7YgYRmFSlZm+qFvNfE8+LjSjy1vkhcFrCaHhpi+TkMYQF+5B9BaH7vS1WPxWuPA/F41bQWGozZ5521dombi/8IM31DmqHgO1y6MQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KVuyW0uDW+b/7+h+fdPzXZErgVI6Ueo5JUnCuSiymIo=;
- b=Nzvd/IuMPor97nk6+506ez3R4tzvZSzMMluPOSryxwdhxrhcrOnAkTDSqAwT6c2Qq3wGkyDQZn3oxEr4OCiUEpbu7RHpzXpEbZIKAFqf5pKnMxYVx33wEqCjQHCRrqIRNOv54nfdbli0q63aRfLLCi3FqyS2wDFiHENzpyYH/TINoRVj2AzTrQ3jlIetSVmReYIIv6qNr3Romq6bBFh/qSZrbTbnZdAgR2rjAn3dwid9CuYgIhhEyDTEsU+EBBxMN3fVCVrEw6fJ9NhnRbrfPoIKnNb2GSL5D6tbero8Gm341uVARSIHLtWHx0nmzgcoOlJ3CEt/QZXVLN5eEudK9Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS8PR04MB8868.eurprd04.prod.outlook.com (2603:10a6:20b:42f::6)
- by DU4PR04MB10888.eurprd04.prod.outlook.com (2603:10a6:10:585::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.13; Fri, 9 Aug
- 2024 12:03:03 +0000
-Received: from AS8PR04MB8868.eurprd04.prod.outlook.com
- ([fe80::b317:9c26:147f:c06e]) by AS8PR04MB8868.eurprd04.prod.outlook.com
- ([fe80::b317:9c26:147f:c06e%4]) with mapi id 15.20.7849.013; Fri, 9 Aug 2024
- 12:03:03 +0000
-Date: Fri, 9 Aug 2024 15:03:00 +0300
-From: Ioana Ciornei <ioana.ciornei@nxp.com>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] dt-bindings: net: fsl,qoriq-mc-dpmac: using
- unevaluatedProperties
-Message-ID: <atte34qydgedr665phxwgp3uoyka3vvowuet6rk2fki7upev4m@edphw77cpdbj>
-References: <20240802205733.2841570-1-Frank.Li@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240802205733.2841570-1-Frank.Li@nxp.com>
-X-ClientProxiedBy: AM4PR07CA0023.eurprd07.prod.outlook.com
- (2603:10a6:205:1::36) To AS8PR04MB8868.eurprd04.prod.outlook.com
- (2603:10a6:20b:42f::6)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ADD519414A;
+	Fri,  9 Aug 2024 12:07:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.21
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723205237; cv=none; b=hnNTYWgn6/ENEGuEnUEMv2fsNqQYO0/n3dNSc7AXq1jvq78IjQNWQiW+aAqvm2JgUBCBf7KruFiJ0nzOahPowd9eUZDb+BKD/1fK5Ve4L7G2wWNWQHZmAcYb43HexOE3PNXPfnteT0zYaloTWi3v2OxNyGTokW7rGbsLGAgoU3w=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723205237; c=relaxed/simple;
+	bh=cCntDo5atUmam/0RCpNBfrJlvB/7wvXX2bTYEOHZo2E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:Cc:
+	 In-Reply-To:Content-Type; b=RnJ1gCZcjdwNOQuHy5LNrUYzvC44cHM2XKJ4x/hvIV9zGDiCr1DxCZj0mjI2EXfU7bwakrmBEs1MFziuUugrur1pjll0D0/0H4EHpJZirURJqvp2gpPtsy0WD8aGKJqg20Y9HocFDaWnmtWU0h6+cnK2VgFhDwLhQFip40QwL+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=XK4dzRPn; arc=none smtp.client-ip=80.12.242.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id cOOfsfITE7tglcOOfsO8Ff; Fri, 09 Aug 2024 14:07:06 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1723205226;
+	bh=eLSKGWghljnkOEFaengJiEdKvJCm8HRw9cwbykbGzRU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=XK4dzRPnyJulRKJq4BF9wWZa/4h260y4qdrHqlP/kSwuyhyxTd67GkcGyW5LfFhIP
+	 luS7O6a2H+P0+6HVvPsIPVEuCqdlxy86wmPZO/H5LVTjt9c8/TKe4gPHl2eqU6PyFo
+	 rgICpeX/KWFItZnM+1EEYOM0/5QZRPJfJzU90w79YCpugUDhcUbHl6KUILNI5xjq/q
+	 McqFsjNmTsMfp49EWiTTjnuwLhAdOEAzPQo92yG27RlK6DZKHNAj2gAaF/lsScUAMV
+	 EZKMdn6zeeqbuD/xyC88BPgnmZa/7D2MZERf5Yem7fo5xW2kLD9Gl9hqyib4Y8pFKp
+	 x3r2eyPxdQnaA==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Fri, 09 Aug 2024 14:07:06 +0200
+X-ME-IP: 90.11.132.44
+Message-ID: <16c09207-48c6-4988-873f-772fa277f3b8@wanadoo.fr>
+Date: Fri, 9 Aug 2024 14:07:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8868:EE_|DU4PR04MB10888:EE_
-X-MS-Office365-Filtering-Correlation-Id: f66ba062-cdd7-46ca-c8fd-08dcb86b38c1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?t5fTJAdmwe4AgvduvLjTk+QFslgNOOYmDB2BPARBcX32VA4H6diA4u4HSEEK?=
- =?us-ascii?Q?xcQh+ppXP8Z++l/N9h0zQBMDKmNgfJT+YKTh0jhexi2Ooi+ApI3aJQUX4D1H?=
- =?us-ascii?Q?jwEYy+FwO9QTo7dKOjVFTxUTLT10YXPvGJBa5oNxWz7pHdXTqtcbOGyP9a0J?=
- =?us-ascii?Q?e3vyHJFOsUkvNfHiQlpdhqji2Nwbl4I1k5HedzagloxwRX8xpA6AlRmXp43t?=
- =?us-ascii?Q?IKdQF+7UcqHU63JvXthUY9tCs52Q4hCZkAbtR6f3pUcTUiOO64iUwxE31h5Z?=
- =?us-ascii?Q?pt4kevxruvZOgFbEtfYb2IMx4l4rykW2Uk3roGU/SgkyiEJkxcD5Kn2CmI2H?=
- =?us-ascii?Q?9iuIACVTDr8WAw9KgdwpEKqZmJC1Awhcp+8xHVjcJyaK/8lf9HfInRo0rQ0Y?=
- =?us-ascii?Q?7R6XM6U2o0VxblwN6JjkbExx4iXCEHLcvxZT5TY9aULfkkbizuDHKGCFHC82?=
- =?us-ascii?Q?jSzw/SxMvNFNqf7PlygLJn0kJrDMAJo07/+r+oGKbEjZTQjbolXn9AVlWv/r?=
- =?us-ascii?Q?z/WXm+5ay7HLZxsRgGXgvqxutpPeg7LbuxEks+5myo8M7BgpR7wXPcQi7TjI?=
- =?us-ascii?Q?iHynWTr+fzzUtIe59xBWZzCtQFDLOBVev9UZAo4GgCmtJi55s4+9BfKxAexd?=
- =?us-ascii?Q?kxlrkfdP793V8erXHPIy2q4ObsFl+VFjyUNqr/kZiA3Cx04/OpahZ1leoqqC?=
- =?us-ascii?Q?rTRS0wl715urY028+XGA8be10pNDwK9tfu7QtJeG/pXWAwfo/pFLXEoXwtFn?=
- =?us-ascii?Q?LSfme/wQWeUpwn0bRs2lbk/Fx9eNWGCS167Jlui2slt1oPyYylpDCeo3Bm8a?=
- =?us-ascii?Q?JSFbjPhqZ2xUc1jdxcotQwMWEYRHLvbN8gSlmWdv5uixuKe0zoW6TpuiYF6Y?=
- =?us-ascii?Q?mE8tC/HzOw+rTW/NYRfcH/DgdQc8pDg4WdfrtCfX0DGpt82TeJV/eS17e/Ul?=
- =?us-ascii?Q?+m99mgJ42M88qKkolXwsAv3TyaXShFbHybmqX8zd6CVaShYBVIBgdTiTR+yV?=
- =?us-ascii?Q?qNZk4BrEAFXOnCtOqTzPBEjXLdgehCucI9n9l7Z1rPb1RqxCYfjyvHCJzln5?=
- =?us-ascii?Q?bFK8OVAYplaAOCRAu3BmUNMXR7BCMcKYXwGZyAD1uucG0AKnk3kl0F5C0S/j?=
- =?us-ascii?Q?o2DUILAPbEDz3DhdAcum+ABo4y0H6t59eRXqzaQxaDQamnDv640s+Vudk8OB?=
- =?us-ascii?Q?dpjnFdOCp53mYvzC7AZWVKc92ty6PeX+QAuyAjl0ua5AK/YWU3IUWKU0M6NI?=
- =?us-ascii?Q?a0vKIxBcvw10vOS2Ob2qHIsSqxXEDh0+VceNDrv99X0xJ9dxx1n/Bi9SXc9m?=
- =?us-ascii?Q?NdM=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8868.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?qV7nA7kPiJpw83N/rkJNNRFt91P214t+XIoJlzvqLo7ujT0mRNrxDhSRqrHy?=
- =?us-ascii?Q?uAw+2jugzyROTOuEsmaKYNvZyRjvw/7EXvyxVm2QknZWl/XCT1doTsTudB0T?=
- =?us-ascii?Q?G6i3mycWWyiwfp+ZW4zsUHcvooRY+oWAG0clcqX8xcP8SLRzsot4XRDIoBPh?=
- =?us-ascii?Q?DHBbwyHJas7fXCuXFwGPACqE1CLWgS9bTTnJfZ+rgS+hSV1xYCartllze91+?=
- =?us-ascii?Q?tFbA9aIJKtO/95fPiofWPXzsAUqXLefOqRkqiCwVBjHHe8/VZ6UWtqsAP0Wr?=
- =?us-ascii?Q?SwDhi0MuxmOAp6oYBHwdlEpzFu5bXARfzlc2OMNAU0cPn6mabp7nfsRxgoQ2?=
- =?us-ascii?Q?0q6VLV884nWxfEhDyr5WlNwMHnOAUDBfmGmX9BSvPuINxiu37yrqa5zONepa?=
- =?us-ascii?Q?nYMJX3FIEE4gV3b/ajnBsHx0pByd7UvD/S/VJjKcTjAy9ukzo8vFQJRkTWo+?=
- =?us-ascii?Q?TAPU84r+tKQgRhvbs0/g8In0gzQAdvROm8aVuof9MP31t/4A/Ms2z+ScxGzV?=
- =?us-ascii?Q?b9dM7vJ9wyIJylO/mbwXavsuorvWu25nV0srhufNnX03xze6Hblej1fSJAdA?=
- =?us-ascii?Q?sDNBYpvihELxqdw49fK/tKKKsVs5u40CVtpI6X5/H+Ex99ENKP6VypQuta8m?=
- =?us-ascii?Q?9wkgu6rXqjwffrYlzJ6+xRSUcFp8LpfpV8EodE6dE6WgK7uE1WEST+gtNCk9?=
- =?us-ascii?Q?gVi+KUQKbo9z2zCfA/fAcmhtZ6mDFbDmzTlO/h8VrDrNVnSigv50k4W7z2zy?=
- =?us-ascii?Q?Q9WTAUZEnbTRNQ0UmcAmOSDSu79JlbbcZKZmU3djJDxfquk51btvD2460elL?=
- =?us-ascii?Q?DzSiV7Hwg9puRL6WHpnihhrlNa6FsQLP/Tc2PL7uRbuk0MnSW6aaXfP7gDKt?=
- =?us-ascii?Q?gkTVDG3fQHNECL5d7/zqydymIYUzpKVrE64jk/Xweutnrr+ZMx/NHwSJvyVg?=
- =?us-ascii?Q?ZWotUtj5HKFpxF4zWR5uull1bthvrSIVMfvWP4zu0rTBKLI1MAnwlHx3/ilH?=
- =?us-ascii?Q?YvTVXYKa44MVX2st7Gp7V9yKqM9zi9/qIpoxL5BO7qeHyDd6rzS1PCQPvYS4?=
- =?us-ascii?Q?7Pwaq4VnwyapaGP47wWuTZeTK+fjiFXAPjoBTFXbS4f6W7LOGHgZuJhs5zKJ?=
- =?us-ascii?Q?b77Q8/JMC/Xg4XBSr6Y6rXBy4xFvHgmr/NsLyVOeKb8Pl+qYgp0ACNJ/wHEV?=
- =?us-ascii?Q?JQa9xysYlKSiztx/7zw6xeRl+p37tpx4ca1mxLCrLBNzJfJxkfVJapIwr5y+?=
- =?us-ascii?Q?pD7WArU82SarDxEVYs6Jehz+7LBRik3HLCg/F8nPHAUpbMmldQSnIHdVo5p/?=
- =?us-ascii?Q?oDOrRJUdDtn5Yg4s6/3P1+afNQ67lAuTlmI4EgmpqwS8RkezjMcj1K7bCrSl?=
- =?us-ascii?Q?gBvsLgLRuJNW2mEeodLxvHst6oaQwAf/5ijoYG4EyE6kLqCDpotfBmb6PkeG?=
- =?us-ascii?Q?4JyYq6neaTcVYp9e/qOsnKsIkW02ldA+5qPvuTlGeISBuKBMCDwaUK9Wnsot?=
- =?us-ascii?Q?a4x8vFhWvn1mdv78Wg6VkGviheMNJ9XaidCwvcxE+5OUQdxLMvlBJnE3Ep4v?=
- =?us-ascii?Q?PNXtBYbjaz4NJKShnJrlaRSgdcFJgYlfockE8xyP?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f66ba062-cdd7-46ca-c8fd-08dcb86b38c1
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8868.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Aug 2024 12:03:03.4379
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +B+LCLvtPJFFpcABrB+jQJXvJ0vbPyVWlt0pQr8CsO5vJNk6LENo/pXLoA68vkD+IGffX1jFF35FCn/Kqg1IEg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB10888
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] iio: imu: smi240: imu driver
+To: jianping.shen@de.bosch.com
+References: <20240809111635.106588-1-Jianping.Shen@de.bosch.com>
+ <20240809111635.106588-3-Jianping.Shen@de.bosch.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc: Christian.Lorenz3@de.bosch.com, Kai.Dolde@de.bosch.com,
+ Ulrike.Frauendorf@de.bosch.com, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, dima.fedrau@gmail.com, jic23@kernel.org,
+ krzk+dt@kernel.org, lars@metafoo.de, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, marcelo.schmitt1@gmail.com, robh@kernel.org
+In-Reply-To: <20240809111635.106588-3-Jianping.Shen@de.bosch.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Fri, Aug 02, 2024 at 04:57:33PM -0400, Frank Li wrote:
-> Replace additionalProperties with unevaluatedProperties because it have
-> allOf: $ref: ethernet-controller.yaml#.
+Le 09/08/2024 à 13:16, 
+Jianping.Shen-V5te9oGctAVWk0Htik3J/w@public.gmane.org a écrit :
+> From: "Shen Jianping (ME-SE/EAD2)" <Jianping.Shen-V5te9oGctAVWk0Htik3J/w@public.gmane.org>
 > 
-> Fixed below CHECK_DTBS warnings:
-> arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb:
->    fsl-mc@80c000000: dpmacs:ethernet@11: 'fixed-link' does not match any of the regexes: 'pinctrl-[0-9]+'
->         from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-Reviewed-by: Ioana Ciornei <ioana.ciornei@nxp.com>
+> iio: imu: smi240: driver improvements
+> Signed-off-by: Shen Jianping (ME-SE/EAD2) <Jianping.Shen-V5te9oGctAVWk0Htik3J/w@public.gmane.org>
+> ---
 
-Thanks!
+Hi,
+
+...
+
+> diff --git a/drivers/iio/imu/smi240/smi240_core.c b/drivers/iio/imu/smi240/smi240_core.c
+> new file mode 100644
+> index 00000000000..4b2a4a290f3
+> --- /dev/null
+> +++ b/drivers/iio/imu/smi240/smi240_core.c
+
+...
+
+> +static int smi240_read_raw(struct iio_dev *indio_dev,
+> +			   struct iio_chan_spec const *chan, int *val,
+> +			   int *val2, long mask)
+> +{
+> +	int ret = 0;
+
+No need to init (and in other places you don't)
+
+> +	struct smi240_data *data = iio_priv(indio_dev);
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		if (iio_buffer_enabled(indio_dev))
+> +			return -EBUSY;
+> +		ret = smi240_get_data(data, chan->type, chan->channel2, val);
+> +		if (ret)
+> +			return ret;
+> +		return IIO_VAL_INT;
+> +
+> +	case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
+> +		ret = smi240_get_low_pass_filter_freq(data, chan->type, val);
+> +		if (ret)
+> +			return ret;
+> +		return IIO_VAL_INT;
+> +
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int smi240_write_raw(struct iio_dev *indio_dev,
+> +			    struct iio_chan_spec const *chan, int val, int val2,
+> +			    long mask)
+> +{
+> +	int ret, i;
+> +	struct smi240_data *data = iio_priv(indio_dev);
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
+> +		for (i = 0; i < ARRAY_SIZE(smi240_low_pass_freqs); i++) {
+> +			if (val == smi240_low_pass_freqs[i])
+> +				break;
+> +		}
+> +
+> +		if (i == ARRAY_SIZE(smi240_low_pass_freqs))
+> +			return -EINVAL;
+> +
+> +		switch (chan->type) {
+> +		case IIO_ACCEL:
+> +			data->accel_filter_freq = val;
+> +			break;
+> +		case IIO_ANGL_VEL:
+> +			data->anglvel_filter_freq = val;
+> +			break;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	// Write access to soft config is locked until hard/soft reset
+> +	ret = smi240_soft_reset(data);
+> +	if (ret)
+> +		return ret;
+
+Nitpick: missing new line?
+
+> +	ret = smi240_soft_config(data);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+
+...
+
+> +int smi240_core_probe(struct device *dev, struct regmap *regmap)
+> +{
+> +	struct iio_dev *indio_dev;
+> +	struct smi240_data *data;
+> +	int ret, response;
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
+> +	if (!indio_dev)
+> +		return dev_err_probe(dev, -ENOMEM,
+> +				     "Allocate iio device failed\n");
+
+Usually messages related to memory allocation are not useful.
+Just: return -ENOMEM?
+
+> +
+> +	data = iio_priv(indio_dev);
+> +	dev_set_drvdata(dev, indio_dev);
+> +	data->regmap = regmap;
+> +	data->capture = 0;
+
+No need to explicitly initialize 'capture', devm_iio_device_alloc() 
+already zeroes the allocated emmory.
+It doesn't hurt to be explicit, but why this field and not the other ones?
+
+> +
+> +	ret = regmap_read(data->regmap, SMI240_CHIP_ID_REG, &response);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Read chip id failed\n");
+> +
+> +	if (response != SMI240_CHIP_ID)
+> +		dev_info(dev, "Unknown chip id: 0x%04x\n", response);
+
+...
+
+> diff --git a/drivers/iio/imu/smi240/smi240_spi.c b/drivers/iio/imu/smi240/smi240_spi.c
+> new file mode 100644
+> index 00000000000..ac9e37ffa37
+> --- /dev/null
+> +++ b/drivers/iio/imu/smi240/smi240_spi.c
+
+...
+
+> +static int smi240_regmap_spi_write(void *context, const void *data,
+> +				   size_t count)
+> +{
+> +	__be32 request;
+> +	struct spi_device *spi = context;
+> +	u8 reg_addr = ((u8 *)data)[0];
+> +	u16 reg_data = ((u8 *)data)[2] << 8 | ((u8 *)data)[1];
+> +
+> +	request = SMI240_BUS_ID << 30;
+> +	request |= FIELD_PREP(SMI240_WRITE_BIT_MASK, 1);
+> +	request |= FIELD_PREP(SMI240_WRITE_ADDR_MASK, reg_addr);
+> +	request |= FIELD_PREP(SMI240_WRITE_DATA_MASK, reg_data);
+> +	request |= smi240_crc3(request, SMI240_CRC_INIT, SMI240_CRC_POLY);
+> +	request = cpu_to_be32(request);
+> +
+> +	return spi_write(spi, &request, sizeof(request));
+> +}
+> +
+> +static struct regmap_bus smi240_regmap_bus = {
+
+const?
+
+> +	.read = smi240_regmap_spi_read,
+> +	.write = smi240_regmap_spi_write,
+> +};
+
+...
+
+CJ
+
 
