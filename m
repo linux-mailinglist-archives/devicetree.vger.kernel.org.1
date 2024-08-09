@@ -1,74 +1,48 @@
-Return-Path: <devicetree+bounces-92323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A64E94CB37
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 09:24:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39CEB94CB4F
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 09:27:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0C0C1F2210A
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 07:24:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C95B1B20F88
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 07:27:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 663061741D9;
-	Fri,  9 Aug 2024 07:24:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42FBE155301;
+	Fri,  9 Aug 2024 07:27:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="VMHjWnl7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cYthOLqU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCB5B1B964
-	for <devicetree@vger.kernel.org>; Fri,  9 Aug 2024 07:24:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1702F12E7E;
+	Fri,  9 Aug 2024 07:27:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723188258; cv=none; b=NBtuqS5RNdDJip8MWzuiKDlgZJe+hoi5/6zpneJHl0VQaznUSoX6OzPeAhnOqxxCuQ5x9z/GZD0OCWzpbuctB//C2yZj3qX/WuCm7VLuMJsMIpwGcH++uCERPKwF1IkggLEGRVlD2X8hz7r5AyU0gFUUlhQVtBqvJyby2uIiSHM=
+	t=1723188463; cv=none; b=kN4YumXb+mdrc03R6699cQJqMQ08WHPmgXwCmXT/d4h3IXTcxa6HUgk+Rfj29wxwaSRIiy62aDkqOpnNKjkdGBAfNQcFh1xRpDvjMiOAkDzr2/Oyih33c1atLEnKEqo6OpTY6jHhmGpMYkRzs3D03Bz8uPOBRYsWi3yc7yhay7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723188258; c=relaxed/simple;
-	bh=uzGnaSKlR/R50GQ7A4X84un4jnegurSJZ8rylNS/d2Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=ImRZRiFVUZvhdgQ6Kqxq4O38uEHvQYc3G3sgJTMFfyltgFnBc8mdevuyQNsecHxPwrDAwR1BGgbG3kwUiFMWoisUoiivwr1eYXJ2jHBPY9ZXZsY56yHQPzY5TobtTpYbN+grTfXjX1PJzlH4PN3e8ksmPlUOtqsUDKnbfYt43qw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=VMHjWnl7; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a7a843bef98so193941266b.2
-        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2024 00:24:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1723188255; x=1723793055; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mdnmq+Slg6i3Npfhfe9yUOafdUaerhQWvFa4LDjEPFk=;
-        b=VMHjWnl7GVELrh8snRtVAS40eKygxzuX5UEb72vEi1bRq75hgrh8a7+XKltULBeENf
-         /2lfesG5Rg6uChAjo1TOcR8vzWp8oEv9kFaK7aSpIGunq7BLxZkH+KPIbtRjqiFk82MR
-         br1zNlGOT59ONZazkblc49XJiPBWn1Ucv+SyXeqcUBz54epPuy9mFMwYhShhQmjCqBLq
-         8IDl86xC1yejZLnyCWu2+bRFd/d/hQmSWTFa2YELWI0hNi0YjjQEipfk8eFXyfxAKK9h
-         3LN0QmCvu4OxUWXZlLpCAou6mtFJnpvnFcxWivKizrpAl3kKF6l4VbHSq8y7isAV+YF1
-         7gTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723188255; x=1723793055;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mdnmq+Slg6i3Npfhfe9yUOafdUaerhQWvFa4LDjEPFk=;
-        b=MjJfeUCbPt06ZIEs2zstjIsJLp1C5/wtokzIu1XrpST0TsRF6YnZ81XMi3gIUbqRhB
-         38FxNi8niV05J9xWaFvI7TW1l/kox1JtCDSDUvYMQhUHUPGId+7kzni1OV/GyUhBlZYE
-         +7hF6I7xFwidlxEeuSsL8yt9iFBiUPgeOS7ZRWdjfiw+VxPwG9SP3rZNh2+SKS4+3YsB
-         qDh9+5AGRqHNWxFUO/WVAoG1Ty/9PE/9F3LtWDUTQI3C5nCwLNsrgQMHI/6Yq5a7EKXl
-         Qyhe/hZxiEpm5uEgCN54E+VdPiecs6FXPMnzvi08T3ks/dMifZbOyjiH2m+Z+wwAy5Q/
-         jpRg==
-X-Forwarded-Encrypted: i=1; AJvYcCVxh2L24QUjSoIE4bra0DEy0QkNUo+Og8UB+m6BZ012co5gssP9g0KHvbNmbgh5HoJSsCaI/9p3Qegww99rF/yGP6kFFe93L87kyA==
-X-Gm-Message-State: AOJu0Yzyj0yJtgXMbcKZyYhaE4arB7C4YxQ8BtQlwnZRbcMrlCemUE6j
-	3o5/A7hyvRQWf1YWfUCGjIi/bfqnFPjY/lZLlfgkTn5Xue3+32VjKzHD+ieXogo=
-X-Google-Smtp-Source: AGHT+IF0hro6QG4NNQgLsufiIvP4PS8yLQbWRBjrVjQgDfQEoADKu7uu1sGInmEV7NS4hQXsd4wclg==
-X-Received: by 2002:a17:907:5c9:b0:a7d:a008:abca with SMTP id a640c23a62f3a-a80aa673651mr43072566b.56.1723188255076;
-        Fri, 09 Aug 2024 00:24:15 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.180])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7dc9d437b0sm811352166b.114.2024.08.09.00.24.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Aug 2024 00:24:14 -0700 (PDT)
-Message-ID: <349e240b-64cf-43f6-9ebe-2598bff9f6d9@tuxon.dev>
-Date: Fri, 9 Aug 2024 10:24:12 +0300
+	s=arc-20240116; t=1723188463; c=relaxed/simple;
+	bh=LNqBEfIXeXntjTkyjNJ1v5g2yx4fDI2lvRYLKppspkE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ddjnhxMhLdm2mWCOipB/HpDmGl8EQSG7HR1yisHOqFJ/4Gpjywju6AdfXMuy4d1gzMs8tucKn/qbyE4hAo3i4UxexdYA5TN2uV4LDk/grcTpGcQc8S5MXxIvX+lQ/G32YZe/01l6uFuZA4GSwOcIK4T1uD1Fb/azRm6VM8uZRpU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cYthOLqU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFC91C32782;
+	Fri,  9 Aug 2024 07:27:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723188462;
+	bh=LNqBEfIXeXntjTkyjNJ1v5g2yx4fDI2lvRYLKppspkE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=cYthOLqU3WMyJciv2SYJhbET+uzCCXP40vEqcMqW6ZyG5ke0Rq0P7sDilyNDurlI3
+	 D6pkzW4ZKHJDwgU1tRLKaOvBsBH9VemHfwopVUwxBBzvgfyUBAeIB9lYHob4HMzYPo
+	 2kkOZ037Qnk8xusi/TjH5h9GXQv/L2gIyTT4giGC9yCJBoKAGaujqGayj4GHG/wGFa
+	 Xv0HCVv8GDaxjM9hvZhYIyU01kqhwKDe8Y7kj5Q19BOBi3A4AeXkgaXJb+dvg2KaHN
+	 Eg16aVBk4hoN4UkVZIWkFe8ACca3cl+bnVu549hjAOqMu9AgPoaWyrUYfc0DmrQAKy
+	 fJJ7QvrK0SenA==
+Message-ID: <af36af98-2aa2-4694-a5b7-87ebf35bb6f9@kernel.org>
+Date: Fri, 9 Aug 2024 09:27:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,44 +50,91 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 08/11] i2c: riic: Add support for fast mode plus
+Subject: Re: [PATCH v2] arm64: dts: freescale: imx8mp-phyboard-pollux: Add and
+ enable TPM
+To: Benjamin Hahn <B.Hahn@phytec.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Teresa Remmet <T.Remmet@phytec.de>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20240807-imx8mp-tpm-v2-1-d43f1e8f70ac@phytec.de>
+ <311d8a95-33bf-4549-812a-db52debc7487@kernel.org>
+ <6e511f04-7f93-49ad-8cf7-336a6bac7d31@phytec.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- chris.brandt@renesas.com, andi.shyti@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, geert+renesas@glider.be,
- magnus.damm@gmail.com, p.zabel@pengutronix.de,
- linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240711115207.2843133-1-claudiu.beznea.uj@bp.renesas.com>
- <20240711115207.2843133-9-claudiu.beznea.uj@bp.renesas.com>
- <ZrTjgqBlq0xM5VDq@shikoro>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <ZrTjgqBlq0xM5VDq@shikoro>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <6e511f04-7f93-49ad-8cf7-336a6bac7d31@phytec.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-
-
-On 08.08.2024 18:25, Wolfram Sang wrote:
+On 09/08/2024 09:11, Benjamin Hahn wrote:
+>>> +	#address-cells = <1>;
+>>> +	#size-cells = <0>;
+>>> +	cs-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
+>>> +	pinctrl-names = "default";
+>>> +	pinctrl-0 = <&pinctrl_ecspi1>;
+>>> +	status = "okay";
+>>> +
+>>> +	tpm: tpm@0 {
+>>> +		compatible = "infineon,slb9670", "tcg,tpm_tis-spi";
+>>> +		reg = <0>;
+>>> +		spi-max-frequency = <38000000>;
+>>> +		status = "okay";
+>> Did you disabled it anywhere?
 > 
->> +	if (info->fast_mode_plus && t->bus_freq_hz == I2C_MAX_FAST_MODE_PLUS_FREQ)
->> +		riic_clear_set_bit(riic, 0, ICFER_FMPE, RIIC_ICFER);
-> 
-> Shouldn't that be something like
-> 
-> 	t->bus_freq_hz > I2C_MAX_FAST_MODE_FREQ
+> No, we don't disable it anywhere at the moment.
 
-You're right, it should be.
+Then drop it...
 
-Looking though the HW manual, it specifies this about FPM bit: "Set this
-bit to 1 when using the transmission rate within a range up to 1 Mbps".
+Best regards,
+Krzysztof
 
-Thank  you,
-Claudiu Beznea
-
-> 
-> ? On R-Car, we have to enable the FM+ bit as soon as we exceed plain
-> FastMode bus speeds.
-> 
 
