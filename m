@@ -1,302 +1,141 @@
-Return-Path: <devicetree+bounces-92438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1C1A94D24C
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 16:38:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88CD994D258
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 16:41:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C747E1C2163F
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 14:38:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 26A4DB222F1
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 14:41:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10BC9197556;
-	Fri,  9 Aug 2024 14:37:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B6EA19754A;
+	Fri,  9 Aug 2024 14:40:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="W1E5OcW3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OyuITf38"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18C1913FFC;
-	Fri,  9 Aug 2024 14:37:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723214269; cv=pass; b=MyOG5a5mANZOGP2jbDM2c+InRlMZawY17ElXRm/UEunKWuL4Vx4vSVZi+6RZ2OFtOmYwja23tW4boE91cxmVLDCZKM73T7nphuJd4mWyev7IlOlNtUzYkj4cCP5BGIEZlQKkqbcFf2a1xZy+MVImsC02JzLUL98y+9maFfpAEdE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723214269; c=relaxed/simple;
-	bh=K1LJiFAisyhDOCRP5TxNAC56apWym8nG4c3U9g0UrR0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pgcNxHv4g2TAH9RdmGraEi7LA2M7OcpGs94MmhzBhDydopPNqrb/Ls2UhY4E5zuVK9Ol93D9REn3hVPlcBWSe72jFNpRx40ALE2pH9+1HCREOnhzVUbMsUPf6+ZYXRbTXRIls6G7tIEUY60PE7NahJUTXBomjtpEGIlfmfCoUe4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=W1E5OcW3; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-Delivered-To: kernel@collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1723214225; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=NsxGtx2fA0C4A9OVyVNqjCQKGk3HW9p44+uDrI71/cVlCLpdoBfB4DMUWAqwqpZNGhRaxNSp/H5ltNl1z4QzANgEYRmcEQO7hhCWXTfGu1lCiC1if3thrni+z/ttaWPWDbcuSCXmNczhAzH8ybolJdpDwAYbE2PvZ2Ce9JZev7U=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1723214225; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=5WYVhNuU88SniE2jCodWNyDFApk5Mbdr54y77hRyghI=; 
-	b=oAoHkXeCcX7nviLec5sUp7engJc5J13+w1b5iXuExiv5/VRRS0zhYxyqvsW4+tRnpCFvBedF4jQz6BsqA8tX5jCW9VGUlwHiGybjoLPe3jlTFPA0y/lOD0VDjoVQfsW5PP2gEamq3H3VL9NU0MIoy4F53gK6+UvNvWgL5sW/l1k=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
-	dmarc=pass header.from=<detlev.casanova@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1723214225;
-	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=5WYVhNuU88SniE2jCodWNyDFApk5Mbdr54y77hRyghI=;
-	b=W1E5OcW3K+ddqoH06ti0Zsc5hYb/I4WCMfRRJzAptQzpSWLw1L8YjUczP5juZWnN
-	FbaB/Nfg8OZWirTeygvyeEjhK/dVygb/iqyCMc7eK15zjZD/SGyazaxTw+yozETswje
-	ycZHcWojplbfXV5BYXOEAihbjxe/7cQtq68nd4fc=
-Received: by mx.zohomail.com with SMTPS id 1723214224288259.9191665746731;
-	Fri, 9 Aug 2024 07:37:04 -0700 (PDT)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: linux-kernel@vger.kernel.org,
- Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-Cc: "David S . Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Jose Abreu <joabreu@synopsys.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- David Wu <david.wu@rock-chips.com>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
- kernel@collabora.com
-Subject:
- Re: [PATCH v2 2/2] ethernet: stmmac: dwmac-rk: Add GMAC support for RK3576
-Date: Fri, 09 Aug 2024 10:38:23 -0400
-Message-ID: <3304458.aeNJFYEL58@trenzalore>
-In-Reply-To: <3724132.9z1YWOviru@diego>
-References:
- <20240808170113.82775-1-detlev.casanova@collabora.com>
- <20240808170113.82775-3-detlev.casanova@collabora.com>
- <3724132.9z1YWOviru@diego>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E85D6193090;
+	Fri,  9 Aug 2024 14:40:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723214450; cv=none; b=EEQsG29uy1AjjMDbzg5QgxMd8YorNGwLwN1S3tjIBcdyzwG3DBqN0No62iKRUbu8Ze/dS1hXBnY0Va/5KW3huggrQhXHbrrc+e/7bX0UbpXWeOzK5CIgsmHSQHTnSMj7gen+u051TkkkEA63GtMMjIQYztkXDXPtyrM6UXMhrdI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723214450; c=relaxed/simple;
+	bh=G+m2bqPCB8ujCDWrF6jpqwQcNEOclbrBMDxFlf2/sfU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FvjY48cD/+AmVVp3Py4ddTORNsh65D6upNPOlfDI0edvQjc1sIHSXZeoE0EIa50GWiciltecwwDyJdamgY1j5UD2jyj6H37sTfzFHwNgUp0fvWTZ+1njJ4UksepX3QfxEL1i+FvLPRynA10xyq/lfYDLhIFRlSG7h5tNrv3vba0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OyuITf38; arc=none smtp.client-ip=209.85.222.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-7a1d0dc869bso129216385a.2;
+        Fri, 09 Aug 2024 07:40:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723214448; x=1723819248; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gHjiVQuYfgWbGsVCPXBC3WBTw9YCJU6IrbvqLsBt5vE=;
+        b=OyuITf38uYfMWgC3pN6EVVJbaGE/xUov50HzMfEFARyho9MqHxSxHkYQXJaSUiU0WO
+         KkOMhe6ogytR3Q8lnNkquyRd4DlzJJEVD0aR0OI6j2t6n4eq3xSEcNRg/0/djST70Km/
+         xFZ8eqnO6mS+JycFU4tBypq//wJXdkt3goQsAfElo+oHyGGWOV7RV9CpwtQN5UP9ZzIY
+         5ejNbJ0STfoik1EbqVj4lS8z/nln9QnEhSThOlOIlcVmWBdj8S+h1sSY+knmcw2sH0Sk
+         KAe5t268zrYom9Ni2FaCTjdfduwci2tSUEsytHBmFBIq2OSmpIEbYhgD0QynXMvCGO8c
+         C6aQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723214448; x=1723819248;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gHjiVQuYfgWbGsVCPXBC3WBTw9YCJU6IrbvqLsBt5vE=;
+        b=iFZeWDJEQFWzIfjTjygX/vldDqUf9egacsfMmx0B+v6DauE4hFAdFbEIJmBXTW04hx
+         18HyjHngJ+OpeGBW8dhuLKrC+ag1Tf+KYfBLm3zh1YnYmM+gvHdmUfa7euWvfix5r1T4
+         FxKhNaIn1lhPitZsJm23GKXpRpn32s2X02BYDnTxD+IwfAW/AHaPQ90ReypotAnK+9JC
+         jLF1B7AC1y7Wq7wsrd+QIWRft305HYCt8XPlAbT7dsIkAgfQ74Z1XM3HzfOt7UYS/ins
+         3BVJWPR4SSVNftbgm5sYBiEvkj2vPV8fm9xB7LgaQaetQUoQDz6e0Yjf4li8jHvgVttA
+         AOuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUto6VJ/vrxhmV4P+i5sAA1L4Wo6ke/uMmAByQon3sTev2yCYZ/8mrk+nbqF3DtTf3RxRrhj4pFk3/tTEewwJErzC5UEOuz5err7wQytIaw2Vr99vHOPjisgHLnD4TD1oH1aw2nStA0+FNL6WUkPY7kBzE/v2mpAjXrSGMhgVQ0EvxReQ==
+X-Gm-Message-State: AOJu0YyEnJvNXftDeD7K/h4sfHwX7Bme8difrws1Txsug2qNHXDg/RlL
+	4NUpuG6YSPTIaQqAHQaYMVDZ1tmrK7sLgFCg+RyJQAYmOafI/Dej
+X-Google-Smtp-Source: AGHT+IEywtLzOaTDz89Q6pwDNWHnnCVF3LlQKIrvaF1Z2oiNS7RIbF7IxdMFkle1HzNO2GCgNZKoog==
+X-Received: by 2002:a05:620a:31a3:b0:79d:7ae3:4560 with SMTP id af79cd13be357-7a4c182f7b4mr192433085a.55.1723214447683;
+        Fri, 09 Aug 2024 07:40:47 -0700 (PDT)
+Received: from [192.168.0.220] ([83.103.132.21])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7a3785d3cedsm268424885a.15.2024.08.09.07.40.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Aug 2024 07:40:47 -0700 (PDT)
+Message-ID: <93d79fbd-8d1c-4a80-bf65-d4e597247573@gmail.com>
+Date: Fri, 9 Aug 2024 17:40:44 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] iio: adc: ad7173: add support for ad4113
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ devnull+dumitru.ceclan.analog.com@kernel.org
+Cc: Michael.Hennerich@analog.com, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, dumitru.ceclan@analog.com, jic23@kernel.org,
+ krzk+dt@kernel.org, lars@metafoo.de, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, robh@kernel.org
+References: <20240809-ad4113-v2-0-2a70c101a1f4@analog.com>
+ <20240809-ad4113-v2-2-2a70c101a1f4@analog.com>
+ <37357b8a-1995-473d-a6fb-168fc38e0641@wanadoo.fr>
+Content-Language: en-US
+From: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
+In-Reply-To: <37357b8a-1995-473d-a6fb-168fc38e0641@wanadoo.fr>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Friday, 9 August 2024 09:16:44 EDT Heiko St=C3=BCbner wrote:
-> Hi Detlev,
->=20
-> Am Donnerstag, 8. August 2024, 19:00:18 CEST schrieb Detlev Casanova:
-> > From: David Wu <david.wu@rock-chips.com>
-> >=20
-> > Add constants and callback functions for the dwmac on RK3576 soc.
-> >=20
-> > Signed-off-by: David Wu <david.wu@rock-chips.com>
-> > [rebase, extracted bindings]
-> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> > ---
-> >=20
-> >  .../net/ethernet/stmicro/stmmac/dwmac-rk.c    | 156 ++++++++++++++++++
-> >  1 file changed, 156 insertions(+)
-> >=20
-> > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
-> > b/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c index
-> > 7ae04d8d291c8..e1fa8fc9f4012 100644
-> > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
-> > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
-> > @@ -1116,6 +1116,161 @@ static const struct rk_gmac_ops rk3568_ops =3D {
-> >=20
-> >  	},
-> > =20
-> >  };
-> >=20
+On 09/08/2024 17:30, Christophe JAILLET wrote:
+> Le 09/08/2024 à 12:33, Dumitru Ceclan via B4 Relay a écrit :
+>> From: Dumitru Ceclan <dumitru.ceclan-OyLXuOCK7orQT0dZR+AlfA@public.gmane.org>
+>>
+>> This commit adds support for the AD4113 ADC.
+>> The AD4113 is a low power, low noise, 16-bit, Σ-Δ analog-to-digital
+>> converter (ADC) that integrates an analog front end (AFE) for four
+>> fully differential or eight single-ended inputs.
+>>
+>> Signed-off-by: Dumitru Ceclan <dumitru.ceclan-OyLXuOCK7orQT0dZR+AlfA@public.gmane.org>
+>> ---
+>>   drivers/iio/adc/ad7173.c | 36 +++++++++++++++++++++++++++++++++++-
+>>   1 file changed, 35 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/iio/adc/ad7173.c b/drivers/iio/adc/ad7173.c
+>> index a854f2d30174..3ac09d326472 100644
+>> --- a/drivers/iio/adc/ad7173.c
+>> +++ b/drivers/iio/adc/ad7173.c
+>> @@ -3,7 +3,7 @@
+>>    * AD717x and AD411x family SPI ADC driver
+>>    *
+>>    * Supported devices:
+>> - *  AD4111/AD4112/AD4114/AD4115/AD4116
+>> + *  AD4111/AD4112/AD4113/AD4114/AD4115/AD4116
+>>    *  AD7172-2/AD7172-4/AD7173-8/AD7175-2
+>>    *  AD7175-8/AD7176-2/AD7177-2
+>>    *
+>> @@ -84,6 +84,7 @@
+>>   #define AD4111_ID            AD7173_ID
+>>   #define AD4112_ID            AD7173_ID
+>>   #define AD4114_ID            AD7173_ID
+>> +#define AD4113_ID            0x31D0
+> 
+> Nitpick: others are in lowercase --> 0x31d0
+> 
+>>   #define AD4116_ID            0x34d0
+>>   #define AD4115_ID            0x38d0
+>>   #define AD7175_8_ID            0x3cd0
+> 
+> Other than that, is there any reason to have this "random" order for these defines?
+> 
+> CJ
+> 
 
-[...]
-
-> > +/* SDGMAC_GRF */
-> > +#define RK3576_GRF_GMAC_CON0			0X0020
-> > +#define RK3576_GRF_GMAC_CON1			0X0024
-> > +
-> > +#define RK3576_GMAC_RMII_MODE			GRF_BIT(3)
-> > +#define RK3576_GMAC_RGMII_MODE			GRF_CLR_BIT(3)
-> > +
-> > +#define RK3576_GMAC_CLK_SELET_IO		GRF_BIT(7)
-> > +#define RK3576_GMAC_CLK_SELET_CRU		GRF_CLR_BIT(7)
->=20
-> nit: typos _CLK_SELECT_ ... missing the C in select
-
-Ack
-
-> > +
-> > +#define RK3576_GMAC_CLK_RMII_DIV2		GRF_BIT(5)
-> > +#define RK3576_GMAC_CLK_RMII_DIV20		GRF_CLR_BIT(5)
->=20
-> I think those are backwards
-> The TRM says bit[5]=3D0: 25MHz (DIV2) and bit[5]=3D1: 2.5MHz (DIV20)
->=20
-> I guess nobody also on Rockchip's side tested a RMII phy on those control=
-lrs
-
-Can't be sure about that. An error in the TRM is not impossible either, as =
-for=20
-rk3588, it is also bit[5]=3D0: DIV20 and bit[5]=3D1: DIV2. I can switch the=
-m to=20
-match the TRM though, we may never now.
-
-> > +
-> > +#define RK3576_GMAC_CLK_RGMII_DIV1		\
-> > +			(GRF_CLR_BIT(6) | GRF_CLR_BIT(5))
-> > +#define RK3576_GMAC_CLK_RGMII_DIV5		\
-> > +			(GRF_BIT(6) | GRF_BIT(5))
-> > +#define RK3576_GMAC_CLK_RGMII_DIV50		\
-> > +			(GRF_BIT(6) | GRF_CLR_BIT(5))
-> > +
->=20
-> in contrast, these are correct and match the TRM
->=20
-> > +#define RK3576_GMAC_CLK_RMII_GATE		GRF_BIT(4)
-> > +#define RK3576_GMAC_CLK_RMII_NOGATE		GRF_CLR_BIT(4)
-> > +
-> > +static void rk3576_set_to_rgmii(struct rk_priv_data *bsp_priv,
-> > +				int tx_delay, int rx_delay)
-> > +{
-> > +	struct device *dev =3D &bsp_priv->pdev->dev;
-> > +	unsigned int offset_con;
-> > +
-> > +	if (IS_ERR(bsp_priv->grf) || IS_ERR(bsp_priv->php_grf)) {
-> > +		dev_err(dev, "Missing rockchip,grf or rockchip,php_grf=20
-property\n");
-> > +		return;
-> > +	}
-> > +
-> > +	offset_con =3D bsp_priv->id =3D=3D 1 ? RK3576_GRF_GMAC_CON1 :
-> > +					 RK3576_GRF_GMAC_CON0;
-> > +
-> > +	regmap_write(bsp_priv->grf, offset_con, RK3576_GMAC_RGMII_MODE);
-> > +
-> > +	offset_con =3D bsp_priv->id =3D=3D 1 ? RK3576_VCCIO0_1_3_IOC_CON4 :
-> > +					=20
-RK3576_VCCIO0_1_3_IOC_CON2;
-> > +
-> > +	/* m0 && m1 delay enabled */
-> > +	regmap_write(bsp_priv->php_grf, offset_con,
-> > +		     DELAY_ENABLE(RK3576, tx_delay, rx_delay));
-> > +	regmap_write(bsp_priv->php_grf, offset_con + 0x4,
-> > +		     DELAY_ENABLE(RK3576, tx_delay, rx_delay));
-> > +
-> > +	/* m0 && m1 delay value */
-> > +	regmap_write(bsp_priv->php_grf, offset_con,
-> > +		     RK3576_GMAC_CLK_TX_DL_CFG(tx_delay) |
-> > +		     RK3576_GMAC_CLK_RX_DL_CFG(rx_delay));
-> > +	regmap_write(bsp_priv->php_grf, offset_con + 0x4,
-> > +		     RK3576_GMAC_CLK_TX_DL_CFG(tx_delay) |
-> > +		     RK3576_GMAC_CLK_RX_DL_CFG(rx_delay));
-> > +}
-> > +
-> > +static void rk3576_set_to_rmii(struct rk_priv_data *bsp_priv)
-> > +{
-> > +	struct device *dev =3D &bsp_priv->pdev->dev;
-> > +	unsigned int offset_con;
-> > +
-> > +	if (IS_ERR(bsp_priv->php_grf)) {
-> > +		dev_err(dev, "%s: Missing rockchip,php_grf property\n",=20
-__func__);
-> > +		return;
-> > +	}
-> > +
-> > +	offset_con =3D bsp_priv->id =3D=3D 1 ? RK3576_GRF_GMAC_CON1 :
-> > +					 RK3576_GRF_GMAC_CON0;
-> > +
-> > +	regmap_write(bsp_priv->grf, offset_con, RK3576_GMAC_RMII_MODE);
-> > +}
-> > +
-> > +static void rk3576_set_gmac_speed(struct rk_priv_data *bsp_priv, int
-> > speed) +{
-> > +	struct device *dev =3D &bsp_priv->pdev->dev;
-> > +	unsigned int val =3D 0, offset_con;
-> > +
-> > +	switch (speed) {
-> > +	case 10:
-> > +		if (bsp_priv->phy_iface =3D=3D PHY_INTERFACE_MODE_RMII)
-> > +			val =3D RK3576_GMAC_CLK_RMII_DIV20;
-> > +		else
-> > +			val =3D RK3576_GMAC_CLK_RGMII_DIV50;
->=20
-> 		val =3D bsp_priv->phy_iface =3D=3D PHY_INTERFACE_MODE_RMII ?
-> 				RK3576_GMAC_CLK_RMII_DIV20 :
-> 				RK3576_GMAC_CLK_RGMII_DIV50;
-> perhaps?
-
-This way matches how it is written in rk3588_set_gmac_speed(). I find that=
-=20
-having similar code for similar functions helps reading and understanding i=
-t=20
-better (although I agree that your suggestion looks better).
-
-I'd rather keep it like it is for now if that's ok.
-
-> > +		break;
-> > +	case 100:
-> > +		if (bsp_priv->phy_iface =3D=3D PHY_INTERFACE_MODE_RMII)
-> > +			val =3D RK3576_GMAC_CLK_RMII_DIV2;
-> > +		else
-> > +			val =3D RK3576_GMAC_CLK_RGMII_DIV5;
->=20
-> same as above?
->=20
-> > +		break;
-> > +	case 1000:
-> > +		if (bsp_priv->phy_iface !=3D PHY_INTERFACE_MODE_RMII)
-> > +			val =3D RK3576_GMAC_CLK_RGMII_DIV1;
-> > +		else
-> > +			goto err;
->=20
-> 		if (bsp_priv->phy_iface =3D=3D PHY_INTERFACE_MODE_RMII)
-> 			goto err;
->=20
-> 		val =3D RK3576_GMAC_CLK_RGMII_DIV1;
->=20
-> > +		break;
-> > +	default:
-> > +		goto err;
-> > +	}
-> > +
-> > +	offset_con =3D bsp_priv->id =3D=3D 1 ? RK3576_GRF_GMAC_CON1 :
-> > +					 RK3576_GRF_GMAC_CON0;
-> > +
-> > +	regmap_write(bsp_priv->grf, offset_con, val);
-> > +
-> > +	return;
-> > +err:
-> > +	dev_err(dev, "unknown speed value for GMAC speed=3D%d", speed);
-> > +}
-> > +
-> > +static void rk3576_set_clock_selection(struct rk_priv_data *bsp_priv,
-> > bool input, +				       bool enable)
-> > +{
-> > +	unsigned int val =3D input ? RK3576_GMAC_CLK_SELET_IO :
-> > +				   RK3576_GMAC_CLK_SELET_CRU;
-> > +	unsigned int offset_con;
-> > +
-> > +	val |=3D enable ? RK3576_GMAC_CLK_RMII_NOGATE :
-> > +			RK3576_GMAC_CLK_RMII_GATE;
-> > +
-> > +	offset_con =3D bsp_priv->id =3D=3D 1 ? RK3576_GRF_GMAC_CON1 :
-> > +					 RK3576_GRF_GMAC_CON0;
->=20
-> nit: alignment of both looks like it could be nicer
-
-That's strange, the alignments looks good in vim and git diff. It also look=
-s=20
-nice on the archive: https://lore.kernel.org/linux-rockchip/
-20240808170113.82775-3-detlev.casanova@collabora.com/
-=20
-
-Regards,
-Detlev
-
-
+It's not random, it was requested to order these defines by the ID value:
+https://lore.kernel.org/all/CAHp75VcjcgnLkQWim1AVnyeRGFwwKpaWSCvrmqdv41Lx87hMKw@mail.gmail.com/
 
