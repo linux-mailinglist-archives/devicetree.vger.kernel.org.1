@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-92514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2C2194D6C0
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 20:57:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C6DB94D6FF
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 21:11:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 185C01C217DE
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 18:57:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0CEDC288D43
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 19:11:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A5FA155CBD;
-	Fri,  9 Aug 2024 18:57:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F8A5169382;
+	Fri,  9 Aug 2024 19:06:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="joI7c/oa"
+	dkim=pass (2048-bit key) header.d=acm.org header.i=@acm.org header.b="3wXsC+yv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from 009.lax.mailroute.net (009.lax.mailroute.net [199.89.1.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DB3014F9F9;
-	Fri,  9 Aug 2024 18:57:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B34FC13AA38;
+	Fri,  9 Aug 2024 19:06:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=199.89.1.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723229840; cv=none; b=QLGioAqNerj7z9m8PTLr3Ag8tg/AHc2jzDqo5KiKQpdfEO1opfZUvytC1i+S7Hj4MqnFsWWNNhLUs0VGDMgezJJYo/qRqOIzyhfeqXxrM+XeXWSkFewCouRPjjKJeOfnDGAymXWQ9tZVW80j7FwDJthY8rB4UMY/veHlfizlql4=
+	t=1723230396; cv=none; b=smwZa0Hbmsbg9QR1jJZBrxPafMRx2zq9yTHKGGNCu3zG+K9FHDqHyUz81fow9yQgLDaiU08FcRxmo0tPLbb/x/PM2+HFto+A4JwgQTZYvOqoU/XJvUKW74nzL2C5LcoCf6IJnvQrps42y+bwqCtpxb7gvSJ0OxfViMqoyJ8bXEA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723229840; c=relaxed/simple;
-	bh=nvFn7mAb0Twh6vUcncc5orvAoBjxgOO3JfZOwABh1rI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=W8sUDJv4MCvLBP1xh2hrSY7e53hJ3QWaYcKbiiNhobSSYHGSeYGupu7OLlv9r9cQ8RNBj9vqPFSLrueO+MsYUfjvd8SaZRmqzNqKR2xs0Kaw9gMZCW/6GVg8batc+2yIT+tbSOFjiBq8QZFeFUfwACzHwSkdbR0nsDEvJVKBmFg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=joI7c/oa; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 479HfQcj005995;
-	Fri, 9 Aug 2024 18:57:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	nvFn7mAb0Twh6vUcncc5orvAoBjxgOO3JfZOwABh1rI=; b=joI7c/oaibUEdfuP
-	bsCgeSJCrk2VKvmu4rZw5kOqaAoRijtZ+qZilWYSrtE8l8sK0puAXOcGTOFjI84Y
-	Nqe6dzO46HGOK9F2kxDK4rfmR/4ExrMQFBjyULqKMp1Pfv3wYdAehLrxR/X/dWEZ
-	iMJsIAaJgMu9+IsUCIR4KaMz+7FVcojQ/PwQ9PJkYnSDUztCNs/AhSvicc0jP2Fr
-	aHcSsytLQnKxCcR0h1k4DSAPpz7TqRAP0OuS4IUG0TtVEab5tSlTLa97mCj+AcYn
-	Mt60nNXPYEcSGgmQpUvXWXIspCGCNuDxOmPQ38m74l1oGivCZ3tlIgOj8CHOg/3T
-	L2hNiA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40weqf9p8x-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 09 Aug 2024 18:57:00 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id 479IuxZD008155
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 9 Aug 2024 18:56:59 GMT
-Received: from [10.110.12.164] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 9 Aug 2024
- 11:56:55 -0700
-Message-ID: <1bece984-6f5f-41ad-b785-03803f6a2037@quicinc.com>
-Date: Fri, 9 Aug 2024 11:56:50 -0700
+	s=arc-20240116; t=1723230396; c=relaxed/simple;
+	bh=GDeSvflfgNP53Bnn6NwxyLup2T5xICejTY4xxMRsW7w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aElxyq5AHAPT8Y1/pX9fIjkpy9FbVFeTNfS9Z++XWwec+x4yceTJc9gqpmw6AP901aCCqzo/OdiwVZxK/qMt4iaIsSbPubiUJmf2ThSZFfdo1skW2O8yVaEBFJTsHc9AivBH/cRIpWsuxwnr+y/3mNbJzvIDQDH/nN4v57Q53CA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=acm.org; spf=pass smtp.mailfrom=acm.org; dkim=pass (2048-bit key) header.d=acm.org header.i=@acm.org header.b=3wXsC+yv; arc=none smtp.client-ip=199.89.1.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=acm.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=acm.org
+Received: from localhost (localhost [127.0.0.1])
+	by 009.lax.mailroute.net (Postfix) with ESMTP id 4WgYKw2KlczlgTGW;
+	Fri,  9 Aug 2024 19:06:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=acm.org; h=
+	content-transfer-encoding:content-type:content-type:in-reply-to
+	:from:from:content-language:references:subject:subject
+	:user-agent:mime-version:date:date:message-id:received:received;
+	 s=mr01; t=1723230383; x=1725822384; bh=DW9duP/WSzGKgw6N8JbyhvDM
+	ENJtltoq9LzdIzH07QI=; b=3wXsC+yvI86+JvuSDvFMn01MUZMGzMz2kM9Uk5Eh
+	RCKjdsUJIDoh75MzaP+PnO72nSGuFBR/O2RaYlKMy9ZFQmPqH+GDQliUKFyLSCCq
+	7xK11ehoXOSd4+d1T/hUaBGrAMYbbem0X55iR40Gd5MIryd6ux678DoaWO0PCd6D
+	848CscKTSWYB+QINptqqSnN8T7mph67+mQRJu+Y4ww0FppF9IX3CgiMgZouLlmZe
+	pVa13dekFI6+puujw35+mayzi01rk7V4pwQoOHhO+5CGevKkxOBNG5UUyVQYNtE8
+	x4k7rjwOYh9/Zc7ff2AwnXPd3GB0aSYmcS9DkasBob2uXw==
+X-Virus-Scanned: by MailRoute
+Received: from 009.lax.mailroute.net ([127.0.0.1])
+ by localhost (009.lax [127.0.0.1]) (mroute_mailscanner, port 10029) with LMTP
+ id aW_A8ey1jKET; Fri,  9 Aug 2024 19:06:23 +0000 (UTC)
+Received: from [100.66.154.22] (unknown [104.135.204.82])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: bvanassche@acm.org)
+	by 009.lax.mailroute.net (Postfix) with ESMTPSA id 4WgYKl5vvLzlgVnF;
+	Fri,  9 Aug 2024 19:06:19 +0000 (UTC)
+Message-ID: <203bf2c3-e55d-4b1e-9ef1-a7d73401ce52@acm.org>
+Date: Fri, 9 Aug 2024 12:06:18 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,76 +65,67 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/4] Revert use of Unflatten_devicetree APIs from
- reserved_mem
-To: Klara Modin <klarasmodin@gmail.com>
-CC: <robh@kernel.org>, <saravanak@google.com>, <aisheng.dong@nxp.com>,
-        <hch@lst.de>, <m.szyprowski@samsung.com>, <robin.murphy@arm.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <iommu@lists.linux.dev>, <will@kernel.org>, <catalin.marinas@arm.com>,
-        <kernel@quicinc.com>
-References: <20240708230613.448846-1-quic_obabatun@quicinc.com>
- <CABq1_vjvPeF-h19-H99q5D1u7wvtbRPoKKqroMJFaMb+yUFLgg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] scsi: ufs: rockchip: init support for UFS
+To: Shawn Lin <shawn.lin@rock-chips.com>, Rob Herring <robh+dt@kernel.org>,
+ "James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
+ "Martin K . Petersen" <martin.petersen@oracle.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Heiko Stuebner <heiko@sntech.de>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Avri Altman <avri.altman@wdc.com>, YiFeng Zhao <zyf@rock-chips.com>,
+ Liang Chen <cl@rock-chips.com>, linux-scsi@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <1723089163-28983-1-git-send-email-shawn.lin@rock-chips.com>
+ <1723089163-28983-4-git-send-email-shawn.lin@rock-chips.com>
 Content-Language: en-US
-From: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
-In-Reply-To: <CABq1_vjvPeF-h19-H99q5D1u7wvtbRPoKKqroMJFaMb+yUFLgg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+From: Bart Van Assche <bvanassche@acm.org>
+In-Reply-To: <1723089163-28983-4-git-send-email-shawn.lin@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 0KIsqVITAaWxApNfnxic84WONq5N2WVz
-X-Proofpoint-GUID: 0KIsqVITAaWxApNfnxic84WONq5N2WVz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-09_15,2024-08-07_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
- spamscore=0 phishscore=0 lowpriorityscore=0 malwarescore=0 adultscore=0
- mlxlogscore=999 suspectscore=0 bulkscore=0 priorityscore=1501
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408090137
 
+On 8/7/24 8:52 PM, Shawn Lin wrote:
+> RK3576 contains a UFS controller, add init support fot it.
+					^^^^	     ^^^
+                                         initial      for
 
-On 7/9/2024 4:30 AM, Klara Modin wrote:
-> Hi,
->
-> Den tis 9 juli 2024 kl 01:06 skrev Oreoluwa Babatunde
-> <quic_obabatun@quicinc.com>:
->> With recent changes made to initialize the cma regions before the page
->> tables are setup, commit f2a524d9ef5b ("of: reserved_mem: Restructure
->> code to call reserved mem init functions earlier"), an issue was
->> introduced where the initialization of the cma regions fail and are
->> initialized as "non-reusable" regions instead of "reusable". [1], [2]
->>
->> This issue occurs because the device_node of the regions are not yet
->> created by the time the cma regions are being initialized.
->>
->> The cma regions need to be initialized before the page tables are setup
->> for them to be configured correctly as was realized in [3].
->>
->> Hence, since the unflatten_devicetree APIs are not available until after
->> the page tables have been setup, revert back to using the fdt APIs. This
->> makes it possible to store a reference to each cma node in the
->> reserved_mem array by the time it is needed in the init function.
->>
->> [1] https://lore.kernel.org/all/DU0PR04MB9299C3EC247E1FE2C373440F80DE2@DU0PR04MB9299.eurprd04.prod.outlook.com/
->>
->> [2] https://lore.kernel.org/all/986361f4-f000-4129-8214-39f2fb4a90da@gmail.com/
->>
->> [3] https://lore.kernel.org/all/20240610213403.GA1697364@thelio-3990X/
->>
-> These reverts also fixes the issue for me. Feel free to CC me when you
-> decide to send the next version if you want and I can retest it.
->
-> Regards,
-> Tested-by: Klara Modin <klarasmodin@gmail.com>
-Hi Klara,
+Again a very short patch description. What is "RK3576"? Please explain.
 
-I have uploaded a new version of this patch set and cc'ed you on it.
-Please help me retest to see if it still works for you.
-https://lore.kernel.org/all/20240809184814.2703050-1-quic_obabatun@quicinc.com/
+> +config SCSI_UFS_ROCKCHIP
+> +	tristate "Rockchip specific hooks to UFS controller platform driver"
 
-Thank you!
-Oreoluwa
+A better description would be: "Rockchip UFS host controller driver"
+
+> +#include "ufshcd-dwc.h"
+
+No, you should not include the ufshcd-dwc.h header file. That is a 
+header file for the Designware UFS host controller.
+
+> +	reset_control_assert(host->rst);
+> +	udelay(1);
+> +	reset_control_deassert(host->rst);
+
+Why udelay() instead of usleep_range()?
+
+> +static int ufs_rockchip_device_reset(struct ufs_hba *hba)
+> +{
+> +	struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
+> +
+> +	if (!host->rst_gpio)
+> +		return -EOPNOTSUPP;
+> +
+> +	gpiod_set_value_cansleep(host->rst_gpio, 0);
+> +	udelay(20);
+> +
+> +	gpiod_set_value_cansleep(host->rst_gpio, 1);
+> +	udelay(20);
+> +
+> +	return 0;
+> +}
+
+Same question here: why udelay() instead of usleep_range()?
+
+Thanks,
+
+Bart.
 
