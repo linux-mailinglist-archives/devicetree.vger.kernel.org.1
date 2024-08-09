@@ -1,151 +1,245 @@
-Return-Path: <devicetree+bounces-92317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA85994CAF6
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 09:09:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1132E94CAFA
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 09:10:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7C4EFB2384E
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 07:09:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76171283207
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 07:10:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECE2E16D9B5;
-	Fri,  9 Aug 2024 07:09:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="cUK+2OxK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D9A616DC2D;
+	Fri,  9 Aug 2024 07:10:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A629B16DC05
-	for <devicetree@vger.kernel.org>; Fri,  9 Aug 2024 07:09:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B07516DC22
+	for <devicetree@vger.kernel.org>; Fri,  9 Aug 2024 07:10:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723187343; cv=none; b=Hgwy8Jp3FPYtlfKuBgWhSkSj5wfq8ukIldzeSdmORd3yP+yHl/sz9xWew1B8k+uUnAs2lxYgmOwTP5GCte7rEoAi1bQhx+nwI8uB+mtaoMBXt4nSGRFCXZm9HmXExAWkS2WT4y2DkoyDpTrCLx1JY3fDygUGLTX5cMN3SJfEoPQ=
+	t=1723187419; cv=none; b=BkjTpvfQ7GQgiYO6g1j0WpOl6d5T1/hfWiY6ZKT94Sw8ukINfgnzCFGkUbIibS2mbIBTsVeefGInMQliYOaM94AUDv0/TLN9oCgYnwaDJny2qYDzGTZbv2ERdgr3qR09dHzv1xwr68hAWEjDX8A+sU2oXQombNge6f+3McfMRa0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723187343; c=relaxed/simple;
-	bh=VfECz7OPrQqPTCXZmokmOw+YGaGRk23fu+dwqvsd0QQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Q6JAXpE3cwz1JbEJg8nYkWD4dmGklkQ/BvOrET1FISIaS8bGqIJuPcrd3jcnPopGqMPf5gdic3bg7UM89ixGmJ1c6lRE9XqAfUkA1yrNqxUkBGYCQeU0AapzgeyJUuwhcWkFeOo8y+lcxfZw9lRuFjJ1C/4pZVbbA6Epc49mWtY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=cUK+2OxK; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5b8c2a6117aso691604a12.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2024 00:09:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1723187340; x=1723792140; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uyevx1eSZveednPIyrWDCVPvbsLJ4CSv84HEJGwgqRA=;
-        b=cUK+2OxKdFs3j66gaTn6DtxLCFKl/B5tVAn18w+VYYnqMzHK5Kj74JR5FpKsi+1B44
-         DOrmmM3HXPfOEkLlfXkFv9PDEPndLzAnfitoKe9JmqmwjSXxynLyx0Fi+aZjCjhBizvB
-         EcMH150UGj3Anoi/DQfiBwD6fRKV4QRBSx140qzBSrT3v7b2uZIqiNAHMBXB6/kpL91G
-         H5TyF0B8Zt7oJ5+w0cMXnybdq3uvY4kNMQWsfHYTmN9kD/qBwCD82bA1HVdaCIg/heWx
-         L++AuzEdgVw0h6RC4C2hKbtvc6lbNGDwzFmMytRufKAvmB1/BGuhOuzy2dhMHTCvhRgL
-         3AtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723187340; x=1723792140;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uyevx1eSZveednPIyrWDCVPvbsLJ4CSv84HEJGwgqRA=;
-        b=CNH+oQnqCrh5VmDYd6Rl0brRyflhHgIh8WEgU7RmcCp2P6p/MSbalhrUtzEShjEZQg
-         xAGsqFJKQYIcXvv33K7wU98nIFlYvVDyOSM487AxXUJvZJGc7AceKolu71bCm3IysH7F
-         yXMouq4r2EFbaY2dp8mbG3cD633FnK9MpwaXqJfAIkscmZ4PzBKfkyXqcP7EZ37CPojr
-         9koxJH+NawJEazh6D5DejeKYFFcZdXPJccPetJmwHvbAQ9dyYCJ5vg0yuJ0VEYg1B1kY
-         23lkayyezA6NRsHXZWtm3OabMv0YNqV4ut89T6Wp84r1bn9MMDE40o+mDv1ZDNxX77bM
-         T4lw==
-X-Forwarded-Encrypted: i=1; AJvYcCWXZjsYzyYMXB8AXtky39/xuf34pzw9ND1MIoj3iSNQMv5MllJmuwurx/lgjpbC2TVidPf9od4s4m95EfZGLyU1RuPQJLluaYDhXA==
-X-Gm-Message-State: AOJu0Yyn+zf6HcRCjBOBtqi6pPQdxWUhvcZx/gIbkZeSw7eCmzZJjEpm
-	LdRaEZx/YakZRMXa9pIqq1LAkMdVsnI3HEupl9H6cQUcBOfvcwpi/RM1nj28Ukk=
-X-Google-Smtp-Source: AGHT+IGS2QSI7Zek1QoyFMiJIsl9IBJLkppjoDYkqSIfv+JYsY3kSxvXPRLfJWdBp4iPNDsWfQLR7w==
-X-Received: by 2002:a05:6402:2116:b0:5a0:f9f7:6565 with SMTP id 4fb4d7f45d1cf-5bd0a577cc8mr714543a12.21.1723187339798;
-        Fri, 09 Aug 2024 00:08:59 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.180])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7dc9bc3d77sm807642866b.43.2024.08.09.00.08.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Aug 2024 00:08:59 -0700 (PDT)
-Message-ID: <8359caf0-5219-47dc-b68b-41486757be92@tuxon.dev>
-Date: Fri, 9 Aug 2024 10:08:57 +0300
+	s=arc-20240116; t=1723187419; c=relaxed/simple;
+	bh=yi4K1zGpJxAsjqqbdwucKt8vGdkCSnyK1MOiAV9eM6A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=l8iOzs3OFgRLo0zepY/s/PdJCYLzdCQHveHcjhl6e071WwXBQ8xUcF4X7SkPViMtF8PJFbCNVVvz4zcuf31ER1en+Y4Vhy/9uXd/zl7raZhfXyr5ClJ9s7ZU4V2LM43oBV/UNuTU9CNdyXtgyd6Y+kFlq5gGbBnsty0AR8V2888=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1scJl7-00012d-Vp; Fri, 09 Aug 2024 09:09:58 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <sha@pengutronix.de>)
+	id 1scJl2-005bez-0o; Fri, 09 Aug 2024 09:09:52 +0200
+Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1scJl1-00Aiml-2s;
+	Fri, 09 Aug 2024 09:09:51 +0200
+Date: Fri, 9 Aug 2024 09:09:51 +0200
+From: Sascha Hauer <s.hauer@pengutronix.de>
+To: Pankaj Gupta <pankaj.gupta@nxp.com>
+Cc: Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [EXT] Re: [PATCH v6 5/5] firmware: imx: adds miscdev
+Message-ID: <ZrXAv79KFCSyB3U_@pengutronix.de>
+References: <20240722-imx-se-if-v6-0-ee26a87b824a@nxp.com>
+ <20240722-imx-se-if-v6-5-ee26a87b824a@nxp.com>
+ <Zp-8MPdWdAhGG9de@pengutronix.de>
+ <AM9PR04MB860410277C8329271E12963F95B92@AM9PR04MB8604.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 05/11] i2c: riic: Add suspend/resume support
-Content-Language: en-US
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- chris.brandt@renesas.com, andi.shyti@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, geert+renesas@glider.be,
- magnus.damm@gmail.com, p.zabel@pengutronix.de,
- linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240711115207.2843133-1-claudiu.beznea.uj@bp.renesas.com>
- <20240711115207.2843133-6-claudiu.beznea.uj@bp.renesas.com>
- <ZrTg-_Tzmu6whv_W@shikoro>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <ZrTg-_Tzmu6whv_W@shikoro>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <AM9PR04MB860410277C8329271E12963F95B92@AM9PR04MB8604.eurprd04.prod.outlook.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-
-
-On 08.08.2024 18:15, Wolfram Sang wrote:
-> On Thu, Jul 11, 2024 at 02:52:01PM +0300, Claudiu wrote:
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->> Add suspend/resume support for the RIIC driver. This is necessary for the
->> Renesas RZ/G3S SoC which support suspend to deep sleep state where power
->> to most of the SoC components is turned off. As a result the I2C controller
->> needs to be reconfigured after suspend/resume. For this, the reset line
->> was stored in the driver private data structure as well as i2c timings.
->> The reset line and I2C timings are necessary to re-initialize the
->> controller after resume.
->>
->> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On Thu, Aug 08, 2024 at 10:49:33AM +0000, Pankaj Gupta wrote:
+> > > +     if (tx_msg->header.tag != priv->cmd_tag) {
+> > > +             err = -EINVAL;
+> > > +             goto exit;
+> > > +     }
+> > > +
+> > > +     guard(mutex)(&priv->se_if_cmd_lock);
+> > > +     priv->waiting_rsp_dev = dev_ctx;
+> > > +     dev_ctx->temp_resp_size = cmd_snd_rcv_rsp_info.rx_buf_sz;
+> > > +
+> > > +     /* Device Context that is assigned to be a
+> > > +      * FW's command receiver, has pre-allocated buffer.
+> > > +      */
+> > > +     if (dev_ctx != priv->cmd_receiver_dev)
+> > > +             dev_ctx->temp_resp = rx_msg;
+> > > +
+> > > +     err = ele_miscdev_msg_send(dev_ctx,
+> > > +                                tx_msg,
+> > > +                                cmd_snd_rcv_rsp_info.tx_buf_sz);
+> > > +     if (err < 0)
+> > > +             goto exit;
+> > > +
+> > > +     cmd_snd_rcv_rsp_info.tx_buf_sz = err;
+> > > +
+> > > +     err = ele_miscdev_msg_rcv(dev_ctx,
+> > > +                               cmd_snd_rcv_rsp_info.rx_buf,
+> > > +                               cmd_snd_rcv_rsp_info.rx_buf_sz);
+> > 
+> > Ok, here you now have serialized sending and receiving messages,
+> > 
+> > With this you no longer need priv->waiting_rsp_dev, dev_ctx->temp_resp and
+> > dev_ctx->temp_resp_size. Drop these for further cleanup.
 > 
-> ? Doesn't apply on top of the previous patches for me?
+> It is very much needed.
+> - priv->waiting_rsp_dev, help identify in the callback function that:
+> 	- the message is targeted for dev_ctx(user space) or dev(kernel space).
+> 	- the message is targeted for for which dev_ctx.
+> - dev_ctx->temp_resp, this buffer pointer is needed, to receive the message received in call back.
+> - dev_ctx->temp_resp_size, is needed to compare the size of in-coming message.
+> 
+> All the three are needed in callback function.
 
-I just checked it on next-20240809. It should be due to commit
-e1571b1fb4ff ("i2c: riic: reword according to newest specification")
-which introduced changes around riic_algo object, present also in the diff
-of this patch.
+I think you should throw away ele_miscdev_msg_send() and
+ele_miscdev_msg_rcv() and instead use ele_msg_send_rcv() instead.
+
+This driver contains a whole lot of unneeded complexity up to the point
+where it's not clear what this driver is actually trying to archieve.
+
+Please let's do a step back and try to find out the actual usecases.
+
+What I have found out so far is:
+
+1) We can send one message to the ELE and each message is expected to get
+   one response from the ELE.
+2) We are not allowed to send another message to the ELE while there is a
+   message in flight that hasn't got a response.
+3) Both Kernel and userspace shall be able to send commands and receive
+   its responses.
+4) The ELE is able to send a command itself. Is this true? Does this
+   command need a response? Can we continue sending commands to the ELE
+   while the ELE waits for the response to the command?
+
+
+1) and 2) is covered by ele_msg_send_rcv(). 3) is covered by
+ele_msg_send_rcv() as well, it can be called directly by kernel
+code or via an ioctl from userspace.
+
+4) is the most unclear point for me, but 1) 2) and 3) seems straight
+forward and should be solvable with significantly reduced code size.
+
+Am I missing any features that you need as well?
+
 
 > 
->> +static int riic_i2c_resume(struct device *dev)
->> +{
->> +	struct riic_dev *riic = dev_get_drvdata(dev);
->> +	int ret;
->> +
->> +	ret = reset_control_deassert(riic->rstc);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = riic_init_hw(riic);
->> +	if (ret) {
->> +		reset_control_assert(riic->rstc);
+> > 
+> > > +}
+> > > +
+> > > +static int se_ioctl_get_mu_info(struct se_if_device_ctx *dev_ctx,
+> > > +                             u64 arg) {
+> > > +     struct se_if_priv *priv = dev_get_drvdata(dev_ctx->dev);
+> > > +     struct se_if_node_info *if_node_info;
+> > > +     struct se_ioctl_get_if_info info;
+> > > +     int err = 0;
+> > > +
+> > > +     if_node_info = (struct se_if_node_info *)priv->info;
+> > > +
+> > > +     info.se_if_id = if_node_info->se_if_id;
+> > > +     info.interrupt_idx = 0;
+> > > +     info.tz = 0;
+> > > +     info.did = if_node_info->se_if_did;
+> > > +     info.cmd_tag = if_node_info->cmd_tag;
+> > > +     info.rsp_tag = if_node_info->rsp_tag;
+> > > +     info.success_tag = if_node_info->success_tag;
+> > > +     info.base_api_ver = if_node_info->base_api_ver;
+> > > +     info.fw_api_ver = if_node_info->fw_api_ver;
+> > 
+> > This really shouldn't be here. You pass cmd_tag and rsp_tag to userspace just
+> > to guide userspace how to construct a message.
+> > 
+> > This shows that the messages should be constructed in the Kernel rather than
+> > in userspace. Just pass the message content from userspace to the kernel and
+> > let the kernel build the message on the sender side.
 > 
-> Is this assertion really needed? It is not done when init_hw fails in
-> probe().
+> This will help collecting user-space application logs, with correct tags.
+> This is already used by the customers, for debug.
 
-In case riic_init_hw() fails there is no recovering way for this driver,
-AFAICT, and thus there is no point in keeping the reset signal de-asserted.
+I don't bother that you provide this information to userspace. My point
+is that it shouldn't be needed by userspace to assemble the packets that
+are sent back to the kernel.
 
-In probe this is handled by the devres through action or reset function
-(riic_reset_control_assert) registered by:
+Really the packet encapsulation should be done in the kernel and
+userspace shouldn't be bothered with it.
 
-ret = devm_add_action_or_reset(dev, riic_reset_control_assert, rstc);
+> 
+> > 
+> > > +/* IOCTL entry point of a character device */ static long
+> > > +se_ioctl(struct file *fp, unsigned int cmd, unsigned long arg) {
+> > > +     struct se_if_device_ctx *dev_ctx = container_of(fp->private_data,
+> > > +                                                     struct se_if_device_ctx,
+> > > +                                                     miscdev);
+> > > +     struct se_if_priv *se_if_priv = dev_ctx->priv;
+> > > +     int err = -EINVAL;
+> > > +
+> > > +     /* Prevent race during change of device context */
+> > > +     if (down_interruptible(&dev_ctx->fops_lock))
+> > > +             return -EBUSY;
+> > > +
+> > > +     switch (cmd) {
+> > > +     case SE_IOCTL_ENABLE_CMD_RCV:
+> > > +             if (!se_if_priv->cmd_receiver_dev) {
+> > > +                     err = 0;
+> > > +                     se_if_priv->cmd_receiver_dev = dev_ctx;
+> > > +                     dev_ctx->temp_resp = kzalloc(MAX_NVM_MSG_LEN,
+> > GFP_KERNEL);
+> > > +                     if (!dev_ctx->temp_resp)
+> > > +                             err = -ENOMEM;
+> > > +             }
+> > 
+> > cmd_receiver_dev isn't locked by anything, still it can be accessed by different
+> > userspace processes.
+> 
+> It is not accessed by different Userspace processes. It is a slave to FW.
+> FW interacts with it when FW receive a command to do any action, from userspace.
+> Hence, it will be executed under command-lock.
 
-if (ret)
+When two userspace programs have a device instance open, then nothing
+prevents them from calling this ioctl at the same time. You do a
 
-        return ret;
+	if (!se_if_priv->cmd_receiver_dev)
+		se_if_priv->cmd_receiver_dev = dev_ctx;
 
+which is executed by two threads simultaneously. It's one of the most
+classic scenarios that need locking.
 
-Thank you,
-Claudiu Beznea
+Sascha
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
