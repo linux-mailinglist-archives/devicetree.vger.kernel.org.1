@@ -1,118 +1,113 @@
-Return-Path: <devicetree+bounces-92550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92551-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50D4294D91D
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 01:29:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E250394D932
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 01:38:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E6B2283905
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 23:29:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EE3A1C21944
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 23:38:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7648316D4D6;
-	Fri,  9 Aug 2024 23:29:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8822816D336;
+	Fri,  9 Aug 2024 23:38:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="EEwZei4z"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="WYxWSqBE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF01026AE4;
-	Fri,  9 Aug 2024 23:29:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5DE116D9AD;
+	Fri,  9 Aug 2024 23:38:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723246171; cv=none; b=MdUcSLBbh7IdZfKW7+p30O/zIhfoeu9K2WZltWNnO/bV7g79qTsayU85gwHdpv7U2nhDfGe4N5UvJb6in+GjywVkxldqBNGPb134qgtr7rbdfgXQ3IHWu6ZlasttlUSo6Bi7L+/HF6W1y62V0Nkdy9XV1ur1INGN4zN1I7BM9Qg=
+	t=1723246726; cv=none; b=I7G4M9zC1djar6cAxeJrmuFRuPkyDtLQz7/ioZnk97xNKlYa8yd9k4M3UCqsVFiqKyedgGnpx1tGB8JoJgqwhbGZI5jET2qNYl2FMwCb0dCXbeKRBoIUQVr7UBpc0NWPyvIpSAnE4rJ5HpGERye7g/fFFZrTL/mFyPYmlafza7E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723246171; c=relaxed/simple;
-	bh=t0PCcCq04qC6ZwgyjpVfF+3cDG+djSZndkmy/cwOAJc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iHCfAgyIBQDUBpX6TJCdyVOyyF9aOTFO2cMBCJdCvU6A9XeQmga99Ry173KHKU3nEkHWPAsdIzci1TVze1Qm5wYFrDKceSxkxeQppcwqciUvnGeHzQvLToZrRTsC9hk5YeBIlPJ7mlXQizzgDzB5NPjwv6B5gibbpDb7lfZ3HGs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=EEwZei4z; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+	s=arc-20240116; t=1723246726; c=relaxed/simple;
+	bh=sFpHsawR4TOzmRP0Xi0QwZ/vnyE8lg6cCheuRS5jROE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=KzxnqvCvxtuyhU7WrnlGBrbgVAErCV06Izphm0tGvg18VOXbEyn29jtm54X+yCwRTIdWL1FN6pYdBSjYgiB7gLBXZ0I73UxRMKMdJaHajbUGiLcneWV99ser0HSPG2JIJohDDdupfAEh9+seMCyLwxQc/6v35yGLGiZlX+B88rs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=WYxWSqBE; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1723246170; x=1754782170;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=t0PCcCq04qC6ZwgyjpVfF+3cDG+djSZndkmy/cwOAJc=;
-  b=EEwZei4zB+9bj0Lr2C5s6Kv7S2sUhzI79hgfWOVFMRbhn5DS5Dj2i7y3
-   KUWlU1RRMqCpthXCH6UKv0O0hA5aJdg3+g6Xz9dCWFT/f1Tgj7YHX7Diw
-   G9MmGl0h+ia8JuK4J1Qv2X8z4t6ffOhBVlhrQ3sW/OqYrzOgkE8xGuqqg
-   OBncXnY44pPRzPpQ07zdqef+NuDxkNF3RMSUCC2xCIvanytV8RbUDBQsK
-   uXOfcY7i3gynOiRRyREeUnyR/VtuXWpJIk0OYA4AxHNaNLUUPlnl9oNic
-   JCAiPyD35yjS02L8wCvcA32oIugRaLZBCWYB75/45e1KHcsyFg/3xRool
-   A==;
-X-CSE-ConnectionGUID: H5O+j3lISDuJPZGrTucxUw==
-X-CSE-MsgGUID: 15RPW8bMTsCQc6G8TYK2oQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11159"; a="32829886"
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1723246724; x=1754782724;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=sFpHsawR4TOzmRP0Xi0QwZ/vnyE8lg6cCheuRS5jROE=;
+  b=WYxWSqBEgmOHac+9fzLy1fdhyBAwFjgmLGUr5UyOobOYncAao3smzzBx
+   LQOWggwiN2TKqw2XpTg0dIIWAqSCtLtcbE1fTh2UeA3On9DDlbHVYa6b1
+   bzr3IelXWz1WCLcxNLbWwhApAvfBGUcUGsIOgofB7pLM9xCQEq5uk4Ea1
+   Z7ki1kQHWGL7YGZa32mTbELEDCP9utnwR0YnEOHRHWC/N5aT3weuMQt7q
+   pjazSvToz5P6dzM2lONkaGyRT1yGUcdNtZcTilo1pJMAMsuZ1irrA8KHw
+   OinIsHo6B36/H8rEQZOeHa2qVO89D/GxwRKACDA+KDlwhFDp4EQ9CS5nY
+   g==;
+X-CSE-ConnectionGUID: zHerXwjfR2qUoEM/PnTZ/A==
+X-CSE-MsgGUID: DlxhWON7Sqm4jXNiNKaQ+g==
 X-IronPort-AV: E=Sophos;i="6.09,277,1716274800"; 
-   d="scan'208";a="32829886"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Aug 2024 16:29:30 -0700
-X-CSE-ConnectionGUID: qeTveLK/TU+9bL0BsyK2ng==
-X-CSE-MsgGUID: zLQtiumFQ4ezGkmOfk85sg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,277,1716274800"; 
-   d="scan'208";a="62551834"
-Received: from unknown (HELO localhost) ([10.79.232.122])
-  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Aug 2024 16:29:29 -0700
-Date: Fri, 9 Aug 2024 16:29:28 -0700
-From: Yunhong Jiang <yunhong.jiang@linux.intel.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: tglx@linutronix.de, mingo@redhat.com, bp@alien8.de,
-	dave.hansen@linux.intel.com, x86@kernel.org, hpa@zytor.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	kys@microsoft.com, haiyangz@microsoft.com, wei.liu@kernel.org,
-	decui@microsoft.com, rafael@kernel.org, lenb@kernel.org,
-	kirill.shutemov@linux.intel.com, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-hyperv@vger.kernel.org,
-	linux-acpi@vger.kernel.org
-Subject: Re: [PATCH 2/7] dt-bindings: x86: Add ACPI wakeup mailbox
-Message-ID: <20240809232928.GB25056@yjiang5-mobl.amr.corp.intel.com>
-References: <20240806221237.1634126-1-yunhong.jiang@linux.intel.com>
- <20240806221237.1634126-3-yunhong.jiang@linux.intel.com>
- <ce4903f2-2a9d-45c4-bd4d-ac5165211a83@kernel.org>
- <20240807165658.GA17382@yjiang5-mobl.amr.corp.intel.com>
- <624e1985-7dd2-4abe-a918-78cb43556967@kernel.org>
+   d="scan'208";a="30988808"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 09 Aug 2024 16:38:42 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 9 Aug 2024 16:38:40 -0700
+Received: from pop-os.microchip.com (10.10.85.11) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Fri, 9 Aug 2024 16:38:40 -0700
+From: <Tristram.Ha@microchip.com>
+To: Woojung Huh <woojung.huh@microchip.com>, <UNGLinuxDriver@microchip.com>,
+	<devicetree@vger.kernel.org>, Andrew Lunn <andrew@lunn.ch>, Florian Fainelli
+	<f.fainelli@gmail.com>, Vladimir Oltean <olteanv@gmail.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>
+CC: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>, Marek Vasut <marex@denx.de>, <netdev@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Tristram Ha <tristram.ha@microchip.com>
+Subject: [PATCH net-next 0/4] net: dsa: microchip: add SGMII port support to KSZ9477 switch
+Date: Fri, 9 Aug 2024 16:38:36 -0700
+Message-ID: <20240809233840.59953-1-Tristram.Ha@microchip.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <624e1985-7dd2-4abe-a918-78cb43556967@kernel.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Thu, Aug 08, 2024 at 09:41:16AM +0200, Krzysztof Kozlowski wrote:
-> On 07/08/2024 18:56, Yunhong Jiang wrote:
-> > On Wed, Aug 07, 2024 at 07:57:43AM +0200, Krzysztof Kozlowski wrote:
-> >> On 07/08/2024 00:12, Yunhong Jiang wrote:
-> >>> Add the binding to use the ACPI wakeup mailbox mechanism to bringup APs.
-> >>
-> >> We do not have bindings for ACPI. I think in the past it was mentioned
-> >> pretty clear - we do not care what ACPI has in the wild.
-> > 
-> > Thank you for review.
-> > Can you please give a bit more information on "do not have bindings for ACPI"?
-> > We don't put the ACPI table into the device tree, but reuse some existing ACPI
-> > mailbox mechanism. Is this acceptable for you?
-> 
-> I understood that rationale behind this patch is "ACPI" thus that reply.
-> This one sentence in commit msg is not helping. Entire binding
-> description speaks about ACPI, so yeah - I don't care what ACPI does.
-> Provide proper explanation/description of firmware or hardware, then
-> sure. But the patch saying ACPI is doing something, so bindings will be
-> doing the same is for me NAK. Whatever ACPI is doing is never a reason
-> alone to do the same in Devicetree.
+From: Tristram Ha <tristram.ha@microchip.com>
 
-Thank you for the explanation. I will make the description as ACPI independent.
+This series of patches is to add SGMII port support to KSZ9477 switch.
 
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
+As the SGMII module has its own interrupt for link indication the common
+code needs to be prepared to allow KSZ9477 to handle other interrupts
+that are not passed to other drivers such as PHY.
+
+The SGMII port is simulated as having a regular PHY as there is not much
+to do with that port except reporting link on/off and connecting speed.
+
+Tristram Ha (4):
+  dt-bindings: net: dsa: microchip: add SGMII port support to KSZ9477
+    switch
+  net: dsa: microchip: support global switch interrupt in KSZ DSA driver
+  net: dsa: microchip: handle most interrupts in KSZ9477/KSZ9893 switch
+    families
+  net: dsa: microchip: add SGMII port support to KSZ9477 switch
+
+ .../bindings/net/dsa/microchip,ksz.yaml       |  12 +
+ drivers/net/dsa/microchip/ksz9477.c           | 404 +++++++++++++++++-
+ drivers/net/dsa/microchip/ksz9477.h           |   6 +-
+ drivers/net/dsa/microchip/ksz9477_reg.h       |  10 +-
+ drivers/net/dsa/microchip/ksz_common.c        |  45 +-
+ drivers/net/dsa/microchip/ksz_common.h        |  11 +-
+ 6 files changed, 477 insertions(+), 11 deletions(-)
+
+-- 
+2.34.1
+
 
