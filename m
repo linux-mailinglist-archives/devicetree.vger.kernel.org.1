@@ -1,115 +1,152 @@
-Return-Path: <devicetree+bounces-92454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43A9C94D2FE
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 17:11:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B36694D311
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 17:14:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7602A1C20983
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 15:11:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AEE0B1C20E17
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 15:14:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C449A198A0A;
-	Fri,  9 Aug 2024 15:11:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28519197A8B;
+	Fri,  9 Aug 2024 15:13:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oA916N8+"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fh5fYrpd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98FD1198857;
-	Fri,  9 Aug 2024 15:11:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F368197A98;
+	Fri,  9 Aug 2024 15:13:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723216281; cv=none; b=XSpRhOSNukvtEnK/Zg/1IE7cpifJPGl8rMeydl4gDk6SNhcg3VlCancjHmOAU4caQlAKeunr/xqRjIECzL9mpTX7vrqiTBaRyB0MWsUJYHJzt3DTZoYItDGSZtCFnw2DHIZaH1Z2dqhAK+xAAXN7qRk81FAmmlhH4esl8NmbY08=
+	t=1723216439; cv=none; b=e7CsiZ9Xq6mb+P5/+zT3q7k47SS9GOMeNhfHEeLhCRRxujQk+qmfgxU3sLsSlHJBpw2jM4l+wdn31THpmKrO97Li6ewOUwJk5iAjUPLE9H9gxxvNF4cglRnkdtQx3QCi6ggcVIcaR35LqJVmpAoTBG8Ocdpf1oftwZ/kslVC46E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723216281; c=relaxed/simple;
-	bh=9R2NKMWQqNjzvTm5mD4XvqzZMMa1bqVjqcONwMIe8jY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PzGVwDWO6qsqSqUEQThCycsyQYkwkadTNtu2RcOrViJNu6Ik77lTy84xGEmgcy0iDNQCFCCmcJPAiHNAsiKP7V31pSzKtplYlxHtpugwADHpxYyT5LQ2N6YU1HunWTO6e9qvSC7jwDxQDgh87wYNpGItyL6S0MAIPfd4mBvyUgs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oA916N8+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00A1EC32782;
-	Fri,  9 Aug 2024 15:11:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723216281;
-	bh=9R2NKMWQqNjzvTm5mD4XvqzZMMa1bqVjqcONwMIe8jY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oA916N8+cz6JtAd2vkZQrKN8SOtpRD8xzIPTr5U6pnLuauUbaC9R/RoxRjtSS4hV8
-	 iH6Wwprq8nIxom5cuoHT1SLJIHgbWD65BIXPp6HwEb7oNghQ8iOEK+Er+U6TxwoPfm
-	 6bBMBEs7pLqJhyq6NUHNM1DAmUonza2nEU+M1i6pWx8+mFduBiXsRwIBbvzpzWdKir
-	 zESSitKMvWzyaeyqZs5LIY9R6+ezaYv9W65q30aROIedzoLTVNdrM3NpLyZViJs86o
-	 +6BWSdw86Hc1FKaGIlVF/ls4u7ZFP83eRce1A9kk6Zdlc8wB3z04c7M1ZQVZSVUuI9
-	 a1ou+MexXVAww==
-Date: Fri, 9 Aug 2024 16:11:15 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Detlev Casanova <detlev.casanova@collabora.com>
-Cc: linux-kernel@vger.kernel.org,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Elaine Zhang <zhangqing@rock-chips.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, kernel@collabora.com,
-	Sugar Zhang <sugar.zhang@rock-chips.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: reset: Add rk3576 reset definitions
-Message-ID: <20240809-retired-rug-517972cde092@spud>
-References: <20240809125553.3889-1-detlev.casanova@collabora.com>
- <20240809125553.3889-2-detlev.casanova@collabora.com>
- <20240809-linoleum-ogle-ace67939d9a0@spud>
- <8409208.T7Z3S40VBb@trenzalore>
+	s=arc-20240116; t=1723216439; c=relaxed/simple;
+	bh=D+pasby3J1PHqwqxgv+stEbpUy6ZzK+yu1bVwENWPQU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=QKiubQoCFo1+ykLAL7VblCv4kyAn8kP570ANM9jORYfxUYh3rYEn6B2cPlzxsvd3O2BrNho1fgwyjLi7/PXW1TpUoUoDR+UYQmWzftNcegl71MGeY7ZGSos4ix0jWVe8LyCZ7oERwvF/f9QfkCAOnpe/DUmMX5jgC6PQ3/hRcVA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fh5fYrpd; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1723216438; x=1754752438;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=D+pasby3J1PHqwqxgv+stEbpUy6ZzK+yu1bVwENWPQU=;
+  b=fh5fYrpdnJ4Q+SWra19WQKjycqxiEmZOn7zbwumMjp+ohEIrIFfj1iQ/
+   2a5tw8g+NT4O6zyRJW7+8tq+DLZbo4K09cfTqyagURA4b8IfYEuHyBn8Z
+   MnqRNq9Z+kV+LAm/pQ2yFl5x25ePIhbqJ6IOYDTYoHRztWbU1Uvf0bNOr
+   jN6gK43el/gNuD9nRxH6r3Zy+1gfIbKLuuQIDZPXjaCkLrvSqAqrgPFyG
+   XrQF5dnO4nAseq3VPGgcV/dViZgeVjUUN/FVbskxEupzkh6LmecZuYERh
+   6N/mVnOlJIyZqgHkDvSUdcHt/9rvKyUPJXPX3TTCBFaHjrbxlmarosgtO
+   A==;
+X-CSE-ConnectionGUID: K2ZbecpPRtCs6qgbAngcmw==
+X-CSE-MsgGUID: EGIx6IFJS2KhV+SmlEupug==
+X-IronPort-AV: E=McAfee;i="6700,10204,11159"; a="21368854"
+X-IronPort-AV: E=Sophos;i="6.09,276,1716274800"; 
+   d="scan'208";a="21368854"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Aug 2024 08:13:57 -0700
+X-CSE-ConnectionGUID: XVzNPc3bTQKj1bqhDHWuyQ==
+X-CSE-MsgGUID: LPxKuIqaSkK4t3EiEThIGw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,276,1716274800"; 
+   d="scan'208";a="57485945"
+Received: from test2-linux-lab.an.intel.com ([10.122.105.166])
+  by orviesa010.jf.intel.com with ESMTP; 09 Aug 2024 08:13:56 -0700
+From: matthew.gerlach@linux.intel.com
+To: lpieralisi@kernel.org,
+	kw@linux.com,
+	robh@kernel.org,
+	bhelgaas@google.com,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	dinguyen@kernel.org,
+	joyce.ooi@intel.com,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+Subject: [PATCH v2 0/7] Add PCIe Root Port support for Agilex family of chips
+Date: Fri,  9 Aug 2024 10:12:06 -0500
+Message-Id: <20240809151213.94533-1-matthew.gerlach@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="wCc8uvbAGo3F87mQ"
-Content-Disposition: inline
-In-Reply-To: <8409208.T7Z3S40VBb@trenzalore>
+Content-Transfer-Encoding: 8bit
 
+From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
 
---wCc8uvbAGo3F87mQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This patch set adds PCIe Root Port support for the Agilex family of FPGA chips.
+Patches 1 and 2 have been reviewed previously and individually on the mailing
+list and are included here with their revision history and Reviewed-by: tags
+for convenience and completeness.
 
-On Fri, Aug 09, 2024 at 10:49:42AM -0400, Detlev Casanova wrote:
-> On Friday, 9 August 2024 10:15:12 EDT Conor Dooley wrote:
-> > On Fri, Aug 09, 2024 at 08:54:52AM -0400, Detlev Casanova wrote:
-> > > Add reset ID defines for rk3576.
-> > >=20
-> > > Compared to the downstream bindings this uses continous gapless
-> > > reset IDs starting at 1 instead of register offsets as IDs, as
-> > > introduced in the RK3588 bindings.
-> > > Thus all numbers are different between upstream and downstream,
-> > > but names are kept exactly the same.
-> > >=20
-> > > Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> > > Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
-> > > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> >=20
-> > IMO squash this with the other binding patch.
->=20
-> Yes, I wanted to but the issue is with the subject line: do I use "dt-
-> bindings: reset+clock: [...]" in the squashed commit ?=20
+Patch 1: 
+  Convert text device tree binding for Altera Root Port PCIe controller to YAML.
+  No change from previous submission.
 
-Yeah, I guess you could do "dt-bindings: clock, reset:".
+Patch 2:
+  Convert text device tree binding for Altera PCIe MSI controller to YAML.
+  No change from previous submission.
 
---wCc8uvbAGo3F87mQ
-Content-Type: application/pgp-signature; name="signature.asc"
+Patch 3:
+  Add new compatible strings for the three variants of the Agilex PCIe controller IP.
+  Added Reviewed-by: tag.
 
------BEGIN PGP SIGNATURE-----
+Patch 4:
+  Add a label to the soc@0 device tree node to be used by patch 5.
+  No change from previous submission.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrYxkwAKCRB4tDGHoIJi
-0u4bAQDbfTmaC6mGuyb1tOI8hRt4dtHfi1tdv+frSiGKKcg1PAD/SpuNV7bmfg5j
-yQkal1bS7WmQ4ojLJiY1Fi2MYmCfAw8=
-=0g09
------END PGP SIGNATURE-----
+Patch 5:
+  Add base dtsi for PCIe Root Port support of the Agilex family of chips.
+  Rename node name to fix device tree schema check error.
 
---wCc8uvbAGo3F87mQ--
+Patch 6:
+  Add dts enabling PCIe Root Port support on an Agilex F-series Development Kit.
+  No change from previous submission.
+
+Patch 7:
+  Update Altera PCIe controller driver to support the Agilex family of chips.
+  Address feedback from Bjorn Helgaas <helgaas@kernel.org>.
+
+D M, Sharath Kumar (1):
+  PCI: altera: Add Agilex support
+
+Matthew Gerlach (6):
+  dt-bindings: PCI: altera: Convert to YAML
+  dt-bindings: PCI: altera: msi: Convert to YAML
+  dt-bindings: PCI: altera: Add binding for Agilex
+  arm64: dts: agilex: add soc0 label
+  arm64: dts: agilex: add dtsi for PCIe Root Port
+  arm64: dts: agilex: add dts enabling PCIe Root Port
+
+ .../bindings/pci/altera-pcie-msi.txt          |  27 --
+ .../devicetree/bindings/pci/altera-pcie.txt   |  50 ----
+ .../bindings/pci/altr,msi-controller.yaml     |  65 +++++
+ .../bindings/pci/altr,pcie-root-port.yaml     | 123 +++++++++
+ MAINTAINERS                                   |   4 +-
+ arch/arm64/boot/dts/intel/Makefile            |   1 +
+ arch/arm64/boot/dts/intel/socfpga_agilex.dtsi |   2 +-
+ .../socfpga_agilex7f_socdk_pcie_root_port.dts |  16 ++
+ .../intel/socfpga_agilex_pcie_root_port.dtsi  |  55 ++++
+ drivers/pci/controller/pcie-altera.c          | 246 +++++++++++++++++-
+ 10 files changed, 500 insertions(+), 89 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pci/altera-pcie-msi.txt
+ delete mode 100644 Documentation/devicetree/bindings/pci/altera-pcie.txt
+ create mode 100644 Documentation/devicetree/bindings/pci/altr,msi-controller.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/altr,pcie-root-port.yaml
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dts
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi
+
+-- 
+2.34.1
+
 
