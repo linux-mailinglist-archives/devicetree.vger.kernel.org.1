@@ -1,212 +1,248 @@
-Return-Path: <devicetree+bounces-92239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9626B94C756
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 01:24:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D59394C78A
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 02:21:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EAFD5B24A47
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2024 23:24:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DDDE1C229C1
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 00:21:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87F6715FA66;
-	Thu,  8 Aug 2024 23:24:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58E0F23BB;
+	Fri,  9 Aug 2024 00:21:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="e2sIaBLR"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UDTiBRb5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11012070.outbound.protection.outlook.com [52.101.66.70])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D34F1474A5;
-	Thu,  8 Aug 2024 23:24:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.70
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723159490; cv=fail; b=W+zQlfiZTKj9m1hm6vgyslBn4rq4B8C4hZq5JgbEmwkChfRu5GYI19c/jKPvywcAuENCHiNHIqN+gk7RXpmCC0bk3SiPbZUX6IT/stVoACJq+3ix1I/yT3z2GpmS+ADH/QU0XqZTJ1yt/lyw9VE+XCVKCi1PWQJf7eUUV8sqegk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723159490; c=relaxed/simple;
-	bh=4ZDnL7rCvAVoqQDG+1OFKJijV3fvtYs8PXTfRQ2L5jQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=UsA3nMosRU6O5d6J+1sIdRGYfOPicddOvobnUA7SPxNkjTwosPRxB+WklB+EaQe7q+NqkqXlKGDJtB0T/MlqU1yYsTNspp0LzEbQMyLUrEumRE9e3g8Cw52Zx77O0i2nqS2MTDwoOA5XEGkuHP0+HAjWOUzqGbKE7Rd8c6K4uUE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=e2sIaBLR; arc=fail smtp.client-ip=52.101.66.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=USmMoEtvqVxBaAe1Q6zuqxyuXQxdUSs3UadU8qsfZieTUWG2Is4Fx2BQd5VC/Xb9XL2DR9Zh0rybo+dFibAbMDoGbOob23K3Jl8KgOVdlF3g3V0Fs7zCHXCPKYfKfkeUEABX2uZA38IbmbibgpO11GObRhNeLVfRgmLGj/pYfvLzSjwiB2xPiQ0QomXwnwM4oro+0kIdjBSg/GeulGtF5TKwEOTf4OB7sRgIPMcFtcPWZwvjQoKjJ1fC1A8LhlSPAoXiBAoANcdTN6lV2uwqK/yUEdO7WkYPQubGXSF/jjRpBVfhNlz5nSqDFqvJ5wV0vnyncCtiHc/pfJQsM10o+w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9/jC4KcRDatWcpwkEjUfcRQzaY6mSKLrXDY9NUof+po=;
- b=aY9m2n84XuKQsMWjDVvdRa+e/TQFtT1aTFNvsgxuSp0ZS/4ipuODwvEahvmuLb+LCsXjNJCWfIXe8fygjdbDuvgZDVxQzMA72ep4b0LW4yuoTAO0tjyIRWRTEIjECCtu24Eo338xE2mSHBLo2gB9ARha5dD9SMBaOV/PEJAk6NrdWkMxKKLbDP0j0CwByjo11s8Soifk0jx6ruUFT8fi8hArx31pbGQf+fY7Xvgy3QgP758SrFNaFTSb2W+QVRDDeiMhIvyjHFRvCaViaaMmW/XQ4hiKapFnD8A3q3IBCAdTJ9/nmOgsXvVhr4yS1+JriwINAHQVMATka40ASG+esg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9/jC4KcRDatWcpwkEjUfcRQzaY6mSKLrXDY9NUof+po=;
- b=e2sIaBLRmc/Zr8KwhxItzQiHYGe0EL3C4oh5yMeG7H4R60WenudVJbjlYeU+s+Uruwe1NS+EbqceTD7wyANfGoWEejEZY8kHlI/F2fKPS4kqIknTMSzKWn9OPSXoY2uwI8xJUUvpI7CV3EMtFmA39IqKL1KeGKdVglooxSS6tKZXh2SXAK5m7lVvdC1WUv801SGK1m0vxhpIzhWEwQlOD0vtbvXLZYuacFLW52nG1Ei1Dx4pismUCJLemIfSFpD9koNOzBSpK/sP65MFZb3sq/bJsm1a+tOcawwcrT/44VRznOec0CiX+S6HVI0k47Xm3RRWhI+DiaXIxkv3nUFy0Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AS8PR04MB8008.eurprd04.prod.outlook.com (2603:10a6:20b:2a7::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.13; Thu, 8 Aug
- 2024 23:24:45 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.7828.023; Thu, 8 Aug 2024
- 23:24:45 +0000
-Date: Thu, 8 Aug 2024 19:24:38 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51D3A8C1A;
+	Fri,  9 Aug 2024 00:21:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723162900; cv=none; b=kADSPLE91FE+jzBpHit6qIjc2S8GcEAQOczW721aDK3RfOr5H79rAeN0AO4ZpNzmEa9JR4IsK3HdgemmVpJgBXt1TFBZiFFTDlzusPJyVtVPhz1mRIcUjClwXKq/JqMgEaN+75j+cJw+Dj7L1sT6SXO27TJjToflnZl8bxVryL4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723162900; c=relaxed/simple;
+	bh=oAMsox2iOiKuFVbjdoW1TX6kfgDcgDkm5muwzOynBwI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Fr+bCUhjo1IMYcbkUQ4tlnA+6vps07BoLwol/Me6zAzF8Q17MTWD7+0W2CFONAfrxcXmGMXdANKfag0v30enICE7xSO2gj9kKqzGVmBSZubtPywPOvAdfQh8ZRTsF3vuwwjzc8lHSTG1LBs58awjl7Brp96YjuLsn/TWYI2AUS0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UDTiBRb5; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1723162899; x=1754698899;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=oAMsox2iOiKuFVbjdoW1TX6kfgDcgDkm5muwzOynBwI=;
+  b=UDTiBRb5huIjYRq2+6mTvp2/4Vjrzb3ly8wikh3Bd0DMkRSVI4dS+yT+
+   shmZGtUda+1xm4loiqFqPagRVx2LtD8LMudXBL6+Yrd82YJwieO5oPzzT
+   IJVNyMgMV81Fpu5kpZntyNXKrLUcYs3j7YYCbks+axCTidwhfPO6ZRMH5
+   4BSuDuYowIpNhy6dBL+Th714fR+oCG4hLaCOYRFLBhDhJW131H5fp67s+
+   +C4yPG0qpQCMO6v3W2n+OxP9jzIcg6dvY1cRs2K+AO3j1A9LtYiZxnDhp
+   F98n7CkpxLmYDHDckvZHYB8sCsMwfZecTqYdpqYAmgjr+v3BoiXExkFjj
+   g==;
+X-CSE-ConnectionGUID: L8V+kXM8T1+mDcAGmUssnw==
+X-CSE-MsgGUID: TgqzlRkhQL2CuCF9tYYJ/g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11158"; a="21180406"
+X-IronPort-AV: E=Sophos;i="6.09,274,1716274800"; 
+   d="scan'208";a="21180406"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Aug 2024 17:21:36 -0700
+X-CSE-ConnectionGUID: vAnM1invTz+WbJscvIw2LQ==
+X-CSE-MsgGUID: 3JEffboCSbS58Fuq0k9IDQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,274,1716274800"; 
+   d="scan'208";a="62035468"
+Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
+  by fmviesa004.fm.intel.com with ESMTP; 08 Aug 2024 17:21:32 -0700
+Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1scDNh-0006fk-1T;
+	Fri, 09 Aug 2024 00:21:23 +0000
+Date: Fri, 9 Aug 2024 08:20:25 +0800
+From: kernel test robot <lkp@intel.com>
+To: Stefan Wiehler <stefan.wiehler@nokia.com>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"open list:PCI DRIVER FOR GENERIC OF HOSTS" <linux-pci@vger.kernel.org>,
-	"moderated list:PCI DRIVER FOR GENERIC OF HOSTS" <linux-arm-kernel@lists.infradead.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>
-Cc: imx@lists.linux.dev
-Subject: Re: [PATCH v2 1/1] dt-bindings: PCI: host-generic-pci: Drop minItems
- and maxItems of ranges
-Message-ID: <ZrVTtu0xtn5NdO4R@lizhi-Precision-Tower-5810>
-References: <20240704164019.611454-1-Frank.Li@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240704164019.611454-1-Frank.Li@nxp.com>
-X-ClientProxiedBy: SN7PR04CA0101.namprd04.prod.outlook.com
- (2603:10b6:806:122::16) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	Saravana Kannan <saravanak@google.com>
+Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Stefan Wiehler <stefan.wiehler@nokia.com>
+Subject: Re: [PATCH v2] of/irq: Consider device address size in interrupt map
+ walk
+Message-ID: <202408090801.AcBWUFAJ-lkp@intel.com>
+References: <20240807134032.1364503-2-stefan.wiehler@nokia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB8008:EE_
-X-MS-Office365-Filtering-Correlation-Id: e980dd3c-02a8-43b6-7033-08dcb801497e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|1800799024|52116014|376014|366016|921020|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Ag5hNNPpGvhSGHS4uvpw2t+O2O1awUSoyHbsd1j+dZwkxDFcff0D/WvIXg6d?=
- =?us-ascii?Q?5s4tznmGhaMK9HMnssd/Qs8XHp82jxRS7WTZX53Xzvvj0Uw2Vtuh3RETUYWr?=
- =?us-ascii?Q?zcGqOYvobSV2rxJD5ZchWmt1piDBspZH+f63ljG0RMSFxeNDGOIvSgvYr3dz?=
- =?us-ascii?Q?DoAnXjcxROSESrUTfPCnOUpjXsa36fzQZFuF4TCYHJjIt9CXAXJZYifJseOr?=
- =?us-ascii?Q?9WJgAApH2d3qwxQBcTk9VH5Lf4mzmsKZjlIOG+ZUvdVQ+dc6p3OkjrViNwLe?=
- =?us-ascii?Q?K7a33gIZe5sW3Np3FBtDnlkM9naCkPzhk57Dm5IZBrUQdHEizOH6so54dJOK?=
- =?us-ascii?Q?RqgiI8MYVr0d86JcLlSRQHJ1CsC4I0EWOPWnR2VNfo7oOJam4m2MpDG7rC+K?=
- =?us-ascii?Q?Du1bDQ7ye+GRcCrgeRRN3VIH0Fo2shGwH9XO1JE6p1mi7IicJjACzvqHejHO?=
- =?us-ascii?Q?YjIyI7UZ6hKlTWTuzI0x0YgGyN+RqJTiVIXewy25+O0CRK70+kwA4FLnGMTL?=
- =?us-ascii?Q?P6QQqUGU6ngNqSkNu5lH5VVjheIns4uSX+JQ9lMg/vdkB0MO90i+HdeSAjAa?=
- =?us-ascii?Q?6HT5ZLONQrZa90rVW8Eu9annQv5rqLIVdGiFtwWgpl4gknIQY1cOo8VBZvyV?=
- =?us-ascii?Q?3tG6PpG2B6EfX8WxtK+ftuHITCF2gTw83s+qPU9OM84YLDAn81SA7YKquDQO?=
- =?us-ascii?Q?TvT1Z3qFZ5kqT4fKVci/hPpDhtBnce66apLrWvxlL+VwYdg7GwExmW+BuWad?=
- =?us-ascii?Q?W5aFwSzKNw/7gbrak/8k8+1oDaaaqhy6GePnluDmanvn9uPG7ukT14Oh1oOb?=
- =?us-ascii?Q?rMXkhayXlixRz/QMal6+3KYIJaNWpPL2+/DJNCUS/t9uoZ6VOX4gy7USFuCv?=
- =?us-ascii?Q?3XgwCoIo1qSllQrZQ3iqxD3pQMUVh4SUHCIDuYzmmxedpl/lnU+XwQyF78Mp?=
- =?us-ascii?Q?rIzs7v/7PHoUATJGRgV3JtFA7GDHiFjkZrP1gBmeP6u9zYXC+OpTXHhPTxYO?=
- =?us-ascii?Q?RCva6R5uAfMWNsy55ikQ4b1AN3KrL0B6xnkz4poOlZlchCFF3o5Ij9Bwqc5z?=
- =?us-ascii?Q?ASwH0dloUSch1qw/4acfPBg+HuRjdVIpg0tayAPePrLldZcFjbNsHg00+r+w?=
- =?us-ascii?Q?ocQaJS4fb6l0nseT8C8j4qmoaEEE4lMQY7hNuh6gLcNm+epMKlhz3toMyaAx?=
- =?us-ascii?Q?c1HPEPfQbk7PdiByQ93IViQKLeVfbWiO0jPDC6dfcTei//owQP7wCfYmtVWj?=
- =?us-ascii?Q?3Mnx5Tg8eZoE7qkDD7Gl7ayDhS8ufTWibwDo014tViGU6pH0MfiT8MUPt7si?=
- =?us-ascii?Q?d3v7ZoQ+MI7B+zOniwUIt0tqkgqMiXajj1LY9Hlq72tlqOu6e3+qTLy+KlTu?=
- =?us-ascii?Q?f6ZKh2eQck1N2QOggoDNJcSzD2oLq2RAu8XUVeQAMGJDwmu0eH50IWCj8gcQ?=
- =?us-ascii?Q?a1D6mThuH3g=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(52116014)(376014)(366016)(921020)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?Y150XHLRqj07YZ8BYvPsEtxWI6kK/C/xoVEkFa/1XRvwh+Bn4ECNdL3ikc8b?=
- =?us-ascii?Q?bnSBmEqCmvYiX8iUwuMdihOdZCkht8+Ijdrl9HnAe0YF9n36f9HnqXSoIJZR?=
- =?us-ascii?Q?vEI6WifteNjOBkGRbb/9U7ISrZu2fuVG2aWUK6gehLxY9wjTQtIxd5+d0Kkm?=
- =?us-ascii?Q?6PAuNUTjjUzrRimYgLfHQlcsfwnV+GaM0Hf7qTaJ7NHfM4Ot8gQSYmaxyZI7?=
- =?us-ascii?Q?+PEw1Rw9KQBoHCq+1Aq3Zq2JjT3VTSnAOKro1ri/ZwfAnnYUASCqgT/ylL9s?=
- =?us-ascii?Q?f4wf4qJeAK1HqUaGibWcr2OQbFaO2TeA49nZJEAMi+aBmWUSHBu5cPNj7K1V?=
- =?us-ascii?Q?DhbAcsBi0uX14EWrO1xXIQiKFnhXpFjKyjGeg88x9sRu4bEN78JwKL2O+d67?=
- =?us-ascii?Q?u6gTbYJPorFMRV/MFW4lTMSXccyIiYlgm+J3csEMwXp6NdPp+zbRx7VJWupH?=
- =?us-ascii?Q?MisGTtWfceoFVuzCB+VqSl39vkDipOJJKBKiUvghPsTRSM6qArreRgLxs/Re?=
- =?us-ascii?Q?VNBjGCm2GnOHbnlYpRECiuUodh+6PG6v4LSadcs624WNo2jjoQOMkKYUmfPq?=
- =?us-ascii?Q?ZfsTXP8z5HyLZZIqbGxLcVjmrby2hW2VkSaAyDu2vLjiii5SN2e6kIWD0y0k?=
- =?us-ascii?Q?3hvHy78RGd47YV1+TblQKIjLb+ncRq9spX+9iurHB+vVLAVZf5SUnQ5V4s54?=
- =?us-ascii?Q?IorqVXvRhsimbhle772fvfWcRHz3hbrDypFUQW46uCiCliC3th+nvoFtoq/k?=
- =?us-ascii?Q?BndrFNGSJicQWeQNeOLhxTFaVWUi+LNFvDW4n1xWMqJiHojZG1XVRTTppQM9?=
- =?us-ascii?Q?+MpZWVrdoeDsoXCAeYLMgyJFwj7Qu16DVZI7l2SMxhpIeTsBH47pli1m/vQB?=
- =?us-ascii?Q?SXAr6VAfcNRD3zESrP50D3amu2dpzo8qe8Iac4bP+awSjG6YWgAilBNtq7ay?=
- =?us-ascii?Q?xrwk5fZhfc16/BEBSsAxnOzUUuPuKwVlWDWo3uzu02yGqy/+jHte62GRcTNb?=
- =?us-ascii?Q?+xSpePowCIpAeT+V5lEb3dNtx78duJCqI8CdhwDKVYq4rra6g2Hj5egzl95a?=
- =?us-ascii?Q?OaWG08S4UYLPH9ROhI507QsEgI9cELv5Javwd0/7Mv6VMJ0FJFqH2FLuPji9?=
- =?us-ascii?Q?ospQDXBLNwsGl1spIj6oIVkJ62U8SsUrleN9mTKcYfEEVOrMtXy7YBwO7Pz9?=
- =?us-ascii?Q?mRjfGuaA6wCJIi4ahZe9ufjSZMe6EN4I9KYgTvgwZnZDDsSKTuBQVMyV5Dmv?=
- =?us-ascii?Q?e6riMK+3xnYClGP/rupyYaQiwIjdYd390zTkWQ3tELf5LO7WUxk0V/LiCbst?=
- =?us-ascii?Q?DZEMsaWETblMKljws6iIZDC5pwXOx+stINiQqsaFu82WArASYI5XrNo0hzzj?=
- =?us-ascii?Q?fQvr0gytR/bn0FxTFH9TaHrm82UEhwvRDS+Sm12wtaSkC7SBdsTFjDKM7GaD?=
- =?us-ascii?Q?k7zG/+4gG25CJU85NAiL47zJmuQlWwG4GhujcmHpwNJsr3fH6ue0QVHDgz5o?=
- =?us-ascii?Q?WHIMtcYAcyDW0zPNYHdu5pg+U30bPBRdIv+zN1Eu4RJwjyBeeVme6IP9Xcbv?=
- =?us-ascii?Q?GMlrT4wUTmfW5SSkKvU=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e980dd3c-02a8-43b6-7033-08dcb801497e
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2024 23:24:44.9878
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pYFjRJ65MOsmihT1iO5eu9HvKO8jfI48j6UaoswnMA6Ll7JI8dBjjLx4b4zon6q1YXQN1mymaWIA+0hhbdGYcg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8008
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240807134032.1364503-2-stefan.wiehler@nokia.com>
 
-On Thu, Jul 04, 2024 at 12:40:19PM -0400, Frank Li wrote:
-> The ranges description states that "at least one non-prefetchable memory
-> and one or both of prefetchable memory and IO space may also be provided."
->
-> However, it should not limit the maximum number of ranges to 3.
->
-> Freescale LS1028 and iMX95 use more than 3 ranges because the space splits
-> some discontinuous prefetchable and non-prefetchable segments.
->
-> Drop minItems and maxItems. The number of entries will be limited to 32
-> in pci-bus-common.yaml in dtschema, which should be sufficient.
->
-> Fix the below CHECK_DTBS warning.
-> arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dtb: pcie@1f0000000: ranges: [[2181038080, 1, 4160749568, 1, 4160749568, 0, 1441792], [3254779904, 1, 4162191360, 1, 4162191360, 0, 458752], [2181038080, 1, 4162650112, 1, 4162650112, 0, 131072], [3254779904, 1, 4162781184, 1, 4162781184, 0, 131072], [2181038080, 1, 4162912256, 1, 4162912256, 0, 131072], [3254779904, 1, 4163043328, 1, 4163043328, 0, 131072], [2181038080, 1, 4227858432, 1, 4227858432, 0, 4194304]] is too long
->
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+Hi Stefan,
 
-Bjorn:
+kernel test robot noticed the following build errors:
 
-    Rob already Acked this.
-    Could you please take care this one?
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on powerpc/next pci/next pci/for-linus linus/master v6.11-rc2 next-20240808]
+[cannot apply to powerpc/fixes]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Frank
+url:    https://github.com/intel-lab-lkp/linux/commits/Stefan-Wiehler/of-irq-Consider-device-address-size-in-interrupt-map-walk/20240807-215113
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20240807134032.1364503-2-stefan.wiehler%40nokia.com
+patch subject: [PATCH v2] of/irq: Consider device address size in interrupt map walk
+config: i386-buildonly-randconfig-003-20240809 (https://download.01.org/0day-ci/archive/20240809/202408090801.AcBWUFAJ-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.3.0-12) 11.3.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240809/202408090801.AcBWUFAJ-lkp@intel.com/reproduce)
 
-> ---
-> Change from v1 to v2
-> - Rework commit message
-> - drop minItems and maxItems according to Rob's comments.
-> ---
->  Documentation/devicetree/bindings/pci/host-generic-pci.yaml | 2 --
->  1 file changed, 2 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
-> index 3484e0b4b412e..3be1fff411f8d 100644
-> --- a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
-> +++ b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
-> @@ -102,8 +102,6 @@ properties:
->        As described in IEEE Std 1275-1994, but must provide at least a
->        definition of non-prefetchable memory. One or both of prefetchable Memory
->        and IO Space may also be provided.
-> -    minItems: 1
-> -    maxItems: 3
->
->    dma-coherent: true
->    iommu-map: true
-> --
-> 2.34.1
->
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408090801.AcBWUFAJ-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/pci/of_property.c: In function 'of_pci_prop_intr_map':
+   drivers/pci/of_property.c:234:47: warning: passing argument 2 of 'of_irq_parse_raw' makes integer from pointer without a cast [-Wint-conversion]
+     234 |                 ret = of_irq_parse_raw(laddr, &out_irq[i]);
+         |                                               ^~~~~~~~~~~
+         |                                               |
+         |                                               struct of_phandle_args *
+   In file included from drivers/pci/of_property.c:8:
+   include/linux/of_irq.h:35:53: note: expected 'u32' {aka 'unsigned int'} but argument is of type 'struct of_phandle_args *'
+      35 | extern int of_irq_parse_raw(const __be32 *addr, u32 addrsize,
+         |                                                 ~~~~^~~~~~~~
+>> drivers/pci/of_property.c:234:23: error: too few arguments to function 'of_irq_parse_raw'
+     234 |                 ret = of_irq_parse_raw(laddr, &out_irq[i]);
+         |                       ^~~~~~~~~~~~~~~~
+   In file included from drivers/pci/of_property.c:8:
+   include/linux/of_irq.h:35:12: note: declared here
+      35 | extern int of_irq_parse_raw(const __be32 *addr, u32 addrsize,
+         |            ^~~~~~~~~~~~~~~~
+
+
+vim +/of_irq_parse_raw +234 drivers/pci/of_property.c
+
+dc12273fa3d8a8 Herve Codina 2024-05-27  205  
+407d1a51921e9f Lizhi Hou    2023-08-15  206  static int of_pci_prop_intr_map(struct pci_dev *pdev, struct of_changeset *ocs,
+407d1a51921e9f Lizhi Hou    2023-08-15  207  				struct device_node *np)
+407d1a51921e9f Lizhi Hou    2023-08-15  208  {
+33efa29e825636 Lizhi Hou    2023-09-29  209  	u32 i, addr_sz[OF_PCI_MAX_INT_PIN] = { 0 }, map_sz = 0;
+407d1a51921e9f Lizhi Hou    2023-08-15  210  	struct of_phandle_args out_irq[OF_PCI_MAX_INT_PIN];
+407d1a51921e9f Lizhi Hou    2023-08-15  211  	__be32 laddr[OF_PCI_ADDRESS_CELLS] = { 0 };
+407d1a51921e9f Lizhi Hou    2023-08-15  212  	u32 int_map_mask[] = { 0xffff00, 0, 0, 7 };
+407d1a51921e9f Lizhi Hou    2023-08-15  213  	struct device_node *pnode;
+407d1a51921e9f Lizhi Hou    2023-08-15  214  	struct pci_dev *child;
+407d1a51921e9f Lizhi Hou    2023-08-15  215  	u32 *int_map, *mapp;
+407d1a51921e9f Lizhi Hou    2023-08-15  216  	int ret;
+407d1a51921e9f Lizhi Hou    2023-08-15  217  	u8 pin;
+407d1a51921e9f Lizhi Hou    2023-08-15  218  
+407d1a51921e9f Lizhi Hou    2023-08-15  219  	pnode = pci_device_to_OF_node(pdev->bus->self);
+407d1a51921e9f Lizhi Hou    2023-08-15  220  	if (!pnode)
+407d1a51921e9f Lizhi Hou    2023-08-15  221  		pnode = pci_bus_to_OF_node(pdev->bus);
+407d1a51921e9f Lizhi Hou    2023-08-15  222  
+407d1a51921e9f Lizhi Hou    2023-08-15  223  	if (!pnode) {
+407d1a51921e9f Lizhi Hou    2023-08-15  224  		pci_err(pdev, "failed to get parent device node");
+407d1a51921e9f Lizhi Hou    2023-08-15  225  		return -EINVAL;
+407d1a51921e9f Lizhi Hou    2023-08-15  226  	}
+407d1a51921e9f Lizhi Hou    2023-08-15  227  
+407d1a51921e9f Lizhi Hou    2023-08-15  228  	laddr[0] = cpu_to_be32((pdev->bus->number << 16) | (pdev->devfn << 8));
+407d1a51921e9f Lizhi Hou    2023-08-15  229  	for (pin = 1; pin <= OF_PCI_MAX_INT_PIN;  pin++) {
+407d1a51921e9f Lizhi Hou    2023-08-15  230  		i = pin - 1;
+407d1a51921e9f Lizhi Hou    2023-08-15  231  		out_irq[i].np = pnode;
+407d1a51921e9f Lizhi Hou    2023-08-15  232  		out_irq[i].args_count = 1;
+407d1a51921e9f Lizhi Hou    2023-08-15  233  		out_irq[i].args[0] = pin;
+407d1a51921e9f Lizhi Hou    2023-08-15 @234  		ret = of_irq_parse_raw(laddr, &out_irq[i]);
+407d1a51921e9f Lizhi Hou    2023-08-15  235  		if (ret) {
+33efa29e825636 Lizhi Hou    2023-09-29  236  			out_irq[i].np = NULL;
+33efa29e825636 Lizhi Hou    2023-09-29  237  			pci_dbg(pdev, "parse irq %d failed, ret %d", pin, ret);
+407d1a51921e9f Lizhi Hou    2023-08-15  238  			continue;
+407d1a51921e9f Lizhi Hou    2023-08-15  239  		}
+33efa29e825636 Lizhi Hou    2023-09-29  240  		of_property_read_u32(out_irq[i].np, "#address-cells",
+407d1a51921e9f Lizhi Hou    2023-08-15  241  				     &addr_sz[i]);
+407d1a51921e9f Lizhi Hou    2023-08-15  242  	}
+407d1a51921e9f Lizhi Hou    2023-08-15  243  
+407d1a51921e9f Lizhi Hou    2023-08-15  244  	list_for_each_entry(child, &pdev->subordinate->devices, bus_list) {
+407d1a51921e9f Lizhi Hou    2023-08-15  245  		for (pin = 1; pin <= OF_PCI_MAX_INT_PIN; pin++) {
+407d1a51921e9f Lizhi Hou    2023-08-15  246  			i = pci_swizzle_interrupt_pin(child, pin) - 1;
+33efa29e825636 Lizhi Hou    2023-09-29  247  			if (!out_irq[i].np)
+33efa29e825636 Lizhi Hou    2023-09-29  248  				continue;
+407d1a51921e9f Lizhi Hou    2023-08-15  249  			map_sz += 5 + addr_sz[i] + out_irq[i].args_count;
+407d1a51921e9f Lizhi Hou    2023-08-15  250  		}
+407d1a51921e9f Lizhi Hou    2023-08-15  251  	}
+407d1a51921e9f Lizhi Hou    2023-08-15  252  
+33efa29e825636 Lizhi Hou    2023-09-29  253  	/*
+33efa29e825636 Lizhi Hou    2023-09-29  254  	 * Parsing interrupt failed for all pins. In this case, it does not
+33efa29e825636 Lizhi Hou    2023-09-29  255  	 * need to generate interrupt-map property.
+33efa29e825636 Lizhi Hou    2023-09-29  256  	 */
+33efa29e825636 Lizhi Hou    2023-09-29  257  	if (!map_sz)
+33efa29e825636 Lizhi Hou    2023-09-29  258  		return 0;
+33efa29e825636 Lizhi Hou    2023-09-29  259  
+407d1a51921e9f Lizhi Hou    2023-08-15  260  	int_map = kcalloc(map_sz, sizeof(u32), GFP_KERNEL);
+e6f7d27df5d208 Duoming Zhou 2024-03-03  261  	if (!int_map)
+e6f7d27df5d208 Duoming Zhou 2024-03-03  262  		return -ENOMEM;
+407d1a51921e9f Lizhi Hou    2023-08-15  263  	mapp = int_map;
+407d1a51921e9f Lizhi Hou    2023-08-15  264  
+407d1a51921e9f Lizhi Hou    2023-08-15  265  	list_for_each_entry(child, &pdev->subordinate->devices, bus_list) {
+407d1a51921e9f Lizhi Hou    2023-08-15  266  		for (pin = 1; pin <= OF_PCI_MAX_INT_PIN; pin++) {
+33efa29e825636 Lizhi Hou    2023-09-29  267  			i = pci_swizzle_interrupt_pin(child, pin) - 1;
+33efa29e825636 Lizhi Hou    2023-09-29  268  			if (!out_irq[i].np)
+33efa29e825636 Lizhi Hou    2023-09-29  269  				continue;
+33efa29e825636 Lizhi Hou    2023-09-29  270  
+407d1a51921e9f Lizhi Hou    2023-08-15  271  			*mapp = (child->bus->number << 16) |
+407d1a51921e9f Lizhi Hou    2023-08-15  272  				(child->devfn << 8);
+407d1a51921e9f Lizhi Hou    2023-08-15  273  			mapp += OF_PCI_ADDRESS_CELLS;
+407d1a51921e9f Lizhi Hou    2023-08-15  274  			*mapp = pin;
+407d1a51921e9f Lizhi Hou    2023-08-15  275  			mapp++;
+407d1a51921e9f Lizhi Hou    2023-08-15  276  			*mapp = out_irq[i].np->phandle;
+407d1a51921e9f Lizhi Hou    2023-08-15  277  			mapp++;
+407d1a51921e9f Lizhi Hou    2023-08-15  278  			if (addr_sz[i]) {
+407d1a51921e9f Lizhi Hou    2023-08-15  279  				ret = of_property_read_u32_array(out_irq[i].np,
+407d1a51921e9f Lizhi Hou    2023-08-15  280  								 "reg", mapp,
+407d1a51921e9f Lizhi Hou    2023-08-15  281  								 addr_sz[i]);
+407d1a51921e9f Lizhi Hou    2023-08-15  282  				if (ret)
+407d1a51921e9f Lizhi Hou    2023-08-15  283  					goto failed;
+407d1a51921e9f Lizhi Hou    2023-08-15  284  			}
+407d1a51921e9f Lizhi Hou    2023-08-15  285  			mapp += addr_sz[i];
+407d1a51921e9f Lizhi Hou    2023-08-15  286  			memcpy(mapp, out_irq[i].args,
+407d1a51921e9f Lizhi Hou    2023-08-15  287  			       out_irq[i].args_count * sizeof(u32));
+407d1a51921e9f Lizhi Hou    2023-08-15  288  			mapp += out_irq[i].args_count;
+407d1a51921e9f Lizhi Hou    2023-08-15  289  		}
+407d1a51921e9f Lizhi Hou    2023-08-15  290  	}
+407d1a51921e9f Lizhi Hou    2023-08-15  291  
+407d1a51921e9f Lizhi Hou    2023-08-15  292  	ret = of_changeset_add_prop_u32_array(ocs, np, "interrupt-map", int_map,
+407d1a51921e9f Lizhi Hou    2023-08-15  293  					      map_sz);
+407d1a51921e9f Lizhi Hou    2023-08-15  294  	if (ret)
+407d1a51921e9f Lizhi Hou    2023-08-15  295  		goto failed;
+407d1a51921e9f Lizhi Hou    2023-08-15  296  
+407d1a51921e9f Lizhi Hou    2023-08-15  297  	ret = of_changeset_add_prop_u32(ocs, np, "#interrupt-cells", 1);
+407d1a51921e9f Lizhi Hou    2023-08-15  298  	if (ret)
+407d1a51921e9f Lizhi Hou    2023-08-15  299  		goto failed;
+407d1a51921e9f Lizhi Hou    2023-08-15  300  
+407d1a51921e9f Lizhi Hou    2023-08-15  301  	ret = of_changeset_add_prop_u32_array(ocs, np, "interrupt-map-mask",
+407d1a51921e9f Lizhi Hou    2023-08-15  302  					      int_map_mask,
+407d1a51921e9f Lizhi Hou    2023-08-15  303  					      ARRAY_SIZE(int_map_mask));
+407d1a51921e9f Lizhi Hou    2023-08-15  304  	if (ret)
+407d1a51921e9f Lizhi Hou    2023-08-15  305  		goto failed;
+407d1a51921e9f Lizhi Hou    2023-08-15  306  
+407d1a51921e9f Lizhi Hou    2023-08-15  307  	kfree(int_map);
+407d1a51921e9f Lizhi Hou    2023-08-15  308  	return 0;
+407d1a51921e9f Lizhi Hou    2023-08-15  309  
+407d1a51921e9f Lizhi Hou    2023-08-15  310  failed:
+407d1a51921e9f Lizhi Hou    2023-08-15  311  	kfree(int_map);
+407d1a51921e9f Lizhi Hou    2023-08-15  312  	return ret;
+407d1a51921e9f Lizhi Hou    2023-08-15  313  }
+407d1a51921e9f Lizhi Hou    2023-08-15  314  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
