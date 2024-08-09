@@ -1,114 +1,99 @@
-Return-Path: <devicetree+bounces-92502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BAA494D62B
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 20:15:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43DE494D645
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 20:27:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25B0D282C5B
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 18:15:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E35551F2213C
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 18:27:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2748B4503C;
-	Fri,  9 Aug 2024 18:15:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D004B14F9E7;
+	Fri,  9 Aug 2024 18:27:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MR1X+5yB"
+	dkim=pass (2048-bit key) header.d=acm.org header.i=@acm.org header.b="bawISMY7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from 008.lax.mailroute.net (008.lax.mailroute.net [199.89.1.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED7242940D;
-	Fri,  9 Aug 2024 18:15:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5991A321A3;
+	Fri,  9 Aug 2024 18:27:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=199.89.1.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723227339; cv=none; b=RiBhtrEZz57+CKbplK0ZOkGsh7d9RmuKKImRUseTn/X5UL1iqdK30dXRBkT/eRVBxwk9UYGce1RnRJe48eK1SNnowEBubGf1/bHgfwxw9fJ3dG0DNuVxubIf96iueKnxyUOC0vubbZLgVXwlVnRM3hmGEKVtXcf1HfaFWW+LKfM=
+	t=1723228054; cv=none; b=Y/g3XlkzQl2+e6mwO8pUU9zmwQliSQCy1A7DKdWH20TGD9jEUo+nBbB1wD6UI9DnBu/VVe9s47e6xmE+/9Ga5gdB8sL90nvprERZRXjCEBVwT6QuQ5aHdPwjCHorNedLETf6n7zDapxPCZS54S+p/xplYILz1CI6UiufBr/X9z0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723227339; c=relaxed/simple;
-	bh=DkIXjXMgQ2h07LfBy7/0VFM/IS/1mPxjxgWjjpNWjN0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kFE3xKsusQqHI4aMaBzRUKu4pEWWMvHU3hOpk8ObpC87H3Kibaqrn9xkDGKp451eAHjkf8zNMH89mDtPV5FTG8hMejkfcv6py299K/wtVn4GySfLkIeLe3TPVnwKe5+URtOXWfN3DybdRhBO20QMYfkMklnZ0YbFE/6gKz/au4k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MR1X+5yB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AF74C32782;
-	Fri,  9 Aug 2024 18:15:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723227338;
-	bh=DkIXjXMgQ2h07LfBy7/0VFM/IS/1mPxjxgWjjpNWjN0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MR1X+5yBrVzw/2nz4GlMf1V6E4gE7fxoO2XGRiXRrOAuUhV6qeBbyKQaWkc+Kgajg
-	 BXN+XH1/lJhEwmFp3XzqEqRyCR1Amd06zB89gm0eRqQkRyNb15RmFvGEWDeZMTsvEV
-	 C9koFvqzCCWgRmG/RkCXDLU2K+M3QHgTwA7RVydwVRJgZ0IyNrEMrFYO0Sxc7L12WK
-	 r/Vg6shac1/0N7FkLv1g5Y3B+eO613m7bG3h+Ehn8HDDVoROmp3RVGz1dMN5k4X/fH
-	 o1wU3EfU58F5VIQ1aDA4dekfX0qj+Vbkz1Nf+oRY17CMt+poRUh8oVEz37gK/VGaVP
-	 VqpBVMFQEasQg==
-Date: Fri, 9 Aug 2024 12:15:36 -0600
-From: Rob Herring <robh@kernel.org>
-To: Jesse Taube <jesse@rivosinc.com>
-Cc: linux-riscv@lists.infradead.org, Jonathan Corbet <corbet@lwn.net>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	=?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>,
-	Evan Green <evan@rivosinc.com>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Charlie Jenkins <charlie@rivosinc.com>,
-	Xiao Wang <xiao.w.wang@intel.com>, Andy Chiu <andy.chiu@sifive.com>,
-	Eric Biggers <ebiggers@google.com>,
-	Greentime Hu <greentime.hu@sifive.com>,
-	=?iso-8859-1?Q?Bj=F6rn_T=F6pel?= <bjorn@rivosinc.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Costa Shulyupin <costa.shul@redhat.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Baoquan He <bhe@redhat.com>, Anup Patel <apatel@ventanamicro.com>,
-	Zong Li <zong.li@sifive.com>,
-	Sami Tolvanen <samitolvanen@google.com>,
-	Ben Dooks <ben.dooks@codethink.co.uk>,
-	Alexandre Ghiti <alexghiti@rivosinc.com>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	Erick Archer <erick.archer@gmx.com>,
-	Joel Granados <j.granados@samsung.com>, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH 2/2] dt-bindings: riscv: Add Zicclsm ISA extension
- description.
-Message-ID: <20240809181536.GA976083-robh@kernel.org>
-References: <20240809162240.1842373-1-jesse@rivosinc.com>
- <20240809162240.1842373-3-jesse@rivosinc.com>
+	s=arc-20240116; t=1723228054; c=relaxed/simple;
+	bh=JwLQU18qPLACTYfrm3egbp54GenfTciW0oFQ/jU7HCA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dSW6LnrHiFsHVHwPVlu9eOb5msOIEfIAlUPyFt18HGwpEthmmZPKP+ftQ9kBOwXjHVyEiTCMTV0iG1Q1aIqKkF7S+NbthGhbVn4jCCEFDnjeigaorf7TvWHzhD+fx4Jszfwk9O8PdEt5rxoFnGwP9B81nAQ6mVZo2UCV+EhE170=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=acm.org; spf=pass smtp.mailfrom=acm.org; dkim=pass (2048-bit key) header.d=acm.org header.i=@acm.org header.b=bawISMY7; arc=none smtp.client-ip=199.89.1.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=acm.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=acm.org
+Received: from localhost (localhost [127.0.0.1])
+	by 008.lax.mailroute.net (Postfix) with ESMTP id 4WgXT05LbHz6ClY8r;
+	Fri,  9 Aug 2024 18:27:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=acm.org; h=
+	content-transfer-encoding:content-type:content-type:in-reply-to
+	:from:from:content-language:references:subject:subject
+	:user-agent:mime-version:date:date:message-id:received:received;
+	 s=mr01; t=1723228047; x=1725820048; bh=JwLQU18qPLACTYfrm3egbp54
+	GenfTciW0oFQ/jU7HCA=; b=bawISMY76lSeg5zyp23V9zy8tLA88ECu/QhvSU+z
+	IwOQl/VoxwXHLPQgsR8+x1+LeyBqyCpudAbZjyGym5txc+TaWPTWhwcwsGC/EUZ1
+	2lA3F4qJMmHFoabtnwhhn8TvtbgOR/XLyeYojhqTjxPTSV5uLM9PGLeyam5nsQ/y
+	Awwf5X4ITdcB9Xh8ub7SdbwYKuLrwcePSBgXqUjBFQyZYPG1HDMnBNaL0m1piPeN
+	qWLaQ9lE1v1MfEj8cBQTSFQGPAGRAsHwJqu5XwMr4sJ4fw+HjgYtBF9pi0VxIQUW
+	n4qqtTCcXWkGXqJApdI59C6P5H4LEsCBhv546p6U8KPxUA==
+X-Virus-Scanned: by MailRoute
+Received: from 008.lax.mailroute.net ([127.0.0.1])
+ by localhost (008.lax [127.0.0.1]) (mroute_mailscanner, port 10029) with LMTP
+ id tH2dpFgiuWcp; Fri,  9 Aug 2024 18:27:27 +0000 (UTC)
+Received: from [100.66.154.22] (unknown [104.135.204.82])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: bvanassche@acm.org)
+	by 008.lax.mailroute.net (Postfix) with ESMTPSA id 4WgXSr0BxHz6ClY8p;
+	Fri,  9 Aug 2024 18:27:23 +0000 (UTC)
+Message-ID: <4ae81cc8-03ff-4dc0-a912-49f0c139389a@acm.org>
+Date: Fri, 9 Aug 2024 11:27:21 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240809162240.1842373-3-jesse@rivosinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] scsi: ufs: core: Export ufshcd_dme_link_startup()
+ helper
+To: Shawn Lin <shawn.lin@rock-chips.com>, Rob Herring <robh+dt@kernel.org>,
+ "James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
+ "Martin K . Petersen" <martin.petersen@oracle.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Heiko Stuebner <heiko@sntech.de>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Avri Altman <avri.altman@wdc.com>, YiFeng Zhao <zyf@rock-chips.com>,
+ Liang Chen <cl@rock-chips.com>, linux-scsi@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <1723089163-28983-1-git-send-email-shawn.lin@rock-chips.com>
+ <1723089163-28983-2-git-send-email-shawn.lin@rock-chips.com>
+Content-Language: en-US
+From: Bart Van Assche <bvanassche@acm.org>
+In-Reply-To: <1723089163-28983-2-git-send-email-shawn.lin@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Aug 09, 2024 at 12:22:40PM -0400, Jesse Taube wrote:
-> Add description for Zicclsm ISA extension.
-> 
-> Signed-off-by: Jesse Taube <jesse@rivosinc.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> V1 -> V2:
->  - New patch
-> V2 -> V3:
->  - No changes
-> V3 -> V4:
->  - No changes
-> V4 -> V5:
->  - No changes
-> V5 -> V6:
->  - No changes
-> V6 -> V7:
->  - No changes
-> V7 -> V8:
->  - Rebase onto 2d1f51d8a4b0 (palmer/for-next)
+On 8/7/24 8:52 PM, Shawn Lin wrote:
+> Export it for host drivers.
 
-Please also put the version in the subject. '-vN' is the git-send-email 
-option to do it for you.
+That's a very short patch description. Please explain in the patch
+description why your host driver is the only host driver that needs to
+call this function.
 
-Rob
+Thanks,
+
+Bart.
 
 
