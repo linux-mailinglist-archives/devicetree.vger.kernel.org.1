@@ -1,149 +1,209 @@
-Return-Path: <devicetree+bounces-92245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABF8594C7E5
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 03:10:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37E3894C7F6
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 03:19:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 64A19286E25
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 01:10:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC75F1F22C3B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 01:19:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA6B42F2A;
-	Fri,  9 Aug 2024 01:10:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E5624431;
+	Fri,  9 Aug 2024 01:19:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="PjW7R72f"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CZcz28XY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m25486.xmail.ntesmail.com (mail-m25486.xmail.ntesmail.com [103.129.254.86])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 813AC748F;
-	Fri,  9 Aug 2024 01:10:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.129.254.86
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 013528BFF;
+	Fri,  9 Aug 2024 01:19:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723165820; cv=none; b=S7IePLn7b2ZBd4twk2pI85rpnurByIIwLhVhdl2caqRiT+dqCz5CT6jBpQ4ao4Rd8jBdXqV0ZcbPogeA06SS7/JIV55BDvfFnj0YGhuODcpzxogQuqAaqRR09nhTpDKUX69EWzWV0x3cW96nR1kShc4SGQASBqMaKmfDvwkUQjg=
+	t=1723166371; cv=none; b=QpvUnKJYM4QKpmjgZVNFdl2OI8rD1AMYVgB0Gg8YxukJfghuZfAb55A+9JMsB7Cr9rjNcdsWnzhJq/Z5taqHjqxKHB2nE2BC9huqi47/9fhuqbOYZgrHgw7Wno3fUF57s9H1rNKNhLapJbo3dRv6QoRBY6GsfXm+/NeWBuCsFeo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723165820; c=relaxed/simple;
-	bh=KlEQ+D4Je6mwZIsRxTWmFaT5+xcMxIxm6HVAXnIsROw=;
-	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=F8kGnB1UhQjSjcoWq4FsAVqRl5Mw1kgnYlddrVep4IZqM4OcyKq+UW6/7vrI/DajpBy6BmL0OROSrS12QHlcWF5ZYta19944qECyzm5M264ddLxp2j2jZKw1ZR9c9NwmXtj9UGtpXTbMYZE1gmERAa7rVJFlxumdmMXDXEW0eu0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=PjW7R72f; arc=none smtp.client-ip=103.129.254.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-DKIM-Signature: a=rsa-sha256;
-	b=PjW7R72fDWmkAA3u5H/IGzBoAANM/LQEhVfEcKg844Yg03yeyOR2bNDlyYqsyOhhDDvds/sVIoZ7TrmEE++lNokCPZoUATlN58MlIdYA9XmsbF9RSbqZT8810sPbO56P76i0ndFXLbmxCpWhf2Fbar8qjZzZBFnHPwmNFAjUbaY=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=cy550DiWB2ZzXUSUZQc3XZMosj7sndMJZrv8tyVP9mg=;
-	h=date:mime-version:subject:message-id:from;
-Received: from [172.16.12.69] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTPA id 7E561460205;
-	Fri,  9 Aug 2024 08:53:05 +0800 (CST)
-Message-ID: <a8305f20-ea58-40b5-93f6-2c44f151219c@rock-chips.com>
-Date: Fri, 9 Aug 2024 08:53:05 +0800
+	s=arc-20240116; t=1723166371; c=relaxed/simple;
+	bh=0iUk+IvHcN0VK4Gy5zZfVHKfWr5XjGxNt7vxSsOMg+I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bSlcOCdGKJT0jGgdNNiyDPDRiNjFUDmBNe9rxnOHftskdR2QJQJ5vuVVAwW07tcGJGl7F7MtYakxZ0AAn5MeH9XsDaRjLbNI8B+1vQG7kSeJXtufMDVRuqsGxTjTysFi/GvywY6Gq/+gwJvpE4Lpxdq5zFx3R5/3qGkUQRF/8kM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CZcz28XY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DD68C32782;
+	Fri,  9 Aug 2024 01:19:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723166370;
+	bh=0iUk+IvHcN0VK4Gy5zZfVHKfWr5XjGxNt7vxSsOMg+I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CZcz28XY8mDT7gETVfyCmcX2zOBqad3350YTWHrbCC4eIoAyhjcZXdPKUFzpVl/Bf
+	 QRuRv26uR+ujxuJiv47F04P6wA01w4IJ3N6iOrloq/cpm7Gawnula/hfJDow1frPzM
+	 5RdGdgddV30XARw989Zb85a5IvJ6ns5ZLqc/B9hw/iFziez4qylTQHj9kfUSKDGrT/
+	 0F5x1UFc6hRccBOclCSMC95dV12/AERg0QbClvK0ImnkosNB6y+q5aQeDCip5XFoyJ
+	 iR63uBxghltQROy2ftWeTpp5q8wOOIvms5q0BBcRaChlLaE11Xg/l3evi2gxbnOK7D
+	 s0cJQ7Y03QdEA==
+Date: Fri, 9 Aug 2024 09:19:21 +0800
+From: Peter Chen <peter.chen@kernel.org>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Roger Quadros <rogerq@kernel.org>,
+	Pawel Laszczak <pawell@cadence.com>,
+	Mathias Nyman <mathias.nyman@intel.com>, Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Kevin Hilman <khilman@kernel.org>,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v5 00/12] Fix USB suspend on TI J7200 (cdns3-ti, cdns3,
+ xhci)
+Message-ID: <20240809011921.GA2673490@nchen-desktop>
+References: <20240726-s2r-cdns-v5-0-8664bfb032ac@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: shawn.lin@rock-chips.com,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Heiko Stuebner <heiko@sntech.de>, Alim Akhtar <alim.akhtar@samsung.com>,
- Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>,
- YiFeng Zhao <zyf@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
- linux-scsi@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] scsi: ufs: rockchip: init support for UFS
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- "James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
- "Martin K . Petersen" <martin.petersen@oracle.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-References: <1723089163-28983-1-git-send-email-shawn.lin@rock-chips.com>
- <1723089163-28983-4-git-send-email-shawn.lin@rock-chips.com>
- <93a16a4a-6a12-446f-bfc9-e8aa907e0598@kernel.org>
-Content-Language: en-GB
-From: Shawn Lin <shawn.lin@rock-chips.com>
-In-Reply-To: <93a16a4a-6a12-446f-bfc9-e8aa907e0598@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0wYS1ZLTR9MTRlKQh5LThlWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
-	NVSktLVUpCS0tZBg++
-X-HM-Tid: 0a91349fffc503aekunm7e561460205
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PDY6Axw4CDI2Vgk3NCoXUSgO
-	DQ9PCghVSlVKTElISk1PTENMSU9IVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
-	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQU9MTEs3Bg++
+In-Reply-To: <20240726-s2r-cdns-v5-0-8664bfb032ac@bootlin.com>
 
-åœ¨ 2024/8/8 18:36, Krzysztof Kozlowski å†™é“:
-> On 08/08/2024 05:52, Shawn Lin wrote:
->> RK3576 contains a UFS controller, add init support fot it.
->>
->> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
->>
+On 24-07-26 20:17:48, Théo Lebrun wrote:
+> Currently, system-wide suspend is broken on J7200 because of a
+> controller reset. The TI wrapper does not get re-initialised at resume
+> and the first register access from cdns core fails.
 > 
-> ...
+> We address that in a few ways:
+>  - In cdns3-ti, if a reset has occured at resume, we reconfigure the HW.
+>  - We pass the XHCI_RESET_ON_RESUME quirk, meaning the XHCI core expects
+>    a resume.
+>  - We add a xhci->lost_power flag.
 > 
->> +	err = clk_prepare_enable(host->ref_out_clk);
->> +	if (err)
->> +		return dev_err_probe(dev, err, "failed to enable ref out clock\n");
->> +
->> +	host->rst_gpio = devm_gpiod_get(&pdev->dev, "reset", GPIOD_OUT_LOW);
->> +	if (IS_ERR(host->rst_gpio)) {
->> +		dev_err_probe(&pdev->dev, PTR_ERR(host->rst_gpio),
->> +				"invalid reset-gpios property in node\n");
->> +		err = PTR_ERR(host->rst_gpio);
+> The previous revision had one big issue: we had to know if
+> reset-on-resume was true, at probe-time. This is where the main
+> difference with previous revisions is. We now pass the information from
+> wrapper devices back up into XHCI. The xhci->lost_power flag gets its
+> default value from the XHCI_RESET_ON_RESUME quirk. It however allows
+> wrappers to signal *at resume* if they still expect a reset.
 > 
-> No. Look at your code above - you have return dev_err_probe, so logical
-> is that the syntax is err = dev_err_probe. Don't over-complicate the code.
+> That means wrappers that are unsure if they will reset should:
+>  - (1) set the quirk at probe and,
+>  - (2) potentially set xhci->lost_power to false at resume.
+
+Judge if controller is power lost has implemented at cdns_power_is_lost
+Please check if you could use that.
+
+Peter
+
 > 
-> Anyway, this is suspicious. You already have resets with four resets
-> (!!!) and you claim you have fifth reset - GPIO? This looks just wrong,
-> like you represent some properties which do not belong here.
+> We implement that for cdns3, by piggybacking on the host role ->resume()
+> callback already receives the information from its caller.
 > 
-
-Thanks for the feadback.
-
-Yes, we have 4 resets for controller, and one gpio to reset the
-device. It happened to be called reset-gpios in DT but can be
-any name if you like it to be. I added reset-gpios as a required one
-listed in dt-bindings file, in patch 2.
-
-
- > Also, why do you leave the device in the reset state? Logical one
-means
- > - reset is asserted. This applies to ufs_rockchip_device_reset() as > 
-well
- > - that's just wrong code.
-
-
-No, I tested it in linux-net and the output is HIGH, and leave the
-device in active state.
-
-In dts, we add:
-reset-gpios = <&gpio4 RK_PD0 GPIO_ACTIVE_HIGH>;
-
-so gpiod_set_value_cansleep(host->rst_gpio, 1) -> output HIGH for
-gpio4_d0. Based on your comment, we should change the dts to use
-GPIO_ACTIVE_LOW and then gpiod_set_value_cansleepï¼ˆhost->rst_gpio, 0ï¼‰
-
-
-Both can work, however IMO, isn't logical one means HIGH level in line 
-more human readable?
-
-
-
-> Where is your DTS so we can validate it?
+> Have a nice day,
+> Théo
 > 
-
-Will add it in the next version, as now the rk3576.dtsi is under
-reviewed and UFS node was not added. So I was afraid to interfere
-with that patch and just wanted to add incremental patch once
-rk3576.dtsi got merged.
-
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+> ---
+> Changes in v5:
+> - dt-bindings: take Reviewed-by Rob and Conor for the first
+>   patch: "dt-bindings: usb: ti,j721e-usb: fix compatible list".
+> - cdns3-ti:
+>   - We now do have HW init code inside cdns_ti_reset_and_init_hw().
+>   - It gets called at probe unconditionally and from ->runtime_resume()
+>     if a reset is detected (using the W1 register).
+>   - Auxdata patches have been reworked now that there is default auxdata
+>     since commit b50a2da03bd9 ("usb: cdns3-ti: Add workaround for
+>     Errata i2409"). We now have a patch that moves auxdata to match
+>     data: "usb: cdns3-ti: grab auxdata from match data".
+> - cdns3/xhci: those are three new patches.
+>   - First, we rename "hibernated" to "lost_power" in arguments to
+>     the role ->resume() callbacks.
+>   - Then we add the xhci->lost_power flag, and only have it always copy
+>     the value from XHCI_RESET_ON_RESUME.
+>   - Finally, we set the flag from the host role driver.
+> - Link to v4: https://lore.kernel.org/lkml/20240307-j7200-usb-suspend-v4-0-5ec7615431f3@bootlin.com/
+> 
+> Changes in v4:
+> - dt-bindings: usb: ti,j721e-usb:
+>   - Remove ti,am64-usb single compatible entry.
+>   - Reverse ordering of compatible pair j721e + am64
+>     (becoming am64 + j721e).
+>   - Add j7200 + j721e compatible pair (versus only j7200). It is the
+>     same thing as am64: only the integration differs with base j721e
+>     compatible.
+>   - NOT taking trailers from Conor as patches changed substantially.
+> - arm64: dts: ti: j3-j7200:
+>   - Use j7200 + j721e compatible pair (versus only j7200 previously).
+> - arm64: dts: ti: j3-am64:
+>   - Fix to use am64 + j721e compatible pair (versus only am64).
+>     This is a new patch.
+> - Link to v3: https://lore.kernel.org/r/20240223-j7200-usb-suspend-v3-0-b41c9893a130@bootlin.com
+> 
+> Changes in v3:
+> - dt-bindings: use an enum to list compatibles instead of the previous
+>   odd construct. This is done in a separate patch from the one adding
+>   J7200 compatible.
+> - dt-bindings: dropped Acked-by Conor as the changes were modified a lot.
+> - Add runtime PM back. Put the init sequence in ->runtime_resume(). It
+>   gets called at probe for all compatibles and at resume for J7200.
+> - Introduce a cdns_ti_match_data struct rather than rely on compatible
+>   from code.
+> - Reorder code changes. Add infrastructure based on match data THEN add
+>   compatible and its match data.
+> - DTSI: use only J7200 compatible rather than both J7200 then J721E.
+> - Link to v2: https://lore.kernel.org/r/20231120-j7200-usb-suspend-v2-0-038c7e4a3df4@bootlin.com
+> 
+> Changes in v2:
+> - Remove runtime PM from cdns3-ti; it brings nothing. That means our
+>   cdns3-ti suspend/resume patch is simpler; there is no need to handle
+>   runtime PM at suspend/resume.
+> - Do not add cdns3 host role suspend/resume callbacks; they are not
+>   needed as core detects reset on resume & calls cdns_drd_host_on when
+>   needed.
+> - cdns3-ti: Move usb2_refclk_rate_code assignment closer to the value
+>   computation.
+> - cdns3/host.c: do not pass XHCI_SUSPEND_RESUME_CLKS quirk to xHCI; it
+>   is unneeded on our platform.
+> - Link to v1: https://lore.kernel.org/r/20231113-j7200-usb-suspend-v1-0-ad1ee714835c@bootlin.com
+> 
+> ---
+> Théo Lebrun (12):
+>       dt-bindings: usb: ti,j721e-usb: fix compatible list
+>       dt-bindings: usb: ti,j721e-usb: add ti,j7200-usb compatible
+>       usb: cdns3-ti: move reg writes to separate function
+>       usb: cdns3-ti: run HW init at resume() if HW was reset
+>       usb: cdns3: add quirk to platform data for reset-on-resume
+>       usb: cdns3-ti: grab auxdata from match data
+>       usb: cdns3-ti: add J7200 support with reset-on-resume behavior
+>       usb: cdns3: rename hibernated argument of role->resume() to lost_power
+>       xhci: introduce xhci->lost_power flag
+>       usb: cdns3: host: transmit lost_power signal from wrapper to XHCI
+>       arm64: dts: ti: k3-j7200: use J7200-specific USB compatible
+>       arm64: dts: ti: k3-am64: add USB fallback compatible to J721E
+> 
+>  .../devicetree/bindings/usb/ti,j721e-usb.yaml      |   5 +-
+>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi           |   2 +-
+>  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi          |   2 +-
+>  drivers/usb/cdns3/cdns3-gadget.c                   |   4 +-
+>  drivers/usb/cdns3/cdns3-ti.c                       | 151 ++++++++++++++-------
+>  drivers/usb/cdns3/cdnsp-gadget.c                   |   2 +-
+>  drivers/usb/cdns3/core.h                           |   3 +-
+>  drivers/usb/cdns3/host.c                           |  13 ++
+>  drivers/usb/host/xhci.c                            |   8 +-
+>  drivers/usb/host/xhci.h                            |   6 +
+>  10 files changed, 136 insertions(+), 60 deletions(-)
+> ---
+> base-commit: c33ffdb70cc6df4105160f991288e7d2567d7ffa
+> change-id: 20240726-s2r-cdns-4b180cd960ff
+> 
 > Best regards,
-> Krzysztof
+> -- 
+> Théo Lebrun <theo.lebrun@bootlin.com>
 > 
 
