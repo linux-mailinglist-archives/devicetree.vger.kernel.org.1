@@ -1,276 +1,350 @@
-Return-Path: <devicetree+bounces-92464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B116C94D32E
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 17:16:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF7F894D35A
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 17:23:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D518A1C20AA1
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 15:16:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74BA1286A47
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 15:23:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A48F199EA4;
-	Fri,  9 Aug 2024 15:14:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFCD1198A05;
+	Fri,  9 Aug 2024 15:22:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jNmme8W9"
+	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="Qqd92vqO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12759198A1B;
-	Fri,  9 Aug 2024 15:14:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 597E8198A24
+	for <devicetree@vger.kernel.org>; Fri,  9 Aug 2024 15:22:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723216451; cv=none; b=cIj9P/UV23yPN30b+DHsdMfnKLZkaqNr3mWeU4dSIOerfNMKms79zvlnDaPA8ZQ9tYPLMA3WGNjYN4VLesS7sgKFncTSBxl7TB1V8WLuW4cCn1DR9GQDzN+5Ph617wxByJJ9rx82vX9v1ceuw7i36onQjWewk5yb1Limsi1CNok=
+	t=1723216965; cv=none; b=kA/04BWkC3zkpCHNTzeuNdpCz1d/EIdSixFEsxgMuTybOGGwSh4JteOwf2pomw+CzrxRhqtFIbK8Fz0r6nIQ5LTk2/E6qo/zSLITQBpmYTYNJsoLeirPxrpMV+fYffhsjpTpoCMOEjbGCFHTD1JzRcrVmK/9hVqAzaPxWtAWVic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723216451; c=relaxed/simple;
-	bh=3x1I3t23wv26CQk4jS0uLOBKS6hDL4aBZAdgs4f0xhU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Bm/xkXb55CclifhFNgDV/P2rC9Pd/DgNEpkjJR1wGAQxk0CW6yBfBWPUhHF9R/SjYJugfsog+Iy/e+5N5XD3QPg0dOwfKWR5VtkzZi1Xsjx1HoZ+w5nzLIUJ6oKSJW+ic3WEi9SPniu7MZmgeCO5GHiJsOOAfMqPDrKyJdhA9uc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jNmme8W9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94080C4AF0B;
-	Fri,  9 Aug 2024 15:14:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723216450;
-	bh=3x1I3t23wv26CQk4jS0uLOBKS6hDL4aBZAdgs4f0xhU=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=jNmme8W9NB2+ZamfqnIfE9ryfUdk4JqZIuOUSUE4S4CCeEKaYicGo8rgCPRNmeaMP
-	 ZGSPGUUn3fLFeZ+HIMe3H4uo70EIGhNqm+BsXHjtmOWV3anXWeWRS1pg7nb2NoO1d8
-	 vruhBgCEh+5DrhsfIUHOr2o0uIjMXFXnhEP9wyiGaVDpth4zQ8fSnP2E2CI8sGuBBD
-	 /TZNadFJcXZnVY0Kvb1xvCPfdt15ENINs9ZIcRf8W7ZZv0BNu1Y/UXqZBMnOygVryN
-	 oeq/zNr3h3VdrleWs2tMTOPcqjiKSkaYLVagUBBTvt7n4BKNsCyDSZGBSQvcm7WaeH
-	 WgGKtzEFGXt9w==
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2f149845fbaso23686091fa.3;
-        Fri, 09 Aug 2024 08:14:10 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVKzZDJqGs0fI3A4oJs0uuodsM9sE6MFFzui86swFSzlkdvvdGl/aIiYazjgmWNHpFWassepjrWbH09C+cAa23mYpipsPrgB4Np+t7dm+EcACJ9wyZS22RLSkYcw1QXWmO7dVwfyp9LQQ==
-X-Gm-Message-State: AOJu0YzJpVS09ikZ3qiD2C2YVAfPF2TjFG69K+zWVr/kTlxjL3CjhIKG
-	ALJ2vKHspoaKvwGP9NmdUqGqvjp4l3xiHkYH/VUOfI5DJcZ00FeFbt20fgzvjgtSHvZLyL+znMl
-	7JAWTsaTgNfHYbLxUaj3wkHgglQ==
-X-Google-Smtp-Source: AGHT+IG+n/t2ITHrMGpOypuDOMLkf0Ms8xRhO88x2Ilm17PKc6/jHWWGSBIWjCKYSlZxolzdomYTClaXJ0JEUAmc8KM=
-X-Received: by 2002:a2e:b8cb:0:b0:2ef:2472:41c7 with SMTP id
- 38308e7fff4ca-2f1a6d01eaemr17231031fa.7.1723216448824; Fri, 09 Aug 2024
- 08:14:08 -0700 (PDT)
+	s=arc-20240116; t=1723216965; c=relaxed/simple;
+	bh=bg9FRrgfzTmhqf+2LDIidqmfJ72RfSjFCvMm6zXUKBA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LqLGzVm9v+1BbuQKEGm635C6x5aBy1mcKtBuABbByr2LoFgAeQLkmXZyqA7ZJyadAPNueoWPkuVhM0aQn/KwkbIKWpNhkwk7E1JAXerCkjQVurirrGd6FxFoGxEViNu/PGzSvk4RDbGpQX9WdCNnRgNkbbEWof9hnYNsNtPl1Ec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=Qqd92vqO; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-1fc4b03fca0so919725ad.3
+        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2024 08:22:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1723216962; x=1723821762; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ABNS79HqUmVtSz8SXZ6kpjlstQDzPc1Exn+9S6AVMlo=;
+        b=Qqd92vqOoYZsiwGNANZAlGZ0rhfmRLX6PA/GyEMfq8krAUbSISPhSQBHa1qiFzcaAv
+         PJSLvGHucXNXirCDMeNuOqeWV1zEmvgzUKikqcIK3l7H2LU1KsrXky2khvID+fKbvhhm
+         Z8k1kgB3Cl1bVa6Vux3g/FIvyh0qMnjqewRox8YJ/p9TGCnAkFAJNUMx6dcFXKrhTo4N
+         k4cOWdFWU+GOH2riGyc59yrWNBRQN9dOP87eh5z5VG6lQKcGQhLHebJP5RDYQnsi/t9u
+         CoOGkwDWPgto4bktp0+kVPK3lZdELrntqF1/WpmsAdyWZcW6U6amnq9OuSeHESfhmRNx
+         0eLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723216962; x=1723821762;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ABNS79HqUmVtSz8SXZ6kpjlstQDzPc1Exn+9S6AVMlo=;
+        b=lsixRIVPC92nt8ifuaR4WX4nrWhBQxV78CXlLAbAg4OHzmBRvwX2Tx69EsnYkg9ss1
+         WHE5yfzZg8H9GvNGx3RdMbJnNxHYdxoQ7sEF9rhBBEKObJs2kJ7o9zJDFrYtLtefPpbp
+         LWqLeSQA2LxRio3oGoABGd6fYeoGGzYoooXo8ExDfFmoavZ/Gqnr+8FxxBarRCarMs/u
+         u/nSHlNo/c7Ow6o5ovf6Q0Nf5v1FMUTLOtLO/QtuD06xG6khD0vY4zOnrCzUMKFLnMXp
+         t02GuBtuWWdPU9lkd/30WScUWMk91TRJDXwRcCyLSaKMxuSMA01pGqx7a8hGd1GTPiGg
+         pqWA==
+X-Forwarded-Encrypted: i=1; AJvYcCWwSzNDRSFHJh9jx8kT7Au3AawMZLNDG+ZLs0SvEeu132g84+/hTQ6c2th74mpffaR9q0lw6BS0fa00@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKJSD3ysg4yH1uPo12iKoxEp7XJT1kcJuW1Lh4GBtUIo1T2Z5V
+	uy5PwyVwhxQnU8nUJATREoEB8rwNUK8xRnzIEIx8+yyV8BFqFU1Npp3eAQ8eSQ==
+X-Google-Smtp-Source: AGHT+IF7cTcJvqu5xxSKwnxk6WblDuDLRsU46J2JpJgEtjUztRqFXUdjZd1xKEI94+km8O+Q7TYAkQ==
+X-Received: by 2002:a17:902:e80b:b0:1fc:4377:e6ea with SMTP id d9443c01a7336-200ae647c43mr11536965ad.9.1723216960229;
+        Fri, 09 Aug 2024 08:22:40 -0700 (PDT)
+Received: from [172.16.118.4] ([103.15.228.94])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-1ff5905fec0sm143995325ad.149.2024.08.09.08.22.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Aug 2024 08:22:39 -0700 (PDT)
+Message-ID: <28513e07-ab56-4cff-972c-64c2e3d6d9e2@beagleboard.org>
+Date: Fri, 9 Aug 2024 20:52:33 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240809090158.3267481-2-stefan.wiehler@nokia.com>
-In-Reply-To: <20240809090158.3267481-2-stefan.wiehler@nokia.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 9 Aug 2024 09:13:55 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ-qx=FffPZgx3tdsUu1_mA=E1+xZs0dY+GeoEuvUEm_Q@mail.gmail.com>
-Message-ID: <CAL_JsqJ-qx=FffPZgx3tdsUu1_mA=E1+xZs0dY+GeoEuvUEm_Q@mail.gmail.com>
-Subject: Re: [PATCH v3] of/irq: Prevent device address out-of-bounds read in
- interrupt map walk
-To: Stefan Wiehler <stefan.wiehler@nokia.com>
-Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 0/3] Add generic Overlay for Grove Sunlight Sensor
+Content-Language: en-US
+To: Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Vaishnav M A <vaishnav@beagleboard.org>,
+ Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
+ <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
+ Michael Walle <mwalle@kernel.org>, Jason Kridner <jkridner@beagleboard.org>,
+ Robert Nelson <robertcnelson@beagleboard.org>,
+ Robert Nelson <robertcnelson@gmail.com>,
+ Ayush Singh <ayushdevel1325@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240702164403.29067-1-afd@ti.com>
+From: Ayush Singh <ayush@beagleboard.org>
+In-Reply-To: <20240702164403.29067-1-afd@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Aug 9, 2024 at 3:03=E2=80=AFAM Stefan Wiehler <stefan.wiehler@nokia=
-.com> wrote:
->
-> When of_irq_parse_raw() is invoked with a device address smaller than
-> the interrupt parent node (from #address-cells property), KASAN detects
-> the following out-of-bounds read when populating the initial match table
-> (dyndbg=3D"func of_irq_parse_* +p"):
->
->   OF: of_irq_parse_one: dev=3D/soc@0/picasso/watchdog, index=3D0
->   OF:  parent=3D/soc@0/pci@878000000000/gpio0@17,0, intsize=3D2
->   OF:  intspec=3D4
->   OF: of_irq_parse_raw: ipar=3D/soc@0/pci@878000000000/gpio0@17,0, size=
-=3D2
->   OF:  -> addrsize=3D3
->   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->   BUG: KASAN: slab-out-of-bounds in of_irq_parse_raw+0x2b8/0x8d0
->   Read of size 4 at addr ffffff81beca5608 by task bash/764
->
->   CPU: 1 PID: 764 Comm: bash Tainted: G           O       6.1.67-484c6135=
-61-nokia_sm_arm64 #1
->   Hardware name: Unknown Unknown Product/Unknown Product, BIOS 2023.01-12=
-.24.03-dirty 01/01/2023
->   Call trace:
->    dump_backtrace+0xdc/0x130
->    show_stack+0x1c/0x30
->    dump_stack_lvl+0x6c/0x84
->    print_report+0x150/0x448
->    kasan_report+0x98/0x140
->    __asan_load4+0x78/0xa0
->    of_irq_parse_raw+0x2b8/0x8d0
->    of_irq_parse_one+0x24c/0x270
->    parse_interrupts+0xc0/0x120
->    of_fwnode_add_links+0x100/0x2d0
->    fw_devlink_parse_fwtree+0x64/0xc0
->    device_add+0xb38/0xc30
->    of_device_add+0x64/0x90
->    of_platform_device_create_pdata+0xd0/0x170
->    of_platform_bus_create+0x244/0x600
->    of_platform_notify+0x1b0/0x254
->    blocking_notifier_call_chain+0x9c/0xd0
->    __of_changeset_entry_notify+0x1b8/0x230
->    __of_changeset_apply_notify+0x54/0xe4
->    of_overlay_fdt_apply+0xc04/0xd94
->    ...
->
->   The buggy address belongs to the object at ffffff81beca5600
->    which belongs to the cache kmalloc-128 of size 128
->   The buggy address is located 8 bytes inside of
->    128-byte region [ffffff81beca5600, ffffff81beca5680)
->
->   The buggy address belongs to the physical page:
->   page:00000000230d3d03 refcount:1 mapcount:0 mapping:0000000000000000 in=
-dex:0x0 pfn:0x1beca4
->   head:00000000230d3d03 order:1 compound_mapcount:0 compound_pincount:0
->   flags: 0x8000000000010200(slab|head|zone=3D2)
->   raw: 8000000000010200 0000000000000000 dead000000000122 ffffff810000c30=
-0
->   raw: 0000000000000000 0000000000200020 00000001ffffffff 000000000000000=
-0
->   page dumped because: kasan: bad access detected
->
->   Memory state around the buggy address:
->    ffffff81beca5500: 04 fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
->    ffffff81beca5580: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
->   >ffffff81beca5600: 00 fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
->                         ^
->    ffffff81beca5680: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
->    ffffff81beca5700: 00 00 00 00 00 00 fc fc fc fc fc fc fc fc fc fc
->   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->   OF:  -> got it !
->
-> Prevent the out-of-bounds read by copying the device address into a
-> buffer of sufficient size.
->
-> Signed-off-by: Stefan Wiehler <stefan.wiehler@nokia.com>
-> ---
->  drivers/of/irq.c | 51 ++++++++++++++++++++++++++++++------------------
->  1 file changed, 32 insertions(+), 19 deletions(-)
->
-> diff --git a/drivers/of/irq.c b/drivers/of/irq.c
-> index c94203ce65bb3..34fe0593036d8 100644
-> --- a/drivers/of/irq.c
-> +++ b/drivers/of/irq.c
-> @@ -151,6 +151,26 @@ const __be32 *of_irq_parse_imap_parent(const __be32 =
-*imap, int len, struct of_ph
->         return imap;
->  }
->
-> +static u32 of_get_address_cells(struct device_node *node)
-> +{
+On 7/2/24 22:14, Andrew Davis wrote:
 
-See of_bus_n_addr_cells(). It does the same thing. However, I don't
-think you need this. See below.
-
-> +       struct device_node *tnode, *old =3D NULL;
-> +       const __be32 *tmp;
-> +
-> +       /* Look for this #address-cells. We have to implement the old lin=
-ux
-> +        * trick of looking for the parent here as some device-trees rely=
- on it
-> +        */
-> +       old =3D of_node_get(node);
-> +       do {
-> +               tmp =3D of_get_property(old, "#address-cells", NULL);
-> +               tnode =3D of_get_parent(old);
-> +               of_node_put(old);
-> +               old =3D tnode;
-> +       } while (old && tmp =3D=3D NULL);
-> +       of_node_put(old);
-> +       old =3D NULL;
-> +       return (tmp =3D=3D NULL) ? 2 : be32_to_cpu(*tmp);
-> +}
-> +
->  /**
->   * of_irq_parse_raw - Low level interrupt tree parsing
->   * @addr:      address specifier (start of "reg" property of the device)=
- in be32 format
-> @@ -167,10 +187,10 @@ const __be32 *of_irq_parse_imap_parent(const __be32=
- *imap, int len, struct of_ph
->   */
->  int of_irq_parse_raw(const __be32 *addr, struct of_phandle_args *out_irq=
-)
->  {
-> -       struct device_node *ipar, *tnode, *old =3D NULL;
-> +       struct device_node *ipar, *tnode;
->         __be32 initial_match_array[MAX_PHANDLE_ARGS];
->         const __be32 *match_array =3D initial_match_array;
-> -       const __be32 *tmp, dummy_imask[] =3D { [0 ... MAX_PHANDLE_ARGS] =
-=3D cpu_to_be32(~0) };
-> +       const __be32 dummy_imask[] =3D { [0 ... MAX_PHANDLE_ARGS] =3D cpu=
-_to_be32(~0) };
->         u32 intsize =3D 1, addrsize;
->         int i, rc =3D -EINVAL;
+> Hello all,
 >
-> @@ -201,20 +221,7 @@ int of_irq_parse_raw(const __be32 *addr, struct of_p=
-handle_args *out_irq)
->         if (out_irq->args_count !=3D intsize)
->                 goto fail;
+> A new attempt at solving the long standing "add-on board" problem was
+> recently posted[0]. The current out-of-tree solutions usually involve
+> Device Tree Overlays. Recently, Overlays have started being accepted into
+> the kernel repo, this makes now the perfect time to solve this issue.
+> Here is my attempt at a generic solution.
 >
-> -       /* Look for this #address-cells. We have to implement the old lin=
-ux
-> -        * trick of looking for the parent here as some device-trees rely=
- on it
-> -        */
-> -       old =3D of_node_get(ipar);
-> -       do {
-> -               tmp =3D of_get_property(old, "#address-cells", NULL);
-> -               tnode =3D of_get_parent(old);
-> -               of_node_put(old);
-> -               old =3D tnode;
-> -       } while (old && tmp =3D=3D NULL);
-> -       of_node_put(old);
-> -       old =3D NULL;
-> -       addrsize =3D (tmp =3D=3D NULL) ? 2 : be32_to_cpu(*tmp);
-> -
-> +       addrsize =3D of_get_address_cells(ipar);
->         pr_debug(" -> addrsize=3D%d\n", addrsize);
+> Problem statement
+> -----------------
 >
->         /* Range check so that the temporary buffer doesn't overflow */
-> @@ -343,8 +350,9 @@ int of_irq_parse_one(struct device_node *device, int =
-index, struct of_phandle_ar
->  {
->         struct device_node *p;
->         const __be32 *addr;
-> -       u32 intsize;
-> +       u32 addrsize, intsize;
->         int i, res;
-> +       __be32 addr_buf[3] =3D { 0 };
+> The Device tree(DT) system provides hardware descriptions to the Linux
+> kernel (or other DT compatible SW). When the hardware is modular this
+> description becomes dynamic. For this we use DT Overlays which take a base
+> hardware description and append the description of the add-on hardware.
+> Due to the design of DT, these DT overlays are specific to a given base
+> hardware board. The add-on itself is usually not specific to a single
+> board. Some examples of add-on ecosystems to consider:
 >
->         pr_debug("of_irq_parse_one: dev=3D%pOF, index=3D%d\n", device, in=
-dex);
+> Beaglebone Cape
+> Raspberry Pi HAT
+> MikroBUS Click Boards
+> Seeed Grove
+> SparkFun Qwiic
+> etc..
 >
-> @@ -354,12 +362,17 @@ int of_irq_parse_one(struct device_node *device, in=
-t index, struct of_phandle_ar
+> Some of these ecosystems already have more than a thousand(!) add-on boards.
+> If a DT description needed to be written specific to each of the multitude
+> of base boards that support each add-on, the combinatorial explosion would
+> be unmanageable. We need to define a scheme that allow for creating and
+> applying generic add-on overlays.
 >
->         /* Get the reg property (if any) */
->         addr =3D of_get_property(device, "reg", NULL);
+> Goals
+> -----
+>
+> * Each add-on board should be described by only one DT overlay. That DT
+> overlay should be generic enough to apply to the DT of any base board
+> that supports that add-on.
+>
+> * Some base boards have multiple instances of a given add-ons connector
+> port. An add-on's overlay must apply to any available connection port
+> without modification to the overlay.
+>
+> * Some connectors are stackable, stacked application of overlays shall
+> function as expected. Chained connectors from one ecosystem to another
+> shall be supported also (i.g. This thing[1] which connects to a BeagleBone
+> Cape connector and then exposes a number of Grove connectors).
+>
+> * We should reuse as much existing infrastructure as possible (ideally no
+> changes should be needed). The basic application of DT overlays is well
+> supported and documented.
+>
+> * An overlay for an add-on board that is not compatible with the base board
+> shall fail to apply at application time, not silently later. Incompatibility
+> includes add-ons which require a function from a pin for which the matching
+> pin on the base board cannot provide. We see this with some HATs and Capes
+> where they use non-standard muxing of pins that only work for some subset
+> of base boards. For instance, the BeaglePlay's Grove connector supports
+> Digital/UART/I2C functions but not "Analog". So any Grove module that uses
+> Analog pins should fail to apply.
+>
+> * Nothing in this solution should preclude runtime application of these DT
+> overlays. Hardware auto-detection and runtime DT modification are orthogonal
+> problems.
+>
+> Solution
+> --------
+>
+> This is a classic many-to-many problem, we propose to solve this the
+> same as the database folks, with an associative(join) table like adapter
+> overlay. We add an adapter overlay in-between the base board and the add-on. This
+> adapter overlay prepares the base DTB for the application of an add-on
+> targeting a specific connector. Adapting the base board's specifics to accept
+> the generic connector names contained in the add-on overlay. There will
+> be one adapter overlay per base board connector.
+>
+> We already have the infrastructure to implement these adapter overlays
+> today. The DT overlay system makes use of a symbol table in the
+> base DT and a fixup table in the overlay. The magic is in using the
+> __fixups__ table to modify the __symbols__ table itself.
+>
+> Let's use the Grove connector[2] as an example. Grove is a good example
+> target as it has
+>
+>   * Low pin count (2 signal pins keeps the example gasket DTBOs simple, everything here can be extended to any number of signal pins)
+>   * Multiple connectors per base board
+>   * Has an add-on board that exposes more add-on board connectors
+>   * Each pin can have multiple functions depending on the base board
+>   * Moderately sized collection of add-on boards which contain parts already supported in Linux/DT
+>
+> To make an overlay generic we need a standard name scheme which we
+> use across base boards. For the connector pins the pinmux phandle
+> shall be:
+>
+> <connector-name>_<pin-name>_mux_<pin-function>
+>
+> All capitalized to make it easy to identify that this name is
+> not the final phandle name, but will instead be fixed during
+> overlay application.
+>
+> Each pin will have a definition for each function it can take,
+> so pin1 in the Grove ecosystem has 4 possible functions, and
+> pin2 has the same, therefor 8 definitions are needed in the
+> connector's adapter overlay:
+>
+>   /* Grove connector 0 Pin1 options */
+> GROVE_PIN1_MUX_I2C_SCL = &grove_pins_i2c;
+> GROVE_PIN1_MUX_DIGITAL = &grove_pins_digital;
+> /* GROVE_PIN1_MUX_ANALOG not available on this pin on this connector on this board */
+> ...
+> GROVE_PIN2_MUX_UART_TX = &grove_pins_uart;
+> etc..
+>
+> (see patch [2/3] for a complete example)
+>
+> By listing each pin/function combination separately we allow for add-on
+> boards that only use a subset of pins, or mix pin functions
+> (pin1->digital and pin2->uart_tx).
+>
+> This also means is if a given base board does not support some function
+> on a connector pin, then it is not defined and application of an overlay
+> which uses that pin/function will correctly fail as expected.
+>
+> For the parent provider phandle, we use a similar naming scheme:
+>
+> <connector-name>_<pin-name>_<pin-function>
+>
+> Note we list this per-pin. Even though one IP/bus may service multiple
+> pins, we cannot know this in a generic way. For instance some boards
+> may have all GPIO functions served by one controller, others may have
+> some pins on different controllers.
+>
+> Patch [3/3] is a complete example overlay for an add-on board[3].
+>
+> So what does this all look like? Let's take an example of a BeaglePlay
+> with two Grove connectors for which we have physically attached a
+> Sunlight module to the first connector, and an Air Quality sensor to
+> the second. Doing ahead of time command-line DT overlay application:
+>
+> ./fdtoverlay \
+> 	-o output.dtb \
+> 	-i k3-am625-beagleplay.dtb
+> 		k3-am625-beagleplay-grove-connector0.dtbo grove-sunlight-sensor.dtbo \
+> 		k3-am625-beagleplay-grove-connector1.dtbo grove-air-quality.dtbo
+>
+> We start with the base board, then apply the adapter overlay for the
+> specific connector we are going to attach the add-on. The next add-on
+> overlay applied will attach to the connector most recently applied.
+> This can be continued as needed, simply apply the next connector's
+> adapter overlay, then the next add-on, rinse, repeat.
+>
+> Note that the connector adapter overlay is board specific, but the add-on
+> overlay is completely generic. It can be applied to any base board.
+>
+> ./fdtoverlay \
+> 	-o output.dtb \
+> 	-i bcm2837-rpi-3-b.dtb \
+> 		grove-base-hat.dtbo \
+> 			grove-base-hat-connector0.dtbo grove-sunlight-sensor.dtbo \
+> 			grove-base-hat-connector1.dtbo grove-air-quality.dtbo
+>
+> Should work just the same for any board supporting that extender HAT,
+> for instance the BeagleY-AI would be:
+>
+> ./fdtoverlay \
+> 	-o output.dtb \
+> 	-i k3-am67a-beagley-ai.dtb \
+> 		grove-base-hat.dtbo \
+> 			grove-base-hat-connector0.dtbo grove-sunlight-sensor.dtbo \
+> 			grove-base-hat-connector1.dtbo grove-air-quality.dtbo \
+> 			grove-base-hat-connector4.dtbo etc..
+>
+> All of the above works just the same at boot time (U-Boot overlay support)
+> or runtime using the in-kernel runtime overlay support (when that is enabled).
+> For connectors with board detection I'd expect the detector to be described
+> in the base board connector node. On board identification, the adapter overlay
+> for that connector would be loaded by the detector driver followed by th
+> overlay for the identified board.
+>
+> Although this is an RFC, the patches in this series are functional and
+> meet all the above goals. They require no additional DT schema nor
+> kernel/tooling modifications. Nested adapters (add-ons on top of add-on
+> connectors) require a small fix in DTC which will be sent separately.
+>
+> Open items
+> ----------
+>
+> Variable cell count providers. The provider specifies the cell count
+> and meaning. For GPIO this is handled very well, there is a standard
+> 2 cell format (GPIO number and flags). Any device can request a
+> controllers' 4th GPIO with active high output the exact same way for
+> all controllers. Interrupts on the other hand have providers with one,
+> two, and even three cells variations. There is no universal way to say
+> "I want this controller's 4th IRQ line with rising edge triggering".
+> These cells may need some level of indirection in the connector node
+> itself to handle variable cell counts/meanings.
+>
+> Where to store the add-on overlay source files. These are not specific
+> to any one board, nor even to one architecture. For now I put the
+> grove-sunlight-sensor.dtb in arch/arm64/boot/dts/ti but it needs a
+> better home acceptable by all boards.
+>
+> More testing, I currently have very few add-on boards to test with right
+> now (but I did just put some on order). Hopefully I can get some more
+> complex ones to really exercise this idea. Maybe a stack like the one
+> in the 4th image here[4], a RPi HAT that exposes a couple MikroBUS
+> connectors, that then have 4 Grove ports on that.
+>
+> This isn't perfect, but the Goals section should be applicable to any
+> solution, and the adapter overlay concept hopefully can be reused as
+> needed for whatever solution the community chooses.
+>
+> Thanks,
+> Andrew
+>
+> [0] https://lore.kernel.org/linux-arm-kernel/20240627-mikrobus-scratch-spi-v5-0-9e6c148bf5f0@beagleboard.org/
+> [1] https://wiki.seeedstudio.com/Grove_Base_Cape_for_BeagleBone_v2/
+> [2] https://wiki.seeedstudio.com/Grove_System/
+> [3] https://wiki.seeedstudio.com/Grove-Sunlight_Sensor/
+> [4] https://www.tindie.com/products/pmunts/mikrobus-grove-adapter-3/
+>
+> Andrew Davis (3):
+>    arm64: dts: ti: k3-am625-beagleplay: Add Grove connector pinmux
+>      options
+>    arm64: dts: ti: k3-am625-beagleplay: Add Grove connector adapter
+>      overlays
+>    arm64: dts: ti: grove: Add Grove Sunlight Sensor overlay
+>
+>   arch/arm64/boot/dts/ti/Makefile               |  5 +++
+>   .../boot/dts/ti/grove-sunlight-sensor.dtso    | 31 ++++++++++++++
+>   .../k3-am625-beagleplay-grove-connector0.dtso | 41 +++++++++++++++++++
+>   .../k3-am625-beagleplay-grove-connector1.dtso | 22 ++++++++++
+>   .../arm64/boot/dts/ti/k3-am625-beagleplay.dts | 32 +++++++++++----
+>   5 files changed, 124 insertions(+), 7 deletions(-)
+>   create mode 100644 arch/arm64/boot/dts/ti/grove-sunlight-sensor.dtso
+>   create mode 100644 arch/arm64/boot/dts/ti/k3-am625-beagleplay-grove-connector0.dtso
+>   create mode 100644 arch/arm64/boot/dts/ti/k3-am625-beagleplay-grove-connector1.dtso
+>
+Hi Andrew,
 
-NULL here is the length returned. Use that and just copy length/4 or 3
-cells, which ever is less.
 
-> +       addrsize =3D of_get_address_cells(device);
-> +
-> +       /* Prevent out-of-bounds read in case of longer interrupt parent =
-address size */
-> +       if (addr)
-> +               memcpy(addr_buf, addr, addrsize * sizeof(addrsize));
+Has there been any progress regarding this? I would be happy to help in 
+any way if it can speed up the process.
 
-I find sizeof(addrsize) a bit odd here as it just happens to match,
-but it's storage size isn't really related. I would do sizeof(__be32)
-instead. Though with the above changes, you'll probably have something
-like this:
 
-if (len > (3 * sizeof(__be32))
-    len =3D 3 * sizeof(__be32);
+Ayush Singh
 
-Rob
 
