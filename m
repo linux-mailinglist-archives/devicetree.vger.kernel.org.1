@@ -1,145 +1,153 @@
-Return-Path: <devicetree+bounces-92289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C0F594C9F1
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 07:57:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1A4294C9FF
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 08:00:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 493CA284029
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 05:57:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96B35289288
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 06:00:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BAF416C868;
-	Fri,  9 Aug 2024 05:57:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A95716C684;
+	Fri,  9 Aug 2024 05:59:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fCnPQp6e"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="WEZmWbwv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AA6616C861;
-	Fri,  9 Aug 2024 05:57:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 900542905
+	for <devicetree@vger.kernel.org>; Fri,  9 Aug 2024 05:59:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723183036; cv=none; b=PK4qHQMxOnajzZOSnjIDspO6SAb9kRZDpFfd+qZ5Il22Y+MPJ7Jt+3dXPSiuQ9u4g0iqojg9YSsE2Uk1iuIIiC1/n5Av0Ohrge1jc1mDEgyJxmpS58fmuPeEPJuaF1sbPnWynFlumyAEbQ5iNlKA7prujLHohOZcdw173QbqQvo=
+	t=1723183177; cv=none; b=MJpia31Ry86txv9wwV2xTrSr+OVbA6GmQm69fGPuIlCK2wbWGGQqb6WcOUqHi7AMuSR/mEb4977++Hs4tiwHEOVr41+hJOT4cb7BeGaI0HioM5k7U7TQ/EVXZSKNBI74TBaif/6gJcCWmYSTakf9xchrvaIuIYAgy3qSghzXsj4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723183036; c=relaxed/simple;
-	bh=/mWCZ3jkN279IwSE5nwXFBrY4GUZ536BaRUa5kC1WKM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=piTufU1HSw/lK3otWAItmGoO0/Gdg+Z4cNL+BP8aYLM7BDKeoezXKef3dY/ce7lEjIHv3MIQVM99Yt6RnlrDowNi7nuValcR8UbmRcHp4Di7V8tU3iRepG/mQik41N3OCyl9EOJVRLEtIsV5wlIAycC3APRZEYrQ3IpOYOJmGkM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fCnPQp6e; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAE71C32782;
-	Fri,  9 Aug 2024 05:57:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723183035;
-	bh=/mWCZ3jkN279IwSE5nwXFBrY4GUZ536BaRUa5kC1WKM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fCnPQp6ebMrRppXFcdm5yHd4Kl0hIbdF17oN1EP5bRGiel62BtwsuKjQXjU50011y
-	 h0SGjvB33A7WNQtIltrGlcUlrT7dRYFTp5ofco6SmvVlKNhpLa0aCyaFRMxj9Defnn
-	 rmxZBk5cnWWTwtW5Va+iuYIj1CX4bJsq9FsxQcrQmVjkXqGLwQzCw/4HvLqVaTJQSS
-	 wdnEk0oxO/EJAjSG79EPZvZ/JsLiHqD7lKVw5qu76lKjVqEJ8QFNMkwItHpMWeG4ej
-	 CbDpQY3af3gBjcn6C4iVqlJYwUsbX48VE47YtVcNrksjxzh7Z+FdIS7KN08H2u5zAF
-	 417cDvZrIqMew==
-Message-ID: <d52861ee-26a3-4673-8aae-9859d435f817@kernel.org>
-Date: Fri, 9 Aug 2024 07:57:05 +0200
+	s=arc-20240116; t=1723183177; c=relaxed/simple;
+	bh=IRJTj9W/vld/XNSGOfrnUGWvbNOA1LaKUOwG0fK+yaE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Cfk+PMabMKG8rgR+VFJfTBxUGYMWAyKpkC1D7nIffK4SIMS/qYH7W7M8ojjwDfTlQh8ry5qSGvhVAgzHtVdWjOpIdy7Yi2dwWnW1myM0QhEFocmBXQpTsTx3WtMrHqqwXrskzYKqEpAxr/5ehvOMVt8kkudxFS+bpRqR3606/ag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=WEZmWbwv; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 8803933a561411ef9a4e6796c666300c-20240809
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=DK3RG1xlccT5+i/2W06EzPdel3h2UwVh8rKWTqzIxxE=;
+	b=WEZmWbwvL5cpoQm9hgKjpo8kmieO1AfeZtKCcH3i+wg0OK8EXXajZCcJrahR7G4ppiqbPko1sbKXqLGMqb/84iA1Baj7tfjPbLfuZscZijIM+OqFWUjeiha8Rhe8BmBHaCAJNA4qIhHzawtjAlrvpELe9a1aXRj9zKqfe1VYn5w=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:62c3bdc8-e3d2-44cf-a3cf-287327b5257a,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:6dc6a47,CLOUDID:d7c0eb3e-6019-4002-9080-12f7f4711092,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 8803933a561411ef9a4e6796c666300c-20240809
+Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw01.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 2043850360; Fri, 09 Aug 2024 13:59:25 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Thu, 8 Aug 2024 22:59:26 -0700
+Received: from [172.21.84.99] (172.21.84.99) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
+ Transport; Fri, 9 Aug 2024 13:59:25 +0800
+Message-ID: <340d52e0-43b8-73db-7308-3ffbe4217419@mediatek.com>
+Date: Fri, 9 Aug 2024 13:59:23 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] tty: serial: 8250: Add loongson uart driver
- support
-To: =?UTF-8?B?6YOR6LGq5aiB?= <zhenghaowei@loongson.cn>,
- gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, chenhuacai@kernel.org,
- kernel@xen0n.name, p.zabel@pengutronix.de
-Cc: linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, loongarch@lists.linux.dev
-References: <20240804063834.70022-1-zhenghaowei@loongson.cn>
- <20240804063834.70022-2-zhenghaowei@loongson.cn>
- <84ff11bd-1d11-4d66-a56b-84bf915af346@kernel.org>
- <77b249fd-3cf7-4cb4-a2b4-64c0c2ba96fa@loongson.cn>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH] dt-bindings: regulator: mediatek,mt6397-regulator:
+ convert to YAML
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <77b249fd-3cf7-4cb4-a2b4-64c0c2ba96fa@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC: =?UTF-8?B?QmVhciBXYW5nICjokKnljp/mg5/lvrcp?= <bear.wang@mediatek.com>,
+	=?UTF-8?B?UGFibG8gU3VuICjlravmr5Pnv5Qp?= <pablo.sun@mediatek.com>, Macpaul
+ Lin <macpaul@gmail.com>, =?UTF-8?B?U2VuIENodSAo5YKo5qOuKQ==?=
+	<Sen.Chu@mediatek.com>, Conor Dooley <conor+dt@kernel.org>, AngeloGioacchino
+ Del Regno <angelogioacchino.delregno@collabora.com>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+	=?UTF-8?B?SmFzb24tY2ggQ2hlbiAo6Zmz5bu66LGqKQ==?=
+	<Jason-ch.Chen@mediatek.com>,
+	=?UTF-8?B?Q2hyaXMtcWogQ2hlbiAo6Zmz5aWH6YCyKQ==?=
+	<Chris-qj.Chen@mediatek.com>, Project_Global_Chrome_Upstream_Group
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai
+	<wenst@chromium.org>, Rob Herring <robh+dt@kernel.org>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>
+References: <20240806122507.2766-1-macpaul.lin@mediatek.com>
+ <dcc40975-93f6-440e-8887-7a40a0cb3898@linaro.org>
+ <31f7251a-7759-1260-7cb7-e239c9baa0a7@mediatek.com>
+ <ce5757c6-0bd9-47b9-b5f5-dd5a33953fdd@linaro.org>
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+In-Reply-To: <ce5757c6-0bd9-47b9-b5f5-dd5a33953fdd@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 07/08/2024 10:24, 郑豪威 wrote:
->>> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->>> +	if (!res)
->>> +		return -ENODEV;
->>> +
->>> +	port->membase = devm_ioremap(&pdev->dev, res->start, resource_size(res));
->>> +	if (!port->membase)
->>> +		return -ENOMEM;
->>> +
->> Use wrapper combining both calls.
+
+
+On 8/8/24 20:05, Krzysztof Kozlowski wrote:
+> 	
 > 
-> I got it, did you mean like this?
+> External email : Please do not click links or open attachments until you 
+> have verified the sender or the content.
 > 
-> +    res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +    if (!res)
-> +        return -ENODEV;
-> +
-> +    port->mapbase = res->start;
-> +    port->mapsize = resource_size(res);
-> +
-> +    port->membase = devm_ioremap(&pdev->dev, port->mapbase, port->mapsize);
-> +    if (!port->membase)
->   +       return -ENOMEM;
+> On 07/08/2024 12:32, Macpaul Lin wrote:
+>>>> +  - |
+>>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>>> +
+>>>> +    pwrap {
+>>>> +       pmic {
+>>>> +            compatible = "mediatek,mt6397";
+>>>
+>>> Messed indentation.
+>>>
+>>> Use 4 spaces for example indentation.
+>>>
+>>> Anyway, drop top node or better move the example to the parent device
+>>> schema making it complete.
+> 
+> Look at this comment. I asked you to move to the parent device schema...
+> 
+> Best regards,
+> Krzysztof
+> 
 
-I still see two calls, so how are they combined? Just open any other
-file and see how it is done there.
+I would like to ensure that the progress can be made step by step.
 
+Since I am not specifically responsible for this driver, I cannot 
+determine when I will be able to modify the next file after completing 
+one today.
+Will it be tomorrow? Perhaps in a few months?
+There is also the possibility that I might have to pause midway due to 
+other job assignments.
 
-Best regards,
-Krzysztof
+Additionally, I need to obtain approval from other internal colleagues.
+I am pleased to have received permission to modify 
+mfd/mediatek,mt6397.yaml the day after I submitted this conversion of 
+mt6397-regulator.
 
+I was intend to split the example parts of the patches into 3 parts 
+seprately, mt6397-regulator.yaml, mfd/mediatek,mt6397.yaml,i
+then moving the examples from mt6397-regulator.yaml to 
+mfd/mediatek,mt6397.yaml, move the content to parent device step by step.
+
+I will include the example part in next version patch in 
+mfd/mediatek,mt6397.yaml.
+
+Thanks for the reminder.
+Macpaul Lin
 
