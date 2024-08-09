@@ -1,63 +1,60 @@
-Return-Path: <devicetree+bounces-92448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C54594D2BF
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 16:57:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF08494D2C2
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 16:58:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 539B31F212C9
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 14:57:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A5F72819A7
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 14:58:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05B5D194A5C;
-	Fri,  9 Aug 2024 14:57:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E26B6197A65;
+	Fri,  9 Aug 2024 14:58:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JaRDrZOI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uVNxW0H1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFCBB1922CD;
-	Fri,  9 Aug 2024 14:57:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4ACC1922CD;
+	Fri,  9 Aug 2024 14:58:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723215447; cv=none; b=DxVS1NbsEWhlSyjokkjXPrHDv3mMSsrb3r3jlPE3UGYVAn4JZ4LZpY6HXebo5Y4EDHP/BLymWBF1Ar/YfPT+V7owKcYr9OdzrBYpuBYnn4kkqdUzc/k4Br9dD/Ink0wsngY77N9OLrXzLVUdsgpLE4mK7C08vUALoTsBS+Gqk4E=
+	t=1723215523; cv=none; b=Rj9JQz78Js8iauUDqrDJgEhurHxGEZzZJA4FTK9FK0mUGjy2+biCDa+5u7co5UHbboEbg3P+VnAZBDu965TEviJce0Ws85pysM9Q55srA+Ehsvr+NZKuEsVzGRDlq5o3rb+5BvU52JJ5PGK4YgAXsP/bY1+FlOMaTTP964a57bY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723215447; c=relaxed/simple;
-	bh=4R4KKGn2NxfICr7QhCZSDNk9DiWF5xBj9zur1+8jo88=;
+	s=arc-20240116; t=1723215523; c=relaxed/simple;
+	bh=W+v4wrSUeGDlZUZEjMy11Jb5n3u1Du3XmL5UwfrGBRs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pbESxou9QxSQ7B0Au7xbQOdDPS2wpQDiUZDcwOjrBqveTTftXgTwbUPQXFOkK+7QfiL86P3aS8qVhkQIZ8qC5iqoDRCArbarETT0TGNSPjEX89RXFm7C5b9IlHsyxrUm+4c5tZ++xpv36qVV9uGVaEIHWvWtj12zRt0IElsXvp8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JaRDrZOI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0453DC32782;
-	Fri,  9 Aug 2024 14:57:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=nHiuwd/e8C3ar0jLuagY4ySvTVrHW0zEGFj+wc6SWqB9r3+hfNr30o/ARub+ioAf8BaFuLFgVql4LrI7fq9lsAQYzllZRDxFLMYKl95+HwraaleQu60iMFmLRZWp1kbMy5me4HiSPPzsxEhg3cJ1ep+EtPU9RrX90hCgJwftF3E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uVNxW0H1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEDA9C32782;
+	Fri,  9 Aug 2024 14:58:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723215447;
-	bh=4R4KKGn2NxfICr7QhCZSDNk9DiWF5xBj9zur1+8jo88=;
+	s=k20201202; t=1723215523;
+	bh=W+v4wrSUeGDlZUZEjMy11Jb5n3u1Du3XmL5UwfrGBRs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JaRDrZOIPLi0YGLznowFlch5ly9OEAzEwIqVenI88eKSPOMRFgDnYJO4twVfCN96s
-	 Uo07xbv8E3L7VIskARFQo62HM6diZXNQXm1g1IQjEMXCzJPyo4O8ojWU02CBO12nPO
-	 /MmjdgAc7ldcVl6TuxkMgVgwPuCB6elIlIvhf8pudxG0GCi9RrWIYouCW4Bhd9poG/
-	 2T0fvUOljQ2biWHPsyBE0qXpsKlxDzgOr+vRYh1G/Bjahq4AWV2xFH1N8ZeUQXsYWX
-	 W8R+x+xAtkCUYgbNMZawkc3PGwBB85oOmlDNkGHa1Uf5jCeQh+bpbCWYu/i/eQ3eXu
-	 P7IyVTaF3AQ6w==
-Date: Fri, 9 Aug 2024 15:57:22 +0100
+	b=uVNxW0H1xtRfIhdI8UdBCcFYaGM/XaDwi+wc3nyxx2J1u15ASXU8GJbwYSHcqVMG7
+	 YRDQmTrZtjOVgzn1aoAzoqrgZdbcT3YJr9hwiaGVNy1McfyrUkLNtbTVUgp38QW5Xj
+	 WTUDRWd9zMx2rJAAgTu8tKbtsNbJxFd2kb4cVALqil/nhlS2XqUifN3JiuPUgBn1DK
+	 xXbQfSYAK4TmsEWVd91paTLR7cqAV0A6k6YXqA9mSImfUTDFyvxd3DwC/5WloNga0L
+	 /tYOo0R7YO+vVQUi+BKY8vJopZzbjTDMU83UUqdCJyCqA57USI0K1hMzswkFORi10M
+	 ak5ix1zApADNg==
+Date: Fri, 9 Aug 2024 15:58:38 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Ilya Orazov <ilordash02@gmail.com>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
+To: Detlev Casanova <detlev.casanova@collabora.com>
+Cc: linux-kernel@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Aswath Govindraju <a-govindraju@ti.com>,
-	Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/1] dt-bindings: phy: ti,tcan104x-can: Document
- Microchip ATA6561
-Message-ID: <20240809-guru-tassel-84a14486a596@spud>
-References: <56a52c81-68de-438d-94ae-9decc799d824@kernel.org>
- <20240808191735.1483572-1-ilordash02@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: Add rk3576 pinctrl bindings
+Message-ID: <20240809-dexterity-attention-8376b3b16d59@spud>
+References: <20240808164132.81306-1-detlev.casanova@collabora.com>
+ <20240808164132.81306-2-detlev.casanova@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,40 +62,68 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Z9RnOkapWi2cVpnp"
+	protocol="application/pgp-signature"; boundary="NTIMqCo6A5o+i6Gx"
 Content-Disposition: inline
-In-Reply-To: <20240808191735.1483572-1-ilordash02@gmail.com>
+In-Reply-To: <20240808164132.81306-2-detlev.casanova@collabora.com>
 
 
---Z9RnOkapWi2cVpnp
+--NTIMqCo6A5o+i6Gx
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 08, 2024 at 10:17:35PM +0300, Ilya Orazov wrote:
-> Microchip ATA6561 is High-Speed CAN Transceiver with Standby Mode.
-> It is pin-compatible with TI TCAN1042 and has a compatible programming
-> model, therefore use ti,tcan1042 as fallback compatible.
+On Thu, Aug 08, 2024 at 12:39:55PM -0400, Detlev Casanova wrote:
+> Add the compatible string as well as the optional rockchip,sys-grf field.
+
+Optional for all rockchip devices supported by this binding, or just the
+one you're adding?
+
 >=20
-> Signed-off-by: Ilya Orazov <ilordash02@gmail.com>
+> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
 > ---
+>  .../devicetree/bindings/pinctrl/rockchip,pinctrl.yaml      | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.y=
+aml b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
+> index 20e806dce1ecb..cd527ccc9e6bf 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
+> @@ -45,6 +45,7 @@ properties:
+>        - rockchip,rk3368-pinctrl
+>        - rockchip,rk3399-pinctrl
+>        - rockchip,rk3568-pinctrl
+> +      - rockchip,rk3576-pinctrl
+>        - rockchip,rk3588-pinctrl
+>        - rockchip,rv1108-pinctrl
+>        - rockchip,rv1126-pinctrl
+> @@ -54,6 +55,12 @@ properties:
+>      description:
+>        The phandle of the syscon node for the GRF registers.
+> =20
+> +  rockchip,sys-grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      The phandle of the syscon node for the SYS GRF registers.
+> +      It is used for i3c software controlled weak pull-up.
+> +
+>    rockchip,pmu:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>      description:
+> --=20
+> 2.46.0
+>=20
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-btw, please don't send new versions as a reply to existing ones, it's a
-shortcut to getting lost in deep mailboxes that sort by thread (or as I
-almost did here, deletion of the mail without reading it).
-
---Z9RnOkapWi2cVpnp
+--NTIMqCo6A5o+i6Gx
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrYuUgAKCRB4tDGHoIJi
-0oVmAQD8Uap0l7TMY5aZAVoZiOEmVvtoe4eohtWFtQiBT7YazQD+MAqeHGP2ntUa
-S2D7wGaioo1h4pc9Qw7vK53R5JN2jwk=
-=+82K
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrYungAKCRB4tDGHoIJi
+0nHaAP97YtyynX04rf7zjtP4R+W6GITXm4Z/bA+EUh7qE0LelAD/XAhb9Evq/dMo
+JaxOvTgiuv4ijt9tTIRbnqisL776IQ4=
+=FkCm
 -----END PGP SIGNATURE-----
 
---Z9RnOkapWi2cVpnp--
+--NTIMqCo6A5o+i6Gx--
 
