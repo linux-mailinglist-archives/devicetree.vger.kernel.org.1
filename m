@@ -1,197 +1,143 @@
-Return-Path: <devicetree+bounces-92342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C468B94CCED
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 11:08:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11AEF94CCF3
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 11:09:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8E251C20B2A
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 09:08:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 442281C20DBD
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 09:09:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8565D18FDC5;
-	Fri,  9 Aug 2024 09:08:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3AFF18FDDB;
+	Fri,  9 Aug 2024 09:09:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="L6H7IMr/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KNJ4Qv8i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A328516CD23
-	for <devicetree@vger.kernel.org>; Fri,  9 Aug 2024 09:08:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE6FDBA41;
+	Fri,  9 Aug 2024 09:09:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723194482; cv=none; b=fdvklUtehlIqsap/MXnHgB6vvjo16ZwiUpxwVbPDvp0HaLYK9vVqDQUt0Q7YbQ9u14jSzNNelYw9Fvnvfp+wIuEGArMfZrOERAYcQ90IS/aOpXQrD2+NaNlAoRY61ON2cz2jdt8AAZYflKBZkejIBacLRm3z17bnEe4SJeNSReM=
+	t=1723194553; cv=none; b=RGjErrW6w1rxPVJei+zr5mElvjr22mOeJMoaPCOlMLpF4lXEw2N4Sr/T05OUrHR1FgFAi8H1hbyt4ZcWy+v5UBwjg5g3PZy3duF18S6wXrtqGWy4dAt/QkQRP134dJ0/wCTc3ZVtKCHkDwkNMkftb8P+zHuSMJz64m43WXMCHaU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723194482; c=relaxed/simple;
-	bh=xIqKlPFTBOJ+6voM4SrfjSL0L9WwiYk4J/CQwLdYuIE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pTWvD4RUo+Q8pKNOB29GvMqUCaj0FCtZuwKJaonVrDo+YPdQWAXzRMV9R+2IpCQYlKIDheDLiirijtIeG0iRZvx6kSkx9wk/NV3qNtSmiuXiUNHjANcwf/CC9N0xCdw7CTSSNaZ99OzoiB4YWfTlJ7FLeCo+aS103hEBWKpQxu8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=L6H7IMr/; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a7aada2358fso451996566b.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2024 02:08:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723194479; x=1723799279; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=B7RTNFF0UhhRSGM9SKE+tATW/EB8i2VcQtdYWBx4S0Y=;
-        b=L6H7IMr/z4a3LgmHLmRSn5Ss8ObViO7bYJqmFwENJYtuIJCRwOMqFCEnzBBuZmGMPH
-         yMD9/ym8w/7/ob85FPE8yc+FzehnTHb10bZ9U+qMhduwvO+v8pwdELLwSMjVIBUvfHAp
-         TddU0PtdcMCGitU7QSrqRsYSCycLWVBH7kxo5LwIyQRqVIsWhsaOT8b26zPTu11/1bxG
-         OF+8KRnZAiYQrLJweCyDTcdDS1tLTrKPI7iVLsJhbWsTGIqVf9o6G8UGyntER38NpcfR
-         OtdxSvECq6JzWp1wmM6SN7d8aswAuSI/aPStoLjWEKgLM6aVfg2Xq0eaQ5x4oO0CQLDM
-         xn/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723194479; x=1723799279;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=B7RTNFF0UhhRSGM9SKE+tATW/EB8i2VcQtdYWBx4S0Y=;
-        b=NSHl14TMqMLo/KZBXZmf75i//CRJa5/9ET3KjYExdqs1ZB8p5KEm6NAkS29VKvsWV6
-         9hN+buFxuZWJGtAHUPwMZSVfKIsGertXA/a+lh1cEHY2FqhLbiiE2mrArTZbD92Zn3Db
-         WG/do92LyvCEWDGAPebvBcwq6Of3Yx4RR91/phLNb99o7ioLrmILtsMShsMH2qLmM22T
-         r+p56Xo7oNgk6EbuXCxYbR/Y4qxKmK/e57Y3MYcg9yDf00ubLqooyEhueaR6lyCmmHBS
-         SdbwGteVPBsFjZMd3IDTGJr6bEcVIc2ujA4FNJkaSdFFsogkYStff+mW45Zbdme/CG8U
-         xqcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVDe6HEKW7ld/1nPX7W21elUYmutsrmOpAw3xijy8gtc5WcU6dmP3prOXbBIPN8sXipW3yVdubgbT0VrI5zp8YgniKWb0Ch30Gnwg==
-X-Gm-Message-State: AOJu0YzSysZX6To8vyEKNUNhKBhw0PPG9LOo/jAs0U+e3UXWkP0J2aFn
-	0tMSLQi/7jcozcsT0AzCwhlRWuOGFU8U7njjbZ97JJSvopnxOPbZ5nB6GU03Sns=
-X-Google-Smtp-Source: AGHT+IGvhsQpUPKxCm1iJvnax5p0Tv9cMnpIDD0F666gPAGCWco4tbsfdWHtGRtszjZDAr/Ui59qDQ==
-X-Received: by 2002:a17:906:6a1f:b0:a7a:130e:fb6e with SMTP id a640c23a62f3a-a8091f1bdf7mr387496766b.15.1723194478853;
-        Fri, 09 Aug 2024 02:07:58 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff1f:b280:8395:bc08:2fce:1f21])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a7dc9d437a5sm818414866b.101.2024.08.09.02.07.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Aug 2024 02:07:58 -0700 (PDT)
-Date: Fri, 9 Aug 2024 11:07:56 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Konrad Dybcio <quic_kdybcio@quicinc.com>
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: Add support for X1-based Surface
- Laptop 7 devices
-Message-ID: <ZrXcbHWXPvVj-lQd@linaro.org>
-References: <20240809-topic-sl7-v1-0-2090433d8dfc@quicinc.com>
- <20240809-topic-sl7-v1-4-2090433d8dfc@quicinc.com>
+	s=arc-20240116; t=1723194553; c=relaxed/simple;
+	bh=8F+U+x1mvFtKL4/ZAPGlrPvUP/5LUuIcLNeEnc7No3s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Ye0Tjy/B4Fcmpx5u8GyZfv2pi+VlpcqqX28mr+7qQ8zB0qSlcwdo3JI+1McdtqCt6bvoZWD762eitoAxJ94IJLVWckIVq3quHdvWrQ0rNyABOtSAKexnf7gZ/Rhh7Sg3P8j82JTX8rya/hkpzWF1Uk9IlZhWsACmdgjEKxEAbG4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KNJ4Qv8i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E68FAC32782;
+	Fri,  9 Aug 2024 09:09:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723194553;
+	bh=8F+U+x1mvFtKL4/ZAPGlrPvUP/5LUuIcLNeEnc7No3s=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=KNJ4Qv8is7P0Tc27wX2TJEyR+S2Avy1xlpIih6PMXp5pbZf1irVNP2qx/RkIZvdX+
+	 Shpq00WOWo6ZOa1sDUZ6mU1sMwqRRjnAzr6UMB2s5UTAqLK0N79ichMOVpsaZ2h/9/
+	 OIhFTcbU+9pGUauofjnNO13fjFYpztuUznSg7HU7gpd2AUDdwf5MLftHMvQgQpSO+6
+	 a0eLlzAOxUCHYZQE60l1L+7sTkio35/YnQx+TOEOS2uNvhSLeuGpXTytzCG37xUcdk
+	 tgONcWa2ug1ckPKQHPvH/4P+/RfLyq8mKwzstGZ3BLOn2dAqg79K5h6KNwcZLySjbS
+	 GDk94Mfi6k/7w==
+Message-ID: <e8a24709-de96-4d09-ba00-1e084a656c68@kernel.org>
+Date: Fri, 9 Aug 2024 11:09:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240809-topic-sl7-v1-4-2090433d8dfc@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] ASoC: dt-bindings: qcom,sm8250: Add generic QCM6490
+ sound card
+To: Luca Weiss <luca.weiss@fairphone.com>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240809-fp5-dp-sound-v1-0-d7ba2c24f6b9@fairphone.com>
+ <20240809-fp5-dp-sound-v1-1-d7ba2c24f6b9@fairphone.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240809-fp5-dp-sound-v1-1-d7ba2c24f6b9@fairphone.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Aug 09, 2024 at 03:43:23AM +0200, Konrad Dybcio wrote:
-> From: Konrad Dybcio <quic_kdybcio@quicinc.com>
+On 09/08/2024 10:33, Luca Weiss wrote:
+> Document the bindings for the Qualcomm QCM6490 sound card.
 > 
-> Add support for Surface Laptop 7 machines, based on X1E80100.
-> 
-> The feature status is mostly on par with other X Elite machines,
-> notably lacking:
-> 
-> - USB-A and probably USB-over-Surface-connector
-> - SD card reader (Realtek RTS5261 connected over PCIe)
-> - Touchscreen and touchpad support (hid-over-SPI [1])
-> - Keyboard support (low-hanging fruit, works with pending Surface EC
->   changes)
-> - Audio (a quick look suggests the setup is very close to the one in
->   X1E CRD)
-> 
-> The two Surface Laptop 7 SKUs (13.8" and 15") only have very minor
-> differences, amounting close to none on the software side. Even the
-> MBN firmware files and ACPI tables are shared between the two machines.
-> 
-> With that in mind, support is added for both, although only the larger
-> one was physically tested. Display differences will be taken care of
-> through fused-in EDID and other matters should be solved within the
-> EC and boot firmware.
-> 
-> [1] https://www.microsoft.com/en-us/download/details.aspx?id=103325
-> 
-> Signed-off-by: Konrad Dybcio <quic_kdybcio@quicinc.com>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 > ---
->  arch/arm64/boot/dts/qcom/Makefile                  |   2 +
->  .../boot/dts/qcom/x1e80100-microsoft-romulus.dtsi  | 818 +++++++++++++++++++++
->  .../boot/dts/qcom/x1e80100-microsoft-romulus13.dts |  13 +
->  .../boot/dts/qcom/x1e80100-microsoft-romulus15.dts |  13 +
->  arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi       |   8 +
->  5 files changed, 854 insertions(+)
+>  Documentation/devicetree/bindings/sound/qcom,sm8250.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index e534442620a1..820b768cdb71 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -270,4 +270,6 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-qrd.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-asus-vivobook-s15.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-crd.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-lenovo-yoga-slim7x.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-microsoft-romulus13.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-microsoft-romulus15.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-qcp.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
-> new file mode 100644
-> index 000000000000..3f6d4b93db50
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
-> @@ -0,0 +1,818 @@
-> [...]
-> +	backlight: backlight {
-> +		compatible = "pwm-backlight";
-> +		pwms = <&pmk8550_pwm 0 5000000>;
-> +		enable-gpios = <&pmc8380_3_gpios 4 GPIO_ACTIVE_HIGH>;
-> +		/* TODO: power-supply? */
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+> index c9076dcd44c1..0a31be6d917f 100644
+> --- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+> +++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+> @@ -31,6 +31,7 @@ properties:
+>            - qcom,apq8096-sndcard
+>            - qcom,msm8916-qdsp6-sndcard
+>            - qcom,qcm6490-idp-sndcard
+> +          - qcom,qcm6490-sndcard
 
-There seems to be something at <&pmc8380_3_gpios 10>, any idea what?
+I think it would be better to make it a board-compatible and also
+followed by qcom,qcm6490-idp-sndcard fallback, thus no need for driver
+changes.
 
-> [...]
-> +&pmk8550_gpios {
-> +	edp_bl_pwm: edp-bl-pwm-state {
-> +		pins = "gpio5";
-> +		function = "func3";
+Best regards,
+Krzysztof
 
-Can you add the power-source here to make this more complete?
-
-> +	};
-> +
-> [...]
-> +
-> +&uart2 {
-> +	status = "okay";
-> +};
-
-Any idea what this UART is used for?
-
-> [...]
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi b/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
-> index a5ca0fa4e5ae..5b54ee79f048 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
-> @@ -249,6 +249,14 @@ pmk8550_gpios: gpio@8800 {
->  			interrupt-controller;
->  			#interrupt-cells = <2>;
->  		};
-> +
-> +		pmk8550_pwm: pwm {
-> +			compatible = "qcom,pmk8550-pwm";
-> +
-> +			#pwm-cells = <2>;
-> +
-> +			status = "disabled";
-> +		};
-
-I don't mind personally but usually we would have this non-device
-addition in a separate patch. :-)
-
-Thanks,
-Stephan
 
