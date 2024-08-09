@@ -1,137 +1,106 @@
-Return-Path: <devicetree+bounces-92241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7077D94C7A5
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 02:35:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9908C94C7B8
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 02:43:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1703B1F2282B
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 00:35:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9CEA1C22045
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 00:43:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2001D2905;
-	Fri,  9 Aug 2024 00:35:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 964B133C0;
+	Fri,  9 Aug 2024 00:43:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="edXVeSU/"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="hBh9GhVx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m1826.xmail.ntesmail.com (mail-m1826.xmail.ntesmail.com [45.195.18.26])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D77CB79D0;
-	Fri,  9 Aug 2024 00:35:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.195.18.26
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E60C42581;
+	Fri,  9 Aug 2024 00:43:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723163705; cv=none; b=k60yHEWXzU9SJb6pSeSPkU+lVh03JBWtqHMHCe3Ue2IebxPaEv+Ibd9MkT5qUfzM+fls8muelJhcsVTZNErn91tvzY8r1WaXTCZxNrfCtacql0x2N+GVOwyC1vckNANCJttINTczt01j1Ls6ji5sqow/v3ZgU2sqQNWQ7TprVc8=
+	t=1723164225; cv=none; b=r73HTHSlz3SjbFZwl1VpDWGKDz9MMpSp83fv3VxnqgejFdnbk+DB3J1Ev5kY2NlacJTx0xlnIDnw/jAzBz5WTBLhRIXThkNhu4irYOwQwh/rI+kVAmEMLfAiyERg2VvuYfjN9PLICumVRC6r5eJeunAIJ3Pq3Kl9AM9KNCZLP50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723163705; c=relaxed/simple;
-	bh=NOUA8uBOnVyXK1muBe0S1GGnrSoVftaHERh6PrFYKO0=;
-	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=nHrQjI0NtADmlWv2TfcP6CNlKhXH+DvAylOwV+646tUCzPIVNrAebSUK2lbV3DA4Gh4F5Oxi+zv74U9GL0xCNLSsUbxTIWHfe3RKKqHGWcr2DS/eCHn6aUOa4b2y6FFoXUcw3pCjqm6P3EJv5d1cikT5qlR+xlOBnKDwdNMTmbg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=edXVeSU/; arc=none smtp.client-ip=45.195.18.26
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-DKIM-Signature: a=rsa-sha256;
-	b=edXVeSU/tlo0ib3//1REPLrCrGzPmMGAbJm3CAlzPZhvvjtYXdpURz6fzWJRqREK209rGKFl4Mnfknvt4rURR71c6gbI97NTm64sCSnBJLfCptEdKn/b/XaPbkfgyt40oaizOpr81o53CLWEUmp/dczw5VCDwwFNDGDv8Go4JX4=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=0psmqwAZQghCEzaJP7VMmOIMVcUsXtkRYcmJbJCNZ2Q=;
-	h=date:mime-version:subject:message-id:from;
-Received: from [172.16.12.69] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTPA id EE3AE4601EB;
-	Fri,  9 Aug 2024 08:33:56 +0800 (CST)
-Message-ID: <009a9eb8-ff0f-4d77-8ff9-d54b92be5f0d@rock-chips.com>
-Date: Fri, 9 Aug 2024 08:33:56 +0800
+	s=arc-20240116; t=1723164225; c=relaxed/simple;
+	bh=QBUgzL2iucKl1TnT6FfATwz95F4EDBQ7+96Hm7lyJUw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=VlrsinV2N+PUbIM48e5/Z8nDeMWjG736Vfyhv5aVrBi5gOzi/1VukMS84weUuFcuAZyE7D6lnhYkaoytBOGDGUoxYGYgZurpRYlF9pf6r4ePOSuQ9LvuZWq5/pUq/ecXmmqlDXQosnJUWN3tb1rT2x8ug6rMeczeR3BJI2BtOYk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=hBh9GhVx; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1723164223; x=1754700223;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=QBUgzL2iucKl1TnT6FfATwz95F4EDBQ7+96Hm7lyJUw=;
+  b=hBh9GhVxKU9L03RJD3R5HioOanoj4k/hMNQRUi2eb7CHjj7KhuWzRUsg
+   Vhr7QYh81cNEIMRZ32EtNyVEk6yUpmBMhrBnRHSXzUkcvPcLdnY7t0kf0
+   /8lBmxWNSeo3wOa9rOKg4jeSWij6pT362K1id43Pmuo0kVoLRbz4ZaBFk
+   B0f/cFYixxc1m+J2gSy8AEab50W5+/YGVXIsl8Mlvqze4wYdD2Rdjddc0
+   8daLYu2ClpL/fjodujQGWQduir4DFBRcod3zXMpCuCXSFONLa7sSiBNXG
+   fOhlumJQcHYQa8lnXomdquHrRZN4ixW1BVgwxk5OtlY//7vIU36Dohkhn
+   A==;
+X-CSE-ConnectionGUID: +8j0qFodS5iV1GC4lWtiSA==
+X-CSE-MsgGUID: jw+k7P0ST9irEpusffZIVw==
+X-IronPort-AV: E=Sophos;i="6.09,274,1716274800"; 
+   d="scan'208";a="30947688"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 08 Aug 2024 17:43:41 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 8 Aug 2024 17:43:11 -0700
+Received: from pop-os.microchip.com (10.10.85.11) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Thu, 8 Aug 2024 17:43:10 -0700
+From: <Tristram.Ha@microchip.com>
+To: Woojung Huh <woojung.huh@microchip.com>, <UNGLinuxDriver@microchip.com>,
+	<devicetree@vger.kernel.org>, Andrew Lunn <andrew@lunn.ch>, Florian Fainelli
+	<f.fainelli@gmail.com>, Vladimir Oltean <olteanv@gmail.com>
+CC: Oleksij Rempel <o.rempel@pengutronix.de>, "David S. Miller"
+	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Marek Vasut <marex@denx.de>, <netdev@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Tristram Ha <tristram.ha@microchip.com>
+Subject: [PATCH net-next v2 0/2] net: dsa: microchip: Add KSZ8895/KSZ8864 switch support
+Date: Thu, 8 Aug 2024 17:43:08 -0700
+Message-ID: <20240809004310.239242-1-Tristram.Ha@microchip.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: shawn.lin@rock-chips.com,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Heiko Stuebner <heiko@sntech.de>, Alim Akhtar <alim.akhtar@samsung.com>,
- Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>,
- YiFeng Zhao <zyf@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
- linux-scsi@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: ufs: Document Rockchip UFS host
- controller
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- "James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
- "Martin K . Petersen" <martin.petersen@oracle.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-References: <1723089163-28983-1-git-send-email-shawn.lin@rock-chips.com>
- <1723089163-28983-3-git-send-email-shawn.lin@rock-chips.com>
- <a4f8059f-efe0-4874-8746-24e4cf9b9e89@kernel.org>
-Content-Language: en-GB
-From: Shawn Lin <shawn.lin@rock-chips.com>
-In-Reply-To: <a4f8059f-efe0-4874-8746-24e4cf9b9e89@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGRhPQ1ZJS0MYQkoYT0tKQhlWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
-	NVSktLVUpCS0tZBg++
-X-HM-Tid: 0a91348e790003aekunmee3ae4601eb
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Mxg6LQw*MjI9HwlNDyEZIRUU
-	M0wKFAlVSlVKTElISk1ITUhDT0xOVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
-	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQU9PTEw3Bg++
+Content-Type: text/plain
 
-Hi Krzysztof
+From: Tristram Ha <tristram.ha@microchip.com>
 
-在 2024/8/8 18:34, Krzysztof Kozlowski 写道:
-> On 08/08/2024 05:52, Shawn Lin wrote:
->> Document Rockchip UFS host controller for RK3576 SoC.
->>
->> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
->>
->> ---
->>
->> Changes in v2:
->> - renmae file name
->> - fix all errors and pass the dt_binding_check:
->>    make dt_binding_check DT_SCHEMA_FILES=rockchip,rk3576-ufs.yaml
-> 
-> 
-> You did much more. Some properties appeared which were here not
-> before... The way you send patches makes it difficult to review. Look:
-> 
+This series of patches is to add KSZ8895/KSZ8864 switch support to the
+KSZ DSA driver.
 
-Yes, will update full changelog next version.
+v2
+- Add maintainers for devicetree
 
-> b4 diff '<1723089163-28983-3-git-send-email-shawn.lin@rock-chips.com>'
-> Grabbing thread from
-> lore.kernel.org/all/1723089163-28983-3-git-send-email-shawn.lin@rock-chips.com/t.mbox.gz
-> Checking for older revisions
-> Grabbing search results from lore.kernel.org
->    Added from v1: 4 patches
-> ---
-> Analyzing 18 messages in the thread
-> WARNING: duplicate messages found at index 2
->     Subject 1: dt-bindings: ufs: Document Rockchip UFS host controller
->     Subject 2: dt-bindings: ufs: Document Rockchip UFS host controller
->    2 is not a reply... assume additional patch
-> Looking for additional code-review trailers on lore.kernel.org
-> Analyzing 0 code-review messages
-> Preparing fake-am for v1: Init support for RK3576 UFS controller
->    range: e86f0d80765d..3ae8e722f6ab
-> Preparing fake-am for v2: scsi: ufs: core: Export
-> ufshcd_dme_link_startup() helper
-> ERROR: v2 series incomplete; unable to create a fake-am range
-> ---
-> Could not create fake-am range for upper series v2
-> 
-> 
-> So how can we handle it? Your job is to use standard process so life of
-> reviewers is not more difficult than it should be.
-> 
-> Provide FULL CHANGELOG with explanation what happened here.
+Tristram Ha (2):
+  dt-bindings: net: dsa: microchip: Add KSZ8895/KSZ8864 switch support
+  net: dsa: microchip: Add KSZ8895/KSZ8864 switch support
 
-Sorry for that. I'll improve them when the dependency is solved.
+ .../bindings/net/dsa/microchip,ksz.yaml       |   2 +
+ drivers/net/dsa/microchip/ksz8795.c           |  16 ++-
+ drivers/net/dsa/microchip/ksz_common.c        | 130 +++++++++++++++++-
+ drivers/net/dsa/microchip/ksz_common.h        |  20 ++-
+ drivers/net/dsa/microchip/ksz_spi.c           |  15 +-
+ include/linux/platform_data/microchip-ksz.h   |   2 +
+ 6 files changed, 172 insertions(+), 13 deletions(-)
 
-> 
-> Best regards,
-> Krzysztof
-> 
+-- 
+2.34.1
+
 
