@@ -1,131 +1,118 @@
-Return-Path: <devicetree+bounces-92347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91F4A94CD0F
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 11:14:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69A7694CD1B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 11:16:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C34C91C2098C
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 09:14:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 832D31C21044
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 09:16:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D1C719005B;
-	Fri,  9 Aug 2024 09:13:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k2tEjU2O"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0512191F63;
+	Fri,  9 Aug 2024 09:16:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36EC118F2E8;
-	Fri,  9 Aug 2024 09:13:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2637F1917ED
+	for <devicetree@vger.kernel.org>; Fri,  9 Aug 2024 09:16:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723194837; cv=none; b=ENmFcOwIAILZL34MpEjtr6gp8+mAYlgZvyYaC+ha9v2wJ18R90Zl+1U6ZJCdOILQePsL5zVRmOsAiILHwcMwcTBPAz8ALQag3Gr47d1X+lKOPteBHFE4gxsUrsnZ7we5qeTbgAFfTiqhMCZtBUes3PuiF98LDkvtPnbSG/fXakU=
+	t=1723194992; cv=none; b=nfCIKca3gglV5LbaaO9A+yFIGT0rIVYqgBaE/VyzCC6k934hp0PeMsqB6wFU+zRuHEP+hqlEDbJx/QEulakv3saneZTDFFUgxYcHsJHZ1hHnuXn0MP72Xh+FCfs1DYezOmBkzWLtGfv9b2C9Fdri78Oq1BWyEiS7wQyYkg/779s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723194837; c=relaxed/simple;
-	bh=DrgvF3jdYq17Bjp4tBfE0jvpPuAdNsyX+C0M2ic2Pzg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GwzDYodI8bUAxkquHO5spiG8UT4p1LURXY04X66Je7Z/DwzCJ7cWxRE8kYSicnj/rWW0/ydxpAQHSHSttg0ncn56Q9fPtzi7pGYd6iSECD3E93Y66Nuz2ZMkL18Hi7LCIDWV8/VE8TaWFmojNWZhR6BjUCWkMS/fmDsrW6fKbJA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k2tEjU2O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2B86C32782;
-	Fri,  9 Aug 2024 09:13:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723194836;
-	bh=DrgvF3jdYq17Bjp4tBfE0jvpPuAdNsyX+C0M2ic2Pzg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=k2tEjU2OGo5Z432KlybmECKIhGbOMhElc8fGhQcjid4/re2DwjobCjO3H8+rCeZE+
-	 d+rjPW7tw6+DrwePLVC6kMemZDuKdJfXWO2tKSCRBi+OxYvh8t/0R5ssVkjeOIDpzE
-	 N0yxMWwf5CZJIwq4Wb4o2hywLSr5dqWLtNiQecxZzDPszdaoLvBYQ9IQq4pwhnYOyi
-	 5BiEpSj+xpDo0G5GD0gG2joq/leBMY+yipCUyOTOkCYkH4PxkthFAkrclK7Mh4dYZ6
-	 oogMXpswMrYS6KxTdvaYM/wUIOnBb2DNIQBcvsXmI8Mt+aJ5e6q5U13bF8CcNqYlX7
-	 ZjYv/tBoarKew==
-Message-ID: <2a4a994a-5a0b-4258-b012-73fd634917fa@kernel.org>
-Date: Fri, 9 Aug 2024 11:13:51 +0200
+	s=arc-20240116; t=1723194992; c=relaxed/simple;
+	bh=6EQvgFClGDzq0cWW+V/bMjO4oWxkEl2sZyTGFuRn6sw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=GvYLOImFnoQtrB9DP0ADZrt/fc15W/jEpTE9lNM2dAaj04APceUgf7jeBEiBBjUq47cxJK1s5fKZOixLF9txsLaYXIe/yA5iYj7EsNWombk26yJjTbbd9jT0w29GbIhuzQEqYtEBOF5UZEozRQs6Zr3z0r8505obAdtilWPHSto=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1scLjN-0002sf-7b; Fri, 09 Aug 2024 11:16:17 +0200
+Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1scLjM-005dEZ-2i; Fri, 09 Aug 2024 11:16:16 +0200
+Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1scLjM-00Epjg-01;
+	Fri, 09 Aug 2024 11:16:16 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: arm: stm32: Add compatible strings for Protonic boards
+Date: Fri,  9 Aug 2024 11:16:14 +0200
+Message-Id: <20240809091615.3535447-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] arm64: dts: freescale: imx8mp-phyboard-pollux: Add and
- enable TPM
-To: Benjamin Hahn <B.Hahn@phytec.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Teresa Remmet <t.remmet@phytec.de>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Peng Fan <peng.fan@nxp.com>
-References: <20240809-imx8mp-tpm-v3-1-c1cd80deff16@phytec.de>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240809-imx8mp-tpm-v3-1-c1cd80deff16@phytec.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 09/08/2024 11:02, Benjamin Hahn wrote:
-> Add support for TPM for phyBOARD Pollux.
-> 
-> Reviewed-by: Peng Fan <peng.fan@nxp.com>
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>
-> Signed-off-by: Benjamin Hahn <B.Hahn@phytec.de>
-> ---
-> Changes in v3:
-> - remove status okay for tpm node
-> - Link to v2: https://lore.kernel.org/r/20240807-imx8mp-tpm-v2-1-d43f1e8f70ac@phytec.de
+Add compatible strings for Protonic MECIO1r0 and MECT1S boards to the
+STM32MP151-based boards section and Protonic MECIO1r1 board to the
+STM32MP153-based boards section.
 
+MECIO1 is an I/O and motor control board used in blood sample analysis
+machines. MECT1S is a 1000Base-T1 switch for internal machine networks
+of blood sample analysis machines.
 
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+index 58099949e8f3a..703d4b574398d 100644
+--- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
++++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+@@ -54,6 +54,8 @@ properties:
+       - description: ST STM32MP151 based Boards
+         items:
+           - enum:
++              - prt,mecio1r0 # Protonic MECIO1r0
++              - prt,mect1s   # Protonic MECT1S
+               - prt,prtt1a   # Protonic PRTT1A
+               - prt,prtt1c   # Protonic PRTT1C
+               - prt,prtt1s   # Protonic PRTT1S
+@@ -71,6 +73,12 @@ properties:
+           - const: dh,stm32mp151a-dhcor-som
+           - const: st,stm32mp151
+ 
++      - description: ST STM32MP153 based Boards
++        items:
++          - enum:
++              - prt,mecio1r1   # Protonic MECIO1r1
++          - const: st,stm32mp153
++
+       - description: DH STM32MP153 DHCOM SoM based Boards
+         items:
+           - const: dh,stm32mp153c-dhcom-drc02
+-- 
+2.39.2
 
 
