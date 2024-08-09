@@ -1,126 +1,94 @@
-Return-Path: <devicetree+bounces-92315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD9E794CAE4
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 09:03:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4F3294CAEE
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 09:06:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 73EE51F2657C
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 07:03:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4F51BB21413
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 07:06:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFE9216C440;
-	Fri,  9 Aug 2024 07:03:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DE0316D338;
+	Fri,  9 Aug 2024 07:06:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W77Cw5OG"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="VGjNi0Fr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 840432905;
-	Fri,  9 Aug 2024 07:03:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D426A2905;
+	Fri,  9 Aug 2024 07:06:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723186982; cv=none; b=g4lATok42Dj35tAFhFkgT3Ld19zlmpFa7Fgu2MIRY8hF2xgEGomx3Gd/LQX+Efct3ZVBBQhgFG7N3XK7l7R9xqhCjq11EY0mkpSIW7aM6QDHeMrP74ot1L++GcHHVUC/bktwM0KrDyzPayXkGHGptUPs3wtOtRTG/k7+EpU2Uvg=
+	t=1723187168; cv=none; b=bzH+J2mO+xd5tSehSa3R97HdLva/hLW7M/rSGYqUvN6/ZYGlQUWI8At55TD6hI8MGOuA5K8c5rwdTA8VH1gujLw3G0UuUMPSZdQJyKJaMO6zKr0Z0sg7kjeLDiyNRBvlOLSwiMgvQrNlonZq7/jf/hobLZHtYQeFxXBLzmwsAZ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723186982; c=relaxed/simple;
-	bh=k4x5T0MieqJ09ZNfbjNF9VKFJcCuwoT1Sorug5O3vUE=;
-	h=From:To:Subject:Date:Message-Id:MIME-Version; b=Y+DPbYHQs/t9eNcG88vWsNS2PErX3Z+W8RuRxvd1tiaGb+ws4HQRUc5HdD6UYei6UqJIXBzoJBHP1GzSrcNA7VUfM2BuiDsBKKYahtYM0ujgIxZxuFLU3IFeNkFn7OtZD/T7raWimKdprToq1cc3Q3+sDxHM5vBC1gwX+bWtK+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W77Cw5OG; arc=none smtp.client-ip=209.85.216.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2cb55418470so1510926a91.1;
-        Fri, 09 Aug 2024 00:03:01 -0700 (PDT)
+	s=arc-20240116; t=1723187168; c=relaxed/simple;
+	bh=8NzGtQEk1djIjdQwNEp9FntFkkxEYN7OgLvWBCDKTNw=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=o4eRdDtVP+FiGqbsgjrj4apvoWb54wUXevWro7mofFOEUcOVCOWdZmV3FA8/EEVgiKRR5jVaC5NWlwbQMYi0qqghrj4T90KcNJ9FIwCmRr4/gmXxEVJjldZBtKARnUugNYyM6GCT1jrW/T+PpNWfhVHhhYNhQGtwuv1oCjUqBSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=VGjNi0Fr; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723186981; x=1723791781; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=0BfdVbYhSOGX9L5+SEe9oTBYxIcSn2KcXGJDrTLXXyg=;
-        b=W77Cw5OGNVbMNEtsPBxBltXqU7VG7MMaiM9dEKuQ4zDTyuISyDnbc2vQITHB4CEpRR
-         NHo8uyJWE9y/o/vPB4zjDSIoT4dlz/bg3FYdVFABs+98f/zcFuMIcbZ7lKD6YLzZkTtC
-         PqfhYG6YvWke0UG3IjwLfksiw8/q1+jstu+68IZfeAr9+oEkvtFdm3lCQY3knCvL1vPQ
-         jo5+d39Rd/yvnqeluI3BPpa/SMYUEAk+7gCtUdAMrKdDQyZYWC/QM8e6kirD4r9Fv9Pd
-         YVCHrhtnZjZU/YMxiSEff9nTOTMl+xlj4ObjqzFxUG/o89Qwx7XUAcKOi5CIqcMXP6lm
-         wIaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723186981; x=1723791781;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0BfdVbYhSOGX9L5+SEe9oTBYxIcSn2KcXGJDrTLXXyg=;
-        b=p6nHuvygxrNsaluzEEDhJLEQxioxXKTZ2Hg3gyVWlQfnlmMIER7PpVjB176Fu1qVPg
-         39PVfUQTRYWkibiy8Iz0dBIUDhSITaQngdaCwbsZbwhz0DKJrhU3fqJTKsr2nLRMN7ps
-         zl+OSfxilI529OfFjG0Y3dmK8lOgpLihIUbYF0B9HdZaXBKrFdeWpU4fZ0yGFJccsd5/
-         9p4vf3q6lUGLeyQedCFLq776HdUnbV0a30uhOdju8oOoa5Ji3PSmFW09N0b+A0slO+Mx
-         7gZALzBKnUv9RUdLDkzmdgsOPs0zaCzNS0GbxXZk57aIbE4Bc2SW6lPFpYdxZCPBxiqu
-         GDVg==
-X-Forwarded-Encrypted: i=1; AJvYcCXN/OaXF5IQOoxEe7zCf90JIK1AqxOzihPEkVbm1PpND0s5rYYxL3c6mxWgMaUIOutX3FbEp7Ok4pel@vger.kernel.org, AJvYcCXaMwaurZXsv13aKh75CF3Z4l/AM+lF3vmm0WrF0FeIgjK0uEz0ShyptwyQ6zJEPy8OVtSskAaoepAlXedR@vger.kernel.org
-X-Gm-Message-State: AOJu0YwpbLH2myJPOKEIrP4st5lisXpdnHn36vg9ZiqVqnoPeRFVhBxE
-	emAI3MeEO2x91aDe22F+h3MgwyNcX9Oh+dPHd/S8H9ePyO76gD4t
-X-Google-Smtp-Source: AGHT+IGmu1//tWp7p2kQUU5NMHo6xEX7ajfRCrdddMTpWCuQHzziAjeVwc1F4ZUZWh9IwhcZE02ZxA==
-X-Received: by 2002:a17:90b:4b0d:b0:2c9:6f03:6fd6 with SMTP id 98e67ed59e1d1-2d1e7fecba4mr579582a91.17.1723186980525;
-        Fri, 09 Aug 2024 00:03:00 -0700 (PDT)
-Received: from peter-bmc.dhcpserver.bu9bmc.local (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2d1c9c7ad59sm2248233a91.13.2024.08.09.00.02.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Aug 2024 00:03:00 -0700 (PDT)
-From: Peter Yin <peteryin.openbmc@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Noah Wang <noahwang.wang@outlook.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Patrick Rudolph <patrick.rudolph@9elements.com>,
-	Lukas Wunner <lukas@wunner.de>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: trivial-devices: add isil,isl69260
-Date: Fri,  9 Aug 2024 15:00:54 +0800
-Message-Id: <20240809070056.3588694-1-peteryin.openbmc@gmail.com>
-X-Mailer: git-send-email 2.25.1
+	d=codeconstruct.com.au; s=2022a; t=1723187162;
+	bh=+Plf4ZWD1RmGz+3DAbjeVsVnM/ML3T/p7cds+xmG834=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=VGjNi0Fr51RRWjZ85KwHn4LpSxGwfFn0x0KJYWbBgbau5d0F2NDAsZLLoK4xjYoHb
+	 Kz/YPn1YOsQc7IprBQko/zOuC7dCMYzXe4hRlx86my7Tk/XkLsLLVZBtvJ706c7TA2
+	 8CMOeOm+WLZdXu4UdTNxPR9cFmlKZ4Ze77IWGovesolHj4eNrMrBjXQW7EbuxR48dk
+	 G/o/fNIhd6bxM3blbK6M/FnZGTRIW35GogfKWY+uyFUzjNvmhjf1ywjc1VeO0pKtiv
+	 cyiZ2elprPghg041ZFDk5NBx+sk9WfYfnmWN5bMPIgmq97zGbKvGTbbkW+GskbxaTK
+	 0QBd5QB5JW2JA==
+Received: from [192.168.68.112] (203-57-213-111.dyn.iinet.net.au [203.57.213.111])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 8308D656AB;
+	Fri,  9 Aug 2024 15:06:01 +0800 (AWST)
+Message-ID: <3ace8d9363265449acc124316b9a76b9f8d095a9.camel@codeconstruct.com.au>
+Subject: Re: [PATCH 0/7] ARM: dts: aspeed: Miscellaneous devicetree cleanups
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Eddie
+ James <eajames@linux.ibm.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Date: Fri, 09 Aug 2024 16:36:00 +0930
+In-Reply-To: <20240802-dt-warnings-bmc-dts-cleanups-v1-0-1cb1378e5fcd@codeconstruct.com.au>
+References: 
+	<20240802-dt-warnings-bmc-dts-cleanups-v1-0-1cb1378e5fcd@codeconstruct.com.au>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-Document the "isl,isl69260" compatible, which is already used in the
-DTS files but was not previously documented in the bindings.
-The ISL69260 is a digital dual output multiphase controller
-that supports Intel VR13, VR13.HC, and VR14 specifications.
+On Fri, 2024-08-02 at 13:55 +0930, Andrew Jeffery wrote:
+> Hello,
+>=20
+> As mentioned elsewhere the Aspeed devicetrees are in a bit of a sad
+> state. This series is a collection of fixes that make them a little
+> less so.
+>=20
+> If there no concerns raised in the near future I'll queue them up for
+> the BMC tree.
+>=20
+> Andrew
+>=20
+> ---
+> Andrew Jeffery (7):
+>       ARM: dts: aspeed: Fix coprocessor interrupt controller node name
+>       ARM: dts: aspeed: Specify correct generic compatible for CVIC
+>       ARM: dts: aspeed: Specify required properties for sram node
+>       ARM: dts: aspeed: Remove undocumented XDMA nodes
+>       ARM: dts: aspeed: Clean up AST2500 pinctrl properties
+>       ARM: dts: aspeed-g6: Use generic 'ethernet' for ftgmac100 nodes
+>       ARM: dts: aspeed-g6: Drop cells properties from ethernet nodes
 
-Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
----
+I've applied these to be picked up through the BMC tree.
 
-Change log:
-
-v1 -> v2:
- - Fixed the binding format.
-
-v1:
- - Created the isl69260 binding.
-
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 7913ca9b6b54..6ec8b4cc9e56 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -164,6 +164,8 @@ properties:
-           - isil,isl29030
-             # Intersil ISL68137 Digital Output Configurable PWM Controller
-           - isil,isl68137
-+            # Intersil ISL69260 PMBus Voltage Regulator
-+          - isil,isl69260
-             # Intersil ISL69269 PMBus Voltage Regulator
-           - isil,isl69269
-             # Intersil ISL76682 Ambient Light Sensor
--- 
-2.25.1
-
+Andrew
 
