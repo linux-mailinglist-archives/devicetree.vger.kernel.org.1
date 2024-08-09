@@ -1,114 +1,110 @@
-Return-Path: <devicetree+bounces-92476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 175CC94D3EE
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 17:47:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 055FF94D41E
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 18:04:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6C332811E0
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 15:47:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 613362845C1
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2024 16:04:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 890E61990A2;
-	Fri,  9 Aug 2024 15:47:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25AC1197A68;
+	Fri,  9 Aug 2024 16:04:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QCAzmdq4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ge3/4AUi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2B0E198A2F;
-	Fri,  9 Aug 2024 15:47:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E598F194A4C;
+	Fri,  9 Aug 2024 16:04:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723218430; cv=none; b=KXf1So4ZiDCOQHtV6o9Sme6PBeX0Oe/1a02rEvZbgvijWW7wh2//j0U8t1WV63KGIz0WC8/Xi0wAVFcBlBK6NHj6Wjw7KEE65w2B95zFH23fyX3bcus7fKdIlJeprIi8yeskqPIIK4+NJXOGi3Gyb47Zslf7yyPtRDF4tNqSgdk=
+	t=1723219441; cv=none; b=ObH7l6v/zCpPLKZ8vAf7E1Mbg+e8shgdiyi/D9J53O+QptZ5xtjal3faHTK5OHZKiWH+xYRqBbRUiynNWet6hitMOlHmF3MUhneeGevfzIL+Z0eql/rRS7YnIRWzYxbzaNLFWzhMIZFljkha6rOdvLjO7hLzwfGZP3urYfxkLUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723218430; c=relaxed/simple;
-	bh=/6eFR07vRmXSBKu6vtd9hqaw2+ponu2foN23xSw8iCc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=D5hsgzRIngqwslx/AIjLGGPLg9/BKgMN/Elavw0oVubnk2dQAWu0uSehlDdXL4kQLqg5m65cLubA3DPdWqnlwHIdQWe9HGY740kyS5HvytT53cYn7hosA8p0EfYGpus+3JHYXXbfCfgyNEXtNDCSmZOZCRFkT52THoSt5tNjIDg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=QCAzmdq4; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 479FkqDd013121;
-	Fri, 9 Aug 2024 10:46:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1723218412;
-	bh=CgDTPQTNHq29hCNM0dCX1gxjH32pApkrHsZTDCra1mo=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=QCAzmdq4y+C50Id0D2lnBHj4S1+HPGxloJNohmowoZSv4zA6GHCmMlqZkncQ6eDt/
-	 m8fSxEhlvk2EMGtCTV6OkGth59gciE2coW9w+BJHHxlZFnYCsHx5iheK56nibagJ2C
-	 OLT6jr5A30VB4BL3yGKY+adT2+CPYAs+PFvCWSv4=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 479FkqM7111724
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 9 Aug 2024 10:46:52 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 9
- Aug 2024 10:46:52 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 9 Aug 2024 10:46:52 -0500
-Received: from localhost (uda0499903.dhcp.ti.com [128.247.81.191])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 479Fkq4f068990;
-	Fri, 9 Aug 2024 10:46:52 -0500
-From: Jared McArthur <j-mcarthur@ti.com>
-To: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Bartosz Golaszewski
-	<brgl@bgdev.pl>,
-        Linus Walleij <linus.walleij@linaro.org>, Keerthy
-	<j-keerthy@ti.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Jared
- McArthur <j-mcarthur@ti.com>
-Subject: [PATCH 1/1] dt-bindings: gpio: gpio-davinci: Add the gpio-reserved-ranges property
-Date: Fri, 9 Aug 2024 10:46:38 -0500
-Message-ID: <20240809154638.394091-2-j-mcarthur@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240809154638.394091-1-j-mcarthur@ti.com>
-References: <20240809154638.394091-1-j-mcarthur@ti.com>
+	s=arc-20240116; t=1723219441; c=relaxed/simple;
+	bh=3X4KnqOVvMgnV0xVVa+Fn5xLpXaLDEnmDWpiCsg0VZo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iKamNwtfBgex270+/cLyyDLrdNcRcjdiKrf3xuYXQqBbVOlfZmMDXnrtBV7xaiM6GSHB8bGS2vs9fONzdUMy3HB7HMlxlYjejQAdwSHERhkBVO/0zNynca1CJEIKZRPB+4aFwEzvoW9wPzWM3cqrpuUtT1mTTGsP2ykzs60coxU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ge3/4AUi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7FA7C32782;
+	Fri,  9 Aug 2024 16:03:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723219440;
+	bh=3X4KnqOVvMgnV0xVVa+Fn5xLpXaLDEnmDWpiCsg0VZo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ge3/4AUi+b2X9uEi+mTizqxwaCD5rARF6blKYGvDdPpWTeLWDFIaOQFPcr7y7DI2O
+	 24yirXPxxE0vvi6VW1rd+TG3EGekAcefZMYr0sPMl8vsplQBg3YCRH+xzJkGXRFv9m
+	 4+GzkA39C21hvxnyM6w99WoEqTCmKvSigqer2t2Bk/oUqwiBCQdS7KMPASEUlHEGOG
+	 7C+O4x3oDuVV1K2dejYx0wNhmA11ks9EPfsb/VFq7qik8ckBqZzScC74ca+BS6XAas
+	 MmroD0WsxZ7+y8W/EyWNzCOdOhZqjpvp47+sOX0rio0lUroOeGhg1RtBBwHHszKe7I
+	 7eskg1ZUxjEeA==
+Date: Fri, 9 Aug 2024 17:03:55 +0100
+From: Simon Horman <horms@kernel.org>
+To: Michael Nemanov <michael.nemanov@ti.com>
+Cc: Kalle Valo <kvalo@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-wireless@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Sabeeh Khan <sabeeh-khan@ti.com>
+Subject: Re: [PATCH v3 12/17] wifi: cc33xx: Add scan.c, scan.h
+Message-ID: <20240809160355.GD1951@kernel.org>
+References: <20240806170018.638585-1-michael.nemanov@ti.com>
+ <20240806170018.638585-13-michael.nemanov@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240806170018.638585-13-michael.nemanov@ti.com>
 
-Current definition of the davinci gpio controller doesn't include the
-gpio-reserved-ranges property. Add the gpio-reserved-ranges property
-so it can be used within device tree files.
+On Tue, Aug 06, 2024 at 08:00:13PM +0300, Michael Nemanov wrote:
 
-Will prevent users from trying to access gpios that don't exist.
+...
 
-Signed-off-by: Jared McArthur <j-mcarthur@ti.com>
----
- Documentation/devicetree/bindings/gpio/gpio-davinci.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+> diff --git a/drivers/net/wireless/ti/cc33xx/scan.h b/drivers/net/wireless/ti/cc33xx/scan.h
 
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-davinci.yaml b/Documentation/devicetree/bindings/gpio/gpio-davinci.yaml
-index 10e56cf306db..1434d08f8b74 100644
---- a/Documentation/devicetree/bindings/gpio/gpio-davinci.yaml
-+++ b/Documentation/devicetree/bindings/gpio/gpio-davinci.yaml
-@@ -32,6 +32,8 @@ properties:
- 
-   gpio-ranges: true
- 
-+  gpio-reserved-ranges: true
-+
-   gpio-line-names:
-     description: strings describing the names of each gpio line.
-     minItems: 1
--- 
-2.34.1
+...
 
+> +/**
+> + * struct cc33xx_cmd_ssid_list - scan SSID list description
+> + *
+> + * @role_id:            roleID
+> + *
+> + * @num_of_ssids:       Number of SSID in the list. MAX 16 entries
+
+@num_of_ssids -> @n_ssids
+
+> + *
+> + * @ssid_list:          SSIDs to scan for (active scan only)
+
+@ssid_list -> @ssids
+
+Please document all non-private fields,
+and annotate those that are private.
+
+There are a number of similar minor Kernel doc problems with this patch.
+Please consider using W=1 builds or ./scripts/kernel-doc -none
+(bonus points for -Wall) 
+
+> + */
+> +struct cc33xx_cmd_ssid_list {
+> +	struct cc33xx_cmd_header header;
+> +
+> +	u8 role_id;
+> +	u8 scan_type;
+> +	u8 n_ssids;
+> +	struct cc33xx_ssid ssids[SCHED_SCAN_MAX_SSIDS];
+> +	u8 padding;
+> +} __packed;
+
+...
 
