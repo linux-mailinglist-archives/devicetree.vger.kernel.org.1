@@ -1,348 +1,417 @@
-Return-Path: <devicetree+bounces-92592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC41594DC1E
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 11:54:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23D8994DC2D
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 12:08:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 066251C20E51
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 09:54:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C0C03B21212
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 10:08:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F7D01514EE;
-	Sat, 10 Aug 2024 09:54:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VRJdI8Wi"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EDEF14A629;
+	Sat, 10 Aug 2024 10:08:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2126.outbound.protection.outlook.com [40.107.117.126])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3021E1798C;
-	Sat, 10 Aug 2024 09:54:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723283659; cv=none; b=dhHH7wDaky1skgWcbbBf43MS/16jlmUPMdPo8Ifl8h3iX8czuK1EY5p5b64HyuRSIjIBIhyYrDDdTLXvl0Y4BzRJP6AqVSSp7ALy5RPQiUoUX0GyUOyYmosZWSypnjPRbaY3lPKW7tQJxQtOUDZ2tiz8HSoJ32TrR3Z2EHio8iw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723283659; c=relaxed/simple;
-	bh=vD/GVYgEx33+GRsz3bP143VKfVsdmGsrNmwftjVh2O8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=R0rRWjNKEcNkpDNW4L+9WjFLLRyxeTGMXwP9L/84H3arvRDSfelFwaYaUdnEGJ5sEjKpDxBAJM0QL9dPcuO4wxZE3WH7JSxA1IYjEs09OGE0uIBZlc9EJPJ5cJ+GczQyXFB1Ap+nU/jXxHgc2XT+uVWKWmw766UYaGcyMAhJsxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VRJdI8Wi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A8EFC32781;
-	Sat, 10 Aug 2024 09:54:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723283658;
-	bh=vD/GVYgEx33+GRsz3bP143VKfVsdmGsrNmwftjVh2O8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=VRJdI8Wi9cheKo3EwQoC6+guL3GF3ZkqoO5upO/S6/2nG/6KTCk9uys3/FYaBtYjY
-	 Bt5aj/J8HhdsRV9W5bnTME7LQCHh/4rh30KZcNAZ51cnnOSEZ2Fc1vLfb5NQx0ADlm
-	 SDbGq7rYNRFJBb/4jxtIU3cmEmAonVtRRVqf7ramvsXPRkfaLUG+gNOK9GZKdkQ/UD
-	 J9AdnL0YA59rTrTGAJ68Y5hBF/SZ+4hreomg2y/bQ/isqaIDIuGRyOor9ezigoWT4t
-	 9SmDd2jc10T20DjwWkBJCWeege2YIvSKu+FGPbsHFoN9yX5zDbC1SAjfp8M7apI7sy
-	 l6piymPyrj1hg==
-Date: Sat, 10 Aug 2024 10:54:11 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Matteo Martelli <matteomartelli3@gmail.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Marius Cristea <marius.cristea@microchip.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 3/3] iio: adc: add support for pac1921
-Message-ID: <20240810105411.705cb225@jic23-huawei>
-In-Reply-To: <66b1f288678b6_31cc370bc@njaxe.notmuch>
-References: <20240724-iio-pac1921-v4-0-723698e903a3@gmail.com>
-	<20240724-iio-pac1921-v4-3-723698e903a3@gmail.com>
-	<20240728135306.422713ea@jic23-huawei>
-	<66a784bac1db7_89a37017@njaxe.notmuch>
-	<20240729211100.0d602d6e@jic23-huawei>
-	<66b1f288678b6_31cc370bc@njaxe.notmuch>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 703A11E86E;
+	Sat, 10 Aug 2024 10:08:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.117.126
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723284517; cv=fail; b=DT0UYEu9uDNI9aSo6i9aRwqBAyONBh4XE15oklQ2x1uv/QjaaLHBG/N88Q4hYpN4rPRaQtZ1ZLJ92c9T3yHzU2fh03j4RP6l9oHubuCVVfGCl2TJD/aD7GMQXwQhMFKuY682JJCFZbV4TH35fRKtvp+zJReIf86Wslk+yC8bpWo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723284517; c=relaxed/simple;
+	bh=SlnebxKQnbabn0+I2J5UQN/TbXOdArukuexAhFIcyq4=;
+	h=Message-ID:Date:From:To:Subject:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=A5ieiT0ZuJmp5pCQFhHcX4dUxDZUn1cRTSdcyygcavGBG/o8acGPOqG2y1w9XpiA63Vc708z3CR+2Wimu/UO+MksxbLJvN6PUo+H5RfmvuOeT1KOBzMsO9Ls1sDQupahxoVPk7L4gjRlDgsazDMR3Ki8x0rYu3GRYH9TVr93HYo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com; spf=pass smtp.mailfrom=wesion.com; arc=fail smtp.client-ip=40.107.117.126
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wesion.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wesion.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=lAZyCvC5gsyDn2UQIrS/oQnHd249f3cUFBU2nSco9ms+4agkcAv/n+As6cAesK7OPrrHUPjX+tUD6gwYlQQhn9mAFTMl8gk3+A1yww5JbeLicn1bGe5Ft/0MbzEItNFLtSa7QfJQ9hhZo93IRmGoUEYTcLn1j/bmkJY9mkoMHf9GwkO5xEfDfJ9BE4fMcGFfWgf5UNqAlf6dz4Nsgyk8lBmmOdDBNYEVQk26jgLeD36UJshMk9Ly1DA7W8CVHRPi/Pzj+vjGLtohktGoXWxX3AqyEr36hlBJVDabxFb0kEBi4WpMuyVQUAODJYjNDA7pG0wpfiGfxinHy3rFhaeXSQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wXf+ztt4XyZKMzvAvrsZMSyqy8BX9/rnGmq0YXwWxMA=;
+ b=gDcNcvz7+hcp5Px9aphbW+oKfEV1k18En+GQrmjHOi3mlOVQ1R13xtA2INNv38ZbmXgIqRzTnc9FGIYdKgbnqh7ClBhfd+7MTA6fnSyWrtc1C0u5tgq1hBsYaSSl/IqTLnbY9dXZVd+YZJ56GtfkTBDzwSRuuxNmpu8CsmEK9oRlaolrn3Mv287MckwiP3kkTLvv3oIABnkNgfFNoWFrgyhB3TcVPJhTxHj/9UIr+JgaFjksnMgrIH+6aQSHnj9e90E2HF9RF0U/2WlQKiHamapHvMdOF5qqk5l9eawX9yCXqFUbJY+TpfW81Tq0hlnAi0R+TUB3i0UaXnGQaS6tFg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wesion.com; dmarc=pass action=none header.from=wesion.com;
+ dkim=pass header.d=wesion.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wesion.com;
+Received: from TYZPR03MB7001.apcprd03.prod.outlook.com (2603:1096:400:26a::14)
+ by SI6PR03MB8708.apcprd03.prod.outlook.com (2603:1096:4:24a::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.15; Sat, 10 Aug
+ 2024 10:08:29 +0000
+Received: from TYZPR03MB7001.apcprd03.prod.outlook.com
+ ([fe80::78dd:5e68:1a9c:36c0]) by TYZPR03MB7001.apcprd03.prod.outlook.com
+ ([fe80::78dd:5e68:1a9c:36c0%6]) with mapi id 15.20.7849.015; Sat, 10 Aug 2024
+ 10:08:29 +0000
+Message-ID: <d9a182e4-c620-476d-8eb2-752dfd1ba4f8@wesion.com>
+Date: Sat, 10 Aug 2024 18:08:21 +0800
+User-Agent: Mozilla Thunderbird
+From: jacobe.zang@wesion.com
+To: Sai Krishna Gajula <saikrishnag@marvell.com>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "heiko@sntech.de" <heiko@sntech.de>,
+ "kvalo@kernel.org" <kvalo@kernel.org>,
+ "davem@davemloft.net" <davem@davemloft.net>,
+ "edumazet@google.com" <edumazet@google.com>,
+ "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com"
+ <pabeni@redhat.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "arend.vanspriel@broadcom.com" <arend.vanspriel@broadcom.com>,
+ "efectn@protonmail.com" <efectn@protonmail.com>,
+ "dsimic@manjaro.org" <dsimic@manjaro.org>,
+ "jagan@edgeble.ai" <jagan@edgeble.ai>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "arend@broadcom.com" <arend@broadcom.com>,
+ "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>, "megi@xff.cz"
+ <megi@xff.cz>, "duoming@zju.edu.cn" <duoming@zju.edu.cn>,
+ "bhelgaas@google.com" <bhelgaas@google.com>,
+ "minipli@grsecurity.net" <minipli@grsecurity.net>,
+ "brcm80211@lists.linux.dev" <brcm80211@lists.linux.dev>,
+ "brcm80211-dev-list.pdl@broadcom.com" <brcm80211-dev-list.pdl@broadcom.com>,
+ "nick@khadas.com" <nick@khadas.com>
+Subject: Re: [PATCH v9 4/5] wifi: brcmfmac: Add optional lpo clock enable
+ support
+References: <20240810035141.439024-1-jacobe.zang@wesion.com>
+ <20240810035141.439024-5-jacobe.zang@wesion.com>
+ <BY3PR18MB47072A9CC7E1EEB4BD1FC063A0BB2@BY3PR18MB4707.namprd18.prod.outlook.com>
+In-Reply-To: <BY3PR18MB47072A9CC7E1EEB4BD1FC063A0BB2@BY3PR18MB4707.namprd18.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SG2PR01CA0177.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:28::33) To TYZPR03MB7001.apcprd03.prod.outlook.com
+ (2603:1096:400:26a::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR03MB7001:EE_|SI6PR03MB8708:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0cef6b90-e4a7-4473-7fb8-08dcb92461e2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|366016|1800799024|376014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?bG9lNlFoMUtvZ0UzSDRORVd6MWRTWU42ME5YeG9kWXpvdjhRWHZ3OWU1dEQz?=
+ =?utf-8?B?RWdMeDFkYVlPazQvQW42dmRtT2pSdzVnOGVlblVYMkkySFIxQWhSOXRvT05N?=
+ =?utf-8?B?c29XM3YvSjJGQjByWUFSOFZUWk5NMU84cHNMQTlSVVljODQwWis5cVdlSWxn?=
+ =?utf-8?B?MTZ2aUtrUHZpWDVJZytHOUh4WGovdVN3U0gyeEZvdC9qSTd3a0ZTQUFCeDVI?=
+ =?utf-8?B?d0pUN2ZrZ2g5VlF0Tm9wWHVMUml5b21KRHR6bnROeEc4dlFuaUN5eE1icmY3?=
+ =?utf-8?B?UU00SzNZU285bjRER0szV2prTVA0WHMrUXJNN1A5V0hpdnJNUklIaTlmenhW?=
+ =?utf-8?B?VWRZZzdkTmtTU3JNd1JrbGV2c3hIbGRlYjZvWHNMQ1RxMVdlY29PWGxxdlFN?=
+ =?utf-8?B?SUdJUjJLY3Q4L2VPWDBPam9IZE9LeHRwL1Vtb1FZQXI3ZnJldTFwV3U2Vk5l?=
+ =?utf-8?B?K1lDQnNKajRCV3g5TC9FS2dURHhmL3p4TWNoRlBKZitqT1FpSkRKNlRzY2Ew?=
+ =?utf-8?B?cjhLWWRLa1RZZWlpZTRWVnhySW5pczVRdVlyREoyQWFkS1dvQ1pHbHRCdldR?=
+ =?utf-8?B?NkRNbktIcWV3Ny9ZL2Y4ZmY3QzN6a0I1M3F0Vks1UklOUE9JK3dYcDdXMnMy?=
+ =?utf-8?B?MFh2Yk9NeUxIcTEzYzZZd3NPUDJNbGJYb0JZQkNodmRZOGhjQWtBc1RXM2dF?=
+ =?utf-8?B?N2RSRkRuMS91cTVUVkNJbjZtTk9aeU45SU9wZ1Y1VkRrc2VNK1Z3TU1qT1Nv?=
+ =?utf-8?B?TDlrZXRCdzhZOFI1b09UTlNTOHZTYWRMRTZIMzM5UHdQRnBTbXVxOUhKc1d0?=
+ =?utf-8?B?MWZ0UCs1MG93ZU5qZXNqa3hSb3NvUlBZNmVCQm9zK05XcFVuVlk3Vm45OFlM?=
+ =?utf-8?B?U1Z2eXkyM1ZKbHRzbDllVW4rbWUrQXpPOGs1anlCY2lqNFdVS2srMWk0MCt3?=
+ =?utf-8?B?VHNlbmpBSEMvTnhmaUxVNzlMYXFjdFVpeDZFTHV3cmlBUmxYcGlKVllXQnpH?=
+ =?utf-8?B?dmw3N0g5dWswWHVzZnY4SlBFZW9mYWMwL3dTUkFIOWZ1N2JVQ2lKdHMrcTVi?=
+ =?utf-8?B?QThWcXNQTU1LUkNpOEJYQ1ZDRmw4NjNHYmt0WGM2M0x4TlZPTWtCdzZXTm5z?=
+ =?utf-8?B?YTY3citiek8wYlpySTRSSlQyYTV1ZjFUTGdYNWpxUU84WGQ4SCt2NzE4OEZO?=
+ =?utf-8?B?YVBKSklLSHlySy80T1d4TkJlY0M2enk1TTBHR2FqWmJGWWIyZVdnaHZEUUlx?=
+ =?utf-8?B?Q3lYRVRlOHpIcXRCSlE0Vjg0a1BKNFFJVDR0NWQ5VzBBanF2eWlHMEhRNlUv?=
+ =?utf-8?B?NVV6T2o5c3dXdnR2Wm1GTEpXOHArNHZHMjhUbit1VFYzQkRjUFVKbk81a05W?=
+ =?utf-8?B?Vjc2MDFHS29ZYUx6YWNwY2w2K3orVExreGkzbmZkdHU0RnQ2QnNicG5Ca28z?=
+ =?utf-8?B?WE9tb096WnlsbDloZHpiajZzRVNTYk5XSExRS3hOZ1duQVBEMmZ4NkF6NTlU?=
+ =?utf-8?B?THVLWWk1RS83WGJMZG1Pbm9xeFlkaFhzMm85ZVl0ZW5mS2s4Y294MzZBYm8y?=
+ =?utf-8?B?RTgyVk4vMERrdXNtV1lQZTJKNi9Jd0JORGRiWjJ1MUdBRU9CSzg3aTFWV3Bk?=
+ =?utf-8?B?eWZhR0Z6VGh5eXBPdjJUczQ0ZTErN1FUcGZnckFJZlEzd2loR1RFMEpLeGgy?=
+ =?utf-8?B?ZUJOTlJaVkxDQStBMnJmQ2NHWGRyMkUzKzlPZTZoMVVmd2xsOTFDd2IzQ0dI?=
+ =?utf-8?B?bkM3ZnZwRFFReCttYjhHSUdLTDBON1lsM21oUnRGV0VWLzBFYXRVdE1IVndZ?=
+ =?utf-8?Q?qvtMxUF05DSOlS5YZIn+BYDBF8lA2Z+wis/2U=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB7001.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(366016)(1800799024)(376014)(921020);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?RGxOSjB5K2RhSmxaeGpqcUFUY0VYaWVJVjlxUVcrRm01Z081c2Eza1FnK0hr?=
+ =?utf-8?B?RXdLNHh3WUMyNEhQcnQ1bEF1YTIrRit6TDZlVGZ4aUtWWTFobmdpd0p0UlNI?=
+ =?utf-8?B?WmpvUEVLTFFMSXhBckZtUW9rRi9ObGdEaVN1V0JWVDR1TVFUZlBwMWlNU3A0?=
+ =?utf-8?B?cHpnbXIvQUgrYlNHTG5rNU8yWjZYSkI1REJ2YitqdjAvVDBOR0srSFIvREo5?=
+ =?utf-8?B?SFRUZ3JybGVIUWMwdmdNNEl5UERsN3lRUHFUUVdDMGh4VzVZdk4yS253eVBm?=
+ =?utf-8?B?MDc5Vk1ZdS82ajdpZTE2V3pmUG1FL0ROZFRjeTFlUStGNmZqamtkVzBJZGVt?=
+ =?utf-8?B?ZWZSSjBCYVZYSE91aUJlNDhnUWhHbXdJUFUvSUdQTkVxMk9OT1hJYkcrdjRV?=
+ =?utf-8?B?a1dST2ZPYzROVkRGNlo3WTZxYjJkUi8wTlUvTGhTTi9zU3ZOa3JVT3o3NlAw?=
+ =?utf-8?B?U3d4WXR0YXNYKzJ5MVJPZmRVeXRIblk1R201T2pwNkNpRlJkN3k0K1NYZGlK?=
+ =?utf-8?B?dHEvY1NSUEFXUktiTmpiV1hzbGlpS0hMMXROT0lPVWdoRjg0V3dFM1VOQUFJ?=
+ =?utf-8?B?N3BNelovRmlicHNscnNQUTBrcVQ5SGxDd3ppU0dncWRxMHRpN0luUVFkS0tF?=
+ =?utf-8?B?dU9aUlIxQmlhSmVucEZwZDlhS3JOSHZjRE1hU1FId0hpRFRkbFMwbDNzSVFT?=
+ =?utf-8?B?ZGp4WXJSUHdsMjJna2JxZktpNXBhVW5vWkJtYjRJYmdpOE1sRzRKYjAxcFZl?=
+ =?utf-8?B?OWR3eWJ6WGNjRFRDY0dvQkI1d3p2SE1ab3RnbUwxMHl2QVp2dGt5czV2LzlD?=
+ =?utf-8?B?K3NRd1RaN3QyeWIyc0JTQzF2WmFyWHl6OHBwMTlCb09CWUFxcXZmZmh2WURH?=
+ =?utf-8?B?a3ZaRUxiU0ZWR1hLb0ErclUzZGtJY0NUbm5jZVl2YmlhYnEwZnBURGw4b1hB?=
+ =?utf-8?B?amxobVJNT0RQWUlyWEYxSmZuR0hBQ29HdmdWMThnckFNVDc2bFM0eFBSR2c4?=
+ =?utf-8?B?OFNsT2ZDQnNNcitiVmZleU1EQkwyMHBQSkZONHNFblJTNWpxYXJ3a3N3Q0ZQ?=
+ =?utf-8?B?ZTlGVU1iZjZpOElLYmNhUjVXbTdtTjFGL3I3dXIwNEM4dGd3L3pLZFdUUmV6?=
+ =?utf-8?B?SWdJUGhtZkJTNVVKQU1YTG9KbUJ5SFF6QzJHa2lvcGVpaklyUXZXR3IzdHN6?=
+ =?utf-8?B?UDJKNEFyTUx5enZNd3ArYXZyNThObm9aNjFHT3pDaW1HU0Zpc240OGxaQ21M?=
+ =?utf-8?B?ZUpmTnJxa2RxUWRueG13blVkcjhLL1NXaG5ON1RsRDAwZnRYTUNucmcvNnBs?=
+ =?utf-8?B?R0wzTDVRNUMzczdRb2xwU2FlRktOcC9LbUxHWG0yVTFscS9aU2VYT3c1YWg2?=
+ =?utf-8?B?dVplNi9yTkVnd0xKaEhsaUJKTWVKRE4wRHV1dTVnY053aDlMN0x3V3FMVzFq?=
+ =?utf-8?B?WWhmZnJsWnp2SDNicU93SkN6VzZIMHFlMmdOeWJmam1xam1rMFhBMzJaczVP?=
+ =?utf-8?B?YzZJNWVuUUNPczJIeEtvL3NJdWRQVmQ1SjZkbjhKd2RycnBZbVdma0tKcms1?=
+ =?utf-8?B?bjAvUU1ScTdUOGk4djFUTnhWZFlNa0M2TDZvdTI5SzQ3K0J3L0oyazNkbnJU?=
+ =?utf-8?B?MDF5dG94emhlRW9Ec1d0NDVudmNpUTIyblJXMldzdzlobVZKNTlFR1JjZXdx?=
+ =?utf-8?B?NTRsWlNSSzY5bEE3TUFKUjdTRk1wK00vWUhsVG1wQWhzNXo3MmNkayt2Wmdv?=
+ =?utf-8?B?UTY0RW0wV0FLVFRVdC9acWpSNlhPcnlXeGVpYUNWVUJoZVBKWVNYN2N5TjE1?=
+ =?utf-8?B?LzZPTDNWU21PNWl2YVNRbDUwMlpld0s5RUZjMmkyZ0NoM3NJQlM4TTNWRnRn?=
+ =?utf-8?B?bC9iSFY2cHFmUkxlazZhYkNxZlRIM1pzWnFDNUtpZnJqOGRiYWo5OTI3cmp1?=
+ =?utf-8?B?b2thOXRkOG5aTjhlYVBOS05MM3JwREZIODZPYWRWNzQvaXBsYzZjRUtLZ3Zn?=
+ =?utf-8?B?SURhN1NtY3V0MkR3b25wS0VZWFdpRyt2MS92bmNYa1NPd1V5b1lZUm9vY0Rv?=
+ =?utf-8?B?N0hsL3YxK29GVjV2K3h6YjNDT3BHdGI0djhzdTZCOVF4c2p4ZUh2V3p2d1VO?=
+ =?utf-8?Q?DrssXKw7Gdr1TMocdlBJ88JBr?=
+X-OriginatorOrg: wesion.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0cef6b90-e4a7-4473-7fb8-08dcb92461e2
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB7001.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Aug 2024 10:08:29.3455
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 2dc3bd76-7ac2-4780-a5b7-6c6cc6b5af9b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: DctH8cX/51Qq0My4TlQJvHP6GHjRavR//Ia0KlOTvqFou8VPLz5voSwKZ69vNSGq2e14fK+U0PNQm2bQUkTm5Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI6PR03MB8708
 
-On Tue, 06 Aug 2024 11:53:12 +0200
-Matteo Martelli <matteomartelli3@gmail.com> wrote:
 
-> Jonathan Cameron wrote:
-> > > > > +
-> > > > > +/*
-> > > > > + * Emit on sysfs the list of available scales contained in scales_tbl
-> > > > > + *
-> > > > > + * TODO:: this function can be replaced with iio_format_avail_list() if the
-> > > > > + * latter will ever be exported.    
-> > > > 
-> > > > You could just have added a precursor patch doing that.
-> > > > If you have time I'd certainly consider a patch that does export that function
-> > > > and uses it here.
-> > > >    
-> > > I wasn't sure that one usage was enough to justify the export. I could
-> > > definitely do it, I am assuming it would now go to a new patch series since
-> > > this has already been merged into testing, right?  
-> > The requirements for justifying exporting an existing function is less
-> > than it would be to add a new one.  As such I think it makes sense.
-> > 
-> > As you note, needs a separate patch on top of the tree.
-> >   
-> I will try to address this more generally by adding a new
-> read_avail_release_resource() iio_info function, see below. If that goes
-> through, exporting the iio_format_avail_list() would not be necessary since the
-> driver could directly use the read_avail iio_info function.
-> 
-> > >   
-> > > > > + *
-> > > > > + * Must be called with lock held if the scales_tbl can change runtime (e.g. for
-> > > > > + * the current scales table)
-> > > > > + */
-> > > > > +static ssize_t pac1921_format_scale_avail(const int (*const scales_tbl)[2],
-> > > > > +					  size_t size, char *buf)
-> > > > > +{
-> > > > > +	ssize_t len = 0;
-> > > > > +
-> > > > > +	for (unsigned int i = 0; i < size; i++) {
-> > > > > +		if (i != 0) {
-> > > > > +			len += sysfs_emit_at(buf, len, " ");
-> > > > > +			if (len >= PAGE_SIZE)
-> > > > > +				return -EFBIG;
-> > > > > +		}
-> > > > > +		len += sysfs_emit_at(buf, len, "%d.%09d", scales_tbl[i][0],
-> > > > > +				     scales_tbl[i][1]);
-> > > > > +		if (len >= PAGE_SIZE)
-> > > > > +			return -EFBIG;
-> > > > > +	}
-> > > > > +
-> > > > > +	len += sysfs_emit_at(buf, len, "\n");
-> > > > > +	return len;
-> > > > > +}
-> > > > > +
-> > > > > +/*
-> > > > > + * Read available scales for a specific channel
-> > > > > + *
-> > > > > + * NOTE: using extended info insted of iio.read_avail() because access to
-> > > > > + * current scales must be locked as they depend on shunt resistor which may
-> > > > > + * change runtime. Caller of iio.read_avail() would access the table unlocked
-> > > > > + * instead.    
-> > > > 
-> > > > That's a corner case we should think about closing. Would require an indicator
-> > > > to read_avail that the buffer it has been passed is a snapshot that it should
-> > > > free on completion of the string building.  I don't like passing ownership
-> > > > of data around like that, but it is fiddly to do anything else given
-> > > > any simple double buffering is subject to race conditions.
-> > > >    
-> > > If I understand your suggestion the driver would allocate a new table and copy
-> > > the values into it at each read_avail() call. Then
-> > > iio_read_channel_info_avail() would free the buffer if some sort of
-> > > free-after-use indicator flag is set. I guess such indicator might be set via an
-> > > additional read_avail function argument (would be an extensive API change) or
-> > > maybe via a new iio_chan_spec attribute.  
-> > 
-> > Probably needs to be in read_avail() as otherwise we end up with yet more masks.
-> > However, doesn't need to be global.  read_avail_ext() could be added that
-> > is used in preference to read_avail() if it is supplied.  That new one can
-> > be used only be drivers that need to handle the allocation and free.
-> > However I prefer the explicit resource free option as we can in theory
-> > at least do much cleverer things than simply freeing the buffer.
-> >   
-> > >   
-> > > > An alternative would use a key of sometype to associate individual read_avail
-> > > > calls with new ones to read_avail_release_resource. That might be cleaner.
-> > > >     
-> > > Are you referring to introduce a new read_avail_realease_resource callback that
-> > > would be called at the end of iio_read_channel_info_avail() if set? Similarly
-> > > to the previous point the driver would allocate a new table and copy the values
-> > > into it at each read_avail() call, but the driver would also define a release
-> > > callback to free such table. If otherwise you are referring to something less
-> > > trivial, is there a similar API in the kernel that can be referred to for
-> > > clarity?  
-> > 
-> > Indeed what you suggest. Key is it puts the burden on the driver to do it's
-> > own management. That avoids handing ownership of the buffer to the core
-> > which is a pattern I'm not that keen on if we can avoid it.
-> > 
-> > The new callback would take the buffer pointer that came back from read_avail()
-> > and pass that back to the driver.  In simple case the driver could just
-> > free the buffer.  However, it could also do some cleverer stuff to keep
-> > it around if a write hasn't raced with this code.  That might make sense if
-> > it's a big table and calculating the values is expensive.
-> >  
-> I am trying to achieve this and it looks pretty straightforward for the case we
-> considered, iio would be extended like the following:
-> 
-> diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrialio-core.c
-> index e6fad8a6a1fc..fe6ad8e9722f 100644
-> --- a/drivers/iio/industrialio-core.c
-> +++ b/drivers/iio/industrialio-core.c
-> @@ -860,12 +860,20 @@ static ssize_t iio_read_channel_info_avail(struct device *dev,
->                 return ret;
->         switch (ret) {
->         case IIO_AVAIL_LIST:
-> -               return iio_format_avail_list(buf, vals, type, length);
-> +               ret = iio_format_avail_list(buf, vals, type, length);
-> +               break;
->         case IIO_AVAIL_RANGE:
-> -               return iio_format_avail_range(buf, vals, type);
-> +               ret = iio_format_avail_range(buf, vals, type);
-> +               break;
->         default:
-> -               return -EINVAL;
-> +               ret = -EINVAL;
->         }
-> +
-> +       if (indio_dev->info->read_avail_release_resource)
-> +               indio_dev->info->read_avail_release_resource(
-> +                       indio_dev, this_attr->c, vals, this_attr->address);
-> +
-> +       return ret;
->  }
-> 
->  /**
-> diff --git a/include/linux/iio/iio.h b/include/linux/iio/iio.h
-> index f6c0499853bb..0ab08b94bad0 100644
-> --- a/include/linux/iio/iio.h
-> +++ b/include/linux/iio/iio.h
-> @@ -491,6 +491,10 @@ struct iio_info {
->                           int *length,
->                           long mask);
-> 
-> +       void (*read_avail_release_resource)(struct iio_dev *indio_dev,
-> +                                           struct iio_chan_spec const *chan,
-> +                                           const int *vals, long mask);
-> +
->         int (*write_raw)(struct iio_dev *indio_dev,
->                          struct iio_chan_spec const *chan,
->                          int val, 
-> 
-> And with the following usage example for the pac1921 driver:
-> 
-> static int pac1921_read_avail(struct iio_dev *indio_dev,
-> 			      struct iio_chan_spec const *chan,
-> 			      const int **vals, int *type, int *length,
-> 			      long mask)
-> {
-> 	switch (mask) {
-> 	//...
-> 	case IIO_CHAN_INFO_SCALE:
-> 		switch (chan->channel) {
-> 		//...
-> 		case PAC1921_CHAN_CURRENT: {
-> 			struct pac1921_priv *priv = iio_priv(indio_dev);
-> 			size_t len;
-> 			int *buf;
-> 
-> 			len = ARRAY_SIZE(priv->current_scales) * 2;
-> 			buf = kmalloc_array(len, sizeof(int), GFP_KERNEL);
-> 			if (!buf)
-> 				return -ENOMEM;
-> 
-> 			for (unsigned int i = 0; i < len; i++)
-> 				buf[i] = ((int *)priv->current_scales)[i];
-> 
-> 			*vals = buf;
-> 			*length = (int)len;
-> 			*type = IIO_VAL_INT_PLUS_NANO;
-> 			return IIO_AVAIL_LIST;
-> 		}
-> 		default:
-> 			return -EINVAL;
-> 		}
-> 	default:
-> 		return -EINVAL;
-> 	}
-> }
-> 
-> static void pac1921_read_avail_release_res(struct iio_dev *indio_dev,
-> 					   struct iio_chan_spec const *chan,
-> 					   const int *vals, long mask)
-> {
-> 	if (mask == IIO_CHAN_INFO_SCALE &&
-> 	    chan->channel == PAC1921_CHAN_CURRENT)
-> 		kfree(vals);
-> }
-> 
-> static const struct iio_info pac1921_iio = {
-> 	//...
-> 	.read_avail = pac1921_read_avail,
-> 	.read_avail_release_resource = pac1921_read_avail_release_res,
-> };
-> 
-> However I noticed that some consumer drivers also expose the producer's
-> available lists through the following functions:
-> - iio_read_avail_channel_attribute()
-> - iio_read_avail_channel_raw()
-> - iio_channel_read_max()
-> - iio_channel_read_min()
-> 
-> While addressing the read_max()/read_min() is trivial since the
-> release_resource() can be called at the end of those function, I think the
-> first twos should be tracked as well for later release by the consumer drivers.
 
-We can mostly avoid this by taking a copy in the consumers that use these interfaces then
-immediately calling the release. 
-
-> So for example the consumer driver would also expose a
-> iio_read_avail_channel_attribute_release_resource() (any suggestion for shorter
-> function names?) mapped to the read_avail_release_resource() iio_info function.
-
-> However the fact that iio_read_avail_channel_attribute() locks on
-> info_exist_lock, makes me think that the driver could be unregistered between a
-> read_avail() and a read_avail_release_resource() and in that case an allocated
-> list would be leaked, right? Any suggestion on how best handle this case? My
-> guess is to let iio destroy the list at some point during device release, that
-> would be done if the list allocation was done through devm_kmalloc (or similar)
-> but I think it would result in double frees during usual case, so maybe there
-> should be a way to let it free the list only if not already freed? Or maybe a
-> complete different approach?
-
-Locking is a bit of a pain. I don't want to reference count for something
-as trivial as this.
-
-Perhaps the original idea of a release callback isn't best solution for these
-in kernel interfaces and we should just 'always' make a copy of the data to
-avoid the lifetime issue.  I don't want to do that for the IIO core case
-because it's a big waste of memory and we don't have the lifetime issues,
-but for the in kernel consumer interfaces copying sounds fine.
-
+On 2024/8/10 17:44, Sai Krishna Gajula <saikrishnag@marvell.com> wrote:
 > 
-> > >   
-> > > > oh well, a cleanup job for another day.   I suspect we have drivers today
-> > > > that are subject to tearing of their available lists.
-> > > >     
-> > > I've just taken a quick look at the other drivers and the following twos seem
-> > > to have the race condition issue since they are updating an available table
-> > > during a write_raw() call and also exposing it during a read_avail() call:
-> > > * drivers/iio/light/as73211.c: see int_time_avail table
-> > > * drivers/iio/adc/ad7192.c: see filter_freq_avail table
-> > > 
-> > > There might be others, I've only looked into those that seemed likely to have
-> > > this issue after some trivial greps.
-> > > 
-> > > Is there already a common way for iio to keep track of open issues (e.g. Issue
-> > > tracker/TODO lists/etc)?  
-> > 
-> > Not really.  Email to the list tends to be the most we do for tracking.
-> > I have had various todo lists public over the years, but they tend to rot.
-> > 
-> > Fix stuff before we forget about it! :(
-> >   
-> I could try to provide fix patches for those two drivers as well, but I could
-> not test them on the real HW. I am wondering whether to add them to the same
-> release_resource() patch series or into a separate series since those fixes
-> could be sit for a while waiting for additional tests.
-Either is fine.  I don't necessarily have to pick the whole series up in one
-go.  Just put those other drivers towards the end.
-
-Jonathan
-
+> > -----Original Message-----
+> > From: Jacobe Zang <jacobe.zang@wesion.com>
+> > Sent: Saturday, August 10, 2024 9:22 AM
+> > To: robh@kernel.org; krzk+dt@kernel.org; heiko@sntech.de;
+> > kvalo@kernel.org; davem@davemloft.net; edumazet@google.com;
+> > kuba@kernel.org; pabeni@redhat.com; conor+dt@kernel.org;
+> > arend.vanspriel@broadcom.com
+> > Cc: efectn@protonmail.com; dsimic@manjaro.org; jagan@edgeble.ai;
+> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> > rockchip@lists.infradead.org; linux-kernel@vger.kernel.org;
+> > arend@broadcom.com; linux-wireless@vger.kernel.org;
+> > netdev@vger.kernel.org; megi@xff.cz; duoming@zju.edu.cn;
+> > bhelgaas@google.com; minipli@grsecurity.net; brcm80211@lists.linux.dev;
+> > brcm80211-dev-list.pdl@broadcom.com; nick@khadas.com; Jacobe Zang
+> > <jacobe.zang@wesion.com>
+> > Subject:  [PATCH v9 4/5] wifi: brcmfmac: Add optional lpo clock
+> > enable support
+> >
+> > WiFi modules often require 32kHz clock to function. Add support to enable
+> > the clock to PCIe driver and move "brcm,bcm4329-fmac" check to the top of
+> > brcmf_of_probe. Change function prototypes from void to int and add
+> > appropriate errno's for return
+> > WiFi modules often require 32kHz clock to function. Add support to enable
+> > the clock to PCIe driver and move "brcm,bcm4329-fmac" check to the top of
+> > brcmf_of_probe. Change function prototypes from void to int and add
+> > appropriate errno's for return values that will be send to bus when error
+> > occurred.
+> >
+> > Co-developed-by: Ondrej Jirman <megi@xff.cz>
+> > Signed-off-by: Ondrej Jirman <megi@xff.cz>
+> > Co-developed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+> > Signed-off-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+> > Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
+> > ---
+> >   .../broadcom/brcm80211/brcmfmac/bcmsdh.c      |  4 +-
+> >   .../broadcom/brcm80211/brcmfmac/common.c      |  3 +-
+> >   .../wireless/broadcom/brcm80211/brcmfmac/of.c | 53 +++++++++++--------
+> > .../wireless/broadcom/brcm80211/brcmfmac/of.h |  9 ++--
+> >   .../broadcom/brcm80211/brcmfmac/pcie.c        |  3 ++
+> >   .../broadcom/brcm80211/brcmfmac/sdio.c        | 24 ++++++---
+> >   .../broadcom/brcm80211/brcmfmac/usb.c         |  3 ++
+> >   7 files changed, 63 insertions(+), 36 deletions(-)
+> >
+> > diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/bcmsdh.c
+> > b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/bcmsdh.c
+> > index 13391c2d82aae..b2ede4e579c5c 100644
+> > --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/bcmsdh.c
+> > +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/bcmsdh.c
+> > @@ -947,8 +947,8 @@ int brcmf_sdiod_probe(struct brcmf_sdio_dev
+> > *sdiodev)
+> >
+> >   	/* try to attach to the target device */
+> >   	sdiodev->bus = brcmf_sdio_probe(sdiodev);
+> > -	if (!sdiodev->bus) {
+> > -		ret = -ENODEV;
+> > +	if (IS_ERR(sdiodev->bus)) {
+> > +		ret = PTR_ERR(sdiodev->bus);
+> >   		goto out;
+> >   	}
+> >   	brcmf_sdiod_host_fixup(sdiodev->func2->card->host);
+> > diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/common.c
+> > b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/common.c
+> > index b24faae35873d..58d50918dd177 100644
+> > --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/common.c
+> > +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/common.c
+> > @@ -561,7 +561,8 @@ struct brcmf_mp_device
+> > *brcmf_get_module_param(struct device *dev,
+> >   	if (!found) {
+> >   		/* No platform data for this device, try OF and DMI data */
+> >   		brcmf_dmi_probe(settings, chip, chiprev);
+> > -		brcmf_of_probe(dev, bus_type, settings);
+> > +		if (brcmf_of_probe(dev, bus_type, settings) == -
+> > EPROBE_DEFER)
+> > +			return ERR_PTR(-EPROBE_DEFER);
+> >   		brcmf_acpi_probe(dev, bus_type, settings);
+> >   	}
+> >   	return settings;
+> > diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
+> > b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
+> > index e406e11481a62..f19dc7355e0e8 100644
+> > --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
+> > +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
+> > @@ -6,6 +6,7 @@
+> >   #include <linux/of.h>
+> >   #include <linux/of_irq.h>
+> >   #include <linux/of_net.h>
+> > +#include <linux/clk.h>
+> >
+> >   #include <defs.h>
+> >   #include "debug.h"
+> > @@ -65,17 +66,21 @@ static int brcmf_of_get_country_codes(struct device
+> > *dev,
+> >   	return 0;
+> >   }
+> >
+> > -void brcmf_of_probe(struct device *dev, enum brcmf_bus_type bus_type,
+> > -		    struct brcmf_mp_device *settings)
+> > +int brcmf_of_probe(struct device *dev, enum brcmf_bus_type bus_type,
+> > +		   struct brcmf_mp_device *settings)
+> >   {
+> >   	struct brcmfmac_sdio_pd *sdio = &settings->bus.sdio;
+> >   	struct device_node *root, *np = dev->of_node;
+> > +	struct clk *clk;
+> >   	const char *prop;
 > 
-> Thanks,
-> Matteo Martelli
+> Small nit, please check if reverse x-mas tree order need to be follow here.
+> 
+> >   	int irq;
+> >   	int err;
+> >   	u32 irqf;
+
+It can be seen from this line that there should be no need to follow the reverse x-mas tree order. Because it is a struct variable, so place with other struct ones.
+
+> >   	u32 val;
+> >
+> > +	if (!np || !of_device_is_compatible(np, "brcm,bcm4329-fmac"))
+> > +		return 0;
+> > +
+> >   	/* Apple ARM64 platforms have their own idea of board type, passed
+> > in
+> >   	 * via the device tree. They also have an antenna SKU parameter
+> >   	 */
+> > @@ -105,7 +110,7 @@ void brcmf_of_probe(struct device *dev, enum
+> > brcmf_bus_type bus_type,
+> >   		board_type = devm_kstrdup(dev, tmp, GFP_KERNEL);
+> >   		if (!board_type) {
+> >   			of_node_put(root);
+> > -			return;
+> > +			return 0;
+> >   		}
+> >   		strreplace(board_type, '/', '-');
+> >   		settings->board_type = board_type;
+> > @@ -113,33 +118,39 @@ void brcmf_of_probe(struct device *dev, enum
+> > brcmf_bus_type bus_type,
+> >   		of_node_put(root);
+> >   	}
+> >
+> > -	if (!np || !of_device_is_compatible(np, "brcm,bcm4329-fmac"))
+> > -		return;
+> > -
+> >   	err = brcmf_of_get_country_codes(dev, settings);
+> >   	if (err)
+> >   		brcmf_err("failed to get OF country code map (err=%d)\n",
+> > err);
+> >
+> >   	of_get_mac_address(np, settings->mac);
+> >
+> > -	if (bus_type != BRCMF_BUSTYPE_SDIO)
+> > -		return;
+> > +	if (bus_type == BRCMF_BUSTYPE_SDIO) {
+> > +		if (of_property_read_u32(np, "brcm,drive-strength", &val) ==
+> > 0)
+> > +			sdio->drive_strength = val;
+> >
+> > -	if (of_property_read_u32(np, "brcm,drive-strength", &val) == 0)
+> > -		sdio->drive_strength = val;
+> > +		/* make sure there are interrupts defined in the node */
+> > +		if (!of_property_present(np, "interrupts"))
+> > +			return 0;
+> >
+> > -	/* make sure there are interrupts defined in the node */
+> > -	if (!of_property_present(np, "interrupts"))
+> > -		return;
+> > +		irq = irq_of_parse_and_map(np, 0);
+> > +		if (!irq) {
+> > +			brcmf_err("interrupt could not be mapped\n");
+> > +			return 0;
+> > +		}
+> > +		irqf = irqd_get_trigger_type(irq_get_irq_data(irq));
+> > +
+> > +		sdio->oob_irq_supported = true;
+> > +		sdio->oob_irq_nr = irq;
+> > +		sdio->oob_irq_flags = irqf;
+> > +	}
+> >
+> > -	irq = irq_of_parse_and_map(np, 0);
+> > -	if (!irq) {
+> > -		brcmf_err("interrupt could not be mapped\n");
+> > -		return;
+> > +	clk = devm_clk_get_optional_enabled(dev, "lpo");
+> > +	if (!IS_ERR_OR_NULL(clk)) {
+> > +		brcmf_dbg(INFO, "enabling 32kHz clock\n");
+> > +		return clk_set_rate(clk, 32768);
+> > +	} else {
+> > +		return PTR_ERR_OR_ZERO(clk);
+> >   	}
+> > -	irqf = irqd_get_trigger_type(irq_get_irq_data(irq));
+> >
+> > -	sdio->oob_irq_supported = true;
+> > -	sdio->oob_irq_nr = irq;
+> > -	sdio->oob_irq_flags = irqf;
+> > +	return 0;
+> 
+> ....
+> ....
+> 
+> >   /* Detach and free everything */
+> > diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/usb.c
+> > b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/usb.c
+> > index 9a105e6debe1f..f7db46ae44906 100644
+> > --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/usb.c
+> > +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/usb.c
+> > @@ -1272,6 +1272,9 @@ static int brcmf_usb_probe_cb(struct
+> > brcmf_usbdev_info *devinfo,
+> >   		ret = -ENOMEM;
+> >   		goto fail;
+> >   	}
+> > +	ret = PTR_ERR_OR_ZERO(devinfo->settings);
+> > +	if (ret < 0)
+> > +		goto fail;
+> >
+> >   	if (!brcmf_usb_dlneeded(devinfo)) {
+> >   		ret = brcmf_alloc(devinfo->dev, devinfo->settings);
+> > --
+> > 2.34.1
+> >
+> Reviewed-by:  Sai Krishna <saikrishnag@marvell.com>
 > 
 
+--
+Best Regards
+Jacobe
 
