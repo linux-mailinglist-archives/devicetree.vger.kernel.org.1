@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-92616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDAAE94DCEE
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 14:46:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37BDB94DCF2
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 14:47:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C5F61C20C45
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 12:46:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7285EB20F57
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 12:47:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C244157E61;
-	Sat, 10 Aug 2024 12:45:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BC02158543;
+	Sat, 10 Aug 2024 12:47:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q/M0nirG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gUruoKzB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A8155C603;
-	Sat, 10 Aug 2024 12:45:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08BF6157E61;
+	Sat, 10 Aug 2024 12:47:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723293957; cv=none; b=AFsJVGJNA6gAK/q4C15nGNhdgRr6A7T7QnWu7KbMyOIrCcgc5JUcZirgrOKZp9PBuTdj/c6/0CCu0X3HAiVBVey7swSIbKxV2WxxHSGOI7sLWcHK/U930c9pDTisSXS6EGDknZsE0uqHqJd3Y4Wjh9UMZ9Mryw1LZ1z3Awofiik=
+	t=1723294047; cv=none; b=ubjizGsKvyxKAGU5FezaCLviPxlJrbkGf2JFfMcmXMKuw811LfSKYRb0BEwL5iVt+azZxO6evHAyQMC5AgqOUeaOQe6D6zPMBdexEetESOgr3HSWgN01tKpxRNTbjghTTpNFMABvgtPQWI6tj6LVOJOCqNxllMMjzmhXiIe8jGA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723293957; c=relaxed/simple;
-	bh=XNFSDJwFVRzMQ551kEfGOdMkkljrpPCWQ1GljnsYgXg=;
+	s=arc-20240116; t=1723294047; c=relaxed/simple;
+	bh=UYNanTe8yKRGFA3LMyPhTHncmqZ6LPNnPkib7v6wSu8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=syhbMm/ydhumMXVCmEPlcd5o6JzAMki+YhMq+b1GAa0AsIYGwMwRdcq9fvokTe+EFD9ZtqWN12n+DiFYOAFpXPZqL1VL/h47I+p8QwJqXIKQaMGj2MkxugFAYDj27RPms+2VOrs3XNEhxulB5Oozb66IMA1LqfwbW7xk8kItK8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q/M0nirG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5A33C32781;
-	Sat, 10 Aug 2024 12:45:51 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=moPjPz/8p7IZBrBF190wJjVGy6zhgEnZHI/7MhZuOrUMwLk93pXebOnxurD8spKvsrU2CDObXawzoxFdb4N2EFTFYJsSVEwjJcKSQs42Iw1HytUIsodxFZwvSzRzTuraxSR6b7Yp8pqciSShMZUpJkMheC+dmwKAdO8YjjyTltY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gUruoKzB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05AC7C32781;
+	Sat, 10 Aug 2024 12:47:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723293956;
-	bh=XNFSDJwFVRzMQ551kEfGOdMkkljrpPCWQ1GljnsYgXg=;
+	s=k20201202; t=1723294046;
+	bh=UYNanTe8yKRGFA3LMyPhTHncmqZ6LPNnPkib7v6wSu8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=q/M0nirGxu+yAds0n6P/S+YK5DrQF9GG1RtenaZdj8gVZZYy9y2rQvi/C/wnW83j5
-	 bG4CnDHrBG2RDeGzHdyZeqqNmNlBF6clpgb/2zSLkBdPAnP1+FefaYsHQQ9WbeMhO/
-	 E2zt76IIhT3INkeDhK71bAj5lUI4wit3NXdmbMN0AeniE/9O6evBDdl3WZEZqzG6K4
-	 VInrMUwa242x4vGdke8Ox588q6QpD0KUOpwAevGceI4Uk/a06pmSOPjnH9yieo8/f1
-	 Zl8N8mBN907ixzRV5X0ULBLhF02BLKbeWpyYeYd4eSgEm23dp5qionfYqwIYhi9Tz8
-	 lBUZaJr0ldptQ==
-Message-ID: <f890d760-9610-4e6e-aa7e-4920e25e936b@kernel.org>
-Date: Sat, 10 Aug 2024 14:45:49 +0200
+	b=gUruoKzBrlo4Hzycz/JVC0Tp5I137jbLrQGSUDSShikdTfWxdISTSu90/vrOWfueJ
+	 HdADFSlrmREseoVy0w66Acw4ClQOZit8U4griK2pesvrzmpxFPGEmuEYkLclNUP2P7
+	 EAMWfsUEdikrbOCojE11kHGM+im8XGeLYlq/9DLYaJiU7a7lW2BcayyAVUGVhHvItE
+	 FeQBwNMDYf5UF9GmpGYhoNixAzZoE7j8KWlekvaPQTPfxzNL9TjUxDQNo4y9CcSZGX
+	 JegnS+yygbzxA5cCCE/Kr7DgJvqTKQZ71ye1IXNrXlxMdxg4FrsYSfG0dBCJwd+BHA
+	 ytqcNQpjeu1QA==
+Message-ID: <27874bb8-d1e3-445c-bc09-054a2d6af2d1@kernel.org>
+Date: Sat, 10 Aug 2024 14:47:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] iio: imu: smi240: imu driver
-To: "Shen Jianping (ME-SE/EAD2)" <jianping.shen@de.bosch.com>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc: "Lorenz Christian (ME-SE/EAD2)" <Christian.Lorenz3@de.bosch.com>,
- "Dolde Kai (ME-SE/PAE-A3)" <Kai.Dolde@de.bosch.com>,
- "Frauendorf Ulrike (ME/PJ-SW3)" <Ulrike.Frauendorf@de.bosch.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "dima.fedrau@gmail.com" <dima.fedrau@gmail.com>,
- "jic23@kernel.org" <jic23@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "lars@metafoo.de"
- <lars@metafoo.de>, "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "marcelo.schmitt1@gmail.com" <marcelo.schmitt1@gmail.com>,
- "robh@kernel.org" <robh@kernel.org>
-References: <20240809111635.106588-1-Jianping.Shen@de.bosch.com>
- <20240809111635.106588-3-Jianping.Shen@de.bosch.com>
- <16c09207-48c6-4988-873f-772fa277f3b8@wanadoo.fr>
- <AM8PR10MB47217E50E6A7E20DC5C89973CDBA2@AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM>
+Subject: Re: [PATCH 1/2] dt-bindings: usb: qcom,dwc3: Document X1E80100 MP
+ controller
+To: Konrad Dybcio <konradybcio@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Krishna Kurapati <quic_kriskura@quicinc.com>,
+ Konrad Dybcio <quic_kdybcio@quicinc.com>
+References: <20240809-topic-h_mp-v1-0-3c5f468566d8@quicinc.com>
+ <20240809-topic-h_mp-v1-1-3c5f468566d8@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,28 +109,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <AM8PR10MB47217E50E6A7E20DC5C89973CDBA2@AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM>
+In-Reply-To: <20240809-topic-h_mp-v1-1-3c5f468566d8@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/08/2024 14:18, Shen Jianping (ME-SE/EAD2) wrote:
-> Hi Christophe,
+On 09/08/2024 15:18, Konrad Dybcio wrote:
+> From: Konrad Dybcio <quic_kdybcio@quicinc.com>
 > 
-> ....
->> +
->> +	data = iio_priv(indio_dev);
->> +	dev_set_drvdata(dev, indio_dev);
->> +	data->regmap = regmap;
->> +	data->capture = 0;
+> The X1E80100, just like its predecessors, has a Multiport controller.
+> This time around, 2 HS (eUSB) and 2 SS PHYs are attached.
 > 
-> No need to explicitly initialize 'capture', devm_iio_device_alloc() already zeroes the allocated emmory.
-> It doesn't hurt to be explicit, but why this field and not the other ones?
+> Document it.
 > 
-> -> This is the flag to enable capture mode. It is important to be disabled by default, therefore rather make this explicitly.
+> Signed-off-by: Konrad Dybcio <quic_kdybcio@quicinc.com>
 
-It's redundant.
-
-Anyway, it's not suppose to be uint8 anyway, but bool or enum.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
