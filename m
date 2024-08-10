@@ -1,108 +1,292 @@
-Return-Path: <devicetree+bounces-92636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97C6B94DDD4
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 19:52:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC04494DDEC
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 20:32:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CBA94B216BB
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 17:52:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E1171F21587
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 18:32:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D201168490;
-	Sat, 10 Aug 2024 17:52:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F52550A6D;
+	Sat, 10 Aug 2024 18:32:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="efTnpbBm"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="CEyQHuRj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73F492F2A;
-	Sat, 10 Aug 2024 17:52:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAC9C2F855
+	for <devicetree@vger.kernel.org>; Sat, 10 Aug 2024 18:32:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723312365; cv=none; b=le+SJ5BOYjByikN0oPSjI245yxFPjGiR2Jd4hZykW6Cnn54DqPApLR+WndH0eNKKuuXzLGCOR63tiEQ9yTehUdTcaZNd/oQewXIm7wVGD71ExtplDV11y4a5FBpf6d9yOZedKNUcWc0uF0Mo0167OkZBuwFmvfMuICGy2eQsxKA=
+	t=1723314770; cv=none; b=Gfh2CqjyCeEwaiKVldBIbiBeJ9t2+C45UkM+Xx44H827BGRm5K4hUiRsvUtLjWEYfrQ2n2t+GWGsTXo7zRSzDzclTnlJyCSATbHuD2Y/0Rtlzh1Hf8QdAVpngjnC4ROM29vGttnmhsEAhSAkJ5PPY4sMRcXApqJDuDSjVZrOgZ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723312365; c=relaxed/simple;
-	bh=e0tv6nXJ4LZUZTv86V7MXxbuh1jk3Kt97an99b1krl4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GgOTZo8X6P+y/2wjXvlKyyLc42ff+EnG3haFDfaCbUm3nkU1EZSNVfqyflkUyn0pPmc6QV9GBurfEn6k6KQQw/TJalEYh1kaHrNGK8cQQmMFQeHbmBLRDe87puTgxWot21y2ajXFmSU7KRSkMxLv3zvVFjzB+utTzm8q6SZU54Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=efTnpbBm; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=KJ+BuvHmxUUAXP706pMY7LJcQOTVsjZY8A7lywoxdvw=; b=efTnpbBmbSjOThI0JdLHqBFqMS
-	8PDs23XyPeWR9IByBjxnGqMLQltv1CHlV19rIXTVScdCoiPtHn/1rdL3D7rbPaHQyLseGMQuQmbqo
-	oRw7SawWIfV/ByNpnFFBcqVc6Z2uOE0g7eEvW2gFR499OFJN320r1g1ql+rE26L0m3eQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1scqGX-004SPL-9Q; Sat, 10 Aug 2024 19:52:33 +0200
-Date: Sat, 10 Aug 2024 19:52:33 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Tristram.Ha@microchip.com
-Cc: Woojung Huh <woojung.huh@microchip.com>, UNGLinuxDriver@microchip.com,
-	devicetree@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>,
-	Vladimir Oltean <olteanv@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Marek Vasut <marex@denx.de>, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 4/4] net: dsa: microchip: add SGMII port support
- to KSZ9477 switch
-Message-ID: <2f59b854-c1d4-4007-bc6e-4c8e88eda940@lunn.ch>
-References: <20240809233840.59953-1-Tristram.Ha@microchip.com>
- <20240809233840.59953-5-Tristram.Ha@microchip.com>
+	s=arc-20240116; t=1723314770; c=relaxed/simple;
+	bh=VacrKqjT12DQWFLHJLsfIBg5hsy8fLzWFq+alMsvooM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=SAEBvNKfmCnsE6jm1dCGMDnPSnsM2Xwp+Vt/PjQN0xSDO5x6JF61gR5FhFXcneVAaaYBMjaenDlyoMWTPkwyABBwcfXPvnaE/GU+Y1fOHDKtiyUHgu05WRjxhnNJSKVW5LEu5+2m+IpQIxPYb/Ss2ohC+SXu0zYKgwET5VkdFhs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=CEyQHuRj; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5a10835487fso4246157a12.1
+        for <devicetree@vger.kernel.org>; Sat, 10 Aug 2024 11:32:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1723314766; x=1723919566; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=u8muDajrGX3FO5dD48egl2aXV9/qSThjd9VJkKWphN4=;
+        b=CEyQHuRjxHC6llSCjeeK71HNeNrRvFQBFWJGE61IYUxT20wB4okj9CowPWtn1U0yZ7
+         6FEeYMAssetNYiQM89haRRqYO0c+/7orXgusqO8+KIz7epo3VBfK5sAfpqohIMt/FVn5
+         OgEgW1ktP3t7nWVHX69pFXajGGrh537jt9bFs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723314766; x=1723919566;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=u8muDajrGX3FO5dD48egl2aXV9/qSThjd9VJkKWphN4=;
+        b=K3cS1Ss39ltnuQ0wKXBifZzcU+uSMDUzaJTeJTBUjET44k2pw/v7HSqLkBCFM+qVd3
+         0PMsX7cBmxodqOEQ3/Z3SSR9qX4QCc4B566+uOQpcgVZxQ4rquCdTpQzO8Kuq7mA4J+V
+         LPyk+WFed8XRDmCNRM6PIOfVnWN3GYSJKES4EOXBz5giyWGPlNIa85YwDjVKyfgi8k04
+         8bnnxmbz+GS/qvzc74DDm9FDaPtTAGMIi7eT1MXNLdzOvN/h4hBbBKOaVBKG/3gR1VPO
+         nOBnN14oLBMAXvEUXna3HbzsQAs7tFb7pOePQOvY29QwcQcVbEaAbbb9ds8XOw6pCurc
+         GPjg==
+X-Forwarded-Encrypted: i=1; AJvYcCV80nWAGEsqvBE2hHpmV1xBC5e8kDQ5OVbmWrjQorQ9riyybDGQR6NhJHcfVPlSMH0xfO/xDxSPjhtcwrQLcuFDs+tTFfUSpDzrww==
+X-Gm-Message-State: AOJu0YyqHY1uOpPgVSolddIroPvoRQnbMf/wCD2ytmEdTly370krLsXO
+	ps4lnVLVUAsPeEiwz2ybyP2cWRzMceVFSxJaPct2oOslbbXMhIPofNM5t6blVw==
+X-Google-Smtp-Source: AGHT+IGop/ZoDA+Oc8+5qDzv25GL3CgFjr289f/SrTe7d5Ea2cqgNbnjGz8/e5qHIsy+G1LA+Xr+wA==
+X-Received: by 2002:a05:6402:90e:b0:59e:65d1:a56b with SMTP id 4fb4d7f45d1cf-5bd0a6668camr4516382a12.34.1723314765837;
+        Sat, 10 Aug 2024 11:32:45 -0700 (PDT)
+Received: from [192.168.178.137] (f215227.upc-f.chello.nl. [80.56.215.227])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5bd187f2abasm768760a12.8.2024.08.10.11.32.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 10 Aug 2024 11:32:45 -0700 (PDT)
+Message-ID: <fb9947fa-bca8-4c51-9feb-bf7ac6c6cc22@broadcom.com>
+Date: Sat, 10 Aug 2024 20:32:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240809233840.59953-5-Tristram.Ha@microchip.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 4/5] wifi: brcmfmac: Add optional lpo clock enable
+ support
+To: jacobe.zang@wesion.com, Sai Krishna Gajula <saikrishnag@marvell.com>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "heiko@sntech.de" <heiko@sntech.de>,
+ "kvalo@kernel.org" <kvalo@kernel.org>,
+ "davem@davemloft.net" <davem@davemloft.net>,
+ "edumazet@google.com" <edumazet@google.com>,
+ "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com"
+ <pabeni@redhat.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "efectn@protonmail.com" <efectn@protonmail.com>,
+ "dsimic@manjaro.org" <dsimic@manjaro.org>,
+ "jagan@edgeble.ai" <jagan@edgeble.ai>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "arend@broadcom.com" <arend@broadcom.com>,
+ "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>, "megi@xff.cz"
+ <megi@xff.cz>, "duoming@zju.edu.cn" <duoming@zju.edu.cn>,
+ "bhelgaas@google.com" <bhelgaas@google.com>,
+ "minipli@grsecurity.net" <minipli@grsecurity.net>,
+ "brcm80211@lists.linux.dev" <brcm80211@lists.linux.dev>,
+ "brcm80211-dev-list.pdl@broadcom.com" <brcm80211-dev-list.pdl@broadcom.com>,
+ "nick@khadas.com" <nick@khadas.com>
+References: <20240810035141.439024-1-jacobe.zang@wesion.com>
+ <20240810035141.439024-5-jacobe.zang@wesion.com>
+ <BY3PR18MB47072A9CC7E1EEB4BD1FC063A0BB2@BY3PR18MB4707.namprd18.prod.outlook.com>
+ <d9a182e4-c620-476d-8eb2-752dfd1ba4f8@wesion.com>
+Content-Language: en-US
+From: Arend van Spriel <arend.vanspriel@broadcom.com>
+Autocrypt: addr=arend.vanspriel@broadcom.com; keydata=
+ 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
+In-Reply-To: <d9a182e4-c620-476d-8eb2-752dfd1ba4f8@wesion.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Fri, Aug 09, 2024 at 04:38:40PM -0700, Tristram.Ha@microchip.com wrote:
-> From: Tristram Ha <tristram.ha@microchip.com>
+On 8/10/2024 12:08 PM, jacobe.zang@wesion.com wrote:
 > 
-> The SGMII module of KSZ9477 switch can be setup in 3 ways: 0 for direct
-> connect, 1 for 1000BaseT SFP, and 2 for 10/100/1000 SFP.
 > 
-> SFP is typically used so the default is 1.  The driver can detect
-> 10/100/1000 SFP and change the mode to 2.  For direct connect this mode
-> has to be explicitly set to 0 as driver cannot detect that
-> configuration.
+> On 2024/8/10 17:44, Sai Krishna Gajula <saikrishnag@marvell.com> wrote:
+>>
+>> > -----Original Message-----
+>> > From: Jacobe Zang <jacobe.zang@wesion.com>
+>> > Sent: Saturday, August 10, 2024 9:22 AM
+>> > To: robh@kernel.org; krzk+dt@kernel.org; heiko@sntech.de;
+>> > kvalo@kernel.org; davem@davemloft.net; edumazet@google.com;
+>> > kuba@kernel.org; pabeni@redhat.com; conor+dt@kernel.org;
+>> > arend.vanspriel@broadcom.com
+>> > Cc: efectn@protonmail.com; dsimic@manjaro.org; jagan@edgeble.ai;
+>> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; 
+>> linux-
+>> > rockchip@lists.infradead.org; linux-kernel@vger.kernel.org;
+>> > arend@broadcom.com; linux-wireless@vger.kernel.org;
+>> > netdev@vger.kernel.org; megi@xff.cz; duoming@zju.edu.cn;
+>> > bhelgaas@google.com; minipli@grsecurity.net; brcm80211@lists.linux.dev;
+>> > brcm80211-dev-list.pdl@broadcom.com; nick@khadas.com; Jacobe Zang
+>> > <jacobe.zang@wesion.com>
+>> > Subject:  [PATCH v9 4/5] wifi: brcmfmac: Add optional lpo clock
+>> > enable support
+>> >
+>> > WiFi modules often require 32kHz clock to function. Add support to 
+>> enable
+>> > the clock to PCIe driver and move "brcm,bcm4329-fmac" check to the 
+>> top of
+>> > brcmf_of_probe. Change function prototypes from void to int and add
+>> > appropriate errno's for return
+>> > WiFi modules often require 32kHz clock to function. Add support to 
+>> enable
+>> > the clock to PCIe driver and move "brcm,bcm4329-fmac" check to the 
+>> top of
+>> > brcmf_of_probe. Change function prototypes from void to int and add
+>> > appropriate errno's for return values that will be send to bus when 
+>> error
+>> > occurred.
+>> >
+>> > Co-developed-by: Ondrej Jirman <megi@xff.cz>
+>> > Signed-off-by: Ondrej Jirman <megi@xff.cz>
+>> > Co-developed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+>> > Signed-off-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+>> > Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
+>> > ---
+>> >   .../broadcom/brcm80211/brcmfmac/bcmsdh.c      |  4 +-
+>> >   .../broadcom/brcm80211/brcmfmac/common.c      |  3 +-
+>> >   .../wireless/broadcom/brcm80211/brcmfmac/of.c | 53 
+>> +++++++++++--------
+>> > .../wireless/broadcom/brcm80211/brcmfmac/of.h |  9 ++--
+>> >   .../broadcom/brcm80211/brcmfmac/pcie.c        |  3 ++
+>> >   .../broadcom/brcm80211/brcmfmac/sdio.c        | 24 ++++++---
+>> >   .../broadcom/brcm80211/brcmfmac/usb.c         |  3 ++
+>> >   7 files changed, 63 insertions(+), 36 deletions(-)
+>> >
+>> > diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/bcmsdh.c
+>> > b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/bcmsdh.c
+>> > index 13391c2d82aae..b2ede4e579c5c 100644
+>> > --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/bcmsdh.c
+>> > +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/bcmsdh.c
+>> > @@ -947,8 +947,8 @@ int brcmf_sdiod_probe(struct brcmf_sdio_dev
+>> > *sdiodev)
+>> >
+>> >       /* try to attach to the target device */
+>> >       sdiodev->bus = brcmf_sdio_probe(sdiodev);
+>> > -    if (!sdiodev->bus) {
+>> > -        ret = -ENODEV;
+>> > +    if (IS_ERR(sdiodev->bus)) {
+>> > +        ret = PTR_ERR(sdiodev->bus);
+>> >           goto out;
+>> >       }
+>> >       brcmf_sdiod_host_fixup(sdiodev->func2->card->host);
+>> > diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/common.c
+>> > b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/common.c
+>> > index b24faae35873d..58d50918dd177 100644
+>> > --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/common.c
+>> > +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/common.c
+>> > @@ -561,7 +561,8 @@ struct brcmf_mp_device
+>> > *brcmf_get_module_param(struct device *dev,
+>> >       if (!found) {
+>> >           /* No platform data for this device, try OF and DMI data */
+>> >           brcmf_dmi_probe(settings, chip, chiprev);
+>> > -        brcmf_of_probe(dev, bus_type, settings);
+>> > +        if (brcmf_of_probe(dev, bus_type, settings) == -
+>> > EPROBE_DEFER)
+>> > +            return ERR_PTR(-EPROBE_DEFER);
+>> >           brcmf_acpi_probe(dev, bus_type, settings);
+>> >       }
+>> >       return settings;
+>> > diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
+>> > b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
+>> > index e406e11481a62..f19dc7355e0e8 100644
+>> > --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
+>> > +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
+>> > @@ -6,6 +6,7 @@
+>> >   #include <linux/of.h>
+>> >   #include <linux/of_irq.h>
+>> >   #include <linux/of_net.h>
+>> > +#include <linux/clk.h>
+>> >
+>> >   #include <defs.h>
+>> >   #include "debug.h"
+>> > @@ -65,17 +66,21 @@ static int brcmf_of_get_country_codes(struct device
+>> > *dev,
+>> >       return 0;
+>> >   }
+>> >
+>> > -void brcmf_of_probe(struct device *dev, enum brcmf_bus_type bus_type,
+>> > -            struct brcmf_mp_device *settings)
+>> > +int brcmf_of_probe(struct device *dev, enum brcmf_bus_type bus_type,
+>> > +           struct brcmf_mp_device *settings)
+>> >   {
+>> >       struct brcmfmac_sdio_pd *sdio = &settings->bus.sdio;
+>> >       struct device_node *root, *np = dev->of_node;
+>> > +    struct clk *clk;
+>> >       const char *prop;
+>>
+>> Small nit, please check if reverse x-mas tree order need to be follow 
+>> here.
+>>
+>> >       int irq;
+>> >       int err;
+>> >       u32 irqf;
 > 
-> The SGMII module can only report basic link status of the SFP, so it is
-> simulated as a regular internal PHY.
-> 
-> Since the regular PHY in the switch uses interrupt instead of polling the
-> driver has to handle the SGMII interrupt indicating link on/off.
-> 
-> One issue for the 1000BaseT SFP is there is no link down interrupt, so
-> the driver has to use polling to detect link down when the link is up.
-> 
-> Recent change in the DSA operation can setup the port before the PHY
-> interrupt handling function is registered.  As the SGMII interrupt can
-> be triggered after port setup there is extra code in the interrupt
-> processing to handle this situation.  Otherwise a kernel fault can be
-> triggered.
-> 
-> Note the SGMII interrupt cannot be masked in hardware.  Also the module
-> is not reset when the switch is reset.  It is important to reset the
-> module properly to make sure the interrupt is not triggered prematurely.
+> It can be seen from this line that there should be no need to follow the 
+> reverse x-mas tree order. Because it is a struct variable, so place with 
+> other struct ones.
 
-Why not model this as a PCS? Russell has been converting all PCS like
-things in DSA into try PCS drivers. So i suspect Russell will not like
-this code, and would prefer a PCS driver.
+As driver maintainer I do not care about such neatness, but maybe Kalle 
+has another preference. The code above looks fine to me.
 
-	Andrew
+Regards,
+Arend
+
+
 
