@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-92598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2059694DC7E
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 13:31:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC6FA94DC82
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 13:34:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A1CE11F21E91
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 11:31:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 365732828E7
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 11:34:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86FE2156220;
-	Sat, 10 Aug 2024 11:31:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94B60156220;
+	Sat, 10 Aug 2024 11:34:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fqcrKsQm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HhMHYN0u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EB8F182D8;
-	Sat, 10 Aug 2024 11:31:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BD5E182D8;
+	Sat, 10 Aug 2024 11:34:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723289465; cv=none; b=usgC4O2kd09qmyEz8U+NbUqQ5OyXZLVizgMLC5lLWWPlMFzVrfQcF46yKBhtx0VndMTGBfqoogWqEGwevukqZN1sLdROzor0PKwRgaUCuRfcjxw7bnCmRy6xm+4fR4tmrzHg7WoL1zjYX8HTH+jxs9WJ5aLNJsL3spDt1lbEux4=
+	t=1723289664; cv=none; b=UUpm1Bjh/w/CWP1Bcl0eqCsbd6m1QlGQcOcen+syQOwECbkSXvFftIK9TYnZzM9gAL5ZpClQy1NskctdrAr4VEh26sdcHfdqgxvLKxSNcEcSOzoC6F5+GegNgp0N1FbIfx+y4tgAbZq3it5Tc2MoJMkI859r29/8iWpmzxktlVM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723289465; c=relaxed/simple;
-	bh=f6LrB43xDwIL087E5fBIoihXTlSVlukDFEPBOUoDZdc=;
+	s=arc-20240116; t=1723289664; c=relaxed/simple;
+	bh=JJ/+mmEM+8xbPzM21IrIBeyxA2AgTYGqFaQ5w0B64fg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CbC1O+CyvigO39z9nUUZvdBtnVVs/L5UIvl4FRx9x9FpLFmIoN7QPdbmwMVxIllZTa34xoWh3hE7KCdUB3vXPqi14z1Nwv+O0VfpJyks3TYvU0a51tXpf+4xYf9KZcfY+MlHh+YGEQ6e8WY8JF+MHl796EoIDzJBN6HY1GHuCfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fqcrKsQm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95CBEC32781;
-	Sat, 10 Aug 2024 11:30:59 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=sRMiTwTcf+9rjGjeY2HvVxztiv3+wjQQTZRwwgL4zJr9fpb6WBgk0DipngDstghF45EzS9K6uyjnifqLkhWf2nYeCZ9Q+apS7QQN/yyUC0X25Qh7ema77/+Z2Snzcb6vzMdnS+47Z8UiOr7Lkq6Oyvv4Yu+9sJ7TeCvCfjYKVEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HhMHYN0u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59A11C32781;
+	Sat, 10 Aug 2024 11:34:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723289464;
-	bh=f6LrB43xDwIL087E5fBIoihXTlSVlukDFEPBOUoDZdc=;
+	s=k20201202; t=1723289663;
+	bh=JJ/+mmEM+8xbPzM21IrIBeyxA2AgTYGqFaQ5w0B64fg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fqcrKsQmS+hcWo0ioL2pykQKXliHX7N7QTX6Wi0msKSderT9BU7TbKgwqk1Ih0uGx
-	 A47Jw2zEmXSPfgMt74YAyVZHinC2s7aZOzfYJCSWl/ZcI+DHOtEbDsl/yxTJSDYAxp
-	 rpJTBX5p9pwK1B1NHpUsKlJ2ndQvIuT4bXxR3qK1nytcs0ViJ2DsQOszPI8wobD6Yf
-	 zIwKxIP356CN33TURFJBVcJTDMbBfOwdztWY0VU5wwY2mn9Y6tiy2A7+WXGQvtj2qt
-	 /B8bMwxQsm2XuBadBI5mEG9a4HG4llpYapkRiWtCWW/gwsRyt6Mqt55ugLUnS2LZiG
-	 5JJsNZ1FyFYSA==
-Message-ID: <53f25764-41d6-491f-9397-988d3e672189@kernel.org>
-Date: Sat, 10 Aug 2024 13:30:57 +0200
+	b=HhMHYN0uQ9U9KjtTzSGJCZ40lqRZ27WCmrPA4Co1HHqPI46MoQ2poZ9vaPwCaY3UF
+	 pBsHLQCJyog2SqzzrGmxZgB5ZoRWjdqiPMs9SFpZOzkXM2RzHrMo0D0nzdGn9KD3DP
+	 ou4Gx5bwFzUDY+ILY1tnJ5iCHeOIVTlPtGcofWKn/YmAUH/fsGyCiqKz8YKFcM8UwA
+	 ojy7P7zCDPYE5L2m6I4AqVENJjVibFORZS8BhUACaOJ5T/bhiWR6c4EKv88d0kg0xN
+	 sHsM5xkcYat8JjJ75te7UtTSII2dPQ+jM8Si3QKiaZZOvqKaE6qTJHkqsWozB5F3sa
+	 sjcL65vpBTZdQ==
+Message-ID: <1f8905b0-aff6-4932-b936-191aa5529f0e@kernel.org>
+Date: Sat, 10 Aug 2024 13:34:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: clock: qcom: Add common PLL clock
- controller for IPQ SoC
-To: Jie Luo <quic_luoj@quicinc.com>, Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, quic_kkumarcs@quicinc.com,
- quic_suruchia@quicinc.com, quic_pavir@quicinc.com, quic_linchen@quicinc.com,
- quic_leiwei@quicinc.com
-References: <20240808-qcom_ipq_cmnpll-v1-0-b0631dcbf785@quicinc.com>
- <20240808-qcom_ipq_cmnpll-v1-1-b0631dcbf785@quicinc.com>
- <81524fee-c32c-405b-b63b-d048dde6ae33@kernel.org>
- <a0fe7735-76fd-4a53-9446-5371e341ba17@quicinc.com>
+Subject: Re: [PATCH 2/2] pwm: airoha: Add support for EN7581 SoC
+To: Lorenzo Bianconi <lorenzo@kernel.org>, linux-pwm@vger.kernel.org
+Cc: ukleinek@kernel.org, lorenzo.bianconi83@gmail.com, krzk+dt@kernel.org,
+ robh@kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, upstream@airoha.com,
+ angelogioacchino.delregno@collabora.com, benjamin.larsson@genexis.eu,
+ conor+dt@kernel.org, ansuelsmth@gmail.com
+References: <cover.1723264979.git.lorenzo@kernel.org>
+ <a03f5ea9291e39eab303696eb03fdd44cf04e8d9.1723264979.git.lorenzo@kernel.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,54 +104,76 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <a0fe7735-76fd-4a53-9446-5371e341ba17@quicinc.com>
+In-Reply-To: <a03f5ea9291e39eab303696eb03fdd44cf04e8d9.1723264979.git.lorenzo@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/08/2024 15:01, Jie Luo wrote:
->>> +  clock-names:
->>> +    items:
->>> +      - const: ref
->>> +      - const: ahb
->>> +      - const: sys
->>> +
->>> +  clock-output-names:
->>> +    items:
->>> +      - const: ppe-353mhz
->>> +      - const: eth0-50mhz
->>> +      - const: eth1-50mhz
->>> +      - const: eth2-50mhz
->>> +      - const: eth-25mhz
->>
->> Drop entire property. If the names are fixed, what's the point of having
->> it in DTS? There is no.
+On 10/08/2024 06:48, Lorenzo Bianconi wrote:
+> From: Benjamin Larsson <benjamin.larsson@genexis.eu>
 > 
-> We had added the output names here for the reasons below. Can you please
-> let us know your suggestion whether keeping these here is fine?
+> Introduce driver for PWM module available on EN7581 SoC.
 > 
-> 1.) These output clocks are used as input reference clocks to other
-> consumer blocks. For example, an on-board Ethernet PHY device may be
-> wired to receive a specific clock from the above output clocks as
-> reference clock input, and hence the PHY's DTS node would need to
-> reference a particular index in this output clock array.
-> 
-> Without these output clocks being made available in this DTS, the PHY
-> driver in above case would not know the clock specifier to access the
-> handle for the desired input clock.
+> Signed-off-by: Benjamin Larsson <benjamin.larsson@genexis.eu>
+> Co-developed-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> ---
 
-That's not true. clock-output-names do not have anything to do with
-clock specifier.
 
-> 
-> 2.) One of the suggestions from the internal code review with Linaro was
-> to name the output clocks specifically based on rate and destination
-> (Ex: 'ppe-353mhz' for fixed rate 353 MHZ output clock connected to
-> Packet Process Engine block), so that the dt-bindings describe the
-> input/output clocks clearly.
+...
 
-Again, that's unrelated. None of above points address my concern. It's
-like you talk about some entirely different topic. Again:
-clock-output-names have nothing to do with what you want to achieve here.
+> +
+> +static void airoha_pwm_config_flash_map(struct airoha_pwm *pc,
+> +					unsigned int hwpwm, int index)
+> +{
+> +	u32 addr, mask, val;
+> +
+> +	if (hwpwm < PWM_NUM_GPIO) {
+> +		addr = REG_GPIO_FLASH_MAP(hwpwm / 8);
+> +	} else {
+> +		addr = REG_SIPO_FLASH_MAP(hwpwm / 8);
+> +		hwpwm -= PWM_NUM_GPIO;
+> +	}
+> +
+> +	if (index < 0) {
+> +		/* Change of waveform takes effect immediately but
+
+This and other comments should be not netdev-style but general Linux style.
+
+> +		 * disabling has some delay so to prevent glitching
+> +		 * only the enable bit is touched when disabling
+> +		 */
+> +		airoha_pwm_flash_clear(pc, addr, GPIO_FLASH_EN(hwpwm % 8));
+> +		return;
+
+...
+
+
+> +
+> +static const struct of_device_id airoha_pwm_of_match[] = {
+> +	{ .compatible = "airoha,en7581-pwm" },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, airoha_pwm_of_match);
+> +
+> +static struct platform_driver airoha_pwm_driver = {
+> +	.driver = {
+> +		.name = "airoha-pwm",
+> +		.of_match_table = airoha_pwm_of_match,
+> +	},
+> +	.probe = airoha_pwm_probe,
+> +};
+> +module_platform_driver(airoha_pwm_driver);
+> +
+> +MODULE_ALIAS("platform:airoha-pwm");
+
+You should not need MODULE_ALIAS() in normal cases. If you need it,
+usually it means your device ID table is wrong (e.g. misses either
+entries or MODULE_DEVICE_TABLE()). MODULE_ALIAS() is not a substitute
+for incomplete ID table.
+
+Especially that it does not match compatible, so you cannot use excuse
+module autoloading does not work for given OF node...
+
 
 Best regards,
 Krzysztof
