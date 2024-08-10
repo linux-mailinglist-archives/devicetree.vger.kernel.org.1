@@ -1,286 +1,107 @@
-Return-Path: <devicetree+bounces-92588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA03394DBF5
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 11:28:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0BC294DC06
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 11:39:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 15CB0B20B83
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 09:28:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BC4C282152
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 09:39:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 207E714EC62;
-	Sat, 10 Aug 2024 09:28:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB19A156991;
+	Sat, 10 Aug 2024 09:38:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="d0fkYGqE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JQ8QQzMg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54A3514E2CA
-	for <devicetree@vger.kernel.org>; Sat, 10 Aug 2024 09:28:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A92361D555;
+	Sat, 10 Aug 2024 09:38:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723282107; cv=none; b=oAI16VcwNlG37HpQ8YqD5tSQ4lBeQtlWM17/LZR1lyYSKgNnh2MCjUnaVjN+2R6i11BHaVeifTKGnW8fZxPlFQUDAYKVlvPNabPpb6ba9QXDNw2bfLpZsGu3NpKbTzY9lFsN0j2oIM047l+LpumqGoV0rKgXZxggPH9qKuS3q1U=
+	t=1723282738; cv=none; b=ktjE6bRK+rDfiZCM+voN//jDIUPAAQYLiAYgVLlNi4+uUQlQUpZIlMZOPYLz/HpoSrjaDiKMcNUwK4bTzvkGD8mwzI1iYceGoYxIa/M6jG1oDivi+3pSCy9FqqAcU6DWsMhhBL4MvY78iv15IELxHVFXK1YnUj8BkBwyTNr0/4k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723282107; c=relaxed/simple;
-	bh=GYRfJlzoRsjtp007RotS27ekMFfs/VYre5OmZ1l6ue0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t3+mRtwxukJp+d6Gxs+40pcackGFk7XNELSERvErMBWWzOecX3W8io+gc0TsHZOq2oChPiOaj28FjkUAP8y+psvRKJJBH97xuxruK4K3YfBpgGkcYoj1KpgwsVtkweX3suqrxoPj5OXU5ZICuYOFDYoUD/86DvBJR2lhQDTQjq8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=d0fkYGqE; arc=none smtp.client-ip=209.85.160.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-268a9645e72so2002516fac.1
-        for <devicetree@vger.kernel.org>; Sat, 10 Aug 2024 02:28:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723282104; x=1723886904; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=POxk62T02uNYfGYqWbrOQkk1jdML19M7AItpdTradPY=;
-        b=d0fkYGqERypruMfvMHaFDkb7mutAPkUDjRIEHRI7ZzjCMFVKc1e5LoK5A7UBK8yGBk
-         8m2uSn7IcXewS0maWIBRPBFpUSf7qwXbR35eGbkbw/wPUrZpuI1SpWosmtYrhUgd6EBV
-         /dcpWAIdks3zNz8K29e70KUh6c7lzS1JqcQLClMko4aLlvRGJPoh9S5wiDqkRejN24Qj
-         u9xc41Zn/UkPQNaSHtf8aH4OKAcdX6HL5uvfNhZyqrKI8mWUk7rcz7780hoECR273RK0
-         BEUntp6nO/Z47mgW5HcA1Q0MQmPhzKsw5ijQleo21Zy2/AS9LJbTJxAMKeD3BRYck6R2
-         ddJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723282104; x=1723886904;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=POxk62T02uNYfGYqWbrOQkk1jdML19M7AItpdTradPY=;
-        b=DLZJ3SaluUc6zUD5Zy4im0z36Zt6AIAoEHw5cAKSEno/sfyle7OIzgOYlWT5HgA4eo
-         p/eqD5+6v+QTmF+n7VPBllHzMLuFG/mK1t4aUQIoGoC7SGHiuC3XHmQbnrakl8A6aSSv
-         IXPGF4rzf9vxCnnvsEgmsKJ/RQ/Iz3J31V5aW2FM2Au4o2xrt75IqPp1AM3O3pzwe6V5
-         kWc3+3+1ax/4gwoTj4lSTOlguaW2sMRSUYT7dCS7C5i1uHqvF0IMXFBQXqLQ6qNRnMQS
-         NGA/VABj09tZtQ5Iq65vRgDTs/1SDmOYHcvaESVYe3W9rMWxgcY7fjYBJTWAUrFJc8dN
-         +smQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUos3JhlTzY3CyGW7iVj8fBB5qEkukkxOp4Saqm2APcHsLzF79KOO+FUq3gvg7oueYrSO+w/4aptEyaguNc0wO7bykBemprKkWpUw==
-X-Gm-Message-State: AOJu0YxKDjbPPSOSt/eAszmTxcYL5p2aYQ11q3CVEncqtX8Phik5ra4k
-	ZZ4BLWIKTFE+yHASbcHhjrnkBbJKZq0gKQFzzvQyGVltL3sPWwebKKOmSCNzcg==
-X-Google-Smtp-Source: AGHT+IGxXpic2tbSmJIvmZMe7QV/huh6dtAslPZVPvo5/1EPsxoFJhDufcj4j0iJA3dkRUA/5lFElA==
-X-Received: by 2002:a05:6870:828c:b0:268:a79a:be0d with SMTP id 586e51a60fabf-26c6302463dmr4360557fac.47.1723282104349;
-        Sat, 10 Aug 2024 02:28:24 -0700 (PDT)
-Received: from thinkpad ([220.158.156.101])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-710e58a7b6csm947588b3a.60.2024.08.10.02.28.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 10 Aug 2024 02:28:23 -0700 (PDT)
-Date: Sat, 10 Aug 2024 14:58:17 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Shawn Lin <shawn.lin@rock-chips.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	"James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
-	"Martin K . Petersen" <martin.petersen@oracle.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Avri Altman <avri.altman@wdc.com>,
-	Bart Van Assche <bvanassche@acm.org>,
-	YiFeng Zhao <zyf@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
-	linux-scsi@vger.kernel.org, linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] scsi: ufs: rockchip: init support for UFS
-Message-ID: <20240810092817.GA147655@thinkpad>
-References: <1723089163-28983-1-git-send-email-shawn.lin@rock-chips.com>
- <1723089163-28983-4-git-send-email-shawn.lin@rock-chips.com>
- <20240809062813.GC2826@thinkpad>
- <421d48b7-4aa7-4202-8b5f-9c60916f6ef6@rock-chips.com>
+	s=arc-20240116; t=1723282738; c=relaxed/simple;
+	bh=yGihDf4UPvnVbeBFvypXekjA1yNeJQAtpvjbIlX4CqY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DF3U/QTOEh8h02Mdb3ISpH/iyKPAeiafEonCAz2HAqgIzdxlucdzlw+DETAX7VjsexPyY6QvgIzCvts2RKO2HZqqI4dkxLm4caIheLY6VeFX50Wl3JSl9a+pygALSzdiKQaNz3pXVGB3Ad7pwBuP1zcZ/ou/NffJytXOt5IjLp8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JQ8QQzMg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7004C32781;
+	Sat, 10 Aug 2024 09:38:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723282738;
+	bh=yGihDf4UPvnVbeBFvypXekjA1yNeJQAtpvjbIlX4CqY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=JQ8QQzMgM0Uvlfnfy3IDHI0GO+THTPSoCUsfXfJucyG/0X/0em3nRX+L9KNsXXZ9y
+	 8wnRm4nDZzapTf67U24uTTXgedsk8EzUl+EZ+ApduQDyICVmTBxto13YZqc0/Dt9gv
+	 OsN+fut7B13hM9gxcL0Pa6UjZa8rzbeZF9EOM2hrBIkXoh8j22QINgZcdoFDoXdG6C
+	 XiUDJ0m140PfV33fX6virJsn1k8b3xaz2qQcLgn+vJ8gCNSu3gtXPm/0OrGarAwuOJ
+	 WNAXfnpNNH6FAcPRD5L0xI/CFHpCAKocMg0ejq3QGJQiDFxurtE4/RKddRjLUIDPhq
+	 HsS3LhS/n23pA==
+Date: Sat, 10 Aug 2024 10:38:42 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Detlev Casanova <detlev.casanova@collabora.com>,
+ linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiko
+ Stuebner <heiko@sntech.de>, Andi Shyti <andi.shyti@kernel.org>, Lars-Peter
+ Clausen <lars@metafoo.de>, Lee Jones <lee@kernel.org>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, Daniel
+ Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>,
+ Chris Morgan <macromorgan@hotmail.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Tim Lunn <tim@feathertop.org>, Muhammed Efe Cetin <efectn@protonmail.com>,
+ Andy Yan <andyshrk@163.com>, Jagan Teki <jagan@edgeble.ai>, Dragan Simic
+ <dsimic@manjaro.org>, Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Shresth Prasad <shresthprasad7@gmail.com>, Ondrej Jirman <megi@xff.cz>,
+ Weizhao Ouyang <weizhao.ouyang@arm.com>, Alexey Charkov
+ <alchark@gmail.com>, Jimmy Hon <honyuenkwun@gmail.com>, Finley Xiao
+ <finley.xiao@rock-chips.com>, Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+ Elaine Zhang <zhangqing@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-i2c@vger.kernel.org,
+ linux-iio@vger.kernel.org, linux-serial@vger.kernel.org,
+ kernel@collabora.com
+Subject: Re: [PATCH 04/10] dt-bindings: iio: adc: Add rockchip,rk3576-saradc
+ string
+Message-ID: <20240810103842.19a60a22@jic23-huawei>
+In-Reply-To: <66118cb8-595a-4149-84c9-0105a2949151@kernel.org>
+References: <20240802214612.434179-1-detlev.casanova@collabora.com>
+	<20240802214612.434179-5-detlev.casanova@collabora.com>
+	<66118cb8-595a-4149-84c9-0105a2949151@kernel.org>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <421d48b7-4aa7-4202-8b5f-9c60916f6ef6@rock-chips.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Fri, Aug 09, 2024 at 04:16:41PM +0800, Shawn Lin wrote:
+On Sun, 4 Aug 2024 11:47:44 +0200
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-[...]
-
-> > > +static int ufs_rockchip_hce_enable_notify(struct ufs_hba *hba,
-> > > +					 enum ufs_notify_change_status status)
-> > > +{
-> > > +	int err = 0;
-> > > +
-> > > +	if (status == PRE_CHANGE) {
-> > > +		int retry_outer = 3;
-> > > +		int retry_inner;
-> > > +start:
-> > > +		if (ufshcd_is_hba_active(hba))
-> > > +			/* change controller state to "reset state" */
-> > > +			ufshcd_hba_stop(hba);
-> > > +
-> > > +		/* UniPro link is disabled at this point */
-> > > +		ufshcd_set_link_off(hba);
-> > > +
-> > > +		/* start controller initialization sequence */
-> > > +		ufshcd_writel(hba, CONTROLLER_ENABLE, REG_CONTROLLER_ENABLE);
-> > > +
-> > > +		usleep_range(100, 200);
-> > > +
-> > > +		/* wait for the host controller to complete initialization */
-> > > +		retry_inner = 50;
-> > > +		while (!ufshcd_is_hba_active(hba)) {
-> > > +			if (retry_inner) {
-> > > +				retry_inner--;
-> > > +			} else {
-> > > +				dev_err(hba->dev,
-> > > +					"Controller enable failed\n");
-> > > +				if (retry_outer) {
-> > > +					retry_outer--;
-> > > +					goto start;
-> > > +				}
-> > > +				return -EIO;
-> > > +			}
-> > > +			usleep_range(1000, 1100);
-> > > +		}
-> > 
-> > You just duplicated ufshcd_hba_execute_hce() here. Why? This doesn't make sense.
+> On 02/08/2024 23:45, Detlev Casanova wrote:
+> > Add rockchip,rk3576-saradc compatible string.
+> > The saradc on RK3576 is compatible with the one on RK3588, so they are
+> > used together in an arm of the oneOf.
+> >   
 > 
-> Since we set UFSHCI_QUIRK_BROKEN_HCE, and we also need to do someting
-> which is very similar to ufshcd_hba_execute_hce(), before calling
-> ufshcd_dme_reset(). Similar but not totally the same. I'll try to see if
-> we can export ufshcd_hba_execute_hce() to make full use of it.
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Best regards,
+> Krzysztof
+> 
 > 
 
-But you are starting the controller using REG_CONTROLLER_ENABLE. Isn't that
-supposed to be broken if you set UFSHCI_QUIRK_BROKEN_HCE? Or I am
-misunderstanding the quirk?
+Applied to the togreg branch of iio.git and pushed out as testing initially
+because otherstuff on that branch needs some build test before I make
+a mess of linux-next.
 
-> > 
-> > > +	} else { /* POST_CHANGE */
-> > > +		err = ufshcd_vops_phy_initialization(hba);
-> > > +	}
-> > > +
-> > > +	return err;
-> > > +}
-> > > +
-> > > +static void ufs_rockchip_set_pm_lvl(struct ufs_hba *hba)
-> > > +{
-> > > +	hba->rpm_lvl = UFS_PM_LVL_1;
-> > > +	hba->spm_lvl = UFS_PM_LVL_3;
-> > > +}
-> > > +
-> > > +static int ufs_rockchip_rk3576_phy_init(struct ufs_hba *hba)
-> > > +{
-> > > +	struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
-> > > +
-> > > +	ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(PA_LOCAL_TX_LCC_ENABLE, 0x0), 0x0);
-> > > +	/* enable the mphy DME_SET cfg */
-> > > +	ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x200, 0x0), 0x40);
-> > > +	for (int i = 0; i < 2; i++) {
-> > > +		/* Configuration M-TX */
-> > > +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0xaa, SEL_TX_LANE0 + i), 0x06);
-> > > +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0xa9, SEL_TX_LANE0 + i), 0x02);
-> > > +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0xad, SEL_TX_LANE0 + i), 0x44);
-> > > +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0xac, SEL_TX_LANE0 + i), 0xe6);
-> > > +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0xab, SEL_TX_LANE0 + i), 0x07);
-> > > +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x94, SEL_TX_LANE0 + i), 0x93);
-> > > +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x93, SEL_TX_LANE0 + i), 0xc9);
-> > > +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x7f, SEL_TX_LANE0 + i), 0x00);
-> > > +		/* Configuration M-RX */
-> > > +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x12, SEL_RX_LANE0 + i), 0x06);
-> > > +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x11, SEL_RX_LANE0 + i), 0x00);
-> > > +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x1d, SEL_RX_LANE0 + i), 0x58);
-> > > +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x1c, SEL_RX_LANE0 + i), 0x8c);
-> > > +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x1b, SEL_RX_LANE0 + i), 0x02);
-> > > +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x25, SEL_RX_LANE0 + i), 0xf6);
-> > > +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x2f, SEL_RX_LANE0 + i), 0x69);
-> > > +	}
-> > > +	/* disable the mphy DME_SET cfg */
-> > > +	ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x200, 0x0), 0x00);
-> > > +
-> > > +	ufs_sys_writel(host->mphy_base, 0x80, 0x08C);
-> > > +	ufs_sys_writel(host->mphy_base, 0xB5, 0x110);
-> > > +	ufs_sys_writel(host->mphy_base, 0xB5, 0x250);
-> > > +
-> > 
-> > Why can't you do these settings in a PHY driver?
-> 
-> As we have ->phy_initialization in struct ufs_hba_variant_ops,
-> which asks the host driver to use it to initialize phys. It doesn't
-> seem to need to create a whole new file to just add some smalls fixed
-> parameters. :)
-> 
+Thanks,
 
-So the PHY doesn't need any resources (clocks, regulators, etc...) other than
-programming these sequences? If so, it is fine with me.
-
-> 
-> > 
-> > > +	ufs_sys_writel(host->mphy_base, 0x03, 0x134);
-> > > +	ufs_sys_writel(host->mphy_base, 0x03, 0x274);
-> > > +
-> > > +	ufs_sys_writel(host->mphy_base, 0x38, 0x0E0);
-> > > +	ufs_sys_writel(host->mphy_base, 0x38, 0x220);
-> > > +
-> > > +	ufs_sys_writel(host->mphy_base, 0x50, 0x164);
-> > > +	ufs_sys_writel(host->mphy_base, 0x50, 0x2A4);
-> > > +
-> > > +	ufs_sys_writel(host->mphy_base, 0x80, 0x178);
-> > > +	ufs_sys_writel(host->mphy_base, 0x80, 0x2B8);
-> > > +
-> > > +	ufs_sys_writel(host->mphy_base, 0x18, 0x1B0);
-> > > +	ufs_sys_writel(host->mphy_base, 0x18, 0x2F0);
-> > > +
-> > > +	ufs_sys_writel(host->mphy_base, 0x03, 0x128);
-> > > +	ufs_sys_writel(host->mphy_base, 0x03, 0x268);
-> > > +
-> > > +	ufs_sys_writel(host->mphy_base, 0x20, 0x12C);
-> > > +	ufs_sys_writel(host->mphy_base, 0x20, 0x26C);
-> > > +
-> > > +	ufs_sys_writel(host->mphy_base, 0xC0, 0x120);
-> > > +	ufs_sys_writel(host->mphy_base, 0xC0, 0x260);
-> > > +
-> > > +	ufs_sys_writel(host->mphy_base, 0x03, 0x094);
-> > > +
-> > > +	ufs_sys_writel(host->mphy_base, 0x03, 0x1B4);
-> > > +	ufs_sys_writel(host->mphy_base, 0x03, 0x2F4);
-> > > +
-> > > +	ufs_sys_writel(host->mphy_base, 0xC0, 0x08C);
-> > > +	udelay(1);
-> > > +	ufs_sys_writel(host->mphy_base, 0x00, 0x08C);
-> > > +
-> > > +	udelay(200);
-> > > +	/* start link up */
-> > > +	ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(MIB_T_DBG_CPORT_TX_ENDIAN, 0), 0x0);
-> > > +	ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(MIB_T_DBG_CPORT_RX_ENDIAN, 0), 0x0);
-> > > +	ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(N_DEVICEID, 0), 0x0);
-> > > +	ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(N_DEVICEID_VALID, 0), 0x1);
-> > > +	ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(T_PEERDEVICEID, 0), 0x1);
-> > > +	ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(T_CONNECTIONSTATE, 0), 0x1);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-
-[...]
-
-> > > +static const struct dev_pm_ops ufs_rockchip_pm_ops = {
-> > > +	SET_SYSTEM_SLEEP_PM_OPS(ufs_rockchip_suspend, ufs_rockchip_resume)
-> > > +	SET_RUNTIME_PM_OPS(ufs_rockchip_runtime_suspend, ufs_rockchip_runtime_resume, NULL)
-> > 
-> > Why can't you use ufshcd PM ops as like other vendor drivers?
-> 
-> It doesn't work from the test. We have many use case to power down the
-> controller and device, so there is no flow to recovery the link. Only
-> when the first accessing to UFS fails, the ufshcd error handle recovery the
-> link. This is not what we expect.
-> 
-
-What tests? The existing UFS controller drivers are used in production devices
-and they never had a usecase to invent their own PM callbacks. So if your
-controller is special, then you need to justify it more elaborately. If
-something is missing in ufshcd callbacks, then we can add them.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+Jonathan
 
