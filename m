@@ -1,48 +1,74 @@
-Return-Path: <devicetree+bounces-92618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E893194DCF6
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 14:48:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B9EA94DCFE
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 15:00:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4ED02819DE
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 12:48:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D9961F21A19
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 13:00:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 017B3158559;
-	Sat, 10 Aug 2024 12:48:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17E5215855B;
+	Sat, 10 Aug 2024 13:00:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h4hDE24l"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VePmWphN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5CF2157E61;
-	Sat, 10 Aug 2024 12:48:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61EE84502F;
+	Sat, 10 Aug 2024 13:00:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723294097; cv=none; b=Gwx7GGHdzQvz80VkSbpL2uewZ2WoBBm/c5rFRnI0q97euvIIwvL6amTgeUXtYwZEsDYLeXleyJbumoAZ4Sxhu/8ZB2JO+roMebX/0EF9dLNxU3ukN0YOK58KoIJs9kX/Hzng3KAYyF4vlHtLSUuILPGGmvw9rghu73Ym6Qn6F7A=
+	t=1723294826; cv=none; b=o11PtUwAjyI6SyCSXn+LB2/BBfVr0n31wV+0ttswB0AD+rBS6lXG9IsrcJzcw1G6bYs9YCiHJUIX7lFhF1d4TTd74ckVuRgJ4z05cvVThKT5nuQLBlQW3Oiw4/Xml406Oq91ZoMIzPAKmLjMG9mW5n/Fayc7GkbMCTMPPSVZ07Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723294097; c=relaxed/simple;
-	bh=K72N+bvYVGEFOyhe+LWxiFVuR7StmCDF0j76w/W4rEc=;
+	s=arc-20240116; t=1723294826; c=relaxed/simple;
+	bh=Y56S0sBS1zQqgakZZtSHCy7NQwyEusp9WFU6p/amnQI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JXv2W2kR7SjDEMzX9FDo6Ib7moKE4w186hKfGlYHXaWD4GDg7le7QdRhtuiUrJyBASSVKMAIx+2rm2w5NmRRNojmm7WaiTT75kBNTS1ntaZ3q7/BbdB/mz4Lu5bGhFZfQHZc63iRRwuPJ6Fa6Dl0o2K3CdIbVrgzEa2rdWKcmEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h4hDE24l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79BF8C32781;
-	Sat, 10 Aug 2024 12:48:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723294097;
-	bh=K72N+bvYVGEFOyhe+LWxiFVuR7StmCDF0j76w/W4rEc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=h4hDE24lXHg4IED/1LeOaUtTI/8mMt1oDKXKffjox/4W2WrG0S7cgwmMea/0dOeNr
-	 imoQTYqDnZoyfnUA6wzP+WTttXZhWAelk+nvft7tGBa5beljU9KbbIgAeOZluk0Lgb
-	 L1iJ0w5cJiMTQ+P1iyx8hWu2U8R+VVYoRObbvDFrEtU1V6ncLgkWo+ZuOZjKuKPMv5
-	 GPBv7q6kCkPKhGAkLiy8c66J68nbWh/sTuZh5YsHR8vRq5zBzDZb4T6PVl6yjGPmPI
-	 kdSRWG+dqbU6CzOmuQ3NqytGOQA3HiSDDVG2DA2vdnNaPkco0QxjPj3qwlu0ROT+Li
-	 KxWDHLAgYCxhw==
-Message-ID: <b37b3c8e-902f-4a62-8a6a-ab9b8cb6cadb@kernel.org>
-Date: Sat, 10 Aug 2024 14:48:10 +0200
+	 In-Reply-To:Content-Type; b=SNkbKk2tCBTREDN6PG6LA7ErZ4iwehFmimeyXc8ftZjjdWHg+WqKOR670kE7saCjn0oTbZFYMMmK4zmWFNuWU4DBgVt94jv/bBiWla4VVarvE6mYPy+/ztQRPZyDQEw1h4S5MXLqVMvXZOxIkSmELTmGyWtFFJr/2amrgUqlSEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VePmWphN; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-368526b1333so2366050f8f.1;
+        Sat, 10 Aug 2024 06:00:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723294823; x=1723899623; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4hlcd1ZI65AoS9FRvn9neICSMrd89SuM+q6xLvHuMA8=;
+        b=VePmWphNkxfHV/gPw115IoFTK3jBEGDU/wg1+EzUx8BlNeCL3j4/6+6DHNYwEw/SQ8
+         QJFJWORyXJPSewfEm73QTlpMu3zFzXt7ON0ltZrfanuGWjLU/IKvvkCByZpCe6rLbd/F
+         gMLFSENH3sLaiJ/FB506Bb1EfySiGRQgb0BOQVwkuHDY1X67ObsLUNwHbTAMBJHZd0hV
+         8fJYSKOxjonq/NdDiy06g9ECSv3fNgtG67WQJ2FkNt1OXUxNjDDPyvSNBXWvS2o6/I/o
+         LIgF+vK+6PYSiXfi3nbVLHgASWcYtxQARVw7M2ns5j2KIaHkIY9N8FtR+4qp0rYlHX2a
+         jgtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723294823; x=1723899623;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4hlcd1ZI65AoS9FRvn9neICSMrd89SuM+q6xLvHuMA8=;
+        b=DXlktfMEW7eua0K217NaV8LvJIpd0imQf334H6C36TgDM4FXUtLKRsG3Q1XLQnIS9R
+         pJaxtxHAxOQvh/7ipSYi1Q/X/gXPFKHEOrwWx/LrLqbixIhEgkxSnjcPyzE023bfEAus
+         0tfhUcSh3Gyr/qGts8fSv7b2Xf5ihF/dHGGJQt07KNht4YZ7OlBhTo+3Z8b3AtwyjQ6S
+         jWYhPlwbQ8vK64mdoHiFWr0YwMiutAUqAAancPFvo/EbpjVSDYtmIODHO1xfHBldCB4d
+         gzWxLaJts9ytiGLJAhd0g6TRC0hQwN2o55ZZrAGEXlNA4XZLpnHWeDGF1438yDJSVfu9
+         7UXg==
+X-Forwarded-Encrypted: i=1; AJvYcCUyDrOHbzYiSxj2rIIUes49k3DDcwFSfSkI1diQA2usLxNaiF44iiOla1uD3+fj5v9yvdI/KHmHKvj2@vger.kernel.org, AJvYcCWJLzk2FlgzUcB89vsJHgfSIcRVufIG6dnD5cZAwXaQjSfnYDpZ9T21Fi6T246iCdqCAcUSMegJdOOY+Cct@vger.kernel.org, AJvYcCX7Sp9HgNU8W22GmAWw/ouhjQvgjZ9KCb1qRNW9Ap2KyTa90SQwjLvytfzIQHv2QkIT4OS5DWGJPUvMcOVM@vger.kernel.org, AJvYcCXnHR7vKNfzoj16NDb74JJ+B2P9Lxm/kPO+d7ZU75bk22ElZoC9i56wjFMVMa3QHkICuLw3+uFd3d28FA==@vger.kernel.org, AJvYcCXpn29FgZHsQ7K41aMvQV94R9eX0BEsm/ahlnolN6XpXosI3a3+hKdrPOuL6Qf/g3jo6pstiyoT4YjyZUBLbI47Mood6g==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzu/7MxxBd8SoChnaYT2AO9MItOgBxEjgh+HtbsNYXebPeFJrnU
+	tV9O49BDtp0z6Xpb3vR0iuQgZbUGAM7QtyrcTEsAtsd+M0EubgLP
+X-Google-Smtp-Source: AGHT+IHrDBbl0TwMtFUoaVBCUF+rb5vjaVYOgyKQKJUvVhETJDXj15C3rNpG6T8goqOIyo6sHHzQKw==
+X-Received: by 2002:adf:fc4c:0:b0:363:ac4d:c44f with SMTP id ffacd0b85a97d-36d6907bcc5mr3253936f8f.17.1723294822404;
+        Sat, 10 Aug 2024 06:00:22 -0700 (PDT)
+Received: from ?IPV6:2a02:8071:b783:140:927c:82ba:d32d:99c1? ([2a02:8071:b783:140:927c:82ba:d32d:99c1])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36e4ebd35c8sm2234733f8f.107.2024.08.10.06.00.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 10 Aug 2024 06:00:21 -0700 (PDT)
+Message-ID: <f3feeda2-81cf-44d6-8c9c-f489eebd8ebd@gmail.com>
+Date: Sat, 10 Aug 2024 15:00:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,81 +76,59 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: x1e80100: Add USB Multiport
- controller
-To: Konrad Dybcio <konradybcio@kernel.org>,
+Subject: Re: [PATCH v2 3/3] platform/surface: Add OF support
+To: Konrad Dybcio <konradybcio@gmail.com>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>
+ Jiri Slaby <jirislaby@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Len Brown <lenb@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
 Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Krishna Kurapati <quic_kriskura@quicinc.com>,
+ linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
  Konrad Dybcio <quic_kdybcio@quicinc.com>
-References: <20240809-topic-h_mp-v1-0-3c5f468566d8@quicinc.com>
- <20240809-topic-h_mp-v1-2-3c5f468566d8@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+References: <20240810-topic-sam-v2-0-8a8eb368a4f0@quicinc.com>
+ <20240810-topic-sam-v2-3-8a8eb368a4f0@quicinc.com>
+ <c4b23a43-7ff6-450a-bdc8-3348cc935145@gmail.com>
+ <d01c19a3-dc76-46f5-bca4-f5fdc7bd8798@gmail.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240809-topic-h_mp-v1-2-3c5f468566d8@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Maximilian Luz <luzmaximilian@gmail.com>
+In-Reply-To: <d01c19a3-dc76-46f5-bca4-f5fdc7bd8798@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 09/08/2024 15:18, Konrad Dybcio wrote:
-> X1E80100 has a multiport controller with 2 HS (eUSB) and 2 SS PHYs
-> attached to it. It's commonly used for USB-A ports and internally
-> routed devices. Configure it to support such functionality.
+On 8/10/24 1:21 PM, Konrad Dybcio wrote:
+> On 10.08.2024 3:47 AM, Maximilian Luz wrote:
+>> On 8/10/24 3:28 AM, Konrad Dybcio wrote:
+>>> From: Konrad Dybcio <quic_kdybcio@quicinc.com>
+>>
+>> [...]
+>>
+>>> @@ -299,7 +302,7 @@ static const struct attribute_group ssam_sam_group = {
+>>>    };
+>>>      -/* -- ACPI based device setup. ---------------------------------------------- */
+>>> +/* -- Serial device setup. ------------------------------------------------- */
+>>
+>> One more :)
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Right, cursor at 80 != 80-long :P
+> 
+> [...]
+> 
+>> Are these two changes required? Surface 3 power and SAN should AFAIK be
+>> fairly "legacy" and ACPI-only drivers, which I don't expect to be used
+>> on any of the new ARM devices (apart from there probably being other
+>> changes required to make them work with DT).
+>>
+>> I think with that addressed, it should be fine. I'll give it a spin
+>> tomorrow and send in my r-b and t-b (assuming everything goes well).
+> 
+> No, I went overly defensive here. Will drop for v3 next week.
 
-You have from and SoB mismatch. This was sent some odd way, because both
-b4 and git send-email would produce correct From field.
-
+Perfect, Thank you!
 
 Best regards,
-Krzysztof
-
+Max
 
