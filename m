@@ -1,120 +1,143 @@
-Return-Path: <devicetree+bounces-92651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE62094DE42
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 21:34:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CCD3F94DE46
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 21:35:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5EB40B211FA
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 19:34:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F8CFB21B98
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 19:35:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EE5E132103;
-	Sat, 10 Aug 2024 19:33:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B3F94965B;
+	Sat, 10 Aug 2024 19:35:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="GSU6Ieor"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KcLn/oEj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB8D84644E
-	for <devicetree@vger.kernel.org>; Sat, 10 Aug 2024 19:33:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29B0B4644E;
+	Sat, 10 Aug 2024 19:35:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723318437; cv=none; b=B+bBYcSZPMOhycvdRuTIxlbrHGpXRMDTtC4bp8Mg0GbykqrPUnoOD9pZQl/ngmydUmknFJa1vdMdw65xbg7cFfUUS0ASL8XAWJBpT2gYD30YPAedQIPMqMqIcBqa/zwtzCU4PJYVOupx4dP8F+vfPFGP2TcAKBnFTtYQFnVpEdc=
+	t=1723318536; cv=none; b=Fd9jxCc3XEq3oZXY6f3Uf0XxTmwZy7B54xzmMQR6R4YztVyrCobGvN1+Z0PYLID++GS1hnw11tcQHnPn0nLgQZ+xiI/W3prSIgfYqwnasP65rLCeDJ19fkDiBliRf/09a9z9X2E1VqrcCSQTODAxRjYoWVzD31eptHLQC8bhPAU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723318437; c=relaxed/simple;
-	bh=uS7kuTth5Gi0txrcxus7eDZiFeWkr94qLJsPs0pMWT8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mum+8+5lK4nkTuxQ17qcH20WrTDtpi1Iwnw+pAQqPVmlAxhbq/bc2lKxZPwZwxPuc45lqLRqqNmTX4LfaAwp+EuxaNsO87YOA73V8vziFCueNta+mP23QDtVPUchYgfTgzp914/dcvmTfHsGNrGuT78bEBQw7fG6qLJr1erPTYg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=GSU6Ieor; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3684e8220f9so1729056f8f.1
-        for <devicetree@vger.kernel.org>; Sat, 10 Aug 2024 12:33:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1723318434; x=1723923234; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iWxErkwV88mNdLnqLG46bRp9mJagvADdkYHKQJjbHr0=;
-        b=GSU6Ieorp5SnNM6Senfi/zM4oTQ8eDM5SJakWQlFEcKyaaedq+ohTAybEe/urvm/kL
-         LHmYc0u+5/rDnBBQHHnEBO8i+tpVJCHPI5k8h246QnCdJeBHW2dSKoS1omOIYYsjI5ZI
-         X/f+rolqEQGy3DRVG5bu73j3jbTH+YFPK1fTFqvGGcjT1AoMfqwVIDvcPw1Nn/4zqI1f
-         RZ4WW0WV1vhXozkz76I5Y7BDkBsP1KBLPCpcsGGDOmF/tVppZzbzAqjWaIkt/EHQQktD
-         QyMh4YERbFiwCUDh/AByx40Cuf1NnwPwYtqRrleRYpFbwEvbPt/VI8YzSZJZNLiRFprR
-         obXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723318434; x=1723923234;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iWxErkwV88mNdLnqLG46bRp9mJagvADdkYHKQJjbHr0=;
-        b=jorRoNk0gBDZoxQ1zqkWpxrirUFmRJhSdlTXuiASW7xFydQQgrcmBCafQTvJzH5akb
-         4XRlH+nPFcXNaHAuUIyNVG7JMelUqVRF1DABClQ5Xlz4SyeecKcyvjpHES15YAiVvSgl
-         BVBeTr2iEL2fwgGKRTeEsC3rDGO5NuKI3XVuMtDn6kSoIpSD+qSfH5Mb8gUpz1gluE3M
-         hQqu67sdPZuJvvNXxYF7QRanAHUecmH24dUFkQ+zxNyERZrlGfUIi0JRf3czjHxZ1Xfc
-         6THo50BLxlD/UlKnULiAnHNtHiwGw9bX/e61OympEj+W5A/w9Sq5/xGxTyg8bdsmr1vs
-         9SWA==
-X-Forwarded-Encrypted: i=1; AJvYcCX9jZdSAG6RvOjtlM1QONm6vJPzJsTE0zUKwldIXOP5JrJ0DND7enlcukgrt9h4is9LG4I1St5Vgze7fM0PwzQdZvZCsLg9WDKAYA==
-X-Gm-Message-State: AOJu0YzZPbsQeZrrxKoQdkBNiDefzC/QPI3je7MtJK2IQXdVyx6Czjwi
-	ChjdiTYpFBsFVcj9n3oS6N+00seAGdCnW0oeMHEj096symCGZwl+IWGXEQk4RiQ=
-X-Google-Smtp-Source: AGHT+IFYB2SyMPqpA/wUEs0CCCwXxydnmVu+bRpHDFW6Nu8KGRs9akzdD+gI6ho23cphgUAHz33pqg==
-X-Received: by 2002:a5d:5982:0:b0:366:eadc:573f with SMTP id ffacd0b85a97d-36d281fd0bemr8334017f8f.27.1723318433830;
-        Sat, 10 Aug 2024 12:33:53 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:2a08:ed5c:1f55:659c])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36e4c36bb07sm3200288f8f.5.2024.08.10.12.33.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 10 Aug 2024 12:33:53 -0700 (PDT)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-To: Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Keerthy <j-keerthy@ti.com>,
-	Jared McArthur <j-mcarthur@ti.com>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 0/1] dt-bindings: gpio: gpio-davinci: Add the gpio-reserved-ranges property
-Date: Sat, 10 Aug 2024 21:33:51 +0200
-Message-ID: <172331842973.5054.2650724478798968340.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240809154638.394091-1-j-mcarthur@ti.com>
-References: <20240809154638.394091-1-j-mcarthur@ti.com>
+	s=arc-20240116; t=1723318536; c=relaxed/simple;
+	bh=fmMxhi+z6NFHOIB4h0MwZ2Ve9LUiK/yOWltAGZz8rT4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KgFo6qrydtZ0taaXDfk7tL5ItdWw5rLRQ4kyW6OBH3EzBlH2UGyZB3a4us/1c87Uqu/nFilvKcukBavTGDsVsvVXzqEMVpBNXjL1xOBe5xtepxXtcCfKGhoq2x36zWmlnP6KURkh+goYpZVWSa9CAtGUuV3S1Nn8vInu1HQMRc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KcLn/oEj; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1723318534; x=1754854534;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=fmMxhi+z6NFHOIB4h0MwZ2Ve9LUiK/yOWltAGZz8rT4=;
+  b=KcLn/oEj/mSwzCPniH17+D9moRIBV6+F4dI6Ovz0phEEXTnqbB4u5Uxe
+   tVTagfimb2/Yh73zR0PWXrj78vcLc4r+3AYX7n2oTovX5IHDa90OIGK65
+   +DmH5QNMJ8ztsNu4hYNOlvAbLqSJMSssaPPlGuAXoK3j96s3xUaEaN2RA
+   gwZ+UA8AmcONg/EmHbnNZ0nDsoRpSqGPXixcbIYw01UNmXSQaibSdcGUl
+   COIhsuhKBTy2+zyZIiKe428f+HyXGui+vGzuTH4h1irING9ZklNmVnLlH
+   G8BYVht8aEEG0Lml9/QWQwVEd3RNARNoZdE5aoEuR3xLTLeUAuznsAmxj
+   g==;
+X-CSE-ConnectionGUID: Oe6Ji2ZwTGy5RK8MtpxTtA==
+X-CSE-MsgGUID: e3tG0NnvSBOFznKC4Pmwkg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11160"; a="38980277"
+X-IronPort-AV: E=Sophos;i="6.09,279,1716274800"; 
+   d="scan'208";a="38980277"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Aug 2024 12:35:33 -0700
+X-CSE-ConnectionGUID: q4SieW/JSlK1h+VMBK2AkA==
+X-CSE-MsgGUID: RfvKKc1TQJ2Gp/chTcHlsA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,279,1716274800"; 
+   d="scan'208";a="62708524"
+Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
+  by orviesa005.jf.intel.com with ESMTP; 10 Aug 2024 12:35:30 -0700
+Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1scrs7-000AEV-2K;
+	Sat, 10 Aug 2024 19:35:27 +0000
+Date: Sun, 11 Aug 2024 03:35:18 +0800
+From: kernel test robot <lkp@intel.com>
+To: Lorenzo Bianconi <lorenzo@kernel.org>, linux-pwm@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, ukleinek@kernel.org,
+	lorenzo.bianconi83@gmail.com, krzk+dt@kernel.org, robh@kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	upstream@airoha.com, angelogioacchino.delregno@collabora.com,
+	benjamin.larsson@genexis.eu, conor+dt@kernel.org,
+	ansuelsmth@gmail.com
+Subject: Re: [PATCH 2/2] pwm: airoha: Add support for EN7581 SoC
+Message-ID: <202408110329.6YGwCzoM-lkp@intel.com>
+References: <a03f5ea9291e39eab303696eb03fdd44cf04e8d9.1723264979.git.lorenzo@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a03f5ea9291e39eab303696eb03fdd44cf04e8d9.1723264979.git.lorenzo@kernel.org>
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Hi Lorenzo,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.11-rc2 next-20240809]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Lorenzo-Bianconi/dt-bindings-pwm-Document-Airoha-EN7581-PWM/20240810-143716
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/a03f5ea9291e39eab303696eb03fdd44cf04e8d9.1723264979.git.lorenzo%40kernel.org
+patch subject: [PATCH 2/2] pwm: airoha: Add support for EN7581 SoC
+config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20240811/202408110329.6YGwCzoM-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 13.3.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240811/202408110329.6YGwCzoM-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408110329.6YGwCzoM-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/pwm/pwm-airoha.c: In function 'airoha_pwm_config_waveform':
+>> drivers/pwm/pwm-airoha.c:239:26: error: implicit declaration of function '__bf_shf' [-Werror=implicit-function-declaration]
+     239 |         val = (period << __bf_shf(mask)) & mask;
+         |                          ^~~~~~~~
+   cc1: some warnings being treated as errors
 
 
-On Fri, 09 Aug 2024 10:46:37 -0500, Jared McArthur wrote:
-> This patch adds the gpio-reserved-ranges property to
-> gpio-davinci.yaml. This allows davinci gpio controllers (compatible
-> fields: "ti,keystone-gpio", "ti,am654-gpio", and "ti,dm6441-gpio") to
-> use the gpio-reserved-ranges property.
-> 
-> This property will prevent users from trying to access gpios that
-> don't exist.
-> 
-> [...]
+vim +/__bf_shf +239 drivers/pwm/pwm-airoha.c
 
-Applied, thanks!
+   231	
+   232	static void airoha_pwm_config_waveform(struct airoha_pwm *pc, int index,
+   233					       u32 duty, u32 period)
+   234	{
+   235		u32 mask, val;
+   236	
+   237		/* Configure frequency divisor */
+   238		mask = WAVE_GEN_CYCLE_MASK(index % 4);
+ > 239		val = (period << __bf_shf(mask)) & mask;
+   240		airoha_pwm_cycle_rmw(pc, REG_CYCLE_CFG_VALUE(index / 4), mask, val);
+   241	
+   242		/* Configure duty cycle */
+   243		duty = ((DUTY_FULL - duty) << 8) | duty;
+   244		mask = GPIO_FLASH_PRD_MASK(index % 2);
+   245		val = (duty << __bf_shf(mask)) & mask;
+   246		airoha_pwm_flash_rmw(pc, REG_GPIO_FLASH_PRD_SET(index / 2), mask, val);
+   247	}
+   248	
 
-[1/1] dt-bindings: gpio: gpio-davinci: Add the gpio-reserved-ranges property
-      commit: 789ce0f6028f9e68fc27f6748acefbd2e23f4716
-
-Best regards,
 -- 
-Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
