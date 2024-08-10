@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-92608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E150494DCB7
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 14:21:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E27EB94DCC1
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 14:29:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EDDB4B214F9
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 12:21:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 348B7281BED
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 12:29:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF033156F5E;
-	Sat, 10 Aug 2024 12:21:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26F7515853C;
+	Sat, 10 Aug 2024 12:29:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OCcNXD2C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rOrPCoie"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81FA113E02A;
-	Sat, 10 Aug 2024 12:21:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB6A413E02A;
+	Sat, 10 Aug 2024 12:29:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723292497; cv=none; b=b9qLIKxagQeXhMiWwPjyk7tE4e/+nNG8lcuiA0+oAroHPz9N0YIbbkgpuslxInUtUTzqZxAOaJeW0BR6kEwO6+PjVaOdpLbroglSotfMK6BZ12k1vPK61AXEc0g1Ub67JTIiAomRarjc107u5SaVFo6QkmYZ3ztW9M0+MIIhs3c=
+	t=1723292963; cv=none; b=i9nSlPAhF3MQiOuTS9mtj13xPUpSqqvff68qZnMknhWtPyuOCo8VxpF0JTrpzZLr/CU4XWorIOWA2eJ2/3P7WF/sdSv5jc88+VR5D0ruJGQLxPWg5f74vjt2fmiZhiktpFeopOgPVERJ6G/d5RSHFAK3RTF4uCZNkUIx1rzy1c0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723292497; c=relaxed/simple;
-	bh=BUO7G27ozlxUWdCf9RP7tbhzzSrPxYy/G08Wuj3qLpU=;
+	s=arc-20240116; t=1723292963; c=relaxed/simple;
+	bh=s09tt5kUfqGeZK7vMpooPY2p4dcDe4zacRBUn0/9Gko=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K7np6Pt0PXW2SiIr2DQfvcb8RwjmFP7UHhjF9RnH7pUmWp1hH8PQPbm0EdITVz3FGWNi5/h/7+l1kiaoGLe8Q7haDZ+6usYpae3f0S7+dQXmvLx0yCYqYZsJ3P0l/uTzUacRuLlipZ8l1OppnVSFB4nOjbIpAvoU1c4UR7a08l0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OCcNXD2C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10E43C32781;
-	Sat, 10 Aug 2024 12:21:33 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=O+Gp5CQyJdM6LUAvGxSRdpnDuq44yGSdp7SCQRyQZiIAorPRT7/rCKT8oKVSVGePDFrmYVvdvC2Atn2r0KOQkJ665D7J47++b/uBFa6MgPdMnBO9cxH4YGCDdjJJogLO8oMdFdBul2YXzboQMvBV1iuBiXBviT1CS0Hvp0GqvV4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rOrPCoie; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEA98C32781;
+	Sat, 10 Aug 2024 12:29:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723292497;
-	bh=BUO7G27ozlxUWdCf9RP7tbhzzSrPxYy/G08Wuj3qLpU=;
+	s=k20201202; t=1723292962;
+	bh=s09tt5kUfqGeZK7vMpooPY2p4dcDe4zacRBUn0/9Gko=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OCcNXD2CzuLrZ1X2Mc2SrEexHq31MgvQjnWU8QsftVzNaFkK3AsP9P/MSZ6usZKNW
-	 Oh+bQ1sv6Jq6Pj9hITzsbDpOrIq82BaycMfJ5tT3wbvnqZBL5O93ocR/kHo+Irl0GM
-	 Tm5pdUGT4JhO4WJvYP52GH4PTKJknNkEnmEvr76qdnmncQ0lg+BIagMTRy7xHT+dgJ
-	 jj1WVCqRew5OEgq60RWcZ0YwDyxw+eIV9g2T47BAhkXRQOGwJaxV0Lprbdy3BgOm3w
-	 sztzsXbHvzj6xt1ymDINmePmaabS/Wrq0lFi/d4TytRTzRTjPn/NgfK/ENnLeyyg5X
-	 RJU2T6ZtGnXyQ==
-Message-ID: <ac41ac85-fdf5-4aa8-953d-6b3ab3c23f37@kernel.org>
-Date: Sat, 10 Aug 2024 14:21:31 +0200
+	b=rOrPCoieA1i8HZJPTWyhPYfcgtBtkSZFjajrXO00z7YCk7nGEBnXD7R+49lmkbltS
+	 IYG80R6eJUlh7DB+xcikOpSieXKpniLCexiP80ASYzyDoN7v50QmG6PSjxiQNZ/obY
+	 lhbNvu+9scw/F1JnrHj9n0glZk33mELHy3QTH7OjP0I2WgZrqiedDpuyNolCzwI5fP
+	 qKMPOr07oFE6LVJybKqwgMX8Ic/unduS5JiH68xIJ8unRkPc3dKQFSsuVATS8+Gvdp
+	 L5xNhsfx5rg81LKzcipvO7eiY4xfrEhTGWHYUG5qLoc62Zqrhtdy62fvfgcSmAK7Uv
+	 QPd5aA9rrautQ==
+Message-ID: <5bfe6251-796c-4036-8db6-783147b4ebd9@kernel.org>
+Date: Sat, 10 Aug 2024 14:29:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] arm64: dts: lx2160a: Change PCIe compatible string to
- fsl,ls2088a-pcie
-To: Frank Li <Frank.li@nxp.com>, Conor Dooley <conor@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v4 1/3] dt-bindings: reset: Add rk3576 reset definitions
+To: Detlev Casanova <detlev.casanova@collabora.com>,
+ linux-kernel@vger.kernel.org
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- "moderated list:ARM/FREESCALE LAYERSCAPE ARM ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
- imx@lists.linux.dev
-References: <20240808153120.3305203-1-Frank.Li@nxp.com>
- <20240808-frosted-voicing-883f4f728527@spud>
- <ZrTphsdTZVsbiGo/@lizhi-Precision-Tower-5810>
- <20240808-linoleum-evasion-ad7111a2afc4@spud>
- <ZrTvB/3GGIhEOItT@lizhi-Precision-Tower-5810>
- <20240809-freewill-compactor-4f441a4a60bb@spud>
- <ZrZNzqDKUaOqzl7k@lizhi-Precision-Tower-5810>
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Elaine Zhang <zhangqing@rock-chips.com>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, kernel@collabora.com,
+ Sugar Zhang <sugar.zhang@rock-chips.com>
+References: <20240809125553.3889-1-detlev.casanova@collabora.com>
+ <20240809125553.3889-2-detlev.casanova@collabora.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,80 +109,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ZrZNzqDKUaOqzl7k@lizhi-Precision-Tower-5810>
+In-Reply-To: <20240809125553.3889-2-detlev.casanova@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/08/2024 19:11, Frank Li wrote:
-> On Fri, Aug 09, 2024 at 04:07:25PM +0100, Conor Dooley wrote:
->> On Thu, Aug 08, 2024 at 12:15:03PM -0400, Frank Li wrote:
->>> On Thu, Aug 08, 2024 at 04:55:14PM +0100, Conor Dooley wrote:
->>>> On Thu, Aug 08, 2024 at 11:51:34AM -0400, Frank Li wrote:
->>>>> On Thu, Aug 08, 2024 at 04:34:32PM +0100, Conor Dooley wrote:
->>>>>> On Thu, Aug 08, 2024 at 11:31:20AM -0400, Frank Li wrote:
->>>>>>> The mass production lx2160 rev2 use designware PCIe Controller. Old Rev1
->>>>>>> which use mobivel PCIe controller was not supported. Although uboot
->>>>>>> fixup can change compatible string fsl,lx2160a-pcie to fsl,ls2088a-pcie
->>>>>>> since 2019, it is quite confused and should correctly reflect hardware
->>>>>>> status in fsl-lx2160a.dtsi.
->>>>>>
->>>>>> This does not begin to explain why removing the soc-specific compatible,
->>>>>> and instead putting the compatible for another soc is the right fix.
->>>>>> Come up with a new compatible for this device, that perhaps falls back
->>>>>> to the ls2088a, but this change doesn't seem right to me.
->>>>>
->>>>> It can't fallback to fsl,ls2088a-pcie if fsl,lx2160a-pcie exist, which are
->>>>> totally imcompatible between fsl,ls2088a-pcie and fsl,lx2160a-pcie.
->>>>>
->>>>> Previous dtb can work just because uboot dynamtic change fsl,lx2160a-pcie
->>>>> to fsl,ls2088a-pcie when boot kernel.
->>>>>
->>>>> fsl,lx2160a-pcie should be removed because Rev1 have not mass productioned.
->>>>
->>>> Please re-read what I wrote. I said to come up with a new compatible for
->>>> this device, not fall back from the existing fsl,lx2160a-pcie to
->>>> fsl,ls2088a-pcie.
->>>
->>> According to my understand, It needn't add new compatible string if nothing
->>> difference. for example, it use fsl,vf610-i2c for all i2c without add
->>> new soc-specific fsl,lx2160-i2c.
->>
->> No, you should have soc-specific compatibles regardless. Just because
->> you got away with it once, doesn't mean I'm not going to complain about
->> it here!
+On 09/08/2024 14:54, Detlev Casanova wrote:
+> Add reset ID defines for rk3576.
 > 
-
-Above... and here:
-https://lore.kernel.org/all/20220817202538.21493-2-leoyang.li@nxp.com/
-
-Uh, this is so confusing. You have fsl,lx2160a device with PCIe and
-fsl,lx2160a-pcie compatible. You claim that these are wrong. Instead of
-fixing driver, you use entirely different device's compatible?
-
-Wow, that's confusing.
-
-> Rob:
-> 	What's current policy for this? Not only for this one. If new SOC
-> appear such as iMX10 (maybe many derived chip i.MX101, i.MX102...), there
-> are bunch of IPs, Do we need add fsl,imx10* for everyone, which most part
-> is exactly the same as old one and bloat binding doc.
-
-
-NXP since early days was following this approach of having specific
-compatibles, so why changing it now?
-
-In general you need specific front-compatibles, except for different
-pinout or fused values.
-
-But that's not the problem here. Earlier confusion is the problem. This
-is very weird change.
-
+> Compared to the downstream bindings this uses continous gapless
+> reset IDs starting at 1 instead of register offsets as IDs, as
+> introduced in the RK3588 bindings.
+> Thus all numbers are different between upstream and downstream,
+> but names are kept exactly the same.
 > 
-> 	I remember that I got a feedback that required provide the
-> difference during I try to add new compatible string. I am sorry, I can't
-> find origial dicussion thread.
-> 
+> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
+> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> ---
+>  .../dt-bindings/reset/rockchip,rk3576-cru.h   | 564 ++++++++++++++++++
 
+I think I was clear:
+
+"These are bindings. Must be squashed with previous patch."
+
+Other comments were also not implemented?
 
 Best regards,
 Krzysztof
