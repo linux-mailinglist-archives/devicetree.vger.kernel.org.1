@@ -1,112 +1,129 @@
-Return-Path: <devicetree+bounces-92595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AFCF94DC47
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 12:27:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8230494DC70
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 13:21:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD6E71F21F64
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 10:27:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0DAE028211E
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 11:21:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6789A15749C;
-	Sat, 10 Aug 2024 10:27:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EC7D156C76;
+	Sat, 10 Aug 2024 11:21:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q9gPX5W/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XxshvrE6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 394F62F2A;
-	Sat, 10 Aug 2024 10:27:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92EC7146D75;
+	Sat, 10 Aug 2024 11:21:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723285641; cv=none; b=Z3N+WW7aLD5/Uwmss59cKjYYuTSXb/EzHF7r7bG7A/h1NjnidRlV/8/ERESb2kMQwluNPQb9egT6qsPs2tH2JWuo1O3UBNdXaTKdogtf2fcBS7Lo/p326zX7qEKE1YrA22eqCwdJt4ZVbRveTIKde41DQEii5yDASTKnQ5PYBUQ=
+	t=1723288909; cv=none; b=YriLNIPkyMwpEp/Sn6LqCP7Axe7qjK6P5L8F18sQA14lfZhSpYnyqkHXp+n/zjJUodjEBDALBWxV+l0qTy0q30HJCd31wwTfUJKUEayQLXLl2sPIi4KcOpEOoBvuu98K3Di4j9/PnWb1HG6EhsTsV/HuWEoqANqy1v/ObpinDs8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723285641; c=relaxed/simple;
-	bh=4p1ePSehn6ap5Nr4r9eTXpSRW2G1jRSVhIhPjiiBpUU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tLlGva+Mwe0bBujy9JXvJB/DJ8k7uFu8WOXv/XSV57h6FFY1nlzJ4GoTS0ogol72Svg6HOukx6Q2e7H1ErBVn/raPFGmWP9GKpns+rcW4g57rJcLmy+UWwXPb110SvMsKGN4ZhsNKNgxuOZ1+ENyzwOvt5GrrHEwqUbyq2UaznM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q9gPX5W/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE6CEC32781;
-	Sat, 10 Aug 2024 10:27:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723285640;
-	bh=4p1ePSehn6ap5Nr4r9eTXpSRW2G1jRSVhIhPjiiBpUU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=q9gPX5W/BtB6fZkWzxeQtX8m1z+0ElHnXjrxBxiM6TrKEICi7ukNQdR1mzsWCT/sl
-	 KVmwR7ciiDrkI6McW4pHIQWy6+pEXijIJIEiKFx9NQweps0j+ZpU84GxVgvZiTa9Pt
-	 iSO4HWaz8/ni8o3cibIONX1m4HgSFknC6yYavH8+hH+at8QMr2YBLxe2PpUtwy7ktA
-	 F+zPF5gQA/cWHTf35a4kcyTj5iTI1yZ4W3ZqJ1rd/d3lbzbSanLtvZAnNnVB5f7SxQ
-	 0axncJFjBcUIDkIYJLlxx6by1H8ZI/r2713qWSx6mD9AJBQcXZL0c3FVuV03UrLvsr
-	 E1wGUuGKl+jaw==
-Date: Sat, 10 Aug 2024 11:27:12 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Albrieux <jonathan.albrieux@gmail.com>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux@mainlining.org
-Subject: Re: [PATCH v2 1/3] iio: magnetometer: ak8975: Fix reading for
- ak099xx sensors
-Message-ID: <20240810112712.191d6576@jic23-huawei>
-In-Reply-To: <45915CD6-A9BB-4071-ABCC-8DE76F7066C3@mainlining.org>
-References: <20240806-ak09918-v2-0-c300da66c198@mainlining.org>
-	<20240806-ak09918-v2-1-c300da66c198@mainlining.org>
-	<20240806171925.7c512c63@jic23-huawei>
-	<45915CD6-A9BB-4071-ABCC-8DE76F7066C3@mainlining.org>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1723288909; c=relaxed/simple;
+	bh=wLPOcrQJc9FeMQqebv2m9OcS09IY4lRJtR9nrEtBRl4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=E4jbsg6DBjmYFnYmmOYFkNCeA+Vn0SxM7D+k9otHvf9fp2aKTTEC2HFjzyH6v0Bn+qkvAtXhUIreifAI5SFyWd6e8pJN4zpNul5DmsCjZzKvKMzLOskFElTVEgdIx0DnXZ881to7L/x9Kq5iuX8ywmpie+eTCXWyYEE4K9OCYag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XxshvrE6; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5b8c2a6135dso3564623a12.1;
+        Sat, 10 Aug 2024 04:21:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723288906; x=1723893706; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sF0hj7C/4NCQYLu5xK63NUdOHcybLZHrNwCQSR6snIE=;
+        b=XxshvrE62w04Y/J1P76A4ntyU0IS287a+jMEy6g01DC+F3HxfR91Y6v04ECVM5X1gO
+         dZO81XZ2e3SW3JyITi4e6pPDMgjxBnzg1cHKWKk2bbJ2F6PGvv39qBAeZkhJvQUD61Bw
+         HlnKp5GtmyzG7N094exy2sY4/hXJOAVjtIzVeu6iYcJ/ji6WDiY45kfDp1f52kmViyhb
+         4J+i18Jf+PMYwPMfmcmZ5R0+psq4P1pvUOdbq53XgpXxy0SyDPYK+ESVx9M3mMr+47jT
+         AMtVf4gD7cIUBkcxSZIsIJBewyw1Sio6ARTyCo3g7QSOznESd7Fka2kxfv6NUVR1bOs6
+         BonQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723288906; x=1723893706;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=sF0hj7C/4NCQYLu5xK63NUdOHcybLZHrNwCQSR6snIE=;
+        b=h+qdGblTlkdCcoKimuSUIwzGZCTr4w8ij/FavJUeKOgf+t/iTGeUtpVorZFfTfxOBN
+         I1wQL3Z2pY5lzMCpIG1XkrRk+t7XhP7GsMTXVms1gu9y53a4kRBoAFmkkpwVyOaLe9W9
+         NOjNfyf26IhI+b/gPFDZ+RiTjgZ54GJbvTdIH6mijDY2oKpDdq4W2qk2F4NYWCjszUUh
+         zX8Tdo+8FnhNBKLIP2jsesRi95eF3UnN1cRADbud/iO7OvtOjyGtQ95PvrxfpAZFDvif
+         RIW2jzMnBKjz9tcwXIRX1BZtPEBULXjvUta906Lq+Rw2Nr9gzYnNDwYVRsGge5pQlNy+
+         fOzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWmQCqwUBils4vdZW6SjhCfKm8MK+ULfZqn7j+Z1Uvc/Nl4qps8k0+WO5VyuFsJUoTnVrMY48wmp40eC+x2dyz5N+GuM63IZSi6qTtcdmhDoXLxPklK6ZWqxFVuBgCjA3oiWBdwGrClPQN6iC8ftRN73A3wj5kiBgcS7YpxMPEaAfwFd2lvfumUqqXZzJQDr8QbKMO2OhEmBzpAqSe9ommDm9EIWSVywsY0Lgyjn79F2Vur5wJVfWPrUcWvZC9aIlglV1NXgMy1
+X-Gm-Message-State: AOJu0YzwiBXbVKC9OlpmMVkBTMUYm44wOe72Ulmj3nBfOUqHdSgjPEGg
+	GZCqv9PtXoduv2T7X29wC8CYI1ToDFQdj79B090ZFzEZi1FUFoYH
+X-Google-Smtp-Source: AGHT+IFiMn5l0mYrV3pmmOEjFgDtqUkKKjZO23fLTyfw2nrpYHDA+qyn7nI8r77AsCjGuJgW4dPkEQ==
+X-Received: by 2002:a17:906:bc1a:b0:a7a:b385:37c8 with SMTP id a640c23a62f3a-a80aa54fb24mr316599766b.5.1723288905274;
+        Sat, 10 Aug 2024 04:21:45 -0700 (PDT)
+Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a80bb08fe5dsm61155666b.3.2024.08.10.04.21.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 10 Aug 2024 04:21:44 -0700 (PDT)
+Message-ID: <d01c19a3-dc76-46f5-bca4-f5fdc7bd8798@gmail.com>
+Date: Sat, 10 Aug 2024 13:21:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] platform/surface: Add OF support
+To: Maximilian Luz <luzmaximilian@gmail.com>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Len Brown <lenb@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <quic_kdybcio@quicinc.com>
+References: <20240810-topic-sam-v2-0-8a8eb368a4f0@quicinc.com>
+ <20240810-topic-sam-v2-3-8a8eb368a4f0@quicinc.com>
+ <c4b23a43-7ff6-450a-bdc8-3348cc935145@gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konradybcio@gmail.com>
+In-Reply-To: <c4b23a43-7ff6-450a-bdc8-3348cc935145@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Tue, 06 Aug 2024 19:54:56 +0200
-Barnab=C3=A1s Cz=C3=A9m=C3=A1n <barnabas.czeman@mainlining.org> wrote:
+On 10.08.2024 3:47 AM, Maximilian Luz wrote:
+> On 8/10/24 3:28 AM, Konrad Dybcio wrote:
+>> From: Konrad Dybcio <quic_kdybcio@quicinc.com>
+> 
+> [...]
+> 
+>> @@ -299,7 +302,7 @@ static const struct attribute_group ssam_sam_group = {
+>>   };
+>>     -/* -- ACPI based device setup. ---------------------------------------------- */
+>> +/* -- Serial device setup. ------------------------------------------------- */
+> 
+> One more :)
 
-> On August 6, 2024 6:19:25 PM GMT+02:00, Jonathan Cameron <jic23@kernel.or=
-g> wrote:
-> >On Tue, 06 Aug 2024 08:10:18 +0200
-> >Barnab=C3=A1s Cz=C3=A9m=C3=A1n <barnabas.czeman@mainlining.org> wrote:
-> >
-> >Hi Barnab=C3=A1s,
-> >
-> >Welcome to IIO.
-> > =20
-> >> ST2 register read should be placed after read measurment data,
-> >> because it will get correct values after it. =20
-> >
-> >What is the user visible result of this? Do we detect errors when none
-> >are there?  Do we have a datasheet reference for the status being
-> >update on the read command, not after the trigger? =20
->=20
-> Second read will fail. In the datasheet ST2 comes after measurment data r=
-ead. Here is some explanation from datasheet.
->=20
-> "When ST2 register is read, AK09918 judges that data reading is finished.=
- Stored measurement data is
-> protected during data reading and data is not updated. By reading ST2 reg=
-ister, this protection is
-> released. It is required to read ST2 register after data reading."
->=20
-Thanks. Please add more of that detail to the patch description for v3.
+Right, cursor at 80 != 80-long :P
 
-> So if ST2 is read before measurment it will stuck at protected mode.
-> >> =20
-> >Needs a Fixes tag to let us know how far to backport the fix. =20
-> I think it is broken since 09912 was added but i cannot verify i have onl=
-y devices with 09918.
-> >
-I wasn't meaning devices, but rather what patch broke the kernel code.
-It might be the original driver introduction.
+[...]
 
-If we can add a Fixes tag that makes it much easier for stable + distributi=
-ons
-to work out whether to pick the fix up or not.
+> Are these two changes required? Surface 3 power and SAN should AFAIK be
+> fairly "legacy" and ACPI-only drivers, which I don't expect to be used
+> on any of the new ARM devices (apart from there probably being other
+> changes required to make them work with DT).
+> 
+> I think with that addressed, it should be fine. I'll give it a spin
+> tomorrow and send in my r-b and t-b (assuming everything goes well).
+
+No, I went overly defensive here. Will drop for v3 next week.
+
+Konrad
 
