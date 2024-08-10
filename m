@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-92594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D019194DC35
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 12:16:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AFCF94DC47
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 12:27:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 537E41F21D4C
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 10:16:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD6E71F21F64
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 10:27:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37CE614EC62;
-	Sat, 10 Aug 2024 10:16:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6789A15749C;
+	Sat, 10 Aug 2024 10:27:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qqgO4Fya"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q9gPX5W/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BA173EA69;
-	Sat, 10 Aug 2024 10:16:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 394F62F2A;
+	Sat, 10 Aug 2024 10:27:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723285007; cv=none; b=IUL6aqBhvfIyNoZxbWLZ7cGSCHfY3ReEZf8dMswjoaw1ZGyD3mxYDMsbMQDiw1rgvmba82SzlFM/HgaV0OwHWoYKN6NfP1+56usT4kUGLe0/opBf/TgGE8T9UqXnwIK/jZJ571+ZTOE4Xm/d6Fx5DtZaoVH8d9xGUA2iQZ07+Gc=
+	t=1723285641; cv=none; b=Z3N+WW7aLD5/Uwmss59cKjYYuTSXb/EzHF7r7bG7A/h1NjnidRlV/8/ERESb2kMQwluNPQb9egT6qsPs2tH2JWuo1O3UBNdXaTKdogtf2fcBS7Lo/p326zX7qEKE1YrA22eqCwdJt4ZVbRveTIKde41DQEii5yDASTKnQ5PYBUQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723285007; c=relaxed/simple;
-	bh=CZlapVab1zX6+Ny8nGKNoFjU2OOlzpbyEGauM6ne+FM=;
+	s=arc-20240116; t=1723285641; c=relaxed/simple;
+	bh=4p1ePSehn6ap5Nr4r9eTXpSRW2G1jRSVhIhPjiiBpUU=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iMgUPXYj5estoqETt0SWvXKMcR2ZkPzmX7U7z0Nr4fgmy9/XotTEfhxtDyhZrl7kfLHMmdL0Pc1lDr2FBeTiZjzcB/fG8lpzO644EGhI93uaEbLtq7bdw2uyjz/CF96hjZvHodJZoCNwhSXwL9tJyZvdVjXI8Skd5Bcoo97A5XI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qqgO4Fya; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E048C32781;
-	Sat, 10 Aug 2024 10:16:42 +0000 (UTC)
+	 MIME-Version:Content-Type; b=tLlGva+Mwe0bBujy9JXvJB/DJ8k7uFu8WOXv/XSV57h6FFY1nlzJ4GoTS0ogol72Svg6HOukx6Q2e7H1ErBVn/raPFGmWP9GKpns+rcW4g57rJcLmy+UWwXPb110SvMsKGN4ZhsNKNgxuOZ1+ENyzwOvt5GrrHEwqUbyq2UaznM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q9gPX5W/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE6CEC32781;
+	Sat, 10 Aug 2024 10:27:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723285006;
-	bh=CZlapVab1zX6+Ny8nGKNoFjU2OOlzpbyEGauM6ne+FM=;
+	s=k20201202; t=1723285640;
+	bh=4p1ePSehn6ap5Nr4r9eTXpSRW2G1jRSVhIhPjiiBpUU=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=qqgO4FyayWlbq9meWHn+ECRuXgXDBdIpdrqZZWw3BLzJTiT0LgCKIgGJN2Bd6aDx8
-	 zjc1lnrLY2b5y1nLzxEjjtpZsJ0pAfc0i3sxQwmto/IAzoq55xTSY70AoWzw4cqxpH
-	 oYJdCf6HhePDBSVoGTxO5fx1K5DgFtx7qBgPSsklj+Lbb3vlK7Eca9DU1edI26Rn3R
-	 sNffpPH5tFX7D/GPE893WspkS+fGITwQKNbmtw0pZGl9BlJ8fVtAqx3VxT/v5JrQmv
-	 +Yautj7IfX9463HMmLl/1YNf98VvqEVcM4SKc80Cff0Dmk6bxXv/BQsGRHzd40+iDX
-	 7xycA8vBe2DWg==
-Date: Sat, 10 Aug 2024 11:16:37 +0100
+	b=q9gPX5W/BtB6fZkWzxeQtX8m1z+0ElHnXjrxBxiM6TrKEICi7ukNQdR1mzsWCT/sl
+	 KVmwR7ciiDrkI6McW4pHIQWy6+pEXijIJIEiKFx9NQweps0j+ZpU84GxVgvZiTa9Pt
+	 iSO4HWaz8/ni8o3cibIONX1m4HgSFknC6yYavH8+hH+at8QMr2YBLxe2PpUtwy7ktA
+	 F+zPF5gQA/cWHTf35a4kcyTj5iTI1yZ4W3ZqJ1rd/d3lbzbSanLtvZAnNnVB5f7SxQ
+	 0axncJFjBcUIDkIYJLlxx6by1H8ZI/r2713qWSx6mD9AJBQcXZL0c3FVuV03UrLvsr
+	 E1wGUuGKl+jaw==
+Date: Sat, 10 Aug 2024 11:27:12 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: wangshuaijie@awinic.com
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, kangjiajun@awinic.com,
- krzk+dt@kernel.org, lars@metafoo.de, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, liweilei@awinic.com, robh@kernel.org,
- waqar.hameed@axis.com
-Subject: Re: [PATCH V5 2/2] iio: proximity: aw9610x: Add support for aw9610x
- proximity sensor
-Message-ID: <20240810111637.3280eff6@jic23-huawei>
-In-Reply-To: <20240808102753.4023286-1-wangshuaijie@awinic.com>
-References: <20240727160216.2488ed29@jic23-huawei>
-	<20240808102753.4023286-1-wangshuaijie@awinic.com>
+To: =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Albrieux <jonathan.albrieux@gmail.com>,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux@mainlining.org
+Subject: Re: [PATCH v2 1/3] iio: magnetometer: ak8975: Fix reading for
+ ak099xx sensors
+Message-ID: <20240810112712.191d6576@jic23-huawei>
+In-Reply-To: <45915CD6-A9BB-4071-ABCC-8DE76F7066C3@mainlining.org>
+References: <20240806-ak09918-v2-0-c300da66c198@mainlining.org>
+	<20240806-ak09918-v2-1-c300da66c198@mainlining.org>
+	<20240806171925.7c512c63@jic23-huawei>
+	<45915CD6-A9BB-4071-ABCC-8DE76F7066C3@mainlining.org>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -61,198 +64,49 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, 06 Aug 2024 19:54:56 +0200
+Barnab=C3=A1s Cz=C3=A9m=C3=A1n <barnabas.czeman@mainlining.org> wrote:
 
-> 
-> >> +static int aw9610x_cfg_all_loaded(const struct firmware *cont,
-> >> +		struct aw9610x *aw9610x)
-> >> +{
-> >> +	struct aw_bin *aw_bin;
-> >> +	int ret;
-> >> +
-> >> +	if (!cont)
-> >> +		return -EINVAL;
-> >> +
-> >> +	aw_bin = kzalloc(cont->size + sizeof(*aw_bin), GFP_KERNEL);  
-> >Use __free(kfree) 
+> On August 6, 2024 6:19:25 PM GMT+02:00, Jonathan Cameron <jic23@kernel.or=
+g> wrote:
+> >On Tue, 06 Aug 2024 08:10:18 +0200
+> >Barnab=C3=A1s Cz=C3=A9m=C3=A1n <barnabas.czeman@mainlining.org> wrote:
 > >
-> >lots of examples in tree, but will avoid need to manually free and
-> >simplify this code a little.
-> >  
-> 
-> I'm sorry, I didn't quite understand what you meant. Are you suggesting
-> the use of devm_? Could you please provide more detailed suggestions?
-> Thank you!
-
-No. Search for that string __free(kfree) and you will see what
-I mean.  It provides scope based destructors.
-
-devm is about tying lifetime to device registration, here we need to tie
-it to this scope of this function.
-
-
-> 
-> >> +	if (!aw_bin)
-> >> +		return -ENOMEM;
-> >> +
-> >> +	aw_bin->len = cont->size;
-> >> +	memcpy(aw_bin->data, cont->data, cont->size);
-> >> +	aw9610x_parsing_bin_file(aw_bin);
-> >> +
-> >> +	snprintf(aw9610x->chip_type, sizeof(aw9610x->chip_type), "%s",
-> >> +			aw_bin->chip_type);
-> >> +	ret = aw9610x_bin_valid_loaded(aw9610x, aw_bin);
-> >> +	kfree(aw_bin);
-> >> +
-> >> +	return ret;
-> >> +}
-
-> >> +
-> >> +static void aw9610x_cfg_work_routine(struct work_struct *work)
-> >> +{
-> >> +	struct aw9610x *aw9610x = container_of(work, struct aw9610x,
-> >> +			cfg_work.work);
-> >> +
-> >> +	aw9610x_cfg_update(aw9610x);  
+> >Hi Barnab=C3=A1s,
 > >
-> >So this is polling in driver.   We'd normally hook up to a hrtimer
-> >trigger for that.  Perhaps you need this for your events sampling though?
-> >If so that may be fine to do somewhat like this. I'm just not sure
-> >of the usecase currently.
-> >  
-> 
-> The primary objective of this delayed task is to load the register
-> configuration file. The chip needs to load the register configuration
-> file during power-on initialization. In cases where the driver is compiled
-> directly into the kernel, rather than existing as a dynamically loaded
-> module, there may be a situation where the driver attempts to load before
-> the file system is fully prepared, resulting in an inability to access the
-> register configuration file.
-
-I believe there are standard ways to handle this.
-the driver shouldn't be relying on local tricks to make this work.
-https://www.kernel.org/doc/html/v4.16/driver-api/firmware/fallback-mechanisms.html
-
-> Therefore, a delayed task mechanism is employed
-> to ensure the register configuration file is loaded properly.
-> 
-> If there are any concerns about my understanding or approach, please feel
-> free to offer suggestions. Thank you very much!
-> 
-> >> +}
-
-
-> >> +static void aw9610x_irq_handle(struct aw9610x *aw9610x)
-> >> +{
-> >> +	u32 curr_status_val;
-> >> +	u32 curr_status;
-> >> +	unsigned char i;
-> >> +	int ret;
-> >> +
-> >> +	ret = aw9610x_i2c_read(aw9610x, REG_STAT0, &curr_status_val);
-> >> +	if (ret)
-> >> +		return;
-> >> +
-> >> +	for (i = 0; i < AW_CHANNEL_MAX; i++) {
-> >> +		curr_status = (((curr_status_val >> (24 + i)) & 0x1)) |
-> >> +			(((curr_status_val >> (16 + i)) & 0x1) << 1) |
-> >> +			(((curr_status_val >> (8 + i)) & 0x1) << 2) |
-> >> +			(((curr_status_val >> (i)) & 0x1) << 3);  
+> >Welcome to IIO.
+> > =20
+> >> ST2 register read should be placed after read measurment data,
+> >> because it will get correct values after it. =20
 > >
-> >Add a comment on what is going on here as it's tricky to read.
-> >Also, no brackets around the i in last line.
-> >Probably better expressed as a series of FIELD_GET() calls with appropriat
-> >masks of the 32 bit value.
+> >What is the user visible result of this? Do we detect errors when none
+> >are there?  Do we have a datasheet reference for the status being
+> >update on the read command, not after the trigger? =20
+>=20
+> Second read will fail. In the datasheet ST2 comes after measurment data r=
+ead. Here is some explanation from datasheet.
+>=20
+> "When ST2 register is read, AK09918 judges that data reading is finished.=
+ Stored measurement data is
+> protected during data reading and data is not updated. By reading ST2 reg=
+ister, this protection is
+> released. It is required to read ST2 register after data reading."
+>=20
+Thanks. Please add more of that detail to the patch description for v3.
+
+> So if ST2 is read before measurment it will stuck at protected mode.
+> >> =20
+> >Needs a Fixes tag to let us know how far to backport the fix. =20
+> I think it is broken since 09912 was added but i cannot verify i have onl=
+y devices with 09918.
 > >
-> >  
-> 
-> The work processed here is to parse the interrupt status of different channels.
-> bit0/bit8/bit16/bit24 represent the interrupt status of channel 0, with each of
-> the 4 bits corresponding to an interrupt status for approaching a threshold.
-> Similarly, bit1/bit9/bit17/bit25 represent the interrupt status of channel 1.
-> To facilitate subsequent interrupt status judgments, the 4 interrupt statuses
-> of the same channel are combined into a single data.
-> 
-> Sorry, I have not found a suitable way to utilize FIELD_GET for this purpose.
+I wasn't meaning devices, but rather what patch broke the kernel code.
+It might be the original driver introduction.
 
-That's fine. Just add a comment to say it is gathering up the status bits
-for a particular channel.
-
-> 
-> >> +
-> >> +		if (!aw9610x->channels_arr[i].used ||
-> >> +				(aw9610x->channels_arr[i].last_channel_info ==
-> >> +				curr_status))  
-> >Align as
-> >		if (!aw
-> >		    (aw9610...
-> >  
-> >> +			continue;
-> >> +
-> >> +		switch (curr_status) {
-> >> +		case FAR:
-> >> +			iio_push_event(aw9610x->aw_iio_dev,
-> >> +					IIO_UNMOD_EVENT_CODE(IIO_PROXIMITY, i,
-> >> +						IIO_EV_TYPE_THRESH,
-> >> +						IIO_EV_DIR_RISING),
-> >> +					iio_get_time_ns(aw9610x->aw_iio_dev));
-> >> +			break;
-> >> +		case TRIGGER_TH0:
-> >> +		case TRIGGER_TH1:
-> >> +		case TRIGGER_TH2:
-> >> +		case TRIGGER_TH3:  
-> >4 thresholds on the same channel? This is confusing given we are reporting them
-> >as events on different channels. but this loop is over the channels.
-> >
-> >  
-> 
-> There are 4 proximity thresholds on the same channel, each representing
-> a different level of proximity. TRIGGER_TH0/TRIGGER_TH1/TRIGGER_TH2/TRIGGER_TH3
-> all represent proximity states, but with varying degrees of proximity.
-> 
-> Here I have a question to ask. I'm not sure how to use iio to report
-> different proximity states. Can you give me some suggestions? Thank you!
-
-This is a limitation of IIO and need to limit the scale of the event descriptor.
-We don't support more than one threshold of a given type per channel.
-
-It's an design decision based on the fact that for sensors, it is
-rarely useful to actually support multiple thresholds.  If software has
-gotten an interrupt of the first one, it can read the channel value and
-if it likes modify the threshold.  As such, what does having another
-level actually bring to a usecase?
-
-Lots of hardware supports multiple thresholds we just choose not to
-expose it.  I might consider ways around that, but first I need
-to understand the user space usecase for it.
-
-Note there are lots of reasons to do this in baremetal / realtime systems
-where particular actions are triggered in a timely fashion.  By the time
-you are dealing with a full Linux software stack most of those don't
-make sense any more because there is a lot more software processing in the
-loop.
-
-Jonathan
-
-
-
-> 
-> >> +			iio_push_event(aw9610x->aw_iio_dev,
-> >> +					IIO_UNMOD_EVENT_CODE(IIO_PROXIMITY, i,
-> >> +						IIO_EV_TYPE_THRESH,
-> >> +						IIO_EV_DIR_FALLING),
-> >> +					iio_get_time_ns(aw9610x->aw_iio_dev));
-> >> +			break;
-> >> +		default:
-> >> +			return;
-> >> +		}
-> >> +		aw9610x->channels_arr[i].last_channel_info = curr_status;
-> >> +	}
-> >> +}
-> >> +  
-> 
-> Kind regards,
-> Wang Shuaijie
+If we can add a Fixes tag that makes it much easier for stable + distributi=
+ons
+to work out whether to pick the fix up or not.
 
