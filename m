@@ -1,86 +1,196 @@
-Return-Path: <devicetree+bounces-92664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C96EA94DEE6
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 23:59:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13D2394DF41
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 01:54:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 79D401F214AB
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 21:59:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 37B801C20AAC
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 23:54:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1834F1422B4;
-	Sat, 10 Aug 2024 21:59:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09AF8145A12;
+	Sat, 10 Aug 2024 23:54:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IiTDnyS1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A82DC1870;
-	Sat, 10 Aug 2024 21:59:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4225413D889;
+	Sat, 10 Aug 2024 23:54:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723327180; cv=none; b=BYfs2cbNXMQBJbugSocNCr36dmRZ7DgjKR9JsfPFTqzb5xWX/5A77MNB2iyqBtgMPb/eDE/gI/buIZpt/6wQglLB4SW2eeVPgCmVx32cfs84WZNXzjJXFHYUvtT4ibbcPsw7JoslNUSulZ+jeE+sioFtOI7pTQC5j0mR7rP5c/g=
+	t=1723334054; cv=none; b=GNVee2FO8ds+7zmBkYVojRo9ydBWXBB+94M85QN4zshGlk7lzpWuHi3J4cM9/TKFaZTB4pznUY0DU+p9X0wThmt86w95uzahJ9C8CQiM01PUozAF4NhfOjw39hfumM2WNXuwUcteRPCRxBkSOeGX5/R3vq/jUIsUfoLWlFLCZm0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723327180; c=relaxed/simple;
-	bh=2IGyCYkqSklmYdc1Jfu7GDllfuT25bYA9XgNnhhO/T4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dXjdhQbGx+pJ5IXW3aXEbidF2HjPCoV3HemjfObjWOtZApC9ynEIz1Xy7lm4Dkq8XoOhxwqxXg7I/DXOosBeevoXFiB+hbrZHuBnddJDlWdNr9ZQ5/AW7Drv0Gt85Bf41+lVTX2fkniCV4sLdjISRkpywenslNoWKoNrYtFUgtI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875b02.versanet.de ([83.135.91.2] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1scu7b-0007sP-Dh; Sat, 10 Aug 2024 23:59:35 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Dragan Simic <dsimic@manjaro.org>,
-	linux-rockchip@lists.infradead.org
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	stable@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	robh@kernel.org,
-	Nikola Radojevic <nikola@radojevic.rs>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Raise Pinebook Pro's panel backlight PWM frequency
-Date: Sat, 10 Aug 2024 23:59:32 +0200
-Message-Id: <172332716790.290487.980895423301498235.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <2a23b6cfd8c0513e5b233b4006ee3d3ed09b824f.1722805655.git.dsimic@manjaro.org>
-References: <2a23b6cfd8c0513e5b233b4006ee3d3ed09b824f.1722805655.git.dsimic@manjaro.org>
+	s=arc-20240116; t=1723334054; c=relaxed/simple;
+	bh=cdUzVchCaRhLUnErCbZsZUKbLBcgxHpYnYNip9ALhpI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fUBxSeAtlfgLLlEOLrUvhxFnhZh0HnwvJB2iMeF1oBDaA43Rc8v1hSHZxFjKhB3mc98IVKbVfH2FBBQE+oHotHsfooGm8XkxZe8sohgb7U593t6CpSuIhleibtgazXa6g9xKQAS/dr1pTTfaH1nSoKC20ZBZ62oMdN6EgRhllYg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IiTDnyS1; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1723334053; x=1754870053;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=cdUzVchCaRhLUnErCbZsZUKbLBcgxHpYnYNip9ALhpI=;
+  b=IiTDnyS15D/jSc4DtBXJW46r58u2dNGL3wtT6pNMh1z1B4iVUPSciQXw
+   qZxeyQ2VHtmkqAJB0ZWkQHyGy26KM1Wc0IDIrt5TfOSgKQhXPkMqfvAKv
+   8EznXvYkWmjqVflkg/k5f0k4ZtOKb474oKU+alEBZcYAaamlqUSMwlKG4
+   WfKCGsT/TQAqs4kWbpQhw/cAp8/im0mrwJSrZyYV7f35MxaPWng/CL+ww
+   K8g+MYTLRJl4HsfH7xQOgf3Y47+DlzXVEXm/uPc8QdzCg1FSAbBHunBGg
+   jKONhOPn+WmO5esubqFqlpTMtC8JbKsdFOZUoeYpvkbgAQ8m+cyFveoVZ
+   Q==;
+X-CSE-ConnectionGUID: 927cxkWtRAOHvyja/Go48A==
+X-CSE-MsgGUID: lQ51+Kf5RQG7viCB2nmnDw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11160"; a="25341576"
+X-IronPort-AV: E=Sophos;i="6.09,280,1716274800"; 
+   d="scan'208";a="25341576"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Aug 2024 16:54:13 -0700
+X-CSE-ConnectionGUID: bKTUh9daSDKjYaYFacB/9A==
+X-CSE-MsgGUID: H/ZbzCnHRWWnZV8q+ukxLA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,280,1716274800"; 
+   d="scan'208";a="62566867"
+Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
+  by fmviesa004.fm.intel.com with ESMTP; 10 Aug 2024 16:54:09 -0700
+Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1scvuQ-000AOl-2S;
+	Sat, 10 Aug 2024 23:54:06 +0000
+Date: Sun, 11 Aug 2024 07:53:45 +0800
+From: kernel test robot <lkp@intel.com>
+To: Luo Jie <quic_luoj@quicinc.com>, Bjorn Andersson <andersson@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	quic_kkumarcs@quicinc.com, quic_suruchia@quicinc.com,
+	quic_pavir@quicinc.com, quic_linchen@quicinc.com,
+	quic_leiwei@quicinc.com, Luo Jie <quic_luoj@quicinc.com>
+Subject: Re: [PATCH 2/4] clk: qcom: Add common PLL clock controller driver
+ for IPQ SoC
+Message-ID: <202408110756.rSXn1ZRu-lkp@intel.com>
+References: <20240808-qcom_ipq_cmnpll-v1-2-b0631dcbf785@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240808-qcom_ipq_cmnpll-v1-2-b0631dcbf785@quicinc.com>
 
-On Sun, 4 Aug 2024 23:10:24 +0200, Dragan Simic wrote:
-> Increase the frequency of the PWM signal that drives the LED backlight of
-> the Pinebook Pro's panel, from about 1.35 KHz (which equals to the PWM
-> period of 740,740 ns), to exactly 8 kHz (which equals to the PWM period of
-> 125,000 ns).  Using a higher PWM frequency for the panel backlight, which
-> reduces the flicker, can only be beneficial to the end users' eyes.
-> 
-> On top of that, increasing the backlight PWM signal frequency reportedly
-> eliminates the buzzing emitted from the Pinebook Pro's built-in speakers
-> when certain backlight levels are set, which cause some weird interference
-> with some of the components of the Pinebook Pro's audio chain.
-> 
-> [...]
+Hi Luo,
 
-Applied, thanks!
+kernel test robot noticed the following build errors:
 
-[1/1] arm64: dts: rockchip: Raise Pinebook Pro's panel backlight PWM frequency
-      commit: 8c51521de18755d4112a77a598a348b38d0af370
+[auto build test ERROR on 222a3380f92b8791d4eeedf7cd750513ff428adf]
 
-Best regards,
+url:    https://github.com/intel-lab-lkp/linux/commits/Luo-Jie/dt-bindings-clock-qcom-Add-common-PLL-clock-controller-for-IPQ-SoC/20240808-221059
+base:   222a3380f92b8791d4eeedf7cd750513ff428adf
+patch link:    https://lore.kernel.org/r/20240808-qcom_ipq_cmnpll-v1-2-b0631dcbf785%40quicinc.com
+patch subject: [PATCH 2/4] clk: qcom: Add common PLL clock controller driver for IPQ SoC
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20240811/202408110756.rSXn1ZRu-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 14.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240811/202408110756.rSXn1ZRu-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408110756.rSXn1ZRu-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/clk/qcom/clk-ipq-cmn-pll.c: In function 'ipq_cmn_pll_config':
+>> drivers/clk/qcom/clk-ipq-cmn-pll.c:96:24: error: implicit declaration of function 'FIELD_PREP' [-Wimplicit-function-declaration]
+      96 |                 val |= FIELD_PREP(CMN_PLL_REFCLK_INDEX, 3);
+         |                        ^~~~~~~~~~
+
+
+vim +/FIELD_PREP +96 drivers/clk/qcom/clk-ipq-cmn-pll.c
+
+    77	
+    78	static int ipq_cmn_pll_config(struct device *dev, unsigned long parent_rate)
+    79	{
+    80		void __iomem *base;
+    81		u32 val;
+    82	
+    83		base = devm_of_iomap(dev, dev->of_node, 0, NULL);
+    84		if (IS_ERR(base))
+    85			return PTR_ERR(base);
+    86	
+    87		val = readl(base + CMN_PLL_REFCLK_CONFIG);
+    88		val &= ~(CMN_PLL_REFCLK_EXTERNAL | CMN_PLL_REFCLK_INDEX);
+    89	
+    90		/*
+    91		 * Configure the reference input clock selection as per the given rate.
+    92		 * The output clock rates are always of fixed value.
+    93		 */
+    94		switch (parent_rate) {
+    95		case 25000000:
+  > 96			val |= FIELD_PREP(CMN_PLL_REFCLK_INDEX, 3);
+    97			break;
+    98		case 31250000:
+    99			val |= FIELD_PREP(CMN_PLL_REFCLK_INDEX, 4);
+   100			break;
+   101		case 40000000:
+   102			val |= FIELD_PREP(CMN_PLL_REFCLK_INDEX, 6);
+   103			break;
+   104		case 48000000:
+   105			val |= FIELD_PREP(CMN_PLL_REFCLK_INDEX, 7);
+   106			break;
+   107		case 50000000:
+   108			val |= FIELD_PREP(CMN_PLL_REFCLK_INDEX, 8);
+   109			break;
+   110		case 96000000:
+   111			val |= FIELD_PREP(CMN_PLL_REFCLK_INDEX, 7);
+   112			val &= ~CMN_PLL_REFCLK_DIV;
+   113			val |= FIELD_PREP(CMN_PLL_REFCLK_DIV, 2);
+   114			break;
+   115		default:
+   116			return -EINVAL;
+   117		}
+   118	
+   119		writel(val, base + CMN_PLL_REFCLK_CONFIG);
+   120	
+   121		/* Update the source clock rate selection. Only 96 MHZ uses 0. */
+   122		val = readl(base + CMN_PLL_REFCLK_SRC_SELECTION);
+   123		val &= ~CMN_PLL_REFCLK_SRC_DIV;
+   124		if (parent_rate != 96000000)
+   125			val |= FIELD_PREP(CMN_PLL_REFCLK_SRC_DIV, 1);
+   126	
+   127		writel(val, base + CMN_PLL_REFCLK_SRC_SELECTION);
+   128	
+   129		/*
+   130		 * Reset the common PLL block by asserting/de-asserting for 100 ms
+   131		 * each, to ensure the updated configurations take effect.
+   132		 */
+   133		val = readl(base + CMN_PLL_POWER_ON_AND_RESET);
+   134		val &= ~CMN_ANA_EN_SW_RSTN;
+   135		writel(val, base);
+   136		msleep(100);
+   137	
+   138		val |= CMN_ANA_EN_SW_RSTN;
+   139		writel(val, base + CMN_PLL_POWER_ON_AND_RESET);
+   140		msleep(100);
+   141	
+   142		return 0;
+   143	}
+   144	
+
 -- 
-Heiko Stuebner <heiko@sntech.de>
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
