@@ -1,114 +1,176 @@
-Return-Path: <devicetree+bounces-92556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 573FC94D960
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 02:20:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83E4794D9AE
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 03:15:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48FC41F22535
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 00:20:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 036401F22728
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 01:15:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FAE653A7;
-	Sat, 10 Aug 2024 00:20:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F5F63A8F7;
+	Sat, 10 Aug 2024 01:15:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uMHOAiaW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RDXFdJk4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A03D441F;
-	Sat, 10 Aug 2024 00:20:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CDD81E4A9;
+	Sat, 10 Aug 2024 01:15:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723249223; cv=none; b=IsULPL/fEcL1VsyWXfHAp526GAXp5+FJ/efQ6FciDxaYeJ54wSlOSN2kg4h8HL8xmDd7HzZzkg6YaJCZdUZZbNfLQb0XTt962Br52WB31I/HgMMvgUzDPM4IiUT7o0UemHMUnmWJ+4Mh2Uub9S0/+yx6oMt06qe/yuIFcYj3648=
+	t=1723252526; cv=none; b=TeWN360jWfLZRvzYklVYjS10Iixyx8yODDC/qns0SDUGImnLcOO6xGOjOWWMlC670ds+4g1xSnnjLWhh8jFFbWP9Ncp9Sp80YMTYyqVGHC3/Zxt6GXXa5f3ULr/pTgV0MlCH4YfpfuXrXmJnLCEULCqM1zRJu55w1eIIagU3Jr4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723249223; c=relaxed/simple;
-	bh=QO3u2CGmjXPMln6wADcUqf90kgfAOUK87AMIW5V9i4Y=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=ij/QW7x1Mnsgm+QAx039s37DTX8VPwt/eRUCN2/6/qZoiXT2f9OVj2tYKbR9xSMJNE4qavrs6jsdwb2k9tv6R7fueS/+UWqTUcUMgoSjrGE3ecdPfjrGG7o6Q23Diwz2eNHWWD6bQGHF8B3z/GWzGUHGUo7y3lbhqhbRZQSAIiU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uMHOAiaW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A46CAC32782;
-	Sat, 10 Aug 2024 00:20:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723249222;
-	bh=QO3u2CGmjXPMln6wADcUqf90kgfAOUK87AMIW5V9i4Y=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=uMHOAiaWm0jvw3WTfHVgmMTLu6fMqoM8lXDpSoiD8u1Moiva1r0soIMfeht8TkOIo
-	 CMIeOIoUVyhkY4S8+vHqlbZ+GTJikJpmyEbkeOxqjBB14KWcK7aXSl1pz5rMLHJd2a
-	 cV7cdyv1CgvxlIOv78sd7dqnqEh3kH/GABbIJged5GD1BSK1aHepIso04DEgWJQSKn
-	 sn1woWoiJR0saSm5zYGZkNMKTzpC6HsoV0x6L+WmV0BWTn9FJEb1q8XbhEphSQ+ARi
-	 /V0ozJlSUCqG506ijhsUYoGifvhObFCFb+qhspwhIMmXN1qYQH3zlWfWIs0dvI17st
-	 YSImK2t2+oDNw==
-Date: Fri, 09 Aug 2024 18:20:21 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1723252526; c=relaxed/simple;
+	bh=eVrnEkymkgWiw4KUnaEUL7rO4ydgXHlWRyNSdxlmzIQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=n+3fWGIvnlwzjFYkBJGU9TOnrbbFQ1flDk8TqRgW93jGHKdkKhgCpmn7Zl6BWJRmlzYLT1dL/kK0Shaqjp94ywJS6ZQBtwWrhD02qLdIcwDw1w38UUQQC+oqBqRA1ao0S+OuMJQdY/HTIzuBlyp4OB1w2ZMDcGnSo9H/Ec+evTk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RDXFdJk4; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3683f56b9bdso1679724f8f.1;
+        Fri, 09 Aug 2024 18:15:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723252523; x=1723857323; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=j9zfo4WEzF3z/bIMKMHgf7itqTEdxPVPMEvEU0eIHiQ=;
+        b=RDXFdJk4E21r2nHYpzwajofnDFQDcScLJLsDDkfC4GGYpq+vyzRcxPGdRPyHVVib+b
+         rIsXdebNacPFmrgJJwG/KO4p1Uki20sZn+n/58+hn1xDfMOPdJC0eMWsiQe3JGF15/PP
+         UYPCffcMGNWGWV0i2U+th//w7nw3XVI8CFZY4V83K/SKishfVO2CHJ1/ii40/B6fo/Mn
+         YCFuvuFqLnWzSZM1sfl04QUE4exBsAeN1VH2GGtxbMJi4t2mvFBl5nEnzWZ1ZQdh+CyQ
+         SqNLW9yB+GWhM1BHY4n7WQYrymClEOgpzHfHBCc7DyXi49mgozAwIoj6SEQeHcLM2pMy
+         tMkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723252523; x=1723857323;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=j9zfo4WEzF3z/bIMKMHgf7itqTEdxPVPMEvEU0eIHiQ=;
+        b=SbP5ygb3XFEOt5deV51GFw9WBVIMN6bG1ZH9Ln7x6/oCQ0Yk/UUN2JTEejO5uHCVGn
+         QIslSvrb04JEQuSTihHGpq4xuLpZo7/TOsCkMkKsCsK46Ph6CdoZ7jZzSwFA8MMasaGk
+         ppBfx9T1RgtEZ8hzhkkWVuLng5CEnSnKL8ROkLBtlKlfCSzJQZX/2FXjFLYSVFhPG16u
+         ThGW3HxvkESsbx1RI5ro5aVNNRUpRLCcxVfydzgeWbGzUD6geXHMUtRIsNg9cSL1fHDP
+         XdQ7rJXN6idDp4gcwk/PAHYkPp2OwsIQKpxGCxZEXTv94BFRXaYfwQatkHbTlceJ9Hul
+         nC+A==
+X-Forwarded-Encrypted: i=1; AJvYcCUVlcn9FoVgqu94nr1cvUCJuzczO6ZeU+MI/mE92SAvwZX8L5SrZVRANsVVOn2okhzQyNLwdmxyb4JF2osMcAxwmKRG7saIWkcTxJuQVjWpa7FIIcZO634JvAghtQSMOBpv4RsSQ51MIo0fo0rdPbd1OC/8sL4B8vKZjb7502Ui1cJZfleqwd1OKHrli77MZNs66m6VqfDeVCYOX+p0q6iLWFWrP2R/Ap+6S4vYsoLyPcvamhPXwc7OfwTOR/13R+lNn1H4+g+M
+X-Gm-Message-State: AOJu0Yxlp/601sGM1Wubm2UqtNrb6Qoozp01UMqzVNg0h0mppQvOC8Xx
+	+sU2rovlLE2JgnNP/kt/+m/KikgdZYcRMFNvwPn6xR01e9WZLNwX
+X-Google-Smtp-Source: AGHT+IHXVUdEv2O5ohO9bAXTgJVklt0jhTkgNxeU/ElF7JfiC68zZmaHSF+BCSkgHtUC/zTurdLJHg==
+X-Received: by 2002:a05:6000:bce:b0:366:f041:935d with SMTP id ffacd0b85a97d-36d61cd285cmr2223176f8f.60.1723252522595;
+        Fri, 09 Aug 2024 18:15:22 -0700 (PDT)
+Received: from ?IPV6:2a02:8071:b783:140:927c:82ba:d32d:99c1? ([2a02:8071:b783:140:927c:82ba:d32d:99c1])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36e4f0a6d76sm796094f8f.115.2024.08.09.18.15.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Aug 2024 18:15:22 -0700 (PDT)
+Message-ID: <f9c9601b-737b-42d1-9449-2072afdec580@gmail.com>
+Date: Sat, 10 Aug 2024 03:15:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Tristram.Ha@microchip.com
-Cc: Eric Dumazet <edumazet@google.com>, linux-kernel@vger.kernel.org, 
- UNGLinuxDriver@microchip.com, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Paolo Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>, 
- Vladimir Oltean <olteanv@gmail.com>, devicetree@vger.kernel.org, 
- Florian Fainelli <f.fainelli@gmail.com>, 
- Woojung Huh <woojung.huh@microchip.com>, Andrew Lunn <andrew@lunn.ch>, 
- Jakub Kicinski <kuba@kernel.org>, Marek Vasut <marex@denx.de>, 
- Tristram Ha <tristram.ha@microchip.com>, netdev@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>
-In-Reply-To: <20240809233840.59953-2-Tristram.Ha@microchip.com>
-References: <20240809233840.59953-1-Tristram.Ha@microchip.com>
- <20240809233840.59953-2-Tristram.Ha@microchip.com>
-Message-Id: <172324922165.2057557.834820350130126130.robh@kernel.org>
-Subject: Re: [PATCH net-next 1/4] dt-bindings: net: dsa: microchip: add
- SGMII port support to KSZ9477 switch
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] platform/surface: Add OF support
+To: Konrad Dybcio <konradybcio@gmail.com>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Len Brown <lenb@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <quic_kdybcio@quicinc.com>
+References: <20240809-topic-sam-v1-0-05bca1932614@quicinc.com>
+ <20240809-topic-sam-v1-3-05bca1932614@quicinc.com>
+ <9ee8eb9d-1e1c-439f-a382-c003fbd7259c@gmail.com>
+ <ea348f62-49e9-4b5e-9041-b0a696aaa736@gmail.com>
+Content-Language: en-US
+From: Maximilian Luz <luzmaximilian@gmail.com>
+In-Reply-To: <ea348f62-49e9-4b5e-9041-b0a696aaa736@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-
-On Fri, 09 Aug 2024 16:38:37 -0700, Tristram.Ha@microchip.com wrote:
-> From: Tristram Ha <tristram.ha@microchip.com>
+On 8/10/24 12:44 AM, Konrad Dybcio wrote:
+> On 9.08.2024 8:09 PM, Maximilian Luz wrote:
+>>>    +static int ssam_serdev_setup(struct acpi_device *ssh, struct serdev_device *serdev)
+>>> +{
+>>> +    if (ssh)
+>>> +        return ssam_serdev_setup_via_acpi(serdev, ssh->handle);
+>>> +
+>>> +    /* TODO: these values may differ per board/implementation */
+>>> +    serdev_device_set_baudrate(serdev, 4 * HZ_PER_MHZ);
+>>
+>> Isn't this defined in the DT spec that you're adding as "current-speed"
+>> in patch 2? Why not load it from there?
 > 
-> The SGMII module of KSZ9477 switch can be setup in 3 ways: 0 for direct
-> connect, 1 for 1000BaseT SFP, and 2 for 10/100/1000 SFP.
+> Yeah and it's not under `required:`.. i added it for future proofing
+
+Okay.
+
+[...]
+
+>>> +static const struct software_node *ssam_node_group_sl7[] = {
+>>> +    &ssam_node_root,
+>>> +    &ssam_node_bat_ac,
+>>> +    &ssam_node_bat_main,
+>>> +    &ssam_node_tmp_perf_profile_with_fan,
+>>> +    &ssam_node_fan_speed,
+>>> +    &ssam_node_hid_sam_keyboard,
+>>
+>> Did you check if there are any other HID devices connected? In the past,
+>> keyboard and touchpad have been split into two separate devices, so is
+>> it a combo keyboard + touchpad device this time? Some models also had
+>> HID-based sensor and other devices.
 > 
-> SFP is typically used so the default is 1.  The driver can detect
-> 10/100/1000 SFP and change the mode to 2.  For direct connect this mode
-> has to be explicitly set to 0 as driver cannot detect that
-> configuration.
+> No, touchpad is wired directly to the SoC via QSPI, same for the touch
+> panel
+
+Ah I see. So somewhat similar to the SLS2 I believe. Does it work with
+multiple fingers out-of-the-box? Or does it send raw heatmaps like on
+the SLS2 that require post-processing?
+
+Maybe some background: Since quite some time, the touchscreens on
+Surface devices operate in two modes: Basic single-touch no-post-
+processing-required mode or multi-touch mode where it sends raw touch
+heatmaps to be processed by some driver or user-space application. So
+basically, the whole touch processing stack is shifted to the software
+side. And with the SLS2, they now even applied that same thing to the
+touchpad... We're trying to replicate that (user-space) processing
+with the IPTSd daemon, but there's still a bit of work to be done to
+make this reliable.
+
 > 
-> Signed-off-by: Tristram Ha <tristram.ha@microchip.com>
-> ---
->  .../devicetree/bindings/net/dsa/microchip,ksz.yaml   | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+>>
+>> Would just be good to know if this can be assumed to be complete or if
+>> we're maybe missing something here.
+>>
+>>> +    /* TODO: evaluate thermal sensors devices when we get a driver for that */
+>>
+>> FYI I've posted the driver at [1]. It needs a small Kbuild dependency
+>> fix but apart from that I think it should be final, if you want to give
+>> that a try.
+>>
+>> [1]: https://lore.kernel.org/lkml/20240804230832.247852-1-luzmaximilian@gmail.com/T/
 > 
+> I'll give it a shot, thanks
+> 
+>>
+>> The rest looks fine. I'll try to find some time to update my SPX branch
+>> this weekend and give it a spin.
+> 
+> About time that thing lands upstream ;)
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Agreed :) Thanks for taking this up!
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/dsa/microchip,ksz.example.dtb: switch@0: Unevaluated properties are not allowed ('sgmii-mode' was unexpected)
-	from schema $id: http://devicetree.org/schemas/net/dsa/microchip,ksz.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240809233840.59953-2-Tristram.Ha@microchip.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Best regards,
+Max
 
