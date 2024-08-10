@@ -1,119 +1,204 @@
-Return-Path: <devicetree+bounces-92574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3083C94DB06
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 08:18:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0FF594DB13
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 08:24:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D26161F21D51
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 06:18:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3F771B21C95
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 06:24:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C421E142E6F;
-	Sat, 10 Aug 2024 06:18:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="artwTuy9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8385414A4D6;
+	Sat, 10 Aug 2024 06:24:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 607A33BBE2;
-	Sat, 10 Aug 2024 06:18:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 877AF4409;
+	Sat, 10 Aug 2024 06:24:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.6.53.87
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723270703; cv=none; b=bAfg8G9wCEoqvLo2T4/hv+46j3u4CO87IiFD/H9ibvCkuSSOgUpp2dv/fx+GNEpY1SNLzcBzbB8dlQa2tI4i0vkL9HB4QFJXUzIKArY5ysIShe1rXAvE7xP4TiV5ldxzVCtvRCMVlpge41vFykcEL/23CIPC4T5eqWYh6nH0K44=
+	t=1723271067; cv=none; b=Am5LC/triYhshkQaGnLd92kRNPiunKwDtPCWWi5w/uAxzNx5IgLPyn23a5gaxm7GlMsVfAVM7n1UDc4QSR9Eu259EsqwDxwXT47OsGkvig9+o9pB6FBOitZd7aSsMbJhygPVH4zIGYeUR3wPm5b7SVAoDgk5CwsR8lyPayL0l9M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723270703; c=relaxed/simple;
-	bh=E7fuWS1G+p3cvSQjMO6MQozqHSUTKCILpI5KraJuo2M=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mRoVzwQ63RqB89AFSPYBGvTDKEGZzsWtxB+EwB4TnOeLs6Tbr4GbBbxpLb8HbidRuw+ni3P1bqWeqsArvtsZrWNYBWrYQ+kRkaHhhtCN7Kbu3Cwx4L374W9J682+EuHiDNlbWpAh41L0bOq8B0JjarqAzFPiddzG2bek3+BQoAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=artwTuy9; arc=none smtp.client-ip=209.85.216.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-2cf98ba0559so2079976a91.2;
-        Fri, 09 Aug 2024 23:18:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723270701; x=1723875501; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=8sq4JWpemr6JFiizs+pQ1bnG/BODQqwvnDyMBZjSukE=;
-        b=artwTuy94/1z+sos115RjbMRe8m2fNlAf80DGtIofJP1a+q/zfJIMgIB4wWpoYW+k3
-         6mcu/qsgyA26rox5e4Z1Y/ulnOlP422ZOIfnVHPEOpUPIfniMgR2gi0SL/aFffC4CDGR
-         t4lsuATipOtlhTMpT4OaJ5039dJn+piytiQD8VXVeUzvWBzVHuBpG6BL8Kio1jJBiIOe
-         EDpRcrR6QyAwSJccXH7300GFQTXhzOoPFrqUHAA++QR6tGNk2CN+ThQJow2+hkdjtiGU
-         vLippPt+KmQ1/ARMP8Y86B0h67ycnCjqmTj2Abd6hk/2Ha4YgPqrybBol+zvfhWNHs7i
-         l7Ug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723270701; x=1723875501;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8sq4JWpemr6JFiizs+pQ1bnG/BODQqwvnDyMBZjSukE=;
-        b=W6HmG42GS0v+BDTcpB3eC0BVVZjgWJDVQLzsG/mzCGIR3KBwat7bP4dHw4T5Ci8gwd
-         aeq/cm/Hj5sw6zUdpWOuLdvE5QPm1icvzQa5MhEJH/vkK6ykzYsD8ScW91jLB4dongpy
-         A5CLuJYIxzy4rbbV67znDz8ifsF64odH5EPurucRVGzgUdszrU2foTlXJbUqfy6d2yJN
-         fWODLvg02Wkc/fpSLBvWmhiA/Zvr0f6LNNwssU7KHWxmm02MyK8Oo85WOqhvv6PB4Hx3
-         yBlrSw4A2/Euo3YCOrb7a2UkfrSIe4h+NMBZRLY4S0UFxzKwEyF72l3C+39UtTUg9+Qx
-         egbw==
-X-Forwarded-Encrypted: i=1; AJvYcCWzQrcASABWbjU/9p3BxG1GxJd70w2UJxtjykwshO/u/atYShFrq+/FwGzE3xasq/mdLNXOK4hstRs8cMBnQxNZgcFcc1Izy5zeq1B0noj0nkbKRPaSeAU/1GRxoLmX8tYDkJM27Q/HFA==
-X-Gm-Message-State: AOJu0YzSZZEL6Z4tw808Pw42vQSgjhx/44m07BJLk2vHKRbeYCrRUbMC
-	hozw0xQk436iGZggLlf+0vAGexpHVLdHHKwBJ/ZFsKWYutuVRmBS2JZPLz0I
-X-Google-Smtp-Source: AGHT+IEZSxHyMu/Nw4TzERiAkLPSnqowQVZSweEvcSVXyW0ndOaygMtsuGHdwXXCqOE0A7afjPxFRw==
-X-Received: by 2002:a17:90a:3fca:b0:2c7:22d6:98e with SMTP id 98e67ed59e1d1-2d1e7fe1bd1mr3542665a91.19.1723270701344;
-        Fri, 09 Aug 2024 23:18:21 -0700 (PDT)
-Received: from fedora.. ([2409:40f4:ad:f161:cdeb:dbe:82d7:bd25])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2d1fcf29eebsm812227a91.33.2024.08.09.23.18.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Aug 2024 23:18:21 -0700 (PDT)
-From: Animesh Agarwal <animeshagarwal28@gmail.com>
-To: 
-Cc: Animesh Agarwal <animeshagarwal28@gmail.com>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1723271067; c=relaxed/simple;
+	bh=cw6ZAZQQlMmTzNFrIznEgkTkm0vYvIxq03+GxpTodU8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ObSVWNNkyv00FINgdUweFwdpvlJLRKFLD1xDb2xccj6FpKDQxuK15AEX2d+3XgsuQWVk3gMJxyathV9ahOFu6rXzQyjz4dW+ba39jsqSqxYhL/9dAarqDXxT5OcNpZaIdSBBn2i5vhFrOAoUTk3LUFRPQovgoW/zSBzBnFmjlwY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; arc=none smtp.client-ip=144.6.53.87
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
+Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
+	by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
+	id 1scfN4-003ir2-1f;
+	Sat, 10 Aug 2024 14:23:20 +0800
+Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Sat, 10 Aug 2024 14:23:19 +0800
+Date: Sat, 10 Aug 2024 14:23:19 +0800
+From: Herbert Xu <herbert@gondor.apana.org.au>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Aurelien Jarno <aurelien@aurel32.net>,
+	Olivia Mackall <olivia@selenic.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: layerscape: remove unused num-viewport
-Date: Sat, 10 Aug 2024 11:48:06 +0530
-Message-ID: <20240810061812.155376-1-animeshagarwal28@gmail.com>
-X-Mailer: git-send-email 2.45.2
+	Heiko Stuebner <heiko@sntech.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@debian.org>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	Ard Biesheuvel <ardb@kernel.org>, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v9 0/3] hwrng: add hwrng support for Rockchip RK3568
+Message-ID: <ZrcHV1RRwj2pkCLB@gondor.apana.org.au>
+References: <cover.1722355365.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1722355365.git.daniel@makrotopia.org>
 
-Remove unused property num-viewport to fix dtbs warnings.
+On Tue, Jul 30, 2024 at 05:08:04PM +0100, Daniel Golle wrote:
+> Rockchip SoCs used to have a random number generator as part of their
+> crypto device.
+> 
+> However newer Rockchip SoCs like the RK3568 have an independent True
+> Random Number Generator device. This patchset adds a driver for it and
+> enables it in the device tree for RK3568.
+> 
+> It turns out the HW RNG returns very low quality on RK3566, so while
+> it is theoretically also present on that SoC, only enable it on RK3568
+> for now on which the quality expectations are met.
+> 
+> Tested on FriendlyARM NanoPi R5C.
+> 
+> v8 -> v9:
+>  * Patch 1: revert to v7
+> 
+>  * Patch 2: revert to v7, use 922 as quality
+> 
+>  * Patch 3: drop new properties, but enable only in rk3568.dtsi
+> 
+> v7 -> v8:
+>  * Patch 1: document new properties
+>    - introduce 'rockchip,sample-count'
+>    - require to specify 'quality' (0~1024)
+> 
+>  * Patch 2:
+>    - read sample-count and quality from DT
+> 
+>  * Patch 3:
+>    - disable hwrng in rk356x.dtsi, enable only in rk3568.dtsi
+>    - set sample-count 1000 and quality 900 (87.9%) as before
+> 
+> v6 -> v7:
+>  * Patch 1: unchanged
+> 
+>  * Patch 2: bring back rk_rng_write_ctl()
+>    - bring back rk_rng_write_ctl() with improved comment to describe
+>      the hardware.
+> 
+>  * Patch 3: unchaned
+> 
+> v5 -> v6:
+>  * Patch 1: unchanged
+> 
+>  * Patch 2: get rid of #ifdef
+>    - use if (IS_ENABLED(...)) { ... }instead of #ifdef inside functions
+>    - use __maybe_unused for functions previously enclosed by #ifdef'ery
+> 
+>  * Patch 3: unchanged
+> 
+> v4 -> v5:
+>  * Patch 1: always use RK3568 name
+>    - use full RK3568 name in patch description
+>    - add RK3568 to title in binding
+> 
+>  * Patch 2: full name and cosmetics
+>    - also always mention RK3568 as there may be other RNG in other
+>      (future) Rockchip SoCs
+>    - remove debug output on successful probe
+>    - use MODULE_AUTHOR several times instead of single comma-separated
+> 
+>  * Patch 3: unchanged
+> 
+> v3 -> v4:
+>  * Patch 1: minor corrections
+>    - fix Rokchip -> Rockchip typo
+>    - change commit title as requested
+> 
+>  * Patch 2: improved error handling and resource management
+>    - Always use writel() instead of writel_relaxed()
+>    - Use pm_runtime_resume_and_get
+>    - Correctly return error code in rk_rng_read()
+>    - Make use of devm_reset_control_array_get_exclusive
+>    - Use devm_pm_runtime_enable and there by get rid of rk_rng_remove()
+> 
+>  * Patch 3:
+>    - Move node to conform with ordering by address
+> 
+> v2 -> v3: patch adopted by Daniel Golle
+>  * Patch 1: address comments of Krzysztof Kozlowski, add MAINTAINERS
+>    - improved description
+>    - meaningful clock-names
+>    - add entry in MAINTAINERS files
+> 
+>  * Patch 2: numerous code-style improvements
+>    - drop misleading rk_rng_write_ctl(), simplify I/O writes
+>    - drop unused TRNG_RNG_DOUT_[1-7] macros
+>    - handle error handling for pm_runtime_get_sync()
+>    - use memcpy_fromio() instead of open coding for-loop
+>    - some minor white-spaces fixes
+> 
+>  * Patch 3:
+>    - use clock-names as defined in dt-bindings
+> 
+> v1 -> v2:
+>  * Patch 1: fix issues reported by Rob Herring and Krzysztof Kozlowski:
+>    - Rename rockchip-rng.yaml into rockchip,rk3568-rng.yaml
+>    - Fix binding title and description
+>    - Fix compatible property
+>    - Rename clocks and add the corresponding descriptions
+>    - Drop reset-names
+>    - Add a bus definition with #address-cells and #size-cells to the
+>      example.
+> 
+>  * Patch 2: fix issue reported by kernel test robot <lkp@intel.com>
+>    - Do not read the random registers as big endian, looking at the
+>      RK3568 TRM this is actually not needed. This fixes a sparse
+>      warning.
+> 
+>  * Patch 3: unchanged
+> 
+> 
+> Aurelien Jarno (3):
+>   dt-bindings: rng: Add Rockchip RK3568 TRNG
+>   hwrng: add hwrng driver for Rockchip RK3568 SoC
+>   arm64: dts: rockchip: add DT entry for RNG to RK356x
+> 
+>  .../bindings/rng/rockchip,rk3568-rng.yaml     |  61 +++++
+>  MAINTAINERS                                   |   7 +
+>  arch/arm64/boot/dts/rockchip/rk3568.dtsi      |   4 +
+>  arch/arm64/boot/dts/rockchip/rk356x.dtsi      |  10 +
+>  drivers/char/hw_random/Kconfig                |  14 ++
+>  drivers/char/hw_random/Makefile               |   1 +
+>  drivers/char/hw_random/rockchip-rng.c         | 227 ++++++++++++++++++
+>  7 files changed, 324 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rng/rockchip,rk3568-rng.yaml
+>  create mode 100644 drivers/char/hw_random/rockchip-rng.c
+> 
+> -- 
+> 2.45.2
 
-arch/arm64/boot/dts/freescale/fsl-ls1012a-frwy.dtb: pcie@3400000: Unevaluated properties are not allowed ('num-viewport' was unexpected)
-    from schema $id: http://devicetree.org/schemas/pci/fsl,layerscape-pcie.yaml#
-arch/arm64/boot/dts/freescale/fsl-ls1012a-oxalis.dtb: pcie@3400000: Unevaluated properties are not allowed ('num-viewport' was unexpected)
-    from schema $id: http://devicetree.org/schemas/pci/fsl,layerscape-pcie.yaml#
-
-Cc: Daniel Baluta <daniel.baluta@nxp.com>
-Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
----
- arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
-index e61ea7e0737e..4e05af0203f4 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
-@@ -541,7 +541,6 @@ pcie1: pcie@3400000 {
- 			#address-cells = <3>;
- 			#size-cells = <2>;
- 			device_type = "pci";
--			num-viewport = <2>;
- 			bus-range = <0x0 0xff>;
- 			ranges = <0x81000000 0x0 0x00000000 0x40 0x00010000 0x0 0x00010000   /* downstream I/O */
- 				  0x82000000 0x0 0x40000000 0x40 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
+Patches 1-2 applied.  Thanks.
 -- 
-2.45.2
-
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
 
