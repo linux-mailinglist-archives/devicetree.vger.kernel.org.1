@@ -1,158 +1,168 @@
-Return-Path: <devicetree+bounces-92630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C63FB94DD6E
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 17:02:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8182594DDB3
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 19:02:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DDA681C20CB5
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 15:02:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 352601F218F1
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 17:02:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7C4E15AAB8;
-	Sat, 10 Aug 2024 15:02:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74E8812D766;
+	Sat, 10 Aug 2024 17:02:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h+HdHYxe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bYCks6sj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B456E22F19;
-	Sat, 10 Aug 2024 15:02:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 320421366;
+	Sat, 10 Aug 2024 17:02:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723302155; cv=none; b=dsoyd5uzL9E4qRxpLAjCT3Fm7xJ4IsEq5g4frY4Ks/mAzlnwH1an04d85L5PnJlmvwOLkLpQXSiDSjsEA4eSK7SU85QxzmPowM9zKHIxitxlry+VGeuHPYjn8ksJiFeo68Hppwu8OzJrufJDvJFR61HAXlRloO85QsQGPUvs8mE=
+	t=1723309364; cv=none; b=tlSIOcHzsYrBXx/qUgfkjLPfp8El74WNt01FQAn/mJ3plR7aLElPc+NdS7UfCUhE+SGXqWZIh8qlhlT556ACBD6qPCFPtcLjoZBDV1wUe+S7+CIQsKVDoI3S9WODkBZOpLd/qRDeT/PJuG8Qvhn3sVRiLuAJEzwazdcTKo1EGl0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723302155; c=relaxed/simple;
-	bh=bpKMjFWUW7toItj/pj+ZBkopdB7KxryNY5WZTZXJASI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GKE6DYTNyrev7C4IjUbvhVKIl6yM1ko+wT5F2v6XfuTe3ELoQGGr527bZQATGurThQkLb+beJtQgGY3enqkHo94A0CXcILXw4hG0BwuAEnxsl9C2GJ/cRKz1zX+NJmwN41vmeBaUy+SYLcOFENf/QDX053wLtMtK9txCFVzwMcE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h+HdHYxe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D053C32781;
-	Sat, 10 Aug 2024 15:02:30 +0000 (UTC)
+	s=arc-20240116; t=1723309364; c=relaxed/simple;
+	bh=mDQTTL0Iiqf0Z+l4V0xWPwMG4F9xVJeUOoTlBU4qFRI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PuFaSoWfPdUbFlF+JUaIkOW67Tcu6ZrYLdxdyOrXRvNemgWu94lOhSm5kH8aeqo6lW0GPzzHxXzPPCsM7DMbigu1FcEg7aHomnpmgv/9HU0UjdFU33seYKQbIePkL+BOMbaedq0ANCJFxlt97Oq9hFpYMQvUKdT8IS7z2AersB4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bYCks6sj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFAF5C32781;
+	Sat, 10 Aug 2024 17:02:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723302155;
-	bh=bpKMjFWUW7toItj/pj+ZBkopdB7KxryNY5WZTZXJASI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=h+HdHYxevX7q7VzingiDmeGmxpaul08z3JEt5z4Wcpo5uvrcBA+6B5Y0LZDcIC7Er
-	 76y9MaSkHAVis02lGNat1Gaqakt5y45L/h9uHTrBiKPruTymTPMNszXfELIsVzGKeg
-	 +QXDiRjc5TTscQG2QlsYKg0AFQvhyfAMjHNi1ItF/hWCRWKsB/ZeSXcRTQlNjyfoQH
-	 plH7n2JiwPpH5SIBhgAheZH9WXut8T5VOGLZDEyTLxF7OwgAu1Dn2xR4VRvXCgI5cW
-	 BVb/DWGrRAFPzejas6WMKaAh9NflvJrkqihE9JGgel77CktaTEet2NreEwP2fMcQVp
-	 s7bmt+xOaGkHg==
-Message-ID: <a65b3654-e123-4521-b753-6308ecd87a5d@kernel.org>
-Date: Sat, 10 Aug 2024 17:02:28 +0200
+	s=k20201202; t=1723309363;
+	bh=mDQTTL0Iiqf0Z+l4V0xWPwMG4F9xVJeUOoTlBU4qFRI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bYCks6sjezumYBjC7nIuWJecjTLP/6vtR67eh0gvr6ruVA9yUpEebCqchEmhodIBi
+	 GaOSa2TGMDp5nNq6kHgc1viy3tdktgPmrI3VVZrXGAxAnvabvpJTXUXFT5nbtItCRz
+	 sl7sFF5cBKzc7NwlHmt1Nm1XH06YwkjdBSCtdSuTmszypF6U8Psd2ZvxBG/LR275fU
+	 jV+Iq23fbNk7MEk540iRuZw52db04WctX1qHcdorIrjOXKrlUDOGBMLZe39P/OUJYb
+	 DSrG0HCgI2/66QqpqziW3nFSstDX3ekdZ+dLGdnZGR9Uog/Itv5PWi+jIDf0TsOLWY
+	 47dCa5BnCHrvg==
+Date: Sat, 10 Aug 2024 19:02:38 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-pwm@vger.kernel.org, ukleinek@kernel.org,
+	lorenzo.bianconi83@gmail.com, krzk+dt@kernel.org, robh@kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	upstream@airoha.com, angelogioacchino.delregno@collabora.com,
+	benjamin.larsson@genexis.eu, conor+dt@kernel.org,
+	ansuelsmth@gmail.com
+Subject: Re: [PATCH 2/2] pwm: airoha: Add support for EN7581 SoC
+Message-ID: <ZredLsQ1Y2FSBMkM@lore-rh-laptop>
+References: <cover.1723264979.git.lorenzo@kernel.org>
+ <a03f5ea9291e39eab303696eb03fdd44cf04e8d9.1723264979.git.lorenzo@kernel.org>
+ <1f8905b0-aff6-4932-b936-191aa5529f0e@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/1] dt-bindings: net: fsl,qoriq-mc-dpmac: using
- unevaluatedProperties
-To: Frank Li <Frank.Li@nxp.com>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Ioana Ciornei <ioana.ciornei@nxp.com>,
- "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Cc: imx@lists.linux.dev
-References: <20240810145257.3617413-1-Frank.Li@nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240810145257.3617413-1-Frank.Li@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="VXtAOg5aaeAuFy7/"
+Content-Disposition: inline
+In-Reply-To: <1f8905b0-aff6-4932-b936-191aa5529f0e@kernel.org>
 
-On 10/08/2024 16:52, Frank Li wrote:
-> Replace additionalProperties with unevaluatedProperties because it have
-> allOf: $ref: ethernet-controller.yaml#.
-> 
-> Remove all properties, which already defined in ethernet-controller.yaml.
-> 
-> Fixed below CHECK_DTBS warnings:
-> arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb:
->    fsl-mc@80c000000: dpmacs:ethernet@11: 'fixed-link' does not match any of the regexes: 'pinctrl-[0-9]+'
->         from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> Change from v1 to v2
-> - Remove properties, which already defined in ethernet-controller.yaml
-> ---
->  .../bindings/net/fsl,qoriq-mc-dpmac.yaml         | 16 +---------------
->  1 file changed, 1 insertion(+), 15 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/fsl,qoriq-mc-dpmac.yaml b/Documentation/devicetree/bindings/net/fsl,qoriq-mc-dpmac.yaml
-> index a1b71b35319e7..0a91d839382d0 100644
-> --- a/Documentation/devicetree/bindings/net/fsl,qoriq-mc-dpmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/fsl,qoriq-mc-dpmac.yaml
-> @@ -24,24 +24,10 @@ properties:
->      maxItems: 1
->      description: The DPMAC number
->  
-> -  phy-handle: true
-> -
-> -  phy-connection-type: true
-> -
-> -  phy-mode: true
-> -
-> -  pcs-handle:
-> -    maxItems: 1
-> -    description:
-> -      A reference to a node representing a PCS PHY device found on
-> -      the internal MDIO bus.
 
-pcs-handle must stay because you must limit number of items.
+--VXtAOg5aaeAuFy7/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+> On 10/08/2024 06:48, Lorenzo Bianconi wrote:
+> > From: Benjamin Larsson <benjamin.larsson@genexis.eu>
+> >=20
+> > Introduce driver for PWM module available on EN7581 SoC.
+> >=20
+> > Signed-off-by: Benjamin Larsson <benjamin.larsson@genexis.eu>
+> > Co-developed-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+>=20
+>=20
+> ...
+>=20
+> > +
+> > +static void airoha_pwm_config_flash_map(struct airoha_pwm *pc,
+> > +					unsigned int hwpwm, int index)
+> > +{
+> > +	u32 addr, mask, val;
+> > +
+> > +	if (hwpwm < PWM_NUM_GPIO) {
+> > +		addr =3D REG_GPIO_FLASH_MAP(hwpwm / 8);
+> > +	} else {
+> > +		addr =3D REG_SIPO_FLASH_MAP(hwpwm / 8);
+> > +		hwpwm -=3D PWM_NUM_GPIO;
+> > +	}
+> > +
+> > +	if (index < 0) {
+> > +		/* Change of waveform takes effect immediately but
+>=20
+> This and other comments should be not netdev-style but general Linux styl=
+e.
 
+ack, I will fix them in v2.
+
+>=20
+> > +		 * disabling has some delay so to prevent glitching
+> > +		 * only the enable bit is touched when disabling
+> > +		 */
+> > +		airoha_pwm_flash_clear(pc, addr, GPIO_FLASH_EN(hwpwm % 8));
+> > +		return;
+>=20
+> ...
+>=20
+>=20
+> > +
+> > +static const struct of_device_id airoha_pwm_of_match[] =3D {
+> > +	{ .compatible =3D "airoha,en7581-pwm" },
+> > +	{ /* sentinel */ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, airoha_pwm_of_match);
+> > +
+> > +static struct platform_driver airoha_pwm_driver =3D {
+> > +	.driver =3D {
+> > +		.name =3D "airoha-pwm",
+> > +		.of_match_table =3D airoha_pwm_of_match,
+> > +	},
+> > +	.probe =3D airoha_pwm_probe,
+> > +};
+> > +module_platform_driver(airoha_pwm_driver);
+> > +
+> > +MODULE_ALIAS("platform:airoha-pwm");
+>=20
+> You should not need MODULE_ALIAS() in normal cases. If you need it,
+> usually it means your device ID table is wrong (e.g. misses either
+> entries or MODULE_DEVICE_TABLE()). MODULE_ALIAS() is not a substitute
+> for incomplete ID table.
+>=20
+> Especially that it does not match compatible, so you cannot use excuse
+> module autoloading does not work for given OF node...
+
+ack, I will fix it in v2.
+
+Regards,
+Lorenzo
+
+>=20
+>=20
+> Best regards,
+> Krzysztof
+>=20
+
+--VXtAOg5aaeAuFy7/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZredLAAKCRA6cBh0uS2t
+rEk4AP0eoyOjcR6w8+t/ov1LaRJlnHPLFWKynjHtxGsq/0aqQwD/UNpYf+i4orFa
+3f0e2DGg17yh6Fd8YtjEHMmPc7QPbQ4=
+=M7tX
+-----END PGP SIGNATURE-----
+
+--VXtAOg5aaeAuFy7/--
 
