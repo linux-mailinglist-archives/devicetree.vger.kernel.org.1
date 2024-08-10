@@ -1,182 +1,416 @@
-Return-Path: <devicetree+bounces-92621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1815594DD11
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 15:35:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60F2A94DD4C
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 16:39:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB3382822C6
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 13:35:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7DB521C20D23
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 14:39:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC9E7157495;
-	Sat, 10 Aug 2024 13:35:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC28815854A;
+	Sat, 10 Aug 2024 14:39:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="POgsqgHU"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="JYk4CJEr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2043.outbound.protection.outlook.com [40.107.105.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EAB3282E1
-	for <devicetree@vger.kernel.org>; Sat, 10 Aug 2024 13:35:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723296912; cv=none; b=nWuMUmtZOaFvTGiZpYFM4ZM0U7TtbUFEvNhQ007bR0k4bwEVH0inrTBizV+JmMxO915OmrJhobNB2Jq54ZKoJxLNURM7fi7Alqg+yrtftsKmL67zaNnq87bi7SkvH74d6pi5N9ift5HJHPNLELzhndZ7nVlAQ7zfqBX/ANp3j10=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723296912; c=relaxed/simple;
-	bh=aQewt7vPczpUKAA/uJAmW8It+gKC9tITEDZ8veguycI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=P0JyLidP5T+EeaCZf7ss4UTEbiV/m+Vcy47a4VHq0e4G80S7X95GJebwojOM+eWQSZQ6fBzdHKfSKmDhNmy2vDrZM2ds40EVYjurWgzlIEiuPSKtTQ5nwZ6N6KXn/UNskoekFOpOGrJj7vyOq4u0aDjs5xf+mwK/eozL+tze4o4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=POgsqgHU; arc=none smtp.client-ip=209.85.208.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2f0dfdc9e16so35135951fa.2
-        for <devicetree@vger.kernel.org>; Sat, 10 Aug 2024 06:35:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723296909; x=1723901709; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=wWOlz01J1kNGb6F3FCqM2ubI8vKf+h12MNqlLoVyrtA=;
-        b=POgsqgHUY9+YtDkTl9IbChRvOPtYqtCKO4dZ3rwDszRergtRidA8FxgDw9QGvcgbp0
-         s2kDBTm4Gh4XAgmOn7ENRkN/4m2fWV/j1JtaNA2++t6yCmB8HZxpHMdnCNnavQ40Tsx5
-         +01zaHJO4HY1YKaqS8rwxbCI7io7ideY30umilv+yw48ZCsSYsjudopr+bOPpaSv7AXW
-         WZSYh+a84fhFXAGtTnWG7vxPWlmtrOHUm5Pa2yibigI1xGtcOroisRRDs2xRAzL2Utyi
-         c4Kk6zQW07N1d3H4MTi/DP/m/uN4Nzs0ymReg3M9OavkErZitqcPd+4g0kcsuMWFSkGV
-         gPBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723296909; x=1723901709;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wWOlz01J1kNGb6F3FCqM2ubI8vKf+h12MNqlLoVyrtA=;
-        b=eoLGZt4iHdIFbWNdkTsUQX/0lVFHXKw+SpU9g160Jjd1yDvahWea2nxp3bGY8mUNVG
-         zGIUtyhX39KUhQ6iKPgM7HQdQ2Ja5QtLQoZ+AId/Gr/ggnNSt9TIv2TQ/WOTpF2Vl7aY
-         WE2dEVnC2RRS+r/T9aE3z/implfCBfRCZmUipEFxJ3HcAKHyFh0NBY6YiSTw7dLpsE7D
-         Un+ZXC06dnxgvGwi1t4WAkT3jVNuKZ+8LJh9bGzSBnIBlMyuA+VIcybHRocKmHJNTDQs
-         miql4/8tGxeSIKH3y0wHMXR/iu/2w0yacrjJ5laiBaU5MyzqHrtG+itF74inqqTpDR6a
-         EDsw==
-X-Forwarded-Encrypted: i=1; AJvYcCVBd1qvjbeY17P/NvKSsAtkZ6ik4Yh/dum/XMuTu3VwR6PkTM6oeSV9lTVSGOqZLQ55jIrSjAXl6FiayMtsdVC+5UbaO2CpoqQD4Q==
-X-Gm-Message-State: AOJu0Yzr/FqazCcCwzdmCS/Yx5gaErJDMOTl64fQ1jZd954SbicbmDG/
-	9DRvdcahPRRYnh/5Mtfc2T9lQKFimX0V6pAzoJ+I39yZ4uZhVgl2btK14a4XLHw=
-X-Google-Smtp-Source: AGHT+IFaRpwR2YyQK55eQYAtWSJ2LR7BdB/qlKnCpt8sVGA9kFLuSKkqvPtUhKyG2hmxdhtAePuTpg==
-X-Received: by 2002:a2e:a995:0:b0:2ee:7a54:3b08 with SMTP id 38308e7fff4ca-2f1a6cd446bmr36503211fa.3.1723296908974;
-        Sat, 10 Aug 2024 06:35:08 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.137])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36e4c938582sm2385803f8f.38.2024.08.10.06.35.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 10 Aug 2024 06:35:08 -0700 (PDT)
-Message-ID: <0bded05c-0fe6-4f35-b527-662b3356fb56@linaro.org>
-Date: Sat, 10 Aug 2024 15:35:06 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0933B22083;
+	Sat, 10 Aug 2024 14:39:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.105.43
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723300748; cv=fail; b=qb39QsTfVcWYyMd59h57k1EjftQTnw1MppLpGPWExw7ge059FePxp8sLokfKhveClh+wgy3T8IXYJ8WeMqDlH1YmoOhAtK8jFYzAx4El1L55E4p2O0TdnsF8EXd+VyMzEyZGofqfd6Hbcnz/Z1+9iHvhRfPYf3re2a4wuntTJMI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723300748; c=relaxed/simple;
+	bh=tH2lBC3gm5VKQl+h/kSex8QXQJxSgQj18ATsX+HGZlg=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=mU31Hfv+A20eucZjBFVgLRXSS9YUOQZSujJ66mfCg/QaS3gGXPYMpgViS9Il9q1oZMVi9RxNc/1sY3vQJpYsfh3GV9N9h/e7HK95Szfq9E8QzyY4NKV/A2cVG1qf6sM9RQ1rI5jdA59b1jkWUa5++PMYPPLoD0rhiY8nnx7aImo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=JYk4CJEr; arc=fail smtp.client-ip=40.107.105.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=AX5QyC8FeIE+cpx6Wm6ZLXdCw1+gc05MUMYOTDUJ8fi4FnExWsCl1poo3UWFcr/opHg+eqDWp4NO1UfWr3iMipReQBszkgR4ZjiCSbqBL9XAcSrIGGCyyQ6E4zjMIUUYwAQ7oWFI5qbdQ4iAjCKw9LOrIyYVauVD+LaPChH7xXp2daDGVkeOyDF0cS2TZftc1z7WAIexhcqE9xU0BpIrgU2dQR0itTP35jWLsoW0KDkjFwUxkhHazCCXYBWCourlCQSJ77s4lip36blNfaDdnW/95900uoDT6h2axY8mMP2cujc24sQWQlEhqFtL/cWSuKBL1I6lxE6LGUQykqqaOg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gyOrCR4DFfYPnCPZlDGzdjz9EcE7Qez4EKk/SaSXi3w=;
+ b=gowHMTcCdtLOnH27r3aEPTcYfGjCeyctgx4rdZNrcGCtKULI11u7B5sG5Sn0+Pj6o++qOq6CwS/BTaqD9uNN23zUeZR7R6RzdVhVNOIZ5qodE/bdwVAneF2goXwVHOQnFMTttDJdZX+rnOQtxlCs10HY7Z8FKH+bBfN3ThZjPRIxkECh9xiKFgm3VgzpdObGJrG6z1ZuCcNxSXg7r50b7QD++HtmQJJgLvl5UgZoNKhBLZEVlji1YnRD3yPbSXpltD9Z9S/WLlj6zkSgLQs0fy0bmhgT1u3XiU/7jzKZwggj7fcLsZcffeiUU2AlWx5zuYPAjPulKsTZcoB0Ya0+1Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gyOrCR4DFfYPnCPZlDGzdjz9EcE7Qez4EKk/SaSXi3w=;
+ b=JYk4CJEruLH4xzEENT6utGSXQvGHaDWXoh1nYdKWMLxZQC1hEaF2CwC9cTECceyAQpx+2yDQn2BhYfXupzdnyg3FAvSusexoPsT5+TQsZRE3CpkPTuI1QPHBEHJmXW1cHfio1+pNJsilBnK8MzABWOzABUiLywiCl3yjI85ZvpgIv8aljigCJlCtLId0eqTznSTAWDpJ2nB6SV9DjEQZvrBN9Jv7TtCI+X63g9zD84o/M/FV3vHi7H9WqkslaCbHzEcz0KFMd69sob975kVgK165mOJreEhW2ggEqqgirhiwqDnCIKpXk5/YnY+n3P3h1SYC1cJP1Fwwye1+41RpeQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DBBPR04MB7515.eurprd04.prod.outlook.com (2603:10a6:10:202::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.15; Sat, 10 Aug
+ 2024 14:39:02 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.7849.015; Sat, 10 Aug 2024
+ 14:39:02 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-input@vger.kernel.org (open list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)...),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH v2 1/1] dt-bindings: input: touchscreen: convert ad7879 to yaml format
+Date: Sat, 10 Aug 2024 10:38:34 -0400
+Message-Id: <20240810143840.3615450-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BY5PR04CA0015.namprd04.prod.outlook.com
+ (2603:10b6:a03:1d0::25) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: pinctrl: Add support for Xilinx
- Versal platform
-To: "Potthuri, Sai Krishna" <sai.krishna.potthuri@amd.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- "Simek, Michal" <michal.simek@amd.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "Buddhabhatti, Jay" <jay.buddhabhatti@amd.com>,
- "Kundanala, Praveen Teja" <praveen.teja.kundanala@amd.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "saikrishna12468@gmail.com" <saikrishna12468@gmail.com>,
- "git (AMD-Xilinx)" <git@amd.com>
-References: <20240801120029.1807180-1-sai.krishna.potthuri@amd.com>
- <20240801120029.1807180-2-sai.krishna.potthuri@amd.com>
- <27da3261-8c1e-4c4d-a548-acdfee1909f2@linaro.org>
- <BY5PR12MB42586B02EB54BA76704F1062DBB92@BY5PR12MB4258.namprd12.prod.outlook.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <BY5PR12MB42586B02EB54BA76704F1062DBB92@BY5PR12MB4258.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DBBPR04MB7515:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0c3f7651-515b-4654-af36-08dcb94a2d6d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|376014|366016|1800799024|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?MHjKwc2AIy9SNrDDHE/3CaVMx38p6bVMz0MEratB5Xuq5DAi17FUiVjYsXD4?=
+ =?us-ascii?Q?rdDwqpQaxXapwtwMQ05r4ErGsU+RaMwQUnS9yEGQJja2MnPAvI+iyej/UxQ4?=
+ =?us-ascii?Q?4B2t7CRnTTOWBQjMbDHCKMqAJEWZj2x96YH3cqmMs9Ctn7Ye32vlBhaSaOcy?=
+ =?us-ascii?Q?SVF2BwY03My6Z3fMPZIBz2hzT4ZWYbHpy+1Fi+lgncDE7ggQk2EWlzF1RjqG?=
+ =?us-ascii?Q?VHT64E6ZlgTB+pbP+5ILYBmmLNm92LN58Bkm9iqAZZzk/KATyy2ri1UERW1o?=
+ =?us-ascii?Q?Nh8udoromfgSnNVa9/nn3tv+nG1bIdndksnTEM88WYcgf0kjpp/A7DrvGUr0?=
+ =?us-ascii?Q?X1lKZPIcDYn6OEOHddiMXipnVifXw369JjSZKiKxDZ2NDu5f6XJIYJWmhthY?=
+ =?us-ascii?Q?n6pus/EHypMDFeevzaqLPDyN7SjdQFafQNWdRAsD7TRk3KOZXm9ZwCG7bQwJ?=
+ =?us-ascii?Q?UTycHgP36r+esg8FeeXqSLqJXojsT6A4mCySGzvn6/sgeNaEnFWrdxnBAfcK?=
+ =?us-ascii?Q?mEQhbm9BUAMw5q4qLiFq2FtAdWhFPrbTQMvpPkFdbZK9panOIIbATlPbRc7g?=
+ =?us-ascii?Q?HiAjg+8sIpMvCRB0SLB5SARKKN4tZL6Gfr7LIwh9px7uOs/V8UvYTqPZAqgh?=
+ =?us-ascii?Q?SsYw1P75pOq9L97wEyei7WAxOuZkvz53g65Dt03yT7S7zoHtCAqhRg9Ee+aw?=
+ =?us-ascii?Q?AcPD4e0l4dsye9al2JK7lPt5vsLSQaokz3Jb5uoyXIcqfQw3StJMz4XtsFYK?=
+ =?us-ascii?Q?+Iq+ORrRrxTkUYO5AHOjWmditx52QmgKA4DhYQyIHFEbxkNTKXMDq6YyBZH4?=
+ =?us-ascii?Q?FGLQlb04OfxxxkMrqYoccbhGV5iYfqwXZNqWjPek5xTrejnVSAD4oLScQxjX?=
+ =?us-ascii?Q?KwbcmbXbzDzXKV5ENeCV3FrYzdUpPCklrQ+7H6wAlZ7fxIxlJAgMCFbcdETn?=
+ =?us-ascii?Q?KaetYQ3L27muyzgfXysr26uv30/L4y1e77Dk762UoJ8omAXm5hSeQbEn7kId?=
+ =?us-ascii?Q?zpPzoynOM9WrkbSyxasw2q5GEiz8VgCt+C2DAv3ixXDnid5VLKFiRDUggHgI?=
+ =?us-ascii?Q?p9GDYwn85ssnFvzXJPoHfwCO9vWQRVsMoLTxdyI6BU6HV4R/S1bZoR6hgrkI?=
+ =?us-ascii?Q?6Ma8xaj7ey/97nnR8+VMKwPCe+dE+mNQDCN52JLbDk4O5AoXce2GPJeeBBPV?=
+ =?us-ascii?Q?StzmyTnMk/kRhHFK0lbcHAJw77YggDqIHIm4Us3cX2V7ZllCwyD0Q+zlkpe6?=
+ =?us-ascii?Q?zA/vMETEgSERXlGeV6f+M1cDdDv4/SnhYVvZkXXLqHwG1wnzHLVIUbiZqLtA?=
+ =?us-ascii?Q?vOrDiMDYtxQiYspqZWnx8CBBUH1Q93IwZWYSWJVvoyjvDGBe7uT5V8Cj8rsK?=
+ =?us-ascii?Q?YKAtuSM=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(366016)(1800799024)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?ApWoySKn4tg/UTQb4x6XS55Kk74WLve+ZF2iLUxLTPntlOSPcu12xWBJpQtW?=
+ =?us-ascii?Q?486x8JITBu5vCrBhApsR++RsB+pMvs3Gm7onLbYMrdJNKpi9uUI4hCPd7a4x?=
+ =?us-ascii?Q?GqwcZ+DMmi73MOI65wOEqMyGjNIAAAQZYb7Id5MI45bAD9RCLj6bEQrdha8D?=
+ =?us-ascii?Q?4ufN4eFdDzr3/sh8AbA70mwrORUgc5J5vpsVyQr66f/pbrBjjlPQkzatJ5S5?=
+ =?us-ascii?Q?HQ/8Qyav56Kfgp7XGuQrBiYPbnrTz3L+PdhM6ufjUaeYamUjs9sxtwvBlKQl?=
+ =?us-ascii?Q?WxA9G8RDeFphes3f3fgYnqft/QhgEzsJI8tOT1iZ2M2JHeh/RJZh5zSu8Wm+?=
+ =?us-ascii?Q?c94kI7+gGRNoeXPzcEwh9zNzMgss/Jc+vsQA07NBFYYL6CX+Cl/8f4xccMkO?=
+ =?us-ascii?Q?KWD959n7M38VBrtXsHCx3ZYV9Ll+3lN7/OzCkc6p2NV5uHiN7FU80JAeMqwB?=
+ =?us-ascii?Q?BGoFJCePTcH6W/gioXFfAhfikiQS3GikLBl8pxiNTZxXnBto6PNNfN6zU+a4?=
+ =?us-ascii?Q?7goRYIBJWcxZ2LwpZ7jvFuD50SK9D0tWqRYgtZ5Z4wt3yRa2hQrg1inAWPSL?=
+ =?us-ascii?Q?3mejiNEIKzDSKseDUtPDyceh7Ai6lvBkjylU1olx3PK92kjQBdEqLVsEgaF+?=
+ =?us-ascii?Q?aKRQsCXCXBvtb8CHc0Z4AzeOl1O0Fbcs5EGaeQbfuskOKDrmpGa0tJZTD43s?=
+ =?us-ascii?Q?KHPgPPnVPnSmPA9V/MRzEuGGwyqLp/73wYfUJAW1jOEzVc9XcbmQuk77DPT9?=
+ =?us-ascii?Q?SkL+AJpJN643n2PDmf2N09UGHHSIIrvp7yHpOPKZsFVJu7g01KXspPwM7ZDO?=
+ =?us-ascii?Q?qiOan9t5562ExOn88eWyxo+IGRrcMDig2Bhu8scQuMBPjOH50RLNk0K2qFCX?=
+ =?us-ascii?Q?5qT3Nct0IR0mn++mf9jU4ah06sPw2HO8IjG5do9oP0Th3ueUbgrfJa/K6YwZ?=
+ =?us-ascii?Q?Wj8ib8NR/fVFyv0DTg4yTrck7wNWHcl8etMSuWX/XuYFHnPkdsgfKhv12whq?=
+ =?us-ascii?Q?6JSvOfWshJp+6ok4Gur96EtK3zJmKlp8PUrlJy1ehTUaJmuI2GptFrN2i22e?=
+ =?us-ascii?Q?4KT7eGNxBHOoE2YLiaeOJKrA7aPC6OO+TGFGg2ihhx231O0t4OTNiTgsGYuR?=
+ =?us-ascii?Q?qLq0F1ZSTvRKxuPhNMKUVZmz19qxNdOgQ+y7f6JLlbFibjDytydTqG5spbOW?=
+ =?us-ascii?Q?JZL/Au1BfDdQ7b1PpxFjUIQRHJMJuGVGbi85TfhTo5K5g6ptN6Vf2CybS1uD?=
+ =?us-ascii?Q?qMs0VlOzsOcRYA8HbRTnBjpOouquR3WOwezw9BBe0ysywssI4LWbupagSFEl?=
+ =?us-ascii?Q?RCRCCqpaXac+MeirKQHyezT/p1xzKvxzYnHDNNtF8OW4dVmrDqS6AfhgbEPT?=
+ =?us-ascii?Q?Ev/SJm797brrVu5UYu6Z3gnjYnVeEr7k8S4GaRXWpq2Xl5BZpDr/N/h0Yfis?=
+ =?us-ascii?Q?ufNRPbZJwj7miGPzxhNQ46nmPwAUyErUEJFb9Qh/mcaYoHESkWPxx1jbW3Nz?=
+ =?us-ascii?Q?uYzU6iD9SBS58dN+sCDkrB7MwKRE5gLuT3KzaSSDtHyhVTBvg33RXlsPMj4i?=
+ =?us-ascii?Q?nOmTemcVHFfMOheaF2c=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0c3f7651-515b-4654-af36-08dcb94a2d6d
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Aug 2024 14:39:02.2297
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: FwULFDuENMeNiNXXcX9c4y2YuTqfFxQDeZPEhuF2kK/Ayvc7L39OtuIjrX8eYDx6NMBhjRHDjVsZB1P86N5FYA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7515
 
-On 08/08/2024 07:53, Potthuri, Sai Krishna wrote:
->>>  1 file changed, 398 insertions(+)
-> 
->>> +      bias-pull-up: true
->>> +
->>> +      bias-pull-down: true
->>> +
->>> +      bias-disable: true
->>> +
->>> +      input-schmitt-enable: true
->>> +
->>> +      input-schmitt-disable: true
->>> +
->>> +      bias-high-impedance: true
->>> +
->>> +      low-power-enable: true
->>> +
->>> +      low-power-disable: true
->>
->> Why do you need to copy all of these? Just switch to unevaluatedProperties.
-> I tried with "unevaluatedProperties: false", it worked but by adding this all the
-> properties in the pincfg-node.yaml become valid for this platform which is not
-> true. Not all the properties in the pincfg-node.yaml are supported in this platform.
-> So, is there any other way of representing this?
+Convert binding doc ad7879.txt to yaml format.
+Additional change:
+- Add ref to /schemas/spi/spi-peripheral-props.yaml
+- Add #gpio-cell
+- Remove  spi-cpol and spi-cpha in example, the place hold 'spi' can't
+correct detect spi-controler.yaml. So these two properties can't
+be recongnized.
 
-If they do not make any sense, then sure, you can keep it like this.
-Drop the blank lines between each of these, so it will be compact.
+Fix warning:
+arch/arm64/boot/dts/freescale/imx8dx-colibri-aster.dtb:
+/bus@5a000000/i2c@5a800000/touchscreen@2c: failed to match any schema with compatible: ['adi,ad7879-1']
 
-Best regards,
-Krzysztof
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+Change from v1 to v2:
+- add default 0
+---
+ .../bindings/input/touchscreen/ad7879.txt     |  71 ---------
+ .../input/touchscreen/adi,ad7879.yaml         | 150 ++++++++++++++++++
+ 2 files changed, 150 insertions(+), 71 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/ad7879.txt
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/adi,ad7879.yaml
+
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/ad7879.txt b/Documentation/devicetree/bindings/input/touchscreen/ad7879.txt
+deleted file mode 100644
+index afa38dc069f01..0000000000000
+--- a/Documentation/devicetree/bindings/input/touchscreen/ad7879.txt
++++ /dev/null
+@@ -1,71 +0,0 @@
+-* Analog Devices AD7879(-1)/AD7889(-1) touchscreen interface (SPI/I2C)
+-
+-Required properties:
+-- compatible			: for SPI slave, use "adi,ad7879"
+-				  for I2C slave, use "adi,ad7879-1"
+-- reg				: SPI chipselect/I2C slave address
+-				  See spi-bus.txt for more SPI slave properties
+-- interrupts			: touch controller interrupt
+-- touchscreen-max-pressure	: maximum reported pressure
+-- adi,resistance-plate-x	: total resistance of X-plate (for pressure
+-				  calculation)
+-Optional properties:
+-- touchscreen-swapped-x-y	: X and Y axis are swapped (boolean)
+-- adi,first-conversion-delay	: 0-12: In 128us steps (starting with 128us)
+-				  13  : 2.560ms
+-				  14  : 3.584ms
+-				  15  : 4.096ms
+-				  This property has to be a '/bits/ 8' value
+-- adi,acquisition-time		: 0: 2us
+-				  1: 4us
+-				  2: 8us
+-				  3: 16us
+-				  This property has to be a '/bits/ 8' value
+-- adi,median-filter-size	: 0: disabled
+-				  1: 4 measurements
+-				  2: 8 measurements
+-				  3: 16 measurements
+-				  This property has to be a '/bits/ 8' value
+-- adi,averaging			: 0: 2 middle values (1 if median disabled)
+-				  1: 4 middle values
+-				  2: 8 middle values
+-				  3: 16 values
+-				  This property has to be a '/bits/ 8' value
+-- adi,conversion-interval:	: 0    : convert one time only
+-				  1-255: 515us + val * 35us (up to 9.440ms)
+-				  This property has to be a '/bits/ 8' value
+-- gpio-controller		: Switch AUX/VBAT/GPIO pin to GPIO mode
+-
+-Example:
+-
+-	touchscreen0@2c {
+-		compatible = "adi,ad7879-1";
+-		reg = <0x2c>;
+-		interrupt-parent = <&gpio1>;
+-		interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
+-		touchscreen-max-pressure = <4096>;
+-		adi,resistance-plate-x = <120>;
+-		adi,first-conversion-delay = /bits/ 8 <3>;
+-		adi,acquisition-time = /bits/ 8 <1>;
+-		adi,median-filter-size = /bits/ 8 <2>;
+-		adi,averaging = /bits/ 8 <1>;
+-		adi,conversion-interval = /bits/ 8 <255>;
+-	};
+-
+-	touchscreen1@1 {
+-		compatible = "adi,ad7879";
+-		spi-max-frequency = <5000000>;
+-		reg = <1>;
+-		spi-cpol;
+-		spi-cpha;
+-		gpio-controller;
+-		interrupt-parent = <&gpio1>;
+-		interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
+-		touchscreen-max-pressure = <4096>;
+-		adi,resistance-plate-x = <120>;
+-		adi,first-conversion-delay = /bits/ 8 <3>;
+-		adi,acquisition-time = /bits/ 8 <1>;
+-		adi,median-filter-size = /bits/ 8 <2>;
+-		adi,averaging = /bits/ 8 <1>;
+-		adi,conversion-interval = /bits/ 8 <255>;
+-	};
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/adi,ad7879.yaml b/Documentation/devicetree/bindings/input/touchscreen/adi,ad7879.yaml
+new file mode 100644
+index 0000000000000..caa5fa3cc3f1f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/touchscreen/adi,ad7879.yaml
+@@ -0,0 +1,150 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/touchscreen/adi,ad7879.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices AD7879(-1)/AD7889(-1) touchscreen interface (SPI/I2C)
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++
++properties:
++  compatible:
++    description: |
++      for SPI slave, use "adi,ad7879"
++      for I2C slave, use "adi,ad7879-1"
++    enum:
++      - adi,ad7879
++      - adi,ad7879-1
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  touchscreen-max-pressure:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: maximum reported pressure
++
++  adi,resistance-plate-x:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: total resistance of X-plate (for pressure calculation)
++
++  touchscreen-swapped-x-y:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: X and Y axis are swapped (boolean)
++
++  adi,first-conversion-delay:
++    $ref: /schemas/types.yaml#/definitions/uint8
++    default: 0
++    minimum: 0
++    maximum: 15
++    description: |
++      0-12: In 128us steps (starting with 128us)
++      13  : 2.560ms
++      14  : 3.584ms
++      15  : 4.096ms
++      This property has to be a '/bits/ 8' value
++
++  adi,acquisition-time:
++    $ref: /schemas/types.yaml#/definitions/uint8
++    default: 0
++    enum: [0, 1, 2, 3]
++    description: |
++      0: 2us
++      1: 4us
++      2: 8us
++      3: 16us
++      This property has to be a '/bits/ 8' value
++
++  adi,median-filter-size:
++    $ref: /schemas/types.yaml#/definitions/uint8
++    default: 0
++    enum: [0, 1, 2, 3]
++    description: |
++      0: disabled
++      1: 4 measurements
++      2: 8 measurements
++      3: 16 measurements
++      This property has to be a '/bits/ 8' value
++
++  adi,averaging:
++    $ref: /schemas/types.yaml#/definitions/uint8
++    default: 0
++    enum: [0, 1, 2, 3]
++    description: |
++      0: 2 middle values (1 if median disabled)
++      1: 4 middle values
++      2: 8 middle values
++      3: 16 values
++      This property has to be a '/bits/ 8' value
++
++  adi,conversion-interval:
++    $ref: /schemas/types.yaml#/definitions/uint8
++    default: 0
++    description: |
++      0    : convert one time only
++      1-255: 515us + val * 35us (up to 9.440ms)
++      This property has to be a '/bits/ 8' value
++
++  gpio-controller: true
++
++  "#gpio-cells":
++    const: 1
++
++required:
++  - compatible
++  - reg
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        touchscreen0@2c {
++            compatible = "adi,ad7879-1";
++            reg = <0x2c>;
++            interrupt-parent = <&gpio1>;
++            interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
++            touchscreen-max-pressure = <4096>;
++            adi,resistance-plate-x = <120>;
++            adi,first-conversion-delay = /bits/ 8 <3>;
++            adi,acquisition-time = /bits/ 8 <1>;
++            adi,median-filter-size = /bits/ 8 <2>;
++            adi,averaging = /bits/ 8 <1>;
++            adi,conversion-interval = /bits/ 8 <255>;
++        };
++    };
++
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        touchscreen1@1 {
++            compatible = "adi,ad7879";
++            reg = <1>;
++            spi-max-frequency = <5000000>;
++            gpio-controller;
++            #gpio-cells = <1>;
++            interrupt-parent = <&gpio1>;
++            interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
++            touchscreen-max-pressure = <4096>;
++            adi,resistance-plate-x = <120>;
++            adi,first-conversion-delay = /bits/ 8 <3>;
++            adi,acquisition-time = /bits/ 8 <1>;
++            adi,median-filter-size = /bits/ 8 <2>;
++            adi,averaging = /bits/ 8 <1>;
++            adi,conversion-interval = /bits/ 8 <255>;
++        };
++    };
+-- 
+2.34.1
 
 
