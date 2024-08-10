@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-92600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBFF594DC85
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 13:36:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5155194DC8F
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 13:44:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82E012828FD
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 11:36:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5DAC2828B0
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 11:44:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FA1D156220;
-	Sat, 10 Aug 2024 11:36:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7DD51581EB;
+	Sat, 10 Aug 2024 11:43:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EdmQ0nEY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MDZKYDSv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9CE9182D8;
-	Sat, 10 Aug 2024 11:36:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B154B1B810;
+	Sat, 10 Aug 2024 11:43:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723289772; cv=none; b=FUx0/ytuyJi01ougYhWFQpeH375kKIQy/+S/BixUbWpJQsdGeZgjsNUE9pdcmI85ZWSaBR9l1eUfYpuj+YmFOrBqanhoavvR7euXge9B7fir1aMcGuEC07tgn8xBATYlC1RM+SmJ1tFpcBjr+TSulu0Nvd43i3HJTj1rbpI5I1g=
+	t=1723290237; cv=none; b=gYnF7tId2BzZ2WdJ8YB8w/cjNg3119k5633jAmYShj2eo4c9GxG19VU6LYhQo6b2Mjb6fXvy8DQQmXtF3uYh59zuf/jV7Z3iQfMolI9sMKLR8ksbwa5dqaSw9sj8N518yRCeTKkewpwhmvoix20tROl4kWzAsMXUtd1wy22iILQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723289772; c=relaxed/simple;
-	bh=DeJEgI5k58Kbpg4ajl/Syu1aU1SL3rCzmjF4McNqyik=;
+	s=arc-20240116; t=1723290237; c=relaxed/simple;
+	bh=SyaKx8ekB/1Ttz9BhWhgWJSgP+Olb+T192iZQsiRVq8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=di9g5M5xwYqlVcRt1PBdQ+Hr+qZTyRKRhAWEt2sYOZdWZQguAGmZeGuu07zqlLHugzYPizJWj5MxRDvl30wXhtaGn5+NFVW6jacQDBthj08bb21WIvXX7PJKOgAKhxmsamgCRaj5YYrx24iSHrL5IevA/x8z2+vPikQEChSGztE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EdmQ0nEY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F007C32781;
-	Sat, 10 Aug 2024 11:36:06 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=FEtthuxms0EQ+NLIDOThUng6H/XM8mG435/ax3Ei4N1irv+HAUAlrKB5KMRXUL9w2q24mIWlUgFeRiRFMawoi3dtNRAIBU/A4enUWaYaE1iMiv8pnk1k/XKBx5vBceY9SsHFU9WYmE90JVGVm0Z2JNz/MHvosIgyfXYsTyOEXjs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MDZKYDSv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DCCCC32781;
+	Sat, 10 Aug 2024 11:43:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723289771;
-	bh=DeJEgI5k58Kbpg4ajl/Syu1aU1SL3rCzmjF4McNqyik=;
+	s=k20201202; t=1723290237;
+	bh=SyaKx8ekB/1Ttz9BhWhgWJSgP+Olb+T192iZQsiRVq8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EdmQ0nEY0+mSG2R2YpV9QmfqaV7WfFGxT6lGYthk+dRG4R1/Q5rJHh5gWe+jx1x7N
-	 IRrdrQ4FzNznsO3Yxna9o7V+HrLtA2hiGjNB5Z81dfo1wlRymfokBmEo08BdP7Vhiq
-	 yIdFKnWA0Mp4neEdgdtIygwU1CHxNXKPzFqH2ZAxEKoqzbCMbmkEMoT18PJG3qZhRO
-	 GDVlzSnz9SgJ/jMY77gvOS4yCgTyTGnmoxUk08hri7P3aqBqv43VGxB4FezQFX7A2X
-	 O4TbhiflX+MtmX8gL2EnGaYnvc44Xpq47P5iR9R7GICzunvK2G/U4gWBJN24XnX7nc
-	 gkTcGQYTxtrdg==
-Message-ID: <4c63b64b-b6f2-4e72-95c5-5555681f6d10@kernel.org>
-Date: Sat, 10 Aug 2024 13:36:04 +0200
+	b=MDZKYDSvkAr4X4kg8EqLp1rOIRictfv36xt5URhfjM5lHmUFryrrHV7uRq9r9dp4X
+	 eglse2MM4xnq/sQCj7yfy8R8Kuav3mqoPShIO9WQbLAU5CG9Hl/BRQ/o45e/MBVshO
+	 g/W+K4AG26PLCybqqOYC20X1oexraaAHBoxGi5qUhLqTNYWaMCno1R3Gp49VlXY0QD
+	 kkOholqtARHIP0H/UprAlm7O0U/I5WxeVZh4u5eoptukjqxr2lRWaWClRkxyqX7loT
+	 mYxW/ZIGsDNy+uMyU1FuS+IG61D3oJgLQFN7Iq+IC2tIVU8ZM2CSlEJGWXs277vOaD
+	 rkH4H1fEHkKfg==
+Message-ID: <0f584871-e351-4eba-8420-39a1cccf2c40@kernel.org>
+Date: Sat, 10 Aug 2024 13:43:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: pwm: Document Airoha EN7581 PWM
-To: Lorenzo Bianconi <lorenzo@kernel.org>, linux-pwm@vger.kernel.org
-Cc: ukleinek@kernel.org, lorenzo.bianconi83@gmail.com, krzk+dt@kernel.org,
- robh@kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, upstream@airoha.com,
- angelogioacchino.delregno@collabora.com, benjamin.larsson@genexis.eu,
- conor+dt@kernel.org, ansuelsmth@gmail.com
-References: <cover.1723264979.git.lorenzo@kernel.org>
- <6a95b1d7fb90045a51a0cf51b9fafff26790904b.1723264979.git.lorenzo@kernel.org>
+Subject: Re: [PATCH 1/1] dt-bindings: net: fsl,qoriq-mc-dpmac: using
+ unevaluatedProperties
+To: Frank Li <Frank.Li@nxp.com>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Ioana Ciornei <ioana.ciornei@nxp.com>,
+ "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+Cc: imx@lists.linux.dev
+References: <20240802205733.2841570-1-Frank.Li@nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,30 +107,36 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <6a95b1d7fb90045a51a0cf51b9fafff26790904b.1723264979.git.lorenzo@kernel.org>
+In-Reply-To: <20240802205733.2841570-1-Frank.Li@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/08/2024 06:48, Lorenzo Bianconi wrote:
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    pwm@1fbf0224 {
-> +        compatible = "airoha,en7581-pwm";
-> +        reg = <0x1fbf0224 0x10>,
-> +              <0x1fbf0238 0x28>,
-> +              <0x1fbf0298 0x8>;
+On 02/08/2024 22:57, Frank Li wrote:
+> Replace additionalProperties with unevaluatedProperties because it have
+> allOf: $ref: ethernet-controller.yaml#.
+> 
+> Fixed below CHECK_DTBS warnings:
+> arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb:
+>    fsl-mc@80c000000: dpmacs:ethernet@11: 'fixed-link' does not match any of the regexes: 'pinctrl-[0-9]+'
+>         from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/net/fsl,qoriq-mc-dpmac.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/fsl,qoriq-mc-dpmac.yaml b/Documentation/devicetree/bindings/net/fsl,qoriq-mc-dpmac.yaml
+> index a1b71b35319e7..6538e0ce90b28 100644
+> --- a/Documentation/devicetree/bindings/net/fsl,qoriq-mc-dpmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/fsl,qoriq-mc-dpmac.yaml
+> @@ -41,7 +41,7 @@ properties:
+>  required:
+>    - reg
+>  
+> -additionalProperties: false
+> +unevaluatedProperties: false
 
-These look almost continuous, so I wonder what's in between? E.g.
-between 0x1fbf0224+10=0x1fbf0234 and 0x1fbf0238?
-
-Rest looks good.
+Then drop unneeded properties (xxx: true).
 
 Best regards,
 Krzysztof
