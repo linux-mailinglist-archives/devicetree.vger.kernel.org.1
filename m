@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-92637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC04494DDEC
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 20:32:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D74A94DDEF
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 20:33:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E1171F21587
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 18:32:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C83A928237F
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 18:33:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F52550A6D;
-	Sat, 10 Aug 2024 18:32:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CAAB4963C;
+	Sat, 10 Aug 2024 18:32:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="CEyQHuRj"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="YDra8nW/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAC9C2F855
-	for <devicetree@vger.kernel.org>; Sat, 10 Aug 2024 18:32:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32FA0139CEE
+	for <devicetree@vger.kernel.org>; Sat, 10 Aug 2024 18:32:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723314770; cv=none; b=Gfh2CqjyCeEwaiKVldBIbiBeJ9t2+C45UkM+Xx44H827BGRm5K4hUiRsvUtLjWEYfrQ2n2t+GWGsTXo7zRSzDzclTnlJyCSATbHuD2Y/0Rtlzh1Hf8QdAVpngjnC4ROM29vGttnmhsEAhSAkJ5PPY4sMRcXApqJDuDSjVZrOgZ4=
+	t=1723314775; cv=none; b=DbmqRevqazvwSP7RhR76akHjrBRPp+2DxXEL0wxYvV17EdWSxydO5nJz4YzlyoPXGPanIfUSc4k6hiBbK5GnzfCQwmfNoj2K6VTLlk8z93XOCdHZDF9MmzVOMdLh6l447vySqU20uWg5b32udG9FzROZRVKq6tFIOZ/wlyGL6cc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723314770; c=relaxed/simple;
+	s=arc-20240116; t=1723314775; c=relaxed/simple;
 	bh=VacrKqjT12DQWFLHJLsfIBg5hsy8fLzWFq+alMsvooM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=SAEBvNKfmCnsE6jm1dCGMDnPSnsM2Xwp+Vt/PjQN0xSDO5x6JF61gR5FhFXcneVAaaYBMjaenDlyoMWTPkwyABBwcfXPvnaE/GU+Y1fOHDKtiyUHgu05WRjxhnNJSKVW5LEu5+2m+IpQIxPYb/Ss2ohC+SXu0zYKgwET5VkdFhs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=CEyQHuRj; arc=none smtp.client-ip=209.85.208.52
+	 In-Reply-To:Content-Type; b=aYd3+cylliPNl3w2NLBie+xxRFyu3PO2so2nlwotJJ8e2P9yS5pmcQuR4XnErjOBQt5txMPP9lUlTrpni8vuPau0xRHr3UOog3HTZu1uny/Cc6IAtDpdLgTR1oEv4GoXmxncGGRZgdAu3QE804PGQiEGS7AhbLApqlWoJdN4Wes=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=YDra8nW/; arc=none smtp.client-ip=209.85.218.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5a10835487fso4246157a12.1
-        for <devicetree@vger.kernel.org>; Sat, 10 Aug 2024 11:32:47 -0700 (PDT)
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a7a975fb47eso360846466b.3
+        for <devicetree@vger.kernel.org>; Sat, 10 Aug 2024 11:32:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1723314766; x=1723919566; darn=vger.kernel.org;
+        d=broadcom.com; s=google; t=1723314771; x=1723919571; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
         bh=u8muDajrGX3FO5dD48egl2aXV9/qSThjd9VJkKWphN4=;
-        b=CEyQHuRjxHC6llSCjeeK71HNeNrRvFQBFWJGE61IYUxT20wB4okj9CowPWtn1U0yZ7
-         6FEeYMAssetNYiQM89haRRqYO0c+/7orXgusqO8+KIz7epo3VBfK5sAfpqohIMt/FVn5
-         OgEgW1ktP3t7nWVHX69pFXajGGrh537jt9bFs=
+        b=YDra8nW/3rjMwpdVLhkmNxtJ2SHWnmFYKFm+cPPY6IlMoAotlwONkxUJgDAaO64er0
+         GgFpJOP5GUHpCh4Ue/klHXdtpat2pVPtZo/S2PWO8H0jPX65yrnC22prnEFPfkcoCYNG
+         KzBanJuZ2blw6TUa4J8lYeLY52rkXHXddfpXg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723314766; x=1723919566;
+        d=1e100.net; s=20230601; t=1723314771; x=1723919571;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
         bh=u8muDajrGX3FO5dD48egl2aXV9/qSThjd9VJkKWphN4=;
-        b=K3cS1Ss39ltnuQ0wKXBifZzcU+uSMDUzaJTeJTBUjET44k2pw/v7HSqLkBCFM+qVd3
-         0PMsX7cBmxodqOEQ3/Z3SSR9qX4QCc4B566+uOQpcgVZxQ4rquCdTpQzO8Kuq7mA4J+V
-         LPyk+WFed8XRDmCNRM6PIOfVnWN3GYSJKES4EOXBz5giyWGPlNIa85YwDjVKyfgi8k04
-         8bnnxmbz+GS/qvzc74DDm9FDaPtTAGMIi7eT1MXNLdzOvN/h4hBbBKOaVBKG/3gR1VPO
-         nOBnN14oLBMAXvEUXna3HbzsQAs7tFb7pOePQOvY29QwcQcVbEaAbbb9ds8XOw6pCurc
-         GPjg==
-X-Forwarded-Encrypted: i=1; AJvYcCV80nWAGEsqvBE2hHpmV1xBC5e8kDQ5OVbmWrjQorQ9riyybDGQR6NhJHcfVPlSMH0xfO/xDxSPjhtcwrQLcuFDs+tTFfUSpDzrww==
-X-Gm-Message-State: AOJu0YyqHY1uOpPgVSolddIroPvoRQnbMf/wCD2ytmEdTly370krLsXO
-	ps4lnVLVUAsPeEiwz2ybyP2cWRzMceVFSxJaPct2oOslbbXMhIPofNM5t6blVw==
-X-Google-Smtp-Source: AGHT+IGop/ZoDA+Oc8+5qDzv25GL3CgFjr289f/SrTe7d5Ea2cqgNbnjGz8/e5qHIsy+G1LA+Xr+wA==
-X-Received: by 2002:a05:6402:90e:b0:59e:65d1:a56b with SMTP id 4fb4d7f45d1cf-5bd0a6668camr4516382a12.34.1723314765837;
-        Sat, 10 Aug 2024 11:32:45 -0700 (PDT)
+        b=m9+U9OL1vpRr0dT8M7kU82QxuyM1rX+D1/0jEsXiQSWkszX5QrFr2//EyQ97OXBboh
+         5L+5vf2yQY/K8lJRYbC0CKH8WyqE40keHVpei1YtIbwFXdx5cBHfowrKEWv2WPj0UpgJ
+         9XbfkVm7BOC2VZYX8kuYeIwo7onqieUGheiYkKR5uu+x3zK7U0oZn0akmKreizag7Wgw
+         G3KlDo7F8bcgynQmAlT1ILXo6KvxIALhf030+IB2cC0Oxw78CdjP/Zk0hPn9FbLnTO+s
+         1uCMdSpHb70HFmof4hn9T6cLcJcW1eoEKYyzlglGclyYhnVqcwvHOaa43fnktYo9j/fx
+         H7MQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWDikpYUBWUbB4iKz4U92catmUwCT9mWei1/c6Af1j/GLJ5D+AcoF047jkJlKrPE+nZG52ljhHpvUUXfw1xKAppkoNLs2RE4pDJ2A==
+X-Gm-Message-State: AOJu0YxSm9znbojSEgF2S5zeRMt4BKn1YQLKbVzZsMg4j4zvx06jYgST
+	N9Z9VvSKSzy2IOQy5Du4M+Ql4ol2Ugmx2Up4tCDpk+iyy+62O777NsscY5vV2A==
+X-Google-Smtp-Source: AGHT+IFXh7cTxFRswFB21Qe1oiRIGT9vU7kgXTaII9dWIL3bZbqeNjqAb2dSA1bo5MXu4eCB4cG/2Q==
+X-Received: by 2002:a17:907:e69e:b0:a6f:4a42:1976 with SMTP id a640c23a62f3a-a80aa5dff21mr428744866b.37.1723314771330;
+        Sat, 10 Aug 2024 11:32:51 -0700 (PDT)
 Received: from [192.168.178.137] (f215227.upc-f.chello.nl. [80.56.215.227])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5bd187f2abasm768760a12.8.2024.08.10.11.32.44
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a80bb08ffa0sm88575466b.9.2024.08.10.11.32.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 10 Aug 2024 11:32:45 -0700 (PDT)
-Message-ID: <fb9947fa-bca8-4c51-9feb-bf7ac6c6cc22@broadcom.com>
-Date: Sat, 10 Aug 2024 20:32:42 +0200
+        Sat, 10 Aug 2024 11:32:50 -0700 (PDT)
+Message-ID: <ff518c21-fcbb-4cfc-b5e3-40c0d4d18f0c@broadcom.com>
+Date: Sat, 10 Aug 2024 20:32:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
