@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-92631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8182594DDB3
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 19:02:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7138694DDBB
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 19:19:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 352601F218F1
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 17:02:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24288281CB4
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 17:19:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74E8812D766;
-	Sat, 10 Aug 2024 17:02:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A03D1CAAC;
+	Sat, 10 Aug 2024 17:18:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bYCks6sj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WxKSp7on"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 320421366;
-	Sat, 10 Aug 2024 17:02:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2074638394;
+	Sat, 10 Aug 2024 17:18:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723309364; cv=none; b=tlSIOcHzsYrBXx/qUgfkjLPfp8El74WNt01FQAn/mJ3plR7aLElPc+NdS7UfCUhE+SGXqWZIh8qlhlT556ACBD6qPCFPtcLjoZBDV1wUe+S7+CIQsKVDoI3S9WODkBZOpLd/qRDeT/PJuG8Qvhn3sVRiLuAJEzwazdcTKo1EGl0=
+	t=1723310338; cv=none; b=dscoG3nmaPGKziPS2fUB9Wtmz+fGsCdkGyx6KnPQUMdQPPMMbBSmxYajIlVhW8zEegUTS5n3SXMM9p412+TTXsgnn1AhZ5zBtFzx+QF9jpcQ0HL9Al8JBB3oSZY4hm4I+RfR9pD5N/OkvzmXkB8BTV5f/+WT22tijjkaHdmA2mk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723309364; c=relaxed/simple;
-	bh=mDQTTL0Iiqf0Z+l4V0xWPwMG4F9xVJeUOoTlBU4qFRI=;
+	s=arc-20240116; t=1723310338; c=relaxed/simple;
+	bh=ag/bsceGPVeuQ7s4EtclHx9Ksxdoj0dbuKHPiUMwhbA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PuFaSoWfPdUbFlF+JUaIkOW67Tcu6ZrYLdxdyOrXRvNemgWu94lOhSm5kH8aeqo6lW0GPzzHxXzPPCsM7DMbigu1FcEg7aHomnpmgv/9HU0UjdFU33seYKQbIePkL+BOMbaedq0ANCJFxlt97Oq9hFpYMQvUKdT8IS7z2AersB4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bYCks6sj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFAF5C32781;
-	Sat, 10 Aug 2024 17:02:42 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=QHzUJIW/4ewDOzoxJFO8iGBgMJB1mq/QugsBNG/X2cnxKTrC4Xs0XsptujjYSpfljTyvs233h03XPurWg+9H7fuSotdj+Y8/n2lrOzC7twHIbeOx4O+F8OxDlrK00Ysj4OulXyLo0FDrwCxVTIuWgrHACuJsS+Ty0YCWUX29Bh0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WxKSp7on; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B679DC32781;
+	Sat, 10 Aug 2024 17:18:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723309363;
-	bh=mDQTTL0Iiqf0Z+l4V0xWPwMG4F9xVJeUOoTlBU4qFRI=;
+	s=k20201202; t=1723310337;
+	bh=ag/bsceGPVeuQ7s4EtclHx9Ksxdoj0dbuKHPiUMwhbA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bYCks6sjezumYBjC7nIuWJecjTLP/6vtR67eh0gvr6ruVA9yUpEebCqchEmhodIBi
-	 GaOSa2TGMDp5nNq6kHgc1viy3tdktgPmrI3VVZrXGAxAnvabvpJTXUXFT5nbtItCRz
-	 sl7sFF5cBKzc7NwlHmt1Nm1XH06YwkjdBSCtdSuTmszypF6U8Psd2ZvxBG/LR275fU
-	 jV+Iq23fbNk7MEk540iRuZw52db04WctX1qHcdorIrjOXKrlUDOGBMLZe39P/OUJYb
-	 DSrG0HCgI2/66QqpqziW3nFSstDX3ekdZ+dLGdnZGR9Uog/Itv5PWi+jIDf0TsOLWY
-	 47dCa5BnCHrvg==
-Date: Sat, 10 Aug 2024 19:02:38 +0200
+	b=WxKSp7ono43bxCxg30AERUxf9vZQGocrzIzIkShblckbic6/4wC9exVhA0CD1ahZ5
+	 /TbOYsD3qiiAFw2XuvX0wNE9iMYkCAoOGYZDvVTy/LyFSIVN+yFjFN2c9zdTKkRyjk
+	 6Z9TMROvc2uu2H15FKoXdWPTlHkH5t1vruPWhnL0yww0puM2S3ss3w0/eSwmH+OobF
+	 UTz3SEEzRUUBwFMtXpW8MZAeK6//7kZmLoHr+18f7/AsMxVlH0SAJw9iy5id2Wb/fB
+	 iMb4z8MGK+2bIrnWYUVSqjWFhafZr1+lwShd+FSIENwUWvij+pw5xUvgFiGlBD74yu
+	 ExA624YL+6i7A==
+Date: Sat, 10 Aug 2024 19:18:52 +0200
 From: Lorenzo Bianconi <lorenzo@kernel.org>
 To: Krzysztof Kozlowski <krzk@kernel.org>
 Cc: linux-pwm@vger.kernel.org, ukleinek@kernel.org,
@@ -50,11 +50,11 @@ Cc: linux-pwm@vger.kernel.org, ukleinek@kernel.org,
 	upstream@airoha.com, angelogioacchino.delregno@collabora.com,
 	benjamin.larsson@genexis.eu, conor+dt@kernel.org,
 	ansuelsmth@gmail.com
-Subject: Re: [PATCH 2/2] pwm: airoha: Add support for EN7581 SoC
-Message-ID: <ZredLsQ1Y2FSBMkM@lore-rh-laptop>
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: Document Airoha EN7581 PWM
+Message-ID: <Zreg_OGH5ndPbTYT@lore-rh-laptop>
 References: <cover.1723264979.git.lorenzo@kernel.org>
- <a03f5ea9291e39eab303696eb03fdd44cf04e8d9.1723264979.git.lorenzo@kernel.org>
- <1f8905b0-aff6-4932-b936-191aa5529f0e@kernel.org>
+ <6a95b1d7fb90045a51a0cf51b9fafff26790904b.1723264979.git.lorenzo@kernel.org>
+ <4c63b64b-b6f2-4e72-95c5-5555681f6d10@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,107 +62,67 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="VXtAOg5aaeAuFy7/"
+	protocol="application/pgp-signature"; boundary="VU60BAksC1EKInjK"
 Content-Disposition: inline
-In-Reply-To: <1f8905b0-aff6-4932-b936-191aa5529f0e@kernel.org>
+In-Reply-To: <4c63b64b-b6f2-4e72-95c5-5555681f6d10@kernel.org>
 
 
---VXtAOg5aaeAuFy7/
+--VU60BAksC1EKInjK
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
+On Aug 10, Krzysztof Kozlowski wrote:
 > On 10/08/2024 06:48, Lorenzo Bianconi wrote:
-> > From: Benjamin Larsson <benjamin.larsson@genexis.eu>
-> >=20
-> > Introduce driver for PWM module available on EN7581 SoC.
-> >=20
-> > Signed-off-by: Benjamin Larsson <benjamin.larsson@genexis.eu>
-> > Co-developed-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
->=20
->=20
-> ...
->=20
 > > +
-> > +static void airoha_pwm_config_flash_map(struct airoha_pwm *pc,
-> > +					unsigned int hwpwm, int index)
-> > +{
-> > +	u32 addr, mask, val;
+> > +required:
+> > +  - compatible
+> > +  - reg
 > > +
-> > +	if (hwpwm < PWM_NUM_GPIO) {
-> > +		addr =3D REG_GPIO_FLASH_MAP(hwpwm / 8);
-> > +	} else {
-> > +		addr =3D REG_SIPO_FLASH_MAP(hwpwm / 8);
-> > +		hwpwm -=3D PWM_NUM_GPIO;
-> > +	}
+> > +additionalProperties: false
 > > +
-> > +	if (index < 0) {
-> > +		/* Change of waveform takes effect immediately but
+> > +examples:
+> > +  - |
+> > +    pwm@1fbf0224 {
+> > +        compatible =3D "airoha,en7581-pwm";
+> > +        reg =3D <0x1fbf0224 0x10>,
+> > +              <0x1fbf0238 0x28>,
+> > +              <0x1fbf0298 0x8>;
 >=20
-> This and other comments should be not netdev-style but general Linux styl=
-e.
+> These look almost continuous, so I wonder what's in between? E.g.
+> between 0x1fbf0224+10=3D0x1fbf0234 and 0x1fbf0238?
 
-ack, I will fix them in v2.
+register 0x1fbf0234 will be used by pinctrl driver (I will post it soon) for
+pwm muxing. The issue here is clock, pinctrl, gpio, pwm and (future) serdes
+registers are all interleaved in a non-regular fashion in the following
+IO space:
 
->=20
-> > +		 * disabling has some delay so to prevent glitching
-> > +		 * only the enable bit is touched when disabling
-> > +		 */
-> > +		airoha_pwm_flash_clear(pc, addr, GPIO_FLASH_EN(hwpwm % 8));
-> > +		return;
->=20
-> ...
->=20
->=20
-> > +
-> > +static const struct of_device_id airoha_pwm_of_match[] =3D {
-> > +	{ .compatible =3D "airoha,en7581-pwm" },
-> > +	{ /* sentinel */ }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, airoha_pwm_of_match);
-> > +
-> > +static struct platform_driver airoha_pwm_driver =3D {
-> > +	.driver =3D {
-> > +		.name =3D "airoha-pwm",
-> > +		.of_match_table =3D airoha_pwm_of_match,
-> > +	},
-> > +	.probe =3D airoha_pwm_probe,
-> > +};
-> > +module_platform_driver(airoha_pwm_driver);
-> > +
-> > +MODULE_ALIAS("platform:airoha-pwm");
->=20
-> You should not need MODULE_ALIAS() in normal cases. If you need it,
-> usually it means your device ID table is wrong (e.g. misses either
-> entries or MODULE_DEVICE_TABLE()). MODULE_ALIAS() is not a substitute
-> for incomplete ID table.
->=20
-> Especially that it does not match compatible, so you cannot use excuse
-> module autoloading does not work for given OF node...
+- <0x1fa20000 - 0x1fa20384>=20
+- <0x1fb00000 - 0x1fb0096c>
+- <0x1fbf0200 - 0x1fbf02bc>
 
-ack, I will fix it in v2.
+So in order to avoid conflicts we need a sparse mapping.
 
 Regards,
 Lorenzo
 
 >=20
+> Rest looks good.
 >=20
 > Best regards,
 > Krzysztof
 >=20
 
---VXtAOg5aaeAuFy7/
+--VU60BAksC1EKInjK
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZredLAAKCRA6cBh0uS2t
-rEk4AP0eoyOjcR6w8+t/ov1LaRJlnHPLFWKynjHtxGsq/0aqQwD/UNpYf+i4orFa
-3f0e2DGg17yh6Fd8YtjEHMmPc7QPbQ4=
-=M7tX
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZreg+QAKCRA6cBh0uS2t
+rLA0AP9km4sKCFpLwY5e5Xri0IeNQy7pqAcJXJZmICwTkJHA6AEApRkR1ZsyHcla
+jesK3yuVFEn7YeMIs816PW1aGwOL6Qk=
+=gbix
 -----END PGP SIGNATURE-----
 
---VXtAOg5aaeAuFy7/--
+--VU60BAksC1EKInjK--
 
