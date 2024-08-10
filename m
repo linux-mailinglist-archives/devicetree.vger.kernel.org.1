@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-92605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 057D594DCA2
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 13:59:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1469994DCAC
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 14:11:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0DFB11C20B63
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 11:59:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B63A28203B
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2024 12:10:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15542157E87;
-	Sat, 10 Aug 2024 11:59:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99F1B150996;
+	Sat, 10 Aug 2024 12:10:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R/R0Z0xy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n1/FpRTY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D76FC146D75;
-	Sat, 10 Aug 2024 11:59:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65D4114BF90;
+	Sat, 10 Aug 2024 12:10:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723291167; cv=none; b=NLGUFdutryODzD0QVryZBJe0bsffyx5ZAILt4uOydi9lOT/7Z6nTgMiEzSKBrfY3ja2o4XVfSTBC1O2gJpcztqwDapEVWJoeUmcU0/KdwlchQYM/l9uCIjmpe7hS5jeVagjrxrbBLMMH9EXsHmtMvCtgj7lmdObCHLF2zmUa1hY=
+	t=1723291855; cv=none; b=EzT/Bi06D+TCVDGSNORD7OvCNTZucdnXynet2GXD1jCvInhbRyFeO/7TyWTi1xAYlYfeNoy4Lrc1BKwYKSMLskzk/MTCuVAk8LgwDrTEo8I+nVUYnHr3FP4Lmicz3dgCdF9QJRie9c9X/P/vzLYCGyf01/B6eqhS4gjsPL1gWY4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723291167; c=relaxed/simple;
-	bh=SnFM9Mkwg0UkMMuBuHlVIyneuob9XMDMBy8QxCiJwV0=;
+	s=arc-20240116; t=1723291855; c=relaxed/simple;
+	bh=+GPZY64xnIzZ0d7Ib77Ct+6ZmK4cs//CrHJl5arfxAc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=n/9xk7ChW8BRhPRZkzZpNj3f1md67+Eg9jwW9HY/z0d2bLmgR1aA5ZOjhTyWaC/iWoVkMb0lY5Q4qDu5YXoSR6FNyeKo6nsAoOLbYG4R/3IVYiqRfTmg6duyTy6EPHMIKroWqQuX7ON83kLsRDSq1eNdYQe5/6gIVhrOvxN0zbs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R/R0Z0xy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D71FEC32781;
-	Sat, 10 Aug 2024 11:59:21 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=tXqhs1AV2E/0WwogAMHQvFJxmbRUrWxd972RMl9MkfZO6B8eV4LaWBJZ8eC2VZj8onUvV8n28IRm9pIKymgY7pMcsLEqhjqGQuP/OYVQ2p7Gc9FlkZ0R7OVx5f30uTdKMV/KMjzj0Ho8JLwUtqjK1VAyd5lnG+8IRV3mojY+ZjA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n1/FpRTY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBEB0C32781;
+	Sat, 10 Aug 2024 12:10:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723291165;
-	bh=SnFM9Mkwg0UkMMuBuHlVIyneuob9XMDMBy8QxCiJwV0=;
+	s=k20201202; t=1723291854;
+	bh=+GPZY64xnIzZ0d7Ib77Ct+6ZmK4cs//CrHJl5arfxAc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=R/R0Z0xyEWktq3l9iLDZ9EYdtZL2BHId4nqRsDryo6Idp30Kh7/F3r/fV+J9hOfuT
-	 NWN3eKzMyCnWd/hZcieT2yeulP9JUxbXhmfsWggBQELNmvJ+l45CNWacYyHMRp1v/g
-	 HXaZn+BFJOifCG95nfwm0exDIGYAXHCv5xZ1c1lSj5CP2sVqoMF0HQbvB+tdOH2Bjk
-	 cbr5Q7H2jiXO6V95MlNZjBxjJQXOJDyeZbELqEPdn8PBMpqI5r0HUphzhCsGcGCtTT
-	 aNmMx5Uz/SE1rZELrNxXCmF5PtEOhThrq3inNQek1+0knv8mZHDpEEvTTSKinSAx1w
-	 4BOTTTo7yn77g==
-Message-ID: <f7d83c56-d59b-4c9b-87a1-31556b3ef5de@kernel.org>
-Date: Sat, 10 Aug 2024 13:59:19 +0200
+	b=n1/FpRTYJS2IOt+vQGn72KjJi+H8ps+xE6ogU4UltWXfQUMcKldbY4MR9MZwE8Guo
+	 zXxBh280cH/x4NlhEeYyTXRemVVF/uI9tXttQuEG17l8RKZGGf+UO5Q3iPbqnNBAJh
+	 pKDAuxZAlj3PNlmaEFVdZnINUlWaXa8WMWF4GQJb/7xdo6VT4e5Z2XhszH+2T0pJK/
+	 pm5xPMbp5RpLb4NjaveLLbcbr6H0KI+wqb5xKSiKNDgMzZ3OOCq/R3OosxSXrRa0vj
+	 P16/o23raSvyCWq9c4RmKnKIulTG9+IBn0LokwcFG0GBiBCTgmkvbaefJcPTu5nFX0
+	 9tEMG/QyhDpVQ==
+Message-ID: <03eca85c-50d7-4ff0-a5b6-83e3322cb04d@kernel.org>
+Date: Sat, 10 Aug 2024 14:10:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] dt-bindings: input: touchscreen: convert ad7879 to
- yaml format
-To: Frank Li <Frank.Li@nxp.com>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "open list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)..."
- <linux-input@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Cc: imx@lists.linux.dev
-References: <20240809200534.3503223-1-Frank.Li@nxp.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: iio: adc: add AD762x/AD796x ADCs
+To: Trevor Gamblin <tgamblin@baylibre.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ David Lechner <dlechner@baylibre.com>,
+ Uwe Kleine-Konig <u.kleine-koenig@baylibre.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20240809-ad7625_r1-v2-0-f85e7ac83150@baylibre.com>
+ <20240809-ad7625_r1-v2-1-f85e7ac83150@baylibre.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,96 +109,83 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240809200534.3503223-1-Frank.Li@nxp.com>
+In-Reply-To: <20240809-ad7625_r1-v2-1-f85e7ac83150@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/08/2024 22:05, Frank Li wrote:
-> +
-> +maintainers:
-> +  - Frank Li <Frank.Li@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    description: |
-> +      for SPI slave, use "adi,ad7879"
-> +      for I2C slave, use "adi,ad7879-1"
-> +    enum:
-> +      - adi,ad7879
-> +      - adi,ad7879-1
+On 09/08/2024 20:41, Trevor Gamblin wrote:
+> Add a binding specification for the Analog Devices Inc. AD7625,
+> AD7626, AD7960, and AD7961 ADCs.
+> 
 
-Driver (and binding) could be fixed to use only one compatible, but
-that's another task.
+Thank you for your patch. There is something to discuss/improve.
+
+> +allOf:
+> +  - if:
+> +      required:
+> +        - ref-supply
+> +    then:
+> +      # refin-supply is not needed if ref-supply is given
+
+Not needed or not allowed? Schema says the latter.
+
+> +      properties:
+> +        refin-supply: false
+> +  - if:
+> +      required:
+> +        - refin-supply
+> +    then:
+> +      # ref-supply is not needed if refin-supply is given
+> +      properties:
+> +        ref-supply: false
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - adi,ad7625
+> +              - adi,ad7626
+> +    then:
+> +      properties:
+> +        en2-gpios: false
+> +        en3-gpios: false
+> +        adi,en2-always-on: false
+> +        adi,en3-always-on: false
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - adi,ad7960
+> +              - adi,ad7961
+> +    then:
+> +      # ad796x parts must have one of the two supplies
+> +      oneOf:
+> +        - required: [ref-supply]
+> +        - required: [refin-supply]
+
+That's duplicating first and second if. And all three - comment, first
+if:then: and this one here is kind of contradictory so I don't know what
+you want to achieve.
+
 
 > +
-> +  reg:
-> +    maxItems: 1
+> +additionalProperties: false
 > +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  touchscreen-max-pressure:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: maximum reported pressure
-> +
-> +  adi,resistance-plate-x:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: total resistance of X-plate (for pressure calculation)
-> +
-> +  touchscreen-swapped-x-y:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: X and Y axis are swapped (boolean)
-> +
-> +  adi,first-conversion-delay:
-> +    $ref: /schemas/types.yaml#/definitions/uint8
-> +    minimum: 0
-> +    maximum: 15
-> +    description: |
-> +      0-12: In 128us steps (starting with 128us)
-> +      13  : 2.560ms
-> +      14  : 3.584ms
-> +      15  : 4.096ms
-> +      This property has to be a '/bits/ 8' value
-> +
-> +  adi,acquisition-time:
-> +    $ref: /schemas/types.yaml#/definitions/uint8
-> +    enum: [0, 1, 2, 3]
-> +    description: |
-> +      0: 2us
-> +      1: 4us
-> +      2: 8us
-> +      3: 16us
-> +      This property has to be a '/bits/ 8' value
-> +
-> +  adi,median-filter-size:
-> +    $ref: /schemas/types.yaml#/definitions/uint8
-> +    enum: [0, 1, 2, 3]
-> +    description: |
-> +      0: disabled
-> +      1: 4 measurements
-> +      2: 8 measurements
-> +      3: 16 measurements
-> +      This property has to be a '/bits/ 8' value
-> +
-> +  adi,averaging:
-> +    $ref: /schemas/types.yaml#/definitions/uint8
-> +    enum: [0, 1, 2, 3]
-> +    description: |
-> +      0: 2 middle values (1 if median disabled)
-> +      1: 4 middle values
-> +      2: 8 middle values
-> +      3: 16 values
-> +      This property has to be a '/bits/ 8' value
-> +
-> +  adi,conversion-interval:
-> +    $ref: /schemas/types.yaml#/definitions/uint8
-> +    description: |
-> +      0    : convert one time only
-> +      1-255: 515us + val * 35us (up to 9.440ms)
-> +      This property has to be a '/bits/ 8' value
+> +examples:
+> +  - |
+> +    adc {
+> +        compatible = "adi,ad7625";
+> +        vdd1-supply = <&supply_5V>;
+> +        vdd2-supply = <&supply_2_5V>;
+> +        vio-supply = <&supply_2_5V>;
+> +        io-backends = <&axi_adc>;
+> +        clocks = <&ref_clk>;
+> +        pwms = <&axi_pwm_gen 0 0>, <&axi_pwm_gen 1 0>;
+> +        pwm-names = "cnv", "clk_gate";
 
-All above should have the "default: 0", based on driver behavior.
-
+Make example complete - en0 or en1 GPIOs or whatever else is applicable.
 
 
 Best regards,
