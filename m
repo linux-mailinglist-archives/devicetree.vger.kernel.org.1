@@ -1,181 +1,87 @@
-Return-Path: <devicetree+bounces-92708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FF7B94E1A2
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 16:28:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B949494E1B2
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 16:41:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71BBF2815C9
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 14:28:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7537F281562
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 14:41:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCF1854670;
-	Sun, 11 Aug 2024 14:28:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AED21494D1;
+	Sun, 11 Aug 2024 14:41:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LpYJemsQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u2JtRZCQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C56511CAB;
-	Sun, 11 Aug 2024 14:28:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D3BA1CAAF;
+	Sun, 11 Aug 2024 14:41:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723386520; cv=none; b=P4CTYw14Fp6kC8uu+bbrTerulDAPIsFx32TKV0oRoNcp7VOslk26OQNg/l5bYobpMB+u1mfH+9BZHPISsZohKCBFuKkAchdy0YqWGVSG5le9lh7hyu+uD5pWEQ+yPKROLFi6/qI6DV90f33ZhQn3x+PQgzqn2L3lGGtzvjhIIp8=
+	t=1723387312; cv=none; b=HwPvGG+0XDnCoqRLrXoFKWwQ6ruyL8qgrngEIEs9bYTdSCW0uvSjLOjhjznwXjn8spLUm5HF7ejffQHx6SChcJ4aTRFhvekc1Nv4RwLQLCLSP9nmyJN0qaHBwYUAWXYgW+4FMBvlnv11gGhIrtPHYMOx9hujLulcIFLxLgvJeAs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723386520; c=relaxed/simple;
-	bh=6HrA4soHlOgUdKJ4+WhSNv/k/WNmpMWWLBiIQhn2hko=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=omEwVBSySGhLy44XLjuoWcCQSAzMqPexseBmUx1Dubxnsfg/ZnozzFLrIyWFAcz0DnM8b+N8/+c5RrdnJJlTB1kfamr+cM+tDTQ6VQkjP2xGAGHMVNXNhbPWRubu9X19XkDUlsgatD+rSkciFmNmYaGx032hqaZLpngyfokGcb8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LpYJemsQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67220C32786;
-	Sun, 11 Aug 2024 14:28:35 +0000 (UTC)
+	s=arc-20240116; t=1723387312; c=relaxed/simple;
+	bh=e9DgOEq6OLvmcRv/CH6wRxKEHV8xntvIpbRaCP8T9Pg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ClgsFk9brj2ywi0mfBDgAkLJgpsXXTGQKsoFVz8C7RMLik3AulpYMLevEB81K96l4svkt3svj7YjZTOZ0onj6flirHWf+QJQbRgc1Nn7+1LKrPaawnN4mEWkCHBedbnmlAe4ooU9J5RQVv7NKCs9dP6YRSkin1eqs29F/eyLIqk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u2JtRZCQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BD0DC32786;
+	Sun, 11 Aug 2024 14:41:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723386520;
-	bh=6HrA4soHlOgUdKJ4+WhSNv/k/WNmpMWWLBiIQhn2hko=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LpYJemsQRHdGP/rekSYvazikIBMTjecjZuL7Ty1bkvLb7Abt3YwT0OlT7nT7bV5ea
-	 U1nK6bzv5usb+bTLlhYOXICkg5it9EMHX25JIpIqajLZ43YTinZL8KBEunZuhOUKhE
-	 nXcNvn9JMwvb6gMkMowiN+WTz9emIqQxn8uD1esUKQ8oonRPHemRFUzbiZeBVbF8kK
-	 zu3LJhwectEU8nIMvYMmxIIgLjvfAxW2G8/eGetXwJqxREffY2WevdVVcf68x5PoFl
-	 /cb4s+iOiMDfi0LEJM32ImL7u2gueBrVksH8+mg2gwqC+muSb6Dpb7huuEufcWay+j
-	 vve2OyuXnU+6A==
-Message-ID: <1a6ebc27-95ca-4f56-9971-b2a8d03f270a@kernel.org>
-Date: Sun, 11 Aug 2024 16:28:33 +0200
+	s=k20201202; t=1723387311;
+	bh=e9DgOEq6OLvmcRv/CH6wRxKEHV8xntvIpbRaCP8T9Pg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=u2JtRZCQUiBO8aEG94JtdjaLJL1ab3qWYNwtnmPDDaR1GVWCLpZUIuLzm2qf9LpsQ
+	 QtHuo/VuhFaH2bn7DNb9dAWd7z/cmi26koZ5LJPCsvnjKMJGhzudAt67ADkRhXFfAe
+	 nBRWsMyD2ZPzeOPEBp4XoMn6rcTkVIXwfvLFrT0aFlE2MrwZg+5+Wfjm5mt0oKnSDx
+	 F1y89gru3HUTcDbHsVNfLGaMALb9/zmYZg1IvH5PNoNsb4S5tvoD4SPYjrx5tfTOTp
+	 K24kZh2ELuvrd0Rcv/aaJMzD1rNJu0I/K/g1CJR3LUdDR3kONDxIEFTYPmH4LxCL8R
+	 +3ZwF5RI5uL5w==
+Date: Sun, 11 Aug 2024 15:41:47 +0100
+From: Simon Horman <horms@kernel.org>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: Re: [PATCH v2] arm: dts: st: stm32mp151a-prtt1l: Fix QSPI
+ configuration
+Message-ID: <20240811144147.GL1951@kernel.org>
+References: <20240809082146.3496481-1-o.rempel@pengutronix.de>
+ <20240810095129.GH1951@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] dt-bindings: platform: Add Surface System
- Aggregator Module
-To: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Len Brown <lenb@kernel.org>, Maximilian Luz <luzmaximilian@gmail.com>,
- Hans de Goede <hdegoede@redhat.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
- platform-driver-x86@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <quic_kdybcio@quicinc.com>
-References: <20240810-topic-sam-v2-0-8a8eb368a4f0@quicinc.com>
- <20240810-topic-sam-v2-2-8a8eb368a4f0@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240810-topic-sam-v2-2-8a8eb368a4f0@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240810095129.GH1951@kernel.org>
 
-On 10/08/2024 03:28, Konrad Dybcio wrote:
-> From: Konrad Dybcio <quic_kdybcio@quicinc.com>
+On Sat, Aug 10, 2024 at 10:51:29AM +0100, Simon Horman wrote:
+> On Fri, Aug 09, 2024 at 10:21:46AM +0200, Oleksij Rempel wrote:
+> > Rename 'pins1' to 'pins' in the qspi_bk1_pins_a node to correct the
+> > subnode name. The incorrect name caused the configuration to be
+> > applied to the wrong subnode, resulting in QSPI not working properly.
+> > 
+> > To avoid this kind of regression, all references to pin configuration
+> > nodes are now referenced directly using the format &{label/subnode}.
+> > 
+> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 > 
-> Add bindings for the Surface System Aggregator Module (SAM/SSAM), the
-> Microsoft Surface-standard Embedded Controller, used on both x86- and
-> Qualcomm-based devices.
-> 
-> It provides a plethora of functions, depending on what's wired up to
-> it. That includes but is not limited to: fan control, keyboard/touchpad
-> support, thermal sensors, power control, special buttons, tablet mode.
-> 
-> Signed-off-by: Konrad Dybcio <quic_kdybcio@quicinc.com>
-> ---
->  .../bindings/platform/microsoft,surface-sam.yaml   | 50 ++++++++++++++++++++++
->  1 file changed, 50 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/platform/microsoft,surface-sam.yaml b/Documentation/devicetree/bindings/platform/microsoft,surface-sam.yaml
-> new file mode 100644
-> index 000000000000..f613738aa31d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/platform/microsoft,surface-sam.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/platform/microsoft,surface-sam.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Surface System Aggregator Module (SAM, SSAM)
-> +
-> +maintainers:
-> +  - Konrad Dybcio <konradybcio@kernel.org>
-> +
-> +description: |
+> Pass
 
-No need for |
-
-> +  Surface devices use a standardized embedded controller to let the
-> +  operating system interface with various hardware functions. The
-> +  specific functionalities are modeled as subdevices and matched on
-> +  five levels: domain, category, target, instance and function.
-> +
-> +properties:
-> +  compatible:
-> +    const: microsoft,surface-sam
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  current-speed:
-> +    description: The baudrate in bits per second of the device as it comes
-> +      online, current active speed.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-
-This should be just "current-speed: true", because the type will be
-brought by serial schema. We should however have some schema with
-peripheral properties for serial devices. I'll come with something.
-
-
-
-Best regards,
-Krzysztof
-
+Sorry about the noise here. This was supposed to be a note to myself, that
+I am not planning to review this.  It doesn't imply anything about the
+patch.
 
