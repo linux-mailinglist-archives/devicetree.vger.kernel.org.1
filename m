@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-92694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D3B594E137
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 14:35:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CDE894E13D
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 14:39:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 230162817A1
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 12:35:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22FA51F216DC
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 12:39:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E8F750A6D;
-	Sun, 11 Aug 2024 12:35:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF7C24E1C8;
+	Sun, 11 Aug 2024 12:39:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BInu8C1H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MdXF14sL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D6274D8AE;
-	Sun, 11 Aug 2024 12:35:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD18E61FCA;
+	Sun, 11 Aug 2024 12:39:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723379725; cv=none; b=jujrzVuF7U6prPxAoWVOOeEJwK8MbICD3f0/4F1KwriYTVU9MQvhJV8ijXq3rcKliepIRsbGtuFfP5RMGJLWNxagVKMBCNRB52wADV+ZorRC16grz9WkPenNZ6zE70pTI2fH9Uj9tX07q+hPNb6A6dzHh5rFESwBiomqCnhct6Y=
+	t=1723379967; cv=none; b=QRvvKh7U39tpKYnGE0+LwB2tAohHWigzPm2BO5zGm6cwTd1x7zGqvr2CasiemJgfBzwwBVn5mzV1ZgJ+G8/fsDwn/WXwfwht8k3ZyXQX3spetNc5wL/S3DsYr8uez8XZnWJb20MyA548BIN+HWXeE/nupRC3j0ztKMaaVMpMz1g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723379725; c=relaxed/simple;
-	bh=+SrK9lm6okUOBtPTMErWmS5VBrEJZyjKsdchhtjqI7g=;
+	s=arc-20240116; t=1723379967; c=relaxed/simple;
+	bh=W4+jvJ+KjCyVV9pvTNiN51tScw1nWYzbbszVgzx5mTk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dz4ufHoQLqYSwxNyLnHs9uPPj3zVUYITROcV9VQn9u21PETnC/1+SOOn2YzOZIK6Op3zk3P/iaVMTlJmMAj3LQR10GrYVuCysNlxs4+YqaMiPq5xZeogZg0fuGkCJSYCxBanh+dhfbGnAZdL9Ja8ml1CGeiOOfXby0MD+SO/hkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BInu8C1H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12C12C32786;
-	Sun, 11 Aug 2024 12:35:18 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=VilQJ6dm2QRc9uGZmyaJI0ttnGcfdBtP/Bb4kbMgM+RKy6ylw/4e+cfVE0ZsTT3Ei2ewZLFs3AVX7xo6wXFmaF6vwrgrWdDH4PmFjO9uwp7NIhvmxTVVcbdUDDJDMPb0zSwALFjVZkIJigBUlvrQSE6hGZIwMlxnLuMNER2Ny9I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MdXF14sL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD0E9C32786;
+	Sun, 11 Aug 2024 12:39:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723379724;
-	bh=+SrK9lm6okUOBtPTMErWmS5VBrEJZyjKsdchhtjqI7g=;
+	s=k20201202; t=1723379966;
+	bh=W4+jvJ+KjCyVV9pvTNiN51tScw1nWYzbbszVgzx5mTk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BInu8C1HnZDd26nRWJSeJeAOtW7TDKhKu0dI0r4+trPyXO6LxQzqtyQDXFhDUj1fE
-	 MPz7swGKBxGKjns+7wq8eP7L3z1/IXxkL6DGDDasAiHNbPY7/1BfD+YsW0NcPMNtjR
-	 xQDW5VayAccxXi172btjfpZvU71HwAlKXUxzVsTPfeuDoAP+hc7ejBem4G6/QdYANt
-	 t2QnFNoKLoj55hb9VJbzEOFbevENztDL+/Fegh1EOnvXV0X/o2PQ4jqlsekE3PkJxp
-	 sddkHz6bKv10SkY/DQmjMx5T44OgUterNo01CqdCT/Hmzf2AYiBZ6lojYoLSHi78uz
-	 QDHqjuK9jxXkA==
-Message-ID: <cc0ea64f-f300-4d66-80f4-af2038a36ba7@kernel.org>
-Date: Sun, 11 Aug 2024 14:35:17 +0200
+	b=MdXF14sLxOX+f4wHLSG+d+DsuHeFvgAWkXIvs69xN/z2wNXMkMU4B734S+jza+GcG
+	 St3f+wJXGo8062Tsm28RFbLp9mODC4uc9EEvQoACoRRaOlK1MZAdsd9BDQ2cuiqhxO
+	 QZk4Jf92OAIz0bLc1A4COA1q1IYhIy2kMbobWGZLI66yQORIulnQnUdJmkg4nAbOkm
+	 LWbkcFJ9Um+/+ThMJhSF10qzY4ydhNBblU+hEncLd8NJ1UVPLHnH4S6hMRLa+ez03x
+	 zpq03NTVJCQ2GSEAB0qO4wQ+3JMH3v5eygHk7FtpQzFN6J2dAN1lEKRhkcZqxroMfp
+	 PEmjPANzLeMIw==
+Message-ID: <783e7bf8-4594-4c1a-8ec0-dae639d67e0d@kernel.org>
+Date: Sun, 11 Aug 2024 14:39:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/6] dt-bindings: thermal: samsung,exynos: remove
- driver-specific information
-To: Mateusz Majewski <m.majewski2@samsung.com>, linux-pm@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Sam Protsenko <semen.protsenko@linaro.org>,
- Anand Moon <linux.amoon@gmail.com>
-References: <20240807084829.1037303-1-m.majewski2@samsung.com>
- <CGME20240807084917eucas1p28c675c9da74f0de0bb09689819202c39@eucas1p2.samsung.com>
- <20240807084829.1037303-7-m.majewski2@samsung.com>
+Subject: Re: [PATCH 1/2] dt-bindings: sram: Document reg-io-width property
+To: Florian Fainelli <florian.fainelli@broadcom.com>,
+ linux-arm-kernel@lists.infradead.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
+ Cristian Marussi <cristian.marussi@arm.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
+ arm-scmi@vger.kernel.org, james.quinlan@broadcom.com,
+ justin.chen@broadcom.com, kapil.hali@broadcom.com,
+ bcm-kernel-feedback-list@broadcom.com
+References: <20240810214621.14417-1-florian.fainelli@broadcom.com>
+ <20240810214621.14417-2-florian.fainelli@broadcom.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,22 +108,18 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240807084829.1037303-7-m.majewski2@samsung.com>
+In-Reply-To: <20240810214621.14417-2-florian.fainelli@broadcom.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/08/2024 10:48, Mateusz Majewski wrote:
-> The number of supported trip points was only limited by the driver
-> implementation at the time, which mapped each trip point defined in the
-> devicetree source file to a hardware trip point. An implementation that
-> does not have this limitation is possible; indeed, that is how the
-> driver works currently. Therefore, this information should be removed
-> from the bindings description, which are meant to be independent of
-> the details of the driver implementation.
+On 10/08/2024 23:46, Florian Fainelli wrote:
+> Some SRAMs need to be accessed with a specific access width, define
+> the 'reg-io-width' property specifying such access sizes.
 > 
-> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
-> Signed-off-by: Mateusz Majewski <m.majewski2@samsung.com>
+> Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
 > ---
+>  Documentation/devicetree/bindings/sram/sram.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
