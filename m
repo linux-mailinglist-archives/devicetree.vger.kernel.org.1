@@ -1,316 +1,221 @@
-Return-Path: <devicetree+bounces-92672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 766BE94DF9E
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 04:24:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D665994DFC0
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 04:43:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1B013B20DE7
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 02:24:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BA78281887
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 02:43:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1757F17BAB;
-	Sun, 11 Aug 2024 02:24:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68C85C8E9;
+	Sun, 11 Aug 2024 02:43:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="Z+bub5rz"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="DjlCbhes"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2050.outbound.protection.outlook.com [40.107.93.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52175134BD;
-	Sun, 11 Aug 2024 02:24:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.93.50
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723343053; cv=fail; b=JshVOb0hVNs7vWjDhihS5POK1eeO26MQBOY0zDNVE/I6nYcKAPz8h3EzcrQwMR6FK+kMi6OdAvwaq4wNQM3MOEaMIDX4D31hQrzEgHVfxjVyudKfCjGfrdqnpcGfrsRuySPM2Zpze35rlrsbuasmptiWOdLzpJ19Ri+alq1kL7Q=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723343053; c=relaxed/simple;
-	bh=PIvbBKs22GCb64KD89ZQi1GElsSnammdCkD3WcrutZY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bfaYhkzgvPTWLrFOCpvYXSPEfOrBZ17C7c1DPSL8ngn/5Lj0oj1Vy3bP0H6qDYgbcG2pySy/jh+ToVdyRpyvirZquCpK1VK/pQwrgsqlUzM9waKXBrsY8bRU/Y7ngcw9WkK+zb+4Rkg2DGDmmKj+ADozaMPa2KOKFabzybZUsME=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=Z+bub5rz; arc=fail smtp.client-ip=40.107.93.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mWoe+nDjDv//1uyIPnKzEDG6O5830elLCwgZasLNlBZpi7JmTOxaQfimBAHKT2gwlQWmKEL5CmQCWNfwvdUWCV56aL1VA/U5HeGrQF/79gPQn/05si/Ttx3x4J6/QBrQ4gPQ+8QKsXlYCbkrcUILfGGVdfNe+vjRCLCnEAWhaFeJ957oYtPgCKm34djVOtAL5V4ApLL/jwZLzbGbe3VBB14LZtSyq9YW28iHJhizb6oVptXdg9t85cCFAOEQs2jRwstZNa+Md8VAzD7FZOcK+/OlbVDnxF8ft7ODElJViXzdf8fjyPAMovTC+enxbpp+D3IryMEaLr/sSHij/T8cSg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=e2rc8i2Mj2nzPHOkyHFlQiZPHFWOIXenaKXby9DdNoQ=;
- b=kEEs05TCZQHwGn5wAyb3kMcf2WgMgrkAl/QKet+GvUk+nM8qZU+gshKPeBO3gF7E5WTQs2WIO1NemMn+gX2KjWCtX3iwrEBCaBSvSFmGVVuB/F/mGNKWdDo7JYS6EwheFj1qm/G13Z4/G2Lphy0KTpSYHR4FKNndlqgP4Dtv7FJBJR2/MoS4OpsOFRtoYdUTumEKXKRVhblTQZ7ro3KnfYK4I9g1XYgjAhTVWM8i8BV2CEwb9mZPjcBx9cdeR5jft4JoxllRdt0HdMXvbUr92g+DeM7xx2RB62w1BSji5h7to0cOTRcTX9VzChOot5Kiub9ObuU7QuCYucbPRdIW+w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=google.com smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e2rc8i2Mj2nzPHOkyHFlQiZPHFWOIXenaKXby9DdNoQ=;
- b=Z+bub5rzmklwYV6BHYft+0jezFEzaPryL6C/q3gQQUyWADDqeyKfFgU8hd1EXZGphglggcPTzuVSTksbuXgrKU7wpm0U3g4UmjgO2OnPRV8XGM2zP7kFDyDn4TT58Rj6/y1YIlysUpuVbUfohlzzwRz/ptJrDVq6ZCXIRIQyC2g=
-Received: from BN9PR03CA0410.namprd03.prod.outlook.com (2603:10b6:408:111::25)
- by DM6PR12MB4218.namprd12.prod.outlook.com (2603:10b6:5:21b::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.19; Sun, 11 Aug
- 2024 02:24:07 +0000
-Received: from BL6PEPF00020E66.namprd04.prod.outlook.com
- (2603:10b6:408:111:cafe::ef) by BN9PR03CA0410.outlook.office365.com
- (2603:10b6:408:111::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.33 via Frontend
- Transport; Sun, 11 Aug 2024 02:24:07 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL6PEPF00020E66.mail.protection.outlook.com (10.167.249.27) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7849.8 via Frontend Transport; Sun, 11 Aug 2024 02:24:07 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Sat, 10 Aug
- 2024 21:24:06 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Sat, 10 Aug
- 2024 21:24:06 -0500
-Received: from xhdbharatku40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Sat, 10 Aug 2024 21:24:03 -0500
-From: Thippeswamy Havalige <thippesw@amd.com>
-To: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
-	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-CC: <michal.simek@amd.com>, <linux-arm-kernel@lists.infradead.org>,
-	Thippeswamy Havalige <thippesw@amd.com>
-Subject: [PATCH v4 2/2] PCI: xilinx-xdma: Add Xilinx QDMA Root Port driver
-Date: Sun, 11 Aug 2024 07:53:45 +0530
-Message-ID: <20240811022345.1178203-3-thippesw@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240811022345.1178203-1-thippesw@amd.com>
-References: <20240811022345.1178203-1-thippesw@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC94DC8D1
+	for <devicetree@vger.kernel.org>; Sun, 11 Aug 2024 02:43:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723344183; cv=none; b=X8FgAt5oaN2aoQim3guWHh3HTgZAsQVNxQyn9seI7Ge9dhCfREzB4OCj8rD+YjQF5+bxI1VpAjPVmnrc7EL0DOXbYqiWt/oZrMCRDNYfCIWIdhi4PwxnFm6gp+CElCIzWPXoJxU17UiyHaHMpgyLyH9eO6nAw84/5biAvRasDxU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723344183; c=relaxed/simple;
+	bh=I2ml4eDAWuwVaFaSNRHbOkEVrbKZhmqBSmRHRHOhoV8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Hxz+4kgLn0SWRUcDA1FqG7Sl6z3dmQhFksR2XWsgXU+Grz4Np8dpl1t8/Jmvv+VJwursE6Lvd4jcVzpYf/NP5qZcKnmTQh6RWf6oq+M13jwl7o6ECHVegMwhD8FCoF3d6ChvLmZcCeorg8f7lygaOYWd14sjwhmUyEyKrpSjbjw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=DjlCbhes; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-1fc52394c92so31479305ad.1
+        for <devicetree@vger.kernel.org>; Sat, 10 Aug 2024 19:43:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1723344181; x=1723948981; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=TyqL0k9akOlb2hvVIUqCD3E++zuDy0rXL3Yrg2o0Xvc=;
+        b=DjlCbhesi3Y4FrpaqpBpM5dc0DFS8Bq2/n263k6hFLAdRgXYT/Ah4q5T+I6duLSo+9
+         ZLGh8yICOmlp+1mVuK3yg6mH3AnNRftlCcC1tG02/QozdncqtUu5QJKqnBArNZNBE9Rn
+         RPMzDqEW3dPBESxha0kQ89NNuDtZRYDdLHg80=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723344181; x=1723948981;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TyqL0k9akOlb2hvVIUqCD3E++zuDy0rXL3Yrg2o0Xvc=;
+        b=imi5w/Dg0oOdvpVeKxV8q9HINxfKWog3OLLwwD+gFbU2KIPz2h73bcyAtCQOHyocEH
+         cf2Zy+E5RNl0fhqWZc0Zpwl7Cd4NqZt3s7gV4o0YeOP9ToekmxihtZs64p1JdGRIzOKO
+         7s/7fRHP3303xxsPH5SreNLl7GQsa80jDncwVih9PBoHetBd2uTpwg48B0X/WnNjSc8x
+         VI8oyDQ/I/LSKoBzQuDxn/bfSJviXixILqLCXLM0XUfdHFmz2U92bVFrYdHZAvmwP2c4
+         bTg/xt2jb/gAsQM50qWGRNMsY9rJRon2nO90d/7Sd28MzW0MxSkqcDSd6f206kkdHcoF
+         BeFg==
+X-Forwarded-Encrypted: i=1; AJvYcCV0zzGe0gJual+Y4oGUl2vfNkxFQVNnpDktcQ+QfqXMIt5EQA8wOrRxDbxknFKRvlYEJTmYep5GCSspColm0ZHHXVwmUYzD7k8sZg==
+X-Gm-Message-State: AOJu0YxQJ+YEJWxoJCMNsdZOUw3BvYW/WcZWzdiahwIulapVHAblm4u9
+	N1NgNlRMhkEL5cjWY+NEIZHWBsXh7eOZf6MpwZmkdZPkU52lWWWEIIsmHWNfuw==
+X-Google-Smtp-Source: AGHT+IH2Pnqy6bqQWwC0ZO+/SqLviXkATatRPH04u/7yu8gdi0EZ0ol/OggQFXPL4I4OxOBl9Zy2Ng==
+X-Received: by 2002:a17:902:d492:b0:1fd:664b:224 with SMTP id d9443c01a7336-200ae60a518mr65172165ad.56.1723344180904;
+        Sat, 10 Aug 2024 19:43:00 -0700 (PDT)
+Received: from [192.168.1.3] (ip68-4-215-93.oc.oc.cox.net. [68.4.215.93])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-200bbb63778sm16913035ad.302.2024.08.10.19.42.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 10 Aug 2024 19:43:00 -0700 (PDT)
+Message-ID: <80a257e8-65fb-4545-a00d-9cb793d1b120@broadcom.com>
+Date: Sat, 10 Aug 2024 19:42:59 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB05.amd.com: thippesw@amd.com does not designate
- permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF00020E66:EE_|DM6PR12MB4218:EE_
-X-MS-Office365-Filtering-Correlation-Id: a6ad6829-c137-427d-03a5-08dcb9acad42
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|82310400026|36860700013|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?YTZrOodY04CF9R/b2STY8GsUf+oFpMH5rkMyd59wq2gA7trv0dGLEr5nVO4I?=
- =?us-ascii?Q?2LnNhes5vU+AMer18a1QWi9FL/TxtSEPp/KrSBgWWDsg0VAuCBExg5nAVmji?=
- =?us-ascii?Q?0A/wUS6Hc44hFheZ8nmW4hX2G0xJKzcFdy32mUSJSHD5RIJnj2qaT5ZOxrJ/?=
- =?us-ascii?Q?Lp721zDG2MAjNZe3Jw0EgGoxHuhT6GhMk9DgHpeZj744ahPUOe7N6+qQ0FGm?=
- =?us-ascii?Q?Oc1iwvyTgY0F6RkI701e8T0sax0fR6RHm4JmIrcu/LhsYyrVFMt32oMTGZBk?=
- =?us-ascii?Q?oD/mPRBR9sBxR1H49EgNEr9XDUymrvGAXSvMF5Q2andL9qjiib7rNuCXZW0B?=
- =?us-ascii?Q?kuqDKhmW7UyxCGir90kWhk7EaW7nN1L8DiNipN9EfkEM20H7sYbuAOeLrfds?=
- =?us-ascii?Q?BhSfUIgtKWqYfeYe5P0aO1p0wNnK+a6PViGwFogmpFHkug0G/ttnDroVeVvI?=
- =?us-ascii?Q?AksLoFbCr2jTKnJlwlblUJ4+2ZVM/abLHCJFwZh8EprsHWJtf/mLshqWhhhY?=
- =?us-ascii?Q?XjW16QR72qpK536BOtYPmk/DNk4hcw6+It1ZkR6FjqchehycuCzPtRr22kQk?=
- =?us-ascii?Q?GKylrT0FGF1v1srh+oRpsCLhw1ZBeKSw0rMWtgIYYwsXhgG43aw+CaMEdQ+u?=
- =?us-ascii?Q?ZJNXUos1Rp5ALY478YfHu9ApJijKlv5fi3lLSlL/rMEJ6ZEgwi3u6H81NlnC?=
- =?us-ascii?Q?KHHYI2bt4hm18LaZt3kPWURybGpFY1HQ7qhETEnL/QY9ODZXqui1olCXuHsZ?=
- =?us-ascii?Q?sFeZ7NkmaSEWbqKCiwxjvIOi456YKWlQAWaPe+yQ5CsTNCCPRPjVV5wjeiZC?=
- =?us-ascii?Q?HJbiDrkfH6ly00fqqMsW55CT2h4mF+b4GkH1ul7Pqo6/PprFWFJjCjTgf8Bv?=
- =?us-ascii?Q?VBHoH0oiwhxhPDzqwXAhxtE/eHU4etffMtYnLztaKLRjjLpbceNHUtL1ZQF9?=
- =?us-ascii?Q?qaww/RybTYIOKwJJK0VqgpR5be4A3ANVl7Ev75XqkvAwAmHRXN5UTS27EOPH?=
- =?us-ascii?Q?ZJPB6YItcQx0CLssCcKZO0cBbf6JyAiV+PIVfOxE4hcEjR+kGPMThFa/rHW8?=
- =?us-ascii?Q?nJH07wrA6ViTtx3v84KsD3CDfLwe4kJAmMGoly2tuRWkXHuA0ioK1OfiVgNp?=
- =?us-ascii?Q?1i35GLIn9BJirBvXlAbQR28+iVRCguGtYQk8/lnp2iWhu38DaKeuahhtC/eU?=
- =?us-ascii?Q?FWrCeSBu2kb+F1FxiWq+U2bomrZUCueDySI1EI3WUhaU7e8Ydv7QpL9Xlgm8?=
- =?us-ascii?Q?IiF+NU/bM4UBs5TswZxqTh6sdwZn0OFV46opcLXxbVKzrav4GvkReWLU0wmQ?=
- =?us-ascii?Q?YqsVLxRjgrCinMPzrVpsmJclrUKI2QCLTo8ZKRo/mL0S9hgkqpQu4BBkuaB/?=
- =?us-ascii?Q?aDw6674JsmFeTkO9KtYpbCxSlbF5MMXNb7rLNJ+YPyN+QUsKng=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(7416014)(82310400026)(36860700013)(1800799024);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Aug 2024 02:24:07.1440
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a6ad6829-c137-427d-03a5-08dcb9acad42
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BL6PEPF00020E66.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4218
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] firmware: arm_scmi: Support 'reg-io-width' property
+ for shared memory
+To: linux-arm-kernel@lists.infradead.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
+ Cristian Marussi <cristian.marussi@arm.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
+ arm-scmi@vger.kernel.org, james.quinlan@broadcom.com,
+ justin.chen@broadcom.com, kapil.hali@broadcom.com,
+ bcm-kernel-feedback-list@broadcom.com
+References: <20240810214621.14417-1-florian.fainelli@broadcom.com>
+ <20240810214621.14417-3-florian.fainelli@broadcom.com>
+Content-Language: en-US
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <20240810214621.14417-3-florian.fainelli@broadcom.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add support for Xilinx QDMA Soft IP core as Root Port.
 
-The Versal Prime devices support QDMA soft IP module in programmable logic.
 
-The integrated QDMA Soft IP block has integrated bridge function that can
-act as PCIe Root Port.
+On 8/10/2024 2:46 PM, Florian Fainelli wrote:
+> Some shared memory areas might only support a certain access width,
+> (e.g.: 32 bits accesses only). Update the shmem layer to support
+> reading from and writing to such shared memory area using the specified
+> I/O width in the Device Tree. The various transport layers making use of
+> the shmem.c code are updated accordingly to pass the I/O width to the
+> routines that need it.
+> 
+> Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
 
-Signed-off-by: Thippeswamy Havalige <thippesw@amd.com>
----
- drivers/pci/controller/pcie-xilinx-dma-pl.c | 54 ++++++++++++++++++++-
- 1 file changed, 53 insertions(+), 1 deletion(-)
----
-changes in v4:
-- none
+Doing a self review, though I will only resend after collecting 
+additional feedback.
 
-changes in v3:
-- Modify macro value to lower case.
-- Change return type based QDMA compatible.
+> ---
+>   drivers/firmware/arm_scmi/common.h            | 14 +++-
+>   .../arm_scmi/scmi_transport_mailbox.c         | 12 ++-
+>   .../firmware/arm_scmi/scmi_transport_optee.c  |  7 +-
+>   .../firmware/arm_scmi/scmi_transport_smc.c    | 10 ++-
+>   drivers/firmware/arm_scmi/shmem.c             | 77 ++++++++++++++++---
+>   5 files changed, 96 insertions(+), 24 deletions(-)
+> 
+> diff --git a/drivers/firmware/arm_scmi/common.h b/drivers/firmware/arm_scmi/common.h
+> index 69928bbd01c2..97dae844a190 100644
+> --- a/drivers/firmware/arm_scmi/common.h
+> +++ b/drivers/firmware/arm_scmi/common.h
+> @@ -170,6 +170,7 @@ void scmi_protocol_release(const struct scmi_handle *handle, u8 protocol_id);
+>    *		       This can be dynamically set by transports at run-time
+>    *		       inside their provided .chan_setup().
+>    * @transport_info: Transport layer related information
+> + * @shmem_io_width: I/O width in bytes of the shared memory area
+>    */
+>   struct scmi_chan_info {
+>   	int id;
+> @@ -178,6 +179,7 @@ struct scmi_chan_info {
+>   	struct scmi_handle *handle;
+>   	bool no_completion_irq;
+>   	void *transport_info;
+> +	u32 shmem_io_width;
 
-changes in v2:
-- Add description for struct pl_dma_pcie
----
-diff --git a/drivers/pci/controller/pcie-xilinx-dma-pl.c b/drivers/pci/controller/pcie-xilinx-dma-pl.c
-index 5be5dfd8398f..1ea6a1d265bb 100644
---- a/drivers/pci/controller/pcie-xilinx-dma-pl.c
-+++ b/drivers/pci/controller/pcie-xilinx-dma-pl.c
-@@ -13,6 +13,7 @@
- #include <linux/msi.h>
- #include <linux/of_address.h>
- #include <linux/of_pci.h>
-+#include <linux/of_platform.h>
- 
- #include "../pci.h"
- #include "pcie-xilinx-common.h"
-@@ -71,10 +72,24 @@
- 
- /* Phy Status/Control Register definitions */
- #define XILINX_PCIE_DMA_REG_PSCR_LNKUP	BIT(11)
-+#define QDMA_BRIDGE_BASE_OFF		0xcd8
- 
- /* Number of MSI IRQs */
- #define XILINX_NUM_MSI_IRQS	64
- 
-+enum xilinx_pl_dma_version {
-+	XDMA,
-+	QDMA,
-+};
-+
-+/**
-+ * struct xilinx_pl_dma_variant - PL DMA PCIe variant information
-+ * @version: DMA version
-+ */
-+struct xilinx_pl_dma_variant {
-+	enum xilinx_pl_dma_version version;
-+};
-+
- struct xilinx_msi {
- 	struct irq_domain	*msi_domain;
- 	unsigned long		*bitmap;
-@@ -88,6 +103,7 @@ struct xilinx_msi {
-  * struct pl_dma_pcie - PCIe port information
-  * @dev: Device pointer
-  * @reg_base: IO Mapped Register Base
-+ * @cfg_base: IO Mapped Configuration Base
-  * @irq: Interrupt number
-  * @cfg: Holds mappings of config space window
-  * @phys_reg_base: Physical address of reg base
-@@ -97,10 +113,12 @@ struct xilinx_msi {
-  * @msi: MSI information
-  * @intx_irq: INTx error interrupt number
-  * @lock: Lock protecting shared register access
-+ * @variant: PL DMA PCIe version check pointer
-  */
- struct pl_dma_pcie {
- 	struct device			*dev;
- 	void __iomem			*reg_base;
-+	void __iomem			*cfg_base;
- 	int				irq;
- 	struct pci_config_window	*cfg;
- 	phys_addr_t			phys_reg_base;
-@@ -110,16 +128,23 @@ struct pl_dma_pcie {
- 	struct xilinx_msi		msi;
- 	int				intx_irq;
- 	raw_spinlock_t			lock;
-+	const struct xilinx_pl_dma_variant   *variant;
- };
- 
- static inline u32 pcie_read(struct pl_dma_pcie *port, u32 reg)
- {
-+	if (port->variant->version == QDMA)
-+		return readl(port->reg_base + reg + QDMA_BRIDGE_BASE_OFF);
-+
- 	return readl(port->reg_base + reg);
- }
- 
- static inline void pcie_write(struct pl_dma_pcie *port, u32 val, u32 reg)
- {
--	writel(val, port->reg_base + reg);
-+	if (port->variant->version == QDMA)
-+		writel(val, port->reg_base + reg + QDMA_BRIDGE_BASE_OFF);
-+	else
-+		writel(val, port->reg_base + reg);
- }
- 
- static inline bool xilinx_pl_dma_pcie_link_up(struct pl_dma_pcie *port)
-@@ -173,6 +198,9 @@ static void __iomem *xilinx_pl_dma_pcie_map_bus(struct pci_bus *bus,
- 	if (!xilinx_pl_dma_pcie_valid_device(bus, devfn))
- 		return NULL;
- 
-+	if (port->variant->version == QDMA)
-+		return port->cfg_base + PCIE_ECAM_OFFSET(bus->number, devfn, where);
-+
- 	return port->reg_base + PCIE_ECAM_OFFSET(bus->number, devfn, where);
- }
- 
-@@ -731,6 +759,15 @@ static int xilinx_pl_dma_pcie_parse_dt(struct pl_dma_pcie *port,
- 
- 	port->reg_base = port->cfg->win;
- 
-+	if (port->variant->version == QDMA) {
-+		port->cfg_base = port->cfg->win;
-+		res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "breg");
-+		port->reg_base = devm_ioremap_resource(dev, res);
-+		if (IS_ERR(port->reg_base))
-+			return PTR_ERR(port->reg_base);
-+		port->phys_reg_base = res->start;
-+	}
-+
- 	err = xilinx_request_msi_irq(port);
- 	if (err) {
- 		pci_ecam_free(port->cfg);
-@@ -760,6 +797,8 @@ static int xilinx_pl_dma_pcie_probe(struct platform_device *pdev)
- 	if (!bus)
- 		return -ENODEV;
- 
-+	port->variant = of_device_get_match_data(dev);
-+
- 	err = xilinx_pl_dma_pcie_parse_dt(port, bus->res);
- 	if (err) {
- 		dev_err(dev, "Parsing DT failed\n");
-@@ -791,9 +830,22 @@ static int xilinx_pl_dma_pcie_probe(struct platform_device *pdev)
- 	return err;
- }
- 
-+static const struct xilinx_pl_dma_variant xdma_host = {
-+	.version = XDMA,
-+};
-+
-+static const struct xilinx_pl_dma_variant qdma_host = {
-+	.version = QDMA,
-+};
-+
- static const struct of_device_id xilinx_pl_dma_pcie_of_match[] = {
- 	{
- 		.compatible = "xlnx,xdma-host-3.00",
-+		.data = &xdma_host,
-+	},
-+	{
-+		.compatible = "xlnx,qdma-host-3.00",
-+		.data = &qdma_host,
- 	},
- 	{}
- };
+This is not used because the individual transports store the 
+shmem_io_width in their own transport_info structure.
+
+[snip]
+
+>   
+> +#define __shmem_copy_toio_tpl(s)			\
+> +	for (unsigned int i = 0; i < xfer->tx.len; i += shmem_io_width)		\
+> +		iowrite##s(((u##s *)(xfer->tx.buf))[i / shmem_io_width],	\
+> +			   shmem->msg_payload + i);
+> +
+> +#define __shmem_copy_fromio_tpl(s)			\
+> +	for (unsigned int i = 0; i < xfer->rx.len; i += shmem_io_width)		\
+> +		((u##s *)(xfer->rx.buf))[i / shmem_io_width] = 			\
+> +			 ioread##s(shmem->msg_payload + shmem_io_width + i);
+
+This needs to be shmem->msg_payload + 4 + i. This worked in my testing 
+because I was precisely tseting with 'reg-io-width = <4>'.
+
+[snip]
+
+>   
+>   static u32 shmem_read_header(struct scmi_shared_mem __iomem *shmem)
+> @@ -81,8 +109,34 @@ static u32 shmem_read_header(struct scmi_shared_mem __iomem *shmem)
+>   	return ioread32(&shmem->msg_header);
+>   }
+>   
+> +static void __shmem_fetch_resp_notif_data(struct scmi_xfer *xfer,
+> +					  struct scmi_shared_mem __iomem *shmem,
+> +					  u32 shmem_io_width)
+> +{
+> +	/* Take a copy to the rx buffer.. */
+> +	switch (shmem_io_width) {
+> +	case 1:
+> +		__shmem_copy_fromio_tpl(8);
+> +		break;
+> +	case 2:
+> +		__shmem_copy_fromio_tpl(16);
+> +		break;
+> +	case 4:
+> +		__shmem_copy_fromio_tpl(32);
+> +		break;
+> +	case 8:
+> +		__shmem_copy_fromio_tpl(32);
+
+This should be 64 and it looks like ioread64/iowrite64 is not 
+necessarily defined for 32-bit configurations, so this needs to be gated 
+with a CONFIG_64BIT define here since ioread64/iowrite64 in 
+include/asm-generic/io.h is defined that way.
 -- 
-2.34.1
+Florian
 
 
