@@ -1,102 +1,94 @@
-Return-Path: <devicetree+bounces-92723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0887094E223
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 18:09:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14F3094E22F
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 18:12:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 67FF91F21211
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 16:09:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A85CC1F21481
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 16:12:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A8B014F9DD;
-	Sun, 11 Aug 2024 16:09:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F8311537A1;
+	Sun, 11 Aug 2024 16:12:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="eYUjJahw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UNPkEiIa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C3B37F6;
-	Sun, 11 Aug 2024 16:09:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F12F152170;
+	Sun, 11 Aug 2024 16:12:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723392560; cv=none; b=dWAZTTJs1BPOEXCdm6oILpcykgFHwPUCxNtuTc0jteYltt2KKzW/OeQcVxu4SH91DYyz+YObOYthCYo8SXeeS3IsAIhLBWx7FkAp+DJqyX6cL+oNuQAYXcjDvCFdRwy+RuJrBxdVYhjZ4xk37l0rt3v+GfTy3J/nxTXnsvnHzwg=
+	t=1723392759; cv=none; b=Ph7iCfiVCxFe/ymv8Bn0NRtkId1ndL7XOzcIhxgYXf5zTP954UN1+YghzMWM5qAi1Ejy5HmEpx7ZrUAS+gsYwCL8ODGuzBe6pho9Wd+NWDsamvYVv+vIXc7R50QJoO9ma3Bs96DiyNrE7EMThQOkvPsYbafz3/7jKnKaw8AgsU8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723392560; c=relaxed/simple;
-	bh=hCAQ116x3Hmbd/LpKND63YA31xscxw+DNNFO/YfTueA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UO3v3k2OVhHemJK8CnxCLacYVScFRvWTKFqTVenDY4qz0e7sNMyaJe0s1DIcuXrAwKd0r4DotdbO/GY4WBt+iU1E7N+AzeGH9t1shDYRP2EqdWurlCYzNWPWP0hMhUxGEnHMvyflfv0Xm2eDKXzkWLVnk/A23I0JzcTy4FBHaj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=eYUjJahw; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=PwlmP6m6ZlNuFnU37bFwXCVDeuLJQZU+NcyVICh6+ow=; b=eYUjJahwQDeitAGD0vzz0MHY3r
-	f5Yfja5/PVYr2tT+Js9bm7R9vN7nCSIh7c5BUzJvl9ow4rFvPTwW9wXIX1sxje9USu3Oedm3UHi2o
-	BSSUW1qk6um00lglDiXpzzjLH+x/mEFCFHBwlACU6of1Y6eUlhczxvGv91aKrnijAWOs=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sdB7v-004VZQ-4B; Sun, 11 Aug 2024 18:09:03 +0200
-Date: Sun, 11 Aug 2024 18:09:03 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, horms@kernel.org, saeedm@nvidia.com,
-	anthony.l.nguyen@intel.com, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, corbet@lwn.net,
-	linux-doc@vger.kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, horatiu.vultur@microchip.com,
-	ruanjinjie@huawei.com, steen.hegelund@microchip.com,
-	vladimir.oltean@nxp.com, masahiroy@kernel.org,
-	alexanderduyck@fb.com, krzk+dt@kernel.org, robh@kernel.org,
-	rdunlap@infradead.org, hkallweit1@gmail.com, linux@armlinux.org.uk,
-	UNGLinuxDriver@microchip.com, Thorsten.Kummermehr@microchip.com,
-	Pier.Beruto@onsemi.com, Selvamani.Rajagopal@onsemi.com,
-	Nicolas.Ferre@microchip.com, benjamin.bigler@bernformulastudent.ch,
-	linux@bigler.io
-Subject: Re: [PATCH net-next v5 13/14] microchip: lan865x: add driver support
- for Microchip's LAN865X MAC-PHY
-Message-ID: <0451de33-3256-4c6b-a6ac-ca99b946fb15@lunn.ch>
-References: <20240730040906.53779-1-Parthiban.Veerasooran@microchip.com>
- <20240730040906.53779-14-Parthiban.Veerasooran@microchip.com>
+	s=arc-20240116; t=1723392759; c=relaxed/simple;
+	bh=ndhQ1iirqwmolkgMOneB7kzVvy9UDilTHgGgK02kysE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NMjZEyLnjIe+QaELTal55YOaTTXwRLp7jsWD1taIpdiPBPQ/5ZqY6Qp6WQZOV2LbDcMa7GfxPBHUxGjq5zCuL0Ur3sgZrd53ZBl9LPGgzVOqmh/RwHAsL4vbkUbJc4i6BzXuXnQEnAZ5xnkmZsx3Z1iETgeZuecYmKRL/lsKIMY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UNPkEiIa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0599AC32786;
+	Sun, 11 Aug 2024 16:12:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723392758;
+	bh=ndhQ1iirqwmolkgMOneB7kzVvy9UDilTHgGgK02kysE=;
+	h=From:To:Cc:Subject:Date:From;
+	b=UNPkEiIa9OApcgkcu/W3iG9xvPf51chsAg5Afa2qIJZ2REjAwBSFqbbUOFcucVl5A
+	 llgpVY/kK9QR1+E0CHgp893OSrkRU6bEhEsoCFqfKWawFxaogyD1Rbx8U7q6xxAkZb
+	 nKm46Mk37av4OyTbW6YnVcrWgplPmKzHkPLa6/rVMoIA9LkC1waaAvuSJkG0ec78Sw
+	 SshCfBTe7l/AspQG8BVFHjOL80D4pztFbK3ZEuk6CrrHHPqOkK9KlVNRsk4cOxNDjZ
+	 9HCVuvW17xyq68jn+4DRAEsa9EMI20mIT2f9K+M8XqwYqbfrZ+5dyge3u02FJDM5HZ
+	 s/ZcJi5uhqkLg==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: linux-gpio@vger.kernel.org
+Cc: linus.walleij@linaro.org,
+	sean.wang@kernel.org,
+	linux-mediatek@lists.infradead.org,
+	lorenzo.bianconi83@gmail.com,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com,
+	benjamin.larsson@genexis.eu,
+	conor+dt@kernel.org,
+	ansuelsmth@gmail.com
+Subject: [PATCH 0/2] Add pinctrl support to EN7581 SoC
+Date: Sun, 11 Aug 2024 18:12:11 +0200
+Message-ID: <cover.1723392444.git.lorenzo@kernel.org>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240730040906.53779-14-Parthiban.Veerasooran@microchip.com>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jul 30, 2024 at 09:39:05AM +0530, Parthiban Veerasooran wrote:
-> The LAN8650/1 is designed to conform to the OPEN Alliance 10BASE-T1x
-> MAC-PHY Serial Interface specification, Version 1.1. The IEEE Clause 4
-> MAC integration provides the low pin count standard SPI interface to any
-> microcontroller therefore providing Ethernet functionality without
-> requiring MAC integration within the microcontroller. The LAN8650/1
-> operates as an SPI client supporting SCLK clock rates up to a maximum of
-> 25 MHz. This SPI interface supports the transfer of both data (Ethernet
-> frames) and control (register access).
-> 
-> By default, the chunk data payload is 64 bytes in size. The Ethernet
-> Media Access Controller (MAC) module implements a 10 Mbps half duplex
-> Ethernet MAC, compatible with the IEEE 802.3 standard. 10BASE-T1S
-> physical layer transceiver integrated is into the LAN8650/1. The PHY and
-> MAC are connected via an internal Media Independent Interface (MII).
+Introduce pinctrl driver for EN7581 SoC. Current EN7581 pinctrl driver
+supports the following functionalities:
+- pin multiplexing
+- pin pull-up, pull-down, open-drain, current strength,
+  {input,output}_enable, output_{low,high}
+- gpio controller
+- irq controller
 
-I see there are some fixes needed for Multicast, but otherwise this
-looks O.K.
+Lorenzo Bianconi (2):
+  dt-bindings: pinctrl: airoha: Add EN7581 pinctrl controller
+  pinctrl: airoha: Add support for EN7581 SoC
 
-Please send a new version with the fixes, and then i think we are
-ready for this to be merged.
+ .../pinctrl/airoha,en7581-pinctrl.yaml        |  467 +++
+ MAINTAINERS                                   |    7 +
+ drivers/pinctrl/mediatek/Kconfig              |   14 +-
+ drivers/pinctrl/mediatek/Makefile             |    1 +
+ drivers/pinctrl/mediatek/pinctrl-airoha.c     | 2983 +++++++++++++++++
+ 5 files changed, 3471 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/airoha,en7581-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-airoha.c
 
-	Andrew
+-- 
+2.46.0
 
 
