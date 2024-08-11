@@ -1,329 +1,531 @@
-Return-Path: <devicetree+bounces-92757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97B5794E36E
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 23:47:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BCE194E371
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 23:49:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3EEE1C21039
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 21:47:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 20F801F2228D
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 21:49:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB3AE1586C7;
-	Sun, 11 Aug 2024 21:47:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0048615C138;
+	Sun, 11 Aug 2024 21:49:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="bZySg0Q0"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SbSYFMAM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010032.outbound.protection.outlook.com [52.101.69.32])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B7F12C1A5;
-	Sun, 11 Aug 2024 21:47:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.32
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723412841; cv=fail; b=llFtAoV6H6ZLxC9d10hj1ZNZk7Zzwnjfcz5OIAAIQWvvoW+il2CB3+Ia0K2gtIiUH0idFpVyHNGgzg/+fO+sTr95mnjPuvq42WX5uH4onvL1R2v0TDafH0PHdRAC5+XfPmSmLPiPfgiUzn2NGYgFJgL3RrhQ3YyJAMd2RtQwXAw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723412841; c=relaxed/simple;
-	bh=W0HahD58Liw+nlbz/NpbFHj4gC2SHFjCFFJNkpQxs0s=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=tcyFPlnp8UV3f6B3rAAoM3vPAeXH2BGLmgzmRcvQKChWBf22HzUVkjv7lY8pRR8Tn9aX/Yk804zNMzg0XCfU8RZU0Vv7S9NBFFm5qvs/iPFvvIt9Y0EKuzLztmheidPT8+HBrnFB8eFBiiUhBGdAs99svmpETaTh8pEXJ7kJDpc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=bZySg0Q0; arc=fail smtp.client-ip=52.101.69.32
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mZpCOaJVMFlUGgRZBW/QnJsZSs4UlcvwU6HvwIwbZqq/BlLHqmjbRkohxa8rt9HFvoFmD7Ad3Beqz8DFZwI2oCZQznmu5gQkifmn7zpIMERqilSCQwCl6926dwpiw15BA8JK4hUcgeBD5UWFO3HNPQiIE7GyNAQeJf+RB6CEYa3ZAgaW+q7TMJuMnBV0Ms0X28xXfHD/RcdQEWk5KNdFBpJ5QXXSYYq3UG8hfMkBdQkdOJLgM8o1k6HeuyUJXfKVbSu23sg7yQFp04TsblXm7giHkoQX2T5jMtIX+fTyt4qENwVnVbfV/jeDzA/mS4QzUBNuUCpS2EDQKK0kUDMl7w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Hran0EUDj68icBdfnjLc1XiTJ8hNj7atRHuiehfcWqQ=;
- b=WQmROUFz+anVlOdulync4Ump0dITyAkrUAR/urju9pgRVQ28A67uZqGuNZxdhK8Uuhd6Nzst53Vxy8InUBKUCYa5sj1u2ppoaSLFSKxCaXnkQcRKJg2C29C9G3olwg+35u5o/JE4q+1fD6CegUB4+c5DTav8sjSPJ+UdcTZ+fH9z1xW8UCszvsme+oKmytV7R1gaPykSfjgyJafCh+RRWbzwlc+93SPKlAffJmSS/JXPGgBv1tMSOdMTmjJ7sOq56CE5/fqdzfcV1BvPd1BKnEBYoIw2CIDcdK8dlSzppAidnIXSrNxCbvktekkPA0947UI1CTiqviqvXdSN4GUnmA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Hran0EUDj68icBdfnjLc1XiTJ8hNj7atRHuiehfcWqQ=;
- b=bZySg0Q0qbZUViaErFaulVR6RQ27NxdtHv6lNydzHKHOGstgScJKSmg/AevnlcaWfwigcTYiaREt/UBw9/ev9eJ+nx2fy5sQ1lTyaQ4k5KtXO41F8JrrTmirUT2tRp4Kn6bE53XOp08xrnuwbgFSD8Ht25Mqh6hgngtV1FxuWIIImidPUphv0OnG4w4Y7C6dl+QQHQZuDu+NChfA9R4odUtUbf6HXj/vh4B3cNIyHhhoRkgan9r3NGX139tmyNErJs8Lj27WkiDXrTliJwA6ZCuK/88XpsJVWeTnRTyZusZECDst4/MKhG6hEtzJNxMUZMnP6CeIWF+VdEoeKh6kzg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AS8PR04MB7623.eurprd04.prod.outlook.com (2603:10a6:20b:29c::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.20; Sun, 11 Aug
- 2024 21:47:16 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.7849.018; Sun, 11 Aug 2024
- 21:47:16 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-input@vger.kernel.org (open list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)...),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH 1/1] dt-bindings: input: convert rotary-encoder to yaml
-Date: Sun, 11 Aug 2024 17:46:55 -0400
-Message-Id: <20240811214656.3773098-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR13CA0140.namprd13.prod.outlook.com
- (2603:10b6:a03:2c6::25) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBEDD2C1A5;
+	Sun, 11 Aug 2024 21:49:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723412963; cv=none; b=kobX8OLmM81bhH9Gc9++/xS/m2OKEKRrKVfISEllEkScUxWn76RaRu8LNeDzq0a4L/kM0BuyH/Q0G1BDxE2NrP2isSGG6FRQ44MkWibZvGyrss6H7vuYj6Xx2jtSUJjnRTYhx8Y9/JEflewk7I1qqBKyTKmO7bK7mFvKDVdb2X0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723412963; c=relaxed/simple;
+	bh=nEQq42SN5AAOZnh7w+2AygRKYZTre8aNMlx2TwUyidk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XkSAq8FkNJ7vsokBGDBVS8O2ahkbalAR0UZuzvex2AhiTN3Pb1BzgzCpr7z/hB6xIVEDkgmregZdHMicbPalo3J/NBulRNFVxCUPF0IDdNTugISot5JNp5e6EtZZkSGTIL0tI/RFtqkqGeFqtF6R51WQQuUEdZiMlXe8AuxaXYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SbSYFMAM; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1723412961; x=1754948961;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=nEQq42SN5AAOZnh7w+2AygRKYZTre8aNMlx2TwUyidk=;
+  b=SbSYFMAMKCYz3BjBuZRQNZp6yd37Wz84fH0fc9e+h7iDbtLGs2HDzE4/
+   7dKoh8r9/zMmE86PyadQf1HyBqELbamRD/2URGW6DqcZhuhXSQc2YdG+e
+   3KnepxbVGXMEDGtQNe/ZDsH3EKBVKC5oIkZgj4cUsvIYNm3ZEmqQvYRGf
+   dxCW++YS05VfO1uIDrLbz260/sTwY6hgF54aycre/IdYVskxINC+G32RO
+   7lO6u6KSfdrZYfq5xGfAMA6ZNRJMmBL/RIMgwhgq9xHhRaz/orJ4An2yX
+   iLmXuZ8uB+hJvDMhqm1t3nCG+oJYwYPIuHrvhrfdis2B/n38v0J1Q1Sj7
+   Q==;
+X-CSE-ConnectionGUID: oOjZtAisQzyEvyq0OSCi+Q==
+X-CSE-MsgGUID: fCIpCsNqQwisPQTy+nTx4Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11161"; a="21641462"
+X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; 
+   d="scan'208";a="21641462"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Aug 2024 14:49:20 -0700
+X-CSE-ConnectionGUID: vVCemKyfTw2490pTvgG+iw==
+X-CSE-MsgGUID: qmNzy1zlRvulI+BRioFc1w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; 
+   d="scan'208";a="58038882"
+Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
+  by fmviesa008.fm.intel.com with ESMTP; 11 Aug 2024 14:49:16 -0700
+Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sdGR7-000BA7-2T;
+	Sun, 11 Aug 2024 21:49:13 +0000
+Date: Mon, 12 Aug 2024 05:49:11 +0800
+From: kernel test robot <lkp@intel.com>
+To: Lorenzo Bianconi <lorenzo@kernel.org>, linux-gpio@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linus.walleij@linaro.org, sean.wang@kernel.org,
+	linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com,
+	krzk+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com,
+	benjamin.larsson@genexis.eu, conor+dt@kernel.org,
+	ansuelsmth@gmail.com
+Subject: Re: [PATCH 2/2] pinctrl: airoha: Add support for EN7581 SoC
+Message-ID: <202408120556.EjlJhjXg-lkp@intel.com>
+References: <c69c4a9b8e57eebdde0521731b8cd9f92ed4891b.1723392444.git.lorenzo@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB7623:EE_
-X-MS-Office365-Filtering-Correlation-Id: f3fc7f94-1324-435f-0144-08dcba4f2a93
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|376014|1800799024|366016|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?iupIlrqPdipwOiIAgwZ5IJqztJ87LbeqChOvSWq9nyftTTCPOaYJD32YJj/v?=
- =?us-ascii?Q?1neoqAUeg32j1Y++Fw9sku+9sUIrkZhBvNRHzxEa49SjU3UbcK4TIUQeMxJr?=
- =?us-ascii?Q?fUSpJJywYwT9OjLpmtYWAEoJ1+DtzTvWtIXj+WjLtevMrFc0cdwP7m+4oD61?=
- =?us-ascii?Q?qwzOOgNZEbdyfsl9TveqsDeGlQImGuf7e85CeXEUZao48pPq3d0vjG3dbQo9?=
- =?us-ascii?Q?+m+YFqk+Ef9Z1hNf78TVxs13Y7qTk8ougAt9BruwbAf0kYFmeoORBZnGH7yR?=
- =?us-ascii?Q?g2mwued96zVw1zMzIbgZy6PHZ1jIqrOXT4kvbbvP0qRyqi9cWN3BxNVFFvSm?=
- =?us-ascii?Q?VWIqejEd7Jnp/1G1cCi4U5uwRrEytQMnSohYyFzNb0G6hfmtnL18xpay+VJY?=
- =?us-ascii?Q?0fsPPqS38Cf3JF01qVrBglhlLqAlZ2Bx780CgFMRgZjfIkNIE7B7FBd6CWnP?=
- =?us-ascii?Q?0w1qG1tsFwliofhTlI7MSQK0UW55yQJw3smEt4Voodhf+duTp4TJm2qmm7AW?=
- =?us-ascii?Q?oYM8ljEuWMuoguev6yIwNPj9btbQ1eMDsPJ4ewb/wo+eibQQvbnnfW1Ipjn7?=
- =?us-ascii?Q?S7cbQc63AdGdQ6zUq83kSrIQVb58InyrLzTbofL8ZYtt4UwlkGq4ekuzgxat?=
- =?us-ascii?Q?2Qw74gw93ElaSOdhPxXVwf3qAW/68ZK1ZU2MmnO/xZTxeXa+ZJTzz17nQXLx?=
- =?us-ascii?Q?LD+lgyg6lHwgop/pnEo253Koh+JVKB3HdIhk1Fhyy/QsYJ/8o4CkVnnWHZFP?=
- =?us-ascii?Q?gYmsQkq1UX6S8t+vqwgUda/QcHt0JI1tpgvt8rmdrHrL+6C9yq2FxgQ1WDw+?=
- =?us-ascii?Q?Fx04wENFmDQ7+xhOP7eSf+ZtvwBgDugRU8Ruyu7hCk/sKTo6hQRtPjnbpBHt?=
- =?us-ascii?Q?2PBWL+TK6pophxI6bmdvTD5QgfaajC1TxpUO/Y5gC9b+YfHhOttjFo8eyZKW?=
- =?us-ascii?Q?XK67m4K3iLp/PI39zA7ktuMglT/H3HoR0SCUaavF6EAW6m1qK1aoXI8bGNG3?=
- =?us-ascii?Q?U4TFv1NbOy2TQzXPXP5oWj78Jl6vsIV0pkh0S1qYWICnS4BT+h6OHVwe+Kag?=
- =?us-ascii?Q?kNrT26UUG616YrLaCWsXka2onCPxDVDxfba7PMDCmVgHx9JM2h7yuUNAVnNc?=
- =?us-ascii?Q?7DAuH0UgCAhptMlzUYGCUtF+GkqI6p247TZng3rpf7RX6SMMVRrDfGJQmJhv?=
- =?us-ascii?Q?PpZndq13uKuA8teRucnjZjk2jBPpFL7IPko71J+oiJfYPGtzEU5ZZSCuJ5fC?=
- =?us-ascii?Q?btxSGomZ8OF2okifRT33dDJbVUlYKWLjh8EmkVDf42VAm1ZKq3C3yuG5hVCv?=
- =?us-ascii?Q?aT6fs9j86hy3WBndR85klsqlmr3Mw971QKrulGYC3XB/mcsf+9iwP52VAZIq?=
- =?us-ascii?Q?WUAREWM=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(1800799024)(366016)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?1ihR89l2K7LcmjbCoSokV1mJ3v2ZuhBJ3tOMISLBYyeuwaQUXYiZwqJXt+z7?=
- =?us-ascii?Q?x43EDoJLhsu/UJ0WcxIsdXHl1yLp5bE0nqQuBmmFTIOsyuGxiKqsG4KfB+V9?=
- =?us-ascii?Q?Lnm/5tzahOrKrxZzBYHwDkNtvUms8Gltn9NhLZ561tonJyIylu7ZA1Hj9FTI?=
- =?us-ascii?Q?lntG+Ay2V/6PBEM4Rb/vsXIb3I7WQtyLxTfJtR1PZQAlcHU2ppXxYhezpk1D?=
- =?us-ascii?Q?S8LSnpICmjzfrUbLrLxTzyLy2vzwB+osS/msgOcH0NDagcBcSjawzgtcGE2O?=
- =?us-ascii?Q?DFEuKuHh6B4D9v55h6hySpTODbI8H0xUmVsI+WDpUvlMijE+hbsJeblspw1U?=
- =?us-ascii?Q?x5GgLUbxeaUV7TZ2TQ5j7gCbjE0n/kdZJhX49/hnMHhVPGH1aRADE49OryiM?=
- =?us-ascii?Q?Lz8f9p9uvmMGRt+xtboXrUpOdAL6mkiz8s/jdXNyWhN6IrwCdUG8MzvVSLyO?=
- =?us-ascii?Q?W8w8of+ETeNzmXgFKoGslEZoVcE33PtF4Y6tbb/OKRJs6PD8GQs8j0bjBf/Y?=
- =?us-ascii?Q?Dgd2mPuFezu5Ffbc99ykthQZWh1wGmoO7+Ul8/CSRIwBtwscG/98sDDEFRqH?=
- =?us-ascii?Q?cEevfMHdS0cAf5nzg6mK1FO/ilw3NuHvrp+KP1mwKaKAwJ9Bf5C369weczdG?=
- =?us-ascii?Q?E58bxOlWXSwcE1lfwEXn2Q7IsweQ77bcjL02qSGoQ+v73x3cxyd9wE/0Sfuw?=
- =?us-ascii?Q?2YeIIg0cf7aJdF1prVy1pG0q8hwtk7IO2Z8miduyqD6O7TOTdcbNQkaN7MId?=
- =?us-ascii?Q?ADlHQZu8x2u5HzvmSYeMSbeN0htdeMia5pih9qWzdMk3vPrPp5mRtZQjS7hl?=
- =?us-ascii?Q?2FV09M5shrKCu0mYzdnekljd03OmSPZMkVsyNKnsO+ILeFnPd54u7Hd8mKfr?=
- =?us-ascii?Q?E5HKxyFcPhq4UTXshhAfbV8f/6lBGadOUG01C+qVrXAuPK7b2aoMRYkxE1Dj?=
- =?us-ascii?Q?N6OP32IarhR1UDH6SEhRsWv8UHTfcBfeLnPbumCnTlGi3iNfA++ifdBYqFsW?=
- =?us-ascii?Q?llcbtrHBYfgee18VrmEBthRw0DWaUYZMi/E5KuSFN4GK0E4Gxk2VokNkKNcg?=
- =?us-ascii?Q?K1J9tVmCEKIElaxmi9g2vhzv9RuPk2Emol+5WweihpapDPjFNk/VjRw6BXGD?=
- =?us-ascii?Q?PbchuFzIl9MbaBnx3wrJrr9063WZ1yX7mEgV86amWls8AwO1zBaKx5L4MfOg?=
- =?us-ascii?Q?hFQc3F2SywFuHyKqQBsA2Iv/Eqi3eFYR8xH323N+C3ngIU/ixE13haSYdb+S?=
- =?us-ascii?Q?+mcJIrEzdAogSaSfkjdmMTNQ5MAMr/rmDxCZQiqtMYCzKYuZT1Znu5Aec09C?=
- =?us-ascii?Q?JJft25nOYad9GXtrhsqW1xxSEkzDh7nDJJsbbv5Ba9z+FPSAEYZV+kNoWXSS?=
- =?us-ascii?Q?K38BRlh7ybxKdBkC0wc6jT3pvdkNV2KlL46DLevPOLhK07+x/o8ebO0OgeHb?=
- =?us-ascii?Q?E3jQr+ouC4L7rultCPRIUcO+KRoK/mfO57RT969J1IfpryCbyeI7Q9J/gUFv?=
- =?us-ascii?Q?5ATpUyObBQj1E1oqQVpZUTLwt2xjuVQ96mhIK65CGnLWO7SbXQhGpRUtQ5nE?=
- =?us-ascii?Q?1jWWBlb2edgKV2IVF86iNyUIQIApU2mU9M1xPLu5?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f3fc7f94-1324-435f-0144-08dcba4f2a93
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Aug 2024 21:47:16.0697
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: C9fVbaXkF2oSnVfm6/UVMOfH8RuWjwIFJ5SX5nelCWgFTe08lRIgHltAAtBigC4KBIkIFOBssRhKTDsfhnYdzQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7623
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c69c4a9b8e57eebdde0521731b8cd9f92ed4891b.1723392444.git.lorenzo@kernel.org>
 
-Convert binding doc rotary-encoder.txt to yaml format.
+Hi Lorenzo,
 
-Additional change:
-- Only keep one example.
+kernel test robot noticed the following build errors:
 
-Fix below warning:
-arch/arm64/boot/dts/freescale/imx8mn-dimonoff-gateway-evk.dtb: /rotary-encoder:
-    failed to match any schema with compatible: ['rotary-encoder']
+[auto build test ERROR on linusw-pinctrl/devel]
+[also build test ERROR on linusw-pinctrl/for-next linus/master v6.11-rc2 next-20240809]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- .../bindings/input/rotary-encoder.txt         | 50 -----------
- .../bindings/input/rotary-encoder.yaml        | 90 +++++++++++++++++++
- 2 files changed, 90 insertions(+), 50 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/input/rotary-encoder.txt
- create mode 100644 Documentation/devicetree/bindings/input/rotary-encoder.yaml
+url:    https://github.com/intel-lab-lkp/linux/commits/Lorenzo-Bianconi/dt-bindings-pinctrl-airoha-Add-EN7581-pinctrl-controller/20240812-001436
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git devel
+patch link:    https://lore.kernel.org/r/c69c4a9b8e57eebdde0521731b8cd9f92ed4891b.1723392444.git.lorenzo%40kernel.org
+patch subject: [PATCH 2/2] pinctrl: airoha: Add support for EN7581 SoC
+config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20240812/202408120556.EjlJhjXg-lkp@intel.com/config)
+compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project f86594788ce93b696675c94f54016d27a6c21d18)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240812/202408120556.EjlJhjXg-lkp@intel.com/reproduce)
 
-diff --git a/Documentation/devicetree/bindings/input/rotary-encoder.txt b/Documentation/devicetree/bindings/input/rotary-encoder.txt
-deleted file mode 100644
-index a644408b33b8f..0000000000000
---- a/Documentation/devicetree/bindings/input/rotary-encoder.txt
-+++ /dev/null
-@@ -1,50 +0,0 @@
--Rotary encoder DT bindings
--
--Required properties:
--- gpios: a spec for at least two GPIOs to be used, most significant first
--
--Optional properties:
--- linux,axis: the input subsystem axis to map to this rotary encoder.
--  Defaults to 0 (ABS_X / REL_X)
--- rotary-encoder,steps: Number of steps in a full turnaround of the
--  encoder. Only relevant for absolute axis. Defaults to 24 which is a
--  typical value for such devices.
--- rotary-encoder,relative-axis: register a relative axis rather than an
--  absolute one. Relative axis will only generate +1/-1 events on the input
--  device, hence no steps need to be passed.
--- rotary-encoder,rollover: Automatic rollover when the rotary value becomes
--  greater than the specified steps or smaller than 0. For absolute axis only.
--- rotary-encoder,steps-per-period: Number of steps (stable states) per period.
--  The values have the following meaning:
--  1: Full-period mode (default)
--  2: Half-period mode
--  4: Quarter-period mode
--- wakeup-source: Boolean, rotary encoder can wake up the system.
--- rotary-encoder,encoding: String, the method used to encode steps.
--  Supported are "gray" (the default and more common) and "binary".
--
--Deprecated properties:
--- rotary-encoder,half-period: Makes the driver work on half-period mode.
--  This property is deprecated. Instead, a 'steps-per-period ' value should
--  be used, such as "rotary-encoder,steps-per-period = <2>".
--
--See Documentation/input/devices/rotary-encoder.rst for more information.
--
--Example:
--
--		rotary@0 {
--			compatible = "rotary-encoder";
--			gpios = <&gpio 19 1>, <&gpio 20 0>; /* GPIO19 is inverted */
--			linux,axis = <0>; /* REL_X */
--			rotary-encoder,encoding = "gray";
--			rotary-encoder,relative-axis;
--		};
--
--		rotary@1 {
--			compatible = "rotary-encoder";
--			gpios = <&gpio 21 0>, <&gpio 22 0>;
--			linux,axis = <1>; /* ABS_Y */
--			rotary-encoder,steps = <24>;
--			rotary-encoder,encoding = "binary";
--			rotary-encoder,rollover;
--		};
-diff --git a/Documentation/devicetree/bindings/input/rotary-encoder.yaml b/Documentation/devicetree/bindings/input/rotary-encoder.yaml
-new file mode 100644
-index 0000000000000..e315aab7f584f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/rotary-encoder.yaml
-@@ -0,0 +1,90 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/rotary-encoder.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Rotary encoder
-+
-+maintainers:
-+  - Frank Li <Frank.Li@nxp.com>
-+
-+description:
-+  See Documentation/input/devices/rotary-encoder.rst for more information.
-+
-+properties:
-+  compatible:
-+    const: rotary-encoder
-+
-+  gpios:
-+    minItems: 2
-+
-+  linux,axis:
-+    default: 0
-+    description:
-+      the input subsystem axis to map to this rotary encoder.
-+      Defaults to 0 (ABS_X / REL_X)
-+
-+  rotary-encoder,steps:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 24
-+    description:
-+      Number of steps in a full turnaround of the
-+      encoder. Only relevant for absolute axis. Defaults to 24 which is a
-+      typical value for such devices.
-+
-+  rotary-encoder,relative-axis:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description:
-+      register a relative axis rather than an
-+      absolute one. Relative axis will only generate +1/-1 events on the input
-+      device, hence no steps need to be passed.
-+
-+  rotary-encoder,rollover:
-+    $ref: /schemas/types.yaml#/definitions/int32
-+    description:
-+      Automatic rollover when the rotary value becomes
-+      greater than the specified steps or smaller than 0. For absolute axis only.
-+
-+  rotary-encoder,steps-per-period:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 1
-+    enum: [1, 2, 4]
-+    description: |
-+      Number of steps (stable states) per period.
-+      The values have the following meaning:
-+      1: Full-period mode (default)
-+      2: Half-period mode
-+      4: Quarter-period mode
-+
-+  wakeup-source: true
-+
-+  rotary-encoder,encoding:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: the method used to encode steps.
-+    enum: [gray, binary]
-+
-+  rotary-encoder,half-period:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    deprecated: true
-+    description:
-+      Makes the driver work on half-period mode.
-+      This property is deprecated. Instead, a 'steps-per-period ' value should
-+      be used, such as "rotary-encoder,steps-per-period = <2>".
-+
-+required:
-+  - compatible
-+  - gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    rotary {
-+        compatible = "rotary-encoder";
-+        gpios = <&gpio 19 1>, <&gpio 20 0>; /* GPIO19 is inverted */
-+        linux,axis = <0>; /* REL_X */
-+        rotary-encoder,encoding = "gray";
-+        rotary-encoder,relative-axis;
-+    };
-+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408120556.EjlJhjXg-lkp@intel.com/
+
+All error/warnings (new ones prefixed by >>):
+
+   In file included from drivers/pinctrl/mediatek/pinctrl-airoha.c:9:
+   In file included from include/linux/gpio/driver.h:8:
+   In file included from include/linux/irqchip/chained_irq.h:10:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:548:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     548 |         val = __raw_readb(PCI_IOBASE + addr);
+         |                           ~~~~~~~~~~ ^
+   include/asm-generic/io.h:561:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     561 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
+      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
+         |                                                   ^
+   In file included from drivers/pinctrl/mediatek/pinctrl-airoha.c:9:
+   In file included from include/linux/gpio/driver.h:8:
+   In file included from include/linux/irqchip/chained_irq.h:10:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:574:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     574 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
+      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
+         |                                                   ^
+   In file included from drivers/pinctrl/mediatek/pinctrl-airoha.c:9:
+   In file included from include/linux/gpio/driver.h:8:
+   In file included from include/linux/irqchip/chained_irq.h:10:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:585:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     585 |         __raw_writeb(value, PCI_IOBASE + addr);
+         |                             ~~~~~~~~~~ ^
+   include/asm-generic/io.h:595:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     595 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:605:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     605 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+>> drivers/pinctrl/mediatek/pinctrl-airoha.c:1923:2: warning: suggest braces around initialization of subobject [-Wmissing-braces]
+    1923 |         PINCTRL_FUNC_DESC(pon),
+         |         ^~~~~~~~~~~~~~~~~~~~~~
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:33:13: note: expanded from macro 'PINCTRL_FUNC_DESC'
+      33 |                 .desc = { #id, id##_groups, ARRAY_SIZE(id##_groups) },  \
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   <scratch space>:279:1: note: expanded from here
+     279 | "pon"
+         | ^
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:1924:2: warning: suggest braces around initialization of subobject [-Wmissing-braces]
+    1924 |         PINCTRL_FUNC_DESC(tod_1pps),
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:33:13: note: expanded from macro 'PINCTRL_FUNC_DESC'
+      33 |                 .desc = { #id, id##_groups, ARRAY_SIZE(id##_groups) },  \
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   <scratch space>:284:1: note: expanded from here
+     284 | "tod_1pps"
+         | ^
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:1925:2: warning: suggest braces around initialization of subobject [-Wmissing-braces]
+    1925 |         PINCTRL_FUNC_DESC(sipo),
+         |         ^~~~~~~~~~~~~~~~~~~~~~~
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:33:13: note: expanded from macro 'PINCTRL_FUNC_DESC'
+      33 |                 .desc = { #id, id##_groups, ARRAY_SIZE(id##_groups) },  \
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   <scratch space>:289:1: note: expanded from here
+     289 | "sipo"
+         | ^
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:1926:2: warning: suggest braces around initialization of subobject [-Wmissing-braces]
+    1926 |         PINCTRL_FUNC_DESC(mdio),
+         |         ^~~~~~~~~~~~~~~~~~~~~~~
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:33:13: note: expanded from macro 'PINCTRL_FUNC_DESC'
+      33 |                 .desc = { #id, id##_groups, ARRAY_SIZE(id##_groups) },  \
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   <scratch space>:294:1: note: expanded from here
+     294 | "mdio"
+         | ^
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:1927:2: warning: suggest braces around initialization of subobject [-Wmissing-braces]
+    1927 |         PINCTRL_FUNC_DESC(uart),
+         |         ^~~~~~~~~~~~~~~~~~~~~~~
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:33:13: note: expanded from macro 'PINCTRL_FUNC_DESC'
+      33 |                 .desc = { #id, id##_groups, ARRAY_SIZE(id##_groups) },  \
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   <scratch space>:299:1: note: expanded from here
+     299 | "uart"
+         | ^
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:1928:2: warning: suggest braces around initialization of subobject [-Wmissing-braces]
+    1928 |         PINCTRL_FUNC_DESC(i2c),
+         |         ^~~~~~~~~~~~~~~~~~~~~~
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:33:13: note: expanded from macro 'PINCTRL_FUNC_DESC'
+      33 |                 .desc = { #id, id##_groups, ARRAY_SIZE(id##_groups) },  \
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   <scratch space>:304:1: note: expanded from here
+     304 | "i2c"
+         | ^
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:1929:2: warning: suggest braces around initialization of subobject [-Wmissing-braces]
+    1929 |         PINCTRL_FUNC_DESC(jtag),
+         |         ^~~~~~~~~~~~~~~~~~~~~~~
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:33:13: note: expanded from macro 'PINCTRL_FUNC_DESC'
+      33 |                 .desc = { #id, id##_groups, ARRAY_SIZE(id##_groups) },  \
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   <scratch space>:309:1: note: expanded from here
+     309 | "jtag"
+         | ^
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:1930:2: warning: suggest braces around initialization of subobject [-Wmissing-braces]
+    1930 |         PINCTRL_FUNC_DESC(pcm),
+         |         ^~~~~~~~~~~~~~~~~~~~~~
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:33:13: note: expanded from macro 'PINCTRL_FUNC_DESC'
+      33 |                 .desc = { #id, id##_groups, ARRAY_SIZE(id##_groups) },  \
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   <scratch space>:314:1: note: expanded from here
+     314 | "pcm"
+         | ^
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:1931:2: warning: suggest braces around initialization of subobject [-Wmissing-braces]
+    1931 |         PINCTRL_FUNC_DESC(spi),
+         |         ^~~~~~~~~~~~~~~~~~~~~~
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:33:13: note: expanded from macro 'PINCTRL_FUNC_DESC'
+      33 |                 .desc = { #id, id##_groups, ARRAY_SIZE(id##_groups) },  \
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   <scratch space>:319:1: note: expanded from here
+     319 | "spi"
+         | ^
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:1932:2: warning: suggest braces around initialization of subobject [-Wmissing-braces]
+    1932 |         PINCTRL_FUNC_DESC(pcm_spi),
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:33:13: note: expanded from macro 'PINCTRL_FUNC_DESC'
+      33 |                 .desc = { #id, id##_groups, ARRAY_SIZE(id##_groups) },  \
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   <scratch space>:324:1: note: expanded from here
+     324 | "pcm_spi"
+         | ^
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:1933:2: warning: suggest braces around initialization of subobject [-Wmissing-braces]
+    1933 |         PINCTRL_FUNC_DESC(i2s),
+         |         ^~~~~~~~~~~~~~~~~~~~~~
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:33:13: note: expanded from macro 'PINCTRL_FUNC_DESC'
+      33 |                 .desc = { #id, id##_groups, ARRAY_SIZE(id##_groups) },  \
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   <scratch space>:329:1: note: expanded from here
+     329 | "i2s"
+         | ^
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:1934:2: warning: suggest braces around initialization of subobject [-Wmissing-braces]
+    1934 |         PINCTRL_FUNC_DESC(emmc),
+--
+         | ^
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:1935:2: warning: suggest braces around initialization of subobject [-Wmissing-braces]
+    1935 |         PINCTRL_FUNC_DESC(pnand),
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:33:13: note: expanded from macro 'PINCTRL_FUNC_DESC'
+      33 |                 .desc = { #id, id##_groups, ARRAY_SIZE(id##_groups) },  \
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   <scratch space>:339:1: note: expanded from here
+     339 | "pnand"
+         | ^
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:1936:2: warning: suggest braces around initialization of subobject [-Wmissing-braces]
+    1936 |         PINCTRL_FUNC_DESC(pcie_reset),
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:33:13: note: expanded from macro 'PINCTRL_FUNC_DESC'
+      33 |                 .desc = { #id, id##_groups, ARRAY_SIZE(id##_groups) },  \
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   <scratch space>:344:1: note: expanded from here
+     344 | "pcie_reset"
+         | ^
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:1937:2: warning: suggest braces around initialization of subobject [-Wmissing-braces]
+    1937 |         PINCTRL_FUNC_DESC(pwm),
+         |         ^~~~~~~~~~~~~~~~~~~~~~
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:33:13: note: expanded from macro 'PINCTRL_FUNC_DESC'
+      33 |                 .desc = { #id, id##_groups, ARRAY_SIZE(id##_groups) },  \
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   <scratch space>:349:1: note: expanded from here
+     349 | "pwm"
+         | ^
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:1938:2: warning: suggest braces around initialization of subobject [-Wmissing-braces]
+    1938 |         PINCTRL_FUNC_DESC(phy1_led0),
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:33:13: note: expanded from macro 'PINCTRL_FUNC_DESC'
+      33 |                 .desc = { #id, id##_groups, ARRAY_SIZE(id##_groups) },  \
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   <scratch space>:354:1: note: expanded from here
+     354 | "phy1_led0"
+         | ^
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:1939:2: warning: suggest braces around initialization of subobject [-Wmissing-braces]
+    1939 |         PINCTRL_FUNC_DESC(phy2_led0),
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:33:13: note: expanded from macro 'PINCTRL_FUNC_DESC'
+      33 |                 .desc = { #id, id##_groups, ARRAY_SIZE(id##_groups) },  \
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   <scratch space>:359:1: note: expanded from here
+     359 | "phy2_led0"
+         | ^
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:1940:2: warning: suggest braces around initialization of subobject [-Wmissing-braces]
+    1940 |         PINCTRL_FUNC_DESC(phy3_led0),
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:33:13: note: expanded from macro 'PINCTRL_FUNC_DESC'
+      33 |                 .desc = { #id, id##_groups, ARRAY_SIZE(id##_groups) },  \
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   <scratch space>:364:1: note: expanded from here
+     364 | "phy3_led0"
+         | ^
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:1941:2: warning: suggest braces around initialization of subobject [-Wmissing-braces]
+    1941 |         PINCTRL_FUNC_DESC(phy4_led0),
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:33:13: note: expanded from macro 'PINCTRL_FUNC_DESC'
+      33 |                 .desc = { #id, id##_groups, ARRAY_SIZE(id##_groups) },  \
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   <scratch space>:369:1: note: expanded from here
+     369 | "phy4_led0"
+         | ^
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:1942:2: warning: suggest braces around initialization of subobject [-Wmissing-braces]
+    1942 |         PINCTRL_FUNC_DESC(phy1_led1),
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:33:13: note: expanded from macro 'PINCTRL_FUNC_DESC'
+      33 |                 .desc = { #id, id##_groups, ARRAY_SIZE(id##_groups) },  \
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   <scratch space>:374:1: note: expanded from here
+     374 | "phy1_led1"
+         | ^
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:1943:2: warning: suggest braces around initialization of subobject [-Wmissing-braces]
+    1943 |         PINCTRL_FUNC_DESC(phy2_led1),
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:33:13: note: expanded from macro 'PINCTRL_FUNC_DESC'
+      33 |                 .desc = { #id, id##_groups, ARRAY_SIZE(id##_groups) },  \
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   <scratch space>:379:1: note: expanded from here
+     379 | "phy2_led1"
+         | ^
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:1944:2: warning: suggest braces around initialization of subobject [-Wmissing-braces]
+    1944 |         PINCTRL_FUNC_DESC(phy3_led1),
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:33:13: note: expanded from macro 'PINCTRL_FUNC_DESC'
+      33 |                 .desc = { #id, id##_groups, ARRAY_SIZE(id##_groups) },  \
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   <scratch space>:384:1: note: expanded from here
+     384 | "phy3_led1"
+         | ^
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:1945:2: warning: suggest braces around initialization of subobject [-Wmissing-braces]
+    1945 |         PINCTRL_FUNC_DESC(phy4_led1),
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:33:13: note: expanded from macro 'PINCTRL_FUNC_DESC'
+      33 |                 .desc = { #id, id##_groups, ARRAY_SIZE(id##_groups) },  \
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   <scratch space>:389:1: note: expanded from here
+     389 | "phy4_led1"
+         | ^
+>> drivers/pinctrl/mediatek/pinctrl-airoha.c:2279:9: error: no member named 'name' in 'struct function_desc'
+    2279 |                 desc->name, grp->grp.name);
+         |                 ~~~~  ^
+   include/linux/dev_printk.h:165:39: note: expanded from macro 'dev_dbg'
+     165 |         dynamic_dev_dbg(dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                                              ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:274:19: note: expanded from macro 'dynamic_dev_dbg'
+     274 |                            dev, fmt, ##__VA_ARGS__)
+         |                                        ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:250:59: note: expanded from macro '_dynamic_func_call'
+     250 |         _dynamic_func_call_cls(_DPRINTK_CLASS_DFLT, fmt, func, ##__VA_ARGS__)
+         |                                                                  ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:248:65: note: expanded from macro '_dynamic_func_call_cls'
+     248 |         __dynamic_func_call_cls(__UNIQUE_ID(ddebug), cls, fmt, func, ##__VA_ARGS__)
+         |                                                                        ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:224:15: note: expanded from macro '__dynamic_func_call_cls'
+     224 |                 func(&id, ##__VA_ARGS__);                       \
+         |                             ^~~~~~~~~~~
+>> drivers/pinctrl/mediatek/pinctrl-airoha.c:2359:31: error: call to undeclared function '__bf_shf'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+    2359 |         *val = (*val & reg->mask) >> __bf_shf(reg->mask);
+         |                                      ^
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:2376:14: error: call to undeclared function '__bf_shf'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+    2376 |                            val << __bf_shf(reg->mask));
+         |                                   ^
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:2946:20: error: no member named 'name' in 'struct function_desc'
+    2946 |                                                   func->desc.name,
+         |                                                   ~~~~~~~~~~ ^
+>> drivers/pinctrl/mediatek/pinctrl-airoha.c:2947:20: error: no member named 'group_names' in 'struct function_desc'
+    2947 |                                                   func->desc.group_names,
+         |                                                   ~~~~~~~~~~ ^
+>> drivers/pinctrl/mediatek/pinctrl-airoha.c:2948:20: error: no member named 'num_group_names' in 'struct function_desc'
+    2948 |                                                   func->desc.num_group_names,
+         |                                                   ~~~~~~~~~~ ^
+   drivers/pinctrl/mediatek/pinctrl-airoha.c:2952:16: error: no member named 'name' in 'struct function_desc'
+    2952 |                                 func->desc.name);
+         |                                 ~~~~~~~~~~ ^
+   include/linux/dev_printk.h:154:65: note: expanded from macro 'dev_err'
+     154 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                                                                        ^~~~~~~~~~~
+   include/linux/dev_printk.h:110:23: note: expanded from macro 'dev_printk_index_wrap'
+     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
+         |                                     ^~~~~~~~~~~
+   29 warnings and 7 errors generated.
+
+
+vim +2279 drivers/pinctrl/mediatek/pinctrl-airoha.c
+
+  2259	
+  2260	static int airoha_pinmux_set_mux(struct pinctrl_dev *pctrl_dev,
+  2261					 unsigned int selector,
+  2262					 unsigned int group)
+  2263	{
+  2264		struct airoha_pinctrl *pinctrl = pinctrl_dev_get_drvdata(pctrl_dev);
+  2265		const struct airoha_pinctrl_func *func;
+  2266		struct function_desc *desc;
+  2267		struct group_desc *grp;
+  2268		int i;
+  2269	
+  2270		desc = pinmux_generic_get_function(pctrl_dev, selector);
+  2271		if (!desc)
+  2272			return -EINVAL;
+  2273	
+  2274		grp = pinctrl_generic_get_group(pctrl_dev, group);
+  2275		if (!grp)
+  2276			return -EINVAL;
+  2277	
+  2278		dev_dbg(pctrl_dev->dev, "enable function %s group %s\n",
+> 2279			desc->name, grp->grp.name);
+  2280	
+  2281		func = desc->data;
+  2282		for (i = 0; i < func->group_size; i++) {
+  2283			const struct airoha_pinctrl_func_group *group;
+  2284			int j;
+  2285	
+  2286			group = &func->groups[i];
+  2287			if (strcmp(group->name, grp->grp.name))
+  2288				continue;
+  2289	
+  2290			for (j = 0; j < group->regmap_size; j++) {
+  2291				void __iomem *base;
+  2292	
+  2293				base = pinctrl->regs.mux[group->regmap[j].mux];
+  2294				airoha_pinctrl_rmw(pinctrl,
+  2295						   base + group->regmap[j].offset,
+  2296						   group->regmap[j].mask,
+  2297						   group->regmap[j].val);
+  2298			}
+  2299			return 0;
+  2300		}
+  2301	
+  2302		return -EINVAL;
+  2303	}
+  2304	
+  2305	static int airoha_pinmux_gpio_set_direction(struct pinctrl_dev *pctrl_dev,
+  2306						    struct pinctrl_gpio_range *range,
+  2307						    unsigned int pin, bool input)
+  2308	{
+  2309		struct airoha_pinctrl *pinctrl = pinctrl_dev_get_drvdata(pctrl_dev);
+  2310		int gpio = pin - range->pin_base;
+  2311	
+  2312		airoha_pinctrl_gpio_set_direction(pinctrl, gpio, input);
+  2313	
+  2314		return 0;
+  2315	}
+  2316	
+  2317	static int airoha_pinctrl_get_gpio_from_pin(struct pinctrl_dev *pctrl_dev,
+  2318						    int pin)
+  2319	{
+  2320		struct pinctrl_gpio_range *range;
+  2321		int gpio;
+  2322	
+  2323		range = pinctrl_find_gpio_range_from_pin_nolock(pctrl_dev, pin);
+  2324		if (!range)
+  2325			return -EINVAL;
+  2326	
+  2327		gpio = pin - range->pin_base;
+  2328		if (gpio < 0)
+  2329			return -EINVAL;
+  2330	
+  2331		return gpio;
+  2332	}
+  2333	
+  2334	static const struct airoha_pinctrl_reg *
+  2335	airoha_pinctrl_get_conf_reg(const struct airoha_pinctrl_conf *conf,
+  2336				    int conf_size, int pin)
+  2337	{
+  2338		int i;
+  2339	
+  2340		for (i = 0; i < conf_size; i++) {
+  2341			if (conf[i].pin == pin)
+  2342				return &conf[i].reg;
+  2343		}
+  2344	
+  2345		return NULL;
+  2346	}
+  2347	
+  2348	static int airoha_pinctrl_get_conf(void __iomem *base,
+  2349					   const struct airoha_pinctrl_conf *conf,
+  2350					   int conf_size, int pin, u32 *val)
+  2351	{
+  2352		const struct airoha_pinctrl_reg *reg;
+  2353	
+  2354		reg = airoha_pinctrl_get_conf_reg(conf, conf_size, pin);
+  2355		if (!reg)
+  2356			return -EINVAL;
+  2357	
+  2358		*val = readl(base + reg->offset);
+> 2359		*val = (*val & reg->mask) >> __bf_shf(reg->mask);
+  2360	
+  2361		return 0;
+  2362	}
+  2363	
+  2364	static int airoha_pinctrl_set_conf(struct airoha_pinctrl *pinctrl,
+  2365					   void __iomem *base,
+  2366					   const struct airoha_pinctrl_conf *conf,
+  2367					   int conf_size, int pin, u32 val)
+  2368	{
+  2369		const struct airoha_pinctrl_reg *reg = NULL;
+  2370	
+  2371		reg = airoha_pinctrl_get_conf_reg(conf, conf_size, pin);
+  2372		if (!reg)
+  2373			return -EINVAL;
+  2374	
+  2375		airoha_pinctrl_rmw(pinctrl, base + reg->offset, reg->mask,
+> 2376				   val << __bf_shf(reg->mask));
+  2377	
+  2378		return 0;
+  2379	}
+  2380	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
