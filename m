@@ -1,142 +1,202 @@
-Return-Path: <devicetree+bounces-92674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2D3194DFC2
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 04:47:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AAE794E00A
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 07:16:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 744A31F21582
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 02:47:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 75DC6B20CE2
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 05:16:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9108D8F70;
-	Sun, 11 Aug 2024 02:47:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 931D215AF6;
+	Sun, 11 Aug 2024 05:16:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jNHk7ZeR"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="hM3yQmhc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11olkn2010.outbound.protection.outlook.com [40.92.20.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B59DA629;
-	Sun, 11 Aug 2024 02:47:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723344438; cv=none; b=agLS2UWMTDPQxLsf8VOedAL2p2QTi8QA2+eYKso7MPfCS74I/qZIZJ11vQoA0AKBsRAPcX0Ln5wOjnC7Wpr/Ktmn29PhuwH6viibxDO0K6j7iPEVg2ux9S+8phcUaboMmPD386/f2DPWBWuJI5U3EYtOvecY0VA37uED98kY/Ms=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723344438; c=relaxed/simple;
-	bh=2E/PiludrIJ0UrQUTezJNfl+zlTw2eH3E1f8aYq02Mo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KJjgP6e29ixIontPv6Kja9VyKibWSQ+mX3bA2GVU2MaS5opnyQLs/YPU8ZOnr4H6gKVNJzZ0oN+pID4LTSlWSfcYumDrmqgRn4yp+ZPFS4Ac+JQDT9Kg7lFXUzFKeXYfcMaa97uNE/86ixscfQDrULcQ/t8m0epq7JzhN8YVMbo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jNHk7ZeR; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1723344437; x=1754880437;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2E/PiludrIJ0UrQUTezJNfl+zlTw2eH3E1f8aYq02Mo=;
-  b=jNHk7ZeRmQmIGMRVatKSM4f1SnalUbvHQ97jF6WSI3DnjW44HIZDpIq2
-   RKNe9lmqXotvYMwvngTGdNDmgQP6ZT/37FfCnck6fclOuBvdex4dZZ87r
-   hzCHl8mp1GLD3ikned4mvKCitVVW5P837rvhX9Vn2cQ85EWgv87Fdr1kx
-   cyYhTbZLTFVpHlgza7FYDz5IBRV/3JPemJcYuh44HDG6eqY+sOqzHVQcy
-   jHedGp+uiDBOsh5xZ712VtV9mK4NIa6g2b9lBnsAaQe20qz2jJmD6OVvf
-   xCBzmOOWROaaxIs2m6wvWwC2MlxmFR6NVZBUafLCzdU/OXJMZ0j3YWgwO
-   w==;
-X-CSE-ConnectionGUID: 3OX8NRndSqiDSpPMo1NWCQ==
-X-CSE-MsgGUID: sFjycRF7Tj+75EkCyf8Frg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11160"; a="21643362"
-X-IronPort-AV: E=Sophos;i="6.09,280,1716274800"; 
-   d="scan'208";a="21643362"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Aug 2024 19:47:16 -0700
-X-CSE-ConnectionGUID: fH2jAi7mTqGtzQAh14LKUA==
-X-CSE-MsgGUID: WMPuEdyNS8GFwvmP1R1Yvg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,280,1716274800"; 
-   d="scan'208";a="58155448"
-Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
-  by orviesa006.jf.intel.com with ESMTP; 10 Aug 2024 19:47:13 -0700
-Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1scybu-000AWN-0g;
-	Sun, 11 Aug 2024 02:47:10 +0000
-Date: Sun, 11 Aug 2024 10:47:08 +0800
-From: kernel test robot <lkp@intel.com>
-To: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.linaro.org@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <helgaas@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A38081C6A1;
+	Sun, 11 Aug 2024 05:16:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.20.10
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723353372; cv=fail; b=rScVF+Ii5nMgfLUaqlaKOCKLFXTOquF1dEma/dugqDDZSfok4W6vekVwCXKQiwWwmcHV5qR/hfMnplH8R8YhcOO7wnDofl+lF4TVRXZvSvU/3VO9PTUCuA/gqpTDn91aa+0NQ+Me/CYrAf68L3Fu244bF+ex4Whm0+2Af4x39gI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723353372; c=relaxed/simple;
+	bh=b1jPrAGiv28taOXHpYcEJ0PS5JdpeonjjYnNNoBeSgM=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=j/QPPvQ8itJDkqlyMV+jscacEp2uxhVKxW7C1n80Ye3EFL32NCZxurQcR6QMaa3iIHlImxSayNRY+xwKBxgPVRwyZUEXmcPqVDxhCI2Q2MFaHchasShrO2soplcj+gdzWJsAooHPKa/TgfS3dfxVN+eLMobGYdRUmY0rgxYuYBY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=hM3yQmhc; arc=fail smtp.client-ip=40.92.20.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Lw8zZ7ucIAEsGUdd7HttfFB9y9zbgx6veGVY1b1Ia+SmR2ut4aNuEjsbaREr6gS1ipmitRyKMlQ1zxwInDqF6iKzOIMrDhJ+SOymubIykwzddYCfjou5BDDOT8ZkV5UQkg9oo52Gid3VdohAspHynhrnH0VvyRZ5KKAkMln9YaSmTUazivtcjsm37wU2XftMdvAfhxxmRYUsKIwN2F3vQrDMjRPsjmAuswbEeo3COfxVP/p/wKYsElVH72sCQqFEdHQc5fuYAZ9+YLH+5q4IyAdzn9yKLO55tukwzDzY/M37iyrag3roQSVeqZ9Hzz+IfIyFXRRDoPrFoqdoMi98Og==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=A/9Q+2e2zlu86X1dsJGt5xuNIl4U2iduEN0DBouPOQg=;
+ b=a4Sv62NkFxx5w1bTw6HqHBpWAIqlYkQXxEIv6kPNN1wDmMSnvMrypLJTbigVallzzdMTbqvWbG5xIxam9LulvX1FrBqC5d0pEQQfWyXXLBQcFM3l04CvjWqrHhUbDQUEuauHhSXruzvkepyWmmZ4Ycri5ee+H4zl6Zxo2/gWvGsAdvyP3lXpIbiYDJ/7f10lXhBlOpU2xWXeqIs003SOr5FfqXgxKjsLel6JOj9vjwqWKiA0pky89du/BOB/pDOaW+6fc8JQLLqwMpqVjDwg2B9mvMUZ1SRgrrthawHMRRGK9tnSJBKVg6S5G9H+wmyFDTowsT/7ZTwJf8MK6xp+Og==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=A/9Q+2e2zlu86X1dsJGt5xuNIl4U2iduEN0DBouPOQg=;
+ b=hM3yQmhcpPoWhmmj1/vJsxWjVETcqb39bxtoyGi6+uaMo5CjKhRVgPVs4Vj3eS26YiSWPpeURKfzd7kd/MQX9F3f8dmFTjsiEA1oTtHw76iFFohjZD1vuy1m3JBxseIYzATxnyTfxl1s3y4ikx9k0xQc+gKiWeaYrTMLV3Yx9rBMhy+RcbVDi77sPyjsOADn5tt5z2cdaKDgSrtl7ZUZplqE2iiiD1FxAby1SmuHWfD2GVYdcwPHn3biIrE5QO7UyzYYZ2soY5Tw0squKgAsIF0ndcjq6QTpxo/i7OXkP2INiyW4nmFLQDUspuNpwC8MW4RU2p35AS1u5LBfEaxY9A==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by SJ0PR20MB5255.namprd20.prod.outlook.com (2603:10b6:a03:47d::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.17; Sun, 11 Aug
+ 2024 05:16:06 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::ab0b:c0d3:1f91:d149]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::ab0b:c0d3:1f91:d149%4]) with mapi id 15.20.7849.018; Sun, 11 Aug 2024
+ 05:16:06 +0000
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Vinod Koul <vkoul@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-pci@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>
+Cc: dmaengine@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: Re: [PATCH v3 05/13] PCI: endpoint: Assign PCI domain number for
- endpoint controllers
-Message-ID: <202408111053.0PLHSTeH-lkp@intel.com>
-References: <20240731-pci-qcom-hotplug-v3-5-a1426afdee3b@linaro.org>
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v11 0/3] riscv: sophgo: add dmamux support for Sophgo CV1800/SG2000 SoCs
+Date: Sun, 11 Aug 2024 13:14:14 +0800
+Message-ID:
+ <IA1PR20MB495324F3EF7517562CB4CACFBB842@IA1PR20MB4953.namprd20.prod.outlook.com>
+X-Mailer: git-send-email 2.46.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN: [0hhUVPOQ/Ex73myy02+/PNezu2q8wKwZ0C4VVcsLf+Q=]
+X-ClientProxiedBy: SI1PR02CA0023.apcprd02.prod.outlook.com
+ (2603:1096:4:1f4::19) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <20240811051415.981890-1-inochiama@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240731-pci-qcom-hotplug-v3-5-a1426afdee3b@linaro.org>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|SJ0PR20MB5255:EE_
+X-MS-Office365-Filtering-Correlation-Id: 08d12193-d496-4ab8-5183-08dcb9c4b407
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|461199028|5072599009|15080799003|8060799006|19110799003|3412199025|440099028|1710799026;
+X-Microsoft-Antispam-Message-Info:
+	vg2bCyQLaczvLwP9wzMJrdSetqeBM3kWAPdYRUn81rNwSem3Sumlq5UZ7HpHN8N9RiwRnX9DcM5k6dUvx2i5IdzSPlFzp9Y8XjVWD3w968W3XK6Irm/F9MF190flXNqfqe+03fCUO5iOngs4VQ+g1OZE8p9KWmWEDhg0DFnX/O82iICzfS9NEpE5A13Y/Otgq0+NEtgfMFb7+7S+IY81Yeh9ySLVqrN4BPKClv++UmrWM+zUr4VgUyJFEFcJd5ebd8epyjS/uklx9K2LNchNQDrT1lKZzH4AnqAhCaUyk1HTwbw3uFFl+rSh3/XzfbOiWFiUV0utrja2WOoRMLZm7vwN9dEsqHuKdUGPLQrCyc47qTqBbRHY58kT4KXikbV1pfG2Mg+FE408JOAmBVKOhWmUsLMILjAu12k3WFoB7vtky6eD3ea37h/9n1kFTDOfxrQS06RANbEGaNhpGKEnld5lEo2ODE2fkt6vQcSRNe8EViBOURDzFqAfm1IYngInDYjUVn/HTbkXIEoEpuW2XHQoQsSrJNiqdO+klqAuzDyeyBCCz5oBegDVp/7i6COdCR0RPAG/9ZzVahd4WY1O6fXkdoyJm4r+SqbxA8hNRJxekt1Hr574tlaDdoWUPnZjhIuZf0tZRMpV6q57WSVQno8OIbtJBDZa/ua2mUPVw4yxz2/0+9rIBU8mGeKa2/r99ap4X/qVB16seZgZjWKhmPyC11CCVWqHOyk2KXILSPE=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?EpSp+K2edy1SzB2aXkueASrBHm1oLSFJe1DwhntshOzoB7Mr1qhC9IuUUv87?=
+ =?us-ascii?Q?xVTS5GY5fuBDTMe3YSqFJHdL9uCYfFs5cXlni5bL5FCR0s2tWZMxIfMUvBrd?=
+ =?us-ascii?Q?s8jLN1jJMUWrfKttU9KfSIC9sU2Ff047SONyuo3usrG85UXzCN76FFH+07PY?=
+ =?us-ascii?Q?ab4zjhoThVSRQNgqLepwsrASWp3SNgm2pOp+HwFQBw6SqYAvOgHF7QPNbkN5?=
+ =?us-ascii?Q?n4mfltOhRFKtPug3D/gzOw4dtMEjIuuRv5lcGxQ24suzHe/ItKkRau4AzTsu?=
+ =?us-ascii?Q?WLWqPY9I2zDgjRUCC2EFncNZpKFQvGZC4aA/5Qnj6kKsnrMwkTCkUiWMnsZ+?=
+ =?us-ascii?Q?1ieL2hB8aXXwyvkKT4kGy1wUmAq0p5pQ1mCmfZFwRhmjAagPuucFFilKNImM?=
+ =?us-ascii?Q?GUSZFhGL3yzKedpHKUQTnY5mUBBehzLg+9viJmaGrxaIB40D5ASGhivvRqfv?=
+ =?us-ascii?Q?dHxDFt5pvA4RWOrIxB1L1unulrWv8n04S4SzViVQEr6wB42suI/TqEon8imn?=
+ =?us-ascii?Q?G7neN6GxRrJZ5MqcnaOX0KZRbNdp4IyLUuYbArPDCmzILOwXUzILUtTp+YVo?=
+ =?us-ascii?Q?35R3PnIALTiqhHTvNKNevvOwwJ+3qnzdpap6d6e/VZ2/R0YVf1xFAa07XF2k?=
+ =?us-ascii?Q?cA3QDi4BRnVoeDqcN08pusZ8n+j7YQH2lrwNWmgHAQL5r7YEDXAwXCVeV8+7?=
+ =?us-ascii?Q?v+uPFBf1sKevbmo7ncAMb+MecY52gX6Pzsr1hCCzvw8nagDcdPuzp5FtBjWx?=
+ =?us-ascii?Q?dcNuPqo4BE2Xug/i7YnqjOO4H/w+tqsVeczea8py9A/vsD2YCQmCHHydnvLA?=
+ =?us-ascii?Q?YTrPPwi2jGZqfCwIHDUgZJl+o9sgbZa1sZS5aR5y3DvowUXAlgvTMyuelxNC?=
+ =?us-ascii?Q?21nhqN/R5MvvTsuqfvSzV7cW7XORLZg8hDzHuqzWaBgxU5kr5HBm05O0aNUa?=
+ =?us-ascii?Q?WWJsSg4YjQj4HBcU6wuI6Aw7PBTABEESh0wjGKo5AOmyi3+kGop9HKtQIUOw?=
+ =?us-ascii?Q?g0eJOVE6s3SaZpvPqHgECnmpwj1UpY0fKCp8EuBnaQNo5Jc14BM04YJhQmbM?=
+ =?us-ascii?Q?rU721ENv0GX4PakesY4fZunaM1kNQQduZXgxOjkiEsheBvbIgQbRixEiOIaB?=
+ =?us-ascii?Q?ne3mMxZfrx3bYQj8Af28WXv25jwRyHj2LcCWg/YjJN49CuDgaORH+dzT2I6j?=
+ =?us-ascii?Q?JAqY5sPrRhQ++RcmD3WbvCx00YLAF69h8Aucog5hBTi0I1emHyCfoGemjcxL?=
+ =?us-ascii?Q?RoMUhwIidEe18ymiOJCh?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 08d12193-d496-4ab8-5183-08dcb9c4b407
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Aug 2024 05:16:06.8349
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR20MB5255
 
-Hi Manivannan,
+Add dma multiplexer support for the Sophgo CV1800/SG2000 SoCs.
 
-kernel test robot noticed the following build warnings:
+As the syscon device of CV1800 have a usb phy subdevices. The
+binding of the syscon can not be complete without the usb phy
+is finished. As a result, the binding of syscon is removed
+and will be evolved in its original series after the usb phy
+binding is fully explored.
 
-[auto build test WARNING on 8400291e289ee6b2bf9779ff1c83a291501f017b]
+Changed from v10:
+1. binding: fixed binding id.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Manivannan-Sadhasivam-via-B4-Relay/PCI-qcom-ep-Drop-the-redundant-masking-of-global-IRQ-events/20240802-024847
-base:   8400291e289ee6b2bf9779ff1c83a291501f017b
-patch link:    https://lore.kernel.org/r/20240731-pci-qcom-hotplug-v3-5-a1426afdee3b%40linaro.org
-patch subject: [PATCH v3 05/13] PCI: endpoint: Assign PCI domain number for endpoint controllers
-config: microblaze-randconfig-r072-20240810 (https://download.01.org/0day-ci/archive/20240811/202408111053.0PLHSTeH-lkp@intel.com/config)
-compiler: microblaze-linux-gcc (GCC) 14.1.0
+Changed from v9:
+1. binding: rename to cv1800b-dmamux.
+2. binding: remove the unused formatting.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408111053.0PLHSTeH-lkp@intel.com/
+Changed from v8:
+1. change compatible name from cv1800-dmamux to cv1800b-dmamux
+2. use guard to simpify spinlock process.
 
-New smatch warnings:
-drivers/pci/endpoint/pci-epc-core.c:843 pci_epc_destroy() warn: inconsistent indenting
+Changed from v7:
+1. remove unused variable
 
-Old smatch warnings:
-drivers/pci/endpoint/pci-epc-core.c:908 __pci_epc_create() warn: inconsistent indenting
+Changed from v6:
+1. fix copyright time.
+2. driver only output mapping info in when debugging.
+3. remove dma-master check in the driver init since the binding
+always require it.
 
-vim +843 drivers/pci/endpoint/pci-epc-core.c
+Changed from v5:
+1. remove dead binding header.
+2. make "reg" required so the syscon binding can have the same
+example node of the dmamux binding.
 
-   830	
-   831	/**
-   832	 * pci_epc_destroy() - destroy the EPC device
-   833	 * @epc: the EPC device that has to be destroyed
-   834	 *
-   835	 * Invoke to destroy the PCI EPC device
-   836	 */
-   837	void pci_epc_destroy(struct pci_epc *epc)
-   838	{
-   839		pci_ep_cfs_remove_epc_group(epc->group);
-   840		device_unregister(&epc->dev);
-   841	
-   842		#ifdef CONFIG_PCI_DOMAINS_GENERIC
- > 843			pci_bus_release_domain_nr(NULL, &epc->dev);
-   844		#endif
-   845	}
-   846	EXPORT_SYMBOL_GPL(pci_epc_destroy);
-   847	
+Changed from v4:
+1. remove the syscon binding since it can not be complete (still
+lack some subdevices)
+2. add reg description for the binding,
+3. remove the fixed channel assign for dmamux binding
+3. driver adopt to the binding change. Now the driver allocates all the
+channel when initing and maps the request chan to the channel dynamicly.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Changed from v3:
+1. fix dt-binding address issue.
+
+Changed from v2:
+1. add reg property of dmamux node in the binding of patch 2
+
+Changed from v1:
+1. fix wrong title of patch 2.
+
+Inochi Amaoto (3):
+  dt-bindings: dmaengine: Add dma multiplexer for CV18XX/SG200X series
+    SoC
+  soc/sophgo: add top sysctrl layout file for CV18XX/SG200X
+  dmaengine: add driver for Sophgo CV18XX/SG200X dmamux
+
+ .../bindings/dma/sophgo,cv1800b-dmamux.yaml   |  51 ++++
+ drivers/dma/Kconfig                           |   9 +
+ drivers/dma/Makefile                          |   1 +
+ drivers/dma/cv1800-dmamux.c                   | 257 ++++++++++++++++++
+ include/soc/sophgo/cv1800-sysctl.h            |  30 ++
+ 5 files changed, 348 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/sophgo,cv1800b-dmamux.yaml
+ create mode 100644 drivers/dma/cv1800-dmamux.c
+ create mode 100644 include/soc/sophgo/cv1800-sysctl.h
+
+--
+2.46.0
+
 
