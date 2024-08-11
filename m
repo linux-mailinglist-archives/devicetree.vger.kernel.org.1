@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-92684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0FA094E113
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 14:25:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AADA94E117
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 14:26:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 618471F21852
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 12:25:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 096FD1F216D5
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 12:26:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD15449634;
-	Sun, 11 Aug 2024 12:25:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A78E64C618;
+	Sun, 11 Aug 2024 12:26:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sOoLxf9a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YrBcLGED"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CD25F4FB;
-	Sun, 11 Aug 2024 12:25:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D5BF4502F;
+	Sun, 11 Aug 2024 12:26:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723379111; cv=none; b=SuuvRBGaV/7tcGosEuiDteeNyszOkpwQyY91YDkBSqbVZVFyPbwavOqZDITJkddWmXIivD7c0X3SDp34KSGbRicUz+7Y8q/Xj2zgpZJ9HaeH9lfwzBpgPsVqJwQoedJi7O52FZSDtHCFEqS9UoYFwk6PiKsCQ8Di3Teitu+FwA0=
+	t=1723379182; cv=none; b=h/DgfgT3a6wMHebzDeYg7yRu1tpoS+kJ+zrDC4vOmsjOsS+W7+7AHBj9pyc5l5XdGKuP+IoyGyWWmPZ+XAIX1o6u7whYBbxdSRDiDpV9Lc7nlUGHPs3YdhF9fQ2ixkGy7nF5uQBrApRKPrnILn6/Nrxv4nPKPhDEXcWcWfoTrdA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723379111; c=relaxed/simple;
-	bh=erjEHPtFXhbfMLYRyoCCFcuFatjdm1wBVOhxqyBqGAs=;
+	s=arc-20240116; t=1723379182; c=relaxed/simple;
+	bh=gFGhrhytefmdsEZ0s+z+vBqSrdlXI6Uwy2r4kbpiI9Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TrKb7ETWCprNnsXhlR3jT6oYeeS8HmESU1VrpPa0peod1ly9jM3dArs94/FtcZkFGuN7GoqzzJn6wpOMYdca1zLOtw47eyVzU7Llfsb0k5OggVpba3VEa/vkEJ4Lh15o9edvnQ0CI5bfYdd5wxpjGvSTPOga5kKbCvIwjQ9UhR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sOoLxf9a; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FAFBC32786;
-	Sun, 11 Aug 2024 12:25:07 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=S+/PfCkyxt5rlWcvVae6olDXOMvVoyNa7ZvDGTBpoDtAF4VbrXyIAho5XVLgUnuYR+fH/baQB62ZaeQTn/ZpGDplkGYxJKLy0LG1jUN/sb8ViMyT8CpK7/42ysT5H21jFxlZBrBvfCIYknkO2hIlX4ODuO57ga8B/Hhr0ekuVQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YrBcLGED; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24E4CC32786;
+	Sun, 11 Aug 2024 12:26:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723379111;
-	bh=erjEHPtFXhbfMLYRyoCCFcuFatjdm1wBVOhxqyBqGAs=;
+	s=k20201202; t=1723379182;
+	bh=gFGhrhytefmdsEZ0s+z+vBqSrdlXI6Uwy2r4kbpiI9Y=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=sOoLxf9aMktjZ18QmuF08IBKQdL2fxToKQbSPA9BMLDcv8faN960AsTVKjKYTyqnf
-	 Sb8sDt6/Rn/aviRMrjBrHlgHEZUdF/RfM379Mm7YCn40W1BmDH69M+DvgXfJWSPqOB
-	 fR709/DYUwrviWtxdiVxNFrEc+iRWGLD5+zw6OHHXVRPx0tfAux3Wig0sIHd09HbFM
-	 q+0dcQjC+7nEuqsFXH+402QGO0AwlvwZOYZicgdA/sreVL18M0Rh+TNnD3l6Yyca4p
-	 gHupD0SlrRHxgqjP9lUrUL393lun3zRq/epLUn2xFWb/cBRhPUUx0N25Ze0DVbD1dO
-	 2IistkdFYwdbg==
-Message-ID: <e5d5018d-842f-40ec-a33e-5b093aef4a69@kernel.org>
-Date: Sun, 11 Aug 2024 14:25:05 +0200
+	b=YrBcLGEDK7TMRRaQO/JXcJYK4RPbXqFrOj8zdCqbTI0OkSxYYX0cE7jYsjIiaieMo
+	 RJZr/bPyGgEPtSIW3yi/NDn52yhq/sHmMfgP3JKZlrJqy+KPW1XRHiMSNPAS4IPel0
+	 34B+AhQs44/N0rzhzKmFjWDOL0VHjHY5M+MxuxBfGOAEjknrCPFDk99edoBJkoRwCw
+	 AGF14P9UDgqX/BmMOW+8SZyXGLL5d/8lAFWn/lth1tRhEP9XcmlXMLt4edhskTlSls
+	 qpTiKh0uB0epQxPeyHRUTAW3WsGq8AoSh6XeOAyiD09HSe6uLJXHnIw/mkAoWDBO88
+	 Wo237yyuEGeuQ==
+Message-ID: <7066f860-f529-44de-81d8-b5bf61a3c33d@kernel.org>
+Date: Sun, 11 Aug 2024 14:26:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] dt-bindings: net: fsl,qoriq-mc-dpmac: add missed
- property phys
-To: Frank Li <Frank.Li@nxp.com>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Ioana Ciornei <ioana.ciornei@nxp.com>,
- "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Cc: imx@lists.linux.dev
-References: <20240809200654.3503346-1-Frank.Li@nxp.com>
-Content-Language: en-US
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: Document Airoha EN7581 PWM
+To: Lorenzo Bianconi <lorenzo@kernel.org>, linux-pwm@vger.kernel.org
+Cc: ukleinek@kernel.org, lorenzo.bianconi83@gmail.com, krzk+dt@kernel.org,
+ robh@kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, upstream@airoha.com,
+ angelogioacchino.delregno@collabora.com, benjamin.larsson@genexis.eu,
+ conor+dt@kernel.org, ansuelsmth@gmail.com
+References: <cover.1723264979.git.lorenzo@kernel.org>
+ <6a95b1d7fb90045a51a0cf51b9fafff26790904b.1723264979.git.lorenzo@kernel.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -107,17 +104,18 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240809200654.3503346-1-Frank.Li@nxp.com>
+In-Reply-To: <6a95b1d7fb90045a51a0cf51b9fafff26790904b.1723264979.git.lorenzo@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/08/2024 22:06, Frank Li wrote:
-> Add missed property phys, which indicate how connect to serdes phy.
-> Fix below warning:
-> arch/arm64/boot/dts/freescale/fsl-lx2160a-honeycomb.dtb: fsl-mc@80c000000: dpmacs:ethernet@7: Unevaluated properties are not allowed ('phys' was unexpected)
+On 10/08/2024 06:48, Lorenzo Bianconi wrote:
+> From: Christian Marangi <ansuelsmth@gmail.com>
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
+> Document required property for the Airoha EN7581 PWM. The device
+> requires 3 different address for the sgpio, flash and cycle config.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
