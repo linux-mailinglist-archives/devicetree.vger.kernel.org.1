@@ -1,334 +1,256 @@
-Return-Path: <devicetree+bounces-92759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6211E94E38E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 00:00:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4CDD94E3A0
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 00:05:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E047D1F21547
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 22:00:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 045821C208EF
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 22:05:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C35615853B;
-	Sun, 11 Aug 2024 22:00:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E491F158541;
+	Sun, 11 Aug 2024 22:05:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mDxBc1md"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="VYgGsPIU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11012054.outbound.protection.outlook.com [52.101.66.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BC2441C75;
-	Sun, 11 Aug 2024 22:00:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723413623; cv=none; b=OLkFlEoriyyXVwkKGB3//aOUZBA1QZ8UEiQ5dxRtfFENsRzTt4kzo5BfOqjb9UlsO+P6Hq1JRJhKg+QJtARe6rbdHpvD+MvC0usdOMjFmdvOIjQNj+xbvRvtqTRNOQjUwyOLP0GvWVdlLjahBJlWHdlWQw7/PTurOGpjJqx1T0M=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723413623; c=relaxed/simple;
-	bh=5dDFPzlso+518BsD7FxakDrzbMJ7pRsaOi+q4gwwmpE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MBDflNgcufZC7jG4x5JWoiFJSEqW+JipH//+hfgPH58CvdHeEPSTCIiBAM/Z8HBg3Lho0ZcCyB9Gio+XRXxbOJMI9ZAvyoxKoRPA80UBjf62bRPWMQTiL8t/o8m1qOpvmz0z6FxLz3sr6sMmxArBQYGotIzfE1aAtgquhVu3GQ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mDxBc1md; arc=none smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1723413622; x=1754949622;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=5dDFPzlso+518BsD7FxakDrzbMJ7pRsaOi+q4gwwmpE=;
-  b=mDxBc1mdL82QT+OtKeQoLHszsd6SlD+57qZLrqv97hCDmKEUz1Q3ES7P
-   h1jkgAT+kvTFYCocIQJIXEQI1pgcRZ34KEUdEeHCFWu6N17IYwAkGzRYj
-   PdB523TsPlSfGRMJzYBiT7/hDdbMEIrA70tQhkSPIIYM13dYstd8irQeb
-   6zbcCnH2U3jEzk0xztEW6dqOMulX/V7jIe82VNV18Beg+Odx/EVbJBTF4
-   3cxLelhzuxdWIHWggVxs4bBvaVH8TW4gvnwLekwPbIgP5hq64nZdScGLy
-   jBgOEsitR5sF5Ml1eMJBMs2dBeR1VUncwyghzcIGpUaUITAvV3H071tmu
-   A==;
-X-CSE-ConnectionGUID: 1QN6Yv4kT+ik6WyjGRL2pg==
-X-CSE-MsgGUID: noNf1N3YTwyqT5Wxto9AlA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11161"; a="21641743"
-X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; 
-   d="scan'208";a="21641743"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Aug 2024 15:00:21 -0700
-X-CSE-ConnectionGUID: iZ2rRz0tSVeF4n5itSEQOQ==
-X-CSE-MsgGUID: CwV2PbkuSD+rWCyJZAoQPQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; 
-   d="scan'208";a="58040030"
-Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
-  by fmviesa008.fm.intel.com with ESMTP; 11 Aug 2024 15:00:16 -0700
-Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sdGbm-000BAx-16;
-	Sun, 11 Aug 2024 22:00:14 +0000
-Date: Mon, 12 Aug 2024 05:59:27 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lorenzo Bianconi <lorenzo@kernel.org>, linux-gpio@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, linus.walleij@linaro.org,
-	sean.wang@kernel.org, linux-mediatek@lists.infradead.org,
-	lorenzo.bianconi83@gmail.com, krzk+dt@kernel.org, robh@kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	upstream@airoha.com, angelogioacchino.delregno@collabora.com,
-	benjamin.larsson@genexis.eu, conor+dt@kernel.org,
-	ansuelsmth@gmail.com
-Subject: Re: [PATCH 2/2] pinctrl: airoha: Add support for EN7581 SoC
-Message-ID: <202408120527.crbqc6PI-lkp@intel.com>
-References: <c69c4a9b8e57eebdde0521731b8cd9f92ed4891b.1723392444.git.lorenzo@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9864D41C75;
+	Sun, 11 Aug 2024 22:05:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.54
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723413938; cv=fail; b=D/DoDcEzlojXZ+qRSBhnAVnOXLJD9VYSTeyhBGED4RXJ95IBqo13jZe5/iAkFoe703G6kwrEX8sARx6ADyYjXm9Bu6w9NVGV2buRV1l0tSgwP1LGtWHrIRuucybiLgBcfSF7n0OPvOiWM73HcBeClowHePMLoUOdPBnpD7Cxlkw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723413938; c=relaxed/simple;
+	bh=5mBA6L8+EyxVstPksjT92kz2N+vaODBZgQHQPQ4Kvt8=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=fOK6rfL1cYdSeM1DW+yYkWN5HaTxtbEDFnxDlpPyRLaeyCo3OmRe27cRNVeCwXhvaQDVsmK9Zr1F+mxqreTTX734DNumL4iyp9B3yc41GYE1+6gV9ilgkGKz3ormHZOeKeSfiLcacjcj1G/EaWTTFqJSPoVYS7issMStIG5jEZM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=VYgGsPIU; arc=fail smtp.client-ip=52.101.66.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QMz7+TmG/LavdrUBUqYQwp44mi6r6a+neeBAS7MXOILRxdQ2Bund2ZT4Kl/rAltIxKDXKQYeRTCnB8rLWgkwH2UjgTgdTbUUzK9f16FfL/MTIIlbF4escBky/jda/OMvxl0tssX26aoZrsA9quHOCFYaSHZrbyDMNvxRgDfUHywiigMa+Xl4W2lQdzgyJmbMHvPqOgbJCFXAoxisBl6lV+C7y3IsEH8fIJyE1903urt+pynvBBhq3hGs7CyrY/7eq6/BMJlMV0nHFrPO2/yCheUbyVZVLz17eC04ga55nPb8QdAGvLVT08sRRe9/QSoCTEJpwbwPTXbKdigruvpUzg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Z8nsPm4uW1imL13AXpTJtLCRzR9xoCnvwlhTMXGCxtM=;
+ b=Zz+C9/YXjtVHTlaBj7UaEQulGHVs3i7C5IpajWU+A+9VgkDtm69D+Ysm7QKR8dX3NTvWgcITPuHM6X3ujjoszfh7RqJtfjvDcoBg143ATwWoQZDB7acdd7Ys7gI+nGifeFLJSx7y5fLn9errSvrdcJBaAVWjtvNFhYhPWugATcfWIvHRwNOiVBT94sDf56HBgGh44TtDr3X0HSowJ+tto/Fxy6RVE7LtwR/NMsNvXu63VlndQJJIGaG3zRdRiQHIDHVoBP8oGX3fAlRi7caGOZChB2RmxoAaRS8vseCYCfmnqjDcw9Moih3VJZ9c81PDLpKWEgUUUT8vtODpSTK+Gw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Z8nsPm4uW1imL13AXpTJtLCRzR9xoCnvwlhTMXGCxtM=;
+ b=VYgGsPIU9eXfUfR9SzGVPKoc7AJwD7uJzqNWlt2ajjMnxnjEQb985ppenT/twmy+LNsBQvPTIgK0EbVPgQojM5TjpeDpDftv8tXbOqMxxu2aEau1s5qnKwrWzSGUbKskUZDVhDeyDy8DUlc4d0ozdFyPEItXFuUHPCjvFg6Rvvux0MDpPDtcXlt3GnS3o6lxHjczlNKkPgGZoyq2NO3Drd2XS1HlzWceUKYnPL5b+xN3Bh8wAPmnywfUAUAUegsKk+dsma4oQa8yxQo1ad72r1KmyOQNY5N4T5PE+pxuBEYTjI3m/gpBW66sPoKDrnV2nEKdCak0owLY6jdjnOk4nQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
+ by DU0PR04MB9496.eurprd04.prod.outlook.com (2603:10a6:10:32d::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.19; Sun, 11 Aug
+ 2024 22:05:33 +0000
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::e81:b393:ebc5:bc3d]) by DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::e81:b393:ebc5:bc3d%7]) with mapi id 15.20.7849.018; Sun, 11 Aug 2024
+ 22:05:33 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-watchdog@vger.kernel.org (open list:WATCHDOG DEVICE DRIVERS),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH 1/1] dt-bindings: watchdog: convert ziirave-wdt.txt to yaml
+Date: Sun, 11 Aug 2024 18:05:14 -0400
+Message-Id: <20240811220515.3776756-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BY3PR03CA0004.namprd03.prod.outlook.com
+ (2603:10b6:a03:39a::9) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c69c4a9b8e57eebdde0521731b8cd9f92ed4891b.1723392444.git.lorenzo@kernel.org>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|DU0PR04MB9496:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6cc7c6d7-5c78-49bc-2bcb-08dcba51b7f1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|1800799024|376014|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?5Timsn5QlgSKrUIB0qYK5vOhhOA+BCbW4FTULxTsD5h0ODrUQDeuYXNZZ7Hz?=
+ =?us-ascii?Q?EVi1zsAvk8Jm6octOdL9O4zx/8z2Ppfc3TicVZyzy8aD/t75OK++SaRDXTnr?=
+ =?us-ascii?Q?hJNPpWHPvE+q34whLEly5VngVs0ShbbPedn3zlK7MEb643xdR4NVABe5dyG7?=
+ =?us-ascii?Q?D3wJfmRenwYWdlrcDyKgPB9p980LvMd9lH8rebyY4UjXRh77uil8CMJSMVEx?=
+ =?us-ascii?Q?Rvng/gozXeIszf3uTXwg+Vp9MaCM0AavRh/aUjz6LyFINk2inmsnDEbUqvUJ?=
+ =?us-ascii?Q?s9NyvWGV8Pwie/TenUtDLOcL31t/gpClxPgaONc3QzEiJq7wwKT0bBe5eTwp?=
+ =?us-ascii?Q?usPQdOf+21jkuHk1pDGmwaZBf6xl8KI6+RzqC0l91Zng5d5Gd7H6AanHLIzx?=
+ =?us-ascii?Q?tvcqy33B6cuo1BsjrGdmDQhT/HenLgKLIL5GQ5uWqslIfUnZSsTdX/jtoD0t?=
+ =?us-ascii?Q?4eLsKzYlXACXwdK+r1X67XFh9xjV4z/0z3q3srHPs+DieMAZqN043VTYEMTw?=
+ =?us-ascii?Q?/oZY3fm0iLRdJ5yS2mHcOifSNNtPJrL6hWoLEgvrNXjADD0McBZFOqD0xZIe?=
+ =?us-ascii?Q?x27+ZgvCEhBZiTdScpd1DLTl1mKhnIFuv6aWK/kSlGSzhYDTKCtx8E9gfiDM?=
+ =?us-ascii?Q?rFVJouVDVS8rEA3bfREjUVM2m1qp+xn7klOvnn/5IlroQIUXlFW2P1I1jj7v?=
+ =?us-ascii?Q?YCgz7+zFh049z26pFtqqzCEtmKQj6jQ1KDzkrSeiZeludMeN3SFQmEVFvR0Q?=
+ =?us-ascii?Q?LIQhD2BqQB5QMaAmWw5mLbGOEMiYVFL8J0a2zaAPNe0BsLPuEMxUbxPV8MS6?=
+ =?us-ascii?Q?e3PgIyFom4opXC71rSp32mbjB0UMzPrk22cej6eMoQNdPRn1inCyQI3UwdTB?=
+ =?us-ascii?Q?61YTZp8NrgyiaTJJgXaT/95Lp/CKFoHENhJ6BIZ/eqPkN1PP0qiLbErLERkg?=
+ =?us-ascii?Q?IFPeiCBKHlt9eMT96Y/oURuQJjQ2olReUAruOtUz5JsaTWp5YHUHiVxfsfK+?=
+ =?us-ascii?Q?Pj4RNy9UPLxzzidLXZb4+S1qPSOdzPjVFmY51eY4Wc8gCNcRM15nQPH5TbWf?=
+ =?us-ascii?Q?k38EIw2fzb5K853DLlVOjP5BygBHyMOW9Tdh0x8A2W0tVMx3yxgv4ncr0uaK?=
+ =?us-ascii?Q?vshM4CxlObzUcyLTKYIWOrOCw4dt+pyBmteMeJHU04sanqAhqnlRd972810B?=
+ =?us-ascii?Q?uzyHO/wI0tMofLyrY1tiOblBoPn30OJMT360hrZ8f2pip92ddSlTL8sPSavv?=
+ =?us-ascii?Q?2eaWdlCOq2cKkrj5ddTCLnmGgNctx7y3hcAbRkbkCwkV97NLLtfB5bQ2S4VN?=
+ =?us-ascii?Q?HfK18pf5GsixxzQReR2MQb5EkYhRqInEi8V0TXqJb/12j+EizyUPKt5onGG1?=
+ =?us-ascii?Q?5M4SPSA=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(1800799024)(376014)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?WRtwEyHyUiqLNw4O4+k93J5yQj/SoTlSCTEVXSvY/b8r3VeNJhtzAxxA2zR1?=
+ =?us-ascii?Q?puDyXgkuzzRRr2jqzzsf/PvLkPuw/VFIjb54+MVuQIwBkarcKKS4nlDgK2ML?=
+ =?us-ascii?Q?2qRuloRjrJ5TAEVoThm3VrjBFmdRieh5a2oe3VT8K6E5rap95g8HfoufgA6p?=
+ =?us-ascii?Q?YbZLIYmFZKfSS+HoQot3c/i6NXeB9tYUM/Dj4koJjjNb283pJrORO+QkvGp5?=
+ =?us-ascii?Q?zZ9PXVCZYXt87onFTYCzqB4L9wQ8WcGRfKjEXbqmWoKHRqQwkXKahxkg61kr?=
+ =?us-ascii?Q?dIJELkMlXJ2gp1TnnlGe/GKOiOOetdSOqIkIhzxDOM13EI57ipFLebjU8MuW?=
+ =?us-ascii?Q?IevPrDhLLcjW/+uyD1VAatAjPCbacUwM68WJkThQM4piICcCx+gxFwy3mwAf?=
+ =?us-ascii?Q?vIppE0qGkT24EFtFnohMEWedcFXoq1FFbFEZSAlMOxaIEmi5j75xR8OpOFWI?=
+ =?us-ascii?Q?066sAmtH+6XCjrcd0KYbytjuYQBtvayecLA/WyXTbVcFyqG5E1RzLjwNf9pi?=
+ =?us-ascii?Q?UKS2oRwZMuFEc3/lEO/d6biMQriKt0/BgZ3a8wUPmZuJtLXN+g/0NM+QdmNl?=
+ =?us-ascii?Q?dWK/vSgSA9skoz2aWXyIJFDmXaLYH8ufBsYl/KAks5CcrjORnxFffXX9xDCc?=
+ =?us-ascii?Q?5M6rwDjcOCmkhX8gehdu+NHC+R+UkL/rWhuvkEp8uOIldrVicfziqOyKZYG5?=
+ =?us-ascii?Q?KjH4Ilmn0GfYz748RYIv6w5C79lFKwx+49puqOGID7uN6f7Naua/MDgcuZ4M?=
+ =?us-ascii?Q?ezRa6ly3PXG7kQJfgN2vvu4B1whn6vQGcyLjc2ukxXmfkAt5/hgVYMGW20sD?=
+ =?us-ascii?Q?w5fJ+0A19j7mfharu5k4NHORQxxsSOg9bYI4N1YHOJe+WyHV+jvd3mvCPYZV?=
+ =?us-ascii?Q?t1qm6ISvcktsmueIt8t+cj0tImFGjbS2phUWCl/cILu+eUrPbnOLdCOFYHcC?=
+ =?us-ascii?Q?ygub+b9eUfAVJwHQ5UZIT/rF0fCrXNu2g4BaG1lX4WxJls/KoiL36/ITPHug?=
+ =?us-ascii?Q?+gY0UuJFdQvlbT4ucRbnV+BAkRjTvOYUtGv/BhbtJc7LVvIu5pACDt4BrLTN?=
+ =?us-ascii?Q?C5SlJw+1PkdXOTRz4Nj0SY5o+7bMWoLeNzrjTYFc7EVia5en6kjnJUr4Xs1J?=
+ =?us-ascii?Q?ltWGn7nPu1PuXsoWHYaXZvUE+lCZ3vyWb2+rg6h0Ir93CY/GUId2dd1SRHM2?=
+ =?us-ascii?Q?+x5gjq045Gwex8G7kenDDPM7tPu9uhQpmzEi9O0rzFe2tFg3mZULuzcnSIX1?=
+ =?us-ascii?Q?vadmpWKBsu7fWFS/VUen3AWr79GHVMqIbRanKaGyrD67eV2yiRy5UQyf4wff?=
+ =?us-ascii?Q?IZ1o6th2nD6IAqV2Ag9NHM0x0pcw7O86MqQr+KClfhk4LPhUepF6OvOsCpE1?=
+ =?us-ascii?Q?PxXo7l5NwfxyZ9NW0nniUQE1Yk0rUxt1tOmza5byyOVFc5C6hRpQ4xWQu2mp?=
+ =?us-ascii?Q?D13uxvhsNsC55oX0yrNBUBvG1rpXnGTNXQp0dYkIj2Q0KMKNYcOHmUBSwm05?=
+ =?us-ascii?Q?0yKq7Fvt+csyayhLglnUk41bdO5N5m93Fxh23dJWJfzlE3DGL4j4P99chZpd?=
+ =?us-ascii?Q?VaCpUBaAlaUEK6KDUEexCjVF9CJGUDzb/HiOqJwx?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6cc7c6d7-5c78-49bc-2bcb-08dcba51b7f1
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Aug 2024 22:05:32.9425
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: STLLNkyk7hFampntb2OJprReM5dsi/r8S+jjlyAkNWbztulpdOr5TuJ8gqwyxxlH+2htS0JTZK7oogpFyvhvbw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9496
 
-Hi Lorenzo,
+Convert ziirave-wdt.txt to yaml format.
 
-kernel test robot noticed the following build errors:
+Additional change:
+- Add i2c node in example.
 
-[auto build test ERROR on linusw-pinctrl/devel]
-[also build test ERROR on linusw-pinctrl/for-next linus/master v6.11-rc2 next-20240809]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Fix below warning:
+arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb: /soc@0/bus@30800000/i2c@30a40000/watchdog@38:
+	failed to match any schema with compatible: ['zii,rave-wdt']
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Lorenzo-Bianconi/dt-bindings-pinctrl-airoha-Add-EN7581-pinctrl-controller/20240812-001436
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git devel
-patch link:    https://lore.kernel.org/r/c69c4a9b8e57eebdde0521731b8cd9f92ed4891b.1723392444.git.lorenzo%40kernel.org
-patch subject: [PATCH 2/2] pinctrl: airoha: Add support for EN7581 SoC
-config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20240812/202408120527.crbqc6PI-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 13.3.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240812/202408120527.crbqc6PI-lkp@intel.com/reproduce)
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+ .../bindings/watchdog/zii,rave-wdt.yaml       | 47 +++++++++++++++++++
+ .../bindings/watchdog/ziirave-wdt.txt         | 19 --------
+ 2 files changed, 47 insertions(+), 19 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/zii,rave-wdt.yaml
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/ziirave-wdt.txt
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408120527.crbqc6PI-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-    1922 | static const struct airoha_pinctrl_func airoha_pinctrl_funcs[] = {
-         |                                                                  ^
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:1922:66: warning: missing braces around initializer [-Wmissing-braces]
-   In file included from include/linux/printk.h:574,
-                    from include/asm-generic/bug.h:22,
-                    from arch/alpha/include/asm/bug.h:23,
-                    from include/linux/bug.h:5,
-                    from include/linux/thread_info.h:13,
-                    from include/asm-generic/preempt.h:5,
-                    from ./arch/alpha/include/generated/asm/preempt.h:1,
-                    from include/linux/preempt.h:79,
-                    from include/linux/spinlock.h:56,
-                    from include/linux/irq.h:14,
-                    from include/linux/irqchip/chained_irq.h:10,
-                    from include/linux/gpio/driver.h:8,
-                    from drivers/pinctrl/mediatek/pinctrl-airoha.c:9:
-   drivers/pinctrl/mediatek/pinctrl-airoha.c: In function 'airoha_pinmux_set_mux':
->> drivers/pinctrl/mediatek/pinctrl-airoha.c:2279:21: error: 'struct function_desc' has no member named 'name'
-    2279 |                 desc->name, grp->grp.name);
-         |                     ^~
-   include/linux/dynamic_debug.h:224:29: note: in definition of macro '__dynamic_func_call_cls'
-     224 |                 func(&id, ##__VA_ARGS__);                       \
-         |                             ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:250:9: note: in expansion of macro '_dynamic_func_call_cls'
-     250 |         _dynamic_func_call_cls(_DPRINTK_CLASS_DFLT, fmt, func, ##__VA_ARGS__)
-         |         ^~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dynamic_debug.h:273:9: note: in expansion of macro '_dynamic_func_call'
-     273 |         _dynamic_func_call(fmt, __dynamic_dev_dbg,              \
-         |         ^~~~~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:165:9: note: in expansion of macro 'dynamic_dev_dbg'
-     165 |         dynamic_dev_dbg(dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |         ^~~~~~~~~~~~~~~
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:2278:9: note: in expansion of macro 'dev_dbg'
-    2278 |         dev_dbg(pctrl_dev->dev, "enable function %s group %s\n",
-         |         ^~~~~~~
-   drivers/pinctrl/mediatek/pinctrl-airoha.c: In function 'airoha_pinctrl_get_conf':
->> drivers/pinctrl/mediatek/pinctrl-airoha.c:2359:38: error: implicit declaration of function '__bf_shf' [-Werror=implicit-function-declaration]
-    2359 |         *val = (*val & reg->mask) >> __bf_shf(reg->mask);
-         |                                      ^~~~~~~~
-   drivers/pinctrl/mediatek/pinctrl-airoha.c: In function 'airoha_pinctrl_probe':
->> drivers/pinctrl/mediatek/pinctrl-airoha.c:2946:61: error: 'const struct function_desc' has no member named 'name'
-    2946 |                                                   func->desc.name,
-         |                                                             ^
->> drivers/pinctrl/mediatek/pinctrl-airoha.c:2947:61: error: 'const struct function_desc' has no member named 'group_names'
-    2947 |                                                   func->desc.group_names,
-         |                                                             ^
->> drivers/pinctrl/mediatek/pinctrl-airoha.c:2948:61: error: 'const struct function_desc' has no member named 'num_group_names'
-    2948 |                                                   func->desc.num_group_names,
-         |                                                             ^
-   In file included from include/linux/device.h:15,
-                    from include/linux/platform_device.h:13,
-                    from drivers/pinctrl/mediatek/pinctrl-airoha.c:22:
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:2952:43: error: 'const struct function_desc' has no member named 'name'
-    2952 |                                 func->desc.name);
-         |                                           ^
-   include/linux/dev_printk.h:110:37: note: in definition of macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                                     ^~~~~~~~~~~
-   drivers/pinctrl/mediatek/pinctrl-airoha.c:2951:25: note: in expansion of macro 'dev_err'
-    2951 |                         dev_err(&pdev->dev, "Failed to register function %s\n",
-         |                         ^~~~~~~
-   cc1: some warnings being treated as errors
-
-
-vim +2279 drivers/pinctrl/mediatek/pinctrl-airoha.c
-
-  2259	
-  2260	static int airoha_pinmux_set_mux(struct pinctrl_dev *pctrl_dev,
-  2261					 unsigned int selector,
-  2262					 unsigned int group)
-  2263	{
-  2264		struct airoha_pinctrl *pinctrl = pinctrl_dev_get_drvdata(pctrl_dev);
-  2265		const struct airoha_pinctrl_func *func;
-  2266		struct function_desc *desc;
-  2267		struct group_desc *grp;
-  2268		int i;
-  2269	
-  2270		desc = pinmux_generic_get_function(pctrl_dev, selector);
-  2271		if (!desc)
-  2272			return -EINVAL;
-  2273	
-  2274		grp = pinctrl_generic_get_group(pctrl_dev, group);
-  2275		if (!grp)
-  2276			return -EINVAL;
-  2277	
-  2278		dev_dbg(pctrl_dev->dev, "enable function %s group %s\n",
-> 2279			desc->name, grp->grp.name);
-  2280	
-  2281		func = desc->data;
-  2282		for (i = 0; i < func->group_size; i++) {
-  2283			const struct airoha_pinctrl_func_group *group;
-  2284			int j;
-  2285	
-  2286			group = &func->groups[i];
-  2287			if (strcmp(group->name, grp->grp.name))
-  2288				continue;
-  2289	
-  2290			for (j = 0; j < group->regmap_size; j++) {
-  2291				void __iomem *base;
-  2292	
-  2293				base = pinctrl->regs.mux[group->regmap[j].mux];
-  2294				airoha_pinctrl_rmw(pinctrl,
-  2295						   base + group->regmap[j].offset,
-  2296						   group->regmap[j].mask,
-  2297						   group->regmap[j].val);
-  2298			}
-  2299			return 0;
-  2300		}
-  2301	
-  2302		return -EINVAL;
-  2303	}
-  2304	
-  2305	static int airoha_pinmux_gpio_set_direction(struct pinctrl_dev *pctrl_dev,
-  2306						    struct pinctrl_gpio_range *range,
-  2307						    unsigned int pin, bool input)
-  2308	{
-  2309		struct airoha_pinctrl *pinctrl = pinctrl_dev_get_drvdata(pctrl_dev);
-  2310		int gpio = pin - range->pin_base;
-  2311	
-  2312		airoha_pinctrl_gpio_set_direction(pinctrl, gpio, input);
-  2313	
-  2314		return 0;
-  2315	}
-  2316	
-  2317	static int airoha_pinctrl_get_gpio_from_pin(struct pinctrl_dev *pctrl_dev,
-  2318						    int pin)
-  2319	{
-  2320		struct pinctrl_gpio_range *range;
-  2321		int gpio;
-  2322	
-  2323		range = pinctrl_find_gpio_range_from_pin_nolock(pctrl_dev, pin);
-  2324		if (!range)
-  2325			return -EINVAL;
-  2326	
-  2327		gpio = pin - range->pin_base;
-  2328		if (gpio < 0)
-  2329			return -EINVAL;
-  2330	
-  2331		return gpio;
-  2332	}
-  2333	
-  2334	static const struct airoha_pinctrl_reg *
-  2335	airoha_pinctrl_get_conf_reg(const struct airoha_pinctrl_conf *conf,
-  2336				    int conf_size, int pin)
-  2337	{
-  2338		int i;
-  2339	
-  2340		for (i = 0; i < conf_size; i++) {
-  2341			if (conf[i].pin == pin)
-  2342				return &conf[i].reg;
-  2343		}
-  2344	
-  2345		return NULL;
-  2346	}
-  2347	
-  2348	static int airoha_pinctrl_get_conf(void __iomem *base,
-  2349					   const struct airoha_pinctrl_conf *conf,
-  2350					   int conf_size, int pin, u32 *val)
-  2351	{
-  2352		const struct airoha_pinctrl_reg *reg;
-  2353	
-  2354		reg = airoha_pinctrl_get_conf_reg(conf, conf_size, pin);
-  2355		if (!reg)
-  2356			return -EINVAL;
-  2357	
-  2358		*val = readl(base + reg->offset);
-> 2359		*val = (*val & reg->mask) >> __bf_shf(reg->mask);
-  2360	
-  2361		return 0;
-  2362	}
-  2363	
-
+diff --git a/Documentation/devicetree/bindings/watchdog/zii,rave-wdt.yaml b/Documentation/devicetree/bindings/watchdog/zii,rave-wdt.yaml
+new file mode 100644
+index 0000000000000..6c0a16912d7f4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/zii,rave-wdt.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/zii,rave-wdt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Zodiac RAVE Watchdog Timer
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++
++properties:
++  compatible:
++    const: zii,rave-wdt
++
++  reg:
++    maxItems: 1
++    description: i2c slave address of device, usually 0x38
++
++  timeout-sec:
++    description: Watchdog timeout value in seconds.
++
++  reset-duration-ms:
++    description:
++      Duration of the pulse generated when the watchdog times
++      out. Value in milliseconds.
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        watchdog@38 {
++            compatible = "zii,rave-wdt";
++            reg = <0x38>;
++            timeout-sec = <30>;
++            reset-duration-ms = <30>;
++        };
++    };
++
+diff --git a/Documentation/devicetree/bindings/watchdog/ziirave-wdt.txt b/Documentation/devicetree/bindings/watchdog/ziirave-wdt.txt
+deleted file mode 100644
+index 3d878184ec3ff..0000000000000
+--- a/Documentation/devicetree/bindings/watchdog/ziirave-wdt.txt
++++ /dev/null
+@@ -1,19 +0,0 @@
+-Zodiac RAVE Watchdog Timer
+-
+-Required properties:
+-- compatible: must be "zii,rave-wdt"
+-- reg: i2c slave address of device, usually 0x38
+-
+-Optional Properties:
+-- timeout-sec: Watchdog timeout value in seconds.
+-- reset-duration-ms: Duration of the pulse generated when the watchdog times
+-  out. Value in milliseconds.
+-
+-Example:
+-
+-	watchdog@38 {
+-		compatible = "zii,rave-wdt";
+-		reg = <0x38>;
+-		timeout-sec = <30>;
+-		reset-duration-ms = <30>;
+-	};
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
