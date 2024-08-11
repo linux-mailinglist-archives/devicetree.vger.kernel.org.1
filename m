@@ -1,241 +1,127 @@
-Return-Path: <devicetree+bounces-92683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92684-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FAE194E10D
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 14:18:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0FA094E113
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 14:25:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 72B5AB20F48
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 12:18:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 618471F21852
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 12:25:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA3E94C618;
-	Sun, 11 Aug 2024 12:18:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD15449634;
+	Sun, 11 Aug 2024 12:25:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iEBdcy4x"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sOoLxf9a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 031E0F4FB;
-	Sun, 11 Aug 2024 12:18:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CD25F4FB;
+	Sun, 11 Aug 2024 12:25:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723378689; cv=none; b=tpZKZBSTnTp++fgnGjmd+++pzmUjCQwCCBF7quXtB60ReIVuPKhsZRw9gNSLfonuHMaXhoOp0345+9qk9UqRWLCuhBMQtyGaal4GZkiTbbl1uR4+DXxn1OGuUgzXEf14RYHVRy45umOgzHyWRmBj4U1Oy8MB2qbKP3uiVOeihuU=
+	t=1723379111; cv=none; b=SuuvRBGaV/7tcGosEuiDteeNyszOkpwQyY91YDkBSqbVZVFyPbwavOqZDITJkddWmXIivD7c0X3SDp34KSGbRicUz+7Y8q/Xj2zgpZJ9HaeH9lfwzBpgPsVqJwQoedJi7O52FZSDtHCFEqS9UoYFwk6PiKsCQ8Di3Teitu+FwA0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723378689; c=relaxed/simple;
-	bh=hHwWR9mdrr1F86wPJmxJ+Z+hpsFfE7JK/YLabgBSPHc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BN9JR0l4Zw6ZmzVUFadx4CnSLQxmRYE2CdDneZFrojP+G6SyKyEfkZIAWV0HDyG/YYCYEf8c8Nyyi1FYcjwc84USi107MQUpV3fLmJiegm3AFyiMkDQAU0pWnYCSWHdf5ZvqKFVWhDZ5/r9qpJ/hlG3ikQ+nleVkWZFIISe5wK0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iEBdcy4x; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1723378688; x=1754914688;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=hHwWR9mdrr1F86wPJmxJ+Z+hpsFfE7JK/YLabgBSPHc=;
-  b=iEBdcy4xTKhzv1x5a48df+bDWFOG8H8q9j7Fy63K2+MwK0w2jgSh5DDo
-   SRlqFE6cAtT7ez+9BcN/S1KVa+QnrfTtFkGk4+5N1JdezlcqqH8VCLRQ/
-   M0YuBTubHdMaecg3Q9jaju0xQl1rps6wNXNmkq19N0wbtMldqbeKS8Oct
-   IMjcIwz9PiaOPLN/lRe2+UZN8+36f+htmVe8yBNtLb7p1Cwr0p5VJbFdD
-   TA9xllZ70jkU+uY/awkaurl4tjnF6h7OLSHo4a7hIdw4etxD1y1B0nHwP
-   RN0luhnnc13EOGTpNrfaISpP/z+6iIcvxvslD+ohalO6tlzgJ+cUm6Z0x
-   Q==;
-X-CSE-ConnectionGUID: FRu2HZOHSZKAqBoWjWozyg==
-X-CSE-MsgGUID: K7bpZk+iQNe+NH/paZ1QhQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11161"; a="44012926"
-X-IronPort-AV: E=Sophos;i="6.09,281,1716274800"; 
-   d="scan'208";a="44012926"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Aug 2024 05:18:07 -0700
-X-CSE-ConnectionGUID: bdThaog8TSmmVcTT7UQGHw==
-X-CSE-MsgGUID: aUUBDBetRYS5ZabXVNtqXw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,281,1716274800"; 
-   d="scan'208";a="62663202"
-Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
-  by fmviesa004.fm.intel.com with ESMTP; 11 Aug 2024 05:18:03 -0700
-Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sd7WL-000AoV-1D;
-	Sun, 11 Aug 2024 12:18:01 +0000
-Date: Sun, 11 Aug 2024 20:17:24 +0800
-From: kernel test robot <lkp@intel.com>
-To: Florian Fainelli <florian.fainelli@broadcom.com>,
-	linux-arm-kernel@lists.infradead.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	arm-scmi@vger.kernel.org, james.quinlan@broadcom.com,
-	justin.chen@broadcom.com, kapil.hali@broadcom.com,
-	bcm-kernel-feedback-list@broadcom.com
-Subject: Re: [PATCH 2/2] firmware: arm_scmi: Support 'reg-io-width' property
- for shared memory
-Message-ID: <202408112059.XkTMhslU-lkp@intel.com>
-References: <20240810214621.14417-3-florian.fainelli@broadcom.com>
+	s=arc-20240116; t=1723379111; c=relaxed/simple;
+	bh=erjEHPtFXhbfMLYRyoCCFcuFatjdm1wBVOhxqyBqGAs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TrKb7ETWCprNnsXhlR3jT6oYeeS8HmESU1VrpPa0peod1ly9jM3dArs94/FtcZkFGuN7GoqzzJn6wpOMYdca1zLOtw47eyVzU7Llfsb0k5OggVpba3VEa/vkEJ4Lh15o9edvnQ0CI5bfYdd5wxpjGvSTPOga5kKbCvIwjQ9UhR0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sOoLxf9a; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FAFBC32786;
+	Sun, 11 Aug 2024 12:25:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723379111;
+	bh=erjEHPtFXhbfMLYRyoCCFcuFatjdm1wBVOhxqyBqGAs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=sOoLxf9aMktjZ18QmuF08IBKQdL2fxToKQbSPA9BMLDcv8faN960AsTVKjKYTyqnf
+	 Sb8sDt6/Rn/aviRMrjBrHlgHEZUdF/RfM379Mm7YCn40W1BmDH69M+DvgXfJWSPqOB
+	 fR709/DYUwrviWtxdiVxNFrEc+iRWGLD5+zw6OHHXVRPx0tfAux3Wig0sIHd09HbFM
+	 q+0dcQjC+7nEuqsFXH+402QGO0AwlvwZOYZicgdA/sreVL18M0Rh+TNnD3l6Yyca4p
+	 gHupD0SlrRHxgqjP9lUrUL393lun3zRq/epLUn2xFWb/cBRhPUUx0N25Ze0DVbD1dO
+	 2IistkdFYwdbg==
+Message-ID: <e5d5018d-842f-40ec-a33e-5b093aef4a69@kernel.org>
+Date: Sun, 11 Aug 2024 14:25:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240810214621.14417-3-florian.fainelli@broadcom.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] dt-bindings: net: fsl,qoriq-mc-dpmac: add missed
+ property phys
+To: Frank Li <Frank.Li@nxp.com>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Ioana Ciornei <ioana.ciornei@nxp.com>,
+ "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+Cc: imx@lists.linux.dev
+References: <20240809200654.3503346-1-Frank.Li@nxp.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240809200654.3503346-1-Frank.Li@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Florian,
+On 09/08/2024 22:06, Frank Li wrote:
+> Add missed property phys, which indicate how connect to serdes phy.
+> Fix below warning:
+> arch/arm64/boot/dts/freescale/fsl-lx2160a-honeycomb.dtb: fsl-mc@80c000000: dpmacs:ethernet@7: Unevaluated properties are not allowed ('phys' was unexpected)
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
 
-kernel test robot noticed the following build errors:
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-[auto build test ERROR on next-20240809]
-[cannot apply to robh/for-next soc/for-next linus/master v6.11-rc2 v6.11-rc1 v6.10 v6.11-rc2]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Best regards,
+Krzysztof
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Florian-Fainelli/dt-bindings-sram-Document-reg-io-width-property/20240811-055659
-base:   next-20240809
-patch link:    https://lore.kernel.org/r/20240810214621.14417-3-florian.fainelli%40broadcom.com
-patch subject: [PATCH 2/2] firmware: arm_scmi: Support 'reg-io-width' property for shared memory
-config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20240811/202408112059.XkTMhslU-lkp@intel.com/config)
-compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project f86594788ce93b696675c94f54016d27a6c21d18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240811/202408112059.XkTMhslU-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408112059.XkTMhslU-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/firmware/arm_scmi/shmem.c:9:
-   In file included from include/linux/io.h:14:
-   In file included from arch/hexagon/include/asm/io.h:328:
-   include/asm-generic/io.h:548:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     548 |         val = __raw_readb(PCI_IOBASE + addr);
-         |                           ~~~~~~~~~~ ^
-   include/asm-generic/io.h:561:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     561 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
-      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
-         |                                                   ^
-   In file included from drivers/firmware/arm_scmi/shmem.c:9:
-   In file included from include/linux/io.h:14:
-   In file included from arch/hexagon/include/asm/io.h:328:
-   include/asm-generic/io.h:574:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     574 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
-      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
-         |                                                   ^
-   In file included from drivers/firmware/arm_scmi/shmem.c:9:
-   In file included from include/linux/io.h:14:
-   In file included from arch/hexagon/include/asm/io.h:328:
-   include/asm-generic/io.h:585:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     585 |         __raw_writeb(value, PCI_IOBASE + addr);
-         |                             ~~~~~~~~~~ ^
-   include/asm-generic/io.h:595:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     595 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
-   include/asm-generic/io.h:605:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     605 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
->> drivers/firmware/arm_scmi/shmem.c:98:4: error: call to undeclared function 'iowrite64'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-      98 |                         __shmem_copy_toio_tpl(64);
-         |                         ^
-   drivers/firmware/arm_scmi/shmem.c:39:3: note: expanded from macro '__shmem_copy_toio_tpl'
-      39 |                 iowrite##s(((u##s *)(xfer->tx.buf))[i / shmem_io_width],        \
-         |                 ^
-   <scratch space>:43:1: note: expanded from here
-      43 | iowrite64
-         | ^
-   6 warnings and 1 error generated.
-
-
-vim +/iowrite64 +98 drivers/firmware/arm_scmi/shmem.c
-
-    36	
-    37	#define __shmem_copy_toio_tpl(s)			\
-    38		for (unsigned int i = 0; i < xfer->tx.len; i += shmem_io_width)		\
-    39			iowrite##s(((u##s *)(xfer->tx.buf))[i / shmem_io_width],	\
-    40				   shmem->msg_payload + i);
-    41	
-    42	#define __shmem_copy_fromio_tpl(s)			\
-    43		for (unsigned int i = 0; i < xfer->rx.len; i += shmem_io_width)		\
-    44			((u##s *)(xfer->rx.buf))[i / shmem_io_width] = 			\
-    45				 ioread##s(shmem->msg_payload + shmem_io_width + i);
-    46	
-    47	static void shmem_tx_prepare(struct scmi_shared_mem __iomem *shmem,
-    48				     struct scmi_xfer *xfer,
-    49				     struct scmi_chan_info *cinfo,
-    50				     u32 shmem_io_width)
-    51	{
-    52		ktime_t stop;
-    53	
-    54		/*
-    55		 * Ideally channel must be free by now unless OS timeout last
-    56		 * request and platform continued to process the same, wait
-    57		 * until it releases the shared memory, otherwise we may endup
-    58		 * overwriting its response with new message payload or vice-versa.
-    59		 * Giving up anyway after twice the expected channel timeout so as
-    60		 * not to bail-out on intermittent issues where the platform is
-    61		 * occasionally a bit slower to answer.
-    62		 *
-    63		 * Note that after a timeout is detected we bail-out and carry on but
-    64		 * the transport functionality is probably permanently compromised:
-    65		 * this is just to ease debugging and avoid complete hangs on boot
-    66		 * due to a misbehaving SCMI firmware.
-    67		 */
-    68		stop = ktime_add_ms(ktime_get(), 2 * cinfo->rx_timeout_ms);
-    69		spin_until_cond((ioread32(&shmem->channel_status) &
-    70				 SCMI_SHMEM_CHAN_STAT_CHANNEL_FREE) ||
-    71				 ktime_after(ktime_get(), stop));
-    72		if (!(ioread32(&shmem->channel_status) &
-    73		      SCMI_SHMEM_CHAN_STAT_CHANNEL_FREE)) {
-    74			WARN_ON_ONCE(1);
-    75			dev_err(cinfo->dev,
-    76				"Timeout waiting for a free TX channel !\n");
-    77			return;
-    78		}
-    79	
-    80		/* Mark channel busy + clear error */
-    81		iowrite32(0x0, &shmem->channel_status);
-    82		iowrite32(xfer->hdr.poll_completion ? 0 : SCMI_SHMEM_FLAG_INTR_ENABLED,
-    83			  &shmem->flags);
-    84		iowrite32(sizeof(shmem->msg_header) + xfer->tx.len, &shmem->length);
-    85		iowrite32(pack_scmi_header(&xfer->hdr), &shmem->msg_header);
-    86		if (xfer->tx.buf) {
-    87			switch (shmem_io_width) {
-    88			case 1:
-    89				__shmem_copy_toio_tpl(8);
-    90				break;
-    91			case 2:
-    92				__shmem_copy_toio_tpl(16);
-    93				break;
-    94			case 4:
-    95				__shmem_copy_toio_tpl(32);
-    96				break;
-    97			case 8:
-  > 98				__shmem_copy_toio_tpl(64);
-    99				break;
-   100			default:
-   101				memcpy_toio(shmem->msg_payload, xfer->tx.buf, xfer->tx.len);
-   102				break;
-   103			}
-   104		}
-   105	}
-   106	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
