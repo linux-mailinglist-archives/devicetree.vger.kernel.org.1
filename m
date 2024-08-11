@@ -1,168 +1,497 @@
-Return-Path: <devicetree+bounces-92700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B0B794E17A
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 15:37:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E69D494E17F
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 15:48:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1708281391
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 13:37:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 978F82815D3
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 13:48:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEC691494AF;
-	Sun, 11 Aug 2024 13:36:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MWHLV/V4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D4F714884C;
+	Sun, 11 Aug 2024 13:48:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out198-17.us.a.mail.aliyun.com (out198-17.us.a.mail.aliyun.com [47.90.198.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3D48148FEB
-	for <devicetree@vger.kernel.org>; Sun, 11 Aug 2024 13:36:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD41615B7;
+	Sun, 11 Aug 2024 13:48:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=47.90.198.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723383417; cv=none; b=qbpDy0zZlprwcxxITavBBKEkubrR+eN+2DIQquuVCNJGC7y7brLMiuhLbIgpsG8zK/fzsd/TTjLDb8CP1Dj246UZ0n2xxACOdoczp5ops+1s/k6xnjrFpmxkw7v4Try1gdKbeR+t9O8EIXMS5xFI2G1BaE9SNUrJOUSwDI08SL4=
+	t=1723384103; cv=none; b=mESse+p3FJPUcEruplw0fbhSyTss2t/6cKuweKsBmY8bdIEtBHYKiFKeHr8dBjcNUhqZm54Fh9h9XSN+wYTyF5wqr4I0J9J5h7Y4DLiJyUtzST2pta5lC90o7MctI/1xCeoF5kZuE5t+J9kGKNgBu5a0DWSOB2iudBEKfRN7RXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723383417; c=relaxed/simple;
-	bh=AjhSzCCRpwX2SIA54WBYVm8ImmaPiSzWx0ZqwEodCVw=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=YrN9gsdvEdX3ca1421xPXGsXZNoqs9BosYq7KBq/7EG07TfDh0Q/Es+5uC+A0qB0eruZOssbh5xcr/tbFysigeqH4eeYgxte/LfsszlqbDpeiYwfq6Bm8CMrKXyZA0luV2lECT8q2mHAW/+V554gnN8RqyCVohXMzZAjN/HNxXg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MWHLV/V4; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-52efd8807aaso4505376e87.3
-        for <devicetree@vger.kernel.org>; Sun, 11 Aug 2024 06:36:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723383414; x=1723988214; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=cig1+J77dIPekmdgbTlikcW8VVCG5pt4tWITgQBHG4I=;
-        b=MWHLV/V4Ko/tPy2RNhZiC7zsMdKbGOrSQVCNx9VARFMaI7G+ytEEhP1UmjnQcufeYL
-         aMY5mfs8jb7P+IRJ6PuUn0daTpxoTZN3G/s2UpRKFKw9NIFYO9VddypowVAHZBlyOqWc
-         daPTZztD+0wQVkgmJyUNuqgFqHqIrtOu+0Y1elN+Zf+oyCQ4oZYzSTWAHT745SOfaSt8
-         kaAPqMC0jF/5HOgON4trby6JI+dhT0+MQjm87zeQxjjHqvUMzya8ySPkhKGmR7XvElsL
-         SrKWYMAXYOE6Pn7hI+Ut4vXQI1NMdw5qEsD7UMRi4sTSAFO+WzWu6CRsZeeW+dKl571D
-         132Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723383414; x=1723988214;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cig1+J77dIPekmdgbTlikcW8VVCG5pt4tWITgQBHG4I=;
-        b=mYY2ItcRX2nZszR2TpaNoDtOodAj22hgqxRn+c1yQaspt0Hp3Di5/B9TG8PhNG+Uv+
-         NpTOOy3JE2z0+nlPPPxgNP8xD+63c8uHNIUjFnmfrCy6pg3pBpKUkg+vHc9w0giOKcMg
-         TZJCbjBLlruFdyltHgvQzQWwtgyYkDa6kEz74GWf0Zjck8nAlmXXTKavzvhE/61gw9jF
-         5cmyfsO8mtYNckrchtlcoBcM8cd2V46h/+N43gAevPLDvGFn3rsQnQ+JzvF10iKrtUZq
-         IzR9luwkI0njuwJCcSNER4Yi9McZHs1YjrrlB6XVBdlw3msH/3qoGQHmzEpGgi+uPuoy
-         WigA==
-X-Forwarded-Encrypted: i=1; AJvYcCXFsYJX+0cLCg6ZBrihwPid2soadozb7T+y0Q8uriZ90eKQHo4tI4yaGylnc04rXI5KkU3rNZtsFBwfin/LkAdlBLXOqyecDDjdhw==
-X-Gm-Message-State: AOJu0Yx6pzxtJrMiygkkO34qtaOZdvvQtJxtgFgrAfRQqWWyCxrHwSUu
-	eK2pRFsnMz56qfdiauljrPMzlvbDyRShW6r6eQMSs5oix0FMx6VovLwlRdbjmCI=
-X-Google-Smtp-Source: AGHT+IHt33AuHPjxUd4uOwuYX+OCWuwzGXpabOgvFL5h/RJY7EsClSLXTXMTL71IPhLvH3UFICIxFw==
-X-Received: by 2002:a05:6512:3b08:b0:52f:c24b:1767 with SMTP id 2adb3069b0e04-530ee9742f8mr4787738e87.19.1723383413675;
-        Sun, 11 Aug 2024 06:36:53 -0700 (PDT)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a80bb0e1288sm147807766b.80.2024.08.11.06.36.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Aug 2024 06:36:53 -0700 (PDT)
-Date: Sun, 11 Aug 2024 16:36:49 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev, Jan Kiszka <jan.kiszka@siemens.com>,
-	Minda Chen <minda.chen@starfivetech.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] phy: starfive: jh7110-usb: Fix link configuration to
- controller
-Message-ID: <053d3e9f-ba32-406c-a799-91ea577a0cb9@stanley.mountain>
+	s=arc-20240116; t=1723384103; c=relaxed/simple;
+	bh=l6AWYvjghOVIKq+DmPp7ZxkGzep1C/zfmYgKq7RfczI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MkDcC11eeyJKCW6d2+VZ+sIx0BgB3jPLB5QyXoX2enEAgGMQiNnz0j4ZkM+BDGPIxX01Ne9MZ2lc1Q1GtikWRhBb8lhMhqW4/1Y+kcdbVCltcvMuSSQsHs8gAV8n9u7zLOS3R/CwI5l0C6gJ/6oFCSLWwoCn4HPNmaV+WcWveU4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=motor-comm.com; spf=pass smtp.mailfrom=motor-comm.com; arc=none smtp.client-ip=47.90.198.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=motor-comm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=motor-comm.com
+Received: from 192.168.208.130(mailfrom:Frank.Sae@motor-comm.com fp:SMTPD_---.YoCHfYF_1723384075)
+          by smtp.aliyun-inc.com;
+          Sun, 11 Aug 2024 21:47:56 +0800
+Message-ID: <e3e57b83-813d-4b8f-aa8a-cb5d0b070e60@motor-comm.com>
+Date: Sun, 11 Aug 2024 06:47:55 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cd7b125c8c797f9d63440944df7121f9db0a49ad.1722457123.git.jan.kiszka@siemens.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] net: phy: Add driver for Motorcomm yt8821 2.5G
+ ethernet phy
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: hkallweit1@gmail.com, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux@armlinux.org.uk, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ yuanlai.cui@motor-comm.com, hua.sun@motor-comm.com,
+ xiaoyong.li@motor-comm.com, suting.hu@motor-comm.com, jie.han@motor-comm.com
+References: <20240727092031.1108690-1-Frank.Sae@motor-comm.com>
+ <fa2a7a4a-a5fc-4b05-b012-3818f65631c4@lunn.ch>
+Content-Language: en-US
+From: "Frank.Sae" <Frank.Sae@motor-comm.com>
+In-Reply-To: <fa2a7a4a-a5fc-4b05-b012-3818f65631c4@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Jan,
 
-kernel test robot noticed the following build warnings:
+On 7/27/24 04:36, Andrew Lunn wrote:
+> On Sat, Jul 27, 2024 at 02:20:31AM -0700, Frank.Sae wrote:
+>>   Add a driver for the motorcomm yt8821 2.5G ethernet phy.
+>>   Verified the driver on
+>>   BPI-R3(with MediaTek MT7986(Filogic 830) SoC) development board,
+>>   which is developed by Guangdong Bipai Technology Co., Ltd..
+>>   On the board, yt8821 2.5G ethernet phy works in
+>>   AUTO_BX2500_SGMII or FORCE_BX2500 interface,
+>>   supports 2.5G/1000M/100M/10M speeds, and wol(magic package).
+>>   Since some functions of yt8821 are similar to YT8521
+>>   so some functions for yt8821 can be reused.
+> No leading space please.
+>
+>> Signed-off-by: Frank.Sae <Frank.Sae@motor-comm.com>
+>> ---
+>>   drivers/net/phy/motorcomm.c | 639 +++++++++++++++++++++++++++++++++++-
+>>   1 file changed, 636 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/net/phy/motorcomm.c b/drivers/net/phy/motorcomm.c
+>> index 7a11fdb687cc..a432b27dd849 100644
+>> --- a/drivers/net/phy/motorcomm.c
+>> +++ b/drivers/net/phy/motorcomm.c
+>> @@ -1,6 +1,6 @@
+>>   // SPDX-License-Identifier: GPL-2.0+
+>>   /*
+>> - * Motorcomm 8511/8521/8531/8531S PHY driver.
+>> + * Motorcomm 8511/8521/8531/8531S/8821 PHY driver.
+>>    *
+>>    * Author: Peter Geis <pgwipeout@gmail.com>
+>>    * Author: Frank <Frank.Sae@motor-comm.com>
+>> @@ -16,7 +16,7 @@
+>>   #define PHY_ID_YT8521		0x0000011a
+>>   #define PHY_ID_YT8531		0x4f51e91b
+>>   #define PHY_ID_YT8531S		0x4f51e91a
+>> -
+>> +#define PHY_ID_YT8821		0x4f51ea19
+>>   /* YT8521/YT8531S Register Overview
+>>    *	UTP Register space	|	FIBER Register space
+>>    *  ------------------------------------------------------------
+>> @@ -52,6 +52,15 @@
+>>   #define YTPHY_SSR_SPEED_10M			0x0
+>>   #define YTPHY_SSR_SPEED_100M			0x1
+>>   #define YTPHY_SSR_SPEED_1000M			0x2
+>> +/* bit9 as speed_mode[2], bit15:14 as Speed_mode[1:0]
+>> + * Speed_mode[2:0]:
+>> + * 100 = 2P5G
+>> + * 011 = 10G
+>> + * 010 = 1000 Mbps
+>> + * 001 = 100 Mbps
+>> + * 000 = 10 Mbps
+>> + */
+>> +#define YT8821_SSR_SPEED_2500M			0x4
+> If these bits are spread around, why 0x4? Ahh, because you extract the
+> bits and reform the value. Maybe:
+>
+> #define YTPHY_SSR_SPEED_10M			(0x0 << 14)
+> #define YTPHY_SSR_SPEED_100M			(0x1 << 14)
+> #define YTPHY_SSR_SPEED_1000M			(0x2 << 14)
+> #define YTPHY_SSR_SPEED_10G			(0x3 << 14)
+> #define YT8821_SSR_SPEED_2500M			(0x0 << 14) | BIT(9)
+> #define YTPHY_SSR_SPEED_MASK			(0x3 << 14) | BIT(9)
+>
+please help to confirm it is ok?
+#define YT8821_SSR_SPEED_2500M	((BIT(9) >> 9) << 2) | ((0x0 << 14) >> 14)
 
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+>> +#define YT8821_SDS_EXT_CSR_CTRL_REG			0x23
+>> +#define YT8821_SDS_EXT_CSR_PLL_SETTING			0x8605
+>> +#define YT8821_UTP_EXT_FFE_IPR_CTRL_REG			0x34E
+>> +#define YT8821_UTP_EXT_FFE_SETTING			0x8080
+>> +#define YT8821_UTP_EXT_VGA_LPF1_CAP_CTRL_REG		0x4D2
+>> +#define YT8821_UTP_EXT_VGA_LPF1_CAP_SHT_SETTING		0x5200
+>> +#define YT8821_UTP_EXT_VGA_LPF2_CAP_CTRL_REG		0x4D3
+>> +#define YT8821_UTP_EXT_VGA_LPF2_CAP_SHT_SETTING		0x5200
+>> +#define YT8821_UTP_EXT_TRACE_CTRL_REG			0x372
+>> +#define YT8821_UTP_EXT_TRACE_LNG_MED_GAIN_THR_SETTING	0x5A3C
+>> +#define YT8821_UTP_EXT_IPR_CTRL_REG			0x374
+>> +#define YT8821_UTP_EXT_IPR_ALPHA_IPR_SETTING		0x7C6C
+>> +#define YT8821_UTP_EXT_ECHO_CTRL_REG			0x336
+>> +#define YT8821_UTP_EXT_ECHO_SETTING			0xAA0A
+>> +#define YT8821_UTP_EXT_GAIN_CTRL_REG			0x340
+>> +#define YT8821_UTP_EXT_AGC_MED_GAIN_SETTING		0x3022
+>> +#define YT8821_UTP_EXT_TH_20DB_2500_CTRL_REG		0x36A
+>> +#define YT8821_UTP_EXT_TH_20DB_2500_SETTING		0x8000
+>> +#define YT8821_UTP_EXT_MU_COARSE_FR_CTRL_REG		0x4B3
+>> +#define YT8821_UTP_EXT_MU_COARSE_FR_FFE_GN_DC_SETTING	0x7711
+>> +#define YT8821_UTP_EXT_MU_FINE_FR_CTRL_REG		0x4B5
+>> +#define YT8821_UTP_EXT_MU_FINE_FR_FFE_GN_DC_SETTING	0x2211
+>> +#define YT8821_UTP_EXT_ANALOG_CFG7_CTRL_REG		0x56
+>> +#define YT8821_UTP_EXT_ANALOG_CFG7_RESET		0x20
+>> +#define YT8821_UTP_EXT_ANALOG_CFG7_PI_CLK_SEL_AFE	0x3F
+>> +#define YT8821_UTP_EXT_VCT_CFG6_CTRL_REG		0x97
+>> +#define YT8821_UTP_EXT_VCT_CFG6_FECHO_AMP_TH_SETTING	0x380C
+>> +#define YT8821_UTP_EXT_TXGE_NFR_FR_THP_CTRL_REG		0x660
+>> +#define YT8821_UTP_EXT_TXGE_NFR_FR_SETTING		0x112A
+>> +#define YT8821_UTP_EXT_PLL_CTRL_REG			0x450
+>> +#define YT8821_UTP_EXT_PLL_SPARE_SETTING		0xE9
+>> +#define YT8821_UTP_EXT_DAC_IMID_CHANNEL23_CTRL_REG	0x466
+>> +#define YT8821_UTP_EXT_DAC_IMID_CHANNEL23_SETTING	0x6464
+>> +#define YT8821_UTP_EXT_DAC_IMID_CHANNEL01_CTRL_REG	0x467
+>> +#define YT8821_UTP_EXT_DAC_IMID_CHANNEL01_SETTING	0x6464
+>> +#define YT8821_UTP_EXT_DAC_IMSB_CHANNEL23_CTRL_REG	0x468
+>> +#define YT8821_UTP_EXT_DAC_IMSB_CHANNEL23_SETTING	0x6464
+>> +#define YT8821_UTP_EXT_DAC_IMSB_CHANNEL01_CTRL_REG	0x469
+>> +#define YT8821_UTP_EXT_DAC_IMSB_CHANNEL01_SETTING	0x6464
+> All these _SETTING are magic numbers. Can you document any of them?
+>
+please help to confirm it is ok?
+#define YT8821_SDS_EXT_CSR_CTRL_REG			0x23
+#define YT8821_SDS_EXT_CSR_VCO_LDO_EN			BIT(15)
+#define YT8821_SDS_EXT_CSR_VCO_BIAS_LPF_EN		BIT(8)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jan-Kiszka/dt-bindings-phy-jh7110-usb-phy-Add-sys-syscon-property/20240802-101748
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/cd7b125c8c797f9d63440944df7121f9db0a49ad.1722457123.git.jan.kiszka%40siemens.com
-patch subject: [PATCH 3/3] phy: starfive: jh7110-usb: Fix link configuration to controller
-config: microblaze-randconfig-r072-20240810 (https://download.01.org/0day-ci/archive/20240811/202408110917.hE9xidPH-lkp@intel.com/config)
-compiler: microblaze-linux-gcc (GCC) 14.1.0
+#define YT8821_UTP_EXT_RPDN_CTRL_REG			0x34E
+#define YT8821_UTP_EXT_RPDN_BP_FFE_LNG_2500		BIT(15)
+#define YT8821_UTP_EXT_RPDN_BP_FFE_SHT_2500		BIT(7)
+#define YT8821_UTP_EXT_RPDN_IPR_SHT_2500		GENMASK(6, 0)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202408110917.hE9xidPH-lkp@intel.com/
+#define YT8821_UTP_EXT_VGA_LPF1_CAP_CTRL_REG		0x4D2
+#define YT8821_UTP_EXT_VGA_LPF1_CAP_OTHER		GENMASK(7, 4)
+#define YT8821_UTP_EXT_VGA_LPF1_CAP_2500		GENMASK(3, 0)
 
-smatch warnings:
-drivers/phy/starfive/phy-jh7110-usb.c:148 jh7110_usb_phy_probe() warn: passing zero to 'PTR_ERR'
+#define YT8821_UTP_EXT_VGA_LPF2_CAP_CTRL_REG		0x4D3
+#define YT8821_UTP_EXT_VGA_LPF2_CAP_OTHER		GENMASK(7, 4)
+#define YT8821_UTP_EXT_VGA_LPF2_CAP_2500		GENMASK(3, 0)
 
-vim +/PTR_ERR +148 drivers/phy/starfive/phy-jh7110-usb.c
+#define YT8821_UTP_EXT_TRACE_CTRL_REG			0x372
+#define YT8821_UTP_EXT_TRACE_LNG_GAIN_THE_2500		GENMASK(14, 8)
+#define YT8821_UTP_EXT_TRACE_MED_GAIN_THE_2500		GENMASK(6, 0)
 
-16d3a71c20cf2e Minda Chen 2023-06-29  109  static int jh7110_usb_phy_probe(struct platform_device *pdev)
-16d3a71c20cf2e Minda Chen 2023-06-29  110  {
-16d3a71c20cf2e Minda Chen 2023-06-29  111  	struct jh7110_usb2_phy *phy;
-16d3a71c20cf2e Minda Chen 2023-06-29  112  	struct device *dev = &pdev->dev;
-16d3a71c20cf2e Minda Chen 2023-06-29  113  	struct phy_provider *phy_provider;
-0ed73d833230fd Jan Kiszka 2024-07-31  114  	u32 args[1];
-16d3a71c20cf2e Minda Chen 2023-06-29  115  
-16d3a71c20cf2e Minda Chen 2023-06-29  116  	phy = devm_kzalloc(dev, sizeof(*phy), GFP_KERNEL);
-16d3a71c20cf2e Minda Chen 2023-06-29  117  	if (!phy)
-16d3a71c20cf2e Minda Chen 2023-06-29  118  		return -ENOMEM;
-16d3a71c20cf2e Minda Chen 2023-06-29  119  
-16d3a71c20cf2e Minda Chen 2023-06-29  120  	phy->usb_125m_clk = devm_clk_get(dev, "125m");
-16d3a71c20cf2e Minda Chen 2023-06-29  121  	if (IS_ERR(phy->usb_125m_clk))
-16d3a71c20cf2e Minda Chen 2023-06-29  122  		return dev_err_probe(dev, PTR_ERR(phy->usb_125m_clk),
-16d3a71c20cf2e Minda Chen 2023-06-29  123  			"Failed to get 125m clock\n");
-16d3a71c20cf2e Minda Chen 2023-06-29  124  
-16d3a71c20cf2e Minda Chen 2023-06-29  125  	phy->app_125m = devm_clk_get(dev, "app_125m");
-16d3a71c20cf2e Minda Chen 2023-06-29  126  	if (IS_ERR(phy->app_125m))
-16d3a71c20cf2e Minda Chen 2023-06-29  127  		return dev_err_probe(dev, PTR_ERR(phy->app_125m),
-16d3a71c20cf2e Minda Chen 2023-06-29  128  			"Failed to get app 125m clock\n");
-16d3a71c20cf2e Minda Chen 2023-06-29  129  
-16d3a71c20cf2e Minda Chen 2023-06-29  130  	phy->regs = devm_platform_ioremap_resource(pdev, 0);
-16d3a71c20cf2e Minda Chen 2023-06-29  131  	if (IS_ERR(phy->regs))
-16d3a71c20cf2e Minda Chen 2023-06-29  132  		return dev_err_probe(dev, PTR_ERR(phy->regs),
-16d3a71c20cf2e Minda Chen 2023-06-29  133  			"Failed to map phy base\n");
-16d3a71c20cf2e Minda Chen 2023-06-29  134  
-16d3a71c20cf2e Minda Chen 2023-06-29  135  	phy->phy = devm_phy_create(dev, NULL, &jh7110_usb2_phy_ops);
-16d3a71c20cf2e Minda Chen 2023-06-29  136  	if (IS_ERR(phy->phy))
-16d3a71c20cf2e Minda Chen 2023-06-29  137  		return dev_err_probe(dev, PTR_ERR(phy->phy),
-16d3a71c20cf2e Minda Chen 2023-06-29  138  			"Failed to create phy\n");
-16d3a71c20cf2e Minda Chen 2023-06-29  139  
-16d3a71c20cf2e Minda Chen 2023-06-29  140  	phy_set_drvdata(phy->phy, phy);
-16d3a71c20cf2e Minda Chen 2023-06-29  141  	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-16d3a71c20cf2e Minda Chen 2023-06-29  142  
-0ed73d833230fd Jan Kiszka 2024-07-31  143  	phy->sys_syscon =
-0ed73d833230fd Jan Kiszka 2024-07-31  144  		syscon_regmap_lookup_by_phandle_args(pdev->dev.of_node,
-0ed73d833230fd Jan Kiszka 2024-07-31  145  						     "starfive,sys-syscon",
-0ed73d833230fd Jan Kiszka 2024-07-31  146  						     1, args);
-0ed73d833230fd Jan Kiszka 2024-07-31  147  	if (IS_ERR(phy->sys_syscon))
-0ed73d833230fd Jan Kiszka 2024-07-31 @148  		return dev_err_probe(dev, PTR_ERR(phy->phy),
+#define YT8821_UTP_EXT_ALPHA_IPR_CTRL_REG		0x374
+#define YT8821_UTP_EXT_ALPHA_SHT_2500			GENMASK(14, 8)
+#define YT8821_UTP_EXT_IPR_LNG_2500			GENMASK(6, 0)
 
-Passing the wrong variable.  It should be phy->sys_syscon instead of phy->phy.
+#define YT8821_UTP_EXT_ECHO_CTRL_REG			0x336
+#define YT8821_UTP_EXT_TRACE_LNG_GAIN_THR_1000		GENMASK(14, 8)
 
-0ed73d833230fd Jan Kiszka 2024-07-31  149  			"Failed to get sys-syscon\n");
-0ed73d833230fd Jan Kiszka 2024-07-31  150  	phy->sys_phy_connect = args[0];
-0ed73d833230fd Jan Kiszka 2024-07-31  151  
-16d3a71c20cf2e Minda Chen 2023-06-29  152  	return PTR_ERR_OR_ZERO(phy_provider);
-16d3a71c20cf2e Minda Chen 2023-06-29  153  }
+#define YT8821_UTP_EXT_GAIN_CTRL_REG			0x340
+#define YT8821_UTP_EXT_TRACE_MED_GAIN_THR_1000		GENMASK(6, 0)
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+#define YT8821_UTP_EXT_TH_20DB_2500_CTRL_REG		0x36A
+#define YT8821_UTP_EXT_TH_20DB_2500			GENMASK(15, 0)
 
+#define YT8821_UTP_EXT_MU_COARSE_FR_CTRL_REG		0x4B3
+#define YT8821_UTP_EXT_MU_COARSE_FR_F_FFE		GENMASK(14, 12)
+#define YT8821_UTP_EXT_MU_COARSE_FR_F_FBE		GENMASK(10, 8)
+
+#define YT8821_UTP_EXT_MU_FINE_FR_CTRL_REG		0x4B5
+#define YT8821_UTP_EXT_MU_FINE_FR_F_FFE			GENMASK(14, 12)
+#define YT8821_UTP_EXT_MU_FINE_FR_F_FBE			GENMASK(10, 8)
+
+#define YT8821_UTP_EXT_PI_CTRL_REG			0x56
+#define YT8821_UTP_EXT_PI_RST_N_FIFO			BIT(5)
+#define YT8821_UTP_EXT_PI_TX_CLK_SEL_AFE		BIT(4)
+#define YT8821_UTP_EXT_PI_RX_CLK_3_SEL_AFE		BIT(3)
+#define YT8821_UTP_EXT_PI_RX_CLK_2_SEL_AFE		BIT(2)
+#define YT8821_UTP_EXT_PI_RX_CLK_1_SEL_AFE		BIT(1)
+#define YT8821_UTP_EXT_PI_RX_CLK_0_SEL_AFE		BIT(0)
+
+#define YT8821_UTP_EXT_VCT_CFG6_CTRL_REG		0x97
+#define YT8821_UTP_EXT_FECHO_AMP_TH_HUGE		GENMASK(15, 8)
+
+#define YT8821_UTP_EXT_TXGE_NFR_FR_THP_CTRL_REG		0x660
+#define YT8821_UTP_EXT_NFR_TX_ABILITY			BIT(3)
+
+#define YT8821_UTP_EXT_PLL_CTRL_REG			0x450
+#define YT8821_UTP_EXT_PLL_SPARE_CFG			GENMASK(7, 0)
+
+#define YT8821_UTP_EXT_DAC_IMID_CH_2_3_CTRL_REG		0x466
+#define YT8821_UTP_EXT_DAC_IMID_CH_3_10_ORG		GENMASK(14, 8)
+#define YT8821_UTP_EXT_DAC_IMID_CH_2_10_ORG		GENMASK(6, 0)
+
+#define YT8821_UTP_EXT_DAC_IMID_CH_0_1_CTRL_REG		0x467
+#define YT8821_UTP_EXT_DAC_IMID_CH_1_10_ORG		GENMASK(14, 8)
+#define YT8821_UTP_EXT_DAC_IMID_CH_0_10_ORG		GENMASK(6, 0)
+
+#define YT8821_UTP_EXT_DAC_IMSB_CH_2_3_CTRL_REG		0x468
+#define YT8821_UTP_EXT_DAC_IMSB_CH_3_10_ORG		GENMASK(14, 8)
+#define YT8821_UTP_EXT_DAC_IMSB_CH_2_10_ORG		GENMASK(6, 0)
+
+#define YT8821_UTP_EXT_DAC_IMSB_CH_0_1_CTRL_REG		0x469
+#define YT8821_UTP_EXT_DAC_IMSB_CH_1_10_ORG		GENMASK(14, 8)
+#define YT8821_UTP_EXT_DAC_IMSB_CH_0_10_ORG		GENMASK(6, 0)
+
+>> +/**
+>> + * yt8821_probe() - read dts to get chip mode
+>> + * @phydev: a pointer to a &struct phy_device
+>> + *
+>> + * returns 0 or negative errno code
+> kerneldoc requires a : after returns.
+>
+>> + */
+>> +static int yt8821_probe(struct phy_device *phydev)
+>> +{
+>> +	struct device_node *node = phydev->mdio.dev.of_node;
+>> +	struct device *dev = &phydev->mdio.dev;
+>> +	struct yt8821_priv *priv;
+>> +	u8 chip_mode;
+>> +
+>> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+>> +	if (!priv)
+>> +		return -ENOMEM;
+>> +
+>> +	phydev->priv = priv;
+>> +
+>> +	if (of_property_read_u8(node, "motorcomm,chip-mode", &chip_mode))
+>> +		chip_mode = YT8821_CHIP_MODE_FORCE_BX2500;
+>> +
+>> +	switch (chip_mode) {
+>> +	case YT8821_CHIP_MODE_AUTO_BX2500_SGMII:
+>> +		priv->chip_mode = YT8821_CHIP_MODE_AUTO_BX2500_SGMII;
+>> +		break;
+>> +	case YT8821_CHIP_MODE_FORCE_BX2500:
+>> +		priv->chip_mode = YT8821_CHIP_MODE_FORCE_BX2500;
+>> +		break;
+>> +	default:
+>> +		phydev_warn(phydev, "chip_mode err:%d\n", chip_mode);
+>> +		return -EINVAL;
+> Didn't the binding say it defaults to forced? Yet here it gives an
+> error?
+>
+>> + * yt8821_get_rate_matching - read register to get phy chip mode
+> Why? You have it in priv?
+>
+>> +/**
+>> + * yt8821gen_init_paged() - generic initialization according to page
+>> + * @phydev: a pointer to a &struct phy_device
+>> + * @page: The reg page(YT8521_RSSR_FIBER_SPACE/YT8521_RSSR_UTP_SPACE) to
+>> + * operate.
+>> + *
+>> + * returns 0 or negative errno code
+>> + */
+>> +static int yt8821gen_init_paged(struct phy_device *phydev, int page)
+>> +{
+>> +	int old_page;
+>> +	int ret = 0;
+>> +
+>> +	old_page = phy_select_page(phydev, page & YT8521_RSSR_SPACE_MASK);
+>> +	if (old_page < 0)
+>> +		goto err_restore_page;
+>> +
+>> +	if (page & YT8521_RSSR_SPACE_MASK) {
+>> +		/* sds init */
+>> +		ret = __phy_modify(phydev, MII_BMCR, BMCR_ANENABLE, 0);
+>> +		if (ret < 0)
+>> +			goto err_restore_page;
+>> +
+>> +		ret = ytphy_write_ext(phydev, YT8821_SDS_EXT_CSR_CTRL_REG,
+>> +				      YT8821_SDS_EXT_CSR_PLL_SETTING);
+>> +		if (ret < 0)
+>> +			goto err_restore_page;
+>> +	} else {
+>> +		/* utp init */
+>> +		ret = ytphy_write_ext(phydev, YT8821_UTP_EXT_FFE_IPR_CTRL_REG,
+>> +				      YT8821_UTP_EXT_FFE_SETTING);
+>> +		if (ret < 0)
+>> +			goto err_restore_page;
+>> +
+> ...
+>
+>> +	}
+>> +
+>> +err_restore_page:
+>> +	return phy_restore_page(phydev, old_page, ret);
+>> +}
+>> +
+>> +/**
+>> + * yt8821gen_init() - generic initialization
+>> + * @phydev: a pointer to a &struct phy_device
+>> + *
+>> + * returns 0 or negative errno code
+>> + */
+>> +static int yt8821gen_init(struct phy_device *phydev)
+>> +{
+>> +	int ret = 0;
+>> +
+>> +	ret = yt8821gen_init_paged(phydev, YT8521_RSSR_FIBER_SPACE);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	return yt8821gen_init_paged(phydev, YT8521_RSSR_UTP_SPACE);
+> That is odd. Why not have two functions, rather than one with a
+> parameter. You get better functions names then, making it clearer what
+> each function is doing.
+
+In next commit, yt8821gen_init_paged(phydev, YT8521_RSSR_FIBER_SPACE); will
+be replaced with yt8821_serdes_init(phydev);,
+yt8821gen_init_paged(phydev, YT8521_RSSR_UTP_SPACE); will be replaced with
+yt8821_utp_init(phydev);
+please help to confirm it is ok?
+
+>> +}
+>> +
+>> +/**
+>> + * yt8821_auto_sleep_config() - phy auto sleep config
+>> + * @phydev: a pointer to a &struct phy_device
+>> + * @enable: true enable auto sleep, false disable auto sleep
+>> + *
+>> + * returns 0 or negative errno code
+>> + */
+>> +static int yt8821_auto_sleep_config(struct phy_device *phydev, bool enable)
+>> +{
+>> +	int old_page;
+>> +	int ret = 0;
+>> +
+>> +	old_page = phy_select_page(phydev, YT8521_RSSR_UTP_SPACE);
+>> +	if (old_page < 0)
+>> +		goto err_restore_page;
+>> +
+>> +	ret = ytphy_modify_ext(phydev,
+>> +			       YT8521_EXTREG_SLEEP_CONTROL1_REG,
+>> +			       YT8521_ESC1R_SLEEP_SW,
+>> +			       enable ? 1 : 0);
+> So each page has its own extension registers?
+
+Yes
+
+>
+>> +	if (ret < 0)
+>> +		goto err_restore_page;
+>> +
+>> +err_restore_page:
+>> +	return phy_restore_page(phydev, old_page, ret);
+>> +}
+>> +
+>> +/**
+>> + * yt8821_config_init() - phy initializatioin
+>> + * @phydev: a pointer to a &struct phy_device
+>> + *
+>> + * returns 0 or negative errno code
+>> + */
+>> +static int yt8821_config_init(struct phy_device *phydev)
+>> +{
+>> +	struct yt8821_priv *priv = phydev->priv;
+>> +	int ret, val;
+>> +
+>> +	phydev->irq = PHY_POLL;
+> Why do this?
+
+phydev->irq = PHY_POLL; will be removed in next commit.
+
+>
+>> +
+>> +	val = ytphy_read_ext_with_lock(phydev, YT8521_CHIP_CONFIG_REG);
+>> +	if (priv->chip_mode == YT8821_CHIP_MODE_AUTO_BX2500_SGMII) {
+>> +		ret = ytphy_modify_ext_with_lock(phydev,
+>> +						 YT8521_CHIP_CONFIG_REG,
+>> +						 YT8521_CCR_MODE_SEL_MASK,
+>> +						 FIELD_PREP(YT8521_CCR_MODE_SEL_MASK, 0));
+>> +		if (ret < 0)
+>> +			return ret;
+>> +
+>> +		__assign_bit(PHY_INTERFACE_MODE_2500BASEX,
+>> +			     phydev->possible_interfaces,
+>> +			     true);
+>> +		__assign_bit(PHY_INTERFACE_MODE_SGMII,
+>> +			     phydev->possible_interfaces,
+>> +			     true);
+>> +
+>> +		phydev->rate_matching = RATE_MATCH_NONE;
+>> +	} else if (priv->chip_mode == YT8821_CHIP_MODE_FORCE_BX2500) {
+>> +		ret = ytphy_modify_ext_with_lock(phydev,
+>> +						 YT8521_CHIP_CONFIG_REG,
+>> +						 YT8521_CCR_MODE_SEL_MASK,
+>> +						 FIELD_PREP(YT8521_CCR_MODE_SEL_MASK, 1));
+>> +		if (ret < 0)
+>> +			return ret;
+>> +
+>> +		phydev->rate_matching = RATE_MATCH_PAUSE;
+>> +	}
+> The idea of this phydev->possible_interfaces is to allow the core to
+> figure out what mode is most appropriate. So i would drop the mode in
+> DT, default to auto, and let the core tell you it wants 2500 BaseX if
+> that is all the MAC can do.
+>
+>> +static int yt8821_read_status(struct phy_device *phydev)
+>> +{
+>> +	struct yt8821_priv *priv = phydev->priv;
+>> +	int old_page;
+>> +	int ret = 0;
+>> +	int link;
+>> +	int val;
+>> +
+>> +	if (phydev->autoneg == AUTONEG_ENABLE) {
+>> +		int lpadv = phy_read_mmd(phydev,
+>> +					 MDIO_MMD_AN, MDIO_AN_10GBT_STAT);
+>> +
+>> +		if (lpadv < 0)
+>> +			return lpadv;
+>> +
+>> +		mii_10gbt_stat_mod_linkmode_lpa_t(phydev->lp_advertising,
+>> +						  lpadv);
+>> +	}
+>> +
+>> +	ret = ytphy_write_ext_with_lock(phydev,
+>> +					YT8521_REG_SPACE_SELECT_REG,
+>> +					YT8521_RSSR_UTP_SPACE);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	ret = genphy_read_status(phydev);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	old_page = phy_select_page(phydev, YT8521_RSSR_UTP_SPACE);
+>> +	if (old_page < 0)
+>> +		goto err_restore_page;
+>> +
+>> +	val = __phy_read(phydev, YTPHY_SPECIFIC_STATUS_REG);
+>> +	if (val < 0) {
+>> +		ret = val;
+>> +		goto err_restore_page;
+>> +	}
+>> +
+>> +	link = val & YTPHY_SSR_LINK;
+>> +	if (link)
+>> +		yt8821_adjust_status(phydev, val);
+>> +
+>> +	if (link) {
+>> +		if (phydev->link == 0)
+>> +			phydev_info(phydev,
+>> +				    "%s, phy addr: %d, link up, mii reg 0x%x = 0x%x\n",
+>> +				    __func__, phydev->mdio.addr,
+>> +				    YTPHY_SPECIFIC_STATUS_REG,
+>> +				    (unsigned int)val);
+> phydev_dbg()?
+>
+phydev_dbg() instead in next commit.
+
+>> +		phydev->link = 1;
+>> +	} else {
+>> +		if (phydev->link == 1)
+>> +			phydev_info(phydev, "%s, phy addr: %d, link down\n",
+>> +				    __func__, phydev->mdio.addr);
+> phydev_dbg()?
+>
+> 	Andrew
 
