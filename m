@@ -1,136 +1,168 @@
-Return-Path: <devicetree+bounces-92699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50DA194E175
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 15:33:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B0B794E17A
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 15:37:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BFCDBB20D8F
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 13:33:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1708281391
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 13:37:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8C70148FEB;
-	Sun, 11 Aug 2024 13:33:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEC691494AF;
+	Sun, 11 Aug 2024 13:36:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sCFpbobL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MWHLV/V4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A21895336B;
-	Sun, 11 Aug 2024 13:33:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3D48148FEB
+	for <devicetree@vger.kernel.org>; Sun, 11 Aug 2024 13:36:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723383226; cv=none; b=jKOXstKIFD/y/tZAgUFeHM1J/DA4Dfi//pUhkVy6pDaF5sVkFtYT91T2NetXe7ksT7zJGSIPvJ8AV3BiwoUuprfrufqFI7HxtUbtxW4yAnm4MHsxU2KuQlyu4EYfltRT9AxBspxepdznXAtlbcShJ0JMKQYOMzecSPNlC7hPh2I=
+	t=1723383417; cv=none; b=qbpDy0zZlprwcxxITavBBKEkubrR+eN+2DIQquuVCNJGC7y7brLMiuhLbIgpsG8zK/fzsd/TTjLDb8CP1Dj246UZ0n2xxACOdoczp5ops+1s/k6xnjrFpmxkw7v4Try1gdKbeR+t9O8EIXMS5xFI2G1BaE9SNUrJOUSwDI08SL4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723383226; c=relaxed/simple;
-	bh=P3TiR38u5zb98PNMkm4vuY+lMtoH4iKqWrcrYeZOZDE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G8UhKS7V4OcZshDbKZF3Sb2HjqFpNGYxIm3hdabRT0YPgEev9rYwf1+s7uZE5ma40G3rfZtAUCFnGEnpArgeIKcFJ6I0tn+ZZTmHb2sIQ48/WO5OdzLMn/3IBYj7cOYnUSp8erDq5RSWQZxbMLBTZPeLeC8v7Yjw6an4tZpDc4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sCFpbobL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 447FBC32786;
-	Sun, 11 Aug 2024 13:33:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723383226;
-	bh=P3TiR38u5zb98PNMkm4vuY+lMtoH4iKqWrcrYeZOZDE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=sCFpbobLZcEgG9xrOtzF0DF/7wBWd/Q9vChEx8GV8GKgZMRy3G1lNijbsjmJWhkOX
-	 vZosAho2gb2oFgbU/K01aaHGFLvyjzC6vrMEH1nHGNBnH0OaYmgKbubB0PIxgVJQ8C
-	 l5tWW+B38WGCe4YpGU1YeYlM/pUB6PkhZ+n5F89t24doDdCLLEoeLobrbxz3SQYpK1
-	 zLHecFmJY5hxcI2apzKjTRSIi8w73of7kl7Xs0ns7hHVXH4hxumOHDoiOO/jVly7P4
-	 NPBOnbMQb4ZyJJiyG5CsoTqqlH+ovrE84exflNsv8SoGuEfLE3qrxYc+CXJjoneO3e
-	 6AMva0wFBnPDw==
-Message-ID: <d7d379d3-6a5c-4452-9791-7f18d1ed19c8@kernel.org>
-Date: Sun, 11 Aug 2024 15:33:37 +0200
+	s=arc-20240116; t=1723383417; c=relaxed/simple;
+	bh=AjhSzCCRpwX2SIA54WBYVm8ImmaPiSzWx0ZqwEodCVw=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=YrN9gsdvEdX3ca1421xPXGsXZNoqs9BosYq7KBq/7EG07TfDh0Q/Es+5uC+A0qB0eruZOssbh5xcr/tbFysigeqH4eeYgxte/LfsszlqbDpeiYwfq6Bm8CMrKXyZA0luV2lECT8q2mHAW/+V554gnN8RqyCVohXMzZAjN/HNxXg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MWHLV/V4; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-52efd8807aaso4505376e87.3
+        for <devicetree@vger.kernel.org>; Sun, 11 Aug 2024 06:36:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1723383414; x=1723988214; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=cig1+J77dIPekmdgbTlikcW8VVCG5pt4tWITgQBHG4I=;
+        b=MWHLV/V4Ko/tPy2RNhZiC7zsMdKbGOrSQVCNx9VARFMaI7G+ytEEhP1UmjnQcufeYL
+         aMY5mfs8jb7P+IRJ6PuUn0daTpxoTZN3G/s2UpRKFKw9NIFYO9VddypowVAHZBlyOqWc
+         daPTZztD+0wQVkgmJyUNuqgFqHqIrtOu+0Y1elN+Zf+oyCQ4oZYzSTWAHT745SOfaSt8
+         kaAPqMC0jF/5HOgON4trby6JI+dhT0+MQjm87zeQxjjHqvUMzya8ySPkhKGmR7XvElsL
+         SrKWYMAXYOE6Pn7hI+Ut4vXQI1NMdw5qEsD7UMRi4sTSAFO+WzWu6CRsZeeW+dKl571D
+         132Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723383414; x=1723988214;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cig1+J77dIPekmdgbTlikcW8VVCG5pt4tWITgQBHG4I=;
+        b=mYY2ItcRX2nZszR2TpaNoDtOodAj22hgqxRn+c1yQaspt0Hp3Di5/B9TG8PhNG+Uv+
+         NpTOOy3JE2z0+nlPPPxgNP8xD+63c8uHNIUjFnmfrCy6pg3pBpKUkg+vHc9w0giOKcMg
+         TZJCbjBLlruFdyltHgvQzQWwtgyYkDa6kEz74GWf0Zjck8nAlmXXTKavzvhE/61gw9jF
+         5cmyfsO8mtYNckrchtlcoBcM8cd2V46h/+N43gAevPLDvGFn3rsQnQ+JzvF10iKrtUZq
+         IzR9luwkI0njuwJCcSNER4Yi9McZHs1YjrrlB6XVBdlw3msH/3qoGQHmzEpGgi+uPuoy
+         WigA==
+X-Forwarded-Encrypted: i=1; AJvYcCXFsYJX+0cLCg6ZBrihwPid2soadozb7T+y0Q8uriZ90eKQHo4tI4yaGylnc04rXI5KkU3rNZtsFBwfin/LkAdlBLXOqyecDDjdhw==
+X-Gm-Message-State: AOJu0Yx6pzxtJrMiygkkO34qtaOZdvvQtJxtgFgrAfRQqWWyCxrHwSUu
+	eK2pRFsnMz56qfdiauljrPMzlvbDyRShW6r6eQMSs5oix0FMx6VovLwlRdbjmCI=
+X-Google-Smtp-Source: AGHT+IHt33AuHPjxUd4uOwuYX+OCWuwzGXpabOgvFL5h/RJY7EsClSLXTXMTL71IPhLvH3UFICIxFw==
+X-Received: by 2002:a05:6512:3b08:b0:52f:c24b:1767 with SMTP id 2adb3069b0e04-530ee9742f8mr4787738e87.19.1723383413675;
+        Sun, 11 Aug 2024 06:36:53 -0700 (PDT)
+Received: from localhost ([196.207.164.177])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a80bb0e1288sm147807766b.80.2024.08.11.06.36.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 Aug 2024 06:36:53 -0700 (PDT)
+Date: Sun, 11 Aug 2024 16:36:49 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev, Jan Kiszka <jan.kiszka@siemens.com>,
+	Minda Chen <minda.chen@starfivetech.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] phy: starfive: jh7110-usb: Fix link configuration to
+ controller
+Message-ID: <053d3e9f-ba32-406c-a799-91ea577a0cb9@stanley.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: serial: Allow embedded-controller as
- child node
-To: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Len Brown <lenb@kernel.org>, Maximilian Luz <luzmaximilian@gmail.com>,
- Hans de Goede <hdegoede@redhat.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
- platform-driver-x86@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <quic_kdybcio@quicinc.com>
-References: <20240810-topic-sam-v2-0-8a8eb368a4f0@quicinc.com>
- <20240810-topic-sam-v2-1-8a8eb368a4f0@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240810-topic-sam-v2-1-8a8eb368a4f0@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cd7b125c8c797f9d63440944df7121f9db0a49ad.1722457123.git.jan.kiszka@siemens.com>
 
-On 10/08/2024 03:28, Konrad Dybcio wrote:
-> From: Konrad Dybcio <quic_kdybcio@quicinc.com>
-> 
-> There exist some embedded controllers (like Microsoft SAM found on
-> Surface devices or Apple Oscar found on old iPhones) that connect to
-> the host device via serial.
-> 
-> Allow that class of devices to exist under serial interface controller
-> nodes.
-> 
-> Signed-off-by: Konrad Dybcio <quic_kdybcio@quicinc.com>
+Hi Jan,
 
+kernel test robot noticed the following build warnings:
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Best regards,
-Krzysztof
+url:    https://github.com/intel-lab-lkp/linux/commits/Jan-Kiszka/dt-bindings-phy-jh7110-usb-phy-Add-sys-syscon-property/20240802-101748
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/cd7b125c8c797f9d63440944df7121f9db0a49ad.1722457123.git.jan.kiszka%40siemens.com
+patch subject: [PATCH 3/3] phy: starfive: jh7110-usb: Fix link configuration to controller
+config: microblaze-randconfig-r072-20240810 (https://download.01.org/0day-ci/archive/20240811/202408110917.hE9xidPH-lkp@intel.com/config)
+compiler: microblaze-linux-gcc (GCC) 14.1.0
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202408110917.hE9xidPH-lkp@intel.com/
+
+smatch warnings:
+drivers/phy/starfive/phy-jh7110-usb.c:148 jh7110_usb_phy_probe() warn: passing zero to 'PTR_ERR'
+
+vim +/PTR_ERR +148 drivers/phy/starfive/phy-jh7110-usb.c
+
+16d3a71c20cf2e Minda Chen 2023-06-29  109  static int jh7110_usb_phy_probe(struct platform_device *pdev)
+16d3a71c20cf2e Minda Chen 2023-06-29  110  {
+16d3a71c20cf2e Minda Chen 2023-06-29  111  	struct jh7110_usb2_phy *phy;
+16d3a71c20cf2e Minda Chen 2023-06-29  112  	struct device *dev = &pdev->dev;
+16d3a71c20cf2e Minda Chen 2023-06-29  113  	struct phy_provider *phy_provider;
+0ed73d833230fd Jan Kiszka 2024-07-31  114  	u32 args[1];
+16d3a71c20cf2e Minda Chen 2023-06-29  115  
+16d3a71c20cf2e Minda Chen 2023-06-29  116  	phy = devm_kzalloc(dev, sizeof(*phy), GFP_KERNEL);
+16d3a71c20cf2e Minda Chen 2023-06-29  117  	if (!phy)
+16d3a71c20cf2e Minda Chen 2023-06-29  118  		return -ENOMEM;
+16d3a71c20cf2e Minda Chen 2023-06-29  119  
+16d3a71c20cf2e Minda Chen 2023-06-29  120  	phy->usb_125m_clk = devm_clk_get(dev, "125m");
+16d3a71c20cf2e Minda Chen 2023-06-29  121  	if (IS_ERR(phy->usb_125m_clk))
+16d3a71c20cf2e Minda Chen 2023-06-29  122  		return dev_err_probe(dev, PTR_ERR(phy->usb_125m_clk),
+16d3a71c20cf2e Minda Chen 2023-06-29  123  			"Failed to get 125m clock\n");
+16d3a71c20cf2e Minda Chen 2023-06-29  124  
+16d3a71c20cf2e Minda Chen 2023-06-29  125  	phy->app_125m = devm_clk_get(dev, "app_125m");
+16d3a71c20cf2e Minda Chen 2023-06-29  126  	if (IS_ERR(phy->app_125m))
+16d3a71c20cf2e Minda Chen 2023-06-29  127  		return dev_err_probe(dev, PTR_ERR(phy->app_125m),
+16d3a71c20cf2e Minda Chen 2023-06-29  128  			"Failed to get app 125m clock\n");
+16d3a71c20cf2e Minda Chen 2023-06-29  129  
+16d3a71c20cf2e Minda Chen 2023-06-29  130  	phy->regs = devm_platform_ioremap_resource(pdev, 0);
+16d3a71c20cf2e Minda Chen 2023-06-29  131  	if (IS_ERR(phy->regs))
+16d3a71c20cf2e Minda Chen 2023-06-29  132  		return dev_err_probe(dev, PTR_ERR(phy->regs),
+16d3a71c20cf2e Minda Chen 2023-06-29  133  			"Failed to map phy base\n");
+16d3a71c20cf2e Minda Chen 2023-06-29  134  
+16d3a71c20cf2e Minda Chen 2023-06-29  135  	phy->phy = devm_phy_create(dev, NULL, &jh7110_usb2_phy_ops);
+16d3a71c20cf2e Minda Chen 2023-06-29  136  	if (IS_ERR(phy->phy))
+16d3a71c20cf2e Minda Chen 2023-06-29  137  		return dev_err_probe(dev, PTR_ERR(phy->phy),
+16d3a71c20cf2e Minda Chen 2023-06-29  138  			"Failed to create phy\n");
+16d3a71c20cf2e Minda Chen 2023-06-29  139  
+16d3a71c20cf2e Minda Chen 2023-06-29  140  	phy_set_drvdata(phy->phy, phy);
+16d3a71c20cf2e Minda Chen 2023-06-29  141  	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+16d3a71c20cf2e Minda Chen 2023-06-29  142  
+0ed73d833230fd Jan Kiszka 2024-07-31  143  	phy->sys_syscon =
+0ed73d833230fd Jan Kiszka 2024-07-31  144  		syscon_regmap_lookup_by_phandle_args(pdev->dev.of_node,
+0ed73d833230fd Jan Kiszka 2024-07-31  145  						     "starfive,sys-syscon",
+0ed73d833230fd Jan Kiszka 2024-07-31  146  						     1, args);
+0ed73d833230fd Jan Kiszka 2024-07-31  147  	if (IS_ERR(phy->sys_syscon))
+0ed73d833230fd Jan Kiszka 2024-07-31 @148  		return dev_err_probe(dev, PTR_ERR(phy->phy),
+
+Passing the wrong variable.  It should be phy->sys_syscon instead of phy->phy.
+
+0ed73d833230fd Jan Kiszka 2024-07-31  149  			"Failed to get sys-syscon\n");
+0ed73d833230fd Jan Kiszka 2024-07-31  150  	phy->sys_phy_connect = args[0];
+0ed73d833230fd Jan Kiszka 2024-07-31  151  
+16d3a71c20cf2e Minda Chen 2023-06-29  152  	return PTR_ERR_OR_ZERO(phy_provider);
+16d3a71c20cf2e Minda Chen 2023-06-29  153  }
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
 
