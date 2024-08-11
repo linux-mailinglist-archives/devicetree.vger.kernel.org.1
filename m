@@ -1,155 +1,116 @@
-Return-Path: <devicetree+bounces-92702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92703-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5469294E189
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 15:59:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D28A394E191
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 16:08:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E68A81F20FF0
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 13:59:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE81F1F21618
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 14:08:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0D6E1494AF;
-	Sun, 11 Aug 2024 13:59:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 255B91494A4;
+	Sun, 11 Aug 2024 14:08:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="PC7Oi5lD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out28-146.mail.aliyun.com (out28-146.mail.aliyun.com [115.124.28.146])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0893B2AD18;
-	Sun, 11 Aug 2024 13:59:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.28.146
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5032F43AA1;
+	Sun, 11 Aug 2024 14:08:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723384751; cv=none; b=RiKRRSUVaPaGURPKJ7K2gqXeOBZ5uaQOcS8X7Ro1dJVGVaifmU1XKc7681sLgjIGZ91y5owmUEhjEi+JC1egVVUhErDnU6+ONp9X2qVSfPfsO2VFibpc4eS2ZSMOppLjwQpJoMfmAofheOaP9CqNQBq6FtU/OtD9GiEGBw+0mLw=
+	t=1723385308; cv=none; b=CbV2r1OYkyTOg5QCe3v753uYRSgPLcLF/tMhzp7la3jFeFf6m08ZJ7imjQMfQAMzK1NIadJp/KqbV0E1JpxnmbvFf4B8ebRnXOEYGhXHlkjZ+RqzkqykMA7yIVeTCK47SyUyrwXvAuwZ60D9WX3efIX+SveQbI1T1rAJqffvuW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723384751; c=relaxed/simple;
-	bh=JaKh76HgcEnPVMiqBrySbQttBOagdFZCdBEh2QYS3PU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XaS5f/koRzYMFSo4Mg8gJHDZxzPzE7+szBl5Jk9EYw0mwatHPOmnZ6AHJg/Jamz5+pLgUd6yh5IeVLvXrdxsBfO7H2cxZZmWUBCi1i+XX53kBZv6cbwz3M1hD9JAszhENiIMWh4ALOBh6Ux/BheHPye73qBo3I1L1FTr4hPyTwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=motor-comm.com; spf=pass smtp.mailfrom=motor-comm.com; arc=none smtp.client-ip=115.124.28.146
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=motor-comm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=motor-comm.com
-Received: from 192.168.208.130(mailfrom:Frank.Sae@motor-comm.com fp:SMTPD_---.YoCuORw_1723384734)
-          by smtp.aliyun-inc.com;
-          Sun, 11 Aug 2024 21:58:55 +0800
-Message-ID: <c44be0f3-7850-4038-bffb-942a85e3c7d0@motor-comm.com>
-Date: Sun, 11 Aug 2024 06:58:54 -0700
+	s=arc-20240116; t=1723385308; c=relaxed/simple;
+	bh=UNVNR/ZqPyzz34eJw5rBf+oEyAv4KDBkWcUQLDbLptw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lHxkPeSP+6z7TVll7I96X8AnVcF2Yh+cwPmD9aRfAutEQDMIJjW5QeBrlxzQOLcEaepmC2l6wgthzH1qcs7wlBooHN7i8Z5k5IGd9Jch3zFo2K/mZY8mryS2tBqJBeQdGRDacLHSS+FGqK/XugRcI8n7lNPtry+bCZiBLxMl3NY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=PC7Oi5lD; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from localhost (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 6724240CF8;
+	Sun, 11 Aug 2024 16:08:17 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+	by localhost (disroot.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id dfrF0iKQAmrr; Sun, 11 Aug 2024 16:08:16 +0200 (CEST)
+From: Yao Zi <ziyao@disroot.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1723385296; bh=UNVNR/ZqPyzz34eJw5rBf+oEyAv4KDBkWcUQLDbLptw=;
+	h=From:To:Cc:Subject:Date;
+	b=PC7Oi5lD0TwnijadOykhVgXBuwvR6s4D3KPnmLQs6bLFUW0yvZkyxkA6u2+WYvf9w
+	 g7mj1Ugs1gSj0CJNLB9tlC5f1bw4Z1dCs7dYFNsIm7QQ6ExJ8c4KsBgN8Wl2/GFR4o
+	 8C3D58lvT9q2H1PoGvb0BAj+WXtYjIjEubLugmK7gry9w1Z84j9HjnasBak2gROdnc
+	 xAEggK4C/OJW2l6X+KbHjxJ+Abbg8G5Hxuerdf7gXAAw/FSeb4qVs99DrkIzjDrqOQ
+	 ti17eJQAtbGhEr8T7iW955lj1wLcvZ/3GXSTdk9RFo81Ql6d9QE82P2ox/+Cw3FUez
+	 Vxpdlgo+ytVNA==
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Tim Lunn <tim@feathertop.org>,
+	Andy Yan <andyshrk@163.com>,
+	Muhammed Efe Cetin <efectn@protonmail.com>,
+	Jagan Teki <jagan@edgeble.ai>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Ondrej Jirman <megi@xff.cz>
+Cc: Celeste Liu <CoelacanthusHex@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	Yao Zi <ziyao@disroot.org>
+Subject: [PATCH v2 0/4] Add initial support for Rockchip RK3528 SoC
+Date: Sun, 11 Aug 2024 14:07:21 +0000
+Message-ID: <20240811140725.64866-1-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] net: phy: Add driver for Motorcomm yt8821 2.5G
- ethernet phy
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: andrew@lunn.ch, hkallweit1@gmail.com, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- yuanlai.cui@motor-comm.com, hua.sun@motor-comm.com,
- xiaoyong.li@motor-comm.com, suting.hu@motor-comm.com, jie.han@motor-comm.com
-References: <20240727092031.1108690-1-Frank.Sae@motor-comm.com>
- <Zqd/6u5b7z1bCFaT@shell.armlinux.org.uk>
-Content-Language: en-US
-From: "Frank.Sae" <Frank.Sae@motor-comm.com>
-In-Reply-To: <Zqd/6u5b7z1bCFaT@shell.armlinux.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
+Rockchip RK3528 is a quad-core ARM Cortex-A53 SoC designed for
+multimedia application. This series add a basic device tree with CPU,
+interrupts and UART nodes for it and is able to boot into a kernel with
+only UART console.
 
-On 7/29/24 04:41, Russell King (Oracle) wrote:
-> On Sat, Jul 27, 2024 at 02:20:31AM -0700, Frank.Sae wrote:
->> +/**
->> + * yt8821_config_init() - phy initializatioin
->> + * @phydev: a pointer to a &struct phy_device
->> + *
->> + * returns 0 or negative errno code
->> + */
->> +static int yt8821_config_init(struct phy_device *phydev)
->> +{
->> +	struct yt8821_priv *priv = phydev->priv;
->> +	int ret, val;
->> +
->> +	phydev->irq = PHY_POLL;
->> +
->> +	val = ytphy_read_ext_with_lock(phydev, YT8521_CHIP_CONFIG_REG);
->> +	if (priv->chip_mode == YT8821_CHIP_MODE_AUTO_BX2500_SGMII) {
->> +		ret = ytphy_modify_ext_with_lock(phydev,
->> +						 YT8521_CHIP_CONFIG_REG,
->> +						 YT8521_CCR_MODE_SEL_MASK,
->> +						 FIELD_PREP(YT8521_CCR_MODE_SEL_MASK, 0));
->> +		if (ret < 0)
->> +			return ret;
->> +
->> +		__assign_bit(PHY_INTERFACE_MODE_2500BASEX,
->> +			     phydev->possible_interfaces,
->> +			     true);
->> +		__assign_bit(PHY_INTERFACE_MODE_SGMII,
->> +			     phydev->possible_interfaces,
->> +			     true);
-> Before each and every call to .config_init, phydev->possible_interfaces
-> will be cleared. So, please use __set_bit() here.
->
->> +static int yt8821_read_status(struct phy_device *phydev)
->> +{
->> +	struct yt8821_priv *priv = phydev->priv;
->> +	int old_page;
->> +	int ret = 0;
->> +	int link;
->> +	int val;
->> +
->> +	if (phydev->autoneg == AUTONEG_ENABLE) {
->> +		int lpadv = phy_read_mmd(phydev,
->> +					 MDIO_MMD_AN, MDIO_AN_10GBT_STAT);
->> +
->> +		if (lpadv < 0)
->> +			return lpadv;
->> +
->> +		mii_10gbt_stat_mod_linkmode_lpa_t(phydev->lp_advertising,
->> +						  lpadv);
->> +	}
->> +
->> +	ret = ytphy_write_ext_with_lock(phydev,
->> +					YT8521_REG_SPACE_SELECT_REG,
->> +					YT8521_RSSR_UTP_SPACE);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	ret = genphy_read_status(phydev);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	old_page = phy_select_page(phydev, YT8521_RSSR_UTP_SPACE);
->> +	if (old_page < 0)
->> +		goto err_restore_page;
->> +
->> +	val = __phy_read(phydev, YTPHY_SPECIFIC_STATUS_REG);
->> +	if (val < 0) {
->> +		ret = val;
->> +		goto err_restore_page;
->> +	}
->> +
->> +	link = val & YTPHY_SSR_LINK;
-> What link status is this reporting? For interface switching to work,
-> phydev->link must _only_ indicate whether the _media_ side interface
-> is up or down. It must _not_ include the status of the MAC facing
-> interface from the PHY.
->
-> Why? The interface configuration of the MAC is only performed when
-> the _media_ link comes up, denoted by phydev->link becoming true.
-> If the MAC interface configuration mismatches the PHY interface
-> configuration, then the MAC facing interface of the PHY will
-> remain down, and if phydev->link is forced to false, then the link
-> will never come up.
->
-> So, I hope that this isn't testing the MAC facing interface status
-> of the PHY!
->
-MAC facing interface will be switched according to phy interface. when phy
-media side state is link down, the mac facing interface will not be
-configured, this refers to Marvell10g.c(mv3310_update_interface) and
-Realtek.c(rtl822xb_update_interface).
+Has been tested on Radxa E20C board[1] with vendor U-boot, successfully
+booted into initramfs with this log[2].
+
+[1]: https://docs.radxa.com/en/e/e20c
+[2]: https://gist.github.com/ziyao233/b74523a1e3e8bf36286a572e008ca319
+
+Changed from v1:
+- fix stdout-path
+- style improvements
+https://lore.kernel.org/all/20240803125510.4699-2-ziyao@disroot.org/
+
+Yao Zi (4):
+  dt-bindings: serial: snps-dw-apb-uart: Document Rockchip RK3528
+  dt-bindings: arm: rockchip: Add Radxa E20C board
+  arm64: dts: rockchip: Add base DT for rk3528 SoC
+  arm64: dts: rockchip: Add Radxa e20c board
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ .../bindings/serial/snps-dw-apb-uart.yaml     |   1 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3528-radxa-e20c.dts   |  22 +++
+ arch/arm64/boot/dts/rockchip/rk3528.dtsi      | 182 ++++++++++++++++++
+ 5 files changed, 211 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3528.dtsi
+
+-- 
+2.45.2
 
 
