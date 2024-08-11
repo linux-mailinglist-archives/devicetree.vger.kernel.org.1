@@ -1,93 +1,92 @@
-Return-Path: <devicetree+bounces-92727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C251894E242
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 18:32:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E788D94E245
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 18:35:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48E0A2814C5
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 16:32:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7C201C20912
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 16:35:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 532AF14D2A4;
-	Sun, 11 Aug 2024 16:32:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6E911537A1;
+	Sun, 11 Aug 2024 16:34:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="eDsbkGpn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NVqMH7zW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0BD517552;
-	Sun, 11 Aug 2024 16:32:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC52014B950;
+	Sun, 11 Aug 2024 16:34:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723393964; cv=none; b=ePoReNtWW6CENujg7QQ4VssCYjIFEsNXEDzgVaBOL4lTNqdJiaD3elkuS3h9jyxkarwDYmINKlMUj610vshSJARyUUzPuVpr0mJaWPb1PZarR49o3cUBir+1y2YWt6JtPtqDV3+Rw+OZFOf8nCWsP0+OixPd0OaKjf9r7T5Cd+k=
+	t=1723394097; cv=none; b=POsftqftTqySV1y+FeTn2YgGtgRWv09msl1W+DX1iJhtzLR5M1/WLw7AolljqhJktKY240p17OYYVUjAKn4g4uJJrlc+ty/BmL2281c9uJqSx5gvvSEHdEHk57PxdBTURWCBJ1DwmlWAZiQXT70CH5qju6ixM2WP8AAxK6n/wjw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723393964; c=relaxed/simple;
-	bh=x4YXLMphLDcbIA5cY+pXEwWpsa/bemTS5Ma4yzWMSX8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g+nzJk174mVCyeSXVxbknscxrcU20N1VaQqROaoKsUgM+uxFdaKGVkb76iSGq6R/+2LEEcT/vJ7FYy37J3grI0FXD0FXCDj0LN/2knCejTihTFT04cVImi1UE+IoViVe/x3FpuRzvwF0JV+1elyqvZUkPCEIHCcYWZxJM3K1PlU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=eDsbkGpn; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=5ggn0KuBiFZ+YkxUXgYc1owEPbUgdAKbCVM6AilzxOM=; b=eDsbkGpn8Ptfpdbo3fFdJZ9qA2
-	C6WwAIeXmcrx7pZ3PG5dR5FZYzQYR5xP7nejzeR2ux85C3stQElY6BMB2o62jV42ZfySPSztAi1YX
-	O8IOThzhZomLfTbsmuffcMWbZnGf889a+1u9lRrzU4NykVVldYjFOvodnPpqfY5DDUPU=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sdBUd-004ViW-Rg; Sun, 11 Aug 2024 18:32:31 +0200
-Date: Sun, 11 Aug 2024 18:32:31 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Tristram.Ha@microchip.com
-Cc: Woojung Huh <woojung.huh@microchip.com>, UNGLinuxDriver@microchip.com,
-	devicetree@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>,
-	Vladimir Oltean <olteanv@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Marek Vasut <marex@denx.de>, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 4/4] net: dsa: microchip: add SGMII port support
- to KSZ9477 switch
-Message-ID: <ede735e5-cbf1-48ea-a93e-1b4f21a48a4c@lunn.ch>
-References: <20240809233840.59953-1-Tristram.Ha@microchip.com>
- <20240809233840.59953-5-Tristram.Ha@microchip.com>
+	s=arc-20240116; t=1723394097; c=relaxed/simple;
+	bh=xUlyE54aBvjUDMvOX8g31Yb3a70VHjGE8lQXt8Jsn1o=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Dy/c0eVGgUj/3+nj4k8Uho4gfgC+QFpCRnSzvEc3oS72PVPTSP8Cr7/4yJzmNlkryzbgRhckXk006VgerA1RedRiU+pXhv5NM3T4MUmho7zUbkFREBqljGI0mcFM4LfwrO+Dmf6q/Ux07bd4VN96y04jR5dPt6ZLFdnVfB4zsfI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NVqMH7zW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98299C32786;
+	Sun, 11 Aug 2024 16:34:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723394097;
+	bh=xUlyE54aBvjUDMvOX8g31Yb3a70VHjGE8lQXt8Jsn1o=;
+	h=From:To:Cc:Subject:Date:From;
+	b=NVqMH7zWw/I4JdIkjjKHogHp2EXcnyVOBfXJs+ktJ7mOIgbXTgYPHRltkTfNyaenZ
+	 /Zc5H6M7R3sp0aKjhIs28qp2d0AQLFQ53KFzpyiN+HwkCic9MnOMhCox5XDjJSO8rH
+	 8Jhpw66LeocNRDHZZbi7LkZJt6Xo0HZY75sq9FrHCD1+c6fDK6XdVZHwRCmPJt2Gyx
+	 pLKJbmLl4OvBuLhrQZf3TFhA30JyQt5NP3qqajSHo27Aku/8pfzon0XLoxsg2HhaEh
+	 pmNx4XPNfZuQfdt5EkO3OLhwA+CCc6t8Z0RtNjYceuh2C7v910B5H5EIZTYuYTkiCj
+	 TeunD+sb/DgwA==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: linux-pwm@vger.kernel.org
+Cc: ukleinek@kernel.org,
+	lorenzo.bianconi83@gmail.com,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com,
+	benjamin.larsson@genexis.eu,
+	conor+dt@kernel.org,
+	ansuelsmth@gmail.com
+Subject: [PATCH v2 0/2] Add PWM support to EN7581
+Date: Sun, 11 Aug 2024 18:34:30 +0200
+Message-ID: <cover.1723393857.git.lorenzo@kernel.org>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240809233840.59953-5-Tristram.Ha@microchip.com>
+Content-Transfer-Encoding: 8bit
 
-On Fri, Aug 09, 2024 at 04:38:40PM -0700, Tristram.Ha@microchip.com wrote:
-> From: Tristram Ha <tristram.ha@microchip.com>
-> 
-> The SGMII module of KSZ9477 switch can be setup in 3 ways: 0 for direct
-> connect, 1 for 1000BaseT SFP, and 2 for 10/100/1000 SFP.
-> 
-> SFP is typically used so the default is 1.  The driver can detect
-> 10/100/1000 SFP and change the mode to 2.  For direct connect this mode
-> has to be explicitly set to 0 as driver cannot detect that
-> configuration.
+Introduce driver for PWM module available on EN7581 SoC.
 
-Is 1 actually 1000BaseX? An SFP module using fibre would typically
-want 1000BaseX, and only support one speed. An SFP module using copper
-typically has a PHY in it, it performs auto-neg on the media side, and
-then uses SGMII inband signalling to tell the MAC what data rate,
-symbol duplication to do. And maybe mode 0 has in-band signalling
-turned off, in which case 1000BaseX and SGMII become identical,
-because it is the signalling which is different.
+Changes since v1:
+- fix compilation errors
+- fix comment style
+- get rid of MODULE_ALIAS()
 
-	Andrew
+Benjamin Larsson (1):
+  pwm: airoha: Add support for EN7581 SoC
+
+Christian Marangi (1):
+  dt-bindings: pwm: Document Airoha EN7581 PWM
+
+ .../bindings/pwm/airoha,en7581-pwm.yaml       |  42 ++
+ drivers/pwm/Kconfig                           |  10 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-airoha.c                      | 408 ++++++++++++++++++
+ 4 files changed, 461 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/airoha,en7581-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-airoha.c
+
+-- 
+2.46.0
+
 
