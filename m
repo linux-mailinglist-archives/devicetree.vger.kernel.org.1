@@ -1,535 +1,172 @@
-Return-Path: <devicetree+bounces-92730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9947D94E24A
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 18:35:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4670594E259
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 18:55:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58A9828193A
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 16:35:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C4D41C20A26
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2024 16:55:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B7241537A7;
-	Sun, 11 Aug 2024 16:35:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 308251547FC;
+	Sun, 11 Aug 2024 16:55:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z5G3bdCj"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Ng8k0Y8U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7194314B950;
-	Sun, 11 Aug 2024 16:35:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77AC31537B1
+	for <devicetree@vger.kernel.org>; Sun, 11 Aug 2024 16:55:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723394107; cv=none; b=husMjDNDVrnQzPqiYm2kbkWQbMgwu/qQWXMtebUnov9WOvJ5LDKe1Rctuf1k9bieoWrc2egEcpL3T9a9Ps4YvTGwKP/rA3NQNKixNjNJ5OnERWdtfljQ+Yr2SZacRQ141aXpI6a75oS+tjnRYSUIfr14InQp+wkBBZ/aCL8KKEU=
+	t=1723395315; cv=none; b=djVvMestS756NqBSvMmacU8R4h1sIRJqJsDF2lBBEVOQo79bw9uiS4JIxg8pqdHLKPyn74DoS6T7AcPqUMgMI6PQR5TZJl8jbFxltAKZs1hcqEJscYKqLa92oT/1KDAOFJDaklTETiZgJr26etJfi2BGgwixCT1dMy5vQ/zFzVo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723394107; c=relaxed/simple;
-	bh=BgXbb9spkID426ni0BSbzzKrozs7T/9RqNzxqBJmSoM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=LBhDX61++j7cHEmCarQ186l8iPuvewqiwDzeyWVhBeAaxWWWKeeBuSjtd01z58I7QKz0oXr5BkwCnswksV9ovW4/4XioTYiwo78jQRZmii8LUnfdqqsJ4LMXZCzOgXowP4EQbJuonys3y8yq/zFLZsbpvqFtpY/FwjXD2PKCjnQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z5G3bdCj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F958C32786;
-	Sun, 11 Aug 2024 16:35:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723394107;
-	bh=BgXbb9spkID426ni0BSbzzKrozs7T/9RqNzxqBJmSoM=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Z5G3bdCjSvPYqaPm8mqbGKi4umqZ/p1h6HZ92aTfvtXat4UJ8rfuDhTsyjnWstYvx
-	 WX4AmbzKSE+CudqSjrK707wKLcrtM54NGxaa9XTP1SxuNkmd3o4KZhaQwoe+zn9U6A
-	 Tlabl9Fnq/3kJGEW246k+J7EhYuycBMejKhsRvlpxLFZXoTGEIsR6LNeVRbbwn+cts
-	 mSztuLB6njNWkA0crQUD77QeWeGmQwXHvuFNsraOXIKm8n7yClGJenssXrCXiN14EE
-	 Zoq7OFNBu0uWQ4+b/i5wka+1/g66QXPYB25h/oMLzBxnJ7HNj2Ve3iIAVP51J9DKoX
-	 E6KIy7UZ/usRg==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: linux-pwm@vger.kernel.org
-Cc: ukleinek@kernel.org,
-	lorenzo.bianconi83@gmail.com,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com,
-	benjamin.larsson@genexis.eu,
-	conor+dt@kernel.org,
-	ansuelsmth@gmail.com
-Subject: [PATCH v2 2/2] pwm: airoha: Add support for EN7581 SoC
-Date: Sun, 11 Aug 2024 18:34:32 +0200
-Message-ID: <d5abef7ee63f2c5df8bf3400c4d8a5ff72c706a9.1723393857.git.lorenzo@kernel.org>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <cover.1723393857.git.lorenzo@kernel.org>
-References: <cover.1723393857.git.lorenzo@kernel.org>
+	s=arc-20240116; t=1723395315; c=relaxed/simple;
+	bh=vHKPWfiQWvlSo4VoE8qHtUeppbgKxJPqBsnzf17dE1M=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=ML/sr9XGXOAKY+O3qFhVUTDW/DAnYMRyfzY0AVV+5rBVHrJ0zRMFsDlMa4uDDI3ALjLtSYys1Xy2Sjbq9R2phwUnQvov83dIfi9yWmmuA/ogab8BH9A8cKT7tp31vywRwbEZVYiffE523exAnAzbuiL1enDqPDJQ/f8SWC5aNIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Ng8k0Y8U; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20240811165504epoutp03bbcbe3d4fdcff87e7a04e9e9af09c165~quuX8U1Dv0237502375epoutp03f
+	for <devicetree@vger.kernel.org>; Sun, 11 Aug 2024 16:55:04 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20240811165504epoutp03bbcbe3d4fdcff87e7a04e9e9af09c165~quuX8U1Dv0237502375epoutp03f
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1723395304;
+	bh=hd+fiVs9oF1v/I8T9U+QYPDLsJffRXyK3AHnAirESvk=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=Ng8k0Y8UZs6ms0QLTdhbgNTV6xP+vkTyETuCFpUXRoui6So1jeNMYKXgYjdPhHjeo
+	 RLI0pHhc4g6OjTyYv3hoJLqQFDXVSl55AxBAs0elRUwmy896Wd0fHob5UIYEtN+SU6
+	 vPL2TcvJrS+94a9I6oFxK5kX8kiv97dhONaOo/58=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTP id
+	20240811165502epcas5p30380bcb0d1bedc8adf60b5d8ad888a7d~quuWo54st2486024860epcas5p3q;
+	Sun, 11 Aug 2024 16:55:02 +0000 (GMT)
+Received: from epsmgec5p1-new.samsung.com (unknown [182.195.38.175]) by
+	epsnrtp2.localdomain (Postfix) with ESMTP id 4WhkKK1z97z4x9Pt; Sun, 11 Aug
+	2024 16:55:01 +0000 (GMT)
+Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
+	epsmgec5p1-new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	AD.28.19863.5ECE8B66; Mon, 12 Aug 2024 01:55:01 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+	20240811165500epcas5p32d48a528ec0b99b2867f7c27bdecc5a8~quuUI2HQD2970829708epcas5p3S;
+	Sun, 11 Aug 2024 16:55:00 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20240811165500epsmtrp27d587a693cfdf318892d5304e5336552~quuUIFhjG1434314343epsmtrp2G;
+	Sun, 11 Aug 2024 16:55:00 +0000 (GMT)
+X-AuditID: b6c32a50-c73ff70000004d97-8c-66b8ece547de
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	0C.03.08456.4ECE8B66; Mon, 12 Aug 2024 01:55:00 +0900 (KST)
+Received: from INBRO002756 (unknown [107.122.12.5]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20240811165458epsmtip25e1cffbfb83e37a1cc3ab595ee5b69a1~quuSQOOD91628316283epsmtip2f;
+	Sun, 11 Aug 2024 16:54:58 +0000 (GMT)
+From: "Alim Akhtar" <alim.akhtar@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Sunyeal Hong'"
+	<sunyeal.hong@samsung.com>, "'Sylwester Nawrocki'" <s.nawrocki@samsung.com>,
+	"'Chanwoo Choi'" <cw00.choi@samsung.com>, "'Michael Turquette'"
+	<mturquette@baylibre.com>, "'Stephen Boyd'" <sboyd@kernel.org>, "'Rob
+ Herring'" <robh@kernel.org>, "'Conor Dooley'" <conor+dt@kernel.org>
+Cc: <linux-samsung-soc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+In-Reply-To: <db84ee7d-dfd8-4e15-9745-01b1a76566ad@kernel.org>
+Subject: RE: [PATCH v5 1/4] dt-bindings: clock: add ExynosAuto v920 SoC CMU
+ bindings
+Date: Sun, 11 Aug 2024 22:24:56 +0530
+Message-ID: <000a01daec0f$33ca4710$9b5ed530$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQF6vxHYtquPDfXNJNR6Q4M3hEm7ZwGgrKQGAnAwy/YBn8h2zbK1GALg
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrOJsWRmVeSWpSXmKPExsWy7bCmuu7TNzvSDN785bJYs/cck8X1L89Z
+	LeYfOcdqcf78BnaLTY+vsVp87LnHanF51xw2ixnn9zFZXDzlavF/zw52i8Nv2lkt/l3byGLR
+	tGw9kwOvx/sbrewem1Z1snlsXlLv0bdlFaPH501yAaxR2TYZqYkpqUUKqXnJ+SmZeem2St7B
+	8c7xpmYGhrqGlhbmSgp5ibmptkouPgG6bpk5QCcqKZQl5pQChQISi4uV9O1sivJLS1IVMvKL
+	S2yVUgtScgpMCvSKE3OLS/PS9fJSS6wMDQyMTIEKE7IzVr1+wFjwnK1i2ha2BsY1rF2MnBwS
+	AiYSn1u/sYPYQgJ7GCUernXtYuQCsj8xSuxeOYMRIvGNUaLzKAtMw56HSxkhivYySnTtPcsK
+	4bxglDjcOgWsg01AV2LH4jY2kISIwD0miY6J+1lAHGaBdYwSm2ceAVvIKWAnsWfnbTBbWCBM
+	Yv/t6WA2i4CqROfq3WwgNq+ApUTntJ0sELagxMmZT8BsZgFtiWULXzND3KQg8fPpMrCHRATc
+	JKafn8gIUSMu8fIoyC4uoJoDHBI7J/yCanCRmPNsKtRDwhKvjm9hh7ClJD6/28sGYWdLHL84
+	C8qukOhu/QhVYy+x89FNoF4OoAWaEut36UPs4pPo/f2ECSQsIcAr0dEmBFGtKtH87irUJmmJ
+	id3d0HD3kLixYyP7BEbFWUg+m4Xks1lIPpiFsGwBI8sqRqnUguLc9NRk0wJD3bzUcniEJ+fn
+	bmIEp2CtgB2Mqzf81TvEyMTBeIhRgoNZSYS3OXxTmhBvSmJlVWpRfnxRaU5q8SFGU2B4T2SW
+	Ek3OB2aBvJJ4QxNLAxMzMzMTS2MzQyVx3tetc1OEBNITS1KzU1MLUotg+pg4OKUamOYEnhL8
+	fTzbIy1Az6jsEqeD5A5l3o3KCuuMt7hU8HQqX7goG+DN1uH9fOmn2VnH+aRuLfGwX612Ts7t
+	65Mrkk4zL3npuU5L6dq+3i4/yGqjyY1C0eKX2SwKz40O5af8YDwi+Vir8ZJuh4HlJ9knM/j2
+	L34ndFxyUVvFZ6v7Tbfvb77ttl1FT0NtZ4bak9sWIrOdBT6FTpkd+PfP12a3ojt/LuwLkJki
+	FNW0rVdudkeGgqDQpU9ZL9fHLtO7dlbEm3+/9JuPN9JWGCst0TRNcD3cd+XQ/AT/N+t/2y+6
+	IJky7XhvFfvExrYM1p5/Fx7ufbFsctD+FxOqVt45Jv/UpPVQxp4Dyv9Tf7z5Z2j5s1WJpTgj
+	0VCLuag4EQDAeusxSgQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrEIsWRmVeSWpSXmKPExsWy7bCSvO6TNzvSDBq+s1us2XuOyeL6l+es
+	FvOPnGO1OH9+A7vFpsfXWC0+9txjtbi8aw6bxYzz+5gsLp5ytfi/Zwe7xeE37awW/65tZLFo
+	WraeyYHX4/2NVnaPTas62Tw2L6n36NuyitHj8ya5ANYoLpuU1JzMstQifbsEroxbzw+xF9xm
+	q1iw7QNLA+MC1i5GTg4JAROJPQ+XMnYxcnEICexmlOjds4kZIiEtcX3jBHYIW1hi5b/n7BBF
+	zxgllu96CVbEJqArsWNxGxtIQkTgCZPEtZZNYKOYBTYxSpzbfZMNouU7o8S0P2cZQVo4Bewk
+	9uy8DTZXWCBE4uehP2wgNouAqkTn6t1gNq+ApUTntJ0sELagxMmZT8BsZgFtid6HrYww9rKF
+	r6FuVZD4+XQZ2EMiAm4S089PhKoRl3h59Aj7BEbhWUhGzUIyahaSUbOQtCxgZFnFKJlaUJyb
+	nltsWGCUl1quV5yYW1yal66XnJ+7iREcjVpaOxj3rPqgd4iRiYPxEKMEB7OSCG9z+KY0Id6U
+	xMqq1KL8+KLSnNTiQ4zSHCxK4rzfXvemCAmkJ5akZqemFqQWwWSZODilGpj2TWgrfrNmXU2F
+	wJtVm/nrzx67uPTq5Fsn+1Zmtk6xuKeeFtjQHCaUZ1evX12Qx7CistFPZhXD7fsfg1OY70zM
+	CQjZueDgSm+nN1cv1y/bEnf7X+jFY1UZgdf2v7Koj13B2cGU3WjxUizl5PGNRSZztodqCOSv
+	+3PKpMA0YpXtWfHra47M6r1n8Esv9uDy79d+x62cVvKVoW/T9Fcblu86tdMu4H4ft8Oz9K1b
+	TZmyJ8juj1cwYQmbMX3DLJUlW6/IXf0Vf1hXZ3lWD4PyK26T2U0bpnPPWmynZKrl2Nvp98wo
+	KKt5dax/1t1J39bcKLi40fGF0Sx/iQrXZJcLjSWNpanXFpcs0Itf891hV3qiEktxRqKhFnNR
+	cSIA23yVbDUDAAA=
+X-CMS-MailID: 20240811165500epcas5p32d48a528ec0b99b2867f7c27bdecc5a8
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20240730071227epcas2p278017961013950cd75c4266eda45c236
+References: <20240730071221.2590284-1-sunyeal.hong@samsung.com>
+	<CGME20240730071227epcas2p278017961013950cd75c4266eda45c236@epcas2p2.samsung.com>
+	<20240730071221.2590284-2-sunyeal.hong@samsung.com>
+	<db84ee7d-dfd8-4e15-9745-01b1a76566ad@kernel.org>
 
-From: Benjamin Larsson <benjamin.larsson@genexis.eu>
+Hi Krzysztof
 
-Introduce driver for PWM module available on EN7581 SoC.
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> Sent: Wednesday, July 31, 2024 2:57 PM
+> To: Sunyeal Hong <sunyeal.hong=40samsung.com>; Sylwester Nawrocki
+=5Bsnip=5D
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - samsung,exynosautov920-cmu-top
+> > +      - samsung,exynosautov920-cmu-peric0
+>=20
+> Maybe I misinterpreted previous discussion, but I had impression that
+> binding was incomplete and you wanted to add more devices?
+>=20
+There are other CMU controller blocks likes any other Exynos SoC.=20
+Are you suggesting to add all of them?=20
+In the above case cmu_top provides clocks to cmu_peric0.=20
+And I think the subject patch Intension is to add binding for this clock tr=
+ee.=20
 
-Signed-off-by: Benjamin Larsson <benjamin.larsson@genexis.eu>
-Co-developed-by: Lorenzo Bianconi <lorenzo@kernel.org>
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- drivers/pwm/Kconfig      |  10 +
- drivers/pwm/Makefile     |   1 +
- drivers/pwm/pwm-airoha.c | 408 +++++++++++++++++++++++++++++++++++++++
- 3 files changed, 419 insertions(+)
- create mode 100644 drivers/pwm/pwm-airoha.c
+> > +
+> > +  clocks:
+> > +    minItems: 1
+=5Bsnip=5D
+>=20
+> Best regards,
+> Krzysztof
 
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 1dd7921194f5..0d702b394ea7 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -47,6 +47,16 @@ config PWM_AB8500
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-ab8500.
- 
-+config PWM_AIROHA
-+	tristate "Airoha PWM support"
-+	depends on ARCH_AIROHA || COMPILE_TEST
-+	depends on OF
-+	help
-+	  Generic PWM framework driver for Airoha SoC.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called pwm-airoha.
-+
- config PWM_APPLE
- 	tristate "Apple SoC PWM support"
- 	depends on ARCH_APPLE || COMPILE_TEST
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index 90913519f11a..cef216753dd6 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- obj-$(CONFIG_PWM)		+= core.o
- obj-$(CONFIG_PWM_AB8500)	+= pwm-ab8500.o
-+obj-$(CONFIG_PWM_AIROHA)	+= pwm-airoha.o
- obj-$(CONFIG_PWM_APPLE)		+= pwm-apple.o
- obj-$(CONFIG_PWM_ATMEL)		+= pwm-atmel.o
- obj-$(CONFIG_PWM_ATMEL_HLCDC_PWM)	+= pwm-atmel-hlcdc.o
-diff --git a/drivers/pwm/pwm-airoha.c b/drivers/pwm/pwm-airoha.c
-new file mode 100644
-index 000000000000..ccb648e4a18e
---- /dev/null
-+++ b/drivers/pwm/pwm-airoha.c
-@@ -0,0 +1,408 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright 2022 Markus Gothe <markus.gothe@genexis.eu>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/err.h>
-+#include <linux/io.h>
-+#include <linux/iopoll.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/pwm.h>
-+#include <linux/gpio.h>
-+#include <linux/bitops.h>
-+#include <asm/div64.h>
-+
-+#define REG_SGPIO_LED_DATE		0x0000
-+#define SGPIO_LED_SHIFT_FLAG		BIT(31)
-+#define SGPIO_LED_DATA			GENMASK(16, 0)
-+
-+#define REG_SGPIO_CLK_DIVR		0x0004
-+#define REG_SGPIO_CLK_DLY		0x0008
-+
-+#define REG_SIPO_FLASH_MODE_CFG		0x000c
-+#define SERIAL_GPIO_FLASH_MODE		BIT(1)
-+#define SERIAL_GPIO_MODE		BIT(0)
-+
-+#define REG_GPIO_FLASH_PRD_SET(_n)	(0x0004 + ((_n) << 2))
-+#define GPIO_FLASH_PRD_MASK(_n)		GENMASK(15 + ((_n) << 4), ((_n) << 4))
-+
-+#define REG_GPIO_FLASH_MAP(_n)		(0x0014 + ((_n) << 2))
-+#define GPIO_FLASH_SETID_MASK(_n)	GENMASK(2 + ((_n) << 2), ((_n) << 2))
-+#define GPIO_FLASH_EN(_n)		BIT(3 + ((_n) << 2))
-+
-+#define REG_SIPO_FLASH_MAP(_n)		(0x001c + ((_n) << 2))
-+
-+#define REG_CYCLE_CFG_VALUE(_n)		(0x0000 + ((_n) << 2))
-+#define WAVE_GEN_CYCLE_MASK(_n)		GENMASK(7 + ((_n) << 3), ((_n) << 3))
-+
-+struct airoha_pwm {
-+	void __iomem *sgpio_cfg;
-+	void __iomem *flash_cfg;
-+	void __iomem *cycle_cfg;
-+
-+	struct device_node *np;
-+	u64 initialized;
-+
-+	struct {
-+		/* Bitmask of PWM channels using this bucket */
-+		u64 used;
-+		/* Relative duty cycle, 0-255 */
-+		u32 duty;
-+		/* In 1/250 s, 1-250 permitted */
-+		u32 period;
-+	} bucket[8];
-+};
-+
-+/*
-+ * The first 16 GPIO pins, GPIO0-GPIO15, are mapped into 16 PWM channels, 0-15.
-+ * The SIPO GPIO pins are 16 pins which are mapped into 17 PWM channels, 16-32.
-+ * However, we've only got 8 concurrent waveform generators and can therefore
-+ * only use up to 8 different combinations of duty cycle and period at a time.
-+ */
-+#define PWM_NUM_GPIO	16
-+#define PWM_NUM_SIPO	17
-+
-+/* The PWM hardware supports periods between 4 ms and 1 s */
-+#define PERIOD_MIN_NS	4000000
-+#define PERIOD_MAX_NS	1000000000
-+/* It is represented internally as 1/250 s between 1 and 250 */
-+#define PERIOD_MIN	1
-+#define PERIOD_MAX	250
-+/* Duty cycle is relative with 255 corresponding to 100% */
-+#define DUTY_FULL	255
-+
-+static u32 airoha_pwm_rmw(struct airoha_pwm *pc, void __iomem *addr,
-+			  u32 mask, u32 val)
-+{
-+	val |= (readl(addr) & ~mask);
-+	writel(val, addr);
-+
-+	return val;
-+}
-+
-+#define airoha_pwm_sgpio_rmw(pc, offset, mask, val)				\
-+	airoha_pwm_rmw((pc), (pc)->sgpio_cfg + (offset), (mask), (val))
-+#define airoha_pwm_flash_rmw(pc, offset, mask, val)				\
-+	airoha_pwm_rmw((pc), (pc)->flash_cfg + (offset), (mask), (val))
-+#define airoha_pwm_cycle_rmw(pc, offset, mask, val)				\
-+	airoha_pwm_rmw((pc), (pc)->cycle_cfg + (offset), (mask), (val))
-+
-+#define airoha_pwm_sgpio_set(pc, offset, val)					\
-+	airoha_pwm_sgpio_rmw((pc), (offset), 0, (val))
-+#define airoha_pwm_sgpio_clear(pc, offset, mask)				\
-+	airoha_pwm_sgpio_rmw((pc), (offset), (mask), 0)
-+#define airoha_pwm_flash_set(pc, offset, val)					\
-+	airoha_pwm_flash_rmw((pc), (offset), 0, (val))
-+#define airoha_pwm_flash_clear(pc, offset, mask)				\
-+	airoha_pwm_flash_rmw((pc), (offset), (mask), 0)
-+
-+static int airoha_pwm_get_waveform(struct airoha_pwm *pc, u32 duty, u32 period)
-+{
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(pc->bucket); i++) {
-+		if (!pc->bucket[i].used)
-+			continue;
-+
-+		if (duty == pc->bucket[i].duty &&
-+		    period == pc->bucket[i].period)
-+			return i;
-+
-+		/*
-+		 * Unlike duty cycle zero, which can be handled by
-+		 * disabling PWM, a generator is needed for full duty
-+		 * cycle but it can be reused regardless of period
-+		 */
-+		if (duty == DUTY_FULL && pc->bucket[i].duty == DUTY_FULL)
-+			return i;
-+	}
-+
-+	return -1;
-+}
-+
-+static void airoha_pwm_free_waveform(struct airoha_pwm *pc, unsigned int hwpwm)
-+{
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(pc->bucket); i++)
-+		pc->bucket[i].used &= ~BIT_ULL(hwpwm);
-+}
-+
-+static int airoha_pwm_consume_waveform(struct airoha_pwm *pc, u32 duty,
-+				       u32 period, unsigned int hwpwm)
-+{
-+	int id = airoha_pwm_get_waveform(pc, duty, period);
-+
-+	if (id < 0) {
-+		int i;
-+
-+		/* find an unused waveform generator */
-+		for (i = 0; i < ARRAY_SIZE(pc->bucket); i++) {
-+			if (!(pc->bucket[i].used & ~BIT_ULL(hwpwm))) {
-+				id = i;
-+				break;
-+			}
-+		}
-+	}
-+
-+	if (id > 0) {
-+		airoha_pwm_free_waveform(pc, hwpwm);
-+		pc->bucket[id].used |= BIT_ULL(hwpwm);
-+		pc->bucket[id].period = period;
-+		pc->bucket[id].duty = duty;
-+	}
-+
-+	return id;
-+}
-+
-+static int airoha_pwm_sipo_init(struct airoha_pwm *pc)
-+{
-+	u32 clk_divr_val = 3, sipo_clock_delay = 1;
-+	u32 val, sipo_clock_divisor = 32;
-+
-+	if (!(pc->initialized >> PWM_NUM_GPIO))
-+		return 0;
-+
-+	/* Select the right shift register chip */
-+	if (of_property_read_bool(pc->np, "hc74595"))
-+		airoha_pwm_sgpio_set(pc, REG_SIPO_FLASH_MODE_CFG,
-+				     SERIAL_GPIO_MODE);
-+	else
-+		airoha_pwm_sgpio_clear(pc, REG_SIPO_FLASH_MODE_CFG,
-+				       SERIAL_GPIO_MODE);
-+
-+	if (!of_property_read_u32(pc->np, "sipo-clock-divisor",
-+				  &sipo_clock_divisor)) {
-+		switch (sipo_clock_divisor) {
-+		case 4:
-+			clk_divr_val = 0;
-+			break;
-+		case 8:
-+			clk_divr_val = 1;
-+			break;
-+		case 16:
-+			clk_divr_val = 2;
-+			break;
-+		case 32:
-+			clk_divr_val = 3;
-+			break;
-+		default:
-+			return -EINVAL;
-+		}
-+	}
-+	/* Configure shift register timings */
-+	writel(clk_divr_val, pc->sgpio_cfg + REG_SGPIO_CLK_DIVR);
-+
-+	of_property_read_u32(pc->np, "sipo-clock-delay", &sipo_clock_delay);
-+	if (sipo_clock_delay < 1 || sipo_clock_delay > sipo_clock_divisor / 2)
-+		return -EINVAL;
-+
-+	/*
-+	 * The actual delay is sclkdly + 1 so subtract 1 from
-+	 * sipo-clock-delay to calculate the register value
-+	 */
-+	sipo_clock_delay--;
-+	writel(sipo_clock_delay, pc->sgpio_cfg + REG_SGPIO_CLK_DLY);
-+
-+	/*
-+	 * It it necessary to after muxing explicitly shift out all
-+	 * zeroes to initialize the shift register before enabling PWM
-+	 * mode because in PWM mode SIPO will not start shifting until
-+	 * it needs to output a non-zero value (bit 31 of led_data
-+	 * indicates shifting in progress and it must return to zero
-+	 * before led_data can be written or PWM mode can be set)
-+	 */
-+	if (readl_poll_timeout(pc->sgpio_cfg + REG_SGPIO_LED_DATE, val,
-+			       !(val & SGPIO_LED_SHIFT_FLAG), 10,
-+			       200 * USEC_PER_MSEC))
-+		return -ETIMEDOUT;
-+
-+	airoha_pwm_sgpio_clear(pc, REG_SGPIO_LED_DATE, SGPIO_LED_DATA);
-+	if (readl_poll_timeout(pc->sgpio_cfg + REG_SGPIO_LED_DATE, val,
-+			       !(val & SGPIO_LED_SHIFT_FLAG), 10,
-+			       200 * USEC_PER_MSEC))
-+		return -ETIMEDOUT;
-+
-+	/* Set SIPO in PWM mode */
-+	airoha_pwm_sgpio_set(pc, REG_SIPO_FLASH_MODE_CFG,
-+			     SERIAL_GPIO_FLASH_MODE);
-+
-+	return 0;
-+}
-+
-+static void airoha_pwm_config_waveform(struct airoha_pwm *pc, int index,
-+				       u32 duty, u32 period)
-+{
-+	u32 mask, val;
-+
-+	/* Configure frequency divisor */
-+	mask = WAVE_GEN_CYCLE_MASK(index % 4);
-+	val = (period << __bf_shf(mask)) & mask;
-+	airoha_pwm_cycle_rmw(pc, REG_CYCLE_CFG_VALUE(index / 4), mask, val);
-+
-+	/* Configure duty cycle */
-+	duty = ((DUTY_FULL - duty) << 8) | duty;
-+	mask = GPIO_FLASH_PRD_MASK(index % 2);
-+	val = (duty << __bf_shf(mask)) & mask;
-+	airoha_pwm_flash_rmw(pc, REG_GPIO_FLASH_PRD_SET(index / 2), mask, val);
-+}
-+
-+static void airoha_pwm_config_flash_map(struct airoha_pwm *pc,
-+					unsigned int hwpwm, int index)
-+{
-+	u32 addr, mask, val;
-+
-+	if (hwpwm < PWM_NUM_GPIO) {
-+		addr = REG_GPIO_FLASH_MAP(hwpwm / 8);
-+	} else {
-+		addr = REG_SIPO_FLASH_MAP(hwpwm / 8);
-+		hwpwm -= PWM_NUM_GPIO;
-+	}
-+
-+	if (index < 0) {
-+		/*
-+		 * Change of waveform takes effect immediately but
-+		 * disabling has some delay so to prevent glitching
-+		 * only the enable bit is touched when disabling
-+		 */
-+		airoha_pwm_flash_clear(pc, addr, GPIO_FLASH_EN(hwpwm % 8));
-+		return;
-+	}
-+
-+	mask = GPIO_FLASH_SETID_MASK(hwpwm % 8);
-+	val = ((index & 7) << __bf_shf(mask)) & mask;
-+	airoha_pwm_flash_rmw(pc, addr, mask, val);
-+	airoha_pwm_flash_set(pc, addr, GPIO_FLASH_EN(hwpwm % 8));
-+}
-+
-+static int airoha_pwm_config(struct airoha_pwm *pc, struct pwm_device *pwm,
-+			     u64 duty_ns, u64 period_ns,
-+			     enum pwm_polarity polarity)
-+{
-+	u32 duty, period;
-+	int index = -1;
-+
-+	duty = clamp_val(div64_u64(DUTY_FULL * duty_ns, period_ns), 0,
-+			 DUTY_FULL);
-+	if (polarity == PWM_POLARITY_INVERSED)
-+		duty = DUTY_FULL - duty;
-+
-+	period = clamp_val(div64_u64(25 * period_ns, 100000000), PERIOD_MIN,
-+			   PERIOD_MAX);
-+	if (duty) {
-+		index = airoha_pwm_consume_waveform(pc, duty, period,
-+						    pwm->hwpwm);
-+		if (index < 0)
-+			return -EBUSY;
-+	}
-+
-+	if (!(pc->initialized & BIT_ULL(pwm->hwpwm)) &&
-+	    pwm->hwpwm >= PWM_NUM_GPIO)
-+		airoha_pwm_sipo_init(pc);
-+
-+	if (index >= 0) {
-+		airoha_pwm_config_waveform(pc, index, duty, period);
-+		airoha_pwm_config_flash_map(pc, pwm->hwpwm, index);
-+	} else {
-+		airoha_pwm_config_flash_map(pc, pwm->hwpwm, index);
-+		airoha_pwm_free_waveform(pc, pwm->hwpwm);
-+	}
-+
-+	pc->initialized |= BIT_ULL(pwm->hwpwm);
-+
-+	return 0;
-+}
-+
-+static void airoha_pwm_free(struct pwm_chip *chip, struct pwm_device *pwm)
-+{
-+	struct airoha_pwm *pc = pwmchip_get_drvdata(chip);
-+
-+	/* Disable PWM and release the waveform */
-+	airoha_pwm_config_flash_map(pc, pwm->hwpwm, -1);
-+	airoha_pwm_free_waveform(pc, pwm->hwpwm);
-+
-+	pc->initialized &= ~BIT_ULL(pwm->hwpwm);
-+	if (!(pc->initialized >> PWM_NUM_GPIO))
-+		airoha_pwm_sgpio_clear(pc, REG_SIPO_FLASH_MODE_CFG,
-+				       SERIAL_GPIO_FLASH_MODE);
-+
-+	/*
-+	 * Clear the state to force re-initialization the next time
-+	 * this PWM channel is used since we cannot retain state in
-+	 * hardware due to limited number of waveform generators
-+	 */
-+	memset(&pwm->state, 0, sizeof(pwm->state));
-+}
-+
-+static int airoha_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-+			    const struct pwm_state *state)
-+{
-+	struct airoha_pwm *pc = pwmchip_get_drvdata(chip);
-+	u64 duty = state->enabled ? state->duty_cycle : 0;
-+
-+	if (state->period < PERIOD_MIN_NS || state->period > PERIOD_MAX_NS)
-+		return -EINVAL;
-+
-+	return airoha_pwm_config(pc, pwm, duty, state->period,
-+				 state->polarity);
-+}
-+
-+static const struct pwm_ops airoha_pwm_ops = {
-+	.apply = airoha_pwm_apply,
-+	.free = airoha_pwm_free,
-+};
-+
-+static int airoha_pwm_probe(struct platform_device *pdev)
-+{
-+	struct airoha_pwm *pc;
-+	struct pwm_chip *chip;
-+
-+	chip = devm_pwmchip_alloc(&pdev->dev, PWM_NUM_GPIO + PWM_NUM_SIPO,
-+				  sizeof(*pc));
-+	if (IS_ERR(chip))
-+		return PTR_ERR(chip);
-+
-+	pc = pwmchip_get_drvdata(chip);
-+	pc->np = pdev->dev.of_node;
-+
-+	pc->sgpio_cfg = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(pc->sgpio_cfg))
-+		return PTR_ERR(pc->sgpio_cfg);
-+
-+	pc->flash_cfg = devm_platform_ioremap_resource(pdev, 1);
-+	if (IS_ERR(pc->flash_cfg))
-+		return PTR_ERR(pc->flash_cfg);
-+
-+	pc->cycle_cfg = devm_platform_ioremap_resource(pdev, 2);
-+	if (IS_ERR(pc->cycle_cfg))
-+		return PTR_ERR(pc->cycle_cfg);
-+
-+	chip->ops = &airoha_pwm_ops;
-+	chip->of_xlate = of_pwm_xlate_with_flags;
-+
-+	return devm_pwmchip_add(&pdev->dev, chip);
-+}
-+
-+static const struct of_device_id airoha_pwm_of_match[] = {
-+	{ .compatible = "airoha,en7581-pwm" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, airoha_pwm_of_match);
-+
-+static struct platform_driver airoha_pwm_driver = {
-+	.driver = {
-+		.name = "airoha-pwm",
-+		.of_match_table = airoha_pwm_of_match,
-+	},
-+	.probe = airoha_pwm_probe,
-+};
-+module_platform_driver(airoha_pwm_driver);
-+
-+MODULE_AUTHOR("Lorenzo Bianconi <lorenzo@kernel.org>");
-+MODULE_AUTHOR("Markus Gothe <markus.gothe@genexis.eu>");
-+MODULE_AUTHOR("Benjamin Larsson <benjamin.larsson@genexis.eu>");
-+MODULE_DESCRIPTION("Airoha EN7581 PWM driver");
-+MODULE_LICENSE("GPL");
--- 
-2.46.0
 
 
