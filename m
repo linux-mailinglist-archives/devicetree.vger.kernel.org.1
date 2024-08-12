@@ -1,225 +1,91 @@
-Return-Path: <devicetree+bounces-93061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E9F294F92A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 23:52:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7090694F957
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 00:07:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E88E01F232FB
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 21:52:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B1D51F22C08
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 22:07:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1058B1990CC;
-	Mon, 12 Aug 2024 21:51:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57FD7189BB7;
+	Mon, 12 Aug 2024 22:07:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="p+Ao+wJF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HBRqNDvB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-174.mta0.migadu.com (out-174.mta0.migadu.com [91.218.175.174])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A218198A2F
-	for <devicetree@vger.kernel.org>; Mon, 12 Aug 2024 21:51:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CB9916DEAB;
+	Mon, 12 Aug 2024 22:07:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723499503; cv=none; b=o40xvijDWWL1ML+ng445LoTkikpIPeSEUZOeY9qDe9h9p9+AdNg/JuU9rRBktilGGQXgggp0U1agBD2D4yZkvYRdvGI6bYn1U2bOSihPqfvzJ6fb+UQF9TbsRU3PVslpg9egEnT+R4AuQ15z2t6BxH7AFDXg4tykyi1JGzMsmaA=
+	t=1723500474; cv=none; b=R6W/egmXtFQpKe8aOmm8a+nWqb2Oy9MoRcfp1EXtbiWjTzMjdqI96Sdnnbf5+8JzfLTcIszafoReKwmDq4/fpBkmucs9WdajdhjG4ddBnKAP0LOG80Ir38eYL5N7FMpKUkT7EblrTf01q8WIttu6WFScbLeh6Ad5IiZs9skFyAM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723499503; c=relaxed/simple;
-	bh=NCuLiByUXURV2FoSaj7KvZABKA+4jtpNi83z2HCZI40=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=VyrFfNxmuvSGjJ7g7EmGchC3LFgL+bTskKrijc966ks43MSmBwUfHMsbYX0o7Ip2nhB19ISYVAFfnl+e0ZLEzPZR1U0qfTWJTVlQKyjCTOageM20z/+0tMt95SUVFi25ZLdQQsqZYlsHatzKzhMfWniJr2dh6xHxcDJ2zOVTwNE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=p+Ao+wJF; arc=none smtp.client-ip=91.218.175.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1723499499;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ENZn4L1RAB9o73amjJzb3/C6+GzUAncJ/FTZDbsVazI=;
-	b=p+Ao+wJFCr7d+OlONUc7xkLlPaLuZsiDDqIZRtjRM1USEk+PY417r1JMMUAh4e5Op+vwAy
-	V7aidpB4Y0VqpDeg7N2mqSPfxeqtN1iAzwivgYaVS4EuvG6t2HSvKAaJnEiB6kGBsVbQBL
-	2YOpNfVu5a6E6wL3i+1RaZCYGFz8odQ=
-From: Sean Anderson <sean.anderson@linux.dev>
-To: Michal Simek <michal.simek@amd.com>,
-	linux-arm-kernel@lists.infradead.org
-Cc: Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
+	s=arc-20240116; t=1723500474; c=relaxed/simple;
+	bh=hfNQdjFl3+0TDoQHZP71Q8L+ao31aSFSQPDJnD6kSEU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y0KX9qXvPhCUKNB+yKY9J8Rc4q7cjyVJFrjaHxLEZfrjpXB3vONM6OKPDIQ18S/dlqJFlfg4UXU3I13qIx/pVdz7OUgHDobV8z3Z73ent2riEQStRu3JBLghmmoKdDGeGqjixx+yuyKEJe4GzQknWxroZBdjFYECGei4rqS5GzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HBRqNDvB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C407C4AF0D;
+	Mon, 12 Aug 2024 22:07:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723500473;
+	bh=hfNQdjFl3+0TDoQHZP71Q8L+ao31aSFSQPDJnD6kSEU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HBRqNDvBu1wkWO5iTmpwEXJHwLTYVqLkdUtLKnPfldmTxQaOkwkIvgceRz+3ahXbT
+	 5Elhh67y1/QLfw58IvNm+owPDkf4rP5J8lF9v35OgDhpvabTMhup33VJGV2xnCQypi
+	 Cm/zkh3DvXW3b0sC3HdnuOgfJ+NPUXAWoj7EkBVWFdyWzb0V7Eo0dIqHH3G6imk84R
+	 S3F5Et6uCu5zeEeTFizvWpnbX11x3URGZk0lgKZSmA7PL3gsfLyUXxFRlZOvQ/HzcN
+	 3uJVicvxi+6qyet7Z90KtXseNkmskOGj0NGk815b+mKgGVryrNWj7306hiYBfoR6H5
+	 J90JUrvsQ/gcA==
+Date: Mon, 12 Aug 2024 16:07:51 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	devicetree@vger.kernel.org, Frank Li <Frank.Li@nxp.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Sean Anderson <sean.anderson@linux.dev>
-Subject: [PATCH 3/3] arm64: zynqmp: Add thermal zones
-Date: Mon, 12 Aug 2024 17:51:28 -0400
-Message-Id: <20240812215129.3599832-4-sean.anderson@linux.dev>
-In-Reply-To: <20240812215129.3599832-1-sean.anderson@linux.dev>
-References: <20240812215129.3599832-1-sean.anderson@linux.dev>
+	linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: fsl: fsl,rcpm: fix unevaluated
+ fsl,rcpm-wakeup property
+Message-ID: <172350046483.2314917.7547438885110898301.robh@kernel.org>
+References: <20240811153507.126512-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240811153507.126512-1-krzysztof.kozlowski@linaro.org>
 
-Add some thermal trip points. We can't undervolt the CPUs to save power
-when we underclock them, so there isn't really a point in throttling
-them until we are about to overheat. As such, the passive trip point is
-right below the critical trip point.
 
-The critical trip point is the extended/industrial-grade maximum
-junction temperature of 100C minus the maximum temperature sensor error
-of 3.5C (in the range -55C to 110C). Automotive- and military-grade
-parts can go up to 125C, but as far as I can tell there is no way to
-detect them at runtime. Userspace can adjust the trip points at runtime,
-but this may not be viable when booting above 100C. I think it's
-reasonable to ask automotive/military users to edit their device trees
-to bump the trip points, but if that proves to be an issue we can
-always go with no default temperatures. However, that wouldn't be too
-nice for the majority of extended/industrial users.
+On Sun, 11 Aug 2024 17:35:07 +0200, Krzysztof Kozlowski wrote:
+> Drop the RCPM consumer example from the binding (LPUART device node),
+> because:
+> 1. Using phandles is typical syntax, thus explaining it is not needed in
+>    the provider binding,
+> 2. It has 'fsl,rcpm-wakeup' property which is not allowed by LPUART
+>    binding so it causes dt_binding_check warning:
+> 
+>    fsl,rcpm.example.dtb: serial@2950000: Unevaluated properties are not allowed ('fsl,rcpm-wakeup' was unexpected)
+>      from schema $id: http://devicetree.org/schemas/serial/fsl-lpuart.yaml#
+> 
+> Alternatively, this property could be added to LPUART binding
+> (fsl-lpuart.yaml), but it looks like none of in-tree DTS use it.
+> 
+> Fixes: ad21e3840a88 ("dt-bindings: soc: fsl: Convert rcpm to yaml format")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/soc/fsl/fsl,rcpm.yaml         | 11 +----------
+>  1 file changed, 1 insertion(+), 10 deletions(-)
+> 
 
-Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
----
-
- arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 86 ++++++++++++++++++++++++++
- 1 file changed, 86 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-index 21c1adbaf35f..467f084c6469 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-@@ -18,6 +18,7 @@
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/power/xlnx-zynqmp-power.h>
- #include <dt-bindings/reset/xlnx-zynqmp-resets.h>
-+#include <dt-bindings/thermal/thermal.h>
- 
- / {
- 	compatible = "xlnx,zynqmp";
-@@ -36,6 +37,7 @@ cpus {
- 		#size-cells = <0>;
- 
- 		cpu0: cpu@0 {
-+			#cooling-cells = <2>;
- 			compatible = "arm,cortex-a53";
- 			device_type = "cpu";
- 			enable-method = "psci";
-@@ -46,6 +48,7 @@ cpu0: cpu@0 {
- 		};
- 
- 		cpu1: cpu@1 {
-+			#cooling-cells = <2>;
- 			compatible = "arm,cortex-a53";
- 			device_type = "cpu";
- 			enable-method = "psci";
-@@ -56,6 +59,7 @@ cpu1: cpu@1 {
- 		};
- 
- 		cpu2: cpu@2 {
-+			#cooling-cells = <2>;
- 			compatible = "arm,cortex-a53";
- 			device_type = "cpu";
- 			enable-method = "psci";
-@@ -66,6 +70,7 @@ cpu2: cpu@2 {
- 		};
- 
- 		cpu3: cpu@3 {
-+			#cooling-cells = <2>;
- 			compatible = "arm,cortex-a53";
- 			device_type = "cpu";
- 			enable-method = "psci";
-@@ -406,6 +411,87 @@ ams {
- 			<&xilinx_ams 27>, <&xilinx_ams 28>, <&xilinx_ams 29>;
- 	};
- 
-+
-+	tsens_apu: thermal-sensor-apu {
-+		compatible = "generic-adc-thermal";
-+		#thermal-sensor-cells = <0>;
-+		io-channels = <&xilinx_ams 7>;
-+		io-channel-names = "sensor-channel";
-+	};
-+
-+	tsens_rpu: thermal-sensor-rpu {
-+		compatible = "generic-adc-thermal";
-+		#thermal-sensor-cells = <0>;
-+		io-channels = <&xilinx_ams 8>;
-+		io-channel-names = "sensor-channel";
-+	};
-+
-+	tsens_pl: thermal-sensor-pl {
-+		compatible = "generic-adc-thermal";
-+		#thermal-sensor-cells = <0>;
-+		io-channels = <&xilinx_ams 20>;
-+		io-channel-names = "sensor-channel";
-+	};
-+
-+	thermal-zones {
-+		apu-thermal {
-+			polling-delay-passive = <1000>;
-+			polling-delay = <5000>;
-+			thermal-sensors = <&tsens_apu>;
-+
-+			trips {
-+				apu_passive: passive {
-+					temperature = <93000>;
-+					hysteresis = <3500>;
-+					type = "passive";
-+				};
-+
-+				apu_critical: critical {
-+					temperature = <96500>;
-+					hysteresis = <3500>;
-+					type = "critical";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map {
-+					trip = <&apu_passive>;
-+					cooling-device =
-+						<&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
-+		};
-+
-+		rpu-thermal {
-+			polling-delay = <10000>;
-+			thermal-sensors = <&tsens_rpu>;
-+
-+			trips {
-+				critical {
-+					temperature = <96500>;
-+					hysteresis = <3500>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		pl-thermal {
-+			polling-delay = <10000>;
-+			thermal-sensors = <&tsens_pl>;
-+
-+			trips {
-+				critical {
-+					temperature = <96500>;
-+					hysteresis = <3500>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+	};
-+
- 	amba: axi {
- 		compatible = "simple-bus";
- 		bootph-all;
--- 
-2.35.1.1320.gc452695387.dirty
+Applied, thanks!
 
 
