@@ -1,63 +1,61 @@
-Return-Path: <devicetree+bounces-93011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA23E94F2BC
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 18:10:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB63E94F2E1
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 18:12:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 45F261F21730
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 16:10:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09ECD1C212E2
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 16:12:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DFDF187870;
-	Mon, 12 Aug 2024 16:09:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AECCD187FE2;
+	Mon, 12 Aug 2024 16:11:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y0pj/Hrl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YiOYfU1I"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52EE4187868;
-	Mon, 12 Aug 2024 16:09:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C3E4186E47;
+	Mon, 12 Aug 2024 16:11:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723478981; cv=none; b=gQj/pf/QmMTyvobkWCgWue7mPUe/gP5S9x3ToJmV9XOnUqVxEK47UkndypAHZyxMJZgHYVIBbRuBiwMmsWGu2xpAHoWthP4Ni5jjKJsclQI3KCYKepcTaJ0m2hcXAU/jBrXKessujK8umigkvwOeBVSxCEe+aGJ89j0AEEOWutQ=
+	t=1723479080; cv=none; b=Tu6eIa+1UWv/UAP+axYRUM4m6dhomPnYHgOiQ1LxZczeTJTMWqIfxuOW7RGbnhIz9t+p4+J9ugW0AqljEfm4XoFweQzbrbWrDZC0aj8W4J7evgTmjmFdNVQoQgw4d8zUVDdtBMEiJCTY+jCUDmZDi92vYv44+QtRq8NQhjG/PBI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723478981; c=relaxed/simple;
-	bh=3Svd3WfttCoDPIdU5P1nIEjvO5M5AcTlMkgRnjhK89g=;
+	s=arc-20240116; t=1723479080; c=relaxed/simple;
+	bh=4LGlDYfh9hnYMFH9HallVbetIIWElNY/SAddpwGbcKE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lWPSF9dNLJ9Tk55szxVFAEom6cu/a2kluVVTxdUWeooPsmdoR/LiYRpcrE/y3VaTDdLB2pHxvM1d0B+H56Bvw8athvFx7ZJ8aPa4XdOgjSkQtRSiq+8SkwDUIpuFDeWeMRQZRpBup7ouOUcRWa07KnMsPIHe6Sb4EC5UVuTeuak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y0pj/Hrl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8947FC32782;
-	Mon, 12 Aug 2024 16:09:38 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=DYR1klyy74eGu4gvGGm3jXyQkYsCrPhy+5IDfVAdIebX1xqvR7dPqbFlGdzv3poz99WDrNc8MOVu8cpJgUszwe8IvPIzMfN6qqYEqsDq1GPFwK2p/wiEVggZQXgT5Aw5gHag9PAlMAECLipx6cimoDenaSGOZGJhiXzJQTqqvGk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YiOYfU1I; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 004B2C32782;
+	Mon, 12 Aug 2024 16:11:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723478981;
-	bh=3Svd3WfttCoDPIdU5P1nIEjvO5M5AcTlMkgRnjhK89g=;
+	s=k20201202; t=1723479080;
+	bh=4LGlDYfh9hnYMFH9HallVbetIIWElNY/SAddpwGbcKE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Y0pj/HrlrJovaqTOHnuSxB8GPDImP+gwkOG9tRCjeNlMyv7A3A6uiNpGVX1RuKPQF
-	 KaxKa9qMn5vXADHf4fC7KwHBs7zWwICe6r39ewgfkhReNeR9fUSRnPPUcr8gHshRcD
-	 Cos8rQOVd0lEvT0enV6Pr3Bcyiy6W2EPS7CwWmncZcAyV10OZXzHIyHfGIi8QzOm+X
-	 weT80dz6jwYcTuw5SnwbmRit9P7dkufxmR418fa9rHSfo2Uh52eRhKHgy2Hq+/x0i/
-	 pS7+HDZ33H7PNdhq34Xm0yDvVz/j80qDYvOV0r2Je8jVfSbeoyAoY73KJK2pmqfgzJ
-	 wlxcHCpxcpdqA==
-Date: Mon, 12 Aug 2024 17:09:36 +0100
+	b=YiOYfU1Ij/i1jdXyGc8m98/EA7WtwNA41DwzsHqDSmtiyyPFtOzgwusn/AaHBqVmc
+	 8MLwIv5/W9AnfLXql3jEa5B0C2CIcmS12uUwsXjbX+9R4rS7v/rSJyvmHgSnLhwLXt
+	 tB0lGpaETVDV2vYQDbzIhRJksBIL4klb1d6EgAvh7ZXFU0PDxGvtwyHKB2NBLC+N+C
+	 HV7yoKzZPj/aVYBHdejEG+YayVBKOmT9lKioYyWHfqQ+Vts4gl0PVXSM15ii/5opJQ
+	 xX04n6Bu6aFCof+MOrkTBS1peejbyaSfRce56Q0Jx0xL7A1eQKaX+a/x6o+WUPrcZh
+	 gCOlGR5gTEsbA==
+Date: Mon, 12 Aug 2024 17:11:14 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Inochi Amaoto <inochiama@outlook.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, dmaengine@vger.kernel.org,
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: lee@kernel.org, jdelvare@suse.com, linux@roeck-us.net,
+	dmitry.torokhov@gmail.com, pavel@ucw.cz, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, ukleinek@debian.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v11 1/3] dt-bindings: dmaengine: Add dma multiplexer for
- CV18XX/SG200X series SoC
-Message-ID: <20240812-herbicide-altitude-93ea45b7c79d@spud>
-References: <IA1PR20MB495324F3EF7517562CB4CACFBB842@IA1PR20MB4953.namprd20.prod.outlook.com>
- <IA1PR20MB4953C5A099A0F99FA12B98F1BB842@IA1PR20MB4953.namprd20.prod.outlook.com>
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-hwmon@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [PATCH v4 1/7] dt-bindings: mfd: add binding for qnap,ts433-mcu
+ devices
+Message-ID: <20240812-unlisted-cussed-ffa50b07a82d@spud>
+References: <20240810184743.277248-1-heiko@sntech.de>
+ <20240810184743.277248-2-heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,41 +63,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="t1SEqS2W3FwKupq5"
+	protocol="application/pgp-signature"; boundary="cHN7OHm8jMQ3S5kz"
 Content-Disposition: inline
-In-Reply-To: <IA1PR20MB4953C5A099A0F99FA12B98F1BB842@IA1PR20MB4953.namprd20.prod.outlook.com>
+In-Reply-To: <20240810184743.277248-2-heiko@sntech.de>
 
 
---t1SEqS2W3FwKupq5
+--cHN7OHm8jMQ3S5kz
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Aug 11, 2024 at 01:16:37PM +0800, Inochi Amaoto wrote:
-> The DMA IP of Sophgo CV18XX/SG200X is based on a DW AXI CORE, with
-> an additional channel remap register located in the top system control
-> area. The DMA channel is exclusive to each core.
+On Sat, Aug 10, 2024 at 08:47:37PM +0200, Heiko Stuebner wrote:
+> These MCUs can be found in network attached storage devices made by QNAP.
+> They are connected to a serial port of the host device and provide
+> functionality like LEDs, power-control and temperature monitoring.
 >=20
-> In addition, the DMA multiplexer is a subdevice of system controller,
-> so this binding only contains necessary properties for the multiplexer
-> itself.
+> LEDs, buttons, etc are all elements of the MCU firmware itself, so don't
+> need devicetree input, though the fan gets its cooling settings from
+> a fan-0 subnode.
 >=20
-> Add the dmamux binding for CV18XX/SG200X series SoC.
+> A binding for the LEDs for setting the linux-default-trigger may come
+> later, once all the LEDs are understood and ATA controllers actually
+> can address individual port-LEDs, but are really optional.
 >=20
-> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
-
+> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
---t1SEqS2W3FwKupq5
+--cHN7OHm8jMQ3S5kz
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrozwAAKCRB4tDGHoIJi
-0isCAPwKylWrtHOQHoGnqGn92rLYykjnmDlsYxP3Yxl2EFSwhgEAjjTpA+CzP0xU
-wq7RdzhPndaEZkg6RVLpxtxiq8bDrgQ=
-=LzEz
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZro0IgAKCRB4tDGHoIJi
+0tg7AQCS2xWrPC2UUU1meYRX0JcteDszsR77WU6wV+xQhG4KEwEAlYF2R80DyuEq
+tvLDLFquMfbB3h6dMgWWxA51/UKOdQY=
+=E5pg
 -----END PGP SIGNATURE-----
 
---t1SEqS2W3FwKupq5--
+--cHN7OHm8jMQ3S5kz--
 
