@@ -1,198 +1,266 @@
-Return-Path: <devicetree+bounces-93045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D27C494F7F3
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 22:08:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B40694F805
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 22:15:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 031C41C20F01
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 20:08:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFB1D1F21B92
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 20:15:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FBD1192B9D;
-	Mon, 12 Aug 2024 20:08:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8987A194152;
+	Mon, 12 Aug 2024 20:15:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="hmG+1GVu"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Vir538NJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2065.outbound.protection.outlook.com [40.107.22.65])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41F704317C;
-	Mon, 12 Aug 2024 20:08:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.65
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723493316; cv=fail; b=tSA51Yl2fQHSDsQNOuubDHjCgqGJTE4Jzg0ecpNAwbuh0YOuHBySNdwIiy+YG8zLEJhvRif7kY9w4oGqV0PRgVwSFH73J1JnekuuVzKrXXx8AUqnlYslN5f5B7HUxolcLLCEg+jSdQvQ8yl9r3Xh6TGQHqApiC9pdNRNknXR3Qs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723493316; c=relaxed/simple;
-	bh=UXv6E3ZDLICLqj7kCnQTsFzoLCxkDkHsmUfO0ucVkP0=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=XgW80cbWq0/TzojHGopw26AwUOD2oHzlx2GFqBOBeKc7WuwcfrHNktFxT9EB+dTHPdHN8qdbBZpib6uNbbsQvBzqsmU0UTFlnfXRihSH3rXZCsDBXatbxxLFO9oFLxJTvMfFW+fOQrxqo9h1x3uVXVI17XS/jTnyU8ZMXd8KrXY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=hmG+1GVu; arc=fail smtp.client-ip=40.107.22.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nB3pwl8+FKo1aWV2B3z4k6tW7Zh2rYZCBQNuxvG8ooc/mYmpXAiBW9cOZb/urX/a2KzBhAlf/4Qe/GIBCxzRelKj99Qsw+Q00YSq+3PSS/ipa+0CmSanHdH3Jz1nme2oQxwvfsSxfFzJiYyagUUkxQrtox11dBxxa3WaBVJCfXoJaP/RCW3PBRD03c0u/qvOqhELXzOtQ2d9pZ8ogVd5bm+46mDRzfyZRRzq8MKjmOf+sr6nN92o+vfFw24wIaCMPbVxnEFpqP/lfYFVt1NkHT6LFpM6BXXFc+jdXFFU0zeMPOVYuJkl9CNfBjROnoAOLZyxmyFfYcV4/IV4PxPC1Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/FQ0sGKgLfeABzCjgwJp/ixnaaBpMmgnNuNWZD80NWk=;
- b=ZjIZzrKwZln6QTgVS0kbfytKRWzblSSebM0CLpkmtWocQ6NW7/vZQrBniYeGwoKngvF63FCAf2pBqyCCiK5RBZaLRZ1h0/sdlwMQWWkvIZ1kc8f7bfs5mJLWJ7b0TqYkP5ansXXVTssxLA2FNVuxFEyPcZ0zM6Z7CHQb68XU4yv7PfYBqsspFhxvd6QKpF+zp35mc/BYAPSEsbvjUWEgg7wzVA+Zh70aKE+UAwg7QEqWLruPaZyQ/dV+LlbmNB127iYCItLLCT089MFhiTbSXVMNEPAhL2fRxyO9323mRfu3FYX738DRiJyWuQSALrY6zfcGpy3LmTm7od1O0vA18Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/FQ0sGKgLfeABzCjgwJp/ixnaaBpMmgnNuNWZD80NWk=;
- b=hmG+1GVu+pzvVOEg4UAvWIOl5jPSddXMx0k/X5GJny7rJZqOf2ElET0Ruy9oezhhpEg+8gTwQjUbtq9gIbe9eFZIjt1iq9LSUU+H2YQ3cPSWyhX6cMx8ozF/ZCln2gIDyNvrs5uITczkye6gmfkroJV/3Newd1IfrtmCxL7QRcwXDijiPdkUSHVZB3aZgIanmnvTYCiy2S0ZL7xyiU2YZf48cBZOmL3FaBcT9PXkwXsnZHuCu3BnZg+UlpIrZBmuCpfe3mks/PsLwZ4jUDpQmn5naSMV5CBa78la54Xe7qmVsgVUX+EUg9uxx5gZr/c9mkbt/dnzyWl7Mkr/fXISGg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AS8PR04MB7927.eurprd04.prod.outlook.com (2603:10a6:20b:2ad::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.20; Mon, 12 Aug
- 2024 20:08:31 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%3]) with mapi id 15.20.7849.019; Mon, 12 Aug 2024
- 20:08:31 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Hiago De Franco <hiago.franco@toradex.com>,
-	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
-	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Peng Fan <peng.fan@nxp.com>,
-	Mathieu Othacehe <m.othacehe@gmail.com>,
-	Michael Walle <mwalle@kernel.org>,
-	Fabio Estevam <festevam@denx.de>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH 1/1] dt-bindings: arm: fsl: add fsl-ls2081a-rdb board
-Date: Mon, 12 Aug 2024 16:08:15 -0400
-Message-Id: <20240812200816.3828649-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BY3PR05CA0002.namprd05.prod.outlook.com
- (2603:10b6:a03:254::7) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69D9D1922CF;
+	Mon, 12 Aug 2024 20:15:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723493712; cv=none; b=EJWxQ0zZDjLH1THE2rPM6XKHE0QR0BFNPuGY5FJO8REjaPmtEsh0vLF7y/C/IyU0OuInsWcfb+eTEnkVLCO3yLNoGt9azdrn6Naqc+46qIb+C/C07rMJBpPYWTZufgo0L5+amNTgBkxybCnWgFqcDR1/N9t1OqEbDMagRLywvhA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723493712; c=relaxed/simple;
+	bh=ea+QujSB7dC9as46er5ru4Cjk2Gq/erzLIw6YWe9sBQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RikjCv6hesPVWpPTi/Y3eVpbFfELbNUnqjiVYGEiQ7qp757w1VwguTaOGTwOD/iMdJTT53P6fF4vB2Q5k+x/bseQTLyyGc4B7fVBxQJud6QwcYD8lU30GCUDPQ8tg1XtktFPy6vENmOWttGFKcNKDGABuijn85ui31L9I/jRfLw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Vir538NJ; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1723493711; x=1755029711;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ea+QujSB7dC9as46er5ru4Cjk2Gq/erzLIw6YWe9sBQ=;
+  b=Vir538NJMMq05r8YB5X2CBwXVqjgMqMjf6g9ARCJcZpS5yc3tc8ZKJ2e
+   66gEx67k7N85tijIeXMLKKNilNnaxlaPlMHiEKO/JL47vlhBECxY8ZwPx
+   QY7/tIw7xYYAYMtKraUCRJAk3IjW9+WiXqgnL33xtC/Mbr0gt1/nXrOGs
+   PUU/vZTceESJIZlFsSHt54B4OdGlDwxljk0Dx1HW1yUyl59Ym/QbrodzH
+   V9IruAoomfE+emxAbuZINXh8NsidbWOq59EHUPiTX1sc+0oSHu99cKuHw
+   CWtmcQ42I1KWkhInw98wXOquFT0QYIUtYSV0X8KgKoJIW9cjdWiHqR3fQ
+   g==;
+X-CSE-ConnectionGUID: SBoThUPlSySuQRU/FeuW6g==
+X-CSE-MsgGUID: sBOOOwdBSFyeh2zkWhQmcg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11162"; a="21483807"
+X-IronPort-AV: E=Sophos;i="6.09,284,1716274800"; 
+   d="scan'208";a="21483807"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Aug 2024 13:15:10 -0700
+X-CSE-ConnectionGUID: Uq4bWhzORUWV+Dk3EjioHQ==
+X-CSE-MsgGUID: Ru7RfX0GTv2W59MNzPhuxg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,284,1716274800"; 
+   d="scan'208";a="62781081"
+Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
+  by fmviesa005.fm.intel.com with ESMTP; 12 Aug 2024 13:15:06 -0700
+Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sdbRX-000C8r-32;
+	Mon, 12 Aug 2024 20:15:03 +0000
+Date: Tue, 13 Aug 2024 04:14:06 +0800
+From: kernel test robot <lkp@intel.com>
+To: Christian Bruel <christian.bruel@foss.st.com>, vkoul@kernel.org,
+	kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com, p.zabel@pengutronix.de
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	fabrice.gasnier@foss.st.com,
+	Christian Bruel <christian.bruel@foss.st.com>
+Subject: Re: [PATCH 3/5] phy: stm32: Add support for STM32MP25 COMBOPHY.
+Message-ID: <202408130307.IK7U1H7o-lkp@intel.com>
+References: <20240812120529.3564390-4-christian.bruel@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB7927:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7140cf3e-8963-4341-0eb0-08dcbb0a89a0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|7416014|376014|52116014|1800799024|921020|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?2yCq9U5CsxQs29UQoyQGkIxaPF3tTIcVpXaeHaqf/SSLuq2zDHwGoy7wOCIe?=
- =?us-ascii?Q?AzcItKdrpEN0qGlltX8HTlsz+b2p1d1yWSJf+W/tfxsith04A6gunGHsvQD0?=
- =?us-ascii?Q?G+pa4JMpP2AtvvD8gyJSAx3duVOxqPYfM3aHrd0z/0pQJ3UBe8rOiSRU+bGp?=
- =?us-ascii?Q?AgXI4C0tVuL7od5upWTzj9eVVnwPkMP3e1It3unPCk98TdSWbmEzkiY64FPQ?=
- =?us-ascii?Q?hfZfx6n/9juQPUmg8TR5C4ZoE5752xg8Ij2fJ7eqe018fx7kD/jSDLgoLjsC?=
- =?us-ascii?Q?BpGLI5WzDsKDZyIxLNJ7kBlnhyzbIQqNZB/gGUZnfw6Tbz558erozkZ/qegA?=
- =?us-ascii?Q?zy0XPr6nENI9ADMH0q36//QCgzYF6UsHAGKZ5tUMts2yuNl4isIwbnz+XE2n?=
- =?us-ascii?Q?KjxC0b4ybwbKQV0pTtVXkxiNRF3BBZNZ4vM6eWGqPZc0Ep2hLdsW5TlSe2Wq?=
- =?us-ascii?Q?WlK5hhdVhofnYx8CajFea/2UVe+y7D02jQbVDe5oWBVSf2Ngg3ASKV+F+gEg?=
- =?us-ascii?Q?lYgN9CtNzGYXXHJZI3wM9CO/GWqSMvbnR1KkqSfBn7nw0HW/zWpnGeKpc0Ei?=
- =?us-ascii?Q?xXtMsnEb6aMLGtDK1ztuETXmeJtKdzSJ/I0T0dcCS3vGHP8Qg0v4KSHAhVKj?=
- =?us-ascii?Q?+Ko8QiWolLg2EY+0EqGBK5MdccaLiPsylu/1px+TWmN5qwB/QTE4UuIdnu4/?=
- =?us-ascii?Q?+QCPUWhqIgjndCEzXJYNdq3AnilkjaMW5MHHQ1ojTSeXYRiyxwbOWIDttkxU?=
- =?us-ascii?Q?q6P4Ao049Cj8H6cVdxzW+9JHvTrY7/aukRkWdzCu9HSrr71xiGNJzshaQRHQ?=
- =?us-ascii?Q?ZM4CJ7WPqXgUwEseDl+2dGcdv2/yK8RcxKb6cvJRdO1mnbkmz7p916YTRqE6?=
- =?us-ascii?Q?A7F1aRxPO+Z7sEstWTVsuALJOwHhUI7nd9Jf4jwHmRr913gsRkDgJPWyCUbo?=
- =?us-ascii?Q?ywgvTTBL/FOWWrTO5STENWSFISXTYaoQUe9jpmBOe/abSHNaj0lDWC+Q10re?=
- =?us-ascii?Q?PV9kV4poYtNWllwPW1NS3W/o9Lg7J+g0bmNSsOsw/NIPtxJ7w6XaOK8Or8br?=
- =?us-ascii?Q?goFHI9lRuhVe1lGcbSP8gGY/7D0lheKgWpFzGcLFfLH9cv5HiDVQS+MJ6JRB?=
- =?us-ascii?Q?CDFv5Y5JJ5AXxeCboyd1sZGx5Vc7jMD43B45hakvwms2L9Ba/X6r3K3aXgkA?=
- =?us-ascii?Q?6svq5Qk6z44yIID0wFT+hLIHL0XM4UFb/n+y2kBViWR0AUdQLUgCKIDTzwDz?=
- =?us-ascii?Q?rDIl+BDV4Dr3iuYGbWsRdq4bm4+70vrhVPHhoLBf6RTqMaJYJpvu/HOsfVv/?=
- =?us-ascii?Q?NK+V/9ryEYujeYtPdUQFQr9aLeHEZzZVn8PXbzt32JNf653fjc3noPWBKrTP?=
- =?us-ascii?Q?y2Um8k/C8fb2hrc8z7TLjLnoUBKDsEbs6iztmwrAUZiNGWNYRPyNoFC/T8zz?=
- =?us-ascii?Q?5e0AGPdft2w=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(52116014)(1800799024)(921020)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?XTn7i0Tp9rFKRSaUJ2kKOC1dZtl3UhKYfLqT/0Lkk7cubzFqQ+UeTOsIAIXG?=
- =?us-ascii?Q?EiRx//3XmAUkfBn1rpFLhdMCXyP58MPxhgEHcf9dUX1MwnZQVHHcmZb3oyG4?=
- =?us-ascii?Q?o649SO4mxXx4o+fayOkbip5lMRvlDdZmyrDr7apQFEtq9WsZF2sf1WXjp50y?=
- =?us-ascii?Q?lHTKAtY3azSkWt5Fk/2g+p1bquKu+L0baQ1WtmPerl/6qB+koBxf5gNBuKcd?=
- =?us-ascii?Q?n2wHGc97jU2wIpXPMg4SaDv8f0SUPAz8FyK1wELl8395KvwIEOEO7fT3uX48?=
- =?us-ascii?Q?uVuHgxSxAdITGhbWmUHOdiHNWGpXCROpLwGFh5N11zgX+pG97GfCvXjx2hZm?=
- =?us-ascii?Q?vgXJpNKFvPJy7ojVUZqii6FYTe8r/8U8vFKlxa6Y0am3oZXoZFUpV4tAV0Lh?=
- =?us-ascii?Q?hwCLXqk/9HzXs7i/WjLP2S6uiUtTMCkQ0/dqsGbTdXU/dxvXNj/3g102/Tbo?=
- =?us-ascii?Q?ZNjNEYAEx+CuQdsjVA47wfpvzsbTuXHf19Sy1cV3vUbqc3S+WH5fZDnYESXd?=
- =?us-ascii?Q?hxq94M4Gt3xdB52zwpfC0gr4j68LKHOsAi9c0iIew3twThAY2ZGSjGlHkJR8?=
- =?us-ascii?Q?Y8KlF9zZzEIYKATSeQW/UXn2iSq1xgtu56oFkaIUOPFIMW80IWbgmIzEgYQP?=
- =?us-ascii?Q?7rF8zsSNg0faZ25m7MS9ihs+fJyvWSu/lostSIvbQGRc49UWCnQG4K8tY7+x?=
- =?us-ascii?Q?PgjF+YyeungMtVeYnMoxU3OoPo+1ViXeSh3JUFUs7WtzIHdsqbZA7sSApVcM?=
- =?us-ascii?Q?638kBKoRTEieQyBHIwphGmpLzEuL5cgXAKeUpGB1qF+FERnMZoMtfGTzYYiE?=
- =?us-ascii?Q?r+IL8UXGwqMkPySUMPsxfohZAfYg+Vmxwt+Zc+yva7nAdBC3ZNFG6dyn9A2H?=
- =?us-ascii?Q?JWuXWT2rZD0k9Hxth+70yYht/mpcdQmB29mwW1Dl45aOc709VlrcwILFrkk0?=
- =?us-ascii?Q?RhV0D/7A0JbjTr+S5d3ORnVieWt5hQAun8vCUzUZuaZNeyzm12Eh0db8DVhd?=
- =?us-ascii?Q?VvGDvqgf2LRmyOr6K3m1OC8nyactKe4BIZjZAQeRQCy7yej9LCaEvXqxOtWJ?=
- =?us-ascii?Q?DN9dL5I2YSk7tQQGvLb4PCBI2iRYSQwUVQvqYPRg64wE5IYQz0a7X/72NAok?=
- =?us-ascii?Q?yjWbETCtriy5Wd53Ac95zqktBG4N6TfRpo3nNxelrVCZfz/38B5seV/xpF/d?=
- =?us-ascii?Q?uxVsz9uH1g+owBv2avo+Ix4QIJ+SjiSeJPLE5SqklOjo8gpK28s81jL5Fmua?=
- =?us-ascii?Q?J07Ni9mLsqFUfffEA4dkBHMNplbp+IONw7PTTq9npPKUyqTZxSMR/SUGVFQb?=
- =?us-ascii?Q?dDdpLPwLRP4imH3XmfqfYFMDMunspvo3kLYb6tnXaJ2ucuHMshxEn99pfahL?=
- =?us-ascii?Q?UeAjZ35SSOrvEqVXdTqRVxNvAZ+Yees9GKQuYwJImOcCL4eUCe2m3kzAgdkP?=
- =?us-ascii?Q?DZAkNv6E3DsCx2jj9a0Bzff6NCliu/PNWR5f0fXhqELiNrk9pO967WtALF+1?=
- =?us-ascii?Q?/+/laAvamGzfjMUgs9oO9wV0XjcdH3yb/DPYUB4FNC87C+4ZahLJxurWbYPK?=
- =?us-ascii?Q?O2sWmAn+MW3xnu7sT3Q=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7140cf3e-8963-4341-0eb0-08dcbb0a89a0
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Aug 2024 20:08:31.5667
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rW/2O+ux7C3uj8NV2OMMVsl+7kwOlrYUjZO9ygbfXiSvVNWUDby9weaCuDmMsOj3gWX6BeD9yXknfMNVfyojwQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7927
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240812120529.3564390-4-christian.bruel@foss.st.com>
 
-Add compatible string fsl-ls2081a-rdb for ls2081a rdb boards to fix below
-warning:
+Hi Christian,
 
-arch/arm64/boot/dts/freescale/fsl-ls2081a-rdb.dtb: /:
-	failed to match any schema with compatible: ['fsl,ls2081a-rdb', 'fsl,ls2081a']
+kernel test robot noticed the following build errors:
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+[auto build test ERROR on atorgue-stm32/stm32-next]
+[also build test ERROR on robh/for-next linus/master v6.11-rc3 next-20240812]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 1abdeb8044685..44a6249b62bd0 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -1524,6 +1524,12 @@ properties:
-               - fsl,ls2080a-rdb
-           - const: fsl,ls2080a
- 
-+      - description: LS2081A based Boards
-+        items:
-+          - enum:
-+              - fsl,ls2081a-rdb
-+          - const: fsl,ls2081a
-+
-       - description: LS2088A based Boards
-         items:
-           - enum:
+url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Bruel/MAINTAINERS-add-entry-for-ST-STM32MP25-COMBOPHY-driver/20240812-201003
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/atorgue/stm32.git stm32-next
+patch link:    https://lore.kernel.org/r/20240812120529.3564390-4-christian.bruel%40foss.st.com
+patch subject: [PATCH 3/5] phy: stm32: Add support for STM32MP25 COMBOPHY.
+config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20240813/202408130307.IK7U1H7o-lkp@intel.com/config)
+compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project f86594788ce93b696675c94f54016d27a6c21d18)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240813/202408130307.IK7U1H7o-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408130307.IK7U1H7o-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/phy/st/phy-stm32-combophy.c:12:
+   In file included from include/linux/phy/phy.h:17:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:13:
+   In file included from include/linux/cgroup.h:26:
+   In file included from include/linux/kernel_stat.h:9:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:548:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     548 |         val = __raw_readb(PCI_IOBASE + addr);
+         |                           ~~~~~~~~~~ ^
+   include/asm-generic/io.h:561:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     561 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
+      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
+         |                                                   ^
+   In file included from drivers/phy/st/phy-stm32-combophy.c:12:
+   In file included from include/linux/phy/phy.h:17:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:13:
+   In file included from include/linux/cgroup.h:26:
+   In file included from include/linux/kernel_stat.h:9:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:574:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     574 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
+      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
+         |                                                   ^
+   In file included from drivers/phy/st/phy-stm32-combophy.c:12:
+   In file included from include/linux/phy/phy.h:17:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:13:
+   In file included from include/linux/cgroup.h:26:
+   In file included from include/linux/kernel_stat.h:9:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:585:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     585 |         __raw_writeb(value, PCI_IOBASE + addr);
+         |                             ~~~~~~~~~~ ^
+   include/asm-generic/io.h:595:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     595 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:605:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     605 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   In file included from drivers/phy/st/phy-stm32-combophy.c:12:
+   In file included from include/linux/phy/phy.h:17:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:21:
+   In file included from include/linux/mm.h:2253:
+   include/linux/vmstat.h:514:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
+     514 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
+         |                               ~~~~~~~~~~~ ^ ~~~
+>> drivers/phy/st/phy-stm32-combophy.c:134:8: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     134 |                                    FIELD_PREP(STM32MP25_PCIEPRG_IMPCTRL_OHM, imp_of));
+         |                                    ^
+>> drivers/phy/st/phy-stm32-combophy.c:137:12: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     137 |                 imp_of = FIELD_GET(STM32MP25_PCIEPRG_IMPCTRL_OHM, val);
+         |                          ^
+   drivers/phy/st/phy-stm32-combophy.c:155:8: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     155 |                                    FIELD_PREP(STM32MP25_PCIEPRG_IMPCTRL_VSWING, vswing_of));
+         |                                    ^
+   7 warnings and 3 errors generated.
+
+
+vim +/FIELD_PREP +134 drivers/phy/st/phy-stm32-combophy.c
+
+   107	
+   108	static int stm32_impedance_tune(struct stm32_combophy *combophy)
+   109	{
+   110		u8 imp_size = ARRAY_SIZE(imp_lookup);
+   111		u8 vswing_size = ARRAY_SIZE(imp_lookup[0].vswing);
+   112		u8 imp_of, vswing_of;
+   113		u32 max_imp = imp_lookup[0].microohm;
+   114		u32 min_imp = imp_lookup[imp_size - 1].microohm;
+   115		u32 max_vswing = imp_lookup[imp_size - 1].vswing[vswing_size - 1];
+   116		u32 min_vswing = imp_lookup[0].vswing[0];
+   117		u32 val;
+   118	
+   119		if (!of_property_read_u32(combophy->dev->of_node, "st,output-micro-ohms", &val)) {
+   120			if (val < min_imp || val > max_imp) {
+   121				dev_err(combophy->dev, "Invalid value %u for output ohm\n", val);
+   122				return -EINVAL;
+   123			}
+   124	
+   125			for (imp_of = 0 ; imp_of < ARRAY_SIZE(imp_lookup); imp_of++)
+   126				if (imp_lookup[imp_of].microohm <= val)
+   127					break;
+   128	
+   129			dev_dbg(combophy->dev, "Set %u micro-ohms output impedance\n",
+   130				imp_lookup[imp_of].microohm);
+   131	
+   132			regmap_update_bits(combophy->regmap, SYSCFG_PCIEPRGCR,
+   133					   STM32MP25_PCIEPRG_IMPCTRL_OHM,
+ > 134					   FIELD_PREP(STM32MP25_PCIEPRG_IMPCTRL_OHM, imp_of));
+   135		} else {
+   136			regmap_read(combophy->regmap, SYSCFG_PCIEPRGCR, &val);
+ > 137			imp_of = FIELD_GET(STM32MP25_PCIEPRG_IMPCTRL_OHM, val);
+   138		}
+   139	
+   140		if (!of_property_read_u32(combophy->dev->of_node, "st,output-vswing-microvolt", &val)) {
+   141			if (val < min_vswing || val > max_vswing) {
+   142				dev_err(combophy->dev, "Invalid value %u for output vswing\n", val);
+   143				return -EINVAL;
+   144			}
+   145	
+   146			for (vswing_of = 0 ; vswing_of < ARRAY_SIZE(imp_lookup[imp_of].vswing); vswing_of++)
+   147				if (imp_lookup[imp_of].vswing[vswing_of] >= val)
+   148					break;
+   149	
+   150			dev_dbg(combophy->dev, "Set %u microvolt swing\n",
+   151				 imp_lookup[imp_of].vswing[vswing_of]);
+   152	
+   153			regmap_update_bits(combophy->regmap, SYSCFG_PCIEPRGCR,
+   154					   STM32MP25_PCIEPRG_IMPCTRL_VSWING,
+   155					   FIELD_PREP(STM32MP25_PCIEPRG_IMPCTRL_VSWING, vswing_of));
+   156		}
+   157	
+   158		return 0;
+   159	}
+   160	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
