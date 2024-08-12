@@ -1,145 +1,141 @@
-Return-Path: <devicetree+bounces-92823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6CA094E841
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 10:09:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3A3C94E849
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 10:13:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4695FB20D93
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 08:09:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 51B35B224F3
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 08:13:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95153165F03;
-	Mon, 12 Aug 2024 08:09:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E54A166F22;
+	Mon, 12 Aug 2024 08:13:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vD+NAi09"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39EAB55896;
-	Mon, 12 Aug 2024 08:09:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEE84165F03;
+	Mon, 12 Aug 2024 08:13:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723450190; cv=none; b=cqu4nGdaSXpjNi/ap3L/JMT4jyAGb2os5QrLpcUTk33mMNHnPX6OwUn+q+DRmLDkou166GNKQNiWDrs48SilK8EvPPKYsqL6rTQzZWkYff1Es52COZ1daV4BQkrsqcQ+x7TH3lXqjP3kOxoHmFW+UfpUYHguc+4mSXic0sPRL+8=
+	t=1723450397; cv=none; b=NGE3qsdBaLc2s+8Mh5YlrT7/WhH3Yf2IJ/QE/cm7QJumlLGhAt0eCUGZNAVPv4jfwHsgroVVwzLSnvDyDxy4GTMNLGSn6mSqrosr+/rcBuW4QYmX4GXxB0Y+6HRaHhwOJ/OcTa2BXTmPkt+OUJYKaoDganSR3uY/eeaYkbYuKKo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723450190; c=relaxed/simple;
-	bh=MymABODoNzdcJuxFX81hO8y/q4Tq1tl0mnP5gVYW59w=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=K9C4RcmWHf85u/F3/4dqAH8kHJFpHaTkk+bVj1m4hGfyst6heE7B4GVbjl2FfPa38V0V9ei9+5xOrdpfbcHZ2MN+hU4m5vkItodtfqOBVZPRC/Oa5/ovcgR6FhgtksajFHoD/hrJms8PTtPvVJdcXg97opMIyG8VpFSGpigXXNU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [10.20.4.132])
-	by gateway (Coremail) with SMTP id _____8DxvptJw7lmMoYQAA--.16163S3;
-	Mon, 12 Aug 2024 16:09:45 +0800 (CST)
-Received: from [10.20.4.132] (unknown [10.20.4.132])
-	by front1 (Coremail) with SMTP id qMiowMCxM+BIw7lmbv8PAA--.24071S2;
-	Mon, 12 Aug 2024 16:09:44 +0800 (CST)
-Message-ID: <32ff2c9b-1d34-4637-80ff-e8eefe253a95@loongson.cn>
-Date: Mon, 12 Aug 2024 16:09:44 +0800
+	s=arc-20240116; t=1723450397; c=relaxed/simple;
+	bh=l2cMsMW6WjSVkxY7LiRh1xYBXXYUhNx5oNMkZpw0QAc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LxHFV+uSG1A/ZPEDpvmmpST9+RvzOkpqnIYRxIuysYTs3apN5fGXdWb0MwJFhgj1FkRWQiWk7pjObglVVhQjMd01ACfuT56l74bqs+RWcRJxLjgrdSxJNqr1LSJZAIlA3+ZVcYNbDyYzLhq6hcCdGR523EqAaDKTInWZurw+BJg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vD+NAi09; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 79B6AC32782;
+	Mon, 12 Aug 2024 08:13:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723450396;
+	bh=l2cMsMW6WjSVkxY7LiRh1xYBXXYUhNx5oNMkZpw0QAc=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=vD+NAi095Gv177RzLA7qhHmLkQKUhEND5IZ8mch/fwpbjCxdRM+yU38jIoUbnhyTl
+	 H3dQ0n9ezfm3de4n73UwDVDjHt37jQKURP3UfPl0H89TaPb64OBJSLLJJaCb8ddR0s
+	 lbsrpXmWQaEjhOMD5RdwPZEmqP3PfoP5Tu05xrCL3H3USPQvw6HfHl0R4mqH9UExoU
+	 JVFq5etSZnoLuLnA3UOsOhc40VEn9EE/JVMj4lL5yjvNe5MLGYRXQjmy67kr6oBV2B
+	 2UnIJuWazxqjgzrEQ54LH39kDr84uSxmDzQfD/IFVKTnlPD92x7g2003b8KS5oP/X7
+	 fn26jkigf25lQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 642E0C52D7C;
+	Mon, 12 Aug 2024 08:13:16 +0000 (UTC)
+From: Dumitru Ceclan via B4 Relay <devnull+dumitru.ceclan.analog.com@kernel.org>
+Subject: [PATCH v3 0/3] Add support for AD4113
+Date: Mon, 12 Aug 2024 11:13:13 +0300
+Message-Id: <20240812-ad4113-v3-0-046e785dd253@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: =?UTF-8?B?6YOR6LGq5aiB?= <zhenghaowei@loongson.cn>
-Subject: Re: [PATCH v2 1/3] dt-bindings: serial: Add Loongson UART controller
-To: Krzysztof Kozlowski <krzk@kernel.org>, gregkh@linuxfoundation.org,
- jirislaby@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, chenhuacai@kernel.org, kernel@xen0n.name,
- p.zabel@pengutronix.de
-Cc: linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, loongarch@lists.linux.dev
-References: <20240804063834.70022-1-zhenghaowei@loongson.cn>
- <4d1f2426-b43c-4727-8387-f18edf937163@kernel.org>
- <f31609c4-1e47-49bc-9231-5b0353d35dc9@loongson.cn>
- <601adbfd-fbb6-48c6-b755-da1b5d321d6b@kernel.org>
- <89e71573-9365-2e61-bb38-759363df1b8b@loongson.cn>
- <5fdf6810-f729-42bf-a5fd-a2de02d0a894@kernel.org>
-Content-Language: en-US
-In-Reply-To: <5fdf6810-f729-42bf-a5fd-a2de02d0a894@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qMiowMCxM+BIw7lmbv8PAA--.24071S2
-X-CM-SenderInfo: x2kh0w5kdr4v3l6o00pqjv00gofq/1tbiAgEHBGa4qZkJTwABsp
-X-Coremail-Antispam: 1Uk129KBj93XoW7ZFyfGr15KrWrAryrtFyUXFc_yoW8ZFW3p3
-	y5Ga47Aryvqr4Fvw40q348JrsIyr98Jr4DZw45JryUGa90gw12yrWayF45C3s7WryUZryj
-	qr4Utayxua15uFXCm3ZEXasCq-sJn29KB7ZKAUJUUUUr529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUvEb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
-	xVW8Jr0_Cr1UM2kKe7AKxVWUXVWUAwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07
-	AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWU
-	XVWUAwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI4
-	8JMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI1I0E14v26r1Y
-	6r17MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7
-	AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE
-	2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcV
-	C2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVWUJVW8JbIYCTnIWIevJa73
-	UjIFyTuYvjxU2MKZDUUUU
+X-B4-Tracking: v=1; b=H4sIABnEuWYC/1WMwQ7CIBAFf8VwFrMsVFpP/ofxsKXQkmgxYIim6
+ b9LazR6nJc3M7Fko7eJHTYTizb75MNYQG43zAw09pb7rjBDQAUaK06dEkLylmgvnWsaVBUr51u
+ 0zj/W0OlcePDpHuJz7WaxrO9EDfqTyIIDx07K2mlAo9sjjXQJ/c6EK1saGX+95uvh4pEGI0CQc
+ OrPm+f5BVsPcCvVAAAA
+To: Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: mitrutzceclan@gmail.com, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Dumitru Ceclan <dumitru.ceclan@analog.com>, 
+ Conor Dooley <conor.dooley@microchip.com>, Nuno Sa <nuno.sa@analog.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1723450395; l=1967;
+ i=dumitru.ceclan@analog.com; s=20240313; h=from:subject:message-id;
+ bh=l2cMsMW6WjSVkxY7LiRh1xYBXXYUhNx5oNMkZpw0QAc=;
+ b=Qqh+HVkYK5/X4HNJyiP/mC68JLfIhLLtXLvFwceSn08y87V6PWDUqBFIVj3GQcWCdZoZkfmsh
+ FlvUvCKSp/4Bf75fAjsV1tM5M0wH6AX1juyG6DVyPDGgNUJLipkgo93
+X-Developer-Key: i=dumitru.ceclan@analog.com; a=ed25519;
+ pk=HdqMlVyrcazwoiai7oN6ghU+Bj1pusGUFRl30jhS7Bo=
+X-Endpoint-Received: by B4 Relay for dumitru.ceclan@analog.com/20240313
+ with auth_id=140
+X-Original-From: Dumitru Ceclan <dumitru.ceclan@analog.com>
+Reply-To: dumitru.ceclan@analog.com
 
+This patch series adds support for the AD4113 ADC within the existing
+AD7173 driver.
 
-在 2024/8/9 18:05, Krzysztof Kozlowski 写道:
-> On 09/08/2024 11:55, 郑豪威 wrote:
->>>>>> +    description: Enables fractional-N division. Currently,
->>>>>> +      only LS2K1500 and LS2K2000 support this feature.
->>>>>> +
->>>>>> +  rts-invert:
->>>>>> +    description: Inverts the RTS value in the MCR register.
->>>>>> +      This should be used on Loongson-3 series CPUs, Loongson-2K
->>>>>> +      series CPUs, and Loongson LS7A bridge chips.
->>>>>> +
->>>>>> +  dtr-invert:
->>>>>> +    description: Inverts the DTR value in the MCR register.
->>>>>> +      This should be used on Loongson-3 series CPUs, Loongson-2K
->>>>>> +      series CPUs, and Loongson LS7A bridge chips.
->>>>>> +
->>>>>> +  cts-invert:
->>>>>> +    description: Inverts the CTS value in the MSR register.
->>>>>> +      This should be used on Loongson-2K0500, Loongson-2K1000,
->>>>>> +      and Loongson LS7A bridge chips.
->>>>>> +
->>>>>> +  dsr-invert:
->>>>>> +    description: Inverts the DSR value in the MSR register.
->>>>>> +      This should be used on Loongson-2K0500, Loongson-2K1000,
->>>>>> +      and Loongson LS7A bridge chips.
->>> Same questions for all these. Why choosing invert is a board level
->>> decision? If it "should be used" then why it is not used always?
->>>
->> Because these features are not applicable to all chips, such as
->> 'fractional-division',
-> Hm?
->
->> which is currently supported only by 2K1500 and 2K2000, and for
->> Loongson-3 series
-> These are SoCs. Compatible defines that. Please align with your
-> colleagues, because *we talked about this* already.
->
-> Best regards,
-> Krzysztof
+The AD4113 is a low power, low noise, 16-bit, Σ-Δ analog-to-digital
+converter (ADC) that integrates an analog front end (AFE) for four
+fully differential or eight single-ended inputs.
 
-I consulted with my colleagues and would like to confirm with you. For 
-the five
+The part is not released yet and the documentation is not public.
+Register map is identical to AD4114 besides the lower width data
+register and the GPIO register.
 
-properties provided, fractional-division is offered as a new feature,  
-supported by
+Particularities of this model:
+- 16 bit data register
+- no temperature sensor
+- no current inputs
+- input buffers
+- internal reference
+- external reference REF-/REF+
+- no second external reference REF2-/REF2+
+- no AVDD2 supply
+- 2 GPIO pins with config bits starting at a higher position in register
+- 8 VINx inputs with voltage divider
+- 16 channel registers and 8 setup registers
 
-2K1500 and 2K2000. As for the invert property, it is due to a bug in our 
-controller,
+Signed-off-by: Dumitru Ceclan <dumitru.ceclan@analog.com>
+---
+Changes in v3:
+- lowercase chip ID
+- add patch to correctly order chip IDs defines
+- picked up RB and ACK tags
+- Link to v2: https://lore.kernel.org/r/20240809-ad4113-v2-0-2a70c101a1f4@analog.com
 
-and its usage may vary across different chips. Should we add different 
-compatible
+Changes in v2:
+- correctly set realbits and storagebits to 16 in iio_chan_spec
+- describe bindings restrictions in commit message due to lack of
+  sufficient diff context
+- describe model differences better in cover letter
+- Link to v1: https://lore.kernel.org/r/20240807-ad4113-v1-0-2d338f702c7b@analog.com
 
-values to address these issues for different chips, whether they are new 
-features or
+---
+Dumitru Ceclan (3):
+      dt-bindings: adc: ad7173: add support for ad4113
+      iio: adc: ad7173: order chipID by value
+      iio: adc: ad7173: add support for ad4113
 
-controller bugs?
-
+ .../devicetree/bindings/iio/adc/adi,ad7173.yaml    |  3 ++
+ drivers/iio/adc/ad7173.c                           | 38 ++++++++++++++++++++--
+ 2 files changed, 39 insertions(+), 2 deletions(-)
+---
+base-commit: 1c61e13d7dc9003662bd7fd6064dfea67e64b014
+change-id: 20240725-ad4113-baa63ff99245
 
 Best regards,
+-- 
+Dumitru Ceclan <dumitru.ceclan@analog.com>
 
-Haowei Zheng
 
 
