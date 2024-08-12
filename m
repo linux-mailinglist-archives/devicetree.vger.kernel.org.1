@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-92807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7FC794E671
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 08:15:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D815D94E677
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 08:18:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A8A7DB21A43
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 06:15:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 97D271C21526
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 06:18:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2392148827;
-	Mon, 12 Aug 2024 06:15:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 063F514D446;
+	Mon, 12 Aug 2024 06:17:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fglKWuwj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="poh6/GtF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BA1E1843;
-	Mon, 12 Aug 2024 06:15:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBD34196;
+	Mon, 12 Aug 2024 06:17:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723443351; cv=none; b=QNlNgZ/BAuAVPM8/PHPzgSUX3AGRySBpwmZ+JHyW3c7+EIHnK795LIIduJcMT1tKtBYsjPoFOjVtOEtm/Ffpyk4x7enKRiJU2MLlqdPecXCOragp9Z2NKimtIBhuSZVLhpNGXJUFQYYwAVzY9dmE0/tJsXfoFneUoKgEoWiQNDE=
+	t=1723443478; cv=none; b=ImxDOkRfEZhqVT+yRcZCWI23MT9T1b0G9K39unPG9qk2LosV+xLHL48gwnB1p4SqyaRAuEf4D4jt8KdgCk1Sr0O1K5nPyZMFsI8H0/V1KmUDutCG0qWbTJ7Ep08CfQsxEKAY9YQbiFPRdqGJzep95rkZ0kUYAf5V6u9RePx5dl4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723443351; c=relaxed/simple;
-	bh=gbB+lJl/x6ahijGGrNTgtBe4TffroXlQvKmutwQU3Ak=;
+	s=arc-20240116; t=1723443478; c=relaxed/simple;
+	bh=BKOkmVdp75WBE7jaE6OafPJ+mkaLpk0gJg8wZSnelNA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XGPRlG2ndyu6j+YoRQRFeptV63xG1G21+lJDUh7EsMaJuV+UXLiH64spUVan6KSl2yRsCIo6gJNy74cin9dX0qOvlJLeaKdt+ulQGu0fqbNxwLINwv6m697i+ca9Jh+2FGQuwUJurl5gcp/S1RRSZLeaT7M/0G0IZ4lGWgf4eGE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fglKWuwj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7357C32782;
-	Mon, 12 Aug 2024 06:15:47 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Gh4y/8iu2mKk4h8V6yQdPAFU5p2ezvpkdrKEcm1XJ6dZlm6Dsh/IIVy5adMZMxm5ssFkG1MWvqcbqDN7YeO0vHIklyPw03IHl2xqx1o4CQWjWAV887AcwXehDzzI4OyXASEDl/+JnPuSQLLC45y+H9L584mSNsZ88ueH8kRo0v0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=poh6/GtF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D801C32782;
+	Mon, 12 Aug 2024 06:17:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723443351;
-	bh=gbB+lJl/x6ahijGGrNTgtBe4TffroXlQvKmutwQU3Ak=;
+	s=k20201202; t=1723443477;
+	bh=BKOkmVdp75WBE7jaE6OafPJ+mkaLpk0gJg8wZSnelNA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fglKWuwj6PCq41HHL5oDlFeZSHqaC5/2oGlK5+m3sQTXxHDR+t1CuV72pi5vF6Ka4
-	 N95tQTvhDuMsiClhInLyNOe87avnudaYe6ToUd6moA9uYnN0TYWOiOjlJE5D2JDYdB
-	 A3LA6xmZU1q1BhOCfTEI+sYCYquZYc5aK+5KN6wWAszCYlM2Bpre6C8dimyZeaPE4k
-	 aUgxTLQj5NUPRXz8kbj9PBVz7hNlsLvIZwKHQ3c4Ti1L5nOU2aKksfbeYhO5RD4Q/g
-	 mA7b89MpPtakfC7no3sJby7vyIjD+Aku0Dt/Oq8gju2bSlvpK3L1i8VKsukFlEK+gF
-	 Hfat58hPouULA==
-Message-ID: <47c966c7-8736-44a2-8ec7-4d7989efa9cd@kernel.org>
-Date: Mon, 12 Aug 2024 08:15:45 +0200
+	b=poh6/GtFKuoinkoG2MElZV46nLLHN/gR0xFREya6FULdjQOjJJTAjkFdEo9U6XsnI
+	 gbX2HW4Sb9pE5ZtAFwnVpZaE1BRVabusFo9/b2QBikkdCEUnXbQuJWOQ1p+SaXZ31M
+	 /FFDVV4g0quY5RhfeyGLj00Hu4GSr5NYIvszdTpRBYl+UeZNNfwnyRszs8B2jMycPF
+	 UelqWzoTk1+/UpTUmHnUQXNaciGS1feuSGFVl1PC9TcOuZ2Txmcb0Akiz1BDsbBBNf
+	 lhOS95Yn2bx4s3J7FzomP+rikJDMtWAvQaaYnrOjgg8ejOpueLuQeckpQjauHNLhar
+	 S4mwF0+npTIPw==
+Message-ID: <8e4a2774-ed58-49cb-b970-b3c05c9c1daa@kernel.org>
+Date: Mon, 12 Aug 2024 08:17:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: sa8775p-ride: Add QCS9100
- compatible
-To: Tingwei Zhang <quic_tingweiz@quicinc.com>,
- Tengfei Fan <quic_tengfan@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240806-add_qcs9100_soc_id-v1-0-04d14081f304@quicinc.com>
- <20240806-add_qcs9100_soc_id-v1-4-04d14081f304@quicinc.com>
- <90eae361-7d5d-440f-a85d-dfd81b384fe7@kernel.org>
- <4a350e94-3c95-48e1-9ea8-ced483c1aa45@quicinc.com>
- <14ec06bd-0c27-4930-8bce-d3f5b68067ed@kernel.org>
- <ace5b3e1-f4a2-4c04-821a-e797d0f55cae@quicinc.com>
- <9323127a-e6b5-4835-afa0-4ce0086fd9d1@kernel.org>
- <0d1c44b9-3d5f-4d93-af64-1756e52f4fe3@quicinc.com>
+Subject: Re: [PATCH v3 3/4] dt-bindings: iio: imu: magnetometer: Add ak09118
+To: barnabas.czeman@mainlining.org
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Albrieux <jonathan.albrieux@gmail.com>,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux@mainlining.org,
+ Danila Tikhonov <danila@jiaxyga.com>
+References: <20240809-ak09918-v3-0-6b036db4d5ec@mainlining.org>
+ <20240809-ak09918-v3-3-6b036db4d5ec@mainlining.org>
+ <1568980c-fc35-4445-a10c-8bb7fede2763@kernel.org>
+ <45dc7e6de63f5b55f6a3488a82ad5b0d@mainlining.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,50 +108,72 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <0d1c44b9-3d5f-4d93-af64-1756e52f4fe3@quicinc.com>
+In-Reply-To: <45dc7e6de63f5b55f6a3488a82ad5b0d@mainlining.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 12/08/2024 04:16, Tingwei Zhang wrote:
-> On 8/8/2024 7:05 PM, Krzysztof Kozlowski wrote:
->> On 07/08/2024 13:04, Tingwei Zhang wrote:
->>> On 8/7/2024 5:35 PM, Krzysztof Kozlowski wrote:
->>>> On 07/08/2024 11:17, Tengfei Fan wrote:
->>>>>
->>>>>
->>>>> On 8/7/2024 3:28 PM, Krzysztof Kozlowski wrote:
->>>>>> On 06/08/2024 06:19, Tengfei Fan wrote:
->>>>>>> Add QCS9100 compatible in sa8775p ride and sa8775p ride r3 board DTS.
->>>>>>> QCS9100 references SA8775p, they share the same SoC DTSI and board DTS.
->>>>>>>
->>>>>>
->>>>>> I don't understand this. You claim here that QCS9100 references SA8775p
->>>>>> but your diff says other way: SA8775p references QCS9100.
->>>>>>
->>>>>> Sorry, that's confusing.
->>>>>>
->>>>>> Best regards,
->>>>>> Krzysztof
->>>>>>
->>>>>
->>>>> I will update the compatible as follows to indicate that QCS9100
->>>>> references SA8775p.
->>>>>
->>>>> compatible = "qcom,sa8775p-ride", "qcom,qcs9100", "qcom,sa8775p";
->>>>
->>>> Is this still correct, though? sa8775p won't come with qcs9100 SoC.
->>> We have a new board. Hardware is same as sa877p-ride except sa8775p is
->>> replaced with qcs9100. We add qcs9100 SoC compatible to sa8775p-ride
+On 11/08/2024 20:28, barnabas.czeman@mainlining.org wrote:
+> On 2024-08-10 14:15, Krzysztof Kozlowski wrote:
+>> On 09/08/2024 22:25, Barnabás Czémán wrote:
+>>> From: Danila Tikhonov <danila@jiaxyga.com>
+>>>
+>>> Document asahi-kasei,ak09918 compatible.
 >>
->> Does "new board" mean that "old board" disappears? No users to care
->> about it? Or just the existing board is being changed (like new revision)?
-> 
-> We will support both boards. Sa8775p-ride board with sa8775p chipset and 
-> sa8775p-ride board with qcs9100 chipset. Both of them can be used for 
-> development.
+>> Not much improved here.
+> I have removed Reviewed-by because fallback compatible is a different 
+> approach
+> and I would not mind second look.
 
-Patch does something else then - changes compatibles for the existing
-(old) board.
+You received specific comments. You ignored them, so I replied that you
+ignored them. And your excuse is that you ask for review? This does not
+work like this.  Read CAREFULLY form letter below.
+
+>>
+>> <form letter>
+>> This is a friendly reminder during the review process.
+>>
+>> It seems my or other reviewer's previous comments were not fully
+>> addressed. Maybe the feedback got lost between the quotes, maybe you
+>> just forgot to apply it. Please go back to the previous discussion and
+>> either implement all requested changes or keep discussing them.
+>>
+>> Thank you.
+>> </form letter>
+>>
+>>>
+>>> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+>>> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+>>> ---
+>>>  .../devicetree/bindings/iio/magnetometer/asahi-kasei,ak8975.yaml      
+>>>  | 3 +++
+>>>  1 file changed, 3 insertions(+)
+>>>
+>>> diff --git 
+>>> a/Documentation/devicetree/bindings/iio/magnetometer/asahi-kasei,ak8975.yaml 
+>>> b/Documentation/devicetree/bindings/iio/magnetometer/asahi-kasei,ak8975.yaml
+>>> index 9790f75fc669..ff93a935363f 100644
+>>> --- 
+>>> a/Documentation/devicetree/bindings/iio/magnetometer/asahi-kasei,ak8975.yaml
+>>> +++ 
+>>> b/Documentation/devicetree/bindings/iio/magnetometer/asahi-kasei,ak8975.yaml
+>>> @@ -18,6 +18,9 @@ properties:
+>>>            - asahi-kasei,ak09911
+>>>            - asahi-kasei,ak09912
+>>>            - asahi-kasei,ak09916
+>>> +      - items:
+>>> +          - const: asahi-kasei,ak09918
+>>> +          - const: asahi-kasei,ak09912
+>>
+>> Why? Your driver suggests it might not be compatible... Can device bind
+>> using ak09912 and operate up to ak09912 extend?
+> It is register compatible and it can bind on 09112, as I understand 
+> fallback compatible
+
+ok
+
+> was a request from Connor and Jonathan in the previous round.
+
+Not entirely, you should read comments more carefully.
 
 Best regards,
 Krzysztof
