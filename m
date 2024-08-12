@@ -1,180 +1,118 @@
-Return-Path: <devicetree+bounces-92929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8636F94EDF8
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 15:21:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2146D94EE0A
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 15:24:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA6A21C21093
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 13:21:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C2A431F20F8E
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 13:24:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC08417BB3F;
-	Mon, 12 Aug 2024 13:21:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D071917C21B;
+	Mon, 12 Aug 2024 13:24:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q1HeSgrk"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OfPjNBzg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F9D817BB38;
-	Mon, 12 Aug 2024 13:21:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0063F17C20E;
+	Mon, 12 Aug 2024 13:24:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723468880; cv=none; b=XwZkvSnFXC29i4XvsrH4PvUyn/nvrsIjkULWVhvxWY/Q6fepy5tUQ7WcCMke+reO2cAFgGImQnNRfeCI76a0KaseHVGuOn0B4nAlH9NpHvKnJbcuRXgRijRoZdWkLA2Lt5str+Wx3rjtmm3JW0Omzg4NoaBHPU3YRc7rjvRQNdU=
+	t=1723469068; cv=none; b=itERutEjs2SVArWJni6VxZG8eSSmlFKAoLWY4g2AToGA/AI5KL9mBN5BBoTXiYqojHS89SautJ+FqNeBDgGpQT0/nZYIO9r8bipsIzn9oBjLWwYPxEBylc+aETGjhdq/sucU0LlPW2rz9oOAY+Ty0w0dVURLFX195+wnfHpkDfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723468880; c=relaxed/simple;
-	bh=qeTCCR8EchJ36r9dzttNzJbzKMZxPzEe4KVSUDMaaEw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tnchZn/umFpx9NErZhcov1sikVJpmZWpYrEwU5gvEHB6eCDEpcvQFG8SxTtpyIPZOqkwy1Oue9VitV3/ZbBJ9waWzxTy6c0HqEsiFx/kepe7hOir6FIaI7PgyNOxqVCj+0IeOgHLFBuKECnHONJXVKHvpe7QplECLced2Iti/IQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q1HeSgrk; arc=none smtp.client-ip=209.85.167.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-3dd16257b7bso306845b6e.1;
-        Mon, 12 Aug 2024 06:21:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723468878; x=1724073678; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=0Tmhzkuw6qsmA7+63wGwSz8F//va2twzg7YBJsGrfeg=;
-        b=Q1HeSgrkTXzfsWgzqw4KYmjB1uoPGnX1mecM/CCKh8xVCVRdFTpfbEr3ZclO64M+nv
-         k11xUd4nuVEWx7LQfu37oTqtbHVAio3r9zhMpowdUBvhGWe0Mxzg9zzwGLFDkmd20rv4
-         1oeW3AZTpwKbUI1+PJP2bJhdM0RZRYu8U9Mo3YQ/2JwNAR9cgNz/xF1aY01bWbXNwCi/
-         Tok8dL+zHgUXgD6omuiM/EUP6dWPIm4P9DEsMLzOuwRmfsi0DA9GD7nQio32DoxZQ+3w
-         v29SLaDZKREDX7/djL/h50TPKBkFiUE3CTk5AHvc9wBP87kr061yoqkisDFz4t1HzjKX
-         WeSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723468878; x=1724073678;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0Tmhzkuw6qsmA7+63wGwSz8F//va2twzg7YBJsGrfeg=;
-        b=WD8lf1TGh2ZztfZlKT7iCohr9OzAiiira8Jb0lHds7vWhN4eSZxAoJT5MH0/qquSWU
-         B0RgrPGEX7IFULCn+V0an8duITrPe47yEbaDg85zeEyVeKYQdGIQ/d36a+Ce21J6xFf8
-         tj+6G1q/GEClddn8PvFQ63ebMrBwhL9CYvIdS3i9+VUWlUtBTE5sg7zcn/V5yIPWOSJm
-         Xu2A8o2nEkJYekynsM8AUb74mWDne2K2FXDBLXgtInNHXCaT9H5uxF2xLvHb5DOlaY4x
-         alGP6MXUa+nYcTCpeseebqx1PXz1WNigHcisObH0i8OWv2q+QS8pfqGklxal2n7xZWy8
-         Y4aw==
-X-Forwarded-Encrypted: i=1; AJvYcCUuQgJLVFqLtYKTUYuTLKeSzdKGucPOFeAKOom8ELWdFilqKV8AjtwwZpzdo2hab572pB2zNY2ztmzBFcNqGrToBn1MClr7Q2AB4LxYP05znyRzRmArpl760W0HSKIT6zdwKIZ7LblEfLGR9IsfjQLRIfpZKIQQlHHyWBE3fbU6kNJIIbCg/0FWfrJG+cea9xc+jHcZnKslpO8/tVW/od1X
-X-Gm-Message-State: AOJu0YzxqwOaDED+ljRw45kHxFDfKpV/D/CPlX5b7b/VnPmMzO0vjpc4
-	uV7qGgM3JfnUXkm8eKTl1hbkReBLNl0Zo/dRguI8MKO9BmuUB2jC
-X-Google-Smtp-Source: AGHT+IFAiEJhBSmIMytQn74JGcURa9wm/PTkeCi62feFEMk+7DsJzoWvvr+8xT0TLzcOKMffZ5lD6A==
-X-Received: by 2002:a05:6870:2195:b0:254:c512:88c6 with SMTP id 586e51a60fabf-26fcb8d0143mr56523fac.51.1723468877980;
-        Mon, 12 Aug 2024 06:21:17 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7c3dbe134a1sm3662525a12.31.2024.08.12.06.21.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Aug 2024 06:21:16 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <46493cf7-6885-4c30-965b-29c158599c58@roeck-us.net>
-Date: Mon, 12 Aug 2024 06:21:14 -0700
+	s=arc-20240116; t=1723469068; c=relaxed/simple;
+	bh=1CknMoutWVAbnf7wb6UnVxhtG6Hf1UOhEOA6ITYyQ8g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Kdk9HdQ6YBz91RUCLVzWa9XvYso0yV6qe5nPwjZQtCs0Hfm3lb6fDtUEEqfTM4K5uF4P7OfjYqBnCIkalM36jyeTQaPU3dSmSlU+sNtElZ3XfXAou8Q1HU/XVuTVEnQuLT9CQmikfkhH4Gb+tkQ2ihDIOPu++0uwJreRGuaVzj0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OfPjNBzg; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1723469067; x=1755005067;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=1CknMoutWVAbnf7wb6UnVxhtG6Hf1UOhEOA6ITYyQ8g=;
+  b=OfPjNBzgNJs8c2cuvI7/pREha0n4DyLj/66c7QAbQIRfgQTcbi/qz3zE
+   8pqutmRIxoiSTyR1lz8yGN5kvrXj29JiVY+5XVo8Lbr6IseJLK8AXvrkg
+   BbGTFHn5xnyFUByZlwTvvQp+XrYv8CJsf5UUH2EwoEZghCdNTUVCHV9x4
+   ac0hjdBFC2k8zTwANpTrn5MUogsWbpHRkSx3AXqAQc28KySFRpV5YA6XU
+   PjD5PfQ683u0/J6ObkuSnGmAafn+kRP4eaf1uxOCvFccyoF7lGnmL1jg3
+   o++t/p1px4PHN+wjo0Vr+Uv7jLCtI1y9dQOT+eh30OIAm3uSSejqLB4LI
+   g==;
+X-CSE-ConnectionGUID: UFIwpEJgTXKXDSAxNWmdVQ==
+X-CSE-MsgGUID: xZTIHBs6QrKAvDFFdKnv9w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11162"; a="32969233"
+X-IronPort-AV: E=Sophos;i="6.09,283,1716274800"; 
+   d="scan'208";a="32969233"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Aug 2024 06:24:26 -0700
+X-CSE-ConnectionGUID: OngugKMXTUq71g3EqpSX2A==
+X-CSE-MsgGUID: tGuFKrb0TwKzUW3LsMva4g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,283,1716274800"; 
+   d="scan'208";a="58842187"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Aug 2024 06:24:23 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1sdV24-0000000EMAk-2E8D;
+	Mon, 12 Aug 2024 16:24:20 +0300
+Date: Mon, 12 Aug 2024 16:24:20 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Shreeya Patel <shreeya.patel@collabora.com>,
+	Marek Vasut <marex@denx.de>, linux-iio@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH] iio: light: ltrf216a: Drop undocumented ltr,ltrf216a
+ compatible string
+Message-ID: <ZroNBIx61KKzcKQc@smile.fi.intel.com>
+References: <20240705095047.90558-1-marex@denx.de>
+ <3b2ca0-6687ce00-3-4dab7280@52083650>
+ <98992b1d-c94a-4053-a755-32a25d7fdc46@kernel.org>
+ <20240707143759.7718e0f3@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 4/8] hwmon: (amc6821) add support for tsd,mule
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Farouk Bouabid <farouk.bouabid@cherry.de>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Quentin Schulz <quentin.schulz@cherry.de>,
- Peter Rosin <peda@axentia.se>, Jean Delvare <jdelvare@suse.com>,
- Heiko Stuebner <heiko@sntech.de>, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hwmon@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org
-References: <20240725-dev-mule-i2c-mux-v6-0-f9f6d7b60fb2@cherry.de>
- <20240725-dev-mule-i2c-mux-v6-4-f9f6d7b60fb2@cherry.de>
- <5d5c44cd-6320-4fcd-9409-f3fc97bc5389@roeck-us.net>
- <40ff0c23-f037-454c-9d79-05dd72655052@kernel.org>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
- RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
- nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
- 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
- gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
- IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
- kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
- VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
- jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
- BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
- ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
- CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAlVcphcFCRmg06EACgkQyx8mb86fmYFg0RAA
- nzXJzuPkLJaOmSIzPAqqnutACchT/meCOgMEpS5oLf6xn5ySZkl23OxuhpMZTVX+49c9pvBx
- hpvl5bCWFu5qC1jC2eWRYU+aZZE4sxMaAGeWenQJsiG9lP8wkfCJP3ockNu0ZXXAXwIbY1O1
- c+l11zQkZw89zNgWgKobKzrDMBFOYtAh0pAInZ9TSn7oA4Ctejouo5wUugmk8MrDtUVXmEA9
- 7f9fgKYSwl/H7dfKKsS1bDOpyJlqhEAH94BHJdK/b1tzwJCFAXFhMlmlbYEk8kWjcxQgDWMu
- GAthQzSuAyhqyZwFcOlMCNbAcTSQawSo3B9yM9mHJne5RrAbVz4TWLnEaX8gA5xK3uCNCeyI
- sqYuzA4OzcMwnnTASvzsGZoYHTFP3DQwf2nzxD6yBGCfwNGIYfS0i8YN8XcBgEcDFMWpOQhT
- Pu3HeztMnF3HXrc0t7e5rDW9zCh3k2PA6D2NV4fews9KDFhLlTfCVzf0PS1dRVVWM+4jVl6l
- HRIAgWp+2/f8dx5vPc4Ycp4IsZN0l1h9uT7qm1KTwz+sSl1zOqKD/BpfGNZfLRRxrXthvvY8
- BltcuZ4+PGFTcRkMytUbMDFMF9Cjd2W9dXD35PEtvj8wnEyzIos8bbgtLrGTv/SYhmPpahJA
- l8hPhYvmAvpOmusUUyB30StsHIU2LLccUPPOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
- 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
- pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
- J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
- pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
- 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
- ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
- I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
- nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
- HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
- JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAlVcpi8FCRmg08MACgkQyx8mb86fmYHNRQ/+
- J0OZsBYP4leJvQF8lx9zif+v4ZY/6C9tTcUv/KNAE5leyrD4IKbnV4PnbrVhjq861it/zRQW
- cFpWQszZyWRwNPWUUz7ejmm9lAwPbr8xWT4qMSA43VKQ7ZCeTQJ4TC8kjqtcbw41SjkjrcTG
- wF52zFO4bOWyovVAPncvV9eGA/vtnd3xEZXQiSt91kBSqK28yjxAqK/c3G6i7IX2rg6pzgqh
- hiH3/1qM2M/LSuqAv0Rwrt/k+pZXE+B4Ud42hwmMr0TfhNxG+X7YKvjKC+SjPjqp0CaztQ0H
- nsDLSLElVROxCd9m8CAUuHplgmR3seYCOrT4jriMFBtKNPtj2EE4DNV4s7k0Zy+6iRQ8G8ng
- QjsSqYJx8iAR8JRB7Gm2rQOMv8lSRdjva++GT0VLXtHULdlzg8VjDnFZ3lfz5PWEOeIMk7Rj
- trjv82EZtrhLuLjHRCaG50OOm0hwPSk1J64R8O3HjSLdertmw7eyAYOo4RuWJguYMg5DRnBk
- WkRwrSuCn7UG+qVWZeKEsFKFOkynOs3pVbcbq1pxbhk3TRWCGRU5JolI4ohy/7JV1TVbjiDI
- HP/aVnm6NC8of26P40Pg8EdAhajZnHHjA7FrJXsy3cyIGqvg9os4rNkUWmrCfLLsZDHD8FnU
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <40ff0c23-f037-454c-9d79-05dd72655052@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240707143759.7718e0f3@jic23-huawei>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On 8/12/24 04:38, Krzysztof Kozlowski wrote:
-> On 31/07/2024 17:12, Guenter Roeck wrote:
->> On Thu, Jul 25, 2024 at 03:27:50PM +0200, Farouk Bouabid wrote:
->>> Theobroma Systems Mule is an MCU that emulates a set of I2C devices,
->>> among which is an amc6821 and other devices that are reachable through
->>> an I2C-mux.
->>>
->>> The devices on the mux can be selected by writing the appropriate device
->>> number to an I2C config register (amc6821: reg 0xff)
->>>
->>> Implement "tsd,mule" compatible to instantiate the I2C-mux platform device
->>> when probing the amc6821.
->>>
->>> Signed-off-by: Farouk Bouabid <farouk.bouabid@cherry.de>
->>> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
->>
->> Applied.
-> 
-> Eh, there is undocumented dependency on I2C here. Next has warning
-> because of this.
-> 
-> Farouk, please *always mention* the dependencies between patches.
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
-Sorry, I wasn't aware that all bindings have to be in the tree before I apply
-patches, and I somehow had the apparently wrong impression that the bindings
-were approved. I'll drop the two patches (this one and the DT patch for
-amc6821). Someone may need to remind me to re-apply them after all
-pre-dependencies are in the tree.
+On Sun, Jul 07, 2024 at 02:37:59PM +0100, Jonathan Cameron wrote:
+> On Sun, 7 Jul 2024 14:02:39 +0200
+> Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-Guenter
+...
+
+> So, I don't see this as a deliberate attempt to bypass a maintainer Nack.
+> I'd love to be in a position to say no on ACPI bindings that are garbage
+> (there are a lot of them) but Windows is dominant in that space so
+> we get stuck with their mess.
+
+...and we are trying hard to avoid this mess in the future (e.g., what is
+happening to MIPI I3C case nowadays).
+
+Unfortunately Linux world seems not being so interested in this topic either
+(as my proposal to discuss the ACPI ID topic on LPC has been rejected).
+
+> On server's it is a different game
+> and the kernel community regularly gets significant changes made.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
