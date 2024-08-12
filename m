@@ -1,134 +1,165 @@
-Return-Path: <devicetree+bounces-92909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F20F94EC63
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 14:09:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6F6C94EC71
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 14:10:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F092D281741
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 12:09:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 170121C218E0
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 12:10:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54B2E179641;
-	Mon, 12 Aug 2024 12:08:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ED5C179203;
+	Mon, 12 Aug 2024 12:10:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="03/eLBXK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Actt2aat"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ABF517A582;
-	Mon, 12 Aug 2024 12:08:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B96C917276D;
+	Mon, 12 Aug 2024 12:10:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723464517; cv=none; b=I/egLcrblJHRIclNsZtDfGq9/pnKoxox4imm6hRkqH2Vsik+bphcTXYwjW0WDvKdx8YLG2JVF58mykLjboVEcV4Ay31aITwvnz9uH4slaLAV5G+D4aZHLUC+28d8tm3q53qbCpGRdlDZn/4jMhSAKsKG8sq3apyliu0Ppogn2Rs=
+	t=1723464633; cv=none; b=iZ4zQSacHH6wOGmzbtizuhYLbEgit2oHqsOA3qkU1QEqZg5rh4peGcS63JAeTJCcVQ/DQBAH5vn+WfswDvG1ZqLikmBXP5ZNGKcKTd7aQ4RAtxq8vrIOSGdsDjD7kJjD5oHYMwSbgfc9m98ouHOkiLefrsloTKylbY9HslGV05A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723464517; c=relaxed/simple;
-	bh=zFd2gjBGmWexzRz9gwVtaB89VNPvfFoltgrY2Z1l+Jc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dPxwtTOBN7uk/rSTLAnLGwZ+t3WYcf8f3sg4vPzEy0bVug8DaRJzkOIBh1bDoLjKhZIn54lCirr2WP+NX4+PRi/9ZV4ZOpkqDCGX/eAj0U4YILxL9msv6hggjKNkVgqKtfZgKkw6JpjMqv7R9yHK88c9b22KFUvXS/JvLvVLZ9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=03/eLBXK; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47C8FgKE013752;
-	Mon, 12 Aug 2024 14:08:18 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	ppsSzvB7BUqZG+3+qIjF3x2O/qlatMbx5xmjKYhlSVo=; b=03/eLBXKmrKivbqW
-	HrFqTRG9EFPYNnBLx3U3es8y274b+W8FmIS8SjOvPgTRF4lO9DfzFOqkXUe8tpmw
-	54Vkw0QjWMu3UT+UdfUbptCOQQv/FEKSaqtX4ZeaiNo3U1pkQM59M4M4kdJVsZq2
-	6yzyWNYLC56LwVgp1Gn0J+VkOU9Qz5Q9sXSqpCdI3QSWfBGZ/0rsTWyXYIwl0m/M
-	wTyUmuxymj91xI5tAHJ9h9q55nWuuicBCWW0TIvm5S0dnNk4af5ZtJveTfK9KXFg
-	+l5jmbF3B0wEiNXsGupTelcH1yeWk6wMpi8iQw38QLquaa8Ju4kMhTnnjSSKazyf
-	socDHA==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 40x170x9ut-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 12 Aug 2024 14:08:18 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 7E20D4002D;
-	Mon, 12 Aug 2024 14:08:14 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CB93825AF0C;
-	Mon, 12 Aug 2024 14:07:24 +0200 (CEST)
-Received: from localhost (10.129.178.198) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Mon, 12 Aug
- 2024 14:07:24 +0200
-From: Christian Bruel <christian.bruel@foss.st.com>
-To: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
-        <p.zabel@pengutronix.de>
-CC: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <fabrice.gasnier@foss.st.com>,
-        Christian Bruel <christian.bruel@foss.st.com>
-Subject: [PATCH 5/5] arm64: dts: st: Enable COMBOPHY on the stm32mp257f-ev1 board
-Date: Mon, 12 Aug 2024 14:05:29 +0200
-Message-ID: <20240812120529.3564390-6-christian.bruel@foss.st.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240812120529.3564390-1-christian.bruel@foss.st.com>
-References: <20240812120529.3564390-1-christian.bruel@foss.st.com>
+	s=arc-20240116; t=1723464633; c=relaxed/simple;
+	bh=Kf8udl+RPQSi7axWxfKiTe4EjZPZKVepns9CIQZinkE=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NBE1zdR3XttNavegrBVkBXFaq0KQd16fXBh07HT3raThJlvZXHtY1PJBLlx4H/H5yFnJpEvuD3tCz8mDCWsaIlJKJAZJb/vlYPpzHotWiY8A8IP7SwWm+jtD+mMTV3OCUTJr9gRuPSmwFRhwa04w8JUmBmWPVZ1QflUxCZVA5og=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Actt2aat; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-36bd70f6522so2318382f8f.1;
+        Mon, 12 Aug 2024 05:10:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723464629; x=1724069429; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=iqYcq999gsKKejZxZSj4pJ4zXAJ4qw8TpEhYqcXSNdM=;
+        b=Actt2aatPPohW/NJ58gob8yQvfQof8OVmofjrxbYHFcf/0EzVlGT//hKkSR8VJJQFI
+         LnN8Y8z+oOmNsvtvn8BwCplQkmdMW36TrXe4Tnom2N/tn6y2t4gNvwh25MO4OH1RiFkj
+         ogBZocELVt/3PVJqOwXdge2WhAGCzBnDmgR5GYcieBENBALxZCaktHT7srdo3EGlfpQy
+         CnCKyWbhgkRo7OSXea9f0b00o7ZcBwgmaTx2fFMGLEl2mxCdvBwU7uzJ571I7Oa3C+nV
+         lUp/Cgb/Peohyw4FYxNHP3LwGqv0UBD0/oG6VI605BchtMLLnFTkvJnke6hivZCYxwGU
+         ZLaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723464629; x=1724069429;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iqYcq999gsKKejZxZSj4pJ4zXAJ4qw8TpEhYqcXSNdM=;
+        b=dsZ9KCI6lTP/tGN92hljq0Isq1+sMriC9gHI9MWeW3S80w8UtH+jHlasCKzN/avten
+         KiDPuWbtmTjRW6AQW2oCiTItJojOE9rOxXlmlKM9OiKA4klABpctVzRJmTSakU0D5p7S
+         mYlu4nNe9ocSkWtqRaOnDehKlgRXeuVlGVLv1oNyFrzH1rAusSnnn3x2LN6OvZ42tFlW
+         zzuerZCFihofqgY4oFEEA5/vrcKH72nIJsPPXJgWdSciGHBqEnS/XeFnqRuKyudN9LdR
+         O3/DYNq/4BATJsE40qkU08Mhv/cPSzXK27dHvC/8VhQgFdd65b81De2HSxyzP6cpsGHH
+         313w==
+X-Forwarded-Encrypted: i=1; AJvYcCVFBZRb3h/q/lKmpIZSyCkobUwLUO3EuG0lDzSBEzNdfL7TXPTvJQZo8R60FIQxYmnR/GFW2R7tcA+F@vger.kernel.org, AJvYcCWOMvc/BBuxSFebtxsPS1SBvSif3KBcNOjeHnKZWtmTOZVexD+Lecj7w3osx8UncuJ4BCrBPTZ3qeSytGFM@vger.kernel.org, AJvYcCXh9lIQRnLoPiQRhtvobJQ0x+Rc6Wj1YicQn3vgtItxnVNC0Drs1EdnBsOdmcEv+TkO2vJsn9O1tEWq@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy1x7e8HSRyxwOhC29bHdIYN02mfKL9JECiMEFbedEsQCbSQYNm
+	baWBmzZyCGb7kkjajx39YBD20NVqPQgfJY+pNmY6AXFskDqyEh2l
+X-Google-Smtp-Source: AGHT+IFSR5C1hi+8j8Ydkfy62l96VSbCD6ttYmxsw3lESIi7Z9k7B2B1FgWmEng6FK8xhpk8Hz2Qyg==
+X-Received: by 2002:adf:f902:0:b0:367:91d8:a1d2 with SMTP id ffacd0b85a97d-3716ccfc64dmr97552f8f.30.1723464628820;
+        Mon, 12 Aug 2024 05:10:28 -0700 (PDT)
+Received: from Ansuel-XPS. (host-79-52-250-20.retail.telecomitalia.it. [79.52.250.20])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36e4e51ea82sm7362857f8f.72.2024.08.12.05.10.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Aug 2024 05:10:28 -0700 (PDT)
+Message-ID: <66b9fbb4.df0a0220.3bee6e.1e99@mx.google.com>
+X-Google-Original-Message-ID: <Zrn7tHHev-ydxq8n@Ansuel-XPS.>
+Date: Mon, 12 Aug 2024 14:10:28 +0200
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Christoph Hellwig <hch@lst.de>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Joern Engel <joern@lazybastard.org>,
+	Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@kernel.dk>,
+	Sagi Grimberg <sagi@grimberg.me>,
+	Saravana Kannan <saravanak@google.com>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Florian Fainelli <f.fainelli@gmail.com>, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mtd@lists.infradead.org, linux-nvme@lists.infradead.org
+Subject: Re: [PATCH v4 2/7] nvme: assign of_node to nvme device
+References: <20240809172106.25892-1-ansuelsmth@gmail.com>
+ <20240809172106.25892-3-ansuelsmth@gmail.com>
+ <20240812111205.GC14300@lst.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-12_02,2024-08-12_01,2024-05-17_01
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240812111205.GC14300@lst.de>
 
-Enable the COMBOPHY with external pad clock on stm32mp257f-ev1
-board, to be used for the PCIe clock provider.
+On Mon, Aug 12, 2024 at 01:12:05PM +0200, Christoph Hellwig wrote:
+> On Fri, Aug 09, 2024 at 07:21:00PM +0200, Christian Marangi wrote:
+> > Introduce support for a dedicated node for a nvme card. This will be a
+> > subnode of the nvme controller node that will have the "nvme-card"
+> > compatible.
+> 
+> FYI, there really is no such thing as an NVMe card.  There is an
+> NVMe Namespace, which is the entity that contains the block data,
+> the Controller which corresponds to the pci_dev for NVMe-PCIe, and
+> the NVMe Subsystem, which contains Controllers and Namespaces.
+>
 
-Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+The chosen name was arbritrary just to follow eMMC ones. Can totally
+change if problematic.
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-index 214191a8322b8..b296ef1b018a3 100644
---- a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-@@ -27,6 +27,14 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	clocks {
-+		pad_clk: pad-clk {
-+			#clock-cells = <0>;
-+			compatible = "fixed-clock";
-+			clock-frequency = <100000000>;
-+		};
-+	};
-+
- 	memory@80000000 {
- 		device_type = "memory";
- 		reg = <0x0 0x80000000 0x1 0x0>;
-@@ -50,6 +58,12 @@ &arm_wdt {
- 	status = "okay";
- };
- 
-+&combophy {
-+	clocks = <&rcc CK_BUS_USB3PCIEPHY>, <&rcc CK_KER_USB3PCIEPHY>, <&pad_clk>;
-+	clock-names = "apb-clk", "ker-clk", "pad-clk";
-+	status = "okay";
-+};
-+
- &ethernet2 {
- 	pinctrl-names = "default", "sleep";
- 	pinctrl-0 = <&eth2_rgmii_pins_a>;
+> > This follow a similar implementation done for mmc where the specific mmc
+> > card have a dedicated of_node.
+> 
+> That's not a good explanation to be honest.  Most eMMC host controllers
+> are OF probed devices, so of course they'll have an of_node.
+> 
+> Binding PCIe functions to of_nodes seems completely weird to me, and
+> you'll need to explain what this totally non-obvious thing makes sense.
+> Maybe it does, but it needs to be backed up with a very good rationale
+> that is very clearly documented.
+> 
+
+But support of OF for PCIe is already a thing for a long time. (it all
+works by setting the compatible of the PCIe ID card) and used in wifi
+card at assign MAC address, calibration data, disable frequency.
+
+In this context we would do a similar thing with declaring the NVMe with
+the PCIe ID card (already supported) and we add support for defining an
+additional subnode for usage of block2mtd.
+
+The subnode is needed to keep consistency in how the disk struct are
+defined with all the parenting levels.
+
+Just to stress it more... This is really for consistency as PCIe OF node
+are already a thing and on block2mtd (for example) the same thing can be
+done with something like
+
+disk->parent->parent.of_node (as it would point, if present, to the OF node
+of the PCIe card (the NVMe))
+
+With eMMC with the mmc-card subnode we would have to use
+
+disk->parent.of_node
+
+Not having this well organized and consistent schema in DT will result
+in additional condition in the drivers...
+
+Also consider that if the card is not detected, nothing is probed so
+those additional node won't cause any harm.
+
+If these 2 patch are problematic I can totally drop from the series but
+it was really to add consistency in NVMe and eMMC. The real important
+part is eMMC that is becoming the de-facto replacement for NAND/NOR on
+high tier devices (mostly wifi6/7 consumer router)
+
 -- 
-2.34.1
-
+	Ansuel
 
