@@ -1,72 +1,76 @@
-Return-Path: <devicetree+bounces-92941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BB7B94EEDC
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 15:54:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 725BC94EEDA
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 15:54:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 28835B23AF8
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 13:54:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A55751C21841
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 13:54:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B3E018132A;
-	Mon, 12 Aug 2024 13:52:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0940A17E91A;
+	Mon, 12 Aug 2024 13:52:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="urNmxNPn"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="uG4ez6ll"
 X-Original-To: devicetree@vger.kernel.org
 Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 636A317F389;
-	Mon, 12 Aug 2024 13:52:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A4FB17E902;
+	Mon, 12 Aug 2024 13:52:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723470778; cv=none; b=niAQuGbxpMFakCiwNIIlBMQR9zpDgINgV1cSMNuV80Od9/9mw0g8WTGV/HetgfUf+/hlXVmixNF2SNspqXxDTw1tzrIxkkhCALva0Ben6WbLbI9eEOY/gAcUY7JpA8i7yBdK/eSGyzPH7WVdYDe7chLVsnou7SucNWw/eM+kK08=
+	t=1723470776; cv=none; b=QdyZ6I1rfkOm3ByMc3/Kuoau+hbG/6LDqtpdbQGaaHXmXxITznSqNJUjzrDL5E6YY/zf6d+wgNHD+n0Ff/Gj2q//0R7a1J0vYK8Xc1Spg0jJBvGMY5KrUZOTYIn527Sei3moBLfw8uNfRSs4U0P3h5wmx/mvkL090i4PbzKbAqk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723470778; c=relaxed/simple;
-	bh=HX8L5Xz5+6AFfuzNrgZvttKdITdkSvfTq8Y7KblzC1Q=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Wfh2EeGIw+WUt8JDuNSDRpfMfYaFH0Jo4pZ3O01lmTTIGN7jFAY5Vwse88RkZvLS0t3qDHiz/dbuRY1PopngNpx9dNesamSe7gYArLTrxZM52FbhWuPTVP2/606rEefMAMbEtWsr9E7wI6IUCGtog1aOjBGENll2Yre5TiK2qwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=urNmxNPn; arc=none smtp.client-ip=68.232.153.233
+	s=arc-20240116; t=1723470776; c=relaxed/simple;
+	bh=ykeS6VoIwd0uuNUslgahaQuM8F5Z+YJ644IDPqbNm04=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=UnZ5reSZa/DHmCN9BrpTR7voBAxhgoTjYMghGd4Ie0e7MBPIxCkZVhTAwkq+X50GTahH8+P0iIkZ8/KfIFOX02ESdNuwXSf7pIjzFBJUZQ48Ha5NuVoBzqjA6LZpPT/VhCYCqM7eUNZDLtILbFSxXmJuyZaiQ68XovzR78xxQuI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=uG4ez6ll; arc=none smtp.client-ip=68.232.153.233
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1723470776; x=1755006776;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=HX8L5Xz5+6AFfuzNrgZvttKdITdkSvfTq8Y7KblzC1Q=;
-  b=urNmxNPn/ltqpq7OmMcgVRAObanf+DTwdl4yBJwmKJuyufnR9RJ8V3n0
-   Jr86rnx33LSkGTvUqvDeImlI7u6Sfm6dZwcoAIrh0D2zN0jw7eDslY6Ie
-   OPlxA0SPJg7+WjKYRHqWpekcVsmPWuS9mngWB87CAfk69BQ5Ke4CG0kH/
-   MvqEiCprfRxKmV92m32TmPiZMOKWbBzhGpEg5JEKyUW8sbBpRx37nAjhx
-   8E1Qp/6x1s/JA90baqs39eTvsIyROZdF7rFIHN0hMgvXrPJWWUfrrRXcl
-   NKfOy418qYOGDVMNMk2t/EDIEJdvEkF6HPYAO1MzkYdfVu1F+vbd6Uun/
-   g==;
-X-CSE-ConnectionGUID: PBrTB/MiTDi13LaLj3S1lQ==
-X-CSE-MsgGUID: cNWintu3SVyu3OAkIhnpKQ==
+  t=1723470775; x=1755006775;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=ykeS6VoIwd0uuNUslgahaQuM8F5Z+YJ644IDPqbNm04=;
+  b=uG4ez6ll8Iysz1sha3wFDQ1fnTgPmqW6SJr+LysbZ3McSBbXKumtq/RB
+   QEM+qtVdT0GsbXAp15/w6sSzJz/Hbrp/p3dRHq7SIF+J4mWxgFQDnJeAs
+   w32AQtws/Tj/fr6Od6NrfdyttSvEc5QnPTvczb/t+rmoab6dFuBhrBR8S
+   kSALe0fhwmeN6GKVGD36qAmrRiwrGYvfFvQ203+3jsxaMcpgI4xEQkPTC
+   csi/0SH4th1Dusy28xQVIt5Y2qKodIe7iuyutTEc1Zqm42vZJaX3609t7
+   lvnJElVCE6bnWLiUNkFN/4NE8h/i+NU/qHgSUOzdQBenVY8SHO1mAcEfO
+   A==;
+X-CSE-ConnectionGUID: s4TBmy++Rr+nQ8F2ugpKvw==
+X-CSE-MsgGUID: a4vGk6CoTiGArcdctt08SA==
 X-IronPort-AV: E=Sophos;i="6.09,283,1716274800"; 
-   d="scan'208";a="33289887"
+   d="scan'208";a="261298073"
 X-Amp-Result: SKIPPED(no attachment in message)
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 12 Aug 2024 06:52:55 -0700
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 12 Aug 2024 06:52:54 -0700
 Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 12 Aug 2024 06:52:37 -0700
+ 15.1.2507.35; Mon, 12 Aug 2024 06:52:40 -0700
 Received: from ROB-ULT-M76677.microchip.com (10.10.85.11) by
  chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Mon, 12 Aug 2024 06:52:35 -0700
+ 15.1.2507.35 via Frontend Transport; Mon, 12 Aug 2024 06:52:38 -0700
 From: Andrei Simion <andrei.simion@microchip.com>
 To: <claudiu.beznea@tuxon.dev>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
 	<nicolas.ferre@microchip.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
 	<robh@kernel.org>, <alexandre.belloni@bootlin.com>
 CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, Andrei Simion <andrei.simion@microchip.com>
-Subject: [PATCH v2 0/7] Add input voltage suppliers for PMIC MCP16502 regulators
-Date: Mon, 12 Aug 2024 16:52:24 +0300
-Message-ID: <20240812135231.43744-1-andrei.simion@microchip.com>
+	<devicetree@vger.kernel.org>, Andrei Simion <andrei.simion@microchip.com>,
+	Mihai Sain <mihai.sain@microchip.com>
+Subject: [PATCH v2 1/7] regulator: mcp16502: Add supplier for regulators
+Date: Mon, 12 Aug 2024 16:52:25 +0300
+Message-ID: <20240812135231.43744-2-andrei.simion@microchip.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240812135231.43744-1-andrei.simion@microchip.com>
+References: <20240812135231.43744-1-andrei.simion@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,69 +80,64 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 
-In this series of patches, support for the *-supply property [1]  is added
-(correlated with supply_name [2]) from the core regulator.
-Link [1]: https://github.com/torvalds/linux/blob/master/drivers/regulator/core.c#L471
-Link [2]: https://github.com/torvalds/linux/blob/master/drivers/regulator/core.c#L2064
+Based on the datasheet [1] (Block Diagram) PVIN[1-4] and LVIN
+represent the input voltage supply for each BUCKs respective LDOs.
+Update the driver to align with the datasheet [1].
 
-I modified the mcp16502.c driver and the dts that use this PMIC.
-We added these improvements to provide a complete description of the board power scheme.
+[1]: https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/MCP16502-Data-Sheet-DS20006275.pdf
 
-Snippet (as an example) from /sys/kernel/debug/regulator/regulator_summary
-(for at91-sama7g5ek):
- # cat regulator_summary
- regulator                      use open bypass  opmode voltage current     min     max
----------------------------------------------------------------------------------------
- regulator-dummy                  1    0      0 unknown     0mV     0mA     0mV     0mV
- 5V_MAIN                          6    6      0 unknown  5000mV     0mA  5000mV  5000mV
-    VDD_IO                        5    4      0  normal  3300mV     0mA  3300mV  3300mV
-       e1208000.mmc-vqmmc         1                                 0mA     0mV     0mV
-       e1208000.mmc-vmmc          1                                 0mA  3300mV  3400mV
-       e1204000.mmc-vmmc          1                                 0mA  3300mV  3400mV
-       VDDOUT25                   3    2      0 unknown  2500mV     0mA  2500mV  2500mV
-          e1000000.adc-vref       1                                 0mA     0mV     0mV
-          e1000000.adc-vddana     1                                 0mA     0mV     0mV
-    VDD_DDR                       1    0      0  normal  1350mV     0mA  1350mV  1350mV
-    VDD_CORE                      1    0      0  normal  1150mV     0mA  1150mV  1150mV
-    VDD_OTHER                     2    1      0  normal  1050mV     0mA  1050mV  1250mV
-       cpu0-cpu                   1                                 0mA  1050mV  1225mV
-    LDO1                          2    1      0 unknown  1800mV     0mA  1800mV  1800mV
-       e1204000.mmc-vqmmc         1                                 0mA     0mV     0mV
-    LDO2
-
--------------------------------------------------------------------------------------------
-
-Changelog:
-
+Co-developed-by: Mihai Sain <mihai.sain@microchip.com>
+Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
+Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
+---
 v1 -> v2:
- - drop (lvin|pvin[1-4])-supply from each regulators sub-node
- - add voltage input supply documentation in the yaml schema
- - add lvin-supply, pvin[1-4]-supply to PMIC node
+- no update
+---
+ drivers/regulator/mcp16502.c | 17 +++++++++--------
+ 1 file changed, 9 insertions(+), 8 deletions(-)
 
-Andrei Simion (7):
-  regulator: mcp16502: Add supplier for regulators
-  regulator: dt-bindings: microchip,mcp16502: Add voltage input supply
-    documentation
-  ARM: dts: microchip: at91-sama7g5ek: Add reg_5v to supply PMIC nodes
-  ARM: dts: microchip: at91-sama7g54_curiosity: Add reg_5v to supply
-    PMIC nodes
-  ARM: dts: microchip: at91-sama5d2_icp: Add reg_5v to supply PMIC nodes
-  ARM: dts: microchip: at91-sama5d27_wlsom1: Add reg_5v to supply PMIC
-    nodes
-  ARM: dts: microchip: sama5d29_curiosity: Add reg_5v to supply PMIC
-    nodes
-
- .../regulator/microchip,mcp16502.yaml         | 20 +++++++++++++++++++
- .../dts/microchip/at91-sama5d27_wlsom1.dtsi   | 13 ++++++++++++
- .../dts/microchip/at91-sama5d29_curiosity.dts | 13 ++++++++++++
- .../boot/dts/microchip/at91-sama5d2_icp.dts   | 13 ++++++++++++
- .../dts/microchip/at91-sama7g54_curiosity.dts | 13 ++++++++++++
- .../arm/boot/dts/microchip/at91-sama7g5ek.dts | 13 ++++++++++++
- drivers/regulator/mcp16502.c                  | 17 ++++++++--------
- 7 files changed, 94 insertions(+), 8 deletions(-)
-
-
-base-commit: 9e6869691724b12e1f43655eeedc35fade38120c
+diff --git a/drivers/regulator/mcp16502.c b/drivers/regulator/mcp16502.c
+index 5de9d4fa5113..b34ae0bbba6f 100644
+--- a/drivers/regulator/mcp16502.c
++++ b/drivers/regulator/mcp16502.c
+@@ -107,9 +107,10 @@ static unsigned int mcp16502_of_map_mode(unsigned int mode)
+ 	return REGULATOR_MODE_INVALID;
+ }
+ 
+-#define MCP16502_REGULATOR(_name, _id, _ranges, _ops, _ramp_table)	\
++#define MCP16502_REGULATOR(_name, _id, _sn, _ranges, _ops, _ramp_table)	\
+ 	[_id] = {							\
+ 		.name			= _name,			\
++		.supply_name		= #_sn,				\
+ 		.regulators_node	= "regulators",			\
+ 		.id			= _id,				\
+ 		.ops			= &(_ops),			\
+@@ -467,18 +468,18 @@ static const struct linear_range b234_ranges[] = {
+ };
+ 
+ static const struct regulator_desc mcp16502_desc[] = {
+-	/* MCP16502_REGULATOR(_name, _id, ranges, regulator_ops, ramp_table) */
+-	MCP16502_REGULATOR("VDD_IO", BUCK1, b1l12_ranges, mcp16502_buck_ops,
++	/* MCP16502_REGULATOR(_name, _id, _sn, _ranges, _ops, _ramp_table) */
++	MCP16502_REGULATOR("VDD_IO", BUCK1, pvin1, b1l12_ranges, mcp16502_buck_ops,
+ 			   mcp16502_ramp_b1l12),
+-	MCP16502_REGULATOR("VDD_DDR", BUCK2, b234_ranges, mcp16502_buck_ops,
++	MCP16502_REGULATOR("VDD_DDR", BUCK2, pvin2, b234_ranges, mcp16502_buck_ops,
+ 			   mcp16502_ramp_b234),
+-	MCP16502_REGULATOR("VDD_CORE", BUCK3, b234_ranges, mcp16502_buck_ops,
++	MCP16502_REGULATOR("VDD_CORE", BUCK3, pvin3, b234_ranges, mcp16502_buck_ops,
+ 			   mcp16502_ramp_b234),
+-	MCP16502_REGULATOR("VDD_OTHER", BUCK4, b234_ranges, mcp16502_buck_ops,
++	MCP16502_REGULATOR("VDD_OTHER", BUCK4, pvin4, b234_ranges, mcp16502_buck_ops,
+ 			   mcp16502_ramp_b234),
+-	MCP16502_REGULATOR("LDO1", LDO1, b1l12_ranges, mcp16502_ldo_ops,
++	MCP16502_REGULATOR("LDO1", LDO1, lvin, b1l12_ranges, mcp16502_ldo_ops,
+ 			   mcp16502_ramp_b1l12),
+-	MCP16502_REGULATOR("LDO2", LDO2, b1l12_ranges, mcp16502_ldo_ops,
++	MCP16502_REGULATOR("LDO2", LDO2, lvin, b1l12_ranges, mcp16502_ldo_ops,
+ 			   mcp16502_ramp_b1l12)
+ };
+ 
 -- 
 2.34.1
 
