@@ -1,194 +1,117 @@
-Return-Path: <devicetree+bounces-92779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FD4B94E52D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 04:46:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90C3F94E547
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 05:00:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AE3F7B21889
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 02:46:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 112E61F2201E
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 03:00:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9533F7406D;
-	Mon, 12 Aug 2024 02:46:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EF8645038;
+	Mon, 12 Aug 2024 03:00:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="NYEThejB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e/lXT19F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96A9B28EC;
-	Mon, 12 Aug 2024 02:46:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D7231DA22;
+	Mon, 12 Aug 2024 03:00:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723430792; cv=none; b=TCLzlJnT0JyJRRsg6s552AxTygadUu4NeenO2iLOMTrPh0TlI2J0BTksqD9GA+c5etWZ+M4byTDyEqAx+lyIJwt0moIaUg4UDtYWJjtp0th9X6jvLNsRVRcS5orY5AJ5OYYu0PaqaZExuRMjfk3GnzQmhCwOOL0S0APE0iieyI0=
+	t=1723431652; cv=none; b=Px6DinTo93QRildDE2pB59VDiF2wOjtrseToAqMRxrieEBz9xCOrnVS/erL9Y8BV8FtFjKvio9DgNlONuIe+vbLCzjqE2wKAjE01RXTO3m1u+oKHIjlBYnIo8DoP+JGPt79isD3yao5aJvazA0uklQ236HvfFKx1YaPkME3mUes=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723430792; c=relaxed/simple;
-	bh=s4g+rWdtyLJ2+k/zFKG4OLxwh21QhtnKKOMQUeaP5f0=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=XnNhJ/h1HbixRP9qtJNwClzHGbwQ+R24WI4pyfh8NtFRc4QkswXnokyIQCFN/b7FhrUtuXv7A6stmgneI95X1GiSeDbwNsttTTxPeXuiN2wdNOvzk0ig4hftrKFhN2W9pOa/fBInb5+WJzLJYkJuBnTYtL7LFeTxk9PghAMOLpo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=NYEThejB; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1723431652; c=relaxed/simple;
+	bh=ATD46ttZWb0tBzHd3NAq4Sl04kWhE2U1G1BnLmQHe/c=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=iBsJqwHdWqgM6E7Cbu3hx2Czn9rycGAm7Xqf7IHz8CUsPKZ4glEz0SW7iiSgF+wJgy7/iz1eHa4c71eYi2pB9GBQWUw+fX/ZZSGieyQesa1964W/2pK6Pdg+ZLhAZZGqMVdrtrrWz5d4LO35tymQ0nWwKGJ/qLZ7IF3P37pmGFE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e/lXT19F; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-1ff4568676eso37358705ad.0;
+        Sun, 11 Aug 2024 20:00:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723431650; x=1724036450; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xvNI9UxKH6qoTzl3xKSTSvJHZCm2/riYJHczBzxBPJo=;
+        b=e/lXT19FdXb77AGAb7+IOESAWTVAo78zaID8GtjKcu5XPRmYVSSMj/9TCCsSdLDUW6
+         nabdcpO8rEsGbOe4JNBmNQSLajkkYvc1FmiYOQr6K5sK9YHNG9NivD9JKGoZGzk5twED
+         AOzpgAYCVM/tYZxJhD8l5WD6C/XJYYvNtwA1IhAdgILbqAfouWTOrk//ydd3RDVwfUN+
+         KHQa8t3dDi3J+oAobDq7J+17G6IulB3Pnpam6S5kJBPWv3AAjRI4xaugLCjKnVmY/dlM
+         NGT6NkHVlSbTwfjO2J2s7CmGW2QixCKsvzpkmp7DpizEC2Yy4Uw9cwsVs3BvUbMgAgD3
+         sKDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723431650; x=1724036450;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xvNI9UxKH6qoTzl3xKSTSvJHZCm2/riYJHczBzxBPJo=;
+        b=dFcFc65d17pJ7WbGFBbUtmwmDJLPTNuGAiMDPkx8MsZy6I6w3aCjovokApHXE8Oh+5
+         r0mIOcZlx/gzkrxvad1Dys/aV+Va9/2nUN+hiCk2XwTuD9j4dEMHd/JpRLHHq3a0/DxX
+         unMnrQTfr71WRaO0WAGw07ZrZUXpP9Yu2+m5uWsYVgAWvxgQLrC5iTI44MG3v45NlBKs
+         0TOkwgXcKMAXeUF0ZYG1BZkzeUnRlwVAtgC4UduJGhjfqwygk2yyd5k4ztoSYS3M9A2p
+         0lfCBud/CxE37DstC2ks//PgxZKTYbexVrxoZiJr4r4HW/FcS18DGN/CCEqy4UGBS6W3
+         OcJw==
+X-Forwarded-Encrypted: i=1; AJvYcCWSL95ohRzo6I3y7hyEjxY2/1meT6AeLfoB5dyHdi3qO+7RKrYRIyz5DY6+TH2Rup6by61kXGnYWNfzM4W4y7Z/LQIC2QwKFD+Bn5LYsswKlguQS5P7ZNsY85320ZyszCJtr40UT5LKv+oLisfA8tqFBC4M7UlBd7D1snBs01h7wRio4U0B
+X-Gm-Message-State: AOJu0Ywvb5+TvAWqo659OZM+v4Yo5N5jAMyHVwkxUSI8I6I3cb14hTXE
+	KWDX6xk6b1ojBgjf8hchfG8y1Ydmi4MvFkm0l17GYaTkrdi7brOw
+X-Google-Smtp-Source: AGHT+IEJ8WTy8J8fye8zaROoWmQq6+cN0Kjc/PExZ7qxH8LD7+eVyHDYBQi9qAS7vBp9rMYvHruCaA==
+X-Received: by 2002:a17:902:ea08:b0:1fd:9420:1044 with SMTP id d9443c01a7336-200ae4fa836mr117585105ad.16.1723431650367;
+        Sun, 11 Aug 2024 20:00:50 -0700 (PDT)
+Received: from localhost.localdomain (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-200bba00f73sm28047105ad.201.2024.08.11.20.00.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 Aug 2024 20:00:49 -0700 (PDT)
+From: Hui-Ping Chen <hpchen0nvt@gmail.com>
+To: miquel.raynal@bootlin.com,
+	richard@nod.at,
+	vigneshr@ti.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	sumit.semwal@linaro.org,
+	christian.koenig@amd.com,
+	esben@geanix.com
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linaro-mm-sig@lists.linaro.org,
+	Hui-Ping Chen <hpchen0nvt@gmail.com>
+Subject: [PATCH 0/2] Add support for nuvoton ma35 nand controller
+Date: Mon, 12 Aug 2024 03:00:43 +0000
+Message-Id: <20240812030045.20831-1-hpchen0nvt@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1723430787;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=089PudqgBA1kwVP//URA8GhF+maY+DeiRcHXBOIyNeQ=;
-	b=NYEThejB2Y+7BlG/F+TfmyDdXLEYxl+x6C+D1oMmqmMFFu4vbjUXzWAtsnKq0uv7TvZrgE
-	1i8K1ov+On8WpKtCHGNhaesL0n88sjI0WwLtwGkUF8cUrZc1LJ+Anp/FbMW77Q9XpHQ9Hl
-	kW60zKWbbIq5wfrOpRRld9rwZFSA+47rEIbwoFlT3GaqZNuFBedlcahuTArf1xZqPK8bPL
-	AxlkkCqhiUrOLROwt8hnn/Z8cTsZScBzP4RbZzPE5uClklEwKz/R/vG/7dJHYbtE+EgK9F
-	NEeLstVnSEziAvGyNdp3SFtCC3hUVAG0bcHgRyF57ikXhb7O3DYJE6NIFfjHuw==
-Date: Mon, 12 Aug 2024 04:46:27 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Icenowy Zheng <uwu@icenowy.me>
-Cc: linux-sunxi@lists.linux.dev, wens@csie.org, jernej.skrabec@gmail.com,
- samuel@sholland.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-kernel@vger.kernel.org, wenst@chromium.org,
- broonie@kernel.org
-Subject: Re: [PATCH] arm64: dts: allwinner: Add GPU thermal trips to the SoC
- dtsi for A64
-In-Reply-To: <24406e36f6facd93e798113303e22925b0a2dcc1.camel@icenowy.me>
-References: <a17e0df64c5b976b47f19c5a29c02759cd9e5b8c.1723427375.git.dsimic@manjaro.org>
- <24406e36f6facd93e798113303e22925b0a2dcc1.camel@icenowy.me>
-Message-ID: <25b65e9ef1cae59a8366532cc8db576b@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
 Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hello Icenowy,
+This patch series adds the mtd nand driver for the nuvoton ma35 ARMv8 SoC.
+It includes DT binding documentation and the ma35 mtd nand driver.
 
-On 2024-08-12 04:40, Icenowy Zheng wrote:
-> 在 2024-08-12星期一的 04:00 +0200，Dragan Simic写道：
->> Add thermal trips for the two GPU thermal sensors found in the
->> Allwinner A64.
->> There's only one GPU OPP defined since the commit 1428f0c19f9c
->> ("arm64: dts:
->> allwinner: a64: Run GPU at 432 MHz"), so defining only the critical
->> thermal
->> trips makes sense for the A64's two GPU thermal zones.
->> 
->> Having these critical thermal trips defined ensures that no hot spots
->> develop
->> inside the SoC die that exceed the maximum junction temperature. 
->> That might
->> have been possible before, although quite unlikely, because the CPU
->> and GPU
->> portions of the SoC are packed closely inside the SoC, so the
->> overheating GPU
->> would inevitably result in the heat soaking into the CPU portion of
->> the SoC,
->> causing the CPU thermal sensor to return high readings and trigger
->> the CPU
->> critical thermal trips.  However, it's better not to rely on the heat
->> soak
->> and have the critical GPU thermal trips properly defined instead.
->> 
->> While there, remove a few spotted comments that are rather redundant,
->> because
->> it's pretty much obvious what units are used in those places.
-> 
-> This should be another individual patch, I think.
 
-Perhaps, which I already thought about, but it might also be best
-to simply drop the removal of those redundant comments entirely.
-Let's also see what will other people say.
+Hui-Ping Chen (2):
+  dt-bindings: mtd: nuvoton,ma35d1-nand: add new bindings
+  mtd: rawnand: nuvoton: add new driver for the Nuvoton MA35 SoC
 
->> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
->> ---
->>  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 22 ++++++++++++++---
->> --
->>  1 file changed, 16 insertions(+), 6 deletions(-)
->> 
->> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
->> b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
->> index e868ca5ae753..bc5d3a2e6c98 100644
->> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
->> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
->> @@ -212,7 +212,6 @@ timer {
->>  
->>         thermal-zones {
->>                 cpu_thermal: cpu0-thermal {
->> -                       /* milliseconds */
-> 
-> The unit of a 0 isn't not so obvious I think, so I suggest to keep
-> this.
+ .../bindings/mtd/nuvoton,ma35d1-nand.yaml     |   97 ++
+ drivers/mtd/nand/raw/Kconfig                  |    8 +
+ drivers/mtd/nand/raw/Makefile                 |    1 +
+ drivers/mtd/nand/raw/nuvoton_ma35d1_nand.c    | 1109 +++++++++++++++++
+ 4 files changed, 1215 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mtd/nuvoton,ma35d1-nand.yaml
+ create mode 100644 drivers/mtd/nand/raw/nuvoton_ma35d1_nand.c
 
-Quite frankly, I think it should be obvious to anyone tackling
-the thermal zones and trips.
+-- 
+2.25.1
 
->>                         polling-delay-passive = <0>;
->>                         polling-delay = <0>;
->>                         thermal-sensors = <&ths 0>;
->> @@ -236,40 +235,51 @@ map1 {
->>  
->>                         trips {
->>                                 cpu_alert0: cpu-alert0 {
->> -                                       /* milliCelsius */
->>                                         temperature = <75000>;
->>                                         hysteresis = <2000>;
->>                                         type = "passive";
->>                                 };
->>  
->>                                 cpu_alert1: cpu-alert1 {
->> -                                       /* milliCelsius */
->>                                         temperature = <90000>;
->>                                         hysteresis = <2000>;
->>                                         type = "hot";
->>                                 };
->>  
->>                                 cpu_crit: cpu-crit {
->> -                                       /* milliCelsius */
->>                                         temperature = <110000>;
->>                                         hysteresis = <2000>;
->>                                         type = "critical";
->>                                 };
->>                         };
->>                 };
->>  
->>                 gpu0_thermal: gpu0-thermal {
->> -                       /* milliseconds */
->>                         polling-delay-passive = <0>;
->>                         polling-delay = <0>;
->>                         thermal-sensors = <&ths 1>;
->> +
->> +                       trips {
->> +                               gpu0_crit: gpu0-crit {
->> +                                       temperature = <110000>;
->> +                                       hysteresis = <2000>;
->> +                                       type = "critical";
->> +                               };
->> +                       };
->>                 };
->>  
->>                 gpu1_thermal: gpu1-thermal {
->> -                       /* milliseconds */
->>                         polling-delay-passive = <0>;
->>                         polling-delay = <0>;
->>                         thermal-sensors = <&ths 2>;
->> +
->> +                       trips {
->> +                               gpu1_crit: gpu1-crit {
->> +                                       temperature = <110000>;
->> +                                       hysteresis = <2000>;
->> +                                       type = "critical";
->> +                               };
->> +                       };
->>                 };
->>         };
->>  
 
