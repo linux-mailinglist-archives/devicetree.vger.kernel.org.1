@@ -1,131 +1,307 @@
-Return-Path: <devicetree+bounces-92998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5898F94F1BF
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 17:32:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92B6494F1D5
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 17:34:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AA781C220A4
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 15:32:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 192131F23594
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 15:34:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEE6C18800D;
-	Mon, 12 Aug 2024 15:30:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53B7D183CD7;
+	Mon, 12 Aug 2024 15:33:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hYWQGqAs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mMxnuT3f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38FB3187877;
-	Mon, 12 Aug 2024 15:30:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 255D017C9FC;
+	Mon, 12 Aug 2024 15:33:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723476652; cv=none; b=hJSTg2OLv2zplFBSft/AB0QxRsih2isZbrTtR6pcsfZXXMGE7d0h+LLgOUxBnpZe8+y8/zig9Xd3a4ca+xcoArHEegyyTrnwxKHuHdOX5Dj5pGYFCTp2J3mifKGkTkO/IEEjOU/hlqf1/EbgEapqMjWU3bsNbknS2scFweDZTYk=
+	t=1723476814; cv=none; b=ufssYZ2zvroZgpbZMq7jQK4TcNcvvsXc7rnPKK6zKOeU3qw/TZ8B00NboZpjl8GdhpAdbc6kB7o/tSuoCcMIqQUzqSKQaSPfDrOzHBISODuiViRx5vWfiVrVezx/U01aZpmx2ZCuxibUCO+yEZGCbyYJwL0yuE5miL+0U27/xqY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723476652; c=relaxed/simple;
-	bh=/694xjNaYe75aY6C7Vr2retEXvVxynOW1pGlj6x4h6k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=XDZ1gN/1ZclH2Wxdyb27mRmZ/jXGaGepQf0iuHJpf89PwKXUMeD3n1b3qX7d61T4Nivgjrc2rH5cIzRHINL0PT8K7WKb0rW5ib8mZkG/UOERpXfYN16IkSpYrcY9i9V1ZJm1e4Bp0qzCDNR9nY4/YoDXE41eXYLzVlv9iDsGZiY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hYWQGqAs; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5af6a1afa7bso5328825a12.1;
-        Mon, 12 Aug 2024 08:30:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723476649; x=1724081449; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=B3mEpl3gemolhJql0kO9GZwMm0STDd9PPdpHVFTjscQ=;
-        b=hYWQGqAs63JxwWQGieZpom404OZpS7GLIEuwBg+VmsGd7VFGbPR9vBr4kEZpYItdZp
-         sz0EV1lERI0sAM/UZgT2Jwz/JktWqmhuqwsDD0VgBY2qtKsodikKl2n1g1f2KswSk/Ru
-         YuPwRYNcsZa5UZ+2MmeQspgRrXqQbInJTo5UXwJpOpAvaKVi3GVAVTRaPoM0KiurbXhj
-         2g72GROXfYI8t6VuJXU/unIGL+fnXUm98SC5xxaDzQj2k1GQi4aOkO0HjTHkPB5/3HrC
-         rpwlYBOevRCwRCdtPQ3k/yxJjB4KZymkbSs3i6AwmC50IQqKzjuvGkiFYG4mfzIbo+zW
-         /bIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723476649; x=1724081449;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=B3mEpl3gemolhJql0kO9GZwMm0STDd9PPdpHVFTjscQ=;
-        b=dRMtLZj68oKKf6ET8OJdKmojzGUF8vAdREKqzHrwzi6D6/lbUBd7qtvfSA8qLeiyjy
-         K7S6DYey9yWuRtdVoL8lJOqMa+J2p/gumDr2AsnxTOenDcDTSF7Fh6RS+fM/F35Mpt+V
-         KLucfR4Lmh5yff9FlecF2Mvqkzi+rCYeW41mBiZjY6un4MqpqjCaq/8sZByGDzlhrkHJ
-         Ab7oX3+Ai7prQDufqCxcjtJ8uy6qpl3XVLbJZ0KHECjT2mtxWJTs1TUMpPD3W9TPfUle
-         RKJLRFrtLY7dUtqa7mQXo80jg3d8OoGeLR3keM9498kmXYDHIA3q5iPv/3sfndxB/Wnk
-         7L1g==
-X-Forwarded-Encrypted: i=1; AJvYcCXjVVL6sUzfI41eipB56eKjKOIZn0D5RUcA5ShBsn6Btm3aSC3uXH7Uz2OedJc4bCTQOHgGEtlzVqWsWnOEXAEjcv6dZm7gQ9+RcnhmGiHgzBVAOV7t4shqEwVARyt72Zq71jcM287ETYpp6zQUdsyZCYJd65lxzAvfVdPMrlWz9Q==
-X-Gm-Message-State: AOJu0Yy/OzxyaKNd0xgTKeDnfI6RFs+mwGzIEsAEYe6I4jzqV65UXSN2
-	vTiTcxLTn38dUrxAZMoqbWTEcr+5FDNrmlHdJ7hLrGs5pmZgDuKG
-X-Google-Smtp-Source: AGHT+IHXfYbGN3gzx5xZ7yyca+anhNkEk7uILr9vttqcEULcdYoakS4nVxw2xsawcVcgF5/um0lldA==
-X-Received: by 2002:a05:6402:1911:b0:5a1:c7d1:ec5f with SMTP id 4fb4d7f45d1cf-5bd44c7c5f5mr431154a12.35.1723476649472;
-        Mon, 12 Aug 2024 08:30:49 -0700 (PDT)
-Received: from lapsy144.cern.ch (lapsy144.ipv6.cern.ch. [2001:1458:202:99::100:4b])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5bd196a666fsm2192535a12.46.2024.08.12.08.30.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Aug 2024 08:30:49 -0700 (PDT)
-From: vtpieter@gmail.com
-To: Woojung Huh <woojung.huh@microchip.com>,
-	UNGLinuxDriver@microchip.com,
-	Andrew Lunn <andrew@lunn.ch>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	David S Miller <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marek Vasut <marex@denx.de>
-Cc: Woojung Huh <Woojung.Huh@microchip.com>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Pieter Van Trappen <pieter.van.trappen@cern.ch>
-Subject: [PATCH net-next v5 6/6] net: dsa: microchip: fix tag_ksz egress mask for KSZ8795 family
-Date: Mon, 12 Aug 2024 17:29:57 +0200
-Message-ID: <20240812153015.653044-7-vtpieter@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240812153015.653044-1-vtpieter@gmail.com>
-References: <20240812153015.653044-1-vtpieter@gmail.com>
+	s=arc-20240116; t=1723476814; c=relaxed/simple;
+	bh=Oe05rmpT9Fe/XXDh3WVDkzGcqmjHuFRSDMw5JnPkOiU=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=NfaVpjDPLZ1oYtWJCTT+911U8/SHTKNrCb/krUxPFO4wdcgfS2ZG5zEPQIdeuloDRkLUjeHRreIqUW6EC6xJi3d449JPJBvGW7rPW54c8UGVqe1cgwp1Ryq6Zh6hwNwbBVvYG/JmXRs57ea1xSk2PG6vecqzZAh4KAejyYfAF48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mMxnuT3f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36E87C32782;
+	Mon, 12 Aug 2024 15:33:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723476813;
+	bh=Oe05rmpT9Fe/XXDh3WVDkzGcqmjHuFRSDMw5JnPkOiU=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=mMxnuT3f9b/GjyJUcG4A/tmtZzbzGRW/OIV0R/LYANfH1mi/CXS9yiS+vGl3IEhFz
+	 vCg/F2ewxFikmAy2x0VQie3CJkC5AkCciktWbfV+4w5vlx3O/BMWrKjBB1/nNcdgMw
+	 8XxUsBLHWpD/6aDIQ/E4tpnEWboRVUucbDYrfki1JsxgffsX3UXB56t5p8/SLVTmTr
+	 PDxGUgyvan02NsCPlZCq0AP7k5nkpu2UAFPrYnGLqa/sSuuAJzTXRcjpRRPe0M8rlj
+	 yNCt+3nDeh3d9Rx+ZNjBJJi1+RnyeCETnozUITsZZfgoFdgUXm2S2qnBaX96Hb6LzZ
+	 1Ca3UFrObNIUQ==
+Date: Mon, 12 Aug 2024 09:33:31 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Biju Das <biju.das.jz@bp.renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
+ Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+ devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+ Conor Dooley <conor+dt@kernel.org>
+In-Reply-To: <20240811204955.270231-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20240811204955.270231-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Message-Id: <172347672713.922226.6452108729584835239.robh@kernel.org>
+Subject: Re: [PATCH v2 0/8] Add support for Renesas RZ/V2H(P) SoC and
+ GP-EVK platform
 
-From: Pieter Van Trappen <pieter.van.trappen@cern.ch>
 
-Fix the tag_ksz egress mask for DSA_TAG_PROTO_KSZ8795, the port is
-encoded in the two and not three LSB. This fix is for completeness,
-for example the bug doesn't manifest itself on the KSZ8794 because bit
-2 seems to be always zero.
+On Sun, 11 Aug 2024 21:49:47 +0100, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> Hi All,
+> 
+> This patch series aims to add initial support for Renesas RZ/V2H(P) SoC
+> and GP-EVK platform. Support for below peripherals is enabled on
+> RZ/V2H GP-EVK platform:
+> - RIIC
+> - OSTM
+> - SDHI
+> - WDT
+> 
+> patch #1 and #2 depends on
+> 1] https://patchwork.kernel.org/project/linux-renesas-soc/cover/20240724094707.569596-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+> 
+> patch #3, #4, #5 and #7 depends on
+> 1] https://patchwork.kernel.org/project/linux-renesas-soc/cover/20240805193846.52416-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+> 
+> patch #6 and #8 depends on
+> 1] https://patchwork.kernel.org/project/linux-renesas-soc/cover/20240805193846.52416-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+> 2] https://patchwork.kernel.org/project/linux-renesas-soc/cover/20240806210623.183842-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+> 
+> Cheers,
+> Prabhakar
+> 
+> Lad Prabhakar (8):
+>   arm64: dts: renesas: Add initial SoC DTSI for RZ/V2H(P) SoC
+>   arm64: dts: renesas: Add initial DTS for RZ/V2H GP-EVK board
+>   arm64: dts: renesas: r9a09g057: Add OSTM0-OSTM7 nodes
+>   arm64: dts: renesas: r9a09g057: Add RIIC0-RIIC8 nodes
+>   arm64: dts: renesas: r9a09g057: Add SDHI0-SDHI2 nodes
+>   arm64: dts: renesas: r9a09g057: Add WDT0-WDT3 nodes
+>   arm64: dts: renesas: r9a09g057h44-gp-evk: Enable OSTM, I2C, and SDHI
+>   arm64: dts: renesas: r9a09g057h44-gp-evk: Enable watchdog
+> 
+>  arch/arm64/boot/dts/renesas/Makefile          |   2 +
+>  arch/arm64/boot/dts/renesas/r9a09g057.dtsi    | 532 ++++++++++++++++++
+>  .../boot/dts/renesas/r9a09g057h44-gp-evk.dts  | 256 +++++++++
+>  3 files changed, 790 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/renesas/r9a09g057.dtsi
+>  create mode 100644 arch/arm64/boot/dts/renesas/r9a09g057h44-gp-evk.dts
+> 
+> --
+> 2.34.1
+> 
+> 
+> 
 
-Signed-off-by: Pieter Van Trappen <pieter.van.trappen@cern.ch>
----
- net/dsa/tag_ksz.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/net/dsa/tag_ksz.c b/net/dsa/tag_ksz.c
-index ee7b272ab715..15d9f8d28ffc 100644
---- a/net/dsa/tag_ksz.c
-+++ b/net/dsa/tag_ksz.c
-@@ -141,7 +141,7 @@ static struct sk_buff *ksz8795_rcv(struct sk_buff *skb, struct net_device *dev)
- {
- 	u8 *tag = skb_tail_pointer(skb) - KSZ_EGRESS_TAG_LEN;
- 
--	return ksz_common_rcv(skb, dev, tag[0] & 7, KSZ_EGRESS_TAG_LEN);
-+	return ksz_common_rcv(skb, dev, tag[0] & GENMASK(1, 0), KSZ_EGRESS_TAG_LEN);
- }
- 
- static const struct dsa_device_ops ksz8795_netdev_ops = {
--- 
-2.43.0
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y renesas/r9a09g057h44-gp-evk.dtb' for 20240811204955.270231-1-prabhakar.mahadev-lad.rj@bp.renesas.com:
+
+arch/arm64/boot/dts/renesas/r9a09g057h44-gp-evk.dtb: /: compatible: 'oneOf' conditional failed, one must be fixed:
+	['renesas,gp-evk', 'renesas,r9a09g057h44', 'renesas,r9a09g057'] is too long
+arch/arm64/boot/dts/renesas/r9a09g057h44-gp-evk.dtb: /: compatible: 'oneOf' conditional failed, one must be fixed:
+		['renesas,gp-evk', 'renesas,r9a09g057h44', 'renesas,r9a09g057'] is too short
+		'shimafuji,kingfisher' was expected
+		'renesas,r9a09g057h44' is not one of ['renesas,h3ulcb', 'renesas,m3ulcb', 'renesas,m3nulcb']
+		'renesas,r9a09g057' is not one of ['renesas,r8a7795', 'renesas,r8a7796', 'renesas,r8a77961', 'renesas,r8a77965']
+		'renesas,r9a09g057' is not one of ['renesas,r8a779m0', 'renesas,r8a779m1', 'renesas,r8a779m2', 'renesas,r8a779m3', 'renesas,r8a779m4', 'renesas,r8a779m5', 'renesas,r8a779m8', 'renesas,r8a779mb']
+	'renesas,gp-evk' is not one of ['renesas,kzm9d']
+	'renesas,gp-evk' is not one of ['renesas,genmai', 'renesas,gr-peach', 'renesas,rskrza1']
+	'renesas,gp-evk' is not one of ['renesas,rza2mevb']
+	'renesas,gp-evk' is not one of ['renesas,kzm9g']
+	'renesas,gp-evk' is not one of ['renesas,ape6evm']
+	'renesas,gp-evk' is not one of ['renesas,armadillo800eva']
+	'renesas,gp-evk' is not one of ['iwave,g21m']
+	'renesas,gp-evk' is not one of ['iwave,g21d']
+	'renesas,gp-evk' is not one of ['iwave,g20d']
+	'renesas,gp-evk' is not one of ['iwave,g20m', 'renesas,sk-rzg1m']
+	'renesas,gp-evk' is not one of ['iwave,g20m']
+	'renesas,gp-evk' is not one of ['iwave,g22m', 'renesas,sk-rzg1e']
+	'iwave,g22d' was expected
+	'renesas,gp-evk' is not one of ['iwave,g23s']
+	'renesas,gp-evk' is not one of ['hoperun,hihope-rzg2m', 'beacon,beacon-rzg2m']
+	'renesas,gp-evk' is not one of ['hoperun,hihope-rzg2-ex']
+	'renesas,gp-evk' is not one of ['hoperun,hihope-rzg2m']
+	'renesas,gp-evk' is not one of ['beacon,beacon-rzg2n', 'hoperun,hihope-rzg2n']
+	'renesas,gp-evk' is not one of ['si-linux,cat874']
+	'renesas,gp-evk' is not one of ['si-linux,cat875']
+	'renesas,gp-evk' is not one of ['beacon,beacon-rzg2h', 'hoperun,hihope-rzg2h']
+	'renesas,gp-evk' is not one of ['renesas,bockw']
+	'renesas,gp-evk' is not one of ['renesas,marzen']
+	'renesas,gp-evk' is not one of ['renesas,lager', 'renesas,stout']
+	'renesas,gp-evk' is not one of ['renesas,henninger', 'renesas,koelsch', 'renesas,porter']
+	'renesas,gp-evk' is not one of ['renesas,blanche', 'renesas,wheat']
+	'renesas,gp-evk' is not one of ['renesas,gose']
+	'renesas,gp-evk' is not one of ['renesas,alt', 'renesas,silk']
+	'renesas,gp-evk' is not one of ['renesas,h3ulcb', 'renesas,salvator-x', 'renesas,salvator-xs']
+	'renesas,gp-evk' is not one of ['renesas,m3ulcb', 'renesas,salvator-x', 'renesas,salvator-xs']
+	'renesas,gp-evk' is not one of ['renesas,m3ulcb', 'renesas,salvator-xs']
+	'renesas,gp-evk' is not one of ['renesas,m3nulcb', 'renesas,salvator-x', 'renesas,salvator-xs']
+	'renesas,gp-evk' is not one of ['renesas,eagle', 'renesas,v3msk']
+	'renesas,gp-evk' is not one of ['renesas,condor', 'renesas,v3hsk']
+	'renesas,gp-evk' is not one of ['renesas,condor-i']
+	'renesas,gp-evk' is not one of ['renesas,ebisu']
+	'renesas,gp-evk' is not one of ['renesas,draak']
+	'renesas,gp-evk' is not one of ['renesas,falcon-cpu']
+	'renesas,gp-evk' is not one of ['renesas,falcon-breakout']
+	'renesas,gp-evk' is not one of ['renesas,spider-cpu']
+	'renesas,gp-evk' is not one of ['renesas,spider-breakout']
+	'renesas,gp-evk' is not one of ['renesas,s4sk']
+	'renesas,gp-evk' is not one of ['renesas,white-hawk-cpu']
+	'renesas,gp-evk' is not one of ['renesas,white-hawk-single']
+	'renesas,gp-evk' is not one of ['renesas,white-hawk-breakout']
+	'renesas,gp-evk' is not one of ['renesas,gray-hawk-single']
+	'renesas,gp-evk' is not one of ['renesas,h3ulcb', 'renesas,salvator-xs']
+	'renesas,gp-evk' is not one of ['renesas,m3nulcb', 'renesas,salvator-xs']
+	'renesas,gp-evk' is not one of ['renesas,rzn1d400-db']
+	'renesas,gp-evk' is not one of ['renesas,rzn1d400-eb']
+	'renesas,gp-evk' is not one of ['renesas,smarc-evk']
+	'renesas,gp-evk' is not one of ['renesas,r9a08g045s33']
+	'renesas,rzg3s-smarcm' was expected
+	'renesas,smarc2-evk' was expected
+	'renesas,gp-evk' is not one of ['renesas,rzv2mevk2']
+	'renesas,gp-evk' is not one of ['renesas,r9a09g057h41', 'renesas,r9a09g057h42', 'renesas,r9a09g057h44']
+	'renesas,emev2' was expected
+	'renesas,r7s72100' was expected
+	'renesas,r7s9210' was expected
+	'renesas,sh73a0' was expected
+	'renesas,r8a73a4' was expected
+	'renesas,r8a7740' was expected
+	'renesas,r8a7742' was expected
+	'iwave,g21m' was expected
+	'iwave,g20m' was expected
+	'renesas,r8a7743' was expected
+	'renesas,r8a7744' was expected
+	'renesas,r8a7745' was expected
+	'iwave,g22m' was expected
+	'renesas,r8a77470' was expected
+	'renesas,r8a774a1' was expected
+	'hoperun,hihope-rzg2m' was expected
+	'renesas,r8a774a3' was expected
+	'renesas,r8a774b1' was expected
+	'hoperun,hihope-rzg2n' was expected
+	'renesas,r8a774c0' was expected
+	'si-linux,cat874' was expected
+	'renesas,r8a774e1' was expected
+	'hoperun,hihope-rzg2h' was expected
+	'renesas,r8a7778' was expected
+	'renesas,r8a7779' was expected
+	'renesas,r8a7790' was expected
+	'renesas,r8a7791' was expected
+	'renesas,r8a7792' was expected
+	'renesas,r8a7793' was expected
+	'renesas,r8a7794' was expected
+	'renesas,r8a7795' was expected
+	'renesas,r8a7796' was expected
+	'renesas,r8a77961' was expected
+	'renesas,r8a77965' was expected
+	'renesas,r8a77970' was expected
+	'renesas,r8a77980' was expected
+	'renesas,r8a77980a' was expected
+	'renesas,r8a77990' was expected
+	'renesas,r8a77995' was expected
+	'renesas,r8a779a0' was expected
+	'renesas,falcon-cpu' was expected
+	'renesas,r8a779f0' was expected
+	'renesas,spider-cpu' was expected
+	'renesas,r8a779f4' was expected
+	'renesas,r8a779g0' was expected
+	'renesas,r8a779g2' was expected
+	'renesas,white-hawk-cpu' was expected
+	'renesas,r8a779h0' was expected
+	'renesas,r8a779m0' was expected
+	'renesas,r8a779m1' was expected
+	'renesas,r8a779m2' was expected
+	'renesas,r8a779m3' was expected
+	'renesas,r8a779m4' was expected
+	'renesas,r8a779m5' was expected
+	'renesas,r8a779m6' was expected
+	'renesas,r8a779m7' was expected
+	'renesas,r8a779m8' was expected
+	'renesas,r8a779mb' was expected
+	'renesas,r9a06g032' was expected
+	'renesas,rzn1d400-db' was expected
+	'renesas,r9a09g057h44' is not one of ['renesas,r9a07g043f01', 'renesas,r9a07g043u11', 'renesas,r9a07g043u12']
+	'renesas,r9a09g057h44' is not one of ['renesas,r9a07g044c1', 'renesas,r9a07g044c2', 'renesas,r9a07g044l1', 'renesas,r9a07g044l2']
+	'renesas,r9a09g057h44' is not one of ['renesas,r9a07g054l1', 'renesas,r9a07g054l2']
+	'renesas,r9a08g045' was expected
+	'renesas,r9a08g045s33' was expected
+	'renesas,r9a09g011' was expected
+	'renesas,r9a09g057' was expected
+	'renesas,r9a07g043' was expected
+	'renesas,r9a07g044' was expected
+	'renesas,r9a07g054' was expected
+	from schema $id: http://devicetree.org/schemas/soc/renesas/renesas.yaml#
+arch/arm64/boot/dts/renesas/r9a09g057h44-gp-evk.dtb: /: compatible:0: 'anyOf' conditional failed, one must be fixed:
+	'renesas,gp-evk' does not match '^renesas,(emev2|r(7s|8a|9a)[a-z0-9]+|rcar|rmobile|rz[a-z0-9]*|sh(7[a-z0-9]+)?|mobile)-[a-z0-9-]+$'
+	'renesas,gp-evk' does not match '^renesas,(condor|falcon|gr-peach|gray-hawk|salvator|sk-rz|smar(c(2)?)?|spider|white-hawk)(.*)?$'
+	'renesas,gp-evk' does not match '^renesas,(can|cpg|dmac|du|(g)?ether(avb)?|gpio|hscif|(r)?i[i2]c|imr|intc|ipmmu|irqc|jpu|mmcif|msiof|mtu2|pci(e)?|pfc|pwm|[rq]spi|rcar_sound|sata|scif[ab]*|sdhi|thermal|tmu|tpu|usb(2|hs)?|vin|xhci)-[a-z0-9-]+$'
+	'renesas,gp-evk' does not match '^renesas,(d|s)?bsc(3)?-(r8a73a4|r8a7740|sh73a0)$'
+	'renesas,gp-evk' does not match '^renesas,em-(gio|sti|uart)$'
+	'renesas,gp-evk' does not match '^renesas,fsi2-(r8a7740|sh73a0)$'
+	'renesas,gp-evk' does not match '^renesas,hspi-r8a777[89]$'
+	'renesas,gp-evk' does not match '^renesas,sysc-(r8a73a4|r8a7740|rmobile|sh73a0)$'
+	'renesas,gp-evk' is not one of ['renesas,imr-lx4', 'renesas,mtu2-r7s72100']
+	'renesas,gp-evk' is not one of ['renesas,smp-sram']
+	'renesas,gp-evk' does not match '^(?!renesas,.+-.+).+$'
+	from schema $id: http://devicetree.org/schemas/soc/renesas/renesas-soc.yaml#
+arch/arm64/boot/dts/renesas/r9a09g057h44-gp-evk.dtb: /: failed to match any schema with compatible: ['renesas,gp-evk', 'renesas,r9a09g057h44', 'renesas,r9a09g057']
+arch/arm64/boot/dts/renesas/r9a09g057h44-gp-evk.dtb: mmc@15c00000: clocks: [[3, 1, 163], [3, 1, 165], [3, 1, 164], [3, 1, 166]] is too long
+	from schema $id: http://devicetree.org/schemas/mmc/renesas,sdhi.yaml#
+arch/arm64/boot/dts/renesas/r9a09g057h44-gp-evk.dtb: mmc@15c00000: clock-names:1: 'cd' was expected
+	from schema $id: http://devicetree.org/schemas/mmc/renesas,sdhi.yaml#
+arch/arm64/boot/dts/renesas/r9a09g057h44-gp-evk.dtb: mmc@15c00000: clock-names: ['core', 'clkh', 'cd', 'aclk'] is too long
+	from schema $id: http://devicetree.org/schemas/mmc/renesas,sdhi.yaml#
+arch/arm64/boot/dts/renesas/r9a09g057h44-gp-evk.dtb: mmc@15c10000: clocks: [[3, 1, 167], [3, 1, 169], [3, 1, 168], [3, 1, 170]] is too long
+	from schema $id: http://devicetree.org/schemas/mmc/renesas,sdhi.yaml#
+arch/arm64/boot/dts/renesas/r9a09g057h44-gp-evk.dtb: mmc@15c10000: clock-names:1: 'cd' was expected
+	from schema $id: http://devicetree.org/schemas/mmc/renesas,sdhi.yaml#
+arch/arm64/boot/dts/renesas/r9a09g057h44-gp-evk.dtb: mmc@15c10000: clock-names: ['core', 'clkh', 'cd', 'aclk'] is too long
+	from schema $id: http://devicetree.org/schemas/mmc/renesas,sdhi.yaml#
+arch/arm64/boot/dts/renesas/r9a09g057h44-gp-evk.dtb: mmc@15c20000: clocks: [[3, 1, 171], [3, 1, 173], [3, 1, 172], [3, 1, 174]] is too long
+	from schema $id: http://devicetree.org/schemas/mmc/renesas,sdhi.yaml#
+arch/arm64/boot/dts/renesas/r9a09g057h44-gp-evk.dtb: mmc@15c20000: clock-names:1: 'cd' was expected
+	from schema $id: http://devicetree.org/schemas/mmc/renesas,sdhi.yaml#
+arch/arm64/boot/dts/renesas/r9a09g057h44-gp-evk.dtb: mmc@15c20000: clock-names: ['core', 'clkh', 'cd', 'aclk'] is too long
+	from schema $id: http://devicetree.org/schemas/mmc/renesas,sdhi.yaml#
+
+
+
+
 
 
