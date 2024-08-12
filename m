@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-92830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 774F294E87D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 10:25:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 287A494E8AD
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 10:30:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CFA41C2129C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 08:25:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D76DC2830B6
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 08:30:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06EA516A948;
-	Mon, 12 Aug 2024 08:25:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 456841547CB;
+	Mon, 12 Aug 2024 08:30:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eKBDnbIb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ORGNLGhh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C989455896;
-	Mon, 12 Aug 2024 08:25:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 196094D599;
+	Mon, 12 Aug 2024 08:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723451146; cv=none; b=Z/iHOjaz9A01KqiphFBR8XjFH4FlES0z9tFWlG+TTgmH7gUsrWGyMKfdCy4PVp3IbMilGQH3LIjtH2WohoYNdTJpLUy+bNg9TCPThxpTwER9v8s90lbVmh9NDDMogoyhPHO3/BCddHil3mQ1HYxd3fF9ti0OWnlBPc0VSOtpG38=
+	t=1723451441; cv=none; b=l9xirbam3EqNVbSyVTGbLQuiER2OlKKRYXD2FjEjrkVgUJHKl/VqsndE3NlaXRJ98vvqrd/vWe9CuUqZtmjR8F+Lt3iTuGAWBY3PB6/oJj/0iBcAxHickygkx9iTgM8u2Gx+yobneCvWFY+IJtM9bhfmfihOBTgvukumwt88GK4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723451146; c=relaxed/simple;
-	bh=h88e09whIaPiL5jpWjAI7j4v8VLyNwz8TEsRjnQeQLs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lwdL1xnLJu0SQIr2va7YLOBpswoVPfJM3AKa9NoGVFecSHHA9ET5KkUBXvOioYi5gIsooIVtg5aCQHBPgyFobjS/c9cucCo1ErbPK2QuWToxKWnYKAlcsGpjGxhxomGwoSPjw88kAkki2kfuBiPnGN9CjSe7DxqweIyVukmWhaw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eKBDnbIb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DBF8C4AF0E;
-	Mon, 12 Aug 2024 08:25:39 +0000 (UTC)
+	s=arc-20240116; t=1723451441; c=relaxed/simple;
+	bh=poqgoFKKEvgwQ0Gt4Hn8ttFfzKcgAB9OSMPixsYVqxE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=p775+tyC+TyFp4xsr2018DRdFxFKS+mjPO/NaqHSlXHS42JosV9010JwTlSLbLnN41tK6FRn5R9a115W6qt/pEKa/ORLjfux78cj1MvQzdj+m1HXqNF/uG7MXG7jx43Bphx47w7Tgv9LKPS0mi0+dW3zBhr7IMXIw5anVwFRoAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ORGNLGhh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60929C32782;
+	Mon, 12 Aug 2024 08:30:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723451146;
-	bh=h88e09whIaPiL5jpWjAI7j4v8VLyNwz8TEsRjnQeQLs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eKBDnbIbLufgKKt+kH7APS9iAhG/DHelfvBiy+VxEW5iFmQBAd8RKXq7xVwhka3s3
-	 zGFUo0L59eew79qCFPdYrH4bVgsN644rEHVX3yQq1IfvOmn5ZpFRg+F55v+raBDC1W
-	 OXP8SO51sOb5mUFUCk617uienQ0NKq34jeGp1PuszdUuvLKiRviP8mWgfgSi1Xhod6
-	 /8msEixdGqPNR+Y4TeROKu9Gv1NCk2L3t3RqKM24IVCtAC0XL2pLN1KGFrU7id1ISs
-	 qhq9xjGaAmoWQPz8ZO5lNWBnHx3pA70z/9LamL1XMxi3ex0DAg8ertmtWdstrGQuPh
-	 FGtdNKxRjO6fg==
-Message-ID: <d9d76a4a-1552-462b-b946-6475645c6f59@kernel.org>
-Date: Mon, 12 Aug 2024 10:25:36 +0200
+	s=k20201202; t=1723451440;
+	bh=poqgoFKKEvgwQ0Gt4Hn8ttFfzKcgAB9OSMPixsYVqxE=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=ORGNLGhhtAsDC/yCH83C7aryhhv70RR3mopFAoK1m8lcJK/jcNaBAk0XkxQGZZbMb
+	 Ny3JN+G+ZojAxS0rK9pc9gDZ/bG4SQ2MrDoZxM+4kBT3uw59x9QO8T28d7klQp+Ojt
+	 0s47+8Hm7jb8sAyBHhf/2WaWNDmqPYZ3qfWcc6q8c98+IXQ5i5iX8ldNvP+UDkwxa0
+	 dCIiATtVpx9FCAlJLAHofsp8r46CwZAACd2oRxopFDPYEe2dl4dUfiOpeidyex6X2j
+	 VjVP0yoqedyv2dAVIflnlAtSxAh6U/GInFrtIt1ByBi1X2Ji2/6zUvjlRGu7764dng
+	 JfOP0XLk0JW4g==
+Message-ID: <9465f8c0-5270-46df-af4b-e9ee78db63d1@kernel.org>
+Date: Mon, 12 Aug 2024 10:30:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: serial: Add Loongson UART controller
-To: =?UTF-8?B?6YOR6LGq5aiB?= <zhenghaowei@loongson.cn>,
- gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, chenhuacai@kernel.org,
- kernel@xen0n.name, p.zabel@pengutronix.de, zhuyinbo <zhuyinbo@loongson.cn>,
- Jianmin Lv <lvjianmin@loongson.cn>, Liu Peibao <liupeibao@loongson.cn>,
- wanghongliang <wanghongliang@loongson.cn>
-Cc: linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, loongarch@lists.linux.dev
-References: <20240804063834.70022-1-zhenghaowei@loongson.cn>
- <4d1f2426-b43c-4727-8387-f18edf937163@kernel.org>
- <f31609c4-1e47-49bc-9231-5b0353d35dc9@loongson.cn>
- <601adbfd-fbb6-48c6-b755-da1b5d321d6b@kernel.org>
- <89e71573-9365-2e61-bb38-759363df1b8b@loongson.cn>
- <5fdf6810-f729-42bf-a5fd-a2de02d0a894@kernel.org>
- <32ff2c9b-1d34-4637-80ff-e8eefe253a95@loongson.cn>
+Subject: Re: [PATCH 3/4] dt-bindings: clock: Add AST2700 clock bindings
+To: Ryan Chen <ryan_chen@aspeedtech.com>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
+References: <20240808075937.2756733-1-ryan_chen@aspeedtech.com>
+ <20240808075937.2756733-4-ryan_chen@aspeedtech.com>
+ <14ef9485-54ba-402b-9b90-5f10c1523d4e@wanadoo.fr>
+ <OS8PR06MB75413728F0FCEE022B4B4F5BF2BA2@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ <eec21668-3674-40c6-b443-90c7c02262e3@kernel.org>
+ <OS8PR06MB7541CA018C86E262F826B9E5F2BA2@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ <OS8PR06MB7541B0D9A43B989DC1738F68F2852@OS8PR06MB7541.apcprd06.prod.outlook.com>
+ <5081c41b-dfbd-49ad-a993-b983d4c339f0@kernel.org>
+ <OS8PR06MB7541196D3058904998820CFFF2852@OS8PR06MB7541.apcprd06.prod.outlook.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,83 +119,114 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <32ff2c9b-1d34-4637-80ff-e8eefe253a95@loongson.cn>
+In-Reply-To: <OS8PR06MB7541196D3058904998820CFFF2852@OS8PR06MB7541.apcprd06.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 12/08/2024 10:09, 郑豪威 wrote:
-> 
-> 在 2024/8/9 18:05, Krzysztof Kozlowski 写道:
->> On 09/08/2024 11:55, 郑豪威 wrote:
->>>>>>> +    description: Enables fractional-N division. Currently,
->>>>>>> +      only LS2K1500 and LS2K2000 support this feature.
->>>>>>> +
->>>>>>> +  rts-invert:
->>>>>>> +    description: Inverts the RTS value in the MCR register.
->>>>>>> +      This should be used on Loongson-3 series CPUs, Loongson-2K
->>>>>>> +      series CPUs, and Loongson LS7A bridge chips.
->>>>>>> +
->>>>>>> +  dtr-invert:
->>>>>>> +    description: Inverts the DTR value in the MCR register.
->>>>>>> +      This should be used on Loongson-3 series CPUs, Loongson-2K
->>>>>>> +      series CPUs, and Loongson LS7A bridge chips.
->>>>>>> +
->>>>>>> +  cts-invert:
->>>>>>> +    description: Inverts the CTS value in the MSR register.
->>>>>>> +      This should be used on Loongson-2K0500, Loongson-2K1000,
->>>>>>> +      and Loongson LS7A bridge chips.
->>>>>>> +
->>>>>>> +  dsr-invert:
->>>>>>> +    description: Inverts the DSR value in the MSR register.
->>>>>>> +      This should be used on Loongson-2K0500, Loongson-2K1000,
->>>>>>> +      and Loongson LS7A bridge chips.
->>>> Same questions for all these. Why choosing invert is a board level
->>>> decision? If it "should be used" then why it is not used always?
+On 12/08/2024 10:22, Ryan Chen wrote:
+>> Subject: Re: [PATCH 3/4] dt-bindings: clock: Add AST2700 clock bindings
+>>
+>> On 12/08/2024 09:26, Ryan Chen wrote:
+>>>> Subject: RE: [PATCH 3/4] dt-bindings: clock: Add AST2700 clock
+>>>> bindings
 >>>>
->>> Because these features are not applicable to all chips, such as
->>> 'fractional-division',
->> Hm?
+>>>>> Subject: Re: [PATCH 3/4] dt-bindings: clock: Add AST2700 clock
+>>>>> bindings
+>>>>>
+>>>>> On 09/08/2024 07:47, Ryan Chen wrote:
+>>>>>>> Subject: Re: [PATCH 3/4] dt-bindings: clock: Add AST2700 clock
+>>>>>>> bindings
+>>>>>>>
+>>>>>>> Le 08/08/2024 à 09:59, Ryan Chen a écrit :
+>>>>>>>> Add dt bindings for AST2700 clock controller
+>>>>>>>>
+>>>>>>>> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+>>>>>>>> ---
+>>>>>>>>   .../dt-bindings/clock/aspeed,ast2700-clk.h    | 175
+>>>>>>> ++++++++++++++++++
+>>>>>>>>   1 file changed, 175 insertions(+)
+>>>>>>>>   create mode 100644
+>>>>>>>> include/dt-bindings/clock/aspeed,ast2700-clk.h
+>>>>>>>>
+>>>>>>>> diff --git a/include/dt-bindings/clock/aspeed,ast2700-clk.h
+>>>>>>>> b/include/dt-bindings/clock/aspeed,ast2700-clk.h
+>>>>>>>> new file mode 100644
+>>>>>>>> index 000000000000..facf72352c3e
+>>>>>>>> --- /dev/null
+>>>>>>>> +++ b/include/dt-bindings/clock/aspeed,ast2700-clk.h
+>>>>>>>> @@ -0,0 +1,175 @@
+>>>>>>>> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+>>>>>>>> +/*
+>>>>>>>> + * Device Tree binding constants for AST2700 clock controller.
+>>>>>>>> + *
+>>>>>>>> + * Copyright (c) 2024 Aspeed Technology Inc.
+>>>>>>>> + */
+>>>>>>>> +
+>>>>>>>> +#ifndef __DT_BINDINGS_CLOCK_AST2700_H #define
+>>>>>>>> +__DT_BINDINGS_CLOCK_AST2700_H
+>>>>>>>> +
+>>>>>>>> +/* SOC0 clk-gate */
+>>>>>>>> +#define SCU0_CLK_GATE_MCLK (0)
+>>>>>>>> +#define SCU0_CLK_GATE_ECLK (1)
+>>>>>>>> +#define SCU0_CLK_GATE_2DCLK        (2)
+>>>>>>>> +#define SCU0_CLK_GATE_VCLK (3)
+>>>>>>>> +#define SCU0_CLK_GATE_BCLK (4)
+>>>>>>>> +#define SCU0_CLK_GATE_VGA0CLK      (5)
+>>>>>>>> +#define SCU0_CLK_GATE_REFCLK       (6)
+>>>>>>>> +#define SCU0_CLK_GATE_PORTBUSB2CLK (7) #define
+>>>>> SCU0_CLK_GATE_RSV8
+>>>>>>>> +(8)
+>>>>>>>> +#define SCU0_CLK_GATE_UHCICLK      (9)
+>>>>>>>> +#define SCU0_CLK_GATE_VGA1CLK      (10)
+>>>>>>>> +#define SCU0_CLK_GATE_DDRPHYCLK    (11)
+>>>>>>>> +#define SCU0_CLK_GATE_E2M0CLK      (12)
+>>>>>>>> +#define SCU0_CLK_GATE_HACCLK       (13)
+>>>>>>>> +#define SCU0_CLK_GATE_PORTAUSB2CLK (14)
+>>>>>>>> +#define SCU0_CLK_GATE_UART4CLK     (15)
+>>>>>>>> +#define SCU0_CLK_GATE_SLICLK       (16)
+>>>>>>>> +#define SCU0_CLK_GATE_DACCLK       (17)
+>>>>>>>> +#define SCU0_CLK_GATE_DP   (18)
+>>>>>>>> +#define SCU0_CLK_GATE_E2M1CLK      (19)
+>>>>>>>> +#define SCU0_CLK_GATE_CRT0CLK      (20)
+>>>>>>>> +#define SCU0_CLK_GATE_CRT1CLK      (21)
+>>>>>>>> +#define SCU0_CLK_GATE_VLCLK        (22)
+>>>>>>>> +#define SCU0_CLK_GATE_ECDSACLK     (23)
+>>>>>>>> +#define SCU0_CLK_GATE_RSACLK       (24)
+>>>>>>>> +#define SCU0_CLK_GATE_RVAS0CLK     (25)
+>>>>>>>> +#define SCU0_CLK_GATE_UFSCLK       (26)
+>>>>>>>> +#define SCU0_CLK_GATE_EMMCCLK      (27)
+>>>>>>>> +#define SCU0_CLK_GATE_RVAS1CLK     (28)
+>>>>>>>> +/* reserved 29 ~ 31*/
+>>>>>
+>>>>> No, you cannot reserve IDs. They are always continous.
+>>>> I think for mis-understood.
+>>>> I will remove the comment.
+>>>> And keep it is continuous. Thanks.
+>>>>>
+>>>>>>>> +#define SCU0_CLK_GATE_NUM  (SCU0_CLK_GATE_RVAS1CLK + 1)
+>>>>>
+>>>>> No, not a binding.
+>>>>
+>>> I will modify by following.
+>>>
+>>> #define SCU0_CLK_GATE_RVAS1CLK  (28)
+>>> #define SCU0_CLK_GATE_NUM       (SCU0_CLK_GATE_RVAS1CLK + 1)
 >>
->>> which is currently supported only by 2K1500 and 2K2000, and for
->>> Loongson-3 series
->> These are SoCs. Compatible defines that. Please align with your
->> colleagues, because *we talked about this* already.
+>> Nothing changed. Still not a binding. Why do you send the same and expect
+>> different result? Drop.
 >>
->> Best regards,
->> Krzysztof
-> 
-> I consulted with my colleagues and would like to confirm with you. For 
-> the five
-> 
-> properties provided, fractional-division is offered as a new feature,  
-> supported by
-> 
-> 2K1500 and 2K2000. As for the invert property, it is due to a bug in our 
-> controller,
-> 
-> and its usage may vary across different chips. Should we add different 
-> compatible
-> 
-> values to address these issues for different chips, whether they are new 
-> features or
-> 
-> controller bugs?
+>> Address feedback sent to you from previous versions of the patchset.
+>> There was never a reply.
+> Sorry, mis-understood.
+> Since you think "#define SCU0_CLK_GATE_NUM" not a binding.
+> Do you mean I should #define SCU0_CLK_GATE_NUM in clk driver, not in binding header, am I right?
 
-How did you align? We had already talks with you about this problem -
-you need specific compatibles. How you explain above properties, all of
-them are deducible from the compatible, so drop them.
+What did I write in the first Aspeed 2700 patch? So you are not going to
+respond there? Are you going to implement entire feedback received in
+the first version of the patchset?
 
-Your entire argument above does not address at all my concerns, so
-before you respond repeating the same, really talk with your colleagues.
-
-One of many previous discussions:
-https://lore.kernel.org/linux-devicetree/25c30964-6bd3-c7eb-640a-ba1f513b7675@linaro.org/
-
-https://lore.kernel.org/linux-devicetree/20230526-dolly-reheat-06c4d5658415@wendy/
-
-I wish we do not have to keep repeating the same to Loongson. Please
-STORE the feedback for any future submissions, so you will not repeat
-the same mistakes over and over.
+Drop from the header. I am not saying you need to define it in the
+driver, because maybe it is pointless anyway.
 
 Best regards,
 Krzysztof
