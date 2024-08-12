@@ -1,43 +1,52 @@
-Return-Path: <devicetree+bounces-92986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AED2594F12D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 17:02:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09EF794F119
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 17:01:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 39B821F22D18
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 15:02:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B41B81F221D4
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 15:01:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E9CF178370;
-	Mon, 12 Aug 2024 15:01:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31562183CD6;
+	Mon, 12 Aug 2024 15:01:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="l8ekYPfh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ns.iliad.fr (ns.iliad.fr [212.27.33.1])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99DE418733F;
-	Mon, 12 Aug 2024 15:01:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.27.33.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EE127F6;
+	Mon, 12 Aug 2024 15:01:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723474880; cv=none; b=p88i5vsCrfs2NavkFzUa4pv/yoicUv5dHIUe4E0GS6bNrN8YfSLYjiZQvagTHlQuX6rEsVvlQ1d9VNrFfi5lnww9S0kYBEmZKOXcSbTLTSY0o3Tgb5413VU1EjbbuDkRNNgzJFJ4y1PLYZB21ih6wfbxL5IRm+QbWFkxMTMxtrk=
+	t=1723474873; cv=none; b=pya1beZS3MLqS/t0oWag47gymQEThfPf0TxwldmzBB8O8YTDF94M6mkIQoi3khFijwWK4L/uWE2MsKFvaIIXOICXxwosvLzVYeVkLckkulnAn4RoosXKsbwy+W1lV36LZaqWcpke2sqh6V9VtKVboxRsVaKPmu8HpPQJ3LxT7fg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723474880; c=relaxed/simple;
-	bh=683wxpjC6ihpJTjGo7UQynZw3AgpfRTVZXthNqu/FqI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=VLMmIJiHksBXIBpVNN/QVc8ZAYSbayS6sUmVC37CLQ+IYr1Xrma6oBjZ6rdHmWQRSnQwzwjAOR7pnS8yT3X4YnmKuZgoivQSegBQb0tGHYf5qxiR0fkxC7vTTdEsy6e+ViUVCvizAngj/jXSHEqM0CH3QToDuY8OYfRzUBAR0Wo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=srs.iliad.fr; arc=none smtp.client-ip=212.27.33.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=srs.iliad.fr
-Received: from ns.iliad.fr (localhost [127.0.0.1])
-	by ns.iliad.fr (Postfix) with ESMTP id F41C020662;
-	Mon, 12 Aug 2024 16:51:07 +0200 (CEST)
-Received: from [127.0.1.1] (freebox.vlq16.iliad.fr [213.36.7.13])
-	by ns.iliad.fr (Postfix) with ESMTP id E42C52061E;
-	Mon, 12 Aug 2024 16:51:07 +0200 (CEST)
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-Date: Mon, 12 Aug 2024 16:51:02 +0200
-Subject: [PATCH v5 2/2] drm/bridge: add support for TI TDP158
+	s=arc-20240116; t=1723474873; c=relaxed/simple;
+	bh=qXQ33owotgSnZeYZJ2+UpfZZ8U8matWz4X0TsIqMtKY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=owPAwCB6IkNtCwPfHASqiZ9/Ec26x7XtJ0NIoiHN3gHpJC48hUnF/LE4JEv8/pRzyNa79kc3PIKW6TRrUv76MncvGL+0GLcT54l7RD0+fzEocQZcL1U1sG/gzWrLELL6KJBFL4oFHWMfu/uVvvneCf6SKJVrH2U7p1fM7IxGxP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=l8ekYPfh; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 23BD8FF804;
+	Mon, 12 Aug 2024 15:01:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1723474866;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=zrkbsHf98jdzwc61NfnGUE1oZTZ8EfUZY7Ktf9hQoNU=;
+	b=l8ekYPfhWJdnIxZH+oQ1nPhqOT0NRFtgyw1sKdDEXKY7wRNnsxnaBwfJ1t9ZOO1oOQU6Pr
+	/Jdu5VRbE5RLEWR1kjfQwUupWiRC1VnWo3gDfPHREarJQHXR50+/dXISHo/Y37gor8e+BG
+	SGmaG2jUwnQCHzLaDCTnhsvs5wYx2NwvDEG6NqRlrPFX2oGp7l8GgUlkPx01pAjjH4tGuo
+	Skd+oL/o71KVdeiyh4QEqkviSTRyqkb436Sqhiicix+RgMl/XdzTazv5HrnySPzSDlGJoZ
+	Igjk5xyKi+hPWsu3UzycKUeFEnRlplbiIFSeRJ8EueEnI9/kNiUrpch0+Llfyw==
+From: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+Subject: [PATCH v4 0/3] Add SARADC support on Sophgo CV18XX series
+Date: Mon, 12 Aug 2024 17:00:54 +0200
+Message-Id: <20240812-sg2002-adc-v4-0-599bdb67592f@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,211 +55,89 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240812-tdp158-v5-2-78684a84ec23@freebox.fr>
-References: <20240812-tdp158-v5-0-78684a84ec23@freebox.fr>
-In-Reply-To: <20240812-tdp158-v5-0-78684a84ec23@freebox.fr>
-To: Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, Arnaud Vrac <avrac@freebox.fr>, 
- Pierre-Hugues Husson <phhusson@freebox.fr>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Marc Gonzalez <mgonzalez@freebox.fr>
-X-Mailer: b4 0.13.0
+X-B4-Tracking: v=1; b=H4sIAKYjumYC/2XMSw6CMBSF4a2Qjq25vX1QHLkP46CUAk2UmpYQD
+ WHvFpxAHJ6TfP9MkoveJXIpZhLd5JMPQx7iVBDbm6Fz1Dd5EwQUILGkqUMApKaxtEJRa4W24S2
+ SDF7Rtf69xW73vHufxhA/W3ti6/vLlNnvMhOjQI1VykGpTCnVtQ5hfPjhbMOTrKEJ91geMGasu
+ UBtEUxV4z/mO8zZAfOMpbECjGTagjniZVm+NPaMMSABAAA=
+To: Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
+ Inochi Amaoto <inochiama@outlook.com>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ =?utf-8?q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>, 
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+X-Mailer: b4 0.14.1
+X-GND-Sasl: thomas.bonnefille@bootlin.com
 
-TDP158 is an AC-coupled DVI / HDMI to TMDS level shifting Redriver.
-It supports DVI 1.0, HDMI 1.4b and 2.0b.
-It supports 4 TMDS channels, HPD, and a DDC interface.
-It supports dual power supply rails (1.1V on VDD, 3.3V on VCC)
-for power reduction. Several methods of power management are
-implemented to reduce overall power consumption.
-It supports fixed receiver EQ gain using I2C or pin strap to
-compensate for different lengths input cable or board traces.
+This patchset adds initial ADC support for Sophgo SoC. This driver can
+work with or without interrupt and in "Active" and "No-Die" domains
+depending on if a clock is provided.
 
-Features
+Link: https://github.com/sophgo/sophgo-doc/releases/download/sg2002-trm-v1.0/sg2002_trm_en.pdf
 
-- AC-coupled TMDS or DisplayPort dual-mode physical layer input
-to HDMI 2.0b TMDS physical layer output supporting up to 6Gbps
-data rate, compatible with HDMI 2.0b electrical parameters
-- DisplayPort dual-mode standard version 1.1
-- Programmable fixed receiver equalizer up to 15.5dB
-- Global or independent high speed lane control, pre-emphasis
-and transmit swing, and slew rate control
-- I2C or pin strap programmable
-- Configurable as a DisplayPort redriver through I2C
-- Full lane swap on main lanes
-- Low power consumption (200 mW at 6Gbps, 8 mW in shutdown)
-
-https://www.ti.com/lit/ds/symlink/tdp158.pdf
-
-On our board, I2C_EN is pulled high.
-Thus, this code defines a module_i2c_driver.
-
-The default settings work fine for our use-case.
-So this basic driver doesn't need to tweak any I2C registers.
-
-Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
 ---
- drivers/gpu/drm/bridge/Kconfig     |   7 +++
- drivers/gpu/drm/bridge/Makefile    |   1 +
- drivers/gpu/drm/bridge/ti-tdp158.c | 108 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 116 insertions(+)
+Changes in v4:
+- Lowercase register hexadecimal value in dts
+- Reorder properties in dts
+- Use only a const in the compatible property of the device tree bindings
+- Specify the series of SoC in the driver to avoid confusing with other
+  Sophgo SoCs
+- Add channel description in the bindings
+- Use FIELD_PREP in the default configuration
+- Index channels from 0
+- Return PTR_ERR instead of IS_ERR
+- Link to v3: https://lore.kernel.org/r/20240731-sg2002-adc-v3-0-5ac40a518c0a@bootlin.com
 
-diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-index c621be1a99a89..c0ab5b620b57d 100644
---- a/drivers/gpu/drm/bridge/Kconfig
-+++ b/drivers/gpu/drm/bridge/Kconfig
-@@ -368,6 +368,13 @@ config DRM_TI_DLPC3433
- 	  It supports up to 720p resolution with 60 and 120 Hz refresh
- 	  rates.
- 
-+config DRM_TI_TDP158
-+	tristate "TI TDP158 HDMI/TMDS bridge"
-+	depends on OF
-+	select DRM_PANEL_BRIDGE
-+	help
-+	  Texas Instruments TDP158 HDMI/TMDS Bridge driver
-+
- config DRM_TI_TFP410
- 	tristate "TI TFP410 DVI/HDMI bridge"
- 	depends on OF
-diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
-index 7df87b582dca3..3daf803ce80b6 100644
---- a/drivers/gpu/drm/bridge/Makefile
-+++ b/drivers/gpu/drm/bridge/Makefile
-@@ -32,6 +32,7 @@ obj-$(CONFIG_DRM_I2C_ADV7511) += adv7511/
- obj-$(CONFIG_DRM_TI_DLPC3433) += ti-dlpc3433.o
- obj-$(CONFIG_DRM_TI_SN65DSI83) += ti-sn65dsi83.o
- obj-$(CONFIG_DRM_TI_SN65DSI86) += ti-sn65dsi86.o
-+obj-$(CONFIG_DRM_TI_TDP158) += ti-tdp158.o
- obj-$(CONFIG_DRM_TI_TFP410) += ti-tfp410.o
- obj-$(CONFIG_DRM_TI_TPD12S015) += ti-tpd12s015.o
- obj-$(CONFIG_DRM_NWL_MIPI_DSI) += nwl-dsi.o
-diff --git a/drivers/gpu/drm/bridge/ti-tdp158.c b/drivers/gpu/drm/bridge/ti-tdp158.c
-new file mode 100644
-index 0000000000000..4ee0ad29874de
---- /dev/null
-+++ b/drivers/gpu/drm/bridge/ti-tdp158.c
-@@ -0,0 +1,108 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright 2024 Freebox SAS
-+ */
-+#include <drm/drm_bridge.h>
-+#include <drm/drm_atomic_helper.h>
-+#include <linux/i2c.h>
-+
-+struct tdp158 {
-+	struct drm_bridge bridge;
-+	struct drm_bridge *next;
-+	struct gpio_desc *enable; // Operation Enable - pin 36
-+	struct regulator *vcc; // 3.3V
-+	struct regulator *vdd; // 1.1V
-+	struct device *dev;
-+};
-+
-+static void tdp158_enable(struct drm_bridge *bridge, struct drm_bridge_state *prev)
-+{
-+	int err;
-+	struct tdp158 *tdp158 = bridge->driver_private;
-+
-+	err = regulator_enable(tdp158->vcc);
-+	if (err)
-+		dev_err(tdp158->dev, "failed to enable vcc: %d", err);
-+
-+	err = regulator_enable(tdp158->vdd);
-+	if (err)
-+		dev_err(tdp158->dev, "failed to enable vdd: %d", err);
-+
-+	gpiod_set_value_cansleep(tdp158->enable, 1);
-+}
-+
-+static void tdp158_disable(struct drm_bridge *bridge, struct drm_bridge_state *prev)
-+{
-+	struct tdp158 *tdp158 = bridge->driver_private;
-+
-+	gpiod_set_value_cansleep(tdp158->enable, 0);
-+	regulator_disable(tdp158->vdd);
-+	regulator_disable(tdp158->vcc);
-+}
-+
-+static int tdp158_attach(struct drm_bridge *bridge, enum drm_bridge_attach_flags flags)
-+{
-+	struct tdp158 *tdp158 = bridge->driver_private;
-+
-+	return drm_bridge_attach(bridge->encoder, tdp158->next, bridge, flags);
-+}
-+
-+static const struct drm_bridge_funcs tdp158_bridge_funcs = {
-+	.attach = tdp158_attach,
-+	.atomic_enable = tdp158_enable,
-+	.atomic_disable = tdp158_disable,
-+	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
-+	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
-+	.atomic_reset = drm_atomic_helper_bridge_reset,
-+};
-+
-+static int tdp158_probe(struct i2c_client *client)
-+{
-+	struct tdp158 *tdp158;
-+	struct device *dev = &client->dev;
-+
-+	tdp158 = devm_kzalloc(dev, sizeof(*tdp158), GFP_KERNEL);
-+	if (!tdp158)
-+		return -ENOMEM;
-+
-+	tdp158->next = devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
-+	if (IS_ERR(tdp158->next))
-+		return dev_err_probe(dev, PTR_ERR(tdp158->next), "missing bridge");
-+
-+	tdp158->vcc = devm_regulator_get(dev, "vcc");
-+	if (IS_ERR(tdp158->vcc))
-+		return dev_err_probe(dev, PTR_ERR(tdp158->vcc), "vcc");
-+
-+	tdp158->vdd = devm_regulator_get(dev, "vdd");
-+	if (IS_ERR(tdp158->vdd))
-+		return dev_err_probe(dev, PTR_ERR(tdp158->vdd), "vdd");
-+
-+	tdp158->enable = devm_gpiod_get_optional(dev, "enable", GPIOD_OUT_LOW);
-+	if (IS_ERR(tdp158->enable))
-+		return dev_err_probe(dev, PTR_ERR(tdp158->enable), "enable");
-+
-+	tdp158->bridge.of_node = dev->of_node;
-+	tdp158->bridge.funcs = &tdp158_bridge_funcs;
-+	tdp158->bridge.driver_private = tdp158;
-+	tdp158->dev = dev;
-+
-+	return devm_drm_bridge_add(dev, &tdp158->bridge);
-+}
-+
-+static const struct of_device_id tdp158_match_table[] = {
-+	{ .compatible = "ti,tdp158" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, tdp158_match_table);
-+
-+static struct i2c_driver tdp158_driver = {
-+	.probe = tdp158_probe,
-+	.driver = {
-+		.name = "tdp158",
-+		.of_match_table = tdp158_match_table,
-+	},
-+};
-+module_i2c_driver(tdp158_driver);
-+
-+MODULE_DESCRIPTION("TI TDP158 driver");
-+MODULE_LICENSE("GPL");
+Changes in v3:
+- Subdivide default cycle configuration into multiple elementary
+  configurations
+- Fix formatting in the driver
+- Use devm_mutex_init
+- Use devm_clk_get_enabled now because the clock is no more optional
+- Remove handling of Saradc in No-Die Domain as RTC isn't implemented yet
+- Use cv1800-saradc as default compatible instead of a wildcard
+- Link to v2: https://lore.kernel.org/r/20240705-sg2002-adc-v2-0-83428c20a9b2@bootlin.com
 
+Changes in v2:
+- Drop modifications in MAINTAINERS file
+- Rename the ADC from "sophgo-adc" to "sophgo-cv18xx-adc" to avoid
+  conflict with ADCs available in future Sophgo SoCs.
+- Reorder nodes in DT to match DTS coding style
+- Switch from including <linux/of.h> to <linux/mod_devicetable.h>
+- Use scoped_guard instead of mutex_lock/unlock
+- Check IRQ Status in the handler
+- Change IIO device name
+- Use devm_clk_get_optional_enabled instead of a clock variable
+- Init completion before the IRQ request
+- Removed unnecessary iio_info structure in the private data of the
+  driver
+- Use SoC specific compatible in the bindings and device trees
+- Link to v1: https://lore.kernel.org/r/20240702-sg2002-adc-v1-0-ac66e076a756@bootlin.com
+
+---
+Thomas Bonnefille (3):
+      dt-bindings: iio: adc: sophgo,cv18xx-saradc.yaml: Add Sophgo CV18XX SARADC binding
+      iio: adc: sophgo-saradc: Add driver for Sophgo CV18XX series SARADC
+      riscv: dts: sophgo: Add SARADC description for Sophgo CV18XX
+
+ .../bindings/iio/adc/sophgo,cv18xx-saradc.yaml     |  85 +++++++++
+ arch/riscv/boot/dts/sophgo/cv18xx.dtsi             |  20 ++
+ drivers/iio/adc/Kconfig                            |  10 +
+ drivers/iio/adc/Makefile                           |   1 +
+ drivers/iio/adc/sophgo-cv18xx-adc.c                | 208 +++++++++++++++++++++
+ 5 files changed, 324 insertions(+)
+---
+base-commit: 7c626ce4bae1ac14f60076d00eafe71af30450ba
+change-id: 20240527-sg2002-adc-924b862cd3f2
+
+Best regards,
 -- 
-2.34.1
+Thomas Bonnefille <thomas.bonnefille@bootlin.com>
 
 
