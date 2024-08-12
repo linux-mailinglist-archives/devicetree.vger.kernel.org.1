@@ -1,266 +1,248 @@
-Return-Path: <devicetree+bounces-93046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B40694F805
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 22:15:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3FB894F80E
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 22:18:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFB1D1F21B92
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 20:15:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 77FCE280FCC
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 20:18:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8987A194152;
-	Mon, 12 Aug 2024 20:15:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E80119307D;
+	Mon, 12 Aug 2024 20:18:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Vir538NJ"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="LPc8nVK+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11012014.outbound.protection.outlook.com [52.101.66.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69D9D1922CF;
-	Mon, 12 Aug 2024 20:15:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723493712; cv=none; b=EJWxQ0zZDjLH1THE2rPM6XKHE0QR0BFNPuGY5FJO8REjaPmtEsh0vLF7y/C/IyU0OuInsWcfb+eTEnkVLCO3yLNoGt9azdrn6Naqc+46qIb+C/C07rMJBpPYWTZufgo0L5+amNTgBkxybCnWgFqcDR1/N9t1OqEbDMagRLywvhA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723493712; c=relaxed/simple;
-	bh=ea+QujSB7dC9as46er5ru4Cjk2Gq/erzLIw6YWe9sBQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RikjCv6hesPVWpPTi/Y3eVpbFfELbNUnqjiVYGEiQ7qp757w1VwguTaOGTwOD/iMdJTT53P6fF4vB2Q5k+x/bseQTLyyGc4B7fVBxQJud6QwcYD8lU30GCUDPQ8tg1XtktFPy6vENmOWttGFKcNKDGABuijn85ui31L9I/jRfLw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Vir538NJ; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1723493711; x=1755029711;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ea+QujSB7dC9as46er5ru4Cjk2Gq/erzLIw6YWe9sBQ=;
-  b=Vir538NJMMq05r8YB5X2CBwXVqjgMqMjf6g9ARCJcZpS5yc3tc8ZKJ2e
-   66gEx67k7N85tijIeXMLKKNilNnaxlaPlMHiEKO/JL47vlhBECxY8ZwPx
-   QY7/tIw7xYYAYMtKraUCRJAk3IjW9+WiXqgnL33xtC/Mbr0gt1/nXrOGs
-   PUU/vZTceESJIZlFsSHt54B4OdGlDwxljk0Dx1HW1yUyl59Ym/QbrodzH
-   V9IruAoomfE+emxAbuZINXh8NsidbWOq59EHUPiTX1sc+0oSHu99cKuHw
-   CWtmcQ42I1KWkhInw98wXOquFT0QYIUtYSV0X8KgKoJIW9cjdWiHqR3fQ
-   g==;
-X-CSE-ConnectionGUID: SBoThUPlSySuQRU/FeuW6g==
-X-CSE-MsgGUID: sBOOOwdBSFyeh2zkWhQmcg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11162"; a="21483807"
-X-IronPort-AV: E=Sophos;i="6.09,284,1716274800"; 
-   d="scan'208";a="21483807"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Aug 2024 13:15:10 -0700
-X-CSE-ConnectionGUID: Uq4bWhzORUWV+Dk3EjioHQ==
-X-CSE-MsgGUID: Ru7RfX0GTv2W59MNzPhuxg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,284,1716274800"; 
-   d="scan'208";a="62781081"
-Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
-  by fmviesa005.fm.intel.com with ESMTP; 12 Aug 2024 13:15:06 -0700
-Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sdbRX-000C8r-32;
-	Mon, 12 Aug 2024 20:15:03 +0000
-Date: Tue, 13 Aug 2024 04:14:06 +0800
-From: kernel test robot <lkp@intel.com>
-To: Christian Bruel <christian.bruel@foss.st.com>, vkoul@kernel.org,
-	kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com, p.zabel@pengutronix.de
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	fabrice.gasnier@foss.st.com,
-	Christian Bruel <christian.bruel@foss.st.com>
-Subject: Re: [PATCH 3/5] phy: stm32: Add support for STM32MP25 COMBOPHY.
-Message-ID: <202408130307.IK7U1H7o-lkp@intel.com>
-References: <20240812120529.3564390-4-christian.bruel@foss.st.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 037B815C143;
+	Mon, 12 Aug 2024 20:18:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.14
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723493893; cv=fail; b=cPewoe5v6C0/+zz6bgTq9AVmLmXrPCckPZzEx3NrvtOoWAT65SzNzdkyf8bbT5DVzVfBGbCNFeDF9Se84UwKdAd9rHdjAbIiJkIshTVzX2luWZwE0ZwbYnxIfmGAFb4JA99UBpfFsAm+IZUdIha4Gax5yeujTJLJb8WjugHABrY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723493893; c=relaxed/simple;
+	bh=tYUKvSiSWY8P3AR7053BCHUAOpgKjgH4SPmJ5yxKbgY=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=rdiv7bmGmIIGm6rVP2ha3X3aSWLDvcLooFL87rX8VHGFqhRYVK3cwOlyiLjfIpgEjor6LbberjjkG7SDs8P4Hg35GZnfPDyXYdxOlAOWrykWdSbD3t4BeKRYeSCxniisM9/ONe4Mzp39Gx/dsn9JgK5G802cFpZx4rihnoOrcLI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=LPc8nVK+; arc=fail smtp.client-ip=52.101.66.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=P9d7wihxRxIh+vaSDHAtrdJs6E6L0Yct0ab8tWKQYEgHdool359rCGalWhzQXAx6r+wDUXUb9AmLNwAwdbEcvudXOzsMK2gHiSJ9+bwy4BiLpCVHa50pj3m4iL59wXHvRLeEAImuEyzjrIPr0D47h6qV+92bdGIqLy1C7nQI5o+pNkoTxcDth8FJ0B+0S5+QpWVjxiAGXrkKMmDDXwQv1QcNT7Z2DHDXAhk3AkYPaow7aHt6B2xb/hgIeWk6T0njFjTrjSGFfz1oKoFSx+Vfu0dzJwt4mPCyxFtBiMNSjmUCiHTiV4hx6QGzWw0RvPbQEs0ZyPXdVFwukMuWVUCQ4g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/nbterb+HSbKaPt0W5bzJVRStpVvkjA+xshgb+yKeS0=;
+ b=ENBZGVEXnsCEul90y4CqldjQCafsCHvoM42ds9IIAM+GFaV/nKMUSEHnb/b7OfsOgCkT4ZG8fdNL2SQV/fpPFOZAnqL64zczujqwmdBNoAZFBcGvilOw6yQJuJF2dWVfYu6V3vS47fB11X9Y/bbXHXhkRW7GaV6zZomwiSKxpcZpgn25P8BWnjtrcJ+koXGP1m6sP9IFb8eaeKeiKWEoceI2nSpcCWg/N0F5HGmHKb8HxuK9dFQX/9IG0L6W6GdPQqdnLOz93fAHHF+m7RqBjYXgl3hm8YRck8dWIJi1havYTnt4txGmWU4JAdMb1dIaZFpDBURcLWSJUabdhXE9Iw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/nbterb+HSbKaPt0W5bzJVRStpVvkjA+xshgb+yKeS0=;
+ b=LPc8nVK+seFQBr1rK+5qTJdBNgxHtVjARASTH74tfPQAmrWXL0XF16LKPjLh5K5bUDlFPSnNc7Uwf5EJaY0kQ/kMvo0Nd6BNldeq567BaiHZ1IwW6AHZk+ZA2pDmhmgQLjI5uusgHVSr6YUoE6lLlwkTqF75u1kczcPJPueg5Owjww9e2nNTqPF01usDRrn65zU4HAIU755qzp9uWy5iyxUUxXqMfpkZUFsRZP2OP9Rml3ozThLf8U92FIC71wG2q58s4g5e4UwHgQ552wWv0uZtKC76z1ZyREhRuKVCx9mitPfkBBjNGQXWzpINRN0grED6RTtiWHj6Hkw0bsxPFQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DB9PR04MB8345.eurprd04.prod.outlook.com (2603:10a6:10:246::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.20; Mon, 12 Aug
+ 2024 20:18:07 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%3]) with mapi id 15.20.7849.019; Mon, 12 Aug 2024
+ 20:18:06 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: MyungJoo Ham <myungjoo.ham@samsung.com>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-kernel@vger.kernel.org (open list:EXTERNAL CONNECTOR SUBSYSTEM (EXTCON)),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+Cc: imx@lists.linux.dev
+Subject: [PATCH 1/1] dt-bindings: extcon: convert extcon-usb-gpio.txt to yaml format
+Date: Mon, 12 Aug 2024 16:17:53 -0400
+Message-Id: <20240812201754.3830198-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BYAPR02CA0066.namprd02.prod.outlook.com
+ (2603:10b6:a03:54::43) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240812120529.3564390-4-christian.bruel@foss.st.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DB9PR04MB8345:EE_
+X-MS-Office365-Filtering-Correlation-Id: ae9240c9-803f-406a-79bf-08dcbb0be0a9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|376014|1800799024|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?pVTSkSCoUJj4QfNzdQbNX/mU78y4/fTlt+3UVtYyx08o1e/I1GUaEozUBVLR?=
+ =?us-ascii?Q?qgtpXgJKLNYyTy9yT4voP9iVfyQqOJCrotxzkccZMHDu83L3sP3YEfpS+/4P?=
+ =?us-ascii?Q?RLiiN6m39FkAa88Qrd8RKjZMMzt0wJDOZLqUiyGxb97DSteIOapabVcLMf2b?=
+ =?us-ascii?Q?NzpTIn3lIRoqe402B8dnZvb43jUoOz3rEzYj1Kj91YZG2R6eCr7yUBWqVOEN?=
+ =?us-ascii?Q?o4wEA+rmBg/tEP3KbAKYDOUmrvoylZRkRTrdrW/E4P9p0olfZdUJNJWoaBTb?=
+ =?us-ascii?Q?zSlsWuJgFK2LbB2X/EcVNO6Fniue5dWo368j915ymIAwa499gm02EyoDS6Ea?=
+ =?us-ascii?Q?cOKIYUcbkqo7iPlDImSj+ktWgJJV9gbdzY/ccTHsT6eN3qTdMM1mMcCrFcTP?=
+ =?us-ascii?Q?JGzX04JdYWwRISabZeF4THJqRbC6TMm3Fyh1v3x37Cb4Y2cQwbZIoh+BEpte?=
+ =?us-ascii?Q?p2XAjHnPl1GDvQZijjR+Vn6TQ8NGd1rNkUoaTFYXts0vLlkdL095h9hCk+QX?=
+ =?us-ascii?Q?uoK1GbWJRkbaHywSxIJzjtW573XgtceEi6E++HXslNq+BnCfmefkq2nnywFp?=
+ =?us-ascii?Q?VfkLcY+nxkgxA2b0GRrynqTPeQH7VD/e5+WZyTJivtlzplaPjl0FxJBIju6m?=
+ =?us-ascii?Q?ro8l3uWmlZHSOjX3VFgRcFqRfk4Izv0dRj6Sax7c7GyqOLchMc3Lu9eJbb3P?=
+ =?us-ascii?Q?rF4gfFrVvqVMlOvyccDU8meIJL3aGiHJJ7Ij7u3nUui/T/iSCo53YpjfiYRT?=
+ =?us-ascii?Q?Au0cNuApQoYFYSRYqqlYPG5bwBG0C70Us88NGamA1ic6zMeAPfcJAFqffZQV?=
+ =?us-ascii?Q?381VjFf0Pck5p/5OWy0M6au0MbT3R+4pm14PdcFRz5aMyrup8axztvwNdynw?=
+ =?us-ascii?Q?oM1UQhTHnM4hetUKepmN69T0mhylmMz9uSIZa/y1Mj74/L22xET3RbhHdx0i?=
+ =?us-ascii?Q?Z8qJ8sfmlj4Sz8v0SytfB1Mq6CXdhjl7pAI15x4WxABfMbGeVAmvqX2ZJifm?=
+ =?us-ascii?Q?YfhHlkZnYKQPFvL8oz4EXUmyUekn0/uO364ySRMjZDvH2UfZDhVzvE29ju8P?=
+ =?us-ascii?Q?MaeRbGNbotAmGaSp3UB37Ul+lyYB+QkSPtcuryWjR2O1z2bFWlFCqH/BGPXl?=
+ =?us-ascii?Q?KtuVcGnejIfJsFcEknUWhSNfHiKwKHshCrulNr1fsuSbjGwcGmzMuFMf62mM?=
+ =?us-ascii?Q?Lwsjrjv+DoUavQgPAnoxYidYs3y8/riTZwY3x9/r+2mCnkYf5iQkN5oVj05X?=
+ =?us-ascii?Q?K3Qqkuv+CZUqaVTWStA4g+99TmAAL1Nj+T4w9y4OIhKivfvK4lGt8sk6Jr8u?=
+ =?us-ascii?Q?QgolVjgFRE0FUlixv2XoFA74Wk4ygoob+idZwwaBSBkxnH9FmiEM+yys+nO9?=
+ =?us-ascii?Q?eKEsTQs=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?oNdkIewGu4DhDveFMqsvuuX3RSt9UWuQUGCyzvMXHOVyW9eJRpnluvFr4bwg?=
+ =?us-ascii?Q?7z75f0YbDffYjvsDMJks/b+YDMIskmnoUccyh7SqS4ZR7U2LQy15JSXM8TwK?=
+ =?us-ascii?Q?J8XgxZfXloFt958htUbHATQeZiM/pu2S6NtI+p34Zk4i5+F0mvpbcYPcqsQA?=
+ =?us-ascii?Q?2v71qJvLxNfy3i3tfh5uipCob4A+5fq5WME7vr58QCt7AeV7/OHI13b5eUkj?=
+ =?us-ascii?Q?YITH5zEl2bE2KEFlGwqOUGhkPSqxJWYmDDyrIUHdNwH2AbzlDPSt4xL2E6Mu?=
+ =?us-ascii?Q?7o5m1WwJk/TG4JoX44y5yymKpXnDh/vAGWqco8vec2fvQp6dTEpEqjZoz42l?=
+ =?us-ascii?Q?NRR2SFI1yekSqG58QA5Lth1sFx9CBJfXIh7WrRMTHWcsxGObmvkScrE5if5S?=
+ =?us-ascii?Q?MbFn6TU3R/WLWdsQc1qMT3cx/WBa91bhnORVVv0+FTbLUB00BWJ0Z27/xwlA?=
+ =?us-ascii?Q?/cOtivJEHIonOeKHZoNBHBbfxt0IaSrNBDYVN+Lg9eJhiBMZXWd4aK7iOPWn?=
+ =?us-ascii?Q?p7VrDm11zk/6FZylyXJn9YIHBpOgmYeR6kcqD9iBauxvuQtF3bk3ePTBb9y2?=
+ =?us-ascii?Q?7+Y4szL1lbIynzK8ldJsgM8loHfuhMEeUouMgdIo7jqewQS2XKrEG/uP5GZ6?=
+ =?us-ascii?Q?IpAvCumARc9HqfkvHH3lBE8oBjOvyc4tuughvf5ziL3r3hEziKVeFHz1xNKX?=
+ =?us-ascii?Q?2AABQz9TCPvrBhbM0RxHdoQ4Xtj9oBRwtM2GoZMg3axSYwVqSsV/hbsHRHXZ?=
+ =?us-ascii?Q?9wxpBOYKJXXJS/eI8peZYjOPN81g7YUO8Rg1CBkbyavXfQ576qmjfVrQrWvV?=
+ =?us-ascii?Q?9gZ53OaDoK7u0iX0eVm7KQSvheQQdIhZ+6kTzPHZi+L/rPr0qwSUvZyAwt61?=
+ =?us-ascii?Q?oXjPWq3kWSSXD7NNY5FLcxu5wVAdrjOD8d5wI5fh5O0cmHeqTCsY7MYRvGdQ?=
+ =?us-ascii?Q?JSqr0VQZEIPcHfyfqnLWAXlyQpyiQ9RrmA+yNEqki7VIrwEY0wfWKWCDrQCf?=
+ =?us-ascii?Q?csAeHKbgIHnzh3wDGpjz2Dht96iJU2jm5mqq2B15sSmYCAyQrNdZluHKHOj1?=
+ =?us-ascii?Q?hiHI2S/fttwewCe73Uh5AeWAesbNv9bv6hBwbMqqAYhkpzjGp0xy6TOohWZc?=
+ =?us-ascii?Q?DgPLaZzcUU7jXhbdYScyz9I70Rovp8jNKwZ+UiRuFCKVi+5R9UHqND+vWnSj?=
+ =?us-ascii?Q?Anx1X57/eICUNJw8jyT9dAyKwUQpQhT/EJehxMbVUY9hN3VSWznLgK6Fe6qa?=
+ =?us-ascii?Q?7LcyIDFweIGuJNp+JEj9taeDUb04P99poCIxCsxU9wTz8uOAmO2l3pxzt4DO?=
+ =?us-ascii?Q?N83iloa8V//iK9H1/oz1kyVaGIc8D2YYlNoCHKHXoAAKW4OtpfccMdUGRlNc?=
+ =?us-ascii?Q?DA3J3KGJPwZqbrTf0tlj6yG8bc2U4//XHGw3xlxbvNH7iQcynOqtz6vO0Ck7?=
+ =?us-ascii?Q?/qddIHR1LX4FKxzFIx4TMQNGYRJu8nODzbf3T1uVLjXVBx1SziTd3RNOOt5Q?=
+ =?us-ascii?Q?2QIs+rsK8AlJaSGgtJZGCo7YlS1jPzFlcLI54ubPME7y+tfPEnzlaSCcCfPV?=
+ =?us-ascii?Q?0VWViGZQQguyWOOfNW0=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ae9240c9-803f-406a-79bf-08dcbb0be0a9
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Aug 2024 20:18:06.9435
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: P0fECWkAMT701dK/IC1w6f0dsusDagEEygpCUm7sgCXupWleHco5pjAaFynLSAP3vsrseFcWEabhAxz5OHGjmg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8345
 
-Hi Christian,
+Convert binding doc extcon-usb-gpio.txt to yaml format to fix below
+warning:
+arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dtb: /extcon-usb0:
+    failed to match any schema with compatible: ['linux,extcon-usb-gpio']
 
-kernel test robot noticed the following build errors:
+Additional change:
+- rename id-gpio to id-gpios
+- rename vbus-gpio to vbus-gpios
 
-[auto build test ERROR on atorgue-stm32/stm32-next]
-[also build test ERROR on robh/for-next linus/master v6.11-rc3 next-20240812]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+ .../bindings/extcon/extcon-usb-gpio.txt       | 21 ----------
+ .../extcon/linux,extcon-usb-gpio.yaml         | 38 +++++++++++++++++++
+ 2 files changed, 38 insertions(+), 21 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/extcon/extcon-usb-gpio.txt
+ create mode 100644 Documentation/devicetree/bindings/extcon/linux,extcon-usb-gpio.yaml
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Bruel/MAINTAINERS-add-entry-for-ST-STM32MP25-COMBOPHY-driver/20240812-201003
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/atorgue/stm32.git stm32-next
-patch link:    https://lore.kernel.org/r/20240812120529.3564390-4-christian.bruel%40foss.st.com
-patch subject: [PATCH 3/5] phy: stm32: Add support for STM32MP25 COMBOPHY.
-config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20240813/202408130307.IK7U1H7o-lkp@intel.com/config)
-compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project f86594788ce93b696675c94f54016d27a6c21d18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240813/202408130307.IK7U1H7o-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408130307.IK7U1H7o-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/phy/st/phy-stm32-combophy.c:12:
-   In file included from include/linux/phy/phy.h:17:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:13:
-   In file included from include/linux/cgroup.h:26:
-   In file included from include/linux/kernel_stat.h:9:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:14:
-   In file included from arch/hexagon/include/asm/io.h:328:
-   include/asm-generic/io.h:548:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     548 |         val = __raw_readb(PCI_IOBASE + addr);
-         |                           ~~~~~~~~~~ ^
-   include/asm-generic/io.h:561:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     561 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
-      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
-         |                                                   ^
-   In file included from drivers/phy/st/phy-stm32-combophy.c:12:
-   In file included from include/linux/phy/phy.h:17:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:13:
-   In file included from include/linux/cgroup.h:26:
-   In file included from include/linux/kernel_stat.h:9:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:14:
-   In file included from arch/hexagon/include/asm/io.h:328:
-   include/asm-generic/io.h:574:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     574 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
-      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
-         |                                                   ^
-   In file included from drivers/phy/st/phy-stm32-combophy.c:12:
-   In file included from include/linux/phy/phy.h:17:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:13:
-   In file included from include/linux/cgroup.h:26:
-   In file included from include/linux/kernel_stat.h:9:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:14:
-   In file included from arch/hexagon/include/asm/io.h:328:
-   include/asm-generic/io.h:585:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     585 |         __raw_writeb(value, PCI_IOBASE + addr);
-         |                             ~~~~~~~~~~ ^
-   include/asm-generic/io.h:595:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     595 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
-   include/asm-generic/io.h:605:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     605 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
-   In file included from drivers/phy/st/phy-stm32-combophy.c:12:
-   In file included from include/linux/phy/phy.h:17:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:21:
-   In file included from include/linux/mm.h:2253:
-   include/linux/vmstat.h:514:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
-     514 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
->> drivers/phy/st/phy-stm32-combophy.c:134:8: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     134 |                                    FIELD_PREP(STM32MP25_PCIEPRG_IMPCTRL_OHM, imp_of));
-         |                                    ^
->> drivers/phy/st/phy-stm32-combophy.c:137:12: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     137 |                 imp_of = FIELD_GET(STM32MP25_PCIEPRG_IMPCTRL_OHM, val);
-         |                          ^
-   drivers/phy/st/phy-stm32-combophy.c:155:8: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     155 |                                    FIELD_PREP(STM32MP25_PCIEPRG_IMPCTRL_VSWING, vswing_of));
-         |                                    ^
-   7 warnings and 3 errors generated.
-
-
-vim +/FIELD_PREP +134 drivers/phy/st/phy-stm32-combophy.c
-
-   107	
-   108	static int stm32_impedance_tune(struct stm32_combophy *combophy)
-   109	{
-   110		u8 imp_size = ARRAY_SIZE(imp_lookup);
-   111		u8 vswing_size = ARRAY_SIZE(imp_lookup[0].vswing);
-   112		u8 imp_of, vswing_of;
-   113		u32 max_imp = imp_lookup[0].microohm;
-   114		u32 min_imp = imp_lookup[imp_size - 1].microohm;
-   115		u32 max_vswing = imp_lookup[imp_size - 1].vswing[vswing_size - 1];
-   116		u32 min_vswing = imp_lookup[0].vswing[0];
-   117		u32 val;
-   118	
-   119		if (!of_property_read_u32(combophy->dev->of_node, "st,output-micro-ohms", &val)) {
-   120			if (val < min_imp || val > max_imp) {
-   121				dev_err(combophy->dev, "Invalid value %u for output ohm\n", val);
-   122				return -EINVAL;
-   123			}
-   124	
-   125			for (imp_of = 0 ; imp_of < ARRAY_SIZE(imp_lookup); imp_of++)
-   126				if (imp_lookup[imp_of].microohm <= val)
-   127					break;
-   128	
-   129			dev_dbg(combophy->dev, "Set %u micro-ohms output impedance\n",
-   130				imp_lookup[imp_of].microohm);
-   131	
-   132			regmap_update_bits(combophy->regmap, SYSCFG_PCIEPRGCR,
-   133					   STM32MP25_PCIEPRG_IMPCTRL_OHM,
- > 134					   FIELD_PREP(STM32MP25_PCIEPRG_IMPCTRL_OHM, imp_of));
-   135		} else {
-   136			regmap_read(combophy->regmap, SYSCFG_PCIEPRGCR, &val);
- > 137			imp_of = FIELD_GET(STM32MP25_PCIEPRG_IMPCTRL_OHM, val);
-   138		}
-   139	
-   140		if (!of_property_read_u32(combophy->dev->of_node, "st,output-vswing-microvolt", &val)) {
-   141			if (val < min_vswing || val > max_vswing) {
-   142				dev_err(combophy->dev, "Invalid value %u for output vswing\n", val);
-   143				return -EINVAL;
-   144			}
-   145	
-   146			for (vswing_of = 0 ; vswing_of < ARRAY_SIZE(imp_lookup[imp_of].vswing); vswing_of++)
-   147				if (imp_lookup[imp_of].vswing[vswing_of] >= val)
-   148					break;
-   149	
-   150			dev_dbg(combophy->dev, "Set %u microvolt swing\n",
-   151				 imp_lookup[imp_of].vswing[vswing_of]);
-   152	
-   153			regmap_update_bits(combophy->regmap, SYSCFG_PCIEPRGCR,
-   154					   STM32MP25_PCIEPRG_IMPCTRL_VSWING,
-   155					   FIELD_PREP(STM32MP25_PCIEPRG_IMPCTRL_VSWING, vswing_of));
-   156		}
-   157	
-   158		return 0;
-   159	}
-   160	
-
+diff --git a/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.txt b/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.txt
+deleted file mode 100644
+index dfc14f71e81fb..0000000000000
+--- a/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.txt
++++ /dev/null
+@@ -1,21 +0,0 @@
+-USB GPIO Extcon device
+-
+-This is a virtual device used to generate USB cable states from the USB ID pin
+-connected to a GPIO pin.
+-
+-Required properties:
+-- compatible: Should be "linux,extcon-usb-gpio"
+-
+-Either one of id-gpio or vbus-gpio must be present. Both can be present as well.
+-- id-gpio: gpio for USB ID pin. See gpio binding.
+-- vbus-gpio: gpio for USB VBUS pin.
+-
+-Example: Examples of extcon-usb-gpio node in dra7-evm.dts as listed below:
+-	extcon_usb1 {
+-		compatible = "linux,extcon-usb-gpio";
+-		id-gpio = <&gpio6 1 GPIO_ACTIVE_HIGH>;
+-	}
+-
+-	&omap_dwc3_1 {
+-		extcon = <&extcon_usb1>;
+-	};
+diff --git a/Documentation/devicetree/bindings/extcon/linux,extcon-usb-gpio.yaml b/Documentation/devicetree/bindings/extcon/linux,extcon-usb-gpio.yaml
+new file mode 100644
+index 0000000000000..1caf58c297d34
+--- /dev/null
++++ b/Documentation/devicetree/bindings/extcon/linux,extcon-usb-gpio.yaml
+@@ -0,0 +1,38 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/extcon/linux,extcon-usb-gpio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: USB GPIO Extcon device
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++
++description:
++  This is a virtual device used to generate USB cable states from the USB ID pin
++  connected to a GPIO pin.
++
++properties:
++  compatible:
++    const: linux,extcon-usb-gpio
++
++  id-gpios:
++    description: gpio for USB ID pin. See gpio binding.
++  vbus-gpios:
++    description: gpio for USB VBUS pin.
++
++required:
++  - compatible
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    extcon_usb1 {
++        compatible = "linux,extcon-usb-gpio";
++        id-gpios = <&gpio6 1 GPIO_ACTIVE_HIGH>;
++    };
++
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
