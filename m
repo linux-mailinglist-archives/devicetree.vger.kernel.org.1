@@ -1,312 +1,130 @@
-Return-Path: <devicetree+bounces-92796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92797-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A908F94E5A4
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 06:11:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD71194E5C6
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 06:32:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE0151C2140A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 04:11:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B460281C66
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 04:32:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCAE7142631;
-	Mon, 12 Aug 2024 04:11:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCFEB14831C;
+	Mon, 12 Aug 2024 04:32:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kIYaV8iV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UFXKeW72"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EC5F13BAE2
-	for <devicetree@vger.kernel.org>; Mon, 12 Aug 2024 04:10:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AE6637B;
+	Mon, 12 Aug 2024 04:32:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723435861; cv=none; b=BfkYWqqhqyHFexw+8vrukFsB+mDcoTszdUaRbGJ9x1SUddfmnu2YD0AqrSXK5QU2fQQlUgDOF4EqWAVxuNTiLel8Z40lfWDWIraSaCGD6dryoa6SYhWO/BkXJC/VL5nlEayXdM9d+gbygJNSGNzrw9NEi3wBy71DSj+sGkbX/j8=
+	t=1723437127; cv=none; b=q53is26qSxjz6zvINwWM27h4sWBDtDKVQhTz+WAbPIYPkWzBmJQYdfX8SunEhuYCcQkd734FhaHhWLVXsmz6WWnO4N/tDpR2qLU+2gtmD6D0rolQ5i2NboSbmeoL1iVJUd1bSMnTwP5Bytf9EnXnG3rUjV3Pxq4x7ICLDhhPr0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723435861; c=relaxed/simple;
-	bh=qI0bs6rd2DWmdF9ALWTxV+cS9DABMRZx8vBKeOZ3TXY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CxejAsoEPU2Be5TBvGzw92bSJssOUC4Pdqzbivhp2AjKfBqtDcQn6COv5+AJLXLWF3ENxojg2hERMCTAEwKlc+h4P31tiohZjGLfnsDhrlkDAQEaa/qIGrExXsEFSUZ/kPBmI+u2SPh6G0UJsEAs65zht15CBezgYH9E5lE8sro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kIYaV8iV; arc=none smtp.client-ip=209.85.216.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-2cb57e25387so3076118a91.3
-        for <devicetree@vger.kernel.org>; Sun, 11 Aug 2024 21:10:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723435859; x=1724040659; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=KLJJ6so+orZFZFeMUnbOliXPJiE9AqEdrrJRM5sonro=;
-        b=kIYaV8iVnycVfKVHutt7KSA9HByAdFSNz61yjx17YsTPOtXe9MP9VTgOBE28sudda7
-         g7ROzEFymlj64A4WKR4ODapcn1NaY/4EEcYOCP5Mb9mncgh0agMFK+j4c8qJ2h+5P+mU
-         e25ho+JnJmhjoWcvtB7aGugGvedifgjUihTHyiCLqpaQbEeictqFBbiywVCwT80vQMvl
-         qg/SwKy4PiphBXMezDQ3nnSSonP7DrCKBNps+LkGmrISGaIMfeTVmvSDVaOQvcDMjK2G
-         Kc8+sOgIGNacm8IAKzTpXkPjTI3y57Qzbxau0KUq5ClT7VzPc9LkKG0ZWJFWKxNKXe6n
-         lD0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723435859; x=1724040659;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KLJJ6so+orZFZFeMUnbOliXPJiE9AqEdrrJRM5sonro=;
-        b=ApKHOkAgqRERTCqvA1OMrSmwBwU8ErI1WVTKO+PilZfYRatPd6NL/h1wkty8Rd5ugL
-         KKoEUVRZ/HtWVtr2xxednC3tv4wWd2cbVToDZUTUFjoRkWLMv824xPT5P/NGJAR6AKr6
-         SRr0mxVW3LrkWeVUzNXpQn0EGtoQ0yHtI30evIHoG/QvLwQqDLM8oIZ9MF/YP7hchoJy
-         9eAf29ZrprJtZblj3tl4C5S7sE3+4LJS5Kz6QDsjric9K/kjuI3DZHW08z4AOm7Y14Hv
-         JS1dP52a930P8Y8snHFbFHO3G5KDF9Ui+V5G25eqdHcKblzZiF6mGaIByh/IK2BixzQZ
-         eKbQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXBxbaCYueu18jM8AzWmOn0YCuex/7JMdK+dFoXyhyp0RUaoO+O40ycA32H9K7J68+RLHzMirXZtIWTIfPbF7+erf7JlGObHIpcMQ==
-X-Gm-Message-State: AOJu0YxmAQ9ILFnuLwdczaT0NxtE63rzdjTg4H7qVadqj8BJYFY3xDa1
-	frEYhdP+gdqgIM4VPp6LZu8x1L7mtqUMqLrd9tNL74ENvA0jmLxgOslttxWq4Q==
-X-Google-Smtp-Source: AGHT+IEPC81vW4x96+SZLSLCOeIPTkSbgIYh0EjJcUYkF2idbeM+Vokc34tM9BlI6w/m1L1UpjIOOA==
-X-Received: by 2002:a17:90b:4a81:b0:2c2:f2d6:60d4 with SMTP id 98e67ed59e1d1-2d1e7f96d11mr9474880a91.8.1723435859038;
-        Sun, 11 Aug 2024 21:10:59 -0700 (PDT)
-Received: from thinkpad ([103.244.168.26])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2d1c9c82b6asm7130528a91.16.2024.08.11.21.10.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Aug 2024 21:10:58 -0700 (PDT)
-Date: Mon, 12 Aug 2024 09:40:51 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Shawn Lin <shawn.lin@rock-chips.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	"James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
-	"Martin K . Petersen" <martin.petersen@oracle.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Avri Altman <avri.altman@wdc.com>,
-	Bart Van Assche <bvanassche@acm.org>,
-	YiFeng Zhao <zyf@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
-	linux-scsi@vger.kernel.org, linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] scsi: ufs: rockchip: init support for UFS
-Message-ID: <20240812041051.GA2861@thinkpad>
-References: <1723089163-28983-1-git-send-email-shawn.lin@rock-chips.com>
- <1723089163-28983-4-git-send-email-shawn.lin@rock-chips.com>
- <20240809062813.GC2826@thinkpad>
- <421d48b7-4aa7-4202-8b5f-9c60916f6ef6@rock-chips.com>
- <20240810092817.GA147655@thinkpad>
- <3b2617f5-acb1-45c6-993c-33249fd19888@rock-chips.com>
+	s=arc-20240116; t=1723437127; c=relaxed/simple;
+	bh=+HgWClLtvqkoUhEH5Ehi7rghN3Mn9HrBXqqqtbQvMBQ=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=dDbaGmA//Ew+ho5TveQ93y6CMP//aB604YpYIe/6Rsxr96xjUSJvjOOdlBISauGXnzKxHvpGvUM4TpcGB5/d9v91CyCNygY8Gr7yRNA6xR5NOGWFRlV14J7+h4c0uqWtCmqBg8OOXv9I4wJQjuDWV0p95inVwVa1CVEnpTuGjPI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UFXKeW72; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A850CC32782;
+	Mon, 12 Aug 2024 04:32:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723437127;
+	bh=+HgWClLtvqkoUhEH5Ehi7rghN3Mn9HrBXqqqtbQvMBQ=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=UFXKeW72KvOgDBRYX0XohQDJm7yywGC65ZDAhEpFPYSXqjiJp0267Apzlf4aa1TwA
+	 1B8zYrndXeLtTbmDu6SGozUG//S6i935Ll2IRyaSy3IMEyEPhduvzg8mqVyXVbha1w
+	 UuVI7/1NnTMNy5y9XYpnUadgy9FQ0nJ10CZFqSgVvQm5rVvL9wHeKq/jvC+p0NOMtE
+	 bkMJtsGIaZPL5qmaUORt5784y72qZ1bUMYi+0kepSVetfFmV3VKYkh81xsQdIRZX4e
+	 nHsOM0sw3tfYZ4vjXm1OQNnm+eeBq9DWgWaoXEUUNA5F4voJtJnK/dZTK7jJDeu+RI
+	 uOvlmw4cmIPag==
+Date: Sun, 11 Aug 2024 22:32:05 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3b2617f5-acb1-45c6-993c-33249fd19888@rock-chips.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Wesley Cheng <quic_wcheng@quicinc.com>, 
+ Saravana Kannan <saravanak@google.com>, Conor Dooley <conor+dt@kernel.org>, 
+ linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Bjorn Andersson <quic_bjorande@quicinc.com>
+In-Reply-To: <20240811-dwc3-refactor-v2-2-91f370d61ad2@quicinc.com>
+References: <20240811-dwc3-refactor-v2-0-91f370d61ad2@quicinc.com>
+ <20240811-dwc3-refactor-v2-2-91f370d61ad2@quicinc.com>
+Message-Id: <172343712517.3743264.8817773470742312591.robh@kernel.org>
+Subject: Re: [PATCH v2 2/7] dt-bindings: usb: Introduce qcom,snps-dwc3
 
-On Mon, Aug 12, 2024 at 09:28:26AM +0800, Shawn Lin wrote:
-> JHi Mani,
+
+On Sun, 11 Aug 2024 20:11:59 -0700, Bjorn Andersson wrote:
+> From: Bjorn Andersson <quic_bjorande@quicinc.com>
 > 
-> 在 2024/8/10 17:28, Manivannan Sadhasivam 写道:
-> > On Fri, Aug 09, 2024 at 04:16:41PM +0800, Shawn Lin wrote:
-> > 
-> > [...]
-> > 
-> > > > > +static int ufs_rockchip_hce_enable_notify(struct ufs_hba *hba,
-> > > > > +					 enum ufs_notify_change_status status)
-> > > > > +{
-> > > > > +	int err = 0;
-> > > > > +
-> > > > > +	if (status == PRE_CHANGE) {
-> > > > > +		int retry_outer = 3;
-> > > > > +		int retry_inner;
-> > > > > +start:
-> > > > > +		if (ufshcd_is_hba_active(hba))
-> > > > > +			/* change controller state to "reset state" */
-> > > > > +			ufshcd_hba_stop(hba);
-> > > > > +
-> > > > > +		/* UniPro link is disabled at this point */
-> > > > > +		ufshcd_set_link_off(hba);
-> > > > > +
-> > > > > +		/* start controller initialization sequence */
-> > > > > +		ufshcd_writel(hba, CONTROLLER_ENABLE, REG_CONTROLLER_ENABLE);
-> > > > > +
-> > > > > +		usleep_range(100, 200);
-> > > > > +
-> > > > > +		/* wait for the host controller to complete initialization */
-> > > > > +		retry_inner = 50;
-> > > > > +		while (!ufshcd_is_hba_active(hba)) {
-> > > > > +			if (retry_inner) {
-> > > > > +				retry_inner--;
-> > > > > +			} else {
-> > > > > +				dev_err(hba->dev,
-> > > > > +					"Controller enable failed\n");
-> > > > > +				if (retry_outer) {
-> > > > > +					retry_outer--;
-> > > > > +					goto start;
-> > > > > +				}
-> > > > > +				return -EIO;
-> > > > > +			}
-> > > > > +			usleep_range(1000, 1100);
-> > > > > +		}
-> > > > 
-> > > > You just duplicated ufshcd_hba_execute_hce() here. Why? This doesn't make sense.
-> > > 
-> > > Since we set UFSHCI_QUIRK_BROKEN_HCE, and we also need to do someting
-> > > which is very similar to ufshcd_hba_execute_hce(), before calling
-> > > ufshcd_dme_reset(). Similar but not totally the same. I'll try to see if
-> > > we can export ufshcd_hba_execute_hce() to make full use of it.
-> > > 
-> > 
-> > But you are starting the controller using REG_CONTROLLER_ENABLE. Isn't that
-> > supposed to be broken if you set UFSHCI_QUIRK_BROKEN_HCE? Or I am
-> > misunderstanding the quirk?
-> > 
+> The Qualcomm USB glue is not separate of the Synopsys DWC3 core and
+> several of the snps,dwc3 properties (such as clocks and reset) conflicts
+> in expectation with the Qualcomm integration.
 > 
-> Our controller doesn't work with exiting code, whether setting
-> UFSHCI_QUIRK_BROKEN_HCE or not.
+> Using the newly split out Synopsys DWC3 core properties, describe the
+> Qualcomm USB block in a single block. The new binding is a copy of
+> qcom,dwc3 with the needed modifications.
+> 
+> It would have been convenient to retain the two structures with the same
+> compatibles, but as there exist no way to select a binding based on the
+> absence of a subnode/patternProperty, a new generic compatible is
+> introduced to describe this binding.
+> 
+> To avoid redefining all the platform-specific compatibles, "select" is
+> used to tell the DeviceTree validator which binding to use solely on the
+> generic compatible. (Otherwise if the specific compatible matches during
+> validation, the generic one must match as well)
+> 
+> Mark qcom,dwc3 deprecated, to favor expressing future platforms using
+> the new combined binding.
+> 
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> ---
+>  .../devicetree/bindings/usb/qcom,dwc3.yaml         |  13 +-
+>  .../devicetree/bindings/usb/qcom,snps-dwc3.yaml    | 608 +++++++++++++++++++++
+>  2 files changed, 620 insertions(+), 1 deletion(-)
 > 
 
-Okay. Then this means you do not need this quirk at all.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-> 
-> For UFSHCI_QUIRK_BROKEN_HCE case, it calls ufshcd_dme_reset（）first,
-> but we need to set REG_CONTROLLER_ENABLE first.
-> 
-> For !UFSHCI_QUIRK_BROKEN_HCE case, namly ufshcd_hba_execute_hce, it
-> sets REG_CONTROLLER_ENABLE  first but never send DMA_RESET and calls
-> ufshcd_dme_enable.
-> 
+yamllint warnings/errors:
 
-I don't see where ufshcd_dme_enable() is getting called for
-!UFSHCI_QUIRK_BROKEN_HCE case.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.example.dtb: usb@a600000: False schema does not allow {'compatible': ['qcom,sdm845-dwc3', 'qcom,snps-dwc3'], 'reg': [[0, 174063616, 0, 1048576]], 'clocks': [[4294967295, 12], [4294967295, 141], [4294967295, 3], [4294967295, 145], [4294967295, 143]], 'clock-names': ['cfg_noc', 'core', 'iface', 'sleep', 'mock_utmi'], 'assigned-clocks': [[4294967295, 143], [4294967295, 141]], 'assigned-clock-rates': [19200000, 150000000], 'interrupts': [[0, 133, 4], [0, 130, 4], [0, 131, 4], [0, 489, 3], [0, 488, 3], [0, 486, 4]], 'interrupt-names': ['dwc_usb3', 'pwr_event', 'hs_phy_irq', 'dp_hs_phy_irq', 'dm_hs_phy_irq', 'ss_phy_irq'], 'power-domains': [[4294967295, 4]], 'resets': [[4294967295, 15]], 'iommus': [[4294967295, 1856, 0]], 'snps,dis_u2_susphy_quirk': True, 'snps,dis_enblslpm_quirk': True, 'phys': [[4294967295], [4294967295]], 'phy-names': ['usb2-phy', 'usb3-phy'], '$nodename': ['usb@a600000']}
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.example.dtb: usb@a600000: Unevaluated properties are not allowed ('phy-names', 'phys', 'snps,dis_enblslpm_quirk', 'snps,dis_u2_susphy_quirk' were unexpected)
+	from schema $id: http://devicetree.org/schemas/usb/qcom,snps-dwc3.yaml#
 
-> So the closet code path is to go through UFSHCI_QUIRK_BROKEN_HCE case,
-> and set REG_CONTROLLER_ENABLE by adding hce_enable_notify hook.
-> 
+doc reference errors (make refcheckdocs):
 
-No, that is abusing the quirk. But I'm confused about why your controller wants
-resetting the unipro stack _after_ enabling the controller? Why can't it be
-reset before?
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240811-dwc3-refactor-v2-2-91f370d61ad2@quicinc.com
 
-> > > > 
-> > > > > +	} else { /* POST_CHANGE */
-> > > > > +		err = ufshcd_vops_phy_initialization(hba);
-> > > > > +	}
-> > > > > +
-> > > > > +	return err;
-> > > > > +}
-> > > > > +
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-[...]
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-> > > > > +static const struct dev_pm_ops ufs_rockchip_pm_ops = {
-> > > > > +	SET_SYSTEM_SLEEP_PM_OPS(ufs_rockchip_suspend, ufs_rockchip_resume)
-> > > > > +	SET_RUNTIME_PM_OPS(ufs_rockchip_runtime_suspend, ufs_rockchip_runtime_resume, NULL)
-> > > > 
-> > > > Why can't you use ufshcd PM ops as like other vendor drivers?
-> > > 
-> > > It doesn't work from the test. We have many use case to power down the
-> > > controller and device, so there is no flow to recovery the link. Only
-> > > when the first accessing to UFS fails, the ufshcd error handle recovery the
-> > > link. This is not what we expect.
-> > > 
-> > 
-> > What tests? The existing UFS controller drivers are used in production devices
-> > and they never had a usecase to invent their own PM callbacks. So if your
-> > controller is special, then you need to justify it more elaborately. If
-> > something is missing in ufshcd callbacks, then we can add them.
-> > 
-> 
-> All the register got lost each time as we power down both controller & PHY
-> and devices in suspend.
+pip3 install dtschema --upgrade
 
-Which suspend? runtime or system suspend? I believe system suspend.
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
-> So we have to restore the necessary
-> registers and link. I didn't see where the code recovery the controller
-> settings in ufshcd_resume, except ufshcd_err_handler（）triggers that.
-> Am I missing any thing? 
-
-Can you explain what is causing the powerdown of the controller and PHY?
-Because, ufshcd_suspend() just turns off the clocks and regulators (if
-UFSHCD_CAP_AGGR_POWER_COLLAPSE is set) and spm_lvl 3 set by this driver only
-puts the device in sleep mode and link in hibern8 state.
-
-- Mani
-
-> Below is the dump we get if using
-> SET_SYSTEM_SLEEP_PM_OPS(ufshcd_system_suspend, ufshcd_system_resume).
-> It can work as ufshcd_err_handler () will fix the link, but we have to
-> suffer from getting the error log each time. Moreover, we need to gate
-> 26MHz refclk for device when RPM is called. So our own rpm callback is
-> needed.
-> 
-> [   14.318444] <<GTP-INF>>[gt1x_wakeup_sleep:964] Wakeup by poweron
-> [   14.439723] ufshcd-rockchip 2a2d0000.ufs: Controller not ready to accept
-> UIC commands
-> [   14.439730] ufshcd-rockchip 2a2d0000.ufs: pwr ctrl cmd 0x18 with mode 0x0
-> uic error -5
-> [   14.439736] ufshcd-rockchip 2a2d0000.ufs: UFS Host state=1
-> [   14.439740] ufshcd-rockchip 2a2d0000.ufs: outstanding reqs=0x0 tasks=0x0
-> [   14.439744] ufshcd-rockchip 2a2d0000.ufs: saved_err=0x0,
-> saved_uic_err=0x0
-> [   14.439748] ufshcd-rockchip 2a2d0000.ufs: Device power mode=2, UIC link
-> state=2
-> [   14.439753] ufshcd-rockchip 2a2d0000.ufs: PM in progress=1, sys.
-> suspended=1
-> [   14.439758] ufshcd-rockchip 2a2d0000.ufs: Auto BKOPS=0, Host self-block=0
-> [   14.439762] ufshcd-rockchip 2a2d0000.ufs: Clk gate=1
-> [   14.439766] ufshcd-rockchip 2a2d0000.ufs: last_hibern8_exit_tstamp at 0
-> us, hibern8_exit_cnt=0
-> [   14.439770] ufshcd-rockchip 2a2d0000.ufs: last intr at 10807625 us, last
-> intr status=0x440
-> [   14.439775] ufshcd-rockchip 2a2d0000.ufs: error handling flags=0x0, req.
-> abort count=0
-> [   14.439779] ufshcd-rockchip 2a2d0000.ufs: hba->ufs_version=0x200, Host
-> capabilities=0x187011f, caps=0x48c
-> [   14.439785] ufshcd-rockchip 2a2d0000.ufs: quirks=0x2100, dev. quirks=0xc4
-> [   14.439790] ufshcd-rockchip 2a2d0000.ufs: UFS dev info: SAMSUNG
-> KLUDG2R1DE-B0F1  rev 0100
-> [   14.439796] ufshcd-rockchip 2a2d0000.ufs: clk: core, rate: 50000000
-> [   14.439822] host_regs: 00000000: 0187011f 00000000 00000200 00000000
-> [   14.439827] host_regs: 00000010: 00000000 000005e6 00000000 00000000
-> [   14.439831] host_regs: 00000020: 00000000 00000000 00000000 00000000
-> [   14.439835] host_regs: 00000030: 00000000 00000000 00000000 00000000
-> [   14.439839] host_regs: 00000040: 00000000 00000000 00000000 00000000
-> [   14.439843] host_regs: 00000050: 00000000 00000000 00000000 00000000
-> [   14.439847] host_regs: 00000060: 00000000 00000000 00000000 00000000
-> [   14.439851] host_regs: 00000070: 00000000 00000000 00000000 00000000
-> [   14.439855] host_regs: 00000080: 00000000 00000000 00000000 00000000
-> [   14.439859] host_regs: 00000090: 00000000 00000000 00000000 00000000
-> [   14.439863] ufshcd-rockchip 2a2d0000.ufs: No record of pa_err
-> [   14.439867] ufshcd-rockchip 2a2d0000.ufs: No record of dl_err
-> [   14.439871] ufshcd-rockchip 2a2d0000.ufs: No record of nl_err
-> [   14.439876] ufshcd-rockchip 2a2d0000.ufs: No record of tl_err
-> [   14.439880] ufshcd-rockchip 2a2d0000.ufs: No record of dme_err
-> [   14.439884] ufshcd-rockchip 2a2d0000.ufs: No record of auto_hibern8_err
-> [   14.439888] ufshcd-rockchip 2a2d0000.ufs: No record of fatal_err
-> [   14.439892] ufshcd-rockchip 2a2d0000.ufs: No record of link_startup_fail
-> [   14.439896] ufshcd-rockchip 2a2d0000.ufs: No record of resume_fail
-> [   14.439900] ufshcd-rockchip 2a2d0000.ufs: No record of suspend_fail
-> [   14.439905] ufshcd-rockchip 2a2d0000.ufs: dev_reset[0] = 0x0 at 1418763
-> us
-> [   14.439910] ufshcd-rockchip 2a2d0000.ufs: dev_reset: total cnt=1
-> [   14.439914] ufshcd-rockchip 2a2d0000.ufs: No record of host_reset
-> [   14.439918] ufshcd-rockchip 2a2d0000.ufs: No record of task_abort
-> [   14.439930] ufshcd-rockchip 2a2d0000.ufs: ufshcd_uic_hibern8_exit:
-> hibern8 exit failed. ret = -5
-> [   14.439935] ufshcd-rockchip 2a2d0000.ufs: __ufshcd_wl_resume: hibern8
-> exit failed -5
-> [   14.439944] ufs_device_wlun 0:0:0:49488: ufshcd_wl_resume failed: -5
-> [   14.439950] ufs_device_wlun 0:0:0:49488: PM: dpm_run_callback():
-> scsi_bus_resume+0x0/0xa8 returns -5
-> [   14.440003] ufshcd-rockchip 2a2d0000.ufs: ufshcd_err_handler started; HBA
-> state eh_fatal; powered 1; shutting down 0; saved_err = 0; saved_uic_err =
-> 0; force_reset = 0; link is broken
-> [   14.440017] ufs_device_wlun 0:0:0:49488: PM: failed to resume async:
-> error -5
-> 
-> > - Mani
-> > 
-
--- 
-மணிவண்ணன் சதாசிவம்
 
