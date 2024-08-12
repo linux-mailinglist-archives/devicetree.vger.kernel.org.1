@@ -1,117 +1,145 @@
-Return-Path: <devicetree+bounces-92822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5939494E80F
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 09:46:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6CA094E841
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 10:09:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 025CE1F22ADF
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 07:46:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4695FB20D93
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 08:09:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFD691586CD;
-	Mon, 12 Aug 2024 07:46:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Z4mW4LdR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95153165F03;
+	Mon, 12 Aug 2024 08:09:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99F1E158D98;
-	Mon, 12 Aug 2024 07:46:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39EAB55896;
+	Mon, 12 Aug 2024 08:09:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723448794; cv=none; b=gl9PgfaKE23CqVyvCfcDSoJ6KozKXHHymXlydOxFFjzmhfZYF+UTNIAKiJCACSlwxO4Plbe4aCdq35Nx/UN6rT74FUfa8CyiLFuPpc5mvYWoNN3zOX2URsxZIFY2S7F14S11t0jjcsLyIqDVElGecyMLQZi9rvgXZklKcTk/wUI=
+	t=1723450190; cv=none; b=cqu4nGdaSXpjNi/ap3L/JMT4jyAGb2os5QrLpcUTk33mMNHnPX6OwUn+q+DRmLDkou166GNKQNiWDrs48SilK8EvPPKYsqL6rTQzZWkYff1Es52COZ1daV4BQkrsqcQ+x7TH3lXqjP3kOxoHmFW+UfpUYHguc+4mSXic0sPRL+8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723448794; c=relaxed/simple;
-	bh=JwipMYReCtFtkI5rIct0HTrq5vaYhQxFIjXpOW2cNW4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cDs/i/GnXEutH186tZWyv68ckM4LZbZ8nSguYKaRfPr4YfD1VQ8GaXHMRILJDY+rdKXzVvfZgTuL3bhLUYCA2XyyzW6F5EkWHvLeyo8Y1TTVYhAnhBkna+D2NvWdCVkjjQWV47wx5VQte9wY9DBa5yX35eUTULE9Lj+glbZEaAQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Z4mW4LdR; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id C0BAA60002;
-	Mon, 12 Aug 2024 07:46:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1723448783;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=EYJhz07idCmll0VNWnjmDisDihkjE0werNys1pVEO3Q=;
-	b=Z4mW4LdRNvEZqdaZMcyTuoJ7VIbeeqc2hHDGsKNErW76JnRwY5FwmpMf+Yh+wWhT62BoZo
-	VRn71biGCirvzb/WFkktT/vY8XMYPaLERYFBoD43yk+O1ad2nJIbTMiWdyc13CguY/RU/+
-	kkG2AE9qoqiioGlJO144gJkUBblehNG8ZDzghMNO1MVwHVN75m6NeQ+5K7XsNvMe19gsf+
-	NcMb9hghIJ9plw1Bxl2T6zC7EzpqPvpXcqi1WUeDqgOtFZpXtQ7YjQQzHT8j78pGCw0sVE
-	ZKIq3ZDtUnUqynJRm8ObF/CH1NWfKNyxdM13zCav9u4dKssOoKvxS34BXohEsQ==
-Date: Mon, 12 Aug 2024 09:46:21 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Keguang Zhang <keguang.zhang@gmail.com>
-Cc: Keguang Zhang via B4 Relay <devnull+keguang.zhang.gmail.com@kernel.org>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-mips@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 3/3] mtd: rawnand: Add Loongson-1 NAND Controller
- driver
-Message-ID: <20240812094621.1f4954d4@xps-13>
-In-Reply-To: <CAJhJPsUfRpkK6sNuHR0tNfr24bnv8HhJc6FQ0W+_=WeRouhzJQ@mail.gmail.com>
-References: <20240430-loongson1-nand-v7-0-60787c314fa4@gmail.com>
-	<20240430-loongson1-nand-v7-3-60787c314fa4@gmail.com>
-	<20240506095938.4a910adc@xps-13>
-	<CAJhJPsUfRpkK6sNuHR0tNfr24bnv8HhJc6FQ0W+_=WeRouhzJQ@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1723450190; c=relaxed/simple;
+	bh=MymABODoNzdcJuxFX81hO8y/q4Tq1tl0mnP5gVYW59w=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=K9C4RcmWHf85u/F3/4dqAH8kHJFpHaTkk+bVj1m4hGfyst6heE7B4GVbjl2FfPa38V0V9ei9+5xOrdpfbcHZ2MN+hU4m5vkItodtfqOBVZPRC/Oa5/ovcgR6FhgtksajFHoD/hrJms8PTtPvVJdcXg97opMIyG8VpFSGpigXXNU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [10.20.4.132])
+	by gateway (Coremail) with SMTP id _____8DxvptJw7lmMoYQAA--.16163S3;
+	Mon, 12 Aug 2024 16:09:45 +0800 (CST)
+Received: from [10.20.4.132] (unknown [10.20.4.132])
+	by front1 (Coremail) with SMTP id qMiowMCxM+BIw7lmbv8PAA--.24071S2;
+	Mon, 12 Aug 2024 16:09:44 +0800 (CST)
+Message-ID: <32ff2c9b-1d34-4637-80ff-e8eefe253a95@loongson.cn>
+Date: Mon, 12 Aug 2024 16:09:44 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+User-Agent: Mozilla Thunderbird
+From: =?UTF-8?B?6YOR6LGq5aiB?= <zhenghaowei@loongson.cn>
+Subject: Re: [PATCH v2 1/3] dt-bindings: serial: Add Loongson UART controller
+To: Krzysztof Kozlowski <krzk@kernel.org>, gregkh@linuxfoundation.org,
+ jirislaby@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, chenhuacai@kernel.org, kernel@xen0n.name,
+ p.zabel@pengutronix.de
+Cc: linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, loongarch@lists.linux.dev
+References: <20240804063834.70022-1-zhenghaowei@loongson.cn>
+ <4d1f2426-b43c-4727-8387-f18edf937163@kernel.org>
+ <f31609c4-1e47-49bc-9231-5b0353d35dc9@loongson.cn>
+ <601adbfd-fbb6-48c6-b755-da1b5d321d6b@kernel.org>
+ <89e71573-9365-2e61-bb38-759363df1b8b@loongson.cn>
+ <5fdf6810-f729-42bf-a5fd-a2de02d0a894@kernel.org>
+Content-Language: en-US
+In-Reply-To: <5fdf6810-f729-42bf-a5fd-a2de02d0a894@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:qMiowMCxM+BIw7lmbv8PAA--.24071S2
+X-CM-SenderInfo: x2kh0w5kdr4v3l6o00pqjv00gofq/1tbiAgEHBGa4qZkJTwABsp
+X-Coremail-Antispam: 1Uk129KBj93XoW7ZFyfGr15KrWrAryrtFyUXFc_yoW8ZFW3p3
+	y5Ga47Aryvqr4Fvw40q348JrsIyr98Jr4DZw45JryUGa90gw12yrWayF45C3s7WryUZryj
+	qr4Utayxua15uFXCm3ZEXasCq-sJn29KB7ZKAUJUUUUr529EdanIXcx71UUUUU7KY7ZEXa
+	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+	0xBIdaVrnRJUUUvEb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
+	xVW8Jr0_Cr1UM2kKe7AKxVWUXVWUAwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07
+	AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWU
+	XVWUAwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI4
+	8JMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI1I0E14v26r1Y
+	6r17MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7
+	AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE
+	2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcV
+	C2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVWUJVW8JbIYCTnIWIevJa73
+	UjIFyTuYvjxU2MKZDUUUU
 
-Hi Keguang,
 
-> > > +
-> > > +                     nfc->data->parse_address(chip, addrs, naddrs, c=
-md);
-> > > +                     /* set NAND address */
-> > > +                     nand_writel(nfc, NAND_ADDR1, nfc->addr1_reg);
-> > > +                     nand_writel(nfc, NAND_ADDR2, nfc->addr2_reg);
-> > > +                     break;
-> > > +             case NAND_OP_DATA_IN_INSTR:
-> > > +             case NAND_OP_DATA_OUT_INSTR:
-> > > +                     offset =3D nand_subop_get_data_start_off(subop,=
- op_id);
-> > > +                     nfc->len =3D nand_subop_get_data_len(subop, op_=
-id);
-> > > +                     if (instr->type =3D=3D NAND_OP_DATA_IN_INSTR)
-> > > +                             nfc->buf =3D
-> > > +                                 (void *)instr->ctx.data.buf.in + of=
-fset;
-> > > +                     else if (instr->type =3D=3D NAND_OP_DATA_OUT_IN=
-STR)
-> > > +                             nfc->buf =3D
-> > > +                                 (void *)instr->ctx.data.buf.out + o=
-ffset; =20
-> >
-> > The buf pointer feels clunky. You don't know for how long the buffer
-> > you point to will be valid, please don't do that.
-> > =20
-> The buf pointer is used for DMA transfer afterwards.
-> I referred to other drivers, and they used the same approach.
-> https://elixir.bootlin.com/linux/v6.8.9/source/drivers/mtd/nand/raw/arasa=
-n-nand-controller.c#L647
+在 2024/8/9 18:05, Krzysztof Kozlowski 写道:
+> On 09/08/2024 11:55, 郑豪威 wrote:
+>>>>>> +    description: Enables fractional-N division. Currently,
+>>>>>> +      only LS2K1500 and LS2K2000 support this feature.
+>>>>>> +
+>>>>>> +  rts-invert:
+>>>>>> +    description: Inverts the RTS value in the MCR register.
+>>>>>> +      This should be used on Loongson-3 series CPUs, Loongson-2K
+>>>>>> +      series CPUs, and Loongson LS7A bridge chips.
+>>>>>> +
+>>>>>> +  dtr-invert:
+>>>>>> +    description: Inverts the DTR value in the MCR register.
+>>>>>> +      This should be used on Loongson-3 series CPUs, Loongson-2K
+>>>>>> +      series CPUs, and Loongson LS7A bridge chips.
+>>>>>> +
+>>>>>> +  cts-invert:
+>>>>>> +    description: Inverts the CTS value in the MSR register.
+>>>>>> +      This should be used on Loongson-2K0500, Loongson-2K1000,
+>>>>>> +      and Loongson LS7A bridge chips.
+>>>>>> +
+>>>>>> +  dsr-invert:
+>>>>>> +    description: Inverts the DSR value in the MSR register.
+>>>>>> +      This should be used on Loongson-2K0500, Loongson-2K1000,
+>>>>>> +      and Loongson LS7A bridge chips.
+>>> Same questions for all these. Why choosing invert is a board level
+>>> decision? If it "should be used" then why it is not used always?
+>>>
+>> Because these features are not applicable to all chips, such as
+>> 'fractional-division',
+> Hm?
+>
+>> which is currently supported only by 2K1500 and 2K2000, and for
+>> Loongson-3 series
+> These are SoCs. Compatible defines that. Please align with your
+> colleagues, because *we talked about this* already.
+>
+> Best regards,
+> Krzysztof
 
-nfc_op is a local variable, it doesn't live past the function call.
+I consulted with my colleagues and would like to confirm with you. For 
+the five
 
-> https://elixir.bootlin.com/linux/v6.8.9/source/drivers/mtd/nand/raw/rockc=
-hip-nand-controller.c#L366
+properties provided, fractional-division is offered as a new feature,  
+supported by
 
-Thanks,
-Miqu=C3=A8l
+2K1500 and 2K2000. As for the invert property, it is due to a bug in our 
+controller,
+
+and its usage may vary across different chips. Should we add different 
+compatible
+
+values to address these issues for different chips, whether they are new 
+features or
+
+controller bugs?
+
+
+Best regards,
+
+Haowei Zheng
+
 
