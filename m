@@ -1,153 +1,189 @@
-Return-Path: <devicetree+bounces-92765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BF6994E4B2
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 04:17:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F70494E514
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 04:41:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 299C0280AAD
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 02:17:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 557322810AA
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 02:41:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A2316A33F;
-	Mon, 12 Aug 2024 02:17:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DC51130A73;
+	Mon, 12 Aug 2024 02:41:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="b51yF12b"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="c/KcvIuC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8DB54D8D1;
-	Mon, 12 Aug 2024 02:17:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723429038; cv=none; b=anv8vxZukfpOi7AbkDDkE0EWVXhaXxk95FKPBzJ+d3vyI47Q2cyXS8ZKnKxZla3x+cRg52SoJzZL+17WoH73BEEBwCR0zJx9IPKN8AbXT7xs83uMdyOiagM1w3BGtjA/qAA12xbKxLdORc88TTaSu2JTvd1jbloFWBOqOE9FjQc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723429038; c=relaxed/simple;
-	bh=eNJmkuy473QfputWPuGfbgt/GM+vVkAEV3gKpMsVY8M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=t3MPSzWWL4PKwt7fvPNdNSTSBJt0fYxeZNrfnqoNTEIMudk6R4TkWglYCUWp6+dq+q0I41IJTMDADR/sDjQBQptLwEh50/+pje/x6Lop61mxwbGrLVetskDde5Y0k5mTJMLToN6tlCEZbsE2UgCF2E1fDYP1NLG/oLHYyjHoNJk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=b51yF12b; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47C0roA5020712;
-	Mon, 12 Aug 2024 02:17:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	EktNzuBr5I0VBlujbZBE6+gNvIG9gnMzHXxJVmvAvfU=; b=b51yF12b8cCQpL6n
-	BkkAV0gEa8Yw8DeQBxvJMeaMahZg9veVugsSJPJfeIRcoUXAXwWVjZ+Ojr1yhDpT
-	ij4AMS6Wy8Y6hUoPfZpND1d2YBVs0qR8+4y2aTHTGJibhewLiZHFq3qwvcWkI8xq
-	HUEu5J3k09LyOf2adHrny3e/+6zWDHFZz/b1ud5SnIUxi9PgflV0Iw6qLhlnJ/Aq
-	5rFkH4kM3r8WpP231Aes4KKauaVr4fCanCvWapVFd5CI2at5ArekzKQ6J7Jvp3St
-	IUduBC2o/x+qlqPbvXOci6yqYjpM+iWOPDLRHl8N+QfwxXjsaQ1i7TDkcBwCVjZ3
-	LUKtSw==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40x18dakvx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 12 Aug 2024 02:17:00 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47C2GxgI021978
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 12 Aug 2024 02:16:59 GMT
-Received: from [10.233.17.145] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 11 Aug
- 2024 19:16:54 -0700
-Message-ID: <0d1c44b9-3d5f-4d93-af64-1756e52f4fe3@quicinc.com>
-Date: Mon, 12 Aug 2024 10:16:51 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 181B9130AC8;
+	Mon, 12 Aug 2024 02:41:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723430475; cv=pass; b=ERK5MdZAxqZ3JT3MlTl/F6THz9irh2SR+OUkOtShvhNiwAfyOOjOzzIjL41Gsc61Bk//co9a3KfURYYrLbBLw4I5HpDHZ4hmOdJbwYkPMb4pK5C33sjFfD61H6BFrAGWwE6tjTLH/ETDiIghkG1+IRCNSNdQYwwic+8YPG4jVEs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723430475; c=relaxed/simple;
+	bh=65+gWY9EaBD21v5ldSx+W3zF2jB76wR9xWNxIiSuVw8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=aqkGXqtt7IEdhTU19eUsjD84C3ji8c+LGNHVffE10sXo/wJyIMD3PHGlcSXx6qwc5LuwzJuQyPOi+GXB6wym2TMSeESOsQZpl/4XqDp4jbDxEKPZoHTGpSTzYLE+aEf1PrM4hMgzLLvLILJfiILA9DWeCQymGF4swzCFta70VwA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=c/KcvIuC; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1723430443; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=J3/5FwIt0MpGBF2Jxn2ffOLjlnvHB9SUSo7ydgazZzlM06/TknaU/+UANeQSQc/aJJDFrQWtAQK/stIxbfPe9c4gH7YoLcBMe6VdEp9978FjrGc/aWQxWp30gNx8ZxKaLhGyEeln+nzjqHdl62026iJWjkA+KjfyDaoVISVhgH4=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1723430443; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=65+gWY9EaBD21v5ldSx+W3zF2jB76wR9xWNxIiSuVw8=; 
+	b=jaUUQhnjSquaygpMWmmAewpIXn3poZojehL4z4e62fxWX8AXtaJkBg/gj+xA2M3RcjqzCfW1dXAe4tMNXlBPoj1BBSF7w7WMACSzlBiorJ35YcbafWq2g1/2/Va96bw6msAi0OFmeI4PYv3C2+akg+Ef2554ONJH49mf4QaS51I=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1723430443;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=65+gWY9EaBD21v5ldSx+W3zF2jB76wR9xWNxIiSuVw8=;
+	b=c/KcvIuCZ7DsC+p+a+/ujkETPRTlWO7p9FPlUxgFEVxgzdp//7eRpi7wjAMSt8G4
+	YXOq7vWpXi/syERxn5Yqm8aDetTkHbqgzzOy114O4tmurFqeq94/k5vTncWE+sswB1H
+	tr5hzHv+SlJSXGhhwCUyoCWobVtvBeQMVgE8hI0bEHCjV71y44kT/uoMbTnE0U86mps
+	Wis52kDJdxSu08h7GiOP8YK21HSDqsz3bB0i4XtDOMR6+QqoltW5B7trKj2w76D+EVY
+	4JFeuwTMGTD6mUUfoLA5E2oe/4flOdy32C6PQPVtFd4m0DAL5wSUMkoquP4lDEhtNJU
+	3Cl8235zhg==
+Received: by mx.zohomail.com with SMTPS id 1723430442527283.9672861832379;
+	Sun, 11 Aug 2024 19:40:42 -0700 (PDT)
+Message-ID: <24406e36f6facd93e798113303e22925b0a2dcc1.camel@icenowy.me>
+Subject: Re: [PATCH] arm64: dts: allwinner: Add GPU thermal trips to the SoC
+ dtsi for A64
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Dragan Simic <dsimic@manjaro.org>, linux-sunxi@lists.linux.dev
+Cc: wens@csie.org, jernej.skrabec@gmail.com, samuel@sholland.org, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linux-kernel@vger.kernel.org, wenst@chromium.org, broonie@kernel.org
+Date: Mon, 12 Aug 2024 10:40:36 +0800
+In-Reply-To: <a17e0df64c5b976b47f19c5a29c02759cd9e5b8c.1723427375.git.dsimic@manjaro.org>
+References: 
+	<a17e0df64c5b976b47f19c5a29c02759cd9e5b8c.1723427375.git.dsimic@manjaro.org>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: sa8775p-ride: Add QCS9100
- compatible
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Tengfei Fan
-	<quic_tengfan@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad
- Dybcio" <konrad.dybcio@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20240806-add_qcs9100_soc_id-v1-0-04d14081f304@quicinc.com>
- <20240806-add_qcs9100_soc_id-v1-4-04d14081f304@quicinc.com>
- <90eae361-7d5d-440f-a85d-dfd81b384fe7@kernel.org>
- <4a350e94-3c95-48e1-9ea8-ced483c1aa45@quicinc.com>
- <14ec06bd-0c27-4930-8bce-d3f5b68067ed@kernel.org>
- <ace5b3e1-f4a2-4c04-821a-e797d0f55cae@quicinc.com>
- <9323127a-e6b5-4835-afa0-4ce0086fd9d1@kernel.org>
-From: Tingwei Zhang <quic_tingweiz@quicinc.com>
-In-Reply-To: <9323127a-e6b5-4835-afa0-4ce0086fd9d1@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: toWu91HfSVwBmbyZxksFp58moRO83V8p
-X-Proofpoint-ORIG-GUID: toWu91HfSVwBmbyZxksFp58moRO83V8p
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-11_25,2024-08-07_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- bulkscore=0 phishscore=0 clxscore=1015 adultscore=0 spamscore=0
- priorityscore=1501 mlxscore=0 malwarescore=0 suspectscore=0
- mlxlogscore=639 impostorscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2407110000 definitions=main-2408120015
+X-ZohoMailClient: External
 
-On 8/8/2024 7:05 PM, Krzysztof Kozlowski wrote:
-> On 07/08/2024 13:04, Tingwei Zhang wrote:
->> On 8/7/2024 5:35 PM, Krzysztof Kozlowski wrote:
->>> On 07/08/2024 11:17, Tengfei Fan wrote:
->>>>
->>>>
->>>> On 8/7/2024 3:28 PM, Krzysztof Kozlowski wrote:
->>>>> On 06/08/2024 06:19, Tengfei Fan wrote:
->>>>>> Add QCS9100 compatible in sa8775p ride and sa8775p ride r3 board DTS.
->>>>>> QCS9100 references SA8775p, they share the same SoC DTSI and board DTS.
->>>>>>
->>>>>
->>>>> I don't understand this. You claim here that QCS9100 references SA8775p
->>>>> but your diff says other way: SA8775p references QCS9100.
->>>>>
->>>>> Sorry, that's confusing.
->>>>>
->>>>> Best regards,
->>>>> Krzysztof
->>>>>
->>>>
->>>> I will update the compatible as follows to indicate that QCS9100
->>>> references SA8775p.
->>>>
->>>> compatible = "qcom,sa8775p-ride", "qcom,qcs9100", "qcom,sa8775p";
->>>
->>> Is this still correct, though? sa8775p won't come with qcs9100 SoC.
->> We have a new board. Hardware is same as sa877p-ride except sa8775p is
->> replaced with qcs9100. We add qcs9100 SoC compatible to sa8775p-ride
-> 
-> Does "new board" mean that "old board" disappears? No users to care
-> about it? Or just the existing board is being changed (like new revision)?
-
-We will support both boards. Sa8775p-ride board with sa8775p chipset and 
-sa8775p-ride board with qcs9100 chipset. Both of them can be used for 
-development.
-> 
-> Best regards,
-> Krzysztof
-> 
-
--- 
-Thanks,
-Tingwei
+5ZyoIDIwMjQtMDgtMTLmmJ/mnJ/kuIDnmoQgMDQ6MDAgKzAyMDDvvIxEcmFnYW4gU2ltaWPlhpnp
+gZPvvJoKPiBBZGQgdGhlcm1hbCB0cmlwcyBmb3IgdGhlIHR3byBHUFUgdGhlcm1hbCBzZW5zb3Jz
+IGZvdW5kIGluIHRoZQo+IEFsbHdpbm5lciBBNjQuCj4gVGhlcmUncyBvbmx5IG9uZSBHUFUgT1BQ
+IGRlZmluZWQgc2luY2UgdGhlIGNvbW1pdCAxNDI4ZjBjMTlmOWMKPiAoImFybTY0OiBkdHM6Cj4g
+YWxsd2lubmVyOiBhNjQ6IFJ1biBHUFUgYXQgNDMyIE1IeiIpLCBzbyBkZWZpbmluZyBvbmx5IHRo
+ZSBjcml0aWNhbAo+IHRoZXJtYWwKPiB0cmlwcyBtYWtlcyBzZW5zZSBmb3IgdGhlIEE2NCdzIHR3
+byBHUFUgdGhlcm1hbCB6b25lcy4KPiAKPiBIYXZpbmcgdGhlc2UgY3JpdGljYWwgdGhlcm1hbCB0
+cmlwcyBkZWZpbmVkIGVuc3VyZXMgdGhhdCBubyBob3Qgc3BvdHMKPiBkZXZlbG9wCj4gaW5zaWRl
+IHRoZSBTb0MgZGllIHRoYXQgZXhjZWVkIHRoZSBtYXhpbXVtIGp1bmN0aW9uIHRlbXBlcmF0dXJl
+LsKgCj4gVGhhdCBtaWdodAo+IGhhdmUgYmVlbiBwb3NzaWJsZSBiZWZvcmUsIGFsdGhvdWdoIHF1
+aXRlIHVubGlrZWx5LCBiZWNhdXNlIHRoZSBDUFUKPiBhbmQgR1BVCj4gcG9ydGlvbnMgb2YgdGhl
+IFNvQyBhcmUgcGFja2VkIGNsb3NlbHkgaW5zaWRlIHRoZSBTb0MsIHNvIHRoZQo+IG92ZXJoZWF0
+aW5nIEdQVQo+IHdvdWxkIGluZXZpdGFibHkgcmVzdWx0IGluIHRoZSBoZWF0IHNvYWtpbmcgaW50
+byB0aGUgQ1BVIHBvcnRpb24gb2YKPiB0aGUgU29DLAo+IGNhdXNpbmcgdGhlIENQVSB0aGVybWFs
+IHNlbnNvciB0byByZXR1cm4gaGlnaCByZWFkaW5ncyBhbmQgdHJpZ2dlcgo+IHRoZSBDUFUKPiBj
+cml0aWNhbCB0aGVybWFsIHRyaXBzLsKgIEhvd2V2ZXIsIGl0J3MgYmV0dGVyIG5vdCB0byByZWx5
+IG9uIHRoZSBoZWF0Cj4gc29hawo+IGFuZCBoYXZlIHRoZSBjcml0aWNhbCBHUFUgdGhlcm1hbCB0
+cmlwcyBwcm9wZXJseSBkZWZpbmVkIGluc3RlYWQuCj4gCj4gV2hpbGUgdGhlcmUsIHJlbW92ZSBh
+IGZldyBzcG90dGVkIGNvbW1lbnRzIHRoYXQgYXJlIHJhdGhlciByZWR1bmRhbnQsCj4gYmVjYXVz
+ZQo+IGl0J3MgcHJldHR5IG11Y2ggb2J2aW91cyB3aGF0IHVuaXRzIGFyZSB1c2VkIGluIHRob3Nl
+IHBsYWNlcy4KClRoaXMgc2hvdWxkIGJlIGFub3RoZXIgaW5kaXZpZHVhbCBwYXRjaCwgSSB0aGlu
+ay4KCj4gCj4gU2lnbmVkLW9mZi1ieTogRHJhZ2FuIFNpbWljIDxkc2ltaWNAbWFuamFyby5vcmc+
+Cj4gLS0tCj4gwqBhcmNoL2FybTY0L2Jvb3QvZHRzL2FsbHdpbm5lci9zdW41MGktYTY0LmR0c2kg
+fCAyMiArKysrKysrKysrKysrKy0tLQo+IC0tCj4gwqAxIGZpbGUgY2hhbmdlZCwgMTYgaW5zZXJ0
+aW9ucygrKSwgNiBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290
+L2R0cy9hbGx3aW5uZXIvc3VuNTBpLWE2NC5kdHNpCj4gYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2Fs
+bHdpbm5lci9zdW41MGktYTY0LmR0c2kKPiBpbmRleCBlODY4Y2E1YWU3NTMuLmJjNWQzYTJlNmM5
+OCAxMDA2NDQKPiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2FsbHdpbm5lci9zdW41MGktYTY0
+LmR0c2kKPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2FsbHdpbm5lci9zdW41MGktYTY0LmR0
+c2kKPiBAQCAtMjEyLDcgKzIxMiw2IEBAIHRpbWVyIHsKPiDCoAo+IMKgwqDCoMKgwqDCoMKgwqB0
+aGVybWFsLXpvbmVzIHsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNwdV90aGVy
+bWFsOiBjcHUwLXRoZXJtYWwgewo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgLyogbWlsbGlzZWNvbmRzICovCgpUaGUgdW5pdCBvZiBhIDAgaXNuJ3Qgbm90
+IHNvIG9idmlvdXMgSSB0aGluaywgc28gSSBzdWdnZXN0IHRvIGtlZXAKdGhpcy4KCj4gwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcG9sbGluZy1kZWxheS1w
+YXNzaXZlID0gPDA+Owo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoHBvbGxpbmctZGVsYXkgPSA8MD47Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgdGhlcm1hbC1zZW5zb3JzID0gPCZ0aHMgMD47Cj4gQEAgLTIz
+Niw0MCArMjM1LDUxIEBAIG1hcDEgewo+IMKgCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgdHJpcHMgewo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjcHVfYWxlcnQwOiBjcHUtYWxl
+cnQwIHsKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgLyogbWlsbGlDZWxzaXVzICovCj4gwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqB0ZW1wZXJhdHVyZSA9IDw3NTAwMD47Cj4gwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqBoeXN0ZXJlc2lzID0gPDIwMDA+Owo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgdHlw
+ZSA9ICJwYXNzaXZlIjsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfTsKPiDCoAo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjcHVfYWxlcnQxOiBjcHUt
+YWxlcnQxIHsKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgLyogbWlsbGlDZWxzaXVzICovCj4gwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqB0ZW1wZXJhdHVyZSA9IDw5MDAwMD47Cj4gwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqBoeXN0ZXJlc2lzID0gPDIwMDA+Owo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+dHlwZSA9ICJob3QiOwo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB9Owo+IMKgCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNwdV9jcml0OiBjcHUtY3Jp
+dCB7Cj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoC8qIG1pbGxpQ2Vsc2l1cyAqLwo+IMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgdGVtcGVyYXR1cmUgPSA8MTEwMDAwPjsKPiDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoGh5c3RlcmVzaXMgPSA8MjAwMD47Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB0eXBl
+ID0gImNyaXRpY2FsIjsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfTsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqB9Owo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+fTsKPiDCoAo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZ3B1MF90aGVybWFsOiBn
+cHUwLXRoZXJtYWwgewo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgLyogbWlsbGlzZWNvbmRzICovCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgcG9sbGluZy1kZWxheS1wYXNzaXZlID0gPDA+Owo+IMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHBvbGxpbmctZGVsYXkgPSA8
+MD47Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgdGhl
+cm1hbC1zZW5zb3JzID0gPCZ0aHMgMT47Cj4gKwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgdHJpcHMgewo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGdwdTBfY3JpdDogZ3B1MC1jcml0
+IHsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgdGVtcGVyYXR1cmUgPSA8MTEwMDAwPjsKPiArwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgaHlzdGVyZXNpcyA9IDwyMDAwPjsKPiArwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgdHlwZSA9ICJjcml0aWNhbCI7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfTsKPiArwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoH07Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqB9Owo+IMKgCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBncHUxX3Ro
+ZXJtYWw6IGdwdTEtdGhlcm1hbCB7Cj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAvKiBtaWxsaXNlY29uZHMgKi8KPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBwb2xsaW5nLWRlbGF5LXBhc3NpdmUgPSA8MD47Cj4g
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcG9sbGluZy1k
+ZWxheSA9IDwwPjsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqB0aGVybWFsLXNlbnNvcnMgPSA8JnRocyAyPjsKPiArCj4gK8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB0cmlwcyB7Cj4gK8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZ3B1MV9jcml0OiBn
+cHUxLWNyaXQgewo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB0ZW1wZXJhdHVyZSA9IDwxMTAwMDA+
+Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBoeXN0ZXJlc2lzID0gPDIwMDA+Owo+ICvCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqB0eXBlID0gImNyaXRpY2FsIjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB9Owo+ICvCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfTsKPiDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoH07Cj4gwqDCoMKgwqDCoMKgwqDCoH07Cj4gwqAKCg==
 
 
