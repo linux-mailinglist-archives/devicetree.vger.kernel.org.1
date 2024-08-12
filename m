@@ -1,58 +1,85 @@
-Return-Path: <devicetree+bounces-92935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8150894EE2E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 15:32:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1595794EE4C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 15:34:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B378E1C219D9
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 13:32:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 43AD5B2202A
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 13:34:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADCF317C7BB;
-	Mon, 12 Aug 2024 13:31:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D816017D35B;
+	Mon, 12 Aug 2024 13:33:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="i2rBjxwk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6891517ADEB;
-	Mon, 12 Aug 2024 13:31:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.95.11.211
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEF8217C9F1;
+	Mon, 12 Aug 2024 13:33:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723469495; cv=none; b=fouzwc/3zIq4XAxGF9SUWZoXZJ13/pkzFoBXUjmpDOAseAfuRi02QiVR2P9rTggbp2e1YV94akXGw5P5qvhMKbUD1bVMOKTXThkydylRcX4pryK9A2Td7+1HWUibVwsSm1Z03arV9qlESSkzZG+SQK2VGWxJya8Ka9d8IUbt3u8=
+	t=1723469632; cv=none; b=WLwgGupQty6tkFsDoOTtUHHuuepVkfJ+2v4d38XBVvYVGHhOioMhRRRq4mSCQ05i4WY4FvrAtkuKyazewUKy/i2Azi68l1zAYDA9+B0FCrRDhd+DdOFdgE/7orA116piJ8N22yxC0WjbDaaGP3SBxeXtfowz8OeUuzK0a7Dk1nI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723469495; c=relaxed/simple;
-	bh=NOfZgeKAoiDqZ+R6zC5/7VaLnLVQMMzuVKrH+srwhu0=;
+	s=arc-20240116; t=1723469632; c=relaxed/simple;
+	bh=svcb61qn8AxKiXVDKBeXBAH0VVejCzMPT1CCJAMUGFI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HVhnZck++p3rpX1FyLqfScF+AW9Umn/ajeubWWVDzcB+SRem0eCUAA65uo4Io1jmeLsIU2oGQpTgiTZ3RnzbWbqXbr6VEDkn4C834yeEwVMPICmxTo0DP7Kr7D0plEvR/SPGHscoLHLznhrPd2k8cXTF+c4L0eOIdfWdQVkKtxM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lst.de; spf=pass smtp.mailfrom=lst.de; arc=none smtp.client-ip=213.95.11.211
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lst.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lst.de
-Received: by verein.lst.de (Postfix, from userid 2407)
-	id 6F38168AA6; Mon, 12 Aug 2024 15:31:28 +0200 (CEST)
-Date: Mon, 12 Aug 2024 15:31:28 +0200
-From: Christoph Hellwig <hch@lst.de>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Christoph Hellwig <hch@lst.de>, Ulf Hansson <ulf.hansson@linaro.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=iF+HMtbUj8lMSw9xAmZQyldsEKp6Yu5FlnCXLrVCNbZtDl8gG38UF3EBq3kJ2mnwtrqgcVeox0Id7kwDW5VCo2W6vjgEFJttRnSd7v/p1zad6s56NB13lIpUX47QMWIgWUp5EDj3JB89c2HgkxdTfYn8RtW43RMXHIp7s78kc3E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=i2rBjxwk; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1723469631; x=1755005631;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=svcb61qn8AxKiXVDKBeXBAH0VVejCzMPT1CCJAMUGFI=;
+  b=i2rBjxwkIKMPuel9doBjdIcZbIWCNeGIgsTtIdvIpeghUk8F3jL2wnSB
+   genB9BPgImDqNcKmM3RURHAMCBeZxHljtT3icr/fdSTtFCO5+8FjwW1D8
+   7K6e+CZ46orAL2o9WBzs/tTPn+KyzC9PWP3dOSdyPAM7V6SclvCuurMBx
+   AxyJfvxbPBCxd5RWvk8bQczA0dx5ZA5SxQ3usQTKK00U0oDyqwnoscqYF
+   6VY5YJeKKQQPXClKP3QVTHl3u6Tbrz+JUkGZiccDG5gsFZPuAT44ziNAM
+   iR4QnFzHGF4asV9moRic/QL+HhXK84AodbdECUF492Avbwj54HrJhlTQ9
+   g==;
+X-CSE-ConnectionGUID: xja2chZJRbKeGykZCH51+w==
+X-CSE-MsgGUID: qb6Dd3MRSSqZq6MU0Ify7Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11162"; a="12963955"
+X-IronPort-AV: E=Sophos;i="6.09,283,1716274800"; 
+   d="scan'208";a="12963955"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Aug 2024 06:33:50 -0700
+X-CSE-ConnectionGUID: zCoNAwmISMu73RPe9ooqcQ==
+X-CSE-MsgGUID: 6xzCFAvQRWu5p+ijHJzn7g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,283,1716274800"; 
+   d="scan'208";a="63197764"
+Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
+  by orviesa004.jf.intel.com with ESMTP; 12 Aug 2024 06:33:47 -0700
+Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sdVB9-000Bpv-2w;
+	Mon, 12 Aug 2024 13:33:43 +0000
+Date: Mon, 12 Aug 2024 21:33:15 +0800
+From: kernel test robot <lkp@intel.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Joern Engel <joern@lazybastard.org>,
-	Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@kernel.dk>,
-	Sagi Grimberg <sagi@grimberg.me>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
 	Saravana Kannan <saravanak@google.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Florian Fainelli <f.fainelli@gmail.com>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mtd@lists.infradead.org, linux-nvme@lists.infradead.org
-Subject: Re: [PATCH v4 2/7] nvme: assign of_node to nvme device
-Message-ID: <20240812133128.GA24058@lst.de>
-References: <20240809172106.25892-1-ansuelsmth@gmail.com> <20240809172106.25892-3-ansuelsmth@gmail.com> <20240812111205.GC14300@lst.de> <66b9fbb4.df0a0220.3bee6e.1e99@mx.google.com>
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 6/7] usb: dwc3: qcom: Transition to flattened model
+Message-ID: <202408122114.xvZqrjZ7-lkp@intel.com>
+References: <20240811-dwc3-refactor-v2-6-91f370d61ad2@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,45 +88,41 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <66b9fbb4.df0a0220.3bee6e.1e99@mx.google.com>
-User-Agent: Mutt/1.5.17 (2007-11-01)
+In-Reply-To: <20240811-dwc3-refactor-v2-6-91f370d61ad2@quicinc.com>
 
-On Mon, Aug 12, 2024 at 02:10:28PM +0200, Christian Marangi wrote:
-> The chosen name was arbritrary just to follow eMMC ones. Can totally
-> change if problematic.
+Hi Bjorn,
 
-NVMe namespaces are dynamic and can be created and deleted at will
-at runtime.  I just don't see how they would even fit into OF
-concepts.
+kernel test robot noticed the following build errors:
 
-There is a huge impedance mismatch here, to the point where I completely
-fail to understand what you are trying to do.
+[auto build test ERROR on 864b1099d16fc7e332c3ad7823058c65f890486c]
 
-> But support of OF for PCIe is already a thing for a long time. (it all
-> works by setting the compatible of the PCIe ID card) and used in wifi
-> card at assign MAC address, calibration data, disable frequency.
+url:    https://github.com/intel-lab-lkp/linux/commits/Bjorn-Andersson/dt-bindings-usb-snps-dwc3-Split-core-description/20240812-111102
+base:   864b1099d16fc7e332c3ad7823058c65f890486c
+patch link:    https://lore.kernel.org/r/20240811-dwc3-refactor-v2-6-91f370d61ad2%40quicinc.com
+patch subject: [PATCH v2 6/7] usb: dwc3: qcom: Transition to flattened model
+config: i386-buildonly-randconfig-002-20240812 (https://download.01.org/0day-ci/archive/20240812/202408122114.xvZqrjZ7-lkp@intel.com/config)
+compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240812/202408122114.xvZqrjZ7-lkp@intel.com/reproduce)
 
-Please point to a document describing how, but more importantly why
-this is done.  I've worked with and maintained Linux PCI(e) drivers for
-about 20 years and never seen it.  And the concept simply doesn't make
-sense in terms of a dynamically probed bus.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408122114.xvZqrjZ7-lkp@intel.com/
 
-> Not having this well organized and consistent schema in DT will result
-> in additional condition in the drivers...
+All errors (new ones prefixed by >>):
 
-NVMe Controllers are PCI functions (or virtual entities over the network).
-Defining them in a static DT scheme does not make sense.  NVMe Namespaces
-which are what contains the block data are dynamically discoverred and
-can be created and deleted at runtime, so refering to them in DT is even
-more broken.  I really don't see how any of this could remotely work.
+>> drivers/usb/dwc3/dwc3-qcom.c:28:10: fatal error: 'glue.h' file not found
+      28 | #include "glue.h"
+         |          ^~~~~~~~
+   1 error generated.
 
-> If these 2 patch are problematic I can totally drop from the series but
-> it was really to add consistency in NVMe and eMMC. The real important
-> part is eMMC that is becoming the de-facto replacement for NAND/NOR on
-> high tier devices (mostly wifi6/7 consumer router)
 
-If you aren't dealing with raw(ish) NAND don't use mtd.  MTD is designed
-to deal with the nitty gritty details of NOR and NAND flash.  If you
-already have an FTL running in the device there is absolutely no reason
-to use it.
+vim +28 drivers/usb/dwc3/dwc3-qcom.c
+
+  > 28	#include "glue.h"
+    29	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
