@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-93044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93043-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC29A94F7D7
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 22:04:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D309194F7D6
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 22:04:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1BD11C22306
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 637D71F22C74
 	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 20:04:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7200193069;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BBF2192B9E;
 	Mon, 12 Aug 2024 20:04:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="HSoKYcCK"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="tezrkaet"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C94C7192B69
-	for <devicetree@vger.kernel.org>; Mon, 12 Aug 2024 20:04:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0C2D192B67
+	for <devicetree@vger.kernel.org>; Mon, 12 Aug 2024 20:04:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723493079; cv=none; b=Fy6lG5rnMAJDkOqoCyiSnle7Oj6m0JBZaTpjKkkv4TqCPIVm69JXYD6lTrJJHI/Q44C9wgPcluplBcCWFSiNJMbnSHUpb2Or/4UI4jmgvg0Q3Jekn/zG9mK/C2n/F03gAaoMWR0kA45rBiFVuR5EKbnMJf/EebECusaWzO+tE5w=
+	t=1723493078; cv=none; b=M0v75hLUj/Vp+UANgif/2OXiocaB7sxKf5+/qaKHAPLmoXFUeAljG4fkSotyge2Ib4fir+dW5cy2dZL7MG6eke2HJnc5wxNJ3P6MJ3++c7iR5FxWzLprMTXZ/SY8k4Z2gfl0MHKjk89atg/qd0nknUnt1ljnH+t64dMALk1sBOs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723493079; c=relaxed/simple;
-	bh=66sqLesZesaEEQZtSkcsOnK45h18BcAFoyUpazRJzRY=;
+	s=arc-20240116; t=1723493078; c=relaxed/simple;
+	bh=L/xyGaFyhjAh5D328EnU5aZ8zcJibBVb7Tca0q7nNJQ=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=KjxoHfT9kCNL0Ysfb1jKPiMNlWf2RnhcwCLoYH/2X3/qmvVEdqdCw/jQHKjgAr+SW9EWsEmz/TeNzxvc3K+NDy7gCuNSv8Ews01Tqx84IOe95+OcZ4Swq/Z/kNAE4yj+UvnHyUmZTLInHOUppxlxpHunXuDV75R53x5lP9UKHpA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=HSoKYcCK; arc=none smtp.client-ip=212.227.15.18
+	 MIME-Version; b=DItuUWezUIv4oA3HHIJZBxV9pbdTSR5ZLu1S49/2BZ7vQpK7O++iL+N9J9G0XfWIIDjhxZO4VdJdZaFV3ibn2cQm6JwmTBbrzKz2nCRZSGtttII6eJ3Kbu67qXRTIUNquYcdWCSQ1u1eqRluQBksV7RY1V4cprcUYoNjjFn62b8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=tezrkaet; arc=none smtp.client-ip=212.227.15.19
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1723493052; x=1724097852; i=wahrenst@gmx.net;
-	bh=IMh4FjVIipmJTy4+pD0doUDz2cuv0Dpwf6VJPrLqVFQ=;
+	s=s31663417; t=1723493053; x=1724097853; i=wahrenst@gmx.net;
+	bh=1oRfQu9T2MITEuhucVL1NP6tSY/GRs7k2gT6QM5aKA4=;
 	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-Id:In-Reply-To:
 	 References:MIME-Version:Content-Transfer-Encoding:cc:
 	 content-transfer-encoding:content-type:date:from:message-id:
 	 mime-version:reply-to:subject:to;
-	b=HSoKYcCKaDwAuGVSafdjc9x5x3evNburRR72s+SKL7Er3Pp7+sT093g8OXCgUXES
-	 MGqKmLr8erA53NfYB7zfByONGtuvtWNpDWA/f9G4BR4BO43zr+CceGQs1sf+HPrbq
-	 c0zLsic/M7OgaOV+H3UFfxumqAE5yVAShp43rr4Qq5qLNeHnvfr69iOrI80uxW+wH
-	 /fNMhR+C02VoIIeoQwz60SsBU2Cw8bQlLsmJ2y4CTW9qWsvgA2EAGVlouM4iOV3LP
-	 1Hx4BSGb4yclezWO3N6Ok5ZcH0jw6bVuvOp0BaWy+DJ86pmLOKSPy/iT+D+hRYY4b
-	 EklyQC0sXSNNpIbwdw==
+	b=tezrkaetYEHClvMsw2ZxUqeb5cl8mlojVNZusQLy2xyI6H2P4asUuB/CWFBO33Q6
+	 WVQoPCSz/ULcaX3ZeC77ZBt8r+qDF3iyYt0bO9+kooUqZhI60I6GpnXNZEbWm+wDA
+	 FhYsgjsho2+ExTZhDR0nMfjyu4Tbv9KkscCz0KhaIRLf926I7aO0N4h6BscPrPLlh
+	 K9v6GOUAkEUoC3sdl8EWohI1eSVsFTr2GKFBS/0wXMgksWpKOGoy/wOhAUJ5O6jvN
+	 3zub8XrJ1GTrIYUO+e65BW3ZPjMxkjbVzdvnvSLvvImDudYfZM50K+mwjbjY/z8FN
+	 OSrs8kZzSKP/JZH5Jw==
 X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
 Received: from stefanw-SCHENKER ([37.4.248.43]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MfYLa-1rxwrE2pei-00hyFw; Mon, 12
- Aug 2024 22:04:12 +0200
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MtfNl-1sKgoE0sWt-00tCVf; Mon, 12
+ Aug 2024 22:04:13 +0200
 From: Stefan Wahren <wahrenst@gmx.net>
 To: Thomas Gleixner <tglx@linutronix.de>,
 	Rob Herring <robh@kernel.org>,
@@ -63,9 +63,9 @@ Cc: Andrea della Porta <andrea.porta@suse.com>,
 	kernel-list@raspberrypi.com,
 	devicetree@vger.kernel.org,
 	Stefan Wahren <wahrenst@gmx.net>
-Subject: [PATCH V3 RESEND 1/4] dt-bindings: timer: convert bcm2835-system-timer bindings to YAML
-Date: Mon, 12 Aug 2024 22:03:55 +0200
-Message-Id: <20240812200358.4061-2-wahrenst@gmx.net>
+Subject: [PATCH V3 RESEND 2/4] dt-bindings: interrupt-controller: convert bcm2836-l1-intc to yaml
+Date: Mon, 12 Aug 2024 22:03:56 +0200
+Message-Id: <20240812200358.4061-3-wahrenst@gmx.net>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240812200358.4061-1-wahrenst@gmx.net>
 References: <20240812200358.4061-1-wahrenst@gmx.net>
@@ -76,128 +76,144 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:mu/oF/4bYE6jGb2ALHipmOVn1kSsEdyts+r/EHG7NeN00PWmbAX
- z8U588CgZeVz7tf0BFJ8Lc6tz4OlGJBI5rIbh1LxUa1vQwoBBPscl1WTuXmyHfBJQ5jnEOR
- ScgBx7knnANaXGYL7VwkQ6mQoDejMEp51/ZIzniyDTeDZRf7ypPkcSe4t9zfrwtXqMeQ79T
- sUCETiRYKtTyUWssPVQpw==
+X-Provags-ID: V03:K1:2O4e8Jnf1oCwiJzQ2qSBKvoSNjYHW2qKyaKf+KcTnlZ7oOt4xco
+ R5ryOoJOhZmwDiOxfpdU7KWXm6ONbuatWQ++nM8m5ybvZFG6wG4Ror11uZao4+fqMB67UUk
+ jemynsnxyTX+1nNo6Wdk6vCM1muFC7/isuGMrvo4NwppZPt8o17axPzzINTqA1JteSjF6Yt
+ H98HZkCBwp8vDEmBXbWsQ==
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:AH5SQxKRtC8=;sfwqJTjbpLLyKATvWuGLGElxUR2
- DQmSYh67BFgAZHnEIP6tix2jYSzct1dPXBItPl+kJ5OUcn3zQx4Rvl2dia/DHLt98vQcT5vWS
- C8zm2W24A1xNwazH5Z9b729Rg2S4ZbMNavQOnpyjnOsqZP2TixNQWNl4qbvcezAHEGgwyH64W
- ww+Y5Th1FThSgV7T6JjWYml6QvL+EMdse1C242YaAYhgLKdNvDsw+dOoevtbdtYFOs6Q8u+tZ
- /SIYXGvL+prPq6UqdOxZsYan38XvHafKsTLnJnGBU+i2kKu1SVFYduAHeIhzQJGBKYlp6Ra9A
- zgSi7KP+wCjiKoabYqNcPLidDzsnOWOEYGCeYlf35HTSajFRCaxQC1hCVhLJQGjdT1rN8Kp65
- WbfCmQFua95sM8eqUuUOpkgQYmKp/K/Bkfc/+pa5VzFyBonis54sEB9MoW/UekbaVuWGKbGrB
- nCOF9M2nnIIe9Jo9RsoqnZJ7ewl/OonP4Xz88u/7uPyRlN/VJfxKL9yaZgZ4zdKNmdbNbp4E7
- 7J3XIGnpZDyFFUvsUmRvIxpjRWUTMxngcjPbgTDtEN4KhPzaZZmzl5LXzuc+euJCPFY+tAooK
- SS/kk8ol8oBDIXN/H8PN3alsPRXCdby+3enZ/A8h3KGG1fLuTkMR3pph5Dp6BamYB+lWF7yHd
- 9AOuEiMK+fnF2bDLeyu7bWaaNyXX7x2oYqq1stSEtLNfjiso4VL4ZJTtiFBxsxBzTltow7ecp
- pPpnmDljqtGBdfbC8Ugm18lcvgAsz/CpCTetVtTBa/cIHf+LE2DoOWQkLRIooM9qPeUF+T6Zj
- mENLxwpMHry0K6nabmU63zoWkFnCb59/LSdv/0XBvKmyA=
+UI-OutboundReport: notjunk:1;M01:P0:dUJFkJkCZpc=;R5UQi3BRd6YAS0CQHSbG6FdSrnc
+ M+0pVTznwY/dPpVIK6WpkPBlJmdg4ZWpUgnhXf1xhX+/GlysCkkGJZZaL6HPQLaDjGLUuZEZh
+ K4hgWiWuifxKj4/aG2lQdh+JsFbANk0QK2Xi3HkCLfBUHuYzVsWWLPMmC5CKqtExVLxzJn1rR
+ fRU1rxC94qFBlZNfMeQFjpntQxtf47O+a3oDqoU5+HzuXcjtW4bnePbRhUaCtzFixkbfDWPSi
+ WbD77mqo3xsBr0Ef/Lq9SRRkr3FGjW32AC/P1qfIcr7XAkh/hbjEysFZq5of+i0iMc3oCbZ+V
+ qK1hzv6Q2oPfQLgB8UzHmveV//9mx8idCZbAS69a44kcuVOBzVrVzBK7BSdvjnRElaGSP6rQU
+ uIYyRXdr9kt9GlDUsrXkPdudDDwwDUVfjsW9+k1SG3D4oSlTol22gxzenGFrI4g4ciDVpyHdx
+ zY7Exi21LfTJPZtugua+/A6y8UXZqz7sAAnPw3yDKnDtDu7vKk9/2z9S53wTX7Z4ykw+YBzmS
+ u6+qH9pBrDU9Cpb0p3IuE4X6EuYsaA/egZBKuXyxnxS5nTnf/DKfoRod6cja9a4h9SX5/GU32
+ fe4L5UF4CZ9ex5SJKw7MNuIaZYsv/Flg/7o6V+wm2dl3wfk1JvM8j35Wem1/Ts3g5tt7HWqJJ
+ 7kPHUpTdDDvD3FE+nbR9N3eJO+AhWyaNN9TDKF3pxnVCxYdZTkiHMQPZVRSovyNZAMkn3IyAX
+ aNZTmN6U4rgdeZ5wPAgUZ3DU6ci2+LqbdEOFA4xbgKaMyhQpFv0SVDOCCz8y4yLBjsYmBelmD
+ Fx+8P04aH28cQrmixHsS2BeAjKKU0ffNKgUuIQHsiUO/4=
 
-Convert the DT binding document for bcm2835-system-timer from .txt
-to YAML.
+Convert the DT binding document for BCM2836 per-CPU interrupt
+controller from .txt to YAML.
 
 Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
 =2D--
- .../timer/brcm,bcm2835-system-timer.txt       | 22 --------
- .../timer/brcm,bcm2835-system-timer.yaml      | 50 +++++++++++++++++++
- 2 files changed, 50 insertions(+), 22 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/timer/brcm,bcm2835-s=
-ystem-timer.txt
- create mode 100644 Documentation/devicetree/bindings/timer/brcm,bcm2835-s=
-ystem-timer.yaml
+ .../brcm,bcm2836-l1-intc.txt                  | 37 --------------
+ .../brcm,bcm2836-l1-intc.yaml                 | 51 +++++++++++++++++++
+ 2 files changed, 51 insertions(+), 37 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller=
+/brcm,bcm2836-l1-intc.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller=
+/brcm,bcm2836-l1-intc.yaml
 
-diff --git a/Documentation/devicetree/bindings/timer/brcm,bcm2835-system-t=
-imer.txt b/Documentation/devicetree/bindings/timer/brcm,bcm2835-system-tim=
-er.txt
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/brcm,b=
+cm2836-l1-intc.txt b/Documentation/devicetree/bindings/interrupt-controlle=
+r/brcm,bcm2836-l1-intc.txt
 deleted file mode 100644
-index 844bd5fbd04c..000000000000
-=2D-- a/Documentation/devicetree/bindings/timer/brcm,bcm2835-system-timer.=
-txt
+index 8ced1696c325..000000000000
+=2D-- a/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm283=
+6-l1-intc.txt
 +++ /dev/null
-@@ -1,22 +0,0 @@
--BCM2835 System Timer
+@@ -1,37 +0,0 @@
+-BCM2836 per-CPU interrupt controller
 -
--The System Timer peripheral provides four 32-bit timer channels and a
--single 64-bit free running counter. Each channel has an output compare
--register, which is compared against the 32 least significant bits of the
--free running counter values, and generates an interrupt.
+-The BCM2836 has a per-cpu interrupt controller for the timer, PMU
+-events, and SMP IPIs.  One of the CPUs may receive interrupts for the
+-peripheral (GPU) events, which chain to the BCM2835-style interrupt
+-controller.
 -
 -Required properties:
 -
-=2D- compatible : should be "brcm,bcm2835-system-timer"
-=2D- reg : Specifies base physical address and size of the registers.
-=2D- interrupts : A list of 4 interrupt sinks; one per timer channel.
-=2D- clock-frequency : The frequency of the clock that drives the counter,=
- in Hz.
+=2D- compatible:	 	Should be "brcm,bcm2836-l1-intc"
+=2D- reg:			Specifies base physical address and size of the
+-			  registers
+=2D- interrupt-controller:	Identifies the node as an interrupt controller
+=2D- #interrupt-cells:	Specifies the number of cells needed to encode an
+-			  interrupt source. The value shall be 2
+-
+-Please refer to interrupts.txt in this directory for details of the commo=
+n
+-Interrupt Controllers bindings used by client devices.
+-
+-The interrupt sources are as follows:
+-
+-0: CNTPSIRQ
+-1: CNTPNSIRQ
+-2: CNTHPIRQ
+-3: CNTVIRQ
+-8: GPU_FAST
+-9: PMU_FAST
 -
 -Example:
 -
--timer {
--	compatible =3D "brcm,bcm2835-system-timer";
--	reg =3D <0x7e003000 0x1000>;
--	interrupts =3D <1 0>, <1 1>, <1 2>, <1 3>;
--	clock-frequency =3D <1000000>;
+-local_intc: local_intc {
+-	compatible =3D "brcm,bcm2836-l1-intc";
+-	reg =3D <0x40000000 0x100>;
+-	interrupt-controller;
+-	#interrupt-cells =3D <2>;
+-	interrupt-parent =3D <&local_intc>;
 -};
-diff --git a/Documentation/devicetree/bindings/timer/brcm,bcm2835-system-t=
-imer.yaml b/Documentation/devicetree/bindings/timer/brcm,bcm2835-system-ti=
-mer.yaml
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/brcm,b=
+cm2836-l1-intc.yaml b/Documentation/devicetree/bindings/interrupt-controll=
+er/brcm,bcm2836-l1-intc.yaml
 new file mode 100644
-index 000000000000..f5804b5b0e63
+index 000000000000..5fda626c80ce
 =2D-- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/brcm,bcm2835-system-timer.ya=
-ml
-@@ -0,0 +1,50 @@
++++ b/Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2836-=
+l1-intc.yaml
+@@ -0,0 +1,51 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/timer/brcm,bcm2835-system-timer.yaml#
++$id: http://devicetree.org/schemas/interrupt-controller/brcm,bcm2836-l1-i=
+ntc.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: BCM2835 System Timer
++title: BCM2836 per-CPU interrupt controller
 +
 +maintainers:
 +  - Stefan Wahren <wahrenst@gmx.net>
 +  - Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
 +
 +description:
-+  The System Timer peripheral provides four 32-bit timer channels and a
-+  single 64-bit free running counter. Each channel has an output compare
-+  register, which is compared against the 32 least significant bits of th=
-e
-+  free running counter values, and generates an interrupt.
++  The BCM2836 has a per-cpu interrupt controller for the timer, PMU
++  events, and SMP IPIs. One of the CPUs may receive interrupts for the
++  peripheral (GPU) events, which chain to the BCM2835-style interrupt
++  controller.
++
++allOf:
++  - $ref: /schemas/interrupt-controller.yaml#
 +
 +properties:
 +  compatible:
-+    const: brcm,bcm2835-system-timer
++    const: brcm,bcm2836-l1-intc
 +
 +  reg:
 +    maxItems: 1
 +
-+  interrupts:
-+    items:
-+      - description: System Timer Compare 0 match (used by VideoCore GPU)
-+      - description: System Timer Compare 1 match (usable for ARM core)
-+      - description: System Timer Compare 2 match (used by VideoCore GPU)
-+      - description: System Timer Compare 3 match (usable for ARM core)
++  interrupt-controller: true
 +
-+  clock-frequency: true
++  '#interrupt-cells':
++    const: 2
 +
 +required:
 +  - compatible
 +  - reg
-+  - interrupts
++  - interrupt-controller
++  - '#interrupt-cells'
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    timer@7e003000 {
-+      compatible =3D "brcm,bcm2835-system-timer";
-+      reg =3D <0x7e003000 0x1000>;
-+      interrupts =3D <1 0>, <1 1>, <1 2>, <1 3>;
-+      clock-frequency =3D <1000000>;
++    local_intc: interrupt-controller@40000000 {
++        compatible =3D "brcm,bcm2836-l1-intc";
++        reg =3D <0x40000000 0x100>;
++        interrupt-controller;
++        #interrupt-cells =3D <2>;
++        interrupt-parent =3D <&local_intc>;
 +    };
 +...
 =2D-
