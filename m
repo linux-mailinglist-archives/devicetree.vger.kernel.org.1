@@ -1,127 +1,145 @@
-Return-Path: <devicetree+bounces-92845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE6F894E96D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 11:12:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D21194E970
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 11:12:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A64BE1F245B4
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 09:12:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B79241F24455
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 09:12:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5104616D4E2;
-	Mon, 12 Aug 2024 09:12:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 699CE16CD1D;
+	Mon, 12 Aug 2024 09:12:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="D+WUqsf7";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="s4hCdMiD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dwZiu2L2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2EE816CD19;
-	Mon, 12 Aug 2024 09:12:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ADE01586CD;
+	Mon, 12 Aug 2024 09:12:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723453926; cv=none; b=dwj8lpv97KE1TE4g6UsmTWOGTtI/HnvFDJ+qLqAvVirpRx7A8gjN7UM34Z0VnRuXl3+EHJnYMkVnPs3pTF1oTwJlCt9P/THmeEcLne7x/KMBKhcfuBAremz5mNdhMGCnlAxzQaMeBwEhZ36QtFb+z9WziiYFxEwLBKKOPKieodg=
+	t=1723453948; cv=none; b=u3wOOAEMEVaQ2wwUkxxV5xQr29rjEoV0aenl8ei8hvW8roBoT31rv5PAY7fZuswRfD3OkY5pumHr9ThqAVFmudzCy1NA0nG06CR91TrqHx7SAPlO58oVHpRpYpGv6eD7HGnDSQPepfxvNVAQv4AHincHB/Q4zzuCTiqAjqzzptU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723453926; c=relaxed/simple;
-	bh=iVGhNQ7r+GgMdXvKda908eL/Y5A0YBwZsNL00pSOsYY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QcwiGtbmxGhP6VamEznWwhQXtw2wB4su3I6+ZVZdxj5omsvf86emWwmKq7mj9Y0adlZaYbziGa0WoOw17IVPFCkJ4YrIKLrCYAEUdUl34n/zW6k5SNXspVfOkke+6iOMiQc6Yunvl/RsGeOEQkM+XWimH0zUwmkiqWghwPXQ3AE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=D+WUqsf7; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=s4hCdMiD reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1723453922; x=1754989922;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=iVGhNQ7r+GgMdXvKda908eL/Y5A0YBwZsNL00pSOsYY=;
-  b=D+WUqsf78qQ0nPUuXA6hw6GQsuOI2WRmkEZu5XVWHnmmYjZ80dW+aOVs
-   KBGd2A2nTBXKZhbTZ2xYpdNpDL2T11+N8l10YkvXSzvTVJiR4FV6B2ISQ
-   QsQ1mK/rJ9JrhO4WoGKGpn9Xv86+kb/rGgVehfgBJTjYTpH+Ntm3r3hBX
-   2LwasiykPDuqhBBnGcoqU5TXlaf/uUjw3IjKVkr6eahAHN8yCrAPWH0kZ
-   w5RwFlhIUDImSlRq+bgEpKp4Zxd6UWqYLvUj45jIFrMvAKbAyvUP5qzpE
-   Ml5pKm/3gDlkLZFDZ2gNcnn3YSh2HJk4IVTKlUu7oIRC7rXjNAT96th8L
-   A==;
-X-CSE-ConnectionGUID: PdjH/twxTq+pzhusnqFE3w==
-X-CSE-MsgGUID: abvoOSaXTKCeZz4+6fNkHg==
-X-IronPort-AV: E=Sophos;i="6.09,282,1716242400"; 
-   d="scan'208";a="38357923"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 12 Aug 2024 11:11:53 +0200
-X-CheckPoint: {66B9D1D9-14-186E37A7-E5B59163}
-X-MAIL-CPID: 62D091DA502B8843C2B26626E6D08F41_2
-X-Control-Analysis: str=0001.0A782F1C.66B9D1D9.0176,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 94E64160FD1;
-	Mon, 12 Aug 2024 11:11:48 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1723453909;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=iVGhNQ7r+GgMdXvKda908eL/Y5A0YBwZsNL00pSOsYY=;
-	b=s4hCdMiDs717XI3VbNv9Nf+/6xFK6FMANH3wvGCvCemENUybutJh2nG75BBSmlamBOXyGY
-	l/UpvQRqa74ePjO65Prn0E5GCvm9mwu4Uyga163H9DvP/XPoJXD2FAfannSHppYIu4EtB6
-	Kebeq5n/97quOq4MqpeRzfM/7OBXQ0dr76RvrrXhghYIi51b9pKr7Xaq9jkJ9x1EzcMxfs
-	aZwRjBoOdNo0/z2cwUK9vm7nprLaMW9HJ50D0TkywgdApXcCzf/U8jb+j7t+Q9Jvt6jXhY
-	GVVzB4K4cr6ZCAQL8JT5nQoCdPSbOVshWMxRaMRIoX8zJ8XjwcuZuAOyqhicYQ==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/1] arm64: dts: imx8-ss-vpu: Fix imx8qm VPU IRQs
-Date: Mon, 12 Aug 2024 11:11:51 +0200
-Message-ID: <4944000.31r3eYUQgx@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <PAXPR04MB8459C55F49C08A6B6A0239E988852@PAXPR04MB8459.eurprd04.prod.outlook.com>
-References: <20240808090326.425296-1-alexander.stein@ew.tq-group.com> <PAXPR04MB8459C55F49C08A6B6A0239E988852@PAXPR04MB8459.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1723453948; c=relaxed/simple;
+	bh=AHpXAkDP1WOYSED8knHUVOD/Zs18SE8A5sym1YavS1k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YGlMYgstIoOtKj9NeH8vCr6fs1V24UAyBjlRLYMzmHynp/gySNJok+jS+IRMh2FUK8vAzzv+9DRs2aHNPnM+t9R4yLL/jUCTgidquwfu9eku7lGoOqeiXrrGf9ejQ4r5nFYpDdcUqYORegB40GGlHx5Ep+CQ9Qv0vL2uEq2EMo8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dwZiu2L2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A6E3C32782;
+	Mon, 12 Aug 2024 09:12:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723453947;
+	bh=AHpXAkDP1WOYSED8knHUVOD/Zs18SE8A5sym1YavS1k=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=dwZiu2L2qrosCfyV3a2YbYsWIBs39ADt90UptUvF6G8dvCVqehKEfQmgsGLhkwELH
+	 lw9zshioXY1etWuw5E7/VCPvkKp9jnw+Ix0aYWrhngRvN9OPSYx17C/mwIRWQzKCty
+	 kqfDZ1XaDYLD2q/lxAOx6Pnx2H/uY4A+k6eAxkgcAuhO6Ss1efuKyRU/0Vgo6v1r+G
+	 XRJlsEU5em0E6Hoay9NgHr+weOXwawheAdvQiqIv/+NACdqU2EvThF0+bH9oVGDyxa
+	 u4vwqmHKac9maxVsKChRabkyomPHT5JHfGejOPbu9aLKemjMxmXIFAHGcOYYPP1Fql
+	 7xb60X6KYGiYw==
+Message-ID: <1f823600-68c4-418f-b2bf-6d5d64a1ee56@kernel.org>
+Date: Mon, 12 Aug 2024 11:12:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: mtd: nuvoton,ma35d1-nand: add new
+ bindings
+To: Hui-Ping Chen <hpchen0nvt@gmail.com>, miquel.raynal@bootlin.com,
+ richard@nod.at, vigneshr@ti.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, sumit.semwal@linaro.org, christian.koenig@amd.com,
+ esben@geanix.com
+Cc: linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org
+References: <20240812030045.20831-1-hpchen0nvt@gmail.com>
+ <20240812030045.20831-2-hpchen0nvt@gmail.com>
+ <7a8b9bdf-f4df-4da0-83ca-157175817e99@kernel.org>
+ <203578df-11a6-425a-b2be-cc09dae62f8f@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <203578df-11a6-425a-b2be-cc09dae62f8f@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Am Montag, 12. August 2024, 10:45:54 CEST schrieb Peng Fan:
-> > Subject: [PATCH 1/1] arm64: dts: imx8-ss-vpu: Fix imx8qm VPU IRQs
-> >=20
-> > imx8-ss-vpu only contained imx8qxp IRQ numbers, only mu2_m0 uses
-> > the correct imx8qm IRQ number, as imx8qxp lacks this MU.
-> > Fix this by providing imx8qm IRQ numbers in the main imx8-ss-vpu.dtsi
-> > and override the IRQ numbers in SoC-specific imx8qxp-ss-vpu.dtsi,
-> > similar to reg property for VPU core devices.
-> >=20
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > ---
-> > I did not include a Fixes tag as adding support for imx8qxp and imx8qm
-> > is split into several commits. It's at lease the combination of the
-> > following commits:
-> >=20
-> > 0d9968d98467d ("arm64: dts: freescale: imx8q: add imx vpu codec
-> > entries") b4efce453f0ca ("arm64: dts: imx8qm: add vpu decoder and
-> > encoder")
->=20
-> If you are using one patch to try to fix upper two commits, I think
-> it would be better to separate the patch to fix the error of
-> each upper commit and include Fixes tag.
+On 12/08/2024 11:02, Hui-Ping Chen wrote:
+> 
+> 
+>>> +
+>>> +      nand-ecc-step-size:
+>>> +        enum: [512, 1024]
+>> No defaults? So is this required?
+> 
+> This is required, but I will also add a default.
 
-Commit 0d9968d98467d ("arm64: dts: freescale: imx8q: add imx vpu codec
-entries") is talking about imx8q. This is most probably i.MX8 family, while
-I confused imx8q with imx8qxp, which is i.MX8X family...
-The naming scheme is so confusing :(
+If this is required and should be in required: list. Default does not
+make sense then... it contradicts the point of being required.
 
-=46or that reason I'll just add a Fixes for 0d9968d98467d.
+> 
+> 
+> 
+>>> +
+>>> +      nand-ecc-strength:
+>>> +        enum: [8, 12, 24]
+>> No defaults? So is this required?
+> 
+> This is required, but I will also add a default.
+
+Ditto
+
 
 Best regards,
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+Krzysztof
 
 
