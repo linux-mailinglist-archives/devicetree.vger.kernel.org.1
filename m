@@ -1,98 +1,171 @@
-Return-Path: <devicetree+bounces-93018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F072F94F51A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 18:41:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62E8294F521
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 18:45:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2ED9A1C20FCB
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 16:41:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19F612815A5
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 16:45:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1E7C18754F;
-	Mon, 12 Aug 2024 16:41:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAE9E186E5E;
+	Mon, 12 Aug 2024 16:44:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AQfaukLW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lGn2GEoG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AC07187347;
-	Mon, 12 Aug 2024 16:41:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BB8F183CCC;
+	Mon, 12 Aug 2024 16:44:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723480902; cv=none; b=UgF6LwJt5JmovNsYBCgDKNz+WTM/W+ZhhvzRhWeQZDfOvC9Tx7Dil7pYqndkm+MOVf7e8ZjDjLqjZWY7jRMHfk4DFVyiaTkfgOILh97wH8iXmDr80Qk07vofEBKxv+50m4VmCydbaE2BcKDkS8kmsUPyelWS82dfkcoiz5VvBzo=
+	t=1723481096; cv=none; b=iwivcKSaJiy5n/11d/EBZTI0D9gglP6xv43qdQXQ4ktOiwyG6jt31FzVPxvYethQuWON8NAGHXrOBCpE5GqhRhEtDC01g9MiOgMxSnj+a3KganayPYg0S6Kny6nMv2MEciaaCvVRDV+dkA9N4JyHSBK5GD/ItrJi6QRuzdXmQf0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723480902; c=relaxed/simple;
-	bh=w/foYfrPOgxcK2AUgC3oPzuz6RvE+fU4WtbCKyDaDd8=;
+	s=arc-20240116; t=1723481096; c=relaxed/simple;
+	bh=2KKDirWRCLyFGNIflIjMwFeB3i+VBV6GbkGbJa2X+XU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nu+yslXAUkk5+9iJhMpiNmzUKMcGlUdLub2a4batxcdGhjiPclR8RTpxU05K0Fo6oAcCFBApyCPbbgiqcWVVWoGB6pQG+CTYuj61g9YJgjWocDD3W0LxHTqmC5fP6U+HWAa0nS85DlOT1NMRWeiY0a4BQWvP45Kof+C8vg3tT/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AQfaukLW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F5C5C4AF09;
-	Mon, 12 Aug 2024 16:41:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=pVpkWNtO3oJMqZtkHdHlkTQf6MzE6AhmWnoGuF+KdDmzb0WaWHyuzXsceAGoiWzDhyQmcrileYXFkTImyshAb3T4Dxq/TZU6otq0foqlWzKsKvRCpZtS3wBOY5ZLbzwiwL/3YRa0nXjdwYLeVZtKzpIOtG3YqSHT3M+P0G5c4hI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lGn2GEoG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2668C32782;
+	Mon, 12 Aug 2024 16:44:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723480901;
-	bh=w/foYfrPOgxcK2AUgC3oPzuz6RvE+fU4WtbCKyDaDd8=;
+	s=k20201202; t=1723481096;
+	bh=2KKDirWRCLyFGNIflIjMwFeB3i+VBV6GbkGbJa2X+XU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AQfaukLWVXSdXViNPLTzV2UfFjHeGyu9B3U2wGAbLx9d5OksT+t5fqn9Nm6K15iRj
-	 tSmiNJIKPKPbvcROPJ9/QmsMi5/YKwWurxx79RtrpKrKRWijWTdBaR5CK+/Mgf0ik9
-	 Kegga2BSy7jBYKzf8OfA1DzWF2LShXYDbbNcR/myrKoAmZCGCgZkIvPqAAMoWl5w7t
-	 v/Pe9FAOJcl7Yw0kLkxuDcuPV0+346KYovLc5d04ngZwCGrZi03x+YSdO6ypQINpZq
-	 gSdcApK9+5ODXY1tb5BoBk0FHhK6FuQCv9mIM4GAnQ5q28Itoq8426oPBHHv3/94oU
-	 fOfeyZFrUzCdA==
-Date: Mon, 12 Aug 2024 10:41:40 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Mateusz Majewski <m.majewski2@samsung.com>
-Cc: Lukasz Luba <lukasz.luba@arm.com>,
-	Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>,
-	linux-pm@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Zhang Rui <rui.zhang@intel.com>, Conor Dooley <conor+dt@kernel.org>,
-	Anand Moon <linux.amoon@gmail.com>,
-	Sam Protsenko <semen.protsenko@linaro.org>,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>
-Subject: Re: [PATCH v3 6/6] dt-bindings: thermal: samsung,exynos: remove
- driver-specific information
-Message-ID: <172348088057.1248578.13184314631777565380.robh@kernel.org>
-References: <20240807084829.1037303-1-m.majewski2@samsung.com>
- <CGME20240807084917eucas1p28c675c9da74f0de0bb09689819202c39@eucas1p2.samsung.com>
- <20240807084829.1037303-7-m.majewski2@samsung.com>
+	b=lGn2GEoG5+mMZA6QMhnL2IR7dBH0NUBSZi3bg+1jeuINBMa6I86ttRzuUWko8B+Ll
+	 mIBTWIBpP1GxeiRHtRa8MqbcdmJQJrJD5Y1CCfYNl5sS/6Q4EZy2lHrzjUZDbSTyhz
+	 arzrSO/R0NDL2spChAAeh9tgWu2C9E5sgzkCgKBLrBESuJ4CZ0MMKvP8pqvVpuezYV
+	 pfxrNcR45pOCKjpHlRxEIfURxNTEpKsAYNIFMgtf8RS9sGndg4q01D+j3Qex/8B2zY
+	 j7Poiq8lGTJ4kAMQmB6WAq7glpxS4JErniRdU5pGrb6CqLcT7XoFuMmm1M0YWa2fSP
+	 iAXbQTOf1PZqw==
+Date: Mon, 12 Aug 2024 17:44:50 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	"open list:ETHERNET PHY LIBRARY" <netdev@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: net: mdio: Add negative patten match
+ for child node
+Message-ID: <20240812-unmoving-viscosity-5f03dfd87f1f@spud>
+References: <20240812031114.3798487-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="kH+ai/ND89N9wHWS"
+Content-Disposition: inline
+In-Reply-To: <20240812031114.3798487-1-Frank.Li@nxp.com>
+
+
+--kH+ai/ND89N9wHWS
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240807084829.1037303-7-m.majewski2@samsung.com>
+Content-Transfer-Encoding: quoted-printable
+
+On Sun, Aug 11, 2024 at 11:11:14PM -0400, Frank Li wrote:
+> mdio.yaml wrong parser mdio controller's address instead phy's address wh=
+en
+> mdio-mux exist.
+>=20
+> For example:
+> mdio-mux-emi1@54 {
+> 	compatible =3D "mdio-mux-mmioreg", "mdio-mux";
+>=20
+>         mdio@20 {
+> 		reg =3D <0x20>;
+> 		       ^^^ This is mdio controller register
+>=20
+> 		ethernet-phy@2 {
+> 			reg =3D <0x2>;
+>                               ^^^ This phy's address
+> 		};
+> 	};
+> };
+
+I don't understand MDIO well enough to know the answer - does this
+actually solve the problem? It seems to me that the problem is that
+mdio.yaml is applied to the mdio-mux node because it matches the pattern
+"^mdio(@.*)?" that applies the binding based on node-names. If the
+properties in mdio.yaml do not apply to mdio muxes, then the binding
+should not be applied and the patch here is only treating a symptom
+rather than the actual problem.
+
+=46rom a quick check, I don't see any of the mdio-mux-mmioreg nodes using
+the properties from mdio.yaml, so should the binding be applied to them
+at all?
+
+Cheers,
+Conor.
 
 
-On Wed, 07 Aug 2024 10:48:25 +0200, Mateusz Majewski wrote:
-> The number of supported trip points was only limited by the driver
-> implementation at the time, which mapped each trip point defined in the
-> devicetree source file to a hardware trip point. An implementation that
-> does not have this limitation is possible; indeed, that is how the
-> driver works currently. Therefore, this information should be removed
-> from the bindings description, which are meant to be independent of
-> the details of the driver implementation.
-> 
-> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
-> Signed-off-by: Mateusz Majewski <m.majewski2@samsung.com>
+FWIW, adding a $ after the ? in the pattern I linked would stop the
+binding being applied to the mdio-mux nodes, but if something like that
+were done, all mdio nodes would need to be checked to ensure they match
+the new pattern...
+
+
+>=20
+> Only phy's address is limited to 31 because MDIO bus defination.
+>=20
+> But CHECK_DTBS report below warning:
+>=20
+> arch/arm64/boot/dts/freescale/fsl-ls1043a-qds.dtb: mdio-mux-emi1@54:
+> 	mdio@20:reg:0:0: 32 is greater than the maximum of 31
+>=20
+> The reason is that "mdio@20" match "patternProperties: '@[0-9a-f]+$'" in
+> mdio.yaml.
+>=20
+> Change to '^(?!mdio@).*@[0-9a-f]+$' to avoid match parent's mdio
+> controller's address.
+>=20
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
-> v2 -> v3: reword the commit message to be easier to understand in
->   context of dt-bindings.
-> v1 -> v2: remove an unnecessary sentence.
-> 
->  .../devicetree/bindings/thermal/samsung,exynos-thermal.yaml | 6 +-----
->  1 file changed, 1 insertion(+), 5 deletions(-)
-> 
+>  Documentation/devicetree/bindings/net/mdio.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/mdio.yaml b/Documentat=
+ion/devicetree/bindings/net/mdio.yaml
+> index a266ade918ca7..a7def3eb4674d 100644
+> --- a/Documentation/devicetree/bindings/net/mdio.yaml
+> +++ b/Documentation/devicetree/bindings/net/mdio.yaml
+> @@ -59,7 +59,7 @@ properties:
+>      type: boolean
+> =20
+>  patternProperties:
+> -  '@[0-9a-f]+$':
+> +  '^(?!mdio@).*@[0-9a-f]+$':
+>      type: object
+> =20
+>      properties:
+> --=20
+> 2.34.1
+>=20
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+--kH+ai/ND89N9wHWS
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZro8AgAKCRB4tDGHoIJi
+0mPgAP901yLmgljlIK02ytzDSbo3W7Tr4fIWkLT+81cA1NMr3QD+KIz3cHhvDZ3I
+JllrKy8z3fObL8klZ02PBpDvChhibQI=
+=nO2U
+-----END PGP SIGNATURE-----
+
+--kH+ai/ND89N9wHWS--
 
