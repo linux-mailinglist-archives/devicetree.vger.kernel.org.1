@@ -1,121 +1,134 @@
-Return-Path: <devicetree+bounces-92979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C88F594F026
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 16:48:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DAD994F128
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 17:02:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7174F1F26091
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 14:48:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DDA6E1F22AE1
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 15:02:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0298184538;
-	Mon, 12 Aug 2024 14:46:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Jq15jcMh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCF1917CA0B;
+	Mon, 12 Aug 2024 15:01:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from ns.iliad.fr (ns.iliad.fr [212.27.33.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD3F7186E52;
-	Mon, 12 Aug 2024 14:46:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99E53187340;
+	Mon, 12 Aug 2024 15:01:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.27.33.1
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723473981; cv=none; b=NK3TXp395RD5PcZflWK0GBEW1V4a6oYLU6q4GY4AoD0YycJ47jsji6o266rXpE4tEUJkDw0161A19rCExMFyYt4eBVY/yZYmsmoykg1a/UAqeiuIAopiXvyqZ+AIYRWIktWcn14tbeyTiTfZOwGPTPB7lRDe4xD+te7Jo+eD8gY=
+	t=1723474878; cv=none; b=rfWl0DFW7ZW1vAW0mX0jntAPqmMp9OYNfmprF3BFyis06G2r6aoddOpGTXVAOsyFzRkZRTkm80xsuHAwwKROUhLK0dTu7WbAlbluIizQ41XTRBEwDcLdUiP5GS26uVtURCn6Lf/mIl7CLYpQwJgmpfcJIpd2tN2nQ8sRu+vx9wU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723473981; c=relaxed/simple;
-	bh=6EwWjIRQk/sSk2O6sQQi8d9c67kMukQLlwq8Iu0PHQY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aULwDG0XOiPc41iw9H8gEQZNoall8jA5XOz1/eIU8BDxVeXx6cIgUnpo8DRSJxQVvPj2nMHmQtOFKcutIrraTzyVjflkyXwVgkUm7W7OACU7XSsxcwbpDr4e1RWdCySbqXpBF49311ZzSrZPiGQjJX5YySyXWvkJTgDn1afJLyc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Jq15jcMh; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1723473979; x=1755009979;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=6EwWjIRQk/sSk2O6sQQi8d9c67kMukQLlwq8Iu0PHQY=;
-  b=Jq15jcMhlNd4durg5pYmv9qcKsMEeGHUXuDW9V3C3M6KXlxPfRRlQf56
-   yFw6Qe/21iE8iKdqZ6bodJuSbjqWTRZP+eVPfHxlr4WluqYQs9Bx+sS8G
-   CjHAOTZSjmgRA5mv8PIeJLOCDUsqU4g9q5qIkPcNKGcE8duJvL1xjCsQy
-   Voo9LwIINZKDuAns+UglF1IgmbhLR3Zx+QUXO2EX3Tf3sO3d21F0n2z6F
-   7s7bLKgjNkOKZ2TC00QKD0qZlUqbFU+bySXvM2y5hXOg2vDiwoZZGL+Zd
-   M3Suqs3FyY505WzoFmCj4KepNT/UDbsDCcN4JYg5sgab5aiMUmEj6lgEz
-   Q==;
-X-CSE-ConnectionGUID: oEWFnBYnSc+sKwYLQ/dTGA==
-X-CSE-MsgGUID: bt60szcgReaSJCja1hzXYQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11162"; a="39103394"
-X-IronPort-AV: E=Sophos;i="6.09,283,1716274800"; 
-   d="scan'208";a="39103394"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Aug 2024 07:46:18 -0700
-X-CSE-ConnectionGUID: 7Jr7aG7xRJyvRxjhOVjlRA==
-X-CSE-MsgGUID: bnTwUiRVQgek9F6l6ITQWg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,283,1716274800"; 
-   d="scan'208";a="58997793"
-Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
-  by orviesa008.jf.intel.com with ESMTP; 12 Aug 2024 07:46:15 -0700
-Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sdWJI-000Bu4-1R;
-	Mon, 12 Aug 2024 14:46:12 +0000
-Date: Mon, 12 Aug 2024 22:45:33 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lorenzo Bianconi <lorenzo@kernel.org>, linux-pwm@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, ukleinek@kernel.org,
-	lorenzo.bianconi83@gmail.com, krzk+dt@kernel.org, robh@kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	upstream@airoha.com, angelogioacchino.delregno@collabora.com,
-	benjamin.larsson@genexis.eu, conor+dt@kernel.org,
-	ansuelsmth@gmail.com
-Subject: Re: [PATCH v2 2/2] pwm: airoha: Add support for EN7581 SoC
-Message-ID: <202408122207.joypBYZD-lkp@intel.com>
-References: <d5abef7ee63f2c5df8bf3400c4d8a5ff72c706a9.1723393857.git.lorenzo@kernel.org>
+	s=arc-20240116; t=1723474878; c=relaxed/simple;
+	bh=TayYbsyzVLGiDKZvxeVxzrQ0Xg+iZi5h6ISADEv+Ynw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=drte8O3XiIAN9t2muUzylkhWPlPhDD6hMiLWTRyP1DAOgavmVGQOFQpxLY1bGAX9q6x0LykSS1E5gdvZsK3QakvGgj/P2mRUW04QWlXqTwXHdKWBg5T08+VHi8y+C/3kVuWQ+Vtr8PxrHrGN9DbQBptPX1yrjs71iZS7ppd+p/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=srs.iliad.fr; arc=none smtp.client-ip=212.27.33.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=srs.iliad.fr
+Received: from ns.iliad.fr (localhost [127.0.0.1])
+	by ns.iliad.fr (Postfix) with ESMTP id E856E20621;
+	Mon, 12 Aug 2024 16:51:07 +0200 (CEST)
+Received: from [127.0.1.1] (freebox.vlq16.iliad.fr [213.36.7.13])
+	by ns.iliad.fr (Postfix) with ESMTP id D6E1C2060B;
+	Mon, 12 Aug 2024 16:51:07 +0200 (CEST)
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+Subject: [PATCH v5 0/2] Basic support for TI TDP158
+Date: Mon, 12 Aug 2024 16:51:00 +0200
+Message-Id: <20240812-tdp158-v5-0-78684a84ec23@freebox.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d5abef7ee63f2c5df8bf3400c4d8a5ff72c706a9.1723393857.git.lorenzo@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFQhumYC/2XOyw6CMBAF0F8xXVszfdAWV/6HcdHHVLoRUgzRE
+ P7dwgIwLO9kzp0ZSY85YU+up5FkHFKf2lcJ1flEfGNfT6QplEw4cAmKafoOHasMlcxwgKC8B0f
+ Kcpcxps9SdH+U3KT+3ebv0juweXqoGBgFGmJtMOqAXoVbzIiu/VxiJnPHwHeOV6vjxVnhhJQad
+ LT64MTebfdEcdHx6LwBI6Q6OLk5LWB1cv7TqhqAuYCW/7lpmn47OIqARQEAAA==
+To: Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, Arnaud Vrac <avrac@freebox.fr>, 
+ Pierre-Hugues Husson <phhusson@freebox.fr>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Marc Gonzalez <mgonzalez@freebox.fr>
+X-Mailer: b4 0.13.0
 
-Hi Lorenzo,
+TDP158 is an AC-coupled DVI / HDMI to TMDS level shifting Redriver.
 
-kernel test robot noticed the following build errors:
+Like the TFP410, the TDP158 can be set up in 2 different ways:
+1) hard-coding its configuration settings using pin-strapping resistors
+2) placing it on an I2C bus, and defer set-up until run-time
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.11-rc3 next-20240812]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+The mode is selected by pin 8 = I2C_EN
+I2C_EN = 1 ==> I2C Control Mode
+I2C_EN = 0 ==> Pin Strap Mode
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Lorenzo-Bianconi/dt-bindings-pwm-Document-Airoha-EN7581-PWM/20240812-003542
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/d5abef7ee63f2c5df8bf3400c4d8a5ff72c706a9.1723393857.git.lorenzo%40kernel.org
-patch subject: [PATCH v2 2/2] pwm: airoha: Add support for EN7581 SoC
-config: i386-allyesconfig (https://download.01.org/0day-ci/archive/20240812/202408122207.joypBYZD-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240812/202408122207.joypBYZD-lkp@intel.com/reproduce)
+On our board, I2C_EN is pulled high (hard-wired).
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408122207.joypBYZD-lkp@intel.com/
+---
+Changes in v5:
+- Add BSD-2-Clause option in YAML binding (Rob) + add Rob's tag
+- Link to v4: https://lore.kernel.org/r/20240730-tdp158-v4-0-da69001bdea2@freebox.fr
 
-All errors (new ones prefixed by >>):
+Changes in v4:
+- Rebase series on top of v6.11-rc1
+- Add blurb about I2C vs pin strap mode in cover letter
+- Add blurb about I2C vs pin strap mode in binding commit message
+- Add blurb about I2C mode in driver commit message
+- Add comment in binding explaining when reg is required
+- Add comment in binding describing Operation Enable / Reset Pin
+- Link to v3: https://lore.kernel.org/r/20240627-tdp158-v3-0-fb2fbc808346@freebox.fr
 
-   ld: drivers/pwm/pwm-airoha.o: in function `airoha_pwm_config_flash_map':
->> pwm-airoha.c:(.text+0x127): undefined reference to `__ffsdi2'
-   ld: drivers/pwm/pwm-airoha.o: in function `airoha_pwm_config_waveform':
-   pwm-airoha.c:(.text+0x1ed): undefined reference to `__ffsdi2'
->> ld: pwm-airoha.c:(.text+0x26f): undefined reference to `__ffsdi2'
+Changes in v3:
+- Add 'select DRM_PANEL_BRIDGE' in driver Kconfig
+- Fix checkpatch errors
+- log errors using dev_err (so save dev pointer)
+- expand a few error messages
+- expand commit messages with info from the datasheet
+- mark regulators as required in the DT binding
+- Link to v2: https://lore.kernel.org/r/20240625-tdp158-v2-0-a3b344707fa7@freebox.fr
 
+Changes in v2:
+- Don't overload simple-bridge, spin new minimal driver
+- New driver, new binding
+- Default device settings work fine for us, so we don't tweak registers
+- Link to v1: https://lore.kernel.org/r/20240617-tdp158-v1-0-df98ef7dec6d@freebox.fr
+
+- Link to v0b: https://lore.kernel.org/r/b41f2f86-0d99-4199-92a9-42cbb9d6a6d5@freebox.fr/
+
+- Link to v0a: https://lore.kernel.org/r/d3de652f-ce89-4f57-b900-07b11f8bf8f9@free.fr/
+
+---
+Marc Gonzalez (2):
+      dt-bindings: display: bridge: add TI TDP158
+      drm/bridge: add support for TI TDP158
+
+ .../bindings/display/bridge/ti,tdp158.yaml         |  57 +++++++++++
+ drivers/gpu/drm/bridge/Kconfig                     |   7 ++
+ drivers/gpu/drm/bridge/Makefile                    |   1 +
+ drivers/gpu/drm/bridge/ti-tdp158.c                 | 108 +++++++++++++++++++++
+ 4 files changed, 173 insertions(+)
+---
+base-commit: c6072668fcfb13295b600747dbd89f00da1a4ed9
+change-id: 20240617-tdp158-418200d6cc0b
+
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Marc Gonzalez <mgonzalez@freebox.fr>
+
 
