@@ -1,165 +1,125 @@
-Return-Path: <devicetree+bounces-92910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6F6C94EC71
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 14:10:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EDFA94ECC2
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 14:20:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 170121C218E0
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 12:10:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 093111F2117C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 12:20:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ED5C179203;
-	Mon, 12 Aug 2024 12:10:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C18B16E871;
+	Mon, 12 Aug 2024 12:20:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Actt2aat"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cMbjAZL/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B96C917276D;
-	Mon, 12 Aug 2024 12:10:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BD1D1E488;
+	Mon, 12 Aug 2024 12:20:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723464633; cv=none; b=iZ4zQSacHH6wOGmzbtizuhYLbEgit2oHqsOA3qkU1QEqZg5rh4peGcS63JAeTJCcVQ/DQBAH5vn+WfswDvG1ZqLikmBXP5ZNGKcKTd7aQ4RAtxq8vrIOSGdsDjD7kJjD5oHYMwSbgfc9m98ouHOkiLefrsloTKylbY9HslGV05A=
+	t=1723465253; cv=none; b=I+tt9s5u/GvTMBD4Yckf0zKko4Pu2Q1ZCUiW6eh/xS3BZUVzokitAv6HhsNa/X5+mLaUFEM8EZHbBp8VBju88WiMsEt8KNX7uLEFmV9XonzD1wo5nvhjrHZkua7vV8RzUhNtx9y5B/9QDH2f0hHgHr8CbwWWJf6gnUyqbtu6dP0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723464633; c=relaxed/simple;
-	bh=Kf8udl+RPQSi7axWxfKiTe4EjZPZKVepns9CIQZinkE=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NBE1zdR3XttNavegrBVkBXFaq0KQd16fXBh07HT3raThJlvZXHtY1PJBLlx4H/H5yFnJpEvuD3tCz8mDCWsaIlJKJAZJb/vlYPpzHotWiY8A8IP7SwWm+jtD+mMTV3OCUTJr9gRuPSmwFRhwa04w8JUmBmWPVZ1QflUxCZVA5og=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Actt2aat; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-36bd70f6522so2318382f8f.1;
-        Mon, 12 Aug 2024 05:10:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723464629; x=1724069429; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=iqYcq999gsKKejZxZSj4pJ4zXAJ4qw8TpEhYqcXSNdM=;
-        b=Actt2aatPPohW/NJ58gob8yQvfQof8OVmofjrxbYHFcf/0EzVlGT//hKkSR8VJJQFI
-         LnN8Y8z+oOmNsvtvn8BwCplQkmdMW36TrXe4Tnom2N/tn6y2t4gNvwh25MO4OH1RiFkj
-         ogBZocELVt/3PVJqOwXdge2WhAGCzBnDmgR5GYcieBENBALxZCaktHT7srdo3EGlfpQy
-         CnCKyWbhgkRo7OSXea9f0b00o7ZcBwgmaTx2fFMGLEl2mxCdvBwU7uzJ571I7Oa3C+nV
-         lUp/Cgb/Peohyw4FYxNHP3LwGqv0UBD0/oG6VI605BchtMLLnFTkvJnke6hivZCYxwGU
-         ZLaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723464629; x=1724069429;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iqYcq999gsKKejZxZSj4pJ4zXAJ4qw8TpEhYqcXSNdM=;
-        b=dsZ9KCI6lTP/tGN92hljq0Isq1+sMriC9gHI9MWeW3S80w8UtH+jHlasCKzN/avten
-         KiDPuWbtmTjRW6AQW2oCiTItJojOE9rOxXlmlKM9OiKA4klABpctVzRJmTSakU0D5p7S
-         mYlu4nNe9ocSkWtqRaOnDehKlgRXeuVlGVLv1oNyFrzH1rAusSnnn3x2LN6OvZ42tFlW
-         zzuerZCFihofqgY4oFEEA5/vrcKH72nIJsPPXJgWdSciGHBqEnS/XeFnqRuKyudN9LdR
-         O3/DYNq/4BATJsE40qkU08Mhv/cPSzXK27dHvC/8VhQgFdd65b81De2HSxyzP6cpsGHH
-         313w==
-X-Forwarded-Encrypted: i=1; AJvYcCVFBZRb3h/q/lKmpIZSyCkobUwLUO3EuG0lDzSBEzNdfL7TXPTvJQZo8R60FIQxYmnR/GFW2R7tcA+F@vger.kernel.org, AJvYcCWOMvc/BBuxSFebtxsPS1SBvSif3KBcNOjeHnKZWtmTOZVexD+Lecj7w3osx8UncuJ4BCrBPTZ3qeSytGFM@vger.kernel.org, AJvYcCXh9lIQRnLoPiQRhtvobJQ0x+Rc6Wj1YicQn3vgtItxnVNC0Drs1EdnBsOdmcEv+TkO2vJsn9O1tEWq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy1x7e8HSRyxwOhC29bHdIYN02mfKL9JECiMEFbedEsQCbSQYNm
-	baWBmzZyCGb7kkjajx39YBD20NVqPQgfJY+pNmY6AXFskDqyEh2l
-X-Google-Smtp-Source: AGHT+IFSR5C1hi+8j8Ydkfy62l96VSbCD6ttYmxsw3lESIi7Z9k7B2B1FgWmEng6FK8xhpk8Hz2Qyg==
-X-Received: by 2002:adf:f902:0:b0:367:91d8:a1d2 with SMTP id ffacd0b85a97d-3716ccfc64dmr97552f8f.30.1723464628820;
-        Mon, 12 Aug 2024 05:10:28 -0700 (PDT)
-Received: from Ansuel-XPS. (host-79-52-250-20.retail.telecomitalia.it. [79.52.250.20])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36e4e51ea82sm7362857f8f.72.2024.08.12.05.10.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Aug 2024 05:10:28 -0700 (PDT)
-Message-ID: <66b9fbb4.df0a0220.3bee6e.1e99@mx.google.com>
-X-Google-Original-Message-ID: <Zrn7tHHev-ydxq8n@Ansuel-XPS.>
-Date: Mon, 12 Aug 2024 14:10:28 +0200
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Christoph Hellwig <hch@lst.de>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Joern Engel <joern@lazybastard.org>,
-	Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@kernel.dk>,
-	Sagi Grimberg <sagi@grimberg.me>,
-	Saravana Kannan <saravanak@google.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Florian Fainelli <f.fainelli@gmail.com>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mtd@lists.infradead.org, linux-nvme@lists.infradead.org
-Subject: Re: [PATCH v4 2/7] nvme: assign of_node to nvme device
-References: <20240809172106.25892-1-ansuelsmth@gmail.com>
- <20240809172106.25892-3-ansuelsmth@gmail.com>
- <20240812111205.GC14300@lst.de>
+	s=arc-20240116; t=1723465253; c=relaxed/simple;
+	bh=1YupIR/WrFatl2Xt2QU3NY9HGthGZzzdM1AN2OFbVoY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=rcf2Vi/DFToxRUG26saPhJX50MQSrdvH6g2v1lD4/juO7vU0JEFsKKgmCJB6bK5Uj4lyzPXs/mFsg1ef61p9o27Lk/joidl22nJ6GqRgJkQzGY7jeUwOduOyBdhX4DLOvO2L3nRPJbjucWaM5xnmxlZXIaBfqddq1mZisa4F1Zg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cMbjAZL/; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47CBGirj013406;
+	Mon, 12 Aug 2024 12:20:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	qWPtKDhp4eEtFiuCOfIQxpQ/ou+Qfq27kgkQVcx5ZkI=; b=cMbjAZL/yhVHT5Ui
+	x8Hup7xL1YOojbz8FmcwV2ct2GZgqnrHbB43uMEtHC7r644c7LgJRhncPs1yR12Q
+	9X3saVd5bh82b0L3OfaiurJGi/l+ol7x88PAWUbFe+Ot90I1MvoGrxCMP9xiIwrg
+	B6r2xxsT8ecCUB45UInvJNZFcTV73UWiyX02tjvUnN3PnzHlpNGbOIpd+hCvE2ra
+	ZapPvY84SrHDlg8LwX80vfSF1cJ41lNtULO5q2szhJ1gEPoZI8q8Uuiqq+DjZ3/h
+	iF7bbSqOXa8F4m/sNdOkdl++lzfmbgvvdH9xkxYgmJc7WV8PKeyONDWLHHwlt7YY
+	7R57/g==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40x17y43ay-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 Aug 2024 12:20:47 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47CCKkbg025121
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 Aug 2024 12:20:46 GMT
+Received: from [10.239.97.152] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 12 Aug
+ 2024 05:20:41 -0700
+Message-ID: <8b2ce0a5-ac79-462f-aed1-48de90973a66@quicinc.com>
+Date: Mon, 12 Aug 2024 20:20:38 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240812111205.GC14300@lst.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 04/13] media: qcom: camss: csiphy: Add an init callback to
+ CSI PHY devices
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Vladimir Zapolskiy
+	<vladimir.zapolskiy@linaro.org>,
+        <rfoss@kernel.org>, <todor.too@gmail.com>, <mchehab@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <quic_eberman@quicinc.com>, <linux-media@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
+References: <20240709160656.31146-1-quic_depengs@quicinc.com>
+ <20240709160656.31146-5-quic_depengs@quicinc.com>
+ <6dfc2c79-fc6d-4eed-bf3f-94396130cb4f@linaro.org>
+ <fafda7d5-3853-428a-b0eb-9993fc2d4f56@linaro.org>
+ <4426c0e0-f877-409c-b2d2-a5aac5e8c645@linaro.org>
+ <1226d080-d1fc-4e06-ac81-84e93cb314e0@quicinc.com>
+ <8f935a7d-87b5-479c-a98e-c95671dbe259@linaro.org>
+ <7c03280f-908d-435d-acef-b6bf4f865029@quicinc.com>
+ <ff12ce12-41d6-4aa5-ab97-222b07146e36@linaro.org>
+ <3241cc15-c920-4c88-ac53-005903baf9e7@quicinc.com>
+ <e7476a09-4e11-4171-89ed-61b41c9f5cc9@linaro.org>
+Content-Language: en-US
+From: Depeng Shao <quic_depengs@quicinc.com>
+In-Reply-To: <e7476a09-4e11-4171-89ed-61b41c9f5cc9@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: aAMEPhFpRKYy2-ETS2FBa9e58br64j89
+X-Proofpoint-ORIG-GUID: aAMEPhFpRKYy2-ETS2FBa9e58br64j89
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-12_02,2024-08-12_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ bulkscore=0 adultscore=0 impostorscore=0 spamscore=0 mlxlogscore=838
+ suspectscore=0 phishscore=0 clxscore=1015 mlxscore=0 malwarescore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408120092
 
-On Mon, Aug 12, 2024 at 01:12:05PM +0200, Christoph Hellwig wrote:
-> On Fri, Aug 09, 2024 at 07:21:00PM +0200, Christian Marangi wrote:
-> > Introduce support for a dedicated node for a nvme card. This will be a
-> > subnode of the nvme controller node that will have the "nvme-card"
-> > compatible.
+Hi Bryan,
+
+On 8/12/2024 7:32 PM, Bryan O'Donoghue wrote:
 > 
-> FYI, there really is no such thing as an NVMe card.  There is an
-> NVMe Namespace, which is the entity that contains the block data,
-> the Controller which corresponds to the pci_dev for NVMe-PCIe, and
-> the NVMe Subsystem, which contains Controllers and Namespaces.
->
-
-The chosen name was arbritrary just to follow eMMC ones. Can totally
-change if problematic.
-
-> > This follow a similar implementation done for mmc where the specific mmc
-> > card have a dedicated of_node.
+> Ah, I hadn't recalled why the .init was added -> because sequencing.
 > 
-> That's not a good explanation to be honest.  Most eMMC host controllers
-> are OF probed devices, so of course they'll have an of_node.
-> 
-> Binding PCIe functions to of_nodes seems completely weird to me, and
-> you'll need to explain what this totally non-obvious thing makes sense.
-> Maybe it does, but it needs to be backed up with a very good rationale
-> that is very clearly documented.
+> Lets retain the patch but expand the commit log to explain why the init 
+> is being added, instead of jumping through hoops to restructure to get 
+> rid of it.
 > 
 
-But support of OF for PCIe is already a thing for a long time. (it all
-works by setting the compatible of the PCIe ID card) and used in wifi
-card at assign MAC address, calibration data, disable frequency.
+Thanks for the confirmation. I will retain the patch and add more commit 
+log.
 
-In this context we would do a similar thing with declaring the NVMe with
-the PCIe ID card (already supported) and we add support for defining an
-additional subnode for usage of block2mtd.
-
-The subnode is needed to keep consistency in how the disk struct are
-defined with all the parenting levels.
-
-Just to stress it more... This is really for consistency as PCIe OF node
-are already a thing and on block2mtd (for example) the same thing can be
-done with something like
-
-disk->parent->parent.of_node (as it would point, if present, to the OF node
-of the PCIe card (the NVMe))
-
-With eMMC with the mmc-card subnode we would have to use
-
-disk->parent.of_node
-
-Not having this well organized and consistent schema in DT will result
-in additional condition in the drivers...
-
-Also consider that if the card is not detected, nothing is probed so
-those additional node won't cause any harm.
-
-If these 2 patch are problematic I can totally drop from the series but
-it was really to add consistency in NVMe and eMMC. The real important
-part is eMMC that is becoming the de-facto replacement for NAND/NOR on
-high tier devices (mostly wifi6/7 consumer router)
-
--- 
-	Ansuel
+Thanks,
+Depeng
 
