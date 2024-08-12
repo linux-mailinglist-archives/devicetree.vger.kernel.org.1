@@ -1,171 +1,156 @@
-Return-Path: <devicetree+bounces-93019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62E8294F521
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 18:45:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B65A394F52F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 18:47:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19F612815A5
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 16:45:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 440E2280EBA
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 16:47:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAE9E186E5E;
-	Mon, 12 Aug 2024 16:44:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26B20187345;
+	Mon, 12 Aug 2024 16:47:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lGn2GEoG"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="GQUCKUGK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BB8F183CCC;
-	Mon, 12 Aug 2024 16:44:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97A34186E34
+	for <devicetree@vger.kernel.org>; Mon, 12 Aug 2024 16:47:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723481096; cv=none; b=iwivcKSaJiy5n/11d/EBZTI0D9gglP6xv43qdQXQ4ktOiwyG6jt31FzVPxvYethQuWON8NAGHXrOBCpE5GqhRhEtDC01g9MiOgMxSnj+a3KganayPYg0S6Kny6nMv2MEciaaCvVRDV+dkA9N4JyHSBK5GD/ItrJi6QRuzdXmQf0=
+	t=1723481266; cv=none; b=dGsSYTf3t9OShTCbH+OGLxTGDIJxxvHfK61kaKwsbIy4kxch9DDF4woGcO67zNytV+zcv4F3kHUXGxH+cHdBWCSMTVJob/0zBkndqheU6hOF89aYrGt5FRtpbKGyqw6C2/WYP9l+OOvN2CmgIjaQL2sWas/5DbFPvwrm/Qdrer8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723481096; c=relaxed/simple;
-	bh=2KKDirWRCLyFGNIflIjMwFeB3i+VBV6GbkGbJa2X+XU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pVpkWNtO3oJMqZtkHdHlkTQf6MzE6AhmWnoGuF+KdDmzb0WaWHyuzXsceAGoiWzDhyQmcrileYXFkTImyshAb3T4Dxq/TZU6otq0foqlWzKsKvRCpZtS3wBOY5ZLbzwiwL/3YRa0nXjdwYLeVZtKzpIOtG3YqSHT3M+P0G5c4hI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lGn2GEoG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2668C32782;
-	Mon, 12 Aug 2024 16:44:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723481096;
-	bh=2KKDirWRCLyFGNIflIjMwFeB3i+VBV6GbkGbJa2X+XU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lGn2GEoG5+mMZA6QMhnL2IR7dBH0NUBSZi3bg+1jeuINBMa6I86ttRzuUWko8B+Ll
-	 mIBTWIBpP1GxeiRHtRa8MqbcdmJQJrJD5Y1CCfYNl5sS/6Q4EZy2lHrzjUZDbSTyhz
-	 arzrSO/R0NDL2spChAAeh9tgWu2C9E5sgzkCgKBLrBESuJ4CZ0MMKvP8pqvVpuezYV
-	 pfxrNcR45pOCKjpHlRxEIfURxNTEpKsAYNIFMgtf8RS9sGndg4q01D+j3Qex/8B2zY
-	 j7Poiq8lGTJ4kAMQmB6WAq7glpxS4JErniRdU5pGrb6CqLcT7XoFuMmm1M0YWa2fSP
-	 iAXbQTOf1PZqw==
-Date: Mon, 12 Aug 2024 17:44:50 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	"open list:ETHERNET PHY LIBRARY" <netdev@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] dt-bindings: net: mdio: Add negative patten match
- for child node
-Message-ID: <20240812-unmoving-viscosity-5f03dfd87f1f@spud>
-References: <20240812031114.3798487-1-Frank.Li@nxp.com>
+	s=arc-20240116; t=1723481266; c=relaxed/simple;
+	bh=dvVG0rsyTzj5mqsxi11/XWlFc+7NA1zur2Arrxl7HdI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kU7O11QS67uluqjmYUmIxzA5qMBDkCtgSzoemq4njgrs7ogHZGbnJZoJ8F2+B2W5mKF3tomn5ZdPuE/HLz3xc+Q3VIKhNMX+HHULVsCc4INMHha/QdbgWJyAGIv1GZ+2qFYYjeKGKeXo+dzAVmsjTfeQGc9OmFSkXMRFphvPL2E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=GQUCKUGK; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-1fd90c2fc68so30817475ad.1
+        for <devicetree@vger.kernel.org>; Mon, 12 Aug 2024 09:47:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1723481263; x=1724086063; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=C1gGdvqcddohTVFT8kQob0xd7CgQ7ZF2Hz/Ht3G6YiU=;
+        b=GQUCKUGK1UkE6dGYTSe4HwO96ytgn7Psgcz/r+u38ndSdQIXkdn63K27EsG78sOa0M
+         tgCwQQGWY2k+OVZXLCse9Xo4ROVA3PPGDMHcWkZZUHhqkJDfRCNCgS+W4o83avB3OLmy
+         ys8y0vkS8Y3r4tsp6JngAQ6KS0v2ymIdWbBYoEZOYZYBLsp3vgRqQMXHhV0eq6Su3K2w
+         I3UqCyqlpAGwa5ZGD8bal2XH2Rs/+ND93onbs+PHx1u38W37DDpH2Vt04R+h4HBNDNf8
+         /rr2s7Yfc9ZsqM2vregNZ/5Jt+PF9hJJZuqsLVckFdk2OjanN5+yVB058WjqL+j4vL6w
+         Q1AA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723481263; x=1724086063;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=C1gGdvqcddohTVFT8kQob0xd7CgQ7ZF2Hz/Ht3G6YiU=;
+        b=JxEABTR5r2DL+7g0M/sKzINkaL+uz4SB3X1JpEYa7UKXPdaJHqtm2RGaqoqCokPP5v
+         9CehONz+LnAg3EBfkJv6JgO6BK4h5oalAzXS0RFQamDTnULsUCyPAvdCB/vHBkj85skS
+         AOYqvdOn+oxrrp71+NzQ26EJAsnNmBoHTrxE+RZBW+b44EHRFeeQs2B/Ow5ow88nhAAz
+         hYQxLZBP5tiKzhnSiZapT3N6eXsIaollqFrFBb8LICVZN3VsHIH1rCGYROKq2MibfJSc
+         mf1x+s5sG7d7GbFtRH8Pkd0Se+g8ShUqiXG28vll4zde/EVPUADaZD0s6qeqN0TxJ+be
+         kV4g==
+X-Forwarded-Encrypted: i=1; AJvYcCViwc7xA36mO2bHvrajZz3Cw6SKCIdbEoytSz3jTo9hkSOsbLrVPiJV6oX2fBQBCUMNKM0ZJaH+4YAksNj2Xd1jJMryRVjPTDWy8A==
+X-Gm-Message-State: AOJu0YyKAez6FO45XiYoPE+rm8ciYWm3i43dys4tdH5Rt19/VF2KFF9n
+	2LG/AJZefSi8g8NFDKcd+dXaMfSXl7mLvf65MKnS1jyrOoSBwLrjvKT4EIautvE=
+X-Google-Smtp-Source: AGHT+IE87fk8grq8YxzQ9ZqK4uANOdymebfW6zNzfLJz+Z6OjMVTMLP9gdbfzi43oiHSHopfRLN5Zg==
+X-Received: by 2002:a17:902:e80a:b0:1fc:2e38:d3de with SMTP id d9443c01a7336-201ca120563mr9639125ad.7.1723481262725;
+        Mon, 12 Aug 2024 09:47:42 -0700 (PDT)
+Received: from [10.4.10.38] (pool-108-26-179-17.bstnma.fios.verizon.net. [108.26.179.17])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-200bbb3b2easm40030505ad.284.2024.08.12.09.47.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Aug 2024 09:47:42 -0700 (PDT)
+Message-ID: <72e49c54-6473-413b-a4b4-4d0d67a41923@rivosinc.com>
+Date: Mon, 12 Aug 2024 12:47:37 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="kH+ai/ND89N9wHWS"
-Content-Disposition: inline
-In-Reply-To: <20240812031114.3798487-1-Frank.Li@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] dt-bindings: riscv: Add Zicclsm ISA extension
+ description.
+To: Conor Dooley <conor@kernel.org>, Charlie Jenkins <charlie@rivosinc.com>
+Cc: Rob Herring <robh@kernel.org>, linux-riscv@lists.infradead.org,
+ Jonathan Corbet <corbet@lwn.net>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?=
+ <cleger@rivosinc.com>, Evan Green <evan@rivosinc.com>,
+ Andrew Jones <ajones@ventanamicro.com>, Xiao Wang <xiao.w.wang@intel.com>,
+ Andy Chiu <andy.chiu@sifive.com>, Eric Biggers <ebiggers@google.com>,
+ Greentime Hu <greentime.hu@sifive.com>, =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?=
+ <bjorn@rivosinc.com>, Heiko Stuebner <heiko@sntech.de>,
+ Costa Shulyupin <costa.shul@redhat.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Baoquan He <bhe@redhat.com>,
+ Anup Patel <apatel@ventanamicro.com>, Zong Li <zong.li@sifive.com>,
+ Sami Tolvanen <samitolvanen@google.com>,
+ Ben Dooks <ben.dooks@codethink.co.uk>,
+ Alexandre Ghiti <alexghiti@rivosinc.com>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ Erick Archer <erick.archer@gmx.com>, Joel Granados <j.granados@samsung.com>,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
+References: <20240809162240.1842373-1-jesse@rivosinc.com>
+ <20240809162240.1842373-3-jesse@rivosinc.com>
+ <20240809181536.GA976083-robh@kernel.org> <ZrZmTvJgyQ5nB70H@ghost>
+ <20240812-rogue-enable-9194afe10621@spud>
+Content-Language: en-US
+From: Jesse Taube <jesse@rivosinc.com>
+In-Reply-To: <20240812-rogue-enable-9194afe10621@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
---kH+ai/ND89N9wHWS
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Sun, Aug 11, 2024 at 11:11:14PM -0400, Frank Li wrote:
-> mdio.yaml wrong parser mdio controller's address instead phy's address wh=
-en
-> mdio-mux exist.
->=20
-> For example:
-> mdio-mux-emi1@54 {
-> 	compatible =3D "mdio-mux-mmioreg", "mdio-mux";
->=20
->         mdio@20 {
-> 		reg =3D <0x20>;
-> 		       ^^^ This is mdio controller register
->=20
-> 		ethernet-phy@2 {
-> 			reg =3D <0x2>;
->                               ^^^ This phy's address
-> 		};
-> 	};
-> };
+On 8/12/24 11:56, Conor Dooley wrote:
+> On Fri, Aug 09, 2024 at 11:56:14AM -0700, Charlie Jenkins wrote:
+>> On Fri, Aug 09, 2024 at 12:15:36PM -0600, Rob Herring wrote:
+>>> On Fri, Aug 09, 2024 at 12:22:40PM -0400, Jesse Taube wrote:
+>>>> Add description for Zicclsm ISA extension.
+>>>>
+>>>> Signed-off-by: Jesse Taube <jesse@rivosinc.com>
+>>>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>> Reviewed-by: Charlie Jenkins <charlie@rivosinc.com>
+>>>> ---
+>>>> V1 -> V2:
+>>>>   - New patch
+>>>> V2 -> V3:
+>>>>   - No changes
+>>>> V3 -> V4:
+>>>>   - No changes
+>>>> V4 -> V5:
+>>>>   - No changes
+>>>> V5 -> V6:
+>>>>   - No changes
+>>>> V6 -> V7:
+>>>>   - No changes
+>>>> V7 -> V8:
+>>>>   - Rebase onto 2d1f51d8a4b0 (palmer/for-next)
+>>>
+>>> Please also put the version in the subject. '-vN' is the git-send-email
+>>> option to do it for you.
+>>>
+>>> Rob
+>>>
+>>
+>> These patches were originally part of a different series [1] but are no
+>> longer related to that series so I had asked Jesse to spin these off into a
+>> different series. These version tags probably should not have been left
+>> on here when made into this new series though.
+> 
+> I dunno, I disagree. I think the versioning should continue on being
+> split - especially when there's been tags provided on earlier versions.
 
-I don't understand MDIO well enough to know the answer - does this
-actually solve the problem? It seems to me that the problem is that
-mdio.yaml is applied to the mdio-mux node because it matches the pattern
-"^mdio(@.*)?" that applies the binding based on node-names. If the
-properties in mdio.yaml do not apply to mdio muxes, then the binding
-should not be applied and the patch here is only treating a symptom
-rather than the actual problem.
+Good to know I should keep the version number when splinting a set.
 
-=46rom a quick check, I don't see any of the mdio-mux-mmioreg nodes using
-the properties from mdio.yaml, so should the binding be applied to them
-at all?
-
-Cheers,
-Conor.
-
-
-FWIW, adding a $ after the ? in the pattern I linked would stop the
-binding being applied to the mdio-mux nodes, but if something like that
-were done, all mdio nodes would need to be checked to ensure they match
-the new pattern...
-
-
->=20
-> Only phy's address is limited to 31 because MDIO bus defination.
->=20
-> But CHECK_DTBS report below warning:
->=20
-> arch/arm64/boot/dts/freescale/fsl-ls1043a-qds.dtb: mdio-mux-emi1@54:
-> 	mdio@20:reg:0:0: 32 is greater than the maximum of 31
->=20
-> The reason is that "mdio@20" match "patternProperties: '@[0-9a-f]+$'" in
-> mdio.yaml.
->=20
-> Change to '^(?!mdio@).*@[0-9a-f]+$' to avoid match parent's mdio
-> controller's address.
->=20
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  Documentation/devicetree/bindings/net/mdio.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/mdio.yaml b/Documentat=
-ion/devicetree/bindings/net/mdio.yaml
-> index a266ade918ca7..a7def3eb4674d 100644
-> --- a/Documentation/devicetree/bindings/net/mdio.yaml
-> +++ b/Documentation/devicetree/bindings/net/mdio.yaml
-> @@ -59,7 +59,7 @@ properties:
->      type: boolean
-> =20
->  patternProperties:
-> -  '@[0-9a-f]+$':
-> +  '^(?!mdio@).*@[0-9a-f]+$':
->      type: object
-> =20
->      properties:
-> --=20
-> 2.34.1
->=20
-
---kH+ai/ND89N9wHWS
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZro8AgAKCRB4tDGHoIJi
-0mPgAP901yLmgljlIK02ytzDSbo3W7Tr4fIWkLT+81cA1NMr3QD+KIz3cHhvDZ3I
-JllrKy8z3fObL8klZ02PBpDvChhibQI=
-=nO2U
------END PGP SIGNATURE-----
-
---kH+ai/ND89N9wHWS--
+Thanks,
+Jesse
 
