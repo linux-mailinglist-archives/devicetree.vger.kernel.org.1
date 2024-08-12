@@ -1,93 +1,153 @@
-Return-Path: <devicetree+bounces-92767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92765-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5428D94E4BB
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 04:21:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BF6994E4B2
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 04:17:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B29FD280CB8
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 02:21:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 299C0280AAD
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 02:17:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E414F8175B;
-	Mon, 12 Aug 2024 02:21:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A2316A33F;
+	Mon, 12 Aug 2024 02:17:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="b51yF12b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 515A87173C;
-	Mon, 12 Aug 2024 02:21:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8DB54D8D1;
+	Mon, 12 Aug 2024 02:17:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723429283; cv=none; b=LgrDYxob/s0AUAIsGy4j5oqvkbDznLEIhNVGL9OjoclJ/jKo3mPl3I0UWUeNmli0Fi7mYdfQuEy0rtNEkIlJDRSny+HnOdh1nqug0jET4GkMlqm2qFg68fggzOgoLK48cXN2qyS868iH+TntDWWu6ewi5cK+JT3qgU2x9Llp2mk=
+	t=1723429038; cv=none; b=anv8vxZukfpOi7AbkDDkE0EWVXhaXxk95FKPBzJ+d3vyI47Q2cyXS8ZKnKxZla3x+cRg52SoJzZL+17WoH73BEEBwCR0zJx9IPKN8AbXT7xs83uMdyOiagM1w3BGtjA/qAA12xbKxLdORc88TTaSu2JTvd1jbloFWBOqOE9FjQc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723429283; c=relaxed/simple;
-	bh=ZVb80+3Oq81PRDmhbU8kSUzYiBenncm5i+GG/eZ+T2U=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=mPMdXKDdPWzYwdAZ+D8FZNLcboQ1MkHDzAs7O6NtbUbZ4vmtWxphuMEGl5ZaI51KETtryCVs4zaNPAFWcNyaBqK+9q6HyHyEjMYtz52zBJK1Abu+Aml7Fai2iC/LbKqXSlB3YdgvAdfk4Ywd77SGFbbrIoS/VHn3T2HPpRwT+t8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id C70852010C4;
-	Mon, 12 Aug 2024 04:21:20 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 8D578200FF3;
-	Mon, 12 Aug 2024 04:21:20 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 8635F183ACAC;
-	Mon, 12 Aug 2024 10:21:18 +0800 (+08)
-From: Richard Zhu <hongxing.zhu@nxp.com>
-To: tj@kernel.org,
-	dlemoal@kernel.org,
-	cassel@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	festevam@gmail.com
-Cc: linux-ide@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	imx@lists.linux.dev,
-	kernel@pengutronix.de,
-	Richard Zhu <hongxing.zhu@nxp.com>
-Subject: [PATCH v6 5/5] ata: ahci_imx: Correct the email address
-Date: Mon, 12 Aug 2024 10:00:55 +0800
-Message-Id: <1723428055-27021-6-git-send-email-hongxing.zhu@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1723428055-27021-1-git-send-email-hongxing.zhu@nxp.com>
-References: <1723428055-27021-1-git-send-email-hongxing.zhu@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+	s=arc-20240116; t=1723429038; c=relaxed/simple;
+	bh=eNJmkuy473QfputWPuGfbgt/GM+vVkAEV3gKpMsVY8M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=t3MPSzWWL4PKwt7fvPNdNSTSBJt0fYxeZNrfnqoNTEIMudk6R4TkWglYCUWp6+dq+q0I41IJTMDADR/sDjQBQptLwEh50/+pje/x6Lop61mxwbGrLVetskDde5Y0k5mTJMLToN6tlCEZbsE2UgCF2E1fDYP1NLG/oLHYyjHoNJk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=b51yF12b; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47C0roA5020712;
+	Mon, 12 Aug 2024 02:17:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	EktNzuBr5I0VBlujbZBE6+gNvIG9gnMzHXxJVmvAvfU=; b=b51yF12b8cCQpL6n
+	BkkAV0gEa8Yw8DeQBxvJMeaMahZg9veVugsSJPJfeIRcoUXAXwWVjZ+Ojr1yhDpT
+	ij4AMS6Wy8Y6hUoPfZpND1d2YBVs0qR8+4y2aTHTGJibhewLiZHFq3qwvcWkI8xq
+	HUEu5J3k09LyOf2adHrny3e/+6zWDHFZz/b1ud5SnIUxi9PgflV0Iw6qLhlnJ/Aq
+	5rFkH4kM3r8WpP231Aes4KKauaVr4fCanCvWapVFd5CI2at5ArekzKQ6J7Jvp3St
+	IUduBC2o/x+qlqPbvXOci6yqYjpM+iWOPDLRHl8N+QfwxXjsaQ1i7TDkcBwCVjZ3
+	LUKtSw==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40x18dakvx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 Aug 2024 02:17:00 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47C2GxgI021978
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 Aug 2024 02:16:59 GMT
+Received: from [10.233.17.145] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 11 Aug
+ 2024 19:16:54 -0700
+Message-ID: <0d1c44b9-3d5f-4d93-af64-1756e52f4fe3@quicinc.com>
+Date: Mon, 12 Aug 2024 10:16:51 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: sa8775p-ride: Add QCS9100
+ compatible
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Tengfei Fan
+	<quic_tengfan@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad
+ Dybcio" <konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20240806-add_qcs9100_soc_id-v1-0-04d14081f304@quicinc.com>
+ <20240806-add_qcs9100_soc_id-v1-4-04d14081f304@quicinc.com>
+ <90eae361-7d5d-440f-a85d-dfd81b384fe7@kernel.org>
+ <4a350e94-3c95-48e1-9ea8-ced483c1aa45@quicinc.com>
+ <14ec06bd-0c27-4930-8bce-d3f5b68067ed@kernel.org>
+ <ace5b3e1-f4a2-4c04-821a-e797d0f55cae@quicinc.com>
+ <9323127a-e6b5-4835-afa0-4ce0086fd9d1@kernel.org>
+From: Tingwei Zhang <quic_tingweiz@quicinc.com>
+In-Reply-To: <9323127a-e6b5-4835-afa0-4ce0086fd9d1@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: toWu91HfSVwBmbyZxksFp58moRO83V8p
+X-Proofpoint-ORIG-GUID: toWu91HfSVwBmbyZxksFp58moRO83V8p
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-11_25,2024-08-07_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ bulkscore=0 phishscore=0 clxscore=1015 adultscore=0 spamscore=0
+ priorityscore=1501 mlxscore=0 malwarescore=0 suspectscore=0
+ mlxlogscore=639 impostorscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2407110000 definitions=main-2408120015
 
-Correct the email address of driver author.
+On 8/8/2024 7:05 PM, Krzysztof Kozlowski wrote:
+> On 07/08/2024 13:04, Tingwei Zhang wrote:
+>> On 8/7/2024 5:35 PM, Krzysztof Kozlowski wrote:
+>>> On 07/08/2024 11:17, Tengfei Fan wrote:
+>>>>
+>>>>
+>>>> On 8/7/2024 3:28 PM, Krzysztof Kozlowski wrote:
+>>>>> On 06/08/2024 06:19, Tengfei Fan wrote:
+>>>>>> Add QCS9100 compatible in sa8775p ride and sa8775p ride r3 board DTS.
+>>>>>> QCS9100 references SA8775p, they share the same SoC DTSI and board DTS.
+>>>>>>
+>>>>>
+>>>>> I don't understand this. You claim here that QCS9100 references SA8775p
+>>>>> but your diff says other way: SA8775p references QCS9100.
+>>>>>
+>>>>> Sorry, that's confusing.
+>>>>>
+>>>>> Best regards,
+>>>>> Krzysztof
+>>>>>
+>>>>
+>>>> I will update the compatible as follows to indicate that QCS9100
+>>>> references SA8775p.
+>>>>
+>>>> compatible = "qcom,sa8775p-ride", "qcom,qcs9100", "qcom,sa8775p";
+>>>
+>>> Is this still correct, though? sa8775p won't come with qcs9100 SoC.
+>> We have a new board. Hardware is same as sa877p-ride except sa8775p is
+>> replaced with qcs9100. We add qcs9100 SoC compatible to sa8775p-ride
+> 
+> Does "new board" mean that "old board" disappears? No users to care
+> about it? Or just the existing board is being changed (like new revision)?
 
-Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
----
- drivers/ata/ahci_imx.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+We will support both boards. Sa8775p-ride board with sa8775p chipset and 
+sa8775p-ride board with qcs9100 chipset. Both of them can be used for 
+development.
+> 
+> Best regards,
+> Krzysztof
+> 
 
-diff --git a/drivers/ata/ahci_imx.c b/drivers/ata/ahci_imx.c
-index 627b36cc4b5c1..65f98e8fdf07b 100644
---- a/drivers/ata/ahci_imx.c
-+++ b/drivers/ata/ahci_imx.c
-@@ -1036,6 +1036,6 @@ static struct platform_driver imx_ahci_driver = {
- module_platform_driver(imx_ahci_driver);
- 
- MODULE_DESCRIPTION("Freescale i.MX AHCI SATA platform driver");
--MODULE_AUTHOR("Richard Zhu <Hong-Xing.Zhu@freescale.com>");
-+MODULE_AUTHOR("Richard Zhu <hongxing.zhu@nxp.com>");
- MODULE_LICENSE("GPL");
- MODULE_ALIAS("platform:" DRV_NAME);
 -- 
-2.37.1
+Thanks,
+Tingwei
 
 
