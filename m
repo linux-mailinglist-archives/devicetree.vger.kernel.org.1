@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-92894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A55994EB9D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 13:12:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 333DC94EBBA
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 13:22:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46CEC281F79
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 11:12:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1701282832
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 11:22:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51582171E7C;
-	Mon, 12 Aug 2024 11:12:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F084B175D34;
+	Mon, 12 Aug 2024 11:22:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="CtMSXft8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CEC616F907;
-	Mon, 12 Aug 2024 11:12:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.95.11.211
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.18])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BC5F175D2B;
+	Mon, 12 Aug 2024 11:22:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723461133; cv=none; b=pi4/IpvsaH+oP/c6hET8VcejYYC4qczmL8lyqEa3/5LawpxZEVCG/WrVWK0AvlCXpiZ/6b72Uu81rbfkMtRFiOwRkm21dQC8O5IUQwvWz6w3AAwDldwzlZ/K08hYjr6raLzqJTs4P8yhBWv1fPBwhkcfPBm8emXwOjv9k9AaiYg=
+	t=1723461752; cv=none; b=qY36+adKehOqwX/o3+Ek4HF+oG1yS93xvzzXfqrXDNBXG1Tnv9doVmJUjnPbqy9Jnb5A8pT8TNmzQXNz0kHlxR3jvZsXFq9WnSW8Nt+YLfSmUesb00NiCZXoBvTwP98LBPOW53Rs3XCUzjicGPNmKTrEp2/Qq9DL8wfRF0lGN+c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723461133; c=relaxed/simple;
-	bh=lTkO43XlXsBUfQhW+gAh0hVjdpjqZL7wA1jPRyBW4ZM=;
+	s=arc-20240116; t=1723461752; c=relaxed/simple;
+	bh=4jaakDxvIcnXFdfZmyP2wnGK9yJak9z4Mq7GMeP72ho=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Dh6bmtnSnB/01XSmwzpqJPocNIdmgD4u7EG9IIhiD+MQj4OuXSKfg4UkfcqyBfkunmey7azbuCRXPz4IbJCaHF3F2VwSVXZetIsT9x93O+wdXyQ/CJyuPYKge7vYECl+cqF9Kb8ce4DrkJu/KN0PKqF5kF4WAgKYNqIvLUH75ms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lst.de; spf=pass smtp.mailfrom=lst.de; arc=none smtp.client-ip=213.95.11.211
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lst.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lst.de
-Received: by verein.lst.de (Postfix, from userid 2407)
-	id C778B68AFE; Mon, 12 Aug 2024 13:12:05 +0200 (CEST)
-Date: Mon, 12 Aug 2024 13:12:05 +0200
-From: Christoph Hellwig <hch@lst.de>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Joern Engel <joern@lazybastard.org>,
-	Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@kernel.dk>,
-	Christoph Hellwig <hch@lst.de>, Sagi Grimberg <sagi@grimberg.me>,
-	Saravana Kannan <saravanak@google.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Florian Fainelli <f.fainelli@gmail.com>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mtd@lists.infradead.org, linux-nvme@lists.infradead.org
-Subject: Re: [PATCH v4 2/7] nvme: assign of_node to nvme device
-Message-ID: <20240812111205.GC14300@lst.de>
-References: <20240809172106.25892-1-ansuelsmth@gmail.com> <20240809172106.25892-3-ansuelsmth@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=hPZ9wOZnRBr62f06gV1rBQ/CGysaBJFHWRGl3/pm0x5ocz4X5CIr+QaZnyYdH5xBdERXgBFt5kkjnBcLGsQlJaLa1mKjHET2jLleleGkcgBkpvo2KTUIgvFv0gFTcpAmOX+0UG6qBlvZ1lAq4UIpARC0dlWtz3/mpCFLj4Mncjc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=CtMSXft8; arc=none smtp.client-ip=220.197.32.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=7GykEmBrAEkBeuYpBhyNWSRhlT7wFBCLIkHl5OolLTE=;
+	b=CtMSXft8EokDC1cgHrt7nCWEMiT1Y6OSbt5/EYD3pTsPF1WtBhiuxHaOM6jWeZ
+	aWf8UINqVpf3rYvukrq+rZEOoxmVIoSFFq4OeApNfeQ4Jstk9lCREZC6Dvb7Vmth
+	eXeGlBnGky/UbrxglL24bgsSonby+ghsr1YdEfeXjeh+Q=
+Received: from dragon (unknown [117.62.10.86])
+	by gzsmtp3 (Coremail) with SMTP id M88vCgBHTrhJ8LlmglcQAg--.62044S3;
+	Mon, 12 Aug 2024 19:21:46 +0800 (CST)
+Date: Mon, 12 Aug 2024 19:21:44 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: imx8-ss-dma: add #address-cells and
+ #size-cells to LPI2C nodes
+Message-ID: <ZrnwSG3CSQYey1jS@dragon>
+References: <20240717135027.4116101-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,28 +60,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240809172106.25892-3-ansuelsmth@gmail.com>
-User-Agent: Mutt/1.5.17 (2007-11-01)
+In-Reply-To: <20240717135027.4116101-1-alexander.stein@ew.tq-group.com>
+X-CM-TRANSID:M88vCgBHTrhJ8LlmglcQAg--.62044S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUVLZ2DUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiER45ZWa5790BIQAAse
 
-On Fri, Aug 09, 2024 at 07:21:00PM +0200, Christian Marangi wrote:
-> Introduce support for a dedicated node for a nvme card. This will be a
-> subnode of the nvme controller node that will have the "nvme-card"
-> compatible.
+On Wed, Jul 17, 2024 at 03:50:25PM +0200, Alexander Stein wrote:
+> These properties are required by i2c-controller.yaml bindings.
+> Add them on SoC level, rather than on board level.
+> 
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-FYI, there really is no such thing as an NVMe card.  There is an
-NVMe Namespace, which is the entity that contains the block data,
-the Controller which corresponds to the pci_dev for NVMe-PCIe, and
-the NVMe Subsystem, which contains Controllers and Namespaces.
-
-> This follow a similar implementation done for mmc where the specific mmc
-> card have a dedicated of_node.
-
-That's not a good explanation to be honest.  Most eMMC host controllers
-are OF probed devices, so of course they'll have an of_node.
-
-Binding PCIe functions to of_nodes seems completely weird to me, and
-you'll need to explain what this totally non-obvious thing makes sense.
-Maybe it does, but it needs to be backed up with a very good rationale
-that is very clearly documented.
+Applied both, thanks!
 
 
