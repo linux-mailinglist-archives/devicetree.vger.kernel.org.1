@@ -1,51 +1,52 @@
-Return-Path: <devicetree+bounces-93041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16B5794F7D4
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 22:04:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC29A94F7D7
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 22:04:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8F59283DCE
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 20:04:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1BD11C22306
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 20:04:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB4C7192B86;
-	Mon, 12 Aug 2024 20:04:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7200193069;
+	Mon, 12 Aug 2024 20:04:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="VRQS9z7q"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="HSoKYcCK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF2B7191F85
-	for <devicetree@vger.kernel.org>; Mon, 12 Aug 2024 20:04:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C94C7192B69
+	for <devicetree@vger.kernel.org>; Mon, 12 Aug 2024 20:04:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723493077; cv=none; b=EhKSbHC+WWzzimlCHkh0l4dhZJn8W5u9rjXtPCp95AC0vGEqPCF10smpXipBWvBstAsK6B0O5K4xabJWsqeJvESvN5KR7Zonqru3gPIDryZR1lyxxY0crQv8EiCNEEVFVw5i0soVQbngI57mItRrXAxjf/ZeEeLV3+UllltNDKg=
+	t=1723493079; cv=none; b=Fy6lG5rnMAJDkOqoCyiSnle7Oj6m0JBZaTpjKkkv4TqCPIVm69JXYD6lTrJJHI/Q44C9wgPcluplBcCWFSiNJMbnSHUpb2Or/4UI4jmgvg0Q3Jekn/zG9mK/C2n/F03gAaoMWR0kA45rBiFVuR5EKbnMJf/EebECusaWzO+tE5w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723493077; c=relaxed/simple;
-	bh=YvzG+MJpGUYi5Lk2zrpZ5L1V+sCxpZkS2zgfwnI0ZDE=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=VOqD1LpyW0uo6D8EP3wQpjTmxGIlp6TOvBHG+XvGvaDgiG/A5oNAapg4KkDbnS+qBFoMmR06+I+BDmYXtwR3vj2Yto9Myd50aYSMct7gvwhVJeGlCDzgMyC2QUc6LC5PjRJFvzZ0AbK0maBtLoITsV+L6xAoGOuxAgSEL4atzWU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=VRQS9z7q; arc=none smtp.client-ip=212.227.15.15
+	s=arc-20240116; t=1723493079; c=relaxed/simple;
+	bh=66sqLesZesaEEQZtSkcsOnK45h18BcAFoyUpazRJzRY=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=KjxoHfT9kCNL0Ysfb1jKPiMNlWf2RnhcwCLoYH/2X3/qmvVEdqdCw/jQHKjgAr+SW9EWsEmz/TeNzxvc3K+NDy7gCuNSv8Ews01Tqx84IOe95+OcZ4Swq/Z/kNAE4yj+UvnHyUmZTLInHOUppxlxpHunXuDV75R53x5lP9UKHpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=HSoKYcCK; arc=none smtp.client-ip=212.227.15.18
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
 	s=s31663417; t=1723493052; x=1724097852; i=wahrenst@gmx.net;
-	bh=M6An+HbVerw4Xc90B+VnZiQHHexA47T4Dg9kUXglgRA=;
-	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-Id:
-	 MIME-Version:Content-Transfer-Encoding:cc:
+	bh=IMh4FjVIipmJTy4+pD0doUDz2cuv0Dpwf6VJPrLqVFQ=;
+	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-Id:In-Reply-To:
+	 References:MIME-Version:Content-Transfer-Encoding:cc:
 	 content-transfer-encoding:content-type:date:from:message-id:
 	 mime-version:reply-to:subject:to;
-	b=VRQS9z7qoRw5zcMtk8ZKrjpK3J+7Ewtzad0fMKfo3NnkNqv5sSv2pO+DLXmJ+Sbn
-	 +WC7yaHVlG0Ikb7uKcdEgPRmAY3lq+JZ/Zj28yI9Zmge2l/N6RgVpdvHf+PT1tAQh
-	 DFS+M8XJ8l8lbmm13hshrDR6bNbHNNDCnlz2G3M08cCbNCPUq7GKHoPfMKm1HS9FB
-	 ycXRLZ7lB4ZQfx81/qlSC2yQujpqfg9KTTEjWvCRS69/Gixd8UUTliXy76Ii2sDZU
-	 ziBHN56atka6jsxSbc/5NyQIXjmFLuCrCe3Ifa/d18Tgd4PUvRJVcoeR5F8/F1fjE
-	 mIMRiKLjoMbEYBzZMw==
+	b=HSoKYcCKaDwAuGVSafdjc9x5x3evNburRR72s+SKL7Er3Pp7+sT093g8OXCgUXES
+	 MGqKmLr8erA53NfYB7zfByONGtuvtWNpDWA/f9G4BR4BO43zr+CceGQs1sf+HPrbq
+	 c0zLsic/M7OgaOV+H3UFfxumqAE5yVAShp43rr4Qq5qLNeHnvfr69iOrI80uxW+wH
+	 /fNMhR+C02VoIIeoQwz60SsBU2Cw8bQlLsmJ2y4CTW9qWsvgA2EAGVlouM4iOV3LP
+	 1Hx4BSGb4yclezWO3N6Ok5ZcH0jw6bVuvOp0BaWy+DJ86pmLOKSPy/iT+D+hRYY4b
+	 EklyQC0sXSNNpIbwdw==
 X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
 Received: from stefanw-SCHENKER ([37.4.248.43]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MRCK6-1srqtk0hRU-00MrVI; Mon, 12
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MfYLa-1rxwrE2pei-00hyFw; Mon, 12
  Aug 2024 22:04:12 +0200
 From: Stefan Wahren <wahrenst@gmx.net>
 To: Thomas Gleixner <tglx@linutronix.de>,
@@ -62,10 +63,12 @@ Cc: Andrea della Porta <andrea.porta@suse.com>,
 	kernel-list@raspberrypi.com,
 	devicetree@vger.kernel.org,
 	Stefan Wahren <wahrenst@gmx.net>
-Subject: [PATCH V3 RESEND 0/4] ARM: dts: bcm283x: Improve device-trees and bindings
-Date: Mon, 12 Aug 2024 22:03:54 +0200
-Message-Id: <20240812200358.4061-1-wahrenst@gmx.net>
+Subject: [PATCH V3 RESEND 1/4] dt-bindings: timer: convert bcm2835-system-timer bindings to YAML
+Date: Mon, 12 Aug 2024 22:03:55 +0200
+Message-Id: <20240812200358.4061-2-wahrenst@gmx.net>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240812200358.4061-1-wahrenst@gmx.net>
+References: <20240812200358.4061-1-wahrenst@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,72 +76,130 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:E1CLL3kgmgqg0B2wPIB3WE6h5C1UDgMMFFfg8QeR17GsYImq97B
- J40vxCRZw1ZAx8SOiBhvIaChgh5CMHVbxZwS4LJ2kzRt20kkIHbOHV7IlbzdX109hwXPp8d
- SBr45VcWER0hQK54NPP2pod3SW5319Is8Np/9Z/SLx3g0E9eYPQsZGVuAq6n+9uRj7LuRwy
- EYFk1mKPOl6gXyIaWKyaA==
+X-Provags-ID: V03:K1:mu/oF/4bYE6jGb2ALHipmOVn1kSsEdyts+r/EHG7NeN00PWmbAX
+ z8U588CgZeVz7tf0BFJ8Lc6tz4OlGJBI5rIbh1LxUa1vQwoBBPscl1WTuXmyHfBJQ5jnEOR
+ ScgBx7knnANaXGYL7VwkQ6mQoDejMEp51/ZIzniyDTeDZRf7ypPkcSe4t9zfrwtXqMeQ79T
+ sUCETiRYKtTyUWssPVQpw==
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:c0a5L8+BUPM=;YsIkEM6PaHcLhPAbdMCH6gfx8rH
- gVbxORMoCTxKB6XB56rzIYvXH43EmYs3WQ5RSvoniUep8S8RmLQ3SA5GhdmoonZdN/Gc5e5e7
- KAgBuErUEXccvZiTDaEODoyYw6DIFViZBJNPL55fCfpYy/NsapxDAK5VS16a2q/Cd3UqcfqEO
- QP+7VEHQMbdMMIbej38EVZZY3LRzdK3DoMyUJxD/yMRGyJglRrXqcMr2B/nHoKOnqF/kp9bmx
- BHIG4lHwo2XXNsjauvdDiDT5bK8/55Bbu6nrHiRf+nXxWA+n4w7FaZcb2cur+a8F+BltKsGKm
- 8Jp77zacGYHEE3opXXqll1MfdVBMxJGOPDh6zjwmtAALcGvL9ukBl65yvXAOiOE2RXRpnEuNF
- 5KQCUvZnvu5Dwtm207Z02h9MsGIPVEqm9Q2mj/8MNgf9qlCGDtQhpDQIVKPzfXqCFt8zbizqq
- 1CjaCVuFdos0HE3lkjorZtagbwSow/EWwD5TkPoi+uhrckGnD2u85DXBiyqdwmlK8JDxqJUa3
- NzS45hSuDqFkC8cKIxlJhtzh2JMXAtzCXg6vFCpoDcKdydU2LVFbCkWhd1IGb3+NplOH6M1uq
- IzvFml3tD9wYyVxDqTlxtuhUEk4fFPvWoV5aSa/QdN9YN/4WYENSJjaVVifxTPFmJwiCJHNJZ
- PV2gEPePdyaxBK8cOq6N2slF0YiY1g5tpI+X52uYJRH+eHoPIWYTVaoxVMfmrlzOmA128sveB
- Ik5oEIHMersXGunzKSrIlUCtgB7JnybyK6zLi72u1eyjWvnI568kNNvphxwFYXWPhNoIzw7Gx
- x07HA78pIGGwDlgabLfjT7Gw==
+UI-OutboundReport: notjunk:1;M01:P0:AH5SQxKRtC8=;sfwqJTjbpLLyKATvWuGLGElxUR2
+ DQmSYh67BFgAZHnEIP6tix2jYSzct1dPXBItPl+kJ5OUcn3zQx4Rvl2dia/DHLt98vQcT5vWS
+ C8zm2W24A1xNwazH5Z9b729Rg2S4ZbMNavQOnpyjnOsqZP2TixNQWNl4qbvcezAHEGgwyH64W
+ ww+Y5Th1FThSgV7T6JjWYml6QvL+EMdse1C242YaAYhgLKdNvDsw+dOoevtbdtYFOs6Q8u+tZ
+ /SIYXGvL+prPq6UqdOxZsYan38XvHafKsTLnJnGBU+i2kKu1SVFYduAHeIhzQJGBKYlp6Ra9A
+ zgSi7KP+wCjiKoabYqNcPLidDzsnOWOEYGCeYlf35HTSajFRCaxQC1hCVhLJQGjdT1rN8Kp65
+ WbfCmQFua95sM8eqUuUOpkgQYmKp/K/Bkfc/+pa5VzFyBonis54sEB9MoW/UekbaVuWGKbGrB
+ nCOF9M2nnIIe9Jo9RsoqnZJ7ewl/OonP4Xz88u/7uPyRlN/VJfxKL9yaZgZ4zdKNmdbNbp4E7
+ 7J3XIGnpZDyFFUvsUmRvIxpjRWUTMxngcjPbgTDtEN4KhPzaZZmzl5LXzuc+euJCPFY+tAooK
+ SS/kk8ol8oBDIXN/H8PN3alsPRXCdby+3enZ/A8h3KGG1fLuTkMR3pph5Dp6BamYB+lWF7yHd
+ 9AOuEiMK+fnF2bDLeyu7bWaaNyXX7x2oYqq1stSEtLNfjiso4VL4ZJTtiFBxsxBzTltow7ecp
+ pPpnmDljqtGBdfbC8Ugm18lcvgAsz/CpCTetVtTBa/cIHf+LE2DoOWQkLRIooM9qPeUF+T6Zj
+ mENLxwpMHry0K6nabmU63zoWkFnCb59/LSdv/0XBvKmyA=
 
-This series fix some dtbs_check warning for the Raspberry Pi boards
-and convert 2 txt DT bindings for BCM2835 to YAML.
+Convert the DT binding document for bcm2835-system-timer from .txt
+to YAML.
 
-I hope it's okay to combine ARM & arm64 DT fixes.
-
-Changes in V3:
-- drop already applied patches (brcm,bcm2835-dma, brcm,bcm2835-mbox,
-  pwm-bcm2835) from [1]
-- add new patches to address bcm2836-l1-intc
-- drop accidentially added Reviewed-by for patch 1
-- add Raspberry Pi Kernel Maintenance as maintainer
-
-Changes in V2:
-- drop already applied patches (bcm2835-sdhost, bcm2835-thermal)
-- drop patch "dmaengine: bcm2835: also support generic dma-channel-mask"
-- keep brcm,bcm2835-dma for ABI compatibility which also resolve
-  dependency between patch 2 and 3
-- drop quotes in patch 2 as noted by Rob Herring
-- add interrupt description as suggested by Rob
-- add Rob's and Uwe's Reviewed-by
-
-[1] - https://lore.kernel.org/linux-arm-kernel/20230617133620.53129-1-stef=
-an.wahren@i2se.com/
-
-Stefan Wahren (4):
-  dt-bindings: timer: convert bcm2835-system-timer bindings to YAML
-  dt-bindings: interrupt-controller: convert bcm2836-l1-intc to yaml
-  ARM: dts: bcm2837/bcm2712: adjust local intc node names
-  ARM: dts: bcm271x: add missing properties to local_intc
-
- .../brcm,bcm2836-l1-intc.txt                  | 37 --------------
- .../brcm,bcm2836-l1-intc.yaml                 | 51 +++++++++++++++++++
+Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+=2D--
  .../timer/brcm,bcm2835-system-timer.txt       | 22 --------
- .../timer/brcm,bcm2835-system-timer.yaml      | 50 ++++++++++++++++++
- arch/arm/boot/dts/broadcom/bcm2711.dtsi       |  2 +
- arch/arm/boot/dts/broadcom/bcm2837.dtsi       |  2 +-
- arch/arm64/boot/dts/broadcom/bcm2712.dtsi     |  4 +-
- 7 files changed, 107 insertions(+), 61 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/interrupt-controller=
-/brcm,bcm2836-l1-intc.txt
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller=
-/brcm,bcm2836-l1-intc.yaml
+ .../timer/brcm,bcm2835-system-timer.yaml      | 50 +++++++++++++++++++
+ 2 files changed, 50 insertions(+), 22 deletions(-)
  delete mode 100644 Documentation/devicetree/bindings/timer/brcm,bcm2835-s=
 ystem-timer.txt
  create mode 100644 Documentation/devicetree/bindings/timer/brcm,bcm2835-s=
 ystem-timer.yaml
 
+diff --git a/Documentation/devicetree/bindings/timer/brcm,bcm2835-system-t=
+imer.txt b/Documentation/devicetree/bindings/timer/brcm,bcm2835-system-tim=
+er.txt
+deleted file mode 100644
+index 844bd5fbd04c..000000000000
+=2D-- a/Documentation/devicetree/bindings/timer/brcm,bcm2835-system-timer.=
+txt
++++ /dev/null
+@@ -1,22 +0,0 @@
+-BCM2835 System Timer
+-
+-The System Timer peripheral provides four 32-bit timer channels and a
+-single 64-bit free running counter. Each channel has an output compare
+-register, which is compared against the 32 least significant bits of the
+-free running counter values, and generates an interrupt.
+-
+-Required properties:
+-
+=2D- compatible : should be "brcm,bcm2835-system-timer"
+=2D- reg : Specifies base physical address and size of the registers.
+=2D- interrupts : A list of 4 interrupt sinks; one per timer channel.
+=2D- clock-frequency : The frequency of the clock that drives the counter,=
+ in Hz.
+-
+-Example:
+-
+-timer {
+-	compatible =3D "brcm,bcm2835-system-timer";
+-	reg =3D <0x7e003000 0x1000>;
+-	interrupts =3D <1 0>, <1 1>, <1 2>, <1 3>;
+-	clock-frequency =3D <1000000>;
+-};
+diff --git a/Documentation/devicetree/bindings/timer/brcm,bcm2835-system-t=
+imer.yaml b/Documentation/devicetree/bindings/timer/brcm,bcm2835-system-ti=
+mer.yaml
+new file mode 100644
+index 000000000000..f5804b5b0e63
+=2D-- /dev/null
++++ b/Documentation/devicetree/bindings/timer/brcm,bcm2835-system-timer.ya=
+ml
+@@ -0,0 +1,50 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/timer/brcm,bcm2835-system-timer.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: BCM2835 System Timer
++
++maintainers:
++  - Stefan Wahren <wahrenst@gmx.net>
++  - Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
++
++description:
++  The System Timer peripheral provides four 32-bit timer channels and a
++  single 64-bit free running counter. Each channel has an output compare
++  register, which is compared against the 32 least significant bits of th=
+e
++  free running counter values, and generates an interrupt.
++
++properties:
++  compatible:
++    const: brcm,bcm2835-system-timer
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    items:
++      - description: System Timer Compare 0 match (used by VideoCore GPU)
++      - description: System Timer Compare 1 match (usable for ARM core)
++      - description: System Timer Compare 2 match (used by VideoCore GPU)
++      - description: System Timer Compare 3 match (usable for ARM core)
++
++  clock-frequency: true
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    timer@7e003000 {
++      compatible =3D "brcm,bcm2835-system-timer";
++      reg =3D <0x7e003000 0x1000>;
++      interrupts =3D <1 0>, <1 1>, <1 2>, <1 3>;
++      clock-frequency =3D <1000000>;
++    };
++...
 =2D-
 2.34.1
 
