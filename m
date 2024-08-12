@@ -1,128 +1,107 @@
-Return-Path: <devicetree+bounces-92936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92937-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1595794EE4C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 15:34:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D90A94EE4F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 15:34:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 43AD5B2202A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 13:34:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DDD8C1F226C1
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 13:34:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D816017D35B;
-	Mon, 12 Aug 2024 13:33:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D88A417CA1C;
+	Mon, 12 Aug 2024 13:34:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="i2rBjxwk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QARKBhky"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEF8217C9F1;
-	Mon, 12 Aug 2024 13:33:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC44617E902;
+	Mon, 12 Aug 2024 13:34:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723469632; cv=none; b=WLwgGupQty6tkFsDoOTtUHHuuepVkfJ+2v4d38XBVvYVGHhOioMhRRRq4mSCQ05i4WY4FvrAtkuKyazewUKy/i2Azi68l1zAYDA9+B0FCrRDhd+DdOFdgE/7orA116piJ8N22yxC0WjbDaaGP3SBxeXtfowz8OeUuzK0a7Dk1nI=
+	t=1723469654; cv=none; b=cSAJMyvd6vUVCRgM4VbCAbglTMSgyqO0tKb21rRSR0QBqFaGN+PXlAPBaSTDN6/FZm7R1Xmfc3xhAN5zDyWQPdiW3oApC7pGVFCTtAX4bMzU3UZxVtV1v7wDuJChdQu9Q19LiEcB9adrD1DclqGZ1024whILjFSfbs9e8VYlx+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723469632; c=relaxed/simple;
-	bh=svcb61qn8AxKiXVDKBeXBAH0VVejCzMPT1CCJAMUGFI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iF+HMtbUj8lMSw9xAmZQyldsEKp6Yu5FlnCXLrVCNbZtDl8gG38UF3EBq3kJ2mnwtrqgcVeox0Id7kwDW5VCo2W6vjgEFJttRnSd7v/p1zad6s56NB13lIpUX47QMWIgWUp5EDj3JB89c2HgkxdTfYn8RtW43RMXHIp7s78kc3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=i2rBjxwk; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1723469631; x=1755005631;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=svcb61qn8AxKiXVDKBeXBAH0VVejCzMPT1CCJAMUGFI=;
-  b=i2rBjxwkIKMPuel9doBjdIcZbIWCNeGIgsTtIdvIpeghUk8F3jL2wnSB
-   genB9BPgImDqNcKmM3RURHAMCBeZxHljtT3icr/fdSTtFCO5+8FjwW1D8
-   7K6e+CZ46orAL2o9WBzs/tTPn+KyzC9PWP3dOSdyPAM7V6SclvCuurMBx
-   AxyJfvxbPBCxd5RWvk8bQczA0dx5ZA5SxQ3usQTKK00U0oDyqwnoscqYF
-   6VY5YJeKKQQPXClKP3QVTHl3u6Tbrz+JUkGZiccDG5gsFZPuAT44ziNAM
-   iR4QnFzHGF4asV9moRic/QL+HhXK84AodbdECUF492Avbwj54HrJhlTQ9
-   g==;
-X-CSE-ConnectionGUID: xja2chZJRbKeGykZCH51+w==
-X-CSE-MsgGUID: qb6Dd3MRSSqZq6MU0Ify7Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11162"; a="12963955"
-X-IronPort-AV: E=Sophos;i="6.09,283,1716274800"; 
-   d="scan'208";a="12963955"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Aug 2024 06:33:50 -0700
-X-CSE-ConnectionGUID: zCoNAwmISMu73RPe9ooqcQ==
-X-CSE-MsgGUID: 6xzCFAvQRWu5p+ijHJzn7g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,283,1716274800"; 
-   d="scan'208";a="63197764"
-Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
-  by orviesa004.jf.intel.com with ESMTP; 12 Aug 2024 06:33:47 -0700
-Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sdVB9-000Bpv-2w;
-	Mon, 12 Aug 2024 13:33:43 +0000
-Date: Mon, 12 Aug 2024 21:33:15 +0800
-From: kernel test robot <lkp@intel.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 6/7] usb: dwc3: qcom: Transition to flattened model
-Message-ID: <202408122114.xvZqrjZ7-lkp@intel.com>
-References: <20240811-dwc3-refactor-v2-6-91f370d61ad2@quicinc.com>
+	s=arc-20240116; t=1723469654; c=relaxed/simple;
+	bh=JL8XYXMlmVgvqed30UCj2bKK2g4QBnMop/kHWgz0fEk=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=dfKuLp+P+4gEjxJmd7wi392Ja2Bw3WK/X7/vHzTE7PuKLO5MKvuh60kg3xHwW3f656k3xY+WGqTu+AalnA12sN/i3tgAroG3WOT0vp9M9fsw7G7Ih//26TsnJMZILXKSU+t5FkR6HL2Fl9R/z0UXL8rkazUCfrVilkJ12wDmtQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QARKBhky; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D98A2C32782;
+	Mon, 12 Aug 2024 13:34:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723469654;
+	bh=JL8XYXMlmVgvqed30UCj2bKK2g4QBnMop/kHWgz0fEk=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=QARKBhkyAN/eafKtlB6M6qiuFUFApRL1r8zWesXVem0VfWgOANHT0y5OWLPfQ7XVy
+	 iKSd26sXRNVLGSDVc9ggq6Txbk5pSwe5sTANAE8XoIfHhqeVN2uzLqQDw4Jm/rP8aU
+	 kLigtPlx5kj5mLwI1MAvWSDtsdMG+vKjApCGqgYBxn4boPOYjFuRrKKw7L+wbHTirL
+	 uoov6jSd7w+Bz4tgKfg8M2COsjaQVvdHGpLM9b8Uy/PV27LvyvrsjE+Bjx1L+2oJbW
+	 /hqBTFd6BnfPWnVS2W+mU5wL8KUeb/2D+hvtKsP1Tc/jDlG97v6vJ5Vf6RNOOLz2gb
+	 9u3+o4q7U6zdQ==
+Date: Mon, 12 Aug 2024 07:34:12 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240811-dwc3-refactor-v2-6-91f370d61ad2@quicinc.com>
-
-Hi Bjorn,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on 864b1099d16fc7e332c3ad7823058c65f890486c]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Bjorn-Andersson/dt-bindings-usb-snps-dwc3-Split-core-description/20240812-111102
-base:   864b1099d16fc7e332c3ad7823058c65f890486c
-patch link:    https://lore.kernel.org/r/20240811-dwc3-refactor-v2-6-91f370d61ad2%40quicinc.com
-patch subject: [PATCH v2 6/7] usb: dwc3: qcom: Transition to flattened model
-config: i386-buildonly-randconfig-002-20240812 (https://download.01.org/0day-ci/archive/20240812/202408122114.xvZqrjZ7-lkp@intel.com/config)
-compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240812/202408122114.xvZqrjZ7-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408122114.xvZqrjZ7-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/usb/dwc3/dwc3-qcom.c:28:10: fatal error: 'glue.h' file not found
-      28 | #include "glue.h"
-         |          ^~~~~~~~
-   1 error generated.
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Christian Bruel <christian.bruel@foss.st.com>
+Cc: kishon@kernel.org, fabrice.gasnier@foss.st.com, 
+ linux-stm32@st-md-mailman.stormreply.com, alexandre.torgue@foss.st.com, 
+ p.zabel@pengutronix.de, vkoul@kernel.org, devicetree@vger.kernel.org, 
+ conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, krzk+dt@kernel.org, mcoquelin.stm32@gmail.com, 
+ linux-phy@lists.infradead.org
+In-Reply-To: <20240812120529.3564390-3-christian.bruel@foss.st.com>
+References: <20240812120529.3564390-1-christian.bruel@foss.st.com>
+ <20240812120529.3564390-3-christian.bruel@foss.st.com>
+Message-Id: <172346965242.493337.13574697496053856.robh@kernel.org>
+Subject: Re: [PATCH 2/5] dt-bindings: phy: Add STM32MP25 COMBOPHY bindings
 
 
-vim +28 drivers/usb/dwc3/dwc3-qcom.c
+On Mon, 12 Aug 2024 14:05:26 +0200, Christian Bruel wrote:
+> Document the bindings for STM32 COMBOPHY interface, used to support
+> the PCIe and USB3 stm32mp25 drivers.
+> Following entries can be used to tune caracterisation parameters
+>  - st,output-micro-ohms and st,output-vswing-microvolt bindings entries
+> to tune the impedance and voltage swing using discrete simulation results
+>  - st, phy_rx0_eq register to set the internal rx equalizer filter value.
+> 
+> Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
+> ---
+>  .../bindings/phy/st,stm32-combophy.yaml       | 178 ++++++++++++++++++
+>  1 file changed, 178 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/st,stm32-combophy.yaml
+> 
 
-  > 28	#include "glue.h"
-    29	
+My bot found errors running 'make dt_binding_check' on your patch:
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/phy/st,stm32-combophy.yaml: access-controllers: missing type definition
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240812120529.3564390-3-christian.bruel@foss.st.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
