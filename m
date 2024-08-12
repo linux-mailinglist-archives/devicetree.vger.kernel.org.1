@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-92851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95FF394E998
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 11:22:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90AC694E99C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 11:23:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 322F7B20D1F
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 09:22:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F0CD1F2138D
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 09:23:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED45716D33B;
-	Mon, 12 Aug 2024 09:22:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE83916D325;
+	Mon, 12 Aug 2024 09:23:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LOSK8WWC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lW2G8bb1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B361316C695;
-	Mon, 12 Aug 2024 09:22:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A41A416C695;
+	Mon, 12 Aug 2024 09:23:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723454571; cv=none; b=Z7UJ8vStcfTtE2hf56FKd2AWYi2RjLHDK2RbdZ/3AyP+uWP6xGje0bBZDKFpQeX4nXxL/l3dVJcrJLQlHjVRtzaXK8YgANq2dQXP0AW6a0JEaWQ/65LQd9Evk1JWNDdPtXCHRDfPs8Xd5tCC69EJ6NDkWCeTueWGWSbqO192JN0=
+	t=1723454617; cv=none; b=e8DsTSwxAiTUdBTM8zfEwi8pQAkgk21DqtYp5/E1FRWBQC9XI20JdI6x/iLIgPcXRq7XqZTH4Pq9bS3hqviZVSak2lbaP21+XrjJkutFXQbiYAA168VBCRg0x+C2EnyemILiqRALT7fbWrMvN88ns89SQDFWVT+tChtLgxjCXqQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723454571; c=relaxed/simple;
-	bh=XY4t9FJLi+cd6M2zXXfMwmr516ek5BBEpf7/gOkRrfk=;
+	s=arc-20240116; t=1723454617; c=relaxed/simple;
+	bh=e5K7F/UIigCwAkgN+q/4Yc9LJwJOP5Z13iVnavMtFMs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Hm6YfOQpprFVzksZJ+558/MteDijqooiR53EWGpumVsWDjmRplKvqprAS39kFKz7izK/ytEKt0G/etcgLEkRXv4bL+nCSe12edDjh00HhpTVJdzgaxx5XhA4WgHCBWHKR3px4UOMZ+SJeh3iUp87ov8kw1nUyaJPeSOaT8lNj4M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LOSK8WWC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13610C32782;
-	Mon, 12 Aug 2024 09:22:45 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=YkFdOyWebuyaIOZS1VDc8B7nisfnfhtxl9VsDEVunQdwFZ8D5uuCydHPZkAhW4dC01ZaK3nENlavjS/Nqq1tDJn+e/8Fgf1rRsG0oS2u6fam3Vwc4T1guAX91j4raUiqAo9FrEHuu+xlKDx1kjCs6bHecuUSrHECW4GHiNKMoKg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lW2G8bb1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD819C32782;
+	Mon, 12 Aug 2024 09:23:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723454571;
-	bh=XY4t9FJLi+cd6M2zXXfMwmr516ek5BBEpf7/gOkRrfk=;
+	s=k20201202; t=1723454617;
+	bh=e5K7F/UIigCwAkgN+q/4Yc9LJwJOP5Z13iVnavMtFMs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LOSK8WWC8sZxoWG0kptzyZuo38pLfvSJ7pV/ZVQhUqgdHtMzDvYZdlaZU3LWWW+qM
-	 D7lwf0kEL8/95sefis0BB6/IYCJndChL9AaG0K3ase3RsKpwx86EuScCcAEUVsyyqf
-	 wDl2sezf/RfrdFwFBicDEdc5wm7UOh36FbDyHSn4TzhZMuyg9Zi4U7rkgs15YB6YTn
-	 N9RYvAf/v11Bxr04Q80dg6HUBDVulWXHaG8ezfngufcybL+0/t0R7G5ax7tDsHTm1i
-	 vxklI1y00pTLjfKsV7IYKxSTnrY5qTJt9BY5zfc6Rzl66p4Q7t71Zl4F7wv69UDKvT
-	 t/YBUsOqXSSkQ==
-Message-ID: <de4c1538-162e-4604-8e6e-17521f24413e@kernel.org>
-Date: Mon, 12 Aug 2024 11:22:44 +0200
+	b=lW2G8bb1eDPrhu8uepd+4D2tXD0FAz2EDXt0ZkV52GEAc/ITwuA+EDmiSTyUPBUoI
+	 XaCueB3+8Ns3ppwYMUv4VGs7BXzk7UwzcX5MCe9eO6AV+Ga2EDZ3Ad4JzxvNkzjsBR
+	 8YuU+X7pd4d/mYKcb8mLUu8XjD/eHnUhhI+Un3YYhZ1GrSiF0kdo1J+QD34NHHZbVU
+	 d1dS4oSnU9hOqF8k9aVJF0Vqfs1JW37YFKFY3GyzvWcNwZZFOYsZq1j8eMxIDowOjb
+	 3LNcOpJI++LDeECz6Y+8zVfwD6e8KCYzUeufq7yx+VAdbce9mdZc/eI6iqqrTRIgGb
+	 DRbYgCTXmrWOA==
+Message-ID: <9dd754e9-2f46-4083-b30d-cfe1ac204d8b@kernel.org>
+Date: Mon, 12 Aug 2024 11:23:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/1] dt-bindings: net: fsl,qoriq-mc-dpmac: using
- unevaluatedProperties
-To: Frank Li <Frank.Li@nxp.com>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Ioana Ciornei <ioana.ciornei@nxp.com>,
- "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Cc: imx@lists.linux.dev
-References: <20240811184049.3759195-1-Frank.Li@nxp.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: Document Airoha EN7581 PWM
+To: Lorenzo Bianconi <lorenzo@kernel.org>, linux-pwm@vger.kernel.org
+Cc: ukleinek@kernel.org, lorenzo.bianconi83@gmail.com, krzk+dt@kernel.org,
+ robh@kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, upstream@airoha.com,
+ angelogioacchino.delregno@collabora.com, benjamin.larsson@genexis.eu,
+ conor+dt@kernel.org, ansuelsmth@gmail.com
+References: <cover.1723393857.git.lorenzo@kernel.org>
+ <bd0528c45c2e2efb799b59ce503ab8fed196df07.1723393857.git.lorenzo@kernel.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,24 +104,22 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240811184049.3759195-1-Frank.Li@nxp.com>
+In-Reply-To: <bd0528c45c2e2efb799b59ce503ab8fed196df07.1723393857.git.lorenzo@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/08/2024 20:40, Frank Li wrote:
-> Replace additionalProperties with unevaluatedProperties because it have
-> allOf: $ref: ethernet-controller.yaml#.
+On 11/08/2024 18:34, Lorenzo Bianconi wrote:
+> From: Christian Marangi <ansuelsmth@gmail.com>
 > 
-> Remove all properties, which already defined in ethernet-controller.yaml.
+> Document required property for the Airoha EN7581 PWM. The device
+> requires 3 different address for the sgpio, flash and cycle config.
 > 
-> Fixed below CHECK_DTBS warnings:
-> arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb:
->    fsl-mc@80c000000: dpmacs:ethernet@11: 'fixed-link' does not match any of the regexes: 'pinctrl-[0-9]+'
->         from schema $id: http://devicetree.org/schemas/misc/fsl,qoriq-mc.yaml#
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+That's odd placement. Which tool placed it that way?
+
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 
 Best regards,
 Krzysztof
