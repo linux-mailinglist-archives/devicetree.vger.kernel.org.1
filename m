@@ -1,114 +1,219 @@
-Return-Path: <devicetree+bounces-93003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B79B94F21D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 17:52:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D541E94F222
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 17:53:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB69A282ECA
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 15:52:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6568F1F22C56
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 15:53:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 727B018756D;
-	Mon, 12 Aug 2024 15:51:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DC5618454C;
+	Mon, 12 Aug 2024 15:53:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sgn3P0Qt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HNvjyIvY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4121416F0FE;
-	Mon, 12 Aug 2024 15:51:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F10F74D112;
+	Mon, 12 Aug 2024 15:53:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723477871; cv=none; b=H69ZDhi6kTOZKXuquoEUDupB9kBbslIrmmP2C8rb8OkZsX/zLv8kX4YOkLMKaprDy76R3R3TWaz8yrKoPqt6RbVGo/q8ogd2qQihspxkBWyu46frQGcKKlhz+c4Oa0wW1U5T2hbcXZbrSN6Dyyd6KPxYcVYyeHGwSELlrM4L7JE=
+	t=1723477995; cv=none; b=HOywH5Sg6qjvwjVg5WZT537ExyrLfUDZVwlG59vkWb3cPMwV65f3C7CiqQV8A6V2gd3YT6wEEpEO8YMySuBciJzgWmpqQk8XufVP1AaGcgFQjMH/w6LgYv5mmexqPkgqhfWmMMa4Cf+z91nXbotBdK2gC3Ndr6a4//uEQrMAgh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723477871; c=relaxed/simple;
-	bh=Zz2O1E2RE4zrYAOxOl8477P4o/vm8t4OyENrerlYoqM=;
+	s=arc-20240116; t=1723477995; c=relaxed/simple;
+	bh=HlRdvFKn4iFjzvom5J0DF55x13AYDpUEmQpaLh1Gggw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S0ZXtuBzeh/zbb+Sk+ycH9rBR5Zh6cOXDhVjnpC7POfu3uiwJWNjYR5Tip/lN5Rw++9/w96NfD82il44ocAigUXvsYhDSOVS/6CKmH9X1kUtHgMUYjWVz5ko1f6lNlWi8BLqKxyyU3M7+ltDyZIYrf6dn3wbIwAVBHqvtqgwsuc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sgn3P0Qt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CB2FC32782;
-	Mon, 12 Aug 2024 15:51:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PlJh3FGj/cWTbqMCzx0dHPu92+og9sPBhFTG5KUmAz5XeEU6BXOUnQXfuEsV1JK1ZP5gI9GTmqsoX6sz3SRHFFCLAHSudthwlhmiXWE65cV5POSaEDRS2fj8kXnK+OhuNn/NEZTkrb+7PeSUvwrG1+LRUKBdlmj48+A+zAGbZQ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HNvjyIvY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 433E9C32782;
+	Mon, 12 Aug 2024 15:53:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723477870;
-	bh=Zz2O1E2RE4zrYAOxOl8477P4o/vm8t4OyENrerlYoqM=;
+	s=k20201202; t=1723477994;
+	bh=HlRdvFKn4iFjzvom5J0DF55x13AYDpUEmQpaLh1Gggw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sgn3P0QtomjUmnOXXzcSkj1Eba5S7OjS9PQRy674tFxBM6/RAchY2voNyhbuLuJ/3
-	 ezekgwIxTREXbKghXCQInxiZ8ld5yYMK2aedrjX1bxYludVtjyGh8zSwZN8+W3k103
-	 dleWqbV3xRhc+S+LqcRVwuh7KzFoRQnuAODlU5CMhJkTk7RnAEWZQj3u9k/zoBGZXZ
-	 v8AnqOSU2ofv8gWv+Of4xCnGkGvGUGQ7mNF2JXtUobAo/d4Y4dYjs/VW7GAUS9MhLY
-	 OBdqse9wTtPtw1CqnpUGBkD+tx4xmPsjcDcgpHvIVmZiuhJNEb1Swvj1egMOXAIsiQ
-	 X84xng9vWc8hA==
-Date: Mon, 12 Aug 2024 16:51:03 +0100
-From: Simon Horman <horms@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	b=HNvjyIvYcUWCRotT7GQXgqUlrr5FSbUa41bF+C4Q8O9FFRsQi7TpfwO2qfPILOHLI
+	 MF+lE2hpeNWcwGvlQSDyLXmIQgwb+YpXMz3VNQLUeGM71j8iMBfuYVcqFGZ+i3Y5wB
+	 Va17H2VYVmfqjGUXSSc3oH4h7MJVVFEC6rm1ygQaF82Iwrre9WyHkpF42zFPXvkF2t
+	 1Eehgat9ol63Z0l6MIrYBwGYslWQzKLWmZIK2TcfQIbJktRs56XmmZgaSa4JYrPb09
+	 pw774D/pCJUrirfRHRn6YHv4Lm6g9p9J51Y5UpqLV9jXTrGhyDYiLT0JLszaRzrIi2
+	 vNiqYIrH2WBTQ==
+Date: Mon, 12 Aug 2024 16:53:09 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	"open list:ETHERNET PHY LIBRARY" <netdev@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] dt-bindings: net: mdio: Add negative patten match
- for child node
-Message-ID: <20240812155103.GA44433@kernel.org>
-References: <20240812031114.3798487-1-Frank.Li@nxp.com>
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	=?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v4 1/3] dt-bindings: iio: adc: sophgo,cv18xx-saradc.yaml:
+ Add Sophgo CV18XX SARADC binding
+Message-ID: <20240812-unwary-mongrel-9f6758bf624c@spud>
+References: <20240812-sg2002-adc-v4-0-599bdb67592f@bootlin.com>
+ <20240812-sg2002-adc-v4-1-599bdb67592f@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="IXMbfodZVYjINFLf"
+Content-Disposition: inline
+In-Reply-To: <20240812-sg2002-adc-v4-1-599bdb67592f@bootlin.com>
+
+
+--IXMbfodZVYjINFLf
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240812031114.3798487-1-Frank.Li@nxp.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, Aug 11, 2024 at 11:11:14PM -0400, Frank Li wrote:
-> mdio.yaml wrong parser mdio controller's address instead phy's address when
-> mdio-mux exist.
-> 
-> For example:
-> mdio-mux-emi1@54 {
-> 	compatible = "mdio-mux-mmioreg", "mdio-mux";
-> 
->         mdio@20 {
-> 		reg = <0x20>;
-> 		       ^^^ This is mdio controller register
-> 
-> 		ethernet-phy@2 {
-> 			reg = <0x2>;
->                               ^^^ This phy's address
-> 		};
-> 	};
-> };
-> 
-> Only phy's address is limited to 31 because MDIO bus defination.
+On Mon, Aug 12, 2024 at 05:00:55PM +0200, Thomas Bonnefille wrote:
+> The Sophgo SARADC is a Successive Approximation ADC that can be found in
+> the Sophgo SoC.
+>=20
+> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+> ---
+>  .../bindings/iio/adc/sophgo,cv18xx-saradc.yaml     | 85 ++++++++++++++++=
+++++++
+>  1 file changed, 85 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-sara=
+dc.yaml b/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.ya=
+ml
+> new file mode 100644
+> index 000000000000..846590808e5f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml
+> @@ -0,0 +1,85 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/sophgo,cv18xx-saradc.yaml#
 
-nit: definition
+Filename matching the compatible please.
 
-Also, in subject: patten -> pattern
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title:
+> +  Sophgo CV18XX SoC series 3 channels Successive Approximation Analog to
+> +  Digital Converters
+> +
+> +maintainers:
+> +  - Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+> +
+> +description:
+> +  Datasheet at https://github.com/sophgo/sophgo-doc/releases
+> +
+> +properties:
+> +  compatible:
+> +    const: sophgo,cv1800b-saradc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^channel@[0-3]+$":
+> +    $ref: adc.yaml
+> +
+> +    description: |
 
-Flagged by checkpatch.pl --codespell
+This | is not required.
 
-> But CHECK_DTBS report below warning:
-> 
-> arch/arm64/boot/dts/freescale/fsl-ls1043a-qds.dtb: mdio-mux-emi1@54:
-> 	mdio@20:reg:0:0: 32 is greater than the maximum of 31
-> 
-> The reason is that "mdio@20" match "patternProperties: '@[0-9a-f]+$'" in
-> mdio.yaml.
-> 
-> Change to '^(?!mdio@).*@[0-9a-f]+$' to avoid match parent's mdio
-> controller's address.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> +      Represents the channels of the ADC.
+> +
+> +    properties:
+> +      reg:
+> +        description: |
+> +          The channel number. It can have up to 3 channels numbered from=
+ 0 to 2.
+> +        items:
+> +          - minimum: 0
+> +            maximum: 2
 
-...
+Is this sufficient to limit the number of channels to 3? Aren't you relying
+on the unique unit addresses warning in dtc to limit it, rather than
+actually limiting with min/maxItems?
+
+Otherwise, looks fine to me.
+
+Cheers,
+Conor.
+
+> +
+> +    required:
+> +      - reg
+> +
+> +    additionalProperties: false
+> +
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/sophgo,cv1800.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    adc@30f0000 {
+> +        compatible =3D "sophgo,cv1800b-saradc";
+> +        reg =3D <0x030f0000 0x1000>;
+> +        clocks =3D <&clk CLK_SARADC>;
+> +        interrupts =3D <100 IRQ_TYPE_LEVEL_HIGH>;
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        channel@0 {
+> +            reg =3D <0>;
+> +        };
+> +        channel@1 {
+> +            reg =3D <1>;
+> +        };
+> +        channel@2 {
+> +            reg =3D <2>;
+> +        };
+> +    };
+>=20
+> --=20
+> 2.46.0
+>=20
+
+--IXMbfodZVYjINFLf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrov5QAKCRB4tDGHoIJi
+0oaoAQDMe6NoYEYFRjr7uYTIB7DeEAi2qvZXnWVWHzFxwkkH8QEAw36aA0k+SIZe
+JdTW3mWW5ZLezGEIrXTpuMaHzqoqWwQ=
+=K9Up
+-----END PGP SIGNATURE-----
+
+--IXMbfodZVYjINFLf--
 
