@@ -1,162 +1,163 @@
-Return-Path: <devicetree+bounces-92763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21F1494E496
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 04:00:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D35394E4A4
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 04:08:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C5281C21348
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 02:00:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EED7E281D49
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 02:08:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B883754759;
-	Mon, 12 Aug 2024 02:00:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B78434879B;
+	Mon, 12 Aug 2024 02:08:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="wpIwxb4e"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Ye5qpq/7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A7BA3FD4;
-	Mon, 12 Aug 2024 02:00:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AD2923B1;
+	Mon, 12 Aug 2024 02:08:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723428029; cv=none; b=Bpm4T0Yhha8ARJh+MiTTcanPP1k9ytMfo+6TOasmVOJPI18cwjvs9U+cUU74qj24OuWwpWEOhIop/ofYQOdSEZiwkGzIG2CrllD4/zkad6utbkCYtahby2PJl+s1lm6zZqbLQoyKNzsADj8kNuxuIchBQX1SpO8G2QCclIaYbJo=
+	t=1723428504; cv=none; b=S4KNlCW0iFIfrgNocI7gLu63fQj7vX95+cgFm/b9CHY9bJ4mX4JUkIYyLI3bB6kbS6veqakITgB/E2hHhMcwKzfJEsLvLp1VgPlePzfjWkrCX2hPlztKYoNwW3LgZFcPobB+TM6mxC9P5JgadSOVPaahLANEGyGwjRG6cZ0/oSk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723428029; c=relaxed/simple;
-	bh=LTqswOMYIvuMSo69TxBE4FFx+VdMdKLPpGZu0+5lvU0=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ooNXn/Elf9o+j6qdZG750pIwG0G1yJljg5VMWeXF5rTxBqtFAfR7YiMXGdNslHiSBnfnGt6HUZQuVlmHDaU6pLUZkKoy1uN9Bow4+kAmX5wuUYJ2qAbz+XmLHtzc3uhvTidGLy0M/I1IlaY3GyQ8pksK/FZ9bHSQGEJRp7cvo10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=wpIwxb4e; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-From: Dragan Simic <dsimic@manjaro.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1723428025;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=RKcmkKHprKaGo3TWBWY608Q1owHtNCcC2SHOqOY293I=;
-	b=wpIwxb4eGG3D+c3GHnXUf2CVr2ZT5w5LkFjXVbn6V+OdSXmxFIYnbfF7h/0LsrPP4zw0lr
-	1ioc2dY0WgyiIUs571TB5lTB0FbbBkluaAwCU+hR3uVzQYRDcbk/xt6Wp1WuGwq5o8fDIC
-	NXZswVRI0U1qFgTCfdGgnsiJ24zqaitL0yMrOLttPSkRLp2DlHkseCGX3WbdNy4GgEwWXW
-	s7YcdmGWaSbZayrdsswAwDQQR8L5TLP7t+gYYlVrpuIsHQ2fNB6GE5tm+Cr7S9RgqRwk9Q
-	D11j34PSBO++joPeH7pImp0P9Zhd6fhzgVZH+SDGwYh29uHZYirse4erlMYR4w==
-To: linux-sunxi@lists.linux.dev
-Cc: wens@csie.org,
-	jernej.skrabec@gmail.com,
-	samuel@sholland.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	uwu@icenowy.me,
-	wenst@chromium.org,
-	broonie@kernel.org
-Subject: [PATCH] arm64: dts: allwinner: Add GPU thermal trips to the SoC dtsi for A64
-Date: Mon, 12 Aug 2024 04:00:20 +0200
-Message-Id: <a17e0df64c5b976b47f19c5a29c02759cd9e5b8c.1723427375.git.dsimic@manjaro.org>
+	s=arc-20240116; t=1723428504; c=relaxed/simple;
+	bh=YAsrXW5d3SIYsLSaM+FJjDPo7GYyx7b2NG7kyLX0PoA=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Sb07dTcnfTbnterxbh8hGjYLPXl/OWTQHKavQdKU7MGWnp5v7oRB2JBPlV4kGmw07NVMauC45Sg8rnvINAyqBeAXR3MWNh9pLa+2GzzMqObPz4WpIwhZ3E6qSu2FvXuRYzfGr1TBqXBtIggcXoSOeMI27Vw0oMe/23WKJ5k4sWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Ye5qpq/7; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1723428494;
+	bh=JTT/61+iAaL3ekZ/bVEpRb8HtfF2o4NXHxGC5uHvBs4=;
+	h=Subject:From:To:Date:In-Reply-To:References;
+	b=Ye5qpq/7TST1h2y4P4d4+VKoZjLzGvE6I0IoHD/4yoltNCDnlsKwmT4U0D6iPAytt
+	 Myu6aKDL35RUn+iQNRBRPWYi+fkxkVSO3HvgL9CBrQQ3/B/Cs0racAr2vOKqqlgA41
+	 vM+Azdc7FBnPQJ/ol3GLCdqCNjcueVgSEGXnBB1IHBH2MB0/myXzemOyPAn9TtcZuy
+	 L9X6ClcE9iFsbvH5DJNLVNuq05yjLQXnx+Cp2m8YGN2qSQS0lhmUz98ln0apJWpk0x
+	 s+rsqCIqINwFOMWMZyyFuLOrDtiC62en8eG/TCE1pzPwqB9Ot18KXWbKfE4STbrYT9
+	 i+L3KXt+KlkBg==
+Received: from [192.168.68.112] (203-57-213-111.dyn.iinet.net.au [203.57.213.111])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 2CF1566AB4;
+	Mon, 12 Aug 2024 10:08:12 +0800 (AWST)
+Message-ID: <799dbd97b09693fba6f837e73d4ef3421d604a8a.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v3 02/11] ARM: dts: aspeed: Harma: add VR device
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Peter Yin <peteryin.openbmc@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski
+	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
+	 <joel@jms.id.au>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org
+Date: Mon, 12 Aug 2024 11:38:11 +0930
+In-Reply-To: <7bf4cb57f2b0b41c79f2efea3e0b0211988c0896.camel@codeconstruct.com.au>
+References: <20240801160136.1281291-1-peteryin.openbmc@gmail.com>
+	 <20240801160136.1281291-3-peteryin.openbmc@gmail.com>
+	 <7bf4cb57f2b0b41c79f2efea3e0b0211988c0896.camel@codeconstruct.com.au>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Add thermal trips for the two GPU thermal sensors found in the Allwinner A64.
-There's only one GPU OPP defined since the commit 1428f0c19f9c ("arm64: dts:
-allwinner: a64: Run GPU at 432 MHz"), so defining only the critical thermal
-trips makes sense for the A64's two GPU thermal zones.
+On Fri, 2024-08-02 at 16:06 +0930, Andrew Jeffery wrote:
+> On Fri, 2024-08-02 at 00:01 +0800, Peter Yin wrote:
+> > Add isl69260, xdpe152c4 device
+> >=20
+> > Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
+> > ---
+> >  .../dts/aspeed/aspeed-bmc-facebook-harma.dts  | 24 +++++++++++++++++++
+> >  1 file changed, 24 insertions(+)
+> >=20
+> > diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts b/a=
+rch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
+> > index d99fba321379..8fb30029e46c 100644
+> > --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
+> > +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
+> > @@ -398,6 +398,30 @@ imux28: i2c@0 {
+> >  			#address-cells =3D <1>;
+> >  			#size-cells =3D <0>;
+> >  			reg =3D <0>;
+> > +			power-monitor@61 {
+> > +				compatible =3D "isil,isl69260";
+> > +				reg =3D <0x61>;
+> > +			};
+> > +			power-monitor@62 {
+> > +				compatible =3D "isil,isl69260";
+> > +				reg =3D <0x62>;
+> > +			};
+> > +			power-monitor@63 {
+> > +				compatible =3D "isil,isl69260";
+> > +				reg =3D <0x63>;
+> > +			};
+>=20
+> As of v6.11-rc1 this gives me:
+>=20
+> ```
+> $ ./scripts/checkpatch.pl --strict -g HEAD
+> ...
+> WARNING: DT compatible string "isil,isl69260" appears un-documented -- ch=
+eck ./Documentation/devicetree/bindings/
+> #24: FILE: arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts:402:
+> +                               compatible =3D "isil,isl69260";
+>=20
+> WARNING: DT compatible string "isil,isl69260" appears un-documented -- ch=
+eck ./Documentation/devicetree/bindings/
+> #28: FILE: arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts:406:
+> +                               compatible =3D "isil,isl69260";
+>=20
+> WARNING: DT compatible string "isil,isl69260" appears un-documented -- ch=
+eck ./Documentation/devicetree/bindings/
+> #32: FILE: arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts:410:
+> +                               compatible =3D "isil,isl69260";
+>=20
+> total: 0 errors, 3 warnings, 0 checks, 30 lines checked
+> ```
+>=20
+> and
+>=20
+> ```
+> $ make CHECK_DTBS=3Dy aspeed/aspeed-bmc-facebook-harma.dtb 2>&1 | grep is=
+il
+> ...
+> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/bus@1e78=
+a000/i2c@700/i2c-mux@70/i2c@0/power-monitor@61: failed to match any schema =
+with compatible: ['isil,isl69260']
+> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/bus@1e78=
+a000/i2c@700/i2c-mux@70/i2c@0/power-monitor@62: failed to match any schema =
+with compatible: ['isil,isl69260']
+> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dtb: /ahb/apb/bus@1e78=
+a000/i2c@700/i2c-mux@70/i2c@0/power-monitor@63: failed to match any schema =
+with compatible: ['isil,isl69260']
+> ```
+>=20
+> While there's already an Aspeed-based Quanta platform that also
+> specifies this device, let's not add to the problems of the Aspeed
+> devicetrees.
+>=20
+> Please make sure to run `make dtbs_check ...` and checkpatch on your
+> changes. Regarding `make dtbs_check` and related tests, this blog post
+> is helpful:
+>=20
+> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sou=
+rces-with-the-devicetree-schema/
 
-Having these critical thermal trips defined ensures that no hot spots develop
-inside the SoC die that exceed the maximum junction temperature.  That might
-have been possible before, although quite unlikely, because the CPU and GPU
-portions of the SoC are packed closely inside the SoC, so the overheating GPU
-would inevitably result in the heat soaking into the CPU portion of the SoC,
-causing the CPU thermal sensor to return high readings and trigger the CPU
-critical thermal trips.  However, it's better not to rely on the heat soak
-and have the critical GPU thermal trips properly defined instead.
+On the basis of the reviews on [1] and Rob stating he's applied the
+binding patch, I've applied this series to be picked up through the BMC
+tree.
 
-While there, remove a few spotted comments that are rather redundant, because
-it's pretty much obvious what units are used in those places.
+[1]: https://lore.kernel.org/all/20240809070056.3588694-1-peteryin.openbmc@=
+gmail.com/
 
-Signed-off-by: Dragan Simic <dsimic@manjaro.org>
----
- arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 22 ++++++++++++++-----
- 1 file changed, 16 insertions(+), 6 deletions(-)
+Thanks,
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-index e868ca5ae753..bc5d3a2e6c98 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-@@ -212,7 +212,6 @@ timer {
- 
- 	thermal-zones {
- 		cpu_thermal: cpu0-thermal {
--			/* milliseconds */
- 			polling-delay-passive = <0>;
- 			polling-delay = <0>;
- 			thermal-sensors = <&ths 0>;
-@@ -236,40 +235,51 @@ map1 {
- 
- 			trips {
- 				cpu_alert0: cpu-alert0 {
--					/* milliCelsius */
- 					temperature = <75000>;
- 					hysteresis = <2000>;
- 					type = "passive";
- 				};
- 
- 				cpu_alert1: cpu-alert1 {
--					/* milliCelsius */
- 					temperature = <90000>;
- 					hysteresis = <2000>;
- 					type = "hot";
- 				};
- 
- 				cpu_crit: cpu-crit {
--					/* milliCelsius */
- 					temperature = <110000>;
- 					hysteresis = <2000>;
- 					type = "critical";
- 				};
- 			};
- 		};
- 
- 		gpu0_thermal: gpu0-thermal {
--			/* milliseconds */
- 			polling-delay-passive = <0>;
- 			polling-delay = <0>;
- 			thermal-sensors = <&ths 1>;
-+
-+			trips {
-+				gpu0_crit: gpu0-crit {
-+					temperature = <110000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
- 		};
- 
- 		gpu1_thermal: gpu1-thermal {
--			/* milliseconds */
- 			polling-delay-passive = <0>;
- 			polling-delay = <0>;
- 			thermal-sensors = <&ths 2>;
-+
-+			trips {
-+				gpu1_crit: gpu1-crit {
-+					temperature = <110000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
- 		};
- 	};
- 
+Andrew
 
