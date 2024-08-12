@@ -1,229 +1,274 @@
-Return-Path: <devicetree+bounces-93063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DADE594F959
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 00:08:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1D4194F979
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 00:17:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A9FB1F22CBE
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 22:08:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E039C1C221D0
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 22:17:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12D20194AD7;
-	Mon, 12 Aug 2024 22:08:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4A7C195390;
+	Mon, 12 Aug 2024 22:16:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="HKrGcy7J"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XwHr5U6H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3382016DEAB
-	for <devicetree@vger.kernel.org>; Mon, 12 Aug 2024 22:08:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE44414A4DF;
+	Mon, 12 Aug 2024 22:16:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723500491; cv=none; b=n98TTTqJg/vvlph9GtZtIIMSoUe69dJObqlXUfWqnPBdgnXmXUjlJpoiuSu2KeHGlVn5avaML5b1T3ffpp+QdxDDESyI0YclflzpVe8ebZYmWUajVITkEGPyd3wF98TOM3Yr1iRcyr7cHYKO8645cBuEv/SN3xhqdO1WMUFSj8U=
+	t=1723501018; cv=none; b=j1XCDErj1VgZEuCWgrTUtvo4URvLqmGHRveEIedxu2f0NF2eM52FLHDABekZKyvRcbTFFbKWzdsJTqW4XR/CXRCXF3YRWMEhVM4l7THmCIbi5MkW7QsScSTrOA4UrJyvFZJS3Qicy/lZv+PjZ1g8iPpjWi6Wj4kx6rLhIxYD1Dw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723500491; c=relaxed/simple;
-	bh=k3f9azieV1yorO4YECQ8ijIQiIdQkBJF0gveGSAsmZc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Xjj81BJ6K2rD/XdaOJcNvk4dmDZQr2GeCa5Vqbr7v922NiPlvXEIR/upLRgXnur9zUFT++fW2JOfHc2sMznP9NWVoiS/dAShMzyaDw+7L5XPmzCcMTCW9/kNC+q8enjRMfkKBkBWLG6wFTXmll/0iRilZtce++O7+EEEg1PmxZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=HKrGcy7J; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2f0dfdc9e16so57915121fa.2
-        for <devicetree@vger.kernel.org>; Mon, 12 Aug 2024 15:08:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1723500487; x=1724105287; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=SqWR+1HC1LHEwpGH8XRHU5oVlc5yHd4/dVXWTqJk3L4=;
-        b=HKrGcy7JDEGpyi5xswsw1OVJPv9WVz5n9+KDfLdqoe1yvL4yhiiOZIu4LVDuv5BdP4
-         7zq9fW5myrIdQqLIpeXvv2WqYKwg/hO6elYgpdrJCeSieBZrAZSHLBASILgKShNCV1Wb
-         wJe0WrBxVBt0Dm3APP+IjPtZcrgZPzVvChWCc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723500487; x=1724105287;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SqWR+1HC1LHEwpGH8XRHU5oVlc5yHd4/dVXWTqJk3L4=;
-        b=nmZnJRcM5SpkHYKNnYTJbNj0lppyBU9FCyJ4Vhm6YiP91ch1OOszJleQkKme8hOfpk
-         CUCcpp8h49nmzshgdfvz1UTaFRMDr+J9pMv+2iWV84LYSHVYLfEMDNHfO1YjYk2ZAQGJ
-         rY3B/uMW3IxesSIQigGa/Di4XBJ1OqgQm1IyvZMZ/MqIowEGa43IY4qghLWyxA6KyoL/
-         4o9d9u0fZe2Fs+khIRM5FpMLr3be1mfzUfZSgfG06kA7r09DikW+NLMuut1z5/ATm2Lo
-         d1xiO85HHPuxJKINm628J1KfaIHOH82h9+fSqeDCfzjphKMleX8APklon4SaGBRw/ylD
-         rTlg==
-X-Forwarded-Encrypted: i=1; AJvYcCXuLc+56Cwdnx6YPkeqZADbE9p73z5rXL5SXe9CKWJcAEl1EQDTjlkkynJXy84TYFLPGkv9pqvbW3DaxbiI+dF0cSLDd2/1Q3eStA==
-X-Gm-Message-State: AOJu0Yw3YAFMcjYB0YNa4VzcW9v8+RalykLHthHss9OXZ1RBf7bDuncn
-	mEyA+9QgdrfVk/fwzjlgNPwu4NWoTvQ5gv2CW6d0FDSZrya72sMrsndM1PFNk1btNGbHeHAFsH1
-	DjN6X7TYS0xkDbAbhaMiJk62JFB/hmnS/c7+V
-X-Google-Smtp-Source: AGHT+IFAx7sGDDlGwr1hndA0m2QaJuZJVM0kLVythRX71pDJgHYrbFgJ/Kelfwto6TakZ8DWZumnlHd8nFOe9+aU//Y=
-X-Received: by 2002:a2e:a99f:0:b0:2ef:2eb6:e3ed with SMTP id
- 38308e7fff4ca-2f2b712cc81mr13371061fa.4.1723500487184; Mon, 12 Aug 2024
- 15:08:07 -0700 (PDT)
+	s=arc-20240116; t=1723501018; c=relaxed/simple;
+	bh=+ncDPARUwx6p23qdb8i7srs3SW1uDHyV+GGvWZdk5sE=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UmEpP856wzbIgiPkJZj8kOWmHoF67NmeXfd9tY9MhdjUxQn2ltKdlwR9VDTLDe6d0mXd7c/8SPXIa+viTlQSOn2DwCiu6hn0/jYWJqUCBZTTfsmqn87jAEet/IlDsGEVDRDmyOEdiJ7Kcyi5nqxRbTFm3SxrMPtG1fhFXZ6GwBg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XwHr5U6H; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47CDSZuM021499;
+	Mon, 12 Aug 2024 22:16:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=QNIE3yAdiYLgDXjZr4W4bENb
+	pXioQ42veMrNJMx0qhg=; b=XwHr5U6HrZSGJSDxnWnzrCrrO1wxvDXQRTzfgqNi
+	If/QRHr3z79y6k+bo4fvgsKZqWRewO5bO4ZA7jrDEoXwwvKcNx7eaX9T6UHSqdAE
+	Dn4YX5+90XBuLdJpOPVX1fu7JXb8I5OM8e/LNbwxn6zBN45qsnOTssBygdFhb3uI
+	hD3d/368FnJ8KCz5nOPNAP3QZvJDbhNqzeM2OXaG/qtQ964DZsj2ITXELL0Hh6/q
+	7eLNGHLPrQF/tbPhwPmHxmDtjL6csUF+FGoAojXG5xBODXTp11EKFKT9AXeWCGhf
+	5Lchgy24m12iaw41TdeOCdc0eCtcW5ok3D5ZUblP+PfHNQ==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40x1g7wks1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 Aug 2024 22:16:45 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47CMGiCF021972
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 Aug 2024 22:16:44 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 12 Aug 2024 15:16:43 -0700
+Date: Mon, 12 Aug 2024 15:16:42 -0700
+From: Bjorn Andersson <quic_bjorande@quicinc.com>
+To: Rob Herring <robh@kernel.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor Dooley" <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
+        Wesley
+ Cheng <quic_wcheng@quicinc.com>,
+        Saravana Kannan <saravanak@google.com>,
+        "Thinh Nguyen" <Thinh.Nguyen@synopsys.com>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>
+Subject: Re: [PATCH v2 6/7] usb: dwc3: qcom: Transition to flattened model
+Message-ID: <ZrqJyh4UPJ5xBhq2@hu-bjorande-lv.qualcomm.com>
+References: <20240811-dwc3-refactor-v2-0-91f370d61ad2@quicinc.com>
+ <20240811-dwc3-refactor-v2-6-91f370d61ad2@quicinc.com>
+ <20240812212139.GA1797954-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240731222831.14895-1-james.quinlan@broadcom.com>
- <20240731222831.14895-2-james.quinlan@broadcom.com> <e1002187-fca0-455c-840c-32489e5eadb4@kernel.org>
-In-Reply-To: <e1002187-fca0-455c-840c-32489e5eadb4@kernel.org>
-From: Jim Quinlan <james.quinlan@broadcom.com>
-Date: Mon, 12 Aug 2024 18:07:54 -0400
-Message-ID: <CA+-6iNzDcF3pA1T3FuGNS4NPn1RrjHxxAVStN6t++xDsx-wUXQ@mail.gmail.com>
-Subject: Re: [PATCH v5 01/12] dt-bindings: PCI: Cleanup of brcmstb YAML and
- add 7712 SoC
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-pci@vger.kernel.org, Nicolas Saenz Julienne <nsaenz@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, 
-	Cyril Brulebois <kibi@debian.org>, Stanimir Varbanov <svarbanov@suse.de>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, bcm-kernel-feedback-list@broadcom.com, 
-	jim2101024@gmail.com, Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, 
-	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="00000000000056977a061f83baa8"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240812212139.GA1797954-robh@kernel.org>
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: XdqdRzcO9BWaJRLGOI6TBGoKgepnYOmU
+X-Proofpoint-ORIG-GUID: XdqdRzcO9BWaJRLGOI6TBGoKgepnYOmU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-12_12,2024-08-12_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1015
+ suspectscore=0 bulkscore=0 malwarescore=0 impostorscore=0 phishscore=0
+ priorityscore=1501 mlxlogscore=999 mlxscore=0 lowpriorityscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408120164
 
---00000000000056977a061f83baa8
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Mon, Aug 12, 2024 at 03:21:39PM -0600, Rob Herring wrote:
+> On Sun, Aug 11, 2024 at 08:12:03PM -0700, Bjorn Andersson wrote:
+> > From: Bjorn Andersson <quic_bjorande@quicinc.com>
+> > 
+> > The USB IP-block found in most Qualcomm platforms is modelled in the
+> > Linux kernel as 3 different independent device drivers, but as shown by
+> > the already existing layering violations in the Qualcomm glue driver
+> > they can not be operated independently.
+> > 
+> > With the current implementation, the glue driver registers the core and
+> > has no way to know when this is done. As a result, e.g. the suspend
+> > callbacks needs to guard against NULL pointer dereferences when trying
+> > to peek into the struct dwc3 found in the drvdata of the child.
+> > Even with these checks, there are no way to fully protect ourselves from
+> > the race conditions that occur if the DWC3 is unbound.
+> > 
+> > Missing from the upstream Qualcomm USB support is handling of role
+> > switching, in which the glue needs to be notified upon DRD mode changes.
+> > Several attempts has been made through the years to register callbacks
+> > etc, but they always fall short when it comes to handling of the core's
+> > probe deferral on resources etc.
+> > 
+> > Moving to a model where the DWC3 core is instantiated in a synchronous
+> > fashion avoids above described race conditions.
+> > 
+> > It is however not feasible to do so without also flattening the
+> > DeviceTree binding, as assumptions are made in the DWC3 core and
+> > frameworks used that the device's associated of_node will the that of
+> > the core. Furthermore, the DeviceTree binding is a direct
+> > representation of the Linux driver model, and doesn't necessarily
+> > describe "the USB IP-block".
+> > 
+> > The Qualcomm DWC3 glue driver is therefor transitioned to initialize and
+> > operate the DWC3 within the one device context, in synchronous fashion.
+> > 
+> > To handle backwards compatibility, and to remove the two-device model,
+> > of_nodes of the old compatible are converted to the new one, early
+> > during probe.
+> > 
+> > This happens in the event that a DWC3 core child node is present, the
+> > content of the reg and interrupt properties of this node are merged into
+> > the shared properties, all remaining properties are copied and the core
+> > node is dropped. Effectively transitioning the node from qcom,dwc3 to
+> > qcom,snps-dwc3.
+> 
+> In the past we've done this old binding to new binding with an overlay 
+> embedded in the kernel. The overlay would just be the .dts change you've 
+> made (we should have a tool that takes 2 DTs and generates an overlay as 
+> the diff). I suppose it's a few platforms here, but then it is just data 
+> and easily deleted when no longer needed (I think the cases I'm 
+> remembering did just that because they are gone now. It was TI display 
+> and Renesas media stuff IIRC). 
+> 
 
-On Fri, Aug 2, 2024 at 2:43=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
->
-> On 01/08/2024 00:28, Jim Quinlan wrote:
-> > o Change order of the compatible strings to be alphabetical
-> > o Use "maxItems" where needed.
->
-> I asked at v3 and then in v4 about splitting this. You never responded
-> to that comment, so sorry I won't be repeating the same thing in v5.
+Where and how do you apply this overlay?
 
-I'm sorry Krzyszof, but I just reviewed your responses in V3 and V4
-and I can't find you saying anything about splitting off the above two
-bullet points.  Perhaps I am somehow losing email responses but all I
-see is this in V3 is the following, where you ask me to do a squash,
-not a commit:
+If I can avoid doing the dynamic translation, I'd be happy to do so.
 
-    [JQ] o Change order of the compatible strings to be alphabetical
-    []KK] That's a cleanup. You can squash it with a previous patch.
+> 
+> > Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> > ---
+> >  drivers/usb/dwc3/dwc3-qcom.c | 310 +++++++++++++++++++++++++++++++++++--------
+> >  1 file changed, 251 insertions(+), 59 deletions(-)
+> > 
+> > diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
+[..]
+> > -static int dwc3_qcom_of_register_core(struct dwc3_qcom *qcom, struct platform_device *pdev)
+> > +static struct property *dwc3_qcom_legacy_prop_concat(const char *name,
+> > +						     const void *a, size_t a_len,
+> > +						     const void *b, size_t b_len)
+> >  {
+> > -	struct device_node	*np = pdev->dev.of_node, *dwc3_np;
+> > -	struct device		*dev = &pdev->dev;
+> > -	int			ret;
+> > +	size_t len = a_len + b_len;
+> >  
+> > -	dwc3_np = of_get_compatible_child(np, "snps,dwc3");
+> > -	if (!dwc3_np) {
+> > -		dev_err(dev, "failed to find dwc3 core child\n");
+> > -		return -ENODEV;
+> > -	}
+> > +	struct property *prop __free(kfree) = kzalloc(sizeof(*prop), GFP_KERNEL);
+> > +	char *prop_name __free(kfree) = kstrdup(name, GFP_KERNEL);
+> > +	void *value __free(kfree) = kzalloc(len, GFP_KERNEL);
+> > +	if (!prop || !prop_name || !value)
+> > +		return NULL;
+> >  
+> > -	ret = of_platform_populate(np, NULL, NULL, dev);
+> > -	if (ret) {
+> > -		dev_err(dev, "failed to register dwc3 core - %d\n", ret);
+> > -		goto node_put;
+> > +	prop->name = no_free_ptr(prop_name);
+> > +	prop->value = no_free_ptr(value);
+> > +	prop->length = len;
+> 
+> We're trying to make struct property opaque or even internal to DT core. 
+> Exposing it leaks pointers and then we can't ever free things. This is 
+> not helping. The changeset API avoids mucking with struct property.
+> 
 
-Now you did say in V3
+I will review the changeset API!
 
-    [JQ] o Describe resets/reset-names before using them in rules
-    [KK] That's a new commit.
+> > +
+> > +	memcpy(prop->value, a, a_len);
+> > +	memcpy(prop->value + a_len, b, b_len);
+> > +
+> > +	return_ptr(prop);
+> > +}
+> > +
+> > +/* Replace reg property with base address from dwc3 node and fixed length */
+> > +static int dwc3_qcom_legacy_update_reg(struct device_node *qcom,
+> > +				       struct device_node *dwc3)
+> > +{
+> > +	int addr_cells;
+> > +	int size_cells;
+> > +	u64 dwc3_addr;
+> > +	int ret;
+> > +
+> > +	ret = of_property_read_reg(dwc3, 0, &dwc3_addr, NULL);
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> > +	addr_cells = of_n_addr_cells(qcom);
+> > +	size_cells = of_n_addr_cells(qcom);
+> > +
+> > +	__be32 *reg __free(kfree) = kcalloc(addr_cells + size_cells, sizeof(__be32), GFP_KERNEL);
+> > +	if (!reg)
+> > +		return -ENOMEM;
+> > +
+> > +	reg[addr_cells - 1] = cpu_to_be32(dwc3_addr);
+> 
+> Assuming dwc3_addr fits in 32-bit or that the upper 32-bits matches?
+> 
 
-but this bullet item does not relate to the bullet points you have
-highlighted in this email.    As for your responses to V4, I don't see
-anything about splitting anything.  Again, perhaps I have somehow
-missed an email.
+The core resides in the lower 32 bits on all existing targets, and I
+expect any new targets that possibly changes that assumption would not
+take the path through this translation (or would need to correct my
+assumption).
 
-Rather than do more round trips of email, can you confirm that this is
-what you want:
+> > +	reg[addr_cells + size_cells - 1] = cpu_to_be32(SDM845_QSCRATCH_BASE_OFFSET + SDM845_QSCRATCH_SIZE);
+> > +
+[..]
+> > @@ -773,10 +937,14 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
+> >  		goto reset_assert;
+> >  	}
+> >  
+> > -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> > +	ret = of_address_to_resource(np, 0, &res);
+> 
+> So we just leave the platform device resources stale? The right solution 
+> is probably to make platform_get_resource() work on demand.
 
-A new "dt bindings" commit that only includes the changes of
-    o Change order of the compatible strings to be alphabetical
-    o Use "maxItems" where needed.
+I did consider updating the resource, only in the case that we rewrite
+the information, as it would be slightly cleaner not to leave that
+dangling. But this was cleaner code wise.
 
-If the above is not what you want, please tell me unequivocally what
-you would like changed, even if you think you are repeating yourself.
+> That's what 
+> we did for IRQ resources years ago (since those had irqchip driver 
+> dependencies).
+> 
 
-Regards and thanks,
-Jim Quinlan
-Broadcom STB/CM
+Right, for platform_get_irq(), but I presume for platform_get_resource()
+we would end up with the union of the different resource-specific lookup
+mechanisms?
 
+Regards,
+Bjorn
 
-
->
-> NAK.
->
-> Best regards,
-> Krzysztof
->
-
---00000000000056977a061f83baa8
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-mOAplh6h3nMZUZxBguxG3g2p3iD4EgibUYneEzqOQafIQB/naf2uetKb8y9jKgWJxq2Y4y8Jqg2u
-uVIO1AyOJjWwqdgN+QhuIlat+qZd03P48Gim9ZPEMDUCAwEAAaOCAdswggHXMA4GA1UdDwEB/wQE
-AwIFoDCBowYIKwYBBQUHAQEEgZYwgZMwTgYIKwYBBQUHMAKGQmh0dHA6Ly9zZWN1cmUuZ2xvYmFs
-c2lnbi5jb20vY2FjZXJ0L2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNydDBBBggrBgEFBQcw
-AYY1aHR0cDovL29jc3AuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAw
-TQYDVR0gBEYwRDBCBgorBgEEAaAyASgKMDQwMgYIKwYBBQUHAgEWJmh0dHBzOi8vd3d3Lmdsb2Jh
-bHNpZ24uY29tL3JlcG9zaXRvcnkvMAkGA1UdEwQCMAAwSQYDVR0fBEIwQDA+oDygOoY4aHR0cDov
-L2NybC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcmwwJQYDVR0R
-BB4wHIEaamFtZXMucXVpbmxhbkBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYBBQUHAwQwHwYD
-VR0jBBgwFoAUljPR5lgXWzR1ioFWZNW+SN6hj88wHQYDVR0OBBYEFGx/E27aeGBP2eJktrILxlhK
-z8f6MA0GCSqGSIb3DQEBCwUAA4IBAQBdQQukiELsPfse49X4QNy/UN43dPUw0I1asiQ8wye3nAuD
-b3GFmf3SZKlgxBTdWJoaNmmUFW2H3HWOoQBnTeedLtV9M2Tb9vOKMncQD1f9hvWZR6LnZpjBIlKe
-+R+v6CLF07qYmBI6olvOY/Rsv9QpW9W8qZYk+2RkWHz/fR5N5YldKlJHP0NDT4Wjc5fEzV+mZC8A
-AlT80qiuCVv+IQP08ovEVSLPhUp8i1pwsHT9atbWOfXQjbq1B/ditFIbPzwmwJPuGUc7n7vpmtxB
-75sSFMj27j4JXl5W9vORgHR2YzuPBzfzDJU1ul0DIofSWVF6E1dx4tZohRED1Yl/T/ZGMYICbTCC
-AmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UE
-AxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMSO43VW7D5NP1X/KD
-MA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCDMHoSyYhOvFwf7z973BfdIXRtYKN3M
-y22VNzsp1ePTNzAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yNDA4
-MTIyMjA4MDdaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFlAwQBFjALBglg
-hkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzALBglghkgBZQME
-AgEwDQYJKoZIhvcNAQEBBQAEggEAifrUFyNLcvXhQcuDO3rRNy9lDCgQ7MUwj0V0otBJxiO8XI+9
-FHpxtEIRpHZbsmmzwxQLa3LNTQUgsIHmBZ0mOugufGgK7VhBkUUz0ta7STLc+4QbsH3eZT26S2RB
-gdW+R4myNc1dbkN+4s/CUaFboOO6RepZkVqtLXS0DjBp1xMZv0SlpO9jx7khpu+VLhH4jgxK4e2c
-1wBsTMvfNz5mkPICeZuRhiwhYEospf7bjgMyT1jCJXkgn8tCgpBXp2sseXfvjh5oNUN5dJYXAdmd
-15u3rvDlyv+YP20u3rVLuVcJXojBPfVVUVmUOcyDwkF28KbMbB8efcv16uEs6D/5pg==
---00000000000056977a061f83baa8--
+> Rob
+> 
 
