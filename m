@@ -1,132 +1,200 @@
-Return-Path: <devicetree+bounces-92947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2961694EEEA
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 15:56:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 076D194EEFD
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 15:57:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C4D41C2215C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 13:56:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B44A9283AB9
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 13:57:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 473B917C7B9;
-	Mon, 12 Aug 2024 13:53:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C54BD181334;
+	Mon, 12 Aug 2024 13:56:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="hez2GInC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wi54Mqfm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C319953370;
-	Mon, 12 Aug 2024 13:53:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9356217E902;
+	Mon, 12 Aug 2024 13:56:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723470811; cv=none; b=FJHl9L97oYLoaj6BuC7No2JTbDCM5xn4uQ0My4Pv7uKh1Ok+b5jlTgC9MQkZX302CFDxXRNvclrddeyoZddej+j1BZ6VFFrCippfDFUqLUbhpPfQf2SFt1xi5mxP6bY+rRHeV6VCFG5/Zi6QoyQUTLTHcdgpeZrtqI06cmlKwo4=
+	t=1723470966; cv=none; b=ZR0NcT2k9r4HfDJml9RUsTnlf92LdTHZZkfc8TypR/bKt99UUwwjgGqKTCKorQEpppUpxZglbtrcw9voP2zwekUqq1sbNG/9nbnl6sqnHbuWS/9MUclDnG8JcJgaubSHZ6/Qr8/FtjI8ufeDgWFADp4YqMSTPiTF0G+aLd55K6w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723470811; c=relaxed/simple;
-	bh=CW+JyWTtYsuhG5Gpiplg7QBsDcC745rTZaDNCynvXBI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=p/p7eOwJPfGtS86eL8zOzF5UUvZ2F9GtCk/0FNL1oNhk6GuAIDMQrz/5UoQnLlC9M03NMf5pY1fcltLKA1vInHo+KUK6PLYGhw4No92nsfKuXo5+OHJHgAG6ZH+3Yc6NJKMZQ/UAmSQdUCxDMtADfCFv3nTx6f007DYe258OBFs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=hez2GInC; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1723470809; x=1755006809;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=CW+JyWTtYsuhG5Gpiplg7QBsDcC745rTZaDNCynvXBI=;
-  b=hez2GInCC7nUv2KMw4Esstu1L343BGX7U4PyrfcMjuzEF2nHKuZVZGOT
-   OCzWNcIO3BqDSH0uABFSRhYURFsxZVWGUCsZHa83P5DfftlLo7UhKtNtY
-   e6fzbg+uXnidMlmw7KT6k9yJ/vHYhe3NV0CLz76s6XWYpt8YQwva62g+K
-   28mx4XV4uUt4pnaS7TQczWbDN9uzdhQLoOyNF/dtSy5vC0MoQBCy4Nt3o
-   +yKFFm4y7sSGZKUS4HGkZJH/P5y4QQ7xWBy2bBYgNyS5QiyvlTPw8bbJ1
-   xFjwuKawhx/TC0xEQuR07ZTAHykpTWMwkwjbDm4BVaEv2kFlOPGlBxjEU
-   A==;
-X-CSE-ConnectionGUID: CCa8pu3sRVyU2VrCDEmycQ==
-X-CSE-MsgGUID: y77NAz5oT9qwWlhxjrEBmg==
-X-IronPort-AV: E=Sophos;i="6.09,283,1716274800"; 
-   d="scan'208";a="261298128"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 12 Aug 2024 06:53:29 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 12 Aug 2024 06:52:58 -0700
-Received: from ROB-ULT-M76677.microchip.com (10.10.85.11) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Mon, 12 Aug 2024 06:52:56 -0700
-From: Andrei Simion <andrei.simion@microchip.com>
-To: <claudiu.beznea@tuxon.dev>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
-	<nicolas.ferre@microchip.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<robh@kernel.org>, <alexandre.belloni@bootlin.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, Andrei Simion <andrei.simion@microchip.com>,
-	Mihai Sain <mihai.sain@microchip.com>
-Subject: [PATCH v2 7/7] ARM: dts: microchip: sama5d29_curiosity: Add reg_5v to supply PMIC nodes
-Date: Mon, 12 Aug 2024 16:52:31 +0300
-Message-ID: <20240812135231.43744-8-andrei.simion@microchip.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240812135231.43744-1-andrei.simion@microchip.com>
-References: <20240812135231.43744-1-andrei.simion@microchip.com>
+	s=arc-20240116; t=1723470966; c=relaxed/simple;
+	bh=GTR3DnfBi9dZ7CspCPQKAAliJgS85XfsdaOrowMKtFM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IPLMAHKufPba2EMathI0s+FFLGwTDK8xBh/zHpshz9JPNjai0F48IpGRuMtwfYSJPohFSxzsCSR7vYRUFyi/RrIyW1ZI6WTwtT+iofzdaAylqNPlOarBdhztFeQr3kL2jWM+CpIDih5j18j0QIWdxE43GseyAUMGIdcZTPPogZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wi54Mqfm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B434C32782;
+	Mon, 12 Aug 2024 13:56:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723470966;
+	bh=GTR3DnfBi9dZ7CspCPQKAAliJgS85XfsdaOrowMKtFM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Wi54MqfmZ20q1kqeTBMgQKudL+Vq4w3L2TGSF+FSjc8Jcz2BZdpX5kmXeBTLGvJrZ
+	 ogp8DCahVjaLhB3eSsQ2NyV41/xrZ2AqBoGOy+q8XzViZ7bpGgv8x3y4jHBv/D31Eo
+	 yMoOKN4aMNKNpkl7R1+JFpHNNrUsRbcS+uy+WyttR/NmlhvhNrlMCNAmTPCXqZAG6Y
+	 dqnhj08HGLFMzAkDyfCQ3YbLbAb/ufQJw9ThoDE7S1W+JrmGHQFUzWclCsC/oP8OWr
+	 O9x4S1GauCCcvdiM3i8ukdWPjcauok52j7brflZD3ijxWVEyr+pLrdE9NPE7L8aAh6
+	 S6f61GxWKfCVg==
+Message-ID: <c1e63a22-2dd7-48ab-9b98-ffd9f8b08a1b@kernel.org>
+Date: Mon, 12 Aug 2024 15:55:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: iio: adc: add AD762x/AD796x ADCs
+To: Trevor Gamblin <tgamblin@baylibre.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ David Lechner <dlechner@baylibre.com>,
+ Uwe Kleine-Konig <u.kleine-koenig@baylibre.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20240809-ad7625_r1-v2-0-f85e7ac83150@baylibre.com>
+ <20240809-ad7625_r1-v2-1-f85e7ac83150@baylibre.com>
+ <03eca85c-50d7-4ff0-a5b6-83e3322cb04d@kernel.org>
+ <f8a7754e-0f6b-4802-985b-d8817892ecbb@baylibre.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <f8a7754e-0f6b-4802-985b-d8817892ecbb@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Align with the datasheet by adding regulator-5v which
-supplies each node from the regulator using phandle to
-regulator-5v through pvin[1-4]-supply and lvin-supply.
+On 12/08/2024 15:41, Trevor Gamblin wrote:
+> 
+> On 2024-08-10 8:10 a.m., Krzysztof Kozlowski wrote:
+>> On 09/08/2024 20:41, Trevor Gamblin wrote:
+>>> Add a binding specification for the Analog Devices Inc. AD7625,
+>>> AD7626, AD7960, and AD7961 ADCs.
+>>>
+>> Thank you for your patch. There is something to discuss/improve.
+>>
+>>> +allOf:
+>>> +  - if:
+>>> +      required:
+>>> +        - ref-supply
+>>> +    then:
+>>> +      # refin-supply is not needed if ref-supply is given
+>> Not needed or not allowed? Schema says the latter.
+> Yes, this is poor wording on my part. I will fix it to say "not allowed".
 
-Co-developed-by: Mihai Sain <mihai.sain@microchip.com>
-Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
-Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
----
-v1 -> v2:
-- drop (lvin|pvin[1-4])-supply from each regulators sub-node
-- add lvin-supply, pvin[1-4]-supply to PMIC node
----
- .../boot/dts/microchip/at91-sama5d29_curiosity.dts  | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+so just drop it. No need to repeat schema - it is obvious from the
+comment. OTOH, if you want to keep any of such comments, then make it
+useful - explain WHY it is not allowed. Because the WHY is not visible
+from the code.
 
-diff --git a/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
-index 6b02b7bcfd49..951a0c97d3c6 100644
---- a/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
-+++ b/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
-@@ -84,6 +84,14 @@ memory@20000000 {
- 		device_type = "memory";
- 		reg = <0x20000000 0x20000000>;
- 	};
-+
-+	reg_5v: regulator-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "5V_MAIN";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
- };
- 
- &adc {
-@@ -144,6 +152,11 @@ &i2c0 {
- 	mcp16502@5b {
- 		compatible = "microchip,mcp16502";
- 		reg = <0x5b>;
-+		lvin-supply = <&reg_5v>;
-+		pvin1-supply = <&reg_5v>;
-+		pvin2-supply = <&reg_5v>;
-+		pvin3-supply = <&reg_5v>;
-+		pvin4-supply = <&reg_5v>;
- 		status = "okay";
- 		lpm-gpios = <&pioBU 0 GPIO_ACTIVE_LOW>;
- 
--- 
-2.34.1
+>>
+>>> +      properties:
+>>> +        refin-supply: false
+>>> +  - if:
+>>> +      required:
+>>> +        - refin-supply
+>>> +    then:
+>>> +      # ref-supply is not needed if refin-supply is given
+>>> +      properties:
+>>> +        ref-supply: false
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - adi,ad7625
+>>> +              - adi,ad7626
+>>> +    then:
+>>> +      properties:
+>>> +        en2-gpios: false
+>>> +        en3-gpios: false
+>>> +        adi,en2-always-on: false
+>>> +        adi,en3-always-on: false
+>>> +
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - adi,ad7960
+>>> +              - adi,ad7961
+>>> +    then:
+>>> +      # ad796x parts must have one of the two supplies
+>>> +      oneOf:
+>>> +        - required: [ref-supply]
+>>> +        - required: [refin-supply]
+>> That's duplicating first and second if. And all three - comment, first
+>> if:then: and this one here is kind of contradictory so I don't know what
+>> you want to achieve.
+> 
+> It sounds like there's a better way for me to specify this, but I'm not 
+> exactly sure how.
+> 
+> The AD762x parts can operate without external references, so the intent 
+> was that neither REF nor REFIN was required in the bindings, but if one 
+> is given then the other can't be.
+> 
+> For the AD796x parts, one of REF or REFIN must be provided, but not 
+> both. If REFIN is provided, then REF doesn't need an input because a 
+> reference voltage is generated on REF. If REF is provided, then REFIN is 
+> tied to ground.
+> 
+> Maybe there's a simpler way for me to specify the whole block?
+
+Ah, now I see. Looks correct. I am not sure if it could be coded simpler.
+
+Best regards,
+Krzysztof
 
 
