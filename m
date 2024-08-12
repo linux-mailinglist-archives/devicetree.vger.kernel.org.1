@@ -1,88 +1,154 @@
-Return-Path: <devicetree+bounces-92860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92861-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2207A94EA2A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 11:44:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9673D94EA35
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 11:46:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B9DE7B20988
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 09:44:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9676D1C21097
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 09:46:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A5AA16DEAD;
-	Mon, 12 Aug 2024 09:44:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D6EE16DEDE;
+	Mon, 12 Aug 2024 09:46:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="AcWQh47x"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k/6J2eS1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 910D716A948;
-	Mon, 12 Aug 2024 09:44:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F5661C3E;
+	Mon, 12 Aug 2024 09:46:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723455879; cv=none; b=iwpZf2IH/m39FT1prinExOPQ8LdLvVVnxccE69WXml2/UQ9sU7B1TxEk/jaqw8Yf6JCqk0YnEQ+eohHQeqvYc1inqEhXSn1LeQ4Qx/wCj4WUKA1ghGX3xkMZs8BCMg+qI32UdPN8GDrN2AiHPo0VW0+M8Zi7vglF6sOED+cbL/I=
+	t=1723455978; cv=none; b=KhUqrGsOCJ3H198l+ra9o3AX1q+mJSQH/AbI7wKo/OccymXvXKKMwk+1RuPJYAtuvUeKr1BZIWMdMBWQQ5pnrtB8a4dodUBhu7KO6jQCWjxJ+2dqVCpBy+AQBOHuy3rT3OC0ABYHzS51jBirUoLmRJ4PkDV1m2XeFJyjmkJnZ8E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723455879; c=relaxed/simple;
-	bh=P8t2qzTDKtuBQhzPXUYxfC3tFEHNAV85Pec+kdaY5zE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BnKJhPpNa7wRqruLVa6QUnZD1zo94u7U5s8FC3uuFN93b7RdekP+rknYLCz7gaq/DDdbgJveZim1TWZieXbwmouc32ooOpON3fuwhudbu/yQup7/E130AjMEpmIujyWux7Qz/0o+a1s13pZG4BVsNpwvFmYMrTqpZQyg4t7emcM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=AcWQh47x; arc=none smtp.client-ip=220.197.32.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=8OQDzwap6QK8JuO7jTB4iPv7Bd6WkmI/d68Ki8Wr0Ik=;
-	b=AcWQh47x9pr/Dfjbz1ISPz0mIIAnCslrTImIcAZBaRUfWxpBXF8lKZSN2SPFhK
-	lF5bgxux15pii+5/yBfzpFsNKMM5GWD2N4/YPatm7gTq4KzHA6E3C/Q0Oevs/vAY
-	ESM/PzTsuS6AJ4mdooVhuVErXywKoEq2ry+h7gWpMzcKc=
-Received: from dragon (unknown [117.62.10.86])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgD3f8JH2blmcEBWAg--.28001S3;
-	Mon, 12 Aug 2024 17:43:37 +0800 (CST)
-Date: Mon, 12 Aug 2024 17:43:35 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
-	Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	WANG Xuerui <kernel@xen0n.name>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, imx@lists.linux.dev,
-	loongarch@lists.linux.dev
-Subject: Re: [PATCH v1 1/4] arm64: dts: imx8: remove non-existent DACs
-Message-ID: <ZrnZRz4U7D8oqOMK@dragon>
-References: <20240717-anvil-ashy-544e80a1317c@spud>
- <20240717-alkalize-bouncy-83e748284bc7@spud>
+	s=arc-20240116; t=1723455978; c=relaxed/simple;
+	bh=yOE2mc5cU3Ike/C/o6AZ6ex5/MryW/D7i3oyQt06Vng=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=i4qVVBtGkHzjIHQmYbWZLYtq+c1mdKGKUD9MD1dUippy1rMM4d22wpuQf913afCHq1KqqNRTDihP8bOA6agceMj4r3NdOGVy4vllVOGTAFmgHsrkxthlGL6hWKQ3XzJEkVdbgfo/16FvxDI71JScGZiG6CqiIS+l/XRmA2jtKZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k/6J2eS1; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1fd69e44596so27895125ad.1;
+        Mon, 12 Aug 2024 02:46:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723455976; x=1724060776; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MUxh3YwlPzmy+PcO3DHdAzw/4G592svoiNiI2B6pc4k=;
+        b=k/6J2eS1Iwvl+F7eb875p59kZIqEfpKxL647wuqs++U3OoH2hRgAXyU/n1GABRBgfp
+         AusbpIChRJUuRCao/HTSHV44RmSrOq3nlyxZBO2KxCiGSfYiB5ojutKJn77lXxiMLz2+
+         zzO5Yux8K1GvTm/EbbpJcdFY0SHfBkVgzYq6yh6dWMmUbdQ7bDwdiFK/EfafKl0iA8ok
+         X0fOBLClybm8b12j1zywAFeeJdMn84decshe76xKv4NjHRghlDYcU2zlyYiOz17FgC+a
+         AK5jO5IPoU5FAm7fuC3D7kwtn6iIMIfMUbpx9mND53ljMgQ5wi7w/HoTZH2G9jlg7xH5
+         73EQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723455976; x=1724060776;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MUxh3YwlPzmy+PcO3DHdAzw/4G592svoiNiI2B6pc4k=;
+        b=XlRTmT7T1UvmGLPzKH6Kv/KbCxHCZzeJLXMSpVYLYIanUIdZN+xjELBFKQvpO7bQyi
+         lvHIhB7m+nXeyVuBxdRALk8RV0wRYX6eJ1O17X3MofWXNlpZTdw+01h0p9VmR3i+nz3h
+         +xkPpwgBYooPZt40BCeKawzDWThIS8ZR7riIPxKH2PUNxec5+soWUCNwbHSRlVkzvDlx
+         pjhktPh5UWa1EgCdFH5w4VzVo7JLQod4rNBPQuRQLlB5txjVzxbOjMndwR19SygTUt50
+         V+x7Np7HL1RhMondRfTDEliXxuVn57IfLiXroov5PulFi9jengJJlbtO9K3kQ6cB86eU
+         GM+A==
+X-Forwarded-Encrypted: i=1; AJvYcCXtyUbofISxU0Xlmwj9VNC0t35GqxoLijyGG8SlY/25790CtJHhjmQMF7hukhweYvrrusVxehRfxDPH8cEQnip4ij3UvgCVZtilAQdOPyPZ55SSv09yJEXN6KmCoH9fHvHEjUSeJ3ucADwOzN7xRqvAX1SDETRmyoVh+/MKIvPgKwTQrc8q
+X-Gm-Message-State: AOJu0YwrAgIdxp7XXxUxR6XZAvzw83loFWQM4tVNVZHEOsWV0EgjjglG
+	xpSjoMFgnlfFfYwkRJJSetFvBNpm6sqbouBQ/+laLtlUNKMFluKq
+X-Google-Smtp-Source: AGHT+IEhL4arKcRb/xw7OVPVg6BiQe2H2AJSFtWsVZ5BkuWfnuoclUhY2oj8Zy9Gy/7Hw/+kdf10Dg==
+X-Received: by 2002:a17:902:ea01:b0:1fb:8e29:621f with SMTP id d9443c01a7336-200ae567dd3mr136423225ad.16.1723455976170;
+        Mon, 12 Aug 2024 02:46:16 -0700 (PDT)
+Received: from [172.19.1.53] (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-200bb9b17dasm34061725ad.137.2024.08.12.02.46.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Aug 2024 02:46:15 -0700 (PDT)
+Message-ID: <b9f9cbae-c4d8-420e-865b-e0f48dfa9667@gmail.com>
+Date: Mon, 12 Aug 2024 17:46:12 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240717-alkalize-bouncy-83e748284bc7@spud>
-X-CM-TRANSID:Ms8vCgD3f8JH2blmcEBWAg--.28001S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUI_OzUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiAgc5ZWa5z7Yh8gAAss
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] mtd: rawnand: nuvoton: add new driver for the Nuvoton
+ MA35 SoC
+To: Krzysztof Kozlowski <krzk@kernel.org>, miquel.raynal@bootlin.com,
+ richard@nod.at, vigneshr@ti.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, sumit.semwal@linaro.org, christian.koenig@amd.com,
+ esben@geanix.com
+Cc: linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org
+References: <20240812030045.20831-1-hpchen0nvt@gmail.com>
+ <20240812030045.20831-3-hpchen0nvt@gmail.com>
+ <06d627d5-947c-4da4-826a-76033386b575@kernel.org>
+ <3b7b629e-0085-4821-932c-e89faad15c1a@gmail.com>
+ <33ae3c93-81cb-491c-a5b3-239c7c413eb3@kernel.org>
+Content-Language: en-US
+From: Hui-Ping Chen <hpchen0nvt@gmail.com>
+In-Reply-To: <33ae3c93-81cb-491c-a5b3-239c7c413eb3@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Wed, Jul 17, 2024 at 10:37:53AM +0100, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Neither the imx8dxl-evk or imx8qm-mek have a Rohm DAC on them as far as
-> I can tell from online documentation, and they certainly do not have a
-> dh2228fv, as this device does not actually exist! Remove the DAC nodes
-> from the devicetrees as it is not acceptable to pretend to have a device
-> on a board in order to bind the spidev driver in Linux.
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+Dear Krzysztof,
 
-Applied, thanks!
+Thank you for your reply.
+
+
+
+
+On 2024/8/12 下午 05:13, Krzysztof Kozlowski wrote:
+> On 12/08/2024 11:10, Hui-Ping Chen wrote:
+>>>> +
+>>>> +/* NAND-type Flash BCH Error Data Registers */
+>>>> +#define MA35_NFI_REG_NANDECCED0	(0x960)
+>>>> +#define MA35_NFI_REG_NANDECCED1	(0x964)
+>>>> +#define MA35_NFI_REG_NANDECCED2	(0x968)
+>>>> +#define MA35_NFI_REG_NANDECCED3	(0x96C)
+>>>> +#define MA35_NFI_REG_NANDECCED4	(0x970)
+>>>> +#define MA35_NFI_REG_NANDECCED5	(0x974)
+>>>> +
+>>>> +/* NAND-type Flash Redundant Area Registers */
+>>>> +#define MA35_NFI_REG_NANDRA0		(0xA00)
+>>>> +#define MA35_NFI_REG_NANDRA1		(0xA04)
+>>>> +
+>>>> +#define SKIP_SPARE_BYTES	4
+>>>> +
+>>>> +/* BCH algorithm related constants and variables */
+>>>> +enum {
+>>>> +	eBCH_NONE = 0,
+>>>> +	eBCH_T8,
+>>>> +	eBCH_T12,
+>>>> +	eBCH_T24,
+>>>> +	eBCH_CNT
+>>>> +} E_BCHALGORITHM;
+>>>> +
+>>>> +static const int g_i32BCHAlgoIdx[eBCH_CNT] = {BCH_T8, BCH_T8, BCH_T12, BCH_T24};
+>>>> +static struct nand_ecclayout_user ma35_nand_oob;
+>>> Why this is file-scope?
+>> I will remove the `static`.
+> No, why this cannot be instance dependent? Quick looks says it could.
+> And should.
+
+I will add this variable to the ma35_nand_info structure.
+
+
+
+>
+> Best regards,
+> Krzysztof
+
+
+Best regards,
+
+Hui-Ping Chen
+
 
 
