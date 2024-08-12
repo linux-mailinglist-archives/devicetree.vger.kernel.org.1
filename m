@@ -1,176 +1,105 @@
-Return-Path: <devicetree+bounces-92934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4994794EE22
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 15:28:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8150894EE2E
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 15:32:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D0F19B222DB
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 13:28:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B378E1C219D9
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 13:32:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA78417C228;
-	Mon, 12 Aug 2024 13:28:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MCsV3OPB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADCF317C7BB;
+	Mon, 12 Aug 2024 13:31:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52C4B17C210;
-	Mon, 12 Aug 2024 13:28:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6891517ADEB;
+	Mon, 12 Aug 2024 13:31:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.95.11.211
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723469324; cv=none; b=XqeABK+I9ODayXFTsnVyvwamIQISSk37cZZQ0mUQSEeHfbSRVvfhc5/MlLkzyomonbaLOOLNnQbB4QpqPTGVVXeYaiVfffbICLj9CpvNDSh6nMQodAVS1vwz+uDskVMGznA4xlCt4JRuFjeC6xldkZP3lDlO8LQOvZQMQQkwvww=
+	t=1723469495; cv=none; b=fouzwc/3zIq4XAxGF9SUWZoXZJ13/pkzFoBXUjmpDOAseAfuRi02QiVR2P9rTggbp2e1YV94akXGw5P5qvhMKbUD1bVMOKTXThkydylRcX4pryK9A2Td7+1HWUibVwsSm1Z03arV9qlESSkzZG+SQK2VGWxJya8Ka9d8IUbt3u8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723469324; c=relaxed/simple;
-	bh=kKHBu/ugCjOiE0dvX4g6zx2IAeyh8jt5+kY4xBe7Azo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=HgGwaxITy5njyqug+hpEHKYLhlwmWo4HsOlXayD9Kg6Bvk7xAeTKgCD0DH1LUGGIdbvNHpRsHUNpf65ly/L5fps0jPc9Bi9qtACngvdwxocxyLQ8RTxn3NuasvNvIHo55QtXzhp5ritZEZtinQ9+dpihzltPJQzBfspZ/h1obtw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MCsV3OPB; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-1fed72d23a7so31893015ad.1;
-        Mon, 12 Aug 2024 06:28:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723469322; x=1724074122; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=q2T3wy2zFPohUzm4HYI93e1fa0m6wxGlFeG9XBGXZAY=;
-        b=MCsV3OPBCLbgeo1IvEdeMp5YAkpcqsN/V+9G35ls2T11L7AVqtW3fBifVAh7/vkcVb
-         IKrsW5gWG3JMHb1fbdBdCSi2PTd2GtFpNs35t4mjhC80hgQ7Vt4Qqgy32i1rYgoYCMkk
-         yQg8NBu/wFAZMSfSjXeOr0X2XbGsuwiR7Y1TBVWa0dXST7mqhZfd9rSmIc2Syr/yLMtG
-         kDGvSC5BxEezEeyedQlq0ogZZT3kIyB4KTrYG1k3Uu5QthlAAlAa1hEqkRMZtq6QFc0U
-         3t7dWWNg1q2FEP/TUOA75BT/mhVGm8oLhecPyhv0fywbawx1U4eal2mv1pzJhbuaOrEw
-         xA9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723469322; x=1724074122;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=q2T3wy2zFPohUzm4HYI93e1fa0m6wxGlFeG9XBGXZAY=;
-        b=F9QhGaExZt5hzBPK9/vtDndawkAbgAz2a94I6pUbyDYj5y/GpUc5vQhO+BA8k3/4GP
-         w2HVEkyn6XuwHo4JmKSHoRYnKoxgkY9VC2k/d7fHmHRJgCuRmBv+fnZasO7JGXqnXnFX
-         DIr56rahf+Z7Ewp/I4zSuAq/68QtEQAaAtEh4MqFbTWqL1CDXgnikFjT9AAJJHBvKLD5
-         kBsO1hTdhQy9gWKC+haiDS2E7PETMPdvTySrnpiomdZFRM7pdi+iS45BcIXN2t1HkJj8
-         qZnMjgTTmhHRkbDGbzg1y73ZbgffKXnBnTf9MOFMTrwIh/KA5NHkDf4/c1HMk0JrDMY6
-         Xz9w==
-X-Forwarded-Encrypted: i=1; AJvYcCUB/nhjPbyItsb6D59WTEaSErtTtITv7GsM+HnWbwQ6R/qaqJfO+K1JbTWccMBsJH421IDERpwY1GLbBIA=@vger.kernel.org, AJvYcCV6M3Fj5Tfh4x4K1sNYxVqCD5tAFCyh4xhIYSafzCzsxwvaXNShkAKCyD3z2wWhojff3dQurMBmmeLc@vger.kernel.org, AJvYcCVMJB2SRIKI8S9g1i3RWpNm1lV5CgkpKVOt5UdZ9/Cv6AlojfgKJLZuyBb4x8YTuERG9xJRVtrTND8Lmb6T@vger.kernel.org, AJvYcCXiMAxpLmr2NaxA7EY+QXUZVS/nHepQ3X7ODdm9Wi6wyATN9JxnpvWDKRzA/dkPFHAe28Uzy5+uQ7ZS@vger.kernel.org
-X-Gm-Message-State: AOJu0YylYxxd+9tAuyE8fumlx45s7ei8NszDflFvVPDDHlwotFBxOB3H
-	3d6eGy+Ur+7ewt79vUt0sHufY819zA9GxW1aRMpBOKYtzuGp+n7Q
-X-Google-Smtp-Source: AGHT+IHI16o8h0cxGZnxLOohq5pcdnp5N1uzUWBszGCX0V5kdHTEkUTdtF0pBgubs+IfbeLdQI7BIA==
-X-Received: by 2002:a17:902:ccc7:b0:1fa:d1df:d41e with SMTP id d9443c01a7336-201ca1d4959mr4070225ad.58.1723469322418;
-        Mon, 12 Aug 2024 06:28:42 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-200bb9085e7sm37776505ad.97.2024.08.12.06.28.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Aug 2024 06:28:40 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <acfe6acb-725a-4e62-9b82-35a887a3813b@roeck-us.net>
-Date: Mon, 12 Aug 2024 06:28:38 -0700
+	s=arc-20240116; t=1723469495; c=relaxed/simple;
+	bh=NOfZgeKAoiDqZ+R6zC5/7VaLnLVQMMzuVKrH+srwhu0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HVhnZck++p3rpX1FyLqfScF+AW9Umn/ajeubWWVDzcB+SRem0eCUAA65uo4Io1jmeLsIU2oGQpTgiTZ3RnzbWbqXbr6VEDkn4C834yeEwVMPICmxTo0DP7Kr7D0plEvR/SPGHscoLHLznhrPd2k8cXTF+c4L0eOIdfWdQVkKtxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lst.de; spf=pass smtp.mailfrom=lst.de; arc=none smtp.client-ip=213.95.11.211
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lst.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lst.de
+Received: by verein.lst.de (Postfix, from userid 2407)
+	id 6F38168AA6; Mon, 12 Aug 2024 15:31:28 +0200 (CEST)
+Date: Mon, 12 Aug 2024 15:31:28 +0200
+From: Christoph Hellwig <hch@lst.de>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Christoph Hellwig <hch@lst.de>, Ulf Hansson <ulf.hansson@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Joern Engel <joern@lazybastard.org>,
+	Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@kernel.dk>,
+	Sagi Grimberg <sagi@grimberg.me>,
+	Saravana Kannan <saravanak@google.com>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Florian Fainelli <f.fainelli@gmail.com>, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mtd@lists.infradead.org, linux-nvme@lists.infradead.org
+Subject: Re: [PATCH v4 2/7] nvme: assign of_node to nvme device
+Message-ID: <20240812133128.GA24058@lst.de>
+References: <20240809172106.25892-1-ansuelsmth@gmail.com> <20240809172106.25892-3-ansuelsmth@gmail.com> <20240812111205.GC14300@lst.de> <66b9fbb4.df0a0220.3bee6e.1e99@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/8] i2c: muxes: add support for tsd,mule-i2c
- multiplexer
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Quentin Schulz <quentin.schulz@cherry.de>,
- Farouk Bouabid <farouk.bouabid@cherry.de>, Andi Shyti
- <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Peter Rosin <peda@axentia.se>,
- Jean Delvare <jdelvare@suse.com>, Heiko Stuebner <heiko@sntech.de>,
- linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
-References: <20240725-dev-mule-i2c-mux-v6-0-f9f6d7b60fb2@cherry.de>
- <20240725-dev-mule-i2c-mux-v6-2-f9f6d7b60fb2@cherry.de>
- <728a8e06-81f1-4771-8031-ea043b9baf20@cherry.de>
- <3a36e89b-b4e2-4eb8-9197-a7a1d04a7fb6@kernel.org> <ZrnekeUKciV4eAKC@shikoro>
- <f6dfc6cc-365d-4f0a-9a4c-dc34cf4c5b7d@kernel.org> <Zrn-ZkgYKVquarDX@ninjato>
- <426eb8b6-9b2f-4594-9cc3-320ef0cee835@kernel.org>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <426eb8b6-9b2f-4594-9cc3-320ef0cee835@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <66b9fbb4.df0a0220.3bee6e.1e99@mx.google.com>
+User-Agent: Mutt/1.5.17 (2007-11-01)
 
-On 8/12/24 06:13, Krzysztof Kozlowski wrote:
-> On 12/08/2024 14:21, Wolfram Sang wrote:
->>
->>> Yep, but to be fair the patchset did not say anything about
->>> dependencies. There is absolutely nothing in cover letter, nothing in
->>> the patches, so I do not wonder that this mishap happened.
->>
->> Still, one shouldn't take DT patches (which are even the last ones in
->> this series) until all other patches are at least in -next, or? Yes,
->> mistakes happen, so no big deal, but i2c is not to blame IMHO.
-> 
-> No, it's not. It was just a ping. The issue is here not describing
-> dependency, allowing Guenter to take the patch and not even telling him
+On Mon, Aug 12, 2024 at 02:10:28PM +0200, Christian Marangi wrote:
+> The chosen name was arbritrary just to follow eMMC ones. Can totally
+> change if problematic.
 
-Oh, I knew that the i2c patches were not yet in the tree. I just didn't
-know that I must not apply patches in this situation (where the actual
-patches are perfectly fine but assume that something else completely elsewhere
-is applied). After all, the amc6821 patches do not actually trigger anything
-in i2c mux, they just trigger instantiation of nested devices.
+NVMe namespaces are dynamic and can be created and deleted at will
+at runtime.  I just don't see how they would even fit into OF
+concepts.
 
-We live and learn. Patches now dropped from linux-next.
-I do wonder though if the rules for applying a sequence of patches with
-non-technical dependencies is documented somewhere.
+There is a huge impedance mismatch here, to the point where I completely
+fail to understand what you are trying to do.
 
-Thanks,
-Guenter
+> But support of OF for PCIe is already a thing for a long time. (it all
+> works by setting the compatible of the PCIe ID card) and used in wifi
+> card at assign MAC address, calibration data, disable frequency.
 
+Please point to a document describing how, but more importantly why
+this is done.  I've worked with and maintained Linux PCI(e) drivers for
+about 20 years and never seen it.  And the concept simply doesn't make
+sense in terms of a dynamically probed bus.
+
+> Not having this well organized and consistent schema in DT will result
+> in additional condition in the drivers...
+
+NVMe Controllers are PCI functions (or virtual entities over the network).
+Defining them in a static DT scheme does not make sense.  NVMe Namespaces
+which are what contains the block data are dynamically discoverred and
+can be created and deleted at runtime, so refering to them in DT is even
+more broken.  I really don't see how any of this could remotely work.
+
+> If these 2 patch are problematic I can totally drop from the series but
+> it was really to add consistency in NVMe and eMMC. The real important
+> part is eMMC that is becoming the de-facto replacement for NAND/NOR on
+> high tier devices (mostly wifi6/7 consumer router)
+
+If you aren't dealing with raw(ish) NAND don't use mtd.  MTD is designed
+to deal with the nitty gritty details of NOR and NAND flash.  If you
+already have an FTL running in the device there is absolutely no reason
+to use it.
 
