@@ -1,362 +1,240 @@
-Return-Path: <devicetree+bounces-92761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFFDF94E482
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 03:39:59 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14A5E94E48E
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 03:43:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D5941F21EB0
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 01:39:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 75C40B216AD
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 01:43:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC3FE273F9;
-	Mon, 12 Aug 2024 01:39:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C57F74D8CB;
+	Mon, 12 Aug 2024 01:43:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="MyNzvHAx"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="cyh0gI6o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m12751.qiye.163.com (mail-m12751.qiye.163.com [115.236.127.51])
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11012012.outbound.protection.outlook.com [52.101.66.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E80B2136A;
-	Mon, 12 Aug 2024 01:39:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.236.127.51
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723426793; cv=none; b=rNGWp9dA8c/qy7Gn7uQGSPbqt+DASxu1DpJsrf5PNUbf9Q2XQCHp/5g/4n2cubWM4qqCPQtfb9+D8A1npiUbHZhYjzgVetKwca1MHteWt1FBhVDMEXTeC/Ho9xpM+Ja8hXv02WZtwt5mqgsv7EDqGi3YWAHMpcVmDmglZYaEiiQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723426793; c=relaxed/simple;
-	bh=jvasnGtWS3SNaZEIRyeRH+9dj6mEY/FGZqnFyDDfYDQ=;
-	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=uWN0MFrLzwIzSh7s0zsrGZTi3Y/0tkFSdwT9vPVtlSRW7JlYBYdVFjWQ/SrX8URQKH4SyuU8RkD/0kSY2rBZi1gBSJKCpnPxojbt6jI4+opvrns7XRIK1zEp0fwn+YB58euj0kmn6KcUKSty2tZ62QchAA+OO4UZ+XaLy5KeKJU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=MyNzvHAx; arc=none smtp.client-ip=115.236.127.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-DKIM-Signature: a=rsa-sha256;
-	b=MyNzvHAxJBRtHc5hRmvamjQtYeXVAePkgbjYKOhAUkWg9sOCrJttYRRdX76ke2+elUHbU/E0JTi6vjGpNC11pdYzE9Kj6MObYV3tiQolVVTL7llwGIChvDV+n893zZtFi0hZoEr8mTFGTxSrrDgpPH2DkRqcWyRKOio+468qdYM=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=0sTN93Z27hftIoKwG2LU0CkZ691/s//4DKhUCzjA24k=;
-	h=date:mime-version:subject:message-id:from;
-Received: from [172.16.12.69] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTPA id 1313F4602AB;
-	Mon, 12 Aug 2024 09:28:27 +0800 (CST)
-Message-ID: <3b2617f5-acb1-45c6-993c-33249fd19888@rock-chips.com>
-Date: Mon, 12 Aug 2024 09:28:26 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 335F7136328;
+	Mon, 12 Aug 2024 01:43:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723426995; cv=fail; b=lKGA5CkJd8jFXh1OBBvUZJ8+4wRrQCrd+M85JJ/6B2YiJ2CazfoFQOfu7vxTWbvFO4U49GRo9GydHUCpVRUeaADMYgTjiomL0GzB79Y24cM9Ex1A8Ss8lv5zkdlCcxrr+Z20C3q5xefiBxiD3cVX/nQXMTiWfOH5oFBDHIWnUrw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723426995; c=relaxed/simple;
+	bh=v3Ic3uJXLhsc2os90c9IfYcveK698cgRBJKXHZhvKV0=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=rVZpiDHZPqdc16p05fGZ2xBESy9fdoRqNULb08woDCz/6VK85ZavvG+ZA7ZgTGPimMijG0GyKgl7NHo9nXyVuK3Z04EPB25KOcjNFI7DS63JsTYQsSsV1WPhuvYdNb2ci/jSwjVPxH16+4M7UbVPxD7TeUyPw+fbxRV2CDYRgOY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=cyh0gI6o; arc=fail smtp.client-ip=52.101.66.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=hWkjmAtHio/t1rt6PweH5R26ub3I0/dZnxMQCbxRQHdzorlbgXSTDvMCwerqlOXjSQDOoznj6q5nVExsZZ48hCswbvpBdHxF2AlLCCeGBJVg2q2o9EwLKGLjKypccbtkzZgr1ew+32Uhd1kX9EfuOVpn0eInDeqJ+4L+dwD2iSjiF4QHUBJ8fJEFbW/69gm0fPaFbfk/RoogKYHmtnx21NfBH7FdyF+6jWrcQ4el/steq3bk4vj74eln+AqUbPUOImTNTkokeHKLBd+K3GIlo/F3DxFFsDeVxCJsUm4tOgOPNeIGCZg/LjFwBnqouVxWnNj1y2Fy/pB5ZouSveCmKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=v3Ic3uJXLhsc2os90c9IfYcveK698cgRBJKXHZhvKV0=;
+ b=xybjBbhbdz5FrHJVHVHseaZ8rLoJdHEIqjDWLGtQ4F9Ex5a7ChziY4f0Bw94cuypM38De/twHWuQOd7ecvOal8AHcvBgmk6Y4IRsEExscONZPc7jMVw9PnIrku3WcNwkoYoyzEUOR6qUisku4ghAi4ksCfVed2hmsdN/wc/qDivRd/08DClFeqt+CrKUgtV1Tytj50wgX1lQPDTT5G/bUTMsIcVUJhZZ8gdlga1GF6IsUjf2YL4IrdiPWQ25fbvK8Qh15lYNWpz7pvrhGzEGI4L17yuzDqyrkg2UZAcuP3BzA1TDi11y97nSgXRMWyhu1C/7/QAY3nEvdmDQz9c0NQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=v3Ic3uJXLhsc2os90c9IfYcveK698cgRBJKXHZhvKV0=;
+ b=cyh0gI6oBfxWCQMQW/jve4qBZVLPQLNGh2VpySdqGhIUhK+sNJzL5g2J3ABKAXBGR0PsD50nH8Umy67X+w+3kwU1b1KH3Qmkpk/FhVCxYvq5QXfmI2x6IKtyqeoH6ri6XAWpbQnuY0JaaNxBU2lh3QGhJHwepDXogYi0S5SDqSE60TBApLOtBST7Jj19tpncFrB9XaGhKVNzwgFUBYecFflb1Ko2T7tIGg33yBXARHq6AjZpt93w5BAAjHPuFhcsWl8VLdaXvpp7EQCf3A5cdDOp+d2y8uCYhp2IJwfLbfjGbFEwtsYTE8j2+Gj5eD+NsjKrYg9E0vuKyUy2ZcxDtQ==
+Received: from AS8PR04MB8676.eurprd04.prod.outlook.com (2603:10a6:20b:42b::10)
+ by AS8PR04MB8008.eurprd04.prod.outlook.com (2603:10a6:20b:2a7::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.20; Mon, 12 Aug
+ 2024 01:43:10 +0000
+Received: from AS8PR04MB8676.eurprd04.prod.outlook.com
+ ([fe80::28b2:de72:ad25:5d93]) by AS8PR04MB8676.eurprd04.prod.outlook.com
+ ([fe80::28b2:de72:ad25:5d93%5]) with mapi id 15.20.7849.019; Mon, 12 Aug 2024
+ 01:43:09 +0000
+From: Hongxing Zhu <hongxing.zhu@nxp.com>
+To: Niklas Cassel <cassel@kernel.org>
+CC: Frank Li <frank.li@nxp.com>, "tj@kernel.org" <tj@kernel.org>,
+	"dlemoal@kernel.org" <dlemoal@kernel.org>, "robh@kernel.org"
+	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "shawnguo@kernel.org"
+	<shawnguo@kernel.org>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"festevam@gmail.com" <festevam@gmail.com>, "linux-ide@vger.kernel.org"
+	<linux-ide@vger.kernel.org>, "stable@vger.kernel.org"
+	<stable@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "imx@lists.linux.dev"
+	<imx@lists.linux.dev>, "kernel@pengutronix.de" <kernel@pengutronix.de>
+Subject: RE: [PATCH v4 4/6] ata: ahci_imx: Add 32bits DMA limit for i.MX8QM
+ AHCI SATA
+Thread-Topic: [PATCH v4 4/6] ata: ahci_imx: Add 32bits DMA limit for i.MX8QM
+ AHCI SATA
+Thread-Index:
+ AQHa2aEYMAHnp4ur4EKNGMJk8l3hQbIEgLWAgA7NqZCACTJ0gIABA1qAgAAnWoCAAQ7C8IAAV+gAgAPr9TA=
+Date: Mon, 12 Aug 2024 01:43:09 +0000
+Message-ID:
+ <AS8PR04MB8676BCBCCAF583CF8907D48A8C852@AS8PR04MB8676.eurprd04.prod.outlook.com>
+References: <1721367736-30156-1-git-send-email-hongxing.zhu@nxp.com>
+ <1721367736-30156-5-git-send-email-hongxing.zhu@nxp.com>
+ <Zp/Uh/mavwo+755Q@x1-carbon.lan>
+ <AS8PR04MB867612E75A6C08983F7031528CB32@AS8PR04MB8676.eurprd04.prod.outlook.com>
+ <ZrP2lUjTAazBlUVO@x1-carbon.lan>
+ <ZrTQJSjxaQglSgmX@lizhi-Precision-Tower-5810>
+ <ZrTxJzmWJyH2P0Ba@x1-carbon.lan>
+ <AS8PR04MB86765DB41F64B3FBF3DAFCAA8CBA2@AS8PR04MB8676.eurprd04.prod.outlook.com>
+ <ZrYeBu7XbqmOc0ef@x1-carbon.lan>
+In-Reply-To: <ZrYeBu7XbqmOc0ef@x1-carbon.lan>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AS8PR04MB8676:EE_|AS8PR04MB8008:EE_
+x-ms-office365-filtering-correlation-id: a73fe4cf-9dc4-4407-7047-08dcba701f05
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|7416014|1800799024|376014|366016|38070700018;
+x-microsoft-antispam-message-info:
+ =?gb2312?B?eHc5RCtEQVBhM0F1d1V0WFZmNHVROGpHZk1vQmtjdWFJZ2lBbEhGTUlXL2g4?=
+ =?gb2312?B?Y1Q5RXY2QmxPNjFvMUxmb2JWV3Z1YWJURDJSSmgrckt1ZUNyUU9ROWE4QzRx?=
+ =?gb2312?B?SXFBNzRmL2N3K1NVb1cwRnkvZDJrZnI5WTdoSzZyNHNHU1hmWjM0ajhGM0o3?=
+ =?gb2312?B?Z1JFZlVSNkxpRTg5bk1OemVQUXZ2eTU2N1FwbzVaVExLOE82amd3TlF4dzFP?=
+ =?gb2312?B?MmErbXhlRkZaV1BGTExhZkdCSTlLZmVHajVCTkJMYzNFQTNsZG5tQklGYWRD?=
+ =?gb2312?B?WUwvTE5UQ00yZ1BOU1dFdTVoSDRzblVoQlZtcE4rVDZnWHpzWU5LL0dDdUVR?=
+ =?gb2312?B?UzJGcWRBZ3BjVTNBNGs1V0tBSkVMVU55NjN3Y2ZUSWlNRmF3c1MxZ0VxYndm?=
+ =?gb2312?B?ellyVVN6TUZLSWxzZlVCbVQyWXlaZ3V0ZDk0ZWJkanpkS2ptQmF5NjlwN2Nu?=
+ =?gb2312?B?L0dhalNlaGtBek5UazJtSWVjakxZZ2NjVU8zWXB1cGxGZ21Cc3YwYkRzK0J3?=
+ =?gb2312?B?QUxJVllpUXZ4T2xQMzZsQ3d5b0JpK21CMVRURDlnQmJyWE56eXg0aHkzUDgr?=
+ =?gb2312?B?UGdqb1lhMFkybUJHMEZzM1JpejlROXFORjYxRHVtUEt1c3ZzbVIzR3RDQUE1?=
+ =?gb2312?B?VXhyanBTOGNDc2lpRHRnb2Iray9XZnh0ck5Gcm9ieUw1OER2VnBPa1dNMkVL?=
+ =?gb2312?B?SWZ4bjJmclhxV24vNm5VQUNobVYyQ2ZiQUc0aysrZjJrT09ydGVPUThaZTJ3?=
+ =?gb2312?B?cC8zQ2I1ZWhBMTg3a2tJWHBXOGVMaGl5QUlyV2J2U3EvQk1CRjVZOWUwdWFj?=
+ =?gb2312?B?QTI0UlltbksreDJ3aFN4eHVRVnUzZEdOQUhyc2gyczV4WlRvYTQ4b2ovNU44?=
+ =?gb2312?B?cWxWbkp3dXRTY04yYnJtZzRkbmJwUXN5U1UxTjZpZ0pQTkhVeElpcmdOTVV0?=
+ =?gb2312?B?VDdJcHBjaEdQTXoybHBGMHNUMmNhQkxTY29pTGs3Wm5ZR0tVcU5xZ3R1by9S?=
+ =?gb2312?B?OVFOSlZaTTk4RzBMVDhrei9zNTl0Wm90ZGtXdmI5R1ZldEsweVJuL3pGWklv?=
+ =?gb2312?B?L0JseWVRSHRPdkErRndyWTBjZE1HLzMvdTVKa01IWXJ2V05UUkxJTGFVeklk?=
+ =?gb2312?B?emtiQ293Vk96bUk1aGtZRlUzYlM3dnVnY0NnSDRSU1JtSzRsa0tEWmMxeDdS?=
+ =?gb2312?B?anNGVTdvTVMvaGtWNkJkVmxnZURLNFdUMlo2c25xdjV6UkVYdk5VYVMvQlgz?=
+ =?gb2312?B?QXZLUjJLL3BGTk1oTW5mY1dDU3lhV3pFQ0xua1hrVlVTaE1Bd1E1MkdVMG5H?=
+ =?gb2312?B?cmQ3eVNBWDZGVkFwTnQ5empLSzhVcUpxbk84MzJGeUYzdURLcnBMQndzVzhj?=
+ =?gb2312?B?eG1NZ0NxblNkRXc4TW5rWmxRM2NHOFJxSUVHcUV2cklPdGlOUEtacXV0RGsz?=
+ =?gb2312?B?NWpqajQrZTJHSUR3aGlHcXB3Rk1EZmM5WWtwVUJ2ODF2MjNDZkVLQTRoWWc0?=
+ =?gb2312?B?R3RoVmU0NDZod21JdWdqWDAyQmQ4NGNVOWRwbHlqNG1pVWhzTmtDWGJjaWhu?=
+ =?gb2312?B?cVR2clB5SWY2MUNWcHdYTDhSQUJkcVUvczBUNjNQNnpZZDNCSFV6dE0xKzJY?=
+ =?gb2312?B?RVhJMHdsU2trb284T1BFKzJNNzA5T3BrV1U0ZUZzSXVGZXhrYm5Ud3QyM2U3?=
+ =?gb2312?B?bjhOM0loR2kwWTlQaWF3bk5qUE9RbXVkSnhYakpyVnZvTTQ1WWZNMEZsODk2?=
+ =?gb2312?B?a0NNbGhhZUZiaHU1M0lsRHg4dE50aTQ0Y3NER2c0blBpUnhKQ0UyZTJSL2FQ?=
+ =?gb2312?B?L0VJVzZFUkVvZ3hJckprT01kVEh4UG9PejlpWjFreVBNcWhpR0xUNklQTDJq?=
+ =?gb2312?B?Z3hjMnNjMnJ0dGZLaHBlcUxtZlZLekQ2K05ENVRDYzVCQ3c9PQ==?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8676.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(376014)(366016)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?gb2312?B?cWhlTWp5Tmt4T1Z1Wnp5Uk81OXBiSW5PNjJvclUyQ29TZ003a2hjeTRld1Nx?=
+ =?gb2312?B?T2lJM201WVVqc0hTQ0JjZGFvek13YUs2TWViek5kTHJJWkR4WTJhSzMwTE12?=
+ =?gb2312?B?THNBdzJsWURqTGU3ckFuMXhoN0FYZE9pV3k5MTZMQ29ud29iTFphc1kwWWpV?=
+ =?gb2312?B?dS9kalVSdnUzQ0VRRmdwQWJUVFdXenRZbkRwMTFsenVCeS8wc0l5MEFTRUtW?=
+ =?gb2312?B?bHNnRUFRYUNzR2w3WDYwZm5wcTQzQ000MTUxSy9FSG5pOVpUK3ZubUF4SUJF?=
+ =?gb2312?B?TEwwVjdBWGZRRFZwUFhrRW5pTDVmZ1dWQjJJaFdXb0JXSzI2VHhUbTQrZ1Zk?=
+ =?gb2312?B?RGFuNFlWZWMrOWdUeTJSRC9vUndyTHBmOWIwa2E5cmZ6ZDh6d3JPNVY1UEFO?=
+ =?gb2312?B?VWRhSENHMHdCeFJjN2JXNFRzRVJZMG9KNnJLMWJKend6dkxXTTNRWnltbzNk?=
+ =?gb2312?B?RWZDbkwvc1Jna0ZxWmxZMnVTWkMxcjdhQlJyVHdFb2ZxRWhWNlVuNEIrVEsr?=
+ =?gb2312?B?TnE0elUzTmR1MkFjMkhEcEdkODFxTi82Wk0zaEhiMWhjczNFbk45RUQxM0lp?=
+ =?gb2312?B?eUNTaEZnN2lMbWkrTHg2cFQ5S3YwTEpBNktkbldtVmw4VUcrMW44YmIvemxV?=
+ =?gb2312?B?Skp4Rkh3Nytxbk4wdE9Db3o0UjgxZVBGb2J3Z0M2SDc5dUxnRE9QZmJEOG5u?=
+ =?gb2312?B?YzgxR0hwYVZBUjFvRDJqcW4xdldCZ3YvMm83c3o4RDUxU1RsaGZqajczb1Jo?=
+ =?gb2312?B?VTk3aHRJcnFmOEFvb2hla1V6NW11S1hTaW5ZekxKMGRuT09KTWJXbDFaais4?=
+ =?gb2312?B?QnF6bGlrQUhMZzEyeGt6NzE3NlM0L0hCU2ZrSTdWVVNTN3RXcDhTOTlTVlVK?=
+ =?gb2312?B?c0NTNkg4RmFGRkxQMnFmSjJLd0hudE00dmVXamc1clpKODZVcGkzc1ozdmNv?=
+ =?gb2312?B?YkJnRDBCMWhwcE05Y21iYVZleG1lUFQyeG81elhUZXdyVGhLZ3FPbTdXTXc4?=
+ =?gb2312?B?bkZVZUFubm9qdEJuam5pTzRqNFphUDB3OVh4RDhHZU0xNFA2bHA5cWt4RTFQ?=
+ =?gb2312?B?alNrUDE0a29wT3JpNXlXTmxjTVRRSjI5bFJ3dkt6RCtaZ2I5NlUvWEdiOG5x?=
+ =?gb2312?B?SjZLVHpqT3M5dnV2VFBzWlhocERjb1F1eEplcGQwelFXS3hOS3p5anMyNERi?=
+ =?gb2312?B?ZHlCWDZYdG9icEl5K0dLU3ExY2hyQVB5NExLNkJuTTJ0SUpCMTJlMkZld2RV?=
+ =?gb2312?B?ZmZRN0NLZEFmK1pUZEN6bUdtMU5GNDBCQ1pwK3lnMit4WlhrZjloZm0veUFk?=
+ =?gb2312?B?RHVObURWY2VKZDJDR3Aya0Z2K29acXlkOWFqeitPcCtsdDVXTDYrSFhlSEc1?=
+ =?gb2312?B?eTllTExIa2pCWDRWcWZIb1hFWnRTVkdJUUVOZFVBRUVpUEppaXdLRkZyY3lp?=
+ =?gb2312?B?MGpqUVVrWGZLTVEwQk84VTV1YjkvOGs2NGhpRXJGRlQwdG5xWjBLRWh3YjhY?=
+ =?gb2312?B?OXh5N2ZjTnh6Yzdmazg2ZWtuZUc2QlVoNlBWV2lkZWJFdkJyMUVqOHlISFZU?=
+ =?gb2312?B?NmtXbFlZUTRrRDVrWnN3WTVOMkRTeldsRUFnUlBMRkxPME1ISDhGazlPK0dC?=
+ =?gb2312?B?V3lSYUIvbC9LM3AwZ3h3akw4T3NPYklNL0NWdXNMZUpWZS8yUEk5VnBqL2cr?=
+ =?gb2312?B?U0ZrZkFMUTdMUWh1a25vMnVicjVDWlpJQ04zeUFZc2Vrb2tYRnZmbjdyc1Jq?=
+ =?gb2312?B?eCsvMERTczZqNDVoZ0ZHZTFBWkxuY1Z0cER6QzlxcEx4LzYxdnN6cGNxaytN?=
+ =?gb2312?B?MitwVHNlc2xoZXYyNjhMeUgzTGdNeitLQzRpRDl2VnVIdk1HY2wybUtSaWJS?=
+ =?gb2312?B?ZGdYSmxhQlpiS2QrMVRzTnBvZXZLRzVCdjc1TzBYSTFIQitYSTBiT1Bnczg2?=
+ =?gb2312?B?VklWbkt1RnBESDdtSWFPcnBvV2ViUGtKK0NpTGVyZTJyRnVRRDljOVhsMmlr?=
+ =?gb2312?B?RlFhU0Q0dnFBUXUxWkQrNGNhS0dxNGhwYVFZQ1V4UWxDMjMyN0RVZm1aUU5m?=
+ =?gb2312?B?ZXREV1E5QjBDWTVvWXhTWHkvS08ycUZMRGRBeHR5NkNrc2h1dXgycEcvYWhh?=
+ =?gb2312?Q?7Gab8E4JSwLZ+fHlDLXrjuibA?=
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: shawn.lin@rock-chips.com, Rob Herring <robh+dt@kernel.org>,
- "James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
- "Martin K . Petersen" <martin.petersen@oracle.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
- Bart Van Assche <bvanassche@acm.org>, YiFeng Zhao <zyf@rock-chips.com>,
- Liang Chen <cl@rock-chips.com>, linux-scsi@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] scsi: ufs: rockchip: init support for UFS
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-References: <1723089163-28983-1-git-send-email-shawn.lin@rock-chips.com>
- <1723089163-28983-4-git-send-email-shawn.lin@rock-chips.com>
- <20240809062813.GC2826@thinkpad>
- <421d48b7-4aa7-4202-8b5f-9c60916f6ef6@rock-chips.com>
- <20240810092817.GA147655@thinkpad>
-Content-Language: en-GB
-From: Shawn Lin <shawn.lin@rock-chips.com>
-In-Reply-To: <20240810092817.GA147655@thinkpad>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkkaHlZDHx1IThofSklDTU9WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
-	NVSktLVUpCS0tZBg++
-X-HM-Tid: 0a91443372a703aekunm1313f4602ab
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Mww6Kgw*SjIwPQIKA1FDLhdD
-	TRUwCSFVSlVKTElIT0lNSktDTkJNVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
-	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUpPTE5KNwY+
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8676.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a73fe4cf-9dc4-4407-7047-08dcba701f05
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Aug 2024 01:43:09.8760
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 5c3RF+lk9R2kXUdco0Cr2lw6bffimFQzpMIn1vdoR13NMjouSUm/xT4r8VYahzUyoJo/yP3ul0SjCz9EjayYWQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8008
 
-JHi Mani,
-
-在 2024/8/10 17:28, Manivannan Sadhasivam 写道:
-> On Fri, Aug 09, 2024 at 04:16:41PM +0800, Shawn Lin wrote:
-> 
-> [...]
-> 
->>>> +static int ufs_rockchip_hce_enable_notify(struct ufs_hba *hba,
->>>> +					 enum ufs_notify_change_status status)
->>>> +{
->>>> +	int err = 0;
->>>> +
->>>> +	if (status == PRE_CHANGE) {
->>>> +		int retry_outer = 3;
->>>> +		int retry_inner;
->>>> +start:
->>>> +		if (ufshcd_is_hba_active(hba))
->>>> +			/* change controller state to "reset state" */
->>>> +			ufshcd_hba_stop(hba);
->>>> +
->>>> +		/* UniPro link is disabled at this point */
->>>> +		ufshcd_set_link_off(hba);
->>>> +
->>>> +		/* start controller initialization sequence */
->>>> +		ufshcd_writel(hba, CONTROLLER_ENABLE, REG_CONTROLLER_ENABLE);
->>>> +
->>>> +		usleep_range(100, 200);
->>>> +
->>>> +		/* wait for the host controller to complete initialization */
->>>> +		retry_inner = 50;
->>>> +		while (!ufshcd_is_hba_active(hba)) {
->>>> +			if (retry_inner) {
->>>> +				retry_inner--;
->>>> +			} else {
->>>> +				dev_err(hba->dev,
->>>> +					"Controller enable failed\n");
->>>> +				if (retry_outer) {
->>>> +					retry_outer--;
->>>> +					goto start;
->>>> +				}
->>>> +				return -EIO;
->>>> +			}
->>>> +			usleep_range(1000, 1100);
->>>> +		}
->>>
->>> You just duplicated ufshcd_hba_execute_hce() here. Why? This doesn't make sense.
->>
->> Since we set UFSHCI_QUIRK_BROKEN_HCE, and we also need to do someting
->> which is very similar to ufshcd_hba_execute_hce(), before calling
->> ufshcd_dme_reset(). Similar but not totally the same. I'll try to see if
->> we can export ufshcd_hba_execute_hce() to make full use of it.
->>
-> 
-> But you are starting the controller using REG_CONTROLLER_ENABLE. Isn't that
-> supposed to be broken if you set UFSHCI_QUIRK_BROKEN_HCE? Or I am
-> misunderstanding the quirk?
-> 
-
-Our controller doesn't work with exiting code, whether setting
-UFSHCI_QUIRK_BROKEN_HCE or not.
-
-
-For UFSHCI_QUIRK_BROKEN_HCE case, it calls ufshcd_dme_reset（）first,
-but we need to set REG_CONTROLLER_ENABLE first.
-
-For !UFSHCI_QUIRK_BROKEN_HCE case, namly ufshcd_hba_execute_hce, it
-sets REG_CONTROLLER_ENABLE  first but never send DMA_RESET and calls
-ufshcd_dme_enable.
-
-So the closet code path is to go through UFSHCI_QUIRK_BROKEN_HCE case,
-and set REG_CONTROLLER_ENABLE by adding hce_enable_notify hook.
-
->>>
->>>> +	} else { /* POST_CHANGE */
->>>> +		err = ufshcd_vops_phy_initialization(hba);
->>>> +	}
->>>> +
->>>> +	return err;
->>>> +}
->>>> +
->>>> +static void ufs_rockchip_set_pm_lvl(struct ufs_hba *hba)
->>>> +{
->>>> +	hba->rpm_lvl = UFS_PM_LVL_1;
->>>> +	hba->spm_lvl = UFS_PM_LVL_3;
->>>> +}
->>>> +
->>>> +static int ufs_rockchip_rk3576_phy_init(struct ufs_hba *hba)
->>>> +{
->>>> +	struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
->>>> +
->>>> +	ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(PA_LOCAL_TX_LCC_ENABLE, 0x0), 0x0);
->>>> +	/* enable the mphy DME_SET cfg */
->>>> +	ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x200, 0x0), 0x40);
->>>> +	for (int i = 0; i < 2; i++) {
->>>> +		/* Configuration M-TX */
->>>> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0xaa, SEL_TX_LANE0 + i), 0x06);
->>>> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0xa9, SEL_TX_LANE0 + i), 0x02);
->>>> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0xad, SEL_TX_LANE0 + i), 0x44);
->>>> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0xac, SEL_TX_LANE0 + i), 0xe6);
->>>> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0xab, SEL_TX_LANE0 + i), 0x07);
->>>> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x94, SEL_TX_LANE0 + i), 0x93);
->>>> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x93, SEL_TX_LANE0 + i), 0xc9);
->>>> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x7f, SEL_TX_LANE0 + i), 0x00);
->>>> +		/* Configuration M-RX */
->>>> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x12, SEL_RX_LANE0 + i), 0x06);
->>>> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x11, SEL_RX_LANE0 + i), 0x00);
->>>> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x1d, SEL_RX_LANE0 + i), 0x58);
->>>> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x1c, SEL_RX_LANE0 + i), 0x8c);
->>>> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x1b, SEL_RX_LANE0 + i), 0x02);
->>>> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x25, SEL_RX_LANE0 + i), 0xf6);
->>>> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x2f, SEL_RX_LANE0 + i), 0x69);
->>>> +	}
->>>> +	/* disable the mphy DME_SET cfg */
->>>> +	ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x200, 0x0), 0x00);
->>>> +
->>>> +	ufs_sys_writel(host->mphy_base, 0x80, 0x08C);
->>>> +	ufs_sys_writel(host->mphy_base, 0xB5, 0x110);
->>>> +	ufs_sys_writel(host->mphy_base, 0xB5, 0x250);
->>>> +
->>>
->>> Why can't you do these settings in a PHY driver?
->>
->> As we have ->phy_initialization in struct ufs_hba_variant_ops,
->> which asks the host driver to use it to initialize phys. It doesn't
->> seem to need to create a whole new file to just add some smalls fixed
->> parameters. :)
->>
-> 
-> So the PHY doesn't need any resources (clocks, regulators, etc...) other than
-> programming these sequences? If so, it is fine with me.
-
-yes, it needn't.
-
-> 
->>
->>>
->>>> +	ufs_sys_writel(host->mphy_base, 0x03, 0x134);
->>>> +	ufs_sys_writel(host->mphy_base, 0x03, 0x274);
->>>> +
->>>> +	ufs_sys_writel(host->mphy_base, 0x38, 0x0E0);
->>>> +	ufs_sys_writel(host->mphy_base, 0x38, 0x220);
->>>> +
->>>> +	ufs_sys_writel(host->mphy_base, 0x50, 0x164);
->>>> +	ufs_sys_writel(host->mphy_base, 0x50, 0x2A4);
->>>> +
->>>> +	ufs_sys_writel(host->mphy_base, 0x80, 0x178);
->>>> +	ufs_sys_writel(host->mphy_base, 0x80, 0x2B8);
->>>> +
->>>> +	ufs_sys_writel(host->mphy_base, 0x18, 0x1B0);
->>>> +	ufs_sys_writel(host->mphy_base, 0x18, 0x2F0);
->>>> +
->>>> +	ufs_sys_writel(host->mphy_base, 0x03, 0x128);
->>>> +	ufs_sys_writel(host->mphy_base, 0x03, 0x268);
->>>> +
->>>> +	ufs_sys_writel(host->mphy_base, 0x20, 0x12C);
->>>> +	ufs_sys_writel(host->mphy_base, 0x20, 0x26C);
->>>> +
->>>> +	ufs_sys_writel(host->mphy_base, 0xC0, 0x120);
->>>> +	ufs_sys_writel(host->mphy_base, 0xC0, 0x260);
->>>> +
->>>> +	ufs_sys_writel(host->mphy_base, 0x03, 0x094);
->>>> +
->>>> +	ufs_sys_writel(host->mphy_base, 0x03, 0x1B4);
->>>> +	ufs_sys_writel(host->mphy_base, 0x03, 0x2F4);
->>>> +
->>>> +	ufs_sys_writel(host->mphy_base, 0xC0, 0x08C);
->>>> +	udelay(1);
->>>> +	ufs_sys_writel(host->mphy_base, 0x00, 0x08C);
->>>> +
->>>> +	udelay(200);
->>>> +	/* start link up */
->>>> +	ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(MIB_T_DBG_CPORT_TX_ENDIAN, 0), 0x0);
->>>> +	ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(MIB_T_DBG_CPORT_RX_ENDIAN, 0), 0x0);
->>>> +	ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(N_DEVICEID, 0), 0x0);
->>>> +	ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(N_DEVICEID_VALID, 0), 0x1);
->>>> +	ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(T_PEERDEVICEID, 0), 0x1);
->>>> +	ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(T_CONNECTIONSTATE, 0), 0x1);
->>>> +
->>>> +	return 0;
->>>> +}
->>>> +
-> 
-> [...]
-> 
->>>> +static const struct dev_pm_ops ufs_rockchip_pm_ops = {
->>>> +	SET_SYSTEM_SLEEP_PM_OPS(ufs_rockchip_suspend, ufs_rockchip_resume)
->>>> +	SET_RUNTIME_PM_OPS(ufs_rockchip_runtime_suspend, ufs_rockchip_runtime_resume, NULL)
->>>
->>> Why can't you use ufshcd PM ops as like other vendor drivers?
->>
->> It doesn't work from the test. We have many use case to power down the
->> controller and device, so there is no flow to recovery the link. Only
->> when the first accessing to UFS fails, the ufshcd error handle recovery the
->> link. This is not what we expect.
->>
-> 
-> What tests? The existing UFS controller drivers are used in production devices
-> and they never had a usecase to invent their own PM callbacks. So if your
-> controller is special, then you need to justify it more elaborately. If
-> something is missing in ufshcd callbacks, then we can add them.
-> 
-
-All the register got lost each time as we power down both controller & 
-PHY and devices in suspend. So we have to restore the necessary
-registers and link. I didn't see where the code recovery the controller
-settings in ufshcd_resume, except ufshcd_err_handler（）triggers that.
-Am I missing any thing? Below is the dump we get if using
-SET_SYSTEM_SLEEP_PM_OPS(ufshcd_system_suspend, ufshcd_system_resume).
-It can work as ufshcd_err_handler () will fix the link, but we have to
-suffer from getting the error log each time. Moreover, we need to gate
-26MHz refclk for device when RPM is called. So our own rpm callback is
-needed.
-
-[   14.318444] <<GTP-INF>>[gt1x_wakeup_sleep:964] Wakeup by poweron
-[   14.439723] ufshcd-rockchip 2a2d0000.ufs: Controller not ready to 
-accept UIC commands
-[   14.439730] ufshcd-rockchip 2a2d0000.ufs: pwr ctrl cmd 0x18 with mode 
-0x0 uic error -5
-[   14.439736] ufshcd-rockchip 2a2d0000.ufs: UFS Host state=1
-[   14.439740] ufshcd-rockchip 2a2d0000.ufs: outstanding reqs=0x0 tasks=0x0
-[   14.439744] ufshcd-rockchip 2a2d0000.ufs: saved_err=0x0, 
-saved_uic_err=0x0
-[   14.439748] ufshcd-rockchip 2a2d0000.ufs: Device power mode=2, UIC 
-link state=2
-[   14.439753] ufshcd-rockchip 2a2d0000.ufs: PM in progress=1, sys. 
-suspended=1
-[   14.439758] ufshcd-rockchip 2a2d0000.ufs: Auto BKOPS=0, Host self-block=0
-[   14.439762] ufshcd-rockchip 2a2d0000.ufs: Clk gate=1
-[   14.439766] ufshcd-rockchip 2a2d0000.ufs: last_hibern8_exit_tstamp at 
-0 us, hibern8_exit_cnt=0
-[   14.439770] ufshcd-rockchip 2a2d0000.ufs: last intr at 10807625 us, 
-last intr status=0x440
-[   14.439775] ufshcd-rockchip 2a2d0000.ufs: error handling flags=0x0, 
-req. abort count=0
-[   14.439779] ufshcd-rockchip 2a2d0000.ufs: hba->ufs_version=0x200, 
-Host capabilities=0x187011f, caps=0x48c
-[   14.439785] ufshcd-rockchip 2a2d0000.ufs: quirks=0x2100, dev. quirks=0xc4
-[   14.439790] ufshcd-rockchip 2a2d0000.ufs: UFS dev info: SAMSUNG 
-KLUDG2R1DE-B0F1  rev 0100
-[   14.439796] ufshcd-rockchip 2a2d0000.ufs: clk: core, rate: 50000000
-[   14.439822] host_regs: 00000000: 0187011f 00000000 00000200 00000000
-[   14.439827] host_regs: 00000010: 00000000 000005e6 00000000 00000000
-[   14.439831] host_regs: 00000020: 00000000 00000000 00000000 00000000
-[   14.439835] host_regs: 00000030: 00000000 00000000 00000000 00000000
-[   14.439839] host_regs: 00000040: 00000000 00000000 00000000 00000000
-[   14.439843] host_regs: 00000050: 00000000 00000000 00000000 00000000
-[   14.439847] host_regs: 00000060: 00000000 00000000 00000000 00000000
-[   14.439851] host_regs: 00000070: 00000000 00000000 00000000 00000000
-[   14.439855] host_regs: 00000080: 00000000 00000000 00000000 00000000
-[   14.439859] host_regs: 00000090: 00000000 00000000 00000000 00000000
-[   14.439863] ufshcd-rockchip 2a2d0000.ufs: No record of pa_err
-[   14.439867] ufshcd-rockchip 2a2d0000.ufs: No record of dl_err
-[   14.439871] ufshcd-rockchip 2a2d0000.ufs: No record of nl_err
-[   14.439876] ufshcd-rockchip 2a2d0000.ufs: No record of tl_err
-[   14.439880] ufshcd-rockchip 2a2d0000.ufs: No record of dme_err
-[   14.439884] ufshcd-rockchip 2a2d0000.ufs: No record of auto_hibern8_err
-[   14.439888] ufshcd-rockchip 2a2d0000.ufs: No record of fatal_err
-[   14.439892] ufshcd-rockchip 2a2d0000.ufs: No record of link_startup_fail
-[   14.439896] ufshcd-rockchip 2a2d0000.ufs: No record of resume_fail
-[   14.439900] ufshcd-rockchip 2a2d0000.ufs: No record of suspend_fail
-[   14.439905] ufshcd-rockchip 2a2d0000.ufs: dev_reset[0] = 0x0 at 
-1418763 us
-[   14.439910] ufshcd-rockchip 2a2d0000.ufs: dev_reset: total cnt=1
-[   14.439914] ufshcd-rockchip 2a2d0000.ufs: No record of host_reset
-[   14.439918] ufshcd-rockchip 2a2d0000.ufs: No record of task_abort
-[   14.439930] ufshcd-rockchip 2a2d0000.ufs: ufshcd_uic_hibern8_exit: 
-hibern8 exit failed. ret = -5
-[   14.439935] ufshcd-rockchip 2a2d0000.ufs: __ufshcd_wl_resume: hibern8 
-exit failed -5
-[   14.439944] ufs_device_wlun 0:0:0:49488: ufshcd_wl_resume failed: -5
-[   14.439950] ufs_device_wlun 0:0:0:49488: PM: dpm_run_callback(): 
-scsi_bus_resume+0x0/0xa8 returns -5
-[   14.440003] ufshcd-rockchip 2a2d0000.ufs: ufshcd_err_handler started; 
-HBA state eh_fatal; powered 1; shutting down 0; saved_err = 0; 
-saved_uic_err = 0; force_reset = 0; link is broken
-[   14.440017] ufs_device_wlun 0:0:0:49488: PM: failed to resume async: 
-error -5
-
-> - Mani
-> 
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBOaWtsYXMgQ2Fzc2VsIDxjYXNz
+ZWxAa2VybmVsLm9yZz4NCj4gU2VudDogMjAyNMTqONTCOcjVIDIxOjQ4DQo+IFRvOiBIb25neGlu
+ZyBaaHUgPGhvbmd4aW5nLnpodUBueHAuY29tPg0KPiBDYzogRnJhbmsgTGkgPGZyYW5rLmxpQG54
+cC5jb20+OyB0akBrZXJuZWwub3JnOyBkbGVtb2FsQGtlcm5lbC5vcmc7DQo+IHJvYmhAa2VybmVs
+Lm9yZzsga3J6aytkdEBrZXJuZWwub3JnOyBjb25vcitkdEBrZXJuZWwub3JnOw0KPiBzaGF3bmd1
+b0BrZXJuZWwub3JnOyBzLmhhdWVyQHBlbmd1dHJvbml4LmRlOyBmZXN0ZXZhbUBnbWFpbC5jb207
+DQo+IGxpbnV4LWlkZUB2Z2VyLmtlcm5lbC5vcmc7IHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmc7IGRl
+dmljZXRyZWVAdmdlci5rZXJuZWwub3JnOw0KPiBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3Jn
+OyBsaW51eC1hcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmc7DQo+IGlteEBsaXN0cy5saW51
+eC5kZXY7IGtlcm5lbEBwZW5ndXRyb25peC5kZQ0KPiBTdWJqZWN0OiBSZTogW1BBVENIIHY0IDQv
+Nl0gYXRhOiBhaGNpX2lteDogQWRkIDMyYml0cyBETUEgbGltaXQgZm9yIGkuTVg4UU0NCj4gQUhD
+SSBTQVRBDQo+IA0KPiBPbiBGcmksIEF1ZyAwOSwgMjAyNCBhdCAwODo0NToxMkFNICswMDAwLCBI
+b25neGluZyBaaHUgd3JvdGU6DQo+ID4gSGkgTmlrbGFzOg0KPiA+IFRoYW5rIHlvdSB2ZXJ5IG11
+Y2guDQo+ID4gSSBoYWQgYWxyZWFkeSBzZW50IG91dCB0aGUgdjUgc2VyaWVzIHBhdGNoLXNldCBh
+IGZldyBkYXlzIGFnby4NCj4gPiBodHRwczovL2V1cjAxLnNhZmVsaW5rcy5wcm90ZWN0aW9uLm91
+dGxvb2suY29tLz91cmw9aHR0cHMlM0ElMkYlMkZwYXRjDQo+ID4NCj4gaHdvcmsua2VybmVsLm9y
+ZyUyRnByb2plY3QlMkZsaW51eC1hcm0ta2VybmVsJTJGY292ZXIlMkYxNzIyNTgxMjEzLTE1DQo+
+IDINCj4gPg0KPiAyMS0xLWdpdC1zZW5kLWVtYWlsLWhvbmd4aW5nLnpodSU0MG54cC5jb20lMkYm
+ZGF0YT0wNSU3QzAyJTdDaG9uZ3hpbg0KPiBnLg0KPiA+DQo+IHpodSU0MG54cC5jb20lN0MwZGJk
+ZmUzZDExM2E0Y2YyZjk3MzA4ZGNiODc5ZTI3ZiU3QzY4NmVhMWQzYmMyYg0KPiA0YzZmYTkyDQo+
+ID4NCj4gY2Q5OWM1YzMwMTYzNSU3QzAlN0MwJTdDNjM4NTg4MDgwODMwMDE4MjI5JTdDVW5rbm93
+biU3Q1RXRnANCj4gYkdac2IzZDhleUoNCj4gPg0KPiBXSWpvaU1DNHdMakF3TURBaUxDSlFJam9p
+VjJsdU16SWlMQ0pCVGlJNklrMWhhV3dpTENKWFZDSTZNbjAlM0QlN0MNCj4gMCU3Qw0KPiA+ICU3
+QyU3QyZzZGF0YT1Ia3Jnc3BqT2s1bGdrJTJGOG8lMkYyaFE0UlY4NkVWWlZLYnVRTTIlMkZlYVpn
+Qg0KPiBDbyUzRCZyZXNlDQo+ID4gcnZlZD0wDQo+IA0KPiBXZWxsLCB5b3VyIFY1IHdhcyBub3Qg
+c2VudCB0byBsaWJhdGEgKGxpbnV4LWlkZSkgbWFpbGluZyBsaXN0LCBhbmQgbGliYXRhIG1haW50
+YWluZXJzDQo+IHdlcmUgbm90IGluICJUbzoiIG9yICJDYzoiLg0KPiANCj4gDQo+ID4gQlRXLCBJ
+J20gYSBsaXR0bGUgY29uZnVzZWQgYWJvdXQgIiB3aXRob3V0IHRoZSBwYXRjaCBpbiAkc3ViamVj
+dCwiLg0KPiA+IERvIHlvdSBtZWFuIHRvIHJlbW92ZSB0aGUgIlBBVENIIiBmcm9tIFN1YmplY3Qg
+b2YgZWFjaCBwYXRjaD8NCj4gPiB2NToNCj4gPiBTdWJqZWN0OiBbUEFUQ0ggdjUgMS81XSBkdC1i
+aW5kaW5nczogYXRhOiBBZGQgaS5NWDhRTSBBSENJIGNvbXBhdGlibGUNCj4gPiBzdHJpbmcNCj4g
+PiB2NiB3aXRob3V0IHBhdGNoIGluICRzdWJqZWN0Og0KPiA+IFN1YmplY3Q6IFsgdjYgMS81XSBk
+dC1iaW5kaW5nczogYXRhOiBBZGQgaS5NWDhRTSBBSENJIGNvbXBhdGlibGUNCj4gPiBzdHJpbmcg
+SWYgeWVzLCBJIGNhbiBkbyB0aGF0IGFuZCBhZGQgRnJhbmsncyByZXZpZXdlZC1ieSB0YWcgaW4g
+dGhlIHY2IHNlcmllcy4NCj4gDQo+IEkgc2ltcGx5IG1lYW50IGRyb3AgcGF0Y2g6DQo+IFtQQVRD
+SCB2NCA0LzZdIGF0YTogYWhjaV9pbXg6IEFkZCAzMmJpdHMgRE1BIGxpbWl0IGZvciBpLk1YOFFN
+IEFIQ0kgU0FUQSBhbmQNCj4gc2VuZCB0aGUgc2VyaWVzIGFzIGEgVjUuDQo+IA0KPiBCdXQgY29u
+c2lkZXJpbmcgdGhhdCB5b3Ugc2VudCBhIFY1IGFscmVhZHkgKHRvIHRoZSB3cm9uZyBsaXN0KSwg
+cGxlYXNlIHNlbmQgYSBWNiB0bw0KPiB0aGUgY29ycmVjdCBsaXN0LCB3aXRoIFJldmlld2VkLWJ5
+IHRhZ3MgZnJvbQ0KPiBWNSBwaWNrZWQgdXAuDQpJdCdzIG15IGZhdWx0IHRvIHVzZSBhIHdyb25n
+IHNlbmQtZW1haWwgc2NyaXB0IHRvIHNlbmQgb3V0IHY1Lg0KT2theSwgdjYgd291bGQgYmUgc2Vu
+dCBvdXQgdG8gdGhlIGNvcnJlY3QgZW1haWwgbGlzdC4NClRoYW5rIHlvdSB2ZXJ5IG11Y2guDQoN
+CkJlc3QgUmVnYXJkcw0KUmljaGFyZCBaaHUNCj4gDQo+IA0KPiBLaW5kIHJlZ2FyZHMsDQo+IE5p
+a2xhcw0K
 
