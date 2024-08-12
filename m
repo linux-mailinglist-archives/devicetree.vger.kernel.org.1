@@ -1,144 +1,139 @@
-Return-Path: <devicetree+bounces-92857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7148F94EA0F
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 11:40:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D179294EA22
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 11:42:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A46521C2144F
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 09:40:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 39615B20E04
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 09:42:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A04216DEBC;
-	Mon, 12 Aug 2024 09:40:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DFF516DEA9;
+	Mon, 12 Aug 2024 09:42:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H+ItNqJz"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hgH2sTst"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 189BB16DC1F;
-	Mon, 12 Aug 2024 09:40:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5CD716D4FC;
+	Mon, 12 Aug 2024 09:42:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723455604; cv=none; b=iojISm006Tq6c3E2Q1oAVrQcxORdfh7aGWlR4IAVRHhX15VPQ+TJnWPFQh2tkAQLSkKqJRiV3P79uVNch6KPndLzpyUht92NbgzLatJ5Xr1rPsZA8kLANbCrC4FWqWVh1Cph0Uj5OB6RtvOwVTkHHsE4cBuyqEI4lm5xR4aUkEU=
+	t=1723455775; cv=none; b=N9FxpOjmYoofowiKKaY9rN6VIhJ6ziKITd0DgjTmfnzRQDDVlolqwQOP4+9550sI2YFtzmH6q3O4SXbFvBM9b5DFbFVamt9O+CO7lGxwOetl7zRtZPSLDQUb3kgCg4AJ+9DOn3s7cJnjazjFZv/KTyytFHt3yKFVxHLTikLwFvY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723455604; c=relaxed/simple;
-	bh=ArrySmWgDNdiqjHMG4mdAvCkv8roGfqS6pl8kC2NcbE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WPfbmy4RLpsq8QfS84gzDxNQGLjmBID2azNF+LoNz13ShI7yJHKpk1wsC9yqQBK7qbRYbG79n544OitspKPgj4tszvhkHO9hAFdRPJbNVvgyyEob8Qts5sQmOpZCCfpm3VUllcuG9Y0F1/gs3rGPiEis6mwn1mNaaNWxwJn0/aU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H+ItNqJz; arc=none smtp.client-ip=209.85.215.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-7aa7703cf08so2871601a12.2;
-        Mon, 12 Aug 2024 02:40:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723455602; x=1724060402; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OztDY7ZPfTGf5Muvo37QHTCCUOwm+trCdPseFsE1yRA=;
-        b=H+ItNqJz09PpQaNjn3kh2DDXKQTuLxURe/r0suXSDP43BprSvhbfKFPJUDORfRHg56
-         1V6e8joSC0/0qlKpfwKbeG4Q/0ipuLp7NXPFLS/Zl9/XpS/j8D5OEcy8vs59v3PSHy6O
-         PFd+pDY1z74G0K4omCziD6DS+mdzVkLb91820sCYpMp7n58lC0WPFh6uQ+meDO+Eb2rb
-         /0zDXphdlaJEpAKw7uPar3EleN8jCbeAJXhS+HYM7uuGbTwQfNOUMgQBu60P0NAfHyoD
-         VLRKHoynggit8uEgJm/W0qIm6VHPAag4aHL7Ip8NDRf4wJnU0Ff+8P5oLwHljkyrjmfm
-         YFZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723455602; x=1724060402;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OztDY7ZPfTGf5Muvo37QHTCCUOwm+trCdPseFsE1yRA=;
-        b=SXLnhAaEHjsQXE/YGvJh8TJHnGTxGLg0uBPoA7+dHNxJ2Nmj2avC/DxUS+P1W8xMey
-         vItCCoEDx3XR0I8Ev/gYud5HWLQ3eg1oLZXNr+1gDjd1vPuqmRfaNcbO/Xoq79ZI0QoA
-         +LP5Ewut7ST0pQK8yZUbjMk88d/XAhvDCYdXrQppERkNe/bkMhSQsYIudMXey7VV0SCg
-         RYuTszrfE4AHa0u0d+wRXwjKGwK/ob/q2zDwif0azWiTZHb2i5v0N2GLL5rQX/Ib7ufT
-         RWX9qvuFnSYo0WFxC68paBL5Kw7h2x6NWXM1lOFubpUoqV7SabieuctMhZVK2unn0iU1
-         rGng==
-X-Forwarded-Encrypted: i=1; AJvYcCVG/e4B2dZ89IEATWKEp7EPo2M9esUKuOjYUnNq7UmPfksvuD34hVYMqWewkCKCPyeExNJ2nbyuwM+LmT+M8MY3fsd9twHMSVFS68cPZQCTA7z+Q2qt/IAatdNhTBs6wJtPR9V1+gDLATIm9RROL22wYcPEBYHJamZQTtj6a2Stri90gHDp
-X-Gm-Message-State: AOJu0Yz/P6S7Q7liUNh2KSOITQPULvgMwclgRD0Yw6/Hl4yy8Qg9ZK5v
-	ZNljhpu/KLlDf8BBdYaIHDbTkZygKejMqmLz+Gh16TsoUIf5yX3x
-X-Google-Smtp-Source: AGHT+IF8GalHrE+IH6YmoY+AWa/Rdr4SG6ZeFor8rn3B92ikuRnTgV5mAn7M3QFJgEWdF8wkCr2t8g==
-X-Received: by 2002:a05:6a20:d817:b0:1c4:2134:dd54 with SMTP id adf61e73a8af0-1c8a0137366mr13333355637.45.1723455602341;
-        Mon, 12 Aug 2024 02:40:02 -0700 (PDT)
-Received: from [172.19.1.53] (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-200bbb49fb7sm33981255ad.293.2024.08.12.02.39.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Aug 2024 02:40:02 -0700 (PDT)
-Message-ID: <26c61825-3488-4a9c-9426-b804c1e00b07@gmail.com>
-Date: Mon, 12 Aug 2024 17:39:58 +0800
+	s=arc-20240116; t=1723455775; c=relaxed/simple;
+	bh=b4WFeXD8terb5bRxofCiOoA6oxd8/i/orRs8lsnEGCs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ln3RvhhNuqhN6fgYy8uEopY83mCEFHk+ZjbnSUbMD+UYdFV5zXBieXLvyMkmedWR7WqT1t3mF89v6bHfRLS3NnSZDcKXxnVDcrCmiChUb+Qd0EJZKo9FYRdvEJqiEDFWZlID/jtThqCezlOMnMXfeRvpVoCAp0Iytst3Dknl3BE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hgH2sTst; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1723455774; x=1754991774;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=b4WFeXD8terb5bRxofCiOoA6oxd8/i/orRs8lsnEGCs=;
+  b=hgH2sTsteO5F4ifFsA7oSqvYuUigbJubutJpM1LiR+y94iKkDP64by2z
+   VzG1MWqQWskrffJx8W6Hk9b5stlQtEcNoH9tMlWb99YhVh6JeqWrujgT2
+   xpPvDKH+Kp3/Nc7BN66quO7T17cAGrwJDy1wpTtWg2hEkf0l7jNxfeIx2
+   RCDFkyBsfzh7qz2fVFnLczyP0W5IKgMK5POM2A5VgpQq7RB7i+yc3XMyo
+   LkXFUL2L7I5MY5TBP4L+PSG2QSVNdiIHQldSh2eNnkL504kPrybxZR3oz
+   BpA8chE9OpXxnso+AhyhXoEGV5B8vuUlhVCpUuFgQGcGPracTnybStksg
+   Q==;
+X-CSE-ConnectionGUID: 1OrnB9EmRK6SSCRgypG/DQ==
+X-CSE-MsgGUID: KURjfQ6NT5ia6CefHX7aow==
+X-IronPort-AV: E=McAfee;i="6700,10204,11161"; a="32704536"
+X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; 
+   d="scan'208";a="32704536"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Aug 2024 02:42:53 -0700
+X-CSE-ConnectionGUID: 5oxjCGDhTZ2//zwBmBSnJw==
+X-CSE-MsgGUID: KCbpgNZsTXeUppAeJNfHvg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; 
+   d="scan'208";a="95716165"
+Received: from unknown (HELO b6bf6c95bbab) ([10.239.97.151])
+  by orviesa001.jf.intel.com with ESMTP; 12 Aug 2024 02:42:50 -0700
+Received: from kbuild by b6bf6c95bbab with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sdRZf-000BbD-15;
+	Mon, 12 Aug 2024 09:42:47 +0000
+Date: Mon, 12 Aug 2024 17:42:25 +0800
+From: kernel test robot <lkp@intel.com>
+To: Lorenzo Bianconi <lorenzo@kernel.org>, linux-pwm@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, ukleinek@kernel.org,
+	lorenzo.bianconi83@gmail.com, krzk+dt@kernel.org, robh@kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	upstream@airoha.com, angelogioacchino.delregno@collabora.com,
+	benjamin.larsson@genexis.eu, conor+dt@kernel.org,
+	ansuelsmth@gmail.com
+Subject: Re: [PATCH v2 2/2] pwm: airoha: Add support for EN7581 SoC
+Message-ID: <202408121701.zaN0Tsxg-lkp@intel.com>
+References: <d5abef7ee63f2c5df8bf3400c4d8a5ff72c706a9.1723393857.git.lorenzo@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: mtd: nuvoton,ma35d1-nand: add new
- bindings
-To: Krzysztof Kozlowski <krzk@kernel.org>, miquel.raynal@bootlin.com,
- richard@nod.at, vigneshr@ti.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, sumit.semwal@linaro.org, christian.koenig@amd.com,
- esben@geanix.com
-Cc: linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org
-References: <20240812030045.20831-1-hpchen0nvt@gmail.com>
- <20240812030045.20831-2-hpchen0nvt@gmail.com>
- <7a8b9bdf-f4df-4da0-83ca-157175817e99@kernel.org>
- <203578df-11a6-425a-b2be-cc09dae62f8f@gmail.com>
- <1f823600-68c4-418f-b2bf-6d5d64a1ee56@kernel.org>
-Content-Language: en-US
-From: Hui-Ping Chen <hpchen0nvt@gmail.com>
-In-Reply-To: <1f823600-68c4-418f-b2bf-6d5d64a1ee56@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d5abef7ee63f2c5df8bf3400c4d8a5ff72c706a9.1723393857.git.lorenzo@kernel.org>
 
-Dear Krzysztof,
+Hi Lorenzo,
 
-Thank you for your reply.
+kernel test robot noticed the following build errors:
 
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.11-rc3 next-20240812]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Lorenzo-Bianconi/dt-bindings-pwm-Document-Airoha-EN7581-PWM/20240812-003542
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/d5abef7ee63f2c5df8bf3400c4d8a5ff72c706a9.1723393857.git.lorenzo%40kernel.org
+patch subject: [PATCH v2 2/2] pwm: airoha: Add support for EN7581 SoC
+config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20240812/202408121701.zaN0Tsxg-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240812/202408121701.zaN0Tsxg-lkp@intel.com/reproduce)
 
-On 2024/8/12 下午 05:12, Krzysztof Kozlowski wrote:
-> On 12/08/2024 11:02, Hui-Ping Chen wrote:
->>
->>>> +
->>>> +      nand-ecc-step-size:
->>>> +        enum: [512, 1024]
->>> No defaults? So is this required?
->> This is required, but I will also add a default.
-> If this is required and should be in required: list. Default does not
-> make sense then... it contradicts the point of being required.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408121701.zaN0Tsxg-lkp@intel.com/
 
-I will add it to the required list.
+All errors (new ones prefixed by >>, old ones prefixed by <<):
 
+WARNING: modpost: missing MODULE_DESCRIPTION() in arch/x86/mm/testmmiotrace.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in kernel/locking/test-ww_mutex.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in lib/test_objpool.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/imx/mxc-clk.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/imx/clk-imxrt1050.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/serial/ch341.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/serial/usb_debug.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/serial/mxuport.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/serial/navman.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/serial/qcaux.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/serial/usb-serial-simple.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/usb/serial/symbolserial.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/devfreq/governor_simpleondemand.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/devfreq/governor_performance.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/devfreq/governor_powersave.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/devfreq/governor_userspace.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fsi/fsi-core.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fsi/fsi-master-hub.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fsi/fsi-master-aspeed.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fsi/fsi-master-gpio.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fsi/fsi-master-ast-cf.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fsi/fsi-scom.o
+>> ERROR: modpost: "__ffsdi2" [drivers/pwm/pwm-airoha.ko] undefined!
 
-
->>
->>
->>>> +
->>>> +      nand-ecc-strength:
->>>> +        enum: [8, 12, 24]
->>> No defaults? So is this required?
->> This is required, but I will also add a default.
-> Ditto
-
-I will add it to the required list.
-
-
-
->
-> Best regards,
-> Krzysztof
-
-
-Best regards,
-
-Hui-Ping Chen
-
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
