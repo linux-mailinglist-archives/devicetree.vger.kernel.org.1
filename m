@@ -1,48 +1,45 @@
-Return-Path: <devicetree+bounces-92808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-92810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D815D94E677
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 08:18:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 540EA94E68C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 08:25:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 97D271C21526
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 06:18:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D431E1F225AB
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2024 06:25:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 063F514D446;
-	Mon, 12 Aug 2024 06:17:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2DEF15098A;
+	Mon, 12 Aug 2024 06:25:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="poh6/GtF"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Gfld9vnd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m127164.xmail.ntesmail.com (mail-m127164.xmail.ntesmail.com [115.236.127.164])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBD34196;
-	Mon, 12 Aug 2024 06:17:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6404514E2C1;
+	Mon, 12 Aug 2024 06:25:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.236.127.164
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723443478; cv=none; b=ImxDOkRfEZhqVT+yRcZCWI23MT9T1b0G9K39unPG9qk2LosV+xLHL48gwnB1p4SqyaRAuEf4D4jt8KdgCk1Sr0O1K5nPyZMFsI8H0/V1KmUDutCG0qWbTJ7Ep08CfQsxEKAY9YQbiFPRdqGJzep95rkZ0kUYAf5V6u9RePx5dl4=
+	t=1723443938; cv=none; b=sTWtnVNgVeIdMeIJwUByDZ9xfYSgE3PyNKJwAPhmCAAJ7ZiwBnwjP/QjHLXIf8LtgMd/FyM4abGuTYwJIXOUDYbXlwv8SGgD6IV73HCMVsvnp32ev+kmCyaFxuwFXPjuCi7LOr0Nn84HcPt8lBAoPfwvI+igfW2TMIN+Xob4K0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723443478; c=relaxed/simple;
-	bh=BKOkmVdp75WBE7jaE6OafPJ+mkaLpk0gJg8wZSnelNA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Gh4y/8iu2mKk4h8V6yQdPAFU5p2ezvpkdrKEcm1XJ6dZlm6Dsh/IIVy5adMZMxm5ssFkG1MWvqcbqDN7YeO0vHIklyPw03IHl2xqx1o4CQWjWAV887AcwXehDzzI4OyXASEDl/+JnPuSQLLC45y+H9L584mSNsZ88ueH8kRo0v0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=poh6/GtF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D801C32782;
-	Mon, 12 Aug 2024 06:17:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723443477;
-	bh=BKOkmVdp75WBE7jaE6OafPJ+mkaLpk0gJg8wZSnelNA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=poh6/GtFKuoinkoG2MElZV46nLLHN/gR0xFREya6FULdjQOjJJTAjkFdEo9U6XsnI
-	 gbX2HW4Sb9pE5ZtAFwnVpZaE1BRVabusFo9/b2QBikkdCEUnXbQuJWOQ1p+SaXZ31M
-	 /FFDVV4g0quY5RhfeyGLj00Hu4GSr5NYIvszdTpRBYl+UeZNNfwnyRszs8B2jMycPF
-	 UelqWzoTk1+/UpTUmHnUQXNaciGS1feuSGFVl1PC9TcOuZ2Txmcb0Akiz1BDsbBBNf
-	 lhOS95Yn2bx4s3J7FzomP+rikJDMtWAvQaaYnrOjgg8ejOpueLuQeckpQjauHNLhar
-	 S4mwF0+npTIPw==
-Message-ID: <8e4a2774-ed58-49cb-b970-b3c05c9c1daa@kernel.org>
-Date: Mon, 12 Aug 2024 08:17:52 +0200
+	s=arc-20240116; t=1723443938; c=relaxed/simple;
+	bh=FFAPDBImVscljdc0H4zPFTunCEH8BGPtMVJd7j1hr7Y=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=M6FGKMtAN3FLeQfUE3JpmtJ13CoIoIaDVTw1f+aZMuv07ieuK97jNfN7uEQwbScXIYPzxAfssEQqURsmfZM+ICmlvBbOMp+/34P6ke9Izua7cxYluRRaXt6n/N7MhkNJwI5sJzE7dRTRv9VrvJ1LAypbPmD4Z+V7TbZNPFO77uU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Gfld9vnd; arc=none smtp.client-ip=115.236.127.164
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+DKIM-Signature: a=rsa-sha256;
+	b=Gfld9vndC1h8reFl6TiMz3EFUdM3Xi2sLmIXzCsdahO/v+G+fbo/LodrmnnQ5o+qgymmpFAuqhAGDaSgx9QKdHkshCnG1BGZyoHwJt1LvbfxYJS5xSEYYAFVR1w0RYFGvso+hWKvuuds844wIhIr1UK8E0CJO/CmtLYGb7QEwn8=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=jEPglZ6GFo8g6RuzPNZALiqPBdnmdtRSR0hiKORPRlM=;
+	h=date:mime-version:subject:message-id:from;
+Received: from [172.16.12.69] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTPA id 70F77460167;
+	Mon, 12 Aug 2024 14:24:31 +0800 (CST)
+Message-ID: <49659932-5caf-433b-a140-664b61617c43@rock-chips.com>
+Date: Mon, 12 Aug 2024 14:24:31 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,132 +47,264 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/4] dt-bindings: iio: imu: magnetometer: Add ak09118
-To: barnabas.czeman@mainlining.org
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+Cc: shawn.lin@rock-chips.com, Rob Herring <robh+dt@kernel.org>,
+ "James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
+ "Martin K . Petersen" <martin.petersen@oracle.com>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Albrieux <jonathan.albrieux@gmail.com>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux@mainlining.org,
- Danila Tikhonov <danila@jiaxyga.com>
-References: <20240809-ak09918-v3-0-6b036db4d5ec@mainlining.org>
- <20240809-ak09918-v3-3-6b036db4d5ec@mainlining.org>
- <1568980c-fc35-4445-a10c-8bb7fede2763@kernel.org>
- <45dc7e6de63f5b55f6a3488a82ad5b0d@mainlining.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <45dc7e6de63f5b55f6a3488a82ad5b0d@mainlining.org>
-Content-Type: text/plain; charset=UTF-8
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
+ Bart Van Assche <bvanassche@acm.org>, YiFeng Zhao <zyf@rock-chips.com>,
+ Liang Chen <cl@rock-chips.com>, linux-scsi@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] scsi: ufs: rockchip: init support for UFS
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+References: <1723089163-28983-1-git-send-email-shawn.lin@rock-chips.com>
+ <1723089163-28983-4-git-send-email-shawn.lin@rock-chips.com>
+ <20240809062813.GC2826@thinkpad>
+ <421d48b7-4aa7-4202-8b5f-9c60916f6ef6@rock-chips.com>
+ <20240810092817.GA147655@thinkpad>
+ <3b2617f5-acb1-45c6-993c-33249fd19888@rock-chips.com>
+ <20240812041051.GA2861@thinkpad>
+Content-Language: en-GB
+From: Shawn Lin <shawn.lin@rock-chips.com>
+In-Reply-To: <20240812041051.GA2861@thinkpad>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGUtCGVYdHh4dGUgfHh8dSB5WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	NVSktLVUpCS0tZBg++
+X-HM-Tid: 0a91454282cc03aekunm70f77460167
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OQw6Vhw5SzI1KQE9Gh4CNilW
+	NDUaCixVSlVKTElIT09IQ0xIS01NVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUpJTk9NNwY+
 
-On 11/08/2024 20:28, barnabas.czeman@mainlining.org wrote:
-> On 2024-08-10 14:15, Krzysztof Kozlowski wrote:
->> On 09/08/2024 22:25, Barnabás Czémán wrote:
->>> From: Danila Tikhonov <danila@jiaxyga.com>
+在 2024/8/12 12:10, Manivannan Sadhasivam 写道:
+> On Mon, Aug 12, 2024 at 09:28:26AM +0800, Shawn Lin wrote:
+>> JHi Mani,
+>>
+>> 在 2024/8/10 17:28, Manivannan Sadhasivam 写道:
+>>> On Fri, Aug 09, 2024 at 04:16:41PM +0800, Shawn Lin wrote:
 >>>
->>> Document asahi-kasei,ak09918 compatible.
->>
->> Not much improved here.
-> I have removed Reviewed-by because fallback compatible is a different 
-> approach
-> and I would not mind second look.
-
-You received specific comments. You ignored them, so I replied that you
-ignored them. And your excuse is that you ask for review? This does not
-work like this.  Read CAREFULLY form letter below.
-
->>
->> <form letter>
->> This is a friendly reminder during the review process.
->>
->> It seems my or other reviewer's previous comments were not fully
->> addressed. Maybe the feedback got lost between the quotes, maybe you
->> just forgot to apply it. Please go back to the previous discussion and
->> either implement all requested changes or keep discussing them.
->>
->> Thank you.
->> </form letter>
->>
+>>> [...]
 >>>
->>> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
->>> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
->>> ---
->>>  .../devicetree/bindings/iio/magnetometer/asahi-kasei,ak8975.yaml      
->>>  | 3 +++
->>>  1 file changed, 3 insertions(+)
+>>>>>> +static int ufs_rockchip_hce_enable_notify(struct ufs_hba *hba,
+>>>>>> +					 enum ufs_notify_change_status status)
+>>>>>> +{
+>>>>>> +	int err = 0;
+>>>>>> +
+>>>>>> +	if (status == PRE_CHANGE) {
+>>>>>> +		int retry_outer = 3;
+>>>>>> +		int retry_inner;
+>>>>>> +start:
+>>>>>> +		if (ufshcd_is_hba_active(hba))
+>>>>>> +			/* change controller state to "reset state" */
+>>>>>> +			ufshcd_hba_stop(hba);
+>>>>>> +
+>>>>>> +		/* UniPro link is disabled at this point */
+>>>>>> +		ufshcd_set_link_off(hba);
+>>>>>> +
+>>>>>> +		/* start controller initialization sequence */
+>>>>>> +		ufshcd_writel(hba, CONTROLLER_ENABLE, REG_CONTROLLER_ENABLE);
+>>>>>> +
+>>>>>> +		usleep_range(100, 200);
+>>>>>> +
+>>>>>> +		/* wait for the host controller to complete initialization */
+>>>>>> +		retry_inner = 50;
+>>>>>> +		while (!ufshcd_is_hba_active(hba)) {
+>>>>>> +			if (retry_inner) {
+>>>>>> +				retry_inner--;
+>>>>>> +			} else {
+>>>>>> +				dev_err(hba->dev,
+>>>>>> +					"Controller enable failed\n");
+>>>>>> +				if (retry_outer) {
+>>>>>> +					retry_outer--;
+>>>>>> +					goto start;
+>>>>>> +				}
+>>>>>> +				return -EIO;
+>>>>>> +			}
+>>>>>> +			usleep_range(1000, 1100);
+>>>>>> +		}
+>>>>>
+>>>>> You just duplicated ufshcd_hba_execute_hce() here. Why? This doesn't make sense.
+>>>>
+>>>> Since we set UFSHCI_QUIRK_BROKEN_HCE, and we also need to do someting
+>>>> which is very similar to ufshcd_hba_execute_hce(), before calling
+>>>> ufshcd_dme_reset(). Similar but not totally the same. I'll try to see if
+>>>> we can export ufshcd_hba_execute_hce() to make full use of it.
+>>>>
 >>>
->>> diff --git 
->>> a/Documentation/devicetree/bindings/iio/magnetometer/asahi-kasei,ak8975.yaml 
->>> b/Documentation/devicetree/bindings/iio/magnetometer/asahi-kasei,ak8975.yaml
->>> index 9790f75fc669..ff93a935363f 100644
->>> --- 
->>> a/Documentation/devicetree/bindings/iio/magnetometer/asahi-kasei,ak8975.yaml
->>> +++ 
->>> b/Documentation/devicetree/bindings/iio/magnetometer/asahi-kasei,ak8975.yaml
->>> @@ -18,6 +18,9 @@ properties:
->>>            - asahi-kasei,ak09911
->>>            - asahi-kasei,ak09912
->>>            - asahi-kasei,ak09916
->>> +      - items:
->>> +          - const: asahi-kasei,ak09918
->>> +          - const: asahi-kasei,ak09912
+>>> But you are starting the controller using REG_CONTROLLER_ENABLE. Isn't that
+>>> supposed to be broken if you set UFSHCI_QUIRK_BROKEN_HCE? Or I am
+>>> misunderstanding the quirk?
+>>>
 >>
->> Why? Your driver suggests it might not be compatible... Can device bind
->> using ak09912 and operate up to ak09912 extend?
-> It is register compatible and it can bind on 09112, as I understand 
-> fallback compatible
+>> Our controller doesn't work with exiting code, whether setting
+>> UFSHCI_QUIRK_BROKEN_HCE or not.
+>>
+> 
+> Okay. Then this means you do not need this quirk at all.
+> 
+>>
+>> For UFSHCI_QUIRK_BROKEN_HCE case, it calls ufshcd_dme_reset（）first,
+>> but we need to set REG_CONTROLLER_ENABLE first.
+>>
+>> For !UFSHCI_QUIRK_BROKEN_HCE case, namly ufshcd_hba_execute_hce, it
+>> sets REG_CONTROLLER_ENABLE  first but never send DMA_RESET and calls
+>> ufshcd_dme_enable.
+>>
+> 
+> I don't see where ufshcd_dme_enable() is getting called for
+> !UFSHCI_QUIRK_BROKEN_HCE case.
+> 
+>> So the closet code path is to go through UFSHCI_QUIRK_BROKEN_HCE case,
+>> and set REG_CONTROLLER_ENABLE by adding hce_enable_notify hook.
+>>
+> 
+> No, that is abusing the quirk. But I'm confused about why your controller wants
+> resetting the unipro stack _after_ enabling the controller? Why can't it be
+> reset before?
+> 
 
-ok
+It can't be. The DME_RESET to reset the unipro stack will be failed
+without enabling REG_CONTROLLER_ENABLE. And the controller does want us
+to reset the unipro stack before other coming UICs.
 
-> was a request from Connor and Jonathan in the previous round.
+So I considered it's a kind of broken HCE case as well. Should I add a
+new quirk or add a new hba_enable hook in ufs_hba_variant_ops? Or just
+use UFSHCI_QUIRK_BROKEN_HCE ?
 
-Not entirely, you should read comments more carefully.
+>>>>>
+>>>>>> +	} else { /* POST_CHANGE */
+>>>>>> +		err = ufshcd_vops_phy_initialization(hba);
+>>>>>> +	}
+>>>>>> +
+>>>>>> +	return err;
+>>>>>> +}
+>>>>>> +
+> 
+> [...]
+> 
+>>>>>> +static const struct dev_pm_ops ufs_rockchip_pm_ops = {
+>>>>>> +	SET_SYSTEM_SLEEP_PM_OPS(ufs_rockchip_suspend, ufs_rockchip_resume)
+>>>>>> +	SET_RUNTIME_PM_OPS(ufs_rockchip_runtime_suspend, ufs_rockchip_runtime_resume, NULL)
+>>>>>
+>>>>> Why can't you use ufshcd PM ops as like other vendor drivers?
+>>>>
+>>>> It doesn't work from the test. We have many use case to power down the
+>>>> controller and device, so there is no flow to recovery the link. Only
+>>>> when the first accessing to UFS fails, the ufshcd error handle recovery the
+>>>> link. This is not what we expect.
+>>>>
+>>>
+>>> What tests? The existing UFS controller drivers are used in production devices
+>>> and they never had a usecase to invent their own PM callbacks. So if your
+>>> controller is special, then you need to justify it more elaborately. If
+>>> something is missing in ufshcd callbacks, then we can add them.
+>>>
+>>
+>> All the register got lost each time as we power down both controller & PHY
+>> and devices in suspend.
+> 
+> Which suspend? runtime or system suspend? I believe system suspend.
 
-Best regards,
-Krzysztof
+Both.
 
+> 
+>> So we have to restore the necessary
+>> registers and link. I didn't see where the code recovery the controller
+>> settings in ufshcd_resume, except ufshcd_err_handler（）triggers that.
+>> Am I missing any thing?
+> 
+> Can you explain what is causing the powerdown of the controller and PHY?
+> Because, ufshcd_suspend() just turns off the clocks and regulators (if
+> UFSHCD_CAP_AGGR_POWER_COLLAPSE is set) and spm_lvl 3 set by this driver only
+> puts the device in sleep mode and link in hibern8 state.
+> 
+
+For runtime PM case, it's the power-domain driver will power down the
+controller and PHY if UFS stack is not active any more（autosuspend）.
+
+For system PM case, it's the SoC's firmware to cutting of all the power
+for controller/PHY and device.
+
+> - Mani
+> 
+>> Below is the dump we get if using
+>> SET_SYSTEM_SLEEP_PM_OPS(ufshcd_system_suspend, ufshcd_system_resume).
+>> It can work as ufshcd_err_handler () will fix the link, but we have to
+>> suffer from getting the error log each time. Moreover, we need to gate
+>> 26MHz refclk for device when RPM is called. So our own rpm callback is
+>> needed.
+>>
+>> [   14.318444] <<GTP-INF>>[gt1x_wakeup_sleep:964] Wakeup by poweron
+>> [   14.439723] ufshcd-rockchip 2a2d0000.ufs: Controller not ready to accept
+>> UIC commands
+>> [   14.439730] ufshcd-rockchip 2a2d0000.ufs: pwr ctrl cmd 0x18 with mode 0x0
+>> uic error -5
+>> [   14.439736] ufshcd-rockchip 2a2d0000.ufs: UFS Host state=1
+>> [   14.439740] ufshcd-rockchip 2a2d0000.ufs: outstanding reqs=0x0 tasks=0x0
+>> [   14.439744] ufshcd-rockchip 2a2d0000.ufs: saved_err=0x0,
+>> saved_uic_err=0x0
+>> [   14.439748] ufshcd-rockchip 2a2d0000.ufs: Device power mode=2, UIC link
+>> state=2
+>> [   14.439753] ufshcd-rockchip 2a2d0000.ufs: PM in progress=1, sys.
+>> suspended=1
+>> [   14.439758] ufshcd-rockchip 2a2d0000.ufs: Auto BKOPS=0, Host self-block=0
+>> [   14.439762] ufshcd-rockchip 2a2d0000.ufs: Clk gate=1
+>> [   14.439766] ufshcd-rockchip 2a2d0000.ufs: last_hibern8_exit_tstamp at 0
+>> us, hibern8_exit_cnt=0
+>> [   14.439770] ufshcd-rockchip 2a2d0000.ufs: last intr at 10807625 us, last
+>> intr status=0x440
+>> [   14.439775] ufshcd-rockchip 2a2d0000.ufs: error handling flags=0x0, req.
+>> abort count=0
+>> [   14.439779] ufshcd-rockchip 2a2d0000.ufs: hba->ufs_version=0x200, Host
+>> capabilities=0x187011f, caps=0x48c
+>> [   14.439785] ufshcd-rockchip 2a2d0000.ufs: quirks=0x2100, dev. quirks=0xc4
+>> [   14.439790] ufshcd-rockchip 2a2d0000.ufs: UFS dev info: SAMSUNG
+>> KLUDG2R1DE-B0F1  rev 0100
+>> [   14.439796] ufshcd-rockchip 2a2d0000.ufs: clk: core, rate: 50000000
+>> [   14.439822] host_regs: 00000000: 0187011f 00000000 00000200 00000000
+>> [   14.439827] host_regs: 00000010: 00000000 000005e6 00000000 00000000
+>> [   14.439831] host_regs: 00000020: 00000000 00000000 00000000 00000000
+>> [   14.439835] host_regs: 00000030: 00000000 00000000 00000000 00000000
+>> [   14.439839] host_regs: 00000040: 00000000 00000000 00000000 00000000
+>> [   14.439843] host_regs: 00000050: 00000000 00000000 00000000 00000000
+>> [   14.439847] host_regs: 00000060: 00000000 00000000 00000000 00000000
+>> [   14.439851] host_regs: 00000070: 00000000 00000000 00000000 00000000
+>> [   14.439855] host_regs: 00000080: 00000000 00000000 00000000 00000000
+>> [   14.439859] host_regs: 00000090: 00000000 00000000 00000000 00000000
+>> [   14.439863] ufshcd-rockchip 2a2d0000.ufs: No record of pa_err
+>> [   14.439867] ufshcd-rockchip 2a2d0000.ufs: No record of dl_err
+>> [   14.439871] ufshcd-rockchip 2a2d0000.ufs: No record of nl_err
+>> [   14.439876] ufshcd-rockchip 2a2d0000.ufs: No record of tl_err
+>> [   14.439880] ufshcd-rockchip 2a2d0000.ufs: No record of dme_err
+>> [   14.439884] ufshcd-rockchip 2a2d0000.ufs: No record of auto_hibern8_err
+>> [   14.439888] ufshcd-rockchip 2a2d0000.ufs: No record of fatal_err
+>> [   14.439892] ufshcd-rockchip 2a2d0000.ufs: No record of link_startup_fail
+>> [   14.439896] ufshcd-rockchip 2a2d0000.ufs: No record of resume_fail
+>> [   14.439900] ufshcd-rockchip 2a2d0000.ufs: No record of suspend_fail
+>> [   14.439905] ufshcd-rockchip 2a2d0000.ufs: dev_reset[0] = 0x0 at 1418763
+>> us
+>> [   14.439910] ufshcd-rockchip 2a2d0000.ufs: dev_reset: total cnt=1
+>> [   14.439914] ufshcd-rockchip 2a2d0000.ufs: No record of host_reset
+>> [   14.439918] ufshcd-rockchip 2a2d0000.ufs: No record of task_abort
+>> [   14.439930] ufshcd-rockchip 2a2d0000.ufs: ufshcd_uic_hibern8_exit:
+>> hibern8 exit failed. ret = -5
+>> [   14.439935] ufshcd-rockchip 2a2d0000.ufs: __ufshcd_wl_resume: hibern8
+>> exit failed -5
+>> [   14.439944] ufs_device_wlun 0:0:0:49488: ufshcd_wl_resume failed: -5
+>> [   14.439950] ufs_device_wlun 0:0:0:49488: PM: dpm_run_callback():
+>> scsi_bus_resume+0x0/0xa8 returns -5
+>> [   14.440003] ufshcd-rockchip 2a2d0000.ufs: ufshcd_err_handler started; HBA
+>> state eh_fatal; powered 1; shutting down 0; saved_err = 0; saved_uic_err =
+>> 0; force_reset = 0; link is broken
+>> [   14.440017] ufs_device_wlun 0:0:0:49488: PM: failed to resume async:
+>> error -5
+>>
+>>> - Mani
+>>>
+> 
 
