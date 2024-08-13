@@ -1,202 +1,174 @@
-Return-Path: <devicetree+bounces-93312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17B65950776
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 16:24:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB30E95077D
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 16:27:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C35531F24100
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 14:24:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAD401C21D4A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 14:27:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEB8019D084;
-	Tue, 13 Aug 2024 14:24:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12CCA19D086;
+	Tue, 13 Aug 2024 14:27:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YOI8fe0K"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VTdoy3Wj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A084619D076;
-	Tue, 13 Aug 2024 14:24:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D84B19D07B;
+	Tue, 13 Aug 2024 14:27:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723559082; cv=none; b=hdrWcark/Gh56uXzq1nhz2Bkx9lSI8yjlS7xHWLlajr2Bo3jFiRaVwaLzj89PXJCfPQKCCfR8IuxbqIW2PHBkbVA24sBUhFt/OHfpHMUbEKyCwZu+2ARhHH1Xyg53HFBKn2kj4JTyuij230/H1PEB09i2XkZxHI+Qn1hM29N2RM=
+	t=1723559241; cv=none; b=oGvxgeH1uVcUtO+9Aoa0b5GyEp2NiCJSckRdBgRSb2nfGbFbg3P8N/NJEjjgzTMECeg3Eqkqmyy8PpE+QutCnkC+UDmvY3aBCgGsIkdXKpe7ZzmX8c6nyjVKeMzbvwE6JAg3UigjVYEO2hTa80HS9Q2NdA+uvksywgkpU+KYoW0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723559082; c=relaxed/simple;
-	bh=Cf5nrxOfWp3lPGd3cNKVX3NV1/THCONrMkgor6cC/74=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=X/JdkFZffZKMhXLMopWAG0eyf89IwmZnU86F7k9j8QUGovSSbzFOsXfk6e2p8WJwyNIfCEVU3RHvV+i1kM69fFZiROvgzePVytu+DyhHe2jHvDGhcIVo0xQN5nB18EsCXfDZUuxo6N483CzfOtcZH11gGWKEDK0rh33EIVPybaU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YOI8fe0K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47B52C4AF0B;
-	Tue, 13 Aug 2024 14:24:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723559082;
-	bh=Cf5nrxOfWp3lPGd3cNKVX3NV1/THCONrMkgor6cC/74=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=YOI8fe0K1UKV7J4nHg1SoV2ZzWhU1nOSzpzzyq8XX3UaH/oujjT+zj8qtyewZTVlo
-	 Io3cfLgrEWDUOu1CeD7i9sshCZr9OjACJYSQuJ+xVB0n3O41mbTr4fVoWDBszwiql1
-	 Yneol9ZWfKGiJqNEweht/kiaT/Tr2bM26CKc9e8np9TVIOaYNMDZkPIsQLYch0U8wb
-	 +QBU+HJHQfzMtACqE7yixFcOyHmMVPks/1eC7Oz2DwSfjtnh5us4JkDL86Ohsqzw3i
-	 uc30OTkWlYESufLgZDVQV7bvICnQ9jqKaKPsuuTYzBi0qBANsIOra+xLNWJ6y7ghtr
-	 NPTHhvloxFonA==
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2eeb1ba0468so71175591fa.0;
-        Tue, 13 Aug 2024 07:24:42 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVgjUM9sA+cCcyLVXDDl9Q+nX2M/0C6mfwVFg59I+UOulf3gQJ0IRBo84suCYnzU4E5G/3HLXc97FshfnilWyhBcjwQnFYKblEMI0LRusbvsUxQNYPCEdk71GTYPTDOa1V8BCnlXGT62aC9Nzu/QBTHp3czDqBr8CiWf6PU5KSGCpR5ZQ==
-X-Gm-Message-State: AOJu0YzO10apMfNTeBaubAT4WqbUf/fkK13qtP1pX9CnDSSrR4E9aq36
-	lCAa6sVnY5TlYBoNm39nIco1uXLIlbg7nauiRIa43EN9mVic9GwowcKEX1nGVYwH0A9tLGNZKof
-	yGJzvrvGDzOlKQpv4AGksHTeKtg==
-X-Google-Smtp-Source: AGHT+IGEtxJXAokVeHylGyvLbWPxf9oslPNLlY5/p+Gnfc4iXdhDKRm8W9C2iFoUYgmtU70ocpuAKUExkf0GIUkUUYA=
-X-Received: by 2002:a2e:b6c7:0:b0:2ef:29cd:3183 with SMTP id
- 38308e7fff4ca-2f2b727737bmr24740261fa.48.1723559080584; Tue, 13 Aug 2024
- 07:24:40 -0700 (PDT)
+	s=arc-20240116; t=1723559241; c=relaxed/simple;
+	bh=7o1ebO6uvNnNS0M2BIyB8SB8taid1I1qAAMAb2zKqbo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cc5qfHO2Fh8rNJPNWZwtHWYoMR0QzUEwz+tRLgkZj9XprCo2nsdUIW4fnOURx+Lox2vI8QTQiPNmkkOxrOiei6ag23a+wELxRGituPzByEfFqBSMvQc8WnYA1d99uHzv7McdvOs5v/DllPFxN0caGYVe61jJgfnDh/RwYVpl1So=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VTdoy3Wj; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5a10835487fso7356739a12.1;
+        Tue, 13 Aug 2024 07:27:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723559237; x=1724164037; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0GZ9q735651QGDZf7rgdlCrHxFSRCY3h/YKc3A79Cc0=;
+        b=VTdoy3WjCzQiiS5Ec7e9NVoKcUQq36ZGjs11b11P3msZmfgc45fYJXth5aYQ/kc3uv
+         HPnw/aM34r77ZM+0jUajQOb7UyU4UfT/eiKRd0D9CILV+CEC9YsIFB4W5fzFH8mzRZfY
+         YOLLtarvrjmFi/9PuwxqVU1f9CCbUsNMiCWx2wyRw9LtEBGxS45/Pu8HO6H1kwPnJ8YS
+         PL8hGjhwAaGETH9NuzO4j4mz+pvlPjpl6nZbkTybzvbOKBPWhvJae5Ee4tbm/KILAv5/
+         xRK3q09kE8zd/riXtJ0X8Ueca9WcjsOaHbooTMAxAjStsOaITISU4sfuhdCOFciHN6/9
+         ds2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723559237; x=1724164037;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0GZ9q735651QGDZf7rgdlCrHxFSRCY3h/YKc3A79Cc0=;
+        b=g64BEn9uM2HHqzmSUf1MkD2xQ5E43E8SP3m7WqcfFiXjWIcGLllQY48rGWRjpYP1kC
+         qHAhwNk7C7IqDp7SxZkbGgBbA/ssmdLeCbepAQckm7DWITxNaI2519C7t8XBam2TV0Nr
+         zRgNzB1KkU1Hczid/cawSu4Nyzx7V+jpbVKdWjC4IbwQ+UMYyl1QUb+aRWPfrH0kgZiy
+         wJCQ90yvvq/ZZfTdqimPuA0LYB9r0eDIYg4PHm+VfsS/owf0TtVjFZtWjI//SUlJlZSl
+         7PzqrGtjVvC1r7LK3qKHowAKXGHll1TWgbc3ujib76OW8NLZzu9gcpPL1cJRDQSVd/8m
+         APYw==
+X-Forwarded-Encrypted: i=1; AJvYcCUd2ef4iqyHIzEIdNQcpyFWwXKNBHo03LNPd2FnVyeRSIGiTpfeRijwOaMhocn10ksARhzRJy+n0exTOatWB4bR2MM4tn2cZ7w2sfNLuzpOGwQKIT8fWgD2atVT4Ai0tBqTakk1H3jGWwkd0ryOLSklSr9wEpUSXOuaCKsc58RX95DyW5CE2ea+XznRRvbZ2PXDvGhf5NoqSPB+7OzFA1SXatzxAUof0VuPTh4yEcPDJsdJYkZxMDo5tX48mftxVnC+ROwoIifU
+X-Gm-Message-State: AOJu0YxwAR0WppjZBmFoQozxWqdDdtpcECDVp5j9oKUjAQHpmRfEsGJl
+	kTfHVUmUhBvCHfMzv4pa5+bB19cdYXbZo6iP+zTGDHBgKme5jEJC
+X-Google-Smtp-Source: AGHT+IH6Tmd1OzGRfql2ZCp766sYz9QoQGSXIi39HApJlkOewrKUyajyK555rObaG/0QcWQbujM/0w==
+X-Received: by 2002:a05:6402:848:b0:5a7:448b:4434 with SMTP id 4fb4d7f45d1cf-5bd44c2d6f3mr2725779a12.9.1723559236558;
+        Tue, 13 Aug 2024 07:27:16 -0700 (PDT)
+Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5bd196a666fsm2954540a12.46.2024.08.13.07.27.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Aug 2024 07:27:15 -0700 (PDT)
+Message-ID: <36b0ee66-3af3-40c1-86b6-b52cd826298e@gmail.com>
+Date: Tue, 13 Aug 2024 16:27:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240812203004.3831481-1-Frank.Li@nxp.com>
-In-Reply-To: <20240812203004.3831481-1-Frank.Li@nxp.com>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 13 Aug 2024 08:24:28 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqL2HAeS5BWsmJRzeJb1b7nXgB92KsGe87tT5-LeYmaeyQ@mail.gmail.com>
-Message-ID: <CAL_JsqL2HAeS5BWsmJRzeJb1b7nXgB92KsGe87tT5-LeYmaeyQ@mail.gmail.com>
-Subject: Re: [PATCH 1/1] spi: dt-bindings: convert spi-sc18is602.txt to yaml format
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, "open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
-	imx@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] dt-bindings: platform: Add Surface System
+ Aggregator Module
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Len Brown <lenb@kernel.org>, Maximilian Luz <luzmaximilian@gmail.com>,
+ Hans de Goede <hdegoede@redhat.com>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <quic_kdybcio@quicinc.com>
+References: <20240810-topic-sam-v2-0-8a8eb368a4f0@quicinc.com>
+ <20240810-topic-sam-v2-2-8a8eb368a4f0@quicinc.com>
+ <1a6ebc27-95ca-4f56-9971-b2a8d03f270a@kernel.org>
+Content-Language: en-US
+From: Konrad Dybcio <konradybcio@gmail.com>
+In-Reply-To: <1a6ebc27-95ca-4f56-9971-b2a8d03f270a@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Aug 12, 2024 at 2:30=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote:
->
-> Convert binding doc spi-sc18is602.txt (I2C to SPI bridge) to yaml.
->
-> Additional change:
-> - ref spi-controller.yaml
->
-> Fix below warning:
-> arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb:
-> /soc/i2c@2000000/i2c-mux@77/i2c@7/i2c-mux@75/i2c@0/spi@28: failed to matc=
-h any schema with compatible: ['nxp,sc18is602b']
->
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  .../devicetree/bindings/spi/nxp,sc18is.yaml   | 52 +++++++++++++++++++
->  .../devicetree/bindings/spi/spi-sc18is602.txt | 23 --------
->  2 files changed, 52 insertions(+), 23 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/spi/nxp,sc18is.yaml
->  delete mode 100644 Documentation/devicetree/bindings/spi/spi-sc18is602.t=
-xt
->
-> diff --git a/Documentation/devicetree/bindings/spi/nxp,sc18is.yaml b/Docu=
-mentation/devicetree/bindings/spi/nxp,sc18is.yaml
-> new file mode 100644
-> index 0000000000000..8a5d45d976984
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/nxp,sc18is.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/spi/nxp,sc18is.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP SC18IS602/SCIS603 I2C to SPI bridge
+On 11.08.2024 4:28 PM, Krzysztof Kozlowski wrote:
+> On 10/08/2024 03:28, Konrad Dybcio wrote:
+>> From: Konrad Dybcio <quic_kdybcio@quicinc.com>
+>>
+>> Add bindings for the Surface System Aggregator Module (SAM/SSAM), the
+>> Microsoft Surface-standard Embedded Controller, used on both x86- and
+>> Qualcomm-based devices.
+>>
+>> It provides a plethora of functions, depending on what's wired up to
+>> it. That includes but is not limited to: fan control, keyboard/touchpad
+>> support, thermal sensors, power control, special buttons, tablet mode.
+>>
+>> Signed-off-by: Konrad Dybcio <quic_kdybcio@quicinc.com>
+>> ---
+>>  .../bindings/platform/microsoft,surface-sam.yaml   | 50 ++++++++++++++++++++++
+>>  1 file changed, 50 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/platform/microsoft,surface-sam.yaml b/Documentation/devicetree/bindings/platform/microsoft,surface-sam.yaml
+>> new file mode 100644
+>> index 000000000000..f613738aa31d
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/platform/microsoft,surface-sam.yaml
+>> @@ -0,0 +1,50 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/platform/microsoft,surface-sam.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Surface System Aggregator Module (SAM, SSAM)
+>> +
+>> +maintainers:
+>> +  - Konrad Dybcio <konradybcio@kernel.org>
+>> +
+>> +description: |
+> 
+> No need for |
 
-SCIS603 or SC18IS603?
+Apparently it's necessary because I have a :
+> 
+>> +  Surface devices use a standardized embedded controller to let the
+>> +  operating system interface with various hardware functions. The
+>> +  specific functionalities are modeled as subdevices and matched on
+>> +  five levels: domain, category, target, instance and function.
 
-> +
-> +maintainers:
-> +  - Frank Li <Frank.Li@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nxp,sc18is602
-> +      - nxp,sc18is602b
-> +      - nxp,sc18is603
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clock-frequency:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 7372000
-> +    description:
-> +      external oscillator clock frequency. If not specified, the SC18IS6=
-02
-> +      default frequency (7372000) will be used.
+                 ^ here
 
-Drop prose that the schema says already.
+Should I e.g. s/:/-/, or keep the |?
 
-With those fixes,
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: microsoft,surface-sam
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  current-speed:
+>> +    description: The baudrate in bits per second of the device as it comes
+>> +      online, current active speed.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+> 
+> This should be just "current-speed: true", because the type will be
+> brought by serial schema. We should however have some schema with
+> peripheral properties for serial devices. I'll come with something.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+I suppose I should just include:
 
-> The clock-frequency
-> +      property is relevant and needed only if the chip has an external
-> +      oscillator (SC18IS603).
-> +
-> +allOf:
-> +  - $ref: spi-controller.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        spi@28 {
-> +            compatible =3D "nxp,sc18is603";
-> +            reg =3D <0x28>;
-> +            clock-frequency =3D <14744000>;
-> +        };
-> +    };
-> +
-> diff --git a/Documentation/devicetree/bindings/spi/spi-sc18is602.txt b/Do=
-cumentation/devicetree/bindings/spi/spi-sc18is602.txt
-> deleted file mode 100644
-> index 02f9033270a24..0000000000000
-> --- a/Documentation/devicetree/bindings/spi/spi-sc18is602.txt
-> +++ /dev/null
-> @@ -1,23 +0,0 @@
-> -NXP SC18IS602/SCIS603
-> -
-> -Required properties:
-> -       - compatible : Should be one of
-> -               "nxp,sc18is602"
-> -               "nxp,sc18is602b"
-> -               "nxp,sc18is603"
-> -       - reg: I2C bus address
-> -
-> -Optional properties:
-> -       - clock-frequency : external oscillator clock frequency. If not
-> -         specified, the SC18IS602 default frequency (7372000) will be us=
-ed.
-> -
-> -The clock-frequency property is relevant and needed only if the chip has=
- an
-> -external oscillator (SC18IS603).
-> -
-> -Example:
-> -
-> -       sc18is603@28 {
-> -               compatible =3D "nxp,sc18is603";
-> -               reg =3D <0x28>;
-> -               clock-frequency =3D <14744000>;
-> -       }
-> --
-> 2.34.1
->
+https://lore.kernel.org/linux-serial/20240811-dt-bindings-serial-peripheral-props-v1-0-1dba258b7492@linaro.org/
+
+Konrad
 
