@@ -1,321 +1,217 @@
-Return-Path: <devicetree+bounces-93216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1AA095002E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 10:45:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 692F395003D
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 10:47:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E58131C22B06
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 08:45:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20BBB282A5B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 08:47:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8861817CA1F;
-	Tue, 13 Aug 2024 08:42:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB904170A0E;
+	Tue, 13 Aug 2024 08:44:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fUxYqMxy"
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=amperemail.onmicrosoft.com header.i=@amperemail.onmicrosoft.com header.b="HxTOHfZm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (mail-westusazon11022123.outbound.protection.outlook.com [52.101.43.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F21717CA0A;
-	Tue, 13 Aug 2024 08:42:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723538542; cv=none; b=YOwCOuAxlw9YvTJ1yhL4uQCpheQ7UtPeKBhdIhmZ+kW0U8RU7DrbScu0I0CZTB602k+DwjLcGjOnlk0QNAVjlffdgqRQcGx37Y/Q0KWRb9zIhYMg/6/uVaeFlTPp2vT6gHuwCHcxx5+WoP76F5N75MBrRGRueK/LBxoDveJfKdc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723538542; c=relaxed/simple;
-	bh=cmBNhwLcmcbf8rZqlKMIjSvUsYcFWzgiMUxZqih0KBY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=HsoAcWB0A7NdaXbEBgcnpM+ho0YH8+9egjfLIdp9PYGVboyNdAU6edNFyacPTmqEiOZczvXrK6oD6uNM8vlD8PNUjf34aleZg0r81jEO7Cyf4JiHd7TtT8vXiUwaFv7Cl5FykIVZsStJjRFLqWfesBs5Lf0MozyDgZQ9us8ZRwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fUxYqMxy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 591F9C4AF10;
-	Tue, 13 Aug 2024 08:42:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723538542;
-	bh=cmBNhwLcmcbf8rZqlKMIjSvUsYcFWzgiMUxZqih0KBY=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=fUxYqMxyrFka/lkJZ29kvDwRYdCr5xdqYPxwCeop9NKC2Lhd5FAuxZJzh/PHpBK0l
-	 5OoxKBjROBsyg7n5LMOr1D9NykqL5IwGg2qJp0Oong3YyiKcrO6jK0wjbJI6t3D/Yh
-	 huFMK2EYhXEPvJRm9HTs1BF2EiLM+ZOa6DKSJXwP/fwydO+8Moir2vVFM2cN9wCgWV
-	 ahHZVSj/oTEi0qC45NDqiZ4uQ+ADLXfvnFnskYy2FxNvQMcE1Pb1ISVbYXueGTo77K
-	 lScrhd886ujb9JjTj1EePsgYTVyQ/UdCD4pDtnJNMEqtPEPhk0xwBYDrFucE2bjwWT
-	 6wNnKt/B0Zzlg==
-Message-ID: <9cc3ef01-6f95-4ce2-9e3d-cc679b50feb6@kernel.org>
-Date: Tue, 13 Aug 2024 10:42:16 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 189A4186E5C;
+	Tue, 13 Aug 2024 08:44:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.43.123
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723538655; cv=fail; b=eN+VYA0AF7U82SuGmjeCEWL3bL3e38Sp92hde+1rhBNhcJfLdRBisYGcCUSjLOOtu+Rdlocvi8PDmkOENfpqQ8owYcHB6ngMQmZJvWSK2uH0gbk7lJQxqVUIuurtCCeFDZJBQnXYN4dtfvvsLX35T9OgI4KDebt5AmcvhOEUwCM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723538655; c=relaxed/simple;
+	bh=S3zcSaFNR9q1rJncIJYIJiEvFlUOVvvdQdjfp1clht4=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=EGWZZhBXRDVzEN8X0Bdn0L4P/tundTcBlv+zplZfK1lwwJDOhQyz7io1vdrB9h1W59aCGI7oGT/kMTDWag9AKoinFqF/VfbvkIJAUvuBcTM0wIcHfuq0wopyEQ7FOh1/PUX/f0M9TBhqw6FLXWYdcrX0HFh93nUa5aUIUIQlTfM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=amperemail.onmicrosoft.com; spf=pass smtp.mailfrom=os.amperecomputing.com; dkim=fail (0-bit key) header.d=amperemail.onmicrosoft.com header.i=@amperemail.onmicrosoft.com header.b=HxTOHfZm reason="key not found in DNS"; arc=fail smtp.client-ip=52.101.43.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=amperemail.onmicrosoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=os.amperecomputing.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=YEkqj4NM3sOsh+QNpIbYLs9NKQmkGpcnOt7E3Mgi6oqdmqV53zmj5lnmPPkkXvzqLkPrWzTn8ORwAhk4mso3Mga1a200XFff1Ql4LJ2XLIGGTiysQ6MbvALrs4vLFWZr8ZmfQxgq7iAuNodJ++fofu3c0OPX5VNJiVoj86xUSK7dcZQgtR0y+nzcvDZ26pFELYvZEo8Sk8RiiftZfTuTlxbm3TtZUqsDzbz6A0i2oM7A/Hhc5uKC/fHOXzJo6WmTSKNQGDtC3SBHed0cZ8DQ9qfGP5Ql7+yZUuq0OVaDI6pzffFh4ixAEiXLqkHKKyBVlKvCTBOuBoyl7i45fTdSHA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=J718f9mra827pVm5knGK8PCcntg8oCXm8Ds/uzA8i5w=;
+ b=EM+0S9t8mIBVTizw6hLat5p5FKmuX/XN6Tt9LrparRRnyj9e1sUkZo8h0MgMNAAtpG4VWElgoOwEmLqYhAwiwg2lBCA4rP6oo96y7xgGOw6lOTCFE0ZmlE/u/wpnWqAsz6uKg7AGvoQLcep5BaRP4Ik37zhBbTJYZLMZJIEXZjYhtrJLfK6XrMDzexFCbaUhxbaoLQN4SfKy/ASdKvNVurgz2ME91GzXfDATGCKES+uKPrHLaZCG+TZbJDGgJWR87e/yOgrjQ+TGm9MqBW5I7+SoZzUxGw4fCRMse7gB4CuCngA4AamQr/SQsfkvOiCPPrAzT3bBlhnwhwUzjtBE/A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=amperemail.onmicrosoft.com; dkim=pass
+ header.d=amperemail.onmicrosoft.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amperemail.onmicrosoft.com; s=selector1-amperemail-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=J718f9mra827pVm5knGK8PCcntg8oCXm8Ds/uzA8i5w=;
+ b=HxTOHfZmP+zTOj440FrUGKeE/Sczy9DUt/Tfb5reSbOgE97Aln6K3ENytlHHp1FFP4dTpd6soLWSMgqEokypzCWUp9dFU6NZrguz8vsKVqMmswFRbAwI2pMFuW3ahs8/cs8XpCY2LdOPzZch1BDvEBVmKnR681o1/iq4RjliVSc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amperemail.onmicrosoft.com;
+Received: from BL3PR01MB7057.prod.exchangelabs.com (2603:10b6:208:35c::16) by
+ CH5PR01MB9029.prod.exchangelabs.com (2603:10b6:610:214::19) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7849.22; Tue, 13 Aug 2024 08:44:12 +0000
+Received: from BL3PR01MB7057.prod.exchangelabs.com
+ ([fe80::b69e:5684:ed7c:4d09]) by BL3PR01MB7057.prod.exchangelabs.com
+ ([fe80::b69e:5684:ed7c:4d09%4]) with mapi id 15.20.7849.021; Tue, 13 Aug 2024
+ 08:44:12 +0000
+Message-ID: <50014195-b7b7-4fa8-ae37-2c3e57826c1b@amperemail.onmicrosoft.com>
+Date: Tue, 13 Aug 2024 15:44:01 +0700
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/1] Update the max31790 driver
+To: Chanh Nguyen <chanh@os.amperecomputing.com>,
+ Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Justin Ledford
+ <justinledford@google.com>, devicetree@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+ OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+ Open Source Submission <patches@amperecomputing.com>
+Cc: Phong Vo <phong@os.amperecomputing.com>,
+ Thang Nguyen <thang@os.amperecomputing.com>,
+ Quan Nguyen <quan@os.amperecomputing.com>
+References: <20240813084152.25002-1-chanh@os.amperecomputing.com>
+Content-Language: en-US
+From: Chanh Nguyen <chanh@amperemail.onmicrosoft.com>
+In-Reply-To: <20240813084152.25002-1-chanh@os.amperecomputing.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI2PR01CA0041.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::15) To BL3PR01MB7057.prod.exchangelabs.com
+ (2603:10b6:208:35c::16)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: interrupt-controller: Add support for
- ASPEED AST27XX INTC
-To: Kevin Chen <kevin_chen@aspeedtech.com>, tglx@linutronix.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
- andrew@codeconstruct.com.au, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org
-References: <20240813074338.969883-1-kevin_chen@aspeedtech.com>
- <20240813074338.969883-2-kevin_chen@aspeedtech.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240813074338.969883-2-kevin_chen@aspeedtech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL3PR01MB7057:EE_|CH5PR01MB9029:EE_
+X-MS-Office365-Filtering-Correlation-Id: b786233a-1561-4307-9f9e-08dcbb741a9f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|376014|7416014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?cHBPdkhEVjZXM3dKRDY3di9CU2IzQ0pjSGxPYWxlSDJGbFhXU2tVcVY5bmRX?=
+ =?utf-8?B?a2tpWDN4bTV5VGhYU0M0TFVheUZCZlg4Unp6RkdZNStEWG1JRjZGNUxudTJZ?=
+ =?utf-8?B?VWdRY1hyTnVMOFpBVWxiTVFIaVJFckY4S3o3Zk9oZXM4ZWFhTWUvbDJlRzRX?=
+ =?utf-8?B?L3gra3AvbXVJbE9JQmFJWDQyNzduUDNKbXhyVWNQeHBlQjFhcWR6OWRadGxY?=
+ =?utf-8?B?bE5WemR6RGtHaWRPUFNoSE5oWWp2V2Y4ZFc4SzdyZHVkK3RIQlVWQXc5ZjN3?=
+ =?utf-8?B?Y2lJRWpQcDRLWVg1NTJQc1ZUMVM5VTdFUDYrREQwWG9GZUs3WFJFMFFTc1FC?=
+ =?utf-8?B?TGhKT1Q0Uk9aVS8xeWUzVm1EdVVVaW5OMXRHK3N4dE9zQ3lHMjJPVWEyeTJP?=
+ =?utf-8?B?alg2RHZLYTRSV1JwWWRVbWIzNFFMdUFpN3ZYbkpSSW9IVDFUT3BTTTEzang4?=
+ =?utf-8?B?MHE4Y3lEWWN4NEFWcE1OamFNb0VockpWeHpRWjl0Z25uQTNJd1R5OHdsNXpO?=
+ =?utf-8?B?bEV0YU5FWGhITFRFRzNLSmxndXdJUnd4ekRNQlVRSDMyenM2RzY5cTR6WWNs?=
+ =?utf-8?B?b1lEM3NORk9Ta3lDTmRmajhaRFhJWU5NbEVacjBWQkgvNHVMN29TY1M4cFA1?=
+ =?utf-8?B?RmwxWS9HcFVZR0tZSTlqRVJOSzROajhVUWszMWhRMU9IWVpUZlBva2pENFF0?=
+ =?utf-8?B?WDNWOUlOaEgwS2duZkdXU001WW1aNGcyeU5hVGhLUjlNWXhMTzA1MjltdlYw?=
+ =?utf-8?B?a1YyY1NueUM1SW04SGhyVSt3MUZSeWFWUVdDeHhkc1ZLNEIycGs2Mnp1K1k0?=
+ =?utf-8?B?VUlBSzVLejMwRktKYVNsYlEwUlRuMk5idlJnOG5pRFU4SG0rVExQR3RxM0Mx?=
+ =?utf-8?B?T3o1L0hOdzlXRnZDZDBYVEJxU2Z6MW9IcEVjcWM4eE1YKzdFeG9vdHoxNzV2?=
+ =?utf-8?B?Q2p0K3U3Tm1uRFlCVDVhZ0U3aERKaGttWmd1bkJEL0lVWUV4UzVKREZTQWZR?=
+ =?utf-8?B?RExEQ1liY28vL2EwOVU2OHNDVHIwMEpBbkhuUGJiSWlFczQvY0Q2c2JzOGov?=
+ =?utf-8?B?djFjN0djeGpzUzMwT1B5cnNDNENyUFBheDNaK0RTOEptKy9HZ21RYmttRlg2?=
+ =?utf-8?B?cmZYRVlpM0d3MUJIbHBHVXJ6T2w3NWZ5MzBFTTcvQVBtQjhGYVpNb1R0ZXU4?=
+ =?utf-8?B?dFIzdEFpTlQwcE9TdkFSallHcnlTa0hncjJwSWZqNjczbGlqMjZxcXRjNTcz?=
+ =?utf-8?B?WU1lYnl0VFdtb0dlczMvZmRlVU9Va1JBY0pGL05IWmFiS3hEdGhtVXBzZjBM?=
+ =?utf-8?B?SmdnRUJqZlBWRDhCRWJwNWdtR0FZZUplVzM4R1FCY0Q2ZHFrWDlYYmx6aTJl?=
+ =?utf-8?B?SFdheGlCbGRxSjRMeDc4NEl0VnI2Ry90dVlwUHVqelpZY0F3OFBSbHlScDln?=
+ =?utf-8?B?aC9UV1hPUXl6cGlPL3BIYXZlMzVoRzlITnZtcXBnRFp0cXNUZzZ5SDlBWlNa?=
+ =?utf-8?B?aUF3T2dhWGdLWGx1dXM0T3dJb2hlWW5xWjBQc3BGY1V1aXNXZU1IaUVlN2pM?=
+ =?utf-8?B?TjlqR0FTVXBvOWNhWkM2UDNZbUxoYnZPRXk0cU5ObmxTWmQ2aHlxVVN3ZC83?=
+ =?utf-8?B?NUhKY0V5N0l5NUE5Z09xbVpLYVlZRzB5dWgzMVJjemkvSnhvaGxHeU44YjND?=
+ =?utf-8?B?Vlp0dHBiS25lUko1Sjc3cUR1TlFqMm53ZWpsSTYrTUZHNTVVM2c0elk2cG1x?=
+ =?utf-8?B?elJXWWlQY3RMN1AwdFBqQys2a3ZVMnFzcWRNakF2OCtpZnVwbnRLbjI1aDBX?=
+ =?utf-8?Q?/e1n64r9Wz0NOmz5uFMeuVu2h3ymBvNLOjvIw=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL3PR01MB7057.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(921020);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?WStzSGsyTmFUYWtNL2ZiKytJdjlpSnVWZ3dQdzJDMGNxeGY3VlBINzZyZHlT?=
+ =?utf-8?B?UWJkT3RRdCs5THc0MXVocElOZllTbXpnVW5CMzA1RjR2MGwxT2l0bTJHbnIz?=
+ =?utf-8?B?eGR3QXNtb0NmVmdJR3d3cVZ2MFFWODIrSkcxQXhTdDF5dGtRZHBFeEp6YXVk?=
+ =?utf-8?B?Z2VtL1hDcXg4ZTN2WGZLM2wzRkk5cUdDSEdTUllaZktOZ09iT0ZVZGFVTlBT?=
+ =?utf-8?B?WTVWOW05bW92SXIyUWNQN0dwMHBGcUxQQi8yWk5IZHJaMUwxL1BqVHQrdU5s?=
+ =?utf-8?B?NDQ0SXl4RlE5Sk41TGpXUzMyVEFlTVFLaE9YYUwzc2pDY21lQjY3QzRRY3dU?=
+ =?utf-8?B?RTdkYjFBSXdXMWhNYXUzb2UyaVNEVGl0cUZaYTFmNERwbjZHZktKK1ZyV0kx?=
+ =?utf-8?B?M1RTby9LTjVPQ2pVZk12RzdVNzRmL2d2QzhkYjJXaCtsdDBvNkFLUHJ5TXla?=
+ =?utf-8?B?M2F5MkFEV3VxbUc0Mm1uWVNnS09JYk1XU00xQ3VWRDhMbXBPK0ZCTGk3TEVt?=
+ =?utf-8?B?Zmc0TXYrUTc5UXZrNVl1cHVCVlFtZXIwODJxaG8vZCt3ZUJkK29UbjM4bU9a?=
+ =?utf-8?B?bWxUWXAxcUdXNzJNd2xqTzlQTFVuY1U3L1hYY3RHN216eWQ2SlpnUVdLemJT?=
+ =?utf-8?B?RWQ5TklGb2gzSllianlWT3RRbHJza09xVzRmSVFQSFROMERtaE44a2xERGcw?=
+ =?utf-8?B?WjBXdUhCN2F1L3BnOGZlempRekk3cVdtRE14MmhzWkNGYW84OVZMdnJ2N1dl?=
+ =?utf-8?B?cWJJWXhQbi84ek8zSEczV2I4dTJ5SldXNlJkWlVRTmdXRUhEdjIyd2RZeXJD?=
+ =?utf-8?B?NlZBRTYxTUtMMEF1RjdjZm5yT2d4MUcrMXRZaytlOVoyamxERDFTdi91M1I2?=
+ =?utf-8?B?QTdNK1RrRHpDRmV6N1JCdkN1cDk0bXdDMzdUWW1aUzlDWDU5TWtCRUJheWhI?=
+ =?utf-8?B?Qzl4Q0c0c0thUEt0TUs1cnZPTEZCUmhNYm5OMWFscDU3dDE3cFIxbm10eTRG?=
+ =?utf-8?B?dUt5dy9Wd2NJL1pVa3dacEw5YjB0WSsrcGR1bkJ1TTZiL3lKcVpEZjB3aU8r?=
+ =?utf-8?B?S1JRYTkyaEVDa0M2WHQ4YnRKYUE5SWdMQkZ5V2Q2eC9GeGtMdHlwa3FGQ3k0?=
+ =?utf-8?B?cTEwQVV2RnIvOGlnMEdpOUxaZks0d0NUSzNHSnFzNDlabGErcUYrTk01MXFM?=
+ =?utf-8?B?WmZHMmJVdFNCZWtvZnFCNEZSNHpkRW43QndMaTdKNy9jaGZCVG9IQjdVVEty?=
+ =?utf-8?B?c1ZQZFRBZ3ZUMjRhM2xiekFZZlZSMHhHVUtqSWFjL2JtLzNnVFRIeHNQQUQ2?=
+ =?utf-8?B?WExvR2FDdmRBdDBuQnYxTmxIbzFSZTc4ckl4NWxDVEpNeGFVc3FtcEQ4QUFp?=
+ =?utf-8?B?S0RPeFhOUG9wSzlkY1diUTNsb1ZsSktLY1AxUnpkYzcrUWtDRm4xK3hmLy9m?=
+ =?utf-8?B?TTVTc2xFWmNPZ1RBdWtyaGRTL1QwWWdZSVdlNmNvQnlrVnpaL2wzSkdlTWZv?=
+ =?utf-8?B?d2dBWFdISzFhUitWNUozcTU4TFhGdTg1UlQ5aEFqWmNYVEl4d2o5dVg0UmVQ?=
+ =?utf-8?B?bHgvcjFuWUh6K3d4UzgwS0s0T0QwVG53UkF4enFSQVFxRlNYNFUrbFJXZ0U1?=
+ =?utf-8?B?ekNRQUYySVVkdjJiY2hNUVVTUWl5WWlaUUFadExsWklGeUxoR1JYNWF1V0xp?=
+ =?utf-8?B?UDRTWWY5Vll5ejQvWnBhU2FJSm9aTHVESHViRUU4Y2pQNmlKRlhqdlBqb211?=
+ =?utf-8?B?ZEZBelRPME1mYW5NSUt1eUw5VWQ2VjhyV1J6dXhkd3FadllJZTQzSVNuY29L?=
+ =?utf-8?B?bVl5d3UvVDVQWjN1Qm1LUWVsWk5WK0Jzd2tpU1lHQ1EwMU1yN3c3UHhPQmFK?=
+ =?utf-8?B?cU05SXZLL1ZKZE1UVzVUOVZveHBOVGdOZ2hHTXBwOFZWNHNkaXJRUTYxaVlm?=
+ =?utf-8?B?ZWN3cStjSzRVck1HbVh5TW53Qk5PTUVZSDBOV1czWWxtRitCQ2h5UzYzS3Rr?=
+ =?utf-8?B?VlJCU1hXZlZWSHNVUGlOUCtiWkl3eXpHZXZmdzduU2xaN09iSUJXY1UzcEFv?=
+ =?utf-8?B?angrbUdzN283OXFjaXM4UjlpdCt2M1JMM1dBcXd1NFR5SzBqUnFqTG1saUZj?=
+ =?utf-8?B?SVFTUS9ZMURBUEtIT1A2QU5MSXVTbll4ZDdKN0I5cWdobzlzcmxWUzFUQXJ2?=
+ =?utf-8?Q?enLcE6myf8yyvyGnmBT637I=3D?=
+X-OriginatorOrg: amperemail.onmicrosoft.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b786233a-1561-4307-9f9e-08dcbb741a9f
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR01MB7057.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Aug 2024 08:44:12.0352
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: a+BNgBAtbnaXkMQQtX2n0cB4ZBc36I7cwp5mTi0fF4gADPU6Id2KVJyW400ttlFCKcZGQ2QqH2x269zCLTcsMn4rpLH/UoMewT4zcUmEpfXG8Sg1ODBNCe4KKzKxGIZe
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH5PR01MB9029
 
-On 13/08/2024 09:43, Kevin Chen wrote:
-> The ASPEED AST27XX interrupt controller(INTC) combines 32 interrupt
-> sources into 1 interrupt into GIC from CPU die to CPU die.
-> The INTC design contains soc0_intc and soc1_intc module doing hand shake
-> between CPU die and IO die INTC.
+Hi all,
+
+I dropped the "Support config PWM output becomes TACH" patch. I'm 
+implementing and testing the "Support config PWM output become TACH" 
+support; I'll push this feature later. Now, I'm only adding the device 
+tree binding for the max31790 device; it is necessary for some device 
+tree upstreams that use the "maxim,max31790" compatible.
+
+Best Regards,
+Chanh
+
+On 13/08/2024 15:41, Chanh Nguyen wrote:
+> Add device tree binding for the max31790 device.
 > 
-> In soc0_intc11, each bit represent 1 GIC_SPI interrupt from soc1_intcX.
-> In soc1_intcX, each bit represent 1 device interrupt in IO die.
+> Changes in v2:
+>   - Drop "driver" in the patch 1/3 commit title                           [Krzysztof]
+>   - Update filename of the maxim,max31790.yaml                            [Krzysztof]
+>   - Add the common fan schema to $ref                                     [Krzysztof]
+>   - Update the node name to "fan-controller" in maxim,max31790.yaml       [Krzysztof]
+>   - Update the vendor property name to "maxim,pwmout-pin-as-tach-input"   [Rob]
+> Changes in v3:
+>   - Drop redundant "bindings" in commit message                           [Krzysztof]
+>   - Add the clocks and resets property to example                         [Krzysztof]
+>   - Add child node refer to fan-common.yaml                               [Krzysztof, Conor]
+>   - Drop "Support config PWM output become TACH" patch                    [Chanh]
+>   - Drop "Add maxim,pwmout-pin-as-tach-input property" patch              [Chanh]
 > 
-> By soc1_intcX in IO die, AST27XX INTC combines 32 interrupt sources to
-> 1 interrupt source in soc0_intc11 in CPU die, which achieve the
-> interrupt passing between the different die in AST27XX.
-> ---
-
-This was never tested. Please do not send untested code.
-
-It does not look like you tested the bindings, at least after quick
-look. Please run `make dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-Maybe you need to update your dtschema and yamllint.
-
-Limited review follows due to lack of basic testing.
-
->  .../aspeed,ast2700-intc.yaml                  | 120 ++++++++++++++++++
->  1 file changed, 120 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml
+> Chanh Nguyen (1):
+>    dt-bindings: hwmon: Add maxim max31790
 > 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml
-> new file mode 100644
-> index 000000000000..93d7141bf9f9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml
-> @@ -0,0 +1,120 @@
-> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/aspeed,ast2700-intc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Aspeed Interrupt Controller driver
-
-Drop driver, describe hardware. Aspeed or some specific SoC?
-
-> +
-> +description:
-> +  These bindings are for the Aspeed interrupt controller. The AST2700
-
-Drop first sentence. Pointless.
-
-> +  SoC families include a legacy register layout before a re-designed
-> +  layout, but the bindings do not prescribe the use of one or the other.
-
-Entire description is pointless - you do not say anything valuable here.
-Describe this hardware instead.
-
-
-> +
-> +maintainers:
-> +  - Kevin Chen <kevin_chen@aspeedtech.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/interrupt-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-
-Drop
-
-> +      - items:
-
-Drop
-
-> +        - enum:
-> +          - aspeed,ast2700-intc-ic
-> +          - aspeed,ast2700-intc-icv2
-> +        description: |
-> +          Use "aspeed,ast2700-intc-ic" for soc1 INTC in IO die
-> +          Use "aspeed,ast2700-intc-icv2" for soc0 INTC in CPU die
-
-Use consistent naming. Isn't your other block called 0 and 1? Why using
-different namings?
-
-> +
-> +  interrupt-controller: true
-> +
-> +  interrupts-extended:
-
-interrupts instead.
-
-> +    minItems: 1
-> +    maxItems: 3
-> +    description:
-> +      Specifies which contexts are connected to the INTC, with "-1" specifying
-> +      that a context is not present. Each node pointed to should be a
-> +      aspeed,ast2700-intc-ic or aspeed,ast2700-intc-icv2 nodes which are pointed
-> +      to gic node.
-
-Don't repeat constraints in free form text. Describe items instead.
-
-
-> +
-> +  "#address-cells":
-> +    const: 2
-
-Blank line
-
-> +  "#size-cells":
-> +    const: 2
-> +
-> +  '#interrupt-cells':
-> +    const: 2
-> +    description: |
-
-Do not need '|' unless you need to preserve formatting.
-
-> +      The first cell cell is the interrupt source IRQ number, and the second cell
-> +      is the trigger type as defined in interrupt.txt in this directory.
-> +
-> +  reg:
-> +    minItems: 1
-> +    maxItems: 2
-> +    description: |
-> +      The first cell cell is the interrupt enable register, and the second cell
-> +      is the status register.
-
-List and describe the items instead.
-
-> +
-> +  ranges: true
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 10
-> +    description: |
-> +      Interrupt source of the CPU interrupts. In soc0_intc in CPU die INTC each bit
-> +      represent soc1_intc interrupt source. soc0_intc take care 10 interrupt source
-> +      from soc1_intc0~5 and ltpi0/1_soc1_intc0/1.
-
-No, you cannot have both. That's total mess. Anyway, standard comment
-applies - list and describe items.
-
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupt-controller
-> +  - '#interrupt-cells'
-> +
-> +additionalProperties: false
-> +
-> +example:
-> +  - |
-> +    soc0_intc: interrupt-controller@12100000 {
-
-Drop label
-
-> +      compatible = "simple-mfd";
-
-No, it's not. Drop. Look how other bindings do it.
-
-> +      reg = <0 0x12100000 0 0x4000>;
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +      ranges = <0x0 0x0 0x0 0x12100000 0x0 0x4000>;
-
-Read DTS coding style.
-
-> +
-> +      soc0_intc11: interrupt-controller@1b00 {
-
-Drop label
-
-> +        compatible = "aspeed,ast2700-intc-icv2";
-> +        interrupts = <GIC_SPI 192 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 193 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 194 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 195 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 197 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 198 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 199 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 200 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 201 IRQ_TYPE_LEVEL_HIGH>;
-> +        #interrupt-cells = <2>;
-> +        interrupt-controller;
-> +        reg = <0x0 0x1b00 0x0 0x10>;
-
-DTS coding style
-
-> +      };
-> +    };
-> +
-> +  - |
-> +    soc1_intc: interrupt-controller@14c18000 {
-> +      compatible = "simple-mfd";
-> +      reg = <0 0x14c18000 0 0x400>;
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +      ranges = <0x0 0x0 0x0 0x14c18000 0x0 0x400>;
-> +
-> +      soc1_intc0: interrupt-controller@100 {
-> +       compatible = "aspeed,ast2700-intc-ic";
-
-Drop this example, almost no differences.
-
-Best regards,
-Krzysztof
-
+>   .../bindings/hwmon/maxim,max31790.yaml        | 81 +++++++++++++++++++
+>   1 file changed, 81 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max31790.yaml
+> 
 
