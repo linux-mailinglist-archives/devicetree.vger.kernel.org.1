@@ -1,106 +1,106 @@
-Return-Path: <devicetree+bounces-93416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8812E950D10
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 21:22:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91623950D1F
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 21:29:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2CF571F2169B
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 19:22:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D29F285D77
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 19:29:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA0E11A3BD3;
-	Tue, 13 Aug 2024 19:22:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA0FF1A4F0F;
+	Tue, 13 Aug 2024 19:29:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LjT1yhEW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uwn8Pdob"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74C681A254F;
-	Tue, 13 Aug 2024 19:22:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BD2122F11;
+	Tue, 13 Aug 2024 19:29:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723576931; cv=none; b=V6B4Z8NxfnloqLGuZnNMPmkRM3xdPhtEc6IRi0LIwQqWlGLQkxfa+ZRrB70uK3RxomYL4Ob4+SVRtEIyLj7FM7x70S6aLmL9Bk1sdHVH33vHzhWpFCb2NqAilwj0jDheWZ4khytyKDcC/ynk61OtiKdfubfPnzA/XYPgQJy4fT0=
+	t=1723577346; cv=none; b=mdkHUn0HDNU7F0WpTwu1+h2h6iOhzMk3SjCXzPzZh7krI+wgDfzmno7Ez28OiOW6TVEdjIB1cXeV3nM2QakdUTWKkwbz7UqvDrQVauwwpIRCWU6DyvHw67cnCGw4dJR+R9QaC8bHj6tToMGK3Jfg/e0enZFb+do6T/HgW8Ngz84=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723576931; c=relaxed/simple;
-	bh=lY0lhb7BmsOpLYdU0VWU9WKDBRrqBJFGFjFhgXBLCKE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=WFgCYpeJhyngSugGY5FnE95lcmVFncxVZRs2P1CRpcO6SBp2maoTnw5xmDQjVgaagkAHwzMJVmjfS2d7frOp0kKB930bsy1uXox6r4on2qkNLvkRgaGkTJhIEFZzI9TnuyVwdoSXSIAND04U2qiiRF1XCmnC8zaj7xI2ZCYaA5k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LjT1yhEW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13576C32782;
-	Tue, 13 Aug 2024 19:22:07 +0000 (UTC)
+	s=arc-20240116; t=1723577346; c=relaxed/simple;
+	bh=qXiUz9rk9Z1eDSfcjvPfQIY0OVlSkMuZkPOqueyerGg=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=LAz2dtyvkvuIZJsnQMfdPs0dD/ZNN1iSJn54Yegxn7GhTdCt5lT96sprHyGxVq7wsFc7GTW9jEXpkOTk248QIj1KDNB0xhbOSJd/IXoOKuyAfk/gejG/7jh3zPBYB8bGPt03HdBd/DrBh7jzZTxUYH2yoTX0HLf0KhaonTvtuPc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uwn8Pdob; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2B38C32782;
+	Tue, 13 Aug 2024 19:29:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723576930;
-	bh=lY0lhb7BmsOpLYdU0VWU9WKDBRrqBJFGFjFhgXBLCKE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=LjT1yhEWOHKC3GgbzCgJn8mQU4nqby5KyyHdpWeBpk9IjPPKsw9Q3yhsuqYSjcbXV
-	 g9kMh7aK2FQ5DgC+6adeOLvQhE6DK6ZT7mA0qxYEg+EM5/HCAIi/cQD9Yi/eoB6Tbj
-	 DcwcOIgTUypMsKq5HbU7rzXVrdeJlFAsH79d64xO/PNO41eQBirTyQDrN0N0TvGQGY
-	 xRxSC9ILb53lCQmfY8zdQjZ3zNqXea4uFk+FtwVTMuXIhx5Nynl2jxSlMmbyF2IFq/
-	 awD8N40SLh2BSAJuni2j2L9B0hdDDfa/Y7sAFQcaZ6VrHyK1KggEWftHE+Tl3pu+FE
-	 LgYX7zr1pSMbw==
-From: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-spi@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Frank Li <Frank.Li@nxp.com>
-Cc: imx@lists.linux.dev
-In-Reply-To: <20240813154444.3886690-1-Frank.Li@nxp.com>
-References: <20240813154444.3886690-1-Frank.Li@nxp.com>
-Subject: Re: [PATCH v2 1/1] spi: dt-bindings: convert spi-sc18is602.txt to
- yaml format
-Message-Id: <172357692761.130711.16237572865002261472.b4-ty@kernel.org>
-Date: Tue, 13 Aug 2024 20:22:07 +0100
+	s=k20201202; t=1723577346;
+	bh=qXiUz9rk9Z1eDSfcjvPfQIY0OVlSkMuZkPOqueyerGg=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=uwn8PdobnZbcg2tOwfa0buGw2WcFqu4sD9uq0EKIAZhaRISzXwgBbeAJfFULh3Pk+
+	 /YOR4ubYB2tGlVHmUFgCz1krQV0/YNYx8FZW+Hw1ixTY7gkMZDTWU7iw1jc3J/EaKV
+	 IWbfnrVZLBRxWCjv4v5zqlnrK3gNsaEEDjktRV7OW1AA/fU8rBv6tYFqTDixjIEkHj
+	 BHGgg3FBzyspIBLcwgpJIPKW7oQJrl8EGg33Fvc5pWEnqdm7dYV1QyFdfjxMvoS5BX
+	 HhosvbWzG6lerBlKKuAKZN9hH/aNAX9OkUCkpQ5WKoy42nChK51naGFClRc+6auzRX
+	 bkyJzznGzmSPQ==
+Date: Tue, 13 Aug 2024 13:29:04 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-37811
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: bcm-kernel-feedback-list@broadcom.com, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Cristian Marussi <cristian.marussi@arm.com>, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, arm-scmi@vger.kernel.org, 
+ Sudeep Holla <sudeep.holla@arm.com>, linux-arm-kernel@lists.infradead.org, 
+ justin.chen@broadcom.com, opendmb@gmail.com, kapil.hali@broadcom.com, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ devicetree@vger.kernel.org
+In-Reply-To: <20240813180747.1439034-2-florian.fainelli@broadcom.com>
+References: <20240813180747.1439034-1-florian.fainelli@broadcom.com>
+ <20240813180747.1439034-2-florian.fainelli@broadcom.com>
+Message-Id: <172357734438.1612221.15779792680136216420.robh@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: sram: Document reg-io-width
+ property
 
-On Tue, 13 Aug 2024 11:44:43 -0400, Frank Li wrote:
-> Convert binding doc spi-sc18is602.txt (I2C to SPI bridge) to yaml.
+
+On Tue, 13 Aug 2024 11:07:46 -0700, Florian Fainelli wrote:
+> Some SRAMs need to be accessed with a specific access width, define
+> the 'reg-io-width' property specifying such access sizes.
 > 
-> Additional change:
-> - ref spi-controller.yaml
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
+> ---
+>  Documentation/devicetree/bindings/sram/sram.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> Fix below warning:
-> arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb:
-> /soc/i2c@2000000/i2c-mux@77/i2c@7/i2c-mux@75/i2c@0/spi@28: failed to match any schema with compatible: ['nxp,sc18is602b']
-> 
-> [...]
 
-Applied to
+My bot found errors running 'make dt_binding_check' on your patch:
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/sram/sram.yaml:106:12: [warning] wrong indentation: expected 10 but found 11 (indentation)
 
-Thanks!
+dtschema/dtc warnings/errors:
 
-[1/1] spi: dt-bindings: convert spi-sc18is602.txt to yaml format
-      commit: 1c4d834e4e81637995b079fdb64fad4c32af15c8
+doc reference errors (make refcheckdocs):
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240813180747.1439034-2-florian.fainelli@broadcom.com
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+pip3 install dtschema --upgrade
 
-Thanks,
-Mark
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
