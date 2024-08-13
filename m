@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-93275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 132E4950251
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 12:21:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 586CC950252
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 12:21:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 45B721C22908
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 10:21:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D4621C22AFD
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 10:21:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AD71194C9D;
-	Tue, 13 Aug 2024 10:20:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD0BE197552;
+	Tue, 13 Aug 2024 10:20:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Q0EBzu/L"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LEPjag7e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98B6119308A
-	for <devicetree@vger.kernel.org>; Tue, 13 Aug 2024 10:20:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF426194AFE
+	for <devicetree@vger.kernel.org>; Tue, 13 Aug 2024 10:20:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723544450; cv=none; b=O4dMJ2sNnLySMy9DaiaAjSvcE6sktQt+zEHtSkxczytYQv9Iv29ssNk8GPzboygA3HrtXygPvqILHw5aDimApBlQken5l3eKSoCjxjyGIbkpBWbtju9RF/2sbS9b0vVgQNuB38prcqEdp2gqUhetU43f/4PFVChmx9h8xJFrkEA=
+	t=1723544451; cv=none; b=snrgM2L+qIgRIhE/BI+XmpMHeLOJpB5QRiKD/p0l+suJjxTBL7BFiocOdcM70AxSkzOw+ke9fKn1vne38F/eRkY1793CjVkhF508BqTam7U3QedrPXBginCPWzN31/3hgjvO0FDQyHYDEzNw2eRsfyaWU/crNCUbKbFqeGnZTbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723544450; c=relaxed/simple;
-	bh=GCZa41LBUHJwi/6V+Gjr/aZ/mKBaKvgPNKryTB40qo8=;
+	s=arc-20240116; t=1723544451; c=relaxed/simple;
+	bh=ptI+1cnf+u4VBn9bOwvEfCwCXmKV4oBoAMfSgsrVIoY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Md6g/yyBZ7c6xJpiQ4W0ziT/72dbdf4oue5R+KEZ7iIt/SJTRg9zCKdUXfkSjnnUNqQi/5jFHtIxAEcBzH4nEvCUx+FU42jTORzriQtolyfjEF7UwGqpuQOQJof6ekfZ9xtsfNS/x168FHujqO/JvedpXhnAzw+7NjpcO9tUi3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Q0EBzu/L; arc=none smtp.client-ip=209.85.167.52
+	 MIME-Version; b=QEUGOQsMykW/mkydA9+ULPlAwayj94kLzZ7bBdkSMznLozWcPBmtTVuathqaOAd5FXQQBD3dewm4y6TywV5hKN6yc8ioUoBxers2KzI4DGFiUp9ewBgBfLh+lOPHzFbcC/ji/Ijly+qKM2oMpL70Wd9mlNMFcThmPTEcx6YukUo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LEPjag7e; arc=none smtp.client-ip=209.85.167.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-53212a805c4so179991e87.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2024 03:20:48 -0700 (PDT)
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-52efa98b11eso859595e87.2
+        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2024 03:20:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723544447; x=1724149247; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1723544448; x=1724149248; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=OCeplELLLeiitcqgFPRs5GSflnURqy8in4V3Us1wY+w=;
-        b=Q0EBzu/LyeTT/aMG0Yd8tq46mVDsiPqJ09ljzVfwbZyudQ3pLrqzyNIugYzE4UmTud
-         fb0NxqKe+tRZf7yGdYt3w9UeiT+j+jUBMpbVaQC0R3i0p1SsD3etdZ7VrQssgf3O6pBA
-         S9HE8YR+7wr1XgzahqMYtHB3JFT5ATRuqXSGPJRXEMVXoNJLHS74sCfQMN9/PPZu2bu1
-         cN9FOUpiY4QbqsEve/KqsGUqMen4RVXqYlJsj8gwr2WYYUo64Hn9kBOkTdGZPvj1xIlj
-         C6894au1y+NtgmT2vzGfUhYNSkyLUmHDHUArKdDL3sDrSIupxH/RwvEsNv5ayRl3KzhM
-         nIqA==
+        bh=x1GjYwT1PAjue3OAqw3OwrRMNr28kZG4xX7v3BOKWZ4=;
+        b=LEPjag7emQgVZh7UYizmZr03diKcgtEJ1gHERPu9hDb7PCHLpbpGq9aVcH/pQ7nDXY
+         zsEt/acBfTrr5Fsi0wvK+ZSxaneQJjs0tijJb9XwmvYUgrDCsBv7gnD0Woj2cyb2Qwfx
+         XJtgUaxK7HNiQ6fP/uvqyft3MpdNXa90UDR3HfP0354wRnj/MpPNgSX4io9bQX7dU/11
+         KowqHaPKd66eeA3rJCG2tYr0Ux5wOx3RBbJzedeLS/5YqVOB5GKLfqpQOFJmNbNTXO0/
+         zVmM/ttTdwda3I5mU6seVCa72DV3WDG7qH5moWCDky1VP5pegZNf1LthL+2mRjNn0ik2
+         1YSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723544447; x=1724149247;
+        d=1e100.net; s=20230601; t=1723544448; x=1724149248;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OCeplELLLeiitcqgFPRs5GSflnURqy8in4V3Us1wY+w=;
-        b=I4lYsInwbAjhBBBkEAOTb4svUcsCklGEY+qnubWRf/Y44Uux8ndDm4mqu7xx7trCMb
-         NYPnqhOptidRRsAVV+t1jiCvJm5FAD6Rf7anjoFVaQwXpObZW0henuVbSKLbLxIp0QiF
-         jRlbuG9Flu43+CpfrbdMCT3RaoslixzLaHYuQ2OM4CObE3gMFII2i8WCL0PWCciQiGm/
-         7NPocVM8NU5gXOTNgKLMwvyR7lJWtAEVb3Gxjpk/CtFWKAyLrjuTHeGnQabsu7uyvs2p
-         AN2pV+fD6UG9dPNaoBZXZasVoYuaIdFmXwmmy3fm0a5JoUIwH3mhdSLRjedQYCsBpmri
-         +l9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUUyJWXR62ItWxlfgyShu774ilHdw/5VSuQYVgVTQ8yi+25neMTSBJaaejkdUw5UlxKGCVHD424fLdlaExS/dRMs9D4S95AZ5g75w==
-X-Gm-Message-State: AOJu0Ywen7ZuDbhJ5rLGDM94UW6+wDUUavfIa5F8aPzHDMRPjrv3QveQ
-	eCF4RvyboyfMKD7DnghvJJDYfF6l5jEyRlyfDK1gEXalPrsYYgoML6wLphluvXs=
-X-Google-Smtp-Source: AGHT+IFgVwF41KQ75i3T0DwK4BU0kkW5oi/pZQP5Yc9cpLSVxHpBIa1TDSXpkCVXuYT9LYoNUpi8YQ==
-X-Received: by 2002:a05:6512:acb:b0:52f:cad0:2d4a with SMTP id 2adb3069b0e04-53215031142mr696682e87.9.1723544446585;
-        Tue, 13 Aug 2024 03:20:46 -0700 (PDT)
+        bh=x1GjYwT1PAjue3OAqw3OwrRMNr28kZG4xX7v3BOKWZ4=;
+        b=rhe0MZdk0UNZ5J/h2JkVx9YG5B9fq+oJ+GAw6vlI/p/Za5OwWYbNgqXAWcQFeCfumL
+         Qyn6gjAH/TcccqHFALB1qeCgtuBuwW7LDkhFnGuzHBuaE1YCS92kJhG0BXR0S5gC11h6
+         7urHumHueRXhL6Bc5nrVkJwvr5GMfrpYqxAIMGTSD2YbpjI+bcF1yJ7H8/ezr0c/mMEF
+         CArgl7IgcuIhL00pL/wsqt6GszTEEZrzUhY1+2cc/7FB4FEM4/Z3KkrTMGy2dVqmt45y
+         72qU1Aicdlz+EYaw0HlmxaraTuuei8lnPyh7HFSkoGYDQUTkZWXC5GXbA6y7fWK4mdG5
+         wwHw==
+X-Forwarded-Encrypted: i=1; AJvYcCV5BenouNZBqOJbnaLKJrJnTFjwLeE6toHklMPTk943cFRzCSw0ZQxKxc50nqzUtpqNNqpka9GbzkNn2xN0bKmbWkh26iQpEI84jw==
+X-Gm-Message-State: AOJu0YwdV64TubIlCB47B8wPkq7NIMuFNYbu3MMfHHqu74LRbLyF4Yw5
+	YaBZxV+FiTmNc0Pc2FUR9azZ81XamMPjTpXhoC3wXU16TAvlJtDXkbUIHyBdc7g=
+X-Google-Smtp-Source: AGHT+IEpQaqLGz7U6Da0y6hc4YcA3+PMH+jf2GZAO7uQ5ABFL5HDJvQPqGBMGfQZ84FsK4To9SrDIQ==
+X-Received: by 2002:a05:6512:1589:b0:52e:fd7c:8b9b with SMTP id 2adb3069b0e04-5321502b50fmr791566e87.7.1723544448067;
+        Tue, 13 Aug 2024 03:20:48 -0700 (PDT)
 Received: from localhost.localdomain (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53200eb3ca5sm965917e87.55.2024.08.13.03.20.45
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53200eb3ca5sm965917e87.55.2024.08.13.03.20.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Aug 2024 03:20:46 -0700 (PDT)
+        Tue, 13 Aug 2024 03:20:47 -0700 (PDT)
 From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 To: Sakari Ailus <sakari.ailus@linux.intel.com>,
 	Mauro Carvalho Chehab <mchehab@kernel.org>,
@@ -75,9 +75,9 @@ Cc: Rob Herring <robh@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	linux-media@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH v2 5/6] media: i2c: og01a1b: Add management of optional reset GPIO
-Date: Tue, 13 Aug 2024 13:20:34 +0300
-Message-ID: <20240813102035.1763559-6-vladimir.zapolskiy@linaro.org>
+Subject: [PATCH v2 6/6] media: i2c: og01a1b: Add management of optional sensor supply lines
+Date: Tue, 13 Aug 2024 13:20:35 +0300
+Message-ID: <20240813102035.1763559-7-vladimir.zapolskiy@linaro.org>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240813102035.1763559-1-vladimir.zapolskiy@linaro.org>
 References: <20240813102035.1763559-1-vladimir.zapolskiy@linaro.org>
@@ -89,62 +89,139 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Omnivision OG01A1B camera sensor may have a connected active low GPIO
-to XSHUTDOWN pad, and if so, include it into sensor power up sequence.
+Omnivision OG01A1B camera sensor is supplied by tree power rails,
+if supplies are present as device properties, include them into
+sensor power up sequence.
 
 Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 ---
- drivers/media/i2c/og01a1b.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ drivers/media/i2c/og01a1b.c | 86 ++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 85 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/media/i2c/og01a1b.c b/drivers/media/i2c/og01a1b.c
-index 766740bd04c1..90a68201f43f 100644
+index 90a68201f43f..0150fdd2f424 100644
 --- a/drivers/media/i2c/og01a1b.c
 +++ b/drivers/media/i2c/og01a1b.c
-@@ -5,6 +5,7 @@
- #include <linux/acpi.h>
- #include <linux/clk.h>
- #include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
+@@ -9,6 +9,7 @@
  #include <linux/i2c.h>
  #include <linux/module.h>
  #include <linux/pm_runtime.h>
-@@ -420,6 +421,7 @@ static const struct og01a1b_mode supported_modes[] = {
- 
++#include <linux/regulator/consumer.h>
+ #include <media/v4l2-ctrls.h>
+ #include <media/v4l2-device.h>
+ #include <media/v4l2-fwnode.h>
+@@ -422,6 +423,9 @@ static const struct og01a1b_mode supported_modes[] = {
  struct og01a1b {
  	struct clk *xvclk;
-+	struct gpio_desc *reset_gpio;
+ 	struct gpio_desc *reset_gpio;
++	struct regulator *avdd;
++	struct regulator *dovdd;
++	struct regulator *dvdd;
  
  	struct v4l2_subdev sd;
  	struct media_pad pad;
-@@ -981,6 +983,9 @@ static int og01a1b_power_on(struct device *dev)
+@@ -982,11 +986,46 @@ static int og01a1b_power_on(struct device *dev)
+ {
  	struct v4l2_subdev *sd = dev_get_drvdata(dev);
  	struct og01a1b *og01a1b = to_og01a1b(sd);
- 
-+	gpiod_set_value_cansleep(og01a1b->reset_gpio, 0);
-+	usleep_range(USEC_PER_MSEC, 2 * USEC_PER_MSEC);
++	int ret;
 +
- 	return clk_prepare_enable(og01a1b->xvclk);
++	if (og01a1b->avdd) {
++		ret = regulator_enable(og01a1b->avdd);
++		if (ret)
++			return ret;
++	}
++
++	if (og01a1b->dovdd) {
++		ret = regulator_enable(og01a1b->dovdd);
++		if (ret)
++			goto avdd_disable;
++	}
++
++	if (og01a1b->dvdd) {
++		ret = regulator_enable(og01a1b->dvdd);
++		if (ret)
++			goto dovdd_disable;
++	}
+ 
+ 	gpiod_set_value_cansleep(og01a1b->reset_gpio, 0);
+ 	usleep_range(USEC_PER_MSEC, 2 * USEC_PER_MSEC);
+ 
+-	return clk_prepare_enable(og01a1b->xvclk);
++	ret = clk_prepare_enable(og01a1b->xvclk);
++	if (ret)
++		goto dvdd_disable;
++
++	return 0;
++
++dvdd_disable:
++	if (og01a1b->dvdd)
++		regulator_disable(og01a1b->dvdd);
++dovdd_disable:
++	if (og01a1b->dovdd)
++		regulator_disable(og01a1b->dovdd);
++avdd_disable:
++	if (og01a1b->avdd)
++		regulator_disable(og01a1b->avdd);
++
++	return ret;
  }
  
-@@ -991,6 +996,8 @@ static int og01a1b_power_off(struct device *dev)
+ static int og01a1b_power_off(struct device *dev)
+@@ -998,6 +1037,15 @@ static int og01a1b_power_off(struct device *dev)
  
- 	clk_disable_unprepare(og01a1b->xvclk);
+ 	gpiod_set_value_cansleep(og01a1b->reset_gpio, 1);
  
-+	gpiod_set_value_cansleep(og01a1b->reset_gpio, 1);
++	if (og01a1b->dvdd)
++		regulator_disable(og01a1b->dvdd);
++
++	if (og01a1b->dovdd)
++		regulator_disable(og01a1b->dovdd);
++
++	if (og01a1b->avdd)
++		regulator_disable(og01a1b->avdd);
 +
  	return 0;
  }
  
-@@ -1031,6 +1038,13 @@ static int og01a1b_probe(struct i2c_client *client)
- 		return ret;
+@@ -1045,6 +1093,42 @@ static int og01a1b_probe(struct i2c_client *client)
+ 		return PTR_ERR(og01a1b->reset_gpio);
  	}
  
-+	og01a1b->reset_gpio = devm_gpiod_get_optional(&client->dev, "reset",
-+						      GPIOD_OUT_LOW);
-+	if (IS_ERR(og01a1b->reset_gpio)) {
-+		dev_err(&client->dev, "cannot get reset GPIO\n");
-+		return PTR_ERR(og01a1b->reset_gpio);
++	og01a1b->avdd = devm_regulator_get_optional(&client->dev, "avdd");
++	if (IS_ERR(og01a1b->avdd)) {
++		ret = PTR_ERR(og01a1b->avdd);
++		if (ret != -ENODEV) {
++			dev_err_probe(&client->dev, ret,
++				      "Failed to get 'avdd' regulator\n");
++			return ret;
++		}
++
++		og01a1b->avdd = NULL;
++	}
++
++	og01a1b->dovdd = devm_regulator_get_optional(&client->dev, "dovdd");
++	if (IS_ERR(og01a1b->dovdd)) {
++		ret = PTR_ERR(og01a1b->dovdd);
++		if (ret != -ENODEV) {
++			dev_err_probe(&client->dev, ret,
++				      "Failed to get 'dovdd' regulator\n");
++			return ret;
++		}
++
++		og01a1b->dovdd = NULL;
++	}
++
++	og01a1b->dvdd = devm_regulator_get_optional(&client->dev, "dvdd");
++	if (IS_ERR(og01a1b->dvdd)) {
++		ret = PTR_ERR(og01a1b->dvdd);
++		if (ret != -ENODEV) {
++			dev_err_probe(&client->dev, ret,
++				      "Failed to get 'dvdd' regulator\n");
++			return ret;
++		}
++
++		og01a1b->dvdd = NULL;
 +	}
 +
  	/* The sensor must be powered on to read the CHIP_ID register */
