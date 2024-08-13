@@ -1,151 +1,127 @@
-Return-Path: <devicetree+bounces-93430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7E2C950DA6
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 22:09:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58292950DAC
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 22:12:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2A9D9B2590E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 20:09:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D6BB1C21EF1
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 20:12:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 243DE1A4F2C;
-	Tue, 13 Aug 2024 20:08:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A23891A4F26;
+	Tue, 13 Aug 2024 20:12:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="DW1NAk/M"
+	dkim=pass (2048-bit key) header.d=kali.org header.i=@kali.org header.b="cZp0fMT2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CC371A76D3
-	for <devicetree@vger.kernel.org>; Tue, 13 Aug 2024 20:08:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D806A1A38F6
+	for <devicetree@vger.kernel.org>; Tue, 13 Aug 2024 20:12:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723579739; cv=none; b=SZvezpYimWlxUL45cj7AJnQf5TnhRQp8CYYs3qfccc0RDNkDBUFchTRpcvQqy5MLM74hxRtL3/KsaSxQbm5U7Z+jYC9QCdn7FM5UnI2ZvqWsjgMjb3dDF84J/Acm7nC4H+plk6kB8qGrwLOoPZBWRN12mQfuNiFrsTgqdBIcS3Q=
+	t=1723579935; cv=none; b=t3SczhBaWY7X8gVaA38OENhui/HZUx9np88vk87sikOS0DpdqFVkp5peXWP7KFtUMd1yc3sFpCOakapvFe1w0/hy6G9AjHRffG/QDVeFEh0qInHIwg1yL7ozoSJx4FkNsPyhVhWecXOzb3y+EE4DBtUv0bsb1MMMcpyRxKSf0zc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723579739; c=relaxed/simple;
-	bh=hHDx9OPdr+6z3WWxNY01JOJh0e1OR4Dh+NGFkJAh8Ts=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=naNGlDLkVm8dLkYo6pdAOWz7U6SyIF1pQYAzpoIl0zHO8b9tBGeEbRuVf2reQultJgD+iSXOVUm8b4fBoutcvHdQHX+Glng6QY9A6tdRiq4qbVzHjTQrME2JKCWI8q9Tf5QDsOkPswwMbmC5aAwoZkBE46gb53AfyGt+ywJrb9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=DW1NAk/M; arc=none smtp.client-ip=209.85.210.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-710d0995e21so3860451b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2024 13:08:56 -0700 (PDT)
+	s=arc-20240116; t=1723579935; c=relaxed/simple;
+	bh=c/Nd47l6PNwU0M/Usiki4I2g5L1xvxlzkij/f/or1VI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=P9DL2nQZghlw3VYrEckR3EP+7SceGEfJee1qD7gJvMEnNRMGsMSEF7muYlfgPHfPeCv1Xvzq13G1GRs4ed5KMxIOg/xHftyG1RGrcWEeTDBAozs5pZkL3QdT7OoGPgCsCwzC/WHkSoKPpi4TS3948YgIXej6v9ZWsARN4cPU7jw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kali.org; spf=pass smtp.mailfrom=kali.org; dkim=pass (2048-bit key) header.d=kali.org header.i=@kali.org header.b=cZp0fMT2; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kali.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kali.org
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5a1c49632deso6510967a12.2
+        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2024 13:12:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1723579736; x=1724184536; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=mogpSA6tnPpQ3+FsmEemAAY1GN9dexeB8hMBdlUeGFs=;
-        b=DW1NAk/MBAbiAWs/5f9OgtZ6/SQilsfbPTdZmVFFVyIjlYoAo//+78sQiU3U1Sxe6O
-         ZYvvKz2FiSBGBziz6U4VveGctxaFwcm1aaLaXOK+7PAml9XkKQfFrPXSVQ++OhI8R4CC
-         WRFi5vkOEbyk9qTLYEYM7WvRo6GOBC+dSKkTs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723579736; x=1724184536;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=kali.org; s=google; t=1723579932; x=1724184732; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=mogpSA6tnPpQ3+FsmEemAAY1GN9dexeB8hMBdlUeGFs=;
-        b=T01hWhUFXyZJso6CduXjAHrqxKVM1jl5KvCC2qyeVWhMpOJkXMvWdFB13AOQvrIkvR
-         uiE/grJ42+Sw8OcMDjd3tF/TsbeFwSyW0QCcOFc3gncUjqbMySb182rGJEmWCapRohBP
-         jMmUsAYsmIHto4kPGSqylho34qPb5a4mXN5KWYbTtVHhHcurGGJBQgX0b8dmL1CeuAIm
-         MBHnb15CFcbhfuup3qnsAYyyOTf7s93eyaGyuprv4nMU5RVlnWU9KYGSBwjNDKcx47gN
-         BxdZRNvMHccDh/7kw+4NGtmxqLf1NrSyfSUxxYkUAHmekxVWiDAiPlQV8p155bYBS+XH
-         r8CQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWsA0AdSQZsB8qJTHEv7gn3AoalllHLRpKenqKjTVigNCPY5P9S18rD0Kb3U8Qvpxiip6HSXHUm0sX6hn0SaWXN+D9GufQPBi0Hog==
-X-Gm-Message-State: AOJu0Yy3Fs48x0qUOmFE4G90ouOkaDAEAkIH1gBobw3cbVyU7jf0LsLC
-	OrEmC3YZftglRiRjewWnGrjPeyGCCiXiuKknvFh4seTaMgz9+dJ1guuNx0pbIw==
-X-Google-Smtp-Source: AGHT+IGTfGWSQYpvtsfJqO7kAE/AtFBq4DJrEYoFpcg14OTafr6ULR0Hu/1x5uFVd1Sxv8uLMztUxA==
-X-Received: by 2002:a05:6a00:2da4:b0:70d:3174:262b with SMTP id d2e1a72fcca58-712673ee4d1mr1108891b3a.29.1723579735522;
-        Tue, 13 Aug 2024 13:08:55 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-710e5ab79casm6090240b3a.199.2024.08.13.13.08.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Aug 2024 13:08:54 -0700 (PDT)
-Message-ID: <8879cc2a-ba01-4760-ad4a-a40e1d2da3c5@broadcom.com>
-Date: Tue, 13 Aug 2024 13:08:52 -0700
+        bh=ZZkqFEKfgA62MBE94ncqpNAE1sXGUAg2WiZjdurlqhc=;
+        b=cZp0fMT2ze3TeWLeQAxJcw75FbNicODqd/Mo0ji8IvRN6iNKvcSedTIg1LZiCjJGw+
+         rQBiJyMRCk4lpLH6gaMRT65TrMXwQCtgWrBPZbWKAXoiJxtpYusSh/wql863jR7Ao+kA
+         4FPws4QgndvPHaGdcui6LDJXIuhvZPeaTTuzNNpNpq6EbGyDr/gMzOUFVSSz9h3lvhLr
+         4f5MfCC0SYkFa/n0HcZK9JNvBe0HnTNvJFrDWGkb1P5p0HVWAdSuDyxzWru9+hwEX+kb
+         H5Q6H6uyntVpIxPOcW1tq7FSAQHsVkYOJTBFprBFfmVwn230L6EJ5EohIgSnAoKqmGAo
+         UdNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723579932; x=1724184732;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZZkqFEKfgA62MBE94ncqpNAE1sXGUAg2WiZjdurlqhc=;
+        b=LUXuoodi4xD7H2K3iQlHVe+CcSFWD1pS0/q4RcvPH0Sm/qUklJn5r8C+W16+EWqHlE
+         DWTJddd70o9s7QM6hsNW/kbjA16g2VjGAV/NT6/nlbIhoeZkJRTVmslyLXv58sjANG+S
+         gI2B9B7Dcn6k0UXvE/6mVwiGHuFrZg8xU7LYRecZKCV6spZ+Usqkmh7qk/1DJXM6LdfO
+         gZS3Zbut/WQJxnYLddFzMud9+naHT1W7kdTRtQ9coDRklHZrKzWLh3Ftg4+O1kVLskRd
+         40rfDoKOk7cImva74/t/vwWfvnap9e8+N+QAfkB7B7ujbVXwa/+1va1PgsKMY7198gVH
+         axtQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU3lEymiZnsXFffHSZF4pBg6oyfLVTUnZUj63uHtxfeImYQLtRdInE4ohk/B9EqfTwn+YMLobxQCZlS7Te4gamqATY102eAoXlZzg==
+X-Gm-Message-State: AOJu0Yx9rfKr3hz/bWHFdzCsD26m5pFhAoB0c9Fok9dZaheRqOkza9cW
+	0VXEoyh1GPeJMMu1ls/fky6SOYP+qSODkDF/0A36zZ33gFHc28GqHxeDfTa47CW7dQCiLl1wB8a
+	eJp1zRXyAdPmZ/JzhWwnpXgShGmrhzZOse5Cql4TNeV6A++pmlnyzEQmC
+X-Google-Smtp-Source: AGHT+IGlG/zcS96JKH5rJkRdWHJI2dNwey+vY6gYo7ofXGnhVUsUxmEUw9uBzFyOrKjBRG7R8jS9okIudWzJ2OCWgig=
+X-Received: by 2002:a05:6402:270a:b0:5a1:bda1:3e23 with SMTP id
+ 4fb4d7f45d1cf-5bea1c76667mr467488a12.14.1723579931923; Tue, 13 Aug 2024
+ 13:12:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: sram: Document reg-io-width property
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: bcm-kernel-feedback-list@broadcom.com,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Cristian Marussi <cristian.marussi@arm.com>, linux-kernel@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, arm-scmi@vger.kernel.org,
- Sudeep Holla <sudeep.holla@arm.com>, linux-arm-kernel@lists.infradead.org,
- justin.chen@broadcom.com, opendmb@gmail.com, kapil.hali@broadcom.com,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- devicetree@vger.kernel.org
-References: <20240813180747.1439034-1-florian.fainelli@broadcom.com>
- <20240813180747.1439034-2-florian.fainelli@broadcom.com>
- <172357734438.1612221.15779792680136216420.robh@kernel.org>
-Content-Language: en-US
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <172357734438.1612221.15779792680136216420.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240813190639.154983-1-brgl@bgdev.pl>
+In-Reply-To: <20240813190639.154983-1-brgl@bgdev.pl>
+From: Steev Klimaszewski <steev@kali.org>
+Date: Tue, 13 Aug 2024 15:11:59 -0500
+Message-ID: <CAKXuJqhuusKMgVj7k7DEEBCSW6VjRhiyqoD6usaoSnawMxODaQ@mail.gmail.com>
+Subject: Re: [PATCH 0/3] arm64: dts: qcom: sc8280xp: enable WLAN and Bluetooth
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 8/13/24 12:29, Rob Herring (Arm) wrote:
-> 
-> On Tue, 13 Aug 2024 11:07:46 -0700, Florian Fainelli wrote:
->> Some SRAMs need to be accessed with a specific access width, define
->> the 'reg-io-width' property specifying such access sizes.
->>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
->> ---
->>   Documentation/devicetree/bindings/sram/sram.yaml | 6 ++++++
->>   1 file changed, 6 insertions(+)
->>
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/sram/sram.yaml:106:12: [warning] wrong indentation: expected 10 but found 11 (indentation)
+Hi Bartosz,
 
-My bad, I had it corrected on the machine I used to do v1, but did not 
-carry that commit over. Will fix in v3.
--- 
-Florian
+On Tue, Aug 13, 2024 at 2:07=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.pl>=
+ wrote:
+>
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>
+> This enables WLAN and Bluetooth on two boards using the sc8280xp SoC.
+> For the sc8280xp-crd we add the PMU, wifi and bluetooth nodes with the
+> correctly modelled wiring between them. For the X13s, we rework existing
+> nodes so that they align with the new DT bindings contract.
+>
+> Bartosz Golaszewski (2):
+>   arm64: dts: qcom: sc8280xp-crd: enable bluetooth
+>   arm64: dts: qcom: sc8280xp-x13s: model the PMU of the on-board wcn6855
+>
+> Konrad Dybcio (1):
+>   arm64: dts: qcom: sc8280xp-crd: enable wifi
+>
+>  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts     | 169 ++++++++++++++++++
+>  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    |  98 ++++++++--
+>  2 files changed, 255 insertions(+), 12 deletions(-)
+>
+> --
+> 2.43.0
+>
+>
+What does this patchset depend on?  I'm assuming I'm missing something
+in my config as I've tried to test this patchset and I end up with the
+wifi and bluetooth being deferred on my Thinkpad X13s
 
+[   18.655330] pci 0006:01:00.0: deferred probe pending: pci: wait for
+supplier /wcn6855-pmu/regulators/ldo9
+[   18.655347] serial serial0-0: deferred probe pending: serial: wait
+for supplier /wcn6855-pmu/regulators/ldo9
+steev@finn:~$ sudo cat /sys/kernel/debug/devices_deferred
+0006:01:00.0    pci: wait for supplier /wcn6855-pmu/regulators/ldo9
+serial0-0    serial: wait for supplier /wcn6855-pmu/regulators/ldo9
 
