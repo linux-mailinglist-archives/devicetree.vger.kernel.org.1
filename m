@@ -1,123 +1,129 @@
-Return-Path: <devicetree+bounces-93241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A7BE9500C3
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 11:05:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A0829500DB
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 11:07:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A8994B254C7
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 09:05:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26B33282F89
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 09:07:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80BCA1487F9;
-	Tue, 13 Aug 2024 09:05:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4A1417B421;
+	Tue, 13 Aug 2024 09:07:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aC+H0/qA"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YZPOp+Cy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5527A13AA3E;
-	Tue, 13 Aug 2024 09:05:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2B1F16DEA9;
+	Tue, 13 Aug 2024 09:07:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723539912; cv=none; b=obkP7XcAVIeBM4G5m0v6DXvnF2Cr5rlCw66B9qlOyXiG5cEPIqoyS9tBBEyhvqPJJbjSazZwM1mYnbeu/H3BQLNysXm74hoAgHg10nbmnTjfacEzJUCp+103+Vwh3LK73h93AX5s3ZNKiCoB4P7IDbrRQTN+puBh57+glgvHvrk=
+	t=1723540035; cv=none; b=GSeuWCWZubZC8trEmhTS2RVMS84JHhKaV1zZ8jetNNH3E8EuxkVjXwWt37sq83scEuTbQE6Hauhkhs9xm+K5nsi01YlQg1ydD0iaxpxQZ/yh/9iCl7BXmRly+QDQiK4zcXlosR6pjG3gAXoAXzoPDk1eNYBTLxDepxES9BmDpzM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723539912; c=relaxed/simple;
-	bh=X5fYRIk3UORF4eePu/VuBllPnq01NFJR0r2+oW6NCYE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KHmvj+52f36wz2P/9l6U6/xIcHaKp4vWVt5cSrtIg5O1wQWxrhFG370PiRDs63ChEr+emc2YsMwIqUQO7eoMLt5jcP1hBiN3UwIq1jaKkLNGKCo0I/4ibs1t+L1cNUvKh8Uhtcj9xPyg0/Iq8mC9tYAmAnKFH+546yzQA+wBJVc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aC+H0/qA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA78DC4AF09;
-	Tue, 13 Aug 2024 09:05:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723539911;
-	bh=X5fYRIk3UORF4eePu/VuBllPnq01NFJR0r2+oW6NCYE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aC+H0/qATLIJQadmzsB+99rOvsU9wyf6WEr9Uj3tf+qRAsUa0G/cZ47lHJTx4EW1/
-	 UBu+Z9aUs3V/WMNrcbXDFWPNdi9XQlF/CRzPrzTXvPKwjSzAjlvLOWUYwc9syaXysN
-	 z6GHqQ0o0Ifg5ZJXmfw3dkv+H1FAAtFjdWHMMxbK9i4wyJCTAiEpwXgLLX0iKZjkPH
-	 qeefk9UQOAUVxHJ669jeBaJwftsTFnuhOOf0d6td9+lGlZxdtyYM/dLQgsQRwCFAjR
-	 T0wNw/a9W+8y1CgCThAsZXWLPDr6QaffGaB0nDasA0XE4IQPBT+w5GuKnRZRqINrsZ
-	 ByxN75SFm7TJA==
-Message-ID: <34e5f680-2317-4fa7-afbf-c153003558c2@kernel.org>
-Date: Tue, 13 Aug 2024 11:05:05 +0200
+	s=arc-20240116; t=1723540035; c=relaxed/simple;
+	bh=MhUR2OtEH7deQ3ME11VZl5HWuFTUQGCj7IYjEBrbMgo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=TRe/daXbKpeNltCeiclCLEn1s3nKCC/BBN0bYbJELLUXCHcmvtXtU9TnKkIdOvHqp4izvdd47cgHj9hgLbFgUodelkLs6gHXPkq+6Vsw9oQLm+wSfYG+XGmiG+h0kZiMHK/MInoufiaBNXCRxOcdMMo9CtMhi9Ha5ctl048OEW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=YZPOp+Cy; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 2EFD71C0003;
+	Tue, 13 Aug 2024 09:07:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1723540025;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=LuigKssXYiPCEK+V39HggWwcnvNgqn3KueYYJ6PbxGQ=;
+	b=YZPOp+CykyQGKIQivmGaH1s94KMe4kQsroHSg2DMg1QzYxPPFCtGrzmcy/NPVmlwc+JLm+
+	QBfZiuXK5wp9wocsq/PmUBY5BXSlHr9SKWNe0Lt5ylrJWhFYrLFFpHnE3kBv30gnWtApfa
+	gCh0hqzV6qTpCNQluwzKtWm/krKcBKwY/LPD/vVyAdG+MWOiyThyjuaholGs+1bYA6u1hS
+	r/BgXMxVnjLADPYxXahdWg628mMIJIjnTZodHt/WJfFVIghKTiuxidM8Bpg0on0n2/Y+Um
+	7IQYZbFfzvs9ZIgocR1XRFLbcOLBHHYJ2BfQQk+p5Qzz3elwXDSWlxBW1rylTQ==
+Date: Tue, 13 Aug 2024 11:06:59 +0200
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andrzej Hajda
+ <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Robert Foss <rfoss@kernel.org>, Laurent Pinchart
+ <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Derek Kiernan <derek.kiernan@amd.com>,
+ Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Saravana Kannan
+ <saravanak@google.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: Paul Kocialkowski <contact@paulk.fr>, =?UTF-8?Q?Herv=C3=A9?= Codina
+ <herve.codina@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-i2c@vger.kernel.org, Paul Kocialkowski
+ <paul.kocialkowski@bootlin.com>
+Subject: Re: [PATCH v3 1/7] dt-bindings: connector: add GE SUNH hotplug
+ addon connector
+Message-ID: <20240813110659.65f2ab72@booty>
+In-Reply-To: <20240809-hotplug-drm-bridge-v3-1-b4c178380bc9@bootlin.com>
+References: <20240809-hotplug-drm-bridge-v3-0-b4c178380bc9@bootlin.com>
+	<20240809-hotplug-drm-bridge-v3-1-b4c178380bc9@bootlin.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 10/10] ARM: dts: tqmls1021: change copyright entry to
- current TQ Copyright style
-To: Max Merchel <Max.Merchel@ew.tq-group.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240813071637.72528-1-Max.Merchel@ew.tq-group.com>
- <20240813071637.72528-11-Max.Merchel@ew.tq-group.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240813071637.72528-11-Max.Merchel@ew.tq-group.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
+X-GND-Sasl: luca.ceresoli@bootlin.com
 
-On 13/08/2024 09:16, Max Merchel wrote:
-> Unification of TQ-Systems copyright entries.
+Hello,
+
+On Fri, 09 Aug 2024 17:34:49 +0200
+Luca Ceresoli <luca.ceresoli@bootlin.com> wrote:
+
+> Add bindings for the GE SUNH add-on connector. This is a physical,
+> hot-pluggable connector that allows to attach and detach at runtime an
+> add-on adding peripherals on non-discoverable busses.
 > 
+> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
-No, pointless churn.
+...
 
-Best regards,
-Krzysztof
+> +examples:
+> +  # This is the description of the connector as it should appear in the
+> +  # main DTS describing the "main" board up to the connector.
 
+The comment from now on has outdated content referring to v2 and which I
+forgot to remove before sending v3:
+
+>      This is
+> +  # supposed to be used together with the overlays in the two following
+> +  # examples. The addon_connector and hotplug_conn_dsi_out labels are
+> +  # referenced by the overlays in those examples.
+
+Fixed locally.
+
+> +  - |
+> +    / {
+> +        #include <dt-bindings/gpio/gpio.h>
+
+I also removed the root node which is not needed and cause bot warnings,
+and with that done the #include went back to a correct position.
+
+The above are queued for v4.
+
+Luca
+
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
