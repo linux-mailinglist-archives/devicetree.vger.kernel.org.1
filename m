@@ -1,231 +1,194 @@
-Return-Path: <devicetree+bounces-93256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F910950190
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 11:51:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12A0E9501AA
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 11:53:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1E0E1F21947
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 09:51:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 452601C20128
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 09:53:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94962181317;
-	Tue, 13 Aug 2024 09:51:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88D7A190067;
+	Tue, 13 Aug 2024 09:52:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jC6zNycO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pxzYeR/n"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6524516DEAA;
-	Tue, 13 Aug 2024 09:51:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51928189533;
+	Tue, 13 Aug 2024 09:52:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723542667; cv=none; b=DtsjWVi21/dfy2VVb94ccoMQfa6KVNyhobUWsGhSSPrAyehNwxlEo6b0N+Cts9wBAaH6Khs9dX7whz5YvJ9GI/CXjbBMuSut2kDajZfetph9crvWCDeYFP71C6AyLRSfKLhuTfxgKGQlvn18WDBwWQ+9eAADDObs2BrSOqQ59cg=
+	t=1723542764; cv=none; b=CNrzKlOVH2GB4Y0Kv9i75HO7BnXMTiPlZxvtwqh9/1jbSD3FFAA8WhDnqmHqsIR6acWuE3I5KwInDLBUyia/bg5nFvQ84J072tRna21B/R0hE+Fr0iUar9BggMuqvwJxjDph5ee7Nt+e/sUvogV9MDPBuEzlNnWDbvlHbKz9pFk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723542667; c=relaxed/simple;
-	bh=u4GVLmL56p9bLDLAYbw4kFxsRLgytFR0Ld25rKYzcX0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WblEMPR5nnPgzyG5wToAbQ2JW7dzRC0pHEZsQtPEhc7O9M6seeBaYKq1xtqqmWJv3yLRs7yu3V4xN8t80qsz5O+E1U/iuzzlbuysygbJmE6huNMDhnLUcVtDtd/UzyevxZNqnYPA55vYZBm8GaVXy3yXD0wj9jiaGgS6xz2OPDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jC6zNycO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA01EC4AF0B;
-	Tue, 13 Aug 2024 09:51:01 +0000 (UTC)
+	s=arc-20240116; t=1723542764; c=relaxed/simple;
+	bh=r3ixwT4ejaY1WXYoTRnXA9O5iIKHCzNV0dZx1F6sTuk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Lucask4nK4vKnBO1T1cYzmvGNrZlRkoGzNoHd1/qRQsPAhtWPsnXS74lSyea3kQIqs7fIr53Jbov9rkehrou+akL8BTECTPiIBVgaiuQ6RPZhGJxg8RBVaTdoczsHCzjBo+rOEfxur803KnMDCM9VtDkSkzm448grRwR0NGkt1I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pxzYeR/n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E0FACC4AF09;
+	Tue, 13 Aug 2024 09:52:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723542667;
-	bh=u4GVLmL56p9bLDLAYbw4kFxsRLgytFR0Ld25rKYzcX0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jC6zNycOPiCv0OiyxJKR4pVZlBuaCiBBFyCJorRk0XPAGIKgWEEvIbzMiluOruoPv
-	 pMxZL05D8S+uAVmLh6Q9Csa89MK1DU2pXFPi1gBd9TnM5LP7u9v8rReNdVMXxpf0RH
-	 xUYWaUw6NMYNPmfi1gUtvkFomhv6SoaEzIrZ2QdRt5T6LbED5AmERbqfWS/otjd1gz
-	 hZ0V2cN56UDJCrJR0r5v80tJFiUuHJ0Swnw+GA5QuKTz09PJDy9sQFGAEust6PKtQP
-	 i6MIx3x/HQTA9lfGIeiZ4Odsk0bXdAdZ8t40o+gXRL/Tnrt6UCfAnCGUj2RhWOs1iA
-	 Hh4aNuP6OFuFg==
-Message-ID: <f868dee1-0007-44a1-9fbf-d6a0fdcf4837@kernel.org>
-Date: Tue, 13 Aug 2024 11:50:59 +0200
+	s=k20201202; t=1723542764;
+	bh=r3ixwT4ejaY1WXYoTRnXA9O5iIKHCzNV0dZx1F6sTuk=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=pxzYeR/ngM/D2uS7FiVCP0gz0rjQjHzjVhXz+unDlgtrwfWVoLh0VPOjX2/aDZN3b
+	 h8nHa3IMevseRFq8aDzR63Ko0r1ziBHXecLzjV6W9Tw5xAlh/KscBJrYdPa3dkkwoO
+	 H3ThqwnmYztnA+m5ryNtREm+4rNPEmelvFdFOVQ6z599DJC9EjVo9Ad24ha59GWFqS
+	 bEVdqPJ435/3qMFsfv/UqosuPSg8zieOmdKLix32V2CYeH4nALXTsPrN07Ex3TYUFk
+	 XsWvMeNQQBFipTfrmM3DGPBm706teBQsI8v3mNt1dZsx42uzORMTdt6x4/p+loTk7H
+	 i2LIFDcqoesIA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D2484C52D7B;
+	Tue, 13 Aug 2024 09:52:43 +0000 (UTC)
+From: Utsav Agarwal via B4 Relay <devnull+utsav.agarwal.analog.com@kernel.org>
+Subject: [PATCH v10 0/3] adp5588-keys: Support for dedicated gpio operation
+Date: Tue, 13 Aug 2024 10:51:30 +0100
+Message-Id: <20240813-adp5588_gpio_support-v10-0-aab3c52cc8bf@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: iio: adc: sophgo,cv18xx-saradc.yaml:
- Add Sophgo CV18XX SARADC binding
-To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
- Inochi Amaoto <inochiama@outlook.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20240812-sg2002-adc-v4-0-599bdb67592f@bootlin.com>
- <20240812-sg2002-adc-v4-1-599bdb67592f@bootlin.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240812-sg2002-adc-v4-1-599bdb67592f@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKIsu2YC/43Q3UrEMBAF4FdZcm0lSWfy45XvIbIkmbQb0Kaka
+ 1GWvrvp3rhSi3t5Dsx3YC5siiXFiT0dLqzEOU0pDzUI/nBg4eSGPjaJasEkl8A1F42jEdGYYz+
+ mfJw+xjGXc6OQvPQkhbMdq6djiV36vLovrzWf0nTO5es6M8Pa/gPO0PAGwHvHATBa/uwG95b7x
+ 5Df2SrOeKu0Owquiu1CdMSp/UNRtwrsKKoqwStEAaQF+I2i71F0VWIL0evoHbqtYu5RTFUkN6F
+ DgiBJbRT7oxiudhS7/oWUEMYrUtj+UpZl+QYz3/k+GAIAAA==
+To: Utsav Agarwal <utsav.agarwal@analog.com>, 
+ Michael Hennerich <michael.hennerich@analog.com>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Arturs Artamonovs <arturs.artamonovs@analog.com>, 
+ Vasileios Bimpikas <vasileios.bimpikas@analog.com>, 
+ Oliver Gaskell <oliver.gaskell@analog.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1723542691; l=4164;
+ i=utsav.agarwal@analog.com; s=20240701; h=from:subject:message-id;
+ bh=r3ixwT4ejaY1WXYoTRnXA9O5iIKHCzNV0dZx1F6sTuk=;
+ b=IQz9G0SArziByu8tFlo26DBKrKLiIn7itrN727zn/+SoM6P7dQbnddP7DvhqsSzTFWNM8tkNa
+ dnopI+gT0pTDAd0c+5NpMZIAXOrO2Bme0Ds/Fu2Ou8/j1DdqQWBBOC/
+X-Developer-Key: i=utsav.agarwal@analog.com; a=ed25519;
+ pk=mIG5Dmd3TO5rcICwTsixl2MoUcf/i2u+jYqifd7+fmI=
+X-Endpoint-Received: by B4 Relay for utsav.agarwal@analog.com/20240701 with
+ auth_id=178
+X-Original-From: Utsav Agarwal <utsav.agarwal@analog.com>
+Reply-To: utsav.agarwal@analog.com
 
-On 12/08/2024 17:00, Thomas Bonnefille wrote:
-> The Sophgo SARADC is a Successive Approximation ADC that can be found in
-> the Sophgo SoC.
-> 
-> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+Current state of the driver for the ADP5588/87 only allows partial
+I/O to be used as GPIO. This support was previously present as a
+separate gpio driver, which was dropped with the commit
+5ddc896088b0 ("gpio: gpio-adp5588: drop the driver") since the
+functionality was deemed to have been merged with adp5588-keys.
 
+This series of patches re-enables this support by allowing the driver to 
+relax the requirement for registering a keymap and enable pure GPIO 
+operation. 
 
-<form letter>
-This is a friendly reminder during the review process.
+Signed-off-by: Utsav Agarwal <utsav.agarwal@analog.com>
+---
+Changelog
+==========
 
-It seems my or other reviewer's previous comments were not fully
-addressed. Maybe the feedback got lost between the quotes, maybe you
-just forgot to apply it. Please go back to the previous discussion and
-either implement all requested changes or keep discussing them.
+Changes in v10:
+	- Corrected changelog ordering
+	- Changed dtbinding commit to clarify all changes are made in
+	  software. The commit message now also expands on what
+	  the desired pure gpio mode is
+	- Added acquired tags to commits
+	- dt-binding:
+		Removed multiple blank lines before the dependecies block
+	  	Removed excess headers included in dtbinding example
+	  	Removed constraint being repeated in free form text
+	  	Merged outlying dependency into a single block
+- Link to v9: https://lore.kernel.org/r/20240806-adp5588_gpio_support-v9-0-4d6118b6d653@analog.com
 
-Thank you.
-</form letter>
+Changes in v9:
+	- Added dt-binding dependency for interrupt-controller. Now if
+	  interrupt-controller is specified, interrupts must be
+	  provided.
+- Link to v8: https://lore.kernel.org/r/20240704-adp5588_gpio_support-v8-0-208cf5d4c2d6@analog.com
 
-.. and more ignored comments further.
+Changes in v8:
+	- Fixed indentation in document example (removed extra spaces)
+- Link to v7: https://lore.kernel.org/r/20240704-adp5588_gpio_support-v7-0-e34eb7eba5ab@analog.com
 
-> ---
->  .../bindings/iio/adc/sophgo,cv18xx-saradc.yaml     | 85 ++++++++++++++++++++++
->  1 file changed, 85 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml
-> new file mode 100644
-> index 000000000000..846590808e5f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml
-> @@ -0,0 +1,85 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/sophgo,cv18xx-saradc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title:
-> +  Sophgo CV18XX SoC series 3 channels Successive Approximation Analog to
-> +  Digital Converters
-> +
-> +maintainers:
-> +  - Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-> +
-> +description:
-> +  Datasheet at https://github.com/sophgo/sophgo-doc/releases
-> +
-> +properties:
-> +  compatible:
-> +    const: sophgo,cv1800b-saradc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^channel@[0-3]+$":
-> +    $ref: adc.yaml
-> +
-> +    description: |
-> +      Represents the channels of the ADC.
-> +
-> +    properties:
-> +      reg:
-> +        description: |
-> +          The channel number. It can have up to 3 channels numbered from 0 to 2.
-> +        items:
-> +          - minimum: 0
-> +            maximum: 2
-> +
-> +    required:
-> +      - reg
-> +
-> +    additionalProperties: false
-> +
-> +
+Changes in v7:
+	- Fixed commit subject for transported patch 
+	- Driver now does not setup gpio_irq_chip if 
+	  interrupt has not been provided
+	- Fixed indentation for dtbinding example
+- Link to v6: https://lore.kernel.org/r/20240704-adp5588_gpio_support-v6-0-cb65514d714b@analog.com
 
-Just one blank line.
+Changes in v6:
+	- Restored functionality to register interrupts in GPIO
+	  mode(i.e, these are optional but not exclusive to keypad mode
+	  since even in pure gpio mode, they can be used as inputs via 
+	  gpio-keys)
+	- Updated dt-bindings such that each keypad property depends on
+	  the others. Interrupts, although optional are now required by 
+	  keypad mode but are not limited to it.
+- Link to v5: https://lore.kernel.org/r/20240703-adp5588_gpio_support-v5-0-49fcead0d390@analog.com
 
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +
-> +unevaluatedProperties: false
+V5:
+	- Removed extra property "gpio-only", now pure gpio mode is
+	  detected via the adbsence of keypad specific properties.
+	- Added dependencies for keypad properties to preserve
+	  the original requirements in case a pure gpio mode is not
+	  being used.
+	- Added additional description for why the "interrupts" property
+	  was made optional
+	- Rebased current work based on https://lore.kernel.org/linux-input/ZoLt_qBCQS-tG8Ar@google.com/
+- Link to v4: https://lore.kernel.org/r/20240701-adp5588_gpio_support-v4-0-44bba0445e90@analog.com
 
-No, how did this appear here? This must be additionalProperties.
+V4:
+	- Added dt-bindings patch
 
-I already commented on this.
+V3:
+	-  Moved device_property_present() for reading "gpio-only" into 
+	adp558_fw_parse()
+	-  Added print statements in case of error
 
-<form letter>
-This is a friendly reminder during the review process.
+V2: 
+	-  Changed gpio_only from a local variable to a member of struct
+	adp5588_kpad
+	-  Removed condition from adp5588_probe() to skip adp5588_fw_parse() if 
+	gpio-only specified. adp558_fw_parse() now handles and returns
+	0 if gpio-only has been specified.
+	-  Added a check in adp5588_fw_parse() to make sure keypad 
+	properties(keypad,num-columns and keypad,num-rows) were not defined when 
+	gpio-only specified
 
-It seems my or other reviewer's previous comments were not fully
-addressed. Maybe the feedback got lost between the quotes, maybe you
-just forgot to apply it. Please go back to the previous discussion and
-either implement all requested changes or keep discussing them.
+---
 
-Thank you.
-</form letter>
+---
+Dmitry Torokhov (1):
+      Input: adp5588-keys - use guard notation when acquiring mutexes
+
+Utsav Agarwal (2):
+      Input: adp5588-keys - add support for pure gpio
+      dt-bindings: input: pure gpio support for adp5588
+
+ .../devicetree/bindings/input/adi,adp5588.yaml     | 40 ++++++++--
+ drivers/input/keyboard/adp5588-keys.c              | 86 +++++++++++++---------
+ 2 files changed, 84 insertions(+), 42 deletions(-)
+---
+base-commit: 1c52cf5e79d30ac996f34b64284f2c317004d641
+change-id: 20240701-adp5588_gpio_support-65db2bd21a9f
 
 Best regards,
-Krzysztof
+-- 
+Utsav Agarwal <utsav.agarwal@analog.com>
+
 
 
