@@ -1,122 +1,92 @@
-Return-Path: <devicetree+bounces-93404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D98A0950CAE
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 20:59:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A71DE950CB7
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 21:01:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96F5A283D73
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 18:59:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4EB51C2264C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 19:01:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED5351A7064;
-	Tue, 13 Aug 2024 18:58:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B730D18E752;
+	Tue, 13 Aug 2024 19:01:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="qWfOiFjv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WaQGJ4ZC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BDD81A4F3E
-	for <devicetree@vger.kernel.org>; Tue, 13 Aug 2024 18:58:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E36D1BF53;
+	Tue, 13 Aug 2024 19:01:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723575522; cv=none; b=SiNeiFsgSkPMOFZIBAxNQFpoLwszJDtXTHwKmI8zQcWQ9+lFzerBzZupGRxfVHwF4br2H1NV4lpCWCBCgxVUGnXQaxViDWv3Q5mtyGPKTVE8vTy8xJnWKb9cFKnrK/jOEqKMFF+2+0bw8Dv18pGJQdHCus2se/X1eKGseLydYtw=
+	t=1723575687; cv=none; b=jRP6I8TJKkc0ufm/wmIREZdGTJDSvQe9Z9XYsAsRLdv79+4KMvW9j1tFGO6qCaYHMRgs6wTY5680CRCNZJg7TFxC/+RVrFPmbwDCKxbrwA0zdpyFOYcyTWUeOzvUHTHbDJG4esjry4UpeiazezItV12r6WW5x3AX81/IklOWA1c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723575522; c=relaxed/simple;
-	bh=cgKJ86aFQSXRkOjVomh98YNMu7bmzApkdVedZLziGQQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=JvVl9qBiypgYDS2vkUdeum7huER6dot4z3HWtuQPswg4H0Fst1ug79sRZFW9gEyYoRWrSvzZSrx6Czaj0a77FyYLsR0RlzUdbv0pN7l+AFveXAz9e0YFsB8q930SRL2pYKkpNrqeXnCuGlKyKCqh4YrSrhcGOz69ZEpwzu1LWTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=qWfOiFjv; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-52f024f468bso6845783e87.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2024 11:58:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1723575519; x=1724180319; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wUV4XHIlWDdmSvDrr/xcQAhn7NeKcNTvFWfePKkt2OE=;
-        b=qWfOiFjvafyFjK/BMEWr1YZgOL5h2I57oiPSOX0QdINpGG0sI9WIiNPWeJs3yFZbs0
-         UIBfX5K8BFBW14TtKnbKAqP2d0GE+hHxwAB5V7EDIX9/k2CVPhv3gfgdDGYcxgAFjDj6
-         N4ZKn0B8nMX+I1e3ponl0nD2UReqevGHqJduBYhHYKiM4fykc1s+0VLtCLI6e5RlWROD
-         ptIKrlxwS0KizXOnQl3kv11wHLPfjd4qT/8E/RMpux25qbLCcje5cihTnT17mj1kSjnD
-         8Q4EToNB0mX0mwyiV4gw8iqbFQNbXWitzOaQEu4sWxmkWeTyFaF9ldrjp8C4AZON9JC1
-         MdlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723575519; x=1724180319;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wUV4XHIlWDdmSvDrr/xcQAhn7NeKcNTvFWfePKkt2OE=;
-        b=SjLZU8Vr3tZmvZXQ7Uvr4N6WyvnF6DUgXLC9SYqETlIPzQDgaawXYh/6Bj4o2xe4Mp
-         NGl5LO5i+xHa+iBRn0FO4QL3KqbbPxPaSV3vs52XLvTNWEiPmKQ6bf7pI83LoPmT336c
-         bGiJdOImUKQtlTJWK/m+lnI11ldeasHmHi4/+i/beIl51+Eo8KADtPEP/Tqi+nSw4Q6n
-         fQKVfMXwRirpK4agJBBddY7TwfVg9ojXvA6jY/j6gSQ6P8ha7oXGA5uLuCBVipYxIQlZ
-         0W1KZrIstGh5n8tSkFeSAoY44ZOcNVUELnv7DfD1Ih+dXtibFuYX6M333s4V2AJpQ/2+
-         Ydmg==
-X-Forwarded-Encrypted: i=1; AJvYcCXrBnU47HKnhYQVYgByr8DZZwvm7mcNbsnd981IU5Mc/1KCJhVr4QM7hJnC82AWhn1JHZSeKofIjc0MzWpn9sgz+U3rrZxkm76ZoA==
-X-Gm-Message-State: AOJu0YxU1Y38StErN2LV2pk3Wg3+VfAT5l1dMjzJKA/vZh9ZEvWnLPIu
-	YTbMvdQ5M9BAted4xXzv52WfTGW8Kg3hvfL7ki8xTMa4Palc5wpDiO85RRJknQA=
-X-Google-Smtp-Source: AGHT+IGlYNi54ow/y9t4POWEbVoEw86CSboMPSwBpuuHQA7APctLUhJ3CK5aCCTQbHdiSdknwVbK+A==
-X-Received: by 2002:a05:6512:39cc:b0:52c:d626:77aa with SMTP id 2adb3069b0e04-532edbbf2a5mr203953e87.58.1723575519313;
-        Tue, 13 Aug 2024 11:58:39 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:3979:ff54:1b42:968a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429c775c509sm151208145e9.44.2024.08.13.11.58.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Aug 2024 11:58:36 -0700 (PDT)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-To: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH 3/3] regulator: dt-bindings: qcom,qca6390-pmu: document the swctrl-gpios property
-Date: Tue, 13 Aug 2024 20:58:27 +0200
-Message-ID: <20240813185827.154779-3-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240813185827.154779-1-brgl@bgdev.pl>
-References: <20240813185827.154779-1-brgl@bgdev.pl>
+	s=arc-20240116; t=1723575687; c=relaxed/simple;
+	bh=renmw59HKxMX5MC5Hbv+XrZT1TC9Hrv/wjdkVhu1QGE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=i02+Fge9k9wY+jBQPenNBXRIWDf1vGsHpcSEofoxKEbeh3X+/zwMkcOfapwieX6WxQbQt2zqanlIaPir706Ts6VzIqtfWxJHiVEA+Q2W+ZvAPxpwfGCreH8zQfzFyydX2//BK65o/vMfgSWK8pPeGwWYL4rlPOnf/MgXiPbHAUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WaQGJ4ZC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF127C32782;
+	Tue, 13 Aug 2024 19:01:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723575686;
+	bh=renmw59HKxMX5MC5Hbv+XrZT1TC9Hrv/wjdkVhu1QGE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WaQGJ4ZCSgS//R/BPnue0w1ew0ivihpN0P8gDojYPDDh5WnD/D3v4XyvuUkh7yTFx
+	 dO4E4klxoPzahE8evwJIg6hc16C1X6h4CP3LzNAyO5zXO5wW0IBc8L15jO3R4IC6sh
+	 OyBENSWg6koViMKG715xqbjeeph02tqzUfkj8VcdJFQjm4yl18yVw971sLJbKUS6YV
+	 EuGDNVfoXqHAkng9u2DiAjA+MT5EwsWGPZHlI61YHHd/aBTFNqS/de84/7xNW0S5Sp
+	 PZzvB/cIVj+ZF7+FdMVa6yRpMwFfaQ6S7DF3n85wj7/vqiyiSz/Ufmjg50YtZXNrxW
+	 weknuk/ErC8Dg==
+Date: Tue, 13 Aug 2024 13:01:24 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: devicetree@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+	linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Qiang Zhao <qiang.zhao@nxp.com>, linuxppc-dev@lists.ozlabs.org,
+	linux-arm-kernel@lists.infradead.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v2 07/36] dt-bindings: soc: fsl: cpm_qe: Add QUICC Engine
+ (QE) TSA controller
+Message-ID: <172357568355.1494768.17469941704094420222.robh@kernel.org>
+References: <20240808071132.149251-1-herve.codina@bootlin.com>
+ <20240808071132.149251-8-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240808071132.149251-8-herve.codina@bootlin.com>
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Add support for the swctrl-gpios property which contains the phandle to
-the GPIO indicating the clock supply to the BT module.
+On Thu, 08 Aug 2024 09:11:00 +0200, Herve Codina wrote:
+> Add support for the time slot assigner (TSA) available in some
+> PowerQUICC SoC that uses a QUICC Engine (QE) block such as MPC8321.
+> 
+> This QE TSA is similar to the CPM TSA except that it uses UCCs (Unified
+> Communication Controllers) instead of SCCs (Serial Communication
+> Controllers). Also, compared against the CPM TSA, this QE TSA can handle
+> up to 4 TDMs instead of 2 and allows to configure the logic level of
+> sync signals.
+> 
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> ---
+>  .../bindings/soc/fsl/cpm_qe/fsl,qe-tsa.yaml   | 210 ++++++++++++++++++
+>  include/dt-bindings/soc/qe-fsl,tsa.h          |  13 ++
+>  2 files changed, 223 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-tsa.yaml
+>  create mode 100644 include/dt-bindings/soc/qe-fsl,tsa.h
+> 
 
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
----
- .../devicetree/bindings/regulator/qcom,qca6390-pmu.yaml       | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/regulator/qcom,qca6390-pmu.yaml b/Documentation/devicetree/bindings/regulator/qcom,qca6390-pmu.yaml
-index 6677939dd957..11ed04c95542 100644
---- a/Documentation/devicetree/bindings/regulator/qcom,qca6390-pmu.yaml
-+++ b/Documentation/devicetree/bindings/regulator/qcom,qca6390-pmu.yaml
-@@ -68,6 +68,10 @@ properties:
-     maxItems: 1
-     description: GPIO line enabling the Bluetooth module supplied by the PMU
- 
-+  swctrl-gpios:
-+    maxItems: 1
-+    description: GPIO line indicating the state of the clock supply to the BT module
-+
-   clocks:
-     maxItems: 1
-     description: Reference clock handle
--- 
-2.43.0
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
