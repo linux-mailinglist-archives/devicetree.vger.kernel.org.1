@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-93244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93245-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16AC09500E4
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 11:09:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D2B8950107
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 11:15:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 48CCD1C209E3
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 09:08:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E96F1F20F35
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 09:15:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C740F174EEB;
-	Tue, 13 Aug 2024 09:08:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF34216BE01;
+	Tue, 13 Aug 2024 09:15:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TYEBvutO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LLBo3OTp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DABF1487F9;
-	Tue, 13 Aug 2024 09:08:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90FD33BB47;
+	Tue, 13 Aug 2024 09:15:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723540134; cv=none; b=ZR4o7HdSRyczBLPAPOZPtqjNFckjvXNuOR+ZGvxExqvJLljm1jp0xVbRKtya0HdifB0v5Oc/gYa7hkFP2/fKoZouv98g/FIYtmLCirvG72gJBs1mnyRtX7brmgtY/cgsFQA47KljD8j13+1L/r250Nz9JapZy/ug37SiSFZILck=
+	t=1723540510; cv=none; b=tKyUc+WqUHphEaaXaVteelZxgtR+amZkgsiTV7TjvR/VqVumSzsmoImNf1I/68agYWJKhn1mmdEmmluOtaoCZoSaJyUppDmTj0H6ybTYh8dcDf7UWPbdeOd6UknPODfEb1RKBQtIvqCR4WuvTz3fWIYd+EmaP3/qkXMWJvuuXu8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723540134; c=relaxed/simple;
-	bh=tTf12N2sToOZT7o8BtfaUvPnYFIk5jf+p6GVTlx/nZE=;
+	s=arc-20240116; t=1723540510; c=relaxed/simple;
+	bh=bhOnGdAbx1gq3rvWV6OBZOidQ01F+DidlRzmuYjGJyY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tw77gXYJUaT9/5AUKVHF3q3oLnzNOtj+YaS4R+64mKHKvAgHPLD9c9HTfyE8Wvm+087sZ/GokqTVvaglzJW5ke1OIzoN3LFDXhiWW/cVpbpB+/Q3Bupa7AES1AR9B+kCa0F0p1abaftkVQ3CQ1VQANlShu7LHy3fZtWjYuM7Vxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TYEBvutO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 771CBC4AF09;
-	Tue, 13 Aug 2024 09:08:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=JovnWANN16xCfCwg9OEsCYnxH8znszEre+bRMZ4KNLo+wd3WMQ8GbO6xc/2nEl67vVyMEtOBDhaL3TSQFZuf/UGViWCm7p3vXuoJsfFBta2YRP1ZMZd/a8uCRnf/Rb+IjVsdQhKsCEy8dMkjwau/vTxPcKiIFFy7U73PTeX2kzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LLBo3OTp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2069FC4AF0B;
+	Tue, 13 Aug 2024 09:15:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723540134;
-	bh=tTf12N2sToOZT7o8BtfaUvPnYFIk5jf+p6GVTlx/nZE=;
+	s=k20201202; t=1723540510;
+	bh=bhOnGdAbx1gq3rvWV6OBZOidQ01F+DidlRzmuYjGJyY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TYEBvutOMZuRpqKyMZvJ5GWIfk/GtSRU602TPwFrHxjFyajT+y1rgdMvDyKo7tqm+
-	 9shItNdyi5x0NA6IHnVD/i1gc3HCocQBgyRV3vRp3Zx+vWjKdf1jANB0cJ/7rf2Z6r
-	 Tqhg2CfvucabNkZzbZeolvYWzopYtleiwZExyGvzOW7V+xVeiJPFSW7eLTbLyPeCIR
-	 VLvUJ4Nz1pu8gPDLRjves5A8H83BkT2dCguc5CCJPZ2zZNiNcyK/oOVLdITrGONRtq
-	 YQFvRvDwf4+jz9RCjPAXVBcC+RLxF5IzeqK2G8/8FZ6KYjiY0y25BYNk3O1l8ZqwsM
-	 Qn1cxBD4CjCDg==
-Message-ID: <9ab6419c-2066-4c6d-bb6a-f78d4845b2b5@kernel.org>
-Date: Tue, 13 Aug 2024 11:08:45 +0200
+	b=LLBo3OTppbPu/Rr1HMJAQdm1EWtKh5P5lIzEWgLU0yZRqGwHdZ56bqUfP6uPoHtFY
+	 rCAhSmvAGMctfqFIuVBPCE4qTnZfWuDtTBm4j4BAdL+42A2YHZwPNbNcBAqiwaQ5Dx
+	 fW50C5n9oWScTKifxaMZayW58lt+/ZzxzwvyCYsDpiBiV5av4+tbXADu5qwnxwxMkJ
+	 rOBM2IDX16RgrdG/cvJAw6hYG7zFOoJcjNTNDbLXthHyEzYLQLiC8g71+N4kc5FKtf
+	 /Efu8PvtfIvpaLTcDh96ULnsFnvDEJ2kY3Xoj+2O81eDS0PeyHLPJalmY0eqtJvLQB
+	 GutWqjBu39/1A==
+Message-ID: <02baff7e-845d-4f49-b2ce-ee06934786ab@kernel.org>
+Date: Tue, 13 Aug 2024 11:15:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] dt-bindings: display: panel-simple-lvds-dual-ports:
- use unevaluatedProperties
-To: Frank Li <Frank.li@nxp.com>, Liu Ying <victor.liu@nxp.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>,
- "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
- imx@lists.linux.dev
-References: <20240812193626.3826250-1-Frank.Li@nxp.com>
- <143d7bcb-c3ee-4f9f-833c-6680a25681b2@nxp.com>
- <ZrrWi0HuAIDe7C0x@lizhi-Precision-Tower-5810>
+Subject: Re: [PATCH 1/2] dt-bindings: input: touchscreen: add Hynitron CST816X
+To: Oleh Kuzhylnyi <kuzhylol@gmail.com>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, igor.opaniuk@gmail.com,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20240813-b4-cst816s-b4-v1-0-78a03cbef328@gmail.com>
+ <20240813-b4-cst816s-b4-v1-1-78a03cbef328@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,28 +104,46 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ZrrWi0HuAIDe7C0x@lizhi-Precision-Tower-5810>
+In-Reply-To: <20240813-b4-cst816s-b4-v1-1-78a03cbef328@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/08/2024 05:44, Frank Li wrote:
-> On Tue, Aug 13, 2024 at 10:32:04AM +0800, Liu Ying wrote:
->> On 08/13/2024, Frank Li wrote:
->>> Replace additionalProperties with unevaluatedProperties because it ref to
->>> panel-common.yaml.
->>
->> This would allow all properties in panel-common.yaml, which is not expected.
->> Isn't adding 'panel-timing: true' next to 'enable-gpios: true' enough?
+On 13/08/2024 01:22, Oleh Kuzhylnyi wrote:
+> Add documentation for the Hynitron CST816X touchscreen bindings.
 > 
-> Strange, you ref to panel-common.yaml, suppose it will use all common
-> preperties.
-> 
-> Krzysztof Kozlowski:
-> 
-> Can I just add panel-timing:true for this case?
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Yes, although I would claim that most of the panel-common schema also
-applies here...
+How this could come with review tag if this is v1? Or is it not
+correctly versioned?
+
+That will confuse all the tools...
+
+git format-patch -v2 or just use b4.
+
+
+> Signed-off-by: Oleh Kuzhylnyi <kuzhylol@gmail.com>
+
+...
+
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - hynitron,cst816s
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +additionalProperties: false
+
+If there is going to be new version, this goes after required: block.
+
 
 Best regards,
 Krzysztof
