@@ -1,150 +1,165 @@
-Return-Path: <devicetree+bounces-93208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64D2F94FFBD
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 10:24:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ECF094FFD5
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 10:28:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 982321C22EE4
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 08:24:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 638D41C22921
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 08:28:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 146881607B9;
-	Tue, 13 Aug 2024 08:23:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF65613A244;
+	Tue, 13 Aug 2024 08:27:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="fw8Qq5Ia";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="HbUN1uCX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="osHt5xIv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B4F914F9EF;
-	Tue, 13 Aug 2024 08:23:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D7CB18E29;
+	Tue, 13 Aug 2024 08:27:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723537410; cv=none; b=r7UgN/3nSfhrwPa8q7Vn9gaDY3t8LcKm4ugxWFnLlXFeq7l9gsQvmhSD0iDEgsyjS8EO5n5ewV0Q2Cm2SyGiAgKYUzf+pszC9U5ZwAEGv4F0cvsnHmZN0tx1nmgcomFKi42wrGXJoYuFUjh48FqbGOZElMj8cdqY9R5eqJI92eU=
+	t=1723537673; cv=none; b=rBpOYbDeR1oKcBPoXePddjKBbMoxzM77DJYKysL5LLQtrNm6ul5lyXHEmku2eoq1Xhewm3zrq4esuPGADlp8eEhJzgXccwiXfn/JiHQef5wLIQaK0VRXdo7QJVbtDvw3P3h68mwTZhqXKBStd0C+5LyLM4fdLZGZDqeMnXGh/Qk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723537410; c=relaxed/simple;
-	bh=IFg72+mtzh6RQ+UZ9+MPJIqB7b67Bf1PYBeDr/mTG9c=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HjcKcoGddRK3/w6TwLDsh2ZcX0tHGH5n4bb7CKod6S3t8Onrhcla3UgaL8/DhY6r1GRPv07SRLSkKYKDEIqYzOFd4sFoLzvIqQbcWfOvP5wUTDCTMa7vJ68yySZpTbNAJLJalRRXSbZCSVZD61sq4FsKA3ZnuwAA8tBdRtu5LSI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=fw8Qq5Ia; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=HbUN1uCX reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1723537407; x=1755073407;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=MlwmbhRm0FvrhPiqCXfvDAjoDBrL4s2spBnviZM0XpY=;
-  b=fw8Qq5Ia0oTMSVDF8MoBjdVvHB/kqoYh0gr0xxic5DU0pTvBo4l0toRe
-   m/L3ooD3uKMPlWqxlnA7OlYTFgw/xMIVdC+OqRPi2+y4Xm9wpF1nScjnz
-   yRclHBH8c7AYzYC/j5vbVZukLZJHgu0x9WMk0e5YiCNdwebkOmBYYQGXJ
-   E5TJNigrXdZcMllWMjA2dcACJpG1JrhtBfX1jvO+icMCzc6MfR5mnA28H
-   KHgdL1R2Jv55zZlJ0H+f0UQk4giRMP3XsqkE5GF+CVNFhI8FpZgizMNQc
-   v0c9i/q/hTmpNZDC/cY5TrsP+S65hCEHjx/btdSg2RGnGxevaGKde6NNN
-   w==;
-X-CSE-ConnectionGUID: 5ka7yRuTSRW8NNsvv+A4Tw==
-X-CSE-MsgGUID: Id8x26jBQKSOYVLnG6uPcg==
-X-IronPort-AV: E=Sophos;i="6.09,285,1716242400"; 
-   d="scan'208";a="38378492"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 13 Aug 2024 10:23:27 +0200
-X-CheckPoint: {66BB17FE-24-751552D8-F91D2344}
-X-MAIL-CPID: 0C1D0021246A170C4EA5DC951AE37C8A_4
-X-Control-Analysis: str=0001.0A782F28.66BB17FF.0042,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 67FF416473E;
-	Tue, 13 Aug 2024 10:23:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1723537402;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=MlwmbhRm0FvrhPiqCXfvDAjoDBrL4s2spBnviZM0XpY=;
-	b=HbUN1uCX+m5v8o7rvxcpPAs+Fg+VGKEqzl6bFfJt2V2aRBitaHvpF+kynroo3WUu3KY0P4
-	XJUYXjm2+BN3jFklGezrLVDbcnUIKDOdJFW9djhezqnvNPHpijQUmE2BR5cR8qbWOANWRq
-	H6r8QmcEm1uM45ToNGoWIiRGvx6KKvKl1aelbDEbImkJWTb43CnNqMY0j3d0tcqLA03do7
-	u1fdFETYzmwg+Ang0Iybr2rZiCVb3Wljib7/Q1T4pZw7Qlobs0iAZtOBgBz05RIbZvdizd
-	d24WhPUvTLpiEw783riohLdvtty48cb2UyLzSZfdS29pzu0F7dkbkwaB+yT5gw==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Gregor Herburger <gregor.herburger@ew.tq-group.com>, Frank Li <Frank.Li@nxp.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux@ew.tq-group.com, Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH 05/17] arm64: dts: imx8mm-phygate: rename uart4_rs485_en to uart4-rs485-en-hog
-Date: Tue, 13 Aug 2024 10:23:24 +0200
-Message-ID: <8413236.T7Z3S40VBb@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20240813-imx_warning-v1-5-3494426aea09@nxp.com>
-References: <20240813-imx_warning-v1-0-3494426aea09@nxp.com> <20240813-imx_warning-v1-5-3494426aea09@nxp.com>
+	s=arc-20240116; t=1723537673; c=relaxed/simple;
+	bh=LNeGme2o2n/gBK0AfWgZlr0eUJ1pU/M+df9vhsxiyk8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=H/FFCOUSG89A6mXSidpRg+ZJ3UqW1CNjIWZ1wLTWQYtdn4aspV/3FNnQlvnovaTuIqVCRBCpq7IXxKv21rA9mLg6WTs6buSEWYixXKeJwwsxW0CwMOSPL7CpUfxLinFJkBVa6RlMqfPXqezar7JeIhh0JsFXdXM1LJ4TgA8hom0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=osHt5xIv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0543C4AF09;
+	Tue, 13 Aug 2024 08:27:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723537673;
+	bh=LNeGme2o2n/gBK0AfWgZlr0eUJ1pU/M+df9vhsxiyk8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=osHt5xIvDI5Hn+QR+jNWMgymAyNrWGbugektDmxXpIx76UZOI54G4MIYxyZLygp9/
+	 J+flhxi0hfR+71JJ5cfuOPJFYPnxf7o8naWoAFnzuoO3dFzw5bHqpwt2xGTL1NL+Vb
+	 S589qv7QPPQEIEqiOuCcnHGaGChGyfwtdwiaap4UGZYXUWkxHdpYA7SV4y1WMR7nuN
+	 EA3eRvhYO3yKb+/qnjsCzfr7TpIQ3tH1uH3wxXEXGXHXHzcQHvsez04pV+PV4n4vr/
+	 0uK3W51ep6XdhdmbOcolwu0MlydCzaTP99HGfhVByI6yqJxYjM/R5EdPnGSXJtj4Fm
+	 mfWtT++u43UEw==
+Message-ID: <c5b0e395-7f2b-4dca-9764-83d0878e99c6@kernel.org>
+Date: Tue, 13 Aug 2024 10:27:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 01/12] dt-bindings: PCI: Cleanup of brcmstb YAML and
+ add 7712 SoC
+To: Jim Quinlan <james.quinlan@broadcom.com>
+Cc: linux-pci@vger.kernel.org, Nicolas Saenz Julienne <nsaenz@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Cyril Brulebois <kibi@debian.org>, Stanimir Varbanov <svarbanov@suse.de>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE"
+ <linux-arm-kernel@lists.infradead.org>,
+ "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
+ <linux-rpi-kernel@lists.infradead.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+References: <20240731222831.14895-1-james.quinlan@broadcom.com>
+ <20240731222831.14895-2-james.quinlan@broadcom.com>
+ <e1002187-fca0-455c-840c-32489e5eadb4@kernel.org>
+ <CA+-6iNzDcF3pA1T3FuGNS4NPn1RrjHxxAVStN6t++xDsx-wUXQ@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CA+-6iNzDcF3pA1T3FuGNS4NPn1RrjHxxAVStN6t++xDsx-wUXQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Am Dienstag, 13. August 2024, 06:35:00 CEST schrieb Frank Li:
-> Rename gpio uart4_rs485_en to uart4-rs485-en-hog to fix below warning:
-> arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l-rs232-rs232.dtb:
->   gpio@30220000: 'uart4_rs485_en' does not match any of the regexes: '^(h=
-og-[0-9]+|.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9]+'
->=20
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+On 13/08/2024 00:07, Jim Quinlan wrote:
+> On Fri, Aug 2, 2024 at 2:43 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 01/08/2024 00:28, Jim Quinlan wrote:
+>>> o Change order of the compatible strings to be alphabetical
+>>> o Use "maxItems" where needed.
+>>
+>> I asked at v3 and then in v4 about splitting this. You never responded
+>> to that comment, so sorry I won't be repeating the same thing in v5.
+> 
+> I'm sorry Krzyszof, but I just reviewed your responses in V3 and V4
+> and I can't find you saying anything about splitting off the above two
+> bullet points.  Perhaps I am somehow losing email responses but all I
+> see is this in V3 is the following, where you ask me to do a squash,
+> not a commit:
+> 
+>     [JQ] o Change order of the compatible strings to be alphabetical
+>     []KK] That's a cleanup. You can squash it with a previous patch.
+> 
+> Now you did say in V3
+> 
+>     [JQ] o Describe resets/reset-names before using them in rules
+>     [KK] That's a new commit.
+> 
+> but this bullet item does not relate to the bullet points you have
+> highlighted in this email.    As for your responses to V4, I don't see
 
-Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+It exactly relates to the quoted part. The comment is ALWAYS under exact
+part of your patch being questioned/commented.
 
-> ---
->  arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l-rs232-rs232.dtso | =
-2 +-
->  arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l-rs232-rs485.dtso | =
-2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l-rs232-r=
-s232.dtso b/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l-rs232-rs23=
-2.dtso
-> index f1f38b739ef76..78f4e8d5814da 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l-rs232-rs232.dt=
-so
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l-rs232-rs232.dt=
-so
-> @@ -18,7 +18,7 @@ &gpio3 {
->  	pinctrl-names =3D "default";
->  	pinctrl-0 =3D <&pinctrl_gpio3_hog>;
-> =20
-> -	uart4_rs485_en {
-> +	uart4-rs485-en-hog {
->  		gpio-hog;
->  		gpios =3D <20 GPIO_ACTIVE_HIGH>;
->  		output-low;
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l-rs232-r=
-s485.dtso b/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l-rs232-rs48=
-5.dtso
-> index 1d8951e1a47e8..66288948bdd39 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l-rs232-rs485.dt=
-so
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l-rs232-rs485.dt=
-so
-> @@ -19,7 +19,7 @@ &gpio3 {
->  	pinctrl-names =3D "default";
->  	pinctrl-0 =3D <&pinctrl_gpio3_hog>;
-> =20
-> -	uart4_rs485_en {
-> +	uart4-rs485-en-hog {
->  		gpio-hog;
->  		gpios =3D <20 GPIO_ACTIVE_HIGH>;
->  		output-high;
->=20
->=20
+So first I said one part is cleanup and should be moved away. Then I
+explained that this part is a NEW COMMIT. New, so one more, different.
 
+I understand that this was not clear, but you never came with a question
+what did I mean.
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+Best regards,
+Krzysztof
 
 
