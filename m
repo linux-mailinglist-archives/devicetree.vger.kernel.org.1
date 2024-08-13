@@ -1,141 +1,137 @@
-Return-Path: <devicetree+bounces-93379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F6AE950B3A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 19:11:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC810950B44
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 19:14:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5049B20BD3
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 17:11:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4FFAAB2517B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 17:14:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E97B1A01C5;
-	Tue, 13 Aug 2024 17:10:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E4121A0700;
+	Tue, 13 Aug 2024 17:14:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gateworks.com header.i=@gateworks.com header.b="TQZrSouc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ClJKROuA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-il1-f170.google.com (mail-il1-f170.google.com [209.85.166.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D1003D38E
-	for <devicetree@vger.kernel.org>; Tue, 13 Aug 2024 17:10:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C17013D38E;
+	Tue, 13 Aug 2024 17:14:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723569056; cv=none; b=d5qLJ84MWT2pYWo3OvX3coUUY3K1sbbDGK4kZwTDFDztyZOgMijYjG/suiy/qmNLFDy9u7EC7/+vpVcfnakf7vskqCm595ber3Bs4bO6gwZTcUfNnooEILWFlp7jqScYqcGjcTeYOFYVmwo5s1CoDlroo5OnagWBiCPe0hxlq+M=
+	t=1723569257; cv=none; b=Zm116XSnsZpoON1L6/swfAcGIF0JMT5K7JSLsnsYtaOqg5XfMVNQr4LYU7uDD7kXgeVc4iOcHONqznOPR0ySaTebBgY01JquD64BLRx77CvglfTkqqTLM6wl/2ZiDhfXhZ4RSwe4TA0JyxWTn9OzcLMv3sEBDoiRPDc2FyVnGJE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723569056; c=relaxed/simple;
-	bh=7ympOJZpNt6WSAnm/Uh1NWzgl3X3DNcEPRJW0FlCpH4=;
+	s=arc-20240116; t=1723569257; c=relaxed/simple;
+	bh=jvOeIXVgGCt6WRfdXqI7flO0Leqov1TGs9XNO326Xhs=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=a3UBshIlfUlc6pW9vc3F3dmf9oExav+rh/SHMokeZP06AFHwMr97bbJlQDeRV50YOFka8JhVFTZ3Mli2T8Vur+6J5iF7jHgAV2KzL+BxUkOL3AJV7AiPocAnvvGr7WPowagRY7dbf76AK9iyj0B+TW6BoqX5TXZeUhBFFQuOgpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com; spf=pass smtp.mailfrom=gateworks.com; dkim=pass (2048-bit key) header.d=gateworks.com header.i=@gateworks.com header.b=TQZrSouc; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gateworks.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a83597ce5beso9951466b.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2024 10:10:54 -0700 (PDT)
+	 To:Cc:Content-Type; b=DjSzzwNioiijInXK85V34IgW5Pg7k0oH0+P6asl8A1FmItbIepqqVlrNmpYIssJoIR9ofwBD0AM1mkhWwWdtBvGAhjp+cVxmfiWDeGFYxZzFjnpZPEytQ0NEsUHX1yaaWA1+9T9/L7j/cUUKsC8j+WP5ZCeHKxRm1CLgdwuBnNo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ClJKROuA; arc=none smtp.client-ip=209.85.166.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-il1-f170.google.com with SMTP id e9e14a558f8ab-39b3c36d247so23525365ab.3;
+        Tue, 13 Aug 2024 10:14:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks.com; s=google; t=1723569053; x=1724173853; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OhtBUgLnrDhhdGzlxz/BjFJWhCixCkk0gwuIiyZNKtA=;
-        b=TQZrSoucQrjeY7jtGNp4htRYvEgfiZVuQ0YjK4seJ4LfWF+D2gkZgqek7FFuBnQ9Oi
-         joQHyot/0WW3CQSmVyFAwnSTPo5aIIzmGXoX6RLydCbP/ZgmYBhzKSogH+kplaFKcPML
-         CW0vGLgpZZwqKH4Se8x4KmXvPTmlGpw/jMJOT+wssNoUN/F/2RKzy1KAPLDqu5vnJP7x
-         m7tMuPJhu5Gk6RTTU8iTfioav52Nu85EHYcEPvG9UmKIqqbYVShGv5wiuIh7rtAG0aRa
-         X2ej4zvW7klyFSaCv1zDCPocen8aY2iUBlAOJ+b7qDWDS0aLFN+c/mVJ35vGksQb5K2O
-         7Mcg==
+        d=gmail.com; s=20230601; t=1723569255; x=1724174055; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=XnQW8pYG6LCHnllh5P1GTODS6+I9/wuKSdiLV/Ktwcw=;
+        b=ClJKROuAcO2jJszujhIqLe9xDSulexPrb8L+uP/6e0+h9THQtx8bbifqG316176Enh
+         CTkswP2djC05rGJLS/RHb01hKPNa9eVrWt181I9/m942Slw6cQyyayIPRaWwdVUtx1H8
+         jHC1Cf/T8xAgZLFOeHXt3AdOH59vHwNI4Acz0NmUox3EG4ocuyln4Z2a761Va28Vr1Bl
+         IizecJHj/lHenhoNakwfHa3AJGmtg3jZElOM1GfxJjlyJ3orzRhxspNndQdrXrjt3V1d
+         A7gcP+8K96fxnPCRlcoArcOEAXptnTFHJx08tedgCbFtXcRkCxBWg5wUDZiYJFO69fNG
+         xKhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723569053; x=1724173853;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OhtBUgLnrDhhdGzlxz/BjFJWhCixCkk0gwuIiyZNKtA=;
-        b=hv8PZ7Jt7/lfzlY9hoE+M0N0lXsZDzvK8Eb4eOKa8+Af6LN3JE46dpFTaRlN2jbUWh
-         O/Jxw+FCVDMNGWoyEzzFTES576CU9rZYdYgCKT8FOkyPdu34+9hgjPa9yFBs9OslvXAG
-         ic1WgVbJLc/vXPijpJ8VlNBmkSH6xKrdl5twZnTNMa/AtmkHeylGqTI7JXUxR8lw4Btl
-         23Q0rN7PbCX/apOOg/e4GyNuRB55p78p6jxCNABCb6X/izX8WMHokQ3lQYzrqmC0o5s9
-         y7vbBZsUKW8ofFWEMKdaHqgTY2V9LmBTvv2wS6RBPxzExa7HJqS2sGuZm/95uLS9mgh4
-         zrYg==
-X-Forwarded-Encrypted: i=1; AJvYcCUtYtnXKdo/xkgF4JMsbnfQlP2EFVntwg3q5DuhUbbGMI8PNt6sqlcXUYVRhJLdcC5HP4gsXqPNN2mG05U3u4bQrzfHvmUFbgEkgw==
-X-Gm-Message-State: AOJu0Yzi9RBYBZkEfN7yKXI/1Vp5PlSopHP6P2vgHY7ds5AFrOPyLAvg
-	6rSOdqjp6q7oKIGbLVja6+/aCzCelgyDs47ad4QcjKdBk9ssab7DuMmI+6NXaPuUQaq8Ymt8hud
-	U2+6BLBDF1pRRCgqhFBqR7Pnx/Ff8usYv50Th3g==
-X-Google-Smtp-Source: AGHT+IHfrLoNeAHUzX9iSp5yG/DmHNHyvEWlECdWd2S20k6QEuCIF2JQ1mr7dl/AjYpPPWLrA6gS9nYLsHONqns987s=
-X-Received: by 2002:a17:907:f729:b0:a7d:c352:c502 with SMTP id
- a640c23a62f3a-a8362d64c1emr33673666b.30.1723569052201; Tue, 13 Aug 2024
- 10:10:52 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1723569255; x=1724174055;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XnQW8pYG6LCHnllh5P1GTODS6+I9/wuKSdiLV/Ktwcw=;
+        b=NHOzrhP9Ri/Iyd7JPeHWmVNSB6PrNvbrae82onl6sRJSFetgBEyKCaFktOdGZjQRVO
+         Qe9UtEEwcAxOvpYghtmBSbBLBCG/R5nOduc3VSinwxS6jY6N+1IM2xT/ZhKbwGgA0DPT
+         dJ2YZO7ug8QoOoA4Iabeydi3AR74eKl0xWu/mcKw9+4UcIcox6JnV06wmtvWbaiKtHBA
+         bATSPSQdbuztMIbKthkdWHG/xocfFyFp6DJwJFgM6hcYEfYojCQRr3fKYVRftF1UOo3T
+         OqMrzsAyPu44LkS1XyvkxEXfplO/MmBi3Pn8CrUEHCD4AhHgMu4l5B2a2mEWHWzvsQDs
+         F9dA==
+X-Forwarded-Encrypted: i=1; AJvYcCU5lG8l2DZt8/LE2IRgvV1jd4vIxL8dp99xF1S9GcGkmwreg4NSl6AjcJUX5Sb3+m9hpTCczlamG9hfT/MLZB5NElIjYcQbyhGEFPdVdqaHaKPXprrldQ2Bc/7imsk00igJIh6MRA==
+X-Gm-Message-State: AOJu0YwStwTUiOR35LGI4CpjGsPN/O8Z+cim8h4iTvkEs+uQuOKualy8
+	cc7mcBg9P25ukC07YSeV+YC6H6q+Q/wqYK3pNau/bvnr63vUMabK51QiLtMphjaTJLUzDuuk1d3
+	KIexMNBCyntocIqb1D/dFmI4s/aQ=
+X-Google-Smtp-Source: AGHT+IE1SEdB2S6FPvLqmHpU+NfPOzND/hei07NGJ6SnXJB1C3ScxKKZcSU1n+qObrhFw1qzFXpNI0UnKg5i8mH7VNU=
+X-Received: by 2002:a05:6e02:184b:b0:383:6af0:eb0d with SMTP id
+ e9e14a558f8ab-39d124c3641mr4830845ab.26.1723569254595; Tue, 13 Aug 2024
+ 10:14:14 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240522215043.3747651-1-tharvey@gateworks.com>
- <CAL_JsqKtc_65tDMFWT0WroNPmW2R0Dd-4Jw101PnyJcPb=7tJA@mail.gmail.com>
- <CAJ+vNU0LBEET=y40BT4OE0zWsu6DxT-SYOrx7qD-h=HH2zENzA@mail.gmail.com> <4faa6881-8828-44de-92fd-6e55495cefb2@linaro.org>
-In-Reply-To: <4faa6881-8828-44de-92fd-6e55495cefb2@linaro.org>
-From: Tim Harvey <tharvey@gateworks.com>
-Date: Tue, 13 Aug 2024 10:10:40 -0700
-Message-ID: <CAJ+vNU1ff0c=wJoVTENGSV5Y3Yh_w5mTU-xoA9XgOX-x744=EQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: rename gw7905 to gw75xx
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Fabio Estevam <festevam@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org
+References: <56a52c81-68de-438d-94ae-9decc799d824@kernel.org> <20240808191735.1483572-1-ilordash02@gmail.com>
+In-Reply-To: <20240808191735.1483572-1-ilordash02@gmail.com>
+From: Ilya Orazov <ilordash02@gmail.com>
+Date: Tue, 13 Aug 2024 20:14:03 +0300
+Message-ID: <CAGCz5Hk=mSjQ1eFWstQQu=JZUkavJ_mRhnp8DRELUXP_syq4Zw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/1] dt-bindings: phy: ti,tcan104x-can: Document
+ Microchip ATA6561
+To: Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Aswath Govindraju <a-govindraju@ti.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 13, 2024 at 9:34=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Thu, 8 Aug 2024 at 22:18, Ilya Orazov <ilordash02@gmail.com> wrote:
 >
-> On 13/08/2024 18:22, Tim Harvey wrote:
-> > On Fri, May 31, 2024 at 7:13=E2=80=AFAM Rob Herring <robh@kernel.org> w=
-rote:
-> >>
-> >> On Wed, May 22, 2024 at 4:50=E2=80=AFPM Tim Harvey <tharvey@gateworks.=
-com> wrote:
-> >>>
-> >>> The GW7905 was renamed to GW7500 before production release.
-> >>
-> >> Maybe some summary of the discussion and how this changed from one-off
-> >> to wider availability.
-> >>
-> >>>
-> >>> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> >>> ---
-> >>>  Documentation/devicetree/bindings/arm/fsl.yaml | 4 ++--
-> >>>  1 file changed, 2 insertions(+), 2 deletions(-)
-> >>
-> >> Reviewed-by: Rob Herring <robh@kernel.org>
-> >
-> > Hi Rob,
-> >
-> > What is the status of this patch? I'm not clear what tree the
-> > Documentation/devicetree/bindings go through.
+> Microchip ATA6561 is High-Speed CAN Transceiver with Standby Mode.
+> It is pin-compatible with TI TCAN1042 and has a compatible programming
+> model, therefore use ti,tcan1042 as fallback compatible.
 >
-> Always via given subsystem. Which subsystem is here? Maintainers should
-> tell you - ARM Freescale/NXP.
+> Signed-off-by: Ilya Orazov <ilordash02@gmail.com>
+> ---
+>  .../devicetree/bindings/phy/ti,tcan104x-can.yaml    | 13 +++++++++----
+>  1 file changed, 9 insertions(+), 4 deletions(-)
 >
-> See also:
-> https://elixir.bootlin.com/linux/v6.11-rc3/source/Documentation/devicetre=
-e/bindings/submitting-patches.rst#L79
+> diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> index 79dad3e89aa6..4a8c3829d85d 100644
+> --- a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+> @@ -14,10 +14,15 @@ properties:
+>      pattern: "^can-phy"
 >
-> Best regards,
-> Krzysztof
+>    compatible:
+> -    enum:
+> -      - nxp,tjr1443
+> -      - ti,tcan1042
+> -      - ti,tcan1043
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - microchip,ata6561
+> +          - const: ti,tcan1042
+> +      - enum:
+> +          - ti,tcan1042
+> +          - ti,tcan1043
+> +          - nxp,tjr1443
+>
+>    '#phy-cells':
+>      const: 0
+>
+> base-commit: 6a0e38264012809afa24113ee2162dc07f4ed22b
+> --
+> 2.34.1
 >
 
-Krzysztof, thanks - that makes sense.
+Could you please review my patch?
 
-Shawn, what is the status of this series [1]
+I hope the new patch version hasn't been lost in your inbox. Thanks to
+Conor, I understand now that sending new versions as a reply wasn't
+the best approach. I appreciate your time and feedback.
 
-Best Regards,
-
-Tim
-1 - https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=3D85=
-5146&state=3D%2A&archive=3Dboth
+-- 
+Best regards,
+Ilya Orazov
 
