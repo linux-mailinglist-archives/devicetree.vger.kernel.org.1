@@ -1,132 +1,133 @@
-Return-Path: <devicetree+bounces-93280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C89A0950357
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 13:11:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CBC795035A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 13:12:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 51D45B227F6
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 11:11:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 720C6B21ABB
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 11:12:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D66D61990AD;
-	Tue, 13 Aug 2024 11:11:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2EC4198A35;
+	Tue, 13 Aug 2024 11:12:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZBzg76gx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QDko4rdU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41C3560EC4;
-	Tue, 13 Aug 2024 11:11:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8D9260EC4;
+	Tue, 13 Aug 2024 11:12:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723547499; cv=none; b=HIFpxzagwo+Qx6ptDMvIOTPcZUEsX325mGclCmYjo0uE2UZ3+Yx+X3LMn9rOVph8KALkv7lGvqP7tP9j3/IsMsaHtrGSvgrYMyAMgxFJJeyCp2qv+tx1qJkJ+njwQqKL6ONvUIXDyA6scMXEwMyF4E35ruqxTJ+XqDvqFEZMh/c=
+	t=1723547524; cv=none; b=ZkHDUOo59+OBLxE+XtTiQdj7t6XCo42aqKQCN1BgREcqMaN2PATFZl6XRzUVgZSSMH4c4ibM2oQj5BK2DBsyOQGiSXKKK3axE7feXaTekpvUTqUpQTr5ERVkXDiX6zgVAistGTqY3D93+bc77xbjZHk/ssX8KBhHYp4M1LLlRZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723547499; c=relaxed/simple;
-	bh=9CYbKupifRahOwQ5D4eldN4XFRGyx70KQdl2CNH2QuA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b5GKIgJbGuQNMkPIaDWwkKN83qapAgb2na/NYeGZWkjnkw6DUX4TF1VdXT8h/uy6pOzGEDaavPf7j0H7MMotuZkQOSIFc2g6/mboCPHi7ppZq2BlPb+ve7dnxDHt0DWe25gs3SiqPj84KtmMG3GL54Oc8OUBIIdB5ivKzpbJ1/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ZBzg76gx; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1723547498; x=1755083498;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9CYbKupifRahOwQ5D4eldN4XFRGyx70KQdl2CNH2QuA=;
-  b=ZBzg76gxjyXf9DRtaIbX1d9IRK+YIgUUmKj/vcNYj9wKLdvXqk64l6s4
-   T7oD0S3OdaEWtT/TcsZgJ1JJpGbW7Q6Fkh76Vkiuus8tubXqvux3ILKD6
-   h8oLdSyiKDUF2DKGCSys0NAFDzNSaYSOjuqVTMf1AhqJezNdti6JVvQ5M
-   +7my1PTFoTU0L7Hni5e1oNoiB3YchkFeMiCT5XD2HFPpnqyqB/XRLMg6l
-   nLwrbQfKbJF/jYdpn6Aedg708ZJWx39MO53VhoHHo658MVbryxokXmTjg
-   Q3WOhstEY3WiLmwPoGnxQeLcxMzstCcfOKXfc5fg+BSbQ8VYVQUHdMyZg
-   w==;
-X-CSE-ConnectionGUID: qtZUNTs2T2mAkWKdIfJn8Q==
-X-CSE-MsgGUID: 47O6I4ynTm+qfd3WAeSA7g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11162"; a="21571766"
-X-IronPort-AV: E=Sophos;i="6.09,285,1716274800"; 
-   d="scan'208";a="21571766"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Aug 2024 04:11:37 -0700
-X-CSE-ConnectionGUID: ov+rmDnlQzOWIO73weRrvg==
-X-CSE-MsgGUID: KwVgZ/FVRbe2ddxlyiPVaw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,285,1716274800"; 
-   d="scan'208";a="96167459"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Aug 2024 04:11:34 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1sdpR4-0000000Ehfz-1Xvv;
-	Tue, 13 Aug 2024 14:11:30 +0300
-Date: Tue, 13 Aug 2024 14:11:30 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Wolfram Sang <wsa@kernel.org>, Benson Leung <bleung@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	linux-i2c@vger.kernel.org
-Subject: Re: [PATCH v4 1/6] of: dynamic: Add of_changeset_update_prop_string
-Message-ID: <Zrs_YijPxKBFQF0_@smile.fi.intel.com>
-References: <20240808095931.2649657-1-wenst@chromium.org>
- <20240808095931.2649657-2-wenst@chromium.org>
+	s=arc-20240116; t=1723547524; c=relaxed/simple;
+	bh=q/BYpNAcIZekIKxSVC4OgrS7MA7S3fwGwMg28nu8F4A=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=Dfp7EWxwEezYKZzmDQvXFETkOFioCBp4pQs3dsrfGJLybX1dQryflWP6/O5xyAY19tEFOyyVpVIFM8OJcJdM+4rgXmwupbGUqVrChcKSp4IYxRXKTT9o0yQrmsmbjQg33QdtxHgbjTh6Pkxcsto+qucBRyJqLZ+ojrsdYIR2Nb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QDko4rdU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C481AC4AF09;
+	Tue, 13 Aug 2024 11:12:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723547524;
+	bh=q/BYpNAcIZekIKxSVC4OgrS7MA7S3fwGwMg28nu8F4A=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=QDko4rdUaDGuHL4tlZDBJugI2IbtfZdSZwzEQ6QB3t3JeOLwodxdvDXSQejy8SpdI
+	 9p2pDNG6YvcN/bK7Q1vIb3CFlmlYEy9YIrFDkbTt7+3dVzu14VybO3B/x6ySLvUNqm
+	 mN2D2tupIeUcR9zefHYKm/O/H4yJjlr7UyokgZwoeJX4RFM70vah2vef3Hy6JJ0HrB
+	 VyP9+dV8HPthpbUToD3xRKxUl6kKltj+DkS4lL0IjKysI1KW0gVG4zQP0AMVXxMdmX
+	 9ngKLjnzepNgfTt1TCuQ1hgU9/M2MJRKiWoKs+Vijwwtax7a2FfP+Ll7gJG/oMnDGY
+	 ZYzbJYpjdr/SA==
+Date: Tue, 13 Aug 2024 05:12:02 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240808095931.2649657-2-wenst@chromium.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Utsav Agarwal <utsav.agarwal@analog.com>
+Cc: devicetree@vger.kernel.org, 
+ Michael Hennerich <michael.hennerich@analog.com>, 
+ Oliver Gaskell <oliver.gaskell@analog.com>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, linux-kernel@vger.kernel.org, 
+ Vasileios Bimpikas <vasileios.bimpikas@analog.com>, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ Arturs Artamonovs <arturs.artamonovs@analog.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-input@vger.kernel.org, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>
+In-Reply-To: <20240813-adp5588_gpio_support-v10-3-aab3c52cc8bf@analog.com>
+References: <20240813-adp5588_gpio_support-v10-0-aab3c52cc8bf@analog.com>
+ <20240813-adp5588_gpio_support-v10-3-aab3c52cc8bf@analog.com>
+Message-Id: <172354752239.384988.5705833300903132689.robh@kernel.org>
+Subject: Re: [PATCH v10 3/3] dt-bindings: input: pure gpio support for
+ adp5588
 
-On Thu, Aug 08, 2024 at 05:59:24PM +0800, Chen-Yu Tsai wrote:
-> Add a helper function to add string property updates to an OF changeset.
-> This is similar to of_changeset_add_prop_string(), but instead of adding
-> the property (and failing if it exists), it will update the property.
+
+On Tue, 13 Aug 2024 10:51:33 +0100, Utsav Agarwal wrote:
+> Adding software support for enabling the pure gpio capability of the
+> device - which allows all I/O to be used as GPIO. Previously, I/O
+> configuration was limited by software to partial GPIO support only.
 > 
-> This shall be used later in the DT hardware prober.
+> When working in a pure gpio mode, the device does not require the
+> certain properties and hence, the following are now made optional:
+> 	- interrupts
+> 	- keypad,num-rows
+> 	- keypad,num-columns
+> 	- linux,keymap
+> 
+> However, note that the above are required to be specified when
+> configuring the device as a keypad, for which dependencies have been added
+> such that specifying either one requires the remaining as well.
+> 
+> Also, note that interrupts are made optional, but required when the device
+> has either been configured in keypad mode or as an interrupt controller.
+> This has been done since they may not necessarily be used when leveraging
+> the device purely for GPIO.
+> 
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Utsav Agarwal <utsav.agarwal@analog.com>
+> ---
+>  .../devicetree/bindings/input/adi,adp5588.yaml     | 40 ++++++++++++++++++----
+>  1 file changed, 34 insertions(+), 6 deletions(-)
+> 
 
-...
+My bot found errors running 'make dt_binding_check' on your patch:
 
-> +int of_changeset_update_prop_string(struct of_changeset *ocs,
-> +				    struct device_node *np,
-> +				    const char *prop_name, const char *str)
-> +{
-> +	struct property prop;
-> +
-> +	prop.name = (char *)prop_name;
-> +	prop.length = strlen(str) + 1;
-> +	prop.value = (void *)str;
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/input/adi,adp5588.yaml:140:1: [error] syntax error: could not find expected ':' (syntax)
 
-Is it the existing style in the file? Otherwise I often see style like this
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/input/adi,adp5588.yaml: ignoring, error parsing file
+./Documentation/devicetree/bindings/input/adi,adp5588.yaml:140:1: could not find expected ':'
+make[2]: *** Deleting file 'Documentation/devicetree/bindings/input/adi,adp5588.example.dts'
+Documentation/devicetree/bindings/input/adi,adp5588.yaml:140:1: could not find expected ':'
+make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/input/adi,adp5588.example.dts] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1432: dt_binding_check] Error 2
+make: *** [Makefile:224: __sub-make] Error 2
 
-	struct property prop = {
-		.name = (char *)prop_name;
-		.length = strlen(str) + 1;
-		.value = (void *)str;
-	};
+doc reference errors (make refcheckdocs):
 
-in the kernel (IRQ domain, platform core, ...).
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240813-adp5588_gpio_support-v10-3-aab3c52cc8bf@analog.com
 
-> +	return of_changeset_update_prop_helper(ocs, np, &prop);
-> +}
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
--- 
-With Best Regards,
-Andy Shevchenko
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
