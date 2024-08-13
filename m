@@ -1,174 +1,164 @@
-Return-Path: <devicetree+bounces-93313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB30E95077D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 16:27:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD809950785
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 16:28:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAD401C21D4A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 14:27:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3AA10B28A68
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 14:28:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12CCA19D086;
-	Tue, 13 Aug 2024 14:27:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEE6919D892;
+	Tue, 13 Aug 2024 14:28:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VTdoy3Wj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DlzAyLWD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D84B19D07B;
-	Tue, 13 Aug 2024 14:27:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D144B19D095;
+	Tue, 13 Aug 2024 14:28:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723559241; cv=none; b=oGvxgeH1uVcUtO+9Aoa0b5GyEp2NiCJSckRdBgRSb2nfGbFbg3P8N/NJEjjgzTMECeg3Eqkqmyy8PpE+QutCnkC+UDmvY3aBCgGsIkdXKpe7ZzmX8c6nyjVKeMzbvwE6JAg3UigjVYEO2hTa80HS9Q2NdA+uvksywgkpU+KYoW0=
+	t=1723559301; cv=none; b=bbgSzJBq+IvRQgABULtfdCdAqSYAie5nvCzj3pOD8ji9NHiD0e6dmbaanObfZcgxLllZVShdH/Ijsp0blGRlvQcYpHKfZVvoWjDxFdwRA45GKgVfkbLN5lj8qScO3wV+qIwMtFrsY/drZV48l5tja+BYe3MFGRiQXBtmt9tg6po=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723559241; c=relaxed/simple;
-	bh=7o1ebO6uvNnNS0M2BIyB8SB8taid1I1qAAMAb2zKqbo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cc5qfHO2Fh8rNJPNWZwtHWYoMR0QzUEwz+tRLgkZj9XprCo2nsdUIW4fnOURx+Lox2vI8QTQiPNmkkOxrOiei6ag23a+wELxRGituPzByEfFqBSMvQc8WnYA1d99uHzv7McdvOs5v/DllPFxN0caGYVe61jJgfnDh/RwYVpl1So=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VTdoy3Wj; arc=none smtp.client-ip=209.85.208.50
+	s=arc-20240116; t=1723559301; c=relaxed/simple;
+	bh=z40n9s51ZlLhvANk2e/ULNzSWTjF41BWJ66lQbWzL38=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lcGvYYa9eux4IVP0PmEdhLlX0HAh10HsxG31od/E+O3mhmdOriCsp9le5yvDtO9EYHjamJYECJqy0abmVfvN85zU/kKgZoZ8xKKLuLLZm21VbfWKmxgDDwJKtu9zDwEsFnlvUXsaAjVbyl5i7lXsSOMlwxXvwEhlyBQhEcm3vxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DlzAyLWD; arc=none smtp.client-ip=209.85.218.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5a10835487fso7356739a12.1;
-        Tue, 13 Aug 2024 07:27:18 -0700 (PDT)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a7a9a369055so434181266b.3;
+        Tue, 13 Aug 2024 07:28:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723559237; x=1724164037; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0GZ9q735651QGDZf7rgdlCrHxFSRCY3h/YKc3A79Cc0=;
-        b=VTdoy3WjCzQiiS5Ec7e9NVoKcUQq36ZGjs11b11P3msZmfgc45fYJXth5aYQ/kc3uv
-         HPnw/aM34r77ZM+0jUajQOb7UyU4UfT/eiKRd0D9CILV+CEC9YsIFB4W5fzFH8mzRZfY
-         YOLLtarvrjmFi/9PuwxqVU1f9CCbUsNMiCWx2wyRw9LtEBGxS45/Pu8HO6H1kwPnJ8YS
-         PL8hGjhwAaGETH9NuzO4j4mz+pvlPjpl6nZbkTybzvbOKBPWhvJae5Ee4tbm/KILAv5/
-         xRK3q09kE8zd/riXtJ0X8Ueca9WcjsOaHbooTMAxAjStsOaITISU4sfuhdCOFciHN6/9
-         ds2Q==
+        d=gmail.com; s=20230601; t=1723559298; x=1724164098; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MHgusO5dO2gYWTqDU455wfSOfSQYn0V50tEQrx9IKO0=;
+        b=DlzAyLWDWLGOZrvpKlreP7FqV+105oAHphELDRd35b/Onrr6Jkb1T1j4ydtYnAg06v
+         /nyoDKqK4ooLbIY4+fHNqA0EJWhAVg6dJ+sUF0Ed6yt6/nEFzFWsqGukqcwMiMjjViZ0
+         pSoRpm11cuyebJuK5i82SAdwUL6JEwcTTZZ5HvHSCUIPGC2XYXPwFfUJ6bq4KFuHY1T4
+         QD0mbs85heDJaUFCm3Vnnr0zFlOnstWV8w5XsLMKbtt0wXLSg37s1UTVP6mhnxRKMd4l
+         6jxxs059PKHknUceIiy92mN9RRT6WWvxmaKHdZxrw/1rL0tfCUMSR2KzhhN510s6K+vp
+         0Pbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723559237; x=1724164037;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0GZ9q735651QGDZf7rgdlCrHxFSRCY3h/YKc3A79Cc0=;
-        b=g64BEn9uM2HHqzmSUf1MkD2xQ5E43E8SP3m7WqcfFiXjWIcGLllQY48rGWRjpYP1kC
-         qHAhwNk7C7IqDp7SxZkbGgBbA/ssmdLeCbepAQckm7DWITxNaI2519C7t8XBam2TV0Nr
-         zRgNzB1KkU1Hczid/cawSu4Nyzx7V+jpbVKdWjC4IbwQ+UMYyl1QUb+aRWPfrH0kgZiy
-         wJCQ90yvvq/ZZfTdqimPuA0LYB9r0eDIYg4PHm+VfsS/owf0TtVjFZtWjI//SUlJlZSl
-         7PzqrGtjVvC1r7LK3qKHowAKXGHll1TWgbc3ujib76OW8NLZzu9gcpPL1cJRDQSVd/8m
-         APYw==
-X-Forwarded-Encrypted: i=1; AJvYcCUd2ef4iqyHIzEIdNQcpyFWwXKNBHo03LNPd2FnVyeRSIGiTpfeRijwOaMhocn10ksARhzRJy+n0exTOatWB4bR2MM4tn2cZ7w2sfNLuzpOGwQKIT8fWgD2atVT4Ai0tBqTakk1H3jGWwkd0ryOLSklSr9wEpUSXOuaCKsc58RX95DyW5CE2ea+XznRRvbZ2PXDvGhf5NoqSPB+7OzFA1SXatzxAUof0VuPTh4yEcPDJsdJYkZxMDo5tX48mftxVnC+ROwoIifU
-X-Gm-Message-State: AOJu0YxwAR0WppjZBmFoQozxWqdDdtpcECDVp5j9oKUjAQHpmRfEsGJl
-	kTfHVUmUhBvCHfMzv4pa5+bB19cdYXbZo6iP+zTGDHBgKme5jEJC
-X-Google-Smtp-Source: AGHT+IH6Tmd1OzGRfql2ZCp766sYz9QoQGSXIi39HApJlkOewrKUyajyK555rObaG/0QcWQbujM/0w==
-X-Received: by 2002:a05:6402:848:b0:5a7:448b:4434 with SMTP id 4fb4d7f45d1cf-5bd44c2d6f3mr2725779a12.9.1723559236558;
-        Tue, 13 Aug 2024 07:27:16 -0700 (PDT)
-Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5bd196a666fsm2954540a12.46.2024.08.13.07.27.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Aug 2024 07:27:15 -0700 (PDT)
-Message-ID: <36b0ee66-3af3-40c1-86b6-b52cd826298e@gmail.com>
-Date: Tue, 13 Aug 2024 16:27:12 +0200
+        d=1e100.net; s=20230601; t=1723559298; x=1724164098;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MHgusO5dO2gYWTqDU455wfSOfSQYn0V50tEQrx9IKO0=;
+        b=LdqvEEavuqqZWCJBwcYidi5i5AMt0M2rW5rXYOmQ1ELaxHBtF5mIiuhTBypWn4x6Y8
+         17Jlq2HO+tN7Aw4/ypEuXbSZX2NskQjEqjNrjRIwPAU4H2SQuODS2sLyy0NYe3JNL7Ux
+         Bd1ge088nFbJzKK6NLjY3+A2EBV6gmCwYOoNWpD7GP3YFZKlC2Okl5WIecQvOWfnCRzK
+         PI3lI81XQswh5MxTS70WMaFmHd9f9KXxOeb8Zb+FgyJmiTVhI+MKFxd41tvZ/w0FzC5R
+         k2cFguPQB21RsybfZIGunIv68Z7nCBPS0CvqdiMosX2n7LlV8H5Nctj7EKgU0mOu1sqq
+         ipGA==
+X-Forwarded-Encrypted: i=1; AJvYcCXIoi1wCTZH+mwruL4Tet6ViPpJF9FcKTjWohWWV+xN7CkgroDcvFtndBELcVUQtWX2ADc6RhdsZOVn5JsZRUFQNkq2gI96hlqySc1prakP3Cw9Syo8OlX0UeFmPn10vTdS1qgOUxTfLqYHVqDJPIPYZn/5UowyV0fVoQgko014EA==
+X-Gm-Message-State: AOJu0Yw+TAkk5cygdww66xjjBnerST3YDi+zRzaMSdODP84YfEw9e2kC
+	FIzgTl7kd4eis6yqsw2C5y83R5REB30NyRRRePl0RZVCJ0O3tY7L
+X-Google-Smtp-Source: AGHT+IF86EMQ/14fppNNRbr34RJ/hsy/7iB8wS8JEl/P4cXaBT3+xLqq8gSA+toVftzW9LTXpQ0A0g==
+X-Received: by 2002:a17:907:72cf:b0:a7a:a6e1:2c60 with SMTP id a640c23a62f3a-a80ed2d4800mr235734966b.61.1723559297852;
+        Tue, 13 Aug 2024 07:28:17 -0700 (PDT)
+Received: from lapsy144.cern.ch (lapsy144.ipv6.cern.ch. [2001:1458:202:99::100:4b])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a80f3fa7c27sm74345166b.66.2024.08.13.07.28.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Aug 2024 07:28:17 -0700 (PDT)
+From: vtpieter@gmail.com
+To: Woojung Huh <woojung.huh@microchip.com>,
+	UNGLinuxDriver@microchip.com,
+	Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	David S Miller <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marek Vasut <marex@denx.de>
+Cc: Woojung Huh <Woojung.Huh@microchip.com>,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Pieter Van Trappen <pieter.van.trappen@cern.ch>
+Subject: [PATCH net-next v6 0/6]  net: dsa: microchip: ksz8795: add Wake on LAN support
+Date: Tue, 13 Aug 2024 16:27:34 +0200
+Message-ID: <20240813142750.772781-1-vtpieter@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] dt-bindings: platform: Add Surface System
- Aggregator Module
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Len Brown <lenb@kernel.org>, Maximilian Luz <luzmaximilian@gmail.com>,
- Hans de Goede <hdegoede@redhat.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
- platform-driver-x86@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <quic_kdybcio@quicinc.com>
-References: <20240810-topic-sam-v2-0-8a8eb368a4f0@quicinc.com>
- <20240810-topic-sam-v2-2-8a8eb368a4f0@quicinc.com>
- <1a6ebc27-95ca-4f56-9971-b2a8d03f270a@kernel.org>
-Content-Language: en-US
-From: Konrad Dybcio <konradybcio@gmail.com>
-In-Reply-To: <1a6ebc27-95ca-4f56-9971-b2a8d03f270a@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 11.08.2024 4:28 PM, Krzysztof Kozlowski wrote:
-> On 10/08/2024 03:28, Konrad Dybcio wrote:
->> From: Konrad Dybcio <quic_kdybcio@quicinc.com>
->>
->> Add bindings for the Surface System Aggregator Module (SAM/SSAM), the
->> Microsoft Surface-standard Embedded Controller, used on both x86- and
->> Qualcomm-based devices.
->>
->> It provides a plethora of functions, depending on what's wired up to
->> it. That includes but is not limited to: fan control, keyboard/touchpad
->> support, thermal sensors, power control, special buttons, tablet mode.
->>
->> Signed-off-by: Konrad Dybcio <quic_kdybcio@quicinc.com>
->> ---
->>  .../bindings/platform/microsoft,surface-sam.yaml   | 50 ++++++++++++++++++++++
->>  1 file changed, 50 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/platform/microsoft,surface-sam.yaml b/Documentation/devicetree/bindings/platform/microsoft,surface-sam.yaml
->> new file mode 100644
->> index 000000000000..f613738aa31d
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/platform/microsoft,surface-sam.yaml
->> @@ -0,0 +1,50 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/platform/microsoft,surface-sam.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Surface System Aggregator Module (SAM, SSAM)
->> +
->> +maintainers:
->> +  - Konrad Dybcio <konradybcio@kernel.org>
->> +
->> +description: |
-> 
-> No need for |
+From: Pieter Van Trappen <pieter.van.trappen@cern.ch>
 
-Apparently it's necessary because I have a :
-> 
->> +  Surface devices use a standardized embedded controller to let the
->> +  operating system interface with various hardware functions. The
->> +  specific functionalities are modeled as subdevices and matched on
->> +  five levels: domain, category, target, instance and function.
+Add WoL support for KSZ8795 family of switches. This code was tested
+with a KSZ8794 chip.
 
-                 ^ here
+Strongly based on existing KSZ9477 code which has now been moved to
+ksz_common instead of duplicating, as proposed during the review of
+the v1 version of this patch.
 
-Should I e.g. s/:/-/, or keep the |?
+In addition to the device-tree addition and the actual code, there's
+two additional patches that fix some bugs found when further testing
+DSA with this KSZ8794 chip.
 
->> +
->> +properties:
->> +  compatible:
->> +    const: microsoft,surface-sam
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  current-speed:
->> +    description: The baudrate in bits per second of the device as it comes
->> +      online, current active speed.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
-> 
-> This should be just "current-speed: true", because the type will be
-> brought by serial schema. We should however have some schema with
-> peripheral properties for serial devices. I'll come with something.
+Signed-off-by: Pieter Van Trappen <pieter.van.trappen@cern.ch>
+---
+v6:
+ - patch 6/6: use GENMASK macro in dedicated mask macro instead of inline
 
-I suppose I should just include:
+v5: https://lore.kernel.org/netdev/20240812153015.653044-1-vtpieter@gmail.com/
+ - patch 5/6: split off DSA tag_ksz fix to separate patch 6/6
 
-https://lore.kernel.org/linux-serial/20240811-dt-bindings-serial-peripheral-props-v1-0-1dba258b7492@linaro.org/
+v4: https://lore.kernel.org/netdev/20240812084945.578993-1-vtpieter@gmail.com/
+ - patch 4/5: rename KSZ8795* macros to KSZ87XX*
+ - patch 5/5: rename ksz8_dev_ops to ksz88x3_dev_ops
+ - patch 5/5: additional DSA tag_ksz fix
 
-Konrad
+v3: https://lore.kernel.org/netdev/20240806132606.1438953-1-vtpieter@gmail.com/
+ - ensure each patch separately compiles & works
+ - additional return value checks where possible
+ - drop v2 patch 5/5 (net: dsa: microchip: check erratum workaround through indirect register read)
+ - add new patch 5/5 that fixes KSZ87xx bugs wrt datasheet
+
+v2: https://lore.kernel.org/netdev/20240731103403.407818-1-vtpieter@gmail.com/
+ - generalize instead of duplicate, much improved
+ - variable declaration reverse Christmas tree
+ - ksz8_handle_global_errata: return -EIO in case of indirect write failure
+ - ksz8_ind_read8/write8: document functions
+ - ksz8_handle_wake_reason: no need for additional write to clear
+ - fix wakeup_source origin comments
+v1: https://lore.kernel.org/netdev/20240717193725.469192-1-vtpieter@gmail.com/
+
+Pieter Van Trappen (6):
+  dt-bindings: net: dsa: microchip: add microchip,pme-active-high flag
+  net: dsa: microchip: move KSZ9477 WoL functions to ksz_common
+  net: dsa: microchip: generalize KSZ9477 WoL functions at ksz_common
+  net: dsa: microchip: add WoL support for KSZ87xx family
+  net: dsa: microchip: fix KSZ87xx family structure wrt the datasheet
+  net: dsa: microchip: fix tag_ksz egress mask for KSZ8795 family
+
+ .../bindings/net/dsa/microchip,ksz.yaml       |   5 +
+ drivers/net/dsa/microchip/ksz8.h              |   3 +
+ drivers/net/dsa/microchip/ksz8795.c           |  94 +++++-
+ drivers/net/dsa/microchip/ksz9477.c           | 197 +------------
+ drivers/net/dsa/microchip/ksz9477.h           |   5 -
+ drivers/net/dsa/microchip/ksz9477_reg.h       |  12 -
+ drivers/net/dsa/microchip/ksz_common.c        | 271 ++++++++++++++++--
+ drivers/net/dsa/microchip/ksz_common.h        |  31 +-
+ net/dsa/tag_ksz.c                             |   6 +-
+ 9 files changed, 391 insertions(+), 233 deletions(-)
+
+
+base-commit: dd1bf9f9df156b43e5122f90d97ac3f59a1a5621
+-- 
+2.43.0
+
 
