@@ -1,143 +1,94 @@
-Return-Path: <devicetree+bounces-93332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F5549508E5
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 17:22:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2788F950911
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 17:27:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F2008B22ABD
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 15:22:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5953A1C24413
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 15:27:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E649D1A0720;
-	Tue, 13 Aug 2024 15:21:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FDC41A01C9;
+	Tue, 13 Aug 2024 15:26:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Vnqxgvog"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pv/T02g7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3749E19EEBF;
-	Tue, 13 Aug 2024 15:21:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1830719E831;
+	Tue, 13 Aug 2024 15:26:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723562473; cv=none; b=h8+N4Mayb6hMuUtZE3+WvphiXPH34O24XTyJ9emunYYjpevZpV8uuuSGftuHjVdyv/fMXw135qzrxHL0EGbt+q3c/C+MIjQXIbf4FRWpF4h+/RCkYhSzFGNac9vCmkaHyWOaQSt3N+qCCVyDq4FH0a5OyyzYh//gjDynRUm5fYg=
+	t=1723562817; cv=none; b=V7hivzJEzvka8uo55BsaPGnEEK9Bhd6i6ZallwRmvMeA53KnECfbwTqy8p6dVAbJCFU7p1FtiANBFl7gftt3Be78bS1yhSVkp/U7xwprofSVPxtYcQ3TWYhVDWR2NezvQlgbD/rmVvkbNYILOltZrI4HyQfcJc4NfS4GMwxNUBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723562473; c=relaxed/simple;
-	bh=1BSUdd59mysyWxqDsiUP2dOC6TXhkJDBjk+j0hKgjP0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DWk7qn2tBgPhbjWgHTcGeD3xJX9nvGtTXFREKyMNSXy1yGS4hv/pF2Z8pz6lsDyOFj/u9aLIjecqJd2XYcXU0NS0WmQ3AZRpPjfPDyg9XCwjnRDSwKTdjxsCc0uf3gNCu6YGgZaLWAHewW5yh1YINjavK98ldu7lWumbzT5jVI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Vnqxgvog; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5af6a1afa63so6540705a12.0;
-        Tue, 13 Aug 2024 08:21:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723562470; x=1724167270; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4x0dVDfwbSqaUedgnNXWXrQ7FZEd54+Hc1EubL/44o0=;
-        b=Vnqxgvog6JkkkFLhl7eLq1rE62Bg2+niV5HHBtG8SfBDB5vmHp0SNbvIohXscPfYXx
-         uBjs2NoAYhhAjgM8IlKCuBfMITnPblex1ghFlrUF+hVjhY5rUg9Ps62j7cA6eXjPki9/
-         tW8zYJrpiMpSGCV2ziprgl4RIe+TxhFFxMqiEes3HN6hXGJcFX+NzCwj07s6JvoNW+f4
-         Kd+XJAjzihDB/mdTLYd5TRvvk+cgUiHe2k8aIFIssc329cgqnTfHDCSYnh5kWSaCI2F3
-         Y0tTJwtGy7+EkzQJ/nWAM5tbFlS0v9pKW2cZUETLDGelFM0LhznhJO1qSjp+l4ReSUi3
-         4vFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723562470; x=1724167270;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4x0dVDfwbSqaUedgnNXWXrQ7FZEd54+Hc1EubL/44o0=;
-        b=IENODJVlr6OXQx1TZzCtLtotqwZH+Qkic1nYYuhGfBGmT3MjCcpeZ6itltHEmRHQfQ
-         Q51ck8bsFiMcYZFxAjVmkK9+RE5VVBLYHYdDdkjp9jKknvjQ/AahKKpGBBeTrfzdOJAq
-         xC4Sj0i0VG/Xii/d5rK0Owwnk/eLOTuOLHhnzc/N6CLdnoMpBK4RM7sF0gMIyYevDwPM
-         +kCxX4winVwc91qbly02uq0JchjtT5/VHdAzHlX0DNvaaz9FfWSnQ1aMfpLbM1h9vXvx
-         4YOJOZDUV/FIof4WJ1qKt9mzyzBxsZ7rBfSDzjEn3pSQVteWli1/i9xU28/QphAFstlZ
-         ldNw==
-X-Forwarded-Encrypted: i=1; AJvYcCUOktdZ768/ef4Urplt6mfGoXHvd9cIqTJ1R8t4uzHQCgE+aIYaPYNbhkTCbeAAUm17GsZuhaNDymf7ItlwTD5NBy710R3Lo+VWozhiLYL/7T1b573KsHFpFOR3WyyyMDXeCtKAqWnWXvgYb2rS9wieGw+XSF0GKsgKnr8iNX2XfrgK5wb8hgmVUHeIHFUh7I+6UAeqJKgdnmzF9DjRGskIQ0s=
-X-Gm-Message-State: AOJu0Yz5SKSNPFCd5U+Z5zHJJuZLWCEg21Y+5W1hbQCU0rKmCfDFUc9u
-	FA2b8d7A/W6tddGjlHbrYukY3VRcPkwmLWuwNIGpImh5S0HgR9yq
-X-Google-Smtp-Source: AGHT+IEqsRq8kcguYCvhmMX5/WeINV2T7VkBCkorS2ILWnba0PniCP+uXxhmexjhhY3Z34j1nEhX4Q==
-X-Received: by 2002:a17:907:f7a3:b0:a7a:84ec:8785 with SMTP id a640c23a62f3a-a80ed258d0emr322919866b.40.1723562469387;
-        Tue, 13 Aug 2024 08:21:09 -0700 (PDT)
-Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a80f418434bsm76093766b.204.2024.08.13.08.21.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Aug 2024 08:21:08 -0700 (PDT)
-Message-ID: <9ddd4b22-61eb-453d-8680-70065541878c@gmail.com>
-Date: Tue, 13 Aug 2024 17:21:05 +0200
+	s=arc-20240116; t=1723562817; c=relaxed/simple;
+	bh=mSemb60sTJdLNNxaY49JMnLRjZsVWJb6QojfV8SA4lQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rfLalshcN7l7TwuktwDmDS5mlyYE6HrFkY9rcOCRjlsHByflZpWrKHiZKMTvcEK0A0GlN4j8w2p9HqYAkEK7o7eCAH4wPoVdBSOprSWTMP54pEKBj+NijDhZzIVqNBf3EM9yY0Mxvba5ThhWdDNz2evvgRn54aD3XzAeANW1Jgw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pv/T02g7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E55A4C4AF0B;
+	Tue, 13 Aug 2024 15:26:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723562816;
+	bh=mSemb60sTJdLNNxaY49JMnLRjZsVWJb6QojfV8SA4lQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pv/T02g7RLl4qCEmnY/WRxn88WO19c0ktVzJOqWh2LDJD4n+FFXmTRwQYecVx/xrK
+	 oCgvXRgM5MNzYuTnKz2NDU0l1jXjbelJ6CdoML9C5+vKdkoOK3WO1JHrvSlc+wam7A
+	 f/Cfi2xC+3uEkZkn2eklUzBqCI3xs2OzrL2sL0NFedAjY1hdgRs6vJxZGxZQctJgqA
+	 1HiYo/5wp0O5Oy20LAN1yzis798kB4bk4zKld/K5pAzRjRwO1/hZVcwiw2cMK5px+5
+	 qGWsn2NMBWljjjPFG1BoUexuQ1qGCmD1UhE0Nvh3P5HYTzIs/WiyqNLITMrcHjBXJr
+	 pRhDbYCbo9miA==
+Date: Tue, 13 Aug 2024 16:26:52 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/6] media: dt-bindings: Add description of OmniVision
+ OG01A1B image sensor
+Message-ID: <20240813-darkening-esquire-cefa9cf21745@spud>
+References: <20240813102035.1763559-1-vladimir.zapolskiy@linaro.org>
+ <20240813102035.1763559-2-vladimir.zapolskiy@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: x1e80100: Add USB Multiport
- controller
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Krishna Kurapati <quic_kriskura@quicinc.com>,
- Konrad Dybcio <quic_kdybcio@quicinc.com>
-References: <20240809-topic-h_mp-v1-0-3c5f468566d8@quicinc.com>
- <20240809-topic-h_mp-v1-2-3c5f468566d8@quicinc.com>
- <b37b3c8e-902f-4a62-8a6a-ab9b8cb6cadb@kernel.org>
- <cec50e6e-aa5e-42a0-886c-82f3f1062d3a@kernel.org>
- <b337ce5e-78f8-4ecf-a270-2d2a29e6df5b@kernel.org>
-Content-Language: en-US
-From: Konrad Dybcio <konradybcio@gmail.com>
-In-Reply-To: <b337ce5e-78f8-4ecf-a270-2d2a29e6df5b@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="cOuHclAJi601Q1QK"
+Content-Disposition: inline
+In-Reply-To: <20240813102035.1763559-2-vladimir.zapolskiy@linaro.org>
 
-On 13.08.2024 4:35 PM, Krzysztof Kozlowski wrote:
-> On 13/08/2024 16:09, Konrad Dybcio wrote:
->> On 10.08.2024 2:48 PM, Krzysztof Kozlowski wrote:
->>> On 09/08/2024 15:18, Konrad Dybcio wrote:
->>>> X1E80100 has a multiport controller with 2 HS (eUSB) and 2 SS PHYs
->>>> attached to it. It's commonly used for USB-A ports and internally
->>>> routed devices. Configure it to support such functionality.
->>>>
->>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>>
->>> You have from and SoB mismatch. This was sent some odd way, because both
->>> b4 and git send-email would produce correct From field.
->>
->> So, I'm:
->>
->> - sending from @kernel because it has a good email server
->> - authoring from @quicinc because that's my employer
->> - sending some older @linaro patches because I made them before
->>   switching jobs and it's only fair to do so like this
->> (and I sometimes reply from @gmail because thunderbird works funnily)
-> 
-> This is all fine, but you created commit with one identity and signed
-> off with other. That's not fine.
-> 
->>
->> I noticed locally that if you switch emails & edit author too often, git
->> gets confused and `git show` Author: / `git send` From: don't get updated
->> properly, but if you do git format-patch, the resulting file has what you
->> would expect..
->>
->> Should I resend this?
-> 
-> Yes, so there will be proper From field with proper author matching at
-> least one SoBs.
 
-OK I know why it happens.. since my linaro address is in .mailmap, I can't
-do any new git operations with it.. Removing it "fixes" it.. but then b4
-base-commit needs to be altered..
+--cOuHclAJi601Q1QK
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Konrad
+On Tue, Aug 13, 2024 at 01:20:30PM +0300, Vladimir Zapolskiy wrote:
+> Add device tree bindings documentation for OmniVision OG01A1B image
+> sensor.
+>=20
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+--cOuHclAJi601Q1QK
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrt7PAAKCRB4tDGHoIJi
+0jR8AQDS93X9FEFhF/N2OTEskOW0/8dm7/R4/RoKHLxdgCH5UQEAs8w0IJ1wWl1F
+gwhdpQLmQwyq0CroPh7+fool9GCDAAU=
+=XOin
+-----END PGP SIGNATURE-----
+
+--cOuHclAJi601Q1QK--
 
