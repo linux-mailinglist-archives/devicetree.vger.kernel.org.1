@@ -1,65 +1,61 @@
-Return-Path: <devicetree+bounces-93337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92AA295092F
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 17:33:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29E2E950942
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 17:40:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5EC91C231CB
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 15:33:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E21402833B7
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 15:40:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6C5C1A01B0;
-	Tue, 13 Aug 2024 15:33:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7FB81A01DB;
+	Tue, 13 Aug 2024 15:40:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BqBJQhB2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IXoPKn6U"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88D94199245;
-	Tue, 13 Aug 2024 15:33:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F91B191F71;
+	Tue, 13 Aug 2024 15:40:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723563231; cv=none; b=P1rIR/ctg29vtVDd9PSobQ+xTXnMl0t4C+/wc3kW8+cpF4I/euLJE1YVu1mC3fN6UH2cAYQIM+TSPLdQxso1CCFq6tvVtUFMln+73DI7k+L1E0uimeOzDggkheT3Hj4SQ1Z8LEsvIC8V7mL8dYzTnOn+PDvMEzkYGyc0jzErbPc=
+	t=1723563625; cv=none; b=jvBPYU2cXgPVTlYuSy0AGTzFdEeUFLfSVN4Mq194XRnbndCXjGPaWLhsQTpLOgM7jb/zDyiBcua3TgxgtLBwRcvPEwqB+xEpC4xMw7I/A3ley/fYzvuY4IuLlKSS/FtYWxSibkzOK1eRI1/xcJ3KhWGVF/siftuX9FuSQ+kFD7Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723563231; c=relaxed/simple;
-	bh=aBoadrasI7W57NZaSVKLOZTY0EhuP2+mHH77sl5XLqg=;
+	s=arc-20240116; t=1723563625; c=relaxed/simple;
+	bh=x4tT144aOZx9FuZqA2GLX4HlAeWiSYgx499ceqnuVP0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nRTQ4tJohihQZdRmc37UukQsn2DSYXy8GLEofifTc1Opv+LAf/gXSpelZ+fExVV034wfzbdLM6lgGc2H8oX2z8gDVeuZeuHhuy4B5g9jkfP+tIyeepXHpBZo6YLR3YqJbrUEBSAaIkeAvedS5ihAyWsaopZIOu5nXROYc4vmrjA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BqBJQhB2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20E2CC4AF09;
-	Tue, 13 Aug 2024 15:33:47 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=nwjtOm/MWg4/QRrqlUHbFrUZq2jpYWeQvVs+mEMruwMe0vb0moLsv8RYSCsXshrC4bVPfA4Sc3cZr4mrZSdNuz4abJHsKT8WnZ2i8PMsfDC5gwDC02R272NkZniXsibVzMobZEi/cDbcfRZrN8WYFYcYfO5ObCaCbPP0yDIW2FU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IXoPKn6U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA579C4AF09;
+	Tue, 13 Aug 2024 15:40:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723563231;
-	bh=aBoadrasI7W57NZaSVKLOZTY0EhuP2+mHH77sl5XLqg=;
+	s=k20201202; t=1723563625;
+	bh=x4tT144aOZx9FuZqA2GLX4HlAeWiSYgx499ceqnuVP0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BqBJQhB2BTi81gvNKtt+5KE+UVicUbzTqXIUYTCN25rM9EdjT7sFBgt2FxXZQY5b4
-	 omVRq/AGr0pgos0eOM1nIPIbWgND0BD8PF13j5PQ6qMy6+FCx+ID5SowOocMv/lfYl
-	 JLTfHwSRC6Srixo9FEBbTYwM5/LSKxBlZaAGTGqwoCOD6xBoRz+wr29Kj2XOhdO0rI
-	 p3CDQZUU/BU0/iqpFIzAEqcgZ1/e6JLM6hZHwtGr6l2+B+bzLtZEgQPauW69Z8Asnt
-	 z0S9UjfWJjXj9WXSDZJAYKR7pjxlmuE+ZPgSoGSCMWlnFBDRTA7aqizh1cqa4KlBpo
-	 zgsm2KbaGCjxw==
-Date: Tue, 13 Aug 2024 16:33:46 +0100
+	b=IXoPKn6UFDhcCtzNKfPHaTOfMJcPrNRis4hlZuHfmtE4EBgOAYY6HKhalsivSZSy4
+	 3+6X7voWjVNTFZXaxodfLXvHGfaMrlImNXzzmyI16Kc2o72Q1sRrHKg9X6x6BEbPQt
+	 1ZldCndWDp3+oLySJA7CM4pVpStDUEFWnC7HlLxJ1sVy1WHUptzxOxSqi7g/Fz+c+I
+	 QJOcFPW2c+uXNjqYgi9NqJBJYC0MLrVDD+SdVMOvNCxbMHOKrhb5ttLOc89AUAhu/I
+	 D/+p1gJB4622PHr+StOuOptN2p/KX9Wa1vqHgzJ9BI/boOSFGU4Uu5D/fpLcBb47QO
+	 JSFIDJWrN5xEA==
+Date: Tue, 13 Aug 2024 16:40:20 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Chanh Nguyen <chanh@os.amperecomputing.com>
-Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh+dt@kernel.org>,
+To: Jan Kiszka <jan.kiszka@siemens.com>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Justin Ledford <justinledford@google.com>,
-	devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-	Open Source Submission <patches@amperecomputing.com>,
-	Phong Vo <phong@os.amperecomputing.com>,
-	Thang Nguyen <thang@os.amperecomputing.com>,
-	Quan Nguyen <quan@os.amperecomputing.com>
-Subject: Re: [PATCH v3 1/1] dt-bindings: hwmon: Add maxim max31790
-Message-ID: <20240813-sister-hamburger-586eff8b45fc@spud>
-References: <20240813084152.25002-1-chanh@os.amperecomputing.com>
- <20240813084152.25002-2-chanh@os.amperecomputing.com>
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Bao Cheng Su <baocheng.su@siemens.com>,
+	Diogo Ivo <diogo.ivo@siemens.com>
+Subject: Re: [PATCH v3 2/3] dt-bindings: soc: ti: am645-system-controller:
+ add child nodes used by main domain
+Message-ID: <20240813-outrank-mumble-8dddbfc68586@spud>
+References: <cover.1723529100.git.jan.kiszka@siemens.com>
+ <ac1622c04e5ae2bb80075e70dbde23abc2f3a4b5.1723529100.git.jan.kiszka@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,158 +63,90 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="KmLWo4HnUrmMuilX"
+	protocol="application/pgp-signature"; boundary="dQ4bp7j23augji+P"
 Content-Disposition: inline
-In-Reply-To: <20240813084152.25002-2-chanh@os.amperecomputing.com>
+In-Reply-To: <ac1622c04e5ae2bb80075e70dbde23abc2f3a4b5.1723529100.git.jan.kiszka@siemens.com>
 
 
---KmLWo4HnUrmMuilX
+--dQ4bp7j23augji+P
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 13, 2024 at 08:41:52AM +0000, Chanh Nguyen wrote:
-> Add device tree bindings and an example for max31790 device.
+On Tue, Aug 13, 2024 at 08:04:59AM +0200, Jan Kiszka wrote:
+> From: Jan Kiszka <jan.kiszka@siemens.com>
 >=20
-> Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
-> ---
-> Changes in v2:
->  - Update filename of the maxim,max31790.yaml                        [Krz=
-ysztof]
->  - Add the common fan schema to $ref                                 [Krz=
-ysztof]
->  - Update the node name to "fan-controller" in maxim,max31790.yaml   [Krz=
-ysztof]
->  - Drop "driver" in commit title                                     [Krz=
-ysztof]
-> Changes in v3:
->  - Drop redundant "bindings" in commit title                         [Krz=
-ysztof]
->  - Add the clocks and resets property in example                     [Krz=
-ysztof]
->  - Add child node refer to fan-common.yaml                           [Krz=
-ysztof, Conor]
-> ---
->  .../bindings/hwmon/maxim,max31790.yaml        | 81 +++++++++++++++++++
->  1 file changed, 81 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max3179=
-0.yaml
+> Expand bindings to cover both the MCU and the main usage of the AM654
+> system controller.
 >=20
-> diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max31790.yaml =
-b/Documentation/devicetree/bindings/hwmon/maxim,max31790.yaml
-> new file mode 100644
-> index 000000000000..d28a6373edd3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/maxim,max31790.yaml
-> @@ -0,0 +1,81 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+> ---
+>  .../soc/ti/ti,am654-system-controller.yaml    | 25 +++++++++++++++++++
+>  1 file changed, 25 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,am654-system-con=
+troller.yaml b/Documentation/devicetree/bindings/soc/ti/ti,am654-system-con=
+troller.yaml
+> index e79803e586ca..5a689ec3c5c9 100644
+> --- a/Documentation/devicetree/bindings/soc/ti/ti,am654-system-controller=
+=2Eyaml
+> +++ b/Documentation/devicetree/bindings/soc/ti/ti,am654-system-controller=
+=2Eyaml
+> @@ -29,11 +29,36 @@ properties:
+> =20
+>    ranges: true
+> =20
+> +  mux-controller:
+> +    type: object
+> +    ref: /schemas/mux/reg-mux.yaml#
+> +    description:
+> +      This is the SERDES lane control mux.
 > +
-> +title: The Maxim MAX31790 Fan Controller
-> +
-> +maintainers:
-> +  - Guenter Roeck <linux@roeck-us.net>
+>  patternProperties:
+>    "^phy@[0-9a-f]+$":
+>      type: object
+>      $ref: /schemas/phy/ti,phy-gmii-sel.yaml#
+> =20
+> +  "^clock@[0-9a-f]+$":
 
-Why Guenter and not you?
+Could you explain to me why these are all patternProperties? Why are the
+addresses of these things not fixed for an am654?
 
+> +    type: object
+> +    $ref: /schemas/soc/ti/ti,am654-serdes-ctrl.yaml#
 > +
-> +description: >
-> +  The MAX31790 controls the speeds of up to six fans using six
-> +  independent PWM outputs. The desired fan speeds (or PWM duty cycles)
-> +  are written through the I2C interface.
+> +  "^dss-oldi-io-ctrl@[0-9a-f]+$":
+> +    type: object
+> +    $ref: /schemas/mfd/syscon.yaml#
+> +    properties:
+> +      compatible:
+> +        items:
+> +          - const: ti,am654-dss-oldi-io-ctrl
+> +          - const: syscon
 > +
-> +  Datasheets:
-> +    https://datasheets.maximintegrated.com/en/ds/MAX31790.pdf
+> +  "^clock-controller@[0-9a-f]+$":
+> +    type: object
+> +    $ref: /schemas/clock/ti,am654-ehrpwm-tbclk.yaml#
+> +    description:
+> +      Clock provider for TI EHRPWM nodes.
 > +
-> +properties:
-> +  compatible:
-> +    const: maxim,max31790
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  "#pwm-cells":
-> +    const: 1
-> +
-> +patternProperties:
-> +  "^fan-[0-9]+$":
-> +    $ref: fan-common.yaml#
-> +    unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <0>;
-> +
-> +      fan-controller@21 {
-> +        compatible =3D "maxim,max31790";
-> +        reg =3D <0x21>;
-> +        clocks =3D <&sys_clk>;
-> +        resets =3D <&reset 0>;
-> +      };
-> +    };
-
-What does this example demonstrate? The one below seems useful, this one
-I don't quite understand - what's the point of a fan controller with no
-fans connected to it? What am I missing?
-
-Otherwise, this looks pretty good.
-
-Cheers,
-Conor.
-
-> +  - |
-> +    i2c {
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <0>;
-> +
-> +      pwm_provider: fan-controller@20 {
-> +        compatible =3D "maxim,max31790";
-> +        reg =3D <0x20>;
-> +        clocks =3D <&sys_clk>;
-> +        resets =3D <&reset 0>;
-> +        #pwm-cells =3D <1>;
-> +
-> +        fan-0 {
-> +          pwms =3D <&pwm_provider 1>;
-> +        };
-> +
-> +        fan-1 {
-> +          pwms =3D <&pwm_provider 2>;
-> +        };
-> +      };
-> +    };
-> +
+>  required:
+>    - compatible
+>    - reg
 > --=20
 > 2.43.0
 >=20
 
---KmLWo4HnUrmMuilX
+--dQ4bp7j23augji+P
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrt82QAKCRB4tDGHoIJi
-0mfTAQCIh7cHlaxYyQpgjq8jaFAybQNe1wPKzSldTsOMfKR2tgEA9R5fCsaqh07Y
-tdouMeBz+xGCY7U3NBLB02Z6xDiydAc=
-=CZ86
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrt+ZAAKCRB4tDGHoIJi
+0nlRAP9ltCP7sOlvu1IrXMI7uVLNba8ZsvjztHWFwmYX7ydL+QEA5omNP1QYX+HY
+/yHP0psylV0wt/oUBfoZelKenkN+Jgk=
+=38tq
 -----END PGP SIGNATURE-----
 
---KmLWo4HnUrmMuilX--
+--dQ4bp7j23augji+P--
 
