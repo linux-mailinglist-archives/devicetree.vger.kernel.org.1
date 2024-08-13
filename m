@@ -1,256 +1,189 @@
-Return-Path: <devicetree+bounces-93288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF358950447
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 13:57:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ED03950456
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 14:02:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EB3B1F2234D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 11:57:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25761284095
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 12:02:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73AB0199252;
-	Tue, 13 Aug 2024 11:57:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D59713B791;
+	Tue, 13 Aug 2024 12:02:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="A4/6p/O3"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="BV7/u7SY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA86F1991C6
-	for <devicetree@vger.kernel.org>; Tue, 13 Aug 2024 11:57:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 029FB199230
+	for <devicetree@vger.kernel.org>; Tue, 13 Aug 2024 12:02:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723550260; cv=none; b=kqIV+xYWy1r4bF01MJI4heiWqTxYuImsRqf9YhjfvotJUlR3rUkXd4dL+WDqI7yHwqTOkt4f93CRB+Wgr0yuVj3QNY+jV9qggsSR0yywbJIzLT40owoFkUUyIS094Hkn6YLJYeqoNzZRC0zFUG5UusOnUNMIEAGIYRSxTGUBjUI=
+	t=1723550552; cv=none; b=ThUxDVEMO3L4Tr5ltGgR3Fn/3URilUJ2qIuDn2M9ifi0jZymJF7T7BGNI1emJiMZe66yf28SMoajLL6UPTGE7pdCnw2+EKq6VjHRHvo/xr4MLnSpvZWE222XnKQZa3gANBG8AIKAvpqiRiMQHY5cbsarygh89iTmlIwBmG4+60A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723550260; c=relaxed/simple;
-	bh=hpCWpHjKhZFIJtA8gW87bhIjf/SJHDylr8Z2rSUZJbA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RE6w47tiqYLf/AxCk+5zi7scnnlHh5TX5e+6V+ZgUtFtZa+EIMRgP8ADUM1708k1vWi9pAOEHlkuYFh9v2lstAvmlrIY1J+yDaXov3+Kl9j7EG9z03IXNN7y99RDv0FjP8vwJwBF9uaPu1SrDxBj8OQpY9j+NDRVaEj2FA48WaA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=A4/6p/O3; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-1fd640a6454so40846175ad.3
-        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2024 04:57:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1723550258; x=1724155058; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=TXj6YrMtJ0gWFTWAL5SUSyJeDfI3jpHl1jV8Ck1Ub5w=;
-        b=A4/6p/O3k3S40EBMdVIoV15KHLntcRn6nog21Tgv4Lf/OvAmymNDMsQiA87kiuPx16
-         iJMeEleI0Zuf5WfeFMYz6K7Zs3sXfmbIOmWoV90QKh6WqFLa4qqKW11FfLIEzjah9Vko
-         92COAwABO2ndTJrmUHlZlsmFq/dwYqzeLWeho=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723550258; x=1724155058;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TXj6YrMtJ0gWFTWAL5SUSyJeDfI3jpHl1jV8Ck1Ub5w=;
-        b=SxvTVXeiZra0obuewzRB4N+2loyeFCSJwySfRiGPcWRwh+0iaILKwJWAaWta/4QKXt
-         mz+2nmhgge6ygySX5LN1QsRKH7fXk3GZb7/q5S4YAMtwkgiJ3uszU7LLzLmyNZo0KKQe
-         8cxq/DDuncou6gmTrhzamSEW8CVZ2scb6Ae8sH1/+OOlVdb7czMAkkT3D3d2jvXVPPXz
-         5iJIlxLpxjhxl80PtpaqN3f0HDAFaox4rbW/6ro8DJA6IEh7oUwzodbHR8B4RTFUsl7s
-         /miN0sGMraRPcpZStM8iLY0rrhTK0vblg44131LJrBp7vdSBf+bVpjB1qcNH/TcvpoEW
-         lfaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVtOIeLrZfc3i7jYB3fDe37dPDG1i2Ne5CbxGoRfptOPzK+7/81KA5n05HL/fXGl0wtRwlMAI3C7NT2@vger.kernel.org
-X-Gm-Message-State: AOJu0YzhSHP/QXR9nBdkAEkH2mpS/Vi4SBwAk/Sbn9goZrYajc9jZUYw
-	45wWvaqqFdoMujOLGjzWmrwPdeqXgpQZCa1LKVfDz79nxzgkhpooB6YC6yLYWA==
-X-Google-Smtp-Source: AGHT+IFf7r4+eaG8ovXNz7tpTkFz5zRThgMupBmEqRawhnukS/bBcfpuDdGfM7AGPHQVhuvowwJO2w==
-X-Received: by 2002:a17:903:2345:b0:1fb:3b61:45aa with SMTP id d9443c01a7336-201ca1c0803mr35625745ad.40.1723550257889;
-        Tue, 13 Aug 2024 04:57:37 -0700 (PDT)
-Received: from [192.168.178.137] (f215227.upc-f.chello.nl. [80.56.215.227])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-201cd132895sm12031645ad.9.2024.08.13.04.57.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Aug 2024 04:57:37 -0700 (PDT)
-Message-ID: <721da64c-42ec-4be6-8ad3-e2685a84823a@broadcom.com>
-Date: Tue, 13 Aug 2024 13:57:28 +0200
+	s=arc-20240116; t=1723550552; c=relaxed/simple;
+	bh=SCEjQ2f/AVQGw13+jnl/qj3hrJi2gyjF3kjKwUvF/08=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=ho8caLey7RgsUwaDX6S5qoPzKtKtvDmgED0sRbSBb8MRYgfeb+3JLBOL3eygUKzkfLf1x+nLWOtSYWmdiIU9PtzH1z7GrPUMZcrRuF6qCq8Afq0y+1CHepmbAb//+LlP9urPqj/UsCcaxKIZrRVjKF8Pr4+H6w4xzXwN6qpexWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=BV7/u7SY; arc=none smtp.client-ip=91.26.50.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+	q=dns/txt; i=@phytec.de; t=1723550540; x=1726142540;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=SCEjQ2f/AVQGw13+jnl/qj3hrJi2gyjF3kjKwUvF/08=;
+	b=BV7/u7SY+F7J1pShCtyVY5AqBj71w5per5CApAgWRVtzBeHXHDgaIxUqXkGV7OdP
+	yAPK6RHRRTef3ScgWqBg1LImES7i1esF1JrG0ZHdyU7qqXX3NmSYIgv730YLgDJz
+	yW4aKqxiJPdIKZkasgx1+ZY5bSK0lAyq2kNIiMSt4/I=;
+X-AuditID: ac14000a-03e52700000021bc-3e-66bb4b4c5236
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(Client did not present a certificate)
+	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 7F.20.08636.C4B4BB66; Tue, 13 Aug 2024 14:02:20 +0200 (CEST)
+Received: from llp-hahn.hahn.test (172.25.0.11) by Berlix.phytec.de
+ (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Tue, 13 Aug
+ 2024 14:02:20 +0200
+From: Benjamin Hahn <B.Hahn@phytec.de>
+Date: Tue, 13 Aug 2024 14:02:14 +0200
+Subject: [PATCH] arm64: dts: imx8mp-phyboard-pollux-rdk: Add support for
+ PCIe
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 4/5] wifi: brcmfmac: Add optional lpo clock enable
- support
-To: Jacobe Zang <jacobe.zang@wesion.com>, robh@kernel.org,
- krzk+dt@kernel.org, heiko@sntech.de, kvalo@kernel.org, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, conor+dt@kernel.org
-Cc: efectn@protonmail.com, dsimic@manjaro.org, jagan@edgeble.ai,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- arend@broadcom.com, linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- megi@xff.cz, duoming@zju.edu.cn, bhelgaas@google.com,
- minipli@grsecurity.net, brcm80211@lists.linux.dev,
- brcm80211-dev-list.pdl@broadcom.com, nick@khadas.com,
- Sai Krishna <saikrishnag@marvell.com>
-References: <20240813082007.2625841-1-jacobe.zang@wesion.com>
- <20240813082007.2625841-5-jacobe.zang@wesion.com>
-Content-Language: en-US
-From: Arend van Spriel <arend.vanspriel@broadcom.com>
-Autocrypt: addr=arend.vanspriel@broadcom.com; keydata=
- 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
-In-Reply-To: <20240813082007.2625841-5-jacobe.zang@wesion.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-ID: <20240813-wip-bhahn-add_pcie_support-v1-1-c1bb062b4e1f@phytec.de>
+X-B4-Tracking: v=1; b=H4sIAEVLu2YC/x3MSwqDMBAA0KvIrDvgF7VXKSUkmbGZTRwSq4J49
+ 4Yu3+ZdkDkJZ3hWFyTeJcsaC5pHBT7Y+GEUKoa2bvt6ajo8RNEFGyJaIqNe2OSv6po2dLOjcVh
+ 8T/MEJdDEi5z//PW+7x9FLPILbAAAAA==
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
+ Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Teresa Remmet
+	<t.remmet@phytec.de>
+CC: <upstream@lists.phytec.de>, <devicetree@vger.kernel.org>,
+	<imx@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, Benjamin Hahn <B.Hahn@phytec.de>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1723550540; l=2384;
+ i=B.Hahn@phytec.de; s=20240126; h=from:subject:message-id;
+ bh=SCEjQ2f/AVQGw13+jnl/qj3hrJi2gyjF3kjKwUvF/08=;
+ b=/0dWgUE99fI6jHFjyRx/49dTec+RsfkxbJuGEClIRp2/pJ4Jzlc+L58U6EP4eHq2V2cbHOyCP
+ 3pE9XgdTSedCQDNvkUSg2ZNy/p3fFqqsdHukeRMr2esiO0lHmU6Ui3l
+X-Developer-Key: i=B.Hahn@phytec.de; a=ed25519;
+ pk=r04clMulHz6S6js6elPBA+U+zVdDAqJyEyoNd8I3pSw=
+X-ClientProxiedBy: Florix.phytec.de (172.25.0.13) To Berlix.phytec.de
+ (172.25.0.12)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupmkeLIzCtJLcpLzFFi42JZI8nAo+vjvTvNYPptE4s1e88xWcw/co7V
+	4uFVf4uZ91rZLFZN3cli8XLWPTaLTY+vsVpc3jWHzeL/nh3sFn+3b2KxeLFF3KL7nboDj8fO
+	WXfZPTat6mTz2Lyk3uPF5pmMHv3dLawe/X8NPD5vkgtgj+KySUnNySxLLdK3S+DK2PLxO3vB
+	JaGKdfPusjYw7uTvYuTkkBAwkWh4eJ+xi5GLQ0hgCZPE/L7vTBDOQ0aJPfMbWECq2ATUJHa9
+	ec0KYrMIqEp0tyxiBLGFBfwlXvc+ZQKxeQUEJU7OfAJUz8HBLKApsX6XPkiYWUBeYvvbOcwg
+	YV4BX4n7KwNAxksI7GGUWDnrNjtIjYjADiaJx/2GIAlmgYOMEn/WP2CHuE5Y4vPuNWwQ9m4m
+	iY19HiCDJAQSJXa+lgMJCwnIStw8vwWqRF5i2rnXzBB2qMSRTauZJjAKz0Jy3SyE62YhuW4B
+	I/MqRqHczOTs1KLMbL2CjMqS1GS9lNRNjKAIE2Hg2sHYN8fjECMTB+MhRgkOZiUR3kCTXWlC
+	vCmJlVWpRfnxRaU5qcWHGKU5WJTEeVd3BKcKCaQnlqRmp6YWpBbBZJk4OKUaGG2qHHak7rCU
+	lkgQnX3wtOLltr4pzX9O9qzXDtsw89r2ui2fHZr/rvg8YeLiKuNp4m3H5Fu4b35uvv7o4aeW
+	pwp72GXlKy7HcRlO+X/FY0GZXZmwR9rtiBdqr6Umxz1/cPdin8y+y6nvXOvcI+xDbSfKbs/n
+	nfvdc/qrK6vVemrNxR2Z/eYLnlZiKc5INNRiLipOBABfkb6CngIAAA==
 
-On 8/13/2024 10:20 AM, Jacobe Zang wrote:
-> WiFi modules often require 32kHz clock to function. Add support to
-> enable the clock to PCIe driver and move "brcm,bcm4329-fmac" check
-> to the top of brcmf_of_probe. Change function prototypes from void
-> to int and add appropriate errno's for return values that will be
-> send to bus when error occurred.
+Add support for the Mini PCIe slot.
 
-I was going to say it looks good to me, but....
+Signed-off-by: Benjamin Hahn <B.Hahn@phytec.de>
+---
+ .../dts/freescale/imx8mp-phyboard-pollux-rdk.dts   | 42 ++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
 
-> Co-developed-by: Ondrej Jirman <megi@xff.cz>
-> Signed-off-by: Ondrej Jirman <megi@xff.cz>
-> Co-developed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
-> Signed-off-by: Arend van Spriel <arend.vanspriel@broadcom.com>
-> Reviewed-by: Sai Krishna <saikrishnag@marvell.com>
-> Signed-off-by: Jacobe Zang <jacobe.zang@wesion.com>
-> ---
->   .../broadcom/brcm80211/brcmfmac/bcmsdh.c      |  4 +-
->   .../broadcom/brcm80211/brcmfmac/common.c      |  3 +-
->   .../wireless/broadcom/brcm80211/brcmfmac/of.c | 53 +++++++++++--------
->   .../wireless/broadcom/brcm80211/brcmfmac/of.h |  9 ++--
->   .../broadcom/brcm80211/brcmfmac/pcie.c        |  3 ++
->   .../broadcom/brcm80211/brcmfmac/sdio.c        | 22 +++++---
->   .../broadcom/brcm80211/brcmfmac/usb.c         |  3 ++
->   7 files changed, 61 insertions(+), 36 deletions(-)
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
+index 00a240484c25..0ecb2f62c37f 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
+@@ -6,6 +6,7 @@
+ 
+ /dts-v1/;
+ 
++#include <dt-bindings/phy/phy-imx8-pcie.h>
+ #include <dt-bindings/leds/leds-pca9532.h>
+ #include <dt-bindings/pwm/pwm.h>
+ #include "imx8mp-phycore-som.dtsi"
+@@ -63,6 +64,17 @@ reg_can2_stby: regulator-can2-stby {
+ 		regulator-name = "can2-stby";
+ 	};
+ 
++	reg_pcie0: regulator-pcie {
++		compatible = "regulator-fixed";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_pcie0_reg>;
++		regulator-name = "MPCIE_3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		gpio = <&gpio1 14 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++
+ 	reg_lvds1_reg_en: regulator-lvds1 {
+ 		compatible = "regulator-fixed";
+ 		enable-active-high;
+@@ -195,6 +207,23 @@ &snvs_pwrkey {
+ 	status = "okay";
+ };
+ 
++&pcie_phy {
++	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_OUTPUT>;
++	fsl,clkreq-unsupported;
++	clocks = <&hsio_blk_ctrl>;
++	clock-names = "ref";
++	status = "okay";
++};
++
++/* Mini PCIe */
++&pcie {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_pcie0>;
++	reset-gpio = <&gpio1 8 GPIO_ACTIVE_LOW>;
++	vpcie-supply = <&reg_pcie0>;
++	status = "okay";
++};
++
+ &pwm3 {
+ 	status = "okay";
+ 	pinctrl-names = "default";
+@@ -366,6 +395,19 @@ MX8MP_IOMUXC_SD2_WP__GPIO2_IO20		0x12
+ 		>;
+ 	};
+ 
++	pinctrl_pcie0: pcie0grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_GPIO1_IO11__GPIO1_IO11	0x60 /* open drain, pull up */
++			MX8MP_IOMUXC_GPIO1_IO08__GPIO1_IO08	0x40
++		>;
++	};
++
++	pinctrl_pcie0_reg: pcie0reggrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_GPIO1_IO14__GPIO1_IO14	0x40
++		>;
++	};
++
+ 	pinctrl_pwm3: pwm3grp {
+ 		fsl,pins = <
+ 			MX8MP_IOMUXC_SPDIF_TX__PWM3_OUT		0x12
 
-[...]
+---
+base-commit: 7c626ce4bae1ac14f60076d00eafe71af30450ba
+change-id: 20240813-wip-bhahn-add_pcie_support-b9bd75fc4d98
 
-> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
-> index e406e11481a62..f19dc7355e0e8 100644
-> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
-> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/of.c
-
-[...]
-
-> @@ -113,33 +118,39 @@ void brcmf_of_probe(struct device *dev, enum brcmf_bus_type bus_type,
->   		of_node_put(root);
->   	}
->   
-> -	if (!np || !of_device_is_compatible(np, "brcm,bcm4329-fmac"))
-> -		return;
-> -
->   	err = brcmf_of_get_country_codes(dev, settings);
->   	if (err)
->   		brcmf_err("failed to get OF country code map (err=%d)\n", err);
->   
->   	of_get_mac_address(np, settings->mac);
->   
-> -	if (bus_type != BRCMF_BUSTYPE_SDIO)
-> -		return;
-> +	if (bus_type == BRCMF_BUSTYPE_SDIO) {
-
-Don't like the fact that this now has an extra indentation level and it 
-offers no extra benefit. Just keep the original if-statement and return 
-0. Consequently the LPO clock code should move just before the if-statement.
-
-> +		if (of_property_read_u32(np, "brcm,drive-strength", &val) == 0)
-> +			sdio->drive_strength = val;
->   
-> -	if (of_property_read_u32(np, "brcm,drive-strength", &val) == 0)
-> -		sdio->drive_strength = val;
-> +		/* make sure there are interrupts defined in the node */
-> +		if (!of_property_present(np, "interrupts"))
-> +			return 0;
->   
-> -	/* make sure there are interrupts defined in the node */
-> -	if (!of_property_present(np, "interrupts"))
-> -		return;
-> +		irq = irq_of_parse_and_map(np, 0);
-> +		if (!irq) {
-> +			brcmf_err("interrupt could not be mapped\n");
-> +			return 0;
-> +		}
-> +		irqf = irqd_get_trigger_type(irq_get_irq_data(irq));
-> +
-> +		sdio->oob_irq_supported = true;
-> +		sdio->oob_irq_nr = irq;
-> +		sdio->oob_irq_flags = irqf;
-> +	}
->   
-> -	irq = irq_of_parse_and_map(np, 0);
-> -	if (!irq) {
-> -		brcmf_err("interrupt could not be mapped\n");
-> -		return;
-> +	clk = devm_clk_get_optional_enabled(dev, "lpo");
-> +	if (!IS_ERR_OR_NULL(clk)) {
-> +		brcmf_dbg(INFO, "enabling 32kHz clock\n");
-> +		return clk_set_rate(clk, 32768);
-> +	} else {
-> +		return PTR_ERR_OR_ZERO(clk);
->   	}
-
-Change this to:
-
- > +	clk = devm_clk_get_optional_enabled(dev, "lpo");
- > +	if (IS_ERR_OR_NULL(clk)) {
- > +		return PTR_ERR_OR_ZERO(clk);
- > +	}
- > +	brcmf_dbg(INFO, "enabling 32kHz clock\n");
- > +	clk_set_rate(clk, 32768);
-
-As said above this should be moved before the if-statement:
-
- > -	if (bus_type != BRCMF_BUSTYPE_SDIO)
- > -		return 0;
-
-> -	irqf = irqd_get_trigger_type(irq_get_irq_data(irq));
->   
-> -	sdio->oob_irq_supported = true;
-> -	sdio->oob_irq_nr = irq;
-> -	sdio->oob_irq_flags = irqf;
-> +	return 0;
->   }
-
-[...]
+Best regards,
+-- 
+Benjamin Hahn <B.Hahn@phytec.de>
 
 
