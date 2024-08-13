@@ -1,189 +1,154 @@
-Return-Path: <devicetree+bounces-93289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ED03950456
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 14:02:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BB6F950471
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 14:07:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25761284095
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 12:02:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E9A51C21A9A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 12:07:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D59713B791;
-	Tue, 13 Aug 2024 12:02:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D6E01991DD;
+	Tue, 13 Aug 2024 12:07:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="BV7/u7SY"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jughurPf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 029FB199230
-	for <devicetree@vger.kernel.org>; Tue, 13 Aug 2024 12:02:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E80C92262B;
+	Tue, 13 Aug 2024 12:07:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723550552; cv=none; b=ThUxDVEMO3L4Tr5ltGgR3Fn/3URilUJ2qIuDn2M9ifi0jZymJF7T7BGNI1emJiMZe66yf28SMoajLL6UPTGE7pdCnw2+EKq6VjHRHvo/xr4MLnSpvZWE222XnKQZa3gANBG8AIKAvpqiRiMQHY5cbsarygh89iTmlIwBmG4+60A=
+	t=1723550870; cv=none; b=PV26C3Hr7rMC6E3uHnbHOGoS2Hbyci8o69O/OPlo64jLXghp/QWqGzWT3fNNlA/eTAK4+W8pvjApQf66YXqOgMGxTnwlGWXIB2Vk9rSA40Tn0KixLB3K2c2g78VdIxQIr5gizhQtXVxWtyWEuljICcqDPfugHdGAO9OSWWHDmb4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723550552; c=relaxed/simple;
-	bh=SCEjQ2f/AVQGw13+jnl/qj3hrJi2gyjF3kjKwUvF/08=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=ho8caLey7RgsUwaDX6S5qoPzKtKtvDmgED0sRbSBb8MRYgfeb+3JLBOL3eygUKzkfLf1x+nLWOtSYWmdiIU9PtzH1z7GrPUMZcrRuF6qCq8Afq0y+1CHepmbAb//+LlP9urPqj/UsCcaxKIZrRVjKF8Pr4+H6w4xzXwN6qpexWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=BV7/u7SY; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1723550540; x=1726142540;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=SCEjQ2f/AVQGw13+jnl/qj3hrJi2gyjF3kjKwUvF/08=;
-	b=BV7/u7SY+F7J1pShCtyVY5AqBj71w5per5CApAgWRVtzBeHXHDgaIxUqXkGV7OdP
-	yAPK6RHRRTef3ScgWqBg1LImES7i1esF1JrG0ZHdyU7qqXX3NmSYIgv730YLgDJz
-	yW4aKqxiJPdIKZkasgx1+ZY5bSK0lAyq2kNIiMSt4/I=;
-X-AuditID: ac14000a-03e52700000021bc-3e-66bb4b4c5236
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 7F.20.08636.C4B4BB66; Tue, 13 Aug 2024 14:02:20 +0200 (CEST)
-Received: from llp-hahn.hahn.test (172.25.0.11) by Berlix.phytec.de
- (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Tue, 13 Aug
- 2024 14:02:20 +0200
-From: Benjamin Hahn <B.Hahn@phytec.de>
-Date: Tue, 13 Aug 2024 14:02:14 +0200
-Subject: [PATCH] arm64: dts: imx8mp-phyboard-pollux-rdk: Add support for
- PCIe
+	s=arc-20240116; t=1723550870; c=relaxed/simple;
+	bh=eboqPDFBQBeHXdKa2+N374z8eTUgt6A+omNECwR9BdM=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
+	 In-Reply-To:Content-Type; b=aw0mevfXlOX59PBYdjps7RRbogRJVzG1kROMYX3cmATkt1dpsVD0VgCyvznnamFmo85Ps1p3Kk1V0sm5VnrHAJbsdJplIPTQmHpEp2EyubkFqR6zeKywBgHVPMzZ11FfrBZPDwBfFuib7iL+32LcrWdT/CDTV2Oq/jRCrDQ/zTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=jughurPf; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47D4bde3021398;
+	Tue, 13 Aug 2024 12:07:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	UAgyaTKkoWXNtcaRI74DXqrR9yRQ3PKCrjmt7l19c9I=; b=jughurPfn3IrCsir
+	gCzmL+2ASzjmX6kPqZ6FfF2Olbtb6UcDcXBdRocu+YMfRdsRH0504d7kvnq7bM25
+	rZsoSyQgdaT9TlRc/2Iqz3UeJS0v78mmwe9OSsXJKxX600WzQ6FAgUqlzxfPB0+/
+	VtKTmRctZAAe/ZpadHqAfBmDuvzERKXfmgOsuOmMQsTHErs8FgsLZaunOGFt2nM1
+	JRiV7oF0SmoDZOi5ZlbQjqTAuz/z80mh/CITSFLQuHlF5c1MNo5XjLzKQj1RqO4f
+	YeKpG/S1+BslVpqr5t0Kz2QRdl6r/jWWRGYRYpf6wJ90Cu3iBdQWxCyFjJQ4KXAX
+	SzKegw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40x1g7yjq8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 13 Aug 2024 12:07:36 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47DC7ZUd003966
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 13 Aug 2024 12:07:35 GMT
+Received: from [10.253.33.134] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 13 Aug
+ 2024 05:07:31 -0700
+Message-ID: <cd8ac2dd-e56d-4551-b3bf-6994c2064f1b@quicinc.com>
+Date: Tue, 13 Aug 2024 20:07:28 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+From: Jie Luo <quic_luoj@quicinc.com>
+Subject: Re: [PATCH 3/4] arm64: defconfig: Enable Qualcomm IPQ common PLL
+ clock controller
+To: Andrew Lunn <andrew@lunn.ch>
+CC: Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Stephen
+ Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas
+	<catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Konrad Dybcio
+	<konradybcio@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <quic_kkumarcs@quicinc.com>,
+        <quic_suruchia@quicinc.com>, <quic_pavir@quicinc.com>,
+        <quic_linchen@quicinc.com>, <quic_leiwei@quicinc.com>
+References: <20240808-qcom_ipq_cmnpll-v1-0-b0631dcbf785@quicinc.com>
+ <20240808-qcom_ipq_cmnpll-v1-3-b0631dcbf785@quicinc.com>
+ <afbf0554-56a5-4df0-9e4b-97c065d78bb3@kernel.org>
+ <41aea3f3-d21a-4d8e-a91a-0fe06947c75f@quicinc.com>
+ <379dc513-2eb5-4d33-a09e-e8861dddc502@lunn.ch>
+Content-Language: en-US
+In-Reply-To: <379dc513-2eb5-4d33-a09e-e8861dddc502@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-ID: <20240813-wip-bhahn-add_pcie_support-v1-1-c1bb062b4e1f@phytec.de>
-X-B4-Tracking: v=1; b=H4sIAEVLu2YC/x3MSwqDMBAA0KvIrDvgF7VXKSUkmbGZTRwSq4J49
- 4Yu3+ZdkDkJZ3hWFyTeJcsaC5pHBT7Y+GEUKoa2bvt6ajo8RNEFGyJaIqNe2OSv6po2dLOjcVh
- 8T/MEJdDEi5z//PW+7x9FLPILbAAAAA==
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Teresa Remmet
-	<t.remmet@phytec.de>
-CC: <upstream@lists.phytec.de>, <devicetree@vger.kernel.org>,
-	<imx@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, Benjamin Hahn <B.Hahn@phytec.de>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1723550540; l=2384;
- i=B.Hahn@phytec.de; s=20240126; h=from:subject:message-id;
- bh=SCEjQ2f/AVQGw13+jnl/qj3hrJi2gyjF3kjKwUvF/08=;
- b=/0dWgUE99fI6jHFjyRx/49dTec+RsfkxbJuGEClIRp2/pJ4Jzlc+L58U6EP4eHq2V2cbHOyCP
- 3pE9XgdTSedCQDNvkUSg2ZNy/p3fFqqsdHukeRMr2esiO0lHmU6Ui3l
-X-Developer-Key: i=B.Hahn@phytec.de; a=ed25519;
- pk=r04clMulHz6S6js6elPBA+U+zVdDAqJyEyoNd8I3pSw=
-X-ClientProxiedBy: Florix.phytec.de (172.25.0.13) To Berlix.phytec.de
- (172.25.0.12)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupmkeLIzCtJLcpLzFFi42JZI8nAo+vjvTvNYPptE4s1e88xWcw/co7V
-	4uFVf4uZ91rZLFZN3cli8XLWPTaLTY+vsVpc3jWHzeL/nh3sFn+3b2KxeLFF3KL7nboDj8fO
-	WXfZPTat6mTz2Lyk3uPF5pmMHv3dLawe/X8NPD5vkgtgj+KySUnNySxLLdK3S+DK2PLxO3vB
-	JaGKdfPusjYw7uTvYuTkkBAwkWh4eJ+xi5GLQ0hgCZPE/L7vTBDOQ0aJPfMbWECq2ATUJHa9
-	ec0KYrMIqEp0tyxiBLGFBfwlXvc+ZQKxeQUEJU7OfAJUz8HBLKApsX6XPkiYWUBeYvvbOcwg
-	YV4BX4n7KwNAxksI7GGUWDnrNjtIjYjADiaJx/2GIAlmgYOMEn/WP2CHuE5Y4vPuNWwQ9m4m
-	iY19HiCDJAQSJXa+lgMJCwnIStw8vwWqRF5i2rnXzBB2qMSRTauZJjAKz0Jy3SyE62YhuW4B
-	I/MqRqHczOTs1KLMbL2CjMqS1GS9lNRNjKAIE2Hg2sHYN8fjECMTB+MhRgkOZiUR3kCTXWlC
-	vCmJlVWpRfnxRaU5qcWHGKU5WJTEeVd3BKcKCaQnlqRmp6YWpBbBZJk4OKUaGG2qHHak7rCU
-	lkgQnX3wtOLltr4pzX9O9qzXDtsw89r2ui2fHZr/rvg8YeLiKuNp4m3H5Fu4b35uvv7o4aeW
-	pwp72GXlKy7HcRlO+X/FY0GZXZmwR9rtiBdqr6Umxz1/cPdin8y+y6nvXOvcI+xDbSfKbs/n
-	nfvdc/qrK6vVemrNxR2Z/eYLnlZiKc5INNRiLipOBABfkb6CngIAAA==
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Wvl6s8UG0d8YoLotil6OsCOBM22MjdxJ
+X-Proofpoint-ORIG-GUID: Wvl6s8UG0d8YoLotil6OsCOBM22MjdxJ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-13_04,2024-08-13_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1015
+ suspectscore=0 bulkscore=0 malwarescore=0 impostorscore=0 phishscore=0
+ priorityscore=1501 mlxlogscore=636 mlxscore=0 lowpriorityscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408130088
 
-Add support for the Mini PCIe slot.
 
-Signed-off-by: Benjamin Hahn <B.Hahn@phytec.de>
----
- .../dts/freescale/imx8mp-phyboard-pollux-rdk.dts   | 42 ++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-index 00a240484c25..0ecb2f62c37f 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-@@ -6,6 +6,7 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/phy/phy-imx8-pcie.h>
- #include <dt-bindings/leds/leds-pca9532.h>
- #include <dt-bindings/pwm/pwm.h>
- #include "imx8mp-phycore-som.dtsi"
-@@ -63,6 +64,17 @@ reg_can2_stby: regulator-can2-stby {
- 		regulator-name = "can2-stby";
- 	};
- 
-+	reg_pcie0: regulator-pcie {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pcie0_reg>;
-+		regulator-name = "MPCIE_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio1 14 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
- 	reg_lvds1_reg_en: regulator-lvds1 {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
-@@ -195,6 +207,23 @@ &snvs_pwrkey {
- 	status = "okay";
- };
- 
-+&pcie_phy {
-+	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_OUTPUT>;
-+	fsl,clkreq-unsupported;
-+	clocks = <&hsio_blk_ctrl>;
-+	clock-names = "ref";
-+	status = "okay";
-+};
-+
-+/* Mini PCIe */
-+&pcie {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pcie0>;
-+	reset-gpio = <&gpio1 8 GPIO_ACTIVE_LOW>;
-+	vpcie-supply = <&reg_pcie0>;
-+	status = "okay";
-+};
-+
- &pwm3 {
- 	status = "okay";
- 	pinctrl-names = "default";
-@@ -366,6 +395,19 @@ MX8MP_IOMUXC_SD2_WP__GPIO2_IO20		0x12
- 		>;
- 	};
- 
-+	pinctrl_pcie0: pcie0grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_GPIO1_IO11__GPIO1_IO11	0x60 /* open drain, pull up */
-+			MX8MP_IOMUXC_GPIO1_IO08__GPIO1_IO08	0x40
-+		>;
-+	};
-+
-+	pinctrl_pcie0_reg: pcie0reggrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_GPIO1_IO14__GPIO1_IO14	0x40
-+		>;
-+	};
-+
- 	pinctrl_pwm3: pwm3grp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_SPDIF_TX__PWM3_OUT		0x12
+On 8/9/2024 9:34 PM, Andrew Lunn wrote:
+> On Fri, Aug 09, 2024 at 07:36:35PM +0800, Jie Luo wrote:
+>>
+>>
+>> On 8/8/2024 10:41 PM, Krzysztof Kozlowski wrote:
+>>> On 08/08/2024 16:03, Luo Jie wrote:
+>>>> The common PLL clock controller provides fixed rate output clocks to
+>>>> the hardware blocks that enable ethernet function on IPQ platform.
+>>>
+>>> That's defconfig for all platforms, so how anyone can guess which one
+>>> you target here? Be specific, which company, which Soc, which board
+>>> needs it.
+>>>
+>>
+>> Sure, I will update the commit message as below to provide the details
+>> required.
+>>
+>> The common PLL hardware block is available in the Qualcomm IPQ SoC such
+>> as IPQ9574 and IPQ5332. It provides fixed rate output clocks to Ethernet
+>> related hardware blocks such as external Ethernet PHY or switch. This
+>> driver is initially being enabled for IPQ9574. All boards based on
+>> IPQ9574 SoC will require to include this driver in the build.
+> 
+> Does it provide more than Ethernet clocks? I'm just wondering why the
+> name `common`, when it seems pretty uncommon, specialised for Ethernet
+> clocks on a couple of SoCs.
+> 
+>     Andrew
 
----
-base-commit: 7c626ce4bae1ac14f60076d00eafe71af30450ba
-change-id: 20240813-wip-bhahn-add_pcie_support-b9bd75fc4d98
+No, this block does not provide any other functionality other than
+allowing this PLL to be configured for supplying clocks to Ethernet
+devices. The hardware programming guide names this block as the 'CMN'
+block, so we included the 'cmn' phrase in the driver namespace. However,
+I will update commit message to clarify that 'cmn' is the block name and
+it does not provide any other function other than enabling clocks to
+Ethernet related devices.
 
-Best regards,
--- 
-Benjamin Hahn <B.Hahn@phytec.de>
 
 
