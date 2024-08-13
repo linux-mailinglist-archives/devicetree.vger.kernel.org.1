@@ -1,74 +1,72 @@
-Return-Path: <devicetree+bounces-93222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82C8395004D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 10:50:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09D1295004E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 10:50:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0389CB245F9
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 08:50:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C80C1C22B18
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 08:50:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B00ED13B797;
-	Tue, 13 Aug 2024 08:50:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A99114F9EF;
+	Tue, 13 Aug 2024 08:50:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="daSUufPw"
+	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="IDsCo+jb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.fris.de (mail.fris.de [116.203.77.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D04CC14A086;
-	Tue, 13 Aug 2024 08:50:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88DA513B580;
+	Tue, 13 Aug 2024 08:50:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.77.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723539008; cv=none; b=YKPEgmE+YgQM2CNkEkxVvUwBjUHBwFNDpmyd5+SLj9wvqMneP6z8TRA0ZokpJF9LXGLhCgTNf+oWpaFNaEr20PIrbnkU2H5eCmcSpyBPsHSOqzBzNRX/d13Te+2UMrwubfAVDIoPsD8AEujYKoH7HMwwSd5GQgOm9l+ueM8yTe0=
+	t=1723539009; cv=none; b=G9ydso+cjtJ5/w2nj24BWa6ucolzOAA8ePmaiUX23AEZGofosWJFGq09AO4er45pJubPtRWIb8PNccLZa7CS1yJ8fWirOK2QMKiEq0xaC/JrmHb47g2sUfq4C2pKbhyoqJudisegpW8RGgv4QqJrYOJkfmncArsKQyw6jYKsnOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723539008; c=relaxed/simple;
-	bh=/xwO7i1d0K7SzaMDoitk3HqY4xnvSTvIVJ4aE7SJvAc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=MJRY+fXQ53BF3LvHJsLpg9K13+XC6/FRj4jssKld/KT3jhc2wb7EW3fgpvq6+JBsUu0YWThyj6GgSkjMEkwhu9Mb2EaKxCfR5Kwkp2vZx/vKo25PP7Yo4RNlp2YYMtdayWGaXnxQ3PwxxjIXNhtjFOU2mrRmdk7pdvoCHVhNl5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=fail smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=daSUufPw; arc=none smtp.client-ip=116.203.77.234
+	s=arc-20240116; t=1723539009; c=relaxed/simple;
+	bh=jJO6TiU8v5MPa36WU+qLw2FnLGLUyK/LG6D/HML3jJw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=oS5icAFgySRe3szkaHFPl9+QZkg5qHCY72/Ks5GzrgXK8nH7XfuKVVglhD+oNecG5T9afRaU/6VCJ6fPQLxA+Q+MtlfGI9ANWNxqUwrk++jl+eGBsC4M11UviAiCVdS3jyTvuFdSXWJuOyi2tIFrrIhqZNl0lQkZGGCfDyD9IhI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=fail smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=IDsCo+jb; arc=none smtp.client-ip=116.203.77.234
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=fris.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 47B48BFB2F;
-	Tue, 13 Aug 2024 10:49:49 +0200 (CEST)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 42B62BFB45;
+	Tue, 13 Aug 2024 10:49:58 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
-	t=1723538995; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding; bh=3k1ZBl8d8rkvFQWkw414ec4CjT7YEnjNYqNTjvI5dwI=;
-	b=daSUufPwlsPaOvkx35lpkmY40Zdmja7rnLNHa5h4l9iifBp7bvffFb2K1J++OccHpjZ0sa
-	GLCVmQNhopBWwTasiOwHedxcVlQxyBOwApOzxqWZp2qEO5m2Y9sdf+HHnMzlqCO+iBe2d+
-	FCPV0lB02jkHI7/cc3FNSABO2xORErMj8kMwbK1pMUNz1K2ORkOZqzvWlf8/D0YdmSa6xr
-	TySXqK6/FO2MnB4Qzdrxkqbqdwf+aYTnxPvAJyuDOzQpJJL6mSF6RaYxE+F+CwfFaZgfjx
-	y+SkXHZrr+lLCnOsxo0vB3EG/2AByvvaw9C2KhIJNe25RxcONxuOO55lm5g3NQ==
+	t=1723538998; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=3wIUxIh2OIZTg+ViSACcdyDkRvUVlg0IoTUZUZNrvQ4=;
+	b=IDsCo+jbOWuFvT62SkyixzRGhofRSxJTiGUy05j3AskoayGSWCSx+BEi7hMk8EcLBlNMbH
+	MZVWHXqLVtGUnWGtLZuaMDmPmdq1Of1Vplh0fYRpVXbOBz2C90cHp29TKl/F0QgHZCmlda
+	f24layMmxywIxD6v4PqDm/K7wfP3kSIEi8oUu8nY+Ye7pli8S57Eb9rdm0d8mc6tPoPoQy
+	645bz6icUyKbtG5rg4zPTbp907BYRp5PFGaS9FvZD6cYVQgHutz3yWa6SVCP0e/AxaFVrs
+	mWofQTMnjIl/jcFn2TFjTQRfyIJ/HuLWJjaq4H8a0I9So/A/1P1TxNvra+X7Kw==
 From: Frieder Schrempf <frieder@fris.de>
 To: Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
 	Shawn Guo <shawnguo@kernel.org>
 Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 	Alexander Stein <alexander.stein@ew.tq-group.com>,
 	Bjorn Helgaas <bhelgaas@google.com>,
 	Conor Dooley <conor.dooley@microchip.com>,
 	Fabio Estevam <festevam@denx.de>,
-	Fabio Estevam <festevam@gmail.com>,
 	Francesco Dolcini <francesco.dolcini@toradex.com>,
 	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
 	Hiago De Franco <hiago.franco@toradex.com>,
 	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
 	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 	Mathieu Othacehe <m.othacehe@gmail.com>,
-	Michael Walle <mwalle@kernel.org>,
-	Parthiban Nallathambi <parthiban@linumiz.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: [PATCH v5 0/2] Add support for Kontron OSM-S i.MX93 SoM and carrier  board
-Date: Tue, 13 Aug 2024 10:49:03 +0200
-Message-ID: <20240813084934.46004-1-frieder@fris.de>
+	Michael Walle <mwalle@kernel.org>
+Subject: [PATCH v5 1/2] dt-bindings: arm: fsl: Add Kontron i.MX93 OSM-S based boards
+Date: Tue, 13 Aug 2024 10:49:04 +0200
+Message-ID: <20240813084934.46004-2-frieder@fris.de>
+In-Reply-To: <20240813084934.46004-1-frieder@fris.de>
+References: <20240813084934.46004-1-frieder@fris.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,40 +78,44 @@ X-Last-TLS-Session-Version: TLSv1.3
 
 From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-Patch 1: board DT bindings
-Patch 2: add devicetrees
+Add the bindings for the Kontron i.MX93 OSM-S SoM and BL carrier
+board.
 
+Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
 Changes for v5:
-* Address Shawn's review comments (thanks!)
+* none
 
 Changes for v4:
-* Reorder enable-active-high property
-* Add dedicated pinctrl settings for different SDHC speed modes
-* Add SION bit for SDHC pinctrls as workaround for SoC erratum
+* none
 
 Changes for v3:
-* remove applied patches
-* rebase onto v6.11-rc1
+* none
 
 Changes for v2:
-* remove applied patches 1 and 2
-* add tags
-* improvements suggested by Krzysztof (thanks!)
-* add missing Makefile entry for DT
+* add tag from Krzysztof (thanks!)
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Frieder Schrempf (2):
-  dt-bindings: arm: fsl: Add Kontron i.MX93 OSM-S based boards
-  arm64: dts: Add support for Kontron i.MX93 OSM-S SoM and BL carrier
-    board
-
- .../devicetree/bindings/arm/fsl.yaml          |   6 +
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../dts/freescale/imx93-kontron-bl-osm-s.dts  | 163 +++++
- .../dts/freescale/imx93-kontron-osm-s.dtsi    | 628 ++++++++++++++++++
- 4 files changed, 798 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx93-kontron-bl-osm-s.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx93-kontron-osm-s.dtsi
-
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 80747d79418a0..bd0326efad407 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1344,6 +1344,12 @@ properties:
+           - const: variscite,var-som-mx93
+           - const: fsl,imx93
+ 
++      - description: Kontron OSM-S i.MX93 SoM based boards
++        items:
++          - const: kontron,imx93-bl-osm-s # Kontron BL i.MX93 OSM-S board
++          - const: kontron,imx93-osm-s    # Kontron OSM-S i.MX93 SoM
++          - const: fsl,imx93
++
+       - description:
+           Freescale Vybrid Platform Device Tree Bindings
+ 
 -- 
 2.46.0
 
