@@ -1,55 +1,63 @@
-Return-Path: <devicetree+bounces-93447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEC9F950F15
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 23:21:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1843950F2B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 23:33:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5A3CFB24ED3
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 21:21:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DA391F232D3
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 21:33:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 550801AC423;
-	Tue, 13 Aug 2024 21:17:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 296D41A76CC;
+	Tue, 13 Aug 2024 21:33:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k/vQeNHn"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="EKWjyw6g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AD871A76D3;
-	Tue, 13 Aug 2024 21:17:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81AB417B433;
+	Tue, 13 Aug 2024 21:32:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723583853; cv=none; b=YpvLuNxXMiHGlLqsKovEBkFgKZa11sysua32tRRaxCWkuaPxam6OOT4O82/w6RGtT3poWvysDa8+Nd9NQ9x+V8aKZHXcWI+zhK6gI87McybiqaTUAGA+llbtoSYMLkDZqthGglIGmtt50b/voaw8huUdWOGl0jTxgqnRU+PDgCI=
+	t=1723584782; cv=none; b=KCpcCCYrdtriiGjr/qg0sEMedHQUKax6GNuTNJSFOh8p/cuWqPEDm0lCFyJQKpZoRfCleKHKxW8c6O0+KLqWJCUOCInk+wBuetOEef1FHPQBLHvbRxfzwhDwzpU4cbo1adlsroSznagGzFZksvhm0paywnJNNnnJ615Z444xYmU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723583853; c=relaxed/simple;
-	bh=f8OaPGcl40vzbwoZPTs9LPTXcTWTU3nBPqiaH+u+E0Q=;
+	s=arc-20240116; t=1723584782; c=relaxed/simple;
+	bh=LL67Qn5AcFOoxnqElfswr52Sz+rm6HzPth1c/jtLGe8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gV5GKA46ppSEkfn4jzCm7BHEwPoW4uHigc6RJi9iwZRzxhnRJDH1lvCIwUt9yM/zfHM4e3y8rlrgftTb8OrOhGHXpR748H1OHR/ngbToe/VqSRYqWR/b2b4ffxjyTYXALwIrk6vCD7eFBuA18rclO+UhruYYHu01uyVUOTdmRXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k/vQeNHn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72BDBC32782;
-	Tue, 13 Aug 2024 21:17:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723583852;
-	bh=f8OaPGcl40vzbwoZPTs9LPTXcTWTU3nBPqiaH+u+E0Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=k/vQeNHnbznjuzhkE83iNElju93C9cWc5oB2ALvimGmR1o+rdZ2XGvu8wqcaK/9oc
-	 Y3d2C8OsEGl6560d987xGg7/HCDYti7uVx1wgT+zDB/tmuEyjAJSWFkvwUfuPhR8El
-	 R6qfArw/0jnU73abNeKPFdNx80djvda0+fnhYbzN7lXk/ihOalrw0QWucJOnCg2KuS
-	 P+nPrP2iRR8nwuvc483sKuoE9aU0DBy4lVRL3eVoAhjykdVjFJksbZco1ogih370Ub
-	 xUJOO+fVLcp47dA8B5/3egDC0Eqk6g1s3Bar+XhhEUc+msNCY0VeCmPUyKqNEqfDXy
-	 xA8uqQHnn+dMA==
-Date: Tue, 13 Aug 2024 15:17:31 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Stefan Wiehler <stefan.wiehler@nokia.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Saravana Kannan <saravanak@google.com>
-Subject: Re: [PATCH v4 1/2] of/irq: Prevent device address out-of-bounds read
- in interrupt map walk
-Message-ID: <172358384538.2043855.85185364158874598.robh@kernel.org>
-References: <20240812100652.3800963-1-stefan.wiehler@nokia.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=cwOjtsneZB7hKdNUzJ9xjT5yHtwW2SEQ5ozNPinoOVhQPUb1+MyZ4rI6jPQrIWAywDw93dnt00iaOhAwPDjgumE1IPUHDYMG7m5gjCMkH7P4Iyg0YXttDz1so6xs5rGXPya6lWIucq6zEaEyD7Oe+NYWx4y0RZoomRc1dz+S+2E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=EKWjyw6g; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=0zHtH7S9/+nzyRBmhfYheqhQqQGzPuG4dr/VRiZTh44=; b=EKWjyw6g2EXx8NfidMDFp0xD5P
+	kSbdCAjzRbUPWPfdP65kOEunr58lkEDR/aPocTZSQ/BNXqobshCwEclrx9KaNuDRz3mvKNw4UAqDj
+	CmEE3ylxB3KfAlpN7RCanITFIm5yLomICJDnIFmZWxqrQn7kwJZtETYteKWs0a4JLgrA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sdz87-004iNs-Gi; Tue, 13 Aug 2024 23:32:35 +0200
+Date: Tue, 13 Aug 2024 23:32:35 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Tristram.Ha@microchip.com
+Cc: Woojung.Huh@microchip.com, UNGLinuxDriver@microchip.com,
+	devicetree@vger.kernel.org, f.fainelli@gmail.com, olteanv@gmail.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, marex@denx.de, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 1/4] dt-bindings: net: dsa: microchip: add SGMII
+ port support to KSZ9477 switch
+Message-ID: <144ed2fd-f6e4-43a1-99bc-57e6045996da@lunn.ch>
+References: <20240809233840.59953-1-Tristram.Ha@microchip.com>
+ <20240809233840.59953-2-Tristram.Ha@microchip.com>
+ <eae7d246-49c3-486e-bc62-cdb49d6b1d72@lunn.ch>
+ <BYAPR11MB355823A969242508B05D7156EC862@BYAPR11MB3558.namprd11.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,81 +66,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240812100652.3800963-1-stefan.wiehler@nokia.com>
+In-Reply-To: <BYAPR11MB355823A969242508B05D7156EC862@BYAPR11MB3558.namprd11.prod.outlook.com>
 
+On Tue, Aug 13, 2024 at 09:14:34PM +0000, Tristram.Ha@microchip.com wrote:
+> > > From: Tristram Ha <tristram.ha@microchip.com>
+> > >
+> > > The SGMII module of KSZ9477 switch can be setup in 3 ways: 0 for direct
+> > > connect, 1 for 1000BaseT SFP, and 2 for 10/100/1000 SFP.
+> > >
+> > > SFP is typically used so the default is 1.  The driver can detect
+> > > 10/100/1000 SFP and change the mode to 2.  For direct connect this mode
+> > > has to be explicitly set to 0 as driver cannot detect that
+> > > configuration.
+> > 
+> > Could you explain this in more detail. Other SGMII blocks don't need
+> > this. Why is this block special?
+> > 
+> > Has this anything to do with in-band signalling?
+>  
+> There are 2 ways to program the hardware registers so that the SGMII
+> module can communicate with either 1000Base-T/LX/SX SFP or
+> 10/100/1000Base-T SFP.  When a SFP is plugged in the driver can try to
+> detect which type and if it thinks 10/100/1000Base-T SFP is used it
+> changes the mode to 2 and program appropriately.
 
-On Mon, 12 Aug 2024 12:06:51 +0200, Stefan Wiehler wrote:
-> When of_irq_parse_raw() is invoked with a device address smaller than
-> the interrupt parent node (from #address-cells property), KASAN detects
-> the following out-of-bounds read when populating the initial match table
-> (dyndbg="func of_irq_parse_* +p"):
-> 
->   OF: of_irq_parse_one: dev=/soc@0/picasso/watchdog, index=0
->   OF:  parent=/soc@0/pci@878000000000/gpio0@17,0, intsize=2
->   OF:  intspec=4
->   OF: of_irq_parse_raw: ipar=/soc@0/pci@878000000000/gpio0@17,0, size=2
->   OF:  -> addrsize=3
->   ==================================================================
->   BUG: KASAN: slab-out-of-bounds in of_irq_parse_raw+0x2b8/0x8d0
->   Read of size 4 at addr ffffff81beca5608 by task bash/764
-> 
->   CPU: 1 PID: 764 Comm: bash Tainted: G           O       6.1.67-484c613561-nokia_sm_arm64 #1
->   Hardware name: Unknown Unknown Product/Unknown Product, BIOS 2023.01-12.24.03-dirty 01/01/2023
->   Call trace:
->    dump_backtrace+0xdc/0x130
->    show_stack+0x1c/0x30
->    dump_stack_lvl+0x6c/0x84
->    print_report+0x150/0x448
->    kasan_report+0x98/0x140
->    __asan_load4+0x78/0xa0
->    of_irq_parse_raw+0x2b8/0x8d0
->    of_irq_parse_one+0x24c/0x270
->    parse_interrupts+0xc0/0x120
->    of_fwnode_add_links+0x100/0x2d0
->    fw_devlink_parse_fwtree+0x64/0xc0
->    device_add+0xb38/0xc30
->    of_device_add+0x64/0x90
->    of_platform_device_create_pdata+0xd0/0x170
->    of_platform_bus_create+0x244/0x600
->    of_platform_notify+0x1b0/0x254
->    blocking_notifier_call_chain+0x9c/0xd0
->    __of_changeset_entry_notify+0x1b8/0x230
->    __of_changeset_apply_notify+0x54/0xe4
->    of_overlay_fdt_apply+0xc04/0xd94
->    ...
-> 
->   The buggy address belongs to the object at ffffff81beca5600
->    which belongs to the cache kmalloc-128 of size 128
->   The buggy address is located 8 bytes inside of
->    128-byte region [ffffff81beca5600, ffffff81beca5680)
-> 
->   The buggy address belongs to the physical page:
->   page:00000000230d3d03 refcount:1 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x1beca4
->   head:00000000230d3d03 order:1 compound_mapcount:0 compound_pincount:0
->   flags: 0x8000000000010200(slab|head|zone=2)
->   raw: 8000000000010200 0000000000000000 dead000000000122 ffffff810000c300
->   raw: 0000000000000000 0000000000200020 00000001ffffffff 0000000000000000
->   page dumped because: kasan: bad access detected
-> 
->   Memory state around the buggy address:
->    ffffff81beca5500: 04 fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
->    ffffff81beca5580: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
->   >ffffff81beca5600: 00 fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
->                         ^
->    ffffff81beca5680: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
->    ffffff81beca5700: 00 00 00 00 00 00 fc fc fc fc fc fc fc fc fc fc
->   ==================================================================
->   OF:  -> got it !
-> 
-> Prevent the out-of-bounds read by copying the device address into a
-> buffer of sufficient size.
-> 
-> Signed-off-by: Stefan Wiehler <stefan.wiehler@nokia.com>
-> ---
->  drivers/of/irq.c | 15 +++++++++++----
->  1 file changed, 11 insertions(+), 4 deletions(-)
-> 
+What should happen here is that phylink will read the SFP EEPROM and
+determine what mode should be used. It will then tell the MAC or PCS
+how to configure itself, 1000BaseX, or SGMII. Look at the
+mac_link_up() callback, parameter interface.
 
-Applied, thanks!
-
+	Andrew
 
