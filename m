@@ -1,108 +1,82 @@
-Return-Path: <devicetree+bounces-93194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93183-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98D6294FF4A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 10:03:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11B5D94FF07
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 09:45:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 503731F2484D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 08:03:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4495C1C22972
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 07:45:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D19E216F8E9;
-	Tue, 13 Aug 2024 08:02:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21CB57A15B;
+	Tue, 13 Aug 2024 07:43:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47E0C13D50E;
-	Tue, 13 Aug 2024 08:02:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DF0E77102;
+	Tue, 13 Aug 2024 07:43:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723536155; cv=none; b=OLUO9yRoU2ExCmSV8YaEt9osR5cOMu40DfB4HeV2nYEfHnFAUM7auK/HJO+AE/gy1QyjVanKXlGRY/gw2qjDSj2RTWBljxYsVMB9Jy9z8xOO2oHFyfsPkJIEBnc/TsnRkaeNZpJXF/OOC8IfB2guxh8rCHMBnNhhauaC8EmBL6A=
+	t=1723535025; cv=none; b=euSZYpmN4MPt9x5zpFpSBBMRGdbI76qvudP8uEILnX1xbAr9T+hHc/zmNRp9RbQ7eC180hhBI3IikIgYR0fBhj05Gx07z39zK6QmbWICSn0TxJfyrDgNxIX4G8aPAao7RmXPIYJwZlxtgZcAtUjrgPk4uCGTLghI6L+nYNNQADs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723536155; c=relaxed/simple;
-	bh=+pROoBrurakCGvGD6Blb+j4X0fhL0kJk1RxtcHF2TWU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=sfM/T8++H0o9ZKJLLe0xbTtlx9y7l/sqMdjHvSag+tmKI+YzbwGFQn5X55YtJRo9jk83MJsStzeCNNK0AaXO8/QwYNwblmQC+AmMn5zDNQjyOYWKeQMp7deKZc7gS1y+8Q9lKtWTfYeR5yXD7z1WMkg1xTsOA01RTlsAQiDNYtU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 8680B1A11AF;
-	Tue, 13 Aug 2024 10:02:27 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 4F48A1A11BD;
-	Tue, 13 Aug 2024 10:02:27 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 18113181D0FD;
-	Tue, 13 Aug 2024 16:02:26 +0800 (+08)
-From: Richard Zhu <hongxing.zhu@nxp.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	l.stach@pengutronix.de
-Cc: hongxing.zhu@nxp.com,
-	devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	kernel@pengutronix.de,
-	imx@lists.linux.dev
-Subject: [PATCH v5 4/4] arm64: dts: imx8mm: Add dbi2 and atu reg for i.MX8MM PCIe EP
-Date: Tue, 13 Aug 2024 15:42:23 +0800
-Message-Id: <1723534943-28499-5-git-send-email-hongxing.zhu@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1723534943-28499-1-git-send-email-hongxing.zhu@nxp.com>
-References: <1723534943-28499-1-git-send-email-hongxing.zhu@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+	s=arc-20240116; t=1723535025; c=relaxed/simple;
+	bh=FgHp+Rh61XDrWmv/1aR5vDKnKDEV1O2lHrTZCJ72UHk=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=c+W48lGlh6z0DCvdOGGKlxxJqU8H+373ldSVUhCwVAs1q34jCNa2n4LqpDEu3ZEMrY9CtZ6go7ZRT94n9k9NJIWlmc1WoGGZ+hErtbS/Oik+eupOu/NZAndRqZ0AE7DP/O4aVV0k/lGL78q7KD5+foz8IcK4ksjY5LlOWLcpk/g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.12; Tue, 13 Aug
+ 2024 15:43:40 +0800
+Received: from localhost.localdomain (192.168.10.10) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1258.12 via Frontend
+ Transport; Tue, 13 Aug 2024 15:43:40 +0800
+From: Kevin Chen <kevin_chen@aspeedtech.com>
+To: <tglx@linutronix.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <joel@jms.id.au>, <andrew@codeconstruct.com.au>,
+	<kevin_chen@aspeedtech.com>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-aspeed@lists.ozlabs.org>
+Subject: [PATCH v1 0/2] Add support for AST2700 INTC driver
+Date: Tue, 13 Aug 2024 15:43:36 +0800
+Message-ID: <20240813074338.969883-1-kevin_chen@aspeedtech.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Add dbi2 and iatu reg for i.MX8MM PCIe EP.
+Introduce to the AST27XX INTC modules, which contain two conponents in
+CPU die(12nm) and IO die(40mm) comunicating by SLI or LTPI protocol.
 
-For i.MX8M PCIe EP, the dbi2 and atu addresses are pre-defined in the
-driver. This method is not good.
+There are lots of device in IO die, which need to be serviced in
+requested interrupt handler. As two die ICs, combine 32 interrupt source
+in IO die into 1 interrupt in CPU die.
 
-In commit b7d67c6130ee ("PCI: imx6: Add iMX95 Endpoint (EP) support"),
-Frank suggests to fetch the dbi2 and atu from DT directly. This commit is
-preparation to do that for i.MX8MM PCIe EP.
+soc0_intc11 represent CPU die INTC, which each bit mapping to soc1_intcX.
+soc1_intcX represent IO die INTC, which combines 32 interrupt sources.
 
-These changes wouldn't break driver function. When "dbi2" and "atu"
-properties are present, i.MX PCIe driver would fetch the according base
-addresses from DT directly. If only two reg properties are provided, i.MX
-PCIe driver would fall back to the old method.
+Kevin Chen (2):
+  dt-bindings: interrupt-controller: Add support for ASPEED AST27XX INTC
+  irqchip/aspeed-intc: Add support for 10 INTC interrupts on AST27XX
+    platforms
 
-Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mm.dtsi | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ .../aspeed,ast2700-intc.yaml                  | 120 +++++++++++
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-aspeed-intc.c             | 198 ++++++++++++++++++
+ 3 files changed, 319 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-intc.yaml
+ create mode 100644 drivers/irqchip/irq-aspeed-intc.c
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index 9535dedcef59..4de3bf22902b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -1375,9 +1375,11 @@ pcie0: pcie@33800000 {
- 
- 		pcie0_ep: pcie-ep@33800000 {
- 			compatible = "fsl,imx8mm-pcie-ep";
--			reg = <0x33800000 0x400000>,
--			      <0x18000000 0x8000000>;
--			reg-names = "dbi", "addr_space";
-+			reg = <0x33800000 0x100000>,
-+			      <0x18000000 0x8000000>,
-+			      <0x33900000 0x100000>,
-+			      <0x33b00000 0x100000>;
-+			reg-names = "dbi", "addr_space", "dbi2", "atu";
- 			num-lanes = <1>;
- 			interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "dma";
 -- 
-2.37.1
+2.34.1
 
 
