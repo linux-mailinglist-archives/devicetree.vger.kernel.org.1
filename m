@@ -1,154 +1,80 @@
-Return-Path: <devicetree+bounces-93290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BB6F950471
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 14:07:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE2209504BB
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 14:16:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E9A51C21A9A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 12:07:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E54A287A6B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 12:16:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D6E01991DD;
-	Tue, 13 Aug 2024 12:07:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0F391993B0;
+	Tue, 13 Aug 2024 12:15:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jughurPf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eSR9/3rG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E80C92262B;
-	Tue, 13 Aug 2024 12:07:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B041F199238;
+	Tue, 13 Aug 2024 12:15:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723550870; cv=none; b=PV26C3Hr7rMC6E3uHnbHOGoS2Hbyci8o69O/OPlo64jLXghp/QWqGzWT3fNNlA/eTAK4+W8pvjApQf66YXqOgMGxTnwlGWXIB2Vk9rSA40Tn0KixLB3K2c2g78VdIxQIr5gizhQtXVxWtyWEuljICcqDPfugHdGAO9OSWWHDmb4=
+	t=1723551336; cv=none; b=XU0ZLt2HySo9bVF32zAYjoemL+G56X9slhYKzPfG7KK0yf2eD43GPvhsSccgBJEeDEO/2etgLGviz0Z+4bp0sA+1AsXJQxGbG60KqnmY49a+95twLAQxXc9HcZxejWe5aUuVCEKPIXYX1fvfQYDvOWA/wGlRE4vWboZimWgzr9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723550870; c=relaxed/simple;
-	bh=eboqPDFBQBeHXdKa2+N374z8eTUgt6A+omNECwR9BdM=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
-	 In-Reply-To:Content-Type; b=aw0mevfXlOX59PBYdjps7RRbogRJVzG1kROMYX3cmATkt1dpsVD0VgCyvznnamFmo85Ps1p3Kk1V0sm5VnrHAJbsdJplIPTQmHpEp2EyubkFqR6zeKywBgHVPMzZ11FfrBZPDwBfFuib7iL+32LcrWdT/CDTV2Oq/jRCrDQ/zTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=jughurPf; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47D4bde3021398;
-	Tue, 13 Aug 2024 12:07:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	UAgyaTKkoWXNtcaRI74DXqrR9yRQ3PKCrjmt7l19c9I=; b=jughurPfn3IrCsir
-	gCzmL+2ASzjmX6kPqZ6FfF2Olbtb6UcDcXBdRocu+YMfRdsRH0504d7kvnq7bM25
-	rZsoSyQgdaT9TlRc/2Iqz3UeJS0v78mmwe9OSsXJKxX600WzQ6FAgUqlzxfPB0+/
-	VtKTmRctZAAe/ZpadHqAfBmDuvzERKXfmgOsuOmMQsTHErs8FgsLZaunOGFt2nM1
-	JRiV7oF0SmoDZOi5ZlbQjqTAuz/z80mh/CITSFLQuHlF5c1MNo5XjLzKQj1RqO4f
-	YeKpG/S1+BslVpqr5t0Kz2QRdl6r/jWWRGYRYpf6wJ90Cu3iBdQWxCyFjJQ4KXAX
-	SzKegw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40x1g7yjq8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 13 Aug 2024 12:07:36 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47DC7ZUd003966
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 13 Aug 2024 12:07:35 GMT
-Received: from [10.253.33.134] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 13 Aug
- 2024 05:07:31 -0700
-Message-ID: <cd8ac2dd-e56d-4551-b3bf-6994c2064f1b@quicinc.com>
-Date: Tue, 13 Aug 2024 20:07:28 +0800
+	s=arc-20240116; t=1723551336; c=relaxed/simple;
+	bh=hbeRrVh/SiaMC4JFosNc7lEIzxH+ImnQOcMEmvgeTkI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uS3ysEZ5B1cYJlMgLMEsyJzRhc9Bo4dngrUuELBIRLcV+y4xlWPMK4VNxa6r5iBcK6HsqbxGxsRX9koWPKMfdBrzi6GBsjMH6LVR8xIDnokIYiMDmzIVBBtTIWD/YET/JLJYHILz67Y6N5toqq/n4gZUOSdHTIran52aUYgCo6w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eSR9/3rG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 966D0C4AF0B;
+	Tue, 13 Aug 2024 12:15:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723551336;
+	bh=hbeRrVh/SiaMC4JFosNc7lEIzxH+ImnQOcMEmvgeTkI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eSR9/3rGXfW52UDhzO1W5hWS+KUisEfOSJxYQCWCfmFM05OJYrn1QlhUhHsAQHSxx
+	 2zVaKHhOyr0dlrY+LIKNZPgjYMuGVovGtrSR1iYEGDsXwgIKMFcSsMnIf2tVYgo4T1
+	 J8HgbGtWNfzAD6vc3RXO/oLApc6iQrZfdFeWUz6TjBW3Zzx9KZsMgtAwc+YhRSH6Y+
+	 NuXxL0uWmUCfVI0PLJlOFKET14ttb4n8Utg+eBybpVVMezKsQ/A6BbMm1LVUEE4DC1
+	 ryVtG3uxS7Ju6aQsISU73psZZifirUeNwoAP4sh0gVEzXvhYq4f0gtmND7QTsWWpeR
+	 dbdOu0Kjv5p8A==
+Date: Tue, 13 Aug 2024 17:45:32 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Inochi Amaoto <inochiama@outlook.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v11 2/3] soc/sophgo: add top sysctrl layout file for
+ CV18XX/SG200X
+Message-ID: <ZrtOZIwszhJ9s8J2@matsya>
+References: <IA1PR20MB495324F3EF7517562CB4CACFBB842@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <IA1PR20MB495384C4A2F64AE100350BE7BB842@IA1PR20MB4953.namprd20.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Jie Luo <quic_luoj@quicinc.com>
-Subject: Re: [PATCH 3/4] arm64: defconfig: Enable Qualcomm IPQ common PLL
- clock controller
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Stephen
- Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas
-	<catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Konrad Dybcio
-	<konradybcio@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <quic_kkumarcs@quicinc.com>,
-        <quic_suruchia@quicinc.com>, <quic_pavir@quicinc.com>,
-        <quic_linchen@quicinc.com>, <quic_leiwei@quicinc.com>
-References: <20240808-qcom_ipq_cmnpll-v1-0-b0631dcbf785@quicinc.com>
- <20240808-qcom_ipq_cmnpll-v1-3-b0631dcbf785@quicinc.com>
- <afbf0554-56a5-4df0-9e4b-97c065d78bb3@kernel.org>
- <41aea3f3-d21a-4d8e-a91a-0fe06947c75f@quicinc.com>
- <379dc513-2eb5-4d33-a09e-e8861dddc502@lunn.ch>
-Content-Language: en-US
-In-Reply-To: <379dc513-2eb5-4d33-a09e-e8861dddc502@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Wvl6s8UG0d8YoLotil6OsCOBM22MjdxJ
-X-Proofpoint-ORIG-GUID: Wvl6s8UG0d8YoLotil6OsCOBM22MjdxJ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-13_04,2024-08-13_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1015
- suspectscore=0 bulkscore=0 malwarescore=0 impostorscore=0 phishscore=0
- priorityscore=1501 mlxlogscore=636 mlxscore=0 lowpriorityscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408130088
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <IA1PR20MB495384C4A2F64AE100350BE7BB842@IA1PR20MB4953.namprd20.prod.outlook.com>
 
+On 11-08-24, 13:16, Inochi Amaoto wrote:
+> The "top" system controller of CV18XX/SG200X exposes control
+> register access for various devices. Add soc header file to
+> describe it.
 
+why define the full map and not just dma router offsets in a local dma
+header?
 
-On 8/9/2024 9:34 PM, Andrew Lunn wrote:
-> On Fri, Aug 09, 2024 at 07:36:35PM +0800, Jie Luo wrote:
->>
->>
->> On 8/8/2024 10:41 PM, Krzysztof Kozlowski wrote:
->>> On 08/08/2024 16:03, Luo Jie wrote:
->>>> The common PLL clock controller provides fixed rate output clocks to
->>>> the hardware blocks that enable ethernet function on IPQ platform.
->>>
->>> That's defconfig for all platforms, so how anyone can guess which one
->>> you target here? Be specific, which company, which Soc, which board
->>> needs it.
->>>
->>
->> Sure, I will update the commit message as below to provide the details
->> required.
->>
->> The common PLL hardware block is available in the Qualcomm IPQ SoC such
->> as IPQ9574 and IPQ5332. It provides fixed rate output clocks to Ethernet
->> related hardware blocks such as external Ethernet PHY or switch. This
->> driver is initially being enabled for IPQ9574. All boards based on
->> IPQ9574 SoC will require to include this driver in the build.
-> 
-> Does it provide more than Ethernet clocks? I'm just wondering why the
-> name `common`, when it seems pretty uncommon, specialised for Ethernet
-> clocks on a couple of SoCs.
-> 
->     Andrew
-
-No, this block does not provide any other functionality other than
-allowing this PLL to be configured for supplying clocks to Ethernet
-devices. The hardware programming guide names this block as the 'CMN'
-block, so we included the 'cmn' phrase in the driver namespace. However,
-I will update commit message to clarify that 'cmn' is the block name and
-it does not provide any other function other than enabling clocks to
-Ethernet related devices.
-
-
+-- 
+~Vinod
 
