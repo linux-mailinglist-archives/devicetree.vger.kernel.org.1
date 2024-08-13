@@ -1,133 +1,202 @@
-Return-Path: <devicetree+bounces-93311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A93C2950765
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 16:18:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17B65950776
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 16:24:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BBAE1F24092
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 14:18:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C35531F24100
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 14:24:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E390019D07D;
-	Tue, 13 Aug 2024 14:17:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEB8019D084;
+	Tue, 13 Aug 2024 14:24:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="akETTczI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YOI8fe0K"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B033519B3ED;
-	Tue, 13 Aug 2024 14:17:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A084619D076;
+	Tue, 13 Aug 2024 14:24:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723558640; cv=none; b=Y7vDNG39dl2REg2nsn4FF4GFUlReUG5SQ5pkYqb0T6MHRBLMJdFJstA17snPYLElrvV92evVL0xCjMukQmluttDr7KOKS/kFgmRFHMjupG7RI5IWeFmFYWczY5fVvKPuXlYHJwmFXo3220tvaPv0aK9LkeVKKXXxIcD9B+G8qRs=
+	t=1723559082; cv=none; b=hdrWcark/Gh56uXzq1nhz2Bkx9lSI8yjlS7xHWLlajr2Bo3jFiRaVwaLzj89PXJCfPQKCCfR8IuxbqIW2PHBkbVA24sBUhFt/OHfpHMUbEKyCwZu+2ARhHH1Xyg53HFBKn2kj4JTyuij230/H1PEB09i2XkZxHI+Qn1hM29N2RM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723558640; c=relaxed/simple;
-	bh=Ts02BaX1uJBucVrRoYv/f607u6/Qe7CljCeo1TcnB1o=;
+	s=arc-20240116; t=1723559082; c=relaxed/simple;
+	bh=Cf5nrxOfWp3lPGd3cNKVX3NV1/THCONrMkgor6cC/74=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lMkvM7TD2BxS/S0VDQJOx7YHSanKqObg3NRSucjbLVeF+F5goCOfOKTxWvvzFSbm+H0ALKSgnThAosbDovl/MHzazrh0NyOqkG/PcnNGXtopVLRrmhvBNDyIaZHMpQye2DbfvUGI9zU6rmo8+bCLN9ggCkqqbGmVnp+oc9Cfyzk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=akETTczI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41956C4AF09;
-	Tue, 13 Aug 2024 14:17:20 +0000 (UTC)
+	 To:Cc:Content-Type; b=X/JdkFZffZKMhXLMopWAG0eyf89IwmZnU86F7k9j8QUGovSSbzFOsXfk6e2p8WJwyNIfCEVU3RHvV+i1kM69fFZiROvgzePVytu+DyhHe2jHvDGhcIVo0xQN5nB18EsCXfDZUuxo6N483CzfOtcZH11gGWKEDK0rh33EIVPybaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YOI8fe0K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47B52C4AF0B;
+	Tue, 13 Aug 2024 14:24:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723558640;
-	bh=Ts02BaX1uJBucVrRoYv/f607u6/Qe7CljCeo1TcnB1o=;
+	s=k20201202; t=1723559082;
+	bh=Cf5nrxOfWp3lPGd3cNKVX3NV1/THCONrMkgor6cC/74=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=akETTczIweO4EVNKAeoT9iyLYwL8xm6U3nSR0TYlL8u1t7nbfvShuXn0mKX5sHs/q
-	 tDaaWC+JKCqOEBDfxfOcYwh5XXTaKYi57CDnUZMtAdQpgabl35qRf+SOXs+NPhDmM5
-	 jMhBP0zgiQ+tCgEmL6dpjBkbHTj4i+0QPEiE+VK6p/WHxQXM+52typMPLkC7SaXd6g
-	 adQJ51OTLGEAZ7W5Q7nOOemnh+UT0WpJGSDtozbLJoTFKoB4Nv6TGJThKpax/mBmWH
-	 tCHbu5wNLeyqrUpadE9f4aLX3dxt7UQzk7Y7gpXEDCnjWYl8gvlmUQ2WKfcsfJTDB7
-	 jGpf1mtYCp54Q==
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2f1a7faa4d5so48321241fa.3;
-        Tue, 13 Aug 2024 07:17:20 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVtfE03HX6gsyGA03Q7ZOuTVdr0CdrZBBoAljIjPX+wEBaRaqMSpGly1GZqIMXIIWgXCFOm4Nynb5xQ9C4JH31F3RFs1If3tHU5/T9ocWQp0aHKgYIwG9seVcmoCzYKOBIhX+FPEjEF1utA7rEw4IHSXyWae5XLEHoYWucPSC/h8zBroqc8EA==
-X-Gm-Message-State: AOJu0Yyd8QK2ICPAEpxN3aV1fl4KOC4TYB8fcSSLAfdRSB2maorgzMST
-	vSz9pt5xkimUuMQJNfRnrYod55dOokesYvTgZzPg98VjAbQ8HXhOvsVSaOmrmmdj7jlVrjLX2aA
-	byNdQMrCwvMEHcRGNLQbnUrq/fA==
-X-Google-Smtp-Source: AGHT+IG4ZD1LYUmTcjNxsu4NSl0NVMrynBgp0QWu3I61S59AOffl8L/RksPbuMpvt7XgOGWntMOsVjpu4+iKl0U5l+Q=
-X-Received: by 2002:a2e:be93:0:b0:2ef:2bb4:2ea1 with SMTP id
- 38308e7fff4ca-2f2b712cfedmr34435731fa.4.1723558638412; Tue, 13 Aug 2024
- 07:17:18 -0700 (PDT)
+	b=YOI8fe0K1UKV7J4nHg1SoV2ZzWhU1nOSzpzzyq8XX3UaH/oujjT+zj8qtyewZTVlo
+	 Io3cfLgrEWDUOu1CeD7i9sshCZr9OjACJYSQuJ+xVB0n3O41mbTr4fVoWDBszwiql1
+	 Yneol9ZWfKGiJqNEweht/kiaT/Tr2bM26CKc9e8np9TVIOaYNMDZkPIsQLYch0U8wb
+	 +QBU+HJHQfzMtACqE7yixFcOyHmMVPks/1eC7Oz2DwSfjtnh5us4JkDL86Ohsqzw3i
+	 uc30OTkWlYESufLgZDVQV7bvICnQ9jqKaKPsuuTYzBi0qBANsIOra+xLNWJ6y7ghtr
+	 NPTHhvloxFonA==
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2eeb1ba0468so71175591fa.0;
+        Tue, 13 Aug 2024 07:24:42 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVgjUM9sA+cCcyLVXDDl9Q+nX2M/0C6mfwVFg59I+UOulf3gQJ0IRBo84suCYnzU4E5G/3HLXc97FshfnilWyhBcjwQnFYKblEMI0LRusbvsUxQNYPCEdk71GTYPTDOa1V8BCnlXGT62aC9Nzu/QBTHp3czDqBr8CiWf6PU5KSGCpR5ZQ==
+X-Gm-Message-State: AOJu0YzO10apMfNTeBaubAT4WqbUf/fkK13qtP1pX9CnDSSrR4E9aq36
+	lCAa6sVnY5TlYBoNm39nIco1uXLIlbg7nauiRIa43EN9mVic9GwowcKEX1nGVYwH0A9tLGNZKof
+	yGJzvrvGDzOlKQpv4AGksHTeKtg==
+X-Google-Smtp-Source: AGHT+IGEtxJXAokVeHylGyvLbWPxf9oslPNLlY5/p+Gnfc4iXdhDKRm8W9C2iFoUYgmtU70ocpuAKUExkf0GIUkUUYA=
+X-Received: by 2002:a2e:b6c7:0:b0:2ef:29cd:3183 with SMTP id
+ 38308e7fff4ca-2f2b727737bmr24740261fa.48.1723559080584; Tue, 13 Aug 2024
+ 07:24:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1722355365.git.daniel@makrotopia.org> <d2beb15377dc8b580ca5557b1a4a6f50b74055aa.1722355365.git.daniel@makrotopia.org>
-In-Reply-To: <d2beb15377dc8b580ca5557b1a4a6f50b74055aa.1722355365.git.daniel@makrotopia.org>
+References: <20240812203004.3831481-1-Frank.Li@nxp.com>
+In-Reply-To: <20240812203004.3831481-1-Frank.Li@nxp.com>
 From: Rob Herring <robh@kernel.org>
-Date: Tue, 13 Aug 2024 08:17:05 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKG+dMJjPXrWiQ8qZ7yfpdX3R22ntKRBawYZWTaW_9GWA@mail.gmail.com>
-Message-ID: <CAL_JsqKG+dMJjPXrWiQ8qZ7yfpdX3R22ntKRBawYZWTaW_9GWA@mail.gmail.com>
-Subject: Re: [PATCH v9 3/3] arm64: dts: rockchip: add DT entry for RNG to RK356x
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Aurelien Jarno <aurelien@aurel32.net>, Olivia Mackall <olivia@selenic.com>, 
-	Herbert Xu <herbert@gondor.apana.org.au>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Dragan Simic <dsimic@manjaro.org>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@debian.org>, 
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Francesco Dolcini <francesco.dolcini@toradex.com>, Ard Biesheuvel <ardb@kernel.org>, 
-	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
+Date: Tue, 13 Aug 2024 08:24:28 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL2HAeS5BWsmJRzeJb1b7nXgB92KsGe87tT5-LeYmaeyQ@mail.gmail.com>
+Message-ID: <CAL_JsqL2HAeS5BWsmJRzeJb1b7nXgB92KsGe87tT5-LeYmaeyQ@mail.gmail.com>
+Subject: Re: [PATCH 1/1] spi: dt-bindings: convert spi-sc18is602.txt to yaml format
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, "open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
+	imx@lists.linux.dev
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jul 30, 2024 at 10:11=E2=80=AFAM Daniel Golle <daniel@makrotopia.or=
-g> wrote:
+On Mon, Aug 12, 2024 at 2:30=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote:
 >
-> From: Aurelien Jarno <aurelien@aurel32.net>
+> Convert binding doc spi-sc18is602.txt (I2C to SPI bridge) to yaml.
 >
-> Include the just added Rockchip RNG driver for RK356x SoCs and
-> enable it on RK3568.
+> Additional change:
+> - ref spi-controller.yaml
 >
-> Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> Fix below warning:
+> arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb:
+> /soc/i2c@2000000/i2c-mux@77/i2c@7/i2c-mux@75/i2c@0/spi@28: failed to matc=
+h any schema with compatible: ['nxp,sc18is602b']
+>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  arch/arm64/boot/dts/rockchip/rk3568.dtsi |  4 ++++
->  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 10 ++++++++++
->  2 files changed, 14 insertions(+)
+>  .../devicetree/bindings/spi/nxp,sc18is.yaml   | 52 +++++++++++++++++++
+>  .../devicetree/bindings/spi/spi-sc18is602.txt | 23 --------
+>  2 files changed, 52 insertions(+), 23 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/spi/nxp,sc18is.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/spi/spi-sc18is602.t=
+xt
 >
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/d=
-ts/rockchip/rk3568.dtsi
-> index f1be76a54ceb0..2a6ca20e607fd 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> @@ -257,6 +257,10 @@ power-domain@RK3568_PD_PIPE {
->         };
->  };
->
-> +&rng {
-> +       status =3D "okay";
-> +};
+> diff --git a/Documentation/devicetree/bindings/spi/nxp,sc18is.yaml b/Docu=
+mentation/devicetree/bindings/spi/nxp,sc18is.yaml
+> new file mode 100644
+> index 0000000000000..8a5d45d976984
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/nxp,sc18is.yaml
+> @@ -0,0 +1,52 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/spi/nxp,sc18is.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  &usb_host0_xhci {
->         phys =3D <&usb2phy0_otg>, <&combphy0 PHY_TYPE_USB3>;
->         phy-names =3D "usb2-phy", "usb3-phy";
-> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/d=
-ts/rockchip/rk356x.dtsi
-> index 4690be841a1cd..d160a23fd4959 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> @@ -1113,6 +1113,16 @@ sdhci: mmc@fe310000 {
->                 status =3D "disabled";
->         };
+> +title: NXP SC18IS602/SCIS603 I2C to SPI bridge
+
+SCIS603 or SC18IS603?
+
+> +
+> +maintainers:
+> +  - Frank Li <Frank.Li@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nxp,sc18is602
+> +      - nxp,sc18is602b
+> +      - nxp,sc18is603
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clock-frequency:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 7372000
+> +    description:
+> +      external oscillator clock frequency. If not specified, the SC18IS6=
+02
+> +      default frequency (7372000) will be used.
+
+Drop prose that the schema says already.
+
+With those fixes,
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
+> The clock-frequency
+> +      property is relevant and needed only if the chip has an external
+> +      oscillator (SC18IS603).
+> +
+> +allOf:
+> +  - $ref: spi-controller.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        spi@28 {
+> +            compatible =3D "nxp,sc18is603";
+> +            reg =3D <0x28>;
+> +            clock-frequency =3D <14744000>;
+> +        };
+> +    };
+> +
+> diff --git a/Documentation/devicetree/bindings/spi/spi-sc18is602.txt b/Do=
+cumentation/devicetree/bindings/spi/spi-sc18is602.txt
+> deleted file mode 100644
+> index 02f9033270a24..0000000000000
+> --- a/Documentation/devicetree/bindings/spi/spi-sc18is602.txt
+> +++ /dev/null
+> @@ -1,23 +0,0 @@
+> -NXP SC18IS602/SCIS603
+> -
+> -Required properties:
+> -       - compatible : Should be one of
+> -               "nxp,sc18is602"
+> -               "nxp,sc18is602b"
+> -               "nxp,sc18is603"
+> -       - reg: I2C bus address
+> -
+> -Optional properties:
+> -       - clock-frequency : external oscillator clock frequency. If not
+> -         specified, the SC18IS602 default frequency (7372000) will be us=
+ed.
+> -
+> -The clock-frequency property is relevant and needed only if the chip has=
+ an
+> -external oscillator (SC18IS603).
+> -
+> -Example:
+> -
+> -       sc18is603@28 {
+> -               compatible =3D "nxp,sc18is603";
+> -               reg =3D <0x28>;
+> -               clock-frequency =3D <14744000>;
+> -       }
+> --
+> 2.34.1
 >
-> +       rng: rng@fe388000 {
-> +               compatible =3D "rockchip,rk3568-rng";
-> +               reg =3D <0x0 0xfe388000 0x0 0x4000>;
-> +               clocks =3D <&cru CLK_TRNG_NS>, <&cru HCLK_TRNG_NS>;
-> +               clock-names =3D "core", "ahb";
-> +               resets =3D <&cru SRST_TRNG_NS>;
-> +               reset-names =3D "reset";
-
-This adds a new warning:
-
-rng@fe388000: 'reset-names' does not match any of the regexes: 'pinctrl-[0-=
-9]+'
 
