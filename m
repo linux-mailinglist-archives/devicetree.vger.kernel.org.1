@@ -1,139 +1,173 @@
-Return-Path: <devicetree+bounces-93366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB05B950A1E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 18:28:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43F88950A30
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 18:32:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 557541F245A2
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 16:28:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB84C1F26EC5
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 16:32:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 928451A0B0F;
-	Tue, 13 Aug 2024 16:28:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7774219B3E3;
+	Tue, 13 Aug 2024 16:32:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fonaooj1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j5TkZNoV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C0B81A0B07;
-	Tue, 13 Aug 2024 16:28:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CF70370;
+	Tue, 13 Aug 2024 16:32:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723566502; cv=none; b=KRKDtOM6/ZR0lanxBmMyFjaHBnTIMtrs/4g/8Ml1a86awA/Zdnp8Vk0j91VUItMqisPWuv1Qb5SreVrj6sRQ5guoXW9Vr4lxRsHaLXHRtZAsyr6ka9voqmY3EkX0Bp0KRwo+8H0HhOfef9Kl5LE/IYH/oVBKEMRMiecH3vG29Rw=
+	t=1723566742; cv=none; b=Eeb14F5uJq5IMAY3rZKvg7cfffQLP2TlikUDds3gLoTcRRU24NOsF84xNWk3+Lv2QozYJjWWYBtFKXPpt/AnOKhBFiaZnSI6JfZ6SdQGxhfVRH5DR59OMGyQI31mRr9l+q82rjhaCjXxSG9IxT0hRwxPIIjjGln3SvB2p0ap4Nk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723566502; c=relaxed/simple;
-	bh=dsZqYp25UA9vdx3g0iSwFq3PYSCy3RaVoy34nDKDsnM=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=gc1gHrxodaoAxTgjBEorVjT+ggVyIpOxADj2TVvG37OqtgpCEsDUK8I+BH4C9UH46MXEwJGjAL6MrcJyULpR4GMU61T6utJdbHrt1vXJRG+DN26YJOTS8cMezMYpORZ38HusXWSzQrJLS4dK/kVOk78qzTnjHX6l7D9QxWh0mr0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fonaooj1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72615C4AF0B;
-	Tue, 13 Aug 2024 16:28:21 +0000 (UTC)
+	s=arc-20240116; t=1723566742; c=relaxed/simple;
+	bh=HuyCj2tPGVO2IiAHdy0cfOexKXFnn+hyoO6SKOtDQko=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Cr20B44KTou27QTQiPnkHGGg57+xzK6mXy6PoTAr92slCONTe3gG8AdLvyyKFBFNzmEERuarqahQhITd6NKwg2w3YvfT7tx6Y/y2vTNL5Zy8lu6zv/cqpBYfsF6DirlJ3loGqupQOmzOHE0+wUcE9H96nXuFIiFmXrkV9aEiZmE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j5TkZNoV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B3E4C4AF09;
+	Tue, 13 Aug 2024 16:32:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723566501;
-	bh=dsZqYp25UA9vdx3g0iSwFq3PYSCy3RaVoy34nDKDsnM=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=Fonaooj1CKlwHGumBnLj6ZGxz39IxQJ3RRuoWZR5a3p0VHFaapaKuYyk7p6oa78P8
-	 ZXsPSFLWf+zErEKYlovcluAe/Er6Y2fHnC0E0gX4xQEzTubvyN+GCGR9SpvRKX5fZK
-	 LySxGt5O6mdmSDezefnHkEw4wDc9CGnG1aqQJuqW6HdS+IlhwrwvXzRJUdx9ZW9UeL
-	 cO6RYvG7COMXDJwPWYTn68sx8a9uS1cWdWhObrj/9d5pW6ptpfvKm2tSNyRlL9/2N7
-	 hUaHgUcWQXt+cB4oqQDiFkt4YnSG7yd0hG4RLDcutDheBcyaZY3xzcmhcBBux116bv
-	 Q2GX4/vQGYHiQ==
-Date: Tue, 13 Aug 2024 10:28:19 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1723566741;
+	bh=HuyCj2tPGVO2IiAHdy0cfOexKXFnn+hyoO6SKOtDQko=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=j5TkZNoVMcsBgfpVjTlXUuMIILDxDwbSuagPpj+O55WlDHV4IRlSvnc7tPeSffXhf
+	 x4xmAJcB72OPQCdZt8yPntPAEOcyiHBHI6FCAKiyhG1gG1Kb/SAmbI6lAmGZirLGJ8
+	 FOL07CVmPnMDGaIqpzz4ZaAmWziHGr8a0MyiXJvbN4vq7yIcKrK2rYzzEiHA0FiTnP
+	 5ojyZWao6e3ZEVhE75CYg6y6dueLHzmsjjqxsVF2LsTP3LAY+T5k8o2dT4Fqe2YX6q
+	 b8nAn1bo68Oy182SbHJb0bU0GZlN9HymjTpnL3PNsr73uURBR+V/jl2Y5qqZanIBkV
+	 q99/SzwaAN6KA==
+Date: Tue, 13 Aug 2024 10:32:20 -0600
+From: Rob Herring <robh@kernel.org>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: display: renesas,rzg2l-du: Document
+ RZ/G2UL DU bindings
+Message-ID: <20240813163220.GA1164014-robh@kernel.org>
+References: <20240805155242.151661-1-biju.das.jz@bp.renesas.com>
+ <20240805155242.151661-2-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>, 
- devicetree@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>, 
- linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Eric Dumazet <edumazet@google.com>, imx@lists.linux.dev, 
- netdev@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>, 
- Conor Dooley <conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, 
- "David S. Miller" <davem@davemloft.net>, 
- Russell King <linux@armlinux.org.uk>
-In-Reply-To: <20240813150615.3866759-1-Frank.Li@nxp.com>
-References: <20240813150615.3866759-1-Frank.Li@nxp.com>
-Message-Id: <172356649976.1163565.8068313360737284707.robh@kernel.org>
-Subject: Re: [PATCH v2 1/1] dt-bindings: net: mdio: change nodename match
- pattern
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240805155242.151661-2-biju.das.jz@bp.renesas.com>
 
-
-On Tue, 13 Aug 2024 11:06:14 -0400, Frank Li wrote:
-> Change mdio.yaml nodename match pattern to
-> 	'^mdio(-(bus|external))?(@.+|-([0-9]+))$'
+On Mon, Aug 05, 2024 at 04:52:35PM +0100, Biju Das wrote:
+> Document DU found in RZ/G2UL SoC. The DU block is identical to RZ/G2L
+> SoC, but has only DPI interface.
 > 
-> Fix mdio.yaml wrong parser mdio controller's address instead phy's address
-> when mdio-mux exist.
+> While at it, add missing required property port@1 for RZ/G2L and RZ/V2L
+> SoCs. Currently there is no user for the DPI interface and hence there
+> won't be any ABI breakage for adding port@1 as required property for
+> RZ/G2L and RZ/V2L SoCs.
 > 
-> For example:
-> mdio-mux-emi1@54 {
-> 	compatible = "mdio-mux-mmioreg", "mdio-mux";
-> 
->         mdio@20 {
-> 		reg = <0x20>;
-> 		       ^^^ This is mdio controller register
-> 
-> 		ethernet-phy@2 {
-> 			reg = <0x2>;
->                               ^^^ This phy's address
-> 		};
-> 	};
-> };
-> 
-> Only phy's address is limited to 31 because MDIO bus definition.
-> 
-> But CHECK_DTBS report below warning:
-> 
-> arch/arm64/boot/dts/freescale/fsl-ls1043a-qds.dtb: mdio-mux-emi1@54:
-> 	mdio@20:reg:0:0: 32 is greater than the maximum of 31
-> 
-> The reason is that "mdio-mux-emi1@54" match "nodename: '^mdio(@.*)?'" in
-> mdio.yaml.
-> 
-> Change to '^mdio(-(bus|external))?(@.+|-([0-9]+))$' to avoid wrong match
-> mdio mux controller's node.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 > ---
-> Change from v1 to v2
-> - use rob's suggest to fix node name pattern.
+> v2->v3:
+>  * Replaced ports->port property for RZ/G2UL as it supports only DPI.
+>    and retained ports property for RZ/{G2L,V2L} as it supports both DSI
+>    and DPI output interface.
+
+Why? Having port and ports is just a needless complication.
+
+>  * Added missing blank line before example.
+>  * Dropped tags from Conor and Geert as there are new changes.
+> v1->v2:
+>  * Updated commit description related to non ABI breakage.
+>  * Added Ack from Conor.
 > ---
->  Documentation/devicetree/bindings/net/mdio.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../bindings/display/renesas,rzg2l-du.yaml    | 35 +++++++++++++++++--
+>  1 file changed, 32 insertions(+), 3 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+> index 08e5b9478051..ca01bf26c4c0 100644
+> --- a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+> +++ b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+> @@ -18,6 +18,7 @@ properties:
+>    compatible:
+>      oneOf:
+>        - enum:
+> +          - renesas,r9a07g043u-du # RZ/G2UL
+>            - renesas,r9a07g044-du # RZ/G2{L,LC}
+>        - items:
+>            - enum:
+> @@ -60,8 +61,9 @@ properties:
+>          $ref: /schemas/graph.yaml#/properties/port
+>          unevaluatedProperties: false
+>  
+> -    required:
+> -      - port@0
+> +  port:
+> +    $ref: /schemas/graph.yaml#/properties/port
+> +    description: Connection to the DU output video port.
+>  
+>      unevaluatedProperties: false
+>  
+> @@ -83,11 +85,38 @@ required:
+>    - clock-names
+>    - resets
+>    - power-domains
+> -  - ports
+>    - renesas,vsps
+>  
+>  additionalProperties: false
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,r9a07g043u-du
+> +    then:
+> +      properties:
+> +        port:
+> +          description: DPI
 
-My bot found errors running 'make dt_binding_check' on your patch:
+This is equivalent to 'port@0'. IMO, this case should have a 'port@1' 
+node so that DPI interface is *always* the same port.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mdio-gpio.example.dtb: mdio: $nodename:0: 'mdio' does not match '^mdio(-(bus|external))?(@.+|-([0-9]+))$'
-	from schema $id: http://devicetree.org/schemas/net/mdio-gpio.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240813150615.3866759-1-Frank.Li@nxp.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+> +
+> +      required:
+> +        - port
+> +    else:
+> +      properties:
+> +        ports:
+> +          properties:
+> +            port@0:
+> +              description: DSI
+> +            port@1:
+> +              description: DPI
+> +
+> +          required:
+> +            - port@0
+> +            - port@1
+> +      required:
+> +        - ports
+> +
+>  examples:
+>    # RZ/G2L DU
+>    - |
+> -- 
+> 2.43.0
+> 
 
