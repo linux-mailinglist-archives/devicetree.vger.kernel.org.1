@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-93321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 301A19507CA
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 16:35:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 721389507DC
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 16:37:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AEC7B1F21B7A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 14:35:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F2A49B2206A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 14:37:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E822019E7CF;
-	Tue, 13 Aug 2024 14:35:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1F9F19E7E0;
+	Tue, 13 Aug 2024 14:37:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OK1wfZvo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XzNeG9kh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA3A419D886;
-	Tue, 13 Aug 2024 14:35:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 859E819D886;
+	Tue, 13 Aug 2024 14:37:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723559734; cv=none; b=b2GmqBCv6EyarHJTCLPuJ0bRN9tCoHD9S5OP0GE9l8IvLm/xyMYosGcN7EbwtWyx1O82dDZaLDzthx6ygvZxhOMmcFkIAYbtJ6O7DC0yFRccEXI3eS1TCAcbcUBWz2ytZP1k+/2plGkjYGcjBpZ9fyDxfOSSq+Y0LuHUr4pQDCs=
+	t=1723559827; cv=none; b=avQa6sNRQ0VHRaWf0wi6v7l5qw0LAjjQTZXejp6bCaWmeRI/OevZJPZ46e/SXDAiypjaESduDs/5byKj/ZeJ+jDxLodGAt1mWgG4dtiXo2ijpxACHKSQZXEoWlfZEQQOwMsyjr+GtBhvF9OOsrDRjhZTofyGDoOcSDEDMwCD8bw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723559734; c=relaxed/simple;
-	bh=H6xDFv+oRJXREL2PeHfeWZvi+E5w+25IHMsWn6sbgeA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Fgw8GkywbytiBGJimQ7z29B5lks/SrF5/3UveOHT8Yw+puBtjmoJpbgvEGBvuMw38D2xloYE8FM7Rlxog5xrM/0OiQ4EtI+yqticurjDjNayBMX7P7cj/MwdoxvDH94SaW5xvE4oVFSZmpywR95cUKUjbIUkIcq8AcD3FoNNq0Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OK1wfZvo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39C7CC4AF09;
-	Tue, 13 Aug 2024 14:35:31 +0000 (UTC)
+	s=arc-20240116; t=1723559827; c=relaxed/simple;
+	bh=RZX4Arjo9AabnaWwEsHpRuKzk9UoVawW395/lGmQMNk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=CqwtuAMFJD7PSedWczlUW93UfEGdHWBZP3GjjONKgYk0963sycKtiIAmXJ7Q9jrPFyjDW5knvPCZqptNN7NsqCyfLM+2VU74N3RcuAYUihVj/dLjqeaZPVS17u6H5sM2Nd6rqY7i7FzCwCIsiOC7clQw+4zbS5mo3/mLIgOtslQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XzNeG9kh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2091FC4AF09;
+	Tue, 13 Aug 2024 14:37:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723559734;
-	bh=H6xDFv+oRJXREL2PeHfeWZvi+E5w+25IHMsWn6sbgeA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OK1wfZvokZ272ziRAih7ZH22UNwD+vkhEnMRcJpB/gy+MuCbSCTnsKagXT/JSc8xk
-	 zqEmP9HBHdfdJfM1fQ3vuBBZJfQFs7YG3utcoiaZ05j4slYc7/SDdTpsn3AvUvaJiP
-	 Gm1jHjoeMm5L8Jv4GGkk2YKHHHmZJKtt1e3VcC9QkN50V2SgmlITlWUs6/24E1HZmz
-	 LS2KGwE2UdROTj/f1INH1HwK/hdDibrVpxPBa2+raDrgHU6fLHFWeZDsqBb1pJgEyN
-	 cou15hnY87LUGafHm29csQBd97/SeMQirkBftFQfRn5FO8xWc/ggTg5byrFafVMibe
-	 hxveONts/Jctg==
-Message-ID: <b337ce5e-78f8-4ecf-a270-2d2a29e6df5b@kernel.org>
-Date: Tue, 13 Aug 2024 16:35:26 +0200
+	s=k20201202; t=1723559827;
+	bh=RZX4Arjo9AabnaWwEsHpRuKzk9UoVawW395/lGmQMNk=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=XzNeG9khUu/VZIrGdTOtsEBKmX4IpiCxsj0vKRAlR289dFteCtqpkWcB1qXYRlp1l
+	 eXTlZyeM1LaRZM+4N+kkdn73aUWigvPb/WxoAEf9l2IvSa5DI9ant27nbYWWXSTkBd
+	 EIsCG0b+MOIW8juGsIvHKHw/L+uHPMScLssVe9arnYVZdx7nTMbPbP0SC97aV5JL4r
+	 DxD9h9ORKuqKLhTnwHi3+y7ouARaWxrR/HjY+y2RD8e71wWy39FUM5tIajKGXo5jjZ
+	 UYSsnnZ6CW4tyVRgrijbjEbvPEoMVRgXS3M9D/cIUeEjcPU7LkyA0fQwZ7qQBpDglY
+	 Gszqrho+YXXqg==
+Message-ID: <67255497-7bc9-4392-ab32-d0a6af75f5b0@kernel.org>
+Date: Tue, 13 Aug 2024 16:37:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: x1e80100: Add USB Multiport
- controller
-To: Konrad Dybcio <konradybcio@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Krishna Kurapati <quic_kriskura@quicinc.com>,
- Konrad Dybcio <quic_kdybcio@quicinc.com>
-References: <20240809-topic-h_mp-v1-0-3c5f468566d8@quicinc.com>
- <20240809-topic-h_mp-v1-2-3c5f468566d8@quicinc.com>
- <b37b3c8e-902f-4a62-8a6a-ab9b8cb6cadb@kernel.org>
- <cec50e6e-aa5e-42a0-886c-82f3f1062d3a@kernel.org>
+Subject: Re: [PATCH v2 2/2] iio: imu: smi240: imu driver
+To: "Shen Jianping (ME-SE/EAD2)" <Jianping.Shen@de.bosch.com>,
+ "jic23@kernel.org" <jic23@kernel.org>, "lars@metafoo.de" <lars@metafoo.de>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "dima.fedrau@gmail.com" <dima.fedrau@gmail.com>,
+ "marcelo.schmitt1@gmail.com" <marcelo.schmitt1@gmail.com>,
+ "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "Lorenz Christian (ME-SE/EAD2)" <Christian.Lorenz3@de.bosch.com>,
+ "Frauendorf Ulrike (ME/PJ-SW3)" <Ulrike.Frauendorf@de.bosch.com>,
+ "Dolde Kai (ME-SE/PAE-A3)" <Kai.Dolde@de.bosch.com>
+References: <20240809111635.106588-1-Jianping.Shen@de.bosch.com>
+ <20240809111635.106588-3-Jianping.Shen@de.bosch.com>
+ <561b467a-58aa-471c-8ea6-cd6ef927c287@kernel.org>
+ <AM8PR10MB47217665274B9848EB21FA65CD862@AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM>
+ <bb33aeb0-7134-45ec-8536-47c524ec9e4b@kernel.org>
+ <AM8PR10MB472146AA446E64C63DE3BF31CD862@AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,43 +114,29 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <cec50e6e-aa5e-42a0-886c-82f3f1062d3a@kernel.org>
+In-Reply-To: <AM8PR10MB472146AA446E64C63DE3BF31CD862@AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/08/2024 16:09, Konrad Dybcio wrote:
-> On 10.08.2024 2:48 PM, Krzysztof Kozlowski wrote:
->> On 09/08/2024 15:18, Konrad Dybcio wrote:
->>> X1E80100 has a multiport controller with 2 HS (eUSB) and 2 SS PHYs
->>> attached to it. It's commonly used for USB-A ports and internally
->>> routed devices. Configure it to support such functionality.
+On 13/08/2024 15:54, Shen Jianping (ME-SE/EAD2) wrote:
+>>>> +
+>>>> +MODULE_AUTHOR("Markus Lochmann <markus.lochmann@de.bosch.com>");
+>>>> +MODULE_AUTHOR("Stefan Gutmann <stefan.gutmann@de.bosch.com>");
+>>>> +MODULE_DESCRIPTION("Bosch SMI240 driver"); MODULE_LICENSE("Dual
+>>>> +BSD/GPL");
 >>>
->>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>> Hm? How many modules do you have here? What are their names?
+>>>
+>>> We have one module, named  "Bosch SMI240 driver". Any problem here?
 >>
->> You have from and SoB mismatch. This was sent some odd way, because both
->> b4 and git send-email would produce correct From field.
+>> Yes, you put MODULE_* to how many files? Two? Three? Why is it needed
+>> everywhere?
 > 
-> So, I'm:
-> 
-> - sending from @kernel because it has a good email server
-> - authoring from @quicinc because that's my employer
-> - sending some older @linaro patches because I made them before
->   switching jobs and it's only fair to do so like this
-> (and I sometimes reply from @gmail because thunderbird works funnily)
+> We put MODULE_* in all the *.c , just like the other IMU drivers already in source tree. They do the same.
 
-This is all fine, but you created commit with one identity and signed
-off with other. That's not fine.
-
-> 
-> I noticed locally that if you switch emails & edit author too often, git
-> gets confused and `git show` Author: / `git send` From: don't get updated
-> properly, but if you do git format-patch, the resulting file has what you
-> would expect..
-> 
-> Should I resend this?
-
-Yes, so there will be proper From field with proper author matching at
-least one SoBs.
+That's not true. First, look at adis_buffer.c. no MODULE_XXX. Second,
+maybe they have multiple modules, so the macros are expected. That's why
+I asked you and you said you do not have more than one module.
 
 Best regards,
 Krzysztof
