@@ -1,102 +1,133 @@
-Return-Path: <devicetree+bounces-93310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93311-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3AD6950737
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 16:10:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A93C2950765
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 16:18:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D95E1F248F1
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 14:10:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BBAE1F24092
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 14:18:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C35E19D07A;
-	Tue, 13 Aug 2024 14:10:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E390019D07D;
+	Tue, 13 Aug 2024 14:17:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="esFCVw53"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="akETTczI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2815419D070;
-	Tue, 13 Aug 2024 14:10:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B033519B3ED;
+	Tue, 13 Aug 2024 14:17:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723558208; cv=none; b=nbxYYSW1lqPBHOfXZ15fJMxwH/BTMBDP/86UeLl2XRxPCwGenH7Yn+l0vuYbvHfL9OFINlusEL3NwtugpLgxMm3dzBIrQO3UJ4R9XxsAkUC1rxSlx6gx7XDDdCZkNjkLdqgNLgT/5n4keUP/VJy7LGHkv+0eLO/8OitCFIgUXQ0=
+	t=1723558640; cv=none; b=Y7vDNG39dl2REg2nsn4FF4GFUlReUG5SQ5pkYqb0T6MHRBLMJdFJstA17snPYLElrvV92evVL0xCjMukQmluttDr7KOKS/kFgmRFHMjupG7RI5IWeFmFYWczY5fVvKPuXlYHJwmFXo3220tvaPv0aK9LkeVKKXXxIcD9B+G8qRs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723558208; c=relaxed/simple;
-	bh=RpIFegKVGdY2i1i7rxQWNRzkKROe7/96ZO1cRg22JhQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ocODuEmAKuzikxChK4KPLwOw9CYA7IA98WnpEoOYiCtcky31CM3pPTNKXtH21zQZ+GnIruXkcmEUc6D6xL4xyMAtG5WNxTB0POdMBbm6zXleIosTHgM/fwDTgHUQAzEmTrBlH/uCPGaUgLpRP1BXWChbIbkG7Ic8DMqFO053Ips=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=esFCVw53; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFF90C4AF0F;
-	Tue, 13 Aug 2024 14:10:02 +0000 (UTC)
+	s=arc-20240116; t=1723558640; c=relaxed/simple;
+	bh=Ts02BaX1uJBucVrRoYv/f607u6/Qe7CljCeo1TcnB1o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lMkvM7TD2BxS/S0VDQJOx7YHSanKqObg3NRSucjbLVeF+F5goCOfOKTxWvvzFSbm+H0ALKSgnThAosbDovl/MHzazrh0NyOqkG/PcnNGXtopVLRrmhvBNDyIaZHMpQye2DbfvUGI9zU6rmo8+bCLN9ggCkqqbGmVnp+oc9Cfyzk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=akETTczI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41956C4AF09;
+	Tue, 13 Aug 2024 14:17:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723558207;
-	bh=RpIFegKVGdY2i1i7rxQWNRzkKROe7/96ZO1cRg22JhQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=esFCVw53/LXr1OUIv+mJDyM9PfcRbQ/8KDV66i4DHQWsdEL8nUvquKt6nl1S5judJ
-	 A6/jhFHZdWceoxjFOBeNg7lA1vXdktI7aXi7SAnXMJ+QcJ8TcOxibVyCiryqVNwvJN
-	 x5IIpNPRTqmlgQaB47mhH4J0KO3iWYpkIL+LfEV3hw3H8+KoEtvDqnHlTALbEYFNZ/
-	 LCp/Te8aL7iLjFNScLdMavMyAJSus/hbWj9DB+hkvOMdZpaRuKRoGvEhXcLgnf0uzu
-	 nqW3j3KWwAttWreQ5rkD0I+LJR5GlHFi53pC9059Skmyhd0EWxQSYD5ibhUG2XH0RG
-	 eSk0lvdiQFh1Q==
-Message-ID: <cec50e6e-aa5e-42a0-886c-82f3f1062d3a@kernel.org>
-Date: Tue, 13 Aug 2024 16:09:59 +0200
+	s=k20201202; t=1723558640;
+	bh=Ts02BaX1uJBucVrRoYv/f607u6/Qe7CljCeo1TcnB1o=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=akETTczIweO4EVNKAeoT9iyLYwL8xm6U3nSR0TYlL8u1t7nbfvShuXn0mKX5sHs/q
+	 tDaaWC+JKCqOEBDfxfOcYwh5XXTaKYi57CDnUZMtAdQpgabl35qRf+SOXs+NPhDmM5
+	 jMhBP0zgiQ+tCgEmL6dpjBkbHTj4i+0QPEiE+VK6p/WHxQXM+52typMPLkC7SaXd6g
+	 adQJ51OTLGEAZ7W5Q7nOOemnh+UT0WpJGSDtozbLJoTFKoB4Nv6TGJThKpax/mBmWH
+	 tCHbu5wNLeyqrUpadE9f4aLX3dxt7UQzk7Y7gpXEDCnjWYl8gvlmUQ2WKfcsfJTDB7
+	 jGpf1mtYCp54Q==
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2f1a7faa4d5so48321241fa.3;
+        Tue, 13 Aug 2024 07:17:20 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVtfE03HX6gsyGA03Q7ZOuTVdr0CdrZBBoAljIjPX+wEBaRaqMSpGly1GZqIMXIIWgXCFOm4Nynb5xQ9C4JH31F3RFs1If3tHU5/T9ocWQp0aHKgYIwG9seVcmoCzYKOBIhX+FPEjEF1utA7rEw4IHSXyWae5XLEHoYWucPSC/h8zBroqc8EA==
+X-Gm-Message-State: AOJu0Yyd8QK2ICPAEpxN3aV1fl4KOC4TYB8fcSSLAfdRSB2maorgzMST
+	vSz9pt5xkimUuMQJNfRnrYod55dOokesYvTgZzPg98VjAbQ8HXhOvsVSaOmrmmdj7jlVrjLX2aA
+	byNdQMrCwvMEHcRGNLQbnUrq/fA==
+X-Google-Smtp-Source: AGHT+IG4ZD1LYUmTcjNxsu4NSl0NVMrynBgp0QWu3I61S59AOffl8L/RksPbuMpvt7XgOGWntMOsVjpu4+iKl0U5l+Q=
+X-Received: by 2002:a2e:be93:0:b0:2ef:2bb4:2ea1 with SMTP id
+ 38308e7fff4ca-2f2b712cfedmr34435731fa.4.1723558638412; Tue, 13 Aug 2024
+ 07:17:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: x1e80100: Add USB Multiport
- controller
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Krishna Kurapati <quic_kriskura@quicinc.com>,
- Konrad Dybcio <quic_kdybcio@quicinc.com>
-References: <20240809-topic-h_mp-v1-0-3c5f468566d8@quicinc.com>
- <20240809-topic-h_mp-v1-2-3c5f468566d8@quicinc.com>
- <b37b3c8e-902f-4a62-8a6a-ab9b8cb6cadb@kernel.org>
-Content-Language: en-US
-From: Konrad Dybcio <konradybcio@kernel.org>
-In-Reply-To: <b37b3c8e-902f-4a62-8a6a-ab9b8cb6cadb@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <cover.1722355365.git.daniel@makrotopia.org> <d2beb15377dc8b580ca5557b1a4a6f50b74055aa.1722355365.git.daniel@makrotopia.org>
+In-Reply-To: <d2beb15377dc8b580ca5557b1a4a6f50b74055aa.1722355365.git.daniel@makrotopia.org>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 13 Aug 2024 08:17:05 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKG+dMJjPXrWiQ8qZ7yfpdX3R22ntKRBawYZWTaW_9GWA@mail.gmail.com>
+Message-ID: <CAL_JsqKG+dMJjPXrWiQ8qZ7yfpdX3R22ntKRBawYZWTaW_9GWA@mail.gmail.com>
+Subject: Re: [PATCH v9 3/3] arm64: dts: rockchip: add DT entry for RNG to RK356x
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Aurelien Jarno <aurelien@aurel32.net>, Olivia Mackall <olivia@selenic.com>, 
+	Herbert Xu <herbert@gondor.apana.org.au>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Dragan Simic <dsimic@manjaro.org>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@debian.org>, 
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Francesco Dolcini <francesco.dolcini@toradex.com>, Ard Biesheuvel <ardb@kernel.org>, 
+	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 10.08.2024 2:48 PM, Krzysztof Kozlowski wrote:
-> On 09/08/2024 15:18, Konrad Dybcio wrote:
->> X1E80100 has a multiport controller with 2 HS (eUSB) and 2 SS PHYs
->> attached to it. It's commonly used for USB-A ports and internally
->> routed devices. Configure it to support such functionality.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> 
-> You have from and SoB mismatch. This was sent some odd way, because both
-> b4 and git send-email would produce correct From field.
+On Tue, Jul 30, 2024 at 10:11=E2=80=AFAM Daniel Golle <daniel@makrotopia.or=
+g> wrote:
+>
+> From: Aurelien Jarno <aurelien@aurel32.net>
+>
+> Include the just added Rockchip RNG driver for RK356x SoCs and
+> enable it on RK3568.
+>
+> Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3568.dtsi |  4 ++++
+>  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 10 ++++++++++
+>  2 files changed, 14 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/d=
+ts/rockchip/rk3568.dtsi
+> index f1be76a54ceb0..2a6ca20e607fd 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> @@ -257,6 +257,10 @@ power-domain@RK3568_PD_PIPE {
+>         };
+>  };
+>
+> +&rng {
+> +       status =3D "okay";
+> +};
+> +
+>  &usb_host0_xhci {
+>         phys =3D <&usb2phy0_otg>, <&combphy0 PHY_TYPE_USB3>;
+>         phy-names =3D "usb2-phy", "usb3-phy";
+> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/d=
+ts/rockchip/rk356x.dtsi
+> index 4690be841a1cd..d160a23fd4959 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> @@ -1113,6 +1113,16 @@ sdhci: mmc@fe310000 {
+>                 status =3D "disabled";
+>         };
+>
+> +       rng: rng@fe388000 {
+> +               compatible =3D "rockchip,rk3568-rng";
+> +               reg =3D <0x0 0xfe388000 0x0 0x4000>;
+> +               clocks =3D <&cru CLK_TRNG_NS>, <&cru HCLK_TRNG_NS>;
+> +               clock-names =3D "core", "ahb";
+> +               resets =3D <&cru SRST_TRNG_NS>;
+> +               reset-names =3D "reset";
 
-So, I'm:
+This adds a new warning:
 
-- sending from @kernel because it has a good email server
-- authoring from @quicinc because that's my employer
-- sending some older @linaro patches because I made them before
-  switching jobs and it's only fair to do so like this
-(and I sometimes reply from @gmail because thunderbird works funnily)
-
-I noticed locally that if you switch emails & edit author too often, git
-gets confused and `git show` Author: / `git send` From: don't get updated
-properly, but if you do git format-patch, the resulting file has what you
-would expect..
-
-Should I resend this?
-
-Konrad
+rng@fe388000: 'reset-names' does not match any of the regexes: 'pinctrl-[0-=
+9]+'
 
