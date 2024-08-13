@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-93255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 247F6950184
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 11:48:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F910950190
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 11:51:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1214E1C21CBA
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 09:48:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1E0E1F21947
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 09:51:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ED8B184537;
-	Tue, 13 Aug 2024 09:48:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94962181317;
+	Tue, 13 Aug 2024 09:51:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QiNAKkSK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jC6zNycO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D885517F4F2;
-	Tue, 13 Aug 2024 09:48:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6524516DEAA;
+	Tue, 13 Aug 2024 09:51:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723542516; cv=none; b=Qquspnmalh4vNZy09LuNN58QXXvfqsOd+ct0AuNYuSF0YMTxoEb1ydXT+BdMtX0IExinz1wXVx2ER3niu5o4QG6wHtcg47LhAsxI2GEn3j+UC+n2dqsMh/aSBCF8x4a2VesTr3/MlXkSzzVoJZz1CNdltHOvncKjJO2EKebNwnA=
+	t=1723542667; cv=none; b=DtsjWVi21/dfy2VVb94ccoMQfa6KVNyhobUWsGhSSPrAyehNwxlEo6b0N+Cts9wBAaH6Khs9dX7whz5YvJ9GI/CXjbBMuSut2kDajZfetph9crvWCDeYFP71C6AyLRSfKLhuTfxgKGQlvn18WDBwWQ+9eAADDObs2BrSOqQ59cg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723542516; c=relaxed/simple;
-	bh=dyRheu5fkc36+Z6U55nfDJfyAv0UpJ9ogHZFM42QJM4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=hnd28wBEjmBkzfAs6ZWItdf/uPQvdu+l53eJCdAY8PI0zWTYSjd9tqj5pLOotqr3q5xFEdQxsHR8esKuS/p0IKmEjUXqGObTU1WXhw+IX4cxFOwJRQ3KMfO9Dc05FWTjOnW5UIuYoIMj19lbOByvZaZNYdKopi91jxKWQ1O8cg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QiNAKkSK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0D7DC4AF09;
-	Tue, 13 Aug 2024 09:48:32 +0000 (UTC)
+	s=arc-20240116; t=1723542667; c=relaxed/simple;
+	bh=u4GVLmL56p9bLDLAYbw4kFxsRLgytFR0Ld25rKYzcX0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WblEMPR5nnPgzyG5wToAbQ2JW7dzRC0pHEZsQtPEhc7O9M6seeBaYKq1xtqqmWJv3yLRs7yu3V4xN8t80qsz5O+E1U/iuzzlbuysygbJmE6huNMDhnLUcVtDtd/UzyevxZNqnYPA55vYZBm8GaVXy3yXD0wj9jiaGgS6xz2OPDY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jC6zNycO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA01EC4AF0B;
+	Tue, 13 Aug 2024 09:51:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723542516;
-	bh=dyRheu5fkc36+Z6U55nfDJfyAv0UpJ9ogHZFM42QJM4=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=QiNAKkSKIF0gzskpmY+GtpgZky72EAJhl9omsxNkvhqpMGKIunNW04TMZJ/z1jxr+
-	 mbjnbkxNxJ+9Z5YzaSz5VVWCV25iKn4iP3rAnly/60463oY7i5kHXdru2SokHUTNJ2
-	 Z+y/EfEyEtOcCl6rtxfXv/wPpQL8a+c3WTRyCqNPf4Z0gFgwGSbG3gBolKC3UkIZCM
-	 O+wf4dJ2j3T1LbZJ9fSn8kmaI4cPLR6oJrAWDso6XCLNK6l8y3QeYzf8D//SQ2C7Lp
-	 nlvefdp7BVEQZvOlaloxKy/ngP4IhxaU5BHu0+tu3ekPXCbtUlGhIuICxJx5ZdftAN
-	 GXa4lCyHGGlTA==
-Message-ID: <13e6625f-9f62-4973-b8f2-e825bd7665ee@kernel.org>
-Date: Tue, 13 Aug 2024 11:48:30 +0200
+	s=k20201202; t=1723542667;
+	bh=u4GVLmL56p9bLDLAYbw4kFxsRLgytFR0Ld25rKYzcX0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=jC6zNycOPiCv0OiyxJKR4pVZlBuaCiBBFyCJorRk0XPAGIKgWEEvIbzMiluOruoPv
+	 pMxZL05D8S+uAVmLh6Q9Csa89MK1DU2pXFPi1gBd9TnM5LP7u9v8rReNdVMXxpf0RH
+	 xUYWaUw6NMYNPmfi1gUtvkFomhv6SoaEzIrZ2QdRt5T6LbED5AmERbqfWS/otjd1gz
+	 hZ0V2cN56UDJCrJR0r5v80tJFiUuHJ0Swnw+GA5QuKTz09PJDy9sQFGAEust6PKtQP
+	 i6MIx3x/HQTA9lfGIeiZ4Odsk0bXdAdZ8t40o+gXRL/Tnrt6UCfAnCGUj2RhWOs1iA
+	 Hh4aNuP6OFuFg==
+Message-ID: <f868dee1-0007-44a1-9fbf-d6a0fdcf4837@kernel.org>
+Date: Tue, 13 Aug 2024 11:50:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?B?UmU6IOWbnuimhjogW1BBVENIIHYxIDIvMl0gaXJxY2hpcC9hc3BlZWQt?=
- =?UTF-8?Q?intc=3A_Add_support_for_10_INTC_interrupts_on_AST27XX_platforms?=
-To: Kevin Chen <kevin_chen@aspeedtech.com>,
- "tglx@linutronix.de" <tglx@linutronix.de>, "robh@kernel.org"
- <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>, "joel@jms.id.au"
- <joel@jms.id.au>, "andrew@codeconstruct.com.au"
- <andrew@codeconstruct.com.au>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>
-References: <20240813074338.969883-1-kevin_chen@aspeedtech.com>
- <20240813074338.969883-3-kevin_chen@aspeedtech.com>
- <315f9095-8928-44a9-bab7-a924a070eded@kernel.org>
- <PSAPR06MB4949680EBF66DCD47F2B4CF889862@PSAPR06MB4949.apcprd06.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v4 1/3] dt-bindings: iio: adc: sophgo,cv18xx-saradc.yaml:
+ Add Sophgo CV18XX SARADC binding
+To: Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
+ Inochi Amaoto <inochiama@outlook.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20240812-sg2002-adc-v4-0-599bdb67592f@bootlin.com>
+ <20240812-sg2002-adc-v4-1-599bdb67592f@bootlin.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -112,114 +110,120 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <PSAPR06MB4949680EBF66DCD47F2B4CF889862@PSAPR06MB4949.apcprd06.prod.outlook.com>
+In-Reply-To: <20240812-sg2002-adc-v4-1-599bdb67592f@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 13/08/2024 11:44, Kevin Chen wrote:
-> Hi Krzk,
+On 12/08/2024 17:00, Thomas Bonnefille wrote:
+> The Sophgo SARADC is a Successive Approximation ADC that can be found in
+> the Sophgo SoC.
 > 
-> In ASPEED, ast2400/2500/2600 use arm architecture with KCONFIG_ARCH_ASPEED which slect MACH_ASPEED_G4/G5/G6 in arch/arm/mach-aspeed/Kconfig.
-> In the fureture, there would be ast2800/2900/... using arm64. We need to clarify the IC generation between 7th/8th/9th/....
+> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+
+
+<form letter>
+This is a friendly reminder during the review process.
+
+It seems my or other reviewer's previous comments were not fully
+addressed. Maybe the feedback got lost between the quotes, maybe you
+just forgot to apply it. Please go back to the previous discussion and
+either implement all requested changes or keep discussing them.
+
+Thank you.
+</form letter>
+
+.. and more ignored comments further.
+
+> ---
+>  .../bindings/iio/adc/sophgo,cv18xx-saradc.yaml     | 85 ++++++++++++++++++++++
+>  1 file changed, 85 insertions(+)
 > 
-> Maybe change ARCH_ASPEED/MACH_ASPEEDG7 to ARCH_ASPEED first.
-> Or, do you have better Kconfig usage?
+> diff --git a/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml
+> new file mode 100644
+> index 000000000000..846590808e5f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml
+> @@ -0,0 +1,85 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/sophgo,cv18xx-saradc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title:
+> +  Sophgo CV18XX SoC series 3 channels Successive Approximation Analog to
+> +  Digital Converters
+> +
+> +maintainers:
+> +  - Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+> +
+> +description:
+> +  Datasheet at https://github.com/sophgo/sophgo-doc/releases
+> +
+> +properties:
+> +  compatible:
+> +    const: sophgo,cv1800b-saradc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^channel@[0-3]+$":
+> +    $ref: adc.yaml
+> +
+> +    description: |
+> +      Represents the channels of the ADC.
+> +
+> +    properties:
+> +      reg:
+> +        description: |
+> +          The channel number. It can have up to 3 channels numbered from 0 to 2.
+> +        items:
+> +          - minimum: 0
+> +            maximum: 2
+> +
+> +    required:
+> +      - reg
+> +
+> +    additionalProperties: false
+> +
+> +
 
-Fix your quotes and do not top-post.
+Just one blank line.
 
-Please respond inline, instead of top-posting, because it makes your
-emails hard to follow.
-https://elixir.bootlin.com/linux/v6.8-rc7/source/Documentation/process/submitting-patches.rst#L340
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +
+> +unevaluatedProperties: false
 
-> 
-> 
->> +config ARCH_ASPEED
->> +     bool "Aspeed SoC family"
->> +     select MACH_ASPEED_G7
->> +     help
->> +       Say yes if you intend to run on an Aspeed ast2700 or similar
->> +       seventh generation Aspeed BMCs.
->> +
->> +config MACH_ASPEED_G7
->> +     bool "Aspeed SoC AST2700"
-> 
-> There are no MACHines for arm64. Look at this code. Do you see MACH
-> anywhere else? No. Then why Aspeed must be different?
+No, how did this appear here? This must be additionalProperties.
 
-What is this?
+I already commented on this.
 
-> 
-> --
-> Best Regards,
-> Kevin. Chen
-> 
-> ________________________________
-> 寄件者: Krzysztof Kozlowski <krzk@kernel.org>
-> 寄件日期: 2024年8月13日 下午 04:50
-> 收件者: Kevin Chen <kevin_chen@aspeedtech.com>; tglx@linutronix.de <tglx@linutronix.de>; robh@kernel.org <robh@kernel.org>; krzk+dt@kernel.org <krzk+dt@kernel.org>; conor+dt@kernel.org <conor+dt@kernel.org>; joel@jms.id.au <joel@jms.id.au>; andrew@codeconstruct.com.au <andrew@codeconstruct.com.au>; linux-kernel@vger.kernel.org <linux-kernel@vger.kernel.org>; devicetree@vger.kernel.org <devicetree@vger.kernel.org>; linux-arm-kernel@lists.infradead.org <linux-arm-kernel@lists.infradead.org>; linux-aspeed@lists.ozlabs.org <linux-aspeed@lists.ozlabs.org>
-> 主旨: Re: [PATCH v1 2/2] irqchip/aspeed-intc: Add support for 10 INTC interrupts on AST27XX platforms
-> 
+<form letter>
+This is a friendly reminder during the review process.
 
-...
+It seems my or other reviewer's previous comments were not fully
+addressed. Maybe the feedback got lost between the quotes, maybe you
+just forgot to apply it. Please go back to the previous discussion and
+either implement all requested changes or keep discussing them.
 
->> diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
->> index 15635812b2d6..d2fe686ae018 100644
->> --- a/drivers/irqchip/Makefile
->> +++ b/drivers/irqchip/Makefile
->> @@ -84,6 +84,7 @@ obj-$(CONFIG_MVEBU_SEI)                     += irq-mvebu-sei.o
->>  obj-$(CONFIG_LS_EXTIRQ)                      += irq-ls-extirq.o
->>  obj-$(CONFIG_LS_SCFG_MSI)            += irq-ls-scfg-msi.o
->>  obj-$(CONFIG_ARCH_ASPEED)            += irq-aspeed-vic.o irq-aspeed-i2c-ic.o irq-aspeed-scu-ic.o
->> +obj-$(CONFIG_MACH_ASPEED_G7)         += irq-aspeed-intc.o
-> 
-> There is no such thing as CONFIG_MACH_ASPEED_G7. And there will never be.
-> 
-> You already received feedback on this, so why do you keep pushing your
-> solution? You did not respond to any feedback given, just send the same
-> and the same till we agree?
-> 
-> NAK.
-
-And this?
-
-> 
->>  obj-$(CONFIG_STM32MP_EXTI)           += irq-stm32mp-exti.o
->>  obj-$(CONFIG_STM32_EXTI)              += irq-stm32-exti.o
->>  obj-$(CONFIG_QCOM_IRQ_COMBINER)              += qcom-irq-combiner.o
->> diff --git a/drivers/irqchip/irq-aspeed-intc.c b/drivers/irqchip/irq-aspeed-intc.c
->> new file mode 100644
->> index 000000000000..71407475fb27
-> 
-
-...
-
-> 
-> ************* Email Confidentiality Notice ********************
-> 免責聲明:
-> 本信件(或其附件)可能包含機密資訊，並受法律保護。如 台端非指定之收件者，請以電子郵件通知本電子郵件之發送者, 並請立即刪除本電子郵件及其附件和銷毀所有複印件。謝謝您的合作!
-> 
-> DISCLAIMER:
-> This message (and any attachments) may contain legally privileged and/or other confidential information. If you have received it in error, please notify the sender by reply e-mail and immediately delete the e-mail and any attachments without copying or disclosing the contents. Thank you.
-
-Maybe I am the intended recipient of your message, maybe not. I don't
-want to have any legal questions regarding upstream, public
-collaboration, thus probably I should just remove your messages.
-
-Please talk with your IT that such disclaimers in open-source are not
-desired (and maybe even harmful).
-If you do not understand why, please also see:
-https://www.youtube.com/live/fMeH7wqOwXA?si=GY7igfbda6vnjXlJ&t=835
-
-If you need to go around company SMTP server, then consider using b4
-web-relay: https://b4.docs.kernel.org/en/latest/contributor/send.html
-
-Please be informed that by responding to this email you agree that all
-communications from you and/or your company is made public. In other
-words, all messages originating from you and/or your company will be
-made public.
-
-You already received exactly this feedback. Around three times. If you
-keep ignoring feedback, I will keep NAKing your patches.
+Thank you.
+</form letter>
 
 Best regards,
 Krzysztof
