@@ -1,129 +1,125 @@
-Return-Path: <devicetree+bounces-93277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF1A0950331
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 13:03:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6F68950338
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 13:04:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6860DB22259
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 11:03:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0C45DB25712
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 11:04:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FA14189918;
-	Tue, 13 Aug 2024 11:03:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 397D5198A29;
+	Tue, 13 Aug 2024 11:04:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="YYba8t5A";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="pKGZPbvS"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="k9faWz5u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 551F921345;
-	Tue, 13 Aug 2024 11:02:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AD1F189911;
+	Tue, 13 Aug 2024 11:04:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723546984; cv=none; b=XkY2qeEKdbS+NyA7peKV01+SP32UD110krgs4Vg6i7/TukOa3sD22SItrfZK0trfxaSTqtRq1z9c5rKoZCFEcm/6+ig9xSvqYqSPvUnxjwmguk1Gimrgy0Xk1oUGrjL7WxeZXdm/JIqAxVf8rFTTrbBZVjZ6RyG6oTJQH+9MOTU=
+	t=1723547079; cv=none; b=HfKPRdqptbO2mtMLl4EASAIw+t0DbBwdaDgGq1U6W+RPInsA02tV9E6YWqZImQWMbylbSR2vzkIAUfvi4lBMejlzw+lftPu5bDKyPSdeHv1Yi1titvdeiNsGmBLngtLzk/2beUwPfFp9Yp/4a3bhHykLSYYRNP0vfXnrdGa22Kc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723546984; c=relaxed/simple;
-	bh=PwUa5/OanIErRHAvEgE9UQwuwofhy8HwKU6/7A/LFUk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NhnjFfKkoCIoH/c9tLuB7TzMGmYe2e5XhztA/ksY6qPb/ZrRg27vUwHn72b45b53K/3I8g5B5W1+PylY1s/wyfyEE46cDVaHKocgogOLIMPUqwRaoF61nD0C3NhJTY0Wf8+7IILsS2QKgwduUumLWhMm5XKUG4LCHHxnD9NhjpI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=YYba8t5A; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=pKGZPbvS reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1723546980; x=1755082980;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=BX8/YcQITWwz1XEoFgy9ZmyJuYxThxbscbz2octGzAE=;
-  b=YYba8t5A03+yASvcoMRUnGJtY32FtSZxhi4STzpdEJr3FjFsqcnlT7mB
-   ib1GdQoQs9UjJeoGnswSLBQbK2X0mlzGOxYwoM/NXD3YkOiUGiVQ1stCm
-   ma9NbgmBYwWTt5l0pRGyhcTNzoqz0S1dERamxdAr6kyFURm/hWfO9fzef
-   AnWJuepAbjhYrejgFAyECpUVypPJO24gEA4fNhAepAOv8oVOtqDi7e8jV
-   z+d9mQ50oy8tFAO9t1W454ZFLCYmGa+okiKL1XAhvwotQN4awebXVh/h5
-   46BSEZaSz9BfWb4pK+bFw1zVGn8ldOdbJZ8VMd8FJWr+9Yxfko97yA1za
+	s=arc-20240116; t=1723547079; c=relaxed/simple;
+	bh=njoHA5JSKaX6TwL7T+KhWyO4vGic5hSRZmgTLQWpcxM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZIg6Re5jer6x0VIk/l4xEhF5qT0qzMjZCY2qfR9JNepzx47zIpvHE2rocmpwZH8gvEZ10ZHv5UySiyBmISNj/fKiZnCx+qv89l658NCGVwogCHDOXCNSvPsufL7Y9xb43JzLnqkh2r9zzzxbQEI7wcrqRvSMG3Z+YORalnpEyWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=k9faWz5u; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1723547077; x=1755083077;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=njoHA5JSKaX6TwL7T+KhWyO4vGic5hSRZmgTLQWpcxM=;
+  b=k9faWz5uIRYh1Dc2p3XH/+zutSJwVI/OxqOKR9rQ8eAsvbt9a2ELESM1
+   ozIBMhJVaTX4m/+DT0exabIwgMZfu3I6Sgd5IFyXCpQyJ5ue+iz7QdWg3
+   y6o74n1N20GelUyz+rNp8TmZ/oLqr3taowHOn6gJDszeSVwT9patj6bf5
+   7T6t1CZoidH7AdBhu78BqOiCkCvmGewYimOuIUSVEXOEpi5+xUTP8yh8a
+   ddjke0MaI130jUPqTiwC/TLhqDfzrDVFWahUQZVLlbRXTKtxCGQeaQ9Xq
+   HLsstxcfnOMsmUm266y4CupF37icSZTGnEF4s06zEhdIHAmA2iVafPTro
    Q==;
-X-CSE-ConnectionGUID: F/Gzg1pvRoySPc4KafHwrw==
-X-CSE-MsgGUID: dgzq19lBT/62vuCWd0dEMg==
-X-IronPort-AV: E=Sophos;i="6.09,285,1716242400"; 
-   d="scan'208";a="38383452"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 13 Aug 2024 13:02:58 +0200
-X-CheckPoint: {66BB3D62-A-45EF2B36-F6E28480}
-X-MAIL-CPID: 8522DF81CEE9203FFD6B6412A29F7287_0
-X-Control-Analysis: str=0001.0A782F1B.66BB3D62.0069,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3070E164987;
-	Tue, 13 Aug 2024 13:02:52 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1723546973;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=BX8/YcQITWwz1XEoFgy9ZmyJuYxThxbscbz2octGzAE=;
-	b=pKGZPbvS8nX3DhTjo+uJRpFLzFrd/5oQ7jlkpOLLK7qGpyzGCTxMZwbfgr3maNhy+a/sDe
-	FoFv+qrZ7XjuT2+h/FUwmSoexwgbd0KNmJTtZSMpP2P1SuT2rnx39g/ksZhL+3tGqp2EQ+
-	Q/caBG8ibAJVRMVlbYsWmBBeyCykCNr7JoVvtdaYNi26fGjdpbOib0uyg9VEPvfijc+zSG
-	CEVLVlafOzKfGb46I6zD7JOdvCY+N26AhMlRucV04FCjsqIyD+F39JLRaVYYO4U9632ctZ
-	G/pF85M8j6P7JV9bpPTuVtLNAC5OFONnQBhhCZiwsjLD3INKbaLsx15hmvv85A==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Markus Niebel <Markus.Niebel@ew.tq-group.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>, devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux@ew.tq-group.com
-Subject: Re: [PATCH 5/5] ARM: dts: imx6qdl: Rename USB hub node name
-Date: Tue, 13 Aug 2024 13:02:54 +0200
-Message-ID: <2621134.Lt9SDvczpP@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <82ee2be2-366e-40b2-ac95-e755443032be@kernel.org>
-References: <20240812143431.98323-1-Markus.Niebel@ew.tq-group.com> <1901821.CQOukoFCf9@steina-w> <82ee2be2-366e-40b2-ac95-e755443032be@kernel.org>
+X-CSE-ConnectionGUID: K/NcO4JmQH+4+dZcoptWeA==
+X-CSE-MsgGUID: pl/DkCLERGKh4xWlKGLk2w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11162"; a="33104878"
+X-IronPort-AV: E=Sophos;i="6.09,285,1716274800"; 
+   d="scan'208";a="33104878"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Aug 2024 04:04:36 -0700
+X-CSE-ConnectionGUID: 6KFF9cYnQxiaAxRB/h5AIg==
+X-CSE-MsgGUID: WBEqdBVlQ+qJYQbfWPKPgg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.09,285,1716274800"; 
+   d="scan'208";a="89291865"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Aug 2024 04:04:33 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1sdpKH-0000000EhZn-1SMV;
+	Tue, 13 Aug 2024 14:04:29 +0300
+Date: Tue, 13 Aug 2024 14:04:29 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Ramona Alexandra Nechita <ramona.nechita@analog.com>
+Cc: linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Cosmin Tanislav <cosmin.tanislav@analog.com>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+	Marius Cristea <marius.cristea@microchip.com>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	Marcus Folkesson <marcus.folkesson@gmail.com>,
+	Ivan Mikhaylov <fr0st61te@gmail.com>,
+	Mike Looijmans <mike.looijmans@topic.nl>,
+	Liam Beguin <liambeguin@gmail.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] Documentation: ABI: added filter mode doc in
+ sysfs-bus-iio
+Message-ID: <Zrs9vYERyOmeOEZ8@smile.fi.intel.com>
+References: <20240724155517.12470-1-ramona.nechita@analog.com>
+ <20240724155517.12470-4-ramona.nechita@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240724155517.12470-4-ramona.nechita@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Am Dienstag, 13. August 2024, 11:44:28 CEST schrieb Krzysztof Kozlowski:
-> On 13/08/2024 11:27, Alexander Stein wrote:
-> > Am Dienstag, 13. August 2024, 11:20:08 CEST schrieb Krzysztof Kozlowski:
-> >> On 12/08/2024 16:34, Markus Niebel wrote:
-> >>> From: Alexander Stein <alexander.stein@ew.tq-group.com>
-> >>>
-> >>> According to microchip,usb2514.yaml the node name shall be usb-hub.
-> >>
-> >> That's not true. The schema does not say anything like this. Old name =
-is
-> >> correct. NAK.
-> >=20
-> > So, is the schema incorrect? There is the dtbs_check warning:
-> > arch/arm/boot/dts/nxp/imx/imx6q-mba6b.dtb: hub@1: $nodename:0: 'hub@1' =
-does not match '^usb(@.*)?'
-> >         from schema $id: http://devicetree.org/schemas/usb/microchip,us=
-b2514.yaml#
->=20
-> If you have a warning, shorten it and paste it so this will be obvious.
-> If you look at several bindings, the hub is widely used name. I think
-> the schema is not correct here - I do not see any properties from
-> usb.yaml being used here (for usb2514). What's more, if you compare
-> usb2514 with any other on-board HUB representations (because that's the
-> only point why we have it in bindings, right?), none of them reference
-> usb(-hcd)?.yaml.
->=20
-> These are not USB controllers, IMO.
+On Wed, Jul 24, 2024 at 06:54:40PM +0300, Ramona Alexandra Nechita wrote:
+> The filter mode / filter type property is used for ad4130
+> and ad7779 drivers, therefore the ABI doc file for ad4130
+> was removed, merging both of them in the sysfs-bus-iio
 
-I raised that concern in [1] already, but nobody commented.
+Missed grammatical period at the end.
 
-Best regards,
-Alexander
+...
 
-[1] https://lore.kernel.org/all/3633627.mvXUDI8C0e@steina-w/
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+> +What:		/sys/bus/iio/devices/iio:deviceX/filter_type_available
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_voltage-voltage_filter_mode_available
+> +KernelVersion:	6.1
+
+> -What:		/sys/bus/iio/devices/iio:deviceX/in_voltage-voltage_filter_mode_available
+> -KernelVersion:  6.2
+
+> -What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY-voltageZ_filter_mode
+> -KernelVersion:  6.2
+
+So, the commit message is silent about version downgrade. Was it a typo
+or on purpose?
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
 
