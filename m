@@ -1,59 +1,67 @@
-Return-Path: <devicetree+bounces-93333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2788F950911
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 17:27:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6B3E950916
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 17:28:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5953A1C24413
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 15:27:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 165681C229B0
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 15:28:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FDC41A01C9;
-	Tue, 13 Aug 2024 15:26:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 790D31A01CD;
+	Tue, 13 Aug 2024 15:28:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pv/T02g7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u8enr/xb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1830719E831;
-	Tue, 13 Aug 2024 15:26:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CD1F19E831;
+	Tue, 13 Aug 2024 15:28:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723562817; cv=none; b=V7hivzJEzvka8uo55BsaPGnEEK9Bhd6i6ZallwRmvMeA53KnECfbwTqy8p6dVAbJCFU7p1FtiANBFl7gftt3Be78bS1yhSVkp/U7xwprofSVPxtYcQ3TWYhVDWR2NezvQlgbD/rmVvkbNYILOltZrI4HyQfcJc4NfS4GMwxNUBQ=
+	t=1723562881; cv=none; b=jzoqadqo+foAvgKcP31FWJI6TG/7baqIN1jTh9CHgqrVSao1t6km8fUDWQGDMaygsh2NFhUl0+OkG9H9SSkoatVaG28lXYIJb5GZlljjJXhCYA+1ju9pJx/OfOvUgTTsGNfQ1P9RB8WlBrMPUf2/tSWoLVT4/i00eTVXzsAcIoA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723562817; c=relaxed/simple;
-	bh=mSemb60sTJdLNNxaY49JMnLRjZsVWJb6QojfV8SA4lQ=;
+	s=arc-20240116; t=1723562881; c=relaxed/simple;
+	bh=lSaC+RGCNUD3mMS/A24X19ve7lg70vhrG0nTFJ/Kvh8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rfLalshcN7l7TwuktwDmDS5mlyYE6HrFkY9rcOCRjlsHByflZpWrKHiZKMTvcEK0A0GlN4j8w2p9HqYAkEK7o7eCAH4wPoVdBSOprSWTMP54pEKBj+NijDhZzIVqNBf3EM9yY0Mxvba5ThhWdDNz2evvgRn54aD3XzAeANW1Jgw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pv/T02g7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E55A4C4AF0B;
-	Tue, 13 Aug 2024 15:26:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=TierUZiTZdhKE3PTmB689gT+ydZxK2oBoZ678AH0YaGupgoek8oXL0yVySP1BnXAJYgWTSsiPdRpO3jyBGgxAZ7D5t7CFXMiWTNh0gXQGU5c1ibVChKGeN7uJGE8EKRAq2MgjQDVdBFpoMx2AqLdcTLA5+4/pMK8CFSGaBUh7Bg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u8enr/xb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02178C4AF09;
+	Tue, 13 Aug 2024 15:27:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723562816;
-	bh=mSemb60sTJdLNNxaY49JMnLRjZsVWJb6QojfV8SA4lQ=;
+	s=k20201202; t=1723562880;
+	bh=lSaC+RGCNUD3mMS/A24X19ve7lg70vhrG0nTFJ/Kvh8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pv/T02g7RLl4qCEmnY/WRxn88WO19c0ktVzJOqWh2LDJD4n+FFXmTRwQYecVx/xrK
-	 oCgvXRgM5MNzYuTnKz2NDU0l1jXjbelJ6CdoML9C5+vKdkoOK3WO1JHrvSlc+wam7A
-	 f/Cfi2xC+3uEkZkn2eklUzBqCI3xs2OzrL2sL0NFedAjY1hdgRs6vJxZGxZQctJgqA
-	 1HiYo/5wp0O5Oy20LAN1yzis798kB4bk4zKld/K5pAzRjRwO1/hZVcwiw2cMK5px+5
-	 qGWsn2NMBWljjjPFG1BoUexuQ1qGCmD1UhE0Nvh3P5HYTzIs/WiyqNLITMrcHjBXJr
-	 pRhDbYCbo9miA==
-Date: Tue, 13 Aug 2024 16:26:52 +0100
+	b=u8enr/xbdSosS9TaP1PddYNKhtRrxJEB4uSbk1paDNP0a06nIorLqOENMzklWeP2u
+	 IRjLdRmAB/2SQ9bm8XNuV+N9lDmO2smxmBjRjtVY534AZm6t5FlZVE6VC6uD8tUkIg
+	 IlIoKM6jTWrbWdt/reNDlzkilPPHt3AwlYlN0uyPHW4h9vfbHy65WQLFsXPPNq16W3
+	 IHHvHTealwqZ2cWYI0qD70kdqiP7wn2f8iJLuJ14tDRdtUazinLTteEHFFa+BCIJbC
+	 WTGNYubVE0kpJCT0bv+uSy2K24+phKcC8S2Gym7Svfa0yDMON1EO39AcdYbC/SGGAE
+	 uipzkxUcD6SZw==
+Date: Tue, 13 Aug 2024 16:27:55 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
+To: "Agarwal, Utsav" <Utsav.Agarwal@analog.com>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"Hennerich, Michael" <Michael.Hennerich@analog.com>,
+	"Gaskell, Oliver" <Oliver.Gaskell@analog.com>,
+	Conor Dooley <conor+dt@kernel.org>, "Sa, Nuno" <Nuno.Sa@analog.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"Bimpikas, Vasileios" <Vasileios.Bimpikas@analog.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	"Artamonovs, Arturs" <Arturs.Artamonovs@analog.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/6] media: dt-bindings: Add description of OmniVision
- OG01A1B image sensor
-Message-ID: <20240813-darkening-esquire-cefa9cf21745@spud>
-References: <20240813102035.1763559-1-vladimir.zapolskiy@linaro.org>
- <20240813102035.1763559-2-vladimir.zapolskiy@linaro.org>
+	"linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Subject: Re: [PATCH v10 3/3] dt-bindings: input: pure gpio support for adp5588
+Message-ID: <20240813-talon-uproar-f27c6f194d59@spud>
+References: <20240813-adp5588_gpio_support-v10-0-aab3c52cc8bf@analog.com>
+ <20240813-adp5588_gpio_support-v10-3-aab3c52cc8bf@analog.com>
+ <172354752239.384988.5705833300903132689.robh@kernel.org>
+ <SJ0PR03MB634347015AE14A06A3837E199B862@SJ0PR03MB6343.namprd03.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,34 +69,121 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="cOuHclAJi601Q1QK"
+	protocol="application/pgp-signature"; boundary="UaxSKSzzvZNZC0gh"
 Content-Disposition: inline
-In-Reply-To: <20240813102035.1763559-2-vladimir.zapolskiy@linaro.org>
+In-Reply-To: <SJ0PR03MB634347015AE14A06A3837E199B862@SJ0PR03MB6343.namprd03.prod.outlook.com>
 
 
---cOuHclAJi601Q1QK
+--UaxSKSzzvZNZC0gh
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 13, 2024 at 01:20:30PM +0300, Vladimir Zapolskiy wrote:
-> Add device tree bindings documentation for OmniVision OG01A1B image
-> sensor.
+On Tue, Aug 13, 2024 at 11:50:41AM +0000, Agarwal, Utsav wrote:
 >=20
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+>=20
+> > -----Original Message-----
+> > From: Rob Herring (Arm) <robh@kernel.org>
+> > Sent: Tuesday, August 13, 2024 12:12 PM
+> > To: Agarwal, Utsav <Utsav.Agarwal@analog.com>
+> > Cc: devicetree@vger.kernel.org; Hennerich, Michael
+> > <Michael.Hennerich@analog.com>; Gaskell, Oliver
+> > <Oliver.Gaskell@analog.com>; Conor Dooley <conor+dt@kernel.org>; Sa, Nu=
+no
+> > <Nuno.Sa@analog.com>; linux-kernel@vger.kernel.org; Bimpikas, Vasileios
+> > <Vasileios.Bimpikas@analog.com>; Conor Dooley
+> > <conor.dooley@microchip.com>; Artamonovs, Arturs
+> > <Arturs.Artamonovs@analog.com>; Krzysztof Kozlowski <krzk+dt@kernel.org=
+>;
+> > linux-input@vger.kernel.org; Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> > Subject: Re: [PATCH v10 3/3] dt-bindings: input: pure gpio support for =
+adp5588
+> >=20
+> > [External]
+> >=20
+> >=20
+> > On Tue, 13 Aug 2024 10:51:33 +0100, Utsav Agarwal wrote:
+> > > Adding software support for enabling the pure gpio capability of the
+> > > device - which allows all I/O to be used as GPIO. Previously, I/O
+> > > configuration was limited by software to partial GPIO support only.
+> > >
+> > > When working in a pure gpio mode, the device does not require the
+> > > certain properties and hence, the following are now made optional:
+> > > 	- interrupts
+> > > 	- keypad,num-rows
+> > > 	- keypad,num-columns
+> > > 	- linux,keymap
+> > >
+> > > However, note that the above are required to be specified when
+> > > configuring the device as a keypad, for which dependencies have been =
+added
+> > > such that specifying either one requires the remaining as well.
+> > >
+> > > Also, note that interrupts are made optional, but required when the d=
+evice
+> > > has either been configured in keypad mode or as an interrupt controll=
+er.
+> > > This has been done since they may not necessarily be used when levera=
+ging
+> > > the device purely for GPIO.
+> > >
+> > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > > Signed-off-by: Utsav Agarwal <utsav.agarwal@analog.com>
+> > > ---
+> > >  .../devicetree/bindings/input/adi,adp5588.yaml     | 40 ++++++++++++=
+++++++-
+> > ---
+> > >  1 file changed, 34 insertions(+), 6 deletions(-)
+> > >
+> >=20
+> > My bot found errors running 'make dt_binding_check' on your patch:
+> >=20
+> > yamllint warnings/errors:
+> > ./Documentation/devicetree/bindings/input/adi,adp5588.yaml:140:1: [erro=
+r]
+> > syntax error: could not find expected ':' (syntax)
+> >=20
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/dt-review-
+> > ci/linux/Documentation/devicetree/bindings/input/adi,adp5588.yaml: igno=
+ring,
+> > error parsing file
+> > ./Documentation/devicetree/bindings/input/adi,adp5588.yaml:140:1: could=
+ not
+> > find expected ':'
+> > make[2]: *** Deleting file
+> > 'Documentation/devicetree/bindings/input/adi,adp5588.example.dts'
+> > Documentation/devicetree/bindings/input/adi,adp5588.yaml:140:1: could n=
+ot
+> > find expected ':'
+> > make[2]: *** [Documentation/devicetree/bindings/Makefile:26:
+> > Documentation/devicetree/bindings/input/adi,adp5588.example.dts] Error 1
+> > make[2]: *** Waiting for unfinished jobs....
+> > make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1432:
+> > dt_binding_check] Error 2
+> > make: *** [Makefile:224: __sub-make] Error 2
+> >=20
+>=20
+> Apologies, it seems like I accidently deleted the characters towards the =
+end=20
+> of the yaml file when making changes...
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+If you make any changes, particularly to an already reviewed binding,
+please be sure to run the tests again before sending.
 
---cOuHclAJi601Q1QK
+Thanks,
+Conor.
+
+--UaxSKSzzvZNZC0gh
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrt7PAAKCRB4tDGHoIJi
-0jR8AQDS93X9FEFhF/N2OTEskOW0/8dm7/R4/RoKHLxdgCH5UQEAs8w0IJ1wWl1F
-gwhdpQLmQwyq0CroPh7+fool9GCDAAU=
-=XOin
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrt7ewAKCRB4tDGHoIJi
+0p8/AQDjN3yyk7fx+hDY5Wx3AXRyeMU9MulyUrmVqHY9obTKEAEAvpWCf+REWN74
+6JVkj0utXBG+pqf8RMBacwhLLnwZ2Aw=
+=KW6c
 -----END PGP SIGNATURE-----
 
---cOuHclAJi601Q1QK--
+--UaxSKSzzvZNZC0gh--
 
