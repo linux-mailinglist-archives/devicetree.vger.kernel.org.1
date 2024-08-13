@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-93253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93254-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 844ED950176
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 11:44:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25A8A95017F
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 11:46:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6CF21C20DE1
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 09:44:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A996D1F23443
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 09:46:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D522217D345;
-	Tue, 13 Aug 2024 09:44:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5143717C235;
+	Tue, 13 Aug 2024 09:46:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V3tcJffT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DUgzbxCa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A86DC17BB2F;
-	Tue, 13 Aug 2024 09:44:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21245210E7;
+	Tue, 13 Aug 2024 09:46:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723542275; cv=none; b=HXDAx/5ZWmma7tAusVGv8UwH2Hv1hSMyPmZ39xfgBGHII7zJaIq2eZbhmVHT6Fl+JLxkfuRabLTlrtk1bljNEDNrWzps7s1OawyHfna/FIAAr8aAetzf+ayX6QrsVGruxgus3aXSb0o23kJMWCy3nfpLoTpp52jT0dl12/0TbR4=
+	t=1723542400; cv=none; b=D2p7+ARUY621J6mALpasAQ+euMoV+ZQABwKhAeq8+FgeGqGfbS9prsggooMbnJ3TtBqGGe+mC4CKmuD5raoIp9Z58gPJKlDs9dvCxXMUXa8p3XSH25C3WOp70Aff1AeufLY7TRU9fENeoJKJ/iFQ0iSMrhcl7gNa5ZBC2/iNGgo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723542275; c=relaxed/simple;
-	bh=SDemi+5U8Bbd/34MSSn5EvYbmxFLpvWFYLnrE18bp/g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pc9qMeJcB63iwjoMB224ZepO7JW7rlWOI1vWTes1QdWV4bfdNJC2IU4b9Zq4HImW2tmdNdd/crDPhg5scz6LterqOD0ttrQu2KMqE36/6wkaW/BfSfqsNlGIUy4K0EFhl3tyWaMw9H6Uda3PzlYhKA3+0Jmpgne8Bz6xTOcprCU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V3tcJffT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90823C4AF0B;
-	Tue, 13 Aug 2024 09:44:30 +0000 (UTC)
+	s=arc-20240116; t=1723542400; c=relaxed/simple;
+	bh=ymT2I/4SMiXIMej+1eahwXe1+S+4WvRsTFHYt6PhdBw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=E9PYN1etTvH6/G6eqh7HTGh/q1+BebjPlWdbYfEKb0QaePW33539FznkBIUQAlXkpjr+zBuUKvjskj1iShROeH3MHl3E6wkW2CVBfksg8KpmvUd70gz8lfF/smqu0nMfiSsNSr4bbQCYo9Pdjq/wdB3HRq0oBf52dQNZ+kyyJFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DUgzbxCa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3BAFC4AF09;
+	Tue, 13 Aug 2024 09:46:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723542275;
-	bh=SDemi+5U8Bbd/34MSSn5EvYbmxFLpvWFYLnrE18bp/g=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=V3tcJffTCTB0SVhUBpyarhy1C/QOGR33qiRl2cFfpmiQv8HjoJwLj/YZ/vx80pyj0
-	 Wu/VRNYQOnO34V1p26nCm8kT3jzz6ogB4VspsUYZRkTcyXe9bXFmGdInnxD+qKzl4w
-	 YeMWnqOrgN5cZgKoxD5+e2KYO4pAx4kqa0Pm48nVY4iUOtwDukH+GPa2i7uAuHr7si
-	 aaYLi5xTZSulzAUXsdK4889OzddmprRBedUe1VwIG1a5sKxrbue7RaMNKex8z6sN1l
-	 gvF6mBBtArWx2Z8wtW7VcGLSii6ucT42Fh6tMWRjhsB+9oRZStJEVDV/utZ/Igy7k8
-	 idV8MIz4fKDHw==
-Message-ID: <82ee2be2-366e-40b2-ac95-e755443032be@kernel.org>
-Date: Tue, 13 Aug 2024 11:44:28 +0200
+	s=k20201202; t=1723542399;
+	bh=ymT2I/4SMiXIMej+1eahwXe1+S+4WvRsTFHYt6PhdBw=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=DUgzbxCawhn90Us54mf07Kp2BVFRryYEFFpQk5WaFAaQ3on9Q6ze54BnZqNwLIT1U
+	 Ulpikv8Ezg1ps+7rjMImZ0GDRdsQIEIWgf4cW77Ghk1SJ89QW5ENBumrmr5mrXaMyY
+	 jAQA5XLiyqvGBfMZ4Vl9w/zRC9ewuyQAImj/mw+r6en32QTE+j9VuNk7WCTlXAWJIa
+	 XZyXn9o4Iw1pD+oVDUM9d1CXtAwEPuFWYsCAEazScW+wdXB/xr0IiGiAE+wmEXlJ9l
+	 OYpayNnwA9cC/22naDb0clXeLuax9Eib990R+lCiTR3PICpakxUlw/ZUmlHG1Woquc
+	 zrPFGqIkYmtaQ==
+Message-ID: <bb33aeb0-7134-45ec-8536-47c524ec9e4b@kernel.org>
+Date: Tue, 13 Aug 2024 11:46:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] ARM: dts: imx6qdl: Rename USB hub node name
-To: Alexander Stein <alexander.stein@ew.tq-group.com>,
- Markus Niebel <Markus.Niebel@ew.tq-group.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux@ew.tq-group.com
-References: <20240812143431.98323-1-Markus.Niebel@ew.tq-group.com>
- <20240812143431.98323-6-Markus.Niebel@ew.tq-group.com>
- <781e8fcd-3814-4537-8ecf-efab0a380fff@kernel.org>
- <1901821.CQOukoFCf9@steina-w>
+Subject: Re: [PATCH v2 2/2] iio: imu: smi240: imu driver
+To: "Shen Jianping (ME-SE/EAD2)" <Jianping.Shen@de.bosch.com>,
+ "jic23@kernel.org" <jic23@kernel.org>, "lars@metafoo.de" <lars@metafoo.de>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "dima.fedrau@gmail.com" <dima.fedrau@gmail.com>,
+ "marcelo.schmitt1@gmail.com" <marcelo.schmitt1@gmail.com>,
+ "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "Lorenz Christian (ME-SE/EAD2)" <Christian.Lorenz3@de.bosch.com>,
+ "Frauendorf Ulrike (ME/PJ-SW3)" <Ulrike.Frauendorf@de.bosch.com>,
+ "Dolde Kai (ME-SE/PAE-A3)" <Kai.Dolde@de.bosch.com>
+References: <20240809111635.106588-1-Jianping.Shen@de.bosch.com>
+ <20240809111635.106588-3-Jianping.Shen@de.bosch.com>
+ <561b467a-58aa-471c-8ea6-cd6ef927c287@kernel.org>
+ <AM8PR10MB47217665274B9848EB21FA65CD862@AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,33 +112,115 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <1901821.CQOukoFCf9@steina-w>
+In-Reply-To: <AM8PR10MB47217665274B9848EB21FA65CD862@AM8PR10MB4721.EURPRD10.PROD.OUTLOOK.COM>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/08/2024 11:27, Alexander Stein wrote:
-> Am Dienstag, 13. August 2024, 11:20:08 CEST schrieb Krzysztof Kozlowski:
->> On 12/08/2024 16:34, Markus Niebel wrote:
->>> From: Alexander Stein <alexander.stein@ew.tq-group.com>
->>>
->>> According to microchip,usb2514.yaml the node name shall be usb-hub.
->>
->> That's not true. The schema does not say anything like this. Old name is
->> correct. NAK.
+On 13/08/2024 11:41, Shen Jianping (ME-SE/EAD2) wrote:
+> Hi
 > 
-> So, is the schema incorrect? There is the dtbs_check warning:
-> arch/arm/boot/dts/nxp/imx/imx6q-mba6b.dtb: hub@1: $nodename:0: 'hub@1' does not match '^usb(@.*)?'
->         from schema $id: http://devicetree.org/schemas/usb/microchip,usb2514.yaml#
+> On 09/08/2024 13:16, Jianping.Shen@de.bosch.com wrote:
+>> From: "Shen Jianping (ME-SE/EAD2)" <Jianping.Shen@de.bosch.com>
+>>
+>> iio: imu: smi240: driver improvements
+> 
+> ?????
+> Did not get your point, what is wrong here? how it shall be?
 
-If you have a warning, shorten it and paste it so this will be obvious.
-If you look at several bindings, the hub is widely used name. I think
-the schema is not correct here - I do not see any properties from
-usb.yaml being used here (for usb2514). What's more, if you compare
-usb2514 with any other on-board HUB representations (because that's the
-only point why we have it in bindings, right?), none of them reference
-usb(-hcd)?.yaml.
+See submitting patches. This does not match your commit at all. I do not
+see any driver improvements done here. If so, please list all your
+improvements against existing kernel driver.
 
-These are not USB controllers, IMO.
+
+> 
+>> Signed-off-by: Shen Jianping (ME-SE/EAD2) <Jianping.Shen@de.bosch.com>
+>> ---
+>>
+> 
+> 
+> ...
+> 
+>> +	ret = regmap_read(data->regmap, SMI240_CHIP_ID_REG, &response);
+>> +	if (ret)
+>> +		return dev_err_probe(dev, ret, "Read chip id failed\n");
+>> +
+>> +	if (response != SMI240_CHIP_ID)
+>> +		dev_info(dev, "Unknown chip id: 0x%04x\n", response);
+>> +
+>> +	ret = smi240_init(data);
+>> +	if (ret)
+>> +		return dev_err_probe(dev, ret,
+>> +				     "Device initialization failed\n");
+>> +
+>> +	indio_dev->channels = smi240_channels;
+>> +	indio_dev->num_channels = ARRAY_SIZE(smi240_channels);
+>> +	indio_dev->name = "smi240";
+>> +	indio_dev->modes = INDIO_DIRECT_MODE;
+>> +	indio_dev->info = &smi240_info;
+>> +
+>> +	ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
+>> +					      iio_pollfunc_store_time,
+>> +					      smi240_trigger_handler, NULL);
+>> +	if (ret)
+>> +		return dev_err_probe(dev, ret,
+>> +				     "Setup triggered buffer failed\n");
+>> +
+>> +	ret = devm_iio_device_register(dev, indio_dev);
+>> +	if (ret)
+>> +		return dev_err_probe(dev, ret, "Register IIO device failed\n");
+>> +
+>> +	return 0;
+>> +}
+>> +EXPORT_SYMBOL_GPL(smi240_core_probe);
+>> +
+>> +MODULE_AUTHOR("Markus Lochmann <markus.lochmann@de.bosch.com>"); 
+>> +MODULE_AUTHOR("Stefan Gutmann <stefan.gutmann@de.bosch.com>"); 
+>> +MODULE_DESCRIPTION("Bosch SMI240 driver"); MODULE_LICENSE("Dual 
+>> +BSD/GPL");
+> 
+> Hm? How many modules do you have here? What are their names?
+> 
+> We have one module, named  "Bosch SMI240 driver". Any problem here?
+
+Yes, you put MODULE_* to how many files? Two? Three? Why is it needed
+everywhere?
+
+> 
+> 
+> 
+>> +
+>> +static const struct spi_device_id smi240_spi_id[] = { { "smi240", 0 
+>> +}, {} };
+> 
+> Don't wrap it.
+> 
+> We don't , git send-mail did it automatically for us. 
+> 
+> 
+>> +MODULE_DEVICE_TABLE(spi, smi240_spi_id);
+>> +
+>> +static const struct of_device_id smi240_of_match[] = {
+>> +	{ .compatible = "bosch,smi240" },
+>> +	{},
+>> +};
+>> +MODULE_DEVICE_TABLE(of, smi240_of_match);
+>> +
+>> +static struct spi_driver smi240_spi_driver = {
+>> +	.probe = smi240_spi_probe,
+>> +	.id_table = smi240_spi_id,
+>> +	.driver = {
+>> +		.of_match_table = of_match_ptr(smi240_of_match),
+> 
+> Why did it appear? You introduce now warnings.
+> 
+> Did not get your point, why we introduce now warnings here ?
+
+Fix your quoting. It's impossible to figure out what is here my quote
+and what is yours.
+
+Why? Test your code properly... Drop the of_match_ptr.
+
+
 
 Best regards,
 Krzysztof
