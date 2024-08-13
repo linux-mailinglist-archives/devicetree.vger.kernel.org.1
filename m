@@ -1,157 +1,143 @@
-Return-Path: <devicetree+bounces-93301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2DA6950627
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 15:14:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF8A795063D
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 15:18:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 366D81F22113
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 13:14:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D4CD1C21805
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 13:18:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E76519B3E3;
-	Tue, 13 Aug 2024 13:14:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 375A360EC4;
+	Tue, 13 Aug 2024 13:18:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="M4ApcpKO";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="J9mBgv2D"
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=sntech.de header.i=@sntech.de header.b="G244lL1n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80BAB19B3D8;
-	Tue, 13 Aug 2024 13:14:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6509D29A5;
+	Tue, 13 Aug 2024 13:18:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723554844; cv=none; b=MynMzEomMt8yUB8Dz6dLOGOhVIoijJMRj3r2Nq7b11dR9UzfKtfjVXeGutSAsEjc4NOlHb0bAHdJlqyVIbIsepfLldy+igV9tX/ERu5oDim9Y4o4H8uHNpqGakoCbsjlSOlgkvGAbmHETP2q2q7X/o9PmMocEg2Q+4jaaUDo7hc=
+	t=1723555103; cv=none; b=FBYJSLUcwjp6Svb+7AJzehzS8qrQq0ayryBFjHRj3qK56R75iXj0NPZPI8PkZOQUp8WDHiJbeAeDnOGg12TXWbSzsJoazdKF0OA1kcW/ikz+d5MmxiDJcfGpjDCkd7a3T9TUS2JToOzQlDkTGmbYn7e3xG/yf8fW6KOADRB1SyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723554844; c=relaxed/simple;
-	bh=/oXN3/0Kb0PwdTxOFOWP51D2uTIisIYMWG9izl4RM4o=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=hDuTrD93/Ki4D5BxjZWJKynKpDwR6OPbAm8vGuDAh9cGdeB3KnAlulrSFk2JRRF+Lsefr3N1UgH+PaCwT/HqzgXVQA/nBxy4uPr6CmtCj0JfmTkccxsN63jyFjUhYeg/9p5yaG/UX7IyR+6JQ6ertyt0kpKajVmGnZXONuTHZYQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=M4ApcpKO; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=J9mBgv2D reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1723554841; x=1755090841;
-  h=message-id:subject:from:reply-to:to:cc:date:in-reply-to:
-   references:content-transfer-encoding:mime-version;
-  bh=yf77RZmJBkdO5ATfOLcBYjHWMlR9pScAsVtBBg/4+eY=;
-  b=M4ApcpKOVrkDGfF4tkCILpxZcDYRy774TwCGDsQ+igfOT3JZe4aWqBic
-   3SYQc9TEbHFshNXcs8Iiq/twwmq+l2NH3Tqo21pEzRL4eiu+Ux5pHemp1
-   dPZHWIWmciuCr95X+366vpdFMjfgCSO/JNAP9P+Or+OK0N3c08Epnq7on
-   7qSzitUKyNt+pWJYtDFWJvjwOJjULdkq8PUvyO2iq/ZTFR/uOVYU1azAz
-   NtjwMY1RsoIMEH7YcDt9dy22UsPrjxgGiSwboxL+mZv0syqHaPAD4btFw
-   HC831wXn/21hNAsziUsF8KKx01s0Gvn6rvi7wZubfATzK88DsayG/fszw
-   w==;
-X-CSE-ConnectionGUID: SxBRmycOQEmEVCFOwZ+QeA==
-X-CSE-MsgGUID: o4MPJmH7RWuqqdLfwzOTqw==
-X-IronPort-AV: E=Sophos;i="6.09,285,1716242400"; 
-   d="scan'208";a="38386887"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 13 Aug 2024 15:13:59 +0200
-X-CheckPoint: {66BB5C17-14-751552D8-F91D2344}
-X-MAIL-CPID: 60DCDD33188D7A76BC97FB9DA423ABDC_4
-X-Control-Analysis: str=0001.0A782F20.66BB5C17.00B5,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 184601627D0;
-	Tue, 13 Aug 2024 15:13:54 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1723554834;
-	h=from:reply-to:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=yf77RZmJBkdO5ATfOLcBYjHWMlR9pScAsVtBBg/4+eY=;
-	b=J9mBgv2DckWa665XI+yzUXQYMrTNE0YSwjUCU7Y92gkduPxSPVzTvO+Cuy/Q8k3QjDS2nH
-	3OSU8TbEng0Ysig1QCuqQxcCGdJ2zD/W/taTb8EErRTfUCWcHuayrl9DkNJNrM+IwD/eVX
-	orhNidgQf36FhSmFVEsQSsOZU6HtV3NBX8XUVni47xbCsENNasmzAryFL8QXU/4nwDnSm6
-	UhTD9vCe0RKpJlRy9JwpMmzMtLvuskP+CYR9SYTLiaHQmppeuS/yqTUFVHz4xx460hvSq+
-	qtIU8AIftGvyhUvA7m/pqEk7U8+q+wlR2Z4ng5mBlZ1Zug4YMLdJjF7f5wbK2w==
-Message-ID: <45cf3d23034dcc8968d1b0fd34e624799d2fb42e.camel@ew.tq-group.com>
-Subject: Re: [PATCH 5/5] ARM: dts: imx6qdl: Rename USB hub node name
-From: "Niebel, Markus" <Markus.Niebel@ew.tq-group.com>
-Reply-To: Markus.Niebel@ew.tq-group.com
-To: Alexander Stein <alexander.stein@ew.tq-group.com>, Rob Herring
-	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	 <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
-	 <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Krzysztof
-	Kozlowski <krzk@kernel.org>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux@ew.tq-group.com
-Date: Tue, 13 Aug 2024 15:13:53 +0200
-In-Reply-To: <2621134.Lt9SDvczpP@steina-w>
-References: <20240812143431.98323-1-Markus.Niebel@ew.tq-group.com>
-	 <1901821.CQOukoFCf9@steina-w>
-	 <82ee2be2-366e-40b2-ac95-e755443032be@kernel.org>
-	 <2621134.Lt9SDvczpP@steina-w>
-Organization: TQ-Systems GmbH
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4-0ubuntu2 
+	s=arc-20240116; t=1723555103; c=relaxed/simple;
+	bh=QxJgUlPp+do3355NmsB8bX6OEgdTHtbytcB/7x2W4As=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=g+NSe8RdKT+nX2URG5GkJFU3eegTdF8L20MBLhaluNyzBhw1eJks3oUZZYtzAPRweYK1hm5al2uFKIiR9sAVe3jiNa5UbWsawuQZzGfaJ5e9zTPXDlAKRkOGoV/MIT/uGaY0NFKyzAiDPd9TH+cdAj9U48Ozk5kViuAAb0RDX0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=fail (0-bit key) header.d=sntech.de header.i=@sntech.de header.b=G244lL1n reason="key not found in DNS"; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=u74mvDQoeCXxOK3A7GukZyX7dsdADP3JWCfmDGUIEGM=; b=G244lL1ngDJeW4mSEkMPunTGgZ
+	/ehrSjWm/ejw43wPeicvWorefz2lc/yZzFO9V++8XJA6BHY004sOLTnhHx1rJz5cY04Ckd6u0jRNx
+	h/tJKWztwZmdKL4/33O0V+WL1HurI2lCZG1XhgieX+sUc/iNNE+ofdzPsqOktTecwwOZVbzrMS4IS
+	GASCXYL8nNBHR47cVUG0wLVEjNVWuBI2x7+vFhxpsYOEfoZo4D9O8G6w2TWxYt8JLaQnuUijHWBfE
+	YDJ/GX8SZ/s+tJ+SS4CobMFdwEkcfGiLetiny2/HOprCClkNqU/ZF+oXVsaZ9kkwAjC+7jGL6a4u8
+	nxzQdBYQ==;
+Received: from i53875b02.versanet.de ([83.135.91.2] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sdrP9-0001iC-Ii; Tue, 13 Aug 2024 15:17:39 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Sandy Huang <hjc@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, kernel@collabora.com,
+ Alexandre ARNOUD <aarnoud@me.com>, Luis de Arquer <ldearquer@gmail.com>,
+ Algea Cao <algea.cao@rock-chips.com>
+Subject:
+ Re: [PATCH v3 0/5] Add initial support for the Rockchip RK3588 HDMI TX
+ Controller
+Date: Tue, 13 Aug 2024 15:17:37 +0200
+Message-ID: <2006431.fxN4lLDhpz@diego>
+In-Reply-To:
+ <20240807-b4-rk3588-bridge-upstream-v3-0-60d6bab0dc7c@collabora.com>
+References:
+ <20240807-b4-rk3588-bridge-upstream-v3-0-60d6bab0dc7c@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Tue, 2024-08-13 at 13:02 +0200, Alexander Stein wrote:
-> Am Dienstag, 13. August 2024, 11:44:28 CEST schrieb Krzysztof Kozlowski:
-> > On 13/08/2024 11:27, Alexander Stein wrote:
-> > > Am Dienstag, 13. August 2024, 11:20:08 CEST schrieb Krzysztof Kozlows=
-ki:
-> > > > On 12/08/2024 16:34, Markus Niebel wrote:
-> > > > > From: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > > > >=20
-> > > > > According to microchip,usb2514.yaml the node name shall be usb-hu=
-b.
-> > > >=20
-> > > > That's not true. The schema does not say anything like this. Old na=
-me is
-> > > > correct. NAK.
-> > >=20
-> > > So, is the schema incorrect? There is the dtbs_check warning:
-> > > arch/arm/boot/dts/nxp/imx/imx6q-mba6b.dtb: hub@1: $nodename:0: 'hub@1=
-' does not match '^usb(@.*)?'
-> > >         from schema $id: http://devicetree.org/schemas/usb/microchip,=
-usb2514.yaml#
-> >=20
-> > If you have a warning, shorten it and paste it so this will be obvious.
-> > If you look at several bindings, the hub is widely used name. I think
-> > the schema is not correct here - I do not see any properties from
-> > usb.yaml being used here (for usb2514). What's more, if you compare
-> > usb2514 with any other on-board HUB representations (because that's the
-> > only point why we have it in bindings, right?), none of them reference
-> > usb(-hcd)?.yaml.
-> >=20
-> > These are not USB controllers, IMO.
->=20
-> I raised that concern in [1] already, but nobody commented.
->=20
+Am Mittwoch, 7. August 2024, 13:07:22 CEST schrieb Cristian Ciocaltea:
+> The Rockchip RK3588 SoC family integrates the Synopsys DesignWare HDMI
+> 2.1 Quad-Pixel (QP) TX controller, which is a new IP block, quite
+> different from those used in the previous generations of Rockchip SoCs.
+> 
+> The controller supports the following features, among others:
+> 
+> * Fixed Rate Link (FRL)
+> * Display Stream Compression (DSC)
+> * 4K@120Hz and 8K@60Hz video modes
+> * Variable Refresh Rate (VRR) including Quick Media Switching (QMS)
+> * Fast Vactive (FVA)
+> * SCDC I2C DDC access
+> * Multi-stream audio
+> * Enhanced Audio Return Channel (EARC)
+> 
+> This is the last component that needs to be supported in order to enable
+> the HDMI output functionality on the RK3588 based SBCs, such as the
+> RADXA Rock 5B.  The other components are the Video Output Processor
+> (VOP2) and the Samsung IP based HDMI/eDP TX Combo PHY, for which basic
+> support has been already made available via [1] and [2], respectively.
+> 
+> Please note this is a reworked version of the original series, which
+> relied on a commonized dw-hdmi approach.  Since the general consensus
+> was to handle it as an entirely new IP, I dropped all patches related to
+> the old dw-hdmi and Rockchip glue code - a few of them might still make
+> sense as general improvements and will be submitted separately.
+> 
+> It's worth mentioning the HDMI output support is currently limited to
+> RGB output up to 4K@60Hz, without audio, CEC or any of the HDMI 2.1
+> specific features.  Moreover, the VOP2 driver is not able to properly
+> handle all display modes supported by the connected screens, e.g. it
+> doesn't cope with non-integer refresh rates.
+> 
+> A possible workaround consists of enabling the display controller to
+> make use of the clock provided by the HDMI PHY PLL.  This is still work
+> in progress and will be submitted later, as well as the required DTS
+> updates.
+> 
+> To facilitate testing and experimentation, all HDMI output related
+> patches, including those part of this series, are available at [3].
+> 
+> So far I could only verify this on the RADXA Rock 5B board.
 
-Besides that, current version of device tree specification [1], section
-'2.2.2 Generic Names Recommendation' exlicitely suggests 'usb-hub' but
-not 'hub'
+On a rk3588-tiger-haikou (including its DSI hat and my preliminary DSI
+driver) it also works.
 
-See
-https://github.com/devicetree-org/devicetree-specification/releases/tag/v0.=
-4
+Even with both DSI and HDMI at the same time. Both hdmi plugged in on
+boot and also plugging it in during runtime of the board, generates a
+clean image on my 1080p display.
 
-> Best regards,
-> Alexander
->=20
-> [1] https://lore.kernel.org/all/3633627.mvXUDI8C0e@steina-w/
+So, series
+Tested-by: Heiko Stuebner <heiko@sntech.de>
 
-Best regards,
-Markus
 
---=C2=A0
-TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
-any
-Amtsgericht M=C3=BCnchen, HRB 105018
-Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
-neider
-http://www.tq-group.com/
+
 
