@@ -1,95 +1,71 @@
-Return-Path: <devicetree+bounces-93460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8722095101B
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 01:01:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6094E95102E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 01:03:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 43AF8287CE1
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 23:01:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 913431C22A99
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 23:03:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34C021AB50A;
-	Tue, 13 Aug 2024 23:01:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 784631ABEA2;
+	Tue, 13 Aug 2024 23:03:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ESf0qnns"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="tvQyV5W9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 804031A7058;
-	Tue, 13 Aug 2024 23:00:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF2D8183CAD;
+	Tue, 13 Aug 2024 23:03:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723590060; cv=none; b=bErLO4f3WbfgU8vMP20hfAWNHeHL19nX9PfvfvRylQDKuJmEH6w9QW7YZyUGcq/Sg6L0OglT/AjRl90dbRb1QFMshgxO07k6A8rAMt5+9LTvuyauQ8s9qg0Qqszf0ix1TY3RwbojdVbXOPbY78x/e86lrZxsx5A39pwdD6gFv/c=
+	t=1723590208; cv=none; b=iM9W9KiGgH9JeUsGcOAsTTV/zdjKul/Ih8uwL2QP+1DyJghU9K3CSHumVgGRfoATRGL5BntPr3/IHTde0SxVxyi4MDsYMqiDpYk8j6G7boYakkJHtkidD4Tq/MRXTVlqsdUgGdBr21kJCnqn2+QcCU8VAouzzVrNyCB6hEKNCdU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723590060; c=relaxed/simple;
-	bh=MTs+G93svOkXFpMKIGKuRkI2y7ULikZDdTjHwEouAaY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=mgwntEDF2mk58E8fhtJMDKbn1tG2nMI/D/wBXEQMFxDLVsvZF7AkBkv2VG2170H3mOBY7fA63jAWmvtNhNK9vh9kuA1qUpucjGI/MRl/nDqypZAOrGUwuI/JKdj6BdQ9FqjP/ENN1ofKKdkBmPgRw7DtyzBOKsPUkWEZzBpcMzs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ESf0qnns; arc=none smtp.client-ip=209.85.160.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-44ff7bdb5a6so32482281cf.3;
-        Tue, 13 Aug 2024 16:00:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723590057; x=1724194857; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pHbp5xm4kw6fJSSbkDbUTNVhDZ+PJQcOYIRUSidU0PI=;
-        b=ESf0qnnsm0Itp5C3As6R9yQJHGUdI5UrN40t8drM4LHyYQjAhZHjo6ArOnLfpFHFzL
-         wSyTal5CO04HPh5jQ9NC2LnAZatkkSypbXYVe4q7lBJ4m80eGVz5Q9YXxiQncfOO4dl9
-         NWzYh6uvWqh8AEwv9sHuXCE3EWZVAxff3cZHJYO8SEs+ybS6DO9hI0rc9Y9POxwW2ZGI
-         yft4Lbp6jVV6d+f2VtnAJRDgIOynkOy6AZhcGbicvNSSXjE9FMIF16iXwbR5AEC+j5Vx
-         4pb1jE8yqtZeWTyqDi0LbvM1m8f0vNoh0NBUKIJzNoqNVkVr/pnAcW9SHlfLQ1hJMExQ
-         yTTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723590057; x=1724194857;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pHbp5xm4kw6fJSSbkDbUTNVhDZ+PJQcOYIRUSidU0PI=;
-        b=Ihqyixf7EysZkHnWZGiV008HOJ+WBqKtiC9APTa+P335dNBA253UToPMaWUVU7RM0V
-         KUGh4Ed4dRgnj9fn/FbJ1CHpstJiCCW3drnc8hNx8BXdSExGmXmBNuQ8jgcHpTU6Hjgc
-         NhEKTt9+A3gtllTq18ffnJUwdGg87gBqzqaf2IBIONwPLeIu+W4BWI1tPCi4FAra0xP4
-         HtWFZZd9jkNLl3VzuRHCZZRn9q9UqtF+2NYeiBZixhV1elzHEeetPBUYkJCMQ84tYWKJ
-         9OiC5MoZx9txsTajfAkyFIj/QsOSawo4iGAvQTbXIEWoVxf5DZ3MlNryozM/wHIpN2q4
-         44xw==
-X-Forwarded-Encrypted: i=1; AJvYcCUj/Urt/Y2S+VIA2xKh36ea+Tvi2FtPOXlJq4W9mez8Eo267OYVKnDLPOASGEZof7sGOPPouNLyHIWCV3H+lXWhjK+uOrN1IExOjabrfYwA6i/XB97WeoN9/ESE1I3PVK90O3R9CU4xXyuLjBL421eS1+HrvcuQLV43HOppLnDiYuAdjKbpeQpgxK7qE4DUvDEU8zAfwjzBEjakihpPEjLeMA==
-X-Gm-Message-State: AOJu0Yz8Cxyu4wHL3MUxrP7wWTl/h6x/oADq8zzKePIgMgaHNEAoPIw3
-	CWT2HT9OE0AguaUiA6MRrmIiNvRVFDJ16Xvml+mpEaRzOlxJcvpt
-X-Google-Smtp-Source: AGHT+IG12o+DDxSng9qqTCcj3SZsCQqnBjgOGSw2xrsJ9Pal5e9/kUrGXQ9++z6UsWm9oV1Si1fJaw==
-X-Received: by 2002:a05:622a:1f05:b0:447:e1a4:6c9e with SMTP id d75a77b69052e-4535ba8c5e8mr8947451cf.16.1723590057226;
-        Tue, 13 Aug 2024 16:00:57 -0700 (PDT)
-Received: from localhost ([2607:fea8:52a3:d200:324c:b818:b179:79b])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4531c1dc4bdsm35969621cf.51.2024.08.13.16.00.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Aug 2024 16:00:56 -0700 (PDT)
-From: Richard Acayan <mailingradian@gmail.com>
-To: Loic Poulain <loic.poulain@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Todor Tomov <todor.too@gmail.com>,
-	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org
-Cc: Richard Acayan <mailingradian@gmail.com>
-Subject: [PATCH v2 5/5] arm64: dts: qcom: sdm670: add camss and cci
-Date: Tue, 13 Aug 2024 19:00:44 -0400
-Message-ID: <20240813230037.84004-13-mailingradian@gmail.com>
+	s=arc-20240116; t=1723590208; c=relaxed/simple;
+	bh=qsoNR2Jg4jUsrj80/bt5EU5Y+L/p5JP/RXuphrpRa9Y=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Wx5FeBkJl9hV3F1XS8fkACmwWvJsmI+oMpH5p9A1Xp3pWY8RZBlphCO2b9+Vuo0ANj6kNJ3IqJ7s3A5QizNq0WXKsepI9fgop9p8Kxoh/1dCp35xGoZaoqfR48M/+g8PBikcuU0am2jhjXiOpVGk3C1BaSBBuG4bAtgYPKdfJRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=tvQyV5W9; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47DN3K0O099206;
+	Tue, 13 Aug 2024 18:03:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1723590200;
+	bh=hUDUxTYzjMt08Xqxt6Rk3RxZcN35S69r0y7JvUi71ms=;
+	h=From:To:CC:Subject:Date;
+	b=tvQyV5W9nq1NXYr8Y0onHezz6AZnuG9mcotsieQ3GQ5Z9upcTaLun8qKs8yxupUcb
+	 Wj/Y5YNL0zM92hz2IKUxtYccufqR+gKO73o7I/EVOsk+l+CjRm1O/zLqx1dreushab
+	 pSs22GERoYi8iah9FPMEbFlzEvlTHewTNwI3hnoo=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47DN3Kux025563
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 13 Aug 2024 18:03:20 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 13
+ Aug 2024 18:03:20 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 13 Aug 2024 18:03:20 -0500
+Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47DN3Khl026425;
+	Tue, 13 Aug 2024 18:03:20 -0500
+From: Judith Mendez <jm@ti.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Jan Kiszka <jan.kiszka@siemens.com>,
+        Judith
+ Mendez <jm@ti.com>
+Subject: [PATCH v2 0/6] Add and fix ESM nodes
+Date: Tue, 13 Aug 2024 18:03:06 -0500
+Message-ID: <20240813230312.3289428-1-jm@ti.com>
 X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240813230037.84004-8-mailingradian@gmail.com>
-References: <20240813230037.84004-8-mailingradian@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,233 +73,52 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Add the camera subsystem and CCI used to interface with cameras on the
-Snapdragon 670.
+The following patch adds ESM nodes and fixes ESM source
+interrupts for Sitara K3 platforms. Currently watchdog cannot
+reset the CPU because of misconfiguration or missing ESM node
+in DT.
 
-Signed-off-by: Richard Acayan <mailingradian@gmail.com>
----
- arch/arm64/boot/dts/qcom/sdm670.dtsi | 193 +++++++++++++++++++++++++++
- 1 file changed, 193 insertions(+)
+ESM node was added for am62ax and am65x. For am62px ESM source
+interrupts are fixed. Comments were also added for clarity on what
+source interrupts are routed to ESM based on device TRM.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-index ba93cef33dbb..63a956e0f55f 100644
---- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-@@ -6,6 +6,7 @@
-  * Copyright (c) 2022, Richard Acayan. All rights reserved.
-  */
- 
-+#include <dt-bindings/clock/qcom,camcc-sdm845.h>
- #include <dt-bindings/clock/qcom,dispcc-sdm845.h>
- #include <dt-bindings/clock/qcom,gcc-sdm845.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
-@@ -1168,6 +1169,34 @@ tlmm: pinctrl@3400000 {
- 			gpio-ranges = <&tlmm 0 0 151>;
- 			wakeup-parent = <&pdc>;
- 
-+			cci0_default: cci0-default-state {
-+				pins = "gpio17", "gpio18";
-+				function = "cci_i2c";
-+				drive-strength = <2>;
-+				bias-pull-up;
-+			};
-+
-+			cci0_sleep: cci0-sleep-state {
-+				pins = "gpio17", "gpio18";
-+				function = "cci_i2c";
-+				drive-strength = <2>;
-+				bias-pull-down;
-+			};
-+
-+			cci1_default: cci1-default-state {
-+				pins = "gpio19", "gpio20";
-+				function = "cci_i2c";
-+				drive-strength = <2>;
-+				bias-pull-up;
-+			};
-+
-+			cci1_sleep: cci1-sleep-state {
-+				pins = "gpio19", "gpio20";
-+				function = "cci_i2c";
-+				drive-strength = <2>;
-+				bias-pull-down;
-+			};
-+
- 			qup_i2c0_default: qup-i2c0-default-state {
- 				pins = "gpio0", "gpio1";
- 				function = "qup0";
-@@ -1400,6 +1429,170 @@ spmi_bus: spmi@c440000 {
- 			#interrupt-cells = <4>;
- 		};
- 
-+		cci: cci@ac4a000 {
-+			compatible = "qcom,sdm670-cci", "qcom,msm8996-cci";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			reg = <0 0x0ac4a000 0 0x4000>;
-+			interrupts = <GIC_SPI 460 IRQ_TYPE_EDGE_RISING>;
-+			power-domains = <&camcc TITAN_TOP_GDSC>;
-+
-+			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+				 <&camcc CAM_CC_SOC_AHB_CLK>,
-+				 <&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-+				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-+				 <&camcc CAM_CC_CCI_CLK>,
-+				 <&camcc CAM_CC_CCI_CLK_SRC>;
-+			clock-names = "camnoc_axi",
-+				      "soc_ahb",
-+				      "slow_ahb_src",
-+				      "cpas_ahb",
-+				      "cci",
-+				      "cci_src";
-+
-+			assigned-clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+					  <&camcc CAM_CC_CCI_CLK>;
-+			assigned-clock-rates = <80000000>, <37500000>;
-+
-+			pinctrl-names = "default", "sleep";
-+			pinctrl-0 = <&cci0_default &cci1_default>;
-+			pinctrl-1 = <&cci0_sleep &cci1_sleep>;
-+
-+			status = "disabled";
-+
-+			cci_i2c0: i2c-bus@0 {
-+				reg = <0>;
-+				clock-frequency = <1000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
-+
-+			cci_i2c1: i2c-bus@1 {
-+				reg = <1>;
-+				clock-frequency = <1000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
-+		};
-+
-+		camss: camera-controller@ac65000 {
-+			compatible = "qcom,sdm670-camss";
-+			reg = <0 0x0ac65000 0 0x1000>,
-+			      <0 0x0ac66000 0 0x1000>,
-+			      <0 0x0ac67000 0 0x1000>,
-+			      <0 0x0acaf000 0 0x4000>,
-+			      <0 0x0acb3000 0 0x1000>,
-+			      <0 0x0acb6000 0 0x4000>,
-+			      <0 0x0acba000 0 0x1000>,
-+			      <0 0x0acc4000 0 0x4000>,
-+			      <0 0x0acc8000 0 0x1000>;
-+			reg-names = "csiphy0",
-+				    "csiphy1",
-+				    "csiphy2",
-+				    "vfe0",
-+				    "csid0",
-+				    "vfe1",
-+				    "csid1",
-+				    "vfe_lite",
-+				    "csid2";
-+
-+			interrupts = <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 477 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "csid0",
-+					  "csid1",
-+					  "csid2",
-+					  "csiphy0",
-+					  "csiphy1",
-+					  "csiphy2",
-+					  "vfe0",
-+					  "vfe1",
-+					  "vfe_lite";
-+
-+			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-+				 <&camcc CAM_CC_IFE_0_CSID_CLK>,
-+				 <&camcc CAM_CC_IFE_1_CSID_CLK>,
-+				 <&camcc CAM_CC_IFE_LITE_CSID_CLK>,
-+				 <&camcc CAM_CC_CSIPHY0_CLK>,
-+				 <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
-+				 <&camcc CAM_CC_CSIPHY1_CLK>,
-+				 <&camcc CAM_CC_CSI1PHYTIMER_CLK>,
-+				 <&camcc CAM_CC_CSIPHY2_CLK>,
-+				 <&camcc CAM_CC_CSI2PHYTIMER_CLK>,
-+				 <&gcc GCC_CAMERA_AHB_CLK>,
-+				 <&gcc GCC_CAMERA_AXI_CLK>,
-+				 <&camcc CAM_CC_SOC_AHB_CLK>,
-+				 <&camcc CAM_CC_IFE_0_AXI_CLK>,
-+				 <&camcc CAM_CC_IFE_0_CLK>,
-+				 <&camcc CAM_CC_IFE_0_CPHY_RX_CLK>,
-+				 <&camcc CAM_CC_IFE_1_AXI_CLK>,
-+				 <&camcc CAM_CC_IFE_1_CLK>,
-+				 <&camcc CAM_CC_IFE_1_CPHY_RX_CLK>,
-+				 <&camcc CAM_CC_IFE_LITE_CLK>,
-+				 <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>;
-+			clock-names = "camnoc_axi",
-+				      "cpas_ahb",
-+				      "csi0",
-+				      "csi1",
-+				      "csi2",
-+				      "csiphy0",
-+				      "csiphy0_timer",
-+				      "csiphy1",
-+				      "csiphy1_timer",
-+				      "csiphy2",
-+				      "csiphy2_timer",
-+				      "gcc_camera_ahb",
-+				      "gcc_camera_axi",
-+				      "soc_ahb",
-+				      "vfe0_axi",
-+				      "vfe0",
-+				      "vfe0_cphy_rx",
-+				      "vfe1_axi",
-+				      "vfe1",
-+				      "vfe1_cphy_rx",
-+				      "vfe_lite",
-+				      "vfe_lite_cphy_rx";
-+
-+			iommus = <&apps_smmu 0x808 0x0>,
-+				 <&apps_smmu 0x810 0x8>,
-+				 <&apps_smmu 0xc08 0x0>,
-+				 <&apps_smmu 0xc10 0x8>;
-+
-+			power-domains = <&camcc IFE_0_GDSC>,
-+					<&camcc IFE_1_GDSC>,
-+					<&camcc TITAN_TOP_GDSC>;
-+			power-domain-names = "ife0",
-+					     "ife1",
-+					     "top";
-+
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				camss_port0: port@0 {
-+					reg = <0>;
-+				};
-+
-+				camss_port1: port@1 {
-+					reg = <1>;
-+				};
-+
-+				camss_port2: port@2 {
-+					reg = <2>;
-+				};
-+			};
-+		};
-+
- 		camcc: clock-controller@ad00000 {
- 			compatible = "qcom,sdm845-camcc";
- 			reg = <0 0x0ad00000 0 0x10000>;
+ESM nodes like MCU ESM for am65x are added for device completion,
+currently, some ESM0 events are not routed to MCU ESM, so watchdog
+cannot reset the CPU using the current implementation.
+
+Changes since v1:
+- Remove watchdog patch
+- Add am64x patch 5/6
+- Add am65x patch 6/6
+- Add missing bootph flag
+
+Judith Mendez (5):
+  arm64: dts: ti: k3-am62a: Add ESM nodes
+  arm64: dts: ti: k3-am62p: Fix ESM interrupt sources
+  arm64: dts: ti: k3-am62: Add comments to ESM nodes
+  arm64: dts: ti: k3-am64: Add more ESM interrupt sources
+  arm64: dts: ti: k3-am65: Add ESM nodes
+
+Santhosh Kumar K (1):
+  arm64: dts: ti: k3-am62p: Remove 'reserved' status for ESM
+
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi               | 1 +
+ arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi                | 1 +
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi              | 8 ++++++++
+ arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi               | 8 ++++++++
+ arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi | 3 ++-
+ arch/arm64/boot/dts/ti/k3-am62p-j722s-common-mcu.dtsi  | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi               | 3 ++-
+ arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi                | 3 ++-
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi               | 8 ++++++++
+ arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi                | 8 ++++++++
+ 10 files changed, 42 insertions(+), 5 deletions(-)
+
+
+base-commit: e3cce1229c34b5c28f103361c4d6b3ef17302d5d
 -- 
 2.46.0
 
