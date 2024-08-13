@@ -1,220 +1,285 @@
-Return-Path: <devicetree+bounces-93111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2638D94FC5F
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 05:44:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D088C94FC73
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 05:54:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C0B61C2132C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 03:44:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 321DAB221A6
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 03:54:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB4D71BC39;
-	Tue, 13 Aug 2024 03:44:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C4D8210E4;
+	Tue, 13 Aug 2024 03:53:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="d5DoK9Lu"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="F/sw05CG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2056.outbound.protection.outlook.com [40.107.21.56])
+Received: from mail-m127174.xmail.ntesmail.com (mail-m127174.xmail.ntesmail.com [115.236.127.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 613BC8BF3;
-	Tue, 13 Aug 2024 03:44:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.56
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723520666; cv=fail; b=WnyzfDE8xeh2kuOSKiVjpclDOOgd7ZL4eieAhceVxUvBcpWswOAXTuQ2G8Uay7XYlCHmNB6j8JfU68YKBNTwjyOuvlUGAItf0LqNCoFUO14W3Ia588Zjx2rOqAxf8p+aKQhcwRhdgqOkAHBCoySYCiwkSkuF5zYPgh4+2Fpu/0Q=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723520666; c=relaxed/simple;
-	bh=1Vu+cz7rsp56kWtoPmpsY2vOjcnQ+2Zt6gtlyFFgyCA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=gArmYAh3ryYxL5EV7gn3AVc+HaZZL7ws99nQ8MgxU7RUoOTAph3sQZwiWedj8oaxrPJpHBv5PJpHyGY2o23q8KPhfMFuzcz0imMyQGJlTywelASML0PrNQwTHnaa13QeUONDQPKZXA05OlarFSLc57TnsqIo1Nkky0WKTn3iyM0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=d5DoK9Lu; arc=fail smtp.client-ip=40.107.21.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=TcWP9A3QSJcziOWgZZ/sE+VNCYDypBZzQH+8Dp5W/Sry2KZaOGSNvIVVZBlbQ3yJ+lo/5Vbc3UEt51Tu8RkyOHhtK/GZ47erKWqp74rKTl3p13Glwy2da5EkuQRjNyxKoU37ALCgETj7wYf2skofONLUQ69HWQtcqBSwXUwGT693ZTE+ggTrZf+wmcGKbgqR7mTftLdPsgAbiauZZGwR2dT49vLhVI/2b+lpXCsW5d1gkH95YCuRCUVD6VriRuQvTsLlEyRQxWPuGm9xkAhhj2pSYFHzwjIAbq2T5cj68o3Uf0HK9/NgYJSdFlcfFfDs2dAsirG9scolLX0EY0mkjQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tp5uo7HjrZ/Env0mHbVUXY6VDaCBYxzn/ambT07TKs0=;
- b=ePdb9ISx3OQtMcXOYv5we9ywvlPSlWjUSfcG0IXI3Ik5phVMYzDZB3MO4LK2gHqmGfu4lYTmc8JDJxw12QWch0S3K+VtupY8M507/9fpjEOoUtlDFSWqce8jHF2IJvZFKXaHs/0y3ks6HAo92qBmxE3g7+orMxIOBp+7hscqpYvKwlB6ZoiEQ63dJZ4MP/8AfcVE40VQxe7EL8WMlmTW6VPvTwKAnmTti3czTKNhxlrhU9yv6kYGynP9T+XgCD52ylAivSC47yRfStuZhaytmjjOxejQA6ztLKScLFtlGMkUS+XZ3jEtdZtdAVqlX8hnyIKF99wPgQB0+OyDXlhxOA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tp5uo7HjrZ/Env0mHbVUXY6VDaCBYxzn/ambT07TKs0=;
- b=d5DoK9Luj+ksCgPcvVAU9i5tWeGEuKddAMxSv2pKxTDIexQ3waTSro00mr5vor9k3S4/cpTUdluiyDnnXTFum248W8nJCOwcDjJ/iX9RsmMsu1+6eReK1Zx9PSWnyTCG6lsSJx/HCLQvpFjLcS9YcM1YVo4GLiMSej0blVOExHm1AjETCM8rosXOVLMZs5DqkNxMVOXl2bhhPTaugiWnnj7t2/zeGlUZF840punLdgkvomOL9M3aG1Q+mAbr6vstD1G6gPTXSPi4gO2YW8KTx6uXeD3u1n7Lh+nhEH1IN6HGIT9zDQ8ihAfmPQw5RS9XxvJxWFHScPfF1VD24tkkig==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by VI0PR04MB10318.eurprd04.prod.outlook.com (2603:10a6:800:21c::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.22; Tue, 13 Aug
- 2024 03:44:21 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%3]) with mapi id 15.20.7849.019; Tue, 13 Aug 2024
- 03:44:21 +0000
-Date: Mon, 12 Aug 2024 23:44:11 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Liu Ying <victor.liu@nxp.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	"open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] dt-bindings: display: panel-simple-lvds-dual-ports:
- use unevaluatedProperties
-Message-ID: <ZrrWi0HuAIDe7C0x@lizhi-Precision-Tower-5810>
-References: <20240812193626.3826250-1-Frank.Li@nxp.com>
- <143d7bcb-c3ee-4f9f-833c-6680a25681b2@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <143d7bcb-c3ee-4f9f-833c-6680a25681b2@nxp.com>
-X-ClientProxiedBy: SJ0PR13CA0195.namprd13.prod.outlook.com
- (2603:10b6:a03:2c3::20) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6144619470;
+	Tue, 13 Aug 2024 03:53:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.236.127.174
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723521236; cv=none; b=jffLW6ZZTDka/a1o4e48jj5zH9QjrOxxCATPj1xupjbSj1/P0j5uN5F/wj49GZ55AcTUWdKJGrbqxP/2d92lDnoShlphpLF2Kn0HNI1rK5LN2uprDFtIY7An3kO8FbvjNJOT8mNihGgVqnaLbtcgHgBST+KgW+8ONnDdcUNwu3E=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723521236; c=relaxed/simple;
+	bh=Ytc72JkFDjs88ZEnCsYhEG87oAU/LtotvAWBMk/c2Zc=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=L2xFGaKoTY54DXtLXgpUn7xAoJS4psp+LR7uvYKWC8jHHTBj63X9/ID+n7yZE6iiUfVnumo8q7T0G54ZiWOGgseBQzAqdJSeOBUmLnUFS8jfYcv/kGbSA+MUdhf33y3VJb8GSq+MQQlauSgclifPGoWQGTWv1Qgeyt1BWSzxEC8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=F/sw05CG; arc=none smtp.client-ip=115.236.127.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+DKIM-Signature: a=rsa-sha256;
+	b=F/sw05CGbBqjYyN8QXb/N+3CtICJH/2jd7Tqjn6RlzzC2k+MLGbkGOK6HEEXKCgu6c/k698lDznTE3oGQFVwjUwMbcNp0IKFMZq9gfbyPTdm36Qwxrk+IJnc1IdbhSR0V7W0rIlKhwTpDv5Lu0uTHQgDGR8Tm6H8NIEyLPbME5Q=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=lSpIWy5SrkQpqtUiLjei0gYEY0FrtYcWevfcfIyZkOw=;
+	h=date:mime-version:subject:message-id:from;
+Received: from [172.16.12.45] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTPA id 138B54603C4;
+	Tue, 13 Aug 2024 11:52:29 +0800 (CST)
+Message-ID: <b91b18fa-7af0-46c0-a3f7-550676b7a222@rock-chips.com>
+Date: Tue, 13 Aug 2024 11:52:28 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VI0PR04MB10318:EE_
-X-MS-Office365-Filtering-Correlation-Id: f4ca922d-d6c5-4805-3d5b-08dcbb4a3749
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|7416014|52116014|376014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?2I5eKY1iookgXN/1gsa8qn1jK87K+LH4kMXW9KVFXTkllmy2JsECDLP5wbvg?=
- =?us-ascii?Q?2yFDfnYm4QvgNIHtMbbL4fv6oT2XQP7Of5Qwi36LgKIhGiUNroeYmGro/uac?=
- =?us-ascii?Q?+9Se93ERp4bQIo+CyA8ODNUX048p9MSpbnjIk21sLJK6fUVkWlyLnivpvYPW?=
- =?us-ascii?Q?VWj/LgilHEjYHk1qHq9t2/+c7tzayy8pjh2R01133nsJU8fjlNnncliHqmBi?=
- =?us-ascii?Q?2J0hfw3l7qFChjnFkXde1F5lTpakigYz68SCJ53qU3IOB/1dSMHfqlE9VfeX?=
- =?us-ascii?Q?ooUw7/07/Agf0qfZ1w+DuzTZn7gQkikkC59wrKrqRcf5tBBW1zsGCN+2a/hZ?=
- =?us-ascii?Q?xJu6HhOdgwBzxz0JWDvcBb2ZXVD7/CXyHvG3j4jopuwEyx5MAHBEndtQekev?=
- =?us-ascii?Q?4yE19VvVKY+qhoaygY8fBp1DEWJsC4gQGvJ2HodS8FLmux+8o0vFKvdGVq1r?=
- =?us-ascii?Q?rxcXBqEnr5zP4uOsn1CZ6r8ez5VBVmiA0sph3kHy+3hbHCd71/871KxfKq/b?=
- =?us-ascii?Q?+TGsaTv4XGTFncAaRqj3iMxru7/F9CGmjLBymKNT++nugLhv3SsuCLAirLuw?=
- =?us-ascii?Q?4W3AVXzDIoHGJoDk+z6xuW9IlmYLkx1nyMXDBUHbZ8HEfRtyAsksCoXq9wIn?=
- =?us-ascii?Q?3sIakmu60CejxdL3MFAnYdXm655xtrNSDcKnWcHUDcayWCLZZzWAg2iypM1V?=
- =?us-ascii?Q?YV3M47AKXBpDZvuY03NCLTwwRvfs2F2S15VIUdoU/tvBWkkNX4FiDoPHiHyk?=
- =?us-ascii?Q?frYE0S1CUjmYWaagL03WsTJ3+IqrjfJip3Cdl0EGlYG7edAHtUxI726sfUqw?=
- =?us-ascii?Q?J5jvLIVKnihVYOLD6hTVfRVFCpJxYWUmzyKe54xXZ5cRHJd9YNegTAk2hSr2?=
- =?us-ascii?Q?+NICRcE2hDSO7eXw3cBvDDrw97YAKTeREiOcGfh81goyDfO2bvz71MGkxikY?=
- =?us-ascii?Q?5LoNtgLy5pB/48A13NiUHbqXmaklOfxmxMmFN5Gog4rj7aB4EEsdcocFh+pm?=
- =?us-ascii?Q?9R78rdjYVbxpYoVYw0ICEQ8D/B1uatn7LliNukMRew5cu5MXYrdc8LkLuMp/?=
- =?us-ascii?Q?FCP8Ugv2Iktb68vN6zRC+j8K62a2KTCTuGbiwlAmm9d71o6IPh1ehAXJBFJ7?=
- =?us-ascii?Q?uvm4Xf7UFNrbNqiC42Zjh1LTTSz2L+d2JhThGrjYr1kPCebXKc/RDwObUqn5?=
- =?us-ascii?Q?ySYv65vQTtsZOn/iY6EwHHLWfi7G893bYWjS5n9CtKVRxT366Ovut22ejOfJ?=
- =?us-ascii?Q?YL2//IMnLlzSK+wzGHBMgj3w7HnQ5PuTSP7fvyavtGCIplSID/Qr+KlnPHUH?=
- =?us-ascii?Q?DCOCSvIB0AOZZoFrtAfY+4zN?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(52116014)(376014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?xwlpd0RMkzoPFctM1hJ/wJIRkRo8xvc0Jfh9H/kkaXMWuikBMJ8LhoTuNTBV?=
- =?us-ascii?Q?zRMNQIA1wO86OgIdf4ax9iHj7PAtifyDFTjMem1zBUoU8QjioFl8++VcnIIY?=
- =?us-ascii?Q?atNvJQhfLP/diTL4OftMuljAUdchoiUIsO2QWNAbKH3yj76X7XmQXmM2h1Ig?=
- =?us-ascii?Q?99KLOoyInwtmHbMRVK6G/CBLfYI8cfH7SgVX4L08052o3VDTX49Hs3QAmIw2?=
- =?us-ascii?Q?5FqRXZTJhN78veOeQ7A+xrOW5rpqjCaP2sMGp9AV4q124+xo2qmIaAgXpXFY?=
- =?us-ascii?Q?eRfDv7N2FIOMXlxcuQ5jv308jZ1ScKcxJiCc0Z830Z8SEUNqknwvBWozE5C+?=
- =?us-ascii?Q?eOxt+aDl2vxDuoEsbjB9wXMVnaAQUutaNWl2kBSM6yR/ufBK9pnnoTtbVWE/?=
- =?us-ascii?Q?q+o4AEjlRA9oR/nSiWg1apymrHAfOGPMN0nTQZb0Am8tlUGbdRncfKkc8lpC?=
- =?us-ascii?Q?ZqC1kKfGojxta8z+tV3A5SVlb9W6cCjvd9v24bBPzkUM2nlLIpki+2nOjmEt?=
- =?us-ascii?Q?/2ODbYvHGm5DO7Qxc969E5QrNe45P/1QUIgdu2JLrZBfO0ksEZ9Jk0wMh5pv?=
- =?us-ascii?Q?D/sn/Fa2PcjQoVTpPgkY8bCxKZuXLRVA6wYJDQOHVovPkWjxfIj7Lp7lpZgh?=
- =?us-ascii?Q?+2bJcnF/kccs1PPbrEJ/+mlyN/VIn+zJfNeZUVShpbg2VDpHkH5a5o87RFB6?=
- =?us-ascii?Q?MxO9Fq5zFOocouvMuWPpsWdU2pv+QgtUBkjb8EPjrWT5BJfG/SDefINJqAHi?=
- =?us-ascii?Q?+dOe0skYyURZM2Bl0wvKb8icIpttPIljKnfaCCGmBfqtgt4zGFTzK0orEFF9?=
- =?us-ascii?Q?p9NF3g4Lp1IDZ0ebJKYWsRx/1SMPcruNpqC0+hONbSYbLT6RcUWSYb6KcsCi?=
- =?us-ascii?Q?h5IAD9QNjdZ3ZVPVNPlxublroBbLo5bRG0N6tl3PjmQo0c4xk2FkaR9LkffE?=
- =?us-ascii?Q?9m41OBRs6ErDHmPy2Du8NjMy848QZNmXageiF4XTUyXMARojJ4CiiMcsnEuk?=
- =?us-ascii?Q?8orWjg597uNZ79+LZB+gOZL6KOBKKlrbmxUpB4/HQB+k0fmVbvu5RNDD/7Vd?=
- =?us-ascii?Q?d2STAIiGYibB3g+NLKdeuQgRq1zFd3M0oKR9SKGQM+9jiu9yFG9c2PyPfmCy?=
- =?us-ascii?Q?FP8Gf2TVL8mQvbWPujFiVg/FJrsY/W8sEqqWkNxKjFUwb+nMG4NBOu90BMbe?=
- =?us-ascii?Q?bjIKUIeHNOeVSGzZQaelc6t5WFonO9lnjHAyQ1WlsA2kkLgEUf1FsLJiCxLn?=
- =?us-ascii?Q?od3LHhKDipCZK4RBXluQo4Fh+x8LinT9gtrNeXKNkGPGpJ7OGBDnfsXJpBFx?=
- =?us-ascii?Q?gs6Sc7BBuk/zDhr2wUZpVbP/T9GEKO3SQlEPtBPKT8xrWBKdEwdGD7pHfexN?=
- =?us-ascii?Q?5oTDiCik6/R1ZAL58mbEGvGgnv+ffUYgl4uFQvMbxCQKev6eTnFtqF/DgMiZ?=
- =?us-ascii?Q?ekOUgtIVPAZSBfBoXbQ22TAp0obJlno7e9rUNCwcSpIzzmTPjH/DKrQe3cFO?=
- =?us-ascii?Q?C/4hoFfWrk99Fjht4gFzXsCtRpqLiuaSFVDBEndjp/HFJjpc0MSK316OKx1A?=
- =?us-ascii?Q?Y8/a1ZVeCV+bFbH55mI=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f4ca922d-d6c5-4805-3d5b-08dcbb4a3749
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Aug 2024 03:44:21.0843
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: M1Tf8zRKOC3STxkkL2PjFO+WoEk6V3BMGbRfm0J9xuvk8jiQIQ6UvyGhjs1tKNz06BTnEbAceWFnw7ruJbyz5w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10318
+User-Agent: Mozilla Thunderbird
+Cc: shawn.lin@rock-chips.com,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ "James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
+ "Martin K . Petersen" <martin.petersen@oracle.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
+ Bart Van Assche <bvanassche@acm.org>, YiFeng Zhao <zyf@rock-chips.com>,
+ Liang Chen <cl@rock-chips.com>, linux-scsi@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] scsi: ufs: rockchip: init support for UFS
+To: Manivannan Sadhasivam <manisadhasivam.linux@gmail.com>
+References: <1723089163-28983-1-git-send-email-shawn.lin@rock-chips.com>
+ <1723089163-28983-4-git-send-email-shawn.lin@rock-chips.com>
+ <20240809062813.GC2826@thinkpad>
+ <421d48b7-4aa7-4202-8b5f-9c60916f6ef6@rock-chips.com>
+ <20240810092817.GA147655@thinkpad>
+ <3b2617f5-acb1-45c6-993c-33249fd19888@rock-chips.com>
+ <20240812041051.GA2861@thinkpad>
+ <49659932-5caf-433b-a140-664b61617c43@rock-chips.com>
+ <20240812165504.GB6003@thinkpad>
+Content-Language: en-GB
+From: Shawn Lin <shawn.lin@rock-chips.com>
+In-Reply-To: <20240812165504.GB6003@thinkpad>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGRgYTlZPTUxMTR9JTB1DTkhWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	NVSktLVUpCS0tZBg++
+X-HM-Tid: 0a9149ddad1403aekunm138b54603c4
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Mhg6FTo*TjI*KUsXQxlNMTc1
+	CUsaCjlVSlVKTElITklKSk5LTE9MVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUpLT09PNwY+
 
-On Tue, Aug 13, 2024 at 10:32:04AM +0800, Liu Ying wrote:
-> On 08/13/2024, Frank Li wrote:
-> > Replace additionalProperties with unevaluatedProperties because it ref to
-> > panel-common.yaml.
->
-> This would allow all properties in panel-common.yaml, which is not expected.
-> Isn't adding 'panel-timing: true' next to 'enable-gpios: true' enough?
+Hi Mani,
 
-Strange, you ref to panel-common.yaml, suppose it will use all common
-preperties.
+在 2024/8/13 0:55, Manivannan Sadhasivam 写道:
+> On Mon, Aug 12, 2024 at 02:24:31PM +0800, Shawn Lin wrote:
+>> 在 2024/8/12 12:10, Manivannan Sadhasivam 写道:
+>>> On Mon, Aug 12, 2024 at 09:28:26AM +0800, Shawn Lin wrote:
+>>>> JHi Mani,
+>>>>
+>>>> 在 2024/8/10 17:28, Manivannan Sadhasivam 写道:
+>>>>> On Fri, Aug 09, 2024 at 04:16:41PM +0800, Shawn Lin wrote:
+>>>>>
+>>>>> [...]
+>>>>>
+>>>>>>>> +static int ufs_rockchip_hce_enable_notify(struct ufs_hba *hba,
+>>>>>>>> +					 enum ufs_notify_change_status status)
+>>>>>>>> +{
+>>>>>>>> +	int err = 0;
+>>>>>>>> +
+>>>>>>>> +	if (status == PRE_CHANGE) {
+>>>>>>>> +		int retry_outer = 3;
+>>>>>>>> +		int retry_inner;
+>>>>>>>> +start:
+>>>>>>>> +		if (ufshcd_is_hba_active(hba))
+>>>>>>>> +			/* change controller state to "reset state" */
+>>>>>>>> +			ufshcd_hba_stop(hba);
+>>>>>>>> +
+>>>>>>>> +		/* UniPro link is disabled at this point */
+>>>>>>>> +		ufshcd_set_link_off(hba);
+>>>>>>>> +
+>>>>>>>> +		/* start controller initialization sequence */
+>>>>>>>> +		ufshcd_writel(hba, CONTROLLER_ENABLE, REG_CONTROLLER_ENABLE);
+>>>>>>>> +
+>>>>>>>> +		usleep_range(100, 200);
+>>>>>>>> +
+>>>>>>>> +		/* wait for the host controller to complete initialization */
+>>>>>>>> +		retry_inner = 50;
+>>>>>>>> +		while (!ufshcd_is_hba_active(hba)) {
+>>>>>>>> +			if (retry_inner) {
+>>>>>>>> +				retry_inner--;
+>>>>>>>> +			} else {
+>>>>>>>> +				dev_err(hba->dev,
+>>>>>>>> +					"Controller enable failed\n");
+>>>>>>>> +				if (retry_outer) {
+>>>>>>>> +					retry_outer--;
+>>>>>>>> +					goto start;
+>>>>>>>> +				}
+>>>>>>>> +				return -EIO;
+>>>>>>>> +			}
+>>>>>>>> +			usleep_range(1000, 1100);
+>>>>>>>> +		}
+>>>>>>>
+>>>>>>> You just duplicated ufshcd_hba_execute_hce() here. Why? This doesn't make sense.
+>>>>>>
+>>>>>> Since we set UFSHCI_QUIRK_BROKEN_HCE, and we also need to do someting
+>>>>>> which is very similar to ufshcd_hba_execute_hce(), before calling
+>>>>>> ufshcd_dme_reset(). Similar but not totally the same. I'll try to see if
+>>>>>> we can export ufshcd_hba_execute_hce() to make full use of it.
+>>>>>>
+>>>>>
+>>>>> But you are starting the controller using REG_CONTROLLER_ENABLE. Isn't that
+>>>>> supposed to be broken if you set UFSHCI_QUIRK_BROKEN_HCE? Or I am
+>>>>> misunderstanding the quirk?
+>>>>>
+>>>>
+>>>> Our controller doesn't work with exiting code, whether setting
+>>>> UFSHCI_QUIRK_BROKEN_HCE or not.
+>>>>
+>>>
+>>> Okay. Then this means you do not need this quirk at all.
+>>>
+>>>>
+>>>> For UFSHCI_QUIRK_BROKEN_HCE case, it calls ufshcd_dme_reset（）first,
+>>>> but we need to set REG_CONTROLLER_ENABLE first.
+>>>>
+>>>> For !UFSHCI_QUIRK_BROKEN_HCE case, namly ufshcd_hba_execute_hce, it
+>>>> sets REG_CONTROLLER_ENABLE  first but never send DMA_RESET and calls
+>>>> ufshcd_dme_enable.
+>>>>
+>>>
+>>> I don't see where ufshcd_dme_enable() is getting called for
+>>> !UFSHCI_QUIRK_BROKEN_HCE case.
+>>>
+>>>> So the closet code path is to go through UFSHCI_QUIRK_BROKEN_HCE case,
+>>>> and set REG_CONTROLLER_ENABLE by adding hce_enable_notify hook.
+>>>>
+>>>
+>>> No, that is abusing the quirk. But I'm confused about why your controller wants
+>>> resetting the unipro stack _after_ enabling the controller? Why can't it be
+>>> reset before?
+>>>
+>>
+>> It can't be. The DME_RESET to reset the unipro stack will be failed
+>> without enabling REG_CONTROLLER_ENABLE. And the controller does want us
+>> to reset the unipro stack before other coming UICs.
+>>
+>> So I considered it's a kind of broken HCE case as well. Should I add a
+>> new quirk or add a new hba_enable hook in ufs_hba_variant_ops? Or just
+>> use UFSHCI_QUIRK_BROKEN_HCE ?
+>>
+> 
+> IMO, you should add a new quirk and use it directly in ufshcd_hba_execute_hce().
+> But you need to pick the quirk name as per the actual quirky behavior of the
+> controller.
+> 
 
-Krzysztof Kozlowski:
+Thanks, Main. I'll add a new quirk for
+ufshcd_hba_execute_hce() as per the actual quirky behavour.
 
-Can I just add panel-timing:true for this case?
+>>>>>>>
+>>>>>>>> +	} else { /* POST_CHANGE */
+>>>>>>>> +		err = ufshcd_vops_phy_initialization(hba);
+>>>>>>>> +	}
+>>>>>>>> +
+>>>>>>>> +	return err;
+>>>>>>>> +}
+>>>>>>>> +
+>>>
+>>> [...]
+>>>
+>>>>>>>> +static const struct dev_pm_ops ufs_rockchip_pm_ops = {
+>>>>>>>> +	SET_SYSTEM_SLEEP_PM_OPS(ufs_rockchip_suspend, ufs_rockchip_resume)
+>>>>>>>> +	SET_RUNTIME_PM_OPS(ufs_rockchip_runtime_suspend, ufs_rockchip_runtime_resume, NULL)
+>>>>>>>
+>>>>>>> Why can't you use ufshcd PM ops as like other vendor drivers?
+>>>>>>
+>>>>>> It doesn't work from the test. We have many use case to power down the
+>>>>>> controller and device, so there is no flow to recovery the link. Only
+>>>>>> when the first accessing to UFS fails, the ufshcd error handle recovery the
+>>>>>> link. This is not what we expect.
+>>>>>>
+>>>>>
+>>>>> What tests? The existing UFS controller drivers are used in production devices
+>>>>> and they never had a usecase to invent their own PM callbacks. So if your
+>>>>> controller is special, then you need to justify it more elaborately. If
+>>>>> something is missing in ufshcd callbacks, then we can add them.
+>>>>>
+>>>>
+>>>> All the register got lost each time as we power down both controller & PHY
+>>>> and devices in suspend.
+>>>
+>>> Which suspend? runtime or system suspend? I believe system suspend.
+>>
+>> Both.
+>>
+> 
+> With {rpm/spm}_lvl = 3, you should not power down the controller.
+> 
+>>>
+>>>> So we have to restore the necessary
+>>>> registers and link. I didn't see where the code recovery the controller
+>>>> settings in ufshcd_resume, except ufshcd_err_handler（）triggers that.
+>>>> Am I missing any thing?
+>>>
+>>> Can you explain what is causing the powerdown of the controller and PHY?
+>>> Because, ufshcd_suspend() just turns off the clocks and regulators (if
+>>> UFSHCD_CAP_AGGR_POWER_COLLAPSE is set) and spm_lvl 3 set by this driver only
+>>> puts the device in sleep mode and link in hibern8 state.
+>>>
+>>
+>> For runtime PM case, it's the power-domain driver will power down the
+>> controller and PHY if UFS stack is not active any more（autosuspend）.
+>>
+>> For system PM case, it's the SoC's firmware to cutting of all the power
+>> for controller/PHY and device.
+>>
+> 
+> Both cases are not matching the expectations of {rpm/spm}_lvl. So the platform
+> (power domain or the firmware) should be fixed. What if the user sets the
+> {rpm/spm}_lvl to 1? Will the platform power down the controller even then? If
+> so, then I'd say that the platform is broken and should be fixed.
 
-Frank
+Ok, it seems I need to set {rpm/spm}_lvl = 6 if I want platform to power
+down the controller for ultra power-saving. But I still need to add my
+own system PM callback in that case to recovery the link first. Do I
+misunderstand it?
 
->
-> >
-> > Remove properties (backlight, enable-gpios and power-supply), which defined
-> > in panel-common.yaml.
-> >
-> > Fix below warning:
-> > arch/arm64/boot/dts/freescale/imx8mp-evk-mx8-dlvds-lcd1.dtb: panel-lvds: 'panel-timing' does not match any of the regexes: 'pinctrl-[0-9]+'
-> >         from schema $id: http://devicetree.org/schemas/display/panel/panel-simple-lvds-dual-ports.yaml#
-> >
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > ---
-> >  .../display/panel/panel-simple-lvds-dual-ports.yaml         | 6 +-----
-> >  1 file changed, 1 insertion(+), 5 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
-> > index e78160d1aa24c..10ed4b57232b9 100644
-> > --- a/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
-> > +++ b/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
-> > @@ -84,11 +84,7 @@ properties:
-> >        - port@0
-> >        - port@1
-> >
-> > -  backlight: true
-> > -  enable-gpios: true
-> > -  power-supply: true
-> > -
-> > -additionalProperties: false
-> > +unevaluatedProperties: false
-> >
-> >  required:
-> >    - compatible
->
-> --
-> Regards,
-> Liu Ying
->
+And for the user who sets the rpm/spm level via
+ufs_sysfs_pm_lvl_store(), I think there is no way to block it currently,
+except that we need to fix the power-domain driver and Firmware to
+respect the level and choose correct policy.
+
+
+So in summary for what the next step I should to:
+(1) Set {rpm/spm}_lvl = 6 in host driver to reflect the expectation
+(2) Add own PM callbacks to recovery the link to meet the expectation
+(3) Fix the broken behaviour of PD or Firmware to respect the actual
+desired pm level if user changes the pm level.
+
+
+Does that sound feasible to you?
+
+
+Thanks.
+
+> 
+> - Mani
+> 
 
