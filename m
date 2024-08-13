@@ -1,168 +1,249 @@
-Return-Path: <devicetree+bounces-93361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22C589509ED
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 18:13:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 875AA9509F4
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 18:16:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C827F1F217D3
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 16:13:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C7A12B20E6A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 16:16:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83F0B1A08D7;
-	Tue, 13 Aug 2024 16:13:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A6A91A08C2;
+	Tue, 13 Aug 2024 16:16:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BDv/+DQj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PsQ/kg4W"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 571621E4A4;
-	Tue, 13 Aug 2024 16:13:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D22E19AD90;
+	Tue, 13 Aug 2024 16:16:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723565609; cv=none; b=AD0Z6/3tghtZ682jhjE1gpe0G1+pfnjwdRJrQ+0L0RfgkFKg4eaDq3VvwiY5vHOO6/u8VX3tu4TEyl1xBnA+hsYDGqry6XZeplsH97rH5Ged491qOrEyyyjbkOKfaiwz3k6ebLA6mjNorYlyzNujYZ6PA15lEdKY8QFGxkdW1Go=
+	t=1723565803; cv=none; b=YCiQTiw3hvZbE2aBndatuD9qmzyczhADv4OaFJpcQ3JVlJa3dPOZ8H9tUWhx6iZV0IYJUfvDNXvXDX9e9LGO2ei5LI4dT4kTT8OqQspEPv280zwxCgOqfa7cr0nVpbQb+Zgi6hv2mC3hvi6+iObCZJBdZJ9W5VCT5Q8XG8RKPNo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723565609; c=relaxed/simple;
-	bh=h2BeFQK3DLcs/Jg9Vk0JShwrd1NezEHeMiQ/ep02v2A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RCDhDKGrMUlMcBlRYhIMIMndvx5BKhQXuYDuHcdJQUk2tiEHE8lgOcxQMFoVJS22EfdXxNg+7xjFynLPz1luhneVUdXp1LVYsfvqQ21EBhkTaik9810lOrSY9y2AdAdqa4Xl1k/V2TRcFVcC7BRr45mAj44GzgCPkelB1+ttlag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BDv/+DQj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 337CAC4AF09;
-	Tue, 13 Aug 2024 16:13:26 +0000 (UTC)
+	s=arc-20240116; t=1723565803; c=relaxed/simple;
+	bh=daOJgWX3PT8vZBC5urR9rWuZVDqjHh5/saAshpAPoAA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FjsTN29nB4Q2byvz56oIi+vZBef6kICDdiagacdFjSciw6GpRi4VYfdobyGHmNKqI1AQZuI0K+MG6Pihx4d9V8fS12FUfqst/ZQkzk/sUW0CtmF0/TPzPEfUAAAbYPgySvYDuSKJj3LxHy6BohKG28XOg5QfwN6eYJnZSoUFi4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PsQ/kg4W; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35D46C4AF09;
+	Tue, 13 Aug 2024 16:16:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723565609;
-	bh=h2BeFQK3DLcs/Jg9Vk0JShwrd1NezEHeMiQ/ep02v2A=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BDv/+DQjCxjr2puq9Q7MwTV3rHZjhrL65scHfUeykCnHDoR1zos9MBfesWEW82yMF
-	 slqsHb56s4HWatg/OEJK62WR/NC/DZpAqO+MytVcTay0rbHyY++e6n/1LZWMjnEomy
-	 /c+D6xvBiWT3QJRakET4hzXMOGtxXUxJcqJwPev34fD3XJ0j8xNMmsiul2WHBqrUWe
-	 0Tki9Rv21jTW17JkZXC/ESqgqLlOrIPHPkmCt9elaC1W7yZMy6vPvr9JoMwNvJOkqn
-	 62viS4pBKu0GZgiqRu1shFB2ykNH+NGD2kB94gelVgcFJRkvVi+UTHgIxon6YaK8bx
-	 J/e4321XFIvcA==
-Message-ID: <0ef4d4ee-f8b7-4fca-b382-ebaa6b7ee050@kernel.org>
-Date: Tue, 13 Aug 2024 18:13:24 +0200
+	s=k20201202; t=1723565803;
+	bh=daOJgWX3PT8vZBC5urR9rWuZVDqjHh5/saAshpAPoAA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PsQ/kg4WI10Y5eUajCACFdN/J7ekx2sJbxryxg2p1zSg+yBoMXNC7Rw5mFteNUxwL
+	 Yg1QL4C/uFFS5m2JotwfWX4+Do9J1Er+MDWjI9ybMPiOxKNnmDeDtuuUn2fl/U0oBg
+	 Fy+7h31xwUBtcvxjZbE+6c9ZmnkQkdAMunjmuExlv0Jhlrl9VwcjaMpNdhRLcg2kt9
+	 kHN6gJ4023Xw1QsNVPysCq9wiwIzvMtd/DKGEPfMuWN6mglWhS6ZR7RX6PJlJeFPJK
+	 hiukZXWgS53IxyfJvg/pWGZrtQ/e08OxHgcE1uPzKZowpy4yAHcaVyeIQ1jmGIGUq2
+	 412R69seE3pAQ==
+Date: Tue, 13 Aug 2024 17:16:38 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Chanh Nguyen <chanh@os.amperecomputing.com>,
+	Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Justin Ledford <justinledford@google.com>,
+	devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+	Open Source Submission <patches@amperecomputing.com>,
+	Phong Vo <phong@os.amperecomputing.com>,
+	Thang Nguyen <thang@os.amperecomputing.com>,
+	Quan Nguyen <quan@os.amperecomputing.com>
+Subject: Re: [PATCH v3 1/1] dt-bindings: hwmon: Add maxim max31790
+Message-ID: <20240813-extruding-unfunded-0e14a5c161e1@spud>
+References: <20240813084152.25002-1-chanh@os.amperecomputing.com>
+ <20240813084152.25002-2-chanh@os.amperecomputing.com>
+ <20240813-sister-hamburger-586eff8b45fc@spud>
+ <10680d13-442d-4f12-a77c-2bd05f11dc10@roeck-us.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] ARM: dts: imx6qdl: Rename USB hub node name
-To: Alexander Stein <alexander.stein@ew.tq-group.com>,
- Markus Niebel <Markus.Niebel@ew.tq-group.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux@ew.tq-group.com
-References: <20240812143431.98323-1-Markus.Niebel@ew.tq-group.com>
- <1901821.CQOukoFCf9@steina-w>
- <82ee2be2-366e-40b2-ac95-e755443032be@kernel.org>
- <2621134.Lt9SDvczpP@steina-w>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <2621134.Lt9SDvczpP@steina-w>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="uC4C3RIk4uKBhTFS"
+Content-Disposition: inline
+In-Reply-To: <10680d13-442d-4f12-a77c-2bd05f11dc10@roeck-us.net>
 
-On 13/08/2024 13:02, Alexander Stein wrote:
-> Am Dienstag, 13. August 2024, 11:44:28 CEST schrieb Krzysztof Kozlowski:
->> On 13/08/2024 11:27, Alexander Stein wrote:
->>> Am Dienstag, 13. August 2024, 11:20:08 CEST schrieb Krzysztof Kozlowski:
->>>> On 12/08/2024 16:34, Markus Niebel wrote:
->>>>> From: Alexander Stein <alexander.stein@ew.tq-group.com>
->>>>>
->>>>> According to microchip,usb2514.yaml the node name shall be usb-hub.
->>>>
->>>> That's not true. The schema does not say anything like this. Old name is
->>>> correct. NAK.
->>>
->>> So, is the schema incorrect? There is the dtbs_check warning:
->>> arch/arm/boot/dts/nxp/imx/imx6q-mba6b.dtb: hub@1: $nodename:0: 'hub@1' does not match '^usb(@.*)?'
->>>         from schema $id: http://devicetree.org/schemas/usb/microchip,usb2514.yaml#
->>
->> If you have a warning, shorten it and paste it so this will be obvious.
->> If you look at several bindings, the hub is widely used name. I think
->> the schema is not correct here - I do not see any properties from
->> usb.yaml being used here (for usb2514). What's more, if you compare
->> usb2514 with any other on-board HUB representations (because that's the
->> only point why we have it in bindings, right?), none of them reference
->> usb(-hcd)?.yaml.
->>
->> These are not USB controllers, IMO.
-> 
-> I raised that concern in [1] already, but nobody commented.
 
-With 200 new emails in my inbox every day, I bet I miss many threads...
+--uC4C3RIk4uKBhTFS
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The nodes could be named usb-hub, makes sense, but:
-1. Several bindings examples have hub, so we would need to correct all
-of them for consistency?
+On Tue, Aug 13, 2024 at 08:52:22AM -0700, Guenter Roeck wrote:
+> On 8/13/24 08:33, Conor Dooley wrote:
+> > On Tue, Aug 13, 2024 at 08:41:52AM +0000, Chanh Nguyen wrote:
+> > > Add device tree bindings and an example for max31790 device.
+> > >=20
+> > > Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
+> > > ---
+> > > Changes in v2:
+> > >   - Update filename of the maxim,max31790.yaml                       =
+ [Krzysztof]
+> > >   - Add the common fan schema to $ref                                =
+ [Krzysztof]
+> > >   - Update the node name to "fan-controller" in maxim,max31790.yaml  =
+ [Krzysztof]
+> > >   - Drop "driver" in commit title                                    =
+ [Krzysztof]
+> > > Changes in v3:
+> > >   - Drop redundant "bindings" in commit title                        =
+ [Krzysztof]
+> > >   - Add the clocks and resets property in example                    =
+ [Krzysztof]
+> > >   - Add child node refer to fan-common.yaml                          =
+ [Krzysztof, Conor]
+> > > ---
+> > >   .../bindings/hwmon/maxim,max31790.yaml        | 81 ++++++++++++++++=
++++
+> > >   1 file changed, 81 insertions(+)
+> > >   create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,ma=
+x31790.yaml
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max31790.y=
+aml b/Documentation/devicetree/bindings/hwmon/maxim,max31790.yaml
+> > > new file mode 100644
+> > > index 000000000000..d28a6373edd3
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/hwmon/maxim,max31790.yaml
+> > > @@ -0,0 +1,81 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: The Maxim MAX31790 Fan Controller
+> > > +
+> > > +maintainers:
+> > > +  - Guenter Roeck <linux@roeck-us.net>
+> >=20
+> > Why Guenter and not you?
+> >=20
+>=20
+> Fine with me, actually. We don't expect individual driver maintainers
+> in the hardware monitoring subsystem, and this chip doesn't have an
+> explicit maintainer. Forcing people to act as maintainer for .yaml
+> files they submit can only result in fewer submissions. I prefer to be
+> listed as maintainer over having no devicetree bindings.
 
-2. For me hub is generic and obvious enough. Just like "phy", even
-though DT spec has "usb-phy".
+Sure, if you're happy with it. Having someone that knows about how the
+particular model works is usually preferred however!
 
-3. Renaming nodes to fix issues is very good. Renaming just to make
-things more readable is also good or because coding style asks for it.
-Renaming just because one person likes hub, other likes usb-hub, so just
-personal preference, is for me churn. Considering it sometimes breaks
-some users (it is not ABI... till it is), personal preference is poor
-reason.
+>=20
+> > > +
+> > > +description: >
+> > > +  The MAX31790 controls the speeds of up to six fans using six
+> > > +  independent PWM outputs. The desired fan speeds (or PWM duty cycle=
+s)
+> > > +  are written through the I2C interface.
+> > > +
+> > > +  Datasheets:
+> > > +    https://datasheets.maximintegrated.com/en/ds/MAX31790.pdf
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: maxim,max31790
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    maxItems: 1
+> > > +
+> > > +  resets:
+> > > +    maxItems: 1
+> > > +
+> > > +  "#pwm-cells":
+> > > +    const: 1
+> > > +
+> > > +patternProperties:
+> > > +  "^fan-[0-9]+$":
+> > > +    $ref: fan-common.yaml#
+> > > +    unevaluatedProperties: false
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    i2c {
+> > > +      #address-cells =3D <1>;
+> > > +      #size-cells =3D <0>;
+> > > +
+> > > +      fan-controller@21 {
+> > > +        compatible =3D "maxim,max31790";
+> > > +        reg =3D <0x21>;
+> > > +        clocks =3D <&sys_clk>;
+> > > +        resets =3D <&reset 0>;
+> > > +      };
+> > > +    };
+> >=20
+> > What does this example demonstrate? The one below seems useful, this one
+> > I don't quite understand - what's the point of a fan controller with no
+> > fans connected to it? What am I missing?
+> >=20
+>=20
+> Just guessing, but maybe this is supposed to reflect a system which only =
+monitors fan
+> speeds but does not implement fan control.
 
-I think the schema should be fixed, because this is not an USB
-controller, in terms how we call things which are "USB controllers". On
-the bus it is USB device and USB hub. For USB device we have schema. For
-USB hub we don't, so it does not matter.
+Even without any control, I would expect to see fan-# child nodes, just
+no pwms property in them. Without the child nodes, how does software
+determine which fan is being monitored by which channel?
 
-Best regards,
-Krzysztof
+Cheers,
+Conor.
 
+> > > +  - |
+> > > +    i2c {
+> > > +      #address-cells =3D <1>;
+> > > +      #size-cells =3D <0>;
+> > > +
+> > > +      pwm_provider: fan-controller@20 {
+> > > +        compatible =3D "maxim,max31790";
+> > > +        reg =3D <0x20>;
+> > > +        clocks =3D <&sys_clk>;
+> > > +        resets =3D <&reset 0>;
+> > > +        #pwm-cells =3D <1>;
+> > > +
+> > > +        fan-0 {
+> > > +          pwms =3D <&pwm_provider 1>;
+> > > +        };
+> > > +
+> > > +        fan-1 {
+> > > +          pwms =3D <&pwm_provider 2>;
+> > > +        };
+> > > +      };
+> > > +    };
+> > > +
+> > > --=20
+> > > 2.43.0
+> > >=20
+>=20
+
+--uC4C3RIk4uKBhTFS
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZruG5gAKCRB4tDGHoIJi
+0pOFAP4/0+bg9cjKQnVF88AcHV6oKCmzIrA1RT6z0WKz2YQaTwEA7WffCz0ElzBM
+nzSxulI2PfdAHoWuUAIlqFZj6fNb+Qo=
+=iRVr
+-----END PGP SIGNATURE-----
+
+--uC4C3RIk4uKBhTFS--
 
