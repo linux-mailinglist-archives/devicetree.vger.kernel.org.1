@@ -1,160 +1,170 @@
-Return-Path: <devicetree+bounces-93134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 759B694FCFB
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 07:00:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B15E94FD30
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 07:26:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0378B1F231E4
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 05:00:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17DFF1F22F56
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 05:26:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6EC71C286;
-	Tue, 13 Aug 2024 05:00:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="ER9ycBce"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 371292233A;
+	Tue, 13 Aug 2024 05:26:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from SEVP216CU002.outbound.protection.outlook.com (mail-koreacentralazon11022115.outbound.protection.outlook.com [40.107.43.115])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 594E02261D
-	for <devicetree@vger.kernel.org>; Tue, 13 Aug 2024 05:00:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723525240; cv=none; b=cX+vePJceCKUE1YOqecaGwTjzcqH167vMciXwJD5DegREbULzpUpjc1nT9YEI1uCGQiqr77ybF1Rwz0qNu4KqJ4zo2aZqqyLFu1liQNPQ3uYvpo0LLH0SB/OdzRppvhTnj+QJdWvNKxBQtee6DK7TKVhYxp9OAfxSJxQGFkF4E4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723525240; c=relaxed/simple;
-	bh=yiYbIaIB3lRIh11Y4heg2twoT9Od+PRXyjsBP87NqWM=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=gJwwWyV8+kjovc3X2uZD4A+QBf1w0fH/rGB5pqk3mfhvykWI0XUG38NCcGRkQwymz1VWCzFQ985R7mwQc2UDkQz6blGH2NQLZAsLLL9pMRr3eJbwWsF2dRYN1arGGxBE2R4BPtN8KELLILIKA6vnj7n0W0TnXD/BLh77E5+9dV4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=ER9ycBce; arc=none smtp.client-ip=209.85.216.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-2cb52e2cb33so3286479a91.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Aug 2024 22:00:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1723525239; x=1724130039; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=RhqrlQzuYBLcUmZ958prMchEDTE/clI7Rwj35VRtOrU=;
-        b=ER9ycBceTtDmEGUNyLb3jdz+f41u2CNysVCBE7oH7Nmwab1XDhnvDA7g+gjfKseIv1
-         lCGUJYtogf9KO2QNWnyehdxUSkAgOwVTKxBBi7Wgr4mo0gCQsvZZGr4xAhQp9FEx169D
-         tJOjJI8d5yntywKYc+yka7tM3zRkjE1VGiC5U=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723525239; x=1724130039;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RhqrlQzuYBLcUmZ958prMchEDTE/clI7Rwj35VRtOrU=;
-        b=bpt1QMvYaJdgd2M/SJWW59gLNMroLWXLopB82Gvyj9WnQN4gIu0GlTFwHqPrzfnvf1
-         MyHnVCo2QWsL7ox3+EgXiwar5JZbjfuIdLw7TnrO24IjafVviy0TwP0t7F04ov9sModB
-         e4C67dp4UUjdZszP2fTW8rvbeLcZC/H4cgZ5+bSxIMzZckyPh9OcEk/HA67Vxhy5FBIq
-         ck7FLO2Xw/epDfH14Urh2NXyIdoU1WVRkMGbkkU0Yu03dKePMBsAy/XBmnQgrKUot0bf
-         Xj6TASZbjSPXT7Vu0BqlDQAaxdOFx/2ensCOH5d/JirzVT4DMMOMEfiWmXrkNpKyy8PJ
-         TJlQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXowxZtjIszFjY6b6jikM9jrRPR4i7vUBchUw+zVqRXg4tPR9a4R/rdIH/QzB/0YzKmxcX4xGzhltMFi2G3+T6WLLnx4Rf4/908gw==
-X-Gm-Message-State: AOJu0YwNfbFddCw60vcMSli11gKx1nbXLdaaBxeweduEQtafPDGTegAy
-	h99/wxPPUcpjMEf2SGYpW+AzHnS1mfUe5B4yyd7ziF/g+Bv6JynOMQwyoH4H5Q==
-X-Google-Smtp-Source: AGHT+IEOqSVhEavENGDGII0Je9hl0TxgLwVS41Duz8KARwPtXR/yAM4SbOVyp9hPr5LwCrFj8OiGAg==
-X-Received: by 2002:a17:90b:4acc:b0:2c9:6f53:1f44 with SMTP id 98e67ed59e1d1-2d3924dce99mr2695550a91.3.1723525237077;
-        Mon, 12 Aug 2024 22:00:37 -0700 (PDT)
-Received: from [192.168.1.3] (ip68-4-215-93.oc.oc.cox.net. [68.4.215.93])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2d1fcf275aesm6099523a91.32.2024.08.12.22.00.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Aug 2024 22:00:36 -0700 (PDT)
-Message-ID: <70ce6ecd-a5a0-42a7-9063-2982f18078cc@broadcom.com>
-Date: Mon, 12 Aug 2024 22:00:35 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E395339AC;
+	Tue, 13 Aug 2024 05:26:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.43.115
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723526783; cv=fail; b=ElL2I40MBEGg/9XopB7AcQZvUJIdd9aAuLwkUUPgd7/DvCGupEyiQCw0RJxEpQ6HvCGe2mc077NNR8xiIK9ueDG/mw/JJWTn9cLLbZWafB0xYB46hKH1F904+ld8J5HXY1rO48sszs/ETa6QksGY8Qij8s5tXLZoi0HP3VevNkg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723526783; c=relaxed/simple;
+	bh=B3mG+kfjakc5UBBFZFl28yCRzGqVGuXiJuw460PvYAA=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=JODYlD+RPmjjM1NYc4XMxnvfdrb3CR1ew7e/NQO2Rad1CdDXDyAwuSGi1llcvRHDlbzbk7WNfD3GpgbPVGmQuTP8ziKiiBFJyP6mqc22wqmEPUnIdBV52TtnV49FZLu18CM9Efj5wVhjk3yI8kaCEkK0V7DD1mt3QYxpoF1ZTtk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=irondevice.com; spf=pass smtp.mailfrom=irondevice.com; arc=fail smtp.client-ip=40.107.43.115
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=irondevice.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=irondevice.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=vyrXvb2l+E+ZhMs5mokN3wiJe05PSYZqKZg8xRGFQlX4tyH+fxLHefxfm8ZWkSGTgIItZjMNJq+nrgKtsMYmjdMzAKVnIw7bvV5E9hoM+w2sABr0Rq6lIeEwIw9gpVzhVJfNSjTJek9xh+7FeZECo5Iuez3drm1LHTjDk/lZreBDOsPNY2IY498Cnf0DYK8gXLXXOJzALmnMfjVr8Z4twsq1J7q8344F7Kfqi2Vg4uMWHHM7jvNiOGDSRp4jsaiQkaRKRe5Tf/ASqlV4PtqTtHCJP5O8cuRJnWuYIXaTJGdAEqA+BUupWNOaGnho1VPmn/rhVckfAZboI3ofs8EU5A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hniFXpeXFM8f/yDu2tCjvFtUja1kcLrRI9rmqjXpJTk=;
+ b=jjD2i3urNPTDPRrH96UUuMLU4zrR/68eDCWy18bxWHp1EZuXpVIKfm2eINYnbmiUsJ62pzLZ2xzIFJdcA35hoBKa+uObO/huqgfnuXKRLV6CG/m1D7HolSrdf+I+T7TimPZCGfalLd7jr88LNQ8aRSHf0Xe0EFd/jZZ7Lbwwzn7ExC+Xdt7RE6ye/NwFZwf18drLl2EYHfod3YNY6e2kRsrwjLJ43eCSShWilCOylcipl2TGEJqUTfeEk+2Nw08uOGsqO/uk0BExle9SlgYUQhenXAsVektluEEXXfSflNrlx6PYCo7ZEWjX7C2+I0T3XOVTXjjTptyMhj0S7Li3wA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=irondevice.com; dmarc=pass action=none
+ header.from=irondevice.com; dkim=pass header.d=irondevice.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=irondevice.com;
+Received: from SL2P216MB2337.KORP216.PROD.OUTLOOK.COM (2603:1096:101:14c::11)
+ by PU4P216MB2027.KORP216.PROD.OUTLOOK.COM (2603:1096:301:130::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.22; Tue, 13 Aug
+ 2024 05:26:17 +0000
+Received: from SL2P216MB2337.KORP216.PROD.OUTLOOK.COM
+ ([fe80::7e8d:9550:c46b:2756]) by SL2P216MB2337.KORP216.PROD.OUTLOOK.COM
+ ([fe80::7e8d:9550:c46b:2756%3]) with mapi id 15.20.7849.021; Tue, 13 Aug 2024
+ 05:26:17 +0000
+From: Kiseok Jo <kiseok.jo@irondevice.com>
+To: Kiseok Jo <kiseok.jo@irondevice.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>
+Cc: alsa-devel@alsa-project.org,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH 0/2] Add a driver for the Iron Device SMA1307 Amp
+Date: Tue, 13 Aug 2024 14:26:07 +0900
+Message-Id: <20240813052609.56527-1-kiseok.jo@irondevice.com>
+X-Mailer: git-send-email 2.39.2
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SL2P216CA0078.KORP216.PROD.OUTLOOK.COM
+ (2603:1096:101:2::11) To SL2P216MB2337.KORP216.PROD.OUTLOOK.COM
+ (2603:1096:101:14c::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] firmware: arm_scmi: Support 'reg-io-width' property
- for shared memory
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-To: Cristian Marussi <cristian.marussi@arm.com>
-Cc: linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
- arm-scmi@vger.kernel.org, james.quinlan@broadcom.com,
- justin.chen@broadcom.com, kapil.hali@broadcom.com,
- bcm-kernel-feedback-list@broadcom.com
-References: <20240810214621.14417-1-florian.fainelli@broadcom.com>
- <20240810214621.14417-3-florian.fainelli@broadcom.com>
- <ZrpD9rEyw37DV1J1@pluto> <40cd771e-5dab-498b-b77d-e0de4281fce9@broadcom.com>
-Content-Language: en-US
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <40cd771e-5dab-498b-b77d-e0de4281fce9@broadcom.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SL2P216MB2337:EE_|PU4P216MB2027:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9d4b6ad6-083c-4b59-e20a-08dcbb5874da
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|376014|1800799024|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?+vxA+zBrSoguUKXvd8dhu8tTQ+Ug0yKb+tYNVVtmp3+RJ+yXccIRvIE1xjeB?=
+ =?us-ascii?Q?e6RpHzumFitMONkuv9pEh5On9JcQpHkz0V+oG6M8wZGid17EMTHW2NqbrJXW?=
+ =?us-ascii?Q?qR9zmlWFb72+25xHTheiyo3C+O13QdBa5M/1cZ3QXP3Ey//87zGCke57/ZYu?=
+ =?us-ascii?Q?HtDQSfcKFbTvXAEBs5BNFutMkfDVEfBAGqVagKfbOgOEZhzccIH+OYoEj0dV?=
+ =?us-ascii?Q?NcgTpimP/jPiwfT911LSu2R7mXtB1E9hpkfPR2nUVVufKelnyKOKrawCytTv?=
+ =?us-ascii?Q?3dkzmZVA1cdlPLN9Kf4d0M+5FNV8tZxmdCho2uMTQAi38zayuMkErgdDSvfO?=
+ =?us-ascii?Q?O4whGnUs9DirgAAasYkRp4Of0H/ceYdr6q9QR94DX6HyhMoqfcC/mE06vfzZ?=
+ =?us-ascii?Q?E7t9GUgjRO32xrWzitxTA5SQtlhn23o6HMLwupFoaTcNQoKyV0AVMpc/vQRN?=
+ =?us-ascii?Q?JaMVO6OjXzZS7YlshUttoZfjztLMk0UoZ/HruFTeZHuJXqOBM8SMafN3K54c?=
+ =?us-ascii?Q?0ITPpupJiQdJ3TkDboQvEDNbtvHWGKJdnP/UUFHwGG3W1JQtmkXzdl4ARRKN?=
+ =?us-ascii?Q?lX9W/doA4trslyblyGtVKM3FHveMpeBlDgMgpn0TzuwvwDvRjaX7MdzInFIx?=
+ =?us-ascii?Q?eWwlQ3nWAcIFGxFdodJClTQvREUBXEPEaj7UoXaP0bfIwAFLhDqhaymopRgC?=
+ =?us-ascii?Q?DfZ6nTF758FKyJLAY2tgLoZXKJFxBTJ2Ef5F/xb1UDMGQKkQaXu7X7ox6/5/?=
+ =?us-ascii?Q?oFEux+3pq1CmO2bvQjdEjbrQ46DXYM8gkbHHas5CW7GjEjif5ZlZL4qD0kRu?=
+ =?us-ascii?Q?XZCaNKvw5UxHsOAVQ+Kr67q6nf/V3cIgThQM9FB4SYx3JiD1fnRr3JzZ1ssC?=
+ =?us-ascii?Q?kK9KLQvErNxqcFaWD+K8ZBqEj6gYAcuELb5p/nPTsB0jijkJVDA207Qs6I4i?=
+ =?us-ascii?Q?nkrj0iIqhe5fVN8d0YTIdKLXKN/wanvreAW0AEQ6u7AxHVCgmiqq2eBV/jVb?=
+ =?us-ascii?Q?WrtkGr6rYJjwWblDoIS9ZQVXB85wTuZwjYAlDzeFqj9ltxpedJy2VtleyIl4?=
+ =?us-ascii?Q?58VV3Hnpy1u+YBh0IBcjoxnIH10rxMfkoZN3Eu9swOaUGeRoYVFzEiqP0/PV?=
+ =?us-ascii?Q?dBoGcnZ5z3tmXO8iTlYJ3Ond9GEnlD/SK4V9QbnWPSg/k/pzqqTnsq2Ya0y4?=
+ =?us-ascii?Q?RODX+7KGv5FEGPT35fMg8RsHSF2FfH6+CdjDxBs+T7U6rRBAYQD7j9E40+OW?=
+ =?us-ascii?Q?wnrTSQnzT/5VxcLpDKG0knpjqvOCT/NMQrrTh6uKbHXXIKnyg6l/vuAcRE32?=
+ =?us-ascii?Q?HhJgy/HvTR0fpFIPgkcrSaM1dS2VWmgv/3meNbMtxNlBgUtFubRe84KmRJto?=
+ =?us-ascii?Q?ZaNFrig+LNy8KxLFK7U8X+ktTe+1W29M6c5ey0qjVPI/keenSg=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SL2P216MB2337.KORP216.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?yBjGNjXW0Jg7829FxbQtOR+NogfIQMGS5HZU+jBapYSD92sxD3+e46WIv5kg?=
+ =?us-ascii?Q?lyTF0YNEcSGIRa0QVaU484P7MVVUSr3OaFw5vRHIqXc6FzG6H4sA5wqVs87b?=
+ =?us-ascii?Q?KC0xJ2urP1lW8DFYcaTqqT5FjPbmA17n0Ok6hlYNTCKn4aZFh962lpzHHDdF?=
+ =?us-ascii?Q?btARuMuooIw1ZzBmzODdlLH+PfJfWVRW1UYnrKyNJa2ikixHISt9USHA4v61?=
+ =?us-ascii?Q?vMU/JYYB3OMv8YcW8i+UrbIsDXmxTQSqv68eqwKOtaZBRVJDyBzvlmXO1V2W?=
+ =?us-ascii?Q?63vBpSE5cTzeYv71GfOgOTgkm6+JPLPnTqLU63QmgOlU1jJp1XfT/VBJTX0Z?=
+ =?us-ascii?Q?EJZL/GMJNr4f/1kF8RSY4WNZz5ZSjpu++3qlTYQEC6YoHI23eNR8e46SGLQ2?=
+ =?us-ascii?Q?kndpdYvxTPx1dT4DAofj0DMHb74rurXmTt3v2lYF4/lnOGQKk6Ky2x0kk7rT?=
+ =?us-ascii?Q?Vp4bKsZLFzf9lVLUTTl6JX2mXeltSObesoKYOOzokp20IkRS9yKo8FiX78M4?=
+ =?us-ascii?Q?1HpfF/f4FuM2j5jTIH/LZEHpYYvowJKiyF9Lkdapejx8pTMwudvfWiJ5C0Mk?=
+ =?us-ascii?Q?6T0pAV3qgrMyoajS3jDsmjtMoRhqsKZRY1OBsOILPW00zl7Lw38h2xLyU4Fy?=
+ =?us-ascii?Q?tDga2bNFHDRHJPLQcdaWWxS5mcV6gU1OBVIuz1t6ZTp+RP4iFQ7jxKo1AEPK?=
+ =?us-ascii?Q?WGR50Ii21HONEfFzCaVlknMs/1Iw4AhzHp1/MBJBk0ZjAgw5Ce35+dW55/Lu?=
+ =?us-ascii?Q?4zEYajK1fpZqEuaXHkWu5gs1gDjSmVDIVYfBS+EDOAeSExdK2L6j1nO3rax4?=
+ =?us-ascii?Q?z1zkGiL5i6Vx3kGnoWkqNtFkqJDCF+CBvBmOI8ZAkNNaQiEQgSnv8wFn/M1S?=
+ =?us-ascii?Q?SODhvRDsyPCYjVHiAe+utNQ4PD8kumAULVR4LB99rZV+dZjUu6PhtmJi0TZ+?=
+ =?us-ascii?Q?x+6/cSQh94h+g2vodzggoehvakdpKlk8Lg1mQGUhDGjPcmjGvrW15zzCJl7O?=
+ =?us-ascii?Q?YXP/1mqf8N6mEAwlMU9nCVhpKVta3LD+qbl+ro2M5Vffoit0A/i48+NfROip?=
+ =?us-ascii?Q?rmzlafD4wKgxpB/7vPaCdkllhmQpZmsqKC4qPBiKkGhoJ6X/Alta4UMTQp7m?=
+ =?us-ascii?Q?ij7K1bRpjvD5zWJubsAclayJytyk2G/0W5BoeDJOTd7CTB0W+WKJgHsEmHMs?=
+ =?us-ascii?Q?iPxcqZrNILXrFYk5TV8SHFYiQ5rwObw0A1yFx0NaBfZeUXD4Ved9vdIahPOu?=
+ =?us-ascii?Q?UL3B/P7Y7BNGI0qcKdAzVx/m7zukonLiEyTqd7CZVM4u1exAxXQ5fq9uyK3w?=
+ =?us-ascii?Q?R0FOH/iENXN59JJhOSvyLqaCls+5A6sjHRE3ywXYYdu0mU1qOZmM7nk+BGUW?=
+ =?us-ascii?Q?YaZKnErEPCEqpZ8U6mTTkpFD4mTExfuorUf6YGmiR6NPFH63POLvVbcNYF+X?=
+ =?us-ascii?Q?QkUIhdOkUw/VhEYUoDcMGxKMow1W2A1bKzLXeXNfeh+3fgYzp7ST58uuAdVw?=
+ =?us-ascii?Q?KEcMAmZmnZN2E3dgxokM1QpWs1KYKTd71xnG8Fm8w7tuasd5YFrRZQM3vvNt?=
+ =?us-ascii?Q?UYcwGZG1w3Zr2P9lE4XwugZxTaO+IQUW4NLYl7ZW?=
+X-OriginatorOrg: irondevice.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9d4b6ad6-083c-4b59-e20a-08dcbb5874da
+X-MS-Exchange-CrossTenant-AuthSource: SL2P216MB2337.KORP216.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Aug 2024 05:26:17.3036
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: b4849faa-3337-494e-a76a-cb25a3b3d7d1
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: EJm08jXzZF6ZVfx3pktOyMk3hzk0q+Gh7zsl8+YzZBy/pYcArWSvTbtETTJn8KRMNN23HCluxeRfCrf/8X1oMNtvCNhNs6V65uXQIRRnnjs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PU4P216MB2027
 
+This adds basic audio support for the Iron Device SMA1307 amplifier
 
+Kiseok Jo (2):
+  ASoC: sma1307: Add driver for Iron Device SMA1307
+  ASoC: sma1307: Add bindings for Iron Device SMA1307 amplifier
 
-On 8/12/2024 10:46 AM, Florian Fainelli wrote:
-[snip]
->> what about these (and other) header reads if reg-io-width is defined 
->> as < 32 ?
->> Should not these accesses be size-wise too ? or I am missing smth ...
-> 
-> Good question, I suppose it depends whether 'reg-io-width' means that 
-> this must be the strict access width we use, or if this is the minimum 
-> access width supported. If the former, then yes, we do have to make a 
-> whole lot of changes to support the only access width being supported, 
-> if the latter, then we ought to be OK, because doing a 32-bit access 
-> should drive more byte enables at the bus level, yet still return the 
-> expected data.
-> 
-> A minimum or only supported access width of 64-bit would be quite 
-> interesting, and not somewhat compatible with how SCMI is defined, so 
-> maybe that one should not be supported at all, even if this is how 
-> memcpy_{to,from}_io() decides to operate on parts of the memory that are 
-> 8bytes aligned.
+ .../bindings/sound/irondevice,sma1307.yaml    |   67 +
+ sound/soc/codecs/Kconfig                      |    8 +
+ sound/soc/codecs/Makefile                     |    2 +
+ sound/soc/codecs/sma1307.c                    | 2630 +++++++++++++++++
+ sound/soc/codecs/sma1307.h                    |  456 +++
+ 5 files changed, 3163 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/irondevice,sma1307.yaml
+ create mode 100644 sound/soc/codecs/sma1307.c
+ create mode 100644 sound/soc/codecs/sma1307.h
 
-I am inclined to dropping support for doing 1 and 2 byte accesses, and 
-support only 4-byte accesses, since the existing SCMI code makes use of 
-io{read,write}32 in many places, unless you feel strongly about it.
-
-1 and 2 byte accesses only do not quite make sense for a SRAM IMHO, that 
-is, if you can support 1 byte, then you must support 4 byte, too.
 -- 
-Florian
+2.39.2
 
 
