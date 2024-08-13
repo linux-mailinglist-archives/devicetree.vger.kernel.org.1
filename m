@@ -1,177 +1,142 @@
-Return-Path: <devicetree+bounces-93212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E28094FFF0
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 10:35:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AEDE94FFF7
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 10:37:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 32EA51C20F89
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 08:35:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A8C50B22508
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 08:37:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3F6C139CF6;
-	Tue, 13 Aug 2024 08:35:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2216913AD3D;
+	Tue, 13 Aug 2024 08:37:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FahVQ5sH"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="HfSlxtpT";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="B+GEqrAI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 736504D8DA;
-	Tue, 13 Aug 2024 08:35:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 075A213A244;
+	Tue, 13 Aug 2024 08:37:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723538100; cv=none; b=ubUnPhftZARjSiKbUmN5W8cLJXJuASKf55zpFmmr66sNCuY7fv7J2Zqace3/olw1OVHRrglOEx8xCv4vV2ZY3YKLEkhNNHEHVBh8luSU0/XHW/2qJnaDqIi5y2FMTJjQkFZGua4wVLeYGf1ddtCrrI61RHx4Un88k4zRd2M7wyM=
+	t=1723538270; cv=none; b=VAVKrVe7MXUnsNVX6XCsyr8VAEpWCvx3uTVstg30ZggC1GOqK8moFiw6yfr13kaC6ACfTtMUfoOs0n5gCTKB9l3mlmgwoWg38zDCnD3Lqvf1t1y5yc8gpBHwNvwQ0ao9xUys68rTNq4u18JZr/uXM6QKZdesy4KmCbJvZVq1FO8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723538100; c=relaxed/simple;
-	bh=AFskdL3uVLYDRKCA4/Foms4uqtBOZBMltps5iV9rnUM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K6iumRnkVOZJOm9g67CE3CZP/pCuSidseoqchNs8SJGSFIyZvwULpdd5RW3bDprb+2b3ORGsEGim+rJoTpAGBr/z9yStmDBvXj46QSoaVjyFVERBNErvDZWYlfk2qpk2qmRQH10shOEk2hbLytRw7V0P1Nk+OXs6Ab+1FJNO0O4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FahVQ5sH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99561C4AF10;
-	Tue, 13 Aug 2024 08:34:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723538100;
-	bh=AFskdL3uVLYDRKCA4/Foms4uqtBOZBMltps5iV9rnUM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FahVQ5sHSjoHyZx8l8c8k7h9Stk6RrOmiuB9bjlXsWntFmD4PZGL4Nn6pBf2jJbUN
-	 KyVnBBJaZtIOJrix5aMtI8RY3qkEIZ16gBvxlnZGd1HkwjM9BYfuggzhQIxbx00xjZ
-	 Z0lVYpLjNqjOB8iVkRBPonCLLM4HeecwYFOWY40xrTR6+vZ5ShI56dXNhiaYVZbA/t
-	 4hFp75CoIaLGv0CgTjdcIQqcy8mT+XVJ4WxV/X8N5k0m3mXRLP+xuQju9UKtX78bgE
-	 UUkcSlX+vQjyrBxBkeT5g/Pq8pggEfdJZanR5pg38/Dsp5tDHHz/8JbObH3nkmxftt
-	 AwMDnmaPXHbsw==
-Message-ID: <d9060b49-66fe-4001-86cd-dda5e213e454@kernel.org>
-Date: Tue, 13 Aug 2024 10:34:53 +0200
+	s=arc-20240116; t=1723538270; c=relaxed/simple;
+	bh=W/A37q5YlXfYFBNJvZTzCfRB7wos3cw8EoGDt04L16A=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=W40C1ycjgGwWW9qtwNpxQXHtfVBjgF+w8FaUHf2Ax4Xq8VywNG/l7EAuM0tV0/MiHCn5S9GoGUhQaLHEW6TiWbb2aSpcbErKK/1IJY17j4obb+50VWy461g5VqHcQDSdY/CLmX8D1VGzbcJN0VB4WkE4mIE4CwyS23GfV8Jz+6s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=HfSlxtpT; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=B+GEqrAI reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1723538267; x=1755074267;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=BDO3WMpA+BbHO480iIBT9Pnt4TB/RAexMksIrBx+Is0=;
+  b=HfSlxtpTmL4URHhwbcNJcevqShCOi2dhgLaUu75eLcVaDxurzBu8rQrh
+   WjeEqobJeUAqaJRPKi3XDbno6SEUDhEhJ8Lvp+qQooVNteLBsQ1+5dN1y
+   VKyHmmOCR0/MjJS2oUUh8eBfJvrOMmr4+Cnuop14g/E2H+N4GBAkFf1se
+   Rv3d3J6hGxScVFBl45lxYC4J1z8fR84ViXu7YcX0f8kIs+bDgdhIiqhb4
+   F4GBxayrVwDp11SWPJfmVAVtb6k33JszRMyKO2IzvVTfj++ZpbHi88e7Z
+   0/YqmW9eLCBrUSgmoBvisSJZ1KF15wbGLasvrk/jYIIi3zV1H6hLo76Ge
+   Q==;
+X-CSE-ConnectionGUID: zDpcmv8RTGSogfSruOtbfg==
+X-CSE-MsgGUID: wgeCdL5VSpeuupeof4bClA==
+X-IronPort-AV: E=Sophos;i="6.09,285,1716242400"; 
+   d="scan'208";a="38379159"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 13 Aug 2024 10:37:45 +0200
+X-CheckPoint: {66BB1B58-47-FF00FE11-F2A862FD}
+X-MAIL-CPID: 85157A4D550D10FF1836E2700FFE7FC3_5
+X-Control-Analysis: str=0001.0A782F28.66BB1B59.003D,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0907516A3A8;
+	Tue, 13 Aug 2024 10:37:39 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1723538260;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=BDO3WMpA+BbHO480iIBT9Pnt4TB/RAexMksIrBx+Is0=;
+	b=B+GEqrAIIjuoftDnaHMv5LdED18moPVe2aRX2S+BvNkSUsjbbPLjRV0/KtiA7wvmZ2mGHM
+	bEzUvWK/+Ki5OsRXIvHj5EIEubczs3QM6Hv6RrvtXtYwpVDdMWgS74Fuvk/rIN0InGlOl2
+	Us6s5w4se9coOqXclWkQQSH3VokG9iAGXtMYQRLxRFWjq3yp7JKv2y/ATgpp+tUYgkpd4W
+	uzZCIPOWLN6dFD5Ig6wbtg68xqwWHvocI/3Gm/eT1yXXARP+DXuxUxULVlbh8gJT8cQe+W
+	AAtzMfKMcmmcEgQqTpIY7qqlgg7rn1HO9YCglsiDk9EQLMdJhE6G5P2Gf0SASA==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Gregor Herburger <gregor.herburger@ew.tq-group.com>, Frank Li <Frank.Li@nxp.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux@ew.tq-group.com, Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH 11/17] arm64: dts: fsl-lx2160a-tqmlx2160a: change "vcc" to "vdd" for hub*
+Date: Tue, 13 Aug 2024 10:37:42 +0200
+Message-ID: <3239392.5fSG56mABF@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20240813-imx_warning-v1-11-3494426aea09@nxp.com>
+References: <20240813-imx_warning-v1-0-3494426aea09@nxp.com> <20240813-imx_warning-v1-11-3494426aea09@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: sa8775p-ride: Add QCS9100
- compatible
-To: Tingwei Zhang <quic_tingweiz@quicinc.com>,
- Tengfei Fan <quic_tengfan@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240806-add_qcs9100_soc_id-v1-0-04d14081f304@quicinc.com>
- <20240806-add_qcs9100_soc_id-v1-4-04d14081f304@quicinc.com>
- <90eae361-7d5d-440f-a85d-dfd81b384fe7@kernel.org>
- <4a350e94-3c95-48e1-9ea8-ced483c1aa45@quicinc.com>
- <14ec06bd-0c27-4930-8bce-d3f5b68067ed@kernel.org>
- <ace5b3e1-f4a2-4c04-821a-e797d0f55cae@quicinc.com>
- <9323127a-e6b5-4835-afa0-4ce0086fd9d1@kernel.org>
- <0d1c44b9-3d5f-4d93-af64-1756e52f4fe3@quicinc.com>
- <47c966c7-8736-44a2-8ec7-4d7989efa9cd@kernel.org>
- <72b2d710-a7cb-45cf-9dad-e9fbd876697b@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <72b2d710-a7cb-45cf-9dad-e9fbd876697b@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 12/08/2024 09:07, Tingwei Zhang wrote:
-> 在 8/12/2024 2:15 PM, Krzysztof Kozlowski 写道:
->> On 12/08/2024 04:16, Tingwei Zhang wrote:
->>> On 8/8/2024 7:05 PM, Krzysztof Kozlowski wrote:
->>>> On 07/08/2024 13:04, Tingwei Zhang wrote:
->>>>> On 8/7/2024 5:35 PM, Krzysztof Kozlowski wrote:
->>>>>> On 07/08/2024 11:17, Tengfei Fan wrote:
->>>>>>>
->>>>>>>
->>>>>>> On 8/7/2024 3:28 PM, Krzysztof Kozlowski wrote:
->>>>>>>> On 06/08/2024 06:19, Tengfei Fan wrote:
->>>>>>>>> Add QCS9100 compatible in sa8775p ride and sa8775p ride r3 board DTS.
->>>>>>>>> QCS9100 references SA8775p, they share the same SoC DTSI and board DTS.
->>>>>>>>>
->>>>>>>>
->>>>>>>> I don't understand this. You claim here that QCS9100 references SA8775p
->>>>>>>> but your diff says other way: SA8775p references QCS9100.
->>>>>>>>
->>>>>>>> Sorry, that's confusing.
->>>>>>>>
->>>>>>>> Best regards,
->>>>>>>> Krzysztof
->>>>>>>>
->>>>>>>
->>>>>>> I will update the compatible as follows to indicate that QCS9100
->>>>>>> references SA8775p.
->>>>>>>
->>>>>>> compatible = "qcom,sa8775p-ride", "qcom,qcs9100", "qcom,sa8775p";
->>>>>>
->>>>>> Is this still correct, though? sa8775p won't come with qcs9100 SoC.
->>>>> We have a new board. Hardware is same as sa877p-ride except sa8775p is
->>>>> replaced with qcs9100. We add qcs9100 SoC compatible to sa8775p-ride
->>>>
->>>> Does "new board" mean that "old board" disappears? No users to care
->>>> about it? Or just the existing board is being changed (like new revision)?
->>>
->>> We will support both boards. Sa8775p-ride board with sa8775p chipset and
->>> sa8775p-ride board with qcs9100 chipset. Both of them can be used for
->>> development.
->>
->> Patch does something else then - changes compatibles for the existing
->> (old) board.
-> 
-> Can you educate us the right way to add the qcs9100 SoC support in 
-> sa8775p-ride board? We don't want to duplicate whole device tree file 
-> since all the hardwares are same except the SoC, so we add qcs9100 SoC 
-> compatible to sa8775p-ride board and still keep sa8775p SoC compatible.
+Am Dienstag, 13. August 2024, 06:35:06 CEST schrieb Frank Li:
+> According to binging doc usb/ti,usb8041.yaml and in
+> drivers/usb/misc/onboard_usb_dev.h
+>=20
+> ti_tusb8041_data =3D { .supply_names =3D { "vdd" },};
+>=20
+> It should vdd-supply instead vcc-supply.
+>=20
+> Fixes: 04b77e0124ef ("arm64: dts: freescale: add fsl-lx2160a-mblx2160a bo=
+ard")
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-Split board DTS into shared DTSI (just don't forget about proper
--M/-C/-B arguments for format-patch) and include it in relevant boards.
-You also need new SoC DTSI. This will be unusual code, but it matches
-what you want to achieve.
+Thanks.
 
-Best regards,
-Krzysztof
+Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+>  arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a-mblx2160a.dts | 4 +=
++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a-mblx216=
+0a.dts b/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a-mblx2160a.dts
+> index da0f58e26b9aa..f6a4f8d543015 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a-mblx2160a.dts
+> +++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a-tqmlx2160a-mblx2160a.dts
+> @@ -320,7 +320,7 @@ hub_2_0: hub@1 {
+>  		reg =3D <1>;
+>  		peer-hub =3D <&hub_3_0>;
+>  		reset-gpios =3D <&gpioex1 0 GPIO_ACTIVE_LOW>;
+> -		vcc-supply =3D <&reg_vcc3v3>;
+> +		vdd-supply =3D <&reg_vcc3v3>;
+>  	};
+> =20
+>  	hub_3_0: hub@2 {
+> @@ -328,7 +328,7 @@ hub_3_0: hub@2 {
+>  		reg =3D <2>;
+>  		peer-hub =3D <&hub_2_0>;
+>  		reset-gpios =3D <&gpioex1 0 GPIO_ACTIVE_LOW>;
+> -		vcc-supply =3D <&reg_vcc3v3>;
+> +		vdd-supply =3D <&reg_vcc3v3>;
+>  	};
+>  };
+> =20
+>=20
+>=20
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
