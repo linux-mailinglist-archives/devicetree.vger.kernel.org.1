@@ -1,233 +1,129 @@
-Return-Path: <devicetree+bounces-93276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 586CC950252
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 12:21:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF1A0950331
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 13:03:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D4621C22AFD
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 10:21:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6860DB22259
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 11:03:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD0BE197552;
-	Tue, 13 Aug 2024 10:20:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FA14189918;
+	Tue, 13 Aug 2024 11:03:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LEPjag7e"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="YYba8t5A";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="pKGZPbvS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF426194AFE
-	for <devicetree@vger.kernel.org>; Tue, 13 Aug 2024 10:20:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 551F921345;
+	Tue, 13 Aug 2024 11:02:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723544451; cv=none; b=snrgM2L+qIgRIhE/BI+XmpMHeLOJpB5QRiKD/p0l+suJjxTBL7BFiocOdcM70AxSkzOw+ke9fKn1vne38F/eRkY1793CjVkhF508BqTam7U3QedrPXBginCPWzN31/3hgjvO0FDQyHYDEzNw2eRsfyaWU/crNCUbKbFqeGnZTbc=
+	t=1723546984; cv=none; b=XkY2qeEKdbS+NyA7peKV01+SP32UD110krgs4Vg6i7/TukOa3sD22SItrfZK0trfxaSTqtRq1z9c5rKoZCFEcm/6+ig9xSvqYqSPvUnxjwmguk1Gimrgy0Xk1oUGrjL7WxeZXdm/JIqAxVf8rFTTrbBZVjZ6RyG6oTJQH+9MOTU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723544451; c=relaxed/simple;
-	bh=ptI+1cnf+u4VBn9bOwvEfCwCXmKV4oBoAMfSgsrVIoY=;
+	s=arc-20240116; t=1723546984; c=relaxed/simple;
+	bh=PwUa5/OanIErRHAvEgE9UQwuwofhy8HwKU6/7A/LFUk=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=QEUGOQsMykW/mkydA9+ULPlAwayj94kLzZ7bBdkSMznLozWcPBmtTVuathqaOAd5FXQQBD3dewm4y6TywV5hKN6yc8ioUoBxers2KzI4DGFiUp9ewBgBfLh+lOPHzFbcC/ji/Ijly+qKM2oMpL70Wd9mlNMFcThmPTEcx6YukUo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LEPjag7e; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-52efa98b11eso859595e87.2
-        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2024 03:20:49 -0700 (PDT)
+	 MIME-Version:Content-Type; b=NhnjFfKkoCIoH/c9tLuB7TzMGmYe2e5XhztA/ksY6qPb/ZrRg27vUwHn72b45b53K/3I8g5B5W1+PylY1s/wyfyEE46cDVaHKocgogOLIMPUqwRaoF61nD0C3NhJTY0Wf8+7IILsS2QKgwduUumLWhMm5XKUG4LCHHxnD9NhjpI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=YYba8t5A; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=pKGZPbvS reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723544448; x=1724149248; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=x1GjYwT1PAjue3OAqw3OwrRMNr28kZG4xX7v3BOKWZ4=;
-        b=LEPjag7emQgVZh7UYizmZr03diKcgtEJ1gHERPu9hDb7PCHLpbpGq9aVcH/pQ7nDXY
-         zsEt/acBfTrr5Fsi0wvK+ZSxaneQJjs0tijJb9XwmvYUgrDCsBv7gnD0Woj2cyb2Qwfx
-         XJtgUaxK7HNiQ6fP/uvqyft3MpdNXa90UDR3HfP0354wRnj/MpPNgSX4io9bQX7dU/11
-         KowqHaPKd66eeA3rJCG2tYr0Ux5wOx3RBbJzedeLS/5YqVOB5GKLfqpQOFJmNbNTXO0/
-         zVmM/ttTdwda3I5mU6seVCa72DV3WDG7qH5moWCDky1VP5pegZNf1LthL+2mRjNn0ik2
-         1YSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723544448; x=1724149248;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=x1GjYwT1PAjue3OAqw3OwrRMNr28kZG4xX7v3BOKWZ4=;
-        b=rhe0MZdk0UNZ5J/h2JkVx9YG5B9fq+oJ+GAw6vlI/p/Za5OwWYbNgqXAWcQFeCfumL
-         Qyn6gjAH/TcccqHFALB1qeCgtuBuwW7LDkhFnGuzHBuaE1YCS92kJhG0BXR0S5gC11h6
-         7urHumHueRXhL6Bc5nrVkJwvr5GMfrpYqxAIMGTSD2YbpjI+bcF1yJ7H8/ezr0c/mMEF
-         CArgl7IgcuIhL00pL/wsqt6GszTEEZrzUhY1+2cc/7FB4FEM4/Z3KkrTMGy2dVqmt45y
-         72qU1Aicdlz+EYaw0HlmxaraTuuei8lnPyh7HFSkoGYDQUTkZWXC5GXbA6y7fWK4mdG5
-         wwHw==
-X-Forwarded-Encrypted: i=1; AJvYcCV5BenouNZBqOJbnaLKJrJnTFjwLeE6toHklMPTk943cFRzCSw0ZQxKxc50nqzUtpqNNqpka9GbzkNn2xN0bKmbWkh26iQpEI84jw==
-X-Gm-Message-State: AOJu0YwdV64TubIlCB47B8wPkq7NIMuFNYbu3MMfHHqu74LRbLyF4Yw5
-	YaBZxV+FiTmNc0Pc2FUR9azZ81XamMPjTpXhoC3wXU16TAvlJtDXkbUIHyBdc7g=
-X-Google-Smtp-Source: AGHT+IEpQaqLGz7U6Da0y6hc4YcA3+PMH+jf2GZAO7uQ5ABFL5HDJvQPqGBMGfQZ84FsK4To9SrDIQ==
-X-Received: by 2002:a05:6512:1589:b0:52e:fd7c:8b9b with SMTP id 2adb3069b0e04-5321502b50fmr791566e87.7.1723544448067;
-        Tue, 13 Aug 2024 03:20:48 -0700 (PDT)
-Received: from localhost.localdomain (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53200eb3ca5sm965917e87.55.2024.08.13.03.20.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Aug 2024 03:20:47 -0700 (PDT)
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v2 6/6] media: i2c: og01a1b: Add management of optional sensor supply lines
-Date: Tue, 13 Aug 2024 13:20:35 +0300
-Message-ID: <20240813102035.1763559-7-vladimir.zapolskiy@linaro.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240813102035.1763559-1-vladimir.zapolskiy@linaro.org>
-References: <20240813102035.1763559-1-vladimir.zapolskiy@linaro.org>
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1723546980; x=1755082980;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=BX8/YcQITWwz1XEoFgy9ZmyJuYxThxbscbz2octGzAE=;
+  b=YYba8t5A03+yASvcoMRUnGJtY32FtSZxhi4STzpdEJr3FjFsqcnlT7mB
+   ib1GdQoQs9UjJeoGnswSLBQbK2X0mlzGOxYwoM/NXD3YkOiUGiVQ1stCm
+   ma9NbgmBYwWTt5l0pRGyhcTNzoqz0S1dERamxdAr6kyFURm/hWfO9fzef
+   AnWJuepAbjhYrejgFAyECpUVypPJO24gEA4fNhAepAOv8oVOtqDi7e8jV
+   z+d9mQ50oy8tFAO9t1W454ZFLCYmGa+okiKL1XAhvwotQN4awebXVh/h5
+   46BSEZaSz9BfWb4pK+bFw1zVGn8ldOdbJZ8VMd8FJWr+9Yxfko97yA1za
+   Q==;
+X-CSE-ConnectionGUID: F/Gzg1pvRoySPc4KafHwrw==
+X-CSE-MsgGUID: dgzq19lBT/62vuCWd0dEMg==
+X-IronPort-AV: E=Sophos;i="6.09,285,1716242400"; 
+   d="scan'208";a="38383452"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 13 Aug 2024 13:02:58 +0200
+X-CheckPoint: {66BB3D62-A-45EF2B36-F6E28480}
+X-MAIL-CPID: 8522DF81CEE9203FFD6B6412A29F7287_0
+X-Control-Analysis: str=0001.0A782F1B.66BB3D62.0069,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3070E164987;
+	Tue, 13 Aug 2024 13:02:52 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1723546973;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=BX8/YcQITWwz1XEoFgy9ZmyJuYxThxbscbz2octGzAE=;
+	b=pKGZPbvS8nX3DhTjo+uJRpFLzFrd/5oQ7jlkpOLLK7qGpyzGCTxMZwbfgr3maNhy+a/sDe
+	FoFv+qrZ7XjuT2+h/FUwmSoexwgbd0KNmJTtZSMpP2P1SuT2rnx39g/ksZhL+3tGqp2EQ+
+	Q/caBG8ibAJVRMVlbYsWmBBeyCykCNr7JoVvtdaYNi26fGjdpbOib0uyg9VEPvfijc+zSG
+	CEVLVlafOzKfGb46I6zD7JOdvCY+N26AhMlRucV04FCjsqIyD+F39JLRaVYYO4U9632ctZ
+	G/pF85M8j6P7JV9bpPTuVtLNAC5OFONnQBhhCZiwsjLD3INKbaLsx15hmvv85A==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Markus Niebel <Markus.Niebel@ew.tq-group.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>, devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux@ew.tq-group.com
+Subject: Re: [PATCH 5/5] ARM: dts: imx6qdl: Rename USB hub node name
+Date: Tue, 13 Aug 2024 13:02:54 +0200
+Message-ID: <2621134.Lt9SDvczpP@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <82ee2be2-366e-40b2-ac95-e755443032be@kernel.org>
+References: <20240812143431.98323-1-Markus.Niebel@ew.tq-group.com> <1901821.CQOukoFCf9@steina-w> <82ee2be2-366e-40b2-ac95-e755443032be@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-Omnivision OG01A1B camera sensor is supplied by tree power rails,
-if supplies are present as device properties, include them into
-sensor power up sequence.
+Am Dienstag, 13. August 2024, 11:44:28 CEST schrieb Krzysztof Kozlowski:
+> On 13/08/2024 11:27, Alexander Stein wrote:
+> > Am Dienstag, 13. August 2024, 11:20:08 CEST schrieb Krzysztof Kozlowski:
+> >> On 12/08/2024 16:34, Markus Niebel wrote:
+> >>> From: Alexander Stein <alexander.stein@ew.tq-group.com>
+> >>>
+> >>> According to microchip,usb2514.yaml the node name shall be usb-hub.
+> >>
+> >> That's not true. The schema does not say anything like this. Old name =
+is
+> >> correct. NAK.
+> >=20
+> > So, is the schema incorrect? There is the dtbs_check warning:
+> > arch/arm/boot/dts/nxp/imx/imx6q-mba6b.dtb: hub@1: $nodename:0: 'hub@1' =
+does not match '^usb(@.*)?'
+> >         from schema $id: http://devicetree.org/schemas/usb/microchip,us=
+b2514.yaml#
+>=20
+> If you have a warning, shorten it and paste it so this will be obvious.
+> If you look at several bindings, the hub is widely used name. I think
+> the schema is not correct here - I do not see any properties from
+> usb.yaml being used here (for usb2514). What's more, if you compare
+> usb2514 with any other on-board HUB representations (because that's the
+> only point why we have it in bindings, right?), none of them reference
+> usb(-hcd)?.yaml.
+>=20
+> These are not USB controllers, IMO.
 
-Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
----
- drivers/media/i2c/og01a1b.c | 86 ++++++++++++++++++++++++++++++++++++-
- 1 file changed, 85 insertions(+), 1 deletion(-)
+I raised that concern in [1] already, but nobody commented.
 
-diff --git a/drivers/media/i2c/og01a1b.c b/drivers/media/i2c/og01a1b.c
-index 90a68201f43f..0150fdd2f424 100644
---- a/drivers/media/i2c/og01a1b.c
-+++ b/drivers/media/i2c/og01a1b.c
-@@ -9,6 +9,7 @@
- #include <linux/i2c.h>
- #include <linux/module.h>
- #include <linux/pm_runtime.h>
-+#include <linux/regulator/consumer.h>
- #include <media/v4l2-ctrls.h>
- #include <media/v4l2-device.h>
- #include <media/v4l2-fwnode.h>
-@@ -422,6 +423,9 @@ static const struct og01a1b_mode supported_modes[] = {
- struct og01a1b {
- 	struct clk *xvclk;
- 	struct gpio_desc *reset_gpio;
-+	struct regulator *avdd;
-+	struct regulator *dovdd;
-+	struct regulator *dvdd;
- 
- 	struct v4l2_subdev sd;
- 	struct media_pad pad;
-@@ -982,11 +986,46 @@ static int og01a1b_power_on(struct device *dev)
- {
- 	struct v4l2_subdev *sd = dev_get_drvdata(dev);
- 	struct og01a1b *og01a1b = to_og01a1b(sd);
-+	int ret;
-+
-+	if (og01a1b->avdd) {
-+		ret = regulator_enable(og01a1b->avdd);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	if (og01a1b->dovdd) {
-+		ret = regulator_enable(og01a1b->dovdd);
-+		if (ret)
-+			goto avdd_disable;
-+	}
-+
-+	if (og01a1b->dvdd) {
-+		ret = regulator_enable(og01a1b->dvdd);
-+		if (ret)
-+			goto dovdd_disable;
-+	}
- 
- 	gpiod_set_value_cansleep(og01a1b->reset_gpio, 0);
- 	usleep_range(USEC_PER_MSEC, 2 * USEC_PER_MSEC);
- 
--	return clk_prepare_enable(og01a1b->xvclk);
-+	ret = clk_prepare_enable(og01a1b->xvclk);
-+	if (ret)
-+		goto dvdd_disable;
-+
-+	return 0;
-+
-+dvdd_disable:
-+	if (og01a1b->dvdd)
-+		regulator_disable(og01a1b->dvdd);
-+dovdd_disable:
-+	if (og01a1b->dovdd)
-+		regulator_disable(og01a1b->dovdd);
-+avdd_disable:
-+	if (og01a1b->avdd)
-+		regulator_disable(og01a1b->avdd);
-+
-+	return ret;
- }
- 
- static int og01a1b_power_off(struct device *dev)
-@@ -998,6 +1037,15 @@ static int og01a1b_power_off(struct device *dev)
- 
- 	gpiod_set_value_cansleep(og01a1b->reset_gpio, 1);
- 
-+	if (og01a1b->dvdd)
-+		regulator_disable(og01a1b->dvdd);
-+
-+	if (og01a1b->dovdd)
-+		regulator_disable(og01a1b->dovdd);
-+
-+	if (og01a1b->avdd)
-+		regulator_disable(og01a1b->avdd);
-+
- 	return 0;
- }
- 
-@@ -1045,6 +1093,42 @@ static int og01a1b_probe(struct i2c_client *client)
- 		return PTR_ERR(og01a1b->reset_gpio);
- 	}
- 
-+	og01a1b->avdd = devm_regulator_get_optional(&client->dev, "avdd");
-+	if (IS_ERR(og01a1b->avdd)) {
-+		ret = PTR_ERR(og01a1b->avdd);
-+		if (ret != -ENODEV) {
-+			dev_err_probe(&client->dev, ret,
-+				      "Failed to get 'avdd' regulator\n");
-+			return ret;
-+		}
-+
-+		og01a1b->avdd = NULL;
-+	}
-+
-+	og01a1b->dovdd = devm_regulator_get_optional(&client->dev, "dovdd");
-+	if (IS_ERR(og01a1b->dovdd)) {
-+		ret = PTR_ERR(og01a1b->dovdd);
-+		if (ret != -ENODEV) {
-+			dev_err_probe(&client->dev, ret,
-+				      "Failed to get 'dovdd' regulator\n");
-+			return ret;
-+		}
-+
-+		og01a1b->dovdd = NULL;
-+	}
-+
-+	og01a1b->dvdd = devm_regulator_get_optional(&client->dev, "dvdd");
-+	if (IS_ERR(og01a1b->dvdd)) {
-+		ret = PTR_ERR(og01a1b->dvdd);
-+		if (ret != -ENODEV) {
-+			dev_err_probe(&client->dev, ret,
-+				      "Failed to get 'dvdd' regulator\n");
-+			return ret;
-+		}
-+
-+		og01a1b->dvdd = NULL;
-+	}
-+
- 	/* The sensor must be powered on to read the CHIP_ID register */
- 	ret = og01a1b_power_on(&client->dev);
- 	if (ret)
--- 
-2.45.2
+Best regards,
+Alexander
+
+[1] https://lore.kernel.org/all/3633627.mvXUDI8C0e@steina-w/
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
