@@ -1,293 +1,346 @@
-Return-Path: <devicetree+bounces-93329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F57B95087C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 17:07:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58C4B9508CE
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 17:20:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B33F6B20C7D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 15:07:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 93ADEB221A8
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 15:20:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68B1E19F49A;
-	Tue, 13 Aug 2024 15:06:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB66119EEBF;
+	Tue, 13 Aug 2024 15:19:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FP0R1qBL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k5Nl/hQ9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38E6419EEA4;
-	Tue, 13 Aug 2024 15:06:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABEB81E86A;
+	Tue, 13 Aug 2024 15:19:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723561610; cv=none; b=Wgp3QvbV8E1JiNwr2m2DIsFqz+zIivusnKSxTHf2fNAHMTF5GYkKcqke8m/Z++0a8d4Q7Ntpj8ys6SI+V0JBGzpfSsiCZo7vfQSGtf8udX64moSBufm94FLZZtqvw58HZukVoDulfcxtpEq1kIJ9tjOv1U4bjXJTWjt6Wlfk9dQ=
+	t=1723562343; cv=none; b=QCnAwlSd6GTLDyjV5JFc1zm3svJY06/0V3ByLnI+iysQCvc6LLnkWrWmZuklU0ALQr23EIOHxvarmHCJSu0rj5DMenIFkBm2LKBFDtIuR7OkuKEvSwzIOaxyL2yRmUv2DxIOjWbPiEzHAT++50gV4NL5kB8dCg5nXTwlqEM+6Hk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723561610; c=relaxed/simple;
-	bh=+vLSb4vo2V0c0Lzw7tlVy5JD1tY1krQUth7w4Ry3pDg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jnA1X/WMvekz97CnSEQDq+QiwMvpj/BhW/mJmnt4I8FKUpOQnMl9i4oB287tOmz+B4yshGGk4vooWZ3il84UqvpFsNr25deS04r+6mjpdW7jAdKM1RxSPCUcQlmvgYzrr7Y6yjyW90bAzLobBzqrUptExx6YoiX4pMiPVpFlEgg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FP0R1qBL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4B64C4AF18;
-	Tue, 13 Aug 2024 15:06:49 +0000 (UTC)
+	s=arc-20240116; t=1723562343; c=relaxed/simple;
+	bh=YwFk3U8RSbKyk1/SfrfSfkAz/KdTodY7CpaCz0Yr9dc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mEe9sVuKSHHWCzp4u2fB7UuYUOTLVn3U+QPP4KhittmrFN2oeuWqdnO4IYbldLQtrKKKlIrBq/mKbo/iidZwUgCSCov6px/+p/B+nddssc+WWFrGnizvVyoHFm0xgkvYgFhffRZyEZ31u3eBykSdSZ5a44qjJoHGpVFSMT19Keg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k5Nl/hQ9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD920C4AF0F;
+	Tue, 13 Aug 2024 15:19:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723561609;
-	bh=+vLSb4vo2V0c0Lzw7tlVy5JD1tY1krQUth7w4Ry3pDg=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=FP0R1qBLY+7AbDGdgbM6CHnPFmiBCg+tdpNuwc5Osp4UaWJdav8Zylawtr5e1s1TW
-	 OVR0LeV8oQ01V4h6tLNT1NP/dKIbUGBbw4XD1GxUhQ5imISy5zjmXlsY+97wuW8ZOu
-	 +k/+kMgdmFYI1X5NCS3VvXEQiOfbnLXJDAh4HZuh2y3usPgDzaHIsoCorLk6OKG63w
-	 aGKUpSrDJg+RmfqhD147ZJ97UgfvK+ULmN9/gW9Yx1Qh9bR9GWrwhYVCRIj9F5O4tc
-	 5Fe+YfmfgwpK4t8Tc6Db/q1fhrmIaJkcCjhEXx04PMnfych8LxR1KrkV4RrMvxJXmo
-	 uRzlqS08xWKRw==
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-260209df55dso3154647fac.2;
-        Tue, 13 Aug 2024 08:06:49 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUQWBpM5cUG7uT9P/hXtgVjUuVSED84bPduEvdrI8EBRlyGzgOTdB+uJLrzoyKY3D2YXd+GGAabdqzmxkeDrX+uZ2LvZwCIlAgYAn9ORY4bdvLH3tGdsPSg0QNL8YgWvBcVvlW6oih1ZgjRDaz0LZJLiuoupecvIAlq4Xft0u0UGV8awKCmf4dmGWlG4P5e4XIntgOZJNn3L6kIA6Bewwn+/hA=
-X-Gm-Message-State: AOJu0Yx2T5x3oLBRqDSmCdKh9J3uZ1nFBOqwSaqLvvzObgNOZNbMB7ej
-	+ySrk8XQYsDP4Ev/MXmPNHTpD2qUAx2dWPEkgMCQ3x+Pp/v6BLsUvmJoLcbetv+lHGM7q0nFVyT
-	Aq/P7ixpN5WR/VHboy83x+MQNOQ==
-X-Google-Smtp-Source: AGHT+IEmk8kNwHylWPsiOYC4q9yEy5CQJvwlkDxTjzsTqDScmaHSn14FPzd9peN8eyu0HcCqbCmaNjlicz+F+Ed/3A8=
-X-Received: by 2002:a05:6870:5baa:b0:260:eb3a:1be with SMTP id
- 586e51a60fabf-26fcb7aa87fmr4525020fac.34.1723561608998; Tue, 13 Aug 2024
- 08:06:48 -0700 (PDT)
+	s=k20201202; t=1723562343;
+	bh=YwFk3U8RSbKyk1/SfrfSfkAz/KdTodY7CpaCz0Yr9dc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=k5Nl/hQ9T4TF5D2YCpoFawlSAwdVBdfHZkMTFAQpKzToPrZFJ8ynMYgBUb8zGIjx8
+	 c6ycSMK4/4x6wVKGzJYtlDHpzeA1eny34jxsrjK9iLh3iKKb9jNk+1pud+RLeziQvq
+	 1uxLfKWFjSl2B9MJKDx6ZcPS15EM0BoPdk4RTnRHRN8NOgK11qWaY/7tspw/D/WDEc
+	 vEcoJp7ZtRuW2dAHqqH+WSC+9ebCd75wHJ/HCzb2qQ5QEZodMTZAQQfpG2QidTvXaa
+	 AO6HXCQ96rr/aeQApRY2g9XKghTJzGNedTg3yLOIi3UMBBG6avbz0UVwlFB9piy7m6
+	 TfHBmbd+YylhA==
+Date: Tue, 13 Aug 2024 09:19:01 -0600
+From: Rob Herring <robh@kernel.org>
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Paul Kocialkowski <contact@paulk.fr>,
+	=?iso-8859-1?Q?Herv=E9?= Codina <herve.codina@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, linux-i2c@vger.kernel.org,
+	Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Subject: Re: [PATCH v3 1/7] dt-bindings: connector: add GE SUNH hotplug addon
+ connector
+Message-ID: <20240813151901.GA953664-robh@kernel.org>
+References: <20240809-hotplug-drm-bridge-v3-0-b4c178380bc9@bootlin.com>
+ <20240809-hotplug-drm-bridge-v3-1-b4c178380bc9@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240811-dwc3-refactor-v2-0-91f370d61ad2@quicinc.com>
- <20240811-dwc3-refactor-v2-6-91f370d61ad2@quicinc.com> <20240812212139.GA1797954-robh@kernel.org>
- <ZrqJyh4UPJ5xBhq2@hu-bjorande-lv.qualcomm.com>
-In-Reply-To: <ZrqJyh4UPJ5xBhq2@hu-bjorande-lv.qualcomm.com>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 13 Aug 2024 09:06:34 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLThor3MXF1nzfegBWC1fJDKAJ9-GP-riTyqbhmWscMjw@mail.gmail.com>
-Message-ID: <CAL_JsqLThor3MXF1nzfegBWC1fJDKAJ9-GP-riTyqbhmWscMjw@mail.gmail.com>
-Subject: Re: [PATCH v2 6/7] usb: dwc3: qcom: Transition to flattened model
-To: Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Felipe Balbi <balbi@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>, 
-	Saravana Kannan <saravanak@google.com>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240809-hotplug-drm-bridge-v3-1-b4c178380bc9@bootlin.com>
 
-On Mon, Aug 12, 2024 at 4:16=E2=80=AFPM Bjorn Andersson
-<quic_bjorande@quicinc.com> wrote:
->
-> On Mon, Aug 12, 2024 at 03:21:39PM -0600, Rob Herring wrote:
-> > On Sun, Aug 11, 2024 at 08:12:03PM -0700, Bjorn Andersson wrote:
-> > > From: Bjorn Andersson <quic_bjorande@quicinc.com>
-> > >
-> > > The USB IP-block found in most Qualcomm platforms is modelled in the
-> > > Linux kernel as 3 different independent device drivers, but as shown =
-by
-> > > the already existing layering violations in the Qualcomm glue driver
-> > > they can not be operated independently.
-> > >
-> > > With the current implementation, the glue driver registers the core a=
-nd
-> > > has no way to know when this is done. As a result, e.g. the suspend
-> > > callbacks needs to guard against NULL pointer dereferences when tryin=
-g
-> > > to peek into the struct dwc3 found in the drvdata of the child.
-> > > Even with these checks, there are no way to fully protect ourselves f=
-rom
-> > > the race conditions that occur if the DWC3 is unbound.
-> > >
-> > > Missing from the upstream Qualcomm USB support is handling of role
-> > > switching, in which the glue needs to be notified upon DRD mode chang=
-es.
-> > > Several attempts has been made through the years to register callback=
-s
-> > > etc, but they always fall short when it comes to handling of the core=
-'s
-> > > probe deferral on resources etc.
-> > >
-> > > Moving to a model where the DWC3 core is instantiated in a synchronou=
-s
-> > > fashion avoids above described race conditions.
-> > >
-> > > It is however not feasible to do so without also flattening the
-> > > DeviceTree binding, as assumptions are made in the DWC3 core and
-> > > frameworks used that the device's associated of_node will the that of
-> > > the core. Furthermore, the DeviceTree binding is a direct
-> > > representation of the Linux driver model, and doesn't necessarily
-> > > describe "the USB IP-block".
-> > >
-> > > The Qualcomm DWC3 glue driver is therefor transitioned to initialize =
-and
-> > > operate the DWC3 within the one device context, in synchronous fashio=
-n.
-> > >
-> > > To handle backwards compatibility, and to remove the two-device model=
-,
-> > > of_nodes of the old compatible are converted to the new one, early
-> > > during probe.
-> > >
-> > > This happens in the event that a DWC3 core child node is present, the
-> > > content of the reg and interrupt properties of this node are merged i=
-nto
-> > > the shared properties, all remaining properties are copied and the co=
-re
-> > > node is dropped. Effectively transitioning the node from qcom,dwc3 to
-> > > qcom,snps-dwc3.
-> >
-> > In the past we've done this old binding to new binding with an overlay
-> > embedded in the kernel. The overlay would just be the .dts change you'v=
-e
-> > made (we should have a tool that takes 2 DTs and generates an overlay a=
-s
-> > the diff). I suppose it's a few platforms here, but then it is just dat=
-a
-> > and easily deleted when no longer needed (I think the cases I'm
-> > remembering did just that because they are gone now. It was TI display
-> > and Renesas media stuff IIRC).
-> >
->
-> Where and how do you apply this overlay?
+On Fri, Aug 09, 2024 at 05:34:49PM +0200, Luca Ceresoli wrote:
+> Add bindings for the GE SUNH add-on connector. This is a physical,
+> hot-pluggable connector that allows to attach and detach at runtime an
+> add-on adding peripherals on non-discoverable busses.
 
-With "git log -S of_overlay_ drivers/", I found the prior cases. See
-841281fe52a7 ("drm: rcar-du: Drop LVDS device tree backward
-compatibility") and 739acd85ffdb ("drm/tilcdc: Remove obsolete
-"ti,tilcdc,slave" dts binding support")
+Overall, looks pretty good.
 
-I would consider putting them in drivers/of/ as well. Then we could
-better control the order of applying the overlay and creating devices.
-It avoids a lot of the complexity if the overlay is applied first.
+> 
+> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> 
+> ---
+> 
+> Changed in v3:
+>  - change the layout to only add subnodes, not properties
+>  - add the 'nobus-devices' node description to hold devices not on any bus
+>  - add 'i2c-*' nodes for the I2C busses, using a i2c-parent phandle
+>  - and the 'dsi' node for the DSI bus
+>  - move the entire port@1 node to the overlay (not only the remote-endpoint
+>    property)
+>  - remove the overlay examples (Overlays in examples are not supported)
+>  - add more clarifying descriptions and comments for examples
+>  - some rewording
+> 
+> This patch was added in v2.
+> ---
+>  .../connector/ge,sunh-addon-connector.yaml         | 185 +++++++++++++++++++++
+>  MAINTAINERS                                        |   5 +
+>  2 files changed, 190 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/connector/ge,sunh-addon-connector.yaml b/Documentation/devicetree/bindings/connector/ge,sunh-addon-connector.yaml
+> new file mode 100644
+> index 000000000000..2a0b4e0fd089
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/connector/ge,sunh-addon-connector.yaml
+> @@ -0,0 +1,185 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/connector/ge,sunh-addon-connector.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: GE SUNH hotplug add-on connector
+> +
+> +maintainers:
+> +  - Luca Ceresoli <luca.ceresoli@bootlin.com>
+> +
+> +description:
 
-> If I can avoid doing the dynamic translation, I'd be happy to do so.
->
-> >
-> > > Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> > > ---
-> > >  drivers/usb/dwc3/dwc3-qcom.c | 310 +++++++++++++++++++++++++++++++++=
-++--------
-> > >  1 file changed, 251 insertions(+), 59 deletions(-)
-> > >
-> > > diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qco=
-m.c
-> [..]
-> > > -static int dwc3_qcom_of_register_core(struct dwc3_qcom *qcom, struct=
- platform_device *pdev)
-> > > +static struct property *dwc3_qcom_legacy_prop_concat(const char *nam=
-e,
-> > > +                                                const void *a, size_=
-t a_len,
-> > > +                                                const void *b, size_=
-t b_len)
-> > >  {
-> > > -   struct device_node      *np =3D pdev->dev.of_node, *dwc3_np;
-> > > -   struct device           *dev =3D &pdev->dev;
-> > > -   int                     ret;
-> > > +   size_t len =3D a_len + b_len;
-> > >
-> > > -   dwc3_np =3D of_get_compatible_child(np, "snps,dwc3");
-> > > -   if (!dwc3_np) {
-> > > -           dev_err(dev, "failed to find dwc3 core child\n");
-> > > -           return -ENODEV;
-> > > -   }
-> > > +   struct property *prop __free(kfree) =3D kzalloc(sizeof(*prop), GF=
-P_KERNEL);
-> > > +   char *prop_name __free(kfree) =3D kstrdup(name, GFP_KERNEL);
-> > > +   void *value __free(kfree) =3D kzalloc(len, GFP_KERNEL);
-> > > +   if (!prop || !prop_name || !value)
-> > > +           return NULL;
-> > >
-> > > -   ret =3D of_platform_populate(np, NULL, NULL, dev);
-> > > -   if (ret) {
-> > > -           dev_err(dev, "failed to register dwc3 core - %d\n", ret);
-> > > -           goto node_put;
-> > > +   prop->name =3D no_free_ptr(prop_name);
-> > > +   prop->value =3D no_free_ptr(value);
-> > > +   prop->length =3D len;
-> >
-> > We're trying to make struct property opaque or even internal to DT core=
-.
-> > Exposing it leaks pointers and then we can't ever free things. This is
-> > not helping. The changeset API avoids mucking with struct property.
-> >
->
-> I will review the changeset API!
->
-> > > +
-> > > +   memcpy(prop->value, a, a_len);
-> > > +   memcpy(prop->value + a_len, b, b_len);
-> > > +
-> > > +   return_ptr(prop);
-> > > +}
-> > > +
-> > > +/* Replace reg property with base address from dwc3 node and fixed l=
-ength */
-> > > +static int dwc3_qcom_legacy_update_reg(struct device_node *qcom,
-> > > +                                  struct device_node *dwc3)
-> > > +{
-> > > +   int addr_cells;
-> > > +   int size_cells;
-> > > +   u64 dwc3_addr;
-> > > +   int ret;
-> > > +
-> > > +   ret =3D of_property_read_reg(dwc3, 0, &dwc3_addr, NULL);
-> > > +   if (ret < 0)
-> > > +           return ret;
-> > > +
-> > > +   addr_cells =3D of_n_addr_cells(qcom);
-> > > +   size_cells =3D of_n_addr_cells(qcom);
-> > > +
-> > > +   __be32 *reg __free(kfree) =3D kcalloc(addr_cells + size_cells, si=
-zeof(__be32), GFP_KERNEL);
-> > > +   if (!reg)
-> > > +           return -ENOMEM;
-> > > +
-> > > +   reg[addr_cells - 1] =3D cpu_to_be32(dwc3_addr);
-> >
-> > Assuming dwc3_addr fits in 32-bit or that the upper 32-bits matches?
-> >
->
-> The core resides in the lower 32 bits on all existing targets, and I
-> expect any new targets that possibly changes that assumption would not
-> take the path through this translation (or would need to correct my
-> assumption).
->
-> > > +   reg[addr_cells + size_cells - 1] =3D cpu_to_be32(SDM845_QSCRATCH_=
-BASE_OFFSET + SDM845_QSCRATCH_SIZE);
-> > > +
-> [..]
-> > > @@ -773,10 +937,14 @@ static int dwc3_qcom_probe(struct platform_devi=
-ce *pdev)
-> > >             goto reset_assert;
-> > >     }
-> > >
-> > > -   res =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> > > +   ret =3D of_address_to_resource(np, 0, &res);
-> >
-> > So we just leave the platform device resources stale? The right solutio=
-n
-> > is probably to make platform_get_resource() work on demand.
->
-> I did consider updating the resource, only in the case that we rewrite
-> the information, as it would be slightly cleaner not to leave that
-> dangling. But this was cleaner code wise.
->
-> > That's what
-> > we did for IRQ resources years ago (since those had irqchip driver
-> > dependencies).
-> >
->
-> Right, for platform_get_irq(), but I presume for platform_get_resource()
-> we would end up with the union of the different resource-specific lookup
-> mechanisms?
+You need '|' or '>' to preserve line breaks. Elsewhere too.
 
-You'd just make platform_get_resource() call of_address_to_resource()
-internally if there's a node pointer. There could be drivers that
-break and it would be slower if we defer probe since it would parse
-the DT every probe. But really, an overlay applied earlier is a better
-approach IMO.
+> +  Represent the physical connector present on GE SUNH devices that allows
+> +  to attach and detach at runtime an add-on adding peripherals on
+> +  non-discoverable busses. Peripherals on the add-on include I2C sensors
+> +  and a video bridge controlled via I2C.
+> +
+> +  The connector has status GPIOs to notify the connection status to the CPU
+> +  and a reset GPIO to allow the CPU to reset all the peripherals on the
+> +  add-on. It also has I2C busses and a 4-lane MIPI DSI bus.
+> +
+> +  Different add-on models can be connected, each having different
+> +  peripherals. For this reason each add-on has a model ID stored in a
+> +  non-volatile memory, which is accessed in the same way on all add-ons.
+> +
+> +  Add-on removal can happen at any moment under user control and without
+> +  prior notice to the CPU, making all of its components not usable
+> +  anymore. Later on, the same or a different add-on model can be connected.
+> +
+> +properties:
+> +  compatible:
+> +    const: ge,sunh-addon-connector
+> +
+> +  reset-gpios:
+> +    description: An output GPIO to reset the peripherals on the add-on.
 
-Rob
+Active state is?
+
+> +    maxItems: 1
+> +
+> +  plugged-gpios:
+> +    description: An input GPIO that is asserted if and only if an add-on is
+> +      physically connected.
+
+Asserted is high or low?
+
+> +    maxItems: 1
+> +
+> +  powergood-gpios:
+> +    description: An input GPIO that is asserted if and only if power rails
+> +      on the add-on are stable.
+
+Active state is?
+
+> +    maxItems: 1
+> +
+> +  nobus-devices:
+
+Just 'devices'.
+
+> +    description:
+> +      A container for devices not accessible via any data bus. Common use
+> +      cases include fixed and GPIO regulators, simple video panels and LED
+> +      or GPIO backlight devices. When not hot-pluggable, nodes such devices
+> +      are children of the root node.
+> +
+> +      This node should not be present in the connector description in the
+> +      base device tree. It should be added by overlays along with a subnode
+> +      per device.
+> +
+> +    type: object
+> +    additionalProperties: false
+
+The schema needs to work with the overlay applied too. 'true' is fine 
+here.
+
+> +
+> +  dsi:
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      ports:
+> +        $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +        description:
+> +          OF graph bindings modeling the MIPI DSI bus across the connector. The
+> +          connector splits the video pipeline in a fixed part and a removable
+> +          part.
+> +
+> +          The fixed part of the video pipeline includes all components up to
+> +          the display controller and 0 or more bridges. The removable part
+> +          includes any bridges and any other components up to the panel.
+> +
+> +        properties:
+> +          port@0:
+> +            $ref: /schemas/graph.yaml#/properties/port
+> +            description:
+> +              The last point of the non-removable part of the MIPI DSI bus
+> +              line. The remote-endpoint sub-node must point to the last
+> +              non-removable video component of the video pipeline.
+> +
+> +          port@1:
+> +            $ref: /schemas/graph.yaml#/properties/port
+> +            description:
+> +              The first point of the removable part of the MIPI DSI bus
+> +              line.  The remote-endpoint sub-node must point to the first
+> +              video pipeline component on the add-on. As it describes the
+> +              hot-pluggable hardware, the endpoint node cannot be filled
+> +              until an add-on is detected, so this node needs to be added
+> +              by a device tree overlay at runtime.
+> +
+> +        required:
+> +          - port@0
+> +          # port@1 is added by the overlay for any add-on using the DSI lines
+> +
+> +    required:
+> +      - ports
+> +
+> +patternProperties:
+> +  '^i2c-(dbat|gp|btp)$':
+> +    description:
+> +      An I2C bus that goes through the connector. The adapter (and possibly
+> +      some clients) are on the fixed side. Add-ons that have any clients on
+> +      this bus have to be added by the add-on overlay, inside this node.
+> +
+> +    $ref: /schemas/i2c/i2c-controller.yaml#
+> +    unevaluatedProperties: false
+> +    type: object
+> +
+> +    properties:
+> +      i2c-parent:
+> +        $ref: /schemas/types.yaml#/definitions/phandle
+> +        description:
+> +          Phandle pointing to the I2C bus controller on the fixed side that
+> +          drives this bus
+> +
+> +required:
+> +  - compatible
+> +  - i2c-dbat
+> +  - i2c-gp
+> +  - i2c-btp
+> +  - dsi
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  # This is the description of the connector as it should appear in the
+> +  # main DTS describing the "main" board up to the connector. This is
+> +  # supposed to be used together with the overlays in the two following
+> +  # examples. The addon_connector and hotplug_conn_dsi_out labels are
+> +  # referenced by the overlays in those examples.
+> +  - |
+> +    / {
+> +        #include <dt-bindings/gpio/gpio.h>
+> +
+> +        addon_connector: addon-connector {
+> +            compatible = "ge,sunh-addon-connector";
+> +            reset-gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
+> +            plugged-gpios = <&gpio1 2 GPIO_ACTIVE_LOW>;
+> +            powergood-gpios = <&gpio1 3 GPIO_ACTIVE_HIGH>;
+> +
+> +            i2c-dbat {
+> +                i2c-parent = <&i2c5_ch2>;
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +                // device subnodes to be added by overlays
+> +            };
+> +
+> +            i2c-gp {
+> +                i2c-parent = <&i2c4>;
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +                // device subnodes to be added by overlays
+> +            };
+> +
+> +            i2c-btp {
+> +                i2c-parent = <&i2c3>;
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +                // device subnodes to be added by overlays
+> +            };
+> +
+> +            dsi {
+> +                ports {
+> +                    #address-cells = <1>;
+> +                    #size-cells = <0>;
+> +
+> +                    port@0 {
+> +                        reg = <0>;
+> +
+> +                        endpoint {
+> +                            remote-endpoint = <&previous_bridge_out>;
+> +                        };
+> +                    };
+> +
+> +                    // port@1 to be added by overlay
+> +                };
+> +            };
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 42decde38320..9e902db825d7 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -10254,6 +10254,11 @@ S:	Maintained
+>  F:	Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
+>  F:	drivers/iio/pressure/mprls0025pa*
+>  
+> +HOTPLUG CONNECTOR FOR GE SUNH ADDONS
+> +M:	Luca Ceresoli <luca.ceresoli@bootlin.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/connector/ge,sunh-addon-connector.yaml
+> +
+>  HP BIOSCFG DRIVER
+>  M:	Jorge Lopez <jorge.lopez2@hp.com>
+>  L:	platform-driver-x86@vger.kernel.org
+> 
+> -- 
+> 2.34.1
+> 
 
