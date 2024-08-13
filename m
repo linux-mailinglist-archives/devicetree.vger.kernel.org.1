@@ -1,48 +1,76 @@
-Return-Path: <devicetree+bounces-93346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BB6D950962
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 17:46:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A782950971
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 17:52:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9CC01F22361
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 15:46:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D7E51C21078
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 15:52:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D408B1A08C1;
-	Tue, 13 Aug 2024 15:46:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E0DA1A0724;
+	Tue, 13 Aug 2024 15:52:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IiWTFut4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FYYxFd6F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D4D71A073F;
-	Tue, 13 Aug 2024 15:46:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7348D2AF0D;
+	Tue, 13 Aug 2024 15:52:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723563994; cv=none; b=X3qFisW1zpu1MLS9ijuvuUTP0TiXkWt9MX7G1cmrFd5ULzhhOo/hQowIcKnRyJsvZ7bWt5U2yxrATa6oQG8KsbjIFTk/GvWDU/hgzdAq6Zl3JsIeuY2VwjsNhqaQ2X6om4Eim8HZfbgZW553o9jObIuzwNun6z2WlC55s+gctBg=
+	t=1723564348; cv=none; b=u8sRCrKJpiXix9+Z7/HdwvVtzZyhIQ4voXRffHM746UrQ68o/DYo3KaVZYzDgmZ5lWXhC0g4juqJlzSbnd9RV/VP2mmmQF199SeFzzw2sPabAtMZKxdOMnNmDBzwST9LzntK5RN8pmRkxgsSAV6TGjgH6cVAzGJVZZ4d41/Xs/Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723563994; c=relaxed/simple;
-	bh=k4BtleuJGjXt7KeeYyYQbTbpjST5vEvP2+LdTzOMdMQ=;
+	s=arc-20240116; t=1723564348; c=relaxed/simple;
+	bh=G51j+6mgixsrvrTEkFw6+wGXbpg01Kkx5ZnpqrwxpZg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=H+u16uVp/pyHGCFlUm4v03pt6ZjrIdwE8sCcAjXrembfOLx/eHgOlb/mxSsJWcXIv2dGEk7bdKpiayajW7IlRW2wv07XA5tNt+Oh1vWR5FP7njWVRcJxQJaaPMEYQfP1P+vukgByKtt4ws6E117sJbmCmFojCfTju5StxcqCN6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IiWTFut4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0462DC4AF09;
-	Tue, 13 Aug 2024 15:46:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723563994;
-	bh=k4BtleuJGjXt7KeeYyYQbTbpjST5vEvP2+LdTzOMdMQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IiWTFut4kxE8Z1Wc0fQ24b25KgFWG35gVHxzswM+lC9f5aIOE0mmNAoo6paqwlBst
-	 PQvSc/BoltbAuIAKbXpPQ4pImlouXEWFBNXWN3ji4/odliPB0DL10rH9fEgdiITOb4
-	 w/N1TDWm3cWEsorypJiOGnrFT1ANsmSxFDqOAVW8rNr2yHk6+D09ENdFjZWH3fxZ5b
-	 KQlmItOcWOTiW2NJxwPyouOotJrL4/4DIMZp1Ix+X5iTsFiEWGoxXPRSXxf6ERSELB
-	 rcOFC0dfij5SZIJg3MJPX8nXM/NIv/76Nz7joZafsjAo/w/dNrZOEKzbNvddNbn7c3
-	 NQXhSXTaNvtgw==
-Message-ID: <3a12b661-bcc7-4563-af91-08f521afffc1@kernel.org>
-Date: Tue, 13 Aug 2024 17:46:28 +0200
+	 In-Reply-To:Content-Type; b=oiWTEMa0rFN5ThmTJNv/l2thAmdiwjELwdEfpHTbGoXqtrnkh31MY4t2eyIepWSBfdcI6LDvfvwsZF4ARStIMLYRmu5R4tVypcoro+zCRTq3tcyv3khLtMwbf49PSxGsRFQI37wJLPGYtYdd1Eo9UnPaUYd2djxeBV/j8CE8HpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FYYxFd6F; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-70eae5896bcso5077133b3a.2;
+        Tue, 13 Aug 2024 08:52:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723564346; x=1724169146; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=yFY6eLVhFGsgfmIcw0L1TquWMQDeEJOfidswP04YC2c=;
+        b=FYYxFd6F4S3B4sYKbpeekrdXX1dUF4o+N6bhhMURhit67QEH/9pR4qNk/99ITMWZM6
+         cR3H41vLq5NhyTteeCjc+EqlVv6uDlkP4Z8I/e+W+KZJ/AFoMSnSMFwkmEtjMZbRu8Yk
+         whWRjtC0mpCkCqItOygZhtT6rN2CEoEJ3w50ggQ4DnKjWf3x7vum0hOQ+8zVWqmZftcT
+         qU/GqEs1KSTBrI5davVi38/w4LhgNVvYp1jmrKo4t9ZYTBtikVXoonUuDSRl3VkhUafY
+         ESLaqWyEFfGQkDHyPJJQVCnvqzzuDn82wVy/kwx9D+ZfNKULvEVTnPP2GW5GScAI1ZWk
+         OscA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723564346; x=1724169146;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yFY6eLVhFGsgfmIcw0L1TquWMQDeEJOfidswP04YC2c=;
+        b=FkJSw1jcfBk7N4m3y1FE6519ZGSnhRyR47eTPWEQxt01/uNH7a3uN96n/XM1WgmDiq
+         m6zXqXj24QDfFTM40Nr6e/Fdv7WpCyeaQofLG440VSgcArqdH9NNtUfroo5QX4TbyV/O
+         bKVwr2hIfZO9KfIv59ftH9SktiCEcih5g18SAOxKpteFSvCqd4n2Xwxm8VoBa7k0RE9r
+         3qjqVrriiMsk0nIw+l2RPWTNT8T8m6BsVu+CztR7T3wQTGea52SwPJINwDwanpE9WRUL
+         hamfjQ1/2hBrDPOISxvxd4rnpPxi6wbqGwoPqtq5IuPKjeGCyA4i1VF3+YNNym8EGqhZ
+         IJ7w==
+X-Forwarded-Encrypted: i=1; AJvYcCV+0E9ZSY3dvofPD/FF/nRr3jVP8/bI29blfDgRxOXinQH6wpuGTyMWHyiMBrKpI9DhoLQqgVH5+9l13nRyhwrbvbLbAXB3Dgoa9+jOwMdWrFo/nvO1jpgNYdY+BSusLk7gyTnpV+iVY79IN0JgUrK6eVJwjmy125H1C+EsNxGmy8C/NmJf
+X-Gm-Message-State: AOJu0YzUZX4ngWK7QZvzsgmwImZ5vf7kkBgHTFa5sACuM6Tx8f59EEd0
+	fNRXuSyXs71qHAcm3s3Oehm+q7LKWx394dEpreV0Gh5e/Lv51yd3
+X-Google-Smtp-Source: AGHT+IErq0HKb41NmWWelk0AEt/7g6IKL/rQ2BIKehRQQCwE4wQnHSqUR6unWrjrfHbC3RtCIF/r6w==
+X-Received: by 2002:a05:6a20:9f4f:b0:1c6:ed5e:24f with SMTP id adf61e73a8af0-1c8eae8dd84mr166176637.23.1723564345570;
+        Tue, 13 Aug 2024 08:52:25 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7c6979d3d58sm1638489a12.18.2024.08.13.08.52.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Aug 2024 08:52:24 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <10680d13-442d-4f12-a77c-2bd05f11dc10@roeck-us.net>
+Date: Tue, 13 Aug 2024 08:52:22 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,79 +78,206 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add EVERLIGHT
-To: Conor Dooley <conor@kernel.org>, Jan Kiszka <jan.kiszka@siemens.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- Bao Cheng Su <baocheng.su@siemens.com>, Chao Zeng <chao.zeng@siemens.com>,
- devicetree@vger.kernel.org
-References: <cover.1723527641.git.jan.kiszka@siemens.com>
- <1c79a109a7e91927a9380d2aee91fae32848d7f7.1723527641.git.jan.kiszka@siemens.com>
- <20240813-moaning-scrabble-48599c03b459@spud>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v3 1/1] dt-bindings: hwmon: Add maxim max31790
+To: Conor Dooley <conor@kernel.org>,
+ Chanh Nguyen <chanh@os.amperecomputing.com>
+Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Justin Ledford
+ <justinledford@google.com>, devicetree@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+ OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+ Open Source Submission <patches@amperecomputing.com>,
+ Phong Vo <phong@os.amperecomputing.com>,
+ Thang Nguyen <thang@os.amperecomputing.com>,
+ Quan Nguyen <quan@os.amperecomputing.com>
+References: <20240813084152.25002-1-chanh@os.amperecomputing.com>
+ <20240813084152.25002-2-chanh@os.amperecomputing.com>
+ <20240813-sister-hamburger-586eff8b45fc@spud>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240813-moaning-scrabble-48599c03b459@spud>
-Content-Type: text/plain; charset=UTF-8
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20240813-sister-hamburger-586eff8b45fc@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 13/08/2024 17:41, Conor Dooley wrote:
-> On Tue, Aug 13, 2024 at 07:40:40AM +0200, Jan Kiszka wrote:
->> From: Baocheng Su <baocheng.su@siemens.com>
+On 8/13/24 08:33, Conor Dooley wrote:
+> On Tue, Aug 13, 2024 at 08:41:52AM +0000, Chanh Nguyen wrote:
+>> Add device tree bindings and an example for max31790 device.
 >>
->> Add vendor prefix for EVERLIGHT Electronics Co., Ltd.
+>> Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
+>> ---
+>> Changes in v2:
+>>   - Update filename of the maxim,max31790.yaml                        [Krzysztof]
+>>   - Add the common fan schema to $ref                                 [Krzysztof]
+>>   - Update the node name to "fan-controller" in maxim,max31790.yaml   [Krzysztof]
+>>   - Drop "driver" in commit title                                     [Krzysztof]
+>> Changes in v3:
+>>   - Drop redundant "bindings" in commit title                         [Krzysztof]
+>>   - Add the clocks and resets property in example                     [Krzysztof]
+>>   - Add child node refer to fan-common.yaml                           [Krzysztof, Conor]
+>> ---
+>>   .../bindings/hwmon/maxim,max31790.yaml        | 81 +++++++++++++++++++
+>>   1 file changed, 81 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max31790.yaml
 >>
->> Signed-off-by: Baocheng Su <baocheng.su@siemens.com>
+>> diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max31790.yaml b/Documentation/devicetree/bindings/hwmon/maxim,max31790.yaml
+>> new file mode 100644
+>> index 000000000000..d28a6373edd3
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/hwmon/maxim,max31790.yaml
+>> @@ -0,0 +1,81 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/hwmon/maxim,max31790.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: The Maxim MAX31790 Fan Controller
+>> +
+>> +maintainers:
+>> +  - Guenter Roeck <linux@roeck-us.net>
 > 
-> This is missing your signoff Jan. With it,
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Why Guenter and not you?
+> 
 
-The next one as well...
+Fine with me, actually. We don't expect individual driver maintainers
+in the hardware monitoring subsystem, and this chip doesn't have an
+explicit maintainer. Forcing people to act as maintainer for .yaml
+files they submit can only result in fewer submissions. I prefer to be
+listed as maintainer over having no devicetree bindings.
 
-Best regards,
-Krzysztof
+>> +
+>> +description: >
+>> +  The MAX31790 controls the speeds of up to six fans using six
+>> +  independent PWM outputs. The desired fan speeds (or PWM duty cycles)
+>> +  are written through the I2C interface.
+>> +
+>> +  Datasheets:
+>> +    https://datasheets.maximintegrated.com/en/ds/MAX31790.pdf
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: maxim,max31790
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  resets:
+>> +    maxItems: 1
+>> +
+>> +  "#pwm-cells":
+>> +    const: 1
+>> +
+>> +patternProperties:
+>> +  "^fan-[0-9]+$":
+>> +    $ref: fan-common.yaml#
+>> +    unevaluatedProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    i2c {
+>> +      #address-cells = <1>;
+>> +      #size-cells = <0>;
+>> +
+>> +      fan-controller@21 {
+>> +        compatible = "maxim,max31790";
+>> +        reg = <0x21>;
+>> +        clocks = <&sys_clk>;
+>> +        resets = <&reset 0>;
+>> +      };
+>> +    };
+> 
+> What does this example demonstrate? The one below seems useful, this one
+> I don't quite understand - what's the point of a fan controller with no
+> fans connected to it? What am I missing?
+> 
+
+Just guessing, but maybe this is supposed to reflect a system which only monitors fan
+speeds but does not implement fan control.
+
+Guenter
+
+> Otherwise, this looks pretty good.
+> 
+> Cheers,
+> Conor.
+> 
+>> +  - |
+>> +    i2c {
+>> +      #address-cells = <1>;
+>> +      #size-cells = <0>;
+>> +
+>> +      pwm_provider: fan-controller@20 {
+>> +        compatible = "maxim,max31790";
+>> +        reg = <0x20>;
+>> +        clocks = <&sys_clk>;
+>> +        resets = <&reset 0>;
+>> +        #pwm-cells = <1>;
+>> +
+>> +        fan-0 {
+>> +          pwms = <&pwm_provider 1>;
+>> +        };
+>> +
+>> +        fan-1 {
+>> +          pwms = <&pwm_provider 2>;
+>> +        };
+>> +      };
+>> +    };
+>> +
+>> -- 
+>> 2.43.0
+>>
 
 
