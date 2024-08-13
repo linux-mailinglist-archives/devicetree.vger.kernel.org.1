@@ -1,119 +1,108 @@
-Return-Path: <devicetree+bounces-93339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1359950948
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 17:41:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 552F295094E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 17:43:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9EA1028339F
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 15:41:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D83A61F24099
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 15:43:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C92B51A070D;
-	Tue, 13 Aug 2024 15:41:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 086BB1A0725;
+	Tue, 13 Aug 2024 15:43:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rrlopLCH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dGl1r1pS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C66A191F71;
-	Tue, 13 Aug 2024 15:41:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2AF81A071F;
+	Tue, 13 Aug 2024 15:43:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723563667; cv=none; b=b1fdARi/7Pk3qsI4dEgH/+qy1CRKB5gLMoTKHdO3dBWYSlQ0diYJ9+dNk9yrtRVaVD9ns07Bhjy7CZYcEmuJ/UVqUgHpjFKWOekKyp9iTDqiUv63mKBP2U9gjtiQ+zdaFQ/9xHtIn7fz1wJX9XRJAo5l/a/FjmvcA4ZaFLr2+k8=
+	t=1723563796; cv=none; b=VD0WYnn3TJUcTTsfgHrrwmUWLsFZRY+iDoKjCJEghMqUnhMWTUJ47KmehqpwQZoNsxPn/ycD8te4jf7XS2lFMwQqAwhhYFqHJiDoq0Ju2w/iVI6fKiGcpoYDAGIx8rsWyLEruTvbu2/T/5RHu0mr+lLiuXa4JMpYjF0rHxyd3r4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723563667; c=relaxed/simple;
-	bh=hDd5r8fffmfLxn++tGZ27rMp6epK7JR5Z6262s6Dh+Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z8Xk1tI4lgocR400n92CNyMKaG3QL643dY8E4Ntadpi8Wmw6LTaJSbqe5m2N6h3Xz1DkZr+ezdRY3bGD67U9xrl74z39u7zT/M/MaNn3BV738PPVeryqEYAbk9SwbrLk8JxLdGPHjqmRsNMSOy3VkcJMhhzarjvZnkjMfwjYaEI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rrlopLCH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16730C4AF0B;
-	Tue, 13 Aug 2024 15:41:04 +0000 (UTC)
+	s=arc-20240116; t=1723563796; c=relaxed/simple;
+	bh=Np53EKDPhWsDscuSJzgCTLDXBemNhc1Uzl06zU9nmSk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=lG5zx8Cde2NIqJVY9gDD+fqrKHkJvKQkK6P+OsqZyOuO8+/vHXtmkWlxhh8ejV4h1ZVABiM8I2tAfXhKBm/rJALzeoq/yGpP0TP7puch4PIST9AiX/8dmb27R347XfiNMuRVf0BUOBDFoxZrJ8DE1t4r1o+VM5sqnTR5wOeW0sQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dGl1r1pS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C0E3C4AF09;
+	Tue, 13 Aug 2024 15:43:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723563667;
-	bh=hDd5r8fffmfLxn++tGZ27rMp6epK7JR5Z6262s6Dh+Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rrlopLCHKFeIke2iSLlpXJ27/g5vxsy1mcXGlzyHm9s8CX4RP8m57//zt25HQjooz
-	 4GCjD6Dqfl0GZJv8zUzPi7MlcnocqNPkJGStHrKZWPoQT/Qoh87n0iZjq7+HRbFySp
-	 0isK5Y0JyLGy2EYzt0HPnn1yDdUoRimPgEZVmFXOF1Jj8QiPXiRmMUGmDbkd+uTgqj
-	 fSLpiRUrP1hgsdu5vodPwx99iIiRdXfu5yTsrOv6QXA8S/a58QlA0TOHbstiFCDgXt
-	 vhhWhHEkvdFiphnLpZUMF2kxrGYZjQv5Mzvczih7prP8jeJ8C1sY2mHTop0oCWZegs
-	 XHb2o2DMgZhiw==
-Date: Tue, 13 Aug 2024 16:41:03 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Jan Kiszka <jan.kiszka@siemens.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	Bao Cheng Su <baocheng.su@siemens.com>,
-	Chao Zeng <chao.zeng@siemens.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add EVERLIGHT
-Message-ID: <20240813-moaning-scrabble-48599c03b459@spud>
-References: <cover.1723527641.git.jan.kiszka@siemens.com>
- <1c79a109a7e91927a9380d2aee91fae32848d7f7.1723527641.git.jan.kiszka@siemens.com>
+	s=k20201202; t=1723563796;
+	bh=Np53EKDPhWsDscuSJzgCTLDXBemNhc1Uzl06zU9nmSk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=dGl1r1pSbmOfcEgEwhOANNey/KTxpDRE0vmX8aoLfQPe4fvU4bzKrL1vZbc2O469d
+	 bBYVtEk7KkwxDCQv7z9YTJMyRwO30lu8BiUDceC1Ol8RmkmT/versIUMYf8O+XOQoB
+	 QhW6+h9PB5JAnzminaE29U7Cu8Ow/kNew71yZX2WKW+pNT+D0VMMcivnQrN2rX3MY1
+	 HPgV0gRrSu+yp6GpSNmdDhvHBTcXanbwAm1vlRH5fvsAw/YPzwQYw0E4BCHTWVfEKx
+	 tQ4Agvutj0rCvBzmfrWLZt6YBi8xDxLQumTTNyvZcRxlvTNR+VDmhVbUgmbXRcXbhR
+	 HtJXbxUZvq1sg==
+From: Mark Brown <broonie@kernel.org>
+To: claudiu.beznea@tuxon.dev, lgirdwood@gmail.com, 
+ nicolas.ferre@microchip.com, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ robh@kernel.org, alexandre.belloni@bootlin.com, 
+ Andrei Simion <andrei.simion@microchip.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org
+In-Reply-To: <20240812135231.43744-1-andrei.simion@microchip.com>
+References: <20240812135231.43744-1-andrei.simion@microchip.com>
+Subject: Re: (subset) [PATCH v2 0/7] Add input voltage suppliers for PMIC
+ MCP16502 regulators
+Message-Id: <172356379435.80200.17658639217254735748.b4-ty@kernel.org>
+Date: Tue, 13 Aug 2024 16:43:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="dn14bWwsrgFYSkP0"
-Content-Disposition: inline
-In-Reply-To: <1c79a109a7e91927a9380d2aee91fae32848d7f7.1723527641.git.jan.kiszka@siemens.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-37811
 
+On Mon, 12 Aug 2024 16:52:24 +0300, Andrei Simion wrote:
+> In this series of patches, support for the *-supply property [1]  is added
+> (correlated with supply_name [2]) from the core regulator.
+> Link [1]: https://github.com/torvalds/linux/blob/master/drivers/regulator/core.c#L471
+> Link [2]: https://github.com/torvalds/linux/blob/master/drivers/regulator/core.c#L2064
+> 
+> I modified the mcp16502.c driver and the dts that use this PMIC.
+> We added these improvements to provide a complete description of the board power scheme.
+> 
+> [...]
 
---dn14bWwsrgFYSkP0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied to
 
-On Tue, Aug 13, 2024 at 07:40:40AM +0200, Jan Kiszka wrote:
-> From: Baocheng Su <baocheng.su@siemens.com>
->=20
-> Add vendor prefix for EVERLIGHT Electronics Co., Ltd.
->=20
-> Signed-off-by: Baocheng Su <baocheng.su@siemens.com>
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
-This is missing your signoff Jan. With it,
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Thanks!
 
+[1/7] regulator: mcp16502: Add supplier for regulators
+      commit: 861289835002b733aa8715442ba555b1daa84baa
+[2/7] regulator: dt-bindings: microchip,mcp16502: Add voltage input supply documentation
+      commit: bf5ba94fa0b90c9433167bf143780af6c8805479
 
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Doc=
-umentation/devicetree/bindings/vendor-prefixes.yaml
-> index a70ce43b3dc0..1d2bf326fe91 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -486,6 +486,8 @@ patternProperties:
->      description: Eukr=E9a Electromatique
->    "^everest,.*":
->      description: Everest Semiconductor Co. Ltd.
-> +  "^everlight,.*":
-> +    description: EVERLIGHT Electronics Co., Ltd.
->    "^everspin,.*":
->      description: Everspin Technologies, Inc.
->    "^evervision,.*":
-> --=20
-> 2.43.0
->=20
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
---dn14bWwsrgFYSkP0
-Content-Type: application/pgp-signature; name="signature.asc"
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
------BEGIN PGP SIGNATURE-----
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrt+jgAKCRB4tDGHoIJi
-0mZcAQC/mXyBrL54wAf/6EC+tJaig0nyHnRC8PRaqdzL5dIKigEA00QcMaaABVaC
-KY86u5TeWp9F+WGvGcfb7FoZylH7QQM=
-=ILKK
------END PGP SIGNATURE-----
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
---dn14bWwsrgFYSkP0--
+Thanks,
+Mark
+
 
