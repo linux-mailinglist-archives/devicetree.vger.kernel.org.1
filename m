@@ -1,336 +1,235 @@
-Return-Path: <devicetree+bounces-93452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9DF6950FA5
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 00:22:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5556F950FB7
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 00:25:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F120B21447
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 22:22:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 170051C20DA3
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 22:25:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46CA91AAE37;
-	Tue, 13 Aug 2024 22:22:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 441101AAE39;
+	Tue, 13 Aug 2024 22:25:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="qp17ilNu"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="wmnF8SiS";
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="MU5OmhXe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C1651AAE10;
-	Tue, 13 Aug 2024 22:22:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723587752; cv=none; b=ge/48zwnsDxUL0tbq99hit9LZH1Zy5ErdToP3719W2QbYwkFRfqgl5RynEHzPr9mEtAG+RD90Ef/117eMRHx/lXqaDxpIzdUQEDXb//cJ8v2ddjnI3z+cHDMnsRfCXhYvlN/1EFjSb6Ymf+8SxYM/olhtXz+GO5f5a9RyKFPSnY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723587752; c=relaxed/simple;
-	bh=Nu47LHmyebcQD9ZUs/Zy0IP09UjDbX5KrKUZGzUsAWU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iXS530gMQ7czCznfwzTrI2vVMD+Bw3WW3WZiVkyIXtv9bBEtvYZZWX2A49veyB1akqq/TRteUlFtUigbS7JlhphcKJNtiO8ifeSVe794RmEbbYlid9W+hvvNlvBfXwXb0RDnn4pn0V2QMb04sWrF+fQzn6wzzsLPCwKeAvWrdik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=qp17ilNu; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B488E6B5;
-	Wed, 14 Aug 2024 00:21:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1723587690;
-	bh=Nu47LHmyebcQD9ZUs/Zy0IP09UjDbX5KrKUZGzUsAWU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qp17ilNugjZRTa/60aXRw9GY9bDN6b1ckMG5CxeidKiVrM+8U+dQZJIIqAy1bLS+d
-	 mut/AC0sYmLxhTvvQB1eDty0AorkMAEc2tuFlEELBXofTNNWPHoteI7fODcMFcFuSF
-	 ntB8wE2Bz9RRw+bAx0d+EdYbNkr+cEHcO+elh96Q=
-Date: Wed, 14 Aug 2024 01:22:04 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Adam Ford <aford173@gmail.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Paul Elder <paul.elder@ideasonboard.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Marek Vasut <marex@denx.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: imx8mp: Add DT nodes for the two ISPs
-Message-ID: <20240813222204.GA21831@pendragon.ideasonboard.com>
-References: <20240325151339.19041-1-laurent.pinchart@ideasonboard.com>
- <4879631.GXAFRqVoOG@steina-w>
- <20240325204924.GY18799@pendragon.ideasonboard.com>
- <2929432.e9J7NaK4W3@steina-w>
- <CAHCN7xLFjJUZQZwPbj5xyxnprwAV3TOvd_6A6sBwOPK+V6uQPA@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3DCD49658;
+	Tue, 13 Aug 2024 22:25:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=68.232.153.233
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723587907; cv=fail; b=EamGsE3WukK5SzioEqZ1ZXJqjnHYvXb6dYE8hh9uqsL1NBFnTeSQOlKZpPDqwT/OWvmDe4Dz4WPbuYT2Xp1XClqPhADdl7JQbm7CfzvNZpz4FaGDsOfZcKVciQhq85crsW2rEdtgz16jz+jBuEIrxnP0L0NiEecXD4wjXqrnBMI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723587907; c=relaxed/simple;
+	bh=n3jzvQq5GvyQpYVDwQqhFJqPLV5JsnE3DJ9doaUYGRw=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=BV4uEyJAcsLSiBfdZNU4yFtj71tlzbr65+aqaA9MWSRfN+kR1NjdcekNshbnEIzCFDRmr4OC/GUT0462tPuLlyiY+pGtD7k5oBg4+iGnilVVDFO8Umd8FlwaZadoBS3CiqPDMeRZb7xQKQTfprN99ZlM7Xy2jLuRR27YaOtbyZA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=wmnF8SiS; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=MU5OmhXe; arc=fail smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1723587905; x=1755123905;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=n3jzvQq5GvyQpYVDwQqhFJqPLV5JsnE3DJ9doaUYGRw=;
+  b=wmnF8SiS4k/P2PkLoJl8u8NSfayxJTxWS3XqnpQvn/hVfdCZHcQTUm7c
+   5MzhO2JVS9Qpr2s3b2zmvJ+I7vApioxv+1LVsky3GgLWnM3ScU0dAyFka
+   W6VKSz2jHr2HioOBIQ5JvvnaOOm713+IpXVJeLUu5H+S5zVBHSmURRDiF
+   peqUsKQYUoXenMi1axpSmsqJdI90oV3mkZhcs7GMVa/McQYxx/ffUvvfV
+   2dCKw3irVlLmQk00nsEyXDxGksbytx+YYYK804kgynX0+Jsb45fpjhBql
+   qrd3XZtfDEJhNloYXLnb6dfQ58FGRi8e+a6wLEI4jJ2cswIcDWz+1g+lv
+   w==;
+X-CSE-ConnectionGUID: zC3x/8P1RQSlUTn/km3DzA==
+X-CSE-MsgGUID: 0Uko6FPQSZuy4dbMPu0BOg==
+X-IronPort-AV: E=Sophos;i="6.09,287,1716274800"; 
+   d="scan'208";a="33385771"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 13 Aug 2024 15:25:03 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 13 Aug 2024 15:24:55 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (10.10.215.250)
+ by email.microchip.com (10.10.87.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Tue, 13 Aug 2024 15:24:55 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=KfW+wi7Naxi9v+SGdzw1/Pcdz8A569YMQXGgV8VJoVVQxuaNHuhjQi4GlrDYW/nyc91819zidhw8326wincuQ5UXHMvSmAE2eZT+jqrh+5xkEPv/7+RDV0nan6FQEiyjvCrdDgIJPZEmhYBIUU7Eslz7qbah//ffwik8VORReNr4CtJgMaWv1CHHSiUgo1I9L1oNkLFGFMqg5xXq9SjNpgVUeFJndC0uizoTfjB5WsMGsiP7PQEDGkl0enq1d6lpk3qR0zB3qDyUiQmHMT/0jiIZDRj9ntO0ufQ2m+5EjLbhW1tQOVVWp4fkqhH8Q8TBJFy/ccri++hhPr03zjlFsw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=N8JqWYsC7OlpN9NizGoVyA2V9ZUd3XckOS6YF7LSHQs=;
+ b=ZeCY4XsTOCagQOymS8sHyoa8xWwuaC71u08sL+EtW/BCxg48ChXKU53Jszh32tTk/+ucFBfAXAOOisCwwXDtDBNyNvyPSLscWfWeB68vav8gI6uMyTqWZikJhlFcC2zVaN/ls2rWaD+JkfO0Nw8vh7prRZYjbV0FNu3PrGiR88X9lIEPZIFhMro8ERMwfOOycNwGIcdkv5TNqt3h6ieK/DikD6N+lnQ426tubYCzaXk7UFPKIqKw1S98WeCRR/Qzw116t45rZHtpsLpDkKkSLpgJcDZBBm6/aNGWnfVB+5+aZa68XgOal5D3rfJK04fr4PFNIlTwIFkS8eys5B7gXA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=N8JqWYsC7OlpN9NizGoVyA2V9ZUd3XckOS6YF7LSHQs=;
+ b=MU5OmhXeIt4htAqnUeaYvOSjjunx2AFkSRR+KyaG7KEwpwv7yyoRxSZi5PDJApEBFLp6zWoPb5kVJfc7qqe3ybN8y4dZCmhnWNzuQpHb9U50CX/JEI7IF9X/zkjQcBovMbxVCfy8R0Ucj7C4nMmWfc4WoMTbZxFrUwKUIBBZjRB5TFtO2PgPaGnC5KuMEqdVKV+7Tk9JYATX+8B1zrmv7kjApw35sDCHZm7b24C4mNHxrua5waxcT6m6q1XSFHJwGuA0Ar0gqu6EG/7nB/Nw5JdlrPQc0fqQ3JHsgoGjV/9AdQAm0qcUhydx3DlGn2tc8P72V9YbSL6WHJUGOiy56A==
+Received: from BYAPR11MB3558.namprd11.prod.outlook.com (2603:10b6:a03:b3::11)
+ by SA1PR11MB6805.namprd11.prod.outlook.com (2603:10b6:806:24c::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.31; Tue, 13 Aug
+ 2024 22:24:52 +0000
+Received: from BYAPR11MB3558.namprd11.prod.outlook.com
+ ([fe80::c03a:b12:f801:d3f6]) by BYAPR11MB3558.namprd11.prod.outlook.com
+ ([fe80::c03a:b12:f801:d3f6%7]) with mapi id 15.20.7828.023; Tue, 13 Aug 2024
+ 22:24:52 +0000
+From: <Tristram.Ha@microchip.com>
+To: <andrew@lunn.ch>
+CC: <Woojung.Huh@microchip.com>, <UNGLinuxDriver@microchip.com>,
+	<devicetree@vger.kernel.org>, <f.fainelli@gmail.com>, <olteanv@gmail.com>,
+	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+	<pabeni@redhat.com>, <marex@denx.de>, <netdev@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH net-next 3/4] net: dsa: microchip: handle most interrupts
+ in KSZ9477/KSZ9893 switch families
+Thread-Topic: [PATCH net-next 3/4] net: dsa: microchip: handle most interrupts
+ in KSZ9477/KSZ9893 switch families
+Thread-Index: AQHa6rVcFRrm35N53kCqztaSs7g9LbIgxFsAgAUE27A=
+Date: Tue, 13 Aug 2024 22:24:52 +0000
+Message-ID: <BYAPR11MB3558DD354E8162D02E1FCC21EC862@BYAPR11MB3558.namprd11.prod.outlook.com>
+References: <20240809233840.59953-1-Tristram.Ha@microchip.com>
+ <20240809233840.59953-4-Tristram.Ha@microchip.com>
+ <301c5f90-0307-4c23-b867-6677d41dce47@lunn.ch>
+In-Reply-To: <301c5f90-0307-4c23-b867-6677d41dce47@lunn.ch>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BYAPR11MB3558:EE_|SA1PR11MB6805:EE_
+x-ms-office365-filtering-correlation-id: 1e77b791-c865-4422-f11e-08dcbbe6c06c
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB3558.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(7416014)(366016)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|376014|1800799024|7416014|366016|38070700018;
+x-microsoft-antispam-message-info: =?us-ascii?Q?FOCqDNeCBHg0zaPLX04tHhPryjSmH6oWPsgF0uAPEvdIZzfRZzfDKdYnItOu?=
+ =?us-ascii?Q?rQVnV3/XrJUdIsuspuAATBncsQfqRvN9n8ggzUtocXCMbAyi+18rgNRvZtaa?=
+ =?us-ascii?Q?1EHABD+TigIkEJ+GDc+A5oTOiYciOG8Rxy48ZdgLIBZJ6Q5s9Yq0n5GeFoeC?=
+ =?us-ascii?Q?1hWY+9kE3kM7EV50jMYfAeSQCXPqt1uJXLbQq+s6n5lNL2dLotU8u+8O0Z1P?=
+ =?us-ascii?Q?u7XP++N4G0SMCWECpjasm9zDc3LbeNdAIZJeRfJu6M30S1q0rY5QhG4O/NO5?=
+ =?us-ascii?Q?YaOdTdnKKhNI0JVdQVx45Xa2gK78YuubRYENgx8yTQPqRUPhjdZ27MPyrbNO?=
+ =?us-ascii?Q?3xiHoqIdiVGPCwocrhC/8wmdP6AKXz71NHndn1zYObmEMv4oR2OSul14C+KY?=
+ =?us-ascii?Q?99KtEUg7TkGbcuEMvELSEBTOy+cA8lpslxH5c3JQkFLlDZHsYvw5yIWdo2/w?=
+ =?us-ascii?Q?cTeTSf5e2Yj7SZn/1hHF84C7rfDhaTKrsWO1mKHssiamzOUlKHCRd0s9lPKW?=
+ =?us-ascii?Q?8xJMY6at8z0lYSqtdZCsQhQ+2Zf04G4/yS7XaveLxVh2wE6Cwoa6GTsmfLLk?=
+ =?us-ascii?Q?Tti1xKABg7R6z8HpBdShjVOp3uCRNPL37Bdc44tvINUTxxlBUOJIikWnTbb8?=
+ =?us-ascii?Q?KCCBYt0pgdtcbxHQogmoectrvaHKwbIDXD5kVYyOpvGyLKZharewJzM+kleO?=
+ =?us-ascii?Q?eH7BX1p9e/2meSO1O3r4MOyoL9Ewk5ldv6XCv5BLf/uMPyfrZ8y481iW1Nls?=
+ =?us-ascii?Q?D5vTaSzjU1JWkH2ieOXwN2FG6ZHgIwFXqzKoflweWoHM+5F1g9ZCDhCfDzxC?=
+ =?us-ascii?Q?7dVoVUyTWgUOLKujUc7RZutHDPWkCGXYY29uxSd/k+hLWK3ToQsySYS1AIpJ?=
+ =?us-ascii?Q?K0K0mDpyzWG/hf2/9cacex4MavJdy7Xkeu7ItgaFMTxVq1x1Rg46LTTqMzW5?=
+ =?us-ascii?Q?3PkCrbNh3PlJIJA9sub3J5LrJkvo0Bkpw7Ab6lSw4hC4zcP8MpL2W+Sbz7KK?=
+ =?us-ascii?Q?aAG/El4Dqmrm5WV20ghOuhHLYy4BLkHMYmSZ3BcD4w6VL7xGc0ZaTKdWsKLR?=
+ =?us-ascii?Q?CSVulfGwRRlB7vZ9+nVipjBGGON5qi8LoZ+AbNbax2fqKhJmddsBJkQafbkf?=
+ =?us-ascii?Q?jOX4XsM82f82so4ydSbzeyPg82qxIVsH4GaNq2VjIjXdZDuGkrxekX2cEkEa?=
+ =?us-ascii?Q?B05Wzy6V27gKy8alIJHEUYi2AA4ehSi7nVfHUzcG221b22fkT4rG4bEQ/X4P?=
+ =?us-ascii?Q?Plm1YjPEUnf2D0tIQj+23TI//59Qy4UEZLjVZrmRs7EPMPoOKJzaoPvrpgi8?=
+ =?us-ascii?Q?KnXmFnyTas/76iNoNgmEwWfbO93rUfBlY+tZSNs4K0b4tJ3TAOFwmuEwhG4H?=
+ =?us-ascii?Q?0I4fQD4=3D?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?aEJtiKybgQYzSXkLsyauAWMLd6Rs26yxSfb8NGKQocFLKbVRJTc+/8nY1wpn?=
+ =?us-ascii?Q?YpU4iSvYkCUVstDf275ZfB4TtmPMm1/ECFzK3kr/pfRVGn5cStAHf4GaDq6x?=
+ =?us-ascii?Q?DCCX1oh74HZPvRTM5140wxCgyCwxNuzYaaH/Y60VYGjTjlANj74ZhBZ7VAHI?=
+ =?us-ascii?Q?zfQTiKYVrKTiOkl0lloeQm+JYtOAkMegBpchn/LLH9C0jd3m54hu01X71/Xc?=
+ =?us-ascii?Q?jD9dobUHHduiRSLukWYOj9GTP+tdAh67vM3445dJ4WXWvE49X83J0ALtkcWY?=
+ =?us-ascii?Q?v2B3A/UzQ7SY7oK59iwkljEOT7l/j5uI8mwuHQu9V5z89kV2l5PvlSCyug4Z?=
+ =?us-ascii?Q?Zra+0ET/cbP76ZJ1UFhhqRwMU90cCyNkbHKIet7xcBwFXquIJ9BOh02q6Bhg?=
+ =?us-ascii?Q?M63qfO2aZPq4OMotmRSCBQP7cCriIGiUkPytJdvUDvgVqCHo5mZsbNgS0Fog?=
+ =?us-ascii?Q?l7QrFxnjwh21Ozx5mk9F4WArCB8kdAy+EFEqJoozsxK9B7sNBTOykVmBnAsN?=
+ =?us-ascii?Q?f4sYMLysBHzQXJd5QuGzRX0ORtS6NUfchMwtW20pioAzg723WLHCxDLocJiP?=
+ =?us-ascii?Q?e1hVcks34Y6nSMUn1rg+Ve3+8SsrPrSSvPeOBmX5+G/6r6wRyPWQK/xBFDou?=
+ =?us-ascii?Q?k+31BwIP6fbqc8z3u2EKn5+51SKqmu23jghXY28vIZdzhFs750BLlYiG+DmL?=
+ =?us-ascii?Q?z6VZ7glI5o5kHUc8vXktRYYTzRkmsZMFQN3NwGR7ALOX4UQmroFD2fladMpQ?=
+ =?us-ascii?Q?t5hax4SH7+Vult3ZsxZNMUKUo7/bfYF0fEmTN/sfJmGh4rI0lRBjd091IlSS?=
+ =?us-ascii?Q?Czz/VsJb6Wny5xtmjlMG/w0mn/B+IFpCl3yslj499Ddii4aSooQIS1uBXMba?=
+ =?us-ascii?Q?SfYOWBZBEkgtDODw9DZWaocrRqlW9hqguQ+D06ECZEf6Edk+WS95pTQG2O9B?=
+ =?us-ascii?Q?47TBkkW5qJOKOtROa0BX37bUPBRHHfwh9LKtFvY1vSkaLh3f7OblCzvVj7pf?=
+ =?us-ascii?Q?mrGaaljqMOBctq9gASNoZuzJFDDQTB7J4vkVPWKaJP9bxw/zS14FKnpeg4ir?=
+ =?us-ascii?Q?8CHNUvleUMbpeGEa4eyR03M6ZceGnx9HUd09RdOHH5q6AG67/DFZm/eY2HBp?=
+ =?us-ascii?Q?oSs0icELss++WJxgJsdpvMUogcu2pH1Z8KEJIfdSqKGvw8UlUb+DCbywznMK?=
+ =?us-ascii?Q?+tPJS995clbuVcQqueVWO5DgXU+9HxTiL44eXci06599iYkW+erTVsk4wsRD?=
+ =?us-ascii?Q?eF7wEoQIr5xu16fwySipjkDhZWP91Tdq/OQSvxRkckr2gL8shCJpyOYi+bvh?=
+ =?us-ascii?Q?iZHu5pXdTt6CeSunUoqnmRLT4oHLDqEQvJZ1KaAsSkvs64ulPngWbtvwofcZ?=
+ =?us-ascii?Q?g9xX3oUAjflczpJs7FkbxDKxIOY5zJqReCuDQoAlRANmF7UlfNST5U0COl/b?=
+ =?us-ascii?Q?u8U9ays7cQOEJ5Mus3bgFwPKxwjAL9FF8vlDOPwCoXZfFeNM0v9d3zw5u2dc?=
+ =?us-ascii?Q?af77ZgNAphAQ6DffKZTkbGoxCRTJaggG+y+O4r8E6UQnSk31pwnr1AtVT6mZ?=
+ =?us-ascii?Q?WwCjaIdjCeuciBZOAMTKcZE0z2ORDmQHn3fUlcYT?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAHCN7xLFjJUZQZwPbj5xyxnprwAV3TOvd_6A6sBwOPK+V6uQPA@mail.gmail.com>
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3558.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1e77b791-c865-4422-f11e-08dcbbe6c06c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Aug 2024 22:24:52.4909
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: X3DxBoPk3FuGePy5puCpZ9nBMZbKEOQmm4dmorBX5TZXO8r+0hcYIc2DZ8iFNidV4sIxSvxk5tsjLLSQjWzYDNQG37S+UiXLOiyDZpojmug=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6805
 
-On Sun, Jun 09, 2024 at 03:21:19PM -0500, Adam Ford wrote:
-> On Tue, Mar 26, 2024 at 2:14 AM Alexander Stein wrote:
-> > Am Montag, 25. März 2024, 21:49:24 CET schrieb Laurent Pinchart:
-> > > On Mon, Mar 25, 2024 at 04:52:21PM +0100, Alexander Stein wrote:
-> > > > Am Montag, 25. März 2024, 16:13:39 CET schrieb Laurent Pinchart:
-> > > > > From: Paul Elder <paul.elder@ideasonboard.com>
-> > > > >
-> > > > > The ISP supports both CSI and parallel interfaces, where port 0
-> > > > > corresponds to the former and port 1 corresponds to the latter. Since
-> > > > > the i.MX8MP's ISPs are connected by the parallel interface to the CSI
-> > > > > receiver, set them both to port 1.
-> > > > >
-> > > > > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-> > > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > > > ---
-> > > > > Changes since v1:
-> > > > >
-> > > > > - Fix clock ordering
-> > > > > - Add #address-cells and #size-cells to ports nodes
-> > > > > ---
-> > > > >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 50 +++++++++++++++++++++++
-> > > > >  1 file changed, 50 insertions(+)
-> > > > >
-> > > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > > > index bfc5c81a5bd4..1d2670b91b53 100644
-> > > > > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > > > @@ -1616,6 +1616,56 @@ isi_in_1: endpoint {
-> > > > >                           };
-> > > > >                   };
-> > > > >
-> > > > > +                 isp_0: isp@32e10000 {
-> > > > > +                         compatible = "fsl,imx8mp-isp";
-> > > > > +                         reg = <0x32e10000 0x10000>;
-> > > > > +                         interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
-> > > > > +                         clocks = <&clk IMX8MP_CLK_MEDIA_ISP_ROOT>,
-> > > > > +                                  <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
-> > > > > +                                  <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
-> > > > > +                         clock-names = "isp", "aclk", "hclk";
-> > > > > +                         assigned-clocks = <&clk IMX8MP_CLK_MEDIA_ISP>;
-> > > > > +                         assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_500M>;
-> > > > > +                         assigned-clock-rates = <500000000>;
-> > > > > +                         power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_ISP>;
-> > > > > +                         fsl,blk-ctrl = <&media_blk_ctrl 0>;
-> > > > > +                         status = "disabled";
-> > > > > +
-> > > > > +                         ports {
-> > > > > +                                 #address-cells = <1>;
-> > > > > +                                 #size-cells = <0>;
-> > > > > +
-> > > > > +                                 port@1 {
-> > > > > +                                         reg = <1>;
-> > > > > +                                 };
-> > > > > +                         };
-> > > > > +                 };
-> > > > > +
-> > > > > +                 isp_1: isp@32e20000 {
-> > > > > +                         compatible = "fsl,imx8mp-isp";
-> > > > > +                         reg = <0x32e20000 0x10000>;
-> > > > > +                         interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>;
-> > > > > +                         clocks = <&clk IMX8MP_CLK_MEDIA_ISP_ROOT>,
-> > > > > +                                  <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
-> > > > > +                                  <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
-> > > > > +                         clock-names = "isp", "aclk", "hclk";
-> > > > > +                         assigned-clocks = <&clk IMX8MP_CLK_MEDIA_ISP>;
-> > > > > +                         assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_500M>;
-> > > > > +                         assigned-clock-rates = <500000000>;
-> > > > > +                         power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_ISP>;
-> > > > > +                         fsl,blk-ctrl = <&media_blk_ctrl 1>;
-> > > > > +                         status = "disabled";
-> > > > > +
-> > > > > +                         ports {
-> > > > > +                                 #address-cells = <1>;
-> > > > > +                                 #size-cells = <0>;
-> > > > > +
-> > > > > +                                 port@1 {
-> > > > > +                                         reg = <1>;
-> > > > > +                                 };
-> > > > > +                         };
-> > > > > +                 };
-> > > > > +
-> > > >
-> > > > The patch itself is okay. But you might not be able to
-> > > > configure the parent of IMX8MP_CLK_MEDIA_ISP if dewarp is enabled before.
-> > > > This is due to IMX8MP_CLK_MEDIA_ISP_ROOT being enabled in 'pgc_ispdwp'
-> > > > power domain. Reparenting is not possible anymore in this case.
-> > >
-> > > Good point.
-> > >
-> > > > Something like
-> > > > ---8<---
-> > > > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > > @@ -1837,11 +1837,13 @@ media_blk_ctrl: blk-ctrl@32ec0000 {
-> > > >                                                   <&clk IMX8MP_CLK_MEDIA_APB>,
-> > > >                                                   <&clk IMX8MP_CLK_MEDIA_DISP1_PIX>,
-> > > >                                                   <&clk IMX8MP_CLK_MEDIA_DISP2_PIX>,
-> > > > +                                                 <&clk IMX8MP_CLK_MEDIA_ISP>,
-> > > >                                                   <&clk IMX8MP_VIDEO_PLL1>;
-> > > >                                 assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>,
-> > > >                                                          <&clk IMX8MP_SYS_PLL1_800M>,
-> > > >                                                          <&clk IMX8MP_VIDEO_PLL1_OUT>,
-> > > > -                                                        <&clk IMX8MP_VIDEO_PLL1_OUT>;
-> > > > +                                                        <&clk IMX8MP_VIDEO_PLL1_OUT>,
-> > > > +                                                        <&clk IMX8MP_SYS_PLL2_500M>;
-> > > >                                 assigned-clock-rates = <500000000>, <200000000>,
-> > > >                                                        <0>, <0>, <1039500000>;
-> > >
-> 
-> According to the i.MX8MP Data sheet, the nominal speed for
-> MEDIA_ISP_CLOCL_ROOT is 400MHZ with 500MHz being allowed in overdrive
-> mode.
-> 
-> I think this clock rate should drop to  the nominal value of 400MHz
-> and those boards who support overdrive can increase it to 500MHz to
-> avoid stiability issues and/or running out of spec.  I created an
-> imx8mm and imx8mn-overdrive.dtsi file.  If there is interest, I can do
-> the same for the 8MP as well.
+> > +static irqreturn_t ksz9477_handle_port_irq(struct ksz_device *dev, u8 =
+port,
+> > +                                        u8 *data)
+> > +{
+> > +     struct dsa_switch *ds =3D dev->ds;
+> > +     struct phy_device *phydev;
+> > +     int cnt =3D 0;
+> > +
+> > +     phydev =3D mdiobus_get_phy(ds->user_mii_bus, port);
+> > +     if (*data & PORT_PHY_INT) {
+> > +             /* Handle the interrupt if there is no PHY device or its
+> > +              * interrupt is not registered yet.
+> > +              */
+> > +             if (!phydev || phydev->interrupts !=3D PHY_INTERRUPT_ENAB=
+LED) {
+> > +                     u8 phy_status;
+> > +
+> > +                     ksz_pread8(dev, port, REG_PORT_PHY_INT_STATUS,
+> > +                                &phy_status);
+> > +                     if (phydev)
+> > +                             phy_trigger_machine(phydev);
+> > +                     ++cnt;
+> > +                     *data &=3D ~PORT_PHY_INT;
+> > +             }
+> > +     }
+>=20
+> This looks like a layering violation. Why is this needed? An interrupt
+> controller generally has no idea what the individual interrupt is
+> about. It just calls into the interrupt core to get the handler
+> called, and then clears the interrupt. Why does that not work here?
+>=20
+> What other DSA drivers do if they need to handle some of the
+> interrupts is just request the interrupt like any other driver:
+>=20
+> https://elixir.bootlin.com/linux/v6.10.3/source/drivers/net/dsa/mv88e6xxx=
+/pcs-
+> 639x.c#L95
 
-I've experimented with this, and lowered the ISP clock to 400MHz by
-selecting IMX8MP_SYS_PLL1_400M as the parent. I couldn't capture images
-anymore :-S
+The PHY and ACL interrupt handling can be removed, but the SGMII
+interrupt handling cannot as the SGMII port is simulated as having an
+internal PHY but the regular PHY interrupt processing will not clear the
+interrupt.
 
-The camera sensor I'm using outputs a 74.25 Mpix/s pixel rate, which is
-way below the maximum in either normal or overdrive mode. The reference
-manual states, regarding the CSI-2 receivers,
-
-- When one ISP is used, MIPI CSI interface 1 supports:
-  - Pixel clock up to 400MHz at nominal voltage and 500MHz at overdrive
-    voltage
-- When two ISPs are used, both MIPI CSI interfaces supports:
-  - Pixel clock up to 266MHz at nominal and overdrive voltage
-
-The datasheets for both the CEC and IEC variants give slightly
-different information:
-
-- For single Camera, MIPI CSI 1 can support up to 400/500 MHz pixel
-  clock in the Nominal/Overdrive mode.
-- For single Camera, MIPI CSI 2 can support up to 277 MHz pixel clock.
-- For dual Camera, both MIPI CSI can support up to 266 MHz pixel clock.
-
-The also list the maximum clock frequencies as
-
-- MEDIA_ISP_CLK_ROOT: nominal 400 MHz, overdrive 500 MHz
-- MEDIA_CAM1_PIX_CLK_ROOT: nominal 400 MHz, overdrive 500 MHz
-- MEDIA_CAM2_PIX_CLK_ROOT: nominal 277 MHz, overdrive 277 MHz
-
-(On a side note, the revision history indicates the revision 2.1 of the
-datasheet changed MEDIA_CAM2_PIX_CLK_ROOT from 266/266 MHz to 277/277
-MHz, but the 277 MHz frequency has been listed since revision 0.)
-
-The MIPI CSI-2 RX (MIPI_CSI) receives data for the camera sensor at the
-CSI-2 link frequency rate. It reclocks the data stream using an internal
-FIFO, with an output pixel rate selected by the
-IMX8MP_CLK_MEDIA_CAM1_PIX_ROOT (for the first CSI-2 receiver) or
-IMX8MP_CLK_MEDIA_CAM2_PIX_ROOT (for the second CSI-2 receiver). Those
-clocks support the following parents, with the following frequencies on
-my system:
-
-- 24M_REF_CLK		24 MHz
-- SYSTEM_PLL1_CLK	800 MHz
-- SYSTEM_PLL1_DIV3	266 MHz
-- SYSTEM_PLL2_CLK	1000 MHz
-- SYSTEM_PLL2_DIV4	250 MHz
-- SYSTEM_PLL3_CLK	600 MHz
-- AUDIO_PLL2_CLK	361.2672 MHz
-- VIDEO_PLL_CLK		400 MHz
-
-This makes it easy to configure the CAM PIX ROOT clock to 266 MHz or 400
-MHz easily. Achieving 277 MHz or 500 MHz would I assume require
-modifying some of the PLL configurations. I'm not sure how the clock
-tree was designed to be configured for overdrive mode.
-
-imx8mp.dtsi configures the CAM1_PIX and CAM2_PIX clocks with
-
-	assigned-clocks = <&clk IMX8MP_CLK_MEDIA_CAM1_PIX>;
-	assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>;
-	assigned-clock-rates = <266000000>;
-
-and
-
-	assigned-clocks = <&clk IMX8MP_CLK_MEDIA_CAM1_PIX>;
-	assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>;
-	assigned-clock-rates = <266000000>;
-
-This is misleading as it selects the SYSTEM_PLL2_DIV4 parent, with a
-clock frequency of 250 MHz. I'll send a patch to set the assigned clock
-rate to 250 MHz to avoid misunderstandings, we can in parallel decide if
-the parent should be set to SYSTEM_PLL1_DIV3 instead.
-
-As the CSI-2 transmits, as far as I can tell, one pixel per clock cycle
-to the ISP for raw sensors, this is well within the hardware limits.
-
-The clock domains of the ISP are briefly described in the reference
-manual as follows:
-
-- Core Clock (clk) - Core clock is the main clock domain used by the ISP
-  modules and is the biggest clock domain in the ISP.
-- Sensor Clock (sclk) - The sensor clock domain is selected from the
-  sensor interface and is the data input clock.
-- AHB Clock (hclk) - The AHB Clock is the AHB Interface clock.
-- AXI Clock (m_hclk) - The AXI Clock is the AXI Interface clock.
-
-Additionally, the reference manual states that
-
-    The communication between the different domains in ISP occurs mostly
-    by way of asynchronous FIFOs. All clocks are asynchronous to each
-    other. There is no communication between AHB and AXI clock domains.
-
-The sensor clock (sclk) is the clock received by the ISP, which is the
-MIPI_CSI output clock (MEDIA_CAM[12]_PIX_CLK_ROOT). This clock isn't
-listed in the ISP DT node, as it isn't controlled directly by the ISP.
-It isn't clear where the transition to the core clock (clk) happens, I
-would assume quite early in the ISP pipeline. That clock is the
-MEDIA_ISP_CLOCK_ROOT, which that patch configures to 500 MHz. My
-assumption is that the core clock frequency needs to be at least as high
-as the sensor clock, but as configuring the ISP clock to 400 MHz breaks
-image capture, there's something I'm missing.
-
-As the 500 MHz ISP clock frequency is exactly twice the sensor clock
-frequency in my setup, I wondered if there could be a x2 relationship
-between those two clocks. I have tried to increase the CAM1_PIX clock to
-266 MHz, and the ISP then operates correctly with a 500 MHz ISP clock.
-There must thus be something else.
-
-I'm not sure how to move forward. There's no further information I could
-find in the datasheet or reference manual that would hint how to operate
-with a 400 MHz ISP clock frequency. We may require help from someone at
-NXP. In the meantime, could we merge this patch with a 500 MHz ISP
-clock frequency (setup in the blk-ctrl@32ec0000 node instead of the isp
-nodes) ?
-
-> I haven't gone through all the clocks to determine if/what clocks are
-> being overdriven.
-> 
-> > > With an assigned clock rate here too then ?
-> >
-> > You are right. This posted diff is what I was using for a while now though.
-> > Apparently the clock frequency was still correct.
-> >
-> > > >                                 #power-domain-cells = <1>;
-> > > > ---8<---
-> > > > is needed.
-> > >
-> > > Sascha, are you OK with this approach ?
-> 
-> This patch appears to have gone stale.  Is there any way we can push
-> this forward?
-> 
-> > > > >                   dewarp: dwe@32e30000 {
-> > > > >                           compatible = "nxp,imx8mp-dw100";
-> > > > >                           reg = <0x32e30000 0x10000>;
-> > > > >
-> > > > > base-commit: 4cece764965020c22cff7665b18a012006359095
-
--- 
-Regards,
-
-Laurent Pinchart
+Furthermore, there will be a situation where the SGMII interrupt is
+triggered before the PHY interrupt handling function is registered.
 
