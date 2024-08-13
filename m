@@ -1,60 +1,58 @@
-Return-Path: <devicetree+bounces-93085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2D8394FB6E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 03:54:38 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B1F894FB75
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 03:56:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 213CC1C21CD8
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 01:54:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CE18BB21274
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 01:56:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E17F111A8;
-	Tue, 13 Aug 2024 01:54:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 881F279C2;
+	Tue, 13 Aug 2024 01:56:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="IHlD5uku"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="bbcMG8/N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9FEF8485;
-	Tue, 13 Aug 2024 01:54:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C13515661;
+	Tue, 13 Aug 2024 01:56:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723514065; cv=none; b=qBkxk6NjbTNV5HjK6BXewM8roCjuZ5TXrTJ7SQPg8ZYOtCrShy5DGcBamih8JzTp8qYx2OiDuIdhi8/MTCOyd7qZ+eitCwbqcG9zHE25aQ8K7eTR4D4AuXmZ8mL+rkAzG7u7KozTBIDzkCvsY+WGY8b+MNcmtUrXgLy9mIusNX0=
+	t=1723514174; cv=none; b=JopJyja7yC7dPfNQ7UvncNtOlseDUtARjSlDIjs86PbFCeKckFmsyvrj+aDe3AqFZ9iEhKEFytaNSkzG6NzMg/rkqfwk02oFWVqorYbVgswdmoScZkjm7ruwJrwhIng1nOw1KMMJ0tRV150Ec77+T7HsrO4YqYnxmY0LLXVSFF4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723514065; c=relaxed/simple;
-	bh=akMXU70pK8hT9LhVoCYs6vNxj5TFyaPo9utkufjeggk=;
+	s=arc-20240116; t=1723514174; c=relaxed/simple;
+	bh=ZY1piJwxyQwGaYmk+nhyzHA5TU5Qb5QWc0VzM70zazA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ubDgwJcG8h3T/k1YtU6MLLFdGyDys/6b+u2+LPuqT28EFogqtF7+tVMyZP1ai1aGK9ekBf5c1rzODe3skwY841bA8wq11leChay48myCmEFrRTMZQrCbWzW7vbhz40FuiKa9gj5jXwLzDOTODhM69mvH8ujh/A4Jclp+j8zX03o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=IHlD5uku; arc=none smtp.client-ip=220.197.32.16
+	 Content-Type:Content-Disposition:In-Reply-To; b=sEFCFTjyztSS5YAkG+1aKf9TGON6gzrZwunVhLr3ifwbS5cbPZ7US7ZkeMMaF4AKfzsbQ1sIdD7tLkvBQJyvqULz/DqknQF361c8G0DyVhB86iJdU2oLoFuZygTr5WaDQsREIMMGgLmpNg71YmDH6AFURF5ixNacreWcsD142C0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=bbcMG8/N; arc=none smtp.client-ip=1.95.21.16
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=5kPfqD68TfyrjDXHavXG5xz+7qcCkFKuvLVhShQxrxc=;
-	b=IHlD5ukuMBCiIAeWlEOImgZxFAGtQv245UzKop6QxrJvXNSL2kqdiFKakDoU+x
-	Uzrkzlc/B/Q1PMTZT2fox+uqWGle6gLNBXAovGWSAvbhghcXQbMNau+DpW4mPxFc
-	ctNiqL+/soX3T2mKXRmBIginVpOKkbpmNbTqfz20CpLrs=
+	Content-Type; bh=VQdxyu97o3wcgiAN0cxydZpfAzOKGxlmmqutF9VntPc=;
+	b=bbcMG8/NPSBOOuHrog7LAoE5jxUqSaj5TuqnR2jJBCva2fxrEQifQM2tSqVcYX
+	YFjFthaZKdekzUi25MJIo91fW6TMqBxOUUKAv5usC1Tp7DXcHEfgFlqCDkYUzv6A
+	usI3nsM9YRyf1aOhkjL/N8LGgjHNgy+0TpGq6ni8Eln50=
 Received: from dragon (unknown [117.62.10.86])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgD3X4igvLpmL7ZRAg--.33993S3;
-	Tue, 13 Aug 2024 09:53:38 +0800 (CST)
-Date: Tue, 13 Aug 2024 09:53:36 +0800
+	by gzsmtp3 (Coremail) with SMTP id M88vCgDHL+0avbpmfGEXAg--.53764S3;
+	Tue, 13 Aug 2024 09:55:39 +0800 (CST)
+Date: Tue, 13 Aug 2024 09:55:37 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
 To: Alexander Stein <alexander.stein@ew.tq-group.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-	linux@ew.tq-group.com, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 02/14] arm64: dts: freescale: imx93-tqma9352: improve pad
- configuration
-Message-ID: <Zrq8oIxUw6C2g8Zc@dragon>
+	Fabio Estevam <festevam@gmail.com>, linux@ew.tq-group.com,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 03/14] arm64: dts: freescale: imx93-tqma9352: Add PMIC
+ node
+Message-ID: <Zrq9GSPJmXFQxL94@dragon>
 References: <20240724125901.1391698-1-alexander.stein@ew.tq-group.com>
- <20240724125901.1391698-3-alexander.stein@ew.tq-group.com>
+ <20240724125901.1391698-4-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,22 +61,201 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240724125901.1391698-3-alexander.stein@ew.tq-group.com>
-X-CM-TRANSID:Mc8vCgD3X4igvLpmL7ZRAg--.33993S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUxCJmUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCwk6ZWa6Xp3TZQABs1
+In-Reply-To: <20240724125901.1391698-4-alexander.stein@ew.tq-group.com>
+X-CM-TRANSID:M88vCgDHL+0avbpmfGEXAg--.53764S3
+X-Coremail-Antispam: 1Uf129KBjvJXoWxWryrAr4xuw1Dtr4UZrW3trb_yoWrtryrpF
+	98WwsrCrWFyFyxtw45W3W3KayYgr1Ykas7ur95JFWFyrW0y3ZrKrnFkF1rJ3WrJrn7Xr4Y
+	yrWUury7KF12g3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jb5rcUUUUU=
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiERU6ZWa6XtbbPQAAsp
 
-On Wed, Jul 24, 2024 at 02:58:49PM +0200, Alexander Stein wrote:
-> From: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+On Wed, Jul 24, 2024 at 02:58:50PM +0200, Alexander Stein wrote:
+> With driver support in place add the PMIC node and remove the
+> fixed-regulators for rails provided by PMIC.
 > 
-> - disable PU/PD if already done with external resistors
-> - do not configure Schmitt Trigger for outputs
-> - do not configure DSE / FSEL for inputs
-> 
-> Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
 > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+>  .../boot/dts/freescale/imx93-tqma9352.dtsi    | 113 ++++++++++++++----
+>  1 file changed, 92 insertions(+), 21 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx93-tqma9352.dtsi b/arch/arm64/boot/dts/freescale/imx93-tqma9352.dtsi
+> index d07eca6526db..ddb4f452ba2d 100644
+> --- a/arch/arm64/boot/dts/freescale/imx93-tqma9352.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx93-tqma9352.dtsi
+> @@ -25,20 +25,6 @@ linux,cma {
+>  		};
+>  	};
+>  
+> -	reg_v1v8: regulator-v1v8 {
+> -		compatible = "regulator-fixed";
+> -		regulator-name = "V_1V8";
+> -		regulator-min-microvolt = <1800000>;
+> -		regulator-max-microvolt = <1800000>;
+> -	};
+> -
+> -	reg_v3v3: regulator-v3v3 {
+> -		compatible = "regulator-fixed";
+> -		regulator-name = "V_3V3";
+> -		regulator-min-microvolt = <3300000>;
+> -		regulator-max-microvolt = <3300000>;
+> -	};
+> -
+>  	/* SD2 RST# via PMIC SW_EN */
+>  	reg_usdhc2_vmmc: regulator-usdhc2 {
+>  		compatible = "regulator-fixed";
+> @@ -47,14 +33,14 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
+>  		regulator-name = "VSD_3V3";
+>  		regulator-min-microvolt = <3300000>;
+>  		regulator-max-microvolt = <3300000>;
+> -		vin-supply = <&reg_v3v3>;
+> +		vin-supply = <&buck4>;
+>  		gpio = <&gpio3 7 GPIO_ACTIVE_HIGH>;
+>  		enable-active-high;
+>  	};
+>  };
+>  
+>  &adc1 {
+> -	vref-supply = <&reg_v1v8>;
+> +	vref-supply = <&buck5>;
+>  };
+>  
+>  &flexspi1 {
+> @@ -105,6 +91,91 @@ se97_som: temperature-sensor@1b {
+>  		reg = <0x1b>;
+>  	};
+>  
+> +	pca9451a: pmic@25 {
+> +		compatible = "nxp,pca9451a";
+> +		reg = <0x25>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_pca9451>;
+> +		interrupt-parent = <&gpio1>;
+> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +		regulators {
+> +			/* V_0V8_SOC - hw developer guide: 0.75 .. 0.9 */
+> +			buck1: BUCK1 {
+> +				regulator-name = "BUCK1";
+> +				regulator-min-microvolt = <750000>;
+> +				regulator-max-microvolt = <900000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay = <3125>;
+> +			};
+> +
+> +			/* V_DDRQ - 1.1 LPDDR4 or 0.6 LPDDR4X */
+> +			buck2: BUCK2 {
+> +				regulator-name = "BUCK2";
+> +				regulator-min-microvolt = <600000>;
+> +				regulator-max-microvolt = <1100000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-ramp-delay = <3125>;
+> +			};
+> +
+> +			/* V_3V3 - EEPROM, RTC, ... */
+> +			buck4: BUCK4{
 
-Applied, thanks!
+Missing space before braces.
+
+> +				regulator-name = "BUCK4";
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			/* V_1V8 - SPI NOR, eMMC, RAM VDD1... */
+> +			buck5: BUCK5{
+
+Ditto
+
+Shawn
+
+> +				regulator-name = "BUCK5";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			/* V_1V1 - RAM VDD2*/
+> +			buck6: BUCK6 {
+> +				regulator-name = "BUCK6";
+> +				regulator-min-microvolt = <1100000>;
+> +				regulator-max-microvolt = <1100000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			/* V_1V8_BBSM, fix 1.8 */
+> +			ldo1: LDO1 {
+> +				regulator-name = "LDO1";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			/* V_0V8_ANA */
+> +			ldo4: LDO4 {
+> +				regulator-name = "LDO4";
+> +				regulator-min-microvolt = <800000>;
+> +				regulator-max-microvolt = <800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			/* V_SD2 - 3.3/1.8V USDHC2 io Voltage */
+> +			ldo5: LDO5 {
+> +				regulator-name = "LDO5";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +		};
+> +	};
+> +
+>  	pcf85063: rtc@51 {
+>  		compatible = "nxp,pcf85063a";
+>  		reg = <0x51>;
+> @@ -116,28 +187,28 @@ eeprom0: eeprom@53 {
+>  		reg = <0x53>;
+>  		pagesize = <16>;
+>  		read-only;
+> -		vcc-supply = <&reg_v3v3>;
+> +		vcc-supply = <&buck4>;
+>  	};
+>  
+>  	eeprom1: eeprom@57 {
+>  		compatible = "atmel,24c64";
+>  		reg = <0x57>;
+>  		pagesize = <32>;
+> -		vcc-supply = <&reg_v3v3>;
+> +		vcc-supply = <&buck4>;
+>  	};
+>  
+>  	/* protectable identification memory (part of M24C64-D @57) */
+>  	eeprom@5f {
+>  		compatible = "atmel,24c64d-wl";
+>  		reg = <0x5f>;
+> -		vcc-supply = <&reg_v3v3>;
+> +		vcc-supply = <&buck4>;
+>  	};
+>  
+>  	imu@6a {
+>  		compatible = "st,ism330dhcx";
+>  		reg = <0x6a>;
+> -		vdd-supply = <&reg_v3v3>;
+> -		vddio-supply = <&reg_v3v3>;
+> +		vdd-supply = <&buck4>;
+> +		vddio-supply = <&buck4>;
+>  	};
+>  };
+>  
+> -- 
+> 2.34.1
+> 
 
 
