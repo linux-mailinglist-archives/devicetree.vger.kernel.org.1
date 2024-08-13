@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-93226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13BBC95005B
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 10:51:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADA4A950068
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 10:53:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 959D81F22DA8
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 08:51:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36444286C3B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2024 08:53:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DB70187349;
-	Tue, 13 Aug 2024 08:50:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7429C13C3D3;
+	Tue, 13 Aug 2024 08:53:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p3WkAFc4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MPewhiLQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 755FC17B515;
-	Tue, 13 Aug 2024 08:50:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 426D7137C2A;
+	Tue, 13 Aug 2024 08:53:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723539044; cv=none; b=ZLn2D4pVMNfkj5fZuTeZcVJxIC6eCLAiKIv5idDEP8u1FMVpn6+wb8pa9wKZfmWn+PaG5ktjdqqi9fznFthMNyV8Di9rruK+psD3vnQouP2QrtT/Wi9k1kTCwE8sNrm7VZJDw63PO5kGhtZwtI7SM4SF/wScDeGS2iv4yYUu6cU=
+	t=1723539186; cv=none; b=bTI5xL+p0dQonIczEgO++jXIUzrzuuj5tQuRoabP/bnaxbx9uksiawXJHdyS8dh/yXBI79oMBIfMExaA2gK3QNmxqsp2+eAxEC7y01UMIJcJ5So5LT0JEWcEEVGYjX/426TdFhcZHOaOb+/HbGpQWzF4nlCf6spN/+xihVkvmqk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723539044; c=relaxed/simple;
-	bh=gtuifudgwahKqdOVHCJMjWSG4/aQXEWncE/IEcpNIq0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=LtQPmjrpUrcoLN+r6LvHGWmEjjUz9qP4qcox4Y5KLib4kONzvsrivl1XzTGKTdmsHhpOunlE8wajlac4B5k1tID2CwzHN1EESBrYWd5o/97tKORt6wlzk9MyoiSaUr7BgXpYkpBZo6FL8wqq+T3hh2RQLW2WTIS4wRCTVVyucBc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p3WkAFc4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E08FC4AF10;
-	Tue, 13 Aug 2024 08:50:39 +0000 (UTC)
+	s=arc-20240116; t=1723539186; c=relaxed/simple;
+	bh=k6q09zXUlDia54jq/xKGzXJnGQ0guxklfvHLKZai6vs=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=lcQRcXvxe28dEr4FOpkS1Y28+Fo0PS6TsySyH4NzwhpcOXYzb5Mf2OkP3chkK/kLwF0bR5nlTXiBkFwEgHUdIwmAY4sb8ElLPAYM7reOIc/JGWg39tHf8kAW1jEEMLOO3r5x0VUGo5VHrhyUC1Eceep5n3NEyPZemjjRb+7rp70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MPewhiLQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBC3FC4AF0B;
+	Tue, 13 Aug 2024 08:53:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723539043;
-	bh=gtuifudgwahKqdOVHCJMjWSG4/aQXEWncE/IEcpNIq0=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=p3WkAFc4JdgTSRLKQoLOCBblIvfl/Rk7WagXH+jjcFe3TuYu5sNFEayiYjo9RMQbd
-	 PGbLZdlhWRR4vEhHWG8yo5AV7CVFRHUCNvnkNue43BAYwQbBsK0BSgD0lKoHXohXGA
-	 vmDv+HdBitf2/CSDycbOr1wtZ1LFy2tCV4o+hKXL7JQzzXHcq8Ytam52ltFvIZrBBr
-	 kjp38hvAfthE1HjJ3O18n0ObFJj7bULZOSFuuM2CKPN0gJ9qj8cLzr13KM4ihacoUW
-	 pbzPigFDnYwvSZhwk7crzuNOpr3YQm9nvcAkGG57ZKgmS6dG4BMoHEq5GUxn/xHFkw
-	 uh+kpy7ALdFKA==
-Message-ID: <315f9095-8928-44a9-bab7-a924a070eded@kernel.org>
-Date: Tue, 13 Aug 2024 10:50:37 +0200
+	s=k20201202; t=1723539185;
+	bh=k6q09zXUlDia54jq/xKGzXJnGQ0guxklfvHLKZai6vs=;
+	h=Date:From:Subject:To:Cc:References:In-Reply-To:From;
+	b=MPewhiLQDuK/OGZhVrwrM1oi2ilFKvSUOVQZFfRPVTykplfF3sne2SAET6ST5rS2j
+	 4vhlG631/au8jNncfrv9KX/E6Gr/YtjJq99wIMibiwAlqtdpimCLz5zWBnK4CJdcuu
+	 3gFA9ayMTlAod2aBSxvqhzJ5QKK7hfPLtGqM1zr+m7Hn0biS+N1jUJ8jM3xa1zqPaw
+	 YjcCRQSX6ACrKYZcyq/CrEng4+v7oaX4jATF2qx8rNCxtre4ONKc7K0mOLxeQuMI4h
+	 raqmUEpujWbot2TitH/7jTVcc05hL4vGcxLw7N7T+Cecz2Qnes+piiZHUFnlPZIIoL
+	 Z+hPAyXtIYR5w==
+Message-ID: <851c0b45-26d4-4790-93d3-b5be0c0b100c@kernel.org>
+Date: Tue, 13 Aug 2024 10:52:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] irqchip/aspeed-intc: Add support for 10 INTC
- interrupts on AST27XX platforms
-To: Kevin Chen <kevin_chen@aspeedtech.com>, tglx@linutronix.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
- andrew@codeconstruct.com.au, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org
-References: <20240813074338.969883-1-kevin_chen@aspeedtech.com>
- <20240813074338.969883-3-kevin_chen@aspeedtech.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v5 1/4] dt-bindings: imx6q-pcie: Add reg-name "dbi2" and
+ "atu" for i.MX8M PCIe Endpoint
+To: Richard Zhu <hongxing.zhu@nxp.com>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, shawnguo@kernel.org, l.stach@pengutronix.de
+Cc: devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ kernel@pengutronix.de, imx@lists.linux.dev
+References: <1723534943-28499-1-git-send-email-hongxing.zhu@nxp.com>
+ <1723534943-28499-2-git-send-email-hongxing.zhu@nxp.com>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -104,114 +104,54 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240813074338.969883-3-kevin_chen@aspeedtech.com>
+In-Reply-To: <1723534943-28499-2-git-send-email-hongxing.zhu@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/08/2024 09:43, Kevin Chen wrote:
-> There are 10 interrupt source of soc0_intc in CPU die INTC.
->   1. 6 interrupt sources in IO die of soc1_intc0~soc1_intc5.
->   2. 2 interrupt sources in LTPI of ltpi0_intc0 and ltpi0_intc1.
->   3. 2 interrupt sources in LTPI of ltpi1_intc0 and ltpi1_intc1.
-> Request GIC interrupt to check each bit in status register to do next
-> level INTC handler.
+On 13/08/2024 09:42, Richard Zhu wrote:
+> Add reg-name: "dbi2", "atu" for i.MX8M PCIe Endpoint.
 > 
-> In next level INTC handler of IO die or LTPI INTC using soc1_intcX combining
-> 32 interrupt sources into soc0_intc11 in CPU die. In soc1_intcX, handler
-> would check 32 bit of status register to do the requested device
-> handler.
-> ---
->  drivers/irqchip/Makefile          |   1 +
->  drivers/irqchip/irq-aspeed-intc.c | 198 ++++++++++++++++++++++++++++++
->  2 files changed, 199 insertions(+)
->  create mode 100644 drivers/irqchip/irq-aspeed-intc.c
+> For i.MX8M PCIe EP, the dbi2 and atu addresses are pre-defined in the
+> driver. This method is not good.
 > 
-> diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
-> index 15635812b2d6..d2fe686ae018 100644
-> --- a/drivers/irqchip/Makefile
-> +++ b/drivers/irqchip/Makefile
-> @@ -84,6 +84,7 @@ obj-$(CONFIG_MVEBU_SEI)			+= irq-mvebu-sei.o
->  obj-$(CONFIG_LS_EXTIRQ)			+= irq-ls-extirq.o
->  obj-$(CONFIG_LS_SCFG_MSI)		+= irq-ls-scfg-msi.o
->  obj-$(CONFIG_ARCH_ASPEED)		+= irq-aspeed-vic.o irq-aspeed-i2c-ic.o irq-aspeed-scu-ic.o
-> +obj-$(CONFIG_MACH_ASPEED_G7)		+= irq-aspeed-intc.o
+> In commit b7d67c6130ee ("PCI: imx6: Add iMX95 Endpoint (EP) support"),
+> Frank suggests to fetch the dbi2 and atu from DT directly. This commit is
+> preparation to do that for i.MX8M PCIe EP.
+> 
+> These changes wouldn't break driver function. When "dbi2" and "atu"
+> properties are present, i.MX PCIe driver would fetch the according base
+> addresses from DT directly. If only two reg properties are provided, i.MX
+> PCIe driver would fall back to the old method.
+> 
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
-There is no such thing as CONFIG_MACH_ASPEED_G7. And there will never be.
+This is some random tagging! You add tags, then drop, then add other
+people. No, it does not work like this.
 
-You already received feedback on this, so why do you keep pushing your
-solution? You did not respond to any feedback given, just send the same
-and the same till we agree?
+Where was this tag given?
 
-NAK.
+Where are other tags?
 
->  obj-$(CONFIG_STM32MP_EXTI)		+= irq-stm32mp-exti.o
->  obj-$(CONFIG_STM32_EXTI) 		+= irq-stm32-exti.o
->  obj-$(CONFIG_QCOM_IRQ_COMBINER)		+= qcom-irq-combiner.o
-> diff --git a/drivers/irqchip/irq-aspeed-intc.c b/drivers/irqchip/irq-aspeed-intc.c
-> new file mode 100644
-> index 000000000000..71407475fb27
+Why did you drop them? Why this is not explained?
 
-...
+<form letter>
+This is a friendly reminder during the review process.
 
-> +static int __init aspeed_intc_ic_of_init_v2(struct device_node *node,
-> +					    struct device_node *parent)
-> +{
-> +	struct aspeed_intc_ic *intc_ic;
-> +	int ret = 0;
-> +	int irq, i;
-> +
-> +	intc_ic = kzalloc(sizeof(*intc_ic), GFP_KERNEL);
-> +	if (!intc_ic)
-> +		return -ENOMEM;
-> +
-> +	intc_ic->base = of_iomap(node, 0);
-> +	if (!intc_ic->base) {
-> +		pr_err("Failed to iomap intc_ic base\n");
-> +		ret = -ENOMEM;
-> +		goto err_free_ic;
-> +	}
-> +	writel(0xffffffff, intc_ic->base + INTC_INT_STATUS_REG);
-> +	writel(0x0, intc_ic->base + INTC_INT_ENABLE_REG);
-> +
-> +	intc_ic->irq_domain = irq_domain_add_linear(node, 32,
-> +						    &aspeed_intc_ic_irq_domain_ops, intc_ic);
-> +	if (!intc_ic->irq_domain) {
-> +		ret = -ENOMEM;
-> +		goto err_iounmap;
-> +	}
-> +
-> +	raw_spin_lock_init(&intc_ic->gic_lock);
-> +	raw_spin_lock_init(&intc_ic->intc_lock);
-> +
-> +	intc_ic->irq_domain->name = "aspeed-intc-domain";
-> +
-> +	for (i = 0; i < of_irq_count(node); i++) {
-> +		irq = irq_of_parse_and_map(node, i);
-> +		if (!irq) {
-> +			pr_err("Failed to get irq number\n");
-> +			ret = -EINVAL;
-> +			goto err_iounmap;
-> +		} else {
-> +			irq_set_chained_handler_and_data(irq, aspeed_intc_ic_irq_handler, intc_ic);
-> +		}
-> +	}
-> +
-> +	return 0;
-> +
-> +err_iounmap:
-> +	iounmap(intc_ic->base);
-> +err_free_ic:
-> +	kfree(intc_ic);
-> +	return ret;
-> +}
+It looks like you received a tag and forgot to add it.
 
-Don't duplicate code. These are almost the same, so define one function
-which is then called by aspeed_intc_ic_of_init and
-aspeed_intc_ic_of_init_v2.
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
 
-> +
-> +IRQCHIP_DECLARE(ast2700_intc_ic, "aspeed,ast2700-intc-1.0", aspeed_intc_ic_of_init);
-> +IRQCHIP_DECLARE(ast2700_intc_icv2, "aspeed,ast2700-intc-2.0", aspeed_intc_ic_of_init_v2);
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
 
 Best regards,
 Krzysztof
