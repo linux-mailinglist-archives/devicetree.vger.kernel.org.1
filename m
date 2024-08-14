@@ -1,134 +1,208 @@
-Return-Path: <devicetree+bounces-93638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83052951BC3
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:24:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DCD8951BD6
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:30:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B63981C242A3
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 13:24:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 27D55B21C5B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 13:30:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B25301B29B1;
-	Wed, 14 Aug 2024 13:23:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DDE51B14F6;
+	Wed, 14 Aug 2024 13:29:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s/Vp1GJY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nAVCifR0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AC7D1B1514;
-	Wed, 14 Aug 2024 13:23:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1492C1B14F2;
+	Wed, 14 Aug 2024 13:29:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723641815; cv=none; b=Mu2nDgNqc3wDN1RjWKFWFGo+EuFH53RxxWN6mBeeeyRz1mna+diJ5YMr8rr1RjGMZ3ujGyqJ+ouhEcZ7RtYvKfWrp6xt4W3axfmDv38oTMCSZemWsInqc7JctZU9Lrj3h3Egc/mH5vDGa/EZusVZcS2Z4Xvc5y3P6eIKDJI2CMc=
+	t=1723642197; cv=none; b=faqtJ8+UdUpI20lhRDSuOmwHxiFAz9xjKINXiUB58ZbCDm2VgSzlKIabvaV6yg3m+zSb2WSCsJ81NijeoFWm3gmqbXoDyDWyjQ4/BsVJoCwOuf9BRDMGUabj9fm0nuV5g9opm0ONSiCu4Lc1oE7863Vyn+DeW33rz2dMF7IPPBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723641815; c=relaxed/simple;
-	bh=hw7FVdUg8+/hVrB/1sSc4Ts8tubAvQ2hKuj4D2TszK8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lNpuQG4Byh3q8WgRvbpZ0T/U+j7bmqmthxxbrrT0Gzn0FMZpgURKBFrJH6N3uDTeFocgmGzzbLmFZksKmOkpMP3tVdYC7Ei+ZAfMLAE94BzylRXyfnB0Yc0lbioKDQHMCV7xYxSBRBWBrL7IrbF0BYJU/VBmr6rBAK1QauA1A2w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s/Vp1GJY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78A92C32786;
-	Wed, 14 Aug 2024 13:23:31 +0000 (UTC)
+	s=arc-20240116; t=1723642197; c=relaxed/simple;
+	bh=mUpu+YWVecY1aPQOlg2VTx+dHx/jbbbKQqnOG1D+6Hg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nvF/JLwTVtZ7X168RaS9qtnkttqN4XonHa/mgaDKyBelHdBQHQ2TVM+CMQ+iPX7fUFzfr1ulr830zpG1sfcrmTLEoIKTSpRKPOIQqWRY2RT7EqhYaydTI/Qw0EtZRVtBBJMhvF/eQqmPpbden/7BJkLD//ssZYIPggL46Sw2UwY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nAVCifR0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4647CC4AF0D;
+	Wed, 14 Aug 2024 13:29:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723641815;
-	bh=hw7FVdUg8+/hVrB/1sSc4Ts8tubAvQ2hKuj4D2TszK8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=s/Vp1GJYjFwmRmDtpY1wrrA20bY/W2nHI/ND5yp+X3iFUPmFuFrpvRRI4RTwnPAGH
-	 I3NBCUE5Or5IbIPsAzm1Q5LiG8i/K/fxuTHTzhX9WXjFAnis2WO4C5KaNzfOCrl6zh
-	 jDfgS7wZ7eRZV1FWiqVFla0LAj63JFxLVK47ImCXeGzJVJsPuyMDj8JefQRfF2+mGs
-	 zeXE3fUPOxL8Ai4w9L1rXSLRaL/Yus6JBOp/WEzd0l9Cv4VG2Sla2foEkT+feOGUIm
-	 UMuv/rqbZ507Cg3/U5OZ0Yc2331ciOayOpIwW4QypsC3ffbGJbypga8UUme+9AlyET
-	 O7Xibm6CtwSBw==
-Message-ID: <c2b0051a-1d17-4454-849a-726c42c8d36f@kernel.org>
-Date: Wed, 14 Aug 2024 15:23:28 +0200
+	s=k20201202; t=1723642196;
+	bh=mUpu+YWVecY1aPQOlg2VTx+dHx/jbbbKQqnOG1D+6Hg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nAVCifR0ODEUL5L7T3l3oN7jTE75oyAHAqB5kzH40KpBnSxkSf0/bsWk3iTBN8GC9
+	 LTdgHsZb5ySD5xLiUfSmV5/by8ipkwJcXwK/a3xRnL/6Ua+GzfKnLDAvbKMWwjM2Dz
+	 rYa6+XKZ7I342sBfWJRJSd064hLoI3+1hTM+M6Igqfv4elqclbBPlfRaIYI8Fk2u0w
+	 hKKeBgM9/DWNuwCyNqGHjqdP4RFEhYIN665UKI2B1TZpA9r4d58NwhqhsLDEwk0Q7a
+	 4SbwWWFQ3LX7KzoWgHcpUksDgFkxw5RbSaoBukqP7gURGJWPQv03DQQ8sZtpyDtqkU
+	 0SY/l/GmgC7KA==
+Date: Wed, 14 Aug 2024 07:29:54 -0600
+From: Rob Herring <robh@kernel.org>
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/6] media: dt-bindings: Add description of OmniVision
+ OG01A1B image sensor
+Message-ID: <20240814132954.GA2289726-robh@kernel.org>
+References: <20240813102035.1763559-1-vladimir.zapolskiy@linaro.org>
+ <20240813102035.1763559-2-vladimir.zapolskiy@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] ARM: dts: microchip: Rename LED sub nodes name
-To: Andrei Simion <andrei.simion@microchip.com>, claudiu.beznea@tuxon.dev,
- nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, peda@axentia.se
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, cristian.birsan@microchip.com
-References: <20240814122633.198562-1-andrei.simion@microchip.com>
- <20240814122633.198562-6-andrei.simion@microchip.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240814122633.198562-6-andrei.simion@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240813102035.1763559-2-vladimir.zapolskiy@linaro.org>
 
-On 14/08/2024 14:26, Andrei Simion wrote:
-> dtbs_check warnings:
-> leds: 'd[0-9]', 'ds[0-9]' do not match any of the regexes:
-> '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
-> leds: 'red', 'green', 'blue' do not match any of regexes:
-> '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
+On Tue, Aug 13, 2024 at 01:20:30PM +0300, Vladimir Zapolskiy wrote:
+> Add device tree bindings documentation for OmniVision OG01A1B image
+> sensor.
+
+Drop 'description of ' in subject.
 > 
-> Rename the led sub nodes according to devicetree
-> specification and leds-gpio.yaml.
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> ---
+>  .../bindings/media/i2c/ovti,og01a1b.yaml      | 107 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 108 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,og01a1b.yaml
 > 
-> Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
-> ---
-> Split the bloadted patch into small patches on topics
-> based on comments:
-> https://lore.kernel.org/linux-arm-kernel/89f51615-0dee-4ab0-ab72-e3c057fee1e7@tuxon.dev/
-> ---
-
-Changelog / v2 is missing.
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,og01a1b.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,og01a1b.yaml
+> new file mode 100644
+> index 000000000000..ca57c01739d2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,og01a1b.yaml
+> @@ -0,0 +1,107 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (c) 2023-2024 Linaro Ltd.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/ovti,og01a1b.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: OmniVision OG01A1B Image Sensor
+> +
+> +maintainers:
+> +  - Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> +
+> +description:
+> +  The OmniVision OG01A1B is black and white CMOS 1.3 Megapixel (1280x1024)
+> +  image sensor controlled over an I2C-compatible SCCB bus.
+> +  The sensor transmits images on a MIPI CSI-2 output interface with one or
+> +  two data lanes.
+> +
+> +allOf:
+> +  - $ref: /schemas/media/video-interface-devices.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: ovti,og01a1b
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    description: Active low GPIO connected to XSHUTDOWN pad of the sensor.
+> +    maxItems: 1
+> +
+> +  strobe-gpios:
+> +    description: Input GPIO connected to strobe pad of the sensor.
+> +    maxItems: 1
+> +
+> +  avdd-supply:
+> +    description: Analogue circuit voltage supply.
+> +
+> +  dovdd-supply:
+> +    description: I/O circuit voltage supply.
+> +
+> +  dvdd-supply:
+> +    description: Digital circuit voltage supply.
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    additionalProperties: false
+> +    description:
+> +      Output port node, single endpoint describing the CSI-2 transmitter.
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          data-lanes:
+> +            minItems: 1
+> +            maxItems: 2
+> +            items:
+> +              enum: [1, 2]
+> +
+> +          link-frequencies: true
+> +
+> +        required:
+> +          - data-lanes
+> +          - link-frequencies
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - port
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        sensor@60 {
+> +            compatible = "ovti,og01a1b";
+> +            reg = <0x60>;
+> +            clocks = <&clk 0>;
+> +            reset-gpios = <&gpio 117 GPIO_ACTIVE_LOW>;
+> +            avdd-supply = <&vreg_3v3>;
+> +            dovdd-supply = <&vreg_1p8>;
+> +            dvdd-supply = <&vreg_1p2>;
+> +
+> +            port {
+> +                og01a1b_ep: endpoint {
+> +                    remote-endpoint = <&csiphy_ep>;
+> +                    data-lanes = <1 2>;
+> +                    link-frequencies = /bits/ 64 <500000000>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index cf9c9221c388..9b0d1db35b7d 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -16507,6 +16507,7 @@ OMNIVISION OG01A1B SENSOR DRIVER
+>  M:	Sakari Ailus <sakari.ailus@linux.intel.com>
+>  L:	linux-media@vger.kernel.org
+>  S:	Maintained
+> +F:	Documentation/devicetree/bindings/media/i2c/ovti,og01a1b.yaml
+>  F:	drivers/media/i2c/og01a1b.c
+>  
+>  OMNIVISION OV01A10 SENSOR DRIVER
+> -- 
+> 2.45.2
+> 
 
