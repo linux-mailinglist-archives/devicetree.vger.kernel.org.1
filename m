@@ -1,134 +1,109 @@
-Return-Path: <devicetree+bounces-93757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F4FE95231E
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 22:16:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 400B8952347
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 22:20:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCF3D2857DA
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 20:16:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1BE72857B6
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 20:20:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59AAF1C3796;
-	Wed, 14 Aug 2024 20:15:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FtW62Slz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F5981C379C;
+	Wed, 14 Aug 2024 20:20:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp-usa1.onexmail.com (smtp-usa1.onexmail.com [52.205.10.60])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27F53139D15;
-	Wed, 14 Aug 2024 20:15:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53CCE1C3794
+	for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 20:20:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.205.10.60
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723666556; cv=none; b=ZbOFIHKY20JhaSBWpIRcMZfiyIwJGRi5UsX6GAta6kTF23PQTxYhtQ7u3k848565Q/ObXfDudOJ1h6JG7NqFngiHyfl9IVb+5SNz61t4qCYnZ0kecZcQlZ9i0xK2gxATDyrwzXnOIzXEkDKGUOcBoWE5oPIEyNQ2l4x4DVmbOS8=
+	t=1723666822; cv=none; b=SXJWfI2tCicqsBr/fLDmmnv6SPOiskXb+mIOip8hG2XAvdKxEHDAeFWA9stYFqLL2VEpw1YHe14jG4Y4uKSyx9BU6EDw6ww6HkWW/HtKajYFk0N4tfwTgQnwyV0W6fit/TG8aze5tlk7JRUJI261zl+mo9iHlW6EvWYn9c+2TFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723666556; c=relaxed/simple;
-	bh=3RgDHrozdUxsKGMFQl1iDEmmrsvMSKGNaMh75H2/m2A=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=X/Qju2wVTJoB5UpFsGxJZijSwoOn+C7pmMLL//y1Oq8e6TNLhk6Krv8u/DmBZnkhBgpRBQLXHERaIIPT74kssLxadZ9cPZnblt0T2n2Tl/JlFjz+duY7fnkvCElNTcS8dmL2Z7yk1DFaKqtjS78XbHp0htMVEjI81jSJXKvEupo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FtW62Slz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90DF5C4AF0F;
-	Wed, 14 Aug 2024 20:15:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723666555;
-	bh=3RgDHrozdUxsKGMFQl1iDEmmrsvMSKGNaMh75H2/m2A=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=FtW62SlzOzezyi5Yk2yqYSgx4YAq097i367jtsTGs9ftkItFA5MoLw1sdSPizK3wE
-	 I4qEQk7t65x4YK6GOJTeigIzFjmYjYGB0DY1AWMxTgQFcMDCdWslbgrMd+DZquqA/v
-	 D+IJkL54I6zigUElPktQWrarP/MtM+GDoXy1Lfcbn25s8SscltQ+eUu3NrvRBIKbhZ
-	 jvD5CBDQutg1yXkVGp+LfkZBPay4RowXNO8pBvAGTeE8ZhKx5rwKLc6ZXZidT2eBsg
-	 y7EoIAYFkuYwdvAKZGam7KOXzWTW4xk0eoObgjqpTxzKOxPUKEUw4mCSURS73YbBxf
-	 TQPZo+EThGw6Q==
-Date: Wed, 14 Aug 2024 14:15:54 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1723666822; c=relaxed/simple;
+	bh=Kb/dikHIYb2kNWw3Iug8MsA3sstz2oaUCeTgoqHFwjc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=L/88Kc6qMCela30Ig8D47Cao29DEFkr4t0602kjCk9PC40kF0Iu4MMoso58mV41LSpypE5Ts0VbtsPgNCaKM+AqRGEryuBzesoFLHBx5oHfFnE+ApjRah333+1zDM2Qjt+dDLxBreKD42UPKIpFp1GZcdSnJlcJTWAIp8vONU3I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=52.205.10.60
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: bizesmtp77t1723666733tpc2c35f
+X-QQ-Originating-IP: 7svP2jYGzlEOZVRd0xTQfN2dD3RCAivIW7bnys9U6QY=
+Received: from [192.168.159.131] ( [106.150.157.243])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Thu, 15 Aug 2024 04:18:50 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 2262008500744718809
+Message-ID: <71AE5BF8A35A4D3D+d4ff3028-7c0d-475e-95e9-8974bcef1d31@radxa.com>
+Date: Thu, 15 Aug 2024 05:18:49 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Marek Vasut <marex@denx.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- imx@lists.linux.dev, Alexander Stein <alexander.stein@ew.tq-group.com>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, linux-kernel@vger.kernel.org, 
- linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>
-In-Reply-To: <20240814185140.4033029-1-Frank.Li@nxp.com>
-References: <20240814185140.4033029-1-Frank.Li@nxp.com>
-Message-Id: <172366655490.3976071.6119398337115152529.robh@kernel.org>
-Subject: Re: [PATCH 1/1] dt-bindings: input: touchscreen: convert
- ads7846.txt to yaml
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] dt-bindings: arm: rockchip: add support for Radxa
+ ROCK Pi E v3.0
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+References: <20240814095727.1662908-1-naoki@radxa.com>
+ <8FF4228B18A1DFEE+d359188b-64e9-4ce6-8796-f3fecd6a0781@radxa.com>
+ <10385642.ICPdZLu4VQ@diego>
+Content-Language: en-US
+From: FUKAUMI Naoki <naoki@radxa.com>
+In-Reply-To: <10385642.ICPdZLu4VQ@diego>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
 
+Hi,
 
-On Wed, 14 Aug 2024 14:51:35 -0400, Frank Li wrote:
-> Convert binding doc ads7846.txt to yaml format.
-> Additional change:
-> - add ref to touchscreen.yaml and spi-peripheral-props.yaml.
-> - use common node name touchscreen.
+On 8/14/24 20:32, Heiko Stübner wrote:
+> Am Mittwoch, 14. August 2024, 12:25:54 CEST schrieb FUKAUMI Naoki:
+>> Hi,
+>>
+>> On 8/14/24 18:57, FUKAUMI Naoki wrote:
+>>> Radxa ROCK Pi E v3.0 is a compact networking SBC[1] using the Rockchip
+>>> RK3328 chip.
+>>>
+>>> [1] https://radxa.com/products/rockpi/pie
+>>>
+>>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+>>> ---
+>>> Changes in v4:
+>>> - update compatible string for OpenWrt
+>>
+>> this is for https://github.com/openwrt/openwrt/issues/16168
 > 
-> Fix below warning: arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dtb: touchscreen@0:
-> 	ti,x-min: b'\x00}' is not of type 'object', 'array', 'boolean', 'null'
+> I this because openwrt used some out-of-tree devicetree?
+
+no, basically they use upstream dts.
+(in this case, dts is backported because they use v6.6 kernel.)
+
+generally their Makefile and script variables refer dts filename.
+(dts filename is referred as right name)
+
+> For people reading along, all the other rockpi devices follow a
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> There are warning:
-> Documentation/devicetree/bindings/input/touchscreen/ti,ads7843.yaml: properties:ti,x-plate-ohms: '$ref' should not be valid under {'const': '$ref'}
-> 	hint: Standard unit suffix properties don't need a type $ref
+> 	radxa,rockpi-foo
+
+there are roockpi4x and rockpis ;)
+
+> naming scheme in their compatibles while _this_ new entry uses
 > 
-> I don't know how to fix it. ti,x-plate-ohms is 16bit, but default it is
-> uint32
-> ---
->  .../bindings/input/touchscreen/ads7846.txt    | 107 -----------
->  .../input/touchscreen/ti,ads7843.yaml         | 170 ++++++++++++++++++
->  2 files changed, 170 insertions(+), 107 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/ads7846.txt
->  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/ti,ads7843.yaml
-> 
+> 	 radxa,rock-pi-e-v3
 
-My bot found errors running 'make dt_binding_check' on your patch:
+this is new target, so I thought new form can be used.
 
-yamllint warnings/errors:
+Best regards,
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/input/touchscreen/ti,ads7843.yaml: properties:ti,x-plate-ohms: '$ref' should not be valid under {'const': '$ref'}
-	hint: Standard unit suffix properties don't need a type $ref
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/input/touchscreen/ti,ads7843.yaml: properties:ti,y-plate-ohms: '$ref' should not be valid under {'const': '$ref'}
-	hint: Standard unit suffix properties don't need a type $ref
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.example.dtb: touchscreen@48: ti,x-plate-ohms:0: size is 16, expected 32
-	from schema $id: http://devicetree.org/schemas/property-units.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.example.dtb: touchscreen@48: ti,x-plate-ohms:1: size is 16, expected 32
-	from schema $id: http://devicetree.org/schemas/property-units.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.example.dtb: touchscreen@0: ti,x-plate-ohms:0: size is 16, expected 32
-	from schema $id: http://devicetree.org/schemas/property-units.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.example.dtb: touchscreen@0: ti,x-plate-ohms:1: size is 16, expected 32
-	from schema $id: http://devicetree.org/schemas/property-units.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/input/touchscreen/ti,ads7843.example.dtb: touchscreen@0: ti,x-plate-ohms: 40 is not of type 'array'
-	from schema $id: http://devicetree.org/schemas/property-units.yaml#
-
-doc reference errors (make refcheckdocs):
-Warning: Documentation/devicetree/bindings/power/wakeup-source.txt references a file that doesn't exist: Documentation/devicetree/bindings/input/touchscreen/ads7846.txt
-Documentation/devicetree/bindings/power/wakeup-source.txt: Documentation/devicetree/bindings/input/touchscreen/ads7846.txt
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240814185140.4033029-1-Frank.Li@nxp.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--
+FUKAUMI Naoki
+Radxa Computer (Shenzhen) Co., Ltd.
 
