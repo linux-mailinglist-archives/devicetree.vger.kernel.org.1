@@ -1,108 +1,177 @@
-Return-Path: <devicetree+bounces-93656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F3DF951C6B
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 16:00:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8425951C7E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 16:05:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE9BC2820E0
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 14:00:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66A2D1F223C6
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 14:05:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 667E41B29CA;
-	Wed, 14 Aug 2024 14:00:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FEA81B29BC;
+	Wed, 14 Aug 2024 14:04:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qC9FGlsJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ns.iliad.fr (ns.iliad.fr [212.27.33.1])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A68931B1507;
-	Wed, 14 Aug 2024 14:00:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.27.33.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA51A1B1511;
+	Wed, 14 Aug 2024 14:04:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723644022; cv=none; b=N2tkXywI2HQFZdZa9cKFBub1OguWZ1+q2av/WzIOFlLOaNRK1Fuj7L9q1TcGS3EAE5xi+kRRNhmfMV/JMURJ2sFdoj9ujtnJE25vpcMQl3mqDCPV3B+wsw+fliT4y/Jw4PcmkvMW/f37LVoc+OndKmPLUY6SuhZ6U9+M+d/atz8=
+	t=1723644298; cv=none; b=uiylQJ5wzpCSsT3ZCEA47T5mx+rUFv1TirCRx7y3/VNW6OIbNyT2rfMQVNthlVAuk5wxR82+WRUssZnkFcYQvPul8BTXbisGymyHQKRLnQ2Ub8msLxTs0pW1oDziNfdlwSGhsWdZkAQ8lqblV9y1P19OUWwmBaEq81fo7MUvwIg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723644022; c=relaxed/simple;
-	bh=RRdWvaaJjh2EukHMWmy8agmys/TF3UAfdsl3eILq5HQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qwad2Wh4PE3q3s8Xce6XZ4Z8SXSuWT29q50tVVVVNJ+CwHG88U2xE1CLfg8RSObVtqYaJ8i/lBQufmaJ8HOaJW7UYjiy/WQ1Ff64Y3k1MZmYYsB7TXCzgc4DITEsycKtxsuESAlppBxFtOkYJIxzYC2qEVintGks6lYxvXSmTns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=srs.iliad.fr; arc=none smtp.client-ip=212.27.33.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=srs.iliad.fr
-Received: from ns.iliad.fr (localhost [127.0.0.1])
-	by ns.iliad.fr (Postfix) with ESMTP id DE9D42099D;
-	Wed, 14 Aug 2024 16:00:09 +0200 (CEST)
-Received: from [127.0.1.1] (freebox.vlq16.iliad.fr [213.36.7.13])
-	by ns.iliad.fr (Postfix) with ESMTP id CE1972098C;
-	Wed, 14 Aug 2024 16:00:09 +0200 (CEST)
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-Date: Wed, 14 Aug 2024 15:59:56 +0200
-Subject: [PATCH 2/2] iommu/arm-smmu-qcom: hide last context bank from linux
+	s=arc-20240116; t=1723644298; c=relaxed/simple;
+	bh=+TepEU5bEnldk5Y+bEQN4qmVYWp+D4d7TIaKavBZlhQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=crz9PB4sT8TK9rTdvHAZKISTPH/dABZpxLGAGMBcptTex5IoxwLCepfE1ZxcMCtlur0467u7AChVGqeEa6aaSbxD29S1cJOSY+s3iH0n+zTw4/AAZqsbPWVarWRHEl2jV8OjwfQTk65QtlH8ermpVIRs/QIdxuVEGSDyuswndL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qC9FGlsJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 872D1C116B1;
+	Wed, 14 Aug 2024 14:04:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723644297;
+	bh=+TepEU5bEnldk5Y+bEQN4qmVYWp+D4d7TIaKavBZlhQ=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=qC9FGlsJOOJpLB1OB562M1syJJSFv7ntlDrpind3M6AMMfr/zweDn1nQym5S/5dEY
+	 98OlX+JORBJVkyElq34Gmg/4EuI2eF5sNtWpzMVr/VGVPyt+hbXfzeZQgTyspwyAZk
+	 INwT+IO6ZxcfYAnjDZDxFbCgTWFTpu/pvQkeLAIFv05VX1/o+1+rU8cnPkadRtFTzt
+	 Vxy/RwZySE/AbxTAwZcAhH/g2nGG8fjZ+1Yrys+RD4obAPaEvFLUfAvb8q7v5IcDPw
+	 +cRhgU4UBMtleV0YeUT8gMpk6zhYcR2d28gALrxqyNttCiwzsrcH8H2/b+lB77rcA0
+	 O3+laQHvistRQ==
+Message-ID: <31635635-b743-446d-a94e-b3b8082c06a2@kernel.org>
+Date: Wed, 14 Aug 2024 16:04:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller: Add support for
+ ASPEED AST27XX INTC
+To: Kevin Chen <kevin_chen@aspeedtech.com>, tglx@linutronix.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
+ andrew@codeconstruct.com.au, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org
+References: <20240814114106.2809876-1-kevin_chen@aspeedtech.com>
+ <20240814114106.2809876-3-kevin_chen@aspeedtech.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240814114106.2809876-3-kevin_chen@aspeedtech.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240814-smmu-v1-2-3d6c27027d5b@freebox.fr>
-References: <20240814-smmu-v1-0-3d6c27027d5b@freebox.fr>
-In-Reply-To: <20240814-smmu-v1-0-3d6c27027d5b@freebox.fr>
-To: Rob Clark <robdclark@gmail.com>, Will Deacon <will@kernel.org>, 
- Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: iommu@lists.linux.dev, linux-arm-msm@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Arnaud Vrac <avrac@freebox.fr>, 
- Pierre-Hugues Husson <phhusson@freebox.fr>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- Marc Gonzalez <mgonzalez@freebox.fr>
-X-Mailer: b4 0.13.0
 
-On qcom msm8998, writing to the last context bank of lpass_q6_smmu
-(base address 0x05100000) produces a system freeze & reboot.
+On 14/08/2024 13:41, Kevin Chen wrote:
+> The ASPEED AST27XX interrupt controller(INTC) contain second level and
+> third level interrupt controller. The third level INTC combines 32 interrupt
+> sources into 1 interrupt into parent interrupt controller. The second
+> level INTC doing hand shake with third level INTC.
 
-Specifically, here:
 
-	qsmmu->bypass_cbndx = smmu->num_context_banks - 1;
-	arm_smmu_cb_write(smmu, qsmmu->bypass_cbndx, ARM_SMMU_CB_SCTLR, 0);
+> +maintainers:
+> +  - Kevin Chen <kevin_chen@aspeedtech.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - aspeed,ast2700-intc-ic
+> +
+> +  reg:
+> +    minItems: 1
 
-and here:
+That's unconstrained. Instead: maxItems: 1
 
-	arm_smmu_write_context_bank(smmu, i);
-	arm_smmu_cb_write(smmu, i, ARM_SMMU_CB_FSR, ARM_SMMU_CB_FSR_FAULT);
+> +
+> +  interrupt-controller: true
+> +
+> +  '#interrupt-cells':
+> +    const: 2
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 10
+> +    description:
+> +      It contains two types of interrupt controller. The first type is multiple
+> +      interrupt sources into parent interrupt controller. The second type is 
+> +      1 interrupt source to parent interrupt controller.
 
-It is likely that FW reserves the last context bank for its own use,
-thus a simple work-around would be: DON'T USE IT in Linux.
+I think I asked already - list the items with description.
 
-If we decrease the number of context banks, last one will be "hidden".
+Why the number is flexible?
 
-Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
----
- drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 5 +++++
- 1 file changed, 5 insertions(+)
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupt-controller
+> +  - '#interrupt-cells'
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    bus {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +    
+> +        interrupt-controller@12101b00 {
+> +          compatible = "aspeed,ast2700-intc-ic";
 
-diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-index 7e65189ca7b8c..e2e1fd9e2452b 100644
---- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-+++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-@@ -282,6 +282,11 @@ static int qcom_smmu_cfg_probe(struct arm_smmu_device *smmu)
- 	u32 smr;
- 	int i;
- 
-+	if (of_property_read_bool(smmu->dev->of_node, "qcom,last-ctx-bank-reserved")) {
-+		dev_warn(smmu->dev, "hiding last ctx bank from linux");
-+		--smmu->num_context_banks;
-+	}
-+
- 	/*
- 	 * Some platforms support more than the Arm SMMU architected maximum of
- 	 * 128 stream matching groups. For unknown reasons, the additional
+Messed indentation.
 
--- 
-2.34.1
+
+
+Best regards,
+Krzysztof
 
 
