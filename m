@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-93496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D0F5951419
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 08:00:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D72E9951432
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 08:11:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C13BA28740C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 06:00:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 34EB1B260CD
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 06:11:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEEAE524B4;
-	Wed, 14 Aug 2024 06:00:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BAD37345B;
+	Wed, 14 Aug 2024 06:11:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G1TxCe7h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dc++QcoM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61B993BBCB;
-	Wed, 14 Aug 2024 06:00:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F24372901;
+	Wed, 14 Aug 2024 06:11:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723615240; cv=none; b=ZMNsFncHxS22u1otyK/BUt3thKhzQu96a4pWjD6Pbu+dxP60y1KuAenbG/lc4AMDmR+y+Q3lr9lNE/jXIbdtYzPc+ZT+IGy5n4N+kqsYonL9TJanNn94cVNUk+5Xeoo0hMJO/+c7Beyj91xACv6Gic7s4hUjMTL4AY6rqcJlBwI=
+	t=1723615888; cv=none; b=Qoqfm4+fGQrmnK3yxgJejMtn3XIN6oJA/BjXOcsqMN8mQFPn7ms0LCi0HjZ7TkDCRuJ/ow6jjB+LXg78sX460DwShHGR/2Q3ODMfX0R2vIlNrePouBokSJO/kpSULPl+cG/whEAMIBhZV/k7znHnX3pk/pklupBBbz0VY7xM9fU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723615240; c=relaxed/simple;
-	bh=vPB9aaa+NH2aM+GbnFplcTW145Xj1DSko+ugGJ+uzAk=;
+	s=arc-20240116; t=1723615888; c=relaxed/simple;
+	bh=kxWSpDwaqRdW46FFP5ahXye3WeYI47yy9YNZe9Tsjo8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B2hbwF/NaINVEnMnpc2Au6Ew85XtYoZDpsk6vkiDmTEk3HQYU+D+j/w6Ky3mDnTk2wwu/T28zFiX8vB8ixe3Og1+I/LNZ7kWXrwmajtsj+dncOGR477K3YcDuvLyIOHk8ZI8UQKrqp+Uzm/ndgZj5zQ+Z8lv4/bKD6ZAyabTEaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G1TxCe7h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4769C32786;
-	Wed, 14 Aug 2024 06:00:31 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=U7u5DZJZ7CyPOvJtS0IuJkQqb5nzGn6oEp22Aqjggbk+SqgD8YZzbEMEhWKsyPDYNxma9zSGsR9IlWe9bmI7/f0XdwQZl/2kLAzpe7MJG/LSOizCYQKaS8Z5dv9dsniCb8Yei6Pxs5EImHf4G0gyhDzra8Qwqqtx2eXTlfmqbL8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dc++QcoM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F785C32786;
+	Wed, 14 Aug 2024 06:11:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723615239;
-	bh=vPB9aaa+NH2aM+GbnFplcTW145Xj1DSko+ugGJ+uzAk=;
+	s=k20201202; t=1723615887;
+	bh=kxWSpDwaqRdW46FFP5ahXye3WeYI47yy9YNZe9Tsjo8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=G1TxCe7hKST2UA30Ng0QNrkNwG8SNfQRQwh3lYDsaZafbeuAIel1K7C6Eh2xqVwP0
-	 oFK2MjNq9V0wawxJ0hvN+K3d0h7g6S11JjmPVsI1lBExBYTImOqIFfLQWcNOPidYo3
-	 1shipepfsAGLk8BKPjIxEr/BVjHDlT4xfpgQM5Dt9n+n77IgM7BNkPd9I/05KdWHXS
-	 xqg6f6i9BV44TCaLhE6oNMMz6HaoIrHYuTvCIK7WlYE6kN/JGv9he9bo8TI5Rh46et
-	 UcNaJEFfixi1pXOU61bw/rH7ddkOCaUGL6haYPrv6eS/CzMARCkEGTPag7mN5tyPea
-	 LRb7fvLg3M0+g==
-Message-ID: <662e1236-84cb-4090-8fc8-dd77943726c9@kernel.org>
-Date: Wed, 14 Aug 2024 08:00:29 +0200
+	b=dc++QcoMUNgEObc/ylsBHH48RJ4XoZtUuOmyY/y44MauL8avtwIhZUCiGs0vutXBp
+	 5jVOJwISy0ZiJmc+lFQOHucowrN7t/kwgpjlS904XEPLJ3xv1CQzb99q26f3Dtwyb5
+	 KBtP+ufMIn900ySboxXMJ8HA8L0mJYCi4kjXwwllgAZ42bPnCgzLBWNqqAOqjZVdmf
+	 83WZ/a7SLoqHwDYMitDjVsbUseO2ISgn0gQvsetcG7bHX6m+VEfOprk4rE6tnmvDQk
+	 y00bqz5JRux6fOetI2UsNAOYrgFIwzhjLCZQaGVdGysa0z78jV+ty/QfG52gmKgNWj
+	 7NbszGvZjXEew==
+Message-ID: <5c2ca213-d466-4185-bbd7-2328ef377f16@kernel.org>
+Date: Wed, 14 Aug 2024 08:11:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 06/11] dt-bindings: nfc: nxp,nci: Document PN553
- compatible
-To: Rob Herring <robh@kernel.org>
-Cc: Danila Tikhonov <danila@jiaxyga.com>, krzk+dt@kernel.org,
- conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, rafael@kernel.org, viresh.kumar@linaro.org,
- kees@kernel.org, tony.luck@intel.com, gpiccoli@igalia.com,
- ulf.hansson@linaro.org, andre.przywara@arm.com, quic_rjendra@quicinc.com,
- davidwronek@gmail.com, neil.armstrong@linaro.org, heiko.stuebner@cherry.de,
- rafal@milecki.pl, macromorgan@hotmail.com, linus.walleij@linaro.org,
- lpieralisi@kernel.org, dmitry.baryshkov@linaro.org, fekz115@gmail.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-hardening@vger.kernel.org
-References: <20240808184048.63030-1-danila@jiaxyga.com>
- <20240808184048.63030-7-danila@jiaxyga.com>
- <493466e6-d83b-4d91-93a5-233d6da1fdd8@kernel.org>
- <20240813193315.GA1614564-robh@kernel.org>
+Subject: Re: [PATCH net-next v3 1/2] dt-bindings: net: dsa: microchip: Add
+ KSZ8895/KSZ8864 switch support
+To: Tristram.Ha@microchip.com, Woojung Huh <woojung.huh@microchip.com>,
+ UNGLinuxDriver@microchip.com, devicetree@vger.kernel.org,
+ Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
+ Vladimir Oltean <olteanv@gmail.com>, Rob Herring <robh@kernel.org>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240809212142.3575-1-Tristram.Ha@microchip.com>
+ <20240809212142.3575-2-Tristram.Ha@microchip.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,36 +109,41 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240813193315.GA1614564-robh@kernel.org>
+In-Reply-To: <20240809212142.3575-2-Tristram.Ha@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/08/2024 21:33, Rob Herring wrote:
-> On Fri, Aug 09, 2024 at 07:39:53AM +0200, Krzysztof Kozlowski wrote:
->> On 08/08/2024 20:40, Danila Tikhonov wrote:
->>> The PN553 is another NFC chip from NXP, document the compatible in the
->>> bindings.
->>>
->>> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
->>> ---
->>>  Documentation/devicetree/bindings/net/nfc/nxp,nci.yaml | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/net/nfc/nxp,nci.yaml b/Documentation/devicetree/bindings/net/nfc/nxp,nci.yaml
->>> index 6924aff0b2c5..364b36151180 100644
->>> --- a/Documentation/devicetree/bindings/net/nfc/nxp,nci.yaml
->>> +++ b/Documentation/devicetree/bindings/net/nfc/nxp,nci.yaml
->>> @@ -17,6 +17,7 @@ properties:
->>>            - enum:
->>>                - nxp,nq310
->>>                - nxp,pn547
->>> +              - nxp,pn553
->>
->> Keep the list ordered.
+On 09/08/2024 23:21, Tristram.Ha@microchip.com wrote:
+> From: Tristram Ha <tristram.ha@microchip.com>
 > 
-> Looks ordered to me. n before p...
+> KSZ8895/KSZ8864 is a switch family developed before KSZ8795 and after
+> KSZ8863, so it shares some registers and functions in those switches.
+> KSZ8895 has 5 ports and so is more similar to KSZ8795.
+> 
+> KSZ8864 is a 4-port version of KSZ8895.  The first port is removed
+> while port 5 remains as a host port.
+> 
+> Signed-off-by: Tristram Ha <tristram.ha@microchip.com>
+> ---
+>  Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> index 52acc15ebcbf..d8efb6f0c253 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> @@ -21,6 +21,8 @@ properties:
+>        - microchip,ksz8765
+>        - microchip,ksz8794
+>        - microchip,ksz8795
+> +      - microchip,ksz8895  # 5-port version of KSZ8895 family switch
+> +      - microchip,ksz8864  # 4-port version of KSZ8895 family switch
+>        - microchip,ksz8863
+>        - microchip,ksz8873
 
-Now it is... I think I misread 5->3.
+Keep the entries sorted.
+
+With sorting fixed:
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
