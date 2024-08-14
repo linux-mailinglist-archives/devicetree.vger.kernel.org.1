@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-93796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93797-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4C13952622
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 01:20:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43741952656
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 01:53:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0AD0A1C21C1D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 23:20:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E94CD2842E1
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 23:53:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32CCF14E2E8;
-	Wed, 14 Aug 2024 23:20:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 986D514EC56;
+	Wed, 14 Aug 2024 23:53:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PteqQVt5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="U7qAc2E3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 475CD14AD2C
-	for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 23:20:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6B1C14B972
+	for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 23:53:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723677620; cv=none; b=VuyvWZN+anSDcF3R7Squz+8HTN58UeZJFR9106t+7zlrdHvwFF5fwijLUkfLCMEv1V1zpZwufGhO2yXKTVLaJgYeggWHCbpaccND+DH4vCVAV3HIoJZNNHdkQqgsE1gwNVfo6o6n2p0z3irwtjp1Zq2lNq2xtKwtHHZgWXl03dg=
+	t=1723679602; cv=none; b=BGxvxqilFYcS1jLVB2e9z8nDP+esfXDgV1FOyYYp1GnoTGyFKglsggegokIanG3LDkREkSwJPYq48n1DYmWJQ7VXhWD2AzareEW6JCGUhPd1edD9fMN94o/+lewnEbKCVBXNgR9UlQ9wleWNk5D9LnaJFnwFCDyLDIYVjJxIhbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723677620; c=relaxed/simple;
-	bh=PZLN4N17zBIpHYBXZkwihX7EPgZeSLBMItw/slpELCY=;
+	s=arc-20240116; t=1723679602; c=relaxed/simple;
+	bh=oWcr9yvSj89hwLY1f4OI1N0YsmHkbUrc/8uMmyWpRAo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BaDhV7ryXpGyzlskQFlxlucecGtmMG1f4xdE5qU6GlGLZzWxh5gqu1eOCGQj+vw7VPWLQ6SO8YoTIUe2NDF6a6mmeybu/+TzPpIrL3YN0U3zoPaZ3otH2eO7fCLq3erf2omfVZMrv1hnxIV08fOdTpMx5JYMtptsf1VGE0Ap6J4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PteqQVt5; arc=none smtp.client-ip=209.85.167.45
+	 In-Reply-To:Content-Type; b=YxunHPiNwFUX2+c5l0nha7oOikwykfq+h7sPeILGgfWe5c9lg2V6YucxfeisQHJNjn9X5tDHeliPjpyQ4JhCQdQrYG8dIV+Rxo9taRH28XW559+CGMAcPSnOcvBjVIx7hhYFzCb/PMGBJ3Ssy6QViQpH7qlunoFIBzKoe7xAzdg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=U7qAc2E3; arc=none smtp.client-ip=209.85.128.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-52efa98b11eso58868e87.2
-        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 16:20:17 -0700 (PDT)
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4280ee5f1e3so2157035e9.0
+        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 16:53:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723677616; x=1724282416; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1723679599; x=1724284399; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=9+duQA/mHkN4x/u1uIv4BDkW5OCTH29gngwXk4SCuCA=;
-        b=PteqQVt5Fd/xpVdsZVuaYrdHAHmYQprPnPmPGAfJjSvk/447Jjkx+Kk1T4uE+0BmP3
-         ezj8lqVvPFV+4A5MOBxFfLY+gQ0LwKVsxakSMMezlGq5ginBPDmmJUgZz/Y+UbWFnvpn
-         LiOTS6md8CR0Akd6b+Qlj3mC2/pVF9BFE8J9FkDoWOfQPXTvVNJUcfZ1hz5dFwOlxCdm
-         Eq0WFW/5bXV6cqH4vMbTdAmiyt+Y7gbpMLiQLnIUhG5YGMzviqQ6NBDZlG1GTHl3kjlH
-         YUXVMHFedtQiP2y9Jb262C4Ghbrq2sylYQt4gsOsp4zM5cjW5T7Tdh9cE+HqQjlfsyuC
-         qnfQ==
+        bh=/EGN+b4/f+L1J4PwtsVMenONq33iywKxH0fU8rJy0js=;
+        b=U7qAc2E3dcQ70B+h3jUnQhy+qHCqU2llTkXF2+Cg+HoiJgT30sc054eniEPWtMziqX
+         8Sw6SIjj5bGVNlOB2lf2Cto67EUaJWF2/2xpx9C9loQ0WlUt8iuXJLoE9Qy3897Oe2pK
+         gnA01EvT07PZqYWbnthAlgJ8zxmQ+r7FvfncUIbwFf9uPGLyh7E7KaWN4yRHfHMlP+m9
+         yS6BqqhQ97MDupXals/rhRCHN/RQIshgfjerFwxiXtxVpqUsfbq0PaLdX2OUjhJI09dG
+         GoC1sLTQTkOO/nJbQ8XhDdryqD+rcwySYdBuxbuEC046yHX1fy0FyPAY180dwRMupu9P
+         p+Sg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723677616; x=1724282416;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1723679599; x=1724284399;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9+duQA/mHkN4x/u1uIv4BDkW5OCTH29gngwXk4SCuCA=;
-        b=e7bOolnR1CrL1ZLMXCc4Qat90DBcCuKx9JDLiK+EJ1e3/gFsqjxGCAmfLWWjeYi0Ih
-         0Z6HGbKxlxmxtcm0C+zN4TlchGN1dXQlyX0LneJhZce3fQIbLmaV5v8CbugGgeOJ8o2H
-         Fyr7awUEeHaaLfyqiIMPBNrkuTy+d1u7tpbiajHqUMqNBrtVgWtdO1YjZB+dYilXy7Gl
-         Tpc0cCphCnRaAym+q7lI0NHoxWLehUn6ovEFuQk2RlB+0V4Nnkpmy2Yb8LqSs/ys7d0o
-         gw4+0Vt7H2PzQxlyTq87fZ1YPHmFclN3p7LhlY4G/hoV03qtmgo1T6guV/V4DPHCyz5x
-         hf1g==
-X-Forwarded-Encrypted: i=1; AJvYcCWmLaFlCfsQi88gNA7qJ2oYYcGcKrcWrs5JyAkULb++aQh4E5YmEF42kuoUS2I8NDkVlP/8/H7bg0/5jhrFLRzrb1hR1wnyyQSCgg==
-X-Gm-Message-State: AOJu0YxLrzG4z1P8X32Dug4Col+XgJ7/CGnVfvIAvW2emeTLz3hCh+6M
-	v3+kqngCN7S3i0AAf3cXk14MQu9W809P59V4O+XlIk+xlLqSZsAgxeGBvwYVI8s=
-X-Google-Smtp-Source: AGHT+IH+zpAbnWR0RFbKIop47GHGSsAo7482OTcO2tWlZY85pxwGVPWS8HuSvZWuImCttl0DLTw/TQ==
-X-Received: by 2002:a2e:be90:0:b0:2ef:315c:67e1 with SMTP id 38308e7fff4ca-2f3b4a43cbdmr2763291fa.4.1723677615658;
-        Wed, 14 Aug 2024 16:20:15 -0700 (PDT)
-Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f3b7703a18sm160771fa.81.2024.08.14.16.20.14
+        bh=/EGN+b4/f+L1J4PwtsVMenONq33iywKxH0fU8rJy0js=;
+        b=xRb7KubvLwV8i7R/sED3vDdcXFcffcKvTpN+vVWiwldRgJxTtdZWzLhuKmUPJ1YOZz
+         07LT0MEkLf34jJD8Ps+vIzOv6brCzYC/0G9lXWvmaY21A5KGFIwdgZ2Z0hrMbtScoMxD
+         ELbL+hUwibL+S+PTpFmi71Jg9bWGEl/zeKg5wYEYgoMCGNjdOP4NYF0DkfoXl4ZViVhc
+         fH0Nsc1F5ml6JZACOapHOCZ8qDuQdSAhhAF17T2RYHkH18hMYUSAIw9McCIFfcs1t1i5
+         11tuKa6ydoj98iJTnWHmvtbstFzw7EqehZA94LRYbsFcjMZJbUc9A3w7vjqwDYd3VKPe
+         xzzA==
+X-Forwarded-Encrypted: i=1; AJvYcCWGT5a+Zzev9JsknfdCrGSPrYfM7WKBS6/Mf1mH7pv4Okt1Fc1ndK6UYRdeUZmaSegndZW4nBY93XB6LJQVzjz1TVCC36hrn2j8+g==
+X-Gm-Message-State: AOJu0Yxj/skS8L+abKUVF7zvEBh+xH1B8AXxZsnjzjJBIDNHMjIeD5k7
+	bZgfa11ZjjW/eeQn1VmHJ8WfjHrr1URAPPqX1K1gFagqcL+rkZxESfE0w7j8fmk=
+X-Google-Smtp-Source: AGHT+IHnR9FXVZqaGbdhBGxRE1L18EtaOWa7lw8oftSVGi5gyStVTja4iv7pJGXAgPHIo7eMHDjlDQ==
+X-Received: by 2002:a05:600c:138f:b0:426:6eac:8314 with SMTP id 5b1f17b1804b1-429dd22f4c1mr30463375e9.1.1723679598842;
+        Wed, 14 Aug 2024 16:53:18 -0700 (PDT)
+Received: from [192.168.0.25] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429e7e1c46fsm3963855e9.39.2024.08.14.16.53.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Aug 2024 16:20:15 -0700 (PDT)
-Message-ID: <b0787142-0f85-4616-9895-72e33f21c2da@linaro.org>
-Date: Thu, 15 Aug 2024 02:20:14 +0300
+        Wed, 14 Aug 2024 16:53:18 -0700 (PDT)
+Message-ID: <8c504081-b0e4-4a64-9e21-e7d040a0aa6c@linaro.org>
+Date: Thu, 15 Aug 2024 00:53:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,104 +76,83 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 13/13] media: qcom: camss: Add support for VFE hardware
- version Titan 780
-Content-Language: en-US
+Subject: Re: [PATCH 08/13] media: qcom: camss: csid: Move common code into
+ csid core
 To: Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, bryan.odonoghue@linaro.org, mchehab@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+ todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
 Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- kernel@quicinc.com, Yongsheng Li <quic_yon@quicinc.com>
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@quicinc.com
 References: <20240812144131.369378-1-quic_depengs@quicinc.com>
- <20240812144131.369378-14-quic_depengs@quicinc.com>
- <4b745c1a-33d9-472a-97af-153a2a7c8721@linaro.org>
- <2de0b7a8-b879-49e9-9656-ec86f29ce559@quicinc.com>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <2de0b7a8-b879-49e9-9656-ec86f29ce559@quicinc.com>
+ <20240812144131.369378-9-quic_depengs@quicinc.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20240812144131.369378-9-quic_depengs@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi Depeng,
+On 12/08/2024 15:41, Depeng Shao wrote:
+> The get hw version and src pad code functions can be common code in csid
+> core file, then the csid driver of different hw version can reuse them,
+> rather than adding duplicate code in csid driver for each version.
+> 
+> Suggested-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Depeng Shao <quic_depengs@quicinc.com>
+> ---
+>   .../platform/qcom/camss/camss-csid-4-1.c      | 19 -----
+>   .../platform/qcom/camss/camss-csid-4-7.c      | 42 ----------
+>   .../platform/qcom/camss/camss-csid-gen2.c     | 60 ---------------
+>   .../media/platform/qcom/camss/camss-csid.c    | 77 +++++++++++++++++++
+>   .../media/platform/qcom/camss/camss-csid.h    | 21 +++++
+>   5 files changed, 98 insertions(+), 121 deletions(-)
+> 
+> diff --git a/drivers/media/platform/qcom/camss/camss-csid-4-1.c b/drivers/media/platform/qcom/camss/camss-csid-4-1.c
+> index c95861420502..6998e1c52895 100644
+> --- a/drivers/media/platform/qcom/camss/camss-csid-4-1.c
+> +++ b/drivers/media/platform/qcom/camss/camss-csid-4-1.c
+> @@ -17,7 +17,6 @@
+>   #include "camss-csid-gen1.h"
+>   #include "camss.h"
+>   
+> -#define CAMSS_CSID_HW_VERSION		0x0
+>   #define CAMSS_CSID_CORE_CTRL_0		0x004
+>   #define CAMSS_CSID_CORE_CTRL_1		0x008
+>   #define CAMSS_CSID_RST_CMD		0x00c
+> @@ -139,15 +138,6 @@ static int csid_configure_testgen_pattern(struct csid_device *csid, s32 val)
+>   	return 0;
+>   }
+>   
+> -static u32 csid_hw_version(struct csid_device *csid)
+> -{
+> -	u32 hw_version = readl_relaxed(csid->base + CAMSS_CSID_HW_VERSION);
+> -
+> -	dev_dbg(csid->camss->dev, "CSID HW Version = 0x%08x\n", hw_version);
+> -
+> -	return hw_version;
+> -}
+>   
+> -static u32 csid_hw_version(struct csid_device *csid)
+> -{
+> -	u32 hw_version = readl_relaxed(csid->base + CAMSS_CSID_HW_VERSION);
+> -
+> -	dev_dbg(csid->camss->dev, "CSID HW Version = 0x%08x\n", hw_version);
+> -
+> -	return hw_version;
+> -}
 
-On 8/14/24 16:10, Depeng Shao wrote:
-> Hi Vladimir,
-> 
-> On 8/14/2024 7:13 PM, Vladimir Zapolskiy wrote:
->> Hi Depeng,
->>
->> please find a few review comments, all asked changes are non-functional.
->>
-> 
->>> +void camss_reg_update(struct camss *camss, int hw_id, int port_id,
->>> bool is_clear)
->>
->> Please let it be just a declarative 'clear' instead of questioning
->> 'is_clear'.
->>
->>> +{
->>> +    struct csid_device *csid;
->>> +
->>> +    if (hw_id < camss->res->csid_num) {
->>> +        csid = &(camss->csid[hw_id]);
->>> +
->>> +        csid->res->hw_ops->reg_update(csid, port_id, is_clear);
->>> +    }
->>> +}
->>> +
->>
->> Please add the new exported function camss_reg_update() in a separate
->> preceding commit.
->>
->>>    void camss_buf_done(struct camss *camss, int hw_id, int port_id)
->>>    {
->>>        struct vfe_device *vfe;
-> 
-> Thanks for your comments, I will address them in new series.
-> 
-> But I have some concern about above comment, you want to add a separate
-> commit for camss_reg_update, maybe camss_buf_done also need to do this,
-> but I guess I will get new comments from Krzysztof if I make a separate
-> change, Krzysztof posted few comments in v3 series, he asked, "must
-> organize your patches in logical junks" and the code must have a user.
-> 
-> Please check below comments.
-> 
-> https://lore.kernel.org/all/e1b298df-05da-4881-a628-149a8a625544@kernel.org/
-> 
-> https://lore.kernel.org/all/d0f8b72d-4355-43cd-a5f9-c44aab8147e5@kernel.org/
+Is it also the case with csid-4-1 and csid-47 that the HW version is in 
+the format x.x.x - because you're removing this printout which just 
+prints the register in favour of a later function that decodes that 
+register into three parts.
 
-Krzysztof is absolutely right in his two comments.
+Suggest having a csid_hw_version_gen1() for these two and a 
+csid_hw_version_gen2() which does the x.x.x print instead.
 
- From what I see there is a difference between his concerns and mine ones
-though, Krzysztof points to unused data, which should raise a build time
-warning, and I asked to make a separate commit for a non-static function,
-I believe it'll be removed by the linker silently...
+=> camss-csid-4-1.c and camss-csid-4-7.c will have hw_version = 
+csid_hw_version_gen1()
 
-The potential runtime logic change introduced by camss_reg_update() in the
-generic code is not trivial, which opens an option to update/fix it lately
-referencing a commit from generic domain rather than platform specific one.
+=> camss-csid-gen2, camss-csid-790 will have hw_version = hw_version_gen2()
 
-If someone for whatever reasons wants to merge a new generic and shared
-camss_reg_update() function within a the platform specific code/commit,
-I won't strongly object, let it be merged together then.
-
-> 
-> Or I don't add reg update and buf done functionality in
-> camss-csid-gen3.c and camss-vfe-780.c firstly, then add them in a later
-> commit.
-> 
-> Could you please comment on whether this is acceptable? Please also help
-> to common on if one commit to add them or need two separate commits, one
-> is for reg update and the other one is for buf done.
-> 
-
-I would prefer to see two more separate commits within non-platform specific
-code, however as I stated above if it causes anyone's concerns, including
-your own, let it be kept as it is done today. Eventually we do discuss
-a non-functional change.
-
---
-Best wishes,
-Vladimir
+---
+bod
 
