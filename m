@@ -1,363 +1,155 @@
-Return-Path: <devicetree+bounces-93631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3132A951B86
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:11:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE425951B9C
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:13:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A80FB1F242B6
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 13:11:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C0551F23594
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 13:13:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F6731B1504;
-	Wed, 14 Aug 2024 13:10:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C123C1B14F6;
+	Wed, 14 Aug 2024 13:13:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="bJ1krr0P"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RdmrIZX9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99B731B1421;
-	Wed, 14 Aug 2024 13:10:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 923361B14EC;
+	Wed, 14 Aug 2024 13:13:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723641054; cv=none; b=hqWu62cSC2zCJdEPbYxyG3KvM1Jm9unzSULhiXHOWZ/J20I8M9VxtHlxRFJgz6gG8rW9Kc5b+yr9YXsTGtIoNBLwZw7TeBqYr3E/MpOvQ2zZahjLjJMMpV8MVTDhLYkLDvMRk9Bu5x3M13FYYslHU4q04hEWkUJVPBc7h/c5rTE=
+	t=1723641200; cv=none; b=Ne6AaKIjRTRarekA31C2094xpJst4XmPu6aP56TGetNusAjrFW+p4dh9EsxZjxnLZJzlX6bOp+hIQZ6+TMdFN38uL9FgBAKAlAGuHy+dCjCDG+LvvGnzI4cRHm6SP3TR9UZe53PTX/BtXMstyrfSiM0j86gy3p/CVxOz9VreI2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723641054; c=relaxed/simple;
-	bh=js0yOtg4xrbaNHKUd5VuSdtuHV2qMpCCLJemc/q2jGY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=V5VHWGj0DZpzVQRuDKZymb8UmxPyyQMtkY7ImYfBdt7PEqlrvkNPkaXbtKJrYSHpbB21smt3ZhKdOsFRsSIiRKrE8eEaG0qYd0T+e/kQVfcFMtkXpGnKhB454VY/RtBLWqodNdmS3KIdc/ghQk597QyxiOWfVokdaLBd5LIlYsA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=bJ1krr0P; arc=none smtp.client-ip=188.40.30.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
-	s=default2211; h=Cc:To:In-Reply-To:References:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:Sender:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=PSTTA0GMcP2XwcOAB/PPJ3gc6a1JIfylg0irJYbpA1Y=; b=bJ1krr0PLo69ZDK1nQupke5sp4
-	expxg4BKDQmqI0Mtu/gc3md1UfQvhJVRfcTFCVLt1Pjx3QIeT86pUw5+ogLVpW4Y2Ncl5KzeL88sZ
-	uGPeE5keB6wc8VfFmDCT2M0kvq/BQ0nejjXZoRCN/sFuFfPghvKYJ3GwfwjvMI/4D0vrT2E/l1iE/
-	TLZ+cJMcWF2ZDhkVRwTsFxS9NSA+NYaK7fykl9fdSQLDuArjP3Y0xguGOHI2iR0ecbmmV/9UMVMuC
-	jl5WeKiTjucpMATT9xJs1Y3S2MPo1rOiQC1afsHXPUGctxD4kIA24ohCCDNL21TOOwt4DvKZav8dq
-	xYGFvWcw==;
-Received: from sslproxy03.your-server.de ([88.198.220.132])
-	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <esben@geanix.com>)
-	id 1seDm3-0009GT-G2; Wed, 14 Aug 2024 15:10:47 +0200
-Received: from [185.17.218.86] (helo=localhost)
-	by sslproxy03.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <esben@geanix.com>)
-	id 1seDm3-000HEO-08;
-	Wed, 14 Aug 2024 15:10:47 +0200
-From: Esben Haabendal <esben@geanix.com>
-Date: Wed, 14 Aug 2024 15:10:37 +0200
-Subject: [PATCH 3/3] drm/panel: ili9881c: Add JMO LCM-JM800WX support
+	s=arc-20240116; t=1723641200; c=relaxed/simple;
+	bh=z4zj2gVInaFRovuPzHpW5WczQueqOkq8LRPT/A7HIAg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CX/57lz5xoBAU75H/fnDnnWR6fR+2zzYqoScqsHKbS6WPjBcl5FwYORpYqzlsX922yGvQ5KeQNJnUfbBVkePTTZMQvTtmrvdIpFWZb1qAaPSZqKDUJ/cKT2xrK18mwlY+i2ywbWqplfiym7WVn5IONPfXoiomM+y23uXjYDAza8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RdmrIZX9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE326C32786;
+	Wed, 14 Aug 2024 13:13:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723641200;
+	bh=z4zj2gVInaFRovuPzHpW5WczQueqOkq8LRPT/A7HIAg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=RdmrIZX9Dbd9oAWkYV+K8KMtc1D3ZbjCxSECey3Tq261qxTxo95Rhnx3BHgwcxGLe
+	 F4pMd5NpJ9d6UuyVnBxmt/YAs3ecuFh0N2Fiqhe5lMuuZYVIyufYhwo2yRBZbT4+nl
+	 tU6FhSYDS+XZUJExQSiO6mr0f7SNV2sIwYEgaK7/NVM8mHPQe8A5Q8b0c6miyCj6HU
+	 9mHZsXIbEGx4VFbJbdVVxfAELr8XPFOVMeuXjGYJ1xCidPBaDffWHnrfhivNaPxSkW
+	 oQmh3M70OLbBL0FLmwJ8EwxzjrWaapF74IEVTWGpnwyUGI/GzI+vZf1DMhDTa2J5T6
+	 t696RrqE8RHyw==
+Message-ID: <9934151a-ab63-48cd-b868-f715dd1e870a@kernel.org>
+Date: Wed, 14 Aug 2024 15:13:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] dt-bindings: usb: microchip,usb2514: Fix reference
+ USB device schema
+To: Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240814065833.36372-1-alexander.stein@ew.tq-group.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <20240814065833.36372-1-alexander.stein@ew.tq-group.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240814-drm-panel-ili9881c-lcm-jm800wx-v1-3-22a5e58599be@geanix.com>
-References: <20240814-drm-panel-ili9881c-lcm-jm800wx-v1-0-22a5e58599be@geanix.com>
-In-Reply-To: <20240814-drm-panel-ili9881c-lcm-jm800wx-v1-0-22a5e58599be@geanix.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Esben Haabendal <esben@geanix.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1723641045; l=10848;
- i=esben@geanix.com; s=20240523; h=from:subject:message-id;
- bh=js0yOtg4xrbaNHKUd5VuSdtuHV2qMpCCLJemc/q2jGY=;
- b=Is39m16lvNwgP/BjzHAp9HWJG6SIPfnZRlM7iA4GDbYxZJH9lIfaBX6MwNpYqBw2jki36c1ys
- Gam3HbvV5HPClvkGX9OrAjCrZQP/cKKdzCTJfYGSVT+cOsnqwbaRgrU
-X-Developer-Key: i=esben@geanix.com; a=ed25519;
- pk=PbXoezm+CERhtgVeF/QAgXtEzSkDIahcWfC7RIXNdEk=
-X-Authenticated-Sender: esben@geanix.com
-X-Virus-Scanned: Clear (ClamAV 0.103.10/27367/Wed Aug 14 10:36:34 2024)
 
-Add support for the LCM-JM800WX panel from JMO Tech.
+On 14/08/2024 08:58, Alexander Stein wrote:
+> An USB hub is not a HCD, but an USB device. Fix the referenced schema
+> accordingly. Adjust example to keep it aligned to other schemas.
+> 
+> Fixes: bfbf2e4b77e27 ("dt-bindings: usb: Document the Microchip USB2514 hub")
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+> As this USB hub also can contain an USB (ethernet) sub device, I copied
+> the subdevice part from usb-hcd.yaml.
+> 
+> I had to add 'additionalProperties: true' as well, because I got that warning
+> upon dt_binding_check otherwise:
 
-The init commands are based on information from vendor.
 
-Signed-off-by: Esben Haabendal <esben@geanix.com>
----
- drivers/gpu/drm/panel/panel-ilitek-ili9881c.c | 228 ++++++++++++++++++++++++++
- 1 file changed, 228 insertions(+)
+Thanks for fixing this.
 
-diff --git a/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c b/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
-index 084c37fa7348..2f9c25c3ca15 100644
---- a/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
-+++ b/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
-@@ -1223,6 +1223,206 @@ static const struct ili9881c_instr am8001280g_init[] = {
- 	ILI9881C_COMMAND_INSTR(MIPI_DCS_WRITE_POWER_SAVE, 0x00),
- };
- 
-+static const struct ili9881c_instr lcm_jm800wx_init[] = {
-+	ILI9881C_SWITCH_PAGE_INSTR(3),
-+	ILI9881C_COMMAND_INSTR(0x01, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x02, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x03, 0x53),
-+	ILI9881C_COMMAND_INSTR(0x04, 0x53),
-+	ILI9881C_COMMAND_INSTR(0x05, 0x13),
-+	ILI9881C_COMMAND_INSTR(0x06, 0x04),
-+	ILI9881C_COMMAND_INSTR(0x07, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x08, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x09, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x0A, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x0B, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x0C, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x0D, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x0E, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x0F, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x10, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x11, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x12, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x13, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x14, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x15, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x16, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x17, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x18, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x19, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x1A, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x1B, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x1C, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x1D, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x1E, 0xc0),
-+	ILI9881C_COMMAND_INSTR(0x1F, 0x80),
-+	ILI9881C_COMMAND_INSTR(0x20, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x21, 0x09),
-+	ILI9881C_COMMAND_INSTR(0x22, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x23, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x24, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x25, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x26, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x27, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x28, 0x55),
-+	ILI9881C_COMMAND_INSTR(0x29, 0x03),
-+	ILI9881C_COMMAND_INSTR(0x2A, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x2B, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x2C, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x2D, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x2E, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x2F, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x30, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x31, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x32, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x33, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x34, 0x00), /* GPWR1/2 non overlap time 2.62us */
-+	ILI9881C_COMMAND_INSTR(0x35, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x36, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x37, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x38, 0x3c),
-+	ILI9881C_COMMAND_INSTR(0x39, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x3A, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x3B, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x3C, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x3D, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x3E, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x3F, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x40, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x41, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x42, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x43, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x44, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x50, 0x01),
-+	ILI9881C_COMMAND_INSTR(0x51, 0x23),
-+	ILI9881C_COMMAND_INSTR(0x52, 0x45),
-+	ILI9881C_COMMAND_INSTR(0x53, 0x67),
-+	ILI9881C_COMMAND_INSTR(0x54, 0x89),
-+	ILI9881C_COMMAND_INSTR(0x55, 0xAB),
-+	ILI9881C_COMMAND_INSTR(0x56, 0x01),
-+	ILI9881C_COMMAND_INSTR(0x57, 0x23),
-+	ILI9881C_COMMAND_INSTR(0x58, 0x45),
-+	ILI9881C_COMMAND_INSTR(0x59, 0x67),
-+	ILI9881C_COMMAND_INSTR(0x5A, 0x89),
-+	ILI9881C_COMMAND_INSTR(0x5B, 0xAB),
-+	ILI9881C_COMMAND_INSTR(0x5C, 0xCD),
-+	ILI9881C_COMMAND_INSTR(0x5D, 0xEF),
-+	ILI9881C_COMMAND_INSTR(0x5E, 0x01),
-+	ILI9881C_COMMAND_INSTR(0x5F, 0x08),
-+	ILI9881C_COMMAND_INSTR(0x60, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x61, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x62, 0x0a),
-+	ILI9881C_COMMAND_INSTR(0x63, 0x15),
-+	ILI9881C_COMMAND_INSTR(0x64, 0x14),
-+	ILI9881C_COMMAND_INSTR(0x65, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x66, 0x11),
-+	ILI9881C_COMMAND_INSTR(0x67, 0x10),
-+	ILI9881C_COMMAND_INSTR(0x68, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x69, 0x0f),
-+	ILI9881C_COMMAND_INSTR(0x6A, 0x0e),
-+	ILI9881C_COMMAND_INSTR(0x6B, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x6C, 0x0D),
-+	ILI9881C_COMMAND_INSTR(0x6D, 0x0c),
-+	ILI9881C_COMMAND_INSTR(0x6E, 0x0C),
-+	ILI9881C_COMMAND_INSTR(0x6F, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x70, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x71, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x72, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x73, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x74, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x75, 0x06),
-+	ILI9881C_COMMAND_INSTR(0x76, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x77, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x78, 0x0a),
-+	ILI9881C_COMMAND_INSTR(0x79, 0x15),
-+	ILI9881C_COMMAND_INSTR(0x7A, 0x14),
-+	ILI9881C_COMMAND_INSTR(0x7B, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x7C, 0x10),
-+	ILI9881C_COMMAND_INSTR(0x7D, 0x11),
-+	ILI9881C_COMMAND_INSTR(0x7E, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x7F, 0x0c),
-+	ILI9881C_COMMAND_INSTR(0x80, 0x0d),
-+	ILI9881C_COMMAND_INSTR(0x81, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x82, 0x0e),
-+	ILI9881C_COMMAND_INSTR(0x83, 0x0f),
-+	ILI9881C_COMMAND_INSTR(0x84, 0x08),
-+	ILI9881C_COMMAND_INSTR(0x85, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x86, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x87, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x88, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x89, 0x02),
-+	ILI9881C_COMMAND_INSTR(0x8A, 0x02),
-+	ILI9881C_SWITCH_PAGE_INSTR(4),
-+	ILI9881C_COMMAND_INSTR(0x6C, 0x15),
-+	ILI9881C_COMMAND_INSTR(0x6E, 0x30),
-+	ILI9881C_COMMAND_INSTR(0x6F, 0x33),
-+	ILI9881C_COMMAND_INSTR(0x8D, 0x1F),
-+	ILI9881C_COMMAND_INSTR(0x87, 0xBA),
-+	ILI9881C_COMMAND_INSTR(0x26, 0x76),
-+	ILI9881C_COMMAND_INSTR(0xB2, 0xd1),
-+	ILI9881C_COMMAND_INSTR(0x35, 0x1f),
-+	ILI9881C_COMMAND_INSTR(0x33, 0x14),
-+	ILI9881C_COMMAND_INSTR(0x3A, 0xa9),
-+	ILI9881C_COMMAND_INSTR(0x3B, 0x98),
-+	ILI9881C_COMMAND_INSTR(0x38, 0x01),
-+	ILI9881C_COMMAND_INSTR(0x39, 0x00),
-+	ILI9881C_COMMAND_INSTR(0x2f, 0x00), /* BIST mode = 0x01 */
-+	ILI9881C_SWITCH_PAGE_INSTR(1),
-+	ILI9881C_COMMAND_INSTR(0x22, 0x09), /* BGR, SS */
-+	ILI9881C_COMMAND_INSTR(0x31, 0x00), /* Zigzag type3 inversion */
-+	ILI9881C_COMMAND_INSTR(0x50, 0xc0),
-+	ILI9881C_COMMAND_INSTR(0x51, 0xc0),
-+	ILI9881C_COMMAND_INSTR(0x53, 0x47),
-+	ILI9881C_COMMAND_INSTR(0x55, 0x7a),
-+	ILI9881C_COMMAND_INSTR(0x60, 0x28),
-+	ILI9881C_COMMAND_INSTR(0x61, 0x05),
-+	ILI9881C_COMMAND_INSTR(0x62, 0x19),
-+	ILI9881C_COMMAND_INSTR(0x63, 0x05),
-+	ILI9881C_COMMAND_INSTR(0x2e, 0xc8),
-+	ILI9881C_COMMAND_INSTR(0xA0, 0x01),
-+	ILI9881C_COMMAND_INSTR(0xA1, 0x10), /* VP251 */
-+	ILI9881C_COMMAND_INSTR(0xA2, 0x1b), /* VP247 */
-+	ILI9881C_COMMAND_INSTR(0xA3, 0x0c), /* VP243 */
-+	ILI9881C_COMMAND_INSTR(0xA4, 0x14), /* VP239 */
-+	ILI9881C_COMMAND_INSTR(0xA5, 0x25), /* VP231 */
-+	ILI9881C_COMMAND_INSTR(0xA6, 0x1a), /* VP219 */
-+	ILI9881C_COMMAND_INSTR(0xA7, 0x1D), /* VP203 */
-+	ILI9881C_COMMAND_INSTR(0xA8, 0x68), /* VP175 */
-+	ILI9881C_COMMAND_INSTR(0xA9, 0x1b), /* VP144 */
-+	ILI9881C_COMMAND_INSTR(0xAA, 0x26), /* VP111 */
-+	ILI9881C_COMMAND_INSTR(0xAB, 0x5b), /* VP80 */
-+	ILI9881C_COMMAND_INSTR(0xAC, 0x1b), /* VP52 */
-+	ILI9881C_COMMAND_INSTR(0xAD, 0x17), /* VP36 */
-+	ILI9881C_COMMAND_INSTR(0xAE, 0x4f), /* VP24 */
-+	ILI9881C_COMMAND_INSTR(0xAF, 0x24), /* VP16 */
-+	ILI9881C_COMMAND_INSTR(0xB0, 0x2a), /* VP12 */
-+	ILI9881C_COMMAND_INSTR(0xB1, 0x4e), /* VP8 */
-+	ILI9881C_COMMAND_INSTR(0xB2, 0x5f), /* VP4 */
-+	ILI9881C_COMMAND_INSTR(0xB3, 0x39), /* VP0 */
-+	ILI9881C_COMMAND_INSTR(0xC0, 0x0f), /* VN255 GAMMA N */
-+	ILI9881C_COMMAND_INSTR(0xC1, 0x1b), /* VN251 */
-+	ILI9881C_COMMAND_INSTR(0xC2, 0x27), /* VN247 */
-+	ILI9881C_COMMAND_INSTR(0xC3, 0x16), /* VN243 */
-+	ILI9881C_COMMAND_INSTR(0xC4, 0x14), /* VN239 */
-+	ILI9881C_COMMAND_INSTR(0xC5, 0x28), /* VN231 */
-+	ILI9881C_COMMAND_INSTR(0xC6, 0x1d), /* VN219 */
-+	ILI9881C_COMMAND_INSTR(0xC7, 0x21), /* VN203 */
-+	ILI9881C_COMMAND_INSTR(0xC8, 0x6c), /* VN175 */
-+	ILI9881C_COMMAND_INSTR(0xC9, 0x1b), /* VN144 */
-+	ILI9881C_COMMAND_INSTR(0xCA, 0x26), /* VN111 */
-+	ILI9881C_COMMAND_INSTR(0xCB, 0x5b), /* VN80 */
-+	ILI9881C_COMMAND_INSTR(0xCC, 0x1b), /* VN52 */
-+	ILI9881C_COMMAND_INSTR(0xCD, 0x1b), /* VN36 */
-+	ILI9881C_COMMAND_INSTR(0xCE, 0x4f), /* VN24 */
-+	ILI9881C_COMMAND_INSTR(0xCF, 0x24), /* VN16 */
-+	ILI9881C_COMMAND_INSTR(0xD0, 0x2a), /* VN12 */
-+	ILI9881C_COMMAND_INSTR(0xD1, 0x4e), /* VN8 */
-+	ILI9881C_COMMAND_INSTR(0xD2, 0x5f), /* VN4 */
-+	ILI9881C_COMMAND_INSTR(0xD3, 0x39), /* VN0 */
-+	ILI9881C_SWITCH_PAGE_INSTR(0),
-+	ILI9881C_COMMAND_INSTR(0x13, 0x00), /* Normal mode */
-+};
-+
- static inline struct ili9881c *panel_to_ili9881c(struct drm_panel *panel)
- {
- 	return container_of(panel, struct ili9881c, panel);
-@@ -1441,6 +1641,25 @@ static const struct drm_display_mode am8001280g_default_mode = {
- 	.height_mm	= 151,
- };
- 
-+static const struct drm_display_mode lcm_jm800wx_default_mode = {
-+	.clock		= 73000,
-+
-+	.hdisplay	= 800,
-+	.hsync_start	= 800 + 50,
-+	.hsync_end	= 800 + 50 + 20,
-+	.htotal		= 800 + 50 + 20 + 54,
-+
-+	.vdisplay	= 1280,
-+	.vsync_start	= 1280 + 15,
-+	.vsync_end	= 1280 + 15 + 6,
-+	.vtotal		= 1280 + 15 + 6 + 15,
-+
-+	.width_mm	= 108,
-+	.height_mm	= 172,
-+
-+	.flags		= DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC,
-+};
-+
- static int ili9881c_get_modes(struct drm_panel *panel,
- 			      struct drm_connector *connector)
- {
-@@ -1590,6 +1809,14 @@ static const struct ili9881c_desc am8001280g_desc = {
- 		      MIPI_DSI_CLOCK_NON_CONTINUOUS | MIPI_DSI_MODE_LPM,
- };
- 
-+static const struct ili9881c_desc lcm_jm800wx_desc = {
-+	.init = lcm_jm800wx_init,
-+	.init_length = ARRAY_SIZE(lcm_jm800wx_init),
-+	.mode = &lcm_jm800wx_default_mode,
-+	.mode_flags = MIPI_DSI_MODE_VIDEO_BURST | MIPI_DSI_MODE_VIDEO_HSE |
-+		      MIPI_DSI_MODE_LPM,
-+};
-+
- static const struct of_device_id ili9881c_of_match[] = {
- 	{ .compatible = "bananapi,lhr050h41", .data = &lhr050h41_desc },
- 	{ .compatible = "feixin,k101-im2byl02", .data = &k101_im2byl02_desc },
-@@ -1597,6 +1824,7 @@ static const struct of_device_id ili9881c_of_match[] = {
- 	{ .compatible = "tdo,tl050hdv35", .data = &tl050hdv35_desc },
- 	{ .compatible = "wanchanglong,w552946aba", .data = &w552946aba_desc },
- 	{ .compatible = "ampire,am8001280g", .data = &am8001280g_desc },
-+	{ .compatible = "jmo,lcm-jm800wx", .data = &lcm_jm800wx_desc },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, ili9881c_of_match);
+>  
+> +patternProperties:
+> +  "^.*@[0-9a-f]{1,2}$":
+> +    description: The hard wired USB devices
+> +    type: object
+> +    $ref: /schemas/usb/usb-device.yaml
+> +    additionalProperties: true
+> +
+>  unevaluatedProperties: false
+>  
+>  examples:
+> @@ -47,7 +54,7 @@ examples:
+>          #address-cells = <1>;
+>          #size-cells = <0>;
+>  
+> -        usb-hub@1 {
+> +        hub@1 {
 
--- 
-2.46.0
+This is not needed. Both are correct - usb-hub and hub. I prefer not to
+rename all "phy" nodes to "usb-phy" and vice versa.
+
+Rest is good, so with dropping this renaming hunk:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
 
