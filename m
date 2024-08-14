@@ -1,185 +1,365 @@
-Return-Path: <devicetree+bounces-93674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B4DF951DC5
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 16:52:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAAFC951DC9
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 16:53:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5B562853A5
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 14:52:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 486A71F21112
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 14:53:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A4831B3F00;
-	Wed, 14 Aug 2024 14:52:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="IzdG/RmK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DECE1B3759;
+	Wed, 14 Aug 2024 14:53:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9FA81B3759;
-	Wed, 14 Aug 2024 14:52:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68DAA1B1417;
+	Wed, 14 Aug 2024 14:53:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723647167; cv=none; b=iWuSSzGT6Fxc+Aesk99F8JnIfJfy43/k4NcCKZ3JUwA00iFwQl5EgCx1gAg8JlW4ViPgaIdW+6CSaXm+wn1JsMrUcl1UGOB10bsRbPER8m6iD2owX6z2A5G/d2L2aI1iEyWgu626uA/iIxvYkwAFyuqsDPXQ/9UWZgTJXcngSRk=
+	t=1723647218; cv=none; b=p4QsE2wDvZJKcGEw0H3nVGjCUPrJKNHBcVPMPLX9dpm5A6MPRQJIbjVleepKOS8uD2vlx04wA3ZT33uH6tv4s8yx9reU3XX+7mVKayW7MgvC5DGYfzT4y4jnQAvk4t26ewxV1iLtViDStyJhx3nRx4NkRqIjvW1YVRU7JaTWJjY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723647167; c=relaxed/simple;
-	bh=K0/wHAcpwETDUIAlPPQ4qlBcoy4QlTDvDP3az0PwbY0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Sp/FUaFlzrkTyDc3OCTUNOkJJ6RTQRMQgJ4X2GfxNJShvIhm0ISpamZlK+TW5ILi6LQ0vDTES35mEl597Pk/AbVgeACYml0GsVxbJ1tPkLpCYLIjE0W7AOgOFIwyqnOHSIGA7sZYwVugjSDcpfBK0TgT1IBgG+he14mT2eyomuI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=IzdG/RmK; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id C7B4A2E0;
-	Wed, 14 Aug 2024 16:51:45 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1723647106;
-	bh=K0/wHAcpwETDUIAlPPQ4qlBcoy4QlTDvDP3az0PwbY0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IzdG/RmKzRhFmlUxmin4448IlLEvlz6jbokEhLmBMKAkJ/Q/h1o8aE+3kVuwD4Vvy
-	 PQa1ZIlLTRUy7cW2pmw7jdv20h6iSn4EOViAaooyUn/K3U8soUTxqPao/mu9b1UjF8
-	 e+FDJ78MaSL/GEpJZ1Y05XweD9Ys1tMWkNm2ZEGI=
-Date: Wed, 14 Aug 2024 17:52:18 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Paul Elder <paul.elder@ideasonboard.com>,
-	Adam Ford <aford173@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Marek Vasut <marex@denx.de>, Peng Fan <peng.fan@nxp.com>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	devicetree@vger.kernel.org, linux-media@vger.kernel.org
-Subject: Re: [PATCH v3] arm64: dts: imx8mp: Add DT nodes for the two ISPs
-Message-ID: <20240814145218.GB22567@pendragon.ideasonboard.com>
-References: <20240813234004.17807-1-laurent.pinchart@ideasonboard.com>
- <5809346.DvuYhMxLoT@steina-w>
+	s=arc-20240116; t=1723647218; c=relaxed/simple;
+	bh=sGctnLwc2UF5UIiv8joX+RmVrZnDKw2CceNwTS6ozWk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UP5/Q0CSv2pQ3I2hkCr3Os4ymbqnzAkZljXjHKdg4M60KNB056UOsUio8ZjlSKFIbGGiZ9NWhMNeN5s6Ke6Ayhw7grIbWOEjqC0u6glid94JtCfoQuDXIYNZ2i/J6G9XZx1VHiwC2tyPlT5jP3pw4ML7pD2bR95Mkdh0+fuxe+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 34763C0003;
+	Wed, 14 Aug 2024 14:53:32 +0000 (UTC)
+Message-ID: <02718edd-e061-4f2d-9a29-cdc7931727b3@ghiti.fr>
+Date: Wed, 14 Aug 2024 16:53:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <5809346.DvuYhMxLoT@steina-w>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 04/10] riscv: Add support for userspace pointer masking
+Content-Language: en-US
+To: Samuel Holland <samuel.holland@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, linux-riscv@lists.infradead.org
+Cc: devicetree@vger.kernel.org, Catalin Marinas <catalin.marinas@arm.com>,
+ linux-kernel@vger.kernel.org, Anup Patel <anup@brainfault.org>,
+ Conor Dooley <conor@kernel.org>, kasan-dev@googlegroups.com,
+ Atish Patra <atishp@atishpatra.org>, Evgenii Stepanov <eugenis@google.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>
+References: <20240625210933.1620802-1-samuel.holland@sifive.com>
+ <20240625210933.1620802-5-samuel.holland@sifive.com>
+ <440ca2a7-9dfb-45cd-8331-a8d0afff47d0@ghiti.fr>
+ <dc8da1d4-435a-4786-b4bc-7f89590c2269@sifive.com>
+From: Alexandre Ghiti <alex@ghiti.fr>
+In-Reply-To: <dc8da1d4-435a-4786-b4bc-7f89590c2269@sifive.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: alex@ghiti.fr
 
-Hi Alexander,
+Hi Samuel,
 
-On Wed, Aug 14, 2024 at 12:02:26PM +0200, Alexander Stein wrote:
-> Am Mittwoch, 14. August 2024, 01:40:04 CEST schrieb Laurent Pinchart:
-> > From: Paul Elder <paul.elder@ideasonboard.com>
-> > 
-> > The ISP supports both CSI and parallel interfaces, where port 0
-> > corresponds to the former and port 1 corresponds to the latter. Since
-> > the i.MX8MP's ISPs are connected by the parallel interface to the CSI
-> > receiver, set them both to port 1.
-> > 
-> > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Tested-by: Adam Ford <aford173@gmail.com> # imx8mp-beacon
-> > ---
-> > Changes since v2:
-> > 
-> > - Assign clock parent and frequency in blk-ctrl
-> > 
-> > Changes since v1:
-> > 
-> > - Fix clock ordering
-> > - Add #address-cells and #size-cells to ports nodes
-> > ---
-> >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 51 ++++++++++++++++++++++-
-> >  1 file changed, 49 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > index d9b5c40f6460..09f1e27ee220 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > @@ -1673,6 +1673,50 @@ isi_in_1: endpoint {
-> >  				};
-> >  			};
-> >  
-> > +			isp_0: isp@32e10000 {
-> > +				compatible = "fsl,imx8mp-isp";
-> > +				reg = <0x32e10000 0x10000>;
-> > +				interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
-> > +				clocks = <&clk IMX8MP_CLK_MEDIA_ISP_ROOT>,
-> > +					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
-> > +					 <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
-> > +				clock-names = "isp", "aclk", "hclk";
-> > +				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_ISP>;
-> > +				fsl,blk-ctrl = <&media_blk_ctrl 0>;
-> > +				status = "disabled";
-> > +
-> > +				ports {
-> > +					#address-cells = <1>;
-> > +					#size-cells = <0>;
-> > +
-> > +					port@1 {
-> > +						reg = <1>;
-> > +					};
-> > +				};
-> > +			};
-> > +
-> > +			isp_1: isp@32e20000 {
-> > +				compatible = "fsl,imx8mp-isp";
-> > +				reg = <0x32e20000 0x10000>;
-> > +				interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>;
-> > +				clocks = <&clk IMX8MP_CLK_MEDIA_ISP_ROOT>,
-> > +					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
-> > +					 <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
-> > +				clock-names = "isp", "aclk", "hclk";
-> > +				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_ISP>;
-> > +				fsl,blk-ctrl = <&media_blk_ctrl 1>;
-> > +				status = "disabled";
-> > +
-> > +				ports {
-> > +					#address-cells = <1>;
-> > +					#size-cells = <0>;
-> > +
-> > +					port@1 {
-> > +						reg = <1>;
-> > +					};
-> > +				};
-> > +			};
-> > +
-> >  			dewarp: dwe@32e30000 {
-> >  				compatible = "nxp,imx8mp-dw100";
-> >  				reg = <0x32e30000 0x10000>;
-> > @@ -1873,13 +1917,16 @@ media_blk_ctrl: blk-ctrl@32ec0000 {
-> >  						  <&clk IMX8MP_CLK_MEDIA_APB>,
-> >  						  <&clk IMX8MP_CLK_MEDIA_DISP1_PIX>,
-> >  						  <&clk IMX8MP_CLK_MEDIA_DISP2_PIX>,
-> > +						  <&clk IMX8MP_CLK_MEDIA_ISP>,
-> >  						  <&clk IMX8MP_VIDEO_PLL1>;
-> >  				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>,
-> >  							 <&clk IMX8MP_SYS_PLL1_800M>,
-> >  							 <&clk IMX8MP_VIDEO_PLL1_OUT>,
-> > -							 <&clk IMX8MP_VIDEO_PLL1_OUT>;
-> > +							 <&clk IMX8MP_VIDEO_PLL1_OUT>,
-> > +							 <&clk IMX8MP_SYS_PLL2_500M>;
-> >  				assigned-clock-rates = <500000000>, <200000000>,
-> > -						       <0>, <0>, <1039500000>;
-> > +						       <0>, <0>, <0>, <500000000>,
-> > +						       <1039500000>;
-> 
-> Isn't this one '<0>' too much? <500000000> is for IMX8MP_CLK_MEDIA_ISP, right?
+On 14/08/2024 03:54, Samuel Holland wrote:
+> Hi Alex,
+>
+> Thanks for the review!
+>
+> On 2024-08-13 3:58 AM, Alexandre Ghiti wrote:
+>> Hi Samuel,
+>>
+>> On 25/06/2024 23:09, Samuel Holland wrote:
+>>> RISC-V supports pointer masking with a variable number of tag bits
+>>> (which is called "PMLEN" in the specification) and which is configured
+>>> at the next higher privilege level.
+>>>
+>>> Wire up the PR_SET_TAGGED_ADDR_CTRL and PR_GET_TAGGED_ADDR_CTRL prctls
+>>> so userspace can request a lower bound on the  number of tag bits and
+>>> determine the actual number of tag bits. As with arm64's
+>>> PR_TAGGED_ADDR_ENABLE, the pointer masking configuration is
+>>> thread-scoped, inherited on clone() and fork() and cleared on execve().
+>>>
+>>> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
+>>> ---
+>>>
+>>> Changes in v2:
+>>>    - Rebase on riscv/linux.git for-next
+>>>    - Add and use the envcfg_update_bits() helper function
+>>>    - Inline flush_tagged_addr_state()
+>>>
+>>>    arch/riscv/Kconfig                 | 11 ++++
+>>>    arch/riscv/include/asm/processor.h |  8 +++
+>>>    arch/riscv/include/asm/switch_to.h | 11 ++++
+>>>    arch/riscv/kernel/process.c        | 99 ++++++++++++++++++++++++++++++
+>>>    include/uapi/linux/prctl.h         |  3 +
+>>>    5 files changed, 132 insertions(+)
+>>>
+>>> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+>>> index b94176e25be1..8f9980f81ea5 100644
+>>> --- a/arch/riscv/Kconfig
+>>> +++ b/arch/riscv/Kconfig
+>>> @@ -505,6 +505,17 @@ config RISCV_ISA_C
+>>>            If you don't know what to do here, say Y.
+>>>    +config RISCV_ISA_POINTER_MASKING
+>>> +    bool "Smmpm, Smnpm, and Ssnpm extensions for pointer masking"
+>>> +    depends on 64BIT
+>>> +    default y
+>>> +    help
+>>> +      Add support for the pointer masking extensions (Smmpm, Smnpm,
+>>> +      and Ssnpm) when they are detected at boot.
+>>> +
+>>> +      If this option is disabled, userspace will be unable to use
+>>> +      the prctl(PR_{SET,GET}_TAGGED_ADDR_CTRL) API.
+>>> +
+>>>    config RISCV_ISA_SVNAPOT
+>>>        bool "Svnapot extension support for supervisor mode NAPOT pages"
+>>>        depends on 64BIT && MMU
+>>> diff --git a/arch/riscv/include/asm/processor.h
+>>> b/arch/riscv/include/asm/processor.h
+>>> index 0838922bd1c8..4f99c85d29ae 100644
+>>> --- a/arch/riscv/include/asm/processor.h
+>>> +++ b/arch/riscv/include/asm/processor.h
+>>> @@ -194,6 +194,14 @@ extern int set_unalign_ctl(struct task_struct *tsk,
+>>> unsigned int val);
+>>>    #define RISCV_SET_ICACHE_FLUSH_CTX(arg1, arg2)
+>>> riscv_set_icache_flush_ctx(arg1, arg2)
+>>>    extern int riscv_set_icache_flush_ctx(unsigned long ctx, unsigned long
+>>> per_thread);
+>>>    +#ifdef CONFIG_RISCV_ISA_POINTER_MASKING
+>>> +/* PR_{SET,GET}_TAGGED_ADDR_CTRL prctl */
+>>> +long set_tagged_addr_ctrl(struct task_struct *task, unsigned long arg);
+>>> +long get_tagged_addr_ctrl(struct task_struct *task);
+>>> +#define SET_TAGGED_ADDR_CTRL(arg)    set_tagged_addr_ctrl(current, arg)
+>>> +#define GET_TAGGED_ADDR_CTRL()        get_tagged_addr_ctrl(current)
+>>> +#endif
+>>> +
+>>>    #endif /* __ASSEMBLY__ */
+>>>      #endif /* _ASM_RISCV_PROCESSOR_H */
+>>> diff --git a/arch/riscv/include/asm/switch_to.h
+>>> b/arch/riscv/include/asm/switch_to.h
+>>> index 9685cd85e57c..94e33216b2d9 100644
+>>> --- a/arch/riscv/include/asm/switch_to.h
+>>> +++ b/arch/riscv/include/asm/switch_to.h
+>>> @@ -70,6 +70,17 @@ static __always_inline bool has_fpu(void) { return false; }
+>>>    #define __switch_to_fpu(__prev, __next) do { } while (0)
+>>>    #endif
+>>>    +static inline void envcfg_update_bits(struct task_struct *task,
+>>> +                      unsigned long mask, unsigned long val)
+>>> +{
+>>> +    unsigned long envcfg;
+>>> +
+>>> +    envcfg = (task->thread.envcfg & ~mask) | val;
+>>> +    task->thread.envcfg = envcfg;
+>>> +    if (task == current)
+>>> +        csr_write(CSR_ENVCFG, envcfg);
+>>> +}
+>>> +
+>>>    static inline void __switch_to_envcfg(struct task_struct *next)
+>>>    {
+>>>        asm volatile (ALTERNATIVE("nop", "csrw " __stringify(CSR_ENVCFG) ", %0",
+>>> diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
+>>> index e4bc61c4e58a..dec5ccc44697 100644
+>>> --- a/arch/riscv/kernel/process.c
+>>> +++ b/arch/riscv/kernel/process.c
+>>> @@ -7,6 +7,7 @@
+>>>     * Copyright (C) 2017 SiFive
+>>>     */
+>>>    +#include <linux/bitfield.h>
+>>>    #include <linux/cpu.h>
+>>>    #include <linux/kernel.h>
+>>>    #include <linux/sched.h>
+>>> @@ -171,6 +172,10 @@ void flush_thread(void)
+>>>        memset(&current->thread.vstate, 0, sizeof(struct __riscv_v_ext_state));
+>>>        clear_tsk_thread_flag(current, TIF_RISCV_V_DEFER_RESTORE);
+>>>    #endif
+>>> +#ifdef CONFIG_RISCV_ISA_POINTER_MASKING
+>>> +    if (riscv_has_extension_unlikely(RISCV_ISA_EXT_SUPM))
+>>> +        envcfg_update_bits(current, ENVCFG_PMM, ENVCFG_PMM_PMLEN_0);
+>>> +#endif
+>> if (IS_ENABLED(CONFIG_RISCV_ISA_POINTER_MASKING) &&
+>> riscv_has_extension_unlikely(RISCV_ISA_EXT_SUPM))
+> I will update this.
+>
+>>>    }
+>>>      void arch_release_task_struct(struct task_struct *tsk)
+>>> @@ -233,3 +238,97 @@ void __init arch_task_cache_init(void)
+>>>    {
+>>>        riscv_v_setup_ctx_cache();
+>>>    }
+>>> +
+>>> +#ifdef CONFIG_RISCV_ISA_POINTER_MASKING
+>>> +static bool have_user_pmlen_7;
+>>> +static bool have_user_pmlen_16;
+>>> +
+>>> +long set_tagged_addr_ctrl(struct task_struct *task, unsigned long arg)
+>>> +{
+>>> +    unsigned long valid_mask = PR_PMLEN_MASK;
+>>> +    struct thread_info *ti = task_thread_info(task);
+>>> +    unsigned long pmm;
+>>> +    u8 pmlen;
+>>> +
+>>> +    if (is_compat_thread(ti))
+>>> +        return -EINVAL;
+>>> +
+>>> +    if (arg & ~valid_mask)
+>>> +        return -EINVAL;
+>>> +
+>>> +    pmlen = FIELD_GET(PR_PMLEN_MASK, arg);
+>>> +    if (pmlen > 16) {
+>>> +        return -EINVAL;
+>>> +    } else if (pmlen > 7) {
+>>> +        if (have_user_pmlen_16)
+>>> +            pmlen = 16;
+>>> +        else
+>>> +            return -EINVAL;
+>>> +    } else if (pmlen > 0) {
+>>> +        /*
+>>> +         * Prefer the smallest PMLEN that satisfies the user's request,
+>>> +         * in case choosing a larger PMLEN has a performance impact.
+>>> +         */
+>>> +        if (have_user_pmlen_7)
+>>> +            pmlen = 7;
+>>> +        else if (have_user_pmlen_16)
+>>> +            pmlen = 16;
+>>> +        else
+>>> +            return -EINVAL;
+>>> +    }
+>>> +
+>>> +    if (pmlen == 7)
+>>> +        pmm = ENVCFG_PMM_PMLEN_7;
+>>> +    else if (pmlen == 16)
+>>> +        pmm = ENVCFG_PMM_PMLEN_16;
+>>> +    else
+>>> +        pmm = ENVCFG_PMM_PMLEN_0;
+>>> +
+>>> +    envcfg_update_bits(task, ENVCFG_PMM, pmm);
+>>> +
+>>> +    return 0;
+>>> +}
+>>> +
+>>> +long get_tagged_addr_ctrl(struct task_struct *task)
+>>> +{
+>>> +    struct thread_info *ti = task_thread_info(task);
+>>> +    long ret = 0;
+>>> +
+>>> +    if (is_compat_thread(ti))
+>>> +        return -EINVAL;
+>>> +
+>>> +    switch (task->thread.envcfg & ENVCFG_PMM) {
+>>> +    case ENVCFG_PMM_PMLEN_7:
+>>> +        ret |= FIELD_PREP(PR_PMLEN_MASK, 7);
+>>> +        break;
+>>> +    case ENVCFG_PMM_PMLEN_16:
+>>> +        ret |= FIELD_PREP(PR_PMLEN_MASK, 16);
+>>> +        break;
+>>> +    }
+>>
+>> No need for the |=
+> This is used in the next patch since the returned value may include
+> PR_TAGGED_ADDR_ENABLE as well, but it's not needed here, so I will make this change.
+>
+>>> +
+>>> +    return ret;
+>>> +}
+>>
+>> In all the code above, I'd use a macro for 7 and 16, something like PMLEN[7|16]?
+> I've done this using an enum in v4. Please let me know if it looks good to you.
 
-Indeed. I'll send a v3.
 
-> >  				#power-domain-cells = <1>;
-> >  
-> >  				lvds_bridge: bridge@5c {
-> > 
-> > base-commit: 7c626ce4bae1ac14f60076d00eafe71af30450ba
+Great, thanks!
 
--- 
-Regards,
 
-Laurent Pinchart
+>
+>>> +
+>>> +static bool try_to_set_pmm(unsigned long value)
+>>> +{
+>>> +    csr_set(CSR_ENVCFG, value);
+>>> +    return (csr_read_clear(CSR_ENVCFG, ENVCFG_PMM) & ENVCFG_PMM) == value;
+>>> +}
+>>> +
+>>> +static int __init tagged_addr_init(void)
+>>> +{
+>>> +    if (!riscv_has_extension_unlikely(RISCV_ISA_EXT_SUPM))
+>>> +        return 0;
+>>> +
+>>> +    /*
+>>> +     * envcfg.PMM is a WARL field. Detect which values are supported.
+>>> +     * Assume the supported PMLEN values are the same on all harts.
+>>> +     */
+>>> +    csr_clear(CSR_ENVCFG, ENVCFG_PMM);
+>>> +    have_user_pmlen_7 = try_to_set_pmm(ENVCFG_PMM_PMLEN_7);
+>>> +    have_user_pmlen_16 = try_to_set_pmm(ENVCFG_PMM_PMLEN_16);
+>>
+>> Shouldn't this depend on the satp mode? sv57 does not allow 16bits for the tag.
+> No, late last year the pointer masking spec was changed so that the valid values
+> for PMM can no longer dynamically depend on satp.MODE. If an implementation
+> chooses to support both Sv57 and PMLEN==16, then it does so by masking off some
+> of the valid bits in the virtual address. (This is a valid if unusual use case
+> considering that pointer masking does not apply to instruction fetches, so an
+> application could place code at addresses above 2^47-1 and use the whole masked
+> virtual address space for data. Or it could enable pointer masking for only
+> certain threads, and those threads would be limited to a subset of data.)
+
+
+I had forgotten that by default, we restrict sv57 user address space to 
+sv48, so that will work *unless* someone tries to map memory from above. 
+I'd say that if a user asks for sv57 and at the same time asks for 
+pointer masking with a tag of length 16, that's her fault :)
+
+
+>
+>>> +
+>>> +    return 0;
+>>> +}
+>>> +core_initcall(tagged_addr_init);
+>>
+>> Any reason it's not called from setup_arch()? I see the vector extension does
+>> the same; just wondering if we should not centralize all this early extensions
+>> decisions in setup_arch() (in my Zacas series, I choose the spinlock
+>> implementation in setup_arch()).
+>>
+>>
+>>> +#endif    /* CONFIG_RISCV_ISA_POINTER_MASKING */
+>>> diff --git a/include/uapi/linux/prctl.h b/include/uapi/linux/prctl.h
+>>> index 35791791a879..6e84c827869b 100644
+>>> --- a/include/uapi/linux/prctl.h
+>>> +++ b/include/uapi/linux/prctl.h
+>>> @@ -244,6 +244,9 @@ struct prctl_mm_map {
+>>>    # define PR_MTE_TAG_MASK        (0xffffUL << PR_MTE_TAG_SHIFT)
+>>>    /* Unused; kept only for source compatibility */
+>>>    # define PR_MTE_TCF_SHIFT        1
+>>> +/* RISC-V pointer masking tag length */
+>>> +# define PR_PMLEN_SHIFT            24
+>>> +# define PR_PMLEN_MASK            (0x7fUL << PR_PMLEN_SHIFT)
+>>
+>> I don't understand the need for this shift, can't userspace pass the pmlen value
+>> directly without worrying about this?
+> No, because the PR_TAGGED_ADDR_ENABLE flag (bit 0, defined just a few lines
+> above) is part of the the same argument word. It's just not used until the next
+> patch.
+
+
+Ok, I had missed that we use an already existing prctl. If you spin a 
+v4, can you "riscv" to this comment then 
+https://elixir.bootlin.com/linux/v6.11-rc3/source/include/uapi/linux/prctl.h#L233?
+
+And did you add that to the man pages too?
+
+Thanks,
+
+Alex
+
+
+>
+> Regards,
+> Samuel
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
