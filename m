@@ -1,124 +1,117 @@
-Return-Path: <devicetree+bounces-93561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7044E95178C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 11:21:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DFFA95179F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 11:27:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EF56FB231DD
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 09:21:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61FDF1C224AD
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 09:27:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C696A149006;
-	Wed, 14 Aug 2024 09:21:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD0411494D0;
+	Wed, 14 Aug 2024 09:26:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JRjvPLh5"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="fh5R4q0u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A6F6146A8A;
-	Wed, 14 Aug 2024 09:21:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F221C1448FD
+	for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 09:26:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723627271; cv=none; b=BwGZoCd0oJjCRlFMOBSgaNGNeel/PdgNPEVha1sIsyB6uL3oIZFZ5aBJQWLKIImT/u5pIstkMQr10jlxcx27pDeGC00YE3SBmDNjReKsXm5wUyXRFNrYNbwzogef8YCjp+EnwlRs8leDOe0ay8g3wHmyKGsAYyf6xQCS6bI/JVk=
+	t=1723627606; cv=none; b=GRGzEmWwtFjSAw0Hqp+Ng8LnQt81zR0L/H2tfGQulkn5VdFeS4l4bLT8ILQeHuRzzgFk6mLSOX83G8yMu7yju/AyTVjcMNmYUq7Wa14wEuVnk0swhC2behPoxut4fNZDkCpN29Rd45LldOedBRdNzwipnFLK/8oPR+ADfju84H0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723627271; c=relaxed/simple;
-	bh=wj88B6BBi8tG04+C5SWDMso/uHUJfPvBpn1JpU98qQI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=L5cBA/XQhrtPLSuMhjekz8fwgin6mdk06gphJ66w73UdSp40LwUp5MhPKS7kanf9RJZbe/K7q2LHPyj3tn/vaIa1jKPl6flOxBzGIv19ab/CIYJn5l+fy7Pe+1wf/eGBy8RX6KLCGyrSyDfvgUZLKwjfkVHXokSkscNRLUgyLCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JRjvPLh5; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1723627269; x=1755163269;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=wj88B6BBi8tG04+C5SWDMso/uHUJfPvBpn1JpU98qQI=;
-  b=JRjvPLh5PVvg0WmFEUiIK7nEES0sc3caL281T3nyD8uLeQpvHUsHJSQM
-   Lnj1zkjzyRvGqcFX3jU2OtHl3IyCc1ifsWVJPmN8CCJ5x2u61VzJdZjX/
-   WN2Pea7wuPRB87CMZGZPogKdZSZxwFs7b54YDp8VZZkUnD98BR1jUQDhw
-   GxJ0RAwbGmnIFDDMdojeCx90nyCadkKSv0bzEP9WUmJa7XtAq+45fBooS
-   h/TJHhMebE1szuJa8yiIACAMZUemC+vHNeMKrlZfowkYirS0vDCRWrdPH
-   uWeO092ECqEouUL4Xh5ha5phsvuT2TckSutTTPxrjrLv2FXNb46tiJ7wQ
-   g==;
-X-CSE-ConnectionGUID: kVvTUd/4Q9212FpsPgb7Og==
-X-CSE-MsgGUID: rR44qeteSzKXBudqIv/ihQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11163"; a="39282578"
-X-IronPort-AV: E=Sophos;i="6.09,288,1716274800"; 
-   d="scan'208";a="39282578"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Aug 2024 02:21:08 -0700
-X-CSE-ConnectionGUID: C5GMpR9eT82uHlsNZHJFaQ==
-X-CSE-MsgGUID: MS7yrPWQTkWJMZoDPeQKUQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,288,1716274800"; 
-   d="scan'208";a="58655845"
-Received: from slindbla-desk.ger.corp.intel.com (HELO [10.245.246.67]) ([10.245.246.67])
-  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Aug 2024 02:21:03 -0700
-Message-ID: <74d413f3-45ab-405d-8dff-122785ae7da5@linux.intel.com>
-Date: Wed, 14 Aug 2024 11:20:59 +0200
+	s=arc-20240116; t=1723627606; c=relaxed/simple;
+	bh=du3T0NbhpWxdJIqDk4B2apIvrigUhtDvY/L1kMGtLvs=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=IbekEKBlAqHpDVeIAzJoG/9vsMwpPBYbkqFkYYbGzXba7jyPwJN0G8IbPNDWHp9lq8lskcFeW7ZN6BEjyhxYcYCObRpTEO/rTA2ydFIFUQ5aKreXHEH7T6FhbQbh4Lx5PazErbM5jKEW5ShOONDjh8s25hyWvsGFBa+C8TbWayg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=fh5R4q0u; arc=none smtp.client-ip=91.26.50.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+	q=dns/txt; i=@phytec.de; t=1723627599; x=1726219599;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=du3T0NbhpWxdJIqDk4B2apIvrigUhtDvY/L1kMGtLvs=;
+	b=fh5R4q0uyt+w6TdzwgKolme9mObFOmP621bggGUSsJ1EZ2y0kPbnZV613ADm0EnV
+	93JkXOsybQ27sV/CQfbMuUgx7vsq/2Cz5/nCZ8eILCL8OIPPIASWD51xIRmaM9JT
+	IkazQCahnzbiV0miIJIsNMDGwTLN/CwrM4mAsaCWXUU=;
+X-AuditID: ac14000a-03e52700000021bc-b8-66bc784f7bdd
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(Client did not present a certificate)
+	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id B5.54.08636.F487CB66; Wed, 14 Aug 2024 11:26:39 +0200 (CEST)
+Received: from augenblix2.phytec.de (172.25.0.11) by Berlix.phytec.de
+ (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Wed, 14 Aug
+ 2024 11:26:38 +0200
+From: Teresa Remmet <t.remmet@phytec.de>
+Subject: [PATCH 0/6] arm64: dts phyBOARD-Pollux: Update regulator nodes
+Date: Wed, 14 Aug 2024 11:26:07 +0200
+Message-ID: <20240814-b4-wip-t-remmet-phytec-de-bspimx8m-3392_upstream-v1-0-e2500950c632@phytec.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v24 09/34] ASoC: Add SOC USB APIs for adding an USB
- backend
-To: Wesley Cheng <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org,
- mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
- corbet@lwn.net, broonie@kernel.org, lgirdwood@gmail.com, krzk+dt@kernel.org,
- Thinh.Nguyen@synopsys.com, bgoswami@quicinc.com, tiwai@suse.com,
- gregkh@linuxfoundation.org, robh@kernel.org
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
- alsa-devel@alsa-project.org
-References: <20240801011730.4797-1-quic_wcheng@quicinc.com>
- <20240801011730.4797-10-quic_wcheng@quicinc.com>
- <09fde4e6-c3be-484d-a7a5-bd653dc42094@linux.intel.com>
- <f761530c-a49b-4dd5-b01c-97d08931e0ab@quicinc.com>
- <acf4de1d-d551-4539-8353-3c85aa3d965c@linux.intel.com>
- <6855763c-0230-4535-a603-343059de5202@quicinc.com>
-Content-Language: en-US
-From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-In-Reply-To: <6855763c-0230-4535-a603-343059de5202@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAC94vGYC/x3NQQ7CIBBG4as0s3YSKBipVzHG0PJrZ0ElgFrT9
+ O4Sl9/mvY0KsqDQudso4y1FnkuDPnQ0zX55gCU0U696q5w2PFr+SOLKGTGicpq/FRMH8FiSxNV
+ FNmbob69UaoaPPBh3hA8nq5Wmlk0Zd1n/y8t1339Q88ENggAAAA==
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
+ Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
+CC: Yannic Moog <y.moog@phytec.de>, Benjamin Hahn <b.hahn@phytec.de>,
+	Yashwanth Varakala <y.varakala@phytec.de>, <devicetree@vger.kernel.org>,
+	<imx@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <upstream@lists.phytec.de>
+X-Mailer: b4 0.14.1
+X-ClientProxiedBy: Florix.phytec.de (172.25.0.13) To Berlix.phytec.de
+ (172.25.0.12)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrMLMWRmVeSWpSXmKPExsWyRpKBR9e/Yk+awYZJIhZr9p5jsph/5Byr
+	xcOr/hYz77WyWayaupPF4uWse2wWmx5fY7W4vGsOm8X/PTvYLf5u38Ri8WKLuEX3O3UHHo+d
+	s+6ye2xa1cnmsXlJvceLzTMZPfq7W1g9+v8aeHzeJBfAHsVlk5Kak1mWWqRvl8CVsXRvB2vB
+	D/aKux8mMDYwnmXrYuTkkBAwkdg/9SkLiC0ksIRJ4tCski5GLiD7MaNE49sbrCAJNgENiacr
+	TjN1MXJwCAu4S/xutQMJswioStyf28YCEuYVSJY4sCAOJMwrIChxcuYTsDCzgKbE+l36IGFm
+	AXmJ7W/nMINMlxC4wChx/v8cRhBHRGASk8TRayfAHGaBPiaJzmnn2SGOE5b4vHsNG8Rx8hK7
+	Lp1khIjLS0w795oZwg6VOLJpNdMERsFZSJbPQlg+C8nyBYzMqxiFcjOTs1OLMrP1CjIqS1KT
+	9VJSNzGCIkaEgWsHY98cj0OMTByMhxglOJiVRHgDTXalCfGmJFZWpRblxxeV5qQWH2KU5mBR
+	Eudd3RGcKiSQnliSmp2aWpBaBJNl4uCUamBc1f7nw94Vly5f+Wp5vf/4ZInfPR5ntjYwq/ic
+	vRkhNW+mSkTL3Dthl8Im13/e+Mctgfnvj5eNOsr/p1Q5/Ds0WWqj/46AoydmrV9fyBhuNn/K
+	tUXXsrhU5WvY/Zkbg/X9s0xFk06fqjv4VfPO4/xvP88dmR+/vVtiesabTf/flkVvr06pWz8t
+	R4mlOCPRUIu5qDgRAALzY0aGAgAA
 
+Add some fixed regulators based on the phyCORE-i.MX8MP and
+phyBOARD-Pollux-i.MX8MP schematics. Reference existing or new ones
+to the correct nodes.
 
->>>>> + * @list - list head for SoC USB devices
->>>>> + **/
->>>>> +struct snd_soc_usb_device {
->>>>> +	int card_idx;
->>>>> +	int pcm_idx;
->>>>> +	int chip_idx;
->>>>> +	int num_playback;
->>>>> +	int num_capture;
->>>>> +	struct list_head list;
->>>>> +};
->>>>> +
->>>>> +/**
->>>>> + * struct snd_soc_usb
->>>>> + * @list - list head for SND SOC struct list
->>>>> + * @component - reference to ASoC component
->>>>> + * @num_supported_streams - number of supported concurrent sessions
->>>> ... but here we don't. And it's not clear what the working 'sessions'
->>>> means in the comment.
-> 
-> After taking a look at this "num_supported_streams" naming a bit more, I wanted to check with you to see adds to the complexity of the terminology being used across soc-usb.
-> 
-> The intention of this is to define how many concurrent USB devices the USB backend can support.  So for example, if the audio DSP did support multiple USB devices at the same time, this would denote that.  This is where I wanted to make sure the terminology was right....  So in this case, to me, it makes more sense if num_supported_streams --> num_supported_devices, because it determines how many USB devices the ASoC USB backend DAI can manage/support.  This adds a bit to the reason why I think using the term "port" for explaining the SOC USB context is reasonable.
+---
+Teresa Remmet (1):
+      arm64: dts: imx8mp-phyboard-pollux: Add SD-Card vqmmc supply
 
-IIRC the USB specs define a hierarchy of device/interface/endpoint
-concepts. For streaming the only thing that really matters is the number
-of data endpoints, isn't it? If you have two devices with a single
-endpoint each or one device with two endpoints it should be the same
-complexity at the DSP level?
+Yashwanth Varakala (5):
+      arm64: dts: imx8mp-phycore: Add VDD_IO regulator
+      arm64: dts: imx8mp-phycore: Assign regulator to EEPROM node
+      arm64: dts: imx8mp-phyboard-pollux: Assign regulator to EEPROM node
+      arm64: dts: imx8mp-phyboard-pollux: Add VCC_5V_SW regulator
+      arm64: dts: imx8mp-phyboard-pollux: Add usb3_phy1 regulator reference
 
+ arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts | 12 ++++++++++++
+ arch/arm64/boot/dts/freescale/imx8mp-phycore-som.dtsi        | 10 ++++++++++
+ 2 files changed, 22 insertions(+)
+---
+base-commit: 1d43464566cd7dc2f3f078e2ef46b55a5bab6c70
+change-id: 20240813-b4-wip-t-remmet-phytec-de-bspimx8m-3392_upstream-9385ead74101
+
+Best regards,
+-- 
+Teresa Remmet <t.remmet@phytec.de>
 
 
