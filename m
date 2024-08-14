@@ -1,615 +1,210 @@
-Return-Path: <devicetree+bounces-93578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF03295181C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 11:58:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1DFF951841
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 12:03:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7469284D7E
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 09:58:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6C5D6B229FB
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 10:03:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 416531A00E2;
-	Wed, 14 Aug 2024 09:58:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C12C1AE027;
+	Wed, 14 Aug 2024 10:02:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="dzBk4iJ1";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="LsHZ/+hB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6116C1AD9E6
-	for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 09:58:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0488F13635F;
+	Wed, 14 Aug 2024 10:02:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723629509; cv=none; b=svlSz7QwkIzx4c5QmfpRI88atJc7Tv4zgYf6e5JYQhCVQ2sllhTjHjuDoYHAvDaeNuoZyqbhqQ6REHnc93YEpE02GKN1BhocpQmWNCXO53JZlSnfKZ2qyhfr4J+Ep8GptUyX/whmktZCqDEqh+BtF4fr8ImvVUhF7UyIjDrFHeI=
+	t=1723629765; cv=none; b=KLHsh/7QIkC0ZQ8CqrvuzA20fZwrrQADMupHEucXOe8yAhrlusb4qyk+20A4bpxoCt69ENt45NKmMxrJRh4wx8OeknUmdJJhU2zE12EBx5jR1HsPDgKd8uPPZBcz9wNMnA9UfdUTI/kOQW4DHHYoHYbmqHqyQ5Vl2NvTqsYr/fk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723629509; c=relaxed/simple;
-	bh=UGnBzAf5F9U2/N6Bz9R0+rKb/5PoohNyaHGcMvftNTQ=;
+	s=arc-20240116; t=1723629765; c=relaxed/simple;
+	bh=Psc/jzJBEE/vSR0q6Y8fY6UqWBMcUESkQNgpQu40Y/U=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bpGg7GnvyjM7wb8yYBU9DvzXtPky+0KEanFJbIwqHW98B/wcMLjn6bRzbLpG2tno0EE28OPIKuYMvpKRNkN4AdV9Pmvpi8QfGkosNUu2dTe8eDYpHFwp7W7zumStq4C8SFBOdQi9FrLZ2T+IeoZARQfshS/WmOKoRCUSa557swU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
-Received: from secure.fukaumi.org ([10.0.0.2])
-	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 47E9vbuP018666;
-	Wed, 14 Aug 2024 18:57:38 +0900
-From: FUKAUMI Naoki <naoki@radxa.com>
-To: heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        FUKAUMI Naoki <naoki@radxa.com>
-Subject: [PATCH v4 2/2] arm64: dts: rockchip: add support for Radxa ROCK Pi E v3.0
-Date: Wed, 14 Aug 2024 18:57:27 +0900
-Message-ID: <20240814095727.1662908-2-naoki@radxa.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240814095727.1662908-1-naoki@radxa.com>
-References: <20240814095727.1662908-1-naoki@radxa.com>
+	 MIME-Version:Content-Type; b=srSLL3MycS0896Alw08cnNixhOxIp7vEy4r4nmSgb2rpW2XShvTFRayWreUacns4x6xUkZLQ6VnnQyTlqPD49/lbhZqgC9y8lxix2M5MUXnC3cxXDAANPmNPrKOfAeXndAAB1kuMBctlEehEHZFSERAui3ZLk6CDt1iD/PSY9r8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=dzBk4iJ1; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=LsHZ/+hB reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1723629761; x=1755165761;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=BPZGFRB2PA0ZD8ZK7tgrErfEO8CEIAAq2TrYxTVlHy4=;
+  b=dzBk4iJ1pWwY9uJ2U2bl/EVYArm5FUVmwWvBzjYaTyZXA/pY3pOGvyrj
+   INspLzHBBNaFdrRM2S198nX+FHzPmIvPIHSwFQN/SaJdGQOad1KEpmkRQ
+   5sr0KnC9umFXPK87NCTM6kLHB202JNlLgyhOA+4KEExK0VmF/XWtOVdSq
+   Zxb1cnZ1dLAOiE6k0IpS5ru32qoC0GTcbP/3mJo2fpybG18ULZpQoP97m
+   VO/7Qz7cxtkQFomWYjFi+kWtZCRR0NDMJ8dnHafT3sTxXwV1lRdU+t8fY
+   bWPaImdefNxgWy5LYRF0FAzggTloCqr9aIqMmFjuT6rQXd4jkliW3dNGr
+   A==;
+X-CSE-ConnectionGUID: q9Y498GFSn+pS8/MSYDnVQ==
+X-CSE-MsgGUID: q2l4OOwzRByh9FrgiI6jxQ==
+X-IronPort-AV: E=Sophos;i="6.09,145,1716242400"; 
+   d="scan'208";a="38404410"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 14 Aug 2024 12:02:33 +0200
+X-CheckPoint: {66BC80B9-9-E9ED6009-C4B0BEC8}
+X-MAIL-CPID: 332DE6BABCAAD2E2420EAA204B3F0B90_3
+X-Control-Analysis: str=0001.0A782F19.66BC80B9.00C6,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3C55D167CFB;
+	Wed, 14 Aug 2024 12:02:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1723629748;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=BPZGFRB2PA0ZD8ZK7tgrErfEO8CEIAAq2TrYxTVlHy4=;
+	b=LsHZ/+hBOPdj+T7j1Crt+UhX70ljQhFNIDmyMr22Vhz/UeKeG/MzniDdnOECAMrTtYsIjS
+	Po34qjZ2p21NHVoW339yr4s7ZNtLL6lP7rv+OTfrPCkC3/2z4NuSg9YYI+3id3xA0yuU9Q
+	wMTnkPEGb63kwQShOt7kbF7v7vqO0bY1U6t/02oFm92Owt8sHn95QARWCPFHdWWn1dKvBj
+	nr9kufVwIOxuLefylAo738+08rt7tjd2DL0uXhXxB3wzbsBtujYPsEfifEWCjFnlMchThR
+	XWc7MX6jM+jmXTQm/wAklS7YO/4ve2AYmRr9mncLRMjUOHpw3RE7ZPBo4Va6Ag==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Paul Elder <paul.elder@ideasonboard.com>, Adam Ford <aford173@gmail.com>, Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Marek Vasut <marex@denx.de>, Peng Fan <peng.fan@nxp.com>, Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, Pengutronix Kernel Team <kernel@pengutronix.de>, devicetree@vger.kernel.org, linux-media@vger.kernel.org
+Subject: Re: [PATCH v3] arm64: dts: imx8mp: Add DT nodes for the two ISPs
+Date: Wed, 14 Aug 2024 12:02:26 +0200
+Message-ID: <5809346.DvuYhMxLoT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20240813234004.17807-1-laurent.pinchart@ideasonboard.com>
+References: <20240813234004.17807-1-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-Radxa ROCK Pi E v3.0 is a compact networking SBC[1] using the Rockchip
-RK3328 chip that ships in a number of RAM/eMMC/WiFi/BT configurations:
+Hi Laurent,
 
-- Rockchip RK3328 SoC
-- Quad A53 CPU
-- 512MB/1GB/2GB DDR4 RAM
-- 4/8/16/32GB eMMC
-- Micro SD Card slot
-- WiFi 4 and BT 4, or WiFi 5 and BT 5
-- 1x 1000M Ethernet supporting PoE with add‑on PoE HAT
-- 1x 100M Ethernet
-- 1x USB 3.0 Type-A port (Host)
-- 1x 4-ring 3.5mm headphone jack
-- 40 Pin GPIO header
+thanks for the patch.
 
-[1] https://radxa.com/products/rockpi/pie
+Am Mittwoch, 14. August 2024, 01:40:04 CEST schrieb Laurent Pinchart:
+> From: Paul Elder <paul.elder@ideasonboard.com>
+>=20
+> The ISP supports both CSI and parallel interfaces, where port 0
+> corresponds to the former and port 1 corresponds to the latter. Since
+> the i.MX8MP's ISPs are connected by the parallel interface to the CSI
+> receiver, set them both to port 1.
+>=20
+> Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Tested-by: Adam Ford <aford173@gmail.com> # imx8mp-beacon
+> ---
+> Changes since v2:
+>=20
+> - Assign clock parent and frequency in blk-ctrl
+>=20
+> Changes since v1:
+>=20
+> - Fix clock ordering
+> - Add #address-cells and #size-cells to ports nodes
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 51 ++++++++++++++++++++++-
+>  1 file changed, 49 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/=
+dts/freescale/imx8mp.dtsi
+> index d9b5c40f6460..09f1e27ee220 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -1673,6 +1673,50 @@ isi_in_1: endpoint {
+>  				};
+>  			};
+> =20
+> +			isp_0: isp@32e10000 {
+> +				compatible =3D "fsl,imx8mp-isp";
+> +				reg =3D <0x32e10000 0x10000>;
+> +				interrupts =3D <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks =3D <&clk IMX8MP_CLK_MEDIA_ISP_ROOT>,
+> +					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
+> +					 <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
+> +				clock-names =3D "isp", "aclk", "hclk";
+> +				power-domains =3D <&media_blk_ctrl IMX8MP_MEDIABLK_PD_ISP>;
+> +				fsl,blk-ctrl =3D <&media_blk_ctrl 0>;
+> +				status =3D "disabled";
+> +
+> +				ports {
+> +					#address-cells =3D <1>;
+> +					#size-cells =3D <0>;
+> +
+> +					port@1 {
+> +						reg =3D <1>;
+> +					};
+> +				};
+> +			};
+> +
+> +			isp_1: isp@32e20000 {
+> +				compatible =3D "fsl,imx8mp-isp";
+> +				reg =3D <0x32e20000 0x10000>;
+> +				interrupts =3D <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks =3D <&clk IMX8MP_CLK_MEDIA_ISP_ROOT>,
+> +					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
+> +					 <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
+> +				clock-names =3D "isp", "aclk", "hclk";
+> +				power-domains =3D <&media_blk_ctrl IMX8MP_MEDIABLK_PD_ISP>;
+> +				fsl,blk-ctrl =3D <&media_blk_ctrl 1>;
+> +				status =3D "disabled";
+> +
+> +				ports {
+> +					#address-cells =3D <1>;
+> +					#size-cells =3D <0>;
+> +
+> +					port@1 {
+> +						reg =3D <1>;
+> +					};
+> +				};
+> +			};
+> +
+>  			dewarp: dwe@32e30000 {
+>  				compatible =3D "nxp,imx8mp-dw100";
+>  				reg =3D <0x32e30000 0x10000>;
+> @@ -1873,13 +1917,16 @@ media_blk_ctrl: blk-ctrl@32ec0000 {
+>  						  <&clk IMX8MP_CLK_MEDIA_APB>,
+>  						  <&clk IMX8MP_CLK_MEDIA_DISP1_PIX>,
+>  						  <&clk IMX8MP_CLK_MEDIA_DISP2_PIX>,
+> +						  <&clk IMX8MP_CLK_MEDIA_ISP>,
+>  						  <&clk IMX8MP_VIDEO_PLL1>;
+>  				assigned-clock-parents =3D <&clk IMX8MP_SYS_PLL2_1000M>,
+>  							 <&clk IMX8MP_SYS_PLL1_800M>,
+>  							 <&clk IMX8MP_VIDEO_PLL1_OUT>,
+> -							 <&clk IMX8MP_VIDEO_PLL1_OUT>;
+> +							 <&clk IMX8MP_VIDEO_PLL1_OUT>,
+> +							 <&clk IMX8MP_SYS_PLL2_500M>;
+>  				assigned-clock-rates =3D <500000000>, <200000000>,
+> -						       <0>, <0>, <1039500000>;
+> +						       <0>, <0>, <0>, <500000000>,
+> +						       <1039500000>;
 
-Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
----
-Changes in v4:
-- update compatible string for OpenWrt
-Changes in v3:
-- fix conflict for recent change
-Changes in v2:
-- fix typo in commit message
-- add missing --- in commit message
----
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../boot/dts/rockchip/rk3328-rock-pi-e-v3.dts |  15 +
- .../boot/dts/rockchip/rk3328-rock-pi-e.dts    | 460 +-----------------
- ...28-rock-pi-e.dts => rk3328-rock-pi-e.dtsi} |   5 -
- 4 files changed, 31 insertions(+), 450 deletions(-)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts
- rewrite arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts (97%)
- copy arch/arm64/boot/dts/rockchip/{rk3328-rock-pi-e.dts => rk3328-rock-pi-e.dtsi} (98%)
+Isn't this one '<0>' too much? <500000000> is for IMX8MP_CLK_MEDIA_ISP, rig=
+ht?
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 4861987457a4..0e279afdc9ac 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -24,6 +24,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-nanopi-r2s.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-orangepi-r1-plus.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-orangepi-r1-plus-lts.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-rock64.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-rock-pi-e-v3.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-rock-pi-e.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-roc-cc.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-roc-pc.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts
-new file mode 100644
-index 000000000000..63ea4135d7cc
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts
-@@ -0,0 +1,15 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/dts-v1/;
-+
-+#include "rk3328-rock-pi-e.dtsi"
-+
-+/ {
-+	model = "Radxa ROCK Pi E v3.0";
-+	compatible = "radxa,rock-pi-e-v3", "rockchip,rk3328";
-+
-+	aliases {
-+		mmc0 = &emmc;
-+		mmc1 = &sdmmc;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-dissimilarity index 97%
-index 3e08e2fd0a78..0929df3c803a 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-@@ -1,445 +1,15 @@
--// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
--/*
-- * (C) Copyright 2020 Chen-Yu Tsai <wens@csie.org>
-- *
-- * Based on ./rk3328-rock64.dts, which is
-- *
-- * Copyright (c) 2017 PINE64
-- */
--
--/dts-v1/;
--
--#include <dt-bindings/gpio/gpio.h>
--#include <dt-bindings/input/input.h>
--#include <dt-bindings/leds/common.h>
--#include <dt-bindings/pinctrl/rockchip.h>
--
--#include "rk3328.dtsi"
--
--/ {
--	model = "Radxa ROCK Pi E";
--	compatible = "radxa,rockpi-e", "rockchip,rk3328";
--
--	aliases {
--		ethernet0 = &gmac2io;
--		ethernet1 = &gmac2phy;
--		mmc0 = &sdmmc;
--		mmc1 = &emmc;
--	};
--
--	chosen {
--		stdout-path = "serial2:1500000n8";
--	};
--
--	adc-keys {
--		compatible = "adc-keys";
--		io-channels = <&saradc 0>;
--		io-channel-names = "buttons";
--		keyup-threshold-microvolt = <1750000>;
--
--		/* This button is unpopulated out of the factory. */
--		button-recovery {
--			label = "Recovery";
--			linux,code = <KEY_VENDOR>;
--			press-threshold-microvolt = <10000>;
--		};
--	};
--
--	gmac_clkin: external-gmac-clock {
--		compatible = "fixed-clock";
--		clock-frequency = <125000000>;
--		clock-output-names = "gmac_clkin";
--		#clock-cells = <0>;
--	};
--
--	leds {
--		compatible = "gpio-leds";
--		pinctrl-0 = <&led_pin>;
--		pinctrl-names = "default";
--
--		led-0 {
--			color = <LED_COLOR_ID_BLUE>;
--			gpios = <&gpio3 RK_PA5 GPIO_ACTIVE_LOW>;
--			linux,default-trigger = "heartbeat";
--		};
--	};
--
--	vcc_sd: sdmmc-regulator {
--		compatible = "regulator-fixed";
--		gpio = <&gpio0 RK_PD6 GPIO_ACTIVE_LOW>;
--		pinctrl-names = "default";
--		pinctrl-0 = <&sdmmc0m1_pin>;
--		regulator-name = "vcc_sd";
--		regulator-boot-on;
--		vin-supply = <&vcc_io>;
--	};
--
--	vcc_host_5v: vcc-host-5v-regulator {
--		compatible = "regulator-fixed";
--		gpio = <&gpio3 RK_PA7 GPIO_ACTIVE_HIGH>;
--		pinctrl-names = "default";
--		pinctrl-0 = <&usb30_host_drv>;
--		enable-active-high;
--		regulator-name = "vcc_host_5v";
--		regulator-always-on;
--		regulator-boot-on;
--		vin-supply = <&vcc_sys>;
--	};
--
--	vcc_sys: vcc-sys {
--		compatible = "regulator-fixed";
--		regulator-name = "vcc_sys";
--		regulator-always-on;
--		regulator-boot-on;
--		regulator-min-microvolt = <5000000>;
--		regulator-max-microvolt = <5000000>;
--	};
--
--	vcc_wifi: vcc-wifi-regulator {
--		compatible = "regulator-fixed";
--		gpio = <&gpio0 RK_PA0 GPIO_ACTIVE_LOW>;
--		pinctrl-names = "default";
--		pinctrl-0 = <&wifi_en>;
--		regulator-name = "vcc_wifi";
--		regulator-always-on;
--		regulator-boot-on;
--		vin-supply = <&vcc_io>;
--	};
--};
--
--&analog_sound {
--	status = "okay";
--};
--
--&codec {
--	status = "okay";
--};
--
--&cpu0 {
--	cpu-supply = <&vdd_arm>;
--};
--
--&cpu1 {
--	cpu-supply = <&vdd_arm>;
--};
--
--&cpu2 {
--	cpu-supply = <&vdd_arm>;
--};
--
--&cpu3 {
--	cpu-supply = <&vdd_arm>;
--};
--
--&emmc {
--	bus-width = <8>;
--	cap-mmc-highspeed;
--	mmc-ddr-1_8v;
--	mmc-hs200-1_8v;
--	non-removable;
--	pinctrl-names = "default";
--	pinctrl-0 = <&emmc_clk>, <&emmc_cmd>, <&emmc_bus8>;
--	vmmc-supply = <&vcc_io>;
--	vqmmc-supply = <&vcc18_emmc>;
--	status = "okay";
--};
--
--&gmac2io {
--	assigned-clocks = <&cru SCLK_MAC2IO>, <&cru SCLK_MAC2IO_EXT>;
--	assigned-clock-parents = <&gmac_clkin>, <&gmac_clkin>;
--	clock_in_out = "input";
--	phy-handle = <&rtl8211>;
--	phy-mode = "rgmii";
--	phy-supply = <&vcc_io>;
--	pinctrl-names = "default";
--	pinctrl-0 = <&rgmiim1_pins>;
--	snps,aal;
--	snps,rxpbl = <0x4>;
--	snps,txpbl = <0x4>;
--	tx_delay = <0x26>;
--	rx_delay = <0x11>;
--	status = "okay";
--
--	mdio {
--		compatible = "snps,dwmac-mdio";
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		rtl8211: ethernet-phy@1 {
--			reg = <1>;
--			pinctrl-0 = <&eth_phy_int_pin>, <&eth_phy_reset_pin>;
--			pinctrl-names = "default";
--			interrupt-parent = <&gpio1>;
--			interrupts = <24 IRQ_TYPE_LEVEL_LOW>;
--			reset-assert-us = <10000>;
--			reset-deassert-us = <50000>;
--			reset-gpios = <&gpio1 RK_PC2 GPIO_ACTIVE_LOW>;
--		};
--	};
--};
--
--&gmac2phy {
--	status = "okay";
--};
--
--&gpio0 {
--	gpio-line-names =
--		/* GPIO0_A0 - A7 */
--		"", "", "", "", "", "", "", "",
--		/* GPIO0_B0 - B7 */
--		"", "", "", "", "", "", "", "",
--		/* GPIO0_C0 - C7 */
--		"", "", "", "", "", "", "", "",
--		/* GPIO0_D0 - D7 */
--		"", "", "", "pin-15 [GPIO0_D3]", "", "", "", "";
--};
--
--&gpio1 {
--	gpio-line-names =
--		/* GPIO1_A0 - A7 */
--		"", "", "", "", "", "", "", "",
--		/* GPIO1_B0 - B7 */
--		"", "", "", "", "", "", "", "",
--		/* GPIO1_C0 - C7 */
--		"", "", "", "", "", "", "", "",
--		/* GPIO1_D0 - D7 */
--		"", "", "", "", "pin-07 [GPIO1_D4]", "", "", "";
--};
--
--&gpio2 {
--	gpio-line-names =
--		/* GPIO2_A0 - A7 */
--		"pin-08 [GPIO2_A0]", "pin-10 [GPIO2_A1]", "pin-11 [GPIO2_A2]",
--		"pin-13 [GPIO2-A3]", "pin-27 [GPIO2_A4]", "pin-28 [GPIO2_A5]",
--		"pin-33 [GPIO2_A6]", "",
--		/* GPIO2_B0 - B7 */
--		"", "", "", "", "pin-26 [GPIO2_B4]", "", "", "pin-36 [GPIO2_B7]",
--		/* GPIO2_C0 - C7 */
--		"pin-32 [GPIO2_C0]", "pin-35 [GPIO2_C1]", "pin-12 [GPIO2_C2]",
--		"pin-38 [GPIO2_C3]", "pin-29 [GPIO2_C4]", "pin-31 [GPIO2_C5]",
--		"pin-37 [GPIO2_C6]", "pin-40 [GPIO2_C7]",
--		/* GPIO2_D0 - D7 */
--		"", "", "", "", "", "", "", "";
--};
--
--&gpio3 {
--	gpio-line-names =
--		/* GPIO3_A0 - A7 */
--		"pin-23 [GPIO3_A0]", "pin-19 [GPIO3_A1]", "pin-21 [GPIO3_A2]",
--		"", "pin-03 [GPIO3_A4]", "", "pin-05 [GPIO3_A6]", "",
--		/* GPIO3_B0 - B7 */
--		"pin-24 [GPIO3_B0]", "", "", "", "", "", "", "",
--		/* GPIO3_C0 - C7 */
--		"", "", "", "", "", "", "", "",
--		/* GPIO3_D0 - D7 */
--		"", "", "", "", "", "", "", "";
--};
--
--&i2c1 {
--	status = "okay";
--
--	rk805: pmic@18 {
--		compatible = "rockchip,rk805";
--		reg = <0x18>;
--		interrupt-parent = <&gpio0>;
--		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
--		#clock-cells = <1>;
--		clock-output-names = "xin32k", "rk805-clkout2";
--		gpio-controller;
--		#gpio-cells = <2>;
--		pinctrl-names = "default";
--		pinctrl-0 = <&pmic_int_l>;
--		rockchip,system-power-controller;
--		wakeup-source;
--
--		vcc1-supply = <&vcc_sys>;
--		vcc2-supply = <&vcc_sys>;
--		vcc3-supply = <&vcc_sys>;
--		vcc4-supply = <&vcc_sys>;
--		vcc5-supply = <&vcc_io>;
--		vcc6-supply = <&vcc_sys>;
--
--		regulators {
--			vdd_log: DCDC_REG1 {
--				regulator-name = "vdd_log";
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <712500>;
--				regulator-max-microvolt = <1450000>;
--				regulator-ramp-delay = <12500>;
--
--				regulator-state-mem {
--					regulator-on-in-suspend;
--					regulator-suspend-microvolt = <1000000>;
--				};
--			};
--
--			vdd_arm: DCDC_REG2 {
--				regulator-name = "vdd_arm";
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <712500>;
--				regulator-max-microvolt = <1450000>;
--				regulator-ramp-delay = <12500>;
--
--				regulator-state-mem {
--					regulator-on-in-suspend;
--					regulator-suspend-microvolt = <950000>;
--				};
--			};
--
--			vcc_ddr: DCDC_REG3 {
--				regulator-name = "vcc_ddr";
--				regulator-always-on;
--				regulator-boot-on;
--
--				regulator-state-mem {
--					regulator-on-in-suspend;
--				};
--			};
--
--			vcc_io: DCDC_REG4 {
--				regulator-name = "vcc_io";
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <3300000>;
--				regulator-max-microvolt = <3300000>;
--
--				regulator-state-mem {
--					regulator-on-in-suspend;
--					regulator-suspend-microvolt = <3300000>;
--				};
--			};
--
--			vcc_18: LDO_REG1 {
--				regulator-name = "vcc_18";
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <1800000>;
--				regulator-max-microvolt = <1800000>;
--
--				regulator-state-mem {
--					regulator-on-in-suspend;
--					regulator-suspend-microvolt = <1800000>;
--				};
--			};
--
--			vcc18_emmc: LDO_REG2 {
--				regulator-name = "vcc18_emmc";
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <1800000>;
--				regulator-max-microvolt = <1800000>;
--
--				regulator-state-mem {
--					regulator-on-in-suspend;
--					regulator-suspend-microvolt = <1800000>;
--				};
--			};
--
--			vdd_10: LDO_REG3 {
--				regulator-name = "vdd_10";
--				regulator-always-on;
--				regulator-boot-on;
--				regulator-min-microvolt = <1000000>;
--				regulator-max-microvolt = <1000000>;
--
--				regulator-state-mem {
--					regulator-on-in-suspend;
--					regulator-suspend-microvolt = <1000000>;
--				};
--			};
--		};
--	};
--};
--
--&i2s1 {
--	status = "okay";
--};
--
--&io_domains {
--	pmuio-supply = <&vcc_io>;
--	vccio1-supply = <&vcc_io>;
--	vccio2-supply = <&vcc18_emmc>;
--	vccio3-supply = <&vcc_io>;
--	vccio4-supply = <&vcc_io>;
--	vccio5-supply = <&vcc_io>;
--	vccio6-supply = <&vcc_io>;
--	status = "okay";
--};
--
--&pinctrl {
--	ephy {
--		eth_phy_int_pin: eth-phy-int-pin {
--			rockchip,pins = <1 RK_PD0 RK_FUNC_GPIO &pcfg_pull_down>;
--		};
--
--		eth_phy_reset_pin: eth-phy-reset-pin {
--			rockchip,pins = <1 RK_PC2 RK_FUNC_GPIO &pcfg_pull_down>;
--		};
--	};
--
--	leds {
--		led_pin: led-pin {
--			rockchip,pins = <3 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>;
--		};
--	};
--
--	pmic {
--		pmic_int_l: pmic-int-l {
--			rockchip,pins = <0 RK_PA2 RK_FUNC_GPIO &pcfg_pull_up>;
--		};
--	};
--
--	usb3 {
--		usb30_host_drv: usb30-host-drv {
--			rockchip,pins = <3 RK_PA7 RK_FUNC_GPIO &pcfg_pull_none>;
--		};
--	};
--
--	wifi {
--		wifi_en: wifi-en {
--			rockchip,pins = <0 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
--		};
--	};
--};
--
--&sdmmc {
--	bus-width = <4>;
--	cap-sd-highspeed;
--	disable-wp;
--	pinctrl-names = "default";
--	pinctrl-0 = <&sdmmc0_clk>, <&sdmmc0_cmd>, <&sdmmc0_dectn>, <&sdmmc0_bus4>;
--	vmmc-supply = <&vcc_sd>;
--	status = "okay";
--};
--
--&saradc {
--	vref-supply = <&vcc_18>;
--	status = "okay";
--};
--
--&tsadc {
--	status = "okay";
--};
--
--&u2phy {
--	status = "okay";
--};
--
--&u2phy_host {
--	status = "okay";
--};
--
--&uart2 {
--	status = "okay";
--};
--
--&usbdrd3 {
--	dr_mode = "host";
--	status = "okay";
--};
--
--&usb_host0_ehci {
--	status = "okay";
--};
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/dts-v1/;
-+
-+#include "rk3328-rock-pi-e.dtsi"
-+
-+/ {
-+	model = "Radxa ROCK Pi E";
-+	compatible = "radxa,rockpi-e", "rockchip,rk3328";
-+
-+	aliases {
-+		mmc0 = &sdmmc;
-+		mmc1 = &emmc;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dtsi
-similarity index 98%
-copy from arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-copy to arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dtsi
-index 3e08e2fd0a78..bb01143dc91a 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dtsi
-@@ -17,14 +17,9 @@
- #include "rk3328.dtsi"
- 
- / {
--	model = "Radxa ROCK Pi E";
--	compatible = "radxa,rockpi-e", "rockchip,rk3328";
--
- 	aliases {
- 		ethernet0 = &gmac2io;
- 		ethernet1 = &gmac2phy;
--		mmc0 = &sdmmc;
--		mmc1 = &emmc;
- 	};
- 
- 	chosen {
--- 
-2.43.0
+Best regards,
+Alexander
+
+>  				#power-domain-cells =3D <1>;
+> =20
+>  				lvds_bridge: bridge@5c {
+>=20
+> base-commit: 7c626ce4bae1ac14f60076d00eafe71af30450ba
+>=20
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
