@@ -1,76 +1,74 @@
-Return-Path: <devicetree+bounces-93795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4D039525FE
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 00:51:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4C13952622
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 01:20:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C19C1F21327
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 22:51:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0AD0A1C21C1D
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 23:20:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 099FF14AD3B;
-	Wed, 14 Aug 2024 22:51:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32CCF14E2E8;
+	Wed, 14 Aug 2024 23:20:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UaHQeKC3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PteqQVt5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0729C148FE3;
-	Wed, 14 Aug 2024 22:50:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 475CD14AD2C
+	for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 23:20:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723675862; cv=none; b=sIUnt27V+AyYdfoIsecx+ZuXtGZOE184LHyTyMQzIOKRRMzbSHIm1+5gw8hWNZjOMlfoWzUxpVcaNNusd3QOK202qk9VNVxrcjJsyZxtIHKMe398mTWN00BQqI+OkrjtWW0kPHfnkaDAMxYdlUd1HUV/kfUKnnJGD2QXLD/wegk=
+	t=1723677620; cv=none; b=VuyvWZN+anSDcF3R7Squz+8HTN58UeZJFR9106t+7zlrdHvwFF5fwijLUkfLCMEv1V1zpZwufGhO2yXKTVLaJgYeggWHCbpaccND+DH4vCVAV3HIoJZNNHdkQqgsE1gwNVfo6o6n2p0z3irwtjp1Zq2lNq2xtKwtHHZgWXl03dg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723675862; c=relaxed/simple;
-	bh=CtJFSApAtmbldHgiwEMQs0DyHXZVKaBgbk1xRs/CKyk=;
+	s=arc-20240116; t=1723677620; c=relaxed/simple;
+	bh=PZLN4N17zBIpHYBXZkwihX7EPgZeSLBMItw/slpELCY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mczgdbw9CGvJBzcCFwaB0bEshMV2ASfZwiA3yxRT3Mxd0pxBPBe0dEwZinz6gh2ujs0zVXAWT8xJ2qnECBwi2UID3qdTNfiTV4f0S/r0UQKA2pAAzpUXmLrSNwvj3xzObMBcY5Nbz9Sgylsawj06nc1py0LaEed3qQS/Fp866dE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UaHQeKC3; arc=none smtp.client-ip=209.85.215.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-7c6b03c414fso181293a12.2;
-        Wed, 14 Aug 2024 15:50:59 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=BaDhV7ryXpGyzlskQFlxlucecGtmMG1f4xdE5qU6GlGLZzWxh5gqu1eOCGQj+vw7VPWLQ6SO8YoTIUe2NDF6a6mmeybu/+TzPpIrL3YN0U3zoPaZ3otH2eO7fCLq3erf2omfVZMrv1hnxIV08fOdTpMx5JYMtptsf1VGE0Ap6J4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PteqQVt5; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-52efa98b11eso58868e87.2
+        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 16:20:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723675859; x=1724280659; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=oOhBYxYLbD90FTN255Mjh/qLHZjqj8Uos5VRyH1TzVY=;
-        b=UaHQeKC3xbA1mer9icMs8Gx/AUox/v4KDbqKiQxu9Mk+KD4kRCt0/OOKRzHTXX55Sx
-         8Zo2i7vvNVPUGfMpTeL9/uIxMOpq2w1+2lzdHufS6rbUEkHF7HGPy7wn2w3RzaTMaAbr
-         KndkeuKUjC7ISiPZzvFQiC8NS7cnHorevSoXAy1XlSS0BDMwGokfbXZHt2VlYYAgWf0p
-         xkwdPXDN0uUEQQeeUzrmJbTFtcfFhmjVaykzrCTX0/Vz0z3aXRohDVIth7Nz8KKrpx+o
-         OJ7BR1Ad+TxsAAJPSl3iCr8fLgqGu/FuQrnIjnlP3092zTYZn6JsfKPDQZAUXThnAYSg
-         ilyQ==
+        d=linaro.org; s=google; t=1723677616; x=1724282416; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9+duQA/mHkN4x/u1uIv4BDkW5OCTH29gngwXk4SCuCA=;
+        b=PteqQVt5Fd/xpVdsZVuaYrdHAHmYQprPnPmPGAfJjSvk/447Jjkx+Kk1T4uE+0BmP3
+         ezj8lqVvPFV+4A5MOBxFfLY+gQ0LwKVsxakSMMezlGq5ginBPDmmJUgZz/Y+UbWFnvpn
+         LiOTS6md8CR0Akd6b+Qlj3mC2/pVF9BFE8J9FkDoWOfQPXTvVNJUcfZ1hz5dFwOlxCdm
+         Eq0WFW/5bXV6cqH4vMbTdAmiyt+Y7gbpMLiQLnIUhG5YGMzviqQ6NBDZlG1GTHl3kjlH
+         YUXVMHFedtQiP2y9Jb262C4Ghbrq2sylYQt4gsOsp4zM5cjW5T7Tdh9cE+HqQjlfsyuC
+         qnfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723675859; x=1724280659;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oOhBYxYLbD90FTN255Mjh/qLHZjqj8Uos5VRyH1TzVY=;
-        b=aJzEegR9YottErhK136hmAxW4Z0sGKaqM9yqvQaU1ks3evDgsNILjRjTzn34Noascr
-         VCL2CWa7DUPsqtz5Aiqgur7spmBIcZsY63Z+oOqPIC/HupYk8j1olfHKRww7qSOUivbG
-         llBELPmsO1JUOO9rPl1zAUiUDBSAhfPsqGCOENowtbLBi+Bmrxy6DFSf32dqXaz0vSkn
-         +Ho93b7GQyiq7xCJvHV+Rhd5azbCpOBv+DVrN+LhhUXZ5SR7YPTkd6p2AZNzoIu2jth1
-         FPjDPSDdY8E6zUvzV6jRW44CAX7hjuzEBKjHAGlZJNDcNqg/l5LSaTA7aZYuV+OCXKqf
-         kbXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUC3GqBsySSsormAkdQtPgvRigTFDhGjcsNA8FcuEBZXAACVrGkWONmCJiyUc18iZLxDKWibeXDcOkhsedIEx0Xxe4xeI6Ju6v8fBA+OPnBxPLu4zEN6GkuA+dw8iuHt8qXk3cLLAmJwa9d/CG/i8ioxncq3xJ+lnfDrwzfUOxnJ7/iU6Aue0R27KWW5Hj2GQ==
-X-Gm-Message-State: AOJu0YxZHU3ot75hNtk+hoVekoSCNC2QFoURbUTKYy7Em2tb3AxaGDwK
-	sywLIJay2rGsY5FizYU7N7bajUNh+1ZC9iznK76jN8iFfp7e3dHv
-X-Google-Smtp-Source: AGHT+IEPPE15k1HpRAr43AY/KVe9xLP/LKmgDgGQuxvFseJpunXufYnsF0xoa9+Y5/juG+we9j+xqw==
-X-Received: by 2002:a05:6a20:6f8a:b0:1c6:fc52:ea1f with SMTP id adf61e73a8af0-1c8eae81321mr5686769637.12.1723675859121;
-        Wed, 14 Aug 2024 15:50:59 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7127aef544csm79699b3a.121.2024.08.14.15.50.57
+        d=1e100.net; s=20230601; t=1723677616; x=1724282416;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9+duQA/mHkN4x/u1uIv4BDkW5OCTH29gngwXk4SCuCA=;
+        b=e7bOolnR1CrL1ZLMXCc4Qat90DBcCuKx9JDLiK+EJ1e3/gFsqjxGCAmfLWWjeYi0Ih
+         0Z6HGbKxlxmxtcm0C+zN4TlchGN1dXQlyX0LneJhZce3fQIbLmaV5v8CbugGgeOJ8o2H
+         Fyr7awUEeHaaLfyqiIMPBNrkuTy+d1u7tpbiajHqUMqNBrtVgWtdO1YjZB+dYilXy7Gl
+         Tpc0cCphCnRaAym+q7lI0NHoxWLehUn6ovEFuQk2RlB+0V4Nnkpmy2Yb8LqSs/ys7d0o
+         gw4+0Vt7H2PzQxlyTq87fZ1YPHmFclN3p7LhlY4G/hoV03qtmgo1T6guV/V4DPHCyz5x
+         hf1g==
+X-Forwarded-Encrypted: i=1; AJvYcCWmLaFlCfsQi88gNA7qJ2oYYcGcKrcWrs5JyAkULb++aQh4E5YmEF42kuoUS2I8NDkVlP/8/H7bg0/5jhrFLRzrb1hR1wnyyQSCgg==
+X-Gm-Message-State: AOJu0YxLrzG4z1P8X32Dug4Col+XgJ7/CGnVfvIAvW2emeTLz3hCh+6M
+	v3+kqngCN7S3i0AAf3cXk14MQu9W809P59V4O+XlIk+xlLqSZsAgxeGBvwYVI8s=
+X-Google-Smtp-Source: AGHT+IH+zpAbnWR0RFbKIop47GHGSsAo7482OTcO2tWlZY85pxwGVPWS8HuSvZWuImCttl0DLTw/TQ==
+X-Received: by 2002:a2e:be90:0:b0:2ef:315c:67e1 with SMTP id 38308e7fff4ca-2f3b4a43cbdmr2763291fa.4.1723677615658;
+        Wed, 14 Aug 2024 16:20:15 -0700 (PDT)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f3b7703a18sm160771fa.81.2024.08.14.16.20.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Aug 2024 15:50:58 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <4e40ec1c-ce7f-4e49-93c5-5750b76791f8@roeck-us.net>
-Date: Wed, 14 Aug 2024 15:50:57 -0700
+        Wed, 14 Aug 2024 16:20:15 -0700 (PDT)
+Message-ID: <b0787142-0f85-4616-9895-72e33f21c2da@linaro.org>
+Date: Thu, 15 Aug 2024 02:20:14 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,83 +76,104 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: watchdog: renesas,wdt: Document
- RZ/V2H(P) SoC
-To: Prabhakar <prabhakar.csengg@gmail.com>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- linux-watchdog@vger.kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Conor Dooley <conor.dooley@microchip.com>
-References: <20240806210623.183842-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240806210623.183842-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 13/13] media: qcom: camss: Add support for VFE hardware
+ version Titan 780
 Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
- RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
- nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
- 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
- gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
- IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
- kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
- VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
- jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
- BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
- ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
- CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAlVcphcFCRmg06EACgkQyx8mb86fmYFg0RAA
- nzXJzuPkLJaOmSIzPAqqnutACchT/meCOgMEpS5oLf6xn5ySZkl23OxuhpMZTVX+49c9pvBx
- hpvl5bCWFu5qC1jC2eWRYU+aZZE4sxMaAGeWenQJsiG9lP8wkfCJP3ockNu0ZXXAXwIbY1O1
- c+l11zQkZw89zNgWgKobKzrDMBFOYtAh0pAInZ9TSn7oA4Ctejouo5wUugmk8MrDtUVXmEA9
- 7f9fgKYSwl/H7dfKKsS1bDOpyJlqhEAH94BHJdK/b1tzwJCFAXFhMlmlbYEk8kWjcxQgDWMu
- GAthQzSuAyhqyZwFcOlMCNbAcTSQawSo3B9yM9mHJne5RrAbVz4TWLnEaX8gA5xK3uCNCeyI
- sqYuzA4OzcMwnnTASvzsGZoYHTFP3DQwf2nzxD6yBGCfwNGIYfS0i8YN8XcBgEcDFMWpOQhT
- Pu3HeztMnF3HXrc0t7e5rDW9zCh3k2PA6D2NV4fews9KDFhLlTfCVzf0PS1dRVVWM+4jVl6l
- HRIAgWp+2/f8dx5vPc4Ycp4IsZN0l1h9uT7qm1KTwz+sSl1zOqKD/BpfGNZfLRRxrXthvvY8
- BltcuZ4+PGFTcRkMytUbMDFMF9Cjd2W9dXD35PEtvj8wnEyzIos8bbgtLrGTv/SYhmPpahJA
- l8hPhYvmAvpOmusUUyB30StsHIU2LLccUPPOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
- 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
- pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
- J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
- pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
- 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
- ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
- I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
- nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
- HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
- JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAlVcpi8FCRmg08MACgkQyx8mb86fmYHNRQ/+
- J0OZsBYP4leJvQF8lx9zif+v4ZY/6C9tTcUv/KNAE5leyrD4IKbnV4PnbrVhjq861it/zRQW
- cFpWQszZyWRwNPWUUz7ejmm9lAwPbr8xWT4qMSA43VKQ7ZCeTQJ4TC8kjqtcbw41SjkjrcTG
- wF52zFO4bOWyovVAPncvV9eGA/vtnd3xEZXQiSt91kBSqK28yjxAqK/c3G6i7IX2rg6pzgqh
- hiH3/1qM2M/LSuqAv0Rwrt/k+pZXE+B4Ud42hwmMr0TfhNxG+X7YKvjKC+SjPjqp0CaztQ0H
- nsDLSLElVROxCd9m8CAUuHplgmR3seYCOrT4jriMFBtKNPtj2EE4DNV4s7k0Zy+6iRQ8G8ng
- QjsSqYJx8iAR8JRB7Gm2rQOMv8lSRdjva++GT0VLXtHULdlzg8VjDnFZ3lfz5PWEOeIMk7Rj
- trjv82EZtrhLuLjHRCaG50OOm0hwPSk1J64R8O3HjSLdertmw7eyAYOo4RuWJguYMg5DRnBk
- WkRwrSuCn7UG+qVWZeKEsFKFOkynOs3pVbcbq1pxbhk3TRWCGRU5JolI4ohy/7JV1TVbjiDI
- HP/aVnm6NC8of26P40Pg8EdAhajZnHHjA7FrJXsy3cyIGqvg9os4rNkUWmrCfLLsZDHD8FnU
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20240806210623.183842-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
+ todor.too@gmail.com, bryan.odonoghue@linaro.org, mchehab@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ kernel@quicinc.com, Yongsheng Li <quic_yon@quicinc.com>
+References: <20240812144131.369378-1-quic_depengs@quicinc.com>
+ <20240812144131.369378-14-quic_depengs@quicinc.com>
+ <4b745c1a-33d9-472a-97af-153a2a7c8721@linaro.org>
+ <2de0b7a8-b879-49e9-9656-ec86f29ce559@quicinc.com>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <2de0b7a8-b879-49e9-9656-ec86f29ce559@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 8/6/24 14:06, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> Add support for the Watchdog Timer (WDT) hardware found in the Renesas
-> RZ/V2H(P) SoC to the `renesas,wdt` device tree bindings. The RZ/V2H(P)
-> SoC features a WDT that is compatible with existing Renesas watchdog
-> drivers.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Hi Depeng,
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+On 8/14/24 16:10, Depeng Shao wrote:
+> Hi Vladimir,
+> 
+> On 8/14/2024 7:13 PM, Vladimir Zapolskiy wrote:
+>> Hi Depeng,
+>>
+>> please find a few review comments, all asked changes are non-functional.
+>>
+> 
+>>> +void camss_reg_update(struct camss *camss, int hw_id, int port_id,
+>>> bool is_clear)
+>>
+>> Please let it be just a declarative 'clear' instead of questioning
+>> 'is_clear'.
+>>
+>>> +{
+>>> +    struct csid_device *csid;
+>>> +
+>>> +    if (hw_id < camss->res->csid_num) {
+>>> +        csid = &(camss->csid[hw_id]);
+>>> +
+>>> +        csid->res->hw_ops->reg_update(csid, port_id, is_clear);
+>>> +    }
+>>> +}
+>>> +
+>>
+>> Please add the new exported function camss_reg_update() in a separate
+>> preceding commit.
+>>
+>>>    void camss_buf_done(struct camss *camss, int hw_id, int port_id)
+>>>    {
+>>>        struct vfe_device *vfe;
+> 
+> Thanks for your comments, I will address them in new series.
+> 
+> But I have some concern about above comment, you want to add a separate
+> commit for camss_reg_update, maybe camss_buf_done also need to do this,
+> but I guess I will get new comments from Krzysztof if I make a separate
+> change, Krzysztof posted few comments in v3 series, he asked, "must
+> organize your patches in logical junks" and the code must have a user.
+> 
+> Please check below comments.
+> 
+> https://lore.kernel.org/all/e1b298df-05da-4881-a628-149a8a625544@kernel.org/
+> 
+> https://lore.kernel.org/all/d0f8b72d-4355-43cd-a5f9-c44aab8147e5@kernel.org/
 
+Krzysztof is absolutely right in his two comments.
+
+ From what I see there is a difference between his concerns and mine ones
+though, Krzysztof points to unused data, which should raise a build time
+warning, and I asked to make a separate commit for a non-static function,
+I believe it'll be removed by the linker silently...
+
+The potential runtime logic change introduced by camss_reg_update() in the
+generic code is not trivial, which opens an option to update/fix it lately
+referencing a commit from generic domain rather than platform specific one.
+
+If someone for whatever reasons wants to merge a new generic and shared
+camss_reg_update() function within a the platform specific code/commit,
+I won't strongly object, let it be merged together then.
+
+> 
+> Or I don't add reg update and buf done functionality in
+> camss-csid-gen3.c and camss-vfe-780.c firstly, then add them in a later
+> commit.
+> 
+> Could you please comment on whether this is acceptable? Please also help
+> to common on if one commit to add them or need two separate commits, one
+> is for reg update and the other one is for buf done.
+> 
+
+I would prefer to see two more separate commits within non-platform specific
+code, however as I stated above if it causes anyone's concerns, including
+your own, let it be kept as it is done today. Eventually we do discuss
+a non-functional change.
+
+--
+Best wishes,
+Vladimir
 
