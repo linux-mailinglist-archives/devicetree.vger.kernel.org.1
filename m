@@ -1,239 +1,401 @@
-Return-Path: <devicetree+bounces-93741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1EBB95215B
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 19:36:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E390952173
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 19:44:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65CA7282D17
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 17:36:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7C00AB24990
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 17:44:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CC451BD000;
-	Wed, 14 Aug 2024 17:35:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B40A1BC07E;
+	Wed, 14 Aug 2024 17:44:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Re1YIXrg"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="KKUpQXrC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010021.outbound.protection.outlook.com [52.101.69.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94A621BD00B
-	for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 17:35:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723656948; cv=none; b=RrBcMYDoFpyY+oDaWfbgkAIIH7rgMZ+VYNlKMORhCZXyYGgL0qbJX0ZFpxX3wI1BhoYDuLIYqOcBbpoFu2/EzGASCEG263ZlDJOTl0lfnDO07uZNFe4v72OFgXf6DVOluXVAM6Ot4OOQf0Ti8YY/M6pl18iQD4seHCgT4ELrhJQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723656948; c=relaxed/simple;
-	bh=zSgPpIEwDbawKwCURtw6zsBMOiId1dMQ1gNAK5CY/50=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oPhugpyTgmFdlC0Q3vVxEUIB46M/eAZXBpp81TegGWiJmwL+uZeEZluZHmiWknYxlwzythqbHaPO0P3OzmOz4GKT5XZOzbifVTbaYDqy1UmoSVGCLgSaiQm6ICI0s63LtYDBGSb9DViA7Kh/b0lqWrKKt3QOlTELX27cXFm70Ug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=Re1YIXrg; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2ef2cce8be8so1733251fa.1
-        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 10:35:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1723656945; x=1724261745; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZKWxGSzB5brDBpZFNV2njlW9nINWMq0gKORHUm1VJyM=;
-        b=Re1YIXrgqPgcfxzax4qem/T3SohPT2c+3sxYv2uvp7DOVu/WXJQ1K5CmX3n4MaXtY+
-         5I6y4f7/oSW7VmaIamfScLZc8YfnfDKY4kXU4Qoe6LyqoMT2QszuSHtIvks0ww5obuYA
-         dkm1qqz21tjbeI9y58+J8W4W9x3mfVXACC9h4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723656945; x=1724261745;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZKWxGSzB5brDBpZFNV2njlW9nINWMq0gKORHUm1VJyM=;
-        b=JRaT0yDo2+1uGdOJW6ik5vzb+++B/ePFpGFAtchAnf2vP99ugcrriAHgMSUY5fZEgl
-         Y9rlUEummjr3ysHeA6cOeBXzVnE5CNQAAMsrEqDAPMI7p81EoLPT72CJ40Tle+WC1s6P
-         V+P70X0vhrZGdLMXQtg5PwBeM5Q1Z5pCM+vQK1S4oZcqzy6MIWqItNYlhK3C1+/luep1
-         ol/WwmHEjhhvsR2ySEyoR1wG3ymOrf/USC28BOeAhaL92EDEjnq3D6LoloHCNBTHniHC
-         9U9IYuD5Gf3F2xYL5dNZnnDcDshTb136iQi4oHVk+fZkhgP1y1lTT8R6Ftsvx4vrGVU0
-         IqNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXad/6kPIPjQp/Uit79JMdAk2TgFCxzfCJQX21pD46teESQKBhD+Jz110l83o/cj/JnHsGPkEdR2qvu@vger.kernel.org
-X-Gm-Message-State: AOJu0YzU7TQaT82/lEt1j/fNsBd7ffI5slBiYdIJEQ9wXxuvls0HIJfn
-	uSqoVG2BcPCNeYXEYmrxAE2nWvySbEiTMNggA4j7unZWneD52VdhU55WL07IfyZ1pb418ARi49Q
-	HS/OcMrBO3YiM8zAt71/AVBdlZjcnHrj9hcYL
-X-Google-Smtp-Source: AGHT+IEKOu6rB+CNuBMYzXhZa7JxTSVt5I53L3SkIY7qH0wZAkcLxMzooabfHiTVX8qxGb9DXNf5YogWrGhX0ThFvAI=
-X-Received: by 2002:a2e:4609:0:b0:2f3:abca:8b0f with SMTP id
- 38308e7fff4ca-2f3abca8c13mr17537591fa.27.1723656944495; Wed, 14 Aug 2024
- 10:35:44 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E9B41BBBE4;
+	Wed, 14 Aug 2024 17:44:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.21
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723657486; cv=fail; b=S1RZR2Cz/nYLzicia39+gTzQsmIpIC3qUON5aZdYINRoeRu2QeIIkET9s0Zv72XyWbfe8lbsa8hI0Q3DT+7Xrq5CcG1RWnQTU8y1eDRAKx/cs//ZhCCpIps+3/jMT0GJgFB/Z8ZC8fvj4Nvd8TySWmss1lxae5knIIKuVyQYVA8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723657486; c=relaxed/simple;
+	bh=GqaWexS7SWUGAnzHdIhhxSCT9142w4YLwvHgzZyGxGY=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=emcaeG+SZv1sCD2YI6DvbkW1MFzJDnJz7IeEi/m4lpBFONut9KUPnCqc2AMPIHr3KsKvQ4hjHdR5e5IQLKHtqKuD5BXYnDcRr4mvrggmlzukPYKTbzCrzIzspyftiPqdH8AWhZzVzhd5vlk/h6QlJZCYEL//f/Tzd36WLEg5uq8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=KKUpQXrC; arc=fail smtp.client-ip=52.101.69.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=h4AqUWVw6EHw959nlExmEjFCIEa590im2LZqq5fGWYYSB0rA369w05ldw+GaOhBmLbP0LV4pkrPQPFpunwDNv8iBp9hnTEJ/8NrghAaGY+JguQvna+CHkPMDxzYw8mJU6O4Mwf26aCqMNBsA4qnvNamIPYW/1sHuSO2DcqWskyK3Y9MJdR3kZqWaGSWDL6DqKB+IuwBtcPez/xrJ61eo87uodjiYTsvSobUezSPgAu8OCdKqWo1RKS0ghpaxelYqzaimdhVRYup0XP2TUuraDIkEPS3EVQ9ba7cttByW0UOdVkHeb5M+Gibg2Bd3Okgw19giwFF8uX9OyK6g8/yGCA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PiUsNwHuUoROiSHft7XhTa06uCab4CsxMFHW2J7MGnQ=;
+ b=u+HTUmm/uDSvZm+b2g1Shkul2UQ3ETrvbVAxPsUYwutIVnmRVT73L5pLSkqLf+Pe1hYNMvg74BUIVKk4B9NJSTSbx3Hgt0O+JsPbPT7rXYSCULgLyxmMe/aCwQWnhP7zsS9qYU9RgmzTI9OKUtav3ECyV7K37rNmL4vP3UuHrLxnj7f43YOMI+APcHRA3ewgktBtawLMqjP0jnLHefoH9Jx03CAGIDg9wf998UV92WWvabLkB7Oux1+ukFgzj53/Lp8RSOXsFQwvoZdYghISiSYttq+qyNDrTyjgrgAmTO23JdnBiZ5vgZEEOARVzBGeag93b5B8w8kc2dbonrOvSQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PiUsNwHuUoROiSHft7XhTa06uCab4CsxMFHW2J7MGnQ=;
+ b=KKUpQXrCbktnqyCJM6moXPJvugykpNwKfzCNL38x2fP43Fc3E0O0OlEKNwRWcut16uB/0ze9kzO73dr/QQqGmyf8u+g8aCNWgRjsIko8GCi9AFxCR/nVmYDcEsaTvqeC26SeTLye7JqX/MufxYQtC6oT+sf7/y5m6af0NlAdGXlNu8DmkW0RbWM+LxNE8EaJHH3IFHwPw0BuskkCkJ6snQ5IJ9ktByAH6sMvCbJ2Pw0WUawrapKvIYaLVAEhNLikMvP/aiMItImszbB4hlks1ALOFN9aevHJY/tME7nRJV4KaEJezIUVEIdMqKa2Bp8uXVjAtw8+W8IrjCuocD1hrw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by GV1PR04MB10606.eurprd04.prod.outlook.com (2603:10a6:150:207::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.22; Wed, 14 Aug
+ 2024 17:44:38 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%3]) with mapi id 15.20.7875.016; Wed, 14 Aug 2024
+ 17:44:38 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Shenghao Ding <shenghao-ding@ti.com>,
+	Kevin Lu <kevin-lu@ti.com>,
+	Baojun Xu <baojun.xu@ti.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	alsa-devel@alsa-project.org (moderated list:TEXAS INSTRUMENTS AUDIO (ASoC/HDA) DRIVERS),
+	linux-sound@vger.kernel.org (open list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM...),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH 1/1] ASoC: dt-bindings: convert tlv320aic31xx.txt to yaml
+Date: Wed, 14 Aug 2024 13:44:20 -0400
+Message-Id: <20240814174422.4026100-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR13CA0035.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c2::10) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240731222831.14895-1-james.quinlan@broadcom.com>
- <20240731222831.14895-2-james.quinlan@broadcom.com> <e1002187-fca0-455c-840c-32489e5eadb4@kernel.org>
- <CA+-6iNzDcF3pA1T3FuGNS4NPn1RrjHxxAVStN6t++xDsx-wUXQ@mail.gmail.com> <c5b0e395-7f2b-4dca-9764-83d0878e99c6@kernel.org>
-In-Reply-To: <c5b0e395-7f2b-4dca-9764-83d0878e99c6@kernel.org>
-From: Jim Quinlan <james.quinlan@broadcom.com>
-Date: Wed, 14 Aug 2024 13:35:32 -0400
-Message-ID: <CA+-6iNwgC8RtXu3g70kH8Lkw=LHT-6MtAbt=ZReq_wXp9nF6VA@mail.gmail.com>
-Subject: Re: [PATCH v5 01/12] dt-bindings: PCI: Cleanup of brcmstb YAML and
- add 7712 SoC
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-pci@vger.kernel.org, Nicolas Saenz Julienne <nsaenz@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, 
-	Cyril Brulebois <kibi@debian.org>, Stanimir Varbanov <svarbanov@suse.de>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, bcm-kernel-feedback-list@broadcom.com, 
-	jim2101024@gmail.com, Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, 
-	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="000000000000ed53d0061fa82743"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GV1PR04MB10606:EE_
+X-MS-Office365-Filtering-Correlation-Id: b6888d02-eff4-4e8b-0004-08dcbc88c4bb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|52116014|7416014|1800799024|366016|38350700014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?9pQPWzCLzAyUC8RjVbMIjrvbMqTdXvjcz5PjGWA+D86+JWAnXbUzkUGWOsnT?=
+ =?us-ascii?Q?iUbjd4ssC63b2I79oUxG5vKJwKLIu4s+ALt6/yehSf0K3TV2gBEGtk1Edp4K?=
+ =?us-ascii?Q?KcIslK+X2mPxwiTrd6yPpayBBRGCJFEZXcemyDOny6hEa1QJzo/w83CAg6BQ?=
+ =?us-ascii?Q?LfoHDstN+zIkBPTf+bQbYS1BZEnGaDuNVOdzZCgCFi9Tyb3b2WqEPYMk5w5J?=
+ =?us-ascii?Q?0QVwVIf8IDiQZ6FUgr0lNj3TW+qrR+9+WevldLmuAPM8tsnSCUpEerASlRsX?=
+ =?us-ascii?Q?dre7wDIhzXicpllzzPo4+VduOJ3vliTIiX8bwekP4B0zxsrI1g9dNmIUUlLD?=
+ =?us-ascii?Q?zlwApb4SrXr+hWjFYVEMngeLPcSFqeSuKwM5phgkRPPA1i7YrjuqJ59+7luQ?=
+ =?us-ascii?Q?l5zG6+1lzrfNUKwV+T3O5Lnn78HDoESqLZGXw3aqvS9LL6n7+jcQHaY/xISi?=
+ =?us-ascii?Q?NUlvDbaBFm1Dstd5O154Nr1llADoYbhLGRA+b+Q88HF+IcgB4Cf/62cG89Cu?=
+ =?us-ascii?Q?aWNyiW9u1UhWRfV6ImNnw7HOx1bDPAwdSCMXDtzUSvI8vAEE4lG/CdbKsSRh?=
+ =?us-ascii?Q?3139gQdAZfBYVR6MGYRsZFYXotKiMHJJHZHTKnxU8G+w4G6Qeks36vF+gjFA?=
+ =?us-ascii?Q?i6K+X18YDVtT/e9gi3k4ag4+tgW110Qvbiv/ogj4aVnvyrqz1iLAH/uWsrUm?=
+ =?us-ascii?Q?DWToiWdPEqaqMS/kJfr6/G4jtM7RYg20Np4uV0tHgov8CXqYm/ERq7HgPr4N?=
+ =?us-ascii?Q?2kFykdafrUDx4TjNLIzFg1PlVClUImWc+vy0BWcnbF5PY/irdivISo8NjWio?=
+ =?us-ascii?Q?Rhy4eH5LdGKsdDFyY3tcpiJDAggbJUEZmVO1/pCeh5yZryjL69fUApshKQCD?=
+ =?us-ascii?Q?wUBCw2ExDXcdB7QrirnZVPUrJBbJVTvvUX8eq3GKVWZR5vjoAaago9sJrnTK?=
+ =?us-ascii?Q?lu382pizVue3r8axiriSrpqivnrliNxhfs2zyYyfxFBcUir4xNWOv2KcHzW4?=
+ =?us-ascii?Q?9bfKnH5EvFBfL9fQ7GIJrQcKBvRdkxHCCL002a9wv2dtz8KoTrg/0jdNl8CH?=
+ =?us-ascii?Q?od0HH7z4WTwZQDbNRr44IcI8oa/pS2OoAt/uAHqNUkqOMs7zTsVB09gvz1Gn?=
+ =?us-ascii?Q?wiiRpDMDE2YWQIpgikJlyKKzUTFbmj4NvCcYigZVviYrD+KCbW0UGut7IxSG?=
+ =?us-ascii?Q?xOKRRHJ4CbJy3T8zIvZU6BkDwH8UQBv1LgrxtVHX/143I26rmWnM8TlLR3qK?=
+ =?us-ascii?Q?6dGkoNvpGbbLbUmuyvdVA91z8vb9UQLThjpjrfjPf7VouyZflEai/TuT6WBJ?=
+ =?us-ascii?Q?58w3KI3Qe/10cjbxQjSGn4mjOcR2Cqe/N41byvMi1QUFtUZBR8zts4fglOGl?=
+ =?us-ascii?Q?X4EbN/w=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(52116014)(7416014)(1800799024)(366016)(38350700014)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?mZKXs2uRLpu22lLFxKy617dAphoWT7T0NpeD27sh+145uB548AcgSzhdAOhG?=
+ =?us-ascii?Q?nZLaG73Sy7uBnDYEnNthUtUYo6okvKRaEpvXEGrNNjFCNwiSywTIoFMJTD4s?=
+ =?us-ascii?Q?jowyv6e7YC8p7JX9RGHX5dbQyReWs0DHPHVKyvcUjqUQGzobFS6tywLGs3Le?=
+ =?us-ascii?Q?ZOwIRpmPz39cHTBJXud7LSEuRjJdUIZhVTs/2nP6FU8Tdytul1/U6LLNsqNH?=
+ =?us-ascii?Q?+1s0UVsoMyuFkfJGeRlQXIIS6zDq6D2+wuqYT+vZVIF70jz3lo/74/nYvXSm?=
+ =?us-ascii?Q?9er1RQtB4PdrsyDAUMVbC2ee7I1HdeW7eNbVlBEq21U80iw1PcDIOgq8GUdU?=
+ =?us-ascii?Q?yInZoJLBi1/nqKbtAs1FZJsxcMQJP0eWgYz3Vkm4onpSXfJ6uqZUQLIELA71?=
+ =?us-ascii?Q?8qhlcdoFMjXFGgNcm0AvLO96JE+draZIfGF3gzBSejT21xWrZmS5yXyZPgZb?=
+ =?us-ascii?Q?ZKiMq3+gLVijYHqNbsVoBzD3pepWdapzA8PAsSYg0WlX22qDCkE20w0MfuVa?=
+ =?us-ascii?Q?J9se6+oBJ/JklwrS6rO1pw2Rg3FZbuoEZzgOG1NlN7AazofN8CwV3C+Krn7I?=
+ =?us-ascii?Q?MgZZVtHeZNuby/A0Oub6VuJRXaNEKk6ktdg6oX5XX11UTDbdAkQEBntgaeqU?=
+ =?us-ascii?Q?R4djWwJnl41V9+c9vuwYvHOPdDmQxMhPbymNmUUBBDR59aqzwXuMJFeF6Icm?=
+ =?us-ascii?Q?pMJqSz8BT98uSVPLvJI2KfvL6lCVP3PBwZh8XC6dkPJHcozpA+mqkwqiMZ0N?=
+ =?us-ascii?Q?lS0Am6QxiuNYWUI7jMHvurk62Gd28mTnmUUMWoY5GWnjovPmHHpHlLADaAYE?=
+ =?us-ascii?Q?5NEbMeXZc1E020qmEnaHqZcNHlHFmisGhR32GRO7fa/A7lFidpQ+povKyXbT?=
+ =?us-ascii?Q?gyUMoeTHkjYm/KZFeqRPKp5LU10a3m2AwzHGuFjNgjMqgKMVEBUlgTJwERJl?=
+ =?us-ascii?Q?vcYfmhponKRhR9xHINNz9xGfxJxKgIkv/Jyn94UdRRNguEHA7ShAvNJfF3qG?=
+ =?us-ascii?Q?W4cFrMmOI+/n2ArlDdXIMAxTUTEP2XqSwkQ0OJ/7By4ntgfpwehYJSwgvrOz?=
+ =?us-ascii?Q?s7vZVM8Vwkpi+HnZKdgt+zP1a1i/K6Zcn000pcJlnNEzzXnntMXgUBCEXywA?=
+ =?us-ascii?Q?hjSaF3iHoGYts+EuHhQfWZmhSYXdqAYU0fk8fFo4ai0hcEmzuxfCXwADsrFs?=
+ =?us-ascii?Q?e+sEIq72kLMYK5cy2++PmbSTmRTVgh93iLAXzE2XR+yXqgqypEWZF7Q2mqOz?=
+ =?us-ascii?Q?7bl6D8O4DuP+DTtE5o07AUtlYv9FKimSxlX4SONnB1L5wiawugacx5pvJPbj?=
+ =?us-ascii?Q?ZLGjOcpzevgt7dY5j8oGyePyNJlX1WW6djbrBaZkEL3Mq2SdD8rg2bZ2OFST?=
+ =?us-ascii?Q?dQ0V/xYTV9BxlAF2fnKn4rcL/Ngqq2uuCvTVVwAytn9oxQFvUIlmwHQ/RrP2?=
+ =?us-ascii?Q?YF4MDSBbd0eCTRrJxkHMW6Lwqt8hOi61G4Ucq31WUtRSNy2fyR3aL09A6bFB?=
+ =?us-ascii?Q?FZGsvmBhgqKfReAcrYa8srexXwdTXUSsCVKyS0jO+esrRdd95cYYvGE6Yyfa?=
+ =?us-ascii?Q?7ln/PcF9047u+K3zd20=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b6888d02-eff4-4e8b-0004-08dcbc88c4bb
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Aug 2024 17:44:38.3429
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: /FvgPSMr4cxLp3mQCTz/TPcYWWgOBucYjgtwdBIUjJ72Fqx4NGpRWUGsSw2xR3b7j83Vuuih1Z4MAF5Rk+dxAQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10606
 
---000000000000ed53d0061fa82743
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Convert binding doc tlv320aic31xx.txt to yaml format.
+Additional change:
+- add i2c node in example.
+- replace MICBIAS_OFF with MICBIAS_2_0v in example because MICBIAS_OFF have
+been defined in header file.
+- add ref to dai-common.yaml.
+- add #sound-dai-cells.
 
-On Tue, Aug 13, 2024 at 4:27=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 13/08/2024 00:07, Jim Quinlan wrote:
-> > On Fri, Aug 2, 2024 at 2:43=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel=
-.org> wrote:
-> >>
-> >> On 01/08/2024 00:28, Jim Quinlan wrote:
-> >>> o Change order of the compatible strings to be alphabetical
-> >>> o Use "maxItems" where needed.
-> >>
-> >> I asked at v3 and then in v4 about splitting this. You never responded
-> >> to that comment, so sorry I won't be repeating the same thing in v5.
-> >
-> > I'm sorry Krzyszof, but I just reviewed your responses in V3 and V4
-> > and I can't find you saying anything about splitting off the above two
-> > bullet points.  Perhaps I am somehow losing email responses but all I
-> > see is this in V3 is the following, where you ask me to do a squash,
-> > not a commit:
-> >
-> >     [JQ] o Change order of the compatible strings to be alphabetical
-> >     []KK] That's a cleanup. You can squash it with a previous patch.
-> >
-> > Now you did say in V3
-> >
-> >     [JQ] o Describe resets/reset-names before using them in rules
-> >     [KK] That's a new commit.
-> >
-> > but this bullet item does not relate to the bullet points you have
-> > highlighted in this email.    As for your responses to V4, I don't see
->
-> It exactly relates to the quoted part. The comment is ALWAYS under exact
-> part of your patch being questioned/commented.
->
-> So first I said one part is cleanup and should be moved away. Then I
-> explained that this part is a NEW COMMIT. New, so one more, different.
->
-> I understand that this was not clear, but you never came with a question
-> what did I mean.
+Fix below warning:
+arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb: /soc@0/bus@30800000/i2c@30a30000/codec@18:
+	failed to match any schema with compatible: ['ti,tlv320dac3100']
 
-Hello Krzysztof,
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+ .../bindings/sound/ti,tlv320dac3100.yaml      | 127 ++++++++++++++++++
+ .../bindings/sound/tlv320aic31xx.txt          |  77 -----------
+ 2 files changed, 127 insertions(+), 77 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/ti,tlv320dac3100.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/tlv320aic31xx.txt
 
-Sorry to bother you again but I want this to be clear.  This commit
-contains the changes:
+diff --git a/Documentation/devicetree/bindings/sound/ti,tlv320dac3100.yaml b/Documentation/devicetree/bindings/sound/ti,tlv320dac3100.yaml
+new file mode 100644
+index 0000000000000..85e937e34962d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/ti,tlv320dac3100.yaml
+@@ -0,0 +1,127 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/ti,tlv320dac3100.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments - tlv320aic31xx Codec module
++
++maintainers:
++  - Shenghao Ding <shenghao-ding@ti.com>
++
++description: |
++  CODEC output pins:
++    * HPL
++    * HPR
++    * SPL, devices with stereo speaker amp
++    * SPR, devices with stereo speaker amp
++    * SPK, devices with mono speaker amp
++    * MICBIAS
++
++  CODEC input pins:
++    * MIC1LP, devices with ADC
++    * MIC1RP, devices with ADC
++    * MIC1LM, devices with ADC
++    * AIN1, devices without ADC
++    * AIN2, devices without ADC
++
++  The pins can be used in referring sound node's audio-routing property.
++
++properties:
++  compatible:
++    enum:
++      - ti,tlv320aic310x # - Generic TLV320AIC31xx with mono speaker amp
++      - ti,tlv320aic311x # - Generic TLV320AIC31xx with stereo speaker amp
++      - ti,tlv320aic3100 # - TLV320AIC3100 (mono speaker amp, no MiniDSP)
++      - ti,tlv320aic3110 # - TLV320AIC3110 (stereo speaker amp, no MiniDSP)
++      - ti,tlv320aic3120 # - TLV320AIC3120 (mono speaker amp, MiniDSP)
++      - ti,tlv320aic3111 # - TLV320AIC3111 (stereo speaker amp, MiniDSP)
++      - ti,tlv320dac3100 # - TLV320DAC3100 (no ADC, mono speaker amp, no MiniDSP)
++      - ti,tlv320dac3101 # - TLV320DAC3101 (no ADC, stereo speaker amp, no MiniDSP)
++
++  reg:
++    maxItems: 1
++
++  '#sound-dai-cells':
++    const: 0
++
++  HPVDD-supply: true
++
++  SPRVDD-supply: true
++
++  SPLVDD-supply: true
++
++  AVDD-supply: true
++
++  IOVDD-supply: true
++
++  DVDD-supply: true
++
++  reset-gpios:
++    description: GPIO specification for the active low RESET input.
++
++  ai31xx-micbias-vg:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 1
++    enum: [1, 2, 3]
++    description: |
++      MicBias Voltage setting
++        1 or MICBIAS_2_0V - MICBIAS output is powered to 2.0V
++        2 or MICBIAS_2_5V - MICBIAS output is powered to 2.5V
++        3 or MICBIAS_AVDD - MICBIAS output is connected to AVDD
++
++  ai31xx-ocmv:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2, 3]
++    description: |
++      output common-mode voltage setting
++        0 - 1.35V,
++        1 - 1.5V,
++        2 - 1.65V,
++        3 - 1.8V
++
++  gpio-reset:
++    description: gpio pin number used for codec reset
++    deprecated: true
++
++
++required:
++  - compatible
++  - reg
++  - HPVDD-supply
++  - SPRVDD-supply
++  - SPLVDD-supply
++  - AVDD-supply
++  - IOVDD-supply
++  - DVDD-supply
++
++allOf:
++  - $ref: dai-common.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/sound/tlv320aic31xx.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        sound@18 {
++            compatible = "ti,tlv320aic311x";
++            reg = <0x18>;
++
++            ai31xx-micbias-vg = <MICBIAS_2_0V>;
++            reset-gpios = <&gpio1 17 GPIO_ACTIVE_LOW>;
++
++            HPVDD-supply = <&regulator>;
++            SPRVDD-supply = <&regulator>;
++            SPLVDD-supply = <&regulator>;
++            AVDD-supply = <&regulator>;
++            IOVDD-supply = <&regulator>;
++            DVDD-supply = <&regulator>;
++       };
++    };
++
+diff --git a/Documentation/devicetree/bindings/sound/tlv320aic31xx.txt b/Documentation/devicetree/bindings/sound/tlv320aic31xx.txt
+deleted file mode 100644
+index bbad98d5b9862..0000000000000
+--- a/Documentation/devicetree/bindings/sound/tlv320aic31xx.txt
++++ /dev/null
+@@ -1,77 +0,0 @@
+-Texas Instruments - tlv320aic31xx Codec module
+-
+-The tlv320aic31xx serial control bus communicates through I2C protocols
+-
+-Required properties:
+-
+-- compatible - "string" - One of:
+-    "ti,tlv320aic310x" - Generic TLV320AIC31xx with mono speaker amp
+-    "ti,tlv320aic311x" - Generic TLV320AIC31xx with stereo speaker amp
+-    "ti,tlv320aic3100" - TLV320AIC3100 (mono speaker amp, no MiniDSP)
+-    "ti,tlv320aic3110" - TLV320AIC3110 (stereo speaker amp, no MiniDSP)
+-    "ti,tlv320aic3120" - TLV320AIC3120 (mono speaker amp, MiniDSP)
+-    "ti,tlv320aic3111" - TLV320AIC3111 (stereo speaker amp, MiniDSP)
+-    "ti,tlv320dac3100" - TLV320DAC3100 (no ADC, mono speaker amp, no MiniDSP)
+-    "ti,tlv320dac3101" - TLV320DAC3101 (no ADC, stereo speaker amp, no MiniDSP)
+-
+-- reg - <int> -  I2C slave address
+-- HPVDD-supply, SPRVDD-supply, SPLVDD-supply, AVDD-supply, IOVDD-supply,
+-  DVDD-supply : power supplies for the device as covered in
+-  Documentation/devicetree/bindings/regulator/regulator.txt
+-
+-
+-Optional properties:
+-
+-- reset-gpios - GPIO specification for the active low RESET input.
+-- ai31xx-micbias-vg - MicBias Voltage setting
+-        1 or MICBIAS_2_0V - MICBIAS output is powered to 2.0V
+-        2 or MICBIAS_2_5V - MICBIAS output is powered to 2.5V
+-        3 or MICBIAS_AVDD - MICBIAS output is connected to AVDD
+-	If this node is not mentioned or if the value is unknown, then
+-	micbias	is set to 2.0V.
+-- ai31xx-ocmv - output common-mode voltage setting
+-        0 - 1.35V,
+-        1 - 1.5V,
+-        2 - 1.65V,
+-        3 - 1.8V
+-
+-Deprecated properties:
+-
+-- gpio-reset - gpio pin number used for codec reset
+-
+-CODEC output pins:
+-  * HPL
+-  * HPR
+-  * SPL, devices with stereo speaker amp
+-  * SPR, devices with stereo speaker amp
+-  * SPK, devices with mono speaker amp
+-  * MICBIAS
+-
+-CODEC input pins:
+-  * MIC1LP, devices with ADC
+-  * MIC1RP, devices with ADC
+-  * MIC1LM, devices with ADC
+-  * AIN1, devices without ADC
+-  * AIN2, devices without ADC
+-
+-The pins can be used in referring sound node's audio-routing property.
+-
+-Example:
+-#include <dt-bindings/gpio/gpio.h>
+-#include <dt-bindings/sound/tlv320aic31xx.h>
+-
+-tlv320aic31xx: tlv320aic31xx@18 {
+-	compatible = "ti,tlv320aic311x";
+-	reg = <0x18>;
+-
+-	ai31xx-micbias-vg = <MICBIAS_OFF>;
+-
+-	reset-gpios = <&gpio1 17 GPIO_ACTIVE_LOW>;
+-
+-	HPVDD-supply = <&regulator>;
+-	SPRVDD-supply = <&regulator>;
+-	SPLVDD-supply = <&regulator>;
+-	AVDD-supply = <&regulator>;
+-	IOVDD-supply = <&regulator>;
+-	DVDD-supply = <&regulator>;
+-};
+-- 
+2.34.1
 
-1. alphabetical order of compatible strings
-2. maxItems
-3.  maintainer change
-
-Do you want  me to split off 3 since it is not a "cleanup"?  If not,
-please specify.
-
-Regards,
-Jim Quinlan
-Broadcom STB/CM
-
->
-> Best regards,
-> Krzysztof
->
-
---000000000000ed53d0061fa82743
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-MIIQbgYJKoZIhvcNAQcCoIIQXzCCEFsCAQExDzANBglghkgBZQMEAgEFADALBgkqhkiG9w0BBwGg
-gg3FMIIFDTCCA/WgAwIBAgIQeEqpED+lv77edQixNJMdADANBgkqhkiG9w0BAQsFADBMMSAwHgYD
-VQQLExdHbG9iYWxTaWduIFJvb3QgQ0EgLSBSMzETMBEGA1UEChMKR2xvYmFsU2lnbjETMBEGA1UE
-AxMKR2xvYmFsU2lnbjAeFw0yMDA5MTYwMDAwMDBaFw0yODA5MTYwMDAwMDBaMFsxCzAJBgNVBAYT
-AkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBS
-MyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
-vbCmXCcsbZ/a0fRIQMBxp4gJnnyeneFYpEtNydrZZ+GeKSMdHiDgXD1UnRSIudKo+moQ6YlCOu4t
-rVWO/EiXfYnK7zeop26ry1RpKtogB7/O115zultAz64ydQYLe+a1e/czkALg3sgTcOOcFZTXk38e
-aqsXsipoX1vsNurqPtnC27TWsA7pk4uKXscFjkeUE8JZu9BDKaswZygxBOPBQBwrA5+20Wxlk6k1
-e6EKaaNaNZUy30q3ArEf30ZDpXyfCtiXnupjSK8WU2cK4qsEtj09JS4+mhi0CTCrCnXAzum3tgcH
-cHRg0prcSzzEUDQWoFxyuqwiwhHu3sPQNmFOMwIDAQABo4IB2jCCAdYwDgYDVR0PAQH/BAQDAgGG
-MGAGA1UdJQRZMFcGCCsGAQUFBwMCBggrBgEFBQcDBAYKKwYBBAGCNxQCAgYKKwYBBAGCNwoDBAYJ
-KwYBBAGCNxUGBgorBgEEAYI3CgMMBggrBgEFBQcDBwYIKwYBBQUHAxEwEgYDVR0TAQH/BAgwBgEB
-/wIBADAdBgNVHQ4EFgQUljPR5lgXWzR1ioFWZNW+SN6hj88wHwYDVR0jBBgwFoAUj/BLf6guRSSu
-TVD6Y5qL3uLdG7wwegYIKwYBBQUHAQEEbjBsMC0GCCsGAQUFBzABhiFodHRwOi8vb2NzcC5nbG9i
-YWxzaWduLmNvbS9yb290cjMwOwYIKwYBBQUHMAKGL2h0dHA6Ly9zZWN1cmUuZ2xvYmFsc2lnbi5j
-b20vY2FjZXJ0L3Jvb3QtcjMuY3J0MDYGA1UdHwQvMC0wK6ApoCeGJWh0dHA6Ly9jcmwuZ2xvYmFs
-c2lnbi5jb20vcm9vdC1yMy5jcmwwWgYDVR0gBFMwUTALBgkrBgEEAaAyASgwQgYKKwYBBAGgMgEo
-CjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3dy5nbG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzAN
-BgkqhkiG9w0BAQsFAAOCAQEAdAXk/XCnDeAOd9nNEUvWPxblOQ/5o/q6OIeTYvoEvUUi2qHUOtbf
-jBGdTptFsXXe4RgjVF9b6DuizgYfy+cILmvi5hfk3Iq8MAZsgtW+A/otQsJvK2wRatLE61RbzkX8
-9/OXEZ1zT7t/q2RiJqzpvV8NChxIj+P7WTtepPm9AIj0Keue+gS2qvzAZAY34ZZeRHgA7g5O4TPJ
-/oTd+4rgiU++wLDlcZYd/slFkaT3xg4qWDepEMjT4T1qFOQIL+ijUArYS4owpPg9NISTKa1qqKWJ
-jFoyms0d0GwOniIIbBvhI2MJ7BSY9MYtWVT5jJO3tsVHwj4cp92CSFuGwunFMzCCA18wggJHoAMC
-AQICCwQAAAAAASFYUwiiMA0GCSqGSIb3DQEBCwUAMEwxIDAeBgNVBAsTF0dsb2JhbFNpZ24gUm9v
-dCBDQSAtIFIzMRMwEQYDVQQKEwpHbG9iYWxTaWduMRMwEQYDVQQDEwpHbG9iYWxTaWduMB4XDTA5
-MDMxODEwMDAwMFoXDTI5MDMxODEwMDAwMFowTDEgMB4GA1UECxMXR2xvYmFsU2lnbiBSb290IENB
-IC0gUjMxEzARBgNVBAoTCkdsb2JhbFNpZ24xEzARBgNVBAMTCkdsb2JhbFNpZ24wggEiMA0GCSqG
-SIb3DQEBAQUAA4IBDwAwggEKAoIBAQDMJXaQeQZ4Ihb1wIO2hMoonv0FdhHFrYhy/EYCQ8eyip0E
-XyTLLkvhYIJG4VKrDIFHcGzdZNHr9SyjD4I9DCuul9e2FIYQebs7E4B3jAjhSdJqYi8fXvqWaN+J
-J5U4nwbXPsnLJlkNc96wyOkmDoMVxu9bi9IEYMpJpij2aTv2y8gokeWdimFXN6x0FNx04Druci8u
-nPvQu7/1PQDhBjPogiuuU6Y6FnOM3UEOIDrAtKeh6bJPkC4yYOlXy7kEkmho5TgmYHWyn3f/kRTv
-riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
-QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
-UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
-M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
-Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
-14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
-a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
-XzCCBU0wggQ1oAMCAQICDEjuN1Vuw+TT9V/ygzANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
-RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
-UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE3MTNaFw0yNTA5MTAxMjE3MTNaMIGO
-MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
-BgNVBAoTDUJyb2FkY29tIEluYy4xFDASBgNVBAMTC0ppbSBRdWlubGFuMSkwJwYJKoZIhvcNAQkB
-FhpqYW1lcy5xdWlubGFuQGJyb2FkY29tLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoC
-ggEBAKtQZbH0dDsCEixB9shqHxmN7R0Tywh2HUGagri/LzbKgXsvGH/LjKUjwFOQwFe4EIVds/0S
-hNqJNn6Z/DzcMdIAfbMJ7juijAJCzZSg8m164K+7ipfhk7SFmnv71spEVlo7tr41/DT2HvUCo93M
-7Hu+D3IWHBqIg9YYs3tZzxhxXKtJW6SH7jKRz1Y94pEYplGQLM+uuPCZaARbh+i0auVCQNnxgfQ/
-mOAplh6h3nMZUZxBguxG3g2p3iD4EgibUYneEzqOQafIQB/naf2uetKb8y9jKgWJxq2Y4y8Jqg2u
-uVIO1AyOJjWwqdgN+QhuIlat+qZd03P48Gim9ZPEMDUCAwEAAaOCAdswggHXMA4GA1UdDwEB/wQE
-AwIFoDCBowYIKwYBBQUHAQEEgZYwgZMwTgYIKwYBBQUHMAKGQmh0dHA6Ly9zZWN1cmUuZ2xvYmFs
-c2lnbi5jb20vY2FjZXJ0L2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNydDBBBggrBgEFBQcw
-AYY1aHR0cDovL29jc3AuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAw
-TQYDVR0gBEYwRDBCBgorBgEEAaAyASgKMDQwMgYIKwYBBQUHAgEWJmh0dHBzOi8vd3d3Lmdsb2Jh
-bHNpZ24uY29tL3JlcG9zaXRvcnkvMAkGA1UdEwQCMAAwSQYDVR0fBEIwQDA+oDygOoY4aHR0cDov
-L2NybC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcmwwJQYDVR0R
-BB4wHIEaamFtZXMucXVpbmxhbkBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYBBQUHAwQwHwYD
-VR0jBBgwFoAUljPR5lgXWzR1ioFWZNW+SN6hj88wHQYDVR0OBBYEFGx/E27aeGBP2eJktrILxlhK
-z8f6MA0GCSqGSIb3DQEBCwUAA4IBAQBdQQukiELsPfse49X4QNy/UN43dPUw0I1asiQ8wye3nAuD
-b3GFmf3SZKlgxBTdWJoaNmmUFW2H3HWOoQBnTeedLtV9M2Tb9vOKMncQD1f9hvWZR6LnZpjBIlKe
-+R+v6CLF07qYmBI6olvOY/Rsv9QpW9W8qZYk+2RkWHz/fR5N5YldKlJHP0NDT4Wjc5fEzV+mZC8A
-AlT80qiuCVv+IQP08ovEVSLPhUp8i1pwsHT9atbWOfXQjbq1B/ditFIbPzwmwJPuGUc7n7vpmtxB
-75sSFMj27j4JXl5W9vORgHR2YzuPBzfzDJU1ul0DIofSWVF6E1dx4tZohRED1Yl/T/ZGMYICbTCC
-AmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UE
-AxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMSO43VW7D5NP1X/KD
-MA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCAofXOGT7pQrt/NPoHSf4LHt5gDXxxT
-fWZKOdk83hfYKDAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yNDA4
-MTQxNzM1NDVaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFlAwQBFjALBglg
-hkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzALBglghkgBZQME
-AgEwDQYJKoZIhvcNAQEBBQAEggEAFTe82bSkbEWLvrLeyMf/i+H1D7AdPKzkQvYHyCFCkqXN+Hdd
-8BePy3uHg8bPBblM1nuySdVZYBHpAAkBzdg3XV/fkGGvjpxWzhNBIpvNsJUkzrU7R4Qg/8dSLBF9
-Rt56rTtozrCp88OZQf6o1PvuBNjr5mAoaGhYH8YZdkzlVV2LkXE4ZvxNxWo9pSfBxpAT+LkY8K/3
-rol6G0AZfv9DeDQuZWNE9dujqAOZYxbJt1rAbNrLgwxsFblNGbO0Fsd2WiJguj1w52rjgJth7CyF
-EaEhGO9lFc2/aYJnpTgAYaSG3+En8hgk2x3ds/9GS7ZvpgdZwyVN1jEzs/94y/hfqw==
---000000000000ed53d0061fa82743--
 
