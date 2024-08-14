@@ -1,134 +1,134 @@
-Return-Path: <devicetree+bounces-93777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0637952542
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 00:09:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8BB195259B
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 00:22:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1CF8E1C212C2
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 22:09:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A3F5289D67
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 22:22:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11CF1494D6;
-	Wed, 14 Aug 2024 22:09:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7987914B941;
+	Wed, 14 Aug 2024 22:21:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IUj0pH/h"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="X4B1oVqa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBD8660B96;
-	Wed, 14 Aug 2024 22:09:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723673364; cv=none; b=SS19g5dQRsiJ4SMT3tk8xDlaTkphcCNthpsG0YCQ+jogUhRViilC2sUO9ymCA6NZ8EvT8lvB/ERvTZWpkPs/Kn+2ye/LKTVgIK0UIemwne6TDjSn5b+ATM2J46hWj/vFbDP1RI7ec0KCpt5Ni4tCnbdAK/Oj9w1NZQ2fxhGiJH8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723673364; c=relaxed/simple;
-	bh=joRzg/EV/Eg+5FrgAQqj8T32FaTk/sCtinF8S64xJvU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=RwE/B3VbHl9o6gcuhWnjLi50wax2Pmf8RX/LQbvpJzHFsCPxVWmuYNPZm+g7r0yuOWyqGask+hh0JYdTscR+jAmZhEp2WN0M5H2yt4RZSH1BicppJiKVX3E/uJkxqOSM/qA7UEKSKTivXwfKszmh9K6e7eMHoXBXZvztLqKOaYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IUj0pH/h; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47EArDDv027591;
-	Wed, 14 Aug 2024 22:09:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	0SgI2w+z1vEHF10CPobuLWVlnnNE3pSKGSiAjVHETLk=; b=IUj0pH/h+3vuFvGi
-	R2tgpoJdNPib2OgXLaHM4XbcrEtdvlZtauBrb8T+m/fsPDBR3IY+bK9uB11y6QDr
-	lzjeslDzIgw1dRLfHDmJC+qC3n4/W1DSuUrQYra42kl1wJh8kBbf07rFW/tdbHEQ
-	/UhFRVbZVgdgYfJmA04jAML1g1Dl2eCXltyVNEikkWE/qsch5Snh6BYIN7vJQE+W
-	DOWUGZnsz0V+npPpMVENAYB2vj0y7USaXW/lLnCY7clnBB42Sk9hEnJLRL0NBXAo
-	i+eZwuM/iOmIy8wBJu+VE0YfcQVx9J08RZhtwGYcm7mtjfSm1TsHJql/aVa3Pvhn
-	Q1HCWA==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40x3etcjct-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 14 Aug 2024 22:09:17 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47EM9Gaf012864
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 14 Aug 2024 22:09:16 GMT
-Received: from [10.110.78.201] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 14 Aug
- 2024 15:09:15 -0700
-Message-ID: <f8caa9aa-7fc4-4d42-9011-21ca40eb106d@quicinc.com>
-Date: Wed, 14 Aug 2024 15:09:15 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCCDD149E05;
+	Wed, 14 Aug 2024 22:21:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.14
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723674068; cv=pass; b=QlIHXGaqZVPUOEkZNPK5nMd1ajwk+MzI40aBmdwFPrOaapuppMPnT/HTCWwlkAs7bS9dhcY+KMKqPHTL4rdxuRlZKZ7uVIc+nudMZPN45zSuE8qRj2QgfDr94EvXaoJrCmPLSkbs2Ze+7uEJYUWqCg4z3uEcZMp2w4XCvZn4TmI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723674068; c=relaxed/simple;
+	bh=ZseSJvvQ/STYK+JHtcwi0p5l8QpJ9KnLgXDZTGBHxAc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JbH25sHJy+bofbO5rwBEtzXyh8UK8PkHzYbTL/Zv70PlGWcHchhv+56Zaoi+tJpTC+fljKX8vOrIzTWyGYqvHN+zqOgMEfMs7HPZEu8zQuTWnLXTn2JuGtPzoTlxE+b6ih8mvjWcI73m/Gs7HUJ7O3CSB0M6Q2mAYuu8W3ryDWw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=X4B1oVqa; arc=pass smtp.client-ip=136.143.188.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Delivered-To: kernel@collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1723674037; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=IVIwS2d5odoRB7LQs3KRC3ui9nfT5+8pGR6hW0PKzWQjtEHzUVIP9THB/iRe0c6DV9EVq6o+bqlqedwZyiqtxggfSHuvCavu9PoQqyeEAfNnJtydyDRBvLGRo5jHGTknQp+DkJ8UQRFpQBVsB7bqM11cu36mAWeGLqm347kVX7U=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1723674037; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=jXwF5GXS2OQpmjcgp10hOfDqXTFm1+FqxL/OYRoaP74=; 
+	b=H+kJMiXJG0zuwXGb5zhbCIQwI64uSZM0u8SMGca1pFtPu2SlWnwgtA3OrhDTCSDPPjIYs+Tcz3fnWzdOvCgGcmlBXvw5Fhbvf3oEVxN+vhoOxEr91UIGhCxS1oCa8qh1yOG0qtkbFTvFq38cyJsmrQv+mdhC5OQZjo97Dk512VQ=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
+	dmarc=pass header.from=<detlev.casanova@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1723674037;
+	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=jXwF5GXS2OQpmjcgp10hOfDqXTFm1+FqxL/OYRoaP74=;
+	b=X4B1oVqaB6h2Oq9rUOIFpZK3fpZ4TxxjrXMy+liPehBKyB2dI2IYZB+4rBNFVWgE
+	diAOjS3D2C6v9WzdwqOktw0Z4Lf54YEB3oBLcwW8jV6RJKU3xU0sdib/VGSqFvzqhSd
+	5iOPQR3HUXOafGXAtXLwfiMQrGpjSctLsGE5dpi0=
+Received: by mx.zohomail.com with SMTPS id 1723674034407266.1561955146576;
+	Wed, 14 Aug 2024 15:20:34 -0700 (PDT)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: linux-kernel@vger.kernel.org
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Elaine Zhang <zhangqing@rock-chips.com>,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	kernel@collabora.com,
+	Detlev Casanova <detlev.casanova@collabora.com>
+Subject: [PATCH v5 0/2] Add CRU support for rk3576 SoC
+Date: Wed, 14 Aug 2024 18:19:21 -0400
+Message-ID: <20240814222159.2598-1-detlev.casanova@collabora.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/3] dt-bindings: soc: qcom: eud: Update compatible
- strings for eud
-To: Konrad Dybcio <konradybcio@gmail.com>,
-        Melody Olvera
-	<quic_molvera@quicinc.com>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        "Krzysztof Kozlowski" <krzk@kernel.org>,
-        Souradeep Chowdhury
-	<quic_schowdhu@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>, Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        "Satya Durga Srinivasu Prabhala"
-	<quic_satyap@quicinc.com>,
-        Elson Serrao <quic_eserrao@quicinc.com>
-CC: <cros-qcom-dts-watchers@chromium.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>
-References: <20240807183205.803847-1-quic_molvera@quicinc.com>
- <20240807183205.803847-2-quic_molvera@quicinc.com>
- <dfb1ac84-f011-45ea-9fb1-b8c6bc36cabc@kernel.org>
- <46d0627d-877b-41f3-83f6-4c33b562f460@quicinc.com>
- <0ebb1ca3-722d-422f-9f71-fcc61c3470b0@kernel.org>
- <2b118a49-2229-4346-ab21-0aa5377d7a4e@kernel.org>
- <8bb412f8-4fe1-40ca-8414-bb77c66899ae@quicinc.com>
- <0eca6755-a2ec-404f-b98c-ee6c9f6fb55f@gmail.com>
-Content-Language: en-US
-From: Trilok Soni <quic_tsoni@quicinc.com>
-In-Reply-To: <0eca6755-a2ec-404f-b98c-ee6c9f6fb55f@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: bDH0nTmkWRQEmd3FpdSPVJBC5KZPgFc9
-X-Proofpoint-ORIG-GUID: bDH0nTmkWRQEmd3FpdSPVJBC5KZPgFc9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-14_18,2024-08-13_02,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
- suspectscore=0 impostorscore=0 phishscore=0 clxscore=1011 mlxlogscore=386
- lowpriorityscore=0 priorityscore=1501 spamscore=0 adultscore=0 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
- definitions=main-2408140153
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 
-On 8/14/2024 1:25 PM, Konrad Dybcio wrote:
->> Unfortunately, no. We considered several options, but none guarantee that we will avoid
->> a crash if we try non-securely. The secure call also won't give a specific error if it fails either
->> (for security reasons) so we can't know if a secure access failed because it's supposed to be
->> accessed non-securely or for another reason; hence this approach. If there's
->> another way to achieve this functionality that might be better, I'm all ears.
-> Can we read some fuse values and decide based on that?
+Add support for clocks and resets on the rk3576.
+Patches from downstream have been squashed and rebased.
 
-In most of the cases, these fuse values are not allowed to be read
-from the Linux, so that will be another problem. Melody can check
-if there is any fuse values around here and possible to read them
-through Linux. 
+The resets have been renumbered without gaps and their actual register/bit
+information is set in rst-rk3576.c as it has been done for rk3588.
+
+Changes since v4:
+- Fix commit message with idx starting at 0
+- Stash all bindings commits
+- Cleanup example and add me as maintainer
+
+Changes since v3:
+- Add missing include in bindings
+
+Changes since v2:
+- Renumber IDs from 0
+- Commit clock header with clock bindings
+- Add missing resets on sub-cores
+- Add redundant fields in bindings
+
+Changes since v1:
+- Remove reset defines that are probably out of the main core
+- Separate resets and clocks bindings
+- Renumber the resets without gaps
+
+Detlev.
+
+Detlev Casanova (1):
+  dt-bindings: clock, reset: Add support for rk3576
+
+Elaine Zhang (1):
+  clk: rockchip: Add clock controller for the RK3576
+
+ .../bindings/clock/rockchip,rk3576-cru.yaml   |   64 +
+ drivers/clk/rockchip/Kconfig                  |    7 +
+ drivers/clk/rockchip/Makefile                 |    1 +
+ drivers/clk/rockchip/clk-rk3576.c             | 1819 +++++++++++++++++
+ drivers/clk/rockchip/clk.h                    |   53 +
+ drivers/clk/rockchip/rst-rk3576.c             |  652 ++++++
+ .../dt-bindings/clock/rockchip,rk3576-cru.h   |  592 ++++++
+ .../dt-bindings/reset/rockchip,rk3576-cru.h   |  564 +++++
+ 8 files changed, 3752 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3576-cru.yaml
+ create mode 100644 drivers/clk/rockchip/clk-rk3576.c
+ create mode 100644 drivers/clk/rockchip/rst-rk3576.c
+ create mode 100644 include/dt-bindings/clock/rockchip,rk3576-cru.h
+ create mode 100644 include/dt-bindings/reset/rockchip,rk3576-cru.h
 
 -- 
----Trilok Soni
+2.46.0
 
 
