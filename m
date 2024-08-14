@@ -1,136 +1,131 @@
-Return-Path: <devicetree+bounces-93644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F7FD951C0F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:42:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6D14951C33
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:50:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C57AF2870AD
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 13:42:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 257AF1C229DB
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 13:50:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A86F1B142B;
-	Wed, 14 Aug 2024 13:42:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08B421B0125;
+	Wed, 14 Aug 2024 13:50:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Pxl3XOUD"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="aBpOHnEz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E4381AE031;
-	Wed, 14 Aug 2024 13:41:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC1651DA4C;
+	Wed, 14 Aug 2024 13:50:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723642921; cv=none; b=n4rjTjV9RrR5HmgNJX6zDLEdb0IFVjWLEsQIIiO/p0e1zb5QO63hhEjAy5eEGwq+pehnWm8SYhZ9U6eCMx7pxi6UBYu4nO2/PPxNPpxefKm4NpbhRNBpEHm4IGF7ZszjVjIBJQwqVwXYXCXokIp4qLRpyN1rGvmdWaI+Tmegqjw=
+	t=1723643438; cv=none; b=PFxN5/HMd7uVpS+lbNENRSDRKeIGfsYLypfAsimjIwb8e3zr+zr08eeiTsGRkvhpKSmj46pOplxGUqRG/ih8f2EU/HM6zrvlTASC8dBxYzF+Hd7VVXJYq049GNxtxg8YVwAkH+qSGX1r+Acl2uatFF8FzoDL5BxG2KhYIaQ46rA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723642921; c=relaxed/simple;
-	bh=hqcfXdtGQKVWLTvbdhM5pBJQQzUtmGdgqcjPbawdyX8=;
+	s=arc-20240116; t=1723643438; c=relaxed/simple;
+	bh=L77S3EQ47II05J3Jqp4pq7LaCKMh2mMq1bPcetyBe6I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Rgzvu+J6BRmJCUjkfAeh/N2JW77XiGM+beVGpS4OjI7D4GFsp028I5i65wKUDNj9HA39qm4imOPeHfytwte4GYXZGRoVsh021nd/h14gIiqcUp4VZCR+CeczYvhCneATXpG+4jUxXv0eDDilm1k0ZoJ/h0/dfVjE3iXuICBt5As=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Pxl3XOUD; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1723642919; x=1755178919;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=hqcfXdtGQKVWLTvbdhM5pBJQQzUtmGdgqcjPbawdyX8=;
-  b=Pxl3XOUDS22IVqzJSo08IIR0BTJKICw+aJPTnxAlNShxm1Q8w1ph6zn1
-   mDCTW9m/sqvRIkr9kgVN4EXRxjvXEN3LN0qt6ULSk6wZcWXAgS25h3JZK
-   tC7/VJXePzu39tzSyErTJZxb6jx2NjQjUV1SWL344h+6iChd4eiAL0Sle
-   CVUJwrEVotVCZkKJ0n5onaPTY1g8yn+IxfPmK1h9WgbiT0kIGibYelU1u
-   EzR3KM7P7x6ES7w1h5xMn97hX03Z2e3d+2tCT0S0XKG21OMSQga8D91Zz
-   HBhIghPSM684pIJTbE3PMux4hUV7uCVRctCVxIdQTh35k95nTQqA5CNPf
-   g==;
-X-CSE-ConnectionGUID: TkD7PT/iTpKIhQlvWc4m8w==
-X-CSE-MsgGUID: oaKtEZmETkG/J5jQz+pGtA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11164"; a="32536637"
-X-IronPort-AV: E=Sophos;i="6.10,146,1719903600"; 
-   d="scan'208";a="32536637"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Aug 2024 06:41:58 -0700
-X-CSE-ConnectionGUID: BVNQACSMRPqinWY3Kn6FPQ==
-X-CSE-MsgGUID: /UK/S/1HTIe2pQFmOaearg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,146,1719903600"; 
-   d="scan'208";a="89818646"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Aug 2024 06:41:55 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1seEG8-0000000FC4y-17jJ;
-	Wed, 14 Aug 2024 16:41:52 +0300
-Date: Wed, 14 Aug 2024 16:41:52 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Wolfram Sang <wsa@kernel.org>, Benson Leung <bleung@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	linux-i2c@vger.kernel.org
-Subject: Re: [PATCH v4 5/6] platform/chrome: Introduce device tree hardware
- prober
-Message-ID: <Zry0ILkU4VrL3Mms@smile.fi.intel.com>
-References: <20240808095931.2649657-1-wenst@chromium.org>
- <20240808095931.2649657-6-wenst@chromium.org>
- <ZrtHhcNMiyHmKbal@smile.fi.intel.com>
- <CAGXv+5EgqdziyheOt7wzkbe036fqPcw_UpSHiMsB3W_nTB3NWQ@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=l/rxf6iJK3luGUmHWvrmhqHOtTmuGPm9jD8cLc6NF1W3Z0MBzvlXL7FAgl1WPZC7ShVQPXQyk3IwwjZo0XDj+cPoKrNAD0ajSHBQflolFqsI7RkabPXBWpSSTe3p/7eJ2GsWtHYVIGiAo2MALFhxyrYrpVkwUqFgAgEopFSgCwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=aBpOHnEz; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=k2gPQomNmMNNm1/ovY9l8pCGvwEeBiuMBoC6iMko/88=; b=aBpOHnEzqmgwtCozBCSdtc2mIh
+	WPkwexFP17B9iiAQLYwD1Cx396dCzWbwA6Fu6KNqARGzd36mO0jLxKQKH717SLrBwzRtOURGeZP0L
+	extJlMK0nch4iSDuaKzKikINbbjrqpHUmfVQYUC6/bfQWqNvyBdW0FbMUPeeljCAwx6k=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1seEOM-004lg6-HL; Wed, 14 Aug 2024 15:50:22 +0200
+Date: Wed, 14 Aug 2024 15:50:22 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Tristram.Ha@microchip.com
+Cc: Woojung.Huh@microchip.com, UNGLinuxDriver@microchip.com,
+	devicetree@vger.kernel.org, f.fainelli@gmail.com, olteanv@gmail.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, marex@denx.de, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 1/4] dt-bindings: net: dsa: microchip: add SGMII
+ port support to KSZ9477 switch
+Message-ID: <9b960383-6f6c-4a8c-85bb-5ccba96abb01@lunn.ch>
+References: <20240809233840.59953-1-Tristram.Ha@microchip.com>
+ <20240809233840.59953-2-Tristram.Ha@microchip.com>
+ <eae7d246-49c3-486e-bc62-cdb49d6b1d72@lunn.ch>
+ <BYAPR11MB355823A969242508B05D7156EC862@BYAPR11MB3558.namprd11.prod.outlook.com>
+ <144ed2fd-f6e4-43a1-99bc-57e6045996da@lunn.ch>
+ <BYAPR11MB35584725C73534BC26009F77EC862@BYAPR11MB3558.namprd11.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAGXv+5EgqdziyheOt7wzkbe036fqPcw_UpSHiMsB3W_nTB3NWQ@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <BYAPR11MB35584725C73534BC26009F77EC862@BYAPR11MB3558.namprd11.prod.outlook.com>
 
-On Wed, Aug 14, 2024 at 06:10:03PM +0800, Chen-Yu Tsai wrote:
-> On Tue, Aug 13, 2024 at 7:46 PM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-> > On Thu, Aug 08, 2024 at 05:59:28PM +0800, Chen-Yu Tsai wrote:
+On Tue, Aug 13, 2024 at 10:17:03PM +0000, Tristram.Ha@microchip.com wrote:
+> > > > > From: Tristram Ha <tristram.ha@microchip.com>
+> > > > >
+> > > > > The SGMII module of KSZ9477 switch can be setup in 3 ways: 0 for direct
+> > > > > connect, 1 for 1000BaseT SFP, and 2 for 10/100/1000 SFP.
+> > > > >
+> > > > > SFP is typically used so the default is 1.  The driver can detect
+> > > > > 10/100/1000 SFP and change the mode to 2.  For direct connect this mode
+> > > > > has to be explicitly set to 0 as driver cannot detect that
+> > > > > configuration.
+> > > >
+> > > > Could you explain this in more detail. Other SGMII blocks don't need
+> > > > this. Why is this block special?
+> > > >
+> > > > Has this anything to do with in-band signalling?
+> > >
+> > > There are 2 ways to program the hardware registers so that the SGMII
+> > > module can communicate with either 1000Base-T/LX/SX SFP or
+> > > 10/100/1000Base-T SFP.  When a SFP is plugged in the driver can try to
+> > > detect which type and if it thinks 10/100/1000Base-T SFP is used it
+> > > changes the mode to 2 and program appropriately.
+> > 
+> > What should happen here is that phylink will read the SFP EEPROM and
+> > determine what mode should be used. It will then tell the MAC or PCS
+> > how to configure itself, 1000BaseX, or SGMII. Look at the
+> > mac_link_up() callback, parameter interface.
+>  
+> I am not sure the module can retrieve SFP EEPROM information.
 
-...
+The board should be designed such that the I2C bus pins of the SFP
+cage are connected to an I2C controller. There are also a few pins
+which ideally should be connected to GPIOs, LOS, Tx disable etc. You
+can then put a node in DT describing the SFP cage:
 
-> > > +static void chromeos_of_hw_prober_driver_exit(void)
-> > > +{
-> > > +     if (!chromeos_of_hw_prober_pdev)
-> > > +             return;
-> >
-> > First of all, this is dup for the next call, second, when may this conditional
-> > be true?
-> 
-> When the module is loaded on a machine that doesn't match any entry,
-> neither the driver nor the device are registered. Hence the check.
-> 
-> Or maybe the proper way to handle it is to return -ENODEV or something?
-> I'll work towards that.
+Documentation/devicetree/bindings/net/sff,sfp.yaml
 
-The rule of thumb is the _exit() is called when your _init() finished with
-success. This conditional seems confusing and likely reveals the logic issue
-in _init(). Yes, _init() needs to return an error when there is no devices are
-registered or expected to be registered. If there are devices that may appear
-later on, this should be split to pure device driver and board file that
-instantiate device for the known cases.
+    sfp2: sfp {
+      compatible = "sff,sfp";
+      i2c-bus = <&sfp_i2c>;
+      los-gpios = <&cps_gpio1 28 GPIO_ACTIVE_HIGH>;
+      mod-def0-gpios = <&cps_gpio1 27 GPIO_ACTIVE_LOW>;
+      pinctrl-names = "default";
+      pinctrl-0 = <&cps_sfpp0_pins>;
+      tx-disable-gpios = <&cps_gpio1 29 GPIO_ACTIVE_HIGH>;
+      tx-fault-gpios = <&cps_gpio1 26 GPIO_ACTIVE_HIGH>;
+    };
 
-> > > +     platform_device_unregister(chromeos_of_hw_prober_pdev);
-> > > +     platform_driver_unregister(&chromeos_of_hw_prober_driver);
-> > > +}
+and then the ethernet node has a link to it:
 
--- 
-With Best Regards,
-Andy Shevchenko
+    ethernet {
+      phy-names = "comphy";
+      phys = <&cps_comphy5 0>;
+      sfp = <&sfp1>;
+    };
 
+Phylink will then driver the SFP and tell the MAC what to do.
 
+	Andrew
 
