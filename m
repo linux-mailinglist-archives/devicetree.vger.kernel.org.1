@@ -1,71 +1,71 @@
-Return-Path: <devicetree+bounces-93533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A2F1951654
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 10:15:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29273951657
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 10:15:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A4F9D1C21D4F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 08:15:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7E171F2367D
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 08:15:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E64C6142E70;
-	Wed, 14 Aug 2024 08:14:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82AA7143C5F;
+	Wed, 14 Aug 2024 08:14:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="NAaHfk4b"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="W42RiHeb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EE5F1422D3
-	for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 08:14:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 141AC143738
+	for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 08:14:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723623284; cv=none; b=mkYQt7kMswsGO3GtVI8K5e94uPZ25UF4DPsEam/I1386W3aMMMNEx6We+nxafCi0xD3VfKZ89s4pBRcY0lPrc6o1KlyFEuKhfWAZ73lWea5a6ZZsYHxAiOlH5kZNRUkkmSRa/iVNbohQmL1e1FA6wF3L/ARfEhofsphxWUvy7Mc=
+	t=1723623286; cv=none; b=EY7xkDbj9v5+0A3OysNgThPKn6WYmNaXGdJ63L8BkDGkCMTmrppW1gnrWFckg07euI9pvYoI+lUwybHBWubIPA8Qxd2GhMvUGRuUGOeEhGA9vl39WSZi7/qXMqyWe9CgqI0N6PM//bGQUnwslVkgNJtoyRvGF3rx8l8K+l0zt80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723623284; c=relaxed/simple;
-	bh=bWRUPKaBCAepxJb/nx46InbXzDqKmciFWUI76EG4SMM=;
+	s=arc-20240116; t=1723623286; c=relaxed/simple;
+	bh=wv7ju32JlNOyS4iPT+M/JCXiJ4u+CCbb5zDIs4Yosns=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=BLQKC/ft6H31Rm1b535WSQmcMGXr0yp6UijGA91NmmRjWWwkRVk8f9IyPTxLWAPRiOF2caD1MUnQBKvxIiWUSdIsbjB4IF2EYl5WLAQWjKKh1e4W7veMV1hnZRhZ0K6/r6j9k7prjLa+4NRIK0rEHMzI8Apxvz3fcn/y4kCMKOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=NAaHfk4b; arc=none smtp.client-ip=209.85.214.180
+	 MIME-Version; b=UG2InEyHoeRUkAT1mtkUgn6MkMBWhifcmoOZJjTMkWvbCn+pil7yhBtv08Ac429pWLj00tBs8zKjYgmBXKal+OBOyLBArxNbkeqGuTMzCszp3uBxbZ1sKZEG723Nm41tFReYv0nw8/XPYkztu6O6zYr200SOn23kNQjLvE8NN/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=W42RiHeb; arc=none smtp.client-ip=209.85.214.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-1fec34f94abso55171685ad.2
-        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 01:14:43 -0700 (PDT)
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-1ff1cd07f56so53178535ad.2
+        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 01:14:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1723623283; x=1724228083; darn=vger.kernel.org;
+        d=sifive.com; s=google; t=1723623284; x=1724228084; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=MEQw5iaWeTmNPlPoMjn14hYPwuqLggUjPikbJBTJ9LE=;
-        b=NAaHfk4bxCoGekDjITscXso1KL+SOJ7Q8pIZFx1MFeAqIvAA6KcQdLcmXQ0lxjV5/V
-         bWwPl5MPKM4eJiMp4AQpvfv2UgMTSGcZkYL5DnklYBSz+REr8jjM1oeTeY0Gjp5Pj6Kt
-         ZnlL/XNbRVFNcPHe6MqXzjMbUcpkGVsiY08v0rLtiXN0QAlbo1Cjdxw28ANaLczBxpTV
-         b9ZI7P0H9nk70a+2hTYhEYo5bux4bVf8QLKxqWE25Wsb8/jj3YBR+xDydJMa3EnSdCkV
-         P7MAFLXLXc+D7JTNasp42ep4nYuIiEYObsm+1X9QVsxxsAnrbJQ0F75iRUjGE8WxReMQ
-         Ywfw==
+        bh=ZSgZOujLUXDH9o1etb/5haehfTStX4t+faWX1F0nYt8=;
+        b=W42RiHebbZcSbkwEn7xFP1OhQpGfpoUHUOIX4TeVEFi1zShWokLFaj1bJByucahZ/J
+         yC7IBprwoR28Xmq6JUguK5zXXEwBPqRUehtAdDxUxleryYhdHPVQqsQiMQG09qIwZDmv
+         Ks72Hc7BNV4QZKr3wNdFaXOFfMTn6R3i7ZbJ9fJm7F8ag7Ar3P5RhlCbEtT+17ENhiwW
+         L/ApkrqLrNA8JRUwbyUU8pMJetVXkJhDszFVMvihHLvnV85bzc+vMftvZw7+lm7Cnlx2
+         AXIW2CmuawLM8RiQbLYUJGdya6vEbPIIt/UM4Hc7V9riVR3q1gnGPmmyuvPEi3nOK4FQ
+         nBJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723623283; x=1724228083;
+        d=1e100.net; s=20230601; t=1723623284; x=1724228084;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=MEQw5iaWeTmNPlPoMjn14hYPwuqLggUjPikbJBTJ9LE=;
-        b=oIQ890JIryq2AsHQZtnrrT1dab+sjA32XdoV0FVyHNk6aQgIHnj+dWRJEgvzI3dOe1
-         xSvPKIrrh8zxPqntm7s4fesNt1w/9i37rRKx0oxDy3ApFEUHaRHc5sxvh+vGVq3peWS3
-         93R6Fnqf2BFWlayeZIcZIKeyCj7SQA+ZH+oE0XCRfvpCqKmOanmws2cJu8+Dg0fmXBU0
-         hegoPxGhQwnM1yg7V7INXH+0jx0AGWJzILaHB79GhlqEdKFfPOGunb4WJzunCX7OfZpv
-         g13wOazZ1VLqgIQ5PH7zYlLBOOAymJzRuoMtxifmQUpcbBpeQmO7+njw8kQk/3+Q+4aX
-         hn1A==
-X-Gm-Message-State: AOJu0Yw00Cdwxp60IKG8ARkTZizxMrVJYz2kc1sHasmg37qvlv/LoFPF
-	KJ4BKa/kL1mngvdnYnIJKgvUEOPcRilszGg6NCWoY0rrGWLo97BLWmgKHE0NCJY=
-X-Google-Smtp-Source: AGHT+IEcmQD/T7vtGlaVu0Q1HEccmE5Hnh2PFCTQZYTL5V2cFC70GH7Xpcj3f6WIrZqy6t2xP38Q5w==
-X-Received: by 2002:a17:902:c402:b0:201:e49e:aae9 with SMTP id d9443c01a7336-201e49eda06mr363875ad.44.1723623282655;
-        Wed, 14 Aug 2024 01:14:42 -0700 (PDT)
+        bh=ZSgZOujLUXDH9o1etb/5haehfTStX4t+faWX1F0nYt8=;
+        b=IywOHaGbWdiiSTJIkB/5VqU/tPhGpMGlUHXx1UYszIKkzzB69cf6YH6dnQuDQYxppG
+         hCvQa0S4PnVg8pAGFXH4HPrjEWT2gzoJ6LYFDiwRpQRotumwSV+pgMI6NKAroy7W4lZV
+         1PocrvJ734XHplFa4BHN0PeeiTkY6Pri1gc8/hIFClCequtLNdazpR5iyRbSX2e/lOs0
+         vDZKKipvaUx8HgsGlSdyj4JjYZsSQ0xkkHRIYrMn1LkpVU7XLzvE/ZWmlJxB5nWKkHpG
+         EwLTGO5KjE4ZgUtG6JHMFkUsQW1mzGCyLsVqZFX03pbKtHDvYRHm51nxf+w20aHr9EQB
+         cwbQ==
+X-Gm-Message-State: AOJu0Yyi4hhthls+yg2RkqpetH65IdnUTMJgxUYbvMezfYgjdUA6PIg3
+	jZLMgWLEsJLGU9M5ZXdr/tlmtcWHd0sbIKhzp0S+dWdmA3/tyd3FS6/HXRvW82o=
+X-Google-Smtp-Source: AGHT+IG+a2m+/9sMeNFVsmOPDs6cpFe3Chf10rX/9ctWB1qlB00BUSlmUsaT4HBT1vf9N63Oh33I5A==
+X-Received: by 2002:a17:902:ecd1:b0:201:de37:349d with SMTP id d9443c01a7336-201de373639mr4868195ad.54.1723623284293;
+        Wed, 14 Aug 2024 01:14:44 -0700 (PDT)
 Received: from sw06.internal.sifive.com ([4.53.31.132])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-201cd147ec4sm24868335ad.85.2024.08.14.01.14.41
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-201cd147ec4sm24868335ad.85.2024.08.14.01.14.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Aug 2024 01:14:42 -0700 (PDT)
+        Wed, 14 Aug 2024 01:14:43 -0700 (PDT)
 From: Samuel Holland <samuel.holland@sifive.com>
 To: Palmer Dabbelt <palmer@dabbelt.com>,
 	linux-riscv@lists.infradead.org
@@ -81,9 +81,9 @@ Cc: devicetree@vger.kernel.org,
 	Rob Herring <robh+dt@kernel.org>,
 	"Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>,
 	Samuel Holland <samuel.holland@sifive.com>
-Subject: [PATCH v3 02/10] riscv: Add ISA extension parsing for pointer masking
-Date: Wed, 14 Aug 2024 01:13:29 -0700
-Message-ID: <20240814081437.956855-3-samuel.holland@sifive.com>
+Subject: [PATCH v3 03/10] riscv: Add CSR definitions for pointer masking
+Date: Wed, 14 Aug 2024 01:13:30 -0700
+Message-ID: <20240814081437.956855-4-samuel.holland@sifive.com>
 X-Mailer: git-send-email 2.45.1
 In-Reply-To: <20240814081437.956855-1-samuel.holland@sifive.com>
 References: <20240814081437.956855-1-samuel.holland@sifive.com>
@@ -95,71 +95,72 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The RISC-V Pointer Masking specification defines three extensions:
-Smmpm, Smnpm, and Ssnpm. Add support for parsing each of them. The
-specific extension which provides pointer masking support to userspace
-(Supm) depends on the kernel's privilege mode, so provide a macro to
-abstract this selection.
-
-Smmpm implies the existence of the mseccfg CSR. As it is the only user
-of this CSR so far, there is no need for an Xlinuxmseccfg extension.
+Pointer masking is controlled via a two-bit PMM field, which appears in
+various CSRs depending on which extensions are implemented. Smmpm adds
+the field to mseccfg; Smnpm adds the field to menvcfg; Ssnpm adds the
+field to senvcfg. If the H extension is implemented, Ssnpm also defines
+henvcfg.PMM and hstatus.HUPMM.
 
 Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
 ---
 
 Changes in v3:
- - Rebase on riscv/for-next (ISA extension list conflicts)
- - Remove RISCV_ISA_EXT_SxPM, which was not used anywhere
+ - Use shifts instead of large numbers in ENVCFG_PMM* macro definitions
 
 Changes in v2:
- - Provide macros for the extension affecting the kernel and userspace
+ - Use the correct name for the hstatus.HUPMM field
 
- arch/riscv/include/asm/hwcap.h | 5 +++++
- arch/riscv/kernel/cpufeature.c | 3 +++
- 2 files changed, 8 insertions(+)
+ arch/riscv/include/asm/csr.h | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
-index 5a0bd27fd11a..aff21c6fc9b6 100644
---- a/arch/riscv/include/asm/hwcap.h
-+++ b/arch/riscv/include/asm/hwcap.h
-@@ -92,6 +92,9 @@
- #define RISCV_ISA_EXT_ZCF		83
- #define RISCV_ISA_EXT_ZCMOP		84
- #define RISCV_ISA_EXT_ZAWRS		85
-+#define RISCV_ISA_EXT_SMMPM		86
-+#define RISCV_ISA_EXT_SMNPM		87
-+#define RISCV_ISA_EXT_SSNPM		88
+diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
+index 25966995da04..fe5d4eb9adea 100644
+--- a/arch/riscv/include/asm/csr.h
++++ b/arch/riscv/include/asm/csr.h
+@@ -119,6 +119,10 @@
  
- #define RISCV_ISA_EXT_XLINUXENVCFG	127
- 
-@@ -100,8 +103,10 @@
- 
- #ifdef CONFIG_RISCV_M_MODE
- #define RISCV_ISA_EXT_SxAIA		RISCV_ISA_EXT_SMAIA
-+#define RISCV_ISA_EXT_SUPM		RISCV_ISA_EXT_SMNPM
- #else
- #define RISCV_ISA_EXT_SxAIA		RISCV_ISA_EXT_SSAIA
-+#define RISCV_ISA_EXT_SUPM		RISCV_ISA_EXT_SSNPM
+ /* HSTATUS flags */
+ #ifdef CONFIG_64BIT
++#define HSTATUS_HUPMM		_AC(0x3000000000000, UL)
++#define HSTATUS_HUPMM_PMLEN_0	_AC(0x0000000000000, UL)
++#define HSTATUS_HUPMM_PMLEN_7	_AC(0x2000000000000, UL)
++#define HSTATUS_HUPMM_PMLEN_16	_AC(0x3000000000000, UL)
+ #define HSTATUS_VSXL		_AC(0x300000000, UL)
+ #define HSTATUS_VSXL_SHIFT	32
  #endif
+@@ -195,6 +199,10 @@
+ /* xENVCFG flags */
+ #define ENVCFG_STCE			(_AC(1, ULL) << 63)
+ #define ENVCFG_PBMTE			(_AC(1, ULL) << 62)
++#define ENVCFG_PMM			(_AC(0x3, ULL) << 32)
++#define ENVCFG_PMM_PMLEN_0		(_AC(0x0, ULL) << 32)
++#define ENVCFG_PMM_PMLEN_7		(_AC(0x2, ULL) << 32)
++#define ENVCFG_PMM_PMLEN_16		(_AC(0x3, ULL) << 32)
+ #define ENVCFG_CBZE			(_AC(1, UL) << 7)
+ #define ENVCFG_CBCFE			(_AC(1, UL) << 6)
+ #define ENVCFG_CBIE_SHIFT		4
+@@ -216,6 +224,12 @@
+ #define SMSTATEEN0_SSTATEEN0_SHIFT	63
+ #define SMSTATEEN0_SSTATEEN0		(_ULL(1) << SMSTATEEN0_SSTATEEN0_SHIFT)
  
- #endif /* _ASM_RISCV_HWCAP_H */
-diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-index b3b9735cb19a..ba3dc16e14dc 100644
---- a/arch/riscv/kernel/cpufeature.c
-+++ b/arch/riscv/kernel/cpufeature.c
-@@ -377,9 +377,12 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
- 	__RISCV_ISA_EXT_BUNDLE(zvksg, riscv_zvksg_bundled_exts),
- 	__RISCV_ISA_EXT_DATA(zvkt, RISCV_ISA_EXT_ZVKT),
- 	__RISCV_ISA_EXT_DATA(smaia, RISCV_ISA_EXT_SMAIA),
-+	__RISCV_ISA_EXT_DATA(smmpm, RISCV_ISA_EXT_SMMPM),
-+	__RISCV_ISA_EXT_SUPERSET(smnpm, RISCV_ISA_EXT_SMNPM, riscv_xlinuxenvcfg_exts),
- 	__RISCV_ISA_EXT_DATA(smstateen, RISCV_ISA_EXT_SMSTATEEN),
- 	__RISCV_ISA_EXT_DATA(ssaia, RISCV_ISA_EXT_SSAIA),
- 	__RISCV_ISA_EXT_DATA(sscofpmf, RISCV_ISA_EXT_SSCOFPMF),
-+	__RISCV_ISA_EXT_SUPERSET(ssnpm, RISCV_ISA_EXT_SSNPM, riscv_xlinuxenvcfg_exts),
- 	__RISCV_ISA_EXT_DATA(sstc, RISCV_ISA_EXT_SSTC),
- 	__RISCV_ISA_EXT_DATA(svinval, RISCV_ISA_EXT_SVINVAL),
- 	__RISCV_ISA_EXT_DATA(svnapot, RISCV_ISA_EXT_SVNAPOT),
++/* mseccfg bits */
++#define MSECCFG_PMM			ENVCFG_PMM
++#define MSECCFG_PMM_PMLEN_0		ENVCFG_PMM_PMLEN_0
++#define MSECCFG_PMM_PMLEN_7		ENVCFG_PMM_PMLEN_7
++#define MSECCFG_PMM_PMLEN_16		ENVCFG_PMM_PMLEN_16
++
+ /* symbolic CSR names: */
+ #define CSR_CYCLE		0xc00
+ #define CSR_TIME		0xc01
+@@ -382,6 +396,8 @@
+ #define CSR_MIP			0x344
+ #define CSR_PMPCFG0		0x3a0
+ #define CSR_PMPADDR0		0x3b0
++#define CSR_MSECCFG		0x747
++#define CSR_MSECCFGH		0x757
+ #define CSR_MVENDORID		0xf11
+ #define CSR_MARCHID		0xf12
+ #define CSR_MIMPID		0xf13
 -- 
 2.45.1
 
