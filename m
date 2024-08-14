@@ -1,187 +1,140 @@
-Return-Path: <devicetree+bounces-93695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 413A5951EBA
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 17:37:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87D1D951F07
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 17:48:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BBA50B24CC8
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:37:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5FB81C22683
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:48:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 942D41AED24;
-	Wed, 14 Aug 2024 15:37:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77B0A1B5819;
+	Wed, 14 Aug 2024 15:48:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="H/Yiv8Qq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O+bY7KIn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2069.outbound.protection.outlook.com [40.107.247.69])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0AE31B4C34;
-	Wed, 14 Aug 2024 15:37:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.247.69
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723649860; cv=fail; b=W4HsRZyr14Sv6LgbBscJT2tC+kHXg6xZCZB+PM+gXJjdSuBTHeo7W7Bb0dXttCtyjRC6TdUgjiABtapG2NZI2vUE8nAoLtMpDAdzrQYA1WWTIF3xCw497C1vJa6euFrODDclf4VwDjSSdBvyEDqsHRGzdh8OdRSoD3kjM15CyR8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723649860; c=relaxed/simple;
-	bh=ee96NNav/Yu0HUBRj6AH+EgUx4X51rGeQaXeXQSq98w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=TSjTj+0iAjtPCNl3GxwxtcvRZ9x01MOVXtyP7N6kWnht4hvKPS1VqliNTB/ZDL05s3p0ZEjrNE6acoZOgV2aKLl1wYAS3nbhW0+8BgW4I116traOWFYZHu6uUVLcrflKtHDZiGk8NAUQd60J3U6IGmHE3mwoga8YZHgwAwCR6hU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=H/Yiv8Qq; arc=fail smtp.client-ip=40.107.247.69
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=d33D+AmHrnIOk7zIbwqMQLvE/PHGvaTz0RPlQb4DK2tM8UU3XGGZWg4UonPe6i7FzljAnzKe58PS89Bb+agwSTzvrBii2HoUenPUp8OlwgIHfydCVdIQnMDv1N1sVYcrfYNQhYFIWdIdEAxkEpxmP3qAZ0p5iHWxsVjF8Hv4n3AslNuF03C1pjqsUJuobV8mBni9CKDeKlGHxnysWst0aLvox50wAwy3CvmRwqJW2NqZEU2vGDtTw8lmxgYKGbuRV6mP6BDI0kfw35jaHqLyrwa5TTmRZ8veFZLDXmjfQocoUZvRm+530+zenUJfa//M4jaLi2JVU/ibQJsd94VuKA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+sf5RVy1JZMXh/NCRnmwejz/QZtxkanez5aNDwDwL2k=;
- b=HCeK6Eiljmmo2FSqav4pQBDOo/4X1j+zAUZfeHg1YWNrqaEwLjGO1Tzag5QpxKW75ixf4OUb3kEbKBYn+KJel4t1LxwvjHgoJmCv5ThQ1+YpbE/XUi8Uyjc0eYH23IeCBw7Ddg8wRcFLVIAY8RtGjEigk0EDxB1OT0PntiDkj82iqwqLABL23C+2VmcmZgWWEm/2aPvntnTel4CRRQGHz7cHbfA9aAbk6A1aXMXFYKFi09BdXpPQ/ywePgDhQI8lPR3HMQeLiqQu1kUWU3P9mnGau7vkGtwhS4Qp6Ko+nV/e1LckFy+DX5xpaevRALqVgjXfq07UJK/+HNq0fNsHXQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+sf5RVy1JZMXh/NCRnmwejz/QZtxkanez5aNDwDwL2k=;
- b=H/Yiv8QqGathSGS42mKUo3poqx8Q2V17d24LkPRBo4QNqWtFuIygeHvEyId35jIlSsxlY7WlcQTC26vNvOf/9OvsZ3YBXXEZVv/jSwkBlhGs8qvG1zbPwAz2elaDbdOrYqWudO1f5wcOgih1A6m5tVgtmTxiLpETMSrDbdslo6nS5udmz6Cyhsywz5TPqiUd5pT2I5/vq6uqKqlwdeYaplfkjzEckBti0zwUU4Bhbb9dBoxnJF3G7SIyvCdMCEPR2lZy/fAVr3Nm46KSPprP05mSM5pR8u8KUPbfLEmgtWOH36oxr8rEOKQ6KMI6juTKdIaeO94LKZ1dtyJ2iZyFyQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PR3PR04MB7228.eurprd04.prod.outlook.com (2603:10a6:102:8c::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.20; Wed, 14 Aug
- 2024 15:37:35 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%3]) with mapi id 15.20.7875.016; Wed, 14 Aug 2024
- 15:37:35 +0000
-Date: Wed, 14 Aug 2024 11:37:26 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Animesh Agarwal <animeshagarwal28@gmail.com>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: watchdog: fsl-imx-wdt: Add missing
- 'big-endian' property
-Message-ID: <ZrzPNmXLsqxjzM+J@lizhi-Precision-Tower-5810>
-References: <20240806103819.10890-1-animeshagarwal28@gmail.com>
- <39e9fc4a-64f7-4695-bfd2-1f77740714c3@kernel.org>
- <ZrJGFk8+tgukCeGg@lizhi-Precision-Tower-5810>
- <a03c0609-cc13-457b-84ec-5880fc553bd8@roeck-us.net>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a03c0609-cc13-457b-84ec-5880fc553bd8@roeck-us.net>
-X-ClientProxiedBy: SJ0PR03CA0081.namprd03.prod.outlook.com
- (2603:10b6:a03:331::26) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E34B28DC3;
+	Wed, 14 Aug 2024 15:48:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723650485; cv=none; b=qApeIJuPAouUcMB4VtPZU7RvVjbLoyBUjxt9mcNXrNLou1+jFxQIDr1SpoyYWpD08j6kaI6hmE2bO7KIBzzC8vaovaN28TWDkwH4Kbx+tPPOFS3yWL53SNnz5OBlyBo0StxESyOBijnq6xT3U1mncmyW5WirBMJX1Sk/IRxp7jQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723650485; c=relaxed/simple;
+	bh=n7IuDmJ7xjiLmorJ27Cw4dIAMs1ncBH3/BXHuvFBYho=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=QbJwmrhyizSRVFrox5VWUYojWiM6f74FU/QKdw7p8Yo23A05lg91MV39fnLnqW8pY10Bw7ud7PYOdecr0LWjt4B2doCjRtqhl1pikoo5HMOKdsonqCcTjCHpgsYD3L2DANlHDezCZ2bB9arbJEF/9934Hzc1CM+krId3nDqPHm4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O+bY7KIn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99D78C116B1;
+	Wed, 14 Aug 2024 15:48:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723650484;
+	bh=n7IuDmJ7xjiLmorJ27Cw4dIAMs1ncBH3/BXHuvFBYho=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=O+bY7KInwMy24ENMzdpHtvESrz0WsUKoxsDXZXD+E9+VR5hKJCO2vamWOJhe4Ert6
+	 zmTgU/JmkLOSifCEYatpq+Xt4rRZl0rsuURUrYlU2TNb7Qzv1P2aD2zNY5rZXf+4+b
+	 g47y0p6tC9lPSWNUw4U46FYbh2r3tQuxMQUGVxH4//5IHVjehvDg0Nb0YmAOC6/1r7
+	 Zsvr1WFZ3Wx085hkna79BFhDApAgfljTVh0Bbp0OCqTPzljd1KaLshr1Yep+0cTO78
+	 rxAoMg9E4H85mVw/jpE38hRC9dRtdt9sHQOqEIP6Og3CBSYd3ql3DuIlqvnGbqf7lr
+	 Glhi8NcIfmhiA==
+Date: Wed, 14 Aug 2024 09:48:03 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PR3PR04MB7228:EE_
-X-MS-Office365-Filtering-Correlation-Id: cef15126-6970-49b3-0cd7-08dcbc7704e7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|7416014|366016|376014|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	94Zx35VCGJdKj9KC3NjM9utGDHgvkdwo7Us0BnWvKY77mKzjQwA9jShhIR4PN1Wzo3OwiQ4ZLmQwJzwlJN6PUF4d3KO4viDMCMcH1TWC6f4aUqSKUVlgIkgPUNdBbE9+l/E1CaL2DPWDEH8FTQDMeY5E5D3afFp9NkyVi57lTTBJ+O1AlnKsddMW8gpA5s+NyXFcXQ6JWepqLOqRN1GDXk72Fhf4w1wa3I7pjx9oMDiAGghAugZ0FKdnYz6TBNx0TrvapUZXGK5oCLoS9NMAgfJcCWJzDfKQHH5sku9Uit5tjuAZuOuA0Qqc0GUHeuxjO77CjVR1D3jyshtXs7aopzotD9RxlLdFCcGhPThXd3hggF9ViwurrpmWhAefUxit80ElqLBK/BmPQKh5yPL3X1y9Gz6KUb6ptPd4IaLpS4EywdwtEwd9evbRJ3IwGOW8lxSOTgA3b4XO5NKoNlDbr/1EnmH8zr7RQs3Xc4RnhFcvFzL6ITdA8yfEqPuvyIGJNdyjjGIEIV0rDxM9EtGdVxDjEL8NCEENyyTo78YaPZIrwtJOqB9OgkEH4zPlSHgr+cX+tYA78NEki4yKoksGPv8H68dT2WMSKyMhdt1+VnUDYpD8kfq+PqCMlZYzox1EW87q+sX0mvJBesNZOHqWIdaHp7msCgVN+TnDWvLFjws=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(7416014)(366016)(376014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?sTQ0Qvw26eVu4a4HBck9blWlTBhn75uhvHlKievXanmNMZ6DknAhg8zu8zAT?=
- =?us-ascii?Q?oCRuv89njjvWJvG+bcaUd9m3Hi6RUcD+shq6Hl/r1V3jVoRRybiv8Nfh9e50?=
- =?us-ascii?Q?laHZhqdQRemQAkznJ3faPFcWeSd/x/ecRdWJiLB6sbJk1kJcmHmlZJPBjBl5?=
- =?us-ascii?Q?dTh7tKb4SgbCHYd7/7/hFxJSx2T+hArtVOtrxH8URsnUNQKyxZZRsUCqD35n?=
- =?us-ascii?Q?1rURIu2yp7XbIGe/5NvNgJwIXOhoKvnteTYpXWfmTsPTKdiXcNwqXMc4EPe2?=
- =?us-ascii?Q?Xhe6uKdDW3HqUYqayO47v9u1IdSuaIPdpUdIf3+5AtmDICxFex/y73R2kSsl?=
- =?us-ascii?Q?PyNmgyZqRPSgc+lGDPl+bTcqi6lCoiKGP+eQJELg0zgALVJTVgMNlIxDdOjf?=
- =?us-ascii?Q?I1uwW04Xtx5ykHcy3IFlQoqd2wgMZRmbF5Hoy9GlQu70jUcx8ew3wSzHQWbs?=
- =?us-ascii?Q?skF9Z6l16e76v4Nq/r44MIa/rlK914hfrQKnnONUviC5GBZcup0s8bxCGfzP?=
- =?us-ascii?Q?rBifZplHqOL7Wzprv/oWxQxu3urD0p2kjtJA1YfAvgDtbtJRt4pO/n0VyAvb?=
- =?us-ascii?Q?QVQRKiQxNG5xkuDtnfj7GDvplVc4zRF1Sby7jk0Cg2mmG7gb9skeV3kl58IG?=
- =?us-ascii?Q?M9GtEld4IZ6nNXzrlml5iy/Ezj6WbZ93FqvB0plp1GhihIoIGSEQIMRDKmXG?=
- =?us-ascii?Q?eooQCgmDFB2LMfbwFBoI9JmN8eLYQMhRK4znE9TVip2O09lJZBWSo1iKD8bD?=
- =?us-ascii?Q?YuVuNPlvvUXk9OEffQO8FoNTk6R8qrSaERQ9z+FdZt7H0Wr+bUb+purmN7iE?=
- =?us-ascii?Q?gE8Az4QMQh5fX082J4AqGxzcU7GFx7aanTS6oumpyp2obQCWOy+zgvmvWrec?=
- =?us-ascii?Q?CONym2iYVaTTqm6hjKowe9zBaRpUMl7re/4wJ6kIkz8zgvWJZFnGRrtVw9cO?=
- =?us-ascii?Q?woi1de6Lyvi8/SovWGaESt0kmUxCGPTl1S1LJnErK3nZMSejaoakMySiml06?=
- =?us-ascii?Q?2FGl4s/vvOW7QAQ1YqH7uiP3LiFhQWxw8LSdFRIiRmsQC91O+HNDj5w7Xw3p?=
- =?us-ascii?Q?yH9KgmeE3yRCe99z6rjMndQQhttrxXt6AtAoo+HbQF+NSyzGAbKJL0lrFjBP?=
- =?us-ascii?Q?gn9LYWFZeutP9bhJ1wHm769zeULJLFi0Ml7fhZtdLSKazg7Ku9MIpGkHieAS?=
- =?us-ascii?Q?prYzZ54raBZeb/dozN7QGPwOjLFgX1oO3xcq3O/CRb0deWlEH4hYIz4Y3OEO?=
- =?us-ascii?Q?fOs238laCYbfXunss4lz4jWT2mFGml53aq4wuPA3ul7UfK6U7l9eLyT+rOft?=
- =?us-ascii?Q?YYz3iPcZXsSwAdnGxqsXLTHbXS02mKK0gAiYD0jtK60sLMHRWPrMO6WjIvY6?=
- =?us-ascii?Q?HudFO/v8lwQADKq+DqKGHtGxqoGLhOpAvN24WcviqM93EZz4jlV+cEdqrWxl?=
- =?us-ascii?Q?lcbrvp9Y5fCXePy3lHp3cdr+MZ2CAOi59+ka3FFRHrg6lURa4YYqVsbLD9Kc?=
- =?us-ascii?Q?E4RqDHlPrWF5Zd17z7480yzdF9CK0Hud64V0uCTyXjv0KWrTYnMWsqRWq/BB?=
- =?us-ascii?Q?D9rHIozW/ENBLXwjQVI=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cef15126-6970-49b3-0cd7-08dcbc7704e7
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Aug 2024 15:37:34.9913
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yeuEAkPv24ZAvGkHpCMlm8MxvpoCCIyV32j+iCs5b2d6Pc+YAZP1/5SylBua3raThJkPKIeI80KNuq3pdj+WKA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR04MB7228
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, 
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
+ devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org
+In-Reply-To: <20240813190639.154983-1-brgl@bgdev.pl>
+References: <20240813190639.154983-1-brgl@bgdev.pl>
+Message-Id: <172365034673.2714461.1759726822181293291.robh@kernel.org>
+Subject: Re: [PATCH 0/3] arm64: dts: qcom: sc8280xp: enable WLAN and
+ Bluetooth
 
-On Tue, Aug 06, 2024 at 09:44:16AM -0700, Guenter Roeck wrote:
-> On 8/6/24 08:49, Frank Li wrote:
-> > On Tue, Aug 06, 2024 at 12:43:07PM +0200, Krzysztof Kozlowski wrote:
-> > > On 06/08/2024 12:38, Animesh Agarwal wrote:
-> > > > Add missing big-endian property in watchdog/fsl-imx-wdt.yaml schema.
-> > > > This fixes dtbs_check errors.
-> > > >
-> > > > Cc: Daniel Baluta <daniel.baluta@nxp.com>
-> > > > Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
-> > > > ---
-> > > > There are 12 similar errors related to this missing property from
-> > > > different blobs.
-> > > >
-> > > > ./arch/arm64/boot/dts/freescale/fsl-ls1012a-frdm.dtb: watchdog@2ad0000:
-> > > > Unevaluated properties are not allowed ('big-endian' was unexpected)from
-> > > > schema $id: http://devicetree.org/schemas/watchdog/fsl-imx-wdt.yaml#
-> > > > ---
-> > >
-> > > Not sure if this is correct. I mean, technically it is, but Frank Li was
-> > > removing big-endian properties so please choose consistent approach.
-> >
-> > drivers/watchdog/imx2_wdt.c never parser big-endian. I suggest remove
-> > big-endian in dts file. I suggest keep big-endian only if it really used.
-> >
 
-After Alexander Stein point out, check spec, and dump watch dog reset value
-at ls1043a platform.
+On Tue, 13 Aug 2024 21:06:35 +0200, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> 
+> This enables WLAN and Bluetooth on two boards using the sc8280xp SoC.
+> For the sc8280xp-crd we add the PMU, wifi and bluetooth nodes with the
+> correctly modelled wiring between them. For the X13s, we rework existing
+> nodes so that they align with the new DT bindings contract.
+> 
+> Bartosz Golaszewski (2):
+>   arm64: dts: qcom: sc8280xp-crd: enable bluetooth
+>   arm64: dts: qcom: sc8280xp-x13s: model the PMU of the on-board wcn6855
+> 
+> Konrad Dybcio (1):
+>   arm64: dts: qcom: sc8280xp-crd: enable wifi
+> 
+>  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts     | 169 ++++++++++++++++++
+>  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    |  98 ++++++++--
+>  2 files changed, 255 insertions(+), 12 deletions(-)
+> 
+> --
+> 2.43.0
+> 
+> 
+> 
 
-0x02A80000:  00 30 00 00 00 10 00 04 00 01 00 00 00 00 00 0
 
-It is big-endian. imx2_wdt.c use regmap which call regmap_get_val_endian()
-to handle endian.
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-So this change is corret.
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
 
->
-> Agreed.
->
-> Guenter
->
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y qcom/sc8280xp-crd.dtb qcom/sc8280xp-lenovo-thinkpad-x13s.dtb' for 20240813190639.154983-1-brgl@bgdev.pl:
+
+arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb: bluetooth: 'enable-gpios' is a required property
+	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
+arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb: bluetooth: 'swctrl-gpios' is a required property
+	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
+arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb: bluetooth: 'vddio-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
+arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb: bluetooth: 'vddbtcxmx-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
+arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb: bluetooth: 'vddrfa1p7-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
+arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb: bluetooth: 'enable-gpios' is a required property
+	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
+arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb: bluetooth: 'swctrl-gpios' is a required property
+	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
+arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb: bluetooth: 'vddio-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
+arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb: bluetooth: 'vddbtcxmx-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
+arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb: bluetooth: 'vddrfa1p7-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
+arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb: wifi@0: 'vddrfa1p8-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/net/wireless/qcom,ath11k-pci.yaml#
+arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb: wifi@0: 'vddrfa1p8-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/net/wireless/qcom,ath11k-pci.yaml#
+arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb: /wcn6855-pmu: failed to match any schema with compatible: ['qcom,wcn6855-pmu']
+arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb: /wcn6855-pmu: failed to match any schema with compatible: ['qcom,wcn6855-pmu']
+
+
+
+
+
 
