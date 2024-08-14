@@ -1,283 +1,175 @@
-Return-Path: <devicetree+bounces-93621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03320951AC2
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 14:24:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CA8C951AD4
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 14:28:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82EB21F2350B
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 12:24:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6E343B2236D
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 12:28:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 002F81B010A;
-	Wed, 14 Aug 2024 12:24:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E18DC1B0120;
+	Wed, 14 Aug 2024 12:28:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mediatomb.cc header.i=@mediatomb.cc header.b="DjbYHbrT"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="NRzbzD5Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from xn--80adja5bqm.su (xn--80adja5bqm.su [198.44.140.76])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5B8B1AC427;
-	Wed, 14 Aug 2024 12:24:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.44.140.76
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5066C1A00F3;
+	Wed, 14 Aug 2024 12:28:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723638263; cv=none; b=ZCLMXFGrVgycmu3krkseXy8PjFU7dMP61oHWyZA3CY5VW3DkjLgVBvpSoKUs6ufJ5OOcFrpGBo8FMNycV9XK+ZKJu2m7ksQioFsHKeLWabpAan68rvzF9S9RlhK3QUf+SQSGuSnhRBR3IHpVcF8zv7QXw4jktuYLHrzk5zXfnAM=
+	t=1723638524; cv=none; b=X+aN0zZnK03ADbHVzOMBUgrdPVZPHlMK9IX1IJ6/ICLbpQ5kFPT4qJGq5cZu/NQyzw0ngjjVJdVwClO99EDdJNZ6xr0G3sej1/TmfuY3H39NK9Qo1GM6Mig1OjW/NdQ8OlXOSCCeGwvndkdQLEgnGIysf3+cxsw0cYwlx69YSbg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723638263; c=relaxed/simple;
-	bh=EHmbgh7ChgPZtT5t/G6sc2EeuM+4y7bLcgcJae38lwU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pIQWsPr8STCSQzOd97AAg6/1JdKXaoTm66HDy7shLynMBaE0L55LMC4O1F1pFYkLdaPDU2HZbtZrC9ZFksygYxVbEcbZ4w+txTIgeAUJVX0cYELiw1q+KKTpqA4mpaNQiUN2WV45MF3qwmB5/PtB3SWmCJfoQGSMQmghbrvRqpc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mediatomb.cc; spf=pass smtp.mailfrom=xn--80adja5bqm.su; dkim=pass (2048-bit key) header.d=mediatomb.cc header.i=@mediatomb.cc header.b=DjbYHbrT; arc=none smtp.client-ip=198.44.140.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mediatomb.cc
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xn--80adja5bqm.su
-Received: by xn--80adja5bqm.su (Postfix, from userid 1000)
-	id 9A5974000222; Wed, 14 Aug 2024 12:24:03 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 xn--80adja5bqm.su 9A5974000222
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mediatomb.cc;
-	s=default; t=1723638244;
-	bh=EHmbgh7ChgPZtT5t/G6sc2EeuM+4y7bLcgcJae38lwU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DjbYHbrT1xxDc3/T/FRPTLbpYBOc1QXADxxd41UOBqYuRZX/x6GdVDpKgEiFF1X1m
-	 z5FH690DE+LTtu3gZNml3cUsn1GDL6klRM9mg9LxTmuVh/j2QPXOdGyFYhIUlisVRQ
-	 jwqjZ1wSX7HiEL1GcZl8tYDxVTXCLuemq0J23D+hyUPWZbg9qjjL6fydPmkJ0o7k68
-	 acT6/3lyuoUhwHtUP0d1m2BHVCOehZuFuSjee3KnRub0lFU/5WBazu00FhSdShCVl2
-	 e1d1dQmWzVLxpI+JP4U3Ficpjo8eHW9mqIu17IFKRPQUfMIOBI2JhENfEKvd0po8Y4
-	 7GIvD6I6G5KMg==
-Date: Wed, 14 Aug 2024 12:24:03 +0000
-From: Sergey 'Jin' Bostandzhyan <jin@mediatomb.cc>
-To: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-Cc: Daniel Golle <daniel@makrotopia.org>, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V2 1/2 RESEND] arm64: dts: rockchip: Add DTS for
- FriendlyARM NanoPi R2S Plus
-Message-ID: <20240814122403.GB21761@ветеран.su>
-References: <22bbec28-41c1-4f36-b776-6e091bf118d9@kernel.org>
- <2309282.ZQ0cqP7t2B@diego>
- <3733110.CjrmPviFsx@diego>
+	s=arc-20240116; t=1723638524; c=relaxed/simple;
+	bh=nlRWEKYANxfhouyrfMwuggtzkjUrrXPCMyOMXbxUAP0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gK842QeABHOG9/gJup4O1EOTHyRBlogznPsK6uq+J3TnT7ud5Tp6ci+FSPa7Mizfx9hv2tuqIS79m4Kptd9gHnb4VCoRs9rcDFMuYeirFmx0L8jVMZ1NVWDE5F6RDalaLI+rZ0BqauGD1RY6FudC9F6Rv8exWL1oiUmnf0wsSfM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=NRzbzD5Z; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1723638522; x=1755174522;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=nlRWEKYANxfhouyrfMwuggtzkjUrrXPCMyOMXbxUAP0=;
+  b=NRzbzD5ZmoilaU80y2n+HmqkZQTaSC+JLVpGDLaIpqAWsfABsA18JhUV
+   fMDCMa9Z0BduNxaqPmTp0pZPb68vAb7+kqOOcV7sId/AYn+7esuesItbS
+   KNR8HqB7kl80jMTsDjDElbmhzxxZCX6cPtfzTL04iheMwGOcKrqTPDORS
+   dheUILXhQNEmavVAoBW9hV9emI3ava6pC5XLcZLNSTrTo03aMA05BNXYx
+   xQ2q/s1LC3I5qbwi2alguh5aQW+B706zLmU7SsU7qO4mB9tBbDuMtmYpR
+   I6HaZqXeeY7XDlilHLR3g2U1ie6VqE2eBBUkOIJxJcYC/06eNVu4oDksg
+   w==;
+X-CSE-ConnectionGUID: jMfuv37ZSuaTHONLM3a8Iw==
+X-CSE-MsgGUID: HxZoIHuhTTO/xf2mjeGdEQ==
+X-IronPort-AV: E=Sophos;i="6.10,145,1719903600"; 
+   d="scan'208";a="31152274"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Aug 2024 05:28:41 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 14 Aug 2024 05:28:38 -0700
+Received: from ROB-ULT-M76677.microchip.com (10.10.85.11) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Wed, 14 Aug 2024 05:28:36 -0700
+From: Andrei Simion <andrei.simion@microchip.com>
+To: <claudiu.beznea@tuxon.dev>, <nicolas.ferre@microchip.com>,
+	<alexandre.belloni@bootlin.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <peda@axentia.se>
+CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <cristian.birsan@microchip.com>, Andrei Simion
+	<andrei.simion@microchip.com>
+Subject: [PATCH 0/5] Cosmetic Work for ARM/Microchip (AT91)
+Date: Wed, 14 Aug 2024 15:26:28 +0300
+Message-ID: <20240814122633.198562-1-andrei.simion@microchip.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <3733110.CjrmPviFsx@diego>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+Content-Type: text/plain
 
-On Wed, Aug 14, 2024 at 01:36:43PM +0200, Heiko St�bner wrote:
-> Am Mittwoch, 14. August 2024, 13:21:38 CEST schrieb Sergey 'Jin' Bostandzhyan:
-> > Hi,
-> > 
-> > On Sat, Aug 10, 2024 at 09:11:56PM +0200, Heiko St�bner wrote:
-> > > Am Montag, 5. August 2024, 10:59:35 CEST schrieb Sergey 'Jin' Bostandzhyan:
-> > > > On Sun, Aug 04, 2024 at 01:27:50AM +0100, Daniel Golle wrote:
-> > > > > On Thu, Aug 01, 2024 at 05:57:35PM +0000, Sergey Bostandzhyan wrote:
-> > > > > > The R2S Plus is basically an R2S with additional eMMC.
-> > > > > > 
-> > > > > > The eMMC configuration for the DTS has been extracted and copied from
-> > > > > > rk3328-nanopi-r2.dts, v2017.09 branch from the friendlyarm/uboot-rockchip
-> > > > > > repository.
-> > > > > > 
-> > > > > > Signed-off-by: Sergey Bostandzhyan <jin@mediatomb.cc>
-> > > > > > ---
-> > > > > >  arch/arm64/boot/dts/rockchip/Makefile         |  1 +
-> > > > > >  .../dts/rockchip/rk3328-nanopi-r2s-plus.dts   | 31 +++++++++++++++++++
-> > > > > >  2 files changed, 32 insertions(+)
-> > > > > >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s-plus.dts
-> > > > > > 
-> > > > > > diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-> > > > > > index fda1b980eb4b..36258dc8dafd 100644
-> > > > > > --- a/arch/arm64/boot/dts/rockchip/Makefile
-> > > > > > +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> > > > > > @@ -20,6 +20,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-evb.dtb
-> > > > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-nanopi-r2c.dtb
-> > > > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-nanopi-r2c-plus.dtb
-> > > > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-nanopi-r2s.dtb
-> > > > > > +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-nanopi-r2s-plus.dtb
-> > > > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-orangepi-r1-plus.dtb
-> > > > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-orangepi-r1-plus-lts.dtb
-> > > > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-rock64.dtb
-> > > > > > diff --git a/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s-plus.dts b/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s-plus.dts
-> > > > > > new file mode 100644
-> > > > > > index 000000000000..7b83090a2145
-> > > > > > --- /dev/null
-> > > > > > +++ b/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s-plus.dts
-> > > > > > @@ -0,0 +1,31 @@
-> > > > > > +// SPDX-License-Identifier: GPL-2.0+
-> > > > > > +/*
-> > > > > > + * (C) Copyright 2018 FriendlyElec Computer Tech. Co., Ltd.
-> > > > > > + * (http://www.friendlyarm.com)
-> > > > > > + *
-> > > > > > + * (C) Copyright 2016 Rockchip Electronics Co., Ltd
-> > > > > > + */
-> > > > > > +
-> > > > > > +/dts-v1/;
-> > > > > > +#include "rk3328-nanopi-r2s.dts"
-> > > > > > +
-> > > > > > +/ {
-> > > > > > +	model = "FriendlyElec NanoPi R2S Plus";
-> > > > > > +	compatible = "friendlyarm,nanopi-r2s-plus", "rockchip,rk3328";
-> > > > > > +
-> > > > > > +	aliases {
-> > > > > > +		mmc1 = &emmc;
-> > > > > > +	};
-> > > > > > +};
-> > > > > > +
-> > > > > > +&emmc {
-> > > > > > +	bus-width = <8>;
-> > > > > > +	cap-mmc-highspeed;
-> > > > > > +	supports-emmc;
-> > > > > > +	disable-wp;
-> > > > > > +	non-removable;
-> > > > > > +	num-slots = <1>;
-> > > > > > +	pinctrl-names = "default";
-> > > > > > +	pinctrl-0 = <&emmc_clk &emmc_cmd &emmc_bus8>;
-> > > > > 
-> > > > > I think it's worth adding
-> > > > > 
-> > > > > 	mmc-hs200-1_8v;
-> > > > > 
-> > > > > 
-> > > > > I've tried getting the best speed possible and while HS400 with and
-> > > > > without enhanced strobe did NOT work, hs200 works just fine.
-> > > > > [    0.459863] mmc_host mmc1: Bus speed (slot 0) = 50000000Hz (slot req 52000000Hz, actual 50000000HZ div = 0)
-> > > > > [    0.460884] mmc_host mmc1: Bus speed (slot 0) = 150000000Hz (slot req 150000000Hz, actual 150000000HZ div = 0)
-> > > > > ...
-> > > > > [    0.728220] dwmmc_rockchip ff520000.mmc: Successfully tuned phase to 194
-> > > > > [    0.728940] mmc1: new HS200 MMC card at address 0001
-> > > > > [    0.730774] mmcblk1: mmc1:0001 A3A551 28.9 GiB
-> > > > > [    0.733262]  mmcblk1: p1 p2
-> > > > > [    0.734562] mmcblk1boot0: mmc1:0001 A3A551 4.00 MiB
-> > > > > [    0.736818] mmcblk1boot1: mmc1:0001 A3A551 4.00 MiB
-> > > > > [    0.738503] mmcblk1rpmb: mmc1:0001 A3A551 16.0 MiB, chardev (245:0)
-> > > > > 
-> > > > > root@OpenWrt:/# hdparm -t /dev/mmcblk1
-> > > > > 
-> > > > > /dev/mmcblk1:
-> > > > >  Timing buffered disk reads: 342 MB in  3.00 seconds = 113.81 MB/sec
-> > > > > 
-> > > > > 
-> > > > > Without 'mmc-hs200-1_8v' property in DT the eMMC is detected as
-> > > > > [    0.440465] mmc_host mmc1: Bus speed (slot 0) = 50000000Hz (slot req 52000000Hz, actual 50000000HZ div = 0)
-> > > > > [    0.442032] mmc1: new high speed MMC card at address 0001
-> > > > > [    0.444261] mmcblk1: mmc1:0001 A3A551 28.9 GiB
-> > > > > [    0.447388]  mmcblk1: p1 p2
-> > > > > [    0.448744] mmcblk1boot0: mmc1:0001 A3A551 4.00 MiB
-> > > > > [    0.451065] mmcblk1boot1: mmc1:0001 A3A551 4.00 MiB
-> > > > > [    0.452871] mmcblk1rpmb: mmc1:0001 A3A551 16.0 MiB, chardev (245:0)
-> > > > > 
-> > > > > 
-> > > > > root@OpenWrt:/# hdparm -t /dev/mmcblk1
-> > > > > 
-> > > > > /dev/mmcblk1:
-> > > > >  Timing buffered disk reads: 134 MB in  3.03 seconds =  44.18 MB/sec
-> > > > > 
-> > > > > 
-> > > > > > +	status = "okay";
-> > > > > > +};
-> > > > > 
-> > > > > I'm right now trying to get SDIO RTL8822CS working, so far I'm out of luck,
-> > > > > but it can be added later once we got it working.
-> > > > 
-> > > > would you be interested in taking over my attempted patches? Thing is,
-> > > > that I am a userspace guy who only copy-pasted some entries from
-> > > > FriendlyElec and things happened to work, but I really have no clue what I am
-> > > > doing when it comes to hardware and DTS. I see that some changes were suggested, 
-> > > > not only by you above, but also by others earlier and I have little
-> > > > understanding of where I should be inserting what and how.
-> > > > 
-> > > > At this point I think it would make more sense if someone who actually
-> > > > understands what they are doing would continue to tune the DTS :)
-> > > > 
-> > > > So it'd be great if either you or anyone else would be willing to take
-> > > > over?
-> > > 
-> > > Though, a board devicetree is a nice way to get "your feet wet" in the
-> > > kernel :-) and for a lot of people scratching ones own itches gets them
-> > > started.
-> > 
-> > While this may very well be true, my main issue is not the DT syntax,
-> > but the lack of understanding of the underlying hardware and also a lack of
-> > enthusiasm to dive into the hardware topics - I prefer to stay in
-> > userspace where the kernel provides a very nice abstraction to all those 
-> > details ;)
-> 
-> No worries :-) .
-> 
-> Though in this case you're "on the hook" for the board devicetree :-D .
-> 
-> 
-> > > The devicetree is easy enough, also looks correct and you even got the
-> > > binding change correct - and you're the person with the actual board :-) .
-> > > 
-> > > Could you possibly test if the   mmc-hs200-1_8v; property works for you?
-> > 
-> > It does, I get pretty much the same results as Daniel:
-> > 
-> > root@nanopi-r2s-plus:~# hdparm -t /dev/mmcblk1
-> > /dev/mmcblk1:
-> >  Timing buffered disk reads: 134 MB in  3.04 seconds =  44.13 MB/sec
-> > 
-> > With mmc-hs200-1_8v:
-> > 
-> > root@nanopi-r2s-plus:~# hdparm -t /dev/mmcblk1
-> >  /dev/mmcblk1:
-> >   Timing buffered disk reads: 340 MB in  3.01 seconds = 113.08 MB/sec
-> > 
-> > Should I add a commit on top with this change and submit a v3 patchset?
-> > 
-> > On Thu, Aug 01, 2024 at 11:22:27PM +0200, Heiko St�bner wrote:
-> > > general remark, please don't send new versions as threaded replies to
-> > > old
-> > > versions. The normal case for git-send-email is to create a new thread
-> > > and this continuing inside the old thread confues tooling.
-> > 
-> > In case you tell me to go ahead with a v3 set, should it be in this
-> > thread or not? I understood RESEND's should be new, but updates should
-> > stay in the thread, right?
-> > 
-> > Sorry, I actually did read the guides, but seems misunderstood what I should
-> > be doing as I inserted the in-reply-to header in my last RESEND.
-> 
-> Please do a v3 ... in a new thread.
+This patch set proposes to:
+- clean up coding style errors reported by checkpatch.pl
+- align the nodename and sub nodename according to the devicetree
+specification even with their binding.
 
-There was one other note though to which I did not receive a clear
-repsonse. Bjoern A. Zeeb noticed, that the newer version from the
-rockhip repo has // SPDX-License-Identifier: (GPL-2.0+ OR MIT) while the
-one which I copied the code from did not have the "OR MIT" part, hence I
-also did not have it in my patch.
+Andrei Simion (5):
+  ARM: dts: microchip: Clean up spacing and indentation
+  ARM: dts: microchip: Rename the eeprom nodename
+  ARM: dts: microchip: Rename the pmic node
+  ARM: dts: microchip: Rename the usb node
+  ARM: dts: microchip: Rename LED sub nodes name
 
-Am I supposed to leave it as is, since I copied the block from the
-sources which indeed were GP-2.0 only or should I add the "OR MIT" part
-as it is apparently the case in newer versions of the dts file from
-rockhcip?
+ arch/arm/boot/dts/microchip/aks-cdu.dts          | 12 ++++++------
+ arch/arm/boot/dts/microchip/animeo_ip.dts        | 10 +++++-----
+ arch/arm/boot/dts/microchip/at91-ariag25.dts     |  4 ++--
+ arch/arm/boot/dts/microchip/at91-ariettag25.dts  |  6 +++---
+ .../boot/dts/microchip/at91-cosino_mega2560.dts  |  8 ++++----
+ arch/arm/boot/dts/microchip/at91-dvk_som60.dts   |  6 +++---
+ .../boot/dts/microchip/at91-dvk_su60_somc.dtsi   |  6 +++---
+ arch/arm/boot/dts/microchip/at91-foxg20.dts      |  4 ++--
+ arch/arm/boot/dts/microchip/at91-gatwick.dts     |  4 ++--
+ arch/arm/boot/dts/microchip/at91-kizbox.dts      |  2 +-
+ .../boot/dts/microchip/at91-kizbox2-common.dtsi  |  6 +++---
+ arch/arm/boot/dts/microchip/at91-kizbox3-hs.dts  |  6 +++---
+ .../dts/microchip/at91-kizboxmini-common.dtsi    |  4 ++--
+ .../boot/dts/microchip/at91-kizboxmini-mb.dts    |  2 +-
+ arch/arm/boot/dts/microchip/at91-lmu5000.dts     |  4 ++--
+ .../boot/dts/microchip/at91-nattis-2-natte-2.dts |  2 +-
+ arch/arm/boot/dts/microchip/at91-q5xr5.dts       |  4 ++--
+ arch/arm/boot/dts/microchip/at91-qil_a9260.dts   |  4 ++--
+ arch/arm/boot/dts/microchip/at91-sam9_l9260.dts  |  2 +-
+ .../dts/microchip/at91-sam9x60_curiosity.dts     |  6 +++---
+ arch/arm/boot/dts/microchip/at91-sam9x60ek.dts   | 12 ++++++------
+ .../boot/dts/microchip/at91-sama5d27_som1.dtsi   |  2 +-
+ .../boot/dts/microchip/at91-sama5d27_som1_ek.dts | 14 +++++++-------
+ .../boot/dts/microchip/at91-sama5d27_wlsom1.dtsi |  2 +-
+ .../dts/microchip/at91-sama5d27_wlsom1_ek.dts    |  6 +++---
+ .../dts/microchip/at91-sama5d29_curiosity.dts    |  8 ++++----
+ arch/arm/boot/dts/microchip/at91-sama5d2_icp.dts | 16 ++++++++--------
+ .../boot/dts/microchip/at91-sama5d2_ptc_ek.dts   |  8 ++++----
+ .../boot/dts/microchip/at91-sama5d2_xplained.dts |  8 ++++----
+ arch/arm/boot/dts/microchip/at91-sama5d3_eds.dts |  6 +++---
+ .../dts/microchip/at91-sama5d3_ksz9477_evb.dts   |  2 +-
+ .../boot/dts/microchip/at91-sama5d3_xplained.dts |  8 ++++----
+ .../boot/dts/microchip/at91-sama5d4_ma5d4evk.dts |  6 +++---
+ .../boot/dts/microchip/at91-sama5d4_xplained.dts |  6 +++---
+ arch/arm/boot/dts/microchip/at91-sama5d4ek.dts   |  6 +++---
+ arch/arm/boot/dts/microchip/at91-sama7g5ek.dts   |  2 +-
+ arch/arm/boot/dts/microchip/at91-som60.dtsi      |  4 ++--
+ arch/arm/boot/dts/microchip/at91-tse850-3.dts    |  6 +++---
+ arch/arm/boot/dts/microchip/at91-vinco.dts       |  6 +++---
+ arch/arm/boot/dts/microchip/at91-wb45n.dts       |  2 +-
+ arch/arm/boot/dts/microchip/at91-wb45n.dtsi      |  4 ++--
+ arch/arm/boot/dts/microchip/at91-wb50n.dts       |  6 +++---
+ arch/arm/boot/dts/microchip/at91-wb50n.dtsi      |  4 ++--
+ arch/arm/boot/dts/microchip/at91rm9200.dtsi      |  4 ++--
+ arch/arm/boot/dts/microchip/at91rm9200ek.dts     | 10 +++++-----
+ arch/arm/boot/dts/microchip/at91sam9260.dtsi     |  4 ++--
+ arch/arm/boot/dts/microchip/at91sam9260ek.dts    | 10 +++++-----
+ arch/arm/boot/dts/microchip/at91sam9261.dtsi     |  4 ++--
+ arch/arm/boot/dts/microchip/at91sam9261ek.dts    | 10 +++++-----
+ arch/arm/boot/dts/microchip/at91sam9263.dtsi     |  4 ++--
+ arch/arm/boot/dts/microchip/at91sam9263ek.dts    | 12 ++++++------
+ arch/arm/boot/dts/microchip/at91sam9g20ek.dts    |  4 ++--
+ .../boot/dts/microchip/at91sam9g20ek_common.dtsi |  6 +++---
+ arch/arm/boot/dts/microchip/at91sam9g45.dtsi     |  6 +++---
+ arch/arm/boot/dts/microchip/at91sam9m10g45ek.dts |  6 +++---
+ arch/arm/boot/dts/microchip/at91sam9n12.dtsi     |  4 ++--
+ arch/arm/boot/dts/microchip/at91sam9n12ek.dts    |  4 ++--
+ arch/arm/boot/dts/microchip/at91sam9rl.dtsi      |  2 +-
+ arch/arm/boot/dts/microchip/at91sam9rlek.dts     |  2 +-
+ arch/arm/boot/dts/microchip/at91sam9x5.dtsi      |  6 +++---
+ arch/arm/boot/dts/microchip/at91sam9x5ek.dtsi    |  6 +++---
+ arch/arm/boot/dts/microchip/ethernut5.dts        |  4 ++--
+ arch/arm/boot/dts/microchip/evk-pro3.dts         |  4 ++--
+ arch/arm/boot/dts/microchip/mpa1600.dts          |  2 +-
+ arch/arm/boot/dts/microchip/pm9g45.dts           |  4 ++--
+ arch/arm/boot/dts/microchip/sam9x60.dtsi         |  6 +++---
+ arch/arm/boot/dts/microchip/sama5d2.dtsi         |  6 +++---
+ arch/arm/boot/dts/microchip/sama5d3.dtsi         |  6 +++---
+ arch/arm/boot/dts/microchip/sama5d34ek.dts       |  2 +-
+ arch/arm/boot/dts/microchip/sama5d3xcm_cmp.dtsi  |  2 +-
+ arch/arm/boot/dts/microchip/sama5d3xmb.dtsi      |  6 +++---
+ arch/arm/boot/dts/microchip/sama5d3xmb_cmp.dtsi  |  2 +-
+ arch/arm/boot/dts/microchip/sama5d4.dtsi         |  6 +++---
+ arch/arm/boot/dts/microchip/tny_a9263.dts        |  2 +-
+ .../arm/boot/dts/microchip/usb_a9260_common.dtsi |  4 ++--
+ arch/arm/boot/dts/microchip/usb_a9263.dts        |  4 ++--
+ 76 files changed, 205 insertions(+), 205 deletions(-)
 
-> Also for the process, please add the Ack you received for patch 2
-> in that v3.
 
-You mean, ammend the appropriate commit and add the Acked-By to the
-commit message? OK, will do.
-
-On Wed, Aug 14, 2024 at 01:34:13PM +0200, Diederik de Haas wrote:
-> On Wed Aug 14, 2024 at 1:30 PM CEST, Diederik de Haas wrote:
-> > On Wed Aug 14, 2024 at 1:21 PM CEST, Sergey 'Jin' Bostandzhyan
-> > wrote:
-> > > In case you tell me to go ahead with a v3 set, should it be in
-> > > this
-> > > thread or not? I understood RESEND's should be new, but updates
-> > > should
-> > > stay in the thread, right?
-> >
-> > No, a new series should be its own thread too.
-> 
-> More correctly and hopefully more clearly:
-
-Understood, thank you!
-
-Kind regards,
-Sergey
+base-commit: 320eb81df4f6c1a1814fd02ebb4ba41eb80a3c7e
+-- 
+2.34.1
 
 
