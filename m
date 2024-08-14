@@ -1,209 +1,407 @@
-Return-Path: <devicetree+bounces-93581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 390B1951866
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 12:10:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBF8C951895
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 12:24:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B73331F237A5
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 10:10:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74A1D2870B9
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 10:24:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC7E81AD9C0;
-	Wed, 14 Aug 2024 10:10:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB0361AD9CA;
+	Wed, 14 Aug 2024 10:23:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="j/iEdSU3"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=shreeya.patel@collabora.com header.b="OCXsrx97"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FC951AD41D
-	for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 10:10:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723630218; cv=none; b=rXAk5kFWT+yNExVLPgy7Le/nIYaxBOEjEeZIDlZnfUsVcd0H8/gtINAF2yeLq5gdfHv5LnloQLWfwTZQmiMhtgqRj8A8RcABDpuo7Ifs9J/tVsvpirUvO8ywsr5LIzyeLPjJyKcErEQ0Nz3rh151nDMp/VbI1LRulcuMTnWhahM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723630218; c=relaxed/simple;
-	bh=HtmsSU5ENdUZpr+MPxoYuH51F28PtAovj20fVUAbRwk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=K5UO4/UlwHe6AJgZv4JCavM1P1QXWInQC1EOiG32jyYNHlIE5ga/rzZUMWkkghM3bbnXRIoAVkDcEBU0QfBfxhh5uUt9ILJPlUQViVwmlT3oDu1TFMUzVArobZpP46qJd9wgGt7btTCRSEVYN5mfl5r2+HEB8FhrVV2Hd8+fC10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=j/iEdSU3; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2ef2c56d9dcso74860711fa.2
-        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 03:10:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1723630215; x=1724235015; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HQxN/7VWNI1muBwzClG5Zirbw85McBRj904vS8Fpu0c=;
-        b=j/iEdSU3Gv1uH9TUVPNvmrm/2QZpGumGlEgCXh1a8G+aqAIkvOXGrnRes9Lrj9FySQ
-         xVoyqhzc2aBlr6hgPU7xeJsD0dEhX0355GPFPcKSMIk6rXUh8/jNNQ5yTbGj91V8XY1R
-         cmGhzrXSkAi0yqSv6ol5zigy7mjAeL/f6iCoE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723630215; x=1724235015;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HQxN/7VWNI1muBwzClG5Zirbw85McBRj904vS8Fpu0c=;
-        b=Nu9ANOvwPn/FDwzgpfSB9hSP8iKr9alhE6DXS6juDFZ58XzUQOFkmLB25Ia0+w3xlJ
-         yMY0fDAn11HwOz1gZoFk3q4g6IKzmMMZBbjt9OBDvv6s0lvozw0Vwy9tPegb6R5cl9TA
-         awUwxlLfg44bls4olXdf8P4bPvdQCJ6zhsM6Ui5mlVtjmvhyg6a0jX1tTGMEQlPmibSQ
-         h/56fRHBgjo3JjtR7FK/buzBFaOxyxAZguY6lF7UQf+8eU4EEeGezBPnZG8bmL/2jya/
-         H84Kime6h8MN3Xr8xv/iuwRtj1uJ/zy+/4dOHKjKmWDWZID/r3z/54OBXjWykpRtpkop
-         /oMA==
-X-Forwarded-Encrypted: i=1; AJvYcCUkcDDOaL88nqZCpXzCn7x0gz1ETncx0FGfowIUqkrQcX7Lns4dwX/tH+COkE99cCDHpWmSr3pOB3yI@vger.kernel.org
-X-Gm-Message-State: AOJu0YyBkBI6+AQrb6M7WSyAcLeoG74mvOpC20Xl+K45hzvvMMq5xffH
-	UaFCZYq1OLWiRYko18ykhNE31ukGPmbb1AvoCrQf+zUfSMkEGS1df8kHjrMoVWROLs+nE0A1/ww
-	P1OjEINxPIFsmvwno8Iohme/aznshjCtWvarS
-X-Google-Smtp-Source: AGHT+IEe32jN8gUqbf1l9ngrSD5IPLARvV8fpV4Tje3WEqH7kkd+ZQY+1xW4UvomRXZlgVtw/pLaiYHStH4ShpBNc/E=
-X-Received: by 2002:a2e:4a1a:0:b0:2f0:33e:d286 with SMTP id
- 38308e7fff4ca-2f3aa1a5198mr14064661fa.20.1723630214840; Wed, 14 Aug 2024
- 03:10:14 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 732061A4F10;
+	Wed, 14 Aug 2024 10:23:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723631037; cv=pass; b=VzAaOoYJhHdKgde2XxnMdi1jjputADw92QtAvNYoO2TBu0emJ87DVJ1dIgQjoLW4whEIYizfoBgIMsJfN7HqGk2W3xiD3/5zdpzDXFlg1JLFSCUf/kRjqJD9ppUMEvpyPTvcqxZ7AFwzvT3vT6hHdjLxU3aRVhIrE2mHRMQJn6I=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723631037; c=relaxed/simple;
+	bh=FJhdXmcJfITXAU0eY6mADQeSuP/jponqtb7pDgHUZc0=;
+	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=fHJbqxKvNxl0eqCJHM4pVk8M29HQAVa9NIjrQn65R7SIfZ26gtAf4WRmq1oZuXvz+CTlRvOaId4PRLI5YEfdWBIsftIjf9SF+TBpRkhdJdjPUkZiT01O6SWVCbX4hlnL0qLSc7rycTV2FExWhkhW4/oH5695ecqC/cNk+kELzJs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=shreeya.patel@collabora.com header.b=OCXsrx97; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Delivered-To: nicolas.dufresne@collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1723630979; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=Mv+Lbq4LftFO8c0ZzwICdAtOSIiOuoXWVn7T/4qjtEQggbgOgWJPYKpPffffv4Nbo8hH+2WfvhHHaiVbWwztoyKLdkWZZEvM69dZNjrCuMXOFca2smBY4qo+ij3YIACiHtkCtm/HLfwh5zhICJUoTgFVCWuXVffnJ9b/1YRhw6I=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1723630979; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=KDSuq+GdTkk8usdOD1M6R1p5SyZGtUFOvVvC4JR/q4U=; 
+	b=VIRKkSZS1V38FTAYMJWOsrHpd0ihEA2+9xc2585g5ZhgRID7YfUqYSfMqhJwL+kpbZ+L4U9IG4UD9owpzyrCEYQjL0xk2rp/0vtl+hsfUTrXz4KqCb3LERCJQxzo+/4CbVtSoAxHNCAKdQKPGM3g1YFkYJbdyGw9oZlN4WxtpEI=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=shreeya.patel@collabora.com;
+	dmarc=pass header.from=<shreeya.patel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1723630979;
+	s=zohomail; d=collabora.com; i=shreeya.patel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Message-ID:In-Reply-To:References:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=KDSuq+GdTkk8usdOD1M6R1p5SyZGtUFOvVvC4JR/q4U=;
+	b=OCXsrx97mNoLm5XwPuTPdi9MywUJusqE5tG1wZimWkhm5AqWqhwYZPgLQIntrseC
+	tMgnmWI8rxO4xN63+RWOBqyDhUFUHSeoalq4k2rAzXheFErrGP/W+x4mgeduWOqshFB
+	mOIXMjBHfGGkE1b11nREH3ksmSb6HP/hhqljU/lg=
+Received: from mail.zoho.com by mx.zohomail.com
+	with SMTP id 1723630978549368.7322665721008; Wed, 14 Aug 2024 03:22:58 -0700 (PDT)
+Date: Wed, 14 Aug 2024 15:52:56 +0530
+From: Shreeya Patel <shreeya.patel@collabora.com>
+To: "Tim Surber" <me@timsurber.de>
+Cc: "heiko" <heiko@sntech.de>, "mchehab" <mchehab@kernel.org>,
+	"robh" <robh@kernel.org>, "krzk+dt" <krzk+dt@kernel.org>,
+	"conor+dt" <conor+dt@kernel.org>,
+	"mturquette" <mturquette@baylibre.com>, "sboyd" <sboyd@kernel.org>,
+	"p.zabel" <p.zabel@pengutronix.de>,
+	"jose.abreu" <jose.abreu@synopsys.com>,
+	"nelson.costa" <nelson.costa@synopsys.com>,
+	"shawn.wen" <shawn.wen@rock-chips.com>,
+	"nicolas.dufresne" <nicolas.dufresne@collabora.com>,
+	"hverkuil" <hverkuil@xs4all.nl>,
+	"hverkuil-cisco" <hverkuil-cisco@xs4all.nl>,
+	"kernel" <kernel@collabora.com>,
+	"linux-kernel" <linux-kernel@vger.kernel.org>,
+	"linux-media" <linux-media@vger.kernel.org>,
+	"devicetree" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel" <linux-arm-kernel@lists.infradead.org>,
+	"linux-rockchip" <linux-rockchip@lists.infradead.org>
+Message-ID: <19150697f90.11f343d091099757.4301715823219222254@collabora.com>
+In-Reply-To: <6f5c4ebb-84ab-4b65-9817-ac5f6158911f@timsurber.de>
+References: <20240719124032.26852-1-shreeya.patel@collabora.com> <6f5c4ebb-84ab-4b65-9817-ac5f6158911f@timsurber.de>
+Subject: Re: [PATCH v4 0/4] Add Synopsys DesignWare HDMI RX Controller
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240808095931.2649657-1-wenst@chromium.org> <20240808095931.2649657-6-wenst@chromium.org>
- <ZrtHhcNMiyHmKbal@smile.fi.intel.com>
-In-Reply-To: <ZrtHhcNMiyHmKbal@smile.fi.intel.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Wed, 14 Aug 2024 18:10:03 +0800
-Message-ID: <CAGXv+5EgqdziyheOt7wzkbe036fqPcw_UpSHiMsB3W_nTB3NWQ@mail.gmail.com>
-Subject: Re: [PATCH v4 5/6] platform/chrome: Introduce device tree hardware prober
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wolfram Sang <wsa@kernel.org>, 
-	Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
-	Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Douglas Anderson <dianders@chromium.org>, 
-	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>, linux-i2c@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+Importance: Medium
+User-Agent: Zoho Mail
+X-Mailer: Zoho Mail
 
-On Tue, Aug 13, 2024 at 7:46=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Thu, Aug 08, 2024 at 05:59:28PM +0800, Chen-Yu Tsai wrote:
-> > Some devices are designed and manufactured with some components having
-> > multiple drop-in replacement options. These components are often
-> > connected to the mainboard via ribbon cables, having the same signals
-> > and pin assignments across all options. These may include the display
-> > panel and touchscreen on laptops and tablets, and the trackpad on
-> > laptops. Sometimes which component option is used in a particular devic=
-e
-> > can be detected by some firmware provided identifier, other times that
-> > information is not available, and the kernel has to try to probe each
-> > device.
-> >
-> > This change attempts to make the "probe each device" case cleaner. The
-> > current approach is to have all options added and enabled in the device
-> > tree. The kernel would then bind each device and run each driver's prob=
-e
-> > function. This works, but has been broken before due to the introductio=
-n
-> > of asynchronous probing, causing multiple instances requesting "shared"
-> > resources, such as pinmuxes, GPIO pins, interrupt lines, at the same
-> > time, with only one instance succeeding. Work arounds for these include
-> > moving the pinmux to the parent I2C controller, using GPIO hogs or
-> > pinmux settings to keep the GPIO pins in some fixed configuration, and
-> > requesting the interrupt line very late. Such configurations can be see=
-n
-> > on the MT8183 Krane Chromebook tablets, and the Qualcomm sc8280xp-based
-> > Lenovo Thinkpad 13S.
-> >
-> > Instead of this delicate dance between drivers and device tree quirks,
-> > this change introduces a simple I2C component prober. For any given
-> > class of devices on the same I2C bus, it will go through all of them,
-> > doing a simple I2C read transfer and see which one of them responds.
-> > It will then enable the device that responds.
-> >
-> > This requires some minor modifications in the existing device tree.
-> > The status for all the device nodes for the component options must be
-> > set to "failed-needs-probe". This makes it clear that some mechanism is
-> > needed to enable one of them, and also prevents the prober and device
-> > drivers running at the same time.
->
-> ...
->
-> > + * Copyright (c) 2023 Google LLC
->
-> At bare minimum we are in 2024 now.
+ ---- On Sun, 04 Aug 2024 05:27:08 +0530  Tim Surber  wrote ---=20
+ > Hi Shreeya,
+ >=20
 
-Ack.
+Hi Tim,
 
-> ...
->
-> > +#include <linux/array_size.h>
-> > +#include <linux/i2c.h>
-> > +#include <linux/module.h>
->
-> > +#include <linux/of.h>
->
-> Why?
 
-Might have been left over from previous work and squashed into the wrong
-commit. Will remove.
+ > I tested your patch and noticed problems when using 3840x2160 resolution=
+=20
+ > at =C2=A060fps.
+ >=20
+ > For my testing I connected an HDMI source and set it to 4k60fps. I=20
+ > verified that this source and the cables work on a screen at this=20
+ > resolution.
+ >=20
+ > Using
+ > 'v4l2-ctl --verbose -d /dev/video1=20
+ > --set-fmt-video=3Dwidth=3D3840,height=3D2160,pixelformat=3D'NV12'=20
+ > --stream-mmap=3D4 --stream-skip=3D3 --stream-count=3D100 --stream-poll'
+ > I get the video format output, but not the periodic output which shows=
+=20
+ > the fps.
+ >=20
+ > Using
+ > 'GST_DEBUG=3D4 gst-launch-1.0 -v v4l2src device=3D/dev/video1 !=20
+ > fpsdisplaysink text-overlay=3Dfalse video-sink=3D"fakevideosink"'
+ > I get the following error message:
+ >=20
+ > (gst-launch-1.0:3231): GStreamer-CRITICAL **: 01:34:39.137:=20
+ > gst_memory_resize: assertion 'size + mem->offset + offset <=3D=20
+ > mem->maxsize' failed
+ > 0:00:03.489382529 =C2=A03231 0xffffa0000b90 WARN =C2=A0v4l2bufferpool=20
+ > gstv4l2bufferpool.c:2209:gst_v4l2_buffer_pool_process:=20
+ > Dropping truncated buffer, this is likely a driver bug.
+ > 0:00:03.489421906 =C2=A03231 0xffffa0000b90 WARN =C2=A0bufferpool=20
+ > gstbufferpool.c:1252:default_reset_buffer: Buffer=20
+ > 0xffff98008e80 without the memory tag has maxsize (8294400) that is=20
+ > smaller than the configured buffer pool size (12441600). The buffer will=
+=20
+ > be not be reused. This is most likely a bug in this GstBufferPool subcla=
+ss
+ >=20
+ >=20
+ > Everything works with 4k30fps or 1080p 60fps. The hardware should=20
+ > support 4k60fps.
+ >=20
 
-> > +#include <linux/platform_device.h>
->
-> ...
->
-> > +     for (size_t i =3D 0; i < ARRAY_SIZE(hw_prober_platforms); i++) {
-> > +             if (!of_machine_is_compatible(hw_prober_platforms[i].comp=
-atible))
-> > +                     continue;
->
-> > +             int ret;
->
-> I didn't know we allow this kind of definition mix besides for-loop and
-> __free()... Can you point me out where this style change was discussed?
 
-Will move to the top of the for loop block.
+Sorry for the delayed response, I've been trying to reproduce this on my si=
+de
+and to also fix it.
 
-> > +             ret =3D hw_prober_platforms[i].prober(&pdev->dev, hw_prob=
-er_platforms[i].data);
-> > +             /* Ignore unrecoverable errors and keep going through oth=
-er probers */
-> > +             if (ret =3D=3D -EPROBE_DEFER)
-> > +                     return ret;
-> > +     }
->
-> ...
->
-> > +static void chromeos_of_hw_prober_driver_exit(void)
-> > +{
-> > +     if (!chromeos_of_hw_prober_pdev)
-> > +             return;
->
-> First of all, this is dup for the next call, second, when may this condit=
-ional
-> be true?
+It seems you are right, 4K@60 fps doesn't work with the latest version of H=
+DMIRX.
+We found out that it could be because of the current EDID which shows some =
+failures.
 
-When the module is loaded on a machine that doesn't match any entry,
-neither the driver nor the device are registered. Hence the check.
+Though I wasn't able to test the following on my side since my device doesn=
+'t support
+4K, one of my colleague tried to replace the EDID and 4K@60 fps worked fine=
+ after that.
 
-Or maybe the proper way to handle it is to return -ENODEV or something?
-I'll work towards that.
+If you'd like to try it yourself then following is the command to get the n=
+ew EDID
 
-Thanks
-ChenYu
+v4l2-ctl --show-edid type=3Dhdmi-4k-600mhz
 
-> > +     platform_device_unregister(chromeos_of_hw_prober_pdev);
-> > +     platform_driver_unregister(&chromeos_of_hw_prober_driver);
-> > +}
-> > +module_exit(chromeos_of_hw_prober_driver_exit);
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
+You will have to replace the EDID in the driver with the EDID you get the f=
+rom the above
+command in HEX format.
+
+Thanks for reporting this, I will soon send v5 with this change included in=
+ it.
+
+
+Thanks,
+Shreeya Patel
+
+
+ > Best regards,
+ > Tim
+ >=20
+ > On 19.07.24 14:40, Shreeya Patel wrote:
+ > > This series implements support for the Synopsys DesignWare
+ > > HDMI RX Controller, being compliant with standard HDMI 1.4b
+ > > and HDMI 2.0.
+ > >
+ > > Features that are currently supported by the HDMI RX driver
+ > > have been tested on rock5b board using a HDMI to micro-HDMI cable.
+ > > It is recommended to use a good quality cable as there were
+ > > multiple issues seen during testing the driver.
+ > >
+ > > Please note the below information :-
+ > > * While testing the driver on rock5b we noticed that the binary BL31
+ > > from Rockchip contains some unknown code to get the HDMI-RX PHY
+ > > access working without any errors.
+ > > With TF-A BL31, the HDMI-RX PHY also works fine but there were no
+ > > interrupts seen for rk_hdmirx-hdmi leading to some errors when
+ > > loading the driver [0]. It doesn't affect the functionality of the
+ > > driver though.
+ > > * We have tested the working of OBS studio with HDMIRX driver and
+ > > there were no issues seen.
+ > > * We also tested and verified the support for interlaced video.
+ > >
+ > > [0] https://gitlab.collabora.com/hardware-enablement/rockchip-3588/tru=
+sted-firmware-a/-/issues/1
+ > >
+ > > To test the HDMI RX Controller driver, following example commands can =
+be used :-
+ > >
+ > > root@debian-rockchip-rock5b-rk3588:~# v4l2-ctl --verbose -d /dev/video=
+0 \
+ > > --set-fmt-video=3Dwidth=3D1920,height=3D1080,pixelformat=3D'BGR3' --st=
+ream-mmap=3D4 \
+ > > --stream-skip=3D3 --stream-count=3D100 --stream-to=3D/home/hdmiin4k.ra=
+w --stream-poll
+ > >
+ > > root@debian-rockchip-rock5b-rk3588:~# ffmpeg -f rawvideo -vcodec rawvi=
+deo \
+ > > -s 1920x1080 -r 60 -pix_fmt bgr24 -i /home/hdmiin4k.raw output.mkv
+ > >
+ > > CEC compliance test results :-
+ > >
+ > > * https://gitlab.collabora.com/-/snippets/381
+ > > * https://gitlab.collabora.com/-/snippets/380
+ > >
+ > > Following is the v4l2-compliance test result :-
+ > >
+ > > root@debian-rockchip-rock5b-rk3588:~# v4l2-compliance -d /dev/video0
+ > > v4l2-compliance 1.27.0-5220, 64 bits, 64-bit time_t
+ > > v4l2-compliance SHA: 8387e3673837 2024-07-01 11:09:32
+ > >
+ > > Compliance test for snps_hdmirx device /dev/video0:
+ > >
+ > > Driver Info:
+ > > =C2=A0=C2=A0=C2=A0=C2=A0Driver name      : snps_hdmirx
+ > > =C2=A0=C2=A0=C2=A0=C2=A0Card type        : snps_hdmirx
+ > > =C2=A0=C2=A0=C2=A0=C2=A0Bus info         : platform:fdee0000.hdmi-rece=
+iver
+ > > =C2=A0=C2=A0=C2=A0=C2=A0Driver version   : 6.10.0
+ > > =C2=A0=C2=A0=C2=A0=C2=A0Capabilities     : 0x84201000
+ > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Video Capture Multipla=
+nar
+ > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Streaming
+ > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Extended Pix Format
+ > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Device Capabilities
+ > > =C2=A0=C2=A0=C2=A0=C2=A0Device Caps      : 0x04201000
+ > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Video Capture Multipla=
+nar
+ > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Streaming
+ > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Extended Pix Format
+ > >
+ > > Required ioctls:
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_QUERYCAP: OK
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test invalid ioctls: OK
+ > >
+ > > Allow for multiple opens:
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test second /dev/video0 open: OK
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_QUERYCAP: OK
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_G/S_PRIORITY: OK
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test for unlimited opens: OK
+ > >
+ > > Debug ioctls:
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_DBG_G/S_REGISTER: OK (Not Supporte=
+d)
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_LOG_STATUS: OK
+ > >
+ > > Input ioctls:
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not=
+ Supported)
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_ENUMAUDIO: OK (Not Supported)
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_G/S/ENUMINPUT: OK
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_G/S_AUDIO: OK (Not Supported)
+ > > =C2=A0=C2=A0=C2=A0=C2=A0Inputs: 1 Audio Inputs: 0 Tuners: 0
+ > >
+ > > Output ioctls:
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+ > > =C2=A0=C2=A0=C2=A0=C2=A0Outputs: 0 Audio Outputs: 0 Modulators: 0
+ > >
+ > > Input/Output configuration ioctls:
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Suppor=
+ted)
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_DV_TIMINGS_CAP: OK
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_G/S_EDID: OK
+ > >
+ > > Control ioctls (Input 0):
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_QUERYCTRL: OK
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_G/S_CTRL: OK
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+ > > =C2=A0=C2=A0=C2=A0=C2=A0Standard Controls: 3 Private Controls: 0
+ > >
+ > > Format ioctls (Input 0):
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS=
+: OK
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_G/S_PARM: OK
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_G_FBUF: OK (Not Supported)
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_G_FMT: OK
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_TRY_FMT: OK
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_S_FMT: OK
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supporte=
+d)
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test Cropping: OK (Not Supported)
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test Composing: OK (Not Supported)
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test Scaling: OK (Not Supported)
+ > >
+ > > Codec ioctls (Input 0):
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Support=
+ed)
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_(TRY_)DECODER_CMD: OK (Not Support=
+ed)
+ > >
+ > > Buffer ioctls (Input 0):
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test CREATE_BUFS maximum buffers: OK
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_REMOVE_BUFS: OK
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test VIDIOC_EXPBUF: OK
+ > > =C2=A0=C2=A0=C2=A0=C2=A0test Requests: OK (Not Supported)
+ > >
+ > > Total for snps_hdmirx device /dev/video0: 47, Succeeded: 47, Failed: 0=
+, Warnings: 0
+ > >
+ > > Changes in v4 :-
+ > >    - Remove DTS changes included in the device tree patch
+ > >    - Remove the hdmi rx pin info as it's already present
+ > >      in the rk3588-base-pinctrl.dtsi
+ > >    - Create a separate config option for selecting the EDID
+ > >      and enable it by default
+ > >    - Improve the comment related to DV timings and move it
+ > >      to the side of hdmirx_get_detected_timings
+ > >    - Add 100ms delay before pulling the HPD high
+ > >    - Do not return the detected timings from VIDIOC_G_DV_TIMINGS
+ > >    - Drop the bus info from hdmirx_querycap
+ > >    - If *num_planes !=3D 0 then return 0 in hdmirx_queue_setup
+ > >    - Set queue->min_queued_buffers to 1
+ > >    - Drop q->allow_cache_hints =3D 0; as it's always 0 by default
+ > >    - Add a comment for q->dma_attrs =3D DMA_ATTR_FORCE_CONTIGUOUS;
+ > >    - Drop .read =3D vb2_fop_read as it's not supported by driver
+ > >    - Remove redundant edid_init_data_600M
+ > >    - Make HPD low when driver is loaded
+ > >    - Add support for reading AVI Infoframe
+ > >    - Remove msg_len checks from hdmirx_cec_transmit
+ > >    - Add info about the CEC compliance test in the cover letter
+ > >    - Add arbitration lost status
+ > >    - Validate the physical address inside the EDID
+ > >
+ > > Changes in v3 :-
+ > >    - Use v4l2-common helpers in the HDMIRX driver
+ > >    - Rename cma node and phandle names
+ > >    - Elaborate the comment to explain 160MiB calculation
+ > >    - Move &hdmi_receiver_cma to the rock5b dts file
+ > >    - Add information about interlaced video testing in the
+ > >      cover-letter
+ > >
+ > > Changes in v2 :-
+ > >    - Fix checkpatch --strict warnings
+ > >    - Move the dt-binding include file changes in a separate patch
+ > >    - Add a description for the hardware in the dt-bindings file
+ > >    - Rename resets, vo1 grf and HPD properties
+ > >    - Add a proper description for grf and vo1-grf phandles in the
+ > >      bindings
+ > >    - Rename the HDMI RX node name to hdmi-receiver
+ > >    - Include gpio header file in binding example to fix the
+ > >      dt_binding_check failure
+ > >    - Move hdmirx_cma node to the rk3588.dtsi file
+ > >    - Add an entry to MAINTAINERS file for the HDMIRX driver
+ > >
+ > > Shreeya Patel (4):
+ > >    MAINTAINERS: Add entry for Synopsys DesignWare HDMI RX Driver
+ > >    dt-bindings: media: Document bindings for HDMI RX Controller
+ > >    arm64: dts: rockchip: Add device tree support for HDMI RX Controlle=
+r
+ > >    media: platform: synopsys: Add support for hdmi input driver
+ > >
+ > >   .../bindings/media/snps,dw-hdmi-rx.yaml       |  132 +
+ > >   MAINTAINERS                                   |    8 +
+ > >   .../dts/rockchip/rk3588-base-pinctrl.dtsi     |   14 +
+ > >   .../arm64/boot/dts/rockchip/rk3588-extra.dtsi |   56 +
+ > >   drivers/media/platform/Kconfig                |    1 +
+ > >   drivers/media/platform/Makefile               |    1 +
+ > >   drivers/media/platform/synopsys/Kconfig       |    3 +
+ > >   drivers/media/platform/synopsys/Makefile      |    2 +
+ > >   .../media/platform/synopsys/hdmirx/Kconfig    |   27 +
+ > >   .../media/platform/synopsys/hdmirx/Makefile   |    4 +
+ > >   .../platform/synopsys/hdmirx/snps_hdmirx.c    | 2763 +++++++++++++++=
+++
+ > >   .../platform/synopsys/hdmirx/snps_hdmirx.h    |  394 +++
+ > >   .../synopsys/hdmirx/snps_hdmirx_cec.c         |  285 ++
+ > >   .../synopsys/hdmirx/snps_hdmirx_cec.h         |   44 +
+ > >   14 files changed, 3734 insertions(+)
+ > >   create mode 100644 Documentation/devicetree/bindings/media/snps,dw-h=
+dmi-rx.yaml
+ > >   create mode 100644 drivers/media/platform/synopsys/Kconfig
+ > >   create mode 100644 drivers/media/platform/synopsys/Makefile
+ > >   create mode 100644 drivers/media/platform/synopsys/hdmirx/Kconfig
+ > >   create mode 100644 drivers/media/platform/synopsys/hdmirx/Makefile
+ > >   create mode 100644 drivers/media/platform/synopsys/hdmirx/snps_hdmir=
+x.c
+ > >   create mode 100644 drivers/media/platform/synopsys/hdmirx/snps_hdmir=
+x.h
+ > >   create mode 100644 drivers/media/platform/synopsys/hdmirx/snps_hdmir=
+x_cec.c
+ > >   create mode 100644 drivers/media/platform/synopsys/hdmirx/snps_hdmir=
+x_cec.h
+ > >
+ >=20
 
