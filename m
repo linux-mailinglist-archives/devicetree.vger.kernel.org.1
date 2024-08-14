@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-93696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87D1D951F07
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 17:48:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40D2A951F09
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 17:48:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5FB81C22683
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:48:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 739D31C21F8E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:48:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77B0A1B5819;
-	Wed, 14 Aug 2024 15:48:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 734211B86E2;
+	Wed, 14 Aug 2024 15:48:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O+bY7KIn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AfoWNAgT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E34B28DC3;
-	Wed, 14 Aug 2024 15:48:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CDDD1B86DD
+	for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 15:48:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723650485; cv=none; b=qApeIJuPAouUcMB4VtPZU7RvVjbLoyBUjxt9mcNXrNLou1+jFxQIDr1SpoyYWpD08j6kaI6hmE2bO7KIBzzC8vaovaN28TWDkwH4Kbx+tPPOFS3yWL53SNnz5OBlyBo0StxESyOBijnq6xT3U1mncmyW5WirBMJX1Sk/IRxp7jQ=
+	t=1723650486; cv=none; b=O2/0kQgUH6+MNPKARIs+3K27OlvbscNBTBzQ7Ecmw4URfkupDV3qcoDMk+DV3H5A/Tcv6zyFJFj2BfjppweA//Zqn/vZNp5XIBSe4lWuY7iMcpMTgjaS3q9r7UBIU1ZRkbK7DoDKOYx9CSJmIxBOUf4pB0fTe0535UyFtF7N+34=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723650485; c=relaxed/simple;
-	bh=n7IuDmJ7xjiLmorJ27Cw4dIAMs1ncBH3/BXHuvFBYho=;
+	s=arc-20240116; t=1723650486; c=relaxed/simple;
+	bh=6Fp5R5GA9ImgtseA1YQkWyI7ugw4FOB2zpNPHuLaTZc=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=QbJwmrhyizSRVFrox5VWUYojWiM6f74FU/QKdw7p8Yo23A05lg91MV39fnLnqW8pY10Bw7ud7PYOdecr0LWjt4B2doCjRtqhl1pikoo5HMOKdsonqCcTjCHpgsYD3L2DANlHDezCZ2bB9arbJEF/9934Hzc1CM+krId3nDqPHm4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O+bY7KIn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99D78C116B1;
-	Wed, 14 Aug 2024 15:48:04 +0000 (UTC)
+	 Message-Id:Subject; b=ioYPbRB/T7/QafMjQYxGm9KfVgbs0ikEj8mZmbCj/RiW5CZdnbuykdv8Us2w8ms7tPXkcScAkXF2FL+nmB8N+E3dyyTw+EhJETRMei36GfMFpsOVpdBuwYvM7HnCfPAQkbCopf2arkr1MbMh16CS6SIoHqvwwNrbc8lbUHxv2nY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AfoWNAgT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D44FC4AF0F;
+	Wed, 14 Aug 2024 15:48:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723650484;
-	bh=n7IuDmJ7xjiLmorJ27Cw4dIAMs1ncBH3/BXHuvFBYho=;
+	s=k20201202; t=1723650485;
+	bh=6Fp5R5GA9ImgtseA1YQkWyI7ugw4FOB2zpNPHuLaTZc=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=O+bY7KInwMy24ENMzdpHtvESrz0WsUKoxsDXZXD+E9+VR5hKJCO2vamWOJhe4Ert6
-	 zmTgU/JmkLOSifCEYatpq+Xt4rRZl0rsuURUrYlU2TNb7Qzv1P2aD2zNY5rZXf+4+b
-	 g47y0p6tC9lPSWNUw4U46FYbh2r3tQuxMQUGVxH4//5IHVjehvDg0Nb0YmAOC6/1r7
-	 Zsvr1WFZ3Wx085hkna79BFhDApAgfljTVh0Bbp0OCqTPzljd1KaLshr1Yep+0cTO78
-	 rxAoMg9E4H85mVw/jpE38hRC9dRtdt9sHQOqEIP6Og3CBSYd3ql3DuIlqvnGbqf7lr
-	 Glhi8NcIfmhiA==
-Date: Wed, 14 Aug 2024 09:48:03 -0600
+	b=AfoWNAgTIfBxNR8ziRq5QcKOvRlPDvprKuq48am8dx6/4JH7w9V+r++7P8hoUKQd8
+	 H5Wo+PnRVJwrKJaAp3GnjJhtK7wlARFVe9GOdG1tehv0c+kWA5B7hojI5IO9b6EGOw
+	 6AKvWphCFlT5NZJQlfMMUaSaoq7GbnQaRwxC2z0mUR4sOMwmrsjpMyHDNLjL2wOWtw
+	 5fRSIz033+ltyrOOOna/0Tb9xpbHk8PM7oVMpNU7pke/sexNU1NDXv/LQ50v9OBFgm
+	 5wq9xspQQlT6AbuCtavh7mNXkFXqprRmgrCDI/H7ZC8J9m8UYGgIoyxYamB7U1U5x+
+	 +JleI14PPj6uw==
+Date: Wed, 14 Aug 2024 09:48:04 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,42 +51,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, 
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
- devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org
-In-Reply-To: <20240813190639.154983-1-brgl@bgdev.pl>
-References: <20240813190639.154983-1-brgl@bgdev.pl>
-Message-Id: <172365034673.2714461.1759726822181293291.robh@kernel.org>
-Subject: Re: [PATCH 0/3] arm64: dts: qcom: sc8280xp: enable WLAN and
- Bluetooth
+To: FUKAUMI Naoki <naoki@radxa.com>
+Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
+ heiko@sntech.de, krzk+dt@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20240814095727.1662908-1-naoki@radxa.com>
+References: <20240814095727.1662908-1-naoki@radxa.com>
+Message-Id: <172365034737.2714484.13216385355869923576.robh@kernel.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: arm: rockchip: add support for
+ Radxa ROCK Pi E v3.0
 
 
-On Tue, 13 Aug 2024 21:06:35 +0200, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On Wed, 14 Aug 2024 18:57:26 +0900, FUKAUMI Naoki wrote:
+> Radxa ROCK Pi E v3.0 is a compact networking SBC[1] using the Rockchip
+> RK3328 chip.
 > 
-> This enables WLAN and Bluetooth on two boards using the sc8280xp SoC.
-> For the sc8280xp-crd we add the PMU, wifi and bluetooth nodes with the
-> correctly modelled wiring between them. For the X13s, we rework existing
-> nodes so that they align with the new DT bindings contract.
+> [1] https://radxa.com/products/rockpi/pie
 > 
-> Bartosz Golaszewski (2):
->   arm64: dts: qcom: sc8280xp-crd: enable bluetooth
->   arm64: dts: qcom: sc8280xp-x13s: model the PMU of the on-board wcn6855
-> 
-> Konrad Dybcio (1):
->   arm64: dts: qcom: sc8280xp-crd: enable wifi
-> 
->  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts     | 169 ++++++++++++++++++
->  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    |  98 ++++++++--
->  2 files changed, 255 insertions(+), 12 deletions(-)
-> 
-> --
-> 2.43.0
-> 
-> 
+> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+> ---
+> Changes in v4:
+> - update compatible string for OpenWrt
+> - drop A-b tag
+> Changes in v3:
+> - collect A-b tag
+> Changes in v2:
+> - fix typo in commit message
+> - add missing --- in commit message
+> - add new section instead of new item in rockchip.yaml
+> ---
+>  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
 
 
@@ -104,34 +98,13 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y qcom/sc8280xp-crd.dtb qcom/sc8280xp-lenovo-thinkpad-x13s.dtb' for 20240813190639.154983-1-brgl@bgdev.pl:
+New warnings running 'make CHECK_DTBS=y rockchip/rk3328-rock-pi-e-v3.dtb rockchip/rk3328-rock-pi-e.dtb' for 20240814095727.1662908-1-naoki@radxa.com:
 
-arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb: bluetooth: 'enable-gpios' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb: bluetooth: 'swctrl-gpios' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb: bluetooth: 'vddio-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb: bluetooth: 'vddbtcxmx-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb: bluetooth: 'vddrfa1p7-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb: bluetooth: 'enable-gpios' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb: bluetooth: 'swctrl-gpios' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb: bluetooth: 'vddio-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb: bluetooth: 'vddbtcxmx-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb: bluetooth: 'vddrfa1p7-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb: wifi@0: 'vddrfa1p8-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/net/wireless/qcom,ath11k-pci.yaml#
-arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb: wifi@0: 'vddrfa1p8-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/net/wireless/qcom,ath11k-pci.yaml#
-arch/arm64/boot/dts/qcom/sc8280xp-crd.dtb: /wcn6855-pmu: failed to match any schema with compatible: ['qcom,wcn6855-pmu']
-arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dtb: /wcn6855-pmu: failed to match any schema with compatible: ['qcom,wcn6855-pmu']
+arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dtb: hdmi@ff3c0000: interrupts: [[0, 35, 4], [0, 71, 4]] is too long
+	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-hdmi.yaml#
+arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dtb: /phy@ff430000: failed to match any schema with compatible: ['rockchip,rk3328-hdmi-phy']
+arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dtb: /clock-controller@ff440000: failed to match any schema with compatible: ['rockchip,rk3328-cru', 'rockchip,cru', 'syscon']
+arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dtb: /clock-controller@ff440000: failed to match any schema with compatible: ['rockchip,rk3328-cru', 'rockchip,cru', 'syscon']
 
 
 
