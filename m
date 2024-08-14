@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-93505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 060FA95144E
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 08:15:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A29C1951455
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 08:16:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ACDB01F2410B
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 06:15:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57C93283C95
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 06:16:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 766AF139D12;
-	Wed, 14 Aug 2024 06:14:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C28D112D20D;
+	Wed, 14 Aug 2024 06:15:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lzq4aCZ3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sbfs3sQ2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36BBE77F11;
-	Wed, 14 Aug 2024 06:14:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F2A31F94D;
+	Wed, 14 Aug 2024 06:15:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723616077; cv=none; b=GUTf8cGeZGwqHxJdxqDxryPqs3oyzm2+ZnjXACeO8Zc30SaQKL/lP5Z1RHRe2acAEf2tAw4GI1I2mnI8YjaewWMmpC+T0tjcXroPIwh/i0RxryQFtN1NEu+zjBzzVPNTO5gAZbIZrav1mgUz+w6Qm70antk01nr685B7JQXI2HQ=
+	t=1723616114; cv=none; b=XwbIJLxe1BuDfRClLjUsu6CUAZmC75k0IBpTBW1H25l/g1heqMs5ZW7o1y8ZB4rGTD2EWi2clUOUU1sNbO03d6XSfDTsT9Ino0Sr4n5qEekk5tqQjoNbu51+2OXV6SuDuxrfer/FxXsMx3qjfCnKGEEIz+gubmHIDfPel144rMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723616077; c=relaxed/simple;
-	bh=DlYJNSBGA6tUTVu+Z6JtO34CDRzygC+vKhA7dQZQvfw=;
+	s=arc-20240116; t=1723616114; c=relaxed/simple;
+	bh=eFATB+IVTP9/D9IoVFDR56zxC7beyXosd5YkDb9+JxY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=V8QVRTYnmMDubulpgsWeH9hYSbFFFhh5vkxOyadBrtZ6FX5z4yC1T64eV0+KRrWrYuPYd+SXI/mZX68l4cbKlRvPMCJw/a5euMe0SKdQEXuOia6xELWX0VIkI3YA8gk6IQmUQztWpcjgYK337UYfqex3RNThm4PeXu+Y5ySacJI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lzq4aCZ3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C18C2C32786;
-	Wed, 14 Aug 2024 06:14:30 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=DfpV5bfrbgJTzpk87bYW/74ynWTMKajm6FJFUBLWEYTVsYgkSdptkCK5+OYN+eCt/kjMrLkMSfdo63dOs42ZdRR/rq0tn7ZLqPj5/lkfnDjVY3xLk92U47fjjArU+qpOV/8aYWw5YvWpiciQsXkW0ODRb0ZliyzGkw+DThAH330=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sbfs3sQ2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B08AC4AF0B;
+	Wed, 14 Aug 2024 06:15:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723616076;
-	bh=DlYJNSBGA6tUTVu+Z6JtO34CDRzygC+vKhA7dQZQvfw=;
+	s=k20201202; t=1723616114;
+	bh=eFATB+IVTP9/D9IoVFDR56zxC7beyXosd5YkDb9+JxY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Lzq4aCZ3TiVmSIHUEW4tnHs6dVDSxOtgaP1M8Uc8lBRyXIQfn4cVuymcIMDx9ozbj
-	 PunzJtAX+/2IT9+l+/PQOfkmOLi78BsyB6SRb5Uzjl2LG/gZTDyppnos3j09+gzdFq
-	 Qar46Uq9eFM3A7EcieLju/jWP2DgKVYnxHI1DQGCgAG4k4c/tnooT0kmUw/CLoKSOP
-	 5HgHuYbuKRKAbGEgOnGzdm3kOYKKgdjU7xijbeocp72bAQ7Qq+FRoqVArJOdGSQXx1
-	 Wk44FfqImhg+HBefd1wICZsWAj/ur/4Qu9f6ntcJqCS4SLB/hyVxttdb5jSyZrNPy2
-	 rnRgy/kTaWhTw==
-Message-ID: <3350aae1-a4a2-4a7c-a075-c29c8f67f5a2@kernel.org>
-Date: Wed, 14 Aug 2024 08:14:28 +0200
+	b=sbfs3sQ2Md725dWGWkDgfswlHwlxn3roNzP28QJ4ByGUrYUN1RPrgPV0H1hZq5nLr
+	 y387KGYR14lT6fRpXCD9UHjhCshOVPxcj0bowKa4T5kVUxX58grgS7fD0hvjlL5ean
+	 Z741s3gCGTs6cugotFgIbzIADo5BNZqQARNaBmP3AY+qgt4aWFzisi0XKfNjRs6Rwu
+	 Sliysl+eSs1rH0ATPkccdk1J72+9U5yCzRzsKUgYfmqG6kAEPisvMCyjSzAAcqxu5w
+	 XTDt3vF67dM4ukEBF5JRTbkLOV0ebCsKi3Uo14uDV1A7O5n6O1bSWcx1A307KEvWR+
+	 MbDCpwdMHFO6Q==
+Message-ID: <0ebb1ca3-722d-422f-9f71-fcc61c3470b0@kernel.org>
+Date: Wed, 14 Aug 2024 08:15:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] dt-bindings: net: bluetooth: qualcomm: add QCA9379
- compatible
-To: Felix Kaechele <felix@kaechele.ca>, Marcel Holtmann
- <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
- Jeff Johnson <jjohnson@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
- Rocky Liao <quic_rjliao@quicinc.com>
-Cc: linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+Subject: Re: [PATCH v1 1/3] dt-bindings: soc: qcom: eud: Update compatible
+ strings for eud
+To: Melody Olvera <quic_molvera@quicinc.com>,
+ Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Trilok Soni <quic_tsoni@quicinc.com>,
+ Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+ Elson Serrao <quic_eserrao@quicinc.com>
+Cc: cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-wireless@vger.kernel.org, ath10k@lists.infradead.org,
- linux-mmc@vger.kernel.org
-References: <20240805040131.450412-1-felix@kaechele.ca>
- <20240805040131.450412-4-felix@kaechele.ca>
- <645ae5c7-5421-4bf2-9aac-8151b7db4e0b@kernel.org>
- <3f16cd19-7609-4f97-bacd-9ab307bd8533@kaechele.ca>
+ linux-usb@vger.kernel.org
+References: <20240807183205.803847-1-quic_molvera@quicinc.com>
+ <20240807183205.803847-2-quic_molvera@quicinc.com>
+ <dfb1ac84-f011-45ea-9fb1-b8c6bc36cabc@kernel.org>
+ <46d0627d-877b-41f3-83f6-4c33b562f460@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,37 +113,49 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <3f16cd19-7609-4f97-bacd-9ab307bd8533@kaechele.ca>
+In-Reply-To: <46d0627d-877b-41f3-83f6-4c33b562f460@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/08/2024 00:11, Felix Kaechele wrote:
-> Thanks for taking a look, Krzysztof.
+On 13/08/2024 22:03, Melody Olvera wrote:
 > 
-> In this case I think it would be easiest to just use the existing 
-> qca9377 fallback and drop his part of the patchset.
-
-You need then other patchset documenting new compatible with fallback.
-Compatibles are always specific.
-
-https://elixir.bootlin.com/linux/v6.10-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst
-
 > 
-> As for the supplies: For the particular module I am working with the 
-> supplies are mostly shared with the WiFi side. So it "just works" 
-> without taking care of supplies on the BT side.
-
-You still should describe the hardware.
-
+> On 8/8/2024 4:00 AM, Krzysztof Kozlowski wrote:
+>> On 07/08/2024 20:32, Melody Olvera wrote:
+>>> The EUD can more accurately be divided into two types; a secure type
+>>> which requires that certain registers be updated via scm call and a
+>>> nonsecure type which must access registers nonsecurely. Thus, change
+>>> the compatible strings to reflect secure and nonsecure eud usage.
+>>>
+>>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+>>> ---
+>>>   Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml | 6 +++---
+>>>   1 file changed, 3 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml
+>>> index f2c5ec7e6437..476f92768610 100644
+>>> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml
+>>> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml
+>>> @@ -17,8 +17,8 @@ properties:
+>>>     compatible:
+>>>       items:
+>>>         - enum:
+>>> -          - qcom,sc7280-eud
+>>> -      - const: qcom,eud
+>>> +          - qcom,secure-eud
+>>> +          - qcom,eud
+>> Commit msg did not explain me why DT bindings rules are avoided here and
+>> you drop existing SoC specific compatible.
+>>
+>> This really does not look like having any sense at all, I cannot come up
+>> with logic behind dropping existing users. You could deprecate it, but
+>> then why exactly this device should have exception from generic bindings
+>> rule?
 > 
-> But I agree it would be more correct to add and handle these as well. 
-> The documentation I have access to through the FCC filing of this module 
-> is not really conclusive of how to correctly name them in this context.
-> I would rather avoid submitting a patch with incorrect supply names.
+> Understood. I won't drop this compatible string. Is alright to add the 
+> additional compatible as is?
 
-OK
-
-
+You always need SoC specific compatible.
 
 Best regards,
 Krzysztof
