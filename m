@@ -1,247 +1,184 @@
-Return-Path: <devicetree+bounces-93736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A88899520AC
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 19:03:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31A159520CE
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 19:14:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A4FC281B21
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 17:03:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F0131C21693
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 17:14:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D06BC1BA89E;
-	Wed, 14 Aug 2024 17:03:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3CB01BBBCA;
+	Wed, 14 Aug 2024 17:14:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="kBp76mJ0"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="PM1LQgUu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011040.outbound.protection.outlook.com [52.101.70.40])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF9261B3F10;
-	Wed, 14 Aug 2024 17:03:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.40
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723655025; cv=fail; b=W+Js17jFeYQfNH8U9HjxRyYi/oqdEtEC+186oGS35lFVV6MnkDwNbYYIF/IZi7691GVdK2jSf1sb0jC7wmqExTB+Sq3kUYQ6T1TP16DY799/QaiAJik8hJtdbK7oyTmLyxVPWaKAt2QOIO1ej+Sek1F1NbGkaxBwy1aEUT7Jj0I=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723655025; c=relaxed/simple;
-	bh=dyW2hMmqtsYd77p43Yx1kHx+1IOHvMbDqvnUzA5Gy2U=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=XNGabjPa+rRecaiEIVXnWMyWKkq39pW6kB5OMJvdZUbkKD2F1vMHImxRB6RfuX77hE2qMSOxUKNaZZXpmbCNSUKJ5rDSoMtfA1bK76Ko9IkCpoUEaCO/3msP5hh9IkvNmphSvkyA/38/rI4L+jgHAzNeWmrUdM74caWH3e1relI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=kBp76mJ0; arc=fail smtp.client-ip=52.101.70.40
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KRlgsQ2a7c5G4JrPdvqs4EfcieJ2se6GZUBEqxy+ypb9zAEwGcki2KExgCSYzNuV4KRf4MyQ9nj5h8nfJeC6kuBWHLxEbsgBNmIwKWC6HbpOdhdnMQ6Gnpah1FRBYf0prpHHCOYafl4nMpEQzqUEJ2uhWr2YxO8DtSBHYMp+uP25DcNQUD7vMdg1bm5M3XMzjZ5+2ZSMOwXmZ0Zoz7f2ywLoaIcFscjop6rHa/6rAVy7tJg4yMt10YsmyhI8cm8bz5fA4wQ1KBEvdyAwHdi75NqKo81EaAKPGkepaSUd+m7HZYyS5VHUBkvEZXQ7vqGRswy+KV2/DeaEzlXRDyHDSQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XQSBEq0HtSaDSgPJjhgUlwaubJZxkxwz48Q8pwkvoWA=;
- b=k1VnfmVYRlXi2+qKkvejTdQJaYZcahjkuj1UTpFYHzXYbLRTGtak0DxY0FY1LYt5VXiSUj/2+mkjHmaCewOA2yFWc0Tu/A9qwP9nbxloAHAVejGhnpBhMXLnGo3HUCy1WlUTkNIK0yI/lBdMuyc3KzNuv3iiHPhrygP4IWvkNkZfxb0G9262umhjiPp9HzL5GK7ecxSHQ5+SGRzVQCgx/jfT7mI+8F8OpF47YGca3rpLaYKfjwrhbUw9V9YtbkjvPexecHNUuNUMhb9pgYurQpMEmdT6oaK5EtnyFSyhmPDMVysh9UfHL26bn9KIxK9fjvT9saO9RMrqN0NIHJcT7g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XQSBEq0HtSaDSgPJjhgUlwaubJZxkxwz48Q8pwkvoWA=;
- b=kBp76mJ0amrtIdjxzpMrw9bF0TSux3tPUCjzm6z/iF2r5akXNsOn+ZXHe+4BJg3wxNRpAOCx5ISH1baCqKdJd8kX1do/wE2oAmUx1mRO50V7K2hJuZuV5ED6N5xG4+Zdsa7BbWF5WKuQzbwTh7hKrG1nsWSQj4h7Hi68RXEhVIabwY3izeVzH2SoF+GpmB59UtTJkPUyeJM2m7RhFC4iLhqoMFj2be4Ur9n/vPiLWrmrw8vgeDqI+sbFcTrWywJ2gYiYNw3gKnH3MXTIBKHmroTu5V2LNYSZYa6EhCI/phxcFfSx4ILWoHrGQcEbLJf0eVfOxJohomEBGsIDSK9hBA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AS8PR04MB8404.eurprd04.prod.outlook.com (2603:10a6:20b:3f8::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.22; Wed, 14 Aug
- 2024 17:03:41 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%3]) with mapi id 15.20.7875.016; Wed, 14 Aug 2024
- 17:03:41 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	netdev@vger.kernel.org (open list:ETHERNET PHY LIBRARY),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH v3 1/1] dt-bindings: net: mdio: change nodename match pattern
-Date: Wed, 14 Aug 2024 13:03:21 -0400
-Message-Id: <20240814170322.4023572-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR05CA0099.namprd05.prod.outlook.com
- (2603:10b6:a03:334::14) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67F5828DC3
+	for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 17:14:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723655665; cv=none; b=m3I1Ynw4WS/7JgTnbwSTkXhzRCS77iWDa7HVCblRIvNFPgRsSbRKGl2+xjGWnM1e7e8lPYZofqaaDQb8b/VAlc20N8XHcUbzTKfxSmycpQIbzpnGJXkse6JXXtNI5MElG5fMwVS66SGvOtfIfUp7I5RmGsdp6/YLH83wi/dunEQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723655665; c=relaxed/simple;
+	bh=blA3SSlWobp+ymfR6wJSN8N7F9m9dTpcI5LCBJp96tQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TmpAjGPyKWVEAah88exufDk1tTwIWSm6IRST03zQc10wp1R4TxncWJYzfu5Gl6xFz3zQwGjMGUiUA9fIDIamPQ2z4245WU1S7yHvfWnOhP7/LSFxnh/yjA2Y3SRAYavt/p6VcWIZVS+kCL4OM5id7SxFa/dT0Jlt4iACZkSW2yY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=PM1LQgUu; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2eeb1ba0481so1593121fa.2
+        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 10:14:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1723655661; x=1724260461; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XVbOQ51p6R1MiYPVnFg0RL8dPh9TQ81XjE0YMdoGDEk=;
+        b=PM1LQgUurYCwLYDINIJnOisowOyEve/EBHBn7deNsHBIA35oSiZwnlHyTFzJ7Aucyp
+         VVdDIKhkmN35r29ISm6IsZufZO29F2eoOwks6UgKrlglkfhhp52i2BIHD0xR4MOked66
+         JbA0VU5AmHKqzZ+eq4ixZcpBJqKF8UN9aEk9bpZf4Ya0Rmzswx4cw+jZcxRFjpizwc0x
+         5HTe+VhG9wq4+NA+ctFYrvFRhaKOy2xDKuo1Mg3TxPvffGF9/xiX9suHvaMRj20YcK+E
+         P27Tgm0l1RUamhlgigXry9lrkWsohHxBfZNxV6WkRxp9W3rkbLjxg5UN1V9GHiXrqcw1
+         w3Og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723655661; x=1724260461;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XVbOQ51p6R1MiYPVnFg0RL8dPh9TQ81XjE0YMdoGDEk=;
+        b=Sf4aGRwGAn/6JjnveyTRZ+QBaMi14qB58rzmerRAyehP0XIQu+uV0ucw1g7zcWVAlX
+         kMceIvQjWlCNohokD8GHWS6nQ0BHWN7meewbzHlIU7uYzGNES4nN8q83yHhRXLvpBjAz
+         +IDuKL0uv9qEnhqFV7ecRUantMWFFpnFu1MNq00lVIY99+WhOJrcqPC3IbuamdRPzK19
+         xIcrnOthKZE4coh7z6NugpaFt2wZYG1B51N5zmndSZISVBwH7NprbVSq4khPPlyQg3jA
+         f+bDTSev0MJuea7QvQmhS3wpt3cmGbUa1rY41nO8Lq8z+8oNmBexwjH8Fd2opVoRVaHB
+         TsNA==
+X-Forwarded-Encrypted: i=1; AJvYcCXa8GW6guN2Kl9zhCl2ZApscnMUdjDX2lkyH5/Lh0WX2aU8VyWf1LgJWseOU0DuHgNd0+K4VrcbthWtw32uU9R3a5S2yYWqbdGhVQ==
+X-Gm-Message-State: AOJu0YwmvZmcWlAwYERbO9sZkk0DQS2naNmrcxfcFmHejw/Z1W6l0aTr
+	bqSOtAyQyXE/VSyvO8tOpeu2c84dDHeJXB4QXO7T9fTHtYZZG8+S8NMJX32hk+4YTGxX0tmErfJ
+	6RW8F6+oH+R3w2iMe8IXFOPK1v4ulAb93dqGz7Q==
+X-Google-Smtp-Source: AGHT+IEL1JxJHsQVWFrwUNuPiVOcA6sWDEaFvbmneam38L+A5QIC+EqMK3s5NkkHC1kDhbTcuPkHxAMp4ntfuYQBQ4s=
+X-Received: by 2002:a05:651c:19ac:b0:2f0:25dc:1894 with SMTP id
+ 38308e7fff4ca-2f3aa1d9de7mr24706231fa.2.1723655661371; Wed, 14 Aug 2024
+ 10:14:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB8404:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9771853d-7de0-428f-c619-08dcbc830c0b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|366016|7416014|52116014|1800799024|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?qKyqzmAVP3stRLi4EB5pYDd4g9MeiK17K3VqOwrwY3ENRF08BCH7W+T3ll1G?=
- =?us-ascii?Q?F28EjTo56MziX6SCHprmjPJJehCWPqo0hoT+eFMYXgAV982IGv9V1woLIivT?=
- =?us-ascii?Q?3ExYhRo2ZzSuIqdRF24n75pUP8a8l5/LD4F2kTmtPc5cqSclUVa5Hn94JTu0?=
- =?us-ascii?Q?LNJRO/d4L2e8qVa04hp9vzliK5syoVdGKnHodQleIrGFxa8HJPzWXmmjUpk3?=
- =?us-ascii?Q?ynOw9OuMcIpTul69hf/qBMsWKSWj2dYjeqUjuTrIp0NDSRjfOBmmuk79VRdT?=
- =?us-ascii?Q?5BvvxQnUwUjjSnyAdC935pi9hRUlgOOhQ91OLa1kImqfwbu9+9WYQySE+40A?=
- =?us-ascii?Q?4MtpfedT1jDflu5AIMMKDXOR/3OtfkN97QfLHXabtJjDtyM7V3P/4H7Kz8Ox?=
- =?us-ascii?Q?ubG9E+D/jeTh/5CU921VQnahkzwua/+6evL/Ij6vOMsqc+rwimfWTgruxonf?=
- =?us-ascii?Q?VVVTBhUfgwVVvCNajPj4HIWxew9NgFcGnJz+3/EU5RrP+ieB1fLmCwUCiHBr?=
- =?us-ascii?Q?IBrxKL6ekG3B08pd+IaXIv+5R1mFdWu1TxGrNnKvjYFMNmlAIXhDJ2jW0zwI?=
- =?us-ascii?Q?EqKwAMLbxXhurSR86R7CmS6YkfkQCax1wIzrVGHC/Stbyee2wcGpqAxwJ88V?=
- =?us-ascii?Q?UDmF6dsP+plPaCkNKCHNy4iIUyI8jvZHHmcTtYIUz15PerKuUX03VF0iTjrk?=
- =?us-ascii?Q?9H6F9KDiy66NqlitVXrB5gMo4x8WqeYvAHXsgv7CCIufkidyWEmaPMZW2CP4?=
- =?us-ascii?Q?UrFkA4m40/2VRu2QFEPM1c2JrR69kj8shi3L/mpyWgpir69pO7TRfITBiIrW?=
- =?us-ascii?Q?RC1NbJ7X8UEZISnK8s4aaQqQNWZtg8V3aukjtWGX8+cMjVgsd55VMniqzcHt?=
- =?us-ascii?Q?7f4bzhC7ovcT7nLqpDRrn02LZneAWjjUcPkq7GtfIXIrRD5n6InhasJpzac3?=
- =?us-ascii?Q?4/dg993cvQj4/TT6Hbd1/yIoPSB4ijrEhdKhZwODPSj94322tMhKgendlhgP?=
- =?us-ascii?Q?G+SUCueoZVEj7n+Evasmy0MbmPhgyMYb3TBHkQiAbCeRP4p+qETD0pVLLmu1?=
- =?us-ascii?Q?/vJbrzLVbznsgKuuLjU+ZvjAVcMoyDeXmbD1Q/HsNxzvhRxij/RtUtx8VkFZ?=
- =?us-ascii?Q?MYE4ZcPI0iMVTvZF/JzW/ma56VVkO/viHhJANWacIsK5xJdYKjV0MCrt9K7i?=
- =?us-ascii?Q?fWg7ad9otK4RJE9ai4zWOWxqvfrgGmqogiscQaTqTuOHbesXMKnkq61dMpxw?=
- =?us-ascii?Q?SdomMHOXizjmlPLL2dldxcWw3SEdnOuZ3I5Fa+yIefnkdDOPbvlSIxKfWucv?=
- =?us-ascii?Q?Hci5kD8M8M8l/+LlSXVI0oxJ3M8BJxJw5AGOtbvBhucPU084015YbahOwTGk?=
- =?us-ascii?Q?r6j4yR8=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(7416014)(52116014)(1800799024)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?DnF8ZyBTY+skrv2tl8ymvuFotAp09uI1aySO7/wUw34WbwBqRk/MsP6khw5b?=
- =?us-ascii?Q?1YCiAQwIO9H3W//jV/xpQySFtL0xBPbxA7jpq0hHGO0vgM/f65wCtfyGqIab?=
- =?us-ascii?Q?w3cTZ2OPgkgnNVEDCGFww5GXyoqYhIGlxVt4sKQNesy3qTzxBpRcNvCPsrtG?=
- =?us-ascii?Q?/3xgCjcUKBNOWIaOi1io2+oAlWxMrc20uthBthKi/fNutBZ/mZfObCfvoOMB?=
- =?us-ascii?Q?jzTAzOgw9lB+bYTqftqHoLD7EJ37aWN1FcKnqlybyUIElirUGra8Go/wR6/2?=
- =?us-ascii?Q?mlA3FalbT5gMEpInq1rWvbwohSZypjFogjsc/dzTx3rNv7dY3yX7x0tSn3EP?=
- =?us-ascii?Q?NjvdJ/nT4rQjyKzoXJegIRIV6zjCv9xs69CKxcngw0fZY2NGzpxEomyctvcf?=
- =?us-ascii?Q?CyDyzm3C7vqRQYBhgO1m5irwXy9JRQ+1fVxDsx2tGAKdQB5vEfIqDOm4afYW?=
- =?us-ascii?Q?Lk6lMx7dvjVU/ruPtyrYaf2RfUNLPCNKJ9vCZ+fMSe+9KGBG3GWgv/uowmbC?=
- =?us-ascii?Q?ZMXnKD4tNv11XFF5sVuGxqXj4uICkbaAE4g27OlqdKZQ1Yxy0k+HeQie+qUq?=
- =?us-ascii?Q?XZSwi6HMf+nL2tVSxK+rZbDORmYzN/X9iaUhkl0lnlnXmSLTR4O168MRj14G?=
- =?us-ascii?Q?CjHMZk4i0WHMFfhw8w9928YwpYeALw/CwEC1dIyIwilJm42jQvaFjN5u3IS1?=
- =?us-ascii?Q?dswKSr2EZaPkN5sfzbDj/KvrCtcd/35zhUy0lpq+XbQ14oWNkHEyj4JMa7l+?=
- =?us-ascii?Q?G3eskq8A4NrqUqE+vjLiemVY/WxaQxCPPJBRCrQnht4bfIfqWEByAjYq1gaz?=
- =?us-ascii?Q?tqiMYt/5T+jw2RhNflJ0Qg+uOob6jsusZly7XPcm6H6mN1S6M5I1Ie3cUcoA?=
- =?us-ascii?Q?S7tUyLkJ2hSr9r1nqUNMr3ozrdktIUpV2fd6eao89dgGMdK6bYiXI94QBnq9?=
- =?us-ascii?Q?I57YpvQ3o4Q609YCYSOR0WnF1ebnhUYSAtgHp9a70occJJiSfjNACl7GoYT3?=
- =?us-ascii?Q?tlOD/EFxyK6ImlqX9XFTa1sYfYsRI/MQpJt5j6YnzZaiStRpUYW0vvKA3Xi0?=
- =?us-ascii?Q?n7oQolgBMwLlb+qWceaFz06Vk4fgWmKw/+OOyTEFa8uuQNguB4WFYQk2N2nW?=
- =?us-ascii?Q?mjJ2FG4MBaieVSvshcJ15B8371IUUJmvgkJvaXBpl3Hlloa8EJeidhaU2N3h?=
- =?us-ascii?Q?LVvEv4mZWE4A71Mpk1dwlxzZqU73S9zLE25+XsHi3ClRAxj6qlW5nEgbnajR?=
- =?us-ascii?Q?3NVeEBkDE3iN0dZY0SNR5+19JnGKlr4eeu7EesC9PTKTUgD+WEbGKZC8MDC2?=
- =?us-ascii?Q?9b+ArZOBmamT2SgnWQgWh/3kZDW4kdj5ClwjyuKEGaBMbtqFjsQOrkkouObS?=
- =?us-ascii?Q?AacIxoamN1auM6xm/7I/zDQRoMMY1Z+rHTufITWy922ICrGvOYFxSFS2Dnzq?=
- =?us-ascii?Q?ge0wIccqBbQ644DEhJgwfnypxqaJ75HlZLGVNfQh5Gur/3LCt1FnGSYGnI1a?=
- =?us-ascii?Q?FLS7bLV0LDLhaZZri9rhFCqW2veOCl6nHXctdr4Uvd2dOFBg4ZAZMUtmVvBG?=
- =?us-ascii?Q?PBK1seYusd+BJn9Ukj4=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9771853d-7de0-428f-c619-08dcbc830c0b
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Aug 2024 17:03:41.0473
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7qUB8chymBcKQZ/p6ZKMAxYBt6zmiXQwtws4MTe7xvd24z42yQi21GHlqm9X1rmpJ1s9UwCtANErR4eAgC7kVw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8404
+References: <20240722-dlech-mainline-spi-engine-offload-2-v3-0-7420e45df69b@baylibre.com>
+ <20240722-dlech-mainline-spi-engine-offload-2-v3-5-7420e45df69b@baylibre.com>
+ <20240726123836.GA998909-robh@kernel.org> <9f57e41f-3534-4188-ae78-d323aa45e2a1@baylibre.com>
+ <20240814-breeding-revolving-ba26c46164de@spud>
+In-Reply-To: <20240814-breeding-revolving-ba26c46164de@spud>
+From: David Lechner <dlechner@baylibre.com>
+Date: Wed, 14 Aug 2024 12:14:10 -0500
+Message-ID: <CAMknhBHxq3MKXATBXg6tZkkkUmiAtph=+8mV4KgcLne+J8kGzw@mail.gmail.com>
+Subject: Re: [PATCH RFC v3 5/9] spi: dt-bindings: axi-spi-engine: document spi-offloads
+To: Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>, 
+	Jonathan Cameron <jic23@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, 
+	David Jander <david@protonic.nl>, Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Change mdio.yaml nodename match pattern to
-	'^mdio(-(bus|external))?(@.+|-([0-9]+))$'
+On Wed, Aug 14, 2024 at 10:58=E2=80=AFAM Conor Dooley <conor@kernel.org> wr=
+ote:
+>
+> On Fri, Jul 26, 2024 at 02:17:00PM -0500, David Lechner wrote:
+> > On 7/26/24 7:38 AM, Rob Herring wrote:
+> > > On Mon, Jul 22, 2024 at 04:57:12PM -0500, David Lechner wrote:
+> > >> The AXI SPI Engine has support for hardware offloading capabilities.
+> > >> There can be up to 32 offload instances per SPI controller, so the
+> > >> bindings limit the value accordingly.
+> > >>
+> > >> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> > >> ---
+> > >>
+> > >> RFC: I have a few questions about this one...
+> > >>
+> > >> 1.  The trigger-source properties are borrowed from the leds binding=
+s.
+> > >>     Do we want to promote this to a generic binding that can be used=
+ by
+> > >>     any type of device?
+> > >
+> > > I would make it specific to spi-offload.
+> >
+> > OK
+> >
+> > Meanwhile, we are working on some other ADCs (without SPI offload) and
+> > finding that they are using basically the same sorts of triggers. And
+> > on the driver side of things in this series, I'm getting feedback that
+> > we should have some sort of generic trigger device rather than using,
+> > e.g. a clk directly. If we need this same sort of trigger abstraction
+> > for both SPI offloads and IIO device, it does seems like we might want
+> > to consider something like a new trigger subsystem.
+>
+> A "device" in the sense that "pwm-clk" is a device I suppose. >
 
-Fix mdio.yaml wrong parser mdio controller's address instead phy's address
-when mdio-mux exist.
+In simple cases, yes it could be like "pwm-clk" where a PWM/clock/gpio
+is used directly as the trigger. We also have a case where there is a
+PWM output combined with a clock output using an AND gate, so more of
+a "real" device. And finally, there is actual dedicated hardware, like
+this [1] time division duplexing (TDD) controller that, in addition to
+it's primary purpose for RF applications, can be used as a general
+purpose trigger source - mostly useful for creating burst of a finite
+number of pulses.
 
-For example:
-mdio-mux-emi1@54 {
-	compatible = "mdio-mux-mmioreg", "mdio-mux";
+[1]: http://analogdevicesinc.github.io/hdl/library/axi_tdd/index.html
 
-        mdio@20 {
-		reg = <0x20>;
-		       ^^^ This is mdio controller register
+> Are any of
+> these other things WIP on the lists (that I may have missed while I was
+> away) or are they still something you're working on internally.
 
-		ethernet-phy@2 {
-			reg = <0x2>;
-                              ^^^ This phy's address
-		};
-	};
-};
+My ideas on actual trigger devices and bindings are still mostly on
+paper, but we do have a couple of ADCs on the mailing lists right now
+where I think it would make more sense to have a flexible "trigger"
+but we have been making due with what is currently available.
 
-Only phy's address is limited to 31 because MDIO bus definition.
+ad7525
 
-But CHECK_DTBS report below warning:
+In this case, we need two coordinated triggers for the CNV and CLK
+signals, one that generates a single pulse and one that generates a
+burst of 16 or 18 pulses, both repeating periodically. Right now, the
+proposed DT bindings only allow specifying a PWM to provide the CNV
+signal and a second PWM combined with a clock and an AND gate (same
+one mentioned above) to provide the CLK signal because that is the
+reference hardware design. But technically if one wanted to use, for
+example, the aforementioned TDD controller to create these signals for
+CNV and CLK instead, it should work just the same.
 
-arch/arm64/boot/dts/freescale/fsl-ls1043a-qds.dtb: mdio-mux-emi1@54:
-	mdio@20:reg:0:0: 32 is greater than the maximum of 31
+[ad7525]: https://lore.kernel.org/linux-iio/20240809-ad7625_r1-v2-0-f85e7ac=
+83150@baylibre.com/
 
-The reason is that "mdio-mux-emi1@54" match "nodename: '^mdio(@.*)?'" in
-mdio.yaml.
+ad4030
 
-Change to '^mdio(-(bus|external))?(@.+|-([0-9]+))$' to avoid wrong match
-mdio mux controller's node.
+This also needs a CNV trigger, but it works slightly differently than
+ad7525. For now, the proposed DT bindings just have a cnv-gpios to
+describe what is connected to the CNV pin. But for certain
+applications, a GPIO is not the best choice. For example, to use the
+oversampling feature of the chip, we have to provide a burst of some
+power of 2 pulses, up to 16k pulses, with specific timing to trigger
+2**N conversions before reading one sample. This can be done by
+bit-banging the GPIO but could be done much better/faster by something
+like the TDD controller that is specifically designed to create a
+burst of a finite number of pulses.
 
-Also change node name mdio to mdio-0 in example of mdio-gpio.yaml to avoid
-warning.
+[ad4030]: https://lore.kernel.org/linux-iio/20240627-eblanc-ad4630_v1-v1-0-=
+fdc0610c23b0@baylibre.com/
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
-Change from v2 to v3
-- update mdio-gpio.yaml node name mdio to mdio-0 to fix dt_binding_check
-error foud by rob's bot.
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mdio-gpio.example.dtb: mdio: $nodename:0: 'mdio' does not match '^mdio(-(bus|external))?(@.+|-([0-9]+))$'
-	from schema $id: http://devicetree.org/schemas/net/mdio-gpio.yaml#
-
-Change from v1 to v2
-- use rob's suggest to fix node name pattern.
----
- Documentation/devicetree/bindings/net/mdio-gpio.yaml | 2 +-
- Documentation/devicetree/bindings/net/mdio.yaml      | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/net/mdio-gpio.yaml b/Documentation/devicetree/bindings/net/mdio-gpio.yaml
-index eb4171a1940e4..3be4f94638e61 100644
---- a/Documentation/devicetree/bindings/net/mdio-gpio.yaml
-+++ b/Documentation/devicetree/bindings/net/mdio-gpio.yaml
-@@ -44,7 +44,7 @@ examples:
-         mdio-gpio0 = &mdio0;
-     };
- 
--    mdio0: mdio {
-+    mdio0: mdio-0 {
-       compatible = "virtual,mdio-gpio";
-       #address-cells = <1>;
-       #size-cells = <0>;
-diff --git a/Documentation/devicetree/bindings/net/mdio.yaml b/Documentation/devicetree/bindings/net/mdio.yaml
-index a266ade918ca7..2ed787e4fbbf2 100644
---- a/Documentation/devicetree/bindings/net/mdio.yaml
-+++ b/Documentation/devicetree/bindings/net/mdio.yaml
-@@ -19,7 +19,7 @@ description:
- 
- properties:
-   $nodename:
--    pattern: "^mdio(@.*)?"
-+    pattern: '^mdio(-(bus|external))?(@.+|-([0-9]+))$'
- 
-   "#address-cells":
-     const: 1
--- 
-2.34.1
-
+Having a generic DT binding for these ADC input pins that can be
+connected to a wide variety of outputs seems more future proof than
+having to modify the bindings each time someone wants to support a new
+type of output provider.
 
