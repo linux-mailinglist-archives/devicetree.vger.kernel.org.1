@@ -1,271 +1,429 @@
-Return-Path: <devicetree+bounces-93710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0FC4951F8C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 18:13:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70A79951FBE
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 18:23:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADA00282EB6
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 16:13:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9E026B2371B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 16:14:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FECE1B583E;
-	Wed, 14 Aug 2024 16:13:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E08C61B8EA4;
+	Wed, 14 Aug 2024 16:14:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="jAKxSfPZ"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="RW32OWbu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011007.outbound.protection.outlook.com [52.101.70.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF6C21B86C5;
-	Wed, 14 Aug 2024 16:13:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.7
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723651992; cv=fail; b=TJ7Y3rln6R7zlrcXvgLkLKHLQbwaQ5TAG0dRbwoHQv3eDHSL+rwEGAckPv2txom/z9xp0IlG0vONrbSr5PyESI3YP944GdGBcez7Em7w+LbMzw3r3+4MKguW1WkJU0YQDesUd+F2u1s+7Rd0yRY1mP/UmOUlhJNq9y1DIZ+aHHM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723651992; c=relaxed/simple;
-	bh=bF6Rvm+jrGfuyQLBfe6cZbh/Zg0+RJaTwhyWbIGOkmg=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=Vzckg3cgOIDiZEPOejxHNCXwnuEtE7gwXQxGohspAOxGs775wSxchHNaKL+f3J/5RQdK+tVCgVcsjea4/TEPoF7K2nNAHxTqLkIgq1uDZx4vbkQF+Azxt4P6ANzEVbWnMXG/q1xHVEe6Xo/5MggbcuDGGSMy/RZsKcOJ+ozjYKg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=jAKxSfPZ; arc=fail smtp.client-ip=52.101.70.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=N1YLQ+s+cqCqYelAPRNnnXcqSJlVPGfQT3YDi8ATqyWXJArloxQtbRqy0nasNTu0oHwfQHYDIsYH1Zen9ATCeuUJGQgcOkm3INhX0pEskEXvzia/dDTIyiJXJ6uAqUUslwavwTL6BZXszu5dJy/CWZyXQ9zdx++4JYZ9A5QRF6KZpMj7wDeirP7238vbKmhNSrveQLSW5ppWsU8HAFvHI0tsrMrLOAxU4k7smWqEuUPBopD+VTlk8YzdtcP5B/g3BRVrzld130EeLq8bon/nRMypqdD6323mRYmpKS10VksK8aTiJQVhpaVS2Gk5A4XDNsNJWIB/qvD5L2qrS0Ci4Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LCawiasEWQmxx03JaGJj0ghynWnI6lujryI395NphD8=;
- b=h3U9izGod2SlqvyZdHRwTrAMck1i2jY93YCB56xPPHqF4mm3WJLs8CUTxCSf24p8IUxk6K+HabYlUNix5ckD+O3l+w77Xy/RjVMm1JxaqHEGnm8hjkE89jfpDB6J6xzY/EjvFeAv0Ymss96QeW/c5mPgyoQQ1qTmkaAg9r9uhN0weRA0Z1prOpqAF4fOPV6lAuNSEZk7Xn2+n9UoMBfoW61FOTvDNkRoDSKrOFJxCw+o8SYod7wWG3LNmwLRCQzmjgNgYLlkPSzX0TMRvm9uuf9lcER0URQsPm2kg3JY2hnsI4tdXWWP7bxSQsMnn3FJddRNKCXtwiNLWA8RhBfMQQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LCawiasEWQmxx03JaGJj0ghynWnI6lujryI395NphD8=;
- b=jAKxSfPZBGyc3zIPUtn8dRyv7B6aSQDeLXtrXPGWSLEFLaWuowNTIMRdMTVmD40ah6FsDwuEhGgTM05j0vzHcs4sttrEBDVYgEYi3E8DN3XvlgLeBcKM02ZbtmICbFS1fcIpbNSyQ49zW0h88FwNKFndfR1cjOUwJP/RrlytiQ/Vn/Dejdlfzcvswff033y8ssGVNWIeUVHwk0vOUREQzCpRlyum3foI5jDVgGueVpbvQ1s0g7MFCET67zw6qOCvIN5rik5WF978hDoSjTVoKV0c/rq4Se9tu4rGt51HYBcL+oZqmfJbCNLYJ/HtRzpt3iV2UTkGn7uQFjNNttcpZA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by GVXPR04MB10270.eurprd04.prod.outlook.com (2603:10a6:150:1c0::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.22; Wed, 14 Aug
- 2024 16:13:06 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%3]) with mapi id 15.20.7875.016; Wed, 14 Aug 2024
- 16:13:06 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Martyn Welch <martyn.welch@collabora.co.uk>,
-	Van Sebroeck <wim@iguana.be>,
-	linux-watchdog@vger.kernel.org (open list:WATCHDOG DEVICE DRIVERS),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH v3 1/1] dt-bindings: watchdog: convert ziirave-wdt.txt to yaml
-Date: Wed, 14 Aug 2024 12:12:48 -0400
-Message-Id: <20240814161250.4017427-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BYAPR07CA0025.namprd07.prod.outlook.com
- (2603:10b6:a02:bc::38) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBBFF1B86EF
+	for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 16:14:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.44
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723652069; cv=none; b=s4EPE/0qBtE6Lk3NhuBqV1WScYRbtuwAeYLM7/RqiN9rE/G8DKJ8tUVrfjxM3MWSIHuXyjDDz135ygr15nTe4VlHYZtuk1DaZHpnIJVUB9NEWJEqbwHS6de2LLlL4RXaT/JkWUqe4B1u8KZI/yIvNG88UleS2OPLbvRUTirrBVs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723652069; c=relaxed/simple;
+	bh=F6jB9x3wTG0Kj6+g0ZRAcWsy9QU5O735OqRr5mOugww=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bRxXNnhuUrtkdn1Z3baShEoL0ihcQuNnGzAWdB+qzBd2RztCkegc9ZxsSn8V1DQZg4MfkAX9+MNdaDuxA6KVmXVg5lYdiuDSAqTVABnau7y0ApSIgpFwF2rC35VPw/3NwIZ3UuHEubs0Vv6N/UM8T0WputFxJzmXhoa9d815Rl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=RW32OWbu; arc=none smtp.client-ip=209.85.166.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-io1-f44.google.com with SMTP id ca18e2360f4ac-81f96eaa02aso5341439f.2
+        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 09:14:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1723652066; x=1724256866; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rXV+YKI1ELuOkMaqAD9XBTtYzGZmQcby+BNTgX8XJuE=;
+        b=RW32OWbuUwlBWkPXyHpdeTRIHthEf9+wCbCs07GwIj9KDUuDiOyHxw3Ufa4JNpX8Zs
+         nrgcM6Y1+uObRw/7UmPdnYvQL5s46+hylO1epu+NgjZZP13G6CbpVLpr07/PpVlhqKhV
+         k0gg+zSoVQ5iGhpOgqgOZahsMcaESNtFC4My62DW9cksZh/u2AkmEwIACSslLSPYWd60
+         1Tufap3VJFwC1kg+V3Jc5QYgU2jE3c65hw4qvHcJ74+h/M+twDGlulHL4DnekW6vhvbh
+         wjZ/IXCdy75NyNxsHx/pMpOa6FsuPkSPmKMKtnQiIlmAfWfe0MAlt7fmAlNTarWcOjxd
+         sP9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723652066; x=1724256866;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rXV+YKI1ELuOkMaqAD9XBTtYzGZmQcby+BNTgX8XJuE=;
+        b=tjU1Hy6hpBT9DMFDPA7dOONtQm4fjBpxyPZ8Hw0FO//g0wCQELuyA0IsXJ3qsPCcw4
+         zva448cCSMBRppe7SmsMwwTn1YxqetHLvkGp3Aba2l2pVy0x9wdzm9BFhab2ZFl1WEqp
+         3Jz/gH32J7YJSKusa/XEkzlFSOmlcjrHNCp/8663RN7iPgjw2X3dY/vayKFpnkbVO/9z
+         yDOq77KE9cJy1YUQ6pBN4LhVfBDV0+TSUgj2KxZ5xskex+Y100bx2s1wRApZYmBpi9fz
+         RdrgOEdKVuLehTPunJyrmslnRH7wIThJ67RSZLJlseA7z+e2twPnvwyMiIrxlSg3j9Fd
+         EpoQ==
+X-Gm-Message-State: AOJu0YzKgHD/AfxLj7XgGEEwYre6Ls5knsnNQlWTwTmsi2yAS99HbKcp
+	BeBPBYCdb8DgIaaFbfM1/f0wTHsjKHbE4yYZyA1Auaz0kW3U6qke+X/jtMMvBxI=
+X-Google-Smtp-Source: AGHT+IGMFVYtUu0gZVCMgM2Ro959v/466tSE4pskvi77+JQqkpNSddXzOnguuxzFFXl3iVdzewPXkQ==
+X-Received: by 2002:a05:6602:148d:b0:813:f74:e6e6 with SMTP id ca18e2360f4ac-824dadf75femr426971839f.15.1723652065623;
+        Wed, 14 Aug 2024 09:14:25 -0700 (PDT)
+Received: from [100.64.0.1] ([147.124.94.167])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4ca76a330f7sm3340857173.145.2024.08.14.09.14.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Aug 2024 09:14:25 -0700 (PDT)
+Message-ID: <044b77fe-fd17-4c01-934a-80d63822fb3f@sifive.com>
+Date: Wed, 14 Aug 2024 11:14:23 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GVXPR04MB10270:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6fa1b009-9912-4137-3d9a-08dcbc7bfb17
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|376014|52116014|7416014|921020|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?sJlrtUONhbX8zmypIZ49xI9CSznz2k0zk4WT0PuudV54VKS0AWCZFN1Ajt0U?=
- =?us-ascii?Q?8NYKD3mcr6RRO2SbIBdjCLHv0TovutACpcRYGnvyFtD9ocAh6l71gpzXzpZw?=
- =?us-ascii?Q?PaOnpIFgUl6Xr9lhK8A3QpS+npuwjvo8Z9OskjVOT4ILJnllWohrqzRkTHcm?=
- =?us-ascii?Q?sR/d95yJdyjV21OdiFvcgM5pHQ/opANvORdWqW0UgODpWuZocbTw7n+vGgvu?=
- =?us-ascii?Q?CknJx3ya68J1ZLLCf/9ztvtglUGaS5fNOC/S3qP/eSs7+bZwp4fYDpqvfC3s?=
- =?us-ascii?Q?01Q+KQ1w9aJswyI4Ibr2UMbdEb9BFZlG1x1V4+ysxMVkN99YMA/3tw1zIhEu?=
- =?us-ascii?Q?V8J0SKglCvzuX2YvxOk89QEaySi3TYRLTRgFsSdcR0PzmynIMxwdfMXJvLoJ?=
- =?us-ascii?Q?uvCuuRDVetjacCtYU5IB/9KVMZvbjEk9IDDgAP4M0jbZYJRFnGvR/S7Tg2au?=
- =?us-ascii?Q?Y6q6CrRwODGK6rVudJfca4iGRDjzUcgYPPJAAQE/57ImSLYHmNfrvSby/PzU?=
- =?us-ascii?Q?qm1YnyGN9M5kcb7HfyTGr9QBztGy2A3rcK2Jp6yk1hc6KrOGpVKW8wnb0AwA?=
- =?us-ascii?Q?bMpjzx+nNU51dA4th4YPpA9gOYRtVLZR9uAk8Qvx3dR8gHhMx/AdjD/WjO0U?=
- =?us-ascii?Q?ZmR98y8j2GXQs2XnsNc4WM8FPRWsz/H30/Hlmw9OVwB2Ah79cS93xs5iBLpQ?=
- =?us-ascii?Q?KueAgXEKsDbSTD3ScQ69tLULP26qhPhYdjTLWtufMxRJ3skY6H1vj4zeQ5m8?=
- =?us-ascii?Q?u8bpb0Dl97Dyboio18HlyZuSPrz+02Lmk72NRzoxn/KIftDbFo/XCpbz9//u?=
- =?us-ascii?Q?WO4x3mDDkPHFJJeo0xAhdWXfO62oVy+tPfz0gv2nn8qkhV22SWTANhC47ndd?=
- =?us-ascii?Q?Wt1pr6fQjylLk4M2A0D6ykpf2fZIzjPjkeP802qz45fOLO4otoP0398YjqU2?=
- =?us-ascii?Q?waeeLXkPGUCXc40m5LbEOjcnkXBe2jFfR6GxOXmaZ27EOO9UBOyVej6iLOls?=
- =?us-ascii?Q?z162g/Lm/9CJeQ28SUY2Sd7J5TEmcnSOwsCDsrMjVTNpTVfrSr/Wm3PNpNX3?=
- =?us-ascii?Q?Z8Oijyu6jh7/fWLI6Ik+di3rBv7/2gOMbZgFBV4lvRKmEXNGt+Rs2Ai9KH3/?=
- =?us-ascii?Q?uIZ7TrNzgQ7WNc3v9VJrrAM5mCPLmcJs1A6pa2XTP9PoS5tgYwv4DzDZMDwR?=
- =?us-ascii?Q?c8UPEf7HA8RAv3WKXhiqq2hjcaZLqZp+DXt5hwB61cs5pUkvERoDIHQMp35w?=
- =?us-ascii?Q?DpPzn/QMqqhysre0xgOKza9pfq6kIX2yDob1rLPDfGWKaNuHI2P492fPU798?=
- =?us-ascii?Q?XbxtLer9Yeg9ZpdI0lPZ2AabdHNyzqAaIlNrv0nCSWHKteyPkkMwCqf1BsdL?=
- =?us-ascii?Q?yFIvIgxOfzteFhIph6oX2gV79bz1?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(52116014)(7416014)(921020)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?iQ5aUnhQkwYMjClif5OqeqM4mjQhyPokczwwkMPpmb1OxmgxQciMyxSELtIs?=
- =?us-ascii?Q?jeyGa8X9qQfXZ8AHFFALT4TXatymNi7O7eFiExPlabvtUpmb0FNS7PegC/PT?=
- =?us-ascii?Q?kBNmgLf6WI2xkqCnghTj8gf1iTWtJXXhm9bgXG6eVThe5JOFClPO/OqYTlmh?=
- =?us-ascii?Q?JlYY+jAqBuuSFSI9tVubDdxD9aOzeHKVLINwUwM58B5yB6r8oLnPTMwuf0MT?=
- =?us-ascii?Q?o9mJvRBflXd/EZCHtQO1J7i1BF87mJYMybbPChrhDEWp0WYqmepVOmM98PIf?=
- =?us-ascii?Q?p087E3GHgiG/g56uGiW+VfssgLDMtCi3uHEG4e8Uox24oJ45pF2IjwMK2aTl?=
- =?us-ascii?Q?bL/j50DdQj+Ny9B0H581aLa4W8+FaXIRTBihHCVmjC1azUvHr0cLOUavC/Wh?=
- =?us-ascii?Q?mfSqRghzVKMh5XpW8MpvOG0BU0lLNyMOsGLJ8xw/yJ8HOOG7sNqTbBSM/C7D?=
- =?us-ascii?Q?dzPafeMXDmi7Ft2KftBMJvEGpjKPqbbV14xWj5VgQ7ZtzQagqZ+m3FkLxpd5?=
- =?us-ascii?Q?JJH/P2gaSF1g8yYbxpVFYVVJzQNPVXNJRvH/JIy0U9MmrODEft6aAuR609G8?=
- =?us-ascii?Q?jXYrRik5rxyoHbnyHQDMatux6ws2QXEIVOLMwY8X+NVA3DTglBUPnPnDiFaP?=
- =?us-ascii?Q?FsFHoOUqkMDpI1QS5OPGCSXvFAN96aX+h2SsKFPw+rpf8cz4LmtBPsx2o7SX?=
- =?us-ascii?Q?zIixNMShgUMaMAH+A13uD4L/gZBewx+mkqUq5iCRhIf5EF25Y/62Q7EUrOtw?=
- =?us-ascii?Q?pNPM3EMNOf+x/jiQE0NodfHXpdg/aP4TFAyRshaRgZ+lTJerxwnf3JIsvztY?=
- =?us-ascii?Q?QI6gG2LcIXSRGZwwg6nDWCcGte2EvATjMQDEx22HzZDHjGmDlUXpraFOOEdg?=
- =?us-ascii?Q?WaQ70H0Yyf8sC00Au1G3SI4mm5rprQy/56BaBUtJS9DgtJpn+OSbtREhmaLh?=
- =?us-ascii?Q?QLftyNKrGMyLkn67dyFfP2ltuQXfKrfez5KJw1ozsYhzF/o+iQesYlfIYPWV?=
- =?us-ascii?Q?K8j8ZHn/ng7MotqL/gcVCD4eyBOVFOQBjVs9rpV5TEU6nUs1mfxPAG9I6iQ2?=
- =?us-ascii?Q?+1RlthWq1BWoiuJH5JrGsZil9SJ0KfmVUSw40RbpP1WfyRf93bnUSQLAtlpv?=
- =?us-ascii?Q?J0XJJ9XYFGCXRcUC5iifrJXGTpe+o7st+SRGBO8OytusZRLfi8sEy3uQ+ymg?=
- =?us-ascii?Q?t6De87QfEY+Es2oYnWFYmHnjRI+kEBz95i22YDtPMeeXf0U8df6kfb0gTYVL?=
- =?us-ascii?Q?m6jjI0a09ju8Ozumv+KdtxhBIHCsZ9dPTELlUEeZBouI9GECn4EA08HbB0e6?=
- =?us-ascii?Q?qXY8CBaGDvza6xXLdivO2EaGsbEImyocQtNpuPhXqEgx5IExJjgxcaGJcWSi?=
- =?us-ascii?Q?6qOFg7pvvNHDh/Gb1jDrcqe/byodVG4hDLxd25SoXmOkKWn1skhnsyv7Qz/f?=
- =?us-ascii?Q?KgoN5TQu71t2TZ5ZDYmKYb3wAt87TKuE77g6WvjuQk14JqYd3K99zV5l8+W9?=
- =?us-ascii?Q?Sd7gr4VcL2mDp4oN8wlfhalmvSviT9aijNETVZJcb/OFgkfwZFELus+CCXtU?=
- =?us-ascii?Q?YoMycaoDdYaeezybRcWyDDlmVsp1/uwi1Y2T4UJo?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6fa1b009-9912-4137-3d9a-08dcbc7bfb17
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Aug 2024 16:13:06.1459
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: l+4iXRuAtzHq6nIoE75WWkx02qCwN6mOuTw2R/Iy7gHma9HU9bS7doiF2F/D15WVAwDGg4bb8R4iKud7BwMYNQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10270
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 05/10] riscv: Add support for the tagged address ABI
+To: Alexandre Ghiti <alex@ghiti.fr>, Palmer Dabbelt <palmer@dabbelt.com>,
+ linux-riscv@lists.infradead.org
+Cc: devicetree@vger.kernel.org, Catalin Marinas <catalin.marinas@arm.com>,
+ linux-kernel@vger.kernel.org, Anup Patel <anup@brainfault.org>,
+ Conor Dooley <conor@kernel.org>, kasan-dev@googlegroups.com,
+ Atish Patra <atishp@atishpatra.org>, Evgenii Stepanov <eugenis@google.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>
+References: <20240814081437.956855-1-samuel.holland@sifive.com>
+ <20240814081437.956855-6-samuel.holland@sifive.com>
+ <35e8386f-854a-48d5-8c03-7a53f8ca3292@ghiti.fr>
+Content-Language: en-US
+From: Samuel Holland <samuel.holland@sifive.com>
+In-Reply-To: <35e8386f-854a-48d5-8c03-7a53f8ca3292@ghiti.fr>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Convert ziirave-wdt.txt to yaml format.
+Hi Alex,
 
-Additional change:
-- Add i2c node in example.
-- Add ref to watchdog.yaml
+On 2024-08-14 10:10 AM, Alexandre Ghiti wrote:
+> On 14/08/2024 10:13, Samuel Holland wrote:
+>> When pointer masking is enabled for userspace, the kernel can accept
+>> tagged pointers as arguments to some system calls. Allow this by
+>> untagging the pointers in access_ok() and the uaccess routines. The
+>> uaccess routines must peform untagging in software because U-mode and
+>> S-mode have entirely separate pointer masking configurations. In fact,
+>> hardware may not even implement pointer masking for S-mode.
+>>
+>> Since the number of tag bits is variable, untagged_addr_remote() needs
+>> to know what PMLEN to use for the remote mm. Therefore, the pointer
+>> masking mode must be the same for all threads sharing an mm. Enforce
+>> this with a lock flag in the mm context, as x86 does for LAM. The flag
+>> gets reset in init_new_context() during fork(), as the new mm is no
+>> longer multithreaded.
+>>
+>> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
+>> ---
+>>
+>> Changes in v3:
+>>   - Use IS_ENABLED instead of #ifdef when possible
+>>   - Implement mm_untag_mask()
+>>   - Remove pmlen from struct thread_info (now only in mm_context_t)
+>>
+>> Changes in v2:
+>>   - Implement untagged_addr_remote()
+>>   - Restrict PMLEN changes once a process is multithreaded
+>>
+>>   arch/riscv/include/asm/mmu.h         |  7 +++
+>>   arch/riscv/include/asm/mmu_context.h | 13 +++++
+>>   arch/riscv/include/asm/uaccess.h     | 58 ++++++++++++++++++++--
+>>   arch/riscv/kernel/process.c          | 73 ++++++++++++++++++++++++++--
+>>   4 files changed, 141 insertions(+), 10 deletions(-)
+>>
+>> diff --git a/arch/riscv/include/asm/mmu.h b/arch/riscv/include/asm/mmu.h
+>> index c9e03e9da3dc..1cc90465d75b 100644
+>> --- a/arch/riscv/include/asm/mmu.h
+>> +++ b/arch/riscv/include/asm/mmu.h
+>> @@ -25,9 +25,16 @@ typedef struct {
+>>   #ifdef CONFIG_BINFMT_ELF_FDPIC
+>>       unsigned long exec_fdpic_loadmap;
+>>       unsigned long interp_fdpic_loadmap;
+>> +#endif
+>> +    unsigned long flags;
+>> +#ifdef CONFIG_RISCV_ISA_SUPM
+>> +    u8 pmlen;
+>>   #endif
+>>   } mm_context_t;
+>>   +/* Lock the pointer masking mode because this mm is multithreaded */
+>> +#define MM_CONTEXT_LOCK_PMLEN    0
+>> +
+>>   #define cntx2asid(cntx)        ((cntx) & SATP_ASID_MASK)
+>>   #define cntx2version(cntx)    ((cntx) & ~SATP_ASID_MASK)
+>>   diff --git a/arch/riscv/include/asm/mmu_context.h
+>> b/arch/riscv/include/asm/mmu_context.h
+>> index 7030837adc1a..8c4bc49a3a0f 100644
+>> --- a/arch/riscv/include/asm/mmu_context.h
+>> +++ b/arch/riscv/include/asm/mmu_context.h
+>> @@ -20,6 +20,9 @@ void switch_mm(struct mm_struct *prev, struct mm_struct *next,
+>>   static inline void activate_mm(struct mm_struct *prev,
+>>                      struct mm_struct *next)
+>>   {
+>> +#ifdef CONFIG_RISCV_ISA_SUPM
+>> +    next->context.pmlen = 0;
+>> +#endif
+>>       switch_mm(prev, next, NULL);
+>>   }
+>>   @@ -30,11 +33,21 @@ static inline int init_new_context(struct task_struct *tsk,
+>>   #ifdef CONFIG_MMU
+>>       atomic_long_set(&mm->context.id, 0);
+>>   #endif
+>> +    if (IS_ENABLED(CONFIG_RISCV_ISA_SUPM))
+>> +        clear_bit(MM_CONTEXT_LOCK_PMLEN, &mm->context.flags);
+>>       return 0;
+>>   }
+>>     DECLARE_STATIC_KEY_FALSE(use_asid_allocator);
+>>   +#ifdef CONFIG_RISCV_ISA_SUPM
+>> +#define mm_untag_mask mm_untag_mask
+>> +static inline unsigned long mm_untag_mask(struct mm_struct *mm)
+>> +{
+>> +    return -1UL >> mm->context.pmlen;
+>> +}
+>> +#endif
+>> +
+>>   #include <asm-generic/mmu_context.h>
+>>     #endif /* _ASM_RISCV_MMU_CONTEXT_H */
+>> diff --git a/arch/riscv/include/asm/uaccess.h b/arch/riscv/include/asm/uaccess.h
+>> index 72ec1d9bd3f3..6416559232a2 100644
+>> --- a/arch/riscv/include/asm/uaccess.h
+>> +++ b/arch/riscv/include/asm/uaccess.h
+>> @@ -9,8 +9,56 @@
+>>   #define _ASM_RISCV_UACCESS_H
+>>     #include <asm/asm-extable.h>
+>> +#include <asm/cpufeature.h>
+>>   #include <asm/pgtable.h>        /* for TASK_SIZE */
+>>   +#ifdef CONFIG_RISCV_ISA_SUPM
+>> +static inline unsigned long __untagged_addr(unsigned long addr)
+>> +{
+>> +    if (riscv_has_extension_unlikely(RISCV_ISA_EXT_SUPM)) {
+>> +        u8 pmlen = current->mm->context.pmlen;
+>> +
+>> +        /* Virtual addresses are sign-extended; physical addresses are
+>> zero-extended. */
+>> +        if (IS_ENABLED(CONFIG_MMU))
+>> +            return (long)(addr << pmlen) >> pmlen;
+>> +        else
+>> +            return (addr << pmlen) >> pmlen;
+>> +    }
+>> +
+>> +    return addr;
+>> +}
+>> +
+>> +#define untagged_addr(addr) ({                        \
+>> +    unsigned long __addr = (__force unsigned long)(addr);        \
+>> +    (__force __typeof__(addr))__untagged_addr(__addr);        \
+>> +})
+>> +
+>> +static inline unsigned long __untagged_addr_remote(struct mm_struct *mm,
+>> unsigned long addr)
+>> +{
+>> +    if (riscv_has_extension_unlikely(RISCV_ISA_EXT_SUPM)) {
+>> +        u8 pmlen = mm->context.pmlen;
+>> +
+>> +        /* Virtual addresses are sign-extended; physical addresses are
+>> zero-extended. */
+>> +        if (IS_ENABLED(CONFIG_MMU))
+>> +            return (long)(addr << pmlen) >> pmlen;
+>> +        else
+>> +            return (addr << pmlen) >> pmlen;
+>> +    }
+>> +
+>> +    return addr;
+>> +}
+> 
+> 
+> I should have mentioned that in v2: now that you removed the thread_info pmlen
+> field, __untagged_addr_remote() and __untagged_addr() are almost the same, can
+> you merge them?
 
-Fix below warning:
-arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb: /soc@0/bus@30800000/i2c@30a40000/watchdog@38:
-	failed to match any schema with compatible: ['zii,rave-wdt']
+I can merge them, but this places the load of current->mm outside the static
+branch. If you think that is okay, then I'll merge them for v4.
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
-Change from v2 to v3
-- using original driver submitter and wdt maintainer as maintainter
-- add conor dooley review tag
-- remove value in milliseconds
+Regards,
+Samuel
 
-Change from v1 to v2
-- add ref watchdog.yaml
-- Remove timeout-sec
----
- .../bindings/watchdog/zii,rave-wdt.yaml       | 49 +++++++++++++++++++
- .../bindings/watchdog/ziirave-wdt.txt         | 19 -------
- 2 files changed, 49 insertions(+), 19 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/watchdog/zii,rave-wdt.yaml
- delete mode 100644 Documentation/devicetree/bindings/watchdog/ziirave-wdt.txt
-
-diff --git a/Documentation/devicetree/bindings/watchdog/zii,rave-wdt.yaml b/Documentation/devicetree/bindings/watchdog/zii,rave-wdt.yaml
-new file mode 100644
-index 0000000000000..9dbaa941538e3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/zii,rave-wdt.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/watchdog/zii,rave-wdt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Zodiac RAVE Watchdog Timer
-+
-+maintainers:
-+  - Martyn Welch <martyn.welch@collabora.co.uk>
-+  - Guenter Roeck <linux@roeck-us.net>
-+  - Wim Van Sebroeck <wim@iguana.be>
-+
-+properties:
-+  compatible:
-+    const: zii,rave-wdt
-+
-+  reg:
-+    maxItems: 1
-+    description: i2c slave address of device, usually 0x38
-+
-+  reset-duration-ms:
-+    description:
-+      Duration of the pulse generated when the watchdog times
-+      out.
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: watchdog.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        watchdog@38 {
-+            compatible = "zii,rave-wdt";
-+            reg = <0x38>;
-+            timeout-sec = <30>;
-+            reset-duration-ms = <30>;
-+        };
-+    };
-+
-diff --git a/Documentation/devicetree/bindings/watchdog/ziirave-wdt.txt b/Documentation/devicetree/bindings/watchdog/ziirave-wdt.txt
-deleted file mode 100644
-index 3d878184ec3ff..0000000000000
---- a/Documentation/devicetree/bindings/watchdog/ziirave-wdt.txt
-+++ /dev/null
-@@ -1,19 +0,0 @@
--Zodiac RAVE Watchdog Timer
--
--Required properties:
--- compatible: must be "zii,rave-wdt"
--- reg: i2c slave address of device, usually 0x38
--
--Optional Properties:
--- timeout-sec: Watchdog timeout value in seconds.
--- reset-duration-ms: Duration of the pulse generated when the watchdog times
--  out. Value in milliseconds.
--
--Example:
--
--	watchdog@38 {
--		compatible = "zii,rave-wdt";
--		reg = <0x38>;
--		timeout-sec = <30>;
--		reset-duration-ms = <30>;
--	};
--- 
-2.34.1
+>> +
+>> +#define untagged_addr_remote(mm, addr) ({                \
+>> +    unsigned long __addr = (__force unsigned long)(addr);        \
+>> +    mmap_assert_locked(mm);                        \
+>> +    (__force __typeof__(addr))__untagged_addr_remote(mm, __addr);    \
+>> +})
+>> +
+>> +#define access_ok(addr, size) likely(__access_ok(untagged_addr(addr), size))
+>> +#else
+>> +#define untagged_addr(addr) (addr)
+>> +#endif
+>> +
+>>   /*
+>>    * User space memory access functions
+>>    */
+>> @@ -130,7 +178,7 @@ do {                                \
+>>    */
+>>   #define __get_user(x, ptr)                    \
+>>   ({                                \
+>> -    const __typeof__(*(ptr)) __user *__gu_ptr = (ptr);    \
+>> +    const __typeof__(*(ptr)) __user *__gu_ptr = untagged_addr(ptr); \
+>>       long __gu_err = 0;                    \
+>>                                   \
+>>       __chk_user_ptr(__gu_ptr);                \
+>> @@ -246,7 +294,7 @@ do {                                \
+>>    */
+>>   #define __put_user(x, ptr)                    \
+>>   ({                                \
+>> -    __typeof__(*(ptr)) __user *__gu_ptr = (ptr);        \
+>> +    __typeof__(*(ptr)) __user *__gu_ptr = untagged_addr(ptr); \
+>>       __typeof__(*__gu_ptr) __val = (x);            \
+>>       long __pu_err = 0;                    \
+>>                                   \
+>> @@ -293,13 +341,13 @@ unsigned long __must_check __asm_copy_from_user(void *to,
+>>   static inline unsigned long
+>>   raw_copy_from_user(void *to, const void __user *from, unsigned long n)
+>>   {
+>> -    return __asm_copy_from_user(to, from, n);
+>> +    return __asm_copy_from_user(to, untagged_addr(from), n);
+>>   }
+>>     static inline unsigned long
+>>   raw_copy_to_user(void __user *to, const void *from, unsigned long n)
+>>   {
+>> -    return __asm_copy_to_user(to, from, n);
+>> +    return __asm_copy_to_user(untagged_addr(to), from, n);
+>>   }
+>>     extern long strncpy_from_user(char *dest, const char __user *src, long
+>> count);
+>> @@ -314,7 +362,7 @@ unsigned long __must_check clear_user(void __user *to,
+>> unsigned long n)
+>>   {
+>>       might_fault();
+>>       return access_ok(to, n) ?
+>> -        __clear_user(to, n) : n;
+>> +        __clear_user(untagged_addr(to), n) : n;
+>>   }
+>>     #define __get_kernel_nofault(dst, src, type, err_label)            \
+>> diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
+>> index 1280a7c4a412..f4d8e5c3bb84 100644
+>> --- a/arch/riscv/kernel/process.c
+>> +++ b/arch/riscv/kernel/process.c
+>> @@ -203,6 +203,10 @@ int copy_thread(struct task_struct *p, const struct
+>> kernel_clone_args *args)
+>>       unsigned long tls = args->tls;
+>>       struct pt_regs *childregs = task_pt_regs(p);
+>>   +    /* Ensure all threads in this mm have the same pointer masking mode. */
+>> +    if (IS_ENABLED(CONFIG_RISCV_ISA_SUPM) && p->mm && (clone_flags & CLONE_VM))
+>> +        set_bit(MM_CONTEXT_LOCK_PMLEN, &p->mm->context.flags);
+>> +
+>>       memset(&p->thread.s, 0, sizeof(p->thread.s));
+>>         /* p->thread holds context to be restored by __switch_to() */
+>> @@ -248,10 +252,16 @@ enum {
+>>   static bool have_user_pmlen_7;
+>>   static bool have_user_pmlen_16;
+>>   +/*
+>> + * Control the relaxed ABI allowing tagged user addresses into the kernel.
+>> + */
+>> +static unsigned int tagged_addr_disabled;
+>> +
+>>   long set_tagged_addr_ctrl(struct task_struct *task, unsigned long arg)
+>>   {
+>> -    unsigned long valid_mask = PR_PMLEN_MASK;
+>> +    unsigned long valid_mask = PR_PMLEN_MASK | PR_TAGGED_ADDR_ENABLE;
+>>       struct thread_info *ti = task_thread_info(task);
+>> +    struct mm_struct *mm = task->mm;
+>>       unsigned long pmm;
+>>       u8 pmlen;
+>>   @@ -266,16 +276,41 @@ long set_tagged_addr_ctrl(struct task_struct *task,
+>> unsigned long arg)
+>>        * in case choosing a larger PMLEN has a performance impact.
+>>        */
+>>       pmlen = FIELD_GET(PR_PMLEN_MASK, arg);
+>> -    if (pmlen == PMLEN_0)
+>> +    if (pmlen == PMLEN_0) {
+>>           pmm = ENVCFG_PMM_PMLEN_0;
+>> -    else if (pmlen <= PMLEN_7 && have_user_pmlen_7)
+>> +    } else if (pmlen <= PMLEN_7 && have_user_pmlen_7) {
+>> +        pmlen = PMLEN_7;
+>>           pmm = ENVCFG_PMM_PMLEN_7;
+>> -    else if (pmlen <= PMLEN_16 && have_user_pmlen_16)
+>> +    } else if (pmlen <= PMLEN_16 && have_user_pmlen_16) {
+>> +        pmlen = PMLEN_16;
+>>           pmm = ENVCFG_PMM_PMLEN_16;
+>> -    else
+>> +    } else {
+>>           return -EINVAL;
+>> +    }
+>> +
+>> +    /*
+>> +     * Do not allow the enabling of the tagged address ABI if globally
+>> +     * disabled via sysctl abi.tagged_addr_disabled, if pointer masking
+>> +     * is disabled for userspace.
+>> +     */
+>> +    if (arg & PR_TAGGED_ADDR_ENABLE && (tagged_addr_disabled || !pmlen))
+>> +        return -EINVAL;
+>> +
+>> +    if (!(arg & PR_TAGGED_ADDR_ENABLE))
+>> +        pmlen = PMLEN_0;
+>> +
+>> +    if (mmap_write_lock_killable(mm))
+>> +        return -EINTR;
+>> +
+>> +    if (test_bit(MM_CONTEXT_LOCK_PMLEN, &mm->context.flags) &&
+>> mm->context.pmlen != pmlen) {
+>> +        mmap_write_unlock(mm);
+>> +        return -EBUSY;
+>> +    }
+>>         envcfg_update_bits(task, ENVCFG_PMM, pmm);
+>> +    mm->context.pmlen = pmlen;
+>> +
+>> +    mmap_write_unlock(mm);
+>>         return 0;
+>>   }
+>> @@ -288,6 +323,10 @@ long get_tagged_addr_ctrl(struct task_struct *task)
+>>       if (is_compat_thread(ti))
+>>           return -EINVAL;
+>>   +    /*
+>> +     * The mm context's pmlen is set only when the tagged address ABI is
+>> +     * enabled, so the effective PMLEN must be extracted from envcfg.PMM.
+>> +     */
+>>       switch (task->thread.envcfg & ENVCFG_PMM) {
+>>       case ENVCFG_PMM_PMLEN_7:
+>>           ret = FIELD_PREP(PR_PMLEN_MASK, PMLEN_7);
+>> @@ -297,6 +336,9 @@ long get_tagged_addr_ctrl(struct task_struct *task)
+>>           break;
+>>       }
+>>   +    if (task->mm->context.pmlen)
+>> +        ret |= PR_TAGGED_ADDR_ENABLE;
+>> +
+>>       return ret;
+>>   }
+>>   @@ -306,6 +348,24 @@ static bool try_to_set_pmm(unsigned long value)
+>>       return (csr_read_clear(CSR_ENVCFG, ENVCFG_PMM) & ENVCFG_PMM) == value;
+>>   }
+>>   +/*
+>> + * Global sysctl to disable the tagged user addresses support. This control
+>> + * only prevents the tagged address ABI enabling via prctl() and does not
+>> + * disable it for tasks that already opted in to the relaxed ABI.
+>> + */
+>> +
+>> +static struct ctl_table tagged_addr_sysctl_table[] = {
+>> +    {
+>> +        .procname    = "tagged_addr_disabled",
+>> +        .mode        = 0644,
+>> +        .data        = &tagged_addr_disabled,
+>> +        .maxlen        = sizeof(int),
+>> +        .proc_handler    = proc_dointvec_minmax,
+>> +        .extra1        = SYSCTL_ZERO,
+>> +        .extra2        = SYSCTL_ONE,
+>> +    },
+>> +};
+>> +
+>>   static int __init tagged_addr_init(void)
+>>   {
+>>       if (!riscv_has_extension_unlikely(RISCV_ISA_EXT_SUPM))
+>> @@ -319,6 +379,9 @@ static int __init tagged_addr_init(void)
+>>       have_user_pmlen_7 = try_to_set_pmm(ENVCFG_PMM_PMLEN_7);
+>>       have_user_pmlen_16 = try_to_set_pmm(ENVCFG_PMM_PMLEN_16);
+>>   +    if (!register_sysctl("abi", tagged_addr_sysctl_table))
+>> +        return -EINVAL;
+>> +
+>>       return 0;
+>>   }
+>>   core_initcall(tagged_addr_init);
 
 
