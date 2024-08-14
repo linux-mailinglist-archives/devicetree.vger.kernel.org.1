@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-93634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE425951B9C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:13:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A42D0951BB1
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:20:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C0551F23594
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 13:13:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C96A51C22B0F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 13:20:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C123C1B14F6;
-	Wed, 14 Aug 2024 13:13:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4E931AC43B;
+	Wed, 14 Aug 2024 13:20:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RdmrIZX9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Py7y+rgi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 923361B14EC;
-	Wed, 14 Aug 2024 13:13:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AABDC1879;
+	Wed, 14 Aug 2024 13:20:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723641200; cv=none; b=Ne6AaKIjRTRarekA31C2094xpJst4XmPu6aP56TGetNusAjrFW+p4dh9EsxZjxnLZJzlX6bOp+hIQZ6+TMdFN38uL9FgBAKAlAGuHy+dCjCDG+LvvGnzI4cRHm6SP3TR9UZe53PTX/BtXMstyrfSiM0j86gy3p/CVxOz9VreI2Y=
+	t=1723641615; cv=none; b=LsAeyY4EsVTBPx2mxkWMmPpS9fdmzAIKmYPEnLDuyCqHVpzZtW6MdFxwHnrsj/jmkK6oaU1UcsShbgoqOUMO8Rm8EimLr8Xfv5kV3CdccO6ee5nsIx357yqu1k48iVPv0tV7XPGAIMz5xBUcVlDNh9qxYRq7uhgDlFbyVE96j4M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723641200; c=relaxed/simple;
-	bh=z4zj2gVInaFRovuPzHpW5WczQueqOkq8LRPT/A7HIAg=;
+	s=arc-20240116; t=1723641615; c=relaxed/simple;
+	bh=jlwesP2p6A7+NnxRcE8C0Ggn999OEbzh5LFIm/R8GyI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CX/57lz5xoBAU75H/fnDnnWR6fR+2zzYqoScqsHKbS6WPjBcl5FwYORpYqzlsX922yGvQ5KeQNJnUfbBVkePTTZMQvTtmrvdIpFWZb1qAaPSZqKDUJ/cKT2xrK18mwlY+i2ywbWqplfiym7WVn5IONPfXoiomM+y23uXjYDAza8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RdmrIZX9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE326C32786;
-	Wed, 14 Aug 2024 13:13:17 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=FX87YLnuoXsN6P9Yt2nu8Xh8Kb1MlwJrBz2GVFmN+GDMbsvrl6JsWbqlWdSbVDM05XNxZZKgRBz60Ac/xD1gh8T/Bl84xnUJzga95dUNnjsPVjBm+o+O5cE8diULTesF0ONCGm6Mi0+8QzQRaBTTUsn/7KHbUooEocrGIIVqPy8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Py7y+rgi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B420DC32786;
+	Wed, 14 Aug 2024 13:20:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723641200;
-	bh=z4zj2gVInaFRovuPzHpW5WczQueqOkq8LRPT/A7HIAg=;
+	s=k20201202; t=1723641615;
+	bh=jlwesP2p6A7+NnxRcE8C0Ggn999OEbzh5LFIm/R8GyI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RdmrIZX9Dbd9oAWkYV+K8KMtc1D3ZbjCxSECey3Tq261qxTxo95Rhnx3BHgwcxGLe
-	 F4pMd5NpJ9d6UuyVnBxmt/YAs3ecuFh0N2Fiqhe5lMuuZYVIyufYhwo2yRBZbT4+nl
-	 tU6FhSYDS+XZUJExQSiO6mr0f7SNV2sIwYEgaK7/NVM8mHPQe8A5Q8b0c6miyCj6HU
-	 9mHZsXIbEGx4VFbJbdVVxfAELr8XPFOVMeuXjGYJ1xCidPBaDffWHnrfhivNaPxSkW
-	 oQmh3M70OLbBL0FLmwJ8EwxzjrWaapF74IEVTWGpnwyUGI/GzI+vZf1DMhDTa2J5T6
-	 t696RrqE8RHyw==
-Message-ID: <9934151a-ab63-48cd-b868-f715dd1e870a@kernel.org>
-Date: Wed, 14 Aug 2024 15:13:15 +0200
+	b=Py7y+rgiRUdGlGuWnw7+1F40OHxq48g2BcVPT4+WkTzdPa9NalKWXJ/vGHXUO2vSX
+	 LanLXF0hg8iaLuAbxaFu+UhMVI7FN+tECeQTl0qacQfUlHeyRMwCCdlMRUFTiSMnXF
+	 QSn7N79RcFyUkLuhJS4RRKolxd2m8C/o/nt3+RPFTBR2L61LJG5FDUEzl7Sa098LEU
+	 VzFFI8s4Z2S1BS4PYViG/3V/CLmJKHJr2JvTaYuJ+hlXdJ66ywB97hruQo6g9tiMxl
+	 5v9EebDvoABqiS1aFU/5/NK5QiW19KMER8L7oyNXgzTwQpapphNyRd+fS7x7bdNKfB
+	 24GYe/Ma391eA==
+Message-ID: <3294e2d3-5142-4d7f-89d3-35528f26066e@kernel.org>
+Date: Wed, 14 Aug 2024 15:20:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] dt-bindings: usb: microchip,usb2514: Fix reference
- USB device schema
-To: Alexander Stein <alexander.stein@ew.tq-group.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240814065833.36372-1-alexander.stein@ew.tq-group.com>
+Subject: Re: [PATCH 1/5] ARM: dts: microchip: Clean up spacing and indentation
+To: Andrei Simion <andrei.simion@microchip.com>, claudiu.beznea@tuxon.dev,
+ nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, peda@axentia.se
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, cristian.birsan@microchip.com
+References: <20240814122633.198562-1-andrei.simion@microchip.com>
+ <20240814122633.198562-2-andrei.simion@microchip.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,50 +103,52 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240814065833.36372-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20240814122633.198562-2-andrei.simion@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/08/2024 08:58, Alexander Stein wrote:
-> An USB hub is not a HCD, but an USB device. Fix the referenced schema
-> accordingly. Adjust example to keep it aligned to other schemas.
+On 14/08/2024 14:26, Andrei Simion wrote:
+> Checkpatch.pl reports some ERRORS related
+> to coding style (spacing and indentation).
+> So clean up : checkpatch.pl --fix-inplace
+
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+
+Please be specific what are you changing.
+
+
 > 
-> Fixes: bfbf2e4b77e27 ("dt-bindings: usb: Document the Microchip USB2514 hub")
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
 > ---
-> As this USB hub also can contain an USB (ethernet) sub device, I copied
-> the subdevice part from usb-hcd.yaml.
+> Split the bloated patch into small patches on topics
+> based on comments:
+> https://lore.kernel.org/linux-arm-kernel/89f51615-0dee-4ab0-ab72-e3c057fee1e7@tuxon.dev/
+> ---
+>  arch/arm/boot/dts/microchip/at91-cosino_mega2560.dts  | 2 +-
+>  arch/arm/boot/dts/microchip/at91-sama5d27_som1_ek.dts | 8 ++++----
+>  arch/arm/boot/dts/microchip/at91-sama5d2_icp.dts      | 8 ++++----
+>  arch/arm/boot/dts/microchip/at91sam9263ek.dts         | 2 +-
+>  4 files changed, 10 insertions(+), 10 deletions(-)
 > 
-> I had to add 'additionalProperties: true' as well, because I got that warning
-> upon dt_binding_check otherwise:
+> diff --git a/arch/arm/boot/dts/microchip/at91-cosino_mega2560.dts b/arch/arm/boot/dts/microchip/at91-cosino_mega2560.dts
+> index 04cb7bee937d..1279dfb38300 100644
+> --- a/arch/arm/boot/dts/microchip/at91-cosino_mega2560.dts
+> +++ b/arch/arm/boot/dts/microchip/at91-cosino_mega2560.dts
+> @@ -7,7 +7,7 @@
+>   *			HCE Engineering
+>   *
+>   * Derived from at91sam9g35ek.dts by:
+> - * 	Copyright (C) 2012 Atmel,
+> + *	Copyright (C) 2012 Atmel,
 
+Not sure what you are fixing here, but unnecessary tab was here before
+and still exists...
 
-Thanks for fixing this.
-
+>   *      2012 Nicolas Ferre <nicolas.ferre@atmel.com>
+>   */
 >  
-> +patternProperties:
-> +  "^.*@[0-9a-f]{1,2}$":
-> +    description: The hard wired USB devices
-> +    type: object
-> +    $ref: /schemas/usb/usb-device.yaml
-> +    additionalProperties: true
-> +
->  unevaluatedProperties: false
->  
->  examples:
-> @@ -47,7 +54,7 @@ examples:
->          #address-cells = <1>;
->          #size-cells = <0>;
->  
-> -        usb-hub@1 {
-> +        hub@1 {
-
-This is not needed. Both are correct - usb-hub and hub. I prefer not to
-rename all "phy" nodes to "usb-phy" and vice versa.
-
-Rest is good, so with dropping this renaming hunk:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
