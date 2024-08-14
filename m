@@ -1,160 +1,283 @@
-Return-Path: <devicetree+bounces-93620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2D49951A72
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 13:56:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03320951AC2
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 14:24:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A25F284E0B
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 11:56:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82EB21F2350B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 12:24:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C74081AC42E;
-	Wed, 14 Aug 2024 11:56:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 002F81B010A;
+	Wed, 14 Aug 2024 12:24:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UGiJFEib"
+	dkim=pass (2048-bit key) header.d=mediatomb.cc header.i=@mediatomb.cc header.b="DjbYHbrT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FD2433D8;
-	Wed, 14 Aug 2024 11:56:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+Received: from xn--80adja5bqm.su (xn--80adja5bqm.su [198.44.140.76])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5B8B1AC427;
+	Wed, 14 Aug 2024 12:24:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.44.140.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723636593; cv=none; b=C+1Wl82Uc0mkqVBfAXV+1AIkuWN5o/uySJZELIeJbC/qVerq9b5siDCD7IjLvqa8pSuhf6tNgi5awZlDNukZNfvPy5SxRzM9MeFzvVvKQdl44dVGaBWmqVRm230gtV8mhhIIQepik4c/fBAgCQdqy66RajaxMswdzi6NzYOXiUY=
+	t=1723638263; cv=none; b=ZCLMXFGrVgycmu3krkseXy8PjFU7dMP61oHWyZA3CY5VW3DkjLgVBvpSoKUs6ufJ5OOcFrpGBo8FMNycV9XK+ZKJu2m7ksQioFsHKeLWabpAan68rvzF9S9RlhK3QUf+SQSGuSnhRBR3IHpVcF8zv7QXw4jktuYLHrzk5zXfnAM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723636593; c=relaxed/simple;
-	bh=1pcCy06X3XbMgVaEopGN1aTnxVo2DftWo39dMIi8bpM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=d+EwZSP5j91bE3ikSJEmdHdxh1UbTqXPwByrv/j6MZ0XYn3tGzzMNoXpBnYXN0h2dfoyuPN9mJ/+LMbP/WcoASuhHeh34oNZtKPI31tPbBXNWnTSpzouLJQrovSFdtGL/nek248Q7cVVpmF2H0f0uOoJaM7F6rJXZ1Vaa57ZqwU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UGiJFEib; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47E2jNRa022989;
-	Wed, 14 Aug 2024 11:56:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4YToA3MU1ziHG4HRyBfMBtVKHWNo6YWvtdnBJiO9td0=; b=UGiJFEibEA5HJJpy
-	rqSBqC18TGSDxYSenH8UTKoscTSquiFF0gJCEiMBGfETL0yFW6uNyYwVlbjpoCFY
-	ROvUH1CEbAn81Cp1U0LhmtUfQqNV3i0J9mKE3urhzyNLFainGqTncKPwL+A2ox4j
-	u3S6E3SX1r5oRGrnaVllnLC99L+R8kAeMZB1jPtpHB25pHwN18Qfg52/dIQYAlRI
-	deWSe5OrDQ6geLEhiZh3KozSXiR9JWQ3RrJy8lhRuhX5OdSM6ZrCSfavBAurcIvX
-	hFsanySn4SQKgb3t7W1ED5w1pZ23mH/D3b9vPeHufBRJHe0VZ+F1ZMSgHlLlZaXz
-	Bs3YPw==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 410m291b2p-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 14 Aug 2024 11:56:23 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47EBuMIc004657
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 14 Aug 2024 11:56:22 GMT
-Received: from [10.233.18.82] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 14 Aug
- 2024 04:56:19 -0700
-Message-ID: <81b60725-f744-4b40-9450-e881397c2ddf@quicinc.com>
-Date: Wed, 14 Aug 2024 19:56:17 +0800
+	s=arc-20240116; t=1723638263; c=relaxed/simple;
+	bh=EHmbgh7ChgPZtT5t/G6sc2EeuM+4y7bLcgcJae38lwU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pIQWsPr8STCSQzOd97AAg6/1JdKXaoTm66HDy7shLynMBaE0L55LMC4O1F1pFYkLdaPDU2HZbtZrC9ZFksygYxVbEcbZ4w+txTIgeAUJVX0cYELiw1q+KKTpqA4mpaNQiUN2WV45MF3qwmB5/PtB3SWmCJfoQGSMQmghbrvRqpc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mediatomb.cc; spf=pass smtp.mailfrom=xn--80adja5bqm.su; dkim=pass (2048-bit key) header.d=mediatomb.cc header.i=@mediatomb.cc header.b=DjbYHbrT; arc=none smtp.client-ip=198.44.140.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mediatomb.cc
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xn--80adja5bqm.su
+Received: by xn--80adja5bqm.su (Postfix, from userid 1000)
+	id 9A5974000222; Wed, 14 Aug 2024 12:24:03 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 xn--80adja5bqm.su 9A5974000222
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mediatomb.cc;
+	s=default; t=1723638244;
+	bh=EHmbgh7ChgPZtT5t/G6sc2EeuM+4y7bLcgcJae38lwU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DjbYHbrT1xxDc3/T/FRPTLbpYBOc1QXADxxd41UOBqYuRZX/x6GdVDpKgEiFF1X1m
+	 z5FH690DE+LTtu3gZNml3cUsn1GDL6klRM9mg9LxTmuVh/j2QPXOdGyFYhIUlisVRQ
+	 jwqjZ1wSX7HiEL1GcZl8tYDxVTXCLuemq0J23D+hyUPWZbg9qjjL6fydPmkJ0o7k68
+	 acT6/3lyuoUhwHtUP0d1m2BHVCOehZuFuSjee3KnRub0lFU/5WBazu00FhSdShCVl2
+	 e1d1dQmWzVLxpI+JP4U3Ficpjo8eHW9mqIu17IFKRPQUfMIOBI2JhENfEKvd0po8Y4
+	 7GIvD6I6G5KMg==
+Date: Wed, 14 Aug 2024 12:24:03 +0000
+From: Sergey 'Jin' Bostandzhyan <jin@mediatomb.cc>
+To: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+Cc: Daniel Golle <daniel@makrotopia.org>, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V2 1/2 RESEND] arm64: dts: rockchip: Add DTS for
+ FriendlyARM NanoPi R2S Plus
+Message-ID: <20240814122403.GB21761@ветеран.su>
+References: <22bbec28-41c1-4f36-b776-6e091bf118d9@kernel.org>
+ <2309282.ZQ0cqP7t2B@diego>
+ <3733110.CjrmPviFsx@diego>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: x1e80100: Add USB Multiport
- controller
-To: Konrad Dybcio <konradybcio@gmail.com>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>
-CC: Marijn Suijten <marijn.suijten@somainline.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "Krishna
- Kurapati" <quic_kriskura@quicinc.com>,
-        Konrad Dybcio
-	<quic_kdybcio@quicinc.com>
-References: <20240809-topic-h_mp-v1-0-3c5f468566d8@quicinc.com>
- <20240809-topic-h_mp-v1-2-3c5f468566d8@quicinc.com>
- <21fffb71-d559-4973-8028-d9c9b9f67001@quicinc.com>
- <3077d600-c570-407a-87eb-6926a67636f9@gmail.com>
-Content-Language: en-US
-From: Song Xue <quic_songxue@quicinc.com>
-In-Reply-To: <3077d600-c570-407a-87eb-6926a67636f9@gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: oTIIJTPogr3mwlPBdKQRiw32Cd6K7MNm
-X-Proofpoint-ORIG-GUID: oTIIJTPogr3mwlPBdKQRiw32Cd6K7MNm
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-14_08,2024-08-13_02,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1011
- spamscore=0 priorityscore=1501 mlxscore=0 bulkscore=0 adultscore=0
- impostorscore=0 phishscore=0 malwarescore=0 mlxlogscore=999
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408140084
+In-Reply-To: <3733110.CjrmPviFsx@diego>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 
+On Wed, Aug 14, 2024 at 01:36:43PM +0200, Heiko St�bner wrote:
+> Am Mittwoch, 14. August 2024, 13:21:38 CEST schrieb Sergey 'Jin' Bostandzhyan:
+> > Hi,
+> > 
+> > On Sat, Aug 10, 2024 at 09:11:56PM +0200, Heiko St�bner wrote:
+> > > Am Montag, 5. August 2024, 10:59:35 CEST schrieb Sergey 'Jin' Bostandzhyan:
+> > > > On Sun, Aug 04, 2024 at 01:27:50AM +0100, Daniel Golle wrote:
+> > > > > On Thu, Aug 01, 2024 at 05:57:35PM +0000, Sergey Bostandzhyan wrote:
+> > > > > > The R2S Plus is basically an R2S with additional eMMC.
+> > > > > > 
+> > > > > > The eMMC configuration for the DTS has been extracted and copied from
+> > > > > > rk3328-nanopi-r2.dts, v2017.09 branch from the friendlyarm/uboot-rockchip
+> > > > > > repository.
+> > > > > > 
+> > > > > > Signed-off-by: Sergey Bostandzhyan <jin@mediatomb.cc>
+> > > > > > ---
+> > > > > >  arch/arm64/boot/dts/rockchip/Makefile         |  1 +
+> > > > > >  .../dts/rockchip/rk3328-nanopi-r2s-plus.dts   | 31 +++++++++++++++++++
+> > > > > >  2 files changed, 32 insertions(+)
+> > > > > >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s-plus.dts
+> > > > > > 
+> > > > > > diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> > > > > > index fda1b980eb4b..36258dc8dafd 100644
+> > > > > > --- a/arch/arm64/boot/dts/rockchip/Makefile
+> > > > > > +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> > > > > > @@ -20,6 +20,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-evb.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-nanopi-r2c.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-nanopi-r2c-plus.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-nanopi-r2s.dtb
+> > > > > > +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-nanopi-r2s-plus.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-orangepi-r1-plus.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-orangepi-r1-plus-lts.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-rock64.dtb
+> > > > > > diff --git a/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s-plus.dts b/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s-plus.dts
+> > > > > > new file mode 100644
+> > > > > > index 000000000000..7b83090a2145
+> > > > > > --- /dev/null
+> > > > > > +++ b/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s-plus.dts
+> > > > > > @@ -0,0 +1,31 @@
+> > > > > > +// SPDX-License-Identifier: GPL-2.0+
+> > > > > > +/*
+> > > > > > + * (C) Copyright 2018 FriendlyElec Computer Tech. Co., Ltd.
+> > > > > > + * (http://www.friendlyarm.com)
+> > > > > > + *
+> > > > > > + * (C) Copyright 2016 Rockchip Electronics Co., Ltd
+> > > > > > + */
+> > > > > > +
+> > > > > > +/dts-v1/;
+> > > > > > +#include "rk3328-nanopi-r2s.dts"
+> > > > > > +
+> > > > > > +/ {
+> > > > > > +	model = "FriendlyElec NanoPi R2S Plus";
+> > > > > > +	compatible = "friendlyarm,nanopi-r2s-plus", "rockchip,rk3328";
+> > > > > > +
+> > > > > > +	aliases {
+> > > > > > +		mmc1 = &emmc;
+> > > > > > +	};
+> > > > > > +};
+> > > > > > +
+> > > > > > +&emmc {
+> > > > > > +	bus-width = <8>;
+> > > > > > +	cap-mmc-highspeed;
+> > > > > > +	supports-emmc;
+> > > > > > +	disable-wp;
+> > > > > > +	non-removable;
+> > > > > > +	num-slots = <1>;
+> > > > > > +	pinctrl-names = "default";
+> > > > > > +	pinctrl-0 = <&emmc_clk &emmc_cmd &emmc_bus8>;
+> > > > > 
+> > > > > I think it's worth adding
+> > > > > 
+> > > > > 	mmc-hs200-1_8v;
+> > > > > 
+> > > > > 
+> > > > > I've tried getting the best speed possible and while HS400 with and
+> > > > > without enhanced strobe did NOT work, hs200 works just fine.
+> > > > > [    0.459863] mmc_host mmc1: Bus speed (slot 0) = 50000000Hz (slot req 52000000Hz, actual 50000000HZ div = 0)
+> > > > > [    0.460884] mmc_host mmc1: Bus speed (slot 0) = 150000000Hz (slot req 150000000Hz, actual 150000000HZ div = 0)
+> > > > > ...
+> > > > > [    0.728220] dwmmc_rockchip ff520000.mmc: Successfully tuned phase to 194
+> > > > > [    0.728940] mmc1: new HS200 MMC card at address 0001
+> > > > > [    0.730774] mmcblk1: mmc1:0001 A3A551 28.9 GiB
+> > > > > [    0.733262]  mmcblk1: p1 p2
+> > > > > [    0.734562] mmcblk1boot0: mmc1:0001 A3A551 4.00 MiB
+> > > > > [    0.736818] mmcblk1boot1: mmc1:0001 A3A551 4.00 MiB
+> > > > > [    0.738503] mmcblk1rpmb: mmc1:0001 A3A551 16.0 MiB, chardev (245:0)
+> > > > > 
+> > > > > root@OpenWrt:/# hdparm -t /dev/mmcblk1
+> > > > > 
+> > > > > /dev/mmcblk1:
+> > > > >  Timing buffered disk reads: 342 MB in  3.00 seconds = 113.81 MB/sec
+> > > > > 
+> > > > > 
+> > > > > Without 'mmc-hs200-1_8v' property in DT the eMMC is detected as
+> > > > > [    0.440465] mmc_host mmc1: Bus speed (slot 0) = 50000000Hz (slot req 52000000Hz, actual 50000000HZ div = 0)
+> > > > > [    0.442032] mmc1: new high speed MMC card at address 0001
+> > > > > [    0.444261] mmcblk1: mmc1:0001 A3A551 28.9 GiB
+> > > > > [    0.447388]  mmcblk1: p1 p2
+> > > > > [    0.448744] mmcblk1boot0: mmc1:0001 A3A551 4.00 MiB
+> > > > > [    0.451065] mmcblk1boot1: mmc1:0001 A3A551 4.00 MiB
+> > > > > [    0.452871] mmcblk1rpmb: mmc1:0001 A3A551 16.0 MiB, chardev (245:0)
+> > > > > 
+> > > > > 
+> > > > > root@OpenWrt:/# hdparm -t /dev/mmcblk1
+> > > > > 
+> > > > > /dev/mmcblk1:
+> > > > >  Timing buffered disk reads: 134 MB in  3.03 seconds =  44.18 MB/sec
+> > > > > 
+> > > > > 
+> > > > > > +	status = "okay";
+> > > > > > +};
+> > > > > 
+> > > > > I'm right now trying to get SDIO RTL8822CS working, so far I'm out of luck,
+> > > > > but it can be added later once we got it working.
+> > > > 
+> > > > would you be interested in taking over my attempted patches? Thing is,
+> > > > that I am a userspace guy who only copy-pasted some entries from
+> > > > FriendlyElec and things happened to work, but I really have no clue what I am
+> > > > doing when it comes to hardware and DTS. I see that some changes were suggested, 
+> > > > not only by you above, but also by others earlier and I have little
+> > > > understanding of where I should be inserting what and how.
+> > > > 
+> > > > At this point I think it would make more sense if someone who actually
+> > > > understands what they are doing would continue to tune the DTS :)
+> > > > 
+> > > > So it'd be great if either you or anyone else would be willing to take
+> > > > over?
+> > > 
+> > > Though, a board devicetree is a nice way to get "your feet wet" in the
+> > > kernel :-) and for a lot of people scratching ones own itches gets them
+> > > started.
+> > 
+> > While this may very well be true, my main issue is not the DT syntax,
+> > but the lack of understanding of the underlying hardware and also a lack of
+> > enthusiasm to dive into the hardware topics - I prefer to stay in
+> > userspace where the kernel provides a very nice abstraction to all those 
+> > details ;)
+> 
+> No worries :-) .
+> 
+> Though in this case you're "on the hook" for the board devicetree :-D .
+> 
+> 
+> > > The devicetree is easy enough, also looks correct and you even got the
+> > > binding change correct - and you're the person with the actual board :-) .
+> > > 
+> > > Could you possibly test if the   mmc-hs200-1_8v; property works for you?
+> > 
+> > It does, I get pretty much the same results as Daniel:
+> > 
+> > root@nanopi-r2s-plus:~# hdparm -t /dev/mmcblk1
+> > /dev/mmcblk1:
+> >  Timing buffered disk reads: 134 MB in  3.04 seconds =  44.13 MB/sec
+> > 
+> > With mmc-hs200-1_8v:
+> > 
+> > root@nanopi-r2s-plus:~# hdparm -t /dev/mmcblk1
+> >  /dev/mmcblk1:
+> >   Timing buffered disk reads: 340 MB in  3.01 seconds = 113.08 MB/sec
+> > 
+> > Should I add a commit on top with this change and submit a v3 patchset?
+> > 
+> > On Thu, Aug 01, 2024 at 11:22:27PM +0200, Heiko St�bner wrote:
+> > > general remark, please don't send new versions as threaded replies to
+> > > old
+> > > versions. The normal case for git-send-email is to create a new thread
+> > > and this continuing inside the old thread confues tooling.
+> > 
+> > In case you tell me to go ahead with a v3 set, should it be in this
+> > thread or not? I understood RESEND's should be new, but updates should
+> > stay in the thread, right?
+> > 
+> > Sorry, I actually did read the guides, but seems misunderstood what I should
+> > be doing as I inserted the in-reply-to header in my last RESEND.
+> 
+> Please do a v3 ... in a new thread.
 
+There was one other note though to which I did not receive a clear
+repsonse. Bjoern A. Zeeb noticed, that the newer version from the
+rockhip repo has // SPDX-License-Identifier: (GPL-2.0+ OR MIT) while the
+one which I copied the code from did not have the "OR MIT" part, hence I
+also did not have it in my patch.
 
-On 8/14/2024 6:24 PM, Konrad Dybcio wrote:
-> On 14.08.2024 12:08 PM, Song Xue wrote:
->>
->> On 8/9/2024 9:18 PM, Konrad Dybcio wrote:
->>> X1E80100 has a multiport controller with 2 HS (eUSB) and 2 SS PHYs
->>> attached to it. It's commonly used for USB-A ports and internally
->>> routed devices. Configure it to support such functionality.
->>>
->>> Signed-off-by: Konrad Dybcio<konrad.dybcio@linaro.org>
->>> ---
-> 
-> [...]
-> 
->>> +
->>> +                phys = <&usb_mp_hsphy0>, <&usb_mp_qmpphy0>,
->>> +                       <&usb_mp_hsphy1>, <&usb_mp_qmpphy1>;
->>> +                phy-names = "usb2-0", "usb3-0",
->>> +                        "usb2-1", "usb3-1";
->>> +                dr_mode = "host";
->>
->> Why do we add the dr_mode definition in dtsi file rather than in corresponding board dts file?  Could we follow the node "usb_1_ss1_dwc3"  in x1e80100-crd.dtsi?
-> 
-> That is because the MP controller is host-only and it doesn't make sense
-> to ensure the OS of that in each board file separately. That's also how
-> it's done on other platforms with a MP controller description.
-> 
->>
->> BTW, how do we verify the function of  multiport controller？From my test on x1e80100-crd,  the eusb6 which is from usb_mp_hsphy1 attaches the third-party repeater, do we need a new repeater node/driver to verify the function of eusb6?
-> 
-> I have a X1E Surface Laptop 7 with a USB-A port with a NXP PTN3222 in
-> front of it. Tested with a smoke test, with both SS and HS USB-A devices.
-> 
-What is detailed information on smoke test.
- From my end, I also have two questions.
-1. I found the usb_mp_hsphy1 is using the driver "phy-qcom-snps-eusb2". 
-However, the driver requires a repeater node from DT. At present, we 
-don't have the node or driver for NXP repeater and it is not working on 
-eusb6 to detect the NXP repeater. So, is it possible for us to have 
-complete function involving with MP DT and repeater node for CRD board, 
-and then we push patches together?
-2. The usb_mp_dwc3 node has four phys. When enabling the driver for the 
-node, we must need enable all four phys in borad's DT. Howerver, if the 
-board is only using one phy like eusb6, is it suitable to enable other 
-three phys?
+Am I supposed to leave it as is, since I copied the block from the
+sources which indeed were GP-2.0 only or should I add the "OR MIT" part
+as it is apparently the case in newer versions of the dts file from
+rockhcip?
 
-Regards,
-Song Xue
-> Konrad
+> Also for the process, please add the Ack you received for patch 2
+> in that v3.
+
+You mean, ammend the appropriate commit and add the Acked-By to the
+commit message? OK, will do.
+
+On Wed, Aug 14, 2024 at 01:34:13PM +0200, Diederik de Haas wrote:
+> On Wed Aug 14, 2024 at 1:30 PM CEST, Diederik de Haas wrote:
+> > On Wed Aug 14, 2024 at 1:21 PM CEST, Sergey 'Jin' Bostandzhyan
+> > wrote:
+> > > In case you tell me to go ahead with a v3 set, should it be in
+> > > this
+> > > thread or not? I understood RESEND's should be new, but updates
+> > > should
+> > > stay in the thread, right?
+> >
+> > No, a new series should be its own thread too.
+> 
+> More correctly and hopefully more clearly:
+
+Understood, thank you!
+
+Kind regards,
+Sergey
+
 
