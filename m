@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-93635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A42D0951BB1
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:20:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 445D7951BB5
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:21:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C96A51C22B0F
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 13:20:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3F6C284610
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 13:21:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4E931AC43B;
-	Wed, 14 Aug 2024 13:20:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A073B1B14EC;
+	Wed, 14 Aug 2024 13:20:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Py7y+rgi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WI3w7z9C"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AABDC1879;
-	Wed, 14 Aug 2024 13:20:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73F641AC43E;
+	Wed, 14 Aug 2024 13:20:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723641615; cv=none; b=LsAeyY4EsVTBPx2mxkWMmPpS9fdmzAIKmYPEnLDuyCqHVpzZtW6MdFxwHnrsj/jmkK6oaU1UcsShbgoqOUMO8Rm8EimLr8Xfv5kV3CdccO6ee5nsIx357yqu1k48iVPv0tV7XPGAIMz5xBUcVlDNh9qxYRq7uhgDlFbyVE96j4M=
+	t=1723641647; cv=none; b=jDiURungSj2FT4J/w9z2OsZaIFIKpsTibMFMUPXzVRRd52SBhD6K/BkOOHz73OuZa3a7+pnfyotaY9NLUiM5wQCOrunfdBBgdUIbYN5gS2laqDWrhZrPrPWFx2M+AFg0c9WfuwgI3pAIcHFQIl87pZrtasIjYeeGwHZjHVKG2Uo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723641615; c=relaxed/simple;
-	bh=jlwesP2p6A7+NnxRcE8C0Ggn999OEbzh5LFIm/R8GyI=;
+	s=arc-20240116; t=1723641647; c=relaxed/simple;
+	bh=k64vxV73S2+OvQLUJ3a9/MuSG0OCPLRz3/GC7kCF8yw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FX87YLnuoXsN6P9Yt2nu8Xh8Kb1MlwJrBz2GVFmN+GDMbsvrl6JsWbqlWdSbVDM05XNxZZKgRBz60Ac/xD1gh8T/Bl84xnUJzga95dUNnjsPVjBm+o+O5cE8diULTesF0ONCGm6Mi0+8QzQRaBTTUsn/7KHbUooEocrGIIVqPy8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Py7y+rgi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B420DC32786;
-	Wed, 14 Aug 2024 13:20:11 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=YxxBFU+zC7K75pNsYC2zfqCDhhaaWGg6P4TGqMbd0DECQwnrLWxWmnHqU+sTmX+oTWNyEv0aSggPZY2LlrEyjKlenWn+ert7YK8xQOcrLIOfAGEV4kE2yLJS5vX8u+zimGPueFJ69mZz0ff9ncJDKcE3uwH/vw4Y5AH0zH4yVSA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WI3w7z9C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17386C4AF0D;
+	Wed, 14 Aug 2024 13:20:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723641615;
-	bh=jlwesP2p6A7+NnxRcE8C0Ggn999OEbzh5LFIm/R8GyI=;
+	s=k20201202; t=1723641646;
+	bh=k64vxV73S2+OvQLUJ3a9/MuSG0OCPLRz3/GC7kCF8yw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Py7y+rgiRUdGlGuWnw7+1F40OHxq48g2BcVPT4+WkTzdPa9NalKWXJ/vGHXUO2vSX
-	 LanLXF0hg8iaLuAbxaFu+UhMVI7FN+tECeQTl0qacQfUlHeyRMwCCdlMRUFTiSMnXF
-	 QSn7N79RcFyUkLuhJS4RRKolxd2m8C/o/nt3+RPFTBR2L61LJG5FDUEzl7Sa098LEU
-	 VzFFI8s4Z2S1BS4PYViG/3V/CLmJKHJr2JvTaYuJ+hlXdJ66ywB97hruQo6g9tiMxl
-	 5v9EebDvoABqiS1aFU/5/NK5QiW19KMER8L7oyNXgzTwQpapphNyRd+fS7x7bdNKfB
-	 24GYe/Ma391eA==
-Message-ID: <3294e2d3-5142-4d7f-89d3-35528f26066e@kernel.org>
-Date: Wed, 14 Aug 2024 15:20:09 +0200
+	b=WI3w7z9CS6tYEGat+sDA7Ie7mFQiHFI6WyTkR1Kj1hseIFW/8K8RQxflHm15frGL4
+	 Elx5w0naij7NudgUHumKstnv2w7+XVU24uM145Hvrx6NE1u4k57Y4CmihHkw1KYcLK
+	 D+DHNNChxPy0udCSb3+yfFbs1pONtNlSwiQRj3miEEOOcsvdG37zb8vKAue5h7dTxj
+	 7SjxpjQy/dYt/HAbp3GHOY6ZUzYPbpG5JCAOLpcU2d5W3gwW66LA1BrcvQyBDKmfCY
+	 9xvKJ5KCUrZf7+LwvZsItsG1OL6vUAkkA0JCJkeUKrz1VVh5j/PpuG8L7Jh4UVB+/5
+	 5g5Tvpr8xmtlQ==
+Message-ID: <d4857b92-1d2a-4ce4-a7db-24f8af2236c5@kernel.org>
+Date: Wed, 14 Aug 2024 15:20:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] ARM: dts: microchip: Clean up spacing and indentation
+Subject: Re: [PATCH 3/5] ARM: dts: microchip: Rename the pmic node
 To: Andrei Simion <andrei.simion@microchip.com>, claudiu.beznea@tuxon.dev,
  nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, robh@kernel.org,
  krzk+dt@kernel.org, conor+dt@kernel.org, peda@axentia.se
 Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org, cristian.birsan@microchip.com
 References: <20240814122633.198562-1-andrei.simion@microchip.com>
- <20240814122633.198562-2-andrei.simion@microchip.com>
+ <20240814122633.198562-4-andrei.simion@microchip.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,52 +103,22 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240814122633.198562-2-andrei.simion@microchip.com>
+In-Reply-To: <20240814122633.198562-4-andrei.simion@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 14/08/2024 14:26, Andrei Simion wrote:
-> Checkpatch.pl reports some ERRORS related
-> to coding style (spacing and indentation).
-> So clean up : checkpatch.pl --fix-inplace
-
-Please wrap commit message according to Linux coding style / submission
-process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
-
-Please be specific what are you changing.
-
-
+> Rename the pmic node according to the devicetree
+> specification.
 > 
 > Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
 > ---
 > Split the bloated patch into small patches on topics
-> based on comments:
+> based on comments
 > https://lore.kernel.org/linux-arm-kernel/89f51615-0dee-4ab0-ab72-e3c057fee1e7@tuxon.dev/
 > ---
->  arch/arm/boot/dts/microchip/at91-cosino_mega2560.dts  | 2 +-
->  arch/arm/boot/dts/microchip/at91-sama5d27_som1_ek.dts | 8 ++++----
->  arch/arm/boot/dts/microchip/at91-sama5d2_icp.dts      | 8 ++++----
->  arch/arm/boot/dts/microchip/at91sam9263ek.dts         | 2 +-
->  4 files changed, 10 insertions(+), 10 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/microchip/at91-cosino_mega2560.dts b/arch/arm/boot/dts/microchip/at91-cosino_mega2560.dts
-> index 04cb7bee937d..1279dfb38300 100644
-> --- a/arch/arm/boot/dts/microchip/at91-cosino_mega2560.dts
-> +++ b/arch/arm/boot/dts/microchip/at91-cosino_mega2560.dts
-> @@ -7,7 +7,7 @@
->   *			HCE Engineering
->   *
->   * Derived from at91sam9g35ek.dts by:
-> - * 	Copyright (C) 2012 Atmel,
-> + *	Copyright (C) 2012 Atmel,
 
-Not sure what you are fixing here, but unnecessary tab was here before
-and still exists...
-
->   *      2012 Nicolas Ferre <nicolas.ferre@atmel.com>
->   */
->  
+All renames should be rather together.
 
 Best regards,
 Krzysztof
