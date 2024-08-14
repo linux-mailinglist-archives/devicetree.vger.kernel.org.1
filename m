@@ -1,144 +1,114 @@
-Return-Path: <devicetree+bounces-93684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61B7E951E47
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 17:14:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67596951E70
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 17:21:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DF20283741
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:14:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96FAE1C20E14
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:21:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 618771B4C35;
-	Wed, 14 Aug 2024 15:14:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7389B1B3754;
+	Wed, 14 Aug 2024 15:21:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oumkvIra"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="22GQztV2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 366351B4C31;
-	Wed, 14 Aug 2024 15:14:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82E5C1AED24;
+	Wed, 14 Aug 2024 15:21:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723648466; cv=none; b=h9o7rVVtcYC7K359WV3sL26MYrx722Ls1jz2pgwlW5lASeRO7aolh5FH+cHoO9Ec5ehWspD9twF/qF/f/x1CBF0Lr/cYH+6Qt6iaTDdIuEN42aDzINiAfzU2Bnwe3g9kYI5TQlwyGseHczqL6Z3Dk3YNEv8Cw7e7KsAjMpJ2OWc=
+	t=1723648911; cv=none; b=ltZ9VuRmEo9N3Evsj13qnNgvjyQs8ppcv7dNCkvEYprJPyAD8JzOGqQ8LAFlds4yJMf/9TCsu5bON0mYV62gyborhlfqSaHhSKkpU4MxISXmg79ce6zlXh+XECbmWej6L/U/jfvZbuZ0U2jRBuIbBh/z3qTTTx1hqM9SdGd/A2k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723648466; c=relaxed/simple;
-	bh=4Q00RGCTF5GDpOGhKM+Oj+is+jUI0FdH6CnteZN5WgA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=POZ+vF2oOB5ZFaQX1ML3tHQnQvNiW1Ed9KrDOXV28LE/rUzWklRiHhPAbtugpRssAAqQzs1qRSUmzBYgy9INWEErwYMP0tZdIqzyRVXQmhzLjGWfjN1YgTpGJ47qsRkAtgYt2JUfhVqlP1PslTCj0XG6KMidL7RREHOpq5ZCQsU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oumkvIra; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEFD0C116B1;
-	Wed, 14 Aug 2024 15:14:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723648465;
-	bh=4Q00RGCTF5GDpOGhKM+Oj+is+jUI0FdH6CnteZN5WgA=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=oumkvIraSVSOtie2QwrPbtCKRCG6HGlv9frRe8f6h2YDpHJsLXHrUACwuZtRzQiJN
-	 lI1BFe/4g8k71w5DZeULgz6YHM+VudrvLdqWEJM5xxbrq3VDdq5bUvVgxgy3IGEBO9
-	 Sc3PHC2uCtmnrGk2JrhtqcIi3vLhthr2HXH9FoOVRtLTVK5YSBWVGn5wwpknX5cldA
-	 0q4e77ifWzp3CyCqln1S1d++t8pt04ayqALHoAGzvhN5jcJYjBGj7zrIPJFrrhLhUb
-	 V2m0LKu87dbxOh+X8kinJcZL0D7L8tb/eJ2IIONvjvG35nF0DdXKivblAcgEnVMxqU
-	 McPGudXmrFEnw==
-Message-ID: <1bf9edfe-5b32-4382-83d4-5be91e6c036e@kernel.org>
-Date: Wed, 14 Aug 2024 17:14:20 +0200
+	s=arc-20240116; t=1723648911; c=relaxed/simple;
+	bh=l5CbK8lsNYXz7WLusbOjthn2e52Ss1865Pf1ASkxRN8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DuQdshXmYqHDAGfrAqUa9pY4j9EmLnVaioZ/xRv1sjgaEl7XWih1OZOmYY23TH6SuvkinDCXBWNwijCAYbzPAXhg9DouUTh/aFWrmtv4nBV6At/vXOe1vnpITKxuD3w9AchMYjGW1GgS5ubvgBJQeuKwYD/tQfefTv2eurj7qHQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=22GQztV2; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=wWwr7zWATQuYFqeeYM1CqrF/gl5kEJAwbc6M3ZyF80g=; b=22GQztV2mfG2u0Gc3jzzQSpO65
+	7VWKwbTO6qzTKqhrLh0IqCLyOlWjXl3mSnI+8B6yooUouFyQUKE/ZDwgwCOSw8rtfEyG9f79lRUaO
+	owewVmJvWZ+S0wNt++i6JU9XJQdPMzhU2LZHSn7EaRy0nBccifQgaMjJIt/Mwc6aQD3g/E0qsM+pq
+	ZYjg5gSRkHb38a/dNHs3CttvGLosNHUhYxJ2l/affw8kN7Oubw7nwTDDtCRF8D65TGYVaTCoCmnEk
+	5YhH/gVdXEBa9dWqFRckrU1i9EO8DfVXAHJS7b73xvVPG4dq+Oq0BohGfL6hP7Cb1JJsnojyhvZyi
+	w2HyhxTg==;
+Received: from i53875a9f.versanet.de ([83.135.90.159] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1seFoV-0004yv-7N; Wed, 14 Aug 2024 17:21:27 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Yao Zi <ziyao@disroot.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Chris Morgan <macromorgan@hotmail.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>,
+ Andy Yan <andyshrk@163.com>, Muhammed Efe Cetin <efectn@protonmail.com>,
+ Jagan Teki <jagan@edgeble.ai>, Dragan Simic <dsimic@manjaro.org>,
+ Ondrej Jirman <megi@xff.cz>, Krzysztof Kozlowski <krzk@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-serial@vger.kernel.org
+Subject: Re: [PATCH 3/4] arm64: dts: rockchip: Add base DT for rk3528 SoC
+Date: Wed, 14 Aug 2024 17:21:25 +0200
+Message-ID: <2429972.SyXcmblsem@diego>
+In-Reply-To: <6320e4f3-e737-4787-8a72-7bd314ba883c@kernel.org>
+References:
+ <20240803125510.4699-2-ziyao@disroot.org>
+ <b967ab05-dd0e-4fc5-bee6-ad7639e47bfb@kernel.org>
+ <6320e4f3-e737-4787-8a72-7bd314ba883c@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/2] Add support for AST2700 INTC
-To: Kevin Chen <kevin_chen@aspeedtech.com>, tglx@linutronix.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
- andrew@codeconstruct.com.au, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org
-References: <20240814114106.2809876-1-kevin_chen@aspeedtech.com>
- <20240814114106.2809876-2-kevin_chen@aspeedtech.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240814114106.2809876-2-kevin_chen@aspeedtech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 14/08/2024 13:41, Kevin Chen wrote:
-> Support for the Aspeed Interrupt Controller found on Aspeed 7th Geration Silicon
-> SoCs.
+Am Dienstag, 13. August 2024, 18:38:58 CEST schrieb Krzysztof Kozlowski:
+> On 04/08/2024 16:05, Krzysztof Kozlowski wrote:
+> > On 04/08/2024 15:20, Yao Zi wrote:
+> >>>
+> >>>> +		compatible = "fixed-clock";
+> >>>> +		#clock-cells = <0>;
+> >>>> +		clock-frequency = <24000000>;
+> >>>> +		clock-output-names = "xin24m";
+> >>>> +	};
+> >>>> +
+> >>>> +	gic: interrupt-controller@fed01000 {
+> >>>
+> >>> Why this all is outside of SoC?
+> >>
+> >> Just as Heiko says, device tree for all other Rockchip SoCs don't have
+> >> a "soc" node. I didn't know why before but just follow the style.
+> >>
+> >> If you prefer add a soc node, I am willing to.
+> > 
+> > Surprising as usually we expect MMIO nodes being part of SoC to be under
+> > soc@, but if that's Rockchip preference then fine.
 > 
-> ASPEED interrupt controller(INTC) maps the internal interrupt sources of
-> the AST27XX devices to an parent interrupt controller.
+> One more comment, I forgot we actually have it documented long time ago:
 > 
-> Changes since v2:
-> Combine the aspeed_intc_ic_of_init and aspeed_intc_ic_of_init_v2.
-> Switch raw_spin_lock_irqsave to scoped_guard and guard.
-> Fix the error of make dt_binding_check.
-> Refine the aspeed,ast2700-intc.yaml.
+> https://elixir.bootlin.com/linux/v6.11-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L90
 
-It seems that entire Aspeed has troubles working with people in the
-community. You do not address feedback, you ignore it and asks us to
-re-review the same crap.
+Thanks for finding that block.
 
-Before we proceed further:
-1. Answer, inline, without confidentiality notice (after asking you this
-5 times, I think you should fix it finally) that you:
- - agree (ack/ok/agree)
- - disagree with explanation why
+I guess we'll follow that advice then and go with a soc node :-) .
 
-2. Then double check that your new version implements everything above.
 
-3. Then send new version (max once per 24h) with changelog and
-versioning (just use `b4`).
+Heiko
 
-If you keep ignoring step 1 and 2, you will annoy reviewers up to the
-point of automatic NAK or being ignored.
-
-Best regards,
-Krzysztof
 
 
