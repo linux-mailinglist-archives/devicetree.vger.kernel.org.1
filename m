@@ -1,131 +1,113 @@
-Return-Path: <devicetree+bounces-93645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6D14951C33
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:50:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAD3E951C3D
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:51:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 257AF1C229DB
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 13:50:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 672B12836E9
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 13:51:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08B421B0125;
-	Wed, 14 Aug 2024 13:50:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21C341B29B5;
+	Wed, 14 Aug 2024 13:51:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="aBpOHnEz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lvFCD54l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC1651DA4C;
-	Wed, 14 Aug 2024 13:50:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDD4F1B0121;
+	Wed, 14 Aug 2024 13:51:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723643438; cv=none; b=PFxN5/HMd7uVpS+lbNENRSDRKeIGfsYLypfAsimjIwb8e3zr+zr08eeiTsGRkvhpKSmj46pOplxGUqRG/ih8f2EU/HM6zrvlTASC8dBxYzF+Hd7VVXJYq049GNxtxg8YVwAkH+qSGX1r+Acl2uatFF8FzoDL5BxG2KhYIaQ46rA=
+	t=1723643470; cv=none; b=D80u3t1ARrgjWZxMbGrAtF2WtLcrpBdO3tyw6mlLg8dEuIaG93qziAULIYQnDj+LbGq6p58vSaz26t5fICzunExHUDi1/qPUMMn6vFg2KuZKvT62cUWcZsgRklzWbnQVDFQNNaULTxI56eEv0NJ8EhxZgaerWUVw99DN3XLzQYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723643438; c=relaxed/simple;
-	bh=L77S3EQ47II05J3Jqp4pq7LaCKMh2mMq1bPcetyBe6I=;
+	s=arc-20240116; t=1723643470; c=relaxed/simple;
+	bh=D0wbeYwEYlIc0tC9lVOfZ5aSYHYqpRDolJ+IlKgpWoQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=l/rxf6iJK3luGUmHWvrmhqHOtTmuGPm9jD8cLc6NF1W3Z0MBzvlXL7FAgl1WPZC7ShVQPXQyk3IwwjZo0XDj+cPoKrNAD0ajSHBQflolFqsI7RkabPXBWpSSTe3p/7eJ2GsWtHYVIGiAo2MALFhxyrYrpVkwUqFgAgEopFSgCwU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=aBpOHnEz; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=k2gPQomNmMNNm1/ovY9l8pCGvwEeBiuMBoC6iMko/88=; b=aBpOHnEzqmgwtCozBCSdtc2mIh
-	WPkwexFP17B9iiAQLYwD1Cx396dCzWbwA6Fu6KNqARGzd36mO0jLxKQKH717SLrBwzRtOURGeZP0L
-	extJlMK0nch4iSDuaKzKikINbbjrqpHUmfVQYUC6/bfQWqNvyBdW0FbMUPeeljCAwx6k=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1seEOM-004lg6-HL; Wed, 14 Aug 2024 15:50:22 +0200
-Date: Wed, 14 Aug 2024 15:50:22 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Tristram.Ha@microchip.com
-Cc: Woojung.Huh@microchip.com, UNGLinuxDriver@microchip.com,
-	devicetree@vger.kernel.org, f.fainelli@gmail.com, olteanv@gmail.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, marex@denx.de, netdev@vger.kernel.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=gUmjwAKigip411Y3B6XOycmZGKIoDxsO1BVD0IKtNGHf/xe4EDQlXNa0utOuC/QVAmqm1GyT6vnojOIHzBvmAMKZRi+C7luqaSvYX1lifeFPUAHe51L5RTKMsZbZ4QflIqjYFKi2NcWK88MpcHQl1Ye8/Q7L1/aFXXK2/IwWNHM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lvFCD54l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 074BFC4AF0D;
+	Wed, 14 Aug 2024 13:51:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723643469;
+	bh=D0wbeYwEYlIc0tC9lVOfZ5aSYHYqpRDolJ+IlKgpWoQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lvFCD54l8ywbh8HVnkAVrRRzdhlifEub+erkgslMAFqylt0X9p1rRn6Vwfivc2RKr
+	 bGZJAa3iPyJCq356ufbpcpWf0A35zu09Fk5XqpYBlVCVKAKOJ4/wN0Dqr6cyeMOnoX
+	 bLmaZiaY+kY3kvyRhYKPW5/BDviCKA3iIgBdXfg6NbSPG4OenKRcTUOq/5QkrIzWTW
+	 yIlLEktu9qNS9l4SxifexNS9vh9jKPfcGDpd/6K+vNWEjaTp2Fl0N4rWZbUufbc6Gd
+	 3E33m5BjrHRu3QQhgPp/aVB/CcEqTsT1lYEgAIjX/NVS7cqyzRj7ujwfFoa/vhKoO4
+	 FlJdb4FL6CwAg==
+Date: Wed, 14 Aug 2024 14:51:05 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Hugues KAMBA MPIANA <hugues.kambampiana@arm.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, abdellatif.elkhlifi@arm.com,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 1/4] dt-bindings: net: dsa: microchip: add SGMII
- port support to KSZ9477 switch
-Message-ID: <9b960383-6f6c-4a8c-85bb-5ccba96abb01@lunn.ch>
-References: <20240809233840.59953-1-Tristram.Ha@microchip.com>
- <20240809233840.59953-2-Tristram.Ha@microchip.com>
- <eae7d246-49c3-486e-bc62-cdb49d6b1d72@lunn.ch>
- <BYAPR11MB355823A969242508B05D7156EC862@BYAPR11MB3558.namprd11.prod.outlook.com>
- <144ed2fd-f6e4-43a1-99bc-57e6045996da@lunn.ch>
- <BYAPR11MB35584725C73534BC26009F77EC862@BYAPR11MB3558.namprd11.prod.outlook.com>
+Subject: Re: [PATCH] dt-bindings: arm: Update Corstone-1000 maintainers
+Message-ID: <20240814-detergent-given-f062d350f370@spud>
+References: <20240814133525.4090877-1-hugues.kambampiana@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Rn4szDAqStxIZrlv"
+Content-Disposition: inline
+In-Reply-To: <20240814133525.4090877-1-hugues.kambampiana@arm.com>
+
+
+--Rn4szDAqStxIZrlv
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <BYAPR11MB35584725C73534BC26009F77EC862@BYAPR11MB3558.namprd11.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 13, 2024 at 10:17:03PM +0000, Tristram.Ha@microchip.com wrote:
-> > > > > From: Tristram Ha <tristram.ha@microchip.com>
-> > > > >
-> > > > > The SGMII module of KSZ9477 switch can be setup in 3 ways: 0 for direct
-> > > > > connect, 1 for 1000BaseT SFP, and 2 for 10/100/1000 SFP.
-> > > > >
-> > > > > SFP is typically used so the default is 1.  The driver can detect
-> > > > > 10/100/1000 SFP and change the mode to 2.  For direct connect this mode
-> > > > > has to be explicitly set to 0 as driver cannot detect that
-> > > > > configuration.
-> > > >
-> > > > Could you explain this in more detail. Other SGMII blocks don't need
-> > > > this. Why is this block special?
-> > > >
-> > > > Has this anything to do with in-band signalling?
-> > >
-> > > There are 2 ways to program the hardware registers so that the SGMII
-> > > module can communicate with either 1000Base-T/LX/SX SFP or
-> > > 10/100/1000Base-T SFP.  When a SFP is plugged in the driver can try to
-> > > detect which type and if it thinks 10/100/1000Base-T SFP is used it
-> > > changes the mode to 2 and program appropriately.
-> > 
-> > What should happen here is that phylink will read the SFP EEPROM and
-> > determine what mode should be used. It will then tell the MAC or PCS
-> > how to configure itself, 1000BaseX, or SGMII. Look at the
-> > mac_link_up() callback, parameter interface.
->  
-> I am not sure the module can retrieve SFP EEPROM information.
+On Wed, Aug 14, 2024 at 02:35:25PM +0100, Hugues KAMBA MPIANA wrote:
+> - Add new maintainers: Abdellatif El Khlifi, Hugues Kamba Mpiana
+> - Remove maintainers: Vishnu Banavath, Rui Miguel Silva
+> - Update contact information for existing maintainers
 
-The board should be designed such that the I2C bus pins of the SFP
-cage are connected to an I2C controller. There are also a few pins
-which ideally should be connected to GPIOs, LOS, Tx disable etc. You
-can then put a node in DT describing the SFP cage:
+I can see what you have done, but why are you doing it?
 
-Documentation/devicetree/bindings/net/sff,sfp.yaml
+>=20
+> Signed-off-by: Hugues KAMBA MPIANA <hugues.kambampiana@arm.com>
+> ---
+>  Documentation/devicetree/bindings/arm/arm,corstone1000.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/arm,corstone1000.yaml =
+b/Documentation/devicetree/bindings/arm/arm,corstone1000.yaml
+> index 693f3fe7be60..cff1cdaadb13 100644
+> --- a/Documentation/devicetree/bindings/arm/arm,corstone1000.yaml
+> +++ b/Documentation/devicetree/bindings/arm/arm,corstone1000.yaml
+> @@ -7,8 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: ARM Corstone1000
+> =20
+>  maintainers:
+> -  - Vishnu Banavath <vishnu.banavath@arm.com>
+> -  - Rui Miguel Silva <rui.silva@linaro.org>
+> +  - Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+> +  - Hugues Kamba Mpiana <hugues.kambampiana@arm.com>
+> =20
+>  description: |+
+>    ARM's Corstone1000 includes pre-verified Corstone SSE-710 subsystem th=
+at
 
-    sfp2: sfp {
-      compatible = "sff,sfp";
-      i2c-bus = <&sfp_i2c>;
-      los-gpios = <&cps_gpio1 28 GPIO_ACTIVE_HIGH>;
-      mod-def0-gpios = <&cps_gpio1 27 GPIO_ACTIVE_LOW>;
-      pinctrl-names = "default";
-      pinctrl-0 = <&cps_sfpp0_pins>;
-      tx-disable-gpios = <&cps_gpio1 29 GPIO_ACTIVE_HIGH>;
-      tx-fault-gpios = <&cps_gpio1 26 GPIO_ACTIVE_HIGH>;
-    };
+--Rn4szDAqStxIZrlv
+Content-Type: application/pgp-signature; name="signature.asc"
 
-and then the ethernet node has a link to it:
+-----BEGIN PGP SIGNATURE-----
 
-    ethernet {
-      phy-names = "comphy";
-      phys = <&cps_comphy5 0>;
-      sfp = <&sfp1>;
-    };
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZry2SQAKCRB4tDGHoIJi
+0uoXAQCcCFQwf5DLEw1Q2ZRgnZ1OIbsY3mhEmAbSzJMn7VJgXQD/cJO3vUBYLTuE
+V7ZQLWMFL1UoXdhp9J87nykBPGSHjwk=
+=McgL
+-----END PGP SIGNATURE-----
 
-Phylink will then driver the SFP and tell the MAC what to do.
-
-	Andrew
+--Rn4szDAqStxIZrlv--
 
