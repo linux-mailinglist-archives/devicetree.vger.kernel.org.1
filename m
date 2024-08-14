@@ -1,375 +1,135 @@
-Return-Path: <devicetree+bounces-93483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 420D99511BE
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 03:54:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0C23951289
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 04:36:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A4E60B25186
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 01:54:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 668B11F23E8E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 02:36:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43CB311717;
-	Wed, 14 Aug 2024 01:54:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 156C31CAB1;
+	Wed, 14 Aug 2024 02:36:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="e6svQxP4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e69hQIRF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D4DF17997
-	for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 01:54:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0747EDC;
+	Wed, 14 Aug 2024 02:36:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723600466; cv=none; b=FimT1IcyI33r4VCqWfPwi0oKAydTGBPsL4ulAJE/4sJ7Yq0DKjLEDXZJTZsJGp401R5d1Q3GL+h4xe/tjFhBLfi9RWjia5xfY3EyYquz0F2/TKuUe202+lKLceZIR4HaN8fumEmDWc3d2rJKg4T85PcPaTSRoRianWA5gvgXHco=
+	t=1723602967; cv=none; b=EY0S8JcQEFHDlckAnx8kiuwGpqx7inK5oiv+eZ1xjAdByJgT+SpGIfyTpaK+IwL+3MSujHUr9uiDpoTS8JGGabUD61ftL3OuvoEhAumvq+EpX0dBPuKFFtwOzGymmj/OgwMyGE/psDGuXLWYe37fgx9mK4AmHA50RuwQQ7f5CWQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723600466; c=relaxed/simple;
-	bh=qPcLEe0Y3srOUd9t6dlKzpEgI+poh6U7DVd+TUP248c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NQGIq5W1ew/g29VMZob/noo3/shakFQRD5BTn2jTTEcH4XKF7lwxEfIPTPrsrlqA+eajzoUTsNJxDbN18EPNe7YcViyIB7LCvcA6n90teW5wOw0W4TK0eBLlTm/OkTuO+gcxvbzEQEntXH9U2xTMTYvt65WQlmie+KXy9WMcx0U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=e6svQxP4; arc=none smtp.client-ip=209.85.166.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-io1-f41.google.com with SMTP id ca18e2360f4ac-81fd1e1d38bso318651739f.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2024 18:54:24 -0700 (PDT)
+	s=arc-20240116; t=1723602967; c=relaxed/simple;
+	bh=z/e/Vw0J4e5obvgn8lfb9etDEk2Oq7XUTJr1vdgeifs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RHES0VE0+CVEhzlZVljHER0hKReNsgjtBC6Qgza80CSeFLeTIwcLKE436pCxMGx+0Pp+ZYl1VC/RCSCrFJW8naUCNUJ3kH8kV+3fCelbYmCeZvg/J3jvILYxwM8Vkd/6W7qjTBwJQe2wUzSFchtJzES8iO649AOwhFNnSrapltY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e69hQIRF; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-70d2b921c48so4730633b3a.1;
+        Tue, 13 Aug 2024 19:36:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1723600463; x=1724205263; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=p6pmULMAGWWHjRqkutdIwNmS0SAJKLB9nOZJ5sh6Gzk=;
-        b=e6svQxP4CbSbYjvyQy2AWh7muEzwfNw/D0I1J1DQCXj3PnnX2CEB8o4nph067ASPAE
-         jFc3lrWkaM+n3mF/dYVFHH3If/aMpdqrxRKfYkPdMc5kUhy6KYxX/h7DZXNcufI+IpQo
-         WPPOB8PEdpR/QHKKga9whpkpz1jmvpXxa8FL/v4WMgre3QxjP3+WWT034pH1Fi5GlQcP
-         8TSWPqiCvxyi9lZz56aVaSZxuF3uIahJY/q9WCbCOvD8Fgk8x5eNBoRMxJWem0/aFbpd
-         AIATzTYLbQPdDqH7OPtRED6O0EUggnunE54VXaE6DNfNajdyWrr/iYMBPrHKPckRppVq
-         NVaw==
+        d=gmail.com; s=20230601; t=1723602964; x=1724207764; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=EGrfiY7leOQdilBK/c5t/S7zb9gbYrFjlFEhTRyYzCI=;
+        b=e69hQIRFhWMsztMlS9iVlb/05Q4gnM334gAaBL1MoEJV4jBy22QC9awWUfWQchqnpo
+         AuziQe2IyIry6d3WSeiRCXO1GpAC7WmpYJJ9tZdsYAUM1UA7WDqhd4v4RZAJRq0NNl1s
+         d5ebSioiOR8NBukgO6i6CX0GSehV0rgn8YNwFSc5pXu8M/pF6xCmRWtftceDwdnxS+hV
+         6bLVVAq9fSb0zzEU2T5cJA5LYOcOLY1gZSGurFbyHxW7rMGopCsG63380lHrAuIX0pYb
+         tgcGU1loXa8gXtZU2abRZXBBqiq1YiU4wpt97gXegup29t4+fj6p/+zhhGgSyoH45vS8
+         UGqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723600463; x=1724205263;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1723602964; x=1724207764;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=p6pmULMAGWWHjRqkutdIwNmS0SAJKLB9nOZJ5sh6Gzk=;
-        b=k7BQ317yCTwV7B03ITW4SxDxN/FZ+4jZPYWVPP+8tDCvhusjTF7FW7UA1UTWT2Q9I7
-         lCk2i9fwmfiFQNLJ8okVvCWhf8Jvvw+4G1o9mpKVpx/NkFs5Q9WZl965k0XgnHuYhhQz
-         25dTZht8LSHJlql70RVsQfbKGRmND/FagxMCvDsp8X1VaXI/hKJF1HfCIG+jhyzXIjWO
-         FIgutAWUkBp/tDj1NIZLFSfJlhWQNNp3KpN8d0vp7pUMele7sAU6xUzo4QEeVhXoDvnC
-         xwVwuWnAgWY1whhUXTk6f3hmz5PJrZhZsPlVb5LUzQxPHm9m2mf+fwf2B1unOxAlXbY9
-         IK/Q==
-X-Gm-Message-State: AOJu0YwfggHJ02J+KDAXoCPdWBDP4hyQjAgvlNtVIXRMaXx3w2PBujfw
-	eGBjUpQlUKDreNHufDnctedOugq0Lh6MvXl4z+L4M6jNnFp2U6lVQHfi1aDRlGA=
-X-Google-Smtp-Source: AGHT+IE46kXd8oJ9fQY+S7XvoGy6ks+3JlzTSFcLeBH6FyLIJCxXaB6zmkbU7iEZyTSa78XeFhkUFg==
-X-Received: by 2002:a05:6602:3f91:b0:822:3d11:107a with SMTP id ca18e2360f4ac-824dacda2ecmr182325039f.4.1723600463386;
-        Tue, 13 Aug 2024 18:54:23 -0700 (PDT)
-Received: from [100.64.0.1] ([147.124.94.167])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4ca7695d26csm2890726173.84.2024.08.13.18.54.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Aug 2024 18:54:22 -0700 (PDT)
-Message-ID: <dc8da1d4-435a-4786-b4bc-7f89590c2269@sifive.com>
-Date: Tue, 13 Aug 2024 20:54:21 -0500
+        bh=EGrfiY7leOQdilBK/c5t/S7zb9gbYrFjlFEhTRyYzCI=;
+        b=c0v6QseqqnB8MvueZktdtdX2DLH4ry6fF2o40huV+09rOaRvVQnoWHeFA1+e1cQRAl
+         vuWactsTPEAaTZMj+XXI4ik9lqW/lT0igBltf/wOtCb/XaisMZo03pE4We9KDu78q56V
+         MUnL4SCIleasZPjsT7ODJSmnhesm/0D6uwFS3ENYDyGFZK6/8NBhkDlClJy3bLlmRnTa
+         u935ziTz3dT+qJiSfFFiW02V/mKNkisAHECvkXuZmYI/hz0pJClVNfDZt1KfZEiwJ2B+
+         B6KY8e+qUEE+UXzv9jjSF5T1THN04c3EKU2vLVrbxZn1Qzy5kAzCnOQNIZXrhWDyK/Kt
+         HCOw==
+X-Forwarded-Encrypted: i=1; AJvYcCWKfoPi+FVd4WXx/LNkmCMQQENMZ3iL7tuOi9C+NGSE/LdyS2eVwpKTQkszDajLGrODsefdrp2/p0HEOZ01ICKcH/WligQlIZ2oWGHzF1FlKLrTyVLPto1Gu2Gods+hI2R+mgPwclOrGGwyIP/ssswNlVJywOYmNJXck+JcWxAp1YzNWnU3
+X-Gm-Message-State: AOJu0YzauZKN3jMmsqNxHn31ou3kd6kQ33pyJRuiUIbsSRy1V0uuweXD
+	KDDluzm08WqAeeVfLf3APjBuPn4XodMuvm1dkmGrgfoSUHZuJACk
+X-Google-Smtp-Source: AGHT+IE2XDoQD0tgEpCNZpFSxZqtp4NHG3T0t2UiTIYkq4SxxY/f4xrxn/uhgImMEp+sN3wtW05MQw==
+X-Received: by 2002:a05:6a21:9204:b0:1c8:b849:c605 with SMTP id adf61e73a8af0-1c8eaf86728mr1844532637.44.1723602963657;
+        Tue, 13 Aug 2024 19:36:03 -0700 (PDT)
+Received: from ux-UP-WHL01 (mailgw01.gttektw.com. [45.117.96.243])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2d3ac7f9dc6sm336868a91.29.2024.08.13.19.36.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Aug 2024 19:36:03 -0700 (PDT)
+Date: Wed, 14 Aug 2024 10:35:58 +0800
+From: Charles Wang <charles.goodix@gmail.com>
+To: Doug Anderson <dianders@chromium.org>
+Cc: dan.carpenter@linaro.org, conor@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, jikos@kernel.org, bentiss@kernel.org,
+	hbarnor@chromium.org, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 1/2] HID: hid-goodix: Add Goodix HID-over-SPI driver
+Message-ID: <ZrwYDvAtwIbLTS18@ux-UP-WHL01>
+References: <20240813133612.49095-1-charles.goodix@gmail.com>
+ <20240813133612.49095-2-charles.goodix@gmail.com>
+ <CAD=FV=W7rqE+sSbspo6b0un=FbBcxgS24sKLUZ+NTkOdveJObg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 04/10] riscv: Add support for userspace pointer masking
-To: Alexandre Ghiti <alex@ghiti.fr>, Palmer Dabbelt <palmer@dabbelt.com>,
- linux-riscv@lists.infradead.org
-Cc: devicetree@vger.kernel.org, Catalin Marinas <catalin.marinas@arm.com>,
- linux-kernel@vger.kernel.org, Anup Patel <anup@brainfault.org>,
- Conor Dooley <conor@kernel.org>, kasan-dev@googlegroups.com,
- Atish Patra <atishp@atishpatra.org>, Evgenii Stepanov <eugenis@google.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>,
- "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>
-References: <20240625210933.1620802-1-samuel.holland@sifive.com>
- <20240625210933.1620802-5-samuel.holland@sifive.com>
- <440ca2a7-9dfb-45cd-8331-a8d0afff47d0@ghiti.fr>
-From: Samuel Holland <samuel.holland@sifive.com>
-Content-Language: en-US
-In-Reply-To: <440ca2a7-9dfb-45cd-8331-a8d0afff47d0@ghiti.fr>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAD=FV=W7rqE+sSbspo6b0un=FbBcxgS24sKLUZ+NTkOdveJObg@mail.gmail.com>
 
-Hi Alex,
+Hi Doug,
 
-Thanks for the review!
+Sorry for missing the "Reviewed-by" tag, will fix in v7.
 
-On 2024-08-13 3:58 AM, Alexandre Ghiti wrote:
-> Hi Samuel,
+On Tue, Aug 13, 2024 at 10:26:15AM -0700, Doug Anderson wrote:
+> Hi,
 > 
-> On 25/06/2024 23:09, Samuel Holland wrote:
->> RISC-V supports pointer masking with a variable number of tag bits
->> (which is called "PMLEN" in the specification) and which is configured
->> at the next higher privilege level.
->>
->> Wire up the PR_SET_TAGGED_ADDR_CTRL and PR_GET_TAGGED_ADDR_CTRL prctls
->> so userspace can request a lower bound on the  number of tag bits and
->> determine the actual number of tag bits. As with arm64's
->> PR_TAGGED_ADDR_ENABLE, the pointer masking configuration is
->> thread-scoped, inherited on clone() and fork() and cleared on execve().
->>
->> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
->> ---
->>
->> Changes in v2:
->>   - Rebase on riscv/linux.git for-next
->>   - Add and use the envcfg_update_bits() helper function
->>   - Inline flush_tagged_addr_state()
->>
->>   arch/riscv/Kconfig                 | 11 ++++
->>   arch/riscv/include/asm/processor.h |  8 +++
->>   arch/riscv/include/asm/switch_to.h | 11 ++++
->>   arch/riscv/kernel/process.c        | 99 ++++++++++++++++++++++++++++++
->>   include/uapi/linux/prctl.h         |  3 +
->>   5 files changed, 132 insertions(+)
->>
->> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
->> index b94176e25be1..8f9980f81ea5 100644
->> --- a/arch/riscv/Kconfig
->> +++ b/arch/riscv/Kconfig
->> @@ -505,6 +505,17 @@ config RISCV_ISA_C
->>           If you don't know what to do here, say Y.
->>   +config RISCV_ISA_POINTER_MASKING
->> +    bool "Smmpm, Smnpm, and Ssnpm extensions for pointer masking"
->> +    depends on 64BIT
->> +    default y
->> +    help
->> +      Add support for the pointer masking extensions (Smmpm, Smnpm,
->> +      and Ssnpm) when they are detected at boot.
->> +
->> +      If this option is disabled, userspace will be unable to use
->> +      the prctl(PR_{SET,GET}_TAGGED_ADDR_CTRL) API.
->> +
->>   config RISCV_ISA_SVNAPOT
->>       bool "Svnapot extension support for supervisor mode NAPOT pages"
->>       depends on 64BIT && MMU
->> diff --git a/arch/riscv/include/asm/processor.h
->> b/arch/riscv/include/asm/processor.h
->> index 0838922bd1c8..4f99c85d29ae 100644
->> --- a/arch/riscv/include/asm/processor.h
->> +++ b/arch/riscv/include/asm/processor.h
->> @@ -194,6 +194,14 @@ extern int set_unalign_ctl(struct task_struct *tsk,
->> unsigned int val);
->>   #define RISCV_SET_ICACHE_FLUSH_CTX(arg1, arg2)   
->> riscv_set_icache_flush_ctx(arg1, arg2)
->>   extern int riscv_set_icache_flush_ctx(unsigned long ctx, unsigned long
->> per_thread);
->>   +#ifdef CONFIG_RISCV_ISA_POINTER_MASKING
->> +/* PR_{SET,GET}_TAGGED_ADDR_CTRL prctl */
->> +long set_tagged_addr_ctrl(struct task_struct *task, unsigned long arg);
->> +long get_tagged_addr_ctrl(struct task_struct *task);
->> +#define SET_TAGGED_ADDR_CTRL(arg)    set_tagged_addr_ctrl(current, arg)
->> +#define GET_TAGGED_ADDR_CTRL()        get_tagged_addr_ctrl(current)
->> +#endif
->> +
->>   #endif /* __ASSEMBLY__ */
->>     #endif /* _ASM_RISCV_PROCESSOR_H */
->> diff --git a/arch/riscv/include/asm/switch_to.h
->> b/arch/riscv/include/asm/switch_to.h
->> index 9685cd85e57c..94e33216b2d9 100644
->> --- a/arch/riscv/include/asm/switch_to.h
->> +++ b/arch/riscv/include/asm/switch_to.h
->> @@ -70,6 +70,17 @@ static __always_inline bool has_fpu(void) { return false; }
->>   #define __switch_to_fpu(__prev, __next) do { } while (0)
->>   #endif
->>   +static inline void envcfg_update_bits(struct task_struct *task,
->> +                      unsigned long mask, unsigned long val)
->> +{
->> +    unsigned long envcfg;
->> +
->> +    envcfg = (task->thread.envcfg & ~mask) | val;
->> +    task->thread.envcfg = envcfg;
->> +    if (task == current)
->> +        csr_write(CSR_ENVCFG, envcfg);
->> +}
->> +
->>   static inline void __switch_to_envcfg(struct task_struct *next)
->>   {
->>       asm volatile (ALTERNATIVE("nop", "csrw " __stringify(CSR_ENVCFG) ", %0",
->> diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
->> index e4bc61c4e58a..dec5ccc44697 100644
->> --- a/arch/riscv/kernel/process.c
->> +++ b/arch/riscv/kernel/process.c
->> @@ -7,6 +7,7 @@
->>    * Copyright (C) 2017 SiFive
->>    */
->>   +#include <linux/bitfield.h>
->>   #include <linux/cpu.h>
->>   #include <linux/kernel.h>
->>   #include <linux/sched.h>
->> @@ -171,6 +172,10 @@ void flush_thread(void)
->>       memset(&current->thread.vstate, 0, sizeof(struct __riscv_v_ext_state));
->>       clear_tsk_thread_flag(current, TIF_RISCV_V_DEFER_RESTORE);
->>   #endif
->> +#ifdef CONFIG_RISCV_ISA_POINTER_MASKING
->> +    if (riscv_has_extension_unlikely(RISCV_ISA_EXT_SUPM))
->> +        envcfg_update_bits(current, ENVCFG_PMM, ENVCFG_PMM_PMLEN_0);
->> +#endif
+> On Tue, Aug 13, 2024 at 6:37 AM Charles Wang <charles.goodix@gmail.com> wrote:
+> >
+> > This patch introduces a new driver to support the Goodix GT7986U
+> > touch controller. This device is not compatible with Microsoft's
+> > HID-over-SPI protocol and therefore needs to implement its own
+> > flavor. The data reported is packaged according to the HID
+> > protocol but uses SPI for communication to improve speed. This
+> > enables the device to transmit not only coordinate data but also
+> > corresponding raw data that can be accessed by user-space programs
+> > through the hidraw interface. The raw data can be utilized for
+> > functions like palm rejection, thereby improving the touch experience.
+> >
+> > Key features:
+> > - Device connection confirmation and initialization
+> > - IRQ-based event reporting to the input subsystem
+> > - Support for HIDRAW operations (GET_REPORT and SET_REPORT)
+> >
+> > Signed-off-by: Charles Wang <charles.goodix@gmail.com>
+> > ---
+> >  drivers/hid/Kconfig          |   6 +
+> >  drivers/hid/Makefile         |   1 +
+> >  drivers/hid/hid-goodix-spi.c | 810 +++++++++++++++++++++++++++++++++++
+> >  3 files changed, 817 insertions(+)
+> >  create mode 100644 drivers/hid/hid-goodix-spi.c
 > 
-> if (IS_ENABLED(CONFIG_RISCV_ISA_POINTER_MASKING) &&
-> riscv_has_extension_unlikely(RISCV_ISA_EXT_SUPM))
+> As a point of reference, in v5 Dmitry gave you his "Reviewed-by" tag
+> [1] despite having some nits. It's usually expected that you could fix
+> the nits and carry the Reviewed-by tag on the next version unless you
+> did something other than what was requested in review feedback.
+> 
+> [1] https://lore.kernel.org/all/ZoW4_hctu_cSiKA5@google.com/
 
-I will update this.
+Thanks,
 
->>   }
->>     void arch_release_task_struct(struct task_struct *tsk)
->> @@ -233,3 +238,97 @@ void __init arch_task_cache_init(void)
->>   {
->>       riscv_v_setup_ctx_cache();
->>   }
->> +
->> +#ifdef CONFIG_RISCV_ISA_POINTER_MASKING
->> +static bool have_user_pmlen_7;
->> +static bool have_user_pmlen_16;
->> +
->> +long set_tagged_addr_ctrl(struct task_struct *task, unsigned long arg)
->> +{
->> +    unsigned long valid_mask = PR_PMLEN_MASK;
->> +    struct thread_info *ti = task_thread_info(task);
->> +    unsigned long pmm;
->> +    u8 pmlen;
->> +
->> +    if (is_compat_thread(ti))
->> +        return -EINVAL;
->> +
->> +    if (arg & ~valid_mask)
->> +        return -EINVAL;
->> +
->> +    pmlen = FIELD_GET(PR_PMLEN_MASK, arg);
->> +    if (pmlen > 16) {
->> +        return -EINVAL;
->> +    } else if (pmlen > 7) {
->> +        if (have_user_pmlen_16)
->> +            pmlen = 16;
->> +        else
->> +            return -EINVAL;
->> +    } else if (pmlen > 0) {
->> +        /*
->> +         * Prefer the smallest PMLEN that satisfies the user's request,
->> +         * in case choosing a larger PMLEN has a performance impact.
->> +         */
->> +        if (have_user_pmlen_7)
->> +            pmlen = 7;
->> +        else if (have_user_pmlen_16)
->> +            pmlen = 16;
->> +        else
->> +            return -EINVAL;
->> +    }
->> +
->> +    if (pmlen == 7)
->> +        pmm = ENVCFG_PMM_PMLEN_7;
->> +    else if (pmlen == 16)
->> +        pmm = ENVCFG_PMM_PMLEN_16;
->> +    else
->> +        pmm = ENVCFG_PMM_PMLEN_0;
->> +
->> +    envcfg_update_bits(task, ENVCFG_PMM, pmm);
->> +
->> +    return 0;
->> +}
->> +
->> +long get_tagged_addr_ctrl(struct task_struct *task)
->> +{
->> +    struct thread_info *ti = task_thread_info(task);
->> +    long ret = 0;
->> +
->> +    if (is_compat_thread(ti))
->> +        return -EINVAL;
->> +
->> +    switch (task->thread.envcfg & ENVCFG_PMM) {
->> +    case ENVCFG_PMM_PMLEN_7:
->> +        ret |= FIELD_PREP(PR_PMLEN_MASK, 7);
->> +        break;
->> +    case ENVCFG_PMM_PMLEN_16:
->> +        ret |= FIELD_PREP(PR_PMLEN_MASK, 16);
->> +        break;
->> +    }
-> 
-> 
-> No need for the |=
-
-This is used in the next patch since the returned value may include
-PR_TAGGED_ADDR_ENABLE as well, but it's not needed here, so I will make this change.
-
->> +
->> +    return ret;
->> +}
-> 
-> 
-> In all the code above, I'd use a macro for 7 and 16, something like PMLEN[7|16]?
-
-I've done this using an enum in v4. Please let me know if it looks good to you.
-
->> +
->> +static bool try_to_set_pmm(unsigned long value)
->> +{
->> +    csr_set(CSR_ENVCFG, value);
->> +    return (csr_read_clear(CSR_ENVCFG, ENVCFG_PMM) & ENVCFG_PMM) == value;
->> +}
->> +
->> +static int __init tagged_addr_init(void)
->> +{
->> +    if (!riscv_has_extension_unlikely(RISCV_ISA_EXT_SUPM))
->> +        return 0;
->> +
->> +    /*
->> +     * envcfg.PMM is a WARL field. Detect which values are supported.
->> +     * Assume the supported PMLEN values are the same on all harts.
->> +     */
->> +    csr_clear(CSR_ENVCFG, ENVCFG_PMM);
->> +    have_user_pmlen_7 = try_to_set_pmm(ENVCFG_PMM_PMLEN_7);
->> +    have_user_pmlen_16 = try_to_set_pmm(ENVCFG_PMM_PMLEN_16);
-> 
-> 
-> Shouldn't this depend on the satp mode? sv57 does not allow 16bits for the tag.
-
-No, late last year the pointer masking spec was changed so that the valid values
-for PMM can no longer dynamically depend on satp.MODE. If an implementation
-chooses to support both Sv57 and PMLEN==16, then it does so by masking off some
-of the valid bits in the virtual address. (This is a valid if unusual use case
-considering that pointer masking does not apply to instruction fetches, so an
-application could place code at addresses above 2^47-1 and use the whole masked
-virtual address space for data. Or it could enable pointer masking for only
-certain threads, and those threads would be limited to a subset of data.)
-
->> +
->> +    return 0;
->> +}
->> +core_initcall(tagged_addr_init);
-> 
-> 
-> Any reason it's not called from setup_arch()? I see the vector extension does
-> the same; just wondering if we should not centralize all this early extensions
-> decisions in setup_arch() (in my Zacas series, I choose the spinlock
-> implementation in setup_arch()).
-> 
-> 
->> +#endif    /* CONFIG_RISCV_ISA_POINTER_MASKING */
->> diff --git a/include/uapi/linux/prctl.h b/include/uapi/linux/prctl.h
->> index 35791791a879..6e84c827869b 100644
->> --- a/include/uapi/linux/prctl.h
->> +++ b/include/uapi/linux/prctl.h
->> @@ -244,6 +244,9 @@ struct prctl_mm_map {
->>   # define PR_MTE_TAG_MASK        (0xffffUL << PR_MTE_TAG_SHIFT)
->>   /* Unused; kept only for source compatibility */
->>   # define PR_MTE_TCF_SHIFT        1
->> +/* RISC-V pointer masking tag length */
->> +# define PR_PMLEN_SHIFT            24
->> +# define PR_PMLEN_MASK            (0x7fUL << PR_PMLEN_SHIFT)
-> 
-> 
-> I don't understand the need for this shift, can't userspace pass the pmlen value
-> directly without worrying about this?
-
-No, because the PR_TAGGED_ADDR_ENABLE flag (bit 0, defined just a few lines
-above) is part of the the same argument word. It's just not used until the next
-patch.
-
-Regards,
-Samuel
-
+Charles
 
