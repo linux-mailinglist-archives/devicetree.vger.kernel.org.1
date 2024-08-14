@@ -1,131 +1,112 @@
-Return-Path: <devicetree+bounces-93706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93707-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE1D0951F47
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 18:00:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55291951F8A
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 18:11:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A2471F23864
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 16:00:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1A6F3B22E34
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 16:07:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D0101B86C1;
-	Wed, 14 Aug 2024 16:00:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C8631B583E;
+	Wed, 14 Aug 2024 16:06:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="LuEz0ygT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EJwyiW2f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F8111B5808;
-	Wed, 14 Aug 2024 15:59:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAEB11E53A;
+	Wed, 14 Aug 2024 16:06:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723651201; cv=none; b=VCJ/VxjhNA6nqip3pRZ+FHxPVdDZMuwYmWQuNQQcCb7OoqbsdomP0iBtV6TzB6dJ45PckZXgNCkHhnrFo4JNvWowYullZ1IiAR6ZhXlQZCKyD7QeW5n5vUa2XDfiWBRcWqf5rUP+vigaMdD4UF3CaqduBHCcIzOcshfuMhJgb/8=
+	t=1723651615; cv=none; b=T3vjNCDES62mF+5OBKugrWlFILhTIWcELKJYpmn7dTeK7D8kZx2AjSICdUrrWd6/b5waZp/A5XvIF414TPzrWGDikJeN2R/kXFWLnIWB1jGJX8+IeRDuY3N2tQn4J168iyxDoAgH+5W5KyqMjNR1AUQM+b0bu1zzaf6EXUdF/Xo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723651201; c=relaxed/simple;
-	bh=PQcZv/InB58hwOmU/7tJIH9BqZDzz4d0NFM1872PSj0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=AdxIKrLWseH/RDP6XraQfghThxAL+kwZeuA3yBJJaykOvBWE2C1uxggUxK8K4XyssYsktINhYocPDi+ktxb/xGkYspekfPikfqftvFv1ECqgwf+/I6Xovjfs0RL0Bh02LkP0cH3L+A7k2Hii4R2qDnbpcDzmJBeW5WdgMGWPxQw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=LuEz0ygT; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 7F9BA60003;
-	Wed, 14 Aug 2024 15:59:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1723651196;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=GRkxoicq+udhmwg+wufaOSiQiJFaDc9CkC4zDEA03bI=;
-	b=LuEz0ygT+vVGOFTRw10XG2JcHy16bomY6HgSOwv4iB8w9FdGfWYUimnPsQ0FpQT2qyEktF
-	H+5dNZOCb+Bae54z7nLfHgytAqKvphUUx4wY7iieblyM8WJvSLWaigYTXH+nX+mkhOvhVz
-	e4XmOQt2l61VH60ZRbCU8eVrAEkhEOIK2qjaN776bhNHKrQJ/LePEonItwIGt7FkDnKxtF
-	z2rOAgj9/3SdEce+iCk5XLqXlIRvbfCTOuflqIL759mTgA8sQBoXQnrwZtAkXTdmn22Hbh
-	97mA7zjflqvD16WR5dE8ze8O6eneug8zuqqB8lxYJqnvdO5vzs2RLd2ixCgPsQ==
-Date: Wed, 14 Aug 2024 17:59:52 +0200
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent
- Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
- <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Derek Kiernan
- <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, Arnd
- Bergmann <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Saravana Kannan <saravanak@google.com>, Wolfram Sang
- <wsa+renesas@sang-engineering.com>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Paul Kocialkowski <contact@paulk.fr>, =?UTF-8?Q?Herv?=
- =?UTF-8?Q?=C3=A9?= Codina <herve.codina@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-i2c@vger.kernel.org, Paul Kocialkowski
- <paul.kocialkowski@bootlin.com>
-Subject: Re: [PATCH v3 0/7] Add support for GE SUNH hot-pluggable connector
-Message-ID: <20240814175952.6b22b7ad@booty>
-In-Reply-To: <20240809-hotplug-drm-bridge-v3-0-b4c178380bc9@bootlin.com>
-References: <20240809-hotplug-drm-bridge-v3-0-b4c178380bc9@bootlin.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1723651615; c=relaxed/simple;
+	bh=ZLTngYn1Z/w0Gi1BAHMxJnppaowKvDzr41t/hl18FBI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=K2LY8+UJTPxuloLdP7h+g1TNy9JdVjpQgRf8vxIPhaYFmkb2iGq2ymcK3TARhwaIP8qPAdyx6qgJD73ZmWYChYnfkGrbvfvI94cTTvksnCcFPhMZT7yyGCbDnsT6udpL3OhDQzZa98fDUC3V5fjO8B8xQ6tVJx5EYBMQe8XwakA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EJwyiW2f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69674C116B1;
+	Wed, 14 Aug 2024 16:06:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723651614;
+	bh=ZLTngYn1Z/w0Gi1BAHMxJnppaowKvDzr41t/hl18FBI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EJwyiW2fEb6yJqIMEUVk0U/2ZW9bpV3GyVFFoK6HcvR82Ao0Eu3xY7hsalODcfBaJ
+	 asN0q/bcY4liJ3PNQUx7P056qD3/a7EVOMSKR4vc0LWuBMINWEweo8drTMbLkvZYdv
+	 +o4It89/QM96H+PCCscUM9zjYjWr5JihtFZTQ1OooFqioztpuaOBqIvd03E8j/4tj4
+	 OEvCxnNABjMkR7jkzEBBhP0UDW45+dhEhRDX311Pz0nvtR0g9zYVpeITRqbERZ0Zog
+	 UUkFEDFE1oO64prmLpfFkeHGms+6Sx9xdPqdXYDqLnaQYO00nKXUh1fwvViTjitm0g
+	 SGPMn2s+RodYA==
+Date: Wed, 14 Aug 2024 17:06:49 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	David Jander <david@protonic.nl>,
+	Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org
+Subject: Re: [PATCH RFC v3 0/9] spi: axi-spi-engine: add offload support
+Message-ID: <20240814-riveting-prenatal-1b6892877da5@spud>
+References: <20240722-dlech-mainline-spi-engine-offload-2-v3-0-7420e45df69b@baylibre.com>
+ <20240723-cabbie-opossum-6e551fe246f2@wendy>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: luca.ceresoli@bootlin.com
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="PKGRGE32xX0ZFe8k"
+Content-Disposition: inline
+In-Reply-To: <20240723-cabbie-opossum-6e551fe246f2@wendy>
 
-Hello Rob,
 
-On Fri, 09 Aug 2024 17:34:48 +0200
-Luca Ceresoli <luca.ceresoli@bootlin.com> wrote:
+--PKGRGE32xX0ZFe8k
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-...
+On Tue, Jul 23, 2024 at 09:58:30AM +0100, Conor Dooley wrote:
+> On Mon, Jul 22, 2024 at 04:57:07PM -0500, David Lechner wrote:
+> > There is a recap at the end of this cover letter for those not familiar
+> > with the previous discussions. For those that are, we'll get right to
+> > the changes since the last version.
+> >=20
+> > In RFC v2, most of the discussion was around the DT bindings, so that
+> > is what has mostly changed since then. I think we mostly settled on
+> > what properties are needed and where they should go. There are probably
+> > still some details to work out (see PATCH 5/9 for more discussion) but
+> > I think we have the big-picture stuff figured out.
+>=20
+> Thanks for the updates. I'm on holiday until rc2, so it'll not be until
+> then that I can really take a look at this. Figured I'd let you know
+> rather than just ignore you...
 
-> However a few new rough edges emerged that are not yet solved in this
-> v3. Discussion would help in finding the right direction:
-> 
->  * Describing the NVMEM cell addition still requires adding two properties
->    to a node in the base tree. Not sure the current NVMEM cell bindings
->    allow to do better.
+Finally got around to actually looking at the binding patches, but since
+Rob got there before me I didn't have all that much to say. Thanks for
+looking into the graph idea, and I think I agree that it is worth
+excluding that until you're actually going to use the crc checker etc.
 
-Do you have any thoughts about how to describe the NVMEM cell in DT
-without adding properties?
+--PKGRGE32xX0ZFe8k
+Content-Type: application/pgp-signature; name="signature.asc"
 
-As of now...
+-----BEGIN PGP SIGNATURE-----
 
-> 2: the "base" overlay
-> 
-> The "base" overlay describes the common components that are required to
-> read the model ID. These are identical for all add-on models, thus only one
-> "base" overlay is needed:
-> 
->     /dts-v1/;
->     /plugin/;
-> 
->     / {
->         fragment@0 {
->             target-path = "";
-> 
->             __overlay__ {
->                 nvmem-cells = <&addon_id>;
->                 nvmem-cell-names = "id";
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrzWGQAKCRB4tDGHoIJi
+0rb1AQCyQWlmrcF9aDLgp/rABhBhWgKV3D1Mum4bbi6LMRejOQEAowNlXyZCJxs4
+JteWQsOMct51J5TErk+fRtSNQlOe2wg=
+=SUd6
+-----END PGP SIGNATURE-----
 
-...the nvmem-cell* properties are the only ones that for lack of a
-good solution get added to a node in the base tree, causing the memory
-leak issue to be still present.
-
-Luca
-
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+--PKGRGE32xX0ZFe8k--
 
