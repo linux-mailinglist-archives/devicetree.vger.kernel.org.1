@@ -1,488 +1,150 @@
-Return-Path: <devicetree+bounces-93504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65D05951449
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 08:15:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 060FA95144E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 08:15:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A6A61C241CC
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 06:15:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ACDB01F2410B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 06:15:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA71B86126;
-	Wed, 14 Aug 2024 06:14:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 766AF139D12;
+	Wed, 14 Aug 2024 06:14:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="2DmvBQeE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lzq4aCZ3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8371D82486;
-	Wed, 14 Aug 2024 06:14:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36BBE77F11;
+	Wed, 14 Aug 2024 06:14:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723616063; cv=none; b=Tlvqrm8fSVc38+/5nDFe/tXNWIlmdLw3bqlEcu8mffSAk3otfmhbCMqn/erxNIn3gW53OeZ+Au/nz7zqOgGqKvfmAb8RONK46EjDuiPgTaN980Tp077SQZlAggfgbJllGqk6MX7gBf+5alWeEes+IjYW9CxLb+eNSMG7LzAIqj8=
+	t=1723616077; cv=none; b=GUTf8cGeZGwqHxJdxqDxryPqs3oyzm2+ZnjXACeO8Zc30SaQKL/lP5Z1RHRe2acAEf2tAw4GI1I2mnI8YjaewWMmpC+T0tjcXroPIwh/i0RxryQFtN1NEu+zjBzzVPNTO5gAZbIZrav1mgUz+w6Qm70antk01nr685B7JQXI2HQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723616063; c=relaxed/simple;
-	bh=lfJozrnUYIBqrekvOlf+TdBTrL5hG9ncnuGG3CNVjhg=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=U3Y/dlKE+wVExujs7Pld/8dZwvmITQVCERYvz/83XRaSbEfOgKvtmbbq4IN9PghflNF206FqDSXqgsg752/e56T6t+/mSIKp4js2Rwt3uJx2zScXKnt+KvKEAkmtWwBdAicGe1MU85OZOuQDqJjt7JcgPgYnRoDMgmHP35BXOxA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=2DmvBQeE; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1723616061; x=1755152061;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=lfJozrnUYIBqrekvOlf+TdBTrL5hG9ncnuGG3CNVjhg=;
-  b=2DmvBQeEkd9rQzagv5jHEE/VnTVMgCyya1Syyu00DFxiNn5ZUSGYvgKE
-   7W5e1z69HBigi3NaZoXxgHC44zDDT3+B7e0QXKhbNk9Keef2M6an69g+t
-   /+YXflX4mipsgtFk1bDu2RnhtCTbCWtknEsIZbFV1tX65+YBmflwPzwwL
-   l0mV8xhUNdHlqp3gMAGOloC5AC+no6XfhJmDc5D8Kqn5lIbtmzudjD0uQ
-   1F81Hk+Vlk+Nrdy3uL/f+3gUHdy3jCw1kFSd/PK/3ZjluLrAxKUegTL0z
-   7Fxu5ehoeJ4QXOiUDGWGJwlvJx4uFjJMSYHFR2FJXbZDGoK70FXgnH4m7
-   A==;
-X-CSE-ConnectionGUID: VtAuaGbISWaM3hnbWks63w==
-X-CSE-MsgGUID: rf8RwR5QRO6rZr6182mHXA==
-X-IronPort-AV: E=Sophos;i="6.09,288,1716274800"; 
-   d="scan'208";a="31140262"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 13 Aug 2024 23:14:20 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 13 Aug 2024 23:13:44 -0700
-Received: from che-lt-i67131.microchip.com (10.10.85.11) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Tue, 13 Aug 2024 23:13:40 -0700
-From: Manikandan Muralidharan <manikandan.m@microchip.com>
-To: <linus.walleij@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
-	<linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-CC: <manikandan.m@microchip.com>
-Subject: [PATCH v4 4/4] dt-bindings: pinctrl: Convert Atmel PIO3 pinctrl to json-schema
-Date: Wed, 14 Aug 2024 11:43:15 +0530
-Message-ID: <20240814061315.112564-5-manikandan.m@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240814061315.112564-1-manikandan.m@microchip.com>
-References: <20240814061315.112564-1-manikandan.m@microchip.com>
+	s=arc-20240116; t=1723616077; c=relaxed/simple;
+	bh=DlYJNSBGA6tUTVu+Z6JtO34CDRzygC+vKhA7dQZQvfw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=V8QVRTYnmMDubulpgsWeH9hYSbFFFhh5vkxOyadBrtZ6FX5z4yC1T64eV0+KRrWrYuPYd+SXI/mZX68l4cbKlRvPMCJw/a5euMe0SKdQEXuOia6xELWX0VIkI3YA8gk6IQmUQztWpcjgYK337UYfqex3RNThm4PeXu+Y5ySacJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lzq4aCZ3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C18C2C32786;
+	Wed, 14 Aug 2024 06:14:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723616076;
+	bh=DlYJNSBGA6tUTVu+Z6JtO34CDRzygC+vKhA7dQZQvfw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Lzq4aCZ3TiVmSIHUEW4tnHs6dVDSxOtgaP1M8Uc8lBRyXIQfn4cVuymcIMDx9ozbj
+	 PunzJtAX+/2IT9+l+/PQOfkmOLi78BsyB6SRb5Uzjl2LG/gZTDyppnos3j09+gzdFq
+	 Qar46Uq9eFM3A7EcieLju/jWP2DgKVYnxHI1DQGCgAG4k4c/tnooT0kmUw/CLoKSOP
+	 5HgHuYbuKRKAbGEgOnGzdm3kOYKKgdjU7xijbeocp72bAQ7Qq+FRoqVArJOdGSQXx1
+	 Wk44FfqImhg+HBefd1wICZsWAj/ur/4Qu9f6ntcJqCS4SLB/hyVxttdb5jSyZrNPy2
+	 rnRgy/kTaWhTw==
+Message-ID: <3350aae1-a4a2-4a7c-a075-c29c8f67f5a2@kernel.org>
+Date: Wed, 14 Aug 2024 08:14:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] dt-bindings: net: bluetooth: qualcomm: add QCA9379
+ compatible
+To: Felix Kaechele <felix@kaechele.ca>, Marcel Holtmann
+ <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Jeff Johnson <jjohnson@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+ Rocky Liao <quic_rjliao@quicinc.com>
+Cc: linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-wireless@vger.kernel.org, ath10k@lists.infradead.org,
+ linux-mmc@vger.kernel.org
+References: <20240805040131.450412-1-felix@kaechele.ca>
+ <20240805040131.450412-4-felix@kaechele.ca>
+ <645ae5c7-5421-4bf2-9aac-8151b7db4e0b@kernel.org>
+ <3f16cd19-7609-4f97-bacd-9ab307bd8533@kaechele.ca>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <3f16cd19-7609-4f97-bacd-9ab307bd8533@kaechele.ca>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Convert Atmel PIO3 pinctrl binding document to DT schema format
-json-schema.
+On 14/08/2024 00:11, Felix Kaechele wrote:
+> Thanks for taking a look, Krzysztof.
+> 
+> In this case I think it would be easiest to just use the existing 
+> qca9377 fallback and drop his part of the patchset.
 
-Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
----
-changes in v4:
-- Add Reviewed-by tag
+You need then other patchset documenting new compatible with fallback.
+Compatibles are always specific.
 
-changes in v3:
-- Remove quotes in $ref
-- modify the gpio regex
-- Remove pinmux pinctrl subnode regex and modify it since they do not
-follow a particular order or pattern, Adding 'type:object' with this
-'^[a-z0-9-_]+$' regex does throw DTC_CHK errors for other
-pio3 pinctrl properties
+https://elixir.bootlin.com/linux/v6.10-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst
 
-changes in v2:
-- Fix bot errors by fixing issues in 4/5
-- remove qoutes from $ref
----
- .../bindings/pinctrl/atmel,at91-pinctrl.txt   | 178 -----------------
- .../pinctrl/atmel,at91rm9200-pinctrl.yaml     | 184 ++++++++++++++++++
- 2 files changed, 184 insertions(+), 178 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/pinctrl/atmel,at91-pinctrl.txt
- create mode 100644 Documentation/devicetree/bindings/pinctrl/atmel,at91rm9200-pinctrl.yaml
+> 
+> As for the supplies: For the particular module I am working with the 
+> supplies are mostly shared with the WiFi side. So it "just works" 
+> without taking care of supplies on the BT side.
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/atmel,at91-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/atmel,at91-pinctrl.txt
-deleted file mode 100644
-index 0aa1a53012d6..000000000000
---- a/Documentation/devicetree/bindings/pinctrl/atmel,at91-pinctrl.txt
-+++ /dev/null
-@@ -1,178 +0,0 @@
--* Atmel AT91 Pinmux Controller
--
--The AT91 Pinmux Controller, enables the IC
--to share one PAD to several functional blocks. The sharing is done by
--multiplexing the PAD input/output signals. For each PAD there are up to
--8 muxing options (called periph modes). Since different modules require
--different PAD settings (like pull up, keeper, etc) the controller controls
--also the PAD settings parameters.
--
--Please refer to pinctrl-bindings.txt in this directory for details of the
--common pinctrl bindings used by client devices, including the meaning of the
--phrase "pin configuration node".
--
--Atmel AT91 pin configuration node is a node of a group of pins which can be
--used for a specific device or function. This node represents both mux and config
--of the pins in that group. The 'pins' selects the function mode(also named pin
--mode) this pin can work on and the 'config' configures various pad settings
--such as pull-up, multi drive, etc.
--
--Required properties for iomux controller:
--- compatible: "atmel,at91rm9200-pinctrl" or "atmel,at91sam9x5-pinctrl"
--		or "atmel,sama5d3-pinctrl" or "microchip,sam9x60-pinctrl"
--		or "microchip,sam9x7-pinctrl", "microchip,sam9x60-pinctrl"
--- atmel,mux-mask: array of mask (periph per bank) to describe if a pin can be
--  configured in this periph mode. All the periph and bank need to be describe.
--
--How to create such array:
--
--Each column will represent the possible peripheral of the pinctrl
--Each line will represent a pio bank
--
--Take an example on the 9260
--Peripheral: 2 ( A and B)
--Bank: 3 (A, B and C)
--=>
--
--  /*    A         B     */
--  0xffffffff 0xffc00c3b  /* pioA */
--  0xffffffff 0x7fff3ccf  /* pioB */
--  0xffffffff 0x007fffff  /* pioC */
--
--For each peripheral/bank we will describe in a u32 if a pin can be
--configured in it by putting 1 to the pin bit (1 << pin)
--
--Let's take the pioA on peripheral B
--From the datasheet Table 10-2.
--Peripheral B
--PA0	MCDB0
--PA1	MCCDB
--PA2
--PA3	MCDB3
--PA4	MCDB2
--PA5	MCDB1
--PA6
--PA7
--PA8
--PA9
--PA10	ETX2
--PA11	ETX3
--PA12
--PA13
--PA14
--PA15
--PA16
--PA17
--PA18
--PA19
--PA20
--PA21
--PA22	ETXER
--PA23	ETX2
--PA24	ETX3
--PA25	ERX2
--PA26	ERX3
--PA27	ERXCK
--PA28	ECRS
--PA29	ECOL
--PA30	RXD4
--PA31	TXD4
--
--=> 0xffc00c3b
--
--Required properties for pin configuration node:
--- atmel,pins: 4 integers array, represents a group of pins mux and config
--  setting. The format is atmel,pins = <PIN_BANK PIN_BANK_NUM PERIPH CONFIG>.
--  The PERIPH 0 means gpio, PERIPH 1 is periph A, PERIPH 2 is periph B...
--  PIN_BANK 0 is pioA, PIN_BANK 1 is pioB...
--
--Bits used for CONFIG:
--PULL_UP		(1 << 0): indicate this pin needs a pull up.
--MULTIDRIVE	(1 << 1): indicate this pin needs to be configured as multi-drive.
--			Multi-drive is equivalent to open-drain type output.
--DEGLITCH	(1 << 2): indicate this pin needs deglitch.
--PULL_DOWN	(1 << 3): indicate this pin needs a pull down.
--DIS_SCHMIT	(1 << 4): indicate this pin needs to the disable schmitt trigger.
--DRIVE_STRENGTH (3 << 5): indicate the drive strength of the pin using the
--			following values:
--				00 - No change (reset state value kept)
--				01 - Low
--				10 - Medium
--				11 - High
--OUTPUT		(1 << 7): indicate this pin need to be configured as an output.
--OUTPUT_VAL	(1 << 8): output val (1 = high, 0 = low)
--SLEWRATE	(1 << 9): slew rate of the pin: 0 = disable, 1 = enable
--DEBOUNCE	(1 << 16): indicate this pin needs debounce.
--DEBOUNCE_VAL	(0x3fff << 17): debounce value.
--
--NOTE:
--Some requirements for using atmel,at91rm9200-pinctrl binding:
--1. We have pin function node defined under at91 controller node to represent
--   what pinmux functions this SoC supports.
--2. The driver can use the function node's name and pin configuration node's
--   name describe the pin function and group hierarchy.
--   For example, Linux at91 pinctrl driver takes the function node's name
--   as the function name and pin configuration node's name as group name to
--   create the map table.
--3. Each pin configuration node should have a phandle, devices can set pins
--   configurations by referring to the phandle of that pin configuration node.
--4. The gpio controller must be describe in the pinctrl simple-bus.
--
--For each bank the required properties are:
--- compatible: "atmel,at91sam9x5-gpio" or "atmel,at91rm9200-gpio" or
--  "microchip,sam9x60-gpio"
--  or "microchip,sam9x7-gpio", "microchip,sam9x60-gpio", "atmel,at91rm9200-gpio"
--- reg: physical base address and length of the controller's registers
--- interrupts: interrupt outputs from the controller
--- interrupt-controller: marks the device node as an interrupt controller
--- #interrupt-cells: should be 2; refer to ../interrupt-controller/interrupts.txt
--  for more details.
--- gpio-controller
--- #gpio-cells: should be 2; the first cell is the GPIO number and the second
--  cell specifies GPIO flags as defined in <dt-bindings/gpio/gpio.h>.
--- clocks: bank clock
--
--Examples:
--
--pinctrl@fffff400 {
--	#address-cells = <1>;
--	#size-cells = <1>;
--	ranges;
--	compatible = "atmel,at91rm9200-pinctrl", "simple-bus";
--	reg = <0xfffff400 0x600>;
--
--	pioA: gpio@fffff400 {
--		compatible = "atmel,at91sam9x5-gpio";
--		reg = <0xfffff400 0x200>;
--		interrupts = <2 IRQ_TYPE_LEVEL_HIGH 1>;
--		#gpio-cells = <2>;
--		gpio-controller;
--		interrupt-controller;
--		#interrupt-cells = <2>;
--		clocks = <&pmc PMC_TYPE_PERIPHERAL 2>;
--	};
--
--	atmel,mux-mask = <
--	      /*    A         B     */
--	       0xffffffff 0xffc00c3b  /* pioA */
--	       0xffffffff 0x7fff3ccf  /* pioB */
--	       0xffffffff 0x007fffff  /* pioC */
--	      >;
--
--	/* shared pinctrl settings */
--	dbgu {
--		pinctrl_dbgu: dbgu-0 {
--			atmel,pins =
--				<1 14 0x1 0x0	/* PB14 periph A */
--				 1 15 0x1 0x1>;	/* PB15 periph A with pullup */
--		};
--	};
--};
--
--dbgu: serial@fffff200 {
--	compatible = "atmel,at91sam9260-usart";
--	reg = <0xfffff200 0x200>;
--	interrupts = <1 4 7>;
--	pinctrl-names = "default";
--	pinctrl-0 = <&pinctrl_dbgu>;
--};
-diff --git a/Documentation/devicetree/bindings/pinctrl/atmel,at91rm9200-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/atmel,at91rm9200-pinctrl.yaml
-new file mode 100644
-index 000000000000..1bb386b42039
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/atmel,at91rm9200-pinctrl.yaml
-@@ -0,0 +1,184 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/atmel,at91rm9200-pinctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip PIO3 Pinmux Controller
-+
-+maintainers:
-+  - Manikandan Muralidharan <manikandan.m@microchip.com>
-+
-+description:
-+  The AT91 Pinmux Controller, enables the IC to share one PAD to several
-+  functional blocks. The sharing is done by multiplexing the PAD input/output
-+  signals. For each PAD there are up to 8 muxing options (called periph modes).
-+  Since different modules require different PAD settings (like pull up, keeper,
-+  etc) the controller controls also the PAD settings parameters.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - atmel,at91rm9200-pinctrl
-+              - atmel,at91sam9x5-pinctrl
-+              - atmel,sama5d3-pinctrl
-+              - microchip,sam9x60-pinctrl
-+          - const: simple-mfd
-+      - items:
-+          - enum:
-+              - microchip,sam9x7-pinctrl
-+          - const: microchip,sam9x60-pinctrl
-+          - const: simple-mfd
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 1
-+
-+  ranges: true
-+
-+  atmel,mux-mask:
-+    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-+    description: |
-+      Array of mask (periph per bank) to describe if a pin can be
-+      configured in this periph mode. All the periph and bank need to
-+      be described.
-+
-+      #How to create such array:
-+
-+      Each column will represent the possible peripheral of the pinctrl
-+      Each line will represent a pio bank
-+
-+      #Example:
-+
-+      In at91sam9260.dtsi,
-+      Peripheral: 2 ( A and B)
-+      Bank: 3 (A, B and C)
-+
-+      #    A          B
-+      0xffffffff 0xffc00c3b  # pioA
-+      0xffffffff 0x7fff3ccf  # pioB
-+      0xffffffff 0x007fffff  # pioC
-+
-+      For each peripheral/bank we will describe in a u32 if a pin can be
-+      configured in it by putting 1 to the pin bit (1 << pin)
-+
-+      Let's take the pioA on peripheral B whose value is 0xffc00c3b
-+      From the datasheet Table 10-2.
-+      Peripheral B
-+      PA0     MCDB0
-+      PA1     MCCDB
-+      PA2
-+      PA3     MCDB3
-+      PA4     MCDB2
-+      PA5     MCDB1
-+      PA6
-+      PA7
-+      PA8
-+      PA9
-+      PA10    ETX2
-+      PA11    ETX3
-+      PA12
-+      PA13
-+      PA14
-+      PA15
-+      PA16
-+      PA17
-+      PA18
-+      PA19
-+      PA20
-+      PA21
-+      PA22    ETXER
-+      PA23    ETX2
-+      PA24    ETX3
-+      PA25    ERX2
-+      PA26    ERX3
-+      PA27    ERXCK
-+      PA28    ECRS
-+      PA29    ECOL
-+      PA30    RXD4
-+      PA31    TXD4
-+
-+allOf:
-+  - $ref: pinctrl.yaml#
-+
-+required:
-+  - compatible
-+  - ranges
-+  - "#address-cells"
-+  - "#size-cells"
-+  - atmel,mux-mask
-+
-+patternProperties:
-+  'gpio@[0-9a-f]+$':
-+    $ref: /schemas/gpio/atmel,at91rm9200-gpio.yaml
-+    unevaluatedProperties: false
-+
-+additionalProperties:
-+  type: object
-+  additionalProperties:
-+    type: object
-+    additionalProperties: false
-+
-+    properties:
-+      atmel,pins:
-+        $ref: /schemas/types.yaml#/definitions/uint32-matrix
-+        description: |
-+          Each entry consists of 4 integers and represents the pins
-+          mux and config setting.The format is
-+          atmel,pins = <PIN_BANK PIN_BANK_NUM PERIPH CONFIG>.
-+          Supported pin number and mux varies for different SoCs, and
-+          are defined in <include/dt-bindings/pinctrl/at91.h>.
-+          items:
-+            items:
-+              - description:
-+                  Pin bank
-+              - description:
-+                  Pin bank index
-+              - description:
-+                  Peripheral function
-+              - description:
-+                  Pad configuration
-+
-+examples:
-+  - |
-+     #include <dt-bindings/clock/at91.h>
-+     #include <dt-bindings/interrupt-controller/irq.h>
-+     #include <dt-bindings/pinctrl/at91.h>
-+
-+     pinctrl@fffff400 {
-+       #address-cells = <1>;
-+       #size-cells = <1>;
-+       compatible = "atmel,at91rm9200-pinctrl", "simple-mfd";
-+       ranges = <0xfffff400 0xfffff400 0x600>;
-+
-+       atmel,mux-mask = <
-+         /*    A         B     */
-+         0xffffffff 0xffc00c3b  /* pioA */
-+         0xffffffff 0x7fff3ccf  /* pioB */
-+         0xffffffff 0x007fffff  /* pioC */
-+         >;
-+
-+       dbgu {
-+         pinctrl_dbgu: dbgu-0 {
-+           atmel,pins =
-+             <AT91_PIOB 14 AT91_PERIPH_A AT91_PINCTRL_PULL_UP
-+              AT91_PIOB 15 AT91_PERIPH_A AT91_PINCTRL_NONE>;
-+         };
-+       };
-+
-+       pioA: gpio@fffff400 {
-+         compatible = "atmel,at91rm9200-gpio";
-+         reg = <0xfffff400 0x200>;
-+         interrupts = <2 IRQ_TYPE_LEVEL_HIGH 1>;
-+         #gpio-cells = <2>;
-+         gpio-controller;
-+         interrupt-controller;
-+         #interrupt-cells = <2>;
-+         clocks = <&pmc PMC_TYPE_PERIPHERAL 2>;
-+       };
-+     };
-+...
--- 
-2.25.1
+You still should describe the hardware.
+
+> 
+> But I agree it would be more correct to add and handle these as well. 
+> The documentation I have access to through the FCC filing of this module 
+> is not really conclusive of how to correctly name them in this context.
+> I would rather avoid submitting a patch with incorrect supply names.
+
+OK
+
+
+
+Best regards,
+Krzysztof
 
 
