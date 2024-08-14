@@ -1,209 +1,111 @@
-Return-Path: <devicetree+bounces-93729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE194952059
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 18:47:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10A1895208C
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 18:56:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D30201C21922
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 16:47:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 435841C20E24
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 16:56:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21AFC1BA877;
-	Wed, 14 Aug 2024 16:47:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C94761BA883;
+	Wed, 14 Aug 2024 16:56:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="N24OdOki"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g0lMGtmi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C7991B9B5C
-	for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 16:47:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B7B61B1409;
+	Wed, 14 Aug 2024 16:56:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723654034; cv=none; b=HlC7I2abxAAfduZs/hr3n/r5jl8HCa4iYrPQlPqHy3XythNO/IO8yp06qPmZxDskBuFMP9zN5NeKOrCfF03m0rvydiMlF9IROmUEERZhRY2H5XRPWd/JoJPyXQHjhNcMjHIgvK8SUsE5pWNeN3IDWUt17nlxQAvEORchgSJaIXY=
+	t=1723654604; cv=none; b=uA3lStdSP0U3cidJCOaVdpLeIRT7vlq9xhXnXAML8/BHsBq7ESUC3UJNrwhHjcP6MXe8M/61mSYxJJb8hlDB8/iNsASEF1W4p5KbL0tKMZmUxdcKYAGT3BdLrWy0mr0kCHXkothi4cIhup0hGYNLRb2RWt9xhILk0NrcJuPKE8M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723654034; c=relaxed/simple;
-	bh=GTTdsljCHP48BKxOxQ6j1dEfFE2+NMQn7BEF6Jymyp0=;
-	h=From:To:CC:Date:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=tyqTSUVorq/Qr1LZfD62Vl66r8DhGC+LMNWbMyuu2SlkDsVmQEAa9Nszn46b2SOMuO2iDVPD4BgvhesW0qIr9P9T9Wohl4NbGGgvQDmAECxDTNBeh5omKXX9R2l3/DcGgq0SEMd8gmakD7isVl6JZn8GR3E1LEDzEJ2uDR6EWyg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=N24OdOki; arc=none smtp.client-ip=209.85.222.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-7a1dcc7bc05so1685185a.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 09:47:12 -0700 (PDT)
+	s=arc-20240116; t=1723654604; c=relaxed/simple;
+	bh=/hZxRpWjkSzm+b9woTEwtKZS/63L4EVOkAp/S/3Mvls=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FHUTtCzG0S+H9mp2GToUyOKkHchJluUHKYL8Luk5F5kGIiyQV8BQpwHnL0SyxmQZnSdRWqrFBHI1pPS80H6qV8Ik6pB3o7Lu8k9uX9BpR28Y//BzqAjoPUgFnipLJVaeWsBX+wY/1rkn2MoHDnJJ0LFSVvC36YIaTJi8c2qXjJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g0lMGtmi; arc=none smtp.client-ip=209.85.128.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-664b4589b1aso9569657b3.1;
+        Wed, 14 Aug 2024 09:56:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1723654031; x=1724258831; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:subject:user-agent
-         :references:in-reply-to:message-id:date:cc:to:from:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0LOkC2hr5mjD/XmAuAJdpJW2ttXWug85zZK1Co9ZjIE=;
-        b=N24OdOkifX7HRQa5eXwZdZnM80f8nsictuYml8WBYV2E9mWUbxpB+lOY75Xi1eKaWS
-         BXtozyFebq2M/Jo4GaJZVw/eCKKzoZ0e00tQ1AEYGJJSCl30ASnL9FvYVsfyoQtV7qTO
-         LinKSGB4wjRH8U+DFnOVF7nBaJtX41sZjigb0=
+        d=gmail.com; s=20230601; t=1723654602; x=1724259402; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=qQlMOc1RXgEI/Z1W2yTdzy+viQNXziUCoDnFw4tQg7Y=;
+        b=g0lMGtmi498WXdkfH/EeXYFIgsysjPryYcTd+K2msFvwteIugOWEjNAOykxayK2gLp
+         rcXVfJFVyC+snFu2+GtNbDyQag3FRh8xONNCRr/gJ2ns2n5N8Hws651A6TdRYrtscCGI
+         jI10X43tknp7N3PDX3KhF8l+KNMX9boThZ1tZXuRm8DaCiTZ9YtOvJzQLWuSe32am1it
+         TVxSPyD2kLQPO8E053rmuO5CZOqvt9WUPHRJFeDS8B11TKkmB5rokPsVgzllzDyjqae8
+         rJASDXxwJoNPFePQmbA/R3b+uRz/cn2S5HtO2iOYw/TyycqyQypfgIZUTvdFU34sebOL
+         X5wA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723654031; x=1724258831;
-        h=content-transfer-encoding:mime-version:subject:user-agent
-         :references:in-reply-to:message-id:date:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0LOkC2hr5mjD/XmAuAJdpJW2ttXWug85zZK1Co9ZjIE=;
-        b=IdhXnZaaQGLXKyt6EYlwHXWw+nZb2EVPcBDRvl0wpNIwPotUzVyWK+NxBYGww7OqYS
-         vyrILcpW7p/XtjwSgU5DYvAXuuhjl9xQ8P4kuRoW5nTVPChX6gEiiOTSz1VjVxgsvxw8
-         3Axg7mtaqJ96nYiyB0KIMrNZm7k34koj/nUsz8HphbSVdIZRJfjyDnOXxAneDJlb7rNd
-         JtIrhSuQlcJQwJRWnQHs4bahVDJwvGhjwQhNAWaVqPBDBqz28b2J+G/RvaJmqD331ORq
-         QYV2w3FnycJ5pWaKYT+rYzujjqzrLKjOfNy3sH7wliw6A+IRbwNsrK+GlbKet7L6rEKD
-         KZaw==
-X-Forwarded-Encrypted: i=1; AJvYcCWcQYDa1e6KVJ0nUUbbguw1+G/z+VoWqQ9j5icNs9Fm7dlmYfeo8pwVTAQh3NoOVTNHOXQaOTWIuAxX7zUFcFc0LZ46f5inUF+lsQ==
-X-Gm-Message-State: AOJu0YwxNM3eCaCFOE7FdgGHG/TsRCxm4gETNTuwi/23nIX9LFnwT33Q
-	YkXMweSFHt2hJiKWYxzapnJzWUOccZVfuiHYeoJAnKaZSRujU6WB1zuIdoL5cA==
-X-Google-Smtp-Source: AGHT+IHTM4N5IaCtzNPE7RF5w4uRXrZaZMciTBo9YGWGeU+4Fzw/BBwdcOTRcfKTQ2pPneokkJCaEA==
-X-Received: by 2002:a05:620a:404b:b0:79f:12e9:1e71 with SMTP id af79cd13be357-7a4ee26d137mr414754385a.0.1723654031043;
-        Wed, 14 Aug 2024 09:47:11 -0700 (PDT)
-Received: from [192.168.178.38] (f215227.upc-f.chello.nl. [80.56.215.227])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7a4c7d6494esm454743585a.2.2024.08.14.09.47.04
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 14 Aug 2024 09:47:10 -0700 (PDT)
-From: Arend Van Spriel <arend.vanspriel@broadcom.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Krzysztof Kozlowski <krzk@kernel.org>, Jacobe Zang <jacobe.zang@wesion.com>, <robh@kernel.org>, <krzk+dt@kernel.org>, <heiko@sntech.de>, <kvalo@kernel.org>, <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>, <conor+dt@kernel.org>
-CC: <efectn@protonmail.com>, <dsimic@manjaro.org>, <jagan@edgeble.ai>, <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>, <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>, <arend@broadcom.com>, <linux-wireless@vger.kernel.org>, <netdev@vger.kernel.org>, <megi@xff.cz>, <duoming@zju.edu.cn>, <bhelgaas@google.com>, <minipli@grsecurity.net>, <brcm80211@lists.linux.dev>, <brcm80211-dev-list.pdl@broadcom.com>, <nick@khadas.com>
-Date: Wed, 14 Aug 2024 18:47:04 +0200
-Message-ID: <19151c92b40.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
-In-Reply-To: <f504a3e7-cb18-41ce-a76d-267d464b6b05@linaro.org>
-References: <20240813082007.2625841-1-jacobe.zang@wesion.com>
- <20240813082007.2625841-2-jacobe.zang@wesion.com>
- <1914cb2b1a8.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
- <e7401e25-7802-4dc3-9535-226f32b52be1@kernel.org>
- <062d8d4e-6d61-4f11-a9c0-1bbe1bfe0542@broadcom.com>
- <1e442710-a233-4ab2-a551-f28ba6394b5b@linaro.org>
- <180f7459-39fa-4e96-83d6-504e7802dc94@broadcom.com>
- <df52a968-96be-4f05-8d6f-32a2abde1d91@linaro.org>
- <f504a3e7-cb18-41ce-a76d-267d464b6b05@linaro.org>
-User-Agent: AquaMail/1.51.5 (build: 105105504)
-Subject: Re: [PATCH v10 1/5] dt-bindings: net: wireless: brcm4329-fmac: add pci14e4,449d
+        d=1e100.net; s=20230601; t=1723654602; x=1724259402;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qQlMOc1RXgEI/Z1W2yTdzy+viQNXziUCoDnFw4tQg7Y=;
+        b=v695Ht3i80zPlF0BCIWKWc1YGj3ekkxZ4Sx+Ilnzj1BnI3YkOFUpHm4BCixgM9i9f2
+         PPjrxZ9N6PwbeoxGH/54jvY4CSM58nrbAXu75L57wyCwyApbvrvhCSLNH3G9H6AkmyM6
+         pPJ4QKkXZ59QcZn8kwZDoFeDfvVx22LwGFLgslzRjU9X8W0NZMIbumsLp6WddEI7h/bn
+         oc/hoAJtKEwK249FTycMzFN+XVPqFUbnhEUbym+epDY7O8uP93k7n5Vqw1RsGd1HWYD2
+         EMc/4Q6aWZj3MvWSt8E0q56GFepEP1h3LWfAWcD1LVrWhCSnrZG2khyk3OuEFThz67ne
+         n99Q==
+X-Forwarded-Encrypted: i=1; AJvYcCV0tK3AO7H8HKIis7/Jbc8cLo/vSTLSmyVSPGF82MSuJ1o1QgsyINFUKCwVj3JpuP1Zc4G8keoR2W4AeTUVFnTfNpr7a78yrtctTmVOZPa4zCVPX+NfQMSliz4fRK3YIBSvMoiZ2Q==
+X-Gm-Message-State: AOJu0YzoylkqISwOZS65QA4cYlEdU3/fahkCYNXDjioUm3gxCunxqXTy
+	CTXN6QQx0920duHQXnIIwqBMsK2Uj6lUJiGDk8DHj/Vgs9hEpiQ3lUWiIGoC56yXcJxncmfTwyX
+	8MGiphR3m+WM8Dw8Z12/e0mcTlTY=
+X-Google-Smtp-Source: AGHT+IFITVwqIytbC41TtrGUFCTh1I6Ia9wAgWzzSZsz2WvL3UAmAXNXWe+UUoRM3D9mPKUYr1j8dRhQbEs79AGlMmY=
+X-Received: by 2002:a05:690c:4e0e:b0:64b:82d6:75b9 with SMTP id
+ 00721157ae682-6af1c990341mr2123607b3.7.1723654602276; Wed, 14 Aug 2024
+ 09:56:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; format=flowed; charset="us-ascii"
-Content-Transfer-Encoding: 8bit
+References: <56a52c81-68de-438d-94ae-9decc799d824@kernel.org>
+ <20240808191735.1483572-1-ilordash02@gmail.com> <CAGCz5Hk=mSjQ1eFWstQQu=JZUkavJ_mRhnp8DRELUXP_syq4Zw@mail.gmail.com>
+ <eb04b684-eccd-4952-a310-022d00b50a55@kernel.org>
+In-Reply-To: <eb04b684-eccd-4952-a310-022d00b50a55@kernel.org>
+From: Ilya Orazov <ilordash02@gmail.com>
+Date: Wed, 14 Aug 2024 19:56:31 +0300
+Message-ID: <CAGCz5H=n_OOeTTNon2f=D97y==ysgXMijCkB5Nb2XVTDTQ6i4g@mail.gmail.com>
+Subject: Re: [PATCH v3 1/1] dt-bindings: phy: ti,tcan104x-can: Document
+ Microchip ATA6561
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Aswath Govindraju <a-govindraju@ti.com>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On August 14, 2024 4:08:52 PM Krzysztof Kozlowski 
-<krzysztof.kozlowski@linaro.org> wrote:
-
-> On 14/08/2024 13:15, Krzysztof Kozlowski wrote:
->> On 14/08/2024 12:59, Arend van Spriel wrote:
->>> On 8/14/2024 12:39 PM, Krzysztof Kozlowski wrote:
->>>> On 14/08/2024 12:08, Arend van Spriel wrote:
->>>>> On 8/14/2024 10:53 AM, Krzysztof Kozlowski wrote:
->>>>>> On 13/08/2024 19:04, Arend Van Spriel wrote:
->>>>>>> On August 13, 2024 10:20:24 AM Jacobe Zang <jacobe.zang@wesion.com> wrote:
->>>>>>>
->>>>>>>> It's the device id used by AP6275P which is the Wi-Fi module
->>>>>>>> used by Rockchip's RK3588 evaluation board and also used in
->>>>>>>> some other RK3588 boards.
->>>>>>>
->>>>>>> Hi Kalle,
->>>>>>>
->>>>>>> There probably will be a v11, but wanted to know how this series will be
->>>>>>> handled as it involves device tree bindings, arm arch device tree spec, and
->>>>>>> brcmfmac driver code. Can it all go through wireless-next?
->>>>>>
->>>>>> No, DTS must not go via wireless-next. Please split it from the series
->>>>>> and provide lore link in changelog for bindings.
->>>>>
->>>>> Hi Krzysztof,
->>>>>
->>>>> Is it really important how the patches travel upstream to Linus. This
->>>>> binding is specific to Broadcom wifi devices so there are no
->>>>> dependencies(?). To clarify what you are asking I assume two separate
->>>>> series:
->>>>>
->>>>> 1) DT binding + Khadas Edge2 DTS  -> devicetree@vger.kernel.org
->>>>> reference to:
->>>>> https://patch.msgid.link/20240813082007.2625841-1-jacobe.zang@wesion.com
->>>>>
->>>>> 2) brcmfmac driver changes  -> linux-wireless@vger.kernel.org
->>>>
->>>> No. I said only DTS is separate. This was always the rule, since forever.
->>>>
->>>> Documentation/devicetree/bindings/submitting-patches.rst
->>>
->>> I am going slightly mad (by Queen). That documents says:
->>>
->>> 1) The Documentation/ and include/dt-bindings/ portion of the patch
->>> should
->>> be a separate patch.
->>>
->>> and
->>>
->>> 4) Submit the entire series to the devicetree mailinglist at
->>>
->>> devicetree@vger.kernel.org
->>>
->>> Above I mentioned "series", not "patch". So 1) is a series of 3 patches
->>> (2 changes to the DT binding file and 1 patch for the Khadas Edge2 DTS.
->>> Is that correct?
->>
->> My bookmark to elixir.bootling does not work, so could not paste
->> specific line. Now it works, so:
->>
->> https://elixir.bootlin.com/linux/v6.11-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L79
->>
->> The rule was/is:
->> 1. Binding for typical devices always go via subsystem tree, with the
->> driver changes.
->> There can be exceptions from above, e.g. some subsystems do not pick up
->> bindings, so Rob does. But how patches are organized is not an exception
->> - it is completely normal workflow.
->>
->> 2. DTS *always* goes via SoC maintainer. DTS cannot go via any other
->> driver subsystem tree. There is no exception here. There cannot be an
->> exception, because it would mean the hardware depends on driver, which
->> is obviously false.
+On Wed, 14 Aug 2024 at 12:03, Krzysztof Kozlowski <krzk@kernel.org> wrote:
 >
-> In case my message was not clear: we talk here about organizing
-> patchsets, not individual patches. If you ask about patches, then DTS,
-> bindings and driver are all separate patches. This set already is split
-> like that, so this was fine and I did not comment on it. Only through
-> whom the DTS patch goes - separate tree.
-
-I used the "series" which is my term for "patchset". Sorry for confusion. 
-So "[PATCH 3/5] arm64: dts: rockchip: Add AP6275P wireless support to 
-Khadas Edge 2" should be submitted to rockchip soc related tree and the 
-rest can go through the wireless-next tree. Got it.
-
-Regards,
-Arend
----
-$ ./scripts/get_maintainer.pl -f 
-arch/arm64/boot/dts/rockchip/rk3588s-khadas-edge2.dts
-Rob Herring <robh@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED 
-DEVICE TREE BINDINGS)
-Krzysztof Kozlowski <krzk+dt@kernel.org> (maintainer:OPEN FIRMWARE AND 
-FLATTENED DEVICE TREE BINDINGS)
-Conor Dooley <conor+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED 
-DEVICE TREE BINDINGS)
-Heiko Stuebner <heiko@sntech.de> (maintainer:ARM/Rockchip SoC 
-support,commit_signer:11/11=100%,authored:1/11=9%,removed_lines:1/1=100%)
-Muhammed Efe Cetin <efectn@protonmail.com> 
-(commit_signer:10/11=91%,authored:10/11=91%,added_lines:685/685=100%)
-Dragan Simic <dsimic@manjaro.org> (commit_signer:1/11=9%)
-devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE 
-TREE BINDINGS)
-linux-arm-kernel@lists.infradead.org (moderated list:ARM/Rockchip SoC support)
-linux-rockchip@lists.infradead.org (open list:ARM/Rockchip SoC support)
-linux-kernel@vger.kernel.org (open list)
-
+> On 13/08/2024 19:14, Ilya Orazov wrote:
+> >>    '#phy-cells':
+> >>      const: 0
+> >>
+> >> base-commit: 6a0e38264012809afa24113ee2162dc07f4ed22b
+> >> --
+> >> 2.34.1
+> >>
+> >
+> > Could you please review my patch?
 >
-> And just in case: this is neither specific to wireless nor to Broadcom.
-> This is for entire Linux kernel.
->
-> Best regards,
-> Krzysztof
+> You received review. Why do you ping after few days?
 
+I have uploaded new patch version and fixed all dt-binding errors, so
+I thought you might want to review this updated version.
 
-
+-- 
+Best regards,
+Ilya Orazov
 
