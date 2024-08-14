@@ -1,112 +1,153 @@
-Return-Path: <devicetree+bounces-93514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FAF195150A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 09:12:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEC37951574
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 09:27:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6FA51F21E90
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 07:12:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B588C28C2E1
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 07:27:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F00EA13A268;
-	Wed, 14 Aug 2024 07:12:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51BC713CF9E;
+	Wed, 14 Aug 2024 07:16:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="WLDyz8AV"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="cHzMLDsm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 670AD139D12;
-	Wed, 14 Aug 2024 07:12:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E33513C9B8;
+	Wed, 14 Aug 2024 07:16:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723619561; cv=none; b=dttutUbZ/Rs+Bjvao8Bl3DRZc4uj/UotiH39J71CgFCHBIRqTDPnZl8sf4DYqh+UynYVX8qE9EHYPWW52o/izKvWUjTUWV13qTjOyZXAFne7uVsEP9ILcor8AnAT9FrtWkmHmuHGuEwapuNGcsfBquG/DyC94KdxorbRA//TYR4=
+	t=1723619777; cv=none; b=a963fyK32s58w5g+JMTbrnDlT0ubcIC6xObS/2p6ierjhKXV/vhDo3zisROeqfh2Td34GOKfr+OT3e6E3a8/EkCWSGHp46/HeT2FOev5NV4117mVbHfQmgvNAvkocipO+nCGXFaFzkl0wrmJITdiCJKRoxPFFR4b9jaOMK+OHQs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723619561; c=relaxed/simple;
-	bh=16gfSaJyvSElILzmaEHedrernnbdYU+elxoghkD0Kvo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ao/RVwBNcvT/qAubw/dSy+kVodxsb1I3epUYyZDPVv7k0dn3UC8UujJM/SMMYik68qGF2UoWq9sOftg83I0D/B+wwiV/qy6pNHuXUXdXTs+JhJVmEY8zuYqer5UET40YLrto5BiZIU5zDWEKQvwt3DAxdRba4oXnnCYhdMx6wWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=WLDyz8AV; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 02A6C20004;
-	Wed, 14 Aug 2024 07:12:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1723619555;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=16gfSaJyvSElILzmaEHedrernnbdYU+elxoghkD0Kvo=;
-	b=WLDyz8AVmcmRVLH4/IFsyuHIwRxU+xykoppb2BwV7B7lBpBhCDg6niv6GEEBULDECJeRnn
-	+Lq4gnSdHq9W0+CmCfedfQeJ67NQaQDMCd5GB2Adce4o/MOSiHdFVJB8DjPaWz/0VVHCRM
-	Q3lq3I4s7wGcu4ckj1cjdz5MgiHqNpQYJoRkqsRZPkd4K5rvEfNJxJLykx+VOYQy45Z6mc
-	Vh4eBxUDrINY7YOH+IaMfku6iStV3DhFIQVv5c/1Uam1ldukxmeOaIgo99AxLCc41usAva
-	gGE2OuYkynLz96PJpm+mZmp2Ezrqrf/vDV284Ktlz4Xr8ELtNZOJCh2SgbYkEA==
-Date: Wed, 14 Aug 2024 09:12:31 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Keguang Zhang <keguang.zhang@gmail.com>, Richard Weinberger
- <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-mtd@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-media@vger.kernel.org
-Subject: Re: [PATCH v8 1/2] dt-bindings: mtd: Add Loongson-1 NAND Controller
-Message-ID: <20240814091231.1d9525be@xps-13>
-In-Reply-To: <20240809-smuggler-patrol-067003f0ba9b@spud>
-References: <20240808-loongson1-nand-v8-0-c96dea418b41@gmail.com>
-	<20240808-loongson1-nand-v8-1-c96dea418b41@gmail.com>
-	<20240808-backyard-unglue-3cf429ad8da5@spud>
-	<CAJhJPsVOTAj9ePzeHkwDX049FKd=9Rs_NjQE2qwQL76GKSC66Q@mail.gmail.com>
-	<20240809-smuggler-patrol-067003f0ba9b@spud>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1723619777; c=relaxed/simple;
+	bh=2DFuhkegAKw2VGmG0aMHoO6HwcjsJ3J4ofOBi5GoYu4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=t8tBsjjuvYdbn257zrYI/Z7eEPC7enAXYf0fXQM1FhM8I0hKm69sF+bS8WlahK0IhJ1hPXyuTgPhocpVeB3QrdX6Z7sJ5H3roBhug/2yYLkNSu/Mtgd/toETPR2bajIqjaBQO0MFV03rqM6sD1Za5RolrLyJtYyZs3YqXFFwCWM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=cHzMLDsm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB108C32786;
+	Wed, 14 Aug 2024 07:16:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1723619776;
+	bh=2DFuhkegAKw2VGmG0aMHoO6HwcjsJ3J4ofOBi5GoYu4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cHzMLDsmU/rORQXzXPzmat9Ppd9CIC1cK2ptJBvO33EkEYMQ9MNHJfmukC5+6EFRO
+	 ebm3sgl4of0tfRoOXy9jTbF4Cehmvz38NM4O7haF8SzyNNcKBBVFz5QU9O5HYSOlyT
+	 DLh34mWL2K+4ejbDsMQ3k6D5StAkTExWozE94gWQ=
+Date: Wed, 14 Aug 2024 09:16:13 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/1] dt-bindings: usb: microchip,usb2514: Fix reference
+ USB device schema
+Message-ID: <2024081400-stallion-suffix-3a0b@gregkh>
+References: <20240814065833.36372-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240814065833.36372-1-alexander.stein@ew.tq-group.com>
+
+On Wed, Aug 14, 2024 at 08:58:32AM +0200, Alexander Stein wrote:
+> An USB hub is not a HCD, but an USB device. Fix the referenced schema
+> accordingly. Adjust example to keep it aligned to other schemas.
+> 
+> Fixes: bfbf2e4b77e27 ("dt-bindings: usb: Document the Microchip USB2514 hub")
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+> As this USB hub also can contain an USB (ethernet) sub device, I copied
+> the subdevice part from usb-hcd.yaml.
+> 
+> I had to add 'additionalProperties: true' as well, because I got that warning
+> upon dt_binding_check otherwise:
+> > Documentation/devicetree/bindings/usb/microchip,usb2514.yaml: 
+> >   ^.*@[0-9a-f]{1,2}$: Missing additionalProperties/unevaluatedProperties constraint
+> 
+> I added a Fixes tag to keep this schema aligned in v6.10 stable tree.
+> 
+>  .../devicetree/bindings/usb/microchip,usb2514.yaml    | 11 +++++++++--
+>  1 file changed, 9 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml b/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml
+> index 245e8c3ce6699..aa3db8e373c70 100644
+> --- a/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml
+> +++ b/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml
+> @@ -10,7 +10,7 @@ maintainers:
+>    - Fabio Estevam <festevam@gmail.com>
+>  
+>  allOf:
+> -  - $ref: usb-hcd.yaml#
+> +  - $ref: usb-device.yaml#
+>  
+>  properties:
+>    compatible:
+> @@ -36,6 +36,13 @@ required:
+>    - compatible
+>    - reg
+>  
+> +patternProperties:
+> +  "^.*@[0-9a-f]{1,2}$":
+> +    description: The hard wired USB devices
+> +    type: object
+> +    $ref: /schemas/usb/usb-device.yaml
+> +    additionalProperties: true
+> +
+>  unevaluatedProperties: false
+>  
+>  examples:
+> @@ -47,7 +54,7 @@ examples:
+>          #address-cells = <1>;
+>          #size-cells = <0>;
+>  
+> -        usb-hub@1 {
+> +        hub@1 {
+>              compatible = "usb424,2514";
+>              reg = <1>;
+>              clocks = <&clks IMX6QDL_CLK_CKO>;
+> -- 
+> 2.34.1
+> 
+> 
 
 Hi,
 
-> > > When I first read "nfc" here I thought it was a copy-paste mistake, as
-> > > "nfc" is a technology of it's own. I think it would make sense to ren=
-ame
-> > > to "loongson,ls1b-nand-controller" etc to remove that sort of confusi=
-on.
-> > > These devices might not implement NFC, but what's to say that a future
-> > > device will not?
+This is the friendly patch-bot of Greg Kroah-Hartman.  You have sent him
+a patch that has triggered this response.  He used to manually respond
+to these common problems, but in order to save his sanity (he kept
+writing the same thing over and over, yet to different people), I was
+created.  Hopefully you will not take offence and will fix the problem
+in your patch and resubmit it so that it can be accepted into the Linux
+kernel tree.
 
-I believe the nfc (also, nc) abbreviation pre-dates the NFC spec. But I
-agree, it may be misleading. Even though I don't foresee any NAND
-controller with NFC coming, it's probably bad for newcomers/people who
-are not already deeply into the mtd details to use these confusing
-letters, especially in a binding.
+You are receiving this message because of the following common error(s)
+as indicated below:
 
-So, Ack.
+- You have marked a patch with a "Fixes:" tag for a commit that is in an
+  older released kernel, yet you do not have a cc: stable line in the
+  signed-off-by area at all, which means that the patch will not be
+  applied to any older kernel releases.  To properly fix this, please
+  follow the documented rules in the
+  Documentation/process/stable-kernel-rules.rst file for how to resolve
+  this.
 
-> > Sorry for the confusion.
-> > The string "loongson,ls1b-nand-controller" might be too long. =20
->=20
-> It "might"? Why do you think it is too long?
+If you wish to discuss this problem further, or you have questions about
+how to resolve this issue, please feel free to respond to this email and
+Greg will reply once he has dug out from the pending patches received
+from other developers.
 
-Yeah, why would it be too long? Let's call a cat a cat. This is a
-compatible for a NAND controller. So I expect the string to mention
-it's a NAND controller because it's clearer. For quite some time there
-has been a confusion between the NAND controller and the NAND
-flash/chip, but these are two different hardware components.
+thanks,
 
-> > May I rename it to "loongson,ls1b-nand"? =20
-
-For the above reason, no :)
-
-Thanks,
-Miqu=C3=A8l
+greg k-h's patch email bot
 
