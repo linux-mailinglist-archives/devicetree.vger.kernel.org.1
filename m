@@ -1,224 +1,375 @@
-Return-Path: <devicetree+bounces-93482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA5A49511AB
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 03:49:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 420D99511BE
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 03:54:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 577AE1F24C17
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 01:49:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A4E60B25186
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 01:54:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC54F17577;
-	Wed, 14 Aug 2024 01:49:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43CB311717;
+	Wed, 14 Aug 2024 01:54:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="AxOUL0Ba"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="e6svQxP4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11011040.outbound.protection.outlook.com [52.101.65.40])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DFF510FA;
-	Wed, 14 Aug 2024 01:49:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.40
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723600178; cv=fail; b=mvPfAqUcdYXxBbOui3HKu8U+tA0yAkPkEdEgQ0HS9xLV/0U+5qqX6eTMZ8U7nhTvD/Nfbe+jx0TaNoSflq6y2OynpPJ0o/Nd6xxdX7zXpZbRa1yeO7C5livZLNbGUbY3CKx8DKhiOfHshchBJwd6Tk75igxGvpwoP2fyecBlRrQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723600178; c=relaxed/simple;
-	bh=dOJMuXTZMuBC/xuOAzfqgbfVtAtG9HFzGoBcfvwWuAA=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=S0V9jQ3c0RQmZHqix7KvnxNHg+bT33xjkY5p2dol9r/tN118x52o23yBkh0dIzwZxBgjARklHJsYMC45OzCWf8LppRIPmHEtCwQhR/fdbBJ4KpFKVWQQNvz5ILWsztn4yIKaosEV+W8beWxJpO75iywZL6NN/VJB+EIbqcjnp8s=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=AxOUL0Ba; arc=fail smtp.client-ip=52.101.65.40
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vDaNGQeD4SDOS/YXA2yuMdTN9r4gbNVayVPHnrFArVstM9HrDjPlgtRA3OqJPjTLiUgLWjXAVhlmN4PrRSVncZuihX5jY0VLBN978OUy6+Nw8lObWVhZtpTfAo8B2uzbV9S3YazcGIniiQcPhNd7WpA3wWJHQyTtwZlde2YNtiqFvwIKaUVKCC3fwmcEQAy4Hq6bJyDSyt82uJZo+/tZskIRNRHB6UyB4CmB/L58Ba1qKPqw7PisY/UylzF5Ddjs98QKzTnGMoH9wvOlKugIuUcKLHLHDmSaRgk9w0oGcy4b04F8p1xOl430st7kC1SQpknmRQmBrwWvQo2w9qRdyQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dOJMuXTZMuBC/xuOAzfqgbfVtAtG9HFzGoBcfvwWuAA=;
- b=V5Q82aeAk5on+FE3fa5zl55hn8ncPHkWoy1wkGPew9mH0cU+Pg/0pcYf8W3JwsgOnknDi2tfG8Ns+9pLbBwDLPQ4nAaHYgBJsxHWlXHBkdTyQFfvbeS8hKlhKek9u9LxNfBTQrpZHI5aRI/21fg+7E849xSVfcAUE1WOHvmmgnotL+cXVO6zMKjIzZnvYf/7bSW0h2BQDokS53M9SGoI1hgcusMd90N6AZfSpBEEKGyx0ouqSMJd4XaPI+0T71+F4r7n/21kC7leI+fwJRSKtJVN/NY51VIWxE3iy2pQUYDLutSqtOj+BKAcpKGp710Q/ZTBkCjHgT+X38dQbkHs+Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dOJMuXTZMuBC/xuOAzfqgbfVtAtG9HFzGoBcfvwWuAA=;
- b=AxOUL0BarzaSa4WR+OSs16Mp/z0IdWgptTnOKa2k+s97EspTeM7c8l3uAwmrjLVygUbYATKNKYEd4dl6i4gn66shBHMuOFwaOg/DQbSSwzhPVNxc0yb8oJYybTMoPD3VFRyrkqXKmbUgnmE3aTpbo/V7bJQ4QJhS3xsugieixQaEf3IskwVv4VBBnJ6jg+mfurtvlxIL3JcuFrbpPtX++fmqHNJ73Fu+VoZWFHXhkdQNg72ZgRR9FN1RBN2mBYeZ9Ah8F/5gpHONr+r0PYWp9mbEDbb8f/hAB5sVszK3oLjnNjFefBS0sA4inPJv6s+Y6XPmNEt6ik4MdEU77Lhk4A==
-Received: from AS8PR04MB8676.eurprd04.prod.outlook.com (2603:10a6:20b:42b::10)
- by DU2PR04MB9131.eurprd04.prod.outlook.com (2603:10a6:10:2f6::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.17; Wed, 14 Aug
- 2024 01:49:33 +0000
-Received: from AS8PR04MB8676.eurprd04.prod.outlook.com
- ([fe80::28b2:de72:ad25:5d93]) by AS8PR04MB8676.eurprd04.prod.outlook.com
- ([fe80::28b2:de72:ad25:5d93%5]) with mapi id 15.20.7875.016; Wed, 14 Aug 2024
- 01:49:30 +0000
-From: Hongxing Zhu <hongxing.zhu@nxp.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-CC: "shawnguo@kernel.org" <shawnguo@kernel.org>, "linux-pci@vger.kernel.org"
-	<linux-pci@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>, "l.stach@pengutronix.de"
-	<l.stach@pengutronix.de>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>
-Subject: RE: [PATCH v5 1/4] dt-bindings: imx6q-pcie: Add reg-name "dbi2" and
- "atu" for i.MX8M PCIe Endpoint
-Thread-Topic: [PATCH v5 1/4] dt-bindings: imx6q-pcie: Add reg-name "dbi2" and
- "atu" for i.MX8M PCIe Endpoint
-Thread-Index: AQHa7VciS0QZKXNjsEqaFNKRvx1ThLIlYjKAgACYuLA=
-Date: Wed, 14 Aug 2024 01:49:30 +0000
-Message-ID:
- <AS8PR04MB86767916B0539B339120C2218C872@AS8PR04MB8676.eurprd04.prod.outlook.com>
-References: <1723534943-28499-1-git-send-email-hongxing.zhu@nxp.com>
- <1723534943-28499-2-git-send-email-hongxing.zhu@nxp.com>
- <172356674865.1170023.6976932909595509588.robh@kernel.org>
-In-Reply-To: <172356674865.1170023.6976932909595509588.robh@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AS8PR04MB8676:EE_|DU2PR04MB9131:EE_
-x-ms-office365-filtering-correlation-id: 595a4db9-be45-46ed-44a1-08dcbc0356ba
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|376014|7416014|366016|1800799024|38070700018;
-x-microsoft-antispam-message-info:
- =?gb2312?B?VzNrTzBHaVZEU3M1cnNKTTA1QVhyZk9xblpZaE1XWFdYb1c3czJEK0l1NCtw?=
- =?gb2312?B?NmhUVkc1citwNWlrNVpTUWxrYmh2Z1VjSi9Yb2N0NXVxeWlEaHpuM2RtaGVa?=
- =?gb2312?B?R1Z2ZGZiUzBqMTk2VkNCYW44T29YbXFpdEZXdExwNXRDNGpwcU5ibmZIV2pL?=
- =?gb2312?B?dmUyNGxjMlNCNmhiWVdsakF5RXFPWnc0NDVMaE4xblllUTV3eHM3bE5mQlQy?=
- =?gb2312?B?Ym1hNHZYc3lmNjAxTlRDYlM0dWxVaHAvQm1wR1U2WFIxS200TEdodTlwOUtq?=
- =?gb2312?B?dVNLNU43SWRoeSs2eDhyZHYzNzFOejVMcWhwckhvTlVrdkV1cVZaMmtqL2tn?=
- =?gb2312?B?ZTJpclBjdWgxZW5jcFV2M0F5TmFBZ29CLzlXQkdzWnJneDFmN3pwNmRVYW5z?=
- =?gb2312?B?WFdqUnU2dTQxa213ME9hQjVIVXp0OC9ISHozSTR3T21sZUVFam85a3NkV1ht?=
- =?gb2312?B?cWpwR2JCM1RnNnF3Y2tIMjhXbHBMSzRlbEhZYmp4MERwRFZkNDZKUEl3Q1RP?=
- =?gb2312?B?azNhWW1QRkwyMkJKZHhoaHlPcU1yZkozVWJuVkpBTWg2Rmt0eUJWRWY2ZWdG?=
- =?gb2312?B?MDVsa28zZVFxVHM5dTVVMVNDNC9xVE1hT09CcHRBVFgzTVdEdGdJaHowRHJK?=
- =?gb2312?B?aThLdGV1c0dtZnluUlRodG45enc4aytUUE5rOHd6N1A1eTR4SE5ZNm96SlFz?=
- =?gb2312?B?Y2MxcldCM1VTb0IrMENtVVREZU9NTzkxM1JNMld5WHR3NkEwTXU4L1oxbEFK?=
- =?gb2312?B?S1pqcUhOU3RxU2VaaXZuTjJiWlRKNlhQOU9nZlpHOS90eXNFRVJnZlFlSFhH?=
- =?gb2312?B?dVg4TXVqTWI0RzZsRWNIZkk4SDNpSE5qanpYbmo5NVF4UnpvTlJYWkNmVWJl?=
- =?gb2312?B?eUVZYVJ0UmgxUzI0MFFIWUd6VnU2b1VSbG9LTDlEdUpFUDdjUlo2bmQ2a1Jk?=
- =?gb2312?B?MVBWT0pRNE1TRWRSZXR6VFh6Zk81R1IyWTR3TjU4L2laVUhybi9vSDVWbHc3?=
- =?gb2312?B?VzlRK2twYzlrTzhRWTN4eXpaOGdQcDJJOC8rSHhzWmlTSUg3a3l1SkFFbXhp?=
- =?gb2312?B?RzhvT3gyNFJXNEt4Q25uSlM5UnVjTG5sQjlyWFE0aElsMmNXbXBNVTM2ZHBq?=
- =?gb2312?B?RkMvN01BcnlZeVFHYkxSdlZ2ZzVxbHVOc0Q4WWdSblpES1JzNHdqOG1yMHFQ?=
- =?gb2312?B?eDJLcEpTSkhRczNOeDEvSDRjajZYN3BSWXZuVjZJSDNIWGt6OENOK1pUVXd5?=
- =?gb2312?B?YXhWaWY2RWEzK1YrZ3hWUU1KRGMxb01jSUtDcVNnb3VmVGxSOFhsSTZkaEhH?=
- =?gb2312?B?STdJcGUybHpyUk9Cb0F5djB2ckYyaEZqMXI5eERoVTJPWjBXR1BvSHBOYkYw?=
- =?gb2312?B?d3RtRFZBUVJIVEpLeFpYOUZXTHVoVjA1VUI4OWRpeG5Dd2dkZW43cGdXNS9W?=
- =?gb2312?B?Nys4ZE9UZzFIVXNFS2ozUWhYclZJeWVuaXdJMERVdFRkalZTc3MwOUtOd2RE?=
- =?gb2312?B?bWFOSENYMjNzS1ZldFlkL1NoaFA3cDQrS1hSL0xpak5QOWFZbnZhQWxndGl2?=
- =?gb2312?B?RSt3MmlHL2EvMUlFMXZ2aVF2aFBHMFdRRU1ROGRoM3lRdk9kcmQremM5MUpQ?=
- =?gb2312?B?eGw4bUNvSk40eEdjc3F3ck1uRWJtYTNDMU5XSmhTcU5qOUV0bzBhY1ZpQ1Jz?=
- =?gb2312?B?bklYOE9DaWtJb1hhcHNnNzJKTFRFOFFSVXJGekZ1NnY5SEpUSlZuMUFCblly?=
- =?gb2312?B?NWNBakNhS045QWpqODJuL0NPK3N2a29TMktRQlFNekpTd3Bvb0RvWW5lcXdj?=
- =?gb2312?B?NW5ENzNIMlU5RjJxLzg5ZW5KaVlGbnJDM1hCSzBPcEpIVkxDR0h0bkxqbTJm?=
- =?gb2312?B?dW13R1NpWUhCRWZ1ZVhZZTNPOHpPSlk3eWFXTmY5NTVCSUE9PQ==?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8676.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?gb2312?B?dHdpVUJsaUpOUENIYTRQaWZEZ2xsUHdDSjNsbENhd01JQnZ2dVJzR3AzRFRz?=
- =?gb2312?B?cGFLajd1UkxrZitLZ0drQU5YREE5empUMC8xRTBqSnJQTUJmdndXS2hsQVo4?=
- =?gb2312?B?WEhSdWFxWjFWSEJYVHFYN3VacGIyU1JhQkVxWGwwdENDYTJnZUhhVStYV2xo?=
- =?gb2312?B?VXhWeXdIY2h4dm43NDhKVDdKNGlOelYvTVV3VVd3emtlMEpld1NTemlMc3pk?=
- =?gb2312?B?Wm5EaERiR2ZNbUlCLy9ZWUZwNDJMdmowWEhrNFI1TWFqa2Foc3BPV0JoV3My?=
- =?gb2312?B?V29hMnNyaE0yUHFUTXdYRUNTQzdwRitFeUR0VjExYmFaeGdrMmRmdUE1UzY3?=
- =?gb2312?B?emlFOEtsZm5rWllneWVWU25iZHFDY1BjWmJXTmdZT0FGcFJwOVZsRGJJWGlE?=
- =?gb2312?B?TUNwK2llaUZXVUNvWVpoOE5tVmo5aEs2OE5pRkhnc1VOdUo1TFNFQnByNUJU?=
- =?gb2312?B?M2ZZZE9aK0FlWUlRVlhWQ0RaK3FtRDJUQ0FSUU0vNGpzaUlyRUMzVC9XZVJ1?=
- =?gb2312?B?SC9CZCtmZzFCOFVyMDVsYmJNMnh4bnZxLzNpYytHOHVCZ3B0ekhscjY4VUsz?=
- =?gb2312?B?aDBDc0dMRWxGQUFOcU12N1RzL1ZiZllaWllKdWhHd3dSRnFhMytyR0dLRUhi?=
- =?gb2312?B?VVpqdG5ZTGQxUUh1VHcrSzRXSTB1djd1LzBhWTFBSmtuOE9rZVVsT1VmU2Jk?=
- =?gb2312?B?aytlYVBiY0tqWmMreEJ1ZFgzSWtiYm5yRkxEWnErY1cxZXZXWjFiZldyaTNL?=
- =?gb2312?B?SmYxUTdVWk1ubU5xQTNjRTkxdkZ4SXQxUGM2eFZsNnYwczFTSjBNRXJiZHQ2?=
- =?gb2312?B?SnozSk00dVlpUXlaTWNCZUhTT3pmTnJESW42RHNMNENCNmpjYVlDVk0xelM3?=
- =?gb2312?B?UDhCdE5idUxBSXBpN09UYkYxZlpKMWtsRGpmTkgxSDJHTFpYNUFmMThhM0g4?=
- =?gb2312?B?eUNZUTJZRWxKeDNRdlIzYVNhSUdDbUlFUmRmdTY3R1hiUjV6NFVkSWNMa1hs?=
- =?gb2312?B?Wkd5L1hHRVFObGVTckhjYXpoaDhid3F4MytCWE5HN3pMaE9vc0I1eHVpM2ds?=
- =?gb2312?B?V0xHeVl6Y3NRUXY4aHdpeTl0MldOZWYwSEprdndYWHBKQkU3cjlTZ0hnTTUz?=
- =?gb2312?B?STFnb2NRY29nc25vbVR3ZnpHZCtXUnQ4N1ZnUHlRekgvd0ZBWDdaRDRqZCs5?=
- =?gb2312?B?OW5TcndNSHlDOHM5Uk5Lb0lXSzdQR3hNeVJiZDBMV3RnWVVKcnk0NFRUU0dZ?=
- =?gb2312?B?VnBPVytZS0llYVBVRkVBVHVwb3VWdnFCdTllbGkxM2ROTnhsU1l5WmpDcTAr?=
- =?gb2312?B?bFlZdWJPWFRjalVIbXdiczdrN3huNU9yU0E3SFJmRFZ4S21KdFYyVEJ3a1N5?=
- =?gb2312?B?UU51dEhJK1haeE1ZY0lvZGRXUnNNUUlheHNudVh2b1pXRUVFN0RtU1RJUlZR?=
- =?gb2312?B?VzRYeWRwaTI4cEdmaitkRkZIbmdpbkZtVVM5RzNKUEtadW16bkJaRTYvZ1JD?=
- =?gb2312?B?cG96dm9DQXlrSHptZWQrS0cwRlRRR0ZxQUFMaE01dmkwVlVzSlJacDZILzRX?=
- =?gb2312?B?QytuZldYV1RzRTBmLzhJVDF3SmVucVUwNkkyTFo4WXhWdDFYdzl1K21GbnJX?=
- =?gb2312?B?amlJNGMvYU93eTJQZWFCZlljQ2Q0V29pUkQvL0UrMThVQjFyZlVLekFya1N5?=
- =?gb2312?B?ZUFyYWNsckdFVFptQkw5eDdOZ0cvc0o1T0ZXcWVqU2RCbzZ6NEJGbHNjOGpy?=
- =?gb2312?B?VDk3amlDb0V6c2Q2a1lieEtQRFRkWnVmdEZZMjkyVGwvZWVZQ1kwZ1NMK2Js?=
- =?gb2312?B?WmdiNUZLczJicWlrdTBTRTYxb2llRDVlRzhDbEtwZGU0eGNSWFZObG5QYVdk?=
- =?gb2312?B?MmZnTnFlclo0aFRXOS9UNjBmakNXWENnL2tScWNreE9XMnpHallPdk1zTzl6?=
- =?gb2312?B?eDV1aHVtWXRXUUk1cnVIU3o1OUxXdHV4SkNmTDBrTEtaeEZWai9JK1RtZVNK?=
- =?gb2312?B?L3g4eHl4dXRKUkxuSHpvZjNiTHEwcmZ3YSs2WFJVWDZxV3RlSFl4ZU56T0Zq?=
- =?gb2312?B?S0NYWC9qNm1XYmh5aDNmVDNBa0FOK1FhM0pLcC9VdWxzVTRGMHFzQzBndW43?=
- =?gb2312?Q?k5DHsjZQKJJz7mMzpaeB/NANQ?=
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D4DF17997
+	for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 01:54:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.41
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723600466; cv=none; b=FimT1IcyI33r4VCqWfPwi0oKAydTGBPsL4ulAJE/4sJ7Yq0DKjLEDXZJTZsJGp401R5d1Q3GL+h4xe/tjFhBLfi9RWjia5xfY3EyYquz0F2/TKuUe202+lKLceZIR4HaN8fumEmDWc3d2rJKg4T85PcPaTSRoRianWA5gvgXHco=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723600466; c=relaxed/simple;
+	bh=qPcLEe0Y3srOUd9t6dlKzpEgI+poh6U7DVd+TUP248c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NQGIq5W1ew/g29VMZob/noo3/shakFQRD5BTn2jTTEcH4XKF7lwxEfIPTPrsrlqA+eajzoUTsNJxDbN18EPNe7YcViyIB7LCvcA6n90teW5wOw0W4TK0eBLlTm/OkTuO+gcxvbzEQEntXH9U2xTMTYvt65WQlmie+KXy9WMcx0U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=e6svQxP4; arc=none smtp.client-ip=209.85.166.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-io1-f41.google.com with SMTP id ca18e2360f4ac-81fd1e1d38bso318651739f.1
+        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2024 18:54:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1723600463; x=1724205263; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=p6pmULMAGWWHjRqkutdIwNmS0SAJKLB9nOZJ5sh6Gzk=;
+        b=e6svQxP4CbSbYjvyQy2AWh7muEzwfNw/D0I1J1DQCXj3PnnX2CEB8o4nph067ASPAE
+         jFc3lrWkaM+n3mF/dYVFHH3If/aMpdqrxRKfYkPdMc5kUhy6KYxX/h7DZXNcufI+IpQo
+         WPPOB8PEdpR/QHKKga9whpkpz1jmvpXxa8FL/v4WMgre3QxjP3+WWT034pH1Fi5GlQcP
+         8TSWPqiCvxyi9lZz56aVaSZxuF3uIahJY/q9WCbCOvD8Fgk8x5eNBoRMxJWem0/aFbpd
+         AIATzTYLbQPdDqH7OPtRED6O0EUggnunE54VXaE6DNfNajdyWrr/iYMBPrHKPckRppVq
+         NVaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723600463; x=1724205263;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=p6pmULMAGWWHjRqkutdIwNmS0SAJKLB9nOZJ5sh6Gzk=;
+        b=k7BQ317yCTwV7B03ITW4SxDxN/FZ+4jZPYWVPP+8tDCvhusjTF7FW7UA1UTWT2Q9I7
+         lCk2i9fwmfiFQNLJ8okVvCWhf8Jvvw+4G1o9mpKVpx/NkFs5Q9WZl965k0XgnHuYhhQz
+         25dTZht8LSHJlql70RVsQfbKGRmND/FagxMCvDsp8X1VaXI/hKJF1HfCIG+jhyzXIjWO
+         FIgutAWUkBp/tDj1NIZLFSfJlhWQNNp3KpN8d0vp7pUMele7sAU6xUzo4QEeVhXoDvnC
+         xwVwuWnAgWY1whhUXTk6f3hmz5PJrZhZsPlVb5LUzQxPHm9m2mf+fwf2B1unOxAlXbY9
+         IK/Q==
+X-Gm-Message-State: AOJu0YwfggHJ02J+KDAXoCPdWBDP4hyQjAgvlNtVIXRMaXx3w2PBujfw
+	eGBjUpQlUKDreNHufDnctedOugq0Lh6MvXl4z+L4M6jNnFp2U6lVQHfi1aDRlGA=
+X-Google-Smtp-Source: AGHT+IE46kXd8oJ9fQY+S7XvoGy6ks+3JlzTSFcLeBH6FyLIJCxXaB6zmkbU7iEZyTSa78XeFhkUFg==
+X-Received: by 2002:a05:6602:3f91:b0:822:3d11:107a with SMTP id ca18e2360f4ac-824dacda2ecmr182325039f.4.1723600463386;
+        Tue, 13 Aug 2024 18:54:23 -0700 (PDT)
+Received: from [100.64.0.1] ([147.124.94.167])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4ca7695d26csm2890726173.84.2024.08.13.18.54.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Aug 2024 18:54:22 -0700 (PDT)
+Message-ID: <dc8da1d4-435a-4786-b4bc-7f89590c2269@sifive.com>
+Date: Tue, 13 Aug 2024 20:54:21 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8676.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 595a4db9-be45-46ed-44a1-08dcbc0356ba
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Aug 2024 01:49:30.5489
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: pQZ3jXlrUMkDuflwqI3AgijvXwPrZGqarG8RKYNOfhUJZ9k7+e5ECUtHM4RCv1iqtiIpn8qhLxyRKVg7r9bJLQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB9131
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 04/10] riscv: Add support for userspace pointer masking
+To: Alexandre Ghiti <alex@ghiti.fr>, Palmer Dabbelt <palmer@dabbelt.com>,
+ linux-riscv@lists.infradead.org
+Cc: devicetree@vger.kernel.org, Catalin Marinas <catalin.marinas@arm.com>,
+ linux-kernel@vger.kernel.org, Anup Patel <anup@brainfault.org>,
+ Conor Dooley <conor@kernel.org>, kasan-dev@googlegroups.com,
+ Atish Patra <atishp@atishpatra.org>, Evgenii Stepanov <eugenis@google.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ "Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>
+References: <20240625210933.1620802-1-samuel.holland@sifive.com>
+ <20240625210933.1620802-5-samuel.holland@sifive.com>
+ <440ca2a7-9dfb-45cd-8331-a8d0afff47d0@ghiti.fr>
+From: Samuel Holland <samuel.holland@sifive.com>
+Content-Language: en-US
+In-Reply-To: <440ca2a7-9dfb-45cd-8331-a8d0afff47d0@ghiti.fr>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBSb2IgSGVycmluZyAoQXJtKSA8
-cm9iaEBrZXJuZWwub3JnPg0KPiBTZW50OiAyMDI0xOo41MIxNMjVIDA6MzMNCj4gVG86IEhvbmd4
-aW5nIFpodSA8aG9uZ3hpbmcuemh1QG54cC5jb20+DQo+IENjOiBzaGF3bmd1b0BrZXJuZWwub3Jn
-OyBsaW51eC1wY2lAdmdlci5rZXJuZWwub3JnOw0KPiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9y
-ZzsgbGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnOw0KPiBjb25vcitkdEBrZXJu
-ZWwub3JnOyBpbXhAbGlzdHMubGludXguZGV2OyBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3Jn
-Ow0KPiBrZXJuZWxAcGVuZ3V0cm9uaXguZGU7IGwuc3RhY2hAcGVuZ3V0cm9uaXguZGU7IGtyemsr
-ZHRAa2VybmVsLm9yZw0KPiBTdWJqZWN0OiBSZTogW1BBVENIIHY1IDEvNF0gZHQtYmluZGluZ3M6
-IGlteDZxLXBjaWU6IEFkZCByZWctbmFtZSAiZGJpMiIgYW5kDQo+ICJhdHUiIGZvciBpLk1YOE0g
-UENJZSBFbmRwb2ludA0KPiANCj4gDQo+IE9uIFR1ZSwgMTMgQXVnIDIwMjQgMTU6NDI6MjAgKzA4
-MDAsIFJpY2hhcmQgWmh1IHdyb3RlOg0KPiA+IEFkZCByZWctbmFtZTogImRiaTIiLCAiYXR1IiBm
-b3IgaS5NWDhNIFBDSWUgRW5kcG9pbnQuDQo+ID4NCj4gPiBGb3IgaS5NWDhNIFBDSWUgRVAsIHRo
-ZSBkYmkyIGFuZCBhdHUgYWRkcmVzc2VzIGFyZSBwcmUtZGVmaW5lZCBpbiB0aGUNCj4gPiBkcml2
-ZXIuIFRoaXMgbWV0aG9kIGlzIG5vdCBnb29kLg0KPiA+DQo+ID4gSW4gY29tbWl0IGI3ZDY3YzYx
-MzBlZSAoIlBDSTogaW14NjogQWRkIGlNWDk1IEVuZHBvaW50IChFUCkgc3VwcG9ydCIpLA0KPiA+
-IEZyYW5rIHN1Z2dlc3RzIHRvIGZldGNoIHRoZSBkYmkyIGFuZCBhdHUgZnJvbSBEVCBkaXJlY3Rs
-eS4gVGhpcyBjb21taXQNCj4gPiBpcyBwcmVwYXJhdGlvbiB0byBkbyB0aGF0IGZvciBpLk1YOE0g
-UENJZSBFUC4NCj4gPg0KPiA+IFRoZXNlIGNoYW5nZXMgd291bGRuJ3QgYnJlYWsgZHJpdmVyIGZ1
-bmN0aW9uLiBXaGVuICJkYmkyIiBhbmQgImF0dSINCj4gPiBwcm9wZXJ0aWVzIGFyZSBwcmVzZW50
-LCBpLk1YIFBDSWUgZHJpdmVyIHdvdWxkIGZldGNoIHRoZSBhY2NvcmRpbmcNCj4gPiBiYXNlIGFk
-ZHJlc3NlcyBmcm9tIERUIGRpcmVjdGx5LiBJZiBvbmx5IHR3byByZWcgcHJvcGVydGllcyBhcmUN
-Cj4gPiBwcm92aWRlZCwgaS5NWCBQQ0llIGRyaXZlciB3b3VsZCBmYWxsIGJhY2sgdG8gdGhlIG9s
-ZCBtZXRob2QuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBSaWNoYXJkIFpodSA8aG9uZ3hpbmcu
-emh1QG54cC5jb20+DQo+ID4gUmV2aWV3ZWQtYnk6IEZyYW5rIExpIDxGcmFuay5MaUBueHAuY29t
-Pg0KPiA+IC0tLQ0KPiA+ICAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy9wY2kvZnNsLGlteDZxLXBj
-aWUtZXAueWFtbCAgfCAxMw0KPiA+ICsrKysrKysrKy0tLS0NCj4gPiAgMSBmaWxlIGNoYW5nZWQs
-IDkgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkNCj4gPg0KPiANCj4gDQo+IFBsZWFzZSBh
-ZGQgQWNrZWQtYnkvUmV2aWV3ZWQtYnkgdGFncyB3aGVuIHBvc3RpbmcgbmV3IHZlcnNpb25zLiBI
-b3dldmVyLA0KPiB0aGVyZSdzIG5vIG5lZWQgdG8gcmVwb3N0IHBhdGNoZXMgKm9ubHkqIHRvIGFk
-ZCB0aGUgdGFncy4gVGhlIHVwc3RyZWFtDQo+IG1haW50YWluZXIgd2lsbCBkbyB0aGF0IGZvciBh
-Y2tzIHJlY2VpdmVkIG9uIHRoZSB2ZXJzaW9uIHRoZXkgYXBwbHkuDQo+IA0KPiBJZiBhIHRhZyB3
-YXMgbm90IGFkZGVkIG9uIHB1cnBvc2UsIHBsZWFzZSBzdGF0ZSB3aHkgYW5kIHdoYXQgY2hhbmdl
-ZC4NCj4gDQo+IE1pc3NpbmcgdGFnczoNCj4gDQo+IFJldmlld2VkLWJ5OiBSb2IgSGVycmluZyAo
-QXJtKSA8cm9iaEBrZXJuZWwub3JnPg0KSGkgUm9iOg0KT29wcywgSSdtIHJlYWxseSBzb3JyeSBh
-Ym91dCB0aGF0IEkgbWlzc2luZyB0aGlzIHJldmlld2VkLWJ5IHRhZyBpbiB2NSBieQ0KIG15IG1p
-c3Rha2UuDQpUaGFuayB5b3UgdmVyeSBtdWNoIGZvciB5b3VyIG5vdGljZSBhbmQga2luZGx5IGhl
-bHAuDQoNCkhpIFNoYXduOg0KQ2FuIHlvdSBoZWxwIHRvIHBpY2stdXAgUm9iJ3MgcmV2aWV3ZWQt
-YnkgdGFnPw0KVGhhbmtzIGluIGFkdmFuY2VkLg0KDQpCZXN0IFJlZ2FyZHMNClJpY2hhcmQgWmh1
-DQo+IA0KPiANCg0K
+Hi Alex,
+
+Thanks for the review!
+
+On 2024-08-13 3:58 AM, Alexandre Ghiti wrote:
+> Hi Samuel,
+> 
+> On 25/06/2024 23:09, Samuel Holland wrote:
+>> RISC-V supports pointer masking with a variable number of tag bits
+>> (which is called "PMLEN" in the specification) and which is configured
+>> at the next higher privilege level.
+>>
+>> Wire up the PR_SET_TAGGED_ADDR_CTRL and PR_GET_TAGGED_ADDR_CTRL prctls
+>> so userspace can request a lower bound on the  number of tag bits and
+>> determine the actual number of tag bits. As with arm64's
+>> PR_TAGGED_ADDR_ENABLE, the pointer masking configuration is
+>> thread-scoped, inherited on clone() and fork() and cleared on execve().
+>>
+>> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
+>> ---
+>>
+>> Changes in v2:
+>>   - Rebase on riscv/linux.git for-next
+>>   - Add and use the envcfg_update_bits() helper function
+>>   - Inline flush_tagged_addr_state()
+>>
+>>   arch/riscv/Kconfig                 | 11 ++++
+>>   arch/riscv/include/asm/processor.h |  8 +++
+>>   arch/riscv/include/asm/switch_to.h | 11 ++++
+>>   arch/riscv/kernel/process.c        | 99 ++++++++++++++++++++++++++++++
+>>   include/uapi/linux/prctl.h         |  3 +
+>>   5 files changed, 132 insertions(+)
+>>
+>> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+>> index b94176e25be1..8f9980f81ea5 100644
+>> --- a/arch/riscv/Kconfig
+>> +++ b/arch/riscv/Kconfig
+>> @@ -505,6 +505,17 @@ config RISCV_ISA_C
+>>           If you don't know what to do here, say Y.
+>>   +config RISCV_ISA_POINTER_MASKING
+>> +    bool "Smmpm, Smnpm, and Ssnpm extensions for pointer masking"
+>> +    depends on 64BIT
+>> +    default y
+>> +    help
+>> +      Add support for the pointer masking extensions (Smmpm, Smnpm,
+>> +      and Ssnpm) when they are detected at boot.
+>> +
+>> +      If this option is disabled, userspace will be unable to use
+>> +      the prctl(PR_{SET,GET}_TAGGED_ADDR_CTRL) API.
+>> +
+>>   config RISCV_ISA_SVNAPOT
+>>       bool "Svnapot extension support for supervisor mode NAPOT pages"
+>>       depends on 64BIT && MMU
+>> diff --git a/arch/riscv/include/asm/processor.h
+>> b/arch/riscv/include/asm/processor.h
+>> index 0838922bd1c8..4f99c85d29ae 100644
+>> --- a/arch/riscv/include/asm/processor.h
+>> +++ b/arch/riscv/include/asm/processor.h
+>> @@ -194,6 +194,14 @@ extern int set_unalign_ctl(struct task_struct *tsk,
+>> unsigned int val);
+>>   #define RISCV_SET_ICACHE_FLUSH_CTX(arg1, arg2)   
+>> riscv_set_icache_flush_ctx(arg1, arg2)
+>>   extern int riscv_set_icache_flush_ctx(unsigned long ctx, unsigned long
+>> per_thread);
+>>   +#ifdef CONFIG_RISCV_ISA_POINTER_MASKING
+>> +/* PR_{SET,GET}_TAGGED_ADDR_CTRL prctl */
+>> +long set_tagged_addr_ctrl(struct task_struct *task, unsigned long arg);
+>> +long get_tagged_addr_ctrl(struct task_struct *task);
+>> +#define SET_TAGGED_ADDR_CTRL(arg)    set_tagged_addr_ctrl(current, arg)
+>> +#define GET_TAGGED_ADDR_CTRL()        get_tagged_addr_ctrl(current)
+>> +#endif
+>> +
+>>   #endif /* __ASSEMBLY__ */
+>>     #endif /* _ASM_RISCV_PROCESSOR_H */
+>> diff --git a/arch/riscv/include/asm/switch_to.h
+>> b/arch/riscv/include/asm/switch_to.h
+>> index 9685cd85e57c..94e33216b2d9 100644
+>> --- a/arch/riscv/include/asm/switch_to.h
+>> +++ b/arch/riscv/include/asm/switch_to.h
+>> @@ -70,6 +70,17 @@ static __always_inline bool has_fpu(void) { return false; }
+>>   #define __switch_to_fpu(__prev, __next) do { } while (0)
+>>   #endif
+>>   +static inline void envcfg_update_bits(struct task_struct *task,
+>> +                      unsigned long mask, unsigned long val)
+>> +{
+>> +    unsigned long envcfg;
+>> +
+>> +    envcfg = (task->thread.envcfg & ~mask) | val;
+>> +    task->thread.envcfg = envcfg;
+>> +    if (task == current)
+>> +        csr_write(CSR_ENVCFG, envcfg);
+>> +}
+>> +
+>>   static inline void __switch_to_envcfg(struct task_struct *next)
+>>   {
+>>       asm volatile (ALTERNATIVE("nop", "csrw " __stringify(CSR_ENVCFG) ", %0",
+>> diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
+>> index e4bc61c4e58a..dec5ccc44697 100644
+>> --- a/arch/riscv/kernel/process.c
+>> +++ b/arch/riscv/kernel/process.c
+>> @@ -7,6 +7,7 @@
+>>    * Copyright (C) 2017 SiFive
+>>    */
+>>   +#include <linux/bitfield.h>
+>>   #include <linux/cpu.h>
+>>   #include <linux/kernel.h>
+>>   #include <linux/sched.h>
+>> @@ -171,6 +172,10 @@ void flush_thread(void)
+>>       memset(&current->thread.vstate, 0, sizeof(struct __riscv_v_ext_state));
+>>       clear_tsk_thread_flag(current, TIF_RISCV_V_DEFER_RESTORE);
+>>   #endif
+>> +#ifdef CONFIG_RISCV_ISA_POINTER_MASKING
+>> +    if (riscv_has_extension_unlikely(RISCV_ISA_EXT_SUPM))
+>> +        envcfg_update_bits(current, ENVCFG_PMM, ENVCFG_PMM_PMLEN_0);
+>> +#endif
+> 
+> if (IS_ENABLED(CONFIG_RISCV_ISA_POINTER_MASKING) &&
+> riscv_has_extension_unlikely(RISCV_ISA_EXT_SUPM))
+
+I will update this.
+
+>>   }
+>>     void arch_release_task_struct(struct task_struct *tsk)
+>> @@ -233,3 +238,97 @@ void __init arch_task_cache_init(void)
+>>   {
+>>       riscv_v_setup_ctx_cache();
+>>   }
+>> +
+>> +#ifdef CONFIG_RISCV_ISA_POINTER_MASKING
+>> +static bool have_user_pmlen_7;
+>> +static bool have_user_pmlen_16;
+>> +
+>> +long set_tagged_addr_ctrl(struct task_struct *task, unsigned long arg)
+>> +{
+>> +    unsigned long valid_mask = PR_PMLEN_MASK;
+>> +    struct thread_info *ti = task_thread_info(task);
+>> +    unsigned long pmm;
+>> +    u8 pmlen;
+>> +
+>> +    if (is_compat_thread(ti))
+>> +        return -EINVAL;
+>> +
+>> +    if (arg & ~valid_mask)
+>> +        return -EINVAL;
+>> +
+>> +    pmlen = FIELD_GET(PR_PMLEN_MASK, arg);
+>> +    if (pmlen > 16) {
+>> +        return -EINVAL;
+>> +    } else if (pmlen > 7) {
+>> +        if (have_user_pmlen_16)
+>> +            pmlen = 16;
+>> +        else
+>> +            return -EINVAL;
+>> +    } else if (pmlen > 0) {
+>> +        /*
+>> +         * Prefer the smallest PMLEN that satisfies the user's request,
+>> +         * in case choosing a larger PMLEN has a performance impact.
+>> +         */
+>> +        if (have_user_pmlen_7)
+>> +            pmlen = 7;
+>> +        else if (have_user_pmlen_16)
+>> +            pmlen = 16;
+>> +        else
+>> +            return -EINVAL;
+>> +    }
+>> +
+>> +    if (pmlen == 7)
+>> +        pmm = ENVCFG_PMM_PMLEN_7;
+>> +    else if (pmlen == 16)
+>> +        pmm = ENVCFG_PMM_PMLEN_16;
+>> +    else
+>> +        pmm = ENVCFG_PMM_PMLEN_0;
+>> +
+>> +    envcfg_update_bits(task, ENVCFG_PMM, pmm);
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> +long get_tagged_addr_ctrl(struct task_struct *task)
+>> +{
+>> +    struct thread_info *ti = task_thread_info(task);
+>> +    long ret = 0;
+>> +
+>> +    if (is_compat_thread(ti))
+>> +        return -EINVAL;
+>> +
+>> +    switch (task->thread.envcfg & ENVCFG_PMM) {
+>> +    case ENVCFG_PMM_PMLEN_7:
+>> +        ret |= FIELD_PREP(PR_PMLEN_MASK, 7);
+>> +        break;
+>> +    case ENVCFG_PMM_PMLEN_16:
+>> +        ret |= FIELD_PREP(PR_PMLEN_MASK, 16);
+>> +        break;
+>> +    }
+> 
+> 
+> No need for the |=
+
+This is used in the next patch since the returned value may include
+PR_TAGGED_ADDR_ENABLE as well, but it's not needed here, so I will make this change.
+
+>> +
+>> +    return ret;
+>> +}
+> 
+> 
+> In all the code above, I'd use a macro for 7 and 16, something like PMLEN[7|16]?
+
+I've done this using an enum in v4. Please let me know if it looks good to you.
+
+>> +
+>> +static bool try_to_set_pmm(unsigned long value)
+>> +{
+>> +    csr_set(CSR_ENVCFG, value);
+>> +    return (csr_read_clear(CSR_ENVCFG, ENVCFG_PMM) & ENVCFG_PMM) == value;
+>> +}
+>> +
+>> +static int __init tagged_addr_init(void)
+>> +{
+>> +    if (!riscv_has_extension_unlikely(RISCV_ISA_EXT_SUPM))
+>> +        return 0;
+>> +
+>> +    /*
+>> +     * envcfg.PMM is a WARL field. Detect which values are supported.
+>> +     * Assume the supported PMLEN values are the same on all harts.
+>> +     */
+>> +    csr_clear(CSR_ENVCFG, ENVCFG_PMM);
+>> +    have_user_pmlen_7 = try_to_set_pmm(ENVCFG_PMM_PMLEN_7);
+>> +    have_user_pmlen_16 = try_to_set_pmm(ENVCFG_PMM_PMLEN_16);
+> 
+> 
+> Shouldn't this depend on the satp mode? sv57 does not allow 16bits for the tag.
+
+No, late last year the pointer masking spec was changed so that the valid values
+for PMM can no longer dynamically depend on satp.MODE. If an implementation
+chooses to support both Sv57 and PMLEN==16, then it does so by masking off some
+of the valid bits in the virtual address. (This is a valid if unusual use case
+considering that pointer masking does not apply to instruction fetches, so an
+application could place code at addresses above 2^47-1 and use the whole masked
+virtual address space for data. Or it could enable pointer masking for only
+certain threads, and those threads would be limited to a subset of data.)
+
+>> +
+>> +    return 0;
+>> +}
+>> +core_initcall(tagged_addr_init);
+> 
+> 
+> Any reason it's not called from setup_arch()? I see the vector extension does
+> the same; just wondering if we should not centralize all this early extensions
+> decisions in setup_arch() (in my Zacas series, I choose the spinlock
+> implementation in setup_arch()).
+> 
+> 
+>> +#endif    /* CONFIG_RISCV_ISA_POINTER_MASKING */
+>> diff --git a/include/uapi/linux/prctl.h b/include/uapi/linux/prctl.h
+>> index 35791791a879..6e84c827869b 100644
+>> --- a/include/uapi/linux/prctl.h
+>> +++ b/include/uapi/linux/prctl.h
+>> @@ -244,6 +244,9 @@ struct prctl_mm_map {
+>>   # define PR_MTE_TAG_MASK        (0xffffUL << PR_MTE_TAG_SHIFT)
+>>   /* Unused; kept only for source compatibility */
+>>   # define PR_MTE_TCF_SHIFT        1
+>> +/* RISC-V pointer masking tag length */
+>> +# define PR_PMLEN_SHIFT            24
+>> +# define PR_PMLEN_MASK            (0x7fUL << PR_PMLEN_SHIFT)
+> 
+> 
+> I don't understand the need for this shift, can't userspace pass the pmlen value
+> directly without worrying about this?
+
+No, because the PR_TAGGED_ADDR_ENABLE flag (bit 0, defined just a few lines
+above) is part of the the same argument word. It's just not used until the next
+patch.
+
+Regards,
+Samuel
+
 
