@@ -1,314 +1,156 @@
-Return-Path: <devicetree+bounces-93626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1766951ADD
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 14:29:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25404951B51
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:02:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 07970B2162D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 12:29:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AAEF11F226E4
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 13:02:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDAF61B1439;
-	Wed, 14 Aug 2024 12:29:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3639B1AED2E;
+	Wed, 14 Aug 2024 13:02:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Z7LhPUvs"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="gqe7U6Ab"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 413231B1400;
-	Wed, 14 Aug 2024 12:29:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D4EE1E49F
+	for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 13:02:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723638545; cv=none; b=OsN1NgQji/N9f8zVUHRIhNsRwGTp+B6Cogm4Q6eaGyUXyQgbRtWUlyzjA5oVmPE92DmDjZLeIV3rpEryWRzQpke4MzMyI0G5JUNPhZyY+/nas+LngzYWXaO/ZjixDkE9p2Kkpo4Y0onpyiFDr0OOHFsOaL/JWOCZuNKv0BdUPC0=
+	t=1723640570; cv=none; b=jyq6YhIySB5skZT97TfhcWuTyM0zAB2m7dAbPb/yV2L3JYgTxpLCqCxcWNULMSrRdnitvghAMM6sw9NqDIwA3NUEqWmp0XqGJf00cVrA4Z4st88bFUU7RekFHVMq9U/oVPkxwgRe8aFgAlf+OSPIeWLWQOsTCI4z4fqOgtxt7EE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723638545; c=relaxed/simple;
-	bh=xenB0VaqkbfFyNwQjm11YfgqsREroIojIiJzTtFml2E=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=plf4w6H0BFGL31+k+dsoQgxhkU/5G3MihGhRepaV9IAMYTU9SpYQkC6/cQCdR6zhv6kPT+X1VnWRZDJJczkwO+1p2ALScCy1EKhgO/Wo0RXx29veWmlJbGzMOqi2TvOKtgsvLXR9IJb/JYgIE/PuEStnp/bSSuxV4wbeNrizGv0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Z7LhPUvs; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1723638545; x=1755174545;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=xenB0VaqkbfFyNwQjm11YfgqsREroIojIiJzTtFml2E=;
-  b=Z7LhPUvs7QdZOfZNdsl28ThOlH6CXnoI/U0+QMviWuwez/juUbUAHMv3
-   mr4K03bidElrVClOp4PuL4sVrrez2gv2dDgxBO+kSRnfNAvWCv3W7c5+F
-   e/nHB/jo/c/1T/ndYlSPR0g7s8no0Kzlg5wt0W2FwN4FccHyuhEnl2Wkq
-   JWtWAWVkxL4AboUCT7mSMulx4gxJciJtYK6evnKHM3zr4CPp3uQKzZpIf
-   TdxR30QQTmxGMa+RlaIO/TnjJcsWF0+3S3LAFsNEEHDuI7U3NpZIqUMSS
-   SCdoSTg+W+yN5r8At2FcCiuZaSNrWIcjDSE+XeWRG/FaCpXoglwqZ6rqk
-   A==;
-X-CSE-ConnectionGUID: 4X+cfYNUS7iIAk4JdwvsDg==
-X-CSE-MsgGUID: ns5cuKNSRDGuyKwqAtT2zQ==
-X-IronPort-AV: E=Sophos;i="6.10,145,1719903600"; 
-   d="scan'208";a="30486706"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 14 Aug 2024 05:29:02 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 14 Aug 2024 05:28:53 -0700
-Received: from ROB-ULT-M76677.microchip.com (10.10.85.11) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Wed, 14 Aug 2024 05:28:50 -0700
-From: Andrei Simion <andrei.simion@microchip.com>
-To: <claudiu.beznea@tuxon.dev>, <nicolas.ferre@microchip.com>,
-	<alexandre.belloni@bootlin.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <peda@axentia.se>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <cristian.birsan@microchip.com>, Andrei Simion
-	<andrei.simion@microchip.com>
-Subject: [PATCH 5/5] ARM: dts: microchip: Rename LED sub nodes name
-Date: Wed, 14 Aug 2024 15:26:33 +0300
-Message-ID: <20240814122633.198562-6-andrei.simion@microchip.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240814122633.198562-1-andrei.simion@microchip.com>
-References: <20240814122633.198562-1-andrei.simion@microchip.com>
+	s=arc-20240116; t=1723640570; c=relaxed/simple;
+	bh=NT+wGZ9R/+yI3DIAo9Gmeit9wV4Vawzv31a8JT9RhX4=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
+	 References:In-Reply-To; b=WoGRCuJws4oo5CTD5p+OmzKk+wyyi+TsT6Pj+kCHUtnpEghFMJ3JYga8k/VgN6CDZGMnVYIN5986eOvu8KFJYrUFBOmz2BV9UjCf5FkZRZe9QU+GfESalCm03/X1P4y/OifgwLQPcmkeHI2mFhl1V8+T3tkzQfM47Y6MnGpFOyI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=gqe7U6Ab; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4280c55e488so5254545e9.0
+        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 06:02:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1723640566; x=1724245366; darn=vger.kernel.org;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=O4K4BDaLCEtdbulY6HtobHdsh36KQUSnYp7/rzF5PLA=;
+        b=gqe7U6AbuiiG03QJujRb18WTRgcI1loYGO2DdPtPX+l4oMNGikH3gKC6FQ0G1Vh2MW
+         RovaleWSzXqeSiE55LQjdgREpvfJpuhhibALpgeowscT0qJCEz0YOgcdFbt+wzGqZfky
+         Ks6+Xh9UkckYm55GSmgLaLNdnLxvnyXOngdLPhPVZc1YQDYf1VMtmlbJ8+XmOhz5HURI
+         SQt8jF+OoIHE3AAi1k6k/FUW7CEplqMVy+j8/+JyKWrFS8W9Lms5a/xHPOCStY3GFgi+
+         xCQee99xylX0ZoqJ6bpCI8byvWzBVWiRTKJL935G/XSS2r48QXz4cjIe5caKPNdjueZ0
+         gFcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723640566; x=1724245366;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=O4K4BDaLCEtdbulY6HtobHdsh36KQUSnYp7/rzF5PLA=;
+        b=IqGTdODSTXVm8sy4+PwUhdqTyH/SV0ojYBBdklp8v6ewudJWrMF8LrVM1JH72tucpK
+         m0NAOP8oLIMFK7Y2oeQPRR4XdNgApIGu20xqPOa/OQC9hZkr1QuFIgrR2cyC3ceoAQey
+         O0tbZctB4R5D2+sMXvqfHxptTw2ErvBNAlhCLN6xccKwac3jbwWiWv1nSvuzKWHFLRQ5
+         GqNsAWJKFWoecJLRl+OeK2IjNmik8LiRCWkc+Xo+DoDf8sU2UMVTDS6Oq26W+cLKEUL8
+         O/8bO+ur3Mqu1yOaOJw/sLFsVWiWoy8TesWqJYs0/4NZU9rqHt4LDYmd7LVAIaegKJdw
+         bduQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXwSxcSfk+tg4c9IzTZ2Ow17FTjL6lhiSt4a5xtKK1mwuGRMc45guqXpS7L5gLLQLs0nNGMTbe322HwMJf+EZSbmWYklN8R0lf0PQ==
+X-Gm-Message-State: AOJu0Yzj3JJbJlrDoeeucvBy6mwbx7w6GWBW60VsvZagonTRMCyyCKPA
+	VHEQdHdV+syA5ScSd015phgM0RSdKDhgFaSIBu2nlfTNhkPf12KO4Tgw04q/8jI=
+X-Google-Smtp-Source: AGHT+IEiuMuerzIZhsH7pz9MJFOaYB3RXunMQWiFhAXvL252urYZEie5hvV1BugT/j84AicdA4rzZA==
+X-Received: by 2002:a05:600c:19c9:b0:424:a7f1:ba2 with SMTP id 5b1f17b1804b1-429d62fe113mr51591955e9.17.1723640563879;
+        Wed, 14 Aug 2024 06:02:43 -0700 (PDT)
+Received: from localhost ([2a01:e0a:448:76e0:3b04:df6a:3044:6b7d])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429ded327f8sm19376945e9.18.2024.08.14.06.02.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Aug 2024 06:02:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 14 Aug 2024 15:02:42 +0200
+Message-Id: <D3FNL323ZXLQ.2D0QLACO67VTP@baylibre.com>
+Subject: Re: [PATCH RFC 0/5] iio: adc: ad4030: new driver for AD4030 and
+ similar ADCs
+From: "Esteban Blanc" <eblanc@baylibre.com>
+To: "Jonathan Cameron" <jic23@kernel.org>
+Cc: "Lars-Peter Clausen" <lars@metafoo.de>, "Michael Hennerich"
+ <Michael.Hennerich@analog.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Nuno Sa" <nuno.sa@analog.com>, <linux-iio@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "David
+ Lechner" <dlechner@baylibre.com>
+X-Mailer: aerc 0.17.0
+References: <20240627-eblanc-ad4630_v1-v1-0-fdc0610c23b0@baylibre.com>
+ <20240629174039.3e6053e5@jic23-huawei>
+In-Reply-To: <20240629174039.3e6053e5@jic23-huawei>
 
-dtbs_check warnings:
-leds: 'd[0-9]', 'ds[0-9]' do not match any of the regexes:
-'(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
-leds: 'red', 'green', 'blue' do not match any of regexes:
-'(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
+On Sat Jun 29, 2024 at 6:40 PM CEST, Jonathan Cameron wrote:
+> On Thu, 27 Jun 2024 13:59:11 +0200
+> Esteban Blanc <eblanc@baylibre.com> wrote:
+>
+> > This is adding DT bindings and a new driver for AD4030, AD4630 and
+> > AD4632 ADCs.
+> >=20
+> > This work is being done in collaboration with Analog Devices Inc.,
+> > hence they are listed as maintainers rather than me.
+> >=20
+> > The code has been tested on a Zedboard with an EVAL-AD4030-24FMCZ,
+> > an EVAL-AD4630-24FMCZ and an EVAL-AD4630-16FMCZ. As there is no eval
+> > board for AD4632 the support can't be tested at the moment. The main
+> > difference is the reduced throughput.
+> >=20
+> > This series is taged as RFC because I think I'm misusing
+> > IIO_CHAN_INFO_CALIB*. For CALIBBIAS the doc in sysfs-bus-iio says
+> > "Hardware applied calibration offset (assumed to fix production
+> > inaccuracies)" but AD4030 offset in on 24bits and I would argue that at
+> > this point it's not just here to fix production inaccuracies. Same this
+> > for CALIBSCALE. What IIO attributes should I use instead?
+>
+> Interesting.   So awkward question for you.  What's the point in applying
+> a digital offset?  calibbias is normally about tweaking the Analog side.
+> This just seems to be adding a value on.  I'm not sure it affects what
+> can actually be captured without saturation.
 
-Rename the led sub nodes according to devicetree
-specification and leds-gpio.yaml.
+True, both scale and offset applied with thoses registers can lead to
+saturation.
 
-Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
----
-Split the bloadted patch into small patches on topics
-based on comments:
-https://lore.kernel.org/linux-arm-kernel/89f51615-0dee-4ab0-ab72-e3c057fee1e7@tuxon.dev/
----
- arch/arm/boot/dts/microchip/aks-cdu.dts        | 8 ++++----
- arch/arm/boot/dts/microchip/animeo_ip.dts      | 8 ++++----
- arch/arm/boot/dts/microchip/at91-sam9x60ek.dts | 6 +++---
- arch/arm/boot/dts/microchip/at91rm9200ek.dts   | 6 +++---
- arch/arm/boot/dts/microchip/at91sam9260ek.dts  | 4 ++--
- arch/arm/boot/dts/microchip/at91sam9261ek.dts  | 6 +++---
- arch/arm/boot/dts/microchip/at91sam9263ek.dts  | 4 ++--
- arch/arm/boot/dts/microchip/at91sam9g20ek.dts  | 4 ++--
- 8 files changed, 23 insertions(+), 23 deletions(-)
+> Maybe it has influence by changing the input range and scale for the
+> block averaging filter?  I'm not sure.
+>
+> You can use offset for this given it's a simple linear value and not
+> anything to do with calibration. It's a little awkward though as that
+> is post scale rather than the other way around which is rather more
+> common.
+> Controls are in the form
+> voltage =3D (raw + offset) * scale=20
+>
+> So here
+> voltage =3D (raw + offset_reg / (gain_reg * other scaling)) * gain_reg * =
+otherscaling.
+>
+> Hence your offset is a bit fiddly to compute.
 
-diff --git a/arch/arm/boot/dts/microchip/aks-cdu.dts b/arch/arm/boot/dts/microchip/aks-cdu.dts
-index 52e166c8a365..95a0639c5579 100644
---- a/arch/arm/boot/dts/microchip/aks-cdu.dts
-+++ b/arch/arm/boot/dts/microchip/aks-cdu.dts
-@@ -98,23 +98,23 @@ rootfs@500000 {
- 	leds {
- 		compatible = "gpio-leds";
- 
--		red {
-+		led-red {
- 			gpios = <&pioC 10 GPIO_ACTIVE_HIGH>;
- 			linux,default-trigger = "none";
- 		};
- 
--		green {
-+		led-green {
- 			gpios = <&pioA 5 GPIO_ACTIVE_LOW>;
- 			linux,default-trigger = "none";
- 			default-state = "on";
- 		};
- 
--		yellow {
-+		led-yellow {
- 			gpios = <&pioB 20 GPIO_ACTIVE_LOW>;
- 			linux,default-trigger = "none";
- 		};
- 
--		blue {
-+		led-blue {
- 			gpios = <&pioB 21 GPIO_ACTIVE_LOW>;
- 			linux,default-trigger = "none";
- 		};
-diff --git a/arch/arm/boot/dts/microchip/animeo_ip.dts b/arch/arm/boot/dts/microchip/animeo_ip.dts
-index 911c8d9ee013..52ac840bcd35 100644
---- a/arch/arm/boot/dts/microchip/animeo_ip.dts
-+++ b/arch/arm/boot/dts/microchip/animeo_ip.dts
-@@ -146,23 +146,23 @@ ohci: usb@500000 {
- 	leds {
- 		compatible = "gpio-leds";
- 
--		power_green {
-+		led-power-green {
- 			label = "power_green";
- 			gpios = <&pioC 17 GPIO_ACTIVE_HIGH>;
- 			linux,default-trigger = "heartbeat";
- 		};
- 
--		power_red {
-+		led-power-red {
- 			label = "power_red";
- 			gpios = <&pioA 2 GPIO_ACTIVE_HIGH>;
- 		};
- 
--		tx_green {
-+		led-tx-green {
- 			label = "tx_green";
- 			gpios = <&pioC 19 GPIO_ACTIVE_HIGH>;
- 		};
- 
--		tx_red {
-+		led-tx-red {
- 			label = "tx_red";
- 			gpios = <&pioC 18 GPIO_ACTIVE_HIGH>;
- 		};
-diff --git a/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts b/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts
-index b9a21f9f9a6d..da31b07d6828 100644
---- a/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts
-+++ b/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts
-@@ -53,17 +53,17 @@ leds {
- 		pinctrl-0 = <&pinctrl_gpio_leds>;
- 		status = "okay"; /* Conflict with pwm0. */
- 
--		red {
-+		led-red {
- 			label = "red";
- 			gpios = <&pioB 11 GPIO_ACTIVE_HIGH>;
- 		};
- 
--		green {
-+		led-green {
- 			label = "green";
- 			gpios = <&pioB 12 GPIO_ACTIVE_HIGH>;
- 		};
- 
--		blue {
-+		led-blue {
- 			label = "blue";
- 			gpios = <&pioB 13 GPIO_ACTIVE_HIGH>;
- 			linux,default-trigger = "heartbeat";
-diff --git a/arch/arm/boot/dts/microchip/at91rm9200ek.dts b/arch/arm/boot/dts/microchip/at91rm9200ek.dts
-index 3089912dd6be..641d443e6ca9 100644
---- a/arch/arm/boot/dts/microchip/at91rm9200ek.dts
-+++ b/arch/arm/boot/dts/microchip/at91rm9200ek.dts
-@@ -127,19 +127,19 @@ root@350000  {
- 	leds {
- 		compatible = "gpio-leds";
- 
--		ds2 {
-+		led-ds2 {
- 			label = "green";
- 			gpios = <&pioB 0 GPIO_ACTIVE_LOW>;
- 			linux,default-trigger = "mmc0";
- 		};
- 
--		ds4 {
-+		led-ds4 {
- 			label = "yellow";
- 			gpios = <&pioB 1 GPIO_ACTIVE_LOW>;
- 			linux,default-trigger = "heartbeat";
- 		};
- 
--		ds6 {
-+		led-ds6 {
- 			label = "red";
- 			gpios = <&pioB 2 GPIO_ACTIVE_LOW>;
- 		};
-diff --git a/arch/arm/boot/dts/microchip/at91sam9260ek.dts b/arch/arm/boot/dts/microchip/at91sam9260ek.dts
-index ed259e2cb853..4933971d0585 100644
---- a/arch/arm/boot/dts/microchip/at91sam9260ek.dts
-+++ b/arch/arm/boot/dts/microchip/at91sam9260ek.dts
-@@ -174,13 +174,13 @@ eeprom@50 {
- 	leds {
- 		compatible = "gpio-leds";
- 
--		ds1 {
-+		led-ds1 {
- 			label = "ds1";
- 			gpios = <&pioA 9 GPIO_ACTIVE_HIGH>;
- 			linux,default-trigger = "heartbeat";
- 		};
- 
--		ds5 {
-+		led-ds5 {
- 			label = "ds5";
- 			gpios = <&pioA 6 GPIO_ACTIVE_LOW>;
- 		};
-diff --git a/arch/arm/boot/dts/microchip/at91sam9261ek.dts b/arch/arm/boot/dts/microchip/at91sam9261ek.dts
-index 4d9269cc5f32..9c44177db714 100644
---- a/arch/arm/boot/dts/microchip/at91sam9261ek.dts
-+++ b/arch/arm/boot/dts/microchip/at91sam9261ek.dts
-@@ -192,19 +192,19 @@ watchdog@fffffd40 {
- 	leds {
- 		compatible = "gpio-leds";
- 
--		ds8 {
-+		led-ds8 {
- 			label = "ds8";
- 			gpios = <&pioA 13 GPIO_ACTIVE_LOW>;
- 			linux,default-trigger = "none";
- 		};
- 
--		ds7 {
-+		led-ds7 {
- 			label = "ds7";
- 			gpios = <&pioA 14 GPIO_ACTIVE_LOW>;
- 			linux,default-trigger = "nand-disk";
- 		};
- 
--		ds1 {
-+		led-ds1 {
- 			label = "ds1";
- 			gpios = <&pioA 23 GPIO_ACTIVE_LOW>;
- 			linux,default-trigger = "heartbeat";
-diff --git a/arch/arm/boot/dts/microchip/at91sam9263ek.dts b/arch/arm/boot/dts/microchip/at91sam9263ek.dts
-index a8ea36db4c04..cf5434f9449d 100644
---- a/arch/arm/boot/dts/microchip/at91sam9263ek.dts
-+++ b/arch/arm/boot/dts/microchip/at91sam9263ek.dts
-@@ -219,13 +219,13 @@ &pioA 21 GPIO_ACTIVE_HIGH
- 	leds {
- 		compatible = "gpio-leds";
- 
--		d3 {
-+		led-d3 {
- 			label = "d3";
- 			gpios = <&pioB 7 GPIO_ACTIVE_HIGH>;
- 			linux,default-trigger = "heartbeat";
- 		};
- 
--		d2 {
-+		led-d2 {
- 			label = "d2";
- 			gpios = <&pioC 29 GPIO_ACTIVE_LOW>;
- 			linux,default-trigger = "nand-disk";
-diff --git a/arch/arm/boot/dts/microchip/at91sam9g20ek.dts b/arch/arm/boot/dts/microchip/at91sam9g20ek.dts
-index 6de7a7cd3c07..1e62fd371ddb 100644
---- a/arch/arm/boot/dts/microchip/at91sam9g20ek.dts
-+++ b/arch/arm/boot/dts/microchip/at91sam9g20ek.dts
-@@ -14,13 +14,13 @@ / {
- 	leds {
- 		compatible = "gpio-leds";
- 
--		ds1 {
-+		led-ds1 {
- 			label = "ds1";
- 			gpios = <&pioA 9 GPIO_ACTIVE_HIGH>;
- 			linux,default-trigger = "heartbeat";
- 		};
- 
--		ds5 {
-+		led-ds5 {
- 			label = "ds5";
- 			gpios = <&pioA 6 GPIO_ACTIVE_LOW>;
- 		};
--- 
-2.34.1
+After talking to ADI engineer about this, the conclusion is that I was
+wrong and this is indeed mostly for calibration. They left the range
+of values quite wide in case a user wanted to use this to apply an
+offset or scale to the raw value directly in order to avoid doing some
+post processing later on. But the main goal is calibration.
+
+If that's ok with you I will keep CALIBBIAS and CALIBSCALE for the next
+round and remove the RFC tag.
+
+Thanks for your time and sorry for the confusion,
+
+--=20
+Esteban "Skallwar" Blanc
+BayLibre
 
 
