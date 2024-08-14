@@ -1,113 +1,120 @@
-Return-Path: <devicetree+bounces-93697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40D2A951F09
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 17:48:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFB24951F1D
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 17:53:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 739D31C21F8E
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:48:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81459284CA4
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:53:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 734211B86E2;
-	Wed, 14 Aug 2024 15:48:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACAA91B581B;
+	Wed, 14 Aug 2024 15:52:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AfoWNAgT"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="OJAMElNX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CDDD1B86DD
-	for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 15:48:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2AD128DC3;
+	Wed, 14 Aug 2024 15:52:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723650486; cv=none; b=O2/0kQgUH6+MNPKARIs+3K27OlvbscNBTBzQ7Ecmw4URfkupDV3qcoDMk+DV3H5A/Tcv6zyFJFj2BfjppweA//Zqn/vZNp5XIBSe4lWuY7iMcpMTgjaS3q9r7UBIU1ZRkbK7DoDKOYx9CSJmIxBOUf4pB0fTe0535UyFtF7N+34=
+	t=1723650777; cv=none; b=Nf3HQdiLlRAZOsZI6D39IY+wODmzbKOSZJFXFgRwxOV1k5KiVXIUjY/2dkz+a/07g6ERgs+7ktp38bU3kOzHrWWgAv2rnxKwvSX9ZkzJdYDejVr9PYypdlWcXlHOOzTfPtAhQgygrGGJ+duuvYFrJ3hp33n6aPckZm4K6QBfUso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723650486; c=relaxed/simple;
-	bh=6Fp5R5GA9ImgtseA1YQkWyI7ugw4FOB2zpNPHuLaTZc=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=ioYPbRB/T7/QafMjQYxGm9KfVgbs0ikEj8mZmbCj/RiW5CZdnbuykdv8Us2w8ms7tPXkcScAkXF2FL+nmB8N+E3dyyTw+EhJETRMei36GfMFpsOVpdBuwYvM7HnCfPAQkbCopf2arkr1MbMh16CS6SIoHqvwwNrbc8lbUHxv2nY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AfoWNAgT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D44FC4AF0F;
-	Wed, 14 Aug 2024 15:48:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723650485;
-	bh=6Fp5R5GA9ImgtseA1YQkWyI7ugw4FOB2zpNPHuLaTZc=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=AfoWNAgTIfBxNR8ziRq5QcKOvRlPDvprKuq48am8dx6/4JH7w9V+r++7P8hoUKQd8
-	 H5Wo+PnRVJwrKJaAp3GnjJhtK7wlARFVe9GOdG1tehv0c+kWA5B7hojI5IO9b6EGOw
-	 6AKvWphCFlT5NZJQlfMMUaSaoq7GbnQaRwxC2z0mUR4sOMwmrsjpMyHDNLjL2wOWtw
-	 5fRSIz033+ltyrOOOna/0Tb9xpbHk8PM7oVMpNU7pke/sexNU1NDXv/LQ50v9OBFgm
-	 5wq9xspQQlT6AbuCtavh7mNXkFXqprRmgrCDI/H7ZC8J9m8UYGgIoyxYamB7U1U5x+
-	 +JleI14PPj6uw==
-Date: Wed, 14 Aug 2024 09:48:04 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1723650777; c=relaxed/simple;
+	bh=1qewHqlWASIAhVOdfGLDw/liKY4yxKBTes4LCOBtdAw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=H+mUbTnYMfCDXvyC2FB3HHG/ayU3kO0BrKQZKiWDqb3l7RT9Zfeg4LW0hYbhYtBrWbOtbWUaG3mQu7aI/UaEVYNA7hxPP8ebJf1NxU0tP6fL3umlU5/iUpcobxjNEFOxqTC5Egs6rbuyDbHOCJywUnNe0kwtIgc4NffPecjD6Fw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=OJAMElNX; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from localhost (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 8FD7A41ABE;
+	Wed, 14 Aug 2024 17:52:46 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+	by localhost (disroot.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id WLbjJhDSXSZ9; Wed, 14 Aug 2024 17:52:45 +0200 (CEST)
+From: Yao Zi <ziyao@disroot.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1723650765; bh=1qewHqlWASIAhVOdfGLDw/liKY4yxKBTes4LCOBtdAw=;
+	h=From:To:Cc:Subject:Date;
+	b=OJAMElNXqVlglRAYXLuq0LVQdY6/GlLJY/w3rMG9FTqNoHZCcuJkXuQEAwRMn2913
+	 cmci5SF/O25pSe6TByle42/sYeLD7lQidNBvp6Oum0JgOnyvNxC2Z+5nXw/BnK0aqR
+	 imn5JouvITG8x6EqrVcmAtFVyKCbvnhp86z+7qpxCOrLklSVXZbap9TNSzkKhucVMR
+	 lN/9zZPCUbdDenw47wodAG13Y8MXeVzzHnSjvs5Pq1AaQeIBfvEX/GPvad2X0gTekm
+	 2CXozr8QPDPH/hOiEjqPNasQyttAT+HBVSMZtl8C4gMb6N0/k2Wp49tyu+WmGh+guL
+	 no/uUklLRfXnw==
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Tim Lunn <tim@feathertop.org>,
+	Andy Yan <andyshrk@163.com>,
+	Muhammed Efe Cetin <efectn@protonmail.com>,
+	Jagan Teki <jagan@edgeble.ai>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Ondrej Jirman <megi@xff.cz>
+Cc: Celeste Liu <CoelacanthusHex@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	Yao Zi <ziyao@disroot.org>
+Subject: [PATCH v3 0/4] Add initial support for Rockchip RK3528 SoC
+Date: Wed, 14 Aug 2024 15:50:10 +0000
+Message-ID: <20240814155014.18097-1-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: FUKAUMI Naoki <naoki@radxa.com>
-Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
- heiko@sntech.de, krzk+dt@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20240814095727.1662908-1-naoki@radxa.com>
-References: <20240814095727.1662908-1-naoki@radxa.com>
-Message-Id: <172365034737.2714484.13216385355869923576.robh@kernel.org>
-Subject: Re: [PATCH v4 1/2] dt-bindings: arm: rockchip: add support for
- Radxa ROCK Pi E v3.0
+Content-Transfer-Encoding: 8bit
 
+Rockchip RK3528 is a quad-core ARM Cortex-A53 SoC designed for
+multimedia application. This series add a basic device tree with CPU,
+interrupts and UART nodes for it and is able to boot into a kernel with
+only UART console.
 
-On Wed, 14 Aug 2024 18:57:26 +0900, FUKAUMI Naoki wrote:
-> Radxa ROCK Pi E v3.0 is a compact networking SBC[1] using the Rockchip
-> RK3328 chip.
-> 
-> [1] https://radxa.com/products/rockpi/pie
-> 
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-> ---
-> Changes in v4:
-> - update compatible string for OpenWrt
-> - drop A-b tag
-> Changes in v3:
-> - collect A-b tag
-> Changes in v2:
-> - fix typo in commit message
-> - add missing --- in commit message
-> - add new section instead of new item in rockchip.yaml
-> ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
+Has been tested on Radxa E20C board[1] with vendor U-boot, successfully
+booted into initramfs with this log[2].
 
+[1]: https://docs.radxa.com/en/e/e20c
+[2]: https://gist.github.com/ziyao233/b74523a1e3e8bf36286a572e008ca319
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+Changed from v2:
+- fix fixed-clock nodename
+https://lore.kernel.org/all/20240811140725.64866-1-ziyao@disroot.org/
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+Changed from v1:
+- fix stdout-path
+- style improvements
+https://lore.kernel.org/all/20240803125510.4699-2-ziyao@disroot.org/
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+Yao Zi (4):
+  dt-bindings: serial: snps-dw-apb-uart: Document Rockchip RK3528
+  dt-bindings: arm: rockchip: Add Radxa E20C board
+  arm64: dts: rockchip: Add base DT for rk3528 SoC
+  arm64: dts: rockchip: Add Radxa e20c board
 
-  pip3 install dtschema --upgrade
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ .../bindings/serial/snps-dw-apb-uart.yaml     |   1 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3528-radxa-e20c.dts   |  22 +++
+ arch/arm64/boot/dts/rockchip/rk3528.dtsi      | 182 ++++++++++++++++++
+ 5 files changed, 211 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3528.dtsi
 
-
-New warnings running 'make CHECK_DTBS=y rockchip/rk3328-rock-pi-e-v3.dtb rockchip/rk3328-rock-pi-e.dtb' for 20240814095727.1662908-1-naoki@radxa.com:
-
-arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dtb: hdmi@ff3c0000: interrupts: [[0, 35, 4], [0, 71, 4]] is too long
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-hdmi.yaml#
-arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dtb: /phy@ff430000: failed to match any schema with compatible: ['rockchip,rk3328-hdmi-phy']
-arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dtb: /clock-controller@ff440000: failed to match any schema with compatible: ['rockchip,rk3328-cru', 'rockchip,cru', 'syscon']
-arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dtb: /clock-controller@ff440000: failed to match any schema with compatible: ['rockchip,rk3328-cru', 'rockchip,cru', 'syscon']
-
-
-
-
+-- 
+2.46.0
 
 
