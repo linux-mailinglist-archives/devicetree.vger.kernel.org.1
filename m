@@ -1,134 +1,147 @@
-Return-Path: <devicetree+bounces-93689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D68FB951E85
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 17:27:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F0F2951E82
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 17:27:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CA59FB2450D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:27:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 005791F22952
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:27:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E985B1B4C54;
-	Wed, 14 Aug 2024 15:27:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B19BA1B3F20;
+	Wed, 14 Aug 2024 15:27:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S4r4zYD1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hzFyzc5i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com [209.85.217.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46BD71B4C45
-	for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 15:27:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8824F3D3B8;
+	Wed, 14 Aug 2024 15:27:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723649224; cv=none; b=ME9hhVAgnHmYKo6TFphP6974Q0CXj+M/CYqC/DJMVvM8Eax0SqaWnf1TwF3jQn1R89ZFyxeqggWqO9cW3FLcyK/1Af3lieGRgFLwFJRRsXnhdZuIHgaTiiwLVTwoA38YToiu2KbQkca2zv8uYpSkGc48JhJy/44yjWfxIRcTGDQ=
+	t=1723649220; cv=none; b=Y3dpRXc2/IFgWq1MD8Zmu4YIiRIXLHe1mkEu21i0ex1lhnmoHPwd+aCcihbmnT49CBxiJYxYT5QwqAeThdaVuLKmhD5xe74M6oGHydz9TGDWzKzODe9VwxsLdIdpvl/JaRR/psQA1rUb1vmcMpIGQlmuFLKSQQlvAwQ305ko7PI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723649224; c=relaxed/simple;
-	bh=YdWQZHLQfEOlIvZzzDpAY/ZBXs5czg283ng3qf4BLPE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lSpnVHd/AIgzs3F1RYQnh9C4kKGNoo7Pgo/O65lXnQqmTg6Jc32Ei6o13IjK3qeajd1Z7c0+bBp7s+MulZZBVH6gYbfRyJZAZXISwqRO2a6kxHo1Ho7bmGYgn/8LMg+7NLR+kqlV0UqrrZxTTzsOVczUVUfXUirKmSbLtdFvnuE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S4r4zYD1; arc=none smtp.client-ip=209.85.217.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-49288fafca9so2058137.3
-        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 08:27:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723649222; x=1724254022; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tGZroB5X7Pl+enXhuskasq6wF2/j8/lEP5i8DomsFLE=;
-        b=S4r4zYD1EzptXUHDHKhjPsq0r7JeUL3qnvgHC5RzTnvdNu25u1QHvcF/DNnABmbgDa
-         YRUXrHdGfqIhkl7YsYtXWqnlvjX1pqPJ4mJOAC/7KmLa9HBK8cok3OLmysnCV55+TZLY
-         9vZLcWMIgZsR6eoB3+/QG8uZJ5k1V8Cv7zT/UdHvNN2EDokEP/7z7Kfuk4UL6pS7ST5j
-         RkDxIhGVjf0etbOZxibnWN3ZaqsaTXhkCakUu30Gwd1vthTUS4JAOfwJdOsxI2EvYYEb
-         AZzo4HlpHZJiFudO9FgU7gIf6jbpFdLqPHUY4lLeNeVr1TMorlioJhlUDTxaaeT6MU/0
-         tRDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723649222; x=1724254022;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tGZroB5X7Pl+enXhuskasq6wF2/j8/lEP5i8DomsFLE=;
-        b=V6NZH014qMhk1+6r2R2S8GhZisGwq7IpuWNgtpnt6z3BER9VS7agQqzhSqLKglJIRF
-         GvaakOjoYYjJx+oZLklIJIB3mvg3HNyJbelBsxIF/SSoemDy0Xc4zPNx8jNzKgs0Ry5f
-         59nR2fWkyTu+AgqXrLWJ//8Mbz+GiCUjfNQmkYBE8q4Gtq9HyqElXAKjTt5JIwu2uGd8
-         NWO9R89t9v1jZpzRVOVAQaLl65oF3CFc1BnWmapjnrgOA9TCHZxNb02IoH9gfwJ4Omho
-         J6uE8gjKJIGbZFl+6hW0R9rXtGeUQ3Sd8G/HE1nfst2nKL45oSQku+9MRGs2Q3c3M2+l
-         WAcQ==
-X-Gm-Message-State: AOJu0YxpyFC2Ol+tj9CjKX8Ahx8gsAqBNEqOGshF905o1pGp1VXM8flD
-	L/F1ORrS5K8iL/TXpuJV849KuXfLV+jLwrajE8+KnIqoKNIf/Kqwcj0WCh+QMxMMpqv5VeMH7v4
-	5fenL+8Hqm/bAf+YOI3SmNXm1/g8S2XdOQ1FywlpK+2AFLQQxciQ=
-X-Google-Smtp-Source: AGHT+IEgfzR0FD1O0F71t4quG2CcOM5Z6z5auTwSCp+8WSlc2ZtgyEZhNZCJdIh7MtVeZ0TyFrPhPkiwMsa7LXRZiTE=
-X-Received: by 2002:a05:6102:5107:b0:497:8f9:e7c9 with SMTP id
- ada2fe7eead31-497599c6d40mr3988947137.26.1723649221744; Wed, 14 Aug 2024
- 08:27:01 -0700 (PDT)
+	s=arc-20240116; t=1723649220; c=relaxed/simple;
+	bh=0+ROfI81T2PdimCQTVNjRB4AVhQ0BgeJ6Fh32ouXTic=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nChMxhW9Ah7Xykw1Hzv4MIxLxHXdLg8sQ13uu94lCidd1MF4hvbGRGtJkVFCL6Zk/whQoCr4VVJwcu2JbsYa2L6LUDIL/07lK/zD/xBODhqJnOk4Vx0vqJYLGLrLelYYI45SdXfxHe4aVho7YkxMlYyWvsZrSqXwi7ivccgDG5k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hzFyzc5i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA4DDC116B1;
+	Wed, 14 Aug 2024 15:26:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723649220;
+	bh=0+ROfI81T2PdimCQTVNjRB4AVhQ0BgeJ6Fh32ouXTic=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hzFyzc5iNPjsRhosfMjDgZiVP7d3DKrrOQEuRIFO1ZXBaLM9kkLTbBaQ7UePzvYcY
+	 TLdySakwa4PpP1a4o1nOd4JAzj++IhEgzijmNemWnNDs/rciToULUDFesZ50VqSVnI
+	 nBU8tpfoqvGk+YSnl7+rEjWLXofTQRLRpn8umC8MqYUHWMBK7C5LxBSwLXBmS2ZKU7
+	 IY0ZU185+yad3JCL7Cp/gfdBohTv9yZScJcsFDlywnyVkYxlLpxu5vfqbsO+yHgT9e
+	 7ViQftOkY72oRqkMv7wYRD/3XJZilMmG459UxoGh+AZTZPpbD2zD2egHcmhIGjxRO6
+	 UfZZ6HaoL38sg==
+Message-ID: <97f60cd3-1433-4dc5-9dc4-ad9a53c1b35a@kernel.org>
+Date: Wed, 14 Aug 2024 17:26:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CA+G9fYuncv0fuBSC0A1z1G_UOv_XuMQz=DsrLZDK-Wc=10ghag@mail.gmail.com>
-In-Reply-To: <CA+G9fYuncv0fuBSC0A1z1G_UOv_XuMQz=DsrLZDK-Wc=10ghag@mail.gmail.com>
-From: Naresh Kamboju <naresh.kamboju@linaro.org>
-Date: Wed, 14 Aug 2024 20:56:49 +0530
-Message-ID: <CA+G9fYv2M8tqwXQF5At4KmG3PFJoiv3D-4Tn_q87MfBvAqLmag@mail.gmail.com>
-Subject: Re: next-20240814: bcm2711-rpi-4-b boot failed
-To: "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
-	Linux ARM <linux-arm-kernel@lists.infradead.org>, lkft-triage@lists.linaro.org, 
-	Linux Regressions <regressions@lists.linux.dev>
-Cc: Stefan Wahren <wahrenst@gmx.net>, Florian Fainelli <florian.fainelli@broadcom.com>, krzk+dt@kernel.org, 
-	Rob Herring <robh@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Dan Carpenter <dan.carpenter@linaro.org>, Anders Roxell <anders.roxell@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add JMO Tech
+To: Esben Haabendal <esben@geanix.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240814-drm-panel-ili9881c-lcm-jm800wx-v1-0-22a5e58599be@geanix.com>
+ <20240814-drm-panel-ili9881c-lcm-jm800wx-v1-1-22a5e58599be@geanix.com>
+ <ec3462d8-e300-4273-9ce5-5380b506821e@kernel.org> <871q2r5fnq.fsf@geanix.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <871q2r5fnq.fsf@geanix.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, 14 Aug 2024 at 20:54, Naresh Kamboju <naresh.kamboju@linaro.org> wrote:
->
-> The arm64 kernel booting on bcm2711-rpi-4-b boot failed with today's Linux
-> next-20240814 tag. The boot failed with half boot log [1]
->
-> Reported-by: Linux Kernel Functional Testing <lkft@linaro.org>
->
->  GOOD: next-20240813
->  BAD:  next-20240814
->
-> The first investigation show the following to changes and I have reverted the
-> following two commits and the boot test is back to pass [2].
->
-> $ git log --oneline  next-20240813..next-20240814
-> arch/arm64/boot/dts/broadcom/
->   6e7b99d720da6 ARM: dts: bcm271x: add missing properties to local_intc
->   eb81f43c901ff ARM: dts: bcm2837/bcm2712: adjust local intc node names
->
+On 14/08/2024 16:43, Esben Haabendal wrote:
+> Krzysztof Kozlowski <krzk@kernel.org> writes:
+> 
+>> On 14/08/2024 15:10, Esben Haabendal wrote:
+>>> Add vendor prefix for JMO Tech CO., LTD. (http://www.jmolcd.com/).
+>>>
+>>> Signed-off-by: Esben Haabendal <esben@geanix.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>>>  1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>>> index a70ce43b3dc0..5d2ada6cfa61 100644
+>>> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>>> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>>> @@ -758,6 +758,8 @@ patternProperties:
+>>>      description: Jiandangjing Technology Co., Ltd.
+>>>    "^jide,.*":
+>>>      description: Jide Tech
+>>> +  "^jmo,.*":
+>>
+>> Wevsite is jmolcd, so prefix should match it - jmolcd.
+> 
+> Ok. Even though the companies name is "JMO Tech CO.,LTD", and does not
+> hint at "jmolcd"?
 
-Anders bisected down to first bad commit as,
-   6e7b99d720da ("ARM: dts: bcm271x: add missing properties to local_intc")
+We use domain names as vendor prefixes, so when another "jmo.com" comes,
+they will get "jmo", not something else.
 
-> Links:
-> ---
->  Boot failed log:
->   [1] https://lkft.validation.linaro.org/scheduler/job/7799601#L430
->  Boot pass log after the reverts:
->   [2] https://lkft.validation.linaro.org/scheduler/job/7799885#L440
->
-> metadata:
-> -------
->   git_describe: next-20240814
->   git_repo: https://gitlab.com/Linaro/lkft/mirrors/next/linux-next
->   git_sha: 320eb81df4f6c1a1814fd02ebb4ba41eb80a3c7e
->   kernel_version: 6.11.0-rc3
->   toolchain: gcc-13
->   artifact-location:
-> https://storage.tuxsuite.com/public/linaro/lkft/builds/2kdXLykPUNEquDyvXHZbubB5T4p/
->   build-url: https://storage.tuxsuite.com/public/linaro/lkft/builds/2kdXLykPUNEquDyvXHZbubB5T4p/
->   kernel-config:
-> https://storage.tuxsuite.com/public/linaro/lkft/builds/2kdXLykPUNEquDyvXHZbubB5T4p/config
->   build_name: gcc-13-lkftconfig-debug
->
-> --
-> Linaro LKFT
-> https://lkft.linaro.org
+Best regards,
+Krzysztof
 
-- Naresh
 
