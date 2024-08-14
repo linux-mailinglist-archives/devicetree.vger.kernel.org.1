@@ -1,44 +1,63 @@
-Return-Path: <devicetree+bounces-93776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6A2C952501
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 23:56:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0637952542
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 00:09:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24FA82844E8
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 21:56:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1CF8E1C212C2
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 22:09:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AD3D1C824C;
-	Wed, 14 Aug 2024 21:56:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11CF1494D6;
+	Wed, 14 Aug 2024 22:09:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IUj0pH/h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgsg2.qq.com (smtpbgsg2.qq.com [54.254.200.128])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 219F51C7B9F
-	for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 21:56:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.128
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBD8660B96;
+	Wed, 14 Aug 2024 22:09:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723672600; cv=none; b=GKzwx0vcvyxK59OEfY2uth2wcxV1i7kp6IfFTGZjg/nKb0KzkOp8ZunoPAPIn5nU+/XqD5ODltv4JEL+FkqPspo3gkxVClR9KWwSzVtmhTQWX2ijliLmlNFVRlLt6Lg4pJQna7PqNJ6sz4e22qTGNR64fx8xHMfhkh1R9SAGVO8=
+	t=1723673364; cv=none; b=SS19g5dQRsiJ4SMT3tk8xDlaTkphcCNthpsG0YCQ+jogUhRViilC2sUO9ymCA6NZ8EvT8lvB/ERvTZWpkPs/Kn+2ye/LKTVgIK0UIemwne6TDjSn5b+ATM2J46hWj/vFbDP1RI7ec0KCpt5Ni4tCnbdAK/Oj9w1NZQ2fxhGiJH8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723672600; c=relaxed/simple;
-	bh=mxs/UG9bY5GeHHsHt2CvOxMLSuBotQHYCuEz7slGDC8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WTm4D9M4mZGLMTjsfV6x6NVDpgRSK315Us3DQCaJFiFNkHzj5HjQXCWCvO/0J15g63jaFGL4COWMVBiQ+o00P0K+hEVa9AzFfP/1VNKrR35xcj4YZbFB8AZlXmTJiexcwKJCT87i87HkCCmfZSlg/TN3t28eSp48geOphUZbofc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.254.200.128
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: bizesmtp88t1723672539toqoffky
-X-QQ-Originating-IP: xIyUMW30ApZD9TYQkJa7cC50cvKLqDzdeQJxFfbvO3U=
-Received: from [192.168.159.131] ( [106.150.157.243])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 15 Aug 2024 05:55:36 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 6573782108803585030
-Message-ID: <E2FF51EF97313CA8+53ea57a4-59aa-4415-a1fa-0e56c19ce9d4@radxa.com>
-Date: Thu, 15 Aug 2024 06:55:36 +0900
+	s=arc-20240116; t=1723673364; c=relaxed/simple;
+	bh=joRzg/EV/Eg+5FrgAQqj8T32FaTk/sCtinF8S64xJvU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=RwE/B3VbHl9o6gcuhWnjLi50wax2Pmf8RX/LQbvpJzHFsCPxVWmuYNPZm+g7r0yuOWyqGask+hh0JYdTscR+jAmZhEp2WN0M5H2yt4RZSH1BicppJiKVX3E/uJkxqOSM/qA7UEKSKTivXwfKszmh9K6e7eMHoXBXZvztLqKOaYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IUj0pH/h; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47EArDDv027591;
+	Wed, 14 Aug 2024 22:09:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	0SgI2w+z1vEHF10CPobuLWVlnnNE3pSKGSiAjVHETLk=; b=IUj0pH/h+3vuFvGi
+	R2tgpoJdNPib2OgXLaHM4XbcrEtdvlZtauBrb8T+m/fsPDBR3IY+bK9uB11y6QDr
+	lzjeslDzIgw1dRLfHDmJC+qC3n4/W1DSuUrQYra42kl1wJh8kBbf07rFW/tdbHEQ
+	/UhFRVbZVgdgYfJmA04jAML1g1Dl2eCXltyVNEikkWE/qsch5Snh6BYIN7vJQE+W
+	DOWUGZnsz0V+npPpMVENAYB2vj0y7USaXW/lLnCY7clnBB42Sk9hEnJLRL0NBXAo
+	i+eZwuM/iOmIy8wBJu+VE0YfcQVx9J08RZhtwGYcm7mtjfSm1TsHJql/aVa3Pvhn
+	Q1HCWA==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40x3etcjct-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 14 Aug 2024 22:09:17 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47EM9Gaf012864
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 14 Aug 2024 22:09:16 GMT
+Received: from [10.110.78.201] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 14 Aug
+ 2024 15:09:15 -0700
+Message-ID: <f8caa9aa-7fc4-4d42-9011-21ca40eb106d@quicinc.com>
+Date: Wed, 14 Aug 2024 15:09:15 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,108 +65,70 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: arm: rockchip: add support for Radxa
- ROCK Pi E v3.0
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20240814095727.1662908-1-naoki@radxa.com>
- <9908246.lRi8OiJO2u@diego>
- <4F2DC0BFBC9A7038+cd76538a-6a56-44a1-9ae6-f81e9088ff48@radxa.com>
- <3456551.yMk1gmxOD6@diego>
+Subject: Re: [PATCH v1 1/3] dt-bindings: soc: qcom: eud: Update compatible
+ strings for eud
+To: Konrad Dybcio <konradybcio@gmail.com>,
+        Melody Olvera
+	<quic_molvera@quicinc.com>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        "Krzysztof Kozlowski" <krzk@kernel.org>,
+        Souradeep Chowdhury
+	<quic_schowdhu@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>, Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        "Satya Durga Srinivasu Prabhala"
+	<quic_satyap@quicinc.com>,
+        Elson Serrao <quic_eserrao@quicinc.com>
+CC: <cros-qcom-dts-watchers@chromium.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>
+References: <20240807183205.803847-1-quic_molvera@quicinc.com>
+ <20240807183205.803847-2-quic_molvera@quicinc.com>
+ <dfb1ac84-f011-45ea-9fb1-b8c6bc36cabc@kernel.org>
+ <46d0627d-877b-41f3-83f6-4c33b562f460@quicinc.com>
+ <0ebb1ca3-722d-422f-9f71-fcc61c3470b0@kernel.org>
+ <2b118a49-2229-4346-ab21-0aa5377d7a4e@kernel.org>
+ <8bb412f8-4fe1-40ca-8414-bb77c66899ae@quicinc.com>
+ <0eca6755-a2ec-404f-b98c-ee6c9f6fb55f@gmail.com>
 Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <3456551.yMk1gmxOD6@diego>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
+From: Trilok Soni <quic_tsoni@quicinc.com>
+In-Reply-To: <0eca6755-a2ec-404f-b98c-ee6c9f6fb55f@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: bDH0nTmkWRQEmd3FpdSPVJBC5KZPgFc9
+X-Proofpoint-ORIG-GUID: bDH0nTmkWRQEmd3FpdSPVJBC5KZPgFc9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-14_18,2024-08-13_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ suspectscore=0 impostorscore=0 phishscore=0 clxscore=1011 mlxlogscore=386
+ lowpriorityscore=0 priorityscore=1501 spamscore=0 adultscore=0 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
+ definitions=main-2408140153
 
-hi,
+On 8/14/2024 1:25 PM, Konrad Dybcio wrote:
+>> Unfortunately, no. We considered several options, but none guarantee that we will avoid
+>> a crash if we try non-securely. The secure call also won't give a specific error if it fails either
+>> (for security reasons) so we can't know if a secure access failed because it's supposed to be
+>> accessed non-securely or for another reason; hence this approach. If there's
+>> another way to achieve this functionality that might be better, I'm all ears.
+> Can we read some fuse values and decide based on that?
 
-On 8/15/24 06:53, Heiko Stübner wrote:
-> Am Mittwoch, 14. August 2024, 22:04:51 CEST schrieb FUKAUMI Naoki:
->> Hi,
->>
->> thanks for the review!
->>
->> On 8/14/24 20:30, Heiko Stübner wrote:
->>> Am Mittwoch, 14. August 2024, 11:57:26 CEST schrieb FUKAUMI Naoki:
->>>> Radxa ROCK Pi E v3.0 is a compact networking SBC[1] using the Rockchip
->>>> RK3328 chip.
->>>>
->>>> [1] https://radxa.com/products/rockpi/pie
->>>>
->>>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
->>>> ---
->>>> Changes in v4:
->>>> - update compatible string for OpenWrt
->>>> - drop A-b tag
->>>> Changes in v3:
->>>> - collect A-b tag
->>>> Changes in v2:
->>>> - fix typo in commit message
->>>> - add missing --- in commit message
->>>> - add new section instead of new item in rockchip.yaml
->>>> ---
->>>>    Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->>>>    1 file changed, 5 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
->>>> index 2ad835f4068e..1d426d4e1928 100644
->>>> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
->>>> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
->>>> @@ -790,6 +790,11 @@ properties:
->>>>              - const: radxa,rockpi-e
->>>>              - const: rockchip,rk3328
->>>>    
->>>> +      - description: Radxa ROCK Pi E v3.0
->>>> +        items:
->>>> +          - const: radxa,rock-pi-e-v3
->>>> +          - const: rockchip,rk3328
->>>> +
->>>
->>> Please don't add a separate entry for the simple updated version.
->>> Instead group it with the original Rock Pi e above.
->>>
->>> For how to do it, look at the Radxa Zero 3w/3e .
->>
->> https://patchwork.kernel.org/project/linux-rockchip/patch/20240711210526.40448-1-naoki@radxa.com/
->>
->> is this right way?
-> 
-> Nope. You need an enum. That's the reason I pointed to the Radxa Zero as
-> an example [0]
-> 
-> So your entry should look something like:
-> 
->         - description: Radxa ROCK Pi E
->          items:
->            - enum:
->                - radxa,rockpi-e
->                - radxa,rockpi-e-v3
->            - const: rockchip,rk3328
+In most of the cases, these fuse values are not allowed to be read
+from the Linux, so that will be another problem. Melody can check
+if there is any fuse values around here and possible to read them
+through Linux. 
 
-I see. I'll do it in v5.
+-- 
+---Trilok Soni
 
-Best regards,
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
-> that way the binding matches against both:
-> 	compatible = "radxa,rockpi-e", "rockchip,rk3328"
-> as well as
-> 	compatible = "radxa,rockpi-e-v3", "rockchip,rk3328"
-> 
-> 
-> Hope that helps a bit
-> Heiko
-> 
-> 
-> [0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/arm/rockchip.yaml#n844
-> 
-> 
-> 
 
