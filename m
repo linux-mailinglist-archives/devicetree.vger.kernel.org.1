@@ -1,156 +1,158 @@
-Return-Path: <devicetree+bounces-93628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25404951B51
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:02:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31E9B951B82
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:11:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AAEF11F226E4
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 13:02:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68B0F2836DF
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 13:11:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3639B1AED2E;
-	Wed, 14 Aug 2024 13:02:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01DC41B1419;
+	Wed, 14 Aug 2024 13:10:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="gqe7U6Ab"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="U5AA8Gfs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D4EE1E49F
-	for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 13:02:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37E1379D2;
+	Wed, 14 Aug 2024 13:10:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723640570; cv=none; b=jyq6YhIySB5skZT97TfhcWuTyM0zAB2m7dAbPb/yV2L3JYgTxpLCqCxcWNULMSrRdnitvghAMM6sw9NqDIwA3NUEqWmp0XqGJf00cVrA4Z4st88bFUU7RekFHVMq9U/oVPkxwgRe8aFgAlf+OSPIeWLWQOsTCI4z4fqOgtxt7EE=
+	t=1723641045; cv=none; b=mf1mCnoPzScvuw2R/4wVaORzsv0EoYinKlsRlAIkYOGhEdBD07bHLqihcKV/Licic3uMKe6exRBMIp+sfyyUXJDfW7qoembF5barsOSTpuj3l6QweONW/7BRqE7dx/TwwNuEwgCUPai4PmDNUCCsScXCY7gJIyzCRraTT+YbxC4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723640570; c=relaxed/simple;
-	bh=NT+wGZ9R/+yI3DIAo9Gmeit9wV4Vawzv31a8JT9RhX4=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
-	 References:In-Reply-To; b=WoGRCuJws4oo5CTD5p+OmzKk+wyyi+TsT6Pj+kCHUtnpEghFMJ3JYga8k/VgN6CDZGMnVYIN5986eOvu8KFJYrUFBOmz2BV9UjCf5FkZRZe9QU+GfESalCm03/X1P4y/OifgwLQPcmkeHI2mFhl1V8+T3tkzQfM47Y6MnGpFOyI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=gqe7U6Ab; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4280c55e488so5254545e9.0
-        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 06:02:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1723640566; x=1724245366; darn=vger.kernel.org;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=O4K4BDaLCEtdbulY6HtobHdsh36KQUSnYp7/rzF5PLA=;
-        b=gqe7U6AbuiiG03QJujRb18WTRgcI1loYGO2DdPtPX+l4oMNGikH3gKC6FQ0G1Vh2MW
-         RovaleWSzXqeSiE55LQjdgREpvfJpuhhibALpgeowscT0qJCEz0YOgcdFbt+wzGqZfky
-         Ks6+Xh9UkckYm55GSmgLaLNdnLxvnyXOngdLPhPVZc1YQDYf1VMtmlbJ8+XmOhz5HURI
-         SQt8jF+OoIHE3AAi1k6k/FUW7CEplqMVy+j8/+JyKWrFS8W9Lms5a/xHPOCStY3GFgi+
-         xCQee99xylX0ZoqJ6bpCI8byvWzBVWiRTKJL935G/XSS2r48QXz4cjIe5caKPNdjueZ0
-         gFcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723640566; x=1724245366;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=O4K4BDaLCEtdbulY6HtobHdsh36KQUSnYp7/rzF5PLA=;
-        b=IqGTdODSTXVm8sy4+PwUhdqTyH/SV0ojYBBdklp8v6ewudJWrMF8LrVM1JH72tucpK
-         m0NAOP8oLIMFK7Y2oeQPRR4XdNgApIGu20xqPOa/OQC9hZkr1QuFIgrR2cyC3ceoAQey
-         O0tbZctB4R5D2+sMXvqfHxptTw2ErvBNAlhCLN6xccKwac3jbwWiWv1nSvuzKWHFLRQ5
-         GqNsAWJKFWoecJLRl+OeK2IjNmik8LiRCWkc+Xo+DoDf8sU2UMVTDS6Oq26W+cLKEUL8
-         O/8bO+ur3Mqu1yOaOJw/sLFsVWiWoy8TesWqJYs0/4NZU9rqHt4LDYmd7LVAIaegKJdw
-         bduQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXwSxcSfk+tg4c9IzTZ2Ow17FTjL6lhiSt4a5xtKK1mwuGRMc45guqXpS7L5gLLQLs0nNGMTbe322HwMJf+EZSbmWYklN8R0lf0PQ==
-X-Gm-Message-State: AOJu0Yzj3JJbJlrDoeeucvBy6mwbx7w6GWBW60VsvZagonTRMCyyCKPA
-	VHEQdHdV+syA5ScSd015phgM0RSdKDhgFaSIBu2nlfTNhkPf12KO4Tgw04q/8jI=
-X-Google-Smtp-Source: AGHT+IEiuMuerzIZhsH7pz9MJFOaYB3RXunMQWiFhAXvL252urYZEie5hvV1BugT/j84AicdA4rzZA==
-X-Received: by 2002:a05:600c:19c9:b0:424:a7f1:ba2 with SMTP id 5b1f17b1804b1-429d62fe113mr51591955e9.17.1723640563879;
-        Wed, 14 Aug 2024 06:02:43 -0700 (PDT)
-Received: from localhost ([2a01:e0a:448:76e0:3b04:df6a:3044:6b7d])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429ded327f8sm19376945e9.18.2024.08.14.06.02.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Aug 2024 06:02:43 -0700 (PDT)
+	s=arc-20240116; t=1723641045; c=relaxed/simple;
+	bh=1GoOA8QWM8i82xflr5xmRl5nx8C8ZuRAGjx4nt9xxNo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=IGDScraF2iNiYVvayQg4BHPe5ZqXb9ki83MAGf7mSh/bVx0Sw5NuePY6oB4T0n+5tm10dPPl4gJfILiw3n8xf8tC23q+pjtkJRgwP67dSftj6jnsRDYSttmcqa3NDDnY4Zkp6n6TBd7lOxn1+Ky8IeKimyedZh49LCeXsxbqfBs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=U5AA8Gfs; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47EAwMFc005305;
+	Wed, 14 Aug 2024 13:10:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	oDLVA4hth+atsd73LRIJBgxs3WHzfN9AwCIqrlyfJ3k=; b=U5AA8GfsDWpPZHFq
+	rg+nHFci3HXsw5eVzXYYYLUM4yyhrIvoqf5U4cwBFVCxFb4ZZypsaKt5LeAnLwDc
+	rok1wutbT+eZgTXseUjsAwsbaxqtCGQNdynWx1hHL2PT5Nj4tpF3ev4aiKFNm9xF
+	CPs59Ms/QJyDr/YXOmSxq3GCXeljGe6JVpw6RdAXESxPSKUaj48V+i+KovI74K3E
+	rWYKZJLHjA2pcBXQH4maoKDd0O0hEokmV6pNza/bWCz+qWxONYXvZo3dV1L6EWtJ
+	NtO80wc2JOOINn4XpkgDevZAjmXsI3kiuDy9DzjQ4geDokyTVYsEem9lehduvdrn
+	UisD5g==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40yxwv57um-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 14 Aug 2024 13:10:38 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47EDAbB5016025
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 14 Aug 2024 13:10:37 GMT
+Received: from [10.239.97.152] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 14 Aug
+ 2024 06:10:31 -0700
+Message-ID: <2de0b7a8-b879-49e9-9656-ec86f29ce559@quicinc.com>
+Date: Wed, 14 Aug 2024 21:10:29 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 14 Aug 2024 15:02:42 +0200
-Message-Id: <D3FNL323ZXLQ.2D0QLACO67VTP@baylibre.com>
-Subject: Re: [PATCH RFC 0/5] iio: adc: ad4030: new driver for AD4030 and
- similar ADCs
-From: "Esteban Blanc" <eblanc@baylibre.com>
-To: "Jonathan Cameron" <jic23@kernel.org>
-Cc: "Lars-Peter Clausen" <lars@metafoo.de>, "Michael Hennerich"
- <Michael.Hennerich@analog.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Nuno Sa" <nuno.sa@analog.com>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "David
- Lechner" <dlechner@baylibre.com>
-X-Mailer: aerc 0.17.0
-References: <20240627-eblanc-ad4630_v1-v1-0-fdc0610c23b0@baylibre.com>
- <20240629174039.3e6053e5@jic23-huawei>
-In-Reply-To: <20240629174039.3e6053e5@jic23-huawei>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 13/13] media: qcom: camss: Add support for VFE hardware
+ version Titan 780
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, <rfoss@kernel.org>,
+        <todor.too@gmail.com>, <bryan.odonoghue@linaro.org>,
+        <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@quicinc.com>, Yongsheng Li <quic_yon@quicinc.com>
+References: <20240812144131.369378-1-quic_depengs@quicinc.com>
+ <20240812144131.369378-14-quic_depengs@quicinc.com>
+ <4b745c1a-33d9-472a-97af-153a2a7c8721@linaro.org>
+Content-Language: en-US
+From: Depeng Shao <quic_depengs@quicinc.com>
+In-Reply-To: <4b745c1a-33d9-472a-97af-153a2a7c8721@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 5W4dV9LCLCp-ZAfgsY5hH5aAACWRAxAO
+X-Proofpoint-ORIG-GUID: 5W4dV9LCLCp-ZAfgsY5hH5aAACWRAxAO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-14_09,2024-08-13_02,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
+ mlxlogscore=999 suspectscore=0 phishscore=0 malwarescore=0 clxscore=1015
+ spamscore=0 adultscore=0 impostorscore=0 priorityscore=1501 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
+ definitions=main-2408140092
 
-On Sat Jun 29, 2024 at 6:40 PM CEST, Jonathan Cameron wrote:
-> On Thu, 27 Jun 2024 13:59:11 +0200
-> Esteban Blanc <eblanc@baylibre.com> wrote:
->
-> > This is adding DT bindings and a new driver for AD4030, AD4630 and
-> > AD4632 ADCs.
-> >=20
-> > This work is being done in collaboration with Analog Devices Inc.,
-> > hence they are listed as maintainers rather than me.
-> >=20
-> > The code has been tested on a Zedboard with an EVAL-AD4030-24FMCZ,
-> > an EVAL-AD4630-24FMCZ and an EVAL-AD4630-16FMCZ. As there is no eval
-> > board for AD4632 the support can't be tested at the moment. The main
-> > difference is the reduced throughput.
-> >=20
-> > This series is taged as RFC because I think I'm misusing
-> > IIO_CHAN_INFO_CALIB*. For CALIBBIAS the doc in sysfs-bus-iio says
-> > "Hardware applied calibration offset (assumed to fix production
-> > inaccuracies)" but AD4030 offset in on 24bits and I would argue that at
-> > this point it's not just here to fix production inaccuracies. Same this
-> > for CALIBSCALE. What IIO attributes should I use instead?
->
-> Interesting.   So awkward question for you.  What's the point in applying
-> a digital offset?  calibbias is normally about tweaking the Analog side.
-> This just seems to be adding a value on.  I'm not sure it affects what
-> can actually be captured without saturation.
+Hi Vladimir,
 
-True, both scale and offset applied with thoses registers can lead to
-saturation.
+On 8/14/2024 7:13 PM, Vladimir Zapolskiy wrote:
+> Hi Depeng,
+> 
+> please find a few review comments, all asked changes are non-functional.
+> 
 
-> Maybe it has influence by changing the input range and scale for the
-> block averaging filter?  I'm not sure.
->
-> You can use offset for this given it's a simple linear value and not
-> anything to do with calibration. It's a little awkward though as that
-> is post scale rather than the other way around which is rather more
-> common.
-> Controls are in the form
-> voltage =3D (raw + offset) * scale=20
->
-> So here
-> voltage =3D (raw + offset_reg / (gain_reg * other scaling)) * gain_reg * =
-otherscaling.
->
-> Hence your offset is a bit fiddly to compute.
+>> +void camss_reg_update(struct camss *camss, int hw_id, int port_id, 
+>> bool is_clear)
+> 
+> Please let it be just a declarative 'clear' instead of questioning 
+> 'is_clear'.
+> 
+>> +{
+>> +    struct csid_device *csid;
+>> +
+>> +    if (hw_id < camss->res->csid_num) {
+>> +        csid = &(camss->csid[hw_id]);
+>> +
+>> +        csid->res->hw_ops->reg_update(csid, port_id, is_clear);
+>> +    }
+>> +}
+>> +
+> 
+> Please add the new exported function camss_reg_update() in a separate
+> preceding commit.
+> 
+>>   void camss_buf_done(struct camss *camss, int hw_id, int port_id)
+>>   {
+>>       struct vfe_device *vfe;
 
-After talking to ADI engineer about this, the conclusion is that I was
-wrong and this is indeed mostly for calibration. They left the range
-of values quite wide in case a user wanted to use this to apply an
-offset or scale to the raw value directly in order to avoid doing some
-post processing later on. But the main goal is calibration.
+Thanks for your comments, I will address them in new series.
 
-If that's ok with you I will keep CALIBBIAS and CALIBSCALE for the next
-round and remove the RFC tag.
+But I have some concern about above comment, you want to add a separate 
+commit for camss_reg_update, maybe camss_buf_done also need to do this, 
+but I guess I will get new comments from Krzysztof if I make a separate 
+change, Krzysztof posted few comments in v3 series, he asked, "must 
+organize your patches in logical junks" and the code must have a user.
 
-Thanks for your time and sorry for the confusion,
+Please check below comments.
 
---=20
-Esteban "Skallwar" Blanc
-BayLibre
+https://lore.kernel.org/all/e1b298df-05da-4881-a628-149a8a625544@kernel.org/
 
+https://lore.kernel.org/all/d0f8b72d-4355-43cd-a5f9-c44aab8147e5@kernel.org/
+
+
+Or I don't add reg update and buf done functionality in 
+camss-csid-gen3.c and camss-vfe-780.c firstly, then add them in a later 
+commit.
+
+Could you please comment on whether this is acceptable? Please also help 
+to common on if one commit to add them or need two separate commits, one 
+is for reg update and the other one is for buf done.
+
+
+Thanks,
+Depeng
 
