@@ -1,138 +1,144 @@
-Return-Path: <devicetree+bounces-93668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6F8B951D83
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 16:44:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C31F951D87
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 16:44:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CFA11F257C9
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 14:44:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF5661C21A09
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 14:44:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35DAA1B3F0F;
-	Wed, 14 Aug 2024 14:42:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 417C51B3F3C;
+	Wed, 14 Aug 2024 14:43:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="RwZwsCTY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OhWcVm+h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25BBB1B372E;
-	Wed, 14 Aug 2024 14:42:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14CC91B3F37;
+	Wed, 14 Aug 2024 14:43:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723646572; cv=none; b=AQMDye7jS2TBf3OlgWMbigCmIpMP+bQs6oTTb7el0Hfkq5JhPjOQVFEOsI0stts0Ji3FzNpS5ivrd0sZ6UMYn1XsV6YS29I3e6wUpIxyLpLMU6ksvA3v87TDgg/WM3aPNykRBSwXSC/b8eTuSM2a5pxrQ76TPOqFMpGpF2BmIt8=
+	t=1723646589; cv=none; b=DwH0BKmLt8fqPdsNhrUj9Q3XS0w0OuoWeV/A841+V37g54wSdy+39g3mSTHsh1fpIZItrhesqtIvk7ZjSuUnG9yaTPUeAX1d8f5NUV1GH8MuC8wF3nJlOmpgDn4GSCjZqbpQBH9D3GQH/exD6Xz1tz/itc20iOM3zAwxPD6ez/4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723646572; c=relaxed/simple;
-	bh=FUbY1SpMqbRXeMP/LZen1im+BDgUKZO9g5TId8g/DTU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=BUZPH9UYqpAt6REOgRhNXupYq5CLhEFc9ddUWFV3ReyiPaqjBb3NGgdrGgNELQHVowqztTyE3vYC35ORmnDkxYGKAK0fE3Ty536UcUOvwDHQzsFDeNAkanQ6CzYb5Xh1JSvdZRFChx74Ogml+Ft2NX2xzQX+0NmKFhd1s8ra6EY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=RwZwsCTY; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E9C711C0006;
-	Wed, 14 Aug 2024 14:42:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1723646568;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=mCe2Kac2K1pnqt6534QtxlYkCGpJDN6y+35zQbSjIf4=;
-	b=RwZwsCTYIhhY66AzsCf/dIWofDh57t1TnYqLpP0zuRDkXUvGAjgmT/xFwvT8qxDhvS82P8
-	Wh7KEWkuvwSt7oqIEnct+74WUjV818QqHvqS+FybWehsgeZt+5r3lP+qYJptRpOms/ENy5
-	0hlxH7POiA+QjgixWJrak45FLVuI4SI0a9uB9CtI/45LvpXQypH1KAaGvfJUFK6+C+Lrjs
-	0f9Idhlzg3/uTQYolP7HSzWzi2avLrdLa1/2513IhtsR00R13GhOLhATEteT9qKkHpcxPe
-	L6Tft1OOp1Yy2fajeOTv8azmQk5d6xTQ9WFhYJ14BYjf27DH4Yzen9LoIdMKPA==
-Date: Wed, 14 Aug 2024 16:42:44 +0200
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil
- Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
- <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Derek Kiernan
- <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, Arnd
- Bergmann <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Saravana Kannan <saravanak@google.com>, Wolfram Sang
- <wsa+renesas@sang-engineering.com>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Paul Kocialkowski <contact@paulk.fr>, =?UTF-8?Q?Herv?=
- =?UTF-8?Q?=C3=A9?= Codina <herve.codina@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-i2c@vger.kernel.org, Paul Kocialkowski
- <paul.kocialkowski@bootlin.com>
-Subject: Re: [PATCH v3 1/7] dt-bindings: connector: add GE SUNH hotplug
- addon connector
-Message-ID: <20240814164244.25e9b3f4@booty>
-In-Reply-To: <20240813151901.GA953664-robh@kernel.org>
-References: <20240809-hotplug-drm-bridge-v3-0-b4c178380bc9@bootlin.com>
-	<20240809-hotplug-drm-bridge-v3-1-b4c178380bc9@bootlin.com>
-	<20240813151901.GA953664-robh@kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1723646589; c=relaxed/simple;
+	bh=x7fPL+bwLSTy0AhoWvi8WRA52g+funPHmtROdmC9cHw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MYIPaSKt3kIVeCTRjgkZUaeL2UCQptyNdl3AYpGrc+JIqcpyy7UlIgtsUYOoQRxIdND9IF+GnYb3xe8GMqSuqH3gg1MTgGwKynWJLLPI45OPMDub4cbY/jhm0Rnx81VJSMqinlSGoe6QdOy87v9VqkGUuAXLcd+ZuG/Hy/ySrY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OhWcVm+h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9235AC32786;
+	Wed, 14 Aug 2024 14:43:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723646588;
+	bh=x7fPL+bwLSTy0AhoWvi8WRA52g+funPHmtROdmC9cHw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OhWcVm+hYgd4TspJLkG6ywlJGj+41jj0M8iqAHmFQ+yAjzFMgKasJ/iMT1CU4FHZm
+	 IwiEw9ahgYmLneFzD6qc4y6tARjw/tu0Kwh/NVuB5zaJ1J9dcU6DAxgj+yQv63dXPH
+	 hcrai/pnLAVRYHdrCJPliKNemphefKwfTwR613dDSvXfO5M//kJRELNv2RTqqbsvng
+	 WoZgXx7kSnjXa2D7A1HzqCuwBSksNSgTyAvT4A1MGNkDEfaqEBARac69YdxdR3BFf0
+	 ubpaeJKCJ9uTs08/UZDyz6/AlBgoBvKrCqX1fPOaWMWpPsXfo9BtjNsKetM2WzHGZ0
+	 25Z/MGq/AgIQA==
+Date: Wed, 14 Aug 2024 15:43:04 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:WATCHDOG DEVICE DRIVERS" <linux-watchdog@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH v2 1/1] dt-bindings: watchdog: convert ziirave-wdt.txt to
+ yaml
+Message-ID: <20240814-fragment-stegosaur-9e143e30e0f0@spud>
+References: <20240812162810.3812802-1-Frank.Li@nxp.com>
+ <20240813-trodden-paprika-b2c95d1d265d@spud>
+ <ZruKpJ08abhe9nwV@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: luca.ceresoli@bootlin.com
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="kyRXdmJoyeqQbhA7"
+Content-Disposition: inline
+In-Reply-To: <ZruKpJ08abhe9nwV@lizhi-Precision-Tower-5810>
 
-Hello Rob,
 
-On Tue, 13 Aug 2024 09:19:01 -0600
-Rob Herring <robh@kernel.org> wrote:
+--kyRXdmJoyeqQbhA7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> On Fri, Aug 09, 2024 at 05:34:49PM +0200, Luca Ceresoli wrote:
-> > Add bindings for the GE SUNH add-on connector. This is a physical,
-> > hot-pluggable connector that allows to attach and detach at runtime an
-> > add-on adding peripherals on non-discoverable busses.  
-> 
-> Overall, looks pretty good.
+On Tue, Aug 13, 2024 at 12:32:36PM -0400, Frank Li wrote:
+> On Tue, Aug 13, 2024 at 05:09:52PM +0100, Conor Dooley wrote:
+> > On Mon, Aug 12, 2024 at 12:28:09PM -0400, Frank Li wrote:
+> > > Convert ziirave-wdt.txt to yaml format.
+> > >
+> > > Additional change:
+> > > - Add i2c node in example.
+> > > - Add ref to watchdog.yaml
+> > >
+> > > Fix below warning:
+> > > arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb: /soc@0/bus@3=
+0800000/i2c@30a40000/watchdog@38:
+> > > 	failed to match any schema with compatible: ['zii,rave-wdt']
+> > >
+> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > ---
+> > > Change from v1 to v2
+> > > - add ref watchdog.yaml
+> > > - Remove timeout-sec
+> > > ---
+> > >  .../bindings/watchdog/zii,rave-wdt.yaml       | 47 +++++++++++++++++=
+++
+> > >  .../bindings/watchdog/ziirave-wdt.txt         | 19 --------
+> > >  2 files changed, 47 insertions(+), 19 deletions(-)
+> > >  create mode 100644 Documentation/devicetree/bindings/watchdog/zii,ra=
+ve-wdt.yaml
+> > >  delete mode 100644 Documentation/devicetree/bindings/watchdog/ziirav=
+e-wdt.txt
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/watchdog/zii,rave-wdt.=
+yaml b/Documentation/devicetree/bindings/watchdog/zii,rave-wdt.yaml
+> > > new file mode 100644
+> > > index 0000000000000..0206d9ddf872d
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/watchdog/zii,rave-wdt.yaml
+> > > @@ -0,0 +1,47 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/watchdog/zii,rave-wdt.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Zodiac RAVE Watchdog Timer
+> > > +
+> > > +maintainers:
+> > > +  - Frank Li <Frank.Li@nxp.com>
+> >
+> > When you're converting bindings, listing yourself as the maintainer only
+> > really makes sense if you know/care about the hardware IMO.
+>=20
+> I faced this problem. I am not sure who I can put as maintainer. How to
+> decide binding doc maintainer? same as driver maintainer?
 
-Thanks, I'm very glad it does.
+Same as the driver maintainer is usually the way to go, yeah.
 
-> > +    maxItems: 1
-> > +
-> > +  nobus-devices:  
-> 
-> Just 'devices'.
+--kyRXdmJoyeqQbhA7
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Sure, simple enough.
+-----BEGIN PGP SIGNATURE-----
 
-> > +    description:
-> > +      A container for devices not accessible via any data bus. Common use
-> > +      cases include fixed and GPIO regulators, simple video panels and LED
-> > +      or GPIO backlight devices. When not hot-pluggable, nodes such devices
-> > +      are children of the root node.
-> > +
-> > +      This node should not be present in the connector description in the
-> > +      base device tree. It should be added by overlays along with a subnode
-> > +      per device.
-> > +
-> > +    type: object
-> > +    additionalProperties: false  
-> 
-> The schema needs to work with the overlay applied too. 'true' is fine 
-> here.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZrzCeAAKCRB4tDGHoIJi
+0qejAP4uXSfpi6LFppWMWwl6LOta2Y24Jt4g/qINXUyyTi73zAD/VlvcoLmO2l9L
+QyYf22aNJfoiRDS/ZySQNEEmFip23gA=
+=80iV
+-----END PGP SIGNATURE-----
 
-Does additionalProperties apply to nodes as well? No properties are
-supposed to be added inside this node, only nodes, so I'm not sure what
-to do about additionalProperties.
-
-Queued all other changes for v4.
-
-Luca
-
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+--kyRXdmJoyeqQbhA7--
 
