@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-93636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 445D7951BB5
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:21:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F045B951BBE
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:22:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3F6C284610
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 13:21:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C2DB1C209D9
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 13:22:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A073B1B14EC;
-	Wed, 14 Aug 2024 13:20:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F7651B1421;
+	Wed, 14 Aug 2024 13:22:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WI3w7z9C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lLpoHZB+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73F641AC43E;
-	Wed, 14 Aug 2024 13:20:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAEA61AE867;
+	Wed, 14 Aug 2024 13:22:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723641647; cv=none; b=jDiURungSj2FT4J/w9z2OsZaIFIKpsTibMFMUPXzVRRd52SBhD6K/BkOOHz73OuZa3a7+pnfyotaY9NLUiM5wQCOrunfdBBgdUIbYN5gS2laqDWrhZrPrPWFx2M+AFg0c9WfuwgI3pAIcHFQIl87pZrtasIjYeeGwHZjHVKG2Uo=
+	t=1723641761; cv=none; b=F4tCo/ptj/ovaAlcbAEWz97/CUFqJg0wGrgoUbGLK23EuhoEU74NL+Qa4kqZiioKTgA1w5HRjZbgQ1FnCSuWrH6RBTTbA/mapSrcNLVm65s5F4v64AE2+++wMB2FuYCKBg5zZvMYmua71iUNssZ+0yl8oFsnJZj+EexMOd8u968=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723641647; c=relaxed/simple;
-	bh=k64vxV73S2+OvQLUJ3a9/MuSG0OCPLRz3/GC7kCF8yw=;
+	s=arc-20240116; t=1723641761; c=relaxed/simple;
+	bh=lCyefVEk1UgcqnD+KmVG48WLG/feRn1Jw6ZCOpurnYs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YxxBFU+zC7K75pNsYC2zfqCDhhaaWGg6P4TGqMbd0DECQwnrLWxWmnHqU+sTmX+oTWNyEv0aSggPZY2LlrEyjKlenWn+ert7YK8xQOcrLIOfAGEV4kE2yLJS5vX8u+zimGPueFJ69mZz0ff9ncJDKcE3uwH/vw4Y5AH0zH4yVSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WI3w7z9C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17386C4AF0D;
-	Wed, 14 Aug 2024 13:20:42 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=JVekiAT5XVb0mEzwkELt6Sg/+mRicEAEo6F6zV84hPVlAwYPJ1a8lSIUylBFXx4tVXVo+GnX1BDaEe7VrWNeqPULIfeHJBRV8YlCRHC4j0Cnlslr30mF0o4GL1NV3BiBs8/cQ5NSyaO1cgV7JFnAAlN45qccJoUdozVAyGjeIY4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lLpoHZB+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B39D8C32786;
+	Wed, 14 Aug 2024 13:22:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723641646;
-	bh=k64vxV73S2+OvQLUJ3a9/MuSG0OCPLRz3/GC7kCF8yw=;
+	s=k20201202; t=1723641760;
+	bh=lCyefVEk1UgcqnD+KmVG48WLG/feRn1Jw6ZCOpurnYs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WI3w7z9CS6tYEGat+sDA7Ie7mFQiHFI6WyTkR1Kj1hseIFW/8K8RQxflHm15frGL4
-	 Elx5w0naij7NudgUHumKstnv2w7+XVU24uM145Hvrx6NE1u4k57Y4CmihHkw1KYcLK
-	 D+DHNNChxPy0udCSb3+yfFbs1pONtNlSwiQRj3miEEOOcsvdG37zb8vKAue5h7dTxj
-	 7SjxpjQy/dYt/HAbp3GHOY6ZUzYPbpG5JCAOLpcU2d5W3gwW66LA1BrcvQyBDKmfCY
-	 9xvKJ5KCUrZf7+LwvZsItsG1OL6vUAkkA0JCJkeUKrz1VVh5j/PpuG8L7Jh4UVB+/5
-	 5g5Tvpr8xmtlQ==
-Message-ID: <d4857b92-1d2a-4ce4-a7db-24f8af2236c5@kernel.org>
-Date: Wed, 14 Aug 2024 15:20:40 +0200
+	b=lLpoHZB+iy6ffmAMJfppczjKToLYCp8pjw+p+nk2ZzcJtIeub4nUnyClCZAulbwNS
+	 2+v0wfzbGJwi6KA+Zau9hsJ5YgkiNWTthXQXte1Q+l5j6eEAH4BP3r9K401MMhdeyY
+	 t7nO+FkkPHNcYKm6cVqpQTFYlxZ1OvboIYRXAqzklcU4jpkB5CHeJou5sQJNTosjVr
+	 k/k2ntQRz+TNEmEA6v1HeCRH/Gbk3GMKDGVb3cSZjMU846PvsDv+nfPbDthBtdwXA3
+	 6MWxGNeaYPneOddKg70OKlBIXHtzbdugVn4qzleVI/jBheseHNblcsMmnyJ8nS8xDn
+	 jDiXL5M7OKNQQ==
+Message-ID: <29e5fada-8f8a-4cc0-b1d0-14396f6736a6@kernel.org>
+Date: Wed, 14 Aug 2024 15:22:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] ARM: dts: microchip: Rename the pmic node
+Subject: Re: [PATCH 4/5] ARM: dts: microchip: Rename the usb node
 To: Andrei Simion <andrei.simion@microchip.com>, claudiu.beznea@tuxon.dev,
  nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, robh@kernel.org,
  krzk+dt@kernel.org, conor+dt@kernel.org, peda@axentia.se
 Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org, cristian.birsan@microchip.com
 References: <20240814122633.198562-1-andrei.simion@microchip.com>
- <20240814122633.198562-4-andrei.simion@microchip.com>
+ <20240814122633.198562-5-andrei.simion@microchip.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,22 +103,84 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240814122633.198562-4-andrei.simion@microchip.com>
+In-Reply-To: <20240814122633.198562-5-andrei.simion@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 14/08/2024 14:26, Andrei Simion wrote:
-> Rename the pmic node according to the devicetree
-> specification.
-> 
-> Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
-> ---
-> Split the bloated patch into small patches on topics
-> based on comments
-> https://lore.kernel.org/linux-arm-kernel/89f51615-0dee-4ab0-ab72-e3c057fee1e7@tuxon.dev/
-> ---
+> Rename the usb node according to devicetree
+> specification and update the label according
+> with the node-specific standard as: ohci, ehci
+> or gadget.
 
-All renames should be rather together.
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+
+...
+
+
+> 
+> diff --git a/arch/arm/boot/dts/microchip/aks-cdu.dts b/arch/arm/boot/dts/microchip/aks-cdu.dts
+> index 742fcf525e1b..52e166c8a365 100644
+> --- a/arch/arm/boot/dts/microchip/aks-cdu.dts
+> +++ b/arch/arm/boot/dts/microchip/aks-cdu.dts
+> @@ -50,13 +50,13 @@ macb0: ethernet@fffc4000 {
+>  				status = "okay";
+>  			};
+>  
+> -			usb1: gadget@fffa4000 {
+> +			gadget: usb@fffa4000 {
+>  				atmel,vbus-gpio = <&pioC 15 GPIO_ACTIVE_HIGH>;
+>  				status = "okay";
+>  			};
+>  		};
+>  
+> -		usb0: ohci@500000 {
+> +		ohci: usb@500000 {
+
+I don't think that these label renames are correct.
+
+>  			num-ports = <2>;
+>  			status = "okay";
+>  		};
+> diff --git a/arch/arm/boot/dts/microchip/animeo_ip.dts b/arch/arm/boot/dts/microchip/animeo_ip.dts
+> index 29936bfbeeb7..911c8d9ee013 100644
+> --- a/arch/arm/boot/dts/microchip/animeo_ip.dts
+> +++ b/arch/arm/boot/dts/microchip/animeo_ip.dts
+> @@ -136,7 +136,7 @@ ubi@60000 {
+>  			};
+>  		};
+>  
+> -		usb0: ohci@500000 {
+> +		ohci: usb@500000 {
+>  			num-ports = <2>;
+>  			atmel,vbus-gpio = <&pioB 15 GPIO_ACTIVE_LOW>;
+>  			status = "okay";
+> diff --git a/arch/arm/boot/dts/microchip/at91-ariag25.dts b/arch/arm/boot/dts/microchip/at91-ariag25.dts
+> index 713d18f80356..fedcf30a924e 100644
+> --- a/arch/arm/boot/dts/microchip/at91-ariag25.dts
+> +++ b/arch/arm/boot/dts/microchip/at91-ariag25.dts
+> @@ -173,11 +173,11 @@ &usart3 {
+>  	status = "okay";
+>  };
+>  
+> -&usb0 {
+> +&ohci {
+>  	status = "okay";
+>  	num-ports = <3>;
+>  };
+>  
+> -&usb1 {
+> +&ehci {
+>  	status = "okay";
+>  };
+
+And how now the sorting works? I don't get the point of it. What is
+exactly wrong in the label that justifies the code reshuffling.
+
+BTW, is this some sort of v2? If so, provide changelog and properly
+version your patches.
 
 Best regards,
 Krzysztof
