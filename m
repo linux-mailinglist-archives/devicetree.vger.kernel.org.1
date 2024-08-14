@@ -1,192 +1,130 @@
-Return-Path: <devicetree+bounces-93712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BF3A951FB1
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 18:21:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91CEF951FAE
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 18:20:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 22D99B2BD55
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 16:15:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5BC81C21D2B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 16:20:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC6071B583E;
-	Wed, 14 Aug 2024 16:15:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB0CE1BA87A;
+	Wed, 14 Aug 2024 16:20:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="erzYqHtR"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="tRSNjNt6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A8141B32B1;
-	Wed, 14 Aug 2024 16:15:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 479F81B8EA3;
+	Wed, 14 Aug 2024 16:20:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723652120; cv=none; b=EBC+HNRWbl3DgdMHARkxM/enQiqPq+/fpeAgkOTCc2jjaxcEI+SFunwoFStNjihzVSOE3Gp3nOWGwtRqdxqowN4yhQAGF4GfvduhVJ3P1nUWCLB+Lnpx/c7WZlRg0rTpLKE29Q7blUitcDMslLdqTsSmmoFOruizuaLa5oX65Ww=
+	t=1723652414; cv=none; b=CMLompSr3FW26XGWqrzPPgKrXqlj37+v9NYDruvUMnbZXLsYOCIAb3AP/Rn0DMojziH4ODGSHL6L6Flw2qbpj1soOo8idOatf6VKYLuDFMP4rAFCXkwn4AUw/DFJEuNQuyHQH/Rzx/1BBEH5NtZX/BbHzmAMVXrf1A9DQgee1+U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723652120; c=relaxed/simple;
-	bh=d4tEalB0WzWRR1s1oQzHOMU8z3PE7Y6rfG3lDQFxJmU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GblwHIsV4VOuhBYpMWlMaIXuwiLDWXhDsZPcHTFchyWoKrdwcMKofH4PkRJowq7b569RISN2b8OzWWr5OOi5hAn55fYBqJidxBbtMtm4cN8AQ+AKvF3u2genRsBW6/SF8+VgkSNtoZm8vXSy+0iA2yyKPf61t6VSO49YLkh/t6Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=erzYqHtR; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2DA2F2E0;
-	Wed, 14 Aug 2024 18:14:19 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1723652059;
-	bh=d4tEalB0WzWRR1s1oQzHOMU8z3PE7Y6rfG3lDQFxJmU=;
-	h=From:To:Cc:Subject:Date:From;
-	b=erzYqHtRTlrDUrc3N6/XNu04QFDU80kRzktZ9pmmUjahd9ravC6CNpK5OjILqHS7C
-	 8YLuBbsYFy91wxbJ20+ztZF+2sDTIBm5k94SwHxMCxHbTrgIVhUaMUn3GMi3kRakO/
-	 z0ZorMX1RbEO4Y0h5SM4tw3I3IpVvsBXqjSc0DS8=
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Cc: Paul Elder <paul.elder@ideasonboard.com>,
-	Adam Ford <aford173@gmail.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Marek Vasut <marex@denx.de>,
-	Peng Fan <peng.fan@nxp.com>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org
-Subject: [PATCH v4] arm64: dts: imx8mp: Add DT nodes for the two ISPs
-Date: Wed, 14 Aug 2024 19:14:51 +0300
-Message-ID: <20240814161451.32119-1-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.44.2
+	s=arc-20240116; t=1723652414; c=relaxed/simple;
+	bh=VXiYQYW56dc1WuzNWrZC5w5JZm2UFMALypsJ26n7j7Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Oo5Uw7p9Pg2LmTDxrDETXj+nIwFG++kaxOuYWaq8TDPrr3ATJsGULkNa+u5dcYMNe6K5nP7l6Tn48tlnXc+JmWca45+peDrAUnaZ2gppOlHV2sPmw9jhzsxCUVfeIwraNjTLD6OTjTDsCn9RDmlZhYCLyMkPkJFtNCAetWeP0bg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=tRSNjNt6; arc=none smtp.client-ip=212.227.17.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1723652392; x=1724257192; i=wahrenst@gmx.net;
+	bh=fhv16sAFZtiVB6MEuR24ksCEmVo3hs4EEJychzW9vXQ=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=tRSNjNt6B+3a+h0Vl3BPLciPR3jiSwuS0mcjxJ4CX8lR+k62BFpqsGf8rUofV70j
+	 hTy/Qm8g21k50quHTYC7zguO4/7TFROxl9SVExep8miPzNWQVGPdTg6sWZbsg56AZ
+	 oKYUhoDhINLI1dKWbaaHM7ercj+e3UjpOVKtpQp68mb/s+PF9aRyOYexALuESw62K
+	 ihv9fgT3ZK8GBEMBQsaAX85dR6Q6DpfOCvGAQ4rxplxI4SQBjGlHX7FPjI7fRoQ6J
+	 O5C0KHbgOLyElwBDYoDrCQKCe0w9EC7YC/MXisukO33xOw0ZYU41tWIjzPx6qRwEo
+	 VQeLqOKGFKa7sz2EDg==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.127] ([37.4.248.43]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1M1HZi-1scc1y0MFG-007OGa; Wed, 14
+ Aug 2024 18:19:52 +0200
+Message-ID: <da941b0e-8e29-4ff7-aff8-683da0aef8da@gmx.net>
+Date: Wed, 14 Aug 2024 18:19:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: next-20240814: bcm2711-rpi-4-b boot failed
+To: Naresh Kamboju <naresh.kamboju@linaro.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ lkft-triage@lists.linaro.org, Linux Regressions <regressions@lists.linux.dev>
+Cc: Florian Fainelli <florian.fainelli@broadcom.com>, krzk+dt@kernel.org,
+ Rob Herring <robh@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Dan Carpenter <dan.carpenter@linaro.org>,
+ Anders Roxell <anders.roxell@linaro.org>
+References: <CA+G9fYuncv0fuBSC0A1z1G_UOv_XuMQz=DsrLZDK-Wc=10ghag@mail.gmail.com>
+ <CA+G9fYv2M8tqwXQF5At4KmG3PFJoiv3D-4Tn_q87MfBvAqLmag@mail.gmail.com>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <CA+G9fYv2M8tqwXQF5At4KmG3PFJoiv3D-4Tn_q87MfBvAqLmag@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:IeOG4wCqf/I7ymjxrQPF+8blCRLHHx+GB+X2mnKoMgayFr756xQ
+ AUBHwVCJilhu/e0W6C7GUSRomlnhs1QLn0eBfHZth7mpR3J43Zvns+V4mxvdGGOkuqo+3Dl
+ cyjYEgXFzwtK/rpL32r2qgm7OJWN2mg0e/6SEcT3jYFqBKwHWXrjCpI1mcVUnd5D/duvQ7X
+ ZJLn99g1zlMCPYZwa8e6g==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:MJIlye475sk=;XABxdiC7P8vifFQyBUK9264GLmw
+ qfQXpPXaG+VapmRVWuuI610qcYm5DZJLNB4ByzyCsZBgaINBd+N9Je1aaa9SozSp6yt//L4nM
+ 9CSippfLor2W5vayApOCTfJj+bN4CKHePv/OWJV4HOF0pMYbod3s6Owk11P9mTgunMLSsHVhd
+ gJnCJ5khCCnulKIhxocqB1Oh6D0eoYwimQLpd329CLeCgG4XV8SdfhswxUoT1H95oBGm8geCh
+ EbrlhoKTd7geG9SDwzXxgDhzLwCDxGf+2+sGca3a+7+lS0mGLCxSnsHpHgbaTYVOK+l2QVgnK
+ WYcpj24NZ33Z/muGeXpf71/0GKqj888Oz/XzCjJ6kaA/JsMxOw9/20uaK/Li+/KmtFSNsBZTf
+ JKPmn/wFYLixyAOBRPhSW9qMx0OQbSRoWjVzmeFeKEgdKhCj4t9T1kEMolTOcH6VY9SlN0+wo
+ 4sNCkPLXjbhGidZNFC8P9ORvkV7h3rU/j3sQpi6dQibs+NDFlzvJo5vxlwnq7dtmUdFBehjLM
+ SFRWufYDh4uXaKCGL5ICgZd9zpvNjG8GthDhm4oTfnbLdZX/VPWV8aEoJvayBlPphUpmGrJJ3
+ fn26VXme0HHOaQfvIliPhusGPZxJEakyshbbDNPbApBJBunmUZ5tvBRp/zxvoQC9mKw4/W4B/
+ C+BjT0WFjbUZC9hwnrqLP3xjHyfSfvoQ5M4cdhKW/gm9DZd+sasZVjEzTBuB5zTxrxgfDHOwi
+ xq3Y3jRSplgKpJGqN1CQnN5Xuzvc8u0xxU2vtKpxr589ITwpcgeq8/cMU4t0qKcXFr2WMyG8I
+ nAC1KlFxjgkKpsDrCXT0Aisw==
 
-From: Paul Elder <paul.elder@ideasonboard.com>
+Hi Naresh,
 
-The ISP supports both CSI and parallel interfaces, where port 0
-corresponds to the former and port 1 corresponds to the latter. Since
-the i.MX8MP's ISPs are connected by the parallel interface to the CSI
-receiver, set them both to port 1.
+Am 14.08.24 um 17:26 schrieb Naresh Kamboju:
+> On Wed, 14 Aug 2024 at 20:54, Naresh Kamboju <naresh.kamboju@linaro.org>=
+ wrote:
+>> The arm64 kernel booting on bcm2711-rpi-4-b boot failed with today's Li=
+nux
+>> next-20240814 tag. The boot failed with half boot log [1]
+>>
+>> Reported-by: Linux Kernel Functional Testing <lkft@linaro.org>
+>>
+>>   GOOD: next-20240813
+>>   BAD:  next-20240814
+>>
+>> The first investigation show the following to changes and I have revert=
+ed the
+>> following two commits and the boot test is back to pass [2].
+>>
+>> $ git log --oneline  next-20240813..next-20240814
+>> arch/arm64/boot/dts/broadcom/
+>>    6e7b99d720da6 ARM: dts: bcm271x: add missing properties to local_int=
+c
+>>    eb81f43c901ff ARM: dts: bcm2837/bcm2712: adjust local intc node name=
+s
+>>
+> Anders bisected down to first bad commit as,
+>     6e7b99d720da ("ARM: dts: bcm271x: add missing properties to local_in=
+tc")
+thank you for the report and sorry about that mess. I don't why i was
+under the impression they were harmless DT properties. I look into this,
+so a revert is the proper solution for now.
 
-Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
-Changes since v3:
-
-- Add comment regarding the IMX8MP_CLK_MEDIA_ISP clock rate
-- Fix assigned-clock-rates
-- Dropping Tested-by as the clock configuration has changed
-
-Changes since v2:
-
-- Assign clock parent and frequency in blk-ctrl
-
-Changes since v1:
-
-- Fix clock ordering
-- Add #address-cells and #size-cells to ports nodes
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 57 ++++++++++++++++++++++-
- 1 file changed, 55 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index d9b5c40f6460..f3531cfb0d79 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -1673,6 +1673,50 @@ isi_in_1: endpoint {
- 				};
- 			};
- 
-+			isp_0: isp@32e10000 {
-+				compatible = "fsl,imx8mp-isp";
-+				reg = <0x32e10000 0x10000>;
-+				interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk IMX8MP_CLK_MEDIA_ISP_ROOT>,
-+					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
-+					 <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
-+				clock-names = "isp", "aclk", "hclk";
-+				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_ISP>;
-+				fsl,blk-ctrl = <&media_blk_ctrl 0>;
-+				status = "disabled";
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@1 {
-+						reg = <1>;
-+					};
-+				};
-+			};
-+
-+			isp_1: isp@32e20000 {
-+				compatible = "fsl,imx8mp-isp";
-+				reg = <0x32e20000 0x10000>;
-+				interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk IMX8MP_CLK_MEDIA_ISP_ROOT>,
-+					 <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
-+					 <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
-+				clock-names = "isp", "aclk", "hclk";
-+				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_ISP>;
-+				fsl,blk-ctrl = <&media_blk_ctrl 1>;
-+				status = "disabled";
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@1 {
-+						reg = <1>;
-+					};
-+				};
-+			};
-+
- 			dewarp: dwe@32e30000 {
- 				compatible = "nxp,imx8mp-dw100";
- 				reg = <0x32e30000 0x10000>;
-@@ -1869,17 +1913,26 @@ media_blk_ctrl: blk-ctrl@32ec0000 {
- 				clock-names = "apb", "axi", "cam1", "cam2",
- 					      "disp1", "disp2", "isp", "phy";
- 
-+				/*
-+				 * The ISP maximum frequency is 400MHz in normal mode
-+				 * and 500MHz in overdrive mode. The 400MHz operating
-+				 * point hasn't been successfully tested yet, so set
-+				 * IMX8MP_CLK_MEDIA_ISP to 500MHz for the time being.
-+				 */
- 				assigned-clocks = <&clk IMX8MP_CLK_MEDIA_AXI>,
- 						  <&clk IMX8MP_CLK_MEDIA_APB>,
- 						  <&clk IMX8MP_CLK_MEDIA_DISP1_PIX>,
- 						  <&clk IMX8MP_CLK_MEDIA_DISP2_PIX>,
-+						  <&clk IMX8MP_CLK_MEDIA_ISP>,
- 						  <&clk IMX8MP_VIDEO_PLL1>;
- 				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>,
- 							 <&clk IMX8MP_SYS_PLL1_800M>,
- 							 <&clk IMX8MP_VIDEO_PLL1_OUT>,
--							 <&clk IMX8MP_VIDEO_PLL1_OUT>;
-+							 <&clk IMX8MP_VIDEO_PLL1_OUT>,
-+							 <&clk IMX8MP_SYS_PLL2_500M>;
- 				assigned-clock-rates = <500000000>, <200000000>,
--						       <0>, <0>, <1039500000>;
-+						       <0>, <0>, <500000000>,
-+						       <1039500000>;
- 				#power-domain-cells = <1>;
- 
- 				lvds_bridge: bridge@5c {
-
-base-commit: 7c626ce4bae1ac14f60076d00eafe71af30450ba
-prerequisite-patch-id: ad2bbccf3b0f27415fb14851cec52c431ccb354f
--- 
-Regards,
-
-Laurent Pinchart
-
+Regards
 
