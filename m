@@ -1,165 +1,114 @@
-Return-Path: <devicetree+bounces-93543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D984E951684
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 10:23:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69DBC951689
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 10:23:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 903B02835D7
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 08:23:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D1271F2387F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 08:23:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C46B713D28F;
-	Wed, 14 Aug 2024 08:23:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7031513D524;
+	Wed, 14 Aug 2024 08:23:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="DknMwwF1"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="zpuLtBTy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32DDF20DF4
-	for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 08:23:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BB9886126
+	for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 08:23:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723623788; cv=none; b=hHAwksHJeWd3x/vHYj+Kj/YBhgdq7g34qQoNgS/OyKKn0Ey43EIxGXm0JAeg18Zg0qbuKZWAxuw0dPL4nEU6wABV4Sr2Z1gLwNsY7B/JLRe2ZLDIWOYUOsZ5zwq2iEr5bdfix4d2hcAKgD72+vNXGYYUKX4OzAxEdGHdFYasUg0=
+	t=1723623799; cv=none; b=RD7FmZrMfmMldsCQAwELT+JmlBBN+Do+WNw2Nx33A91SD0NDIe6czirpjTJdnNpKpGMISNa1IOtxo1jDSQT3uQc7bc523Vu5reGJMab980MRBTKZABCMwb4/NF68eebD/lAihvXOz52i5EZMViwNaltbWHe1BTe9aQRTqZU/c5I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723623788; c=relaxed/simple;
-	bh=7zQmXFtp0irvN6V25CC38ilmSUQlNSUvGWilWaQsDa0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cLQ91jmY0US5NQSBUZYYawpuOsRym0NCYc/bGj5cvec08Hi80q/abwF5sFDZdXp6UISDbUSkDjxGnxG90XuPMMJj2ESZkHqQZejeFHFCzJbV5AaNcCyfYdZzwhiy0yEsTzNRX5BPrXbrnXjTk6bAFJseS3ieafwQbeJkFQjtvRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=DknMwwF1; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-52f025bc147so7393073e87.3
-        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 01:23:06 -0700 (PDT)
+	s=arc-20240116; t=1723623799; c=relaxed/simple;
+	bh=0CSWgPhv1C1tSHCnjvH3fpngV0BuO55p5vt/diV7PqY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=czAWZspt83gBw8hKX1jP2RjRaQJUgcQ3CCsA8NNEVOLWjrhGFrzlw1kjQGYheGQ+wRdRqV25LUZhg78Ku82cBqmL7r/8VhRethdx7XzaQ3D1m/VG7cBFWSIYEQg6LZ+5CgZB5HVrzh2ecU2e5XJ+BpBya79QCcYnM5RLTXYW6n4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=zpuLtBTy; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-530e062217eso7789015e87.1
+        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 01:23:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1723623785; x=1724228585; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Yid80DCBncovH6jR5spdivR69CuAKWTUFwGxvj0edc8=;
-        b=DknMwwF1iqYMri+KWir1qjp/1q93kiG2ukTDehLU3KEtlIyaT8ZmHTkGOucvF1sxgL
-         D/TYfaE3BjviBTf6gzZ0rZ3uyiIQmqP6bWGE4dRIDx7VgPMgpb8MtaM23/M2pGAuCxg4
-         RvTR6ATap/N1uQ4Y4z6m7T+300IzjZzCPuI45t3TCwqRguwAtr2Yx0YY20o1bPOXuGfB
-         OHFqIyGaWL7jXZn/5RwfYsz2dqkooEALsijotU8UGPIW6T+BdQc6nazM0U9wQ7YdV8Mm
-         hztkoD+VWA/9eFJZZhbi4u/jJ8Pos+L/qgMn9nQEUOYA9fFkHPzVQRTBeAj8GD0bU85P
-         s44Q==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1723623795; x=1724228595; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xk10wNvxLrP/sk7V6x9kzu7jdVHg9lMcvom23sK8kpk=;
+        b=zpuLtBTydfE1azZCI3cyYdocQ+iOvRBLl6Ms6Tet/7GuwratUJg/VS0tda6q1iUI/X
+         72AZhFCMUN89tBjhRar4OnWRqVdgkChboJMrma5jPeDYe9eI5fU4/sE89sJfqaXMVA3g
+         uM5e7BkuY9YmbJoJVQ7kACL2V+VrFZOUm8xeW+RizdEMfBYXK3ftHyPXIhJ+0biJDA8v
+         5cwNPhzLyH6GJVGobCa3/P6c2lbk0W65zDAIfFUZFLY4bI5hx+8SE9pclcZ7nlKUqVnF
+         DX1ZZG0DjyQRTjuswxnw52u/Rl6uTkiLAIVuTNqE4EnECXkoSfPAJQJ62x8HVSFnmyNy
+         /EAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723623785; x=1724228585;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Yid80DCBncovH6jR5spdivR69CuAKWTUFwGxvj0edc8=;
-        b=T0mETD1Jruaa2Ay+zj2S3/hGL4NZo9zou/Kci8wKbn3EnmbtmBXoUoxC3C1o3hDzjb
-         ZGG4fE0cwMHksVBL3Cche1Fx9lxvhLeuA9ynirvEkqlbBBa67cGDoSJiULRn4m5nnitM
-         jaOyNupoPudh1ZUxcwRQVI3B8dRdN6bJ6DBJlBGWFfZjjYggM+2NWhrxyJpK8bQzCj3O
-         NsOMo7czRJ3ru3TNB/B9MPL1dQoSrqK5UWMp2RQVF2wilcKKofiIufNK26+ZE+ZkSps9
-         kn4Bt7zhHtsfeu2gXL7RONP08nHrZ8jfrlBVHCAgcprxWzzJErpx4+Gva5CSKOuNoTLT
-         T0KQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWOW2v+ukIy9oHrRThzcv8JczuXxK2xm5H6Nv2UXlmCTOMY5o+EyoPRWTs6vVYR0r0JM5jfSh+2TRKD@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZQk7riDIpWIkMd/laPMHIZyTD8HgTAEQF2WmMD6KlWANtJicm
-	od10cJ5C7un8IY44WAVZBW8CbPrpPi/9tpKC3jOg+bHygE0ou76n2naFV7jdgJs=
-X-Google-Smtp-Source: AGHT+IFPWXB9dUnt/qnGZpgUiPgGFQ/Gcyv7ImyYRoukKJSYr8Bd88c9u6QJYgrVy7BunlV81DHiLA==
-X-Received: by 2002:a05:6512:3c89:b0:52b:c27c:ea1f with SMTP id 2adb3069b0e04-532edbcdb37mr1268165e87.55.1723623784986;
-        Wed, 14 Aug 2024 01:23:04 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:9e78:fb96:21f1:335c])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429ded3cd99sm12606325e9.25.2024.08.14.01.23.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Aug 2024 01:23:04 -0700 (PDT)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-To: Kalle Valo <kvalo@kernel.org>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-wireless@vger.kernel.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH net-next v2] dt-bindings: net: ath11k: document the inputs of the ath11k on WCN6855
-Date: Wed, 14 Aug 2024 10:23:01 +0200
-Message-ID: <20240814082301.8091-1-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.43.0
+        d=1e100.net; s=20230601; t=1723623795; x=1724228595;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xk10wNvxLrP/sk7V6x9kzu7jdVHg9lMcvom23sK8kpk=;
+        b=T5Rf+iuxzN5LCS3tL4dx6RQYfEKAuX2p8GjuOZcn4D0sHNaaxX0GBdjcoehTzxB8LB
+         71prtnW/zWNkUiorqSQ3Tzv222GNisLECDjuB1lv8NffwhljY+U84liBTp/9K92NUIT/
+         lltFZqDbiln/jRTQ4UYJ6+igzhi/UvUv3fKgyLS4gZFUTbHO28OKiOhqLlu/ayaUkcAv
+         FpJt2Iiot0k8Df37B6DC2YgpjByoqLXtknEbpu2a5yN1nu+CnvOUp1wH6o5tzfnknorY
+         8AgOYuyVnucnpnWqxBLlUVYvM+f2LvkYW99upqLzM+xdf2zmTOPbLaivkJUHrHijGg0P
+         Xelw==
+X-Forwarded-Encrypted: i=1; AJvYcCVlZ8LbXRBTI3v3+LxSY4mRD5Ba6cU59g9rlk8M1owj6KmoF68qCSE7TsBHi13ORyCPH4m1b0TFVOtRhKWsahEj0KuJd4EsT3TBzA==
+X-Gm-Message-State: AOJu0YxO+GLiZJbWrLeUxmMlLjWudkmVBQ3KK3+UkxXboHEHoGE0Qu0a
+	fBo962T+azFwCS5yW/tmi/QbDlK2/lje8XiQfn8zI6PSGhvEJfqO3OtJqyAH1Gc=
+X-Google-Smtp-Source: AGHT+IG6QSK40+UiY4L+iFUDmpExRkRbgPPw1TX9OKeTaKxcEceJXBh+o1azq0f3RjCLgFSJ+P0yEg==
+X-Received: by 2002:a05:6512:3e0c:b0:530:ad8b:de11 with SMTP id 2adb3069b0e04-532eda8e5ddmr1174870e87.9.1723623795153;
+        Wed, 14 Aug 2024 01:23:15 -0700 (PDT)
+Received: from [192.168.0.172] (88-127-185-239.subs.proxad.net. [88.127.185.239])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-36e4e51ebcdsm12266411f8f.78.2024.08.14.01.23.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Aug 2024 01:23:14 -0700 (PDT)
+Message-ID: <24215f3d-30bf-4379-bb10-c4b183c16b8a@baylibre.com>
+Date: Wed, 14 Aug 2024 10:23:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 00/16] Add audio support for the MediaTek Genio 350-evk
+ board
+To: Mark Brown <broonie@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: khilman@baylibre.com, linux-sound@vger.kernel.org,
+ Liam Girdwood <lgirdwood@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, Rob Herring <robh@kernel.org>,
+ Will Deacon <will@kernel.org>, linux-media@vger.kernel.org,
+ Sumit Semwal <sumit.semwal@linaro.org>, Takashi Iwai <tiwai@suse.com>,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Nicolas Belin <nbelin@baylibre.com>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>, Flora Fu <flora.fu@mediatek.com>,
+ Jaroslav Kysela <perex@perex.cz>, =?UTF-8?Q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>, Catalin Marinas <catalin.marinas@arm.com>
+References: <20240226-audio-i350-v7-0-6518d953a141@baylibre.com>
+Content-Language: en-US
+From: Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <20240226-audio-i350-v7-0-6518d953a141@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Hi guys !
 
-Describe the inputs from the PMU of the ath11k module on WCN6855.
+Simple gentle ping, the serie seems ready to be applied.
+Thanks
 
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
----
-v1 -> v2:
-- update the example
-
- .../net/wireless/qcom,ath11k-pci.yaml         | 29 +++++++++++++++++++
- 1 file changed, 29 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
-index 8675d7d0215c..a71fdf05bc1e 100644
---- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
-@@ -50,6 +50,9 @@ properties:
-   vddrfa1p7-supply:
-     description: VDD_RFA_1P7 supply regulator handle
- 
-+  vddrfa1p8-supply:
-+    description: VDD_RFA_1P8 supply regulator handle
-+
-   vddpcie0p9-supply:
-     description: VDD_PCIE_0P9 supply regulator handle
- 
-@@ -77,6 +80,22 @@ allOf:
-         - vddrfa1p7-supply
-         - vddpcie0p9-supply
-         - vddpcie1p8-supply
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: pci17cb,1103
-+    then:
-+      required:
-+        - vddrfacmn-supply
-+        - vddaon-supply
-+        - vddwlcx-supply
-+        - vddwlmx-supply
-+        - vddrfa0p8-supply
-+        - vddrfa1p2-supply
-+        - vddrfa1p8-supply
-+        - vddpcie0p9-supply
-+        - vddpcie1p8-supply
- 
- additionalProperties: false
- 
-@@ -99,6 +118,16 @@ examples:
-                 compatible = "pci17cb,1103";
-                 reg = <0x10000 0x0 0x0 0x0 0x0>;
- 
-+                vddrfacmn-supply = <&vreg_pmu_rfa_cmn_0p8>;
-+                vddaon-supply = <&vreg_pmu_aon_0p8>;
-+                vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+                vddwlmx-supply = <&vreg_pmu_wlmx_0p8>;
-+                vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
-+                vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
-+                vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+                vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+                vddrfa1p8-supply = <&vreg_pmu_rfa_1p7>;
-+
-                 qcom,ath11k-calibration-variant = "LE_X13S";
-             };
-         };
 -- 
-2.43.0
-
+Regards,
+Alexandre
 
