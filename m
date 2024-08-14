@@ -1,79 +1,135 @@
-Return-Path: <devicetree+bounces-93642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F2F9951BF1
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:35:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAC26951C0D
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:41:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61FFE1C21E17
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 13:35:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9387285411
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 13:41:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7278B1AED35;
-	Wed, 14 Aug 2024 13:35:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9085A1B1512;
+	Wed, 14 Aug 2024 13:41:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0A9E1D52D;
-	Wed, 14 Aug 2024 13:35:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE77F1B14F6
+	for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 13:41:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723642537; cv=none; b=Ft7q/8MlhfgIxOsWLK+NUmXFibww2v8gAu17GO5xOtaxZccT3DjVxpo6dvANqzBM7reCFVk8ANRmYgV3zWalWkfRUGflMxM/XD6xlPIH7PtqcT97qYtMN7zCm3dPp4+6JJ6FlldaVvM0mWmHQGtRvFmtPKrovPyyca80+HvkrAQ=
+	t=1723642881; cv=none; b=UwgRp4sGw7WJzURc/gc6camtkL80Oseq1jGsWuA0q8pnT0ArWLdzw4f9M2LkeQA1HCkTqNmm2vZdIjySAN4vZcQqBdCiREMC8eFNBRdlt7oz+N0YOS9FwayRKkhTtMU+DtNcFPcNoFZR1pTLOauw+H89lmS5zgIRxPS8KE6bgOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723642537; c=relaxed/simple;
-	bh=cMIRtqN/0a8B+N1sqeKovZTt0QxKW3uFBxsbSS29tkU=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=KmuYobYwBcOXjYFG0sPXukIq18oNRL2ac8cE3sQbqm9FzMt5g/1uGZHFFUBUi+6HN4HXjESOKvHuUK0qjVBIv70DNc17S4mK5JgvbXYxN95xOf84UFTtZYXi/83a4IDsZS3ol++MJDsrKpHYYi3Iw2XkE0M0x8chluJQUbff9og=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 19BA4DA7;
-	Wed, 14 Aug 2024 06:36:01 -0700 (PDT)
-Received: from e121095-lin.cambridge.arm.com (e121095-lin.cambridge.arm.com [10.1.198.32])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 388A53F6A8;
-	Wed, 14 Aug 2024 06:35:34 -0700 (PDT)
-From: Hugues KAMBA MPIANA <hugues.kambampiana@arm.com>
-To: devicetree@vger.kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	hugues.kambampiana@arm.com,
-	abdellatif.elkhlifi@arm.com,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: arm: Update Corstone-1000 maintainers
-Date: Wed, 14 Aug 2024 14:35:25 +0100
-Message-Id: <20240814133525.4090877-1-hugues.kambampiana@arm.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1723642881; c=relaxed/simple;
+	bh=zOjk6hGGDth6yc75Nnd1oYyWL8+rID/sW43+5mDPxXI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hMMbc2jsVqaqm28eftF1baduaTeE2Mbm8SN8GppIm20lBxaai9YH90Z//cvo/kYWN8JCXbfvB5AeCCM0R6uRVMTytmT/HJOVitRVGY+CoMIEyCIv7kqPD6GKVdIBtlz2dMP71lLrA92iESWsghJYGl+ALnk4bOdxVFVyMAp4FpE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1seEFL-00064z-Vs; Wed, 14 Aug 2024 15:41:04 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1seEFL-000N7l-8p; Wed, 14 Aug 2024 15:41:03 +0200
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1seEFL-002ZXT-0V;
+	Wed, 14 Aug 2024 15:41:03 +0200
+Date: Wed, 14 Aug 2024 15:41:03 +0200
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Rob Herring <robh@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Matthias Kaehlcke <mka@chromium.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, kernel@pengutronix.de,
+	linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: usb: microchip,usb2514: add support for
+ port vbus-supply
+Message-ID: <20240814134103.esnt6niyu36adtgp@pengutronix.de>
+References: <20240807-b4-v6-10-topic-usb-onboard-dev-v1-0-f33ce21353c9@pengutronix.de>
+ <20240807-b4-v6-10-topic-usb-onboard-dev-v1-2-f33ce21353c9@pengutronix.de>
+ <20240813185752.GA1423091-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240813185752.GA1423091-robh@kernel.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-- Add new maintainers: Abdellatif El Khlifi, Hugues Kamba Mpiana
-- Remove maintainers: Vishnu Banavath, Rui Miguel Silva
-- Update contact information for existing maintainers
+Hi Rob,
 
-Signed-off-by: Hugues KAMBA MPIANA <hugues.kambampiana@arm.com>
----
- Documentation/devicetree/bindings/arm/arm,corstone1000.yaml | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On 24-08-13, Rob Herring wrote:
+> On Wed, Aug 07, 2024 at 04:36:52PM +0200, Marco Felsch wrote:
+> > Some PCB designs don't connect the USB hub port power control GPIO and
+> > instead make use of an host controllable regulator. Add support for this
+> > use-case by introducing an portX-vbus-supply property.
+> > 
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > ---
+> >  Documentation/devicetree/bindings/usb/microchip,usb2514.yaml | 7 +++++++
+> >  1 file changed, 7 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml b/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml
+> > index 783c27591e56..51d02c4b8f2d 100644
+> > --- a/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml
+> > @@ -35,6 +35,13 @@ required:
+> >    - compatible
+> >    - reg
+> >  
+> > +patternProperties:
+> > +  "^port[1-7]-vbus-supply$"
+> > +    type: object
+> > +    description:
+> > +      Regulator controlling the USB VBUS on portX. Only required if the host
+> > +      controls the portX VBUS.
+> 
+> This is completely external to the Microchip part, right?
+> 
+> I think each port node should have a 'vbus-supply' property instead.
 
-diff --git a/Documentation/devicetree/bindings/arm/arm,corstone1000.yaml b/Documentation/devicetree/bindings/arm/arm,corstone1000.yaml
-index 693f3fe7be60..cff1cdaadb13 100644
---- a/Documentation/devicetree/bindings/arm/arm,corstone1000.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,corstone1000.yaml
-@@ -7,8 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: ARM Corstone1000
- 
- maintainers:
--  - Vishnu Banavath <vishnu.banavath@arm.com>
--  - Rui Miguel Silva <rui.silva@linaro.org>
-+  - Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
-+  - Hugues Kamba Mpiana <hugues.kambampiana@arm.com>
- 
- description: |+
-   ARM's Corstone1000 includes pre-verified Corstone SSE-710 subsystem that
+This was my first approach but the problem is that we currently don't
+support such use-case:
+
+	parent-node {
+		/* Parent controlling the supply of the child node */
+
+		child-node {
+			vbus-supply = <&reg>;
+		};
+	};
+
+at least I didn't found such use-case. I'm happy for pointers if you
+know more :) At the moment *-supply properties and device-nodes are
+bound together:
+	
+	parent-node {
+		vbus-supply = <&reg>;
+	};
+
+Regards,
+  Marco
+
+> 
+> Rob
+> 
 
