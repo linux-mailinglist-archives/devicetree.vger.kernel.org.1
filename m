@@ -1,114 +1,122 @@
-Return-Path: <devicetree+bounces-93685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67596951E70
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 17:21:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 880E8951E7A
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 17:24:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96FAE1C20E14
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:21:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3CEE81F22A59
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2024 15:24:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7389B1B3754;
-	Wed, 14 Aug 2024 15:21:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02AD01B3F33;
+	Wed, 14 Aug 2024 15:24:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="22GQztV2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mLwQ/OZ+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82E5C1AED24;
-	Wed, 14 Aug 2024 15:21:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 653301B3F0E
+	for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 15:24:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723648911; cv=none; b=ltZ9VuRmEo9N3Evsj13qnNgvjyQs8ppcv7dNCkvEYprJPyAD8JzOGqQ8LAFlds4yJMf/9TCsu5bON0mYV62gyborhlfqSaHhSKkpU4MxISXmg79ce6zlXh+XECbmWej6L/U/jfvZbuZ0U2jRBuIbBh/z3qTTTx1hqM9SdGd/A2k=
+	t=1723649061; cv=none; b=lNkCVaOH0FVdB8D5W39qFrx+/qGxyWRE6jlA3tMUUiG/2tku1TaG4GZdnFOe1+oIuI+wdkjJ66s1b/DiSFVhTfSpCyORIuznaIuhcvMNwuQ5VFC67f/X0ndYdZ+/eK6uzaQd9g5LwBXmQlcNMLmJfqflq968KZCDpBDt66f8+Ug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723648911; c=relaxed/simple;
-	bh=l5CbK8lsNYXz7WLusbOjthn2e52Ss1865Pf1ASkxRN8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DuQdshXmYqHDAGfrAqUa9pY4j9EmLnVaioZ/xRv1sjgaEl7XWih1OZOmYY23TH6SuvkinDCXBWNwijCAYbzPAXhg9DouUTh/aFWrmtv4nBV6At/vXOe1vnpITKxuD3w9AchMYjGW1GgS5ubvgBJQeuKwYD/tQfefTv2eurj7qHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=22GQztV2; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=wWwr7zWATQuYFqeeYM1CqrF/gl5kEJAwbc6M3ZyF80g=; b=22GQztV2mfG2u0Gc3jzzQSpO65
-	7VWKwbTO6qzTKqhrLh0IqCLyOlWjXl3mSnI+8B6yooUouFyQUKE/ZDwgwCOSw8rtfEyG9f79lRUaO
-	owewVmJvWZ+S0wNt++i6JU9XJQdPMzhU2LZHSn7EaRy0nBccifQgaMjJIt/Mwc6aQD3g/E0qsM+pq
-	ZYjg5gSRkHb38a/dNHs3CttvGLosNHUhYxJ2l/affw8kN7Oubw7nwTDDtCRF8D65TGYVaTCoCmnEk
-	5YhH/gVdXEBa9dWqFRckrU1i9EO8DfVXAHJS7b73xvVPG4dq+Oq0BohGfL6hP7Cb1JJsnojyhvZyi
-	w2HyhxTg==;
-Received: from i53875a9f.versanet.de ([83.135.90.159] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1seFoV-0004yv-7N; Wed, 14 Aug 2024 17:21:27 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Yao Zi <ziyao@disroot.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Chris Morgan <macromorgan@hotmail.com>,
- Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>,
- Andy Yan <andyshrk@163.com>, Muhammed Efe Cetin <efectn@protonmail.com>,
- Jagan Teki <jagan@edgeble.ai>, Dragan Simic <dsimic@manjaro.org>,
- Ondrej Jirman <megi@xff.cz>, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-serial@vger.kernel.org
-Subject: Re: [PATCH 3/4] arm64: dts: rockchip: Add base DT for rk3528 SoC
-Date: Wed, 14 Aug 2024 17:21:25 +0200
-Message-ID: <2429972.SyXcmblsem@diego>
-In-Reply-To: <6320e4f3-e737-4787-8a72-7bd314ba883c@kernel.org>
-References:
- <20240803125510.4699-2-ziyao@disroot.org>
- <b967ab05-dd0e-4fc5-bee6-ad7639e47bfb@kernel.org>
- <6320e4f3-e737-4787-8a72-7bd314ba883c@kernel.org>
+	s=arc-20240116; t=1723649061; c=relaxed/simple;
+	bh=78oeiAhmfH2ypHqpWxAX9Th+93N4qk57FjBXXcPUyOo=;
+	h=MIME-Version:From:Date:Message-ID:Subject:To:Cc:Content-Type; b=fV3bhIcQJOVM3Uje8WyIMYrBeAghuqjXCLqP/L5lopVAvZpT6tZjD5lBhANyEQlBW170rtozOfPkt3tjLfTev6aatb6ntXqPGZdaIY8gGtL/bpH499HL6HeY3HaWVemOV1URxKeTepGqNYmUxWQI2Sf7dKVSaAOPynZXn/Kfogo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mLwQ/OZ+; arc=none smtp.client-ip=209.85.221.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-4ef2006dcdbso330e0c.3
+        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 08:24:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1723649059; x=1724253859; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=dKK1SjuVwmihJZM8PM/ZzRGG6/dddgwtniR8fKhlYrU=;
+        b=mLwQ/OZ+LpcTdlR8NBTc/9r2MPigx7CHIaqzWOKcgLE1t261Ad/sklfNel/sCnB6Ly
+         kELsudhLmgS2sNZFKBxSh4WE99OaJ6iOdC23KPZUgAFm5JXqWglwgah1z9iWAYjGSMXg
+         U2uVFwx1kSnBhKEHcUACO1CPdZYe9iXQ4UbYLxHUpNXVnUEh+6BYUwHVSHq8BX5XlOTr
+         2gbtJOP6UkWX3dO6/uO0yfXzCQiRjG5LSDlB3J6kdVyaX/8XxKUPCov11ojUMzqtw387
+         ux8B6kuPVx+ZgZxeECG7KdWLqTaRaIsdSmA343+Nf1ljwQeDmJcqVssJff3GuQYyk7I8
+         UYJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723649059; x=1724253859;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dKK1SjuVwmihJZM8PM/ZzRGG6/dddgwtniR8fKhlYrU=;
+        b=V2eqPDAKrtDVVx3nXTbH124sqVm90kFfFqF2bL8hwyK6Mc8Zenk5d8S5c7UGkCCm8O
+         rrwJOjjsLuh61C8kwdh1UmTStOqVezYQoLihbAwoRAfxjBNF1+JIj1nbvBSjXW4saSAz
+         Q8jYgU/Fn4/LbKXKUpPROusyFcC/dsv/7RmEsidAkOvSNXMITfXU5VYD8OmYZr3DniPz
+         LBE6KBV8XEOmWW0JVWhIE947FqNZQJwaBfrZZdBVM3TIc2oUet/jYT5nBInngtmCWT1y
+         lAPNoIb2ODQbbnUyekvahahP4R7NS1nxnPfULoWm3cwiPMJGEw3cWr2SvicIqn4Zh/r1
+         oLsQ==
+X-Gm-Message-State: AOJu0YxZwF4k2fHPI480ArLH3TQZQhjDl6fdRTRLxSKOrIiA4Ihfk0D6
+	ozv0qtf0DgggsVdddR1qN3rHMDXBDPQ3ai/LVkD02IqELvyfdo7KJedgkb00PGkg8VgJSDcVDIw
+	rjZUb02yceLRUQNzDfg/ZGJespI2mF56PgGURBzyB02BzPFZfo44=
+X-Google-Smtp-Source: AGHT+IGe86fXSL32SXbx6PialMNJdcooGEDjrhcLw+A99XpN6IMEoxkaon/5KAJGro6qUc/B74E6x1GZ0HckRFnFvD4=
+X-Received: by 2002:a05:6122:130a:b0:4ed:12b:ec99 with SMTP id
+ 71dfb90a1353d-4fad1b0fdafmr4024688e0c.3.1723649058773; Wed, 14 Aug 2024
+ 08:24:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+From: Naresh Kamboju <naresh.kamboju@linaro.org>
+Date: Wed, 14 Aug 2024 20:54:07 +0530
+Message-ID: <CA+G9fYuncv0fuBSC0A1z1G_UOv_XuMQz=DsrLZDK-Wc=10ghag@mail.gmail.com>
+Subject: next-20240814: bcm2711-rpi-4-b boot failed
+To: "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
+	Linux ARM <linux-arm-kernel@lists.infradead.org>, lkft-triage@lists.linaro.org, 
+	Linux Regressions <regressions@lists.linux.dev>
+Cc: Stefan Wahren <wahrenst@gmx.net>, Florian Fainelli <florian.fainelli@broadcom.com>, krzk+dt@kernel.org, 
+	Rob Herring <robh@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Dan Carpenter <dan.carpenter@linaro.org>, Anders Roxell <anders.roxell@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Am Dienstag, 13. August 2024, 18:38:58 CEST schrieb Krzysztof Kozlowski:
-> On 04/08/2024 16:05, Krzysztof Kozlowski wrote:
-> > On 04/08/2024 15:20, Yao Zi wrote:
-> >>>
-> >>>> +		compatible = "fixed-clock";
-> >>>> +		#clock-cells = <0>;
-> >>>> +		clock-frequency = <24000000>;
-> >>>> +		clock-output-names = "xin24m";
-> >>>> +	};
-> >>>> +
-> >>>> +	gic: interrupt-controller@fed01000 {
-> >>>
-> >>> Why this all is outside of SoC?
-> >>
-> >> Just as Heiko says, device tree for all other Rockchip SoCs don't have
-> >> a "soc" node. I didn't know why before but just follow the style.
-> >>
-> >> If you prefer add a soc node, I am willing to.
-> > 
-> > Surprising as usually we expect MMIO nodes being part of SoC to be under
-> > soc@, but if that's Rockchip preference then fine.
-> 
-> One more comment, I forgot we actually have it documented long time ago:
-> 
-> https://elixir.bootlin.com/linux/v6.11-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L90
+The arm64 kernel booting on bcm2711-rpi-4-b boot failed with today's Linux
+next-20240814 tag. The boot failed with half boot log [1]
 
-Thanks for finding that block.
+Reported-by: Linux Kernel Functional Testing <lkft@linaro.org>
 
-I guess we'll follow that advice then and go with a soc node :-) .
+ GOOD: next-20240813
+ BAD:  next-20240814
 
+The first investigation show the following to changes and I have reverted the
+following two commits and the boot test is back to pass [2].
 
-Heiko
+$ git log --oneline  next-20240813..next-20240814
+arch/arm64/boot/dts/broadcom/
+  6e7b99d720da6 ARM: dts: bcm271x: add missing properties to local_intc
+  eb81f43c901ff ARM: dts: bcm2837/bcm2712: adjust local intc node names
 
+Links:
+---
+ Boot failed log:
+  [1] https://lkft.validation.linaro.org/scheduler/job/7799601#L430
+ Boot pass log after the reverts:
+  [2] https://lkft.validation.linaro.org/scheduler/job/7799885#L440
 
+metadata:
+-------
+  git_describe: next-20240814
+  git_repo: https://gitlab.com/Linaro/lkft/mirrors/next/linux-next
+  git_sha: 320eb81df4f6c1a1814fd02ebb4ba41eb80a3c7e
+  kernel_version: 6.11.0-rc3
+  toolchain: gcc-13
+  artifact-location:
+https://storage.tuxsuite.com/public/linaro/lkft/builds/2kdXLykPUNEquDyvXHZbubB5T4p/
+  build-url: https://storage.tuxsuite.com/public/linaro/lkft/builds/2kdXLykPUNEquDyvXHZbubB5T4p/
+  kernel-config:
+https://storage.tuxsuite.com/public/linaro/lkft/builds/2kdXLykPUNEquDyvXHZbubB5T4p/config
+  build_name: gcc-13-lkftconfig-debug
+
+--
+Linaro LKFT
+https://lkft.linaro.org
 
