@@ -1,92 +1,122 @@
-Return-Path: <devicetree+bounces-94012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF03F953AAC
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 21:11:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA2EF953B36
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 22:00:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 598931F2405B
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 19:11:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9BE85B23EF0
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 20:00:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32E7381AC8;
-	Thu, 15 Aug 2024 19:11:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5354E13CFAA;
+	Thu, 15 Aug 2024 20:00:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UOHdiyBt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rmtcv5kg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 000CA7E110;
-	Thu, 15 Aug 2024 19:11:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 296A21459F9;
+	Thu, 15 Aug 2024 20:00:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723749081; cv=none; b=vCNn5o29MlW4W8KSVBkwhJU9YwAcjYz2/7OxEtj7skDnUjQ+np6idIZI4T37lGM87ejO81/PuT/b2mgRWiLbsfjBFK2fEXCzIfEIqBLhHeMFJVnn22ntQLPcOo5isZBIpfzVpy/c08gekmh/qByKjKTb/p5S+O38v2Sg+XmVsCs=
+	t=1723752004; cv=none; b=G4N5Ds/qJkpHhVK/ve2pXMMc5uERE1LKa5Y1gXWNghN3/0A03IC9tul6jjAXj90qVQsUpHvpfO9eJTjhFpR9jYEO3Du1PAZHmfV1jthmfGi+w5E20YJi4aihC+55FSYdTb41Up4c4bvIZ6PyXUhKCGBxEFcWOOcbOEDD+sBoaGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723749081; c=relaxed/simple;
-	bh=92vX60iqYAh7PcbjNcrQqaG2doDOIb7T48bvLsUa0es=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=INAJn1OKe7pkRLm111PvrMcQqMoxPvFWhBj1rYYBMNrIvnmEH9v9xl+x9Yci0oAO+plYI667+Q6mbmGUWGM72MIE7g/NAi3cB13k2bstiOe+qcmqTmZDPMFbD/YKW26XieSlkJS+wBhvSH/98mXCX7O5ikeq6QqaGHYaSyLt5lA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UOHdiyBt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96149C4AF0D;
-	Thu, 15 Aug 2024 19:11:19 +0000 (UTC)
+	s=arc-20240116; t=1723752004; c=relaxed/simple;
+	bh=4RgSn9Z+qFS3Hc+SCCKD41kR9cnrKaI24LPgVaCeHtY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FBfoovSWifmSnDhZioXUR658v60sdxl5dj2yvIkipvsVA6qTxR1+cRmIPVOXxr34jkADQZs7+De1zzzN4gz1fAhm67iiDvG8xESaAhJ59CKE0IUA84CRqGCxFjhIfgR3xvq1RfzQ0O5d1yTFyhYcGX2SalsDLBd1Q0EYak+mj2k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rmtcv5kg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A25C5C32786;
+	Thu, 15 Aug 2024 20:00:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723749080;
-	bh=92vX60iqYAh7PcbjNcrQqaG2doDOIb7T48bvLsUa0es=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=UOHdiyBtBjL78lF+LspGrJO+g4uj5hXlvI5A0Ik7hOfQgYvKq4s1ruTipCavK/2fg
-	 hMXF7H+BejJi9sNQkqyZqi6PNspk/hjzNAwNiTbn4pektqsGKsRr0bNp67H6xnDoTN
-	 Ybnyqv6LdCB+EmHn1M137f8eqclJL0oQqpV0PSyNyx3iuugEOQeEqNbFBgdJQDdE6+
-	 2dXAEP92JuC6O8mDJJZ+kEmjyKsIxtoep+A+KevKJorlfBCZC6P+Syo5shZM/JSJ5b
-	 4Y4svYibD4q8NR5Qz3//toPVVJ3Zi2HP1aUdc4jWK8UDDYYa7w+gH8S7qWo8YSpwbQ
-	 SYQk4Ps22ZbIA==
-From: Bjorn Andersson <andersson@kernel.org>
-To: mathieu.poirier@linaro.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	konrad.dybcio@linaro.org,
-	manivannan.sadhasivam@linaro.org,
-	Naina Mehta <quic_nainmeht@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v4 0/5] Add MPSS remoteproc support for SDX75
-Date: Thu, 15 Aug 2024 12:15:32 -0700
-Message-ID: <172374932841.1370237.8680270462656640056.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240709064924.325478-1-quic_nainmeht@quicinc.com>
-References: <20240709064924.325478-1-quic_nainmeht@quicinc.com>
+	s=k20201202; t=1723752003;
+	bh=4RgSn9Z+qFS3Hc+SCCKD41kR9cnrKaI24LPgVaCeHtY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rmtcv5kgQ8j/ajfOyRN3tVSYYQsdOYM5pTLNCCAPYjDLr9UKmHWeSrbQPd7Whr1zC
+	 hFTaMwOxYtYtMZ2kFK5g7kMHGHlKqdsP2/FyUiw5LBWp/XzObvMvx7+zWPfVFTFM0X
+	 GelyiAclavDa0ZRuNtQwU0Vup2IQMYFd0meWjEQJrgiu9h3XHLMClb4B3JuHCSQ8d7
+	 XhtPJ0t6TWlrTJWIIqxfNgZTnwAZS7TsedmowRb5JUePInqwcH/TmAME4rzQiT1OiP
+	 R3ngC1Hu3x7ne+wTGdZWQGon341UvTRx8J4ZOYNsVLD1y5rISfTrjA/hhxfvOgn8Vt
+	 oHNALn2oYC+Sw==
+Date: Thu, 15 Aug 2024 14:00:03 -0600
+From: Rob Herring <robh@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: devicetree@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
+	Lee Jones <lee@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 06/11] dt-bindings: soc: microchip: document the two
+ simple-mfd syscons on PolarFire SoC
+Message-ID: <20240815200003.GA2956351-robh@kernel.org>
+References: <20240815-shindig-bunny-fd42792d638a@spud>
+ <20240815-pending-sacrifice-f2569ed756fe@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240815-pending-sacrifice-f2569ed756fe@spud>
 
-
-On Tue, 09 Jul 2024 12:19:19 +0530, Naina Mehta wrote:
-> Add modem support to SDX75 using the PAS remoteproc driver.
-> Also, add qlink_logging memory region and split MPSS DSM
-> region into 2 separate regions.
+On Thu, Aug 15, 2024 at 03:01:09PM +0100, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> These patches were co-authored by Rohit Agarwal while at
-> Qualcomm.
+> There are two syscons on PolarFire SoC that provide various functionality of
+> use to the OS.
 > 
-> [...]
+> The first of these is the "control-scb" region, that contains the "tvs"
+> temperature and voltage sensors and the control/status registers for the
+> system controller's mailbox. The mailbox has a dedicated node, so
+> there's no need for a child node describing it, looking the syscon up by
+> compatible is sufficient.
+> 
+> The second, "mss-top-sysreg", contains clocks, pinctrl, resets, and
+> interrupt controller and more. For this RFC, only the reset controller
+> child is described as that's all that is described by the existing
+> bindings. The clock controller already has a dedicated node, and will
+> retain it as there are other clock regions, so like the mailbox,
+> a compatible-based lookup of the syscon is sufficient to keep the clock
+> driver working as before so no child is needed.
 
-Applied, thanks!
+I'm confused. The reset controller is reused from somewhere else? I 
+thought you didn't expect any reuse of the IP happening. If a child node 
+makes it possible to enable the h/w without any s/w changes, then that 
+is a compelling argument for having a child node.
 
-[1/5] dt-bindings: remoteproc: qcom,sm8550-pas: document the SDX75 PAS
-      commit: 888583bd3543da10c4bcb90c78825168fa8e7b90
-[2/5] remoteproc: qcom: pas: Add SDX75 remoteproc support
-      commit: 76064d8f4cd608e18cef74e810a934ce6da81b4c
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> (I'll split this in two later, it's just easier when I have the same
+> questions about both...)
+> 
+> Are these things entitled to have child nodes for the reset and sensor
+> nodes, or should the properties be in the parent and the OS probe the
+> drivers for the functions? That's something that, despite supposedly
+> being a maintainer, I do not understand the rules (of thumb?) for.
 
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+Besides the is it an independent, reusable IP block test, my test 
+generally is do the child nodes have their own DT resources? Say 
+you have phy registers mixed in some syscon and clocks which only go to 
+the phy. Then a child node with "clocks" makes sense. If your only 
+property is #phy-cells, then a child node doesn't make sense. Of course 
+you could reach different conclusions based on the completeness of the 
+binding.
+
+> 
+> Secondly, is it okay to make the "pragmatic" decision to not have a
+> child clock node and keep routing the clocks via the existing & retained
+> clock node (and therefore not update the various clocks nodes in the
+> consumers)? Doing so would require a lot more hocus pocus with the clock
+> driver than this series does, as the same driver would no longer be
+> suitable for the before/after bindings.
+
+In the 2 cases here, I don't think you need child nodes. I would expect 
+pinctrl to have one though if only as a container for all the pinctrl 
+child nodes.
+
+Rob
 
