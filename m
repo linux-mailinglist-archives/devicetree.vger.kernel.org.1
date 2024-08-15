@@ -1,134 +1,90 @@
-Return-Path: <devicetree+bounces-93933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABC3B95349D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 16:28:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A43B495350C
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 16:33:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DFC501C22C12
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 14:28:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D83171C2360E
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 14:33:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F35E01A01AE;
-	Thu, 15 Aug 2024 14:28:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA25419FA9D;
+	Thu, 15 Aug 2024 14:33:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fTyaTxso"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="nz0XuEsX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9EB963C;
-	Thu, 15 Aug 2024 14:28:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA01D14AD0A;
+	Thu, 15 Aug 2024 14:33:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723732084; cv=none; b=uHtqpVgqp02D8bYKnsDMmAFDbW73wbE8SMGbxbxa3MC+pTip0NqCRPweTyKQKRq8uM+tV3lveVQoDp/1AN6fQqy+53X1Isfvpcdv1sP/9Ozy2Br8PyaJeI5oIagqwUvuC9fmPk3VNyb6xgoDz0TCXoiNkl8Ar2VkmvJsoNIpXus=
+	t=1723732399; cv=none; b=IwnYq/L9G0MJOJGTzSCQIIxHgDaV/NCNrz7wjXF8LF7AXsq4J0SHHwfZrvjpVdH32bdtBXvxi5V8tzyXs5/uMwdVRATiX05jNbY/+rvEvb2qPIANv5hwV+K6xOILnyehn82eevl9bQB7Q1C6hZE275ENOvqm0xfG3c7551gDydc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723732084; c=relaxed/simple;
-	bh=N6W+kdsRIJgs6BgWYIx1Fmb+FrqcQji/yE9Gm23xVqE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=mnM0x/0I698exyEzrc2rciBXLVsK+WfrU6dm+wvS4f9JDC9sk5L6kUEHqC+TZYEMrFOGc7yRxxxucN7BV1Qt5DKI74hXN69AMa6xoYq3IUrPBi3cpz70KNb54BqOT4IyghZWlJRT/gaBJ5X7ajmOCkrDEBBUHYjw8CHLtfJSXmE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fTyaTxso; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47FERjpC107604;
-	Thu, 15 Aug 2024 09:27:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1723732065;
-	bh=NqGks5ZmmaFD2NYgflpmv3wLE/YC3/eEbp1rSchg8og=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=fTyaTxsoNRJhlTniYomZCMf9fDBVZwr5+ODtSfRpE++A7yzI4YgAy6qrpBzbucp6i
-	 NmpbUtsHReAfyYm1w9+4dHqkPVRXrczkB2YbG8DJCpkAVy/85c8hAK4RjYj995tlu0
-	 lc4VwPTM8w5xsjIaTx7Keebp7xQWtlJxo2CM8WuQ=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47FERjdt055511
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 15 Aug 2024 09:27:45 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
- Aug 2024 09:27:44 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 15 Aug 2024 09:27:44 -0500
-Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47FERixs037874;
-	Thu, 15 Aug 2024 09:27:44 -0500
-Message-ID: <440c9c5b-85ca-47f1-ac05-498ec9a1911b@ti.com>
-Date: Thu, 15 Aug 2024 09:27:44 -0500
+	s=arc-20240116; t=1723732399; c=relaxed/simple;
+	bh=5zLlgiauFmtzDe0WGZrVO5jLD2j3yrPLGKIoogSK2Eo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ogQn/fn2vJB6roo13u00wVIZvkm8fu+/qZ48eqzln0uljvWZcbdZvatfpSSVeY8ynQ8zbj4lI1DBMoUpT0m44cEw9YG3RTXuwh8OK6N1JHcjC28ztO4cgkLOwgRirqVYSTY8KREZEghkDP1YHp41HFy+D/oxNPYPpQdswaj6CBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=nz0XuEsX; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=M8aNZa8nyfe/bSa1TM/F99VXtKGXCBMqn9UQAaHvcN0=; b=nz0XuEsX1PBBgoXUQqeR2HGbFm
+	OLQdQ4hC8kvHZ0tIad/Flwa+wLzOXEW4+8EFJSXOPpMstRwI8KuSt0U0TYktNgyeFAni0V4VvH8kK
+	mFyFDiVHGNnbeNl/iNGftrtCGYfti4WDi+uEzZHab/VUC2V25GNiJ+GwmaWPx8n8N94Q=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sebXA-004qjE-V3; Thu, 15 Aug 2024 16:33:00 +0200
+Date: Thu, 15 Aug 2024 16:33:00 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Wei Fang <wei.fang@nxp.com>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, f.fainelli@gmail.com, hkallweit1@gmail.com,
+	linux@armlinux.org.uk, andrei.botila@oss.nxp.com,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 1/3] dt-bindings: net: tja11xx: use reverse-mode
+ to instead of rmii-refclk-in
+Message-ID: <7aabe196-6d5a-4207-ba75-20187f767cf9@lunn.ch>
+References: <20240815055126.137437-1-wei.fang@nxp.com>
+ <20240815055126.137437-2-wei.fang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/6] Add and fix ESM nodes
-To: Nishanth Menon <nm@ti.com>
-CC: Jan Kiszka <jan.kiszka@siemens.com>, <devicetree@vger.kernel.org>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>, <linux-kernel@vger.kernel.org>,
-        Rob Herring
-	<robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>
-References: <20240813230312.3289428-1-jm@ti.com>
- <4295a15a-6285-4005-bc40-328e52addc2b@siemens.com>
- <6134b3c1-f7ea-4cca-8777-56e5705aadf6@ti.com>
- <20240815122928.4i2yob5aj5ssqhzw@reply>
-Content-Language: en-US
-From: Judith Mendez <jm@ti.com>
-In-Reply-To: <20240815122928.4i2yob5aj5ssqhzw@reply>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240815055126.137437-2-wei.fang@nxp.com>
 
-Hi Nishanth,
+On Thu, Aug 15, 2024 at 01:51:24PM +0800, Wei Fang wrote:
+> Per the MII and RMII specifications, for the standard RMII mode,
+> the REF_CLK is sourced from MAC to PHY or from an external source.
+> For the standard MII mode, the RX_CLK and TX_CLK are both sourced
+> by the PHY. But for TJA11xx PHYs, they support reverse mode, that
+> is, for revRMII mode, the REF_CLK is output, and for revMII mode,
+> the TX_CLK and RX_CLK are inputs to the PHY.
+> Previously the "nxp,rmii-refclk-in" was added to indicate that in
+> RMII mode, if this property present, REF_CLK is input to the PHY,
+> otherwise it is output. This seems inappropriate now. Firstly, for
+> the standard RMII mode, REF_CLK is originally input, and there is
+> no need to add the "nxp,rmii-refclk-in" property to indicate that
+> REF_CLK is input. Secondly, this property is not generic for TJA
+> PHYs, because it cannot cover the settings of TX_CLK and RX_CLK in
+> MII mode. Therefore, add new property "nxp,reverse-mode" to instead
+> of the "nxp,rmii-refclk-in" property.
 
-On 8/15/24 7:29 AM, Nishanth Menon wrote:
-> On 08:59-20240814, Judith Mendez wrote:
->> Hi Jan,
->>
->> On 8/13/24 11:04 PM, Jan Kiszka wrote:
->>> On 14.08.24 01:03, Judith Mendez wrote:
->>>> The following patch adds ESM nodes and fixes ESM source
->>>> interrupts for Sitara K3 platforms. Currently watchdog cannot
->>>> reset the CPU because of misconfiguration or missing ESM node
->>>> in DT.
->>>>
->>>> ESM node was added for am62ax and am65x. For am62px ESM source
->>>> interrupts are fixed. Comments were also added for clarity on what
->>>> source interrupts are routed to ESM based on device TRM.
->>>>
->>>> ESM nodes like MCU ESM for am65x are added for device completion,
->>>> currently, some ESM0 events are not routed to MCU ESM, so watchdog
->>>> cannot reset the CPU using the current implementation.
->>>
->>> Yes, that's why there is https://github.com/siemens/k3-rti-wdt and
->>> probably similar bits in other R5 firmware. I was always told that is
->>> the only way to reset the /system/ (CPU alone would not help). That
->>> information is still correct?
->>
->> If you look at 9.4.14 MCU_ESM0 Interrupt Map, ESM0_ESM_INT_CFG_LVL_0,
->> ESM0_ESM_INT_HI_LVL_0, and ESM0_ESM_INT_LOW_LVL_0 are not routed to
->> MCU_ESM0. So the current implementation to route events from ESM0 to
->> MCU_ESM0 to reset the CPU will not work for AM65x, this is the
->> implementation on other K3 Sitara platforms and how watchdog can reset
->> the cpu.
->>
->> I did find MAIN_ESM_ERROR_INT which should be SOC_SAFETY_ERRORn, look
->> at Figure 12-3690. Perhaps the ESMs could be configured to use
->> SOC_SAFETY_ERRORn instead, not sure.
->>
->> The above should apply to both SR1 and SR2 devices according to the TRM.
-> 
-> Thanks for clarifying - you should add that in the commit message.
-> 
+Please could you add some justification why using
+PHY_INTERFACE_MODE_REVRMII is not possible.
 
-Sure, I can send v3 with another commit message fixup.
-
-~ Judith
-
+	Andrew
 
