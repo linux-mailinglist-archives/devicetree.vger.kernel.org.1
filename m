@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-93990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2162295385F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 18:37:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED9F195387B
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 18:43:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBD541F23891
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 16:37:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78E7F1F24596
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 16:43:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6CE31B4C44;
-	Thu, 15 Aug 2024 16:37:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96FB51B9B54;
+	Thu, 15 Aug 2024 16:43:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="1s8vPwKD"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="MBos0nqn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AF7B10E5;
-	Thu, 15 Aug 2024 16:37:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 466EB1714BB;
+	Thu, 15 Aug 2024 16:43:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723739872; cv=none; b=jO7xe08f3GxdE0+wgVjwq92LSazOxH4U75kJq/sVr6xZhFpfP3jDuyPrqaPGBSG5dEQi8oWP4weLWH+f0ZhTowH5UpAFVxjxfojQ5+geFOpL2KqgqUDi+k7geOFQMpl6NjnIEBKpfaxVtH78GRZyYLALTQQVwtr775F488ZEY3o=
+	t=1723740223; cv=none; b=gmmsgUfIAiRe1cDaSunXH+BeF6WmAKOGeXFRcWxWtTNIA6Y+a8nmu7Ds/IqC+3xKjMRDLg//s/+Zw6yRva+EntIoSRqhA8h2KJqWFZKv6exO8B80ryME+nMya0s9+2Tb74EjDYA1ZRWreZaJUm78c+jlOwB1W6jSytvyrGlYzI4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723739872; c=relaxed/simple;
-	bh=wS7NvznDEOIUaRvq/FI7azryJRMWQXghomS49B6kbOo=;
+	s=arc-20240116; t=1723740223; c=relaxed/simple;
+	bh=sT04QvnLEsoGXewaUEmLWMYdjXWOQ/Qe16TyWFy9crE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rUINwEqH6d6j9EGaMhRbn3eJWBoocr/OS7+kMInPJFFvegBczIFvat7Kb2aALdiFCp4ocHK9l5sehm2eIeDYe1uZbUkCBjy8jVjRm7jgtSle/4F7k1CblizJlRB+tuPZcxkoTi4DP8VLL7HGLrW/NoxFZu9VtQHbXu4DJy5WBHI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=1s8vPwKD; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=somuc9W/8qz2pyAz/TZ9oPMhPR7l3jxdVrCzLFuUvj8vjHwNzADKfTwgRqfSEc6UqwBOmPLRPkelw0SQwhkJm7HEffFgnrTkmTTDfe4hRylII2hGiMIYE+C5O/s9HQrX+UWsWfeNA5pE2Pa+xOu2RXnyhvgiXjdcxTFSnGV/494=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=MBos0nqn; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
@@ -37,272 +37,266 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=YzUauLZvtjkpYS5lkyPVzFy8sIAW53Spuybo7DpFzHg=; b=1s8vPwKDJKVPOkmLl2ZEgVEhsh
-	xWWvtexSHGfq96JwEO8yh1EiwGp/ixle8zY9J539ZsT7PBYlT1Q4dZLgXN2gANxhLB16aP3SwGj1O
-	DAXRCXOgDJqEurAN3aYecG4CL+gXE29beIZsx6GVb+xu50jjsJDW+caOxnzCkmR7Q70ofss6roiX7
-	YvTr4brg2vR1Vs4kwyJ1SHL7s7Ms83yjrKC9zP1z/+EcySKtVch6UIEW3cCom/OncYuxNl4CHZ4D5
-	YKKqRjlWZsnKp/fuqwZGVfqsRdsdtVl3RPEVqp9TxhBDczME/SwrAcy/56QUYh98XzBtsfjTxAiHv
-	8NdnR7Ug==;
+	bh=Dq8puxKj0ZeN7IVpwGFCF5x6k5LykH5w1x10HHPN5Sg=; b=MBos0nqnRP7dkdT8OBgJI4MLbr
+	86XxcH61JoKPx3Lh9ripFgnIMZyaYuC2ajT6obDwySQfgVdtnNMqY4Z0hrkfaxWmMBW+r+c0OCMSN
+	0oHKHHCSm26Y0ZSb93NDXMoy8rC8opEiEyiJjy9nC1f7audLXYD3xgh+raPufldKTHKYSHKH+3WQz
+	/AuiBIEtcgLHBeGQHhvUIclFBmpt2vUG38M/9LJmdA1P3tLPG6ynRObk6ypfXQ7uvIkhzrAdZuj/P
+	lDZPDtBlieidCYjYDG7d06u0uf8YSEcthqNGD8m9KtWVy7SVbgROFbSb7TGXpIPc+HjwtxiDHy26J
+	6G1ymHlw==;
 Received: from i53875a9f.versanet.de ([83.135.90.159] helo=diego.localnet)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1sedTl-0005SG-25; Thu, 15 Aug 2024 18:37:37 +0200
+	id 1sedZJ-0005XG-K6; Thu, 15 Aug 2024 18:43:21 +0200
 From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: linux-kernel@vger.kernel.org,
- Detlev Casanova <detlev.casanova@collabora.com>
-Cc: "David S . Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Jose Abreu <joabreu@synopsys.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- David Wu <david.wu@rock-chips.com>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
- kernel@collabora.com
-Subject:
- Re: [PATCH v2 2/2] ethernet: stmmac: dwmac-rk: Add GMAC support for RK3576
-Date: Thu, 15 Aug 2024 18:37:35 +0200
-Message-ID: <10024041.2OtUDhi4od@diego>
-In-Reply-To: <3304458.aeNJFYEL58@trenzalore>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Chris Morgan <macromorgan@hotmail.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>,
+ Andy Yan <andyshrk@163.com>, Muhammed Efe Cetin <efectn@protonmail.com>,
+ Jagan Teki <jagan@edgeble.ai>, Dragan Simic <dsimic@manjaro.org>,
+ Ondrej Jirman <megi@xff.cz>, Yao Zi <ziyao@disroot.org>
+Cc: Celeste Liu <CoelacanthusHex@gmail.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ Yao Zi <ziyao@disroot.org>
+Subject: Re: [PATCH v3 3/4] arm64: dts: rockchip: Add base DT for rk3528 SoC
+Date: Thu, 15 Aug 2024 18:43:20 +0200
+Message-ID: <10324095.IZOipudI63@diego>
+In-Reply-To: <20240814155014.18097-4-ziyao@disroot.org>
 References:
- <20240808170113.82775-1-detlev.casanova@collabora.com>
- <3724132.9z1YWOviru@diego> <3304458.aeNJFYEL58@trenzalore>
+ <20240814155014.18097-1-ziyao@disroot.org>
+ <20240814155014.18097-4-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Am Freitag, 9. August 2024, 16:38:23 CEST schrieb Detlev Casanova:
-> On Friday, 9 August 2024 09:16:44 EDT Heiko St=FCbner wrote:
-> > Hi Detlev,
-> >=20
-> > Am Donnerstag, 8. August 2024, 19:00:18 CEST schrieb Detlev Casanova:
-> > > From: David Wu <david.wu@rock-chips.com>
-> > >=20
-> > > Add constants and callback functions for the dwmac on RK3576 soc.
-> > >=20
-> > > Signed-off-by: David Wu <david.wu@rock-chips.com>
-> > > [rebase, extracted bindings]
-> > > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> > > ---
-> > >=20
-> > >  .../net/ethernet/stmicro/stmmac/dwmac-rk.c    | 156 ++++++++++++++++=
-++
-> > >  1 file changed, 156 insertions(+)
-> > >=20
-> > > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
-> > > b/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c index
-> > > 7ae04d8d291c8..e1fa8fc9f4012 100644
-> > > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
-> > > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
-> > > @@ -1116,6 +1116,161 @@ static const struct rk_gmac_ops rk3568_ops =
-=3D {
-> > >=20
-> > >  	},
-> > > =20
-> > >  };
-> > >=20
->=20
-> [...]
->=20
-> > > +/* SDGMAC_GRF */
-> > > +#define RK3576_GRF_GMAC_CON0			0X0020
-> > > +#define RK3576_GRF_GMAC_CON1			0X0024
-> > > +
-> > > +#define RK3576_GMAC_RMII_MODE			GRF_BIT(3)
-> > > +#define RK3576_GMAC_RGMII_MODE			GRF_CLR_BIT(3)
-> > > +
-> > > +#define RK3576_GMAC_CLK_SELET_IO		GRF_BIT(7)
-> > > +#define RK3576_GMAC_CLK_SELET_CRU		GRF_CLR_BIT(7)
-> >=20
-> > nit: typos _CLK_SELECT_ ... missing the C in select
->=20
-> Ack
+Hi,
 
-So all points below are resolved, and with the C added
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+Am Mittwoch, 14. August 2024, 17:50:13 CEST schrieb Yao Zi:
+> This initial device tree describes CPU, interrupts and UART on the chip
+> and is able to boot into basic kernel with only UART. Cache information
+> is omitted for now as there is no precise documentation. Support for
+> other features will be added later.
+> 
+> Signed-off-by: Yao Zi <ziyao@disroot.org>
 
->=20
-> > > +
-> > > +#define RK3576_GMAC_CLK_RMII_DIV2		GRF_BIT(5)
-> > > +#define RK3576_GMAC_CLK_RMII_DIV20		GRF_CLR_BIT(5)
-> >=20
-> > I think those are backwards
-> > The TRM says bit[5]=3D0: 25MHz (DIV2) and bit[5]=3D1: 2.5MHz (DIV20)
-> >=20
-> > I guess nobody also on Rockchip's side tested a RMII phy on those contr=
-ollrs
->=20
-> Can't be sure about that. An error in the TRM is not impossible either, a=
-s for=20
-> rk3588, it is also bit[5]=3D0: DIV20 and bit[5]=3D1: DIV2. I can switch t=
-hem to=20
-> match the TRM though, we may never now.
+not sure if you have seen Krzysztof's comment yesterday, that he found
+the soc node getting documented in 2019 [0].
 
-As David said, the TRM is wrong and the code is correct, so all good
+I guess that counts as a strong suggestion. Not sure how you're feeling
+about that, but I guess we could move to that scheme for new socs.
+
+So would you be willing to move the mmio-devices to a soc node?
+(stuff with mmio addresses in the node name)
 
 
->=20
-> > > +
-> > > +#define RK3576_GMAC_CLK_RGMII_DIV1		\
-> > > +			(GRF_CLR_BIT(6) | GRF_CLR_BIT(5))
-> > > +#define RK3576_GMAC_CLK_RGMII_DIV5		\
-> > > +			(GRF_BIT(6) | GRF_BIT(5))
-> > > +#define RK3576_GMAC_CLK_RGMII_DIV50		\
-> > > +			(GRF_BIT(6) | GRF_CLR_BIT(5))
-> > > +
-> >=20
-> > in contrast, these are correct and match the TRM
-> >=20
-> > > +#define RK3576_GMAC_CLK_RMII_GATE		GRF_BIT(4)
-> > > +#define RK3576_GMAC_CLK_RMII_NOGATE		GRF_CLR_BIT(4)
-> > > +
-> > > +static void rk3576_set_to_rgmii(struct rk_priv_data *bsp_priv,
-> > > +				int tx_delay, int rx_delay)
-> > > +{
-> > > +	struct device *dev =3D &bsp_priv->pdev->dev;
-> > > +	unsigned int offset_con;
-> > > +
-> > > +	if (IS_ERR(bsp_priv->grf) || IS_ERR(bsp_priv->php_grf)) {
-> > > +		dev_err(dev, "Missing rockchip,grf or rockchip,php_grf=20
-> property\n");
-> > > +		return;
-> > > +	}
-> > > +
-> > > +	offset_con =3D bsp_priv->id =3D=3D 1 ? RK3576_GRF_GMAC_CON1 :
-> > > +					 RK3576_GRF_GMAC_CON0;
-> > > +
-> > > +	regmap_write(bsp_priv->grf, offset_con, RK3576_GMAC_RGMII_MODE);
-> > > +
-> > > +	offset_con =3D bsp_priv->id =3D=3D 1 ? RK3576_VCCIO0_1_3_IOC_CON4 :
-> > > +					=20
-> RK3576_VCCIO0_1_3_IOC_CON2;
-> > > +
-> > > +	/* m0 && m1 delay enabled */
-> > > +	regmap_write(bsp_priv->php_grf, offset_con,
-> > > +		     DELAY_ENABLE(RK3576, tx_delay, rx_delay));
-> > > +	regmap_write(bsp_priv->php_grf, offset_con + 0x4,
-> > > +		     DELAY_ENABLE(RK3576, tx_delay, rx_delay));
-> > > +
-> > > +	/* m0 && m1 delay value */
-> > > +	regmap_write(bsp_priv->php_grf, offset_con,
-> > > +		     RK3576_GMAC_CLK_TX_DL_CFG(tx_delay) |
-> > > +		     RK3576_GMAC_CLK_RX_DL_CFG(rx_delay));
-> > > +	regmap_write(bsp_priv->php_grf, offset_con + 0x4,
-> > > +		     RK3576_GMAC_CLK_TX_DL_CFG(tx_delay) |
-> > > +		     RK3576_GMAC_CLK_RX_DL_CFG(rx_delay));
-> > > +}
-> > > +
-> > > +static void rk3576_set_to_rmii(struct rk_priv_data *bsp_priv)
-> > > +{
-> > > +	struct device *dev =3D &bsp_priv->pdev->dev;
-> > > +	unsigned int offset_con;
-> > > +
-> > > +	if (IS_ERR(bsp_priv->php_grf)) {
-> > > +		dev_err(dev, "%s: Missing rockchip,php_grf property\n",=20
-> __func__);
-> > > +		return;
-> > > +	}
-> > > +
-> > > +	offset_con =3D bsp_priv->id =3D=3D 1 ? RK3576_GRF_GMAC_CON1 :
-> > > +					 RK3576_GRF_GMAC_CON0;
-> > > +
-> > > +	regmap_write(bsp_priv->grf, offset_con, RK3576_GMAC_RMII_MODE);
-> > > +}
-> > > +
-> > > +static void rk3576_set_gmac_speed(struct rk_priv_data *bsp_priv, int
-> > > speed) +{
-> > > +	struct device *dev =3D &bsp_priv->pdev->dev;
-> > > +	unsigned int val =3D 0, offset_con;
-> > > +
-> > > +	switch (speed) {
-> > > +	case 10:
-> > > +		if (bsp_priv->phy_iface =3D=3D PHY_INTERFACE_MODE_RMII)
-> > > +			val =3D RK3576_GMAC_CLK_RMII_DIV20;
-> > > +		else
-> > > +			val =3D RK3576_GMAC_CLK_RGMII_DIV50;
-> >=20
-> > 		val =3D bsp_priv->phy_iface =3D=3D PHY_INTERFACE_MODE_RMII ?
-> > 				RK3576_GMAC_CLK_RMII_DIV20 :
-> > 				RK3576_GMAC_CLK_RGMII_DIV50;
-> > perhaps?
->=20
-> This way matches how it is written in rk3588_set_gmac_speed(). I find tha=
-t=20
-> having similar code for similar functions helps reading and understanding=
- it=20
-> better (although I agree that your suggestion looks better).
->=20
-> I'd rather keep it like it is for now if that's ok.
+Thanks
+Heiko
 
-ok, there is not much difference between the two variants anyway.
+[0] https://lore.kernel.org/all/6320e4f3-e737-4787-8a72-7bd314ba883c@kernel.org/
 
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3528.dtsi | 182 +++++++++++++++++++++++
+>  1 file changed, 182 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> new file mode 100644
+> index 000000000000..816573c5fe9d
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> @@ -0,0 +1,182 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2022 Rockchip Electronics Co., Ltd.
+> + * Copyright (c) 2024 Yao Zi <ziyao@disroot.org>
+> + */
+> +
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +/ {
+> +	compatible = "rockchip,rk3528";
+> +
+> +	interrupt-parent = <&gic>;
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +		serial1 = &uart1;
+> +		serial2 = &uart2;
+> +		serial3 = &uart3;
+> +		serial4 = &uart4;
+> +		serial5 = &uart5;
+> +		serial6 = &uart6;
+> +		serial7 = &uart7;
+> +	};
+> +
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpu-map {
+> +			cluster0 {
+> +				core0 {
+> +					cpu = <&cpu0>;
+> +				};
+> +				core1 {
+> +					cpu = <&cpu1>;
+> +				};
+> +				core2 {
+> +					cpu = <&cpu2>;
+> +				};
+> +				core3 {
+> +					cpu = <&cpu3>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu0: cpu@0 {
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0x0>;
+> +			device_type = "cpu";
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu1: cpu@1 {
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0x1>;
+> +			device_type = "cpu";
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu2: cpu@2 {
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0x2>;
+> +			device_type = "cpu";
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu3: cpu@3 {
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0x3>;
+> +			device_type = "cpu";
+> +			enable-method = "psci";
+> +		};
+> +	};
+> +
+> +	psci {
+> +		compatible = "arm,psci-1.0", "arm,psci-0.2";
+> +		method = "smc";
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+> +	};
+> +
+> +	xin24m: clock-xin24m {
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <24000000>;
+> +		clock-output-names = "xin24m";
+> +		#clock-cells = <0>;
+> +	};
+> +
+> +	gic: interrupt-controller@fed01000 {
+> +		compatible = "arm,gic-400";
+> +		reg = <0x0 0xfed01000 0 0x1000>,
+> +		      <0x0 0xfed02000 0 0x2000>,
+> +		      <0x0 0xfed04000 0 0x2000>,
+> +		      <0x0 0xfed06000 0 0x2000>;
+> +		interrupts = <GIC_PPI 9
+> +			(GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+> +		interrupt-controller;
+> +		#address-cells = <0>;
+> +		#interrupt-cells = <3>;
+> +	};
+> +
+> +	uart0: serial@ff9f0000 {
+> +		compatible = "rockchip,rk3528-uart", "snps,dw-apb-uart";
+> +		reg = <0x0 0xff9f0000 0x0 0x100>;
+> +		clock-frequency = <24000000>;
+> +		interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
+> +		reg-io-width = <4>;
+> +		reg-shift = <2>;
+> +		status = "disabled";
+> +	};
+> +
+> +	uart1: serial@ff9f8000 {
+> +		compatible = "rockchip,rk3528-uart", "snps,dw-apb-uart";
+> +		reg = <0x0 0xff9f8000 0x0 0x100>;
+> +		interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
+> +		reg-io-width = <4>;
+> +		reg-shift = <2>;
+> +		status = "disabled";
+> +	};
+> +
+> +	uart2: serial@ffa00000 {
+> +		compatible = "rockchip,rk3528-uart", "snps,dw-apb-uart";
+> +		reg = <0x0 0xffa00000 0x0 0x100>;
+> +		interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
+> +		reg-io-width = <4>;
+> +		reg-shift = <2>;
+> +		status = "disabled";
+> +	};
+> +
+> +	uart3: serial@ffa08000 {
+> +		compatible = "rockchip,rk3528-uart", "snps,dw-apb-uart";
+> +		reg = <0x0 0xffa08000 0x0 0x100>;
+> +		reg-io-width = <4>;
+> +		reg-shift = <2>;
+> +		status = "disabled";
+> +	};
+> +
+> +	uart4: serial@ffa10000 {
+> +		compatible = "rockchip,rk3528-uart", "snps,dw-apb-uart";
+> +		reg = <0x0 0xffa10000 0x0 0x100>;
+> +		interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
+> +		reg-io-width = <4>;
+> +		reg-shift = <2>;
+> +		status = "disabled";
+> +	};
+> +
+> +	uart5: serial@ffa18000 {
+> +		compatible = "rockchip,rk3528-uart", "snps,dw-apb-uart";
+> +		reg = <0x0 0xffa18000 0x0 0x100>;
+> +		interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
+> +		reg-io-width = <4>;
+> +		reg-shift = <2>;
+> +		status = "disabled";
+> +	};
+> +
+> +	uart6: serial@ffa20000 {
+> +		compatible = "rockchip,rk3528-uart", "snps,dw-apb-uart";
+> +		reg = <0x0 0xffa20000 0x0 0x100>;
+> +		interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
+> +		reg-io-width = <4>;
+> +		reg-shift = <2>;
+> +		status = "disabled";
+> +	};
+> +
+> +	uart7: serial@ffa28000 {
+> +		compatible = "rockchip,rk3528-uart", "snps,dw-apb-uart";
+> +		reg = <0x0 0xffa28000 0x0 0x100>;
+> +		interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
+> +		reg-io-width = <4>;
+> +		reg-shift = <2>;
+> +		status = "disabled";
+> +	};
+> +};
+> 
 
-> > > +		break;
-> > > +	case 100:
-> > > +		if (bsp_priv->phy_iface =3D=3D PHY_INTERFACE_MODE_RMII)
-> > > +			val =3D RK3576_GMAC_CLK_RMII_DIV2;
-> > > +		else
-> > > +			val =3D RK3576_GMAC_CLK_RGMII_DIV5;
-> >=20
-> > same as above?
-> >=20
-> > > +		break;
-> > > +	case 1000:
-> > > +		if (bsp_priv->phy_iface !=3D PHY_INTERFACE_MODE_RMII)
-> > > +			val =3D RK3576_GMAC_CLK_RGMII_DIV1;
-> > > +		else
-> > > +			goto err;
-> >=20
-> > 		if (bsp_priv->phy_iface =3D=3D PHY_INTERFACE_MODE_RMII)
-> > 			goto err;
-> >=20
-> > 		val =3D RK3576_GMAC_CLK_RGMII_DIV1;
-> >=20
-> > > +		break;
-> > > +	default:
-> > > +		goto err;
-> > > +	}
-> > > +
-> > > +	offset_con =3D bsp_priv->id =3D=3D 1 ? RK3576_GRF_GMAC_CON1 :
-> > > +					 RK3576_GRF_GMAC_CON0;
-> > > +
-> > > +	regmap_write(bsp_priv->grf, offset_con, val);
-> > > +
-> > > +	return;
-> > > +err:
-> > > +	dev_err(dev, "unknown speed value for GMAC speed=3D%d", speed);
-> > > +}
-> > > +
-> > > +static void rk3576_set_clock_selection(struct rk_priv_data *bsp_priv,
-> > > bool input, +				       bool enable)
-> > > +{
-> > > +	unsigned int val =3D input ? RK3576_GMAC_CLK_SELET_IO :
-> > > +				   RK3576_GMAC_CLK_SELET_CRU;
-> > > +	unsigned int offset_con;
-> > > +
-> > > +	val |=3D enable ? RK3576_GMAC_CLK_RMII_NOGATE :
-> > > +			RK3576_GMAC_CLK_RMII_GATE;
-> > > +
-> > > +	offset_con =3D bsp_priv->id =3D=3D 1 ? RK3576_GRF_GMAC_CON1 :
-> > > +					 RK3576_GRF_GMAC_CON0;
-> >=20
-> > nit: alignment of both looks like it could be nicer
->=20
-> That's strange, the alignments looks good in vim and git diff. It also lo=
-oks=20
-> nice on the archive: https://lore.kernel.org/linux-rockchip/
-> 20240808170113.82775-3-detlev.casanova@collabora.com/
-
-ok, probably just some display artifact here :-)
 
 
 
