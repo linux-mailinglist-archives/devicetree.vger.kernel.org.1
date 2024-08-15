@@ -1,62 +1,75 @@
-Return-Path: <devicetree+bounces-94021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94022-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0858953B96
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 22:41:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8601B953B9B
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 22:41:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A625A1F26230
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 20:41:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F7391F255F7
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 20:41:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 884BD14D457;
-	Thu, 15 Aug 2024 20:40:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0A9A154433;
+	Thu, 15 Aug 2024 20:41:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GUTowMx0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gtvzzYXl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B3BB14D2B3;
-	Thu, 15 Aug 2024 20:40:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E31A154423;
+	Thu, 15 Aug 2024 20:41:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723754459; cv=none; b=lMLte2AQt7vxw3KiYD2+maoqpd/e3yBADIey5rz/SVXPJz+fJ4SJ49TKvrQWV0Mv0gCzsWnRrCjlrrZI+MmllX8qSUGRf6t50OSdQfCBelRT5HjWA3sIsrVwS0d8XbuK3E424ZKziRO8uJegXLBi3/+gkOcvdqM0xOlHdk39gkM=
+	t=1723754462; cv=none; b=C7nKthbxBsJ7iynI4s/e/ezBVrSerI1rX4y1FkQnugfX46Vd20a78TK8IXmy4Dj/BdJMVsp738rKKWSq8vEy6b5tks/uaZnSQWgyDoPByIjqhE3FNtYiXLnc//HnsRs42KYU1w2psUhdZ3px46lwkWN+8IJeU5jlHp45RQ1IW1I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723754459; c=relaxed/simple;
-	bh=59yHYCAH3ZjE/4ilK/R6Pyrv7GeApxy6xKMhnYSDAn4=;
+	s=arc-20240116; t=1723754462; c=relaxed/simple;
+	bh=F8oflxuYzG6QdmTBIJevLlwno17ji+vnYLGMIEdxVhs=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DcxkiSxv8tQ6cH3QCTzx8MraRklNIv1OHMCToWjU2EU1f6XPZO50IQAh9Bt53D7fe9MCAUTsSrQuwUFOSXM1RDPcpeA1HvW9H/ZVl6mqfj0B8ZcbAz19N+8VtCR0bfRjP7KNdp7CSe48bTGi5XBCrn36GuDEfamaAUlRfCIZcVs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GUTowMx0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7842EC4AF18;
-	Thu, 15 Aug 2024 20:40:58 +0000 (UTC)
+	 MIME-Version:Content-Type; b=g8C4TR+G5h+YaDdPWoIUAUaj5gQw3kEUds6pymuhaKjpZCIO4KUJjPGSA9aPij3KMdVD6fywvpOlOs/5OQ1sCihASzA2TUe+RU28pEly2M121S0sQ+WDB5QiR1Q5lPyTUm7Jwpm6eIvSrb9WxcIKXS9Z47qgVEqiyjYh9Azh3UE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gtvzzYXl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAE30C4AF12;
+	Thu, 15 Aug 2024 20:41:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723754459;
-	bh=59yHYCAH3ZjE/4ilK/R6Pyrv7GeApxy6xKMhnYSDAn4=;
+	s=k20201202; t=1723754462;
+	bh=F8oflxuYzG6QdmTBIJevLlwno17ji+vnYLGMIEdxVhs=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=GUTowMx0vAMeM4KyIvAxmdxUwktcdezx3G4ovy++M8yW6KB0N0jyxf3bx6DFSfjzU
-	 d4q+BO1cvnEadzIUFd/+xzIJEp/vA9s0SlpNCrroAK9Jwtfs5ty26IfqmEzWvHZ1UK
-	 XPbcy2GEZabCLrp2K1uf3j1sf4TezFzfdRmbuMnKx61FXOMyteMcnt5TPQTvLVG7NQ
-	 hQ8jHmZDKP/gbNpp4thHfgvJY2DSn8rQ6vCd+pX34qvvenvf4Mu/fWAFdTrnyW2v48
-	 /v5R4pdYiGyZP1oX89SuiCjYeEZD5miF3piv9KCIkbg9NALDqmUP2ieaNOtJiE7abQ
-	 jWXHsO8mAEWPg==
+	b=gtvzzYXljiGysfQNrXF6eT54sgX1myIhBlIamCwyn03R4erw/QpDXKc+zfWSs/cLv
+	 F63p7ZYOY2up+KNcxl4Km8/VfHca6SWsXhYM4F9Elzmtp72lllkk933Glq0Ap4NcGg
+	 2+LZSkMmsdWBaG02qniyQK+pcBcZcfpXBUcBEn3C/Jc0/zVt9y4z8JsUUu8NgD+8Z4
+	 bY61USDIfCpXlUv1ncryT3T9b/9QXahbjSUQYSjtQzBxCI1CWYS0YrzNTqU2VWRzJc
+	 /sMqafXWGgGN8v2fl8Kf83dnn6fl519XGOdufYwLxPcx/X58PkVHH2a7IZKYK6C11n
+	 KVBD/bz5S8wFg==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Amol Maheshwari <amahesh@qti.qualcomm.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Bartosz Golaszewski <brgl@bgdev.pl>
 Cc: linux-arm-msm@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: add CPU idle states
-Date: Thu, 15 Aug 2024 15:40:19 -0500
-Message-ID: <172375444830.1011236.14902438767700632258.b4-ty@kernel.org>
+	linux-remoteproc@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Tengfei Fan <quic_tengfan@quicinc.com>,
+	Ling Xu <quic_lxu5@quicinc.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: (subset) [PATCH v4 0/6] arm64: qcom: sa8775p: enable remoteprocs - ADSP, CDSP and GPDSP
+Date: Thu, 15 Aug 2024 15:40:21 -0500
+Message-ID: <172375444827.1011236.6685787299327190589.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240807-sa8775p-idle-states-v1-1-f2b5fcdfa0b0@linaro.org>
-References: <20240807-sa8775p-idle-states-v1-1-f2b5fcdfa0b0@linaro.org>
+In-Reply-To: <20240805-topic-sa8775p-iot-remoteproc-v4-0-86affdc72c04@linaro.org>
+References: <20240805-topic-sa8775p-iot-remoteproc-v4-0-86affdc72c04@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,15 +80,34 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Wed, 07 Aug 2024 15:31:43 +0200, Bartosz Golaszewski wrote:
-> Add CPU idle-state nodes and power-domains to the .dtsi for SA8775P.
+On Mon, 05 Aug 2024 19:08:01 +0200, Bartosz Golaszewski wrote:
+> Add DT bindings, relevant DT defines, DTS nodes and driver changes
+> required to enable the remoteprocs on sa8775p.
 > 
+> To: Bjorn Andersson <andersson@kernel.org>
+> To: Mathieu Poirier <mathieu.poirier@linaro.org>
+> To: Rob Herring <robh@kernel.org>
+> To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> To: Conor Dooley <conor+dt@kernel.org>
+> To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> To: Jassi Brar <jassisinghbrar@gmail.com>
+> To: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Cc: linux-arm-msm@vger.kernel.org
+> Cc: linux-remoteproc@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sa8775p: add CPU idle states
-      commit: 4f79d0deae37c298bbce5142937080ff5cc61a25
+[2/6] dt-bindings: mailbox: qcom-ipcc: Add GPDSP0 and GPDSP1 clients
+      commit: 89817522b1a58970ac1247f65af009b046344fb0
+[5/6] arm64: dts: qcom: sa8775p: add ADSP, CDSP and GPDSP nodes
+      commit: df54dcb34ff2eaabc5f74afbdb2fec104e2263e6
+[6/6] arm64: dts: qcom: sa8775p-ride: enable remoteprocs
+      commit: 2bec6f6a22815c6a5651d2b9aa4f54baf1ae5e73
 
 Best regards,
 -- 
