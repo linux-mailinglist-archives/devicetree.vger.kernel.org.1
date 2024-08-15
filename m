@@ -1,180 +1,151 @@
-Return-Path: <devicetree+bounces-93941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C76BF9535E9
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 16:44:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C12C895361F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 16:47:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5E661C20EE0
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 14:44:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F36221C211A5
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 14:47:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 613E81B3F38;
-	Thu, 15 Aug 2024 14:42:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7120D1A3BD0;
+	Thu, 15 Aug 2024 14:46:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="e8gEoXIz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U06hF8jR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A5A41A4F3B;
-	Thu, 15 Aug 2024 14:42:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41E1819F482;
+	Thu, 15 Aug 2024 14:46:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723732939; cv=none; b=TltORHNvzQ0e44F5mziB95pIeNNPlDN2KWXdVlqx6qY3FYQ74A+1/OWlh3rozn8Z5XctWaTQXR3fpfQHXnO7m9J40JkzPYe1DUWqU7x6uThldUDSzDNKzNVpEm2O5/UMe+mQIr6KUj+CtCf9Kfp918TKOwTAZxd+LkO7nYJuwMg=
+	t=1723733183; cv=none; b=pWG6pjEsR4r6pGyl6GIonkf8ywKRyF9owrrpcZohFk1vSFAL48TUriqWCxqBFINhqFcGUwqSCQ5YZfnZebThhDCTv2zhUaNgKBMGe8xSPzrJNjdiqvHSLSrmoDjF+RpWMQZgHBZB9TlWRQIBLuk7OqHQ8gk6n/TAlCFQmLvJ2MA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723732939; c=relaxed/simple;
-	bh=t+pO7N5Z6JtmiS6ojDZxc9cP8xXS67WNZzSbC144FPc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Xi+huLliX21bDZ4ooUxX/OUQ/LFVj9KXJPZSJ1e084HBHpFCYZC/ke4kmHsyYdAqw+Z54/BRIMO3wrEGFi+CQNb9lnGlFQR7NXvywxAEeap5FK0GlMw0HU0Kdh1WKnfnu/qeW4/0cCoS4f539pf7LidwebcHGqmgmDcA16M+x/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=e8gEoXIz; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47F2i0E4025516;
-	Thu, 15 Aug 2024 14:42:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	emXGD2ixoz9xo1hqs7NNv/4icoml3oxrGVHnw8YysrA=; b=e8gEoXIzUj9TMddo
-	Q38y2I8lLTeJGo4l3YWEc2rbmwZco93y7K3hieKgMEgBMiHzVJLEF/4H/80agKp4
-	TQGCyrsfFWs7foG0L+kqPVgGv2mLxMJlDxpZ3AY94IiA1aVRZg6qUicjXP2pqLE9
-	DPsj78RoqLhtxnZH1cgWSFEsNFuTDiLQEpN92dHHYy2/CEAK+qjARN/IHQZpc2tM
-	DUG5pwum8NTpw2Lj+1CTu1eeCS7ZsA3PS5U/TkKQ/JsuCcHBpxzzKAWjFhzprDzs
-	Ofi3HAimGrxHnFwHpX6s0DYDmAQgOiGFPdnWaLcQ/IVT6+4Lh7AfmSv3NxbAZcAD
-	ypi9JA==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 411957sf0k-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 15 Aug 2024 14:42:12 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47FEgAFv020324
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 15 Aug 2024 14:42:10 GMT
-Received: from [10.239.97.152] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 15 Aug
- 2024 07:42:05 -0700
-Message-ID: <82200889-a98d-4815-bc31-f81b15d02513@quicinc.com>
-Date: Thu, 15 Aug 2024 22:42:03 +0800
+	s=arc-20240116; t=1723733183; c=relaxed/simple;
+	bh=2NZIG91t9aXuEVWvgGYOj0BanBuBMyaM2N2fVFFn770=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cCtFS7CbZKbckbiMhtMcoyzHM21fIdRNIhVfeSFV6kKPi7KDthdPHMOz37rCXD8PV8kLTEHt/tMKSrcSz8bbHrhr77MBhE2EzX/H0BNp4/SXCXqsVm547JDw2HDGxFl55KndweBuwXqvtqZvWaXrTTpbXebDRZp5qkVh39D9KqQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U06hF8jR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93458C32786;
+	Thu, 15 Aug 2024 14:46:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723733182;
+	bh=2NZIG91t9aXuEVWvgGYOj0BanBuBMyaM2N2fVFFn770=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=U06hF8jRuWvZCT2moe8XTqEiNQrQDESBl3uzjurmXWBpuB3BEAFvKJMmN/ivFEYvw
+	 +ATLQAqQ5Ym1Vfo5h2ac07HIMjRCHiZ+/c6krSVPAzWIj1rJZlBAjjRGFk5+HWMAch
+	 czSTGi8PVyKZ8nHoIzV1zZrB/K8sNRi/9vBrD57WWnrAlkdSHG8DITmUNWLqjMdZ7I
+	 YHcfZ/xPtEbnLmPElAKfcuMpjHN8f6tdlryVUkM4j5Ody+XBBxlbeCgxrB10qdWPmw
+	 YU4Vf1iZEIi7WNkpVruslFLtu3HiQcQlQPyR+BwNgQL0WsL/FXzAZsy8vhIfzcdSj5
+	 yOBn38wTZphJg==
+Date: Thu, 15 Aug 2024 15:46:18 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Stanislav Jakubek <stano.jakubek@gmail.com>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: power: supply: sc27xx-fg: add low voltage
+ alarm IRQ
+Message-ID: <20240815-winnings-waving-1ec5561f90e7@spud>
+References: <Zr3SAHlq5A78QvrW@standask-GA-A55M-S2HP>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 13/13] media: qcom: camss: Add support for VFE hardware
- version Titan 780
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, <rfoss@kernel.org>,
-        <todor.too@gmail.com>, <bryan.odonoghue@linaro.org>,
-        <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>, Yongsheng Li <quic_yon@quicinc.com>
-References: <20240812144131.369378-1-quic_depengs@quicinc.com>
- <20240812144131.369378-14-quic_depengs@quicinc.com>
- <4b745c1a-33d9-472a-97af-153a2a7c8721@linaro.org>
- <2de0b7a8-b879-49e9-9656-ec86f29ce559@quicinc.com>
- <b0787142-0f85-4616-9895-72e33f21c2da@linaro.org>
-Content-Language: en-US
-From: Depeng Shao <quic_depengs@quicinc.com>
-In-Reply-To: <b0787142-0f85-4616-9895-72e33f21c2da@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 5fnvQgpmZ2cdt8aN5eXx9DA6pgQgeeuE
-X-Proofpoint-ORIG-GUID: 5fnvQgpmZ2cdt8aN5eXx9DA6pgQgeeuE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-15_07,2024-08-15_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 phishscore=0
- lowpriorityscore=0 mlxlogscore=999 clxscore=1015 suspectscore=0
- impostorscore=0 bulkscore=0 malwarescore=0 spamscore=0 mlxscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408150107
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="m3HcwEUYmHiNNTm2"
+Content-Disposition: inline
+In-Reply-To: <Zr3SAHlq5A78QvrW@standask-GA-A55M-S2HP>
 
-Hi Vladimir,
 
-On 8/15/2024 7:20 AM, Vladimir Zapolskiy wrote:
+--m3HcwEUYmHiNNTm2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->>
->>>> +void camss_reg_update(struct camss *camss, int hw_id, int port_id,
->>>> bool is_clear)
->>>
->>>> +{
->>>> +    struct csid_device *csid;
->>>> +
->>>> +    if (hw_id < camss->res->csid_num) {
->>>> +        csid = &(camss->csid[hw_id]);
->>>> +
->>>> +        csid->res->hw_ops->reg_update(csid, port_id, is_clear);
->>>> +    }
->>>> +}
->>>> +
->>>
->>> Please add the new exported function camss_reg_update() in a separate
->>> preceding commit.
+On Thu, Aug 15, 2024 at 12:01:36PM +0200, Stanislav Jakubek wrote:
+> The SC27XX fuel gauge supports a low voltage alarm IRQ, which is used
+> for more accurate battery capacity measurements with lower voltages.
+>=20
+> This was unfortunately never documented in bindings, do so now.
+>=20
+> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+> ---
+> Initial Linux driver submission adding this feature:
+> https://lore.kernel.org/lkml/ee1dd39f126bd03fb88381de9663d32df994d341.154=
+2185618.git.baolin.wang@linaro.org/
+>=20
+> The only in-tree user (sc2731.dtsi) has had interrupts specified since its
+> initial fuel-gauge submission:
+> https://lore.kernel.org/lkml/4f66af3b47ba241380f8092e08879aca6d7c35b3.154=
+8052878.git.baolin.wang@linaro.org/
 
->>
->> Thanks for your comments, I will address them in new series.
->>
->> But I have some concern about above comment, you want to add a separate
->> commit for camss_reg_update, maybe camss_buf_done also need to do this,
->> but I guess I will get new comments from Krzysztof if I make a separate
->> change, Krzysztof posted few comments in v3 series, he asked, "must
->> organize your patches in logical junks" and the code must have a user.
->>
->> Please check below comments.
->>
->> https://lore.kernel.org/all/e1b298df-05da-4881- 
->> a628-149a8a625544@kernel.org/
->>
->> https://lore.kernel.org/all/d0f8b72d-4355-43cd-a5f9- 
->> c44aab8147e5@kernel.org/
-> 
-> Krzysztof is absolutely right in his two comments.
-> 
->  From what I see there is a difference between his concerns and mine ones
-> though, Krzysztof points to unused data, which should raise a build time
-> warning, and I asked to make a separate commit for a non-static function,
-> I believe it'll be removed by the linker silently...
-> 
-> The potential runtime logic change introduced by camss_reg_update() in the
-> generic code is not trivial, which opens an option to update/fix it lately
-> referencing a commit from generic domain rather than platform specific one.
-> 
-> If someone for whatever reasons wants to merge a new generic and shared
-> camss_reg_update() function within a the platform specific code/commit,
-> I won't strongly object, let it be merged together then.
-> 
->>
->> Or I don't add reg update and buf done functionality in
->> camss-csid-gen3.c and camss-vfe-780.c firstly, then add them in a later
->> commit.
->>
->> Could you please comment on whether this is acceptable? Please also help
->> to common on if one commit to add them or need two separate commits, one
->> is for reg update and the other one is for buf done.
->>
-> 
-> I would prefer to see two more separate commits within non-platform 
-> specific
-> code, however as I stated above if it causes anyone's concerns, including
-> your own, let it be kept as it is done today. Eventually we do discuss
-> a non-functional change.
-> 
+This context could go into the commit message I think, as justification
+for making the interrupt required.
 
-Thanks for the confirmation, even though I add the rup_update and 
-buf_done function in later commits, it is still called in platform 
-specific code(camss-vfe-780.c), so I will keep as it is done today.
+Also, this binding is odd in that it has several compatibles in an enum,
+but the driver (added at the same time) only has one compatible in it.
+Are you using the sc2731 in your device?
 
-Thanks,
-Depeng
+>=20
+>  .../devicetree/bindings/power/supply/sc27xx-fg.yaml         | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/power/supply/sc27xx-fg.yam=
+l b/Documentation/devicetree/bindings/power/supply/sc27xx-fg.yaml
+> index de43e45a43b7..9108a2841caf 100644
+> --- a/Documentation/devicetree/bindings/power/supply/sc27xx-fg.yaml
+> +++ b/Documentation/devicetree/bindings/power/supply/sc27xx-fg.yaml
+> @@ -27,6 +27,9 @@ properties:
+>    battery-detect-gpios:
+>      maxItems: 1
+> =20
+> +  interrupts:
+> +    maxItems: 1
+> +
+>    io-channels:
+>      items:
+>        - description: Battery Temperature ADC
+> @@ -53,6 +56,7 @@ required:
+>    - compatible
+>    - reg
+>    - battery-detect-gpios
+> +  - interrupts
+>    - io-channels
+>    - io-channel-names
+>    - nvmem-cells
+> @@ -88,6 +92,8 @@ examples:
+>          compatible =3D "sprd,sc2731-fgu";
+>          reg =3D <0xa00>;
+>          battery-detect-gpios =3D <&pmic_eic 9 GPIO_ACTIVE_HIGH>;
+> +        interrupt-parent =3D <&sc2731_pmic>;
+> +        interrupts =3D <4>;
+>          io-channels =3D <&pmic_adc 5>, <&pmic_adc 14>;
+>          io-channel-names =3D "bat-temp", "charge-vol";
+>          nvmem-cells =3D <&fgu_calib>;
+> --=20
+> 2.34.1
+>=20
 
+--m3HcwEUYmHiNNTm2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZr4UugAKCRB4tDGHoIJi
+0iAeAQCsTRBZC3K9ZGJTgdmaDkgPIwDFvF/uhLqmz2WTOOIp7gEA62K7ZIdtskiw
+Gv4q+Qvsp6ItT6782VNoK85NaCGA/Ac=
+=Joit
+-----END PGP SIGNATURE-----
+
+--m3HcwEUYmHiNNTm2--
 
