@@ -1,106 +1,134 @@
-Return-Path: <devicetree+bounces-93970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0934A953775
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 17:41:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66DB295377C
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 17:43:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 853C9B20B0F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 15:41:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AB1F1C23E4A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 15:43:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85F151AD417;
-	Thu, 15 Aug 2024 15:41:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC73B1AD9FB;
+	Thu, 15 Aug 2024 15:43:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UoX/suEq"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="b9HMzwuU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 522C71AD3F7;
-	Thu, 15 Aug 2024 15:41:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F0391AD3F7;
+	Thu, 15 Aug 2024 15:43:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723736498; cv=none; b=KjGI5tF38vYDbRMA/ErMCcmFjsSovUtowePlI1wCOgiAZcVjaVxX7Z5JVB2Gokr5irfoYY6DUDFpqn0URhMf/TcVlqJEFn+oCyDBVrU6sF8Vz5LpFh/1SqWZm62zyROZ7Zp8varKH/iULl1NgsdqHIHxPcaflO4DGxk4qh86pZ0=
+	t=1723736597; cv=none; b=DheTcl6+U+K8dWOl1neWrIBEIJozMwmE5372qLSLIa6dgH8GDwBoT+IGon+iHKuV4wr2NCxAf9NdlSq+jZ6oTeymzm28IcuFKJZgb6nl76m4F1O8EK+OjigSXSucqq3CQTP9fvy6JHImQNIrjO+JHYS91qGVFGkgawOTqspRPLg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723736498; c=relaxed/simple;
-	bh=IYrPvjIPCrdK+O+khvX9GO/S0HHhbYIZlD2G7HwxwsQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rJAZAM6aBN9+UAWMGEh7P606aEfGoM6MYfOKzUxevTwQMHi8Xu75ZR1PXgvm/ILZveJshoNL7tnWjHSFWPnGy4K9faFfsgkjlWIPtx4WQIPCFo5AknOZsvIA7ckrOyPHI83MgfkbcZK3bsIl3AzG3u6/4IPomZCATTM0+hG8pOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UoX/suEq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9565DC4AF09;
-	Thu, 15 Aug 2024 15:41:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723736497;
-	bh=IYrPvjIPCrdK+O+khvX9GO/S0HHhbYIZlD2G7HwxwsQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UoX/suEqbFCc9eipy4uawl816ieuugHDnZOH1Dy0CJALZwXYXjqlDAARjT4/Ck1BW
-	 ipbp9vep6vC08m/Deegkfa/yeLqN2kXtlLPnA8TIioC1DqNE0TSFpQfSDg5kXS49Dt
-	 RNc3TiiPTzk8PvxlfkmhuMkS256BvDL/xoiU05eWQX+sEq21GxZdKnLoiTvPEMslWY
-	 l9MdQe8mN4uzyklODWBBQq4BRVlgjLYqimm6dX7IXAkSki/SM+xRfVykwkktln0iwQ
-	 Im3xvPG5lEFMYUqOZdNel1W+iJI6ttaC623yUMbei6WMTtUSPqvCyhvuCYC4T1gsFm
-	 +IAguXMYrhsew==
-Date: Thu, 15 Aug 2024 09:41:36 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	Eric Dumazet <edumazet@google.com>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
-	Paolo Abeni <pabeni@redhat.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH 1/1] dt-bindings: soc: fsl: cpm_qe: convert network.txt
- to yaml
-Message-ID: <172373649432.1956601.11486565362846539757.robh@kernel.org>
-References: <20240812165041.3815525-1-Frank.Li@nxp.com>
+	s=arc-20240116; t=1723736597; c=relaxed/simple;
+	bh=tBcHQi3i5KC4GbpIUxL7ctt8uCWrcYcOXO6IpVSWLr0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Dibc5BPYUfJCpAUfBvR1N4r+KPiWT/AIgGEnCmUf/saHG12NROCvB+YgxxOwxu8zAYtmnJhY2BRM4q//iw5n3wTbs3R7g8owBOY6rEvTLL4VSMMQFKRayJXnedvxrH9nNs+F4Iubp4mN9BJl5eS3egpXeB3f4eIQ6nfr/InQwZU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=b9HMzwuU; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47F7GjGx027121;
+	Thu, 15 Aug 2024 15:43:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Cc5I816aayP0mBk0qxI4DbcgcOavj8/4JMXIypN4nOM=; b=b9HMzwuUBChD3jXQ
+	Dxv888teONxnPTj9jKz48fhmnK+UurW3UBh1XdWARlsIUEChOaVCTGowNEuzSUiC
+	xadUvrfIv0ffcLcsfbhDc4Z34vLQoXjWujFIOfEcUIX2egqh4+jIjbJYbqaU8exz
+	rKJPC1N+TOUNRm2xTFUzQzLNZRyZkf546ImqZqfGOSAgW2QSPtJXe5aOouRvXG+s
+	DHcXxZCfGfMHpf0KA9voAJAP83JJkR55TLZyCLYxFWC7/h1LnOG7laOLqGoCfG57
+	f2pzh3mshTBy+TMs0v6B7UAgkp9h6zH+TbHSh2snINaoZ4mY6+Fvu1UL4L6gVKsW
+	HlfYBQ==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 411d5696n8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 15 Aug 2024 15:43:11 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47FFhA9e009900
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 15 Aug 2024 15:43:10 GMT
+Received: from [10.239.97.152] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 15 Aug
+ 2024 08:43:04 -0700
+Message-ID: <5ecbcd10-d9b7-4134-9666-6df790527b1f@quicinc.com>
+Date: Thu, 15 Aug 2024 23:43:02 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240812165041.3815525-1-Frank.Li@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 13/13] media: qcom: camss: Add support for VFE hardware
+ version Titan 780
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, <rfoss@kernel.org>,
+        <todor.too@gmail.com>, <bryan.odonoghue@linaro.org>,
+        <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@quicinc.com>, Yongsheng Li <quic_yon@quicinc.com>
+References: <20240812144131.369378-1-quic_depengs@quicinc.com>
+ <20240812144131.369378-14-quic_depengs@quicinc.com>
+ <4b745c1a-33d9-472a-97af-153a2a7c8721@linaro.org>
+ <2de0b7a8-b879-49e9-9656-ec86f29ce559@quicinc.com>
+ <b0787142-0f85-4616-9895-72e33f21c2da@linaro.org>
+ <82200889-a98d-4815-bc31-f81b15d02513@quicinc.com>
+ <7130beef-7787-42a1-85c8-f27574241ba7@linaro.org>
+Content-Language: en-US
+From: Depeng Shao <quic_depengs@quicinc.com>
+In-Reply-To: <7130beef-7787-42a1-85c8-f27574241ba7@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: SOKR9LGmzhsvDDb1iqN5A6exNM_nnP1n
+X-Proofpoint-ORIG-GUID: SOKR9LGmzhsvDDb1iqN5A6exNM_nnP1n
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-15_08,2024-08-15_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ malwarescore=0 impostorscore=0 mlxscore=0 lowpriorityscore=0 spamscore=0
+ suspectscore=0 bulkscore=0 clxscore=1015 phishscore=0 priorityscore=1501
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408150114
 
+Hi Vladimir,
 
-On Mon, 12 Aug 2024 12:50:35 -0400, Frank Li wrote:
-> Convert binding doc newwork.txt to yaml format.
+>>
+>> Thanks for the confirmation, even though I add the rup_update and
+>> buf_done function in later commits, it is still called in platform
+>> specific code(camss-vfe-780.c), so I will keep as it is done today.
 > 
-> HDLC part:
-> - Convert to "fsl,ucc-hdlc.yaml".
-> - Add missed reg and interrupt property.
-> - Update example to pass build.
+> let it be so.
 > 
-> ethernet part:
-> - Convert to net/fsl,cpm-enet.yaml
-> - Add 0x in example, which should be hex value
-> - Add ref to ethernet-controller.yaml
-> 
-> mdio part:
-> - Convert to net/fsl,cpm-mdio.yaml
-> - Add 0x in example, which should be hex value
-> - Add ref to mdio.yaml
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> This one is quite old. The detail informaiton is limited.
-> ---
->  .../devicetree/bindings/net/fsl,cpm-enet.yaml |  59 ++++++++
->  .../devicetree/bindings/net/fsl,cpm-mdio.yaml |  55 +++++++
->  .../bindings/soc/fsl/cpm_qe/fsl,ucc-hdlc.yaml | 140 ++++++++++++++++++
->  .../bindings/soc/fsl/cpm_qe/network.txt       | 130 ----------------
->  4 files changed, 254 insertions(+), 130 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/fsl,cpm-enet.yaml
->  create mode 100644 Documentation/devicetree/bindings/net/fsl,cpm-mdio.yaml
->  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,ucc-hdlc.yaml
->  delete mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/network.txt
+> I have another ask about it, please move new camss_reg_update() out from
+> camss.c into camss-csid.c, and camss_buf_done() from camss.c into camss- 
+> vfe.c
 > 
 
-Applied, thanks!
+The cross direct call has been removed by below commit, so it looks 
+strange if I add the cross direct call.
 
+media: qcom: camss: Decouple VFE from CSID
+https://lore.kernel.org/lkml/20240522154659.510-9-quic_grosikop@quicinc.com/
+
+I use the v4l2_subdev_notify to do the cross communication in v1 and v2 
+series, but Bryan said, "The subdev notify is I think not the right fit 
+for this purpose within our driver.".
+Then I add an internal notify interface in camss structure, but Bryan 
+suggested to use direct call, so I add these functions directly in camss.c
+
+https://lore.kernel.org/all/236cfe43-8321-4168-8630-fb9528f581bd@linaro.org/
+
+Thanks,
+Depeng
 
