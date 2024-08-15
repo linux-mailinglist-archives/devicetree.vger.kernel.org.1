@@ -1,64 +1,70 @@
-Return-Path: <devicetree+bounces-94037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED278953BE6
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 22:46:59 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7B4B953BF0
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 22:47:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2AFA21C224AA
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 20:46:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74C42B255CC
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 20:47:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3008165EFA;
-	Thu, 15 Aug 2024 20:41:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F19616BE1A;
+	Thu, 15 Aug 2024 20:41:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RbC913GL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TgUezHkE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 771D0166F1B;
-	Thu, 15 Aug 2024 20:41:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E24916BE0B;
+	Thu, 15 Aug 2024 20:41:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723754488; cv=none; b=p2tRFNPbaHdoP0De2IptzpOAADtGdxn1QOIc52PyBxaNFDSCoKDYzaNVCYIuJCowZrl2eNA5EJZ0FwazA6k5w1wDxlC4ttzLrNR6Hn+mOj3cSeMtGConVU9mJg8Vi74Mje4oej9tllmr41jpMwcinn4Q4maCNUJZQ2sLSoGNVyo=
+	t=1723754491; cv=none; b=oncUMsuuQZqexgC4mw+UIO9E+Pc2YyicN4RgsKQ6SSl2HqNKs9cuPXRPpomEsGO32cuAdPsCCqJsko0Yckq5jfCJO5YEFe6o8YdBDDoeJgclxA1QGfAIcpweqfzXE37GATujkLo34upyWZFKqe9tf9aA/tPtE1x6wdI306mwC8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723754488; c=relaxed/simple;
-	bh=jdtvxN12j2glT96MLJMEePFrWPUlhpG6F8MXoF5kH14=;
+	s=arc-20240116; t=1723754491; c=relaxed/simple;
+	bh=W89vbj7rNZqAtvfxhDgdhSh59QxfYWItZUMoYV2E8Dg=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=S8BPpdnlHqEy4n/I+2mFVtrmmFSrph9qxJr+3DERo2X9v1tpXxBzopXWLK2UM+28dyfOPIJ7Gf+GWEC93cQHEqSdDw8qoBKkP8X/NQriplyw9uJZJuuU4iGXFCX8q/Qt9XSUzb+XqJ3jHXGlAWGEUeIoE0KMTl0fI4B8KmZSkzQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RbC913GL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A5C1C32786;
-	Thu, 15 Aug 2024 20:41:27 +0000 (UTC)
+	 MIME-Version:Content-Type; b=Gd2Wy/v56Grv2iwh7Le3aZEWgW3hYDE1YdMkcdG9uwm3GY/C6I6nrhps9WWTj6eoLTPbtrM5BX92wY5HAgGvbCz+QyUUmKbYt9riavFCxxOS+GE9ePDSh13GL8Ss4rSOCDgeM5pW1KtnOzU6C1dHBdPdt1knUR8snDgjSRlXhqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TgUezHkE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0FE5C4AF0E;
+	Thu, 15 Aug 2024 20:41:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723754488;
-	bh=jdtvxN12j2glT96MLJMEePFrWPUlhpG6F8MXoF5kH14=;
+	s=k20201202; t=1723754491;
+	bh=W89vbj7rNZqAtvfxhDgdhSh59QxfYWItZUMoYV2E8Dg=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=RbC913GLibFgD2FuhIWSWHRgoLcCVBjNtv9qU9iRgPpSG6ADYnJ8TjgFaUzLnNXPg
-	 GsQkH07EelXy03jy+VqhJBr8OhnclTZbxEZ+WlShMPCnOYcDWBWgOGr4H4wp2kftjB
-	 OFB2AMs0BtOQX5GQkDDSyQZ34XlahVAB1Rzfu44LQdrahAvj49k6qKoLupdssK3hu9
-	 0dz6Vg5K5zDSCBh1RKeC3X7TihBFbYeRE3XT6CTm84DlJe4t27XcWWgEa7z4JBAx1v
-	 Il3BwTI6p0rNsFZLaO0toq0Qs9L0jSRBBhdBuA6h8/cjDGwsXSbfpKB29gsXaWkIRj
-	 B8uHajLqentsw==
+	b=TgUezHkE/rKS9af+oOq5GzFeKNgTX4iU/4i65J+x0Wl6xL3j/YdkTtKxAdCc0F4xw
+	 RLEoiCpBdtLuHkd+gs6Kq2cv689qqYYJRrBlwDFXmRJWm6tmswHxViCPuA/rmFXvOf
+	 qoIen33HaELWnuqfb94OOKgwY0nM5kEmKhCRr/cenZWvYS/QzC8KrgM47fumJvVAVF
+	 9Lliun4CmTH1I8jAaHI+5ZG6v+IH9hRrJQgGcet162QHmN0sIuV359BP2jYQZupvQE
+	 N/FPyKgD5Zd+TX9nhgBHaOBDscSyye7UE8s0qohUwykcbtA1yS6pFlkjUpqAuNNBlH
+	 jhzp8jJEOjTBw==
 From: Bjorn Andersson <andersson@kernel.org>
-To: mathieu.poirier@linaro.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	manivannan.sadhasivam@linaro.org,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Naina Mehta <quic_nainmeht@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org,
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Ajit Pandey <quic_ajipan@quicinc.com>,
+	Imran Shaik <quic_imrashai@quicinc.com>,
+	Taniya Das <quic_tdas@quicinc.com>,
+	Jagadeesh Kona <quic_jkona@quicinc.com>,
+	linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v4 0/5] Add MPSS remoteproc support for SDX75
-Date: Thu, 15 Aug 2024 15:40:41 -0500
-Message-ID: <172375444806.1011236.14414517896816771380.b4-ty@kernel.org>
+	stable@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 0/5] clk: qcom: gcc-sc8180x: Add DFS support and few fixes
+Date: Thu, 15 Aug 2024 15:40:43 -0500
+Message-ID: <172375444833.1011236.438148282820758163.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240709064924.325478-1-quic_nainmeht@quicinc.com>
-References: <20240709064924.325478-1-quic_nainmeht@quicinc.com>
+In-Reply-To: <20240812-gcc-sc8180x-fixes-v2-0-8b3eaa5fb856@quicinc.com>
+References: <20240812-gcc-sc8180x-fixes-v2-0-8b3eaa5fb856@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,24 +75,24 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Tue, 09 Jul 2024 12:19:19 +0530, Naina Mehta wrote:
-> Add modem support to SDX75 using the PAS remoteproc driver.
-> Also, add qlink_logging memory region and split MPSS DSM
-> region into 2 separate regions.
+On Mon, 12 Aug 2024 10:43:00 +0530, Satya Priya Kakitapalli wrote:
+> This series adds the DFS support for GCC QUPv3 RCGS and also adds the
+> missing GPLL9 support and fixes the sdcc clocks frequency tables.
 > 
-> These patches were co-authored by Rohit Agarwal while at
-> Qualcomm.
 > 
-> [...]
 
 Applied, thanks!
 
-[3/5] arm64: dts: qcom: sdx75: update reserved memory regions for mpss
-      commit: 7a7d98fca65db42647b25de6e964a5cbd9743486
-[4/5] arm64: dts: qcom: sdx75: Add remoteproc node
-      commit: 41c72f36b2862f17266107a957b25aabc4702db0
-[5/5] arm64: dts: qcom: sdx75-idp: enable MPSS remoteproc node
-      commit: 42a7b7ca4d1ddc456093af434e511f540a89c8e5
+[1/5] clk: qcom: gcc-sc8180x: Register QUPv3 RCGs for DFS on sc8180x
+      commit: 1fc8c02e1d80463ce1b361d82b83fc43bb92d964
+[2/5] dt-bindings: clock: qcom: Add GPLL9 support on gcc-sc8180x
+      commit: 648b4bde0aca2980ebc0b90cdfbb80d222370c3d
+[3/5] clk: qcom: gcc-sc8180x: Add GPLL9 support
+      commit: 818a2f8d5e4ad2c1e39a4290158fe8e39a744c70
+[4/5] clk: qcom: gcc-sc8180x: Fix the sdcc2 and sdcc4 clocks freq table
+      commit: b8acaf2de8081371761ab4cf1e7a8ee4e7acc139
+[5/5] clk: qcom: gcc-sm8150: De-register gcc_cpuss_ahb_clk_src
+      commit: bab0c7a0bc586e736b7cd2aac8e6391709a70ef2
 
 Best regards,
 -- 
