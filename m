@@ -1,114 +1,140 @@
-Return-Path: <devicetree+bounces-93974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE4A19537BE
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 17:59:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F6019537AA
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 17:53:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D12B41C25531
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 15:59:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B0D491C25491
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 15:53:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B9FD1B1514;
-	Thu, 15 Aug 2024 15:59:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D9A51B150D;
+	Thu, 15 Aug 2024 15:53:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="YAV2Vb7K"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DdIwG3+V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3F631AED29;
-	Thu, 15 Aug 2024 15:59:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CC8F1AD9FB
+	for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 15:53:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723737572; cv=none; b=JxJdClZFTlRFUpPeFlE42pavQltMjC7QfjXagULzb65eKcMjbXHXOLgCCOHxHMItCa4N4sVEmR4YAyox1jdBtdupkWpAWx7h0cRpXpxy/uguu01nfswkxnWYVc2Eyy84AJDG24B68s4otsE5rl/4YgnjHCchivQyZcPXmxHmeGw=
+	t=1723737233; cv=none; b=VFd2uMHlz8eLnprUDmXoN0FjS0WRh8xKkvQuJYWdU/RuqP7XMXCYFNHjLUnDnTpOvIimkkbFitZr1D2Qkv7cc1EZEFfoGecw1t8x8cas2uuw9IPZzN21xOJr1ol07E8zgVkAjgfffQnZ9vXMV7YtTbQdIFAu7cEX7RLbJVfcRwg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723737572; c=relaxed/simple;
-	bh=fRqLuTmEelW+w0c011C0VYoP3EAF+MoUlyRStcfUlcg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=eYxODJGAWIGRQu6yS4qxJ1D3xQ7oEqNgouFuey0XXqOF9knRS6lAJW6ciwuverDLDOTLkOCqk22zi5C8rJD8NTOPyU6UqLthEqs5VfBGAu4JlzwvBhaMHiUiygqK2RdggubWhM55OtiQuaOM9J+2kpj7YM5CIyqUac7DnCp6ojc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (1024-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=YAV2Vb7K; arc=none smtp.client-ip=193.136.128.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 5C3B36002409;
-	Thu, 15 Aug 2024 16:51:29 +0100 (WEST)
-X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
-Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
- by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
- with LMTP id 2OUNG7mwsLfk; Thu, 15 Aug 2024 16:51:27 +0100 (WEST)
-Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [IPv6:2001:690:2100:1::b3dd:b9ac])
-	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id 2D2796002411;
-	Thu, 15 Aug 2024 16:51:25 +0100 (WEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
-	s=mail; t=1723737085;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=rtY7FGOKCAlIw7I4zmdPazEazYglMMBS9NF+OqQhFiQ=;
-	b=YAV2Vb7KVF95e0rjNlCUNJMIkZVMgtMGmXQ3X0u1EiSUT0R5KVOtQgpZGFL54JscGPjiA4
-	mJU3SkCfyc/EPaKGdBJUOeLYywdDUa5JB/LuF+7uwxNitfI36ssDGbK72+L9SyMVOz+kLS
-	IT7Hv7IhJ707SuM/Sfmy+Jzno71412Q=
-Received: from [192.168.1.53] (unknown [IPv6:2a01:14:8073:1e10:a82d:2c2b:d13b:a86a])
-	(Authenticated sender: ist187313)
-	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 05A333600F3;
-	Thu, 15 Aug 2024 16:51:25 +0100 (WEST)
-From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-Date: Thu, 15 Aug 2024 16:50:40 +0100
-Subject: [PATCH 2/2] arm64: tegra: Add wp-gpio for P2597's external card
- slot
+	s=arc-20240116; t=1723737233; c=relaxed/simple;
+	bh=F5oZlzKS7LV0vco3hf6kzYpAppwKPAa4bDeIJnmZJCc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=L2vqSk0ITj4RRoc/tx/I7/qraWLMTSDP53k8ijDBzBBG6NwUdJ/pCYwanP7a0PVIWuN9ucKHxY0YmdmcybezNhVW26QIXzwGiBuS+oywmLlHZSNBqMOFZi0nKyd0NtIc+u/bvJ86h7FzUOJLqigjhrxWoSlSH5wa3A8Zq0u5XIU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DdIwG3+V; arc=none smtp.client-ip=209.85.215.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-7a1be7b7bb5so871001a12.0
+        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 08:53:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1723737231; x=1724342031; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=v8FkPO3LPGoGF13VvZyZHk15TI2ex5hx7elWLr/UyXk=;
+        b=DdIwG3+VmFraA5PEa7AUBmnsXNRhX/DgXdzpSu7SdBaGs5R9rBhpaMeTL/PXRLHclB
+         LL2/1R6C5ry/uPrzgmiS1HAcl7tOv4mefPWr6vCUSCnXtR+/5jrqMnNVi7Aar3J1NHjQ
+         AkDx6LOqv0JBWdW8ttbHuPZMiy9WWnw6Yf3/2itNi7VeNd0RYon6LECVD2gNcb7bH2L4
+         IeX/jHJmRBTKF2g3ts1z7IJSPMaggSXTfDD2qRRPzwQJDQ3n2BaWUvDg97CM5inpiQ8v
+         snAw7SbqjhfP9wWu7qvX48nwmw0tEAIlFkiNIhTPyDuVGgVscxalp4PPqXgSHFU5Jytk
+         Rmug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723737231; x=1724342031;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=v8FkPO3LPGoGF13VvZyZHk15TI2ex5hx7elWLr/UyXk=;
+        b=N8cKJWvg8S5sTbyluk6vZWkvybqx6c6dRPbl8/48gqLLievwf6UIwB8LDPRIubkcUe
+         091H6ONj/7Kkqr246ZhWjfFkdCAgEwKUpkJ/k2zbhkp66cqS/ARCvsZAh0hBoo5pMsH/
+         3JGUG/PFehUOgs2XnDkiFYZqDDuNvxNEioGXZ2lXjwja799x01zk2icWB1pBkPK8lhak
+         6oWlaLW9RlYasEY0VRiU/nKJO1YqnjNemlawCEWpkz05TE90SuG1wiuIdGxUdIooCN3S
+         gbqVNc6QvmM4aKgIye3pVD/RSrjp+qysC8NkuHPTbZvuUfbXo6GW08IMs+ANmGOOoZEd
+         VGBA==
+X-Forwarded-Encrypted: i=1; AJvYcCVENDu40VpP91fwWZJIjaXkNBoLHz7OO99htrF1AiQYMLb9Qg3FubzJRmguD/bxqmAO642KR0q1uNPIOEPM6ZtGrTa+u1GscoJfug==
+X-Gm-Message-State: AOJu0Yw0W+B+F2CzBu5i4rgC/6HLrAgIjURxuTw/VvxliV9LtSjz99pj
+	TtaH0KlEYoBVW/22G9oJJMQ60oMxRv8Bi3SqdkG6PjLhJHE5yY02Y2V4DYYKqQ==
+X-Google-Smtp-Source: AGHT+IFFhMzPsFhY6B8IutZ/NT80L7w/pSH6eUiPk5JneBgDCW93h41FVTkK8Xj+zNfxYMkf+hjWEA==
+X-Received: by 2002:a17:90a:d517:b0:2cf:28c1:4cc2 with SMTP id 98e67ed59e1d1-2d3dfc1f4d7mr97707a91.3.1723737230823;
+        Thu, 15 Aug 2024 08:53:50 -0700 (PDT)
+Received: from thinkpad ([36.255.17.34])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2d396a59287sm3068691a91.0.2024.08.15.08.53.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Aug 2024 08:53:50 -0700 (PDT)
+Date: Thu, 15 Aug 2024 21:23:43 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Zhiqiang.Hou@nxp.com,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev
+Subject: Re: [PATCH 4/4] MAINTAINERS: drop NXP LAYERSCAPE GEN4 CONTROLLER
+Message-ID: <20240815155343.GC2562@thinkpad>
+References: <20240808-mobivel_cleanup-v1-0-f4f6ea5b16de@nxp.com>
+ <20240808-mobivel_cleanup-v1-4-f4f6ea5b16de@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240815-tx1_sdmmc-v1-2-7856ac25a204@tecnico.ulisboa.pt>
-References: <20240815-tx1_sdmmc-v1-0-7856ac25a204@tecnico.ulisboa.pt>
-In-Reply-To: <20240815-tx1_sdmmc-v1-0-7856ac25a204@tecnico.ulisboa.pt>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>
-Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1723737084; l=805;
- i=diogo.ivo@tecnico.ulisboa.pt; s=20240529; h=from:subject:message-id;
- bh=fRqLuTmEelW+w0c011C0VYoP3EAF+MoUlyRStcfUlcg=;
- b=fmbBR2wGHLhCcngPS4Uuf7z++gjBKMRUP/jWHSDp3gAegnKciFh1PW+PXvXISbIXg4da+O6Ik
- NEjZwxyUN8iAFUWlgekFjrT37gi2XQmsrtNBOo/AX0KugAR7t2Qc5Ts
-X-Developer-Key: i=diogo.ivo@tecnico.ulisboa.pt; a=ed25519;
- pk=BRGXhMh1q5KDlZ9y2B8SodFFY8FGupal+NMtJPwRpUQ=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240808-mobivel_cleanup-v1-4-f4f6ea5b16de@nxp.com>
 
-Add the definition for the wp-gpio of the P2597's external card slot,
-enabling this functionality.
+On Thu, Aug 08, 2024 at 12:02:17PM -0400, Frank Li wrote:
+> LX2160 Rev1 use mobivel PCIe controller, but Rev2 switch to designware
+> PCIe controller. Rev2 is mass production chip. Rev1 will not be maintained
+> so drop maintainer information for that.
+> 
 
-Tested on a P2597 board.
+Instead of suddenly removing the code and breaking users, you can just mark the
+driver as 'Obsolete' in MAINTAINERS. Then after some point of time, we could
+hopefully remove.
 
-Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
----
- arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+- Mani
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi b/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
-index 3662b513d623..73ae63628f83 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
-@@ -1517,6 +1517,7 @@ mmc@700b0000 {
- 		bus-width = <4>;
- 
- 		cd-gpios = <&gpio TEGRA_GPIO(Z, 1) GPIO_ACTIVE_LOW>;
-+		wp-gpios = <&gpio TEGRA_GPIO(Z, 4) GPIO_ACTIVE_HIGH>;
- 
- 		vqmmc-supply = <&vddio_sdmmc>;
- 		vmmc-supply = <&vdd_3v3_sd>;
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  MAINTAINERS | 8 --------
+>  1 file changed, 8 deletions(-)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 1e71f97fb6749..9b683899cd088 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -17556,14 +17556,6 @@ S:	Supported
+>  F:	Documentation/devicetree/bindings/pci/nvidia,tegra20-pcie.txt
+>  F:	drivers/pci/controller/pci-tegra.c
+>  
+> -PCI DRIVER FOR NXP LAYERSCAPE GEN4 CONTROLLER
+> -M:	Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> -L:	linux-pci@vger.kernel.org
+> -L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+> -S:	Maintained
+> -F:	Documentation/devicetree/bindings/pci/layerscape-pcie-gen4.txt
+> -F:	drivers/pci/controller/mobiveil/pcie-layerscape-gen4.c
+> -
+>  PCI DRIVER FOR PLDA PCIE IP
+>  M:	Daire McNamara <daire.mcnamara@microchip.com>
+>  L:	linux-pci@vger.kernel.org
+> 
+> -- 
+> 2.34.1
+> 
+> 
 
 -- 
-2.46.0
-
+மணிவண்ணன் சதாசிவம்
 
