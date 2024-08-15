@@ -1,418 +1,273 @@
-Return-Path: <devicetree+bounces-93913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B21CD953158
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 15:53:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93C2D953201
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 16:01:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D642D1C2246C
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 13:53:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45721287DE3
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 14:01:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BD2619FA87;
-	Thu, 15 Aug 2024 13:52:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4007219F49A;
+	Thu, 15 Aug 2024 14:00:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="b9WyvxSS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jotzu189"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A275919E7FA;
-	Thu, 15 Aug 2024 13:52:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18FFC1714DD;
+	Thu, 15 Aug 2024 14:00:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723729971; cv=none; b=BFu5JwsCj8BzZCbfl4GF9UQK8EIL5ThYRTsXEQe58QVEbmw79I7KvIf0xbatFs8CqRNOwNHaIK+r0SIRdG0Bf+XOGYEjI2hVlKBb3dj4ZipOi/7ylrcbqc3bcEAoj4OnZnpNsO200Hpxvp5Ssf0E77BeZEHkmi1TGoh+zdIEJDs=
+	t=1723730447; cv=none; b=BQ7Ar0islmmw7f4nMBnNN5ITi0xcZ0Pb/rwy1TKjPqPM40s81c/4COiAsV4EcFv4gr23ausj+NwbYeIlgAmz5FThgxj7zLILqWUF7vRD2txFv7MrIHxTO1vgHCDNfk9qwVCeqEfBtjUVFzD0YMKpgWjW7+FgAbZVhf3T6Xh84sQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723729971; c=relaxed/simple;
-	bh=G95pZGLRKcJIGdjjD0ZvQ+U3eEm6I8epNhEg1jZU3Dk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MORYmM/21O5A9cds62jvlSYkHWa2S+CwYZ10krtsMCzGQ58rrq0uUksmHhr08dLjS4hBopaiSZOrbfcrJslyZ7P45JySs/8gfbGFZCUKpDOY7DGvhKoiEdHu1aLbY0jEn3XYZE0rBur8p4O5NW8TKHTuzPexOa8NBzToMXk8wI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=b9WyvxSS; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=MsRxBz3yKwaI5Jy/pfioIi0ruFXHd6dE3S/c9N2LVTQ=; b=b9WyvxSSrtg9dDeKf+yBjbYhBN
-	+Tz6VbKbEXzp1OnmCxvKQcV5GytSVeRxNbtZwJTmebfYnxqWdyMj/ZAvORgeUVVdBYVmMNh9CLiGZ
-	BK/TEGoQEW/3vcufbizHAotLK7ZOHMAKm17QHfpTo23T1iuGva4yiAP7fO8DNq0LzSDH+RS9WPUyM
-	4Nyv7rdKLg9hWJfloNNMoyU4PSo0vwjx5EnbzKdCC5NtHSsH39M+Y3P+UOD5r2SPJxvMqhOI3+osk
-	BJKt9GvxpKZxHSP7qCuny7ePIdaOgl7avGmwpL/og5AqN9mOMONON/j4UJxIQaDEQ30HCXw1XCz6J
-	G9X9lBTw==;
-Received: from i53875a9f.versanet.de ([83.135.90.159] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1seau9-0003Eo-CV; Thu, 15 Aug 2024 15:52:41 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: linux-kernel@vger.kernel.org,
- Detlev Casanova <detlev.casanova@collabora.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Jaehoon Chung <jh80.chung@samsung.com>, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, kernel@collabora.com,
- Shawn Lin <shawn.lin@rock-chips.com>,
- Detlev Casanova <detlev.casanova@collabora.com>
-Subject: Re: [PATCH v3 3/3] mmc: dw_mmc-rockchip: Add internal phase support
-Date: Thu, 15 Aug 2024 15:52:40 +0200
-Message-ID: <12141241.2vOk3Fo9v1@diego>
-In-Reply-To: <20240814223555.3695-4-detlev.casanova@collabora.com>
-References:
- <20240814223555.3695-1-detlev.casanova@collabora.com>
- <20240814223555.3695-4-detlev.casanova@collabora.com>
+	s=arc-20240116; t=1723730447; c=relaxed/simple;
+	bh=avF0waIXW3oC4mIuE5GszUpK9JDdRDAPcduvKDcqL1k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iwd4RaXMFdW0T0HCo9CK/cWYmR3K/2+GDt95pPPdQjes1ur9opk0zS+YWwVwpmUSgA5v3cyiyBhiMT65wxxAQlZiDchm4VZHyXybNaN8Ij1SEcII9uOijcjeniSH0DM3wM4eTYOAwvKw7vMx8BLqhh3aYYx7iVXoLJEwiFAPK0U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jotzu189; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD2D0C4AF0A;
+	Thu, 15 Aug 2024 14:00:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723730446;
+	bh=avF0waIXW3oC4mIuE5GszUpK9JDdRDAPcduvKDcqL1k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jotzu189DFg3Ku337TsDCr+jWl+GUrLFCDft2tSMT9nnQKmdRgxMHaLzJEWG1vC3S
+	 Lpi2sKWalgyofAY84rMlCi+2siVaM1XEDUe0a/flyQFhJtaPdtt4lzTPkSKND7rOBM
+	 xpRCcC7rxcIkvlkRjGE1GIIFF2VKM2V0plJ+4OX09jBl/cy+7ckqhbOjEP+4B7kXlV
+	 X1i64qZeZe+l9FhR0CY/arvYwnYStmFF0RM+NNlzkC7TYaRzqjSU+2h6b4NrccCK34
+	 KNSTx6qApm3i5dHhcnv+AWAnIykCJpsrXDfpqJoz4gV+bNuWRKwrF43ysDEtv16j5O
+	 zAg61xHH5xCww==
+Date: Thu, 15 Aug 2024 08:00:46 -0600
+From: Rob Herring <robh@kernel.org>
+To: Stanislav Jakubek <stano.jakubek@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mfd: sprd,sc2731: convert to YAML
+Message-ID: <20240815140046.GA1603296-robh@kernel.org>
+References: <Zr3X1RoQs7ElTnlJ@standask-GA-A55M-S2HP>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Zr3X1RoQs7ElTnlJ@standask-GA-A55M-S2HP>
 
-Am Donnerstag, 15. August 2024, 00:34:02 CEST schrieb Detlev Casanova:
-> From: Shawn Lin <shawn.lin@rock-chips.com>
+On Thu, Aug 15, 2024 at 12:26:29PM +0200, Stanislav Jakubek wrote:
+> Convert the Spreadtrum SC27xx PMIC bindings to DT schema. Adjust the
+> filename to match the compatible of the only in-tree user, SC2731.
+> Change #interrupt-cells value to 1, as according to [1] that is the
+> correct value.
 > 
-> Some Rockchip devices put the phase settings into the dw_mmc controller.
+> [1] https://lore.kernel.org/lkml/b6a32917d1e231277d240a4084bebb6ad91247e3.1550060544.git.baolin.wang@linaro.org/
 > 
-> The feature is implemented in devices where the USRID register contains
-> 0x20230002.
-> 
-> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
-> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
 > ---
->  drivers/mmc/host/dw_mmc-rockchip.c | 184 ++++++++++++++++++++++++++---
->  1 file changed, 170 insertions(+), 14 deletions(-)
+> Depends on:
+>   - eFuse YAML conversion: https://lore.kernel.org/lkml/9fba73ce66f1f3b7b2a8f46e7c21f60cff5a85f0.1721199034.git.stano.jakubek@gmail.com/
+>   - RTC YAML conversion: https://lore.kernel.org/lkml/ZrBzmQI0IAL7LI3e@standask-GA-A55M-S2HP/
+
+These either have to be sent as 1 series for 1 maintainer to apply (Lee) 
+or you'll have to wait a cycle for the dependencies.
+
 > 
-> diff --git a/drivers/mmc/host/dw_mmc-rockchip.c b/drivers/mmc/host/dw_mmc-rockchip.c
-> index 367633f4e8892..03e25a8b8a305 100644
-> --- a/drivers/mmc/host/dw_mmc-rockchip.c
-> +++ b/drivers/mmc/host/dw_mmc-rockchip.c
-> @@ -16,6 +16,17 @@
->  #include "dw_mmc-pltfm.h"
->  
->  #define RK3288_CLKGEN_DIV	2
-> +#define USRID_INTER_PHASE	0x20230001
-> +#define SDMMC_TIMING_CON0	0x130
-> +#define SDMMC_TIMING_CON1	0x134
-> +#define ROCKCHIP_MMC_DELAY_SEL BIT(10)
-> +#define ROCKCHIP_MMC_DEGREE_MASK 0x3
-> +#define ROCKCHIP_MMC_DELAYNUM_OFFSET 2
-
-the delaynum offset in the register is 3, please don't encode how you
-use constants below into the values. So the constants should reflect the
-register setup
-
-
-> +#define ROCKCHIP_MMC_DELAYNUM_MASK (0xff << ROCKCHIP_MMC_DELAYNUM_OFFSET)
-
-please use one firm of mask values ROCKCHIP_MMC_DEGREE_MASK is used
-for values _after_ they are shifted, while your DELAYNUM_MASK is vor values
-_before_ they are shifted. Please decide on one form for both.
-
-
-> +#define PSECS_PER_SEC 1000000000000LL
-
-this is the second definition of this value, after clk/rockchip/clk-mmc-phase.c [0] .
-The kernel already has a PSEC_PER_SEC definition in vdso/time64.h [1] and
-thus linux/time64.h, so please re-use that - the innosilicon-dsi-phy
-already does it too [2].
-
-[0] https://elixir.bootlin.com/linux/v6.10.5/source/drivers/clk/rockchip/clk-mmc-phase.c#L37
-[1] https://elixir.bootlin.com/linux/v6.10.5/source/include/vdso/time64.h#L11
-[2] https://elixir.bootlin.com/linux/v6.11-rc3/source/drivers/phy/rockchip/phy-rockchip-inno-dsidphy.c#L415
-
-
-> +#define ROCKCHIP_MMC_DELAY_ELEMENT_PSEC 60
-> +#define HIWORD_UPDATE(val, mask, shift) \
-> +		((val) << (shift) | (mask) << ((shift) + 16))
->  
->  static const unsigned int freqs[] = { 100000, 200000, 300000, 400000 };
->  
-> @@ -25,9 +36,121 @@ struct dw_mci_rockchip_priv_data {
->  	int			default_sample_phase;
->  	int			num_phases;
->  	bool			use_v2_tuning;
-> +	int			usrid;
->  	int			last_degree;
->  };
->  
-> +/*
-> + * Each fine delay is between 44ps-77ps. Assume each fine delay is 60ps to
-> + * simplify calculations. So 45degs could be anywhere between 33deg and 57.8deg.
-> + */
-> +static int rockchip_mmc_get_phase(struct dw_mci *host, bool sample)
-> +{
-> +	unsigned long rate = clk_get_rate(host->ciu_clk);
-> +	u32 raw_value;
-> +	u16 degrees;
-> +	u32 delay_num = 0;
+>  .../devicetree/bindings/mfd/sprd,sc2731.yaml  | 124 ++++++++++++++++++
+>  .../bindings/mfd/sprd,sc27xx-pmic.txt         |  40 ------
+>  2 files changed, 124 insertions(+), 40 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mfd/sprd,sc27xx-pmic.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml b/Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml
+> new file mode 100644
+> index 000000000000..59df02e1e53b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml
+> @@ -0,0 +1,124 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/sprd,sc2731.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	/* Constant signal, no measurable phase shift */
-> +	if (!rate)
-> +		return 0;
+> +title: Spreadtrum SC27xx PMIC
 > +
-> +	if (sample)
-> +		raw_value = mci_readl(host, TIMING_CON1) >> 1;
-> +	else
-> +		raw_value = mci_readl(host, TIMING_CON0) >> 1;
+> +maintainers:
+> +  - Orson Zhai <orsonzhai@gmail.com>
+> +  - Baolin Wang <baolin.wang7@gmail.com>
+> +  - Chunyan Zhang <zhang.lyra@gmail.com>
+> +
+> +description: |
+> +  Spreadtrum PMICs belonging to the SC27xx series integrate all mobile handset
+> +  power management, audio codec, battery management and user interface support
+> +  functions in a single chip. They have 6 major functional blocks:
+> +    - DCDCs to support CPU, memory
+> +    - LDOs to support both internal and external requirements
+> +    - Battery management system, such as charger, fuel gauge
+> +    - Audio codec
+> +    - User interface functions, such as indicator, flash LED and so on
+> +    - IC level interface, such as power on/off control, RTC, typec and so on
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: '^pmic@[0-9a-f]+$'
+> +
+> +  compatible:
+> +    enum:
+> +      - sprd,sc2720
+> +      - sprd,sc2721
+> +      - sprd,sc2723
+> +      - sprd,sc2730
+> +      - sprd,sc2731
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +  spi-max-frequency: true
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#interrupt-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +  regulators:
+> +    type: object
+> +    $ref: /schemas/regulator/sprd,sc2731-regulator.yaml#
+> +
+> +patternProperties:
+> +  "^adc@[0-9a-f]+$":
+> +    type: object
+> +    $ref: /schemas/iio/adc/sprd,sc2720-adc.yaml#
+> +
+> +  "^charger@[0-9a-f]+$":
+> +    type: object
+> +    $ref: /schemas/power/supply/sc2731-charger.yaml#
+> +
+> +  "^efuse@[0-9a-f]+$":
+> +    type: object
+> +    $ref: /schemas/nvmem/sprd,sc2731-efuse.yaml#
+> +
+> +  "^fuel-gauge@[0-9a-f]+$":
+> +    type: object
+> +    $ref: /schemas/power/supply/sc27xx-fg.yaml#
+> +
+> +  "^gpio@[0-9a-f]+$":
+> +    type: object
+> +    $ref: /schemas/gpio/sprd,gpio-eic.yaml#
+> +
+> +  "^led-controller@[0-9a-f]+$":
+> +    type: object
+> +    $ref: /schemas/leds/sprd,sc2731-bltc.yaml#
+> +
+> +  "^rtc@[0-9a-f]+$":
+> +    type: object
+> +    $ref: /schemas/rtc/sprd,sc2731-rtc.yaml#
+> +
+> +  "^vibrator@[0-9a-f]+$":
+> +    type: object
+> +    $ref: /schemas/input/sprd,sc27xx-vibrator.yaml#
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-controller
+> +  - spi-max-frequency
+> +  - '#address-cells'
+> +  - '#interrupt-cells'
+> +  - '#size-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    spi {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      pmic@0 {
+> +        compatible = "sprd,sc2731";
+> +        reg = <0>;
+> +        interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
+> +        interrupt-controller;
+> +        spi-max-frequency = <26000000>;
+> +        #address-cells = <1>;
+> +        #interrupt-cells = <1>;
+> +        #size-cells = <0>;
 
-please define some sort of 
-	#define ROCKCHIP_MMC_DEGREE_OFFSET	1 
-above and use that constant instead of hard-coding the 1 shift
+The preference is one complete example here and drop any partial 
+examples of the child nodes in the child node schemas.
 
-> +
-> +	degrees = (raw_value & ROCKCHIP_MMC_DEGREE_MASK) * 90;
-> +
-> +	if (raw_value & ROCKCHIP_MMC_DELAY_SEL) {
-> +		/* degrees/delaynum * 1000000 */
-> +		unsigned long factor = (ROCKCHIP_MMC_DELAY_ELEMENT_PSEC / 10) *
-> +					36 * (rate / 10000);
-> +
-> +		delay_num = (raw_value & ROCKCHIP_MMC_DELAYNUM_MASK);
-> +		delay_num >>= ROCKCHIP_MMC_DELAYNUM_OFFSET;
-> +		degrees += DIV_ROUND_CLOSEST(delay_num * factor, 1000000);
-> +	}
-> +
-> +	return degrees % 360;
-> +}
-> +
-> +static int rockchip_mmc_set_phase(struct dw_mci *host, bool sample, int degrees)
-> +{
-> +	unsigned long rate = clk_get_rate(host->ciu_clk);
-> +	u8 nineties, remainder;
-> +	u8 delay_num;
-> +	u32 raw_value;
-> +	u32 delay;
-> +
-> +	/*
-> +	 * The below calculation is based on the output clock from
-> +	 * MMC host to the card, which expects the phase clock inherits
-> +	 * the clock rate from its parent, namely the output clock
-> +	 * provider of MMC host. However, things may go wrong if
-> +	 * (1) It is orphan.
-> +	 * (2) It is assigned to the wrong parent.
-> +	 *
-> +	 * This check help debug the case (1), which seems to be the
-> +	 * most likely problem we often face and which makes it difficult
-> +	 * for people to debug unstable mmc tuning results.
-> +	 */
-> +	if (!rate) {
-> +		dev_err(host->dev, "%s: invalid clk rate\n", __func__);
-> +		return -EINVAL;
-> +	}
-> +
-> +	nineties = degrees / 90;
-> +	remainder = (degrees % 90);
-> +
-> +	/*
-> +	 * Due to the inexact nature of the "fine" delay, we might
-> +	 * actually go non-monotonic.  We don't go _too_ monotonic
-> +	 * though, so we should be OK.  Here are options of how we may
-> +	 * work:
-> +	 *
-> +	 * Ideally we end up with:
-> +	 *   1.0, 2.0, ..., 69.0, 70.0, ...,  89.0, 90.0
-> +	 *
-> +	 * On one extreme (if delay is actually 44ps):
-> +	 *   .73, 1.5, ..., 50.6, 51.3, ...,  65.3, 90.0
-> +	 * The other (if delay is actually 77ps):
-> +	 *   1.3, 2.6, ..., 88.6. 89.8, ..., 114.0, 90
-> +	 *
-> +	 * It's possible we might make a delay that is up to 25
-> +	 * degrees off from what we think we're making.  That's OK
-> +	 * though because we should be REALLY far from any bad range.
-> +	 */
-> +
-> +	/*
-> +	 * Convert to delay; do a little extra work to make sure we
-> +	 * don't overflow 32-bit / 64-bit numbers.
-> +	 */
-> +	delay = 10000000; /* PSECS_PER_SEC / 10000 / 10 */
-> +	delay *= remainder;
-> +	delay = DIV_ROUND_CLOSEST(delay,
-> +			(rate / 1000) * 36 *
-> +				(ROCKCHIP_MMC_DELAY_ELEMENT_PSEC / 10));
-> +
-> +	delay_num = (u8) min_t(u32, delay, 255);
-> +
-> +	raw_value = delay_num ? ROCKCHIP_MMC_DELAY_SEL : 0;
-> +	raw_value |= delay_num << ROCKCHIP_MMC_DELAYNUM_OFFSET;
-> +	raw_value |= nineties;
-> +
-> +	if (sample)
-> +		mci_writel(host, TIMING_CON1, HIWORD_UPDATE(raw_value, 0x07ff, 1));
-> +	else
-> +		mci_writel(host, TIMING_CON0, HIWORD_UPDATE(raw_value, 0x07ff, 1));
-> +
-> +	dev_dbg(host->dev, "set %s_phase(%d) delay_nums=%u actual_degrees=%d\n",
-> +		sample ? "sample" : "drv", degrees, delay_num,
-> +		rockchip_mmc_get_phase(host, sample)
-> +	);
-> +
-> +	return 0;
-> +}
-> +
->  static void dw_mci_rk3288_set_ios(struct dw_mci *host, struct mmc_ios *ios)
->  {
->  	struct dw_mci_rockchip_priv_data *priv = host->priv;
-> @@ -65,8 +188,12 @@ static void dw_mci_rk3288_set_ios(struct dw_mci *host, struct mmc_ios *ios)
->  	}
->  
->  	/* Make sure we use phases which we can enumerate with */
-> -	if (!IS_ERR(priv->sample_clk) && ios->timing <= MMC_TIMING_SD_HS)
-> -		clk_set_phase(priv->sample_clk, priv->default_sample_phase);
-> +	if (!IS_ERR(priv->sample_clk) && ios->timing <= MMC_TIMING_SD_HS) {
-> +		if (priv->usrid == USRID_INTER_PHASE)
-> +			rockchip_mmc_set_phase(host, true, priv->default_sample_phase);
-> +		else
-> +			clk_set_phase(priv->sample_clk, priv->default_sample_phase);
-> +	}
->  
->  	/*
->  	 * Set the drive phase offset based on speed mode to achieve hold times.
-> @@ -129,7 +256,10 @@ static void dw_mci_rk3288_set_ios(struct dw_mci *host, struct mmc_ios *ios)
->  			break;
->  		}
->  
-> -		clk_set_phase(priv->drv_clk, phase);
-> +		if (priv->usrid == USRID_INTER_PHASE)
-> +			rockchip_mmc_set_phase(host, false, phase);
-> +		else
-> +			clk_set_phase(priv->drv_clk, phase);
->  	}
->  }
->  
-> @@ -141,13 +271,16 @@ static int dw_mci_v2_execute_tuning(struct dw_mci_slot *slot, u32 opcode)
->  	struct dw_mci *host = slot->host;
->  	struct dw_mci_rockchip_priv_data *priv = host->priv;
->  	struct mmc_host *mmc = slot->mmc;
-> -	u32 degrees[4] = {90, 180, 270, 360};
-> +	u32 degree, degrees[4] = {90, 180, 270, 360};
->  	int i;
->  	static bool inherit = true;
->  
->  	if (inherit) {
->  		inherit = false;
-> -		i = clk_get_phase(priv->sample_clk) / 90 - 1;
-> +		if (priv->usrid == USRID_INTER_PHASE)
-> +			i = rockchip_mmc_get_phase(host, true) / 90;
-> +		else
-> +			i = clk_get_phase(priv->sample_clk) / 90 - 1;
->  		goto done;
->  	}
->  
-> @@ -156,7 +289,11 @@ static int dw_mci_v2_execute_tuning(struct dw_mci_slot *slot, u32 opcode)
->  		if (degrees[i] == priv->last_degree)
->  			continue;
->  
-> -		clk_set_phase(priv->sample_clk, degrees[i]);
-> +		degree = (degrees[i] + priv->last_degree + 90) % 360;
-> +		if (priv->usrid == USRID_INTER_PHASE)
-> +			rockchip_mmc_set_phase(host, true, degree);
-> +		else
-> +			clk_set_phase(priv->sample_clk, degree);
->  		if (!mmc_send_tuning(mmc, opcode, NULL))
->  			break;
->  	}
-> @@ -189,6 +326,7 @@ static int dw_mci_rk3288_execute_tuning(struct dw_mci_slot *slot, u32 opcode)
->  	int longest_range_len = -1;
->  	int longest_range = -1;
->  	int middle_phase;
-> +	int phase;
->  
->  	if (IS_ERR(priv->sample_clk)) {
->  		dev_err(host->dev, "Tuning clock (sample_clk) not defined.\n");
-> @@ -209,8 +347,15 @@ static int dw_mci_rk3288_execute_tuning(struct dw_mci_slot *slot, u32 opcode)
->  
->  	/* Try each phase and extract good ranges */
->  	for (i = 0; i < priv->num_phases; ) {
-> -		clk_set_phase(priv->sample_clk,
-> -			      TUNING_ITERATION_TO_PHASE(i, priv->num_phases));
-> +		/* Cannot guarantee any phases larger than 270 would work well */
-> +		if (TUNING_ITERATION_TO_PHASE(i, priv->num_phases) > 270)
-> +			break;
-
-this changes behaviour for the existing user as well.
-Not say that this is incorrect, but limiting phases to a working area should be a separate change.
-
-> +		if (priv->usrid == USRID_INTER_PHASE)
-> +			rockchip_mmc_set_phase(host, true,
-> +				TUNING_ITERATION_TO_PHASE(i, priv->num_phases));
-> +		else
-> +			clk_set_phase(priv->sample_clk,
-> +				TUNING_ITERATION_TO_PHASE(i, priv->num_phases));
->  
->  		v = !mmc_send_tuning(mmc, opcode, NULL);
->  
-> @@ -256,7 +401,10 @@ static int dw_mci_rk3288_execute_tuning(struct dw_mci_slot *slot, u32 opcode)
->  	}
->  
->  	if (ranges[0].start == 0 && ranges[0].end == priv->num_phases - 1) {
-> -		clk_set_phase(priv->sample_clk, priv->default_sample_phase);
-> +		if (priv->usrid == USRID_INTER_PHASE)
-> +			rockchip_mmc_set_phase(host, true, priv->default_sample_phase);
-> +		else
-> +			clk_set_phase(priv->sample_clk, priv->default_sample_phase);
->  		dev_info(host->dev, "All phases work, using default phase %d.",
->  			 priv->default_sample_phase);
->  		goto free;
-> @@ -293,12 +441,13 @@ static int dw_mci_rk3288_execute_tuning(struct dw_mci_slot *slot, u32 opcode)
->  
->  	middle_phase = ranges[longest_range].start + longest_range_len / 2;
->  	middle_phase %= priv->num_phases;
-> -	dev_info(host->dev, "Successfully tuned phase to %d\n",
-> -		 TUNING_ITERATION_TO_PHASE(middle_phase, priv->num_phases));
-> +	phase = TUNING_ITERATION_TO_PHASE(middle_phase, priv->num_phases);
-> +	dev_info(host->dev, "Successfully tuned phase to %d\n", phase);
->  
-> -	clk_set_phase(priv->sample_clk,
-> -		      TUNING_ITERATION_TO_PHASE(middle_phase,
-> -						priv->num_phases));
-> +	if (priv->usrid == USRID_INTER_PHASE)
-> +		rockchip_mmc_set_phase(host, true, phase);
-> +	else
-> +		clk_set_phase(priv->sample_clk, phase);
-
-with the change in compatible (not claiming to be compatible with tk3288)
-you can also just introduce a new dw_mci_drv_data for the rk3576 and
-following can therefore create a separate tuning function to not need all
-those ifs.
-
-And also a shorter parse_dt function that does not tries to get non-existent
-clocks.
-
-
->  
->  free:
->  	kfree(ranges);
-> @@ -342,6 +491,7 @@ static int dw_mci_rk3288_parse_dt(struct dw_mci *host)
->  static int dw_mci_rockchip_init(struct dw_mci *host)
->  {
->  	int ret, i;
-> +	struct dw_mci_rockchip_priv_data *priv = host->priv;
->  
->  	/* It is slot 8 on Rockchip SoCs */
->  	host->sdio_id0 = 8;
-> @@ -365,6 +515,12 @@ static int dw_mci_rockchip_init(struct dw_mci *host)
->  			dev_warn(host->dev, "no valid minimum freq: %d\n", ret);
->  	}
->  
-> +	priv->usrid = mci_readl(host, USRID);
-> +	if (priv->usrid == USRID_INTER_PHASE) {
-> +		priv->sample_clk = NULL;
-> +		priv->drv_clk = NULL;
-> +	}
-> +
-
-in any case, shouldn't the clocks be NULL anyway?
-
-
-Heiko
-
-
+> +      };
+> +    };
+> +...
+> diff --git a/Documentation/devicetree/bindings/mfd/sprd,sc27xx-pmic.txt b/Documentation/devicetree/bindings/mfd/sprd,sc27xx-pmic.txt
+> deleted file mode 100644
+> index 21b9a897fca5..000000000000
+> --- a/Documentation/devicetree/bindings/mfd/sprd,sc27xx-pmic.txt
+> +++ /dev/null
+> @@ -1,40 +0,0 @@
+> -Spreadtrum SC27xx Power Management Integrated Circuit (PMIC)
+> -
+> -The Spreadtrum SC27xx series PMICs contain SC2720, SC2721, SC2723, SC2730
+> -and SC2731. The Spreadtrum PMIC belonging to SC27xx series integrates all
+> -mobile handset power management, audio codec, battery management and user
+> -interface support function in a single chip. It has 6 major functional
+> -blocks:
+> -- DCDCs to support CPU, memory.
+> -- LDOs to support both internal and external requirement.
+> -- Battery management system, such as charger, fuel gauge.
+> -- Audio codec.
+> -- User interface function, such as indicator, flash LED and so on.
+> -- IC level interface, such as power on/off control, RTC and typec and so on.
+> -
+> -Required properties:
+> -- compatible: Should be one of the following:
+> -	"sprd,sc2720"
+> -	"sprd,sc2721"
+> -	"sprd,sc2723"
+> -	"sprd,sc2730"
+> -	"sprd,sc2731"
+> -- reg: The address of the device chip select, should be 0.
+> -- spi-max-frequency: Typically set to 26000000.
+> -- interrupts: The interrupt line the device is connected to.
+> -- interrupt-controller: Marks the device node as an interrupt controller.
+> -- #interrupt-cells: The number of cells to describe an PMIC IRQ, must be 2.
+> -- #address-cells: Child device offset number of cells, must be 1.
+> -- #size-cells: Child device size number of cells, must be 0.
+> -
+> -Example:
+> -pmic@0 {
+> -	compatible = "sprd,sc2731";
+> -	reg = <0>;
+> -	spi-max-frequency = <26000000>;
+> -	interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
+> -	interrupt-controller;
+> -	#interrupt-cells = <2>;
+> -	#address-cells = <1>;
+> -	#size-cells = <0>;
+> -};
+> -- 
+> 2.34.1
+> 
 
