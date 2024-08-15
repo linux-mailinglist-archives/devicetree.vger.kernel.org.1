@@ -1,71 +1,66 @@
-Return-Path: <devicetree+bounces-94044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E89F6953C09
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 22:49:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE5DB953C0E
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 22:49:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8999A1F269D4
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 20:49:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AD51282BBB
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 20:49:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF1D3171671;
-	Thu, 15 Aug 2024 20:41:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A2111741E8;
+	Thu, 15 Aug 2024 20:41:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WwtYg+Fr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h2owGvP2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F9A1171098;
-	Thu, 15 Aug 2024 20:41:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F14471741D0;
+	Thu, 15 Aug 2024 20:41:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723754500; cv=none; b=OruA8uIf/opIGk8hlM+IouyfzdUpeqr+nchat2SlP96T2i8Xbobm9NYQ8k7RDvOfqt2R6yEnwo26gfN0IepA4NwVDwIhzya38ESyb8C1XYD+CDcU4ddZTNjT6mNwUtyfrUEbigAbg9TvJBRAYKNf7wOY7gLVloxXDS7E9ZHNv1I=
+	t=1723754503; cv=none; b=BXDXz5+y7Z2xgE86saUYA9I6rewrRjwhA5/BeQWKEUX4VsvqBQjUl6bmCFuYNCBbQrE/P/3LNenl6IGZOWIAFUM3Dqp+nZuRtpj5RNl9DXSmoGd0KDhO8bceCrwhxwx0GuTayOFe3XkSfFaYpChibbyRWWx39fy6F0alHznlqeM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723754500; c=relaxed/simple;
-	bh=99puEiYfn5q/7K01azkENGMe1+O/ZL9Ew0Yw9gh+GPY=;
+	s=arc-20240116; t=1723754503; c=relaxed/simple;
+	bh=NZ2V1WtsDziTIoL1ct/qhjfiqhmcFfVQMHmeqZP9t+Q=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=o8RGdD5qUBprLW9fpYpXRD8WoX9VBkFc1Whf7YbZDsjcDp/21vI1LtwVbBDi813m9Qi4PweECHhpQbEV8A/EviL+ylUrbkCUCSCmYpOzYpxUe6qQA4KlXuOUMBkMbt7LWwcTFmPpx5uIah9lrWr1RrPxKqr0Wx6AFn3InR7X1GU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WwtYg+Fr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30CCBC4AF14;
-	Thu, 15 Aug 2024 20:41:39 +0000 (UTC)
+	 MIME-Version:Content-Type; b=khjjd1hkVptSdaqOGWaslmzLQbY9d48Ya4R/8yigfpQk87bLaQ00PmE+C3jAVduCc+5uiMk+n9TpjCyDbAsJomt3oseoGC/OE+nFVzxO0WWlDQAuMziAk0vfJi5pIdjVB80JACbjH0ZGAc7sJ6Ty34xi1v0TV51fax0MeZAiT5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h2owGvP2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC12DC32786;
+	Thu, 15 Aug 2024 20:41:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723754500;
-	bh=99puEiYfn5q/7K01azkENGMe1+O/ZL9Ew0Yw9gh+GPY=;
+	s=k20201202; t=1723754502;
+	bh=NZ2V1WtsDziTIoL1ct/qhjfiqhmcFfVQMHmeqZP9t+Q=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=WwtYg+FrmwJ1+DtOJDq3tvnd71xwf0r16EnhnCSqlvCBkpyEBVsN+xmdEnv50Ngcw
-	 5Bufav1hT6I9bQiDJdtOlhPvGAmjix33qvhrIW15J+dmsdT9owDmux31NiGYIgwTgF
-	 ZwYKnK+14wvp/+vVpgmJ0lvnHMw3xS4Rvy49W/I1yRPowy9jASbPXLVsWM506/+n1k
-	 ayYE29z+4koutxE/Fj3Cirsy8mLBwkQel9Xkbf0nXvjRKI+fDEzNWcK5T80LN96PYX
-	 /7Zi8tbsz+y9vy+9x1elt2otYPZyTFAqly+bpg93Nrq7N/aLTEqlzxGyJCIJJFcOqo
-	 Fx5naxR4U4nAg==
+	b=h2owGvP2VkKH53A7RnPt60O8eTfKVZxXjhHnHKy/1INbK8spfukxcACa3jIvQK9Tm
+	 jAFzOVVlfXK1eHZ/Nf8Rh331AxUsEaU1WzFVSK5Mh0C/wB2yloul0VSIh8rIFrU5J3
+	 NSPuZa5vd1/S9dhe++4r7LIX0oqqjUp4JvN7VJLPiYg6SCo6b+iJoLa7DIB1e3ezUw
+	 dBWLUt3iremhquoBAhQe/W2BGYa2zdHnQORNY93xyiRGhd76uMc4mRzxWkG1sm1Udg
+	 pbl3tlGtrtHiBBaTe2Q++m3924MSQte1YnZH/Z4//4QMbLots0gN/68ANONZFxw1/7
+	 9Y6xkI6lyHNvw==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Banajit Goswami <bgoswami@quicinc.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jagadeesh Kona <quic_jkona@quicinc.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
 	Konrad Dybcio <konradybcio@kernel.org>,
-	srinivas.kandagatla@linaro.org
-Cc: linux-arm-msm@vger.kernel.org,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	alsa-devel@alsa-project.org,
-	linux-sound@vger.kernel.org,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc: Loic Poulain <loic.poulain@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Manikantan R <quic_manrav@quicinc.com>
-Subject: Re: (subset) [PATCH v2 0/6] ASoC: codecs: wsa88xx: add support for static port mapping.
-Date: Thu, 15 Aug 2024 15:40:50 -0500
-Message-ID: <172375444802.1011236.13810877795338662540.b4-ty@kernel.org>
+	linux-i2c@vger.kernel.org
+Subject: Re: (subset) [PATCH v2 0/4] arm64: dts: qcom: add description of CCI controllers for sm8550 and sm8650
+Date: Thu, 15 Aug 2024 15:40:52 -0500
+Message-ID: <172375444797.1011236.744701243478190815.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240626-port-map-v2-0-6cc1c5608cdd@linaro.org>
-References: <20240626-port-map-v2-0-6cc1c5608cdd@linaro.org>
+In-Reply-To: <20240612215835.1149199-1-vladimir.zapolskiy@linaro.org>
+References: <20240612215835.1149199-1-vladimir.zapolskiy@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,26 +71,22 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Thu, 27 Jun 2024 15:44:37 +0100, srinivas.kandagatla@linaro.org wrote:
-> Existing way of allocating soundwire master ports on Qualcommm platforms is
-> dynamic, and in linear order starting from 1 to MAX_PORTS.
-> This will work as long as soundwire device ports are 1:1 mapped
-> linearly. However on most Qcom SoCs like SM8550, SM8650, x1e80100, these
-> are NOT mapped in that order.
+On Thu, 13 Jun 2024 00:58:31 +0300, Vladimir Zapolskiy wrote:
+> The changeset adds description of camera control interface controllers found
+> on Qualcomm SM8550 and SM8650 SoCs.
 > 
-> The result of this is that only one speaker among the pair of speakers
-> is always silent, With recent changes for WSA codec to support codec
-> versions and along with these patches we are able to get all speakers
-> working on these SoCs.
+> Previous version of the change is found as a single patch for SM8650 SoC:
+> 
+>     https://lore.kernel.org/all/20240410074951.447898-1-vladimir.zapolskiy@linaro.org/
 > 
 > [...]
 
 Applied, thanks!
 
-[5/6] arm64: dts: x1e80100-crd: fix wsa soundwire port mapping
-      commit: d374fafd8972895eba01ebd69c993cc7d80c084b
-[6/6] arm64: dts: x1e80100-qcp: fix wsa soundwire port mapping
-      commit: 6e229f9118438af09b4ac6a96313c32f33027e5a
+[3/4] arm64: dts: qcom: sm8550: add description of CCI controllers
+      commit: 4f33e6432f0859a19bb119248d0a8d20c29b9213
+[4/4] arm64: dts: qcom: sm8650: add description of CCI controllers
+      commit: 9e2ebc5817c94badf0ea716cad85f16ae05ff120
 
 Best regards,
 -- 
