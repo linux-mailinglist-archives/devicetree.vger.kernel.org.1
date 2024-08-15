@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-93902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93903-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94ADD952EB0
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 15:02:04 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC076952ECC
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 15:09:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B37691C25249
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 13:02:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 04DC5B27B4C
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 13:09:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A03D19B3DD;
-	Thu, 15 Aug 2024 13:02:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88A4419DF78;
+	Thu, 15 Aug 2024 13:09:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nfrQyIKM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qieAn9XT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39E7617B437
-	for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 13:01:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB82917C9B7
+	for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 13:09:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723726921; cv=none; b=puDqxGgGQ03oNctKBodkUlGnTv3XH3jqg8oVxexBCRmWZ/etJWe6aIf0CQERXI9cMqb+5vy2x4M+rUV2pNgWxdsFuXDvds5v3wda2AOxPNFqGYCwMQc+hVteG4QS2Xk1GKgJXcyerDBwLXayQCqh5Rz9RFShGuF+a7fMQMjd9rk=
+	t=1723727343; cv=none; b=heYwydXBcHeU3W8IRVLRO5M1bHQrUrAB6kT0If4Y4qkZXk0lyocN0vPlpk14XZbxedZkppw5U3S7JvFqkin/gnsWeVTxkxtdDHkFD7P59/NeGpNg451OaxfwHwTK/mgvmoaAY/mi2n7ZeJ608686AoDLenrlOAPcAqQQWkfsiwk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723726921; c=relaxed/simple;
-	bh=kVIk7GsQyzJJcvMObIjOZMj/BUpGToWHk7YtzNA+A+k=;
+	s=arc-20240116; t=1723727343; c=relaxed/simple;
+	bh=ZNiq2dS7G8t+fkB7QAgvHsxKjUH2MxNcZXjk9gsTVRc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WYJAnQ6YsF/NRKy6ZRDXXrVH9ZY/tknvzJ/YMtalBEJ+T2cJfT4SSDL9sv0CKMIRhtb18D4XKH2ME+uqXKpYyjbW4Ewua5axFHAns9OsOzTavcg1/mo58ccgUyCpRFoTHXlSbADiU5UYkWw2nIsv8vOhhjBjcVucYRrDcvkIc1c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nfrQyIKM; arc=none smtp.client-ip=209.85.167.46
+	 In-Reply-To:Content-Type; b=bECpuqIaFOCCouFHhY4rPxDRsLQS1d3SvtGYJvhmtTl2SOTE7tOoSSbeCj0Ay48m0GsX6OU9nbo//KrQKr5A+2s1G/kjFiwxJyqvIItOf06ZXVv3NectEwE8hGJqJkV0mWb5Evo3Tbxp36n6m/JU7x1XJglZUIg6vD7J2V95hzw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qieAn9XT; arc=none smtp.client-ip=209.85.208.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-52f04c29588so1274846e87.3
-        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 06:01:59 -0700 (PDT)
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2f035ae0fd1so10286071fa.2
+        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 06:09:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723726917; x=1724331717; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1723727340; x=1724332140; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=MK1lrvq2fI83NC++VVYh6Ea4nWpDhAxN+NgfBKLJiGo=;
-        b=nfrQyIKMukj/HEUw7OG9UDSBeP3RKta5EGKjD2Um/IRT/8CbvQfBYY5ZYYZ/rnsRA3
-         nbXotGW95xpWSauWYrQqPUncv90QS3uKHi1wDueMBrEb6rYqsPecX5K9NAIKzXo0zqw4
-         9svGnH9dIvbKIKKa1p+G5utnX8g2bzVqlZ6cF6Fkwh32L8MA1rn2oZm1L65bcndwHn32
-         s07hbKWr7YBA9n9p4NwMN4CbxfuXVkW1ZUX+hrX9hktQbi8j299GqPUmOq8h+s0bQpWu
-         MiJY0nu5/Q7oQvI7+nG/YUazQOZbMxLqANuia59JNV23WHVqICLJw5FPL3YpoLtsl9wV
-         EjDg==
+        bh=TNY1eM+k8dVypAWpZEMkyA4Ex7FP/CU7h/TDaorYfbM=;
+        b=qieAn9XTOcFXLy1q6ngbr8ohGiyMYSkbbgYITEVXOjgodlaX70MEymEn/xwYRhEKtC
+         7nnvEBibVEMeIzW3anm0ti3i7mr28qu30gHUZhSfhJIJ3tvQpJfCeC9xHJUrcOPIGL0z
+         sOjCyltVwivnlhKZzVXQbhga9dRWMukWZAH1IZxg/PFqaJVIbGUNYuXtpyy25Jjds9h0
+         zXC54Q+/4mz1oydMbtXvtELsdo9Ex1LLphiQ1BsClC7lJrM0NOSF6yRc0GBXsPbUKyc8
+         N3sxOcuAPNb6b6VPpy5RWlfz4lGGOSD9eJLoyneUjs4nO6D2D2cC30JOPUb3g1Xl69Qv
+         Vm1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723726917; x=1724331717;
+        d=1e100.net; s=20230601; t=1723727340; x=1724332140;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MK1lrvq2fI83NC++VVYh6Ea4nWpDhAxN+NgfBKLJiGo=;
-        b=UwPtgGJPkHYkMvtZcUPuuMPRAuBqLsrzsogm/2Mmp5Nres9+01W4jhFrGcyQAV0sEh
-         YACKPHrsGeUOvQur+fPI9B0B1KVzcuQwVQCcZES0MT/84ikVAGE+YO5vjXrqF0mhzy4L
-         K00jGB1KvM/jFMgWDRcDLABYMPF4TnkKOCVaG4tK/1D29LkbkRrq7fr6kKtCHp1zasjJ
-         COR7ZverCmr5WUOUWjVZEK3Yv/Ft5kjNJ7kBRY7DI0FmpsmCEr0VZivERHPRf7GT/89B
-         EQzd50dL89k0F4I6raLxKJqY3+YGNBRuVmv05fKhzeCnqjT634EggtzjQHOetnftskrt
-         25DA==
-X-Forwarded-Encrypted: i=1; AJvYcCUQXgCUm8oyF2mwU9oi/w848RA8CtWKUZaCp6Lg8g88lysLkvyFCrXuBAtFC5ND8Kw0Wx5OqVemDql0SrWrsPDEfoIr/N8ouALmjQ==
-X-Gm-Message-State: AOJu0YyFQUiOEQMDNocHUpjbc2oHzsks2d94BML1IfEDQSFUhaPMhLQD
-	ZLIzciLxl+bc9U9Fs9thHJ3A2G4+w1JufZgvUw56JYr7qQ7jAi2Q0VUZgJK7pbY=
-X-Google-Smtp-Source: AGHT+IEBRsbTYanoOZ6mWrplzKqC9FlP2GuZhc920raZOzMiLgqjHnj2kv0E+1L4DZIxsxV+1q3QxA==
-X-Received: by 2002:a05:6512:3b2b:b0:52c:fd46:bf07 with SMTP id 2adb3069b0e04-532edbbe468mr3859768e87.49.1723726917031;
-        Thu, 15 Aug 2024 06:01:57 -0700 (PDT)
+        bh=TNY1eM+k8dVypAWpZEMkyA4Ex7FP/CU7h/TDaorYfbM=;
+        b=UTAt7We6zTvSCZ+sUID5csRfi5yZSL4ZN3ma/ATtnadP91WXCWYB3NkLIesZVX80Y1
+         n0leK8j+fLJqP+gYZW4Ig301o2UDn2khdaiD8iRESD8L/z8AM6/0mS6a566mP3OOcb5p
+         FCN2xqXr0Z89vuaVJIZXbeiDq3Ne2EJV2Ww9JQpUULPpuGQMdhbH0hQhpjXuvBmcDIG/
+         +c6C3zXWxto826/YJF+aHMNe07cdItEOM7Jw1CoYgeCuTThufsoodQXQHXMGq6LdTWd/
+         IcwxmDsnGHP9iqebOsaRAsUTcn+lW+CRm6vdCmjUYwu+poXvKmc2L313jCsYkmlvq7dM
+         z/aQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUosxojqx/D/xqvT/Bk78I1saXddy2gwFG7DQ8Gj5MlXBbtZWsn9pjtzvVdVPcLJGxeBg/Dm5XCf5gOI8x44IKfEY7nhxfC3DDvLw==
+X-Gm-Message-State: AOJu0Ywaz7gKMrB0gs5uZnTufKOGrrVMQ67Wz1hdoWz/ZdBAQs/i2pO7
+	sKNMq4XfPk0cMFQWzFUfWebxLvSem7CFNNBI/cIKBBq3kz84d75rqYriGh3HjQ8=
+X-Google-Smtp-Source: AGHT+IE+mnCIG8BYgBw5oHWVA2VHQioa6RNCWwiCufSDfkzDIzHQOepsTOsLlr6E2Nlerb9pp9JkZg==
+X-Received: by 2002:a05:6512:1292:b0:530:e228:7799 with SMTP id 2adb3069b0e04-532edbcaab6mr3519137e87.58.1723727339644;
+        Thu, 15 Aug 2024 06:08:59 -0700 (PDT)
 Received: from ?IPV6:2a02:8109:aa0d:be00::e7e1? ([2a02:8109:aa0d:be00::e7e1])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8383935657sm98645366b.138.2024.08.15.06.01.55
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a838396dfddsm99761266b.214.2024.08.15.06.08.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Aug 2024 06:01:56 -0700 (PDT)
-Message-ID: <310913ee-6275-4366-ad74-6565b7443867@linaro.org>
-Date: Thu, 15 Aug 2024 15:01:53 +0200
+        Thu, 15 Aug 2024 06:08:59 -0700 (PDT)
+Message-ID: <f341e9e9-3da6-4029-9892-90e6ec856544@linaro.org>
+Date: Thu, 15 Aug 2024 15:08:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,167 +76,103 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] iommu/arm-smmu-qcom: hide last context bank from
- linux
-To: Marc Gonzalez <mgonzalez@freebox.fr>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: Rob Clark <robdclark@gmail.com>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, iommu@lists.linux.dev,
- linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Konrad Dybcio <konradybcio@kernel.org>, Arnaud Vrac <avrac@freebox.fr>,
- Pierre-Hugues Husson <phhusson@freebox.fr>,
- Marijn Suijten <marijn.suijten@somainline.org>
-References: <20240814-smmu-v1-0-3d6c27027d5b@freebox.fr>
- <20240814-smmu-v1-2-3d6c27027d5b@freebox.fr>
- <a7j3lz62bp6pceuq472muioinjzfgw2mec5pv256zfr7yjsn3p@ok6nfsbsabig>
- <dfd80103-391a-4777-8944-296ba31a11dd@freebox.fr>
+Subject: Re: [PATCH v2 00/16] Add cmd descriptor support
+To: Md Sadre Alam <quic_mdalam@quicinc.com>, vkoul@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andersson@kernel.org, konradybcio@kernel.org, thara.gopinath@gmail.com,
+ herbert@gondor.apana.org.au, davem@davemloft.net, gustavoars@kernel.org,
+ u.kleine-koenig@pengutronix.de, kees@kernel.org, agross@kernel.org,
+ linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-crypto@vger.kernel.org
+Cc: quic_srichara@quicinc.com, quic_varada@quicinc.com,
+ quic_utiwari@quicinc.com
+References: <20240815085725.2740390-1-quic_mdalam@quicinc.com>
 Content-Language: en-US
 From: Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <dfd80103-391a-4777-8944-296ba31a11dd@freebox.fr>
+In-Reply-To: <20240815085725.2740390-1-quic_mdalam@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi Marc,
+Hi,
 
-On 14/08/2024 19:33, Marc Gonzalez wrote:
-> On 14/08/2024 17:29, Bjorn Andersson wrote:
->> On Wed, Aug 14, 2024 at 03:59:56PM GMT, Marc Gonzalez wrote:
->>> On qcom msm8998, writing to the last context bank of lpass_q6_smmu
->>> (base address 0x05100000) produces a system freeze & reboot.
->>>
->>> Specifically, here:
->>>
->>> 	qsmmu->bypass_cbndx = smmu->num_context_banks - 1;
->>> 	arm_smmu_cb_write(smmu, qsmmu->bypass_cbndx, ARM_SMMU_CB_SCTLR, 0);
->>>
->>> and here:
->>>
->>> 	arm_smmu_write_context_bank(smmu, i);
->>> 	arm_smmu_cb_write(smmu, i, ARM_SMMU_CB_FSR, ARM_SMMU_CB_FSR_FAULT);
->>>
->>> It is likely that FW reserves the last context bank for its own use,
->>> thus a simple work-around would be: DON'T USE IT in Linux.
->>>
->>> If we decrease the number of context banks, last one will be "hidden".
->>
->> I asked you to write something like "the hardware/hypervisor reports 12
->> context banks for the lpass smmu on msm8998, but only 11 are
->> accessible...override the number of context banks"
-> 
-> I don't understand how the exact number of context banks is relevant?
-> It's just that the FW reserves one for itself, which happens to be the last,
-> probably because some FW dev thought that was a good idea.
+A note for future patches, please scope your cover letter subject:
 
-It's relevant for your patch description because it offers useful 
-context that might help someone in the future. Especially being specific 
-that it's the hypervisor which is causing issues.
-> 
-> Also, I don't like the phrasing "override the number of context banks"
-> because while this is indeed what is done in the code, the *intent*
-> is to "lie" to Linux about the existence of the last context bank.
+"dmaengine: qcom: bam_dma: add cmd descriptor support"
 
-I'm not sure if that framing makes this code easier to understand for 
-me. You aren't lying to the kernel, you're enabling a quirk/override.
+On 15/08/2024 10:57, Md Sadre Alam wrote:
+> This series of patches will add command descriptor
+> support to read/write crypto engine register via
+> BAM/DMA
+> 
+> We need this support because if there is multiple EE's
+> (Execution Environment) accessing the same CE then there
+> will be race condition. To avoid this race condition
+> BAM HW hsving LOC/UNLOCK feature on BAM pipes and this
+> LOCK/UNLOCK will be set via command descriptor only.
+> 
+> Since each EE's having their dedicated BAM pipe, BAM allows
+> Locking and Unlocking on BAM pipe. So if one EE's requesting
+> for CE5 access then that EE's first has to LOCK the BAM pipe
+> while setting LOCK bit on command descriptor and then access
+> it. After finishing the request EE's has to UNLOCK the BAM pipe
+> so in this way we race condition will not happen.
+> 
+> tested with "tcrypt.ko" and "kcapi" tool.
+> 
+> Need help to test these all the patches on msm platform
 
-There is another hypervisor quirk on Qualcomm platforms where BYPASS 
-type streams are disallowed. We work around this by using the 
-(coincidentally) last context bank to emulate them.
-> 
->> It also seems, as the different SMMUs in this platform behave
->> differently it might be worth giving them further specific compatibles,
->> in which case we could just check if it's the qcom,msm8998-lpass-smmu,
->> instead of inventing a property for this quirk.
-> 
-> Wouldn't that be too specific?
+DT changes here are only for a few IPQ platforms, please explain in the 
+cover letter if this is some IPQ specific feature which doesn't exist on 
+other platforms, or if you're only enabling it on IPQ.
 
-If we aren't aware of any other platforms that have this issue, then no.
-> 
-> Angelo's patches were even more generic than mine, as he supported
-> a list of context banks not-to-be-used-by-linux.
-> 
-> Do you say the LPASS SMMU behaves differently because it's (currently,
-> to the best of my knowledge) the only SMMU where a context bank
-> (the last) is not available to Linux?
+Some broad strokes testing instructions (at the very least) and 
+requirements (testing on what hardware?) aren't made obvious at all here.
 
-I think that's a reasonable assumption to make.
+Kind regards,
 > 
+> v2:
+>   * Addressed all the comments from v1
+>   * Added the dt-binding
+>   * Added locking/unlocking mechanism in bam driver
 > 
-> For easy future reference, here are the reports for the 5 SMMUs enabled on my system.
+> v1:
+>   * https://lore.kernel.org/lkml/20231214114239.2635325-1-quic_mdalam@quicinc.com/
+>   * Initial set of patches for cmd descriptor support
 > 
-> [    0.137343] arm-smmu 1680000.iommu: probing hardware configuration...
-> [    0.137354] arm-smmu 1680000.iommu: SMMUv2 with:
-> [    0.137381] arm-smmu 1680000.iommu: 	stage 1 translation
-> [    0.137390] arm-smmu 1680000.iommu: 	address translation ops
-> [    0.137399] arm-smmu 1680000.iommu: 	non-coherent table walk
-> [    0.137406] arm-smmu 1680000.iommu: 	(IDR0.CTTW overridden by FW configuration)
-> [    0.137417] arm-smmu 1680000.iommu: 	stream matching with 16 register groups
-> [    0.137447] arm-smmu 1680000.iommu: 	6 context banks (0 stage-2 only)
-> [    0.137733] arm-smmu 1680000.iommu: 	Supported page sizes: 0x63315000
-> [    0.137743] arm-smmu 1680000.iommu: 	Stage-1: 36-bit VA -> 36-bit IPA
-> [    0.137833] arm-smmu 1680000.iommu: 	preserved 0 boot mappings
+> Md Sadre Alam (16):
+>    dt-bindings: dma: qcom,bam: Add bam pipe lock
+>    dmaengine: qcom: bam_dma: add bam_pipe_lock dt property
+>    dmaengine: qcom: bam_dma: add LOCK & UNLOCK flag support
+>    crypto: qce - Add support for crypto address read
+>    crypto: qce - Add bam dma support for crypto register r/w
+>    crypto: qce - Convert register r/w for skcipher via BAM/DMA
+>    crypto: qce - Convert register r/w for sha via BAM/DMA
+>    crypto: qce - Convert register r/w for aead via BAM/DMA
+>    crypto: qce - Add LOCK and UNLOCK flag support
+>    crypto: qce - Add support for lock aquire,lock release api.
+>    crypto: qce - Add support for lock/unlock in skcipher
+>    crypto: qce - Add support for lock/unlock in sha
+>    crypto: qce - Add support for lock/unlock in aead
+>    arm64: dts: qcom: ipq9574: enable bam pipe locking/unlocking
+>    arm64: dts: qcom: ipq8074: enable bam pipe locking/unlocking
+>    arm64: dts: qcom: ipq6018: enable bam pipe locking/unlocking
 > 
-> 
-> [    0.138963] arm-smmu 16c0000.iommu: probing hardware configuration...
-> [    0.138974] arm-smmu 16c0000.iommu: SMMUv2 with:
-> [    0.138994] arm-smmu 16c0000.iommu: 	stage 1 translation
-> [    0.139003] arm-smmu 16c0000.iommu: 	address translation ops
-> [    0.139011] arm-smmu 16c0000.iommu: 	non-coherent table walk
-> [    0.139019] arm-smmu 16c0000.iommu: 	(IDR0.CTTW overridden by FW configuration)
-> [    0.139030] arm-smmu 16c0000.iommu: 	stream matching with 14 register groups
-> [    0.139058] arm-smmu 16c0000.iommu: 	10 context banks (0 stage-2 only)
-> [    0.139255] arm-smmu 16c0000.iommu: 	Supported page sizes: 0x63315000
-> [    0.139265] arm-smmu 16c0000.iommu: 	Stage-1: 36-bit VA -> 36-bit IPA
-> [    0.139341] arm-smmu 16c0000.iommu: 	preserved 0 boot mappings
-> 
-> 
-> [    2.424369] arm-smmu 5040000.iommu: probing hardware configuration...
-> [    2.428581] arm-smmu 5040000.iommu: SMMUv2 with:
-> [    2.434914] arm-smmu 5040000.iommu: 	stage 1 translation
-> [    2.439584] arm-smmu 5040000.iommu: 	address translation ops
-> [    2.444881] arm-smmu 5040000.iommu: 	non-coherent table walk
-> [    2.450522] arm-smmu 5040000.iommu: 	(IDR0.CTTW overridden by FW configuration)
-> [    2.456175] arm-smmu 5040000.iommu: 	stream matching with 3 register groups
-> [    2.463216] arm-smmu 5040000.iommu: 	3 context banks (0 stage-2 only)
-> [    2.483555] arm-smmu 5040000.iommu: 	Supported page sizes: 0x63315000
-> [    2.490455] arm-smmu 5040000.iommu: 	Stage-1: 48-bit VA -> 36-bit IPA
-> [    2.497171] arm-smmu 5040000.iommu: 	preserved 0 boot mappings
-> 
-> 
-> [    2.546101] arm-smmu 5100000.iommu: probing hardware configuration...
-> [    2.552439] arm-smmu 5100000.iommu: SMMUv2 with:
-> [    2.558945] arm-smmu 5100000.iommu: 	stage 1 translation
-> [    2.563627] arm-smmu 5100000.iommu: 	address translation ops
-> [    2.568923] arm-smmu 5100000.iommu: 	non-coherent table walk
-> [    2.574566] arm-smmu 5100000.iommu: 	(IDR0.CTTW overridden by FW configuration)
-> [    2.580220] arm-smmu 5100000.iommu: 	stream matching with 12 register groups
-> [    2.587263] arm-smmu 5100000.iommu: 	13 context banks (0 stage-2 only)
-> [    2.594544] arm-smmu 5100000.iommu: hiding last ctx bank from linux
-> [    2.614447] arm-smmu 5100000.iommu: 	Supported page sizes: 0x63315000
-> [    2.621358] arm-smmu 5100000.iommu: 	Stage-1: 36-bit VA -> 36-bit IPA
-> [    2.627772] arm-smmu 5100000.iommu: 	preserved 0 boot mappings
-> 
-> 
-> [    2.806781] arm-smmu cd00000.iommu: probing hardware configuration...
-> [    2.813029] arm-smmu cd00000.iommu: SMMUv2 with:
-> [    2.819627] arm-smmu cd00000.iommu: 	stage 1 translation
-> [    2.824304] arm-smmu cd00000.iommu: 	address translation ops
-> [    2.829601] arm-smmu cd00000.iommu: 	non-coherent table walk
-> [    2.835243] arm-smmu cd00000.iommu: 	(IDR0.CTTW overridden by FW configuration)
-> [    2.840897] arm-smmu cd00000.iommu: 	stream matching with 54 register groups
-> [    2.847954] arm-smmu cd00000.iommu: 	17 context banks (0 stage-2 only)
-> [    2.869307] arm-smmu cd00000.iommu: 	Supported page sizes: 0x63315000
-> [    2.875785] arm-smmu cd00000.iommu: 	Stage-1: 32-bit VA -> 36-bit IPA
-> [    2.882205] arm-smmu cd00000.iommu: 	preserved 0 boot mappings
-> 
-> 
-> [   24.525457] arm-smmu 16c0000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x1900
-> [   24.525604] arm-smmu 16c0000.iommu: FSYNR0 = 00000001 [S1CBNDX=0 PLVL=1]
-> [   24.721874] arm-smmu 16c0000.iommu: FSR    = 00000402 [Format=2 TF], SID=0x1900
-> [   24.722033] arm-smmu 16c0000.iommu: FSYNR0 = 00000001 [S1CBNDX=0 PLVL=1]
-> 
+>   .../devicetree/bindings/dma/qcom,bam-dma.yaml |   8 +
+>   arch/arm64/boot/dts/qcom/ipq6018.dtsi         |   1 +
+>   arch/arm64/boot/dts/qcom/ipq8074.dtsi         |   1 +
+>   arch/arm64/boot/dts/qcom/ipq9574.dtsi         |   1 +
+>   drivers/crypto/qce/aead.c                     |   4 +
+>   drivers/crypto/qce/common.c                   | 142 +++++++----
+>   drivers/crypto/qce/core.c                     |  13 +-
+>   drivers/crypto/qce/core.h                     |  12 +
+>   drivers/crypto/qce/dma.c                      | 232 ++++++++++++++++++
+>   drivers/crypto/qce/dma.h                      |  26 +-
+>   drivers/crypto/qce/sha.c                      |   4 +
+>   drivers/crypto/qce/skcipher.c                 |   4 +
+>   drivers/dma/qcom/bam_dma.c                    |  14 +-
+>   include/linux/dmaengine.h                     |   6 +
+>   14 files changed, 424 insertions(+), 44 deletions(-)
 > 
 
 -- 
