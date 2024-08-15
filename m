@@ -1,330 +1,258 @@
-Return-Path: <devicetree+bounces-93989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34B2995385B
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 18:36:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95CDB9537F6
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 18:10:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A95CE1F23747
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 16:36:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B885282D58
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 16:10:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 419451B8EA8;
-	Thu, 15 Aug 2024 16:36:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3A9B1B1512;
+	Thu, 15 Aug 2024 16:10:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nuvoton.onmicrosoft.com header.i=@nuvoton.onmicrosoft.com header.b="veV6A0cT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="r1D0FVaQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01rlnn2053.outbound.protection.outlook.com [40.95.54.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE6421B4C2D;
-	Thu, 15 Aug 2024 16:36:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.95.54.53
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723739772; cv=fail; b=K2GMTvjQpBfDZFnOZ3SVlloPFilopw2Kht0Jb9yWNcUWGF53uzHzPhz+ZocKlNTgBYXakuXdoBOIFTm7Hs9QGQ3nmCMMwxjlw+mrZFoyUk32SvnpfShFloROLRLu7/tR3zO53pYgjl9qyRWFyvNd30LSTIBTNuy7N5twvLfvZyg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723739772; c=relaxed/simple;
-	bh=SZfdRYxLgqV1D45D0IiQhUdNkwZz+FPvdUUYLfS9B2M=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pYT75WZuHePzbjDi4zKZabvAjo2gdgCxA/cXvbXjV5jXm7jFI5ggCY1vbDx4KZrSDoQqxxjsAQ5jH9ZgGEBMx49ziSKK8HzghfTup0+8ubPlM4F08faa61a/9RkBntLHn+NmOCqUmA1TQtk2PHIuz1ss0k86JNOv0GdTpFoece0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=none smtp.mailfrom=taln60.nuvoton.co.il; dkim=pass (1024-bit key) header.d=nuvoton.onmicrosoft.com header.i=@nuvoton.onmicrosoft.com header.b=veV6A0cT; arc=fail smtp.client-ip=40.95.54.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=taln60.nuvoton.co.il
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=b2u+j7ZvpjN5670Ab52St3cnwzqCwgXffKQFmWqQLHtWt4pcZnUykJj8YMx3pRNuJEKtZoa6QaExAt3Kg1nnSK6LiljjoXdVxtEudXQAKUfnD98QYtGBwjoDaxklxyi6xDo8P3o2DITTx44jSfxUwacTpjDEyRdFcCnupFGdBMwJF8I7Iwqh/rzaQd/eE1JVl/TSX4EEhZUqR5e5e+x6Tn8hxCp2pAhjaX1+lrvAqfwGGMKhXFIT7Cd52iLl85FB81UO23hOBMylJciehS4yyniZPrt/pZ9QmZDDB0fqu82MeQA7ACklekKW/bPkolgKTIxpJGypNmzc9uhyCepv1w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SAuEzqHIOSfq8jhfg97/P6te6r/B/zcq/uq1CyQxERk=;
- b=k5+Evl3uGQEtT4bPZbTqG7S/Noxoe3NNkrp3RTPIrQOecbIG12U7i5DUT7dxOre62lGyGppC+t4n7ZRzdI5QQWg5hSKLP+dBPLqD89M/Ry+oaUnzyx+w3+zEtQ4QdCxVNs6o+BUpoqCHPlXiuRfEBbsKxh/b5PSl856SmNuO7Ebzsh9fEaGWfhhYiMUYLkOCb6JjwNmKG/yO6nOCiwIT2U8kgS0WFRo5bR9u/uSfW5MW+ze96eSULqdnslhOUyCE9D+US4Mb/WK9LuC8haw8Fbitgky+yYFhv8IA0bBJV4GylJ2CE7aYCNLfXl4en5sG6JVF5Vx0bSSNcStPKkfwQQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
- 175.98.123.7) smtp.rcpttodomain=baylibre.com
- smtp.mailfrom=taln60.nuvoton.co.il; dmarc=fail (p=none sp=quarantine pct=100)
- action=none header.from=gmail.com; dkim=none (message not signed); arc=none
- (0)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C22681B1417
+	for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 16:10:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723738211; cv=none; b=e9nmMESB+xVtZ6mP0p5O7817O76KNhv1pkZypmGvoRqVphmEUd01s51ebjDukM8zhtuxl6ve4XS7yPz7+GKHOdEvO0rxfJ4OaF6LMhQY9mvQdMeDzqA6qtdraBoITrmEbyuM+tIasNOgwVDoJ52dCMzcbcE2JwLIkXiw9IpBPfk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723738211; c=relaxed/simple;
+	bh=u7TvbK3WD9JGvuuqyWQIMqBEruAdfoxECZ0duiUt5kk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=olQHrqtKPPqJGCxjfgrXc8wvDMFIiRQhDHEwwNtJQ/RIHowNaeyDBvlXbukFpEdplrJx+bvs+vgbEmUGfbPZIB1lJbqBMI9hL6WF2VCHYZwu90/i0etGPPRQzpncyOoIh4YJKDr5Fupuf4PpM16fEcknjVjL54p4NuJSVkdTtHU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=r1D0FVaQ; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-429c4a4c6a8so7628035e9.0
+        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 09:10:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=nuvoton.onmicrosoft.com; s=selector2-nuvoton-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SAuEzqHIOSfq8jhfg97/P6te6r/B/zcq/uq1CyQxERk=;
- b=veV6A0cTOTf2jnde78faumPKLTQ9Kn4BlgObSgV3mqXlT/lD6FkkMeFqGOv3S1RSc3tfpX4MBxzc9ny9ua0dIg319Bb+vke6Ec15+zVYvfaXj+OBC/Fk+LwFfrPvSCRhaBwfsMuIUMjbeokbectoi1Yw1fB4/jW7Xuh5+xKZFpc=
-Received: from KL1PR0401CA0010.apcprd04.prod.outlook.com (2603:1096:820:f::15)
- by TYZPR03MB8102.apcprd03.prod.outlook.com (2603:1096:400:44e::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.19; Thu, 15 Aug
- 2024 15:03:00 +0000
-Received: from HK2PEPF00006FB4.apcprd02.prod.outlook.com
- (2603:1096:820:f:cafe::ba) by KL1PR0401CA0010.outlook.office365.com
- (2603:1096:820:f::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7849.23 via Frontend
- Transport; Thu, 15 Aug 2024 15:02:59 +0000
-X-MS-Exchange-Authentication-Results: spf=none (sender IP is 175.98.123.7)
- smtp.mailfrom=taln60.nuvoton.co.il; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=gmail.com;
-Received-SPF: None (protection.outlook.com: taln60.nuvoton.co.il does not
- designate permitted sender hosts)
-Received: from NTHCCAS02.nuvoton.com (175.98.123.7) by
- HK2PEPF00006FB4.mail.protection.outlook.com (10.167.8.10) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7849.8 via Frontend Transport; Thu, 15 Aug 2024 15:02:58 +0000
-Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCCAS02.nuvoton.com
- (10.1.9.121) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 15 Aug
- 2024 23:02:58 +0800
-Received: from taln58.nuvoton.co.il (10.191.1.178) by NTHCCAS01.nuvoton.com
- (10.1.8.28) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Thu, 15 Aug 2024 23:02:58 +0800
-Received: from taln60.nuvoton.co.il (taln60 [10.191.1.180])
-	by taln58.nuvoton.co.il (Postfix) with ESMTP id 448A05F5FD;
-	Thu, 15 Aug 2024 18:02:57 +0300 (IDT)
-Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
-	id 3C360DC0DCE; Thu, 15 Aug 2024 18:02:57 +0300 (IDT)
-From: Tomer Maimon <tmaimon77@gmail.com>
-To: <mturquette@baylibre.com>, <sboyd@kernel.org>, <p.zabel@pengutronix.de>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<tali.perry1@gmail.com>, <joel@jms.id.au>, <venture@google.com>,
-	<yuenn@google.com>, <benjaminfair@google.com>
-CC: <openbmc@lists.ozlabs.org>, <linux-clk@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, Tomer Maimon
-	<tmaimon77@gmail.com>
-Subject: [PATCH RESEND v27 2/3] reset: npcm: register npcm8xx clock auxiliary bus device
-Date: Thu, 15 Aug 2024 18:02:54 +0300
-Message-ID: <20240815150255.3996258-3-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240815150255.3996258-1-tmaimon77@gmail.com>
-References: <20240815150255.3996258-1-tmaimon77@gmail.com>
+        d=linaro.org; s=google; t=1723738208; x=1724343008; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dmkiJ4k0iP8rLehKXXA87IwgLNjvAKrkUrp7KICnqGw=;
+        b=r1D0FVaQcNIN7CNiM3zTvQWhC5dyTP4fruBwwDM2YZry3AqcGLSkcrSMMk1l1ScXDP
+         DMHQ7RCYG5zPyM3ObLy8LVmXONSLGlTn0E8VJXWb6tdYTRy8zq8aBtWZhu1zpJQGtNv1
+         s5SyCNoK8Qk3X2ZI6qAAoip9OXriPmMXtKpjVFM/Lrk/avew3eJoPEpOXgQaCvbx5/4B
+         MpSq66RzbF0IbOIFRjRX4oU2sl94hVwu40pjwBu0pcj8Fz69ODdmfrgdmC5AD2f4bHgN
+         LphMLiQfqVHUIE0YVCjRklBw+C9qwo3uIUrvxT+20MhMTTRjVnl7Cz13qjLfWA5Lvd8h
+         DCLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723738208; x=1724343008;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dmkiJ4k0iP8rLehKXXA87IwgLNjvAKrkUrp7KICnqGw=;
+        b=qwi5bzTQaUVY0mbiPz8qEz9dvmVK4h4UAx8QEqweQWFKgtQBPGnjms3+GZnfv/XVy+
+         XyzhB2aql43ZunGEh+o+yylt767+oDtjMycvjMdeRXI/8RZLlYuL9x/Ui0aPZWI+tGE5
+         OOxjTSrMGKmxe/Xa4lxP+2bKLoe8BM59KCZztKmgtUVnR9ffcdB4z+/aP1P1gxb4Slt8
+         BcGgkcQ+fAq/ix6rDVVZFHTmPrJ2s3J+5+jQJ9pyt0Uwp1bTJIqQePRSz15LCnuI8ywb
+         OLzIAyjj4Zs2O56KFUtVyY/UKBPU1Tsgqaq2b+i/J6rMzwdXv8o2LU1chJ7rKCjBw/1G
+         y29w==
+X-Forwarded-Encrypted: i=1; AJvYcCX1sCJHIWLFBNE8lfh7rHhoaVCkf+idHyel9BScNW+TAPb232CzPLTD+Dhj3QnFn2bTft7tRiyuIbEgeMzQtsT9IU/HNuewbnPVaA==
+X-Gm-Message-State: AOJu0Yyrja5Ju5Wk5ZIp2pmbuylcDxYgenM8vv/QYiffgKPWoKxPugtY
+	+ozHucuUj8rgOg4lH+HWruEYNuLhz2gSmfu52lK1LtrMJSu3bSU9E8qH0UNPY1U=
+X-Google-Smtp-Source: AGHT+IHbfwiW1pXKhSkWxn6GIvztBdPu73+tN1vtom1RsFUih70ii2khzdjpmDpbjtaZGLOsuAalzA==
+X-Received: by 2002:a05:600c:35ca:b0:428:f0c2:ef4a with SMTP id 5b1f17b1804b1-429dd2384d2mr49692865e9.13.1723738207592;
+        Thu, 15 Aug 2024 09:10:07 -0700 (PDT)
+Received: from [192.168.0.25] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429ded299a9sm51617595e9.18.2024.08.15.09.10.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Aug 2024 09:10:07 -0700 (PDT)
+Message-ID: <be0b5f96-2863-4b10-b003-6829dfb04b95@linaro.org>
+Date: Thu, 15 Aug 2024 17:10:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 12/13] media: qcom: camss: Add CSID Gen3 support for
+ sm8550
+To: Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
+ todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ kernel@quicinc.com, Yongsheng Li <quic_yon@quicinc.com>
+References: <20240812144131.369378-1-quic_depengs@quicinc.com>
+ <20240812144131.369378-13-quic_depengs@quicinc.com>
+ <44efa3ba-f60d-4a17-a8a1-fa7d49aa3234@linaro.org>
+ <ff261ab4-b59d-48a1-9ede-3c691842d913@quicinc.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <ff261ab4-b59d-48a1-9ede-3c691842d913@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NotSetDelaration: True
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: HK2PEPF00006FB4:EE_|TYZPR03MB8102:EE_
-X-MS-Office365-Filtering-Correlation-Id: d35f4334-be24-4070-ba87-08dcbd3b59cb
-X-MS-Exchange-SenderADCheck: 2
-X-MS-Exchange-AntiSpam-Relay: 1
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|61400799027|82310400026|376014|7416014|35950700016|48200799018|7093399012|921020|35450700002;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?oR2ABMUpFT44rFC6HsjPlQA/fbNk+0cG80olngiEAklCKQrb2iw5vefGkRbY?=
- =?us-ascii?Q?X0N71FevOo/sAUa7Nhtk3n/fOO9qfxxChqIpTh7wsYsDKTUyVhI8bVQpqxng?=
- =?us-ascii?Q?kG+MR3DtYi4c2QsGSDuH+n7IXzXk512gfAmWEQEvwihOkC8ppXIq7gLgR6LR?=
- =?us-ascii?Q?PFgHHUP9n1f3d0LvhXpEoeR7BF5jazNzHkpSJkKA/AxwqNP7OzOo0p48MQQd?=
- =?us-ascii?Q?R5SK1y/aDeV3yL5U8djij1ViCIGEXvpNla15d8RDkWgf8lsnIemMNdPD9KB4?=
- =?us-ascii?Q?g4lf05AXmbKzP6gOx56Su6OwUZEzAvpKRHYpXBFoBXm5iAe+7t72p+SQ/G0l?=
- =?us-ascii?Q?wCYYb7Ch+I/3UOttYvEm/+H3o1FORDwgCvvUisO0aGYfmbFXesCz4XcFItJq?=
- =?us-ascii?Q?oGyP2HI0qMVUjDHZY8/8QKZ5R5pgasmF+JviQhoHuRkgpK1Su1msbclDMswQ?=
- =?us-ascii?Q?4ZN4nErZL/aiXyCPy2n/c2jl//GDVW1LEOLbxY4W05tUATOhnObOnPq5YSlU?=
- =?us-ascii?Q?vWK6iu/jdVKhpFU89AY51vouZyiDYp5Lmop7IZMJRx5pjhKzRm19M5ECJHCk?=
- =?us-ascii?Q?Pz6W9P85Qy+vsb7F6kOeG4gQ9BAUp3QlADP0kFt43ePlqwZgiPDZu7nqPYk8?=
- =?us-ascii?Q?KDd+fICT9ojrosphsJEYh5VyfYh59S5h0RelS9rfdArGUqubf94kfwr99Yhu?=
- =?us-ascii?Q?Jjmo6H0/TfcmbxcJbqj324ZZHWrwuOYf0jyEqCUl3LstLVnaFSmQIskOxxaa?=
- =?us-ascii?Q?RnZ8QN+qkMGROQpPaXiEIp43zJlCuPYQP030r4K9OIsR1YJrKouwmSMDPe37?=
- =?us-ascii?Q?KlTTItwdJmMJ7pxyeNEuScqhi8vBafOEPMdiJwd6XsdI4JiTRwvLG5YMqHAb?=
- =?us-ascii?Q?inItPUd0krH9xqyduwo0wldCKjHx922KJjsIv8h3vY3jjRbL7OI9/Dlphn4t?=
- =?us-ascii?Q?jrTrjIpx5fcTOUbkGs7YouiWqx/hekob4m+rdog4zZZNVABwPM6zqFls9EHG?=
- =?us-ascii?Q?1zXNFpK/i5F/uPfPHCLQ11vMeLmK3oKfGb64naw7IZPpEbP2XksTAIKb/UWk?=
- =?us-ascii?Q?DMr2dIdERKJZ4wCyo/XZO1ZB7dl2I+MbmrF8ocNZmT9vuVrxkbWI3j8pE+c/?=
- =?us-ascii?Q?BAX2hljpRVpPzgCgtgxIU4Xwu2+mUNUHkDjYOJt5xivGyv1TyZ6Ge1mmWiFR?=
- =?us-ascii?Q?te7ZJlLYsgIvP/eZHQLdaap/SQt2SbaOaQaZXpu8TPsvfbtZI+jr/eRHX/fe?=
- =?us-ascii?Q?NQOW4gX3hfRO2biaL/f5gdn8cFno/1BRYAG7HOODuHu5V3RbcBIbnsoX+ddK?=
- =?us-ascii?Q?Ty04v1PWEvJbuR+gelPtKZoho5PO5D8/yS9PGcAIb0i44A1UvC7AZuiY7QU+?=
- =?us-ascii?Q?Ns0mcnuZvSeUxr/5ox6X2R8euRJnhS7m+Imk4/OL3yLGmeLnkNCcxfKwopKX?=
- =?us-ascii?Q?emS5vobWAyKWIjHCychQpEJ+fEQAoKiyhZsckIKKX2+rkIrGoHWnO0ReLeHN?=
- =?us-ascii?Q?PISTWUVGbUWmtFw=3D?=
-X-Forefront-Antispam-Report:
-	CIP:175.98.123.7;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:NTHCCAS02.nuvoton.com;PTR:175-98-123-7.static.tfn.net.tw;CAT:NONE;SFS:(13230040)(61400799027)(82310400026)(376014)(7416014)(35950700016)(48200799018)(7093399012)(921020)(35450700002);DIR:OUT;SFP:1022;
-X-OriginatorOrg: nuvoton.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2024 15:02:58.6543
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d35f4334-be24-4070-ba87-08dcbd3b59cb
-X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a3f24931-d403-4b4a-94f1-7d83ac638e07;Ip=[175.98.123.7];Helo=[NTHCCAS02.nuvoton.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	HK2PEPF00006FB4.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB8102
 
-Add NPCM8xx clock controller auxiliary bus device registration.
+On 15/08/2024 16:14, Depeng Shao wrote:
+> Hi Bryan,
+> 
+> 
+>>> ---
+>>>   drivers/media/platform/qcom/camss/Makefile    |   1 +
+>>>   .../platform/qcom/camss/camss-csid-gen3.c     | 339 ++++++++++++++++++
+>>>   .../platform/qcom/camss/camss-csid-gen3.h     |  26 ++
+>>
+>>
+>> So this "gen2" and "gen3" stuff would make sense if we had a number of 
+>> SoCs based on gen2 and gen3 which were controlled from the upper-level 
+>> gen2.c and gen3.c.
+>>
+>> What you're submitting here is csid-780 so the file should be named 
+>> csid-780.
+>>
+>> When we add 680 or 880 then it makes sense to try to encapsulate a 
+>> class of generation into one file - potentially.
+>>
+>> I'd guess that was the intent behind gen2.c.
+>>
+>> TL;DR please name your file csid-xxx.c
+> 
+> Sure, I will use csid-780.c
+> 
+>>> +
+>>> +    writel(val, csid->base + CSID_CSI2_RX_CFG0);
+>>> +
+>>> +    val = 1 << CSI2_RX_CFG1_ECC_CORRECTION_EN;
+>>> +    if (vc > 3)
+>>> +        val |= 1 << CSI2_RX_CFG1_VC_MODE;
+>>
+>> So again these are needless bit-shifts.
+>>
+>> #define CSI2_RX_CFG1_PACKET_ECC_CORRECTION_EN BIT(0)
+>>
+>> val = CSI2_RX_CFG1_PACKET_ECC_CORRECTION_EN;
+>>
+> 
+> You posted same comments in v3 series, I also replied it.
+> https://lore.kernel.org/all/eeaf4f4e-5200-4b13-b38f-3f3385fc2a2b@quicinc.com/
+> 
+> Some of register bits which just need to be configured to 0 or 1, then 
+> can use BIT(X), but some register bits need to configure a specific 
+> value, e.g.,  CSID_RDI_CFG0 bits[22:26] need to configure a vc vaule, 
+> bits[16:21] need to configure a dt value, then we can't use BIT(x) to 
+> handle this.
 
-The NPCM8xx clock controller is registered as an aux device because the
-reset and the clock controller share the same register region.
+Yes please use macros() to bury any _necessary_ bit shifts to populate a 
+_bit_field_ away but as an example CSI2_RX_CFG1_PACKET_ECC_CORRECTION_EN 
+is not a bit-field.
 
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-Tested-by: Benjamin Fair <benjaminfair@google.com>
+
+> 
+> 
+>>>       case MSM_CSID_PAD_SRC:
+>>> -        if (csid->testgen_mode->cur.val == 0) {
+>>> +        if (!csid->testgen_mode || csid->testgen_mode->cur.val == 0) {
+>>
+>> See my comments on adding new guards to core functionality.
+>>
+>> Is this sm8550 specific or generic ?
+>>
+> 
+> It is sm8550 specific, since we don't have testgen mode in sm8550 csid, 
+> so need to add some guards, the guards are added for similar reason.
+
+Hmm, I see in my tree I just assigned testgen_mode to some dummy data. 
+You're right, retain this, when we enable testgen as a standalone entity 
+outside of CSID we can address this again.
+
+> 
+>>>               /* Test generator is disabled, */
+>>>               /* keep pad formats in sync */
+>>>               u32 code = fmt->code;
+>>> @@ -1042,6 +1042,7 @@ static int csid_init_formats(struct v4l2_subdev 
+>>> *sd, struct v4l2_subdev_fh *fh)
+>>>   static int csid_set_test_pattern(struct csid_device *csid, s32 value)
+>>>   {
+>>>       struct csid_testgen_config *tg = &csid->testgen;
+>>> +    const struct csid_hw_ops *hw_ops = csid->res->hw_ops;
+>>>       /* If CSID is linked to CSIPHY, do not allow to enable test 
+>>> generator */
+>>>       if (value && media_pad_remote_pad_first(&csid- 
+>>> >pads[MSM_CSID_PAD_SINK]))
+>>> @@ -1049,7 +1050,10 @@ static int csid_set_test_pattern(struct 
+>>> csid_device *csid, s32 value)
+>>>       tg->enabled = !!value;
+>>> -    return csid->res->hw_ops->configure_testgen_pattern(csid, value);
+>>> +    if (hw_ops->configure_testgen_pattern)
+>>> +        return -EOPNOTSUPP;
+>>> +    else
+>>> +        return hw_ops->configure_testgen_pattern(csid, value);
+>>
+>> If you just add a dummy configure_testgen_pattern we can get rid of 
+>> this branching stuff.
+>>
+> 
+> Do you mean add dummy function in csid-780/gen3.c? How about the other 
+> ops in vfe_ops_780, add dummy function or use NULL? We need to guards if 
+> we set it as NULL.
+
+See above, you're right what you have is fine.
+
+> 
+> static int csid_configure_testgen_pattern(struct csid_device *csid, s32 
+> val)
+> {
+>      return 0;
+> }
+> 
+>>>   }
+>>>   /*
+>>> @@ -1121,6 +1125,19 @@ int msm_csid_subdev_init(struct camss *camss, 
+>>> struct csid_device *csid,
+>>>           csid->base = devm_platform_ioremap_resource_byname(pdev, 
+>>> res->reg[0]);
+>>>           if (IS_ERR(csid->base))
+>>>               return PTR_ERR(csid->base);
+>>> +
+>>> +        /* CSID "top" is a new function in new version HW,
+>>> +         * CSID can connect to VFE & SFE(Sensor Front End).
+>>> +         * this connection is controlled by CSID "top" registers.
+>>> +         * There is only one CSID "top" region for all CSIDs.
+>>> +         */
+>>> +        if (!csid_is_lite(csid) && res->reg[1] && !camss- 
+>>> >csid_top_base) {
+>>> +            camss->csid_top_base =
+>>> +                devm_platform_ioremap_resource_byname(pdev, res- 
+>>> >reg[1]);
+>>
+>> That's a complex clause.
+>>
+>> Let me send you a patch to do it a different way.
+>>
+> 
+> I was also thinking to addd it in camss level, then I thought it is in 
+> csid block, so I moved it to csid, but it is also fine to add it in 
+> camss. Can I add your patch into this series? Just like the csiphy patches.
+
+static const struct resources_wrapper csid_wrapper_res_sm8550 = {
+         .reg = "csid_wrapper",
+};
+
+Yes go ahead, all you should need to do then is add 
+"&csid_wrapper_res_sm8550" to your resources.
+
+static const struct camss_resources sm8550_resources = {
+         .version = CAMSS_SM8550,
+         .pd_name = "top",
+         .csiphy_res = csiphy_res_sm8550,
+         .csid_res = csid_res_sm8550,
+         .ispif_res = NULL,
+         .vfe_res = vfe_res_sm8550,
+         .csid_wrapper_res = &csid_wrapper_res_sm8550,
+...
+};
+
 ---
- drivers/reset/Kconfig               |  1 +
- drivers/reset/reset-npcm.c          | 74 ++++++++++++++++++++++++++++-
- include/soc/nuvoton/clock-npcm8xx.h | 16 +++++++
- 3 files changed, 90 insertions(+), 1 deletion(-)
- create mode 100755 include/soc/nuvoton/clock-npcm8xx.h
-
-diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-index 67bce340a87e..c6bf5275cca2 100644
---- a/drivers/reset/Kconfig
-+++ b/drivers/reset/Kconfig
-@@ -157,6 +157,7 @@ config RESET_MESON_AUDIO_ARB
- config RESET_NPCM
- 	bool "NPCM BMC Reset Driver" if COMPILE_TEST
- 	default ARCH_NPCM
-+	select AUXILIARY_BUS
- 	help
- 	  This enables the reset controller driver for Nuvoton NPCM
- 	  BMC SoCs.
-diff --git a/drivers/reset/reset-npcm.c b/drivers/reset/reset-npcm.c
-index 8935ef95a2d1..aa68b947226a 100644
---- a/drivers/reset/reset-npcm.c
-+++ b/drivers/reset/reset-npcm.c
-@@ -1,6 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0
- // Copyright (c) 2019 Nuvoton Technology corporation.
- 
-+#include <linux/auxiliary_bus.h>
- #include <linux/delay.h>
- #include <linux/err.h>
- #include <linux/io.h>
-@@ -10,11 +11,14 @@
- #include <linux/property.h>
- #include <linux/reboot.h>
- #include <linux/reset-controller.h>
-+#include <linux/slab.h>
- #include <linux/spinlock.h>
- #include <linux/mfd/syscon.h>
- #include <linux/regmap.h>
- #include <linux/of_address.h>
- 
-+#include <soc/nuvoton/clock-npcm8xx.h>
-+
- /* NPCM7xx GCR registers */
- #define NPCM_MDLR_OFFSET	0x7C
- #define NPCM7XX_MDLR_USBD0	BIT(9)
-@@ -89,6 +93,7 @@ struct npcm_rc_data {
- 	const struct npcm_reset_info *info;
- 	struct regmap *gcr_regmap;
- 	u32 sw_reset_number;
-+	struct device *dev;
- 	void __iomem *base;
- 	spinlock_t lock;
- };
-@@ -372,6 +377,67 @@ static const struct reset_control_ops npcm_rc_ops = {
- 	.status		= npcm_rc_status,
- };
- 
-+static void npcm_clock_unregister_adev(void *_adev)
-+{
-+	struct auxiliary_device *adev = _adev;
-+
-+	auxiliary_device_delete(adev);
-+	auxiliary_device_uninit(adev);
-+}
-+
-+static void npcm_clock_adev_release(struct device *dev)
-+{
-+	struct auxiliary_device *adev = to_auxiliary_dev(dev);
-+	struct npcm_clock_adev *rdev = to_npcm_clock_adev(adev);
-+
-+	kfree(rdev);
-+}
-+
-+static struct auxiliary_device *npcm_clock_adev_alloc(struct npcm_rc_data *rst_data, char *clk_name)
-+{
-+	struct npcm_clock_adev *rdev;
-+	struct auxiliary_device *adev;
-+	int ret;
-+
-+	rdev = kzalloc(sizeof(*rdev), GFP_KERNEL);
-+	if (!rdev)
-+		return ERR_PTR(-ENOMEM);
-+
-+	rdev->base = rst_data->base;
-+
-+	adev = &rdev->adev;
-+	adev->name = clk_name;
-+	adev->dev.parent = rst_data->dev;
-+	adev->dev.release = npcm_clock_adev_release;
-+	adev->id = 555u;
-+
-+	ret = auxiliary_device_init(adev);
-+	if (ret) {
-+		kfree(rdev);
-+		return ERR_PTR(ret);
-+	}
-+
-+	return adev;
-+}
-+
-+static int npcm8xx_clock_controller_register(struct npcm_rc_data *rst_data, char *clk_name)
-+{
-+	struct auxiliary_device *adev;
-+	int ret;
-+
-+	adev = npcm_clock_adev_alloc(rst_data, clk_name);
-+	if (IS_ERR(adev))
-+		return PTR_ERR(adev);
-+
-+	ret = auxiliary_device_add(adev);
-+	if (ret) {
-+		auxiliary_device_uninit(adev);
-+		return ret;
-+	}
-+
-+	return devm_add_action_or_reset(rst_data->dev, npcm_clock_unregister_adev, adev);
-+}
-+
- static int npcm_rc_probe(struct platform_device *pdev)
- {
- 	struct npcm_rc_data *rc;
-@@ -392,6 +458,7 @@ static int npcm_rc_probe(struct platform_device *pdev)
- 	rc->rcdev.of_node = pdev->dev.of_node;
- 	rc->rcdev.of_reset_n_cells = 2;
- 	rc->rcdev.of_xlate = npcm_reset_xlate;
-+	rc->dev = &pdev->dev;
- 
- 	ret = devm_reset_controller_register(&pdev->dev, &rc->rcdev);
- 	if (ret) {
-@@ -413,7 +480,12 @@ static int npcm_rc_probe(struct platform_device *pdev)
- 		}
- 	}
- 
--	return ret;
-+	switch (rc->info->bmc_id) {
-+	case BMC_NPCM8XX:
-+		return npcm8xx_clock_controller_register(rc, "clk-npcm8xx");
-+	default:
-+		return ret;
-+	}
- }
- 
- static struct platform_driver npcm_rc_driver = {
-diff --git a/include/soc/nuvoton/clock-npcm8xx.h b/include/soc/nuvoton/clock-npcm8xx.h
-new file mode 100755
-index 000000000000..139130e98c51
---- /dev/null
-+++ b/include/soc/nuvoton/clock-npcm8xx.h
-@@ -0,0 +1,16 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+#ifndef __SOC_NPCM8XX_CLOCK_H
-+#define __SOC_NPCM8XX_CLOCK_H
-+
-+#include <linux/auxiliary_bus.h>
-+#include <linux/container_of.h>
-+
-+struct npcm_clock_adev {
-+	void __iomem *base;
-+	struct auxiliary_device adev;
-+};
-+
-+#define to_npcm_clock_adev(_adev) \
-+	container_of((_adev), struct npcm_clock_adev, adev)
-+
-+#endif
--- 
-2.34.1
-
+bod
 
