@@ -1,128 +1,141 @@
-Return-Path: <devicetree+bounces-93911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93912-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC080952FEC
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 15:37:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7DEC953104
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 15:49:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 863E91F22568
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 13:37:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D4141F25FFB
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 13:49:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B040B1A2C19;
-	Thu, 15 Aug 2024 13:37:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4BE517BEA5;
+	Thu, 15 Aug 2024 13:49:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o2J1mX0Q"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="F4jASlBM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83DDC17C9B1;
-	Thu, 15 Aug 2024 13:37:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F95A14AD0A;
+	Thu, 15 Aug 2024 13:49:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723729033; cv=none; b=jDS2NwXA5oLJA0TCUQTevx9bTW7dyy2mnOzx0otqem/VDlLvty20AaYwKfvDQ4HhSk7rJisRRONmfIbVsPWJu84c0bP0x20VwZXDvlEAOVzViJQQh59KRh5ioM5Z7jV/Qc2mEBbQrGURQWAgqNM9dwLbMdNrxK5gvwvC3NBVigU=
+	t=1723729761; cv=none; b=jvUv1qAWU5nFMCJywKND/ENXzdGvS2k4QLJl1kh5AMyWoKqwqPe+Roma3HGoj9NU+2jH47XPPG/Cmt1vWCcAfhp8+0wIAex78YlrBTx6w7nS+q1bAdfZuqxBIJSdbja14ySszyqQ1awiwG7UJwbCDv7CDO3yKQpuoGHEPRhzqko=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723729033; c=relaxed/simple;
-	bh=ivC/ql9DARdAAo0IB7lg/JhsrAxajGb+vtXbPgNHmas=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=edJh9oiNmf44m4pyys+U8WZAsqNirT+ks2ien9HHBCdwy4k+PHO8+xsI8WQq5wCLcfCVoYfAsBkXKYaocLEcB7IV9S9Ju4CSSIztBqRrM1O1Y2q5ggwmJwyKvPeFrwSHCKjIg3ysGpNjI0drQSLeVj7wCLiSDnxoq531QyLG/9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o2J1mX0Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11039C32786;
-	Thu, 15 Aug 2024 13:37:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723729033;
-	bh=ivC/ql9DARdAAo0IB7lg/JhsrAxajGb+vtXbPgNHmas=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o2J1mX0QqPihWT1BGfkat5NUtQaSKe/MEFK7z1BE0Upu2oEvvgpbu6A/ap+tK+TlM
-	 WehdY6KkqcJjmrtAU4y0qxlF5KJsxAdDEf3nMz1enH1XaK1qNcGPIZsoWk08R+DVb/
-	 DrSm+uCmfD8rbeFmny+a7VSO39mP+t3UZMLTOi9p//9ApCPoXtlgeUXbwnCv4HO1na
-	 0aWhm0Za20AWmTeY+mcO0WTL3AmTlxKaX/GJIYqPl8tMktE2A95IIicauKjKTDhDd5
-	 vgiSuhZ7OLw/sGGG6n+W+egniW0nfLKD7y6aYXjW0IDdDhkY9YstJ7VaMp6egWnjkX
-	 dMjJcvziwy0XQ==
-Date: Thu, 15 Aug 2024 14:37:07 +0100
-From: Simon Horman <horms@kernel.org>
-To: Wei Fang <wei.fang@nxp.com>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, andrew@lunn.ch, f.fainelli@gmail.com,
-	hkallweit1@gmail.com, linux@armlinux.org.uk,
-	andrei.botila@oss.nxp.com, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 2/3] net: phy: tja11xx: replace
- "nxp,rmii-refclk-in" with "nxp,reverse-mode"
-Message-ID: <20240815133707.GC632411@kernel.org>
-References: <20240815055126.137437-1-wei.fang@nxp.com>
- <20240815055126.137437-3-wei.fang@nxp.com>
+	s=arc-20240116; t=1723729761; c=relaxed/simple;
+	bh=l29BpF0pE5dummAf4WWU6M7uDFZRtdSPnLLm2sEUcWU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=TkiLwTYe2gu+6ykav3kprwlq9N0qtaTvRcTFHRyk3/aOeM5xJgqveM/iiMwk6Xe+G+uXUNU+UKnbZFGBCHU1LZPReIeMvz+QZC4sINQPEBQrARPTk39hhfqX73emVU0mLyjlijPS/cqEJOwAjp1TW6bb0IMb5Tkx7tYNJneTVhI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=F4jASlBM; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=+qjUZXXQPxMbzidk2Un7iyE+5qXqgDIpBfTv+OoiY/8=; b=F4jASlBMHLJFuTxmhQmLd6CS/j
+	3NjADgAqcSl22SIIgqYqRERAsTyT5hfI646h0/71qZTNnWT3HHQYCe619+p8wQ/qvvvt+Txd2U1nd
+	5B35td3fAFveSUz3jGvEzysWWh9ge4i69J92C7NLB+/W0U5qlIF0Q0V/TcgjwaaLmUR+ButCPZ1Ag
+	Sq1Wg94yjFUZfJ6OjgQrSOo6iUdymNPO6HXlSZ26JSFPNhF+pw+dRpb9v6NWK10abrSpvcwaLp6TZ
+	7VWmshsSob2mvkEt2fG/cGq6H/Hc1glLWZ9CH2ZasXzmOm5lYwGMUYdvjXFKH+FPvNQRGekqRux4j
+	A/Un8Fbg==;
+Received: from i53875a9f.versanet.de ([83.135.90.159] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1seaqn-0003Br-7q; Thu, 15 Aug 2024 15:49:13 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: linux-kernel@vger.kernel.org,
+ Detlev Casanova <detlev.casanova@collabora.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jaehoon Chung <jh80.chung@samsung.com>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, kernel@collabora.com,
+ Detlev Casanova <detlev.casanova@collabora.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: mmc: Add support for rk3576 dw-mshc
+Date: Thu, 15 Aug 2024 15:49:12 +0200
+Message-ID: <5057223.82XvGhxQ46@diego>
+In-Reply-To: <20240814223555.3695-2-detlev.casanova@collabora.com>
+References:
+ <20240814223555.3695-1-detlev.casanova@collabora.com>
+ <20240814223555.3695-2-detlev.casanova@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240815055126.137437-3-wei.fang@nxp.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Thu, Aug 15, 2024 at 01:51:25PM +0800, Wei Fang wrote:
-> As the new property "nxp,reverse-mode" is added to instead of the
-> "nxp,rmii-refclk-in" property, so replace the "nxp,rmii-refclk-in"
-> property used in the driver with the "nxp,reverse-mode" property
-> and make slight modifications.
+Am Donnerstag, 15. August 2024, 00:34:00 CEST schrieb Detlev Casanova:
+> Add the compatible string for rockchip,rk3576-dw-mshc and add support
+> for the rockchip,v2-tuning flag, a new feature of this core.
 > 
-> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
 > ---
->  drivers/net/phy/nxp-tja11xx.c | 13 ++++++-------
->  1 file changed, 6 insertions(+), 7 deletions(-)
+>  Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/drivers/net/phy/nxp-tja11xx.c b/drivers/net/phy/nxp-tja11xx.c
-> index 2c263ae44b4f..a3721f91689b 100644
-> --- a/drivers/net/phy/nxp-tja11xx.c
-> +++ b/drivers/net/phy/nxp-tja11xx.c
-> @@ -78,8 +78,7 @@
->  #define MII_COMMCFG			27
->  #define MII_COMMCFG_AUTO_OP		BIT(15)
->  
-> -/* Configure REF_CLK as input in RMII mode */
-> -#define TJA110X_RMII_MODE_REFCLK_IN       BIT(0)
-> +#define TJA11XX_REVERSE_MODE		BIT(0)
->  
->  struct tja11xx_priv {
->  	char		*hwmon_name;
-> @@ -274,10 +273,10 @@ static int tja11xx_get_interface_mode(struct phy_device *phydev)
->  		mii_mode = MII_CFG1_REVMII_MODE;
->  		break;
->  	case PHY_INTERFACE_MODE_RMII:
-> -		if (priv->flags & TJA110X_RMII_MODE_REFCLK_IN)
-> -			mii_mode = MII_CFG1_RMII_MODE_REFCLK_IN;
-> -		else
-> +		if (priv->flags & TJA11XX_REVERSE_MODE)
->  			mii_mode = MII_CFG1_RMII_MODE_REFCLK_OUT;
-> +		else
-> +			mii_mode = MII_CFG1_RMII_MODE_REFCLK_IN;
->  		break;
->  	default:
->  		return -EINVAL;
-> @@ -517,8 +516,8 @@ static int tja11xx_parse_dt(struct phy_device *phydev)
->  	if (!IS_ENABLED(CONFIG_OF_MDIO))
->  		return 0;
->  
-> -	if (of_property_read_bool(node, "nxp,rmii-refclk-in"))
-> -		priv->flags |= TJA110X_RMII_MODE_REFCLK_IN;
+> diff --git a/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
+> index 211cd0b0bc5f3..0543cdb51c657 100644
+> --- a/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
+> @@ -39,6 +39,7 @@ properties:
+>                - rockchip,rk3368-dw-mshc
+>                - rockchip,rk3399-dw-mshc
+>                - rockchip,rk3568-dw-mshc
+> +              - rockchip,rk3576-dw-mshc
+>                - rockchip,rk3588-dw-mshc
+>                - rockchip,rv1108-dw-mshc
+>                - rockchip,rv1126-dw-mshc
 
-Hi,
+this would mark the rk3576-dw-mshc as being the "same" as the
+core rk3288 variant. rk3288 was the first controller introducing the
+clock tuning for higher speeds. with the clocks being part of the CRU.
 
-I am curious to know if there are any backwards compatibility
-issues to be considered in making this change.
+As we can see in later patches, this rk3576 though changes that
+setup with moving the tunable clock configurations into the controller
+itself.
 
-> +	if (of_property_read_bool(node, "nxp,reverse-mode"))
-> +		priv->flags |= TJA11XX_REVERSE_MODE;
->  
->  	return 0;
->  }
-> -- 
-> 2.34.1
-> 
-> 
+So please don't claim to be compatible to the 3288, but instead start
+a new block for this new set of controllers:
+
+
+  compatible:
+    oneOf:
+      # for Rockchip RK2928 and before RK3288
+      - const: rockchip,rk2928-dw-mshc
+      # for Rockchip RK3288
+      - const: rockchip,rk3288-dw-mshc
+      - items:
+          - enum:
+              - rockchip,px30-dw-mshc
+              - rockchip,rk1808-dw-mshc
+              - rockchip,rk3036-dw-mshc
+              - rockchip,rk3128-dw-mshc
+              - rockchip,rk3228-dw-mshc
+              - rockchip,rk3308-dw-mshc
+              - rockchip,rk3328-dw-mshc
+              - rockchip,rk3368-dw-mshc
+              - rockchip,rk3399-dw-mshc
+              - rockchip,rk3568-dw-mshc
+              - rockchip,rk3588-dw-mshc
+              - rockchip,rv1108-dw-mshc
+              - rockchip,rv1126-dw-mshc
+          - const: rockchip,rk3288-dw-mshc
++      # for Rockchip RK3576 with phase tuning inside the controller
++      - const: rockchip,rk3576-dw-mshc
+
+That way you can simplify the dt-parsing code too.
+
+
+Heiko
+
+
 
