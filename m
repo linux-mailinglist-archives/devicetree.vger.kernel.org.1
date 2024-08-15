@@ -1,212 +1,134 @@
-Return-Path: <devicetree+bounces-93905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70A5E952EF3
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 15:18:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 925E4952EFA
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 15:22:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 953721C23E53
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 13:18:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C603E1C230F3
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 13:22:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F0E519E7DB;
-	Thu, 15 Aug 2024 13:18:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DB0D17C984;
+	Thu, 15 Aug 2024 13:22:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Z8+1/vgq"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="DcfGVhQ3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 692EC15D5D9
-	for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 13:18:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723727909; cv=none; b=KRZUuCCJdFmNQbZRAiS+lKi6NPnWGmE6w1uHGK1JLS1nbilE7l/9HT6RGAjhtV6IsId7QzVE9+J1/RbWMJ5P00Hq0rG17tpxpvknLbSGeHccqTSuOOFTtajlzzhqDaGnxlbgOHxHS3ZyohurjVM30M3Eg1aJiuDEe4PYJYZZvRc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723727909; c=relaxed/simple;
-	bh=9QzxkGKPHGI6MZIx5pSqqR5HuH/5Fo/m92L6t1rw1yo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tr4i6JBlH9gN2kOUSuTHfFcgryPfAhTiI+E7/IsHipVzuk+3vtfa02bqmwDUDRO5QTZvojX3sCyBDixN9k42xmV+iFSVPfEcAraFEJIgvVNSWfyTigBfuYhD2w8yItgKAvoHSNOFEpHScgJAydJeVYMvBmE/+b+ackvZfXFkfYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Z8+1/vgq; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a8384008482so68874166b.2
-        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 06:18:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723727905; x=1724332705; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=6Pam5Ci+C4rFF08wOghK1K2f2OhCc/g5cnbX0w9Mc4I=;
-        b=Z8+1/vgq+SvqxoGZ3iOc7E5lNxrTdGmflBaEhrDtq8qrocBq9S751xBZ+J/oTqn90d
-         zTdGhDVCWNbNHQR7s8AJmwdwH87jJ0WUsdga2Gt0MoCpGkmoNz4jFJP9vAVJus1G6Hi9
-         kC71mWhk4l3PS15aFs53Eo23Tb5rKtVCknNlX36BU21e8Gy8Hukl7Co/pB4PQ9Tn2Xma
-         wJ0quQgzhfzs1V2urxGxrTcgsGCoYH7OL7YUdA7A5gTMg28b1LN0Fe2jkf/ZpWotjFLA
-         q41Ev1Uzhse7tBNa0+tUj2gQNoGYAhEWBETCCoM44M7cGkWcGLzfw/knTmjIiZscG8K4
-         UPsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723727905; x=1724332705;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6Pam5Ci+C4rFF08wOghK1K2f2OhCc/g5cnbX0w9Mc4I=;
-        b=nIKu2M7JkQZypN3OPil+wWAU9KCPjOovqf1Wu9dsxhEZK25P1MWbcCW+1D5ObKD7Y7
-         B5uQul1ok1qmsY5eQhPeEjhWk+00ye6fd2OXdSHJJrXKpGcts74DWR0vaM1V7dQhRa2I
-         ZReI6CdQhXacuZYT/i/ddUaAoZhQKGvLyjdsQFIK77o4chWjiVDaPIjPyO2pFwZeWsa8
-         6kmqpg5HuwxrNYb+qzPyrJXK+7OYiqTsUo83c+JUYMn/MwHLK9hzUh3oifuQUIvg/hDw
-         eOl1JIJHtH3DfQ6qishqGMa1yiW+fK1rwH8jmsIu7mmgSj5pgzTfQGUZX6hdUnzvSzhY
-         U/tw==
-X-Forwarded-Encrypted: i=1; AJvYcCWYpR9D2tr7xJ/GC0dmLYZbWuRnfv2JT8QrdoxYwEk6wNI6ZhVrfuRFGGdltTKQbIPkfyOU3jqFK2LGVxMg5fo6V1O4X9+dFbtOhg==
-X-Gm-Message-State: AOJu0Yxd14jSYgq/YHpSDKthB3AkDGxaMNxO0P/Yqw+e667iQ0HFsheW
-	C2pnZaX1z6IdQsIBeJeft8/1LThrRWzCMQrP92UfrSaUvZNOMJntm80DMYASDLg=
-X-Google-Smtp-Source: AGHT+IHM8+Udq7m54PDM2N1th3MFrrcrJsKXCwIA/ehjKz4VTI2MNH9h0V4lGOkyJ6MlTp8/EauXtw==
-X-Received: by 2002:a17:907:7e95:b0:a77:db36:1ccf with SMTP id a640c23a62f3a-a83670913a4mr460177666b.42.1723727904580;
-        Thu, 15 Aug 2024 06:18:24 -0700 (PDT)
-Received: from linaro.org ([82.79.186.176])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a838396cdbesm101056866b.200.2024.08.15.06.18.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Aug 2024 06:18:24 -0700 (PDT)
-Date: Thu, 15 Aug 2024 16:18:22 +0300
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Marcus Glocker <marcus@nazgul.ch>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Subject: Re: [PATCH v3 4/6] arm64: dts: qcom: Add UFS node
-Message-ID: <Zr4AHoPpAXJM6AC+@linaro.org>
-References: <v2iah5yrne4u6uzrnzg36tvtxzqrpiez6io2gyyfrht2x42umw@5ribqndiavxv>
- <ejeph4wspggkmvhl7qmpvw5jlojyvma7epqd67i6vk5p6fncrk@de56nvgi6vzi>
- <Zr3cuxv4EdxMQa9C@linaro.org>
- <kt5mrxse7dirsjgu3ldv4rzasgbmykluul7ie26zlavhlmfz4r@bo4fd4ybt7bx>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C5DF1E521;
+	Thu, 15 Aug 2024 13:22:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723728159; cv=pass; b=CAqljBHR6b2a5Rq09swRKS0aSRB6ctwQxKSvUFpvGJlxt+/Y3ByjVxAKxiTgfucZ77tXj6AeBdARSJ/MbgX/YU/R267kpnp0H7qb7MHj5XUUYv18wa6l2tvofw2z0Cn6TrbdK8QY+q+H83r7LDlR90ubN8Ck99/co0m4j1NCE6g=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723728159; c=relaxed/simple;
+	bh=Am6Um6GarnKWNvcoMt+2lU97JRuYlvLwxAb0jhKGrmY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=jMNQM0k/q7+kXcLTGPsS7hEIeMmTbwKP/jYRD1T2tAVcwHBPEwj5sZTShY1q5J/KQ3n/nvRTE9gSEagL8G/iAc79yAnkSIe7oPI+qZF3cN44GzDFSb0loQWQr+6bHc5zaCMy0wl/pcagJskkf4IG4hT6yqcj0MU85VvM1eZq/Co=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=DcfGVhQ3; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Delivered-To: kernel@collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1723728133; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=F+f+/m+3yoalyK2PJzkFo+Tupgp9cPh4Tjb5I8Bo0B6JwGSNH+RspfAWYBAghyJaMwqpBfsB4CnaGXyBqoxqnDA/CThDVeVg+N3jpbQVUeLCUEGFAhuylTw4CXyyu41AT5PyLxxM6mHCL05d/8DAPfVdEd45nI3x06XdYoTk+kg=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1723728133; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=3jD5WsZNkgzCPHbwdRHU3z7HY4AhHudi/075H3onC+g=; 
+	b=d5pNEIS5M++TnFvZssINEBI2Pz69a8A2BJ374wxLHQMc662ocw1uH38KUAktY/pp2aWSEj3LvtaqCOn7vPTvth5uS7XoMtvscJT6JMVvuiKL/20BxLOTWR7K5Rlx9pxJULjDBPeLPKwghq7tOswavlAPBx6MEtDg0ZXU1NuE1AQ=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
+	dmarc=pass header.from=<detlev.casanova@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1723728133;
+	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=3jD5WsZNkgzCPHbwdRHU3z7HY4AhHudi/075H3onC+g=;
+	b=DcfGVhQ3UnLTLR5cZ/XXIxZUpgSGP0lCd/ysHHzVPav0BueYScAUr7i3Z6d8ekh/
+	6znr1w2Xwj3l+aAyO9IKfWTO7REENho7qdz5Af/GKWDohudjhr+c+pdxtLdqv3dB7FL
+	mCndEleBPQAQUdaG3ZwYigYbNwrJHmDaDqEk0Es0=
+Received: by mx.zohomail.com with SMTPS id 1723728131107663.2447060327355;
+	Thu, 15 Aug 2024 06:22:11 -0700 (PDT)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: linux-kernel@vger.kernel.org, Shawn Lin <shawn.lin@rock-chips.com>
+Cc: shawn.lin@rock-chips.com, Ulf Hansson <ulf.hansson@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Jaehoon Chung <jh80.chung@samsung.com>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v3 2/3] mmc: dw_mmc-rockchip: Add v2 tuning support
+Date: Thu, 15 Aug 2024 09:23:40 -0400
+Message-ID: <2742918.mvXUDI8C0e@trenzalore>
+In-Reply-To: <5dc82aa2-82a0-4778-b598-88775d5f791c@rock-chips.com>
+References:
+ <20240814223555.3695-1-detlev.casanova@collabora.com>
+ <20240814223555.3695-3-detlev.casanova@collabora.com>
+ <5dc82aa2-82a0-4778-b598-88775d5f791c@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <kt5mrxse7dirsjgu3ldv4rzasgbmykluul7ie26zlavhlmfz4r@bo4fd4ybt7bx>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-ZohoMailClient: External
 
-On 24-08-15 13:54:01, Marcus Glocker wrote:
-> On Thu, Aug 15, 2024 at 01:47:23PM +0300, Abel Vesa wrote:
-> 
-> > On 24-08-15 12:42:29, Marcus Glocker wrote:
-> > > Add the UFS Host Controller node.  This was basically copied from the
-> > > arch/arm64/boot/dts/qcom/sc7180.dtsi file.
-> > > 
-> > > Signed-off-by: Marcus Glocker <marcus@nazgul.ch>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 71 ++++++++++++++++++++++++++
-> > >  1 file changed, 71 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > > index 7bca5fcd7d52..235e20e4b51f 100644
-> > > --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > > @@ -2878,6 +2878,77 @@ mmss_noc: interconnect@1780000 {
-> > >  			#interconnect-cells = <2>;
-> > >  		};
-> > >  
-> > > +		ufs_mem_hc: ufs@1d84000 {
-> > > +			compatible = "qcom,x1e80100-ufshc", "qcom,ufshc",
-> > > +				     "jedec,ufs-2.0";
-> > > +			reg = <0 0x01d84000 0 0x3000>;
-> > > +			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
-> > > +			phys = <&ufs_mem_phy>;
-> > > +			phy-names = "ufsphy";
-> > > +			lanes-per-direction = <1>;
-> > > +			#reset-cells = <1>;
-> > > +			resets = <&gcc GCC_UFS_PHY_BCR>;
-> > > +			reset-names = "rst";
-> > > +
-> > > +			power-domains = <&gcc GCC_UFS_PHY_GDSC>;
-> > > +
-> > > +			iommus = <&apps_smmu 0xa0 0x0>;
-> > > +
-> > > +			clock-names = "core_clk",
-> > > +				      "bus_aggr_clk",
-> > > +				      "iface_clk",
-> > > +				      "core_clk_unipro",
-> > > +				      "ref_clk",
-> > > +				      "tx_lane0_sync_clk",
-> > > +				      "rx_lane0_sync_clk";
-> > > +			clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
-> > > +				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
-> > > +				 <&gcc GCC_UFS_PHY_AHB_CLK>,
-> > > +				 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
-> > > +				 <&rpmhcc RPMH_CXO_CLK>,
-> > > +				 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
-> > > +				 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>;
-> > > +			freq-table-hz = <50000000 200000000>,
-> > > +					<0 0>,
-> > > +					<0 0>,
-> > > +					<37500000 150000000>,
-> > > +					<0 0>,
-> > > +					<0 0>,
-> > > +					<0 0>;
-> > > +
-> > > +			interconnects = <&aggre1_noc MASTER_UFS_MEM QCOM_ICC_TAG_ALWAYS
-> > > +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-> > > +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-> > > +					 &config_noc SLAVE_UFS_MEM_CFG QCOM_ICC_TAG_ALWAYS>;
-> > > +			interconnect-names = "ufs-ddr", "cpu-ufs";
-> > > +
-> > > +			qcom,ice = <&ice>;
-> > > +
-> > > +			status = "disabled";
-> > > +		};
-> > > +
-> > > +		ufs_mem_phy: phy@1d87000 {
-> > > +			compatible = "qcom,x1e80100-qmp-ufs-phy";
-> > 
-> > Can't find any phy patch that adds this compatible to the driver.
-> 
-> That might well be, since this is pretty new hardware.  But the goal
-> of this submission is only to describe the hardware, not to add
-> immediate support to the OS drivers.  Whether the drivers will make use
-> of it, is a different story, and up to the people who maintain the
-> respective drivers.
-> 
-> Getting the right DTB in, at least opens the possibility to continue
-> development in the driver area to further support this new hardware.
-> 
-> But I won't touch your drivers, not my goal.
+On Wednesday, 14 August 2024 20:55:37 EDT Shawn Lin wrote:
+> Hi Detlev
+>=20
+> =E5=9C=A8 2024/8/15 6:34, Detlev Casanova =E5=86=99=E9=81=93:
+> > From: Shawn Lin <shawn.lin@rock-chips.com>
+> >=20
+> > v2 tuning will inherit pre-stage loader's phase settings for the first
+> > time, and do re-tune if necessary.
+> > Re-tune will still try the rough degrees, for instance, 90, 180, 270,
+> > 360 but continue to do the fine tuning if sample window isn't good
+> > enough.
+> >=20
+> > Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> > ---
+> >=20
+> >   drivers/mmc/host/dw_mmc-rockchip.c | 49 ++++++++++++++++++++++++++++++
+> >   1 file changed, 49 insertions(+)
+> >=20
+> > diff --git a/drivers/mmc/host/dw_mmc-rockchip.c
+> > b/drivers/mmc/host/dw_mmc-rockchip.c index b07190ba4b7ac..367633f4e8892
+> > 100644
+> > --- a/drivers/mmc/host/dw_mmc-rockchip.c
+> > +++ b/drivers/mmc/host/dw_mmc-rockchip.c
 
-Presumably, you do have the UFS working on your Book4 laptop, right?
+[...]
 
-If so, I would expect you do have the PHY working as well and therefore
-a patch that adds the X Elite compatible, right?
+> >   	=09
+> >   		priv->default_sample_phase =3D 0;
+> >=20
+> > +	priv->use_v2_tuning =3D
+> > +		of_device_is_compatible(host->dev->of_node,
+> > +					"rockchip,rk3576-dw-
+mshc");
+> > +
+>=20
+> v2 is a kind of software decision instead of hardware dependency.
+> So in theory, any SoC can claim to use it via DT.
 
-> 
-> > > +			reg = <0 0x01d87000 0 0x1000>;
-> > > +			clocks = <&rpmhcc RPMH_CXO_CLK>,
-> > > +				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>;
-> > > +			clock-names = "ref",
-> > > +				      "ref_aux",
-> > > +				      "qref";
-> > > +			power-domains = <&gcc GCC_UFS_PHY_GDSC>;
-> > > +			resets = <&ufs_mem_hc 0>;
-> > > +			reset-names = "ufsphy";
-> > > +			#phy-cells = <0>;
-> > > +			status = "disabled";
-> > > +		};
-> > > +
-> > > +		ice: crypto@1d90000 {
-> > > +			compatible = "qcom,x1e80100-inline-crypto-engine",
-> > > +				     "qcom,inline-crypto-engine";
-> > > +			reg = <0 0x01d90000 0 0x8000>;
-> > > +			clocks = <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
-> > > +		};
-> > > +
-> > >  		pcie6a: pci@1bf8000 {
-> > >  			device_type = "pci";
-> > >  			compatible = "qcom,pcie-x1e80100";
-> > > -- 
-> > > 2.39.2
-> > > 
+Yes but from my tests, only rk3576 won't work without it. So it makes sense=
+ to=20
+only use v2 for this SoC (and other future ones not supported yet)
+
+>=20
+> >   	priv->drv_clk =3D devm_clk_get(host->dev, "ciu-drive");
+> >   	if (IS_ERR(priv->drv_clk))
+> >   =09
+> >   		dev_dbg(host->dev, "ciu-drive not available\n");
+
+
+Detlev.
+
+
 
