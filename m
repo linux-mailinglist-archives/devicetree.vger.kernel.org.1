@@ -1,603 +1,211 @@
-Return-Path: <devicetree+bounces-93998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CC4B9538D4
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 19:15:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BE0D953A8D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 21:07:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91158282B49
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 17:15:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E97781F24E82
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 19:07:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19CA9433D2;
-	Thu, 15 Aug 2024 17:15:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E43678C73;
+	Thu, 15 Aug 2024 19:06:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9177924211;
-	Thu, 15 Aug 2024 17:15:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723742117; cv=none; b=enm+mBYahum1QXeRI6G9f8mATFUTiLnE37q60gSz1QgOJ9O4/jq0JWfSfayOs9gDpnFaslXpl8GelfM8P++ZgQuYHtHRoWq52pa+Ui7a6IuMGzu4zFFuICKdsVdne4em2nxyAHuXwqAsYLWJT1IAFdKw2GkZvjaZSggHLOLl9bI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723742117; c=relaxed/simple;
-	bh=+DaSHYTLdnX2FNUtkjGkSi+7M4tTcDVZY7eAo6CSZQI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bqHmww41oqkrKFY3gD7MKfPWebRQ/DNOONZDysKVhJj3I3soE6L48ny9OLW/mtC2vqwIQVZvAlKq8MrBdTL99pXJqanJEobNhN+Yzmnz3UYoZb98RlorS5KOce3KaJbfyHFnDjM1pcJWSFL/KFpLT+r9O7d7/rgKjhA6f+Kg64c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E42F914BF;
-	Thu, 15 Aug 2024 10:15:38 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7B9663F58B;
-	Thu, 15 Aug 2024 10:15:11 -0700 (PDT)
-Date: Thu, 15 Aug 2024 18:15:08 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: wens@csie.org, linux-sunxi@lists.linux.dev, jernej.skrabec@gmail.com,
- samuel@sholland.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: allwinner: a64: Move CPU OPPs to the SoC
- dtsi file
-Message-ID: <20240815181508.6800e205@donnerap.manchester.arm.com>
-In-Reply-To: <21d6e75bc33ef2b7f27932fee1b8de05@manjaro.org>
-References: <92ebc9cba6eb669df73efd478e4f5745056a4ce5.1723614345.git.dsimic@manjaro.org>
-	<CAGb2v678Z8TMKZmBmmd5hW9XBdKw9KD+JgrsMm5e8sSoYOq3wA@mail.gmail.com>
-	<21d6e75bc33ef2b7f27932fee1b8de05@manjaro.org>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2125.outbound.protection.partner.outlook.cn [139.219.146.125])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF1967E110;
+	Thu, 15 Aug 2024 19:06:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.125
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723748819; cv=fail; b=qwA23pCf9kOx9WV+xYy7kKLD6nodcV/ZaszZW2kR+nJ4Qombrfbu7FX1xrnnEXVaR0SfamsCUDoVUw7QUmg5CnBXvaEXo7IscOfmVaMQF/kuff3uthe4GVnAdirGTLYijx0UzmEVnFdWAU17tkHnL/B3RwNoUrH2gu6kngWxNiQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723748819; c=relaxed/simple;
+	bh=qDo5SrZ/4pywN3nG4oxF3giT4t7+xTbQGbK4wFKcEBI=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=YGPqh+7ueAdbxnPr6gNYh8AvG7KtPTO5Rh1ABOM5LuY5N607IZ5aOdUrrV/HwQEkAJukNbOvFQL6fkv4RdxHJCTPA2oC/ZxCudEckFHPKrOveXci+ECjUVbzgO9Zt/lty3z1dsmOXlpEFTFRvWHOL5YNObg2+nnAxD245R/Hch0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.125
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=K3H9ascx/5pCw72JXZDtDzE8iGGh8zoPgS1cE1mKQkeYwKG1FbLdzrCSSH4vYEHVlybjHiTX9ZVnL78DVRd3baBlqb55wwzUdEKkY7zQefI4Y7tX86rgb6x5ZiXBis29l+AymExhCFXCIR37vRnqTDNLEYZU50LLwX/irZr7k+yOCMH8zmljkWN4ITXgPaJD3bXdTH8j80TDk39lwp77T/Y1l+qiFs8PHmX7CduLf2xM+e3vP469GU1VN9/3Pl+b0/8rot8qFktVyC2jP53e1x9CsC5LvrXLzWekHcNOuVL/GCvslyez6AHnzzJeuZmA7msL632eJ7B32wSX+d/RQQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qDo5SrZ/4pywN3nG4oxF3giT4t7+xTbQGbK4wFKcEBI=;
+ b=I3ScJNOdHxbNvrOV9Loou043SdY7SRBdz2wByAW4CSQWULQv6jwWx8FyqomQbwNJdqyP5vDsYFeoHVrJC5bh10pb9tErtg+dtJkqrZqwdkVX4bqn+y3ScdrR5ejaV/dH2Xe2/NBjxDlWGMkjrUjxh2GN6NpbaOux14wTLdQ8l8lGah2ppoJd1MGWe3D1v3bEiq7/7IxARjeUgj2HxbZFXhKltEpY0/smQJjieQK/c691iZ/RnMmG2SqTv2lqYEhqtCyKR4C+lEqU/ycU/z7lix4yBijoMqP4hdV4CuOgir3LE8DOllpCQcqpqYqecRO9Yx45UFgH0y++B9rU6A0kmg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:25::15) by SHXPR01MB0864.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:24::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7828.33; Thu, 15 Aug
+ 2024 10:33:55 +0000
+Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
+ ([fe80::9c31:a452:dc3b:7273]) by
+ SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn ([fe80::9c31:a452:dc3b:7273%3])
+ with mapi id 15.20.7828.031; Thu, 15 Aug 2024 10:33:55 +0000
+From: Minda Chen <minda.chen@starfivetech.com>
+To: Conor Dooley <conor.dooley@microchip.com>, Jan Kiszka
+	<jan.kiszka@siemens.com>
+CC: Conor Dooley <conor@kernel.org>, Vinod Koul <vkoul@kernel.org>, Kishon
+ Vijay Abraham I <kishon@kernel.org>, "linux-phy@lists.infradead.org"
+	<linux-phy@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-riscv@lists.infradead.org"
+	<linux-riscv@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, Dan Carpenter <dan.carpenter@linaro.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>
+Subject:
+ =?gb2312?B?u9i4tDogW1BBVENIIHYyIDEvM10gZHQtYmluZGluZ3M6IHBoeTogamg3MTEw?=
+ =?gb2312?Q?-usb-phy:_Add_sys-syscon_property?=
+Thread-Topic: [PATCH v2 1/3] dt-bindings: phy: jh7110-usb-phy: Add sys-syscon
+ property
+Thread-Index: AQHa7MIqi3fKeaFdgUCkV8gwHQ6DdLIjxqIAgADkCwCAACqYgIADTTAQ
+Date: Thu, 15 Aug 2024 10:33:55 +0000
+Message-ID:
+ <SHXPR01MB08633B523DA1F6C5632F6D9DE6802@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
+References: <cover.1723472153.git.jan.kiszka@siemens.com>
+ <30f3ca9f6bd788e16767b36aa22c0e9dc4d1c6a4.1723472153.git.jan.kiszka@siemens.com>
+ <20240812-overstuff-skirt-7a8aabbcdc6f@spud>
+ <8cdba8b0-7364-4c09-b18a-f3f59da1eae2@siemens.com>
+ <20240813-haiku-pusher-f2fb037a2f49@wendy>
+In-Reply-To: <20240813-haiku-pusher-f2fb037a2f49@wendy>
+Accept-Language: en-US
+Content-Language: zh-CN
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SHXPR01MB0863:EE_|SHXPR01MB0864:EE_
+x-ms-office365-filtering-correlation-id: 43711e8d-88d4-4375-dc59-08dcbd15c372
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|7416014|41320700013|366016|38070700018;
+x-microsoft-antispam-message-info:
+ dzGRQBuEJVAahcmvEqPP4Q/1N7+J64hmgyPaf5P492i7veJDiJt4EFJTOQvZBzBRnu0jPIQUEqjcTZmT9fLuM8Nj0m1I1ifHQYr+Yh3tfT9FBxfeDPv9gX5mWe29mrQ9qBw8PPnxtvw0ruTHk3RCRB/Qimy0g4AGAMSMQLIE8/g1gDsSvG+n65Dt2tpxfs4WIAaNxi/w4CEIjJwBKX98tJzOka5MReGiHbgISwThjuPf4mWPEPe8NfgYz1BR9Thx2RkBZ0DhVsixNMnZ+I0KdOb8S92b+97mHJH1KDrTxLKhcTKP0MvvwsgDUkngtDQEbBqzJ3mcFEqFZBeAB5s6mg7QFu93ZFG0Kcn5lRyVJLnJGxAy7SHw6V269lzAzNAqwAf2rgPoRd/0GFtqqyiR9i6jP4PSwsdFisALcJp0AiUoCrrPLQmBGOd8tG7VgQyLJleZYeAg2Ni4cEsfJbgR5kv6BZq4WZfTtEP7NxBqwe2NbTAtOk8eDE8Ds3slOEq9LQ75QTpDYKbEO8tffgeSWMRuhisvXOZyINiL1wkFdnB24xMgfSjsnbyXbG70LqLPRuZY/c2nn3W11Ci1gJ/rIQgaO5TemBH90rYaXaqFrpVFEqS/EyFveM2OPzKXLO6i
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(41320700013)(366016)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?gb2312?B?WndoaExqcks3bjR0L205alF5WlJIWjRBbXF3b0g0Q3FvU2pRdk1RQSt5OTZY?=
+ =?gb2312?B?OVFxVUtEd2E3LzBDV0NBbWVob1pqa1p0Y1VCVENnT2Y5K24yT1V1MWhvbUdw?=
+ =?gb2312?B?dGx0aWc1aG5OMWF1SG9zTUMyV25qUnhLdUZXRmtmRkx0YVFRb0pnL1VJY3A1?=
+ =?gb2312?B?NmV4dzRDMkRwemJMZmhwTmoxMEhvQXBTUGxiTzVocmVFL3YrL3Q5aUtGcTJF?=
+ =?gb2312?B?MUpJNnZkOUcwUkRSTHhmTWJvQnI1a29Xb2p3UVZqTWlvcExPb29VQlk3R0pX?=
+ =?gb2312?B?ZkRNZ1dXeldqSHgyaXRPS3BFOTc5dmM0Q1RuY0s4SE1CR2hyN1NhY0lPVVFr?=
+ =?gb2312?B?ZVFSSjZvQzlzaGkrRERCMmN5VjNLejBtMUV3NktONmIxTnlLcjQyc3NKdHNQ?=
+ =?gb2312?B?WG5oZ2NSclZlVUM2aUtRbjI1cnBTQmZiUmQvbFlndEhQVzJrSlVrVm1IZEMz?=
+ =?gb2312?B?UnhnR1JQTXlPaExXS3Jyd2pQS0s0a05YWnZWYng0WUxXa2hxdkpNcFZ4Y0dM?=
+ =?gb2312?B?UnU2bVNBT09GTHdjQVpFaXVPbTFsTEpEMzRhNStibTNQbEF2dXZQd2l3SXRK?=
+ =?gb2312?B?VHczc2s4UGNaVGtwQTREQVIvaERRWmwyb2ZwZ29EU0R1SUdyVVl3VGRDQUt4?=
+ =?gb2312?B?dE9ESk1UcXZDeTRqUlR6M2YyMzlUeC9vN1llUDhiai96NWNkd21aZDN6Rng2?=
+ =?gb2312?B?TC94YXlFQjNuUzJ4RkNEWWJqdUltQ1pVS2hQYnBTcWVKVFRmSGc3Y0JEVTll?=
+ =?gb2312?B?SkVWdHNaUFZvc1QzcW5rNlpCSndEamNmRHBwOHBVdGlDS1JKRnRwMzJnVXhj?=
+ =?gb2312?B?T3hEd01Xc0hLTW5TL0tDRlVwNk0rNDMyTk1iM2ZhWnprU0x3K0NMaThXdXdZ?=
+ =?gb2312?B?TEhpdS94NWVaWjhuS2t0MnBZOXc0YkxSSHNSOGlhZjNkbDViSkhrK3NZSUtF?=
+ =?gb2312?B?T2tCb3JPVzhBOWVZQTJkSkJJU3JsRkdFUzljbTBsdUpzTFVHS2hESVplVlRT?=
+ =?gb2312?B?QVFhSHNHT3hQam1CWTZDS2FTOEtpR2FrZGk5SkQ1OXAvSi9TMVl0WHA3VTly?=
+ =?gb2312?B?bVh1WDk3NjNldm45N3RUSGFRaVN0enp5OUh4aUlaMmNVQ1Q2QzdxbHk2TzZZ?=
+ =?gb2312?B?eXJuTmJTRmpXU0RPYld1Ny9mRFdtaXZCdGh2aEpYcFoyZWdGem1tTTVBL3Zy?=
+ =?gb2312?B?OVpMUldSZU55OU1CdXhjM1NzdFZjRXpVaTBZVW5RMDlpSWV5dkdxL2liMlMz?=
+ =?gb2312?B?cGNjTUg0aTNRamJpR092RXZqZnJQZDlsZW1OdnFMdHFXR2MrSTNmNUszZk1h?=
+ =?gb2312?B?NjRGMGc1WjJWREJJQ0JVUXp1ZU5EV0p6M3JmL2NaZmkwS1REb1YxZ2FFUHht?=
+ =?gb2312?B?ZjI4cFc0VzNLSDRQcm96WHN3cWxHL01DWGpvckVrRHltbTVYWk1EUytEcXd2?=
+ =?gb2312?B?MDVBMmJHSjI0N2Y2Q3QydU9taUwvd2JpT1BCbmhxOUpIUkhmekh4ajk3TC81?=
+ =?gb2312?B?cWg5TjhueWpKTXRvQk9iQmRxbUwxOVhmRDdHdGxiU1RtUmlEWUlyR0V1Z2FF?=
+ =?gb2312?B?N3IrTEd4K0ozdkFYUytielV3SHRGM2JVNzVwVitlOEFmdzE4a3pTejdRQ2Ew?=
+ =?gb2312?B?Sk5qaDlOUlc4UVJQTjlYenJtVHRnUTQ0VXJXMXZ0Q2hyUnRpMkRsL0xtVWdp?=
+ =?gb2312?B?aWt2NFdCZzNkZi9UVGJYZVNtNm5qcHNiNkNtQWVmRVFXckkyWDNpckVyWGJU?=
+ =?gb2312?B?YnlsQzFhTGcvRDhrZ1pBV1pTd3N4YXhVRVl6RjFJVm5kSVhDL1owMlBVcjFy?=
+ =?gb2312?B?TjdxY3hOc2l3ODYwNDBNS0RUMHl6cEdYbnNBOGxlOHVsMmkwTERwZitzL1Bo?=
+ =?gb2312?B?UU00R1RrNnZnVDR4QjdyeC8wNVZvTHduK1JWSFAyY1hVa1ovb2FRSTJyNXho?=
+ =?gb2312?B?QUNaWDVWVWRWeGZDQi93NnlHMUZVbEVvUDFKMkluRnA1RU9yL2NJL3ZhaWxj?=
+ =?gb2312?B?M2JBSlcya1BmZTBEQVpOWnJSLzUrcGdqb3NFRWJQQzZLRFQxcFAwQk1OaVF0?=
+ =?gb2312?B?L0I5VUJnQWhvdkkvbmwyakYvNHUwWDNpYnE5V2VRN21qajNkTzZySGlabmo1?=
+ =?gb2312?Q?fBdA=3D?=
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: 43711e8d-88d4-4375-dc59-08dcbd15c372
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Aug 2024 10:33:55.0446
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Z7spdvmdBOS/xtX5gV4jzZ4sZd3HSNm9HIVo2vLBvkj2fkw5UKsgJsyXfAhW4GQnnKEFaHqrG8h/fhrDl2b+X1gSw5+G9oiqBYJwmkJT/s0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SHXPR01MB0864
 
-On Thu, 15 Aug 2024 18:34:58 +0200
-Dragan Simic <dsimic@manjaro.org> wrote:
-
-Hi,
-
-> On 2024-08-14 18:11, Chen-Yu Tsai wrote:
-> > On Wed, Aug 14, 2024 at 1:52=E2=80=AFPM Dragan Simic <dsimic@manjaro.or=
-g>=20
-> > wrote: =20
-> >>=20
-> >> Move the Allwinner A64 CPU OPPs to the A64 SoC dtsi file and,=20
-> >> consequently,
-> >> adjust the contents of the affected board dts(i) files appropriately,=
-=20
-> >> to
-> >> "encapsulate" the CPU OPPs into the SoC dtsi file.
-> >>=20
-> >> Moving the CPU OPPs to the SoC dtsi file, instead of requiring the=20
-> >> board
-> >> dts(i) files to include both the SoC dtsi file and the CPU OPP dtsi=20
-> >> file,
-> >> reduces the possibility for incomplete SoC data inclusion and improves=
-=20
-> >> the
-> >> overall hierarchical representation of data.  Moreover, the CPU OPPs=20
-> >> are
-> >> not used anywhere but together with the SoC dtsi file, which=20
-> >> additionally
-> >> justifies the folding of the CPU OPPs into the SoC dtsi file.
-> >>=20
-> >> No functional changes are introduced, which was validated by=20
-> >> decompiling and
-> >> comparing all affected board dtb files before and after these changes.=
-=20
-> >>  When
-> >> compared with the decompiled original dtb files, the updated dtb files=
-=20
-> >> have
-> >> some of their blocks shuffled around a bit and some of their phandles=
-=20
-> >> have
-> >> different values, as a result of the changes to the order in which the
-> >> building blocks from the parent dtsi files are included into them, but=
-=20
-> >> they
-> >> still effectively remain the same as the originals. =20
-> >=20
-> > IIRC, this was a conscious decision requiring board dts files to set=20
-> > their
-> > CPU supply before OPPs are given. The bootloader does not boot the SoC
-> > at the highest possible OPP / regulator voltage, so if the OPPs are=20
-> > given
-> > but the supply is not, the kernel will attempt to raise the frequency
-> > beyond what the current voltage can supply, causing it to hang.
-
-Yes, this is what I remember as well: this forces boards to opt in to
-DVFS, otherwise they get a fixed 816 MHz. Since there is only one OPP
-table for all boards with that SoC, I think it's reasonable to ask for
-this, since the cooling could not be adequate for higher frequencies in
-the first place, or the power supply is not up to par.
-
-> > Now that all existing boards have it properly enabled, there should be=
-=20
-> > no
-> > need for this. However I would appreciate a second opinion. =20
-
-Well, since there is no way to opt *out* now, I am somewhat reluctant to
-just have this. What is the actual problem we are solving here? After all
-there is just one OPP table for all A64 boards, so there is less confusion
-about what to include in each board file. Which IIUC is a more complicated
-situation on the Rockchip side.
-
-I still have to try "operating-points-v2", but at least on the H616 side
-putting a 'status =3D "disabled";' into the OPP node didn't prevent it from
-probing. Otherwise this would have been a nice compromise, I think.
-
-> Good point, thanks for the clarification.  This is quite similar to how
-> board dts(i) files for Rockchip SoCs need to enable the SoC's built-in
-> TSADC for temperature sensing, before the CPU thermal throttling can
-> actually work and prevent the SoC from overheating, etc.
->=20
-> The consensus for Rockchip boards is that it's up to the authors and
-> reviewers of the board dts(i) files to make sure that the built-in TSADC
-> is enabled, etc.  With that approach in mind, and knowing that all=20
-> Allwinner
-> A64 board dts(i) files are in good shape when it comes to the associated
-> voltage regulators, I think it's fine to follow the same approach of
-> "encapsulating" the CPU OPPs into the A64 SoC dtsi file.
-
-As mentioned above, I am not so sure about this. With this patch here,
-*every* board gets DVFS. And while this seems to be fine when looking at
-the current DTs in the tree (which have it anyway), it creates a
-potentially dangerous situation for new boards.
-
-So pragmatically speaking, this patch would be fine, but it leaves me a
-bit uneasy about future or downstream boards.
-
-Cheers,
-Andre
-
-> >> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
-> >> ---
-> >>=20
-> >> Notes:
-> >>     These changes follow the general approach used for the Rockchip=20
-> >> RK3588
-> >>     and RK3399 SoCs, which was introduced and described further in=20
-> >> commits
-> >>     def88eb4d836 ("arm64: dts: rockchip: Prepare RK3588 SoC dtsi files=
-=20
-> >> for
-> >>     per-variant OPPs") [1] and 296602b8e5f7 ("arm64: dts: rockchip:=20
-> >> Move
-> >>     RK3399 OPPs to dtsi files for SoC variants"), [2] respectively. =20
-> >> Please
-> >>     see those commits for a more detailed explanation.
-> >>=20
-> >>     [1]=20
-> >> https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.g=
-it/commit/?h=3Dfor-next&id=3Ddef88eb4d8365a4aa064d28405d03550a9d0a3be
-> >>     [2]=20
-> >> https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.g=
-it/commit/?h=3Dfor-next&id=3D296602b8e5f715d6a0ccdcd37d57170c2c81d5e4
-> >>=20
-> >>  .../allwinner/sun50i-a64-amarula-relic.dts    |  2 -
-> >>  .../dts/allwinner/sun50i-a64-bananapi-m64.dts |  2 -
-> >>  .../dts/allwinner/sun50i-a64-cpu-opp.dtsi     | 75=20
-> >> -------------------
-> >>  .../dts/allwinner/sun50i-a64-nanopi-a64.dts   |  2 -
-> >>  .../dts/allwinner/sun50i-a64-olinuxino.dts    |  2 -
-> >>  .../dts/allwinner/sun50i-a64-orangepi-win.dts |  2 -
-> >>  .../boot/dts/allwinner/sun50i-a64-pine64.dts  |  2 -
-> >>  .../dts/allwinner/sun50i-a64-pinebook.dts     |  2 -
-> >>  .../dts/allwinner/sun50i-a64-pinephone.dtsi   |  2 -
-> >>  .../boot/dts/allwinner/sun50i-a64-pinetab.dts |  2 -
-> >>  .../boot/dts/allwinner/sun50i-a64-sopine.dtsi |  2 -
-> >>  .../boot/dts/allwinner/sun50i-a64-teres-i.dts |  2 -
-> >>  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 66 +++++++++++++++-
-> >>  .../allwinner/sun50i-h64-remix-mini-pc.dts    |  2 -
-> >>  14 files changed, 63 insertions(+), 102 deletions(-)
-> >>  delete mode 100644=20
-> >> arch/arm64/boot/dts/allwinner/sun50i-a64-cpu-opp.dtsi
-> >>=20
-> >> diff --git=20
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-a64-amarula-relic.dts=20
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-a64-amarula-relic.dts
-> >> index 8233582f6288..1590a455683f 100644
-> >> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-amarula-relic.dts
-> >> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-amarula-relic.dts
-> >> @@ -5,8 +5,6 @@
-> >>  /dts-v1/;
-> >>=20
-> >>  #include "sun50i-a64.dtsi"
-> >> -#include "sun50i-a64-cpu-opp.dtsi"
-> >> -
-> >>  #include <dt-bindings/gpio/gpio.h>
-> >>=20
-> >>  / {
-> >> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts=
-=20
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts
-> >> index d1f415acd7b5..869fd4a50582 100644
-> >> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts
-> >> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts
-> >> @@ -4,8 +4,6 @@
-> >>  /dts-v1/;
-> >>=20
-> >>  #include "sun50i-a64.dtsi"
-> >> -#include "sun50i-a64-cpu-opp.dtsi"
-> >> -
-> >>  #include <dt-bindings/gpio/gpio.h>
-> >>=20
-> >>  / {
-> >> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-cpu-opp.dtsi=20
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-a64-cpu-opp.dtsi
-> >> deleted file mode 100644
-> >> index e39db51eb448..000000000000
-> >> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-cpu-opp.dtsi
-> >> +++ /dev/null
-> >> @@ -1,75 +0,0 @@
-> >> -// SPDX-License-Identifier: GPL-2.0
-> >> -/*
-> >> - * Copyright (C) 2020 Vasily khoruzhick <anarsoul@gmail.com>
-> >> - */
-> >> -
-> >> -/ {
-> >> -       cpu0_opp_table: opp-table-cpu {
-> >> -               compatible =3D "operating-points-v2";
-> >> -               opp-shared;
-> >> -
-> >> -               opp-648000000 {
-> >> -                       opp-hz =3D /bits/ 64 <648000000>;
-> >> -                       opp-microvolt =3D <1040000>;
-> >> -                       clock-latency-ns =3D <244144>; /* 8 32k period=
-s=20
-> >> */
-> >> -               };
-> >> -
-> >> -               opp-816000000 {
-> >> -                       opp-hz =3D /bits/ 64 <816000000>;
-> >> -                       opp-microvolt =3D <1100000>;
-> >> -                       clock-latency-ns =3D <244144>; /* 8 32k period=
-s=20
-> >> */
-> >> -               };
-> >> -
-> >> -               opp-912000000 {
-> >> -                       opp-hz =3D /bits/ 64 <912000000>;
-> >> -                       opp-microvolt =3D <1120000>;
-> >> -                       clock-latency-ns =3D <244144>; /* 8 32k period=
-s=20
-> >> */
-> >> -               };
-> >> -
-> >> -               opp-960000000 {
-> >> -                       opp-hz =3D /bits/ 64 <960000000>;
-> >> -                       opp-microvolt =3D <1160000>;
-> >> -                       clock-latency-ns =3D <244144>; /* 8 32k period=
-s=20
-> >> */
-> >> -               };
-> >> -
-> >> -               opp-1008000000 {
-> >> -                       opp-hz =3D /bits/ 64 <1008000000>;
-> >> -                       opp-microvolt =3D <1200000>;
-> >> -                       clock-latency-ns =3D <244144>; /* 8 32k period=
-s=20
-> >> */
-> >> -               };
-> >> -
-> >> -               opp-1056000000 {
-> >> -                       opp-hz =3D /bits/ 64 <1056000000>;
-> >> -                       opp-microvolt =3D <1240000>;
-> >> -                       clock-latency-ns =3D <244144>; /* 8 32k period=
-s=20
-> >> */
-> >> -               };
-> >> -
-> >> -               opp-1104000000 {
-> >> -                       opp-hz =3D /bits/ 64 <1104000000>;
-> >> -                       opp-microvolt =3D <1260000>;
-> >> -                       clock-latency-ns =3D <244144>; /* 8 32k period=
-s=20
-> >> */
-> >> -               };
-> >> -
-> >> -               opp-1152000000 {
-> >> -                       opp-hz =3D /bits/ 64 <1152000000>;
-> >> -                       opp-microvolt =3D <1300000>;
-> >> -                       clock-latency-ns =3D <244144>; /* 8 32k period=
-s=20
-> >> */
-> >> -               };
-> >> -       };
-> >> -};
-> >> -
-> >> -&cpu0 {
-> >> -       operating-points-v2 =3D <&cpu0_opp_table>;
-> >> -};
-> >> -
-> >> -&cpu1 {
-> >> -       operating-points-v2 =3D <&cpu0_opp_table>;
-> >> -};
-> >> -
-> >> -&cpu2 {
-> >> -       operating-points-v2 =3D <&cpu0_opp_table>;
-> >> -};
-> >> -
-> >> -&cpu3 {
-> >> -       operating-points-v2 =3D <&cpu0_opp_table>;
-> >> -};
-> >> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-nanopi-a64.dts=20
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-a64-nanopi-a64.dts
-> >> index dec9960a7440..e3b1943f7f63 100644
-> >> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-nanopi-a64.dts
-> >> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-nanopi-a64.dts
-> >> @@ -4,8 +4,6 @@
-> >>  /dts-v1/;
-> >>=20
-> >>  #include "sun50i-a64.dtsi"
-> >> -#include "sun50i-a64-cpu-opp.dtsi"
-> >> -
-> >>  #include <dt-bindings/gpio/gpio.h>
-> >>=20
-> >>  / {
-> >> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts=20
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts
-> >> index fd3794678c33..f1a4a9ab295b 100644
-> >> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts
-> >> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts
-> >> @@ -4,8 +4,6 @@
-> >>  /dts-v1/;
-> >>=20
-> >>  #include "sun50i-a64.dtsi"
-> >> -#include "sun50i-a64-cpu-opp.dtsi"
-> >> -
-> >>  #include <dt-bindings/gpio/gpio.h>
-> >>=20
-> >>  / {
-> >> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts=
-=20
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts
-> >> index c8303a66438d..f3c9a3534612 100644
-> >> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts
-> >> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts
-> >> @@ -5,8 +5,6 @@
-> >>  /dts-v1/;
-> >>=20
-> >>  #include "sun50i-a64.dtsi"
-> >> -#include "sun50i-a64-cpu-opp.dtsi"
-> >> -
-> >>  #include <dt-bindings/gpio/gpio.h>
-> >>=20
-> >>  / {
-> >> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts=20
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts
-> >> index 09e71fd60785..4f65eec043d0 100644
-> >> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts
-> >> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64.dts
-> >> @@ -4,8 +4,6 @@
-> >>  /dts-v1/;
-> >>=20
-> >>  #include "sun50i-a64.dtsi"
-> >> -#include "sun50i-a64-cpu-opp.dtsi"
-> >> -
-> >>  #include <dt-bindings/gpio/gpio.h>
-> >>=20
-> >>  / {
-> >> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts=20
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts
-> >> index 379c2c8466f5..a06a0b34bd3f 100644
-> >> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts
-> >> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts
-> >> @@ -5,8 +5,6 @@
-> >>  /dts-v1/;
-> >>=20
-> >>  #include "sun50i-a64.dtsi"
-> >> -#include "sun50i-a64-cpu-opp.dtsi"
-> >> -
-> >>  #include <dt-bindings/gpio/gpio.h>
-> >>  #include <dt-bindings/input/gpio-keys.h>
-> >>  #include <dt-bindings/input/input.h>
-> >> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi=20
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-> >> index 6eab61a12cd8..0e38cd02a90a 100644
-> >> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-> >> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-> >> @@ -4,8 +4,6 @@
-> >>  // Copyright (C) 2020 Ondrej Jirman <megous@megous.com>
-> >>=20
-> >>  #include "sun50i-a64.dtsi"
-> >> -#include "sun50i-a64-cpu-opp.dtsi"
-> >> -
-> >>  #include <dt-bindings/gpio/gpio.h>
-> >>  #include <dt-bindings/input/input.h>
-> >>  #include <dt-bindings/leds/common.h>
-> >> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts=20
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts
-> >> index f5fb1ee32dad..4a49f137885b 100644
-> >> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts
-> >> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts
-> >> @@ -7,8 +7,6 @@
-> >>  /dts-v1/;
-> >>=20
-> >>  #include "sun50i-a64.dtsi"
-> >> -#include "sun50i-a64-cpu-opp.dtsi"
-> >> -
-> >>  #include <dt-bindings/gpio/gpio.h>
-> >>  #include <dt-bindings/input/input.h>
-> >>  #include <dt-bindings/pwm/pwm.h>
-> >> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine.dtsi=20
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine.dtsi
-> >> index 6d78a1c98f10..4ba5c11e6870 100644
-> >> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine.dtsi
-> >> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine.dtsi
-> >> @@ -4,8 +4,6 @@
-> >>  //   Copyright (c) 2016 ARM Ltd.
-> >>=20
-> >>  #include "sun50i-a64.dtsi"
-> >> -#include "sun50i-a64-cpu-opp.dtsi"
-> >> -
-> >>  #include <dt-bindings/gpio/gpio.h>
-> >>=20
-> >>  &codec_analog {
-> >> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts=20
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
-> >> index b407e1dd08a7..61ccd90bae01 100644
-> >> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
-> >> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
-> >> @@ -5,8 +5,6 @@
-> >>  /dts-v1/;
-> >>=20
-> >>  #include "sun50i-a64.dtsi"
-> >> -#include "sun50i-a64-cpu-opp.dtsi"
-> >> -
-> >>  #include <dt-bindings/gpio/gpio.h>
-> >>  #include <dt-bindings/input/input.h>
-> >>  #include <dt-bindings/pwm/pwm.h>
-> >> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi=20
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> >> index e868ca5ae753..f842e64562b7 100644
-> >> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> >> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> >> @@ -1,7 +1,10 @@
-> >>  // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> >> -// Copyright (C) 2016 ARM Ltd.
-> >> -// based on the Allwinner H3 dtsi:
-> >> -//    Copyright (C) 2015 Jens Kuske <jenskuske@gmail.com>
-> >> +/*
-> >> + * Copyright (C) 2016 ARM Ltd.
-> >> + * based on the Allwinner H3 dtsi:
-> >> + *    Copyright (C) 2015 Jens Kuske <jenskuske@gmail.com>
-> >> + * Copyright (C) 2020 Vasily khoruzhick <anarsoul@gmail.com>
-> >> + */
-> >>=20
-> >>  #include <dt-bindings/clock/sun50i-a64-ccu.h>
-> >>  #include <dt-bindings/clock/sun6i-rtc.h>
-> >> @@ -54,6 +57,7 @@ cpu0: cpu@0 {
-> >>                         clocks =3D <&ccu CLK_CPUX>;
-> >>                         clock-names =3D "cpu";
-> >>                         #cooling-cells =3D <2>;
-> >> +                       operating-points-v2 =3D <&cpu_opp_table>;
-> >>                         i-cache-size =3D <0x8000>;
-> >>                         i-cache-line-size =3D <64>;
-> >>                         i-cache-sets =3D <256>;
-> >> @@ -71,6 +75,7 @@ cpu1: cpu@1 {
-> >>                         clocks =3D <&ccu CLK_CPUX>;
-> >>                         clock-names =3D "cpu";
-> >>                         #cooling-cells =3D <2>;
-> >> +                       operating-points-v2 =3D <&cpu_opp_table>;
-> >>                         i-cache-size =3D <0x8000>;
-> >>                         i-cache-line-size =3D <64>;
-> >>                         i-cache-sets =3D <256>;
-> >> @@ -88,6 +93,7 @@ cpu2: cpu@2 {
-> >>                         clocks =3D <&ccu CLK_CPUX>;
-> >>                         clock-names =3D "cpu";
-> >>                         #cooling-cells =3D <2>;
-> >> +                       operating-points-v2 =3D <&cpu_opp_table>;
-> >>                         i-cache-size =3D <0x8000>;
-> >>                         i-cache-line-size =3D <64>;
-> >>                         i-cache-sets =3D <256>;
-> >> @@ -105,6 +111,7 @@ cpu3: cpu@3 {
-> >>                         clocks =3D <&ccu CLK_CPUX>;
-> >>                         clock-names =3D "cpu";
-> >>                         #cooling-cells =3D <2>;
-> >> +                       operating-points-v2 =3D <&cpu_opp_table>;
-> >>                         i-cache-size =3D <0x8000>;
-> >>                         i-cache-line-size =3D <64>;
-> >>                         i-cache-sets =3D <256>;
-> >> @@ -124,6 +131,59 @@ l2_cache: l2-cache {
-> >>                 };
-> >>         };
-> >>=20
-> >> +       cpu_opp_table: opp-table-cpu {
-> >> +               compatible =3D "operating-points-v2";
-> >> +               opp-shared;
-> >> +
-> >> +               opp-648000000 {
-> >> +                       opp-hz =3D /bits/ 64 <648000000>;
-> >> +                       opp-microvolt =3D <1040000>;
-> >> +                       clock-latency-ns =3D <244144>; /* 8 32k period=
-s=20
-> >> */
-> >> +               };
-> >> +
-> >> +               opp-816000000 {
-> >> +                       opp-hz =3D /bits/ 64 <816000000>;
-> >> +                       opp-microvolt =3D <1100000>;
-> >> +                       clock-latency-ns =3D <244144>; /* 8 32k period=
-s=20
-> >> */
-> >> +               };
-> >> +
-> >> +               opp-912000000 {
-> >> +                       opp-hz =3D /bits/ 64 <912000000>;
-> >> +                       opp-microvolt =3D <1120000>;
-> >> +                       clock-latency-ns =3D <244144>; /* 8 32k period=
-s=20
-> >> */
-> >> +               };
-> >> +
-> >> +               opp-960000000 {
-> >> +                       opp-hz =3D /bits/ 64 <960000000>;
-> >> +                       opp-microvolt =3D <1160000>;
-> >> +                       clock-latency-ns =3D <244144>; /* 8 32k period=
-s=20
-> >> */
-> >> +               };
-> >> +
-> >> +               opp-1008000000 {
-> >> +                       opp-hz =3D /bits/ 64 <1008000000>;
-> >> +                       opp-microvolt =3D <1200000>;
-> >> +                       clock-latency-ns =3D <244144>; /* 8 32k period=
-s=20
-> >> */
-> >> +               };
-> >> +
-> >> +               opp-1056000000 {
-> >> +                       opp-hz =3D /bits/ 64 <1056000000>;
-> >> +                       opp-microvolt =3D <1240000>;
-> >> +                       clock-latency-ns =3D <244144>; /* 8 32k period=
-s=20
-> >> */
-> >> +               };
-> >> +
-> >> +               opp-1104000000 {
-> >> +                       opp-hz =3D /bits/ 64 <1104000000>;
-> >> +                       opp-microvolt =3D <1260000>;
-> >> +                       clock-latency-ns =3D <244144>; /* 8 32k period=
-s=20
-> >> */
-> >> +               };
-> >> +
-> >> +               opp-1152000000 {
-> >> +                       opp-hz =3D /bits/ 64 <1152000000>;
-> >> +                       opp-microvolt =3D <1300000>;
-> >> +                       clock-latency-ns =3D <244144>; /* 8 32k period=
-s=20
-> >> */
-> >> +               };
-> >> +       };
-> >> +
-> >>         de: display-engine {
-> >>                 compatible =3D "allwinner,sun50i-a64-display-engine";
-> >>                 allwinner,pipelines =3D <&mixer0>,
-> >> diff --git=20
-> >> a/arch/arm64/boot/dts/allwinner/sun50i-h64-remix-mini-pc.dts=20
-> >> b/arch/arm64/boot/dts/allwinner/sun50i-h64-remix-mini-pc.dts
-> >> index ce90327e1b2e..19cb74cf1f57 100644
-> >> --- a/arch/arm64/boot/dts/allwinner/sun50i-h64-remix-mini-pc.dts
-> >> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h64-remix-mini-pc.dts
-> >> @@ -4,8 +4,6 @@
-> >>  /dts-v1/;
-> >>=20
-> >>  #include "sun50i-a64.dtsi"
-> >> -#include "sun50i-a64-cpu-opp.dtsi"
-> >> -
-> >>  #include <dt-bindings/gpio/gpio.h>
-> >>=20
-> >>  / { =20
->=20
-
+DQoNCj4gDQo+IE9uIFR1ZSwgQXVnIDEzLCAyMDI0IGF0IDA3OjMxOjUwQU0gKzAyMDAsIEphbiBL
+aXN6a2Egd3JvdGU6DQo+ID4gT24gMTIuMDguMjQgMTc6NTUsIENvbm9yIERvb2xleSB3cm90ZToN
+Cj4gPiA+IE9uIE1vbiwgQXVnIDEyLCAyMDI0IGF0IDA0OjE1OjUxUE0gKzAyMDAsIEphbiBLaXN6
+a2Egd3JvdGU6DQo+ID4gPj4gRnJvbTogSmFuIEtpc3prYSA8amFuLmtpc3prYUBzaWVtZW5zLmNv
+bT4NCj4gPiA+Pg0KPiA+ID4+IEFuYWxvZ291c2x5IHRvIHRoZSBQQ0kgUEhZLCBhY2Nlc3MgdG8g
+c3lzX3N5c2NvbiBpcyBuZWVkZWQgdG8NCj4gPiA+PiBjb25uZWN0IHRoZSBVU0IgUEhZIHRvIGl0
+cyBjb250cm9sbGVyLg0KPiA+ID4+DQo+ID4gPj4gU2lnbmVkLW9mZi1ieTogSmFuIEtpc3prYSA8
+amFuLmtpc3prYUBzaWVtZW5zLmNvbT4NCj4gPiA+PiBSZXZpZXdlZC1ieTogUm9iIEhlcnJpbmcg
+KEFybSkgPHJvYmhAa2VybmVsLm9yZz4NCj4gPiA+PiAtLS0NCj4gPiA+PiBDQzogUm9iIEhlcnJp
+bmcgPHJvYmhAa2VybmVsLm9yZz4NCj4gPiA+PiBDQzogS3J6eXN6dG9mIEtvemxvd3NraSA8a3J6
+aytkdEBrZXJuZWwub3JnPg0KPiA+ID4+IENDOiBDb25vciBEb29sZXkgPGNvbm9yK2R0QGtlcm5l
+bC5vcmc+DQo+ID4gPj4gLS0tDQo+ID4gPj4gIC4uLi9iaW5kaW5ncy9waHkvc3RhcmZpdmUsamg3
+MTEwLXVzYi1waHkueWFtbCAgICAgICAgIHwgMTENCj4gKysrKysrKysrKysNCj4gPiA+PiAgMSBm
+aWxlIGNoYW5nZWQsIDExIGluc2VydGlvbnMoKykNCj4gPiA+Pg0KPiA+ID4+IGRpZmYgLS1naXQN
+Cj4gPiA+PiBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9waHkvc3RhcmZpdmUs
+amg3MTEwLXVzYi1waHkueWFtDQo+ID4gPj4gbA0KPiA+ID4+IGIvRG9jdW1lbnRhdGlvbi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL3BoeS9zdGFyZml2ZSxqaDcxMTAtdXNiLXBoeS55YW0NCj4gPiA+PiBs
+IGluZGV4IDI2OWU5ZjlmMTJiNi4uZWFmMDA1MGM2ZjE3IDEwMDY0NA0KPiA+ID4+IC0tLQ0KPiA+
+ID4+IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BoeS9zdGFyZml2ZSxqaDcx
+MTAtdXNiLXBoeS55YW0NCj4gPiA+PiBsDQo+ID4gPj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL3BoeS9zdGFyZml2ZSxqaDcxMTAtdXNiLXBoeQ0KPiA+ID4+ICsrKyAu
+eWFtbA0KPiA+ID4+IEBAIC0xOSw2ICsxOSwxNiBAQCBwcm9wZXJ0aWVzOg0KPiA+ID4+ICAgICIj
+cGh5LWNlbGxzIjoNCj4gPiA+PiAgICAgIGNvbnN0OiAwDQo+ID4gPj4NCj4gPiA+PiArICBzdGFy
+Zml2ZSxzeXMtc3lzY29uOg0KPiA+ID4+ICsgICAgJHJlZjogL3NjaGVtYXMvdHlwZXMueWFtbCMv
+ZGVmaW5pdGlvbnMvcGhhbmRsZS1hcnJheQ0KPiA+ID4+ICsgICAgaXRlbXM6DQo+ID4gPj4gKyAg
+ICAgIC0gaXRlbXM6DQo+ID4gPj4gKyAgICAgICAgICAtIGRlc2NyaXB0aW9uOiBwaGFuZGxlIHRv
+IFN5c3RlbSBSZWdpc3RlciBDb250cm9sbGVyDQo+IHN5c19zeXNjb24gbm9kZS4NCj4gPiA+PiAr
+ICAgICAgICAgIC0gZGVzY3JpcHRpb246IFBIWSBjb25uZWN0IG9mZnNldCBvZg0KPiBTWVNfU1lT
+Q09OU0FJRl9fU1lTQ0ZHIHJlZ2lzdGVyIGZvciBVU0IgUEhZLg0KPiA+ID4NCj4gPiA+IFdoeSBp
+cyBoYXZpbmcgYSBuZXcgcHJvcGVydHkgZm9yIHRoaXMgcmVxdWlyZWQ/IFRoZSBkZXZpY2V0cmVl
+IG9ubHkNCj4gPiA+IGhhcyBhIHNpbmdsZSB1c2IgcGh5LCBzbyBpc24ndCBpdCBzdWZmaWNpZW50
+IHRvIGxvb2sgdXAgdGhlIHN5c2Nvbg0KPiA+ID4gYnkgY29tcGF0aWJsZSwgcmF0aGVyIHRoYW4g
+dmlhIHBoYW5kbGUgKyBvZmZzZXQ/DQo+ID4gPg0KPiA+DQo+ID4gSSBkaWRuJ3QgZGVzaWduIHRo
+aXMsIEkganVzdCBjb3BpZWQgaXQgZnJvbQ0KPiA+IHN0YXJmaXZlLGpoNzExMC1wY2llLXBoeS55
+YW1sLiBBcyB0aGF0IGFscmVhZHkgZXhpc3RzLCBJJ20gbmVpdGhlcg0KPiA+IHN1cmUgd2Ugd2Fu
+dCB0byBjaGFuZ2UgdGhhdCBhbnltb3JlIG5vciBkZXZpYXRlIGluIHRoZSBwYXR0ZXJuIGhlcmUu
+DQo+IA0KPiBUbyBiZSBob25lc3QsIEkgdGhpbmsgc29tZSBvZiB0aGUgb3RoZXIgdXNlcnMgb2Yg
+cGhhbmRsZSArIG9mZnNldCBvbiB0aGlzIHNvYyB3ZXJlDQo+IGp1c3QgY29weS1wYXN0ZWQgd2l0
+aG91dCB0aGlua2luZyBhYm91dCB3aGV0aGVyIG9yIG5vdCB0aGV5IHdlcmUgcmVxdWlyZWQgdG9v
+Lg0KPiBUaGlzIG9uZSBzZWVtcyBsaWtlIGl0IHNob3VsZCBqdXN0IGJlIGEgbG9va3VwIGJ5IGNv
+bXBhdGlibGUgaW4gdGhlIGRyaXZlciBpbnN0ZWFkDQo+IG9mIGJ5IHBoYW5kbGUuIEFzIGEgYm9u
+dXMsIGl0IHdpbGwgd29yayB3aXRoIGV4aXN0aW5nIGRldmljZXRyZWVzIC0gd2hlcmVhcyB5b3Vy
+DQo+IGN1cnJlbnQgaW1wbGVtZW50YXRpb24gd2lsbCBmYWlsIHRvIHByb2JlIG9uIHN5c3RlbXMg
+dGhhdCBoYXZlIHRoZSBvbGQNCj4gZGV2aWNldHJlZSwgYSByZWdyZXNzaW9uIGZvciBzeXN0ZW1z
+IHJ1bm5pbmcgd2l0aCB0aGF0IGRldmljZXRyZWUgYW5kDQo+IGRvd25zdHJlYW0gZmlybXdhcmUu
+DQo+IA0KPiBDaGVlcnMsDQo+IENvbm9yLg0KPiANCkhpIENvbm9yDQpJIGtub3cgeW91IHdvdWxk
+IGxpa2UgdG8gcHV0IHRoZSBvZmZzZXQgdmFsdWUgdG8gdGhlIGNvZGUsIEp1c3Qgc2V0IHN5c2Nv
+biBpbiBkdHMuDQpKdXN0IGxpa2UgcGNpZS1zdGFyZml2ZS5jLiByaWdodD8NCg0KPiA+IEphbg0K
+PiA+DQo+ID4gPj4gKyAgICBkZXNjcmlwdGlvbjoNCj4gPiA+PiArICAgICAgVGhlIHBoYW5kbGUg
+dG8gU3lzdGVtIFJlZ2lzdGVyIENvbnRyb2xsZXIgc3lzY29uIG5vZGUgYW5kIHRoZQ0KPiBQSFkg
+Y29ubmVjdCBvZmZzZXQNCj4gPiA+PiArICAgICAgb2YgU1lTX1NZU0NPTlNBSUZfX1NZU0NGRyBy
+ZWdpc3Rlci4gQ29ubmVjdCBQSFkgdG8gVVNCDQo+IGNvbnRyb2xsZXIuDQo+ID4gPj4gKw0KPiA+
+ID4+ICAgIGNsb2NrczoNCj4gPiA+PiAgICAgIGl0ZW1zOg0KPiA+ID4+ICAgICAgICAtIGRlc2Ny
+aXB0aW9uOiBQSFkgMTI1bQ0KPiA+ID4+IEBAIC00Nyw0ICs1Nyw1IEBAIGV4YW1wbGVzOg0KPiA+
+ID4+ICAgICAgICAgICAgICAgICAgIDwmc3RnY3JnIDY+Ow0KPiA+ID4+ICAgICAgICAgIGNsb2Nr
+LW5hbWVzID0gIjEyNW0iLCAiYXBwXzEyNW0iOw0KPiA+ID4+ICAgICAgICAgICNwaHktY2VsbHMg
+PSA8MD47DQo+ID4gPj4gKyAgICAgICAgc3RhcmZpdmUsc3lzLXN5c2NvbiA9IDwmc3lzX3N5c2Nv
+biAweDE4PjsNCj4gPiA+PiAgICAgIH07DQo+ID4gPj4gLS0NCj4gPiA+PiAyLjQzLjANCj4gPiA+
+Pg0KPiA+DQo+ID4gLS0NCj4gPiBTaWVtZW5zIEFHLCBUZWNobm9sb2d5DQo+ID4gTGludXggRXhw
+ZXJ0IENlbnRlcg0KPiA+DQo=
 
