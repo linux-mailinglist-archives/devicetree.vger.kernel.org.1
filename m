@@ -1,258 +1,106 @@
-Return-Path: <devicetree+bounces-93978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93979-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95CDB9537F6
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 18:10:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC694953800
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 18:11:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B885282D58
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 16:10:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B493B20BC9
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 16:11:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3A9B1B1512;
-	Thu, 15 Aug 2024 16:10:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D1D41B29A9;
+	Thu, 15 Aug 2024 16:11:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="r1D0FVaQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RNzJ6GoF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C22681B1417
-	for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 16:10:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03FAF1B1512;
+	Thu, 15 Aug 2024 16:11:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723738211; cv=none; b=e9nmMESB+xVtZ6mP0p5O7817O76KNhv1pkZypmGvoRqVphmEUd01s51ebjDukM8zhtuxl6ve4XS7yPz7+GKHOdEvO0rxfJ4OaF6LMhQY9mvQdMeDzqA6qtdraBoITrmEbyuM+tIasNOgwVDoJ52dCMzcbcE2JwLIkXiw9IpBPfk=
+	t=1723738296; cv=none; b=Na1rkFV482W4vjg1FlICTKjXP2bGEYNE6IXmoyERZm3eg/soYF/RhQSgWDNIwzlQuodcHXliI063P8Ip5Z85nhH0gISs1IguahizATfkSmBXtL07auEJjf2Q5XZzyHA7nzIMoI7udY/MmTGZ66h3Ln0KnJRELJj40ZUV2IZukv0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723738211; c=relaxed/simple;
-	bh=u7TvbK3WD9JGvuuqyWQIMqBEruAdfoxECZ0duiUt5kk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=olQHrqtKPPqJGCxjfgrXc8wvDMFIiRQhDHEwwNtJQ/RIHowNaeyDBvlXbukFpEdplrJx+bvs+vgbEmUGfbPZIB1lJbqBMI9hL6WF2VCHYZwu90/i0etGPPRQzpncyOoIh4YJKDr5Fupuf4PpM16fEcknjVjL54p4NuJSVkdTtHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=r1D0FVaQ; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-429c4a4c6a8so7628035e9.0
-        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 09:10:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723738208; x=1724343008; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dmkiJ4k0iP8rLehKXXA87IwgLNjvAKrkUrp7KICnqGw=;
-        b=r1D0FVaQcNIN7CNiM3zTvQWhC5dyTP4fruBwwDM2YZry3AqcGLSkcrSMMk1l1ScXDP
-         DMHQ7RCYG5zPyM3ObLy8LVmXONSLGlTn0E8VJXWb6tdYTRy8zq8aBtWZhu1zpJQGtNv1
-         s5SyCNoK8Qk3X2ZI6qAAoip9OXriPmMXtKpjVFM/Lrk/avew3eJoPEpOXgQaCvbx5/4B
-         MpSq66RzbF0IbOIFRjRX4oU2sl94hVwu40pjwBu0pcj8Fz69ODdmfrgdmC5AD2f4bHgN
-         LphMLiQfqVHUIE0YVCjRklBw+C9qwo3uIUrvxT+20MhMTTRjVnl7Cz13qjLfWA5Lvd8h
-         DCLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723738208; x=1724343008;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dmkiJ4k0iP8rLehKXXA87IwgLNjvAKrkUrp7KICnqGw=;
-        b=qwi5bzTQaUVY0mbiPz8qEz9dvmVK4h4UAx8QEqweQWFKgtQBPGnjms3+GZnfv/XVy+
-         XyzhB2aql43ZunGEh+o+yylt767+oDtjMycvjMdeRXI/8RZLlYuL9x/Ui0aPZWI+tGE5
-         OOxjTSrMGKmxe/Xa4lxP+2bKLoe8BM59KCZztKmgtUVnR9ffcdB4z+/aP1P1gxb4Slt8
-         BcGgkcQ+fAq/ix6rDVVZFHTmPrJ2s3J+5+jQJ9pyt0Uwp1bTJIqQePRSz15LCnuI8ywb
-         OLzIAyjj4Zs2O56KFUtVyY/UKBPU1Tsgqaq2b+i/J6rMzwdXv8o2LU1chJ7rKCjBw/1G
-         y29w==
-X-Forwarded-Encrypted: i=1; AJvYcCX1sCJHIWLFBNE8lfh7rHhoaVCkf+idHyel9BScNW+TAPb232CzPLTD+Dhj3QnFn2bTft7tRiyuIbEgeMzQtsT9IU/HNuewbnPVaA==
-X-Gm-Message-State: AOJu0Yyrja5Ju5Wk5ZIp2pmbuylcDxYgenM8vv/QYiffgKPWoKxPugtY
-	+ozHucuUj8rgOg4lH+HWruEYNuLhz2gSmfu52lK1LtrMJSu3bSU9E8qH0UNPY1U=
-X-Google-Smtp-Source: AGHT+IHbfwiW1pXKhSkWxn6GIvztBdPu73+tN1vtom1RsFUih70ii2khzdjpmDpbjtaZGLOsuAalzA==
-X-Received: by 2002:a05:600c:35ca:b0:428:f0c2:ef4a with SMTP id 5b1f17b1804b1-429dd2384d2mr49692865e9.13.1723738207592;
-        Thu, 15 Aug 2024 09:10:07 -0700 (PDT)
-Received: from [192.168.0.25] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429ded299a9sm51617595e9.18.2024.08.15.09.10.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Aug 2024 09:10:07 -0700 (PDT)
-Message-ID: <be0b5f96-2863-4b10-b003-6829dfb04b95@linaro.org>
-Date: Thu, 15 Aug 2024 17:10:06 +0100
+	s=arc-20240116; t=1723738296; c=relaxed/simple;
+	bh=PxxUNLRK1Op1mXSCSf+5ux4a9GTb2aTTZN7C5kMnUb4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZN1IywvLFAoLnJRmPCjgqpX2pfY5RtgpM5GsuFI9WNJ9um0EvM0dW7/MWSY89NNhkmqagQzG9xFC2Lh5+Z28Ig93euzQMQG/S3oIey6ZUt0Vy5SeWF4OM8GkdOkbwX0rHocNuvrrhNSaV+YvmnlZZxJc54WHlEa2uPuC+mSDQCE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RNzJ6GoF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1F71C32786;
+	Thu, 15 Aug 2024 16:11:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723738295;
+	bh=PxxUNLRK1Op1mXSCSf+5ux4a9GTb2aTTZN7C5kMnUb4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RNzJ6GoF61TWJYY/9NGo9Aszd5m7ZdIhRnYiPCv+IiQA2RJ5OLAruuGvpPeaWF6BU
+	 R80yc96+60xWf7dpuuXWMdom7hU3ksX5MqymAHUvuAUQeLNn4R2zLTUkDY44NrCJLs
+	 XVhVBL0s8eh1nCPpjqge5kagNoiyRqDuIC5DFRtg1hgLODurcVwuP5nE5ISlBLW3r0
+	 HzLpDiawu1iKOur9Sne15hiJIgpNoG+GIec1ymni9TYOqmA78JzIuOGnmosDtMRplI
+	 plNw5SHO8jGg3Oxr1d+VPX9jg9bBUSvUJoUFh8RZLV7iZnxg/YNWwDPh1NI9lhAmex
+	 FXUxL49Fw85+Q==
+Date: Thu, 15 Aug 2024 17:11:29 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Guillaume Stols <gstols@baylibre.com>
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, linux-pwm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	20240705211452.1157967-2-u.kleine-koenig@baylibre.com,
+	20240712171821.1470833-2-u.kleine-koenig@baylibre.com,
+	cover.1721040875.git.u.kleine-koenig@baylibre.com,
+	aardelean@baylibre.com
+Subject: Re: [PATCH 0/8] Add iio backend compatibility for ad7606
+Message-ID: <20240815-favorable-bulge-bbf0b9ed644e@spud>
+References: <20240815-ad7606_add_iio_backend_support-v1-0-cea3e11b1aa4@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 12/13] media: qcom: camss: Add CSID Gen3 support for
- sm8550
-To: Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- kernel@quicinc.com, Yongsheng Li <quic_yon@quicinc.com>
-References: <20240812144131.369378-1-quic_depengs@quicinc.com>
- <20240812144131.369378-13-quic_depengs@quicinc.com>
- <44efa3ba-f60d-4a17-a8a1-fa7d49aa3234@linaro.org>
- <ff261ab4-b59d-48a1-9ede-3c691842d913@quicinc.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <ff261ab4-b59d-48a1-9ede-3c691842d913@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-On 15/08/2024 16:14, Depeng Shao wrote:
-> Hi Bryan,
-> 
-> 
->>> ---
->>>   drivers/media/platform/qcom/camss/Makefile    |   1 +
->>>   .../platform/qcom/camss/camss-csid-gen3.c     | 339 ++++++++++++++++++
->>>   .../platform/qcom/camss/camss-csid-gen3.h     |  26 ++
->>
->>
->> So this "gen2" and "gen3" stuff would make sense if we had a number of 
->> SoCs based on gen2 and gen3 which were controlled from the upper-level 
->> gen2.c and gen3.c.
->>
->> What you're submitting here is csid-780 so the file should be named 
->> csid-780.
->>
->> When we add 680 or 880 then it makes sense to try to encapsulate a 
->> class of generation into one file - potentially.
->>
->> I'd guess that was the intent behind gen2.c.
->>
->> TL;DR please name your file csid-xxx.c
-> 
-> Sure, I will use csid-780.c
-> 
->>> +
->>> +    writel(val, csid->base + CSID_CSI2_RX_CFG0);
->>> +
->>> +    val = 1 << CSI2_RX_CFG1_ECC_CORRECTION_EN;
->>> +    if (vc > 3)
->>> +        val |= 1 << CSI2_RX_CFG1_VC_MODE;
->>
->> So again these are needless bit-shifts.
->>
->> #define CSI2_RX_CFG1_PACKET_ECC_CORRECTION_EN BIT(0)
->>
->> val = CSI2_RX_CFG1_PACKET_ECC_CORRECTION_EN;
->>
-> 
-> You posted same comments in v3 series, I also replied it.
-> https://lore.kernel.org/all/eeaf4f4e-5200-4b13-b38f-3f3385fc2a2b@quicinc.com/
-> 
-> Some of register bits which just need to be configured to 0 or 1, then 
-> can use BIT(X), but some register bits need to configure a specific 
-> value, e.g.,  CSID_RDI_CFG0 bits[22:26] need to configure a vc vaule, 
-> bits[16:21] need to configure a dt value, then we can't use BIT(x) to 
-> handle this.
-
-Yes please use macros() to bury any _necessary_ bit shifts to populate a 
-_bit_field_ away but as an example CSI2_RX_CFG1_PACKET_ECC_CORRECTION_EN 
-is not a bit-field.
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Y8SSMKuOe5JYK1iA"
+Content-Disposition: inline
+In-Reply-To: <20240815-ad7606_add_iio_backend_support-v1-0-cea3e11b1aa4@baylibre.com>
 
 
-> 
-> 
->>>       case MSM_CSID_PAD_SRC:
->>> -        if (csid->testgen_mode->cur.val == 0) {
->>> +        if (!csid->testgen_mode || csid->testgen_mode->cur.val == 0) {
->>
->> See my comments on adding new guards to core functionality.
->>
->> Is this sm8550 specific or generic ?
->>
-> 
-> It is sm8550 specific, since we don't have testgen mode in sm8550 csid, 
-> so need to add some guards, the guards are added for similar reason.
+--Y8SSMKuOe5JYK1iA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Hmm, I see in my tree I just assigned testgen_mode to some dummy data. 
-You're right, retain this, when we enable testgen as a standalone entity 
-outside of CSID we can address this again.
+On Thu, Aug 15, 2024 at 12:11:54PM +0000, Guillaume Stols wrote:
+> This series aims to add iio backend support for AD7606X ADCs.
 
-> 
->>>               /* Test generator is disabled, */
->>>               /* keep pad formats in sync */
->>>               u32 code = fmt->code;
->>> @@ -1042,6 +1042,7 @@ static int csid_init_formats(struct v4l2_subdev 
->>> *sd, struct v4l2_subdev_fh *fh)
->>>   static int csid_set_test_pattern(struct csid_device *csid, s32 value)
->>>   {
->>>       struct csid_testgen_config *tg = &csid->testgen;
->>> +    const struct csid_hw_ops *hw_ops = csid->res->hw_ops;
->>>       /* If CSID is linked to CSIPHY, do not allow to enable test 
->>> generator */
->>>       if (value && media_pad_remote_pad_first(&csid- 
->>> >pads[MSM_CSID_PAD_SINK]))
->>> @@ -1049,7 +1050,10 @@ static int csid_set_test_pattern(struct 
->>> csid_device *csid, s32 value)
->>>       tg->enabled = !!value;
->>> -    return csid->res->hw_ops->configure_testgen_pattern(csid, value);
->>> +    if (hw_ops->configure_testgen_pattern)
->>> +        return -EOPNOTSUPP;
->>> +    else
->>> +        return hw_ops->configure_testgen_pattern(csid, value);
->>
->> If you just add a dummy configure_testgen_pattern we can get rid of 
->> this branching stuff.
->>
-> 
-> Do you mean add dummy function in csid-780/gen3.c? How about the other 
-> ops in vfe_ops_780, add dummy function or use NULL? We need to guards if 
-> we set it as NULL.
+Just to point out, your cc list is partially bogus as it contains:
 
-See above, you're right what you have is fine.
+	 20240705211452.1157967-2-u.kleine-koenig@baylibre.com,
+	 20240712171821.1470833-2-u.kleine-koenig@baylibre.com,
+	 cover.1721040875.git.u.kleine-koenig@baylibre.com,
 
-> 
-> static int csid_configure_testgen_pattern(struct csid_device *csid, s32 
-> val)
-> {
->      return 0;
-> }
-> 
->>>   }
->>>   /*
->>> @@ -1121,6 +1125,19 @@ int msm_csid_subdev_init(struct camss *camss, 
->>> struct csid_device *csid,
->>>           csid->base = devm_platform_ioremap_resource_byname(pdev, 
->>> res->reg[0]);
->>>           if (IS_ERR(csid->base))
->>>               return PTR_ERR(csid->base);
->>> +
->>> +        /* CSID "top" is a new function in new version HW,
->>> +         * CSID can connect to VFE & SFE(Sensor Front End).
->>> +         * this connection is controlled by CSID "top" registers.
->>> +         * There is only one CSID "top" region for all CSIDs.
->>> +         */
->>> +        if (!csid_is_lite(csid) && res->reg[1] && !camss- 
->>> >csid_top_base) {
->>> +            camss->csid_top_base =
->>> +                devm_platform_ioremap_resource_byname(pdev, res- 
->>> >reg[1]);
->>
->> That's a complex clause.
->>
->> Let me send you a patch to do it a different way.
->>
-> 
-> I was also thinking to addd it in camss level, then I thought it is in 
-> csid block, so I moved it to csid, but it is also fine to add it in 
-> camss. Can I add your patch into this series? Just like the csiphy patches.
+Cheers,
+Conor.
 
-static const struct resources_wrapper csid_wrapper_res_sm8550 = {
-         .reg = "csid_wrapper",
-};
+--Y8SSMKuOe5JYK1iA
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Yes go ahead, all you should need to do then is add 
-"&csid_wrapper_res_sm8550" to your resources.
+-----BEGIN PGP SIGNATURE-----
 
-static const struct camss_resources sm8550_resources = {
-         .version = CAMSS_SM8550,
-         .pd_name = "top",
-         .csiphy_res = csiphy_res_sm8550,
-         .csid_res = csid_res_sm8550,
-         .ispif_res = NULL,
-         .vfe_res = vfe_res_sm8550,
-         .csid_wrapper_res = &csid_wrapper_res_sm8550,
-...
-};
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZr4osQAKCRB4tDGHoIJi
+0o9xAP0SASwe8xbESxPqwdG0ONIB1nZR4wqUlTp/EA0AdS3wGQD/d4T3GI7qf2hM
+UviXVhLQym3CrZ637s6StEjIvGHRhgo=
+=oxT/
+-----END PGP SIGNATURE-----
 
----
-bod
+--Y8SSMKuOe5JYK1iA--
 
