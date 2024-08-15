@@ -1,59 +1,60 @@
-Return-Path: <devicetree+bounces-93968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E56695376A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 17:37:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14C8C95376F
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 17:38:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF96DB20F36
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 15:37:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE1DD1F21242
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 15:38:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67F581AD3F5;
-	Thu, 15 Aug 2024 15:37:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 055D11AD405;
+	Thu, 15 Aug 2024 15:38:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jVdnOhC6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G5Q167X+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 417652562E;
-	Thu, 15 Aug 2024 15:37:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE8011AD3F7;
+	Thu, 15 Aug 2024 15:38:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723736253; cv=none; b=DFhgk2J/JsjAdY2+PhMXiBuYJT/xyi+RumXUMqvMbn7J7agMVttN0UxFm/9zyAm9o3vWRs1tvEEIee7sj8EYH1BS4k4+2/KVeFwSORPI1N2U+362j2hv81PwskKMIBy+vVVL4cLZ9YjKwQH8K47tRedVt+MO6pKqFM8wmUPL06I=
+	t=1723736302; cv=none; b=T9crKeWtUjzlA61kVRSyKROwL9iPcWec9qp6pbc8Ma5Mdp20Gj81YEJL1ktwPt7mmYGmohOkpfutg6yw+4Ny8GXmnppHhNrYU4lmD4wjyKWsuO5VCwWUqs+hibAVgaLPIpaFMX+IwYR6WJhXUPdYAOAxImIuE5sn8vJjMAJq1MY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723736253; c=relaxed/simple;
-	bh=KC71ZArG2NY4xsQIn0t5rwxnUKbfbXLMnjF2bC/tQAo=;
+	s=arc-20240116; t=1723736302; c=relaxed/simple;
+	bh=uvYOueyd/O7doWyK4k7P+xgwA4/lGDlRYMCAp97HxOQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gSjIGWuEkWiIcOaNcHyLGdiLcbsGVvGyPnV1wgH7iTaxsd2wSo5w9rgUEvFqp0fl7ssCosYEpuETzONE6FPCWN8oPS7lyrKiJxP6KmqHwnryWxYKdUn0KkLBpH6emQ6IrqBfzcL+klr0Nwd6GLqI2ymE/KtaMprK4WCy4GnLTW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jVdnOhC6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DECCC32786;
-	Thu, 15 Aug 2024 15:37:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BFuPDmPkU0efNoKH7wLDFlGTqLeLGr4251T0X90uWuF5ejgvARzGQYkeO+5gTolmy1zXQeelNEqCivhy35tp8xlvMgK//MLYBTFPWiXzr/xk6+hGv6W8iYo9ZTsuYzskW8gsJtpvUCaDbLzECge/DmigVg1cM60/eDdZ0kGaSDc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G5Q167X+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5E71C32786;
+	Thu, 15 Aug 2024 15:38:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723736252;
-	bh=KC71ZArG2NY4xsQIn0t5rwxnUKbfbXLMnjF2bC/tQAo=;
+	s=k20201202; t=1723736302;
+	bh=uvYOueyd/O7doWyK4k7P+xgwA4/lGDlRYMCAp97HxOQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jVdnOhC63PhKcH5A43pJHH8Gsh1C76Tqt4hKQOMQTee/GzXsfPkHtgaJlI2fP7SVx
-	 VSZc3Ky8lxa0ToXkmLZ7ij6Wfh6U7HJJKPSxki961IC1vIxJzbRDx9DVlA5DmMNd/6
-	 tbfId9uhrvNvKls0idZb2fHFtrUD5KEWXX8Q+T+Y4d65/cIgkFGWmISNhys52ohxlA
-	 l7BZAc7y/0zbJSCE3HWu/EBUlVrRGOHxyBZG0PzMhTJf/MycVtkFn6IPsgQ3WTBbjE
-	 RuylRvbXwQiw9s1V9vqU7oCangytZo7JFGwC3SfYqkJDK5DGNiaZQUAo0ss97r2dTl
-	 ZIotaz2pN+pFA==
-Date: Thu, 15 Aug 2024 16:37:29 +0100
+	b=G5Q167X+Egk3zwVnT0SzVeEPZT4RF7I0sPso5bwTJlxktLRLi3X/6mVCoAbUmwlUo
+	 ySMYImQ2ixZaIAIrR1LL/z1xVZ+18x3+FUmtG0S6+URa7tVzYPgZt3xACIKKMa+KiB
+	 VR84/cOrJIYaEDZB3lVlnVASaOE+XHgARlitBBtyXW9RjOhP4E7veROkVgKckvSV3Z
+	 xRDYFjueRLBnULFJxRrui0p6oMPf6NdMv5xE6crZQa0dIPqyp4rzbfU5fGmbRJ9o/R
+	 32E9IHjujG2DMoYXqmjQWPVJqD4maR2ddlkc+prgv9R0bTKX+bJdMPWFU2r34CMBgZ
+	 7waMKPf2YVZqQ==
+Date: Thu, 15 Aug 2024 16:38:17 +0100
 From: Conor Dooley <conor@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Lee Jones <lee@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [RFC PATCH 06/11] dt-bindings: soc: microchip: document the two
- simple-mfd syscons on PolarFire SoC
-Message-ID: <20240815-anteater-water-d35f729c381b@spud>
-References: <20240815-shindig-bunny-fd42792d638a@spud>
- <20240815-pending-sacrifice-f2569ed756fe@spud>
- <172373604945.1948429.11074973738435374630.robh@kernel.org>
+To: Jianping.Shen@de.bosch.com
+Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, dima.fedrau@gmail.com,
+	marcelo.schmitt1@gmail.com, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Christian.Lorenz3@de.bosch.com, Ulrike.Frauendorf@de.bosch.com,
+	Kai.Dolde@de.bosch.com
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: imu: smi240: devicetree binding
+Message-ID: <20240815-backboned-ashen-2f1319439953@spud>
+References: <20240815152545.7705-1-Jianping.Shen@de.bosch.com>
+ <20240815152545.7705-2-Jianping.Shen@de.bosch.com>
+ <20240815-upright-roamer-cd6b16883350@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,109 +62,44 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="JO4R+jmknScHMLaV"
+	protocol="application/pgp-signature"; boundary="9+vdIffJMGR60qI6"
 Content-Disposition: inline
-In-Reply-To: <172373604945.1948429.11074973738435374630.robh@kernel.org>
+In-Reply-To: <20240815-upright-roamer-cd6b16883350@spud>
 
 
---JO4R+jmknScHMLaV
+--9+vdIffJMGR60qI6
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 15, 2024 at 09:34:11AM -0600, Rob Herring (Arm) wrote:
+On Thu, Aug 15, 2024 at 04:34:05PM +0100, Conor Dooley wrote:
+> On Thu, Aug 15, 2024 at 05:25:44PM +0200, Jianping.Shen@de.bosch.com wrot=
+e:
+> > From: Shen Jianping <Jianping.Shen@de.bosch.com>
+> >=20
+> > dt-bindings: iio: imu: smi240: add sensor dt-binding
+> > Signed-off-by: Shen Jianping <Jianping.Shen@de.bosch.com>
 >=20
-> On Thu, 15 Aug 2024 15:01:09 +0100, Conor Dooley wrote:
-> > From: Conor Dooley <conor.dooley@microchip.com>
-> >=20
-> > There are two syscons on PolarFire SoC that provide various functionali=
-ty of
-> > use to the OS.
-> >=20
-> > The first of these is the "control-scb" region, that contains the "tvs"
-> > temperature and voltage sensors and the control/status registers for the
-> > system controller's mailbox. The mailbox has a dedicated node, so
-> > there's no need for a child node describing it, looking the syscon up by
-> > compatible is sufficient.
-> >=20
-> > The second, "mss-top-sysreg", contains clocks, pinctrl, resets, and
-> > interrupt controller and more. For this RFC, only the reset controller
-> > child is described as that's all that is described by the existing
-> > bindings. The clock controller already has a dedicated node, and will
-> > retain it as there are other clock regions, so like the mailbox,
-> > a compatible-based lookup of the syscon is sufficient to keep the clock
-> > driver working as before so no child is needed.
-> >=20
-> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> > ---
-> > (I'll split this in two later, it's just easier when I have the same
-> > questions about both...)
-> >=20
-> > Are these things entitled to have child nodes for the reset and sensor
-> > nodes, or should the properties be in the parent and the OS probe the
-> > drivers for the functions? That's something that, despite supposedly
-> > being a maintainer, I do not understand the rules (of thumb?) for.
-> >=20
-> > Secondly, is it okay to make the "pragmatic" decision to not have a
-> > child clock node and keep routing the clocks via the existing & retained
-> > clock node (and therefore not update the various clocks nodes in the
-> > consumers)? Doing so would require a lot more hocus pocus with the clock
-> > driver than this series does, as the same driver would no longer be
-> > suitable for the before/after bindings.
-> > ---
-> >  .../microchip/microchip,mpfs-control-scb.yaml | 54 +++++++++++++++++++
-> >  .../microchip,mpfs-mss-top-sysreg.yaml        | 53 ++++++++++++++++++
-> >  2 files changed, 107 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/soc/microchip/mic=
-rochip,mpfs-control-scb.yaml
-> >  create mode 100644 Documentation/devicetree/bindings/soc/microchip/mic=
-rochip,mpfs-mss-top-sysreg.yaml
-> >=20
->=20
-> My bot found errors running 'make dt_binding_check' on your patch:
->=20
-> yamllint warnings/errors:
->=20
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-control-sc=
-b.example.dts:21.13-38: Warning (reg_format): /example-0/soc/syscon@3702000=
-0:reg: property has invalid length (8 bytes) (#address-cells =3D=3D 2, #siz=
-e-cells =3D=3D 1)
-> Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-control-sc=
-b.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-control-sc=
-b.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_forma=
-t'
-> Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-control-sc=
-b.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-control-sc=
-b.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-control-sc=
-b.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-control-sc=
-b.example.dts:19.27-26.13: Warning (avoid_default_addr_size): /example-0/so=
-c/syscon@37020000: Relying on default #address-cells value
-> Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-control-sc=
-b.example.dts:19.27-26.13: Warning (avoid_default_addr_size): /example-0/so=
-c/syscon@37020000: Relying on default #size-cells value
-> Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-control-sc=
-b.example.dtb: Warning (unique_unit_address_if_enabled): Failed prerequisit=
-e 'avoid_default_addr_size'
+> There should be a blank line between the body of the commit message and
+> the signoff. That said, the body here just repeats $subject - but really
+> should be something more like the description in the binding.
 
-Yeah, these are all known. One of the bindings doesn't even have an
-example. I know this is automated, but just to point out that my only
-objective here is figuring out whether or not child nodes are okay here.
+Crap, I meant to say that with a fixed commit message,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
---JO4R+jmknScHMLaV
+Thanks,
+Conor.
+
+--9+vdIffJMGR60qI6
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZr4guQAKCRB4tDGHoIJi
-0oetAP0XPSEVCIQDn1c3IOfukkdMDI+yO6TFuJxNcLSOqlXQQAD/VkGG1C3mV2sJ
-w4LbaTQbKiKBBzcabEb60r5dCiGbQQw=
-=2gA+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZr4g6QAKCRB4tDGHoIJi
+0hxDAQCTqGOhLFMQnT3yUhpk5NpcDtU2iR18YQe5X97G6Ef7ogD9Eu+y/ApYD67q
+8PQmVOMK6Pqmws4YK3SmPMh4GqETUws=
+=0muT
 -----END PGP SIGNATURE-----
 
---JO4R+jmknScHMLaV--
+--9+vdIffJMGR60qI6--
 
