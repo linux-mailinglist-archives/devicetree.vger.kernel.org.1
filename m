@@ -1,144 +1,210 @@
-Return-Path: <devicetree+bounces-94051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5356953C25
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 22:51:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1939B953C67
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 23:14:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B7161F21A4F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 20:51:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C49ED285465
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 21:14:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B579F156F21;
-	Thu, 15 Aug 2024 20:48:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7081614B960;
+	Thu, 15 Aug 2024 21:14:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="D2SgFnZC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zG0EOPnq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com [209.85.214.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00545155A30;
-	Thu, 15 Aug 2024 20:48:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7311149E15
+	for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 21:14:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723754932; cv=none; b=ht3rGso33yms0y0dXDYnxhOUTRNIdCg+KatRwY6T37fGZzyapz5JzVanEENOQ3thHtMUxcQhYs1ZxwS85Hkchvz5R30oZKa6wtDys08teogp9q5+52QFLoZr/G26cAZfg0605YMsfVUiGuGB5Nwcb5gekVZxEBeN1b3NR+DLSxE=
+	t=1723756442; cv=none; b=Db1PbgfuxfGzNEpnAuxmjGE5eJHVp/Y8qKlDz8SgF6dXkXP+eXHhdzlb2+4NtphdZY1yOr1gFrOYe9k9VArQJ+b4SRKWIFho8J9cXZcem6RQ4Oq7cmOW8bwTk0rZVtMiEQ3hnrU0o/dEBvfGCKsntsJx6K++7+R8yhwklqjpb3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723754932; c=relaxed/simple;
-	bh=LMllPVaRI4RBUf7wi0bdp2mrDNcYG0A6X2TO2834eh0=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bFYLRgGG2Js4qZVcAYYgo5i8nhnTMY495ZK3JdXkVf0CX+R1M0oKS/q7lHe/xUcnfozC8Wv51DH17oRUpUZXTwqBzr0eNyTgxOCgqSt9xi5vaavP5hYv9gpNajInr2care5RLmbBTG3hCVNESmYPIQ7BFU5igUW0YF4uYm6MS5w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=D2SgFnZC; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47FKmeh1066254;
-	Thu, 15 Aug 2024 15:48:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1723754920;
-	bh=6hmbpLHNCyb6OCbui+3GKFpDYR4emuYkhkzEfLeQsbM=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=D2SgFnZCgtWDut3aTye9bMdlTxU8vQNYPitwxXdM/o7otTie9JJhT8Q21rr6DMhra
-	 Jmx+jZ/NVZTVsKY2QllWhzGGR9wHV/PEo3YSBwEhrFixxlf0OizqYqxCB7Ud0Wqsbb
-	 v7NufJk7q8wwGP44utyPc9f9bg7YGtVPvA0iBlic=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47FKmeEI130369
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 15 Aug 2024 15:48:40 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
- Aug 2024 15:48:40 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 15 Aug 2024 15:48:40 -0500
-Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47FKmYO0052918;
-	Thu, 15 Aug 2024 15:48:40 -0500
-From: Judith Mendez <jm@ti.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Jan Kiszka <jan.kiszka@siemens.com>,
-        <linux-arm-kernel@lists.infradead.org>, Judith Mendez <jm@ti.com>
-Subject: [PATCH v3 6/6] arm64: dts: ti: k3-am65: Add ESM nodes
-Date: Thu, 15 Aug 2024 15:48:33 -0500
-Message-ID: <20240815204833.452132-7-jm@ti.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240815204833.452132-1-jm@ti.com>
-References: <20240815204833.452132-1-jm@ti.com>
+	s=arc-20240116; t=1723756442; c=relaxed/simple;
+	bh=kfnQy20qCZFG/fYvYRSSM/1kjgQQ38QFxepA5XY1YOE=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=ZJd921ZDAhaCeoqC0Lr+A8p32WPz/FPWkkxk1y8uPFg6J7K5i89LnVZcji2WbetXyBcm0LlveMZAyMLIxTuQAXqy0WCuy0LrSQ65Ahr1RC0Y4T/oqnVFNPAN2TpSk0qaWd9Ypb2+9AqfpWR/hspJP+P014k/2MHe/XkNQU9KJKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zG0EOPnq; arc=none smtp.client-ip=209.85.214.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f195.google.com with SMTP id d9443c01a7336-201fba05363so6376685ad.3
+        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 14:14:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1723756440; x=1724361240; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=f+Bo5qGxveMLxcUla0CxNhPSPtEBrJGkqTsX3F/lJYg=;
+        b=zG0EOPnqAzcWTRuPR7ceVehqg6s3ODPrUauuwX0EISb6GE8noOojG3QaFwE74+lwgo
+         8qITyMKppfI1zWp7mgZEt71uS1e7LOnIVsphfHC4T8aa+N+7gMmBssJjT+S4yQOsP3vn
+         7DTZTA9DUEtsqSuMdom8Nq9RIug4bih+HLva033wewvjNhonr80O+UMKG9faf0hzTZu8
+         Ssfwtj65ks/hCcRDnShqhruGWAMZieZJ931uc9HKnqORkrZHK5qANnKreSt1QRL1tzWq
+         LkoVbAs0h4kVe8G1Kn7NDyf5+E31J+7qaBueWK1aRV409AKnSy2XJ28szkjMQC7HGjgW
+         3XjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723756440; x=1724361240;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=f+Bo5qGxveMLxcUla0CxNhPSPtEBrJGkqTsX3F/lJYg=;
+        b=jlZz/54wGv6sipw8HSiBUj5DNVZ09ESFmkv2zGLE+hFFGS03N/jq3ANcfu5sb4/1rP
+         6vnPpuIPlPIMmOZRhxPs7818cNXECuxEZRWu951vhr+BGo+pPZ0dxTMiAjdXLxedD54o
+         s5lzUXnuJYxbiCvusEPcszWfamxuOOEF0jU7UZFqjmdHEva+rhUPo2Jmm/EkgTs2Dype
+         RvIcO3K+w0ZN7MKOCV9OvbRXAl/B8iM4tmdWYmpoZnhWaPKBXeVWwNR81IwmVuvTAD8I
+         K22xMeg3GRkXeBv5Zg9fb9sizobkY6OKIQrNFEBYGUKOV1qxWQFbHcKzT25zjg/WvYKE
+         mVbA==
+X-Forwarded-Encrypted: i=1; AJvYcCUEoMl7hqJ1g9zZ2Ac9WSbfxgq5VaSiIxttdPml2oboEX0ERUlAQiwKz9HvX8Gd9+i24aRdymB9fETiO5i2XcBs4A2Y1awQZ4pJxQ==
+X-Gm-Message-State: AOJu0YxBK8C7T4/4D1gJpwSIB5N6HGluNodo0ZQTSw2pxyXJKhoQeMkB
+	qMAVejZSbiU9NOd47wgtrdR+UHoHEW3wW1yv0sloWN4LNgpUpeFs5cYxd3efVAM=
+X-Google-Smtp-Source: AGHT+IHYiHCCAZQFrrszXwuCV4IST2TRqtQq3mnRszdxBlut7DuoLFfTf+/XFwocpFr1LFNC8YumTg==
+X-Received: by 2002:a17:902:e74d:b0:1fd:78dd:8578 with SMTP id d9443c01a7336-20203f4fdb5mr13359885ad.55.1723756440095;
+        Thu, 15 Aug 2024 14:14:00 -0700 (PDT)
+Received: from [127.0.0.1] ([182.232.48.216])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-201f03795edsm14165365ad.153.2024.08.15.14.13.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Aug 2024 14:13:59 -0700 (PDT)
+Date: Fri, 16 Aug 2024 04:13:55 +0700
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: srinivas.kandagatla@linaro.org, andersson@kernel.org
+CC: konrad.dybcio@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ amit.pundir@linaro.org, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH=5D_arm64=3A_dts=3A_qcom=3A_sm8250=3A_mov?=
+ =?US-ASCII?Q?e_lpass_codec_macros_to_use_clks_directly?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <20240815170542.20754-1-srinivas.kandagatla@linaro.org>
+References: <20240815170542.20754-1-srinivas.kandagatla@linaro.org>
+Message-ID: <857A240A-54F7-4257-A4AA-DC4ADAF4F1A5@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Add Error Signaling Module (ESM) instances in MCU and MAIN
-domains, set ESM interrupt sources for rti as per TRM [0] 9.4
-Interrupt Sources.
+On August 16, 2024 12:05:42 AM GMT+07:00, srinivas=2Ekandagatla@linaro=2Eor=
+g wrote:
+>From: Srinivas Kandagatla <srinivas=2Ekandagatla@linaro=2Eorg>
+>
+>Move lpass codecs va and wsa macros to use the clks directly from
+>AFE clock controller instead of going via gfm mux like other codec macros
+>and SoCs=2E
+>
+>This makes it more align with the other SoCs and codec macros in this SoC
+>which take AFE clocks directly=2E This will also avoid an extra clk mux l=
+ayer,
+>provides consistency and avoids the buggy mux driver which will be remove=
+d=2E
+>
+>This should also fix RB5 audio=2E
 
-There are no ESM0_ESM_INT* events routed to MCU ESM, so it is
-not possible to reset the CPU using watchdog and ESM0
-configuration. However add ESM instances for device completion.
+So, is it a fix or an improvement? In the former case, it misses the descr=
+iption of the issue and the Fixes tag=2E In the later case the commit messa=
+ge shouldn't be mentioning 'fix'=2E
 
-Add comments to describe what interrupt sources are routed to
-ESM modules.
+>
+>Remove the gfm mux drivers for both audiocc and aoncc=2E
+>
+>Signed-off-by: Srinivas Kandagatla <srinivas=2Ekandagatla@linaro=2Eorg>
+>---
+>DT bindings changes to fix the incorrect number of clocks is available
+>at
+>https://mailman=2Ealsa-project=2Eorg/hyperkitty/list/alsa-devel@alsa-proj=
+ect=2Eorg/thread/BWBTJHLNBQIMPUQNR274CPYXRBIBAYP5/
+>CHECK_DTBS=3Dy might fail without this bindings change patch=2E
+>
+>
+> arch/arm64/boot/dts/qcom/sm8250=2Edtsi | 31 ++++------------------------
+> 1 file changed, 4 insertions(+), 27 deletions(-)
+>
+>diff --git a/arch/arm64/boot/dts/qcom/sm8250=2Edtsi b/arch/arm64/boot/dts=
+/qcom/sm8250=2Edtsi
+>index 9d6c97d1fd9d=2E=2E630f4eff20bf 100644
+>--- a/arch/arm64/boot/dts/qcom/sm8250=2Edtsi
+>+++ b/arch/arm64/boot/dts/qcom/sm8250=2Edtsi
+>@@ -8,8 +8,6 @@
+> #include <dt-bindings/clock/qcom,gcc-sm8250=2Eh>
+> #include <dt-bindings/clock/qcom,gpucc-sm8250=2Eh>
+> #include <dt-bindings/clock/qcom,rpmh=2Eh>
+>-#include <dt-bindings/clock/qcom,sm8250-lpass-aoncc=2Eh>
+>-#include <dt-bindings/clock/qcom,sm8250-lpass-audiocc=2Eh>
+> #include <dt-bindings/dma/qcom-gpi=2Eh>
+> #include <dt-bindings/gpio/gpio=2Eh>
+> #include <dt-bindings/interconnect/qcom,osm-l3=2Eh>
+>@@ -2633,14 +2631,13 @@ tcsr: syscon@1fc0000 {
+> 		wsamacro: codec@3240000 {
+> 			compatible =3D "qcom,sm8250-lpass-wsa-macro";
+> 			reg =3D <0 0x03240000 0 0x1000>;
+>-			clocks =3D <&audiocc LPASS_CDC_WSA_MCLK>,
+>-				 <&audiocc LPASS_CDC_WSA_NPL>,
+>+			clocks =3D <&q6afecc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_CO=
+UPLE_NO>,
+>+				 <&q6afecc LPASS_CLK_ID_TX_CORE_NPL_MCLK  LPASS_CLK_ATTRIBUTE_COUPLE=
+_NO>,
+> 				 <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> 				 <&q6afecc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+>-				 <&aoncc LPASS_CDC_VA_MCLK>,
+> 				 <&vamacro>;
+>=20
+>-			clock-names =3D "mclk", "npl", "macro", "dcodec", "va", "fsgen";
+>+			clock-names =3D "mclk", "npl", "macro", "dcodec", "fsgen";
+>=20
+> 			#clock-cells =3D <0>;
+> 			clock-output-names =3D "mclk";
+>@@ -2674,20 +2671,10 @@ swr0: soundwire@3250000 {
+> 			status =3D "disabled";
+> 		};
+>=20
+>-		audiocc: clock-controller@3300000 {
+>-			compatible =3D "qcom,sm8250-lpass-audiocc";
+>-			reg =3D <0 0x03300000 0 0x30000>;
+>-			#clock-cells =3D <1>;
+>-			clocks =3D <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_N=
+O>,
+>-				<&q6afecc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+>-				<&q6afecc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
+>-			clock-names =3D "core", "audio", "bus";
+>-		};
+>-
+> 		vamacro: codec@3370000 {
+> 			compatible =3D "qcom,sm8250-lpass-va-macro";
+> 			reg =3D <0 0x03370000 0 0x1000>;
+>-			clocks =3D <&aoncc LPASS_CDC_VA_MCLK>,
+>+			clocks =3D <&q6afecc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_CO=
+UPLE_NO>,
+> 				<&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> 				<&q6afecc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
+>=20
+>@@ -2792,16 +2779,6 @@ swr2: soundwire@3230000 {
+> 			#size-cells =3D <0>;
+> 		};
+>=20
+>-		aoncc: clock-controller@3380000 {
+>-			compatible =3D "qcom,sm8250-lpass-aoncc";
+>-			reg =3D <0 0x03380000 0 0x40000>;
+>-			#clock-cells =3D <1>;
+>-			clocks =3D <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_N=
+O>,
+>-				<&q6afecc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+>-				<&q6afecc LPASS_CLK_ID_TX_CORE_NPL_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_N=
+O>;
+>-			clock-names =3D "core", "audio", "bus";
+>-		};
+>-
+> 		lpass_tlmm: pinctrl@33c0000 {
+> 			compatible =3D "qcom,sm8250-lpass-lpi-pinctrl";
+> 			reg =3D <0 0x033c0000 0x0 0x20000>,
 
-[0] https://www.ti.com/lit/ug/spruid7e/spruid7e.pdf
 
-Signed-off-by: Judith Mendez <jm@ti.com>
----
-Changes since v2:
-- Fix commit message for patch 6/6
----
- arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 8 ++++++++
- arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi  | 8 ++++++++
- 2 files changed, 16 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-index 1af3dedde1f67..07c9f043dac0b 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-@@ -54,6 +54,14 @@ gic_its: msi-controller@1820000 {
- 		};
- 	};
- 
-+	main_esm: esm@700000 {
-+		compatible = "ti,j721e-esm";
-+		reg = <0x00 0x700000 0x00 0x1000>;
-+		/* Interrupt sources: rti0, rti1, rti2, rti3 */
-+		ti,esm-pins = <224>, <225>, <226>, <227>;
-+		bootph-pre-ram;
-+	};
-+
- 	serdes0: serdes@900000 {
- 		compatible = "ti,phy-am654-serdes";
- 		reg = <0x0 0x900000 0x0 0x2000>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-index 43c6118d2bf0f..e10cb9f483698 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-@@ -440,6 +440,14 @@ mcu_r5fss0_core1: r5f@41400000 {
- 		};
- 	};
- 
-+	mcu_esm: esm@40800000 {
-+		compatible = "ti,j721e-esm";
-+		reg = <0x00 0x40800000 0x00 0x1000>;
-+		/* Interrupt sources: mrti0, mrti1 */
-+		ti,esm-pins = <104>, <105>;
-+		bootph-pre-ram;
-+	};
-+
- 	mcu_rti1: watchdog@40610000 {
- 		compatible = "ti,j7-rti-wdt";
- 		reg = <0x0 0x40610000 0x0 0x100>;
--- 
-2.46.0
-
+--=20
+With best wishes
+Dmitry
 
