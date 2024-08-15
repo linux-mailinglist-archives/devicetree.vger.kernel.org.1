@@ -1,83 +1,81 @@
-Return-Path: <devicetree+bounces-93865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C568A952C69
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 12:39:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57700952C85
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 12:41:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 046BA1C20DF9
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 10:39:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 895D11C223DA
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 10:41:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFD951B14F8;
-	Thu, 15 Aug 2024 10:01:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C55D1B1514;
+	Thu, 15 Aug 2024 10:12:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OZk6uaNv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Fd8Acjy2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 099E41714C4;
-	Thu, 15 Aug 2024 10:01:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 879641D1F66;
+	Thu, 15 Aug 2024 10:12:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723716102; cv=none; b=QbZNmjCDWeXzK+P6tmiofFpwxrPUG6X1EvQB4qJegcRR9X8lWMvHB5Ox7kTBJhf+BRqdPrQhX5SRJ3Wvh/o+FamFrHRIab4NIuPWL0pgaYEF5Trz10VY7CpomjL84RCGH/fUF+m0BSdr46Pk30w/h1rFa1mgYwoyJROs6YVgmA4=
+	t=1723716747; cv=none; b=aN88FQlT0ekJUeDbGoRJJYyq8AYE/JzWVkz4sN3yV0eFBLA8eOdlhMXbdu4WE7O2+sRvLe4UlkfCboO96esykYTAWMDv9QjRadWefSXu1bBqEdesmhTg6DlDpOL1j6Y0iURZPgQf/AJJzoDIXZAIsNZgmD43bcMZUrNrNVPNv48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723716102; c=relaxed/simple;
-	bh=jaVmqOGCtFtg45oRYzh/DMwqAz3SGNoNTw6eqA/Lmg4=;
+	s=arc-20240116; t=1723716747; c=relaxed/simple;
+	bh=biH7O6nTuN8fbXa0zhvTvqes/BVmpfb1NBLLfSf/e0M=;
 	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=swmRo6pQn1/NVYbiP7S7x2JoH5zNtq5y0Sr2ySXJmv2T9VZm3bUu3/WnwNgs9lRhZ5UP3SLSAKbs/lU4Gh9VegvAFt1BzfVhiyQS9UI7tNKLW/L+YCdtX0EKlHg6Pans0jhDluS7rPYx3pFoT8WotCtmBsyuMEmcmZzYTfqaws0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OZk6uaNv; arc=none smtp.client-ip=209.85.208.178
+	 Content-Disposition; b=mDKGJwDKhgDL38K5+W+xZowkEZPpyljN8RvVqIbJSk7ER26XMeVWcMpSTfLNudwQLwH2Z4A9bSS2SJEWNfJPwbYiUG1RrDJ27gzGbAqRmi4XW7xLmEBk2ewfEdNRGvtE7l0YpScuEinZcfMhbSDLpEAYof3OCY5W5ePwoIaCqjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Fd8Acjy2; arc=none smtp.client-ip=209.85.208.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2f16d2f2b68so10771081fa.3;
-        Thu, 15 Aug 2024 03:01:40 -0700 (PDT)
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2ef32fea28dso8641241fa.2;
+        Thu, 15 Aug 2024 03:12:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723716099; x=1724320899; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1723716744; x=1724321544; darn=vger.kernel.org;
         h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=l3QVgwooRVjSJ3KrvUJIGaJTMZOroFJ24cMZXtlDtZg=;
-        b=OZk6uaNvQ8RtFEhXvNmTdQyQmv3+rRobHlArrSLCXLG0mhQsg4J7GlvU+ioawlVaHZ
-         JM5pvBcgOm8mpBemtey2ZYWjGkkegOMy9Z7NUyWlrreLURCFLgUzI+eqcmO80nv9Z+ss
-         HxPZDl12tbXziKhGimpkPbK0dx2TPc4tnHWNGd2z4vtllnngnZdVMY0LxsERgfocx8Z8
-         gf5+HOZc9NbKrL7ZhAGDO7nIilkPM/657IhE9rVnqx8z5SiiP6gJGUAZO38dIAhQzy8E
-         Ws8abYYR5vAyif6PxwZ2TKUG1JANA5r/8qOyxG16ktj2VeyFJKUHwnjDg7413AIXo8Tq
-         gKqw==
+        bh=2HBrJQocQ2NV/H8twGXMjQRcU6pvTs/LLYhmuYjDNFk=;
+        b=Fd8Acjy2msRGu90gruTGGSLGOO6qKWd7TlZD+8NTQ7WOE7DQUNbJayBIDRLcIJDs/S
+         ZiOKArFSegi/lS4GDbUWduWnbbCV24/OUAbAI2kqws+vSBC4qNkz8zcyxLcORuJvueLc
+         wdW+yJYCXDCqfGDHaseqoAogGm9/1CUvGWpKfrjmLliF54d86Xa8ZAI1On1kyYSh2fPq
+         8CoF7ZyHg2ET72RvW4Aq30b1jFKsvq4qjpcIwMRxiH9/bppXDdNnPDFJ5DeXGhCVb+E3
+         TwDrM5qsUpu3GUli1/tURLLkfeipFv+c3PqA1S71YP2NdZ6w/jJXB7EA5Z0sy65pbHjt
+         8lLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723716099; x=1724320899;
+        d=1e100.net; s=20230601; t=1723716744; x=1724321544;
         h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=l3QVgwooRVjSJ3KrvUJIGaJTMZOroFJ24cMZXtlDtZg=;
-        b=En03b+8a4datuVGszd36LYIK/TS6cd0ma3JABZjz4SvlsND/0md9xTY5kq83+lDAzq
-         pm2zPFfk7qSzFskhGAgCQIx1wVgI8McRa5zDMA4JGYuvvokwN+r/ys6vzMfbbY1KUB+o
-         AmKGcMRdh17ydaIVk7WvhYnBpVd4xp6mT/xAtKjto36jOSsWn9kNSPGgjsjuPik5iSB4
-         OdJrMY1c184XUI2lnT+XDrVKFlQaQO++GbMmFCEmrCWb8odcXwUkJGLpYj4gPVJC+Zje
-         TcH/MN7EiCkuZW1j1qZ3RNRGVVv169RUPvnuqGFndc0LCQv736W+81uMBqsWdQTpAzi1
-         SQvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXGWD2Li8CiJsx8Ebe+cfK6XPovXdbT8p25SuQmpCejVecuaSvvE8nUobMOtQlonZjmBQQ0woqZWmr1h4JT5a9buo0kQYkQeFxLJ6L+5gtFkGTHEXWqZAva7asLRqz8jP9C8QbbhBVyUg==
-X-Gm-Message-State: AOJu0YwizzZgf0ZFBVBFYm8bhTE4HEdZwIQUSnjXIpTzJaSxf0Fu+EI5
-	GWA7D0p73q6pz63Aqcnhfz9SGS7CG6PLIh8WrJ2wpMas4jZ7IIFXDRXjTg==
-X-Google-Smtp-Source: AGHT+IEAL3Yiz1f2/CnKrjPJq9cVxYnHIxycXqbGqzyYKUEyXDHG4CTcqKqKENK47XmCEP40d+PBrw==
-X-Received: by 2002:a05:651c:544:b0:2ef:2dbe:7455 with SMTP id 38308e7fff4ca-2f3aa1d8094mr49205251fa.1.1723716098627;
-        Thu, 15 Aug 2024 03:01:38 -0700 (PDT)
+        bh=2HBrJQocQ2NV/H8twGXMjQRcU6pvTs/LLYhmuYjDNFk=;
+        b=gpbQak5Uux5cwHPkSvygKbMLF0Rm/edYW88jdnogtu7ekkQV7gLfXxq5qP6EPrPsF1
+         inw0fSHJej8PhQLaeuor3oTh/X29cG9bHDwjxp/u+EYu2hPswT5YfSm0bQN8KeFSl4FZ
+         Yi/AXNWgzWivHOGrT9JfyevD5tJMCkrKsxHscDhKSES2ZGMfQR8vwwas6oW4NdgT0+f8
+         ibx8dDmHhiZltUNSlEkPEpFglPjvtdyTGXJ0EcJ9jC17fCmOWvp8vI3PhsiKzbIrIpLZ
+         uDhR6UmnexaAzCW8vlqVjR48phnTdJMfqp0tXSQX7HmXJ0c8pNxqbvHmJb/vXQjPWIWa
+         sd8w==
+X-Forwarded-Encrypted: i=1; AJvYcCX9YwC0K9hXp0wX8DL2YmYtzj6MtXhbrs6zb+k9hpw+Zcbb5NlNRIvnkCk/DbuGZLlmpVpL9Jd+Z7fjGoRu0dRFqQBtEMWy24uXiFop
+X-Gm-Message-State: AOJu0YzUljd4lwSWXFUwNweUmHmA0p95JlFARDOnuGcjWfIdPweBayr1
+	93/XRdl69gHMWcg9H19XFqZB1DZEBdI9DDv9NN4RKIfTiE36yLdF
+X-Google-Smtp-Source: AGHT+IHdRRrl2i0bIVEiaYUUmzc8+0VN3rn+S089ZkrIWem/piRbrMSRUbTdoZXALns7+bLKqCAqNA==
+X-Received: by 2002:a05:6512:1111:b0:52e:faf0:40c with SMTP id 2adb3069b0e04-532eda6449emr3748691e87.3.1723716743157;
+        Thu, 15 Aug 2024 03:12:23 -0700 (PDT)
 Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a83838cfd7fsm76958166b.77.2024.08.15.03.01.37
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a83838cf97dsm78167666b.72.2024.08.15.03.12.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Aug 2024 03:01:38 -0700 (PDT)
-Date: Thu, 15 Aug 2024 12:01:36 +0200
+        Thu, 15 Aug 2024 03:12:22 -0700 (PDT)
+Date: Thu, 15 Aug 2024 12:12:21 +0200
 From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Orson Zhai <orsonzhai@gmail.com>,
 	Baolin Wang <baolin.wang@linux.alibaba.com>,
 	Chunyan Zhang <zhang.lyra@gmail.com>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: power: supply: sc27xx-fg: add low voltage alarm
- IRQ
-Message-ID: <Zr3SAHlq5A78QvrW@standask-GA-A55M-S2HP>
+Subject: [PATCH 0/3] Cleanup Spreadtrum/Unisoc ARM64 DT (part 2)
+Message-ID: <cover.1723716331.git.stano.jakubek@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,54 +85,20 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-The SC27XX fuel gauge supports a low voltage alarm IRQ, which is used
-for more accurate battery capacity measurements with lower voltages.
+This series continues cleaning up various issues with the Spreadtrum/Unisoc
+ARM64 DeviceTrees.
 
-This was unfortunately never documented in bindings, do so now.
+Stanislav Jakubek (3):
+  arm64: dts: sprd: sp9860g-1h10: fix
+    constant-charge-voltage-max-microvolt property
+  arm64: dts: sprd: sc2731: fix bat-detect-gpios property
+  arm64: dts: sprd: sc2731: move fuel-gauge monitored-battery to device
+    DTS
 
-Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
----
-Initial Linux driver submission adding this feature:
-https://lore.kernel.org/lkml/ee1dd39f126bd03fb88381de9663d32df994d341.1542185618.git.baolin.wang@linaro.org/
+ arch/arm64/boot/dts/sprd/sc2731.dtsi      | 6 +++---
+ arch/arm64/boot/dts/sprd/sp9860g-1h10.dts | 7 ++++++-
+ 2 files changed, 9 insertions(+), 4 deletions(-)
 
-The only in-tree user (sc2731.dtsi) has had interrupts specified since its
-initial fuel-gauge submission:
-https://lore.kernel.org/lkml/4f66af3b47ba241380f8092e08879aca6d7c35b3.1548052878.git.baolin.wang@linaro.org/
-
- .../devicetree/bindings/power/supply/sc27xx-fg.yaml         | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/power/supply/sc27xx-fg.yaml b/Documentation/devicetree/bindings/power/supply/sc27xx-fg.yaml
-index de43e45a43b7..9108a2841caf 100644
---- a/Documentation/devicetree/bindings/power/supply/sc27xx-fg.yaml
-+++ b/Documentation/devicetree/bindings/power/supply/sc27xx-fg.yaml
-@@ -27,6 +27,9 @@ properties:
-   battery-detect-gpios:
-     maxItems: 1
- 
-+  interrupts:
-+    maxItems: 1
-+
-   io-channels:
-     items:
-       - description: Battery Temperature ADC
-@@ -53,6 +56,7 @@ required:
-   - compatible
-   - reg
-   - battery-detect-gpios
-+  - interrupts
-   - io-channels
-   - io-channel-names
-   - nvmem-cells
-@@ -88,6 +92,8 @@ examples:
-         compatible = "sprd,sc2731-fgu";
-         reg = <0xa00>;
-         battery-detect-gpios = <&pmic_eic 9 GPIO_ACTIVE_HIGH>;
-+        interrupt-parent = <&sc2731_pmic>;
-+        interrupts = <4>;
-         io-channels = <&pmic_adc 5>, <&pmic_adc 14>;
-         io-channel-names = "bat-temp", "charge-vol";
-         nvmem-cells = <&fgu_calib>;
 -- 
 2.34.1
 
