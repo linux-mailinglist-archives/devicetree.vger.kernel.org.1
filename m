@@ -1,86 +1,51 @@
-Return-Path: <devicetree+bounces-93843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9F37952ADB
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 10:49:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1558A952AE4
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 10:53:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 182511C21097
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 08:49:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3EB50281A31
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 08:53:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82A861B32C2;
-	Thu, 15 Aug 2024 08:18:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OGa3Bud8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E38711B5801;
+	Thu, 15 Aug 2024 08:21:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gollum.nazgul.ch (gollum.nazgul.ch [81.221.21.253])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D487E176AA9;
-	Thu, 15 Aug 2024 08:18:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5689317A5A6;
+	Thu, 15 Aug 2024 08:21:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=81.221.21.253
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723709898; cv=none; b=PxKQjnAy0+HUHsv1oQHlVaYWbh6UiuSIcT/5GcAv57/KLlP3pjRWNz/nZhuhMvrt8PIMeTDzCZhj7GysIxtteTT5G3ltMZ253p/4KYT36i9zHwzwGm7M45DaFXOYCnP7jjrDYiLFq8GZc10jWewVV2pJtWnuoDW4QJKaad2OyOU=
+	t=1723710093; cv=none; b=Sw7nxZb51nBWQDY0Flg24IrW/VaqfPQARmwA3o20NZAguegA2GVdJWFViKWG57Q0ZRDkIv7u0WeYYAC7ECUVUNx5YGDxN4x5xA1pMwsqCSsF0elPgP0Lm7eD1K7+JubnQphBzE9uqli+y91U6D4MSOtYLJirge7laYVBTA8oP4k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723709898; c=relaxed/simple;
-	bh=SCMcZlsxOg0bWvNs9re2KNKekbWFq534OYjgFt++y9o=;
+	s=arc-20240116; t=1723710093; c=relaxed/simple;
+	bh=/pPh8qR30Wcev5n42INP+3QFr5gaNEiRhrEWoeofknw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kM4ILjrm9ZTdx3Z3cv1gdpZPc/dGpWDUf0LNy9ceODa84T7X4kq/YcbV5XJJzodC5VjS21A6q0GeaBmWYxSfMd+GaA00aKpnGen/6raSzRSJ413AZLu4bKHxeMmWaKyRvvoUlhdmVNnZWGSuaN0Z6dmEwQLWiX25V//37Fj9E98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OGa3Bud8; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5bebd3b7c22so426406a12.0;
-        Thu, 15 Aug 2024 01:18:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723709895; x=1724314695; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=YvlAxY1bGtRdImuOWaDEOzlQq4rW/Tt8gXa2bjpqACU=;
-        b=OGa3Bud8MN0IezW/IgUGaNQfBWnEZWqcOpsYP9YfKXtWvaGtXDchdOqaPD+Y17JOgC
-         PLFulw9PnGZcsrCILN7IMmeiYmJQUlSc9Xb7n1GgEvoEpTQI5QbIPRax5glykIxc/JIT
-         22GmggLT8aN/f15LgUw0mDC7UJZ/7SgPTsCd92bJWF3GKWY98BaFC2VptohEhtmzxGU4
-         x1BUhn1qoFp0T1oe+Zzt7PeZm54Z5TWdG7N9D5ITFRtmOBCeVYKVCP0pIBc83KJXwluc
-         hk6xuy5jIcRPgwFP2sJhjHd1HrOmygRrYkpCjy5jiFYvKU0XVJkUJlWQ40zH7ghk86U2
-         WSEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723709895; x=1724314695;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YvlAxY1bGtRdImuOWaDEOzlQq4rW/Tt8gXa2bjpqACU=;
-        b=FmxGaJz5L9qdOBxn4oT3y0b3rqM64AjpiBaQ9XO3Pdl0u1NUNPOQ+0grlRblmhbpSh
-         8CE4rAjRikJR9InJhbyJF6mT92z4JNx5kNKX8ApbrvffF7B57Cv3R6ZEmIpFJfcMhrdb
-         YaYAi+g3VKfR1pmZonMwMD+yrVybSKc8JdB60AISoJl/z/H06c4rtxsJ/7V4J3Fm7j32
-         YQf42Dmi0TC2T1r5I00JzYEQUCTROFg5nHZgutEvfDMFhMokvJcODPNZyrpHmrcYj9FK
-         hzF2Mra+4dOGpjSJMGnEwJQOJqn6c9get1G0leIDyHcAkpD+6oX+eMnq8ulKoT1bNf4K
-         /NCA==
-X-Forwarded-Encrypted: i=1; AJvYcCWrSKGs2wAya59+AyfkVqy2QXMx9hSdf9qJ92p2+/cxka+xBG586126fhIDD7VZt88/7LQkc4yve5LFqNVoetEHsMJbmWIKdiFNGiEHQ/eHWfRict7ku0c4G/wJ078MVfBBhxpuD2looA==
-X-Gm-Message-State: AOJu0YyhCwEZa4VWw7J4AhQ2To6qpZKgfqa/mqwZiKQJTAzhmhEL5kci
-	jlvL5lZ1a2fNRfBdVs47ezHjUYgg2vssXQZwTZ5OtePHmdmmzcip
-X-Google-Smtp-Source: AGHT+IE7xZlpJZIQFRTzXgIhFT/EOuGwj2l3VlFwMzZs0V9OCOaAFcKyWalP5CtpVOtB/e1kDNE0mg==
-X-Received: by 2002:a17:906:f598:b0:a72:64f0:552e with SMTP id a640c23a62f3a-a837cca3904mr205621466b.19.1723709894756;
-        Thu, 15 Aug 2024 01:18:14 -0700 (PDT)
-Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a83839342f6sm63839666b.137.2024.08.15.01.18.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Aug 2024 01:18:14 -0700 (PDT)
-Date: Thu, 15 Aug 2024 10:18:12 +0200
-From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH 2/2] arm64: dts: sprd: sc2731: rename fuel gauge
- node to be generic
-Message-ID: <Zr25xAv65+fd/qHW@standask-GA-A55M-S2HP>
-References: <cover.1720957783.git.stano.jakubek@gmail.com>
- <246c0c7763a432d4bebcb0e99b90dcf4cded333d.1720957783.git.stano.jakubek@gmail.com>
- <172364518667.95114.7859805701643557423.b4-ty@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZCi/actTlBxkx6+td6uiOMPnmwNTtk8x6grJY5okyBy8eYuU3OVHRZGN4HGPVBzj7+rnFt0/Z2v2At+GxgfpYOTC2c6fyakiOaeIvDPZiWh24zV9Ec4hSgHbDC+FtfoD48wm391EEvZosqH9e2vcga3XVvQzzmcZX+lfZaWTnFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nazgul.ch; spf=pass smtp.mailfrom=nazgul.ch; arc=none smtp.client-ip=81.221.21.253
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nazgul.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nazgul.ch
+Received: from localhost (gollum.nazgul.ch [local])
+	by gollum.nazgul.ch (OpenSMTPD) with ESMTPA id 15f898b3;
+	Thu, 15 Aug 2024 10:21:27 +0200 (CEST)
+Date: Thu, 15 Aug 2024 10:21:27 +0200
+From: Marcus Glocker <marcus@nazgul.ch>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>
+Subject: Re: [PATCH v2 7/7] arm64: dts: qcom: Add Samsung Galaxy Book4 Edge
+ Makefile
+Message-ID: <fvav32kau7odwdlyeeeq4vodaalyiodysswcjozjhlxdbtepu7@gr5oj32eh6nq>
+References: <qv5pz4gnmy5xbxxjoqqyyvn4gep5xn3jafcof5merqxxllczwy@oaw3recv3tp5>
+ <mtyjmbhqv5otvxhxyyvkxg6tubmtkeouwibmsmywmjdamnqnus@mow2w5trrmok>
+ <Zr2sIAhB1i7akCCc@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,33 +54,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <172364518667.95114.7859805701643557423.b4-ty@linaro.org>
+In-Reply-To: <Zr2sIAhB1i7akCCc@linaro.org>
 
-On Wed, Aug 14, 2024 at 04:20:29PM +0200, Krzysztof Kozlowski wrote:
-> 
-> On Sun, 14 Jul 2024 13:57:00 +0200, Stanislav Jakubek wrote:
-> > According to DT spec, node names should be generic. Rename the
-> > sprd,sc2731-fgu node to a more generic "fuel-gauge".
+On Thu, Aug 15, 2024 at 10:20:00AM +0300, Abel Vesa wrote:
+
+> On 24-08-14 23:14:51, Marcus Glocker wrote:
+> > Add the new Samsung Galaxy Book4 Edge to the Makefile to compile the
+> > DTB file.
 > > 
+> > Signed-off-by: Marcus Glocker <marcus@nazgul.ch>
+> 
+> This should be squashed into patch 6.
+
+OK, I'll submit a v3 patch.
+ 
+> > ---
+> >  arch/arm64/boot/dts/qcom/Makefile | 1 +
+> >  1 file changed, 1 insertion(+)
 > > 
-> 
-> This also waits for something... so I grabbed it.
-> 
-> Applied, thanks!
-> 
-> [2/2] arm64: dts: sprd: sc2731: rename fuel gauge node to be generic
->       https://git.kernel.org/krzk/linux-dt/c/e06e908dba9fed62c9493ea5cea2e4cbd306d23c
-> 
-> Best regards,
-> -- 
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Hi Krzysztof,
-
-you already applied this change as part of [1].
-
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit?id=0dcc203956537696e6f936eef886fde70e049f54
-
-Cheers,
-Stanislav
+> > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> > index 0e5c810304fb..77a48a5780ed 100644
+> > --- a/arch/arm64/boot/dts/qcom/Makefile
+> > +++ b/arch/arm64/boot/dts/qcom/Makefile
+> > @@ -265,3 +265,4 @@ dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-asus-vivobook-s15.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-crd.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-lenovo-yoga-slim7x.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-qcp.dtb
+> > +dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-samsung-galaxy-book4-edge.dtb
+> > -- 
+> > 2.39.2
+> > 
 
