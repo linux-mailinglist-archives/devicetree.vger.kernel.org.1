@@ -1,154 +1,124 @@
-Return-Path: <devicetree+bounces-93935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D647953542
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 16:35:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8213D953577
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 16:38:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 093D8B21315
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 14:35:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B48FF1C20C62
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 14:38:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F81C1A00CF;
-	Thu, 15 Aug 2024 14:35:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10AE61A00EC;
+	Thu, 15 Aug 2024 14:38:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jOgYdI0R"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cldTCEjk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F64763D5;
-	Thu, 15 Aug 2024 14:35:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A5DC3214;
+	Thu, 15 Aug 2024 14:38:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723732540; cv=none; b=R58KhC9wXYILIWqlyateweQ9EtDF5zn7X70KmNRPgzmmPk1OchBhAOTUvYW2hsdkqPU7wvPgOV6Z3y0g39GETItelrJLC6LSfOXEf0k+jAspaZy71Z1vDaY/m3+WLzmrjboZGSlDfJzb4fLReWDBBDAyj/CGxrFki7OvZhy4I4U=
+	t=1723732692; cv=none; b=StQJYvnaG41K92G6z2ftGgLh0Jzz/K6vYwZYyZVHdYKO8HwwnSIucxSVl/Rv95mPGRYvltoX/YxKaH86EbD9SrNQvZW0o1A87V4Sm7NIiPrgiABzozrDs24xC2aEgEL8sE06BK84BEEuLszg5vTOQB4o3yqVSEsvZTzcW0X26Gg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723732540; c=relaxed/simple;
-	bh=QTqPFqf58R7qfq3RSaFdp06zQmjhjZVPSRi/viE3tHQ=;
+	s=arc-20240116; t=1723732692; c=relaxed/simple;
+	bh=9eR2eaK14h0jFdZYscJcZ9NNiF9V1Ls5CoWnxENQvp8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lfAzFXS2jz8Qr5Twy2xwjeB7Yka6QUMSzJ3L6038fMfqTodSWB1FGmCjP1dfz5j4XcnwsEdf1LbilVmzWZMLAVE8t+f2KJWQDCJcuvwhFUVb0BT539qXNIi0lpRBQTSgN2W/D8lkZoV6kN9ITXFhpMtpXq+NSGgAc0+EfMZioKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jOgYdI0R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 342BAC4AF0C;
-	Thu, 15 Aug 2024 14:35:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723732540;
-	bh=QTqPFqf58R7qfq3RSaFdp06zQmjhjZVPSRi/viE3tHQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jOgYdI0RtjI3aeU7/fWc4Z2qAIGWelWfGHJN0sznAcAFS9R1aULWtK6eaMMdgTleM
-	 V2hZWQjQog596gYVxoMV/zoI7xEwrE38dLpLMGsISS6axy8w+zteSHq0EOqWFuvtM7
-	 ZjVuM3XRUj7mNVslAChsuUvIoBQ7LAouYyjf015tKoa7fn48Rj1ber5o+VYm44gH51
-	 nEhM/WrXQwEKhyqGPSowU2KXgwwoNmrdYXBbrQXctBXW2Lb+KemvK9d13QwIYMfh4F
-	 hxDU0BzqBBjxjvVlBWIh4I3hHo6Ak7bLiU2eMTdG2JSRlJ5AZ88x9YnWFj6NSZYTpc
-	 +jbQ6mRmPdNhg==
-Date: Thu, 15 Aug 2024 15:35:34 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Guillaume Stols <gstols@baylibre.com>
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=UAuf690NLq5Qwy+IX+syGdIOv1keqFxPy0RP8BAvITBxCP0MoaVcK/J+c7IYKoqebltWT9BWopk2xs6U1I8QIGSAG0IZmN5urobfbA77efNgxYK2/JJ5KkQ3neP8oZ4XpEsKXJxYfKYntoNDKtqyq++kYdp3DZ53MVdMJgPOv3c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cldTCEjk; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-530e2548dfdso1082656e87.1;
+        Thu, 15 Aug 2024 07:38:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723732688; x=1724337488; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=TpSFVkFZ+ieMC7Edi47GLFH3X8aPb2mRtfeJvBEpOWQ=;
+        b=cldTCEjkPWv1fCZR0iY0M3M4/5F9F1HMYo6W/UHwoX4o/f5NLquSXxjXGyYliOkrCu
+         nFpy4mM62p5FIIjzfW/WdYelnJQvuOUqPZG+Ta+LOBwEq4BC9TmmyDvPfQ9Y2Ut3lvl/
+         K5QE/dTtgcLFWLQVmpOV/lFO7mdb/iYWe64496x+hsNIOWDaBREeVf2HdnYA0Vl+J7sA
+         kzi1JHppn3zpG8zKNXC/FZ1ghYhWEIkgpXf3u+IIfguUIC9QcQkytPZf+Nby+SF16K49
+         F/Y1TvFPGw16u1x8Gvux6Kx/XZUoULjZqdwPUi7QPnN/VuhwtZgi6X88h3PIB/0k9LGR
+         m1ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723732688; x=1724337488;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TpSFVkFZ+ieMC7Edi47GLFH3X8aPb2mRtfeJvBEpOWQ=;
+        b=jmBe2nm3Op1poOv2Il5AP9Fi7N95gySajf1k+dFmXeghbRP0ykKYjrZFwSFQ5gLlB9
+         3AgdKMKaPrt3n7sCVSWHm8L8pq9WY8cDihhcVOnOCrcoMdl6cJ5yN0l49kOV3zEmvb3t
+         6u3Pn+aMipXAfvOb9SGtKh9fjr6xrYrQpT964h7jVpf03drs2RYZGmulgOuKyODgkVHi
+         UEhDAkC4Qhot11h6OJ/U3g8lEIdxUeDd70kA1FGo/6E54BDxzU9VR2rop5rOz72HpENA
+         r+vZF9FgHR/XP11Unh8bY5cosWZWR9mrQwv3GB05JOzaPz9z7ZRnGETl1vMKn1NkdjSE
+         qHYg==
+X-Forwarded-Encrypted: i=1; AJvYcCU1sCc87lNRS/8g74r9kFhS7cu5PrMcWGfk7rqRx7RaMs1yWtMJIWLVScrHToArvjUm6cD6+vGClA3DKTnhxFelKAEcj4YqV9ttPpJh0jrHYAt027iUxNBfWis+fg0nm7MSz2mMrr+QWw==
+X-Gm-Message-State: AOJu0YyKR2aUvwx/ZxgT7IuJUi4+2jO+jguH+dFE/ki2IZtBD7RYZLqj
+	OXzGJc+u/jiqaTEHDvFNzMzp1cZdskgdoRJbwFrvLFOJkeVGcIul
+X-Google-Smtp-Source: AGHT+IEkwol/TJD1HBGQZksDLREN0Wsc7UJAVMs7ix8fFZCbVmUUBtgQjbld43xO/ooRsjLUH4i4fw==
+X-Received: by 2002:a05:6512:2208:b0:52e:7444:162e with SMTP id 2adb3069b0e04-532edbbf094mr4442659e87.55.1723732687917;
+        Thu, 15 Aug 2024 07:38:07 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a83839471b4sm110659566b.164.2024.08.15.07.38.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Aug 2024 07:38:07 -0700 (PDT)
+Date: Thu, 15 Aug 2024 16:38:05 +0200
+From: Stanislav Jakubek <stano.jakubek@gmail.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, linux-pwm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	20240705211452.1157967-2-u.kleine-koenig@baylibre.com,
-	20240712171821.1470833-2-u.kleine-koenig@baylibre.com,
-	cover.1721040875.git.u.kleine-koenig@baylibre.com,
-	aardelean@baylibre.com
-Subject: Re: [PATCH 1/8] dt-bindings: iio: adc: ad7606: Make corrections on
- spi conditions
-Message-ID: <20240815-reword-wildland-1319629f0718@spud>
-References: <20240815-ad7606_add_iio_backend_support-v1-0-cea3e11b1aa4@baylibre.com>
- <20240815-ad7606_add_iio_backend_support-v1-1-cea3e11b1aa4@baylibre.com>
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mfd: sprd,sc2731: convert to YAML
+Message-ID: <Zr4Sze8ea3q4d+Xk@standask-GA-A55M-S2HP>
+References: <Zr3X1RoQs7ElTnlJ@standask-GA-A55M-S2HP>
+ <20240815140046.GA1603296-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="UJJuTW6LWkpDszvK"
-Content-Disposition: inline
-In-Reply-To: <20240815-ad7606_add_iio_backend_support-v1-1-cea3e11b1aa4@baylibre.com>
-
-
---UJJuTW6LWkpDszvK
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240815140046.GA1603296-robh@kernel.org>
 
-On Thu, Aug 15, 2024 at 12:11:55PM +0000, Guillaume Stols wrote:
-> The SPI conditions are not always required, because there is also a
-> parallel interface. The way used to detect that the SPI interface is
-> used is to check if the reg value is between 0 and 256.
-> There is also a correction on the spi-cpha that is not required when SPI
-> interface is selected, while spi-cpol is.
+Hi Rob,
 
-This feels like it should be two patches, with the first having a Fixes:
-tag etc, if the original binding was incorrect.
+[skip]
 
->=20
-> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
-> ---
->  .../devicetree/bindings/iio/adc/adi,ad7606.yaml         | 17 +++++++++++=
-+++---
->  1 file changed, 14 insertions(+), 3 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml b/=
-Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
-> index 69408cae3db9..c0008d36320f 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
-> @@ -117,15 +117,26 @@ properties:
->  required:
->    - compatible
->    - reg
-> -  - spi-cpha
->    - avcc-supply
->    - vdrive-supply
->    - interrupts
->    - adi,conversion-start-gpios
-> =20
-> -allOf:
-> -  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +# This checks if reg is a chipselect so the device is on an SPI
-> +# bus, the if-clause will fail if reg is a tuple such as for a
-> +# platform device.
-> +if:
-> +  properties:
-> +    reg:
-> +      minimum: 0
-> +      maximum: 256
-> +then:
-> +  allOf:
-> +    - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +    - required:
-> +        - spi-cpol
-> =20
-> +allOf:
->    - if:
->        properties:
->          compatible:
->=20
-> --=20
-> 2.34.1
->=20
+> > ---
+> > Depends on:
+> >   - eFuse YAML conversion: https://lore.kernel.org/lkml/9fba73ce66f1f3b7b2a8f46e7c21f60cff5a85f0.1721199034.git.stano.jakubek@gmail.com/
+> >   - RTC YAML conversion: https://lore.kernel.org/lkml/ZrBzmQI0IAL7LI3e@standask-GA-A55M-S2HP/
+> 
+> These either have to be sent as 1 series for 1 maintainer to apply (Lee) 
+> or you'll have to wait a cycle for the dependencies.
 
---UJJuTW6LWkpDszvK
-Content-Type: application/pgp-signature; name="signature.asc"
+I've had this patch sitting on my harddrive for over a month now.
+Both of the dependencies have been sitting on the mailing lists
+pretty much unchanged for about a month as well...
+Also, there are technically more dependencies, but they're in linux-next
+already, so I didn't include them here.
 
------BEGIN PGP SIGNATURE-----
+Just wanted to get this out to get some feedback (and hope that it would
+move the dependencies along).
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZr4SNgAKCRB4tDGHoIJi
-0la6AP0Uurd8ttJzgexIAZHCyhGt1quMRRW5eMQXppSCsohCvwEA78I0P+LSV13j
-8gxpIkzC5+6L9sEJ0/3AqkQ1PtInWAc=
-=xjNl
------END PGP SIGNATURE-----
+[skip]
+ 
+> The preference is one complete example here and drop any partial 
+> examples of the child nodes in the child node schemas.
 
---UJJuTW6LWkpDszvK--
+I can add a more complete example here, sure.
+But I don't understand the point of removing the examples in child node
+bindings. Seems to me like all that would do is provide less documentation.
+
+Cheers,
+Stanislav
 
