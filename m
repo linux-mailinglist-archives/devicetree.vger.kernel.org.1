@@ -1,164 +1,96 @@
-Return-Path: <devicetree+bounces-93963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5509795373F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 17:29:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73509953753
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 17:34:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 81E751C251F9
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 15:29:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A5BAD1C24DA1
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 15:34:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C30B51B012B;
-	Thu, 15 Aug 2024 15:28:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 377701ABEC4;
+	Thu, 15 Aug 2024 15:34:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XmckYDFb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dhMRsPja"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B6371AED38;
-	Thu, 15 Aug 2024 15:28:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0850C1AAE07;
+	Thu, 15 Aug 2024 15:34:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723735722; cv=none; b=POtA9ldKEamq6lLbW9pFw8klAnTeGdlnV8GZv9lGvVkyQcUtHI6ZaHzDT63ce8981LOTppXbC5RvVfTJi7tHytgGb3CpYro5tfp6yAs2Hw05RuIgvf1Gbr9UEwn0PGGQ99eM5PHJa2BsFsEvl8atpjPwX/y69dQj9RNSn6eLKmU=
+	t=1723736051; cv=none; b=Jrs8p+XntojdQGb/BceW1kjJ60Pu4CzXnyC6T7gyoveVBvZRQy9AlRHYd86aVp2u86I6ldJapu27xdF1RR59XXaN2iybxQyBoJ/sVJhJviZKxFQas46hBU54rGjr10t76PgpLxunRL276kcOoFaev+kjHUXYIH73Y5/7j+ES5Dk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723735722; c=relaxed/simple;
-	bh=aU7GONG7+wdh9Cvq+jMv1PVglb/zFWUeoCL51NGnd9g=;
+	s=arc-20240116; t=1723736051; c=relaxed/simple;
+	bh=lO/9DG6p8dkE/mRXmkVdf2FJVv6R7pNeWYDyNd1GwmM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TLGVgu6mx3m40Gok1no32YyU18fA1Zd+Y384LqXTxnHpDjS+KAtC/ORawGt4vShbCH6chLoYeZPqU4bC/6Ti84qCwH66wyhGsrjWT5uFLjlTSvBr4oyF9hcTF5GzYdTJHMi9fCqKDmV4s3L3CTclD7saY5LQIVSK+vw7fTH+pmM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XmckYDFb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D43D8C32786;
-	Thu, 15 Aug 2024 15:28:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fRPvYRHD94iHZUj2eMiI8w2G+hdsxxupv4LaQ1jlZt3iD6bYqMvz2lY7pPNtDRA7OvzxN+ivkXa5G5oZQY8WO5gVoxnmbdS/vsMyCu32avKFBXYoo8BjDXqPrihcFqMKfBGf6VXzOmQUrpLEkLJm1xKMTxkmMyI6TyYa93DThis=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dhMRsPja; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D33A4C32786;
+	Thu, 15 Aug 2024 15:34:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723735722;
-	bh=aU7GONG7+wdh9Cvq+jMv1PVglb/zFWUeoCL51NGnd9g=;
+	s=k20201202; t=1723736050;
+	bh=lO/9DG6p8dkE/mRXmkVdf2FJVv6R7pNeWYDyNd1GwmM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XmckYDFbKyRbsHxnQj8xCA1kuO7Q4d0vNyo22LbnsGtLRjE1eMv/zsscUQyYUa/Xz
-	 5+VcPgerJJM7ziE+az3MChN30JEzEBgOXdX9Z0gIhLNI1XjUMtexrkbVpGv797lyDA
-	 LTUluYs/tZLTx0eq2IH4zIxebMtqJD2R6wuN6uQzyZwx55xqMG8nEwpAQoO76YAzaj
-	 e4ZMC9uKcJygiiqXTkACsw54dribRz9NtPbQXdxSmmqnGbUfYO8J9eeN5/bj/sWV4U
-	 bi8nDMpdjbdnw4rXfZhmXwq+vzGAfyJt5bfcbgmkmZvIqXrOcUj73D7nIlUC7Ad2KH
-	 IMLuv6zJnBeKQ==
-Date: Thu, 15 Aug 2024 09:28:41 -0600
-From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	"open list:ETHERNET PHY LIBRARY" <netdev@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH v3 1/1] dt-bindings: net: mdio: change nodename match
- pattern
-Message-ID: <20240815152841.GA1903517-robh@kernel.org>
-References: <20240814170322.4023572-1-Frank.Li@nxp.com>
+	b=dhMRsPjaEpmbIIqFmyYCbzZ2albnw4QrOQeo8GqZyQbUhmQrLR5Y1jNuJkUVgDkUC
+	 HlqDHuNYtB9lb3rck0vWOxVXpTBYH+OOMbVQfy7+TmAjrb2Z0gg62/nLHd/DYXfWev
+	 /18c0yK6cN9+u4331rzvepO+VpGG2+rJSjt+DvLZP8HV2wUJJtq9Wd9fS+ijC+KsIo
+	 vROukEUbpJ/Df30LZB95yfp7cYVIPlkzK1K0mOsQwoUiJ1b1Kyw/25ki93JA4PwZnG
+	 coPDevqCSSp4FTJm7DmEtsgnfZ0WO0Ne6b5/Y8sTlZMFi2ctEux1O2zExnGZ3+ZtCt
+	 6N9utmHsJVuhA==
+Date: Thu, 15 Aug 2024 16:34:05 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Jianping.Shen@de.bosch.com
+Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, dima.fedrau@gmail.com,
+	marcelo.schmitt1@gmail.com, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Christian.Lorenz3@de.bosch.com, Ulrike.Frauendorf@de.bosch.com,
+	Kai.Dolde@de.bosch.com
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: imu: smi240: devicetree binding
+Message-ID: <20240815-upright-roamer-cd6b16883350@spud>
+References: <20240815152545.7705-1-Jianping.Shen@de.bosch.com>
+ <20240815152545.7705-2-Jianping.Shen@de.bosch.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="rfmtV2sie2C4bBFp"
+Content-Disposition: inline
+In-Reply-To: <20240815152545.7705-2-Jianping.Shen@de.bosch.com>
+
+
+--rfmtV2sie2C4bBFp
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240814170322.4023572-1-Frank.Li@nxp.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Aug 14, 2024 at 01:03:21PM -0400, Frank Li wrote:
-> Change mdio.yaml nodename match pattern to
-> 	'^mdio(-(bus|external))?(@.+|-([0-9]+))$'
-> 
-> Fix mdio.yaml wrong parser mdio controller's address instead phy's address
-> when mdio-mux exist.
-> 
-> For example:
-> mdio-mux-emi1@54 {
-> 	compatible = "mdio-mux-mmioreg", "mdio-mux";
-> 
->         mdio@20 {
-> 		reg = <0x20>;
-> 		       ^^^ This is mdio controller register
-> 
-> 		ethernet-phy@2 {
-> 			reg = <0x2>;
->                               ^^^ This phy's address
-> 		};
-> 	};
-> };
-> 
-> Only phy's address is limited to 31 because MDIO bus definition.
-> 
-> But CHECK_DTBS report below warning:
-> 
-> arch/arm64/boot/dts/freescale/fsl-ls1043a-qds.dtb: mdio-mux-emi1@54:
-> 	mdio@20:reg:0:0: 32 is greater than the maximum of 31
-> 
-> The reason is that "mdio-mux-emi1@54" match "nodename: '^mdio(@.*)?'" in
-> mdio.yaml.
-> 
-> Change to '^mdio(-(bus|external))?(@.+|-([0-9]+))$' to avoid wrong match
-> mdio mux controller's node.
-> 
-> Also change node name mdio to mdio-0 in example of mdio-gpio.yaml to avoid
-> warning.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> Change from v2 to v3
-> - update mdio-gpio.yaml node name mdio to mdio-0 to fix dt_binding_check
-> error foud by rob's bot.
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mdio-gpio.example.dtb: mdio: $nodename:0: 'mdio' does not match '^mdio(-(bus|external))?(@.+|-([0-9]+))$'
-> 	from schema $id: http://devicetree.org/schemas/net/mdio-gpio.yaml#
-> 
-> Change from v1 to v2
-> - use rob's suggest to fix node name pattern.
-> ---
->  Documentation/devicetree/bindings/net/mdio-gpio.yaml | 2 +-
->  Documentation/devicetree/bindings/net/mdio.yaml      | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/mdio-gpio.yaml b/Documentation/devicetree/bindings/net/mdio-gpio.yaml
-> index eb4171a1940e4..3be4f94638e61 100644
-> --- a/Documentation/devicetree/bindings/net/mdio-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/net/mdio-gpio.yaml
-> @@ -44,7 +44,7 @@ examples:
->          mdio-gpio0 = &mdio0;
->      };
->  
-> -    mdio0: mdio {
+On Thu, Aug 15, 2024 at 05:25:44PM +0200, Jianping.Shen@de.bosch.com wrote:
+> From: Shen Jianping <Jianping.Shen@de.bosch.com>
+>=20
+> dt-bindings: iio: imu: smi240: add sensor dt-binding
+> Signed-off-by: Shen Jianping <Jianping.Shen@de.bosch.com>
 
-Just 'mdio' should be accepted. There's a lot of those.
+There should be a blank line between the body of the commit message and
+the signoff. That said, the body here just repeats $subject - but really
+should be something more like the description in the binding.
 
-> +    mdio0: mdio-0 {
->        compatible = "virtual,mdio-gpio";
->        #address-cells = <1>;
->        #size-cells = <0>;
-> diff --git a/Documentation/devicetree/bindings/net/mdio.yaml b/Documentation/devicetree/bindings/net/mdio.yaml
-> index a266ade918ca7..2ed787e4fbbf2 100644
-> --- a/Documentation/devicetree/bindings/net/mdio.yaml
-> +++ b/Documentation/devicetree/bindings/net/mdio.yaml
-> @@ -19,7 +19,7 @@ description:
->  
->  properties:
->    $nodename:
-> -    pattern: "^mdio(@.*)?"
-> +    pattern: '^mdio(-(bus|external))?(@.+|-([0-9]+))$'
+--rfmtV2sie2C4bBFp
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Needs a '?' on the end:
+-----BEGIN PGP SIGNATURE-----
 
-'^mdio(-(bus|external))?(@.+|-([0-9]+))?$'
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZr4f7QAKCRB4tDGHoIJi
+0qV+APwNeprNeGIjAiBeAqGMKqtQpbypLkgbrpQ7xDG8AKZ1VQEAxklwVYhYBvh0
+2n25hWLBCmwN9F0Q+0NkAaFXd4GJlg8=
+=bxa9
+-----END PGP SIGNATURE-----
 
->  
->    "#address-cells":
->      const: 1
-> -- 
-> 2.34.1
-> 
+--rfmtV2sie2C4bBFp--
 
