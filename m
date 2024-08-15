@@ -1,283 +1,210 @@
-Return-Path: <devicetree+bounces-93883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F05DB952D8D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 13:32:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BE7B952DB7
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 13:46:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7AEEB1F24569
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 11:32:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7979F1C2132B
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 11:46:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A6DA1714B4;
-	Thu, 15 Aug 2024 11:32:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D7297DA7D;
+	Thu, 15 Aug 2024 11:46:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="ZVUEjPTI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jDDWq1Lk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E27E61714A6
-	for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 11:32:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F4761AC8A2;
+	Thu, 15 Aug 2024 11:46:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723721562; cv=none; b=IbH73Ds1D8mGuZjSb14Y9QQN+KgMmt3M/vC2hZ40johlBaHc+l3B2naAW7vVdyCNur1SyvTJfsIiGAnNSgRrYs2W2o7o5ENCjmGJqYq/e14xPofeh7fc13sYrZjUgKoalkLvmUihVobiY44kuxfcF3AhfG7HIrVJ5Isc6Bv69LY=
+	t=1723722362; cv=none; b=ZBAz+iwiQ6URV+7ErcSj1+lSNfml5vAU8Yc+2IDNreHlB7j8k87FyOJAdVTIpCIFe1Kx8qalFV7sZMTRTcN+O9A5Ble+35gUKhxj86HWD7/t0phLjCB0Lp4fwjdjaTXVJ/m9fsfv0GENRAwRWs2/d5sgT7QOqISqiTeV6PcG59Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723721562; c=relaxed/simple;
-	bh=pCAr7LzPRJpBSpOND0OK/TVOvncaQwCo+as3ES+VTmA=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=o7h77flsYPPz0j+n49NJi7A49TQHmKXH4oaYI70XW5y/Tq/EC0D/PTmIL9QYx0RfIxpBbWLfVPijcFeL4kOFoIPjnck9rgu6x3DR2ioH8a55AdYJsT2hgSCYhaBS7ON77VrBhbTWbmM6OVv0LqVVOjBetyelaOoxYZODORokoIg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=ZVUEjPTI; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1723721551; x=1726313551;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=pCAr7LzPRJpBSpOND0OK/TVOvncaQwCo+as3ES+VTmA=;
-	b=ZVUEjPTINfR8y68X6TG8UQmN1pe2t0EZAM/Gh1ZP9XsvsO8fGSk7RfmTlznco0rv
-	0/34k7d+wpRxxmrwBsS2zoyG4iWw1F0Fjz2RDlnmVsBfrgyOgk0fCLXsCNsIvO/F
-	JgcRzXX4Fb81YxTfkyNd1QRX62OEpfD9EBxCFLmpHe4=;
-X-AuditID: ac14000a-03e52700000021bc-dd-66bde74fd287
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 7C.2B.08636.F47EDB66; Thu, 15 Aug 2024 13:32:31 +0200 (CEST)
-Received: from augenblix2.phytec.de (172.25.0.11) by Berlix.phytec.de
- (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Thu, 15 Aug
- 2024 13:32:31 +0200
-From: Wadim Egorov <w.egorov@phytec.de>
-To: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <upstream@lists.phytec.de>
-CC: <nm@ti.com>, <robh@kernel.org>, <conor+dt@kernel.org>, <vigneshr@ti.com>,
-	<kristo@kernel.org>, <krzk+dt@kernel.org>
-Subject: [PATCH v2] arm64: dts: ti: am642-phyboard-electra: Add PRU-ICSSG nodes
-Date: Thu, 15 Aug 2024 13:32:11 +0200
-Message-ID: <20240815113212.3720403-1-w.egorov@phytec.de>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1723722362; c=relaxed/simple;
+	bh=VpjspMk453JIHOunH/RLTO9IPdQzWfX7Z/pxhe2EgHc=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=OMY4OtGm7KKYh/dGVXpvf14GHey6WWV6l9D/Gfp8IbBdoM0lmu8mt0/Snswk1Ij9nWBaq305TradiQBUYCfWtt1IvMw1uPHs34l/GYAZTgenPjm9145+WV2/wEYISpSUes6WccTgVYxfn8P2LXW+qs+4ACTtzD5WR+JzuZGx8OY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jDDWq1Lk; arc=none smtp.client-ip=209.85.208.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5b3fff87e6bso1155959a12.0;
+        Thu, 15 Aug 2024 04:46:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723722359; x=1724327159; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wceJuM/bJLtr3SVzfHfUR8ftk7EPEsj8fAnbxqXeEBU=;
+        b=jDDWq1LkCzF5s7C/7krTbe+3mydQXFgB4pfJffiCuC2xmzweKo255Nos9uwYm6u0/W
+         TeU5FVxpfO+r8HKeWHQyvzZG7Z+eplECiaAkynHGu0GZfev7CN4LyV3XCEYlkOWBQwUP
+         MYpuAnbEd5mmVwCFpboqCruqn2UOWSf8JQOV2G+uJdjh3ahahxpU+qNKElxPNseiCMb9
+         BlxqBO6rn8ppVoUp5kYpEftNHOZ/f41sB4jXUk4IHsXZy42HmWhuBWwk3KO4FpQqyEHe
+         3l5GNChpHaiAq7vzOKOHINBx+/Miy1fC853TTHAZOatgosjopv78CzMGdfQfjAYgqFhD
+         CHWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723722359; x=1724327159;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wceJuM/bJLtr3SVzfHfUR8ftk7EPEsj8fAnbxqXeEBU=;
+        b=hc0koqF9zNcBT9e2vdSuarO5bhT+EXg6f7Alm7Gh0qD5uoIJaAmMzRWPLy6BO7BAIO
+         Vj25RxK80liYhLOv6PjP6A/2PQT3Plm2Fw3RSlYLqGVQihp9QpEJFQJ9ro95tPQYk6pn
+         6H3MAdD+2jOGMZCNoerclqbw8lyskYUgBBYKpyYVtl6cxznSh4vu8Fe+kVWfPV+uYNTA
+         wx2JXvI+fYQ+W5qVE22ELj27l+YOScaEYzL65C87H44ZoTgCgrDyVLbkRHHrlUaEXSXQ
+         uP2be6A437M3tZQULtj+Fn/KArLVCpAtHVhHMCI9LupNcdQASifY9q6V7dbSjKoWfCkW
+         nsvQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXaQ/oDMUAGvQLwpsHEGPj9Py/cS6lll+1CZ5ntG0sAIhY2+EcalfVPB9+wM5Nii+capPp+LW9i2ILNwTt5p6wymXQtO+BRsxlRuR72Sifgf/Ql/eR7o4LpGA0gnPvQhdrccEbtHiJpeQ==
+X-Gm-Message-State: AOJu0Yw3MJ3cjQrBYQmJ/a4KjHdgE2jb5PWVJI6k9Hp6ekqVBsNZREei
+	GxzLMK1am2blCaG/YoMylXpRMNSrDBWufDWiZuI00yU+QS4q5mnSeljfaw==
+X-Google-Smtp-Source: AGHT+IFfI013YzD7AXBUTaTeAMiug4U5ze+Uy2VcSdFs3BdEo+kN57GRnlGR9Zpdl/r6EoIuW1AFJg==
+X-Received: by 2002:a17:907:f1ea:b0:a77:dde0:d669 with SMTP id a640c23a62f3a-a83670335e9mr365570166b.45.1723722358319;
+        Thu, 15 Aug 2024 04:45:58 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a83838cfaffsm89703766b.76.2024.08.15.04.45.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Aug 2024 04:45:58 -0700 (PDT)
+Date: Thu, 15 Aug 2024 13:45:56 +0200
+From: Stanislav Jakubek <stano.jakubek@gmail.com>
+To: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>
+Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: i2c: i2c-sprd: convert to YAML
+Message-ID: <Zr3qdNep9BCb7Knc@standask-GA-A55M-S2HP>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
- (172.25.0.12)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrBLMWRmVeSWpSXmKPExsWyRpKBR9f/+d40g8WfJC3W7D3HZDH/yDlW
-	i+WfZ7NbvJx1j81i0+NrrBaXd81hs3jz4yyTxf89O9gtut+pW/w/+4Hdgctj06pONo/NS+o9
-	+rtbWD2O39jO5PF5k1wAaxSXTUpqTmZZapG+XQJXRsOaI0wFK2wr1p6NaWB8Y9jFyMkhIWAi
-	ce7FW8YuRi4OIYElTBIvZ11ng3AeM0q8nP2VHaSKTUBd4s6Gb6wgCRGBNkaJWWuusYAkmAUq
-	JaZ0XwErEhbwl2jue8AIYrMIqEqcatzHCmLzClhKTL8+jRlinbzEzEvf2SHighInZz6BmiMv
-	0bx1NjOELSFx8MULMFsIKP7i0nIWmN5p515DzQmV2PplO9MERoFZSEbNQjJqFpJRCxiZVzEK
-	5WYmZ6cWZWbrFWRUlqQm66WkbmIEhb4IA9cOxr45HocYmTgYDzFKcDArifAGmuxKE+JNSays
-	Si3Kjy8qzUktPsQozcGiJM67uiM4VUggPbEkNTs1tSC1CCbLxMEp1cC4n1P2kOuO7w13nMvt
-	kldfuHfXT2Tejy67m31680QrjCtmFsWvu7Ci9YuVjRBvxJLngle3zjrHtvrO1R91/yrlmOR7
-	NnZaLfNfbpn0NeQi+/QpE193fU4NWP7y/4dfoXUPN9tnp6/9FJZf8XX/oUfi3sFBujXZZuyC
-	L//92lyTrbZoFpvn2ndrlFiKMxINtZiLihMB49p4jWsCAAA=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-The phyBOARD-Electra implements two Ethernet ports utilizing PRUs.
-Add configuration for both mac ports & PHYs.
+Convert the Spreadtrum SC9860 I2C controller bindings to DT schema.
+Adjust filename to match compatible.
 
-Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
+Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
 ---
-v2: 
-  - Style fixes according to dts-coding-style
-  - Moved vendor-specific properties & status to the end
-  - Separated pinctrl array of phandles using <>
----
- .../dts/ti/k3-am642-phyboard-electra-rdk.dts  | 146 ++++++++++++++++++
- 1 file changed, 146 insertions(+)
+ .../devicetree/bindings/i2c/i2c-sprd.txt      | 31 ---------
+ .../bindings/i2c/sprd,sc9860-i2c.yaml         | 65 +++++++++++++++++++
+ 2 files changed, 65 insertions(+), 31 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-sprd.txt
+ create mode 100644 Documentation/devicetree/bindings/i2c/sprd,sc9860-i2c.yaml
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts b/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts
-index 30729b49dd69..60285d736e07 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts
-@@ -28,6 +28,8 @@ / {
- 	model = "PHYTEC phyBOARD-Electra-AM64x RDK";
- 
- 	aliases {
-+		ethernet1 = &icssg0_emac0;
-+		ethernet2 = &icssg0_emac1;
- 		mmc1 = &sdhci1;
- 		serial2 = &main_uart0;
- 		serial3 = &main_uart1;
-@@ -55,6 +57,73 @@ can_tc2: can-phy1 {
- 		standby-gpios = <&main_gpio0 35 GPIO_ACTIVE_HIGH>;
- 	};
- 
-+	/* Dual Ethernet application node on PRU-ICSSG0 */
-+	ethernet {
-+		compatible = "ti,am642-icssg-prueth";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&icssg0_rgmii1_pins_default>, <&icssg0_rgmii2_pins_default>;
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-sprd.txt b/Documentation/devicetree/bindings/i2c/i2c-sprd.txt
+deleted file mode 100644
+index 7b6b3b8d0d11..000000000000
+--- a/Documentation/devicetree/bindings/i2c/i2c-sprd.txt
++++ /dev/null
+@@ -1,31 +0,0 @@
+-I2C for Spreadtrum platforms
+-
+-Required properties:
+-- compatible: Should be "sprd,sc9860-i2c".
+-- reg: Specify the physical base address of the controller and length
+-  of memory mapped region.
+-- interrupts: Should contain I2C interrupt.
+-- clock-names: Should contain following entries:
+-  "i2c" for I2C clock,
+-  "source" for I2C source (parent) clock,
+-  "enable" for I2C module enable clock.
+-- clocks: Should contain a clock specifier for each entry in clock-names.
+-- clock-frequency: Contains desired I2C bus clock frequency in Hz.
+-- #address-cells: Should be 1 to describe address cells for I2C device address.
+-- #size-cells: Should be 0 means no size cell for I2C device address.
+-
+-Optional properties:
+-- Child nodes conforming to I2C bus binding
+-
+-Examples:
+-i2c0: i2c@70500000 {
+-	compatible = "sprd,sc9860-i2c";
+-	reg = <0 0x70500000 0 0x1000>;
+-	interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+-	clock-names = "i2c", "source", "enable";
+-	clocks = <&clk_i2c3>, <&ext_26m>, <&clk_ap_apb_gates 11>;
+-	clock-frequency = <400000>;
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-};
+-
+diff --git a/Documentation/devicetree/bindings/i2c/sprd,sc9860-i2c.yaml b/Documentation/devicetree/bindings/i2c/sprd,sc9860-i2c.yaml
+new file mode 100644
+index 000000000000..ec0d39e73d26
+--- /dev/null
++++ b/Documentation/devicetree/bindings/i2c/sprd,sc9860-i2c.yaml
+@@ -0,0 +1,65 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/i2c/sprd,sc9860-i2c.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+		interrupt-parent = <&icssg0_intc>;
-+		interrupts = <24 0 2>, <25 1 3>;
-+		interrupt-names = "tx_ts0", "tx_ts1";
++title: Spreadtrum SC9860 I2C controller
 +
-+		sram = <&oc_sram>;
-+		firmware-name = "ti-pruss/am65x-sr2-pru0-prueth-fw.elf",
-+				"ti-pruss/am65x-sr2-rtu0-prueth-fw.elf",
-+				"ti-pruss/am65x-sr2-txpru0-prueth-fw.elf",
-+				"ti-pruss/am65x-sr2-pru1-prueth-fw.elf",
-+				"ti-pruss/am65x-sr2-rtu1-prueth-fw.elf",
-+				"ti-pruss/am65x-sr2-txpru1-prueth-fw.elf";
++maintainers:
++  - Orson Zhai <orsonzhai@gmail.com>
++  - Baolin Wang <baolin.wang7@gmail.com>
++  - Chunyan Zhang <zhang.lyra@gmail.com>
 +
-+		dmas = <&main_pktdma 0xc100 15>, /* egress slice 0 */
-+		       <&main_pktdma 0xc101 15>, /* egress slice 0 */
-+		       <&main_pktdma 0xc102 15>, /* egress slice 0 */
-+		       <&main_pktdma 0xc103 15>, /* egress slice 0 */
-+		       <&main_pktdma 0xc104 15>, /* egress slice 1 */
-+		       <&main_pktdma 0xc105 15>, /* egress slice 1 */
-+		       <&main_pktdma 0xc106 15>, /* egress slice 1 */
-+		       <&main_pktdma 0xc107 15>, /* egress slice 1 */
-+		       <&main_pktdma 0x4100 15>, /* ingress slice 0 */
-+		       <&main_pktdma 0x4101 15>; /* ingress slice 1 */
-+		dma-names = "tx0-0", "tx0-1", "tx0-2", "tx0-3",
-+			    "tx1-0", "tx1-1", "tx1-2", "tx1-3",
-+			    "rx0", "rx1";
++allOf:
++  - $ref: /schemas/i2c/i2c-controller.yaml#
 +
-+		ti,prus = <&pru0_0>, <&rtu0_0>, <&tx_pru0_0>, <&pru0_1>, <&rtu0_1>, <&tx_pru0_1>;
-+		ti,pruss-gp-mux-sel = <2>,	/* MII mode */
-+				      <2>,
-+				      <2>,
-+				      <2>,	/* MII mode */
-+				      <2>,
-+				      <2>;
++properties:
++  compatible:
++    const: sprd,sc9860-i2c
 +
-+		ti,mii-g-rt = <&icssg0_mii_g_rt>;
-+		ti,mii-rt = <&icssg0_mii_rt>;
-+		ti,iep = <&icssg0_iep0>, <&icssg0_iep1>;
++  reg:
++    maxItems: 1
 +
-+		ethernet-ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			icssg0_emac0: port@0 {
-+				reg = <0>;
-+				phy-handle = <&icssg0_phy1>;
-+				phy-mode = "rgmii-id";
-+				/* Filled in by bootloader */
-+				local-mac-address = [00 00 00 00 00 00];
-+				ti,syscon-rgmii-delay = <&main_conf 0x4100>;
-+			};
++  interrupts:
++    maxItems: 1
 +
-+			icssg0_emac1: port@1 {
-+				reg = <1>;
-+				phy-handle = <&icssg0_phy2>;
-+				phy-mode = "rgmii-id";
-+				/* Filled in by bootloader */
-+				local-mac-address = [00 00 00 00 00 00];
-+				ti,syscon-rgmii-delay = <&main_conf 0x4104>;
-+			};
-+		};
-+	};
++  clocks:
++    items:
++      - description: I2C clock
++      - description: I2C source (parent) clock
++      - description: I2C module enable clock
 +
- 	keys {
- 		compatible = "gpio-keys";
- 		autorepeat;
-@@ -118,6 +187,12 @@ AM64X_IOPAD(0x0090, PIN_OUTPUT, 7)	/* (P17) GPMC0_BE0n_CLE.GPIO0_35 */
- 		>;
- 	};
- 
-+	clkout0_pins_default: clkout0-default-pins {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0274, PIN_OUTPUT, 5)	/* (A19) EXT_REFCLK1.CLKOUT0 */
-+		>;
-+	};
++  clock-names:
++    items:
++      - const: i2c
++      - const: source
++      - const: enable
 +
- 	gpio_keys_pins_default: gpio-keys-default-pins {
- 		pinctrl-single,pins = <
- 			AM64X_IOPAD(0x0044, PIN_INPUT, 7)	/* (T18) GPMC0_AD2.GPIO0_17 */
-@@ -125,6 +200,49 @@ AM64X_IOPAD(0x0054, PIN_INPUT, 7)	/* (V20) GPMC0_AD6.GPIO0_21 */
- 		>;
- 	};
- 
-+	icssg0_mdio_pins_default: icssg0-mdio-default-pins {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0200, PIN_INPUT, 0)	/* (P2) PRG0_MDIO0_MDIO */
-+			AM64X_IOPAD(0x0204, PIN_OUTPUT, 0)	/* (P3) PRG0_MDIO0_MDC */
-+			AM64X_IOPAD(0x01A8, PIN_OUTPUT, 7)	/* (V1) PRG0_PRU0_GPO18.GPIO1_18 */
-+			AM64X_IOPAD(0x01AC, PIN_OUTPUT, 7)	/* (W1) PRG0_PRU0_GPO19.GPIO1_19 */
-+		>;
-+	};
++  clock-frequency: true
 +
-+	icssg0_rgmii1_pins_default: icssg0-rgmii1-default-pins {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0160, PIN_INPUT, 2)	/* (Y1) PRG0_PRU0_GPO0.PRG0_RGMII1_RD0 */
-+			AM64X_IOPAD(0x0164, PIN_INPUT, 2)	/* (R4) PRG0_PRU0_GPO1.PRG0_RGMII1_RD1 */
-+			AM64X_IOPAD(0x0168, PIN_INPUT, 2)	/* (U2) PRG0_PRU0_GPO2.PRG0_RGMII1_RD2 */
-+			AM64X_IOPAD(0x016c, PIN_INPUT, 2)	/* (V2) PRG0_PRU0_GPO3.PRG0_RGMII1_RD3 */
-+			AM64X_IOPAD(0x0170, PIN_INPUT, 2)	/* (AA2) PRG0_PRU0_GPO4.PRG0_RGMII1_RX_CTL */
-+			AM64X_IOPAD(0x0178, PIN_INPUT, 2)	/* (T3) PRG0_PRU0_GPO6.PRG0_RGMII1_RXC */
-+			AM64X_IOPAD(0x018c, PIN_OUTPUT, 2)	/* (Y3) PRG0_PRU0_GPO11.PRG0_RGMII1_TD0 */
-+			AM64X_IOPAD(0x0190, PIN_OUTPUT, 2)	/* (AA3) PRG0_PRU0_GPO12.PRG0_RGMII1_TD1 */
-+			AM64X_IOPAD(0x0194, PIN_OUTPUT, 2)	/* (R6) PRG0_PRU0_GPO13.PRG0_RGMII1_TD2 */
-+			AM64X_IOPAD(0x0198, PIN_OUTPUT, 2)	/* (V4) PRG0_PRU0_GPO14.PRG0_RGMII1_TD3 */
-+			AM64X_IOPAD(0x019c, PIN_OUTPUT, 2)	/* (T5) PRG0_PRU0_GPO15.PRG0_RGMII1_TX_CTL */
-+			AM64X_IOPAD(0x01a0, PIN_OUTPUT, 2)	/* (U4) PRG0_PRU0_GPO16.PRG0_RGMII1_TXC */
-+		>;
-+	};
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - clock-frequency
 +
-+	icssg0_rgmii2_pins_default: icssg0-rgmii2-default-pins {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x01b0, PIN_INPUT, 2)	/* (Y2) PRG0_PRU1_GPO0.PRG0_RGMII2_RD0 */
-+			AM64X_IOPAD(0x01b4, PIN_INPUT, 2)	/* (W2) PRG0_PRU1_GPO1.PRG0_RGMII2_RD1 */
-+			AM64X_IOPAD(0x01b8, PIN_INPUT, 2)	/* (V3) PRG0_PRU1_GPO2.PRG0_RGMII2_RD2 */
-+			AM64X_IOPAD(0x01bc, PIN_INPUT, 2)	/* (T4) PRG0_PRU1_GPO3.PRG0_RGMII2_RD3 */
-+			AM64X_IOPAD(0x01c0, PIN_INPUT, 2)	/* (W3) PRG0_PRU1_GPO4.PRG0_RGMII2_RX_CTL */
-+			AM64X_IOPAD(0x01c8, PIN_INPUT, 2)	/* (R5) PRG0_PRU1_GPO6.PRG0_RGMII2_RXC */
-+			AM64X_IOPAD(0x01dc, PIN_OUTPUT, 2)	/* (W4) PRG0_PRU1_GPO11.PRG0_RGMII2_TD0 */
-+			AM64X_IOPAD(0x01e0, PIN_OUTPUT, 2)	/* (Y4) PRG0_PRU1_GPO12.PRG0_RGMII2_TD1 */
-+			AM64X_IOPAD(0x01e4, PIN_OUTPUT, 2)	/* (T6) PRG0_PRU1_GPO13.PRG0_RGMII2_TD2 */
-+			AM64X_IOPAD(0x01e8, PIN_OUTPUT, 2)	/* (U6) PRG0_PRU1_GPO14.PRG0_RGMII2_TD3 */
-+			AM64X_IOPAD(0x01ec, PIN_OUTPUT, 2)	/* (U5) PRG0_PRU1_GPO15.PRG0_RGMII2_TX_CTL */
-+			AM64X_IOPAD(0x01f0, PIN_OUTPUT, 2)	/* (AA4) PRG0_PRU1_GPO16.PRG0_RGMII2_TXC */
-+		>;
-+	};
++unevaluatedProperties: false
 +
- 	main_i2c1_pins_default: main-i2c1-default-pins {
- 		pinctrl-single,pins = <
- 			AM64X_IOPAD(0x0268, PIN_INPUT, 0)	/* (C18) I2C1_SCL */
-@@ -198,6 +316,34 @@ AM64X_IOPAD(0x0040, PIN_OUTPUT, 7)	/* (U21) GPMC0_AD1.GPIO0_16 */
- 	};
- };
- 
-+&icssg0_mdio {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&icssg0_mdio_pins_default &clkout0_pins_default>;
-+	status = "okay";
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
 +
-+	icssg0_phy1: ethernet-phy@1 {
-+		compatible = "ethernet-phy-id2000.a231", "ethernet-phy-ieee802.3-c22";
-+		reg = <0x1>;
-+		tx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		rx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		reset-gpios = <&main_gpio1 18 GPIO_ACTIVE_LOW>;
-+		reset-assert-us = <1000>;
-+		reset-deassert-us = <1000>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+	};
-+
-+	icssg0_phy2: ethernet-phy@2 {
-+		compatible = "ethernet-phy-id2000.a231", "ethernet-phy-ieee802.3-c22";
-+		reg = <0x2>;
-+		tx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		rx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		reset-gpios = <&main_gpio1 19 GPIO_ACTIVE_LOW>;
-+		reset-assert-us = <1000>;
-+		reset-deassert-us = <1000>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+	};
-+};
-+
- &main_i2c1 {
- 	status = "okay";
- 	pinctrl-names = "default";
++    i2c@70500000 {
++      compatible = "sprd,sc9860-i2c";
++      reg = <0x70500000 0x1000>;
++      interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
++      clocks = <&clk_i2c3>, <&ext_26m>, <&clk_ap_apb_gates 11>;
++      clock-names = "i2c", "source", "enable";
++      clock-frequency = <400000>;
++      #address-cells = <1>;
++      #size-cells = <0>;
++    };
 -- 
 2.34.1
 
