@@ -1,104 +1,151 @@
-Return-Path: <devicetree+bounces-94057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7906953C8F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 23:23:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8709B953C9A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 23:31:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3B9C284FAE
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 21:23:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D1632873F0
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 21:31:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAAE514F100;
-	Thu, 15 Aug 2024 21:23:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A031C14EC51;
+	Thu, 15 Aug 2024 21:31:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h71BiTst"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="T2u84iGk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6D7114E2F5
-	for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 21:23:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE5C14DA13
+	for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 21:31:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723757016; cv=none; b=P4Y668rTRLWdEEqlKmvkjQMIY/diYpGPYDokFvJV1t/NwQs35hC1L3l0s4J6c9COOlLFCicX7onbrk8mX9EmKccry/J1g356wvo0psoaCfTsokr1AkEkPlg1sZZ1QxGG6cQ1abBSk7a6GqFnIZt/1WnK1Nz3VwppfwqyXDWjKzo=
+	t=1723757470; cv=none; b=hIO3/YrAvqJZnfYNsc/oYcEDqAjp+VlqszixGQxT8XyIeH8uo4IOpRUjaryOTYqUtaMP8PPu4Cv55wuVk1Rgsh11sFWHId+3yWPlt6YC8aBqK4hRCDqi8+pqIhixvIAv0Tf279LCY4/ch3qGC5fbPKkU1lA8quKUYD3PPfUtuXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723757016; c=relaxed/simple;
-	bh=hxWMuaf3kQDtZ1suhHm56wzGoZrFxDQcZAFuWwgN03k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=b8EEBJ2ua6Ed1bUlOPQ3FItsrtC5CSD0nmwc0oxLt1gM7aIVj0Sc2s21U9/pDcFGmxlXr/gY6Ge0JvBgz7QglkznlbnfM8q2xp0HvoI/b51zzjhw4yzpvjEuBNsa2kKWqLbTmRqh7BQFYjZybzPUv5EdtFu/yjh8LtOIGV9thVg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h71BiTst; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AC21C4AF09
-	for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 21:23:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723757016;
-	bh=hxWMuaf3kQDtZ1suhHm56wzGoZrFxDQcZAFuWwgN03k=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=h71BiTstfgoAm/AnCTnKYndjfVW5cVXX1zSAISPTLlUIoiXYBW3quGqNjF4Zmsc1q
-	 gzPdLT3eEbpyDZXzvzopq6TepiB+j/9t+0yTinKgt9mx9Gwr1//QZyFOo6F+p5E0/S
-	 6KsPHu9nxL07xaWc2xL88zU+uP0i0QMnPlJNryJMqV10kJzmHhtFTLzPUAuZLoSGtc
-	 S2JamK/u55Z9Mg9nyHZorA73+04CfUfTunrR9Kras7i60i/iUZirNCzbzwx0CksQRk
-	 34sutnEX4N7W9UvAJi7OfaKb/GFOi5yoN3JCKrG9B3PAh0883ZBpLGYdIipHrwlyZz
-	 hoVf/YjjUw5Vw==
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2f029e9c9cfso20245581fa.2
-        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 14:23:36 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXLZVRfWjteNuAaBnN0Ww7nVKlJTi2pa+TsHOQQCEJIg/rkqX6zc0aEYbishWYdwDKfLO7v+MhozfNkJBKGUSJtnrSpqnxQ06wOQQ==
-X-Gm-Message-State: AOJu0Yy011yKLvuiZJQx2kmKRBx3kopZtdUrThUXMHmLGMm45nTptSx2
-	hhd1XB122ezQ6iuXPondyqqyLlvCd3LwevlWCtA2ESwt+7H29jXwVUhV0ClpuEAsClVGrSvVBeo
-	fplUqQBY4Iah0ax6Bp48xwDF0ZA==
-X-Google-Smtp-Source: AGHT+IFnMt2Qcsj+larikgTlYpDJaH/2cmr55i2Wk+bCKHNq/0V3FP3D+2VsQAYZBkaXkZovpP0Di4baGfxR9chLVak=
-X-Received: by 2002:a2e:3518:0:b0:2f0:1f15:5a16 with SMTP id
- 38308e7fff4ca-2f3be58389fmr7028291fa.13.1723757014701; Thu, 15 Aug 2024
- 14:23:34 -0700 (PDT)
+	s=arc-20240116; t=1723757470; c=relaxed/simple;
+	bh=bBhD2UVKdIi/pLUo9qeSoZ/3rVNP5+ExM5I1cdnBsSw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dRb6c0WatJCO8qhdjx0hSO1LkzqO6jHISJ4NZwg6mMprFvE0yXSQlInd4Bqdc3+oN2LIq3R8F6WzCcDIwa4ndZooY+L0rIGU91lIaE9U6/MW1w4j/jwk3zAoWt3ulu54L/IqYoeHK6WKY6vgHZdQBFXqFTTtem18GXiSTzoJ49Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=T2u84iGk; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2ef2687d604so1354091fa.0
+        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 14:31:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1723757467; x=1724362267; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=aj3ozXYdzeekQq7OfG9J9RbzOXbJtbjXaVZN/oAjRbU=;
+        b=T2u84iGkowlz/SwNVxNYKFsjD/Sx/5r0rsqOlhSMeBQMjkPnha1oGnk7z9SXTSxwMy
+         T/cCUdJmr9kCEIYXet0OkAQwqbspYxfhp4Rwa6287XNJNAPiUZfw6czYjbMUREKfGjkQ
+         oHDA1kmRmWaBL/dqS22KEIymi8ovPZlMuep66oLsOOLHExRh7OTaRfJpymvKhpVCiZAZ
+         FnbbbsdAE3ty5HYtKc9MF27zBq2vXGeGjaawJMqsbOwJ7qbVQAPZ8U8teM1OifmGJgiD
+         XK8xs5Xr+Eu2O2gjWc5zLqeluqpbfFXJpoOUolzTnFlYciAcM+coq2NCmZNk5hTu7D9q
+         AWhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723757467; x=1724362267;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aj3ozXYdzeekQq7OfG9J9RbzOXbJtbjXaVZN/oAjRbU=;
+        b=VEIxrgzOJLcb+Zg0lHUSWwWcKZIWLmiRXJ7qMwte0TLYkezH58f2Aaijfj4lKV11xw
+         llRgwbKpHBdVeIgKblTTcN62k0O11SJJkK6TYejvtPMBZUNRTYgyfD8MJo0uVXenxND/
+         86inngoWMHLqswfv30hU6jP02p+uqCoqphKB0Rw42kn42YAffM24zS2KKlcAtlEc+MhP
+         dXqB7Gc1At4tBROwaTc+CRPVHSta/QrL7AzbeGvI/qR0NjNUCvpdARZev0hGSCzCvbpf
+         5+LZDzfT3Z4kiM5NBOtnKIg7PFbBxqhWQpUQbEasJUKXJ6WsvvjOc3XVOPRpELUMizpm
+         AHsA==
+X-Forwarded-Encrypted: i=1; AJvYcCXGUHxCqL391DxxN7oNMLqCAXGRR3tIp0/25a6BeGdRaFKZ8yeYRzisn9uiSpQDPgs1NuTVhpFvGNQGp1J2IhTWQkkpWWXWNSXbNg==
+X-Gm-Message-State: AOJu0Ywh23p2qJvcs8F+MT3DYo1Y/hUXbQJeA24mKptCy8MTP0C6dwNv
+	08NcjH6F8Tow3jn0bxN1Hh2re4EmU9N1nrrC3NPsMp8P4M9qqlB8LZfgsxZF2R8=
+X-Google-Smtp-Source: AGHT+IHtyuhBpS1ajBq71Vtt7+Xvd1FZ6TXLAEnoHPJ7SGlONaTy9h3p1wttBpPuhwPk8SEcEyX1XQ==
+X-Received: by 2002:a05:651c:19a9:b0:2ef:23af:f1f2 with SMTP id 38308e7fff4ca-2f3be78709cmr3161651fa.9.1723757466681;
+        Thu, 15 Aug 2024 14:31:06 -0700 (PDT)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f3b774b2adsm3268241fa.133.2024.08.15.14.31.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Aug 2024 14:31:06 -0700 (PDT)
+Message-ID: <56211603-de02-4b8f-a7c6-a4d80ace4e2f@linaro.org>
+Date: Fri, 16 Aug 2024 00:31:05 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <Zr5LAhuieUvM/uEC@lizhi-Precision-Tower-5810>
-In-Reply-To: <Zr5LAhuieUvM/uEC@lizhi-Precision-Tower-5810>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 15 Aug 2024 15:23:22 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLih5nbNhP=Zf=LG5xMG-Q7FmSwHcHS5JgE_=MquPVMng@mail.gmail.com>
-Message-ID: <CAL_JsqLih5nbNhP=Zf=LG5xMG-Q7FmSwHcHS5JgE_=MquPVMng@mail.gmail.com>
-Subject: Re: How to delete property in device tree overlay dtso
-To: Frank Li <Frank.li@nxp.com>
-Cc: imx@lists.linux.dev, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 13/13] media: qcom: camss: Add support for VFE hardware
+ version Titan 780
+Content-Language: en-US
+To: Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
+ todor.too@gmail.com, bryan.odonoghue@linaro.org, mchehab@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ kernel@quicinc.com, Yongsheng Li <quic_yon@quicinc.com>
+References: <20240812144131.369378-1-quic_depengs@quicinc.com>
+ <20240812144131.369378-14-quic_depengs@quicinc.com>
+ <4b745c1a-33d9-472a-97af-153a2a7c8721@linaro.org>
+ <2de0b7a8-b879-49e9-9656-ec86f29ce559@quicinc.com>
+ <b0787142-0f85-4616-9895-72e33f21c2da@linaro.org>
+ <82200889-a98d-4815-bc31-f81b15d02513@quicinc.com>
+ <7130beef-7787-42a1-85c8-f27574241ba7@linaro.org>
+ <5ecbcd10-d9b7-4134-9666-6df790527b1f@quicinc.com>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <5ecbcd10-d9b7-4134-9666-6df790527b1f@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Aug 15, 2024 at 12:38=E2=80=AFPM Frank Li <Frank.li@nxp.com> wrote:
->
-> Rob:
->
-> It may be old topic:
-> https://lore.kernel.org/lkml/c342562e-f915-a853-c2a8-eecefd94b88d@gmail.c=
-om/T/
+Hi Depeng.
 
-Yeah, still no one has figured out how to add that to overlays.
+On 8/15/24 18:43, Depeng Shao wrote:
+> Hi Vladimir,
+> 
+>>>
+>>> Thanks for the confirmation, even though I add the rup_update and
+>>> buf_done function in later commits, it is still called in platform
+>>> specific code(camss-vfe-780.c), so I will keep as it is done today.
+>>
+>> let it be so.
+>>
+>> I have another ask about it, please move new camss_reg_update() out from
+>> camss.c into camss-csid.c, and camss_buf_done() from camss.c into camss-
+>> vfe.c
+>>
+> 
+> The cross direct call has been removed by below commit, so it looks
+> strange if I add the cross direct call.
+> 
+> media: qcom: camss: Decouple VFE from CSID
+> https://lore.kernel.org/lkml/20240522154659.510-9-quic_grosikop@quicinc.com/
 
-> When I try to fix below warning,
->
-> arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-usbotg.dtb: sel-usb=
--hub-hog: {'output-low': True, 'gpio-hog': True, 'gpios': [[1, 0]], 'output=
--high': True, 'phandle': 108, '$nodename': ['sel-usb-hub-hog']} is valid un=
-der each of {'required': ['output-low']}, {'required': ['output-high']}
->
-> both "output-low" and "output-high" two flags exist under one node.
+This I don't understand, please elaborate. I don't ask for a "cross direct
+call", but you do introduce a CSID specific function in the generic camss.c
+and another VFE specific function in the same camss.c
 
-It's best to design bindings which can't have invalid combinations,
-but too late for this one...
+What I ask is just move the current versions of camss_buf_done() and
+camss_reg_update() out from camss.c to the files, which are related to the
+sub-IP blocks, and of course move the function declarations from camss.h
+into camss-vfe.h and camss-csid.h respectively.
 
-> When I try to delete "output-high" in dtso file, I found it doesn't work
-> and dtc have not complain /delete node/ not work for overlay.
->
-> It may cause some problems because people think delete success, but
-> actually not, espeically some important flags.
+If possible there shall be no CSID or VFE specific specific code in camss.c,
+and that fact is that it's possible.
 
-Perhaps add a warning to dtc. It may have to be just in overlays
-because there might be reliance on the current silent behavior.
+> I use the v4l2_subdev_notify to do the cross communication in v1 and v2
+> series, but Bryan said, "The subdev notify is I think not the right fit
+> for this purpose within our driver.".
 
-Rob
+As far as I see all of that is irrelevant.
+
+> Then I add an internal notify interface in camss structure, but Bryan
+> suggested to use direct call, so I add these functions directly in camss.c
+> 
+> https://lore.kernel.org/all/236cfe43-8321-4168-8630-fb9528f581bd@linaro.org/
+> 
+
+--
+Best wishes,
+Vladimir
 
