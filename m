@@ -1,237 +1,322 @@
-Return-Path: <devicetree+bounces-93840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2632B9529F0
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 09:30:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD1A4952A3B
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 09:58:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 42E901C2082A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 07:30:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF8051C20D44
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 07:58:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6493A189B9B;
-	Thu, 15 Aug 2024 07:30:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B52118CBE1;
+	Thu, 15 Aug 2024 07:58:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="U4R2mOSk"
+	dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b="ovyDsBP4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mail.thorsis.com (mail.thorsis.com [217.92.40.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BF6017B4EE;
-	Thu, 15 Aug 2024 07:30:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B5CE17D8A6;
+	Thu, 15 Aug 2024 07:58:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.92.40.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723707011; cv=none; b=TTYrWAWWitWx8qYFxtiz/06cq/ASlv/m3Hv3m5U9PFG7EFBQjDregXK5/T383NOSny3SUGsQLB9G/ny4421JH+w42qgn7W7OhPWqgTgdPp5gp4WB8gqmH77H6ZFy4tVcw0cVCKglcXHCjgRAtPPakx5XljMArm3QoMhgSvUZYA0=
+	t=1723708698; cv=none; b=ht+xgLnW5YtzZvSsHEKVdJYO+4IYKx+6HHLfXw05G3uPsGcmb9k1YLp0QLgEcT/LLTxtKGPSvpR8RjYdubaSsA8vH7svb4/oYAy2r5b8rFJ7KA9KsX/Gykcb+n3qLrZj+JbX4JoPr0lS1BqeO7QF9xRlsvZSG9cMH39hm+ZwewM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723707011; c=relaxed/simple;
-	bh=ldQ0outL4QKLwryuC/LIt5eVxQJHAdWhRM3fm421H80=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Ety8EMcQIe+CKalmbD/xX49BAFltsERqFReNaEGK61K16e3KiSFYrEVMhD5uJfExHtkNYH2lgEr6MnFE4A1oeDggA2Z/6KuJTHvJoVHjqNhTGxAUGT5RteZcbGccMO7JWCzUFYpO3T4oLhjLrCQ8MKH1+0f963uSJssKYgQ0nKQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=U4R2mOSk; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [127.0.1.1] (91-156-87-48.elisa-laajakaista.fi [91.156.87.48])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7545C16B0;
-	Thu, 15 Aug 2024 09:28:57 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1723706938;
-	bh=ldQ0outL4QKLwryuC/LIt5eVxQJHAdWhRM3fm421H80=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=U4R2mOSkTXcPHLm6QpKCEpz+Hw54Ax2DUTIDjyXHHbTZTl4MgjpFEgSLamw3a3ijL
-	 /fSNpshs3e6I7vGIAn4nMOqKaLdJ+Qz6acAqWbxSSV0s3SAXxMVlJTN+L2K/Pq5P6B
-	 j6Oe2IYOl3KEn6TIWKVj4zCcwh2GEGNtrt1Wj//o=
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Date: Thu, 15 Aug 2024 10:28:55 +0300
-Subject: [PATCH v3 4/4] media: admin-guide: Document the Raspberry Pi CFE
- (rp1-cfe)
+	s=arc-20240116; t=1723708698; c=relaxed/simple;
+	bh=kFlUg8RnShHlE4ohDvhQ7L+98DC89mlWaW/bJcrzUok=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hD84eIK3smcM7n4WEUOZOxuN9eJenRlGG3XF+TDiBS6BVgee6ZKCjH+pgTvLv9cFZMpEK1X5JyvzmDiSwnDdYxqqSxc/q0oINtE5lvjXrkcMGXmcuRdKSm+wkysztMnrwNPCIh7ZmW+kjNqDnB0Z79MGmfxointMqUcpalasq0U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com; spf=pass smtp.mailfrom=thorsis.com; dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b=ovyDsBP4; arc=none smtp.client-ip=217.92.40.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thorsis.com
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 686C714803C9;
+	Thu, 15 Aug 2024 09:58:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=dkim;
+	t=1723708685; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=ZUabmVKLYg7ovcA0kdMSO2roCBz3aftZYmz2ejKvnhY=;
+	b=ovyDsBP4k0tSQ2KsZmM8q+8v1ccQWoMMrRHwdDVJTEUVkFFVbOBvIFagD2CoxbbrYRs6Gn
+	BAFBwA7WjPHA/bEN4Qc9zhdLpn8zinqkHg1blxpd5Dz7PW5WXFDztHZZjXaDZaAgPJmVCe
+	PJx/ajEvplC/qH+Py172nKp2MVFTVfQMs4YwyqXfpbnnP7+oAtT22Y5f1/NGyaElUfKvE+
+	QNFt3vRqdpSy7ZlZALdjHohIJTLQTl36aGTe4oyeV39ziusWLLkiiy1pSj2X2BxTJ9CcAf
+	qvFYbVVlOO8iGVwCUbywUop2F4vC7S1aRroZz9C7VA89T/S8/GOrgdfSbp1N3w==
+Date: Thu, 15 Aug 2024 09:57:56 +0200
+From: Alexander Dahl <ada@thorsis.com>
+To: Andrei Simion <andrei.simion@microchip.com>
+Cc: claudiu.beznea@tuxon.dev, nicolas.ferre@microchip.com,
+	alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, peda@axentia.se,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, cristian.birsan@microchip.com,
+	linux-leds@vger.kernel.org
+Subject: Re: [PATCH 5/5] ARM: dts: microchip: Rename LED sub nodes name
+Message-ID: <20240815-ambush-cavalier-80adf0260765@thorsis.com>
+Mail-Followup-To: Andrei Simion <andrei.simion@microchip.com>,
+	claudiu.beznea@tuxon.dev, nicolas.ferre@microchip.com,
+	alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, peda@axentia.se,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, cristian.birsan@microchip.com,
+	linux-leds@vger.kernel.org
+References: <20240814122633.198562-1-andrei.simion@microchip.com>
+ <20240814122633.198562-6-andrei.simion@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240815-rp1-cfe-v3-4-e15a979db327@ideasonboard.com>
-References: <20240815-rp1-cfe-v3-0-e15a979db327@ideasonboard.com>
-In-Reply-To: <20240815-rp1-cfe-v3-0-e15a979db327@ideasonboard.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, 
- Naushir Patuck <naush@raspberrypi.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
- Kieran Bingham <kieran.bingham@ideasonboard.com>, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6375;
- i=tomi.valkeinen@ideasonboard.com; h=from:subject:message-id;
- bh=ldQ0outL4QKLwryuC/LIt5eVxQJHAdWhRM3fm421H80=;
- b=owEBbQKS/ZANAwAIAfo9qoy8lh71AcsmYgBmva5up5foUzCmunvjcc/xgqkCutlcEgG0jJVHQ
- cNqUqRY3taJAjMEAAEIAB0WIQTEOAw+ll79gQef86f6PaqMvJYe9QUCZr2ubgAKCRD6PaqMvJYe
- 9RxRD/96nm1jm0YWU+EbYRd+xRk4baJ4K9jCOMw6kFneR1Pzwd8DfM9k5XbvjWbheSymyeMMG4a
- g7ul8v/7zDYsStYh/07TWVCa7MwrjWe3rk1Lf62Ugr5OT+Oco/Rf5dcSsL8D/AAGkP1G1A4QPZg
- scC2h2mMxsmm2xJ9uVIW0iMG6PU6jY7AbMvlkj0pCG4t6jS4yMig+QxyK3ipBRMY5T1xQfm2z2h
- pqPkCAHIvq4CSBlNDSCQdayJHFh1QXq+VtN0nPDGs66e0w2x5QAe5TsNf6PWcXc9OdTusYaiCl5
- gmd9fZ5Uie8b1iuwEj13lyj/L792BOgAIEi7HFRBzbw1KFcT8JEnEnuEcUSZHhtCgWiPQc8U6cO
- vxjau6mfIIfwkqJyNjVQafpzGLJPqMUEu/HC13YCkEaEmd7skGOfiD8joCZSya8/JlLIZDptdNF
- beNdCJMkAklO7dCKYMbBMMBKvd9EADk5jfpIYCEpwnx0q7rU6Fo9D4nStoIYt6wYcJdaRkddYqa
- 7SZPEeBcK689klOnwn4pV/Fq8o0dQPHEkT6KeLn9v/+7nAzx7aBNJJbWR11bNCuPmTeN8cxgwHF
- adVuMuMhFrbnyMf1n5o5HMCH5OoTjnrn4GcrixCVsupSSTOY6rBLFkko+IduXjIb26Ynabc5Dza
- qXLE4wCMFcD4wkg==
-X-Developer-Key: i=tomi.valkeinen@ideasonboard.com; a=openpgp;
- fpr=C4380C3E965EFD81079FF3A7FA3DAA8CBC961EF5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240814122633.198562-6-andrei.simion@microchip.com>
+User-Agent: Mutt/2.2.12 (2023-09-09)
+X-Last-TLS-Session-Version: TLSv1.3
 
-Add documentation for rp1-cfe driver.
+Hello Andrei,
 
-Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
----
- .../admin-guide/media/raspberrypi-rp1-cfe.dot      | 27 ++++++++
- .../admin-guide/media/raspberrypi-rp1-cfe.rst      | 78 ++++++++++++++++++++++
- Documentation/admin-guide/media/v4l-drivers.rst    |  1 +
- 3 files changed, 106 insertions(+)
+Am Wed, Aug 14, 2024 at 03:26:33PM +0300 schrieb Andrei Simion:
+> dtbs_check warnings:
+> leds: 'd[0-9]', 'ds[0-9]' do not match any of the regexes:
+> '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
+> leds: 'red', 'green', 'blue' do not match any of regexes:
+> '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
+> 
+> Rename the led sub nodes according to devicetree
+> specification and leds-gpio.yaml.
+> 
+> Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
+> ---
+> Split the bloadted patch into small patches on topics
+> based on comments:
+> https://lore.kernel.org/linux-arm-kernel/89f51615-0dee-4ab0-ab72-e3c057fee1e7@tuxon.dev/
+> ---
+>  arch/arm/boot/dts/microchip/aks-cdu.dts        | 8 ++++----
+>  arch/arm/boot/dts/microchip/animeo_ip.dts      | 8 ++++----
+>  arch/arm/boot/dts/microchip/at91-sam9x60ek.dts | 6 +++---
+>  arch/arm/boot/dts/microchip/at91rm9200ek.dts   | 6 +++---
+>  arch/arm/boot/dts/microchip/at91sam9260ek.dts  | 4 ++--
+>  arch/arm/boot/dts/microchip/at91sam9261ek.dts  | 6 +++---
+>  arch/arm/boot/dts/microchip/at91sam9263ek.dts  | 4 ++--
+>  arch/arm/boot/dts/microchip/at91sam9g20ek.dts  | 4 ++--
+>  8 files changed, 23 insertions(+), 23 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/microchip/aks-cdu.dts b/arch/arm/boot/dts/microchip/aks-cdu.dts
+> index 52e166c8a365..95a0639c5579 100644
+> --- a/arch/arm/boot/dts/microchip/aks-cdu.dts
+> +++ b/arch/arm/boot/dts/microchip/aks-cdu.dts
+> @@ -98,23 +98,23 @@ rootfs@500000 {
+>  	leds {
+>  		compatible = "gpio-leds";
+>  
+> -		red {
+> +		led-red {
+>  			gpios = <&pioC 10 GPIO_ACTIVE_HIGH>;
+>  			linux,default-trigger = "none";
+>  		};
+>  
+> -		green {
+> +		led-green {
+>  			gpios = <&pioA 5 GPIO_ACTIVE_LOW>;
+>  			linux,default-trigger = "none";
+>  			default-state = "on";
+>  		};
+>  
+> -		yellow {
+> +		led-yellow {
+>  			gpios = <&pioB 20 GPIO_ACTIVE_LOW>;
+>  			linux,default-trigger = "none";
+>  		};
+>  
+> -		blue {
+> +		led-blue {
+>  			gpios = <&pioB 21 GPIO_ACTIVE_LOW>;
+>  			linux,default-trigger = "none";
+>  		};
 
-diff --git a/Documentation/admin-guide/media/raspberrypi-rp1-cfe.dot b/Documentation/admin-guide/media/raspberrypi-rp1-cfe.dot
-new file mode 100644
-index 000000000000..7717f2291049
---- /dev/null
-+++ b/Documentation/admin-guide/media/raspberrypi-rp1-cfe.dot
-@@ -0,0 +1,27 @@
-+digraph board {
-+	rankdir=TB
-+	n00000001 [label="{{<port0> 0} | csi2\n/dev/v4l-subdev0 | {<port1> 1 | <port2> 2 | <port3> 3 | <port4> 4}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n00000001:port1 -> n00000011 [style=dashed]
-+	n00000001:port1 -> n00000007:port0
-+	n00000001:port2 -> n00000015
-+	n00000001:port2 -> n00000007:port0 [style=dashed]
-+	n00000001:port3 -> n00000019 [style=dashed]
-+	n00000001:port3 -> n00000007:port0 [style=dashed]
-+	n00000001:port4 -> n0000001d [style=dashed]
-+	n00000001:port4 -> n00000007:port0 [style=dashed]
-+	n00000007 [label="{{<port0> 0 | <port1> 1} | pisp-fe\n/dev/v4l-subdev1 | {<port2> 2 | <port3> 3 | <port4> 4}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n00000007:port2 -> n00000021
-+	n00000007:port3 -> n00000025 [style=dashed]
-+	n00000007:port4 -> n00000029
-+	n0000000d [label="{imx219 6-0010\n/dev/v4l-subdev2 | {<port0> 0}}", shape=Mrecord, style=filled, fillcolor=green]
-+	n0000000d:port0 -> n00000001:port0 [style=bold]
-+	n00000011 [label="rp1-cfe-csi2-ch0\n/dev/video0", shape=box, style=filled, fillcolor=yellow]
-+	n00000015 [label="rp1-cfe-csi2-ch1\n/dev/video1", shape=box, style=filled, fillcolor=yellow]
-+	n00000019 [label="rp1-cfe-csi2-ch2\n/dev/video2", shape=box, style=filled, fillcolor=yellow]
-+	n0000001d [label="rp1-cfe-csi2-ch3\n/dev/video3", shape=box, style=filled, fillcolor=yellow]
-+	n00000021 [label="rp1-cfe-fe-image0\n/dev/video4", shape=box, style=filled, fillcolor=yellow]
-+	n00000025 [label="rp1-cfe-fe-image1\n/dev/video5", shape=box, style=filled, fillcolor=yellow]
-+	n00000029 [label="rp1-cfe-fe-stats\n/dev/video6", shape=box, style=filled, fillcolor=yellow]
-+	n0000002d [label="rp1-cfe-fe-config\n/dev/video7", shape=box, style=filled, fillcolor=yellow]
-+	n0000002d -> n00000007:port1
-+}
-diff --git a/Documentation/admin-guide/media/raspberrypi-rp1-cfe.rst b/Documentation/admin-guide/media/raspberrypi-rp1-cfe.rst
-new file mode 100644
-index 000000000000..668d978a9875
---- /dev/null
-+++ b/Documentation/admin-guide/media/raspberrypi-rp1-cfe.rst
-@@ -0,0 +1,78 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+============================================
-+Raspberry Pi PiSP Camera Front End (rp1-cfe)
-+============================================
-+
-+The PiSP Camera Front End
-+=========================
-+
-+The PiSP Camera Front End (CFE) is a module which combines a CSI-2 receiver with
-+a simple ISP, called the Front End (FE).
-+
-+The CFE has four DMA engines and can write frames from four separate streams
-+received from the CSI-2 to the memory. One of those streams can also be routed
-+directly to the FE, which can do minimal image processing, write two versions
-+(e.g. non-scaled and downscaled versions) of the received frames to memory and
-+provide statistics of the received frames.
-+
-+The FE registers are documented in the `Raspberry Pi Image Signal Processor
-+(ISP) Specification document
-+<https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf>`_,
-+and example code for FE can be found in `libpisp
-+<https://github.com/raspberrypi/libpisp>`_.
-+
-+The rp1-cfe driver
-+==================
-+
-+The Raspberry Pi PiSP Camera Front End (rp1-cfe) driver is located under
-+drivers/media/platform/raspberrypi/rp1-cfe. It uses the `V4L2 API` to register
-+a number of video capture and output devices, the `V4L2 subdev API` to register
-+subdevices for the CSI-2 received and the FE that connects the video devices in
-+a single media graph realized using the `Media Controller (MC) API`.
-+
-+The media topology registered by the `rp1-cfe` driver, in this particular
-+example connected to an imx219 sensor, is the following one:
-+
-+.. _rp1-cfe-topology:
-+
-+.. kernel-figure:: raspberrypi-rp1-cfe.dot
-+    :alt:   Diagram of an example media pipeline topology
-+    :align: center
-+
-+The media graph contains the following video device nodes:
-+
-+- rp1-cfe-csi2-ch0: capture device for the first CSI-2 stream
-+- rp1-cfe-csi2-ch1: capture device for the second CSI-2 stream
-+- rp1-cfe-csi2-ch2: capture device for the third CSI-2 stream
-+- rp1-cfe-csi2-ch3: capture device for the fourth CSI-2 stream
-+- rp1-cfe-fe-image0: capture device for the first FE output
-+- rp1-cfe-fe-image1: capture device for the second FE output
-+- rp1-cfe-fe-stats: capture device for the FE statistics
-+- rp1-cfe-fe-config: output device for FE configuration
-+
-+rp1-cfe-csi2-chX
-+----------------
-+
-+The rp1-cfe-csi2-chX capture devices are normal V4L2 capture devices which
-+can be used to capture video frames or metadata received from the CSI-2.
-+
-+rp1-cfe-fe-image0, rp1-cfe-fe-image1
-+------------------------------------
-+
-+The rp1-cfe-fe-image0 and rp1-cfe-fe-image1 capture devices are used to write
-+the processed frames to memory.
-+
-+rp1-cfe-fe-stats
-+----------------
-+
-+The format of the FE statistics buffer is defined by
-+:c:type:`pisp_statistics` C structure and the meaning of each parameter is
-+described in the `PiSP specification` document.
-+
-+rp1-cfe-fe-config
-+-----------------
-+
-+The format of the FE configuration buffer is defined by
-+:c:type:`pisp_fe_config` C structure and the meaning of each parameter is
-+described in the `PiSP specification` document.
-diff --git a/Documentation/admin-guide/media/v4l-drivers.rst b/Documentation/admin-guide/media/v4l-drivers.rst
-index b6af448b9fe9..61da154e079a 100644
---- a/Documentation/admin-guide/media/v4l-drivers.rst
-+++ b/Documentation/admin-guide/media/v4l-drivers.rst
-@@ -26,6 +26,7 @@ Video4Linux (V4L) driver-specific documentation
- 	raspberrypi-pisp-be
- 	rcar-fdp1
- 	rkisp1
-+	raspberrypi-rp1-cfe
- 	saa7134
- 	si470x
- 	si4713
+As reported with <20240730-rambling-helping-2f03f5ddee6a@thorsis.com>
+already, this will probably change sysfs paths and thus might break
+userspace depending on those paths.  Did you consider adding a label
+to avoid this?
 
--- 
-2.43.0
+(Added linux-leds to Cc.)
 
+Greets
+Alex
+
+> diff --git a/arch/arm/boot/dts/microchip/animeo_ip.dts b/arch/arm/boot/dts/microchip/animeo_ip.dts
+> index 911c8d9ee013..52ac840bcd35 100644
+> --- a/arch/arm/boot/dts/microchip/animeo_ip.dts
+> +++ b/arch/arm/boot/dts/microchip/animeo_ip.dts
+> @@ -146,23 +146,23 @@ ohci: usb@500000 {
+>  	leds {
+>  		compatible = "gpio-leds";
+>  
+> -		power_green {
+> +		led-power-green {
+>  			label = "power_green";
+>  			gpios = <&pioC 17 GPIO_ACTIVE_HIGH>;
+>  			linux,default-trigger = "heartbeat";
+>  		};
+>  
+> -		power_red {
+> +		led-power-red {
+>  			label = "power_red";
+>  			gpios = <&pioA 2 GPIO_ACTIVE_HIGH>;
+>  		};
+>  
+> -		tx_green {
+> +		led-tx-green {
+>  			label = "tx_green";
+>  			gpios = <&pioC 19 GPIO_ACTIVE_HIGH>;
+>  		};
+>  
+> -		tx_red {
+> +		led-tx-red {
+>  			label = "tx_red";
+>  			gpios = <&pioC 18 GPIO_ACTIVE_HIGH>;
+>  		};
+> diff --git a/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts b/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts
+> index b9a21f9f9a6d..da31b07d6828 100644
+> --- a/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts
+> +++ b/arch/arm/boot/dts/microchip/at91-sam9x60ek.dts
+> @@ -53,17 +53,17 @@ leds {
+>  		pinctrl-0 = <&pinctrl_gpio_leds>;
+>  		status = "okay"; /* Conflict with pwm0. */
+>  
+> -		red {
+> +		led-red {
+>  			label = "red";
+>  			gpios = <&pioB 11 GPIO_ACTIVE_HIGH>;
+>  		};
+>  
+> -		green {
+> +		led-green {
+>  			label = "green";
+>  			gpios = <&pioB 12 GPIO_ACTIVE_HIGH>;
+>  		};
+>  
+> -		blue {
+> +		led-blue {
+>  			label = "blue";
+>  			gpios = <&pioB 13 GPIO_ACTIVE_HIGH>;
+>  			linux,default-trigger = "heartbeat";
+> diff --git a/arch/arm/boot/dts/microchip/at91rm9200ek.dts b/arch/arm/boot/dts/microchip/at91rm9200ek.dts
+> index 3089912dd6be..641d443e6ca9 100644
+> --- a/arch/arm/boot/dts/microchip/at91rm9200ek.dts
+> +++ b/arch/arm/boot/dts/microchip/at91rm9200ek.dts
+> @@ -127,19 +127,19 @@ root@350000  {
+>  	leds {
+>  		compatible = "gpio-leds";
+>  
+> -		ds2 {
+> +		led-ds2 {
+>  			label = "green";
+>  			gpios = <&pioB 0 GPIO_ACTIVE_LOW>;
+>  			linux,default-trigger = "mmc0";
+>  		};
+>  
+> -		ds4 {
+> +		led-ds4 {
+>  			label = "yellow";
+>  			gpios = <&pioB 1 GPIO_ACTIVE_LOW>;
+>  			linux,default-trigger = "heartbeat";
+>  		};
+>  
+> -		ds6 {
+> +		led-ds6 {
+>  			label = "red";
+>  			gpios = <&pioB 2 GPIO_ACTIVE_LOW>;
+>  		};
+> diff --git a/arch/arm/boot/dts/microchip/at91sam9260ek.dts b/arch/arm/boot/dts/microchip/at91sam9260ek.dts
+> index ed259e2cb853..4933971d0585 100644
+> --- a/arch/arm/boot/dts/microchip/at91sam9260ek.dts
+> +++ b/arch/arm/boot/dts/microchip/at91sam9260ek.dts
+> @@ -174,13 +174,13 @@ eeprom@50 {
+>  	leds {
+>  		compatible = "gpio-leds";
+>  
+> -		ds1 {
+> +		led-ds1 {
+>  			label = "ds1";
+>  			gpios = <&pioA 9 GPIO_ACTIVE_HIGH>;
+>  			linux,default-trigger = "heartbeat";
+>  		};
+>  
+> -		ds5 {
+> +		led-ds5 {
+>  			label = "ds5";
+>  			gpios = <&pioA 6 GPIO_ACTIVE_LOW>;
+>  		};
+> diff --git a/arch/arm/boot/dts/microchip/at91sam9261ek.dts b/arch/arm/boot/dts/microchip/at91sam9261ek.dts
+> index 4d9269cc5f32..9c44177db714 100644
+> --- a/arch/arm/boot/dts/microchip/at91sam9261ek.dts
+> +++ b/arch/arm/boot/dts/microchip/at91sam9261ek.dts
+> @@ -192,19 +192,19 @@ watchdog@fffffd40 {
+>  	leds {
+>  		compatible = "gpio-leds";
+>  
+> -		ds8 {
+> +		led-ds8 {
+>  			label = "ds8";
+>  			gpios = <&pioA 13 GPIO_ACTIVE_LOW>;
+>  			linux,default-trigger = "none";
+>  		};
+>  
+> -		ds7 {
+> +		led-ds7 {
+>  			label = "ds7";
+>  			gpios = <&pioA 14 GPIO_ACTIVE_LOW>;
+>  			linux,default-trigger = "nand-disk";
+>  		};
+>  
+> -		ds1 {
+> +		led-ds1 {
+>  			label = "ds1";
+>  			gpios = <&pioA 23 GPIO_ACTIVE_LOW>;
+>  			linux,default-trigger = "heartbeat";
+> diff --git a/arch/arm/boot/dts/microchip/at91sam9263ek.dts b/arch/arm/boot/dts/microchip/at91sam9263ek.dts
+> index a8ea36db4c04..cf5434f9449d 100644
+> --- a/arch/arm/boot/dts/microchip/at91sam9263ek.dts
+> +++ b/arch/arm/boot/dts/microchip/at91sam9263ek.dts
+> @@ -219,13 +219,13 @@ &pioA 21 GPIO_ACTIVE_HIGH
+>  	leds {
+>  		compatible = "gpio-leds";
+>  
+> -		d3 {
+> +		led-d3 {
+>  			label = "d3";
+>  			gpios = <&pioB 7 GPIO_ACTIVE_HIGH>;
+>  			linux,default-trigger = "heartbeat";
+>  		};
+>  
+> -		d2 {
+> +		led-d2 {
+>  			label = "d2";
+>  			gpios = <&pioC 29 GPIO_ACTIVE_LOW>;
+>  			linux,default-trigger = "nand-disk";
+> diff --git a/arch/arm/boot/dts/microchip/at91sam9g20ek.dts b/arch/arm/boot/dts/microchip/at91sam9g20ek.dts
+> index 6de7a7cd3c07..1e62fd371ddb 100644
+> --- a/arch/arm/boot/dts/microchip/at91sam9g20ek.dts
+> +++ b/arch/arm/boot/dts/microchip/at91sam9g20ek.dts
+> @@ -14,13 +14,13 @@ / {
+>  	leds {
+>  		compatible = "gpio-leds";
+>  
+> -		ds1 {
+> +		led-ds1 {
+>  			label = "ds1";
+>  			gpios = <&pioA 9 GPIO_ACTIVE_HIGH>;
+>  			linux,default-trigger = "heartbeat";
+>  		};
+>  
+> -		ds5 {
+> +		led-ds5 {
+>  			label = "ds5";
+>  			gpios = <&pioA 6 GPIO_ACTIVE_LOW>;
+>  		};
+> -- 
+> 2.34.1
+> 
+> 
 
