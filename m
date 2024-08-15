@@ -1,60 +1,69 @@
-Return-Path: <devicetree+bounces-94068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44760953D87
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 00:47:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E9AF953D8F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 00:51:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD9AE1F239B5
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 22:47:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B935E2818AE
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 22:51:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D327615573F;
-	Thu, 15 Aug 2024 22:47:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B9B81552E3;
+	Thu, 15 Aug 2024 22:51:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q4ye+REA"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="p7nnizY2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A393D155738;
-	Thu, 15 Aug 2024 22:47:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47023149E15;
+	Thu, 15 Aug 2024 22:51:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723762058; cv=none; b=YyKeX6m2dboLOVnxezAFdQm20+lhZitDDvjsAus/9+843MnzYfM3j6cinyReTSsG8BSnHfXTEHElbqJY06gliaIlTCtyhVPOWGgUEDtKPHNq8E5ENei/XOVzVbTAoaub77u/kJU9NSBU61NgQrRSGXENc1XHqXPVN6hEgSU+VnQ=
+	t=1723762267; cv=none; b=YyhD/wW06mUl0UrL/RVFw30sJHUCY9gKpPwJVD0HpQvbLRaU/CbsUebiiZGl6hr7a23BVAh9iC9WZBG7WaC5D+TuxZquMFfORfE8tsKpQ1sZ9VJ5GPTjgBd8tFxIH2sxBrOAeQQ7C4L1N3kOGnNCgeQjFFLF/ct/FaT8IyBNtpc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723762058; c=relaxed/simple;
-	bh=9XHVPuOM21bEOz3FW3/DgjnbThmqW6IhC1MOH6XtZdU=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=X/ywUtdO6+OGS+W7XETB3WKbLl712rdjcTZcLsNJkmJqNeLOJ60LgCuQ5q/HEkQuqWeRASXlxLayhBiSyf+MWib1SWQ6TCL3BFGwhAtLl4Wbp5LMaMpHYGmzSLWsR5sdXEPwUXf9cs7+1JswsnDGhNjhVh3KXEckvkgKUc4y4z8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q4ye+REA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6395C4AF09;
-	Thu, 15 Aug 2024 22:47:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723762058;
-	bh=9XHVPuOM21bEOz3FW3/DgjnbThmqW6IhC1MOH6XtZdU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=q4ye+REATBbzETn8QfmcAwDfRN8Pg9I2MJgR1epmR2uv+PicZrizTJyXQuzbv1xVj
-	 hLMexdv7dd8b88rBKx99jQ9EVOuerq47X3s9BdsM5XksPpIX91S8gqc1+21Mo7d8jB
-	 fE0+C89AXp39DpH0VivqDLvLwVsSgMix2wj0OyCy/o8j5mI4qBO+iN5F2/XqQKxhak
-	 lDhfgsMGyRolO+yoG1Gcp8nTj/m5iVunvTDeXdeL664aMSmHaAR3RL0e+gPBZinjry
-	 UIMm/nI/+7uOoefhv59ckLWktJZVouhuWVEFS6kQTKc8v0ScibW9ao/9p2UO3zH2Tg
-	 J1Q/C554v/umA==
-Date: Thu, 15 Aug 2024 17:47:35 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: kishon@ti.com, lorenzo.pieralisi@arm.com, bhelgaas@google.com,
-	robh@kernel.org, devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, hemantk@codeaurora.org,
-	bjorn.andersson@linaro.org, sallenki@codeaurora.org,
-	skananth@codeaurora.org, vpernami@codeaurora.org,
-	vbadigan@codeaurora.org,
-	Siddartha Mohanadoss <smohanad@codeaurora.org>
-Subject: Re: [PATCH v8 2/3] PCI: qcom-ep: Add Qualcomm PCIe Endpoint
- controller driver
-Message-ID: <20240815224735.GA57931@bhelgaas>
+	s=arc-20240116; t=1723762267; c=relaxed/simple;
+	bh=PvmpBlv3hsYRJhuY2PxPYhLhmPgg0RasVeq2kLnVWKc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Yv+HTcj8P82cLgAmDfKk8sH+wEbNPRJIeuJAQs+JYWQNPepTEKBJhxguCYQUXNjLztrAwR0zxca4/dEHJxk12UZCWBlUmoO3VcT+iWp/LA3bLXUjawN7O8s49k7jhQla27AEJplBsola+0jHOR+oYzwYUnHDhiuy4bgVePT6T/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=p7nnizY2; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=6IxOg8krKUBgNw4iWtqziyP4NQjZk+rsZs4R2j0oOiA=; b=p7nnizY2V4S54Ig+y2NGdxGAYy
+	gtcCSk6SyvuH19RW8d8Nz0ppXApzVpB7jBkkh0xIG8lW9UriCtGEEdHgUU2Xh391eY4ww6Jd/w6vb
+	WmqIR/zmiMYb2r04v3/guQdqIRnCLTVStfsj1wSHuuxKJF+FebhC7s/6ep6AqBpM/icQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sejIk-004sR9-Kc; Fri, 16 Aug 2024 00:50:38 +0200
+Date: Fri, 16 Aug 2024 00:50:38 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Tristram.Ha@microchip.com
+Cc: Woojung.Huh@microchip.com, UNGLinuxDriver@microchip.com,
+	devicetree@vger.kernel.org, f.fainelli@gmail.com, olteanv@gmail.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, marex@denx.de, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 1/4] dt-bindings: net: dsa: microchip: add SGMII
+ port support to KSZ9477 switch
+Message-ID: <445f69fa-5d1f-40a8-b180-4924edb6acea@lunn.ch>
+References: <20240809233840.59953-1-Tristram.Ha@microchip.com>
+ <20240809233840.59953-2-Tristram.Ha@microchip.com>
+ <eae7d246-49c3-486e-bc62-cdb49d6b1d72@lunn.ch>
+ <BYAPR11MB355823A969242508B05D7156EC862@BYAPR11MB3558.namprd11.prod.outlook.com>
+ <144ed2fd-f6e4-43a1-99bc-57e6045996da@lunn.ch>
+ <BYAPR11MB35584725C73534BC26009F77EC862@BYAPR11MB3558.namprd11.prod.outlook.com>
+ <9b960383-6f6c-4a8c-85bb-5ccba96abb01@lunn.ch>
+ <MN2PR11MB3566A463C897A7967F4FCB09EC872@MN2PR11MB3566.namprd11.prod.outlook.com>
+ <4d4d06e9-c0b4-4b49-a892-11efd07faf9a@lunn.ch>
+ <BYAPR11MB355843A853269A3EA5C50D47EC802@BYAPR11MB3558.namprd11.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,70 +72,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210920065946.15090-3-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <BYAPR11MB355843A853269A3EA5C50D47EC802@BYAPR11MB3558.namprd11.prod.outlook.com>
 
-On Mon, Sep 20, 2021 at 12:29:45PM +0530, Manivannan Sadhasivam wrote:
-> Add driver support for Qualcomm PCIe Endpoint controller driver based on
-> the Designware core with added Qualcomm specific wrapper around the
-> core.
-> ...
+> My KSZ9477 board does not have that I2C connection, so I cannot
+> implement the change as suggested.
 
-> +static irqreturn_t qcom_pcie_ep_perst_irq_thread(int irq, void *data)
-> +{
-> +     struct qcom_pcie_ep *pcie_ep = data;
-> +     struct dw_pcie *pci = &pcie_ep->pci;
-> +     struct device *dev = pci->dev;
-> +     u32 perst;
-> +
-> +     perst = gpiod_get_value(pcie_ep->reset);
-> +     if (perst) {
-> +             dev_dbg(dev, "PERST asserted by host. Shutting down the PCIe link!\n");
-> +             qcom_pcie_perst_assert(pci);
-> +     } else {
-> +             dev_dbg(dev, "PERST de-asserted by host. Starting link training!\n");
-> +             qcom_pcie_perst_deassert(pci);
-> +     }
-> +
-> +     irq_set_irq_type(gpiod_to_irq(pcie_ep->reset),
-> +                      (perst ? IRQF_TRIGGER_HIGH : IRQF_TRIGGER_LOW));
+I would say any board without the I2C bus connected is fatally
+broken. Most SFPs are buggy, and don't follow the standard. You need
+to read the vendor and product ID so you can enable various quirks to
+make them work correctly.
 
-1) There are only a handful of instances of irq_set_irq_type() being
-used with IRQF_TRIGGER_* (all others use IRQ_TYPE_*).
+> I am getting a new design board that needs verification of this
+> connection.  After I make it work I will re-submit the patch.
 
-2) Using irq_set_irq_type() in an IRQ handler is unusual and seems
-potentially racy.  Almost all irq_set_irq_type() uses are in
-initialization or probe paths.  I did see one similar use in an IRQ
-handler (rb532_pata_irq_handler()), but the rarity of this pattern
-makes me suspicious.
+O.K, that sounds good.
 
-> +static int qcom_pcie_ep_enable_irq_resources(struct platform_device *pdev,
-> +                                          struct qcom_pcie_ep *pcie_ep)
-> +{
-> + ...
-> +     pcie_ep->perst_irq = gpiod_to_irq(pcie_ep->reset);
-> +     irq_set_status_flags(pcie_ep->perst_irq, IRQ_NOAUTOEN);
-> +     ret = devm_request_threaded_irq(&pdev->dev, pcie_ep->perst_irq, NULL,
-> +                                     qcom_pcie_ep_perst_irq_thread,
-> +                                     IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
-> +                                     "perst_irq", pcie_ep);
-
-The similar code in the tegra194 driver looks like this:
-
-  tegra_pcie_config_ep
-    devm_request_threaded_irq(tegra_pcie_ep_pex_rst_irq,
-                  IRQF_TRIGGER_RISING | IRQF_TRIGGER_FALLING | IRQF_ONESHOT)
-
-  tegra_pcie_ep_pex_rst_irq
-    if (gpiod_get_value(pcie->pex_rst_gpiod))
-      pex_ep_event_pex_rst_assert(pcie);
-    else
-      pex_ep_event_pex_rst_deassert(pcie);
-
-Could qcom work the same way by requesting the IRQ with
-"IRQF_TRIGGER_RISING | IRQF_TRIGGER_FALLING" instead of
-"IRQF_TRIGGER_HIGH", and omitting the irq_set_irq_type()?
-
-I know rising/falling is edge-triggered and high/low is
-level-triggered, but surely qcom isn't completely unique in the way
-its IRQ is wired up?
+	Andrew
 
