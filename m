@@ -1,119 +1,169 @@
-Return-Path: <devicetree+bounces-93967-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93968-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60B3C95375A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 17:34:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E56695376A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 17:37:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9358A1C245E0
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 15:34:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF96DB20F36
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 15:37:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 456E21B32B4;
-	Thu, 15 Aug 2024 15:34:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67F581AD3F5;
+	Thu, 15 Aug 2024 15:37:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NQiQHMS8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jVdnOhC6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E2F31B29AD;
-	Thu, 15 Aug 2024 15:34:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 417652562E;
+	Thu, 15 Aug 2024 15:37:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723736053; cv=none; b=sog7UVx88ggwrhIYgVH2nLsGvrzUamAMur6/TJGyh+Tgiq1ELvH6LNKajTichwjkYKWq3XfAQAKUsS81YF/3t/6LnOzSP9Um0g2WwPDfqIEKmAxj0QPKnO/IUEnZdiTqSSXejrT+T0ztHvRILBb/dW8K4QXDh6UJkWG5I6J38qg=
+	t=1723736253; cv=none; b=DFhgk2J/JsjAdY2+PhMXiBuYJT/xyi+RumXUMqvMbn7J7agMVttN0UxFm/9zyAm9o3vWRs1tvEEIee7sj8EYH1BS4k4+2/KVeFwSORPI1N2U+362j2hv81PwskKMIBy+vVVL4cLZ9YjKwQH8K47tRedVt+MO6pKqFM8wmUPL06I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723736053; c=relaxed/simple;
-	bh=04LgzP7YEOA67MD8wfW6ktfx6oGLA3LHw3MuDqeib34=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=ZS1tBkW4n9YknYi3Q1qCIFvBz2gTx+9B+5pE0l6bHcMnW1sfxUbEcgOZIWYwymGniJm8iOP4qypQaxfK6Vm5T3oxSkWsOsQPB0Zh1YQaY+/hWrRFsFkl01DOoAo0vhOgs4Vml3ARhTH/DrvMzz3pByd56pFT5xuJcXv2sw9ueS8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NQiQHMS8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4B53C4AF53;
-	Thu, 15 Aug 2024 15:34:12 +0000 (UTC)
+	s=arc-20240116; t=1723736253; c=relaxed/simple;
+	bh=KC71ZArG2NY4xsQIn0t5rwxnUKbfbXLMnjF2bC/tQAo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gSjIGWuEkWiIcOaNcHyLGdiLcbsGVvGyPnV1wgH7iTaxsd2wSo5w9rgUEvFqp0fl7ssCosYEpuETzONE6FPCWN8oPS7lyrKiJxP6KmqHwnryWxYKdUn0KkLBpH6emQ6IrqBfzcL+klr0Nwd6GLqI2ymE/KtaMprK4WCy4GnLTW0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jVdnOhC6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DECCC32786;
+	Thu, 15 Aug 2024 15:37:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723736052;
-	bh=04LgzP7YEOA67MD8wfW6ktfx6oGLA3LHw3MuDqeib34=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=NQiQHMS8aquDQLk3IZdLkg99xNLoxgmaVBu/t5xPEyqC4/vTByrgWkr5St/b14EZn
-	 k8mnK/BH1TkH9677d3DdRo3dxchzbEKfMfZAP2N7ZRYnzLDUCHngdYlnF0jG5PZ+Um
-	 P6sx6+7G0FP2uJl2sIO3FTIda4qBTKlIYgUu7kcvPO5MW7s+EieaZF6vVMjSEcRxLS
-	 zsmVVLN1dK9Rpc3WJkSVfgkEZ6coxUXWd6laXrPZ7SuFeYnPOP4xSVuUE+uN8Hbmct
-	 T1aFGRYhvZOpohX83w73A/aN6AUcNPCvZklvdnOJ9mTvxiYB3ocwEw9oz6wax9boKE
-	 tHWeyLw362sQQ==
-Date: Thu, 15 Aug 2024 09:34:12 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1723736252;
+	bh=KC71ZArG2NY4xsQIn0t5rwxnUKbfbXLMnjF2bC/tQAo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jVdnOhC63PhKcH5A43pJHH8Gsh1C76Tqt4hKQOMQTee/GzXsfPkHtgaJlI2fP7SVx
+	 VSZc3Ky8lxa0ToXkmLZ7ij6Wfh6U7HJJKPSxki961IC1vIxJzbRDx9DVlA5DmMNd/6
+	 tbfId9uhrvNvKls0idZb2fHFtrUD5KEWXX8Q+T+Y4d65/cIgkFGWmISNhys52ohxlA
+	 l7BZAc7y/0zbJSCE3HWu/EBUlVrRGOHxyBZG0PzMhTJf/MycVtkFn6IPsgQ3WTBbjE
+	 RuylRvbXwQiw9s1V9vqU7oCangytZo7JFGwC3SfYqkJDK5DGNiaZQUAo0ss97r2dTl
+	 ZIotaz2pN+pFA==
+Date: Thu, 15 Aug 2024 16:37:29 +0100
+From: Conor Dooley <conor@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Lee Jones <lee@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [RFC PATCH 06/11] dt-bindings: soc: microchip: document the two
+ simple-mfd syscons on PolarFire SoC
+Message-ID: <20240815-anteater-water-d35f729c381b@spud>
+References: <20240815-shindig-bunny-fd42792d638a@spud>
+ <20240815-pending-sacrifice-f2569ed756fe@spud>
+ <172373604945.1948429.11074973738435374630.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- Conor Dooley <conor.dooley@microchip.com>, 
- Conor Dooley <conor+dt@kernel.org>
-In-Reply-To: <20240815-fernlike-levitate-6004f5f46d66@spud>
-References: <20240815-shindig-bunny-fd42792d638a@spud>
- <20240815-fernlike-levitate-6004f5f46d66@spud>
-Message-Id: <172373605037.1948470.1479087224226784558.robh@kernel.org>
-Subject: Re: [RFC PATCH 10/11] dt-bindings: clk: microchip: mpfs: remove
- first reg region
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="JO4R+jmknScHMLaV"
+Content-Disposition: inline
+In-Reply-To: <172373604945.1948429.11074973738435374630.robh@kernel.org>
 
 
-On Thu, 15 Aug 2024 15:01:13 +0100, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> The first reg region in this binding is not exclusively for clocks, as
-> evidenced by the dual role of this device as a reset controller at
-> present. The first region is however better described by a simple-mfd
-> syscon, but this would have require a significant re-write of the
-> devicetree for the platform, so the easy way out was chosen when reset
-> support was first introduced. The region doesn't just contain clock and
-> reset registers, it also contains pinctrl and interrupt controller
-> functionality, so drop the region from the clock binding so that it can
-> be described instead by a simple-mfd syscon rather than propagate this
-> incorrect description of the hardware to the new pic64gx SoC.
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  .../bindings/clock/microchip,mpfs-clkcfg.yaml | 33 +++++++++++--------
->  1 file changed, 19 insertions(+), 14 deletions(-)
-> 
+--JO4R+jmknScHMLaV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-My bot found errors running 'make dt_binding_check' on your patch:
+On Thu, Aug 15, 2024 at 09:34:11AM -0600, Rob Herring (Arm) wrote:
+>=20
+> On Thu, 15 Aug 2024 15:01:09 +0100, Conor Dooley wrote:
+> > From: Conor Dooley <conor.dooley@microchip.com>
+> >=20
+> > There are two syscons on PolarFire SoC that provide various functionali=
+ty of
+> > use to the OS.
+> >=20
+> > The first of these is the "control-scb" region, that contains the "tvs"
+> > temperature and voltage sensors and the control/status registers for the
+> > system controller's mailbox. The mailbox has a dedicated node, so
+> > there's no need for a child node describing it, looking the syscon up by
+> > compatible is sufficient.
+> >=20
+> > The second, "mss-top-sysreg", contains clocks, pinctrl, resets, and
+> > interrupt controller and more. For this RFC, only the reset controller
+> > child is described as that's all that is described by the existing
+> > bindings. The clock controller already has a dedicated node, and will
+> > retain it as there are other clock regions, so like the mailbox,
+> > a compatible-based lookup of the syscon is sufficient to keep the clock
+> > driver working as before so no child is needed.
+> >=20
+> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> > ---
+> > (I'll split this in two later, it's just easier when I have the same
+> > questions about both...)
+> >=20
+> > Are these things entitled to have child nodes for the reset and sensor
+> > nodes, or should the properties be in the parent and the OS probe the
+> > drivers for the functions? That's something that, despite supposedly
+> > being a maintainer, I do not understand the rules (of thumb?) for.
+> >=20
+> > Secondly, is it okay to make the "pragmatic" decision to not have a
+> > child clock node and keep routing the clocks via the existing & retained
+> > clock node (and therefore not update the various clocks nodes in the
+> > consumers)? Doing so would require a lot more hocus pocus with the clock
+> > driver than this series does, as the same driver would no longer be
+> > suitable for the before/after bindings.
+> > ---
+> >  .../microchip/microchip,mpfs-control-scb.yaml | 54 +++++++++++++++++++
+> >  .../microchip,mpfs-mss-top-sysreg.yaml        | 53 ++++++++++++++++++
+> >  2 files changed, 107 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/soc/microchip/mic=
+rochip,mpfs-control-scb.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/soc/microchip/mic=
+rochip,mpfs-mss-top-sysreg.yaml
+> >=20
+>=20
+> My bot found errors running 'make dt_binding_check' on your patch:
+>=20
+> yamllint warnings/errors:
+>=20
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-control-sc=
+b.example.dts:21.13-38: Warning (reg_format): /example-0/soc/syscon@3702000=
+0:reg: property has invalid length (8 bytes) (#address-cells =3D=3D 2, #siz=
+e-cells =3D=3D 1)
+> Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-control-sc=
+b.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+> Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-control-sc=
+b.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_forma=
+t'
+> Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-control-sc=
+b.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+> Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-control-sc=
+b.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+> Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-control-sc=
+b.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+> Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-control-sc=
+b.example.dts:19.27-26.13: Warning (avoid_default_addr_size): /example-0/so=
+c/syscon@37020000: Relying on default #address-cells value
+> Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-control-sc=
+b.example.dts:19.27-26.13: Warning (avoid_default_addr_size): /example-0/so=
+c/syscon@37020000: Relying on default #size-cells value
+> Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-control-sc=
+b.example.dtb: Warning (unique_unit_address_if_enabled): Failed prerequisit=
+e 'avoid_default_addr_size'
 
-yamllint warnings/errors:
+Yeah, these are all known. One of the bindings doesn't even have an
+example. I know this is automated, but just to point out that my only
+objective here is figuring out whether or not child nodes are okay here.
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/clock/microchip,mpfs-clkcfg.example.dts:22.21-47: Warning (reg_format): /example-0/soc/clock-controller@3E001000:reg: property has invalid length (8 bytes) (#address-cells == 2, #size-cells == 1)
-Documentation/devicetree/bindings/clock/microchip,mpfs-clkcfg.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/clock/microchip,mpfs-clkcfg.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/clock/microchip,mpfs-clkcfg.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/clock/microchip,mpfs-clkcfg.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/clock/microchip,mpfs-clkcfg.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/clock/microchip,mpfs-clkcfg.example.dts:20.51-25.15: Warning (avoid_default_addr_size): /example-0/soc/clock-controller@3E001000: Relying on default #address-cells value
-Documentation/devicetree/bindings/clock/microchip,mpfs-clkcfg.example.dts:20.51-25.15: Warning (avoid_default_addr_size): /example-0/soc/clock-controller@3E001000: Relying on default #size-cells value
-Documentation/devicetree/bindings/clock/microchip,mpfs-clkcfg.example.dtb: Warning (unique_unit_address_if_enabled): Failed prerequisite 'avoid_default_addr_size'
+--JO4R+jmknScHMLaV
+Content-Type: application/pgp-signature; name="signature.asc"
 
-doc reference errors (make refcheckdocs):
+-----BEGIN PGP SIGNATURE-----
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240815-fernlike-levitate-6004f5f46d66@spud
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZr4guQAKCRB4tDGHoIJi
+0oetAP0XPSEVCIQDn1c3IOfukkdMDI+yO6TFuJxNcLSOqlXQQAD/VkGG1C3mV2sJ
+w4LbaTQbKiKBBzcabEb60r5dCiGbQQw=
+=2gA+
+-----END PGP SIGNATURE-----
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--JO4R+jmknScHMLaV--
 
