@@ -1,134 +1,109 @@
-Return-Path: <devicetree+bounces-93971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93975-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66DB295377C
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 17:43:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD5D09537C0
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 17:59:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AB1F1C23E4A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 15:43:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 580C52826EE
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 15:59:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC73B1AD9FB;
-	Thu, 15 Aug 2024 15:43:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE5F61B32D5;
+	Thu, 15 Aug 2024 15:59:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="b9HMzwuU"
+	dkim=pass (1024-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="vlsCWXHJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F0391AD3F7;
-	Thu, 15 Aug 2024 15:43:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3FB41B143B;
+	Thu, 15 Aug 2024 15:59:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723736597; cv=none; b=DheTcl6+U+K8dWOl1neWrIBEIJozMwmE5372qLSLIa6dgH8GDwBoT+IGon+iHKuV4wr2NCxAf9NdlSq+jZ6oTeymzm28IcuFKJZgb6nl76m4F1O8EK+OjigSXSucqq3CQTP9fvy6JHImQNIrjO+JHYS91qGVFGkgawOTqspRPLg=
+	t=1723737572; cv=none; b=jTGqT5jr4fFMtiNzHH1U2LSs1IUUmsULLrTzaAGjkcwmJoRy5WdjCiGtUb/rX76Qh5PZDJguG2oCIBJnO9Un1qH4D1I71LPzP8KoWUPiI8RZmqtZ6IsTN8wQbR9un4KYmUJ8BkMIDOt6Tv24zpacKeWOaiFdONSMUltZNU+eNB0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723736597; c=relaxed/simple;
-	bh=tBcHQi3i5KC4GbpIUxL7ctt8uCWrcYcOXO6IpVSWLr0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Dibc5BPYUfJCpAUfBvR1N4r+KPiWT/AIgGEnCmUf/saHG12NROCvB+YgxxOwxu8zAYtmnJhY2BRM4q//iw5n3wTbs3R7g8owBOY6rEvTLL4VSMMQFKRayJXnedvxrH9nNs+F4Iubp4mN9BJl5eS3egpXeB3f4eIQ6nfr/InQwZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=b9HMzwuU; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47F7GjGx027121;
-	Thu, 15 Aug 2024 15:43:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Cc5I816aayP0mBk0qxI4DbcgcOavj8/4JMXIypN4nOM=; b=b9HMzwuUBChD3jXQ
-	Dxv888teONxnPTj9jKz48fhmnK+UurW3UBh1XdWARlsIUEChOaVCTGowNEuzSUiC
-	xadUvrfIv0ffcLcsfbhDc4Z34vLQoXjWujFIOfEcUIX2egqh4+jIjbJYbqaU8exz
-	rKJPC1N+TOUNRm2xTFUzQzLNZRyZkf546ImqZqfGOSAgW2QSPtJXe5aOouRvXG+s
-	DHcXxZCfGfMHpf0KA9voAJAP83JJkR55TLZyCLYxFWC7/h1LnOG7laOLqGoCfG57
-	f2pzh3mshTBy+TMs0v6B7UAgkp9h6zH+TbHSh2snINaoZ4mY6+Fvu1UL4L6gVKsW
-	HlfYBQ==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 411d5696n8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 15 Aug 2024 15:43:11 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47FFhA9e009900
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 15 Aug 2024 15:43:10 GMT
-Received: from [10.239.97.152] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 15 Aug
- 2024 08:43:04 -0700
-Message-ID: <5ecbcd10-d9b7-4134-9666-6df790527b1f@quicinc.com>
-Date: Thu, 15 Aug 2024 23:43:02 +0800
+	s=arc-20240116; t=1723737572; c=relaxed/simple;
+	bh=+rwOr/Eb6aLx1oQeqhMY8o2Y2is7QVnmjzrnSPwAwdw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Ia8MGQqxcNgGbY3h8PKxVNnd78MPrq2napbyOd/c9U7LzJHJxuBYWHu2ekGjPf4Al8J5nF6KxHm/hOAwpQtPzDIQyBUTVL5cF56CMWlBM/DTN+hHTBAbMENCuNLy15Eu7M4GY0+yy1FRHQiVu6pPqJvjdhzTNiKKW64aE3yJYB4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (1024-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=vlsCWXHJ; arc=none smtp.client-ip=193.136.128.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 38EB06002402;
+	Thu, 15 Aug 2024 16:51:27 +0100 (WEST)
+X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+ by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
+ with LMTP id p4XKnI0bjZwz; Thu, 15 Aug 2024 16:51:25 +0100 (WEST)
+Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [IPv6:2001:690:2100:1::b3dd:b9ac])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id D06B16002405;
+	Thu, 15 Aug 2024 16:51:24 +0100 (WEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
+	s=mail; t=1723737084;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=f2g1boM6IStFG0tqVscyGKuPc9jQ/FmFMZf7AExGi4s=;
+	b=vlsCWXHJO/yrIzy3Vn6MJdnib0n/4YSzAYZD9Dv1+PCUA8xQjlyaG2sE1mFgQjfPlXOhjz
+	v0ObDZl30fyV8YCaIkV13XZgJTlGAu+iytlzVmYdZCSBp/U8dsoAjLUImRUVw2b1bH7qKU
+	HubUUa1kewtudoY62pDxAc5jmpQqoTA=
+Received: from [192.168.1.53] (unknown [IPv6:2a01:14:8073:1e10:a82d:2c2b:d13b:a86a])
+	(Authenticated sender: ist187313)
+	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 7A2733600F3;
+	Thu, 15 Aug 2024 16:51:24 +0100 (WEST)
+From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+Subject: [PATCH 0/2] arm64: tegra: add wp-gpio to P2957 board
+Date: Thu, 15 Aug 2024 16:50:38 +0100
+Message-Id: <20240815-tx1_sdmmc-v1-0-7856ac25a204@tecnico.ulisboa.pt>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 13/13] media: qcom: camss: Add support for VFE hardware
- version Titan 780
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, <rfoss@kernel.org>,
-        <todor.too@gmail.com>, <bryan.odonoghue@linaro.org>,
-        <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>, Yongsheng Li <quic_yon@quicinc.com>
-References: <20240812144131.369378-1-quic_depengs@quicinc.com>
- <20240812144131.369378-14-quic_depengs@quicinc.com>
- <4b745c1a-33d9-472a-97af-153a2a7c8721@linaro.org>
- <2de0b7a8-b879-49e9-9656-ec86f29ce559@quicinc.com>
- <b0787142-0f85-4616-9895-72e33f21c2da@linaro.org>
- <82200889-a98d-4815-bc31-f81b15d02513@quicinc.com>
- <7130beef-7787-42a1-85c8-f27574241ba7@linaro.org>
-Content-Language: en-US
-From: Depeng Shao <quic_depengs@quicinc.com>
-In-Reply-To: <7130beef-7787-42a1-85c8-f27574241ba7@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: SOKR9LGmzhsvDDb1iqN5A6exNM_nnP1n
-X-Proofpoint-ORIG-GUID: SOKR9LGmzhsvDDb1iqN5A6exNM_nnP1n
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-15_08,2024-08-15_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- malwarescore=0 impostorscore=0 mlxscore=0 lowpriorityscore=0 spamscore=0
- suspectscore=0 bulkscore=0 clxscore=1015 phishscore=0 priorityscore=1501
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408150114
+X-B4-Tracking: v=1; b=H4sIAM4jvmYC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDC0NT3ZIKw/jilNzcZF1jQ8NUEwsDo2QLE2MloPqCotS0zAqwWdGxtbU
+ AKjWiHlsAAAA=
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>
+Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1723737084; l=699;
+ i=diogo.ivo@tecnico.ulisboa.pt; s=20240529; h=from:subject:message-id;
+ bh=+rwOr/Eb6aLx1oQeqhMY8o2Y2is7QVnmjzrnSPwAwdw=;
+ b=EOWSwcYvnH9afo/ilzzVIELdqmia0RpMszkwhFFkTsj7/Ku4R4A5bgJ3bWBnsEGUjgpHpl92b
+ x/ZWfwKLZOtAA9bfokebKQjsMguEpLTdoi8Rbwh3YnM+6y9b5LG00SC
+X-Developer-Key: i=diogo.ivo@tecnico.ulisboa.pt; a=ed25519;
+ pk=BRGXhMh1q5KDlZ9y2B8SodFFY8FGupal+NMtJPwRpUQ=
 
-Hi Vladimir,
+Define the wp-gpio for the P2597 board.
 
->>
->> Thanks for the confirmation, even though I add the rup_update and
->> buf_done function in later commits, it is still called in platform
->> specific code(camss-vfe-780.c), so I will keep as it is done today.
-> 
-> let it be so.
-> 
-> I have another ask about it, please move new camss_reg_update() out from
-> camss.c into camss-csid.c, and camss_buf_done() from camss.c into camss- 
-> vfe.c
-> 
+For this, patch 1 fixes the assignment of the vmmc supply's gpio that
+was incorrectly assigned to the wp-gpio of the external slot.
 
-The cross direct call has been removed by below commit, so it looks 
-strange if I add the cross direct call.
+Patch 2 adds the definition of the wp-gpio.
 
-media: qcom: camss: Decouple VFE from CSID
-https://lore.kernel.org/lkml/20240522154659.510-9-quic_grosikop@quicinc.com/
+Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+---
+Diogo Ivo (2):
+      arm64: tegra: Fix gpio for P2597 vmmc regulator
+      arm64: tegra: Add wp-gpio for P2597's external card slot
 
-I use the v4l2_subdev_notify to do the cross communication in v1 and v2 
-series, but Bryan said, "The subdev notify is I think not the right fit 
-for this purpose within our driver.".
-Then I add an internal notify interface in camss structure, but Bryan 
-suggested to use direct call, so I add these functions directly in camss.c
+ arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+---
+base-commit: 1fb918967b56df3262ee984175816f0acb310501
+change-id: 20240815-tx1_sdmmc-311e4802c843
 
-https://lore.kernel.org/all/236cfe43-8321-4168-8630-fb9528f581bd@linaro.org/
+Best regards,
+-- 
+Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
 
-Thanks,
-Depeng
 
