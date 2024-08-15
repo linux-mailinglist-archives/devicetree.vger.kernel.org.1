@@ -1,180 +1,150 @@
-Return-Path: <devicetree+bounces-93881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9DD7952D78
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 13:29:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA3F3952D86
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 13:31:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89028282A7A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 11:29:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ED0B9B22DEA
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 11:31:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB8241494C5;
-	Thu, 15 Aug 2024 11:29:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 219A014AD1A;
+	Thu, 15 Aug 2024 11:31:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GmS/IRXm"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="L4TRYGFU";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Owek4JWF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB7E57DA94
-	for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 11:29:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 687E21AC88A;
+	Thu, 15 Aug 2024 11:31:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723721343; cv=none; b=ZjEtbFA+XX8nxzU5IsGMMiutoY6j/mlRVxBYV3NE5dqjHGk27alHRt/KUPGZwY/9J47PvydYDRkyd3yODEQaHdJpL6252Ph14F4hRIHgUbh/eIDSoCwWg/XqTmY5hLjNTv32OJLuz0J93aWjCtLavD57MaTVtR0UxRaGdf+jxwE=
+	t=1723721512; cv=none; b=INOPIVr6dsRYTGbpkB0yUhu2JL3DMgWDXFSY0afm91tLGfjx9Ev1sSKdmX1shFApSA+8LZprtsRYgOnOnHuszll0yIYw6+wXbM9gWujvjMdHRFZfTrjY2IkA29BYV4PQbOXkqzRay6h8K8q1br/opzunGyqF2qlNRgjCydDMIU0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723721343; c=relaxed/simple;
-	bh=0Zxz5gzHjDE3jmotW+wUKiwCtCm0/O3DMaAWLrKCUE8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fqxcl5T+ZhJo2eYkwIXdlnjai2E0vTQUIOlc61fXm3R3TaInwqyLBiARiJdzyf4VQxo2VCGgZR0aPo0VP4P/n/8IBsudGaoR6ejxorzoMvhQmm6xPZv3o4QpBcfJ0NXwOUzk/VTwLa7GCKKUAoq9hLvY9CgchLD3LRPN/v8DrHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GmS/IRXm; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a83597ce5beso118706966b.1
-        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 04:29:01 -0700 (PDT)
+	s=arc-20240116; t=1723721512; c=relaxed/simple;
+	bh=uOEvmvvUbvKcClHIfC2V4ruUmucz8oRd24FDQKXeHrI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=V5SmAWuYqWqLmgIVliJRPm/k95g6I/Vxtv3pkdMOoayLzEPbP1rsOFscP6i23uddB8hVJWa2Snv5CTLOYMefG9YAUrRwrPAFkv25dxh8qgvaVcVpe2BbhaXZF3ABlc8JOzqHLx69W6bigocmFmKuXYa+0rd5lTiME03aQWrdKdY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=L4TRYGFU; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Owek4JWF reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723721340; x=1724326140; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=HH/zpKWeTFmyxm1eNt1YcoQ4GGYAIZEDWavm5tzL+nY=;
-        b=GmS/IRXm+cmiHCWsReZPjPvq/d9XgaqEQNACwRlYniw0QC9Z6AqS72EX731ByjaKMg
-         kDh0EajMga5Zgd8sHAYdYeMyQTMp+vXi/bXZIeLZUWweX3IPSMBrjauwVQ+RKd17mFf8
-         nsR3KYRYJFMXDZsez+s/wjpEH9HS/pjB3HMnR+WTFmo4xda2p/WBcvI2nhQ6TjTwO1aq
-         /rWDfpDtZfKjucQNJK8ZDHK+QW2SkmfNaGwW6gxF6UdYInx5AEvCRP3H4thVvcUm78SD
-         XW361rZPpJc2gaoqNggUcIZgWVCtQAKVf110tRYU3PmwDLnF1Xv0S69wdymFQnhkp+go
-         5vLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723721340; x=1724326140;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HH/zpKWeTFmyxm1eNt1YcoQ4GGYAIZEDWavm5tzL+nY=;
-        b=oJX2YRv4Aeh8LeIuBPsUasICjubj+J8fvNt28/q/6PBDz+tvXntHjU1YW4BcCz2R5P
-         imAgADkU/srRw+aJEksPuP+lABeCIh5FK33o3j1LEIvZFdFByEOYtLpxVTpgpDBsiNLi
-         0vAHf1A2a0or2cx7Mb2fShLHJeUrq0zj9KcOElLFZz4Iri/G0RwYWb/A8VqCchKVLTZ1
-         UYJLKglO8g5pfQ8w9EBrUOJJp2dt5M/AMUz7UUr48Xky1f+Zazim4WGpckCtBVG0gkPL
-         XvHFVyRPjXqOA0jAJjA4kHCSXDTvWvzgD5Jrd+fN+mMO5g5GzD4ym9OGjaCqxjdAJsqX
-         nhyw==
-X-Forwarded-Encrypted: i=1; AJvYcCXqr0Y2aVVB5RAHoCgkdHfJnNJ5ELGBRtAiYr6jw20mQ/jC8LuIabLYy61Z0FG9+ZBfk4nGpoHxyrASW4pqZryGcdTA9ALOE/Nn8Q==
-X-Gm-Message-State: AOJu0YxfPFOGKuM1XKdiykjB3g14r/icJ3yYa67IPkdFYDWuDC69hPcz
-	zIeiBm+z6H6blkJLOvHpIfC7IrbRS8DGdn4kPWzi8I3En+qDxQdkTEA8jIir/Nc=
-X-Google-Smtp-Source: AGHT+IGweg8JNiNuxijevvNkiZoEQZAItT79/Kj/VOyrtADtkncjFrFOpRhsZwl2875459IMKahghQ==
-X-Received: by 2002:a17:907:9705:b0:a6f:e7a0:91cf with SMTP id a640c23a62f3a-a837cdc005bmr228386866b.24.1723721339965;
-        Thu, 15 Aug 2024 04:28:59 -0700 (PDT)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a838396b7b3sm86750066b.194.2024.08.15.04.28.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Aug 2024 04:28:59 -0700 (PDT)
-Date: Thu, 15 Aug 2024 14:28:56 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: MD Danish Anwar <danishanwar@ti.com>
-Cc: Suman Anna <s-anna@ti.com>, Sai Krishna <saikrishnag@marvell.com>,
-	Jan Kiszka <jan.kiszka@siemens.com>, Andrew Lunn <andrew@lunn.ch>,
-	Diogo Ivo <diogo.ivo@siemens.com>,
-	Kory Maincent <kory.maincent@bootlin.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Simon Horman <horms@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Roger Quadros <rogerq@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1723721508; x=1755257508;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=ipxO4CjLCNJ0T17K5ElKb2AAs0WxMTRpNsXk8lsFmRo=;
+  b=L4TRYGFUAh/MtaIoFClVPC57yOt78Tutcz8LXvcfW46FJyHmbcTsQ7kM
+   +5yHnZzNHP0vFubmOQ8vsWcWFWq0rprzTX+zjZQ+Gczv5dHlO9hlYic3v
+   /kfJq/hpklqzsGPjlxpEOOoWoUd7g8//PJoTEOvu3aW0RTNhgp520oDvE
+   FMZrfs6+kJZYsUjL9nUuzdB+Li3GRmlnK3OM2hHPsJW/da9v4RXJ4fcKK
+   ORDLnyTGCIe7iS+6hz5zBEO9FTtWb/51p8524G2rqYlOpYLD+nDKUnFUM
+   7Zh+fZQgZH6m9MSga/1OcjmgEjyVGMsAJ2AKsi0FCgb+ASHaP0wqLLBeR
+   w==;
+X-CSE-ConnectionGUID: 3M0w8/i5SMaYbleX3oto2A==
+X-CSE-MsgGUID: DWT8JmWgQGCQD8/f7Il2fg==
+X-IronPort-AV: E=Sophos;i="6.10,148,1719871200"; 
+   d="scan'208";a="38423597"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 15 Aug 2024 13:31:39 +0200
+X-CheckPoint: {66BDE71B-5-751552D8-F91D2344}
+X-MAIL-CPID: 5C950045BAB5983D9B9414A56A745C26_4
+X-Control-Analysis: str=0001.0A782F19.66BDE71B.00A7,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6E7AE160A50;
+	Thu, 15 Aug 2024 13:31:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1723721495; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=ipxO4CjLCNJ0T17K5ElKb2AAs0WxMTRpNsXk8lsFmRo=;
+	b=Owek4JWFkDG+oFWcBGXkKxn13h27rAOOcNAFK5p9I13RlZtgYCIyITM2iYIfmEvfI3tFMn
+	yuO6KxmaoHd0SSxXo+r1vyTpbPd8+gQEmr6R0kkowwNVSzSuwrb7WVdcaR0VAvvvgIGP3T
+	+9XQsPgnIcWcONdE/8Fbw/7ccX5lDnefufZWLmvyY7wCNOYpe56ebtM22PqXSs/f3DakuF
+	+8cUun3aQqL0rqiYDkfmMSSdSw/8fEW1X3Y6eFBUxAofxfo84FFY5UWXeHnEKrVKmU1hsS
+	BNVwNa3OetbH6aCSYqTgWmgPDwz2GbyIvIsxtjjletTX1yOFgdZtxMkD14u9jw==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Rob Herring <robh@kernel.org>,
-	Santosh Shilimkar <ssantosh@kernel.org>, Nishanth Menon <nm@ti.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	srk@ti.com, Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH net-next v5 2/2] net: ti: icssg-prueth: Add support for
- PA Stats
-Message-ID: <cd15268f-f6d3-4fca-bd7f-c94011f55996@stanley.mountain>
-References: <20240814092033.2984734-1-danishanwar@ti.com>
- <20240814092033.2984734-3-danishanwar@ti.com>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	stable@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/1] dt-bindings: usb: microchip,usb2514: Fix reference USB device schema
+Date: Thu, 15 Aug 2024 13:31:31 +0200
+Message-Id: <20240815113132.372542-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240814092033.2984734-3-danishanwar@ti.com>
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Wed, Aug 14, 2024 at 02:50:33PM +0530, MD Danish Anwar wrote:
-> Add support for dumping PA stats registers via ethtool.
-> Firmware maintained stats are stored at PA Stats registers.
-> Also modify emac_get_strings() API to use ethtool_puts().
-> 
-> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
-> ---
->  drivers/net/ethernet/ti/icssg/icssg_ethtool.c | 17 +++++-----
->  drivers/net/ethernet/ti/icssg/icssg_prueth.c  |  6 ++++
->  drivers/net/ethernet/ti/icssg/icssg_prueth.h  |  5 ++-
->  drivers/net/ethernet/ti/icssg/icssg_stats.c   | 19 +++++++++--
->  drivers/net/ethernet/ti/icssg/icssg_stats.h   | 32 +++++++++++++++++++
->  5 files changed, 67 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/ti/icssg/icssg_ethtool.c b/drivers/net/ethernet/ti/icssg/icssg_ethtool.c
-> index 5688f054cec5..51bb509d37c7 100644
-> --- a/drivers/net/ethernet/ti/icssg/icssg_ethtool.c
-> +++ b/drivers/net/ethernet/ti/icssg/icssg_ethtool.c
-> @@ -83,13 +83,11 @@ static void emac_get_strings(struct net_device *ndev, u32 stringset, u8 *data)
->  
->  	switch (stringset) {
->  	case ETH_SS_STATS:
-> -		for (i = 0; i < ARRAY_SIZE(icssg_all_stats); i++) {
-> -			if (!icssg_all_stats[i].standard_stats) {
-> -				memcpy(p, icssg_all_stats[i].name,
-> -				       ETH_GSTRING_LEN);
-> -				p += ETH_GSTRING_LEN;
-> -			}
-> -		}
-> +		for (i = 0; i < ARRAY_SIZE(icssg_all_stats); i++)
-> +			if (!icssg_all_stats[i].standard_stats)
-> +				ethtool_puts(&p, icssg_all_stats[i].name);
-> +		for (i = 0; i < ICSSG_NUM_PA_STATS; i++)
+An USB hub is not a HCD, but an USB device. Fix the referenced schema
+accordingly.
 
-It would probably be better to use ARRAY_SIZE(icssg_all_pa_stats) so that it's
-consistent with the loop right before.
+Fixes: bfbf2e4b77e2 ("dt-bindings: usb: Document the Microchip USB2514 hub")
+Cc: stable@vger.kernel.org
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+As this USB hub also can contain an USB (ethernet) sub device, I copied
+the subdevice part from usb-hcd.yaml.
 
-> +			ethtool_puts(&p, icssg_all_pa_stats[i].name);
->  		break;
->  	default:
->  		break;
-> @@ -100,13 +98,16 @@ static void emac_get_ethtool_stats(struct net_device *ndev,
->  				   struct ethtool_stats *stats, u64 *data)
->  {
->  	struct prueth_emac *emac = netdev_priv(ndev);
-> -	int i;
-> +	int i, j;
->  
->  	emac_update_hardware_stats(emac);
->  
->  	for (i = 0; i < ARRAY_SIZE(icssg_all_stats); i++)
->  		if (!icssg_all_stats[i].standard_stats)
->  			*(data++) = emac->stats[i];
-> +
-> +	for (j = 0; j < ICSSG_NUM_PA_STATS; j++)
-> +		*(data++) = emac->stats[i + j];
+I had to add 'additionalProperties: true' as well, because I got that warning
+upon dt_binding_check otherwise:
+> Documentation/devicetree/bindings/usb/microchip,usb2514.yaml: 
+>   ^.*@[0-9a-f]{1,2}$: Missing additionalProperties/unevaluatedProperties constraint
 
-Here i is not an iterator.  It's a stand in for ARRAY_SIZE(icssg_all_stats).
-It would be more readable to do that directly.
+I added a Fixes tag to keep this schema aligned in v6.10 stable tree.
 
-	for (i = 0; i < ICSSG_NUM_PA_STATS; i++)
-		*(data++) = emac->stats[ARRAY_SIZE(icssg_all_stats) + i];
+Changes in v2:
+* Do not update the example
+* Adjust comit message accordingly
+* Add Cc for stable
+* Collected Krzysztof's R-b
+* Shorten the SHA1 of the Fixes tag
 
-To be honest, putting the pa_stats at the end of ->stats would have made sense
-if we could have looped over the whole array, but since they have to be treated
-differently we should probably just put them into their own ->pa_stats array.
+ .../devicetree/bindings/usb/microchip,usb2514.yaml       | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-I haven't tested this so maybe I've missed something obvious.
-
-The "all" in "icssg_all_stats" doesn't really make sense anymore btw...
-
-Sorry for being so nit picky on a v5 patch. :(
-
-regards,
-dan carpenter
+diff --git a/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml b/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml
+index 245e8c3ce6699..b14e6f37b2987 100644
+--- a/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml
++++ b/Documentation/devicetree/bindings/usb/microchip,usb2514.yaml
+@@ -10,7 +10,7 @@ maintainers:
+   - Fabio Estevam <festevam@gmail.com>
+ 
+ allOf:
+-  - $ref: usb-hcd.yaml#
++  - $ref: usb-device.yaml#
+ 
+ properties:
+   compatible:
+@@ -36,6 +36,13 @@ required:
+   - compatible
+   - reg
+ 
++patternProperties:
++  "^.*@[0-9a-f]{1,2}$":
++    description: The hard wired USB devices
++    type: object
++    $ref: /schemas/usb/usb-device.yaml
++    additionalProperties: true
++
+ unevaluatedProperties: false
+ 
+ examples:
+-- 
+2.34.1
 
 
