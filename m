@@ -1,180 +1,126 @@
-Return-Path: <devicetree+bounces-93903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC076952ECC
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 15:09:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E9A8952EEA
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 15:17:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 04DC5B27B4C
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 13:09:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 428211C23ECF
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 13:17:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88A4419DF78;
-	Thu, 15 Aug 2024 13:09:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00A9219DF97;
+	Thu, 15 Aug 2024 13:17:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qieAn9XT"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="d0kGjN51"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB82917C9B7
-	for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 13:09:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9DCB17C984;
+	Thu, 15 Aug 2024 13:17:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723727343; cv=none; b=heYwydXBcHeU3W8IRVLRO5M1bHQrUrAB6kT0If4Y4qkZXk0lyocN0vPlpk14XZbxedZkppw5U3S7JvFqkin/gnsWeVTxkxtdDHkFD7P59/NeGpNg451OaxfwHwTK/mgvmoaAY/mi2n7ZeJ608686AoDLenrlOAPcAqQQWkfsiwk=
+	t=1723727866; cv=none; b=CYt6dhKzXI0rg7uOU5yVI3RGMeQDNVnozq0EfDCMN6apjfgizeVvgZi8yWPqA5Li+Rsj4cS5zWK2M4RD3j9//bTxFZAv/bqrv009VKvcEqEUOLDiINkNi7TG5cEyz1+Ds13z8uODectZgX5o6+WzpwM/zwRHCE8UVXO2DCxsMp4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723727343; c=relaxed/simple;
-	bh=ZNiq2dS7G8t+fkB7QAgvHsxKjUH2MxNcZXjk9gsTVRc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bECpuqIaFOCCouFHhY4rPxDRsLQS1d3SvtGYJvhmtTl2SOTE7tOoSSbeCj0Ay48m0GsX6OU9nbo//KrQKr5A+2s1G/kjFiwxJyqvIItOf06ZXVv3NectEwE8hGJqJkV0mWb5Evo3Tbxp36n6m/JU7x1XJglZUIg6vD7J2V95hzw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qieAn9XT; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2f035ae0fd1so10286071fa.2
-        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 06:09:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723727340; x=1724332140; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TNY1eM+k8dVypAWpZEMkyA4Ex7FP/CU7h/TDaorYfbM=;
-        b=qieAn9XTOcFXLy1q6ngbr8ohGiyMYSkbbgYITEVXOjgodlaX70MEymEn/xwYRhEKtC
-         7nnvEBibVEMeIzW3anm0ti3i7mr28qu30gHUZhSfhJIJ3tvQpJfCeC9xHJUrcOPIGL0z
-         sOjCyltVwivnlhKZzVXQbhga9dRWMukWZAH1IZxg/PFqaJVIbGUNYuXtpyy25Jjds9h0
-         zXC54Q+/4mz1oydMbtXvtELsdo9Ex1LLphiQ1BsClC7lJrM0NOSF6yRc0GBXsPbUKyc8
-         N3sxOcuAPNb6b6VPpy5RWlfz4lGGOSD9eJLoyneUjs4nO6D2D2cC30JOPUb3g1Xl69Qv
-         Vm1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723727340; x=1724332140;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TNY1eM+k8dVypAWpZEMkyA4Ex7FP/CU7h/TDaorYfbM=;
-        b=UTAt7We6zTvSCZ+sUID5csRfi5yZSL4ZN3ma/ATtnadP91WXCWYB3NkLIesZVX80Y1
-         n0leK8j+fLJqP+gYZW4Ig301o2UDn2khdaiD8iRESD8L/z8AM6/0mS6a566mP3OOcb5p
-         FCN2xqXr0Z89vuaVJIZXbeiDq3Ne2EJV2Ww9JQpUULPpuGQMdhbH0hQhpjXuvBmcDIG/
-         +c6C3zXWxto826/YJF+aHMNe07cdItEOM7Jw1CoYgeCuTThufsoodQXQHXMGq6LdTWd/
-         IcwxmDsnGHP9iqebOsaRAsUTcn+lW+CRm6vdCmjUYwu+poXvKmc2L313jCsYkmlvq7dM
-         z/aQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUosxojqx/D/xqvT/Bk78I1saXddy2gwFG7DQ8Gj5MlXBbtZWsn9pjtzvVdVPcLJGxeBg/Dm5XCf5gOI8x44IKfEY7nhxfC3DDvLw==
-X-Gm-Message-State: AOJu0Ywaz7gKMrB0gs5uZnTufKOGrrVMQ67Wz1hdoWz/ZdBAQs/i2pO7
-	sKNMq4XfPk0cMFQWzFUfWebxLvSem7CFNNBI/cIKBBq3kz84d75rqYriGh3HjQ8=
-X-Google-Smtp-Source: AGHT+IE+mnCIG8BYgBw5oHWVA2VHQioa6RNCWwiCufSDfkzDIzHQOepsTOsLlr6E2Nlerb9pp9JkZg==
-X-Received: by 2002:a05:6512:1292:b0:530:e228:7799 with SMTP id 2adb3069b0e04-532edbcaab6mr3519137e87.58.1723727339644;
-        Thu, 15 Aug 2024 06:08:59 -0700 (PDT)
-Received: from ?IPV6:2a02:8109:aa0d:be00::e7e1? ([2a02:8109:aa0d:be00::e7e1])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a838396dfddsm99761266b.214.2024.08.15.06.08.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Aug 2024 06:08:59 -0700 (PDT)
-Message-ID: <f341e9e9-3da6-4029-9892-90e6ec856544@linaro.org>
-Date: Thu, 15 Aug 2024 15:08:57 +0200
+	s=arc-20240116; t=1723727866; c=relaxed/simple;
+	bh=V7xyR5Otglxn7/LvCe4REzcqk+t+gv+muKlGMGR+P6A=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=OrnnGAIZq0ik/CzcLoJYpe8Zh6dKHRcfgz+NKuf88VSZo0nFzCG5VcIwgxTmy/Aj1pRIkTEiD2nMDhLwHMxuyWrnrCs+WJ+/ukKadmXUjxdKlwYWNHnCi+tP/NehERV6WRR6pXGnfENkxMmurwKBKC1C3ZKCrbB/nPpkvG6haCY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=d0kGjN51; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=6Sh4JlvtilfgHZ8AKzPSFBYOVcq2ODGvw9XQUWeQAJY=; b=d0kGjN51Zg2xvCf4LcSmivsDFy
+	Vyu8uZDt6/w5bnI95Le5DUbLclvga9RNjik+4gBS+K8sjQZ6CDJvWAVbVVLRO8zed3/4TPmkh3KA3
+	UrX9ac8sj0lT0XNuD1dLWUa7C/5k2QG1Tfbzzd0441wanLIZ/hP2cJjNWfHZCg9wEBeycBUUMCPj1
+	I5xOpgUb3GSx98InpSaE+JDkfBwKKPUX1tym2sR5povzL3e4jvnzKv1jevzGmALLGEx4w1Zx9YHis
+	3IW3T49HC28EC6Hv/PPQVGbFvLsNCzRCwGfjIWOvGcqsYkNGvmxuIPEvfQiqhxn+w1mQmE/E8HeAs
+	dB56TZcg==;
+Received: from i53875a9f.versanet.de ([83.135.90.159] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1seaM1-0002nJ-Fa; Thu, 15 Aug 2024 15:17:25 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Detlev Casanova <detlev.casanova@collabora.com>,
+ linux-kernel@vger.kernel.org, Shawn Lin <shawn.lin@rock-chips.com>
+Cc: shawn.lin@rock-chips.com, Ulf Hansson <ulf.hansson@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jaehoon Chung <jh80.chung@samsung.com>,
+ linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ kernel@collabora.com
+Subject: Re: [PATCH v3 2/3] mmc: dw_mmc-rockchip: Add v2 tuning support
+Date: Thu, 15 Aug 2024 15:17:24 +0200
+Message-ID: <18146801.MNNF8PUAaN@diego>
+In-Reply-To: <5dc82aa2-82a0-4778-b598-88775d5f791c@rock-chips.com>
+References:
+ <20240814223555.3695-1-detlev.casanova@collabora.com>
+ <20240814223555.3695-3-detlev.casanova@collabora.com>
+ <5dc82aa2-82a0-4778-b598-88775d5f791c@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 00/16] Add cmd descriptor support
-To: Md Sadre Alam <quic_mdalam@quicinc.com>, vkoul@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andersson@kernel.org, konradybcio@kernel.org, thara.gopinath@gmail.com,
- herbert@gondor.apana.org.au, davem@davemloft.net, gustavoars@kernel.org,
- u.kleine-koenig@pengutronix.de, kees@kernel.org, agross@kernel.org,
- linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-crypto@vger.kernel.org
-Cc: quic_srichara@quicinc.com, quic_varada@quicinc.com,
- quic_utiwari@quicinc.com
-References: <20240815085725.2740390-1-quic_mdalam@quicinc.com>
-Content-Language: en-US
-From: Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <20240815085725.2740390-1-quic_mdalam@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+Am Donnerstag, 15. August 2024, 02:55:37 CEST schrieb Shawn Lin:
+> Hi Detlev
+>=20
+> =E5=9C=A8 2024/8/15 6:34, Detlev Casanova =E5=86=99=E9=81=93:
+> > From: Shawn Lin <shawn.lin@rock-chips.com>
+> >=20
+> > v2 tuning will inherit pre-stage loader's phase settings for the first
+> > time, and do re-tune if necessary.
+> > Re-tune will still try the rough degrees, for instance, 90, 180, 270,
+> > 360 but continue to do the fine tuning if sample window isn't good
+> > enough.
+> >=20
+> > Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
 
-A note for future patches, please scope your cover letter subject:
+> > @@ -277,6 +322,10 @@ static int dw_mci_rk3288_parse_dt(struct dw_mci *h=
+ost)
+> >   					&priv->default_sample_phase))
+> >   		priv->default_sample_phase =3D 0;
+> >  =20
+> > +	priv->use_v2_tuning =3D
+> > +		of_device_is_compatible(host->dev->of_node,
+> > +					"rockchip,rk3576-dw-mshc");
+> > +
+>=20
+> v2 is a kind of software decision instead of hardware dependency.
+> So in theory, any SoC can claim to use it via DT.
 
-"dmaengine: qcom: bam_dma: add cmd descriptor support"
+which actually makes it unsuitable for dt.
 
-On 15/08/2024 10:57, Md Sadre Alam wrote:
-> This series of patches will add command descriptor
-> support to read/write crypto engine register via
-> BAM/DMA
-> 
-> We need this support because if there is multiple EE's
-> (Execution Environment) accessing the same CE then there
-> will be race condition. To avoid this race condition
-> BAM HW hsving LOC/UNLOCK feature on BAM pipes and this
-> LOCK/UNLOCK will be set via command descriptor only.
-> 
-> Since each EE's having their dedicated BAM pipe, BAM allows
-> Locking and Unlocking on BAM pipe. So if one EE's requesting
-> for CE5 access then that EE's first has to LOCK the BAM pipe
-> while setting LOCK bit on command descriptor and then access
-> it. After finishing the request EE's has to UNLOCK the BAM pipe
-> so in this way we race condition will not happen.
-> 
-> tested with "tcrypt.ko" and "kcapi" tool.
-> 
-> Need help to test these all the patches on msm platform
+Devicetree describes hardware-properties and should _not_ be used for
+software configuration.
 
-DT changes here are only for a few IPQ platforms, please explain in the 
-cover letter if this is some IPQ specific feature which doesn't exist on 
-other platforms, or if you're only enabling it on IPQ.
+=46rom the comment above, I assume the rk3576 does not need that feature
+and can just work with the regular tuning?
 
-Some broad strokes testing instructions (at the very least) and 
-requirements (testing on what hardware?) aren't made obvious at all here.
+So there are two routes for the immediate future:
+(1) rk3576 _needs_ that feature, then going with the compatible is fine
 
-Kind regards,
-> 
-> v2:
->   * Addressed all the comments from v1
->   * Added the dt-binding
->   * Added locking/unlocking mechanism in bam driver
-> 
-> v1:
->   * https://lore.kernel.org/lkml/20231214114239.2635325-1-quic_mdalam@quicinc.com/
->   * Initial set of patches for cmd descriptor support
-> 
-> Md Sadre Alam (16):
->    dt-bindings: dma: qcom,bam: Add bam pipe lock
->    dmaengine: qcom: bam_dma: add bam_pipe_lock dt property
->    dmaengine: qcom: bam_dma: add LOCK & UNLOCK flag support
->    crypto: qce - Add support for crypto address read
->    crypto: qce - Add bam dma support for crypto register r/w
->    crypto: qce - Convert register r/w for skcipher via BAM/DMA
->    crypto: qce - Convert register r/w for sha via BAM/DMA
->    crypto: qce - Convert register r/w for aead via BAM/DMA
->    crypto: qce - Add LOCK and UNLOCK flag support
->    crypto: qce - Add support for lock aquire,lock release api.
->    crypto: qce - Add support for lock/unlock in skcipher
->    crypto: qce - Add support for lock/unlock in sha
->    crypto: qce - Add support for lock/unlock in aead
->    arm64: dts: qcom: ipq9574: enable bam pipe locking/unlocking
->    arm64: dts: qcom: ipq8074: enable bam pipe locking/unlocking
->    arm64: dts: qcom: ipq6018: enable bam pipe locking/unlocking
-> 
->   .../devicetree/bindings/dma/qcom,bam-dma.yaml |   8 +
->   arch/arm64/boot/dts/qcom/ipq6018.dtsi         |   1 +
->   arch/arm64/boot/dts/qcom/ipq8074.dtsi         |   1 +
->   arch/arm64/boot/dts/qcom/ipq9574.dtsi         |   1 +
->   drivers/crypto/qce/aead.c                     |   4 +
->   drivers/crypto/qce/common.c                   | 142 +++++++----
->   drivers/crypto/qce/core.c                     |  13 +-
->   drivers/crypto/qce/core.h                     |  12 +
->   drivers/crypto/qce/dma.c                      | 232 ++++++++++++++++++
->   drivers/crypto/qce/dma.h                      |  26 +-
->   drivers/crypto/qce/sha.c                      |   4 +
->   drivers/crypto/qce/skcipher.c                 |   4 +
->   drivers/dma/qcom/bam_dma.c                    |  14 +-
->   include/linux/dmaengine.h                     |   6 +
->   14 files changed, 424 insertions(+), 44 deletions(-)
-> 
+(2) rk3576 does not need absolutely need that feature, then I'd expect
+the basic rk3576 to first come without, as I'd expect a lot more explanation
+on why it is actually needed, and which cases it does improve.
+The commit message does not really explain that much about why this
+is a great/needed feature and which areas it does improve.
 
--- 
-// Caleb (they/them)
+
+Heiko
+
+
 
