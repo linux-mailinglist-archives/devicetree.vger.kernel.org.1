@@ -1,151 +1,147 @@
-Return-Path: <devicetree+bounces-93869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCD22952C90
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 12:43:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E393952C95
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 12:43:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFADE1C2132C
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 10:43:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F5C0285D86
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 10:43:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E4131D54D3;
-	Thu, 15 Aug 2024 10:13:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC5FE1D54E8;
+	Thu, 15 Aug 2024 10:16:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c3SRBPwk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YuxpNeYy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 887C41D47B1;
-	Thu, 15 Aug 2024 10:13:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C63071D174F
+	for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 10:15:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723716828; cv=none; b=pcBtWtvrPieXCA64SeItmYY9XILvGmX7XYtTpO8tnl95/oZrlVLTeubI134xGjOFQkOf/eRKrqxY9d4kyXnZL0zIEOq8xeX9GiBI4E7XVtHr52+x8UnwNnQ9iemenRuaXCzAhKLXHOUAh6bBCHBwkDZ+zYZH+HVX+8krnci8rTU=
+	t=1723716961; cv=none; b=euoU2KgcSsGMxI3tXke5eBQNaA0w6EOufDUyciVZj25YNtVcCRhw9Uyntlvn3KnqcGPO44w3ZxyQ0ovvz9EXzU+8CnRo6RtjbkRqJXeTdQa5GYLK1eNelfnsUQnJYNxginqfQqhqjlD2EQHkuZoUgPgRkXe87+ig8fwAQK7PVvo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723716828; c=relaxed/simple;
-	bh=+TvEdzQ/9c6jut9k59bJZ2duT+YJw9UO7silmCKO2qI=;
+	s=arc-20240116; t=1723716961; c=relaxed/simple;
+	bh=EWHAvpJ0fJ47ch2U4sjdTdcRLUJ3eXL8YpEgS2qGZJU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sne4BQ4ienyTFCNnvoWdEod2rvlE7HY+ARd0KOMbMuQlxFBb8aA6I/2MMkD+BY1gFjN/uBW0URGvpG0bWTfi7MtjylyOhgNdYJ3549Z1/J/o+vTiDPAK+NsPlRKt4CLTfroDQTutmHbG5dVWOO7j5H+aCAKFT3LUEfmGYQzX6TE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c3SRBPwk; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5a15692b6f6so1076698a12.0;
-        Thu, 15 Aug 2024 03:13:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723716825; x=1724321625; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=o06GvniUcfmhMUL6PwyXbMvRJebr6Xj9XehasRnJgSU=;
-        b=c3SRBPwkPmI6Hk7Epn9i0cOzj/K+mwuG1KgIVzYmUnLqVwET6R5ZMf43LrKlfereMj
-         VwhlIrAEoA2ispbGzdMHftiZSB3WGSbnFOXYZ2BmnFflV9PMC566pniypsgno2ftnfhD
-         97dicDI4RD1yxGKrqNK8CjkaTmt1+CW1pEmHiczO+arrFwZJb8aQbT2ew4dAMgV/inAA
-         eXLRTH3Pv+35nSzFotIGAAYBiXSYwIcHP+BwJDQM8PJulhePBg4iTwq7Zwn9jdI4+61K
-         AKVuJuKl7JikPij+EYdGZmLFQogVDFOBBngmWOr9bF7bsOvuAZoO4sCk4S1rIcdv+bcP
-         cxdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723716825; x=1724321625;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=o06GvniUcfmhMUL6PwyXbMvRJebr6Xj9XehasRnJgSU=;
-        b=RX+HhVzocm1hjb7ET9pX2VhjEqhH9dxZglXhYm2JubtdgMeshY55SaSOJ4J/SRd0TK
-         FbtSZW3MrL2b2Ay4DwvL7bg4teAxT+qKdY61rI74zXjnRHkByRP9qWoXXRiToCou3Mu5
-         RQpv+GcsUF7p6t1bxPYWeoqSKeRg01HoJPtasdMqBt2s0vnbQBePiImtYp2eZxnEwyc9
-         NliFVEs39jyLtDSJrQ/BXS0CqJAwb7gARCbDgjBjmoGIuYT2+bdXo6W0IfYU6ru1WjhD
-         b/k/k5oETvTLAOkAxCFG4/ZT3cyfoTQQD+z4XUIZzSrnyMms/cjVI9gQ43sPTw56l+ut
-         1PQw==
-X-Forwarded-Encrypted: i=1; AJvYcCW12bvbLx08pPNx2KASYDjOfyPInrmakwIA3/k8X1gnRCioYXHI/SuLPQGaRe2utIRerKctoK2o29AMBivfQxGbq0F253jJB3ztMlrN
-X-Gm-Message-State: AOJu0YyOYlFnmMjXTppLAOH6aBS35S4dg02BiYpSvFuhppl4tbIC2pt4
-	OpwGs4c713Hjqc4DQ0fmAisXe/W5RPuqhX9UrPcscQWbwA3Q24PM
-X-Google-Smtp-Source: AGHT+IExnRsk3ybYD81mC/sRU/KcANLw9XOwqYwQOZ49cA7sbJcoOHx8/qUzIYtLwlrxf45lZiUF6w==
-X-Received: by 2002:a05:6402:4416:b0:58e:4e62:429b with SMTP id 4fb4d7f45d1cf-5bea1cb315cmr4763525a12.33.1723716824492;
-        Thu, 15 Aug 2024 03:13:44 -0700 (PDT)
-Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5bebbde48a9sm690760a12.25.2024.08.15.03.13.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Aug 2024 03:13:44 -0700 (PDT)
-Date: Thu, 15 Aug 2024 12:13:42 +0200
-From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: sprd: sc2731: move fuel-gauge
- monitored-battery to device DTS
-Message-ID: <5fc955715c956eac0edf922623c87ab382e4295c.1723716331.git.stano.jakubek@gmail.com>
-References: <cover.1723716331.git.stano.jakubek@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=DqCu1MnohHZyVLyauMbmMb6mH2KKEvDJ9AYZ+GyUKif9y2VuDQJATAWOJspzg2QYEGWUjOQ0wFJNsBmX5LUuPDIiUm2jrW2h9fVRyNUnSGyR5a+LVrEEsNvjCpuXzTvm6LXBBjb/HEnNoxGu6fi/2teWAWLkns9wKakCh5Gh3DE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YuxpNeYy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94B51C4AF0D;
+	Thu, 15 Aug 2024 10:15:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723716959;
+	bh=EWHAvpJ0fJ47ch2U4sjdTdcRLUJ3eXL8YpEgS2qGZJU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YuxpNeYywl1HZ0h1sExQPHKalXsDGoS+pGIPHQdkWq/ewBw2nL60O6E8JeyTzSjtK
+	 fl0tWrN3an6TJdd9Za+msvpR+L+Jsy4bqis7edBy0auDpeX2trEnwZ8961XziGGfjX
+	 zZernZELsjpy/lEQp6g0iQvYmPAFgfKiUn01s1bwUasCkNMPEhwVgCX95Ad+7ut8LM
+	 bASIOux+DEQ1GbeGQdjjh6AVSuO0W7L2YAx6Y+Fu7xFFokhBg75kfnEPmGauUS0V9p
+	 En1djvu2Oo0gqBzibpiU11vr5Z/vzFWiIODgnEUEmxj7wTCjzCkV1JwISOBuUDpjvc
+	 +57bGulN0yKgA==
+Date: Thu, 15 Aug 2024 12:15:53 +0200
+From: Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
+To: Conor Dooley <conor@kernel.org>, Thomas Gleixner <tglx@linutronix.de>
+Cc: Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>, 
+	Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>, 
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, linux-arm-kernel@lists.infradead.org, arm@kernel.org, 
+	Andy Shevchenko <andy@kernel.org>, Hans de Goede <hdegoede@redhat.com>, 
+	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] irqchip/armada-370-xp: Implement SoC Error interrupts
+Message-ID: <bhd7l2b5lltcmz2bvwpp2wn7kpj37bbr4vxyd2aeoz6ve67wqv@xjb5penkoubd>
+References: <20240814124537.29847-1-kabel@kernel.org>
+ <87mslfnlve.ffs@tglx>
+ <20240814-faceted-fiddling-cda119e3f483@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <cover.1723716331.git.stano.jakubek@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240814-faceted-fiddling-cda119e3f483@spud>
 
-The monitored-battery property is a property of the board, not the PMIC.
-Move this property to the DTS of its only user, sp9860g-1h10.
-While at it, disable the fuel-gauge node by default and enable it only
-for its users, as it requires board-specific properties to work correctly.
+On Wed, Aug 14, 2024 at 05:43:19PM +0100, Conor Dooley wrote:
+> On Wed, Aug 14, 2024 at 05:51:33PM +0200, Thomas Gleixner wrote:
+> > On Wed, Aug 14 2024 at 14:45, Marek Behún wrote:
+> > 
+> > Cc+ device tree people.
+> > 
+> > > + The code binds this new interrupt domain to the same device-tree node as
+> > > + the main interrupt domain. The main interrupt controller has its
+> > > + interrupts described by one argument in device-tree
+> > > + (#interrupt-cells = <1>), i.e.:
+> > > + 
+> > > +   interrupts-extended = <&mpic 8>;
+> > > + 
+> > > + Because of backwards compatibility we cannot change this number of
+> > > + arguments, and so the SoC Error interrupts must also be described by
+> > > + this one number.
+> > > + 
+> > > + Thus, to describe a SoC Error interrupt, one has to add the an offset
+> > > + to the SoC Error interrupt number. Offset 0x400 was chosen because the
+> > > + main controller supports at most 1024 interrupts (in theory; in practice
+> > > + it seems to be 116 interrupts on all supported platforms). An example of
+> > > + describing a SoC Error interrupt is
+> > > + 
+> > > +   interrupts-extended = <&mpic 0x404>;
+> > 
+> > This looks like a horrible hack and I don't understand why this can't be
+> > a separate interrupt controller, which it is in the hardware. That
+> > controller utilizes interrupt 4 from the MPIC.
+> > 
+> > But then my DT foo is limited, so I let the DT folks comment on that.
+> 
+> I'm guessing, not being author and all that, that since the registers
+> for this SOC_ERR business are intermingled with those of the existing
+> interrupt controller it is not possible to create a standalone node for
+> the new controller with it's own reg entry, without having to redo
+> the binding etc for the existing controller, ending up with some sort of
+> syscon.
+> Alternatively, I suppose a child node could work, but it wouldn't be much
+> less of a hack than deciding that numbers > 400 are the SOC_ERR ones.
+> I see arguments for doing it either way and Marek must have an opinion
+> on doing it without a new node, given the comment suggesting that a
+> previous revision did have a dedicated node and that approach was
+> dropped.
 
-Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
----
-Note that the 'sprd,calib-resistance-micro-ohms' property isn't specified
-as I do not have the board or any other source of information about it.
+This is exactly the reason.
 
-If the SPRD folks could chime in here, that'd be great.
+Pali's original code required creating another interrupt-controller node
+(soc_err) within the mpic node:
 
- arch/arm64/boot/dts/sprd/sc2731.dtsi      | 4 ++--
- arch/arm64/boot/dts/sprd/sp9860g-1h10.dts | 5 +++++
- 2 files changed, 7 insertions(+), 2 deletions(-)
+   mpic: interrupt-controller@20a00 {
+        compatible = "marvell,mpic";
+	reg = <0x20a00 0x2d0>, <0x21070 0x58>;
+	#interrupt-cells = <1>;
+	interrupt-controller;
+	msi-controller;
+	interrupts = <GIC_PPI 15 IRQ_TYPE_LEVEL_HIGH>;
 
-diff --git a/arch/arm64/boot/dts/sprd/sc2731.dtsi b/arch/arm64/boot/dts/sprd/sc2731.dtsi
-index c8b30c0479fd..0eb4aca0a139 100644
---- a/arch/arm64/boot/dts/sprd/sc2731.dtsi
-+++ b/arch/arm64/boot/dts/sprd/sc2731.dtsi
-@@ -94,17 +94,17 @@ pmic_adc: adc@480 {
- 			nvmem-cells = <&adc_big_scale>, <&adc_small_scale>;
- 		};
- 
--		fuel-gauge@a00 {
-+		pmic_fgu: fuel-gauge@a00 {
- 			compatible = "sprd,sc2731-fgu";
- 			reg = <0xa00>;
- 			bat-detect-gpios = <&pmic_eic 9 GPIO_ACTIVE_HIGH>;
- 			io-channels = <&pmic_adc 3>, <&pmic_adc 6>;
- 			io-channel-names = "bat-temp", "charge-vol";
--			monitored-battery = <&bat>;
- 			nvmem-cell-names = "fgu_calib";
- 			nvmem-cells = <&fgu_calib>;
- 			interrupt-parent = <&sc2731_pmic>;
- 			interrupts = <4>;
-+			status = "disabled";
- 		};
- 
- 		vibrator@ec8 {
-diff --git a/arch/arm64/boot/dts/sprd/sp9860g-1h10.dts b/arch/arm64/boot/dts/sprd/sp9860g-1h10.dts
-index cd8b1069e387..a5f6acafee3a 100644
---- a/arch/arm64/boot/dts/sprd/sp9860g-1h10.dts
-+++ b/arch/arm64/boot/dts/sprd/sp9860g-1h10.dts
-@@ -84,6 +84,11 @@ bat: battery {
- 	};
- };
- 
-+&pmic_fgu {
-+	monitored-battery = <&bat>;
-+	status = "okay";
-+};
-+
- &uart0 {
- 	status = "okay";
- };
--- 
-2.34.1
+	soc_err: interrupt-controller@20 {
+	    interrupt-controller;
+	    #interrupt-cells = <1>;
+	};
+   };
 
+I decided against it, because to do this correctly in device-tree
+bindings, it gets unnecessarily complicated:
+- it requires #address-cells and #size-cells within the mpic node
+- the `interrupt-controller` property of mpic node can in some
+  interpretations clash with the `interrupt-controller@20` name of the
+  child node
+- the registers of soc_err and mpic overlap
+- the child note should have a compatible string if we want to be proper
+
+I also did consider syscon, but IMO it just adds unnecessary burden to
+backwards compatibility of device-trees.
+
+The solution with the 0x400 offset solves the backwards compatiblity
+issue.
+
+Marek
 
