@@ -1,295 +1,128 @@
-Return-Path: <devicetree+bounces-93910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3E86952FA4
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 15:35:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC080952FEC
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 15:37:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D91961C2480B
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 13:35:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 863E91F22568
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 13:37:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB7EA19FA99;
-	Thu, 15 Aug 2024 13:34:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B040B1A2C19;
+	Thu, 15 Aug 2024 13:37:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="U22Ze9XJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o2J1mX0Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1A7417C984
-	for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 13:34:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83DDC17C9B1;
+	Thu, 15 Aug 2024 13:37:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723728861; cv=none; b=NqZkpWctOjyC0DePKNvvdfaQAHg/Qu/54qblmpDE+Qcx6KiK4tA3sevzUvWykINHiW6b7s05AO1dWElp6+YQ9YoNV/99pyQ1e1MmhhiMx4LKLB5S5u5dKvzNTixRS3sYSL+uKFWgie63DM6jRu3c9Ow8t6KeET1F3LzWbXnhaOE=
+	t=1723729033; cv=none; b=jDS2NwXA5oLJA0TCUQTevx9bTW7dyy2mnOzx0otqem/VDlLvty20AaYwKfvDQ4HhSk7rJisRRONmfIbVsPWJu84c0bP0x20VwZXDvlEAOVzViJQQh59KRh5ioM5Z7jV/Qc2mEBbQrGURQWAgqNM9dwLbMdNrxK5gvwvC3NBVigU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723728861; c=relaxed/simple;
-	bh=tbWsNgYrDIbnSK7YKq4tQxF5j6rIWuV0/RYeKfcHhxE=;
+	s=arc-20240116; t=1723729033; c=relaxed/simple;
+	bh=ivC/ql9DARdAAo0IB7lg/JhsrAxajGb+vtXbPgNHmas=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GqATDHmugVM+vrai0ugS+6uCgWbEgglmM78R94CORGUWzEv5CGld7pdBmmsP188VM/GdbBpay58UFfZOUqRZKV7tEs/ncGQMsRHl7hAWn0qsVQbHKK1T3Z06FmlQx3A4ve67kFHapPNnTbmnZKwKXTMD3Nr64tuFQQ8vbZ4Vik0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=U22Ze9XJ; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5a10835487fso1428204a12.1
-        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 06:34:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1723728858; x=1724333658; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=uf+s/T5xCp+3fTbJjT+zyzmVlfgDLq1GD3LsWtGwKVU=;
-        b=U22Ze9XJbVvkv6fIeuFD6h5ShFOWFYbcwAROPf8lDoI66/dGxabt+9O0q/54Skb8w1
-         ThLky3gN+kGI12A/fANjMZsAnz1XXS0FoHD2vbgnDTzANJ9tLA1Zu5+gEWW2IMEaj54a
-         wUlLo4lpfKdqmBAWeizdZpkrYCLQfy4dktvtpjYNYdFBsW+ypuKqMS8S/8xzlsd463H6
-         YmO/hC7nWRthhkm3cY+XZujEDa14C7mr8PiTeNEPdiCRlej453AlluSF0K+Wx62el8/N
-         Oaaw6ZtX0PQaXncYpdOci18B49WZvtvwgkGqtDXjS5X0He1pVRbrYj28sN40+o+fdQ6r
-         YJPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723728858; x=1724333658;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uf+s/T5xCp+3fTbJjT+zyzmVlfgDLq1GD3LsWtGwKVU=;
-        b=Rqnhnwn+/3p6IUMbHZQ2SRVV5RpEHznSlvB+jwB33NmmvsZrmXSP6lsxITSvi+CHMI
-         9kjYFp+G99Q5W3w990dFKuenxqgGZX4TrzzmZs7zG3s3f+WT1rsS8aXHP1VwJiK3phLZ
-         NKoim8nhNJSzEBcoHRlUlACAv0c8YcWohRR/Jem2NAdBGkJj3Qw77tnWjYz6GeX0PyTr
-         Zu4Nn1yLOEn6JJ0yoycByaJuKriNCebySkgLzXs145KSrbbf4q55j4cfH0FAOU/gVqA0
-         ERCi36RHiZDIAo+10ymPw6kGQEzhWAtfDL0EViuvA71MadMSrb6vEBosb2rA0PXARgK0
-         I8bQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWuR3wl1ZhoOsOPQ8lm/G4OMlmPyq5VaWn7JE65zPiqRPxsxqgNtEe2H4ApE1qo8l2ufrKeX+OWQgwK0RlRWE57UmZP4QTKm8QkIg==
-X-Gm-Message-State: AOJu0YzBRKe5s+kNC+nz0F4aT5ATFBPNFMrSuYTXh1SFNZTOo6x4JfCz
-	L6eLBbgb6Vk3/oOKUBjbVj9AU1ezBAB8EOAP+OXRYHwP9iy7QpRH5IcnzVOhvQ4=
-X-Google-Smtp-Source: AGHT+IGJZeX9x/BRQJo3d2wjrrZWdO+Zhhlxj0cF6zy/2fP9OXjfT0TWw6RvV17Cu+G0YZEVeHbTUw==
-X-Received: by 2002:a05:6402:50cf:b0:5be:a05a:2e38 with SMTP id 4fb4d7f45d1cf-5bea1cad0a2mr4777968a12.27.1723728857600;
-        Thu, 15 Aug 2024 06:34:17 -0700 (PDT)
-Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5bebbbe2707sm910747a12.7.2024.08.15.06.34.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Aug 2024 06:34:16 -0700 (PDT)
-Date: Thu, 15 Aug 2024 15:34:16 +0200
-From: Andrew Jones <ajones@ventanamicro.com>
-To: Alexandre Ghiti <alex@ghiti.fr>
-Cc: Alexandre Ghiti <alexghiti@rivosinc.com>, 
-	Jonathan Corbet <corbet@lwn.net>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Andrea Parri <parri.andrea@gmail.com>, 
-	Nathan Chancellor <nathan@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
-	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>, 
-	Boqun Feng <boqun.feng@gmail.com>, Arnd Bergmann <arnd@arndb.de>, 
-	Leonardo Bras <leobras@redhat.com>, Guo Ren <guoren@kernel.org>, linux-doc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-arch@vger.kernel.org
-Subject: Re: [PATCH v4 13/13] riscv: Add qspinlock support
-Message-ID: <20240815-17cff9794dd6fb3440478622@orel>
-References: <20240731072405.197046-1-alexghiti@rivosinc.com>
- <20240731072405.197046-14-alexghiti@rivosinc.com>
- <20240731-ce25dcdc5ce9ccc6c82912c0@orel>
- <CAHVXubgtD_nDBL2H-MYb9V+3jLBoszz8HAZ2NTTsiS2wR6aPDQ@mail.gmail.com>
- <6f1bcc9b-1812-4e8c-9050-a750bfadd008@ghiti.fr>
+	 Content-Type:Content-Disposition:In-Reply-To; b=edJh9oiNmf44m4pyys+U8WZAsqNirT+ks2ien9HHBCdwy4k+PHO8+xsI8WQq5wCLcfCVoYfAsBkXKYaocLEcB7IV9S9Ju4CSSIztBqRrM1O1Y2q5ggwmJwyKvPeFrwSHCKjIg3ysGpNjI0drQSLeVj7wCLiSDnxoq531QyLG/9I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o2J1mX0Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11039C32786;
+	Thu, 15 Aug 2024 13:37:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723729033;
+	bh=ivC/ql9DARdAAo0IB7lg/JhsrAxajGb+vtXbPgNHmas=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=o2J1mX0QqPihWT1BGfkat5NUtQaSKe/MEFK7z1BE0Upu2oEvvgpbu6A/ap+tK+TlM
+	 WehdY6KkqcJjmrtAU4y0qxlF5KJsxAdDEf3nMz1enH1XaK1qNcGPIZsoWk08R+DVb/
+	 DrSm+uCmfD8rbeFmny+a7VSO39mP+t3UZMLTOi9p//9ApCPoXtlgeUXbwnCv4HO1na
+	 0aWhm0Za20AWmTeY+mcO0WTL3AmTlxKaX/GJIYqPl8tMktE2A95IIicauKjKTDhDd5
+	 vgiSuhZ7OLw/sGGG6n+W+egniW0nfLKD7y6aYXjW0IDdDhkY9YstJ7VaMp6egWnjkX
+	 dMjJcvziwy0XQ==
+Date: Thu, 15 Aug 2024 14:37:07 +0100
+From: Simon Horman <horms@kernel.org>
+To: Wei Fang <wei.fang@nxp.com>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, andrew@lunn.ch, f.fainelli@gmail.com,
+	hkallweit1@gmail.com, linux@armlinux.org.uk,
+	andrei.botila@oss.nxp.com, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 2/3] net: phy: tja11xx: replace
+ "nxp,rmii-refclk-in" with "nxp,reverse-mode"
+Message-ID: <20240815133707.GC632411@kernel.org>
+References: <20240815055126.137437-1-wei.fang@nxp.com>
+ <20240815055126.137437-3-wei.fang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <6f1bcc9b-1812-4e8c-9050-a750bfadd008@ghiti.fr>
+In-Reply-To: <20240815055126.137437-3-wei.fang@nxp.com>
 
-On Thu, Aug 15, 2024 at 03:27:31PM GMT, Alexandre Ghiti wrote:
-> Hi Andrew,
+On Thu, Aug 15, 2024 at 01:51:25PM +0800, Wei Fang wrote:
+> As the new property "nxp,reverse-mode" is added to instead of the
+> "nxp,rmii-refclk-in" property, so replace the "nxp,rmii-refclk-in"
+> property used in the driver with the "nxp,reverse-mode" property
+> and make slight modifications.
 > 
-> On 01/08/2024 08:53, Alexandre Ghiti wrote:
-> > On Wed, Jul 31, 2024 at 5:29 PM Andrew Jones <ajones@ventanamicro.com> wrote:
-> > > On Wed, Jul 31, 2024 at 09:24:05AM GMT, Alexandre Ghiti wrote:
-> > > > In order to produce a generic kernel, a user can select
-> > > > CONFIG_COMBO_SPINLOCKS which will fallback at runtime to the ticket
-> > > > spinlock implementation if Zabha or Ziccrse are not present.
-> > > > 
-> > > > Note that we can't use alternatives here because the discovery of
-> > > > extensions is done too late and we need to start with the qspinlock
-> > > > implementation because the ticket spinlock implementation would pollute
-> > > > the spinlock value, so let's use static keys.
-> > > > 
-> > > > This is largely based on Guo's work and Leonardo reviews at [1].
-> > > > 
-> > > > Link: https://lore.kernel.org/linux-riscv/20231225125847.2778638-1-guoren@kernel.org/ [1]
-> > > > Signed-off-by: Guo Ren <guoren@kernel.org>
-> > > > Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
-> > > > ---
-> > > >   .../locking/queued-spinlocks/arch-support.txt |  2 +-
-> > > >   arch/riscv/Kconfig                            | 29 +++++++++++++
-> > > >   arch/riscv/include/asm/Kbuild                 |  4 +-
-> > > >   arch/riscv/include/asm/spinlock.h             | 43 +++++++++++++++++++
-> > > >   arch/riscv/kernel/setup.c                     | 38 ++++++++++++++++
-> > > >   include/asm-generic/qspinlock.h               |  2 +
-> > > >   include/asm-generic/ticket_spinlock.h         |  2 +
-> > > >   7 files changed, 118 insertions(+), 2 deletions(-)
-> > > >   create mode 100644 arch/riscv/include/asm/spinlock.h
-> > > > 
-> > > > diff --git a/Documentation/features/locking/queued-spinlocks/arch-support.txt b/Documentation/features/locking/queued-spinlocks/arch-support.txt
-> > > > index 22f2990392ff..cf26042480e2 100644
-> > > > --- a/Documentation/features/locking/queued-spinlocks/arch-support.txt
-> > > > +++ b/Documentation/features/locking/queued-spinlocks/arch-support.txt
-> > > > @@ -20,7 +20,7 @@
-> > > >       |    openrisc: |  ok  |
-> > > >       |      parisc: | TODO |
-> > > >       |     powerpc: |  ok  |
-> > > > -    |       riscv: | TODO |
-> > > > +    |       riscv: |  ok  |
-> > > >       |        s390: | TODO |
-> > > >       |          sh: | TODO |
-> > > >       |       sparc: |  ok  |
-> > > > diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-> > > > index ef55ab94027e..c9ff8081efc1 100644
-> > > > --- a/arch/riscv/Kconfig
-> > > > +++ b/arch/riscv/Kconfig
-> > > > @@ -79,6 +79,7 @@ config RISCV
-> > > >        select ARCH_WANT_OPTIMIZE_HUGETLB_VMEMMAP
-> > > >        select ARCH_WANTS_NO_INSTR
-> > > >        select ARCH_WANTS_THP_SWAP if HAVE_ARCH_TRANSPARENT_HUGEPAGE
-> > > > +     select ARCH_WEAK_RELEASE_ACQUIRE if ARCH_USE_QUEUED_SPINLOCKS
-> > > Why do we need this? Also, we presumably would prefer not to have it
-> > > when we end up using ticket spinlocks when combo spinlocks is selected.
-> > > Is there no way to avoid it?
-> > I'll let Andrea answer this as he asked for it.
-> > 
-> > > >        select BINFMT_FLAT_NO_DATA_START_OFFSET if !MMU
-> > > >        select BUILDTIME_TABLE_SORT if MMU
-> > > >        select CLINT_TIMER if RISCV_M_MODE
-> > > > @@ -488,6 +489,34 @@ config NODES_SHIFT
-> > > >          Specify the maximum number of NUMA Nodes available on the target
-> > > >          system.  Increases memory reserved to accommodate various tables.
-> > > > 
-> > > > +choice
-> > > > +     prompt "RISC-V spinlock type"
-> > > > +     default RISCV_COMBO_SPINLOCKS
-> > > > +
-> > > > +config RISCV_TICKET_SPINLOCKS
-> > > > +     bool "Using ticket spinlock"
-> > > > +
-> > > > +config RISCV_QUEUED_SPINLOCKS
-> > > > +     bool "Using queued spinlock"
-> > > > +     depends on SMP && MMU && NONPORTABLE
-> > > > +     select ARCH_USE_QUEUED_SPINLOCKS
-> > > > +     help
-> > > > +       The queued spinlock implementation requires the forward progress
-> > > > +       guarantee of cmpxchg()/xchg() atomic operations: CAS with Zabha or
-> > > > +       LR/SC with Ziccrse provide such guarantee.
-> > > > +
-> > > > +       Select this if and only if Zabha or Ziccrse is available on your
-> > > > +       platform.
-> > > Maybe some text recommending combo spinlocks here? As it stands it sounds
-> > > like enabling queued spinlocks is a bad idea for anybody that doesn't know
-> > > what platforms will run the kernel they're building, which is all distros.
-> > That's NONPORTABLE, so people enabling this config are supposed to
-> > know that right?
-> > 
-> > > > +
-> > > > +config RISCV_COMBO_SPINLOCKS
-> > > > +     bool "Using combo spinlock"
-> > > > +     depends on SMP && MMU
-> > > > +     select ARCH_USE_QUEUED_SPINLOCKS
-> > > > +     help
-> > > > +       Embed both queued spinlock and ticket lock so that the spinlock
-> > > > +       implementation can be chosen at runtime.
-> > > nit: Add a blank line here
-> > Done
-> > 
-> > > > +endchoice
-> > > > +
-> > > >   config RISCV_ALTERNATIVE
-> > > >        bool
-> > > >        depends on !XIP_KERNEL
-> > > > diff --git a/arch/riscv/include/asm/Kbuild b/arch/riscv/include/asm/Kbuild
-> > > > index 5c589770f2a8..1c2618c964f0 100644
-> > > > --- a/arch/riscv/include/asm/Kbuild
-> > > > +++ b/arch/riscv/include/asm/Kbuild
-> > > > @@ -5,10 +5,12 @@ syscall-y += syscall_table_64.h
-> > > >   generic-y += early_ioremap.h
-> > > >   generic-y += flat.h
-> > > >   generic-y += kvm_para.h
-> > > > +generic-y += mcs_spinlock.h
-> > > >   generic-y += parport.h
-> > > > -generic-y += spinlock.h
-> > > >   generic-y += spinlock_types.h
-> > > > +generic-y += ticket_spinlock.h
-> > > >   generic-y += qrwlock.h
-> > > >   generic-y += qrwlock_types.h
-> > > > +generic-y += qspinlock.h
-> > > >   generic-y += user.h
-> > > >   generic-y += vmlinux.lds.h
-> > > > diff --git a/arch/riscv/include/asm/spinlock.h b/arch/riscv/include/asm/spinlock.h
-> > > > new file mode 100644
-> > > > index 000000000000..503aef31db83
-> > > > --- /dev/null
-> > > > +++ b/arch/riscv/include/asm/spinlock.h
-> > > > @@ -0,0 +1,43 @@
-> > > > +/* SPDX-License-Identifier: GPL-2.0 */
-> > > > +
-> > > > +#ifndef __ASM_RISCV_SPINLOCK_H
-> > > > +#define __ASM_RISCV_SPINLOCK_H
-> > > > +
-> > > > +#ifdef CONFIG_RISCV_COMBO_SPINLOCKS
-> > > > +#define _Q_PENDING_LOOPS     (1 << 9)
-> > > > +
-> > > > +#define __no_arch_spinlock_redefine
-> > > > +#include <asm/ticket_spinlock.h>
-> > > > +#include <asm/qspinlock.h>
-> > > > +#include <asm/alternative.h>
-> > > We need asm/jump_label.h instead of asm/alternative.h, but...
-> > > 
-> > > > +
-> > > > +DECLARE_STATIC_KEY_TRUE(qspinlock_key);
-> > > > +
-> > > > +#define SPINLOCK_BASE_DECLARE(op, type, type_lock)                   \
-> > > > +static __always_inline type arch_spin_##op(type_lock lock)           \
-> > > > +{                                                                    \
-> > > > +     if (static_branch_unlikely(&qspinlock_key))                     \
-> > > > +             return queued_spin_##op(lock);                          \
-> > > > +     return ticket_spin_##op(lock);                                  \
-> > > > +}
-> > > ...do you know what impact this inlined static key check has on the
-> > > kernel size?
-> > No, I'll check, thanks.
+> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> ---
+>  drivers/net/phy/nxp-tja11xx.c | 13 ++++++-------
+>  1 file changed, 6 insertions(+), 7 deletions(-)
 > 
-> 
-> So I have just checked the size of the jump table section:
-> 
-> * defconfig:
-> 
-> - ticket: 26928 bytes
-> - combo: 28320 bytes
-> 
-> So that's a ~5% increase.
-> 
-> * ubuntu config
-> 
-> - ticket: 107840 bytes
-> - combo: 174752 bytes
-> 
-> And that's a ~62% increase.
-> 
-> This is the ELF size difference between ticket and combo spinlocks:
-> 
-> * ticket: 776915592 bytes
-> * combo: 786958968 bytes
-> 
-> So that's an increase of ~1.3% on the ELF.
-> 
-> And the .text section size:
-> 
-> * ticket: 12290960 bytes
-> * combo: 12366644 bytes
-> 
-> And that's a ~0.6% increase!
-> 
-> Finally, I'd say the impact is very limited :)
+> diff --git a/drivers/net/phy/nxp-tja11xx.c b/drivers/net/phy/nxp-tja11xx.c
+> index 2c263ae44b4f..a3721f91689b 100644
+> --- a/drivers/net/phy/nxp-tja11xx.c
+> +++ b/drivers/net/phy/nxp-tja11xx.c
+> @@ -78,8 +78,7 @@
+>  #define MII_COMMCFG			27
+>  #define MII_COMMCFG_AUTO_OP		BIT(15)
+>  
+> -/* Configure REF_CLK as input in RMII mode */
+> -#define TJA110X_RMII_MODE_REFCLK_IN       BIT(0)
+> +#define TJA11XX_REVERSE_MODE		BIT(0)
+>  
+>  struct tja11xx_priv {
+>  	char		*hwmon_name;
+> @@ -274,10 +273,10 @@ static int tja11xx_get_interface_mode(struct phy_device *phydev)
+>  		mii_mode = MII_CFG1_REVMII_MODE;
+>  		break;
+>  	case PHY_INTERFACE_MODE_RMII:
+> -		if (priv->flags & TJA110X_RMII_MODE_REFCLK_IN)
+> -			mii_mode = MII_CFG1_RMII_MODE_REFCLK_IN;
+> -		else
+> +		if (priv->flags & TJA11XX_REVERSE_MODE)
+>  			mii_mode = MII_CFG1_RMII_MODE_REFCLK_OUT;
+> +		else
+> +			mii_mode = MII_CFG1_RMII_MODE_REFCLK_IN;
+>  		break;
+>  	default:
+>  		return -EINVAL;
+> @@ -517,8 +516,8 @@ static int tja11xx_parse_dt(struct phy_device *phydev)
+>  	if (!IS_ENABLED(CONFIG_OF_MDIO))
+>  		return 0;
+>  
+> -	if (of_property_read_bool(node, "nxp,rmii-refclk-in"))
+> -		priv->flags |= TJA110X_RMII_MODE_REFCLK_IN;
 
-Thanks for checking!
+Hi,
 
-drew
+I am curious to know if there are any backwards compatibility
+issues to be considered in making this change.
+
+> +	if (of_property_read_bool(node, "nxp,reverse-mode"))
+> +		priv->flags |= TJA11XX_REVERSE_MODE;
+>  
+>  	return 0;
+>  }
+> -- 
+> 2.34.1
+> 
+> 
 
