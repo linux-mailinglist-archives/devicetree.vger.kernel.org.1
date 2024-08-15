@@ -1,71 +1,72 @@
-Return-Path: <devicetree+bounces-93866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57700952C85
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 12:41:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 871AA952C8C
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 12:42:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 895D11C223DA
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 10:41:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B7B5B1C22963
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 10:42:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C55D1B1514;
-	Thu, 15 Aug 2024 10:12:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1FE01D364F;
+	Thu, 15 Aug 2024 10:12:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Fd8Acjy2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y8RIGGWN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 879641D1F66;
-	Thu, 15 Aug 2024 10:12:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 020991C7B6D;
+	Thu, 15 Aug 2024 10:12:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723716747; cv=none; b=aN88FQlT0ekJUeDbGoRJJYyq8AYE/JzWVkz4sN3yV0eFBLA8eOdlhMXbdu4WE7O2+sRvLe4UlkfCboO96esykYTAWMDv9QjRadWefSXu1bBqEdesmhTg6DlDpOL1j6Y0iURZPgQf/AJJzoDIXZAIsNZgmD43bcMZUrNrNVPNv48=
+	t=1723716776; cv=none; b=AA+Dd8xa6W0DXmXyDRTi8R1ouI2rgGigMN46ysfyyxGC5HFMd7vyZnKYMgSesYmGDj+xRhROhTS00A5eSukRSdQa4QLUQ4M3ov78dLBfbjIN0Ab+nO+pyPRKNT+pwMW4sIH7LbVg7pKJmkN2pBY6vDC9ZKCmLFvWhgESz36Y1ic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723716747; c=relaxed/simple;
-	bh=biH7O6nTuN8fbXa0zhvTvqes/BVmpfb1NBLLfSf/e0M=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=mDKGJwDKhgDL38K5+W+xZowkEZPpyljN8RvVqIbJSk7ER26XMeVWcMpSTfLNudwQLwH2Z4A9bSS2SJEWNfJPwbYiUG1RrDJ27gzGbAqRmi4XW7xLmEBk2ewfEdNRGvtE7l0YpScuEinZcfMhbSDLpEAYof3OCY5W5ePwoIaCqjI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Fd8Acjy2; arc=none smtp.client-ip=209.85.208.174
+	s=arc-20240116; t=1723716776; c=relaxed/simple;
+	bh=a74pClNt7xin86GDlXgjWREE/kSQE8XqjlmQPRaXxQg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=InSmnzA2vwMMQOSaFYm28Kt20PjDwr1+BpqqZDEZmi0EPMIEHu6B8EK/ue7+oY659g4/63VQNLkrAbLtu0L86FHxza1rfcZetXzblNXWpKw8GSQVH+e27LfzRpWHyidPYIvA160q5psLtMwNdSSjttxKhFSFcY2omy0D0Wr95jA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y8RIGGWN; arc=none smtp.client-ip=209.85.167.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2ef32fea28dso8641241fa.2;
-        Thu, 15 Aug 2024 03:12:25 -0700 (PDT)
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-52f01afa11cso897275e87.0;
+        Thu, 15 Aug 2024 03:12:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723716744; x=1724321544; darn=vger.kernel.org;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2HBrJQocQ2NV/H8twGXMjQRcU6pvTs/LLYhmuYjDNFk=;
-        b=Fd8Acjy2msRGu90gruTGGSLGOO6qKWd7TlZD+8NTQ7WOE7DQUNbJayBIDRLcIJDs/S
-         ZiOKArFSegi/lS4GDbUWduWnbbCV24/OUAbAI2kqws+vSBC4qNkz8zcyxLcORuJvueLc
-         wdW+yJYCXDCqfGDHaseqoAogGm9/1CUvGWpKfrjmLliF54d86Xa8ZAI1On1kyYSh2fPq
-         8CoF7ZyHg2ET72RvW4Aq30b1jFKsvq4qjpcIwMRxiH9/bppXDdNnPDFJ5DeXGhCVb+E3
-         TwDrM5qsUpu3GUli1/tURLLkfeipFv+c3PqA1S71YP2NdZ6w/jJXB7EA5Z0sy65pbHjt
-         8lLA==
+        d=gmail.com; s=20230601; t=1723716773; x=1724321573; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=gpw4rltW3Qqo3JyX2Tk9MHQu0OGDr+zjBWOY7Dv0SqA=;
+        b=Y8RIGGWNhliaF/TPjHN/gxZm8FE0ZeDOmFYyE9XhK2KNws/RaWBCcT0KutEfo0XeDx
+         mfEeNufYcRvcSFRUscxlhXwIOSPFcncPRaFM+YUz3MC0VqaupC4jLHMI1kUaj296KfVE
+         fE6fYuF9djg1TpEvFxDZt1qyR4lcQGxUe0VWAY4CQk8XL5YmH+DCAZJIoEJ07foxNdbQ
+         TGQmaJA9bTs67x4P6yin6bGQfnGfNWX2BllXH0MjTJ8ezap9MAcywG2lqp9nOHuQ0NTU
+         /GOxtLL7F+Isok9JrsnrU34olCkJAY2noo5xkk0hp2qg0XIQaPQOjsoTg/LeoHMNBoc9
+         ZDmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723716744; x=1724321544;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2HBrJQocQ2NV/H8twGXMjQRcU6pvTs/LLYhmuYjDNFk=;
-        b=gpbQak5Uux5cwHPkSvygKbMLF0Rm/edYW88jdnogtu7ekkQV7gLfXxq5qP6EPrPsF1
-         inw0fSHJej8PhQLaeuor3oTh/X29cG9bHDwjxp/u+EYu2hPswT5YfSm0bQN8KeFSl4FZ
-         Yi/AXNWgzWivHOGrT9JfyevD5tJMCkrKsxHscDhKSES2ZGMfQR8vwwas6oW4NdgT0+f8
-         ibx8dDmHhiZltUNSlEkPEpFglPjvtdyTGXJ0EcJ9jC17fCmOWvp8vI3PhsiKzbIrIpLZ
-         uDhR6UmnexaAzCW8vlqVjR48phnTdJMfqp0tXSQX7HmXJ0c8pNxqbvHmJb/vXQjPWIWa
-         sd8w==
-X-Forwarded-Encrypted: i=1; AJvYcCX9YwC0K9hXp0wX8DL2YmYtzj6MtXhbrs6zb+k9hpw+Zcbb5NlNRIvnkCk/DbuGZLlmpVpL9Jd+Z7fjGoRu0dRFqQBtEMWy24uXiFop
-X-Gm-Message-State: AOJu0YzUljd4lwSWXFUwNweUmHmA0p95JlFARDOnuGcjWfIdPweBayr1
-	93/XRdl69gHMWcg9H19XFqZB1DZEBdI9DDv9NN4RKIfTiE36yLdF
-X-Google-Smtp-Source: AGHT+IHdRRrl2i0bIVEiaYUUmzc8+0VN3rn+S089ZkrIWem/piRbrMSRUbTdoZXALns7+bLKqCAqNA==
-X-Received: by 2002:a05:6512:1111:b0:52e:faf0:40c with SMTP id 2adb3069b0e04-532eda6449emr3748691e87.3.1723716743157;
-        Thu, 15 Aug 2024 03:12:23 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1723716773; x=1724321573;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gpw4rltW3Qqo3JyX2Tk9MHQu0OGDr+zjBWOY7Dv0SqA=;
+        b=k95Rltfgc7faGIMOnzjv987m3R64pie52CuQDVERttQNjr3vz+k9Te7Ze6ilW0Oloh
+         oOMGn0YPKO2sWQ/NDb3wqjn80h9ioEPvgousvOOiRScjXAP9LZTcB4GCu0Oq0HqSvVcn
+         7e+DSAwCpXoYqTI8X55EOuJoa9+FHhyGP/iYLGSOCxzzAaVJo195Nv0yUzhMBFvy+rsE
+         T4XbSj9Y4kKxqw/yvZgnsqpavmJ6qMpugncnGnJ6uUX4yq+SEXqd+LR2umII+aTjZIRk
+         rnDmYR10lsbSs762GxKhlqSYh1yHsf1+F64D4WyhiGjrC7t6Bu5gneHfCqIOtm9x2VSl
+         3gjQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWWOc4mPQIx5S6tq9hUIxM/ZvVFpc6SG1YQmgLCxHMs/jP37kPOCaZlftz8IM1Oz6rQm2clFEhxkwXZrGPyxqAshDMYoWjHcbj4DKcv
+X-Gm-Message-State: AOJu0YwAloXuvvwU6SvMzGEG64GC0w/etWz17p8TBzOTwiXRhHzPTMCs
+	o1TFL8asmyp/I8RiZ4+TpggoNIRKDhNxVu3Il3EPv7G9zEr/1DTN
+X-Google-Smtp-Source: AGHT+IG1COKR6KOR7S/CKPuXUNh7JgrouOWS75okRv/OPZlZH9HEAuukdajO3tzKUMNt3BwOl02ptQ==
+X-Received: by 2002:a05:6512:1288:b0:52c:e00c:d3a9 with SMTP id 2adb3069b0e04-532eda64683mr3922224e87.1.1723716772546;
+        Thu, 15 Aug 2024 03:12:52 -0700 (PDT)
 Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a83838cf97dsm78167666b.72.2024.08.15.03.12.22
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a8383969e10sm77308266b.192.2024.08.15.03.12.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Aug 2024 03:12:22 -0700 (PDT)
-Date: Thu, 15 Aug 2024 12:12:21 +0200
+        Thu, 15 Aug 2024 03:12:52 -0700 (PDT)
+Date: Thu, 15 Aug 2024 12:12:50 +0200
 From: Stanislav Jakubek <stano.jakubek@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
@@ -74,8 +75,10 @@ To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Chunyan Zhang <zhang.lyra@gmail.com>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 0/3] Cleanup Spreadtrum/Unisoc ARM64 DT (part 2)
-Message-ID: <cover.1723716331.git.stano.jakubek@gmail.com>
+Subject: [PATCH 1/3] arm64: dts: sprd: sp9860g-1h10: fix
+ constant-charge-voltage-max-microvolt property
+Message-ID: <94f68d0a2b56c8a1dcd2a2f027eb6053c91f7796.1723716331.git.stano.jakubek@gmail.com>
+References: <cover.1723716331.git.stano.jakubek@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,21 +87,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <cover.1723716331.git.stano.jakubek@gmail.com>
 
-This series continues cleaning up various issues with the Spreadtrum/Unisoc
-ARM64 DeviceTrees.
+This property has hyphens/dashes, not underscores.
 
-Stanislav Jakubek (3):
-  arm64: dts: sprd: sp9860g-1h10: fix
-    constant-charge-voltage-max-microvolt property
-  arm64: dts: sprd: sc2731: fix bat-detect-gpios property
-  arm64: dts: sprd: sc2731: move fuel-gauge monitored-battery to device
-    DTS
+Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+---
+ arch/arm64/boot/dts/sprd/sp9860g-1h10.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- arch/arm64/boot/dts/sprd/sc2731.dtsi      | 6 +++---
- arch/arm64/boot/dts/sprd/sp9860g-1h10.dts | 7 ++++++-
- 2 files changed, 9 insertions(+), 4 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/sprd/sp9860g-1h10.dts b/arch/arm64/boot/dts/sprd/sp9860g-1h10.dts
+index 095b24a31313..cd8b1069e387 100644
+--- a/arch/arm64/boot/dts/sprd/sp9860g-1h10.dts
++++ b/arch/arm64/boot/dts/sprd/sp9860g-1h10.dts
+@@ -71,7 +71,7 @@ bat: battery {
+ 		compatible = "simple-battery";
+ 		charge-full-design-microamp-hours = <1900000>;
+ 		charge-term-current-microamp = <120000>;
+-		constant_charge_voltage_max_microvolt = <4350000>;
++		constant-charge-voltage-max-microvolt = <4350000>;
+ 		internal-resistance-micro-ohms = <250000>;
+ 		ocv-capacity-celsius = <20>;
+ 		ocv-capacity-table-0 = <4185000 100>, <4113000 95>, <4066000 90>,
 -- 
 2.34.1
 
