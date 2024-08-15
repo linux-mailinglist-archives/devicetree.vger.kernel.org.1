@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-93868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47932952C8D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 12:42:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCD22952C90
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 12:43:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4F9E1F22750
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 10:42:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFADE1C2132C
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 10:43:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EECCD1D4163;
-	Thu, 15 Aug 2024 10:13:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E4131D54D3;
+	Thu, 15 Aug 2024 10:13:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XBUGDruC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c3SRBPwk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B83C1D3626;
-	Thu, 15 Aug 2024 10:13:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 887C41D47B1;
+	Thu, 15 Aug 2024 10:13:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723716803; cv=none; b=QweJ+e+/AqH2fKAjTubj0x8wzbD0CKadmPaEWGY1a6SiGTqf5/vlT+ZxmZA3Oz5rXmGHtmaXsb5YXTTCPxa+i0ftRn9hrlyN/z22Yf6xpZw09SQS7xQyuq/5ihj5YP/vnQwqLjJy9DlIRIjxHe6jk4G3fgERdejVHu/wkl4/OAM=
+	t=1723716828; cv=none; b=pcBtWtvrPieXCA64SeItmYY9XILvGmX7XYtTpO8tnl95/oZrlVLTeubI134xGjOFQkOf/eRKrqxY9d4kyXnZL0zIEOq8xeX9GiBI4E7XVtHr52+x8UnwNnQ9iemenRuaXCzAhKLXHOUAh6bBCHBwkDZ+zYZH+HVX+8krnci8rTU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723716803; c=relaxed/simple;
-	bh=GOxLm4U4ZWLjl0NkzII/zgkG4/f6Y+/4oj/C8o1Tx8A=;
+	s=arc-20240116; t=1723716828; c=relaxed/simple;
+	bh=+TvEdzQ/9c6jut9k59bJZ2duT+YJw9UO7silmCKO2qI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Uc8AnDdec6zp4rwX7KpnarqcTET3Lff6pyKMmLOwXF0uhyUYIfL1Z+vBIgv/qU4YFm3vXm+c1dZhPx4hRE0gEh0ADrql9/PShk27MJAPGL9rAXuEJ+iYFDi2X1zhJrL76+4MRrDaMJP9NcVDrYUzH9xWK2UMZ6WpfA3zPGi3dko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XBUGDruC; arc=none smtp.client-ip=209.85.208.50
+	 Content-Type:Content-Disposition:In-Reply-To; b=sne4BQ4ienyTFCNnvoWdEod2rvlE7HY+ARd0KOMbMuQlxFBb8aA6I/2MMkD+BY1gFjN/uBW0URGvpG0bWTfi7MtjylyOhgNdYJ3549Z1/J/o+vTiDPAK+NsPlRKt4CLTfroDQTutmHbG5dVWOO7j5H+aCAKFT3LUEfmGYQzX6TE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c3SRBPwk; arc=none smtp.client-ip=209.85.208.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5bd1a9bdce4so1068083a12.3;
-        Thu, 15 Aug 2024 03:13:21 -0700 (PDT)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5a15692b6f6so1076698a12.0;
+        Thu, 15 Aug 2024 03:13:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723716800; x=1724321600; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1723716825; x=1724321625; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=6LLozyAaE8F3GKHniRRNzwrPHtCCu3L1lXB48SRYipQ=;
-        b=XBUGDruCIr8F9k+hKaR3/X9EKj0cy7TEHdjakeEbzpI+LK1z/2uqa4xaG60KHz28nQ
-         GCoB4kYUDGkFT90V7x9gUMet7I5k83JRDPhd+4acirboCg+noGbaL/6+ctYoWHTPrRUi
-         tGFHKCO2aFsIoJXS4IoGF3VQmQ4lJpffxITB6vkvQHcJuIQ88fFbldOLohIW6HAVRvPe
-         9BRHQvcjv500/v/cIf+yAbcL3v9VS93MLdes/57ecP+fWgGGbU93uUExBi7GQSrsPgMw
-         V+Ef5SRYET0PYP2LIvGeC8jwuRWMVHUPJllbEDfrXt93Q2+cPZal92bfzKEOyIT3P3/P
-         aXRA==
+        bh=o06GvniUcfmhMUL6PwyXbMvRJebr6Xj9XehasRnJgSU=;
+        b=c3SRBPwkPmI6Hk7Epn9i0cOzj/K+mwuG1KgIVzYmUnLqVwET6R5ZMf43LrKlfereMj
+         VwhlIrAEoA2ispbGzdMHftiZSB3WGSbnFOXYZ2BmnFflV9PMC566pniypsgno2ftnfhD
+         97dicDI4RD1yxGKrqNK8CjkaTmt1+CW1pEmHiczO+arrFwZJb8aQbT2ew4dAMgV/inAA
+         eXLRTH3Pv+35nSzFotIGAAYBiXSYwIcHP+BwJDQM8PJulhePBg4iTwq7Zwn9jdI4+61K
+         AKVuJuKl7JikPij+EYdGZmLFQogVDFOBBngmWOr9bF7bsOvuAZoO4sCk4S1rIcdv+bcP
+         cxdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723716800; x=1724321600;
+        d=1e100.net; s=20230601; t=1723716825; x=1724321625;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=6LLozyAaE8F3GKHniRRNzwrPHtCCu3L1lXB48SRYipQ=;
-        b=QCbV3fjBAirBeoe2BKr+qVZC4qViggGHtQiT5QLDNWrqUsrnsCTBsy2ngLaAd+ClKE
-         tlhqrsbdW8sC8Nr7a7LH4cf1wdzujoabJ4TpRQ9scIA/7+UiRXF7Xc5ezrsLEzmtIKzA
-         4FQoNtXjWnz++MvGpDC8qdEAnX7/UnENxcw6+x9YSeWY/MDyq6DYMNt++9xHL4Gj+zkC
-         nyDHDMksx43GCOsbOR7owsF8Auddv77e93L7Y0FuUlZgB5FapVFtPpIuNgcw6iQFrohT
-         AI2rL2lVyBZjuvA1yBrmcDcgj4AKFs0PxmzaakZd7ds794RxAEDEbmMkBzEkW0DRzVSc
-         s+Vg==
-X-Forwarded-Encrypted: i=1; AJvYcCWXgJ5Psj8MGdN1jWMoUdm0C2XpvJiZsy8GsdVNlmvm4hVI6KWQ5KfuqLWz6Z5ECxY0G8aO1+z277WNAR3N9qzW9XkXvkg05LLyzZAz
-X-Gm-Message-State: AOJu0YxaOM/WhtXc7FpcRH+tyy4nbC6OQO/MX+CQfsUkYrMsEg6C54Qy
-	N39+U5TkWF+F2PoX96tNYWIKuNYl0nuLkvZtqyqUvPGZREAUd69S
-X-Google-Smtp-Source: AGHT+IFnZ23a+xDFO83XJOOZnnc3Kope6N7J29Pj/fvePKB7e2N/ix7pSU6EiHVwnyS6+cWjn97VEw==
-X-Received: by 2002:a17:907:f704:b0:a7d:a00a:a9fe with SMTP id a640c23a62f3a-a8366c3130dmr374088766b.17.1723716800125;
-        Thu, 15 Aug 2024 03:13:20 -0700 (PDT)
+        bh=o06GvniUcfmhMUL6PwyXbMvRJebr6Xj9XehasRnJgSU=;
+        b=RX+HhVzocm1hjb7ET9pX2VhjEqhH9dxZglXhYm2JubtdgMeshY55SaSOJ4J/SRd0TK
+         FbtSZW3MrL2b2Ay4DwvL7bg4teAxT+qKdY61rI74zXjnRHkByRP9qWoXXRiToCou3Mu5
+         RQpv+GcsUF7p6t1bxPYWeoqSKeRg01HoJPtasdMqBt2s0vnbQBePiImtYp2eZxnEwyc9
+         NliFVEs39jyLtDSJrQ/BXS0CqJAwb7gARCbDgjBjmoGIuYT2+bdXo6W0IfYU6ru1WjhD
+         b/k/k5oETvTLAOkAxCFG4/ZT3cyfoTQQD+z4XUIZzSrnyMms/cjVI9gQ43sPTw56l+ut
+         1PQw==
+X-Forwarded-Encrypted: i=1; AJvYcCW12bvbLx08pPNx2KASYDjOfyPInrmakwIA3/k8X1gnRCioYXHI/SuLPQGaRe2utIRerKctoK2o29AMBivfQxGbq0F253jJB3ztMlrN
+X-Gm-Message-State: AOJu0YyOYlFnmMjXTppLAOH6aBS35S4dg02BiYpSvFuhppl4tbIC2pt4
+	OpwGs4c713Hjqc4DQ0fmAisXe/W5RPuqhX9UrPcscQWbwA3Q24PM
+X-Google-Smtp-Source: AGHT+IExnRsk3ybYD81mC/sRU/KcANLw9XOwqYwQOZ49cA7sbJcoOHx8/qUzIYtLwlrxf45lZiUF6w==
+X-Received: by 2002:a05:6402:4416:b0:58e:4e62:429b with SMTP id 4fb4d7f45d1cf-5bea1cb315cmr4763525a12.33.1723716824492;
+        Thu, 15 Aug 2024 03:13:44 -0700 (PDT)
 Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a838396d332sm77373766b.224.2024.08.15.03.13.19
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5bebbde48a9sm690760a12.25.2024.08.15.03.13.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Aug 2024 03:13:19 -0700 (PDT)
-Date: Thu, 15 Aug 2024 12:13:18 +0200
+        Thu, 15 Aug 2024 03:13:44 -0700 (PDT)
+Date: Thu, 15 Aug 2024 12:13:42 +0200
 From: Stanislav Jakubek <stano.jakubek@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
@@ -75,8 +75,9 @@ To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Chunyan Zhang <zhang.lyra@gmail.com>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/3] arm64: dts: sprd: sc2731: fix bat-detect-gpios property
-Message-ID: <e57ee9b94f128753d156d77015f6cc3dc24fd9e8.1723716331.git.stano.jakubek@gmail.com>
+Subject: [PATCH 3/3] arm64: dts: sprd: sc2731: move fuel-gauge
+ monitored-battery to device DTS
+Message-ID: <5fc955715c956eac0edf922623c87ab382e4295c.1723716331.git.stano.jakubek@gmail.com>
 References: <cover.1723716331.git.stano.jakubek@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -88,27 +89,62 @@ Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 In-Reply-To: <cover.1723716331.git.stano.jakubek@gmail.com>
 
-According to DT bindings, the property is called bat-detect-gpios, not
-bat-detect-gpio. Update the property as such.
+The monitored-battery property is a property of the board, not the PMIC.
+Move this property to the DTS of its only user, sp9860g-1h10.
+While at it, disable the fuel-gauge node by default and enable it only
+for its users, as it requires board-specific properties to work correctly.
 
 Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
 ---
- arch/arm64/boot/dts/sprd/sc2731.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Note that the 'sprd,calib-resistance-micro-ohms' property isn't specified
+as I do not have the board or any other source of information about it.
+
+If the SPRD folks could chime in here, that'd be great.
+
+ arch/arm64/boot/dts/sprd/sc2731.dtsi      | 4 ++--
+ arch/arm64/boot/dts/sprd/sp9860g-1h10.dts | 5 +++++
+ 2 files changed, 7 insertions(+), 2 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/sprd/sc2731.dtsi b/arch/arm64/boot/dts/sprd/sc2731.dtsi
-index 12136e68dada..c8b30c0479fd 100644
+index c8b30c0479fd..0eb4aca0a139 100644
 --- a/arch/arm64/boot/dts/sprd/sc2731.dtsi
 +++ b/arch/arm64/boot/dts/sprd/sc2731.dtsi
-@@ -97,7 +97,7 @@ pmic_adc: adc@480 {
- 		fuel-gauge@a00 {
+@@ -94,17 +94,17 @@ pmic_adc: adc@480 {
+ 			nvmem-cells = <&adc_big_scale>, <&adc_small_scale>;
+ 		};
+ 
+-		fuel-gauge@a00 {
++		pmic_fgu: fuel-gauge@a00 {
  			compatible = "sprd,sc2731-fgu";
  			reg = <0xa00>;
--			bat-detect-gpio = <&pmic_eic 9 GPIO_ACTIVE_HIGH>;
-+			bat-detect-gpios = <&pmic_eic 9 GPIO_ACTIVE_HIGH>;
+ 			bat-detect-gpios = <&pmic_eic 9 GPIO_ACTIVE_HIGH>;
  			io-channels = <&pmic_adc 3>, <&pmic_adc 6>;
  			io-channel-names = "bat-temp", "charge-vol";
- 			monitored-battery = <&bat>;
+-			monitored-battery = <&bat>;
+ 			nvmem-cell-names = "fgu_calib";
+ 			nvmem-cells = <&fgu_calib>;
+ 			interrupt-parent = <&sc2731_pmic>;
+ 			interrupts = <4>;
++			status = "disabled";
+ 		};
+ 
+ 		vibrator@ec8 {
+diff --git a/arch/arm64/boot/dts/sprd/sp9860g-1h10.dts b/arch/arm64/boot/dts/sprd/sp9860g-1h10.dts
+index cd8b1069e387..a5f6acafee3a 100644
+--- a/arch/arm64/boot/dts/sprd/sp9860g-1h10.dts
++++ b/arch/arm64/boot/dts/sprd/sp9860g-1h10.dts
+@@ -84,6 +84,11 @@ bat: battery {
+ 	};
+ };
+ 
++&pmic_fgu {
++	monitored-battery = <&bat>;
++	status = "okay";
++};
++
+ &uart0 {
+ 	status = "okay";
+ };
 -- 
 2.34.1
 
