@@ -1,126 +1,154 @@
-Return-Path: <devicetree+bounces-93800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C1C99526DB
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 02:25:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71CA29526E1
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 02:26:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 249381F23F7F
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 00:25:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B9CF1F23438
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 00:26:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AFE2A5F;
-	Thu, 15 Aug 2024 00:25:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D6EFA5F;
+	Thu, 15 Aug 2024 00:26:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rDv/ElSp"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="OQIY11jm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBCD04A07
-	for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 00:25:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30C2F186A;
+	Thu, 15 Aug 2024 00:26:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723681512; cv=none; b=t8X2QNDvMp0soA1V6WRlyJKD8pBD2ZtJNHBq4Jva6ZLxUhfohKvuh97h7hxQAIxxW9hZXBSjwFN5v+V0k6CHgozWGvBb91elljzdo2fnibpP3J8ypHxQZVXeJvWP7nvOETzBxLexy5EnSQHJ9NAW0/EZIQxZR+yRyaLXXiKl1+c=
+	t=1723681577; cv=none; b=DIGf2xqURDX80FHNui3lmzL6xc0hFYqc7qs1mVLBH7wwO+jjBxaQemJiPMzeTD4hX+WTNRVPV+5mEntgNnzcOd7ExdwA9bnsMtaOZ5sZR/sQ1q6bLFr2v6OnEq6K8OPi4WfgYLwM+BfRabZx2Q/NJkLA6XL7LqGlntgWFQp+t2U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723681512; c=relaxed/simple;
-	bh=g6+dyTfaV4ejypt384XwkQLfJA1ttnYEy1lC+qK1r3s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Yy3mzKxxKotoMDOxnoJlw7MaiWdAghJ6PYRiSSbbbsaF01rd7XVp2OxTEY1mhCzHBXu5/+i+XT1KBZCWnV9KOK3ql+q7tV0JKHCNtog95uFUYLTix8NIh6nFnGOEHUCPb/JKqNKpLknmm6O1tcpH2IhVqF45BHpUDbFzxbTDQ54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rDv/ElSp; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4280bca3960so2100515e9.3
-        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2024 17:25:10 -0700 (PDT)
+	s=arc-20240116; t=1723681577; c=relaxed/simple;
+	bh=8I8CiWVpxDRh+TBvxuD+POU/JuLcF2IqLifgtMYIBbs=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=UZMun7HFFdQ72hAApBP8GyiASrE/HgOFgy72FmR3n41As5nvjzZO3rDcr6j1A8EJgxEvBwcUiiGP5XspGTKToYJzxIKyx+z2nFoPk5viu7lR1dTCbotxv79P9m5QCsjk31qYL/dK6PJLbKZz7JiV1OmP4m8he7Bxtr7oaUF4lSs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=OQIY11jm; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723681509; x=1724286309; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=N/0QdOsIFxUfrsS8J5sSBj2pcKHUSLNB+HboC0R4mPw=;
-        b=rDv/ElSpxAGvF4j+qx6rEAm6ynQ1lcPvn/R5Jvm7a8ji5r8oQ9LpUpkLN+sLMTyZbo
-         EE8pJLxpqBkyzkyG5VB8Jv9Y132YoDFdsAc6MBOkNmQ+KKnmlCoH/9tMzj8EoUmZhPlM
-         juJqmxN5qQP96wArgc7pl07jimAJkk1SFb5U+oQ4A9U3JWFSuj4/1U2WReKNtIO1ZU7G
-         l7fA8Foxjm1RhjXZ5WHh2VhgcpLRcwyjRe9I6KPNIASJpWOC91v3Cwk8JPZDH7gXna43
-         4XzoKA44JDofkbWJ2UnvGQEwN4+/IMXZOcEOHZUy3/09oMPgUI2nwtSjOQLtx7OGYLHH
-         Hbrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723681509; x=1724286309;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=N/0QdOsIFxUfrsS8J5sSBj2pcKHUSLNB+HboC0R4mPw=;
-        b=my7/m1M2bEz20KzmAMAS301aTgggg4nMsfHfHbVRcM4/gGtALBb9rguZAD3uX21vzF
-         zuLUBaHwuflsQZa90BStH+e3wtp4OP+JmkEmxRi1i15qtR6sVKUCOgccGtnDAyEuiOrZ
-         ue1/Ljl0qAG4MWjHGCykxsCRLTEcxEn+ZAx/VJbRTqOu8DaO1YeXXO93QQGzejwlI3cn
-         goauakjT4ianA0rGHz4RDbfSpRlH1kqGdswp2l4jHgLj/DJoSGlhGfre4Dff40jpaivT
-         jdcILy/HgHvNMp35+/TFS4OsI11ZBWB33eoeWuPz3dhp38qGYI3/nGtUtxCaW/YDUC/R
-         ofEA==
-X-Forwarded-Encrypted: i=1; AJvYcCWqPg48ugHVcxYduo1gt1QDqqwve1Ff9XiqP/LIj9NpSrFlyq2m7H/ZytMrtYcr2/yYSED4utAU4OtQe/Oq3UtgtFkvbXseihEkTA==
-X-Gm-Message-State: AOJu0YzsEarxylMrNX2szcOWdLkw4cDgWyMnK37amKltQr+s4rZwoBoh
-	O4lxlxD3RK8FNT4Ceuhn34fXPl+nTieskJoxwlqIIfc9Bx7qncjcyoCFE+nDUhc=
-X-Google-Smtp-Source: AGHT+IH6OOO0/mqpv5WEBdqkxeeXkLkx+fI3KP1fNMpiF/1yOPcKF/57UJ/RlG4aNyCcyfEqrARPdA==
-X-Received: by 2002:a05:600c:138e:b0:427:d8fd:42a9 with SMTP id 5b1f17b1804b1-429dd247c0bmr29414975e9.22.1723681509029;
-        Wed, 14 Aug 2024 17:25:09 -0700 (PDT)
-Received: from [192.168.0.25] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429d877e066sm69470185e9.1.2024.08.14.17.25.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Aug 2024 17:25:08 -0700 (PDT)
-Message-ID: <6ddaa41b-86cf-44e5-a671-fd70f266642b@linaro.org>
-Date: Thu, 15 Aug 2024 01:25:07 +0100
+	d=codeconstruct.com.au; s=2022a; t=1723681565;
+	bh=9cfgPGg8I/etk0AZvDqHhwew340zEVZFZ6XKpAktces=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=OQIY11jmCPRLT/TWEltTb9t6HLF3ctwQcmBdheBQlWI2J9SjagZz7uPrZ5JqRJh3m
+	 XXgST3yi8Ou3SXC3KYAO8TXtppF6f/T72hJAvc8nOq+E3tDK382r7Ezkj8SUr4b+iE
+	 noHjCRQ2befrKLciBO0l1ja52a4FjmJVO0Zkzvz+HfyOrdc2S/Sv0OwPJZctNpH/5y
+	 WWdJbJRzvR1vXr8nRxBEUyudoB8aInkND9mSTMWPYHLngQasqOprrCyovr+w2txVZH
+	 XXh88hcTbsoKrS82qNUbf9pV5o5is2pKjVkocIzl3bcCElcOpsRW+BboKKHmUvh2VW
+	 UpID4/pt/LWRA==
+Received: from [192.168.68.112] (ppp118-210-65-51.adl-adc-lon-bras32.tpg.internode.on.net [118.210.65.51])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 47F2B64C85;
+	Thu, 15 Aug 2024 08:26:03 +0800 (AWST)
+Message-ID: <7e1dc98e0f69a095a8f7725b742df3c8d8436a67.camel@codeconstruct.com.au>
+Subject: Re: [PATCH 1/4] dt-bindings: mfd: aspeed: support for AST2700
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Ryan Chen <ryan_chen@aspeedtech.com>, Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Philipp Zabel
+ <p.zabel@pengutronix.de>,  "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+ <linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "linux-clk@vger.kernel.org"
+ <linux-clk@vger.kernel.org>
+Date: Thu, 15 Aug 2024 09:56:02 +0930
+In-Reply-To: <OS8PR06MB7541BB03AEE90B090AB990B3F2872@OS8PR06MB7541.apcprd06.prod.outlook.com>
+References: <20240808075937.2756733-1-ryan_chen@aspeedtech.com>
+	 <20240808075937.2756733-2-ryan_chen@aspeedtech.com>
+	 <2f27285e-6aa5-4e42-b361-224d8d164113@kernel.org>
+	 <OS8PR06MB75416FAD2A1A16E7BE2D255DF2BA2@OS8PR06MB7541.apcprd06.prod.outlook.com>
+	 <10809e91-31be-4110-86c1-1e1ccb05b664@kernel.org>
+	 <OS8PR06MB7541F4F740FDB17F50EBCACBF2BA2@OS8PR06MB7541.apcprd06.prod.outlook.com>
+	 <20240813191454.GA1570645-robh@kernel.org>
+	 <OS8PR06MB7541BB03AEE90B090AB990B3F2872@OS8PR06MB7541.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 13/13] media: qcom: camss: Add support for VFE hardware
- version Titan 780
-To: Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, bryan.odonoghue@linaro.org, mchehab@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- kernel@quicinc.com, Yongsheng Li <quic_yon@quicinc.com>
-References: <20240812144131.369378-1-quic_depengs@quicinc.com>
- <20240812144131.369378-14-quic_depengs@quicinc.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20240812144131.369378-14-quic_depengs@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 
-On 12/08/2024 15:41, Depeng Shao wrote:
-> +void camss_reg_update(struct camss *camss, int hw_id, int port_id, bool is_clear)
-> +{
-> +	struct csid_device *csid;
-> +
-> +	if (hw_id < camss->res->csid_num) {
-> +		csid = &(camss->csid[hw_id]);
-> +
-> +		csid->res->hw_ops->reg_update(csid, port_id, is_clear);
-> +	}
-> +}
+On Wed, 2024-08-14 at 06:35 +0000, Ryan Chen wrote:
+> > Subject: Re: [PATCH 1/4] dt-bindings: mfd: aspeed: support for
+> > AST2700
+> >=20
+> > On Fri, Aug 09, 2024 at 06:10:22AM +0000, Ryan Chen wrote:
+> > > > Subject: Re: [PATCH 1/4] dt-bindings: mfd: aspeed: support for
+> > > > AST2700
+> > > >=20
+> > > > On 09/08/2024 07:55, Ryan Chen wrote:
+> > > > > > Subject: Re: [PATCH 1/4] dt-bindings: mfd: aspeed: support
+> > > > > > for
+> > > > > > AST2700
+> > > > > >=20
+> > > > > > On 08/08/2024 09:59, Ryan Chen wrote:
+> > > > > > > Add compatible support for AST2700 clk, reset, pinctrl,
+> > > > > > > silicon-id and example for AST2700 scu.
+> > > > > > >=20
+> > > > > > > Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+> > > > > > > ---
+> > > > > > > =C2=A0.../bindings/mfd/aspeed,ast2x00-scu.yaml      | 31
+> > > > > > +++++++++++++++++--
+> > > > > > > =C2=A01 file changed, 29 insertions(+), 2 deletions(-)
+> > > > > > >=20
+> > > > > > > diff --git
+> > > > > > > a/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-
+> > > > > > > scu.yaml
+> > > > > > > b/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-
+> > > > > > > scu.yaml
+> > > > > > > index 86ee69c0f45b..c0965f08ae8c 100644
+> > > > > > > ---
+> > > > > > > a/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-
+> > > > > > > scu.yaml
+> > > > > > > +++
+> > > > > > > b/Documentation/devicetree/bindings/mfd/aspeed,ast2x00-
+> > > > > > > scu.y
+> > > > > > > +++ aml
+> > > > > > > @@ -21,6 +21,8 @@ properties:
+> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0- aspeed,ast2400-scu
+> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0- aspeed,ast2500-scu
+> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0- aspeed,ast2600-scu
+> > > > > > > +          - aspeed,ast2700-scu0
+> > > > > > > +          - aspeed,ast2700-scu1
+> > > > > >=20
+> > > > > > What are the differences between these two?
+> > > > >=20
+> > > > > The next [PATCH 4/4] is scu driver that include ast2700-scu0
+> > > > > and
+> > > > > ast2700-scu1 CLK_OF_DECLARE_DRIVER(ast2700_soc0,
+> > > > > "aspeed,ast2700-scu0", ast2700_soc0_clk_init);
+> > > > > CLK_OF_DECLARE_DRIVER(ast2700_soc1, "aspeed,ast2700-scu1",
+> > > > > ast2700_soc1_clk_init);
+> > > >=20
+> > > > What are hardware differences? Entirely different devices?
+> > >=20
+> > > AST2700 have two soc die connected each other.
+> > > Each soc die have it own scu, so the naming is ast2700-scu0 for
+> > > soc0,
+> > another is ast2700-scu1 for soc1.
+> >=20
+> > Didn't I see in another patch one die is cpu and one is io? Use
+> > those in the
+> > compatible rather than 0 and 1 if so.
+> >=20
+> Sorry, I want to align with our datasheet description.=20
+> It will but scu0 and scu1 register setting.=20
 
-The naming here doesn't make the action clear
+Can we document that relationship in the binding? Rob's suggestion
+seems more descriptive.
 
-hw_ops->rup_update(csid, port, clear);
-
-"is_clear" is not required since the type is a bool the "is" is implied 
-in the the logical state so just "clear" will do.
-
-But re: my previous comment on having the ISR do the clear as is done in 
-the VFE 480, I don't think this is_clear parameter is warranted.
-
-We want the calling function to request the rup_update() for the 
-rup_update() function to wait on completion and the ISR() to do the 
-clear once the RUP interrupt has been raised.
-
-At least I think that's how it should work - could you please experiment 
-with your code for the flow - as it appears to match the VFE 480 logic.
-
----
-bod
+Andrew
 
