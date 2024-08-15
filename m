@@ -1,587 +1,178 @@
-Return-Path: <devicetree+bounces-93895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87E41952E15
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 14:13:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CFDF952E1D
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 14:14:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B4180B23FF4
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 12:13:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB65D1F219B0
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 12:14:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA93E17BEB6;
-	Thu, 15 Aug 2024 12:12:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 669921A3BCA;
+	Thu, 15 Aug 2024 12:12:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="KlgFPHD7"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="YKEEVooE";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="I6oa638F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E13CC17C9BA
-	for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 12:12:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2358119F473;
+	Thu, 15 Aug 2024 12:12:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723723936; cv=none; b=DnQ1WffAppJ9o4rKPQ7qvgi4MRfON1Ap+/kC+Sn9SIv6vJMKApwuGCIP7rKHmcZTKMNElrvzt+3pvjSoMZ6ifaygGoYZQ39hYclsn8N9CAGjDXItJ8fXEEX0eflf8qNmyO+NPDsYAGOABRpXT5gP2ZGwzcQbB74J8lzJReNeS50=
+	t=1723723940; cv=none; b=WEe+tFWjBi6gm2a/lS7mqKmU65Q9ehknQvdGnw90z4hwZ4B9fODFh7acVdAJJEWXX5sOh+A4t4lXFLvZW9A6hSUBVTTr2ng0+k/JQ0NnJrd8+/j3jSXQPA4wAZ0IMB/h4M+KYsXnX4VKxtQYPOvMfHTp62kHLG1W6ABveK9ylFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723723936; c=relaxed/simple;
-	bh=Xa18CiY1WUs7s+G2+TH89jQYkhJjsmYHoYi+3712ovI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=dYdw0ZSMaVTd+k8jqHiV4d47h4nckfilAmgkCK5LTOHSpKRbiZcvgSlIMapxuM2SEDOjkq9evZ8WEWVP2YXLNdCtpbTa6woYYUPZoY2nU0AbQ+Qf3DC/sObY00eOUJ4Rg+KHNKtxZrMv5SDG/0Y8plk27RGsE/ajfyvAWy1qCxc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=KlgFPHD7; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4280bca3960so5882145e9.3
-        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 05:12:12 -0700 (PDT)
+	s=arc-20240116; t=1723723940; c=relaxed/simple;
+	bh=ZKq/ZXvi7kfEOZMDZTfLeYMFPIRJfWJBYIKMbg2p9k8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=YAHdKpgb8rayofGOEDVYtQzXlRYwiPz7Ls9eJGSJ0BzDqf6iqKQaqxIO5p5pHKxKms4ORXtAjz+v8Wb0MEJWKOhYCSVrFo6vPK9Zj2cja3b7b2HhM01kmd16B0KVXmhNuOFzZfjYKgfulZ5CwA0gIrIJMPqQWQeUntJxF0KT/24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=YKEEVooE; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=I6oa638F reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1723723931; x=1724328731; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NFA32zQInRzfe5yf5AB0IBnuMx8Nixl7dIHw/E3hc08=;
-        b=KlgFPHD7cs6/os2ZBA2wlnDk5KJ4aH8fiQB2gBxDNeJiFBM4nJwteYYbQuXpNryp1z
-         gpzVAoOjfT5t0AyP6rALVetKnCYY3MqSBaiWXrU86zz/ZJyc7v0v444322rRG9qR73ZO
-         92njbgTR4hBFvhUUKDsr3WGEbjl+j1Qi0vKv7C+bmalcXj18bS4IubrdDw3Cpb0H9kPs
-         IeByW/r6F95PSlON1feeUVpN0amDXTkR3TZ5sXDQYqzmc+wpc/O+NdMzjEQvuIM8y5h4
-         reeJ45RvP4Ju2TLG7BXfvi6nJSJHACb7dSggmXJM1RzpN1XXLmtUxhWD+BgS1DecPHKu
-         QCWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723723931; x=1724328731;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NFA32zQInRzfe5yf5AB0IBnuMx8Nixl7dIHw/E3hc08=;
-        b=LFA8ftd/ChDxestt67c2EdWgmwLbkR5YmgL/bmR/xIXdUglqURIA2NWl1D/oFmKgnD
-         vG/uY895kkXpM75NrUBPRCgIswZkdedzEDqCx2hmio6BkxUWNoB2GMtc9KUY/QIB/9hZ
-         BLUYCkdsoBQIPWQQH2bwohNS48l7lA5NkZg/U5CFXY/m+A/DuQFwP0QOAY/mb72oR1B+
-         sTxpXaodZZQoFEIrBp8Mx3z6Wlhracqw8hPmhEclNxxGt1s6+NRfI2nGqh6/yD1gV2Jo
-         iu32kzhxuvM1VonrCVuPp+HUQNop/pyHkMBvIFDven6JrohJADCUuRSN1gvLBHU2+zDS
-         ontw==
-X-Forwarded-Encrypted: i=1; AJvYcCUcEs3tTnKuKMmIwqZznLw0oMjlAJbTTSIOPVU05V39arAh2Lc6ISD7QpLgc9rRQpTOmnsC/jIDZEIENiUbzoFJFn9mKcTp+lGSWg==
-X-Gm-Message-State: AOJu0Ywr5sLfp+v+iaQ95q/+31864iwA6LpvicZAjrxEa6j5w2iOfeZ+
-	fkdoMvfqMvse0u9o22sxS5fyD5mE7UoKyAg/KAQU69PKjAZ+D7g44vNxPHCnKqU=
-X-Google-Smtp-Source: AGHT+IF2q3Oty0cmk0APfAZsZllQRS35rMaowkUqqgk3gmq/RGgkzPytR7aQCKDoA+MrTOelM3VcbA==
-X-Received: by 2002:a05:600c:138e:b0:427:d8fd:42a9 with SMTP id 5b1f17b1804b1-429dd247c0bmr39792025e9.22.1723723930430;
-        Thu, 15 Aug 2024 05:12:10 -0700 (PDT)
-Received: from [127.0.1.1] (frhb82016ds.ikexpress.com. [185.246.87.17])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37189897926sm1365082f8f.87.2024.08.15.05.12.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Aug 2024 05:12:10 -0700 (PDT)
-From: Guillaume Stols <gstols@baylibre.com>
-Date: Thu, 15 Aug 2024 12:12:02 +0000
-Subject: [PATCH 8/8] iio:adc:ad7606: Add iio-backend support
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1723723937; x=1755259937;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=z9D+2rypUggQXyQCCNb9SWDH40qqIYWmodLE4T9gK9Y=;
+  b=YKEEVooENsQxufn6vS6LslqHKmrw3pAW9l6fldrfhLSe4qEw9lJhBP4V
+   KjNxX/3cy+YZ5rDyJW1jPcQcOX+r7URnP48wRt0P+6aBuMxLwDMBvTp2I
+   Mz8vw52miW+pVm89/mvJ7C3uuRSX3IvTozwfrNm82useZg70i2EwbN6t4
+   BHvZVKlBJOlUucb5p/lWH2ZE0zCRwVfSWXxEmSkNBNJ08VEAeAmkFj3Fa
+   ItXrxmugquXXcpI/oe3vgBcZ/JqRcg0KEJ6fczOlx+AyhBMu76xLTXdcs
+   FryscatazqQTfeaL4427dR3A0UeIPmzez3/LWf19EKYy6mEkF1r9X2Cve
+   Q==;
+X-CSE-ConnectionGUID: /lPyrB3ESIedpFesxTG8YA==
+X-CSE-MsgGUID: tjUkXX/ITvW6iPnoog42Ww==
+X-IronPort-AV: E=Sophos;i="6.10,148,1719871200"; 
+   d="scan'208";a="38423965"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 15 Aug 2024 14:12:15 +0200
+X-CheckPoint: {66BDF09F-4-2C7A84BB-EFCBC4CF}
+X-MAIL-CPID: 416F4E9E68642B27621A8D6ADD9E109C_2
+X-Control-Analysis: str=0001.0A782F26.66BDF09F.0081,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BBB6D168034;
+	Thu, 15 Aug 2024 14:12:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1723723930;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=z9D+2rypUggQXyQCCNb9SWDH40qqIYWmodLE4T9gK9Y=;
+	b=I6oa638FK62CURZIXyyt7XWbCsYoPducWxYdtmzzu2LyXzXfpVSeH3Sg1c2hwf9bWYbpNJ
+	dy4bf9eGTZiZ11/P+bmnCJsA3pbbHXVt4IlUEYBjGLm2rWHcwYMxpXFlGqB8hb6yhukPcC
+	PvMAHj00KZnuch5iVi/uUCF7Q2XGHDk8k0Ob90cieh34z3JYrRuGGtMkSjK0eZmQImXL4z
+	K8P9bCUgE4108UJGza2atpMMUzi/2fPcPOqswYo3M72n0OqhfKpePzfknUbEFc+2IF5lsT
+	kyJE+EorV3D7H0I+PKWh8sSRNUne2xqWNywQbWFx3UMWbnOBE0jlBY8Oya8RKw==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Adam Ford <aford173@gmail.com>, Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Marek Vasut <marex@denx.de>, Paul Elder <paul.elder@ideasonboard.com>, Peng Fan <peng.fan@nxp.com>, Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, Pengutronix Kernel Team <kernel@pengutronix.de>, devicetree@vger.kernel.org, linux-media@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8mp: Clarify csis clock frequency
+Date: Thu, 15 Aug 2024 14:12:09 +0200
+Message-ID: <3314370.44csPzL39Z@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20240813234010.17852-1-laurent.pinchart@ideasonboard.com>
+References: <20240813234010.17852-1-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240815-ad7606_add_iio_backend_support-v1-8-cea3e11b1aa4@baylibre.com>
-References: <20240815-ad7606_add_iio_backend_support-v1-0-cea3e11b1aa4@baylibre.com>
-In-Reply-To: <20240815-ad7606_add_iio_backend_support-v1-0-cea3e11b1aa4@baylibre.com>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Jonathan Corbet <corbet@lwn.net>
-Cc: linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Michael Hennerich <michael.hennerich@analog.com>, 
- linux-fbdev@vger.kernel.org, linux-iio@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
- Guillaume Stols <gstols@baylibre.com>, 
- 20240705211452.1157967-2-u.kleine-koenig@baylibre.com, 
- 20240712171821.1470833-2-u.kleine-koenig@baylibre.com, 
- cover.1721040875.git.u.kleine-koenig@baylibre.com, aardelean@baylibre.com
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1723723923; l=15684;
- i=gstols@baylibre.com; s=20240417; h=from:subject:message-id;
- bh=Xa18CiY1WUs7s+G2+TH89jQYkhJjsmYHoYi+3712ovI=;
- b=46nOiiSOXC3/K9nBMdvsND8Zy8yMu9lqq6Ja91ejfGSnWokBMrCCsawpC+cPC8dALfvEHLB+i
- ET3fpMadIu9C9a+UZpcqVVB9+Ok3xG+d3z7Nwd5GmbPtKipY+3Zw+zk
-X-Developer-Key: i=gstols@baylibre.com; a=ed25519;
- pk=XvMm5WHuV67sGYOJZqIYzXndbaJOlNd8Q6li6vnb4Cs=
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-- Basic support for iio backend.
-- Supports IIO_CHAN_INFO_SAMP_FREQ R/W.
-- Only hardware mode is available, and that IIO_CHAN_INFO_RAW is not
-  supported if iio-backend mode is selected.
+Hi Laurent,
 
-A small correction was added to the driver's file name in the Kconfig
-file's description.
+thanks for the patch.
 
-Signed-off-by: Guillaume Stols <gstols@baylibre.com>
----
- drivers/iio/adc/Kconfig      |   3 +-
- drivers/iio/adc/ad7606.c     | 103 +++++++++++++++++++++++++++++++++++--------
- drivers/iio/adc/ad7606.h     |  16 +++++++
- drivers/iio/adc/ad7606_par.c |  98 +++++++++++++++++++++++++++++++++++++++-
- 4 files changed, 200 insertions(+), 20 deletions(-)
+Am Mittwoch, 14. August 2024, 01:40:10 CEST schrieb Laurent Pinchart:
+> The DT nodes for the MIPI CSI-2 receivers (MIPI_CSI) configure the
+> CAM1_PIX and CAM2_PIX clocks to 266 MHz through the assigned-clock-rates
+> property, and report that frequency in the clock-frequency property. The
+> i.MX8MP reference manual and datasheet list 266 MHz as a nominal
+> frequency when using both CSI-2 receivers, so all looks normal.
+>=20
+> In reality, the clock is actually set to 250 MHz, as the selected
+> parent, IMX8MP_SYS_PLL2_1000M, has a 1/4 output that is selected as the
+> closest frequency to 266 MHz. This doesn't break operation of the
+> device, but is clearly misleading.
+>=20
+> Clarify the clock configuration by selecting the IMX8MP_SYS_PLL2_250M
+> parent, dropping the redundant assigned-clock-rates, and setting
+> clock-frequency to 250 MHz. This doesn't cause any functional change.
+>=20
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 10 ++++------
+>  1 file changed, 4 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/=
+dts/freescale/imx8mp.dtsi
+> index 603dfe80216f..d9b5c40f6460 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -1687,7 +1687,7 @@ mipi_csi_0: csi@32e40000 {
+>  				compatible =3D "fsl,imx8mp-mipi-csi2", "fsl,imx8mm-mipi-csi2";
+>  				reg =3D <0x32e40000 0x10000>;
+>  				interrupts =3D <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
+> -				clock-frequency =3D <266000000>;
+> +				clock-frequency =3D <250000000>;
 
-diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-index 88e8ce2e78b3..01248b6df868 100644
---- a/drivers/iio/adc/Kconfig
-+++ b/drivers/iio/adc/Kconfig
-@@ -227,9 +227,10 @@ config AD7606_IFACE_PARALLEL
- 	help
- 	  Say yes here to build parallel interface support for Analog Devices:
- 	  ad7605-4, ad7606, ad7606-6, ad7606-4 analog to digital converters (ADC).
-+	  It also support iio_backended devices for AD7606B.
- 
- 	  To compile this driver as a module, choose M here: the
--	  module will be called ad7606_parallel.
-+	  module will be called ad7606_par.
- 
- config AD7606_IFACE_SPI
- 	tristate "Analog Devices AD7606 ADC driver with spi interface support"
-diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
-index 99d5ca5c2348..a753d5caa9f8 100644
---- a/drivers/iio/adc/ad7606.c
-+++ b/drivers/iio/adc/ad7606.c
-@@ -21,6 +21,7 @@
- #include <linux/util_macros.h>
- #include <linux/units.h>
- 
-+#include <linux/iio/backend.h>
- #include <linux/iio/iio.h>
- #include <linux/iio/buffer.h>
- #include <linux/iio/sysfs.h>
-@@ -148,7 +149,15 @@ static int ad7606_set_sampling_freq(struct ad7606_state *st, unsigned long freq)
- 
- static int ad7606_read_samples(struct ad7606_state *st)
- {
--	unsigned int num = st->chip_info->num_channels - 1;
-+	unsigned int num = st->chip_info->num_channels;
-+
-+	/*
-+	 * Timestamp channel does not contain sample, and no timestamp channel if
-+	 * backend is used.
-+	 */
-+	if (!st->back)
-+		num--;
-+
- 	u16 *data = st->data;
- 	int ret;
- 
-@@ -220,11 +229,15 @@ static int ad7606_scan_direct(struct iio_dev *indio_dev, unsigned int ch)
- 		if (!ret)
- 			return ret;
- 	}
--	ret = wait_for_completion_timeout(&st->completion,
--					  msecs_to_jiffies(1000));
--	if (!ret) {
--		ret = -ETIMEDOUT;
--		goto error_ret;
-+
-+	/* backend manages interruptions by itself.*/
-+	if (!st->back) {
-+		ret = wait_for_completion_timeout(&st->completion,
-+						  msecs_to_jiffies(1000));
-+		if (!ret) {
-+			ret = -ETIMEDOUT;
-+			goto error_ret;
-+		}
- 	}
- 
- 	ret = ad7606_read_samples(st);
-@@ -271,6 +284,12 @@ static int ad7606_read_raw(struct iio_dev *indio_dev,
- 	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
- 		*val = st->oversampling;
- 		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		pwm_get_state_hw(st->cnvst_pwm, &cnvst_pwm_state);
-+		/* If the PWM is swinging, return the real frequency, otherwise 0 */
-+		*val = ad7606_pwm_is_swinging(st) ?
-+			DIV_ROUND_CLOSEST_ULL(NSEC_PER_SEC, cnvst_pwm_state.period) : 0;
-+		return IIO_VAL_INT;
- 	}
- 	return -EINVAL;
- }
-@@ -360,6 +379,8 @@ static int ad7606_write_raw(struct iio_dev *indio_dev,
- 			return ret;
- 
- 		return 0;
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		return ad7606_set_sampling_freq(st, val);
- 	default:
- 		return -EINVAL;
- 	}
-@@ -482,7 +503,6 @@ static int ad7606_buffer_postenable(struct iio_dev *indio_dev)
- 	struct ad7606_state *st = iio_priv(indio_dev);
- 
- 	gpiod_set_value(st->gpio_convst, 1);
--	ad7606_pwm_set_swing(st);
- 
- 	return 0;
- }
-@@ -492,19 +512,53 @@ static int ad7606_buffer_predisable(struct iio_dev *indio_dev)
- 	struct ad7606_state *st = iio_priv(indio_dev);
- 
- 	gpiod_set_value(st->gpio_convst, 0);
--	ad7606_pwm_set_low(st);
- 
- 	return 0;
- }
- 
-+static int ad7606_pwm_buffer_postenable(struct iio_dev *indio_dev)
-+{
-+	struct ad7606_state *st = iio_priv(indio_dev);
-+
-+	return ad7606_pwm_set_swing(st);
-+}
-+
-+static int ad7606_pwm_buffer_predisable(struct iio_dev *indio_dev)
-+{
-+	struct ad7606_state *st = iio_priv(indio_dev);
-+
-+	return ad7606_pwm_set_low(st);
-+}
-+
-+static int ad7606_update_scan_mode(struct iio_dev *indio_dev,
-+				   const unsigned long *scan_mask)
-+{
-+	struct ad7606_state *st = iio_priv(indio_dev);
-+
-+	/* The update scan mode is only for iio backend compatible drivers.
-+	 * If the specific update_scan_mode is not defined in the bus ops,
-+	 * just do nothing and return 0.
-+	 */
-+	if (st->bops->update_scan_mode)
-+		return st->bops->update_scan_mode(indio_dev, scan_mask);
-+	else
-+		return 0;
-+}
-+
- static const struct iio_buffer_setup_ops ad7606_buffer_ops = {
- 	.postenable = &ad7606_buffer_postenable,
- 	.predisable = &ad7606_buffer_predisable,
- };
- 
-+static const struct iio_buffer_setup_ops ad7606_pwm_buffer_ops = {
-+	.postenable = &ad7606_pwm_buffer_postenable,
-+	.predisable = &ad7606_pwm_buffer_predisable,
-+};
-+
- static const struct iio_info ad7606_info_no_os_or_range = {
- 	.read_raw = &ad7606_read_raw,
- 	.validate_trigger = &ad7606_validate_trigger,
-+	.update_scan_mode = &ad7606_update_scan_mode,
- };
- 
- static const struct iio_info ad7606_info_os_and_range = {
-@@ -512,6 +566,7 @@ static const struct iio_info ad7606_info_os_and_range = {
- 	.write_raw = &ad7606_write_raw,
- 	.attrs = &ad7606_attribute_group_os_and_range,
- 	.validate_trigger = &ad7606_validate_trigger,
-+	.update_scan_mode = &ad7606_update_scan_mode,
- };
- 
- static const struct iio_info ad7606_info_os_range_and_debug = {
-@@ -520,6 +575,7 @@ static const struct iio_info ad7606_info_os_range_and_debug = {
- 	.debugfs_reg_access = &ad7606_reg_access,
- 	.attrs = &ad7606_attribute_group_os_and_range,
- 	.validate_trigger = &ad7606_validate_trigger,
-+	.update_scan_mode = &ad7606_update_scan_mode,
- };
- 
- static const struct iio_info ad7606_info_os = {
-@@ -527,6 +583,7 @@ static const struct iio_info ad7606_info_os = {
- 	.write_raw = &ad7606_write_raw,
- 	.attrs = &ad7606_attribute_group_os,
- 	.validate_trigger = &ad7606_validate_trigger,
-+	.update_scan_mode = &ad7606_update_scan_mode,
- };
- 
- static const struct iio_info ad7606_info_range = {
-@@ -534,6 +591,7 @@ static const struct iio_info ad7606_info_range = {
- 	.write_raw = &ad7606_write_raw,
- 	.attrs = &ad7606_attribute_group_range,
- 	.validate_trigger = &ad7606_validate_trigger,
-+	.update_scan_mode = &ad7606_update_scan_mode,
- };
- 
- static const struct iio_trigger_ops ad7606_trigger_ops = {
-@@ -602,8 +660,6 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
- 	indio_dev->channels = st->chip_info->channels;
- 	indio_dev->num_channels = st->chip_info->num_channels;
- 
--	init_completion(&st->completion);
--
- 	ret = ad7606_reset(st);
- 	if (ret)
- 		dev_warn(st->dev, "failed to RESET: no RESET GPIO specified\n");
-@@ -635,7 +691,7 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
- 			return ret;
- 	}
- 
--	/* If convst pin is not defined, setup PWM*/
-+	/* If convst pin is not defined, setup PWM */
- 	if (!st->gpio_convst) {
- 		st->cnvst_pwm = devm_pwm_get(dev, NULL);
- 		if (IS_ERR(st->cnvst_pwm))
-@@ -671,14 +727,25 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
- 		if (ret)
- 			return ret;
- 	}
--	ret = devm_request_threaded_irq(dev, irq,
--					NULL,
--					&ad7606_interrupt,
--					IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
--					chip_info->name, indio_dev);
--	if (ret)
--		return ret;
- 
-+	if (st->bops->iio_backend_config) {
-+		st->bops->iio_backend_config(dev, indio_dev);
-+		indio_dev->setup_ops = &ad7606_pwm_buffer_ops;
-+	} else {
-+		/* Reserve the PWM use only for backend (force gpio_convst definition)*/
-+		if (!st->gpio_convst)
-+			return dev_err_probe(dev, -EINVAL,
-+					     "Convst pin must be defined when not in backend mode");
-+
-+		init_completion(&st->completion);
-+		ret = devm_request_threaded_irq(dev, irq,
-+						NULL,
-+						&ad7606_interrupt,
-+						IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
-+						chip_info->name, indio_dev);
-+		if (ret)
-+			return ret;
-+	}
- 	return devm_iio_device_register(dev, indio_dev);
- }
- EXPORT_SYMBOL_NS_GPL(ad7606_probe, IIO_AD7606);
-diff --git a/drivers/iio/adc/ad7606.h b/drivers/iio/adc/ad7606.h
-index aab8fefb84be..9a098cd77812 100644
---- a/drivers/iio/adc/ad7606.h
-+++ b/drivers/iio/adc/ad7606.h
-@@ -34,6 +34,12 @@
- 		BIT(IIO_CHAN_INFO_SCALE),		\
- 		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO))
- 
-+#define AD7606_BI_CHANNEL(num)				\
-+	AD760X_CHANNEL(num, 0,				\
-+		BIT(IIO_CHAN_INFO_SCALE),		\
-+		BIT(IIO_CHAN_INFO_SAMP_FREQ) |		\
-+		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO))
-+
- #define AD7616_CHANNEL(num)	\
- 	AD760X_CHANNEL(num, BIT(IIO_CHAN_INFO_RAW) | BIT(IIO_CHAN_INFO_SCALE),\
- 		0, BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO))
-@@ -61,6 +67,7 @@ enum ad7606_supported_device_ids {
-  * @os_req_reset	some devices require a reset to update oversampling
-  * @init_delay_ms	required delay in miliseconds for initialization
-  *			after a restart
-+ * @has_backend		defines if a backend is available for the given chip
-  */
- struct ad7606_chip_info {
- 	enum ad7606_supported_device_ids id;
-@@ -71,6 +78,7 @@ struct ad7606_chip_info {
- 	unsigned int			oversampling_num;
- 	bool				os_req_reset;
- 	unsigned long			init_delay_ms;
-+	bool				has_backend;
- };
- 
- /**
-@@ -116,6 +124,7 @@ struct ad7606_state {
- 	unsigned int			num_scales;
- 	const unsigned int		*oversampling_avail;
- 	unsigned int			num_os_ratios;
-+	struct iio_backend		*back;
- 	int (*write_scale)(struct iio_dev *indio_dev, int ch, int val);
- 	int (*write_os)(struct iio_dev *indio_dev, int val);
- 
-@@ -140,16 +149,21 @@ struct ad7606_state {
- 
- /**
-  * struct ad7606_bus_ops - driver bus operations
-+ * @iio_backend_config	function pointer for configuring the iio_backend for
-+ *			the compatibles that use it
-  * @read_block		function pointer for reading blocks of data
-  * @sw_mode_config:	pointer to a function which configured the device
-  *			for software mode
-  * @reg_read	function pointer for reading spi register
-  * @reg_write	function pointer for writing spi register
-  * @write_mask	function pointer for write spi register with mask
-+ * @update_scan_mode	function pointer for handling the calls to iio_info's update_scan
-+ *			mode when enabling/disabling channels.
-  * @rd_wr_cmd	pointer to the function which calculates the spi address
-  */
- struct ad7606_bus_ops {
- 	/* more methods added in future? */
-+	int (*iio_backend_config)(struct device *dev, struct iio_dev *indio_dev);
- 	int (*read_block)(struct device *dev, int num, void *data);
- 	int (*sw_mode_config)(struct iio_dev *indio_dev);
- 	int (*reg_read)(struct ad7606_state *st, unsigned int addr);
-@@ -160,6 +174,7 @@ struct ad7606_bus_ops {
- 				 unsigned int addr,
- 				 unsigned long mask,
- 				 unsigned int val);
-+	int (*update_scan_mode)(struct iio_dev *indio_dev, const unsigned long *scan_mask);
- 	u16 (*rd_wr_cmd)(int addr, char isWriteOp);
- };
- 
-@@ -264,6 +279,7 @@ static const struct ad7606_chip_info ad7606b_info = {
- 	.num_channels = 9,
- 	.oversampling_avail = ad7606_oversampling_avail,
- 	.oversampling_num = ARRAY_SIZE(ad7606_oversampling_avail),
-+	.has_backend = true,
- 	.name = "ad7606B",
- 	.id = ID_AD7606B,
- };
-diff --git a/drivers/iio/adc/ad7606_par.c b/drivers/iio/adc/ad7606_par.c
-index d83c0edc1e31..5c8a04556e25 100644
---- a/drivers/iio/adc/ad7606_par.c
-+++ b/drivers/iio/adc/ad7606_par.c
-@@ -3,6 +3,8 @@
-  * AD7606 Parallel Interface ADC driver
-  *
-  * Copyright 2011 Analog Devices Inc.
-+ * Copyright 2024 Analog Devices Inc.
-+ * Copyright 2024 BayLibre SAS.
-  */
- 
- #include <linux/mod_devicetable.h>
-@@ -11,10 +13,86 @@
- #include <linux/types.h>
- #include <linux/err.h>
- #include <linux/io.h>
-+#include <linux/pwm.h>
-+#include <linux/gpio.h>
-+#include <linux/delay.h>
- 
- #include <linux/iio/iio.h>
-+#include <linux/iio/backend.h>
- #include "ad7606.h"
- 
-+#ifdef CONFIG_IIO_BACKEND
-+static const struct iio_chan_spec ad7606b_bi_channels[] = {
-+	AD7606_BI_CHANNEL(0),
-+	AD7606_BI_CHANNEL(1),
-+	AD7606_BI_CHANNEL(2),
-+	AD7606_BI_CHANNEL(3),
-+	AD7606_BI_CHANNEL(4),
-+	AD7606_BI_CHANNEL(5),
-+	AD7606_BI_CHANNEL(6),
-+	AD7606_BI_CHANNEL(7),
-+};
-+
-+static int ad7606_bi_update_scan_mode(struct iio_dev *indio_dev, const unsigned long *scan_mask)
-+{
-+	struct ad7606_state *st = iio_priv(indio_dev);
-+	unsigned int c, ret;
-+
-+	for (c = 0; c < indio_dev->num_channels; c++) {
-+		if (test_bit(c, scan_mask))
-+			ret = iio_backend_chan_enable(st->back, c);
-+		else
-+			ret = iio_backend_chan_disable(st->back, c);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int ad7606_bi_setup_iio_backend(struct device *dev, struct iio_dev *indio_dev)
-+{
-+		struct ad7606_state *st = iio_priv(indio_dev);
-+		unsigned int ret, c;
-+
-+		st->back = devm_iio_backend_get(dev, NULL);
-+		if (IS_ERR(st->back))
-+			return PTR_ERR(st->back);
-+
-+		/* If the device is iio_backend powered the PWM is mandatory */
-+		if (!st->cnvst_pwm)
-+			return -EINVAL;
-+
-+		ret = devm_iio_backend_request_buffer(dev, st->back, indio_dev);
-+		if (ret)
-+			return ret;
-+
-+		ret = devm_iio_backend_enable(dev, st->back);
-+		if (ret)
-+			return ret;
-+
-+		struct iio_backend_data_fmt data = {
-+			.sign_extend = true,
-+			.enable = true,
-+		};
-+		for (c = 0; c < indio_dev->num_channels; c++) {
-+			ret = iio_backend_data_format_set(st->back, c, &data);
-+			if (ret)
-+				return ret;
-+		}
-+
-+		indio_dev->channels = ad7606b_bi_channels;
-+		indio_dev->num_channels = 8;
-+
-+		return 0;
-+}
-+
-+static const struct ad7606_bus_ops ad7606_bi_bops = {
-+	.iio_backend_config = ad7606_bi_setup_iio_backend,
-+	.update_scan_mode = ad7606_bi_update_scan_mode,
-+};
-+#endif
-+
- static int ad7606_par16_read_block(struct device *dev,
- 				   int count, void *buf)
- {
-@@ -52,7 +130,20 @@ static int ad7606_par_probe(struct platform_device *pdev)
- 	void __iomem *addr;
- 	resource_size_t remap_size;
- 	int irq;
--
-+#ifdef CONFIG_IIO_BACKEND
-+	struct iio_backend *back;
-+
-+	/*For now, only the AD7606B is backend compatible.*/
-+	if (chip_info->has_backend) {
-+		back = devm_iio_backend_get(&pdev->dev, NULL);
-+		if (IS_ERR(back))
-+			return PTR_ERR(back);
-+
-+		return ad7606_probe(&pdev->dev, 0, NULL,
-+				    chip_info,
-+				    &ad7606_bi_bops);
-+	}
-+#endif
- 	irq = platform_get_irq(pdev, 0);
- 	if (irq < 0)
- 		return irq;
-@@ -74,6 +165,7 @@ static const struct platform_device_id ad7606_driver_ids[] = {
- 	{ .name	= "ad7606-4", .driver_data = (kernel_ulong_t)&ad7606_4_info, },
- 	{ .name	= "ad7606-6", .driver_data = (kernel_ulong_t)&ad7606_6_info, },
- 	{ .name	= "ad7606-8", .driver_data = (kernel_ulong_t)&ad7606_8_info, },
-+	{ .name	= "ad7606b", .driver_data = (kernel_ulong_t)&ad7606b_info, },
- 	{ }
- };
- MODULE_DEVICE_TABLE(platform, ad7606_driver_ids);
-@@ -83,6 +175,7 @@ static const struct of_device_id ad7606_of_match[] = {
- 	{ .compatible = "adi,ad7606-4", .data = &ad7606_4_info },
- 	{ .compatible = "adi,ad7606-6", .data = &ad7606_6_info },
- 	{ .compatible = "adi,ad7606-8", .data = &ad7606_8_info },
-+	{ .compatible = "adi,ad7606b", .data = &ad7606b_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, ad7606_of_match);
-@@ -102,3 +195,6 @@ MODULE_AUTHOR("Michael Hennerich <michael.hennerich@analog.com>");
- MODULE_DESCRIPTION("Analog Devices AD7606 ADC");
- MODULE_LICENSE("GPL v2");
- MODULE_IMPORT_NS(IIO_AD7606);
-+#ifdef CONFIG_IIO_BACKEND
-+MODULE_IMPORT_NS(IIO_BACKEND);
-+#endif
+This doesn't seem to be necessary, no? I can't be read from
+IMX8MP_CLK_MEDIA_CAM1_PIX_ROOT. But oh well, that's what we have right now.
 
--- 
-2.34.1
+Despite that:
+Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+
+>  				clocks =3D <&clk IMX8MP_CLK_MEDIA_APB_ROOT>,
+>  					 <&clk IMX8MP_CLK_MEDIA_CAM1_PIX_ROOT>,
+>  					 <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF_ROOT>,
+> @@ -1695,9 +1695,8 @@ mipi_csi_0: csi@32e40000 {
+>  				clock-names =3D "pclk", "wrap", "phy", "axi";
+>  				assigned-clocks =3D <&clk IMX8MP_CLK_MEDIA_CAM1_PIX>,
+>  						  <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF>;
+> -				assigned-clock-parents =3D <&clk IMX8MP_SYS_PLL2_1000M>,
+> +				assigned-clock-parents =3D <&clk IMX8MP_SYS_PLL2_250M>,
+>  							 <&clk IMX8MP_CLK_24M>;
+> -				assigned-clock-rates =3D <266000000>;
+>  				power-domains =3D <&media_blk_ctrl IMX8MP_MEDIABLK_PD_MIPI_CSI2_1>;
+>  				status =3D "disabled";
+> =20
+> @@ -1723,7 +1722,7 @@ mipi_csi_1: csi@32e50000 {
+>  				compatible =3D "fsl,imx8mp-mipi-csi2", "fsl,imx8mm-mipi-csi2";
+>  				reg =3D <0x32e50000 0x10000>;
+>  				interrupts =3D <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
+> -				clock-frequency =3D <266000000>;
+> +				clock-frequency =3D <250000000>;
+>  				clocks =3D <&clk IMX8MP_CLK_MEDIA_APB_ROOT>,
+>  					 <&clk IMX8MP_CLK_MEDIA_CAM2_PIX_ROOT>,
+>  					 <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF_ROOT>,
+> @@ -1731,9 +1730,8 @@ mipi_csi_1: csi@32e50000 {
+>  				clock-names =3D "pclk", "wrap", "phy", "axi";
+>  				assigned-clocks =3D <&clk IMX8MP_CLK_MEDIA_CAM2_PIX>,
+>  						  <&clk IMX8MP_CLK_MEDIA_MIPI_PHY1_REF>;
+> -				assigned-clock-parents =3D <&clk IMX8MP_SYS_PLL2_1000M>,
+> +				assigned-clock-parents =3D <&clk IMX8MP_SYS_PLL2_250M>,
+>  							 <&clk IMX8MP_CLK_24M>;
+> -				assigned-clock-rates =3D <266000000>;
+>  				power-domains =3D <&media_blk_ctrl IMX8MP_MEDIABLK_PD_MIPI_CSI2_2>;
+>  				status =3D "disabled";
+> =20
+>=20
+> base-commit: 7c626ce4bae1ac14f60076d00eafe71af30450ba
+>=20
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
