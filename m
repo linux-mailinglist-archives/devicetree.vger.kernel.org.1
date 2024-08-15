@@ -1,127 +1,82 @@
-Return-Path: <devicetree+bounces-93951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-93952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 023869536E7
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 17:18:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BD4C9536FB
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 17:20:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 90AAA1F2218C
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 15:18:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E2741C24093
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 15:20:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9C621AD9FB;
-	Thu, 15 Aug 2024 15:18:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DECB1AC450;
+	Thu, 15 Aug 2024 15:20:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NAp/N2p5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hgBzueyD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AEE91AD405;
-	Thu, 15 Aug 2024 15:18:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 131001ABEC7;
+	Thu, 15 Aug 2024 15:20:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723735084; cv=none; b=cQ0YImL0Q2xt4UvDahLZGO62Z1aGCUY8jqp7YJQ0Sv+cNS/KpPQRvrVstDMX+KuudWpNCCqpsknNCpdXPs29Dxi8rqryiSzmnCtAX8DWRxIsDHt+I0eNutyr0eFcAj+64lrpTtT1BaTkOKKBaDvJKeNeud7YUypM5IGwGLaMgaM=
+	t=1723735252; cv=none; b=o+/0cULWmB4U7WQ2oL7zzxn+zdUW7/fN6inTumQZhs4iaJLbBdfnYWqCIGWXNbm5K1BCXukL2mzelTvI/xMpIdmQAts4zK3wI9dEQK0E4w6fnTbahOcV9QJaXlRO+U7SRAdDsgYmA9jGWKdygiuW6dln5CFhQJwjydQHb/5ZzXg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723735084; c=relaxed/simple;
-	bh=5tVXjoVIwxL4BMXr9WNsqyyJtiNaQdtzEYk2V1zunDE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bnpZS9Tlu3acHUP1CSWYCALze71t4/3mTE+OLD2SQwfVcKum9r195rLhtCS5Oyl4R5GLctx3kTMu5uCwI93YqFx6yWpDHaYOPwIckmzKH+infIR2OwjOIRL6ubkp/uWLJv7b7X3l+LlFFnXZdnv04+Ha/2/bna8Z36vDhnCZHJA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NAp/N2p5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1725FC4AF0F;
-	Thu, 15 Aug 2024 15:18:04 +0000 (UTC)
+	s=arc-20240116; t=1723735252; c=relaxed/simple;
+	bh=+M4cVZkYRpLXJ02TXAHcDwUpNpTBG4Dvk+C/y1KGbkg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=b4zzxbsctlLQK3PNH/f4guMiwnDZqTupzH8UmVx9O0CPzD0oQg9bkIvlE2zdZZ+kBI+RuBM9lYP2rzWVUyz9yXEbzBIfLF86hkaMQtenmTNNQSVDwQhnkIfu2EPD5PDAf5lVHgoFTN22dwcJieKD9eN+U9tA0Kz8WeWZTnHk5ZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hgBzueyD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83D5AC32786;
+	Thu, 15 Aug 2024 15:20:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723735084;
-	bh=5tVXjoVIwxL4BMXr9WNsqyyJtiNaQdtzEYk2V1zunDE=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=NAp/N2p56Ri97aK5haDod/vrIqxqCRdInU9HAAbcQ507fXyERX4rBAeJvlLp3xJJb
-	 yVfqfs/UuZHZcMxsFq7SS2Dl4W/TGJApzzFp39P3QdRWmAoTajr4bSFtB7gdSsHthI
-	 gBFvir0bg9BR4rJqdaNrWq3XL2jyQ6AsQokcSGLDfHVr9qRw2iqPab9twhvhw9DjxD
-	 gpUG9mFy2ai72xkXYRWL1D57H3Y7Z1fzOorWQHXoAILQoNht0AK8NdkK+kf5QRGSvI
-	 pWGuaTJ2k9ekkwg5hql6K5LY9gBRYSQ/UYjmtQbE1Nx1Vd1AbI9sfbY0SGx5R6Hdgk
-	 LQDtAWE/zviXQ==
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2ef2cb7d562so13378321fa.3;
-        Thu, 15 Aug 2024 08:18:03 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCW12reKmz31HA+5BJUkIwgJBSzzazKHZzN/yu+T0p3mbScUkL3+SZtqoEZ+wNHkTcGZjV2ZNK3CfIWsScM0i41PBhKVsBVNLYO2hCLLCWCWV8DZQGN003WU4asA2U84f6CK1lJ85GQskRhklyRu7CS+EpMYKBTb7vGUhkUVm7NmQb9cIewa
-X-Gm-Message-State: AOJu0YyPErCMw3V9d3HdICht7jgXA2bDyaKHPVB9AKrZY2qboaFl4K31
-	14bEvH65SYBnORzwagJsTWjShS6k8hGP/P5U8q+6FQhFjMMsVHyFNdnmT9zeWrAuWF1bAyEOH1A
-	Mzi18moTjpX8bwfPEYarz1QAP9Q==
-X-Google-Smtp-Source: AGHT+IEXBIOuc3+RdpJo9SkRa99F7ys6LHSNNh10wDHMJa72hTN/C4a2yVCWj7kEom8UuIfOX+v3gmT+ViuJb7yQBKU=
-X-Received: by 2002:a05:6512:687:b0:52c:d27b:ddcb with SMTP id
- 2adb3069b0e04-532eda8e7ecmr4893752e87.3.1723735082365; Thu, 15 Aug 2024
- 08:18:02 -0700 (PDT)
+	s=k20201202; t=1723735251;
+	bh=+M4cVZkYRpLXJ02TXAHcDwUpNpTBG4Dvk+C/y1KGbkg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hgBzueyDdJbTzPWj88aFQKIgMQKX2gHRynHdEeYLK9JmT474SMMpfwo88gJJePPFA
+	 lyq4y1dl9x0QE0+Rk1JhnWcrkxvWyUE/G3Kx3kdYYrgFrla5rHz1NHEz9E+iwDFV9j
+	 2QLWZ6isMznrWJxHLVL3wgDSMQEDrLGjYE3DsTBvcRoCbAPY4Y0kPO+mUSUoiBbIm9
+	 6CyvDTfeq8MzQ3bkNlC79I7mt+JVT7VmPsIOETXJOuwz+WpcdJnSRjeNpeQ8PNP4LF
+	 Pi5SCUn0g2G0iqvdXb+9NQLPYzsWDAVhKMX7TMjMihdexGiud3iCE7Ls2Z9+l93Ztd
+	 2nQYVOhrbJatQ==
+Date: Thu, 15 Aug 2024 09:20:50 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Robin Murphy <robin.murphy@arm.com>
+Cc: mark.rutland@arm.com, ilkka@os.amperecomputing.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	will@kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 7/8] dt-bindings: perf: arm-cmn: Add CMN S3
+Message-ID: <172373524966.1843320.5253926062860157964.robh@kernel.org>
+References: <cover.1723229941.git.robin.murphy@arm.com>
+ <ec64f4d13b3b30c2ff242deddd302b1d1e256bd1.1723229941.git.robin.murphy@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240814185140.4033029-1-Frank.Li@nxp.com> <20240814211345.GA4028598-robh@kernel.org>
- <20240814214902.GA4101180-robh@kernel.org> <Zr1hZbAq/jrwyNQq@lizhi-Precision-Tower-5810>
-In-Reply-To: <Zr1hZbAq/jrwyNQq@lizhi-Precision-Tower-5810>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 15 Aug 2024 09:17:48 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJs+aFpOLwWHi32pwAy2Q8N7qK43TuTmEJQn-BqXKwyAw@mail.gmail.com>
-Message-ID: <CAL_JsqJs+aFpOLwWHi32pwAy2Q8N7qK43TuTmEJQn-BqXKwyAw@mail.gmail.com>
-Subject: Re: [PATCH 1/1] dt-bindings: input: touchscreen: convert ads7846.txt
- to yaml
-To: Frank Li <Frank.li@nxp.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	Marek Vasut <marex@denx.de>, Alexander Stein <alexander.stein@ew.tq-group.com>, 
-	"open list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)..." <linux-input@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
-	imx@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ec64f4d13b3b30c2ff242deddd302b1d1e256bd1.1723229941.git.robin.murphy@arm.com>
 
-On Wed, Aug 14, 2024 at 8:01=E2=80=AFPM Frank Li <Frank.li@nxp.com> wrote:
->
-> On Wed, Aug 14, 2024 at 03:49:02PM -0600, Rob Herring wrote:
-> > On Wed, Aug 14, 2024 at 03:13:45PM -0600, Rob Herring wrote:
-> > > On Wed, Aug 14, 2024 at 02:51:35PM -0400, Frank Li wrote:
-> > > > Convert binding doc ads7846.txt to yaml format.
-> > > > Additional change:
-> > > > - add ref to touchscreen.yaml and spi-peripheral-props.yaml.
-> > > > - use common node name touchscreen.
-> > > >
-> > > > Fix below warning: arch/arm64/boot/dts/freescale/imx8mm-var-som-sym=
-phony.dtb: touchscreen@0:
-> > > >   ti,x-min: b'\x00}' is not of type 'object', 'array', 'boolean', '=
-null'
-> > > >
-> > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > > ---
-> > > > There are warning:
-> > > > Documentation/devicetree/bindings/input/touchscreen/ti,ads7843.yaml=
-: properties:ti,x-plate-ohms: '$ref' should not be valid under {'const': '$=
-ref'}
-> > > >   hint: Standard unit suffix properties don't need a type $ref
-> > > >
-> > > > I don't know how to fix it. ti,x-plate-ohms is 16bit, but default i=
-t is
-> > > > uint32
-> > >
-> > > It's going to have to be a special case in dtschema. I'll work on a f=
-ix.
-> >
-> > Should be fixed now in dtschema main branch.
->
-> Strange, dt_binding_check can pass. but
->
->  make ARCH=3Darm64 CROSS_COMPILE=3Daarch64-linux-gnu- -j8 CHECK_DTBS=3Dy =
-imx8mm-var-som-symphony.dtb
->   UPD     include/config/kernel.release
->   DTC [C] arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dtb
-> arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dtb: touchscreen@0:=
- ti,x-plate-ohms: 180 is not of type 'array'
->         from schema $id: http://devicetree.org/schemas/property-units.yam=
-l#
->
-> anything wrong?
 
-Now fixed.
+On Fri, 09 Aug 2024 20:15:46 +0100, Robin Murphy wrote:
+> The CMN S3 PMU is functionally still very similar to CMN-700, however
+> while the register contents are compatible, many of them are moved to
+> different offsets. While this is technically discoverable by a careful
+> driver that understands the part number in the peripheral ID registers
+> (which do at least remain in the same place), a new unique compatible
+> seems warranted to avoid any surprises.
+> 
+> CC: <devicetree@vger.kernel.org>
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> ---
+>  Documentation/devicetree/bindings/perf/arm,cmn.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Rob
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+
 
