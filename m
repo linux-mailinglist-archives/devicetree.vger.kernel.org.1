@@ -1,128 +1,144 @@
-Return-Path: <devicetree+bounces-94188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10F44954453
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 10:30:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C452F95445E
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 10:32:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 950EA280A7B
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 08:30:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8FE61C210D4
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 08:32:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DC3F13DBBE;
-	Fri, 16 Aug 2024 08:26:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D12E612E1CA;
+	Fri, 16 Aug 2024 08:32:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RgtbtAOp"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jnWlfPhn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C09E13DBA5;
-	Fri, 16 Aug 2024 08:26:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DDB943AD5;
+	Fri, 16 Aug 2024 08:32:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723796803; cv=none; b=IRWyrb/4ibY2mzkUOE5+HKdsAjN2MUx/83vBNVrpoQusBZRRtW2ncHCG+0LV4u5j1+/Lu7epHF/bRj1zO9xaaHhf1wPgfw7ndW3Ii04H65YyB4ooRauvZoJw6RtJ+6Bat+0N6Cs3K6DBdKjQupxtbC8vj7eGTa6+RKf2YjXVPqs=
+	t=1723797165; cv=none; b=lbiargIBKkgmisN2v4yLbtD7yD9oKphrLabWNm66lVFNr9bQHJ4mlyHHIjugEyZiGjDcA/r0ebUQwDvBIXIw/VRKpyaXQJGYZqvuZxtwfko6we1PxujTguOzRjO1pzD1occMFmFQOBgDdnZis4MHoxwGOISDQHpVqm46Oi1KyQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723796803; c=relaxed/simple;
-	bh=5ikcztOYc3gzW8Il3p4V24J5xZfO6EdqRiPvi15rElM=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
-	 MIME-Version:Content-Type; b=coYgqlTqgYDRNXlR2liZPRHaNJGe5IOfkh8FBN2tcxUNR/lXUdV5MbRkLIv6Qf32IWB9PDDfXRgqdViPouAT9YZxiMANwA6TqIIzUYdzb7xAGjLRDSYor4ayBecO29yJy4E7mMiAZYisIjPMRqqBLCFKHWwPea8JB+Q2TCsbVxw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RgtbtAOp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFAE0C4AF09;
-	Fri, 16 Aug 2024 08:26:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723796802;
-	bh=5ikcztOYc3gzW8Il3p4V24J5xZfO6EdqRiPvi15rElM=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=RgtbtAOpiH+y/spQ6gWgAnLqBhhg9cXWVihT2rfsZDpCBEfYfdNBpShYeRutSCBEF
-	 LwNKg5MkRKzDrtXirB7v6jeF5X3b5A2fT1XA1xcxtKNzBhBkVpKIzQnZUPo45m33Fl
-	 l6/jHEZnnDgbaIOzQH9YLRNUx1Rsojw1Btw8HjXbiJwdCNRPiZ2HFwUt0os+YpSPJ0
-	 2BGnPOAjeBi3yMYWsilO7e128zHSVFMDKl+S4G0XnYj/8XgXO5dx15tjhcmS4+RBuA
-	 h7BUSakYiPQwCmc57V+h01UDRJHzMzv+qlOS+nForN4LU/06WLCkn7FdFcxpFYV+wx
-	 VB4oBtniP5xNg==
-From: Kalle Valo <kvalo@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: "David S . Miller" <davem@davemloft.net>,  Eric Dumazet
- <edumazet@google.com>,  Jakub Kicinski <kuba@kernel.org>,  Paolo Abeni
- <pabeni@redhat.com>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Jeff Johnson
- <jjohnson@kernel.org>,  linux-wireless@vger.kernel.org,
-  netdev@vger.kernel.org,  devicetree@vger.kernel.org,
-  ath11k@lists.infradead.org,  linux-kernel@vger.kernel.org,  Bartosz
- Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH net-next v2] dt-bindings: net: ath11k: document the
- inputs of the ath11k on WCN6855
-References: <20240814082301.8091-1-brgl@bgdev.pl>
-Date: Fri, 16 Aug 2024 11:26:37 +0300
-In-Reply-To: <20240814082301.8091-1-brgl@bgdev.pl> (Bartosz Golaszewski's
-	message of "Wed, 14 Aug 2024 10:23:01 +0200")
-Message-ID: <87a5hcyite.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=arc-20240116; t=1723797165; c=relaxed/simple;
+	bh=dn0kPdWXDA50GaTSPIW0c9Rso8lEypHSwBpq/lMPwqo=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=YVdFOgwBaNeN4Oc3f0gUkHaTaDw/Y3Km2zxY8Q+01eQC+RUGhKZrBW0PP87KY3nnk4kiRbQghoGLJ6MbNIurvyhD+Hl21xJQLpBpCzCjS1/8emoiXGoMDbU/H2iEu4JLUZ8qUTxgpck+/24kmfHDQU/Z1TAjC+9K0Lg1zxkAZj4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=jnWlfPhn; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47G7jv5k016994;
+	Fri, 16 Aug 2024 08:32:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=rjxRZ/+ITKgUYzcnPr8m6E
+	jKxZsi7LjrQiKekFtZrBA=; b=jnWlfPhnyWkKtkyx8fIoRjt5HsVF6h9rOzLpC9
+	tT1lyJbtLsPINB37be4e5hcqfx2Jn1w8Gr5SahIqfQJqGm23U2ozodmbjv6VasJO
+	lwIgwzeB1M0AIsbTp1jtahFH/xRdABgtG1pJ75yiOkqTcmF4mIzbdWIEYtRXwLmd
+	9xLS74evYQiO/+bNgwC3X7nDCNGEJZ0/lFYFSmCC+5hfk8DAe6UGpQTaUopXvlhR
+	cAky3+OEvtwHbqtYFVDPvAYT84CUFau0tvvn1dI/nSgU/2XHu1XkuoQ66qf8RzCl
+	9/fBWxiwk/C9r3QHgdUzCPfn698kJllctThOjCuVnH8o6a5w==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 410kywpsx6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 16 Aug 2024 08:32:40 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47G8Wdr6015177
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 16 Aug 2024 08:32:39 GMT
+Received: from hu-tdas-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Fri, 16 Aug 2024 01:32:35 -0700
+From: Taniya Das <quic_tdas@quicinc.com>
+Subject: [PATCH v2 0/5] Update LPASS Audio clock driver for QCM6490 board
+Date: Fri, 16 Aug 2024 14:02:09 +0530
+Message-ID: <20240816-qcm6490-lpass-reset-v1-0-a11f33cad3c5@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIkOv2YC/yWNwQqDMBBEf0X23IUkBIn9leIh2LFdaK3uqhTEf
+ zfo8c3wZjYyqMDoXm2kWMXkNxTwt4q6dx5eYHkWpuBCdMnXPHXfOjaOP2M2Y4VhZjQ5JZd99H2
+ gYo6KXv7n6oPWQO2VKaalHMxX0e77AX+Wbkx+AAAA
+To: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, <quic_imrashai@quicinc.com>,
+        <quic_jkona@quicinc.com>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Taniya Das
+	<quic_tdas@quicinc.com>
+X-Mailer: b4 0.14-dev-f7c49
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: yh0d_C2DIzxEQANOrDa51Rjm8E4rAItF
+X-Proofpoint-GUID: yh0d_C2DIzxEQANOrDa51Rjm8E4rAItF
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-15_18,2024-08-15_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
+ impostorscore=0 mlxscore=0 phishscore=0 malwarescore=0 clxscore=1011
+ mlxlogscore=999 priorityscore=1501 bulkscore=0 lowpriorityscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408160061
 
-Bartosz Golaszewski <brgl@bgdev.pl> writes:
+This series updates the low pass audio clock controller driver for reset
+functionality. The patches are split from the below series.
+https://lore.kernel.org/all/20240318053555.20405-1-quic_tdas@quicinc.com/
 
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->
-> Describe the inputs from the PMU of the ath11k module on WCN6855.
->
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> ---
-> v1 -> v2:
-> - update the example
->
->  .../net/wireless/qcom,ath11k-pci.yaml         | 29 +++++++++++++++++++
->  1 file changed, 29 insertions(+)
+The QCM6490 board requires only the reset functionality from the LPASS
+subsystem. Thus separate out the driver probe to provide the same on the
+QCM6490 boards.
 
-This goes to ath-next, not net-next.
+[v2]:
+Changes in [v2] compared to [v1]:
+ - Updated the lpass_audio_cc_sc7280 probe to get the match_data for both SC7280 and QCM6490.
+ - Separate regmap for resets [Konrad]
+ - Split the lpassaudiocc compatible and GCC protected clocks list changes. [Dmitry]
+ - Link to V1: https://lore.kernel.org/all/20240531102252.26061-1-quic_tdas@quicinc.com/T/
 
-> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
-> index 8675d7d0215c..a71fdf05bc1e 100644
-> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
-> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
-> @@ -50,6 +50,9 @@ properties:
->    vddrfa1p7-supply:
->      description: VDD_RFA_1P7 supply regulator handle
->  
-> +  vddrfa1p8-supply:
-> +    description: VDD_RFA_1P8 supply regulator handle
-> +
->    vddpcie0p9-supply:
->      description: VDD_PCIE_0P9 supply regulator handle
->  
-> @@ -77,6 +80,22 @@ allOf:
->          - vddrfa1p7-supply
->          - vddpcie0p9-supply
->          - vddpcie1p8-supply
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: pci17cb,1103
-> +    then:
-> +      required:
-> +        - vddrfacmn-supply
-> +        - vddaon-supply
-> +        - vddwlcx-supply
-> +        - vddwlmx-supply
-> +        - vddrfa0p8-supply
-> +        - vddrfa1p2-supply
-> +        - vddrfa1p8-supply
-> +        - vddpcie0p9-supply
-> +        - vddpcie1p8-supply
+[v1]
+  - Add a separate platform driver for QCM6490 resets.
+  - Add device tree changes for protected clocks for GCC and LPASS AudioCC
+    compatible update.
 
-Like we discussed before, shouldn't these supplies be optional as not
-all modules need them?
+Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+---
+Taniya Das (5):
+      dt-bindings: clock: qcom: Add compatible for QCM6490 boards
+      clk: qcom: lpassaudiocc-sc7280: Add support for LPASS resets for QCM6490
+      arm64: dts: qcom: qcm6490-idp: Update protected clocks list
+      arm64: dts: qcom: qcm6490-idp: Update the LPASS audio node
+      arm64: dts: qcom: qcs6490-rb3gen2: Update the LPASS audio node
 
+ .../bindings/clock/qcom,sc7280-lpasscorecc.yaml    |  1 +
+ arch/arm64/boot/dts/qcom/qcm6490-idp.dts           | 28 +++++++++++++++++++++-
+ arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts       |  5 ++++
+ drivers/clk/qcom/lpassaudiocc-sc7280.c             | 23 ++++++++++++++----
+ 4 files changed, 52 insertions(+), 5 deletions(-)
+---
+base-commit: 367b5c3d53e57d51a5878816804652963da90950
+change-id: 20240816-qcm6490-lpass-reset-e9a880a141f2
+
+Best regards,
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+Taniya Das <quic_tdas@quicinc.com>
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
