@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-94314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B109F954F57
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 18:55:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DD71954F77
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 19:02:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 65F821F216F6
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 16:55:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 71301B21857
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 17:02:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A39E21BF309;
-	Fri, 16 Aug 2024 16:55:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 595BA1C2336;
+	Fri, 16 Aug 2024 17:01:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qlsKB8xy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HxyHRms0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 708711BC076;
-	Fri, 16 Aug 2024 16:55:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 253211C2326;
+	Fri, 16 Aug 2024 17:01:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723827322; cv=none; b=PzIkDTJy2JsgcyJIDPkPkMFU1ejwRw44venu7VF4m6A6v0udGf75r6XuaqEhMvQIbRKfMeZ7DCvZ//9Yu4ryfJlkqSd+b4wNB4p3fNhh6/zHTh8u0QeTzCTEnrX//pFXEfb9lPPflqjR5L7/PwbcwlDC6STP1enM3e2+UXmlxNs=
+	t=1723827710; cv=none; b=uhjjRg1DFjapL4bMWp27BCCuD/S3FsNYfxzZS2Fp78fl1hC0X2qTfTneHpKfb1PZrrD4uwm0ObRwa+sq7gm24I3BAfIv3lsEvafUMjnA8E9Q3xQYLlhUO8Gasv9XAotkVK92RFQGtvfgwMcGmkvphdRaXG9th/2Xb7DPYPgl0Kg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723827322; c=relaxed/simple;
-	bh=Yb/O3MOPE9ojAF1Gl5T6YhhJ0ucgUOcXE+p5BdAw+xk=;
+	s=arc-20240116; t=1723827710; c=relaxed/simple;
+	bh=v2kzBBRptVNV1+RRu9YabyIo3w1DpQo+MXl8LfNqrJ4=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pXLGzpnarOh1mRKXE/A3/HMLtcl6t5VQQdmgbgajXzssiLqdMlEwF1Cq4vFFyElkfyVIq/Dy4Pfk2XNLLFfe2QVPIrYwAgoWyibmtxrKa0JwtdQQqDnFumETLgRsXVlcAMiJUIT5lsIwjp+4GrxAlWoiabEt4BFudKPwGZio0xU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qlsKB8xy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01EDFC32782;
-	Fri, 16 Aug 2024 16:55:20 +0000 (UTC)
+	 MIME-Version:Content-Type; b=QCcC+Glc7lyJq6x1rceJlYzdqAF8kZySypQGHWN/eNfnB1pKWn04hRcIxqmAsmi/MxJEIE9Fzwpd6DdreXsGfiXlMiiFNrmE6Q00p1EI5DofCF3irZ8Y1PgPV/hamT2Is8iIVVbvkZc9Yqb/5gPRXuMLXfJSbjNCp1qDcFyjGQs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HxyHRms0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79017C32782;
+	Fri, 16 Aug 2024 17:01:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723827322;
-	bh=Yb/O3MOPE9ojAF1Gl5T6YhhJ0ucgUOcXE+p5BdAw+xk=;
+	s=k20201202; t=1723827709;
+	bh=v2kzBBRptVNV1+RRu9YabyIo3w1DpQo+MXl8LfNqrJ4=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=qlsKB8xyLffLmr6BPD7RGxcOkGMICfwkXiY8d1EYYxwDPV6Wbm4mbjEkHP0ezpAq0
-	 YXHkjtA+qYJ4V5Epa8j52On1Ahp5YJqeXXBQokZf5ilnlGbSW9/s8evdLyMA8s/kpk
-	 hfKActDjx8p6ymyPWxp+uTsfwHrBp0LGwRpPftHYi2NlkFgLR6UlAlKZPxtyNLzQ4o
-	 jDMJP+I4RgnMByAtoxE8oibjrM5AIQufLlDNpBGizCORP0cgTPTNgqGCsvj3x0LTM3
-	 93bxCWgjapyQCoEhW+gkJ0Z2ms6KMm/OZE16pnPM9zS0GWn3O/iIVMdaO/3iiD2HoV
-	 Bx1eO0a5cmAIA==
-Date: Fri, 16 Aug 2024 09:55:19 -0700
+	b=HxyHRms02cXyeyBA58z6wZs9gc3eDrmeqd24c5QHmiPb+hAPF2oiTRbWfVzCC7Req
+	 aYrIRd4qJlFUgspUgOhFqvxqpE/AtiiQ+0j7I9oCnK1SIli3k5vOiHo1tt9MfK1MR9
+	 xEQ81a0f5oB9ZdVyruib4cT6ERamzxV8/CD3pk7Ay3lLOJuYXRuR8xNaJNGryJRw6+
+	 3CWux7fP29iLay+xHdH3eiLFPtUjVOPeAjx1MdU8iIX+PNal1M5dAFgayMywPXxOld
+	 yC+FAJjQpj9uAG7pkeiWGosncboF/u+tpbnw3wV+3g7DbuzmM0jht7kg1tWtH/7+ce
+	 QjHSA5rnZmmGw==
+Date: Fri, 16 Aug 2024 10:01:47 -0700
 From: Jakub Kicinski <kuba@kernel.org>
 To: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
 Cc: <davem@davemloft.net>, <edumazet@google.com>, <pabeni@redhat.com>,
@@ -58,12 +58,12 @@ Cc: <davem@davemloft.net>, <edumazet@google.com>, <pabeni@redhat.com>,
  <Pier.Beruto@onsemi.com>, <Selvamani.Rajagopal@onsemi.com>,
  <Nicolas.Ferre@microchip.com>, <benjamin.bigler@bernformulastudent.ch>,
  <linux@bigler.io>, <markku.vorne@kempower.com>
-Subject: Re: [PATCH net-next v6 09/14] net: ethernet: oa_tc6: implement
- transmit path to transfer tx ethernet frames
-Message-ID: <20240816095519.57b470b8@kernel.org>
-In-Reply-To: <20240812102611.489550-10-Parthiban.Veerasooran@microchip.com>
+Subject: Re: [PATCH net-next v6 10/14] net: ethernet: oa_tc6: implement
+ receive path to receive rx ethernet frames
+Message-ID: <20240816100147.0ed4acb6@kernel.org>
+In-Reply-To: <20240812102611.489550-11-Parthiban.Veerasooran@microchip.com>
 References: <20240812102611.489550-1-Parthiban.Veerasooran@microchip.com>
-	<20240812102611.489550-10-Parthiban.Veerasooran@microchip.com>
+	<20240812102611.489550-11-Parthiban.Veerasooran@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,14 +73,12 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Mon, 12 Aug 2024 15:56:06 +0530 Parthiban Veerasooran wrote:
-> +		if (skb_queue_len(&tc6->tx_skb_q) < OA_TC6_TX_SKB_QUEUE_SIZE &&
-> +		    netif_queue_stopped(tc6->netdev))
-> +			netif_wake_queue(tc6->netdev);
+On Mon, 12 Aug 2024 15:56:07 +0530 Parthiban Veerasooran wrote:
+> +	if (netif_rx(tc6->rx_skb) == NET_RX_DROP)
+> +		tc6->netdev->stats.rx_dropped++;
 
-FWIW I'm not sure you actually need a queue in the driver.
-"A queue of 1" may be enough, IIUC calling netif_wake_queue()
-will cause something like an interrupt to fire immediately,
-and start_xmit for the next frame should get called before
-netif_wake_queue() returns. I could be wrong :)
+This is a bit unusual. If the core decides to drop the packet it will
+count the drop towards the appropriate statistic. The drivers generally
+only count their own drops, and call netif_rx() without checking the
+return value.
 
