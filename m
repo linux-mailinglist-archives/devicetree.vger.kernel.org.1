@@ -1,98 +1,98 @@
-Return-Path: <devicetree+bounces-94092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAEFD953FB5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 04:33:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FCB2953FCE
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 04:41:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1AB1C1C21426
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 02:33:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B6621C22016
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 02:41:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E24940855;
-	Fri, 16 Aug 2024 02:33:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="3sM9HNf8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22F474AEE5;
+	Fri, 16 Aug 2024 02:41:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtpbgau2.qq.com (smtpbgau2.qq.com [54.206.34.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69DDF6F2E0;
-	Fri, 16 Aug 2024 02:33:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A7AE42AA3
+	for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 02:41:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.206.34.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723775593; cv=none; b=tfBTouvGX/1ughPGa5HWcZwqNAX6PLhTyHxwX4GNfxwPoxTNQ+pCG8W8hC135ewNtIzglCorQuUA6QglNxGvWH13KUfATnTeI0oQAgFoCa7lbXPzM5bnfOly3itO4XyiVIwXO6vvxdZuhV0d/Fl+KAELIW6b0cQuQqCrzCTcf7A=
+	t=1723776101; cv=none; b=A7gghMiqBdM6bQPRzTB0m2gbvl11en4bbmTtSx/dcbm71pgNAA30IbgWWIeWvbFr6evb8tu1aSiQ0tyVYbFhtdjevejRZUGTRAx8Zs6dV6R35ZpAuHhOcDNHTYWnrI9OjIEFRTefrEGA9fBnSvGzXq4Xp99RbJJIVS/aAGH5KFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723775593; c=relaxed/simple;
-	bh=+hycJpFn+kf6fMVa9crjYGSDMXzfCWIVHI5hZ35K6IA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jrRBtjULS7B2E5Q+/BXQMXYrauUJk44u+xbU5qnmZ8mMaVO2vCm+OClIPx5HEUzaEBymLV4OBbRj7iMtnqJNwSe+gdU1HLlnlPDEb1a8h9ZszvBHRQZ5nT/if5DuiEn6NDyGjWwlXP89DU30rdaAG9V0XIzQ9vJuPO8FQCoGtz4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=3sM9HNf8; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=qVyYTHbtuwYjWfo8L+O8hoLZSEsYgsRh9cZGjypJx3E=; b=3sM9HNf8jlpA4tKW2w1fsRcvef
-	PulRJVAF4MxPK+V4kiqr369qFnFdrlMiG5zcf5m+t362SSE7ICydtCemHnUR2maP1pDmxgHEd9bpV
-	drh/wuZtmhA82aawX0r6svERJkA06X1WNGxaYYGWpSdpeQ16N349FMgxY+KIiCFMSFOY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1semlv-004tPx-BM; Fri, 16 Aug 2024 04:32:59 +0200
-Date: Fri, 16 Aug 2024 04:32:59 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Wei Fang <wei.fang@nxp.com>
-Cc: "davem@davemloft.net" <davem@davemloft.net>,
-	"edumazet@google.com" <edumazet@google.com>,
-	"kuba@kernel.org" <kuba@kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-	"hkallweit1@gmail.com" <hkallweit1@gmail.com>,
-	"linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-	"Andrei Botila (OSS)" <andrei.botila@oss.nxp.com>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH net-next 1/3] dt-bindings: net: tja11xx: use reverse-mode
- to instead of rmii-refclk-in
-Message-ID: <dba3139c-8224-4515-9147-6ba97c36909d@lunn.ch>
-References: <20240815055126.137437-1-wei.fang@nxp.com>
- <20240815055126.137437-2-wei.fang@nxp.com>
- <7aabe196-6d5a-4207-ba75-20187f767cf9@lunn.ch>
- <PAXPR04MB85108770DAF2E69C969FD24288812@PAXPR04MB8510.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1723776101; c=relaxed/simple;
+	bh=FhBPB30lCHdceARlSz1Ube/vOmvN7eCh2G6DCdhlMFo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=k/LIgDIVq/nk2lxp7Qr4H+Q3F/kBIgzjNFLa/tpDeNWcyayr+bd2o1qwwIZanuqvVitClECEE1CVmvyzRBFQSXTWqPVEVQuBR7G14kUI8S8pHVqN2i7gqxBCJ2EyFkg/QUJa1qsPucvB9aunumhH8hrDAMUSuMwV8fWcO4cpRcc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.206.34.216
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: bizesmtp89t1723776008tawgbe5g
+X-QQ-Originating-IP: jbScS2UcZxac6RbZEF8W0Qbtl1SKBvP+W+/7u65jV98=
+Received: from [192.168.159.131] ( [106.150.157.243])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Fri, 16 Aug 2024 10:40:05 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 10602312911380447263
+Message-ID: <BC8349733563E035+f32d703d-6329-437a-b684-4e82888cef5d@radxa.com>
+Date: Fri, 16 Aug 2024 11:40:05 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <PAXPR04MB85108770DAF2E69C969FD24288812@PAXPR04MB8510.eurprd04.prod.outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: make "multi-led" controllable
+ under sysfs for Radxa E25
+To: heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ catalin.marinas@arm.com, will@kernel.org, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+References: <20240816023243.487-1-naoki@radxa.com>
+ <20240816023243.487-2-naoki@radxa.com>
+Content-Language: en-US
+From: FUKAUMI Naoki <naoki@radxa.com>
+In-Reply-To: <20240816023243.487-2-naoki@radxa.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
 
-> According to the commit message c858d436be8b ("net: phy: introduce
-> PHY_INTERFACE_MODE_REVRMII"), my understanding is that
-> PHY_INTERFACE_MODE_REVRMII and PHY_INTERFACE_MODE_REVMII
-> are used for MAC to MAC connections, which means the MAC behaves
-> link an RMII/MII PHY. For the MAC to PHY connection, I think these two
-> macros are not applicable.
+Hi,
 
-In MAC to MAC connections, REVRMII means that end plays the role of a
-PHY, even though it is a MAC.
+sorry, commit message was not correct. I'll fix it in v2.
 
-What is actually happening when you use these properties/register
-setting on the PHY?  It is playing the role of a MAC? In order to have
-a working link, do you need to tell the MAC to play the role of the
-PHY?
+--
+FUKAUMI Naoki
+Radxa Computer (Shenzhen) Co., Ltd.
 
-	Andrew
-
-
-
+On 8/16/24 11:32, FUKAUMI Naoki wrote:
+> Radxa E25 carrier board has 16x RGB PWM LEDs. This patch make it
+> controllable under sysfs.
+> 
+> $ ls /sys/class/leds/rgb\:status
+> brightness  max_brightness  multi_intensity  subsystem	uevent
+> device	    multi_index     power	     trigger
+> 
+> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+> ---
+>   arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts b/arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts
+> index 72ad74c38a2b..1eaf304d94b9 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts
+> @@ -16,6 +16,7 @@ pwm-leds {
+>   
+>   		multi-led {
+>   			color = <LED_COLOR_ID_RGB>;
+> +			function = LED_FUNCTION_STATUS;
+>   			max-brightness = <255>;
+>   
+>   			led-red {
 
