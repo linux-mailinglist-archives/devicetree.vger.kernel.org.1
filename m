@@ -1,115 +1,101 @@
-Return-Path: <devicetree+bounces-94132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19CAB954204
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 08:47:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10DD195421A
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 08:53:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5F16286246
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 06:47:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8A101F21675
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 06:53:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3327784E1E;
-	Fri, 16 Aug 2024 06:46:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC10212E1CA;
+	Fri, 16 Aug 2024 06:51:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="cK+AVozh"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="DtUekxEa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90AB084A50;
-	Fri, 16 Aug 2024 06:46:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2909512D758;
+	Fri, 16 Aug 2024 06:51:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723790777; cv=none; b=eUFcrvnJsBvnJI67lKFt6R+Nf7EjswFC66RyGo4zkh4Nh/5AmgDFfCpsbJCFu6v2Nx/WFXgrAsCE+yJdeAhWISiPmOJyjB/5C9iZbN0E6uqXDUZY6q6tAKNQqMreKAXA4/fxdUJY3Y2s1wMudo4fkqm2fM/ddo7T36QYjRA7uGM=
+	t=1723791107; cv=none; b=qUgYhPybpxbqtkQm6HaY6GNlYWuqtuO66QW8sTsJt8ZK5Xf43gMVvvKThJx4RvvztUUVuKNN4rR9RM+pP2sLDdC9AxVTQSwghLgHsbSLX5nNkSQsc2WlKztQPcAbr3UZ5Nn0P910BGVeD8RCr3QYu81UE2C2vlMNWlEZ6PyN8ko=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723790777; c=relaxed/simple;
-	bh=To4DwKZdAd1zrbvpD+Ji8ozx8eGEkCykPZqh6w3t1TM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Izmvq07hGGuaw41t7O7Q9TKHpmB1PqlszSK9IArGk7wRZGyOlkYbjs+J0Iulf8eGdVrJMnxEnCyodbrnPRnYavR3GCuCRQ67g/3CwfS5Zyf/84HxFmoTb8JanqU/TiaPOi7LFCuxWwPLeCr01c/YrdtC2d0+YN1/b5FIyhIUJT0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=cK+AVozh; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=To4DwKZdAd1zrbvpD+Ji8ozx8eGEkCykPZqh6w3t1TM=; b=cK+AVozhS2b0KOClwOoGUpumHo
-	mMnwTsLmwvQ6KswCL88xMi32RjDFQi632p0h8Rq88UG20IPm24SPs29cgn/II3OLzUUv+X5VL1XOT
-	2bfxW6oKfkh9Cn5xSjNOOaDrh4NI3b3miJJKfDbRKNJSOQKR+7NohcOtsxOuhqe+wykMr4ilWLKAq
-	UN7ITgsR+iFNbOkGOpRMSPQunkkR7cbKYKws2rhodnxNJCGIRRJ9bl1JyW032Uu8yckgvVgKnTKU+
-	8uzasY3WO7ODR4N8ogw0gtpREabJav8/aKjf1F1dFLqcK/WstA2kF870ydhTl5fgjxjfA+9VPCxc6
-	uIDz/+Bg==;
-Received: from i53875a9f.versanet.de ([83.135.90.159] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1seqig-0006nr-A2; Fri, 16 Aug 2024 08:45:54 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Chris Morgan <macromorgan@hotmail.com>,
- Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>,
- Andy Yan <andyshrk@163.com>, Muhammed Efe Cetin <efectn@protonmail.com>,
- Jagan Teki <jagan@edgeble.ai>, Dragan Simic <dsimic@manjaro.org>,
- Ondrej Jirman <megi@xff.cz>, Yao Zi <ziyao@disroot.org>
-Cc: Celeste Liu <CoelacanthusHex@gmail.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org
-Subject: Re: [PATCH v3 3/4] arm64: dts: rockchip: Add base DT for rk3528 SoC
-Date: Fri, 16 Aug 2024 08:45:53 +0200
-Message-ID: <22683755.GTVRSBfYgM@diego>
-In-Reply-To: <Zr7z-SOFIgcuplq-@ziyaolaptop.my.domain>
-References:
- <20240814155014.18097-1-ziyao@disroot.org> <10324095.IZOipudI63@diego>
- <Zr7z-SOFIgcuplq-@ziyaolaptop.my.domain>
+	s=arc-20240116; t=1723791107; c=relaxed/simple;
+	bh=+hVS3W3MEkjPt32QKq233gBf8FSSn1/LzNSGlcg+J7E=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=VtnyD9zqAnL8UECoX5wqOIrMeagjO/a8Atrqq8s3PgkY2Tw/MGNvrMHlqb2lXaSDHUMKrCkWqbCOJoLLROI8m+KsPKtNCUhpfftLsJs5GN9Fmk38Jd2n13XKfWkZyaWaW00pch6jJ6K3IxyGSxml3QxXMo45VeMCdiohRNlXWmo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=DtUekxEa; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1723791101;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=erdeOGfMKnjJZthRQ74ZwqFW9cbRAdXya4HEE8czlZo=;
+	b=DtUekxEajDyHcJ1DEsY/8VEsO+N6NYgruSKHNHe0ivJpXlj9DQu/LRb+Eg3kHDi0x6mIBo
+	gS+Hsibva5U/JDu847lT27TVtlRnMf3tPXALDAvVk9XVa3rpxkalsV6HUL/2mKXzy/Acj0
+	fBUWYKfvvG1Fj3JeXQ1WVgXmp5uKvu/ApsuYIYdHC1qLx1bbE5yxTMQ9pps75Wxy1pWhmJ
+	2SxOAuk5zOVSCMtwajBHCL+wo26g84iFVAenQILZzc9ci2KZTYz0cWmlwfmuwXHkNbrv7K
+	a6BQHUXj0mIZy7QY/5HRbx+MobPTlxrzJsjrGI2xGFXw4H0HmSfso3pHUyFk4Q==
+Date: Fri, 16 Aug 2024 08:51:40 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Sergey Bostandzhyan <jin@mediatomb.cc>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ heiko@sntech.de, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/3] arm64: dts: rockchip: improve eMMC speed on NanoPi
+ R2S Plus
+In-Reply-To: <20240814170048.23816-4-jin@mediatomb.cc>
+References: <20240814170048.23816-1-jin@mediatomb.cc>
+ <20240814170048.23816-4-jin@mediatomb.cc>
+Message-ID: <002107db3dcf3f1d1d1a767f049b5b79@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Am Freitag, 16. August 2024, 08:39:38 CEST schrieb Yao Zi:
-> On Thu, Aug 15, 2024 at 06:43:20PM +0200, Heiko St=FCbner wrote:
-> > Hi,
-> >=20
-> > Am Mittwoch, 14. August 2024, 17:50:13 CEST schrieb Yao Zi:
-> > > This initial device tree describes CPU, interrupts and UART on the ch=
-ip
-> > > and is able to boot into basic kernel with only UART. Cache informati=
-on
-> > > is omitted for now as there is no precise documentation. Support for
-> > > other features will be added later.
-> > >=20
-> > > Signed-off-by: Yao Zi <ziyao@disroot.org>
-> >=20
-> > not sure if you have seen Krzysztof's comment yesterday, that he found
-> > the soc node getting documented in 2019 [0].
->=20
-> Oops, I don't read that before sending the series.
+Hello Sergey,
 
-no worries, I think both mails (the linked on and your v3) happened at=20
-nearly the same time on wednesday.
+On 2024-08-14 19:00, Sergey Bostandzhyan wrote:
+> This change has been suggested by Daniel Golle during patch review,
+> adding mmc-hs200-1_8v; makes sure that eMMC gets detected as HS200
+> which improves it's performance.
 
+Describing who suggested the patch in the patch description looks
+out of place.  Instead, you should add a Suggested-by tag, whose
+purpose is exactly to describe who suggested the patch.
 
-> > I guess that counts as a strong suggestion. Not sure how you're feeling
-> > about that, but I guess we could move to that scheme for new socs.
-> >=20
-> > So would you be willing to move the mmio-devices to a soc node?
-> > (stuff with mmio addresses in the node name)
->=20
-> I'm willing to, there will be patch v4.
-
-thanks a lot :-)
-
-Heiko
-
-
+> Signed-off-by: Sergey Bostandzhyan <jin@mediatomb.cc>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s-plus.dts | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s-plus.dts
+> b/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s-plus.dts
+> index 12eabdbf8fe8..146b1da198b8 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s-plus.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s-plus.dts
+> @@ -23,6 +23,7 @@
+>  	cap-mmc-highspeed;
+>  	supports-emmc;
+>  	disable-wp;
+> +	mmc-hs200-1_8v;
+>  	non-removable;
+>  	num-slots = <1>;
+>  	pinctrl-names = "default";
 
