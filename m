@@ -1,262 +1,137 @@
-Return-Path: <devicetree+bounces-94239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7F2C954602
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 11:44:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 758C4954626
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 11:50:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1CB0A1F2573B
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 09:44:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1EC601F22BF0
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 09:50:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7645E15B130;
-	Fri, 16 Aug 2024 09:44:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45944172BA9;
+	Fri, 16 Aug 2024 09:49:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="WS6k9xfM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XgpIudqF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2083.outbound.protection.outlook.com [40.107.241.83])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B0B215B13B;
-	Fri, 16 Aug 2024 09:44:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.241.83
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723801476; cv=fail; b=YGxos23AuA2o0uomLY/VKzjkocspQi53oMrJX7/J6i+gMOSC5hNcHBmR+tfEPfSVjx2pHgyR/gkkEg3rtxm3rjcnAxcWPIMqsJMjsHQeDopFl/qMRK0bsYs7iz0CYo5WC4Ogg+C1evJu+LtoVL2GJC1Q+pKFzGch8hk8LTBG14U=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723801476; c=relaxed/simple;
-	bh=drRwN1AtDrFuVWZiPzJEU/KOPBx6Kqe8u+PDozMwwn8=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=mA4cwNIcx8q77RJH32+ysLSlucqmjkDD5md3LHUGs7zBcDNE5dHvokAwwMLenDks8EXxVoiFfx3KzEj+Tk0Yv44oOfVcXQ5GDCDfPK6tSEPEidP11HTA9+x3ReuuZtZRFGRc462uLXzUmfAXIKFozd3NyLVya46EEXLddB4Bhhc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=WS6k9xfM; arc=fail smtp.client-ip=40.107.241.83
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cYvRl4AelckJi6WvN53nSXtwAigNjsppcZhdA81zS4L80l3/8RtgyrWjvmg58uFiG1JDVeu5NN80saBGmE2Frcxq7MDBaCabfjuS3N9An5qqbw3TKRmiy5GZaZu4osja3Q14Pic94GI0q/yh6rtMOEJ/hr3M4QFWJbN48SgdGJzXPbj2uA9/K1xJyZCkCIt2gxyi/za/rZa2oNS8U34zHQHghrJslxKUmsdqWSQJ97W8uy1HTHoX5o4encfW3NPOniepJLM/1mMDnmB7VEoRfco2DLvO5MiZvM1f7tahZ5QrH9RctwDJBaeCd0ai14VWkH4zMiqyrldKqvNp000+Sg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UT3Zkud/mE+wQ8ne/+xKHHtxHt8yIh5jjdtSMNW7KA8=;
- b=V5TajV6BlW1pc8fD3EYOqx1L+J+6mmST+rnzCxQw+Cze5IMCuDbtO+ZhUUn8PBsc3jvBKtwZd46Gn37YKKBECnsRTXA4z0p9/osmlOOWf3UWYBBu67Vt7sNN+MKQK/yH+LMeX1mFvrggz6irJTKV5GEaHBhaRbMX/JWVOr2VOqzsWr8lhEMj7Jo2n+RpWTjTURjWMT26mS4bR422YONehaUuM/gslJCEDoybReF29ZQvIBMHM7tGa2oEi4AhUpa0VDWgjMaBSqdWVeDqZgdFT/pc+Er7YUp28Oj0yaBe19RVIpINow1x7OIYGWoxR38RUzmtCNvYypHjPBttuUqLoA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UT3Zkud/mE+wQ8ne/+xKHHtxHt8yIh5jjdtSMNW7KA8=;
- b=WS6k9xfMW3NiLFXxsBGk2luUH8LixmTmbnYowoQTu9IaP+eZf+SIL7SjSIm0z/QpWE35hVHHXDUZa/9v2/ZAS6o9AUM1c3PVmOSHazmxaZDs9RUCZRI+0PcklH1CBsWnq1W9FJWze9Zx3dQaiJCOmat2eJEjRbqgoTouOtOsXCx4ydz8Njq5WYABjMtkJg3qX9lbSiRXSglsKWvZJ9EV2WQYObxHI14OjRMdNprIoSiY2Z6Q5hP9oTuzDVRSQPZVLVxMr1H2CwNSyhvJbSwDpDohjBwdnyjTfLhsRLPO0jgS2qspkM2bvPP85S8yFAz3tYl+rVqHaUfm+KHDgIQ0DQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by DBBPR04MB7625.eurprd04.prod.outlook.com (2603:10a6:10:202::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.19; Fri, 16 Aug
- 2024 09:44:30 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::d1ce:ea15:6648:6f90]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::d1ce:ea15:6648:6f90%2]) with mapi id 15.20.7875.018; Fri, 16 Aug 2024
- 09:44:30 +0000
-Message-ID: <613b4eb4-dbac-48a9-bcdd-79b4e94a7b66@nxp.com>
-Date: Fri, 16 Aug 2024 17:44:56 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 RESEND 2/2] drm/bridge: imx: Add i.MX93 parallel
- display format configuration support
-To: Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
- rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
- peng.fan@nxp.com
-References: <20240816080933.440594-1-victor.liu@nxp.com>
- <20240816080933.440594-3-victor.liu@nxp.com>
- <faf56b73-2143-4f5d-8e35-5cfe5f8d72d5@kernel.org>
-From: Liu Ying <victor.liu@nxp.com>
-Content-Language: en-US
-In-Reply-To: <faf56b73-2143-4f5d-8e35-5cfe5f8d72d5@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI2PR02CA0020.apcprd02.prod.outlook.com
- (2603:1096:4:195::7) To AM7PR04MB7046.eurprd04.prod.outlook.com
- (2603:10a6:20b:113::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ED6616F29F;
+	Fri, 16 Aug 2024 09:49:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723801783; cv=none; b=EXG2dMc/QeuRd3mzpd2dFwK5EZ4mPVOjELOG9udpDYYvPQyF/weax0pXt75Czq+tW6r50l3bVfdtD+t+dR+vp5RMeBlwmh7NdNfKXuenYVuuA9fRHuoc3L4hoFYHTfxF2et9lfKmyoU2Jvt8TPawCYb1vJZkcI2kfCLVs28ZcxA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723801783; c=relaxed/simple;
+	bh=TJ37zJG7K+Dh1wIbvBYZ1dG5/BCwMp720tREdfnpZ9s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ciWLYXBKaR0E5twP4XuAk9cDosO6PCeqx25bV4eNDhrDUI+qVgPFWa3mUHAuETkjkXlRPc2egNejUxyWQy7nkFiN23K7Quz2jewerz3HIlhQCmX1QmE88fchyuyF9jAUC2cIHqi165S1dLFPhVOqzTTWhEHJwNvnG1tMF4hled4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XgpIudqF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF95EC32782;
+	Fri, 16 Aug 2024 09:49:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723801782;
+	bh=TJ37zJG7K+Dh1wIbvBYZ1dG5/BCwMp720tREdfnpZ9s=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=XgpIudqFFps9IGzbr+vf0IeOaVAaJj9UqUN3gYllkhuH98HCH37R42fmX4vz4FvNk
+	 aS0CgPuFuNF7gG8g3SgZxeL3GaU1F0hsocm1Fjh2Z0+/eVnlj8Yohc2piZy+N+c8Es
+	 2dDWFHlPoxTakx+hFGgaknRchE0y6TO/z2VWPkvuCSBHFk/JbiTBGqFvw1myJg/o6Z
+	 NfeKF2Y7YvKpIkpDwPJZPIlYXNcdfYpFTOMnaosi0hfJVXr2fQTLiU2uPi2mqsy5uz
+	 x2UKxxigdLRstYLmDAgjI50hoi3onjvd2Fc307SQjL6Q7uISlDCMVR+g2+26gvY4eD
+	 YMRWn3mKxGCxA==
+Message-ID: <5f89d2b4-413b-4992-af3d-7c58e858ece8@kernel.org>
+Date: Fri, 16 Aug 2024 11:49:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|DBBPR04MB7625:EE_
-X-MS-Office365-Filtering-Correlation-Id: d606aa4a-c542-462b-0088-08dcbdd806de
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014;
-X-Microsoft-Antispam-Message-Info:
- =?utf-8?B?Y1FKMlhOeDdlclNzTk9ETDZJL1lyRFJKRjhpQVRMMnVMS2pmc3lMOUpObjdk?=
- =?utf-8?B?d3lUekdHSU1ieWNaTzF4Nzhma2paQ1hhU2JlQTNpV2dqUUN2NUQ4eUU2ZkNo?=
- =?utf-8?B?TVRKUWQzUElFbnR4bGFUNDNnK2RMb3M1dm1DRnVLanY0TDJZRHJuMGRQdE1Z?=
- =?utf-8?B?QklrN3FyUmJlaHJnY2lWOFVFeklpdXBiVmU0UFkwZjQ1S0hpUzJqR0ZHa3Ex?=
- =?utf-8?B?UjNNWlh5RTlwZE9lYXMrRXhTSS82eituZjBYNG9QMlhNL091cHdNZlJaMDlw?=
- =?utf-8?B?UnpVeTIvTnAzaVNJUTRyam5lZ3ZhNzkyNVlaWXBwTWhuQjN0NGtXRnBxVml6?=
- =?utf-8?B?N2FzNEJWaHJXMWFaV082aUFFUmJkM1Z6dlFUcGlxeFI3QzgycFhCR0hIZ21M?=
- =?utf-8?B?dDE2dUNuMnA0TkVxN25NVEc4RVFKd05za0gybFN0dTRkNDVFeFZlYkVYT2lo?=
- =?utf-8?B?OEVTcklXdGlyTExqZWdpOHVnWlM0NkhUcTBSTG84YS95b2tKMGt5U0pNbXhn?=
- =?utf-8?B?Z2RvSC9jU0RsZzN5MG1JMi96WVp3eTAva0U2eitibTk0T0tPZ0ZNRXhZM0o5?=
- =?utf-8?B?b1JXdkRJOWswMlIvdWduRzdMeHo5Z0tROXZLNWtGSnhST3RnT2k5c28wOWVC?=
- =?utf-8?B?N2ZnZ1RDVEg4N2J4Qm8yYU0vTXVNM09UNlpvbG5oMkpWU1N6ME5xTFUrMXJP?=
- =?utf-8?B?N1RheUZidjBjNTlVS28yZjFLcG9US1RaK09ka3hESVJpUjl5WkorR29RaElQ?=
- =?utf-8?B?cUpqVEZPUGJic2RlZW1xdnZsR3RWalZISVc3NGZNQ2hKaHpiY21uSkdiN0ht?=
- =?utf-8?B?TW5hdmVrL2pPVHpaazBjTlBFcWo3Z1JnNXNGVFFLUEhzTFRjYm13YXNTZE5G?=
- =?utf-8?B?YVI3c2txdm1BVjRQR3VRcUc4ZU82b1hmaVpTODR2S1lvelpSZXZVVnltZ09y?=
- =?utf-8?B?aHZ1a3BLWEI2alRsdGJySFlXbHNUdVhwakNyVEc3UEJXK21HQlE2ZkRWVUFq?=
- =?utf-8?B?V2tFZ3poZndJSElOS2twcXRaVTlOMzRseE56ZVJNcjJsVDhkeEE0VlVKZ0lz?=
- =?utf-8?B?THRkUHozOFZRWHkvNXZKTnBUc1dDRWVaK3NLNmsvQXZCc05ubXcxMThUOUlM?=
- =?utf-8?B?bGI1cHFMNHpoSHdZdXkzZGx4RTVnbjF0aS83UStsMTRpcDAzMzRVWUpFM2pK?=
- =?utf-8?B?Rml3cXQ3Q2U5a3RnTVBBM2wwVmx4YU5acXJuNVltcFpQQ1RGVWVTWmc3alV4?=
- =?utf-8?B?bGt2eGJPK2EyblBhNENMejBpbWprVFVGcFRGd1F4amhVdkVWSGtDMko5b0lX?=
- =?utf-8?B?Y3JybGhiRUtiWFZTd01lanltTGRpTUpDMzV3WWtSeFRXR01vV0hTbjdiNmJK?=
- =?utf-8?B?Y2IxSGwxMjZ2TGxHMUFENzcxcWU2MzZnUnBIV1phNkNtV2NpRVIvTzdoTk9W?=
- =?utf-8?B?L3FDWnVLU1I4bTlXMFpwS2xvK2FhazIxMm9jbzZrTk9lNnNHT3pFODZOQ24y?=
- =?utf-8?B?dExqTFpROEdnUklyUU1CbTJITCtiL2ZzNXBaRWQwNXQxL3pBTk51Yk00UWRv?=
- =?utf-8?B?aEY4UjdWTTNHNmUvN2VNazdJNXlIelFPWnRqd2dVT2lUbUlBTkRTYzgrTHAw?=
- =?utf-8?B?QVh3UTlEcmlSakFyN2FyMlNqdjhRMGE1UldRa0xFZ0d1eG5OU1p6cktkUDZk?=
- =?utf-8?B?aU5LNEdib3lMcGRtbmUwdVVjQ0lRREZjc0pycWxJV2JVV3pNNGdWMlVwU3Q2?=
- =?utf-8?B?akR6TlcwVC9FemlUbVlNT0E1V1hzYmVmQURtcmJoMTJsQVJDMFFMRWh1VkJk?=
- =?utf-8?B?ak9LTVlGVjVuVk1YK0M4dz09?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?utf-8?B?UnhKdktGTWpmbUJ6b2FZOU5LYzRYS2ZkSTdYQmVXNkRYTVY1aElqdHNQWmxB?=
- =?utf-8?B?VWx2bU9ldGtqaDhWeXo1bEZabEZpVkdCeUxKVUlKd2VYYVBGL0ZQa2NzQysr?=
- =?utf-8?B?RGRhVFU5aDhqdXJmZUlKTG9NTmp1VjNuZWttc3dzcXJRWHdqV0FQMUR4UEth?=
- =?utf-8?B?RUQ2RG5IRHgxVlVTclNLSlFZMTZ1RTZXRmkvbzc2bHBjMHBUK2d2bnJtS3ha?=
- =?utf-8?B?OXUxdDJMUFFmZlFYdWZQOVNVU1JsL3BoRlF6ZEVlMHFtMnpLYjNoOUVCaFN4?=
- =?utf-8?B?Z2tDVUxNeGZ0OWoyR3hLYXFVbnJZMGxVWUE5cWZpc1NZa1NsWEsrYjlBMk1F?=
- =?utf-8?B?eEhIeWV1bTV5K1VWY0YxYldRNWx5Nm9ibHV2d0JHaVZNNEFwYmJYcFpiYTRY?=
- =?utf-8?B?WVlqTjFJRkdRK1FkVTdoaElvU1Y2MmZlNGxKODdKYUNrVHZGaHNBeXdSeWRL?=
- =?utf-8?B?V1d1d05FVy80N1dKSXFaeEhKL0RFVHkvcm9MUk1hK2d3RS8wZTFFWDZoT051?=
- =?utf-8?B?TFc5OE93WW5UZEg2TzQwZmNabVNJMFFwSmlIWnJycEx1RVZXM0RqbHpnaGlD?=
- =?utf-8?B?djhzVkZNdys0WUdVVlFKUmFjSU5CcHQrZzF3ck1HakU4R1pZNm82aUExR3RH?=
- =?utf-8?B?bFlSR3Y5SWp5dU91ZmFmNFBzeVUxeEFFd1gyRnZ1QmljK00wZkltWGN4NUtQ?=
- =?utf-8?B?Ym9HZXVRTU1XaUhDN2pnNWEvR2p2WnhyVzkvS2ozTHBHcDYyL25OL2ZPd1Fq?=
- =?utf-8?B?UW1oSng3THc2UHV4bERUd2hNUG9EZ28wcmVYbUxpMU5pcXNPS0cwUUJHVlUy?=
- =?utf-8?B?cDV3Mmd5eldOSUNpUVMwMEUydCtTV1diMGl1NjFGOCtteVkvQmM3VExES1VS?=
- =?utf-8?B?YUppcUo5bmNNdTZUZGM5VWJtTHBIcDJ0YnpPYTRIM2FodENiRmhqVXExQXBq?=
- =?utf-8?B?WDlKWWdFSGNldnJCWXg2Mk13Wk92OGlTSjkxeWNYVzBoNisxa21vcUpBNC9J?=
- =?utf-8?B?TDhtT21Oc01sNmduL3ROdjIwNGFxd0JWakUvWi92cWptMk5ud0h0SkJaazIr?=
- =?utf-8?B?OXFnU1RWT3ZHa1ByelhaUVJNMzR6bytLNWwzTVJSY0VIdzNQbkJ5R0psNFc1?=
- =?utf-8?B?MmhXeS9PQ2o4blRsdE5kQXQweWlBSmxwS0lmNUJhYUUyVlFFbTQvaU1NVGpG?=
- =?utf-8?B?dzdqZXdRWjd6cHpqT21YUndsVStmcDR6SWZVRkRLdWFtRVBZME0wd05XcUFj?=
- =?utf-8?B?cmR2emszS0ZwSEdPcmFSN2NLamZzQ1VxM2ZyQ0FjdVpSOVdsckszOWs3b0g4?=
- =?utf-8?B?dlhud0RoYTlHS20weEw1R3M4dk1HYS9WT3M2RzJkbW9YaE5JRHZCYTRqL2RU?=
- =?utf-8?B?V09BK3BFVlNrTGxLb0tSQTI1b1hsNTV1emlNTjFpaldZS1BPS0Y4aU9uK1BB?=
- =?utf-8?B?WlcvbG9PcGd4UjdpdGEySHF6T0FjQkVTb0Y3bE11OWhtOHFZZERaWmFFUWth?=
- =?utf-8?B?NldZMkM5SnhEbWRIYmQ3a0J1NkM1TmtpWkpJMHBRVENVNTEyM3Q5MHlJWmZL?=
- =?utf-8?B?RWJlakNIUS9kd2lCc3AwSFZ0TXhML0JTK2JNdU0zRkhhSW9TVVB5SFFFNWJm?=
- =?utf-8?B?SVZwWC9UcnowNTVNay95TU1pQWJYakYrMmFjcGFWNG83UmphUld6RThEMkV3?=
- =?utf-8?B?b0Z0RkY4N1JFZHVWZ0hEY3hCejVJM0NUbzRNVFdBSDVsMW1lSDdaTXZPVGVo?=
- =?utf-8?B?MmMxS0lOU1MyL3k0Q2tqRDVDejAvQlluU1ZkaFVzZlF2YkFTRWdXQWdRamMr?=
- =?utf-8?B?RnRzRFU4S3BlRkJoVnBvTWx4L2ZLM2x6T2d2d2ZlZnRmcUJwSjFhU3dOTU5n?=
- =?utf-8?B?eUxHVFRFL05SNVh2SWs1ckc5VWhERVlseUFyeDJuaFRCOEowNkZVZjJxd1hm?=
- =?utf-8?B?L1JqeXNvem5FdTF2UStTQlJoa1g3NTFLODNVb3F2THM0N2xZUFhDeDZBeUVk?=
- =?utf-8?B?SmxhOEdFeG9idmJGcUNTaUNZSFk2MWFJdE5Tbk0rd0JvRmRPWjNlMm90WC9k?=
- =?utf-8?B?eTQzRUFxYmVFNnljSXpJYXBTUWdRVUNIUkF2QmNoTzFOdFFONGRmZnJBUW5V?=
- =?utf-8?Q?uwneyCT2R09+/EaIKV9p1exLt?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d606aa4a-c542-462b-0088-08dcbdd806de
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Aug 2024 09:44:30.8177
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1AstTrz/IX9BrMzAFl32DHdRyi/59pTOW6Oirw8PgBfHaOeeG1hSkQJJNkhq1S/2sRrnvlhIv5TNye1SZbEL6w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7625
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 03/10] power: supply: max77693: Expose input current
+ limit and CC current properties
+To: Artur Weber <aweber.kernel@gmail.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht, Henrik Grimler <henrik@grimler.se>,
+ Wolfgang Wiedmeyer <wolfgit@wiedmeyer.de>,
+ Denis 'GNUtoo' Carikli <GNUtoo@cyberdimension.org>
+References: <20240816-max77693-charger-extcon-v4-0-050a0a9bfea0@gmail.com>
+ <20240816-max77693-charger-extcon-v4-3-050a0a9bfea0@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240816-max77693-charger-extcon-v4-3-050a0a9bfea0@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 08/16/2024, Krzysztof Kozlowski wrote:
-> On 16/08/2024 10:09, Liu Ying wrote:
->> NXP i.MX93 mediamix blk-ctrl contains one DISPLAY_MUX register which
->> configures parallel display format by using the "PARALLEL_DISP_FORMAT"
->> field. Add a DRM bridge driver to support the display format configuration.
->>
->> Signed-off-by: Liu Ying <victor.liu@nxp.com>
->> ---
+On 16/08/2024 10:19, Artur Weber wrote:
+> There are two charger current limit registers:
 > 
-> ...
+> - Fast charge current limit (which controls current going from the
+>   charger to the battery);
+> - CHGIN input current limit (which controls current going into the
+>   charger through the cable).
 > 
->> +
->> +static int imx93_pdfc_bridge_probe(struct platform_device *pdev)
->> +{
->> +	struct device *dev = &pdev->dev;
->> +	struct imx93_pdfc *pdfc;
->> +	int ret;
->> +
->> +	pdfc = devm_kzalloc(dev, sizeof(*pdfc), GFP_KERNEL);
->> +	if (!pdfc)
->> +		return -ENOMEM;
->> +
->> +	pdfc->regmap = syscon_node_to_regmap(dev->of_node->parent);
->> +	if (IS_ERR(pdfc->regmap)) {
->> +		ret = PTR_ERR(pdfc->regmap);
->> +		if (ret != -EPROBE_DEFER)
->> +			DRM_DEV_ERROR(dev, "failed to get regmap: %d\n", ret);
->> +		return ret;
+> Add the necessary functions to retrieve the CHGIN input limit (from CHARGER
+> regulator) and maximum fast charge current values, and expose them as power
+> supply properties.
 > 
-> Nope, you just open-coded dev_err_probe. Syntax is - return
-> dev_err_probe(). if you need wrapper for DRM, add such.
+> Tested-by: Henrik Grimler <henrik@grimler.se>
+> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
 
-Will use dev_err_probe().
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> 
->> +	}
->> +
->> +	pdfc->next_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
->> +	if (IS_ERR(pdfc->next_bridge)) {
->> +		ret = PTR_ERR(pdfc->next_bridge);
->> +		if (ret != -EPROBE_DEFER)
->> +			DRM_DEV_ERROR(dev, "failed to get next bridge: %d\n", ret);
->> +		return ret;
-> 
-> Ditto
-
-Will use dev_err_probe().
-
-> 
-> 
->> +	}
->> +
-> 
-> ...
-> 
->> +MODULE_DESCRIPTION("NXP i.MX93 parallel display format configuration driver");
->> +MODULE_AUTHOR("Liu Ying <victor.liu@nxp.com>");
->> +MODULE_LICENSE("GPL v2");
->> +MODULE_ALIAS("platform:" DRIVER_NAME);
-> 
-> Which other driver needs this platform alias?
-
-Quote include/linux/module.h:
-
-"
-/* For userspace: you can also call me... */                                     
-#define MODULE_ALIAS(_alias) MODULE_INFO(alias, _alias)   
-"
-
-Anything wrong with using MODULE_ALIAS() here?
-
-> 
-> Best regards,
-> Krzysztof
-> 
-
--- 
-Regards,
-Liu Ying
+Best regards,
+Krzysztof
 
 
