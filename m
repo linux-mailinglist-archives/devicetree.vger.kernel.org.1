@@ -1,62 +1,59 @@
-Return-Path: <devicetree+bounces-94335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94336-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41A3B955228
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 22:59:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5428D955232
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 23:07:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EBCE61F227EA
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 20:59:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03E6A28546C
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 21:07:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 348B81C68A7;
-	Fri, 16 Aug 2024 20:58:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD8E21C378C;
+	Fri, 16 Aug 2024 21:07:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kw1iIC2z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GdffXrF0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1E301C68A3;
-	Fri, 16 Aug 2024 20:58:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A24DC1BF339;
+	Fri, 16 Aug 2024 21:07:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723841936; cv=none; b=iSAoaEfkXbs5L4vOS5MlMMVDd6koGKXUpnRjOOhjSlK/550tLbuKpvTgfyTpiXF2hyLH6XpWrJjKFR0FVoi02s52rUxFuj5sDTw6QHCFPAdjl6EJvDOgHiJYbw9OeecYts3SFNXqWzvTamOocutwnZQj3EAnsvvf3hGTOfMPXsA=
+	t=1723842438; cv=none; b=PIlMSmL88UOCRvTqm4dyqKMLNMEBZYTiHxz73iQSY9L4la8hEy8smuDxsoWNoVmFU0nqPAh+ujavCNi3IJKDCbbBNk5pHg9Ebax6geJ+tC4jYfIp5pT7BlwLOUoJVMrfVlNAzWqTFA2eL2246cRruvkX7rREaTLeDpmdpQ7Gek8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723841936; c=relaxed/simple;
-	bh=d/gXKV+rzSeF81+qiKEmv3B6KI33JDPBB1EQCC/niTM=;
+	s=arc-20240116; t=1723842438; c=relaxed/simple;
+	bh=s3jVdAVjzFoRJo4B/B/8soz52JAn5/6CmLtBL9Mcx5w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mwKDu4sOcjFF7nRaTDwBUr6mKkspJcMAB/q7zYPI4IHU1DT536SXatn+OQksv8KrC5thKSgw+yNUjUBt4Y4GXsFwZlcOLFiakstBOUIrH3vcl5QrnZZA4aHAdgvRrtMPktNFCsZ4iY9eC+dDIaX0tZEdA2tJ/ddcb9Zv45670gw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kw1iIC2z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 457AEC32782;
-	Fri, 16 Aug 2024 20:58:55 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=JTcivloBVjYeZqD58ykPlF3diEwYEJbZTmJvieuTkkVJbw0RPKZBiP+2J1V29wQmMKp6g2crNM5kcGZfitg63gF13YcEiPgJSSr/odgpfq3QA5NJVEcfLJIJ55NpbjUH2b43Gs6g/pwqdXZzM9H8Op5Pn/p/JG5ykm2cto+mMa0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GdffXrF0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6ADB6C32782;
+	Fri, 16 Aug 2024 21:07:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723841935;
-	bh=d/gXKV+rzSeF81+qiKEmv3B6KI33JDPBB1EQCC/niTM=;
+	s=k20201202; t=1723842438;
+	bh=s3jVdAVjzFoRJo4B/B/8soz52JAn5/6CmLtBL9Mcx5w=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kw1iIC2zcVH425XaIRUmdpEBpaUSjqCwZYku3c7DZ5vF1vOdaC+XZAnCgtle39qlk
-	 /Ci2/W9Jx60laZCU4o5S9mVXxj5U1Asy7xZbMio8ay2z/QPfLmMQ1Bionk4fkF1cOt
-	 d3HPfhxnl/98Y9sFOHR4CCpXPegQHg0lLIRBrBLnAnfzuCk+6rkzVD5Wt3YrXjl98k
-	 zgSpJrwoWz/xl1WbpAYJIfp3Oqz1NsIZKOHWIgAG0IO2uL6WAZhoxsygt9mYOZm8Ra
-	 yLJa3llWeTZLioq72YQi0Cnx3LftF6/Ck3p0/VIMzjxtdzGCffdO21fLydL+lwL6fH
-	 4OyK8mud/e4og==
-Date: Fri, 16 Aug 2024 14:58:54 -0600
+	b=GdffXrF0Lz1CQ2UIzTQO+cLy/3HZFENL+eTTOM0GigbyBqzxAlip2pWJpGHnkZC4/
+	 gTRAGOccI3wXLv0zVlpyBCajr9ExQgp24c+2YmcUQ/cZNRLz7PXNkWxRQb2X7XeC1s
+	 zVouCnwoD6F69VPHuk+YH03ZLVpvgVbXMFcl4MRmfQRmJ0granvwojEjRIKQ84hHD9
+	 Ih9lZSFwC0HjqyFGlgH2PlIRM8KvNE3Xhg4iZZ1+k7QGV8eJ4SaJkPIRCT3iPQZXn/
+	 F4sJv6hxV+A5qWR0MR6oWytkR6sPpZulCAn26OViJKoy/EqusNfxcSwzJyYrjmAM1y
+	 aq2N68h//IDJQ==
+Date: Fri, 16 Aug 2024 15:07:17 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
-	devicetree@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Paolo Abeni <pabeni@redhat.com>, Conor Dooley <conor+dt@kernel.org>,
-	imx@lists.linux.dev, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Florian Fainelli <f.fainelli@gmail.com>
-Subject: Re: [PATCH v4 1/1] dt-bindings: net: mdio: change nodename match
- pattern
-Message-ID: <172384193319.2153392.2293896904577787066.robh@kernel.org>
-References: <20240815163408.4184705-1-Frank.Li@nxp.com>
+To: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+Cc: will@kernel.org, m.szyprowski@samsung.com, saravanak@google.com,
+	klarasmodin@gmail.com, robin.murphy@arm.com, iommu@lists.linux.dev,
+	aisheng.dong@nxp.com, kernel@quicinc.com,
+	devicetree@vger.kernel.org, catalin.marinas@arm.com, hch@lst.de,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 1/2] of: reserved_mem: Restruture how the reserved
+ memory regions are processed
+Message-ID: <172384243424.2188220.6416522765336763832.robh@kernel.org>
+References: <20240809184814.2703050-1-quic_obabatun@quicinc.com>
+ <20240809184814.2703050-2-quic_obabatun@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,64 +62,127 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240815163408.4184705-1-Frank.Li@nxp.com>
+In-Reply-To: <20240809184814.2703050-2-quic_obabatun@quicinc.com>
 
 
-On Thu, 15 Aug 2024 12:34:07 -0400, Frank Li wrote:
-> Change mdio.yaml nodename match pattern to
-> 	'^mdio(-(bus|external))?(@.+|-([0-9]+))$'
+On Fri, 09 Aug 2024 11:48:13 -0700, Oreoluwa Babatunde wrote:
+> Reserved memory regions defined in the devicetree can be broken up into
+> two groups:
+> i) Statically-placed reserved memory regions
+> i.e. regions defined with a static start address and size using the
+>      "reg" property.
+> ii) Dynamically-placed reserved memory regions.
+> i.e. regions defined by specifying an address range where they can be
+>      placed in memory using the "alloc_ranges" and "size" properties.
 > 
-> Fix mdio.yaml wrong parser mdio controller's address instead phy's address
-> when mdio-mux exista.
+> These regions are processed and set aside at boot time.
+> This is done in two stages as seen below:
 > 
-> For example:
-> mdio-mux-emi1@54 {
-> 	compatible = "mdio-mux-mmioreg", "mdio-mux";
+> Stage 1:
+> At this stage, fdt_scan_reserved_mem() scans through the child nodes of
+> the reserved_memory node using the flattened devicetree and does the
+> following:
 > 
->         mdio@20 {
-> 		reg = <0x20>;
-> 		       ^^^ This is mdio controller register
+> 1) If the node represents a statically-placed reserved memory region,
+>    i.e. if it is defined using the "reg" property:
+>    - Call memblock_reserve() or memblock_mark_nomap() as needed.
+>    - Add the information for that region into the reserved_mem array
+>      using fdt_reserved_mem_save_node().
+>      i.e. fdt_reserved_mem_save_node(node, name, base, size).
 > 
-> 		ethernet-phy@2 {
-> 			reg = <0x2>;
->                               ^^^ This phy's address
-> 		};
-> 	};
-> };
+> 2) If the node represents a dynamically-placed reserved memory region,
+>    i.e. if it is defined using "alloc-ranges" and "size" properties:
+>    - Add the information for that region to the reserved_mem array with
+>      the starting address and size set to 0.
+>      i.e. fdt_reserved_mem_save_node(node, name, 0, 0).
+>    Note: This region is saved to the array with a starting address of 0
+>    because a starting address is not yet allocated for it.
 > 
-> Only phy's address is limited to 31 because MDIO bus definition.
+> Stage 2:
+> After iterating through all the reserved memory nodes and storing their
+> relevant information in the reserved_mem array,fdt_init_reserved_mem() is
+> called and does the following:
 > 
-> But CHECK_DTBS report below warning:
+> 1) For statically-placed reserved memory regions:
+>    - Call the region specific init function using
+>      __reserved_mem_init_node().
+> 2) For dynamically-placed reserved memory regions:
+>    - Call __reserved_mem_alloc_size() which is used to allocate memory
+>      for each of these regions, and mark them as nomap if they have the
+>      nomap property specified in the DT.
+>    - Call the region specific init function.
 > 
-> arch/arm64/boot/dts/freescale/fsl-ls1043a-qds.dtb: mdio-mux-emi1@54:
-> 	mdio@20:reg:0:0: 32 is greater than the maximum of 31
+> The current size of the resvered_mem array is 64 as is defined by
+> MAX_RESERVED_REGIONS. This means that there is a limitation of 64 for
+> how many reserved memory regions can be specified on a system.
+> As systems continue to grow more and more complex, the number of
+> reserved memory regions needed are also growing and are starting to hit
+> this 64 count limit, hence the need to make the reserved_mem array
+> dynamically sized (i.e. dynamically allocating memory for the
+> reserved_mem array using membock_alloc_*).
 > 
-> The reason is that "mdio-mux-emi1@54" match "nodename: '^mdio(@.*)?'" in
-> mdio.yaml.
+> On architectures such as arm64, memory allocated using memblock is
+> writable only after the page tables have been setup. This means that if
+> the reserved_mem array is going to be dynamically allocated, it needs to
+> happen after the page tables have been setup, not before.
 > 
-> Change to '^mdio(-(bus|external))?(@.+|-([0-9]+))?$' to avoid wrong match
-> mdio mux controller's node.
+> Since the reserved memory regions are currently being processed and
+> added to the array before the page tables are setup, there is a need to
+> change the order in which some of the processing is done to allow for
+> the reserved_mem array to be dynamically sized.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> It is possible to process the statically-placed reserved memory regions
+> without needing to store them in the reserved_mem array until after the
+> page tables have been setup because all the information stored in the
+> array is readily available in the devicetree and can be referenced at
+> any time.
+> Dynamically-placed reserved memory regions on the other hand get
+> assigned a start address only at runtime, and hence need a place to be
+> stored once they are allocated since there is no other referrence to the
+> start address for these regions.
+> 
+> Hence this patch changes the processing order of the reserved memory
+> regions in the following ways:
+> 
+> Step 1:
+> fdt_scan_reserved_mem() scans through the child nodes of
+> the reserved_memory node using the flattened devicetree and does the
+> following:
+> 
+> 1) If the node represents a statically-placed reserved memory region,
+>    i.e. if it is defined using the "reg" property:
+>    - Call memblock_reserve() or memblock_mark_nomap() as needed.
+>    - Call the region specific initialization function for the region
+>      using fdt_init_reserved_mem_node().
+> 
+> 2) If the node represents a dynamically-placed reserved memory region,
+>    i.e. if it is defined using "alloc-ranges" and "size" properties:
+>    - Call __reserved_mem_alloc_size() which will:
+>      i) Allocate memory for the reserved region and call
+>      memblock_mark_nomap() as needed.
+>      ii) Call the region specific initialization function using
+>      fdt_init_reserved_mem_node().
+>      iii) Save the region information in the reserved_mem array using
+>      fdt_reserved_mem_save_node().
+> 
+> Step 2:
+> 1) This stage of the reserved memory processing is now only used to add
+>    the statically-placed reserved memory regions into the reserved_mem
+>    array using fdt_scan_reserved_mem_reg_nodes().
+> 
+> 2) This step is also moved to be after the page tables have been
+>    setup. Moving this will allow us to replace the reserved_mem
+>    array with a dynamically sized array before storing the rest of
+>    these regions.
+> 
+> Signed-off-by: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
 > ---
-> Change from v3 to v4
-> - add ? in end of pattern to allow mdio{}. not touch mdio-gpio.yaml.
-> 
-> Change from v2 to v3
-> - update mdio-gpio.yaml node name mdio to mdio-0 to fix dt_binding_check
-> error foud by rob's bot.
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mdio-gpio.example.dtb: mdio: $nodename:0: 'mdio' does not match '^mdio(-(bus|external))?(@.+|-([0-9]+))$'
-> 	from schema $id: http://devicetree.org/schemas/net/mdio-gpio.yaml#
-> 
-> Change from v1 to v2
-> - use rob's suggest to fix node name pattern.
-> ---
->  Documentation/devicetree/bindings/net/mdio.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/of/fdt.c             |   5 +-
+>  drivers/of/of_private.h      |   3 +-
+>  drivers/of/of_reserved_mem.c | 172 +++++++++++++++++++++++++----------
+>  3 files changed, 131 insertions(+), 49 deletions(-)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Applied, thanks!
 
 
