@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-94287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B1CB954C44
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 16:21:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F60C954C51
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 16:25:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A85D61F271E4
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 14:21:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F16A1282C95
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 14:25:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D13E1BCA0A;
-	Fri, 16 Aug 2024 14:21:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DEDB1BCA0A;
+	Fri, 16 Aug 2024 14:25:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="guwriQEW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NwDejNxY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F6591BC083
-	for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 14:21:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C97A1BC083;
+	Fri, 16 Aug 2024 14:25:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723818070; cv=none; b=LcHhDpWHxZ/xjq8RJr0ZziYeZuDvkmjIX94h8XTIJHHDyYfBCVDyXWGhBiCS6o56dn3/31nCI6mcN9I2HAGElIn+RIkZ0EKtbrZnZFailkBY5QombiJF7yCicZR9QLmen+oHZaPZJhwPWGysMpEFt2aw40XdCLYzLgO+vO0vSIU=
+	t=1723818352; cv=none; b=lenmJcHLaqZc0LR//BaJh5Imoa+GO05lKW2nVVRSENXCBEf+os5dLxU0XAaVQen2GPfmnH6bILh0m89bifF/YVJpXGCuPZ9HBFskyLNZRdKgv98EzNcCioGaCkMiZ+67XaPJ33DyM1x+Wjfd784/rIxOKzJWN/MzheMJy8U63PI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723818070; c=relaxed/simple;
-	bh=LYIvL2aCKI6DvgZCGVQrwv1dVzMR+ddvSaY8gJtRBqY=;
+	s=arc-20240116; t=1723818352; c=relaxed/simple;
+	bh=PGPKe9Z2HXEC0gw5dqeKqhDeaAxArswdRASSszm5pnA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ATL+9a+oUJfqpp7iuAHtZgBPy2ZyBSvVvGx0C5HG6JbmJjzpZ5sOL4a4hCjh47xbPZw98WcbLi8Lc2GF65ltMPMrZGwFiLh1ZnpuE0zNeaZOE6t4WVxVLw/RS2Zls28F+6KbvJZEPuHBoo3F+Ia/0IIaXfdsn0IAmRS+hNuJj0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=guwriQEW; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-429e29933aaso14308815e9.0
-        for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 07:21:08 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=giLzPSUgu78BcWx/kgkFtIEQsvbdiDSAMnye+1AJExjRBoty5OoD9S1LoNa9XdK+1RpaICKwJyy/02CpF5eZVeo4F7uPjo1CwC05OL3wB6gZfjIOJR/ki5mQd9lRP20JxSk6o6YyefBNZvZmcEbYYeY7zf4BZdRq3LoQFxotu24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NwDejNxY; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-52f04b4abdcso2583307e87.2;
+        Fri, 16 Aug 2024 07:25:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723818067; x=1724422867; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1723818348; x=1724423148; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=pX+qhgpFaUEMlgLNTLJN0UUFwlGpHiwB1h8EJe7S0iI=;
-        b=guwriQEWRhP6J/eDfXBpNuhe7zBqa5kMEfJpO8+SxhXPgVVFXTIzH/B23dEONu1hcV
-         0iAknge0J68AqqBXUcFEL6LjmeEs0BLdq3sugz4X+kWdd3580HtjgSOV9Uv0MJpB6Xpz
-         StWA9SDHKexje9ECvaZ5JCsbgSHYzp98ZWawHTautY+fMtZZs0zeumPkAHwJULJs2txK
-         fssszuQoP2KGkVIdbY7HGSIGX3ZmtzI5fTShFwtyP0p6+v9TN2/yPcUdJVLxB+OqcVul
-         rTkyMDYCHNOHIag84mn2T8GZxukyssLg0tLwI2XEHKx93SoX1HXAGceTMqfL/emenOov
-         iGFQ==
+        bh=18z5iNYHQLy9IQXidEg4MX75zOC+06viB9VWsJ8MHWg=;
+        b=NwDejNxYHIV/tLd6M2WnTfvnMHKxhcDG7N2LmdbD7aDuYFGh/xY2QCTRQmkxyRQNgf
+         3WvYPRNQwpQyv1CNgu2EpHp9qMLBhkOsQjhHQU3FmTVzrjBQkREr8GCoS4mGVWBlMDRy
+         E9Lqu1a3FSe65MeaxxYAFTzMSyN79xUGqho1MggV/94T+H2h1yhi/D/rGtS0xjG8/b9J
+         mSksL8gmSOVfgiMD+0Re0S2uMyV9Qfu3BtVBps5K9cO4k/7kOz1jZeupUxk7lpaLYDHG
+         CNgVWlVY0j6dMAdXQQ3Rl+LaoZPOfNvd+++LJRlEvvrzhwHf5KruevifqhtpZHl1SL9d
+         C+wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723818067; x=1724422867;
+        d=1e100.net; s=20230601; t=1723818348; x=1724423148;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pX+qhgpFaUEMlgLNTLJN0UUFwlGpHiwB1h8EJe7S0iI=;
-        b=ZiSLXPpVhkNsM4vOJHZXjCsH70GTyx3Uj9hb6zkbuR3W0ebxhXopsjGbmTC6erE3ho
-         GkiuZr5Uul8Z/aYu6Nek2MwbcXzRQAh4ze1M1QH93UCGTdfEWXnZ6YD26h2BR9aqA0ZW
-         TkKIarVqhFYtBu+uDjlY6Zm7Rq3iRxWKi0Ehy/EsX78kZboFrdElrQOcXhMlt8lvO5A1
-         KIpJYAqIhRkM2HpsXad9Ft0jRFUF1Dq40oyg4xbFTqcWKrXcFOKTQYx0ol/X88G3/iyV
-         KQGcPxqkXxBMoW/M1/lXz/JAYv1slrvVlIzUo0VF7H7lOlu/uxrwf8akId7hBbIL/kW9
-         Kxuw==
-X-Forwarded-Encrypted: i=1; AJvYcCUjdiq34rtOBqwoQ6+IKKnAUaCvdlgMFgJk26RUbRh9kVQPatoYbzgyAp3stoVGtRxADPjL6O0qkt0TLoSRBhxfl+Eo1jELWp474w==
-X-Gm-Message-State: AOJu0YwtzmAIC7kWZwf7Gk/a66XsLtWujXXlJujkAGc/XK97G3hFA9Jd
-	bJj/MUh/trI2U8HRtScVDbffJtdn8YPQCJYDRazvVNGVAJjJQi9HTZLSkBteSd3R2fD7qMQ7iUQ
-	3
-X-Google-Smtp-Source: AGHT+IF86Kn2yd17AhLJ6H/eJJ9YsESRDoCf+PYPIgA5eUrMMA9HT+lbZuCMhOOf+lIzMbKsxJjweg==
-X-Received: by 2002:adf:f2c5:0:b0:371:7cd1:86e5 with SMTP id ffacd0b85a97d-37194314fa2mr1727789f8f.8.1723818066623;
-        Fri, 16 Aug 2024 07:21:06 -0700 (PDT)
-Received: from [192.168.0.25] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37189897034sm3756413f8f.67.2024.08.16.07.21.05
+        bh=18z5iNYHQLy9IQXidEg4MX75zOC+06viB9VWsJ8MHWg=;
+        b=X/bEgm3qeG3k1hGv5A+zsb5uVLdKQf/ZIEVkextz7iY2651ZkeC1zmlULDcplDvoU3
+         7kzNVn9sk1dMQLJxFqWuXoRg0GmnN7JU/qb5ZO5cIBExAlRa7aDfS7o4vunSGq1cgmTZ
+         y8XYOeF9N/THMWJuLiWqe5P1u4hCVXTGilmU4UPq/3T3oUoCgfmxcnMlHnOxOX3TzD4b
+         FNs16/3mOsjOvHw19NXztLCN4QoQYmygs9FM0tuVSzgYP50xuYfajh+l51cPAlo/IXjx
+         r6TJZkz5QxJmOvnYRJ1wj9zcsTt1B8fdJuCDnhlETEvutcpxkEKJzzrCqcxheFBeP4U5
+         U+dg==
+X-Forwarded-Encrypted: i=1; AJvYcCUGtbVVRRWtZgxU6iygSStJW5Y5okxQsDU05Pg9KkT96+F4BSqEGA04bG+EIKMC0yjEZb0z9bGrgak+s9N5L5sncsU=@vger.kernel.org, AJvYcCUjXaYdqmwCCXNG6q1Z7QmPzIjmRbtk85a/9vqR1GsMl/GziSvO2YDTEtmZ/c+EKuBlRr/NJZu2TpcL@vger.kernel.org, AJvYcCV3KHsylzKR5UNMJMCDxv5SOKW6B5itx051hZ8CTnidv0jH5NwTG6lER1YupqvKOucyob+NQGWPOTA=@vger.kernel.org, AJvYcCVo3HYiQ0x0VwyxMMdpoElQGm1/fVkt2rhdhe45BcD/txZ8kVsLaMQ5dkKwUu93zV4xoiTn8pYJz0XZ1yoO@vger.kernel.org
+X-Gm-Message-State: AOJu0YxxbQ1RPpshXJeisXgJloQog5loK8LNiQibjxhUFjCz01dfckr1
+	+e5KtfoiOuaWbYx0Wd2OgeKiSQoLFcw1YMfRUDoEEp4ldnnyY7YqO248sQ==
+X-Google-Smtp-Source: AGHT+IHwlZ63+TDjPwfyTB1uqKHtWzOZKBvQ7+La0DArb8wjIj6kPTSWKuM2IfOtSlb+ALHVhWRtGQ==
+X-Received: by 2002:a05:6512:220b:b0:52e:9b92:4999 with SMTP id 2adb3069b0e04-5331c690ce0mr2188241e87.2.1723818347989;
+        Fri, 16 Aug 2024 07:25:47 -0700 (PDT)
+Received: from [192.168.0.124] (ip-31-0-120-26.multi.internet.cyfrowypolsat.pl. [31.0.120.26])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a838396d5eesm262532566b.225.2024.08.16.07.25.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Aug 2024 07:21:05 -0700 (PDT)
-Message-ID: <a1aae525-4d38-4520-a6c0-0905f87922fc@linaro.org>
-Date: Fri, 16 Aug 2024 15:21:04 +0100
+        Fri, 16 Aug 2024 07:25:47 -0700 (PDT)
+Message-ID: <021f5a99-bbee-4d4c-b36e-49339030b869@gmail.com>
+Date: Fri, 16 Aug 2024 16:25:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,42 +76,53 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 12/13] media: qcom: camss: Add CSID Gen3 support for
- sm8550
-To: Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+Subject: Re: [PATCH v4 04/10] power: supply: max77693: Set charge current
+ limits during init
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Chanwoo Choi <cw00.choi@samsung.com>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, linux-pm@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- kernel@quicinc.com, Yongsheng Li <quic_yon@quicinc.com>
-References: <20240812144131.369378-1-quic_depengs@quicinc.com>
- <20240812144131.369378-13-quic_depengs@quicinc.com>
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht, Henrik Grimler <henrik@grimler.se>,
+ Wolfgang Wiedmeyer <wolfgit@wiedmeyer.de>,
+ Denis 'GNUtoo' Carikli <GNUtoo@cyberdimension.org>
+References: <20240816-max77693-charger-extcon-v4-0-050a0a9bfea0@gmail.com>
+ <20240816-max77693-charger-extcon-v4-4-050a0a9bfea0@gmail.com>
+ <9dbaacdb-5f9c-48d4-a56a-a19ca8809344@kernel.org>
 Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20240812144131.369378-13-quic_depengs@quicinc.com>
+From: Artur Weber <aweber.kernel@gmail.com>
+In-Reply-To: <9dbaacdb-5f9c-48d4-a56a-a19ca8809344@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12/08/2024 15:41, Depeng Shao wrote:
-> +#define CSID_RDI_CFG1(rdi)		(0x510 + 0x100 * (rdi))
-> +#define		RDI_CFG1_DROP_H_EN		5
-> +#define		RDI_CFG1_DROP_V_EN		6
-> +#define		RDI_CFG1_CROP_H_EN		7
-> +#define		RDI_CFG1_CROP_V_EN		8
-> +#define		RDI_CFG1_PIX_STORE		10
 
-Hmm - is bit 10 valid ? I'm looking at a register set derived from 8550 
-and don't see it
 
-> +#define		RDI_CFG1_PACKING_FORMAT		15
+On 16.08.2024 11:54, Krzysztof Kozlowski wrote:
+> On 16/08/2024 10:19, Artur Weber wrote:
+>> @@ -732,6 +794,15 @@ static int max77693_charger_probe(struct platform_device *pdev)
+>>   	chg->dev = &pdev->dev;
+>>   	chg->max77693 = max77693;
+>>   
+>> +	psy_cfg.drv_data = chg;
+>> +
+>> +	chg->charger = devm_power_supply_register(&pdev->dev,
+>> +						  &max77693_charger_desc,
+>> +						  &psy_cfg);
+>> +	if (IS_ERR(chg->charger))
+>> +		return dev_err_probe(&pdev->dev, PTR_ERR(chg->charger),
+>> +				     "failed: power supply register\n");
+> 
+> This code move is not explained in the commit msg. At least I could not
+> find it. Please explain why you need it in the commit msg.
 
-Bit 15 selects either BIT(15) = 0 PACKING_FORMAT_PLAIN or BIT(15) = 1 
-PACKING_FORMAT_MIPI
+This is done because the call to power_supply_get_battery_info in
+max77693_dt_init requires chg->charger to be set. (I was considering
+putting this in the commit message, can't remember why I didn't do it.
+I'll add it in the next version.)
 
-Please give this bit a more descriptive name =>
-
-#define		RDI_CFG1_PACKING_FORMAT_MIPI		15
-
----
-bod
+Best regards
+Artur
 
