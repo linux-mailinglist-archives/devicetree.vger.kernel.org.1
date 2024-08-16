@@ -1,168 +1,130 @@
-Return-Path: <devicetree+bounces-94169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E13E95438F
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 09:58:36 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 964C295439F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 10:03:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC5342847CD
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 07:58:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A47CB27844
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 08:03:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F605135A79;
-	Fri, 16 Aug 2024 07:57:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D83412F398;
+	Fri, 16 Aug 2024 08:03:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f1XR5SrA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bP8I5jpJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B469712C465;
-	Fri, 16 Aug 2024 07:57:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5968977101
+	for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 08:03:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723795067; cv=none; b=ErhzussS7r+vLMK5p87HcIN4F1FEL6/2Xnk9kgXr3prCA9sYcRHu15te+6L2nP/IIoakajh8wiw+gs+09xjQZ57v8JOfVfR0pFGXk9bJhi8P0BNEgfcuSp+dgvx2F8DQr/qTd0Uxgd41EgG01Mu+ccb2zLHbTVWmREj3HjqhtaM=
+	t=1723795409; cv=none; b=av6afas5cBDMGBPFbw4Squ61MI1HiK0Y0GS4NjHjNiTavh6PaQxhnXNFofr55FIbSuAMbpSmkj47BxeksIgPGpnqUjqot38m3JhjwLVLR2hhkf8qRQ70tcNktJRgAc+IGPjxlO6Yer7flun0RS76mwiLo+FLZGVoVE+P7kPXSOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723795067; c=relaxed/simple;
-	bh=G2jlt/Zahw0uvrixwlEmuFXlOjRYk/7lnomRN/YsPXM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YGC3JivvGIP49rv0+L/+mcWCaLlezD9kF/KawlvP2z3L7WMPfOMwv6EutTkwbNICmhzH6Hce9INF3TUgbcBGMZn8b7danMC/pl/1MOJiKueAAT+EblNfEqoYHxjyViVcm+nMsDhB7WdAQfLNRlXkzzT8GKrG2wPbBIP8zU/BhDI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f1XR5SrA; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4281ca54fd3so12131835e9.2;
-        Fri, 16 Aug 2024 00:57:45 -0700 (PDT)
+	s=arc-20240116; t=1723795409; c=relaxed/simple;
+	bh=lI5qZml5n8D8uMwE0Gj7rF8DkdSGFNzLx4uvrXbdiXI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NJnkZuh+MqXJ2OI+VZ3Iy8vMcW/v4/oaBol6iWPKzjbRVJ492B/OCeG4OlL5k3VvbN0A2gEbcp9QJlN7vPuVOoWGsjun2J/R4UcKvohoeOl1o/feu2dZ12Wv/WYf/wABfk3H5JQDDPDkq1K8Db4AfbCm2EQSeiui3sk3Y4lFP8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bP8I5jpJ; arc=none smtp.client-ip=209.85.128.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-661d7e68e89so12843747b3.0
+        for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 01:03:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723795064; x=1724399864; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/hpKq9oPj8Y9788s3d9UlaZGkOn+HemVqrY+6SPwvT8=;
-        b=f1XR5SrAARb0vevCMsfMTiYW3uAcFQ+tOUx0vh4JMe1ia+SJKQaVf4kMCzc1MKMysv
-         WgwJDhr+KA4qQKnGRfGchC9E4gm+fU5giRCZiF8nLgFDh/T7T1t2O5y1BcfXWNG0vljD
-         FlBlRwJd9Eoubey6rTScGI4LmZk/Z8h4bCmjP+GSG6QrBaOUlyIOJd4EYEcs+8Y/3v1x
-         zGcWl3l5KFJHSFq2oXmGN/+PYQHGa0O43sQ+q58FhIDnQUp3T8E3pMoaE5QcYPqTcKjP
-         +Ypd6tpzjP75d7a3awng93gS3pnBI1cIiwOoClrvfaksc5vppf7czKNZF/unQpLujUy/
-         VZ5g==
+        d=linaro.org; s=google; t=1723795405; x=1724400205; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VR26oQJGUDskARtTbfBCHHqlsRCVMlxxfj+UcLee/2U=;
+        b=bP8I5jpJwTljTyhANzKDsbOWZsQP9Zv9UwSRLL3QUkWHASY06wOrx+rehc9WxYlTY1
+         jV4ok6R04I+e1HA6fgHrLzj97ZbRlcgXMQ3E8/Bcraoj3ucA9weKsA22uqh8UHJqejb0
+         PKUMEnWFqPoBX5PTvtkTxDU38iAMzdpnCK3dD42p2nQAT2RVpQGJN7fMB8Jb0CJeHYby
+         WgcXGkz2Czgw5sla0DkrtciX/jkl1QPMld/PUwlkmmgqiEtwCf+ws3TSvnbFgOIF+SA/
+         DOgYcMY74+wHGHcMJrVZOBiSMFxht0Atu0dmx6wobj7KPrHfLcj9yyAKbJ2oKejAeOQu
+         phGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723795064; x=1724399864;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/hpKq9oPj8Y9788s3d9UlaZGkOn+HemVqrY+6SPwvT8=;
-        b=XVRIHJgGa1Wa7sND2ViKfB7N4N9JTMiSnddpR9LAs+iXTpUK1cNWNEx0z/Krvl80Xc
-         wGgo1mUuixMRYNHkGMto+LqdS1I3LVjEoxSrjwTjpfow2DOCb4vgcqIlgdXCFntpH4D5
-         Rn+HcG8Io1WyjUHBzlrpWHkMsXLQWAQ/4MJoepGmR2ZLTHeJ36sLoWXzIfNfXs7S5C4y
-         sctx064YDeZCwTVl6TFRYqx8j8lBDPbOEJxIzsD5CUW0DQfhov+btgQXpa0p6ONMWiij
-         mORXARD324kWGIw6/tgvc75Cq5ypHWIi98GA2lsDLcaUEIxAbfx3jvdMWcTllGIXw11M
-         6zFA==
-X-Forwarded-Encrypted: i=1; AJvYcCVsB9+MemBkUa00JjuJjg5tMOvfPoG7DAxCPMvDmsii00/Cf/3r1FKEdOALXZ6uWffrByPgUWsm+2zKx1FXurrHwJdSpr5QOZHKnTrZeZFYUSK6QkbswMTuwquXDx77DwsV5DoyGGzAtJWWbfySs7mTXOdYZIDssKaFOiExKlkiF44jiDHzlmhaNH2WyA==
-X-Gm-Message-State: AOJu0YwvDphb9pgP+BaT+NARhU8eVVDIZ3XUptrID79ikwkHQKYUXMzG
-	KHkJ3Kaiu33ptoNLxXCZrLBZIXyFzi8a2RCsFLcEqW6LMA7DbAKG
-X-Google-Smtp-Source: AGHT+IFkYuIDGhTHJIU5UPzFH2tdVmRDBc3T9L7x3l6nhQIU5VxzrBn2oDAa71sjqZDhgmvmU0RlLw==
-X-Received: by 2002:a05:600c:1e0c:b0:426:6f17:531 with SMTP id 5b1f17b1804b1-429ed79dda1mr13171385e9.13.1723795063630;
-        Fri, 16 Aug 2024 00:57:43 -0700 (PDT)
-Received: from [192.168.252.55] ([37.30.8.221])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-371898abf2csm3022392f8f.107.2024.08.16.00.57.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Aug 2024 00:57:43 -0700 (PDT)
-Message-ID: <8513b07f-ed64-497e-9881-3666983154ae@gmail.com>
-Date: Fri, 16 Aug 2024 09:57:40 +0200
+        d=1e100.net; s=20230601; t=1723795405; x=1724400205;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VR26oQJGUDskARtTbfBCHHqlsRCVMlxxfj+UcLee/2U=;
+        b=oHnSwPe45pipFWvdupPBwAK+0wl/vqXRwC3uVR0STT3tVnfbMiiM6RtjIgxwIkHZT1
+         86v1GKxTjhfDX4C1I3cANF6KYIyUtaoe6QSIzakhPrUDJvbGq2ybyp9J/LUkC3fHt+6x
+         yzr8nllNwYp6Sfx8Su1VbzOa/CApuNCrQIvQrT5wJtegjj5vDzWdHTheNviQ49Ew/UWW
+         TbRwR8ksxQvN8mugAxwMvm50srelvLzCHZMos1VU+njYE4EahFQnAXhSRYYOJKazphCZ
+         IDvVP2+irTCLTDjrqKeW7xSuHmo8SWqzAUqJmzZro19cdo+oUKcPYGXOz0GydgOEin1x
+         r6Yg==
+X-Forwarded-Encrypted: i=1; AJvYcCWidwIxCND5+/dJrHKlIWVz+DSFEIKIy7SfmlgFtgx4Wecb9ADoW3+2urRHsaSyjWCjRt4y7N4eLxwu0A/bPDIhffqrcM7VufW48w==
+X-Gm-Message-State: AOJu0YxiVqXdApIeQPmlp2cpgpzqZkbuQE0EbT86ZhJ1RbFxYL3P7u03
+	pxmd2/BDo/Si3RGlulJMrX4QGphWD29ytSu+DK2o7ESDkboeTXo56TUPaG9EbMUHFZTKKrinTiq
+	40TudtftWEylcdeW3+IGehT3xBUQd6cIiI4W1kQ==
+X-Google-Smtp-Source: AGHT+IFPXaGhgnB1O38F+OQxY8qufXLZWG9hoZgdNA43kJdPxtWrN+zVXWCoEb1vrisLWBNqibFhFqz0HaYdqSO/ADM=
+X-Received: by 2002:a05:690c:397:b0:6af:a6aa:2b59 with SMTP id
+ 00721157ae682-6b1ee4e050emr14403077b3.5.1723795405222; Fri, 16 Aug 2024
+ 01:03:25 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v2 1/6] ASoC: dt-bindings: midas-audio: Declare
- required properties for GPIO jack det
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-sound@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20240816-midas-audio-tab3-v2-0-48ee7f2293b3@gmail.com>
- <20240816-midas-audio-tab3-v2-1-48ee7f2293b3@gmail.com>
-Content-Language: en-US
-From: Artur Weber <aweber.kernel@gmail.com>
-In-Reply-To: <20240816-midas-audio-tab3-v2-1-48ee7f2293b3@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240810211438.286441-1-heiko@sntech.de> <20240810211438.286441-2-heiko@sntech.de>
+ <172340442666.7060.12608274118090495917.b4-ty@linaro.org> <12584345.NizCu2HIMA@diego>
+In-Reply-To: <12584345.NizCu2HIMA@diego>
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Date: Fri, 16 Aug 2024 10:03:14 +0200
+Message-ID: <CACMJSesFVdJDkJXyC4o5NZxeDB8kkg6Ks0_x6G1Bywr+_ONZVw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: eeprom: at24: Add compatible for Giantec GT24C04A
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	ukleinek@debian.org, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 16.08.2024 09:50, Artur Weber wrote:
-> GPIO jack detection requires an IIO channel and the detection threshold
-> to work. Explicitly declare the requirement in DT schema.
-> 
-> Fixes: 0a590ecc672a ("ASoC: dt-bindings: samsung,midas-audio: Add GPIO-based headset jack detection")
+On Thu, 15 Aug 2024 at 18:48, Heiko St=C3=BCbner <heiko@sntech.de> wrote:
+>
+> Hi,
+>
+> Am Sonntag, 11. August 2024, 21:27:13 CEST schrieb Bartosz Golaszewski:
+> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >
+> >
+> > On Sat, 10 Aug 2024 23:14:37 +0200, Heiko Stuebner wrote:
+> > > The gt24c04a is just yet another 2404 compatible eeprom, and does not
+> > > follow the generic naming matching, so add a separate compatible for =
+it.
+> > >
+> > >
+> >
+> > Applied, thanks!
+> >
+> > [1/2] dt-bindings: eeprom: at24: Add compatible for Giantec GT24C04A
+> >       commit: a825dea2cd27a30e49816f18b7bc16545d5f0f89
+>
+> just for my understanding, where is this commit living now?
+>
+> Because linux next seems to know it [0], but also says that
+> "Notice: this object is not reachable from any branch."
+>
+>
+> Thanks
+> Heiko
+>
+> [0] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/c=
+ommit/?id=3Da825dea2cd27a30e49816f18b7bc16545d5f0f89
+>
+>
 
-Sorry, looks like the Reviewed-by tag from Rob Herring[1] didn't apply:
+It lives in my kernel.org tree[1]. You can get that information from
+the MAINTAINERS file.
 
- > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Bart
 
-Best regards
-Artur
-
-[1] 
-https://lore.kernel.org/all/172235554875.1349313.9208770866983277057.robh@kernel.org/
-
-> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
-> ---
-> Changes in v2:
-> - Use anyOf instead of oneOf in headset-detect-gpios/headset-key-gpios
->    if: statement
-> ---
->   .../bindings/sound/samsung,midas-audio.yaml        | 29 +++++++++++++++++++---
->   1 file changed, 26 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/samsung,midas-audio.yaml b/Documentation/devicetree/bindings/sound/samsung,midas-audio.yaml
-> index 69ddfd4afdcd..5483421a6fd3 100644
-> --- a/Documentation/devicetree/bindings/sound/samsung,midas-audio.yaml
-> +++ b/Documentation/devicetree/bindings/sound/samsung,midas-audio.yaml
-> @@ -9,9 +9,6 @@ title: Samsung Midas audio complex with WM1811 codec
->   maintainers:
->     - Sylwester Nawrocki <s.nawrocki@samsung.com>
->   
-> -allOf:
-> -  - $ref: sound-card-common.yaml#
-> -
->   properties:
->     compatible:
->       const: samsung,midas-audio
-> @@ -102,6 +99,32 @@ required:
->     - mic-bias-supply
->     - submic-bias-supply
->   
-> +allOf:
-> +  - $ref: sound-card-common.yaml#
-> +
-> +  - if:
-> +      anyOf:
-> +        - required: [ headset-detect-gpios ]
-> +        - required: [ headset-key-gpios ]
-> +    then:
-> +      required:
-> +        - io-channels
-> +        - io-channel-names
-> +
-> +  - if:
-> +      required:
-> +        - headset-detect-gpios
-> +    then:
-> +      required:
-> +        - samsung,headset-4pole-threshold-microvolt
-> +
-> +  - if:
-> +      required:
-> +        - headset-key-gpios
-> +    then:
-> +      required:
-> +        - samsung,headset-button-threshold-microvolt
-> +
->   unevaluatedProperties: false
->   
->   examples:
-> 
-
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git/log/?h=
+=3Dat24/for-next
 
