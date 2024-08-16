@@ -1,127 +1,119 @@
-Return-Path: <devicetree+bounces-94274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9244954ACD
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 15:12:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0296954AF8
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 15:22:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEC952826AE
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 13:12:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 470DEB2250F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 13:22:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 640971B8E8A;
-	Fri, 16 Aug 2024 13:12:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CC671B0108;
+	Fri, 16 Aug 2024 13:22:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AgUwsk0q"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="2qP+8X4h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CECCB1B8E82;
-	Fri, 16 Aug 2024 13:12:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A4C119DF85;
+	Fri, 16 Aug 2024 13:22:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723813933; cv=none; b=Xg2HLaMW4mjR1CKw2cTLRp032ZSFoQcgZiiT5JdInISEKTTcXJ5CleutTl7nhZ9kbuN2aeTp4wCc7SXBhV3Zwr/jDwUcMb7s9KCj5oUWQGtl//k19uVDsIGA0APp/JrRLQrA6Gg1fm3S7oRJEPk7wBPOZCZWM4qGGJ8uhQPtS7M=
+	t=1723814570; cv=none; b=V7jrDEYWTS00FHz7PMi61xbANIvXxiiLR/wwVNi+qLrGJ10wHAcEGlNbqexmgAJtjtiVmY+brv1zRciNQD7OLiquc0lcrxhimTVcK/HH6Gnz/wKihrexsbLNFkF+e72R29Bj2cSudiTXnnKxV0i6kmSCkj+rYxoFhEwPKFk7yes=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723813933; c=relaxed/simple;
-	bh=f3VvW1x9AE8zbPOdYZnaqga15xc4NxDPHHCmwpRbllA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=hJRtZpWpJFGrCLy9iYAxK7sj/q6gq5zhd+4o8ujTBNYYht5V16ebZHMouUuDwRaJWo9V1RSMUZKQcm8pWYGWm6kbIRJnf9cgPK3+M+Iq+d9WLQpSrqZe65JuRirZbGGoEOtwiibx8rHDHezmociVVdQtQEyAwFK7XFb0Ee7QP+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=AgUwsk0q; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47G5n2RL028234;
-	Fri, 16 Aug 2024 13:12:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	S1qXgCrutNGRZ0TbpRAmVik7WzTuMnv8lm77fOufMS0=; b=AgUwsk0qYoxg2Xf8
-	SgusJCAgZU50oiossuKzgZtF68b82dSkyLWRzacYFAQWnE+vpWFkadSKQ7R+v7w2
-	l2uMruGJHz5H3F71WZvcl8yPb4dVwnKfdBcux3TSWPdtjNKQSB4S9Vvsbk1xuiv3
-	yDgz5eWmu197wK8sQPPFjDWE2rqFZfiqa0wnc1nkjb/odpUqh9snWWjeWswPlh4P
-	SoaNthfYsGGsCucac06uClDCZutjzw0AMh3xZzPPbUhH/qQ7LbrJKUuwUHF6w+sh
-	FF+aJSftb9cJ8zlBrPqgmI2WRkCyUl6LikQuS68bcWNWDV8t6qZY+dXPcBrytCHa
-	EkJ+Iw==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4103wsae6f-1
+	s=arc-20240116; t=1723814570; c=relaxed/simple;
+	bh=JaDfB5LbT2d35GBa/JrhTbYkMKfz5yOQ/gC36nll6rc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WTQZhuQjDLF9V1Kr+PVV7oZqI8UlI8sIthrhrVl+SwjXc+LCdQG+nuXnEvbdkexf+UaG50lMTowiKenDm4GJcRUPdbagXss6uI4mzTRMvD3rHi4RaFZ1cDfwN2yPPXYr5ul58NV/D3QB7GgGOahCD4lDg0ld2+wo28IcgPXvT2c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=2qP+8X4h; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47GB3eOb007662;
+	Fri, 16 Aug 2024 15:22:11 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=N+RTuMITKav8svMSG7///5
+	muEWq1usuZqZIJk8FR7FU=; b=2qP+8X4hjNsGxJRU+OWVK0d8UVu2eovFjrpX+Z
+	H/QIvOD6SFEq/bWnF2oRd3dhXMv03ufJIB9ccAZdxqT7BoodEdJSdqQgvY9wadZZ
+	m/G7d+hxJ/s7GHcEi5ILNt+63N3Hg+Gm0ovK3pa2PyzGTZJqraff6iDXwnlmZ81l
+	D7ieS9LA6RNK93g7NFePZaDTBBfwzCZOuEj5FTHYcCnJSogpWBYOP3IqS0M5eRKH
+	8NsMD+NvbIW8EXYBGYpluzog+Hp2DhAEvPCe5SxhU290DUzFA/+lg5ZN3vyTkmdu
+	iD75bpTPwOPK2Jh7WNjzm1Nm/Yr1ky+kFSU+72ky0Zdga2Aw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4121pns97n-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 16 Aug 2024 13:12:07 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47GDC5ht009685
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 16 Aug 2024 13:12:05 GMT
-Received: from [10.239.97.152] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 16 Aug
- 2024 06:12:00 -0700
-Message-ID: <26504f16-2633-4607-92e5-d01363b85d57@quicinc.com>
-Date: Fri, 16 Aug 2024 21:11:58 +0800
+	Fri, 16 Aug 2024 15:22:11 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 542E940045;
+	Fri, 16 Aug 2024 15:22:06 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C175A25C5AD;
+	Fri, 16 Aug 2024 15:21:15 +0200 (CEST)
+Received: from localhost (10.129.178.198) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Fri, 16 Aug
+ 2024 15:21:15 +0200
+From: Christian Bruel <christian.bruel@foss.st.com>
+To: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+        <p.zabel@pengutronix.de>
+CC: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <fabrice.gasnier@foss.st.com>,
+        Christian Bruel <christian.bruel@foss.st.com>
+Subject: [PATCH v2 0/5] Add STM32MP25 USB3/PCIE COMBOPHY driver 
+Date: Fri, 16 Aug 2024 15:20:52 +0200
+Message-ID: <20240816132058.920870-1-christian.bruel@foss.st.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 12/13] media: qcom: camss: Add CSID Gen3 support for
- sm8550
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, <rfoss@kernel.org>,
-        <todor.too@gmail.com>, <mchehab@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>, Yongsheng Li <quic_yon@quicinc.com>
-References: <20240812144131.369378-1-quic_depengs@quicinc.com>
- <20240812144131.369378-13-quic_depengs@quicinc.com>
- <9c254643-2d95-43c5-98c5-cc6f2866213b@linaro.org>
-Content-Language: en-US
-From: Depeng Shao <quic_depengs@quicinc.com>
-In-Reply-To: <9c254643-2d95-43c5-98c5-cc6f2866213b@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: kwZAyeVd9HiQbOfEMYUBFdK6Nw75MJxK
-X-Proofpoint-ORIG-GUID: kwZAyeVd9HiQbOfEMYUBFdK6Nw75MJxK
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
  definitions=2024-08-16_05,2024-08-16_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- impostorscore=0 malwarescore=0 mlxscore=0 lowpriorityscore=0 spamscore=0
- mlxlogscore=938 bulkscore=0 adultscore=0 priorityscore=1501 clxscore=1015
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408160096
 
-Hi Bryan,
+Thanks Rob for your comments, addressed in v2.
 
-On 8/16/2024 7:34 PM, Bryan O'Donoghue wrote:
-> 
-> Just noticed this too.
-> 
-> You're configuring the CSID routing here for each enabled VC but, you 
-> should only do that once @ the top level
-> 
-> ->
-> 
-> 
->      __csid_configure_top(csid);
-> 
->      /* Loop through all enabled VCs and configure stream for each */
->      for (i = 0; i < MSM_CSID_MAX_SRC_STREAMS; i++)
->          if (csid->phy.en_vc & BIT(i)) {
->              __csid_configure_rdi_stream(csid, enable, i);
->              __csid_configure_rx(csid, &csid->phy, i);
->              __csid_ctrl_rdi(csid, enable, i);
->          }
-> 
+This patch series adds USB3/PCIE COMBOPHY driver for the STM32MP25 SoC from
+STMicrolectronics, respective yaml schema and enable for the stm32mp257f-ev1
+device into which it is used for PCIe.
 
-Yes, you are right, will move configure_top out of the for loop.
+Changes in v2:
+   - Reorder entries
+   - Rename clock_names and reset_names bindings
+   - Rename and clarify rx-equalizer binding 
 
-Thanks,
-Depeng
+Christian Bruel (5):
+  MAINTAINERS: add entry for ST STM32MP25 COMBOPHY driver
+  dt-bindings: phy: Add STM32MP25 COMBOPHY bindings
+  phy: stm32: Add support for STM32MP25 COMBOPHY.
+  arm64: dts: st: Add combophy node on stm32mp251
+  arm64: dts: st: Enable COMBOPHY on the stm32mp257f-ev1 board
+
+ .../bindings/phy/st,stm32-combophy.yaml       | 145 +++++
+ MAINTAINERS                                   |   6 +
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        |  17 +
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |  14 +
+ drivers/phy/st/Kconfig                        |  11 +
+ drivers/phy/st/Makefile                       |   1 +
+ drivers/phy/st/phy-stm32-combophy.c           | 607 ++++++++++++++++++
+ 7 files changed, 801 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/st,stm32-combophy.yaml
+ create mode 100644 drivers/phy/st/phy-stm32-combophy.c
+
+-- 
+2.34.1
 
 
