@@ -1,98 +1,94 @@
-Return-Path: <devicetree+bounces-94296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E8B0954E1A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 17:45:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4731B954E22
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 17:48:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EEEBDB2168C
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 15:45:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B3811C2179A
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 15:48:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C84151BDA9F;
-	Fri, 16 Aug 2024 15:45:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 683721BC9E0;
+	Fri, 16 Aug 2024 15:47:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pvqv5U9j"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gUE4yGhr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 977071BD4F9;
-	Fri, 16 Aug 2024 15:45:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B8114174C;
+	Fri, 16 Aug 2024 15:47:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723823152; cv=none; b=QuZ2xlHUF21XFGZjjkPX6e6zPapMp4utKSTYdVJIwHpJgLQ9nTm56GD+EU/bM+QoikEMASybOMOaA+O8QD37iz0xKg3IDgzcoNDDZ3lIkV6SMD6sOt0IwWAUAlydTn6cJEguwzGbD/2D0qOHgh8Alnlru/PK2sPjlAj+C7oHOv0=
+	t=1723823277; cv=none; b=bFA1JF7gcO3Qjn/2P3h2uR0KheD4mBLQ2kRG9QUZKaTrg2A/uVrpoIXZ9WIV853gnfUUwy2wnqtnfP/qhNzyCEtdhqLWbTrWKnUFAOPgPWsf5eEbUERBEy3H2Ai74D7P6B+txWoaRq1RSTXCJINFwQTIL8MTQ1uTN0vgCTA7+xs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723823152; c=relaxed/simple;
-	bh=k60ptvcyhSt0uzzj7CjZLlBOJLU8RKW2PArwUoO+w4o=;
+	s=arc-20240116; t=1723823277; c=relaxed/simple;
+	bh=cjjQbNSGoF8tYAlgI8RRRPY7ZAEFjQE8hO6yKKBy4LE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jBqb2IvGfpS5OLel+kriT6j14bCfh9+qXsSee5My7NOySsArl1uT6UQX3DuR7oMZkBM6YSTlvMqGPLvB+58BtgO2oN91A9S8/UiymV6tAOrbyD5HMgQ9YLAEl+zbtPilevLW3xOIVkxYPpuvSVe/U0kvNQvz6bZnEhH3h/bscAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pvqv5U9j; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0479C32782;
-	Fri, 16 Aug 2024 15:45:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q8Mj85af45h1tWNoarsu/Q0K+n2v9EeF/K1nZwhd6NF76QoiKHs7utcV9tB/24QCFuXb6ez6cW+I8psYYlNiEsdQj2HgiV0pvuN437QuLBEK//fACadUf9c+kGwbzs2spg8/fiukXLVp3XpEuU65s8D26WyBh49P8yRpdxXWsNs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gUE4yGhr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1A1DC4AF0B;
+	Fri, 16 Aug 2024 15:47:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723823152;
-	bh=k60ptvcyhSt0uzzj7CjZLlBOJLU8RKW2PArwUoO+w4o=;
+	s=k20201202; t=1723823277;
+	bh=cjjQbNSGoF8tYAlgI8RRRPY7ZAEFjQE8hO6yKKBy4LE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Pvqv5U9jTHHhqoF83Kfat79hnD/YVywjq+W1UhlPQ0AtfiikJt6I4l4IdRE6vLKs2
-	 Hqa6u6SkQKtIyyxcUt2ymEI5A0rvGgqHh88JDTj/bI2YLgRbejZlTD8LfMHWJ5TUcJ
-	 ZtzRXmAWPkP7v13IKG6ne2Zsa7nHLjdA3i/WFiymcLf6CcCCxtqDFTNh1EAHJ9kD8w
-	 o0UHS7nz98kPB3qw/MFnOpgc5w79qMfX7XSYPmpTiAMg88+ZXwPIDskRvP+QXiSb78
-	 UULmxk6L5g/jukeOVjAb+gj8Xn8L7dYCuT/5BrDBsYpp4wk//vEpCEEwYA+0vF0gVP
-	 CKb7tlU98242Q==
-Date: Fri, 16 Aug 2024 10:45:49 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Md Sadre Alam <quic_mdalam@quicinc.com>
-Cc: Caleb Connolly <caleb.connolly@linaro.org>, vkoul@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org, 
-	thara.gopinath@gmail.com, herbert@gondor.apana.org.au, davem@davemloft.net, 
-	gustavoars@kernel.org, u.kleine-koenig@pengutronix.de, kees@kernel.org, 
-	agross@kernel.org, linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org, 
-	quic_srichara@quicinc.com, quic_varada@quicinc.com, quic_utiwari@quicinc.com
-Subject: Re: [PATCH v2 00/16] Add cmd descriptor support
-Message-ID: <3vfiwr4uwaejksihd32qb7ryf3euts6urjfqwzhptkivpvo5tv@u4l2mkuoh3ln>
-References: <20240815085725.2740390-1-quic_mdalam@quicinc.com>
- <f341e9e9-3da6-4029-9892-90e6ec856544@linaro.org>
- <21fa1207-be83-ffdc-deab-81c070bb94c7@quicinc.com>
+	b=gUE4yGhr6y+SLAvslevG6KUs4g5ltrPp9Xt8MybU//UGN3BXnpQgSJG/D05GBNkHa
+	 vbxubSO3cOUUaAr32eP/wiNCtNZMoFBahqhs7lewhWboc9yS40KPbG6a5h3cpPC7iD
+	 WbE6JL1lUcA/M8/gNK+7iMoDp/s9nwKv3PvKczBZNAD4nykHMJiZJJmAFEYBKkaVTs
+	 1yaKz8lKvcWjcZT34nV14+utfYMS7In0/hSFj4R1Zny7XyBiJLtadJqEXcoCIyWsIH
+	 F/XkUehZd5ylC1aDXgkK+v9q83yeLULOd4pWZIKILvdx1Pe6q2oFUf2IvYNHfloAF6
+	 jdQnrw3RL5HTA==
+Date: Fri, 16 Aug 2024 16:47:30 +0100
+From: Lee Jones <lee@kernel.org>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
+	linux-leds@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: leds: Document "netdev" trigger
+Message-ID: <20240816154626.GC5853@google.com>
+References: <20240708114653.18566-1-marex@denx.de>
+ <20240725085042.GC501857@google.com>
+ <3c8bf807-8a8e-4704-a90a-d77ad3293b57@lunn.ch>
+ <20240801125309.GE6756@google.com>
+ <62cc3d64-c5e4-4af3-90ce-273ece6e8e57@lunn.ch>
+ <20240805135643.GC1019230@google.com>
+ <ed20f083-90e1-406c-bcda-f9fc92807278@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <21fa1207-be83-ffdc-deab-81c070bb94c7@quicinc.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ed20f083-90e1-406c-bcda-f9fc92807278@lunn.ch>
 
-On Fri, Aug 16, 2024 at 05:33:43PM GMT, Md Sadre Alam wrote:
-> On 8/15/2024 6:38 PM, Caleb Connolly wrote:
-[..]
-> > On 15/08/2024 10:57, Md Sadre Alam wrote:
-[..]
-> > > 
-> > > tested with "tcrypt.ko" and "kcapi" tool.
-> > > 
-> > > Need help to test these all the patches on msm platform
+On Tue, 06 Aug 2024, Andrew Lunn wrote:
+
+> > > We could do, but we have to keep netdev around for backwards
+> > > compatibility. There are DT blobs using it which we cannot break.
 > > 
-> > DT changes here are only for a few IPQ platforms, please explain in the cover letter if this is some IPQ specific feature which doesn't exist on other platforms, or if you're only enabling it on IPQ.
-> 
->    This feature is BAM hardware feature so its applicable for all the QCOM Soc where bam is there. Its not IPQ specific. Will add all the explanation in cover letter in next patch
-
-Please configure your email client such that your replies follow the
-typical style of mail list discussions. I believe go/upstream has
-instructions for this.
-
+> > Oh, this 'just' a documentation patch?  'netdev' is already in use?
 > > 
-> > Some broad strokes testing instructions (at the very least) and requirements (testing on what hardware?) aren't made obvious at all here.
 > 
->    Sure will update in cover letter in next patch.
+> A few examples:
+> 
+> intel/ixp/intel-ixp42x-iomega-nas100d.dts:                      linux,default-trigger = "netdev";
+> intel/ixp/intel-ixp42x-dlink-dsm-g600.dts:                      linux,default-trigger = "netdev";
+> nxp/imx/imx53-m53menlo.dts:                     linux,default-trigger = "netdev";
+> rockchip/rk3128-xpi-3128.dts:                    * linux,default-trigger = "netdev";
+> ti/omap/am5729-beagleboneai.dts:                        linux,default-trigger = "netdev";
+> ti/omap/am335x-netcan-plus-1xx.dts:                     linux,default-trigger = "netdev";
 
-I'm interested in these instructions as well, but no need to wait for
-another version to provide these instructions. Please just reply here
-(and then include them if there are future versions)
+Gross!  Okay.
 
-Regards,
-Bjorn
+-- 
+Lee Jones [李琼斯]
 
