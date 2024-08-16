@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-94266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 145F09548B2
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 14:24:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B7DA9548B5
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 14:25:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9436B1F2392C
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 12:24:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBA97284DF7
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 12:25:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 234FD1A4F04;
-	Fri, 16 Aug 2024 12:24:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C34E519DFBB;
+	Fri, 16 Aug 2024 12:25:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u4K44YJF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s7VcAdDm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E829C1991D2;
-	Fri, 16 Aug 2024 12:24:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ECAC12AAC6
+	for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 12:25:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723811079; cv=none; b=Z95qJFx4yBf5hEgGxFyByuTWfvTVsen0x0STNbcwcLRWIOJZQEiip4KZZGP3Wym8FwalP6D10JsKjY69IOXMGaL7+IppneoNoRBCNfUT+Ako9YBRkKdK5ZXeGIp1NANYhCoNZ0OnK1ACP8WdHW6+i6HjKUCa3l8uFDQn7T+AHzQ=
+	t=1723811147; cv=none; b=SEbndoYNxpLNWOCYzfnvM22IRrkTJnHofE0trexEHPPM4fmYrgxz5RRLMLeY2RdVZ1oXgPPYDT5X/5ZVYNx8kpUxYpZL2R94CKr1O1tyic4QgRvYEu4+MqkQvL3J5tInoQ29kEAlcJFQ4/AczHAF5OOTtZf8k1LFeWU/M0g81Rs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723811079; c=relaxed/simple;
-	bh=BHvv3tQ/qH7itDrWANJ9OnwJU3uS5u76IJ2JNjIhTqM=;
+	s=arc-20240116; t=1723811147; c=relaxed/simple;
+	bh=gnwR0pAqsi+OxzW0MzIibaJdVOR8z9KqTz61WOxKnRs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UGCIqot+ixAgCYiOa7rUpnPqrmEP4O8spyEVCd3n3QXX94diWEHZDb3VzlTEjQ4HFPlJnrcNBgxkcTcU/cpFilv4p0gqOmFG4K2NaOw39eNXKm4+PbG64Vhl/woJcZ5EkG3cCmbIiUydpKet1xBNbZPCw5UrCuWCy4QSFC4behI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u4K44YJF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0982BC32782;
-	Fri, 16 Aug 2024 12:24:31 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=DLpPpbICYhFsYYpFZF12q7I68ODH5V8HSOgnsJtZKTzbsnjzOnvo5FBJ8v1J6GboZ9+e5V3+F/KXmKSiQZsyWAQqQcbyh+MuVRy8Bnfx51doRaN6z4L2bT+5F1yGcC22ldOsV171JjuBDh5qBW08nd/kMGR3j7qlOgx36JQ1HZY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s7VcAdDm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF12DC32782;
+	Fri, 16 Aug 2024 12:25:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723811078;
-	bh=BHvv3tQ/qH7itDrWANJ9OnwJU3uS5u76IJ2JNjIhTqM=;
+	s=k20201202; t=1723811147;
+	bh=gnwR0pAqsi+OxzW0MzIibaJdVOR8z9KqTz61WOxKnRs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=u4K44YJF2Qc1nQLB8q3V8ADeGVb2TyoGJv2zIL7cfKS3KqZJ0zkIdMFSYyla2KOmL
-	 hzw162U3RzlB5v4XhilnoFD4feol2Vic/anaTfK7+qHF+2iYG1SjPioz87hgHdRgaZ
-	 aBQC1jy693cWkpivc9o0Nwu0+/jJn5LajFiUd8QeqB/HMYOZTDAjyZjle8boa2Ln7w
-	 pzBF9FfH9LdV2giP2tWEPu5EHGM/tVFegQoRTjaBHDjO588tsEQoCwVCKoklWUwUxc
-	 oM2SvxwuU2r6un731UcP3m+vUF3bqpLjoPATnxZHFKIk0uuNbHT4vNlRfc8OurOf6T
-	 o0yapb+Z50NHQ==
-Message-ID: <b247a843-0918-4cd1-b6f8-66caca3ecae3@kernel.org>
-Date: Fri, 16 Aug 2024 14:24:28 +0200
+	b=s7VcAdDm5vLjYdrm+7BOibAlr9fvf7Tc7WgClQJdeWKvZ+fM/YZVMJQECh/7OPGG6
+	 2kyOB7sB7MkPrdYJfBXYaPB272ud3QwYJI4j8a/LKbtHM4AaRF7iDxV+ealVfMrSqX
+	 eZ/+hjmT86jM25sYImYa6/f7DoePFDZ9mg6/U3EHmgGH6uxWRKa1AOEFD9uUVNHVAs
+	 iciWNEqafZqZdL9x8rPvb8nHMXCAd1fmmWeNj1EEQJecFO9GHq6Dhe1jIJuOOqmbwL
+	 xBlxVqnO33Y5/wLRD2BF6o+BsOwb8wKKwFSwBoQFpChwyJm74oNIEJR68q3b6uFllR
+	 tsFT8AHVIuG8w==
+Message-ID: <6f9994b3-d16a-4bfa-aaf8-ce1c5abde91b@kernel.org>
+Date: Fri, 16 Aug 2024 14:25:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 RESEND 2/2] drm/bridge: imx: Add i.MX93 parallel
- display format configuration support
-To: Liu Ying <victor.liu@nxp.com>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH] arm64: dts: rockchip: use "pwm-leds" for multicolor PWM
+ LEDs on Radxa E25
+To: FUKAUMI Naoki <naoki@radxa.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
- rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
- peng.fan@nxp.com
-References: <20240816080933.440594-1-victor.liu@nxp.com>
- <20240816080933.440594-3-victor.liu@nxp.com>
- <faf56b73-2143-4f5d-8e35-5cfe5f8d72d5@kernel.org>
- <613b4eb4-dbac-48a9-bcdd-79b4e94a7b66@nxp.com>
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+References: <20240816110402.840-1-naoki@radxa.com> <2335200.ElGaqSPkdT@diego>
+ <5667DC6446CBC344+3d442915-f28d-4d50-85e3-3863e3c7092a@radxa.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,93 +103,42 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <613b4eb4-dbac-48a9-bcdd-79b4e94a7b66@nxp.com>
+In-Reply-To: <5667DC6446CBC344+3d442915-f28d-4d50-85e3-3863e3c7092a@radxa.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 16/08/2024 11:44, Liu Ying wrote:
-> On 08/16/2024, Krzysztof Kozlowski wrote:
->> On 16/08/2024 10:09, Liu Ying wrote:
->>> NXP i.MX93 mediamix blk-ctrl contains one DISPLAY_MUX register which
->>> configures parallel display format by using the "PARALLEL_DISP_FORMAT"
->>> field. Add a DRM bridge driver to support the display format configuration.
->>>
->>> Signed-off-by: Liu Ying <victor.liu@nxp.com>
->>> ---
->>
->> ...
->>
->>> +
->>> +static int imx93_pdfc_bridge_probe(struct platform_device *pdev)
->>> +{
->>> +	struct device *dev = &pdev->dev;
->>> +	struct imx93_pdfc *pdfc;
->>> +	int ret;
->>> +
->>> +	pdfc = devm_kzalloc(dev, sizeof(*pdfc), GFP_KERNEL);
->>> +	if (!pdfc)
->>> +		return -ENOMEM;
->>> +
->>> +	pdfc->regmap = syscon_node_to_regmap(dev->of_node->parent);
->>> +	if (IS_ERR(pdfc->regmap)) {
->>> +		ret = PTR_ERR(pdfc->regmap);
->>> +		if (ret != -EPROBE_DEFER)
->>> +			DRM_DEV_ERROR(dev, "failed to get regmap: %d\n", ret);
->>> +		return ret;
->>
->> Nope, you just open-coded dev_err_probe. Syntax is - return
->> dev_err_probe(). if you need wrapper for DRM, add such.
+On 16/08/2024 13:57, FUKAUMI Naoki wrote:
+> Hi,
 > 
-> Will use dev_err_probe().
+> On 8/16/24 20:26, Heiko Stübner wrote:
+>> Am Freitag, 16. August 2024, 13:04:02 CEST schrieb FUKAUMI Naoki:
+>>> to make multicolor PWM LEDs behavior more consistent with vendor
+>>> kernel[1], use "pwm-leds" for it on Radxa E25.
+>>
+>> sorry, but that is definitly not a valid reason.
 > 
->>
->>> +	}
->>> +
->>> +	pdfc->next_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
->>> +	if (IS_ERR(pdfc->next_bridge)) {
->>> +		ret = PTR_ERR(pdfc->next_bridge);
->>> +		if (ret != -EPROBE_DEFER)
->>> +			DRM_DEV_ERROR(dev, "failed to get next bridge: %d\n", ret);
->>> +		return ret;
->>
->> Ditto
+> I see. I'll not change it.
 > 
-> Will use dev_err_probe().
+>> A devicetree does describe actual hardware and is not a space for
+>> configuration choices. So that whole notion to "match a kernel"
+>> is not correct.
+>>
+>> Looking at
+>> https://wiki.radxa.com/Rock3/CM/CM3I/E25/getting_started
+>> the specification table clearly designates the board's LED as
+>> "RGB LED" - so one LED and multicolor .
 > 
->>
->>
->>> +	}
->>> +
->>
->> ...
->>
->>> +MODULE_DESCRIPTION("NXP i.MX93 parallel display format configuration driver");
->>> +MODULE_AUTHOR("Liu Ying <victor.liu@nxp.com>");
->>> +MODULE_LICENSE("GPL v2");
->>> +MODULE_ALIAS("platform:" DRIVER_NAME);
->>
->> Which other driver needs this platform alias?
+> I understand following behavior is not possible on mainline.
 > 
-> Quote include/linux/module.h:
+> https://github.com/radxa-pkg/rsetup/blob/main/config/00-rgb0-rainbow.conf
 > 
-> "
-> /* For userspace: you can also call me... */                                     
-> #define MODULE_ALIAS(_alias) MODULE_INFO(alias, _alias)   
-> "
+> this is not what we(Radxa) want, but we need to follow the rule.
 > 
-> Anything wrong with using MODULE_ALIAS() here?
+> (btw wiki.radxa.com is outdated, it's not used anymore)
 
-Yes, it redundant. Do not answer with question to the question.
-
-Are you adding random code that you cannot justify? It looks like this
-if you cannot answer why do you need it.
-
-Form letter:
-
-You should not need MODULE_ALIAS() in normal cases. If you need it,
-usually it means your device ID table is wrong (e.g. misses either
-entries or MODULE_DEVICE_TABLE()). MODULE_ALIAS() is not a substitute
-for incomplete ID table.
+Your Radxa vendor kernel and whatever you have *MUST* align to the
+upstream, not the other way. The upstream is the correct source of doing
+things, not the other way.
 
 Best regards,
 Krzysztof
