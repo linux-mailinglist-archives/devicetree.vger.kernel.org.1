@@ -1,69 +1,70 @@
-Return-Path: <devicetree+bounces-94250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA9A19546BA
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 12:24:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C73BE9546BC
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 12:24:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 299EB1C20A78
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 10:24:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83D4A284EB0
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 10:24:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD09718FDDF;
-	Fri, 16 Aug 2024 10:23:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AA59190077;
+	Fri, 16 Aug 2024 10:23:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="ouZk3cDO"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="dGlAOokh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF8C317BED4
-	for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 10:23:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8102517C9B6
+	for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 10:23:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723803837; cv=none; b=s/+gBPeXuVk2/WBy9RqNgOfbicRaQG8MHA/2nWAK91SYTOFP5KX2hisS5geiUr7IikUhT0obLvgsRkkeq9JoMvvEBuR9bbo4+W8YuMV87TdlD0cwK66mniHuDkU+o3YnjxZFTMYzwFbk+IH31zRWHMlhViqDs0svrPBqHcyfwKM=
+	t=1723803838; cv=none; b=um2/0rF228Waq2qb1fh8VYsZMV9K7G/D+fXxp1fHYfyrRsVaJfDX22fDChtYMNwfzKqWOZrw3UOKWgSAUfxMYn29xmPcfxYrJx0tYbzd4P+P84/wau+VTu+STbT+CkGSYlPtbPZNytNuyG8UQj8sJVFxks/hsvBWfd89e/Vdl7I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723803837; c=relaxed/simple;
-	bh=CaJnOyQue3Q9Tu676JMyTm4MNNEAGskyDjAkRRRIYg0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=SM4mx8tPV+kF/t0cMOquIz7n53mAny/DcFBzTj629UAgWz842dMoxBGS0pTDwi/9fMWe22GaHZNgkv4FFUzSPDqpJrQPDnHeOVHf7Oe97Sn1Fo8YywU3spRfbO+Pu0TCrOprFHyfS+e85048kZwrZtwHKfjW1dB8FVFjKAB4pc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=ouZk3cDO; arc=none smtp.client-ip=209.85.128.43
+	s=arc-20240116; t=1723803838; c=relaxed/simple;
+	bh=8xNU6/k4w7gY54c2eh51kl7IfvMiOkBP5NcZ7EtPN3U=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=mP8l0NgP4GFd0/ga/1Mpv1uyoOK1ZfLMVv14fGctpnzZkgf+CGvXps/lCxEqsCfg9tBQp2CVPRO5xYGz09dY4bSu0R5iyqV4jU7IHM/U7RZ8N/mYO9l45In9nczKndZyH7Ec5NPFVyhlJKksGEWPOccOChXWSrw2Djg/cdzqvqQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=dGlAOokh; arc=none smtp.client-ip=209.85.128.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-42817f1eb1fso13138205e9.1
-        for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 03:23:54 -0700 (PDT)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-428e1915e18so12395325e9.1
+        for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 03:23:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1723803833; x=1724408633; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=8cRa80QxztxjicJF5rsAT8pzK6md8mByVXGfDIWdXzQ=;
-        b=ouZk3cDOOHNodxIrDRR/R5l3UsfoMdXWIVb/tAzsl02tpWp0tovuZp+z+TxygB7LtU
-         lplfs0UL1w77wS2kPpVEjQMj3aN/8JU00EAcV/p9uSerJyQ/cuF3wrLtvevO7+F4xRkD
-         v61YwkPaHnbl6okCQPpyTObDhKprMmGLwYHdrDDnMfalqjCvDOXynXr8kC2VScaz7SX+
-         qYwIyl+XSIqXFsQEcjfsfWIBGHr+IfZIrNFPXVYtOV1OYtT0IHPKCGyBPbRv778j32C0
-         UQ5pKpXd8tieAYwl1cWc1q8OWbH3d9kSlrjgOjMbZFW3zf6Gu+WmUK6/PZ49oVgyQKCj
-         kCCw==
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1723803834; x=1724408634; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ac6PkEI7A1RP1coeC4Yj5cZXMittHI8EAxgX8fzSWd0=;
+        b=dGlAOokhY+vYZupl3OK3NwFXfhaVDaoxHS4s7H4WePGx9EN661YCgy+6odESYhUki6
+         HaDKl3h5tjgm+75VeSDALm9T7u1m48PFRW7CU+bhHGTJfuLG1iu0Elt4dMlATlMwD3sp
+         qrEY9uYsLVzzFgJ8pHrKwUf+jjF1KsYB7cIfAUarygoxQvLAnTYJnCLnrQmLOLJ+MPqX
+         Sh4qumibilXIkEw7cYCLNkyJkFb3pWIWqj4kRPrFH0TNxjIjQwtxhHEZw88EhYXYQGly
+         sMRMoqOQiPL4Osw5L2EFi8ErdhxvMElSgWlp6ObHvVibWAbbVe2VSzAIaZ8fDZhSEFMW
+         TWvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723803833; x=1724408633;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8cRa80QxztxjicJF5rsAT8pzK6md8mByVXGfDIWdXzQ=;
-        b=vuhQwGNz/kpU1qo++Vl3dq0mmW07Kpr/P5F9WBC0vwjJsB49HjWhGAI6wcp39MsEll
-         5EDf6ubokKyIouh0d8dJyyuMtkSG/SjeshJqueT8GygZWg9e97ncToAEQPI48FKx8y3E
-         JhQ0G8dtwKkjgzgIbYe8OhvZIrtaaLMPmW4cOtVYqIVz/3t83gaRbfXUnwTBOIIsn5yo
-         mvams/C/N2kAds0IC2R+SCdeVpAMoOl5iv1v/8SlHt8KMfXlKBJovspmFLu9qKOedvDm
-         VRmtmAjSNx4qDMrxiFFvKAbKmj/P2lMr+x0pj3oyTTd9UaZUF9uzlAFeuCMl7OVEknQI
-         RK7g==
-X-Forwarded-Encrypted: i=1; AJvYcCW+zy3TsnHFu8DNAdKQxqFH4bF7zwuXo4/Oq4TS+ZzbS/EW72z/JpQj+5+lWg95CZ/T3TsMp8Rw9+AvaRHxfEwvYKEWeaR+85YKhg==
-X-Gm-Message-State: AOJu0YzSSTGa9MzeJZR13TQsc2z7iNdlSgeCI10ciKiWKTLAw0tDOM7k
-	lHNYzkIAsc8ha5FYZDy7f4oYOqN1eCOS6QH762AuM97jG4AeGSirwCjzCwrjGo0YyQQZDRt3Kqh
-	a4cw=
-X-Google-Smtp-Source: AGHT+IHiMiemHA0HDYK7fUySNf6tNACiyVMdxfcXAwZ7wf3FKOLNNg2TYqApmadNe4V2VEmyNHOi5w==
-X-Received: by 2002:a05:600c:35cd:b0:428:16a0:1c3d with SMTP id 5b1f17b1804b1-429ed7ae16cmr14655845e9.19.1723803832385;
-        Fri, 16 Aug 2024 03:23:52 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1723803834; x=1724408634;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Ac6PkEI7A1RP1coeC4Yj5cZXMittHI8EAxgX8fzSWd0=;
+        b=XFKQnBLGmdNAFXbVEFuUC57ynz0I5xOeUsV2gQhIdWzE+HKm4nI2BQr87avVTDlc9H
+         T/RflUABEXLKardHRPtR/YU3abK5b5lvRSjsZJF9Umv/1GPTZwMPc6eBJ6htEPGa/lm8
+         aHDa8PQmw8gWtPH1ocpJMZixyKRmklGt2f13LKXQUwZ/EJU25OGX7SgFp2HVsH+6Vq+g
+         KAz4Jzzw4y9n6pfFlvqGnRVFLAlrORqykLE1u83zPPhi1FUb8HC6lgN/LvGNuhoIAnHy
+         Qze89yQcFdSOMBwuypt42EI/B1/XeONBzKforRBzjDjk8p56jjK9fQXuWYCIPt/Xb+N2
+         PjIg==
+X-Forwarded-Encrypted: i=1; AJvYcCWgNxG1x7TNxcYtxAo79yXOZwdUy+K0pXqKsEj8EnXz+gDsgkC9nw7B3Wm89Wq5SPqWAF6rKdEzzSkKiY9dbT6JYxs3Ge9wsMSmnQ==
+X-Gm-Message-State: AOJu0YyY5jrYoN5U3uJAWyib/1whKGvB3TAlbXxOc6KOv32mEd0I6WAt
+	er+JcoOkujgzx6wl1vXUsKpsp1C05+TVQNzz7MSQHnUaj5fc3qUoH/dJgV5FTeo=
+X-Google-Smtp-Source: AGHT+IFSFTTtUJgs7F4KncBO3eji2OOP3lzw9DBVuEXpO1uGSfoBvSNrq4KRwIjzHiQxA2UzVx4jMg==
+X-Received: by 2002:a05:600c:4e88:b0:425:649b:60e8 with SMTP id 5b1f17b1804b1-429ed7c1218mr16732045e9.18.1723803833264;
+        Fri, 16 Aug 2024 03:23:53 -0700 (PDT)
 Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:aff3:cc35:cd8f:c520])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429ded18630sm72650125e9.1.2024.08.16.03.23.51
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429ded18630sm72650125e9.1.2024.08.16.03.23.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Fri, 16 Aug 2024 03:23:52 -0700 (PDT)
 From: Bartosz Golaszewski <brgl@bgdev.pl>
@@ -80,11 +81,14 @@ Cc: linux-arm-msm@vger.kernel.org,
 	dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH 1/2] dt-bindings: misc: qcom,fastrpc: document new domain ID
-Date: Fri, 16 Aug 2024 12:23:44 +0200
-Message-ID: <20240816102345.16481-1-brgl@bgdev.pl>
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Ekansh Gupta <quic_ekangupt@quicinc.com>
+Subject: [PATCH 2/2] arm64: dts: qcom: sa8775p: fix the fastrpc label
+Date: Fri, 16 Aug 2024 12:23:45 +0200
+Message-ID: <20240816102345.16481-2-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240816102345.16481-1-brgl@bgdev.pl>
+References: <20240816102345.16481-1-brgl@bgdev.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,25 +99,29 @@ Content-Transfer-Encoding: 8bit
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Add "cdsp1" as the new supported label for the CDSP1 fastrpc domain.
+The fastrpc driver uses the label to determine the domain ID and create
+the device nodes. It should be "cdsp1" as this is the engine we use here.
 
+Fixes: df54dcb34ff2 ("arm64: dts: qcom: sa8775p: add ADSP, CDSP and GPDSP nodes")
+Reported-by: Ekansh Gupta <quic_ekangupt@quicinc.com>
 Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 ---
- Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
-index c27a8f33d8d7..2a5b18982804 100644
---- a/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
-+++ b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
-@@ -26,6 +26,7 @@ properties:
-       - mdsp
-       - sdsp
-       - cdsp
-+      - cdsp1
+diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+index 801e8a92359d..5b9b68c634f5 100644
+--- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
++++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+@@ -4046,7 +4046,7 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
+ 				fastrpc {
+ 					compatible = "qcom,fastrpc";
+ 					qcom,glink-channels = "fastrpcglink-apps-dsp";
+-					label = "cdsp";
++					label = "cdsp1";
+ 					#address-cells = <1>;
+ 					#size-cells = <0>;
  
-   memory-region:
-     maxItems: 1
 -- 
 2.43.0
 
