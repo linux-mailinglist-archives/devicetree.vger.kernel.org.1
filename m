@@ -1,86 +1,98 @@
-Return-Path: <devicetree+bounces-94074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42AB6953DE3
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 01:27:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CD3F953E3F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 02:20:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7CCE1F2652E
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2024 23:27:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DAE431F21A7E
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 00:20:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02A661547C4;
-	Thu, 15 Aug 2024 23:27:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mediatomb.cc header.i=@mediatomb.cc header.b="dt3XvO5R"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5CDA27448;
+	Fri, 16 Aug 2024 00:18:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from xn--80adja5bqm.su (xn--80adja5bqm.su [198.44.140.76])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8394370;
-	Thu, 15 Aug 2024 23:27:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.44.140.76
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A91E29CEF;
+	Fri, 16 Aug 2024 00:18:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723764446; cv=none; b=T0SttavuBukT+JnHM+nZyE2xKI5rnkgQjyPDFKjC1WqD/feDIXnYZQKlxmBFMnd14JBkWHZTrfsmILP0ogTfr0H2KGKyWOoZ7bJBXmyvG0tJBwwT1/5vbv/n7S6SHyIFo/Jx4RjLyJq4a5Jb5odjzA220IaV7W0rAc16KUuyglQ=
+	t=1723767523; cv=none; b=OuQvRB0SJ556WyPcK3EhmfwSOKpBmFuXDYVfYonx3PCORAD1MPdkXD9TnktI7DxDYRKVvbtiejYtQFDRSiotZaTUYtXqjZstzRHg6caGu9Ko7BR+95DUXZdymMTGoGj950XJWqTZ+KaAOSYzc6FR82ny3lE+UedyFoQC2dqMFKM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723764446; c=relaxed/simple;
-	bh=EF+E2COe7oVZ7sfROU6GBcGSKhd8Vrlw1lRrqsceISg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZFy9zqpXiHgTxmUbb1rdKD2R0yX9xSxC8GXVf3co47T9QzvJCB7RLsnvtoS862paAjdB7Czu7LJcHvhr8ZhDYHAg0wuHkrlVZzg8fmdS/ysGG0yrANnM9xGE4anZhF+cwa5spSDtNpFDalWqRNpq+R321j0Uj+CSREmv+nSp1D4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mediatomb.cc; spf=pass smtp.mailfrom=xn--80adja5bqm.su; dkim=pass (2048-bit key) header.d=mediatomb.cc header.i=@mediatomb.cc header.b=dt3XvO5R; arc=none smtp.client-ip=198.44.140.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mediatomb.cc
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xn--80adja5bqm.su
-Received: by xn--80adja5bqm.su (Postfix, from userid 1000)
-	id 95DF940050C0; Thu, 15 Aug 2024 23:26:59 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 xn--80adja5bqm.su 95DF940050C0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mediatomb.cc;
-	s=default; t=1723764419;
-	bh=EF+E2COe7oVZ7sfROU6GBcGSKhd8Vrlw1lRrqsceISg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dt3XvO5RfVnqkqhh+l0tfY0fUI/o+7eX8kWAjV9bpxo4Im7E6rTloBzEbHSttwElE
-	 EqPaiP79ssAGpQsm5743Or+QqnCrTSoLsi2IaD+YdxbpRXQGLJJAo8K1PrsSAKH/Z9
-	 E3avrkpFXn1bNBY3TwkhCplQAK4bqjlyZvrnMQ6qp+30wtXX5nNiLWUQlqrfUS13tD
-	 Hl7PUHF46fdXrJC9ZDQV/AyMIjXA3Z+KBOXiG+0s748c3RRN93Gy8z48qPOTwtYStH
-	 mBTVbbmrm8DnC6KsC2aYrM8f38XMp9tHY5sfUsaFnyMF7khkyZDEU/Dh8BTRv5KZDp
-	 B31MOt8KJydgA==
-Date: Thu, 15 Aug 2024 23:26:59 +0000
-From: Sergey 'Jin' Bostandzhyan <jin@mediatomb.cc>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v3 0/3] Add DTS for NanoPi R2S Plus
-Message-ID: <20240815232659.GC25959@ветеран.su>
-References: <20240814170048.23816-1-jin@mediatomb.cc>
- <172375308156.820196.16689328819690192699.b4-ty@sntech.de>
+	s=arc-20240116; t=1723767523; c=relaxed/simple;
+	bh=pHTFbeiH98+KNvJ6C9XjCRN7soUqfq9CvMzd82mA0H0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=s6cga/xpEpt2D5dYQkD4vb19E7lOzLZwyhiY9i81NiynY5RehzFQ4kwvvu67w/aTfKqUcGxwKaaWq3L4DOdMXAG/GHWvgu8EjdjHdlh4oFAW42XFdbQMITyY6Nzdn49CVSCbAqMln6GZCXhH4sMXukEJhuw9p4CyMEva82edjs8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 56C3F14BF;
+	Thu, 15 Aug 2024 17:19:06 -0700 (PDT)
+Received: from localhost.localdomain (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7D08B3F6A8;
+	Thu, 15 Aug 2024 17:18:38 -0700 (PDT)
+From: Andre Przywara <andre.przywara@arm.com>
+To: Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-sunxi@lists.linux.dev,
+	Chris Morgan <macroalpha82@gmail.com>,
+	John Watts <contact@jookia.org>,
+	Ryan Walklin <ryan@testtoast.com>,
+	Philippe Simons <simons.philippe@gmail.com>
+Subject: [PATCH v3 0/3] regulator: Add AXP717 boost support
+Date: Fri, 16 Aug 2024 01:18:21 +0100
+Message-Id: <20240816001824.6028-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.39.4
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <172375308156.820196.16689328819690192699.b4-ty@sntech.de>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+Content-Transfer-Encoding: 8bit
 
-On Thu, Aug 15, 2024 at 10:18:45PM +0200, Heiko Stuebner wrote:
-> On Wed, 14 Aug 2024 17:00:45 +0000, Sergey Bostandzhyan wrote:
-> > 
-> > here is version 3 of the NanoPi R2S Plus patchset.
-> > 
-> > * a commit which adds mmc-hs200-1_8v in order to improve eMMC performance has
-> >   been included
-> > * the licence header has been updated to the newer version, anw now includes
-> >   optional MIT licensing
-> > 
-> > [...]
-> 
-> Applied, thanks!
+This is remainder of the AXP717 fix series, containing support for the
+boost regulator. This is meant to increase the battery voltage to the 5
+volts required to provide the USB VBUS power.
+It's the usual trinity of DT bindings patch (1/3), the MFD part
+describing the PMIC registers (2/3) and the final patch to model the
+regulator (3/3).
+Compared to v2, this drops the merged patches, and just retains the
+boost related parts. It also changes the internal name of the register
+to AXP717_MODULE_EN_CONTROL_2, since there is another control register
+we will need later for battery support.
 
-Awesome, thank you for the guidance and for staying with me on this! :)
+Please have a look and test!
 
-Kind regards,
-Sergey
+Cheers,
+Andre
+
+Changelog v2 .. v3:
+- drop already merged fix patches
+- rename control register name to make room for second control register
+- rebase on top of v6.11-rc3
+- add review tags
+
+Andre Przywara (3):
+  dt-bindings: mfd: x-powers,axp152: add boost regulator
+  mfd: axp20x: AXP717: Add support for boost regulator
+  regulator: axp20x: AXP717: Add boost regulator
+
+ Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml | 2 +-
+ drivers/mfd/axp20x.c                                       | 2 ++
+ drivers/regulator/axp20x-regulator.c                       | 4 ++++
+ include/linux/mfd/axp20x.h                                 | 3 +++
+ 4 files changed, 10 insertions(+), 1 deletion(-)
+
+-- 
+2.39.4
 
 
