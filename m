@@ -1,95 +1,155 @@
-Return-Path: <devicetree+bounces-94283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 688A1954B86
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 15:58:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FBBC954BDC
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 16:08:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 248F42877AD
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 13:58:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D0C61F23ADA
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 14:08:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C13251BC9F5;
-	Fri, 16 Aug 2024 13:57:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 886271BD026;
+	Fri, 16 Aug 2024 14:05:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="s+dtJTWM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iYc5adX2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D60F31BC9F9;
-	Fri, 16 Aug 2024 13:57:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56BF91E495;
+	Fri, 16 Aug 2024 14:05:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723816664; cv=none; b=km/HIc4yyyekptvm2ytwkwy58A0j1XSRbs4FZ/LsMNo0I9bcIkX6WI6MgYNDmthDIZKAz8Oom7IAg0gdo7t7Kfchoxrzf2bGoIWKvFp6+wTXypaAc+1VYkqU4L7mOTkKxUTTvMU38vfI29uM0LDZls0I1WhV74dwVEgwRn2LjTs=
+	t=1723817142; cv=none; b=PRwW9dPYbvBpwJGqV7LqGZA+cuiJ0fqoLNo3soJHZ2x/CrUNGceQf+f11sqNINF8VtZj7DbJHsz4WEQpKmOtm/8epYtma9qYQukCPilXDzR3C2QKlVb8nVdj5FN1git8amENpVicPEk53qK85Hsbqge7+zBnZf7vV3eND6yPb4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723816664; c=relaxed/simple;
-	bh=StscK8FxfWZdG6WMuxNgzCEvEk1AejAC7UhY7FRMahQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fcmtUeGEmlNH7a54nYa1Qn/CnoHtB+llCG8UUotThUfvkyneBcHD7ts+Nm0MDe4ixUEbulDh/t/lmNCBqvpZFZYAJouH1iIfNTFnbl5IBezsP/SBRXTNre8GQlXaCaurA2Wdo4lf6pjeeom+4OvKzh4ySgdnbFcvei+N+8pYtSc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=s+dtJTWM; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=c/qeNm0gickEi5kHpgsZtFtwQ/SdYgXdxnuELkHBkC4=; b=s+dtJTWMR1Z+iN5/NcVIN3Z+5x
-	ZKJSHyMDp6qT+0g6RR/0naXbad1QJp8au5ngnLaWAq7qmwNiIUwLwd2lT99UVnjBh1RgxRFYcGxIS
-	U/3yuezvXEsPs9IvY7xVFANYGD4lM8aqZbGFq7wGqfC9KLqy+xXJYbWbKhFPdYN1vEa1YE0hSvxZa
-	OxwsLCSiR66VXrh+22NnNn6UmwgI+/kyirGRXv1sVz7m9Av1Yq1ZmiCNbVmnFEyf9D7aNuB6KnVKf
-	P43b535eIAxltDBT1oqKdbzuFIyT82poSk7GUQ5HsZSxddFmUxRkafJ2Sg3uAY6b8ej8u58N/pZe6
-	LaMfmsIQ==;
-Received: from i53875a9f.versanet.de ([83.135.90.159] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sexSK-0002hb-TQ; Fri, 16 Aug 2024 15:57:29 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Conor Dooley <conor+dt@kernel.org>,
-	Michael Riesch <michael.riesch@wolfvision.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: add wolfvision pf5 visualizer display
-Date: Fri, 16 Aug 2024 15:57:26 +0200
-Message-ID: <172381656037.84677.11780206459201436040.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240412-feature-wolfvision-pf5-display-v1-1-f032f32dba1a@wolfvision.net>
-References: <20240412-feature-wolfvision-pf5-display-v1-1-f032f32dba1a@wolfvision.net>
+	s=arc-20240116; t=1723817142; c=relaxed/simple;
+	bh=5B+KtYZvyF6QxYfxPpQIVBG0PNxfFcRQ4s0rKDMjriI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HX/ParAu4fFkoC9goOa7oxKkvrp839MEuNovp0Z9OHBESuAqIrs2VmZNKb/4bfMoBYpKnAX1Xj1iQODcVjjP0dyEiPE63ASuPr/o1FsDNWQI1crby7fuv5CYZN0xqzs3SN4KwfOF+ZdI43Kx9POs83/8FPXJApyezL4VnE0uS1M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iYc5adX2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2003FC32782;
+	Fri, 16 Aug 2024 14:05:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723817141;
+	bh=5B+KtYZvyF6QxYfxPpQIVBG0PNxfFcRQ4s0rKDMjriI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=iYc5adX20RPqzjolC3YIly+hMGENPjEstYNqLJ9swM4HAn7nCvq3hzWJv9QYn2+FT
+	 AT3hQQP/QXxOnOAp1Y4MwVhhWwXoFshWHYYesJvqrD+epgW/QM9rDlSBQx9S1eStkC
+	 kr/bQUmN15TYLtD1U8AeAIm+x26RGo3J9x0VpLb4qBGf8seQ84G1d3jhzb3fSKqYzD
+	 2VHn3aPpbyfOaPh5r8/D2vr6PQ5Yn5L1N6HPUS1yHQBpF8UwlqCkcXBxT1hQpTIQyw
+	 IBCLrEU0655s8qGQagHT++K4NfleoA5JQqJe6ZHIvMLsA6wcdzoWlE473+9Y3039E9
+	 tcHTGr6z5TYrw==
+Message-ID: <9113fd98-f58c-485b-8d7a-1ac0c541c04a@kernel.org>
+Date: Fri, 16 Aug 2024 16:05:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: misc: qcom,fastrpc: document new domain
+ ID
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Amol Maheshwari <amahesh@qti.qualcomm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Tengfei Fan <quic_tengfan@quicinc.com>, Ling Xu <quic_lxu5@quicinc.com>,
+ linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20240816102345.16481-1-brgl@bgdev.pl>
+ <c0af2eec-c289-4147-aca2-aac438451f5e@kernel.org>
+ <CAMRc=MdmgcRUfYGo25spPOKqjpebiaZUP34B7PuuoAxMAupAYA@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CAMRc=MdmgcRUfYGo25spPOKqjpebiaZUP34B7PuuoAxMAupAYA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On Fri, 12 Apr 2024 14:54:09 +0200, Michael Riesch wrote:
-> Add device tree overlay for the WolfVision PF5 Visualizer display.
-> Since there shall be additional variants of the WolfVision PF5 display in
-> future, move common definitions to a device tree include file.
+On 16/08/2024 14:29, Bartosz Golaszewski wrote:
+> On Fri, Aug 16, 2024 at 1:21 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 16/08/2024 12:23, Bartosz Golaszewski wrote:
+>>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>>
+>>> Add "cdsp1" as the new supported label for the CDSP1 fastrpc domain.
+>>>
+>>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>> ---
+>>>  Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml | 1 +
+>>>  1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
+>>> index c27a8f33d8d7..2a5b18982804 100644
+>>> --- a/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
+>>> +++ b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
+>>> @@ -26,6 +26,7 @@ properties:
+>>>        - mdsp
+>>>        - sdsp
+>>>        - cdsp
+>>> +      - cdsp1
+>>
+>> Are there more than one cdsp domains? Why adding suffixes? Driver source
+>> code does not have "cdsp1" domain, so this is confusing.
+>>
+>> Best regards,
+>> Krzysztof
+>>
 > 
-> 
+> It does, Srini picked up this patch earlier today. I'm not an expert
+> in fast RPC but it looks like the domain ID number matters here.
 
-Applied, thanks!
-
-[1/1] arm64: dts: rockchip: add wolfvision pf5 visualizer display
-      commit: 73d6eb7e77099054f7ce4a595767603cb4a096b1
-
-DTC update in linux-next now:
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=d2a97be34548fc5643b4e9536ac8789d839f7374
-to prevent the compile error regarding the unknown node-name
+Ah, ok, I did not see driver change here so it was a bit confusing.
 
 Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+Krzysztof
+
 
