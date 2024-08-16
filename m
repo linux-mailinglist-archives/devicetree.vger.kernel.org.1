@@ -1,37 +1,38 @@
-Return-Path: <devicetree+bounces-94075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94076-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CD3F953E3F
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 02:20:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48643953E41
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 02:21:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DAE431F21A7E
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 00:20:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EBD1F1F21A24
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 00:21:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5CDA27448;
-	Fri, 16 Aug 2024 00:18:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F067D2BB0D;
+	Fri, 16 Aug 2024 00:18:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A91E29CEF;
-	Fri, 16 Aug 2024 00:18:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C4088C11;
+	Fri, 16 Aug 2024 00:18:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723767523; cv=none; b=OuQvRB0SJ556WyPcK3EhmfwSOKpBmFuXDYVfYonx3PCORAD1MPdkXD9TnktI7DxDYRKVvbtiejYtQFDRSiotZaTUYtXqjZstzRHg6caGu9Ko7BR+95DUXZdymMTGoGj950XJWqTZ+KaAOSYzc6FR82ny3lE+UedyFoQC2dqMFKM=
+	t=1723767524; cv=none; b=ZzPBN5rOxnmYIWJEMPasZNMvzMuiqNeTJKJam00qDs3i6F4ZpRyipvDgtBlwQLxvp4B2//IzQGcf1VjlhVEoQggmEdIfv0E246d9DwV8gRTY9sdfEdceuXk4MokmbuLenPj9JLWvBe4gfDrnysGB2odON/YLViijaq5fKKxh60w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723767523; c=relaxed/simple;
-	bh=pHTFbeiH98+KNvJ6C9XjCRN7soUqfq9CvMzd82mA0H0=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=s6cga/xpEpt2D5dYQkD4vb19E7lOzLZwyhiY9i81NiynY5RehzFQ4kwvvu67w/aTfKqUcGxwKaaWq3L4DOdMXAG/GHWvgu8EjdjHdlh4oFAW42XFdbQMITyY6Nzdn49CVSCbAqMln6GZCXhH4sMXukEJhuw9p4CyMEva82edjs8=
+	s=arc-20240116; t=1723767524; c=relaxed/simple;
+	bh=1K1mM/fDKVg9r17+5olckVhXJre9Iv08+gafKdiuMOM=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=IIxLVaGZft+VW8ObtgfzDXiXzEpt4xph8HRt/pkuSz6HUe7hxwS/h5s7YUitf/Bfd12q3/rDccXahbj2Fo7iISqpuoyRzzalY+k2wdu5rYqpDPDmhXWqMbnx+JkKDIFDXK8SajCAVRkYeAljCWH5xwwYJ8nUy+G8tIBNInJUw1Q=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 56C3F14BF;
-	Thu, 15 Aug 2024 17:19:06 -0700 (PDT)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 71BED169E;
+	Thu, 15 Aug 2024 17:19:08 -0700 (PDT)
 Received: from localhost.localdomain (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7D08B3F6A8;
-	Thu, 15 Aug 2024 17:18:38 -0700 (PDT)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 99C613F6A8;
+	Thu, 15 Aug 2024 17:18:40 -0700 (PDT)
 From: Andre Przywara <andre.przywara@arm.com>
 To: Lee Jones <lee@kernel.org>,
 	Rob Herring <robh@kernel.org>,
@@ -47,10 +48,12 @@ Cc: devicetree@vger.kernel.org,
 	John Watts <contact@jookia.org>,
 	Ryan Walklin <ryan@testtoast.com>,
 	Philippe Simons <simons.philippe@gmail.com>
-Subject: [PATCH v3 0/3] regulator: Add AXP717 boost support
-Date: Fri, 16 Aug 2024 01:18:21 +0100
-Message-Id: <20240816001824.6028-1-andre.przywara@arm.com>
+Subject: [PATCH v3 1/3] dt-bindings: mfd: x-powers,axp152: add boost regulator
+Date: Fri, 16 Aug 2024 01:18:22 +0100
+Message-Id: <20240816001824.6028-2-andre.przywara@arm.com>
 X-Mailer: git-send-email 2.39.4
+In-Reply-To: <20240816001824.6028-1-andre.przywara@arm.com>
+References: <20240816001824.6028-1-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,39 +62,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This is remainder of the AXP717 fix series, containing support for the
-boost regulator. This is meant to increase the battery voltage to the 5
-volts required to provide the USB VBUS power.
-It's the usual trinity of DT bindings patch (1/3), the MFD part
-describing the PMIC registers (2/3) and the final patch to model the
-regulator (3/3).
-Compared to v2, this drops the merged patches, and just retains the
-boost related parts. It also changes the internal name of the register
-to AXP717_MODULE_EN_CONTROL_2, since there is another control register
-we will need later for battery support.
+The X-Powers AXP717 contains a boost regulator, that it meant to provide
+the 5V USB VBUS voltage when the devices operates on battery.
 
-Please have a look and test!
+Add the name "boost" to the regexp describing the allowed node names,
+to allow the regulator to be described in the devicetree.
 
-Cheers,
-Andre
-
-Changelog v2 .. v3:
-- drop already merged fix patches
-- rename control register name to make room for second control register
-- rebase on top of v6.11-rc3
-- add review tags
-
-Andre Przywara (3):
-  dt-bindings: mfd: x-powers,axp152: add boost regulator
-  mfd: axp20x: AXP717: Add support for boost regulator
-  regulator: axp20x: AXP717: Add boost regulator
-
+Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Lee Jones <lee@kernel.org>
+---
  Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml | 2 +-
- drivers/mfd/axp20x.c                                       | 2 ++
- drivers/regulator/axp20x-regulator.c                       | 4 ++++
- include/linux/mfd/axp20x.h                                 | 3 +++
- 4 files changed, 10 insertions(+), 1 deletion(-)
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
+index b8e8db0d58e9c..14ab367fc8871 100644
+--- a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
++++ b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
+@@ -274,7 +274,7 @@ properties:
+           Defines the work frequency of DC-DC in kHz.
+ 
+     patternProperties:
+-      "^(([a-f])?ldo[0-9]|dcdc[0-7a-e]|ldo(_|-)io(0|1)|(dc1)?sw|rtc(_|-)ldo|cpusldo|drivevbus|dc5ldo)$":
++      "^(([a-f])?ldo[0-9]|dcdc[0-7a-e]|ldo(_|-)io(0|1)|(dc1)?sw|rtc(_|-)ldo|cpusldo|drivevbus|dc5ldo|boost)$":
+         $ref: /schemas/regulator/regulator.yaml#
+         type: object
+         unevaluatedProperties: false
 -- 
 2.39.4
 
