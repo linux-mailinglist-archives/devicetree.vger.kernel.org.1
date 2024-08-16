@@ -1,122 +1,151 @@
-Return-Path: <devicetree+bounces-94294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05CFE954D9F
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 17:27:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D178954DF9
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 17:40:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 354711C20B8C
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 15:27:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B5D2283DB5
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 15:40:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84DEB1BD4E3;
-	Fri, 16 Aug 2024 15:27:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4E7F1BDA9F;
+	Fri, 16 Aug 2024 15:40:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X5GbSN+q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B3l497tn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5163A127E3A;
-	Fri, 16 Aug 2024 15:27:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF0671DDF5;
+	Fri, 16 Aug 2024 15:40:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723822064; cv=none; b=VOPRPJx4lCxLYBUlZ6xe94/VB6R9oQMe4orNg0GSOAEhXCWX01UhyKemWi6+JNO6iNmYSCDg0fPg8jIXwovMtctxBGdpQlq9Xgs2yrCbhwO7Y541kOPWrONHK9QXueXsluqUalAm2grgk79lzAyAItR+E2oUKVhTFxSPLVy3MYU=
+	t=1723822846; cv=none; b=Jg9Axy2jcAgNA+B/ThSenTLK7ipb9WKKyw6hk0SNlxUZhg1DKXeDlCgy7DUcPUO+gz7rJyVQu3oKA8rIphhLd058k1QwEbQKpskntBjFBwl4nFcp4BZjnMCGjXCW26Y1VVGScIB+ziY5/SOkGPzb59xelXaFJweDVgUU5XPQAS0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723822064; c=relaxed/simple;
-	bh=bHbg28x9ZF+oj+ApGQowOZXBQpdCPk7yj6dFt1qAqA4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AskTsQA5Ws+PzYwjOohofllFdcGGNt8877rN5O5yfNW9EraMj+ZTEFXO8Noq8kQIXix/hHJMR0vZJIJKZnADqt2aSMqYYHeySZ9//ja7bEIYzLUiLAraXDpC4hqF+AwRLNbTJKO1ErU4kbzVKwF4InHo/bvwXPi3hKcmJf0FZDE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X5GbSN+q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D31E5C32782;
-	Fri, 16 Aug 2024 15:27:40 +0000 (UTC)
+	s=arc-20240116; t=1723822846; c=relaxed/simple;
+	bh=s5xPHWl9Hp3bK8OiyJg3sXrToRCCGMBKSEElvw86CVE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZKtZyMU6a8V5M2aIXP60v7S+AakIzax8POQ2R8PrlmNaHbG4qPIAytY4KH26fzXBiEl4h8cAPyWWLgdBFwPTKg499eJKTe99b2gjupAHJj1KrF+g7t56zE/5IEZZO5wzEmzJcvelb/rcTMKfp1aqFgzRuSEKvn6OQqPNN8s5MtA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B3l497tn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2BB8C32782;
+	Fri, 16 Aug 2024 15:40:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723822063;
-	bh=bHbg28x9ZF+oj+ApGQowOZXBQpdCPk7yj6dFt1qAqA4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X5GbSN+qy510lSQK1FxZQnUty4+MnPqHsbFFaZT7+swchpDR+oOVEIvxsi28VMKuk
-	 Yotd23wKg3KdLPxx8eo92jtDLS8asHG4JTNeFZ7dPtDDvuTGZHUVkKpYu6aqMu38zd
-	 iOwmMBR+H0gLWJq2/IBP/lnjid8+tAIrCeKwgyxZA6bvPFYneut7+jj0YPt4xXRvO+
-	 fcMhx0gIL5ah8TmS71IcLCxgbwedSNMnCybrc2gRqLUcO7KNOKi8GPSrAAA1SXdKTI
-	 7Tw+58+jTwUsqxj/3Jwlruuh1lRc//GcO5Q3uq7Lr1Z3C05CFO9C+CC9xAzxo0M0Ty
-	 5+mSo4kXQni1Q==
-Date: Fri, 16 Aug 2024 16:27:38 +0100
-From: Lee Jones <lee@kernel.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Haibo Chen <haibo.chen@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>,
-	Frank Li <Frank.li@nxp.com>
-Subject: Immutable branch between MFD, GPIO and PWM due for the v6.12 merge
- window
-Message-ID: <20240816152738.GB5853@google.com>
-References: <20240722121100.2855-1-laurent.pinchart@ideasonboard.com>
+	s=k20201202; t=1723822846;
+	bh=s5xPHWl9Hp3bK8OiyJg3sXrToRCCGMBKSEElvw86CVE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=B3l497tn3B12WsQ5ObXXui8/RU+jgZAr8/RMpUXMd9+geIryseMBncYOO6k5bY+cn
+	 wbobUGvDw70jemzkKx7lxaTwxsCPD7Eo5lbJn44aD7mB+6TKL41ZNgHdqJ7fu7Z1or
+	 gg0VaELZLsulUUorgFnEH4eHMcpOKAKXyt6YoTgYMdI+wlBPaqwtPJ2nIF+1W9rBFg
+	 1UM1f9cRIZvtRrctpT6M20UWSwdcXFeTwhS3aMm2av0CNw3p5EFY+cdhsk69Er7upJ
+	 x2yDad2OOPvcFZGtEEM2MvzAqp0dTZP9Du6KTby9J62D4rsd8rOM7bsTu+rLOU3IZD
+	 HBNNIMBUTTv+g==
+Message-ID: <f91048f3-2a97-493f-a35c-0e8f184d77d6@kernel.org>
+Date: Fri, 16 Aug 2024 17:40:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240722121100.2855-1-laurent.pinchart@ideasonboard.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 04/10] power: supply: max77693: Set charge current
+ limits during init
+To: Artur Weber <aweber.kernel@gmail.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht, Henrik Grimler <henrik@grimler.se>,
+ Wolfgang Wiedmeyer <wolfgit@wiedmeyer.de>,
+ Denis 'GNUtoo' Carikli <GNUtoo@cyberdimension.org>
+References: <20240816-max77693-charger-extcon-v4-0-050a0a9bfea0@gmail.com>
+ <20240816-max77693-charger-extcon-v4-4-050a0a9bfea0@gmail.com>
+ <9dbaacdb-5f9c-48d4-a56a-a19ca8809344@kernel.org>
+ <021f5a99-bbee-4d4c-b36e-49339030b869@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <021f5a99-bbee-4d4c-b36e-49339030b869@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Sorry for the tardy PR - enjoy!
+On 16/08/2024 16:25, Artur Weber wrote:
+> 
+> 
+> On 16.08.2024 11:54, Krzysztof Kozlowski wrote:
+>> On 16/08/2024 10:19, Artur Weber wrote:
+>>> @@ -732,6 +794,15 @@ static int max77693_charger_probe(struct platform_device *pdev)
+>>>   	chg->dev = &pdev->dev;
+>>>   	chg->max77693 = max77693;
+>>>   
+>>> +	psy_cfg.drv_data = chg;
+>>> +
+>>> +	chg->charger = devm_power_supply_register(&pdev->dev,
+>>> +						  &max77693_charger_desc,
+>>> +						  &psy_cfg);
+>>> +	if (IS_ERR(chg->charger))
+>>> +		return dev_err_probe(&pdev->dev, PTR_ERR(chg->charger),
+>>> +				     "failed: power supply register\n");
+>>
+>> This code move is not explained in the commit msg. At least I could not
+>> find it. Please explain why you need it in the commit msg.
+> 
+> This is done because the call to power_supply_get_battery_info in
+> max77693_dt_init requires chg->charger to be set. (I was considering
+> putting this in the commit message, can't remember why I didn't do it.
+> I'll add it in the next version.)
 
-The following changes since commit 8400291e289ee6b2bf9779ff1c83a291501f017b:
+I think that's wrong. Power supply is being available to the system
+before it is being configured.
 
-  Linux 6.11-rc1 (2024-07-28 14:19:55 -0700)
+Best regards,
+Krzysztof
 
-are available in the Git repository at:
-
-  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tags/ib-mfd-gpio-pwm-v6.12
-
-for you to fetch changes up to e9b503879fd2b6332eaf8b719d1e07199fc70c6b:
-
-  pwm: adp5585: Add Analog Devices ADP5585 support (2024-08-01 14:09:28 +0100)
-
-----------------------------------------------------------------
-Immutable branch between MFD, GPIO and PWM due for the v6.12 merge window
-
-----------------------------------------------------------------
-Clark Wang (1):
-      pwm: adp5585: Add Analog Devices ADP5585 support
-
-Haibo Chen (2):
-      mfd: adp5585: Add Analog Devices ADP5585 core support
-      gpio: adp5585: Add Analog Devices ADP5585 support
-
-Laurent Pinchart (1):
-      dt-bindings: mfd: Add Analog Devices ADP5585
-
- .../devicetree/bindings/mfd/adi,adp5585.yaml       |  92 +++++++++
- .../devicetree/bindings/trivial-devices.yaml       |   4 -
- MAINTAINERS                                        |  11 +
- drivers/gpio/Kconfig                               |   7 +
- drivers/gpio/Makefile                              |   1 +
- drivers/gpio/gpio-adp5585.c                        | 229 +++++++++++++++++++++
- drivers/mfd/Kconfig                                |  12 ++
- drivers/mfd/Makefile                               |   1 +
- drivers/mfd/adp5585.c                              | 205 ++++++++++++++++++
- drivers/pwm/Kconfig                                |   7 +
- drivers/pwm/Makefile                               |   1 +
- drivers/pwm/pwm-adp5585.c                          | 184 +++++++++++++++++
- include/linux/mfd/adp5585.h                        | 126 ++++++++++++
- 13 files changed, 876 insertions(+), 4 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/mfd/adi,adp5585.yaml
- create mode 100644 drivers/gpio/gpio-adp5585.c
- create mode 100644 drivers/mfd/adp5585.c
- create mode 100644 drivers/pwm/pwm-adp5585.c
- create mode 100644 include/linux/mfd/adp5585.h
-
--- 
-Lee Jones [李琼斯]
 
