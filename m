@@ -1,217 +1,95 @@
-Return-Path: <devicetree+bounces-94282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 738B4954B2B
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 15:36:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 688A1954B86
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 15:58:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB123282246
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 13:36:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 248F42877AD
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 13:58:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FAB81BB68D;
-	Fri, 16 Aug 2024 13:36:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C13251BC9F5;
+	Fri, 16 Aug 2024 13:57:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mkk6Caoo"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="s+dtJTWM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE2F41B86DE;
-	Fri, 16 Aug 2024 13:36:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D60F31BC9F9;
+	Fri, 16 Aug 2024 13:57:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723815366; cv=none; b=tjDDnlQr16MPNZeSEwz8m8lOJ4uE8WCXWUcppkeqnyGcgqot2IknkjYSYaKVuDSgpG5nhC4XJ9iNthiwZaf/LEMS6if71ZI6jz1bmrSdmXW6sbloMPy7n9Qanu7YR7dYEQ00w7Fg2rIVdikaVd9qoTkXEuXt/Hwq0KQsrvSWYFo=
+	t=1723816664; cv=none; b=km/HIc4yyyekptvm2ytwkwy58A0j1XSRbs4FZ/LsMNo0I9bcIkX6WI6MgYNDmthDIZKAz8Oom7IAg0gdo7t7Kfchoxrzf2bGoIWKvFp6+wTXypaAc+1VYkqU4L7mOTkKxUTTvMU38vfI29uM0LDZls0I1WhV74dwVEgwRn2LjTs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723815366; c=relaxed/simple;
-	bh=UdpgyUFrZAf8j3dkewoxOErRAvBtqhfOMgKE6Oyyyxw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R+8UMb8reUOQ614JpRGU/T604YpIFYX2klgv703gWYOSsY4s1FoS7l5vt+9/j545EF+3pt8f5+IrobNjpqj4jbvXLD59FaMld8TFXfAZo9d/xGVHbGLFv/G0vZpJJzPWqgNULToNJ1YbbCKDRpPG1AaaO+G5thzpBqZ1fF+/KSg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mkk6Caoo; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1723815364; x=1755351364;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=UdpgyUFrZAf8j3dkewoxOErRAvBtqhfOMgKE6Oyyyxw=;
-  b=mkk6Caoo/DuVouMVvip20SX+gMISskDW1D+9f2tD30C3CIwei0tjTdHR
-   KKBhEIOWPsP0G5S2AMwBtTh+PHdgRH4NrR2Xd8yR4HExKaU6GIC+vFfbP
-   /byNRyOzR6eBBIDMpFrfu5buhtqtga4DCQ4Ph6QNc5q/W3Nil7o6azkL2
-   WJ9fCDgkLiygLbGsTokxQXUnGOUwx1A2VDatdKt+Bul18K8AYOERHbbuu
-   fVDBL0YUsFcUfGdw5BxNB9z4VsPeaqQXEwdHLwbwMJnoXZteLetZxlPsh
-   fEhwor8uQCy0+bnnYalQNRmNX+b58gWiwJdG+3ZcgUoCvcQlEmVlI1GOC
-   g==;
-X-CSE-ConnectionGUID: +RvBXLQrR+KLBEK2IF6mjw==
-X-CSE-MsgGUID: nglskhIMTPScoGNiyg23Uw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11166"; a="22270470"
-X-IronPort-AV: E=Sophos;i="6.10,151,1719903600"; 
-   d="scan'208";a="22270470"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Aug 2024 06:36:03 -0700
-X-CSE-ConnectionGUID: 1xOv6KyARO2RyfklF3Cr2A==
-X-CSE-MsgGUID: 0cQkTY5FT/OOy8Hc6ngyFQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,151,1719903600"; 
-   d="scan'208";a="90404751"
-Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
-  by orviesa002.jf.intel.com with ESMTP; 16 Aug 2024 06:35:56 -0700
-Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sex7R-0006Sg-37;
-	Fri, 16 Aug 2024 13:35:53 +0000
-Date: Fri, 16 Aug 2024 21:35:28 +0800
-From: kernel test robot <lkp@intel.com>
-To: Manikandan Muralidharan <manikandan.m@microchip.com>,
-	andrzej.hajda@intel.com, neil.armstrong@linaro.org,
-	rfoss@kernel.org, Laurent.pinchart@ideasonboard.com,
-	jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
-	daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux@armlinux.org.uk,
-	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-	claudiu.beznea@tuxon.dev, arnd@arndb.de, geert+renesas@glider.be,
-	mpe@ellerman.id.au, rdunlap@infradead.org, dharma.b@microchip.com,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc: oe-kbuild-all@lists.linux.dev, manikandan.m@microchip.com
-Subject: Re: [PATCH v3 2/4] drm/bridge: add Microchip DSI controller support
- for sam9x7 SoC series
-Message-ID: <202408162158.TlOqyoUA-lkp@intel.com>
-References: <20240814105256.177319-3-manikandan.m@microchip.com>
+	s=arc-20240116; t=1723816664; c=relaxed/simple;
+	bh=StscK8FxfWZdG6WMuxNgzCEvEk1AejAC7UhY7FRMahQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=fcmtUeGEmlNH7a54nYa1Qn/CnoHtB+llCG8UUotThUfvkyneBcHD7ts+Nm0MDe4ixUEbulDh/t/lmNCBqvpZFZYAJouH1iIfNTFnbl5IBezsP/SBRXTNre8GQlXaCaurA2Wdo4lf6pjeeom+4OvKzh4ySgdnbFcvei+N+8pYtSc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=s+dtJTWM; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=c/qeNm0gickEi5kHpgsZtFtwQ/SdYgXdxnuELkHBkC4=; b=s+dtJTWMR1Z+iN5/NcVIN3Z+5x
+	ZKJSHyMDp6qT+0g6RR/0naXbad1QJp8au5ngnLaWAq7qmwNiIUwLwd2lT99UVnjBh1RgxRFYcGxIS
+	U/3yuezvXEsPs9IvY7xVFANYGD4lM8aqZbGFq7wGqfC9KLqy+xXJYbWbKhFPdYN1vEa1YE0hSvxZa
+	OxwsLCSiR66VXrh+22NnNn6UmwgI+/kyirGRXv1sVz7m9Av1Yq1ZmiCNbVmnFEyf9D7aNuB6KnVKf
+	P43b535eIAxltDBT1oqKdbzuFIyT82poSk7GUQ5HsZSxddFmUxRkafJ2Sg3uAY6b8ej8u58N/pZe6
+	LaMfmsIQ==;
+Received: from i53875a9f.versanet.de ([83.135.90.159] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sexSK-0002hb-TQ; Fri, 16 Aug 2024 15:57:29 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Conor Dooley <conor+dt@kernel.org>,
+	Michael Riesch <michael.riesch@wolfvision.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: add wolfvision pf5 visualizer display
+Date: Fri, 16 Aug 2024 15:57:26 +0200
+Message-ID: <172381656037.84677.11780206459201436040.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240412-feature-wolfvision-pf5-display-v1-1-f032f32dba1a@wolfvision.net>
+References: <20240412-feature-wolfvision-pf5-display-v1-1-f032f32dba1a@wolfvision.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240814105256.177319-3-manikandan.m@microchip.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Manikandan,
+On Fri, 12 Apr 2024 14:54:09 +0200, Michael Riesch wrote:
+> Add device tree overlay for the WolfVision PF5 Visualizer display.
+> Since there shall be additional variants of the WolfVision PF5 display in
+> future, move common definitions to a device tree include file.
+> 
+> 
 
-kernel test robot noticed the following build warnings:
+Applied, thanks!
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on drm-misc/drm-misc-next linus/master v6.11-rc3 next-20240816]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+[1/1] arm64: dts: rockchip: add wolfvision pf5 visualizer display
+      commit: 73d6eb7e77099054f7ce4a595767603cb4a096b1
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Manikandan-Muralidharan/dt-bindings-display-bridge-add-sam9x75-mipi-dsi-binding/20240814-234923
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240814105256.177319-3-manikandan.m%40microchip.com
-patch subject: [PATCH v3 2/4] drm/bridge: add Microchip DSI controller support for sam9x7 SoC series
-config: arm-randconfig-r071-20240816 (https://download.01.org/0day-ci/archive/20240816/202408162158.TlOqyoUA-lkp@intel.com/config)
-compiler: clang version 15.0.7 (https://github.com/llvm/llvm-project 8dfdcc7b7bf66834a761bd8de445840ef68e4d1a)
+DTC update in linux-next now:
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=d2a97be34548fc5643b4e9536ac8789d839f7374
+to prevent the compile error regarding the unknown node-name
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408162158.TlOqyoUA-lkp@intel.com/
-
-smatch warnings:
-drivers/gpu/drm/bridge/dw-mipi-dsi-mchp.c:293 dw_mipi_dsi_mchp_get_lane_mbps() warn: unsigned 'bpp' is never less than zero.
-drivers/gpu/drm/bridge/dw-mipi-dsi-mchp.c:293 dw_mipi_dsi_mchp_get_lane_mbps() warn: error code type promoted to positive: 'bpp'
-drivers/gpu/drm/bridge/dw-mipi-dsi-mchp.c:314 dw_mipi_dsi_mchp_get_lane_mbps() error: uninitialized symbol 'target_mbps'.
-
-vim +/bpp +293 drivers/gpu/drm/bridge/dw-mipi-dsi-mchp.c
-
-   276	
-   277	static int dw_mipi_dsi_mchp_get_lane_mbps(void *priv_data,
-   278						  const struct drm_display_mode *mode,
-   279						  unsigned long mode_flags, u32 lanes,
-   280						  u32 format, unsigned int *lane_mbps)
-   281	{
-   282		struct dw_mipi_dsi_mchp *dsi = priv_data;
-   283		unsigned long best_freq, fvco_min, fvco_max, fin, fout;
-   284		unsigned long min_delta = ULONG_MAX, delta;
-   285		unsigned int mpclk, target_mbps, desired_mbps;
-   286		unsigned int max_mbps = dppa_map[ARRAY_SIZE(dppa_map) - 1].max_mbps;
-   287		unsigned int bpp, min_prediv, max_prediv;
-   288		unsigned int _fbdiv, best_fbdiv, _prediv, best_prediv;
-   289		u64 freq_factor;
-   290	
-   291		dsi->format = format;
-   292		bpp = mipi_dsi_pixel_format_to_bpp(dsi->format);
- > 293		if (bpp < 0) {
-   294			dev_err(dsi->dev,
-   295				"failed to get bpp for pixel format %d\n",
-   296				dsi->format);
-   297			return bpp;
-   298		}
-   299	
-   300		mpclk = DIV_ROUND_UP(mode->clock, MSEC_PER_SEC);
-   301		if (mpclk) {
-   302			/* take 1/0.8, since mbps must be bigger than bandwidth of RGB */
-   303			desired_mbps = mpclk * (bpp / lanes) * 10 / 8;
-   304			if (desired_mbps < max_mbps) {
-   305				target_mbps = desired_mbps;
-   306			} else {
-   307				dev_err(dsi->dev,
-   308					"DPHY clock frequency is out of range\n");
-   309				return -ERANGE;
-   310			}
-   311		}
-   312	
-   313		fin = clk_get_rate(dsi->pllref_clk);
- > 314		fout = target_mbps * USEC_PER_SEC;
-   315	
-   316		/* constraint: 5Mhz <= Fref / N <= 40MHz */
-   317		min_prediv = DIV_ROUND_UP(fin, 40 * USEC_PER_SEC);
-   318		max_prediv = fin / (5 * USEC_PER_SEC);
-   319	
-   320		/* constraint: 80MHz <= Fvco <= 1000Mhz */
-   321		fvco_min = 80 * USEC_PER_SEC;
-   322		fvco_max = 1000 * USEC_PER_SEC;
-   323	
-   324		for (best_freq = 0, _prediv = min_prediv; _prediv <= max_prediv; _prediv++) {
-   325			/* Fvco = Fref * M / N */
-   326			freq_factor = fout * _prediv;
-   327			do_div(freq_factor, fin);
-   328			_fbdiv = freq_factor;
-   329			/*
-   330			 * Due to the use of a "by 2 pre-scaler," the range of the
-   331			 * feedback multiplication value M is limited to even division
-   332			 * numbers, and m must be greater than 6, not bigger than 512.
-   333			 */
-   334			if (_fbdiv < 6 || _fbdiv > 512)
-   335				continue;
-   336	
-   337			_fbdiv += _fbdiv % 2;
-   338	
-   339			freq_factor = _fbdiv * fin;
-   340			do_div(freq_factor, _prediv);
-   341			if (freq_factor < fvco_min || freq_factor > fvco_max)
-   342				continue;
-   343	
-   344			delta = abs(fout - freq_factor);
-   345			if (delta < min_delta) {
-   346				best_prediv = _prediv;
-   347				best_fbdiv = _fbdiv;
-   348				min_delta = delta;
-   349				best_freq = freq_factor;
-   350			}
-   351		}
-   352	
-   353		if (best_freq) {
-   354			dsi->lane_mbps = DIV_ROUND_UP(best_freq, USEC_PER_SEC);
-   355			*lane_mbps = dsi->lane_mbps;
-   356			dsi->input_div = best_prediv;
-   357			dsi->feedback_div = best_fbdiv;
-   358		} else {
-   359			dev_err(dsi->dev, "Can not find best_freq for DPHY\n");
-   360			return -EINVAL;
-   361		}
-   362	
-   363		return 0;
-   364	}
-   365	
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Heiko Stuebner <heiko@sntech.de>
 
