@@ -1,130 +1,136 @@
-Return-Path: <devicetree+bounces-94170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 964C295439F
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 10:03:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D0D49544F4
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 10:59:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A47CB27844
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 08:03:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 344451F214F5
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 08:59:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D83412F398;
-	Fri, 16 Aug 2024 08:03:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF51B13C673;
+	Fri, 16 Aug 2024 08:59:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bP8I5jpJ"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="J1UE/ruN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m127166.xmail.ntesmail.com (mail-m127166.xmail.ntesmail.com [115.236.127.166])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5968977101
-	for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 08:03:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E677A13B286;
+	Fri, 16 Aug 2024 08:59:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.236.127.166
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723795409; cv=none; b=av6afas5cBDMGBPFbw4Squ61MI1HiK0Y0GS4NjHjNiTavh6PaQxhnXNFofr55FIbSuAMbpSmkj47BxeksIgPGpnqUjqot38m3JhjwLVLR2hhkf8qRQ70tcNktJRgAc+IGPjxlO6Yer7flun0RS76mwiLo+FLZGVoVE+P7kPXSOY=
+	t=1723798784; cv=none; b=HYqxLXGd+tMLU5QFoF2IbD5vPdyIOTy5TFXtHQShoaTpaT9T3Fr3chKOe+z6E4vm7RH3yAjjRq4bMOpl4r5CrjmzxfJmCNTgVCxVgcf7P0TWVnmwdWOj86QcllCDjOuluMOreVqK6Xq2mN7YoUpU/cFvP60ePsqEkjzzmBIQoFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723795409; c=relaxed/simple;
-	bh=lI5qZml5n8D8uMwE0Gj7rF8DkdSGFNzLx4uvrXbdiXI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NJnkZuh+MqXJ2OI+VZ3Iy8vMcW/v4/oaBol6iWPKzjbRVJ492B/OCeG4OlL5k3VvbN0A2gEbcp9QJlN7vPuVOoWGsjun2J/R4UcKvohoeOl1o/feu2dZ12Wv/WYf/wABfk3H5JQDDPDkq1K8Db4AfbCm2EQSeiui3sk3Y4lFP8Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bP8I5jpJ; arc=none smtp.client-ip=209.85.128.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-661d7e68e89so12843747b3.0
-        for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 01:03:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723795405; x=1724400205; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VR26oQJGUDskARtTbfBCHHqlsRCVMlxxfj+UcLee/2U=;
-        b=bP8I5jpJwTljTyhANzKDsbOWZsQP9Zv9UwSRLL3QUkWHASY06wOrx+rehc9WxYlTY1
-         jV4ok6R04I+e1HA6fgHrLzj97ZbRlcgXMQ3E8/Bcraoj3ucA9weKsA22uqh8UHJqejb0
-         PKUMEnWFqPoBX5PTvtkTxDU38iAMzdpnCK3dD42p2nQAT2RVpQGJN7fMB8Jb0CJeHYby
-         WgcXGkz2Czgw5sla0DkrtciX/jkl1QPMld/PUwlkmmgqiEtwCf+ws3TSvnbFgOIF+SA/
-         DOgYcMY74+wHGHcMJrVZOBiSMFxht0Atu0dmx6wobj7KPrHfLcj9yyAKbJ2oKejAeOQu
-         phGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723795405; x=1724400205;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VR26oQJGUDskARtTbfBCHHqlsRCVMlxxfj+UcLee/2U=;
-        b=oHnSwPe45pipFWvdupPBwAK+0wl/vqXRwC3uVR0STT3tVnfbMiiM6RtjIgxwIkHZT1
-         86v1GKxTjhfDX4C1I3cANF6KYIyUtaoe6QSIzakhPrUDJvbGq2ybyp9J/LUkC3fHt+6x
-         yzr8nllNwYp6Sfx8Su1VbzOa/CApuNCrQIvQrT5wJtegjj5vDzWdHTheNviQ49Ew/UWW
-         TbRwR8ksxQvN8mugAxwMvm50srelvLzCHZMos1VU+njYE4EahFQnAXhSRYYOJKazphCZ
-         IDvVP2+irTCLTDjrqKeW7xSuHmo8SWqzAUqJmzZro19cdo+oUKcPYGXOz0GydgOEin1x
-         r6Yg==
-X-Forwarded-Encrypted: i=1; AJvYcCWidwIxCND5+/dJrHKlIWVz+DSFEIKIy7SfmlgFtgx4Wecb9ADoW3+2urRHsaSyjWCjRt4y7N4eLxwu0A/bPDIhffqrcM7VufW48w==
-X-Gm-Message-State: AOJu0YxiVqXdApIeQPmlp2cpgpzqZkbuQE0EbT86ZhJ1RbFxYL3P7u03
-	pxmd2/BDo/Si3RGlulJMrX4QGphWD29ytSu+DK2o7ESDkboeTXo56TUPaG9EbMUHFZTKKrinTiq
-	40TudtftWEylcdeW3+IGehT3xBUQd6cIiI4W1kQ==
-X-Google-Smtp-Source: AGHT+IFPXaGhgnB1O38F+OQxY8qufXLZWG9hoZgdNA43kJdPxtWrN+zVXWCoEb1vrisLWBNqibFhFqz0HaYdqSO/ADM=
-X-Received: by 2002:a05:690c:397:b0:6af:a6aa:2b59 with SMTP id
- 00721157ae682-6b1ee4e050emr14403077b3.5.1723795405222; Fri, 16 Aug 2024
- 01:03:25 -0700 (PDT)
+	s=arc-20240116; t=1723798784; c=relaxed/simple;
+	bh=Xm3fx8Xa4ANe/iABtyTd5CMBETIZxfcy+1hfSJGJ0ys=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=kMNhZ+1xUjqKzAjKQ+4ZOgnw5vG+1fkxv94UdEW21+dWNiRDhvRqMNO2hcLtni2/A2JAYXIyN2k41b+O2+w5Y5oVb1oI+vl52iMC3qPViIorE8eXJyGrrHnllZEd49gmDL9ihLKDGir24trLrYo2+fa5rZ840sXk8Cy4Zuj91Jw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=J1UE/ruN; arc=none smtp.client-ip=115.236.127.166
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+DKIM-Signature: a=rsa-sha256;
+	b=J1UE/ruNV7QGyM0y41B5pMuLmVchxWYjJmDqZINeHWDXSansizu6IXSpjUkqLTeg0zS80Lun+gWCHGetcKil7Fke8S4LBE+E9/7vJnGaLhogGWazpVCLFnj7bym4QBZTzXHPIc/4FgWcBAQluFsWtl6xSPjbmdHvK2V2bcaruyA=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=iL3g7hzaLQ+rrYtLHSAvIW1379wSOIx3YsifSBddCrY=;
+	h=date:mime-version:subject:message-id:from;
+Received: from [172.16.12.45] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTPA id E30FD4601FE;
+	Fri, 16 Aug 2024 08:43:48 +0800 (CST)
+Message-ID: <2517e284-88d0-4cf3-97cf-55567f35eb82@rock-chips.com>
+Date: Fri, 16 Aug 2024 08:43:48 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240810211438.286441-1-heiko@sntech.de> <20240810211438.286441-2-heiko@sntech.de>
- <172340442666.7060.12608274118090495917.b4-ty@linaro.org> <12584345.NizCu2HIMA@diego>
-In-Reply-To: <12584345.NizCu2HIMA@diego>
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Date: Fri, 16 Aug 2024 10:03:14 +0200
-Message-ID: <CACMJSesFVdJDkJXyC4o5NZxeDB8kkg6Ks0_x6G1Bywr+_ONZVw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: eeprom: at24: Add compatible for Giantec GT24C04A
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	ukleinek@debian.org, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Cc: shawn.lin@rock-chips.com, Ulf Hansson <ulf.hansson@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Jaehoon Chung <jh80.chung@samsung.com>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v3 2/3] mmc: dw_mmc-rockchip: Add v2 tuning support
+To: Detlev Casanova <detlev.casanova@collabora.com>,
+ linux-kernel@vger.kernel.org
+References: <20240814223555.3695-1-detlev.casanova@collabora.com>
+ <20240814223555.3695-3-detlev.casanova@collabora.com>
+ <5dc82aa2-82a0-4778-b598-88775d5f791c@rock-chips.com>
+ <2742918.mvXUDI8C0e@trenzalore>
+Content-Language: en-GB
+From: Shawn Lin <shawn.lin@rock-chips.com>
+In-Reply-To: <2742918.mvXUDI8C0e@trenzalore>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQkNMSVZPShlLSx5OGUMaTx9WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	JVSktLVUpCS0tZBg++
+X-HM-Tid: 0a9158a4051103aekunme30fd4601fe
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6KyI6OTo6CDIrSzoCNiktTFY#
+	MVEKFA9VSlVKTElITE1CS0hLSENIVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUhCSE43Bg++
 
-On Thu, 15 Aug 2024 at 18:48, Heiko St=C3=BCbner <heiko@sntech.de> wrote:
->
-> Hi,
->
-> Am Sonntag, 11. August 2024, 21:27:13 CEST schrieb Bartosz Golaszewski:
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >
-> >
-> > On Sat, 10 Aug 2024 23:14:37 +0200, Heiko Stuebner wrote:
-> > > The gt24c04a is just yet another 2404 compatible eeprom, and does not
-> > > follow the generic naming matching, so add a separate compatible for =
-it.
-> > >
-> > >
-> >
-> > Applied, thanks!
-> >
-> > [1/2] dt-bindings: eeprom: at24: Add compatible for Giantec GT24C04A
-> >       commit: a825dea2cd27a30e49816f18b7bc16545d5f0f89
->
-> just for my understanding, where is this commit living now?
->
-> Because linux next seems to know it [0], but also says that
-> "Notice: this object is not reachable from any branch."
->
->
-> Thanks
-> Heiko
->
-> [0] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/c=
-ommit/?id=3Da825dea2cd27a30e49816f18b7bc16545d5f0f89
->
->
+在 2024/8/15 21:23, Detlev Casanova 写道:
+> On Wednesday, 14 August 2024 20:55:37 EDT Shawn Lin wrote:
+>> Hi Detlev
+>>
+>> 在 2024/8/15 6:34, Detlev Casanova 写道:
+>>> From: Shawn Lin <shawn.lin@rock-chips.com>
+>>>
+>>> v2 tuning will inherit pre-stage loader's phase settings for the first
+>>> time, and do re-tune if necessary.
+>>> Re-tune will still try the rough degrees, for instance, 90, 180, 270,
+>>> 360 but continue to do the fine tuning if sample window isn't good
+>>> enough.
+>>>
+>>> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+>>> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+>>> ---
+>>>
+>>>    drivers/mmc/host/dw_mmc-rockchip.c | 49 ++++++++++++++++++++++++++++++
+>>>    1 file changed, 49 insertions(+)
+>>>
+>>> diff --git a/drivers/mmc/host/dw_mmc-rockchip.c
+>>> b/drivers/mmc/host/dw_mmc-rockchip.c index b07190ba4b7ac..367633f4e8892
+>>> 100644
+>>> --- a/drivers/mmc/host/dw_mmc-rockchip.c
+>>> +++ b/drivers/mmc/host/dw_mmc-rockchip.c
+> 
+> [...]
+> 
+>>>    		
+>>>    		priv->default_sample_phase = 0;
+>>>
+>>> +	priv->use_v2_tuning =
+>>> +		of_device_is_compatible(host->dev->of_node,
+>>> +					"rockchip,rk3576-dw-
+> mshc");
+>>> +
+>>
+>> v2 is a kind of software decision instead of hardware dependency.
+>> So in theory, any SoC can claim to use it via DT.
+> 
+> Yes but from my tests, only rk3576 won't work without it. So it makes sense to
+> only use v2 for this SoC (and other future ones not supported yet)
+> 
 
-It lives in my kernel.org tree[1]. You can get that information from
-the MAINTAINERS file.
+However from both of the IC design POV and the test from my side,
+we just need internal phase support patch, and rk3576 could
+work.
 
-Bart
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git/log/?h=
-=3Dat24/for-next
+>>
+>>>    	priv->drv_clk = devm_clk_get(host->dev, "ciu-drive");
+>>>    	if (IS_ERR(priv->drv_clk))
+>>>    	
+>>>    		dev_dbg(host->dev, "ciu-drive not available\n");
+> 
+> 
+> Detlev.
+> 
+> 
 
