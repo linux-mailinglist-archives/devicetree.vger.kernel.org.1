@@ -1,122 +1,133 @@
-Return-Path: <devicetree+bounces-94369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAE37955386
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 00:53:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1304A955390
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 00:59:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 742FF1F21E93
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 22:53:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C43A51F22426
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 22:59:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EBE1145A16;
-	Fri, 16 Aug 2024 22:52:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6066D1482FE;
+	Fri, 16 Aug 2024 22:59:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iGbZuz/Y"
+	dkim=pass (2048-bit key) header.d=ellerman.id.au header.i=@ellerman.id.au header.b="AmsXAnYr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7557813C80F;
-	Fri, 16 Aug 2024 22:52:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C195147C71;
+	Fri, 16 Aug 2024 22:59:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723848778; cv=none; b=YgcyVtaUU+BSvqPlNncggYPYXWBV6g8leoRLf3V2OtbAkF1zs/AHzfiHzwVk3Skcnc21kieQ4HKGSATu8AEws4rIshbbnl+zU7BXpzFCAh9P8Oajm6/u7o9w6fOQFgQHvltkrXwwRf4gHjHIUHnZ67HN9ahPWHMDn53GOhEGJ7E=
+	t=1723849162; cv=none; b=c7Z5PD3kJj83qjGV/Edb7UtDwlCY6dP5VocfNBy7aMz53Cqxcb31OxQEkWGM/bmZym7u6pRRSpm0sijBPjygNHtM8gxY/5J/hy5gDn5M8AJB0+NRzsmqcTFbpoB1CsxKzbYIGKuOzGva624dAICJhd/hk+gDEEM85gDJxB3cijY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723848778; c=relaxed/simple;
-	bh=8DDeC1Xe7fCa3QZwCHDRLsEPNaCzKydJaYmyPNmvTCs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SSh7LA9UVEVOGPp3xGfyXWZ/edzen9iLV/Ci+WgDwmJL+DwiRPxx7z2MiSM9oLWgu2cEIs6hcgthaqKWfRvJHNgfrK+UutozyHMLUy53EyrgAflAXmxIh4+UuB0Ud4+kxALoJe8w3fvJ8WWLlfmX+FfliYpqAHzV9bL+PM8wlJU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iGbZuz/Y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC7BCC32782;
-	Fri, 16 Aug 2024 22:52:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723848777;
-	bh=8DDeC1Xe7fCa3QZwCHDRLsEPNaCzKydJaYmyPNmvTCs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iGbZuz/YjNrLSltqIoaEoV1mBiKn9M1Dw8zMz1Xvme5i6npcryIJQVZw6CtogXpm9
-	 jOMy77y6DWB9SKRozIpKqWWAICb5e7QR2cQQmyv8MOBiNrKj+Ka1yhLMa8+kVXnRsf
-	 A/c+i+84JCeDGMuX8CWvJSanoWCsEQISjZ9v0rTE4lnagXMD04qFNmlRYDXq2f0Lw8
-	 7RlxKGwZ/Y4u2Do5f55+fd+9xCyzEtUDmzyu5DjB4A6xnKVBVGQWSXMJop2eHJHneY
-	 EXcjlogrCnGedNqSrwpC7oAEy8h778MSkQjx7rBjFl2+jQ7qn7+Em5Uc6TjY2u+oTd
-	 EGuynJmfAQRdQ==
-Date: Fri, 16 Aug 2024 16:52:57 -0600
-From: Rob Herring <robh@kernel.org>
-To: Benjamin Larsson <benjamin.larsson@genexis.eu>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Lorenzo Bianconi <lorenzo@kernel.org>, linux-gpio@vger.kernel.org,
-	linus.walleij@linaro.org, sean.wang@kernel.org,
-	linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com,
-	krzk+dt@kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com, conor+dt@kernel.org,
-	ansuelsmth@gmail.com
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: airoha: Add EN7581 pinctrl
- controller
-Message-ID: <20240816225257.GA2411475-robh@kernel.org>
-References: <cover.1723392444.git.lorenzo@kernel.org>
- <0d537e88b64847bc4e49756b249b2efdcf489b92.1723392444.git.lorenzo@kernel.org>
- <22144671-fc7c-4cb2-8bb6-ee7d3fbfcb0e@kernel.org>
- <c8a74be4-be63-477d-9460-1d5ef5e3d84a@genexis.eu>
+	s=arc-20240116; t=1723849162; c=relaxed/simple;
+	bh=MsQ2JWBXJTOT4TDjz8UgKQmbAmGvjsYJNgpqjaaygvQ=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=Kqo//K/fx4LPxFg+aEF4NZc+IsAIQlSPhbAi+U3RictnKFKEdAdGo6BhWBej5gncgyaILWU8e1O+c7xGGCOdH6n+YncGVvAiWN4M+yVS83spO6gXigVZr0YJY/F4gMGKFKQZUKbh3wL3MdhxqiQjtEZikgqXvlPuccPZch9fOIo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ellerman.id.au; spf=pass smtp.mailfrom=ellerman.id.au; dkim=pass (2048-bit key) header.d=ellerman.id.au header.i=@ellerman.id.au header.b=AmsXAnYr; arc=none smtp.client-ip=150.107.74.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ellerman.id.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ellerman.id.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
+	s=201909; t=1723849156;
+	bh=roYcbEwUkCK44wHMpRdhuKBnVEwlCVBSQUtDw2Hz8SQ=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=AmsXAnYrY7hw3WpwHZSqkOCASktJ+k24PxqopHBvkPLi7tL4eqiMGX1vl5Q89z9wP
+	 8tIbivB12uj9UCXGgQtlB41h3EwVZcgoiI/jZTU7cshhYc+tISuLvHlK4M9HkHU0Zg
+	 4i7stxOCnT0f8dxqG0Pzpcb9wlfbRYRiDTMo0U2iUw1RMIrkUflE5zGcIzOhIacfYp
+	 Uk2k/gT7vOuHZieR3s8j4N8v7KmFKFaxCoN4gC64XvSN145UbGNntsdA25H5DQEtyr
+	 jsp9ZnCSVk30IwL5Wp6RZF40Iwak19xzJB+P40Pkhmvvvj99sqDcsAQfGjI2flpb+s
+	 segbiMtOphFnA==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by mail.ozlabs.org (Postfix) with ESMTPSA id 4Wly9G30LYz4wb0;
+	Sat, 17 Aug 2024 08:59:14 +1000 (AEST)
+From: Michael Ellerman <mpe@ellerman.id.au>
+To: Amit Machhiwal <amachhiw@linux.ibm.com>
+Cc: Bjorn Helgaas <helgaas@kernel.org>, Rob Herring <robh@kernel.org>,
+ linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ kvm-ppc@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>, Lizhi Hou
+ <lizhi.hou@amd.com>, Saravana Kannan <saravanak@google.com>, Vaibhav Jain
+ <vaibhav@linux.ibm.com>, Nicholas Piggin <npiggin@gmail.com>, Vaidyanathan
+ Srinivasan <svaidy@linux.ibm.com>, Kowshik Jois B S
+ <kowsjois@linux.ibm.com>, Lukas Wunner <lukas@wunner.de>,
+ kernel-team@lists.ubuntu.com, Stefan Bader <stefan.bader@canonical.com>
+Subject: Re: [PATCH v3] PCI: Fix crash during pci_dev hot-unplug on pseries
+ KVM guest
+In-Reply-To: <20240816180441.81f4d694-3b-amachhiw@linux.ibm.com>
+References: <20240806200059.GA74866@bhelgaas> <87h6bm1ngo.fsf@mail.lhotse>
+ <20240816180441.81f4d694-3b-amachhiw@linux.ibm.com>
+Date: Sat, 17 Aug 2024 08:59:13 +1000
+Message-ID: <87o75s2hxa.fsf@mail.lhotse>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c8a74be4-be63-477d-9460-1d5ef5e3d84a@genexis.eu>
+Content-Type: text/plain
 
-On Tue, Aug 13, 2024 at 10:06:41AM +0200, Benjamin Larsson wrote:
-> On 2024-08-12 08:48, Krzysztof Kozlowski wrote:
-> > > +      pio: pinctrl@1fa20214 {
-> > > +        compatible = "airoha,en7581-pinctrl";
-> > > +        reg = <0x0 0x1fa20214 0x0 0x30>,
-> > > +              <0x0 0x1fa2027c 0x0 0x8>,
-> > > +              <0x0 0x1fbf0234 0x0 0x4>,
-> > > +              <0x0 0x1fbf0268 0x0 0x4>,
-> > > +              <0x0 0x1fa2001c 0x0 0x50>,
-> > > +              <0x0 0x1fa2018c 0x0 0x4>,
-> > > +              <0x0 0x1fbf0204 0x0 0x4>,
-> > > +              <0x0 0x1fbf0270 0x0 0x4>,
-> > > +              <0x0 0x1fbf0200 0x0 0x4>,
-> > > +              <0x0 0x1fbf0220 0x0 0x4>,
-> > > +              <0x0 0x1fbf0260 0x0 0x4>,
-> > > +              <0x0 0x1fbf0264 0x0 0x4>,
-> > > +              <0x0 0x1fbf0214 0x0 0x4>,
-> > > +              <0x0 0x1fbf0278 0x0 0x4>,
-> > > +              <0x0 0x1fbf0208 0x0 0x4>,
-> > > +              <0x0 0x1fbf027c 0x0 0x4>,
-> > > +              <0x0 0x1fbf0210 0x0 0x4>,
-> > > +              <0x0 0x1fbf028c 0x0 0x4>,
-> > > +              <0x0 0x1fbf0290 0x0 0x4>,
-> > > +              <0x0 0x1fbf0294 0x0 0x4>,
-> > > +              <0x0 0x1fbf020c 0x0 0x4>,
-> > > +              <0x0 0x1fbf0280 0x0 0x4>,
-> > > +              <0x0 0x1fbf0284 0x0 0x4>,
-> > > +              <0x0 0x1fbf0288 0x0 0x4>;
-> > Why are you mapping individual registers? At least half of these are
-> > continuous.
-> 
-> Hi, this is by design because of the register placement in the gpio block
-> and the fact that the pwm functionality is intermixed in there also. As
-> example the following registers are all GPIOCTRL:
-> 
-> <0x0 0x1fbf0200 0x0 0x4>,
-> <0x0 0x1fbf0220 0x0 0x4>,
-> <0x0 0x1fbf0260 0x0 0x4>,
-> <0x0 0x1fbf0264 0x0 0x4>,
-> 
-> To simplify the driver code logic the complexity is moved to the dts because
-> of that.
+Amit Machhiwal <amachhiw@linux.ibm.com> writes:
+> On 2024/08/15 01:20 PM, Michael Ellerman wrote:
+>> Bjorn Helgaas <helgaas@kernel.org> writes:
+>> > On Sat, Aug 03, 2024 at 12:03:25AM +0530, Amit Machhiwal wrote:
+>> >> With CONFIG_PCI_DYNAMIC_OF_NODES [1], a hot-plug and hot-unplug sequence
+>> >> of a PCI device attached to a PCI-bridge causes following kernel Oops on
+>> >> a pseries KVM guest:
+>> >
+>> > What is unique about pseries here?  There's nothing specific to
+>> > pseries in the patch, so I would expect this to be a generic problem
+>> > on any arch.
+>> >
+>> >>  RTAS: event: 2, Type: Hotplug Event (229), Severity: 1
+>> >>  Kernel attempted to read user page (10ec00000048) - exploit attempt? (uid: 0)
+>> >>  BUG: Unable to handle kernel data access on read at 0x10ec00000048
+>> >
+>> > Weird address.  I would expect NULL or something.  Where did this
+>> > non-NULL pointer come from?
+>> 
+>> It originally comes from np->data, which is supposed to be an
+>> of_changeset.
+>> 
+>> The powerpc code also uses np->data for the struct pci_dn pointer, see
+>> pci_add_device_node_info().
+>> 
+>> I wonder if that's why it's non-NULL?
+>
+> I'm also looking into the code to figure out where's that value coming from. I
+> will update as soon as I get there.
 
-DT to OS is an ABI. Don't put the complexity there. The driver is easy 
-to change.
+Thanks.
+ 
+>> Amit, do we have exact steps to reproduce this? I poked around a bit but
+>> couldn't get it to trigger.
+>
+> Sure, below are the steps:
+>
+> 1. Set CONFIG_PCI_DYNAMIC_OF_NODES=y in the kernel config and compile (Fedora
+>    has it disabled in it's distro config, Ubuntu has it enabled but will have it
+>    disabled in the next update)
+>
+> 2. If you are using Fedora cloud images, make sure you've these packages
+>    installed:
+>     $ rpm -qa | grep -e 'ppc64-diag\|powerpc-utils'
+>     powerpc-utils-core-1.3.11-6.fc40.ppc64le
+>     powerpc-utils-1.3.11-6.fc40.ppc64le
+>     ppc64-diag-rtas-2.7.9-6.fc40.ppc64le
+>     ppc64-diag-2.7.9-6.fc40.ppc64le
+>
+> 3. Hotplug a pci device as follows:
+>     virsh attach-interface <domain_name> bridge --source virbr0
 
-Lot's of h/w blocks are just bit soup. This is not special. If a few 
-regions is helpful, then that would be fine.
+I don't use virsh :)
 
-Rob
+Any idea how to do it with just qemu monitor commands?
+
+cheers
 
