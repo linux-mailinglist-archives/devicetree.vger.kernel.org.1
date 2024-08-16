@@ -1,162 +1,168 @@
-Return-Path: <devicetree+bounces-94168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38E4D954381
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 09:55:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E13E95438F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 09:58:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B618281B30
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 07:55:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC5342847CD
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 07:58:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AD3613D63D;
-	Fri, 16 Aug 2024 07:52:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F605135A79;
+	Fri, 16 Aug 2024 07:57:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eXh16FHM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f1XR5SrA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D338B770FB;
-	Fri, 16 Aug 2024 07:52:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B469712C465;
+	Fri, 16 Aug 2024 07:57:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723794774; cv=none; b=TCCsWm1OJSqyQzscLfGYXBEUJgKqEFiI1Jq1Vq4ck8b+2beW49x0MajrBIqUUSvQmZcEtMe4yXYB6tud6uKHQ128dszLqWi9YjiINfjCr7HSU7FXQPX3V1FXcgN+LDQ9Q1BDlz4K4/EAhrI6VeTJLpjHuhqdyCtp4so0iYJMfoI=
+	t=1723795067; cv=none; b=ErhzussS7r+vLMK5p87HcIN4F1FEL6/2Xnk9kgXr3prCA9sYcRHu15te+6L2nP/IIoakajh8wiw+gs+09xjQZ57v8JOfVfR0pFGXk9bJhi8P0BNEgfcuSp+dgvx2F8DQr/qTd0Uxgd41EgG01Mu+ccb2zLHbTVWmREj3HjqhtaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723794774; c=relaxed/simple;
-	bh=tfZn2p8RWXsTl4oUausz/H/NOrc1d5GvPHxwW131Bcg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UWRUj7BAPcnLyVPORrQBetlDzljY48gCfEjJ8iCzfacxGmY4LJMh+4OKHTPl67W/m+5rhSNFqUltn2tObDj/LtWtHW2u4tJthmkYU3OsGa4Te84ubkqvGikwi7jKgFEqHmDwX12RoWFpwxVNhyHbPfLhuswMr/GaUD6petNQLxA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eXh16FHM; arc=none smtp.client-ip=209.85.210.171
+	s=arc-20240116; t=1723795067; c=relaxed/simple;
+	bh=G2jlt/Zahw0uvrixwlEmuFXlOjRYk/7lnomRN/YsPXM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YGC3JivvGIP49rv0+L/+mcWCaLlezD9kF/KawlvP2z3L7WMPfOMwv6EutTkwbNICmhzH6Hce9INF3TUgbcBGMZn8b7danMC/pl/1MOJiKueAAT+EblNfEqoYHxjyViVcm+nMsDhB7WdAQfLNRlXkzzT8GKrG2wPbBIP8zU/BhDI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f1XR5SrA; arc=none smtp.client-ip=209.85.128.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-710ce81bf7dso1384604b3a.0;
-        Fri, 16 Aug 2024 00:52:52 -0700 (PDT)
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4281ca54fd3so12131835e9.2;
+        Fri, 16 Aug 2024 00:57:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723794772; x=1724399572; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=yCqitL2vC4TIDXevMyjj4uRZNh6ztGM5H4Qtombp2RM=;
-        b=eXh16FHM+xPFKJ+lb2ZIrnldHi2Nhpil6r4USgqqLGTi8rsBouamXJ0AjJNVbR3eoR
-         R3UAVogvmhK2RSS5l+LlWXm+YE8M/NVEVf8oeCeZ9oJJ8VeB2LP/pS4TuhtnJO1IaBkf
-         e+I74kZOtD9eF0WiUMHcoT8FAYCmjuJgbc1MEMLWztiJJpURZTyDrGPjbYzJTjh5hug8
-         29LluBkIh2GEXpP5ulLId66MLLSnpWPcgANhRLBtm+BVxQnpBuET0mpzBYSHVIuLgZex
-         clLCqVi+F0QnLr5DmBOJx6w0aCNFyGSSNyPHIXbF9cRVTK6jjzOdnto5RddasXiAoZ5d
-         kkUw==
+        d=gmail.com; s=20230601; t=1723795064; x=1724399864; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/hpKq9oPj8Y9788s3d9UlaZGkOn+HemVqrY+6SPwvT8=;
+        b=f1XR5SrAARb0vevCMsfMTiYW3uAcFQ+tOUx0vh4JMe1ia+SJKQaVf4kMCzc1MKMysv
+         WgwJDhr+KA4qQKnGRfGchC9E4gm+fU5giRCZiF8nLgFDh/T7T1t2O5y1BcfXWNG0vljD
+         FlBlRwJd9Eoubey6rTScGI4LmZk/Z8h4bCmjP+GSG6QrBaOUlyIOJd4EYEcs+8Y/3v1x
+         zGcWl3l5KFJHSFq2oXmGN/+PYQHGa0O43sQ+q58FhIDnQUp3T8E3pMoaE5QcYPqTcKjP
+         +Ypd6tpzjP75d7a3awng93gS3pnBI1cIiwOoClrvfaksc5vppf7czKNZF/unQpLujUy/
+         VZ5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723794772; x=1724399572;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1723795064; x=1724399864;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yCqitL2vC4TIDXevMyjj4uRZNh6ztGM5H4Qtombp2RM=;
-        b=OyhQ0ZPKH1yhvoB21Sho59ALJXXVPjVvecZj74GMuNNp78kuqqE8cWokzD8Utqx5Ib
-         1zAheg6KRcnqhiEDYkNjePLbfQZ6hhFBR0RCrgMhF2lxQpAu9F9Q28hVAoa3bwFHQXtb
-         w6tOfe+EGB887NYEYGEjuEisgM/n9MA3e3DEzg1DtpRMZL1NR60/i4PhVrmfYzKqIunV
-         xnib068rpUlFvuKNNIAb9XJZ+53U6ni87Oipg6tqrF8OvVlzRoGIcrmiPawgO81dBJB/
-         3UPig1BEKJG6rZ6LI0hjn5vlvf85qWDCJEnka6u/+ZTCrA3IImcB7JM06KU4kGcIKDDp
-         DlKw==
-X-Forwarded-Encrypted: i=1; AJvYcCU/KLh4xn/+um8Xw53uOKOECONlo4olpK1uZiwphHS0zmtQjHL2oOUmSqu0+pSp0A1WQ30rksm1CQC8RP87A5nODJokadY2nglAwFxG8xLrDBTCLEU+KKNhr+nO3ts7KsURvYjb+B3Bddr2/4iCHXerW3hkSi0RWFF2G9iWbA1XZCiOIc4=
-X-Gm-Message-State: AOJu0Yzl4aYj5EiRcNactxUQsbUBuAotPfWOkbMO1fXmZDE2bEZgFub9
-	Esfx1Hj0cauLEPH1EFqymb9tcy+14r0IOP2Ji+osg37UKO3YV+7i
-X-Google-Smtp-Source: AGHT+IHdnjMLFDrXUew2brTPTbI8QrOzvSdpXJjVxuaYGbaPyCkKr6kIrNP/oBcqOANohn4tjt9yJw==
-X-Received: by 2002:a05:6a20:ce48:b0:1c3:ea28:3c0e with SMTP id adf61e73a8af0-1c90502fa13mr2781425637.33.1723794772163;
-        Fri, 16 Aug 2024 00:52:52 -0700 (PDT)
-Received: from thinkpad ([36.255.17.34])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-201f02fa4d5sm20764945ad.41.2024.08.16.00.52.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Aug 2024 00:52:51 -0700 (PDT)
-Date: Fri, 16 Aug 2024 13:22:44 +0530
-From: Manivannan Sadhasivam <manisadhasivam.linux@gmail.com>
-To: Shawn Lin <shawn.lin@rock-chips.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	"James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
-	"Martin K . Petersen" <martin.petersen@oracle.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Avri Altman <avri.altman@wdc.com>,
-	Bart Van Assche <bvanassche@acm.org>,
-	YiFeng Zhao <zyf@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
-	linux-scsi@vger.kernel.org, linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] scsi: ufs: rockchip: init support for UFS
-Message-ID: <20240816075244.sbul4gsaem4skon4@thinkpad>
-References: <1723089163-28983-4-git-send-email-shawn.lin@rock-chips.com>
- <20240809062813.GC2826@thinkpad>
- <421d48b7-4aa7-4202-8b5f-9c60916f6ef6@rock-chips.com>
- <20240810092817.GA147655@thinkpad>
- <3b2617f5-acb1-45c6-993c-33249fd19888@rock-chips.com>
- <20240812041051.GA2861@thinkpad>
- <49659932-5caf-433b-a140-664b61617c43@rock-chips.com>
- <20240812165504.GB6003@thinkpad>
- <b91b18fa-7af0-46c0-a3f7-550676b7a222@rock-chips.com>
- <9fd536a9-b0bf-46a6-92c2-503ea16f7fcd@rock-chips.com>
+        bh=/hpKq9oPj8Y9788s3d9UlaZGkOn+HemVqrY+6SPwvT8=;
+        b=XVRIHJgGa1Wa7sND2ViKfB7N4N9JTMiSnddpR9LAs+iXTpUK1cNWNEx0z/Krvl80Xc
+         wGgo1mUuixMRYNHkGMto+LqdS1I3LVjEoxSrjwTjpfow2DOCb4vgcqIlgdXCFntpH4D5
+         Rn+HcG8Io1WyjUHBzlrpWHkMsXLQWAQ/4MJoepGmR2ZLTHeJ36sLoWXzIfNfXs7S5C4y
+         sctx064YDeZCwTVl6TFRYqx8j8lBDPbOEJxIzsD5CUW0DQfhov+btgQXpa0p6ONMWiij
+         mORXARD324kWGIw6/tgvc75Cq5ypHWIi98GA2lsDLcaUEIxAbfx3jvdMWcTllGIXw11M
+         6zFA==
+X-Forwarded-Encrypted: i=1; AJvYcCVsB9+MemBkUa00JjuJjg5tMOvfPoG7DAxCPMvDmsii00/Cf/3r1FKEdOALXZ6uWffrByPgUWsm+2zKx1FXurrHwJdSpr5QOZHKnTrZeZFYUSK6QkbswMTuwquXDx77DwsV5DoyGGzAtJWWbfySs7mTXOdYZIDssKaFOiExKlkiF44jiDHzlmhaNH2WyA==
+X-Gm-Message-State: AOJu0YwvDphb9pgP+BaT+NARhU8eVVDIZ3XUptrID79ikwkHQKYUXMzG
+	KHkJ3Kaiu33ptoNLxXCZrLBZIXyFzi8a2RCsFLcEqW6LMA7DbAKG
+X-Google-Smtp-Source: AGHT+IFkYuIDGhTHJIU5UPzFH2tdVmRDBc3T9L7x3l6nhQIU5VxzrBn2oDAa71sjqZDhgmvmU0RlLw==
+X-Received: by 2002:a05:600c:1e0c:b0:426:6f17:531 with SMTP id 5b1f17b1804b1-429ed79dda1mr13171385e9.13.1723795063630;
+        Fri, 16 Aug 2024 00:57:43 -0700 (PDT)
+Received: from [192.168.252.55] ([37.30.8.221])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-371898abf2csm3022392f8f.107.2024.08.16.00.57.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Aug 2024 00:57:43 -0700 (PDT)
+Message-ID: <8513b07f-ed64-497e-9881-3666983154ae@gmail.com>
+Date: Fri, 16 Aug 2024 09:57:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <9fd536a9-b0bf-46a6-92c2-503ea16f7fcd@rock-chips.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND v2 1/6] ASoC: dt-bindings: midas-audio: Declare
+ required properties for GPIO jack det
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-sound@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <20240816-midas-audio-tab3-v2-0-48ee7f2293b3@gmail.com>
+ <20240816-midas-audio-tab3-v2-1-48ee7f2293b3@gmail.com>
+Content-Language: en-US
+From: Artur Weber <aweber.kernel@gmail.com>
+In-Reply-To: <20240816-midas-audio-tab3-v2-1-48ee7f2293b3@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Aug 13, 2024 at 03:22:45PM +0800, Shawn Lin wrote:
-
-[...]
-
-> > > > For runtime PM case, it's the power-domain driver will power down the
-> > > > controller and PHY if UFS stack is not active any more（autosuspend）.
-> > > > 
-> > > > For system PM case, it's the SoC's firmware to cutting of all the power
-> > > > for controller/PHY and device.
-> > > > 
-> > > 
-> > > Both cases are not matching the expectations of {rpm/spm}_lvl. So
-> > > the platform
-> > > (power domain or the firmware) should be fixed. What if the user sets the
-> > > {rpm/spm}_lvl to 1? Will the platform power down the controller even
-> > > then? If
-> > > so, then I'd say that the platform is broken and should be fixed.
-> > 
-> > Ok, it seems I need to set {rpm/spm}_lvl = 6 if I want platform to power
-> > down the controller for ultra power-saving. But I still need to add my
-> > own system PM callback in that case to recovery the link first. Do I
-> > misunderstand it?
-> > 
-> > And for the user who sets the rpm/spm level via
-> > ufs_sysfs_pm_lvl_store(), I think there is no way to block it currently,
-> > except that we need to fix the power-domain driver and Firmware to
-> > respect the level and choose correct policy.
-> > 
-> > 
-> > So in summary for what the next step I should to:
-> > (1) Set {rpm/spm}_lvl = 6 in host driver to reflect the expectation
-> > (2) Add own PM callbacks to recovery the link to meet the expectation
-> > (3) Fix the broken behaviour of PD or Firmware to respect the actual
-> > desired pm level if user changes the pm level.
-> > 
-> > 
+On 16.08.2024 09:50, Artur Weber wrote:
+> GPIO jack detection requires an IIO channel and the detection threshold
+> to work. Explicitly declare the requirement in DT schema.
 > 
-> Sorry, I misunderstood your comment, so the action should be
-> (1) Set {rpm/spm}_lvl = 5 in host driver to reflect the expectation
-> (2) Use ufshcd_system_suspend/resume, but keep our own runtime PM
-> callbacks as we need a extra step to gate refclk.
+> Fixes: 0a590ecc672a ("ASoC: dt-bindings: samsung,midas-audio: Add GPIO-based headset jack detection")
 
-Ok.
+Sorry, looks like the Reviewed-by tag from Rob Herring[1] didn't apply:
 
-> (3) Fix the broken behaviour of PD or Firmware to respect the actual
-> desired pm level if user changes the pm level.
+ > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-If you do this, then you don't need (1), don't you?
+Best regards
+Artur
 
-- Mani
+[1] 
+https://lore.kernel.org/all/172235554875.1349313.9208770866983277057.robh@kernel.org/
 
--- 
-மணிவண்ணன் சதாசிவம்
+> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+> ---
+> Changes in v2:
+> - Use anyOf instead of oneOf in headset-detect-gpios/headset-key-gpios
+>    if: statement
+> ---
+>   .../bindings/sound/samsung,midas-audio.yaml        | 29 +++++++++++++++++++---
+>   1 file changed, 26 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/samsung,midas-audio.yaml b/Documentation/devicetree/bindings/sound/samsung,midas-audio.yaml
+> index 69ddfd4afdcd..5483421a6fd3 100644
+> --- a/Documentation/devicetree/bindings/sound/samsung,midas-audio.yaml
+> +++ b/Documentation/devicetree/bindings/sound/samsung,midas-audio.yaml
+> @@ -9,9 +9,6 @@ title: Samsung Midas audio complex with WM1811 codec
+>   maintainers:
+>     - Sylwester Nawrocki <s.nawrocki@samsung.com>
+>   
+> -allOf:
+> -  - $ref: sound-card-common.yaml#
+> -
+>   properties:
+>     compatible:
+>       const: samsung,midas-audio
+> @@ -102,6 +99,32 @@ required:
+>     - mic-bias-supply
+>     - submic-bias-supply
+>   
+> +allOf:
+> +  - $ref: sound-card-common.yaml#
+> +
+> +  - if:
+> +      anyOf:
+> +        - required: [ headset-detect-gpios ]
+> +        - required: [ headset-key-gpios ]
+> +    then:
+> +      required:
+> +        - io-channels
+> +        - io-channel-names
+> +
+> +  - if:
+> +      required:
+> +        - headset-detect-gpios
+> +    then:
+> +      required:
+> +        - samsung,headset-4pole-threshold-microvolt
+> +
+> +  - if:
+> +      required:
+> +        - headset-key-gpios
+> +    then:
+> +      required:
+> +        - samsung,headset-button-threshold-microvolt
+> +
+>   unevaluatedProperties: false
+>   
+>   examples:
+> 
+
 
