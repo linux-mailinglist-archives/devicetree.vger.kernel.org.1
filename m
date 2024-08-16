@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-94115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98CE8954106
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 07:18:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16C4895410B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 07:19:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34FB71F24946
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 05:18:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A20511F24506
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 05:19:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B9F6839F4;
-	Fri, 16 Aug 2024 05:17:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C99660B96;
+	Fri, 16 Aug 2024 05:18:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BkoxRxH4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UyRbMbSt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31E1A74E26;
-	Fri, 16 Aug 2024 05:17:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC78A44366
+	for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 05:18:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723785446; cv=none; b=LzLNDgyXz6mGaWsNWUQJiyAthV8c2iZZKCWZOQiGyVqFifDlJsrR8xw4ySa6xXUehb86R41A6ap1sjZ9fV8c4RUhbJ6enWutRHtUZaVojUE7kjWf1QitZGbqjQYlqEyune2slxmWbewqmYxLMsdsijXDfFeyjfZvE1/dY7k7GPc=
+	t=1723785517; cv=none; b=TDZ5J/+bUM/QjmDlZ6ItYvAa57DuG69b5LQdy6/+Xz5+HuYDLFJNGORWqLU5XbrHptMMc3GLTKs0A0W+6NZ1CsoG5PMEVTt/SfK4o3WpDFuBapXew+S7l5S4Ewfzf1Aubmu2Ve7DoR8Ss8B3bOeStmdttuymxQ/Skjo+BMyb6Pw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723785446; c=relaxed/simple;
-	bh=ozzdcoy2xSO92hku54o19Kw+VhOgFTn5OSHHpjVAkc8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=qQaWVwJ7h/YERV14LSNhUS81jLNh3aN1jCpUhZVoAeewidkC/JbrsbT2oRyWf9tQxEeb4jZhL6TIQ6zPrhfCyLKDq+IJQFHOLPHAh8tdZ/DVy7RgBNyRQ0bCkwYTzvoAT9v0UhElPpMKZvKAnCIUZugaZr82+hgPoMjOOu34beI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BkoxRxH4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97D50C32782;
-	Fri, 16 Aug 2024 05:17:17 +0000 (UTC)
+	s=arc-20240116; t=1723785517; c=relaxed/simple;
+	bh=tLZyooNYoCRy7x4DLCuph7x1N8wUN2RhmVl+zPzYQVA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JgqqWdi2sXiMTlIbqYjhhsPNlgt4xkLmzajewzZAd2T97zcNPiksq9k1znjTisTeHTjyvfSv+O//HW/554yVyioF71jYWX6eqI7TmsRmmKhX/L/B0s+dOsmKii3bM20ODm88lYHd82FLYZrVAkHLCPZUHrIzlEfZcOaD7ElNEHo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UyRbMbSt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64163C32782;
+	Fri, 16 Aug 2024 05:18:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723785445;
-	bh=ozzdcoy2xSO92hku54o19Kw+VhOgFTn5OSHHpjVAkc8=;
-	h=Date:Subject:List-Id:To:References:From:In-Reply-To:From;
-	b=BkoxRxH4lt4T3RPVtPlAA/eyBulUWozHnxTJsney2NrXw9wP0z+Y2kDH63rpXnIoa
-	 ENMIbswb19SBzRlbzf65r900VGWzydebYFaQKI7lXTVcLEkZGxxxug+mj+yxw6KtgU
-	 xWZ5wKYLSeQshC0tDSGHuCw/gJ9CVrOq9AqgWeyqQVk43sxbe1tlESxtIDFRGgFtKd
-	 Tf21CHWTY0Gvxo//qv91j0YnsmAigNhFDmRChrH/Jpq6Jb2Hl/1c6Ru8+VH3qafFPH
-	 FA37NRCYzrnEJemjI9naljcHcvxQb47vJQc2OgJnYantxsvALPVeFj/62FqVQYS/kM
-	 7SDuXMBrVjVmg==
-Message-ID: <2b40d7e4-10f5-406a-9ac9-f9292a52a659@kernel.org>
-Date: Fri, 16 Aug 2024 07:17:15 +0200
+	s=k20201202; t=1723785517;
+	bh=tLZyooNYoCRy7x4DLCuph7x1N8wUN2RhmVl+zPzYQVA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=UyRbMbStJ/znwx+bmzZNA3a4JJ2r7cU5D3xcVf2LY2Sa4tuOKJfLpidKMayvUDz3O
+	 r18k7JvOww92d+C9zKAMgaiNJI0672cgRK0N7PIi3HxgXHDn+qsSSalsKirdj/Nsae
+	 6j8B8xoxDsV/8vpXvFlOGmYg0woyIAQ8WVBZ0IONXOz8Gi12iDYqZq8nqC4AFVTIfg
+	 q50Dh2oHpWRkECeUYs1JGOFuObbIX5oWd6HQ8LUcRz87xYbDnZncAEgqFW4DA2VBVg
+	 1zZa0gy9ddx2qMvuoQkeZc0ZveKvDtpKEaX7qQKDez//8Q8vfgzkmnr+pjDtVRR/Y9
+	 KMPvmUYz5/7nA==
+Message-ID: <a6cf0764-508d-4929-9252-c9fb7567e3ee@kernel.org>
+Date: Fri, 16 Aug 2024 07:18:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,40 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 06/10] dt-bindings: arm: aspeed: Add aspeed,ast2700-evb
- compatible string
-To: Kevin Chen <kevin_chen@aspeedtech.com>, "robh@kernel.org"
- <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>, "joel@jms.id.au"
- <joel@jms.id.au>, "andrew@codeconstruct.com.au"
- <andrew@codeconstruct.com.au>, "lee@kernel.org" <lee@kernel.org>,
- "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
- "will@kernel.org" <will@kernel.org>, "arnd@arndb.de" <arnd@arndb.de>,
- "olof@lixom.net" <olof@lixom.net>, "soc@kernel.org" <soc@kernel.org>,
- "mturquette@baylibre.com" <mturquette@baylibre.com>,
- "sboyd@kernel.org" <sboyd@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "quic_bjorande@quicinc.com" <quic_bjorande@quicinc.com>,
- "geert+renesas@glider.be" <geert+renesas@glider.be>,
- "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
- "shawnguo@kernel.org" <shawnguo@kernel.org>,
- "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
- "m.szyprowski@samsung.com" <m.szyprowski@samsung.com>,
- "nfraprado@collabora.com" <nfraprado@collabora.com>,
- "u-kumar1@ti.com" <u-kumar1@ti.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
- BMC-SW <BMC-SW@aspeedtech.com>
-References: <20240726110355.2181563-1-kevin_chen@aspeedtech.com>
- <20240726110355.2181563-7-kevin_chen@aspeedtech.com>
- <371a7c7b-de32-4f97-b4c7-3c0ad0732e1a@kernel.org>
- <PSAPR06MB4949F7F617DB4A371567EB4789812@PSAPR06MB4949.apcprd06.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 1/2] arm64: defconfig: add CONFIG_LEDS_PWM_MULTICOLOR
+To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ catalin.marinas@arm.com, will@kernel.org, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+References: <20240816023243.487-1-naoki@radxa.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -127,45 +101,14 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <PSAPR06MB4949F7F617DB4A371567EB4789812@PSAPR06MB4949.apcprd06.prod.outlook.com>
+In-Reply-To: <20240816023243.487-1-naoki@radxa.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/08/2024 06:08, Kevin Chen wrote:
-> Hi Krzk,
-> 
->>> ---
->>>  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 5 +++++
->>>  1 file changed, 5 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
->>> b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
->>> index 71c31c08a8ad..b21551817f44 100644
->>> --- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
->>> @@ -99,4 +99,9 @@ properties:
->>>                - ufispace,ncplite-bmc
->>>            - const: aspeed,ast2600
->>>
->>> +      - description: AST2700 based boards
->>> +        items:
->>> +          - enum:
->>> +              - aspeed,ast2700-evb
->>
->> NAK, this cannot be alone. Look at all other examples. Why are you doing
->> things differently?
-> Disagree, ast2700-evb is 7th generation IC in ASPEED.
+On 16/08/2024 04:32, FUKAUMI Naoki wrote:
+> enable "pwm-leds-multicolor" driver.
 
-I gave you argument and you just respond "disagree" with unrelated
-statement?
-> It not in the sub-set of AST2400/AST2500/AST2600 based boards.
-
-
-? That does not answer at all my concerns. Bring me any example doing
-this that way: single board compatible.
-
-Answer to the argument, instead of bringing useless text "ast is a
-board". Yeah, of course it is. What else could it be? A ship? A car?
+Why?
 
 Best regards,
 Krzysztof
