@@ -1,165 +1,236 @@
-Return-Path: <devicetree+bounces-94206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 130E395452D
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 11:10:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C1EE954579
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 11:25:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9D0FFB211B7
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 09:10:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 713B11C2179C
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 09:25:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63EF813C689;
-	Fri, 16 Aug 2024 09:10:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34AEC13DBBE;
+	Fri, 16 Aug 2024 09:24:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="FeGL0h+s"
+	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="T/pHHirL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2051.outbound.protection.outlook.com [40.107.255.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63A7913A250
-	for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 09:10:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723799416; cv=none; b=Rgd0weeDUj63W3G5Di25pL4A+LaSG32/m9kqITbvneNYjkSnPMbojIzLrQFcEBa0se0RC5fpoGtZkE7cudQYi+ghPya8KYhz5ytAYkcYDfIqMOHFoGe29cow4bcZpUw/9QfvxE15ZvWLKfN5FMRd4R6OFZFJGONzfvH7gpYOQWE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723799416; c=relaxed/simple;
-	bh=+447AkOnS1uBqMb8FHGHUkrDqwuwBEyFMUSUD/t7gbU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MIaW+Cexpcqj8CaPXj0SDr0X9Y0AwJNuxLhaY6UNG+BoeBFbOybfx0mQDnTkQyksUQN0nmuGeWaH3lBQhxqXU0UQcihVx2QKvmVoD1H042EtVFG+gY2cQAOYRwpe6S02/yOSmohUKe0bzugSnyFtZVrZWMOmU1f5qo41OIkPOpg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=FeGL0h+s; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-52ed741fe46so1970376e87.0
-        for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 02:10:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1723799412; x=1724404212; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=I+OEH4A1p3/H1CuxcdmLsuPBbfALhVq7kSh25EJu5bk=;
-        b=FeGL0h+stBW8BNGOQ1BL/H2ddn8AmxOvTFUTXm5D2Y3u78Oe7eICm+jYY+eqgK1IUt
-         TgRJ4pJ/nZmCixTCmWYuhtSuZ1wQRoYlMs8xyTXW0hreFpcehwjOcBk8zi5W1cdyRe0K
-         5D8Zk4vgcXqIvqBgyo3Sq/srBz48ik3h3RuOhMj0eI3CAgExMLvNtQyYdLMnZ2hV2c22
-         IbenbcX0/iimnmWpe+2eLP4fk9BWLLAONrvi4581MrzagLhWRaUimZnqh0xIJDmR7M8I
-         sIwZOYVeTN3V0DJVTJz3h9g6p6TloDV2I0VMDK+OU6dbfOIkzNG++536vtePoitPAnBB
-         dC5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723799412; x=1724404212;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=I+OEH4A1p3/H1CuxcdmLsuPBbfALhVq7kSh25EJu5bk=;
-        b=I2/TVg/ls/OAmyGmZ36DkZ8Ev6TgjNeuXfMnw9wzha2TqbAr/M+U0noyOj+o4TofZo
-         FyS7QFxuINviXfbZPPi+rRIA8KO+DjdQ/gCwxX1vdbiM/i3YDB0zc2XW2Wzv/m6lAoZL
-         0sr8ISeogd313cboJXfzuwEtDfJ2K+mWB+4BlYaw9At7o/qwrcf53QZdlXclxS0dkDPq
-         pW7u0FhVs4f20JI3xVtAz3HJMI+mVeduTmXCPZzU8zDCIIFfifTv4xWwvaAc22D9/vbq
-         EIAZ0ZZm349TTrdBl/ws7tOH9kUQXcbn8ZwWC71D78ntyzL+NC1/n1ptryMbGX1XXZ9C
-         m8lw==
-X-Forwarded-Encrypted: i=1; AJvYcCVMLYe2nciht+Ztisx+849PMneZWnxK8HFZmAcTbdyfIIR8dKMBupeEXnhzFmH9y/SU1igUzkfq+oBFvy/KX+DcOGxBULnrJZaIcg==
-X-Gm-Message-State: AOJu0Yz2LZPPz4k3jfBi2kIZ24qj3fGO4c8x5VGWPOVAaXnhOek03IiF
-	chtA4Gc6adq6FAInoAP3FoknFpo6NPpNGYO91VsaFg6hJ9CASxTpOZjtMZdLyOPtb3Aymh2DUe6
-	v7FZXx6BxjxO8DpiX7AL93JywpNZ4KWIAFePW6g==
-X-Google-Smtp-Source: AGHT+IFB3aIW7Bm+lnja7PhaLnwXaRYjuWrHIHMzFAXmCtoDzMvBJ6bByky6rPgRVOj2x6JwSAi/BLj6VPI7F5SZiP8=
-X-Received: by 2002:a05:6512:2806:b0:530:ae0a:ab7a with SMTP id
- 2adb3069b0e04-5331c6975abmr1399845e87.17.1723799411703; Fri, 16 Aug 2024
- 02:10:11 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AD821E492;
+	Fri, 16 Aug 2024 09:24:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.255.51
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723800280; cv=fail; b=ZpxxaF3dOep2qwXrYW3h0URlqXgEX3R9jEVIdd1u9+DfTtdK+tfxLTpZIjBh6xEbnYmM60J2puhm4pgN5bf9v0DnXU2wzn2X7peBt2IRuG5SMsI7Dw+OhI09jSsUpU3acSxcgvWbpY0sa4nd5BFuRXmTKHet0F/VGeMOxd4AbDU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723800280; c=relaxed/simple;
+	bh=M+GIq2mXkfZgAS6hgltSMoSyRVGLabtZdN5w2XpAmao=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=uwUTndWoxZUqKdsSb03+W5UajAGQ91Vt4u0e6n1+ibUHm2W36YAUWMHQQMSLvlb4CkQyhTOqdRyfqFGYYBjPpacJwGOLm1oavh01xBKTnV/UQToiukSMIpkgBKD0ZwxMZ05kkI4+dWKzcingM7myO8bE+joA2pvMpvqAVb4tlfA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=T/pHHirL; arc=fail smtp.client-ip=40.107.255.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ERdnPKoY5ha3MMGt5NiJoIe+fUqJPyEqSRRybXZ8uBZqYPpaHrc5LZ/I57EJcEkfB2Wo3FDO2TDH2ZSKZqazGNvoEohUoeSq9ItWWTZxn2KQEXACu2+1RDc27Q9QXo7jbNPPgy6viaIcbH2ZMAAh2xEFr2LhxWeSUb9JXnCtcRhNvuF21gjcPVUo1A+Y/mtJyg+gTekwamFJR/TP2qiqjNIAwYHM7Eo3SzAlkkY8Lor2aK4B9+aNNXmV5yCG1iTXNpoFVD8m7rs45+MWKlb7tax3QpZGOtxRmyCPLt4+aYKC5AWMb3cOJV9mfZaUgF9zICnwJdBK2/F2jpySII4Ssw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/d45MbZN7PlvorTo8tdG/2FvNfJPrapsYxhlyovN0R0=;
+ b=FVohwfVfuHwTsPxOomHm/NX+fdbyTd7wUgHS0UP2TFqzJErdDdWj0Bl+jrq8EKOR0aqNNg9UYrQUK51DHnBwQnHLR/PZH6U3yNUzVHrW8b8Nza9eMvETyrh1BRr+/SEPAA61iKYgiTYg7vtcqR9w3i6XSmnLl4kxb2mvX4g02w/Sn/MPYD8g1hPEATuGH1089Yc3leGvOp+a0x+rLytsNen71fp1Cl6a3HaetkCKa6WghkvRYpUSBxwO4Gz8a/UnrOJlGFpjdD1xw7pUI50gxWB8mUDGuoc8Uk7RQ85FN+JeoXyG3t+82Q6YrpDizAAzUC2OgoKlIwdpbBJriSH2jQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/d45MbZN7PlvorTo8tdG/2FvNfJPrapsYxhlyovN0R0=;
+ b=T/pHHirL1Xo3pbXfKWqTYycc9XpxYGdY4dGpHnVZaAv91O2Hh2L/cV+r1ENV+nvDpygWyBEmLDCJzHvbVf7SlynK1q3St5wBoAX6inZmxx9HpolxmmBP2zlCiMxq0Zrk5PRTs7hXQI7X5t4PNQB7GOsu5xbXXH7Ez5Ua23vG4z2z3mQ9UhhZQ2hpiGEQ3xAVtM3wvraWEyWTk4boDullewOfBrlf4hJlfVt3Q6o0JPqFBwMjY44JWffJqw52t8jMgMYQEN50FoWmhcqYb8nNzuc3CRuWhu8ehCYaiD3+GGPB5/eN6CZf9txJcLmQdoQPL8diu+VlknbSQpV9bU5V4g==
+Received: from SI2PR01CA0040.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::14) by PUZPR04MB6438.apcprd04.prod.outlook.com
+ (2603:1096:301:fd::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.18; Fri, 16 Aug
+ 2024 09:24:28 +0000
+Received: from HK3PEPF0000021D.apcprd03.prod.outlook.com
+ (2603:1096:4:193:cafe::5a) by SI2PR01CA0040.outlook.office365.com
+ (2603:1096:4:193::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.19 via Frontend
+ Transport; Fri, 16 Aug 2024 09:24:28 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ HK3PEPF0000021D.mail.protection.outlook.com (10.167.8.39) with Microsoft SMTP
+ Server id 15.20.7849.8 via Frontend Transport; Fri, 16 Aug 2024 09:24:27
+ +0000
+From: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+To: patrick@stwcx.xyz
+Cc: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v12 00/28] Add i2c-mux and eeprom devices for Meta Yosemite 4
+Date: Fri, 16 Aug 2024 17:23:47 +0800
+Message-Id: <20240816092417.3651434-1-Delphine_CC_Chiu@wiwynn.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240814082301.8091-1-brgl@bgdev.pl> <87a5hcyite.fsf@kernel.org>
-In-Reply-To: <87a5hcyite.fsf@kernel.org>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Fri, 16 Aug 2024 11:10:00 +0200
-Message-ID: <CAMRc=Mcr7E0dxG09_gYPxg57gYAS4j2+-3x9GCS3wOcM46O=NQ@mail.gmail.com>
-Subject: Re: [PATCH net-next v2] dt-bindings: net: ath11k: document the inputs
- of the ath11k on WCN6855
-To: Kalle Valo <kvalo@kernel.org>
-Cc: "David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jeff Johnson <jjohnson@kernel.org>, linux-wireless@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	ath11k@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HK3PEPF0000021D:EE_|PUZPR04MB6438:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 7d3c5133-ee6f-4943-3e82-08dcbdd539f2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|7416014|36860700013|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?znYlumanW/+/EFq56CD4gmb/UjW8MQaCTHFm2/3hoKlCgu36PyrhiS3RGpBy?=
+ =?us-ascii?Q?U7WEF2H12A3rdOZLwgYTD1T5TIvDAuU77A0gVJExeak5l8Cm9rWk/fH+nqwk?=
+ =?us-ascii?Q?mYoHVfvVQNR8C/MuzrdePO0OxHFepWm9ZEmGtavgcJ4OKb04VQgtJ3F8pKlx?=
+ =?us-ascii?Q?lL0pOxhUATxio6EfnE/3y7yBl8e40h9nahd4ysvFJcWv2dgCbamba5PCJ3gE?=
+ =?us-ascii?Q?07y2OyEGk4dF7rFQVfTf38AAtfczX4dOixoMWth2cAFz3hUWWA7FCOG7DR8E?=
+ =?us-ascii?Q?8Y8clJkpDq7xvbGVPBJsHVHIL2r1VGoEG870E7oIjPaQCzSJ5wJXs0czlDui?=
+ =?us-ascii?Q?U8dW42Pvyz2TJSSQiVKUN7WTBT4bViU/CynM+36RbjgYK8fAfzTt+3KWuDiG?=
+ =?us-ascii?Q?gRaAMkLniMoaO6Fbv/A28bB8RnIf7p2puO+MSpaqzkI+NnKyj6lQouWp2duM?=
+ =?us-ascii?Q?iCyR1MjWK4j6qUdsAiKCyO/T+izjpWenj0l4kuaFV9Fu0Bx8OvidyUM8pk6Y?=
+ =?us-ascii?Q?jg08unfnXMf9+2r8dwDdI8Xntzk4P+V9hnY880DwhMtDAIn/TrTsm5Jqq7PD?=
+ =?us-ascii?Q?eY1naFdN4pFMv0VF5V/Go4s96VQZwI8CAXxXTRc5b9eoomkAeidONnINaer/?=
+ =?us-ascii?Q?btgR9FdJluM69nw1D253P3nnG9EOCnPQGbDerU0nytFSJjhDM/O06Ha2z/BT?=
+ =?us-ascii?Q?8GHqBCqqzR6ROaafFINTAK0AGr73E2u4zPAesauAIgltOfHpNt5lMWfkM79B?=
+ =?us-ascii?Q?jMMmOZWR5PIzN7P/vgHe2PxQPNsNuEPJiVaB14O7bQGYfgaDwVH8as83+ONU?=
+ =?us-ascii?Q?1YIfKBlNKxxtxc3Xsa1vmX7IivR4iAZ8FL9xRpb+7lgVjQOhK1Nb1JfYag6j?=
+ =?us-ascii?Q?nadXabUpRNHFTSlBYJCRdDvHfMY6/ZJpKtrJhv21/x4wTqHIjSzz01FugNlC?=
+ =?us-ascii?Q?gE8iI9kZdwgBZZJ+RN5pT2+uoAIw/Hc/I8kArkzlGJ+upzgPFZg2g2A4KJ2K?=
+ =?us-ascii?Q?2yBCw02SQZcqzOuDDa7VzFmKXmHOBYgIIafBQa+mxCnlXS0w6kEU6KZAsCvJ?=
+ =?us-ascii?Q?3T681oYf/U/AXCwyoJpO5ed9UJpfqIjly9XGd+typDk/cAzWg3SFZFicobgr?=
+ =?us-ascii?Q?N8JwkYzhOi5guDGjNSszz0ZjFi9KJSvuLG/FpV7GWDeS/WyMTjWX/WRRDPj1?=
+ =?us-ascii?Q?RSYaPyAUaMBKz/yRugKst9AT1PEYVy/HbCNnCUwWnMRkUKyQJ1pMA6snJ95+?=
+ =?us-ascii?Q?05ZkrAPRygZMAeDcPMNk8xvv4kQJgXSsJnGlHgA6B0YBHqI40jYv8TRBVk6w?=
+ =?us-ascii?Q?ex+LE20BoHOaTxKTJIvQMepvcPH5vItLrG85QdTyGj+h6cvTOgjpKHfw88PO?=
+ =?us-ascii?Q?on5JXRi2AAPewDFc3TfG6VM3i7XuCTfrDEoHsK+qCLP2SH0/LtbPRtOddajh?=
+ =?us-ascii?Q?z5CKRqFi+JCPk0JCt1ZdGrS8aa8GUfbo?=
+X-Forefront-Antispam-Report:
+	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(7416014)(36860700013)(376014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Aug 2024 09:24:27.5441
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7d3c5133-ee6f-4943-3e82-08dcbdd539f2
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource:
+	HK3PEPF0000021D.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PUZPR04MB6438
 
-On Fri, Aug 16, 2024 at 10:26=E2=80=AFAM Kalle Valo <kvalo@kernel.org> wrot=
-e:
->
-> Bartosz Golaszewski <brgl@bgdev.pl> writes:
->
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >
-> > Describe the inputs from the PMU of the ath11k module on WCN6855.
-> >
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > ---
-> > v1 -> v2:
-> > - update the example
-> >
-> >  .../net/wireless/qcom,ath11k-pci.yaml         | 29 +++++++++++++++++++
-> >  1 file changed, 29 insertions(+)
->
-> This goes to ath-next, not net-next.
->
-> > diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k=
--pci.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.=
-yaml
-> > index 8675d7d0215c..a71fdf05bc1e 100644
-> > --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.ya=
-ml
-> > +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.ya=
-ml
-> > @@ -50,6 +50,9 @@ properties:
-> >    vddrfa1p7-supply:
-> >      description: VDD_RFA_1P7 supply regulator handle
-> >
-> > +  vddrfa1p8-supply:
-> > +    description: VDD_RFA_1P8 supply regulator handle
-> > +
-> >    vddpcie0p9-supply:
-> >      description: VDD_PCIE_0P9 supply regulator handle
-> >
-> > @@ -77,6 +80,22 @@ allOf:
-> >          - vddrfa1p7-supply
-> >          - vddpcie0p9-supply
-> >          - vddpcie1p8-supply
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: pci17cb,1103
-> > +    then:
-> > +      required:
-> > +        - vddrfacmn-supply
-> > +        - vddaon-supply
-> > +        - vddwlcx-supply
-> > +        - vddwlmx-supply
-> > +        - vddrfa0p8-supply
-> > +        - vddrfa1p2-supply
-> > +        - vddrfa1p8-supply
-> > +        - vddpcie0p9-supply
-> > +        - vddpcie1p8-supply
->
-> Like we discussed before, shouldn't these supplies be optional as not
-> all modules need them?
->
+Changelog:
+  - v12
+    - Fix GPIO linename typo and add missing GPIO pin initial state.
+  - v11
+    - Revise all GPIO line name with bottom line
+  - v10
+    - adjust mgm cpld ioexp bus
+    - add GPIOO7 name
+    - remove mctp driver
+  - v9
+    - add XDP710 support
+    - add RTQ6056 support
+    - add MP5990 support
+  - v8
+    - add fan led config
+  - v7
+    - Revise pca9506 i2c address
+  - v6
+    - Revise i2c duty-cycle for meeting 400khz spec
+  - v5
+    - Support medusa board adc sensors
+    - support NIC eeprom
+  - v4
+    - Re-format gpio linename
+    - Revise i2c device node names
+    - Split patches by logic changes
+  - v3
+    - Correct patch for revising gpio name
+  - v2
+    - Revise mx31790 fan tach config
+    - Add mctp config for NIC
+    - Support mux to cpld
+    - Revise gpio name
+  - v1
+    - Add gpio and eeprom behind i2c-mux
+    - Remove redundant idle-state setting for i2c-mux
+    - Enable adc 15, wdt2,spi gpio for yosemite4 use
+    - Revise quad mode to dual mode to avoid WP pin influnece the SPI
+    - Revise power sensor adm1281 for yosemite4 schematic change
+    - Add gpio pca9506 I/O expander for yosemite4 use
+    - remove space for adm1272 compatible
+    - enable interrupt setting for pca9555
+    - add eeprom for yosemite4 medusa board/BSM use
+    - remove temperature sensor for yosemite4 schematic change
+    - add power sensor for power module reading
+    - Revise adc128d818 adc mode for yosemite4 schematic change
+    - Revise ina233 for yosemite4 schematic change
+    - Remove idle state setting for yosemite4 NIC connection
+    - Initialize bmc gpio state
+    - Revise mx31790 fan tach config
+    - Add mctp config for NIC
+    - Support mux to cpld
+    - Revise gpio name
 
-The answer is still the same: the ATH11K inside a WCN6855 does - in
-fact - always need them. The fact that the X13s doesn't define them is
-bad representation of HW and I'm fixing it in a subsequent DTS patch.
+Delphine CC Chiu (28):
+  ARM: dts: aspeed: yosemite4: Revise i2c-mux devices
+  ARM: dts: aspeed: yosemite4: Enable adc15
+  ARM: dts: aspeed: yosemite4: Enable spi-gpio setting
+  ARM: dts: aspeed: yosemite4: Enable watchdog2
+  ARM: dts: aspeed: yosemite4: Revise quad mode to dual mode
+  ARM: dts: aspeed: yosemite4: Revise power sensor adm1281 for schematic
+    change
+  ARM: dts: aspeed: yosemite4: Add gpio pca9506
+  ARM: dts: aspeed: yosemite4: Remove space for adm1272 compatible
+  ARM: dts: aspeed: yosemite4: Enable interrupt setting for pca9555
+  ARM: dts: aspeed: yosemite4: Add power sensor for power module reading
+  ARM: dts: aspeed: yosemite4: Add eeprom for yosemite4 use
+  ARM: dts: aspeed: yosemite4: Remove temperature sensor for yosemite4
+    schematic change
+  ARM: dts: aspeed: yosemite4: Revise adc128d818 adc mode for yosemite4
+    schematic change
+  ARM: dts: aspeed: yosemite4: Revise ina233 config for yosemite4
+    schematic change
+  ARM: dts: aspeed: yosemite4: Remove idle state setting for yosemite4
+    NIC connection
+  ARM: dts: aspeed: yosemite4: Initialize bmc gpio state
+  ARM: dts: aspeed: yosemite4: Revise mx31790 fan tach config
+  ARM: dts: aspeed: yosemite4: add mctp config for NIC
+  ARM: dts: aspeed: yosemite4: support mux to cpld
+  ARM: dts: aspeed: yosemite4: support medusa board adc sensors
+  ARM: dts: aspeed: yosemite4: support NIC eeprom
+  ARM: dts: aspeed: yosemite4: Revise i2c duty-cycle
+  ARM: dts: aspeed: yosemite4: add fan led config
+  ARM: dts: aspeed: yosemite4: add XDP710
+  ARM: dts: aspeed: yosemite4: add RTQ6056 support
+  ARM: dts: aspeed: yosemite4: add MP5990 support
+  ARM: dts: aspeed: yosemite4: Adjust ioexp bus and remove mctp driver
+  ARM: dts: aspeed: yosemite4: fix GPIO linename typo
 
-Bart
+ .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 1749 ++++++++++++++++-
+ 1 file changed, 1653 insertions(+), 96 deletions(-)
 
-> --
-> https://patchwork.kernel.org/project/linux-wireless/list/
->
-> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpa=
-tches
+-- 
+2.25.1
+
 
