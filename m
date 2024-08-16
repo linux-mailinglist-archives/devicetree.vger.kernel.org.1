@@ -1,111 +1,92 @@
-Return-Path: <devicetree+bounces-94340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49464955255
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 23:28:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F36E4955276
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 23:35:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C7321C21DDE
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 21:28:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 65CF4B20DFA
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 21:35:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 518D81C4631;
-	Fri, 16 Aug 2024 21:27:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gj04kprW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B75F1BD006;
+	Fri, 16 Aug 2024 21:34:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21CCF81AD7;
-	Fri, 16 Aug 2024 21:27:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96AA384039
+	for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 21:34:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723843674; cv=none; b=CAa4ubY/XRsKervXbp6EL0qBDpeMjT/lsPzKYoU2twi6x8fX/jmFODxL+5sQbwM6vfIKOOuCO85/suiB+RZYIbgUcafMlCsJNy+V9r/5AaW2soN/YAw1cd8TYBx1s/b76ddku6q//omdnMBqq3jdXN2tmjw7dVu+5yN2ffBOT58=
+	t=1723844098; cv=none; b=VPNQ9szhQznhNQ5CWW/upDSSt1wWeWjYjyNEcB4ygkvDSCENy0yr+cEVgb3tvTRfAtQT/cDlPiGcPmiiGofUdrNMFzo9btERNx9C4WV6uh1v/CrRxvoZv03q0Gj4W+664qePMjoE+97U+Y9e5hHCVGi5Ak7GPz6tlCnked4j9io=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723843674; c=relaxed/simple;
-	bh=dIxN9KEXuTIHRmzuZuqIU1jbaEnvfmetlSXMxrcGzSw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iN7qEDXTaGu5+sMcmJhfV8a99yXeWtj6RW1RORenraJNEhwmS2rVufTTXuKnqVPvf271O1x1HyEFWpNQ0CtkfcROyBDatO/Dt5M+V+AOR7KudMvxZITxenJ9E8KkLkjwwmtzPKfAl+605k6LWCUkqqrqz7miP4Ri9JGjiNjIz3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gj04kprW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7504EC32782;
-	Fri, 16 Aug 2024 21:27:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723843672;
-	bh=dIxN9KEXuTIHRmzuZuqIU1jbaEnvfmetlSXMxrcGzSw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gj04kprWR+dy5f3f8+UkrFLu6HEQ/yhxGKy4H74kpN4XY0z2/zR/3/0FyCouv9uFp
-	 5FrzJAmGy4nKeAU+UUKIVx+nmhu3wxdbYt++wsQMK6HXS5aUkOkQJtqtR2t/bEkebj
-	 9PIKZSGlWz3C+BNOCPx5NK+kjJjTIpvqwZJfVUPpy8K0BTUJVBPjopWqrxDcYepZ9s
-	 lxsm+Vjf6flcHCqprrESI2iJlrOEU0oeJf6IKd0BkvECDh7glfNjdalJ9bvZlKzBUF
-	 HbOpCfQAK44Xq9Xy1tn1oTYv30eVJkifF2Gj18aURKNcchyTfCLNA6sfm35Ody6BMJ
-	 SX63MpjKbGMag==
-Date: Fri, 16 Aug 2024 15:27:51 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH v2 1/1] dt-bindings: board: convert fsl-board.txt to yaml
-Message-ID: <172384367013.2245734.13242997250124317932.robh@kernel.org>
-References: <20240813163638.3889778-1-Frank.Li@nxp.com>
+	s=arc-20240116; t=1723844098; c=relaxed/simple;
+	bh=wqNhzZkVg+SvW1D4DOWbk145RC56kXybOnTQDheALlg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JFCdcWzTU7hsTad/mK6sKY9sMYD3xTmDKrTYG3YWlontlLBfYHp5+ByNVKL6BgvXUAsHRTrc2VcM/fop4/7VqlzrL1KLl9T+IP/AvgQLS+E/IPF1eKtk7s9MQm9rdji/uh9pbn5DIsPPTAq0gnCOVwyo8dw/c4jChxmHh8wRR2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
+Received: from secure.fukaumi.org ([10.0.0.2])
+	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 47GLYaon026590;
+	Sat, 17 Aug 2024 06:34:36 +0900
+From: FUKAUMI Naoki <naoki@radxa.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        FUKAUMI Naoki <naoki@radxa.com>
+Subject: [PATCH v5 1/2] dt-bindings: arm: rockchip: add support for Radxa ROCK Pi E v3.0
+Date: Sat, 17 Aug 2024 06:34:28 +0900
+Message-ID: <20240816213429.1093-1-naoki@radxa.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240813163638.3889778-1-Frank.Li@nxp.com>
+Content-Transfer-Encoding: 8bit
 
+Radxa ROCK Pi E v3.0 is a compact networking SBC[1] using the Rockchip
+RK3328 chip.
 
-On Tue, 13 Aug 2024 12:36:29 -0400, Frank Li wrote:
-> Convert binding doc fsl-board.txt to yaml format. split to 3 part
-> fsl,bcsr.yaml, fsl,fpga-qixis.yaml, fsl,fpga-qixis-i2c.yaml
-> 
-> Additional change for fsl,fpga-qixis.yaml
-> - Add childnode mdio-mux-emi*
-> - Add compatible string fsl,ls1043aqds-fpga, fsl,ls1043ardb-fpga,
-> fsl,ls1046aqds-fpga, fsl,ls1046ardb-fpga, fsl,ls208xaqds-fpga,
-> fsl,ls1043ardb-cpld, fsl,ls1046ardb-cpld, fsl,ls1088aqds-fpga,
-> fsl,ls1088ardb-fpga, fsl,ls2080aqds-fpga, fsl,ls2080ardb-fpga.
-> - Change address to 32bit in example.
-> 
-> Additional change for fsl,fpga-qixis-i2c.yaml
-> - Add mux-controller
-> - Add compatible string fsl,ls1028aqds-fpga, fsl,lx2160aqds-fpga
-> 
-> Fix below warning:
-> 
-> arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dtb: /soc/i2c@2000000/fpga@66: failed to match any schema with compatible: ['fsl,ls1028aqds-fpga', 'fsl,fpga-qixis-i2c', 'simple-mfd']
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> Change from v1 to v2
-> - drop description in fsl,bcsr.yaml
-> - bsc9132qds is too old, their dts have not simple-mfd.
-> - split qixis-i2c compatible to two group, one with simple-mfd and the
-> other one without simple-mfd.
-> - Add new full example for ls1028
-> - Remove [0-9], keep @ for mdio-mux-emi. Dts need be update to avoid
-> warning
-> - fix typo dt-binding in subject
-> ---
->  .../devicetree/bindings/board/fsl,bcsr.yaml   | 32 ++++++++
->  .../bindings/board/fsl,fpga-qixis-i2c.yaml    | 70 ++++++++++++++++
->  .../bindings/board/fsl,fpga-qixis.yaml        | 81 +++++++++++++++++++
->  .../devicetree/bindings/board/fsl-board.txt   | 81 -------------------
->  .../boot/dts/freescale/fsl-ls1043a-qds.dts    |  2 +-
->  5 files changed, 184 insertions(+), 82 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/board/fsl,bcsr.yaml
->  create mode 100644 Documentation/devicetree/bindings/board/fsl,fpga-qixis-i2c.yaml
->  create mode 100644 Documentation/devicetree/bindings/board/fsl,fpga-qixis.yaml
->  delete mode 100644 Documentation/devicetree/bindings/board/fsl-board.txt
-> 
+[1] https://radxa.com/products/rockpi/pie
 
-Applied, thanks!
+Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+---
+Changes in v5:
+- revert compatible string
+- describe rockchip.yaml properly
+Changes in v4:
+- update compatible string for OpenWrt
+- drop A-b tag
+Changes in v3:
+- collect A-b tag
+Changes in v2:
+- fix typo in commit message
+- add missing --- in commit message
+- add new section instead of new item in rockchip.yaml
+---
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index 1f23b8b05a8f..684b779b2a40 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -795,7 +795,9 @@ properties:
+ 
+       - description: Radxa ROCK Pi E
+         items:
+-          - const: radxa,rockpi-e
++          - enum:
++              - radxa,rockpi-e
++              - radxa,rockpi-e-v3
+           - const: rockchip,rk3328
+ 
+       - description: Radxa ROCK Pi N8
+-- 
+2.43.0
 
 
