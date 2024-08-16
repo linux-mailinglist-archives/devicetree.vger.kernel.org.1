@@ -1,152 +1,105 @@
-Return-Path: <devicetree+bounces-94292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8267954D40
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 16:57:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86B31954D5D
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 17:10:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35F8DB25AC5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 14:57:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E2A5DB23467
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 15:10:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 660951BE855;
-	Fri, 16 Aug 2024 14:54:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08DB71BD03B;
+	Fri, 16 Aug 2024 15:10:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oklD/Sg+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oodnuVxp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35B9F1BD01F;
-	Fri, 16 Aug 2024 14:54:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE2D81BC9EA;
+	Fri, 16 Aug 2024 15:10:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723820061; cv=none; b=W3uYabY0VaMFlOEPml+l+mxyomTWcTNDqVLVdTgn2rJZxgmFN+vTE88SoHqB6GqY1wrRoFrnC8OIVUnlyihSjHoodE7Ai95IFkgAhEMrCIZbdTXkMrDPdCkfwF+AHZipAVaxOUvqOLpVTB9IkHGUoLM3nI2h+4GLuuLfh9hIncQ=
+	t=1723821043; cv=none; b=nWZ6bGTemUdVuUJclszjSbKmIOInBLHJjJS3NQ/8za6vNv09DwQGeAggMyQSuOTqSRfpYxlcJ/c55Gzsta8AnulhnPaugfQdUggm44YKK9em4hhbBUiiGlvTFKppJ3YH+Fb0PklGmDdmrgRQu8kzUl4imARppeS7dbguCt3XhsI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723820061; c=relaxed/simple;
-	bh=78otssZMSXfx1mx9AaYXC8oqCx4zvXSJqowAtShFVRw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pdE5mygnhmOmtzf95b5ADItaeYREy5wn15lWZ9vHxvfGZFD8vpSq2WTpVMTpp2AmBh+DtWUmoPoLmPDgkG9BhhZhRaxCCsAp3we6vUm0ITZS38lrqHEc6qXBXwLR0DUT29rwqnqjKmus0zPRe0zBY/wCcBA9PbBeUGQEgXMjgtY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oklD/Sg+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B18F9C32782;
-	Fri, 16 Aug 2024 14:54:15 +0000 (UTC)
+	s=arc-20240116; t=1723821043; c=relaxed/simple;
+	bh=/gWJGAAYEWysus8W/MIeKMY6Sfi3VK0jLdw6jlTOx2Y=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=GW/42jpV4o0V83iyosQzoI3Saroxifj/Jf/whJXzy3RQ8LAZshX6Ic0TfZwem+TSChKVzEIn69PbJXDQx7ZVSXBUx62Bke9E8QPnjEuX3YxHUhsCUV4Zk1yoh/iAFOIqqH1NhGOusx6bG0mnum6mS0C1hKVh4ii07u8OMGaX1wg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oodnuVxp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3BFEC4AF09;
+	Fri, 16 Aug 2024 15:10:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723820060;
-	bh=78otssZMSXfx1mx9AaYXC8oqCx4zvXSJqowAtShFVRw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oklD/Sg+QQth2aZWuDJhvPlnx9zq+cenScXXGlKdQe25lUnoPUp9xpTQnkcf9LTOG
-	 hrojpvRi5rhro7xjvXb4TXfPF68qBJoJwOSFMZ4LPNhqf/i47B/jfa2CY2O814syVm
-	 tVa7BdBW86tsnbriMcDmMNWVR36bTan9GbOgQfbSw8rvpioT2pZTU7qh9eEnQ7mSAp
-	 x2TtstSgqw7O7obKtigVMS2IRrec5gHUgs8F1ct93D3KmfHyj/q67xxq8HN3PtTO/R
-	 U/ReIucT4pBfiyTkQkmbvXeh4PQ11mC6PHY2od5eij7uXq6b4VwQTCjN3cwGSTBBYT
-	 s+vhCyK7tf1Uw==
-Date: Fri, 16 Aug 2024 15:54:05 +0100
-From: Lee Jones <lee@kernel.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Haibo Chen <haibo.chen@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>,
-	Frank Li <Frank.li@nxp.com>
-Subject: Re: [PATCH v7 0/4] ADP5585 GPIO expander, PWM and keypad controller
- support
-Message-ID: <20240816145405.GA5853@google.com>
-References: <20240722121100.2855-1-laurent.pinchart@ideasonboard.com>
- <20240725161616.GJ501857@google.com>
- <20240801131044.GF6756@google.com>
- <20240807105418.GA8562@pendragon.ideasonboard.com>
+	s=k20201202; t=1723821043;
+	bh=/gWJGAAYEWysus8W/MIeKMY6Sfi3VK0jLdw6jlTOx2Y=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=oodnuVxpVNOYj+ABas+W/M+19tvVVV+ISJz+iKdFYy9YEApNewhCJ00ZAh/50+lAY
+	 tmlAzPJNOXd/hajPrV8kBc5aE7ylNySspFB1d5OYmagTLhQvqcBSREVbW5uDQ0sm3M
+	 T+uptJTFkwuZU1aqeVoIu+4VSazi9qIq+SZ3GYgTSUTxiOH8bY3snCfEKEHMIJFkHh
+	 3i8mNIQ3Z326OplFFNVWRkFESALBdtGMFKlCoYkLc+0tpdQVoZCCCTc5u63Nj5I4xq
+	 MWAzhARvX0JlhmBuK64ydTWVy01WyU6UNLG4i7+IrlKymkyNHNub+uJupS3zgYcV4D
+	 iVDcBpYk4tD3A==
+From: Mark Brown <broonie@kernel.org>
+To: srinivas.kandagatla@linaro.org
+Cc: perex@perex.cz, tiwai@suse.com, alsa-devel@alsa-project.org, 
+ linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, amit.pundir@linaro.org, 
+ dmitry.baryshkov@linaro.org, devicetree@vger.kernel.org, robh@kernel.org, 
+ krzk+dt@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20240815165320.18836-1-srinivas.kandagatla@linaro.org>
+References: <20240815165320.18836-1-srinivas.kandagatla@linaro.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: qcom,lpass-wsa-macro: correct
+ clocks on SM8250
+Message-Id: <172382104064.70235.8442859739541696689.b4-ty@kernel.org>
+Date: Fri, 16 Aug 2024 16:10:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240807105418.GA8562@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-37811
 
-On Wed, 07 Aug 2024, Laurent Pinchart wrote:
-
-> Hi Lee,
+On Thu, 15 Aug 2024 17:53:20 +0100, srinivas.kandagatla@linaro.org wrote:
+> we seems to have ended up with duplicate clocks for frame-sync on sm8250,
+> it has both va and fsgen which are exactly same things. Remove the redundant
+> va clock and make it align with other SoCs.
 > 
-> On Thu, Aug 01, 2024 at 02:10:44PM +0100, Lee Jones wrote:
-> > On Thu, 25 Jul 2024, Lee Jones wrote:
-> > > On Mon, 22 Jul 2024, Laurent Pinchart wrote:
-> > > 
-> > > > Hello,
-> > > > 
-> > > > This patch series introduces support for the Analog Devices ADP5585, a
-> > > > GPIO expander, PWM and keyboard controller. It models the chip as an MFD
-> > > > device, and includes DT bindings (1/4), an MFD driver (2/4) and drivers
-> > > > for the GPIO (3/4) and PWM (4/4) functions.
-> > > > 
-> > > > Support for the keypad controller is left out, as I have no means to
-> > > > test it at the moment. The chip also includes a tiny reset controller,
-> > > > as well as a 3-bit input programmable logic block, which I haven't tried
-> > > > to support (and also have no means to test).
-> > > > 
-> > > > The driver is based on an initial version from the NXP BSP kernel, then
-> > > > extensively and nearly completely rewritten, with added DT bindings. I
-> > > > have nonetheless retained original authorship. Clark, Haibo, if you
-> > > > would prefer not being credited and/or listed as authors, please let me
-> > > > know.
-> > > > 
-> > > > Compared to v6, this version addresses small review comments. I believe
-> > > > it is ready to go, as the PWM and GPIO drivers have been acked by the
-> > > > respective subsystem maintainers, and I have addressed Lee's comments on
-> > > > the MFD side. Lee, if there's no more issue, could you apply this to
-> > > > your tree for v6.12 ?
-> > > > 
-> > > > Clark Wang (1):
-> > > >   pwm: adp5585: Add Analog Devices ADP5585 support
-> > > > 
-> > > > Haibo Chen (2):
-> > > >   mfd: adp5585: Add Analog Devices ADP5585 core support
-> > > >   gpio: adp5585: Add Analog Devices ADP5585 support
-> > > > 
-> > > > Laurent Pinchart (1):
-> > > >   dt-bindings: mfd: Add Analog Devices ADP5585
-> > > > 
-> > > >  .../devicetree/bindings/mfd/adi,adp5585.yaml  |  92 +++++++
-> > > >  .../devicetree/bindings/trivial-devices.yaml  |   4 -
-> > > >  MAINTAINERS                                   |  11 +
-> > > >  drivers/gpio/Kconfig                          |   7 +
-> > > >  drivers/gpio/Makefile                         |   1 +
-> > > >  drivers/gpio/gpio-adp5585.c                   | 229 ++++++++++++++++++
-> > > >  drivers/mfd/Kconfig                           |  12 +
-> > > >  drivers/mfd/Makefile                          |   1 +
-> > > >  drivers/mfd/adp5585.c                         | 205 ++++++++++++++++
-> > > >  drivers/pwm/Kconfig                           |   7 +
-> > > >  drivers/pwm/Makefile                          |   1 +
-> > > >  drivers/pwm/pwm-adp5585.c                     | 184 ++++++++++++++
-> > > >  include/linux/mfd/adp5585.h                   | 126 ++++++++++
-> > > >  13 files changed, 876 insertions(+), 4 deletions(-)
-> > > >  create mode 100644 Documentation/devicetree/bindings/mfd/adi,adp5585.yaml
-> > > >  create mode 100644 drivers/gpio/gpio-adp5585.c
-> > > >  create mode 100644 drivers/mfd/adp5585.c
-> > > >  create mode 100644 drivers/pwm/pwm-adp5585.c
-> > > >  create mode 100644 include/linux/mfd/adp5585.h
-> > > 
-> > > Note to self: This looks good to go.  Merge after -rc1 is released.
-> > 
-> > Submitted for build testing.
+> Codec driver does not even handle va clock, so remove this from the
+> bindings and examples to avoid any confusion.
 > 
-> Are those tests public ? Will the series eventually be merged in
-> https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git/ ?
+> [...]
 
-Sorry for the delay - vacation.
+Applied to
 
-No, the tests/branches are not public.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-> > Note to self: ib-mfd-gpio-pwm-6.12
+Thanks!
 
--- 
-Lee Jones [李琼斯]
+[1/1] ASoC: dt-bindings: qcom,lpass-wsa-macro: correct clocks on SM8250
+      commit: d08ea4193a72c5e3090240872ff7ed60a70716e6
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
