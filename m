@@ -1,134 +1,152 @@
-Return-Path: <devicetree+bounces-94291-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82FAE954D24
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 16:55:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8267954D40
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 16:57:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B65F91C2322D
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 14:55:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35F8DB25AC5
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 14:57:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FAB01BCA1C;
-	Fri, 16 Aug 2024 14:49:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 660951BE855;
+	Fri, 16 Aug 2024 14:54:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="itzaq5nW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oklD/Sg+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD68A74429
-	for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 14:49:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35B9F1BD01F;
+	Fri, 16 Aug 2024 14:54:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723819798; cv=none; b=pTA4BeeP7SNldV2VmPTaTqnJGPWzG9boLqr0gBlPXiM1Wbk8oF+oZe1C6qIjhA4Rfz/Ht8WEPOIAYTU1EZ3RzcVEi3lgGCLhNTNUnmKjc4B2v4FpFyeJhuJzTzWl6kR8B3fGW9ojFH5LDVaDdAujMOZX0B5eB8qxpP/jCd4rPI4=
+	t=1723820061; cv=none; b=W3uYabY0VaMFlOEPml+l+mxyomTWcTNDqVLVdTgn2rJZxgmFN+vTE88SoHqB6GqY1wrRoFrnC8OIVUnlyihSjHoodE7Ai95IFkgAhEMrCIZbdTXkMrDPdCkfwF+AHZipAVaxOUvqOLpVTB9IkHGUoLM3nI2h+4GLuuLfh9hIncQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723819798; c=relaxed/simple;
-	bh=2enB8saFSGepNC89tanu4rWlGuVIw0JTN3tAWwfyX1s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZapxFGeUhQNngZU4JvKMr9hyP/ZBCYhE8qX8tNIgSBkAbtvXO/3qF7QZqXXUdkXc4tlYANQsvju3Gw9+sNCpNgQTGLVSkJkh8nOMn2ri2BkyaEzrkdcqrRCbDwpYfn5pUFdRNiuJGoXbd9geaj8taf2ar9+D2EoX3CGcEDxgW+o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=itzaq5nW; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-429ec9f2155so9166095e9.2
-        for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 07:49:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723819795; x=1724424595; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Pw4iidM3Iet1Iv8rE86QFCvc2BvOF4+YOePGFlWP7mk=;
-        b=itzaq5nW3tIUTsKK7P3ZOd5xOOWldiUmAtZirtAVHdtN966bUpEO0peGXsQx4s1NP0
-         gcdC87x3Kvq8aRfxO714oQ2bilBpLDHCNOCCXw7tM64Ft7diKVbGl2jxJefweOdkRcDy
-         esYxu8zEbscA6Edy85QF8fCcvXME0C1QEG1bELAy6dv7JHfQm1nZGOhyy5u+6UH1BdEI
-         sG1z9UGtl2aMH18NAD/EX9fMb+vvKD0xPwsBNy0oVkcGf56NnOTGI54wg3GYkV/wDu2y
-         9RYAtG19GkI6vd17cTInjnzuXzESpN32lhggCZ5dL5Uil38K7OvB8hZmdtm8gRdmRl+Z
-         NRYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723819795; x=1724424595;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pw4iidM3Iet1Iv8rE86QFCvc2BvOF4+YOePGFlWP7mk=;
-        b=gxyKcZDpSJRv4U1D1kYtweIcm7nhA8ft2oqblSr3eHaKaTkrUN/eeCbaMkLDLtN7f8
-         Ow5caEcRQlPKoHRsWUDbtgxBeNKDDfPWVUaUR5NVt4KuKzL104DmHQ5HGHSiFkAxFBnx
-         CaFtX8HxMq3mXoK4ZgoYc+euI2ddRXH705HIej0qVS6PHSoZ8wb7w1OZy9lHg69iZpxy
-         5PvWBJ6VLKRFMQsEjcdAbvzxG7SV2exSuxlcFoK1LPL39jDYboiPOrniUh7zzhsGdIv1
-         jcV62IW6Ilao+eTxfSQc0Oks4HNKrVHLWUI1AjgxDoXm5pHE2Y87qdsAUTLnghxzfV0o
-         AUGQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUC1W2RRDhhjykdVMAYzQXm5269fzpJhVs3s1fwL//J2bGZnJNfuMs+mwrk6MJln14XxeJPr2HEeI+KmALiwzePq0YZV3geKetJwg==
-X-Gm-Message-State: AOJu0YwNUgq7aMO/KgrBWALIcxF0jgv+FOxw7qKkQyj830BoCxKrsugg
-	jJT0gkLzZd4gPC8amoFeNbhSOvnVNJwLRi/aicy/I0/eaUJKTt+6C5SUw//1DuE=
-X-Google-Smtp-Source: AGHT+IGL3TqYk6Ij32SQRJwqCUgOZPNuyaMk+Z/Wcbzpeq7we1ONZ1kpKcda432RVQqoLyc+8z/i+w==
-X-Received: by 2002:a05:600c:4f4f:b0:426:64a2:5375 with SMTP id 5b1f17b1804b1-429ed77da5fmr22292515e9.1.1723819795005;
-        Fri, 16 Aug 2024 07:49:55 -0700 (PDT)
-Received: from [192.168.0.25] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429ded180dcsm78486735e9.4.2024.08.16.07.49.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Aug 2024 07:49:54 -0700 (PDT)
-Message-ID: <4bd0c70f-f425-4cb1-af77-17faa6af2fd6@linaro.org>
-Date: Fri, 16 Aug 2024 15:49:53 +0100
+	s=arc-20240116; t=1723820061; c=relaxed/simple;
+	bh=78otssZMSXfx1mx9AaYXC8oqCx4zvXSJqowAtShFVRw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pdE5mygnhmOmtzf95b5ADItaeYREy5wn15lWZ9vHxvfGZFD8vpSq2WTpVMTpp2AmBh+DtWUmoPoLmPDgkG9BhhZhRaxCCsAp3we6vUm0ITZS38lrqHEc6qXBXwLR0DUT29rwqnqjKmus0zPRe0zBY/wCcBA9PbBeUGQEgXMjgtY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oklD/Sg+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B18F9C32782;
+	Fri, 16 Aug 2024 14:54:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723820060;
+	bh=78otssZMSXfx1mx9AaYXC8oqCx4zvXSJqowAtShFVRw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oklD/Sg+QQth2aZWuDJhvPlnx9zq+cenScXXGlKdQe25lUnoPUp9xpTQnkcf9LTOG
+	 hrojpvRi5rhro7xjvXb4TXfPF68qBJoJwOSFMZ4LPNhqf/i47B/jfa2CY2O814syVm
+	 tVa7BdBW86tsnbriMcDmMNWVR36bTan9GbOgQfbSw8rvpioT2pZTU7qh9eEnQ7mSAp
+	 x2TtstSgqw7O7obKtigVMS2IRrec5gHUgs8F1ct93D3KmfHyj/q67xxq8HN3PtTO/R
+	 U/ReIucT4pBfiyTkQkmbvXeh4PQ11mC6PHY2od5eij7uXq6b4VwQTCjN3cwGSTBBYT
+	 s+vhCyK7tf1Uw==
+Date: Fri, 16 Aug 2024 15:54:05 +0100
+From: Lee Jones <lee@kernel.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Haibo Chen <haibo.chen@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>,
+	Frank Li <Frank.li@nxp.com>
+Subject: Re: [PATCH v7 0/4] ADP5585 GPIO expander, PWM and keypad controller
+ support
+Message-ID: <20240816145405.GA5853@google.com>
+References: <20240722121100.2855-1-laurent.pinchart@ideasonboard.com>
+ <20240725161616.GJ501857@google.com>
+ <20240801131044.GF6756@google.com>
+ <20240807105418.GA8562@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 12/13] media: qcom: camss: Add CSID Gen3 support for
- sm8550
-To: Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- kernel@quicinc.com, Yongsheng Li <quic_yon@quicinc.com>
-References: <20240812144131.369378-1-quic_depengs@quicinc.com>
- <20240812144131.369378-13-quic_depengs@quicinc.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20240812144131.369378-13-quic_depengs@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240807105418.GA8562@pendragon.ideasonboard.com>
 
-On 12/08/2024 15:41, Depeng Shao wrote:
-> +	writel(1, csid->base + CSID_TOP_IRQ_CLEAR);
-> +	writel(1, csid->base + CSID_IRQ_CMD);
+On Wed, 07 Aug 2024, Laurent Pinchart wrote:
 
-CSID_IRQ_CMD bit(0) = CMD_CLEAR
+> Hi Lee,
+> 
+> On Thu, Aug 01, 2024 at 02:10:44PM +0100, Lee Jones wrote:
+> > On Thu, 25 Jul 2024, Lee Jones wrote:
+> > > On Mon, 22 Jul 2024, Laurent Pinchart wrote:
+> > > 
+> > > > Hello,
+> > > > 
+> > > > This patch series introduces support for the Analog Devices ADP5585, a
+> > > > GPIO expander, PWM and keyboard controller. It models the chip as an MFD
+> > > > device, and includes DT bindings (1/4), an MFD driver (2/4) and drivers
+> > > > for the GPIO (3/4) and PWM (4/4) functions.
+> > > > 
+> > > > Support for the keypad controller is left out, as I have no means to
+> > > > test it at the moment. The chip also includes a tiny reset controller,
+> > > > as well as a 3-bit input programmable logic block, which I haven't tried
+> > > > to support (and also have no means to test).
+> > > > 
+> > > > The driver is based on an initial version from the NXP BSP kernel, then
+> > > > extensively and nearly completely rewritten, with added DT bindings. I
+> > > > have nonetheless retained original authorship. Clark, Haibo, if you
+> > > > would prefer not being credited and/or listed as authors, please let me
+> > > > know.
+> > > > 
+> > > > Compared to v6, this version addresses small review comments. I believe
+> > > > it is ready to go, as the PWM and GPIO drivers have been acked by the
+> > > > respective subsystem maintainers, and I have addressed Lee's comments on
+> > > > the MFD side. Lee, if there's no more issue, could you apply this to
+> > > > your tree for v6.12 ?
+> > > > 
+> > > > Clark Wang (1):
+> > > >   pwm: adp5585: Add Analog Devices ADP5585 support
+> > > > 
+> > > > Haibo Chen (2):
+> > > >   mfd: adp5585: Add Analog Devices ADP5585 core support
+> > > >   gpio: adp5585: Add Analog Devices ADP5585 support
+> > > > 
+> > > > Laurent Pinchart (1):
+> > > >   dt-bindings: mfd: Add Analog Devices ADP5585
+> > > > 
+> > > >  .../devicetree/bindings/mfd/adi,adp5585.yaml  |  92 +++++++
+> > > >  .../devicetree/bindings/trivial-devices.yaml  |   4 -
+> > > >  MAINTAINERS                                   |  11 +
+> > > >  drivers/gpio/Kconfig                          |   7 +
+> > > >  drivers/gpio/Makefile                         |   1 +
+> > > >  drivers/gpio/gpio-adp5585.c                   | 229 ++++++++++++++++++
+> > > >  drivers/mfd/Kconfig                           |  12 +
+> > > >  drivers/mfd/Makefile                          |   1 +
+> > > >  drivers/mfd/adp5585.c                         | 205 ++++++++++++++++
+> > > >  drivers/pwm/Kconfig                           |   7 +
+> > > >  drivers/pwm/Makefile                          |   1 +
+> > > >  drivers/pwm/pwm-adp5585.c                     | 184 ++++++++++++++
+> > > >  include/linux/mfd/adp5585.h                   | 126 ++++++++++
+> > > >  13 files changed, 876 insertions(+), 4 deletions(-)
+> > > >  create mode 100644 Documentation/devicetree/bindings/mfd/adi,adp5585.yaml
+> > > >  create mode 100644 drivers/gpio/gpio-adp5585.c
+> > > >  create mode 100644 drivers/mfd/adp5585.c
+> > > >  create mode 100644 drivers/pwm/pwm-adp5585.c
+> > > >  create mode 100644 include/linux/mfd/adp5585.h
+> > > 
+> > > Note to self: This looks good to go.  Merge after -rc1 is released.
+> > 
+> > Submitted for build testing.
+> 
+> Are those tests public ? Will the series eventually be merged in
+> https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git/ ?
 
-> +	writel(1, csid->base + CSID_TOP_IRQ_MASK);
-> +
-> +	for (i = 0; i < MSM_CSID_MAX_SRC_STREAMS; i++)
-> +		if (csid->phy.en_vc & BIT(i)) {
-> +			writel(BIT(BUF_DONE_IRQ_STATUS_RDI_OFFSET + i),
-> +						csid->base + CSID_BUF_DONE_IRQ_CLEAR);
-> +			writel(0x1 << IRQ_CMD_CLEAR, csid->base + CSID_IRQ_CMD);
+Sorry for the delay - vacation.
 
-CSID_IRQ_CMD bit(0) = CMD_CLEAR
+No, the tests/branches are not public.
 
-and again here.
+> > Note to self: ib-mfd-gpio-pwm-6.12
 
-> +			writel(BIT(BUF_DONE_IRQ_STATUS_RDI_OFFSET + i),
-> +						csid->base + CSID_BUF_DONE_IRQ_MASK);
-> +		}
-
-re: previous comments
-
-1. Please define bits so that'd be
-
-#define CSID_IRQ_CMD_CLEAR	BIT(0)
-writel(CSID_IRQ_CMD_CLEAR, csid->base + CSID_IRQ_CMD);
-
-There's no value in circumscribing the meaning of bitfields in upstream 
-code, we just make our own lives easier by having self-documenting code.
-
-TL;DR please name your bits - a blanket statement for the series.
-
-2. And as mentioned above, you don't need to execute that clear n times 
-in a loop. Just do it once at the top of the routine.
-
----
-bod
+-- 
+Lee Jones [李琼斯]
 
