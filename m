@@ -1,92 +1,73 @@
-Return-Path: <devicetree+bounces-94097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3F2D953FE3
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 05:00:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EE1095400A
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 05:28:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81A7E284DB3
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 03:00:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 024FE1F23871
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 03:28:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5A586F2E0;
-	Fri, 16 Aug 2024 03:00:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6D0E482D8;
+	Fri, 16 Aug 2024 03:28:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u+ZCR744"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="D4facMP/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDD6657CA7
-	for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 02:59:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8CBC1877;
+	Fri, 16 Aug 2024 03:28:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723777201; cv=none; b=YPT/2lU30PHzLr/Q0zOjWBG4fSd45lVYo9o+nqwjkW967YWv26C95SA/s8M1zUGUzAnIm6+22VPsskugSFxjkyrp1dXBJ4kH3X08uI41/7bIedtqxHDcaBc1nKZXaPcJCK/cT90qurvikFNaYZo0jVLxKQtF01ko8+Gb55FcJj8=
+	t=1723778899; cv=none; b=evuEtqAQ5yZcArnjTiTLJMF22KfIstnhQT8nXShYNCvZEQFjZjHB8oaKk3x6oTBeAIC1mNeuwqXg8IsO/lpCp3edOsUkZyPaHaXWz9n+GH3tyguiGnvTess3PoNK+qdVzhCfzvWgnKQGf7bpQLiGMtUQEZXg+6T/nEdMDVRzS5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723777201; c=relaxed/simple;
-	bh=9HJ9mLsvE9hBdnzRmPMog4Duyb12/MBm70Ijnu1zd8g=;
+	s=arc-20240116; t=1723778899; c=relaxed/simple;
+	bh=bE1k2xABhVL+V7BEWHafJOj/zxazAkjyhmPpLGfqL/o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oEiZISp3MkYEbtDuWncMErldE05/OZEQsbU49ByokoKQ1i+mjPxtd+F+paSetSfjIUqLI0oLIa/q5GdO1SUVJsZQNAK8jaolDx3KeOkxTVOvXpZWKOOvmJCgXdSWnzkatlm7Udqtopn7ZOEd52ixDgTOna8bxxcXPGiknLZH0+A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u+ZCR744; arc=none smtp.client-ip=209.85.216.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-2d3d0b06a2dso774171a91.0
-        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2024 19:59:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723777199; x=1724381999; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=N3bMIBZKvJVfw9dWJhuewSKLJF4MA9XhsG885+6Ljg0=;
-        b=u+ZCR744batxOalIF5E3s712s1CwOo8FHO61hdi2DSkDOTcW854NkWko3wsp8OPXV2
-         /Xsz65MKcJhiFcET8f4KyEXJLFsZlgHcaWqpb/a1nskj7HZUdassP76pamTQxbIPMegt
-         XCJBZ9gXNWZC6/kb/7wFZipOwpCAOMTqYFJV3nfZiQ6r/IXV+Dn4Aca8jEfFL1IN4Rak
-         LRg8G4FSAfHV/VcSSclkfpqEXqfA14f3IJKl10cg3bQqD7uAskgGwXUVdjNL5DAqKI9+
-         pnhby6jCUzleU8Y5u+ZJjYf7s6DSrvQzZ2ADdORQUApG9xs575sUr++pYRvCa9sVaguL
-         2/Tg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723777199; x=1724381999;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=N3bMIBZKvJVfw9dWJhuewSKLJF4MA9XhsG885+6Ljg0=;
-        b=ReGbO0Fn5Ye7vvo0uOP0opBAkxArKBXTkajnOK2hXl2ofL2EOVLtsZGgza8Fwg3Zb9
-         KCFW4anRFPa8CqlSeXtFDW6a/w6Iac0fM3xnIDWfaTQGe6ag/iHRMeHuQOJInEjBf4yM
-         3ZHWRG+4ZCyfobd94sNemPELxorII50p0FMIQMYfaHHRFlboS3NR0OAkferuF6Qliv7E
-         nKyTEQOI8TWqBuQHZmBEm2Pv4TeFVvzmoSa8tbM7GgDLoEiMvvgoeLLVMeUBjiTAX4g2
-         8xl8Ot3e8Z5WnGiJt3q3I7YjDeKWLM/32m9MwxnkVQbPtgvdmhUx4LpKJMM8xl2DM2kW
-         8/bQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXiwaxWp6I20hw4IqXouokZSqprmfRAsF05TqHlGR1ZASse3sJpUfm32mHtsvL40AkVpiSudmpyhlQSFrqh4zHw7ua/0vczcdagkA==
-X-Gm-Message-State: AOJu0YxfAXWfQ7BQ9yn2RLD1Nzv7Bm0W7CpDIKxmnnDyqVdV8Y4CzW8l
-	yDS944Fy7lF5uF6zbNt30ThTlyc3G1tf5Ddlp/sgTUveO7oVQupcWo0HePHOb6Q=
-X-Google-Smtp-Source: AGHT+IG41cmUunEpRo1YEW6i7VN78sorKRs9Ia30Ow8a4NnlLWJDOlmrrRZ7+f/r5YWbnu3bUTT4Ig==
-X-Received: by 2002:a17:90a:ca89:b0:2c9:754d:2cba with SMTP id 98e67ed59e1d1-2d3dfc2aa3amr1975748a91.3.1723777199224;
-        Thu, 15 Aug 2024 19:59:59 -0700 (PDT)
-Received: from localhost ([122.172.84.129])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2d3e2330f26sm626022a91.0.2024.08.15.19.59.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Aug 2024 19:59:58 -0700 (PDT)
-Date: Fri, 16 Aug 2024 08:29:56 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Danila Tikhonov <danila@jiaxyga.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	andersson@kernel.org, konradybcio@kernel.org, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	rafael@kernel.org, kees@kernel.org, tony.luck@intel.com,
-	gpiccoli@igalia.com, ulf.hansson@linaro.org, andre.przywara@arm.com,
-	quic_rjendra@quicinc.com, davidwronek@gmail.com,
-	neil.armstrong@linaro.org, heiko.stuebner@cherry.de,
-	rafal@milecki.pl, macromorgan@hotmail.com, linus.walleij@linaro.org,
-	lpieralisi@kernel.org, dmitry.baryshkov@linaro.org,
-	fekz115@gmail.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	netdev@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-hardening@vger.kernel.org
-Subject: Re: [PATCH v2 03/11] cpufreq: Add SM7325 to cpufreq-dt-platdev
- blocklist
-Message-ID: <20240816025956.utm7w2djq5ukvoxx@vireshk-i7>
-References: <20240808184048.63030-1-danila@jiaxyga.com>
- <20240808184048.63030-4-danila@jiaxyga.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=fbFPHU0nhNNol9dpxnvIj48pq/UeTWAxuJ2SqLQvIaixWCqD/fpcPtIWBzFD/4Q4K/BfMIifGFIqWN2n7eTyi9gu5ZkUZOX8UmffR/13cpXMA1wYNevR8hjan4+SuFvD2JbjT8XVIQ75Fw9MlhMhBU0r506IMzFtDRyLZR7bzIo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=D4facMP/; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=y+Gxe46x0e2FCrVOFCYCcT5Oj90T8dZoy+0yxj4iqOo=; b=D4facMP/U4YmD41M+Hagy/ijda
+	gXpWGyCNYKJ/H7/cuayZrjsRpTvZJ+sfeDno4sDbW1gKI++XXtJRuIoAQ8iIVw0rWEGaa7SolYhIF
+	PzJZElXEZVvvDUuNbROd3Wu1m7UnFFBR5yXOxx1sMDZ9opGWwIRxI4QQPexa3ZMia7HM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sendG-004tau-AW; Fri, 16 Aug 2024 05:28:06 +0200
+Date: Fri, 16 Aug 2024 05:28:06 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Wei Fang <wei.fang@nxp.com>
+Cc: "davem@davemloft.net" <davem@davemloft.net>,
+	"edumazet@google.com" <edumazet@google.com>,
+	"kuba@kernel.org" <kuba@kernel.org>,
+	"pabeni@redhat.com" <pabeni@redhat.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+	"hkallweit1@gmail.com" <hkallweit1@gmail.com>,
+	"linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+	"Andrei Botila (OSS)" <andrei.botila@oss.nxp.com>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next 1/3] dt-bindings: net: tja11xx: use reverse-mode
+ to instead of rmii-refclk-in
+Message-ID: <718ad27e-ae17-4cb6-bb86-51d00a1b72df@lunn.ch>
+References: <20240815055126.137437-1-wei.fang@nxp.com>
+ <20240815055126.137437-2-wei.fang@nxp.com>
+ <7aabe196-6d5a-4207-ba75-20187f767cf9@lunn.ch>
+ <PAXPR04MB85108770DAF2E69C969FD24288812@PAXPR04MB8510.eurprd04.prod.outlook.com>
+ <dba3139c-8224-4515-9147-6ba97c36909d@lunn.ch>
+ <PAXPR04MB8510FBC63D4C924B13F26BD988812@PAXPR04MB8510.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,33 +76,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240808184048.63030-4-danila@jiaxyga.com>
+In-Reply-To: <PAXPR04MB8510FBC63D4C924B13F26BD988812@PAXPR04MB8510.eurprd04.prod.outlook.com>
 
-On 08-08-24, 21:40, Danila Tikhonov wrote:
-> The Qualcomm SM7325 platform uses the qcom-cpufreq-hw driver, so add
-> it to the cpufreq-dt-platdev driver's blocklist.
-> 
-> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  drivers/cpufreq/cpufreq-dt-platdev.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c b/drivers/cpufreq/cpufreq-dt-platdev.c
-> index cac379ba006d..18942bfe9c95 100644
-> --- a/drivers/cpufreq/cpufreq-dt-platdev.c
-> +++ b/drivers/cpufreq/cpufreq-dt-platdev.c
-> @@ -166,6 +166,7 @@ static const struct of_device_id blocklist[] __initconst = {
->  	{ .compatible = "qcom,sm6350", },
->  	{ .compatible = "qcom,sm6375", },
->  	{ .compatible = "qcom,sm7225", },
-> +	{ .compatible = "qcom,sm7325", },
->  	{ .compatible = "qcom,sm8150", },
->  	{ .compatible = "qcom,sm8250", },
->  	{ .compatible = "qcom,sm8350", },
+> Based on the TJA data sheet, like TJA1103/TJA1104, if the reverse mode
+> is set. If XMII_MODE is set to MII, the device operates in revMII mode
+> (TXCLK and RXCLK are input). If XMII_MODE is set to RMII, the device
+> operates in revRMII mode (REF_CLK is output). So it's just that the input
+> and output directions of xx_CLK are reversed.
+> we don't need to tell the MAC to play the role of the PHY, in our case, we
+> just need the PHY to provide the reference clock in RMII mode.
 
-Applied. Thanks.
+If this is purely about providing a reference clock, normally 25Mhz,
+there are a few PHY drivers which support this. Find one and copy
+it. There is no need to invent something new.
 
--- 
-viresh
+	Andrew
 
