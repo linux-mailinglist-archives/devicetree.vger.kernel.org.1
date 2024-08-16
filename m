@@ -1,135 +1,132 @@
-Return-Path: <devicetree+bounces-94136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82013954224
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 08:54:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8269995422F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 08:58:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3A8B1C248C5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 06:54:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1AB1AB24A00
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 06:58:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EEB613A89B;
-	Fri, 16 Aug 2024 06:53:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 046B782890;
+	Fri, 16 Aug 2024 06:58:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sYaeBQTP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hZfsVZej"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 541A113A87E;
-	Fri, 16 Aug 2024 06:53:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E3B8A957;
+	Fri, 16 Aug 2024 06:58:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723791183; cv=none; b=G3MCOaiM2vCkBI0yBJrJhoKF2HnH49fSDiw2pVIRQ/bcW28Ujqhxq5eBUEN5vMKlsntrztNulCeC5Awx/c8f0t2uE1xntnf+mPtyk54FjT+KboAH1qCd6DU4fpmcKXfKa7IBEYotTxs/jmG3UoktjWchBSNytY2dTCPGQ5OOTUk=
+	t=1723791529; cv=none; b=W2A/80zMZEsCom9wYtW6g/mjYlU911v59y+6r/frxopn/6FP1ZVSxePiOA4IyJbpO/YmGGao0m/IM0iFwiadgNZzeENRel4mXsBMc5PTkKk7FVhsf66+WuwiszHzSqPHuw2Ac/XPMNHENq1x9a+Cc1UOppRS+kTLkm4sfRUw1a0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723791183; c=relaxed/simple;
-	bh=xqrGiFB7i013Y5oqj+iN9qGBcGCJHR+f3OOTpk9Ug24=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TAClI/Q1a9o1Tp/DXGd7SisygeK06PcbevrTA9k0DrAs8unOGZXa2RQXLO3T0+fhErlb7fzxOoKvoBBmsyA5Fc721MX1DLLroZtHKfRPEbuhe8XoHwsz79skZXBj9XfFcuQCa/puXlU56wOhwiZiFcdjikv/N+W62cNU7ka/iIw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sYaeBQTP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C59ADC32782;
-	Fri, 16 Aug 2024 06:52:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723791182;
-	bh=xqrGiFB7i013Y5oqj+iN9qGBcGCJHR+f3OOTpk9Ug24=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=sYaeBQTPwhLygtD5SEM88tWhILiT7+acGJTJMW53t0ef8fNjlFDXpvXI/Ny4LUM3l
-	 oN7icm3/0BUR8CKOQVgQz5BkhfPGHQOny0xJYqp24OLll9/aj0rR271JScvtkGxsVR
-	 xpSlbnC3P8GdrxDSgA4ZiNHRbqgPApGhkQLIsTl2YQmKq8GMi/3m1hk9NmeMcIeOyv
-	 LZKBlSR1aSNS+Uhhg3xNQ6NHi8+6gced/63HeHKCfE1ccHmN6wbJluZtDu98Spy4TT
-	 JcGWnBhFPaZW1+HTg7GQdwUV/CtDCEu5aGHgQLdWk0s02VMM0/llRpTdC1gadKEbFC
-	 DtgGi2fzX44ZQ==
-Message-ID: <45a60690-4754-4499-8728-162138d0c3f9@kernel.org>
-Date: Fri, 16 Aug 2024 08:52:54 +0200
+	s=arc-20240116; t=1723791529; c=relaxed/simple;
+	bh=zDRM1hzoX9ACvzIE3K0psyIc0oiEJxraUk2CzewLzOk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=q8TOnB8cdELWlHgwAVWbFDFrh1v/u9QYvR6GBRXNpRy05wT5nDy/yfGRszdw7NlOVce/3tmLbyVSQSvTiehD9sTpFXwPIcrEv6j0++4WZxSvyeeOsxf0aW72VImvNDrJbtoQSEpUigSKJj9xlMroDqIj/IBse949MUxKHuBaeJ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hZfsVZej; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5becdf7d36aso402190a12.1;
+        Thu, 15 Aug 2024 23:58:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723791526; x=1724396326; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=1JwamsKksXLvsW0qhopzjl2x+H5y5UpQ08ylf3RpSZM=;
+        b=hZfsVZejiJhmOUjM56Y8GFfjvVogrdceuvOE4I1xHuLdtJoOiu9alEvRJ2jPm+MQLT
+         2s8XZVRDlo/hBcQf4Z2AHTRHbqzD+WOx/q6VjivlXME8T6IAPbHfLW/HcwloiJSqh814
+         33rC0319QUkbY/jBjEh5OufCgwtpSPjozAJfTDGBsoKrjRwg1y13e3Q0Pj+gGmVM1iOY
+         0bdNssMkcHLXDxgm2Dorad09/IN4rba+52CItdWe2QRnT52R2WCx1GlWfPwrXZbHcyfb
+         HWZi8mG2k7ANTCG99t4Dyf6yW255lDyke8ZDeiLA96LC/lu+VnqOk6vbhoLwHfUxz486
+         rVFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723791526; x=1724396326;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1JwamsKksXLvsW0qhopzjl2x+H5y5UpQ08ylf3RpSZM=;
+        b=Nhs6J2HQ4YtspaChIhQ3zk8Ng9OSyy3L7cb15pa8Xlp5hGRMLPnYw/eEsAT4IkSlH+
+         mChXnrdSFeiWBDDaxd75pxu+CEyuIvW0+UaAOOtb/Z3JKaBZFwqX7ibS5PwJP8ew0CQl
+         kpWDeLcoCkTMB8AkjkJKKnL400F+6TBarhKpJE7cAtxWeeLH2mR9+4ZJaxqPzFBTrFEM
+         M6bLeg4DWVPwbbJYXjH672NQZsEhQUxLigTHtIT0sWNxIcUnhvQ6MlTVjM8dGTJWemta
+         F2rXqJVMX+Jj/mG9/qMWdrAyI6h86GD5Evu4TsjMRS4PebZ/hJDj0ACGeoMHcWQrkefr
+         oxxg==
+X-Forwarded-Encrypted: i=1; AJvYcCVY43w/9AMGdyS9OjaYAFiP+wybz6m5vQW1ieQj/+bOPXixCE8nc9XdhWB8L0mSD0O475h4hIUDdRWRIRN+Mph5kE2molIinx4x9nv0MZ0wlJneJ4LjdNrz+MeF+rw50nHqXSn0/xlrKMm2e4lC4xxdvGSCV5HBB3+p7J2HtSro8j87
+X-Gm-Message-State: AOJu0Yy6jf4k/m44cRSOsefkGm2TkgZsCucGAKUhrpKGqSgfmZPRhxem
+	ATvsdwVCe3Ya8kGDRrfMdbsytqrpZOd6Ek8SfZitthsOGddtWhej
+X-Google-Smtp-Source: AGHT+IG5/2L2jkdBfceoeV/MuSblJkCtK6rCRn7E3vZSCNqnFhMc2Btvqv1Mazis6KiaqOHW7jKCaw==
+X-Received: by 2002:a05:6402:1d56:b0:5bb:9ae0:4a41 with SMTP id 4fb4d7f45d1cf-5beca757128mr1109813a12.28.1723791526208;
+        Thu, 15 Aug 2024 23:58:46 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5bebbe7f3e0sm1830464a12.71.2024.08.15.23.58.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Aug 2024 23:58:45 -0700 (PDT)
+Date: Fri, 16 Aug 2024 08:58:43 +0200
+From: Stanislav Jakubek <stano.jakubek@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: power: supply: sc27xx-fg: add low voltage
+ alarm IRQ
+Message-ID: <Zr74o7/4uurJeRnF@standask-GA-A55M-S2HP>
+References: <Zr3SAHlq5A78QvrW@standask-GA-A55M-S2HP>
+ <20240815-winnings-waving-1ec5561f90e7@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 02/13] dt-bindings: PCI: Use maxItems for reset
- controllers
-To: Jim Quinlan <james.quinlan@broadcom.com>, linux-pci@vger.kernel.org,
- Nicolas Saenz Julienne <nsaenz@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- Cyril Brulebois <kibi@debian.org>, Stanimir Varbanov <svarbanov@suse.de>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>,
- "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
- <linux-rpi-kernel@lists.infradead.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20240815225731.40276-1-james.quinlan@broadcom.com>
- <20240815225731.40276-3-james.quinlan@broadcom.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240815225731.40276-3-james.quinlan@broadcom.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240815-winnings-waving-1ec5561f90e7@spud>
 
-On 16/08/2024 00:57, Jim Quinlan wrote:
-> Provide the maxItem property for the reset controllers and drop their
-> superfluous descriptions.
+Hi Conor,
+
+On Thu, Aug 15, 2024 at 03:46:18PM +0100, Conor Dooley wrote:
+> On Thu, Aug 15, 2024 at 12:01:36PM +0200, Stanislav Jakubek wrote:
+> > The SC27XX fuel gauge supports a low voltage alarm IRQ, which is used
+> > for more accurate battery capacity measurements with lower voltages.
+> > 
+> > This was unfortunately never documented in bindings, do so now.
+> > 
+> > Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+> > ---
+> > Initial Linux driver submission adding this feature:
+> > https://lore.kernel.org/lkml/ee1dd39f126bd03fb88381de9663d32df994d341.1542185618.git.baolin.wang@linaro.org/
+> > 
+> > The only in-tree user (sc2731.dtsi) has had interrupts specified since its
+> > initial fuel-gauge submission:
+> > https://lore.kernel.org/lkml/4f66af3b47ba241380f8092e08879aca6d7c35b3.1548052878.git.baolin.wang@linaro.org/
 > 
-> Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
+> This context could go into the commit message I think, as justification
+> for making the interrupt required.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+TBH I'm not 100% sure that the interrupt is required, I just looked at
+the Linux driver, and that it returns from probe if it doesn't get the IRQ.
 
-Best regards,
-Krzysztof
+> 
+> Also, this binding is odd in that it has several compatibles in an enum,
+> but the driver (added at the same time) only has one compatible in it.
 
+I think the intent was to document the entire sc27xx series of PMICs, as
+they're supposedly very similar (this is just my guess), while initially
+adding support only for sc2731.
+
+> Are you using the sc2731 in your device?
+
+No, I do not have any such device.
+
+Regards,
+Stanislav
 
