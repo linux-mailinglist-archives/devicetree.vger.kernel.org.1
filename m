@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-94140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D12A95426C
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 09:12:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D910954271
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 09:13:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C2A221F21684
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 07:12:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F37EC28CDF9
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 07:13:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4FAE85260;
-	Fri, 16 Aug 2024 07:12:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E82A83CA3;
+	Fri, 16 Aug 2024 07:13:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TExMALuy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UAsFap7K"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B110F7F460;
-	Fri, 16 Aug 2024 07:12:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2154678C68;
+	Fri, 16 Aug 2024 07:13:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723792352; cv=none; b=JTT3d6ocedPAGhgTIDbkdgndUu/HzxSdz94FbJuJFgDfVUvuBOqYBABvzupR3/rO6On0msuUEX8oP3atNYXyWN6KOu7gGLQCDRdHL0/LPr976I9g5EL5mZSQRPYoRySXBJ4qWaHhq2a5O1F2Ooc6LVlwVWNjpqdnbNRsp0Sa2sg=
+	t=1723792410; cv=none; b=ecbBv0GdzqB9hoNYaO0WIh/5e3ECm1653bjVOnNo6DAiGuIre6v3mwkab3Q6WEaB/1SGYMQ4zfTqPi1lku5j0CBQJsvL4P/mbS1aYlaTHsP2ljHSnl0eDwcC8K3D5v4RvmWPYZkiG4hzOY4YkRynWZZQ8MJvzYr3QOdsjwyS8ZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723792352; c=relaxed/simple;
-	bh=0ulnKDYaVi07kwYpVeVtuyN055Jl2HkRB9mAgzF2VIU=;
+	s=arc-20240116; t=1723792410; c=relaxed/simple;
+	bh=HRPnl+L1COn82thCnnrX8cp2TSP9xdO6WS49m/7BRKo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UeWuVPUSZM04S3dc3cgZJwI9upvcsZmZFyQwQMLoWh8dJN5JCGC7lLcH16lKn2x4hX3PvaZP437llxmO/bueWRXzF1ogWKoXey1m2ybb4odqN3lqsEP/LV75xSBdLdGBdlVwWz7jCdcp30auBN4QOWibr59AT21QGmzDB36YQck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TExMALuy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23CA5C32782;
-	Fri, 16 Aug 2024 07:12:23 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=U/XBqq0fDZeDQX5fDEuGe0/kqL8jicbqs3eCGBM/5PTXl7SIU4Cc83iwOEWQcyBHq/6Bw80jeJo18Znoo9PQB+naGW2AjJIBJd1PNQLwWEBRwMQhXPFcgCpmf6I22e7og9Fl7qMe0lQ5jcvs2D3L54oT2KCAjUQ8MpVM6HatLr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UAsFap7K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C019DC32782;
+	Fri, 16 Aug 2024 07:13:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723792350;
-	bh=0ulnKDYaVi07kwYpVeVtuyN055Jl2HkRB9mAgzF2VIU=;
+	s=k20201202; t=1723792409;
+	bh=HRPnl+L1COn82thCnnrX8cp2TSP9xdO6WS49m/7BRKo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TExMALuyhTGZ9x5Oe6tpH06BElCI18k3d+kkWaW9JF+xkxYjsPvNjHN0nr97dUGRM
-	 NIQNUMEMaVb/5wtn6F9734YKsO//p0wg5yrVQRtPVB4h1RQf32WJQgVY86Dwq/iOSW
-	 Yflwf3pHonpcD8fuscFhCzdb97KaegEsTthoVptUQnmyABKoLiGQV7wPACVN1Ut9ma
-	 0k+mMh89sGkuOxZtaPcjER3ju/EeRu8L9vgniDNsr92JLeDvUR+ZOmRsbIObE8KdeT
-	 QI2eTx/MYAsv+fmXHMsEeuTj3LYbRBdYIi/I8isc26vBHmpwHmZTjLqEoI6g8xYV1U
-	 w/WYx/c9Ofdbw==
-Message-ID: <e3dff6ce-7fb2-47fa-9141-9281e5e9de5e@kernel.org>
-Date: Fri, 16 Aug 2024 09:12:20 +0200
+	b=UAsFap7KRtpINfUj4Bh+uZJNXj9E/yrpyFUEZKqKBvtifGI7DQ6nEziGqvZLJ6U9R
+	 UuqRJaVOH/Ws3Zz49d+MWskVZaHJl1Yr1Wi844Yg/tLxvoK52nb+/wE+MeqLl0mPeL
+	 ofwtHPJOhY53mgkJ0bxb0XLGXP+tNnW/dZ4KpjT+sdPUZatHtkKRaA/3o+yszbrEuG
+	 p21njAMZGCk5dEqO5JsBAJvTlWi0C1m/mf02wpnRtEXZCrrsisDvQEP/DayipwH9xY
+	 RnQEmF57t1ZsHBiDLcaunGBMXMVxrYvRKtGkL4FudFfwnwuQ2upd8VpoFRRLxbnNuC
+	 rjwdUo0sUkfFg==
+Message-ID: <ad9a288c-bcce-4dc4-a572-6459cc99bfb7@kernel.org>
+Date: Fri, 16 Aug 2024 09:13:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC] net: dsa: microchip: add KSZ8 change_tag_protocol support
-To: vtpieter@gmail.com, Andrew Lunn <andrew@lunn.ch>,
- Florian Fainelli <f.fainelli@gmail.com>, Vladimir Oltean
- <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Woojung Huh <woojung.huh@microchip.com>,
- UNGLinuxDriver@microchip.com, Russell King <linux@armlinux.org.uk>
-Cc: Pieter Van Trappen <pieter.van.trappen@cern.ch>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240816065924.1094942-1-vtpieter@gmail.com>
+Subject: Re: [PATCH v3 1/6] dt-bindings: crypto: Add X1E80100 Crypto Engine
+To: Marcus Glocker <marcus@nazgul.ch>, Bjorn Andersson
+ <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
+ Johan Hovold <johan@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
+References: <v2iah5yrne4u6uzrnzg36tvtxzqrpiez6io2gyyfrht2x42umw@5ribqndiavxv>
+ <szw5nxru6vwbsomhkpwdagnr4wg6ltjfbp6kmnb6sse6it3yzv@qwgui4kj2foj>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,60 +105,16 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240816065924.1094942-1-vtpieter@gmail.com>
+In-Reply-To: <szw5nxru6vwbsomhkpwdagnr4wg6ltjfbp6kmnb6sse6it3yzv@qwgui4kj2foj>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/08/2024 08:59, vtpieter@gmail.com wrote:
-> From: Pieter Van Trappen <pieter.van.trappen@cern.ch>
+On 15/08/2024 12:38, Marcus Glocker wrote:
+> Add the UFS Crypto Engine binding.
 > 
-> Add support for changing the KSZ8 switches tag protocol. In fact
-> these devices can only enable or disable the tail tag, so there's
-> really only three supported protocols:
-> - DSA_TAG_PROTO_KSZ8795 for KSZ87xx
-> - DSA_TAG_PROTO_KSZ9893 for KSZ88x3
-> - DSA_TAG_PROTO_NONE
-> 
-> When disabled, this can be used as a workaround for the 'Common
-> pitfalls using DSA setups' [1] to use the conduit network interface as
-> a regular one, admittedly forgoing most DSA functionality and using
-> the device as an unmanaged switch whilst allowing control
-> operations (ethtool, PHY management, WoL). Implementing the new
-> software-defined DSA tagging protocol tag_8021q [2] for these devices
-> seems overkill for this use case at the time being.
-> 
-> Link: Documentation/networking/dsa/dsa.rst [1]
-> Link: https://lpc.events/event/11/contributions/949/attachments/823/1555/paper.pdf [2]
-> Signed-off-by: Pieter Van Trappen <pieter.van.trappen@cern.ch>
-> ---
->  .../devicetree/bindings/net/dsa/dsa-port.yaml |  1 +
->  drivers/net/dsa/microchip/ksz8.h              |  2 ++
->  drivers/net/dsa/microchip/ksz8795.c           | 28 +++++++++++++++++++
->  drivers/net/dsa/microchip/ksz_common.c        | 19 +++++++++++--
->  drivers/net/dsa/microchip/ksz_common.h        |  2 ++
->  5 files changed, 49 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
-> index 480120469953..ded8019b6ba6 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
-> @@ -53,6 +53,7 @@ properties:
->      enum:
->        - dsa
->        - edsa
-> +      - none
->        - ocelot
->        - ocelot-8021q
->        - rtl8_4
+> Signed-off-by: Marcus Glocker <marcus@nazgul.ch>
 
-Please run scripts/checkpatch.pl and fix reported warnings. Then please
-run `scripts/checkpatch.pl --strict` and (probably) fix more warnings.
-Some warnings can be ignored, especially from --strict run, but the code
-here looks like it needs a fix. Feel free to get in touch if the warning
-is not clear.
-
-Anyway, what does "none" mean in terms of protocol? Is there a "none"
-protocol? Or you mean, disable tagging entirely?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
