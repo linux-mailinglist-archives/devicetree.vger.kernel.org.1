@@ -1,75 +1,86 @@
-Return-Path: <devicetree+bounces-94358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F27E2955342
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 00:21:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CA4A95535F
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 00:35:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3173D1C21303
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 22:21:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE101284814
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 22:35:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E49C145348;
-	Fri, 16 Aug 2024 22:21:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 578E8145320;
+	Fri, 16 Aug 2024 22:35:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hy3hphux"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iYi38Wfl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 002D61448E0;
-	Fri, 16 Aug 2024 22:21:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24F0512C478;
+	Fri, 16 Aug 2024 22:35:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723846907; cv=none; b=Swj8s8+9ljmBlH761DeANM1yaWoMaVntLd67vr78F+9cLre1wXefU3rzwv28j34jQyvAGFMqkXKuvooXk+1KyMwhQkZPEGHmZVhibrIh8jXRkYKjuMnfZC/hf2KsMWXLvzXRc3okr7v30rfIsKJslQcMbygtYW9E/2QmVKhsVHc=
+	t=1723847728; cv=none; b=I46aRp1qlIWMWSax30xd3Y4IWOu9ls4u2WcmVuZhP9ZrWht+V+SgH2r0DtSt68b68+D/INywRX7kNLsMU6Jcz+i+92gH98WNIyCKzVeU/UUwgevOfOBb2jbXgRsNmudPfy73DmCRogOIG8HsjM31fPujcNVfeR21R+rXJhUsNiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723846907; c=relaxed/simple;
-	bh=WgvoYVzCifcvYTm7L2k4XdMOnnqYb0WGXGPEg/mZ/v8=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=cC0IBxhXK0FLWavwArPRLrQFQfZruMFWYN4dkOxVpyxv6EdTY3OPQDTnKZFjKBJ3T4ZNYVK9BN7PZ6JJtkbO9J08blRc8uIYGClixVnQQozsTJw+BIxnwNmeNgmDejFxxGN3x6PyxM58soFX3I2p0HEgSlsgj4WlP/6pbUngeF0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hy3hphux; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B384C32782;
-	Fri, 16 Aug 2024 22:21:46 +0000 (UTC)
+	s=arc-20240116; t=1723847728; c=relaxed/simple;
+	bh=ZpURkNGLjZcch2KIiqIa70/RNtpmwkxMErm8qyGuQFY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=T8ipEl0bG62nxIp7gPFPnaqWxb6RXqA8f3/fhgqWv1qSUt3KXqz3vfKE8Vt5H2tVroDAKFS3RnveGF9sVoIQI5l1i23dNJyjZF5sz1ouveP4ZmdRLOx4dVqN3WzU15fjLnJjEye6ZPGflrkA5kKqPXiSdGkEP62NMAVctzi3iIc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iYi38Wfl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EF39C32782;
+	Fri, 16 Aug 2024 22:35:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723846906;
-	bh=WgvoYVzCifcvYTm7L2k4XdMOnnqYb0WGXGPEg/mZ/v8=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=hy3hphuxMb54saXn66CHIaJezinIkNWYULZBqley/oeS/hSXmKxatpOAIJkK2LNXH
-	 A/9/u1X6VWBo5yq/1iV4YXOSrg0L6VNxojGRp7w4QUodFIuRXI/iUGwSauJto3gO6I
-	 1jG752fFt9Gm5nzPRBykDKLol1t2yEGlME0Y8AgHVQ77JKIQdHwdyqjW5tM3ginEQX
-	 iNTDEKTwhOuO/NDI89q5az6W8osZTttHhoxjedVtqIaEo50cMpj0wo6wUgpTYrsEPF
-	 vj0mG1oKq3b7a6YWc/nI7CpMbW/nvMPH3EQXaJW4yi8sf09SG0qWYw8UJoLnu77Zyl
-	 hDOZ/nEhHy7Aw==
-Message-ID: <679c72b4ee50f66054a90aebe391b4c9.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1723847727;
+	bh=ZpURkNGLjZcch2KIiqIa70/RNtpmwkxMErm8qyGuQFY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iYi38Wfl/U2v6Jbjh7y172hdiSELq5TqjuQoewoMF17UnTS/swFCZ2dA+QseFMNqD
+	 9sXeXhaAKtbBJ6bjy0PtSJIzLnrvTJXQl1dUbFe6tPb7Tka+W4aOuUtOAbtubY8arW
+	 dM302WQdKBgBR6QHFObHb07z/FxZPtmuGANmKzkkHflAsIlJS6oAuxFlX/9qQlTXpq
+	 0gYfLp9yG8phFst452Xj9kEeH6+c+KtPB0Hxg+7cyvB186aeJ/Sq8Z9Uo/0e7EGfEX
+	 bfkVvRUpeskCUpedUXUKIpnZ1vFfN7yzZW3IWP9LJ4/BjYf0E3HvRpxhh2TOuYwrjM
+	 MwOikIp/NU10Q==
+Date: Fri, 16 Aug 2024 16:35:26 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Artur Weber <aweber.kernel@gmail.com>
+Cc: linux-samsung-soc@vger.kernel.org,
+	Alim Akhtar <alim.akhtar@samsung.com>, linux-sound@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH RESEND v2 1/6] ASoC: dt-bindings: midas-audio: Declare
+ required properties for GPIO jack det
+Message-ID: <172384771813.2392611.5123924124525265715.robh@kernel.org>
+References: <20240816-midas-audio-tab3-v2-0-48ee7f2293b3@gmail.com>
+ <20240816-midas-audio-tab3-v2-1-48ee7f2293b3@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240804-clk-u64-v4-2-8e55569f39a4@nxp.com>
-References: <20240804-clk-u64-v4-0-8e55569f39a4@nxp.com> <20240804-clk-u64-v4-2-8e55569f39a4@nxp.com>
-Subject: Re: [PATCH v4 2/2] clk: clk-conf: support assigned-clock-rates-u64
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>, Michael Turquette <mturquette@baylibre.com>, Peng Fan (OSS) <peng.fan@oss.nxp.com>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>
-Date: Fri, 16 Aug 2024 15:21:44 -0700
-User-Agent: alot/0.10
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240816-midas-audio-tab3-v2-1-48ee7f2293b3@gmail.com>
 
-Quoting Peng Fan (OSS) (2024-08-04 05:32:56)
-> From: Peng Fan <peng.fan@nxp.com>
->=20
-> i.MX95 System Management Control Firmware(SCMI) manages the clock
-> function, it exposes PLL VCO which could support up to 5GHz rate that
-> exceeds UINT32_MAX. So add assigned-clock-rates-u64 support
-> to set rate that exceeds UINT32_MAX.
->=20
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+
+On Fri, 16 Aug 2024 09:50:58 +0200, Artur Weber wrote:
+> GPIO jack detection requires an IIO channel and the detection threshold
+> to work. Explicitly declare the requirement in DT schema.
+> 
+> Fixes: 0a590ecc672a ("ASoC: dt-bindings: samsung,midas-audio: Add GPIO-based headset jack detection")
+> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
 > ---
+> Changes in v2:
+> - Use anyOf instead of oneOf in headset-detect-gpios/headset-key-gpios
+>   if: statement
+> ---
+>  .../bindings/sound/samsung,midas-audio.yaml        | 29 +++++++++++++++++++---
+>  1 file changed, 26 insertions(+), 3 deletions(-)
+> 
 
-The patch doesn't compile because of missing slab.h include. I added it
-and applied to clk-next.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
 
