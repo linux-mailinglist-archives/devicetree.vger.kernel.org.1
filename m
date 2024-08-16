@@ -1,100 +1,120 @@
-Return-Path: <devicetree+bounces-94249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEBEC95469A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 12:17:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA9A19546BA
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 12:24:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A53A287F60
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 10:17:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 299EB1C20A78
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 10:24:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF9FA18D620;
-	Fri, 16 Aug 2024 10:17:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD09718FDDF;
+	Fri, 16 Aug 2024 10:23:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="LtSknKU6"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="ouZk3cDO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFA1116F85E;
-	Fri, 16 Aug 2024 10:16:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF8C317BED4
+	for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 10:23:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723803422; cv=none; b=IZHxXbfFAgAPu2fcCERcuQ5QtfxG2q+thrPdsClS0RNUrXf+max2jHfe4qMzxAl9zUzYyyn9d3w81+3a+U9huSel0Un2ERINhDmKkmf6l5TELiDPERLJXsYeBKMG3rY9mWx7SYMcdXxbHUBe0ZFag+ySCjag96/XVjAYzndvao8=
+	t=1723803837; cv=none; b=s/+gBPeXuVk2/WBy9RqNgOfbicRaQG8MHA/2nWAK91SYTOFP5KX2hisS5geiUr7IikUhT0obLvgsRkkeq9JoMvvEBuR9bbo4+W8YuMV87TdlD0cwK66mniHuDkU+o3YnjxZFTMYzwFbk+IH31zRWHMlhViqDs0svrPBqHcyfwKM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723803422; c=relaxed/simple;
-	bh=UJlNBvivWgb0cdk3h7CCw0C2sTxDVM53ZCye4avukrs=;
-	h=From:To:Cc:Subject:Date:Message-ID:References:MIME-Version:
-	 Content-Type; b=hJFaK8Rn5Ev2Fuj2pz3v/ZMebdFrph2k43ZcQE8IgCJGslgK4Uek9k7jOgKjpc6Gr+KATCXMkUdhyUuLt7smoAagJHMipDkIYUppWs81Zyy7+0K17l1NCXtUOCRuf2VogIRpJiLtnyjQRB83m6jcmZphLi1JfmNO7LFfkShG4do=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=LtSknKU6; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=1srJQU9Lp6EXV/TNHEJRaeCIzq3POh/wVkC52KKLehw=; b=LtSknKU6PVF+UNOREKxl+Fdrhv
-	aUDPr8I0BJhIZJ8DHgpwTASmCUS4B+wu8mAQ9PC0iie9WRb4KMyxO7b9uQ8MDwHokGeLczF/kbggL
-	s2+TqXK2OOAMAUe0SX0rEg2cIdWYZWkLUgtQDk/S2GB2qkxOwV1Y8MmJUSddbMSkpaMtBFIZv22WZ
-	Imj9fvkx3boMFdA6MFjOqI8zayDdiQ57rJbAGNZlF6piK/tB9wcFcuVti+mMGMDfd8/Sw5UPUQ7Z5
-	xT+oG/a6B4hGZa3VDYeAVupo/V++pzLXqg2JEo3qmN0JRXW5XcVm+8OL532zVpBBels9DoQrcG8ez
-	gloZEYtg==;
-Received: from i53875a9f.versanet.de ([83.135.90.159] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1seu0m-0000Ra-Ag; Fri, 16 Aug 2024 12:16:48 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Dragan Simic <dsimic@manjaro.org>,
- Sergey 'Jin' Bostandzhyan <jin@mediatomb.cc>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH v3 3/3] arm64: dts: rockchip: improve eMMC speed on NanoPi R2S
- Plus
-Date: Fri, 16 Aug 2024 12:16:47 +0200
-Message-ID: <2743124.mvXUDI8C0e@diego>
-References:
- <20240814170048.23816-1-jin@mediatomb.cc>
- <002107db3dcf3f1d1d1a767f049b5b79@manjaro.org>
+	s=arc-20240116; t=1723803837; c=relaxed/simple;
+	bh=CaJnOyQue3Q9Tu676JMyTm4MNNEAGskyDjAkRRRIYg0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=SM4mx8tPV+kF/t0cMOquIz7n53mAny/DcFBzTj629UAgWz842dMoxBGS0pTDwi/9fMWe22GaHZNgkv4FFUzSPDqpJrQPDnHeOVHf7Oe97Sn1Fo8YywU3spRfbO+Pu0TCrOprFHyfS+e85048kZwrZtwHKfjW1dB8FVFjKAB4pc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=ouZk3cDO; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-42817f1eb1fso13138205e9.1
+        for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 03:23:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1723803833; x=1724408633; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8cRa80QxztxjicJF5rsAT8pzK6md8mByVXGfDIWdXzQ=;
+        b=ouZk3cDOOHNodxIrDRR/R5l3UsfoMdXWIVb/tAzsl02tpWp0tovuZp+z+TxygB7LtU
+         lplfs0UL1w77wS2kPpVEjQMj3aN/8JU00EAcV/p9uSerJyQ/cuF3wrLtvevO7+F4xRkD
+         v61YwkPaHnbl6okCQPpyTObDhKprMmGLwYHdrDDnMfalqjCvDOXynXr8kC2VScaz7SX+
+         qYwIyl+XSIqXFsQEcjfsfWIBGHr+IfZIrNFPXVYtOV1OYtT0IHPKCGyBPbRv778j32C0
+         UQ5pKpXd8tieAYwl1cWc1q8OWbH3d9kSlrjgOjMbZFW3zf6Gu+WmUK6/PZ49oVgyQKCj
+         kCCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723803833; x=1724408633;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8cRa80QxztxjicJF5rsAT8pzK6md8mByVXGfDIWdXzQ=;
+        b=vuhQwGNz/kpU1qo++Vl3dq0mmW07Kpr/P5F9WBC0vwjJsB49HjWhGAI6wcp39MsEll
+         5EDf6ubokKyIouh0d8dJyyuMtkSG/SjeshJqueT8GygZWg9e97ncToAEQPI48FKx8y3E
+         JhQ0G8dtwKkjgzgIbYe8OhvZIrtaaLMPmW4cOtVYqIVz/3t83gaRbfXUnwTBOIIsn5yo
+         mvams/C/N2kAds0IC2R+SCdeVpAMoOl5iv1v/8SlHt8KMfXlKBJovspmFLu9qKOedvDm
+         VRmtmAjSNx4qDMrxiFFvKAbKmj/P2lMr+x0pj3oyTTd9UaZUF9uzlAFeuCMl7OVEknQI
+         RK7g==
+X-Forwarded-Encrypted: i=1; AJvYcCW+zy3TsnHFu8DNAdKQxqFH4bF7zwuXo4/Oq4TS+ZzbS/EW72z/JpQj+5+lWg95CZ/T3TsMp8Rw9+AvaRHxfEwvYKEWeaR+85YKhg==
+X-Gm-Message-State: AOJu0YzSSTGa9MzeJZR13TQsc2z7iNdlSgeCI10ciKiWKTLAw0tDOM7k
+	lHNYzkIAsc8ha5FYZDy7f4oYOqN1eCOS6QH762AuM97jG4AeGSirwCjzCwrjGo0YyQQZDRt3Kqh
+	a4cw=
+X-Google-Smtp-Source: AGHT+IHiMiemHA0HDYK7fUySNf6tNACiyVMdxfcXAwZ7wf3FKOLNNg2TYqApmadNe4V2VEmyNHOi5w==
+X-Received: by 2002:a05:600c:35cd:b0:428:16a0:1c3d with SMTP id 5b1f17b1804b1-429ed7ae16cmr14655845e9.19.1723803832385;
+        Fri, 16 Aug 2024 03:23:52 -0700 (PDT)
+Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:aff3:cc35:cd8f:c520])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429ded18630sm72650125e9.1.2024.08.16.03.23.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Aug 2024 03:23:52 -0700 (PDT)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Amol Maheshwari <amahesh@qti.qualcomm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Tengfei Fan <quic_tengfan@quicinc.com>,
+	Ling Xu <quic_lxu5@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH 1/2] dt-bindings: misc: qcom,fastrpc: document new domain ID
+Date: Fri, 16 Aug 2024 12:23:44 +0200
+Message-ID: <20240816102345.16481-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 
-Am Freitag, 16. August 2024, 12:10:18 CEST schrieb Sergey 'Jin' Bostandzhyan:
-> Hi,
-> 
-> On Fri, Aug 16, 2024 at 08:51:40AM +0200, Dragan Simic wrote:
-> > On 2024-08-14 19:00, Sergey Bostandzhyan wrote:
-> > >This change has been suggested by Daniel Golle during patch review,
-> > >adding mmc-hs200-1_8v; makes sure that eMMC gets detected as HS200
-> > >which improves it's performance.
-> > 
-> > Describing who suggested the patch in the patch description looks
-> > out of place.  Instead, you should add a Suggested-by tag, whose
-> > purpose is exactly to describe who suggested the patch.
-> 
-> thank you for the pointer, I guess I missed that, I generally had a hard time to 
-> come to grips with the hole process as there are so many details and nuances.
-> 
-> Heiko, I guess it is too late to fix that now, sine you wrote that the
-> patch has been applied?
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-correct ... and also folded into the first devicetree patch.
-So no worries :-) .
+Add "cdsp1" as the new supported label for the CDSP1 fastrpc domain.
 
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+---
+ Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Heiko
-
+diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
+index c27a8f33d8d7..2a5b18982804 100644
+--- a/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
++++ b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
+@@ -26,6 +26,7 @@ properties:
+       - mdsp
+       - sdsp
+       - cdsp
++      - cdsp1
+ 
+   memory-region:
+     maxItems: 1
+-- 
+2.43.0
 
 
