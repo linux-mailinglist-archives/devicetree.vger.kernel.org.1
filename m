@@ -1,82 +1,135 @@
-Return-Path: <devicetree+bounces-94300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78DEE954E3D
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 17:53:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DE45954E3F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 17:53:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2B7E1C24609
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 15:53:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D5A0288A23
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 15:53:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15F9A1BE235;
-	Fri, 16 Aug 2024 15:53:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D4AE1BDA95;
+	Fri, 16 Aug 2024 15:53:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UCpcS0Cq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WjRJPcpK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E108A1BDA95;
-	Fri, 16 Aug 2024 15:53:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 367981BCA0B;
+	Fri, 16 Aug 2024 15:53:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723823592; cv=none; b=R4e5iZlfmFoQyUICyO1kgMILWmZMomAvaK14zGNWI8bj92iUZKFS3INqANp6cvt63JbNNwkYrifBYPtth/Xt8wMfQZMo7aTHCnQaPnq76WtZNFVL8zmKjs8M3GDv6ik0FLZmAlnuu0HyGnz9jQP8J04ttsBiFy4pHN47jkJi5pk=
+	t=1723823628; cv=none; b=kV0D0PuaYkFqaxg0XcODMBmGma0ZpomPZoYmxThSXTRQdh8Gfpqm7+N6GNj93nDDhM1/+s5ol7PCO5cCqov30eeVjASc4Wkb3pIqOQeUCzmaFH+2woZQpj8ksqhV2l8Cuwi3g9lK8lkQoNwLt0eXG8Ucz0PXurhjQYFL9799jOw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723823592; c=relaxed/simple;
-	bh=KhiPh7ixe4ySw5YP7qoGj3adPjhmwJ8ka7Rcc8x3PzA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Kn/p55t+OGj60OEG83wkrsMbN0CNExuXtL3cedoicNavCv1NT9FafBotnfWNJVkrccU754xZolfQZ5ir50SzN54rgOwJD7oFFktURJjBNCx6MCjKxg6HQVQHCLfkGl/EPEqkSo9jUUQ+dpTfxXqAUWfvz2SvmEiN88iuH2ZWrkY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UCpcS0Cq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5252BC32782;
-	Fri, 16 Aug 2024 15:53:09 +0000 (UTC)
+	s=arc-20240116; t=1723823628; c=relaxed/simple;
+	bh=PXs1yvNpXJ4B/80Ijs3pk2Y5EklTN/J2qxy/CEUCfXc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=De8k+OEugV+XuYglanK4IhOYU8vuvKghrHOVjfszZHe7Hr0EOlL4vkVTJUVf2RnuVi7cx9nIA15LOZzpFGtkT3KLx0Tu6XzEj2bG5Gbc+tjZYYjVnwz3Jw75SHo0PcF28MINxWb5584IAq8p5yI5FQZgyWtbCfmjLifPEk0ZlNo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WjRJPcpK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DD17C32782;
+	Fri, 16 Aug 2024 15:53:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723823591;
-	bh=KhiPh7ixe4ySw5YP7qoGj3adPjhmwJ8ka7Rcc8x3PzA=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=UCpcS0Cq86DvJ0GI0Xrr85AAmH8A9SpblNh+ocrtkqR2pXYdQ+X5vPUR70PMjoUtV
-	 sFFVQRuKQByfSPeQI8Fyu1oOKmNjhvsJULD5c/dqKjsfzaQlmzET1c1iWBJQGUHm/g
-	 z/R4YuVUIHpLm9qlQ0gn1rqvGOcn5KAKkgKd3SqPUBwph7yevFgv7b/HpPwqQ6RCfm
-	 uIVRz9Vlm6QFkgx9ewsVaafRLeCNG1mvoB1chzmO9z7o7/gdZxOh+dJY3WaKYiFxgR
-	 ysd+MLkHY+oh7imwfdXNR/FgGhBf6OEn9JW5zoHTR26yFaWOMImU9wXmm7lrLQb3rw
-	 Masyvsg56RlmA==
-From: Lee Jones <lee@kernel.org>
-To: devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>
-Cc: Conor Dooley <conor+dt@kernel.org>, 
- Jacek Anaszewski <jacek.anaszewski@gmail.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
- Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>, 
- linux-leds@vger.kernel.org
-In-Reply-To: <20240708114653.18566-1-marex@denx.de>
-References: <20240708114653.18566-1-marex@denx.de>
-Subject: Re: (subset) [PATCH v2] dt-bindings: leds: Document "netdev"
- trigger
-Message-Id: <172382358900.3362924.11938991911362091302.b4-ty@kernel.org>
-Date: Fri, 16 Aug 2024 16:53:09 +0100
+	s=k20201202; t=1723823627;
+	bh=PXs1yvNpXJ4B/80Ijs3pk2Y5EklTN/J2qxy/CEUCfXc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WjRJPcpKMxppcvQz+suRPJEnUvDDc6ntt1GjCJbnBTS+pUO187baNazkebgMziGLx
+	 m/1wMEINM48iP2oCElDok3lJX9lw3fTzqmXIJmFXaxqVO1neVB/VS3Nod94/l22k3c
+	 IgOB/jNld6frJEwjHzE7kZxMtOaKzY2IUi78Di2y6tR1U6QFm+826IK4oN4lSe1ghS
+	 kpvMxhiwfK1GshiMoLpm7UwmjWF8cBSxemIJy9u+oy33khErQYj5/Tk5ig9bmn9YKb
+	 380b5QL+E5z7K/T6SHbhXPi4MbWza+VC/r5P1GzixTqwEHyabcqN9gJpRV5ixrxpRy
+	 v5g4qM1+N6jPw==
+Date: Fri, 16 Aug 2024 10:53:44 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Md Sadre Alam <quic_mdalam@quicinc.com>
+Cc: vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, konradybcio@kernel.org, thara.gopinath@gmail.com, 
+	herbert@gondor.apana.org.au, davem@davemloft.net, gustavoars@kernel.org, 
+	u.kleine-koenig@pengutronix.de, kees@kernel.org, agross@kernel.org, 
+	linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org, quic_srichara@quicinc.com, 
+	quic_varada@quicinc.com, quic_utiwari@quicinc.com
+Subject: Re: [PATCH v2 01/16] dt-bindings: dma: qcom,bam: Add bam pipe lock
+Message-ID: <7kgah2aajgyybdmpwfzgd25mi2lc4v6xv2k3mif576wo7bw2wn@i43mt2c34chg>
+References: <20240815085725.2740390-1-quic_mdalam@quicinc.com>
+ <20240815085725.2740390-2-quic_mdalam@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.13.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240815085725.2740390-2-quic_mdalam@quicinc.com>
 
-On Mon, 08 Jul 2024 13:46:27 +0200, Marek Vasut wrote:
-> Document the "netdev" trigger which is used to control LEDs by
-> network device activity. This is an existing trigger used in
-> existing DTs, document it so validation of those DTs would pass.
+On Thu, Aug 15, 2024 at 02:27:10PM GMT, Md Sadre Alam wrote:
+> BAM having pipe locking mechanism. The Lock and Un-Lock bit
+> should be set on CMD descriptor only. Upon encountering a
+> descriptor with Lock bit set, the BAM will lock all other
+> pipes not related to the current pipe group, and keep
+> handling the current pipe only until it sees the Un-Lock
+> set.
+
+This describes the mechanism for mutual exclusion, but not really what
+the patch does.
+
+https://docs.kernel.org/process/submitting-patches.html#the-canonical-patch-format
+states that you have 75 characters for your commit message, use them.
+
 > 
+> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
+> ---
 > 
+> Change in [v2]
+> 
+> * Added initial support for dt-binding
+> 
+> Change in [v1]
+> 
+> * This patch was not included in [v1]
+> 
+>  Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
+> index 3ad0d9b1fbc5..91cc2942aa62 100644
+> --- a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
+> +++ b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
+> @@ -77,6 +77,12 @@ properties:
+>        Indicates that the bam is powered up by a remote processor but must be
+>        initialized by the local processor.
+>  
+> +  qcom,bam_pipe_lock:
 
-Applied, thanks!
+'_' is not a valid character in node names or properties.
 
-[1/1] dt-bindings: leds: Document "netdev" trigger
-      commit: 616dbed65485c6e68325d00b6258a05369c14705
+> +    type: boolean
+> +    description:
+> +      Indicates that the bam pipe needs locking or not based on client driver
+> +      sending the LOCK or UNLOK bit set on command descriptor.
 
---
-Lee Jones [李琼斯]
+Missing 'C'?
 
+Regards,
+Bjorn
+
+> +
+>    reg:
+>      maxItems: 1
+>  
+> @@ -92,6 +98,8 @@ anyOf:
+>        - qcom,powered-remotely
+>    - required:
+>        - qcom,controlled-remotely
+> +  - required:
+> +      - qcom,bam_pipe_lock
+>    - required:
+>        - clocks
+>        - clock-names
+> -- 
+> 2.34.1
+> 
 
