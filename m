@@ -1,188 +1,197 @@
-Return-Path: <devicetree+bounces-94270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A066954903
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 14:44:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0A0C95491E
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 14:50:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DA4F1C24015
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 12:44:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 06407B21A52
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 12:50:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8D9E16F839;
-	Fri, 16 Aug 2024 12:44:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24D961B32B9;
+	Fri, 16 Aug 2024 12:50:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="dn77U71m"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="hnhVzKov"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D9DD137903;
-	Fri, 16 Aug 2024 12:44:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36304156F34
+	for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 12:50:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723812261; cv=none; b=EYQ3QtP4W40YejWwK8CP4sk+OyumIT1tMoZ7dZ3wAss++e/fHFTcvP3Oyezqm5Ex+QVdfiYDlRmZ6CfVCRii+HymQEUb53ubYgdiLYhMJ3r9Tl0imcdI5pf2/uw5enr4YC+6lmsPTGFU2zDdWZPdzfdVpbO4AvovF1Wsa+Yj/e8=
+	t=1723812603; cv=none; b=UDaMnNHwNdwCaPbMRNBMqFOgRpvfOgEYeqgT943vUJ409B1qOm9AXKaycHEWv0+CUPmA6EYGPfEHtIkS8i94xECFf88KNof/+aZY9KT+0tN8OlbLMcNZ1+b2NsuuHYsKby9wZ4X765yqpTDC+dY1nExJlApPy3MSlwrfdFwTnoY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723812261; c=relaxed/simple;
-	bh=a3pp/geZwZ34/wswnYDBzcjuy0ey0iItmKxdoIwIuVQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pZ1EJmWPjy3ZNOkatGVW25JOTj2WZOH3EoMEhprKzV05qvibvRIqWH4nbg1+eLeR0rH9wUW3b4/Xiwtt5bDAQY8olWG8HFwz4oxdsCY4CRJg1JHIJjU5oMhF5rrFynZZouY0bLM9ZedJKpWSia0oplgxNzSECVmThl6oCJxquuA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=dn77U71m; arc=none smtp.client-ip=148.163.156.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47GCJUIX011993;
-	Fri, 16 Aug 2024 12:44:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=date
-	:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=pp1; bh=FxG5AO0a05E65VCYddzaEdcy3rX
-	c9OnstfLvnE4yiAA=; b=dn77U71m4WAYrJk3pY3P+Cny23MgaPO5XsRB94tZafY
-	pQnZN9aAxhrqxJnt+aqlQtQIbsRV4KMVWECNqfGfPDq7+yYuRVN+HDv53/JIAGxL
-	r9kVL/5IHw6DRnDFc7D3dIi7Ffw8XJzJGDp/VGQynDKvmvVlVyy3xQAXtycFkyTJ
-	5ExeNbcTD0Nn9hsegil/8mTxbP8y5+W/Ikdt4QtLLW9IjGYYWtHJF5Bq0Ebh0eF2
-	abrnBizk/qgm3Pw7qv1bs9cQue+mpRCFAdxmafzMgOe7EmcA/+HImoXD4AjMXPhm
-	hP13NfHDF9TueeSuHwicMh2LbcQGyzR7fvduptLiu7Q==
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4111d6gkdp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 16 Aug 2024 12:44:02 +0000 (GMT)
-Received: from m0353729.ppops.net (m0353729.ppops.net [127.0.0.1])
-	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 47GCi1i5003772;
-	Fri, 16 Aug 2024 12:44:01 GMT
-Received: from ppma22.wdc07v.mail.ibm.com (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4111d6gkdg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 16 Aug 2024 12:44:01 +0000 (GMT)
-Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma22.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 47G9mPvi010088;
-	Fri, 16 Aug 2024 12:43:59 GMT
-Received: from smtprelay07.fra02v.mail.ibm.com ([9.218.2.229])
-	by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 40xjx13t8k-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 16 Aug 2024 12:43:59 +0000
-Received: from smtpav07.fra02v.mail.ibm.com (smtpav07.fra02v.mail.ibm.com [10.20.54.106])
-	by smtprelay07.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 47GChrkj35193230
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 16 Aug 2024 12:43:56 GMT
-Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id DAEA320043;
-	Fri, 16 Aug 2024 12:43:53 +0000 (GMT)
-Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id C383C20040;
-	Fri, 16 Aug 2024 12:43:49 +0000 (GMT)
-Received: from li-e7e2bd4c-2dae-11b2-a85c-bfd29497117c.ibm.com (unknown [9.124.218.83])
-	by smtpav07.fra02v.mail.ibm.com (Postfix) with ESMTPS;
-	Fri, 16 Aug 2024 12:43:49 +0000 (GMT)
-Date: Fri, 16 Aug 2024 18:13:40 +0530
-From: Amit Machhiwal <amachhiw@linux.ibm.com>
-To: Michael Ellerman <mpe@ellerman.id.au>
-Cc: Bjorn Helgaas <helgaas@kernel.org>, Rob Herring <robh@kernel.org>,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        kvm-ppc@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
-        Lizhi Hou <lizhi.hou@amd.com>, Saravana Kannan <saravanak@google.com>,
-        Vaibhav Jain <vaibhav@linux.ibm.com>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Vaidyanathan Srinivasan <svaidy@linux.ibm.com>,
-        Kowshik Jois B S <kowsjois@linux.ibm.com>,
-        Lukas Wunner <lukas@wunner.de>, kernel-team@lists.ubuntu.com,
-        Stefan Bader <stefan.bader@canonical.com>
-Subject: Re: [PATCH v3] PCI: Fix crash during pci_dev hot-unplug on pseries
- KVM guest
-Message-ID: <20240816180441.81f4d694-3b-amachhiw@linux.ibm.com>
-Mail-Followup-To: Michael Ellerman <mpe@ellerman.id.au>, 
-	Bjorn Helgaas <helgaas@kernel.org>, Rob Herring <robh@kernel.org>, linux-pci@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
-	kvm-ppc@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>, 
-	Lizhi Hou <lizhi.hou@amd.com>, Saravana Kannan <saravanak@google.com>, 
-	Vaibhav Jain <vaibhav@linux.ibm.com>, Nicholas Piggin <npiggin@gmail.com>, 
-	Vaidyanathan Srinivasan <svaidy@linux.ibm.com>, Kowshik Jois B S <kowsjois@linux.ibm.com>, 
-	Lukas Wunner <lukas@wunner.de>, kernel-team@lists.ubuntu.com, 
-	Stefan Bader <stefan.bader@canonical.com>
-References: <20240806200059.GA74866@bhelgaas>
- <87h6bm1ngo.fsf@mail.lhotse>
+	s=arc-20240116; t=1723812603; c=relaxed/simple;
+	bh=K37drQFBcQe/KPuccp1cUx2OgiWzM+wcBntWujhb3wY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HABhj5X+N2PWqooBhHMg0eeO0E6DEBLNt8O/1yk2Pd6+6RvVJipiJw8NQa4W39v3eqVbiZo8Xhy89CMu3T9R3d/Xi2TNf7/rqQNe0xFa3zOogs/TSbsubA3fXeOmMkQ7ynen6ZO1vNNDPrZzGjWyGQDK8SmWsbZrpHBAkYGT6Xg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=hnhVzKov; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-429da8b5feaso19666775e9.2
+        for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 05:50:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1723812599; x=1724417399; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ke0AjxBAncE489wmYzkh+nSMUTPo+pIzRMAmnYnwJNQ=;
+        b=hnhVzKovzynDoQAun++O/2psFXoxwrfmAL6FguXikmJuDNYs3SQ9zWNdJcJrKlR1DR
+         sctpHAV4oWUVezB+H+qUsieJ3NuUbTcnl/Aq+11aYks95YMgQ4U2xA5i0OtjgONG6D2r
+         C00jzf3q4d0kVc4AIxX+fUP1j51qkshg5prgMOvzyLMOt3qOsOfq2baQA8vguhwBoxFW
+         pGBuh9L6WKiZ4Cx0Iufjn//tAFzjeWgzufatyFg07Nm4ckgGfj+gENjcn3tE82YUgu5E
+         ZkRPL8yFQvjCOb/2xM9cCXdV6K6pe9ck1VhlS/9F3T5kXDuoZDo1i7NgAXDaIfMQq4nJ
+         uF3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723812599; x=1724417399;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ke0AjxBAncE489wmYzkh+nSMUTPo+pIzRMAmnYnwJNQ=;
+        b=ERoZ5KMBtBj68D3g9gt5yGqHGOfEC+7jjKVqIX8bjlgOubLHpTwkUovaTOjuoi4YnN
+         gBTaLanj5S65COZMR6RUbYVXlWp36k6uG7doJmF3TwOTwwmq12aeDvMVWtQBMhs61H8e
+         GlUKFSNrfK0V8BZ9Uqhrsef6s4BUb9lmF7B71fXdcHQ7ptS34r843BGj4X34Tbw8lhvi
+         bkrZ4ln3QQ4R731ua3onr1C+V/DH00+j4ZxmRZ9UP8CE+d/Cf40pZKFnK8ELVqgjoeZ4
+         L5LhB+PMUMmX+belDM2t0MZ3ya/xvsZv0AZp87eOinBtmivoK3d6q7EQIdHXAgqevczL
+         YpYw==
+X-Gm-Message-State: AOJu0Yxlw0noBjjHfqzuO7//PeZTH6nAaYivtuMCu1dRAxZjM9yTSL9M
+	IVAiK0Gf6AlxzYZD2mRF8bP8ZNite+vzMaYwqKx7eFg+ZCuOLWZMNr9Lz1gC3pi64Cd94omF1Hh
+	ocpk=
+X-Google-Smtp-Source: AGHT+IGM4LtUkED1FVNx+BEXnUbZCpfDI0OMEbuSoUR17hoiKqSTIP6vlmoZg/GiQAQSJ3CnFpyexA==
+X-Received: by 2002:adf:e907:0:b0:371:8e24:1191 with SMTP id ffacd0b85a97d-371946a4455mr2184543f8f.53.1723812598913;
+        Fri, 16 Aug 2024 05:49:58 -0700 (PDT)
+Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-371898aa393sm3570531f8f.90.2024.08.16.05.49.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Aug 2024 05:49:58 -0700 (PDT)
+From: Andrew Jones <ajones@ventanamicro.com>
+To: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	loongarch@lists.linux.dev,
+	linux-mips@vger.kernel.org
+Cc: maz@kernel.org,
+	mark.rutland@arm.com,
+	robh@kernel.org,
+	saravanak@google.com,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	Anup Patel <apatel@ventanamicro.com>
+Subject: [PATCH v2] of/irq: Support #msi-cells=<0> in of_msi_get_domain
+Date: Fri, 16 Aug 2024 14:49:58 +0200
+Message-ID: <20240816124957.130017-2-ajones@ventanamicro.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87h6bm1ngo.fsf@mail.lhotse>
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: fjxpXS4-C-n-T_sJtPF7tEjSYLYcNVMQ
-X-Proofpoint-ORIG-GUID: iFlwX-ZVYmO-todBMlQrqiZ-aMe-_LZD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-16_03,2024-08-16_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_spam_definite policy=outbound score=100 mlxlogscore=-999
- phishscore=0 spamscore=100 malwarescore=0 priorityscore=1501
- impostorscore=0 adultscore=0 bulkscore=0 mlxscore=100 lowpriorityscore=0
- suspectscore=0 clxscore=1011 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2407110000 definitions=main-2408160091
+Content-Transfer-Encoding: 8bit
 
-Hi Michael,
+An 'msi-parent' property with a single entry and no accompanying
+'#msi-cells' property is considered the legacy definition as opposed
+to its definition after being expanded with commit 126b16e2ad98
+("Docs: dt: add generic MSI bindings"). However, the legacy
+definition is completely compatible with the current definition and,
+since of_phandle_iterator_next() tolerates missing and present-but-
+zero *cells properties since commit e42ee61017f5 ("of: Let
+of_for_each_phandle fallback to non-negative cell_count"), there's no
+need anymore to special case the legacy definition in
+of_msi_get_domain().
 
-On 2024/08/15 01:20 PM, Michael Ellerman wrote:
-> Bjorn Helgaas <helgaas@kernel.org> writes:
-> > On Sat, Aug 03, 2024 at 12:03:25AM +0530, Amit Machhiwal wrote:
-> >> With CONFIG_PCI_DYNAMIC_OF_NODES [1], a hot-plug and hot-unplug sequence
-> >> of a PCI device attached to a PCI-bridge causes following kernel Oops on
-> >> a pseries KVM guest:
-> >
-> > What is unique about pseries here?  There's nothing specific to
-> > pseries in the patch, so I would expect this to be a generic problem
-> > on any arch.
-> >
-> >>  RTAS: event: 2, Type: Hotplug Event (229), Severity: 1
-> >>  Kernel attempted to read user page (10ec00000048) - exploit attempt? (uid: 0)
-> >>  BUG: Unable to handle kernel data access on read at 0x10ec00000048
-> >
-> > Weird address.  I would expect NULL or something.  Where did this
-> > non-NULL pointer come from?
-> 
-> It originally comes from np->data, which is supposed to be an
-> of_changeset.
-> 
-> The powerpc code also uses np->data for the struct pci_dn pointer, see
-> pci_add_device_node_info().
-> 
-> I wonder if that's why it's non-NULL?
+Indeed, special casing has turned out to be harmful, because, as of
+commit 7c025238b47a ("dt-bindings: irqchip: Describe the IMX MU block
+as a MSI controller"), MSI controller DT bindings have started
+specifying '#msi-cells' as a required property (even when the value
+must be zero) as an effort to make the bindings more explicit. But,
+since the special casing of 'msi-parent' only uses the existence of
+'#msi-cells' for its heuristic, and not whether or not it's also
+nonzero, the legacy path is not taken. Furthermore, the path to
+support the new, broader definition isn't taken either since that
+path has been restricted to the platform-msi bus.
 
-I'm also looking into the code to figure out where's that value coming from. I
-will update as soon as I get there.
+But, neither the definition of 'msi-parent' nor the definition of
+'#msi-cells' is platform-msi-specific (the platform-msi bus was just
+the first bus that needed '#msi-cells'), so remove both the special
+casing and the restriction. The code removal also requires changing
+to of_parse_phandle_with_optional_args() in order to ensure the
+legacy (but compatible) use of 'msi-parent' remains supported. This
+not only simplifies the code but also resolves an issue with PCI
+devices finding their MSI controllers on riscv, as the riscv,imsics
+binding requires '#msi-cells=<0>'.
 
-> 
-> Amit, do we have exact steps to reproduce this? I poked around a bit but
-> couldn't get it to trigger.
+Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
+---
+v2:
+ - switch to of_parse_phandle_with_optional_args() to ensure the
+   absence of #msi-cells means count=0
 
-Sure, below are the steps:
+ drivers/of/irq.c | 37 +++++++++++--------------------------
+ 1 file changed, 11 insertions(+), 26 deletions(-)
 
-1. Set CONFIG_PCI_DYNAMIC_OF_NODES=y in the kernel config and compile (Fedora
-   has it disabled in it's distro config, Ubuntu has it enabled but will have it
-   disabled in the next update)
+diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+index c94203ce65bb..690df4b71ab9 100644
+--- a/drivers/of/irq.c
++++ b/drivers/of/irq.c
+@@ -709,8 +709,7 @@ struct irq_domain *of_msi_map_get_device_domain(struct device *dev, u32 id,
+  * @np: device node for @dev
+  * @token: bus type for this domain
+  *
+- * Parse the msi-parent property (both the simple and the complex
+- * versions), and returns the corresponding MSI domain.
++ * Parse the msi-parent property and returns the corresponding MSI domain.
+  *
+  * Returns: the MSI domain for this device (or NULL on failure).
+  */
+@@ -718,33 +717,19 @@ struct irq_domain *of_msi_get_domain(struct device *dev,
+ 				     struct device_node *np,
+ 				     enum irq_domain_bus_token token)
+ {
+-	struct device_node *msi_np;
++	struct of_phandle_args args;
+ 	struct irq_domain *d;
++	int index = 0;
+ 
+-	/* Check for a single msi-parent property */
+-	msi_np = of_parse_phandle(np, "msi-parent", 0);
+-	if (msi_np && !of_property_read_bool(msi_np, "#msi-cells")) {
+-		d = irq_find_matching_host(msi_np, token);
+-		if (!d)
+-			of_node_put(msi_np);
+-		return d;
+-	}
+-
+-	if (token == DOMAIN_BUS_PLATFORM_MSI) {
+-		/* Check for the complex msi-parent version */
+-		struct of_phandle_args args;
+-		int index = 0;
++	while (!of_parse_phandle_with_optional_args(np, "msi-parent",
++						    "#msi-cells",
++						    index, &args)) {
++		d = irq_find_matching_host(args.np, token);
++		if (d)
++			return d;
+ 
+-		while (!of_parse_phandle_with_args(np, "msi-parent",
+-						   "#msi-cells",
+-						   index, &args)) {
+-			d = irq_find_matching_host(args.np, token);
+-			if (d)
+-				return d;
+-
+-			of_node_put(args.np);
+-			index++;
+-		}
++		of_node_put(args.np);
++		index++;
+ 	}
+ 
+ 	return NULL;
+-- 
+2.45.2
 
-2. If you are using Fedora cloud images, make sure you've these packages
-   installed:
-    $ rpm -qa | grep -e 'ppc64-diag\|powerpc-utils'
-    powerpc-utils-core-1.3.11-6.fc40.ppc64le
-    powerpc-utils-1.3.11-6.fc40.ppc64le
-    ppc64-diag-rtas-2.7.9-6.fc40.ppc64le
-    ppc64-diag-2.7.9-6.fc40.ppc64le
-
-3. Hotplug a pci device as follows:
-    virsh attach-interface <domain_name> bridge --source virbr0
-
-4. Check if the pci device was added by running `ip a s`
-
-5. Try hot-unplug of that device by supplying the MAC, which should trigger the
-   Oops
-    virsh detach-interface <domain_name> bridge <mac_addr>
-
-Thanks,
-Amit
-
-> cheers
 
