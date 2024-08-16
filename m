@@ -1,174 +1,165 @@
-Return-Path: <devicetree+bounces-94262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 468AA954828
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 13:40:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1348C954868
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 13:59:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE0D21F24FCE
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 11:40:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C41E5281E3C
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 11:58:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E82971A0B1E;
-	Fri, 16 Aug 2024 11:40:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="A9mVoNJM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AABE15B12C;
+	Fri, 16 Aug 2024 11:58:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpbgsg2.qq.com (smtpbgsg2.qq.com [54.254.200.128])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08AE91A01AE
-	for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 11:40:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1F70817
+	for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 11:58:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.128
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723808442; cv=none; b=DxZHED3Ohqpmj5HxAljp/M8643REmeobbFIC2VPQ9bFou2JY8LpyNsTAgOm3m+rWaI6jd4+LPFVe1n4pXhKiwcNEUvNThrt0h3NGjlFoHw4ldP1qF++/H7Slc/CDmHNtOHvAkHK1NqGxuBI40WHrpC0edo8zgCxO8O8IcClPTtk=
+	t=1723809535; cv=none; b=jZd/MmTmP0AZl+j4Db1JdewxSyeGxK1IEyBiNlaaaIGbiiVfji4BQVhWtq6uCy8ridh5/AW1sFpwiG9gWPCuYfCNFPw0ue2u84F97Q52uewNowT7ABLjRjx6YiR73A/7fCjPjjDwgZ/mjtJG7qFIwv0XwD/H8AD1QB9OLhqHDgw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723808442; c=relaxed/simple;
-	bh=mEsIO8V6up7gYjyHAq+L8R4/6Ah5bm4nH/yj6kGEISs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GLwns6jfPcFfC8ZqN/BMHefmoeo3H2ryBsH6t/y2bE9Au/u5taU4mSW3lOrIirPIUFtM4ObfLV7EFTNk3oqBahxVkudcuhGhM3w+tW3QcGVFSwMr6iO3am4TNm2V9ddFbEh/66KrbZ2nEV8NKLsEszNEQhHc/X2whVvCBpGdSDE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=A9mVoNJM; arc=none smtp.client-ip=209.85.208.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2f01e9f53e3so29643611fa.1
-        for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 04:40:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1723808439; x=1724413239; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=BpxzkK3UKTxghQc+n3gc+K3CuWVs47t1vTAqsGCdLNg=;
-        b=A9mVoNJM+GbCmLd8PAckA2pAlbb7W+gRa8BezRw2Gufq67l8dNR9ygVHiJxubGbvkw
-         J+w6wU2iV1j6JXhbhPK0QPNjuNgU92v4L7bQJ1+lc7XvPvk9nlAPUcg9sccvq82FjUb8
-         fENHs/pTcFKLqqfW0DvxPlfealer7wCYHb1v2goMOPbxCzwXSuR/S2zUN4wLj5UO5J4o
-         9rozl05MytjagqYcZOZA/748Axmq+GAgZHlEUkdObVkyOL/DxxZmYy3O0MfE0MobTxZN
-         CpbgbYMVN2aUpF7/NqhV/tkQoJtxpmD8JAEesiJ0rHe1c9bBJTsE47hbyNs4hsPnBNc4
-         SzMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723808439; x=1724413239;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BpxzkK3UKTxghQc+n3gc+K3CuWVs47t1vTAqsGCdLNg=;
-        b=QKBRLQ+cCLDmEclW7lKmAKhLk5R2KruozjtVkfYlhzL/LuTGA6NxDPQluZ3erw2jIp
-         pBVqBJRdly+B+9HK3ApJPudu3IF2iCSI4qo1nBfes/zD/73Yb/JPr29IbCaX9RHAv6mr
-         qFSCEPvD4qgfmiStTnkDSY8zPmhGT1fLgsBoH1BwKcMvihu0QZCZagL70F7WS9RD13VZ
-         cOpgEqCMiIIQotbYCe4dBBFFAJNTM1SU0ATRon5NOIuuRdUkIDL4b5sfDH+bBj52QMCi
-         iTtc26bvle/9n6ASuzd1cb4HJMdeThx9lZqn1YOw5yocPzV1oW5cyGhAQpkn6HR+5Nnt
-         u2SQ==
-X-Gm-Message-State: AOJu0YxFkpDvf+a1ewVHj3nZLeVuk1gT2LzDIj/8b1OpL7DH7o/rrkL+
-	PnSZZ0oMU5tThDfW7mY15qLZWyQa71PTzeQJ0d/HUnz530j1vDEdj1Qyk0t/mfg=
-X-Google-Smtp-Source: AGHT+IFK0XlavC2ASBQwNlu5VWovN1G7tk/Vc3gjrKwPR0rZkWiyoOFZOREKvMWyOZrRdt5yv7L0VQ==
-X-Received: by 2002:a2e:3809:0:b0:2f0:27da:6864 with SMTP id 38308e7fff4ca-2f3be5851b4mr21142821fa.17.1723808438254;
-        Fri, 16 Aug 2024 04:40:38 -0700 (PDT)
-Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a838393560bsm241591966b.139.2024.08.16.04.40.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Aug 2024 04:40:37 -0700 (PDT)
-Date: Fri, 16 Aug 2024 13:40:36 +0200
-From: Andrew Jones <ajones@ventanamicro.com>
-To: Anup Patel <anup@brainfault.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org, loongarch@lists.linux.dev, 
-	linux-mips@vger.kernel.org, maz@kernel.org, mark.rutland@arm.com, robh@kernel.org, 
-	saravanak@google.com, paul.walmsley@sifive.com, palmer@dabbelt.com, 
-	aou@eecs.berkeley.edu, Anup Patel <apatel@ventanamicro.com>
-Subject: Re: [PATCH] of/irq: Support #msi-cells=<0> in of_msi_get_domain
-Message-ID: <20240816-e5563ca888e15bb00e2652ab@orel>
-References: <20240816095520.96348-2-ajones@ventanamicro.com>
- <CAAhSdy0wxpDXoUmGyuQOeMfNCubdp9_iYdBOSN=EcweG1nkwwg@mail.gmail.com>
+	s=arc-20240116; t=1723809535; c=relaxed/simple;
+	bh=6Tqjr83xABrji3wDu1UwGxtkfsC1Xv+tjWKVcIkPINY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=O9qHlI4+Cdwcc7VnQ3gRz0i0MiSqLp1U8w8+fuSMj+moSAc/hmQwIZXvq0+ZFfPpJs7VqIqQIvNX6SNEBoAXYbcRX1zAtSbY89quc6r8rhF904Kh6sT9r0xPdC704r8WzE+COGK/vkACF64M0svusePGjtrmnr5S8Buzlb5yH1g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.254.200.128
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: bizesmtp87t1723809479tkg7y7fb
+X-QQ-Originating-IP: gQekxQ1rJdkb+DwrsrVnuCxALPpM7BB1ElFJNJZjVm4=
+Received: from [192.168.159.131] ( [106.150.157.243])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Fri, 16 Aug 2024 19:57:56 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 14912246979607843899
+Message-ID: <5667DC6446CBC344+3d442915-f28d-4d50-85e3-3863e3c7092a@radxa.com>
+Date: Fri, 16 Aug 2024 20:57:56 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: rockchip: use "pwm-leds" for multicolor PWM
+ LEDs on Radxa E25
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+References: <20240816110402.840-1-naoki@radxa.com> <2335200.ElGaqSPkdT@diego>
+Content-Language: en-US
+From: FUKAUMI Naoki <naoki@radxa.com>
+In-Reply-To: <2335200.ElGaqSPkdT@diego>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAAhSdy0wxpDXoUmGyuQOeMfNCubdp9_iYdBOSN=EcweG1nkwwg@mail.gmail.com>
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
 
-On Fri, Aug 16, 2024 at 04:14:52PM GMT, Anup Patel wrote:
-> On Fri, Aug 16, 2024 at 3:25 PM Andrew Jones <ajones@ventanamicro.com> wrote:
-> >
-> > An 'msi-parent' property with a single entry and no accompanying
-> > '#msi-cells' property is considered the legacy definition as opposed
-> > to its definition after being expanded with commit 126b16e2ad98
-> > ("Docs: dt: add generic MSI bindings"). However, the legacy
-> > definition is completely compatible with the current definition and,
-> > since of_phandle_iterator_next() tolerates missing and present-but-
-> > zero *cells properties since commit e42ee61017f5 ("of: Let
-> > of_for_each_phandle fallback to non-negative cell_count"), there's no
-> > need anymore to special case the legacy definition in
-> > of_msi_get_domain().
-> >
-> > Indeed, special casing has turned out to be harmful, because, as of
-> > commit 7c025238b47a ("dt-bindings: irqchip: Describe the IMX MU block
-> > as a MSI controller"), MSI controller DT bindings have started
-> > specifying '#msi-cells' as a required property (even when the value
-> > must be zero) as an effort to make the bindings more explicit. But,
-> > since the special casing of 'msi-parent' only uses the existence of
-> > '#msi-cells' for its heuristic, and not whether or not it's also
-> > nonzero, the legacy path is not taken. Furthermore, the path to
-> > support the new, broader definition isn't taken either since that
-> > path has been restricted to the platform-msi bus.
-> >
-> > But, neither the definition of 'msi-parent' nor the definition of
-> > '#msi-cells' is platform-msi-specific (the platform-msi bus was just
-> > the first bus that needed '#msi-cells'), so remove both the special
-> > casing and the restriction. This not only simplifies the code but
-> > also resolves an issue with PCI devices finding their MSI controllers
-> > on riscv, as the riscv,imsics binding requires '#msi-cells=<0>'.
-> >
-> > Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
-> > ---
-> >  drivers/of/irq.c | 37 +++++++++++--------------------------
-> >  1 file changed, 11 insertions(+), 26 deletions(-)
-> >
-> > diff --git a/drivers/of/irq.c b/drivers/of/irq.c
-> > index c94203ce65bb..026b52c8ee63 100644
-> > --- a/drivers/of/irq.c
-> > +++ b/drivers/of/irq.c
-> > @@ -709,8 +709,7 @@ struct irq_domain *of_msi_map_get_device_domain(struct device *dev, u32 id,
-> >   * @np: device node for @dev
-> >   * @token: bus type for this domain
-> >   *
-> > - * Parse the msi-parent property (both the simple and the complex
-> > - * versions), and returns the corresponding MSI domain.
-> > + * Parse the msi-parent property and returns the corresponding MSI domain.
-> >   *
-> >   * Returns: the MSI domain for this device (or NULL on failure).
-> >   */
-> > @@ -718,33 +717,19 @@ struct irq_domain *of_msi_get_domain(struct device *dev,
-> >                                      struct device_node *np,
-> >                                      enum irq_domain_bus_token token)
-> >  {
-> > -       struct device_node *msi_np;
-> > +       struct of_phandle_args args;
-> >         struct irq_domain *d;
-> > +       int index = 0;
-> >
-> > -       /* Check for a single msi-parent property */
-> > -       msi_np = of_parse_phandle(np, "msi-parent", 0);
-> > -       if (msi_np && !of_property_read_bool(msi_np, "#msi-cells")) {
-> > -               d = irq_find_matching_host(msi_np, token);
-> > -               if (!d)
-> > -                       of_node_put(msi_np);
-> > -               return d;
-> > -       }
+Hi,
+
+On 8/16/24 20:26, Heiko Stübner wrote:
+> Am Freitag, 16. August 2024, 13:04:02 CEST schrieb FUKAUMI Naoki:
+>> to make multicolor PWM LEDs behavior more consistent with vendor
+>> kernel[1], use "pwm-leds" for it on Radxa E25.
 > 
-> Dropping this special case of single msi-parent property breaks
-> RISC-V KVM guest created using KVMTOOl with AIA available
-> on the host.
+> sorry, but that is definitly not a valid reason.
 
-Ouch. This is a paperbag moment as I can easily reproduce that.
+I see. I'll not change it.
 
+> A devicetree does describe actual hardware and is not a space for
+> configuration choices. So that whole notion to "match a kernel"
+> is not correct.
 > 
-> Let's not drop this special case.
+> Looking at
+> https://wiki.radxa.com/Rock3/CM/CM3I/E25/getting_started
+> the specification table clearly designates the board's LED as
+> "RGB LED" - so one LED and multicolor .
 
-I'll work out a [much better tested] v2 now.
+I understand following behavior is not possible on mainline.
 
-Thanks,
-drew
+https://github.com/radxa-pkg/rsetup/blob/main/config/00-rgb0-rainbow.conf
+
+this is not what we(Radxa) want, but we need to follow the rule.
+
+(btw wiki.radxa.com is outdated, it's not used anymore)
+
+Best regards,
+
+--
+FUKAUMI Naoki
+Radxa Computer (Shenzhen) Co., Ltd.
+
+> Heiko
+> 
+> 
+>> [1] https://github.com/radxa/kernel/blob/linux-5.10-gen-rkr4.1/arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts#L100-L121
+>>
+>> Fixes: 2bf2f4d9f673 ("arm64: dts: rockchip: Add Radxa CM3I E25")
+>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+>> ---
+>>   .../boot/dts/rockchip/rk3568-radxa-e25.dts    | 36 ++++++++++---------
+>>   1 file changed, 20 insertions(+), 16 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts b/arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts
+>> index 72ad74c38a2b..0b527f67bdbd 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3568-radxa-e25.dts
+>> @@ -12,26 +12,30 @@ aliases {
+>>   	};
+>>   
+>>   	pwm-leds {
+>> -		compatible = "pwm-leds-multicolor";
+>> +		compatible = "pwm-leds";
+>>   
+>> -		multi-led {
+>> -			color = <LED_COLOR_ID_RGB>;
+>> +		led-red {
+>> +			color = <LED_COLOR_ID_RED>;
+>> +			default-state = "on";
+>> +			function = LED_FUNCTION_STATUS;
+>>   			max-brightness = <255>;
+>> +			pwms = <&pwm1 0 1000000 0>;
+>> +		};
+>>   
+>> -			led-red {
+>> -				color = <LED_COLOR_ID_RED>;
+>> -				pwms = <&pwm1 0 1000000 0>;
+>> -			};
+>> -
+>> -			led-green {
+>> -				color = <LED_COLOR_ID_GREEN>;
+>> -				pwms = <&pwm2 0 1000000 0>;
+>> -			};
+>> +		led-green {
+>> +			color = <LED_COLOR_ID_GREEN>;
+>> +			default-state = "on";
+>> +			function = LED_FUNCTION_STATUS;
+>> +			max-brightness = <255>;
+>> +			pwms = <&pwm2 0 1000000 0>;
+>> +		};
+>>   
+>> -			led-blue {
+>> -				color = <LED_COLOR_ID_BLUE>;
+>> -				pwms = <&pwm12 0 1000000 0>;
+>> -			};
+>> +		led-blue {
+>> +			color = <LED_COLOR_ID_BLUE>;
+>> +			default-state = "on";
+>> +			function = LED_FUNCTION_STATUS;
+>> +			max-brightness = <255>;
+>> +			pwms = <&pwm12 0 1000000 0>;
+>>   		};
+>>   	};
+>>   
+>>
+> 
+> 
+> 
+> 
+> 
 
