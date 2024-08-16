@@ -1,138 +1,149 @@
-Return-Path: <devicetree+bounces-94160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 232E7954354
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 09:52:04 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3926D95435F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 09:53:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4BCD51C23F35
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 07:52:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7C965B21814
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 07:53:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B039B1422D5;
-	Fri, 16 Aug 2024 07:46:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8564084A22;
+	Fri, 16 Aug 2024 07:51:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KGjlAhWc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hB90ZRZV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A22613DBBC;
-	Fri, 16 Aug 2024 07:46:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC91C6BFB0;
+	Fri, 16 Aug 2024 07:51:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723794372; cv=none; b=tDBzsNng7xTqxjtKVXHWVM53D+ob0lnXq6ht85QH1l5Y1zJdQJLn6b9MQCyAS+zaptd4rGReZJpBAKhEuNn02ZkxpZwe2qMBO9UjvIpPOB0X9ESZlYs9CaIhXeO2wslWKiwV6gYV7PFQRkGsnZX9ffnhzKz7C947pqv5ascA5ZU=
+	t=1723794669; cv=none; b=FU8kmmqDYbGz1u65bEo3p12eWRYCQk+ax9OcWyTu5VwUd2fFfdSdMz59P16NYfKMJs4WzsrJoQZ8nz//3qvI/UE0OEQLgZknl92k1LM4wiQ6JLGdfVuRaN2O0ogLHjvezNt3+VrvOkVAajcDgFpXTxhz78irEZi8d5qRAGcZ+y4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723794372; c=relaxed/simple;
-	bh=961HR25fBK6+U+34IivlTuUdOrvdw5kInN6SiWfWruI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=hZcVbTqyEckVddnlGB4bNQ5nN3fdxqObGO2ef57JDycB4Wns54/7XTydoW4DJvBwCl1qONt4BNv7YVsBYlJQcKwHwDVeEX2lmF8qYVZhmPkYRo7HexGyhDo92btUA+PyoHP4jMHYJd5s2qHjWI4GhY+EqH8DiTAA95FeSeQgaB0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KGjlAhWc; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47FLTJSM020572;
-	Fri, 16 Aug 2024 07:46:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	i7/Oc25XBlXJTMUNL+LN07bCOIRiR0fvFcEP4h10F+w=; b=KGjlAhWc5CIlvVUh
-	XuTeXr9KgoR1D58k4p8kjaWpJVzqARjPcRo10p0xPnVD25xd9Z5nGUHAXbH05ws8
-	9G0FZir12r/v0m6MWWdnv4WhYBKmHD242wEwMfth2VAqj7bYAFGa96XY+3wXRori
-	83FLHLulp9/JguFQueuy7zeqcRBTA9wfyXJ3HzVujA5zsvO8yKfXoJRe9D39emla
-	PP0u9XytCPypm9/5WvIFhESq0XUnAFmo48NbHlE7tRaT5PZyYIPcOiDNpAj+J7UQ
-	HlTtuqo07b23EWmueoTrWxYPYq3FlaHrdwFKQdIGBMZwKM5WREFulTHXmhQsyI5n
-	r7+HoA==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4112r3v2xd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 16 Aug 2024 07:46:03 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47G7k2qf019214
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 16 Aug 2024 07:46:02 GMT
-Received: from [10.239.97.152] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 16 Aug
- 2024 00:45:54 -0700
-Message-ID: <aa12fd2e-4869-4909-a04f-6bf24f76ed51@quicinc.com>
-Date: Fri, 16 Aug 2024 15:45:52 +0800
+	s=arc-20240116; t=1723794669; c=relaxed/simple;
+	bh=m21UR2Li9R6gN31puzH6uj0MqV+URXqK3uxeXiT+fVU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=PQOiazYAAW+xUIlI72q8bziZkrXjTyqAcnKHbGT63MZaWhEAv36sZbvkXfZsqX+cfRzozIvqA7K9twwK9vUgZDoLWVe97QrfShSc0ghBcn49II1W2qAQbMUib/GzZDKt4c1KIUB0gxtiUUcSmhArwSkLGIEu6Xt/SA4IsPWANWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hB90ZRZV; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-37182eee02dso818603f8f.1;
+        Fri, 16 Aug 2024 00:51:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723794666; x=1724399466; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KYCkaTEvTDSyuZcCjBDH4ThgdC9LaZkN69s/l2hUZCI=;
+        b=hB90ZRZVOn+je6JydVNkXJLUNaIAQ2lNDJqlZ/Yw2y6OYJjZgniEjlBgPcf/lzO5Ko
+         +DuEom3r/tf+gW6ldOVUydZPCMIx+Sqq4pbHvMoVnChj1C8pzsFVzKNdXEIXTAQPcWPn
+         ntqcoA6eBtURqgzVISM2WnBiRDqphQVxV0vYze1gERDPKeEznD57AivB1X3Knmjbf7W5
+         6/7Mdnk5pXzioTJVNbHLB5h8Bvsm9dMFnBjZhNPyDdgEDoi2qZyzlQOcQ6VVYJ/OKm+/
+         9gURv5OiMBXLLS/yOaa03wBx7YHTpEmh806b/cEluWNIxWMPO2kHZOIujMlTaNJ/WkQS
+         R2Qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723794666; x=1724399466;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KYCkaTEvTDSyuZcCjBDH4ThgdC9LaZkN69s/l2hUZCI=;
+        b=M53lqk26qrPLrjPhUVMrTUDSFZHOwle3oizGMDGOe94ef+JKnZmjJPhbMr4ZX4tlPr
+         APNhp/tBikSKBs53Ej2AnGme8IGWvBPyczXSSWKnwYJksgITfwcUYaRiZJuJjQyua51U
+         XpgwMGlGUPrpMbcJFM6oq3sb8i7a4ZNpQNcuTVSIO6w0J9LUPeprpzlL1WThMHd4hIn0
+         LomnxO2DIQiQTXcRFXT3aBKDxLcoymHb3LV30yvxl7xLrriWt7pbLPW9p+2aGoQeajkM
+         GjcMVOHR+/YjFB6JE4SxEWimsMUzy50V9vMe9ItSnCPy1wGXDO/Mk3r8dDXY2K/bLy/I
+         f5dg==
+X-Forwarded-Encrypted: i=1; AJvYcCXOm14ggar8/H+1AEzZxsOcWxtdFvsoIVhONIDfbxngn71XUSG6NvJT+zPb6hIyzC3jrfH36PRFvrcxLRa2VBpkkG5JzyVtNVcpYlGIOv8vi3jLA4/M3M+bXGT0g6x+gC36vTo5ATfKtS/+MI5Jl1WqIHuKi3leE6m5Llf0ppcHxKx89prxc5DVh5MOBw==
+X-Gm-Message-State: AOJu0YwA8PFfsZQEHzyusuAl1dKLF7SLsAZaeVEIi7KGaYVQD3RMk+u5
+	jBeN4C9McBPKGwt+zYKkOoxBR6ulr7X67ODOOkhtm3REGkAUxcAC
+X-Google-Smtp-Source: AGHT+IGf8FprKiceTcAmoHl4lyE4EQQ5TlVhvUvXojybRS2uhW7KNViG04Z0+gGZmusIfvKr8HVIYw==
+X-Received: by 2002:a5d:4151:0:b0:360:70e3:ef2b with SMTP id ffacd0b85a97d-37194c33ecfmr904375f8f.26.1723794665665;
+        Fri, 16 Aug 2024 00:51:05 -0700 (PDT)
+Received: from tablet.my.domain ([37.30.8.221])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3718985a6c4sm3026201f8f.52.2024.08.16.00.51.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Aug 2024 00:51:05 -0700 (PDT)
+From: Artur Weber <aweber.kernel@gmail.com>
+Subject: [PATCH RESEND v2 0/6] ASoC: samsung: midas_wm1811: Separate
+ compatible for tab3 + fixes
+Date: Fri, 16 Aug 2024 09:50:57 +0200
+Message-Id: <20240816-midas-audio-tab3-v2-0-48ee7f2293b3@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 07/13] dt-bindings: media: camss: Add qcom,sm8550-camss
- binding
-To: Krzysztof Kozlowski <krzk@kernel.org>, <rfoss@kernel.org>,
-        <todor.too@gmail.com>, <bryan.odonoghue@linaro.org>,
-        <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>, Yongsheng Li <quic_yon@quicinc.com>
-References: <20240812144131.369378-1-quic_depengs@quicinc.com>
- <20240812144131.369378-8-quic_depengs@quicinc.com>
- <cb905d5e-6d70-4395-894c-55b3542e2ebe@kernel.org>
-Content-Language: en-US
-From: Depeng Shao <quic_depengs@quicinc.com>
-In-Reply-To: <cb905d5e-6d70-4395-894c-55b3542e2ebe@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: nz1EZt51V966XEKronGAHqNzJZJ9mJDL
-X-Proofpoint-ORIG-GUID: nz1EZt51V966XEKronGAHqNzJZJ9mJDL
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-15_18,2024-08-15_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- lowpriorityscore=0 phishscore=0 bulkscore=0 mlxscore=0 suspectscore=0
- clxscore=1015 priorityscore=1501 malwarescore=0 impostorscore=0
- mlxlogscore=938 spamscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2407110000 definitions=main-2408160055
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-sound@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ Artur Weber <aweber.kernel@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1970;
+ i=aweber.kernel@gmail.com; h=from:subject:message-id;
+ bh=m21UR2Li9R6gN31puzH6uj0MqV+URXqK3uxeXiT+fVU=;
+ b=owEBbQKS/ZANAwAKAbO7+KEToFFoAcsmYgBmvwTmCdk8f9QXetNRmS+DG/W5SUNNJGTL4k2sv
+ P//UEJ6zN+JAjMEAAEKAB0WIQTmYwAOrB3szWrSiQ2zu/ihE6BRaAUCZr8E5gAKCRCzu/ihE6BR
+ aJEyEACCwIk5Qyci+QC6bXuRGQT/mjI7xtBXvRACaTqc43qhT6lf8C9FgmG4kgTchsOdwR0P8wf
+ Aez9MLZkD3YQmzgbDfzcKvl2DSMBHHlT/PAIw8nSvVjYkwSGgmwi+v0J/DB+w/AEdB+GO4Gq926
+ 3IaUKbjKTWXqTa3/815ioWSfLyppiadRvPKXKylQk6tiDwtWdN9xts6EDZ5mdsJA9S0XruRoehP
+ EQGwCRXa3vmSIcWNVqhuADwUdVVoiY/SudJ8NIzxmvexmYmHxp14wSR/uZTj46JzAcHifYxm2zr
+ fZ2e69+/II9TsKd++yrYQpfSJaO0UyvspXFETTZy2XvPoOxEXTijnO1MJ6O2Bpv4VpUvc3KqxJk
+ 0ZI5U0Q9ueWC04crIK+/X1vPyo9CYPy1GizA2dRCY6xgrM6X+xdE1ARvV2Uvsgh/hulYfpPB0G4
+ TF1z23ew0Ig5olC6Lo6/x75POsHUD0u3gm3pt5Q99cTqszJp7DjUIZEroQMa9kvMl1NIIhzEnyQ
+ MUX+lGfMeY2MnlCBekpd0m2UajOWbywd29aAdcj8VeqCHanzTmkwCorWS3ik5s82x5Ggfe3QGlh
+ v7P3FFjyyWo8KB4mxjwXqsRWxT7NzX0BaNGcm6nAp29R9xJr9QXyunkJQy/DDd3aGXy6rBym9yY
+ AS25eQBdyZLouTA==
+X-Developer-Key: i=aweber.kernel@gmail.com; a=openpgp;
+ fpr=E663000EAC1DECCD6AD2890DB3BBF8A113A05168
 
-Hi Krzysztof,
+This is a follow-up to "ASoC: samsung: midas-audio: Add GPIO-based
+headset jack detection"[1]; it appears to have been silently merged
+except for the DTS parts, this patchset is a resend of the DTS patches.
 
-On 8/16/2024 3:01 PM, Krzysztof Kozlowski wrote:
+Besides the DTS changes necessary to enable headset jack detection
+for the Samsung Galaxy Tab 3 8.0, it also adds a new compatible for
+the Tab 3 (samsung,tab3-audio). This is done so that we can set up
+different requirements in DT binding (Tab 3 does not have main/sub
+bias regulators), and drop the main/sub mic bias dummy regulators
+from the Tab 3 DTSI.
 
->> +required:
->> +  - compatible
->> +  - clocks
->> +  - clock-names
->> +  - interconnects
->> +  - interconnect-names
->> +  - interrupts
->> +  - interrupt-names
->> +  - iommus
->> +  - power-domains
->> +  - power-domain-names
->> +  - reg
->> +  - reg-names
->> +  - vdda-phy-supply
->> +  - vdda-pll-supply
-> 
-> Order is still not as expected. I already commented on this - keep the
-> same order as in "properties:" block.
-> 
-> With the order fixed:
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
+[1] https://lore.kernel.org/all/20240525-midas-wm1811-gpio-jack-v4-0-f488e03bd8c7@gmail.com/
 
-Thanks for catching this, the order was correct in my local build, then 
-Vladimir posted a new comment, so I updated it again and forgot to 
-update the required item, I will correct the order in next version series.
+Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+---
+Changes in v2:
+- Addressed review comments from Krzysztof (anyOf instead of oneOf in
+  if: statement, fixed earmic_bias_reg node name to correct number,
+  reorganized patches to move headset-mic-bias-supply property next to
+  other headset properties in DTS)
+- Link to v1: https://lore.kernel.org/r/20240716-midas-audio-tab3-v1-0-a53ea075af5a@gmail.com
 
-Vladimir: "I would suggest to put 'compatible', 'reg' and 'reg-names' 
-properties as the first ones. 'clock-names' should follow 'clocks' 
-property in the list."
+---
+Artur Weber (6):
+      ASoC: dt-bindings: midas-audio: Declare required properties for GPIO jack det
+      ASoC: dt-bindings: midas-audio: Add separate compatible for tab3 audio
+      ARM: dts: samsung: exynos4212-tab3: Fix headset mic, add jack detection
+      ARM: dts: samsung: exynos4212-tab3: Add MCLK2 clock to WM1811 codec config
+      ARM: dts: samsung: exynos4212-tab3: Drop interrupt from WM1811 codec
+      ARM: dts: samsung: exynos4212-tab3: Drop dummy mic bias regulators
 
-Thanks,
-Depeng
+ .../bindings/sound/samsung,midas-audio.yaml        | 59 +++++++++++++++++++---
+ arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi     | 39 ++++++++------
+ 2 files changed, 76 insertions(+), 22 deletions(-)
+---
+base-commit: 91e3b24eb7d297d9d99030800ed96944b8652eaf
+change-id: 20240715-midas-audio-tab3-174716e45618
+
+Best regards,
+-- 
+Artur Weber <aweber.kernel@gmail.com>
+
 
