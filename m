@@ -1,79 +1,108 @@
-Return-Path: <devicetree+bounces-94337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E66FE955234
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 23:07:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1E6E955238
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 23:08:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3297285A49
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 21:07:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E0F32821DB
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 21:08:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AAC71C4635;
-	Fri, 16 Aug 2024 21:07:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15F447E76F;
+	Fri, 16 Aug 2024 21:08:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E+Izm+ec"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="abYeuapB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 548CD1BF339;
-	Fri, 16 Aug 2024 21:07:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E125013B293;
+	Fri, 16 Aug 2024 21:08:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723842443; cv=none; b=btMD1vlFh6d4qfSfkT2eUeqE1bj0AVVdbytwg5kNwwGSKyywrg09kXLFwHMMDjaK0dj6xqlSOKKITLYvXNzgf+59mLEhHArdEk4wxGzHEkgrqPpq9MFU2APmSalutOc969itMBAbcSY6MeqpkvhqnT6dXdAMF/jA6cT3IRdHxKA=
+	t=1723842490; cv=none; b=Ayd7lCds+WWZS/S8yral4yCQGUlJZo5NdYILIz+L6g9qIG0w27eeLHCo8LZh9lKrv7k+jggLfO+4tTKGtvmWps0WuUKBEX7Ia/8J1OuRubP0twFevAJb/twCXGiXgv8cr89TIB2/ZrPp8RZPskXjUiSs9GY4dxrTVRd4bEXXfwk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723842443; c=relaxed/simple;
-	bh=/gRSkYEFMDVDbDqo01ete16dzsu3sk4Fs05af01UGjc=;
-	h=Subject:From:In-Reply-To:References:Message-Id:Date:To:Cc; b=slFB7jTFFYvWVmw8iAgx680h2t9iNhac6Wn5G3Yp5Pa14+shlnMch9LsdhFmcAdeSdxCltWw7RKZqVLV87CvHg/xdWHYRwhBfx9pRejWqClDF60r+wdZ6zJl4t9B7w24fhdydwio830t1za/nPM9f1JZ3voiBAp4ItFa/yzmUcw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E+Izm+ec; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5160C32782;
-	Fri, 16 Aug 2024 21:07:22 +0000 (UTC)
+	s=arc-20240116; t=1723842490; c=relaxed/simple;
+	bh=mu9+7H+Dkgd9XFJ1RYjkPeJ1/+nmxz/+g/WwCW1an3M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OFOM1hDNH6URASB5Y6GOEFAmhSpXjnPwsE887M541U3DQ8KNmWCxqOwz9ckUohtHEp8+GA4a6n2lnCPGZ0bUBl3l1gi4YdR64J11x8+gUef4O+sfrZ1/mbqwKPCxZdpgeNEr13N/0nNn68eqoqp6wfhmAtUy99rwsg7I/wmxCio=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=abYeuapB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 504A6C32782;
+	Fri, 16 Aug 2024 21:08:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723842442;
-	bh=/gRSkYEFMDVDbDqo01ete16dzsu3sk4Fs05af01UGjc=;
-	h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-	b=E+Izm+ecEdO4IikhAyOAL/1/pVwp+vFwtXgRSv4jcGb8VXLOKjxU12/94vbdK9Rhx
-	 L2DMx07p3HjuxxZpTXZkwERk9wWsknPoxHghElyiwnDm6tDaaKxvVmCYLgsD2uyxdL
-	 8ysaofqnPZDDFcXZYXcDF+ZAylPc+UBzpO6kYKyH6hal8TVpkE9X3oJzIvxD4vvW7H
-	 kKfdqs/Nbp9EUpTuqnwo+LJmG3Nk/uUteMO2Pw/7Uau9ZdzhgJeEpNUZudd07W5ph6
-	 tH6eknkqEhz805ia+3en7jrJy2QYzuCu7jbp9Oe1RwGLZa1zmfGGn9NHUAwfzIy2cm
-	 k1t2eEDoju23A==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 70EB538232A9;
-	Fri, 16 Aug 2024 21:07:23 +0000 (UTC)
-Subject: Re: [GIT PULL] Devicetree fixes for v6.11, part 2
-From: pr-tracker-bot@kernel.org
-In-Reply-To: <20240816200824.GA2049154-robh@kernel.org>
-References: <20240816200824.GA2049154-robh@kernel.org>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <20240816200824.GA2049154-robh@kernel.org>
-X-PR-Tracked-Remote: ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.11-2
-X-PR-Tracked-Commit-Id: b739dffa5d570b411d4bdf4bb9b8dfd6b7d72305
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: 2731835f3f2e5b0642ad82a3a0265c98a552283e
-Message-Id: <172384244211.3626293.8409715064643586952.pr-tracker-bot@kernel.org>
-Date: Fri, 16 Aug 2024 21:07:22 +0000
-To: Rob Herring <robh@kernel.org>
-Cc: Linus Torvalds <torvalds@linux-foundation.org>, Saravana Kannan <saravanak@google.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+	s=k20201202; t=1723842489;
+	bh=mu9+7H+Dkgd9XFJ1RYjkPeJ1/+nmxz/+g/WwCW1an3M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=abYeuapBtYh8pZ+a3tNJH0JOmDBeXqsM5vmKeaALXT0MwHcmhyXTfUcVhhvTKE4IF
+	 a6FNdSq+KF6uf9i9mfwSwEIMrKRgDNnzl5HKY6ka04k7YyD3bbZI0pHWAoEBOkA7DX
+	 Z3NAHFBnDydmMHziTkFH1u1z65OLYQKDUjdcDqO0HU6Y64ZvCXtr0QZ4AbxnRF6Jn0
+	 +VkAH4OifgCvL/Fkxs+Upt0da79QHkGeJdm0oA2KKFcaeiSPnWBEur353hAc7IEdoq
+	 /n7KVmwSJRlWdp0KktHaBy8pZFjgzzRFMs48tFKZCokKIHlGBacIbPeWuidaSSULMY
+	 +/Vvo7ylVsEfA==
+Date: Fri, 16 Aug 2024 15:08:08 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+Cc: kernel@quicinc.com, klarasmodin@gmail.com, saravanak@google.com,
+	robin.murphy@arm.com, m.szyprowski@samsung.com,
+	aisheng.dong@nxp.com, hch@lst.de, devicetree@vger.kernel.org,
+	will@kernel.org, iommu@lists.linux.dev, catalin.marinas@arm.com,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 2/2] of: reserved_mem: Add code to dynamically
+ allocate reserved_mem array
+Message-ID: <172384248618.2197825.13104717668175387439.robh@kernel.org>
+References: <20240809184814.2703050-1-quic_obabatun@quicinc.com>
+ <20240809184814.2703050-3-quic_obabatun@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240809184814.2703050-3-quic_obabatun@quicinc.com>
 
-The pull request you sent on Fri, 16 Aug 2024 14:08:24 -0600:
 
-> ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.11-2
+On Fri, 09 Aug 2024 11:48:14 -0700, Oreoluwa Babatunde wrote:
+> The reserved_mem array is statically allocated with a size of
+> MAX_RESERVED_REGIONS(64). Therefore, if the number of reserved_mem
+> regions exceeds this size, there will not be enough space to store
+> all the data.
+> 
+> Hence, extend the use of the static array by introducing a
+> dynamically allocated array based on the number of reserved memory
+> regions specified in the DT.
+> 
+> On architectures such as arm64, memblock allocated memory is not
+> writable until after the page tables have been setup. Hence, the
+> dynamic allocation of the reserved_mem array will need to be done only
+> after the page tables have been setup.
+> 
+> As a result, a temporary static array is still needed in the initial
+> stages to store the information of the dynamically-placed reserved
+> memory regions because the start address is selected only at run-time
+> and is not stored anywhere else.
+> It is not possible to wait until the reserved_mem array is allocated
+> because this is done after the page tables are setup and the reserved
+> memory regions need to be initialized before then.
+> 
+> After the reserved_mem array is allocated, all entries from the static
+> array is copied over to the new array, and the rest of the information
+> for the statically-placed reserved memory regions are read in from the
+> DT and stored in the new array as well.
+> 
+> Once the init process is completed, the temporary static array is
+> released back to the system because it is no longer needed. This is
+> achieved by marking it as __initdata.
+> 
+> Signed-off-by: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+> ---
+>  drivers/of/of_reserved_mem.c | 68 +++++++++++++++++++++++++++++++++---
+>  1 file changed, 64 insertions(+), 4 deletions(-)
+> 
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/2731835f3f2e5b0642ad82a3a0265c98a552283e
+Applied, thanks!
 
-Thank you!
-
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
 
