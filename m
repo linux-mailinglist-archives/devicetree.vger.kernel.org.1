@@ -1,336 +1,188 @@
-Return-Path: <devicetree+bounces-94353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E11995531D
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 00:09:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 418E0955321
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 00:11:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F77A1C21118
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 22:09:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F24C2281B1D
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 22:11:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E38214431B;
-	Fri, 16 Aug 2024 22:09:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 322F3144307;
+	Fri, 16 Aug 2024 22:11:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o4hyAwpx"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Vvuw/11l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02F4413D882;
-	Fri, 16 Aug 2024 22:09:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5DD213D882
+	for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 22:11:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723846185; cv=none; b=lY4zAUNm3GU7LBn9awae+NZaPI0Sjm8vp8vsnPHuobOiK7GhsWuhEn2suoOjwzmIsvXwpD3wyW4xBIZswDG3i1FIbIYB7KdciIzu8wyxu09CnuiDSHdX4WrzGDDHnNjr6SJ6mMLaPe8UJTtoM/9Bpp29JFbub/zBaJkwp3dWzjE=
+	t=1723846297; cv=none; b=kWJ+YqlNGm3DIAyDME7XtU6iMAeMZtS4+HltHSi9PNoB2GXVZGZfk6BSrs8JTrzxOrMx8eclYwoJD8KuBUttdCvOu6PHBRxoonCrgtCFsCSDGBb0XzM0CPY9ndtdmTjjwrZu3pgH7+m4SOgA8r/qbcl2ZvfXnRbWQW5dKb+8SAE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723846185; c=relaxed/simple;
-	bh=AAwJuH2zGYNfTnM3FYX+VEPhE2wO6i0zHqPriORw44Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OhGh0JSSddS0uctQ2je2ZJY4IZqKMhnV2zBGN0mLoNzNeb70BxhQuaLLfnQ5QddIrxJwMo9pcRSfqKETNAbPcrf04xddW/qcUbCVgZQsPK7wUGvZdNl5D5wMWyar/Dwct8J0rllfa0qfXE7r2QTnyWJj++CU/TAOuE2wwFQDZR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o4hyAwpx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8543FC32782;
-	Fri, 16 Aug 2024 22:09:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723846184;
-	bh=AAwJuH2zGYNfTnM3FYX+VEPhE2wO6i0zHqPriORw44Y=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=o4hyAwpxT8yfbwGtJv3/Rs4NNhVZ3W/62bPZ/QNJDG5sQWuM5r2V8q3VvIl8GVNGg
-	 6sW2jVaLZNvNZT6AKxrxB676FEmWrgeQ7EllztclTMQ3BdlusaKtstef+6zPfil2nr
-	 s7ou5QPaUTXZhJljldP7oXxdfjlMQeRZnGhrnRRTNi9tgzHoM4DDfxcmxPmKgwHXlg
-	 R2Zb17+1Tp6O7ZXkiUdSN62TJFvd9ENyxCGddWPlo5zREQvBvdCqYCikZjd5iPqlxp
-	 nWviO8fUOXJ7Zs/X7e/woOwX8hK7bj50C9W2H1S5immxxYy/w6Hbg692ZLfiVR2FhO
-	 GAl5EPSEai0sg==
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-52efc60a6e6so3564687e87.1;
-        Fri, 16 Aug 2024 15:09:44 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCURzsIlEjaAU5VDx6cO673VGQD22mUemTP5x0Fzy/5uQuyerFaIbRUrBmJtVIn5/VnMxjaCaeQZKX6sYFGdQAhyJTZdn+PdQSsVT+e+Zcv1bOyIIAEJtURjXc5t7Io1Zqvfq3/tJ+7cMQ==
-X-Gm-Message-State: AOJu0Yzjv2D2+YpRmJ8B8GdvSuqD+BuSZ6J3z9BYJVfkN0y3B/wfUYj3
-	Rl5cBwKINW3eSinINFqe2pnkSIDa4b7wGXdfcvRkWsyRdXFQ3en7Imu/iYTaHv0UDu7aIxV/QqW
-	LonCK4US9oQ6AWUYR6B3hHM88Tw==
-X-Google-Smtp-Source: AGHT+IFH4jJKFlf/Q6eSSXTf+hWX9Mm+b1e8wZlJP+6Uj/y2F3qM66W8hO2upIFDnXbESsrTaARWhYAzt5mGmsmBL40=
-X-Received: by 2002:a05:6512:3b20:b0:52c:caa6:13b4 with SMTP id
- 2adb3069b0e04-5331c690049mr2904141e87.3.1723846182806; Fri, 16 Aug 2024
- 15:09:42 -0700 (PDT)
+	s=arc-20240116; t=1723846297; c=relaxed/simple;
+	bh=FY3RZ7Frd8Lcub5W+zSgABGBWAR8CnEMQGDmaqhQx2A=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=FH9E7xfwlPIA9WtzuXD9P0cTg0OXO4c6jdpid/9BKNRAZWGx1t2n1brAydu8RBGRHuxuVkQjeeRklPH1ftKl699tF+4TtsBxHCRudC+BiOuwz1Uzf/htDvyuOxfUAAAlQq5G81bAX7L74hrJDpYODYQzVjWrExpVrinpRf1GCZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Vvuw/11l; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=3y95ZwWSl632o+sXaCqANOkSbXUNIJiKQPmDH7plQU0=; b=Vvuw/11lAEnKKI7205FZe2JcMv
+	pcE1dEQpyOCfkyFOE3AVtMp4b7ri6nTnS61DWdcXBI8J6M38T2TPO9Ywj6TSO9lPAeciRMmkHy9/E
+	MjO8BIMAs9yT2b0FzgaH5prdcajNGdcUSNIMv5iZrfrdrbVPaOqeTkOmByhd1qKgCBSfg0Oq9XFUk
+	lMdf7OZHVa7uibgPXnQTFv8/J1E5cjT1a0dSN7fLmWrh/Ssfhbu2BidzNLm2/RjXduqqOjKKpicVi
+	FJMG++uheLzwmxu3kkaeE1N4xucrlARppEkQrvpJZAHxb5/OBdC+1CIha8BAIrUHFclR0VH3XAWxK
+	a5owt+aw==;
+Received: from i53875a9f.versanet.de ([83.135.90.159] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sf5AR-0007hb-Jp; Sat, 17 Aug 2024 00:11:31 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: FUKAUMI Naoki <naoki@radxa.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ FUKAUMI Naoki <naoki@radxa.com>
+Subject:
+ Re: [PATCH v5 2/2] arm64: dts: rockchip: add support for Radxa ROCK Pi E v3.0
+Date: Sat, 17 Aug 2024 00:11:32 +0200
+Message-ID: <1819066.TLkxdtWsSY@diego>
+In-Reply-To: <20240816213429.1093-2-naoki@radxa.com>
+References:
+ <20240816213429.1093-1-naoki@radxa.com>
+ <20240816213429.1093-2-naoki@radxa.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240813163638.3889778-1-Frank.Li@nxp.com> <20240816212741.GA2225734-robh@kernel.org>
- <Zr/M4bSqaqCft/Y5@lizhi-Precision-Tower-5810>
-In-Reply-To: <Zr/M4bSqaqCft/Y5@lizhi-Precision-Tower-5810>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 16 Aug 2024 16:09:30 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLfxkzNGXcy0gytsF7LFTDF9zmpfLent98uQmeBQvx0QQ@mail.gmail.com>
-Message-ID: <CAL_JsqLfxkzNGXcy0gytsF7LFTDF9zmpfLent98uQmeBQvx0QQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/1] dt-bindings: board: convert fsl-board.txt to yaml
-To: Frank Li <Frank.li@nxp.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
-	"moderated list:ARM/FREESCALE LAYERSCAPE ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, imx@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 
-On Fri, Aug 16, 2024 at 4:04=E2=80=AFPM Frank Li <Frank.li@nxp.com> wrote:
->
-> On Fri, Aug 16, 2024 at 03:27:41PM -0600, Rob Herring wrote:
-> > On Tue, Aug 13, 2024 at 12:36:29PM -0400, Frank Li wrote:
-> > > Convert binding doc fsl-board.txt to yaml format. split to 3 part
-> > > fsl,bcsr.yaml, fsl,fpga-qixis.yaml, fsl,fpga-qixis-i2c.yaml
-> > >
-> > > Additional change for fsl,fpga-qixis.yaml
-> > > - Add childnode mdio-mux-emi*
-> > > - Add compatible string fsl,ls1043aqds-fpga, fsl,ls1043ardb-fpga,
-> > > fsl,ls1046aqds-fpga, fsl,ls1046ardb-fpga, fsl,ls208xaqds-fpga,
-> > > fsl,ls1043ardb-cpld, fsl,ls1046ardb-cpld, fsl,ls1088aqds-fpga,
-> > > fsl,ls1088ardb-fpga, fsl,ls2080aqds-fpga, fsl,ls2080ardb-fpga.
-> > > - Change address to 32bit in example.
-> > >
-> > > Additional change for fsl,fpga-qixis-i2c.yaml
-> > > - Add mux-controller
-> > > - Add compatible string fsl,ls1028aqds-fpga, fsl,lx2160aqds-fpga
-> > >
-> > > Fix below warning:
-> > >
-> > > arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dtb: /soc/i2c@2000000/f=
-pga@66: failed to match any schema with compatible: ['fsl,ls1028aqds-fpga',=
- 'fsl,fpga-qixis-i2c', 'simple-mfd']
-> > >
-> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > ---
-> > > Change from v1 to v2
-> > > - drop description in fsl,bcsr.yaml
-> > > - bsc9132qds is too old, their dts have not simple-mfd.
-> > > - split qixis-i2c compatible to two group, one with simple-mfd and th=
-e
-> > > other one without simple-mfd.
-> > > - Add new full example for ls1028
-> > > - Remove [0-9], keep @ for mdio-mux-emi. Dts need be update to avoid
-> > > warning
-> > > - fix typo dt-binding in subject
-> > > ---
-> > >  .../devicetree/bindings/board/fsl,bcsr.yaml   | 32 ++++++++
-> > >  .../bindings/board/fsl,fpga-qixis-i2c.yaml    | 70 ++++++++++++++++
-> > >  .../bindings/board/fsl,fpga-qixis.yaml        | 81 +++++++++++++++++=
-++
-> > >  .../devicetree/bindings/board/fsl-board.txt   | 81 -----------------=
---
-> > >  .../boot/dts/freescale/fsl-ls1043a-qds.dts    |  2 +-
+Am Freitag, 16. August 2024, 23:34:29 CEST schrieb FUKAUMI Naoki:
+> Radxa ROCK Pi E v3.0 is a compact networking SBC[1] using the Rockchip
+> RK3328 chip that ships in a number of RAM/eMMC/WiFi/BT configurations:
+>=20
+> - Rockchip RK3328 SoC
+> - Quad A53 CPU
+> - 512MB/1GB/2GB DDR4 RAM
+> - 4/8/16/32GB eMMC
+> - Micro SD Card slot
+> - WiFi 4 and BT 4, or WiFi 5 and BT 5
+> - 1x 1000M Ethernet supporting PoE with add=E2=80=91on PoE HAT
+> - 1x 100M Ethernet
+> - 1x USB 3.0 Type-A port (Host)
+> - 1x 4-ring 3.5mm headphone jack
+> - 40 Pin GPIO header
+>=20
+> [1] https://radxa.com/products/rockpi/pie
+>=20
+> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+> ---
+> Changes in v5:
+> - revert compatible string
+> Changes in v4:
+> - update compatible string for OpenWrt
+> Changes in v3:
+> - fix conflict for recent change
+> Changes in v2:
+> - fix typo in commit message
+> - add missing --- in commit message
+> ---
+>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>  .../boot/dts/rockchip/rk3328-rock-pi-e-v3.dts |  15 +
+>  .../boot/dts/rockchip/rk3328-rock-pi-e.dts    | 460 +-----------------
+>  ...28-rock-pi-e.dts =3D> rk3328-rock-pi-e.dtsi} |   5 -
+>  4 files changed, 31 insertions(+), 450 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts
+>  rewrite arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts (97%)
+>  copy arch/arm64/boot/dts/rockchip/{rk3328-rock-pi-e.dts =3D> rk3328-rock=
+=2Dpi-e.dtsi} (98%)
+>=20
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/=
+rockchip/Makefile
+> index cb309b1975ba..cc74cd17850a 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -25,6 +25,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3328-nanopi-r2s-plus=
+=2Edtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3328-orangepi-r1-plus.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3328-orangepi-r1-plus-lts.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3328-rock64.dtb
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3328-rock-pi-e-v3.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3328-rock-pi-e.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3328-roc-cc.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3328-roc-pc.dtb
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts b/arch/=
+arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts
+> new file mode 100644
+> index 000000000000..ad9c4c562914
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dts
+> @@ -0,0 +1,15 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +
+> +/dts-v1/;
+> +
+> +#include "rk3328-rock-pi-e.dtsi"
+> +
+> +/ {
+> +	model =3D "Radxa ROCK Pi E v3.0";
+> +	compatible =3D "radxa,rockpi-e-v3", "rockchip,rk3328";
+> +
+> +	aliases {
+> +		mmc0 =3D &emmc;
+> +		mmc1 =3D &sdmmc;
+> +	};
+> +};
 
-Add this part to your clean-up patch.
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts b/arch/arm=
+64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+> dissimilarity index 97%
+> index 3e08e2fd0a78..0929df3c803a 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+> @@ -1,445 +1,15 @@
 
-> > >  5 files changed, 184 insertions(+), 82 deletions(-)
-> > >  create mode 100644 Documentation/devicetree/bindings/board/fsl,bcsr.=
-yaml
-> > >  create mode 100644 Documentation/devicetree/bindings/board/fsl,fpga-=
-qixis-i2c.yaml
-> > >  create mode 100644 Documentation/devicetree/bindings/board/fsl,fpga-=
-qixis.yaml
-> > >  delete mode 100644 Documentation/devicetree/bindings/board/fsl-board=
-.txt
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/board/fsl,bcsr.yaml b/=
-Documentation/devicetree/bindings/board/fsl,bcsr.yaml
-> > > new file mode 100644
-> > > index 0000000000000..df3dd8399671f
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/board/fsl,bcsr.yaml
-> > > @@ -0,0 +1,32 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/board/fsl,bcsr.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Board Control and Status
-> > > +
-> > > +maintainers:
-> > > +  - Frank Li <Frank.Li@nxp.com>
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - fsl,mpc8360mds-bcsr
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    board@f8000000 {
-> > > +        compatible =3D "fsl,mpc8360mds-bcsr";
-> > > +        reg =3D <0xf8000000 0x8000>;
-> > > +    };
-> > > +
-> > > diff --git a/Documentation/devicetree/bindings/board/fsl,fpga-qixis-i=
-2c.yaml b/Documentation/devicetree/bindings/board/fsl,fpga-qixis-i2c.yaml
-> > > new file mode 100644
-> > > index 0000000000000..28b37772fb656
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/board/fsl,fpga-qixis-i2c.yaml
-> > > @@ -0,0 +1,70 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/board/fsl,fpga-qixis-i2c.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Freescale on-board FPGA connected on I2C bus
-> > > +
-> > > +maintainers:
-> > > +  - Frank Li <Frank.Li@nxp.com>
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    oneOf:
-> > > +      - items:
-> > > +          - enum:
-> > > +              - fsl,bsc9132qds-fpga
-> > > +          - const: fsl,fpga-qixis-i2c
-> > > +      - items:
-> > > +          - enum:
-> > > +              - fsl,ls1028aqds-fpga
-> > > +              - fsl,lx2160aqds-fpga
-> > > +          - const: fsl,fpga-qixis-i2c
-> > > +          - const: simple-mfd
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  mux-controller:
-> > > +    $ref: /schemas/mux/reg-mux.yaml
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    i2c {
-> > > +        #address-cells =3D <1>;
-> > > +        #size-cells =3D <0>;
-> > > +
-> > > +        board-control@66 {
-> > > +            compatible =3D "fsl,bsc9132qds-fpga", "fsl,fpga-qixis-i2=
-c";
-> > > +            reg =3D <0x66>;
-> > > +        };
-> > > +    };
-> > > +
-> > > +  - |
-> > > +    i2c {
-> > > +        #address-cells =3D <1>;
-> > > +        #size-cells =3D <0>;
-> > > +
-> > > +        board-control@66 {
-> > > +            compatible =3D "fsl,ls1028aqds-fpga", "fsl,fpga-qixis-i2=
-c",
-> > > +                         "simple-mfd";
-> > > +            reg =3D <0x66>;
-> > > +
-> > > +            mux-controller {
-> > > +                compatible =3D "reg-mux";
-> > > +                #mux-control-cells =3D <1>;
-> > > +                mux-reg-masks =3D <0x54 0xf0>; /* 0: reg 0x54, bits =
-7:4 */
-> > > +            };
-> > > +        };
-> > > +    };
-> > > +
-> > > diff --git a/Documentation/devicetree/bindings/board/fsl,fpga-qixis.y=
-aml b/Documentation/devicetree/bindings/board/fsl,fpga-qixis.yaml
-> > > new file mode 100644
-> > > index 0000000000000..4d4eb45ce64cd
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/board/fsl,fpga-qixis.yaml
-> > > @@ -0,0 +1,81 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/board/fsl,fpga-qixis.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Freescale on-board FPGA/CPLD
-> > > +
-> > > +maintainers:
-> > > +  - Frank Li <Frank.Li@nxp.com>
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    oneOf:
-> > > +      - items:
-> > > +          - const: fsl,p1022ds-fpga
-> > > +          - const: fsl,fpga-ngpixis
-> > > +      - items:
-> > > +          - enum:
-> > > +              - fsl,ls1088aqds-fpga
-> > > +              - fsl,ls1088ardb-fpga
-> > > +              - fsl,ls2080aqds-fpga
-> > > +              - fsl,ls2080ardb-fpga
-> > > +          - const: fsl,fpga-qixis
-> > > +      - items:
-> > > +          - enum:
-> > > +              - fsl,ls1043aqds-fpga
-> > > +              - fsl,ls1043ardb-fpga
-> > > +              - fsl,ls1046aqds-fpga
-> > > +              - fsl,ls1046ardb-fpga
-> > > +              - fsl,ls208xaqds-fpga
-> > > +          - const: fsl,fpga-qixis
-> > > +          - const: simple-mfd
-> > > +      - enum:
-> > > +          - fsl,ls1043ardb-cpld
-> > > +          - fsl,ls1046ardb-cpld
-> > > +          - fsl,t1040rdb-cpld
-> > > +          - fsl,t1042rdb-cpld
-> > > +          - fsl,t1042rdb_pi-cpld
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  "#address-cells":
-> > > +    const: 1
-> > > +
-> > > +  "#size-cells":
-> > > +    const: 1
-> > > +
-> > > +  ranges:
-> > > +    maxItems: 1
-> > > +
-> > > +patternProperties:
-> > > +  '^mdio-mux-emi@[a-f0-9]+$':
-> >
-> > If we're going to update the dts file, this should be 'mdio-mux@'. I'll
-> > fix this when applying. The rest looks good.
->
-> Thanks, I will fix dts in v2 3nrd clean up patchset.
->
-> Frank
->
-> >
-> > Note that p5040ds.dts has 2 nodes at the same reg address, but differen=
-t
-> > bit offsets. The way we handle that is adding the register starting bit
-> > offset to the unit-address like this:
-> >
-> > mdio-mux@9,1 (mux-mask 0x6)
-> > mdio-mux@9,3 (mux-mask 0x78)
-> >
-> > Rob
->
+[...]
+
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +
+> +/dts-v1/;
+> +
+> +#include "rk3328-rock-pi-e.dtsi"
+> +
+> +/ {
+> +	model =3D "Radxa ROCK Pi E";
+> +	compatible =3D "radxa,rockpi-e", "rockchip,rk3328";
+> +
+> +	aliases {
+> +		mmc0 =3D &sdmmc;
+> +		mmc1 =3D &emmc;
+> +	};
+> +};
+
+can you please describe what is different in that v3 board?
+Describing what is different to require a separate board should've been
+part of the commit message.
+
+Because from those changes, the bottom line currently seems to be
+the same board with swapped mmc aliases?
+
+Heiko
+
+
+
+
 
