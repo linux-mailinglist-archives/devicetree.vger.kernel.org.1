@@ -1,197 +1,185 @@
-Return-Path: <devicetree+bounces-94271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0A0C95491E
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 14:50:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A40E8954AB6
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 15:03:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 06407B21A52
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 12:50:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5AD93282039
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 13:03:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24D961B32B9;
-	Fri, 16 Aug 2024 12:50:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B2F41B0108;
+	Fri, 16 Aug 2024 13:03:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="hnhVzKov"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W6/uvAJB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36304156F34
-	for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 12:50:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B841184FA0
+	for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 13:03:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723812603; cv=none; b=UDaMnNHwNdwCaPbMRNBMqFOgRpvfOgEYeqgT943vUJ409B1qOm9AXKaycHEWv0+CUPmA6EYGPfEHtIkS8i94xECFf88KNof/+aZY9KT+0tN8OlbLMcNZ1+b2NsuuHYsKby9wZ4X765yqpTDC+dY1nExJlApPy3MSlwrfdFwTnoY=
+	t=1723813410; cv=none; b=Lxnr/yP8nzmuW8MdwMS1WpgXLIP9we/cpuk6tew+095RITmjP156POySfwd6F4f+fmeWg9qCySo0J9h2i8SelzPJlzmxd4IthHNBgKDsJB3z9Ir9BJQa2DHvMOleUC0o4wmj17yRzvv+SHB5WVOsYr1SxylFSh6M4S2UH5bAgvU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723812603; c=relaxed/simple;
-	bh=K37drQFBcQe/KPuccp1cUx2OgiWzM+wcBntWujhb3wY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HABhj5X+N2PWqooBhHMg0eeO0E6DEBLNt8O/1yk2Pd6+6RvVJipiJw8NQa4W39v3eqVbiZo8Xhy89CMu3T9R3d/Xi2TNf7/rqQNe0xFa3zOogs/TSbsubA3fXeOmMkQ7ynen6ZO1vNNDPrZzGjWyGQDK8SmWsbZrpHBAkYGT6Xg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=hnhVzKov; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-429da8b5feaso19666775e9.2
-        for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 05:50:00 -0700 (PDT)
+	s=arc-20240116; t=1723813410; c=relaxed/simple;
+	bh=Bhf/LGlbRqZdfgHIrfunXoj04KWXjGQz7oO/HYn1TbA=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=UvLjQdDNUzvKwRJ2vg33lIiWx1IF08pfFoOX9is+Oevt3gfuAuXcUgYMTQ32WndYq9kAV2uSUpAHQpjx0dRtd1WWohWzWlXLaz1BtxS2w0rT2KI1P1Xl+hgPjmTeyUjF8bu6Uc5hMMOMPt608d36utjw2SuFAT7uCxRVKfJEqr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=W6/uvAJB; arc=none smtp.client-ip=209.85.214.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-1ff67158052so14689165ad.0
+        for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 06:03:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1723812599; x=1724417399; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ke0AjxBAncE489wmYzkh+nSMUTPo+pIzRMAmnYnwJNQ=;
-        b=hnhVzKovzynDoQAun++O/2psFXoxwrfmAL6FguXikmJuDNYs3SQ9zWNdJcJrKlR1DR
-         sctpHAV4oWUVezB+H+qUsieJ3NuUbTcnl/Aq+11aYks95YMgQ4U2xA5i0OtjgONG6D2r
-         C00jzf3q4d0kVc4AIxX+fUP1j51qkshg5prgMOvzyLMOt3qOsOfq2baQA8vguhwBoxFW
-         pGBuh9L6WKiZ4Cx0Iufjn//tAFzjeWgzufatyFg07Nm4ckgGfj+gENjcn3tE82YUgu5E
-         ZkRPL8yFQvjCOb/2xM9cCXdV6K6pe9ck1VhlS/9F3T5kXDuoZDo1i7NgAXDaIfMQq4nJ
-         uF3Q==
+        d=linaro.org; s=google; t=1723813408; x=1724418208; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=OQfaAqpmKipIe2sWzOwLlq2M5dQAOOI2MO8bO5UBdQU=;
+        b=W6/uvAJBfigFo2V9hSXMZyVOvdC9T9NC9juVGJGOPDvWb2i3UZxguDwLhSFLvySVgw
+         X9BMBbluMbRbPhXVaEEXvseVs+dQ3f+kW/bEZBbQcNzNX+oHu2n7rXmjamGXWVauTj1s
+         sS9r9GWduipdC6u6qKUua/9y8Hpzev6Bmo6F2d/Q0M4CUAtdOavdXTCVABpZB94XyzWc
+         TTdSbmtpvoVDNHJM4Eh1B58fQI0d1yqqNT9VPPN4RMs3npNiaECfyIedSLlGKwEzrt5b
+         g9cBkgDLOLfDA7mJfFErpBg57xT0yfsf1tsv1yVmtHbKgoS+eil3T+DYKePKOc6wnjZD
+         t8BQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723812599; x=1724417399;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ke0AjxBAncE489wmYzkh+nSMUTPo+pIzRMAmnYnwJNQ=;
-        b=ERoZ5KMBtBj68D3g9gt5yGqHGOfEC+7jjKVqIX8bjlgOubLHpTwkUovaTOjuoi4YnN
-         gBTaLanj5S65COZMR6RUbYVXlWp36k6uG7doJmF3TwOTwwmq12aeDvMVWtQBMhs61H8e
-         GlUKFSNrfK0V8BZ9Uqhrsef6s4BUb9lmF7B71fXdcHQ7ptS34r843BGj4X34Tbw8lhvi
-         bkrZ4ln3QQ4R731ua3onr1C+V/DH00+j4ZxmRZ9UP8CE+d/Cf40pZKFnK8ELVqgjoeZ4
-         L5LhB+PMUMmX+belDM2t0MZ3ya/xvsZv0AZp87eOinBtmivoK3d6q7EQIdHXAgqevczL
-         YpYw==
-X-Gm-Message-State: AOJu0Yxlw0noBjjHfqzuO7//PeZTH6nAaYivtuMCu1dRAxZjM9yTSL9M
-	IVAiK0Gf6AlxzYZD2mRF8bP8ZNite+vzMaYwqKx7eFg+ZCuOLWZMNr9Lz1gC3pi64Cd94omF1Hh
-	ocpk=
-X-Google-Smtp-Source: AGHT+IGM4LtUkED1FVNx+BEXnUbZCpfDI0OMEbuSoUR17hoiKqSTIP6vlmoZg/GiQAQSJ3CnFpyexA==
-X-Received: by 2002:adf:e907:0:b0:371:8e24:1191 with SMTP id ffacd0b85a97d-371946a4455mr2184543f8f.53.1723812598913;
-        Fri, 16 Aug 2024 05:49:58 -0700 (PDT)
-Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-371898aa393sm3570531f8f.90.2024.08.16.05.49.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Aug 2024 05:49:58 -0700 (PDT)
-From: Andrew Jones <ajones@ventanamicro.com>
-To: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	loongarch@lists.linux.dev,
-	linux-mips@vger.kernel.org
-Cc: maz@kernel.org,
-	mark.rutland@arm.com,
-	robh@kernel.org,
-	saravanak@google.com,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	Anup Patel <apatel@ventanamicro.com>
-Subject: [PATCH v2] of/irq: Support #msi-cells=<0> in of_msi_get_domain
-Date: Fri, 16 Aug 2024 14:49:58 +0200
-Message-ID: <20240816124957.130017-2-ajones@ventanamicro.com>
-X-Mailer: git-send-email 2.45.2
+        d=1e100.net; s=20230601; t=1723813408; x=1724418208;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OQfaAqpmKipIe2sWzOwLlq2M5dQAOOI2MO8bO5UBdQU=;
+        b=r0QJ9gDW4YFl4azmTg68CsbKVWfnMNVC28P2c2iD/jVw2ZxAScZhufjLhbADqUVj2c
+         D8H203JNKLPd0l3XEH3le06+SPMLYUc5O/yyO7TMasJ+q3xtj0b1E8K4FA3rHgP3Iw8A
+         5dw9wXizApA90TTqHDqgLatVGBwsVtJ/6okBFYPKnfXklMFTdhXX2C0NxwXtvD88xh+r
+         92gNdQ0m0okRbVlo2x0wF6NXwc0Z1RsXajAivYK+kovCutMrVVwImCt0V/oAnJNC6hW8
+         oDHzYNxhTp5NSrjllxibiJWMI4UJ7rSrj7ODIg/wuWpw1ntzkRyE6S68Senfx+z0dShl
+         /Usg==
+X-Forwarded-Encrypted: i=1; AJvYcCWo/d2PJrsQvPxqffccF3/ouRJ3GIwgOWal3SQyzbmAYWjvpB/KUIOFx3k727fr9Zs07IJXJMi2LUaExnF+hfCWlI69xBvRhML6kg==
+X-Gm-Message-State: AOJu0Yywnh/4TY12URPx5nljePe/At1VyKxD1YiJjkmstMpTfbfBeMxI
+	1P3ltjcg1jf9hQ7GvY/3OhNgqX2C9ZkD5cbrtZfVFhTXTARuUCFmGIvb5yqI+7U=
+X-Google-Smtp-Source: AGHT+IFdUBmRc/DpSnFK/WxuZyxq7bkYwsUpzgm8ThfZ/VGBbZttS6SsyB+sMOcxYseFDz1T1kaWvQ==
+X-Received: by 2002:a17:903:32c2:b0:202:26d:146c with SMTP id d9443c01a7336-20203e47f67mr39540595ad.5.1723813407532;
+        Fri, 16 Aug 2024 06:03:27 -0700 (PDT)
+Received: from [127.0.0.1] ([49.230.136.104])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-201f037895dsm25105815ad.155.2024.08.16.06.03.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Aug 2024 06:03:27 -0700 (PDT)
+Date: Fri, 16 Aug 2024 20:03:22 +0700
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Taniya Das <quic_tdas@quicinc.com>
+CC: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ quic_jkona@quicinc.com, quic_imrashai@quicinc.com,
+ devicetree@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_3/4=5D_arm64=3A_dts=3A_qcom=3A_qcm?=
+ =?US-ASCII?Q?6490-idp=3A_Update_protected_clocks_list?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <7fda5617-485a-4218-9cd5-bdb9deee0b56@quicinc.com>
+References: <20240531102252.26061-1-quic_tdas@quicinc.com> <20240531102252.26061-4-quic_tdas@quicinc.com> <4dvqegoz45ct5rqknf6vgi6rvh4osaecfyp7fcrs26lcsq4npu@dwoyubuqlbss> <3710a210-265c-493d-9d2f-27ebf486d00e@quicinc.com> <qiwy4uyxdrzp2omabh5nacdi37plomua22xsduvpatvb2pcp26@il6ncp7iluj6> <7fda5617-485a-4218-9cd5-bdb9deee0b56@quicinc.com>
+Message-ID: <733D0146-BA51-4F4D-A1C3-F3983DB84AD5@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-An 'msi-parent' property with a single entry and no accompanying
-'#msi-cells' property is considered the legacy definition as opposed
-to its definition after being expanded with commit 126b16e2ad98
-("Docs: dt: add generic MSI bindings"). However, the legacy
-definition is completely compatible with the current definition and,
-since of_phandle_iterator_next() tolerates missing and present-but-
-zero *cells properties since commit e42ee61017f5 ("of: Let
-of_for_each_phandle fallback to non-negative cell_count"), there's no
-need anymore to special case the legacy definition in
-of_msi_get_domain().
+On August 16, 2024 3:34:26 PM GMT+07:00, Taniya Das <quic_tdas@quicinc=2Eco=
+m> wrote:
+>
+>
+>On 6/10/2024 11:51 PM, Dmitry Baryshkov wrote:
+>> On Mon, Jun 10, 2024 at 03:57:34PM +0530, Taniya Das wrote:
+>>>=20
+>>>=20
+>>> On 5/31/2024 5:34 PM, Dmitry Baryshkov wrote:
+>>>> On Fri, May 31, 2024 at 03:52:51PM +0530, Taniya Das wrote:
+>>>>> Certain clocks are not accessible on QCM6490-IDP board,
+>>>>> thus mark them as protected=2E Update the lpassaudio node to
+>>>>> support the new compatible as the lpassaudio needs to support
+>>>>> the reset functionality on the QCM6490 board and the rest of
+>>>>> the Audio functionality would be provided from the LPASS
+>>>>> firmware=2E
+>>>>>=20
+>>>>> Signed-off-by: Taniya Das <quic_tdas@quicinc=2Ecom>
+>>>>> ---
+>>>>>    arch/arm64/boot/dts/qcom/qcm6490-idp=2Edts | 28 +++++++++++++++++=
+++++++-
+>>>>>    1 file changed, 27 insertions(+), 1 deletion(-)
+>>>>>=20
+>>>>> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp=2Edts b/arch/arm64=
+/boot/dts/qcom/qcm6490-idp=2Edts
+>>>>> index a0668f767e4b=2E=2E4eece564331a 100644
+>>>>> --- a/arch/arm64/boot/dts/qcom/qcm6490-idp=2Edts
+>>>>> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp=2Edts
+>>>>> @@ -1,6 +1,6 @@
+>>>>>    // SPDX-License-Identifier: BSD-3-Clause
+>>>>>    /*
+>>>>> - * Copyright (c) 2023 Qualcomm Innovation Center, Inc=2E All rights=
+ reserved=2E
+>>>>> + * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc=2E All r=
+ights reserved=2E
+>>>>>     */
+>>>>>    /dts-v1/;
+>>>>> @@ -688,3 +688,29 @@
+>>>>>    &wifi {
+>>>>>    	memory-region =3D <&wlan_fw_mem>;
+>>>>>    };
+>>>>> +
+>>>>> +&gcc {
+>>>>> +	protected-clocks =3D <GCC_AGGRE_NOC_PCIE_1_AXI_CLK> ,<GCC_PCIE_1_A=
+UX_CLK>,
+>>>>> +			<GCC_PCIE_1_AUX_CLK_SRC>, <GCC_PCIE_1_CFG_AHB_CLK>,
+>>>>> +			<GCC_PCIE_1_MSTR_AXI_CLK>, <GCC_PCIE_1_PHY_RCHNG_CLK_SRC>,
+>>>>> +			<GCC_PCIE_1_PIPE_CLK>, <GCC_PCIE_1_PIPE_CLK_SRC>,
+>>>>> +			<GCC_PCIE_1_SLV_AXI_CLK>, <GCC_PCIE_1_SLV_Q2A_AXI_CLK>,
+>>>>> +			<GCC_QSPI_CNOC_PERIPH_AHB_CLK>, <GCC_QSPI_CORE_CLK>,
+>>>>> +			<GCC_QSPI_CORE_CLK_SRC>,<GCC_USB30_SEC_MASTER_CLK>,
+>>>>> +			<GCC_USB30_SEC_MASTER_CLK_SRC>, <GCC_USB30_SEC_MOCK_UTMI_CLK>,
+>>>>> +			<GCC_USB30_SEC_MOCK_UTMI_CLK_SRC>,
+>>>>> +			<GCC_USB30_SEC_MOCK_UTMI_POSTDIV_CLK_SRC>, <GCC_USB30_SEC_SLEEP_=
+CLK>,
+>>>>> +			<GCC_USB3_SEC_PHY_AUX_CLK>, <GCC_USB3_SEC_PHY_AUX_CLK_SRC>,
+>>>>> +			<GCC_USB3_SEC_PHY_COM_AUX_CLK>, <GCC_USB3_SEC_PHY_PIPE_CLK>,
+>>>>> +			<GCC_USB3_SEC_PHY_PIPE_CLK_SRC>, <GCC_CFG_NOC_LPASS_CLK>,
+>>>>> +			<GCC_MSS_GPLL0_MAIN_DIV_CLK_SRC>, <GCC_MSS_CFG_AHB_CLK>,
+>>>>> +			<GCC_MSS_OFFLINE_AXI_CLK>, <GCC_MSS_SNOC_AXI_CLK>,
+>>>>> +			<GCC_MSS_Q6_MEMNOC_AXI_CLK>, <GCC_MSS_Q6SS_BOOT_CLK_SRC>,
+>>>>> +			<GCC_SEC_CTRL_CLK_SRC>, <GCC_WPSS_AHB_CLK>,
+>>>>> +			<GCC_WPSS_AHB_BDG_MST_CLK>, <GCC_WPSS_RSCP_CLK>;
+>>>>=20
+>>>> Is there any reason why this list is significantly larger than a list
+>>>> for RB3g2 or FP5?
+>>>>=20
+>>>=20
+>>> Unfortunately these are all protected on the IDP board and any access =
+would
+>>> cause a NoC error and then board will fail to boot up=2E
+>>=20
+>> Why? I mean, why does it contain the clocks that are allowed to be
+>> touched on RB3g2 and FP5?
+>>=20
+>
+>There are some use case level and board functionality changes between RB3=
+g2/FP5 vs IDP=2E Thus these clocks are protected and cannot be accessed=2E
 
-Indeed, special casing has turned out to be harmful, because, as of
-commit 7c025238b47a ("dt-bindings: irqchip: Describe the IMX MU block
-as a MSI controller"), MSI controller DT bindings have started
-specifying '#msi-cells' as a required property (even when the value
-must be zero) as an effort to make the bindings more explicit. But,
-since the special casing of 'msi-parent' only uses the existence of
-'#msi-cells' for its heuristic, and not whether or not it's also
-nonzero, the legacy path is not taken. Furthermore, the path to
-support the new, broader definition isn't taken either since that
-path has been restricted to the platform-msi bus.
+Reviewed-by: Dmitry Baryshkov <dmitry=2Ebaryshkov@linaro=2Eorg>
 
-But, neither the definition of 'msi-parent' nor the definition of
-'#msi-cells' is platform-msi-specific (the platform-msi bus was just
-the first bus that needed '#msi-cells'), so remove both the special
-casing and the restriction. The code removal also requires changing
-to of_parse_phandle_with_optional_args() in order to ensure the
-legacy (but compatible) use of 'msi-parent' remains supported. This
-not only simplifies the code but also resolves an issue with PCI
-devices finding their MSI controllers on riscv, as the riscv,imsics
-binding requires '#msi-cells=<0>'.
 
-Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
----
-v2:
- - switch to of_parse_phandle_with_optional_args() to ensure the
-   absence of #msi-cells means count=0
+>
 
- drivers/of/irq.c | 37 +++++++++++--------------------------
- 1 file changed, 11 insertions(+), 26 deletions(-)
 
-diff --git a/drivers/of/irq.c b/drivers/of/irq.c
-index c94203ce65bb..690df4b71ab9 100644
---- a/drivers/of/irq.c
-+++ b/drivers/of/irq.c
-@@ -709,8 +709,7 @@ struct irq_domain *of_msi_map_get_device_domain(struct device *dev, u32 id,
-  * @np: device node for @dev
-  * @token: bus type for this domain
-  *
-- * Parse the msi-parent property (both the simple and the complex
-- * versions), and returns the corresponding MSI domain.
-+ * Parse the msi-parent property and returns the corresponding MSI domain.
-  *
-  * Returns: the MSI domain for this device (or NULL on failure).
-  */
-@@ -718,33 +717,19 @@ struct irq_domain *of_msi_get_domain(struct device *dev,
- 				     struct device_node *np,
- 				     enum irq_domain_bus_token token)
- {
--	struct device_node *msi_np;
-+	struct of_phandle_args args;
- 	struct irq_domain *d;
-+	int index = 0;
- 
--	/* Check for a single msi-parent property */
--	msi_np = of_parse_phandle(np, "msi-parent", 0);
--	if (msi_np && !of_property_read_bool(msi_np, "#msi-cells")) {
--		d = irq_find_matching_host(msi_np, token);
--		if (!d)
--			of_node_put(msi_np);
--		return d;
--	}
--
--	if (token == DOMAIN_BUS_PLATFORM_MSI) {
--		/* Check for the complex msi-parent version */
--		struct of_phandle_args args;
--		int index = 0;
-+	while (!of_parse_phandle_with_optional_args(np, "msi-parent",
-+						    "#msi-cells",
-+						    index, &args)) {
-+		d = irq_find_matching_host(args.np, token);
-+		if (d)
-+			return d;
- 
--		while (!of_parse_phandle_with_args(np, "msi-parent",
--						   "#msi-cells",
--						   index, &args)) {
--			d = irq_find_matching_host(args.np, token);
--			if (d)
--				return d;
--
--			of_node_put(args.np);
--			index++;
--		}
-+		of_node_put(args.np);
-+		index++;
- 	}
- 
- 	return NULL;
--- 
-2.45.2
-
+--=20
+With best wishes
+Dmitry
 
