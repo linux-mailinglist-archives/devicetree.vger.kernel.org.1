@@ -1,181 +1,137 @@
-Return-Path: <devicetree+bounces-94197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4987195448A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 10:35:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDF049544BF
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 10:48:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA2DB28294F
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 08:35:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 736D91F23747
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 08:48:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84368140E4D;
-	Fri, 16 Aug 2024 08:34:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF82513AA53;
+	Fri, 16 Aug 2024 08:48:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CuMNfx1M"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zyNo1u68"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBCE576056;
-	Fri, 16 Aug 2024 08:34:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60D9D1386BF
+	for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 08:48:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723797277; cv=none; b=LKNRf6TJtgRQWqdSxvSNNywHtxQ61N2zR8ECgXN+vkEoVkPuNAjA4yGcbGG2wmD6WQVEQEkIFaB2GAFGLRkGCTNqZObWhXCqXf2bCgGZprZgyeawP/cf9KDELIBFmLPnFig13pIcy3lgxyLzeeIUM83zIRp0P9ie9QHZRtwJ01U=
+	t=1723798106; cv=none; b=CvN3GzeTKjG5Mj9W8oDmNpDdIt46nQX6jnARBNAzVLwsNskYcrvrFUTYJhykQT4R/NYU+vjsOd/jFdS4k8mOnWQGQ6Tn9hnyvPjsnRRaAFXMit17cALRLVV0jt/Xg4WQQUyZIhhqcaZ6aRI5HbSGEcN37QDqEWyP+yi9M/3GiHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723797277; c=relaxed/simple;
-	bh=slg7Mz/uR9NxJ6yJYvaCR2+orUklYXSMPH1ldn2azCw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=bNt4AbeZPXsCeb90ODOioXgs6IkuoPjZGN8uuk4qkR3Mo6fqffWoMzj8BrHvVZziUcffNkg5wmlKYn1dDqMQrT0wcZGVDlNSfeLjuo4HdhD2iNgFt9UgrZehn0PDWF5HCYMzKdfhcqv9mq2WLv5UJ4w6F+iBhYi2CqUBEL5QPZ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=CuMNfx1M; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47G5mOTs025079;
-	Fri, 16 Aug 2024 08:34:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	WPCZ+v2h/YHhcM9sdW0Y/KTcld6Z1Q95K8izoqgcbK0=; b=CuMNfx1MiZlw9Wod
-	Kn0Us0TMPkCqc2NgEFsphMm+VI+rhc77Z3IIZqpz3CaSDNe32/4A6/rkxwnPq4L2
-	Lj/B5x8xueqtNwJoh8TlOSUCjVR+maRNogOD3YEKcT5aXJSLui0sNTOrD/BvwW4M
-	dI1Ut0d+RdK8yOgCNeL/htYut7p2BIAo5zxYY2JuLrcUCWyZi/a2N0ElRJOMo9QX
-	jT8rXBZTDjqAyDCqwB+dVsV35itMRM17erL6wWsC6AAgpXFqKR4IMyG6zLykjOSv
-	aMahtl0qO/ZnxQ9YaEujgBBwaQwLiZtSSDDkOJDEtTPyXYK+iy1hA1ZlEy7k79X8
-	RUxQeQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 410kywpt1t-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 16 Aug 2024 08:34:31 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47G8YVoU018495
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 16 Aug 2024 08:34:31 GMT
-Received: from [10.217.216.152] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 16 Aug
- 2024 01:34:26 -0700
-Message-ID: <7fda5617-485a-4218-9cd5-bdb9deee0b56@quicinc.com>
-Date: Fri, 16 Aug 2024 14:04:26 +0530
+	s=arc-20240116; t=1723798106; c=relaxed/simple;
+	bh=5GDrt8Lzrjd+AR2vAAvvIuyq2HwfCThB1/LZluNapgU=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=PeW/QiB2g2oRQV0MdkGKEJXBEiGLpQ9yVEgNyuG48svBfliGjCMBu84zFXD0BL8o9cYD6L9VjJA+FaMdKJV5PRb31KEBeK6uBhaE66c/11dKBR9xX1OpSVBGvFhN8tKGrhBXLfdUuqgVrEsniOdboB36pQYrghIBvFp8Zeq+TgQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zyNo1u68; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-429e29933aaso11887585e9.0
+        for <devicetree@vger.kernel.org>; Fri, 16 Aug 2024 01:48:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1723798103; x=1724402903; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gzEKzZjStMCmeFHAsJP/R1JM2+6vJvnRZ4aYO0fFizU=;
+        b=zyNo1u68sOxYFHn7GrarlDV2mRcAnNjLCjG3LV1xFrEO88b817I3d6QYAfTyo4G3GJ
+         Ilx0KV3zj5BsR0RI02IFfNOObn2t//YvxwTNLXfXOtXJ3FHaMziaf7MwEVtXc3clazoh
+         78nKnPsTjKfu+r4csvDfrY4T1J5jx6Zuicj7xwkup3XtNtY0zzXE3xBg8Y+PMNTM96Hb
+         A6oouNkCvtuGrNyFHU3mXA/u8pm2Dpen4l3K9SH5AI9hAcFDjPHkWvvjhWltsS3ZRZup
+         ETKmkiHbMCAZ9J149gVWRSVXeWuz6uc2PUANIywk7fpYkf/BFNj5bPMVaf67xFa2+xA1
+         4cCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723798103; x=1724402903;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gzEKzZjStMCmeFHAsJP/R1JM2+6vJvnRZ4aYO0fFizU=;
+        b=BdS5yJy6JNt1g7Elzyurz/os74yyoZ0Upg0xwAPy1Oa/F3YcU+UhO0V3zYVNrpCMyF
+         rHmqXleIa3/A+e1PH2jL5MxawL0ZOJiKXwLOmQkYrltBeBRM9AnOM4dco5zoRESzM3dv
+         u2in3wpGGyqlL6+6QOSdLCZDKabIG04QQkO2dNIjAINxyLjYDFPDW18ZWBZ+MnQ/YNq6
+         Y4TjV4jCHTLY6eTxl4lF5YYHu0nP0RxhR8ITmJYkGWEt1x0UwAdYggXOtc2RhrBm2oF6
+         /4MXfQbqhp7Qh2/EFmNdk43YBLk49k75T/JfzQ3KXD1kezBHVbRoFELSd3HYfJoJ7jok
+         MbNg==
+X-Forwarded-Encrypted: i=1; AJvYcCXl//FP4z7m5sp7EzCk/WXnaoGDGnJqAURceJs8m6vav7lARk/hTBBzDEA3pK8JvJKnuX+++o6hdT1yiQINJSFc/ByheWLd2vkBcQ==
+X-Gm-Message-State: AOJu0YxWW3slj6Y3wS4jU8HORA6Z446EjdNWneRvBgiiDcp8Q/sYXK4a
+	2Qm2rY68rU5dxW0cuMZvqQEmRLMU7/mNqd9cxwYGVre1fuH+3jVGbZsTf8z0XzyMv1uDFKBOZIN
+	L
+X-Google-Smtp-Source: AGHT+IFPv0yq6NX6L+cXWVvN2XvKmjQ+KJdc+y+gSJFqzCqOGbEFL3nruXs5RxgfKGmI/6SzaOhwkg==
+X-Received: by 2002:adf:ea8c:0:b0:371:828a:741d with SMTP id ffacd0b85a97d-37194455f9emr1130106f8f.21.1723798102580;
+        Fri, 16 Aug 2024 01:48:22 -0700 (PDT)
+Received: from [192.168.68.116] ([5.133.47.210])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37189897034sm3160819f8f.67.2024.08.16.01.48.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Aug 2024 01:48:22 -0700 (PDT)
+From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To: Amol Maheshwari <amahesh@qti.qualcomm.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+ Jassi Brar <jassisinghbrar@gmail.com>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Arnd Bergmann <arnd@arndb.de>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-remoteproc@vger.kernel.org, 
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
+ Tengfei Fan <quic_tengfan@quicinc.com>, Ling Xu <quic_lxu5@quicinc.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20240805-topic-sa8775p-iot-remoteproc-v4-0-86affdc72c04@linaro.org>
+References: <20240805-topic-sa8775p-iot-remoteproc-v4-0-86affdc72c04@linaro.org>
+Subject: Re: (subset) [PATCH v4 0/6] arm64: qcom: sa8775p: enable
+ remoteprocs - ADSP, CDSP and GPDSP
+Message-Id: <172379810100.49056.9142213363913093777.b4-ty@linaro.org>
+Date: Fri, 16 Aug 2024 09:48:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: qcm6490-idp: Update protected
- clocks list
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <quic_jkona@quicinc.com>,
-        <quic_imrashai@quicinc.com>, <devicetree@vger.kernel.org>
-References: <20240531102252.26061-1-quic_tdas@quicinc.com>
- <20240531102252.26061-4-quic_tdas@quicinc.com>
- <4dvqegoz45ct5rqknf6vgi6rvh4osaecfyp7fcrs26lcsq4npu@dwoyubuqlbss>
- <3710a210-265c-493d-9d2f-27ebf486d00e@quicinc.com>
- <qiwy4uyxdrzp2omabh5nacdi37plomua22xsduvpatvb2pcp26@il6ncp7iluj6>
-Content-Language: en-US
-From: Taniya Das <quic_tdas@quicinc.com>
-In-Reply-To: <qiwy4uyxdrzp2omabh5nacdi37plomua22xsduvpatvb2pcp26@il6ncp7iluj6>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: B3_sqfB9ipmjy1fWWtqPFODhIaXLd1wb
-X-Proofpoint-GUID: B3_sqfB9ipmjy1fWWtqPFODhIaXLd1wb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-15_18,2024-08-15_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
- impostorscore=0 mlxscore=0 phishscore=0 malwarescore=0 clxscore=1015
- mlxlogscore=999 priorityscore=1501 bulkscore=0 lowpriorityscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408160061
+X-Mailer: b4 0.12.2
 
 
-
-On 6/10/2024 11:51 PM, Dmitry Baryshkov wrote:
-> On Mon, Jun 10, 2024 at 03:57:34PM +0530, Taniya Das wrote:
->>
->>
->> On 5/31/2024 5:34 PM, Dmitry Baryshkov wrote:
->>> On Fri, May 31, 2024 at 03:52:51PM +0530, Taniya Das wrote:
->>>> Certain clocks are not accessible on QCM6490-IDP board,
->>>> thus mark them as protected. Update the lpassaudio node to
->>>> support the new compatible as the lpassaudio needs to support
->>>> the reset functionality on the QCM6490 board and the rest of
->>>> the Audio functionality would be provided from the LPASS
->>>> firmware.
->>>>
->>>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->>>> ---
->>>>    arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 28 +++++++++++++++++++++++-
->>>>    1 file changed, 27 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
->>>> index a0668f767e4b..4eece564331a 100644
->>>> --- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
->>>> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
->>>> @@ -1,6 +1,6 @@
->>>>    // SPDX-License-Identifier: BSD-3-Clause
->>>>    /*
->>>> - * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
->>>> + * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
->>>>     */
->>>>    /dts-v1/;
->>>> @@ -688,3 +688,29 @@
->>>>    &wifi {
->>>>    	memory-region = <&wlan_fw_mem>;
->>>>    };
->>>> +
->>>> +&gcc {
->>>> +	protected-clocks = <GCC_AGGRE_NOC_PCIE_1_AXI_CLK> ,<GCC_PCIE_1_AUX_CLK>,
->>>> +			<GCC_PCIE_1_AUX_CLK_SRC>, <GCC_PCIE_1_CFG_AHB_CLK>,
->>>> +			<GCC_PCIE_1_MSTR_AXI_CLK>, <GCC_PCIE_1_PHY_RCHNG_CLK_SRC>,
->>>> +			<GCC_PCIE_1_PIPE_CLK>, <GCC_PCIE_1_PIPE_CLK_SRC>,
->>>> +			<GCC_PCIE_1_SLV_AXI_CLK>, <GCC_PCIE_1_SLV_Q2A_AXI_CLK>,
->>>> +			<GCC_QSPI_CNOC_PERIPH_AHB_CLK>, <GCC_QSPI_CORE_CLK>,
->>>> +			<GCC_QSPI_CORE_CLK_SRC>,<GCC_USB30_SEC_MASTER_CLK>,
->>>> +			<GCC_USB30_SEC_MASTER_CLK_SRC>, <GCC_USB30_SEC_MOCK_UTMI_CLK>,
->>>> +			<GCC_USB30_SEC_MOCK_UTMI_CLK_SRC>,
->>>> +			<GCC_USB30_SEC_MOCK_UTMI_POSTDIV_CLK_SRC>, <GCC_USB30_SEC_SLEEP_CLK>,
->>>> +			<GCC_USB3_SEC_PHY_AUX_CLK>, <GCC_USB3_SEC_PHY_AUX_CLK_SRC>,
->>>> +			<GCC_USB3_SEC_PHY_COM_AUX_CLK>, <GCC_USB3_SEC_PHY_PIPE_CLK>,
->>>> +			<GCC_USB3_SEC_PHY_PIPE_CLK_SRC>, <GCC_CFG_NOC_LPASS_CLK>,
->>>> +			<GCC_MSS_GPLL0_MAIN_DIV_CLK_SRC>, <GCC_MSS_CFG_AHB_CLK>,
->>>> +			<GCC_MSS_OFFLINE_AXI_CLK>, <GCC_MSS_SNOC_AXI_CLK>,
->>>> +			<GCC_MSS_Q6_MEMNOC_AXI_CLK>, <GCC_MSS_Q6SS_BOOT_CLK_SRC>,
->>>> +			<GCC_SEC_CTRL_CLK_SRC>, <GCC_WPSS_AHB_CLK>,
->>>> +			<GCC_WPSS_AHB_BDG_MST_CLK>, <GCC_WPSS_RSCP_CLK>;
->>>
->>> Is there any reason why this list is significantly larger than a list
->>> for RB3g2 or FP5?
->>>
->>
->> Unfortunately these are all protected on the IDP board and any access would
->> cause a NoC error and then board will fail to boot up.
+On Mon, 05 Aug 2024 19:08:01 +0200, Bartosz Golaszewski wrote:
+> Add DT bindings, relevant DT defines, DTS nodes and driver changes
+> required to enable the remoteprocs on sa8775p.
 > 
-> Why? I mean, why does it contain the clocks that are allowed to be
-> touched on RB3g2 and FP5?
+> To: Bjorn Andersson <andersson@kernel.org>
+> To: Mathieu Poirier <mathieu.poirier@linaro.org>
+> To: Rob Herring <robh@kernel.org>
+> To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> To: Conor Dooley <conor+dt@kernel.org>
+> To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> To: Jassi Brar <jassisinghbrar@gmail.com>
+> To: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Cc: linux-arm-msm@vger.kernel.org
+> Cc: linux-remoteproc@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
+> [...]
 
-There are some use case level and board functionality changes between 
-RB3g2/FP5 vs IDP. Thus these clocks are protected and cannot be accessed.
+Applied, thanks!
 
+[1/6] dt-bindings: misc: qcom,fastrpc: increase the max number of iommus
+      commit: 42a21d00aac515fad1f9a10052c6e9710c6f7813
+[4/6] misc: fastrpc: Add support for cdsp1 remoteproc
+      commit: 590c42d9e278f8e6bf6d673f3101ac102369efc7
+
+Best regards,
 -- 
-Thanks & Regards,
-Taniya Das.
+Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+
 
