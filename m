@@ -1,190 +1,205 @@
-Return-Path: <devicetree+bounces-94265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F7CC954881
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 14:09:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 145F09548B2
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 14:24:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6D4C1F223A6
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 12:09:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9436B1F2392C
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2024 12:24:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A2AD19E7D0;
-	Fri, 16 Aug 2024 12:09:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 234FD1A4F04;
+	Fri, 16 Aug 2024 12:24:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DoBwLVp8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u4K44YJF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4448B13AA2B;
-	Fri, 16 Aug 2024 12:09:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E829C1991D2;
+	Fri, 16 Aug 2024 12:24:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723810171; cv=none; b=O8zZXsiRkXGWQQV3c26STvQgIzdPA1adLRbmJa25noA0h0MjQkyPbxw5Jlrr5raNYtP6Gd9ZiygCD7rpeobr47wTV1QIY4T8mpbueFPZBL9g7J4tBgAuIMAS2zEob96ogqBNosELNII0E8wpYbOEUCKtckfKF2V5KCsG+3VmxGc=
+	t=1723811079; cv=none; b=Z95qJFx4yBf5hEgGxFyByuTWfvTVsen0x0STNbcwcLRWIOJZQEiip4KZZGP3Wym8FwalP6D10JsKjY69IOXMGaL7+IppneoNoRBCNfUT+Ako9YBRkKdK5ZXeGIp1NANYhCoNZ0OnK1ACP8WdHW6+i6HjKUCa3l8uFDQn7T+AHzQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723810171; c=relaxed/simple;
-	bh=ssDzuyZYKj2TsincB2yA+zCltvCHnFaG6dUqlEY8INw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=p7mmoaW8vJMjGpYiV5c50oILY58AnLmB/l4f2m5ctQeIe1SQaQk775rWrXg4YCx+lPz71A3WhzSfNfrlA4YxXnWyMAv9kQ63fpnukTTB/TXBmnujscdazTtTSbQPZz/myo48a/gsJt7XB9hTMAn64XfjCQ6+/PwMRmbJklTZ6kI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=DoBwLVp8; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47G71hI3032570;
-	Fri, 16 Aug 2024 12:04:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	7+gfS5ltFtO1Jxub9Fy/GIcO9Ez0LcxryZ2AZ4lP5oA=; b=DoBwLVp8A/HVFgbg
-	f3c9qxQv329gLrejA+N/5q/HlbmxfZxcOEb7ZjS2p/IctLiBblg7e7NJe0XkvMnN
-	vIL+A6+seUlcfN4tsbOi1PBteodOc2BEuSf0jLZICy5rwnbYdOSXpa8zYJbPiNR/
-	sxvo84QdrLV3XpgV18cQXCumkqXwz1Pp3nOZevB7i8fdKk/5rvi6fenIMAlDKjs2
-	gqGYffJtulig9l2SzhQXyme7fkCg8qckugYKiMC3ey8R5XlMVztU4cJFGxg+58PN
-	s2IShPQdXrHtIqC7t2mzY7xqp3v+bEXRXUhyy0RxUXTUDj95nFBoK+oHs1FU+KIm
-	OPLgoA==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4104382992-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 16 Aug 2024 12:04:02 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47GC41OF017819
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 16 Aug 2024 12:04:01 GMT
-Received: from [10.216.27.9] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 16 Aug
- 2024 05:03:55 -0700
-Message-ID: <21fa1207-be83-ffdc-deab-81c070bb94c7@quicinc.com>
-Date: Fri, 16 Aug 2024 17:33:43 +0530
+	s=arc-20240116; t=1723811079; c=relaxed/simple;
+	bh=BHvv3tQ/qH7itDrWANJ9OnwJU3uS5u76IJ2JNjIhTqM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UGCIqot+ixAgCYiOa7rUpnPqrmEP4O8spyEVCd3n3QXX94diWEHZDb3VzlTEjQ4HFPlJnrcNBgxkcTcU/cpFilv4p0gqOmFG4K2NaOw39eNXKm4+PbG64Vhl/woJcZ5EkG3cCmbIiUydpKet1xBNbZPCw5UrCuWCy4QSFC4behI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u4K44YJF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0982BC32782;
+	Fri, 16 Aug 2024 12:24:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723811078;
+	bh=BHvv3tQ/qH7itDrWANJ9OnwJU3uS5u76IJ2JNjIhTqM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=u4K44YJF2Qc1nQLB8q3V8ADeGVb2TyoGJv2zIL7cfKS3KqZJ0zkIdMFSYyla2KOmL
+	 hzw162U3RzlB5v4XhilnoFD4feol2Vic/anaTfK7+qHF+2iYG1SjPioz87hgHdRgaZ
+	 aBQC1jy693cWkpivc9o0Nwu0+/jJn5LajFiUd8QeqB/HMYOZTDAjyZjle8boa2Ln7w
+	 pzBF9FfH9LdV2giP2tWEPu5EHGM/tVFegQoRTjaBHDjO588tsEQoCwVCKoklWUwUxc
+	 oM2SvxwuU2r6un731UcP3m+vUF3bqpLjoPATnxZHFKIk0uuNbHT4vNlRfc8OurOf6T
+	 o0yapb+Z50NHQ==
+Message-ID: <b247a843-0918-4cd1-b6f8-66caca3ecae3@kernel.org>
+Date: Fri, 16 Aug 2024 14:24:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v2 00/16] Add cmd descriptor support
-To: Caleb Connolly <caleb.connolly@linaro.org>, <vkoul@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <andersson@kernel.org>, <konradybcio@kernel.org>,
-        <thara.gopinath@gmail.com>, <herbert@gondor.apana.org.au>,
-        <davem@davemloft.net>, <gustavoars@kernel.org>,
-        <u.kleine-koenig@pengutronix.de>, <kees@kernel.org>,
-        <agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-crypto@vger.kernel.org>
-CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>,
-        <quic_utiwari@quicinc.com>
-References: <20240815085725.2740390-1-quic_mdalam@quicinc.com>
- <f341e9e9-3da6-4029-9892-90e6ec856544@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 RESEND 2/2] drm/bridge: imx: Add i.MX93 parallel
+ display format configuration support
+To: Liu Ying <victor.liu@nxp.com>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+ festevam@gmail.com, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+ rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
+ peng.fan@nxp.com
+References: <20240816080933.440594-1-victor.liu@nxp.com>
+ <20240816080933.440594-3-victor.liu@nxp.com>
+ <faf56b73-2143-4f5d-8e35-5cfe5f8d72d5@kernel.org>
+ <613b4eb4-dbac-48a9-bcdd-79b4e94a7b66@nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Md Sadre Alam <quic_mdalam@quicinc.com>
-In-Reply-To: <f341e9e9-3da6-4029-9892-90e6ec856544@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: rr_TjtZmS9cGzTqFnZeuP3hLllP6xUtC
-X-Proofpoint-GUID: rr_TjtZmS9cGzTqFnZeuP3hLllP6xUtC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-16_03,2024-08-16_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1011
- mlxlogscore=999 malwarescore=0 lowpriorityscore=0 phishscore=0 spamscore=0
- bulkscore=0 suspectscore=0 adultscore=0 mlxscore=0 priorityscore=1501
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
- definitions=main-2408160088
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <613b4eb4-dbac-48a9-bcdd-79b4e94a7b66@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 16/08/2024 11:44, Liu Ying wrote:
+> On 08/16/2024, Krzysztof Kozlowski wrote:
+>> On 16/08/2024 10:09, Liu Ying wrote:
+>>> NXP i.MX93 mediamix blk-ctrl contains one DISPLAY_MUX register which
+>>> configures parallel display format by using the "PARALLEL_DISP_FORMAT"
+>>> field. Add a DRM bridge driver to support the display format configuration.
+>>>
+>>> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+>>> ---
+>>
+>> ...
+>>
+>>> +
+>>> +static int imx93_pdfc_bridge_probe(struct platform_device *pdev)
+>>> +{
+>>> +	struct device *dev = &pdev->dev;
+>>> +	struct imx93_pdfc *pdfc;
+>>> +	int ret;
+>>> +
+>>> +	pdfc = devm_kzalloc(dev, sizeof(*pdfc), GFP_KERNEL);
+>>> +	if (!pdfc)
+>>> +		return -ENOMEM;
+>>> +
+>>> +	pdfc->regmap = syscon_node_to_regmap(dev->of_node->parent);
+>>> +	if (IS_ERR(pdfc->regmap)) {
+>>> +		ret = PTR_ERR(pdfc->regmap);
+>>> +		if (ret != -EPROBE_DEFER)
+>>> +			DRM_DEV_ERROR(dev, "failed to get regmap: %d\n", ret);
+>>> +		return ret;
+>>
+>> Nope, you just open-coded dev_err_probe. Syntax is - return
+>> dev_err_probe(). if you need wrapper for DRM, add such.
+> 
+> Will use dev_err_probe().
+> 
+>>
+>>> +	}
+>>> +
+>>> +	pdfc->next_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
+>>> +	if (IS_ERR(pdfc->next_bridge)) {
+>>> +		ret = PTR_ERR(pdfc->next_bridge);
+>>> +		if (ret != -EPROBE_DEFER)
+>>> +			DRM_DEV_ERROR(dev, "failed to get next bridge: %d\n", ret);
+>>> +		return ret;
+>>
+>> Ditto
+> 
+> Will use dev_err_probe().
+> 
+>>
+>>
+>>> +	}
+>>> +
+>>
+>> ...
+>>
+>>> +MODULE_DESCRIPTION("NXP i.MX93 parallel display format configuration driver");
+>>> +MODULE_AUTHOR("Liu Ying <victor.liu@nxp.com>");
+>>> +MODULE_LICENSE("GPL v2");
+>>> +MODULE_ALIAS("platform:" DRIVER_NAME);
+>>
+>> Which other driver needs this platform alias?
+> 
+> Quote include/linux/module.h:
+> 
+> "
+> /* For userspace: you can also call me... */                                     
+> #define MODULE_ALIAS(_alias) MODULE_INFO(alias, _alias)   
+> "
+> 
+> Anything wrong with using MODULE_ALIAS() here?
 
+Yes, it redundant. Do not answer with question to the question.
 
-On 8/15/2024 6:38 PM, Caleb Connolly wrote:
-> Hi,
-> 
-> A note for future patches, please scope your cover letter subject:
-> 
-> "dmaengine: qcom: bam_dma: add cmd descriptor support"
+Are you adding random code that you cannot justify? It looks like this
+if you cannot answer why do you need it.
 
-   Sure will add this in next patch.
-> 
-> On 15/08/2024 10:57, Md Sadre Alam wrote:
->> This series of patches will add command descriptor
->> support to read/write crypto engine register via
->> BAM/DMA
->>
->> We need this support because if there is multiple EE's
->> (Execution Environment) accessing the same CE then there
->> will be race condition. To avoid this race condition
->> BAM HW hsving LOC/UNLOCK feature on BAM pipes and this
->> LOCK/UNLOCK will be set via command descriptor only.
->>
->> Since each EE's having their dedicated BAM pipe, BAM allows
->> Locking and Unlocking on BAM pipe. So if one EE's requesting
->> for CE5 access then that EE's first has to LOCK the BAM pipe
->> while setting LOCK bit on command descriptor and then access
->> it. After finishing the request EE's has to UNLOCK the BAM pipe
->> so in this way we race condition will not happen.
->>
->> tested with "tcrypt.ko" and "kcapi" tool.
->>
->> Need help to test these all the patches on msm platform
-> 
-> DT changes here are only for a few IPQ platforms, please explain in the cover letter if this is some IPQ specific feature which doesn't exist on other platforms, or if you're only enabling it on IPQ.
+Form letter:
 
-    This feature is BAM hardware feature so its applicable for all the QCOM Soc where bam is there. Its not IPQ specific. Will add all the explanation in cover letter in next patch
-> 
-> Some broad strokes testing instructions (at the very least) and requirements (testing on what hardware?) aren't made obvious at all here.
+You should not need MODULE_ALIAS() in normal cases. If you need it,
+usually it means your device ID table is wrong (e.g. misses either
+entries or MODULE_DEVICE_TABLE()). MODULE_ALIAS() is not a substitute
+for incomplete ID table.
 
-    Sure will update in cover letter in next patch.
-> 
-> Kind regards,
->>
->> v2:
->>   * Addressed all the comments from v1
->>   * Added the dt-binding
->>   * Added locking/unlocking mechanism in bam driver
->>
->> v1:
->>   * https://lore.kernel.org/lkml/20231214114239.2635325-1-quic_mdalam@quicinc.com/
->>   * Initial set of patches for cmd descriptor support
->>
->> Md Sadre Alam (16):
->>    dt-bindings: dma: qcom,bam: Add bam pipe lock
->>    dmaengine: qcom: bam_dma: add bam_pipe_lock dt property
->>    dmaengine: qcom: bam_dma: add LOCK & UNLOCK flag support
->>    crypto: qce - Add support for crypto address read
->>    crypto: qce - Add bam dma support for crypto register r/w
->>    crypto: qce - Convert register r/w for skcipher via BAM/DMA
->>    crypto: qce - Convert register r/w for sha via BAM/DMA
->>    crypto: qce - Convert register r/w for aead via BAM/DMA
->>    crypto: qce - Add LOCK and UNLOCK flag support
->>    crypto: qce - Add support for lock aquire,lock release api.
->>    crypto: qce - Add support for lock/unlock in skcipher
->>    crypto: qce - Add support for lock/unlock in sha
->>    crypto: qce - Add support for lock/unlock in aead
->>    arm64: dts: qcom: ipq9574: enable bam pipe locking/unlocking
->>    arm64: dts: qcom: ipq8074: enable bam pipe locking/unlocking
->>    arm64: dts: qcom: ipq6018: enable bam pipe locking/unlocking
->>
->>   .../devicetree/bindings/dma/qcom,bam-dma.yaml |   8 +
->>   arch/arm64/boot/dts/qcom/ipq6018.dtsi         |   1 +
->>   arch/arm64/boot/dts/qcom/ipq8074.dtsi         |   1 +
->>   arch/arm64/boot/dts/qcom/ipq9574.dtsi         |   1 +
->>   drivers/crypto/qce/aead.c                     |   4 +
->>   drivers/crypto/qce/common.c                   | 142 +++++++----
->>   drivers/crypto/qce/core.c                     |  13 +-
->>   drivers/crypto/qce/core.h                     |  12 +
->>   drivers/crypto/qce/dma.c                      | 232 ++++++++++++++++++
->>   drivers/crypto/qce/dma.h                      |  26 +-
->>   drivers/crypto/qce/sha.c                      |   4 +
->>   drivers/crypto/qce/skcipher.c                 |   4 +
->>   drivers/dma/qcom/bam_dma.c                    |  14 +-
->>   include/linux/dmaengine.h                     |   6 +
->>   14 files changed, 424 insertions(+), 44 deletions(-)
->>
-> 
+Best regards,
+Krzysztof
+
 
