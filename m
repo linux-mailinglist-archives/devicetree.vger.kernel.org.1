@@ -1,139 +1,131 @@
-Return-Path: <devicetree+bounces-94409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 806509556DF
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 11:46:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A9CC95570E
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 12:00:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB42C1C210A7
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 09:46:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1AC77281722
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 10:00:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 072F8149DE4;
-	Sat, 17 Aug 2024 09:46:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAA6C148857;
+	Sat, 17 Aug 2024 10:00:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rsI63r6i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="og6DfgjC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47281F507
-	for <devicetree@vger.kernel.org>; Sat, 17 Aug 2024 09:46:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73797F507;
+	Sat, 17 Aug 2024 10:00:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723887974; cv=none; b=SiGlKicy0R6C1YsqAQ0AfDR7Aj4kLvN+wKFqBfSdWuysHouSdsJ4KBA4NZfV6yjFY+fMGhTGsOJiJERDEGHY+TBJqQQfYHXO94xJYsrSYdAc8BLBQf6e3UkpqXOvu5op0naWo6/pQUz+mV39YlW+V/ZaFlZZfqGp7+Lgr0RYUc8=
+	t=1723888800; cv=none; b=HEfiUtJYA5hyNOJK7sM14uFvBfxO0HKYOyRC9R85om3bcJ5dJp0NBlruAc36ZagkIXyZtPDchvTC1tQGfI7AiCvaG2h6YGVWsEnpr7kjdA8J7F7H/oOkBMor27W7IsVaA4zG3e1rTJwcCwf0ZRVtj+ziGrGai6/g5OFJ5fmQDvY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723887974; c=relaxed/simple;
-	bh=pRB6jjAwbq5n3iepo1Uhq/05UYrGiUHreEyKsYxNTp8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Sh8HwgD/IKsDvVFm2aBxxUGD7hIOYh/MQpHOhiBYpBBhYo8kCJWLcJFkRFwY/MhVLhdlR4rWLhBZaBktL78SyxlgempLPVJbcAHrzDRr2z6XSHKCZ62suLnG7BiU/hQCc+Mj3PitFVhosR5D8lU1ruHMS1H8v7uhE0nqqPymrB4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rsI63r6i; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-37193ef72a4so938133f8f.1
-        for <devicetree@vger.kernel.org>; Sat, 17 Aug 2024 02:46:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1723887970; x=1724492770; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8zVDbexPoYK9/xw9F/1lJ7dYaXx4jW1aArgheQ/v7dU=;
-        b=rsI63r6ibiosZNGU/I8kIcBh/zEZ21PNwGo3pKUcgsOGZ88EcFAdfc0qxHmanf4qcH
-         jQYDaif0tkFZ6YCyodUG86CsE/afSzzuSYfbc45jHc8m+apqfJ0TdczCoGPvptbx7xV0
-         dYGbrNTuoS+gXJY80RNNullY0WxGkipIqOATKwrG/4EPN/1cswjip6k6L79OCBZ/GBq9
-         fiSJ/HtannoR/Vv6whjL7sW5ymyOObB/uRakIrQTj6XfrKl6MeGX/jQ9DpVKTKDaL9PV
-         UT7y5UZAdKOsrXKG87uxeZgrzVGMnnj5AQWNj6tNwBJ2PAHdamJP18jEiP+sC2xjt2Ks
-         B/ZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723887970; x=1724492770;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8zVDbexPoYK9/xw9F/1lJ7dYaXx4jW1aArgheQ/v7dU=;
-        b=Lf+3IjIRF91Y46zykncWrEJH0/ZtbOoQn/nO7yTnht16mUopDifVTq6KvkCvi4KH5p
-         w4C3AZ09JVFmE/cn2yBqWTGxmA4jLgYcqziFAXWgKaqYf8/cravYTnWYntsZMDy+QFp/
-         zl87Jwz0ouWH4pVbgAbOGzaQJUr4HHutmNX2nKxaUZ4HPeOGw6/zaaK2hxX/xPrcIsA3
-         e6bEESrV61TbTzV6i1dy1xu3jnkny1Qw4H50RWDnwrdO4CYdcX3CZZyjt14P1Ny6y2PU
-         LhEVBQLPnf7Vu7Nad0qur5oHA/iyAc38O13IOkptvAPNFc2GMuBTeTeS4ySi7hfl45xv
-         WzdA==
-X-Forwarded-Encrypted: i=1; AJvYcCVpjRKP+GLbY+M1gzEuqzhdYQwu7200rAHBIiCxXeNcKOhtl5jsq5megKiQd5FRIu78ZYTQmwSIiOiVfMvoHgmoeXC6D1B0OEFQXQ==
-X-Gm-Message-State: AOJu0YwasQ5ThEzIRYXbgY3H7I9zBnZuiZRl/Su9iqllLTtMNJDymj8E
-	zPk5uGa1H1ny2lO0DG7V7xk6o95hCMQh63jbyoEIo9EQOaqsVN0/6lqVwKkP13o=
-X-Google-Smtp-Source: AGHT+IHSZBCNPge3RyrSlkoKALJwN1ic4HFYxJS+brE6Zk7NO3r6FTp8PvLIn6jN3bvzXNHpgupzRg==
-X-Received: by 2002:a5d:5102:0:b0:371:7cd1:86ef with SMTP id ffacd0b85a97d-3719464182dmr3810954f8f.22.1723887970354;
-        Sat, 17 Aug 2024 02:46:10 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.215.209])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429ded2931asm97641815e9.17.2024.08.17.02.46.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Aug 2024 02:46:09 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Taniya Das <quic_tdas@quicinc.com>,
-	linux-arm-msm@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] dt-bindings: clock: qcom,sc7280-lpasscorecc: add top-level constraints
-Date: Sat, 17 Aug 2024 11:46:05 +0200
-Message-ID: <20240817094605.27185-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240817094605.27185-1-krzysztof.kozlowski@linaro.org>
-References: <20240817094605.27185-1-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1723888800; c=relaxed/simple;
+	bh=0I3Z/JX3w1vF12YT4+Xa5zhTim9q0NldcHx2aPBgh7o=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mb2HX7ZlsvT8ii87RdgDjXLGQFCf1obPUq+i2LN4yxzwqYeXgIGuSYOQxNiEiKpHbP8Vi4TIrwrNew/5r9e6Vv9UHnruvOGN58KzK5OHuu70dHJQFRK68CRfqndSTDkfxER6GFc92tn8sK0JxQQ6wr4BWi+0ComZGgqyCK1Sgtg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=og6DfgjC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DE02C116B1;
+	Sat, 17 Aug 2024 09:59:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723888799;
+	bh=0I3Z/JX3w1vF12YT4+Xa5zhTim9q0NldcHx2aPBgh7o=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=og6DfgjCAkZEmiH7KS3to4FVpEC+zIkQb88SO5OmOuYYzGVRKAo/pTrQF0nwOyida
+	 OwV0u9Imi5vpqhNaLrzNfoMgl2JxZsQe5oIjdkF6IcizZHF3+cyvvvLCFvFlBRyrpd
+	 yNjtBvVmk5Dxk95VvEmBmFhCt4RnLG4OjsI2B/+R/UZuCRpYTdm6YiZ88wGlQrFyft
+	 wWDdNK/8JVAOIX57axEMlCpFh89FOOPzRsd27jgZtEU2+1wAfoqwZRvZdsp1NAu+PP
+	 uppHaqFdiopgxWjkrCUDOyDHA6hhTvtnfcetLIaz6Ib67QRDHasYePVnReoWTcQQFh
+	 V2/ZRB6Tewmzw==
+Date: Sat, 17 Aug 2024 10:59:49 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-sunxi@lists.linux.dev, linux-pm@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org, quentin.schulz@free-electrons.com,
+ mripard@kernel.org, tgamblin@baylibre.com, aidanmacdonald.0x0@gmail.com,
+ u.kleine-koenig@pengutronix.de, lee@kernel.org, samuel@sholland.org,
+ jernej.skrabec@gmail.com, sre@kernel.org, wens@csie.org,
+ conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, lars@metafoo.de,
+ Chris Morgan <macromorgan@hotmail.com>, Philippe Simons
+ <simons.philippe@gmail.com>
+Subject: Re: [PATCH V2 14/15] power: supply: axp20x_battery: add support for
+ AXP717
+Message-ID: <20240817105949.2a091d13@jic23-huawei>
+In-Reply-To: <66bd1ddf.ca0a0220.13e5d4.8871@mx.google.com>
+References: <20240802192026.446344-1-macroalpha82@gmail.com>
+	<20240802192026.446344-15-macroalpha82@gmail.com>
+	<20240803121044.20481897@jic23-huawei>
+	<66bd1ddf.ca0a0220.13e5d4.8871@mx.google.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Properties with variable number of items per each device are expected to
-have widest constraints in top-level "properties:" block and further
-customized (narrowed) in "if:then:".  Add missing top-level constraints
-for reg, clocks and clock-names.
+On Wed, 14 Aug 2024 16:13:01 -0500
+Chris Morgan <macroalpha82@gmail.com> wrote:
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> On Sat, Aug 03, 2024 at 12:10:44PM +0100, Jonathan Cameron wrote:
+> > On Fri,  2 Aug 2024 14:20:25 -0500
+> > Chris Morgan <macroalpha82@gmail.com> wrote:
+> >   
+> > > From: Chris Morgan <macromorgan@hotmail.com>
+> > > 
+> > > Add support for the AXP717 PMIC battery charger. The AXP717 differs
+> > > greatly from existing AXP battery chargers in that it cannot measure
+> > > the discharge current. The datasheet does not document the current
+> > > value's offset or scale, so the POWER_SUPPLY_PROP_CURRENT_NOW is left
+> > > unscaled.
+> > > 
+> > > Tested-by: Philippe Simons <simons.philippe@gmail.com>
+> > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>  
+> > Hi.
+> > 
+> > A few drive by comments,
+> > 
+> > Jonathan
+> >   
+> > > ---
+> > >  drivers/power/supply/axp20x_battery.c | 444 ++++++++++++++++++++++++++
+> > >  1 file changed, 444 insertions(+)
+> > > 
+> > > diff --git a/drivers/power/supply/axp20x_battery.c b/drivers/power/supply/axp20x_battery.c
+> > > index c903c588b361..53af4ad0549d 100644
+> > > --- a/drivers/power/supply/axp20x_battery.c
+> > > +++ b/drivers/power/supply/axp20x_battery.c
+> > > @@ -32,9 +32,19 @@
+> > >  #include <linux/mfd/axp20x.h>
+> > >  
+> > >  #define AXP20X_PWR_STATUS_BAT_CHARGING	BIT(2)
+> > > +#define AXP717_PWR_STATUS_MASK		GENMASK(6, 5)
+> > > +#define AXP717_PWR_STATUS_BAT_STANDBY	(0 << 5)
+> > > +#define AXP717_PWR_STATUS_BAT_CHRG	(1 << 5)
+> > > +#define AXP717_PWR_STATUS_BAT_DISCHRG	(2 << 5)  
+> > 
+> > Fine to match local style in this patch, but just thought I'd
+> > comment that this driver would probably be more readable with
+> > use of FIELD_PREP and changing convention to not shift the defined
+> > values for contents of each field.
+> > 
+> > To change to that it would either need to be before this patch,
+> > or done as a follow up.  
+> 
+> I'll take your other comments and apply them, but if it's okay with
+> you I'll opt to not use FIELD_PREP/FIELD_GET for the moment, so the
+> style remains the same. I will make sure to use those macros for
+> other drivers I'm working on though as they seem handy.
+That's fine, though if you are in a position to test, it would be good to follow
+up with a tidy up of this driver as that style is much more compact and
+helps with maintenance longer term.
 
----
-
-Cc: Taniya Das <quic_tdas@quicinc.com>
----
- .../bindings/clock/qcom,sc7280-lpasscorecc.yaml      | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/clock/qcom,sc7280-lpasscorecc.yaml b/Documentation/devicetree/bindings/clock/qcom,sc7280-lpasscorecc.yaml
-index 5e6737c39897..488d63959424 100644
---- a/Documentation/devicetree/bindings/clock/qcom,sc7280-lpasscorecc.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,sc7280-lpasscorecc.yaml
-@@ -25,11 +25,17 @@ properties:
-       - qcom,sc7280-lpasscorecc
-       - qcom,sc7280-lpasshm
- 
--  reg: true
-+  reg:
-+    minItems: 1
-+    maxItems: 2
- 
--  clocks: true
-+  clocks:
-+    minItems: 1
-+    maxItems: 3
- 
--  clock-names: true
-+  clock-names:
-+    minItems: 1
-+    maxItems: 3
- 
-   '#clock-cells':
-     const: 1
--- 
-2.43.0
-
+Jonathan
 
