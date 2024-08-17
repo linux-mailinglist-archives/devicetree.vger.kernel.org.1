@@ -1,174 +1,197 @@
-Return-Path: <devicetree+bounces-94372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2490B955408
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 02:03:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02CCA9554B8
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 03:56:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9AC101F21DF7
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 00:03:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 050C41C216B7
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 01:56:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17182391;
-	Sat, 17 Aug 2024 00:03:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F5364C96;
+	Sat, 17 Aug 2024 01:56:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nnra1uTZ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="h7z2quYw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 290B433C8;
-	Sat, 17 Aug 2024 00:03:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37EC63211;
+	Sat, 17 Aug 2024 01:56:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723853003; cv=none; b=VXpIF+YbZLw937coiP53FkG/HbeX5vK+dvQel+yPnbweThWWevqKUfLEJ882put4bN3lQ5AR9J2+0vZWyHjnnx9DL1LE3UVhV6/VxIlLXSfd+jv+9Olob9ZcJ7wBxLpmVzNa44tP0b6mrR0CG1IembRjPpa6Wpiqh/jdCoqgc24=
+	t=1723859789; cv=none; b=O79lrS3nqz0nFdYQ1phhB2QhEXcqyi1503Ak3olHWaTijZJJk0R3wjbB9uzV2wp9LznoxHD5hI2f+/YvsYRdsEyO2PLR0qdmO8uIk8Pk4mvEb77+R0JmfsYPNoRiXNKBrLIK4SOm9xpmdhuxTFsoyDTHDL8Nirx7TAX1Qh5V3H8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723853003; c=relaxed/simple;
-	bh=e9uuSem2Kttw0m8S7Y1E660rH26HZu7IWsbSCqaPph8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f8YZdwgNUWIwc2IYQnH577PgKjnciD0Th2vsdkxmdKOjHSg47sdu38jK3mkGcRr9Xs8sfiqMOkrIRzwZTmSOUHn/kiRtsoXEk8QsWFPE1+NE1rDfcKSE7/tc9N/0ijJ/jznVwqILUk0hQua/Ms4IB7oEPfhPzBC+R1WMWpGHlD0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nnra1uTZ; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-1fc47abc040so20979745ad.0;
-        Fri, 16 Aug 2024 17:03:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723852999; x=1724457799; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=SPfZ22bi83kUBgSTIY60cQDgzuSRqnjYzRmmA+o3128=;
-        b=nnra1uTZaS6WT2L1F1P40+iDUIl3+dAODVxY2i/vikZJMlJv62X0tCaYds+3OjYbLG
-         iZuxbmNX6lwideLxg0NkGAiG+ni+I5q6F/ro0eHzOVxp5IBWqkDa4C0Q5/G8Ku0ZPqVx
-         q1O57a0ZGK1FkKg5V27aFfEAUEyX7aRzN6FUgY88LgVyyN/JraXOcofnoq0iVzGOrNt0
-         Ovz0oL/iyR0QUAnPdygyZ3/yH+gBWZSjYkpJ0A23YAj7nG3WRYuZrEx/mOjVxrV6kL2G
-         vdJ3mDLkes3LwW8208pC+JAyvHZyTxnvJX/Q2PnI3LK8bO1UovWMjfzpHHqBhx74CJMv
-         T8SQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723852999; x=1724457799;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SPfZ22bi83kUBgSTIY60cQDgzuSRqnjYzRmmA+o3128=;
-        b=C2loxBzWigfbEsekkdEc23fetRyivYKaEVHM/AJ7HRKZkkO7P6sXiofz1i4oG5goZP
-         9M48qN7GhVj6RE7vU8dLE61Gkt9xm2rSYRmYDAxcL30ftgdLCpBQnlQf7HugAagTjCF5
-         tDjR09OmxFH9piy8xu4zxe2kToz9ESK6ghoUF1s84M4OkrvtMRiIFYuvGebDeEq2XhtU
-         HsgW14aiDegrPTzxNxxOXXv7pzuex4e8tZiVWqfRYKfuSCOoXP4prWbMpLT9zOPh1EO/
-         DzJlojCqxloVAwz61NkEdTgp3f4+PJSAJIAsJDRWpFjFlLKuuDK7YWIZ7xmChoSS8sy3
-         QMEw==
-X-Forwarded-Encrypted: i=1; AJvYcCUgQsMaJvNJj0EKsIPKd0ZVChub6AzO/O9sAcm46jGmriV/hmuSD7+wXA9/HIlAUdC8382ps0DGWPob@vger.kernel.org, AJvYcCX4vyokoUulqU2PVPmZGD5TPP4z43lz0iCDab5406JVvCuO3Hn8hVef7KBRf7kr5QV+igr0PLJaGkL/HIw=@vger.kernel.org, AJvYcCXfUWQUcO+vlkrxnX3tmF2H81GfenzVXV8fMwUzudoWyEAurFLRMPyUj3U75a++kh38aveWv2kc4DZ7qvaH@vger.kernel.org
-X-Gm-Message-State: AOJu0YzBH6tHzJYducpGL9zlEGRPDLdg8olEXPOPcwtfzjHwA46QUG5N
-	HO5AX6PazDEnw1jzlte/6Xc+5adotSQSh8RMIZUCFph1QADag+U9
-X-Google-Smtp-Source: AGHT+IEN34pnTG+VDuE3PZEwC9pxMHZGn96deX05SD0fOSmE/9as7/OVPtl/gwkUEC/mZXDFDadKZQ==
-X-Received: by 2002:a17:903:2347:b0:1fb:8e25:e631 with SMTP id d9443c01a7336-202194465f2mr16608935ad.8.1723852999301;
-        Fri, 16 Aug 2024 17:03:19 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-201f02fb470sm30534565ad.9.2024.08.16.17.03.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Aug 2024 17:03:18 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <71d341e0-d988-41a9-bf61-c691537749fc@roeck-us.net>
-Date: Fri, 16 Aug 2024 17:03:16 -0700
+	s=arc-20240116; t=1723859789; c=relaxed/simple;
+	bh=xF4ou8X8ntZ++7VKf4djCVEPiMuqx1unD6WioySVMdc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hoq7Zfkq7iC8B73NGotQemx/cdjckpIgwDMQSCiIf8P5oYaaIYmE6JKfcTSZW8mxhk4nzPmpiGKnMTSiPD2UJm4hkIjap9LjLLmGK+G2DNjafA3gGYcTxvexduBe2ezeav2gndv4rDdY9BkOFoXOguNN4uYlQPZC/5s4AnorzDo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=h7z2quYw; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1723859787; x=1755395787;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=xF4ou8X8ntZ++7VKf4djCVEPiMuqx1unD6WioySVMdc=;
+  b=h7z2quYw5LwQecrRa2pYQ4exfJ0P1CEqAGwX5Pr0Uo8gtcRt64ZKBL/f
+   f8dzNlK1tlRWYTPUvUw/zfawv3mbPhJgI7qV0RHaZkU5O/zoJ9k52r6Gk
+   P5behUrTZhEQVat6EAr3pWnTjc8yJlZw7wrqYCAsTcdwtCUbqP4tUZzrj
+   CskBcl313jz/CpsU1BGZU2py5S9gj/f0om6yz1PISYQYLSIlPBaxcnTFm
+   zyYu+PTmSj+3ccZgDP/obPx75LN5dm+MFtT1P8T2yT3HCIg3pKd4MEH5p
+   2/el0fjs5udeUyWj/Edr6mmovqL2/hHTH/c0A0AF2obc7g9WTB602U4Bm
+   w==;
+X-CSE-ConnectionGUID: eopToTX3TJact0vu3TYVZw==
+X-CSE-MsgGUID: m4elG0I0QGWH1psW2XmEOA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11166"; a="39681435"
+X-IronPort-AV: E=Sophos;i="6.10,153,1719903600"; 
+   d="scan'208";a="39681435"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Aug 2024 18:56:26 -0700
+X-CSE-ConnectionGUID: sElGVJL6R/apUCQ+fDw9Mw==
+X-CSE-MsgGUID: JmNtofhoR/yAIWW2Qdppgw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,153,1719903600"; 
+   d="scan'208";a="59473633"
+Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
+  by fmviesa006.fm.intel.com with ESMTP; 16 Aug 2024 18:56:23 -0700
+Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sf8g1-00076c-1C;
+	Sat, 17 Aug 2024 01:56:21 +0000
+Date: Sat, 17 Aug 2024 09:56:07 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jianping.Shen@de.bosch.com, jic23@kernel.org, lars@metafoo.de,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	dima.fedrau@gmail.com, marcelo.schmitt1@gmail.com,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Christian.Lorenz3@de.bosch.com,
+	Ulrike.Frauendorf@de.bosch.com, Kai.Dolde@de.bosch.com
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v3 2/2] iio: imu: smi240: imu driver
+Message-ID: <202408170910.aR1gYef3-lkp@intel.com>
+References: <20240815152545.7705-3-Jianping.Shen@de.bosch.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] dt-bindings: hwmon/regulator: Convert ltc2978.txt to
- yaml
-To: Rob Herring <robh@kernel.org>, Frank Li <Frank.Li@nxp.com>
-Cc: Jean Delvare <jdelvare@suse.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- "open list:HARDWARE MONITORING" <linux-hwmon@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
- imx@lists.linux.dev
-References: <20240814181727.4030958-1-Frank.Li@nxp.com>
- <20240816215555.GA2302157-robh@kernel.org>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20240816215555.GA2302157-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240815152545.7705-3-Jianping.Shen@de.bosch.com>
 
-On 8/16/24 14:55, Rob Herring wrote:
-> On Wed, Aug 14, 2024 at 02:17:26PM -0400, Frank Li wrote:
->> Convert binding doc ltc2978.txt to yaml format.
->> Additional change:
->> - add i2c node.
->> - basic it is regulator according to example, move it under regulator.
->>
->> Fix below warning:
->> arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dtb: /soc/i2c@2000000/i2c-mux@77/i2c@2/regulator@5c:
->> 	failed to match any schema with compatible: ['lltc,ltc3882']
->>
->> Signed-off-by: Frank Li <Frank.Li@nxp.com>
->> ---
->>   .../devicetree/bindings/hwmon/ltc2978.txt     | 62 ------------
->>   .../bindings/regulator/lltc,ltc2972.yaml      | 94 +++++++++++++++++++
->>   2 files changed, 94 insertions(+), 62 deletions(-)
->>   delete mode 100644 Documentation/devicetree/bindings/hwmon/ltc2978.txt
->>   create mode 100644 Documentation/devicetree/bindings/regulator/lltc,ltc2972.yaml
-> 
-> I'm on the fence whether to move this...
-> 
+Hi,
 
-I don't really understand the rationale behind the move nor the rationale behind
-the rename, but then I don't really care or mind as long as no one claims that
-the _driver_ should be moved because the devicetree bindings moved.
+kernel test robot noticed the following build warnings:
 
-Note that "basic it is a regulator" is a bit stretching. The driver's regulator
-functionality must be enabled with a separate configuration option; the driver
-works perfectly fine as hardware monitoring driver if SENSORS_LTC2978_REGULATOR=n.
+[auto build test WARNING on jic23-iio/togreg]
+[also build test WARNING on linus/master v6.11-rc3 next-20240816]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Guenter
+url:    https://github.com/intel-lab-lkp/linux/commits/Jianping-Shen-de-bosch-com/dt-bindings-iio-imu-smi240-devicetree-binding/20240815-234739
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/20240815152545.7705-3-Jianping.Shen%40de.bosch.com
+patch subject: [PATCH v3 2/2] iio: imu: smi240: imu driver
+config: x86_64-randconfig-123-20240817 (https://download.01.org/0day-ci/archive/20240817/202408170910.aR1gYef3-lkp@intel.com/config)
+compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240817/202408170910.aR1gYef3-lkp@intel.com/reproduce)
 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408170910.aR1gYef3-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/iio/imu/smi240/smi240_core.c:207:9: sparse: sparse: dereference of noderef expression
+>> drivers/iio/imu/smi240/smi240_core.c:207:9: sparse: sparse: dereference of noderef expression
+>> drivers/iio/imu/smi240/smi240_core.c:207:9: sparse: sparse: dereference of noderef expression
+--
+>> drivers/iio/imu/smi240/smi240_spi.c:69:17: sparse: sparse: incorrect type in assignment (different base types) @@     expected restricted __be32 [usertype] request @@     got int @@
+   drivers/iio/imu/smi240/smi240_spi.c:69:17: sparse:     expected restricted __be32 [usertype] request
+   drivers/iio/imu/smi240/smi240_spi.c:69:17: sparse:     got int
+>> drivers/iio/imu/smi240/smi240_spi.c:70:17: sparse: sparse: invalid assignment: |=
+   drivers/iio/imu/smi240/smi240_spi.c:70:17: sparse:    left side has type restricted __be32
+   drivers/iio/imu/smi240/smi240_spi.c:70:17: sparse:    right side has type int
+   drivers/iio/imu/smi240/smi240_spi.c:71:17: sparse: sparse: invalid assignment: |=
+   drivers/iio/imu/smi240/smi240_spi.c:71:17: sparse:    left side has type restricted __be32
+   drivers/iio/imu/smi240/smi240_spi.c:71:17: sparse:    right side has type unsigned long
+>> drivers/iio/imu/smi240/smi240_spi.c:72:32: sparse: sparse: incorrect type in argument 1 (different base types) @@     expected unsigned int [usertype] data @@     got restricted __be32 [usertype] request @@
+   drivers/iio/imu/smi240/smi240_spi.c:72:32: sparse:     expected unsigned int [usertype] data
+   drivers/iio/imu/smi240/smi240_spi.c:72:32: sparse:     got restricted __be32 [usertype] request
+   drivers/iio/imu/smi240/smi240_spi.c:72:17: sparse: sparse: invalid assignment: |=
+   drivers/iio/imu/smi240/smi240_spi.c:72:17: sparse:    left side has type restricted __be32
+   drivers/iio/imu/smi240/smi240_spi.c:72:17: sparse:    right side has type unsigned char
+>> drivers/iio/imu/smi240/smi240_spi.c:73:19: sparse: sparse: cast from restricted __be32
+>> drivers/iio/imu/smi240/smi240_spi.c:89:18: sparse: sparse: incorrect type in assignment (different base types) @@     expected restricted __be32 [addressable] [usertype] response @@     got unsigned int [usertype] @@
+   drivers/iio/imu/smi240/smi240_spi.c:89:18: sparse:     expected restricted __be32 [addressable] [usertype] response
+   drivers/iio/imu/smi240/smi240_spi.c:89:18: sparse:     got unsigned int [usertype]
+>> drivers/iio/imu/smi240/smi240_spi.c:91:42: sparse: sparse: incorrect type in argument 1 (different base types) @@     expected unsigned int [usertype] data @@     got restricted __be32 [addressable] [usertype] response @@
+   drivers/iio/imu/smi240/smi240_spi.c:91:42: sparse:     expected unsigned int [usertype] data
+   drivers/iio/imu/smi240/smi240_spi.c:91:42: sparse:     got restricted __be32 [addressable] [usertype] response
+>> drivers/iio/imu/smi240/smi240_spi.c:94:20: sparse: sparse: cast to restricted __be32
+>> drivers/iio/imu/smi240/smi240_spi.c:94:20: sparse: sparse: restricted __be32 degrades to integer
+>> drivers/iio/imu/smi240/smi240_spi.c:94:20: sparse: sparse: restricted __be32 degrades to integer
+>> drivers/iio/imu/smi240/smi240_spi.c:94:18: sparse: sparse: incorrect type in assignment (different base types) @@     expected restricted __be32 [addressable] [usertype] response @@     got unsigned long @@
+   drivers/iio/imu/smi240/smi240_spi.c:94:18: sparse:     expected restricted __be32 [addressable] [usertype] response
+   drivers/iio/imu/smi240/smi240_spi.c:94:18: sparse:     got unsigned long
+   drivers/iio/imu/smi240/smi240_spi.c:108:17: sparse: sparse: incorrect type in assignment (different base types) @@     expected restricted __be32 [usertype] request @@     got int @@
+   drivers/iio/imu/smi240/smi240_spi.c:108:17: sparse:     expected restricted __be32 [usertype] request
+   drivers/iio/imu/smi240/smi240_spi.c:108:17: sparse:     got int
+   drivers/iio/imu/smi240/smi240_spi.c:109:17: sparse: sparse: invalid assignment: |=
+   drivers/iio/imu/smi240/smi240_spi.c:109:17: sparse:    left side has type restricted __be32
+   drivers/iio/imu/smi240/smi240_spi.c:109:17: sparse:    right side has type int
+   drivers/iio/imu/smi240/smi240_spi.c:110:17: sparse: sparse: invalid assignment: |=
+   drivers/iio/imu/smi240/smi240_spi.c:110:17: sparse:    left side has type restricted __be32
+   drivers/iio/imu/smi240/smi240_spi.c:110:17: sparse:    right side has type unsigned long
+   drivers/iio/imu/smi240/smi240_spi.c:111:17: sparse: sparse: invalid assignment: |=
+   drivers/iio/imu/smi240/smi240_spi.c:111:17: sparse:    left side has type restricted __be32
+   drivers/iio/imu/smi240/smi240_spi.c:111:17: sparse:    right side has type unsigned long
+   drivers/iio/imu/smi240/smi240_spi.c:112:32: sparse: sparse: incorrect type in argument 1 (different base types) @@     expected unsigned int [usertype] data @@     got restricted __be32 [usertype] request @@
+   drivers/iio/imu/smi240/smi240_spi.c:112:32: sparse:     expected unsigned int [usertype] data
+   drivers/iio/imu/smi240/smi240_spi.c:112:32: sparse:     got restricted __be32 [usertype] request
+   drivers/iio/imu/smi240/smi240_spi.c:112:17: sparse: sparse: invalid assignment: |=
+   drivers/iio/imu/smi240/smi240_spi.c:112:17: sparse:    left side has type restricted __be32
+   drivers/iio/imu/smi240/smi240_spi.c:112:17: sparse:    right side has type unsigned char
+   drivers/iio/imu/smi240/smi240_spi.c:113:19: sparse: sparse: cast from restricted __be32
+
+vim +207 drivers/iio/imu/smi240/smi240_core.c
+
+   197	
+   198	static irqreturn_t smi240_trigger_handler(int irq, void *p)
+   199	{
+   200		struct iio_poll_func *pf = p;
+   201		struct iio_dev *indio_dev = pf->indio_dev;
+   202		struct smi240_data *data = iio_priv(indio_dev);
+   203		int ret, sample, chan, i = 0;
+   204	
+   205		data->capture = SMI240_CAPTURE_ON;
+   206	
+ > 207		for_each_set_bit(chan, indio_dev->active_scan_mask,
+   208				 indio_dev->masklength) {
+   209			ret = regmap_read(data->regmap,
+   210					  SMI240_DATA_CAP_FIRST_REG + chan, &sample);
+   211			data->capture = SMI240_CAPTURE_OFF;
+   212			if (ret)
+   213				break;
+   214			data->buf[i++] = sample;
+   215		}
+   216	
+   217		if (ret == 0)
+   218			iio_push_to_buffers_with_timestamp(indio_dev, data->buf,
+   219							   pf->timestamp);
+   220	
+   221		iio_trigger_notify_done(indio_dev->trig);
+   222		return IRQ_HANDLED;
+   223	}
+   224	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
