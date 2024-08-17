@@ -1,152 +1,101 @@
-Return-Path: <devicetree+bounces-94424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94430-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A42E9557CD
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 14:32:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 783BE9557E5
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 14:48:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 547C1282F47
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 12:32:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2DC6F282C39
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 12:48:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8782A14A09F;
-	Sat, 17 Aug 2024 12:32:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s0Tl1Zy8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C56CD83CDA;
+	Sat, 17 Aug 2024 12:48:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 511FC335D3;
-	Sat, 17 Aug 2024 12:32:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from chessie.everett.org (chessie.fmt1.pfcs.com [66.220.13.234])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17E62256E;
+	Sat, 17 Aug 2024 12:48:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=66.220.13.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723897936; cv=none; b=HnScZLczRGUTRBaQrFVL1hze4e5vsJx2stiGl7Q0XqyQAGIgGNZ63he+8fhD2ggKKKmmmKT9s+NU5fSA04IZXRtMEiuJ8DK4qaAfjVCvIw5Kl5e9JvEA/rzQOoVRvUCXjnQ6LNWYcdNTU4pR62K1SCM64IB4mS8V0H3qoKebeQ4=
+	t=1723898921; cv=none; b=bjbbBXdXnsYbJpYDR8Im5CVROJff7aRqEOxZ78M1oW3+mMZvgM83/r13N+ezvU1S4KaDtkB2LOC2ChH9eexl5L/lRpQBX6N1ynSmpE+ugduN/FGG7BGG1j8FuCMcXsTrNin7kWqrfD5PH0zdkfjhiLLcc/AsTHw8tjtpwDCDFXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723897936; c=relaxed/simple;
-	bh=xTN2wrxSIweCYAg7tK0FmpUWkzt7Wz14+AV35EGYxbQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fGLL7A5/DWbBPVKNxWUbGZe8RMmIxw2Fmqn88Ll0DSQ+4lqufNHxRCwphlWsZ4PLRnAagOT2lT4rh5eEkTktxNE1el/gbplm4WGk+IRRczDt+bUTvEZCLn9GWIo/XzmOsT2YJMPFSah7KdyTDQlQWbjRIF631lUxx9n7Betuk9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s0Tl1Zy8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA36DC116B1;
-	Sat, 17 Aug 2024 12:32:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723897935;
-	bh=xTN2wrxSIweCYAg7tK0FmpUWkzt7Wz14+AV35EGYxbQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=s0Tl1Zy8k5l5zWAzQVWcthqd+YyyHM9UAbgtU0+LXeM+CuuHd20v2WcoU6L4bo79+
-	 Qu2Z1QY+7yV1tXp72PKJSm1mqYZc31slyYntODvnTjAyASRgkj0D2BCQTq95B7ihNP
-	 bw3cpr9Boz3ntRzkoDZg6kBJvUoNKpM7zB0wjQb+HP1+sz0mc/NU5QHzf7rbJ1gbOY
-	 q+ORHprkCwLhnhZ8OJ1Vamkb7JxeusaIaqy3DD3eLCk97umlKk1Tgn8Skou1TuBSdY
-	 MuJtH3y7AN/pGwFXEvfwq0ZDhI8cYNyg/KOljFM0uTxUBFqdPn9psaspI1sJT0wtNW
-	 kMXalACysKS6A==
-Date: Sat, 17 Aug 2024 13:32:07 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: barnabas.czeman@mainlining.org, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Albrieux
- <jonathan.albrieux@gmail.com>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux@mainlining.org, Danila Tikhonov <danila@jiaxyga.com>
-Subject: Re: [PATCH v3 3/4] dt-bindings: iio: imu: magnetometer: Add ak09118
-Message-ID: <20240817133207.3585371b@jic23-huawei>
-In-Reply-To: <8e4a2774-ed58-49cb-b970-b3c05c9c1daa@kernel.org>
-References: <20240809-ak09918-v3-0-6b036db4d5ec@mainlining.org>
-	<20240809-ak09918-v3-3-6b036db4d5ec@mainlining.org>
-	<1568980c-fc35-4445-a10c-8bb7fede2763@kernel.org>
-	<45dc7e6de63f5b55f6a3488a82ad5b0d@mainlining.org>
-	<8e4a2774-ed58-49cb-b970-b3c05c9c1daa@kernel.org>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1723898921; c=relaxed/simple;
+	bh=drbvFiAknhUQ6rzxBuKf7VCM9GLrY3PfjfFK1BVe9Qw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Drd6yWm1zfWgXvpwbPfizOxo0B0m1KcEA0ftKP/RBjSPY2Tg3qtT5VGbAlFYTyoaLajy2Dv2Uyyt7GBhFWCQoyueogglmt9nRQtqS54GCtFbt6PSJlSoZwO6T1yD5mjoNRrRNlqeWgxrt9tbhATMnn8sI1lnkF5ltAn+n79hDGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nwtime.org; spf=pass smtp.mailfrom=nwtime.org; arc=none smtp.client-ip=66.220.13.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nwtime.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nwtime.org
+Received: from localhost.localdomain (ip1f10f85d.dynamic.kabel-deutschland.de [31.16.248.93])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by chessie.everett.org (Postfix) with ESMTPSA id 4WmJQn06kjzMQgm;
+	Sat, 17 Aug 2024 12:42:08 +0000 (UTC)
+From: Erez Geva <erezgeva@nwtime.org>
+To: linux-mtd@lists.infradead.org,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Pratyush Yadav <pratyush@kernel.org>,
+	Michael Walle <mwalle@kernel.org>
+Cc: linux-kernel@vger.kernel.org,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	devicetree@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Erez Geva <ErezGeva2@gmail.com>
+Subject: [PATCH v3 0/4] Add support for SPI-NOR Macronix OTP
+Date: Sat, 17 Aug 2024 14:41:36 +0200
+Message-Id: <20240817124140.800637-1-erezgeva@nwtime.org>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Mon, 12 Aug 2024 08:17:52 +0200
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
+From: Erez Geva <ErezGeva2@gmail.com>
 
-> On 11/08/2024 20:28, barnabas.czeman@mainlining.org wrote:
-> > On 2024-08-10 14:15, Krzysztof Kozlowski wrote: =20
-> >> On 09/08/2024 22:25, Barnab=C3=A1s Cz=C3=A9m=C3=A1n wrote: =20
-> >>> From: Danila Tikhonov <danila@jiaxyga.com>
-> >>>
-> >>> Document asahi-kasei,ak09918 compatible. =20
-> >>
-> >> Not much improved here. =20
-> > I have removed Reviewed-by because fallback compatible is a different=20
-> > approach
-> > and I would not mind second look. =20
->=20
-> You received specific comments. You ignored them, so I replied that you
-> ignored them. And your excuse is that you ask for review? This does not
-> work like this.  Read CAREFULLY form letter below.
->=20
-> >>
-> >> <form letter>
-> >> This is a friendly reminder during the review process.
-> >>
-> >> It seems my or other reviewer's previous comments were not fully
-> >> addressed. Maybe the feedback got lost between the quotes, maybe you
-> >> just forgot to apply it. Please go back to the previous discussion and
-> >> either implement all requested changes or keep discussing them.
-> >>
-> >> Thank you.
-> >> </form letter>
-> >> =20
-> >>>
-> >>> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
-> >>> Signed-off-by: Barnab=C3=A1s Cz=C3=A9m=C3=A1n <barnabas.czeman@mainli=
-ning.org>
-> >>> ---
-> >>>  .../devicetree/bindings/iio/magnetometer/asahi-kasei,ak8975.yaml    =
- =20
-> >>>  | 3 +++
-> >>>  1 file changed, 3 insertions(+)
-> >>>
-> >>> diff --git=20
-> >>> a/Documentation/devicetree/bindings/iio/magnetometer/asahi-kasei,ak89=
-75.yaml=20
-> >>> b/Documentation/devicetree/bindings/iio/magnetometer/asahi-kasei,ak89=
-75.yaml
-> >>> index 9790f75fc669..ff93a935363f 100644
-> >>> ---=20
-> >>> a/Documentation/devicetree/bindings/iio/magnetometer/asahi-kasei,ak89=
-75.yaml
-> >>> +++=20
-> >>> b/Documentation/devicetree/bindings/iio/magnetometer/asahi-kasei,ak89=
-75.yaml
-> >>> @@ -18,6 +18,9 @@ properties:
-> >>>            - asahi-kasei,ak09911
-> >>>            - asahi-kasei,ak09912
-> >>>            - asahi-kasei,ak09916
-> >>> +      - items:
-> >>> +          - const: asahi-kasei,ak09918
-> >>> +          - const: asahi-kasei,ak09912 =20
-> >>
-> >> Why? Your driver suggests it might not be compatible... Can device bind
-> >> using ak09912 and operate up to ak09912 extend? =20
-> > It is register compatible and it can bind on 09112, as I understand=20
-> > fallback compatible =20
->=20
-> ok
->=20
-> > was a request from Connor and Jonathan in the previous round. =20
->=20
-> Not entirely, you should read comments more carefully.
-Given the device specific data is only different in terms of the ID
-register value, a fallback seems fine, but you should add to this
-patch description something to say that this device is register
-compatible etc.
+Add support for SPI-NOR Macronix OTP.
+And add MX25L12833F with OTP.
 
->=20
-> Best regards,
-> Krzysztof
->=20
+TODO:
+- Test OTP with 'flash_otp_write' and 'flash_otp_lock'
+- Question: Do we need documentations on new DT OTP parameters?
+
+v2:
+Improve description of mx25l12833f.
+Add note about mx25l12833f using the same JEDEC ID as mx25l12805d.
+
+v3:
+Improve description.
+Rename _nor_send_cmd() to spi_nor_send_cmd_internal()
+Remove MX25L12833F specific changes.
+Add reading SFDP to all Macronix chips.
+Add support of reading OTP parameters from device tree.
+Reorgenize patches to 2 SPI-NOR patches and 2 Macronix patches
+Testing with MX25L3233F using BeagleBone Black.
+Test results are in "mtd: spi-nor: macronix: add manufacturer flags" patch
+
+Erez Geva (4):
+  mtd: spi-nor: core: add manufacturer flags
+  mtd: spi-nor: core: add generic functions
+  mtd: spi-nor: macronix: add support for OTP
+  mtd: spi-nor: macronix: add manufacturer flags
+
+ drivers/mtd/spi-nor/core.c     | 166 ++++++++++++++++++++++-------
+ drivers/mtd/spi-nor/core.h     |  34 ++----
+ drivers/mtd/spi-nor/macronix.c | 186 +++++++++++++++++++++++++++++++++
+ drivers/mtd/spi-nor/otp.c      |   6 +-
+ drivers/mtd/spi-nor/winbond.c  |   2 +-
+ include/linux/mtd/spi-nor.h    |  10 ++
+ 6 files changed, 336 insertions(+), 68 deletions(-)
+
+-- 
+2.39.2
 
 
