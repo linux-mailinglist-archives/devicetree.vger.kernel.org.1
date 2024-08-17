@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-94403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 967669556A5
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 11:11:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F19C09556AC
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 11:16:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 432D8282BB9
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 09:11:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 81528B21B0C
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 09:16:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 042BF146584;
-	Sat, 17 Aug 2024 09:11:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7338613DDCD;
+	Sat, 17 Aug 2024 09:16:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o3cCfnO+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LQq2saKF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE789145B10;
-	Sat, 17 Aug 2024 09:11:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4708418054;
+	Sat, 17 Aug 2024 09:16:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723885866; cv=none; b=ij6+ZMLkuJXo1fw5aZi2HnIcKRZKng9MwxQUaCrDVwCeLnIesAs08jkuU3rKPm1UpzuzuYuO6Ag8RMEtpeJDiYv4rxX07+LGoED7feOQ1ZIe3Nwpc8Zl/EJy8iGA1PyOQ3558Vb2VGXbzr4beJqCCy5pQ+AZrOFNgxWyF0qmvl8=
+	t=1723886174; cv=none; b=mxETc9NN5MPe0TGgMUC6+Zs9qRNiQMlTYN+PYYAWfwzRn4w162Vyw3T6iVYsNPbTw+r19mDHE959C+sijjzsmCKDTeZ8eLUyWn9JoIjV4KWx8V/te+BPO6qn4Y/8G8BscpwrLPzcGzO/qtFbmG5H2yJ07fn1SeunYJ/Uj0Djn3M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723885866; c=relaxed/simple;
-	bh=URvB4JCVzwXoQzNY8U7d4UZOKGZ9b6mGU5yBRP2B/iw=;
+	s=arc-20240116; t=1723886174; c=relaxed/simple;
+	bh=GWU5g2P3TgrYgAqvKnUAT2YxAdkP+gsga4BDZM+Aicc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=clZdykJrKBfVoB+SiBzP7JL0NJzZ9N8ze+sh4iO+RTscl9yCRhYNIwCSq0Qlz2XwZ8g2YSXMM1Yz/yoXlkfcIrr9K/0TV+KkbvtpyARjL8n8mRNeefvr/FONdjlcqerKBgtUklwIa+GVhltzr808BAMLfhNnPlumRHmCuMycy1c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o3cCfnO+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF7ADC116B1;
-	Sat, 17 Aug 2024 09:10:59 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=RMXskBkrGF7FU60rBjr7QdkNwwXHhfatx3WI02bqV/MQqxRlEImO0AYixpmu9Ra+ZwYYc2Xq1y8fsN+rrg8VxVrXvxkWlTKp3G08f7kkQe4TcEGtxa1MxgYfaK+hdnV3bTP1UVjeiqEiuuLMgBZSQB9k+gXHh3PsYkqQAXYHU9s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LQq2saKF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B801C116B1;
+	Sat, 17 Aug 2024 09:16:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723885866;
-	bh=URvB4JCVzwXoQzNY8U7d4UZOKGZ9b6mGU5yBRP2B/iw=;
+	s=k20201202; t=1723886173;
+	bh=GWU5g2P3TgrYgAqvKnUAT2YxAdkP+gsga4BDZM+Aicc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=o3cCfnO+qplvhZJPrkyXFi9rca7iF/+ZIA6Kw4qSDDCWbHNDqXGpNp8BqNklRihdH
-	 YHD1PR3SiKc9BurSEAvQw9R7HhgmzoOaR4Qdv1tF/Rz1qDKG6Yz0BGKBTAPhxByMQi
-	 8ZIT4BE7DfHAA8z/t5znVnG2Sk+rr0eCCJO+tQG47nCzKpeEO0zoQ9bua9eYRyhXuG
-	 VGnAO5Z5g2b9Bhg2hjw+gvkE6Yk1tDC06vl7NSxELh2edJWqly+Z+CUOdiH0XXJyWG
-	 FsVpyPF7ftPHxr4yl8nf6xSreqo+6iJZHOp1JwZfCYu7ishTYGOSeU8Oct0gJU2lQq
-	 0UkEs3ZcsAvGw==
-Message-ID: <72cef34a-acb0-4278-984c-dadd53817b5d@kernel.org>
-Date: Sat, 17 Aug 2024 11:10:57 +0200
+	b=LQq2saKFiR1AHKMzP+NTG5XHIvGw8gmGsDZuDE9gn9ZGFvVYWLXw8dfW31v90SIOZ
+	 L2/CKJb1MXxeQtKbCIrb/PhQgECcUWOmtdSW1qqKxQbDzjZ+SpSLCBdH/cpLSMvXys
+	 UfGRiLv3zi+xlWb1dDHMlLTqi26o/B7yxCjKDpzABNZALJOYKmfCSBwlSWvmW9Sc/l
+	 zCeCeEiIZRTPdXnnu1ZaY9kEyKGjocfUI9tnYUEhul0oLBp/eebYJieYE0k/sVSYf9
+	 jqtkpIgY7mIVb3z051BOGKY3qDmijgkQjgtBaLLcN1pKdcbllf5Z09awtES1MnaEyG
+	 MyltK+TLZKFOA==
+Message-ID: <63398875-6bd1-4c58-a343-9c490a15deb2@kernel.org>
+Date: Sat, 17 Aug 2024 11:16:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 04/16] crypto: qce - Add support for crypto address
- read
-To: Md Sadre Alam <quic_mdalam@quicinc.com>, vkoul@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andersson@kernel.org, konradybcio@kernel.org, thara.gopinath@gmail.com,
- herbert@gondor.apana.org.au, davem@davemloft.net, gustavoars@kernel.org,
- u.kleine-koenig@pengutronix.de, kees@kernel.org, agross@kernel.org,
- linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-crypto@vger.kernel.org
-Cc: quic_srichara@quicinc.com, quic_varada@quicinc.com,
- quic_utiwari@quicinc.com
-References: <20240815085725.2740390-1-quic_mdalam@quicinc.com>
- <20240815085725.2740390-5-quic_mdalam@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2 1/5] MAINTAINERS: add entry for ST STM32MP25 COMBOPHY
+ driver
+To: Christian Bruel <christian.bruel@foss.st.com>, vkoul@kernel.org,
+ kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+ p.zabel@pengutronix.de
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ fabrice.gasnier@foss.st.com
+References: <20240816132058.920870-1-christian.bruel@foss.st.com>
+ <20240816132058.920870-2-christian.bruel@foss.st.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -109,85 +107,33 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240815085725.2740390-5-quic_mdalam@quicinc.com>
+In-Reply-To: <20240816132058.920870-2-christian.bruel@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/08/2024 10:57, Md Sadre Alam wrote:
-> Get crypto base address from DT. This will use for
-> command descriptor support for crypto register r/w
-> via BAM/DMA
-
-All your commit messages are oddly wrapped. This does not make reading
-it easy...
-
+On 16/08/2024 15:20, Christian Bruel wrote:
+> Add myself as STM32MP25 COMBOPHY maintainer
 > 
-> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
+> Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
 > ---
-> Change in [v2]
+>  MAINTAINERS | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> * Addressed all comments from v1
-> 
-> Change in [v1]
-> 
-> * Added support to read crypto base address from dt
-> 
->  drivers/crypto/qce/core.c | 13 ++++++++++++-
->  drivers/crypto/qce/core.h |  1 +
->  2 files changed, 13 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
-> index 28b5fd823827..9b23a948078a 100644
-> --- a/drivers/crypto/qce/core.c
-> +++ b/drivers/crypto/qce/core.c
-> @@ -192,6 +192,7 @@ static int qce_crypto_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
->  	struct qce_device *qce;
-> +	struct resource *res;
->  	int ret;
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index f328373463b0..258fb57ccff5 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -21910,6 +21910,12 @@ F:	arch/m68k/kernel/*sun3*
+>  F:	arch/m68k/sun3*/
+>  F:	drivers/net/ethernet/i825xx/sun3*
 >  
->  	qce = devm_kzalloc(dev, sizeof(*qce), GFP_KERNEL);
-> @@ -201,10 +202,16 @@ static int qce_crypto_probe(struct platform_device *pdev)
->  	qce->dev = dev;
->  	platform_set_drvdata(pdev, qce);
->  
-> -	qce->base = devm_platform_ioremap_resource(pdev, 0);
-> +	qce->base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
->  	if (IS_ERR(qce->base))
->  		return PTR_ERR(qce->base);
->  
-> +	qce->base_dma = dma_map_resource(dev, res->start,
-> +					 resource_size(res),
-> +					 DMA_BIDIRECTIONAL, 0);
-> +	if (dma_mapping_error(dev, qce->base_dma))
-> +		return -ENXIO;
-> +
->  	ret = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(32));
->  	if (ret < 0)
->  		return ret;
+> +STMICROELECTRONICS STMP32MP25 USB3/PCIE COMBOPHY DRIVER
+> +M:	Christian Bruel <christian.bruel@foss.st.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/phy/st,stm32-combophy.yaml
+> +F:	drivers/phy/st/phy-stm32-combophy.c
 
-And how do you handle error paths?
-
-
-> @@ -280,6 +287,7 @@ static int qce_crypto_probe(struct platform_device *pdev)
->  static void qce_crypto_remove(struct platform_device *pdev)
->  {
->  	struct qce_device *qce = platform_get_drvdata(pdev);
-> +	struct resource *res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->  
->  	tasklet_kill(&qce->done_tasklet);
->  	qce_unregister_algs(qce);
-> @@ -287,6 +295,9 @@ static void qce_crypto_remove(struct platform_device *pdev)
->  	clk_disable_unprepare(qce->bus);
->  	clk_disable_unprepare(qce->iface);
->  	clk_disable_unprepare(qce->core);
-> +
-> +	dma_unmap_resource(&pdev->dev, qce->base_dma, resource_size(res),
-> +			   DMA_BIDIRECTIONAL, 0);
-
-If you add code to the remove callback, not adding it to error paths is
-suspicious by itself...
+There are no such files. Organize your patchset in bisectable way.
 
 Best regards,
 Krzysztof
