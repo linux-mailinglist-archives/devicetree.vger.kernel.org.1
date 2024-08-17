@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-94404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F19C09556AC
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 11:16:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E18689556B5
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 11:21:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 81528B21B0C
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 09:16:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7E673B21B33
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 09:21:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7338613DDCD;
-	Sat, 17 Aug 2024 09:16:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4A061448D7;
+	Sat, 17 Aug 2024 09:21:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LQq2saKF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PiVnjTW7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4708418054;
-	Sat, 17 Aug 2024 09:16:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0DD213C9A2;
+	Sat, 17 Aug 2024 09:21:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723886174; cv=none; b=mxETc9NN5MPe0TGgMUC6+Zs9qRNiQMlTYN+PYYAWfwzRn4w162Vyw3T6iVYsNPbTw+r19mDHE959C+sijjzsmCKDTeZ8eLUyWn9JoIjV4KWx8V/te+BPO6qn4Y/8G8BscpwrLPzcGzO/qtFbmG5H2yJ07fn1SeunYJ/Uj0Djn3M=
+	t=1723886485; cv=none; b=XDWMK+e1335EpLMQoK3BEvlnyKwqwDZOaBG3m7/mITpmNS1HLetS2OQhqY44r8NxwUDpemujURpzDlaajW7A8ch7YFCQuOzN5cXCDXiCCXPl5yjMvBORgaZc1RgO+zTWGeR4jyqIpqfZJXz5hdMwCMUWlO7hmbhW3V4CB9ul9ZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723886174; c=relaxed/simple;
-	bh=GWU5g2P3TgrYgAqvKnUAT2YxAdkP+gsga4BDZM+Aicc=;
+	s=arc-20240116; t=1723886485; c=relaxed/simple;
+	bh=/sT6zxqHxDxqJmPGZR77JYSENoZC6dBlrV2LHRP8f34=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RMXskBkrGF7FU60rBjr7QdkNwwXHhfatx3WI02bqV/MQqxRlEImO0AYixpmu9Ra+ZwYYc2Xq1y8fsN+rrg8VxVrXvxkWlTKp3G08f7kkQe4TcEGtxa1MxgYfaK+hdnV3bTP1UVjeiqEiuuLMgBZSQB9k+gXHh3PsYkqQAXYHU9s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LQq2saKF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B801C116B1;
-	Sat, 17 Aug 2024 09:16:08 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=rm3fT81hfTTpAQErUGPekiywfrsORrnY03BC9vC7hIIUNKGibW6NEyRlCPgzUmXrvOqz78kTpN/bkhmJgS5Qo/A4dZD90Wbd4g3dvw+UezNbNYb94+tkRvYIpe761WSIpzH54LeB/dNYY4W9AVNrWLmajHHLIdK5/gFKJ2HMKIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PiVnjTW7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA150C116B1;
+	Sat, 17 Aug 2024 09:21:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723886173;
-	bh=GWU5g2P3TgrYgAqvKnUAT2YxAdkP+gsga4BDZM+Aicc=;
+	s=k20201202; t=1723886485;
+	bh=/sT6zxqHxDxqJmPGZR77JYSENoZC6dBlrV2LHRP8f34=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LQq2saKFiR1AHKMzP+NTG5XHIvGw8gmGsDZuDE9gn9ZGFvVYWLXw8dfW31v90SIOZ
-	 L2/CKJb1MXxeQtKbCIrb/PhQgECcUWOmtdSW1qqKxQbDzjZ+SpSLCBdH/cpLSMvXys
-	 UfGRiLv3zi+xlWb1dDHMlLTqi26o/B7yxCjKDpzABNZALJOYKmfCSBwlSWvmW9Sc/l
-	 zCeCeEiIZRTPdXnnu1ZaY9kEyKGjocfUI9tnYUEhul0oLBp/eebYJieYE0k/sVSYf9
-	 jqtkpIgY7mIVb3z051BOGKY3qDmijgkQjgtBaLLcN1pKdcbllf5Z09awtES1MnaEyG
-	 MyltK+TLZKFOA==
-Message-ID: <63398875-6bd1-4c58-a343-9c490a15deb2@kernel.org>
-Date: Sat, 17 Aug 2024 11:16:07 +0200
+	b=PiVnjTW7NlUKL5MRD7fumn+Kd3zcgT4xPQm5HyjHTNpw3ek8LPpp41KXug07WK2Dw
+	 sDkO01r0/w0GnuYYAzgeraZ9dhR2QkNgZQlST3o5Gk8iXAE892XjQaMEOoBdQ1+wqs
+	 5iINfMl2nJZK+jTjCHc/4woqRi53K+ydZ2wjW6xmhKkL9okAwv4TGYsbVOoVpx8/o7
+	 KOcQPTFWtpmlcKb2aA+GzLVJfZBXu0S+W6m+0vc0sRyJ8/UbekFV2eKXujGCSldq6p
+	 ioY+a6NwAqHY34zjLgVKlt3XHA+huwIiZZv+CFpYrOHf+nQYtVEcQsLMqAS7LJTzf3
+	 G2Ub3MbFtT1jA==
+Message-ID: <ac4eca9d-8a2c-49a3-86d8-0201d5078dde@kernel.org>
+Date: Sat, 17 Aug 2024 11:21:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] MAINTAINERS: add entry for ST STM32MP25 COMBOPHY
- driver
-To: Christian Bruel <christian.bruel@foss.st.com>, vkoul@kernel.org,
- kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
- p.zabel@pengutronix.de
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- fabrice.gasnier@foss.st.com
-References: <20240816132058.920870-1-christian.bruel@foss.st.com>
- <20240816132058.920870-2-christian.bruel@foss.st.com>
-Content-Language: en-US
+Subject: Re: [PATCH v2 1/5] dt-bindings: clock: qcom: Add compatible for
+ QCM6490 boards
+To: Taniya Das <quic_tdas@quicinc.com>, Bjorn Andersson
+ <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ quic_imrashai@quicinc.com, quic_jkona@quicinc.com
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240816-qcm6490-lpass-reset-v1-0-a11f33cad3c5@quicinc.com>
+ <20240816-qcm6490-lpass-reset-v1-1-a11f33cad3c5@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -107,33 +107,20 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240816132058.920870-2-christian.bruel@foss.st.com>
+In-Reply-To: <20240816-qcm6490-lpass-reset-v1-1-a11f33cad3c5@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/08/2024 15:20, Christian Bruel wrote:
-> Add myself as STM32MP25 COMBOPHY maintainer
+On 16/08/2024 10:32, Taniya Das wrote:
+> Add the new QCM6490 compatible to support the reset functionality for
+> Low Power Audio subsystem.
 > 
-> Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
-> ---
->  MAINTAINERS | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index f328373463b0..258fb57ccff5 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -21910,6 +21910,12 @@ F:	arch/m68k/kernel/*sun3*
->  F:	arch/m68k/sun3*/
->  F:	drivers/net/ethernet/i825xx/sun3*
->  
-> +STMICROELECTRONICS STMP32MP25 USB3/PCIE COMBOPHY DRIVER
-> +M:	Christian Bruel <christian.bruel@foss.st.com>
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/phy/st,stm32-combophy.yaml
-> +F:	drivers/phy/st/phy-stm32-combophy.c
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
 
-There are no such files. Organize your patchset in bisectable way.
+Subject is odd - I do not see here anything related to boards.
+
+Anyway, this is incomplete. Look at the rest of the binding - you did
+not update any part related to proper clock constraints.
 
 Best regards,
 Krzysztof
