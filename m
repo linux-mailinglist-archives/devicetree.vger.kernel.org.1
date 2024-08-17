@@ -1,123 +1,121 @@
-Return-Path: <devicetree+bounces-94386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDF9A95559E
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 07:41:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 907D09555DC
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 08:48:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BA0C1F23118
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 05:41:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4DAD2282107
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 06:48:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C74B8005B;
-	Sat, 17 Aug 2024 05:41:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B140713AD2F;
+	Sat, 17 Aug 2024 06:46:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="F6gxn1E2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jO5NTwZg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B0E46E619;
-	Sat, 17 Aug 2024 05:41:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89D4512C475;
+	Sat, 17 Aug 2024 06:46:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723873294; cv=none; b=F5QMwoY/cazCx3+1YGXk2gSJr8sqkTES7hRtb8FrHmAlygaS8A/s9LNA+DlwOhwNDA0hFRdoIgQWrhOanKW2B9ePRWq5BWzHhkDM7nwrmMVD3oE2VjGgHHy73yfy3iiY5DicLvJy7iFZ3ZWYJRuv1CEQ9SKslYjqJOMM/fJnhGs=
+	t=1723877210; cv=none; b=B2buRTon0t/1EsoYAqefUKuQTQ/jUL+305cMm50XL4d3hUtwUgKFW0Y6aRk52uEw5ULueDknGToLmtD8RbmoSnOE58EDueM6ITQ4/+6GbalG3ERExsQv66BEKlpB3uTjlk5RvH14R4Rc2OIZ2LBAjVbAKsvXE6J1FEssavy4tYg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723873294; c=relaxed/simple;
-	bh=UT3TEXjAnt6juaSW5v7iJywRiqzsU/IKcktZg/tIjHE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VCkJRtqDz881P3Auh3mzydNqngm811NKTQfeiqaXzUDL8NyuDTtHRkJRepdVQ/oU1HhW/xK2cj56o3LKiN9YjinJdtva4RlNl597Dp+/U1I3U+FqeZ5+Cihw2fTuKLRA7Yu85QCJbOVVe8ARHQbFFWvM8wr17vCF2MJGo5CtZyk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=F6gxn1E2; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1723873292; x=1755409292;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=UT3TEXjAnt6juaSW5v7iJywRiqzsU/IKcktZg/tIjHE=;
-  b=F6gxn1E2RLO47GqstEah8YgNy3xnuBb4r2KUH5sdGixYPn94JtdAu1uh
-   DnGcECE5fzNYYoF2Ov2iSHpE6OoIjCYsZKO3R4zEJgg3VmxcELy9w/3JE
-   ojcqJ1SJ75l1mAyDDy7DxiFJVYtrBA0AGj8/7jyUpmgVNkthpPyTUVpDb
-   ooORNY6u2Oqhw1NbhqlFP8mz2vx4kfsLWKOkC+VLOMHryvJmzapfv0n7F
-   6BP+MUQhjGA2yxt6sRC63sR23d7j+BXy78i5Yjq4Oxn+Kk/DR0AvOVMLq
-   Ecp5JOKQT6bhB+LAnCd5lEnMGzCDUzvSdjldL3J0Zbm6FAPVU3iCoD5oP
-   A==;
-X-CSE-ConnectionGUID: 9syPr15PQhCw3Ii2Zd5RGQ==
-X-CSE-MsgGUID: u+8MggyoQWSjPurbWU4ZSg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11166"; a="33586382"
-X-IronPort-AV: E=Sophos;i="6.10,154,1719903600"; 
-   d="scan'208";a="33586382"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Aug 2024 22:41:31 -0700
-X-CSE-ConnectionGUID: iTH+5IiAQmidIYMfmvrviw==
-X-CSE-MsgGUID: W28H85x6Tz2caN/vW2hXrQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,154,1719903600"; 
-   d="scan'208";a="64761382"
-Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
-  by orviesa005.jf.intel.com with ESMTP; 16 Aug 2024 22:41:28 -0700
-Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sfCBp-0007DG-1w;
-	Sat, 17 Aug 2024 05:41:25 +0000
-Date: Sat, 17 Aug 2024 13:40:49 +0800
-From: kernel test robot <lkp@intel.com>
-To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: oe-kbuild-all@lists.linux.dev,
-	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v12 28/28] ARM: dts: aspeed: yosemite4: fix GPIO linename
- typo
-Message-ID: <202408171324.4kdqlh1v-lkp@intel.com>
-References: <20240816092417.3651434-29-Delphine_CC_Chiu@wiwynn.com>
+	s=arc-20240116; t=1723877210; c=relaxed/simple;
+	bh=Ou8ykV0nq41DGu/BDbIlcTQcBYqK6M4uIbcoj3ngWOc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=m0ZYE5Rvn1MbWoGzXKG16xYN3s5NCjdXzm6h1rqAadyVfYKRy/FVMrSmOkFwyaC4and2DhE4k2kKOCTequDKY+HCItIKtBccZw7N8S0JnTTGXiXqyNObqkbiMhtEH2rhlFpOut0ctH2S+IKuDlWOl4CpvyAKm2bAccY8BoJ502Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jO5NTwZg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 174E1C116B1;
+	Sat, 17 Aug 2024 06:46:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723877210;
+	bh=Ou8ykV0nq41DGu/BDbIlcTQcBYqK6M4uIbcoj3ngWOc=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=jO5NTwZgpcpgj5pXDrJ01hk7vxPXsMbdiPh0k16uW+XAs9pqB/6NXO3QffdHsmtb7
+	 3fSJy7WfCrHbFEezvCbXfAJe+ejpLB3G1Ml69HCECx/44e8yszNHE5v2lC2bSorAhQ
+	 9LGJYGL0BoflRJZH9cDGPvDS9BEHIW/4ixjVrKk1Y8I4RJu4EUmxDkUz47Lxn8IZ7L
+	 p6uvBDAWkET2iZvQgvycUGMAsEWi4TnRK626fPA61W/Lg6maYhkc10LVEWLfRgj4r9
+	 DWtwbog5w64t5lLTiiYOspO7A80H1jidfXox8Lv6TxXcsKaZv9Mx4W83YVBp17Eoyg
+	 /oSngIx532RSg==
+Message-ID: <ae6c5398-8e7d-4a0c-8dfc-2227878b3090@kernel.org>
+Date: Sat, 17 Aug 2024 08:46:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240816092417.3651434-29-Delphine_CC_Chiu@wiwynn.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH] dt-bindings: arc: convert archs-pct.txt to yaml
+To: Aryabhatta Dey <aryabhattadey35@gmail.com>, vgupta@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-snps-arc@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <emosjjbdwimwevrf2ew2dpn5sdx254el5fanhhquouu4bz6nbe@zqyp5ra7bmhh>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <emosjjbdwimwevrf2ew2dpn5sdx254el5fanhhquouu4bz6nbe@zqyp5ra7bmhh>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Delphine,
+On 17/08/2024 05:26, Aryabhatta Dey wrote:
+> Convert dt-binding archs-pct from txt to yaml format.
 
-kernel test robot noticed the following build errors:
+Thanks for the work and sorry for asking, but what for? Is there anyone
+who asked about it or shown interest in doing this?
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.11-rc3 next-20240816]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+My previous messages about topics of conversions are still valid:
+https://social.kernel.org/notice/Ai9hYRUKo8suzX3zNY
+and discussion on LKML.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Delphine-CC-Chiu/ARM-dts-aspeed-yosemite4-Revise-i2c-mux-devices/20240816-173326
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240816092417.3651434-29-Delphine_CC_Chiu%40wiwynn.com
-patch subject: [PATCH v12 28/28] ARM: dts: aspeed: yosemite4: fix GPIO linename typo
-config: arm-randconfig-001-20240817 (https://download.01.org/0day-ci/archive/20240817/202408171324.4kdqlh1v-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 14.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240817/202408171324.4kdqlh1v-lkp@intel.com/reproduce)
+Best regards,
+Krzysztof
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408171324.4kdqlh1v-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   Error: arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts:1721.1-6 Label or path i3c0 not found
-   Error: arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts:1764.1-6 Label or path i3c1 not found
->> Error: arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts:1833.1-7 Label or path jtag1 not found
-   FATAL ERROR: Syntax error parsing input tree
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
