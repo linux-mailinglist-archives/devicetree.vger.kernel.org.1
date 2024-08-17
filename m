@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-94387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 907D09555DC
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 08:48:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBF0D9555F2
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 09:00:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4DAD2282107
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 06:48:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B7C01C2137C
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 07:00:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B140713AD2F;
-	Sat, 17 Aug 2024 06:46:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6279A13AD2F;
+	Sat, 17 Aug 2024 06:59:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jO5NTwZg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n1hKuioI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89D4512C475;
-	Sat, 17 Aug 2024 06:46:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BC152F23
+	for <devicetree@vger.kernel.org>; Sat, 17 Aug 2024 06:59:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723877210; cv=none; b=B2buRTon0t/1EsoYAqefUKuQTQ/jUL+305cMm50XL4d3hUtwUgKFW0Y6aRk52uEw5ULueDknGToLmtD8RbmoSnOE58EDueM6ITQ4/+6GbalG3ERExsQv66BEKlpB3uTjlk5RvH14R4Rc2OIZ2LBAjVbAKsvXE6J1FEssavy4tYg=
+	t=1723877998; cv=none; b=l9BNuIpt/XXHF96R4CvvJWXhHfZCBEJPqI0efrsy+vgN2RplpAMvL5hOzRBmP3cfrstlx/nR/4RNAqrUo844VycRV2LDDheYlGMGTCvQtiz686YO6hnH/cG3vNrZ6ncQk/wXIyBcYkC9+HrnikEPjdbGNXhsdymv2bSpMZZmMAM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723877210; c=relaxed/simple;
-	bh=Ou8ykV0nq41DGu/BDbIlcTQcBYqK6M4uIbcoj3ngWOc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=m0ZYE5Rvn1MbWoGzXKG16xYN3s5NCjdXzm6h1rqAadyVfYKRy/FVMrSmOkFwyaC4and2DhE4k2kKOCTequDKY+HCItIKtBccZw7N8S0JnTTGXiXqyNObqkbiMhtEH2rhlFpOut0ctH2S+IKuDlWOl4CpvyAKm2bAccY8BoJ502Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jO5NTwZg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 174E1C116B1;
-	Sat, 17 Aug 2024 06:46:47 +0000 (UTC)
+	s=arc-20240116; t=1723877998; c=relaxed/simple;
+	bh=t7plpLz0ko0hUe6YpD+z0MusH9PgiidodEW4lJWl63k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uin1V3b++Pl5nlGvG/P2jZMZF0jUJrVe0i47v7RWGdJjJm19W6J/fRq/z5EEPEn+twKbGOjLh/QUCDRm1PXTggcYHjADpvTMa5ssceLMWsx0nwhcls2DVymGbPwVYiViGIplWrXgsQo1btjrJJlKRsS9cwNkEAGUpFIBAHaVu8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n1hKuioI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C41E0C116B1;
+	Sat, 17 Aug 2024 06:59:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723877210;
-	bh=Ou8ykV0nq41DGu/BDbIlcTQcBYqK6M4uIbcoj3ngWOc=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=jO5NTwZgpcpgj5pXDrJ01hk7vxPXsMbdiPh0k16uW+XAs9pqB/6NXO3QffdHsmtb7
-	 3fSJy7WfCrHbFEezvCbXfAJe+ejpLB3G1Ml69HCECx/44e8yszNHE5v2lC2bSorAhQ
-	 9LGJYGL0BoflRJZH9cDGPvDS9BEHIW/4ixjVrKk1Y8I4RJu4EUmxDkUz47Lxn8IZ7L
-	 p6uvBDAWkET2iZvQgvycUGMAsEWi4TnRK626fPA61W/Lg6maYhkc10LVEWLfRgj4r9
-	 DWtwbog5w64t5lLTiiYOspO7A80H1jidfXox8Lv6TxXcsKaZv9Mx4W83YVBp17Eoyg
-	 /oSngIx532RSg==
-Message-ID: <ae6c5398-8e7d-4a0c-8dfc-2227878b3090@kernel.org>
-Date: Sat, 17 Aug 2024 08:46:45 +0200
+	s=k20201202; t=1723877997;
+	bh=t7plpLz0ko0hUe6YpD+z0MusH9PgiidodEW4lJWl63k=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=n1hKuioIuJxACPDTAHbHiaN7B63us6EVOp8hT4kUVEO2FjDCy9QFyfTzhh54quule
+	 tlTVsZLi+hIH6kpOzq/Rq6wxVpGmVuJAl47wap4ZhobhS6LZv1Yo3fwWYRvEVMw75m
+	 dALl8fZaGopnRwh2Or1kIAFYew0l5I2joJgRQ3Xv3K7Z2k5tglfw+nH46Ly8DUs1f3
+	 UrDtup32IifV64zBo3FHSyJ0o/7p71q+JQrr4UtIWJB/0+zbvGd2EeQdStXjb2Z9op
+	 Uh7y7vBJ2l3S1EIv/295Pbg9ig/ydZ6JBb1HfRjaAmKTrT4MVLR6SncWr4Cw1UlB/s
+	 Gk7FKV8Q/69CQ==
+Message-ID: <92692624-62b4-4ae4-b976-9c2497f5d498@kernel.org>
+Date: Sat, 17 Aug 2024 08:59:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,12 +50,12 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH] dt-bindings: arc: convert archs-pct.txt to yaml
-To: Aryabhatta Dey <aryabhattadey35@gmail.com>, vgupta@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-snps-arc@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <emosjjbdwimwevrf2ew2dpn5sdx254el5fanhhquouu4bz6nbe@zqyp5ra7bmhh>
+Subject: Re: [PATCH v5 1/2] dt-bindings: arm: rockchip: add support for Radxa
+ ROCK Pi E v3.0
+To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+References: <20240816213429.1093-1-naoki@radxa.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -101,19 +101,19 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <emosjjbdwimwevrf2ew2dpn5sdx254el5fanhhquouu4bz6nbe@zqyp5ra7bmhh>
+In-Reply-To: <20240816213429.1093-1-naoki@radxa.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/08/2024 05:26, Aryabhatta Dey wrote:
-> Convert dt-binding archs-pct from txt to yaml format.
+On 16/08/2024 23:34, FUKAUMI Naoki wrote:
+> Radxa ROCK Pi E v3.0 is a compact networking SBC[1] using the Rockchip
+> RK3328 chip.
+> 
+> [1] https://radxa.com/products/rockpi/pie
+> 
+> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
 
-Thanks for the work and sorry for asking, but what for? Is there anyone
-who asked about it or shown interest in doing this?
-
-My previous messages about topics of conversions are still valid:
-https://social.kernel.org/notice/Ai9hYRUKo8suzX3zNY
-and discussion on LKML.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
