@@ -1,133 +1,166 @@
-Return-Path: <devicetree+bounces-94407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06B1F9556D1
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 11:39:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E32BC9556DC
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 11:46:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 41FB81C20F30
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 09:39:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 13EA11C20E3F
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 09:46:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6400413D2BB;
-	Sat, 17 Aug 2024 09:39:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 132B814884D;
+	Sat, 17 Aug 2024 09:46:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="r0iflny2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="y0QvydZZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37E7F881E;
-	Sat, 17 Aug 2024 09:39:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC21F1386C6
+	for <devicetree@vger.kernel.org>; Sat, 17 Aug 2024 09:46:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723887570; cv=none; b=AiaOhbxaeJQbFxvEFkIbJ1xJwkPm1ju/p2mZ7DnzuULuTFNDoetnAFwpquu+wf88M8Vmf12C6ddODKc8JPxFT+vi2/Hnq+Bg9RpPGWa0zBO3drz1QZO05mCBD8f7QQ5Q/CxPM8XP+5X6FSO+2sEJqM9dLjbp4Z9bDPgzx9zK1Qo=
+	t=1723887973; cv=none; b=P/xXRPNEfpe9Tsxw1y4mO2ktSMr5y+anXrus4wfrNnGdvmAt3aQKhz9Lv98T0b6LSG+fuIwsh7Nb4GDWN1xGiRcB0T6kfNxhi7UTVMOHom367bfB1x8+dzryDadMo4URktMHBX77a+tqmaMll+oAoRZCJb/1tHI38muRS08WyDs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723887570; c=relaxed/simple;
-	bh=NwHxnvFXiBEHVX4wkLA805xaDKdcIG6rsyP1PxTXagg=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=BNJk0KX2Uz0V/HxBPAQqui6AzII61o16ZiZiqu1bcXLJLslIE9XSIEIyXKt+GHOE93HSBUpTCatn5KEZzZJvMbqCMtuUbZkAXu4uRdoq3mDih9TLWEvrlV0fkUF+n3eDp1qCUg7MnZvj5fR2gXuRQJMLpFeI9uMECIUOLdeaOmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=fail (0-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=r0iflny2 reason="key not found in DNS"; arc=none smtp.client-ip=150.107.74.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
+	s=arc-20240116; t=1723887973; c=relaxed/simple;
+	bh=CWHFcYPRtRY+Qq7QGzuma85hGAjlXR6aFEhWCuiLKXU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jVmAuMeViu3v3VfPTzmkN6d9W1CK1B50lX7dM4cJZEq3fqI2FbuuI/ULByMLfdIsnOJuzboUL5it11AgbkiwmBaR3nUunExMr6flU407jubPo0Y9ZcxysNx7P9V3KHj65+zZHRHEh65ewqfgfNOk0kiPbj2YeqnwRNWlyCN0fWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=y0QvydZZ; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-52efd855adbso3513760e87.2
+        for <devicetree@vger.kernel.org>; Sat, 17 Aug 2024 02:46:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gibson.dropbear.id.au; s=202312; t=1723887556;
-	bh=HCLJ05LKVk8qMy56162LwCE+Js/bpwEDdUsiylXDByk=;
-	h=Date:From:To:Cc:Subject:From;
-	b=r0iflny2pEDgPWnHo5wlF4hN7ra+oL++684bkDKmVDsC8Dq4t5L6+vVKBWvBx7WFL
-	 F0We+YVRhCqjXSx0zfkaQi1sgtRWJlaE5Ol8w9BP2fIaD+4xZohpYOQlN8XjNjgaOK
-	 Bfe98UPep9/9jssCoQKFeHNbwzb/k4JA9/PnRZGbSu5dIvQDgjzOvTVrOvTP3mAMB4
-	 RMSsgqsN1nUFEX3K6FZuSaH+XQdfQdPLnSFRSF9TQr9a96j2WV93TCs+8YIeOvJrnS
-	 1Xg+ilX6QRQ+BZpjrN7M0BLwrArAW6iKmctBJlI2UVQEUXoo1Y+MX25MFi1UV4whA1
-	 0VO0nQVf2dJtA==
-Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
-	id 4WmDMm2CJyz4wbv; Sat, 17 Aug 2024 19:39:16 +1000 (AEST)
-Date: Sat, 17 Aug 2024 19:38:58 +1000
-From: David Gibson <david@gibson.dropbear.id.au>
-To: devicetree-compiler@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Subject: Device Tree Compiler v1.7.1
-Message-ID: <ZsBvsq5pVv9xEPmp@zatzit>
+        d=linaro.org; s=google; t=1723887969; x=1724492769; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wog6RxrWQdPYSZMlgcH4rB8QP2t+UaAUqZpSk10hqww=;
+        b=y0QvydZZyYEJmwRen460TbOhaTGX6Ajqn+cRjUu9IcwMNxirts+7W+XKZVjppPYPL/
+         lXQtMtqaGi+FuGZJ0FyM1Y4Q30hMehvxH0Bfi74tOO/Z1Z1RdcGiJDTYb0aPhxuRZfgm
+         dThgnP9f3SVrQZRm95mJKjyPCkNKzcQJ0MiWKvfIdf/xJouluGhwQqiWynqfA3OLtyHk
+         rGUYbHdMwYbbyU66sXU8wWtCha+WAkP/6FcNKaT6JHV6mfniGrjl6ynqMiq2UO+IkK8L
+         EMzPsZ16JGTrNzmtAlCA8tqT68zT9SxkF9iwe0jMIimDycoVRkt6m77WhyJvlS4PYLdk
+         VzYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723887969; x=1724492769;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wog6RxrWQdPYSZMlgcH4rB8QP2t+UaAUqZpSk10hqww=;
+        b=bc/2iBRGvgITTWof6uQpiqDZhxBLjfkOBXEjH3UG4g1klngkGXREm4tyiPDfvfujrJ
+         vmiu6aGw5zkWrjFfO2NG8cLT6JQLHaaG9oiTd0UjosZa8HdgZ6Fj1PD13Aw8OV3L2KY1
+         wKNzycCnemWYFcRc/9NiFSJA4spUjLl5OEiuEIY98aV3cp2Nabt1WXRbo2bH5ikTK5aS
+         is8ndAnySt2KcF1UWuELNwTbUKKw9/F5dWMaHXCBOiIxfw/+mo9NBu936TCcJgRZHg0i
+         fxmODvSY9fi4J5lYrdQRcJ75pLXaaY3VQ/3skQcyNm+ijCUNkat1lWE+dLfVotvLpdgY
+         76Uw==
+X-Forwarded-Encrypted: i=1; AJvYcCUf+9wRKiskSwHvCwmVfI6fEgT/ThcNfmZJ8AhIK7ISKm1XMlphAUJMyeajR5B6/SNzyizqnjCc5cpLEKHP1U0/HX2c6J+MNG+hhQ==
+X-Gm-Message-State: AOJu0YygsMiFJmlueMdavcgvm0fLWJeMCGJjWD+zQ10uZYbIUDVEF2bm
+	BFd4YcR0XbHXJJS7p9tEfY/rWHfiZINmFNalxGI9dtONqLY859xL/l+e0Kbyh0eEAz9tQ54D6/i
+	3
+X-Google-Smtp-Source: AGHT+IERuJuUpU+XHOnVB6Mjkl8vgEL7ssVayE3dityP1pBDzL5Rj6MmNxvhvWaQNNpOeGGcTqhoWw==
+X-Received: by 2002:a05:6512:3188:b0:52d:259d:bd91 with SMTP id 2adb3069b0e04-5331c6a2764mr3473051e87.18.1723887968567;
+        Sat, 17 Aug 2024 02:46:08 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.215.209])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429ded2931asm97641815e9.17.2024.08.17.02.46.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 17 Aug 2024 02:46:07 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Taniya Das <quic_tdas@quicinc.com>,
+	linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] dt-bindings: clock: qcom,sc7280-lpasscorecc: order properties to match convention
+Date: Sat, 17 Aug 2024 11:46:04 +0200
+Message-ID: <20240817094605.27185-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="3XuU5i8a2qRevCQa"
-Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
+By convention we expect first "compatible", then "reg" and then rest.
+Order properties to match convention and what is in "required:" block.
 
---3XuU5i8a2qRevCQa
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Rob Herring pointed out it's been a year and a half since the last dtc
-release.  There haven't actually been any headline changes since then,
-but there has been a steady stream of small updates.  So, I've rolled
-up a new release.
+---
 
-As usual, the git tree can be had from:
-	git://git.kernel.org/pub/scm/utils/dtc/dtc.git
-and tarballs can be had from:
-	https://mirrors.edge.kernel.org/pub/software/utils/dtc/
+Cc: Taniya Das <quic_tdas@quicinc.com>
+---
+ .../clock/qcom,sc7280-lpasscorecc.yaml        | 21 ++++++++++---------
+ 1 file changed, 11 insertions(+), 10 deletions(-)
 
-DTC 1.7.1
+diff --git a/Documentation/devicetree/bindings/clock/qcom,sc7280-lpasscorecc.yaml b/Documentation/devicetree/bindings/clock/qcom,sc7280-lpasscorecc.yaml
+index deee5423d66e..5e6737c39897 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,sc7280-lpasscorecc.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,sc7280-lpasscorecc.yaml
+@@ -18,12 +18,6 @@ description: |
+     include/dt-bindings/clock/qcom,lpassaudiocc-sc7280.h
+ 
+ properties:
+-  clocks: true
+-
+-  clock-names: true
+-
+-  reg: true
+-
+   compatible:
+     enum:
+       - qcom,sc7280-lpassaoncc
+@@ -31,12 +25,18 @@ properties:
+       - qcom,sc7280-lpasscorecc
+       - qcom,sc7280-lpasshm
+ 
+-  power-domains:
+-    maxItems: 1
++  reg: true
++
++  clocks: true
++
++  clock-names: true
+ 
+   '#clock-cells':
+     const: 1
+ 
++  power-domains:
++    maxItems: 1
++
+   '#power-domain-cells':
+     const: 1
+ 
+@@ -57,8 +57,6 @@ required:
+   - '#clock-cells'
+   - '#power-domain-cells'
+ 
+-additionalProperties: false
+-
+ allOf:
+   - if:
+       properties:
+@@ -125,6 +123,9 @@ allOf:
+ 
+         reg:
+           maxItems: 1
++
++additionalProperties: false
++
+ examples:
+   - |
+     #include <dt-bindings/clock/qcom,rpmh.h>
+-- 
+2.43.0
 
-Changes sinve v1.7.0 include:
- * dtc
-   * Fix check for 10-bit I2C addresses
-   * Improve documentation of -@ option
-   * Update to libyaml >=3D 0.2.3
-   * Improvements & fixes for device graph checks
-   * Add -L / --local-fixups option
-   * Add check for length of interrupt-map properties
- * libfdt
-   * Add fdt_path_getprop_namelen()
-   * Add fdt_get_symbol() and fdt_get_symbol_namelen()
-   * Correct documentation of fdt_path_offset()
-   * Correct documentation of fdt_appendprop_addrrange()
-   * Validate aliases is fdt_get_alias_namelen()
-   * Don't overwrite phandles when applying overlays
-   * Require Python 3
- * pylibfdt
-   * Support boolean properties
-   * Fixes for current Python versions
- * General
-   * Assorted bugfixes
-   * Assorted build improvements
-   * Assorted typo fixes in docs
-   * Some additional testcases
-   * Move to GitHub Actions based CI
-
---=20
-David Gibson (he or they)	| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
-				| around.
-http://www.ozlabs.org/~dgibson
-
---3XuU5i8a2qRevCQa
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmbAb6EACgkQzQJF27ox
-2Ge0fRAAiIFH14WWrVJJmQBvzE0/+6okIRdaWgLh7evO2h4l6MNeJPk16GGtzgY6
-8j9FW9uH8wjy6ItHPIacP3+jkqIgaezoKx3yvoACkiigWWcc+T0Rmp0GcYepMteE
-sascc9/fEJ3fYi2+8kcnwHFwTmgAkEo6jepKWMxGam6EX0D6E9XyNg4Y3pVAmMmm
-hJR5AJl5B3QRBN41+AKyxBFbRzl6Y1frgpzxMmIx7jUDdPR7mC/b/KmuP9bUrLK7
-vFJBYmEGlFc6nOn6m0qVRJdsKW4x9IX7Gu5jVgYnSlKdtIRtxEZgusyJU5+UGIcm
-mq4ZCIAePC8T6iHDcoahuu3OZ+wcsK58ZZ9r64k+cgmVIRfm1TzzY2uc7UIqrrEC
-vnFcU4efmQ6OAriw7XRlemxuQxlUJArY6YsADc37zyJAWXizG9jvvtvi8Ft879bO
-RcSodAeaHcfLZUWkR/T6FRAzpRTqME3mac5WquDR9s3ukgpxYHj3C51ZhNT6ToqJ
-aBZQBJEhj83THxahwu80zDOb2WM/FN+zLngvnFZ7zfA0NlmDJyeAuj5BYoFz9H3x
-vqMye0RGMslH4zqqZ6v9weMKrX+IZN5p8a32ID4PXk1KXiLVzS4VLfTRG/lFPDfA
-1w1RriyyN6hPOl1D8Kd9SB2/Di1dPNk8s6NZBPRVIXcSG+fBpJI=
-=EfXn
------END PGP SIGNATURE-----
-
---3XuU5i8a2qRevCQa--
 
