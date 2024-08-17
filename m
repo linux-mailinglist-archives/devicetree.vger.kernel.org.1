@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-94400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3C4B95563A
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 09:43:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC1D7955697
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 11:08:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F2511F22A0F
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 07:43:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CFE091C20EC3
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 09:08:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95B361422D5;
-	Sat, 17 Aug 2024 07:42:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D20F146581;
+	Sat, 17 Aug 2024 09:08:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W5os2dVN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HDCQpo+D"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65DBE1422C7;
-	Sat, 17 Aug 2024 07:42:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF2C1138490;
+	Sat, 17 Aug 2024 09:08:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723880577; cv=none; b=QNk3lHjEc2CqM5Jvm4e5dGnhQCUpzYoVCWYkCrnMWO5391580whw5tCneUjyGZecaUQLRZKXloJ/FsvlGTisc37VaGpK5lAoFrcChdvN9SHCPAszogEFe4G5opZKXT2BaobhOl41sABdmoP8X9rWPq+tHdyjp9U8PcVJucoyMPU=
+	t=1723885694; cv=none; b=mC9oyI6yYh3JhLvr8oxnd062gdBtkWrS05WtJLsV3YCQSBTOjngxoNkxHLuuSJ7wr4gxvIbYnN+JbRpxZlP6nQAbUBtLUvXRFiny8NWR2f6cZbUQDFAZ2MZ3mxTVSxTesfS6t+jYdQ4xR20PXlAtlwxQTgf3Nb5pI20g2z8VCEw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723880577; c=relaxed/simple;
-	bh=L9qmGyz4KafnFl4DVDkUKTwh1bYTjIPVCMGBTJK7I5M=;
+	s=arc-20240116; t=1723885694; c=relaxed/simple;
+	bh=yTlvv0hEiNVINAWNzt/v2hzWb+3UuQD4KSKKkZHsTK4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lGxrFlgwHkxs48WAatRUA0j6nOvT7j1C2QEUCZ5nPeaNrH7XhHzzHwDl6ZXT7J/sMJ0JIr/Lylh7IMVwDxkYXqvfGshZIjirtdu3+4hJU1x08uuhLW9d2YjBfCmi5ibXcDAb/n/taF5UnzwJan6geI6Kqw0yCCWfRkIH6Pdl/TA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W5os2dVN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72498C116B1;
-	Sat, 17 Aug 2024 07:42:53 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=CL05DNk7PBdWF2oxOsAI8TbMq58Qkq2vfHrrlXLn/gv9rLeL8qbOnUutpWS0VVDitsbt6RGVoxPrO8W23VVqDspihhKrmUvYg0zPSETXJcCyWZrWhgRluNUncI0gtxyXGO712XLFnCm/RojgxBVKRgOGD6r7xLXGJ0LQWvWLm+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HDCQpo+D; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3A04C4AF0C;
+	Sat, 17 Aug 2024 09:08:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723880577;
-	bh=L9qmGyz4KafnFl4DVDkUKTwh1bYTjIPVCMGBTJK7I5M=;
+	s=k20201202; t=1723885693;
+	bh=yTlvv0hEiNVINAWNzt/v2hzWb+3UuQD4KSKKkZHsTK4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=W5os2dVNsX+1IQ7sWbe483uzAOiOGMC1CJ3ldWyHMyiWaCAaGHTDUepzTixc7sLwH
-	 w/Itb2pn5O+Ul3gdkipa2zZldxa5nUVXP2q7U1fH5QeVz+yqBT8dWJQokaV+XodhdE
-	 6JtKqjOTeOMAyVFZ7Qu3ONRS7x9j29G0TAsdu50XYY3WzfjY4OamX9ovtI6BxCf/cP
-	 NAZ92nadd9QyGmLekYY0xzSfs86qbJ8o/pucwV3qV5cmcIj0HqxcjNPc3hziuMLSR5
-	 HPcxSTYhfJ+DMGmnzVPq7jIf/7l7Uvk5ByBkqaog+QXenBJmk160TMTavK30jKtofB
-	 uHoHRXvN38dPA==
-Message-ID: <094264f7-a0b8-43f7-a405-305afb0d44e9@kernel.org>
-Date: Sat, 17 Aug 2024 09:42:51 +0200
+	b=HDCQpo+DTUUECmdsfh+B2E+s2/Gfv0CJb+1ph7hGNASPd8dOGnVv9BLCJ/EZLSpJm
+	 Ug5wUGrJG07ooh0o5A8mjtPaUeD/QNShTN4HHz3cdNwZFoza2BKYnsyW/81/4CtvqM
+	 RzraLjeg3MluCbPIuwMkO9LLZ4hMDhiTp4CY/CxG/rHruoYIH+IoTGPCA7V9tGH6lU
+	 t81+sAZqkhjN9j1LcpONZ7xtwjhC9vDfn7LzytLNUzU3DDSTXpZh8r5vZwD9lb/vCu
+	 gX53W+UEJqvL6m3rS81wrJM6ot2lyRll4vCfPxp4WCI49Ii70MBCWrY5dYfVMNDIX6
+	 LV/MNO220TcHQ==
+Message-ID: <0a2b884b-bd28-428e-be12-8fef4fdfd278@kernel.org>
+Date: Sat, 17 Aug 2024 11:08:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/6] dt-bindings: phy: Add X1E80100 UFS
-To: Marcus Glocker <marcus@nazgul.ch>, Bjorn Andersson
- <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
- Johan Hovold <johan@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
-References: <3lmcfffifsg6v3ljzxfbk25ydh6446phdff7w75k6gwoyw3jkw@ryc66frtyksk>
- <ek4lj2gz4ykry4evfzhfwxgievrgypaqilqhbfs3ascmkb4rdf@u5nfzj733i5o>
-Content-Language: en-US
+Subject: Re: [PATCH v2 01/16] dt-bindings: dma: qcom,bam: Add bam pipe lock
+To: Md Sadre Alam <quic_mdalam@quicinc.com>, vkoul@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andersson@kernel.org, konradybcio@kernel.org, thara.gopinath@gmail.com,
+ herbert@gondor.apana.org.au, davem@davemloft.net, gustavoars@kernel.org,
+ u.kleine-koenig@pengutronix.de, kees@kernel.org, agross@kernel.org,
+ linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-crypto@vger.kernel.org
+Cc: quic_srichara@quicinc.com, quic_varada@quicinc.com,
+ quic_utiwari@quicinc.com
+References: <20240815085725.2740390-1-quic_mdalam@quicinc.com>
+ <20240815085725.2740390-2-quic_mdalam@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -105,34 +108,75 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ek4lj2gz4ykry4evfzhfwxgievrgypaqilqhbfs3ascmkb4rdf@u5nfzj733i5o>
+In-Reply-To: <20240815085725.2740390-2-quic_mdalam@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/08/2024 09:09, Marcus Glocker wrote:
-> Document the qmp ufs phy compatible for the Qualcomm X1E80100.
+On 15/08/2024 10:57, Md Sadre Alam wrote:
+> BAM having pipe locking mechanism. The Lock and Un-Lock bit
+> should be set on CMD descriptor only. Upon encountering a
+> descriptor with Lock bit set, the BAM will lock all other
+> pipes not related to the current pipe group, and keep
+> handling the current pipe only until it sees the Un-Lock
+> set.
+
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+
 > 
-> Signed-off-by: Marcus Glocker <marcus@nazgul.ch>
+> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
+> ---
+> 
+> Change in [v2]
+> 
+> * Added initial support for dt-binding
+> 
+> Change in [v1]
+> 
+> * This patch was not included in [v1]
+> 
+>  Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
+> index 3ad0d9b1fbc5..91cc2942aa62 100644
+> --- a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
+> +++ b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
+> @@ -77,6 +77,12 @@ properties:
+>        Indicates that the bam is powered up by a remote processor but must be
+>        initialized by the local processor.
+>  
+> +  qcom,bam_pipe_lock:
 
-<form letter>
-This is a friendly reminder during the review process.
+Please follow DTS coding style.
 
-It looks like you received a tag and forgot to add it.
+> +    type: boolean
+> +    description:
+> +      Indicates that the bam pipe needs locking or not based on client driver
+> +      sending the LOCK or UNLOK bit set on command descriptor.
 
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
+You described the desired Linux feature or behavior, not the actual
+hardware. The bindings are about the latter, so instead you need to
+rephrase the property and its description to match actual hardware
+capabilities/features/configuration etc.
 
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+> +
+>    reg:
+>      maxItems: 1
+>  
+> @@ -92,6 +98,8 @@ anyOf:
+>        - qcom,powered-remotely
+>    - required:
+>        - qcom,controlled-remotely
+> +  - required:
+> +      - qcom,bam_pipe_lock
 
-If a tag was not added on purpose, please state why and what changed.
-</form letter>
+Why is it here? What do you want to achieve?
 
-I guess this applies everywhere...
+>    - required:
+>        - clocks
+>        - clock-names
 
 Best regards,
 Krzysztof
