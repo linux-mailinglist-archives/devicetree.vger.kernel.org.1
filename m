@@ -1,216 +1,159 @@
-Return-Path: <devicetree+bounces-94381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBADB95552E
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 05:11:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4566E95553A
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 05:29:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 710DA283122
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 03:11:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E28351F22048
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 03:29:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCC5D43178;
-	Sat, 17 Aug 2024 03:11:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 532E7F507;
+	Sat, 17 Aug 2024 03:29:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="kwQaMqBI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lScIDgoR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF64E6FD3;
-	Sat, 17 Aug 2024 03:11:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6111433C1;
+	Sat, 17 Aug 2024 03:29:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723864296; cv=none; b=mqkZqr82oOiU3BTvI4PioJeDPlPD+b9MoQtmaBex4r8NIyQeTqJrWSAYwQppykAu6o76rHE9N4InHVj+ATVoug8p8IAAVhXN32jxnFpPv0OX3tCAkawsc+hrYTSFVRrmtrs46l7SCCSLz9rSkVIrQbT9eDc0WPKVEis2gO3INoo=
+	t=1723865391; cv=none; b=pel9OcpTHuHhjeHjnrrAC8W5DLswOw6xvkJG4lU3xbr0hETWKJFTYYLj1UlJIRQsJi/j5CebXWXTOsUoIAeL8i91DZOLIWtPm1Z77fkHvENCJqlsXKlbHA+DPl0x3ttVXA/O9Dam+QahnwO9uL+aXtgAHUOFc8q/ufDSxtXvMcY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723864296; c=relaxed/simple;
-	bh=l38IdzJYOwLZtyjjLa9m/LqkWwtiawxtuHaK2D68IlM=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=KbveEyw27+Qi9cSnJg6+s7S0fbyn6IaZ0ntuNmJPF7CXmrWcezJtE3Usz5cB1jpoGcFsw+2Ezw3gLfChJKEBMbATokZ7rROnhu/4yaqw2EgyuQhinWUteaVJWozLfIwahYfY9rFol13MV7kBPhtgQq51fx40wJpomlpQMt2GTWE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=kwQaMqBI; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1723865391; c=relaxed/simple;
+	bh=YM1nETZeUDVOTFYq4eUKmA+a8rDFjWUQsCnGQDKH9HU=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=U460XBYXwIbTCsSQb1LT6rKg1VnJzcvdsyLlcsFXT4GGoICsSVmF8lMa2om6RpvFNP8SFMViJFguAqPaAeeOWvM2KPn84Ph7DPmgCRx2GiEMcfTxbcCTFGrDGVu4pvY45J0GJYCRPoClhPzX7qZuCcLHCC///SCFfDW/F9wcZLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lScIDgoR; arc=none smtp.client-ip=209.85.161.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f51.google.com with SMTP id 006d021491bc7-5daa93677e1so299909eaf.3;
+        Fri, 16 Aug 2024 20:29:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1723865389; x=1724470189; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RTyY/x86OeA5fpS9gzyMRtV3l6VUfvYcD6M+6PxGGRI=;
+        b=lScIDgoRR+JOvZNSMBAvwdPe8A0NrNfHdImfdgbbHkThCJ9ypzhBndSvXQYw0dfzTO
+         csFjq5M/IPb/aBaC1JvFQg3jMqzmC/nGMY59txOR+rjhK4uoYUR9iFboDTCFzjKjoTs1
+         Xrnz9yXmR21bX75ziqSbtKF+8Ut/d4zNI8DNfzHqo2wxho5B3OiPPvl4YnTs7r96NEb+
+         +8vfhXgxG3xTovPQ5W5ammOi16rQCubRewM1/tNpDiKuyuS2TSdZa+E+apK/ujZihHTX
+         6bFU5oO69VmrM72imewgGrVTLuliKvaq6Adclnbaq30IjSXQqatmH/UUPwkLocqnCux7
+         hizg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723865389; x=1724470189;
+        h=content-disposition:mime-version:message-id:subject:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RTyY/x86OeA5fpS9gzyMRtV3l6VUfvYcD6M+6PxGGRI=;
+        b=LPKNFw5J2nNytgI2pwFdRCGileXhlvvNsxbyefvVQEQIOLGVTFpbSrSlLLWTPL7C6h
+         B44NGKH5WUfzbmu4Wy3qWN/7OTVMjXy2+fkh+kdePAcaiRQkLYxg/vjJrP4UzvgpdPT3
+         g3oUv43Q/+4/UvuX5p2EQLSulOJ52/b2JK3Rowz5qMs+v9hYUAx8JlxnE1z54sT5+PLL
+         e3Mp2JvW/+C9xTif7NOn63UkhIwWAGcpY4nIC/JexOGkU73sS0NCjQzuWH8qivp3e4Is
+         dYZrnbX8pUyR60sbBdfPX1yvXUR6lLFanmDhDWSeQD0Wi2qYCOsYbDmyMT3TzACsMlh4
+         39WQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX4mGSt6Zr9nl5Hn7MPlP5VM4bYXdvNBZR2yfitnxrvmIruz14uO5JrlYb108IHkVsq0/Lgmv1Nn8kNn0bh@vger.kernel.org, AJvYcCXqfYjefPqb3CHgXiqFgK+iW8yGhOT3c6ts8bvIEfcPcOd8+jmZKvc4Ex9UN3sRLvtXdjuKpw3OWE6i@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy9QpTxd4MUGGtRqvT4XkkIjO1t5nEPsyBWxGOu2Ca5/wkymJC+
+	f2Z7xvVi3ZpgxjBZ6B76T+SC1GOfBOvk06sloFNSxeYE0u0LSX+6wGmUFJ+3
+X-Google-Smtp-Source: AGHT+IFbQqY6/TbfsHuYrRYQAbOuk75Xx6EmcoYD90bPnzfw1nlcCRAyX/OfCL4jlkdAGR7fWttDwA==
+X-Received: by 2002:a05:6358:7202:b0:1b1:a961:7977 with SMTP id e5c5f4694b2df-1b3932d79f7mr605156955d.29.1723865388634;
+        Fri, 16 Aug 2024 20:29:48 -0700 (PDT)
+Received: from localhost ([115.96.207.93])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2d3ac842f83sm6472300a91.37.2024.08.16.20.29.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Aug 2024 20:29:48 -0700 (PDT)
+Date: Sat, 17 Aug 2024 08:56:29 +0530
+From: Aryabhatta Dey <aryabhattadey35@gmail.com>
+To: vgupta@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, linux-snps-arc@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: [RFC PATCH] dt-bindings: arc: convert archs-pct.txt to yaml
+Message-ID: <emosjjbdwimwevrf2ew2dpn5sdx254el5fanhhquouu4bz6nbe@zqyp5ra7bmhh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1723864292;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=odkph5w0PVDl1mITUK856/Sf3iEO6l5n47FubRaBVgs=;
-	b=kwQaMqBIuqeUpD8pGTY+4isN7YnsejsZrk80UnjrwBa4yfM0eix0SWYi9q9jZgXWZmY4Zd
-	wWZveORCVtTZekiRupv8yVTqL3d32BHXbsAyI/kMzkgR4JWpE/siLGcT2Mt5yqsN0leVmG
-	w4mYe0H/1XBeYls5sovwqJwxOLtOqU3xSFOPPtN8I7DCyBSXHXvlmACLVimTLvPy7P7yko
-	fwb20S8gKajjtq5/fRdaQA6kUC65LUMdjAGnkQ5/OgtsrgM60u94INCthhybYegg+//ujN
-	BcPscnQadpyHUYJnYlvCA+2vm0ojvV+JK1jltT06cXFKL6ZZkrs3LScAMaxF/g==
-Date: Sat, 17 Aug 2024 05:11:30 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Detlev Casanova <detlev.casanova@collabora.com>
-Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiko
- Stuebner <heiko@sntech.de>, Andi Shyti <andi.shyti@kernel.org>, Jonathan
- Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Lee Jones
- <lee@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri
- Slaby <jirislaby@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>, Chris Morgan
- <macromorgan@hotmail.com>, Jonas Karlman <jonas@kwiboo.se>, Tim Lunn
- <tim@feathertop.org>, Muhammed Efe Cetin <efectn@protonmail.com>, Andy Yan
- <andyshrk@163.com>, Jagan Teki <jagan@edgeble.ai>, Sebastian Reichel
- <sebastian.reichel@collabora.com>, Shresth Prasad
- <shresthprasad7@gmail.com>, Ondrej Jirman <megi@xff.cz>, Weizhao Ouyang
- <weizhao.ouyang@arm.com>, Alexey Charkov <alchark@gmail.com>, Jimmy Hon
- <honyuenkwun@gmail.com>, Finley Xiao <finley.xiao@rock-chips.com>, Yifeng
- Zhao <yifeng.zhao@rock-chips.com>, Elaine Zhang <zhangqing@rock-chips.com>,
- Liang Chen <cl@rock-chips.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-i2c@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-serial@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCH 09/10] arm64: dts: rockchip: Add rk3576 SoC base DT
-In-Reply-To: <20240802214612.434179-10-detlev.casanova@collabora.com>
-References: <20240802214612.434179-1-detlev.casanova@collabora.com>
- <20240802214612.434179-10-detlev.casanova@collabora.com>
-Message-ID: <e794a247b52dd2fc10b470ed7df4d463@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Hello Detlev,
+Convert dt-binding archs-pct from txt to yaml format.
 
-Please see a few comments below.
+Signed-off-by: Aryabhatta Dey <aryabhattadey35@gmail.com>
+---
+ .../devicetree/bindings/arc/archs-pct.txt     | 17 ----------
+ .../bindings/arc/snps,archs-pct.yaml          | 33 +++++++++++++++++++
+ 2 files changed, 33 insertions(+), 17 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arc/archs-pct.txt
+ create mode 100644 Documentation/devicetree/bindings/arc/snps,archs-pct.yaml
 
-On 2024-08-02 23:45, Detlev Casanova wrote:
-> This device tree contains all devices necessary for booting from 
-> network
-> or SD Card.
-> 
-> It supports CPU, CRU, PM domains, dma, interrupts, timers, UART and
-> SDHCI (everything necessary to boot Linux on this system on chip) as
-> well as Ethernet, I2C, SPI and OTP.
-> 
-> Also add the necessary DT bindings for the SoC.
-> 
-> Signed-off-by: Liang Chen <cl@rock-chips.com>
-> Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
-> Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> [rebase, squash and reword commit message]
-> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> ---
+diff --git a/Documentation/devicetree/bindings/arc/archs-pct.txt b/Documentation/devicetree/bindings/arc/archs-pct.txt
+deleted file mode 100644
+index e4b9dcee6d41..000000000000
+--- a/Documentation/devicetree/bindings/arc/archs-pct.txt
++++ /dev/null
+@@ -1,17 +0,0 @@
+-* ARC HS Performance Counters
+-
+-The ARC HS can be configured with a pipeline performance monitor for counting
+-CPU and cache events like cache misses and hits. Like conventional PCT there
+-are 100+ hardware conditions dynamically mapped to up to 32 counters.
+-It also supports overflow interrupts.
+-
+-Required properties:
+-
+-- compatible : should contain
+-	"snps,archs-pct"
+-
+-Example:
+-
+-pmu {
+-        compatible = "snps,archs-pct";
+-};
+diff --git a/Documentation/devicetree/bindings/arc/snps,archs-pct.yaml b/Documentation/devicetree/bindings/arc/snps,archs-pct.yaml
+new file mode 100644
+index 000000000000..532f7584f59f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arc/snps,archs-pct.yaml
+@@ -0,0 +1,33 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/arc/snps,archs-pct.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ARC HS Performance Counters
++
++maintainers:
++  - Aryabhatta Dey <aryabhattadey35@gmail.com>
++
++description:
++  The ARC HS can be configured with a pipeline performance monitor for counting
++  CPU and cache events like cache misses and hits. Like conventional PCT there
++  are 100+ hardware conditions dynamically mapped to up to 32 counters.
++  It also supports overflow interrupts.
++
++properties:
++  compatible:
++    const: snps,archs-pct
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++
++additionalProperties: false
+-- 
+2.46.0
 
-[snip]
-
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-> b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-> new file mode 100644
-> index 0000000000000..00c4d2a153ced
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-> @@ -0,0 +1,1635 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2023 Rockchip Electronics Co., Ltd.
-> + */
-> +
-> +#include <dt-bindings/clock/rockchip,rk3576-cru.h>
-> +#include <dt-bindings/reset/rockchip,rk3576-cru.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/phy/phy.h>
-> +#include <dt-bindings/power/rk3576-power.h>
-> +#include <dt-bindings/pinctrl/rockchip.h>
-> +#include <dt-bindings/soc/rockchip,boot-mode.h>
-> +
-> +/ {
-> +	compatible = "rockchip,rk3576";
-> +
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	aliases {
-> +		ethernet0 = &gmac0;
-> +		ethernet1 = &gmac1;
-
-Please remove ethernetX aliases from the SoC dtsi.  The consensus
-is that those aliases need to be defined at the board level instead.
-
-See the commit 5d90cb1edcf7 (arm64: dts: rockchip: Remove ethernet0
-alias from the SoC dtsi for RK3399, 2023-12-12), for example, for
-more details.
-
-> +		gpio0 = &gpio0;
-> +		gpio1 = &gpio1;
-> +		gpio2 = &gpio2;
-> +		gpio3 = &gpio3;
-> +		gpio4 = &gpio4;
-> +		i2c0 = &i2c0;
-> +		i2c1 = &i2c1;
-> +		i2c2 = &i2c2;
-> +		i2c3 = &i2c3;
-> +		i2c4 = &i2c4;
-> +		i2c5 = &i2c5;
-> +		i2c6 = &i2c6;
-> +		i2c7 = &i2c7;
-> +		i2c8 = &i2c8;
-> +		i2c9 = &i2c9;
-> +		serial0 = &uart0;
-> +		serial1 = &uart1;
-> +		serial2 = &uart2;
-> +		serial3 = &uart3;
-> +		serial4 = &uart4;
-> +		serial5 = &uart5;
-> +		serial6 = &uart6;
-> +		serial7 = &uart7;
-> +		serial8 = &uart8;
-> +		serial9 = &uart9;
-> +		serial10 = &uart10;
-> +		serial11 = &uart11;
-> +		spi0 = &spi0;
-> +		spi1 = &spi1;
-> +		spi2 = &spi2;
-> +		spi3 = &spi3;
-> +		spi4 = &spi4;
-> +	};
-> +
-> +	xin32k: clock-32k {
-
-Please use "xin32k: clock-xin32k { ... }" instead, because that follows
-the recently established revised pattern for clock names.  We should 
-have
-come consistency in the new SoC dtsi additions.
-
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <32768>;
-> +		clock-output-names = "xin32k";
-> +	};
-> +
-> +	xin24m: clock-24m {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <24000000>;
-> +		clock-output-names = "xin24m";
-> +	};
-
-Please use "xin24m: clock-xin24m { ... }" instead, for the same reasons
-as already described above.
-
-> +	spll: clock-702m {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <702000000>;
-> +		clock-output-names = "spll";
-> +	};
-
-Perhaps using "spll: clock-spll { ... }" instead would also be a good
-idea, because it would improve the overall consistency.
 
