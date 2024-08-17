@@ -1,233 +1,186 @@
-Return-Path: <devicetree+bounces-94460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A7E19559A3
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 22:46:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D4DC9559D7
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 23:33:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F5D21C20AC5
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 20:46:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1FDFB20FFE
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 21:33:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA3E8155391;
-	Sat, 17 Aug 2024 20:46:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=genexis.eu header.i=@genexis.eu header.b="emidydAn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA33214375A;
+	Sat, 17 Aug 2024 21:33:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2134.outbound.protection.outlook.com [40.107.22.134])
+Received: from smtpbguseast1.qq.com (smtpbguseast1.qq.com [54.204.34.129])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DCA39460;
-	Sat, 17 Aug 2024 20:46:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.134
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723927580; cv=fail; b=N9TZxlrmtIG7Ny8agDAEl8T6SXEVvv+brdpWrQ4h/VR0JHyAkIRVNuc10HY+lKvbNrn1TZdApB0xCFipUwqYVIIDFY/tIULQLl5bt48oBvOXX97yAEEUUDW3m781XStC3QOC+Cl02QaTqgIU50r/e+cfuEOdK0OA7fBJ8rcfzKU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723927580; c=relaxed/simple;
-	bh=aDG4HT5lmxsBPub3dunv6ayv/luBHYDsDh5G3thcafk=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=bqnueXUnfrfaJhEheLz0yCE5ldN2LDWEdz7jRmwdfVC48bsV5t5cp+nf5nwokzwFdJAsG78NchjvhAqlqSWpBwgF9/2et8SChfNSbnUqtjJAaz4HGqnUdgjoZRkkh0MEMF8baKSvoOQUMibD4q0IzLlbrNMOP5hL7Uxpxqi2+F0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=genexis.eu; spf=pass smtp.mailfrom=genexis.eu; dkim=pass (1024-bit key) header.d=genexis.eu header.i=@genexis.eu header.b=emidydAn; arc=fail smtp.client-ip=40.107.22.134
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=genexis.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=genexis.eu
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DLXYGNBOJWVoiiBlSR/R8BYitDxFwlxcybctN1L4HQ2L2afT+K3oNdEBo08sp1eEGrll4JUtO2X/16wEVD3DBCWDcBprwSaKLawoDFBQTN/3bVAVYNH0MefbD3QLZrIxZGNSCg9JKeQQuGc+RVEY95k/+pMOFmm5Ib+GTDZzy+mO/xKF970LoJvEm5TYxuT0NJdLJGpuK6EYFHFS2PfWhKrOM9uKH5MaOFCCQ1hzfFmUJkysDfnUXU/AaEXFSb4uhlBxnZ+dFwK/qAyM+rn4kz/sYU1ZZ+9SXcWRs4PMhNCEA0tIsezxuPRj7wgtiI1/87+u9ZaqbayUojpW0k63Kg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9tNrGTMG+9Br7iCypM297NV5/Z8qO16vb395VLCtwgI=;
- b=tRGbtljYaO91YkRUjpgKmJO94eKLJCvnv6BDnHKs16M1IpxgbAZoNSZIz9rNKdEikDRfkqQlA7BZWDVHGb6ZtX1sr0csfSg1888eriQ0Ap//qrNzPm2DguaTpBV+jgftFOidytpRDgyYZrfMJUuakD0XtgIROSL19PGaQyQSMTYTuUklLvuEjqP9A3bCZln5eb7UElgJa56fWb+/p4ZgkbBQgegc3GCP/vWs8SCLd1Kwe1Y5acYOhBA8tkM2bCXanRuPT0fWcjhkLRJKgukB+RgMpCP5m6QDSWt3NGz6fK8ME2vgpKnlxNFyeVsnywaQiwxM2Bcz/qxsjJ6i9utHow==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=genexis.eu; dmarc=pass action=none header.from=genexis.eu;
- dkim=pass header.d=genexis.eu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=genexis.eu;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9tNrGTMG+9Br7iCypM297NV5/Z8qO16vb395VLCtwgI=;
- b=emidydAnOR62SZjTpiPTLy0Ne21CR+FZtDk1fA4HbTUdsroPjy3IHkZw2uZIsX9Joe0pQZ+nAVAoc7wScry1tcVkwb3mFqVlxLrosr5uU8f0tzXPDxwKuyEGUJJH3eyhQnw+MsRVV+HJPSvQcCBovoHHEB+YhyROLa10fvPygo4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=genexis.eu;
-Received: from AM9PR08MB6034.eurprd08.prod.outlook.com (2603:10a6:20b:2db::18)
- by AM7PR08MB5351.eurprd08.prod.outlook.com (2603:10a6:20b:dc::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.12; Sat, 17 Aug
- 2024 20:46:12 +0000
-Received: from AM9PR08MB6034.eurprd08.prod.outlook.com
- ([fe80::9ead:b6bc:10eb:ef35]) by AM9PR08MB6034.eurprd08.prod.outlook.com
- ([fe80::9ead:b6bc:10eb:ef35%4]) with mapi id 15.20.7897.010; Sat, 17 Aug 2024
- 20:46:12 +0000
-Message-ID: <1d223ae5-cd2c-4883-b293-bb182e90222b@genexis.eu>
-Date: Sat, 17 Aug 2024 22:46:10 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: airoha: Add EN7581 pinctrl
- controller
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
- Lorenzo Bianconi <lorenzo@kernel.org>, linux-gpio@vger.kernel.org,
- linus.walleij@linaro.org, sean.wang@kernel.org,
- linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com,
- krzk+dt@kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, upstream@airoha.com,
- angelogioacchino.delregno@collabora.com, conor+dt@kernel.org,
- ansuelsmth@gmail.com
-References: <cover.1723392444.git.lorenzo@kernel.org>
- <0d537e88b64847bc4e49756b249b2efdcf489b92.1723392444.git.lorenzo@kernel.org>
- <22144671-fc7c-4cb2-8bb6-ee7d3fbfcb0e@kernel.org>
- <c8a74be4-be63-477d-9460-1d5ef5e3d84a@genexis.eu>
- <20240816225257.GA2411475-robh@kernel.org>
-Content-Language: en-US
-From: Benjamin Larsson <benjamin.larsson@genexis.eu>
-In-Reply-To: <20240816225257.GA2411475-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: GV3PEPF00002BA9.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:144:1:0:6:0:e) To AM9PR08MB6034.eurprd08.prod.outlook.com
- (2603:10a6:20b:2db::18)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A253A12DD88
+	for <devicetree@vger.kernel.org>; Sat, 17 Aug 2024 21:33:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.129
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1723930407; cv=none; b=clTp3kYmA6NR4/G9a1UQsj0UMYs8wCiXVRvnuslHlJ8tzmSpQkHw8/cp1K28SCEIQOl6pv+/EyYopaUAciwONNCauQgcYtnfQrma2kZgWoKU/31fNHHkuyZbg1JTDi0Vak3X8WItoa/ffoHKQ0UHMrq18AA+FdcQO0spzP1RMus=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1723930407; c=relaxed/simple;
+	bh=bW6qeK6rawmD+O65gBKrmPETB2yJQ586fTU1ZwKSkmM=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Ifmft5zY4adthdeKoDsMOFZbWsWboeo7+c1dU7XJOANluEDvSTnDCwJsMIa4wmML1j2c5BC+qEESwkJLG97vT7p9KbLs/vBDJ3+ZwKLEi42gWyABlJOUSglcoNptCWjHsZqQY2WBAUm6MZXzXKe/rrnhKqaOUsoPkDA+LaoXXAw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.204.34.129
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: bizesmtp78t1723930341tk1l5dvc
+X-QQ-Originating-IP: yrnga0ti7bvjR48Z1W4ous1yymWrBfyK3i0t8kPdg6I=
+Received: from [192.168.159.131] ( [106.150.157.243])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Sun, 18 Aug 2024 05:32:19 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 9311570680053716800
+Message-ID: <3CD9E3AF16651DAA+6ab0bf56-89cc-493e-a87d-2e6680be566f@radxa.com>
+Date: Sun, 18 Aug 2024 06:32:18 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM9PR08MB6034:EE_|AM7PR08MB5351:EE_
-X-MS-Office365-Filtering-Correlation-Id: 01635f51-7df5-4401-7474-08dcbefda16a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?U0h3OU1wYnE3M3JQckdjRFZGQW51Zzlac3Y2cTEvZU9DbjIxcHFoK1VjMGpQ?=
- =?utf-8?B?SGVQa2FuWFM3QStpNjFLQ2ZOTWZheVhVU2ZvNm5lMC9UNUlOWDZRTEVpYkR4?=
- =?utf-8?B?L3VUVVE0c1dQTU0zVkovMlh2YmNaV3NhRFVxL1pYUVZWdFNzMGNPNnVxUGht?=
- =?utf-8?B?ZjlaYkFDckxITzZFajlrTHBITC9XcFlpcjFMZG9wc2g4L09oN0JkcUtKQkw5?=
- =?utf-8?B?SjlUa0NsM2lPazV0Z0ZkUlZRdVJNS3RTbWFuYjN3TXY0L2hoYWowNituNEZD?=
- =?utf-8?B?TGU0REFyRTF4cTl2Nk5pTXBxVGdxY2w2ZjRRdktNL3h4b0RDanlCT2dIbFV5?=
- =?utf-8?B?aXpCdmJ1NnZ4VGZ3VVhqUlJYS2RwM2Y2NUxsSU5UNVNjT1RMRWV6Z2FlZmxp?=
- =?utf-8?B?Uk9HejhVUUtteGZnQkZVdVVLbG13ek5pSG1OYm1NTnQxVzQrK05EZHhocjU5?=
- =?utf-8?B?Mk54VVVkbGt6eUw3VVd4U0EweWFXMDdXQklmOENqZXpOZk9qbHRnWDM1SjR4?=
- =?utf-8?B?eXl5M3VBMUdOLzY2a0h1YXhZbFZFK2s5L0NpRmRpcjdCUEFBZUF4K3g0RFlp?=
- =?utf-8?B?cXFEM3dJNTAxWUhqS2pqaEk5ejNGSE9kS1VRSWdJVkVOYnRjeU5OZURTUjVY?=
- =?utf-8?B?aWh5ODRIaHpHM0x6WmFYWktPZTVGcVJNSnVzQVJWb0JRdXFMZDh2UDIwNEV6?=
- =?utf-8?B?Nmx2bUE0MHJHT3dYNW41V2JFQkxFWEtUWVpGYTlubjhYalRlVHAwNkNRcTAw?=
- =?utf-8?B?U1lNaUFWNFJZU25velVzTG1YbnYxbGlWcVI5dXJUOW5hZTI2alBOMVpsaTAx?=
- =?utf-8?B?Z01Sa2drZzQrcWV4UEs0UEhuQjIxRVprUU1adEFlcXYyTjhzazZUNVVLTDFR?=
- =?utf-8?B?NlNvbEEramFkMC9pbzlzRHBoRnprU0QwcVoxNHhZZkVXVDE1Y2ZJbHpGU3dp?=
- =?utf-8?B?Z3h3Qk1jUVYzUFI1eVFTaGs1OGdNeFMzZ3NMQU5RL3F3WjFPem5lZnR3SzJ5?=
- =?utf-8?B?T0dWSWRETTZXaWp1SHVFaVpXS2pZcjJ3cFFLYzhkT2ZCMHk2U0JaeUwydHpT?=
- =?utf-8?B?ZEUrMEhQc1FIU0dxZWlheFNHR0I5L2hEUHFjTGZEeXJ5OUtMbHpoM0FwRXkr?=
- =?utf-8?B?R0JBa1BMK2k0NmFjdUxQUnJPeXZpS0hXeTF1bHNLT2dLeGpVZkthUWViWGtw?=
- =?utf-8?B?TCtPZ3JnTysrUlBoMHJZa2hvSmpmRDIrY1VhcTZLbkduNlV6RkZOV213T3NR?=
- =?utf-8?B?aTFPall1RDBYa1lJRlpvZ3NIaHRtSXRQVmtUMFpXS1NsUUVjbHE1SGFBYWo3?=
- =?utf-8?B?NzB6MnBJL2I5ZzlBVTZsem01WllEcmcyK0dlaXMxa1BTZHJRU2pGS2xsbnVv?=
- =?utf-8?B?SnJ3RndqTUJXSDRqUnpSTWxGck5yVGYwNUhhSkhhNVc5RU82TzFzMjg1Q0FQ?=
- =?utf-8?B?RHBxVy8wWmR3SmRnazNLZ2Y3b0NnYUNNMVQzME9DNUdWU09wTlVyQjBQdVlw?=
- =?utf-8?B?d2hYLzdzOGtOU01tcEpWd2tCRVJPbnJhYjRERzVJYWwvZmpVWVNiV0hYVUJt?=
- =?utf-8?B?R1dYSTVEcXBuOUU2YVJIb1hTRVp1L0Jib2M0WC9EVHNreUgvajdQZUVBM204?=
- =?utf-8?B?eXd6SkhYZVBibkNMTlIyczhlVURnbG9yamZBZmI4R05FVlk3OWRmbHB3M3Ju?=
- =?utf-8?B?SFFseUJzdGVzc0RGQVZ4TXVUZnJWdVdrd1JSYW0zWmVTa3BzVzdSSzRYeUJk?=
- =?utf-8?B?bzZoN3MyTjRPR0RYZDMrY2pOVS9jRTlnQkRaaFRtWTkvWmxYSGljQjZ5MGQ3?=
- =?utf-8?B?WDRZWUMvYzhhVVJTRE4rdz09?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR08MB6034.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?emlXZVlsbEFmQW1Mdm4rRnh0QmdySlVNQVY4UkdiM1F4OXk2aE1BbW1FVFhY?=
- =?utf-8?B?cTFRSHJsWm1HZXMwVDg3eWFQbkZZdWQraWlxYlRJb0FsQ1BRc1ZRdFltSW5n?=
- =?utf-8?B?T3l6VGIyZ2pOZnUyWXZuem9SRnNqK0hxTzhDa3BTclltdnlhL3FvaU43c0cr?=
- =?utf-8?B?ZWJadTh5bEJhQXJKVmxrakxQdFlxaE9PQXVkZS9XNEltUDlMdkRERTRCaDJ5?=
- =?utf-8?B?dVBQMWZiZVlwaS81aDMySXJ4SXROdXJ0NUpZVHFIYzRFK2tWa0ptdmppMDFm?=
- =?utf-8?B?VktBVlFKV2tOOEgxK0ZwM2lSZlVyRjMyWnJNOXJwUW83eHZ6eWlLUTNNUjRE?=
- =?utf-8?B?TzJtekVOVW5selhQWlRhUkZCQVErWU50ZGhHZGQwV1BPTUFEaW9XV3JVVjBI?=
- =?utf-8?B?b3JHWmtJQStuR1VlN05IU2ZGU2dOeU5kSVVIWnBDUy9rc0tBRTlRYTZsZHJN?=
- =?utf-8?B?T3JWUk1scGEvZERuaENFYzFlVGFBNFZqZDk1WlY2aUYwVjVKWGo3T3pBUWh2?=
- =?utf-8?B?UmN4NVBjNEN5dmttbmtIU0xGS3Y1c2ZGa0ZXdGFIUTRsSnJ2aXRMN2cvWkJ6?=
- =?utf-8?B?djc5aDB4Sjk5NUU5bFNqRlRLYjB5MStNaHlsYXo0YVJOaVp4VEllclJZQkV2?=
- =?utf-8?B?K09HY2sxM2U2MUc4d1pXNzIxekt6ZWRuOXlRa2QzMlU1MGEzWDF0ZnpGcmRF?=
- =?utf-8?B?YThPUG1aMFVIamFkM1JBdCtRQW1NdFpwVHFNUFU2cDV5R0NVVVJYU3FtRTVi?=
- =?utf-8?B?RzV0ekNISHRYTENJcC8xajFCeXZtQWV0bHBaSGRiYlBHWWxhQm5KeGlhNGgr?=
- =?utf-8?B?RldhcGxDMTd1anlxWVdxazVlSXJ3cnVBMTZyMzh4Y293cllSWmZ1SFA1QllX?=
- =?utf-8?B?b0Y4eTNrR1FrbnRGV1Z6Rk9wSkpZamhWbUNkbGxtK0dYcU1iRW81aW4xY3BP?=
- =?utf-8?B?SFJwLzJuYm45NlZOb045allKLzRWWG52dm1scWdxajBTRnZ6Qy8zcXBEcCs0?=
- =?utf-8?B?S0dlQjF1ckk0WHJLeXNXUmtsaEppcTBIdFV6OXR2djMwYTh5blNxTTR4K29a?=
- =?utf-8?B?dWZjcVM4NlhRUnh5ZzUyYXlROTkxeUxPeUZkbnlWUVVmQ2JEQ2VUQ1BiRHNq?=
- =?utf-8?B?TjRhekIzcEt0SDg1dFVETi9RaXJMazhtSXZlV3JNRjNGQmZrNmovSDdhcm1W?=
- =?utf-8?B?bmtmN0ZEUWU1RnFkT0Rob0F1cU1VeU1wMUdCbXJhc1psekpGTkQvdU5sUHZl?=
- =?utf-8?B?M1RUWXZhODNDaWNNU09KMDJ0dHZFMndvVDJXL2lZQ2x3T2FSQXBXZUJrLzBB?=
- =?utf-8?B?K2FnMU5vcDd5aHRxMytpbDI4UmltOGhpZzRZSlU0dm83WlY0OGdCdHc5TTNP?=
- =?utf-8?B?NDk2MHZmN3ppeVlMRUlkNGNTL253OW1lRmVINURDWmt2bXAraTRwQjdtcUlJ?=
- =?utf-8?B?VEd2WHZxNStncHdGTVpFSDEvZTBRUG9JRS83VDRMcGNVL2FYUmh5aE43NXJj?=
- =?utf-8?B?Vm9ZcWEzVHVWdHRnRXB6bHYvNHEvZnEvLytMc3Z0MjJGUURpcmc0bjYzVjg4?=
- =?utf-8?B?Vk5GckRwK0ZqZUpUMWljamlnQnc3RWd2aVNOTlZ3N2NicGdyUlJialBVaXNy?=
- =?utf-8?B?cVJSaWFxNGFKc2hxaHRNMEpFYXJzU0dQODZQSmsyWGJaYm9UQXRjd3pjZ3l0?=
- =?utf-8?B?cjlLbkNSeEUwVjlLdGVtMmh5S3g2M2oyd0UyZnB0SmlCeElINElFNkx0WVJi?=
- =?utf-8?B?YmgwcU84c1RJT2RrNyt6K1pqWWI1ekdUREVCWnJma2trV3d3TU1BM0pKcHQ4?=
- =?utf-8?B?UEZWZm1IWVkyZnlwbm1rRUNBNXFGSHM5bUNyYW41WGpMQ2ExNlY5YjhEY2gy?=
- =?utf-8?B?SndJeW03YjlKSGtsUXBzQS9PeThDcHh1V0NVQ0tad0Q2R2dtR2g3eFoxaWNH?=
- =?utf-8?B?ZDc4MXh4cjlqRTZMK1FxUmF3a2ZiYU1EbWxxMEVUaXZvbStkblVFbXZ2VUwy?=
- =?utf-8?B?OCtXbmFyZWtZcDNqUkhMdm14RDhjd3pobmNBaU9EYXVJV05SWFdwdmZ5aXow?=
- =?utf-8?B?T1BCcEVMRnhHMFdrYTlXK2V1c1c2UWhtR0ZnVFpSV0x0Vll3WnY3Znk1bVhT?=
- =?utf-8?B?V3hzRDZXS09Oc0VLT0hpWWVwZmp1Y1JZZGdRQnhkUFdKbkFsMjEvc2hmdzFR?=
- =?utf-8?B?WXc9PQ==?=
-X-OriginatorOrg: genexis.eu
-X-MS-Exchange-CrossTenant-Network-Message-Id: 01635f51-7df5-4401-7474-08dcbefda16a
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR08MB6034.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Aug 2024 20:46:12.5804
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8d891be1-7bce-4216-9a99-bee9de02ba58
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: o+KtyJYo7OX1VsabDl4AtkLWw9oyQJdwP3HuT8rZOz9ShdeQSN4xpK7+wrj7wvC0Wo+DENcmbSIO+OjC73hqL277fD44zlmIaesxRV8PbCg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR08MB5351
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/2] arm64: dts: rockchip: add support for Radxa ROCK
+ Pi E v3.0
+From: FUKAUMI Naoki <naoki@radxa.com>
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+References: <20240816213429.1093-1-naoki@radxa.com>
+ <20240816213429.1093-2-naoki@radxa.com> <1819066.TLkxdtWsSY@diego>
+ <85AB3D0B7214AEEA+d54aaa4a-ce0b-43ef-8cb8-ea2c2f305bcd@radxa.com>
+ <cd08ce18bde728e2b33a995834441399@manjaro.org>
+ <10ac45cf5bb5dfab9c08160c826c9b28@manjaro.org>
+ <B26198585C33E0EC+958ace8d-0f31-4fc1-acc2-f090a31fa2e6@radxa.com>
+ <79b071b69f0a3e5faac2c3daf1a4f272@manjaro.org>
+ <0CF9D1576916E834+1a310fc3-d77a-4296-818c-81800d9859cd@radxa.com>
+Content-Language: en-US
+In-Reply-To: <0CF9D1576916E834+1a310fc3-d77a-4296-818c-81800d9859cd@radxa.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
 
-On 17/08/2024 00:52, Rob Herring wrote:
->> Hi, this is by design because of the register placement in the gpio block
->> and the fact that the pwm functionality is intermixed in there also. As
->> example the following registers are all GPIOCTRL:
+for the record,
+
+ 
+https://openwrt.org/docs/guide-developer/device-support-policies#modeldevice_name
+  https://openwrt.org/docs/techref/sysupgrade
+
+--
+FUKAUMI Naoki
+Radxa Computer (Shenzhen) Co., Ltd.
+
+On 8/18/24 05:28, FUKAUMI Naoki wrote:
+> On 8/18/24 05:12, Dragan Simic wrote:
+>> On 2024-08-17 22:04, FUKAUMI Naoki wrote:
+>>> On 8/18/24 04:51, Dragan Simic wrote:
+>>>> On 2024-08-17 21:28, Dragan Simic wrote:
+>>>>> On 2024-08-17 00:20, FUKAUMI Naoki wrote:
+>>>>>> On 8/17/24 07:11, Heiko Stübner wrote:
+>>>>>>> Am Freitag, 16. August 2024, 23:34:29 CEST schrieb FUKAUMI Naoki:
+>>>>>>>> Radxa ROCK Pi E v3.0 is a compact networking SBC[1] using the 
+>>>>>>>> Rockchip
+>>>>>>>> RK3328 chip that ships in a number of RAM/eMMC/WiFi/BT 
+>>>>>>>> configurations:
+>>>>>>>>
+>>>>>>>> - Rockchip RK3328 SoC
+>>>>>>>> - Quad A53 CPU
+>>>>>>>> - 512MB/1GB/2GB DDR4 RAM
+>>>>>> (snip)
+>>>>>>> can you please describe what is different in that v3 board?
+>>>>>>> Describing what is different to require a separate board 
+>>>>>>> should've been
+>>>>>>> part of the commit message.
+>>>>>>>
+>>>>>>> Because from those changes, the bottom line currently seems to be
+>>>>>>> the same board with swapped mmc aliases?
+>>>>>>
+>>>>>> it's new board which uses DDR4 RAM (instead of DDR3 RAM on Pi E).
+>>>>>> different bootloader (U-Boot) is required.
+>>>>>>
+>>>>>> adding v3 dts seems not to be so important for Linux, but it's very
+>>>>>> important for U-Boot and OpenWrt(it includes bootloader for
+>>>>>> distributed binary).
+>>>>>
+>>>>> Aren't there different methods that allow such board variants to be
+>>>>> supported in U-Boot, with no need for a separate DT in the kernel?
+>>>>> IIRC, there are already more than a few examples of such board 
+>>>>> variants,
+>>>>> which require different DRAM initialization, which is covered in 
+>>>>> U-Boot
+>>>>> by providing different builds that use the same DT.
+>>>>
+>>>> As an example, please have a look at the following files in U-Boot:
+>>>>
+>>>> - arch/arm/dts/rk3399-nanopi-m4-u-boot.dtsi
+>>>> - arch/arm/dts/rk3399-nanopi-m4-2gb-u-boot.dtsi
+>>>> - configs/nanopi-m4-rk3399_defconfig
+>>>> - configs/nanopi-m4-2gb-rk3399_defconfig
+>>>>
+>>>> Basically, there's no need for separate DTs in the kernel, just to 
+>>>> support
+>>>> board variants with different DRAM types in U-Boot.
+>>>
+>>> OpenWrt firmware upgrading tool (sysupgrade) refers "compatible"
+>>> string to validate new firmware file is surely "for this board".
+>>>
+>>> currently both Pi E dts have "radxa,rockpi-e", it makes flashing wrong
+>>> firmware (include bootloaer, U-Boot) possible.
 >>
->> <0x0 0x1fbf0200 0x0 0x4>,
->> <0x0 0x1fbf0220 0x0 0x4>,
->> <0x0 0x1fbf0260 0x0 0x4>,
->> <0x0 0x1fbf0264 0x0 0x4>,
+>> Could you, please, explain what's the actual issue with OpenWrt?  I did
+>> read some GitHub issue that described it, IIRC, but I was unable to fully
+>> understand what's the underlying issue.
+> 
+> $ wget 
+> https://downloads.openwrt.org/snapshots/targets/rockchip/armv8/openwrt-rockchip-armv8-radxa_rock-pi-e-ext4-sysupgrade.img.gz
+> $ strings openwrt-rockchip-armv8-radxa_rock-pi-e-ext4-sysupgrade.img.gz 
+> | grep metadata
+> {  "metadata_version": "1.1", "compat_version": "1.0", 
+> "supported_devices":["radxa,rock-pi-e"], "version": { "dist": "OpenWrt", 
+> "version": "SNAPSHOT", "revision": "r27160-b72c4b5386", "target": 
+> "rockchip/armv8", "board": "radxa_rock-pi-e" } }
+> 
+> $ wget 
+> https://downloads.openwrt.org/snapshots/targets/rockchip/armv8/openwrt-rockchip-armv8-radxa_rock-pi-e-v3-ext4-sysupgrade.img.gz
+> $ strings 
+> openwrt-rockchip-armv8-radxa_rock-pi-e-v3-ext4-sysupgrade.img.gz | grep 
+> metadata
+> {  "metadata_version": "1.1", "compat_version": "1.0", 
+> "supported_devices":["radxa,rock-pi-e-v3"], "version": { "dist": 
+> "OpenWrt", "version": "SNAPSHOT", "revision": "r27160-b72c4b5386", 
+> "target": "rockchip/armv8", "board": "radxa_rock-pi-e-v3" } }
+> 
+> since they are incompatible firmware, it needs to have different 
+> "supported_devices" string. if both are "radxa,rockpi-e", firmware 
+> validation will not work correctly.
+> 
+> (currently both values are wrong, it needs to be fixed, but it's another 
+> story)
+> 
+>>> Radxa ROCK Pi E v1.x(DDR3) and ROCK Pi E v3(DDR4) are different
+>>> incompatible boards, it must have different "compatible" string.
 >>
->> To simplify the driver code logic the complexity is moved to the dts because
->> of that.
-> DT to OS is an ABI. Don't put the complexity there. The driver is easy
-> to change.
->
-> Lot's of h/w blocks are just bit soup. This is not special. If a few
-> regions is helpful, then that would be fine.
->
-> Rob
-
-Hi, the pwm functionality is to blame.
-
-The following is the logic that populates the direction registers 
-(GPIOCTRL).
-
-     for (i = 0; i < ARRAY_SIZE(pinctrl->gpiochip.dir); i++) {
-         ptr = devm_platform_ioremap_resource(pdev, index++);
-         if (IS_ERR(ptr))
-             return dev_err_probe(dev, PTR_ERR(ptr),
-                          "failed to map gpio dir regs\n");
-
-         pinctrl->gpiochip.dir[i] = ptr;
-     }
-
-
-As example in between 0x1fbf0200, 0x1fbf0220 and 0x1fbf0260 we have pwm 
-related registers.
-
-The gpio block could if I count it correctly be split into 8+ regions. 
-The dts list contain 18 rows related to the gpio block. So the savings 
-would be ca 10 rows but a register mapping list in the driver would be 
-needed instead.
-
-Is that savings worth the addition of a register lookup table ?
-
-MvH
-
-Benjamin Larsson
-
+>> Well, the above-mentioned Nano Pi M4 boards share the same DT and the 
+>> same
+>> "compatible" value, because for all consumers of the DT, except for 
+>> U-Boot
+>> that can already handle the differences, they are the same boards.
+> 
+> (un)fortunately Nano Pi M4 boards seems not to be supported by OpenWrt
+> 
+>   https://downloads.openwrt.org/snapshots/targets/rockchip/armv8/
+> 
+> Best regards,
+> 
+> -- 
+> FUKAUMI Naoki
+> Radxa Computer (Shenzhen) Co., Ltd.
 
