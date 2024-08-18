@@ -1,152 +1,95 @@
-Return-Path: <devicetree+bounces-94517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC3AF955CEF
-	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 16:22:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E57A9955CF4
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 16:24:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2724C1C209CF
-	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 14:22:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1DDB281C64
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 14:24:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C98057581F;
-	Sun, 18 Aug 2024 14:22:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C784E7D405;
+	Sun, 18 Aug 2024 14:24:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pMyeaN6K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xq7IggzJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F2381FDA;
-	Sun, 18 Aug 2024 14:22:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AED441760;
+	Sun, 18 Aug 2024 14:24:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723990936; cv=none; b=O8U28L+RUkn4/neUVMP761CTU5diGF/1PaNOoMc/Vom+W0KNTOSzN5HbGxjBueKtuIvSAwG8G5HWSuVy9CHBgSrP60P4/1+A+/qo8BrAgf5/yEDNSYWbUQ0kSshBpSWdhUlhOYwm8zLli7KH8OVOkDrStwiKAXu0lSwCN+DiN1w=
+	t=1723991044; cv=none; b=HE2PU27/u0RDOx9JcpcPBi1nnFA/f29F37IxWlPEMrYoivEDfpCEVm9LCTCQilkk3SP0UZJfPX7RomJAhZVIO6tNGn8U7zvpqC9gquYxmyVWMzyozHZHkH88fqF8eyQ7WecGnr1e+nEHn5ICTBy1PgZXgRkax6ChKG9cGnR65NM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723990936; c=relaxed/simple;
-	bh=bS8ze1d0ffQtXAWwdn7UmuJx/sv0gAVsbFsxPJ/9qWY=;
+	s=arc-20240116; t=1723991044; c=relaxed/simple;
+	bh=p3xChge9ucTtWR9EXLrqY/hgcj62+4knZXEk2TA3eQY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jh/p4IowEMDaOZpy5qFfQPpayU1T58UmcZh07AUhbFSc7Phcpg+0oi1qCWXnFDm85EGJK8mxHHBEtDQ9ZQPiwH/PME0HR8lhosM0cvBqZhYgAKLC2qJ36k91eSOePhv3rRrM9wgvlbJnb0Q/QXRLVbVsAMJ/X1CGWbq1TuraeoE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pMyeaN6K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FB2BC32786;
-	Sun, 18 Aug 2024 14:22:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=pCZafa06Ay+QhdB4lPyReuSTHA/BvkTvrKye+2oRPkdflvrSSJooEvum4olZfRK6gzyIbLCvGEMUzAaEItOFSuW/HHl0tSJ34cBb1NOv/NqfmSO/b8uedBv3oJ/k24BLGt+4c+4Rnb9bBdrzBPSDAPxwuIGmqXMvQBvRcR6MNFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xq7IggzJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFE5CC32786;
+	Sun, 18 Aug 2024 14:24:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723990936;
-	bh=bS8ze1d0ffQtXAWwdn7UmuJx/sv0gAVsbFsxPJ/9qWY=;
+	s=k20201202; t=1723991044;
+	bh=p3xChge9ucTtWR9EXLrqY/hgcj62+4knZXEk2TA3eQY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pMyeaN6K0vCXdW3b0EH79I/mIztfWQTpDdTc5VASsqSnCn2xrY1DKct9HJ6o2WEv0
-	 tRaT+ih1+YeoklkXoaRxK1NRbX+ZU8H9Y2yl6DDitLFiQHc6byM8QdCMNEMFNwW0jS
-	 VooXAVt52TBsttcw5xHOiXE29u85iIF5P+9nuqvbcyzRHgtxo9hCdsnXVntAQV6uRf
-	 SFUuvjpM7LBEVwY9BSwzqkJ06Q2NZ472yunGidodW8oPGoz89xHtLKEMkCABMz35dZ
-	 f2+UL5dkFSs8xFp/I/ditoN2guTc3p5uDEfNyDENgBuoxlAm0O+QM3k2TLocn0QEyx
-	 WbLcOd8nO8pEA==
-Date: Sun, 18 Aug 2024 16:22:10 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Benjamin Larsson <benjamin.larsson@genexis.eu>,
-	Krzysztof Kozlowski <krzk@kernel.org>, linux-gpio@vger.kernel.org,
-	linus.walleij@linaro.org, sean.wang@kernel.org,
-	linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com,
-	krzk+dt@kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com, conor+dt@kernel.org,
-	ansuelsmth@gmail.com
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: airoha: Add EN7581 pinctrl
- controller
-Message-ID: <ZsIDkg0qWb9tXNqt@lore-rh-laptop>
-References: <cover.1723392444.git.lorenzo@kernel.org>
- <0d537e88b64847bc4e49756b249b2efdcf489b92.1723392444.git.lorenzo@kernel.org>
- <22144671-fc7c-4cb2-8bb6-ee7d3fbfcb0e@kernel.org>
- <c8a74be4-be63-477d-9460-1d5ef5e3d84a@genexis.eu>
- <20240816225257.GA2411475-robh@kernel.org>
+	b=Xq7IggzJZvSFhjmkhMAzVG4GSJYhuSulvTLRuDNrGl34WSAtAJG7Csa/WXtnTTOSq
+	 j12xW3EkfpjsteJm+igFb/YjxL6dWJA3/b3E7Y67Hat14V+YPKBGzYoHo1QaAtsbiZ
+	 ip6IIQwmlEYULQmKEPJipIET54djlSTzVySuYQlXP6c7VGwSvfyoo23x40ZNcAckJz
+	 pClhBJfTM2CMxEH13Xm2lALBccoY/NdzbJOgXnxL3/36o63I6B2sHXZJE+aw77prR/
+	 CMe/dKyvV6ZgGENkEvp+/3bKUtLvY1Cjd+WL9wctN44T7OiKf/NVzQ+9H4eOlWU4st
+	 zoqNPLiDa/Hqw==
+Date: Sun, 18 Aug 2024 08:24:02 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: aisheng.dong@nxp.com, linux-kernel@vger.kernel.org, krzk+dt@kernel.org,
+	kishon@kernel.org, daniel@ffwll.ch,
+	maarten.lankhorst@linux.intel.com, p.zabel@pengutronix.de,
+	tzimmermann@suse.de, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev, festevam@gmail.com,
+	airlied@gmail.com, francesco@dolcini.it, kernel@pengutronix.de,
+	conor+dt@kernel.org, s.hauer@pengutronix.de, agx@sigxcpu.org,
+	shawnguo@kernel.org, frank.li@nxp.com,
+	linux-arm-kernel@lists.infradead.org, tglx@linutronix.de,
+	dri-devel@lists.freedesktop.org, vkoul@kernel.org,
+	mripard@kernel.org
+Subject: Re: [PATCH v3 08/19] dt-bindings: display: imx: Add i.MX8qxp Display
+ Controller
+Message-ID: <172399104139.23572.10090663935384596561.robh@kernel.org>
+References: <20240724092950.752536-1-victor.liu@nxp.com>
+ <20240724092950.752536-9-victor.liu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="slFC9PSxrwsRPZ5Z"
-Content-Disposition: inline
-In-Reply-To: <20240816225257.GA2411475-robh@kernel.org>
-
-
---slFC9PSxrwsRPZ5Z
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240724092950.752536-9-victor.liu@nxp.com>
 
-> On Tue, Aug 13, 2024 at 10:06:41AM +0200, Benjamin Larsson wrote:
-> > On 2024-08-12 08:48, Krzysztof Kozlowski wrote:
-> > > > +      pio: pinctrl@1fa20214 {
-> > > > +        compatible =3D "airoha,en7581-pinctrl";
-> > > > +        reg =3D <0x0 0x1fa20214 0x0 0x30>,
-> > > > +              <0x0 0x1fa2027c 0x0 0x8>,
-> > > > +              <0x0 0x1fbf0234 0x0 0x4>,
-> > > > +              <0x0 0x1fbf0268 0x0 0x4>,
-> > > > +              <0x0 0x1fa2001c 0x0 0x50>,
-> > > > +              <0x0 0x1fa2018c 0x0 0x4>,
-> > > > +              <0x0 0x1fbf0204 0x0 0x4>,
-> > > > +              <0x0 0x1fbf0270 0x0 0x4>,
-> > > > +              <0x0 0x1fbf0200 0x0 0x4>,
-> > > > +              <0x0 0x1fbf0220 0x0 0x4>,
-> > > > +              <0x0 0x1fbf0260 0x0 0x4>,
-> > > > +              <0x0 0x1fbf0264 0x0 0x4>,
-> > > > +              <0x0 0x1fbf0214 0x0 0x4>,
-> > > > +              <0x0 0x1fbf0278 0x0 0x4>,
-> > > > +              <0x0 0x1fbf0208 0x0 0x4>,
-> > > > +              <0x0 0x1fbf027c 0x0 0x4>,
-> > > > +              <0x0 0x1fbf0210 0x0 0x4>,
-> > > > +              <0x0 0x1fbf028c 0x0 0x4>,
-> > > > +              <0x0 0x1fbf0290 0x0 0x4>,
-> > > > +              <0x0 0x1fbf0294 0x0 0x4>,
-> > > > +              <0x0 0x1fbf020c 0x0 0x4>,
-> > > > +              <0x0 0x1fbf0280 0x0 0x4>,
-> > > > +              <0x0 0x1fbf0284 0x0 0x4>,
-> > > > +              <0x0 0x1fbf0288 0x0 0x4>;
-> > > Why are you mapping individual registers? At least half of these are
-> > > continuous.
-> >=20
-> > Hi, this is by design because of the register placement in the gpio blo=
-ck
-> > and the fact that the pwm functionality is intermixed in there also. As
-> > example the following registers are all GPIOCTRL:
-> >=20
-> > <0x0 0x1fbf0200 0x0 0x4>,
-> > <0x0 0x1fbf0220 0x0 0x4>,
-> > <0x0 0x1fbf0260 0x0 0x4>,
-> > <0x0 0x1fbf0264 0x0 0x4>,
-> >=20
-> > To simplify the driver code logic the complexity is moved to the dts be=
-cause
-> > of that.
->=20
-> DT to OS is an ABI. Don't put the complexity there. The driver is easy=20
-> to change.
->=20
-> Lot's of h/w blocks are just bit soup. This is not special. If a few=20
-> regions is helpful, then that would be fine.
 
-ack, I guess we can try to move the complexity in the driver, at least for
-gpio-irq controllers, merging regs whenever possible. I will work on it.
+On Wed, 24 Jul 2024 17:29:39 +0800, Liu Ying wrote:
+> i.MX8qxp Display Controller(DC) is comprised of three main components that
+> include a blit engine for 2D graphics accelerations, display controller for
+> display output processing, as well as a command sequencer.
+> 
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> ---
+> v3:
+> * No change.
+> 
+> v2:
+> * Drop fsl,dc-*-id DT properties from example. (Krzysztof)
+> * Use generic pmu pattern property. (Krzysztof)
+> 
+>  .../bindings/display/imx/fsl,imx8qxp-dc.yaml  | 236 ++++++++++++++++++
+>  1 file changed, 236 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dc.yaml
+> 
 
-Regards,
-Lorenzo
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
->=20
-> Rob
-
---slFC9PSxrwsRPZ5Z
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZsIDjwAKCRA6cBh0uS2t
-rKwDAPwLD5UGwPDlmvE5WXgaS68NnJV73UgsZQXE/EfO79rNjgEAyvez/nIMzjtu
-hVwwFHOPnVs4z/vLiJ+SiZsG/lMGdQM=
-=jtGx
------END PGP SIGNATURE-----
-
---slFC9PSxrwsRPZ5Z--
 
