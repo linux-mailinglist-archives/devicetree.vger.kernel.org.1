@@ -1,65 +1,66 @@
-Return-Path: <devicetree+bounces-94520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 363F6955CFD
-	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 16:33:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26895955D0C
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 16:55:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C9093B21249
-	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 14:33:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF8B5281800
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 14:55:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B39D7E76D;
-	Sun, 18 Aug 2024 14:33:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FFD682D94;
+	Sun, 18 Aug 2024 14:55:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qAOi6FkK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t7oCRESy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDA882BAF9;
-	Sun, 18 Aug 2024 14:33:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2102A12B176;
+	Sun, 18 Aug 2024 14:55:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723991627; cv=none; b=WHsBYBPdrEFfB9GPdieahQEy5ZKLmwc+wq332cxrofWhm/MYvR0xTUfN9zozMPGrKMG89y78F/gBwuNDV0VA35OVIPe8I3C0mcHAIx9uF3lCaQxS6LJh5SPMl7NNLKvH1O2431S4LBWilcX+keepef2x6xy8GnV2CjEuVM2m7bU=
+	t=1723992903; cv=none; b=cn3vqsQ7POkcBXj77xoMCcBHne25O7iFu20UgF/Lxm3M1WyavLvdBmm+oDJtoAiXGZth3khBDJSY0KmUo6vnQC+54l35+0gW6HCiBii+uTlJpz36x0MskzNxJeFj+aAW2ZtV+d4jscDnZPsaSYCevJ02ZkD/pL4gjqxNLvTUxrg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723991627; c=relaxed/simple;
-	bh=WMOYZxTxoRYylJn+hMOa5ljrn4vL8U77f+OVDXxqRks=;
+	s=arc-20240116; t=1723992903; c=relaxed/simple;
+	bh=rw+nzktVxqK0yA7mRMC1aFQ2MPxcNNJglg5wRzA5Nx4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V1xR96KtqmJu7g+qvT40E3lq2X4xjTl7m/bWu6OBrxsCBCe2JiURczHRFuQFEZRpL+GZBlPY3UJ1yfdo0hJTdfINtV/i2u1OnqezJi538Rk3jFn46auG2rqAEF5g74e0+9BPDxkMosA0G/m1lORioFEeHOFgE2u5vVuRC1voPHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qAOi6FkK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 332F0C32786;
-	Sun, 18 Aug 2024 14:33:45 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SB8bHoOZ+HMv9w59rlmfFaRC1eSWfjolKpW35uB8mkkjszrqmQTQMn3+yQNCstI7+7QXfYND3FUp7Slx1WJfESZ3pDRDBS7eAhiH8bH3qTAr7MkMlYZua0sQTRXtvIIzxYZZ1SioqFS1s25HWRpzbc2yTZYk2T7uNlBIObuQ738=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t7oCRESy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37276C32786;
+	Sun, 18 Aug 2024 14:55:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723991625;
-	bh=WMOYZxTxoRYylJn+hMOa5ljrn4vL8U77f+OVDXxqRks=;
+	s=k20201202; t=1723992902;
+	bh=rw+nzktVxqK0yA7mRMC1aFQ2MPxcNNJglg5wRzA5Nx4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qAOi6FkKMHCCeC6JMPU8HaEKCyWU8hIeagasQAtCbXLw7QPN0XxFOi/hMIOV/2jT4
-	 msKjK+BJyYf2bVN23qfCmThA1X7Qcd6eVRlt9pCbhv8Bt6mw76+hP7k4zIT0a0r1yP
-	 akq0RvfIxsTgo6f/w68fA/d/eIG4yE4A6YerhdH7bKqkYUkylfw1PflPadBYfoV0lI
-	 bRrhukrVBIyd7UN6uTcxdI7lZe61UyiKy3ZQloFViPIsG5VwTciUhRgQ2x815z4Y22
-	 5TCSiAN/wJhfYBILux1nf9IeujhrAWn/nDDMUPnB859iv5CZcPTE4ord/2XMR2FaHD
-	 1fWMuSpUI4kgg==
-Date: Sun, 18 Aug 2024 08:33:44 -0600
-From: Rob Herring <robh@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	b=t7oCRESyyuCoulq2rbLA3gOL5OJ15htMXsknsMdgiXKu39Av4ErfSLhAM2vFOMx3G
+	 zKAGkMP9g4na/UJhsFNvgNFUaTgq0uhxdY/0n61okmWCxT1uX9kBn0Bi4h0ZwCTylC
+	 LxD/rokCj65Db161pGgKZ/82pdY+fcE/bO0TyaIqfWUHaH/dN6c14PWumd4WVJcZ3R
+	 qHYUcJlH4ZvQEBcTC2HHG2yznS8zDNRdeMLQKWgEK3KEnjzjIA6+MeeMARqKBZjmtF
+	 jZQWOh4qU3is4bazrqui6wXNUHd5MUKXuXoU+t1NYvTREN6VA5VlBb8mQXwvzBQjbv
+	 IQCOWLMfmC1TA==
+Date: Sun, 18 Aug 2024 08:55:01 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Mathieu Othacehe <m.othacehe@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	Bjorn Andersson <quic_bjorande@quicinc.com>
-Subject: Re: [PATCH v2 1/7] dt-bindings: usb: snps,dwc3: Split core
- description
-Message-ID: <20240818143344.GA31572-robh@kernel.org>
-References: <20240811-dwc3-refactor-v2-0-91f370d61ad2@quicinc.com>
- <20240811-dwc3-refactor-v2-1-91f370d61ad2@quicinc.com>
+	Shawn Guo <shawnguo@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	Fabio Estevam <festevam@denx.de>, devicetree@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>,
+	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+	Michael Walle <mwalle@kernel.org>,
+	Hiago De Franco <hiago.franco@toradex.com>
+Subject: Re: [PATCH 1/1] dt-bindings: arm: fsl: add fsl-ls2081a-rdb board
+Message-ID: <172399289976.66478.14367115507162901162.robh@kernel.org>
+References: <20240812200816.3828649-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,48 +69,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240811-dwc3-refactor-v2-1-91f370d61ad2@quicinc.com>
+In-Reply-To: <20240812200816.3828649-1-Frank.Li@nxp.com>
 
-On Sun, Aug 11, 2024 at 08:11:58PM -0700, Bjorn Andersson wrote:
-> From: Bjorn Andersson <quic_bjorande@quicinc.com>
+
+On Mon, 12 Aug 2024 16:08:15 -0400, Frank Li wrote:
+> Add compatible string fsl-ls2081a-rdb for ls2081a rdb boards to fix below
+> warning:
 > 
-> The Synopsys DWC3 core is found either as a standard block or integrated
-> with vendor glue logic. So far the latter has been described as two
-> separate IP blocks in DeviceTree, but the two parts are not separate.
+> arch/arm64/boot/dts/freescale/fsl-ls2081a-rdb.dtb: /:
+> 	failed to match any schema with compatible: ['fsl,ls2081a-rdb', 'fsl,ls2081a']
 > 
-> In the case where the core is integrated together with vendor glue,
-> resources such as clock and resets are often customized by the vendor,
-> such that the standard properties doesn't make sense.
-> 
-> Split the snps,dwc3 binding in a description of the core properties and
-> the standard "glue" properties, in order to allow vendor bindings to
-> inherit the core properties.
-> 
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  .../devicetree/bindings/usb/snps,dwc3-common.yaml  | 417 +++++++++++++++++++++
->  .../devicetree/bindings/usb/snps,dwc3.yaml         | 391 +------------------
->  2 files changed, 418 insertions(+), 390 deletions(-)
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3-common.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3-common.yaml
-> new file mode 100644
-> index 000000000000..65e7900f904a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3-common.yaml
-> @@ -0,0 +1,417 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/snps,dwc3-common.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Synopsys DesignWare USB3 Controller common properties
-> +
-> +select: false
 
-You can drop this.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-With that,
-
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
