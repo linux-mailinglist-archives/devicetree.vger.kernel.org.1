@@ -1,58 +1,69 @@
-Return-Path: <devicetree+bounces-94531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE6FA955D4D
-	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 17:53:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72952955D53
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 18:02:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DF091F20F40
-	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 15:53:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B8DB281852
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 16:02:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BE9812F5B1;
-	Sun, 18 Aug 2024 15:53:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0F0681AD2;
+	Sun, 18 Aug 2024 16:02:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gj51q9Ay"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Ua/E+l/1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD0FB433D5;
-	Sun, 18 Aug 2024 15:53:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E738D8F6E;
+	Sun, 18 Aug 2024 16:02:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723996421; cv=none; b=uC6dZRQ+OdsfwirGc5iVsLNaPwKzsNJPPnIka4lBLfqu/SJp2EhXDQySApr05na0uLzuMKR7Fnp6m8dmtxsDZ21oJGZ34Sxfd7wplgYSbPveGY50KnxvjiaNEfvdoHV41Gqcd2/l78CRAPuQ3v8LUEhk+dbHNKpay06I+RecMws=
+	t=1723996956; cv=none; b=lYvOensEAjV4TMj6h76RdalqgkbUS5XNnIl32apxHJ++/zKxAGqcSjUjd19UBG+uAIENAB0AqBZBn8adbvBJTqA5NHnGB4+fjQU9Z8XWhSbee6e33e6RCtoUYtaAiMpO3xhLpe98Gml7U8bfCQdebCgSdwzG86C6lhA4mQJR0qA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723996421; c=relaxed/simple;
-	bh=Tbt+j8CdukwgaYMQtYP6W1t8oyGm7GmGMhbCKDGo68Y=;
+	s=arc-20240116; t=1723996956; c=relaxed/simple;
+	bh=i/vMm7Lf/dgUi87b8dIoCNOMTJW59WB9ADG4o0RGgEk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g/z4tpEexIL6p6iIdZo5ez+XwXga6yCsxdnxoZEmEifHGwbxBflV3fyRT4hnV1L0uH6uywzgHXet6PqmlAlm2XoL6H5C3sFWv6zkApu1Y72vQzlRx69gw77ODzbwjSrNK7sWUyH1/tQ6//nF+daT22krH3iOxJKGPsPwknwh7Co=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gj51q9Ay; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 062C3C32786;
-	Sun, 18 Aug 2024 15:53:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723996420;
-	bh=Tbt+j8CdukwgaYMQtYP6W1t8oyGm7GmGMhbCKDGo68Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Gj51q9AyJIgvOeP9kYc4J3DyS36ZWdwHjedvBn3XsMz1oH1kpSMXoJpMeUQhC6jKE
-	 vFv3NHgqRquBnAXA/bPtLE/VgmFVZd4mud9RVLxGfqJfrpNpS/jbDi6YC6ZqbroY4U
-	 Y3riU+BxmnPYT+RRJvegpFIDS54jWYB4SP0ppvgyh3SBRCPPira+7Uqa+72XLSvfhs
-	 jiZjZuPKB3aCowSrHV/bU5Gd/l/linsCOsm2lfxkwpug4T0/KMZWJFki5EZcZb6EVT
-	 MiAZkVjyMnuejsFi04tCpkLoBtEjpIut3mLHx3UlevKBYMRt0bGVhxGDSsfbAAfxT0
-	 LYexSrQ0761iw==
-Date: Sun, 18 Aug 2024 09:53:38 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev,
-	linux-usb@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/1] dt-bindings: usb: add layerscape super speed usb
- support
-Message-ID: <172399641766.147408.13216803408020032216.robh@kernel.org>
-References: <20240815152159.4177782-1-Frank.Li@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=BSpje8pcT+mPU87k7jVpGDYw3FYq96lcJrWdV+jRS4yA18e6evwNP1zSfRzgegoVzdHkrnMv6dhNu9tmgmJuf9P5FiqOX9jJ8oKHAplwcXqOzXB4A4bujt4rRkzwcsclpNHuGzwtvnKfASWLiZErIjBxsZqIiiDRNyyftcwsq0s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Ua/E+l/1; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=qTJVVOGTm6h1jnQtTofjdTqgZNa2JyjM9oNmggGyDAY=; b=Ua/E+l/19X7kY0O5oAFNmpSFkf
+	wEOmVRI5klbreimydDcnk2aW5mBVDTnnoJfsS26KCZYwSnx2Tz3dRg1mA7TVvYF0ibuSOXEVtFeP7
+	haReWATUhwrbfE7qWhHHFVG5/iKjwY/LKchZqVUergoJvtWm2nhfJTmjTkEF36A5LCT8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sfiMO-0052ea-Ta; Sun, 18 Aug 2024 18:02:28 +0200
+Date: Sun, 18 Aug 2024 18:02:28 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Benjamin Larsson <benjamin.larsson@genexis.eu>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+	Lorenzo Bianconi <lorenzo@kernel.org>, linux-gpio@vger.kernel.org,
+	linus.walleij@linaro.org, sean.wang@kernel.org,
+	linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com,
+	krzk+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com, conor+dt@kernel.org,
+	ansuelsmth@gmail.com
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: airoha: Add EN7581 pinctrl
+ controller
+Message-ID: <19793afa-dc62-421f-ba09-8ca2815ae4a2@lunn.ch>
+References: <cover.1723392444.git.lorenzo@kernel.org>
+ <0d537e88b64847bc4e49756b249b2efdcf489b92.1723392444.git.lorenzo@kernel.org>
+ <22144671-fc7c-4cb2-8bb6-ee7d3fbfcb0e@kernel.org>
+ <c8a74be4-be63-477d-9460-1d5ef5e3d84a@genexis.eu>
+ <20240816225257.GA2411475-robh@kernel.org>
+ <1d223ae5-cd2c-4883-b293-bb182e90222b@genexis.eu>
+ <6da7acc8-f77e-453c-b2fa-4eb9161f637c@lunn.ch>
+ <3a52e550-1bb1-40fc-b7dd-b454d7c97f97@genexis.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,23 +72,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240815152159.4177782-1-Frank.Li@nxp.com>
+In-Reply-To: <3a52e550-1bb1-40fc-b7dd-b454d7c97f97@genexis.eu>
 
-
-On Thu, 15 Aug 2024 11:21:58 -0400, Frank Li wrote:
-> Add missed binding doc for layerscape dwc3 usb controller.
+On Sun, Aug 18, 2024 at 02:48:05PM +0200, Benjamin Larsson wrote:
+> On 17/08/2024 23:39, Andrew Lunn wrote:
+> > How messy are the GPIO and PWM registers? Are there N blocks of
+> > independent GPIO registers? and M blocks of independent PWM registers?
+> > By that, does one block of GPIO registers contain all you need for one
+> > GPIO controller? One block of PWM registers give you all you need for
+> > one PWM controller? Or are the registers for one GPIO controller
+> > scattered all over the place?
+> > 
+> > Could you point at a public datasheet?
+> > 
+> >        Andrew
+> > 
+> Hi, per my understanding there is no public datasheet/register reference
+> manual.
 > 
-> Fix below warning:
-> arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dtb: /soc/usb@3100000:
-> 	failed to match any schema with compatible: ['fsl,ls1028a-dwc3', 'snps,dwc3']
+> But here is the division of regions of the registers in the gpio block and
+> how it is currently divided between the drivers (according to my current
+> understanding).
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  .../devicetree/bindings/usb/fsl,ls1028a.yaml  | 52 +++++++++++++++++++
->  1 file changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/fsl,ls1028a.yaml
-> 
+> 1FBF0200, gpio/pinctrl
+> 1FBF0204, gpio/pinctrl
+> 1FBF0208, gpio/pinctrl
+> 1FBF020C, gpio/pinctrl
+> 1FBF0210, gpio/pinctrl
+> 1FBF0214, gpio/pinctrl
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+A typical SoC has multiple instances of a GPIO controller. Each GPIO
+controller typically has 4 or 5 registers: In, Out, Direction,
+Interrupt Enable, Interrupt Status. If these 4 or 5 registers are
+contiguous, you could have one DT node per controller, rather than one
+node for all GPIO controllers.
 
+If the hardware designer has really messed up and fully interleaved
+GPIO and PWM, it might be better to have an MFD. The MFD node has a
+single reg covering the entire range. The MFD would then map the whole
+range, and provide accessors to the child devices. Hard code the
+knowledge of what registers are where. Given how badly the hardware is
+designed, it is unlikely it will get reused in the future, so there is
+no point putting lots of stuff into DT. Hard code it.
+
+	Andrew
 
