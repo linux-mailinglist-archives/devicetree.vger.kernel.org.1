@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-94580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 156A1955E8B
-	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 20:49:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34611955E8F
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 20:52:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C00E628145D
-	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 18:49:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DDBF1C20923
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 18:52:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36F55145A07;
-	Sun, 18 Aug 2024 18:49:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DDB5149C51;
+	Sun, 18 Aug 2024 18:51:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QHjz6hjF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Su/wJKi9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CAF02746A
-	for <devicetree@vger.kernel.org>; Sun, 18 Aug 2024 18:48:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B540208CA
+	for <devicetree@vger.kernel.org>; Sun, 18 Aug 2024 18:51:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724006941; cv=none; b=BKkeND2JCOD9BUf+6YJWNLSkqVHB1WZk6nuqmeua6ej/kDTpZEuU685SIVKY7WR46bvlAaQlVTazvC5OlBm7rKkdEKiKBDnvs9qmWJ6vQM8i5rBNZ2E6bLSKXdmDO0+JzPlsguRCgC1tT87GGMam2XBwvBgW/YlR6Cz9ksIZKuY=
+	t=1724007118; cv=none; b=r4NzjUeQpowLT2DNdTZLGo1khgzqg+ZuJ/YOVx4/JuJ1ZX5aFYjhcS/HIK5gC2aZzBknIHvR6jWnXvUUxgoXHWGC6d/RneWgpnPzj5UZjSdo608ZT2qZQ6r8T0rebQfKxPmgwX3iwu0IEKJUmEvPHcNqmhF4XyTlsvb4AwuiAq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724006941; c=relaxed/simple;
-	bh=t10v0v9dLWsk9gV0B7bLGN+MoC4XU0HyTygfHBVThYg=;
+	s=arc-20240116; t=1724007118; c=relaxed/simple;
+	bh=cTFyulpAdyLgiyo3lZkvwifo1sJ4aExkrrylkZ+4Spc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZSmSRtO4kJQaa1IMVyDJD+csHA6T0BdodxpyX+j9h8yfiHHEf9gkUHZ6NI/oZ2AaQIC5z0Dovl1a1RJedwPu83ZTcrfxbkq8S2iQgUluZhjp2A2Mz7+vLyLYcx+qzst8OlJDc2yvfeYm2UJulxmbYdokITbOl1N9xxa7/lOcXVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QHjz6hjF; arc=none smtp.client-ip=209.85.221.44
+	 In-Reply-To:Content-Type; b=Pn+kOSi0uh1m+a1iLG9KoiAojqvDm0g0AZMPr9XU0SzoR2z4y1G9hOirdEXDDTN2Gg/k30x00RND2sBX/8wGu7yqCjxpFeo9CV8+35+Gls5sugkxxnZggVhfwVihgfxrnHkIfhQNON2PXdp/HeFYoXvlRHBDfRkFR5FhhrDPMyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Su/wJKi9; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3718acbc87fso1826204f8f.3
-        for <devicetree@vger.kernel.org>; Sun, 18 Aug 2024 11:48:59 -0700 (PDT)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4281d812d3eso39182745e9.3
+        for <devicetree@vger.kernel.org>; Sun, 18 Aug 2024 11:51:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724006938; x=1724611738; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1724007116; x=1724611916; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=4+ZVP0Q6mYnMoBlZBM0BE6acICxLb0FvKrUD3jvzYGg=;
-        b=QHjz6hjFH3QA2GCy/Rxi60Ypt+JIRysFjXzLbc49Ra89Y4IK3zmN2KFqb9tUo1EFK5
-         Jw7JmhQSkAvihJ76oHJ1233qsjZIATLU9YIfqNDYuTVQX6/wrUfNASgTcJfxChm0vMUA
-         2tFNGIa6BDXw1mH9Fo/b4pmAxQa5Iy2pagLj8qMCBl9+uVe401F7b23BH3+IA9alc0ZG
-         zJHn5azmXmhTt94a6cTT4oCsaqy68f9lc8sAoLq639jCGslAEuYwR1zKlMDdVs1WYIGQ
-         Een3izzNMv7IKYBwtCIly0s2l3cTcMdTzUmlFrjfeWJa7lrdizN8eVe7zjxHeI24fPef
-         h+ew==
+        bh=YIh4Iq6E+1MWtw2cNQ2pychSSJ+9BhbPhwNlRLURouM=;
+        b=Su/wJKi9O3PEvncep+GAUOPAwyDIoQsm9mI9YAwgktPrMlRXOOd3TnVfACGiLecsB/
+         8KVkeodub7tFQpDAK7CCzz7/YbVHflUQqwZsKwcs0Hv2i/n27yjDdykXV/p/MdLmWxVx
+         Qv5MMhoO0nP3Hd1RcAnpXGLsGbGhzvoG18r+5M0tYWjJB75gGwDI6DtrvC6+cYyftzVu
+         XHfJxvHkhucws/brAzdx2N6Lx7m3jgzPxWP1Q51owOUITcpZzlYRrKgjXBJMFOvtd5/x
+         yIWdiKZwhb4ML36Y2FXYZt/iEy7pUEa0AOVc7zCCHONrhWW1StTSaVLspjmnS4Vonvmi
+         XZaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724006938; x=1724611738;
+        d=1e100.net; s=20230601; t=1724007116; x=1724611916;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=4+ZVP0Q6mYnMoBlZBM0BE6acICxLb0FvKrUD3jvzYGg=;
-        b=YbBPzN27r4A0jxNofK1mJlfRa3pxGhxM064Hgo0w7uoZu32ZJlX5WYA64cutMtUWCo
-         lLZfO6UZXd3u9xcUnJYnt//emOlIAQi+Vswk/EWWi/CN63OoUGnJy985wSif2ykBuGPO
-         A0DMD8SgHFN8ORMP6BAyG4M3eq+JJpVSRHtieQcxKBu6nu+hVYS9ulL25+sV6c/IpiLO
-         cchaHdRuWPxvWGh8qDfLN8OAdnT8o+i32uZ4BsGk082F/jMUfGFQ2+cRccuQarF2ZosO
-         7EpJrFr+OYSU+40HptynX53blaB4J5t0CiVXx2xNjUwU9NHMJOjUqmymiVVb/x+SgZx3
-         mFsw==
-X-Forwarded-Encrypted: i=1; AJvYcCVGGPwZt+p4CM+uWGL6IeACZk3OafrC7wFc6fuPuglzadOP3TpgIrr29gwqdUDcLQz7gRIYZFx3VUbBnEn1Yvhpx7WZBMuBwZUfvg==
-X-Gm-Message-State: AOJu0YxKs+uRn+Dg8eId0o8DYvs9z4zDvkfmObWUZypIOJ+Oivjn3paS
-	wIuHgOB+Q5fUoUNPUUnj7+Xd0p/a2zTWe8dKU0hpCSI8C+Mx2FVG60lXIOwAy3o=
-X-Google-Smtp-Source: AGHT+IGdY03TPYHjen0YAzZR6SdVE9U3GU2ptlbdonStmceL8AePz4MTAvqlUNsmy/NvuKmbJIFU5g==
-X-Received: by 2002:a5d:6784:0:b0:371:7c71:9ab2 with SMTP id ffacd0b85a97d-371946bf3f5mr5056266f8f.52.1724006937330;
-        Sun, 18 Aug 2024 11:48:57 -0700 (PDT)
+        bh=YIh4Iq6E+1MWtw2cNQ2pychSSJ+9BhbPhwNlRLURouM=;
+        b=K9hH6RBYXf3iOaPGk/jdBmZoCzlZ8iHCIPvh+Ewo0hwu8SV8vpulM0zSSMkDfERi8q
+         8WKzwNuA1WAIaqMa4QE2nobqr6of4EaRvwCGu6XLz/8nOeBrEcrVQnDpbspV0L+vHgDK
+         xodIoXTgGWR9a0wFEj0A6mkRcXYcKQ/15ck5Xn9PxkMje8FDa5R8/BuzCqYpPzM3Qod6
+         aIBixMTZGVxI9kkTx0qyS80IKTfDVomMDIbAlyndzyhFrikDvUu+XRinfCqzCV1Qwmus
+         Seh9fJuek5r6LkAKXJFWLF0aAiVojd7RmR3lBY6QK7ybLdwuaJSBz3joFaLYaaIZ1nN3
+         /HEA==
+X-Forwarded-Encrypted: i=1; AJvYcCU1wyLl88l30wAkfIpelEQ0+7Emzh0CkiLMKkGrnliOMsuSIncEoCFfPeScIQ25kqiJyQlRyjKMlwZKj5WV+IWNRZhmSkgpXEfmhQ==
+X-Gm-Message-State: AOJu0YwPNU/+IFxVjkxPwhP7RvZgC2fY6efWK0ANbh1VMMMwJ2Bmpu8/
+	snHcf5B/6EYlEExt0hqBI3SmgGfM1H39gMtbZRYtqZ/s6BuEYL1Zw1rzYBBNMjI=
+X-Google-Smtp-Source: AGHT+IE7XkKrNULzT8ty1wZlpcMzFQnkoZvuTIIthTD5oH9oN+rQ3owS/uba/MXA2MPA4gaGZrVH6g==
+X-Received: by 2002:a5d:52cc:0:b0:368:4226:407b with SMTP id ffacd0b85a97d-371946c5876mr6080058f8f.61.1724007115503;
+        Sun, 18 Aug 2024 11:51:55 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.215.209])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37189849606sm8696349f8f.32.2024.08.18.11.48.55
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37189839f5csm8699623f8f.7.2024.08.18.11.51.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Aug 2024 11:48:56 -0700 (PDT)
-Message-ID: <526b6f56-7807-4bb6-9365-077b1cc490b2@linaro.org>
-Date: Sun, 18 Aug 2024 20:48:54 +0200
+        Sun, 18 Aug 2024 11:51:54 -0700 (PDT)
+Message-ID: <30aeabc2-1a6e-440e-bf1d-c58b96976041@linaro.org>
+Date: Sun, 18 Aug 2024 20:51:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,23 +77,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: display: renesas,du: narrow interrupts
- and resets per variants
+Subject: Re: [PATCH 1/2] media: dt-bindings: renesas,fcp: add top-level
+ constraints
 To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
  Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, dri-devel@lists.freedesktop.org,
+ Magnus Damm <magnus.damm@gmail.com>, linux-media@vger.kernel.org,
  linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20240818173003.122025-1-krzysztof.kozlowski@linaro.org>
- <20240818174137.GC29465@pendragon.ideasonboard.com>
- <4615f52b-4e4c-4fe4-bfef-a66e196410d7@linaro.org>
- <20240818175118.GF29465@pendragon.ideasonboard.com>
+References: <20240818172937.121928-1-krzysztof.kozlowski@linaro.org>
+ <20240818173758.GA29465@pendragon.ideasonboard.com>
+ <286524f7-d240-4675-bfff-599ce8e4b16c@linaro.org>
+ <20240818175020.GE29465@pendragon.ideasonboard.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -140,66 +138,77 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240818175118.GF29465@pendragon.ideasonboard.com>
+In-Reply-To: <20240818175020.GE29465@pendragon.ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/08/2024 19:51, Laurent Pinchart wrote:
-> On Sun, Aug 18, 2024 at 07:44:22PM +0200, Krzysztof Kozlowski wrote:
->> On 18/08/2024 19:41, Laurent Pinchart wrote:
->>> Hi Krzysztof,
+On 18/08/2024 19:50, Laurent Pinchart wrote:
+> On Sun, Aug 18, 2024 at 07:45:55PM +0200, Krzysztof Kozlowski wrote:
+>> On 18/08/2024 19:37, Laurent Pinchart wrote:
+>>> On Sun, Aug 18, 2024 at 07:29:36PM +0200, Krzysztof Kozlowski wrote:
+>>>> Properties with variable number of items per each device are expected to
+>>>> have widest constraints in top-level "properties:" block and further
+>>>> customized (narrowed) in "if:then:".  Add missing top-level constraints
+>>>> for clocks and clock-names.
 >>>
->>> Thank you for the patch.
->>>
->>> On Sun, Aug 18, 2024 at 07:30:02PM +0200, Krzysztof Kozlowski wrote:
->>>> Each variable-length property like interrupts or resets must have fixed
->>>> constraints on number of items for given variant in binding.  The
->>>> clauses in "if:then:" block should define both limits: upper and lower.
->>>
->>> I thought that, when only one of minItems or maxItems was specified, the
->>> other automatically defaulted to the same value. I'm pretty sure I
->>> recall Rob asking me to drop one of the two in some bindings. Has the
->>> rule changes ? Is it documented somewhere ?
+>>> In this specific case I think it's fine, but generally speaking, how do
+>>> you handle that rule when different variants have completely different
+>>> clocks, not just lack some of the clocks ?
 >>
->> New dtschema changed it and, even if previous behavior is restored, the
->> size in if:then: always had to be constrained. You could have skipped
->> one side of limit if it was equal to outer/top-level limit, e.g:
->>
->> properties:
->>   clocks:
->>     minItems: 1
->>     maxItems: 2
->>
->>
->> if:then:properties:
->>   clocks:
->>     minItems: 2
+>> I don't understand the problem. We handle it as usual, as in all
+>> bindings. Here there is no such case, thus names go to the top.
 > 
-> Where can I find a description of the behaviour of the new dtschema
-> (hopefully with some documentation) ?
+> That answers the question, the clock names would still be
+> variant-specific in that case.
+> 
+> While the change here won't cause validation failures, I think it's
+> confusing to define the clock names at the top level, knowing they don't
+> apply to some of the variants, if we don't also define the description
+> there. I'd move either both or neither.
 
-No clue, but I feel there is some core concept missing. Your earlier
-statement:
-"I thought that, when only one of minItems or maxItems was specified, the"
+First, they apply to ALL variants using clock-names.
+Second, we want such lists, like clocks/resets/interrupts, to share as
+much as possible between variants, e.g. keep the same order. Having
+clock-names listed at top-level encourages this and prevents people from
+adding new binding with:
 
-was never logically correct for the "if:then", except for the case I
-mentioned above. That's why all schema used as examples had it explicit:
+"vclk", "aclk", "pclk",
+"new_clock_but_i_want_to_mess_order_of_everything_because_i_can"
 
-My talk from 2022, page 30:
-https://static.sched.com/hosted_files/osseu2022/bd/How%20to%20Get%20Your%20DT%20Schema%20Bindings%20Accepted%20in%20Less%20than%2010%20Iterations%20-%20Krzysztof%20Kozlowski%2C%20Linaro.pdf?_gl=1*kmzqmt*_gcl_au*MTU2MzQ1MjY0Mi4xNzIxNzE0NDc1
-all constraints defined,.
+> 
+>>>>  
+>>>> -  clock-names: true
+>>>> +  clock-names:
+>>>> +    items:
+>>>> +      - const: aclk
+>>>> +      - const: pclk
+>>>> +      - const: vclk
+>>>>  
+>>>>    iommus:
+>>>>      maxItems: 1
+>>>> @@ -71,11 +77,6 @@ allOf:
+>>>>              - description: Main clock
+>>>>              - description: Register access clock
+>>>>              - description: Video clock
+>>>> -        clock-names:
+>>>> -          items:
+>>>> -            - const: aclk
+>>>> -            - const: pclk
+>>>> -            - const: vclk
+>>>
+>>> Any specific reason to move the clock names but not the descriptions ?
+>>> The assymetry bothers me.
+>>
+>> The other variant does not have description of the first clock, so
+>> moving it would be incorrect. Moving names is correct, because other
+>> variant does not have clock-names at all.
+> 
+> I don't think it's incorrect, when the FCP has a single clock, it's the
+> main clock.
 
-My talk from 2023, page 34:
-https://static.sched.com/hosted_files/eoss2023/a8/How%20to%20Get%20Your%20DT%20Schema%20Bindings%20Accepted%20in%20Less%20than%2010%20Iterations%20-%20Krzysztof%20Kozlowski%2C%20Linaro%20-%20ELCE%202023.pdf?_gl=1*1jgx6d3*_gcl_au*MTU2MzQ1MjY0Mi4xNzIxNzE0NDc1
-
-Recently, I started using other example as "useful reference":
-https://elixir.bootlin.com/linux/v6.8/source/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml#L132
-
-That's nothing. All three above reference examples I keep giving are
-already there and repeated in emails all the time.
-
-So aren't you confusing the entire "skip one limit" for top-level
-properties? This patch is not about it all and dtschema did not change.
+Could be main clock, could be something else for me - I did not
+investigate enough. If it is main clock, I will move the description as
+well.
 
 Best regards,
 Krzysztof
