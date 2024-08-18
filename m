@@ -1,123 +1,98 @@
-Return-Path: <devicetree+bounces-94490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED2AE955A45
-	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 01:08:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0221F955B56
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 08:35:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A444E2820EB
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2024 23:08:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76CED1F21A4E
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 06:35:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACDCB15624C;
-	Sat, 17 Aug 2024 23:08:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBF6FD268;
+	Sun, 18 Aug 2024 06:35:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="U+085l8T";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="qX1Zf6pu"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="Vu1Uj2dA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout6-smtp.messagingengine.com (fout6-smtp.messagingengine.com [103.168.172.149])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 033E1156237;
-	Sat, 17 Aug 2024 23:08:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64AD0C152
+	for <devicetree@vger.kernel.org>; Sun, 18 Aug 2024 06:35:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723936131; cv=none; b=mSecpK5bsSAykB/IOilvdbQ7/4nlCvk4kIsJ/+1W7I6Tbb14FfLC7VsrbtKVFg6+TqjHheM7OGNg/oNTlGszSaSRuJPMYigLKLQWw57MW0/y+yPPv39Y92gKDuYavNA84cRlYo9Eu2sKnCWHA/tFxK9d+onxIplnFsG3MaSJtH4=
+	t=1723962945; cv=none; b=Fx0D2TaCrL6wHV8Jg+KKRW443Q89szb9CidaA7CLO8RQPwFDikTmVOQMCM338xwtAuKFi/paw1nYF73316qnWe8j7IJyE3vYj8p//zDiP+TaCUexOtqJh0k8Bjfwn7pSYJEk91b+kwJ6nyHgPsm6B8oQ49HW+ZvPCJiGt3pbvtg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723936131; c=relaxed/simple;
-	bh=rTw6sGmQaRe++FHzbZoWkvwQFbcz4mfeaup2BZRj0hY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ez8tmod/8tjf8673QDYNpee7ymrbbAwex6vv/2TCTkSmRkSo8QbNJ5PUDx/HjXAASXTeohvP5tDs3haKTAfpJLb7NxGCPCV9s6UefgigzK7h72hZkIkFFnlU0rfY67RKm5P5FEjhJga4cZcfVCYHC8UcaVYS8IqlJwkUQwrN16g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=U+085l8T; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=qX1Zf6pu; arc=none smtp.client-ip=103.168.172.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from phl-compute-03.internal (phl-compute-03.nyi.internal [10.202.2.43])
-	by mailfout.nyi.internal (Postfix) with ESMTP id 5A62B138E2B7;
-	Sat, 17 Aug 2024 19:08:49 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-03.internal (MEProxy); Sat, 17 Aug 2024 19:08:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
-	:from:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm3; t=1723936129; x=
-	1724022529; bh=8S+7HQMN+NZh1yqwQqSAV3SQTRtz4dL1T7UkDqboUtg=; b=U
-	+085l8Tw2BmMY+mjzl595FKMFLfJzDtluAkAZ3ogTCTPEWjUf8L9aC45j2OdFjME
-	/Z2Rns6QjpnO8R5D9eDBymp7uZ72cPj8AYmcGYfGb1yXrRrZNTUklT2S1iysZGWI
-	ustOOUpceHB55IBDZJJnwebW/qGbD8qHbJ0Vo03J/viR0f1nGqJ0hQBENsKXNR9t
-	hRJ0rXOAt+sJORqhegxq6+cvMFt047+6UvP0Khxq1aDX0UdcUxT9Joq2ogmFcDVn
-	AUqgbf3cXk6aEZcYvU43ahx5cj96XTi8b3Gr8zt1yPDgtjccFrlbM4WskJinN5Aq
-	yAY7MQNUQHBp4gqff2hwQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1723936129; x=
-	1724022529; bh=8S+7HQMN+NZh1yqwQqSAV3SQTRtz4dL1T7UkDqboUtg=; b=q
-	X1Zf6pu2S2KrP77LveOokKl/UzlABo8XT1ZETrUnPeCzsjXZxjR4MVkDvbU6V3Y9
-	XOqX4468QJt7KRx6Mai94USNd7T+X2fE4Up60NjR6i3yqMdF/3x0ALQT0tXBqP1N
-	pUUnooyw7/m415+j7L/SYDTFdvNUhCVNl154ns9+iJhXnvUwBwanHUdSldnVfj5c
-	60+iMjq68cMorh3RpGnQCuBk0MsDBjoDc6urVqfIKgYtVQVDVqKqJ77nnoXoAydy
-	LcyaYQ/IKQm579MG1Q9Wd+BrfXdJUISZ4KGMlBrzFI/ylFy1L0I8IxP9QE/wXeR3
-	hstniUjUANAgpCmqKAy8A==
-X-ME-Sender: <xms:gS3BZiwgEYRZ1iH6urqpdvRbgeC0csdhWWH8q9bqeWAulAwmv6Mlow>
-    <xme:gS3BZuRWuLaKFyzGrS9MaL__Xc_LjUJa4xQUSItjyQ7HgLgXKfe9KjRAa0-J8Uo8h
-    8kU6xqrYAtOO2j1Lg>
-X-ME-Received: <xmr:gS3BZkUvHjQ3AcjqXeX7QpwDHKrJd9vI46qXGKzei8gJ0kxrlNeftaRa-GPpS-i0XDCU_CARdslm7NWeOCFCbSj331hxvBZHV-CGzqHW6mEg7rKZ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrudduuddgudekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnecujfgurhephffvvefufffkofgjfhgggfestdekredtredttden
-    ucfhrhhomheptfihrghnucghrghlkhhlihhnuceorhihrghnsehtvghsthhtohgrshhtrd
-    gtohhmqeenucggtffrrghtthgvrhhnpeffheeiffegtdfgffejteevgeefkeelieelkeev
-    ueetffetteduffevgeeiieehteenucevlhhushhtvghrufhiiigvpeefnecurfgrrhgrmh
-    epmhgrihhlfhhrohhmpehrhigrnhesthgvshhtthhorghsthdrtghomhdpnhgspghrtghp
-    thhtohepvddvpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehmrhhiphgrrhguse
-    hkvghrnhgvlhdrohhrghdprhgtphhtthhopeifvghnshestghsihgvrdhorhhgpdhrtghp
-    thhtohepmhgrrghrthgvnhdrlhgrnhhkhhhorhhstheslhhinhhugidrihhnthgvlhdrtg
-    homhdprhgtphhtthhopehtiihimhhmvghrmhgrnhhnsehsuhhsvgdruggvpdhrtghpthht
-    oheprghirhhlihgvugesghhmrghilhdrtghomhdprhgtphhtthhopegurghnihgvlhesfh
-    hffihllhdrtghhpdhrtghpthhtohepjhgvrhhnvghjrdhskhhrrggsvggtsehgmhgrihhl
-    rdgtohhmpdhrtghpthhtohepshgrmhhuvghlsehshhholhhlrghnugdrohhrghdprhgtph
-    htthhopehrohgshheskhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:gS3BZoiK0f3H_XHL60bIUuHGLadC7kAhCVRgLHSiIVBzqiwa1L0OjQ>
-    <xmx:gS3BZkDwUTbX36iV_iILjE6PM7iNMoShna4Fr19HeoLAKyCliH2A5Q>
-    <xmx:gS3BZpJnozopbHNmePh2hpQAtT_l8Bq5--x9uraP6YU-7bfUnRulkQ>
-    <xmx:gS3BZrDW1U9cMn8dMgrUT-4RpzjFcMOZwujbJjsGQdKGaPgLkeqwYg>
-    <xmx:gS3BZmzA1e-vS4QYOJR_yhPdf2Xe1Il_gBHhD6MpR2UTcmR2GrTpfKqq>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 17 Aug 2024 19:08:42 -0400 (EDT)
-From: Ryan Walklin <ryan@testtoast.com>
-To: Maxime Ripard <mripard@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
+	s=arc-20240116; t=1723962945; c=relaxed/simple;
+	bh=tLM5Z4bxoxRkAjVlUEax9m/c67WwO5YvO//pVYLZKsU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=gRM40h1Gcm+N6XVHTyM+8dd/o3y0n9OejgCu7orDVbZkYLUes615f8qlbO4IVWSfs5uEL/ypIh38qXMesQapvMNK/gCbx+WfQlHmiQCdOEP3oyUlKzxg5uoAHgd5+cp8Vd+efxGsrv/Qx5lmpEUi0QgD196K7TqaBHiBnWGWfg4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=Vu1Uj2dA; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-428e0d184b4so23521325e9.2
+        for <devicetree@vger.kernel.org>; Sat, 17 Aug 2024 23:35:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1723962941; x=1724567741; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=p7mg4NRTTfSPHbPRie+gRphXLh6Di7RPJtVldjOET9U=;
+        b=Vu1Uj2dAxYxsGAC06LuZx6BQLGVjNFTi3tFANJrvRlm+EROKDMacbicpKUb/BpgBbq
+         ydP67PSGz+knm55sZzTNDu4cB/eZBK4jU73I/D0WX2JLhPs28mOUdr6lHz5ZxVe/PLQQ
+         UQywcGrmoF2Df6tprGVJvACY7bVwQb74DvFTXemL/RNVZd1Ea3NWaBDOSeA2yX8mhy12
+         ZIaCefYPRblQGxcjGZ9LF7mMO3N+Ey7YaYqaZJjI7ObZwKTLFKgDGhQf+g5NHA4fEVGl
+         Dv76iILZ7VcrRe0vqHqgs+sG88Gfk2Va2DiSHnN1O6ktMxLxRuWx5v59kQzRI13GXsu3
+         tsmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1723962941; x=1724567741;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=p7mg4NRTTfSPHbPRie+gRphXLh6Di7RPJtVldjOET9U=;
+        b=sZDc7egUUZVLd8Y9uQS61aAqPtnKauSOddBfL2Q47jo3huq2Is2UGkkIgovQiPsECI
+         YFwgkDJSIOOZKNlUBoM3PXCOeRejcf1ltKchM8y62QkU6yfiTnG7CSgzfFDMHiZy+qP9
+         DfsSDeSUHZ2C23sAhsvNxBxilW4KjbbIQAvawAMQ5oIRWVT4T5rlItzyfKfIrG7wqn76
+         VUskjEqtcmrqPhk/BGTbd36NGgnOUNKIrGh5CqGeOkOAa7KUqmta8As24PCdSocRzPkD
+         X50tTXH7Mqwn34Bi0PJdq92kEgHmn77vqDopg32iRI6w9/vhEB+6ZSc8CI83QTumbyRE
+         z0BA==
+X-Forwarded-Encrypted: i=1; AJvYcCXHJrYvIfpaIPf+TqwRU2/TL+4TSsk7iGqRYmgep5dlH7wip/cwhMX4N5yp758E58rgcpNJyaloQM8s0Trc9tSCWMAGt38P9aVJZQ==
+X-Gm-Message-State: AOJu0YyG2MF+l/Sev/WQ9ifFzCBRaUFFL8X4y5gotMY4kM+HKpRLDopZ
+	FP6Amvlr9ZpddlZackNnquQ/05B4FMpV+ss//6PLfjlOyeCzc6ljpoMN4kSl6W4=
+X-Google-Smtp-Source: AGHT+IHWioXbEzbxYI9412gtwZ2YBYmHLePow18La6xW8gk33hEVNWfxlT5BodzLBQUIRfMGQUiRbg==
+X-Received: by 2002:a05:600c:5103:b0:426:5cdf:2674 with SMTP id 5b1f17b1804b1-429ed7a5f52mr48827345e9.4.1723962941343;
+        Sat, 17 Aug 2024 23:35:41 -0700 (PDT)
+Received: from alex-rivos.guest.squarehotel.net ([130.93.157.50])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429ded2931asm118645775e9.17.2024.08.17.23.35.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 17 Aug 2024 23:35:40 -0700 (PDT)
+From: Alexandre Ghiti <alexghiti@rivosinc.com>
+To: Jonathan Corbet <corbet@lwn.net>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Conor Dooley <conor@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>
-Cc: Andre Przywara <andre.przywara@arm.com>,
-	Chris Morgan <macroalpha82@gmail.com>,
-	John Watts <contact@jookia.org>,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
+	Andrea Parri <parri.andrea@gmail.com>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>,
+	Will Deacon <will@kernel.org>,
+	Waiman Long <longman@redhat.com>,
+	Boqun Feng <boqun.feng@gmail.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Leonardo Bras <leobras@redhat.com>,
+	Guo Ren <guoren@kernel.org>,
+	linux-doc@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Ryan Walklin <ryan@testtoast.com>
-Subject: [PATCH v3 26/26] drm: sun4i: de33: csc: add Display Engine 3.3 (DE33) support
-Date: Sun, 18 Aug 2024 10:46:13 +1200
-Message-ID: <20240817230503.158889-27-ryan@testtoast.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240817230503.158889-1-ryan@testtoast.com>
-References: <20240817230503.158889-1-ryan@testtoast.com>
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-arch@vger.kernel.org
+Cc: Alexandre Ghiti <alexghiti@rivosinc.com>
+Subject: [PATCH v5 00/13] Zacas/Zabha support and qspinlocks
+Date: Sun, 18 Aug 2024 08:35:25 +0200
+Message-Id: <20240818063538.6651-1-alexghiti@rivosinc.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -126,157 +101,116 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Jernej Skrabec <jernej.skrabec@gmail.com>
+This implements [cmp]xchgXX() macros using Zacas and Zabha extensions
+and finally uses those newly introduced macros to add support for
+qspinlocks: note that this implementation of qspinlocks satisfies the
+forward progress guarantee.
 
-Like earlier DE versions, the DE33 has a CSC (Color Space Correction)
-module. which provides color space conversion between BT2020/BT709, and
-dynamic range conversion between SDR/ST2084/HLG.
+It also uses Ziccrse to provide the qspinlock implementation.
 
-Add support for the DE33.
+Thanks to Guo and Leonardo for their work!
 
-Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-Signed-off-by: Ryan Walklin <ryan@testtoast.com>
----
- drivers/gpu/drm/sun4i/sun8i_csc.c | 96 +++++++++++++++++++++++++++++++
- drivers/gpu/drm/sun4i/sun8i_csc.h |  3 +
- 2 files changed, 99 insertions(+)
+v4: https://lore.kernel.org/linux-riscv/20240731072405.197046-1-alexghiti@rivosinc.com/
+v3: https://lore.kernel.org/linux-riscv/20240717061957.140712-1-alexghiti@rivosinc.com/
+v2: https://lore.kernel.org/linux-riscv/20240626130347.520750-1-alexghiti@rivosinc.com/
+v1: https://lore.kernel.org/linux-riscv/20240528151052.313031-1-alexghiti@rivosinc.com/
 
-diff --git a/drivers/gpu/drm/sun4i/sun8i_csc.c b/drivers/gpu/drm/sun4i/sun8i_csc.c
-index 2d5a2cf7cba24..45bd1ca06400e 100644
---- a/drivers/gpu/drm/sun4i/sun8i_csc.c
-+++ b/drivers/gpu/drm/sun4i/sun8i_csc.c
-@@ -238,6 +238,14 @@ static const u32 yuv2yuv_de3[2][3][3][12] = {
- 	},
- };
- 
-+static u32 sun8i_csc_base(struct sun8i_mixer *mixer, int layer)
-+{
-+	if (mixer->cfg->de_type == sun8i_mixer_de33)
-+		return sun8i_channel_base(mixer, layer) - 0x800;
-+	else
-+		return ccsc_base[mixer->cfg->ccsc][layer];
-+}
-+
- static void sun8i_csc_setup(struct regmap *map, u32 base,
- 			    enum format_type fmt_type,
- 			    enum drm_color_encoding encoding,
-@@ -358,6 +366,90 @@ static void sun8i_de3_ccsc_setup(struct sunxi_engine *engine, int layer,
- 			   mask, val);
- }
- 
-+/* extract constant from high word and invert sign if necessary */
-+static u32 sun8i_de33_ccsc_get_constant(u32 value)
-+{
-+	value >>= 16;
-+
-+	if (value & BIT(15))
-+		return 0x400 - (value & 0x3ff);
-+
-+	return value;
-+}
-+
-+static void sun8i_de33_convert_table(const u32 *src, u32 *dst)
-+{
-+	dst[0] = sun8i_de33_ccsc_get_constant(src[3]);
-+	dst[1] = sun8i_de33_ccsc_get_constant(src[7]);
-+	dst[2] = sun8i_de33_ccsc_get_constant(src[11]);
-+	memcpy(&dst[3], src, sizeof(u32) * 12);
-+	dst[6] &= 0xffff;
-+	dst[10] &= 0xffff;
-+	dst[14] &= 0xffff;
-+}
-+
-+static void sun8i_de33_ccsc_setup(struct sun8i_mixer *mixer, int layer,
-+				  enum format_type fmt_type,
-+				  enum drm_color_encoding encoding,
-+				  enum drm_color_range range)
-+{
-+	u32 addr, val = 0, base, csc[15];
-+	struct sunxi_engine *engine;
-+	struct regmap *map;
-+	const u32 *table;
-+	int i;
-+
-+	table = yuv2rgb_de3[range][encoding];
-+	base = sun8i_csc_base(mixer, layer);
-+	engine = &mixer->engine;
-+	map = engine->regs;
-+
-+	switch (fmt_type) {
-+	case FORMAT_TYPE_RGB:
-+		if (engine->format == MEDIA_BUS_FMT_RGB888_1X24)
-+			break;
-+		val = SUN8I_CSC_CTRL_EN;
-+		sun8i_de33_convert_table(rgb2yuv_de3[engine->encoding], csc);
-+		regmap_bulk_write(map, SUN50I_CSC_COEFF(base, 0), csc, 15);
-+		break;
-+	case FORMAT_TYPE_YUV:
-+		table = sun8i_csc_get_de3_yuv_table(encoding, range,
-+						    engine->format,
-+						    engine->encoding);
-+		if (!table)
-+			break;
-+		val = SUN8I_CSC_CTRL_EN;
-+		sun8i_de33_convert_table(table, csc);
-+		regmap_bulk_write(map, SUN50I_CSC_COEFF(base, 0), csc, 15);
-+		break;
-+	case FORMAT_TYPE_YVU:
-+		table = sun8i_csc_get_de3_yuv_table(encoding, range,
-+						    engine->format,
-+						    engine->encoding);
-+		if (!table)
-+			table = yuv2yuv_de3[range][encoding][encoding];
-+		val = SUN8I_CSC_CTRL_EN;
-+		sun8i_de33_convert_table(table, csc);
-+		for (i = 0; i < 15; i++) {
-+			addr = SUN50I_CSC_COEFF(base, i);
-+			if (i > 3) {
-+				if (((i - 3) & 3) == 1)
-+					addr = SUN50I_CSC_COEFF(base, i + 1);
-+				else if (((i - 3) & 3) == 2)
-+					addr = SUN50I_CSC_COEFF(base, i - 1);
-+			}
-+			regmap_write(map, addr, csc[i]);
-+		}
-+		break;
-+	default:
-+		val = 0;
-+		DRM_WARN("Wrong CSC mode specified.\n");
-+		return;
-+	}
-+
-+	regmap_write(map, SUN8I_CSC_CTRL(base), val);
-+}
-+
- void sun8i_csc_set_ccsc(struct sun8i_mixer *mixer, int layer,
- 			enum format_type fmt_type,
- 			enum drm_color_encoding encoding,
-@@ -369,6 +461,10 @@ void sun8i_csc_set_ccsc(struct sun8i_mixer *mixer, int layer,
- 		sun8i_de3_ccsc_setup(&mixer->engine, layer,
- 				     fmt_type, encoding, range);
- 		return;
-+	} else if (mixer->cfg->de_type == sun8i_mixer_de33) {
-+		sun8i_de33_ccsc_setup(mixer, layer, fmt_type,
-+				      encoding, range);
-+		return;
- 	}
- 
- 	if (layer < mixer->cfg->vi_num) {
-diff --git a/drivers/gpu/drm/sun4i/sun8i_csc.h b/drivers/gpu/drm/sun4i/sun8i_csc.h
-index b7546e06e315c..2b762cb79f02c 100644
---- a/drivers/gpu/drm/sun4i/sun8i_csc.h
-+++ b/drivers/gpu/drm/sun4i/sun8i_csc.h
-@@ -20,6 +20,9 @@ struct sun8i_mixer;
- #define SUN8I_CSC_CTRL(base)		((base) + 0x0)
- #define SUN8I_CSC_COEFF(base, i)	((base) + 0x10 + 4 * (i))
- 
-+#define SUN50I_CSC_COEFF(base, i)	((base) + 0x04 + 4 * (i))
-+#define SUN50I_CSC_ALPHA(base)		((base) + 0x40)
-+
- #define SUN8I_CSC_CTRL_EN		BIT(0)
- 
- enum format_type {
+Changes in v5:
+- Remove useless include in cpufeature.h and add required ones (Drew)
+- Add RB from Drew
+- Add AB from Conor and Peter
+- use macros to help readability of arch_cmpxchg_XXX() (Drew)
+- restore the build_bug() for size > 8 (Drew)
+- Update Ziccrse riscv profile spec version commit hash (Conor)
+
+Changes in v4:
+- rename sc_sfx into sc_cas_sfx in _arch_cmpxchg (Drew)
+- cmpxchg() depends on 64BIT (Drew)
+- rename xX register into tX (Drew)
+- cas operations require the old value in rd, make this assignment more explicit
+  as it seems to confuse people (Drew, Andrea)
+- Fix ticket/queued configs build errors (Andrea)
+- riscv_spinlock_init() is only needed for combo spinlocks but implement it
+  anyway to inform of the type of spinlocks used (Andrea)
+- Add RB from Guo
+- Add NONPORTABLE to RISCV_QUEUED_SPINLOCKS (Samuel)
+- Add a link to Guo's qspinlocks results on the sophgo platform
+- Reorder ZICCRSE (Samuel)
+- Use riscv_has_extention_unlikely() instead of direct asm goto, which is way
+  cleaner and fixes the llvm 16 bug
+- add dependency on RISCV_ALTERNATIVES in kconfig
+- Rebase on top of 6.11, add patches to fix header circular dependency and
+  to fix build_bug()
+
+Changes in v3:
+- Fix patch 4 to restrict the optimization to fully ordered AMO (Andrea)
+- Move RISCV_ISA_EXT_ZABHA definition to patch 4 (Andrea)
+- !Zacas at build time => no CAS from Zabha too (Andrea)
+- drop patch 7 "riscv: Improve amoswap.X use in xchg()" (Andrea)
+- Switch lr/sc and cas order (Guo)
+- Combo spinlocks do not depend on Zabha
+- Add a Kconfig for ticket/queued/combo (Guo)
+- Use Ziccrse (Guo)
+
+Changes in v2:
+- Add patch for Zabha dtbinding (Conor)
+- Fix cmpxchg128() build warnings missed in v1
+- Make arch_cmpxchg128() fully ordered
+- Improve Kconfig help texts for both extensions (Conor)
+- Fix Makefile dependencies by requiring TOOLCHAIN_HAS_XXX (Nathan)
+- Fix compilation errors when the toolchain does not support the
+  extensions (Nathan)
+- Fix C23 warnings about label at the end of coumpound statements (Nathan)
+- Fix Zabha and !Zacas configurations (Andrea)
+- Add COMBO spinlocks (Guo)
+- Improve amocas fully ordered operations by using .aqrl semantics and
+  removing the fence rw, rw (Andrea)
+- Rebase on top "riscv: Fix fully ordered LR/SC xchg[8|16]() implementations"
+- Add ARCH_WEAK_RELEASE_ACQUIRE (Andrea)
+- Remove the extension version in march for LLVM since it is only required
+  for experimental extensions (Nathan)
+- Fix cmpxchg128() implementation by adding both registers of a pair
+  in the list of input/output operands
+
+Alexandre Ghiti (11):
+  riscv: Move cpufeature.h macros into their own header
+  riscv: Do not fail to build on byte/halfword operations with Zawrs
+  riscv: Implement cmpxchg32/64() using Zacas
+  dt-bindings: riscv: Add Zabha ISA extension description
+  riscv: Implement cmpxchg8/16() using Zabha
+  riscv: Improve zacas fully-ordered cmpxchg()
+  riscv: Implement arch_cmpxchg128() using Zacas
+  riscv: Implement xchg8/16() using Zabha
+  riscv: Add ISA extension parsing for Ziccrse
+  dt-bindings: riscv: Add Ziccrse ISA extension description
+  riscv: Add qspinlock support
+
+Guo Ren (2):
+  asm-generic: ticket-lock: Reuse arch_spinlock_t of qspinlock
+  asm-generic: ticket-lock: Add separate ticket-lock.h
+
+ .../devicetree/bindings/riscv/extensions.yaml |  12 +
+ .../locking/queued-spinlocks/arch-support.txt |   2 +-
+ arch/riscv/Kconfig                            |  69 +++++
+ arch/riscv/Makefile                           |   6 +
+ arch/riscv/include/asm/Kbuild                 |   4 +-
+ arch/riscv/include/asm/cmpxchg.h              | 286 +++++++++++++-----
+ arch/riscv/include/asm/cpufeature-macros.h    |  66 ++++
+ arch/riscv/include/asm/cpufeature.h           |  61 +---
+ arch/riscv/include/asm/hwcap.h                |   2 +
+ arch/riscv/include/asm/spinlock.h             |  47 +++
+ arch/riscv/kernel/cpufeature.c                |   2 +
+ arch/riscv/kernel/setup.c                     |  37 +++
+ include/asm-generic/qspinlock.h               |   2 +
+ include/asm-generic/spinlock.h                |  87 +-----
+ include/asm-generic/spinlock_types.h          |  12 +-
+ include/asm-generic/ticket_spinlock.h         | 105 +++++++
+ 16 files changed, 567 insertions(+), 233 deletions(-)
+ create mode 100644 arch/riscv/include/asm/cpufeature-macros.h
+ create mode 100644 arch/riscv/include/asm/spinlock.h
+ create mode 100644 include/asm-generic/ticket_spinlock.h
+
 -- 
-2.46.0
+2.39.2
 
 
