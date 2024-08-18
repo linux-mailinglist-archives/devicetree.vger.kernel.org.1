@@ -1,138 +1,226 @@
-Return-Path: <devicetree+bounces-94597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1D10955F1B
-	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 22:51:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A020A955F28
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 23:06:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 870F81F217E2
-	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 20:51:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF5FC1C2083C
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 21:06:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D0CD149E09;
-	Sun, 18 Aug 2024 20:51:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56A441509B3;
+	Sun, 18 Aug 2024 21:06:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="Iv8myUGf";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="PTI81+ny"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g5KSCcd2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout3-smtp.messagingengine.com (fout3-smtp.messagingengine.com [103.168.172.146])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38832129E9C;
-	Sun, 18 Aug 2024 20:51:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.146
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83B44433C1;
+	Sun, 18 Aug 2024 21:06:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724014272; cv=none; b=YQCUWUUTm7NcVvSzWhFej4lBTBGPpiHMWTrcI1vcOuL+kDmqobfN2kvIztQLH/LFAL/9yBdxSozattretcWTArOHLJMOtB10JpLXLSCPJFshkmT2V9eUz9+LQDaodnGaglD29xU8VNsczUgqIwIAhkHa1nKhPdECbjZAjbUpmMs=
+	t=1724015181; cv=none; b=CbAkHn6TgkME3cbUuLzYSba8bOK8M53D1dPpyMC5yEUzp+gqJqV3IYjH1RCIo5VWgLR06tttYsQ76vbaR1eQnLECYvVvpbYOr++onvrxnMGyZXnkjE2BwsMvBcFEWoAVNDc7Wp7zkOWwK3Gf6/Bw9AOs9X3nrGQKJ7IemywuUmk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724014272; c=relaxed/simple;
-	bh=i4cnKscBdUtY9R9p+tbVpHTOzg1eZ65JGPwxbgvxMQo=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=gSwjSmsPG11bYgmHB/xzhWH4OGlktaC9i4DuSRK+H5Xow+Yv+lYe6r6SImjlEG7GTeEGrDdJVKLqPxUqYBR+pmxZ9dR9khUPShCn+9owD2SH4OUA+AuLDE4vGnGlo4eT+1KMcWczNDCPUUQWxpapD/9KaZjZn0+hMu4d5BcxttU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=Iv8myUGf; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=PTI81+ny; arc=none smtp.client-ip=103.168.172.146
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from phl-compute-06.internal (phl-compute-06.nyi.internal [10.202.2.46])
-	by mailfout.nyi.internal (Postfix) with ESMTP id 4E0C6138FC91;
-	Sun, 18 Aug 2024 16:51:09 -0400 (EDT)
-Received: from phl-imap-07 ([10.202.2.97])
-  by phl-compute-06.internal (MEProxy); Sun, 18 Aug 2024 16:51:09 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm3;
-	 t=1724014269; x=1724100669; bh=i4cnKscBdUtY9R9p+tbVpHTOzg1eZ65J
-	GPwxbgvxMQo=; b=Iv8myUGfGqVKAWYcsIRMDJf5QNCfBR/hr3q8RgfKgyytW1wk
-	guOQHCpyPgR2jNvR2EdgehleX6ZWt1xAHX0u2dpSYRDdTzWMfMeohmGOF5KHlABB
-	Ve9DXFugDUXDju+a28oszKWhqiREIsNTj7TISaiaQl8Ep0H+ia5MZbw6ODejvZ6N
-	TxI+U6kACONWUY8CETT06tty19Szdv0HlKxFSkZvLK9urmnE6b0juxO1ZH8Xc4Je
-	E0PO12o8R/TU8WSrEvSTcLYWlyYlg2DvHxbHymXZmdfRMKYI4U2R3UMsVGFK+q0R
-	EatHVzD1efuI5zt52sYLrmFPZZwjxM07Z9OWAw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1724014269; x=
-	1724100669; bh=i4cnKscBdUtY9R9p+tbVpHTOzg1eZ65JGPwxbgvxMQo=; b=P
-	TI81+nyiGQ4fr5z9Ah3KK77a/B8I8MH9ATRrvdEYWwwjJnt/Kg4tQ1e9WiI2TB7O
-	0XiYkoMd9LNSWMJu0C1yeTqJydl2rpicjjjnG0SGcS1zIvzAA6ymHzxt12yGGnJ5
-	Qkeo2BK4TOjkeNn6YyH/DZBgFKaLxA2OhRMWXNkIbATL4oIT9tCLGu4SLa2a33L2
-	GMtrKiFQd8KLp9rLWw+UDPGc33yQGSexUa/jSAmA9XyRUHny2RmvxLchnBR813XI
-	UMucQwSQupv6ATLBU5QYtmXG/rfbQopAalXvVmNaBOEuV1KfQS4yVEeSdBJNGq06
-	mXqczhnUHsAYySzgUJXPw==
-X-ME-Sender: <xms:u17CZiqlCbWzP-WANzheacZaDIKqQpj7siouw6qs2IWuZJtyDnqFKw>
-    <xme:u17CZgorLbYzG8P_kUJreZssG7uUY8v7jVU3GLb5AUmsEa0e5o_OShRf7kEGAllS1
-    w73g0NoP8AUeiStVA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrudduvddgudehfecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
-    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
-    hnthhsucdlqddutddtmdenucfjughrpefoggffhffvvefkjghfufgtgfesthejredtredt
-    tdenucfhrhhomhepfdfthigrnhcuhggrlhhklhhinhdfuceorhihrghnsehtvghsthhtoh
-    grshhtrdgtohhmqeenucggtffrrghtthgvrhhnpeejhfeukeejjefguddvffehveevjefh
-    tddutdfhudduvdevfeejfffgvdelfeeugfenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehrhigrnhesthgvshhtthhorghsthdrtghomhdpnhgs
-    pghrtghpthhtohepvddupdhmohguvgepshhmthhpohhuthdprhgtphhtthhopegrnhgurh
-    gvrdhprhiihiifrghrrgesrghrmhdrtghomhdprhgtphhtthhopehmthhurhhquhgvthht
-    vgessggrhihlihgsrhgvrdgtohhmpdhrtghpthhtohepfigvnhhssegtshhivgdrohhrgh
-    dprhgtphhtthhopegurghnihgvlhesfhhffihllhdrtghhpdhrtghpthhtoheprghirhhl
-    ihgvugesghhmrghilhdrtghomhdprhgtphhtthhopehjvghrnhgvjhdrshhkrhgrsggvtg
-    esghhmrghilhdrtghomhdprhgtphhtthhopehmrggtrhhorghlphhhrgekvdesghhmrghi
-    lhdrtghomhdprhgtphhtthhopegtohhnthgrtghtsehjohhokhhirgdrohhrghdprhgtph
-    htthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:u17CZnOnfnY5rLXqdzT_InQzSm68suAboVSZBHTrxL-rqNxO-uOung>
-    <xmx:u17CZh4KRpsiCBBWa3VcCPgnD2d6TjeFQLlqx3ymGKqEUnsn7J5dlA>
-    <xmx:u17CZh4H1Z1NtFh5vqnb3q7IcLRjnLzbx0eN3LXWFbuVR6oi96tcWQ>
-    <xmx:u17CZhiYp6y5XjsMPtUfeZ3wBy4Mx277uTPFg1UJF8vuRaJ8hqLqTA>
-    <xmx:vV7CZv65o8E8ELuZHA4h1TGRWAM7lnh4kAeNxBjSCjU_BTOHL8raJvbM>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id B634F276005E; Sun, 18 Aug 2024 16:51:07 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1724015181; c=relaxed/simple;
+	bh=ObcgLOxpgK8bY4SRE/eMxIPMQ4LCDmvUN8zXv0v2ZnI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZhaLakQec7GVo/ixSLuO+5G0owIl8T95DcYwIYd1WYCWuiB3XGHMKg2ESz/Z1qhNn3+gIJgwI3EVErPBI795+HaUuOQZY0IllqS0XYcRGPRgrO547lhNvWbz0eeVr5EB2W55wg9iDtgpQNCinFzib2a3KbbsAJxSDygOfLLydWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g5KSCcd2; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a77ec5d3b0dso412074766b.0;
+        Sun, 18 Aug 2024 14:06:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724015178; x=1724619978; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZbDQHOHZYxmYfyPdBHO+9gNiu0eiIio1Te+MtdXcM8U=;
+        b=g5KSCcd2T0HAe2MfkRFvBOgba4eEnFAVBHRhjcWyQ49jDl20zu8fyu3GuzrKbHjf53
+         0aF3BF4HOK3Lx5siK9EXXZLIQuMEoDs+aQ/2uHRuYt3lEwRELMVcycNubdK6beTSWKsP
+         9B3TGEtENEa/NaAohQSK/2wHvAK2i+ioHmsk7VgCjrRiNQ2LaU3IOBpm6Z4U63rPkrUV
+         3M/kM6mXuJCfJnRkftKW8BdoqSWLkDqrqtZd5p5XQcls52LvsHQH48+cedJH01/jtPRY
+         xHvIJPNo2v8SWebPPuun3yCb2MYclB8Ey4E3GqmIyilwmj9PDNqHBwhvLfEF1BVjUoAO
+         lwZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724015178; x=1724619978;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZbDQHOHZYxmYfyPdBHO+9gNiu0eiIio1Te+MtdXcM8U=;
+        b=uhq8n/DZjdR0TJMqFlL9rkQubdncMSVyq+tspG+4wK0lfHwYSy1cj/iVR5GTm5j13w
+         EXlEMSB2hLIRe5yQXbJBnYvepQ1eajaC9CW5p/wVlExABLpFVIl6TNBhuBmS92WGfjxB
+         xzLzjsIhQ+Gr6GQUkmS49+V3Hi8Q3h54M6ZgQahsizqj108XSyRj0/XsAP5G3pWaHWZb
+         ZDfxJfO9DayXeeiO8RAurDqh9LSX4gq1JpeRHF1dmq54yO4iMAFhFit1GomL97tFwVYo
+         uEUesE4rPFK/46YIO+HdXs7+Nh3XrnZxSNz0QOY38rjCiuE1BsV5AYEi2a6riOlu5kjK
+         dMFA==
+X-Forwarded-Encrypted: i=1; AJvYcCV8bNB6KNnJJQDXuVMyefnqPhYXJWYVKPwwYq8HbF9VKo3wODPkgi+talkUuir3mlFlyrn+dzZL31BMT1DK2glH02iMTcoVHOpk24c3io5zN37xFzoYgA7m+nB8b1GHdCwxubcXLT4F+1ZGUTGUsKmf5yXWE6TSkMDwj1RyWrtsHEFonwo=
+X-Gm-Message-State: AOJu0Yyxxbbn99bLb2Q9R+Pjv4xks183KDkBe2xJfGpY4l01+8DIClio
+	GDhVILvp/68I+0tTP70B4SDsM6fxfBOC1W+kLZWZeSjh2oTSDPPT
+X-Google-Smtp-Source: AGHT+IF1jpbpV9chD1AVHYHSsvGDUDeitGvGSxeyTW1Z7qojasi9ONoPCxeVydF8RcshQWv04vAxhw==
+X-Received: by 2002:a17:907:f786:b0:a7a:83f8:cfcf with SMTP id a640c23a62f3a-a8392954409mr666255666b.35.1724015177386;
+        Sun, 18 Aug 2024 14:06:17 -0700 (PDT)
+Received: from [192.168.1.106] (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a83838d023dsm549401766b.64.2024.08.18.14.06.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 18 Aug 2024 14:06:17 -0700 (PDT)
+Message-ID: <2bc3b0fa-2cd1-e5d2-c324-ad466537d1b3@gmail.com>
+Date: Mon, 19 Aug 2024 00:06:15 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Mon, 19 Aug 2024 08:50:46 +1200
-From: "Ryan Walklin" <ryan@testtoast.com>
-To: "Chen-Yu Tsai" <wens@csie.org>
-Cc: "Maxime Ripard" <mripard@kernel.org>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
- "Thomas Zimmermann" <tzimmermann@suse.de>,
- "David Airlie" <airlied@gmail.com>, "Daniel Vetter" <daniel@ffwll.ch>,
- "Jernej Skrabec" <jernej.skrabec@gmail.com>,
- "Samuel Holland" <samuel@sholland.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Michael Turquette" <mturquette@baylibre.com>,
- "Stephen Boyd" <sboyd@kernel.org>, "Andre Przywara" <andre.przywara@arm.com>,
- "Chris Morgan" <macroalpha82@gmail.com>, "John Watts" <contact@jookia.org>,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org
-Message-Id: <4a5e5c54-71dd-4069-8543-d3c341369242@app.fastmail.com>
-In-Reply-To: 
- <CAGb2v64Fpt_tP5gSZftmexOY-sS6dsC=+KmgAJmMoRuhsEvK7g@mail.gmail.com>
-References: <20240817230503.158889-1-ryan@testtoast.com>
- <20240817230503.158889-23-ryan@testtoast.com>
- <CAGb2v64Fpt_tP5gSZftmexOY-sS6dsC=+KmgAJmMoRuhsEvK7g@mail.gmail.com>
-Subject: Re: [PATCH v3 22/26] clk: sunxi-ng: ccu: add Display Engine 3.3 (DE33) support
-Content-Type: text/plain
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v1 08/10] arm64: dts: exynos: Add initial support for
+ exynos8895 SoC
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>
+Cc: linux-samsung-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240807082843.352937-1-ivo.ivanov.ivanov1@gmail.com>
+ <20240807082843.352937-9-ivo.ivanov.ivanov1@gmail.com>
+ <e6b4e0d8-7183-4ff4-a373-cb1c0c98d993@kernel.org>
+ <5274b8a1-b81c-3979-ed6c-3572f6a6cfc2@gmail.com>
+ <24ff07b6-a685-471f-8249-3e3450e2d3d3@kernel.org>
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <24ff07b6-a685-471f-8249-3e3450e2d3d3@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 
+On 8/9/24 08:48, Krzysztof Kozlowski wrote:
+> On 07/08/2024 13:20, Ivaylo Ivanov wrote:
+>> On 8/7/24 12:20, Krzysztof Kozlowski wrote:
+>>> On 07/08/2024 10:28, ivo.ivanov.ivanov1@gmail.com wrote:
+>>>> From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+>>>>
+>>>> Exynos 8895 SoC is an ARMv8 mobile SoC found in the Samsung Galaxy
+>>>> S8 (dreamlte), S8 Plus (dream2lte), Note 8 (greatlte) and the Meizu
+>>>> 15 Plus (m1891). Add minimal support for that SoC, including:
+>>>>
+>>>> - All 8 cores via PSCI
+>>>> - ChipID
+>>>> - Generic ARMV8 Timer
+>>>> - Enumarate all pinctrl nodes
+>>>>
+>>>> Further platform support will be added over time.
+>>>>
+>>>> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+>>>> ---
+>>>>  .../boot/dts/exynos/exynos8895-pinctrl.dtsi   | 1378 +++++++++++++++++
+>>>>  arch/arm64/boot/dts/exynos/exynos8895.dtsi    |  253 +++
+>>>>  2 files changed, 1631 insertions(+)
+>>>>  create mode 100644 arch/arm64/boot/dts/exynos/exynos8895-pinctrl.dtsi
+>>>>  create mode 100644 arch/arm64/boot/dts/exynos/exynos8895.dtsi
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/exynos/exynos8895-pinctrl.dtsi b/arch/arm64/boot/dts/exynos/exynos8895-pinctrl.dtsi
+>>>> new file mode 100644
+>>>> index 000000000..1dcb61e2e
+>>>> --- /dev/null
+>>>> +++ b/arch/arm64/boot/dts/exynos/exynos8895-pinctrl.dtsi
+>>>> @@ -0,0 +1,1378 @@
+>>>> +// SPDX-License-Identifier: BSD-3-Clause
+>>>> +/*
+>>>> + * Samsung's Exynos 8895 SoC pin-mux and pin-config device tree source
+>>>> + *
+>>>> + * Copyright (c) 2024, Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+>>>> + */
+>>>> +
+>>>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>>>> +#include "exynos-pinctrl.h"
+>>>> +
+>>>> +&pinctrl_alive {
+>>>> +	gpa0: gpa0 {
+>>> I do not believe this was tested. See maintainer SoC profile for Samsung
+>>> Exynos.
+>>>
+>>> Limited review follows due to lack of testing.
+>>>
+>>>
+>>>> +};
+>>>> diff --git a/arch/arm64/boot/dts/exynos/exynos8895.dtsi b/arch/arm64/boot/dts/exynos/exynos8895.dtsi
+>>>> new file mode 100644
+>>>> index 000000000..3ed381ee5
+>>>> --- /dev/null
+>>>> +++ b/arch/arm64/boot/dts/exynos/exynos8895.dtsi
+>>>> @@ -0,0 +1,253 @@
+>>>> +// SPDX-License-Identifier: BSD-3-Clause
+>>>> +/*
+>>>> + * Samsung's Exynos 8895 SoC device tree source
+>>>> + *
+>>>> + * Copyright (c) 2024, Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+>>>> + */
+>>>> +
+>>>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>>>> +
+>>>> +/ {
+>>>> +	compatible = "samsung,exynos8895";
+>>>> +	#address-cells = <2>;
+>>>> +	#size-cells = <1>;
+>>>> +
+>>>> +	interrupt-parent = <&gic>;
+>>>> +
+>>>> +	aliases {
+>>>> +		pinctrl0 = &pinctrl_alive;
+>>>> +		pinctrl1 = &pinctrl_abox;
+>>>> +		pinctrl2 = &pinctrl_vts;
+>>>> +		pinctrl3 = &pinctrl_fsys0;
+>>>> +		pinctrl4 = &pinctrl_fsys1;
+>>>> +		pinctrl5 = &pinctrl_busc;
+>>>> +		pinctrl6 = &pinctrl_peric0;
+>>>> +		pinctrl7 = &pinctrl_peric1;
+>>>> +	};
+>>>> +
+>>>> +	arm-a53-pmu {
+>>> Are there two pmus?
+>> Hm. The Downstream kernel has them all under one node with compatible
+>>
+>> 'arm,armv8-pmuv3', same as with Exynos 7885. So it should have two PMUs,
+>>
+>> one for each cluster.
+>>
+>>
+>> Considering the second cluster consists of Samsung's custom Mongoose M2
+>>
+>> cores, what would be the most adequate thing to do? Keep the first PMU as
+>>
+>> "arm,cortex-a53-pmu" and use the SW model "arm,armv8-pmuv3" for the
+>>
+>> second PMU? I doubt guessing if these mongoose cores are based on already
+>>
+>> existing cortex cores is a great idea.
+> I was just wondering why there is only one and called a53. I am not sure
+> what should be for the second, but rather not a software model.
+>
+> Best regards,
+> Krzysztof
+>
+Well, as far as I can tell there are 3 options:
 
-On Mon, 19 Aug 2024, at 1:40 AM, Chen-Yu Tsai wrote:
+- use an already defined PMU model for another core (ex. A73)
 
-Hi Chen-Yu, thanks for the reviews!
+- submit another patch to add a custom mongoose-specific PMU model
 
->> +#include <linux/of_address.h>
+- omit the mongoose cores PMU entirely
 
-> Still incorrect.
+My guess is that omitting it entirely with a comment that mentions the
 
-Whoops, only fixed the changelog it seems. Will correct.
+issue will be good enough, at least for now. Is that OK for the v3?
 
-Ryan
+
+Best regards,
+
+Ivaylo
+
 
