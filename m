@@ -1,96 +1,60 @@
-Return-Path: <devicetree+bounces-94534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 521CE955D5C
-	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 18:06:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28920955D55
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 18:04:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C8D4E1F213AC
-	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 16:06:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 51135B20DD8
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 16:04:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F2C1145335;
-	Sun, 18 Aug 2024 16:06:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F24CB12E1C2;
+	Sun, 18 Aug 2024 16:04:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rnbld1JI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p1t1lls7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E8BE13DB99;
-	Sun, 18 Aug 2024 16:06:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C82812942A;
+	Sun, 18 Aug 2024 16:04:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723997167; cv=none; b=Q4e5yERZJDcG35cGCMiK7rN1P2yYt/tZvofshNKsq2MmuciXcoOcIlhLRbrQqRSdZetYBIrEc+NWPa3STVS4Alkivn9wAsJFulIuRSsK1zK4r1cFzd50i7+ZwtT1dIDkvZA2Cm0EPiRE7538pLKqJ6JGiFFwf5Pp8hQ4s8FnTIA=
+	t=1723997066; cv=none; b=MAtPK8m/yGz7PIcHoTMcFPkphDanlnVDdHIeUBjyKVFZt5roUoXOg4av9Uv2EHmOBpOab5uJF3gisENlnkxsOxQvcD9Sx5AOG5KpjOYjsri/abz4FkdUqpEUTvQ6opQdEtRZRBvCoeTCGqZHSGBwYbJMGITA/PzuNzUumZdLj7o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723997167; c=relaxed/simple;
-	bh=CB42urVV5UCfzZa3KFQDJSFaLAZYUCRfVMmdLce7vCk=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ErATs8dba9JohBLwyzxT5Dfy1kzCH7S5yGSdjRKP52vfk4QEeJFuWcxtV//So95KqT4tXETIFo1QholtswYsSZU03OU1N2tIA3IRsFi7Us+rockizmYQ7YYcvnRY4NCfitChUWCNQZyyqhRo217X6Ka3h2//yfky+e7WLQdcQZ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rnbld1JI; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-42808071810so27318405e9.1;
-        Sun, 18 Aug 2024 09:06:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1723997164; x=1724601964; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=9uf9ybAkd2LS8fUBYd8Lu828Q3AdDP0nqtGsXfOMW14=;
-        b=Rnbld1JIk+7+M5N/Pf5nRuBTauUqFbc/24DNt5Mx9UkMSL6RDheNcuJbVtU5lWacTT
-         ja6Tm7/ElAGIkPw52wnPAq6wAnstJccdJyb5xDWemXzgP0OGlgfj95HAqbfQLb5Gwmee
-         xuDVUrUOe2MyUzEcJtrmPmezervpvcahzBFi0bz/SZMggQv1j99cSeaxlb5Nvhb86SEa
-         wvrMlGmhlBsBKMb6pFqTiN/fB6kij+tZUvlgzGDzRMRnXkJNCl5jq8rX611RtqieYWyn
-         vysx2Wc/2wWrQqaSzDmcj9ME2rdl/mCqLjDfhmTT9NzZ0sIyRRv2u4OJiP8KykgmNbbC
-         0G2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1723997164; x=1724601964;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9uf9ybAkd2LS8fUBYd8Lu828Q3AdDP0nqtGsXfOMW14=;
-        b=Qttv+pyRXemucNGXETPI1kwCCbZvlfHyG6vuVznoBW1WbX8+SX8j8FGCbSMcKud5J2
-         Zf8O8f7jYxoNMKuulAzOZp/WpGNWMh99ihhHWmk9VM3JZ8OeQ8iVxhrXFlecCEvdTEgr
-         wm0QSbimiCOuBzPuDmg8ykJccqv8RMrDy9gd0k0Len0l9W+MsJf2A7Ng3tolPk8/Iq4W
-         1gDfS2IyrUdgAJT0t3qwg0K98/Dgsu8IZw9mOfIBn0/VoenYXI0nJ+2DpxuNWWGi7L0Z
-         lb4f9cmKUgh+7Wxv/SF8D6iJ1sYONz47EEaVXQc0keK+pk2HuwNwzCunQqmr9lXzOxQ4
-         1ZCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVXl+Bx6e9X6B5WmCoCENpOPbOFk2oGBPOwSzeK6j68KJ8I9lMLPiyzTBYzqJLC0AFRoYLDVqLwXdv4OGFfz5KDdZIpLbe7EcqCs2Q2mlWWCAUPorUyGmm52hlUlcf3vEbk62LaEUw=
-X-Gm-Message-State: AOJu0YwlYw+RjnOBJxOL+CZEhyfrkWXxigulG9VMgs4IcG8b+s8lL/bc
-	4CCf7mcai96Iu6uMjOXRi5/AwXCHIuN8gdy7IbLEto39lhvpK9Ic
-X-Google-Smtp-Source: AGHT+IGgPlNsfcN1LNMf0WwO+CHJcYD87ZYBeRC5EFBOgLJ+FKLc4rIeKV5tr9T9gyTFiIB+WuPWOg==
-X-Received: by 2002:a05:600c:3c9e:b0:428:1e8c:ff75 with SMTP id 5b1f17b1804b1-429ed7e2306mr53474745e9.35.1723997163447;
-        Sun, 18 Aug 2024 09:06:03 -0700 (PDT)
-Received: from Ansuel-XPS. (host-79-47-255-50.retail.telecomitalia.it. [79.47.255.50])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-371898ac074sm8334097f8f.106.2024.08.18.09.06.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Aug 2024 09:06:01 -0700 (PDT)
-Message-ID: <66c21be9.5d0a0220.2350c8.75dd@mx.google.com>
-X-Google-Original-Message-ID: <ZsIWToQY5P-vaXzP@Ansuel-XPS.>
-Date: Sun, 18 Aug 2024 17:42:06 +0200
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Benjamin Larsson <benjamin.larsson@genexis.eu>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Lorenzo Bianconi <lorenzo@kernel.org>, linux-gpio@vger.kernel.org,
-	linus.walleij@linaro.org, sean.wang@kernel.org,
-	linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com,
-	krzk+dt@kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com, conor+dt@kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: airoha: Add EN7581 pinctrl
- controller
-References: <cover.1723392444.git.lorenzo@kernel.org>
- <0d537e88b64847bc4e49756b249b2efdcf489b92.1723392444.git.lorenzo@kernel.org>
- <22144671-fc7c-4cb2-8bb6-ee7d3fbfcb0e@kernel.org>
- <c8a74be4-be63-477d-9460-1d5ef5e3d84a@genexis.eu>
- <20240816225257.GA2411475-robh@kernel.org>
- <1d223ae5-cd2c-4883-b293-bb182e90222b@genexis.eu>
- <6da7acc8-f77e-453c-b2fa-4eb9161f637c@lunn.ch>
- <3a52e550-1bb1-40fc-b7dd-b454d7c97f97@genexis.eu>
- <19793afa-dc62-421f-ba09-8ca2815ae4a2@lunn.ch>
+	s=arc-20240116; t=1723997066; c=relaxed/simple;
+	bh=zOh8sLLniupBfxa1ZvD5qt1zclMnT9P4G1dPyjbnZjM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QBznKCGUA16jIEdI96X8pBNXcBshbj34EHekHQVPyAQGO4Dpn6t5qobibkhVzH3VZP3UUuY7nrLrCZygWVTPSGY7BoaTnxtMGCW/1zUyr8b9caPXHrT3da6B8J6N3Sy9TSDZJ+lgmAHXLldzdlKNsx0MJRbH01cC694vMXwk/X4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p1t1lls7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD504C32786;
+	Sun, 18 Aug 2024 16:04:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1723997066;
+	bh=zOh8sLLniupBfxa1ZvD5qt1zclMnT9P4G1dPyjbnZjM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=p1t1lls702regXytE2r0csn0P8XdquKfZFZqW1TtFiWw6klyVviJ395rc8ifokGma
+	 WbR/2hGw0+yowaxddFwvYwokfFrqY7V59659EaaHkQNO85ap/S+jI/3W2lHml2w8P6
+	 tCVf/m+ZpcOKbm4plSyiLyFcks7j/VY1BU7oEnPt7T+HVenrgp5b+gkbqJJrGtUB6u
+	 YwPvk539p/XSwOzfbMZc9iLnce9jONEljnfOyuSxbgafjGs1pWp1lmdhYhZg2vQ1v4
+	 skdSlVAmRg0Yft1nFsDdJCLxVXtF8HCcFlWMkwyoMlvCTNGn1XxbyGmknKzxp+7322
+	 pGIqzJGy7WFXA==
+Date: Sun, 18 Aug 2024 10:04:24 -0600
+From: Rob Herring <robh@kernel.org>
+To: Christian Bruel <christian.bruel@foss.st.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com, p.zabel@pengutronix.de,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	fabrice.gasnier@foss.st.com
+Subject: Re: [PATCH v2 2/5] dt-bindings: phy: Add STM32MP25 COMBOPHY bindings
+Message-ID: <20240818160424.GA156214-robh@kernel.org>
+References: <20240816132058.920870-1-christian.bruel@foss.st.com>
+ <20240816132058.920870-3-christian.bruel@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,56 +63,151 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <19793afa-dc62-421f-ba09-8ca2815ae4a2@lunn.ch>
+In-Reply-To: <20240816132058.920870-3-christian.bruel@foss.st.com>
 
-On Sun, Aug 18, 2024 at 06:02:28PM +0200, Andrew Lunn wrote:
-> On Sun, Aug 18, 2024 at 02:48:05PM +0200, Benjamin Larsson wrote:
-> > On 17/08/2024 23:39, Andrew Lunn wrote:
-> > > How messy are the GPIO and PWM registers? Are there N blocks of
-> > > independent GPIO registers? and M blocks of independent PWM registers?
-> > > By that, does one block of GPIO registers contain all you need for one
-> > > GPIO controller? One block of PWM registers give you all you need for
-> > > one PWM controller? Or are the registers for one GPIO controller
-> > > scattered all over the place?
-> > > 
-> > > Could you point at a public datasheet?
-> > > 
-> > >        Andrew
-> > > 
-> > Hi, per my understanding there is no public datasheet/register reference
-> > manual.
-> > 
-> > But here is the division of regions of the registers in the gpio block and
-> > how it is currently divided between the drivers (according to my current
-> > understanding).
-> > 
-> > 1FBF0200, gpio/pinctrl
-> > 1FBF0204, gpio/pinctrl
-> > 1FBF0208, gpio/pinctrl
-> > 1FBF020C, gpio/pinctrl
-> > 1FBF0210, gpio/pinctrl
-> > 1FBF0214, gpio/pinctrl
+On Fri, Aug 16, 2024 at 03:20:54PM +0200, Christian Bruel wrote:
+> Document the bindings for STM32 COMBOPHY interface, used to support
+> the PCIe and USB3 stm32mp25 drivers.
+> Following entries can be used to tune caracterisation parameters
+>  - st,output-micro-ohms and st,output-vswing-microvolt bindings entries
+> to tune the impedance and voltage swing using discrete simulation results
+>  - st,rx-equalizer register to set the internal rx equalizer filter value.
 > 
-> A typical SoC has multiple instances of a GPIO controller. Each GPIO
-> controller typically has 4 or 5 registers: In, Out, Direction,
-> Interrupt Enable, Interrupt Status. If these 4 or 5 registers are
-> contiguous, you could have one DT node per controller, rather than one
-> node for all GPIO controllers.
+> Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
+> ---
+>  .../bindings/phy/st,stm32-combophy.yaml       | 144 ++++++++++++++++++
+>  1 file changed, 144 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/st,stm32-combophy.yaml
 > 
-> If the hardware designer has really messed up and fully interleaved
-> GPIO and PWM, it might be better to have an MFD. The MFD node has a
-> single reg covering the entire range. The MFD would then map the whole
-> range, and provide accessors to the child devices. Hard code the
-> knowledge of what registers are where. Given how badly the hardware is
-> designed, it is unlikely it will get reused in the future, so there is
-> no point putting lots of stuff into DT. Hard code it.
->
+> diff --git a/Documentation/devicetree/bindings/phy/st,stm32-combophy.yaml b/Documentation/devicetree/bindings/phy/st,stm32-combophy.yaml
+> new file mode 100644
+> index 000000000000..c33a843b83a3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/st,stm32-combophy.yaml
+> @@ -0,0 +1,144 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/st,stm32-combophy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: STMicroelectronics STM32MP25 USB3/PCIe COMBOPHY
+> +
+> +maintainers:
+> +  - Christian Bruel <christian.bruel@foss.st.com>
+> +
+> +description:
+> +  Single lane PHY shared (exclusive) between the USB3 and PCIe controllers.
+> +  Supports 5Gbit/s for USB3 and PCIe gen2 or 2.5Gbit/s for PCIe gen1.
+> +
+> +properties:
+> +  compatible:
+> +    const: st,stm32mp25-combophy
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#phy-cells":
+> +    const: 1
+> +    description: |
+> +      The cells contain the following arguments.
+> +
+> +      - description: The PHY type
+> +          enum:
+> +            - PHY_TYPE_USB3
+> +            - PHY_TYPE_PCIE
+> +
+> +  clocks:
+> +    minItems: 2
+> +    items:
+> +      - description: apb Bus clock mandatory to access registers.
+> +      - description: ker Internal RCC reference clock for USB3 or PCIe
+> +      - description: pad Optional on board clock input for PCIe only. Typically an
+> +                     external 100Mhz oscillator wired on dedicated CLKIN pad. Used as reference
+> +                     clock input instead of the ker
+> +
+> +  clock-names:
+> +    minItems: 2
+> +    items:
+> +      - const: apb
+> +      - const: ker
+> +      - const: pad
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    const: phy
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  wakeup-source: true
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +    description: interrupt used for wakeup
+> +
+> +  access-controllers:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  st,syscfg:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: Phandle to the SYSCON entry required for configuring PCIe
+> +      or USB3.
+> +
+> +  st,ssc-on:
+> +    type: boolean
+> +    description:
+> +      A boolean property whose presence indicates that the SSC for common clock
+> +      needs to be set.
+> +
+> +  st,rx-equalizer:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0
+> +    maximum: 7
+> +    default: 2
+> +    description:
+> +      A 3 bit value to tune the RX fixed equalizer setting for optimal eye compliance
+> +
+> +  st,output-micro-ohms:
+> +    minimum: 3999000
+> +    maximum: 6090000
+> +    default: 4968000
+> +    description:
+> +      A value property to tune the Single Ended Output Impedance, simulations results
+> +      at 25C for a VDDP=0.8V. The hardware accepts discrete values in this range.
+> +
+> +  st,output-vswing-microvolt:
+> +    minimum: 442000
+> +    maximum: 803000
+> +    default: 803000
+> +    description:
+> +      A value property in microvolt to tune the Single Ended Output Voltage Swing to change the
+> +      Vlo, Vhi for a VDDP = 0.8V. The hardware accepts discrete values in this range.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - st,syscfg
+> +  - '#phy-cells'
+> +  - resets
+> +  - reset-names
+> +  - clocks
+> +  - clock-names
+> +
+> +allOf:
+> +  - if:
+> +      required:
+> +        - wakeup-source
+> +    then:
+> +      anyOf:
+> +        - required: [interrupts]
+> +        - required: [interrupts-extended]
 
-Problem is that the MFD will also affect other stuff like watchdog...
-thermal sensor/monitor, clocks... They really messed and put in that
-range all kind of stuff so we would end up in a very big mapped range
-and lots of child for the MFD.
+Drop this if/then. We should have this somewhere common as it applies to 
+all.
 
--- 
-	Ansuel
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
