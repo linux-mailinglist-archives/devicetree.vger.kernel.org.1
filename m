@@ -1,65 +1,58 @@
-Return-Path: <devicetree+bounces-94525-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94526-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EBCD955D1C
-	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 17:15:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 501C3955D22
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 17:20:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 12E2E1F20CAA
-	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 15:15:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E20131F2114E
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 15:20:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E42FF9FE;
-	Sun, 18 Aug 2024 15:15:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCDA65C8EF;
+	Sun, 18 Aug 2024 15:20:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cMEe6Hyo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fhhBAgai"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59B5C3232;
-	Sun, 18 Aug 2024 15:15:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A127412B8B;
+	Sun, 18 Aug 2024 15:20:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723994145; cv=none; b=s2yU1gFj4C2R62PG1/76Ps7XI8hebr7UnZUZUIIiWw6D+Or8rtsOaXEAdldVrThvD1kvfo7o32MmWAQU/5ZS5mMTx8lVOTZiBuy5FuaO5M/GtEyZm8QBEE4a+TWyOn0u6zqHColkJT4bbIL5wg5L0ZkbsT4KhnyL4gmR2FPOTwA=
+	t=1723994433; cv=none; b=eMYDfpBgDFUqhz+9uHUJpacJcwm3ykYjo1Ft7IgnBTmQce10+10Bxyc8S5uRcXBKKGbaM8hKdjl1GpG0Wm+7wudDh2MzE2LOsgavh1clsw6nmRbXE9fh3XWLugDG4l216CLYtj91i1QpmeYRbQf6K6SnWlgPY/aQHASbD/6qNNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723994145; c=relaxed/simple;
-	bh=tW5sOEFgT33+2UukCrapiNz4mmE63f3gCo8xq+yXlkI=;
+	s=arc-20240116; t=1723994433; c=relaxed/simple;
+	bh=SYQPmG1E8m02rnWoijZ+S3KGw8a8k2/aSB76BCn6A5M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W4wDQ0bGR9HchQ8mNVQ25ZvLpLJBMLQAHmXHLGIGAj1rNHXWTA1GOxTraQVJPbLvRTLu0OtJSwarE2zvF3qZWx1jmADZwYCYm+LwG8RSRmEDdSnH+SC3XSsERYs6eMREdoy0kQTh510kEDHanRvEOBgp9hv/KxutzzlzwvtlXBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cMEe6Hyo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3A4AC32786;
-	Sun, 18 Aug 2024 15:15:44 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=qsXJO+sHlUHvAApd7DNwUVWOdmw0/AESAPzB5JqtTmhlVjRRIYzS+DPnJAf64vrAhXqUiXZIVuGDfllWQV15aAkaHkRfG1xeYs52OB4WzBXIeNAVVPIRr/OTntZiSPk5J/AglhtfPrPaevFC3C1jbMZkgzXD0nZHNE592oaUtw0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fhhBAgai; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A89C4C32786;
+	Sun, 18 Aug 2024 15:20:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723994144;
-	bh=tW5sOEFgT33+2UukCrapiNz4mmE63f3gCo8xq+yXlkI=;
+	s=k20201202; t=1723994433;
+	bh=SYQPmG1E8m02rnWoijZ+S3KGw8a8k2/aSB76BCn6A5M=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cMEe6Hyodx54GX6KuQDStFlNzP/m8atWGuVmFoeGuOJNzKu+pgykDu9RKGII01RM0
-	 FqES4yF19Va0s7YBxXqhXsTLDUdsWlXMWCZmR7P6E9OG6MAYMaeqDxYY+vGkuMXXdd
-	 hhjgAJwIvE9NphbvB/hBwRMUwcyxValVw2lAn37RwQQj87JSncpc0g2VTqARfRdS60
-	 DGlxsLCS6bgexz1DfZ5hVB25eGsbIHNjQwRKhRvgfCI9sF+zDujK6cyhISqAxH85vO
-	 TIORgNFmi2JWh0PToCQp4rCbtswRwnDclwXa3fjfgfzVpqK4E1i4Bl0yV29bsSuRyp
-	 Ec+nLwvFXdkMw==
-Date: Sun, 18 Aug 2024 09:15:43 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Richard Acayan <mailingradian@gmail.com>
-Cc: Andi Shyti <andi.shyti@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	devicetree@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>,
-	linux-media@vger.kernel.org,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org, Todor Tomov <todor.too@gmail.com>,
-	linux-i2c@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Loic Poulain <loic.poulain@linaro.org>
-Subject: Re: [PATCH v2 1/5] dt-bindings: i2c: qcom-cci: Document SDM670
- compatible
-Message-ID: <172399414297.96963.16801957440346846709.robh@kernel.org>
-References: <20240813230037.84004-8-mailingradian@gmail.com>
- <20240813230037.84004-9-mailingradian@gmail.com>
+	b=fhhBAgain3MYzsELAc0HysEUBM2dUI9XIwNOMpfU5LjoYeUOhUoo/lwXXWd6VR0X9
+	 j0or6K8fnnxOkW4zZ++DK1eXofeOGbQ9pq+5TotWAQm8qNlqAGq0+4y4Y9nAKPyOa/
+	 /alF4T95ZdbICXnwC07Ulnnneiv3VvSMhhFpQg6cT/gotFvLj3pqypzw/r1TzR6UhI
+	 68M5eJvTXYcS8M9GC5nlMUp6NvfosxYqTihz4XJr9Nl2rYnOKx5b9Q7x3UdcU66ZAi
+	 eX0TlRDTbCuej4WsxiWDRE7JK8cPz3boloQ9sA1DTDMRZqn7HXoAFQ8Q1l+DR+f4hb
+	 buPw+RUScjwKw==
+Date: Sun, 18 Aug 2024 09:20:30 -0600
+From: Rob Herring <robh@kernel.org>
+To: Kevin Chen <kevin_chen@aspeedtech.com>
+Cc: tglx@linutronix.de, krzk+dt@kernel.org, conor+dt@kernel.org,
+	joel@jms.id.au, andrew@codeconstruct.com.au,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller: Add support
+ for ASPEED AST27XX INTC
+Message-ID: <20240818152030.GA101410-robh@kernel.org>
+References: <20240814114106.2809876-1-kevin_chen@aspeedtech.com>
+ <20240814114106.2809876-3-kevin_chen@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,20 +61,13 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240813230037.84004-9-mailingradian@gmail.com>
+In-Reply-To: <20240814114106.2809876-3-kevin_chen@aspeedtech.com>
 
+On Wed, Aug 14, 2024 at 07:41:05PM +0800, Kevin Chen wrote:
+> The ASPEED AST27XX interrupt controller(INTC) contain second level and
+> third level interrupt controller. The third level INTC combines 32 interrupt
+> sources into 1 interrupt into parent interrupt controller. The second
+> level INTC doing hand shake with third level INTC.
 
-On Tue, 13 Aug 2024 19:00:40 -0400, Richard Acayan wrote:
-> The CCI on the Snapdragon 670 is the interface for controlling camera
-> hardware over I2C. Add the compatible so it can be added to the SDM670
-> device tree.
-> 
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> ---
->  Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
+Missing Signed-off-by. checkpatch.pl also reports trailing whitespace.
 
