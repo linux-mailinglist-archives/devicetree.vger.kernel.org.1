@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-94497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84FA6955B77
-	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 08:41:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02AF4955BB5
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 09:05:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 247301F21C00
-	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 06:41:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 238FB1C20E29
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 07:05:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED7CDDF51;
-	Sun, 18 Aug 2024 06:41:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3DA0175AB;
+	Sun, 18 Aug 2024 07:05:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bKfqwKVg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VLqR5u51"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2B6712B82;
-	Sun, 18 Aug 2024 06:41:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFF121758B;
+	Sun, 18 Aug 2024 07:05:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723963310; cv=none; b=HrVkc2yI48OItLFlvcYIlwrh1Bpij8cbtbcIgJP7CzimGslV0TnF8WbY/GGoJgl3FQS4uxH1bb0RcXIPMyDRm3XbhDXu6hY/w/KdxueQngPniTlIVXHwRdIlP1Hl1jepVMtRW3pnjGE9DlxAclvtULIrlU02SkcZbG4jnr1ozTA=
+	t=1723964700; cv=none; b=sp4ZLh/eCuX39KcNH8jRBVf9PWnTmnea7cW1iIGtg+Qdy+u1VKgpWetQGUaz+Pc48vgHoA17PMJW+Zqi1BaeC4JKDdNiVuhJOFnHZFAbLTnSXpi6o78knQGVAfrX2eHIakhUG26YGrQPxAUpQI7j2cy9WmIGVXOT7EINJJEhkn8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723963310; c=relaxed/simple;
-	bh=tU2Lnb2q5NkNM8obzwInrLakeb6U739NsJh/oLx9y6Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=o613Ut4pYriPjNmIHQuLodWfBUNI5bSqOjy+O7y+dlto3iffPvhjeQcRgjIrXtzdlhwLMyXByAhclJBSQTGWM1zoLuErff4VWNZehQrVDI9Jp7fBTaR6gPmSoyeosp6BdYrN+bk5V0NWzeFMRpOH1Herw8dr6vc7gom9IbG4GH4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bKfqwKVg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFDBDC32786;
-	Sun, 18 Aug 2024 06:41:45 +0000 (UTC)
+	s=arc-20240116; t=1723964700; c=relaxed/simple;
+	bh=JkCXrBddsAmPsjNruqRw2xUrMRsszkRxypNEw90PA3Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=hR0t8vdO7owqUZHd8Nt8ZvGb5p1RoIaO6Dvj8YxsExPt5lWBExMhfHbk1YP+7P+hev1rNrkrobmyKL0v1Wgi4GDOPVpiA71FwPw8iDj/yFD/QGzz98P1tWCzS/qmMufqc87JmefgAG5OHqn0yUGjlZaKGClanWyyVISwCPg4uiQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VLqR5u51; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73809C32786;
+	Sun, 18 Aug 2024 07:04:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723963310;
-	bh=tU2Lnb2q5NkNM8obzwInrLakeb6U739NsJh/oLx9y6Q=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bKfqwKVgDkIEQaC0yV2bs46JNk1FO4xQvaJC4pV/CTFaeEyfOx8u2ACOQrUUBiPEV
-	 /lddMRAbe9z3HggzmTpCj/1yuYsUv4LzWlZXnBJQNKSWE9ROyJWQSlGm6hG8XvrDy0
-	 CXkluf+0p5EiiBNm/xZIvSVaJH0S06ZtEFO3n2F7EXllfZwmrRaqVS5gyUrgt0aj0O
-	 ZxNdWTAXUgy7VMB9+lL7L3Ryy8HqpFQKY6O9oHrF1nHbtnjoWUjfgKgWhVr/9Q3UKI
-	 mbceoI0+MghHRv+LhW8TXjMxzklvhX4VrgwbXGX++YUYO46h8tPANces4x5SFQSI0G
-	 +N+RhPZfYaURQ==
-Message-ID: <97fc6579-a935-4e50-9739-51647ff17b63@kernel.org>
-Date: Sun, 18 Aug 2024 08:41:43 +0200
+	s=k20201202; t=1723964700;
+	bh=JkCXrBddsAmPsjNruqRw2xUrMRsszkRxypNEw90PA3Q=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=VLqR5u51glNxnE0PkzxGdLmW0M2D6rfBpBQw89l1Oz4bUq4MW6z1VjCr+Zxarmb6m
+	 g5apwXGFI9RSE8h8wqyntoaOi+YD4sD1Bh77mXm02ghk73ud9sjGFg+0/E2vMbNRTx
+	 kOzCIm2vbWHzm3x06oBPUd/pC0bazgwQDM2+Cf62Yva92ED1zQda9sPTmBj1JI6NFK
+	 XgQ1V60BAuThp6W6GRrCLqztbJI47Ds2f3L+4UzcyqyzXN9+T9IMiyOeItqnI/S3+v
+	 o6onDzQitNsX2Zk4kXYX8bxiZc8diLgPhTuN+vzzIKtA5KCzX6AvYI0wAde1J5lnwJ
+	 fuHfpwhR1cwMg==
+Message-ID: <8d24b75a-18dd-4d54-98c3-d899c5502dad@kernel.org>
+Date: Sun, 18 Aug 2024 09:04:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/6] dt-bindings: ufs: Add X1E80100 UFS
-To: Marcus Glocker <marcus@nazgul.ch>, Bjorn Andersson
- <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>,
- Johan Hovold <johan@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
-References: <p3mhtj2rp6y2ezuwpd2gu7dwx5cbckfu4s4pazcudi4j2wogtr@4yecb2bkeyms>
- <zr3bk5yek44mpx4wcriw56uzzi6cnjvvtmt2mu42jyla2hnlgu@sbnulfjo2gks>
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: dac: add docs for ad8460
+To: "Tinaco, Mariel" <Mariel.Tinaco@analog.com>,
+ "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ "Hennerich, Michael" <Michael.Hennerich@analog.com>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+ Dimitri Fedrau <dima.fedrau@gmail.com>, David Lechner
+ <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>
+References: <20240730030509.57834-1-Mariel.Tinaco@analog.com>
+ <20240730030509.57834-2-Mariel.Tinaco@analog.com>
+ <71cbe674-b232-4327-929b-351630907540@kernel.org>
+ <SJ0PR03MB6224EB6BB835741EA94DEB7491822@SJ0PR03MB6224.namprd03.prod.outlook.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,17 +111,115 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <zr3bk5yek44mpx4wcriw56uzzi6cnjvvtmt2mu42jyla2hnlgu@sbnulfjo2gks>
+In-Reply-To: <SJ0PR03MB6224EB6BB835741EA94DEB7491822@SJ0PR03MB6224.namprd03.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/08/2024 22:36, Marcus Glocker wrote:
-> Document the ufs host controller compatible for the Qualcomm X1E80100.
+On 17/08/2024 13:18, Tinaco, Mariel wrote:
+>>> +  clocks:
+>>
+>> maxItems: 1
+>> and drop description (or use items: - description, but then do not
+>> repeat redundant parts)
+>>
 > 
-> Signed-off-by: Marcus Glocker <marcus@nazgul.ch>
-> ---
+> Simplified the description for this item
+> 
+>   refio-1p2v-supply:
+>     description: Reference voltage to adjust full scale output span
+>     maxItems: 1
+> 
+> Should I put, "maxItems: 1" in the other vrefs as well?
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+No, why do you change supply? My comment was under clocks. Comments are
+always under specific part of code which is being discussed.
+
+> 
+>>> +    description: The clock for the DAC. This is the sync clock
+>>> +
+>>> +  adi,rset-ohms:
+>>> +    description: Specify value of external resistor connected to FS_ADJ pin
+>>> +      to establish internal HVDAC's reference current I_REF
+>>> +    default: 2000
+>>> +    minimum: 2000
+>>> +    maximum: 20000
+>>> +
+>>> +  adi,range-microvolt:
+>>> +    description: |
+>>> +      Voltage output range specified as <minimum, maximum>
+>>> +    oneOf:
+>>
+>> Not an oneOf.
+>>
+> 
+> You're right. I should have put all the possible values. I populated it with common
+> Values found in the datasheet
+> 
+>   adi,range-microvolt:
+>     description: Voltage output range specified as <minimum, maximum>
+>     oneOf:
+>       - items:
+>           - enum: [0, -10000000, -20000000, -30000000, -40000000, -55000000]
+>           - enum: [10000000, 20000000, 30000000, 40000000, 55000000]
+> 
+>>> +      - items:
+>>> +          - const: -40000000
+>>> +          - const: 40000000
+>>
+>> Why do you need this property if this cannot be anything else? Drop.
+>>
+>>> +
+>>> +  adi,range-microamp:
+>>> +    description: |
+>>
+>> Do not need '|' unless you need to preserve formatting.
+>>
+>>> +      Current output range specified as <minimum, maximum>
+>>> +    oneOf:
+>>> +      - items:
+>>> +          - const: 0
+>>> +          - const: 50000
+>>> +      - items:
+>>> +          - const: -50000
+>>> +          - const: 50000
+>>> +
+>>> +  adi,temp-max-millicelsius:
+>>> +    description: Overtemperature threshold
+>>> +    default: 50000
+>>> +    minimum: 20000
+>>> +    maximum: 150000
+>>> +
+>>> +  sdn-reset-gpios:
+>>
+>> reset-gpios or shutdown-gpios or anything from gpio-consumer-common
+>> which is not deprecated.
+>>
+> 
+> Lifted from gpio-consumer-common yaml. Mapped to corresponding pins
+> 
+>   wakeup-gpios:
+>     description: Corresponds to SDN_RESET pin. To exit shutdown
+>       or sleep mode, pulse SDN_RESET HIGH, then leave LOW.
+
+That's not a wakeup-gpio. I think my comment was imprecise. You have
+something like three reset/shutdown GPIOs, so pick from
+gpio-consumer-common the reset and shutdown. Remaining one could stay as
+in your original code.
+
+>     maxItems: 1
+> 
+>   reset-gpios:
+>     description: Manual Power On Reset (POR). Pull this GPIO pin
+>       LOW and then HIGH to reset all digital registers to default
+>     maxItems: 1
+> 
+>   shutdown-gpios:
+>     description: Corresponds to SDN_IO pin. Shutdown may be
+>       initiated by the user, by pulsing SDN_IO high. To exit shutdown,
+>       pulse SDN_IO low, then float.
+>     maxItems: 1
+> 
+
 
 Best regards,
 Krzysztof
