@@ -1,63 +1,65 @@
-Return-Path: <devicetree+bounces-94524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0946955D12
-	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 17:08:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EBCD955D1C
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 17:15:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4DD4628189A
-	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 15:08:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 12E2E1F20CAA
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 15:15:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBDEE4204F;
-	Sun, 18 Aug 2024 15:07:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E42FF9FE;
+	Sun, 18 Aug 2024 15:15:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wg0r7r7C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cMEe6Hyo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A1521CABF;
-	Sun, 18 Aug 2024 15:07:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59B5C3232;
+	Sun, 18 Aug 2024 15:15:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723993679; cv=none; b=tFqC4M4FugBU68m7jU/QdxFWPXAnowyK+g2DzdZgLARE4koOQTY75L5OwrIZhqVvEkd6O4e1wJlFxfa1JLHDkg/jw3/6AdH0xsHJ8rOV86xFBunn6ziGSj3Ki4UVgGIe0CoEalHJNwwOt+zwVxv6DkiRYXFsjxo/mIs3bH6Xin0=
+	t=1723994145; cv=none; b=s2yU1gFj4C2R62PG1/76Ps7XI8hebr7UnZUZUIIiWw6D+Or8rtsOaXEAdldVrThvD1kvfo7o32MmWAQU/5ZS5mMTx8lVOTZiBuy5FuaO5M/GtEyZm8QBEE4a+TWyOn0u6zqHColkJT4bbIL5wg5L0ZkbsT4KhnyL4gmR2FPOTwA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723993679; c=relaxed/simple;
-	bh=C46N4m4z7zsS9XGctzhVTS5q4ELPLk7grJWi29nWOEM=;
+	s=arc-20240116; t=1723994145; c=relaxed/simple;
+	bh=tW5sOEFgT33+2UukCrapiNz4mmE63f3gCo8xq+yXlkI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VW0Mu1MfwUn09/hG9z1RgfYHKiAxJqbM4k4dUV6gcIdZN9Ru3UzoPQ3/8UaqWwrNmZ9yA6iqg9I7PkZ4Yo4MGggrOVx/QBDcIRo2jcR+D1LwTv4rzPMfNSRABDHryxnjbY/rw8nrjjFXZSYXtDih5DsglmDR4+S6iwIJeAed3iQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wg0r7r7C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D04EBC32786;
-	Sun, 18 Aug 2024 15:07:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=W4wDQ0bGR9HchQ8mNVQ25ZvLpLJBMLQAHmXHLGIGAj1rNHXWTA1GOxTraQVJPbLvRTLu0OtJSwarE2zvF3qZWx1jmADZwYCYm+LwG8RSRmEDdSnH+SC3XSsERYs6eMREdoy0kQTh510kEDHanRvEOBgp9hv/KxutzzlzwvtlXBE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cMEe6Hyo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3A4AC32786;
+	Sun, 18 Aug 2024 15:15:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723993679;
-	bh=C46N4m4z7zsS9XGctzhVTS5q4ELPLk7grJWi29nWOEM=;
+	s=k20201202; t=1723994144;
+	bh=tW5sOEFgT33+2UukCrapiNz4mmE63f3gCo8xq+yXlkI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Wg0r7r7CU6mSiCccVB+Gtua6zbqbYLYrtWnL08yhnx2rUucSADhTM6eqnsEfbgPM6
-	 mEf6Q2RV0HcOUw36jJhI9mkbsXhPQrw/NBEUElw65PBXYdVlsPq166mjxAI1RxpRUX
-	 GoaqQA10Xo9LS1r6uv6Zj5yI7IRo/w6xI1AKwEE+CgQsWWP7175xLi8NCbaKyWOoIh
-	 odQdJMszxeifF22xh8tjMPnBOeAzVZ5vnpW0zj6FRVppFJLKg04TpbbA2TEgWtoyVN
-	 5dBI2hWroy1WbuLLDvkg0d7YzoXIju3YvvU03ZfmCCyrOq/XzS4jrSWt7AZ8dEs0ed
-	 YOaJFjRSNqYWg==
-Date: Sun, 18 Aug 2024 09:07:57 -0600
-From: Rob Herring <robh@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Marcel Holtmann <marcel@holtmann.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	b=cMEe6Hyodx54GX6KuQDStFlNzP/m8atWGuVmFoeGuOJNzKu+pgykDu9RKGII01RM0
+	 FqES4yF19Va0s7YBxXqhXsTLDUdsWlXMWCZmR7P6E9OG6MAYMaeqDxYY+vGkuMXXdd
+	 hhjgAJwIvE9NphbvB/hBwRMUwcyxValVw2lAn37RwQQj87JSncpc0g2VTqARfRdS60
+	 DGlxsLCS6bgexz1DfZ5hVB25eGsbIHNjQwRKhRvgfCI9sF+zDujK6cyhISqAxH85vO
+	 TIORgNFmi2JWh0PToCQp4rCbtswRwnDclwXa3fjfgfzVpqK4E1i4Bl0yV29bsSuRyp
+	 Ec+nLwvFXdkMw==
+Date: Sun, 18 Aug 2024 09:15:43 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Richard Acayan <mailingradian@gmail.com>
+Cc: Andi Shyti <andi.shyti@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	devicetree@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>,
+	linux-media@vger.kernel.org,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-bluetooth@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH] dt-bindings: bluetooth: bring the HW description closer
- to reality for wcn6855
-Message-ID: <20240818150757.GA80633-robh@kernel.org>
-References: <20240813190131.154889-1-brgl@bgdev.pl>
+	linux-arm-msm@vger.kernel.org, Todor Tomov <todor.too@gmail.com>,
+	linux-i2c@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Loic Poulain <loic.poulain@linaro.org>
+Subject: Re: [PATCH v2 1/5] dt-bindings: i2c: qcom-cci: Document SDM670
+ compatible
+Message-ID: <172399414297.96963.16801957440346846709.robh@kernel.org>
+References: <20240813230037.84004-8-mailingradian@gmail.com>
+ <20240813230037.84004-9-mailingradian@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,55 +68,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240813190131.154889-1-brgl@bgdev.pl>
+In-Reply-To: <20240813230037.84004-9-mailingradian@gmail.com>
 
-On Tue, Aug 13, 2024 at 09:01:31PM +0200, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+
+On Tue, 13 Aug 2024 19:00:40 -0400, Richard Acayan wrote:
+> The CCI on the Snapdragon 670 is the interface for controlling camera
+> hardware over I2C. Add the compatible so it can be added to the SDM670
+> device tree.
 > 
-> Describe the inputs from the PMU that the Bluetooth module on wcn6855
-> consumes and drop the ones from the host.
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
 > ---
-> Note: This breaks the current contract but the only two users of wcn6855
-> upstream - sc8280xp based boards - will be updated in DTS patches sent
-> separately.
-
-This needs to be in the commit msg.
-
-Otherwise,
+>  Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-> 
->  .../bindings/net/bluetooth/qualcomm-bluetooth.yaml     | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
-> index 68c5ed111417..64a5c5004862 100644
-> --- a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
-> +++ b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
-> @@ -172,14 +172,14 @@ allOf:
->                - qcom,wcn6855-bt
->      then:
->        required:
-> -        - enable-gpios
-> -        - swctrl-gpios
-> -        - vddio-supply
-> -        - vddbtcxmx-supply
->          - vddrfacmn-supply
-> +        - vddaon-supply
-> +        - vddwlcx-supply
-> +        - vddwlmx-supply
-> +        - vddbtcmx-supply
->          - vddrfa0p8-supply
->          - vddrfa1p2-supply
-> -        - vddrfa1p7-supply
-> +        - vddrfa1p8-supply
->    - if:
->        properties:
->          compatible:
-> -- 
-> 2.43.0
-> 
 
