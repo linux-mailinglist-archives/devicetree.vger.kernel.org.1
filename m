@@ -1,155 +1,171 @@
-Return-Path: <devicetree+bounces-94537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EA44955D67
-	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 18:15:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A14F955D6D
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 18:18:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A5BB01C2074A
-	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 16:15:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 25AF91F21381
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 16:18:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AECDA13A24A;
-	Sun, 18 Aug 2024 16:15:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34809146590;
+	Sun, 18 Aug 2024 16:18:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MJ87jq3Q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ctyjVRbN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83F512F2B;
-	Sun, 18 Aug 2024 16:15:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 006CA1428F3;
+	Sun, 18 Aug 2024 16:18:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1723997719; cv=none; b=Uxl+6JRPxDXEutHJAbawW/lhYooobauHxYM9Q18GkQYKukFI6GNiZodSZiSQ6KdifaC5C7gxRuBjixpfl3NlIcWloH1mR2r9zcwUvDhdP94jiPMXbSkYkdVL/0sTToJLfUM4qFGoRYcUV+cKe/ynJiPO9Lz93oOSlnD5GueAqRs=
+	t=1723997899; cv=none; b=ZczrimxlkA4SwW1xt0GMQvsfHTWR3k1NApSDl/yDC09bBmcnuf/tMFeV+tWtV4dVB/cVrVBafj5u3g/tApocVpVawpdfbpViRRUgGCXtWJ2DIx9RIcLAqeSUHrz2R59AF7ipXuivo9yk4CdTdUiQEXQ8gwPBZzzw9mrOEj9iDO0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1723997719; c=relaxed/simple;
-	bh=VaBQwb9qR9sQO1ub1AxgD10xLLE6+nsUX8RQUgYGtwg=;
+	s=arc-20240116; t=1723997899; c=relaxed/simple;
+	bh=wH/q17EcEM1yaX/QyJjRxmoKQTkpYh+1vI+c83h+e30=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Eg5t2FDjLM/z1GOFfKPZPW0LW1QzP2L67fGyVM0YjtsWTFKsjfrVCiv/z96RadCee6ig9nnwss6+j6kYyNG70ZqpYTOHr+SOyTiGebIg5aeWYdkRWTlEuO0KFzY5GqZ8AEst7q9u7P5RAXfvQ2FMICFTpVIdzED7YnFjzGE5G9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MJ87jq3Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54975C32786;
-	Sun, 18 Aug 2024 16:15:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=mZ18QO8bewvj6Y4FzY4NylrinP07oMS+/tH+crVm8maeWUw8b8VzMp7qXISSzvpcmuSysJK+/CjE70APWZX8qHE0ab0J9+abyM0LBLFR1ZxDb+3C18suZZYRzkdUsx8mtYQiz3UejGOHPFYQIQONpI+hQf70Wd9munAF/StXjJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ctyjVRbN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBB6EC32786;
+	Sun, 18 Aug 2024 16:18:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1723997719;
-	bh=VaBQwb9qR9sQO1ub1AxgD10xLLE6+nsUX8RQUgYGtwg=;
+	s=k20201202; t=1723997898;
+	bh=wH/q17EcEM1yaX/QyJjRxmoKQTkpYh+1vI+c83h+e30=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MJ87jq3QfH2iZQMNlJeQN6m1IbKHc921iGXlSLS5iVteQgeTGN0ssu+wbKTGdgqQe
-	 iPymZCd2P/8jwSdTexD7e+gScdBPvQ1iNGyWuluKn7Pf5XQL406RMapzPDpv6f3fsm
-	 WVuzuTFN1XLwmzyCPvD+Y98xkBzKrd+5dLRpAPFX7nGeVQqiv6O6v2t9A7bl/pqoRs
-	 3ahr/xZpzlcJdyO2D16X1JogoIMIX/9bLNU9vu1jDc1ySktJUci1GxyySqX/Os6kT1
-	 ZaheY1aiRbf37oblab6I//uRdrueMwY9lakzTHXvx9hsyiNBSkee8VIWENbyZL0K/F
-	 eL4qxOtac/0Cw==
-Date: Sun, 18 Aug 2024 18:15:14 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Benjamin Larsson <benjamin.larsson@genexis.eu>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>, linux-gpio@vger.kernel.org,
-	linus.walleij@linaro.org, sean.wang@kernel.org,
-	linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com,
-	krzk+dt@kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, upstream@airoha.com,
-	angelogioacchino.delregno@collabora.com, conor+dt@kernel.org,
-	ansuelsmth@gmail.com
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: airoha: Add EN7581 pinctrl
- controller
-Message-ID: <ZsIeEitpV9MehqVh@lore-rh-laptop>
-References: <cover.1723392444.git.lorenzo@kernel.org>
- <0d537e88b64847bc4e49756b249b2efdcf489b92.1723392444.git.lorenzo@kernel.org>
- <22144671-fc7c-4cb2-8bb6-ee7d3fbfcb0e@kernel.org>
- <c8a74be4-be63-477d-9460-1d5ef5e3d84a@genexis.eu>
- <20240816225257.GA2411475-robh@kernel.org>
- <1d223ae5-cd2c-4883-b293-bb182e90222b@genexis.eu>
- <6da7acc8-f77e-453c-b2fa-4eb9161f637c@lunn.ch>
- <3a52e550-1bb1-40fc-b7dd-b454d7c97f97@genexis.eu>
- <19793afa-dc62-421f-ba09-8ca2815ae4a2@lunn.ch>
+	b=ctyjVRbNpRe4lev974iUalRA4DqpO46Do2yiZunEtwRcmp3yo0ZHP6kHW3VrFU+FV
+	 Y4I1tIa4iTf9P+SZzFQpCvf/mSt68b1PGIzWBBf0Z+ufxM/mL+y1jH3m1lCi2mBHSL
+	 acxPNNUBHzs0zHkl/S1n+yKJ01mzije5DlWPLPdSwF5BrpoJLKHFzmff/ikaCrVp/b
+	 I2TnEjvvw7LFo8cBqIRnoG3dvxplAtjz5Zro+jyajxgpZv/odJfk0uUCEX8gTazYhs
+	 5lT1QL5ZE2i317aWsnN2AOryK3AvXWP5Aj5gQrSdtWmnHmNK7EVBmw9ENpRxhLL8dq
+	 dE+NsgFLVlhJg==
+Date: Sun, 18 Aug 2024 10:18:16 -0600
+From: Rob Herring <robh@kernel.org>
+To: Andrew Jones <ajones@ventanamicro.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, loongarch@lists.linux.dev,
+	linux-mips@vger.kernel.org, maz@kernel.org, mark.rutland@arm.com,
+	saravanak@google.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, Anup Patel <apatel@ventanamicro.com>
+Subject: Re: [PATCH v3] of/irq: Support #msi-cells=<0> in of_msi_get_domain
+Message-ID: <20240818161816.GA173148-robh@kernel.org>
+References: <20240817074107.31153-2-ajones@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="KIOrQBlvqenJie0W"
-Content-Disposition: inline
-In-Reply-To: <19793afa-dc62-421f-ba09-8ca2815ae4a2@lunn.ch>
-
-
---KIOrQBlvqenJie0W
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240817074107.31153-2-ajones@ventanamicro.com>
 
-On Aug 18, Andrew Lunn wrote:
-> On Sun, Aug 18, 2024 at 02:48:05PM +0200, Benjamin Larsson wrote:
-> > On 17/08/2024 23:39, Andrew Lunn wrote:
-> > > How messy are the GPIO and PWM registers? Are there N blocks of
-> > > independent GPIO registers? and M blocks of independent PWM registers?
-> > > By that, does one block of GPIO registers contain all you need for one
-> > > GPIO controller? One block of PWM registers give you all you need for
-> > > one PWM controller? Or are the registers for one GPIO controller
-> > > scattered all over the place?
-> > >=20
-> > > Could you point at a public datasheet?
-> > >=20
-> > >        Andrew
-> > >=20
-> > Hi, per my understanding there is no public datasheet/register reference
-> > manual.
-> >=20
-> > But here is the division of regions of the registers in the gpio block =
-and
-> > how it is currently divided between the drivers (according to my current
-> > understanding).
-> >=20
-> > 1FBF0200, gpio/pinctrl
-> > 1FBF0204, gpio/pinctrl
-> > 1FBF0208, gpio/pinctrl
-> > 1FBF020C, gpio/pinctrl
-> > 1FBF0210, gpio/pinctrl
-> > 1FBF0214, gpio/pinctrl
->=20
-> A typical SoC has multiple instances of a GPIO controller. Each GPIO
-> controller typically has 4 or 5 registers: In, Out, Direction,
-> Interrupt Enable, Interrupt Status. If these 4 or 5 registers are
-> contiguous, you could have one DT node per controller, rather than one
-> node for all GPIO controllers.
+On Sat, Aug 17, 2024 at 09:41:08AM +0200, Andrew Jones wrote:
+> An 'msi-parent' property with a single entry and no accompanying
+> '#msi-cells' property is considered the legacy definition as opposed
+> to its definition after being expanded with commit 126b16e2ad98
+> ("Docs: dt: add generic MSI bindings"). However, the legacy
+> definition is completely compatible with the current definition and,
+> since of_phandle_iterator_next() tolerates missing and present-but-
+> zero *cells properties since commit e42ee61017f5 ("of: Let
+> of_for_each_phandle fallback to non-negative cell_count"), there's no
+> need anymore to special case the legacy definition in
+> of_msi_get_domain().
+> 
+> Indeed, special casing has turned out to be harmful, because, as of
+> commit 7c025238b47a ("dt-bindings: irqchip: Describe the IMX MU block
+> as a MSI controller"), MSI controller DT bindings have started
+> specifying '#msi-cells' as a required property (even when the value
+> must be zero) as an effort to make the bindings more explicit. But,
+> since the special casing of 'msi-parent' only uses the existence of
+> '#msi-cells' for its heuristic, and not whether or not it's also
+> nonzero, the legacy path is not taken. Furthermore, the path to
+> support the new, broader definition isn't taken either since that
+> path has been restricted to the platform-msi bus.
+> 
+> But, neither the definition of 'msi-parent' nor the definition of
+> '#msi-cells' is platform-msi-specific (the platform-msi bus was just
+> the first bus that needed '#msi-cells'), so remove both the special
+> casing and the restriction. The code removal also requires changing
+> to of_parse_phandle_with_optional_args() in order to ensure the
+> legacy (but compatible) use of 'msi-parent' remains supported. This
+> not only simplifies the code but also resolves an issue with PCI
+> devices finding their MSI controllers on riscv, as the riscv,imsics
+> binding requires '#msi-cells=<0>'.
+> 
+> Signed-off-by: Andrew Jones <ajones@ventanamicro.com>
+> ---
+> v3:
+>  - switch to of_for_each_phandle() to further cleanup/simplify the
+>    code [Rob]
+> v2:
+>  - switch to of_parse_phandle_with_optional_args() to ensure the
+>    absence of #msi-cells means count=0
+> 
+>  drivers/of/irq.c | 35 ++++++++---------------------------
+>  1 file changed, 8 insertions(+), 27 deletions(-)
+> 
+> diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+> index c94203ce65bb..b74a3f5fc4e2 100644
+> --- a/drivers/of/irq.c
+> +++ b/drivers/of/irq.c
+> @@ -709,8 +709,7 @@ struct irq_domain *of_msi_map_get_device_domain(struct device *dev, u32 id,
+>   * @np: device node for @dev
+>   * @token: bus type for this domain
+>   *
+> - * Parse the msi-parent property (both the simple and the complex
+> - * versions), and returns the corresponding MSI domain.
+> + * Parse the msi-parent property and returns the corresponding MSI domain.
+>   *
+>   * Returns: the MSI domain for this device (or NULL on failure).
+>   */
+> @@ -718,33 +717,15 @@ struct irq_domain *of_msi_get_domain(struct device *dev,
+>  				     struct device_node *np,
+>  				     enum irq_domain_bus_token token)
+>  {
+> -	struct device_node *msi_np;
+> +	struct of_phandle_iterator it;
+>  	struct irq_domain *d;
+> +	int err;
+>  
+> -	/* Check for a single msi-parent property */
+> -	msi_np = of_parse_phandle(np, "msi-parent", 0);
+> -	if (msi_np && !of_property_read_bool(msi_np, "#msi-cells")) {
+> -		d = irq_find_matching_host(msi_np, token);
+> -		if (!d)
+> -			of_node_put(msi_np);
+> -		return d;
+> -	}
+> -
+> -	if (token == DOMAIN_BUS_PLATFORM_MSI) {
+> -		/* Check for the complex msi-parent version */
+> -		struct of_phandle_args args;
+> -		int index = 0;
+> -
+> -		while (!of_parse_phandle_with_args(np, "msi-parent",
+> -						   "#msi-cells",
+> -						   index, &args)) {
+> -			d = irq_find_matching_host(args.np, token);
+> -			if (d)
+> -				return d;
+> -
+> -			of_node_put(args.np);
+> -			index++;
+> -		}
+> +	of_for_each_phandle(&it, err, np, "msi-parent", "#msi-cells", 0) {
+> +		d = irq_find_matching_host(it.node, token);
+> +		if (d)
+> +			return d;
+> +		of_node_put(it.node);
 
-it is the same for en7581 pinctrl too. I think we can squash most of the
-gpio/irq registers into "bigger" io-regions (just keeping a couple of holes
-for pwm and leds). It is just a matter of moving the logic from the dts to
-the driver. I am currently working on it. I will post v2 soon.
+Pretty sure the iterator does this for you. I can fixup when applying.
 
->=20
-> If the hardware designer has really messed up and fully interleaved
-> GPIO and PWM, it might be better to have an MFD. The MFD node has a
-> single reg covering the entire range. The MFD would then map the whole
-> range, and provide accessors to the child devices. Hard code the
-> knowledge of what registers are where. Given how badly the hardware is
-> designed, it is unlikely it will get reused in the future, so there is
-> no point putting lots of stuff into DT. Hard code it.
+I plan to tag for stable too.
 
-I am not sure it is possible/feasible to implement a MFD device here since
-the mapped region is huge and sparse.
+Shout if you disagree with either of these.
 
-Regards,
-Lorenzo
-
->=20
-> 	Andrew
-
---KIOrQBlvqenJie0W
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZsIeDwAKCRA6cBh0uS2t
-rG8WAQCOM9FfsuIqInox4vNa4pce4vCRLHiG1gGyr+t084DqmQD/WAORMouBNGcP
-YxNJu753I5NPJOvDkIQck7p8t+PNKQE=
-=cvb3
------END PGP SIGNATURE-----
-
---KIOrQBlvqenJie0W--
+Rob
 
