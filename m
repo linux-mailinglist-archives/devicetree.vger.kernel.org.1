@@ -1,123 +1,89 @@
-Return-Path: <devicetree+bounces-94565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E63A955E44
-	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 19:34:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C74FC955E46
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 19:35:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C4662810DD
-	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 17:34:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E8401F20EEB
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2024 17:35:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7F4A15689A;
-	Sun, 18 Aug 2024 17:30:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 997131DA53;
+	Sun, 18 Aug 2024 17:35:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eazQ+PWI"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="lZA9wdms"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45100146000
-	for <devicetree@vger.kernel.org>; Sun, 18 Aug 2024 17:30:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFF684437;
+	Sun, 18 Aug 2024 17:35:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724002243; cv=none; b=IAg0aaAtgE04dkpywmRhpOOxV+Xe6b7lbMFsIk9bspRpSfXCE0mHO4EuXGJgZJ5Cj0VHsBnVxWqZaIyLoHKk5U8B8a5++8C61PAa+y3papq2sc3cD1xo/wB28AXriUFkoCdb+Ctsh3L9dhmbG8lxYwf0xSJ/BJi2CalmzOFCKA8=
+	t=1724002514; cv=none; b=oQ9A5XIWSnsNPoFnXWYgBGfDV69oqfqMUGaBpj52HIQz//ZnqCn8Qr8u26tYye+hx8fEGf5OQ4zIn5IVRuBEj9kMvHKsAi+iAMIknSnN9e8+yLuOkA2iiSsJRTFAmOxPBiDX/7IbBCwexnOP2d9S5jzc2eUY0bRQm5GwNYoSCAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724002243; c=relaxed/simple;
-	bh=eZxyfFWiOMWgxzgfMrHHDe1GsJVaWTRUphozkk0Nczs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mHn0dIc31vP7rjehIay2YvVJaGx/5IxIuFmTYFW4M9doD3DPqzgh/TLxX24FryJeCuLtyT1JxD1XLps2rBuuupRj7uR6GKNDYMrFDI57QEPQ9jgtFDLFpfiYviaEBoBPFJ5ory8n6KgCxIhLuqDj1n/rSE1pqwqkxIxoQjDbuF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eazQ+PWI; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-42816ca782dso29524255e9.2
-        for <devicetree@vger.kernel.org>; Sun, 18 Aug 2024 10:30:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724002240; x=1724607040; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=hze/nH6p6tvHNE8D/sjNOf2elLJDjNOnQCuybaofysA=;
-        b=eazQ+PWIYMnmwBlJrfEcOpfLDe5cNo+ULi8K5PlMLs6dh8bU/XEgSatDeCsih1oExg
-         fdD9ThiPlr+Y/x2Z61dAyRAz/pR6UxOv6DC0oygW1Tcunp/F28YH/bqOBCFICde0Cla+
-         N5dE1u/L3CeKQv73AaahpNueMcpJ+YQKoySIxOrgvFDXaFkPoYrVLR8zaRYUKE6iMOrG
-         IdqAO7tfdE3RQA3W/CFwBCR/poE9jeJeUlT0wCNAeR/bLv0O6bcnmHIBm3h6iGH+l/wm
-         t8rfUhE/2sqXxDfLMFVmjfoBMu0MFwuG7X4LdI59oBxXcqfbln/z99Tojf7C3lPwiAWy
-         lAcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724002240; x=1724607040;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hze/nH6p6tvHNE8D/sjNOf2elLJDjNOnQCuybaofysA=;
-        b=nQkk6wlNNIpDlct3l3a9Cmk/ufBMFCrIODBETf9odexxxvG7zYjAXNjRnA3WqnQwJZ
-         OAOb7NsgzVCWAzpEGcomy3SLNc1ClO4Br9ox7eGak9E/sMtmjAwFpDDnEi5h7wlTVHYB
-         ah06WrLqS0oG/BInzZsnLlszErffZNo8Us4xfXkDiSLvI3tw0yXDdzDfz2rGMmkV90Wi
-         RIu6pccU8sFHa28QngttFJ0E2gSF1GB1wHEmf8VCslFff50zOvvfyMoYVGQvC/2vcGNq
-         8EW4V9DlRtOsHEEA/j8GkC57rRP/vEbjva+qQ/sXmrP7fUjLWpBGPxic6CqH3g2XmJjv
-         XaAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX3lnWica3eZ1ehn4DCBBsV+Esjjzg+Hqbcz/D8QaFaZ6pQaPggo6aQodbvY1aAGW02qkTx4JppEOZqXrj/reEXDdhlSE6v5bHIcQ==
-X-Gm-Message-State: AOJu0YwMAdTIqGzgLSdQ+Y2vSqVUP3svPnZm5YtmgjkbUJfv9JZJX+0L
-	BKYjWOt8vB7HyAWHEjkdrdBm0pD4ZroMAA3LKCIIhp3JoJSXiCfe3yc4ME3Q39leITy92K3odq3
-	F
-X-Google-Smtp-Source: AGHT+IEHHk1AWmAyr7jcxzOjPyrSWQ9wN+5ntefeNwrp3Cysr3LtJPZ7XWcf0YS+yO+S+WhnHLleiA==
-X-Received: by 2002:a05:600c:4683:b0:428:1694:bd8c with SMTP id 5b1f17b1804b1-42aa8276727mr29780845e9.37.1724002240500;
-        Sun, 18 Aug 2024 10:30:40 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.215.209])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429ded1813dsm139020545e9.7.2024.08.18.10.30.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Aug 2024 10:30:40 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	alsa-devel@alsa-project.org,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ASoC: dt-bindings: samsung,odroid: drop stale clocks
-Date: Sun, 18 Aug 2024 19:30:37 +0200
-Message-ID: <20240818173037.122152-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1724002514; c=relaxed/simple;
+	bh=2ec6B7vtx9NIiGMm/LawYlZDgs1ARemGE0OQGn89UpU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=n95h0YA3sFZWs2Bq+0oBKCOb3AsI6qp9lUDtJB+hUqRiV4nPirLBkIZqCz6UVPCCFsZnUarozygQRxIWq6v9pq4InpJV6TwtN6y4AU+xfIm+iY1HVzvjF2BXX0DhAvRA+Ko29//YjYjKCeyHw12sANbT4Ym7IYo44jHUCy7oh1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=lZA9wdms; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=63Y+QYTGNkut9FxlBx+qh8tB1J35P7B3p1Wyc8Hfbgs=; b=lZA9wdms8JnNXozC8Q4QzS3bN1
+	g1bG8O9M5vNx9ghGlok/q/1yKDPY47fKg6QJ8Cu4M2uNHdLP6VrdbWdDdesK27GZDzu4PCLpm/O17
+	YFJKmUSlpN7OpmskuUCehlPGa+XEoU3PoHq7V+uLrEnKjmqTPOx9cc2sO+5lFRkGFHTU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sfjo3-0052wi-C1; Sun, 18 Aug 2024 19:35:07 +0200
+Date: Sun, 18 Aug 2024 19:35:07 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Benjamin Larsson <benjamin.larsson@genexis.eu>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+	Lorenzo Bianconi <lorenzo@kernel.org>, linux-gpio@vger.kernel.org,
+	linus.walleij@linaro.org, sean.wang@kernel.org,
+	linux-mediatek@lists.infradead.org, lorenzo.bianconi83@gmail.com,
+	krzk+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com, conor+dt@kernel.org,
+	ansuelsmth@gmail.com
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: airoha: Add EN7581 pinctrl
+ controller
+Message-ID: <4a7c9ef5-fcdd-4464-8871-041534f85029@lunn.ch>
+References: <cover.1723392444.git.lorenzo@kernel.org>
+ <0d537e88b64847bc4e49756b249b2efdcf489b92.1723392444.git.lorenzo@kernel.org>
+ <22144671-fc7c-4cb2-8bb6-ee7d3fbfcb0e@kernel.org>
+ <c8a74be4-be63-477d-9460-1d5ef5e3d84a@genexis.eu>
+ <20240816225257.GA2411475-robh@kernel.org>
+ <1d223ae5-cd2c-4883-b293-bb182e90222b@genexis.eu>
+ <6da7acc8-f77e-453c-b2fa-4eb9161f637c@lunn.ch>
+ <3a52e550-1bb1-40fc-b7dd-b454d7c97f97@genexis.eu>
+ <19793afa-dc62-421f-ba09-8ca2815ae4a2@lunn.ch>
+ <377507f5-e9f8-47b9-bd0c-d1fb0ffeac92@genexis.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <377507f5-e9f8-47b9-bd0c-d1fb0ffeac92@genexis.eu>
 
-Clocks property was present only to allow usage of assigned-clocks in
-the sound card node, however in upstream DTS the assigned-clocks were
-moved in commit 4afb06afd768 ("ARM: dts: exynos: move assigned-clock*
-properties to i2s0 node in Odroid XU4") to respective I2S nodes.  Linux
-drivers never parsed "clocks" so it can be safely dropped.
+> Hi, the pwm driver could be re-used on the EN7523 SoC. Future Airoha SoCs
+> will most likely have the same ip-block also.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/sound/samsung,odroid.yaml | 5 -----
- 1 file changed, 5 deletions(-)
+A lot will depend on if they sort out the mess they made with the
+registers. Given how simple these drivers are, it is sometimes better
+to just write a new driver once the registers are in sane blocks,
+rather than all interleaved.
 
-diff --git a/Documentation/devicetree/bindings/sound/samsung,odroid.yaml b/Documentation/devicetree/bindings/sound/samsung,odroid.yaml
-index b77284e3e26a..c3dea852cc8d 100644
---- a/Documentation/devicetree/bindings/sound/samsung,odroid.yaml
-+++ b/Documentation/devicetree/bindings/sound/samsung,odroid.yaml
-@@ -27,11 +27,6 @@ properties:
-       - const: samsung,odroid-xu4-audio
-         deprecated: true
- 
--  assigned-clock-parents: true
--  assigned-clock-rates: true
--  assigned-clocks: true
--  clocks: true
--
-   cpu:
-     type: object
-     additionalProperties: false
--- 
-2.43.0
+       Andrew
 
 
