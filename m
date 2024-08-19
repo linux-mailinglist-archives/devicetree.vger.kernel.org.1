@@ -1,152 +1,147 @@
-Return-Path: <devicetree+bounces-94703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C90F956550
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 10:13:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1B50956566
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 10:20:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5EFFC280DF6
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 08:13:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8BD1D1F21537
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 08:20:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DEC315B0EC;
-	Mon, 19 Aug 2024 08:13:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="KuYQjcDW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D9BF1581E0;
+	Mon, 19 Aug 2024 08:20:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C24715820F
-	for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 08:13:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9197F208A4;
+	Mon, 19 Aug 2024 08:19:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724055215; cv=none; b=WMS4ZWrBtM2EEvq6YMEmbAEs/Sxx05n4RGSfmZlGigjiT2SMbbSgjesQztvQCqkZJarHFp9Y78DU1JpXuYR/MonkAyVpdk+dUUYxGW/bXoHbbodMQRqmNbvcm4MjEArkE8gtpIx5gDR9r9qqDuuteJEkMojARCIVJC+Apu2y8Oc=
+	t=1724055601; cv=none; b=I59bJD4atz0Y+Q10b1McYoNGRL4IdPiLPaPho60/MRcqQEaFZg8Mvywky8YHdDMXL1pLFZYrWQbyGFERPAdfvR4rgXTYo8192c75BkETRcgoQJ1DSMSgnFuuJuR9jiXbY7Cb593tjRprFexKnjIqHtW3cuMGddLpXH86KSOaS/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724055215; c=relaxed/simple;
-	bh=SxbAV8kd93f+7QswDJM7XxrhkO5ZkojrtQTWX/aGRyI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=O+f3epKR9kImK5zcD3Skyp76Q9kkljvS3JDLgh9HXWvKCTGe3yXil0BOwxfDzKWogyEgENsBa1v4f96qLViA3iY6PdETQa+cX4fUmomiOjK9dF9zSsv26NsthvqDuqyEs/ZLNZm6BoIMOUz4RQWiNG5165s+St8pRFhrsw+uY4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=KuYQjcDW; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5bebd3b7c22so5355397a12.0
-        for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 01:13:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1724055211; x=1724660011; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hkaJw/3Kk9sZ53Q99+QnCuQ4WgKVgljtLdb8OyHyfdo=;
-        b=KuYQjcDWpd1WytWfTeN1HmCHFW+mUULBIl+wxfurp2KtQQUs0C9NuPnt6tTnTp//EI
-         kU1eacbhF/+fyeZP+rOfsmn9fAEtiT08wZy+xCNZepOpj3ORuk7NRpYuRg5KzBrSugSk
-         eJyfXNGbwUtvhT3UPCOS5ZF+i49OXQiRIL9Y+Wzi887iHiXQtyEYn0K0wczk4OOt9QwB
-         dWsXcfwG0R2j795t2w/8unfH9EPobWJBO4KT9uzY3xnC0bbeZq/l1BlIhmZ/PCdWwPJs
-         mUi7MaKT2MCFhe6ieYOO+ryrlD5TX2z2nT8WoQxkLIyznyy5IXImGy5K+VjrpDo3tQsC
-         hpcA==
+	s=arc-20240116; t=1724055601; c=relaxed/simple;
+	bh=Nouv1Dmsj8RfgcNwsiQ+zvpCbcVDYDMltRGUv/xjAqU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VUkJ4qK76Gunnt0MHDdwxdmDfClbOr4ehPp3nzwREC++UXrjOwSe6QKUh2ATS9mL9dLuMxYo3d0qGLmeVf8sXsKS+WrxhWA48gz1y8euD26UwGijHMx+b0XA1je5RXEq4m0mI3uLhUUpPD0rTTBP5Yruw+liXnqC3yBxvmej6v8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-428ec6c190eso33654935e9.1;
+        Mon, 19 Aug 2024 01:19:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724055211; x=1724660011;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hkaJw/3Kk9sZ53Q99+QnCuQ4WgKVgljtLdb8OyHyfdo=;
-        b=HFP2WOIOUsY6vFIQl5X9lvUFbBKaoH/lspnSekew1OD4KbYS6+wFAHbB/BjX6B6pH0
-         Km6FTsk/j7rSr2NJDdgdDP1inKB0kLjltM7etKUHi5qCfSbBO7mZlqfrpl+I59DZIztd
-         YSZXwd0LYXcp/KqHIv2WqTP53Dzm5utrnDmz5Quf9Z326bEtxuY4x4T/gkc/uNKBoPDP
-         jr1LmGDQjqCJyKJX8GHnI+glzOJJrIhNxNk0/Xk5DGB6GRnmyyAY7ZyYhvYpW9+tNbfg
-         JwnJ4oRzTxlHFVG85ckiMItPodYhw3s+cFd5FzUdUNv9/qxP0n3as7FiTrAFJx50NtFi
-         5PIg==
-X-Forwarded-Encrypted: i=1; AJvYcCWJh+wEigppd5lR5iAsLXUsUnmfZqOpwcf9cThQaJ7oAY/CBqlpbD1Sqh8DLz44HacSBIbiv1KmQQ2v+PN6vR/IraYeiC09MPimAQ==
-X-Gm-Message-State: AOJu0Yz0BOBmsWfV7hMOM8HOjfuB1sqQZfrbNsBHuaTzuX9x4vhmxHLF
-	Ec5l7a4Wooz7bNT1kAzfz3BSSSIfDuMjf650vtC5zP2joV0svqU+Ja/HhqC4o6qxde717IyfkaZ
-	q
-X-Google-Smtp-Source: AGHT+IFZ9FYF/9Dfc2RD2hAOCpnhFF1tHg+n8YjsmN9PPgk6zZt0nZGweN+c++zYhXMyS5h1dLFtRA==
-X-Received: by 2002:a05:6402:3604:b0:5be:fa76:55b4 with SMTP id 4fb4d7f45d1cf-5befa765749mr2385832a12.16.1724055211063;
-        Mon, 19 Aug 2024 01:13:31 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.177])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5bebbdfb4a3sm5292147a12.49.2024.08.19.01.13.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Aug 2024 01:13:30 -0700 (PDT)
-Message-ID: <69b7f374-9037-4373-90e0-676cce0cd0fa@tuxon.dev>
-Date: Mon, 19 Aug 2024 11:13:27 +0300
+        d=1e100.net; s=20230601; t=1724055598; x=1724660398;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AUYUJLRw3TtbPkMZU63P542FQWJqsbgCa/2jFZaO0fE=;
+        b=YtnZRyVCZvwwdOTS6UMacdnJRZdcS1VM3iKYJ3TPJ9ed9WFWoMoe/t4E+689NBxAci
+         rsEpcvV0yTH/1X9nVujGKsZVa9sYfj6EfLkMP48sw1wxPQzpJdAuxgOUwkGMy8z6/VMl
+         ucH0JnlP6hbe6MumnftEg4K+MRSGpUsCELucBsvxjQ4crOVxfKJzQ4d11AWsLMceGnk3
+         fKeXDVYJA0aiigl+xPIwW/ThZM9bsuEYYhGGtEly+CDtJthLxz9BOomgTHNtGR6NKulg
+         KnTn0YzVh5Sn/gLjE1dv1vuaHSMXuudFysK12pCUqkaU0CFMKv94PgFGt0iQMHgVtf8G
+         kk2g==
+X-Forwarded-Encrypted: i=1; AJvYcCUWjafHrBIzTKsI7AuuvswNUC3js6nNOx8csE+jydL7YEPKKBSm/RVxP4ymT7hOqVSqbkvYN8XPP3JRY11tmsCkFbZkNLBs3sl4wzfpr++T+ZTyCxtT3CBvbCpnxB5AckZfPNn+iAPSLnavRB86ZiiD7drfEsyPaytJQBQDyvw6Z7ev/gtQXYRj182QmL7TwtCNrhem1pWH+l3AXOVGOIq9PIgBTdRL
+X-Gm-Message-State: AOJu0Yw/MAR3CoKut9uSYaoD/n47dIsplNC1M3t/6hrmQqG5CFklAZ5I
+	/hXfojKrTMpT3+ueCKwkYfmcxnnL3fXNoX05GvjLP4kPaUE03wb6
+X-Google-Smtp-Source: AGHT+IHFbZ0xIu4V8B12eur1z2oMlUHsadyUlMiAVvi2bhhhOQxH8YyisZyXZiXRYgozYAZBhPnxYA==
+X-Received: by 2002:a05:600c:3c99:b0:426:6220:cb57 with SMTP id 5b1f17b1804b1-42aa82651fcmr38918415e9.25.1724055597563;
+        Mon, 19 Aug 2024 01:19:57 -0700 (PDT)
+Received: from krzk-bin ([178.197.215.209])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-429ded29fcfsm155437865e9.20.2024.08.19.01.19.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Aug 2024 01:19:56 -0700 (PDT)
+Date: Mon, 19 Aug 2024 10:19:53 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Sunyeal Hong <sunyeal.hong@samsung.com>
+Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+	Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 1/4] dt-bindings: clock: add ExynosAuto v920 SoC CMU
+ bindings
+Message-ID: <nqokjhodd4g3l7s5ukvhirytv4poiusgd5hgv2ntn3ekyolzyd@zmxxtwjgkqmp>
+References: <20240819052416.2258976-1-sunyeal.hong@samsung.com>
+ <CGME20240819052422epcas2p4db394defd5f298658f7841af3649ac6f@epcas2p4.samsung.com>
+ <20240819052416.2258976-2-sunyeal.hong@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/8] arm64: dts: renesas: r9a09g057: Add RIIC0-RIIC8
- nodes
-Content-Language: en-US
-To: Prabhakar <prabhakar.csengg@gmail.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20240811204955.270231-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240811204955.270231-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20240811204955.270231-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240819052416.2258976-2-sunyeal.hong@samsung.com>
 
-Hi, Prabhakar,
-
-On 11.08.2024 23:49, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Mon, Aug 19, 2024 at 02:24:12PM +0900, Sunyeal Hong wrote:
+> Add dt-schema for ExynosAuto v920 SoC clock controller.
+> Add device tree clock binding definitions for below CMU blocks.
 > 
-> Add RIIC0-RIIC8 nodes to RZ/V2H(P) ("R9A09G057") SoC DTSI.
+> - CMU_TOP
+> - CMU_PERIC0
 > 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v1->v2
-> - New patch
-> ---
->  arch/arm64/boot/dts/renesas/r9a09g057.dtsi | 198 +++++++++++++++++++++
->  1 file changed, 198 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-> index 3d6c3a604ec9..c9e1e21b820d 100644
-> --- a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-> @@ -141,6 +141,28 @@ ostm1: timer@11801000 {
->  			status = "disabled";
->  		};
->  
-> +		i2c8: i2c@11c01000 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			compatible = "renesas,riic-r9a09g057";
-> +			reg = <0 0x11c01000 0 0x400>;
-
-According to [1] compatible and reg props are preferred to be at the
-beginning of the node.
-
-[1]
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst#n112
-
-> +			interrupts = <GIC_SPI 222 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 523 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 522 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "tei", "ri", "ti", "spi", "sti",
-> +					  "naki", "ali", "tmoi";
-> +			clocks = <&cpg CPG_MOD 147>;
-> +			clock-frequency = <100000>;
-> +			resets = <&cpg 160>;
-> +			power-domains = <&cpg>;
-> +			status = "disabled";
-> +		};
+> Signed-off-by: Sunyeal Hong <sunyeal.hong@samsung.com>
+ +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: External reference clock (38.4 MHz)
+> +            - description: CMU_PERIC0 NOC clock (from CMU_TOP)
+> +            - description: CMU_PERIC0 IP clock (from CMU_TOP)
 > +
+> +        clock-names:
+> +          items:
+> +            - const: oscclk
+> +            - const: noc
+> +            - const: ip
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,exynosautov920-cmu-peric1
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: External reference clock (38.4 MHz)
+> +            - description: CMU_PERIC1 NOC clock (from CMU_TOP)
+> +            - description: CMU_PERIC1 IP clock (from CMU_TOP)
+> +
+> +        clock-names:
+> +          items:
+> +            - const: oscclk
+> +            - const: noc
+> +            - const: ip
 
-[ ... ]
+This is the same peric0, so combine them and clocks could be just:
+
+items:
+  - description: External reference clock (38.4 MHz)
+  - description: CMU_PERICn NOC clock (from CMU_TOP)
+  - description: CMU_PERICn IP clock (from CMU_TOP)
+
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,exynosautov920-cmu-misc
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: External reference clock (38.4 MHz)
+> +            - description: CMU_MISC NOC clock (from CMU_MISC)
+
+Similarly:
+
+- description: CMU_MISC/CMU_HSI0 NOC clock (from CMU_MISC)
 
