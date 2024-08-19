@@ -1,74 +1,76 @@
-Return-Path: <devicetree+bounces-94850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79E51956ECF
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 17:33:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8BE8956EED
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 17:37:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36F46282785
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 15:33:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3AFFF1F223B3
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 15:37:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85E2F60DCF;
-	Mon, 19 Aug 2024 15:33:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70A9582D94;
+	Mon, 19 Aug 2024 15:37:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="csgDOIBF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EehRyEkf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D4414964D
-	for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 15:33:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89971335BA
+	for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 15:37:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724081626; cv=none; b=gAH29dM4y6SIOWKKpXHd/cuz+YDc+ZrUE7XREpPyzhXTdrkC1u5y61rWV/bufcRNrtr49vuFSBiwrZcZszn8zfBGFyUndy1kLS/LnuEy2lmg1zlN0aHvJsE9STkwP89BOGPTcLJ/vRhl0rDIIdytA8/9lgw6d9Pw8mtilqNmYVw=
+	t=1724081865; cv=none; b=GxaXEmXb6YIafXG8Ca4/vRq8Q5fit7HshVV6TcOlFNVJTLaPJiVAY5zeRdGPM4EsGI03Twt80MgWHi0WOT8j5YJsXz+kyvl3S/YEOETWygZXGwLbqFmSFvRuqzpJt8GKDrxPoxenw/jbtB3zNd395fLT/rbKmCkFgk5u5oogZ8k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724081626; c=relaxed/simple;
-	bh=Li4HtcxN71jzGrexxm+zQo8nWsEHwBcOm0yeIgTPTN0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QNtx321ceqAxXaUTAhKUlfiTQMmwJj4/H6V3L7a6yxrl6mTCHPHX0lb5LDlO7AxyYuQHSaC8dCPd6DyIfS+lL1bCpvaw3AlXFsE88AndYdDBbFSGVtgIF82fuUV4WtRk6j/D7a//BEvn99yTZGuGRPZBWDSuOLkqchfTC3daw3M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=csgDOIBF; arc=none smtp.client-ip=209.85.167.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-3db18842a4dso2844548b6e.0
-        for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 08:33:44 -0700 (PDT)
+	s=arc-20240116; t=1724081865; c=relaxed/simple;
+	bh=4n8U2xWGmoHFdeCbsX2e1kAeOfQZROOpzwJ5lIlC7qM=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=f9CBcWCvPLfyg3okLTxm7LEMUIxXmgpUocu1/BDIGQaJmyN+PO7vbXADeZd2S8cO/shUG9WMYJSrWoU7g+CZylb7xHNNEK74TY6tru0OkDr/HR+WZer1/N3XKqdhejbm/XAWnj6pLNPiQlR8jnwtOHISNM8X87maPgRxy0v+tAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EehRyEkf; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-42803bbf842so49313805e9.1
+        for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 08:37:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1724081623; x=1724686423; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NU3U23GKCuYq/Ylsob2wz7pN+1xAA1HJWk8KaCIZfQ4=;
-        b=csgDOIBFEeB+IoqLO2ZTws42GFAOyQq7qSbzMCY0BuOh51JiGmU1DdnlEI/SBAoGhh
-         FOKulx8PLyNtAwRNl/Q1u9jCpeQUmifw3YE/P0HGVF59OtLBX4vAQnkCdBrnYqc6Yhi8
-         OO9yW+sHT3bg4AaQV1/6FEgHEa0e+Qjx2O+ShALScj6zB3dnaGg/IFe/BrurjgbMUoA/
-         xL2HS4YzsC10GAm836mGwikjnznrZ9CvHMb2LBQ/a5pfu+aID8ET3L5pYOebvC1E0xhJ
-         ACWiDnldrylYFQXd7LYzfFrPlcjb6/S5IXulTUy4RNgczO9ZkgiwN8Y3lsAUVuj5HpHx
-         BqMQ==
+        d=linaro.org; s=google; t=1724081862; x=1724686662; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gk/aI2kxKmkDRsiAKaWtwtbGzvvh1/Raj/5lOKvnf68=;
+        b=EehRyEkfSYKomaD1wErzgeMzy+tHdbEiLi+uTss3nQMMmUrnQaNCMWi8wFAlAFc2Hy
+         PrhbQguauaqPoesizfExee0u3pvpzHniMMlJQpZwAo1q9IqAlT7lh+KwiK+096FcVzzF
+         3+yuk0xvBbTER8UoAiWd64UY16VJhoWNtzaF7gD+B887SDgDL4sMZXW46IwKelrR7D/A
+         pNdUUh9Weci/+0A+LGjLzyIOrmC5+xMotKdAkJmrYGjyJig56ZXmquL39xDZ97WbIz8u
+         wpsNVhVXpCUG0uxjtNgTMvXtzoa3Y8osmUYwq0xXm9SdIBs49AsGvGzzTSfMYaySZDxH
+         ASKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724081623; x=1724686423;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NU3U23GKCuYq/Ylsob2wz7pN+1xAA1HJWk8KaCIZfQ4=;
-        b=KitHBCIimADJhqj10KGSdAJGyj009yVu97If6/pcq4mv5FtTKplKipMLs/xKTSVnKx
-         J8D+Y5c4jjLTpnceUgGSU3WhE8+iwVjrLXK63Zfp9HNsv3DmctRTOSWb0fwJuVbQG8dU
-         9ntJFfYFFdwTGkD5ttP7pIicjB/GmsaxNLMXw8OU+90q8MQ5ktfcKnxTqBbJKoXJ/BKF
-         BxLSI1BckjG6agebXsIRMBcDHpkzwYXVSH+OWUc9DgALrHEcZxjLU4XZKmlnuyEWZFRx
-         60AV+025yxhAK25P5SfMEgJ4Nt4+gqPbzNByg9PM2dWZYYzZ3sK6B2t7ZgBkwfEJK99v
-         cTMQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX91d53LX7YH+OKahU2q01DtCIdia888IFuaUp4WuERVpnncO7JAlJSqO+r5630G8QJOZ2D9fMAbBml6x+f2s4LSF8mufin9OFrtg==
-X-Gm-Message-State: AOJu0YxwDfNWTv4V8CsmFfLa85PckvmzIadEqO/8qQPnEPtJCESoxiae
-	7HFh1ykwuRmZYL9DGwBR2W4Cz7QibGu0DzZu7r23B+BhyYa7lQUXMZwMkUoWWkg=
-X-Google-Smtp-Source: AGHT+IFc2h/Q3kwclZpxHSSQoE/44UCvWbMzjNvb+iPkNIj9ksMQ4Q9fbRgkwskrfJdUapAJPCqYdA==
-X-Received: by 2002:a05:6808:330a:b0:3d9:db77:f4d3 with SMTP id 5614622812f47-3ddb4d16b89mr4129b6e.2.1724081623291;
-        Mon, 19 Aug 2024 08:33:43 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3dd33d400b4sm2326958b6e.11.2024.08.19.08.33.42
+        d=1e100.net; s=20230601; t=1724081862; x=1724686662;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=gk/aI2kxKmkDRsiAKaWtwtbGzvvh1/Raj/5lOKvnf68=;
+        b=RvaE7OxHKQmJGMZVHixQ3LOKBJsmL2e86UPj2nvWE5rGzKm8ucz3lNspd/jGfImLNW
+         L9rOToSYuBSEdDJPsQCeQWBxeirE4PJm74G43EuFMuTsyHBLJb3ZPvtri5Lmu3FvSYBq
+         btrg9MX71K7jc74aRFhZymq2DHLWo9yTBJWl6cYHLV7/i4ODiwmUEq8kSPzQ/kAFrkXN
+         5tyS0ZpyGONHA6Z+HRaGJgyfW5uciIqhSxAis6diXQi0rlmMNvRSa0O36yqrb+TpYfnB
+         jbgqaGZA4oTGEb58H4d4d+WQoNLkfW9lzq1K7FBOxuPsodxJbI03pLVs4YHg6U9ps8Tp
+         414w==
+X-Forwarded-Encrypted: i=1; AJvYcCXzvPIgo6xnt+E3DRuxmmCdsUzTbmbelRt5adSlOL+8glbetUu1+pkV4xBRcKN9xPpDj4x0ojBEQz/fzlTp+cqO9RGkqVwdbY++UA==
+X-Gm-Message-State: AOJu0YwR4XHwQ8FaZUhB688yPpaTtpHlq7DllgQqxJ85kvb8mrofO9D2
+	p3iIcKPM/l2GODHPgGYkjaMJ625rmYumlH3l9eVvPtJa5FKP6xElvKEJQvsvll0=
+X-Google-Smtp-Source: AGHT+IEtBMpFzGovTSbnyr1xNX0cNQOcqOR29mxr34rfwLVAio2zTzxR5KH9Pf51ZSP8cxK3YtubPw==
+X-Received: by 2002:a5d:4fd1:0:b0:368:420c:74ab with SMTP id ffacd0b85a97d-3719464c2eemr9937656f8f.28.1724081861387;
+        Mon, 19 Aug 2024 08:37:41 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:f54e:4b0a:5175:5727? ([2a01:e0a:982:cbb0:f54e:4b0a:5175:5727])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3718985a7d3sm10803548f8f.61.2024.08.19.08.37.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Aug 2024 08:33:42 -0700 (PDT)
-Message-ID: <3c4edf41-fd3b-4258-9b9e-a81b25568403@baylibre.com>
-Date: Mon, 19 Aug 2024 10:33:41 -0500
+        Mon, 19 Aug 2024 08:37:41 -0700 (PDT)
+Message-ID: <556b7957-802b-4792-a04b-427409807902@linaro.org>
+Date: Mon, 19 Aug 2024 17:37:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,48 +78,114 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/7] iio: adc: ad7606: add support for AD7606C-{16,18}
- parts
-To: Alexandru Ardelean <aardelean@baylibre.com>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc: jic23@kernel.org, krzk+dt@kernel.org, robh@kernel.org, lars@metafoo.de,
- michael.hennerich@analog.com, gstols@baylibre.com
-References: <20240819064721.91494-1-aardelean@baylibre.com>
- <20240819064721.91494-8-aardelean@baylibre.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20240819064721.91494-8-aardelean@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 2/2] drm/panel: simple: Add ON Tat Industrial Company
+ KD50G21-40NT-A1 panel
+To: Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: quic_jesszhan@quicinc.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ thierry.reding@gmail.com, sam@ravnborg.org
+References: <20240816085004.491494-1-victor.liu@nxp.com>
+ <20240816085004.491494-3-victor.liu@nxp.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240816085004.491494-3-victor.liu@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 8/19/24 1:47 AM, Alexandru Ardelean wrote:
-> The AD7606C-16 and AD7606C-18 are pretty similar with the AD7606B.
-> The main difference between AD7606C-16 & AD7606C-18 is the precision in
-> bits (16 vs 18).
-> Because of that, some scales need to be defined for the 18-bit variants, as
-> they need to be computed against 2**18 (vs 2**16 for the 16 bit-variants).
+On 16/08/2024 10:50, Liu Ying wrote:
+> ON Tat Industrial Company KD50G21-40NT-A1 is a 5" WVGA LCD panel with DPI
+> interface.
 > 
-> Because the AD7606C-16,18 also supports bipolar & differential channels,
-> for SW-mode, the default range of 10 V or ±10V should be set at probe.
-> On reset, the default range (in the registers) is set to value 0x3 which
-> corresponds to '±10 V single-ended range', regardless of bipolar or
-> differential configuration.
+> The LCD module specification can be found at:
+> https://cdn-shop.adafruit.com/datasheets/KD50G21-40NT-A1.pdf
 > 
-> Aside from the scale/ranges, the AD7606C-16 is similar to the AD7606B.
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> ---
+>   drivers/gpu/drm/panel/panel-simple.c | 36 ++++++++++++++++++++++++++++
+>   1 file changed, 36 insertions(+)
 > 
-> And the AD7606C-18 variant offers 18-bit precision. The unfortunate effect
-> of this 18-bit sample size, is that there is no simple/neat way to get the
-> samples into a 32-bit array without having to do a home-brewed bit-buffer.
-> The ADC must read all samples (from all 8 channels) in order to get the
-> N-th sample (this could be reworked to do up-to-N-th sample for scan-direct).
-> There doesn't seem to be any quick-trick to be usable to pad the samples
-> up to at least 24 bits.
-> Even the optional status-header is 8-bits, which would mean 26-bits of data
-> per sample.
-> That means that when using a simple SPI controller (which can usually read
-> 8 bit multiples) a simple bit-buffer trick is required.
-> 
-Maybe it would be better to just use .bits_per_word = 18 for the 18-bit
-ADC and not worry about "simple" SPI controller support for that one?
+> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+> index bf40057c5cf3..89963df80917 100644
+> --- a/drivers/gpu/drm/panel/panel-simple.c
+> +++ b/drivers/gpu/drm/panel/panel-simple.c
+> @@ -3478,6 +3478,39 @@ static const struct panel_desc olimex_lcd_olinuxino_43ts = {
+>   	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
+>   };
+>   
+> +static const struct display_timing ontat_kd50g21_40nt_a1_timing = {
+> +	.pixelclock = { 30000000, 30000000, 50000000 },
+> +	.hactive = { 800, 800, 800 },
+> +	.hfront_porch = { 1, 40, 255 },
+> +	.hback_porch = { 1, 40, 87 },
+> +	.hsync_len = { 1, 48, 87 },
+> +	.vactive = { 480, 480, 480 },
+> +	.vfront_porch = { 1, 13, 255 },
+> +	.vback_porch = { 1, 29, 29 },
+> +	.vsync_len = { 3, 3, 31 },
+> +	.flags = DISPLAY_FLAGS_HSYNC_LOW | DISPLAY_FLAGS_VSYNC_LOW |
+> +		 DISPLAY_FLAGS_DE_HIGH | DISPLAY_FLAGS_PIXDATA_POSEDGE,
+> +};
+> +
+> +static const struct panel_desc ontat_kd50g21_40nt_a1 = {
+> +	.timings = &ontat_kd50g21_40nt_a1_timing,
+> +	.num_timings = 1,
+> +	.bpc = 8,
+> +	.size = {
+> +		.width = 108,
+> +		.height = 65,
+> +	},
+> +	.delay = {
+> +		.prepare = 147,		/* 5 VSDs */
+> +		.enable = 147,		/* 5 VSDs */
+> +		.disable = 88,		/* 3 VSDs */
+> +		.unprepare = 117,	/* 4 VSDs */
+> +	},
+> +	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
+> +	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE,
+> +	.connector_type = DRM_MODE_CONNECTOR_DPI,
+> +};
+> +
+>   /*
+>    * 800x480 CVT. The panel appears to be quite accepting, at least as far as
+>    * pixel clocks, but this is the timing that was being used in the Adafruit
+> @@ -4837,6 +4870,9 @@ static const struct of_device_id platform_of_match[] = {
+>   	}, {
+>   		.compatible = "olimex,lcd-olinuxino-43-ts",
+>   		.data = &olimex_lcd_olinuxino_43ts,
+> +	}, {
+> +		.compatible = "ontat,kd50g21-40nt-a1",
+> +		.data = &ontat_kd50g21_40nt_a1,
+>   	}, {
+>   		.compatible = "ontat,yx700wv03",
+>   		.data = &ontat_yx700wv03,
 
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
