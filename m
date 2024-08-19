@@ -1,192 +1,141 @@
-Return-Path: <devicetree+bounces-94737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A51B956740
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 11:40:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AE05956749
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 11:41:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42766282A20
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 09:40:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE2701F24B93
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 09:41:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B09B15ECDF;
-	Mon, 19 Aug 2024 09:40:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FB4715D5B8;
+	Mon, 19 Aug 2024 09:41:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="t8qugMoa"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="EVyO7mtz";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="FiSapmV+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from fhigh7-smtp.messagingengine.com (fhigh7-smtp.messagingengine.com [103.168.172.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8257515ECD5;
-	Mon, 19 Aug 2024 09:40:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90BCC15C15D;
+	Mon, 19 Aug 2024 09:41:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724060410; cv=none; b=hIe8BJOnib1z09u0XE+e+KAc/eISizx8WT4aOB3HMjST4QoUHM49z1yB7p6HQM6ygJamIYfWgD47vPv0H4pP6MT6owtLdb7z11p40YllYftpPKOfqAK87ao885mM1ADiOl4A9Oq/hBmB7GTFPYeGyGgpGeIEwHv5RTQ8F86XVo8=
+	t=1724060480; cv=none; b=Kmpw4x9Z2vLBlvWf4W/52z4clavnQd5K7Un3GdoPjn1GlwFHE8PWKKcKE/BeHxHZkk2FvX/cFzCuqH9mZXjU+LonHz09Wb5op/Fq7NG617GmdsIkz8kkvq47/DleYinAOagzPpKNiZ3Is16m5mEEwZMYABH/wMiOy0GJ7Fumlyc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724060410; c=relaxed/simple;
-	bh=CceIZBexaBuqrKOM3lnKaoJ/9+ed7zFoJNiu80vtbmE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=IZ14xmylK5Jwc1N4TN6o6ddMUhLOaxtadIb0c3IhFObBD2Nsxphb3lhdOoCcegW0stjH3vCu7Sf0c0pivxnsWq05l2MuzwQX206ZWCDHBJxUZbtsR0RsjJyuasKUqWjs2j20S28Jx14PbRa5WzYeZ3QNx+DdqQTnb1N6yz0N99M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=t8qugMoa; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47J9e0OX114818;
-	Mon, 19 Aug 2024 04:40:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1724060400;
-	bh=PcR3AOplWBTtVm25TAb+6FaDkyDmfWhdLfDcsTcmMXg=;
-	h=From:Date:Subject:References:In-Reply-To:To:CC;
-	b=t8qugMoaboIc+9Gb9iDDFyYtJ3Qkx/FHTAIqQpwn+7wfXcY7kQNME3eJ9P2HLQU0M
-	 SXM3v3sf7agJZHHzoyVhqb/skErUg51PK45KrpIq5Pu0vjL8iaU/J5QC8Yx4ODeG2Q
-	 fUh//33oRqs0hoaS47I6//XBLxvaNQ0g21Rcg9Tw=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47J9e0P0130711
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 19 Aug 2024 04:40:00 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 19
- Aug 2024 04:40:00 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 19 Aug 2024 04:40:00 -0500
-Received: from [127.0.1.1] (uda0497581.dhcp.ti.com [10.24.68.185])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47J9daOH082967;
-	Mon, 19 Aug 2024 04:39:57 -0500
-From: Manorit Chawdhry <m-chawdhry@ti.com>
-Date: Mon, 19 Aug 2024 15:09:39 +0530
-Subject: [PATCH v4 5/5] arm64: dts: ti: Add support for J742S2 EVM board
+	s=arc-20240116; t=1724060480; c=relaxed/simple;
+	bh=/ywwrsow94J85Jt0nnWejc0IG94tUBES4XMZGLo0RHo=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=NCQZOhzm66aiPpiccGmJqvmtnJnx/CTin9D61VBFyEN8iYdsDc/8E+BfiET4Y+1i53BdVLTcWA9VC1MLZOKvO7IjG9MzKx+eixebPQ/Jdoc78XcSwJ1t/d8apuSqDg2qeVk0XxW8HfeR1Izzyq9nNsWHtJY9n8Ov4DcVXIHZ96k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=EVyO7mtz; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=FiSapmV+; arc=none smtp.client-ip=103.168.172.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-04.internal (phl-compute-04.nyi.internal [10.202.2.44])
+	by mailfhigh.nyi.internal (Postfix) with ESMTP id 8D9481146D40;
+	Mon, 19 Aug 2024 05:41:17 -0400 (EDT)
+Received: from phl-imap-11 ([10.202.2.101])
+  by phl-compute-04.internal (MEProxy); Mon, 19 Aug 2024 05:41:17 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1724060477;
+	 x=1724146877; bh=JUhoxhqu4F3xLPzws7FodPxaF1OPTKmmWcQLfa8wy7Y=; b=
+	EVyO7mtzb1j7QAg2y/fPlCAfeJsy2nydHOyMuhgavHgV3e6S5BrlQcO0dPNX7k4n
+	wc/s6ejilTX4vfAXn0iQWWC7jpM8vbZRzabUt3dlCoArN3AdkpJ0iS2ssi524j9Z
+	kKcticrRA5HkovO39hhYWd7C+TSYQpUYd3NCOAUNYBkOC8H/TwXqgHR88mnhr49v
+	YEtvg0PBzfEJscOdjY8w0NAGErkf/Z3Kh38Dnhej5CSS5zAdIpR0dHIbAZ6i36R6
+	hwAwzz2N7Y2LqnrdATLgfZbqK+lPv3UEWKul6YkGeyxDDG4OFefTFdNBulm55bV2
+	Dt0nN0x9WnRzDoAYM5Z1WQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1724060477; x=
+	1724146877; bh=JUhoxhqu4F3xLPzws7FodPxaF1OPTKmmWcQLfa8wy7Y=; b=F
+	iSapmV+uRnGVad6FOjyb6ha2Sbc8nSRL8ThL3/WvORtY10IAyx6VJiP4npQTzoBU
+	/5EA0kTM6n+jqqCeGr2V+pnSlZpbXtEK878yL0M2FTFVnagzCWqgINdSC/SoLDyU
+	R+mVqJyAFGd6EjOBZVW13XQcNvb+adlbhxMa2BTCvqbVw+R77SJbl95Q7dJCt1li
+	5WeS6YY0OdhErJ7bOtPgFTt8aaoqDdE2fBxkIUhRzUTwnDqQsFaPFa08eOQnLQjl
+	1fYLx1Apd3C6bEMK7uBjO/QlUreBhVrw4VUSul//tEVvcDH8B46pBU6R9RMoV0Uw
+	fP+JsYZBIvZDyHchurthA==
+X-ME-Sender: <xms:PRPDZtAeXjQjzQ9oHRNi7dmIEo6iGs_7cL0I75HREdXm9kpolvbbPQ>
+    <xme:PRPDZrgaeOtg68QumbOuU_V7fzh8lfXUEdXFheoY__JwgQs0R2SZY61S7nmLnsDCN
+    Ql_QHQpYqj_hB7mHXk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddruddugedgudekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
+    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
+    htshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddt
+    necuhfhrohhmpedftehrnhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrd
+    guvgeqnecuggftrfgrthhtvghrnhephfdthfdvtdefhedukeetgefggffhjeeggeetfefg
+    gfevudegudevledvkefhvdeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpe
+    hmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvgdpnhgspghrtghpthhtohepledp
+    mhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepughmihhtrhihrdhtohhrohhkhhhovh
+    esghhmrghilhdrtghomhdprhgtphhtthhopegsrhhoohhnihgvsehkvghrnhgvlhdrohhr
+    ghdprhgtphhtthhopehkrhiikheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinh
+    hugidqrghrmhdqkhgvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhr
+    tghpthhtohepphgrthgthhgvshesohhpvghnshhouhhrtggvrdgtihhrrhhushdrtghomh
+    dprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdp
+    rhgtphhtthhopehlihhnuhigqdhinhhpuhhtsehvghgvrhdrkhgvrhhnvghlrdhorhhgpd
+    hrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhg
+    pdhrtghpthhtoheplhhinhhugidqshgrmhhsuhhnghdqshhotgesvhhgvghrrdhkvghrnh
+    gvlhdrohhrgh
+X-ME-Proxy: <xmx:PRPDZokIJVM8sDMiwKFaIvaC2Z54sK9kpcd0xxmC4kGxI6zVlheTcg>
+    <xmx:PRPDZnwkn52t-4RoqltLbFDptT1_je7h0BSVTntOZbMwV74IDtOQlQ>
+    <xmx:PRPDZiS1HX5Ihk43khQ-0rmXQWxj2VZmV8RDaXr0PRyzffIskc_aNw>
+    <xmx:PRPDZqYUexn-b27r38FRACSZ3Yvh5FIS8q9c3YEVKSXiBILtKCr43A>
+    <xmx:PRPDZlElO9yiE4OXanm-nyTRc1FVwnpxYXPfF4Rt_XgR0MGr-9RYF5en>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 5DB9216005E; Mon, 19 Aug 2024 05:41:17 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Date: Mon, 19 Aug 2024 11:40:56 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+ "Mark Brown" <broonie@kernel.org>, "Krzysztof Kozlowski" <krzk@kernel.org>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, patches@opensource.cirrus.com
+Message-Id: <803e3902-cec9-49ed-baff-d26e578a8ab7@app.fastmail.com>
+In-Reply-To: <20240819045813.2154642-1-dmitry.torokhov@gmail.com>
+References: <20240819045813.2154642-1-dmitry.torokhov@gmail.com>
+Subject: Re: [PATCH 00/14] Remove support for platform data from samsung keypad
+Content-Type: text/plain
 Content-Transfer-Encoding: 7bit
-Message-ID: <20240819-b4-upstream-j742s2-v4-5-f2284f6f771d@ti.com>
-References: <20240819-b4-upstream-j742s2-v4-0-f2284f6f771d@ti.com>
-In-Reply-To: <20240819-b4-upstream-j742s2-v4-0-f2284f6f771d@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Udit Kumar <u-kumar1@ti.com>,
-        Neha Malcom
- Francis <n-francis@ti.com>,
-        Aniket Limaye <a-limaye@ti.com>, Beleswar Padhi
-	<b-padhi@ti.com>,
-        Manorit Chawdhry <m-chawdhry@ti.com>
-X-Mailer: b4 0.14-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1724060376; l=3564;
- i=m-chawdhry@ti.com; s=20231127; h=from:subject:message-id;
- bh=CceIZBexaBuqrKOM3lnKaoJ/9+ed7zFoJNiu80vtbmE=;
- b=KaRsO8q/wonUmLs7aoNKabiKp29xsErCsAreM0htKjbIql5o5MFesWwYJesgY+cAMnMsrcK+7
- pGGDrYNOx/1Bi0Ku9gJSjZJuw3OzBDHTHiUQO1+zYGIvNj9XK8b5TYF
-X-Developer-Key: i=m-chawdhry@ti.com; a=ed25519;
- pk=fsr6Tm39TvsTgfyfFQLk+nnqIz2sBA1PthfqqfiiYSs=
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-J742S2 EVM board is designed for TI J742S2 SoC. It supports the following
-interfaces:
-* 16 GB DDR4 RAM
-* x2 Gigabit Ethernet interfaces capable of working in Switch and MAC mode
-* x1 Input Audio Jack, x1 Output Audio Jack
-* x1 USB2.0 Hub with two Type A host and x1 USB 3.1 Type-C Port
-* x1 4L PCIe connector
-* x1 UHS-1 capable micro-SD card slot
-* 512 Mbit OSPI flash, 1 Gbit Octal NAND flash, 512 Mbit QSPI flash,
-  UFS flash.
-* x6 UART through UART-USB bridge
-* XDS110 for onboard JTAG debug using USB
-* Temperature sensors, user push buttons and LEDs
-* x1 GESI expander, x2 Display connector
-* x1 15-pin CSI header
-* x6 MCAN instances
+On Mon, Aug 19, 2024, at 06:57, Dmitry Torokhov wrote:
+>
+> This series attempts to rework samsumg=keypad driver to stop using
+> platform data and instead rely on generic device properties only.
+>
+> The first 8 patches are general cleanup/facelift patches.
+>
+> The 9th patch introduces alternative binding that is more compact that
+> the original one, which makes it more suitable for use in legacy (non
+> DT) boards with static device properties. Note that the "new" binding is
+> the standard binding for matrix keypads.
+>
+> Patch #10 implements the new binding in the driver, #11 converts the
+> only user of platform data in the mainline tree to the static device
+> properties, and #12 drops support for platform data from the driver.
+>
+> Patches #13 and #14 are "bonus" converting the rest of crag6410 to use
+> software nodes/properties to describe GPIO keys, LEDs and other
+> peripherals. Note that I believe they fix and issue with recent
+> conversion to GPIO lookup tables - the names of gpiochip structures I
+> think are "GP<N>" ("GPK", "GPL", etc) and not "GPIO<N>".
 
-Link: https://www.ti.com/lit/ug/sprujd8/sprujd8.pdf (EVM user guide)
-Link: https://www.ti.com/lit/zip/SPAC001 (Schematics)
-Reviewed-by: Beleswar Padhi <b-padhi@ti.com>
-Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
----
- arch/arm64/boot/dts/ti/Makefile                    |  4 ++++
- arch/arm64/boot/dts/ti/k3-j742s2-evm.dts           | 26 ++++++++++++++++++++++
- .../boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi   |  3 ++-
- 3 files changed, 32 insertions(+), 1 deletion(-)
+I had a (brief) look at the patches, everything looks fine to
+me, thanks for working on this! Let's see what Mark and 
+Krzysztof think.
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index e20b27ddf901..1bf645726a10 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -119,6 +119,9 @@ dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-pcie0-pcie1-ep.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-quad-port-eth-exp1.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-usxgmii-exp1-exp2.dtbo
- 
-+# Boards with J742S2 SoC
-+dtb-$(CONFIG_ARCH_K3) += k3-j742s2-evm.dtb
-+
- # Build time test only, enabled by CONFIG_OF_ALL_DTBS
- k3-am625-beagleplay-csi2-ov5640-dtbs := k3-am625-beagleplay.dtb \
- 	k3-am625-beagleplay-csi2-ov5640.dtbo
-@@ -240,3 +243,4 @@ DTC_FLAGS_k3-j721e-common-proc-board += -@
- DTC_FLAGS_k3-j721e-sk += -@
- DTC_FLAGS_k3-j721s2-common-proc-board += -@
- DTC_FLAGS_k3-j784s4-evm += -@
-+DTC_FLAGS_k3-j742s2-evm += -@
-diff --git a/arch/arm64/boot/dts/ti/k3-j742s2-evm.dts b/arch/arm64/boot/dts/ti/k3-j742s2-evm.dts
-new file mode 100644
-index 000000000000..fcb7f05d7faf
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-j742s2-evm.dts
-@@ -0,0 +1,26 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/*
-+ * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
-+ *
-+ * EVM Board Schematics: https://www.ti.com/lit/zip/SPAC001
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/net/ti-dp83867.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include "k3-j742s2.dtsi"
-+#include "k3-j784s4-j742s2-evm-common.dtsi"
-+
-+/ {
-+	model = "Texas Instruments J742S2 EVM";
-+	compatible = "ti,j742s2-evm", "ti,j742s2";
-+
-+	memory@80000000 {
-+		/* 16G RAM */
-+		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
-+		      <0x00000008 0x80000000 0x00000003 0x80000000>;
-+		device_type = "memory";
-+		bootph-all;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi
-index 068ceed4ea15..a7bb1857b4e8 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi
-@@ -2,7 +2,8 @@
- /*
-  * Copyright (C) 2022-2024 Texas Instruments Incorporated - https://www.ti.com/
-  *
-- * EVM Board Schematics: https://www.ti.com/lit/zip/sprr458
-+ * EVM Board Schematics(j784s4): https://www.ti.com/lit/zip/sprr458
-+ * EVM Board Schematics(j742s2): https://www.ti.com/lit/zip/SPAC001
-  */
- / {
- 	chosen {
-
--- 
-2.46.0
-
+      Arnd
 
