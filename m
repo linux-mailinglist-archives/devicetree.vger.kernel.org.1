@@ -1,201 +1,151 @@
-Return-Path: <devicetree+bounces-94778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C15D956A0F
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 13:57:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F1CD956A40
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 14:03:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80CD21C21FBB
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 11:57:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 20FCA1F21498
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 12:03:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90F9816A37C;
-	Mon, 19 Aug 2024 11:57:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 910C8167DB9;
+	Mon, 19 Aug 2024 12:03:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="doCPUDfm"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="MFlTAbKD";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="VAK/aC6n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA43B16727B
-	for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 11:57:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B32DA13DBA0;
+	Mon, 19 Aug 2024 12:03:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724068646; cv=none; b=MLQB+CnI+CL/53x9jB+qH0xZ2hwGVDMO/5mGWBOQNcvxpsGcSgYKEBg/efTUQ0kWtnnejDV7ekz6D6TB4SC7sbfJbjOjEVJbAZ+8khbJchlC1BE/smu2At1EI88uAnW4zsXFGm9heDbgtdZksXmc6DuUeWmSB5kLR4XwDsfJAAY=
+	t=1724069022; cv=none; b=kOAuVbtZftIELmy/DNOG1coGnFP8grUJsz9NwJ0QY4Z4/8tZ9bavQMcVLIz77kB7ls4wEPhef9g7u3w2A5jYSv4i9MZbYcXzwxm3phVpdmnUS1NQYsPF4aZBLY5SPwbIzeX/+QibErv9/6hJ/gHosijYoclyNAKuskREqactG4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724068646; c=relaxed/simple;
-	bh=ij/RhKXAEL9cVBO15IYVkcQPnrzyZPTaGryR8ECRDDs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bHSqAnOoZiz0m0+fr0eJHbQwD5f3exgxaJD+5Mr+WqItgIW7A0neI4VzCHEtLnWTYYTNYAfqZmK93zub31hvIkkX/lGxH1qOJoMWZIIYsPT9sWGZk/0HiauMACWDAeqXl5L7CdWdGWYLB3wsPaiZMmXEZeHJMnxF4jX9rRgbQ44=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=doCPUDfm; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1724068643;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=84PhB6eF89FFZ8ucHgT9n7pmJgWbulzk/3Qj97ioNCk=;
-	b=doCPUDfmbb9RrUFBJlCBcXdCJZ5jLv0wcfehRVkb44p+Z1Ce+DKEfTTdNk1soeIlJVfxnj
-	LntEIU7uQ5d2DAUEFdBlgxHRZjV0GHsSusJcgdGm+C2A056qfsz94e63Ar0T9DTfzKWQQo
-	7c0LSBLcoBkK41qP0uqYuwDeleyxJjo=
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com
- [209.85.208.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-434-5xTBSn99OLalohoLKt3T1Q-1; Mon, 19 Aug 2024 07:57:22 -0400
-X-MC-Unique: 5xTBSn99OLalohoLKt3T1Q-1
-Received: by mail-ed1-f72.google.com with SMTP id 4fb4d7f45d1cf-5bee990ad19so2158313a12.0
-        for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 04:57:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724068641; x=1724673441;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=84PhB6eF89FFZ8ucHgT9n7pmJgWbulzk/3Qj97ioNCk=;
-        b=DX2HsHjZLnFR6sky4hHJywSkLGXxB3jcvz6hEFnLlk0oeasTynI8Cl7oNsL/LUZzyd
-         BvsLkTv/R1FqUdNsrr//9GLZ5V0Ex9Gp4RkMJx+nCrtQHuX3EeppAAMQQ9oo+T21y/ms
-         I6PpFUjEatKwwbfE3/xmR1191IRzARZC2B+Ukps/yfFwxINr63cJEGLvCWPadCCOQNNu
-         SAj+HC0nz77uVZJHzMddMbJNPnFHwjjXViw2Qk4oCxQyfux4Ou90O7wyu2kj3xI0HQ6+
-         CWRhRVXyrTZDSYwiqFeWqOLusVGUW63lRvDE/YI8OfO33EygG6mCATqYndtqLDpBQH1z
-         j7ZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXfu3zSlFq4dY/frVBsg++pnGFqyrdbHBm/dfNIq6dk2Wwjo0/Px6t0de+7SgaHMabi/qXnh08StM0OyTsJFo/pfRkgP3wjkxEKdA==
-X-Gm-Message-State: AOJu0Yw+sqGyzdGGyBscEqpvN7FG3DQsBJQ0gtC8sB8AXm7J60CzGIse
-	oWQsVn7j8AQXH9T00ZsjlKd3LmrjIbhUC7HkyG5qODIEm9kPhldP7+zpA0fF08SPMk+gyd82Rkq
-	qR/7ZRKaLf1+L6aUQzVmprdga4659Nl7+YrtK0QFvRpUVvHXSKDr6lrg9tog=
-X-Received: by 2002:a05:6402:34d4:b0:5be:ecd9:c73e with SMTP id 4fb4d7f45d1cf-5beecd9cbf3mr4997312a12.2.1724068641339;
-        Mon, 19 Aug 2024 04:57:21 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGnRo8JGhy8S0tLVgxUpCSUbuvlldmz7SLn5JDTjjd9seJwXdLBAybiRE42CshwTS82wSQmig==
-X-Received: by 2002:a05:6402:34d4:b0:5be:ecd9:c73e with SMTP id 4fb4d7f45d1cf-5beecd9cbf3mr4997268a12.2.1724068640890;
-        Mon, 19 Aug 2024 04:57:20 -0700 (PDT)
-Received: from [10.40.98.157] ([78.108.130.194])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5bed05f0a30sm3999829a12.30.2024.08.19.04.57.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Aug 2024 04:57:20 -0700 (PDT)
-Message-ID: <1edadffb-67d9-476e-b0f7-7f3fc34e9592@redhat.com>
-Date: Mon, 19 Aug 2024 13:57:19 +0200
+	s=arc-20240116; t=1724069022; c=relaxed/simple;
+	bh=Amg6pxpvYJV2YWjLKJfNIaYtUJYY2QMCpB9VDZRbVyw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=jPyXt1BSd65HDaKLE+2X6ybgPTTIdKEARN3hizdZ1cWRjbhkm1BASGtuj6n/kBLNYlrG6zqN1/yfy5spiRw9oxZ658/kkYTmgj4SuZMdZR6g6mfV2/75jlKu+kh5EavIFu+PsDidpIFwglUU4K9WKt+JKFqxGneaX7l0N5mdabQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=MFlTAbKD; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=VAK/aC6n reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1724069019; x=1755605019;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=8DN/3w1Vft6D1vjJdLnyjCTRab2bmOne6epqUwo+9k8=;
+  b=MFlTAbKD4Iqn7Wa5UrOHnRRfqsscV6+BCa0Z9hVcSiRdwp+MPpBpyEOo
+   j8e4+85RxN96BW8qy8AhbvB3ofF2x8hytKnodnAN9naKRl+CC6EuiKaGA
+   N1yeoPpTYYDNDEIG2QV732HETjIAEecHrmIpeRbXGlm5f2dVXGnf10kGE
+   9s+vUSKA1GpLVuaBBHWHX94xgqw2+ladOO6QPfsSo6nPPxQPaPTVMjPDd
+   cCPkrHX9uE3nGFzCODVryHT051sarFkc+Y/LTBN7sLN7yegn2nNGOi9HK
+   VbrPA5xxoTeIrd+rasbYOKDIF4vPIeuglmXMSdAyr/YWpBYWQ08XLtjmQ
+   w==;
+X-CSE-ConnectionGUID: aeFCxebrTbGb9SW5j2yc/A==
+X-CSE-MsgGUID: lc8KNtI2QOiz6OcRpuNqMQ==
+X-IronPort-AV: E=Sophos;i="6.10,159,1719871200"; 
+   d="scan'208";a="38467097"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 19 Aug 2024 14:03:36 +0200
+X-CheckPoint: {66C33498-16-45EF2B36-F6E28480}
+X-MAIL-CPID: 9997A2AE3CF88BAD4F45DA2E8345DA57_0
+X-Control-Analysis: str=0001.0A782F24.66C33498.00B2,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1E209163E34;
+	Mon, 19 Aug 2024 14:03:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1724069012; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=8DN/3w1Vft6D1vjJdLnyjCTRab2bmOne6epqUwo+9k8=;
+	b=VAK/aC6nJik2PLaTULLyb39jt/Jh5rI98EraOtS/ou1NjFsgI4tJOOr6QMRRVi/Z0jANcs
+	VftS14Dwg0kN6PkWEEBlAWLST141eD2ESsdZQTIe1vQJJcFgys88LsuvJCXUaFMns8lRpx
+	VYG28KMTi2mPilS86z17g+3aLrj8fd/+QfZ5wHnyS7Uz9pMVdwR6JXSXSxaRBh48AZ+FjD
+	Qb5yBpY9wN81rjFTd4iB5sD5cQVAxRfab1s1ndW9095g4Y2zMxg535BibX3D74kwixvMSr
+	+rrnfPBHiMN8M82N04uUlU1g/xAYtmZ0lUnwOlfT90oPRsssiJKvDe1l5UadtA==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	linux@ew.tq-group.com,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 00/14] TQMa93xx improvements
+Date: Mon, 19 Aug 2024 14:03:14 +0200
+Message-Id: <20240819120328.229622-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/3] OF support for Surface System Aggregator Module
-To: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Len Brown <lenb@kernel.org>, Maximilian Luz <luzmaximilian@gmail.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
- platform-driver-x86@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <quic_kdybcio@quicinc.com>,
- Krzysztof Kozlowski <krzk@kernel.org>
-References: <20240814-topic-sam-v3-0-a84588aad233@quicinc.com>
-Content-Language: en-US
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <20240814-topic-sam-v3-0-a84588aad233@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi,
+Hi all,
 
-On 8/14/24 12:27 PM, Konrad Dybcio wrote:
-> Wire up OF support for SSAM drivers, to use with Surface Laptop 7 and
-> other Qualcomm-based devices.
-> 
-> Patch 3 references compatible strings introduced in [1]
-> 
-> [1] https://lore.kernel.org/linux-arm-msm/20240809-topic-sl7-v1-1-2090433d8dfc@quicinc.com/T/#u
-> 
-> Signed-off-by: Konrad Dybcio <quic_kdybcio@quicinc.com>
+this is the 2nd version of the series add improvements for the TQMa93xx
+series.
+Despite changes for pad configuration as requested form hardware team, this also
+adds the PMIC node which allows to specify correct supplies for e.g. eMMC.
+Also GPIO lin enames are added for userspace usage using e.g. libgpiod.
+This series also includes a workaround for USDHCI errata.
 
-Thank you for your patch-series, I've applied the series to my
-review-hans branch:
-https://git.kernel.org/pub/scm/linux/kernel/git/pdx86/platform-drivers-x86.git/log/?h=review-hans
+Changes in v2:
+* Collected R-b
+* Fix whitespace typos
+* Split (old) patch 6/14 into patches
+  * Fixing pad config
+  * Adding LPSPI6 interface
+  * Adding IRQ for temperature sensor
+  * Adding missing pad configurations
+* Split (old) patch 12/14 into patches
+  * Adding IRQ for RTC and temperature sensor
+  * Fixing pad config
 
-I did notice the following compiler warning when test building:
+Best regards,
+Alexander
 
-drivers/platform/surface/surface_aggregator_registry.c:278:36: warning: ‘ssam_node_group_sl7’ defined but not used [-Wunused-variable]
-  278 | static const struct software_node *ssam_node_group_sl7[] = {
-      |                                    ^~~~~~~~~~~~~~~~~~~
+Alexander Stein (7):
+  arm64: dts: freescale: imx93-tqma9352: Add PMIC node
+  arm64: dts: freescale: imx93-tqma9352: add eMMC regulators
+  arm64: dts: freescale: imx93-tqma9352-mba93xxla: enable LPSPI6
+    interface
+  arm64: dts: freescale: imx93-tqma9352-mba93xxla: add missing pad
+    configurations
+  arm64: dts: freescale: imx93-tqma9352-mba93xxla: Add ethernet aliases
+  arm64: dts: freescale: imx93-tqma9352-mba93xxca: add missing pad
+    configurations
+  arm64: dts: freescale: imx93-tqma9352-mba93xxca: Add ethernet aliases
 
-One way to fix this would be add #ifdef CONFIG_OF around the definition
-of ssam_node_group_sl7, but then future devicetree based surface devices
-would need more #ifdef-s so instead I've solved it by squashing in this fix:
+Markus Niebel (7):
+  arm64: dts: freescale: imx93-tqma9352-mba93xxla: improve pad
+    configuration
+  arm64: dts: freescale: imx93-tqma9352-mba93xxla: add irq for temp
+    sensor
+  arm64: dts: freescale: imx93-tqma9352-mba93xxla: add GPIO line names
+  arm64: dts: freescale: imx93-tqma9352-mba93xxca: add RTC / temp sensor
+    IRQ
+  arm64: dts: freescale: imx93-tqma9352-mba93xxca: improve pad
+    configuration
+  arm64: dts: freescale: imx93-tqma9352-mba93xxca: add GPIO line names
+  arm64: dts: freescale: imx93-tqma9352: set SION for cmd and data pad
+    of USDHC
 
-diff --git a/drivers/platform/surface/surface_aggregator_registry.c b/drivers/platform/surface/surface_aggregator_registry.c
-index 495cb4300617..ac96e883cb57 100644
---- a/drivers/platform/surface/surface_aggregator_registry.c
-+++ b/drivers/platform/surface/surface_aggregator_registry.c
-@@ -415,14 +415,12 @@ static const struct acpi_device_id ssam_platform_hub_acpi_match[] = {
- };
- MODULE_DEVICE_TABLE(acpi, ssam_platform_hub_acpi_match);
- 
--#ifdef CONFIG_OF
--static const struct of_device_id ssam_platform_hub_of_match[] = {
-+static const struct of_device_id ssam_platform_hub_of_match[] __maybe_unused = {
- 	/* Surface Laptop 7 */
- 	{ .compatible = "microsoft,romulus13", (void *)ssam_node_group_sl7 },
- 	{ .compatible = "microsoft,romulus15", (void *)ssam_node_group_sl7 },
- 	{ },
- };
--#endif
- 
- static int ssam_platform_hub_probe(struct platform_device *pdev)
- {
+ .../freescale/imx93-tqma9352-mba93xxca.dts    | 299 +++++++++++-----
+ .../freescale/imx93-tqma9352-mba93xxla.dts    | 318 +++++++++++++-----
+ .../boot/dts/freescale/imx93-tqma9352.dtsi    | 134 ++++++--
+ 3 files changed, 568 insertions(+), 183 deletions(-)
 
-Once I've run some tests on this branch the patches there will be
-added to the platform-drivers-x86/for-next branch and eventually
-will be included in the pdx86 pull-request to Linus for the next
-merge-window.
-
-Regards,
-
-Hans
-
-
-> ---
-> Changes in v3:
-> - Drop unnecessary nullchecks
-> - Add MODULE_ALIAS in the platform hub driver
-> - Fix MODULE_DEVICE_TABLE after rename
-> - Prolong the '----' comment to 80 lines
-> - Change the current-speed bindings description to ": true", in
->   preparation for krzk's serial device bindings reorganization
-> - Link to v2: https://lore.kernel.org/r/20240810-topic-sam-v2-0-8a8eb368a4f0@quicinc.com
-> 
-> Changes in v2:
-> - Fix kerneldoc
-> - Drop the drivers/acpi change (oops)
-> - Style fixes
-> - Don't assign int to acpi_status
-> - Don't scan the bus twice in SAM core probe
-> - Link to v1: https://lore.kernel.org/r/20240809-topic-sam-v1-0-05bca1932614@quicinc.com
-> 
-> ---
-> Konrad Dybcio (3):
->       dt-bindings: serial: Allow embedded-controller as child node
->       dt-bindings: platform: Add Surface System Aggregator Module
->       platform/surface: Add OF support
-> 
->  .../bindings/platform/microsoft,surface-sam.yaml   | 47 +++++++++++++
->  .../devicetree/bindings/serial/serial.yaml         |  2 +-
->  drivers/platform/surface/aggregator/bus.c          |  2 +
->  drivers/platform/surface/aggregator/controller.c   | 67 ++++++++++++++----
->  drivers/platform/surface/aggregator/core.c         | 82 +++++++++++++++++-----
->  drivers/platform/surface/surface3_power.c          |  1 +
->  drivers/platform/surface/surface_acpi_notify.c     |  1 +
->  .../platform/surface/surface_aggregator_registry.c | 47 +++++++++++--
->  8 files changed, 210 insertions(+), 39 deletions(-)
-> ---
-> base-commit: 1e391b34f6aa043c7afa40a2103163a0ef06d179
-> change-id: 20240809-topic-sam-5de2f0ec9370
-> 
-> Best regards,
+-- 
+2.34.1
 
 
