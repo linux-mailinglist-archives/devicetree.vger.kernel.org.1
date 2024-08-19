@@ -1,133 +1,103 @@
-Return-Path: <devicetree+bounces-94858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C49C5956F4C
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 17:54:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6106D956F62
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 17:57:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 039251C220B5
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 15:54:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 648801C22B1E
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 15:57:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5509012FB34;
-	Mon, 19 Aug 2024 15:54:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBFE313AA35;
+	Mon, 19 Aug 2024 15:57:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="C4W+Jqrw"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="kvKNBQNn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3969512B176;
-	Mon, 19 Aug 2024 15:54:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 195C8130A47;
+	Mon, 19 Aug 2024 15:57:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724082869; cv=none; b=ggLSgDNHTseq+/cQpoSr0n2m5vGBtiXrF2Xil5Ov/2nPPCnKXNTztmHTRiS1JtKlKFZtr+j1aa/5FL+kd4wZTHrBg6DaBLPWOGAYqF5NMbwqcpCDSv/hMVkV37gDdArA1SctFxjDPJLTkW8IVGt4QaMpPMaAERFQ9gNDikmFKjA=
+	t=1724083049; cv=none; b=sqmHcb05hywOdSC7umY6ulpvpxdTf41PxM9vNxV0uFtQUzpHUSQNrneGAMQK65R+7Q3JZ1MXzYaSYHJYdroOzHvDuhCG4LfElFdLs7iBx1HrduholLHj85xwCPXi9dAQLrCpsRdCiu5TCxU6pX+VEEUyrXUj0kSy5NC3fFPM9tM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724082869; c=relaxed/simple;
-	bh=HS+GBwWvBK/+vgNF7OWoTTnd7v0GySP6wMtirTG29JA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Q8LbieaoGwk5/v1nm1Mx62AS4SeDGt9X3LMb0M6VMKsAh15HcpeTxRy4JZKM8tl//ryLmk8UF9CuObVm2BQJSgo6nw6aK3LC6BKN6N9UfYkCeMiH3WwXXO0PWsXmTBBLwlUcI/bR/WrsC1x3eIPFVjtW8rLJcwqmI4HzMDTXx6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=C4W+Jqrw; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47JFsCBj073351;
-	Mon, 19 Aug 2024 10:54:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1724082852;
-	bh=ozAOveEx1TyVnZowYy63iIx8ITlS152xJXt0YCwvoVA=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=C4W+JqrwJulz9V3MRKLCnuumiCAWWKkJqtJ7jacjOznGzcVZ0+dfcegLBU7lXCADW
-	 XTnoMlLpLmwbh2CJM/Nq9x4u6wSp4AKA7SsqJeNYmJYj+awO7mpL72O7Dn4e8q9M1x
-	 XnVWcXlWtTdr/Bj3xfr5jzfWznYnwz612ZP0rgTU=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47JFsC7D027482
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 19 Aug 2024 10:54:12 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 19
- Aug 2024 10:54:12 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 19 Aug 2024 10:54:12 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47JFsBZ3089334;
-	Mon, 19 Aug 2024 10:54:11 -0500
-Message-ID: <98d65c2e-f5a2-4894-b76d-6fa0fb8b6daf@ti.com>
-Date: Mon, 19 Aug 2024 10:54:11 -0500
+	s=arc-20240116; t=1724083049; c=relaxed/simple;
+	bh=kjhN6zya/HpkbCmFLGSHtGOqrGNiPRQjSzuH4aE3vjo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bd37dRRlOd2VyjnGdYWuhHUXvHI5PyZ4mLi6PjYgwpi9/PFtJHKddpV7QTTMDlRPlI19H2KEi9hN6fCCjQEG+zr4WAc2eCQGaW1ZOxk8S2/Tb8SuzQTAln9Rh58ZZ8Wij/MjKfI0lLhBqB4G5bJ0+6jVRzDnuvHOXWc9JyzA4Ac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=kvKNBQNn; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=/eYAUPEosxunb171XvbzrAbh7LSktH4hXqUkCFkLgA0=; b=kvKNBQNnorp3Nb0kSR40Xd5FPV
+	BgtqIrkFQHkRcbBon1db93gz3uU3nn26C97Gi4s6lEqv2C95NaursHS5lrprapXY1N3XdQcqqieA4
+	tcD4RwJ6d60rErItnmS9V79hBCOiKuUrByyzJiCuZPB5hUPxUhVppA/fPKzWiRFYkJKU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sg4kp-005868-7L; Mon, 19 Aug 2024 17:57:11 +0200
+Date: Mon, 19 Aug 2024 17:57:11 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-stm32@st-md-mailman.stormreply.com" <linux-stm32@st-md-mailman.stormreply.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+	dl-S32 <S32@nxp.com>
+Subject: Re: [PATCH v2 4/7] net: phy: add helper for mapping RGMII link speed
+ to clock rate
+Message-ID: <8fe67776-e2b6-48e3-8c60-a5a4f18cd60c@lunn.ch>
+References: <AM9PR04MB85062E3A66BA92EF8D996513E2832@AM9PR04MB8506.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 3/9] remoteproc: k3-m4: Add a remoteproc driver for
- M4F subsystem
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Mathieu Poirier
-	<mathieu.poirier@linaro.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-CC: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>,
-        Hari Nagalla <hnagalla@ti.com>, <linux-remoteproc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20240802152109.137243-1-afd@ti.com>
- <20240802152109.137243-4-afd@ti.com> <Zr4w8Vj0mVo5sBsJ@p14s>
- <Zr9j5HBjRqqRIoaD@p14s> <e5140426-7e69-41b0-858f-16f83eed871a@ti.com>
- <ZsNlic5EbQP2BdFB@p14s> <f529c5ef-f61c-4c8b-a589-652aca162f07@kernel.org>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <f529c5ef-f61c-4c8b-a589-652aca162f07@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <AM9PR04MB85062E3A66BA92EF8D996513E2832@AM9PR04MB8506.eurprd04.prod.outlook.com>
 
-On 8/19/24 10:39 AM, Krzysztof Kozlowski wrote:
-> On 19/08/2024 17:32, Mathieu Poirier wrote:
+On Sun, Aug 18, 2024 at 09:50:46PM +0000, Jan Petrous (OSS) wrote:
+> The helper rgmii_clock() implemented Russel's hint during stmmac
+> glue driver review:
 > 
->>>>> Please remove.
->>>> Forget this comment since it would cause an error in __rproc_detach().
->>>>
->>>>> Other than the above I'm good with this driver.  That said I can't move forward
->>>>> without a nod from the DT crew.  I also noticed a fair amount of code
->>>>> duplication with the k3_r5 and k3_dsp drivers.  Dealing with that should not be
->>>>> part of the current work but will need to be done before another k3 driver can
->>>>> be merged.
->>>>>
->>>
->>>> The above still apply though.
->>>
->>> Me or Nishanth will pick up the SoC DT patches via TI SoC tree, once the
->>> driver patches are merged. Feel free to ignore those but queue
->>> dt-bindings (already has DT maintainers ack) and driver patches via
->>> rproc tree.
->>>
->>
->> Can you provide a link where the DT maintainers have acknowledged the bindings?
+> ---
+> We seem to have multiple cases of very similar logic in lots of stmmac
+> platform drivers, and I think it's about time we said no more to this.
+> So, what I think we should do is as follows:
 > 
-> The reviewed-by tag serves as acknowledgment as well and the binding
-> patch has it. Conor gave it on some earlier version of the patchset. I
-> did not check if there were any significant changes in the meantime, though.
-> 
+> add the following helper - either in stmmac, or more generically
+> (phylib? - in which case its name will need changing.)
 
-Was reviewed in v8:
-https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240424190612.17349-2-afd@ti.com/#3302840
+As Russell pointed out, this code appears a few times in the stmmac
+driver. Please include patches changing the other instances to use
+this helper.
 
-If there was any significant changes since I would have dropped the tag.
+It also looks like macb, and maybe xgene_enet_hw.c could use it as
+well.
 
-Andrew
-
-> 
-> Best regards,
-> Krzysztof
-> 
+	Andrew
 
