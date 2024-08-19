@@ -1,652 +1,313 @@
-Return-Path: <devicetree+bounces-94830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDBD1956CFC
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 16:17:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5070956D29
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 16:25:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F5211F25295
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 14:17:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA4371C22DBC
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 14:25:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D311E16CD05;
-	Mon, 19 Aug 2024 14:17:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 005DE16F0D8;
+	Mon, 19 Aug 2024 14:24:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SXLSK4k1"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="dz06x33Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010067.outbound.protection.outlook.com [52.101.69.67])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B602E15E5D6;
-	Mon, 19 Aug 2024 14:17:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724077048; cv=none; b=uHeamgy4LVxqk2fti1ZIyfWye8ILv/Gn0q2ChV/VE/owXF1FQ0B1UO4dPaYyClxUOVFX9GnDolqLFWw/rMVhYMzhJnd+KUZgc9KrwpOus7ijF542IAbzWxlPt3W4IMV3runFy1l1Lc+x/cNJRtQ/eO4SI8PYWFeUAGy+m3teB9g=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724077048; c=relaxed/simple;
-	bh=fWU4XT+3ULTiivf49oGHazmISXNwMiSlbFNxBr2ahns=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A55g5avudDWBhhq+mUALgtYbgbnNPAH/GAbC3hBu2xznU3DTVyNaDvPbC4efR+Q4iU/4NZLSGNU8aTudiQn3mtduo5iYXnfAALArovJl4STO3PoB4Q832VCdCx7fcK6clKvdCwAN57CbF0Jvrkr3b788gMXe3vdtR0SAFDEc1rU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SXLSK4k1; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1724077046; x=1755613046;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=fWU4XT+3ULTiivf49oGHazmISXNwMiSlbFNxBr2ahns=;
-  b=SXLSK4k1SZDQD97qfH679VU+RUnHH5VsENdN+nhD2dUV7qgzpJLIXojI
-   T1yeK0LqOTRa6HahjZqBJ5AoirXa6LO3onRQuBfUOVhE7ITKbiQjyBa0L
-   YmuMFBeFNKZz0hkAOaA3kJVqAM8sktORXRpTJvi72ukMJKDjQsrRvR4Zp
-   Wa0z5iPvp+sYfea/Bf4CXuqzUut6xW0DmkO4001qScjombNLw59suICys
-   MUKJu3h3q0v5M4vLYLvB7GaYtZsuVZMtD0OvyLhmxTrHdDAedt7aUBtT4
-   vhvGzZ5lwGbvdpTwy7GOxb/LwiwnoCKELmSxVKfcSYwjbYQ5wKTQIXVdr
-   A==;
-X-CSE-ConnectionGUID: A7lJhGtiRqW57AvQj9DQhA==
-X-CSE-MsgGUID: swa1x8BgQnO/7KMSv7vT8w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="21872535"
-X-IronPort-AV: E=Sophos;i="6.10,159,1719903600"; 
-   d="scan'208";a="21872535"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Aug 2024 07:17:24 -0700
-X-CSE-ConnectionGUID: dkkdQmZVR7yTOMNvwECjNw==
-X-CSE-MsgGUID: oxgLbXqERBuiHTDnyG+1OA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,159,1719903600"; 
-   d="scan'208";a="65348825"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Aug 2024 07:17:20 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1sg3C8-0000000Gx0b-3Ozh;
-	Mon, 19 Aug 2024 17:17:16 +0300
-Date: Mon, 19 Aug 2024 17:17:16 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Ryan Chen <ryan_chen@aspeedtech.com>
-Cc: brendan.higgins@linux.dev, benh@kernel.crashing.org, joel@jms.id.au,
-	andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, andrew@codeconstruct.com.au,
-	p.zabel@pengutronix.de, linux-i2c@vger.kernel.org,
-	openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v13 2/3] i2c: aspeed: support AST2600 i2c new register
- mode driver
-Message-ID: <ZsNT7LPZ7-szrgBJ@smile.fi.intel.com>
-References: <20240819092850.1590758-1-ryan_chen@aspeedtech.com>
- <20240819092850.1590758-3-ryan_chen@aspeedtech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96823170A21;
+	Mon, 19 Aug 2024 14:24:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.67
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724077494; cv=fail; b=dXPo2KUArxTkMeQRRkvZBrX5Adk3aDP5v43aUn6Qxl2NYQjdehQ8EKGEwPYehUymJWgOW6H4502q8rYvwmIMT4j6p7xPLZ/vZib247CUMe0MdaOHdoVTuetzvEdGttaoIoer5SQIZ21ZOB/BoTIsuoSosyhWQKeYR6GD7lJ96pw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724077494; c=relaxed/simple;
+	bh=aQUVD5VY2Kx30GU7AsfE+d/lw6fuSTFDKEoAFyfW5P0=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=Zakd1lfGvYL0WLKgRRdgZXBX9j7CwYGlK2uratAEkYc2oDCb39r24BhAb7ogvgAvlcDsKU/zVUW3ZeFftm3aOLkIOXgWPj2H//4zqHiNW7QAP2rM8qraEnBi/FZc2PhdyLhR9ZCQ1NnpRz6MfFA53QbpfDX8m6ZSo4yUsyoJvKc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=dz06x33Q; arc=fail smtp.client-ip=52.101.69.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=M5Dl679Bg74et/KAmcGJh/WkPYhmxn8CL9llxuJv7P+x0OaKg3F1uuahE4DyqQ91T+pskCeE4VDVawHVMn8WqBXiEtk5fXRQ5D585j/jFBukINOuJXYWfPM/harEs9jGpXjWlE+lpJloDsdzp2zSPX5klOUBtH3gNzuIm2JfQiRFFWHGN3TIYtAFwOv7+UylUy0gWU1FVyBBtPbTGaxKEv6zGreTRSL0PTTYO/SluLG8DzjncbrHEhMgrPYHwDzGJvRBS14QIHTSScu+wBsCILeI16PWpjjX5GzavXFcGS5TOVawUsGzIdNLORr6gMcnWLsKjBJyspXEp9fz5focDA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=K2qk3K7JgJZK3up6FfTCrOlaaKv0kyX9yh2M1ulwlKA=;
+ b=f0bDOx2hIjDSumZh38jzhEc7jbUzRS5RXAAGSXJqCIWSv7dmnxxLU0Vh4uhTDlUXKdTPamplNlclq1zkDF7SZ5JYtTV4UL4gJk/fOrhimQfHpLt6i6utHwk2p8RiL1/9qdsSnLBIZJaYGxA2NlahpKZWEgDMkjuEraK8mzm6MmhJ8FjJDCsO53FlVo9ZDR4B4gWJDDUU+RpEGyXsmLk0lAYRcV4fyBCkwUjibBxsbtUTDfAL7UztAsFKhXGnykMcT3bj9q0aVa2xHp+o+t0G1qQRGS02aFNMsLvVfgn3n+WppktSXxs9/nCUu8w6t+aqKs8j+DzYwx8KhLBrI3VZzg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=K2qk3K7JgJZK3up6FfTCrOlaaKv0kyX9yh2M1ulwlKA=;
+ b=dz06x33Qr/Ch91jaTpIUgPf0exaP1KW0i40PMsDZHO/bQEtDBwJ0BZMhieV+/WbdBSFc28z442DIjfEhLgCfWmaFDj8XK2iJ8JkK0vF2OCQoS2Oe3mvUqMlthbxdJKY+ymTEMQzBSpmkx587elQlftZ7W4e2g3tOiaBop0NvVnClQGU+zMcM4dEkrGIrVaXlFNWw16+3AnaDshv0sxzHTrdwXo8eSH+DAdFQf561TXpCcFiwdpVco74tIlVqMMtMg6pZRgxXNtpCSERvqDI8LvciyRzxRXvbzNkhuGQXjZYKIsX1v1rpyfEXoLMnmlO4wlJi/+3qeyW3JzWtj0AVuQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by VE1PR04MB7408.eurprd04.prod.outlook.com (2603:10a6:800:1b3::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.20; Mon, 19 Aug
+ 2024 14:24:49 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%3]) with mapi id 15.20.7875.019; Mon, 19 Aug 2024
+ 14:24:49 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sanchayan Maity <maitysanchayan@gmail.com>,
+	linux-input@vger.kernel.org (open list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)...),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH v3 1/1] dt-bindings: input: touchscreen: convert colibri-vf50-ts.txt to yaml
+Date: Mon, 19 Aug 2024 10:24:29 -0400
+Message-Id: <20240819142434.311760-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SA0PR11CA0069.namprd11.prod.outlook.com
+ (2603:10b6:806:d2::14) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240819092850.1590758-3-ryan_chen@aspeedtech.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-
-On Mon, Aug 19, 2024 at 05:28:49PM +0800, Ryan Chen wrote:
-> Add i2c new register mode driver to support AST2600 i2c
-> new register mode. AST2600 i2c controller have legacy and
-> new register mode. The new register mode have global register
-> support 4 base clock for scl clock selection, and new clock
-> divider mode. The new register mode have separate register
-> set to control i2c master and slave. This patch is for i2c
-> master mode driver.
-
-...
-
-> +struct ast2600_i2c_bus {
-
-Have you run `pahole` to be sure the layout is optimal?
-
-> +	struct i2c_adapter		adap;
-> +	struct device			*dev;
-> +	void __iomem			*reg_base;
-> +	struct regmap			*global_regs;
-> +	struct reset_control		*rst;
-> +	int				irq;
-> +	enum xfer_mode			mode;
-> +	struct clk			*clk;
-> +	u32				apb_clk;
-> +	struct i2c_timings		timing_info;
-> +	u32				timeout;
-> +	/* smbus alert */
-> +	bool			alert_enable;
-> +	struct i2c_smbus_alert_setup	alert_data;
-> +	struct i2c_client		*ara;
-> +	/* Multi-master */
-> +	bool				multi_master;
-> +	/* master structure */
-> +	int				cmd_err;
-> +	struct completion		cmd_complete;
-> +	struct i2c_msg			*msgs;
-> +	size_t				buf_index;
-> +	/* cur xfer msgs index*/
-> +	int				msgs_index;
-> +	int				msgs_count;
-> +	u8				*master_safe_buf;
-> +	dma_addr_t			master_dma_addr;
-> +	/*total xfer count */
-> +	int				master_xfer_cnt;
-> +	/* Buffer mode */
-> +	void __iomem			*buf_base;
-> +	size_t				buf_size;
-> +};
-
-...
-
-> +static u32 ast2600_select_i2c_clock(struct ast2600_i2c_bus *i2c_bus)
-> +{
-> +	unsigned long base_clk[16];
-> +	int baseclk_idx;
-> +	u32 clk_div_reg;
-> +	u32 scl_low;
-> +	u32 scl_high;
-> +	int divisor;
-> +	u32 data;
-> +
-> +	regmap_read(i2c_bus->global_regs, AST2600_I2CG_CLK_DIV_CTRL, &clk_div_reg);
-> +
-> +	for (int i = 0; i < 16; i++) {
-
-unsigned int
-ARRAY_SIZE(base_clk) // Will need array_size.h
-
-
-> +		if (i == 0)
-> +			base_clk[i] = i2c_bus->apb_clk;
-> +		else if ((i > 0) || (i < 5))
-> +			base_clk[i] = (i2c_bus->apb_clk * 2) /
-> +				(((clk_div_reg >> ((i - 1) * 8)) & GENMASK(7, 0)) + 2);
-> +		else
-> +			base_clk[i] = base_clk[4] / (1 << (i - 5));
-
-This is the same as
-
-		if (i == 0)
-			base_clk[i] = i2c_bus->apb_clk;
-		else if (i < 5)
-			base_clk[i] = (i2c_bus->apb_clk * 2) /
-				      (((clk_div_reg / BIT((i - 1) * 8)) & GENMASK(7, 0)) + 2);
-		else
-			base_clk[i] = base_clk[4] / BIT(i - 5);
-
-Alternatively
-
-		if (i == 0)
-			base_clk[i] = i2c_bus->apb_clk;
-		else if (i < 5)
-			base_clk[i] = (i2c_bus->apb_clk * 2) /
-				      (((clk_div_reg >> ((i - 1) * 8)) & GENMASK(7, 0)) + 2);
-		else
-			base_clk[i] = base_clk[4] >> (i - 5);
-
-> +
-> +		if ((base_clk[i] / i2c_bus->timing_info.bus_freq_hz) <= 32) {
-> +			baseclk_idx = i;
-> +			divisor = DIV_ROUND_UP(base_clk[i], i2c_bus->timing_info.bus_freq_hz);
-> +			break;
-> +		}
-> +	}
-
-> +	baseclk_idx = min(baseclk_idx, 15);
-
-If the last conditional inside the loop is never true, you are going to use\
-a garbage here.
-
-> +	divisor = min(divisor, 32);
-
-Ditto.
-
-> +	scl_low = min(divisor * 9 / 16 - 1, 15);
-
-Missing minmax.h in the inclusion block.
-
-> +	scl_high = (divisor - scl_low - 2) & GENMASK(3, 0);
-> +	data = (scl_high - 1) << 20 | scl_high << 16 | scl_low << 12 | baseclk_idx;
-> +	if (i2c_bus->timeout) {
-> +		data |= AST2600_I2CC_TOUTBASECLK(AST_I2C_TIMEOUT_CLK);
-> +		data |= AST2600_I2CC_TTIMEOUT(i2c_bus->timeout);
-> +	}
-> +
-> +	return data;
-> +}
-
-...
-
-> +static u8 ast2600_i2c_recover_bus(struct ast2600_i2c_bus *i2c_bus)
-> +{
-> +	u32 state = readl(i2c_bus->reg_base + AST2600_I2CC_STS_AND_BUFF);
-> +	int ret = 0;
-> +	u32 ctrl;
-> +	int r;
-> +
-> +	dev_dbg(i2c_bus->dev, "%d-bus recovery bus [%x]\n", i2c_bus->adap.nr, state);
-> +
-> +	ctrl = readl(i2c_bus->reg_base + AST2600_I2CC_FUN_CTRL);
-> +
-> +	/* Disable master/slave mode */
-> +	writel(ctrl & ~(AST2600_I2CC_MASTER_EN | AST2600_I2CC_SLAVE_EN),
-> +	       i2c_bus->reg_base + AST2600_I2CC_FUN_CTRL);
-> +
-> +	/* Enable master mode only */
-> +	writel(readl(i2c_bus->reg_base + AST2600_I2CC_FUN_CTRL) | AST2600_I2CC_MASTER_EN,
-> +	       i2c_bus->reg_base + AST2600_I2CC_FUN_CTRL);
-> +
-> +	reinit_completion(&i2c_bus->cmd_complete);
-> +	i2c_bus->cmd_err = 0;
-> +
-> +	/* Check 0x14's SDA and SCL status */
-> +	state = readl(i2c_bus->reg_base + AST2600_I2CC_STS_AND_BUFF);
-> +	if (!(state & AST2600_I2CC_SDA_LINE_STS) && (state & AST2600_I2CC_SCL_LINE_STS)) {
-> +		writel(AST2600_I2CM_RECOVER_CMD_EN, i2c_bus->reg_base + AST2600_I2CM_CMD_STS);
-> +		r = wait_for_completion_timeout(&i2c_bus->cmd_complete, i2c_bus->adap.timeout);
-> +		if (r == 0) {
-> +			dev_dbg(i2c_bus->dev, "recovery timed out\n");
-> +			ret = -ETIMEDOUT;
-> +		} else {
-> +			if (i2c_bus->cmd_err) {
-> +				dev_dbg(i2c_bus->dev, "recovery error\n");
-> +				ret = -EPROTO;
-> +			}
-> +		}
-> +	}
-
-ret is set but maybe overridden.
-
-> +	/* Recovery done */
-
-Even if it fails above?
-
-> +	state = readl(i2c_bus->reg_base + AST2600_I2CC_STS_AND_BUFF);
-> +	if (state & AST2600_I2CC_BUS_BUSY_STS) {
-> +		dev_dbg(i2c_bus->dev, "Can't recover bus [%x]\n", state);
-> +		ret = -EPROTO;
-> +	}
-> +
-> +	/* restore original master/slave setting */
-> +	writel(ctrl, i2c_bus->reg_base + AST2600_I2CC_FUN_CTRL);
-> +	return ret;
-> +}
-
-...
-
-> +static int ast2600_i2c_setup_dma_tx(u32 cmd, struct ast2600_i2c_bus *i2c_bus)
-> +{
-> +	struct i2c_msg *msg = &i2c_bus->msgs[i2c_bus->msgs_index];
-> +	int xfer_len;
-> +
-> +	cmd |= AST2600_I2CM_PKT_EN;
-> +	xfer_len = msg->len - i2c_bus->master_xfer_cnt;
-> +	if (xfer_len > AST2600_I2C_DMA_SIZE) {
-> +		xfer_len = AST2600_I2C_DMA_SIZE;
-
-> +	} else {
-> +		if (i2c_bus->msgs_index + 1 == i2c_bus->msgs_count)
-
-	else if (...)
-
-> +			cmd |= AST2600_I2CM_STOP_CMD;
-> +	}
-> +
-> +	if (cmd & AST2600_I2CM_START_CMD) {
-> +		cmd |= AST2600_I2CM_PKT_ADDR(msg->addr);
-> +		i2c_bus->master_safe_buf = i2c_get_dma_safe_msg_buf(msg, 1);
-> +		if (!i2c_bus->master_safe_buf)
-> +			return -ENOMEM;
-> +		i2c_bus->master_dma_addr =
-> +			dma_map_single(i2c_bus->dev, i2c_bus->master_safe_buf,
-> +				       msg->len, DMA_TO_DEVICE);
-
-> +		if (dma_mapping_error(i2c_bus->dev, i2c_bus->master_dma_addr)) {
-> +			i2c_put_dma_safe_msg_buf(i2c_bus->master_safe_buf, msg, false);
-> +			i2c_bus->master_safe_buf = NULL;
-
-> +			return -ENOMEM;
-
-Why is the dma_mapping_error() returned error code shadowed?
-
-> +		}
-> +	}
-> +
-> +	if (xfer_len) {
-> +		cmd |= AST2600_I2CM_TX_DMA_EN | AST2600_I2CM_TX_CMD;
-> +		writel(AST2600_I2CM_SET_TX_DMA_LEN(xfer_len - 1),
-> +		       i2c_bus->reg_base + AST2600_I2CM_DMA_LEN);
-> +		writel(i2c_bus->master_dma_addr + i2c_bus->master_xfer_cnt,
-> +		       i2c_bus->reg_base + AST2600_I2CM_TX_DMA);
-> +	}
-> +
-> +	writel(cmd, i2c_bus->reg_base + AST2600_I2CM_CMD_STS);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ast2600_i2c_setup_buff_tx(u32 cmd, struct ast2600_i2c_bus *i2c_bus)
-> +{
-> +	struct i2c_msg *msg = &i2c_bus->msgs[i2c_bus->msgs_index];
-> +	u32 wbuf_dword;
-> +	int xfer_len;
-> +	u8 wbuf[4];
-
-> +	int i;
-
-Why signed?
-
-> +	cmd |= AST2600_I2CM_PKT_EN;
-> +	xfer_len = msg->len - i2c_bus->master_xfer_cnt;
-> +	if (xfer_len > i2c_bus->buf_size) {
-> +		xfer_len = i2c_bus->buf_size;
-
-> +	} else {
-> +		if (i2c_bus->msgs_index + 1 == i2c_bus->msgs_count)
-
-	else if (...)
-
-> +			cmd |= AST2600_I2CM_STOP_CMD;
-> +	}
-> +
-> +	if (cmd & AST2600_I2CM_START_CMD)
-> +		cmd |= AST2600_I2CM_PKT_ADDR(msg->addr);
-> +
-> +	if (xfer_len) {
-> +		cmd |= AST2600_I2CM_TX_BUFF_EN | AST2600_I2CM_TX_CMD;
-
-> +		/*
-> +		 * The controller's buffer register supports dword writes only.
-> +		 * Therefore, write dwords to the buffer register in a 4-byte aligned,
-> +		 * and write the remaining unaligned data at the end.
-> +		 */
-> +		for (i = 0; i < xfer_len; i++) {
-> +			wbuf[i % 4] = msg->buf[i2c_bus->master_xfer_cnt + i];
-> +			if ((i % 4) == 3 || i == xfer_len - 1) {
-> +				wbuf_dword = get_unaligned_le32(wbuf);
-> +				writel(wbuf_dword, i2c_bus->buf_base + i - (i % 4));
-> +			}
-> +		}
-
-This is overcomplicated and can be simplified.
-Why you can't perform
-
-	get_unaligned_leXX(msg->buf[i2c_bus->master_xfer_cnt + i]);
-
-?
-
-		for (i = 0; i < xfer_len; i += 4) {
-			switch (min(xfer_len - i, 4) % 4) {
-			case 1:
-				wbuf_dword = ...;
-				writel(wbuf_dword, i2c_bus->buf_base + i);
-				break;
-			case 2:
-				wbuf_dword = get_unaligned_le16(...);
-				writel(wbuf_dword, i2c_bus->buf_base + i);
-				break;
-			case 3:
-				wbuf_dword = get_unaligned_le24(...);
-				writel(wbuf_dword, i2c_bus->buf_base + i);
-				break;
-			default:
-				wbuf_dword = get_unaligned_le32(...);
-				writel(wbuf_dword, i2c_bus->buf_base + i);
-				break;
-			}
-		}
-
-
-Now, with this it's can be a helper, with which
-
-		for (i = 0; i < xfer_len; i += 4) {
-			switch (min(xfer_len - i, 4) % 4) {
-			case 1:
-				ast2600_write_data(i2c_bus, i, ...);
-				break;
-			case 2:
-				ast2600_write_data(i2c_bus, i, get_unaligned_le16(...));
-				break;
-			case 3:
-				ast2600_write_data(i2c_bus, i, get_unaligned_le24(...));
-				break;
-			default:
-				ast2600_write_data(i2c_bus, i, get_unaligned_le32(...));
-				break;
-			}
-		}
-
-> +		writel(AST2600_I2CC_SET_TX_BUF_LEN(xfer_len),
-> +		       i2c_bus->reg_base + AST2600_I2CC_BUFF_CTRL);
-> +	}
-> +
-> +	writel(cmd, i2c_bus->reg_base + AST2600_I2CM_CMD_STS);
-> +
-> +	return 0;
-> +}
-
-...
-
-> +static int ast2600_i2c_setup_dma_rx(struct ast2600_i2c_bus *i2c_bus)
-> +{
-> +	struct i2c_msg *msg = &i2c_bus->msgs[i2c_bus->msgs_index];
-> +	int xfer_len;
-> +	u32 cmd;
-> +
-> +	cmd = AST2600_I2CM_PKT_EN | AST2600_I2CM_PKT_ADDR(msg->addr) |
-> +	      AST2600_I2CM_START_CMD | AST2600_I2CM_RX_DMA_EN;
-> +
-> +	if (msg->flags & I2C_M_RECV_LEN) {
-> +		xfer_len = 1;
-
-> +	} else {
-> +		if (msg->len > AST2600_I2C_DMA_SIZE) {
-
-	} else if (...) {
-
-> +			xfer_len = AST2600_I2C_DMA_SIZE;
-> +		} else {
-> +			xfer_len = msg->len;
-> +			if (i2c_bus->msgs_index + 1 == i2c_bus->msgs_count)
-> +				cmd |= MASTER_TRIGGER_LAST_STOP;
-> +		}
-> +	}
-> +	writel(AST2600_I2CM_SET_RX_DMA_LEN(xfer_len - 1), i2c_bus->reg_base + AST2600_I2CM_DMA_LEN);
-> +	i2c_bus->master_safe_buf = i2c_get_dma_safe_msg_buf(msg, 1);
-> +	if (!i2c_bus->master_safe_buf)
-> +		return -ENOMEM;
-> +	i2c_bus->master_dma_addr =
-> +		dma_map_single(i2c_bus->dev, i2c_bus->master_safe_buf, msg->len, DMA_FROM_DEVICE);
-> +	if (dma_mapping_error(i2c_bus->dev, i2c_bus->master_dma_addr)) {
-> +		i2c_put_dma_safe_msg_buf(i2c_bus->master_safe_buf, msg, false);
-> +		i2c_bus->master_safe_buf = NULL;
-> +		return -ENOMEM;
-> +	}
-> +	writel(i2c_bus->master_dma_addr, i2c_bus->reg_base + AST2600_I2CM_RX_DMA);
-> +
-> +	writel(cmd, i2c_bus->reg_base + AST2600_I2CM_CMD_STS);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ast2600_i2c_setup_buff_rx(struct ast2600_i2c_bus *i2c_bus)
-> +{
-> +	struct i2c_msg *msg = &i2c_bus->msgs[i2c_bus->msgs_index];
-> +	int xfer_len;
-> +	u32 cmd;
-> +
-> +	cmd = AST2600_I2CM_PKT_EN | AST2600_I2CM_PKT_ADDR(msg->addr) |
-> +	      AST2600_I2CM_START_CMD | AST2600_I2CM_RX_BUFF_EN;
-> +
-> +	if (msg->flags & I2C_M_RECV_LEN) {
-> +		dev_dbg(i2c_bus->dev, "smbus read\n");
-> +		xfer_len = 1;
-
-> +	} else {
-> +		if (msg->len > i2c_bus->buf_size) {
-
-	} else if (...) {
-
-> +			xfer_len = i2c_bus->buf_size;
-> +		} else {
-> +			xfer_len = msg->len;
-> +			if (i2c_bus->msgs_index + 1 == i2c_bus->msgs_count)
-> +				cmd |= MASTER_TRIGGER_LAST_STOP;
-> +		}
-> +	}
-> +	writel(AST2600_I2CC_SET_RX_BUF_LEN(xfer_len), i2c_bus->reg_base + AST2600_I2CC_BUFF_CTRL);
-> +
-> +	writel(cmd, i2c_bus->reg_base + AST2600_I2CM_CMD_STS);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ast2600_i2c_setup_byte_rx(struct ast2600_i2c_bus *i2c_bus)
-> +{
-> +	struct i2c_msg *msg = &i2c_bus->msgs[i2c_bus->msgs_index];
-> +	u32 cmd;
-> +
-> +	cmd = AST2600_I2CM_PKT_EN | AST2600_I2CM_PKT_ADDR(msg->addr) |
-> +	      AST2600_I2CM_START_CMD | AST2600_I2CM_RX_CMD;
-> +
-> +	if (msg->flags & I2C_M_RECV_LEN) {
-> +		dev_dbg(i2c_bus->dev, "smbus read\n");
-
-> +	} else {
-> +		if (i2c_bus->msgs_index + 1 == i2c_bus->msgs_count) {
-
-	} else if (...) {
-
-> +			if (msg->len == 1)
-> +				cmd |= MASTER_TRIGGER_LAST_STOP;
-> +		}
-> +	}
-> +
-> +	writel(cmd, i2c_bus->reg_base + AST2600_I2CM_CMD_STS);
-> +
-> +	return 0;
-> +}
-
-...
-
-> +static int ast2600_i2c_do_start(struct ast2600_i2c_bus *i2c_bus)
-> +{
-> +	struct i2c_msg *msg = &i2c_bus->msgs[i2c_bus->msgs_index];
-> +
-> +	/* send start */
-> +	dev_dbg(i2c_bus->dev, "[%d] %sing %d byte%s %s 0x%02x\n",
-
-Drop 'ing', no need to have this in the debug message.
-
-> +		i2c_bus->msgs_index, str_read_write(msg->flags & I2C_M_RD),
-> +		msg->len, msg->len > 1 ? "s" : "",
-
-str_plural()
-
-> +		msg->flags & I2C_M_RD ? "from" : "to", msg->addr);
-
-> +	i2c_bus->master_xfer_cnt = 0;
-> +	i2c_bus->buf_index = 0;
-> +
-> +	if (msg->flags & I2C_M_RD) {
-> +		if (i2c_bus->mode == DMA_MODE)
-> +			return ast2600_i2c_setup_dma_rx(i2c_bus);
-> +		else if (i2c_bus->mode == BUFF_MODE)
-> +			return ast2600_i2c_setup_buff_rx(i2c_bus);
-> +		else
-> +			return ast2600_i2c_setup_byte_rx(i2c_bus);
-> +	} else {
-> +		if (i2c_bus->mode == DMA_MODE)
-> +			return ast2600_i2c_setup_dma_tx(AST2600_I2CM_START_CMD, i2c_bus);
-> +		else if (i2c_bus->mode == BUFF_MODE)
-> +			return ast2600_i2c_setup_buff_tx(AST2600_I2CM_START_CMD, i2c_bus);
-> +		else
-> +			return ast2600_i2c_setup_byte_tx(AST2600_I2CM_START_CMD, i2c_bus);
-> +	}
-> +}
-
-...
-
-> +master_out:
-> +	if (i2c_bus->mode == DMA_MODE) {
-> +		kfree(i2c_bus->master_safe_buf);
-> +	    i2c_bus->master_safe_buf = NULL;
-> +	}
-
-Indentation issues.
-
-> +	return ret;
-
-...
-
-
-> +MODULE_DEVICE_TABLE(of, ast2600_i2c_bus_of_table);
-
-Why do you need this table before _probe()? Isn't the only user is below?
-
-> +static int ast2600_i2c_probe(struct platform_device *pdev)
-
-...
-
-> +	i2c_bus->global_regs = syscon_regmap_lookup_by_phandle(dev->of_node, "aspeed,global-regs");
-
-dev_of_node(dev)
-
-> +	if (IS_ERR(i2c_bus->global_regs))
-> +		return PTR_ERR(i2c_bus->global_regs);
-
-...
-
-> +	if (device_property_read_bool(&pdev->dev, "aspeed,enable-dma"))
-
-You have 'dev' Why not use it?
-
-> +		i2c_bus->mode = DMA_MODE;
-
-...
-
-> +	if (i2c_bus->mode == BUFF_MODE) {
-> +		i2c_bus->buf_base = devm_platform_get_and_ioremap_resource(pdev, 1, &res);
-> +		if (!IS_ERR_OR_NULL(i2c_bus->buf_base))
-> +			i2c_bus->buf_size = resource_size(res) / 2;
-> +		else
-> +			i2c_bus->mode = BYTE_MODE;
-
-What's wrong with positive conditional? And is it even possible to have NULL
-here?
-
-> +	}
-
-...
-
-> +	strscpy(i2c_bus->adap.name, pdev->name, sizeof(i2c_bus->adap.name));
-
-Use 2-argument strscpy().
-
-...
-
-> +	i2c_bus->alert_enable = device_property_read_bool(dev, "smbus-alert");
-> +	if (i2c_bus->alert_enable) {
-> +		i2c_bus->ara = i2c_new_smbus_alert_device(&i2c_bus->adap, &i2c_bus->alert_data);
-> +		if (!i2c_bus->ara)
-> +			dev_warn(dev, "Failed to register ARA client\n");
-> +
-> +		writel(AST2600_I2CM_PKT_DONE | AST2600_I2CM_BUS_RECOVER | AST2600_I2CM_SMBUS_ALT,
-> +		       i2c_bus->reg_base + AST2600_I2CM_IER);
-> +	} else {
-> +		i2c_bus->alert_enable = false;
-> +		/* Set interrupt generation of I2C master controller */
-> +		writel(AST2600_I2CM_PKT_DONE | AST2600_I2CM_BUS_RECOVER,
-> +		       i2c_bus->reg_base + AST2600_I2CM_IER);
-> +	}
-
-I2C core calls i2c_setup_smbus_alert() when registering the adapter. Why do you
-need to have something special here?
-
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VE1PR04MB7408:EE_
+X-MS-Office365-Filtering-Correlation-Id: 905dcfc5-4e9c-4619-6d41-08dcc05aaee4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|52116014|376014|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?hUPXOtRtKblZC0ovDYYzwMIUQfgbJXo0PdVIOIsIPXur39zZ5RA4/XzsE+1q?=
+ =?us-ascii?Q?nIFPVuRHesJAYtx/+B6Sc8AoyY1gX/k0/9VJFDq36ZGm0xp5daLcfT0RbNYR?=
+ =?us-ascii?Q?j/m1OJ1zAd/sjQoXVuwRZsqeOXE7GNdFTOAiTN0XVJhOx822vmirWZaoMGRz?=
+ =?us-ascii?Q?2Ci7e/zGSWD2521web/2MPlQpvYxcvvdBV9qPPgTZAPSPNHrkeEAYRMhtMdh?=
+ =?us-ascii?Q?Qd3x3pXDOBondHyMdYjP53UKrq2KArBSW3wSUk4oDv6p88mfvaldj2GwhSYy?=
+ =?us-ascii?Q?mDsFduB3ADhq5nPqF4cvMjjUxFN4bVF8Q3ePqxsd1yIqqUUMf60zRO762Hlr?=
+ =?us-ascii?Q?E2wbY0OHRJ5Te2X1BsBs9rlr+vkref15fAaf9vz74iVtIu/LsayE/GzyHu+K?=
+ =?us-ascii?Q?Altu2jPnoDcbd1vCbIF5tzYKBAl+MXiml0kTTAYRMK2OAQ9JOE10JzGQdNDv?=
+ =?us-ascii?Q?LwVq98k0AwrDl6cdsS+qudH8lvBrgwKdgmX0v4uF9GXRj84y61Tuk6NkvgQO?=
+ =?us-ascii?Q?+PtV/8T5vQVLkgH7WYUGnK0a3cRMsIvEPcJMBtm/IQLMaX9xgjMNRIg8XwRL?=
+ =?us-ascii?Q?prHvnn5g+QJTLOdkTtLGZRrBBrB1tBrCRYi9FmoSalSUIH+AORcnnr4qlDx5?=
+ =?us-ascii?Q?TBO/Av9pywX6+OAwXF5DeFXNYkgewa1oMpzMW+nhMMejs7MAPoyM181vBSZl?=
+ =?us-ascii?Q?4+p7LNwcIDSJgLSH+UOyMUyZ2+091Wv8WSDyKI7CIYT9r0ngncOm8GFtFngv?=
+ =?us-ascii?Q?tnVcEHpw5+GJOYfyKf4elWLlxgERKx+Gutk50omjIwmGOm33Sgd7cS7dZnA8?=
+ =?us-ascii?Q?x+TAtPfV3cUBgSmDh0F5MHt0UwpFRkBc1Nt8i6RyZHj3e9GnsDkyFNx96/dM?=
+ =?us-ascii?Q?rML61vnvs8wl+R0/Z1MyAFJK1knTywJbPcFJeUE5/clUBBNwH8xzOJd119Da?=
+ =?us-ascii?Q?ICo1MzpI5ZUcA5N7aoMSgaejYt3B6dyVqWuSEwdGjaq1+w1NS/NXD/aHz0Jn?=
+ =?us-ascii?Q?vkutUdkiDX5p/8rASfda1Tn5Q/q3wb+1NolRBNA1+tJRnvullUh+jVZiU7kf?=
+ =?us-ascii?Q?N51tksXmbGEAWdhsMs9etf907hV+sVERnlOhPHni6pmSikFLeQI/Xz3UuPgk?=
+ =?us-ascii?Q?UE+0dPS2EimHns+QNAGz9966ZeHMp5NdY0k0QBNpE2dZJ/Z68cDHHvy8nzjZ?=
+ =?us-ascii?Q?awGNnbcNE4wWKoEca3AcVcQXTjjK5ckYTUd95VL1CaaThgS6EQInhOtMtRYk?=
+ =?us-ascii?Q?z1TIfU/psBP+jpqahmux5It4sER+GTJgwdC5obaIciIIktRDQM38f9EXlHDe?=
+ =?us-ascii?Q?LQjMPvOiSAKFLkV3M5Wy2a7cFB8FynhemEuHgeLspxCOz+Dl3k8Dd3rivEOH?=
+ =?us-ascii?Q?cktZhp4=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(52116014)(376014)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?7E/OfZyY12IkJwFOjafe0m8SzvoK5BMhrDzM15S+ffBc0v4il8oebJ3ro7qp?=
+ =?us-ascii?Q?SEt/enL2hxPRYJDITNpOCVQXFltiVB9YO9ECc2hOyehL9LX16EuZ8nX2WXa7?=
+ =?us-ascii?Q?bdq6ZK+XsiZdqrQrN/3FxGTe9q9q/O4j5Lm8UnQY46s8jYiIJ0AAOO08WcPS?=
+ =?us-ascii?Q?Xcf+VSXHTE3mmo9r5gmd4bXfKm2NfWiGPrLMb8+GiQG+uqyPCRj15/fE9e5x?=
+ =?us-ascii?Q?s6Qp5PRWivFc7md6cyRhBzbr9O4nODWb3LjUje69swNmkqTBGW/zoaSGfcWb?=
+ =?us-ascii?Q?UrUXqfqKJ1Bo8n04tsd83frtCA5p/rv36OfZSGk2Vno2vdsWMduqZgT2RD4q?=
+ =?us-ascii?Q?cmWutf8ZodxrduY6uCV3NQh29dNS9KbD2n813jRJQadWSI+OqKwtXjXf1MRX?=
+ =?us-ascii?Q?5YtMjUqs5ouQFIdxHNf9dkdFinVNIeHewHRsIP77kfQ06Y04N731LXLsh6Km?=
+ =?us-ascii?Q?th81jXDEwCNUuZ82XEiZl7U+h1ngydBTTqiKxI2Lm4h1DN+07KfbnyyOfa+/?=
+ =?us-ascii?Q?kIW+EpqvPWUUfjhH2aFw3GzG4Q3vyZ5aIyADPqvyL+9vQbNYa9Q5qeeNCS+P?=
+ =?us-ascii?Q?be5Y+D7Ujh32U6Ej5YekQf9JDooSvrpuuUKrQCo+XJqH6gtzxOvbZ5Ju4Nkz?=
+ =?us-ascii?Q?gDwUEIVr5SPp/QIvnljXGEzesm8k3CNU/R3M3CJ/qQMXJ9aA2I9SrXi66U2r?=
+ =?us-ascii?Q?V2HiZ0ZaG11JaeaRi1MHJcZ0wlpNoBA48/pBZi5LJyG6x9n9RNp1vd1NtLnD?=
+ =?us-ascii?Q?ojkHN605ku08SZZ+qvBNX8jntSoFq2O4FUEmlITD36BcLAZqAx04qwd/Z64B?=
+ =?us-ascii?Q?yfeX5aSpkwC9+073qlxcjm6GwaElHOr/Ivl5dWJMrLkDOQxlTfSTRgvzG40W?=
+ =?us-ascii?Q?r4COSJtx0CgAscOYL5b6eGUyW5tOLTPe7hMXILQ0UEkCyr7iiyBZMKsx3Qzc?=
+ =?us-ascii?Q?B9RvzX30G84HYnMB49F5TTqUft8EatlG7EAe8P6fcW2/KUTjuiNEaGtnzmrE?=
+ =?us-ascii?Q?olz9VimqaW51TwP2xdb6OLL0cSNjIouXOs49UDCbgCmGCph8CvT6+GI5GDnW?=
+ =?us-ascii?Q?NIzoO8MM1qClm0zYjsLh1+8jQP6L6KsJ0EIkWh93JqoeKh3WkKkAV8xjganL?=
+ =?us-ascii?Q?5ZfR+CJlOB4iWBDteyO61443oJwmnufQ089L4f8oSFxs10krZ+zXmBrDrdgu?=
+ =?us-ascii?Q?3K0ebvR+UgI9p+zJx/iHDXfAlhGo/wckMNMeFIfSsI4AMsZenamQK0b2feJ4?=
+ =?us-ascii?Q?es0r52MnB9tB2VM6iaLtZJYt20gQdxQIAkxU8m/9KknxiAqRSpogP4zgSIeg?=
+ =?us-ascii?Q?csqibMYRKaOD9GPj6uwnFKymEzY5gj3xbZjgcy2HMH8WXwRTPVEvXwvQpuav?=
+ =?us-ascii?Q?jX8i39SAPMXRBn8xyEon3rkkIaqb8PwlW/YFhGsj9BCSiodYAS6Y+MAAQP3n?=
+ =?us-ascii?Q?xgOcdHzTVH0rJYBk/5k+I+EhCGrGz5G0GS6hmEkcTnuo+7hqSDWCqBu/hkmE?=
+ =?us-ascii?Q?NGDnWwXzAxkxlfNjQhR/LBByAflJ4NutF+p+6pt1lIyAo1QPFUKDhOpRpwlI?=
+ =?us-ascii?Q?2vH1+nDRRgN5OmzzJj8hrYr1qgfhRJUXGnbZa8zX?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 905dcfc5-4e9c-4619-6d41-08dcc05aaee4
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Aug 2024 14:24:49.5410
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: wwnjiy/hB9KOCs/GWe1KGTfRbCTjRRFqBtSpSpx79J8xrWRGNBccwGfT2kA4DSgzl1K9Ltl3vd/5UzVC+6Swyg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7408
+
+Convert binding doc colibri-vf50-ts.txt to yaml.
+Additional change:
+- add ref touchscreen.yaml.
+- remove standard pinctrl properties.
+
+Fix below warning:
+arch/arm64/boot/dts/freescale/imx8qm-apalis-eval.dtb: /touchscreen:
+  failed to match any schema with compatible: ['toradex,vf50-touchscreen']
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+Change from v2 to v3
+- raname to toradex,vf50-touchscreen.yaml
+- Add Rob's review tag
+Change from v1 to v2
+- fix missed required properties
+- use original submitter and input maintainer
+- add value limitted vf50-ts-min-pressure, just provide rough range, which
+not mention in original doc
+- fix style problem in example
+---
+ .../input/touchscreen/colibri-vf50-ts.txt     | 34 --------
+ .../touchscreen/toradex,vf50-touchscreen.yaml | 78 +++++++++++++++++++
+ 2 files changed, 78 insertions(+), 34 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/colibri-vf50-ts.txt
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/toradex,vf50-touchscreen.yaml
+
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/colibri-vf50-ts.txt b/Documentation/devicetree/bindings/input/touchscreen/colibri-vf50-ts.txt
+deleted file mode 100644
+index ca304357c374a..0000000000000
+--- a/Documentation/devicetree/bindings/input/touchscreen/colibri-vf50-ts.txt
++++ /dev/null
+@@ -1,34 +0,0 @@
+-* Toradex Colibri VF50 Touchscreen driver
+-
+-Required Properties:
+-- compatible must be toradex,vf50-touchscreen
+-- io-channels: adc channels being used by the Colibri VF50 module
+-    IIO ADC for Y-, X-, Y+, X+ connections
+-- xp-gpios: FET gate driver for input of X+
+-- xm-gpios: FET gate driver for input of X-
+-- yp-gpios: FET gate driver for input of Y+
+-- ym-gpios: FET gate driver for input of Y-
+-- interrupts: pen irq interrupt for touch detection, signal from X plate
+-- pinctrl-names: "idle", "default"
+-- pinctrl-0: pinctrl node for pen/touch detection, pinctrl must provide
+-    pull-up resistor on X+, X-.
+-- pinctrl-1: pinctrl node for X/Y and pressure measurement (ADC) state pinmux
+-- vf50-ts-min-pressure: pressure level at which to stop measuring X/Y values
+-
+-Example:
+-
+-	touchctrl: vf50_touchctrl {
+-		compatible = "toradex,vf50-touchscreen";
+-		io-channels = <&adc1 0>,<&adc0 0>,
+-				<&adc0 1>,<&adc1 2>;
+-		xp-gpios = <&gpio0 13 GPIO_ACTIVE_LOW>;
+-		xm-gpios = <&gpio2 29 GPIO_ACTIVE_HIGH>;
+-		yp-gpios = <&gpio0 12 GPIO_ACTIVE_LOW>;
+-		ym-gpios = <&gpio0 4 GPIO_ACTIVE_HIGH>;
+-		interrupt-parent = <&gpio0>;
+-		interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
+-		pinctrl-names = "idle","default";
+-		pinctrl-0 = <&pinctrl_touchctrl_idle>, <&pinctrl_touchctrl_gpios>;
+-		pinctrl-1 = <&pinctrl_touchctrl_default>, <&pinctrl_touchctrl_gpios>;
+-		vf50-ts-min-pressure = <200>;
+-	};
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/toradex,vf50-touchscreen.yaml b/Documentation/devicetree/bindings/input/touchscreen/toradex,vf50-touchscreen.yaml
+new file mode 100644
+index 0000000000000..69da21d40e729
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/touchscreen/toradex,vf50-touchscreen.yaml
+@@ -0,0 +1,78 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/touchscreen/toradex,vf50-touchscreen.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Toradex Colibri VF50 Touchscreen
++
++maintainers:
++  - Dmitry Torokhov <dmitry.torokhov@gmail.com>
++  - Sanchayan Maity <maitysanchayan@gmail.com>
++
++properties:
++  compatible:
++    const: toradex,vf50-touchscreen
++
++  interrupts:
++    maxItems: 1
++
++  io-channels:
++    maxItems: 4
++    description:
++      adc channels being used by the Colibri VF50 module
++      IIO ADC for Y-, X-, Y+, X+ connections
++
++  xp-gpios:
++    description: FET gate driver for input of X+
++
++  xm-gpios:
++    description: FET gate driver for input of X-
++
++  yp-gpios:
++    description: FET gate driver for input of Y+
++
++  ym-gpios:
++    description: FET gate driver for input of Y-
++
++  vf50-ts-min-pressure:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 50
++    maximum: 2000
++    description: pressure level at which to stop measuring X/Y values
++
++required:
++  - compatible
++  - io-channels
++  - xp-gpios
++  - xm-gpios
++  - yp-gpios
++  - ym-gpios
++  - interrupts
++  - vf50-ts-min-pressure
++
++allOf:
++  - $ref: touchscreen.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/gpio/gpio.h>
++
++    touchscreen {
++        compatible = "toradex,vf50-touchscreen";
++        interrupt-parent = <&gpio0>;
++        interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
++        io-channels = <&adc1 0>, <&adc0 0>, <&adc0 1>, <&adc1 2>;
++        xp-gpios = <&gpio0 13 GPIO_ACTIVE_LOW>;
++        xm-gpios = <&gpio2 29 GPIO_ACTIVE_HIGH>;
++        yp-gpios = <&gpio0 12 GPIO_ACTIVE_LOW>;
++        ym-gpios = <&gpio0 4 GPIO_ACTIVE_HIGH>;
++        pinctrl-names = "idle", "default";
++        pinctrl-0 = <&pinctrl_touchctrl_idle>, <&pinctrl_touchctrl_gpios>;
++        pinctrl-1 = <&pinctrl_touchctrl_default>, <&pinctrl_touchctrl_gpios>;
++        vf50-ts-min-pressure = <200>;
++    };
++
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.34.1
 
 
