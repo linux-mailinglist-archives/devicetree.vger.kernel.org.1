@@ -1,195 +1,140 @@
-Return-Path: <devicetree+bounces-94937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F334E957286
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 19:57:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2FAE957292
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 19:59:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3265D1C2302D
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 17:57:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 613CDB24750
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 17:59:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76941188CAF;
-	Mon, 19 Aug 2024 17:57:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58563188CB3;
+	Mon, 19 Aug 2024 17:59:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YmlUf+5y"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="MM8rOpdc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 030DA16CD0C;
-	Mon, 19 Aug 2024 17:57:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724090229; cv=none; b=hqik7ehfoDOdQrQBsvAqkaPoiKDfEUKPQmnnWrE/kxcwqZja8xRGo++wjOU1tBbms6BG3k2ID3IrR4MojYy3jq0dsEqFaTp5Vy+dSUEeKZr1PYoC+88gSWG+3Jtvj5ozYq7L2v8Mvo5S0BNVAa0weZ/yFBCdSZ1Yn+/VE8rT+8c=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724090229; c=relaxed/simple;
-	bh=ElElpE5RI1lH2dckfWn+mTh2+L8kYUvgE3xhIammmVg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GfkwxJG8ulfaKpxir1KFvlzbBijF6Wo28f1aUZPEE/PN61L/+HTzN9tCj7F8cmaPSoEenM8Ej+0g1rQyv/NI0GSO64E8LWr8BB/o4efS/pjxaM0bF0lQ1anAVzaT8QP91C5hD46YgzI/b5pRWmtjXTFgh49GBZ3rxCHL/0OzN84=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YmlUf+5y; arc=none smtp.client-ip=209.85.216.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-2d3da6d3f22so2952559a91.0;
-        Mon, 19 Aug 2024 10:57:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724090227; x=1724695027; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cuuVS1ITiXegZviCSVA69/H214SGYPE8ceZUaExnSkA=;
-        b=YmlUf+5ysG8CE/xT3SCKuCFw7/A8CbyqtfUVpGCNzJVNMwo3PVnkCHME5pDYvTSXyO
-         STeeOic3iyUwtMI3DBMsoOWt68lDEAffLRWKA5bodLxQJPbAReOHxKvRlKY86JYhZd8m
-         k5McfB1+Ub7ujFDKjkY7RIpt6Zhei1Mj8PUCfGWJa8EI3yjoZKQj4nmnZZh3u77rtadY
-         wbvPTSpTvupYO25ZjYkialo76aDr9SZ2XrWkEFVONTg8gwWcc8p/pgM1JiNOHHgYlrYe
-         FPi7jsRc8x0UJcARTQxViSZa8D4qJFLrKoda0iOJY09NVkSaSkHRcDKw7/ayYLgx4RDT
-         aj1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724090227; x=1724695027;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cuuVS1ITiXegZviCSVA69/H214SGYPE8ceZUaExnSkA=;
-        b=nI1O8vQ6c6I3djOifgw8uoEWIBUvnj4ZQuyARTdLYhyZKAfzyWQPb8soLa310qhGNt
-         yQcfpCEvSqcst8oenTp6oPUErnnFY38EA9bQL4K5J+p1IP+UL3wABZEMSdDQqZmPeTc7
-         kyJP64RXhdkLTMC5G77ATg4PCzMl4m1ItZO7CrA7181s4hyuU1PGXhOz0QGi1sOzum3l
-         4ByNxEfY0pD+Vav56wIH9vZYp+le0Lz73XM2VIgNd6K2B+kD4pjFXxup8nMb0UvIcIIy
-         dKy3UfJ206ZjU+5zccNYgtAFJt5PvLB18uyGcyDh3ZmTYUF9Uih7gFYWCVGdQmc8nAJd
-         xQFg==
-X-Forwarded-Encrypted: i=1; AJvYcCUjsiV5PVXnrpYbDlXb8gTzfYNHs05sx85jNr2xlJEx6gBf5+PBULFmgjy4LEHnWVK8sgPED5eJz03g1o0/clGwM1AkkQZ2Yq7BhyFp451ZXelcWwKG9dQRcS86PGakJ3noFsQNrvN/dQ==
-X-Gm-Message-State: AOJu0YyWURloeTUhtEytmuikZZlOZ2vwpi5Svjxh8vZRfumUA0sfiHe4
-	ZqlC4rhmbcByyY5E4Fnrzkg0aF986Le4HP0jYURBVXB+7Jae9I/M08snvQ/4P41PZUvNfeytVpl
-	7o4/WilfPQooSipnA6qetH74SqHQ=
-X-Google-Smtp-Source: AGHT+IGbaJamB1WMkYOQP8y5T/PYjNZENVTB6C6IJlDHm2P8ZbvZAYpVTPylR32B0EEeQ7iuqG6aNEVdXU3TCrMt3ZQ=
-X-Received: by 2002:a17:90b:1247:b0:2cd:5d13:40ba with SMTP id
- 98e67ed59e1d1-2d3dffc8f3bmr12871217a91.14.1724090227028; Mon, 19 Aug 2024
- 10:57:07 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D8E7D531;
+	Mon, 19 Aug 2024 17:59:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724090376; cv=pass; b=XaHsoJYriE1sjcmSYUnjrN6f2q0dpuMlOFdXsLnVcYqaPDCRnrdHasDgo5S402w+f9uPx2584ZPqgHGBQybSXL2VGoiv6Qm06haks/8Adix/GRyseNJjSSadkUI4XLlDtqkBaq5Cw79XXJ5zX7eQW1rIFTvNhRwAXboO1bH8+ko=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724090376; c=relaxed/simple;
+	bh=o6P0nZ14SojOcYFxiCK7txSvI4RmGN+OJHmCKCGY1S8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=pw79p/KElsgZ/zJcb7AyDvakGU7Vqx3dVl9sQMJfep2/3YbJkXb8xDNI6Z6QhTB7xxJYAJ4mwLrfq1hqr3cX3PohjNOTcTcV2miwg58LqL3jYZAsryPGLzV4EcGpvXJ0Ghjx0LD4amuOSVzDTTMn7nSuSu8QLzdBqvQGp6An1Yw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=MM8rOpdc; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Delivered-To: sebastian.reichel@collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1724090294; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=J6r5s7/Z8JeFN/26tvSLxRD9tuH13mCXG//biHkwArz4lxH9bEabeMCfhvwX1Jz6HI+dw6snHomGANxT1hNZ4gmBIBpe1s52pgQDfjLJDsrus4+aGyRLSHZwiI1OK2/btb4jej9p9puqNR4b+OuBMRSzaUI9Cizfk+2ugLtMiTM=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1724090294; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=pNG01ooGieLYITjXohGoGYVq/b4PMFucDskno7kh9Yo=; 
+	b=Booe36Q8WD2x0h5CZNUq1hzMG6xAMF+j7zKV9UZBzEgUZVpK2heJBENHFKJBiZ5VchEQOO9xOMfac2H4zjNZ29O+Ta1PtcMbgpD9GzE0e8GO3yc06cHXQorKxx8AcbAjkuNOop7F20t0Y3nLwoNJomZM+it9Ecc2Y4ZP1JOhqJ0=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
+	dmarc=pass header.from=<detlev.casanova@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724090294;
+	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=pNG01ooGieLYITjXohGoGYVq/b4PMFucDskno7kh9Yo=;
+	b=MM8rOpdcrt7xe+eScEzW5zHxUcQjxiueHE/FDnRu8/Pe0U3Af0w1LI2u+gCz+/G/
+	975sA/Tg6i+P+y1npppA4SDz/yTTZtVhb8uieAVLaVB2m/QZkDJVs3FboGR/vh1tRmR
+	2i9Gfc92wHxxstL1Gg65syWLiCQzCrdWZmGFAAi8=
+Received: by mx.zohomail.com with SMTPS id 17240902923861007.2839847459757;
+	Mon, 19 Aug 2024 10:58:12 -0700 (PDT)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: linux-kernel@vger.kernel.org,
+ Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Lee Jones <lee@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Chris Morgan <macromorgan@hotmail.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>,
+ Muhammed Efe Cetin <efectn@protonmail.com>, Andy Yan <andyshrk@163.com>,
+ Jagan Teki <jagan@edgeble.ai>, Dragan Simic <dsimic@manjaro.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Shresth Prasad <shresthprasad7@gmail.com>, Ondrej Jirman <megi@xff.cz>,
+ Weizhao Ouyang <weizhao.ouyang@arm.com>, Alexey Charkov <alchark@gmail.com>,
+ Jimmy Hon <honyuenkwun@gmail.com>, Finley Xiao <finley.xiao@rock-chips.com>,
+ Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+ Elaine Zhang <zhangqing@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-i2c@vger.kernel.org,
+ linux-iio@vger.kernel.org, linux-serial@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH 09/10] arm64: dts: rockchip: Add rk3576 SoC base DT
+Date: Mon, 19 Aug 2024 13:59:45 -0400
+Message-ID: <23696360.6Emhk5qWAg@trenzalore>
+In-Reply-To: <21547916.mFnZMskM5D@diego>
+References:
+ <20240802214612.434179-1-detlev.casanova@collabora.com>
+ <20240802214612.434179-10-detlev.casanova@collabora.com>
+ <21547916.mFnZMskM5D@diego>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240819-imx_warning-v2-0-4c428bd11160@nxp.com>
- <20240819-imx_warning-v2-12-4c428bd11160@nxp.com> <CAOMZO5C_uvmuf-+QGH4E2X=Jei81a--N5wC83V-URPkXj-q7hw@mail.gmail.com>
-In-Reply-To: <CAOMZO5C_uvmuf-+QGH4E2X=Jei81a--N5wC83V-URPkXj-q7hw@mail.gmail.com>
-From: Adam Ford <aford173@gmail.com>
-Date: Mon, 19 Aug 2024 12:56:55 -0500
-Message-ID: <CAHCN7xKYZDZdaQ7Noe1TrcDt-E5cU=kdnmkn7EBvBFRapvCApQ@mail.gmail.com>
-Subject: Re: [PATCH v2 12/12] arm64: dts: imx8mm-beacon-kit: add DVDD-supply
- and DOVDD-supply
-To: Fabio Estevam <festevam@gmail.com>
-Cc: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Gregor Herburger <gregor.herburger@ew.tq-group.com>, 
-	Alexander Stein <alexander.stein@ew.tq-group.com>, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux@ew.tq-group.com
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-ZohoMailClient: External
 
-On Mon, Aug 19, 2024 at 12:24=E2=80=AFPM Fabio Estevam <festevam@gmail.com>=
- wrote:
->
-> Adding Adam.
->
-> On Mon, Aug 19, 2024 at 2:03=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote=
-:
-> >
-> > According to binding doc, DVDD-supply and DOVDD-supply is required
-> > properties. Add these to fix below warning:
-> > arch/arm64/boot/dts/freescale/imx8mm-beacon-kit.dtb: camera@10: 'DVDD-s=
-upply' is a required proper
-> >
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+On Wednesday, 14 August 2024 11:31:04 EDT Heiko St=C3=BCbner wrote:
+> Hi Detlev,
+>=20
+> Am Freitag, 2. August 2024, 23:45:36 CEST schrieb Detlev Casanova:
+> > This device tree contains all devices necessary for booting from network
+> > or SD Card.
+> >=20
+> > It supports CPU, CRU, PM domains, dma, interrupts, timers, UART and
+> > SDHCI (everything necessary to boot Linux on this system on chip) as
+> > well as Ethernet, I2C, SPI and OTP.
+> >=20
+> > Also add the necessary DT bindings for the SoC.
+> >=20
+> > Signed-off-by: Liang Chen <cl@rock-chips.com>
+> > Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
+> > Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
+> > Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> > [rebase, squash and reword commit message]
+> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+>=20
+> looks like (since 2019) there is a strong suggestion for having a soc nod=
+e.
+>=20
+> See Krzysztof's mail in
+>   =20
+> https://lore.kernel.org/all/6320e4f3-e737-4787-8a72-7bd314ba883c@kernel.o=
+rg
+> / that references
+>     Documentation/devicetree/bindings/writing-bindings.rst [0]
+>=20
+> So I guess we should probably follow that - at least for new socs for now.
 
-Thanks for doing that!
+That make sense, but what is exactly covered by MMIO devices ? everything=20
+except cpus, firmware, psci and timer ?
+
+> Heiko
+>=20
+> [0]
+> https://elixir.bootlin.com/linux/v6.11-rc1/source/Documentation/devicetre=
+e/
+> bindings/writing-bindings.rst#L90
 
 
 
-Reviewed-by:  Adam Ford <aford173@gmail.com>
 
-> > ---
-> >  .../boot/dts/freescale/imx8mm-beacon-baseboard.dtsi      | 16 ++++++++=
-++++++++
-> >  .../boot/dts/freescale/imx8mn-beacon-baseboard.dtsi      | 16 ++++++++=
-++++++++
-> >  2 files changed, 32 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi=
- b/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
-> > index 6086dae2e5fbe..ea1d5b9c6bae0 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
-> > @@ -56,6 +56,20 @@ pcie0_refclk_gated:  pcie0-refclk-gated {
-> >                 enable-gpios =3D <&pca6416_1 2 GPIO_ACTIVE_LOW>;
-> >         };
-> >
-> > +       reg_1v5: regulator-1v5 {
-> > +               compatible =3D "regulator-fixed";
-> > +               regulator-name =3D "1V5";
-> > +               regulator-min-microvolt =3D <1500000>;
-> > +               regulator-max-microvolt =3D <1500000>;
-> > +       };
-> > +
-> > +       reg_1v8: regulator-1v8 {
-> > +               compatible =3D "regulator-fixed";
-> > +               regulator-name =3D "1V8";
-> > +               regulator-min-microvolt =3D <1800000>;
-> > +               regulator-max-microvolt =3D <1800000>;
-> > +       };
-> > +
-> >         reg_audio: regulator-audio {
-> >                 compatible =3D "regulator-fixed";
-> >                 regulator-name =3D "3v3_aud";
-> > @@ -187,6 +201,8 @@ camera@10 {
-> >                 assigned-clock-parents =3D <&clk IMX8MM_CLK_24M>;
-> >                 assigned-clock-rates =3D <24000000>;
-> >                 AVDD-supply =3D <&reg_camera>;  /* 2.8v */
-> > +               DVDD-supply =3D <&reg_1v5>;
-> > +               DOVDD-supply =3D <&reg_1v8>;
-> >                 powerdown-gpios =3D <&gpio1 7 GPIO_ACTIVE_HIGH>;
-> >                 reset-gpios =3D <&gpio1 6 GPIO_ACTIVE_LOW>;
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mn-beacon-baseboard.dtsi=
- b/arch/arm64/boot/dts/freescale/imx8mn-beacon-baseboard.dtsi
-> > index 20018ee2c803e..77d14ea459e57 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mn-beacon-baseboard.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mn-beacon-baseboard.dtsi
-> > @@ -40,6 +40,20 @@ led-3 {
-> >                 };
-> >         };
-> >
-> > +       reg_1v5: regulator-1v5 {
-> > +               compatible =3D "regulator-fixed";
-> > +               regulator-name =3D "1V5";
-> > +               regulator-min-microvolt =3D <1500000>;
-> > +               regulator-max-microvolt =3D <1500000>;
-> > +       };
-> > +
-> > +       reg_1v8: regulator-1v8 {
-> > +               compatible =3D "regulator-fixed";
-> > +               regulator-name =3D "1V8";
-> > +               regulator-min-microvolt =3D <1800000>;
-> > +               regulator-max-microvolt =3D <1800000>;
-> > +       };
-> > +
-> >         reg_audio: regulator-audio {
-> >                 compatible =3D "regulator-fixed";
-> >                 regulator-name =3D "3v3_aud";
-> > @@ -158,6 +172,8 @@ camera@10 {
-> >                 assigned-clock-parents =3D <&clk IMX8MN_CLK_24M>;
-> >                 assigned-clock-rates =3D <24000000>;
-> >                 AVDD-supply =3D <&reg_camera>;  /* 2.8v */
-> > +               DVDD-supply =3D <&reg_1v5>;
-> > +               DOVDD-supply =3D <&reg_1v8>;
-> >                 powerdown-gpios =3D <&gpio1 7 GPIO_ACTIVE_HIGH>;
-> >                 reset-gpios =3D <&gpio1 6 GPIO_ACTIVE_LOW>;
-> >
-> >
-> > --
-> > 2.34.1
-> >
 
