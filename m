@@ -1,145 +1,160 @@
-Return-Path: <devicetree+bounces-94901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F2E5957187
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 19:08:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C91AD9570B8
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 18:48:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3FC0A1C22BB9
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 17:08:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7FC9A28093C
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 16:48:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2920186E2E;
-	Mon, 19 Aug 2024 17:04:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD8261779AE;
+	Mon, 19 Aug 2024 16:48:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="HjpYOp9z"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bcrRxvpw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 108AF48CFC;
-	Mon, 19 Aug 2024 17:04:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.14
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724087069; cv=pass; b=jMdD2yEVQYFSAraJ6gi8cbD6ZQRAe0gt3HVivDTJXcKFOOVLpS/jrEGrOkiUIcyl3Oz9pUPTd06sz7qKDf+cczQnxRGGKSFcPZUhAYVCAIRxqQrYnBdoJdIWabU4VLM0HHLr8V1Mvk8GiniK3nqLkVwdTnGK1ExTe0wm9hg3nVo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724087069; c=relaxed/simple;
-	bh=tvnBfqvPBRx+HDhCZhrrAy5UEzQvPjK5237fBaCqoVU=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=GKhMB9NuybmAffIq5mkxvbIi9WliIVzi7E/t3vAv47PxawCZgPBvWH+sBlvhfZuI6TgsVGXOLdTe4yZD1f09Asag7kplVnLAAtx6VjoPlG/ilWc8ife2B4AEOSVmwjCKUHKiptr/SqojptDn6v1VKSy1wng1eyy1u10q5qsdUGg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=HjpYOp9z; arc=pass smtp.client-ip=136.143.188.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1724087022; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=n8uWCyB2elCluMJc278Nj13KMcZui0X3ZOO1H8htDvDly4zVwcZmPTja4DRogrv1m7coF5FuMzBPlaNGgdKXUaxNIyyzrgnoLZ/a9+SXkQaZKuCz8HC7se6peeXS8TAs/8rIa8IBDgNmCcoQy7jOgsg42fnD6n8zwkS8IytECDI=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1724087022; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=tvnBfqvPBRx+HDhCZhrrAy5UEzQvPjK5237fBaCqoVU=; 
-	b=Sb+Ut17tdpEUH5QwvchUTtzM3nGb3h0uJ+13RWci//0gsE/6tEWxcqiCLcmF+rH42Ha5afAe+eLs9OAh+67edlTfH5cAgnJifVAr2W9MIG9f/5rIMrrsUhjouV9qdweJLt+WQuFjeiOPbRvMwqeLPFz94COYVGCyyWX3V2PpzGU=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724087022;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=tvnBfqvPBRx+HDhCZhrrAy5UEzQvPjK5237fBaCqoVU=;
-	b=HjpYOp9zsUV49NoOMAqnIKdMup1IV7jYjX9XXTerc7pA0z6dPminm2YS/59p2p89
-	Ok18E1GugjteLGxlUrNyIeNzOTpqve7f7AVNFc2m56ymMmOmgcIV3f/dGYcQu2k650J
-	+O/SfV72GdDQkC7XhnXZxMf0CU5OgKlfBkYTIsaA=
-Received: by mx.zohomail.com with SMTPS id 1724087019835273.7787678036623;
-	Mon, 19 Aug 2024 10:03:39 -0700 (PDT)
-Received: by jupiter.universe (Postfix, from userid 1000)
-	id 03A8B4800E2; Mon, 19 Aug 2024 18:42:43 +0200 (CEST)
-Date: Mon, 19 Aug 2024 18:42:43 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: jacobe.zang@wesion.com
-Cc: arend.vanspriel@broadcom.com, bhelgaas@google.com, 
-	brcm80211-dev-list.pdl@broadcom.com, brcm80211@lists.linux.dev, christophe.jaillet@wanadoo.fr, 
-	conor+dt@kernel.org, davem@davemloft.net, devicetree@vger.kernel.org, 
-	duoming@zju.edu.cn, edumazet@google.com, gregkh@linuxfoundation.org, 
-	krzk+dt@kernel.org, kuba@kernel.org, kvalo@kernel.org, linux-kernel@vger.kernel.org, 
-	linux-wireless@vger.kernel.org, megi@xff.cz, minipli@grsecurity.net, netdev@vger.kernel.org, 
-	pabeni@redhat.com, robh@kernel.org, saikrishnag@marvell.com, 
-	stern@rowland.harvard.edu, yajun.deng@linux.dev
-Subject: Re: [PATCH v11 0/4] Add AP6275P wireless support
-Message-ID: <uzmj5w6byisfguatjyy2ibo6zbn7w52bg2abgf7egych7usv6j@ec4xdmaofach>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 573E14965B;
+	Mon, 19 Aug 2024 16:48:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.45
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724086124; cv=none; b=apWFG/rhwiC8ScJ+1gejjqfU3LPDsfXl8+m2b19Di5Xm5VzZF2M2qbb5TPOx+cLJhc/V8zBU2HOlZEAiYEynz477MUwd1msbmfNVJy/U+7PNrqGOy5v+z76V7s73uKYmwokEEbXXdlujARqYTFkgJeWfZvMDLQ8ggXSHXm9XVgU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724086124; c=relaxed/simple;
+	bh=MBQcwzxFBPjk9Fm00UF7+n+iTFUcUyUcheP/DBInH68=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=MGzLRU45dvqmXjMu6Oj1Ov69HLjn+LdgAlNZGk7lcmKohRn59L731r/Wnoe79QOiaZoALW8IWYoBeoGkaDh1wLWFT620bk8u39DlDewaBiQOCjK0JBOIq4CgroUR6QbYfMDQDAnHj/PpJhAGMeuAoYhXl7ECyKaDo7eFR2UUs0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bcrRxvpw; arc=none smtp.client-ip=209.85.210.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-70c9cda7f1cso2031503a34.3;
+        Mon, 19 Aug 2024 09:48:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724086122; x=1724690922; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/e5lsHcVaB+uAytpXe/h2T5BUGUbMv4au3JS+eKlceA=;
+        b=bcrRxvpwdttf3QB8/3mT4dqCqN3mcwK8pkdIsPrsULMTOJ8cdrLKhJ5N2x4Mn4w/ok
+         3Iomby4eHstDzzhZqDE61CHEaVKCcBhAFojRfx3ucSUVH2ebX/NSNL0ZZV1kCfjVUCxW
+         vC+F3vMtywli0/dAIXYiqZvFnUwJpP0FGY5d9p+nFWWl1b2cu7SdhkgH8lofAyROukLU
+         s+8t9JBHwse/bsnmRYiEFPLbk8mM3z+R2Z53VNS25Xefl8CJOhbRJ5JolCTtJDzaeJKI
+         3Nvkc/KhtiARdlAoZT6IYNOI+WsBdkXkIzKFw5LEXyIfSDPSMJMdWduqFanSHgzpR3/7
+         hIDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724086122; x=1724690922;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/e5lsHcVaB+uAytpXe/h2T5BUGUbMv4au3JS+eKlceA=;
+        b=d0+CKyXXEvlAYVo79As5Cd46H2RVAwy5LJ72kEkcFKPQN8ufjYFJHIMpzlZQWr3rQb
+         5/TQ/P5R1Utzm3T2XjDacvUWXda/HCw24mYxVkMbDq9Pb7vNXM7O9Xyue0w6SZacEfv6
+         fDFflpZwyWtq+LU/H1MAHffYSXLpKNttZzlEKLcYneBzU+CK4Yezyv6DkdoEGSFnqXq+
+         yiQYBTs9tsms9WAIvlyePCHtgdTPqrzedLceIkzZchdNY5MIKFXmQMZUoQwTkEab1p0/
+         h7xiu6Bs45l95aYP2qWT7peHXx1VD8GX38blcVGBXiAzEefxYjgAAs6//BFb9gBwkrej
+         cNcQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXhFO7KcaFX5qXkcguajZYg4y4M+XiFQToIRDX22XpbrAxURGl+8ylJfJrJQksI85C7zIeP7mHPsjKXmIX4Gecer/ejbmIPs/yLYEqz7TmHzZ33APDiv9pfAj4dl/KCMMTb7uR6IQ==
+X-Gm-Message-State: AOJu0Yw0TXaHqLVjuIOZPYDeQdiuCqFeA898uQN6lqVVWx9P7+N3plsG
+	x9oPUpYgEVSUXlLEJA2DLJjSYOvA3DcV61srTZL8IKAKm/FnxJJ/
+X-Google-Smtp-Source: AGHT+IHUayXAxzAfw8JT4WbVwDnTS2IAPvqLrAz9kWPM8obo31aP1Msh/iEPvQgqi656nkRvCtLl4g==
+X-Received: by 2002:a05:6830:6602:b0:708:d84d:f62a with SMTP id 46e09a7af769-70cac89c004mr15724939a34.22.1724086122192;
+        Mon, 19 Aug 2024 09:48:42 -0700 (PDT)
+Received: from localhost.localdomain ([2600:1700:fb0:1bcf::54])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-70ca649c61csm2332428a34.26.2024.08.19.09.48.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Aug 2024 09:48:42 -0700 (PDT)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: linux-sunxi@lists.linux.dev
+Cc: linux-pm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	quentin.schulz@free-electrons.com,
+	mripard@kernel.org,
+	tgamblin@baylibre.com,
+	aidanmacdonald.0x0@gmail.com,
+	u.kleine-koenig@pengutronix.de,
+	lee@kernel.org,
+	samuel@sholland.org,
+	jernej.skrabec@gmail.com,
+	sre@kernel.org,
+	wens@csie.org,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	lars@metafoo.de,
+	jic23@kernel.org,
+	jonathan.cameron@huawei.com,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH V3 00/15] Add Battery and USB Supply for AXP717
+Date: Mon, 19 Aug 2024 11:46:04 -0500
+Message-Id: <20240819164619.556309-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="of7hfoh4fqko6jig"
-Content-Disposition: inline
-In-Reply-To: <20240816020635.1273911-1-jacobe.zang@wesion.com>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.3.1/224.30.53
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
 
+From: Chris Morgan <macromorgan@hotmail.com>
 
---of7hfoh4fqko6jig
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Add support for monitoring the USB charger and battery charger on the
+AXP717 PMIC. This required some driver refactoring of the axp20x USB
+and battery charger as the AXP717 is somewhat different but can still
+benefit from some common elements.
 
-Hi,
+Note that as of now the charging current now value may be incorrect as
+the scale and offsets were not documented in the datasheet. I suspect
+the scale is 1 and the offset is somewhere around 450mA though.
 
-I tested this on RK3588 EVB1 and the driver is working fine. The DT
-bindings are not correct, though:
+Changes from V2:
+ - Added constraints for input-current-limit-microamp constraints for
+   x-powers,axp20x-usb-power-supply.yaml.
+ - Used FIELD_GET() and removed unnecessary -EINVAL per comments from
+   Jonathan Cameron.
 
-linux/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dtb: wifi@0,0:
-compatible: 'oneOf' conditional failed, one must be fixed:
+Changes from V1:
+ - Refactored against mainline to remove BOOST pre-requisite.
+ - Corrected commit subjects for DT bindings.
+ - Split refactoring and AXP717 support into different patches.
+ - Added IRQ for VBUS over voltage. There appears to be a bug
+   with the VBUS fault IRQ because it is assigned IRQ num 0.
+ - Corrected battery driver to report POWER_SUPPLY_PROP_VOLTAGE_MIN
+   and POWER_SUPPLY_PROP_VOLTAGE_MAX instead of *_DESIGN.
 
-['pci14e4,449d', 'brcm,bcm4329-fmac'] is too long
-'pci14e4,449d' is not one of ['brcm,bcm43143-fmac', 'brcm,bcm4341b0-fmac',
-'brcm,bcm4341b4-fmac', 'brcm,bcm4341b5-fmac', 'brcm,bcm4329-fmac',
-'brcm,bcm4330-fmac', 'brcm,bcm4334-fmac', 'brcm,bcm43340-fmac',
-'brcm,bcm4335-fmac', 'brcm,bcm43362-fmac', 'brcm,bcm4339-fmac',
-'brcm,bcm43430a0-fmac', 'brcm,bcm43430a1-fmac', 'brcm,bcm43455-fmac',
-'brcm,bcm43456-fmac', 'brcm,bcm4354-fmac', 'brcm,bcm4356-fmac',
-'brcm,bcm4359-fmac', 'brcm,bcm4366-fmac', 'cypress,cyw4373-fmac',
-'cypress,cyw43012-fmac', 'infineon,cyw43439-fmac']
-=66rom schema $id: http://devicetree.org/schemas/net/wireless/brcm,bcm4329-=
-fmac.yaml#
+Chris Morgan (15):
+  iio: adc: axp20x_adc: Add adc_en1 and adc_en1 to axp_data
+  power: supply: axp20x_battery: Remove design from min and max voltage
+  power: supply: axp20x_battery: Make iio and battery config per device
+  power: supply: axp20x_usb_power: Make VBUS and IIO config per device
+  dt-bindings: power: supply: axp20x: Add input-current-limit-microamp
+  power: supply: axp20x_usb_power: add input-current-limit-microamp
+  dt-bindings: power: supply: axp20x-battery: Add monitored-battery
+  dt-bindings: iio: adc: Add AXP717 compatible
+  dt-bindings: power: supply: axp20x: Add AXP717 compatible
+  dt-bindings: power: supply: axp20x: Add AXP717 compatible
+  mfd: axp20x: Add ADC, BAT, and USB cells for AXP717
+  iio: adc: axp20x_adc: add support for AXP717 ADC
+  power: supply: axp20x_usb_power: Add support for AXP717
+  power: supply: axp20x_battery: add support for AXP717
+  arm64: dts: allwinner: h700: Add charger for Anbernic RG35XX
 
-It's easy to see the problem in the binding. It does not expect a
-fallback string after the PCI ID based compatible. Either the
-pci14e4,449d entry must be added to the first enum in the binding,
-which has the fallback compatible, or the fallback compatible
-should not be added to DTS.
+ .../bindings/iio/adc/x-powers,axp209-adc.yaml |  12 +
+ .../x-powers,axp20x-battery-power-supply.yaml |   7 +
+ .../x-powers,axp20x-usb-power-supply.yaml     |  70 ++-
+ .../sun50i-h700-anbernic-rg35xx-2024.dts      |  21 +
+ drivers/iio/adc/axp20x_adc.c                  | 182 +++++-
+ drivers/mfd/axp20x.c                          |  25 +-
+ drivers/power/supply/axp20x_battery.c         | 590 ++++++++++++++++--
+ drivers/power/supply/axp20x_usb_power.c       | 353 ++++++++++-
+ include/linux/mfd/axp20x.h                    |  27 +
+ 9 files changed, 1186 insertions(+), 101 deletions(-)
 
-If the fallback compatible is missing in DTS, the compatible check in
-brcmf_of_probe() fails and the lpo clock is not requested resulting
-in the firmware startup failing. So that would require further
-driver changes.
+-- 
+2.34.1
 
-Greetings,
-
--- Sebastian
-
---of7hfoh4fqko6jig
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmbDdf4ACgkQ2O7X88g7
-+pr5KRAAjDSIh+I777ZC2eOvfPG2PAsPfp+nGcsq2aP34vzqdrUy9Q7Rd9CDPPGX
-7J5O5w7rLfSEHMRr8E6YaRtnDprVP3eLOKBriQQpfjRhcK9jv5CDjAHk7xkD80ya
-k6B1k8pWaQ/OMJwCcFpZUyFs6WJZebEieOphbGXuPc81wLt7b8K19MFVXvd5CkuQ
-dLLtdwNv0fjEw5rmGbLostKvW2b5QohkqRQDIip3VbK1mg9yKV/oqyvZtS0/YNob
-gyqdI4GTzAwqayM+M28tQuaB/oAAqDNjTRHefPmNzGfbO2Ls8/nL1s3div+ckh0z
-YEb0wKj23EjR2CslSYJWmkpG71w+sMdQ+ViPaxDCiD2r4plk7GLEQG0tpHr/Amgf
-FnpJsNRtyaxdDdOsV2GCj9Y+n8k3M8S9z7FSszCqboDvIMvDx2kcnbKPqA3aPAiM
-c5rb6iIwggiTqCxF1qBZbg7LGMZK4V19/5+Ifjg2+nKtlfepyvky9Hmka5SHp0Ep
-dHJj1sZiW4qBy3mDfiqMyLaNR/NFq5z4XrwOBmT47ThjuV/SfUsGOeF1ZHapnDOi
-gQcnZjkxafVeMvWCVTiyZBg4V38Daxp4hQJx37WyPFgWQr/1GA8gyK9bOH4bjz8R
-9IpWzOlAhFgTRCGodl1GFD298gUSPv7CzGIpIIiURZpEHbdzFP8=
-=jdlM
------END PGP SIGNATURE-----
-
---of7hfoh4fqko6jig--
 
