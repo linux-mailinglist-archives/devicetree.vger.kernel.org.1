@@ -1,90 +1,148 @@
-Return-Path: <devicetree+bounces-94806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEC81956B54
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 14:57:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01DF9956B68
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 15:00:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A432A1F234CB
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 12:57:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2154C1C2240B
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 13:00:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A81E916BE0A;
-	Mon, 19 Aug 2024 12:57:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A67FD16C842;
+	Mon, 19 Aug 2024 12:59:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from ns.iliad.fr (ns.iliad.fr [212.27.33.1])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 001D31487FE;
-	Mon, 19 Aug 2024 12:57:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBA4916BE12;
+	Mon, 19 Aug 2024 12:59:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.27.33.1
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724072247; cv=none; b=heYBnN0ldtY0gxTQwh5P6YjiU2M6z/AAZuWNeiOvGfvraYUsDMF5RtrQ9To2sAjT3Obvlr2IN3ki9kHZzMFf8VMqn3ZRLtsCyWWSTCbx1SLmYZuGXFMGAlr+qcejhGK7J8FPp9Vj0JPFwSV4JYJoxmpRmlx4BoHAL5gjMwsdKmA=
+	t=1724072389; cv=none; b=JNhI5FD/A1dF+ZbQ7NSffgA1H8KprwHaN3uM8ntAv8TmcDJfK/EHKOl8DvSyKjaA8xst+3p2/d3NPauEq5AQrRcVxFM+4HrH3fzbyyyf4IYgedYcg6/on1tVJk0GYJ+QrWyUXwHhPkvVhbRMpDvbq12PT5uUljmd6gZUoDkcu7w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724072247; c=relaxed/simple;
-	bh=X9d3of3aXsaKQl5CDOZnvu54x0U/02bbYH0NTxc3YbI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Hg743gXbUmr5ZwNyqAmdx+0Gl9O06lpLE5nEB34HSLO52OcGZTrv9qVWIcWpHML8P/Ii05fPpFby4uRiYg7sHol34XXVB1DSIbewNcR+RXjaZFAiLJ4KZUDBhIbA0d373R9Ig+99RtETZTyMDDv8yA/5xl5mzobSyeH7t2/UTzU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3717de33d58so2735574f8f.1;
-        Mon, 19 Aug 2024 05:57:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724072244; x=1724677044;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/0ZpW69A3r3oQGs1jzFxWO9nTo7uyXmatuExT8VLMtw=;
-        b=ogEsJmtvJJjSNAa3sZdlBAycb248VNWoY1wHycWn4oebxqpPMUSYF0A4xOv9cGuJZV
-         E/s942ZeDzWw2HqWQ1UR20pBGN5Ged4ZOORis/FZdU/hwvI1uns5+sr1TBtYE2q8OdSM
-         t6Yodutdz7p/IpUYDqbeGWZaxi5AwwYTG/uwCRg+H/NFyvRSc6LKdF22Z6741dzNU5LS
-         JVdQdVYvbP0NiG4OqHb7pi5GNrtoJHfJcwNpoPuwxZEfb+pg/AWJNfrXCNJb4cKVNx9e
-         X9wI9q+QKKg8n31BA4NYmyKyRi6u0bT/0o+Ms2jb1VRTAy/7ua49q1wOw1Z8JW+O9iSR
-         BGhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVupKuTtBZYj0CsbHHywd/ML1GkQmP/8K3Cua4HtsfhlrFQviTJtWq7g0d1JU2+oCj4rsG9/jCzODOl09mk7FY3NDaNU/QGmbSfVUbvlSeJiB3+3IeZ7ld5rHFloN4+98xSOu+WLgXNaov/rqoeTMhVgWoCptrWXOBZOZFCOCQEl1nniGWtJPaV2jJfEYG1RZ5vxmPPrt2FjQX8noX+NwRl/fdufTkTC8M=
-X-Gm-Message-State: AOJu0Yxh1yxw5YmjK1OUSd0+c6PTL7PMu/fbdlbE8r8FAs9OzKy2GRr8
-	MrpVqIW6yui7bQ7gkNTKjG/uafOWqiuhap0+yjpUwTU5dnTrttlq
-X-Google-Smtp-Source: AGHT+IFIpQ0zLyMhxiihY1RRzBqJaZIevaG2nGDh83Nd2plM5T8UwGXFDe+2xWByyJ6ZxwPoGCa1fw==
-X-Received: by 2002:adf:e906:0:b0:368:4e2e:7596 with SMTP id ffacd0b85a97d-3719465603bmr7590194f8f.37.1724072244121;
-        Mon, 19 Aug 2024 05:57:24 -0700 (PDT)
-Received: from krzk-bin ([178.197.215.209])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-37189839f9dsm10543437f8f.20.2024.08.19.05.57.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Aug 2024 05:57:23 -0700 (PDT)
-Date: Mon, 19 Aug 2024 14:57:20 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Arnd Bergmann <arnd@arndb.de>, Mark Brown <broonie@kernel.org>, 
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, patches@opensource.cirrus.com
-Subject: Re: [PATCH 07/14] Input: samsung-keypad - use per-chip parameters
-Message-ID: <vizxklhqb2gvevfpup262s6dbmljlnit5oc2uxv2zubfuhcy73@3ev5tsopnhxg>
-References: <20240819045813.2154642-1-dmitry.torokhov@gmail.com>
- <20240819045813.2154642-8-dmitry.torokhov@gmail.com>
+	s=arc-20240116; t=1724072389; c=relaxed/simple;
+	bh=uK3MQe9P1cLB7v2We933qbfjP8STr4jPcaOGuWi5V/E=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=eA/YBG1xI+e0nytWH9dSP/1Qsiil/qR++puAdRgkt70M7FQA8LZKXQER64xMCQYEmarxHlUWRmrkGVae/WRGBdMiBGYURJ+GXT81VurXyKcmp/4jwTb1ydu4CR4Z1Xv3WcRkRFNm+3yUA1txyiCZyKgmIJQ692bNaGwdQRF2RUg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=srs.iliad.fr; arc=none smtp.client-ip=212.27.33.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=srs.iliad.fr
+Received: from ns.iliad.fr (localhost [127.0.0.1])
+	by ns.iliad.fr (Postfix) with ESMTP id 8E84020989;
+	Mon, 19 Aug 2024 14:59:37 +0200 (CEST)
+Received: from [127.0.1.1] (freebox.vlq16.iliad.fr [213.36.7.13])
+	by ns.iliad.fr (Postfix) with ESMTP id 7CD0E2097B;
+	Mon, 19 Aug 2024 14:59:37 +0200 (CEST)
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+Subject: [PATCH 0/2] Work around reserved SMMU context bank on msm8998
+Date: Mon, 19 Aug 2024 14:59:34 +0200
+Message-Id: <20240819-smmu-v1-0-bce6e4738825@freebox.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240819045813.2154642-8-dmitry.torokhov@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALZBw2YC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDC0MT3eLc3FLdFFNzo2TDREOzxMRkJaDSgqLUtMwKsDHRsbW1ACh0KDJ
+ WAAAA
+To: Rob Clark <robdclark@gmail.com>, Will Deacon <will@kernel.org>, 
+ Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: iommu@lists.linux.dev, linux-arm-msm@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Arnaud Vrac <avrac@freebox.fr>, 
+ Pierre-Hugues Husson <phhusson@freebox.fr>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ Caleb Connolly <caleb.connolly@linaro.org>, 
+ Marc Gonzalez <mgonzalez@freebox.fr>
+X-Mailer: b4 0.13.0
 
-On Sun, Aug 18, 2024 at 09:58:04PM -0700, Dmitry Torokhov wrote:
-> Instead of doing conditional logic based on the chip type, define
-> per-chip parameter structure, and reference it in the match data
-> (either of_device_id or platform_device_id).
-> 
-> Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> ---
->  drivers/input/keyboard/samsung-keypad.c | 61 +++++++++++++++----------
+On qcom msm8998, writing to the last context bank of lpass_q6_smmu
+(base address 0x05100000) produces a system freeze & reboot.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The hardware/hypervisor reports 13 context banks for the LPASS SMMU
+on msm8998, but only the first 12 are accessible...
+Override the number of context banks
+
+[    2.546101] arm-smmu 5100000.iommu: probing hardware configuration...
+[    2.552439] arm-smmu 5100000.iommu: SMMUv2 with:
+[    2.558945] arm-smmu 5100000.iommu: 	stage 1 translation
+[    2.563627] arm-smmu 5100000.iommu: 	address translation ops
+[    2.568923] arm-smmu 5100000.iommu: 	non-coherent table walk
+[    2.574566] arm-smmu 5100000.iommu: 	(IDR0.CTTW overridden by FW configuration)
+[    2.580220] arm-smmu 5100000.iommu: 	stream matching with 12 register groups
+[    2.587263] arm-smmu 5100000.iommu: 	13 context banks (0 stage-2 only)
+[    2.614447] arm-smmu 5100000.iommu: 	Supported page sizes: 0x63315000
+[    2.621358] arm-smmu 5100000.iommu: 	Stage-1: 36-bit VA -> 36-bit IPA
+[    2.627772] arm-smmu 5100000.iommu: 	preserved 0 boot mappings
+
+Specifically, here:
+
+	qsmmu->bypass_cbndx = smmu->num_context_banks - 1;
+	arm_smmu_cb_write(smmu, qsmmu->bypass_cbndx, ARM_SMMU_CB_SCTLR, 0);
+
+and here:
+
+	arm_smmu_write_context_bank(smmu, i);
+	arm_smmu_cb_write(smmu, i, ARM_SMMU_CB_FSR, ARM_SMMU_CB_FSR_FAULT);
+
+It is likely that FW reserves the last context bank for its own use,
+thus a simple work-around would be: DON'T USE IT in Linux.
+
+For reference, the lpass_q6_smmu node looks like this:
+
+	lpass_q6_smmu: iommu@5100000 {
+		compatible = "qcom,msm8998-smmu-v2", "qcom,smmu-v2";
+		reg = <0x05100000 0x40000>;
+		clocks = <&gcc HLOS1_VOTE_LPASS_ADSP_SMMU_CLK>;
+		clock-names = "iface";
+
+		#global-interrupts = <0>;
+		#iommu-cells = <1>;
+		interrupts =
+			<GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 393 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 394 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 395 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 396 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 397 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 398 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 399 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 400 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 401 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 402 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 403 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 137 IRQ_TYPE_LEVEL_HIGH>;
+
+		power-domains = <&gcc LPASS_ADSP_GDSC>;
+		status = "disabled";
+	};
+
+Changes in v2:
+- Use the compatible prop instead of a specific prop to trigger work-around (Bjorn & Caleb)
+- Add qcom,msm8998-lpass-smmu compatible string
+- Link to v1: https://lore.kernel.org/r/20240814-smmu-v1-0-3d6c27027d5b@freebox.fr
+
+---
+Marc Gonzalez (2):
+      iommu/arm-smmu-qcom: hide last LPASS SMMU context bank from linux
+      arm64: dts: qcom: msm8998: add qcom,msm8998-lpass-smmu compatible
+
+ arch/arm64/boot/dts/qcom/msm8998.dtsi      | 2 +-
+ drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 5 +++++
+ 2 files changed, 6 insertions(+), 1 deletion(-)
+---
+base-commit: edb6307a8d9be5052ba5ce121e0bd55900ce44c4
+change-id: 20240814-smmu-d572c1a16aac
 
 Best regards,
-Krzysztof
+-- 
+Marc Gonzalez <mgonzalez@freebox.fr>
 
 
