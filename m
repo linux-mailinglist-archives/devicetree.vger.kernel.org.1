@@ -1,131 +1,231 @@
-Return-Path: <devicetree+bounces-94975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5064195768F
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 23:28:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50406957696
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 23:29:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8380C1C238FE
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 21:28:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 758951C2394B
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 21:29:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEFDF15A87A;
-	Mon, 19 Aug 2024 21:27:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3D7115A873;
+	Mon, 19 Aug 2024 21:29:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="wNRJuV+u"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eZcshrKS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CB8B1598F4;
-	Mon, 19 Aug 2024 21:27:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B590EEA5;
+	Mon, 19 Aug 2024 21:29:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724102833; cv=none; b=a66+hRrSMYzGto8IGj/YxVJ98B16mRr8RHiSYR/pFQIxLp9MnRSKpU4KgrPu3zYBUVahcabH0mb8X6emDOEBmfmkoOGcxOxNYoJEbFUmUM7LDPaBbuGffcZsnscp6E4FfpG87JlPaeJ+BrMATreJi9EeGLWQFnIebXej6Kp7hJ4=
+	t=1724102947; cv=none; b=l7ywuqR1UaOwj0MZZ+LQAnOAl1bCMd740RuMJvGKdTodXVMMhD2f74IQt5AN5PVjgt1APEWO7hERabyLYUSORdsmxIg/MLlnTOceEUPgIpmaEUscIHJad9i07fdj1ogWnxaqKFPCmcY1cYEXOqyC+ksX5huR1qKDg8Ea/4/yPhw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724102833; c=relaxed/simple;
-	bh=+sOmpMxl05XLDPuo4r7/zihYOtpqvtWf8lxC2z/W41A=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=I4/kFIYAn/QcoQdIk7PFH8ev4YFjCQsM19CZlHQbvaxSXxCJJI6DoYL024LzyU4g/A72dLgbY7GZ60JmNhHywrW8RWA+oFggpRk7CCP8IKkj9UNuHeyOPs2ryEHRfY8hGH6TY1zI2+0+4gGFm3KolKCb16qnby5fBhPIbO+QfGs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=wNRJuV+u; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=kT7Kuxp6fbaULbA/LwhMmUWF1CJosjyeQGtqZ9CJp+0=; b=wNRJuV+uiReaCGv60DiKRMQhAm
-	eOMs1pRGa6EHvcjoApT6Mt5LM3b5GpPAKD1+j2Tktv+nGAFu2xbK8PDX9tn25zqFUuGjAMinpkdcZ
-	CJ7+c3rDsJQPC8ZMbyvyVtnQlX7NzhAiLWUHdx1PlvLugrngoXqLffbvyJvrO5IEBY863rGZ30Uvz
-	ArvLeDZnfGgT8JEyzDAE77cHFtE+YnHPG7LtEbxE5OUcyeQl5cGttOfYdRMKOQUAUB1R7pQImU0NT
-	A1V3ZHPCQILEOpmUYokl/tQVOF2JmWyZe3ID0d8PRRxULB7x7tFRETjiKYukjEnC9kC1wfvW2EYOL
-	K37fH8RA==;
-Received: from i53875a9f.versanet.de ([83.135.90.159] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sg9tR-0003Xv-3A; Mon, 19 Aug 2024 23:26:25 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: linux-kernel@vger.kernel.org,
- Detlev Casanova <detlev.casanova@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Lee Jones <lee@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>, Chris Morgan <macromorgan@hotmail.com>,
- Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>,
- Muhammed Efe Cetin <efectn@protonmail.com>, Andy Yan <andyshrk@163.com>,
- Jagan Teki <jagan@edgeble.ai>, Dragan Simic <dsimic@manjaro.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Shresth Prasad <shresthprasad7@gmail.com>, Ondrej Jirman <megi@xff.cz>,
- Weizhao Ouyang <weizhao.ouyang@arm.com>, Alexey Charkov <alchark@gmail.com>,
- Jimmy Hon <honyuenkwun@gmail.com>, Finley Xiao <finley.xiao@rock-chips.com>,
- Yifeng Zhao <yifeng.zhao@rock-chips.com>,
- Elaine Zhang <zhangqing@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-i2c@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-serial@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCH 09/10] arm64: dts: rockchip: Add rk3576 SoC base DT
-Date: Mon, 19 Aug 2024 23:26:44 +0200
-Message-ID: <2553026.Sgy9Pd6rRy@diego>
-In-Reply-To: <23696360.6Emhk5qWAg@trenzalore>
-References:
- <20240802214612.434179-1-detlev.casanova@collabora.com>
- <21547916.mFnZMskM5D@diego> <23696360.6Emhk5qWAg@trenzalore>
+	s=arc-20240116; t=1724102947; c=relaxed/simple;
+	bh=emA2198+Po9hREBur1rawvdpu0famS95sPQEi4uEjIA=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=abl3iMep2oqO5ZS0Drbee1DFrA+oVNw/TWkIUKyi/XYDViK7IVz/d+125x4Sf9kRt76NQG2VWYvWLlDnlA63rQbvpLm0uQT+AWQv0aZsuwG2rzJjNzM8f7/kBRtt3EaSqYHscfV7COhgfUKv+nzuVEIfoMYKikghpOloEhA1lZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eZcshrKS; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47JBfvNC014401;
+	Mon, 19 Aug 2024 21:28:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=Nzm/S/afbNwh1e/MB7AURkZS
+	f6y9LurbockOcF2ulxc=; b=eZcshrKSaLvC0FDKv/L5938VbhdXj2lpcdKXlnnZ
+	VswPuxakRg38UdBypF9+nKlzgP3E1I8GRHPnzikbF+BkCjm6+/K/mYzFdF4LSTti
+	0KDdRRzaYnUzyKo5s3yemBuUUwFEF9RnWZBrmIXVDCEOQ30tBogzBu3Kykdl26Bk
+	26xyfsx8gmPiOGtiNrrPFKkzkOglUjnHztouJXIW5CV00lptbXJYPOaMos38KeNE
+	lQD/hbWXBWztcnDpJtD/M/7qprXXaJJUyhB8M9T4gA9QIzkbH7btyr0Ii+dblRDO
+	CrTkfDPOSDc7yu17ZuBnr0oSZPmLttfjWYOe0SDcS7b7YA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 412mmene09-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 19 Aug 2024 21:28:53 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47JLSqj4009405
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 19 Aug 2024 21:28:52 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 19 Aug 2024 14:28:51 -0700
+Date: Mon, 19 Aug 2024 14:28:50 -0700
+From: Bjorn Andersson <quic_bjorande@quicinc.com>
+To: Frank Li <Frank.li@nxp.com>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, "Felipe
+ Balbi" <balbi@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        "Saravana
+ Kannan" <saravanak@google.com>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>
+Subject: Re: [PATCH v2 6/7] usb: dwc3: qcom: Transition to flattened model
+Message-ID: <ZsO5EnMgKj1GxlQA@hu-bjorande-lv.qualcomm.com>
+References: <20240811-dwc3-refactor-v2-0-91f370d61ad2@quicinc.com>
+ <20240811-dwc3-refactor-v2-6-91f370d61ad2@quicinc.com>
+ <ZrunFEOV5/aM4G4U@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <ZrunFEOV5/aM4G4U@lizhi-Precision-Tower-5810>
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: dQ7H97UDkCEOCygWyw0dotxFPc9Xu-0z
+X-Proofpoint-ORIG-GUID: dQ7H97UDkCEOCygWyw0dotxFPc9Xu-0z
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-19_16,2024-08-19_03,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 clxscore=1015
+ mlxlogscore=999 priorityscore=1501 bulkscore=0 impostorscore=0
+ adultscore=0 mlxscore=0 malwarescore=0 lowpriorityscore=0 spamscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408190143
 
-Am Montag, 19. August 2024, 19:59:45 CEST schrieb Detlev Casanova:
-> On Wednesday, 14 August 2024 11:31:04 EDT Heiko St=FCbner wrote:
-> > Hi Detlev,
-> >=20
-> > Am Freitag, 2. August 2024, 23:45:36 CEST schrieb Detlev Casanova:
-> > > This device tree contains all devices necessary for booting from netw=
-ork
-> > > or SD Card.
-> > >=20
-> > > It supports CPU, CRU, PM domains, dma, interrupts, timers, UART and
-> > > SDHCI (everything necessary to boot Linux on this system on chip) as
-> > > well as Ethernet, I2C, SPI and OTP.
-> > >=20
-> > > Also add the necessary DT bindings for the SoC.
-> > >=20
-> > > Signed-off-by: Liang Chen <cl@rock-chips.com>
-> > > Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
-> > > Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-> > > Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> > > [rebase, squash and reword commit message]
-> > > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> >=20
-> > looks like (since 2019) there is a strong suggestion for having a soc n=
-ode.
-> >=20
-> > See Krzysztof's mail in
-> >   =20
-> > https://lore.kernel.org/all/6320e4f3-e737-4787-8a72-7bd314ba883c@kernel=
-=2Eorg
-> > / that references
-> >     Documentation/devicetree/bindings/writing-bindings.rst [0]
-> >=20
-> > So I guess we should probably follow that - at least for new socs for n=
-ow.
->=20
-> That make sense, but what is exactly covered by MMIO devices ? everything=
-=20
-> except cpus, firmware, psci and timer ?
+On Tue, Aug 13, 2024 at 02:33:56PM -0400, Frank Li wrote:
+> On Sun, Aug 11, 2024 at 08:12:03PM -0700, Bjorn Andersson wrote:
+> > From: Bjorn Andersson <quic_bjorande@quicinc.com>
+> >  drivers/usb/dwc3/dwc3-qcom.c | 310 +++++++++++++++++++++++++++++++++++--------
+[..]
+> > @@ -302,25 +306,16 @@ static void dwc3_qcom_interconnect_exit(struct dwc3_qcom *qcom)
+> >  /* Only usable in contexts where the role can not change. */
+> >  static bool dwc3_qcom_is_host(struct dwc3_qcom *qcom)
+> >  {
+> > -	struct dwc3 *dwc;
+> > -
+> > -	/*
+> > -	 * FIXME: Fix this layering violation.
+> > -	 */
+> > -	dwc = platform_get_drvdata(qcom->dwc3);
+> > -
+> > -	/* Core driver may not have probed yet. */
+> > -	if (!dwc)
+> > -		return false;
+> > +	struct dwc3 *dwc = qcom->dwc;
+> >
+> >  	return dwc->xhci;
+> 
+> dwc only use once.
+> 
+> 	return qcom->dwc->xhci?
+> 
 
-if your node has a foo@mmio-address naming then it goes in there I guess
+I like it, thanks for the suggestion.
 
+> >  }
+> >
+[..]
+> > +/* Convert dev's DeviceTree representation from qcom,dwc3 to qcom,snps-dwc3 binding */
+> > +static int dwc3_qcom_convert_legacy_dt(struct device *dev)
+> > +{
+> > +	struct device_node *qcom = dev->of_node;
+> > +	struct device_node *dwc3;
+> > +	struct property *prop;
+> > +	int ret = 0;
+> > +
+> > +	dwc3 = of_get_compatible_child(qcom, "snps,dwc3");
+> > +	if (!dwc3)
+> > +		return 0;
+> > +
+> > +	/* We have a child node, but no support for dynamic OF */
+> > +	if (!IS_ENABLED(CONFIG_OF_DYNAMIC))
+> > +		return -EINVAL;
+> > +
+> > +	for_each_property_of_node(dwc3, prop) {
+> > +		if (!strcmp(prop->name, "compatible"))
+> > +			;
+> > +		else if (!strcmp(prop->name, "reg"))
+> > +			ret = dwc3_qcom_legacy_update_reg(qcom, dwc3);
+> > +		else if (!strcmp(prop->name, "interrupts"))
+> > +			ret = dwc3_qcom_legacy_convert_interrupts(qcom, prop);
+> > +		else
+> > +			ret = dwc3_qcom_legacy_migrate_prop(qcom, prop);
+> >  	}
+> >
+> > -node_put:
+> > -	of_node_put(dwc3_np);
+> > +	if (ret < 0)
+> > +		goto err_node_put;
+> > +
+> > +	ret = dwc3_qcom_legacy_migrate_child(qcom, dwc3, "port");
+> > +	if (ret)
+> > +		goto err_node_put;
+> > +
+> > +	ret = dwc3_qcom_legacy_migrate_child(qcom, dwc3, "ports");
+> > +	if (ret)
+> > +		goto err_node_put;
+> > +
+> > +	of_detach_node(dwc3);
+> > +	of_node_put(dwc3);
+> >
+> > +	return 0;
+> > +
+> > +err_node_put:
+> > +	of_node_put(dwc3);
+> >  	return ret;
+> >  }
+> 
+> Look like you copy children dwc3's property into current glue node.
+> Can you passdown dwc3's node into dwc3_probe(), let dwc3_probe to handle
+> these, Or move it into dwc3-core. otherwise, if imx want to do the same
+> thing, the the same code will be dupicated.
+> 
 
+I tried that, as it would have saved me from having to do the dynamic
+rewrite.
+
+But the dwc3 core and host are full of device_property_read*(),
+phy_get(), platform_get_irq() etc which operates on the dwc->dev.
+
+I think it can be done, but this felt like a cleaner outcome, in
+particular once we transition the DeviceTree source.
+
+As you say, there should be a fair amount of room for duplication here,
+so perhaps we can move that to a "glue.c" and share it?
+
+[..]
+> > @@ -773,10 +937,14 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
+> >  		goto reset_assert;
+> >  	}
+> >
+> > -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> > +	ret = of_address_to_resource(np, 0, &res);
+> > +	if (ret < 0)
+> > +		goto clk_disable;
+> > +	res.end = res.start + SDM845_QSCRATCH_BASE_OFFSET;
+> >
+> > -	qcom->qscratch_base = devm_ioremap_resource(dev, res);
+> > +	qcom->qscratch_base = devm_ioremap(dev, res.end, SDM845_QSCRATCH_SIZE);
+> >  	if (IS_ERR(qcom->qscratch_base)) {
+> > +		dev_err(dev, "failed to map qscratch region: %pe\n", qcom->qscratch_base);
+> 
+> dev_err_probe()?
+> 
+
+Sounds good.
+
+Thank you,
+Bjorn
 
