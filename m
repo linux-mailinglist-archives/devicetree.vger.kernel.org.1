@@ -1,249 +1,124 @@
-Return-Path: <devicetree+bounces-94632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DD329560F1
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 03:50:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2C7E9560F4
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 03:52:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD5671C213E7
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 01:50:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 510A61F223DB
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 01:52:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E61491BC20;
-	Mon, 19 Aug 2024 01:50:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA8201BC3F;
+	Mon, 19 Aug 2024 01:52:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="filQ5NM+"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cjYtkH8i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D47F8BF0;
-	Mon, 19 Aug 2024 01:49:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E1B98BF0;
+	Mon, 19 Aug 2024 01:52:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724032200; cv=none; b=rl5PDpS49ktv0jaEi5YWezeEGXbNEzYjmUnsh2FiKkRG4WWjhacyBTfp1uIptgNHwwJY/yELjfz35pWKGCFnroH305gACrvPOvSQUldyGowSyQu3i4XVMpS7vU+EbWtEgPBmQOihejuRW6Ysi6mpR4Ql7f/PzmGH/LuQt3SsfB4=
+	t=1724032342; cv=none; b=pugTXofa2sXAsvayoMTKi/aqyKkZ2xsvfVRwQ1y45HB8QD4u3bY2N1Ak7Zvcjo2sr0nhGE8PFv4uCdpjBOyr0Okt7TNDjDqCjTB7+Tqdn2KdH9/5szU3+Cy9tfsbhJsy9Pi3KttlUIiApXOSKT/nuLT8HQSYYIphFA2/VRfiyL8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724032200; c=relaxed/simple;
-	bh=tcbtkDE3V7EuBdyDRwwcYx7oLKNfCX+wAgKuyAaHwfY=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H5OucidxvSaJEfABnWpNKcS4LoLVkDi/n2K/yshsnrJCvBLRQh3t84HjDAEGYeMTnOI6AzIOOpXIeeKr0UA+d/SBHjAoHdLt3wtVzv1Vex+INNEHwBhNiMKLy4iDRgEUULFZbCLCulow3GjQ72WAC5aSYWu1kyZSQ2eC07k5tB8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=filQ5NM+; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47IMvHRu002666;
-	Mon, 19 Aug 2024 01:49:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	B/oAQdAlYc+fVzegRfsOmC0hhMJRAvBOn3QYApnrE10=; b=filQ5NM+pgDf/HmF
-	bH/Wm2S3xDJzIZ/+lNTsHanHTfSH6veE49CIybDziOpSV4ZPztkQQtvz//MjMSqT
-	Lhn49T38cqeRCvm3MmOZWE334SvxyS5lxQh4isK5953xZO9A4zA/1Ha69dY/wAxm
-	RrZtYIl75GjbfVIJ6SFOjVzgUkWVk+Y6cr68q+pM3zq0sYDG9WkGzWlwJAJ6xWZb
-	HD21hVy+odr30hvc6b3/NUc29mMfHPZeuB1NSG9f7CT531KWaVOLl8nhsgRhjrZE
-	GG61trKndwcKS+bszPdB9dE+CNabfW+UmJ/rGFBTuBxE9hZa3K/RiWdi4RVH9jNh
-	RthmtA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 412m32jn6c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 19 Aug 2024 01:49:26 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47J1nP63011694
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 19 Aug 2024 01:49:25 GMT
-Received: from jiegan-gv.ap.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Sun, 18 Aug 2024 18:49:19 -0700
-Date: Mon, 19 Aug 2024 09:49:15 +0800
-From: JieGan <quic_jiegan@quicinc.com>
-To: Rob Herring <robh@kernel.org>
-CC: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach
-	<mike.leach@linaro.org>,
-        James Clark <james.clark@linaro.org>,
-        "Alexander
- Shishkin" <alexander.shishkin@linux.intel.com>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>, <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        Tingwei Zhang
-	<quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        "Tao
- Zhang" <quic_taozha@quicinc.com>,
-        Song Chai <quic_songchai@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-Subject: Re: [PATCH v3 3/5] dt-bindings: arm: Add Coresight TMC Control Unit
- hardware
-Message-ID: <ZsKkm/Pz0GYtH2Gl@jiegan-gv.ap.qualcomm.com>
-References: <20240812024141.2867655-1-quic_jiegan@quicinc.com>
- <20240812024141.2867655-4-quic_jiegan@quicinc.com>
- <20240818142834.GA27754-robh@kernel.org>
+	s=arc-20240116; t=1724032342; c=relaxed/simple;
+	bh=TpC3weBELg5EiRvAejQajZ/JTwMaLarKUde7kE41s3k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=miqa00nl8bnyzVSjbLGaWWSUowkpfErPH1OdgbRb+aegHPkRDA8glu6HcG7wCRTNq2/yswva2pmosyEo7BC1G04+cSA3W3i9G1DFcHQJfwf9o3+xiVqlxkEcR0ZO0Ze1Tt4isgjQHrUZfMZn6hU1E0DB37ISB4M8QinZ6g/INvA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cjYtkH8i; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1724032341; x=1755568341;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=TpC3weBELg5EiRvAejQajZ/JTwMaLarKUde7kE41s3k=;
+  b=cjYtkH8iTbAUrs7s4LI62RimNd+7w90WV+8Kdou0mdtCmh4dHHJrD7nS
+   WCMXyIDBLbC0Wt0CAQ2Fl4myvkHoQUjxTvDL0X4jQXlhxKQzDydh1HCGF
+   VT9acpHkrghwWy0NVob7tG3pQECc6VHJMKNY8QvI+gAZypsdQbyq6phzV
+   coxdOx4Kdii4YHmf6GjFZs7XmP6GIMJAamYa7UE0l4vmTQgzdPMFtPy/G
+   kh/Z/1YlHK9158fzRnQvdaJuq8xdqmli1k7fCOOGTTyVejrOJrTN24CpI
+   +VmVW5hiEYBH0/vLSyxoRo1OWnTy89oQ62yhcX4G2iVci2OX11+BIRzwR
+   Q==;
+X-CSE-ConnectionGUID: FRkvTPjiQMu75OC+2bSxag==
+X-CSE-MsgGUID: R0UQ+JglT5udLJW63GeFMQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11168"; a="22411767"
+X-IronPort-AV: E=Sophos;i="6.10,158,1719903600"; 
+   d="scan'208";a="22411767"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Aug 2024 18:52:21 -0700
+X-CSE-ConnectionGUID: GK9vXamoTGesGgdu/DvJ+w==
+X-CSE-MsgGUID: xxReA60TSsSBCJSDeU5Qjg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,158,1719903600"; 
+   d="scan'208";a="90982908"
+Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
+  by fmviesa001.fm.intel.com with ESMTP; 18 Aug 2024 18:52:17 -0700
+Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sfrZ9-0008Yq-1h;
+	Mon, 19 Aug 2024 01:52:15 +0000
+Date: Mon, 19 Aug 2024 09:51:18 +0800
+From: kernel test robot <lkp@intel.com>
+To: Lorenzo Bianconi <lorenzo@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Christian Marangi <ansuelsmth@gmail.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, lorenzo.bianconi83@gmail.com,
+	linux-arm-kernel@lists.infradead.org, upstream@airoha.com,
+	angelogioacchino.delregno@collabora.com,
+	benjamin.larsson@genexis.eu, Lorenzo Bianconi <lorenzo@kernel.org>
+Subject: Re: [PATCH v3 2/2] pwm: airoha: Add support for EN7581 SoC
+Message-ID: <202408190953.0Ritcb6y-lkp@intel.com>
+References: <20240818-airoha-pwm-drv-v3-2-e398f3e41916@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240818142834.GA27754-robh@kernel.org>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: FgV4sntAx5nC7_nJHd9ivOvQFGfo_Asd
-X-Proofpoint-ORIG-GUID: FgV4sntAx5nC7_nJHd9ivOvQFGfo_Asd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-18_24,2024-08-16_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 mlxscore=0
- suspectscore=0 priorityscore=1501 phishscore=0 bulkscore=0
- lowpriorityscore=0 impostorscore=0 clxscore=1015 mlxlogscore=999
- spamscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408190011
+In-Reply-To: <20240818-airoha-pwm-drv-v3-2-e398f3e41916@kernel.org>
 
-On Sun, Aug 18, 2024 at 08:28:34AM -0600, Rob Herring wrote:
-> On Mon, Aug 12, 2024 at 10:41:39AM +0800, Jie Gan wrote:
-> > Add binding file to specify how to define a Coresight TMC
-> > Control Unit device in device tree.
-> > 
-> > It is responsible for controlling the data filter function
-> > based on the source device's Trace ID for TMC ETR device.
-> > The trace data with that Trace id can get into ETR's buffer
-> > while other trace data gets ignored.
-> > 
-> > Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
-> > ---
-> >  .../bindings/arm/qcom,coresight-ctcu.yaml     | 79 +++++++++++++++++++
-> >  1 file changed, 79 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml
-> > new file mode 100644
-> > index 000000000000..7a9580007942
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml
-> > @@ -0,0 +1,79 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/arm/qcom,coresight-ctcu.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: CoreSight TMC Control Unit
-> > +
-> > +maintainers:
-> > +  - Yuanfang Zhang <quic_yuanfang@quicinc.com>
-> > +  - Mao Jinlong <quic_jinlmao@quicinc.com>
-> > +  - Jie Gan <quic_jiegan@quicinc.com>
-> > +
-> > +description:
-> > +  The Coresight TMC Control unit controls various Coresight behaviors.
-> > +  It works as a helper device when connected to TMC ETR device.
-> > +  It is responsible for controlling the data filter function based on
-> > +  the source device's Trace ID for TMC ETR device. The trace data with
-> > +  that Trace id can get into ETR's buffer while other trace data gets
-> > +  ignored.
-> 
-> Nowhere is TMC defined.
-The Coresight TMC control unit(CTCU) connected to Coresight TMC device via replicator and
-works as a helper device to TMC device.
+Hi Lorenzo,
 
-The in-ports listed below illustrate their connection to TMC devices.
+kernel test robot noticed the following build errors:
 
-> 
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - qcom,sa8775p-ctcu
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: apb
-> > +
-> > +  in-ports:
-> 
-> Use 'ports' unless you have both in and out ports.
-The ‘in-ports’ and ‘out-ports’ properties will be parsed by ‘of_coresight_get_port_parent’
-and their relationships to other devices will be stored in the coresight_platform_data structure.
+[auto build test ERROR on 8400291e289ee6b2bf9779ff1c83a291501f017b]
 
-for example:
-struct coresight_platform_data {
-	int nr_inconns;
-	int nr_outconns;
-	struct coresight_connection **out_conns;
-	struct coresight_connection **in_conns;
-};
+url:    https://github.com/intel-lab-lkp/linux/commits/Lorenzo-Bianconi/dt-bindings-pwm-Document-Airoha-EN7581-PWM/20240818-200409
+base:   8400291e289ee6b2bf9779ff1c83a291501f017b
+patch link:    https://lore.kernel.org/r/20240818-airoha-pwm-drv-v3-2-e398f3e41916%40kernel.org
+patch subject: [PATCH v3 2/2] pwm: airoha: Add support for EN7581 SoC
+config: sh-allyesconfig (https://download.01.org/0day-ci/archive/20240819/202408190953.0Ritcb6y-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 14.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240819/202408190953.0Ritcb6y-lkp@intel.com/reproduce)
 
-https://elixir.bootlin.com/linux/v6.11-rc4/source/drivers/hwtracing/coresight/coresight-platform.c#L147
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408190953.0Ritcb6y-lkp@intel.com/
 
-> 
-> > +    $ref: /schemas/graph.yaml#/properties/ports
-> > +
-> > +    patternProperties:
-> > +      '^port(@[0-7])?$':
-> > +        description: Input connections from CoreSight Trace bus
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - in-ports
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    ctcu@1001000 {
-> > +        compatible = "qcom,sa8775p-ctcu";
-> > +        reg = <0x1001000 0x1000>;
-> > +
-> > +        clocks = <&aoss_qmp>;
-> > +        clock-names = "apb";
-> > +
-> > +        in-ports {
-> > +            #address-cells = <1>;
-> > +            #size-cells = <0>;
-> > +
-> > +            port@0 {
-> > +                reg = <0>;
-> > +                ctcu_in_port0: endpoint {
-> > +                    remote-endpoint = <&etr0_out_port>;
-> > +                };
-> > +            };
-> > +
-> > +            port@1 {
-> > +                reg = <1>;
-> > +                ctcu_in_port1: endpoint {
-> > +                    remote-endpoint = <&etr1_out_port>;
-> > +                };
-> > +            };
-> > +        };
-> > +    };
-> > -- 
-> > 2.34.1
-> > 
-> 
+All errors (new ones prefixed by >>):
 
-Thanks,
-Jie
+   sh4-linux-ld: drivers/pwm/pwm-airoha.o: in function `airoha_pwm_config_flash_map':
+>> pwm-airoha.c:(.text+0xd0): undefined reference to `__ffssi2'
+   sh4-linux-ld: drivers/pwm/pwm-airoha.o: in function `airoha_pwm_apply':
+   pwm-airoha.c:(.text+0x7f0): undefined reference to `__ffssi2'
+   sh4-linux-ld: drivers/media/i2c/tc358746.o: in function `tc358746_probe':
+   tc358746.c:(.text+0x1b90): undefined reference to `devm_clk_hw_register'
+   sh4-linux-ld: tc358746.c:(.text+0x1b98): undefined reference to `devm_of_clk_add_hw_provider'
+   sh4-linux-ld: tc358746.c:(.text+0x1b9c): undefined reference to `of_clk_hw_simple_get'
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
