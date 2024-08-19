@@ -1,257 +1,374 @@
-Return-Path: <devicetree+bounces-94931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A171957240
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 19:36:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33E3595724B
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 19:44:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C589228390C
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 17:36:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B4DE81F22499
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 17:44:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A03518757F;
-	Mon, 19 Aug 2024 17:36:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFFC218800B;
+	Mon, 19 Aug 2024 17:44:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tE4V71q1"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="h/NAig0q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFA7D17557E;
-	Mon, 19 Aug 2024 17:36:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DAF749620
+	for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 17:44:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724088966; cv=none; b=PR+UyzEXrqNhbdfcBAI8uGm0WLPlMO3/30GNEBNFN3Q5xnrWCS7VMGtCum6V1ZEuS0+XdutoaLPeuTKFO3DEQjhI9VdMdO43bYJE7SfMfkbYuR0fl9JbJtUl+p5IVI20F03x49FpSl9weQbuogeGblLT1I70td6NArMjIHd6nD8=
+	t=1724089489; cv=none; b=MiA2mDp7EiEVpuxTkxJ1vFd2MuOvH5JsRCahMLGWH90Fd73KDcwYW9uHckOpUwPkkXfDnQj6leJ2nWCAM6sYkVYptOpsiOZxl1Gg6VHDp85/JmKw7X+Oe+sKg1oJRty3tH+gWUT7XTLBG3v6cz7aERA++vgQ5Mir0SOwDpdj26g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724088966; c=relaxed/simple;
-	bh=0u7J4MyaVAFxlCmLAw610QKd7sjH7bataFbVLMfAp/U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gVKBu5zv0kSXp32EzYO/VhvPJmqyB23SX0RzJvXKNV7HvARwvzrJJYp+Q/XJJVv4Y3oDwZLj8qFvjR1/UnkNuIJa+aqtSUMoIpsnoKTdyoT0d0ipcNTtTlK8+rGZmjAbi6ZnER7YkAIjhcBOnokJmotwc5jXfK+ncvQuIPTRkaY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tE4V71q1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FBA7C32782;
-	Mon, 19 Aug 2024 17:36:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724088965;
-	bh=0u7J4MyaVAFxlCmLAw610QKd7sjH7bataFbVLMfAp/U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tE4V71q18qaoadyZSYi9yJpkAP0s/9gsUTBYLAFEu+X2yhDeIqveVY7w9XgYBXpQY
-	 wDaOI2fgZ2iqPibUoadjLpsFMOVZkYfUxxSuZN4K6P/nw5/3HnJ4ZH63Rjm2R0IcE6
-	 LusxVv+ZtleZrgYGEZVGwxW9XKH5i/8a5C5eRboioWvpKNtBi/5RwYXZRsNBrVCB+5
-	 dfltzKHJ10vLFRGcfEJ8ivjEC8ktf6r1CctoHS9cdk9ZKZW47zqCvn7z0R5AyKnUHQ
-	 Oy2Bdfekp0PpmiUeg9OOSdsK5rRpbId5qL3hu9hi8/o8L6+uLCUJE6Fzr2vH3lnT3V
-	 v2rIqil9C9IFA==
-Date: Mon, 19 Aug 2024 18:36:00 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Detlev Casanova <detlev.casanova@collabora.com>
-Cc: linux-kernel@vger.kernel.org,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Elaine Zhang <zhangqing@rock-chips.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, kernel@collabora.com,
-	Sugar Zhang <sugar.zhang@rock-chips.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: clock, reset: Add support for rk3576
-Message-ID: <20240819-anthill-episode-9db783c3e200@spud>
-References: <20240814222159.2598-1-detlev.casanova@collabora.com>
- <5018731.31r3eYUQgx@trenzalore>
- <20240819-pelvis-monetary-211e2294f2f4@spud>
- <2071848.usQuhbGJ8B@trenzalore>
- <20240819-robust-gutter-27540adb4621@spud>
+	s=arc-20240116; t=1724089489; c=relaxed/simple;
+	bh=Z47HubXREWfM/oAa1sq2VTI6MZHzJWQkawdgvO/ho+4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=I4B5qicXsZ98UCMIGjjtlcCf1HaMe4Rxx4xkPRaOZh+yexDXSLtriZoTtZxCzI6H/2srVVP/im9q04r3XRsAyaj0kk70ocvr1U0QFljqVdJKVbu+VxZyi2ZrmKukR5lCuOuz302RWD2z+FAtvnmXq8CVm6aN0yzOzALAm+jQyf4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=h/NAig0q; arc=none smtp.client-ip=209.85.208.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2f15dd0b489so64793501fa.3
+        for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 10:44:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1724089486; x=1724694286; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=3ulxV4rbljm8jTpBJgfG9Y9g+cvAqFTYs/UDEakslB0=;
+        b=h/NAig0qGiyC5u2yYB0LVofIZ2U9xuBUsOzf2YNKfgGMmLdKzi7sCQS0hXKWVEcwZw
+         QLaSoxtM41khwNcTw7o30vg/x+vZh29VazcfcimxyQ9NoYOJmlKa0cD+jqz1HrlR2veL
+         p7zKrYBDf3yMZSk/7IyxRIa8uUWnDijOciphY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724089486; x=1724694286;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3ulxV4rbljm8jTpBJgfG9Y9g+cvAqFTYs/UDEakslB0=;
+        b=pPqYfUm4pTqCC3tVJ/N9eOIBAaCihppBHpyq08QQ17lMWj7RAmFBQgaleyaL8eUItx
+         ixQ5cxIAbk+Wiil64j87XXW7u6b0XKSYqvYlcnP+dtPwRDHfxcI+L3K7jbAFHFmMYzW2
+         XwagM34vypRUowr1Vgw7KsbYyxOIFXBiCi8l+jEeCdyl9QLmTuZYtutwB3bgI92Lf4We
+         B/PT5xkEAYx4csO7vw4qnY5AKfIlqfB2nj8Vl+ReGE0IKO61rSSz54paZlpaHIRUld4A
+         Gf4fa6OQZhQn1BgVope2S7Qg1gt5J4JY4E3lnS6WGfHGQ046xRfdsGV2VxkXKtVqeVs0
+         HqaA==
+X-Forwarded-Encrypted: i=1; AJvYcCXmZia8zpwRueckgcsj5rUV5BhKxrNdmt07C0ueihQ5d3frr4cWL14pyQ4DXfpp2U7E1s9HAoeSwxFKx9cuejCJ1W4BSJW1TkM9WA==
+X-Gm-Message-State: AOJu0YxS37Sp0gVy4NFqGCKjpyjDDx93Hi5TkKJ5CeA6V82oeDzJ/wWD
+	neFguvPRQcTKi9bwcFz5q4SZGWO+qIbz6uU8Xa8qy9Qi5iL3erKJIOoNVgrW2n19nNFoK9YSXoJ
+	0wzCF7V/ZMP9YiXsxLsQOPl392RCX0mrNcub9
+X-Google-Smtp-Source: AGHT+IHVcvgPi4a2baQz/6Y53wCgutnPaPrDAYJ3M+YvYag+g6DGuSeq3sITgEslCPok9x5LjtvLOWOXIZGTRfCjL68=
+X-Received: by 2002:a05:6512:3d27:b0:530:ea2b:1a92 with SMTP id
+ 2adb3069b0e04-5331c6dc3a3mr6939148e87.43.1724089485419; Mon, 19 Aug 2024
+ 10:44:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="VXLsL0ZARuSdDWIZ"
-Content-Disposition: inline
-In-Reply-To: <20240819-robust-gutter-27540adb4621@spud>
+References: <20240815225731.40276-1-james.quinlan@broadcom.com> <20240816071822.GO2331@thinkpad>
+In-Reply-To: <20240816071822.GO2331@thinkpad>
+From: Jim Quinlan <james.quinlan@broadcom.com>
+Date: Mon, 19 Aug 2024 13:44:33 -0400
+Message-ID: <CA+-6iNz4+xP4abf6w6bcVwFxvjx8OhDZXNi5bwfaCNvyF2Mtng@mail.gmail.com>
+Subject: Re: [PATCH v6 00/13] PCI: brcnstb: Enable STB 7712 SOC
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: linux-pci@vger.kernel.org, Nicolas Saenz Julienne <nsaenz@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, 
+	Cyril Brulebois <kibi@debian.org>, Stanimir Varbanov <svarbanov@suse.de>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, bcm-kernel-feedback-list@broadcom.com, 
+	jim2101024@gmail.com, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, 
+	open list <linux-kernel@vger.kernel.org>, 
+	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>, Rob Herring <robh@kernel.org>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+	boundary="00000000000060fed606200cddc4"
 
-
---VXLsL0ZARuSdDWIZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--00000000000060fed606200cddc4
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Aug 19, 2024 at 06:31:09PM +0100, Conor Dooley wrote:
-> On Mon, Aug 19, 2024 at 01:14:38PM -0400, Detlev Casanova wrote:
-> > On Monday, 19 August 2024 12:34:15 EDT Conor Dooley wrote:
-> > > On Mon, Aug 19, 2024 at 10:08:31AM -0400, Detlev Casanova wrote:
-> > > > Hi Conor,
-> > > >=20
-> > > > On Thursday, 15 August 2024 11:07:46 EDT Conor Dooley wrote:
-> > > > > On Wed, Aug 14, 2024 at 06:19:22PM -0400, Detlev Casanova wrote:
-> > > > > > Add clock and reset ID defines for rk3576.
-> > > > > >=20
-> > > > > > Compared to the downstream bindings written by Elaine, this uses
-> > > > > > continous gapless IDs starting at 0. Thus all numbers are
-> > > > > > different between downstream and upstream, but names are kept
-> > > > > > exactly the same.
-> > > > > >=20
-> > > > > > Also add documentation for the rk3576 CRU core.
-> > > > > >=20
-> > > > > > Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> > > > > > Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
-> > > > > > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> > > > > > ---
-> > > > > >=20
-> > > > > >  .../bindings/clock/rockchip,rk3576-cru.yaml   |  64 ++
-> > > > > >  .../dt-bindings/clock/rockchip,rk3576-cru.h   | 592
-> > > > > >  ++++++++++++++++++
-> > > > > >  .../dt-bindings/reset/rockchip,rk3576-cru.h   | 564 ++++++++++=
-+++++++
-> > > > > >  3 files changed, 1220 insertions(+)
-> > > > > >  create mode 100644
-> > > > > >  Documentation/devicetree/bindings/clock/rockchip,rk3576-cru.ya=
-ml
-> > > > > >  create
-> > > > > >  mode 100644 include/dt-bindings/clock/rockchip,rk3576-cru.h cr=
-eate
-> > > > > >  mode
-> > > > > >  100644 include/dt-bindings/reset/rockchip,rk3576-cru.h>
-> > > > > >=20
-> > > > > > diff --git
-> > > > > > a/Documentation/devicetree/bindings/clock/rockchip,rk3576-cru.y=
-aml
-> > > > > > b/Documentation/devicetree/bindings/clock/rockchip,rk3576-cru.y=
-aml new
-> > > > > > file mode 100644
-> > > > > > index 0000000000000..d69985e6fa0ce
-> > > > > > --- /dev/null
-> > > > > > +++ b/Documentation/devicetree/bindings/clock/rockchip,rk3576-c=
-ru.yaml
-> > > > > > @@ -0,0 +1,64 @@
-> > > > > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > > > > > +%YAML 1.2
-> > > > > > +---
-> > > > > > +$id: http://devicetree.org/schemas/clock/rockchip,rk3576-cru.y=
-aml#
-> > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > > +
-> > > > > > +title: Rockchip rk3576 Family Clock and Reset Control Module
-> > > > > > +
-> > > > > > +maintainers:
-> > > > > > +  - Elaine Zhang <zhangqing@rock-chips.com>
-> > > > > > +  - Heiko Stuebner <heiko@sntech.de>
-> > > > > > +  - Detlev Casanova <detlev.casanova@collabora.com>
-> > > > > > +
-> > > > > > +description:
-> > > > > > +  The RK3576 clock controller generates the clock and also imp=
-lements
-> > > > > > a
-> > > > > > reset +  controller for SoC peripherals. For example it provides
-> > > > > > SCLK_UART2 and +  PCLK_UART2, as well as SRST_P_UART2 and SRST_=
-S_UART2
-> > > > > > for the second UART +  module.
-> > > > > > +
-> > > > > > +properties:
-> > > > > > +  compatible:
-> > > > > > +    const: rockchip,rk3576-cru
-> > > > > > +
-> > > > > > +  reg:
-> > > > > > +    maxItems: 1
-> > > > > > +
-> > > > > > +  "#clock-cells":
-> > > > > > +    const: 1
-> > > > > > +
-> > > > > > +  "#reset-cells":
-> > > > > > +    const: 1
-> > > > > > +
-> > > > > > +  clocks:
-> > > > > > +    maxItems: 2
-> > > > > > +
-> > > > > > +  clock-names:
-> > > > > > +    items:
-> > > > > > +      - const: xin24m
-> > > > > > +      - const: xin32k
-> > > > > > +
-> > > > > > +  rockchip,grf:
-> > > > > > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > > > > > +    description: >
-> > > > > > +      phandle to the syscon managing the "general register fil=
-es". It
-> > > > > > is
-> > > > > > used +      for GRF muxes, if missing any muxes present in the =
-GRF
-> > > > > > will
-> > > > > > not be +      available.
-> > > > >=20
-> > > > > Two questions on this property:
-> > > > > - you only support one soc, why is this optional?
-> > > >=20
-> > > > It is optional because only used for some specific clocks. The SoC =
-can
-> > > > still be used without this, but some devices might not work (Not te=
-sted
-> > > > but USB PHYs might not be working without the GRF)
->=20
-> I would not bother making them optional. I don't think there's any
-> benefit to doing so when there's only one instance of this controller
-> on the device, and the grfs will also always be present.
->=20
-> > > > This is also set as optional in similar rockchip CRU bindings (rk35=
-88).
-> > > >=20
-> > > > > - why can't you look it up by compatible?
-> > > >=20
-> > > > These bindings are specific to one compatible only. It is very simi=
-lar to
-> > > > rk3588 but it looks like all rockchip CRU driver has its own yaml f=
-ile, so
-> > > > I followed that trend instead of merging with the rk3588 CRU bindin=
-gs.
-> > > I don't think you've answered the question I am asking. Why can you n=
-ot
-> > > look up the syscon by the /syscon/'s compatible in the clock driver, =
-and
-> > > thus remove the property from here?
-> >=20
-> > I don't think that this is possible.
->=20
-> Undesirable maybe, impossible no.
->=20
-> > That means modifying rockchip/clk.c to=20
-> > lookup the syscon instead of using the `rockchip,grf` phandle. As it is=
- used=20
-> > by other rockchip clock drivers, that means that we'd need to change th=
-e=20
-> > syscon's node name for some other SoCs to match what is being looked up.
->=20
-> No, you would not have to change anything for other SoCs, it would
-> definitely be possible to do compatible based lookups on some devices
-> and phandle on others, particularly given you're adding a new driver.
->=20
-> > But the GRF nodes have different compatibles:
-> > - rk3588 uses php_grf (rockchip,rk3588-php-grf)
-> > - rk3576 uses pmu0_grf (rockchip,rk3576-pmu0-grf)
->=20
-> Ditto this, the new clock driver that you're adding with knowledge of
-> the clock tree could also contain the new compatible for that soc.
->=20
-> > So an optional rockchip,grf phandle sounds a good solution for this=20
-
-To be clear, I'm don't particularly care in this case, given there's at
-least code being shared - but pointless syscon phandles that could be
-looked up by compatible are starting to annoy me in general.
+On Fri, Aug 16, 2024 at 3:18=E2=80=AFAM Manivannan Sadhasivam
+<manivannan.sadhasivam@linaro.org> wrote:
+>
+> On Thu, Aug 15, 2024 at 06:57:13PM -0400, Jim Quinlan wrote:
+> > V6 Changes
+> >   o Commit "Refactor for chips with many regular inbound windows"
+> >     -- Use u8 for anything storing/counting # inbound windows (Stan)
+> >     -- s/set_bar/add_inbound_win/g (Manivannan)
+> >     -- Drop use of "inline" (Manivannan)
+> >     -- Change cpu_beg to cpu_start, same with pcie_beg. (Manivannan)
+> >     -- Used writel_relaxed() (Manivannan)
+> >   o Use swinit reset if available
+> >     -- Proper use of dev_err_probe() (Stan)
+> >   o Commit "Use common error handling code in brcm_pcie_probe()"
+> >     -- Rewrite commit msg in paragraph form (Manivannan)
+> >     -- Refactor error path at end of probe func (Manivannan)
+> >     -- Proper use of dev_err_probe() (Stan)
+> >   o New commit "dt-bindings: PCI: Change brcmstb maintainer and cleanup=
+"
+> >     -- Break out maintainer change and small cleanup into a
+> >        separate commit (Krzysztof)
+> >
+>
+> Looks like you've missed adding the review tags...
 
 
+I didn't mention this in the cover letter but I update the review tags
+at each version.  The problem is that if someone has reviewed a
+commit, and then that commit is subsequently changed due to another
+reviewer, I have to remove the existing tag of the first reviewer
+because the code has changed.
 
---VXLsL0ZARuSdDWIZ
-Content-Type: application/pgp-signature; name="signature.asc"
+Regards,
+Jim Quinlan
+Broadcom STB/CM
+>
+>
+> - Mani
+>
+> > V5 Changes:
+> >   o All commits: Use imperative voice in commit subjects/messages
+> >        (Manivannan)
+> >   o Commit "PCI: brcmstb: Enable 7712 SOCs"
+> >     -- Augment commit message to include PCIe details and revision.
+> >        (Manivannan)
+> >   o Commit "PCI: brcmstb: Change field name from 'type' to 'model'"
+> >     -- Instead of "model" use "soc_base" (Manivannan)
+> >   o Commit "PCI: brcmstb: Refactor for chips with many regular inbound =
+BARs"
+> >     -- Get rid of the confusing "BAR" variable names and types and use
+> >        something like "inbound_win". (Manivannan)
+> >   o Commit "PCI: brcmstb: PCI: brcmstb: Make HARD_DEBUG, INTR2_CPU_BASE=
+..."
+> >     -- Mention in the commit message that this change is in preparation
+> >        for the 7712 SoC. (Manivannan)
+> >   o Commit: "PCI: brcmstb: Use swinit reset if available"
+> >     -- Change reset name "swinit" to "swinit_reset" (Manivannan)
+> >     -- Add 1us delay for reset (Manivannan)
+> >     -- Use dev_err_probe() (Multiple reviewers)
+> >   o Commit "PCI: brcmstb: Use bridge reset if available"
+> >     -- Change reset name "bridge" to "bridge_reset" (Manivannan)
+> >     -- The Reset API can take NULL so need need to test variable
+> >        before calling (Manivannan)
+> >     -- Added a call to bridge_sw_init_set() method in probe()
+> >        as some registers cannot be accessed w/o this. (JQ)
+> >   o Commit "PCI: brcmstb: Use common error handling code in ..."
+> >     -- Use more descriptive goto label (Manivannan)
+> >     -- Refactor error paths to be less encumbered (Manivannan)
+> >     -- Use dev_err_probe() (Multiple reviewers)
+> >   o Commits "dt-bindings: PCI: brcmstb: ..."
+> >     -- Specify the "resets" and "reset-names" in the same manner
+> >        as does qcom,ufs.yaml specifies "clocks" and
+> >        "clock-names" (Krzysztof)
+> >     -- Drop reset desccriptions as they were pretty content-free
+> >        anyhow. (Krzysztof)
+> >
+> > V4 Changes:
+> >   o Commit "Check return value of all reset_control_xxx calls"
+> >     -- Blank line before "return" (Stan)
+> >   o Commit "Use common error handling code in brcmstb_probe()"
+> >     -- Drop the "Fixes" tag (Stan)
+> >   o Commit "dt-bindings: PCI ..."
+> >     -- Separate the main commit into two: cleanup and adding the
+> >        7712 SoC (Krzysztof)
+> >     -- Fold maintainer change commit into cleanup change (Krzysztof)
+> >     -- Use minItems/maxItems where appropriate (Krzysztof)
+> >     -- Consistent order of resets/reset-names in decl and usage
+> >        (Krzysztof)
+> >
+> > V3 Changes:
+> >   o Commit "Enable 7712 SOCs"
+> >     -- Move "model" check from outside to inside func (Stan)
+> >   o Commit "Check return value of all reset_control_xxx calls"
+> >     -- Propagate errors up the chain instead of ignoring them (Stan)
+> >   o Commit "Refactor for chips with many regular inbound BARs"
+> >     -- Nine suggestions given, nine implemented (Stan)
+> >   o Commit "Make HARD_DEBUG, INTR2_CPU_BASE offsets SoC-specific"
+> >     -- Drop tab, add parens around macro params in expression (Stan)
+> >   o Commit "Use swinit reset if available"
+> >     -- Treat swinit the same as other reset controllers (Stan)
+> >        Stan suggested to use dev_err_probe() for getting resources
+> >        but I will defer that to future series (if that's okay).
+> >   o Commit "Get resource before we start asserting resets"
+> >     -- Squash this with previous commit (Stan)
+> >   o Commit "Use "clk_out" error path label"
+> >     -- Move clk_prepare_enable() after getting resouurces (Stan)
+> >     -- Change subject to "Use more common error handling code in
+> >        brcm_pcie_probe()" (Markus)
+> >     -- Use imperative commit description (Markus)
+> >     -- "Fixes:" tag added for missing error return. (Markus)
+> >   o Commit "dt-bindings: PCI ..."
+> >     -- Split off maintainer change in separate commit.
+> >     -- Tried to accomodate Krzysztof's requests, I'm not sure I
+> >        have succeeded.  Krzysztof, please see [1] below.
+> >
+> >   [1] Wrt the YAML of brcmstb PCIe resets, here is what I am trying
+> >       to describe:
+> >
+> >       CHIP       NUM_RESETS    NAMES
+> >       =3D=3D=3D=3D       =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D    =3D=3D=3D=3D=
+=3D
+> >       4908       1             perst
+> >       7216       1             rescal
+> >       7712       3             rescal, bridge, swinit
+> >       Others     0             -
+> >
+> >
+> > V2 Changes (note: four new commits):
+> >   o Commit "dt-bindings: PCI ..."
+> >     -- s/Adds/Add/, fix spelling error (Bjorn)
+> >     -- Order compatible strings alphabetically (Krzysztof)
+> >     -- Give definitions first then rules (Krzysztof)
+> >     -- Add reason for change in maintainer (Krzysztof)
+> >   o Commit "Use swinit reset if available"
+> >     -- no need for "else" clause (Philipp)
+> >     -- fix improper use of dev_err_probe() (Philipp)
+> >   o Commit "Use "clk_out" error path label"
+> >     -- Improve commit message (Bjorn)
+> >   o Commit "PCI: brcmstb: Make HARD_DEBUG, INTR2_CPU_BASE offsets SoC-s=
+pecific"
+> >     -- Improve commit subject line (Bjorn)
+> >   o Commit (NEW) -- Change field name from 'type' to 'model'
+> >     -- Added as requested (Stanimir)
+> >   o Commit (NEW) -- Check return value of all reset_control_xxx calls
+> >     -- Added as requested (Stanimir)
+> >   o Commit (NEW) "Get resource before we start asserting reset controll=
+ers"
+> >     -- Added as requested (Stanimir)
+> >   o Commit (NEW) -- "Remove two unused constants from driver"
+> >
+> >
+> > V1:
+> >   This submission is for the Broadcom STB 7712, sibling SOC of the RPi5=
+ chip.
+> >   Stanimir has already submitted a patch "Add PCIe support for bcm2712"=
+ for
+> >   the RPi version of the SOC.  It is hoped that Stanimir will allow us =
+to
+> >   submit this series first and subsequently rebase his patch(es).
+> >
+> >   The largest commit, "Refactor for chips with many regular inbound BAR=
+s"
+> >   affects both the STB and RPi SOCs.  It allows for multiple inbound ra=
+nges
+> >   where previously only one was effectively used.  This feature will al=
+so
+> >   be present in future STB chips, as well as Broadcom's Cable Modem gro=
+up.
+> >
+> > Jim Quinlan (13):
+> >   dt-bindings: PCI: Change brcmstb maintainer and cleanup
+> >   dt-bindings: PCI: Use maxItems for reset controllers
+> >   dt-bindings: PCI: brcmstb: Add 7712 SoC description
+> >   PCI: brcmstb: Use common error handling code in brcm_pcie_probe()
+> >   PCI: brcmstb: Use bridge reset if available
+> >   PCI: brcmstb: Use swinit reset if available
+> >   PCI: brcmstb: PCI: brcmstb: Make HARD_DEBUG, INTR2_CPU_BASE offsets
+> >     SoC-specific
+> >   PCI: brcmstb: Remove two unused constants from driver
+> >   PCI: brcmstb: Don't conflate the reset rescal with phy ctrl
+> >   PCI: brcmstb: Refactor for chips with many regular inbound windows
+> >   PCI: brcmstb: Check return value of all reset_control_xxx calls
+> >   PCI: brcmstb: Change field name from 'type' to 'soc_base'
+> >   PCI: brcmstb: Enable 7712 SOCs
+> >
+> >  .../bindings/pci/brcm,stb-pcie.yaml           |  40 +-
+> >  drivers/pci/controller/pcie-brcmstb.c         | 513 +++++++++++++-----
+> >  2 files changed, 412 insertions(+), 141 deletions(-)
+> >
+> >
+> > base-commit: e724918b3786252b985b0c2764c16a57d1937707
+> > --
+> > 2.17.1
+> >
+>
+> --
+> =E0=AE=AE=E0=AE=A3=E0=AE=BF=E0=AE=B5=E0=AE=A3=E0=AF=8D=E0=AE=A3=E0=AE=A9=
+=E0=AF=8D =E0=AE=9A=E0=AE=A4=E0=AE=BE=E0=AE=9A=E0=AE=BF=E0=AE=B5=E0=AE=AE=
+=E0=AF=8D
 
------BEGIN PGP SIGNATURE-----
+--00000000000060fed606200cddc4
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZsOCgAAKCRB4tDGHoIJi
-0rCWAQDncnT0UZYNEPDYOfWVyEJhtjRYoO3rtXRanI9RwfAzBwEAst0qPutNidCg
-GBrdkMH8J6rz0F2JECiwJ2/aDMe+vAI=
-=Q8H0
------END PGP SIGNATURE-----
-
---VXLsL0ZARuSdDWIZ--
+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
+mOAplh6h3nMZUZxBguxG3g2p3iD4EgibUYneEzqOQafIQB/naf2uetKb8y9jKgWJxq2Y4y8Jqg2u
+uVIO1AyOJjWwqdgN+QhuIlat+qZd03P48Gim9ZPEMDUCAwEAAaOCAdswggHXMA4GA1UdDwEB/wQE
+AwIFoDCBowYIKwYBBQUHAQEEgZYwgZMwTgYIKwYBBQUHMAKGQmh0dHA6Ly9zZWN1cmUuZ2xvYmFs
+c2lnbi5jb20vY2FjZXJ0L2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNydDBBBggrBgEFBQcw
+AYY1aHR0cDovL29jc3AuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAw
+TQYDVR0gBEYwRDBCBgorBgEEAaAyASgKMDQwMgYIKwYBBQUHAgEWJmh0dHBzOi8vd3d3Lmdsb2Jh
+bHNpZ24uY29tL3JlcG9zaXRvcnkvMAkGA1UdEwQCMAAwSQYDVR0fBEIwQDA+oDygOoY4aHR0cDov
+L2NybC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcmwwJQYDVR0R
+BB4wHIEaamFtZXMucXVpbmxhbkBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYBBQUHAwQwHwYD
+VR0jBBgwFoAUljPR5lgXWzR1ioFWZNW+SN6hj88wHQYDVR0OBBYEFGx/E27aeGBP2eJktrILxlhK
+z8f6MA0GCSqGSIb3DQEBCwUAA4IBAQBdQQukiELsPfse49X4QNy/UN43dPUw0I1asiQ8wye3nAuD
+b3GFmf3SZKlgxBTdWJoaNmmUFW2H3HWOoQBnTeedLtV9M2Tb9vOKMncQD1f9hvWZR6LnZpjBIlKe
++R+v6CLF07qYmBI6olvOY/Rsv9QpW9W8qZYk+2RkWHz/fR5N5YldKlJHP0NDT4Wjc5fEzV+mZC8A
+AlT80qiuCVv+IQP08ovEVSLPhUp8i1pwsHT9atbWOfXQjbq1B/ditFIbPzwmwJPuGUc7n7vpmtxB
+75sSFMj27j4JXl5W9vORgHR2YzuPBzfzDJU1ul0DIofSWVF6E1dx4tZohRED1Yl/T/ZGMYICbTCC
+AmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UE
+AxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMSO43VW7D5NP1X/KD
+MA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCCu9dnpqGpGKOhK9qRtHZ8Xu262s1iB
+ZhU/5Xpt0mJ7QzAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yNDA4
+MTkxNzQ0NDZaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFlAwQBFjALBglg
+hkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzALBglghkgBZQME
+AgEwDQYJKoZIhvcNAQEBBQAEggEAjYEmNfKzYn0XivBhllxQyDSLegtznekHKVj38c4BBjddGptv
+n1qkehO92fT5C+p9S4/HuEjk1BqAbDXoEAHLqBdpvzjY8tSKs4kJE9LtoiNxQLc2FaM36VlWWKQ+
+/Ir8HjeBOBUN9HO1tfyv+DcX3mg/i1bVucS13J4J5w9bsRhEoyOpStUq6OLP6P4/FZTFdpTCdDQF
+ZAACQPGutNJNeiZcJAsZYaHo1X1KBr8HrxnNsxPv6mcsDwDNZq4tBoANh/6JNdP8H74ZPwcvVvoP
+QHlbRCAXnBHsEv5Zr7Yv3CIXHki+BuoJsiqW182rcgu4kMi2VLJ+ECBFHK0MbbUDig==
+--00000000000060fed606200cddc4--
 
