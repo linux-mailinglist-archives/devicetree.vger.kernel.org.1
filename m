@@ -1,204 +1,189 @@
-Return-Path: <devicetree+bounces-94722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BBCB956650
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 11:06:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C29A7956537
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 10:09:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F6851C218E5
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 09:06:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 016261C2182D
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 08:09:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 695FF15B99D;
-	Mon, 19 Aug 2024 09:05:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EE8A15AADA;
+	Mon, 19 Aug 2024 08:09:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="bUquSnXb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BtPL0NzN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40E7A15B560;
-	Mon, 19 Aug 2024 09:05:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83368A41;
+	Mon, 19 Aug 2024 08:09:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724058356; cv=none; b=uMd7OEZZSxjzP0TIPMLdyl2EzyffXN6WWyvm7V9yBllipBiMz980gtAf1Cq0LNPNseREDB/jftlfughOll+KYLZtmrP0YxQOl2VrqTkGnUyFuTzNPr9SSKq/cz8JlExd6leUj9MoXrDCLUhO2qJoK3rHAcPwtiL0dWi5B7KRYro=
+	t=1724054946; cv=none; b=WDd90FbpZcgc5LU36aP8kRRFezeMmCQYL4HuyfPbR+UlC5HFvNVgZjNkfoHpWOPlrOVLra553c02Rmdi3iRzkSJqnJeGcl57/pG9u7LnuQsIdPfE5Xadb/W3SABs4/PBb7BK0wLjw869ekj6sW6V5amNYQsTQJ4ygHH0GWhX5Dk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724058356; c=relaxed/simple;
-	bh=lR2WZd/P0NWVFQpF5VOo611F5KnOE/Raog9Y5v8jRSE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=pwp0oCnxAI8jpIHgmdCyvJCp7Bu06ZeiFL+V8emg+U28VBrNr1CMunOBL8XJtbi5O6IehlzHuTrJXKksyN+Zch1D5suNd5lMcugA5p75VePuwv1oPkxFpZx56FOSwgMeZpTKa01vcCxAHRj4BWl0NQmFOVcESmAW3pbKqleOSS0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=bUquSnXb; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47J7FfIb014306;
-	Mon, 19 Aug 2024 02:15:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1724051741;
-	bh=0vsrItiP+UOuGajC7NCZTlPPCFYcRA8XAnCYPGpz6CY=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=bUquSnXby+EIUCpW7ZzEe4Ar3hHMOjtdKafPUf7hARC5ZjzvIJT73k+Rlyqz+4eIc
-	 mrjWcdP9ay9xONwaeGiMN0/96GxVUoMs+SkPhtY+O7gvOj73xKmUW2ZI274f8FA/tw
-	 h4OSozP0aJ8YN33a2OvxkoyPZHyFlEpEGBaRZlp4=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47J7Ff7S013071
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 19 Aug 2024 02:15:41 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 19
- Aug 2024 02:15:41 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 19 Aug 2024 02:15:41 -0500
-Received: from [10.249.135.225] ([10.249.135.225])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47J7FVGi056124;
-	Mon, 19 Aug 2024 02:15:32 -0500
-Message-ID: <2ee6f2eb-9a3f-4e04-a6d5-059c4381cbd8@ti.com>
-Date: Mon, 19 Aug 2024 12:45:30 +0530
+	s=arc-20240116; t=1724054946; c=relaxed/simple;
+	bh=fmrtyZH6m98lDrrNjeOwpT241Zn2puah/4W+jvMyTKI=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version; b=ZwVRC6/xuaYKBzvmvLhixX5XCbzWk8zn/gMcbSkxcisEE7bA3S+apmveY9woyQRJRJ9/fmMkVLWrXlHNhLv4zBHcFG3chLQfNkR+i7jmR75xZR+/OOfGB5u0BllN7YiPKGlzLy4JlpAte6IwOxW/L1shsbQKxJ3LiyFBD1Pvf8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BtPL0NzN; arc=none smtp.client-ip=209.85.210.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f52.google.com with SMTP id 46e09a7af769-70c9cda7f1cso1810168a34.3;
+        Mon, 19 Aug 2024 01:09:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724054943; x=1724659743; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=RoQpEAbr6X6DF3JMAeXgzIajk1r2oZJlDoDuARKzu94=;
+        b=BtPL0NzNbNPbMl1MJ0c6cQCRs5QV2MCpKyn8Wm3aSSGbJPICOVyFKd7FZCdqT7XpJL
+         cgRwr51YB8+Q/KR0D/aizhbXbPVzO6TOhvGZ8DQnaoqTqzwnyKbkXeWSV5q4VSWjz+kW
+         fJNGVLkzhWRu66Pb9tvBJG94skNiQBajpvxDEt5o/MbQhaIilGQed34Ic0oFVKKxKEkR
+         nC5BFHINyvEcPanAGBmzOBDrNNX3ZAuD7ASnmGwJwccOsZ33Ii8Rd4VdhxqkfMMy+Gva
+         8qaAJwPczNucHZh722chH3l0+KSJSFW0QRe+xb5Y1LXerNmnMDNB67TOmV2ItG85XbXA
+         f8sA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724054943; x=1724659743;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RoQpEAbr6X6DF3JMAeXgzIajk1r2oZJlDoDuARKzu94=;
+        b=Q8opAL1NiUCg/mIxgFa64Jfe0FUquNrUMzts0c+Y9qtjk/8SIMd44zndYWvHlXf1Tt
+         Fp5B88WvTkbO6h62igIoaboxEWhRGioHYvGO+Cx688U38sZXzR0VIBiwwAMCUjdTlUZF
+         POx7rToxWFuGSV9g02Hl+By3nFo+UpqX/JchqoSeq3AI5T+1wi74eZ48tPxX8YczN8e+
+         sUnhJS0NkVdz9nF9K2hxgTg+u+6EfCxwtkN2ORWg6ckZzN2tzyjuG72JqdI6wY12rNUP
+         zXMDNhEzOYRSa3a8ASsUz+KZrQLwPMpSIQBmRBlpyF35i/9WZ8Q2gHp8OfJMwUXMunLH
+         zXiA==
+X-Forwarded-Encrypted: i=1; AJvYcCURUylVPj7m/j/hcwORuJfgezRYXy7jdzqu8dWgTySXY/C+MQhQX8KEy2ng9BmcGKFX1XP03uvV4Z0N5k+GW8rfzO8HrOIvYMaDJj2IWRiPSR//kHeY9OytXOVmyWQ88rDj5X/Jd5yfBg==
+X-Gm-Message-State: AOJu0YzTAmnV/J7CFeEwkb6wXeWqeZh6mkU4YNfNeVVlSiDFvRH1O83C
+	ejdjGO5mhIp7+tr68s5OmXL9nujV6sYwxIzdLpGZQgp1TnV7yMUZTmUxug==
+X-Google-Smtp-Source: AGHT+IFod2ekzS/mbwOYQcZZfonp1HP9EFILJJlkZ+G7BPDhSISSpdEZ0Wc89uSKO0iswQcvNkw5tg==
+X-Received: by 2002:a05:6870:4726:b0:261:1ffb:4ab2 with SMTP id 586e51a60fabf-2701c3c75a5mr12138640fac.20.1724054943340;
+        Mon, 19 Aug 2024 01:09:03 -0700 (PDT)
+Received: from localhost.localdomain ([122.8.183.87])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-270049f7539sm2795526fac.47.2024.08.19.01.09.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Aug 2024 01:09:02 -0700 (PDT)
+From: Chen Wang <unicornxw@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	inochiama@outlook.com,
+	unicorn_wang@outlook.com,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	guoren@kernel.org,
+	chao.wei@sophgo.com,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	haijiao.liu@sophgo.com,
+	xiaoguang.xing@sophgo.com
+Subject: [PATCH] riscv: sophgo: dts: add gpio controllers for SG2042 SoC
+Date: Mon, 19 Aug 2024 16:08:51 +0800
+Message-Id: <20240819080851.1954691-1-unicornxw@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v5 2/2] net: ti: icssg-prueth: Add support for PA
- Stats
-To: Dan Carpenter <dan.carpenter@linaro.org>,
-        MD Danish Anwar
-	<danishanwar@ti.com>
-CC: Suman Anna <s-anna@ti.com>, Sai Krishna <saikrishnag@marvell.com>,
-        Jan
- Kiszka <jan.kiszka@siemens.com>, Andrew Lunn <andrew@lunn.ch>,
-        Diogo Ivo
-	<diogo.ivo@siemens.com>,
-        Kory Maincent <kory.maincent@bootlin.com>,
-        Heiner
- Kallweit <hkallweit1@gmail.com>,
-        Simon Horman <horms@kernel.org>, Paolo Abeni
-	<pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>, Eric Dumazet
-	<edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Roger Quadros
-	<rogerq@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Santosh Shilimkar
-	<ssantosh@kernel.org>, Nishanth Menon <nm@ti.com>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <srk@ti.com>, Vignesh Raghavendra
-	<vigneshr@ti.com>
-References: <20240814092033.2984734-1-danishanwar@ti.com>
- <20240814092033.2984734-3-danishanwar@ti.com>
- <cd15268f-f6d3-4fca-bd7f-c94011f55996@stanley.mountain>
-Content-Language: en-US
-From: "Anwar, Md Danish" <a0501179@ti.com>
-In-Reply-To: <cd15268f-f6d3-4fca-bd7f-c94011f55996@stanley.mountain>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 
+From: Chen Wang <unicorn_wang@outlook.com>
 
+Add support for the GPIO controller of Sophgo SG2042.
 
-On 8/15/2024 4:58 PM, Dan Carpenter wrote:
-> On Wed, Aug 14, 2024 at 02:50:33PM +0530, MD Danish Anwar wrote:
->> Add support for dumping PA stats registers via ethtool.
->> Firmware maintained stats are stored at PA Stats registers.
->> Also modify emac_get_strings() API to use ethtool_puts().
->>
->> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->> ---
->>  drivers/net/ethernet/ti/icssg/icssg_ethtool.c | 17 +++++-----
->>  drivers/net/ethernet/ti/icssg/icssg_prueth.c  |  6 ++++
->>  drivers/net/ethernet/ti/icssg/icssg_prueth.h  |  5 ++-
->>  drivers/net/ethernet/ti/icssg/icssg_stats.c   | 19 +++++++++--
->>  drivers/net/ethernet/ti/icssg/icssg_stats.h   | 32 +++++++++++++++++++
->>  5 files changed, 67 insertions(+), 12 deletions(-)
->>
->> diff --git a/drivers/net/ethernet/ti/icssg/icssg_ethtool.c b/drivers/net/ethernet/ti/icssg/icssg_ethtool.c
->> index 5688f054cec5..51bb509d37c7 100644
->> --- a/drivers/net/ethernet/ti/icssg/icssg_ethtool.c
->> +++ b/drivers/net/ethernet/ti/icssg/icssg_ethtool.c
->> @@ -83,13 +83,11 @@ static void emac_get_strings(struct net_device *ndev, u32 stringset, u8 *data)
->>  
->>  	switch (stringset) {
->>  	case ETH_SS_STATS:
->> -		for (i = 0; i < ARRAY_SIZE(icssg_all_stats); i++) {
->> -			if (!icssg_all_stats[i].standard_stats) {
->> -				memcpy(p, icssg_all_stats[i].name,
->> -				       ETH_GSTRING_LEN);
->> -				p += ETH_GSTRING_LEN;
->> -			}
->> -		}
->> +		for (i = 0; i < ARRAY_SIZE(icssg_all_stats); i++)
->> +			if (!icssg_all_stats[i].standard_stats)
->> +				ethtool_puts(&p, icssg_all_stats[i].name);
->> +		for (i = 0; i < ICSSG_NUM_PA_STATS; i++)
-> 
-> It would probably be better to use ARRAY_SIZE(icssg_all_pa_stats) so that it's
-> consistent with the loop right before.
+SG2042 uses IP from Synopsys DesignWare APB GPIO and has
+three GPIO controllers.
 
-Sure Dan.
+Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
+---
+ arch/riscv/boot/dts/sophgo/sg2042.dtsi | 66 ++++++++++++++++++++++++++
+ 1 file changed, 66 insertions(+)
 
-> 
->> +			ethtool_puts(&p, icssg_all_pa_stats[i].name);
->>  		break;
->>  	default:
->>  		break;
->> @@ -100,13 +98,16 @@ static void emac_get_ethtool_stats(struct net_device *ndev,
->>  				   struct ethtool_stats *stats, u64 *data)
->>  {
->>  	struct prueth_emac *emac = netdev_priv(ndev);
->> -	int i;
->> +	int i, j;
->>  
->>  	emac_update_hardware_stats(emac);
->>  
->>  	for (i = 0; i < ARRAY_SIZE(icssg_all_stats); i++)
->>  		if (!icssg_all_stats[i].standard_stats)
->>  			*(data++) = emac->stats[i];
->> +
->> +	for (j = 0; j < ICSSG_NUM_PA_STATS; j++)
->> +		*(data++) = emac->stats[i + j];
-> 
-> Here i is not an iterator.  It's a stand in for ARRAY_SIZE(icssg_all_stats).
-> It would be more readable to do that directly.
-> 
-> 	for (i = 0; i < ICSSG_NUM_PA_STATS; i++)
-> 		*(data++) = emac->stats[ARRAY_SIZE(icssg_all_stats) + i];
-> 
-> To be honest, putting the pa_stats at the end of ->stats would have made sense
-> if we could have looped over the whole array, but since they have to be treated
-> differently we should probably just put them into their own ->pa_stats array.
-> 
+diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
+index eebd6817520e..6aff718dba4a 100644
+--- a/arch/riscv/boot/dts/sophgo/sg2042.dtsi
++++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
+@@ -99,6 +99,72 @@ i2c3: i2c@7030008000 {
+ 			status = "disabled";
+ 		};
+ 
++		gpio0: gpio@7030009000 {
++			compatible = "snps,dw-apb-gpio";
++			reg = <0x70 0x30009000 0x0 0x400>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			clocks = <&clkgen GATE_CLK_APB_GPIO>,
++				 <&clkgen GATE_CLK_GPIO_DB>;
++			clock-names = "bus", "db";
++
++			port0a: gpio-controller@0 {
++				compatible = "snps,dw-apb-gpio-port";
++				gpio-controller;
++				#gpio-cells = <2>;
++				snps,nr-gpios = <32>;
++				reg = <0>;
++				interrupt-controller;
++				#interrupt-cells = <2>;
++				interrupt-parent = <&intc>;
++				interrupts = <96 IRQ_TYPE_LEVEL_HIGH>;
++			};
++		};
++
++		gpio1: gpio@703000a000 {
++			compatible = "snps,dw-apb-gpio";
++			reg = <0x70 0x3000a000 0x0 0x400>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			clocks = <&clkgen GATE_CLK_APB_GPIO>,
++				 <&clkgen GATE_CLK_GPIO_DB>;
++			clock-names = "bus", "db";
++
++			port1a: gpio-controller@0 {
++				compatible = "snps,dw-apb-gpio-port";
++				gpio-controller;
++				#gpio-cells = <2>;
++				snps,nr-gpios = <32>;
++				reg = <0>;
++				interrupt-controller;
++				#interrupt-cells = <2>;
++				interrupt-parent = <&intc>;
++				interrupts = <97 IRQ_TYPE_LEVEL_HIGH>;
++			};
++		};
++
++		gpio2: gpio@703000b000 {
++			compatible = "snps,dw-apb-gpio";
++			reg = <0x70 0x3000b000 0x0 0x400>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			clocks = <&clkgen GATE_CLK_APB_GPIO>,
++				 <&clkgen GATE_CLK_GPIO_DB>;
++			clock-names = "bus", "db";
++
++			port2a: gpio-controller@0 {
++				compatible = "snps,dw-apb-gpio-port";
++				gpio-controller;
++				#gpio-cells = <2>;
++				snps,nr-gpios = <32>;
++				reg = <0>;
++				interrupt-controller;
++				#interrupt-cells = <2>;
++				interrupt-parent = <&intc>;
++				interrupts = <98 IRQ_TYPE_LEVEL_HIGH>;
++			};
++		};
++
+ 		pllclk: clock-controller@70300100c0 {
+ 			compatible = "sophgo,sg2042-pll";
+ 			reg = <0x70 0x300100c0 0x0 0x40>;
 
-Sure Dan. It will make more sense to have different array for pa_stats.
-I will do this change and update.
-
-> I haven't tested this so maybe I've missed something obvious.
-> 
-> The "all" in "icssg_all_stats" doesn't really make sense anymore btw...
-> 
-
-Correct, the "icssg_all_stats" should be renamed to "icssg_mii_g_rt_stats".
-
-> Sorry for being so nit picky on a v5 patch. :(
-> 
-
-It's okay. Thanks for the review. I will address all these comments and
-send out a v6.
-
-> regards,
-> dan carpenter
-> 
-
+base-commit: d9773e09adddf5cd69889545a5feeff119dc9034
 -- 
-Thanks and Regards,
-Md Danish Anwar
+2.34.1
+
 
