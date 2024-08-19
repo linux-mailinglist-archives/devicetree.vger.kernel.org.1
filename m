@@ -1,101 +1,108 @@
-Return-Path: <devicetree+bounces-94799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94800-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44430956B24
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 14:48:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB087956B33
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 14:51:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0069028387A
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 12:48:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 617661F22CC3
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 12:51:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2338169382;
-	Mon, 19 Aug 2024 12:48:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cwEC0i8I"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA96816BE23;
+	Mon, 19 Aug 2024 12:51:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9B4F171AA;
-	Mon, 19 Aug 2024 12:48:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20AE916B732;
+	Mon, 19 Aug 2024 12:51:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724071720; cv=none; b=cug2B6O5Mf3mW8SAowzwHdgwaYGHNkJpCSnFMsCnarfXzFcQ+ct2dCE/pMXQW9bgEZAQvh7rvq7+hHdJigmQL4k5BYauta2dGxpRZy/xufj6d00fTb/YdDmCPsOT0Q/8kgNZfkb9pDSA3fHlCXMha3yldzflD2v9g7fjdoiotQk=
+	t=1724071876; cv=none; b=lFGof9ZJ+IVPbRvKlMg0pLZpiudejJkN92KzbXYl669kV/ONY7FXl+FoJjbX+j4OYG0qrgYxyakg1Qbwr/CcYJjoE2M1oMJWACTbuhE/3G0kLE2FKs6e6W0HcOMB3gW/cwUVLMh9U97UnRtLqGh2wlGgyHr0glN2m3WfEPzfjzs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724071720; c=relaxed/simple;
-	bh=VeC6qinsgdSJFUHZy7TXTLOd71KCTHGWUrsHusbBpIM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hr5UNqDuj7RFEGevH5kNLFUHB0o3fcUiZyx+viAiSqupJB7jw2GyhX9a0W7fYVRksV9F5daukgxtQYPOgYyfMgx6hoePs7jpnSuJ5teKUQMS8P1xWipaS1TEUnX61GTgG+5sa9gvXBhKwFJ8mrGaMLDe+J2B3L0YI+QFB1TefH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cwEC0i8I; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54F02C4AF0F;
-	Mon, 19 Aug 2024 12:48:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724071720;
-	bh=VeC6qinsgdSJFUHZy7TXTLOd71KCTHGWUrsHusbBpIM=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=cwEC0i8IRulT7qVZqhY8X2U1LZyq5l5535fPl/Ay8Q3IgVvlq1M9qwPIM8YkrDSr5
-	 oYXCRrhG/F/VgIQ9R5fgXXV3v39nZNrFQkqQJMDb8g2QIK/lb2eqOoKDPajlvGagee
-	 +YcfoCjEOGX7y6/wJMxwUGGsaPNj0RlW04SCHxPt9IwrOVz0MbJHml0k9Lf+DPW0uz
-	 5LOvQdUMS392dsjSj1+XOOJIuSq/DGZh7HvZ30Rl/8Cj5gKjbnw++6Mraw7cXRULhv
-	 7uwY3hJyl5wyvpSwXLTp2ge5nrtFHDgE7jJOkLGcq5vOAhV5zKjO+Bj9H6YgyJAPiH
-	 a1CKdxZjQJqlQ==
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-52f04c29588so5808190e87.3;
-        Mon, 19 Aug 2024 05:48:40 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXtqO8RYnPAhczzf9kvbErGO73/8pYrWD0/tJBozzyDl6mfdSoRynd/ckJnC+5UNcBB9tToBhW6wuRWT613al3AZz8q9dCQH0jIBXvMf0tY9QPOyExyHX02iWBcxkLCn0pF1crKuo6W/g==
-X-Gm-Message-State: AOJu0Yy1D1EJGEHuEhVqvEQRByEe7pjSzCTAMKYWEmr9VitVMm1M5fOJ
-	qWq2AG1rNkcahLDdCetppqFKrkOwy6W/xemQ1zfFuX+EXLAigh8v4OWCyExb5Wo28v6Zmc3CKYg
-	xVATBG199552dnM54CUGYd3C9jw==
-X-Google-Smtp-Source: AGHT+IGUv2VCrgwia5FSI9wYqGvyyDKGFE3Ln0Q1xp1SarderZlIjiNvyFM5dBH1efWo1ZM3O5R0ZKaqxMqABBy+TZU=
-X-Received: by 2002:a05:6512:2824:b0:52e:fa6b:e54a with SMTP id
- 2adb3069b0e04-5331c6b1d1bmr7926481e87.30.1724071718624; Mon, 19 Aug 2024
- 05:48:38 -0700 (PDT)
+	s=arc-20240116; t=1724071876; c=relaxed/simple;
+	bh=/IH5tDTMVDjFpUzjHKNT/0fRPTiJX9a1ylVmAhJ9EV8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EmI0AI5pQhBmVeiDeEI/ynYRQmBG2m0Qza5bbd9lLb6Z4do+8lw3laRnS66z0D3+0lwO8pv7UOdtK+Eqm2D9CIOaR4kqXIyAefNy0pirEy7JV6qh5uDAWjYAOXeSoztdUIq8MvZRCv3m1GJ8hR5phhtz35vr7hyiWHU9NioV2RA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-42812945633so37698185e9.0;
+        Mon, 19 Aug 2024 05:51:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724071873; x=1724676673;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XbEQFwWaHyXzGbFpAlH+akSQvp4xWmKnyzly8gjh4os=;
+        b=fBv//SR4zWWC8WN/CCscm6/2fhY8/AIjJDnNjmC6gfuAArj9ZI8Nb8akTDoUYyo396
+         olOFXQcobUuTAOUM28xW71Rdq5D//i02eS2PP4McjuFrcjzmdHY//mLANXqFXZIDq+qP
+         X8geF5kzZHTP+JP81aGnuFThnkB6AR4SPCfIGRejSPhxk2WSU2X54BOSO7Ugx5uOlu9m
+         SIH80QCMOFXpwn7mYFal9S6WuBzJheoGUJr391QOmQiHyozAhuUIbDqoSe2FjSnpVpKc
+         ftKaOdckLSZ9ofSshLkmR91OKluz78PANxSRbah2yeEuNPpKRQ5XFCzrR2Ca8fTqfoYB
+         Qz/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUb/cdkfsmYNJzWwLO96FpKwOQCf9pgRlIiUHanhVU5WgsSleIo4VEIVFsTHh7WvAdfgqshx+r2iV7czcrA3LBOXCbV8kYXhL2eCvtazqLEe9IrYKRvSNeo2aBqQa5oTd52MZBX4wiDaCOj0ND6AzpbG2XjcamqBOEB2/zp/F/wKlBR9UFcq54ecQzlzqBny30Kr4DG9hRU/uaOdnlyn/YPsmefQMyi53I=
+X-Gm-Message-State: AOJu0Yy+417DIZXTA4WC9Zuut9ZC2YsD2eqDAOMlp9uZdIjdvIv3jZon
+	L0mHpP4ANcODiF08olJLr9FmRNEXsKuClXg41nxTbm9uHpEGV7JM
+X-Google-Smtp-Source: AGHT+IHmBAF3LQNiic4ymfLmnDMEypJT2xjJaqmfZx+xLQJiUNz+uf/LAM4FAi1A8rOpiXrYHkW8HA==
+X-Received: by 2002:a5d:452b:0:b0:371:8c06:82ea with SMTP id ffacd0b85a97d-371943150a3mr6231730f8f.1.1724071873008;
+        Mon, 19 Aug 2024 05:51:13 -0700 (PDT)
+Received: from krzk-bin ([178.197.215.209])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-429ded72524sm167013235e9.34.2024.08.19.05.51.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Aug 2024 05:51:12 -0700 (PDT)
+Date: Mon, 19 Aug 2024 14:51:09 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Arnd Bergmann <arnd@arndb.de>, Mark Brown <broonie@kernel.org>, 
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, patches@opensource.cirrus.com
+Subject: Re: [PATCH 01/14] Input: samsung-keypad - switch to using
+ devm_clk_get_prepared()
+Message-ID: <xlbtkevzwcqm2j3xwykyktvpcn776imbijync47ogcnjargmw3@giaklcsa3iai>
+References: <20240819045813.2154642-1-dmitry.torokhov@gmail.com>
+ <20240819045813.2154642-2-dmitry.torokhov@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240816092417.3651434-1-Delphine_CC_Chiu@wiwynn.com> <20240816092417.3651434-29-Delphine_CC_Chiu@wiwynn.com>
-In-Reply-To: <20240816092417.3651434-29-Delphine_CC_Chiu@wiwynn.com>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 19 Aug 2024 06:48:26 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKtuuOyRu+fQ6Yu=7QHMWN+qPwwUYmuuEufYNtyyTw81Q@mail.gmail.com>
-Message-ID: <CAL_JsqKtuuOyRu+fQ6Yu=7QHMWN+qPwwUYmuuEufYNtyyTw81Q@mail.gmail.com>
-Subject: Re: [PATCH v12 28/28] ARM: dts: aspeed: yosemite4: fix GPIO linename typo
-To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-Cc: patrick@stwcx.xyz, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
-	Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240819045813.2154642-2-dmitry.torokhov@gmail.com>
 
-On Fri, Aug 16, 2024 at 3:26=E2=80=AFAM Delphine CC Chiu
-<Delphine_CC_Chiu@wiwynn.com> wrote:
->
-> Fix GPIO linename typo and add missing GPIO pin initial state.
->
-> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-> ---
->  .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 554 ++++++++++++++----
->  1 file changed, 455 insertions(+), 99 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b=
-/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> index abd4a9173de4..4090725160f9 100644
-> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> @@ -285,6 +285,8 @@ &mac2 {
->         pinctrl-0 =3D <&pinctrl_rmii3_default>;
->         use-ncsi;
->         mellanox,multi-host;
-> +       ncsi-ctrl,start-redo-probe;
-> +       ncsi-ctrl,no-channel-monitor;
+On Sun, Aug 18, 2024 at 09:57:58PM -0700, Dmitry Torokhov wrote:
+> Switch to using devm_clk_get_prepared() instead of combining
+> devm_clk_get() with clk_prepare(), which simplifies the code and
+> ensures that the clock is unprepared at the right time relative to
+> releasing other managed resources.
 
-Not a vendor prefix nor a documented property name.
+...
 
-Rob
+>  	device_init_wakeup(&pdev->dev, pdata->wakeup);
+> @@ -439,20 +433,12 @@ static int samsung_keypad_probe(struct platform_device *pdev)
+>  
+>  err_disable_runtime_pm:
+>  	pm_runtime_disable(&pdev->dev);
+> -err_unprepare_clk:
+> -	clk_unprepare(keypad->clk);
+>  	return error;
+>  }
+>  
+>  static void samsung_keypad_remove(struct platform_device *pdev)
+>  {
+> -	struct samsung_keypad *keypad = platform_get_drvdata(pdev);
+> -
+>  	pm_runtime_disable(&pdev->dev);
+> -
+> -	input_unregister_device(keypad->input_dev);
+
+This looks unrelated.
+
+Best regards,
+Krzysztof
+
 
