@@ -1,147 +1,122 @@
-Return-Path: <devicetree+bounces-94704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94705-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1B50956566
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 10:20:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B72B495657A
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 10:23:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8BD1D1F21537
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 08:20:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9FC71C21861
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 08:23:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D9BF1581E0;
-	Mon, 19 Aug 2024 08:20:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6084B15B0F8;
+	Mon, 19 Aug 2024 08:23:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ChrBTBVZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9197F208A4;
-	Mon, 19 Aug 2024 08:19:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ADC415AAD6
+	for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 08:23:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724055601; cv=none; b=I59bJD4atz0Y+Q10b1McYoNGRL4IdPiLPaPho60/MRcqQEaFZg8Mvywky8YHdDMXL1pLFZYrWQbyGFERPAdfvR4rgXTYo8192c75BkETRcgoQJ1DSMSgnFuuJuR9jiXbY7Cb593tjRprFexKnjIqHtW3cuMGddLpXH86KSOaS/8=
+	t=1724055820; cv=none; b=iU1Vng13l5c6HicwAhCHWR+NuOzzhWue1ZyT+TzbFpHjUznnnDXvvf2ASSGwBwiSTs3XCxJS5cE0lEti5Chy4jfEm3pQD6QTlNWEF/t/W2qa8xMqTDWtJlRl5frE9nDd+zeY94TQZsQgQFEovNsldOKoc9HYXBsDAZrUR4m0IYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724055601; c=relaxed/simple;
-	bh=Nouv1Dmsj8RfgcNwsiQ+zvpCbcVDYDMltRGUv/xjAqU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VUkJ4qK76Gunnt0MHDdwxdmDfClbOr4ehPp3nzwREC++UXrjOwSe6QKUh2ATS9mL9dLuMxYo3d0qGLmeVf8sXsKS+WrxhWA48gz1y8euD26UwGijHMx+b0XA1je5RXEq4m0mI3uLhUUpPD0rTTBP5Yruw+liXnqC3yBxvmej6v8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-428ec6c190eso33654935e9.1;
-        Mon, 19 Aug 2024 01:19:59 -0700 (PDT)
+	s=arc-20240116; t=1724055820; c=relaxed/simple;
+	bh=kbDNaYfeN638CZB1xcia9reCdJjFXpCYzXtt0dZYcsU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TxdHOL0A5sBSrOybUNYCUyQcr0Ltd5GZpRTKOZ92iMOPKwubewNGEwLuMSAVzsjDvCp+sHeSIRHyBh+zLXXl2490yzW5hRn7IDI8IO98t8Eek7K06g/dXarJc6wu4C2bF8NyETtNdY4sx4tcL4wiKLxBgOGtby0uuENDsDOH1Ng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ChrBTBVZ; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-428119da952so32158805e9.0
+        for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 01:23:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1724055817; x=1724660617; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rFFRqaLMAKXLToOtJy9WdY/znvYXwwMfNOAODqDhSMo=;
+        b=ChrBTBVZTdTZXyv1XmRRePFmIGEQYUFDPSsCJVQGLtpSMWndh2ROnqumtaMqt1MwDF
+         oohzdEE9+DTxa/tT/L4pt3eNm3iHIjcdkPdO2G+5p1xaSF/VGij1gdPTCRW5lfFodteH
+         0/4ZDTRPGF7rmITf1lun3t/NFUwhnb06z53iDDKj2GgHEuS3pQ8Vp9vFIuA4NIfc8E42
+         cpaxmSVwSj0eqmyZRhLHkcJr8AiYPOybDh8ipdutEsu8Hi/DSaxo1Ba5mkmXWVovCSM+
+         exG6zcybPD4Jnfo4Ji3dR6ngDfkMFYkFQdEIUqy457a866Nj07u5qFqnqmCGcvUNRgcU
+         EzYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724055598; x=1724660398;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AUYUJLRw3TtbPkMZU63P542FQWJqsbgCa/2jFZaO0fE=;
-        b=YtnZRyVCZvwwdOTS6UMacdnJRZdcS1VM3iKYJ3TPJ9ed9WFWoMoe/t4E+689NBxAci
-         rsEpcvV0yTH/1X9nVujGKsZVa9sYfj6EfLkMP48sw1wxPQzpJdAuxgOUwkGMy8z6/VMl
-         ucH0JnlP6hbe6MumnftEg4K+MRSGpUsCELucBsvxjQ4crOVxfKJzQ4d11AWsLMceGnk3
-         fKeXDVYJA0aiigl+xPIwW/ThZM9bsuEYYhGGtEly+CDtJthLxz9BOomgTHNtGR6NKulg
-         KnTn0YzVh5Sn/gLjE1dv1vuaHSMXuudFysK12pCUqkaU0CFMKv94PgFGt0iQMHgVtf8G
-         kk2g==
-X-Forwarded-Encrypted: i=1; AJvYcCUWjafHrBIzTKsI7AuuvswNUC3js6nNOx8csE+jydL7YEPKKBSm/RVxP4ymT7hOqVSqbkvYN8XPP3JRY11tmsCkFbZkNLBs3sl4wzfpr++T+ZTyCxtT3CBvbCpnxB5AckZfPNn+iAPSLnavRB86ZiiD7drfEsyPaytJQBQDyvw6Z7ev/gtQXYRj182QmL7TwtCNrhem1pWH+l3AXOVGOIq9PIgBTdRL
-X-Gm-Message-State: AOJu0Yw/MAR3CoKut9uSYaoD/n47dIsplNC1M3t/6hrmQqG5CFklAZ5I
-	/hXfojKrTMpT3+ueCKwkYfmcxnnL3fXNoX05GvjLP4kPaUE03wb6
-X-Google-Smtp-Source: AGHT+IHFbZ0xIu4V8B12eur1z2oMlUHsadyUlMiAVvi2bhhhOQxH8YyisZyXZiXRYgozYAZBhPnxYA==
-X-Received: by 2002:a05:600c:3c99:b0:426:6220:cb57 with SMTP id 5b1f17b1804b1-42aa82651fcmr38918415e9.25.1724055597563;
-        Mon, 19 Aug 2024 01:19:57 -0700 (PDT)
-Received: from krzk-bin ([178.197.215.209])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-429ded29fcfsm155437865e9.20.2024.08.19.01.19.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Aug 2024 01:19:56 -0700 (PDT)
-Date: Mon, 19 Aug 2024 10:19:53 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Sunyeal Hong <sunyeal.hong@samsung.com>
-Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>, 
-	Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 1/4] dt-bindings: clock: add ExynosAuto v920 SoC CMU
- bindings
-Message-ID: <nqokjhodd4g3l7s5ukvhirytv4poiusgd5hgv2ntn3ekyolzyd@zmxxtwjgkqmp>
-References: <20240819052416.2258976-1-sunyeal.hong@samsung.com>
- <CGME20240819052422epcas2p4db394defd5f298658f7841af3649ac6f@epcas2p4.samsung.com>
- <20240819052416.2258976-2-sunyeal.hong@samsung.com>
+        d=1e100.net; s=20230601; t=1724055817; x=1724660617;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rFFRqaLMAKXLToOtJy9WdY/znvYXwwMfNOAODqDhSMo=;
+        b=YPWEf8YoHDtmbnrM5EwryrJKGihzWMwm91WOh9WB/eSrI6FpsTLPqntbCiVL0XCLqr
+         IMsx1tq56UbiLT3ZDL49iAhDDjF/+VFMI/lJG0jkXLdh1q3QUaBjz7vks/KjGwqjZXkl
+         zZWiClUNIv7l613KIJW19aFHQBB+L84XKhbG0dx5A5pYXnRGIb4EgtZyUXLfXOljdWxa
+         1BvlCmiPNBniMKik0Wc7TqmDAm2ICkhV7KmuKaezPtX+rSe3tshD2B46SIjkvU+/l95n
+         z+LhUIr9Cxpsm/rgPos0A/n/JVM0/cS9iLTkXuBOUyVwSdW2U7o8OLN4+d0aafgM/Pmq
+         4C4g==
+X-Forwarded-Encrypted: i=1; AJvYcCX4h72HnGu3GbD2fDJm1OiBlbEzH3gCtgFJWwzOhep106ZVa3rboND24Km6II/6cMumsujk/xrCMENe+83dUYHD82SotWEIzeI9bg==
+X-Gm-Message-State: AOJu0Yw+vMowg//jD3qSWxnJsZkAsIqvyDm43tBFM7WKuGVlZF+Hn8uv
+	aTsSdamlLBP5X4q8HWAv1nDTbIhTrzE3Sk1/8IGvsfn4T2WqyXBgy92Ctb5QlT4=
+X-Google-Smtp-Source: AGHT+IGoPJX5KFTVTFHk/jojp0D2SHIUTsj+jz5BCHm6YGSsPInqjdE4c5SgCunL7XSQeKL6rhKr8w==
+X-Received: by 2002:a5d:5442:0:b0:371:8c79:73c1 with SMTP id ffacd0b85a97d-37194317aa2mr6963984f8f.2.1724055816248;
+        Mon, 19 Aug 2024 01:23:36 -0700 (PDT)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3719485e2b2sm7908066f8f.33.2024.08.19.01.23.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Aug 2024 01:23:35 -0700 (PDT)
+Message-ID: <918bb9e4-02d9-4dca-bed2-28bb123bdc10@linaro.org>
+Date: Mon, 19 Aug 2024 10:23:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240819052416.2258976-2-sunyeal.hong@samsung.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 08/10] dt-bindings: timer: rockchip: Add rk3576 compatible
+To: Detlev Casanova <detlev.casanova@collabora.com>,
+ linux-kernel@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Andi Shyti <andi.shyti@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, Lee Jones <lee@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+ Chris Morgan <macromorgan@hotmail.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Tim Lunn <tim@feathertop.org>, Muhammed Efe Cetin <efectn@protonmail.com>,
+ Andy Yan <andyshrk@163.com>, Jagan Teki <jagan@edgeble.ai>,
+ Dragan Simic <dsimic@manjaro.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Shresth Prasad <shresthprasad7@gmail.com>, Ondrej Jirman <megi@xff.cz>,
+ Weizhao Ouyang <weizhao.ouyang@arm.com>, Alexey Charkov <alchark@gmail.com>,
+ Jimmy Hon <honyuenkwun@gmail.com>, Finley Xiao <finley.xiao@rock-chips.com>,
+ Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+ Elaine Zhang <zhangqing@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-i2c@vger.kernel.org,
+ linux-iio@vger.kernel.org, linux-serial@vger.kernel.org, kernel@collabora.com
+References: <20240802214612.434179-1-detlev.casanova@collabora.com>
+ <20240802214612.434179-9-detlev.casanova@collabora.com>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20240802214612.434179-9-detlev.casanova@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Mon, Aug 19, 2024 at 02:24:12PM +0900, Sunyeal Hong wrote:
-> Add dt-schema for ExynosAuto v920 SoC clock controller.
-> Add device tree clock binding definitions for below CMU blocks.
+On 02/08/2024 23:45, Detlev Casanova wrote:
+> Add compatible string for Rockchip RK3576 timer.
 > 
-> - CMU_TOP
-> - CMU_PERIC0
-> 
-> Signed-off-by: Sunyeal Hong <sunyeal.hong@samsung.com>
- +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: External reference clock (38.4 MHz)
-> +            - description: CMU_PERIC0 NOC clock (from CMU_TOP)
-> +            - description: CMU_PERIC0 IP clock (from CMU_TOP)
-> +
-> +        clock-names:
-> +          items:
-> +            - const: oscclk
-> +            - const: noc
-> +            - const: ip
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: samsung,exynosautov920-cmu-peric1
-> +
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: External reference clock (38.4 MHz)
-> +            - description: CMU_PERIC1 NOC clock (from CMU_TOP)
-> +            - description: CMU_PERIC1 IP clock (from CMU_TOP)
-> +
-> +        clock-names:
-> +          items:
-> +            - const: oscclk
-> +            - const: noc
-> +            - const: ip
+> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
 
-This is the same peric0, so combine them and clocks could be just:
+Applied, thanks
 
-items:
-  - description: External reference clock (38.4 MHz)
-  - description: CMU_PERICn NOC clock (from CMU_TOP)
-  - description: CMU_PERICn IP clock (from CMU_TOP)
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: samsung,exynosautov920-cmu-misc
-> +
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: External reference clock (38.4 MHz)
-> +            - description: CMU_MISC NOC clock (from CMU_MISC)
-
-Similarly:
-
-- description: CMU_MISC/CMU_HSI0 NOC clock (from CMU_MISC)
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
