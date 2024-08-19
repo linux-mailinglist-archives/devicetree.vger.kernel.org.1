@@ -1,225 +1,165 @@
-Return-Path: <devicetree+bounces-94771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E844D95695E
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 13:34:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C139B956962
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 13:35:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19A941C2155D
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 11:34:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DBE3283291
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 11:35:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB6D3165EEF;
-	Mon, 19 Aug 2024 11:34:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93D80165EFB;
+	Mon, 19 Aug 2024 11:35:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="HL2ztUyN"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="jH3evXTk";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="DhE9D1D8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4F84167D83;
-	Mon, 19 Aug 2024 11:34:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8377515DBB2;
+	Mon, 19 Aug 2024 11:35:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724067272; cv=none; b=U2nq8t4eqCcSYw5ys9eGoimg7voJkY2UdOzh1isaOiNbxfPB9ArNJE8Z/V0f3LLbepW0c95SioeEf5141z2/PW7Ckd++14Z/HwVcKjE1pVYwTimi8oMqRxYZd3770hs3xI6bzoouKjAkTw8mfXUzcgNf3kE5B336hTGrOVJltXk=
+	t=1724067310; cv=none; b=m8ESFORcnpQ9U5vMeCheg2sq7SAPaznWRilXALF6TG8bEhysgo40GL5QIdUc7fOWRiecgNigD77SZJis5zeRJ6lNmfRoNcpuEcZU/O+IXolGYnLGiSTPfQK57DnhL6mLiSExMzLe5PW1CykMoWpMTxIhroquk3PexLZE1weiaIw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724067272; c=relaxed/simple;
-	bh=malUEUP13/IZNGpr+qi6kyLlVM4LzUUH3UWhcU+50PQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HJXMRb0ftQiNx6Z1wMgOwjHwlKn5GJRx7PlfArgpM/IyuO7xAdtHWio6+cmmTj3Curws8IRmNWl778bBPr4ga3cwhwHdU1KXc8lMtmwADgAEM/4sPX/CISm2huuPgACMpri3C8hNYhDVje0SUeIW9QIl8NO+Ta1N4Cu1pl0G/Ek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=HL2ztUyN; arc=none smtp.client-ip=148.163.158.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47JA19qd027356;
-	Mon, 19 Aug 2024 11:34:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=date
-	:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=pp1; bh=UsqDIMpxDyemRi4fPPsg3jRzMi1
-	OTL9ET/Uu1vaJCGc=; b=HL2ztUyNsMroxcQqGesnYXyjwOaobOAHrRdJdhWS0Vc
-	cIDdfOs7afU1fMD292vRj4tee3vSeer/2UbUegXnDwWZnl0ghVcQ5D1Yc0cpwc3t
-	MzmjstUQm/v734SWkhsyvAr0P8XVnkBoRvLLnYTXhIoytzDxfI55ssT0M0PBuYJK
-	tLwcQzTAj05qrgFR9utA6QP9jJ85US6zRcgvR63aTfJt8RCToDljYTXSJjkdW6BN
-	QGx/m7mEE1gok/j2OWbECQ/Lzoax1ejPZr9dxF4T0TgWG5tMIgWHloiNFvRf1PfR
-	n2mMXqJZNOVa5RSge2hua7auyjBaYBEw8Tf76Qe4Kkw==
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 412mc4g26v-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 19 Aug 2024 11:34:00 +0000 (GMT)
-Received: from m0360072.ppops.net (m0360072.ppops.net [127.0.0.1])
-	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 47JBXxq2006657;
-	Mon, 19 Aug 2024 11:33:59 GMT
-Received: from ppma13.dal12v.mail.ibm.com (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 412mc4g26p-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 19 Aug 2024 11:33:59 +0000 (GMT)
-Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma13.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 47JA0j1g030060;
-	Mon, 19 Aug 2024 11:33:58 GMT
-Received: from smtprelay03.fra02v.mail.ibm.com ([9.218.2.224])
-	by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 4138dm5n4y-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 19 Aug 2024 11:33:58 +0000
-Received: from smtpav06.fra02v.mail.ibm.com (smtpav06.fra02v.mail.ibm.com [10.20.54.105])
-	by smtprelay03.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 47JBXr8a43647404
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 19 Aug 2024 11:33:55 GMT
-Received: from smtpav06.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 3B8CF20040;
-	Mon, 19 Aug 2024 11:33:53 +0000 (GMT)
-Received: from smtpav06.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id CA5F320049;
-	Mon, 19 Aug 2024 11:33:47 +0000 (GMT)
-Received: from li-e7e2bd4c-2dae-11b2-a85c-bfd29497117c.ibm.com (unknown [9.195.39.27])
-	by smtpav06.fra02v.mail.ibm.com (Postfix) with ESMTPS;
-	Mon, 19 Aug 2024 11:33:47 +0000 (GMT)
-Date: Mon, 19 Aug 2024 17:03:42 +0530
-From: Amit Machhiwal <amachhiw@linux.ibm.com>
-To: Michael Ellerman <mpe@ellerman.id.au>
-Cc: Bjorn Helgaas <helgaas@kernel.org>, Rob Herring <robh@kernel.org>,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        kvm-ppc@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
-        Lizhi Hou <lizhi.hou@amd.com>, Saravana Kannan <saravanak@google.com>,
-        Vaibhav Jain <vaibhav@linux.ibm.com>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Vaidyanathan Srinivasan <svaidy@linux.ibm.com>,
-        Kowshik Jois B S <kowsjois@linux.ibm.com>,
-        Lukas Wunner <lukas@wunner.de>, kernel-team@lists.ubuntu.com,
-        Stefan Bader <stefan.bader@canonical.com>
-Subject: Re: [PATCH v3] PCI: Fix crash during pci_dev hot-unplug on pseries
- KVM guest
-Message-ID: <20240819165310.cab26333-b8-amachhiw@linux.ibm.com>
-Mail-Followup-To: Michael Ellerman <mpe@ellerman.id.au>, 
-	Bjorn Helgaas <helgaas@kernel.org>, Rob Herring <robh@kernel.org>, linux-pci@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
-	kvm-ppc@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>, 
-	Lizhi Hou <lizhi.hou@amd.com>, Saravana Kannan <saravanak@google.com>, 
-	Vaibhav Jain <vaibhav@linux.ibm.com>, Nicholas Piggin <npiggin@gmail.com>, 
-	Vaidyanathan Srinivasan <svaidy@linux.ibm.com>, Kowshik Jois B S <kowsjois@linux.ibm.com>, 
-	Lukas Wunner <lukas@wunner.de>, kernel-team@lists.ubuntu.com, 
-	Stefan Bader <stefan.bader@canonical.com>
-References: <20240806200059.GA74866@bhelgaas>
- <87h6bm1ngo.fsf@mail.lhotse>
- <20240816180441.81f4d694-3b-amachhiw@linux.ibm.com>
- <87o75s2hxa.fsf@mail.lhotse>
+	s=arc-20240116; t=1724067310; c=relaxed/simple;
+	bh=FZ88kgAbDiM+8rWx3JLKtnx3vWamNJnTiO6nxHD3QN4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=PFb1TL4uZN+sK5KEed7KaMhgv+Dkx++U+LxqWHOUpebVrOkKzGiFILq0kgY98PTjWKaD5XwWSsYNbCgHwcjWWft/15baA4JFmSSwCocaudiR/fNmM27CJYu7f2bUSEb4oOI1nRK6iGgbUTlU98T+R4kVIwz+TgtlPKcIpbt1pvQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=jH3evXTk; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=DhE9D1D8 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1724067306; x=1755603306;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=N15B/fpX6Wf+7yRZPzvZUR8uMg/qc8/OqC4E1tAFR00=;
+  b=jH3evXTkh6XeTT73g/uR7bBUExFSeNNJADgSF+yXjZFTPxvNHl/od6is
+   X68wZEgzrmrnVKQljIPGWOZ88FIMhmEWAOoD1K6pfuoJNe+bbw4GWD2UL
+   b0bt5ytEmBzV2rMkVAVOK7qYL+jVF6akeHpgeruy/tbqYFaQniUKV1xui
+   ZsdZ2gxD1437xbHVyWT+1OuSTjvfMOngI/+X71T4jfe8HZgP9rrTo/sow
+   hh9pqOT4msQ1AI0DGQ+dq8SrKqAczXmZGp/qlmBoTJI9NjgVpG3nOrsFU
+   /w7h2SP6Yy7+jkycr8y7IRTCirXH6nVCZ/dc9uy0lJ1j/gZnVAmbc0JhA
+   w==;
+X-CSE-ConnectionGUID: faJc6t2ST8evPLTvnb7ZnA==
+X-CSE-MsgGUID: 8BZy0lFMQPuHx7v62NpeGA==
+X-IronPort-AV: E=Sophos;i="6.10,159,1719871200"; 
+   d="scan'208";a="38466299"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 19 Aug 2024 13:35:04 +0200
+X-CheckPoint: {66C32DE8-B-E9ED6009-C4B0BEC8}
+X-MAIL-CPID: 436127ADD3E6AA614B224FC9CA86742D_3
+X-Control-Analysis: str=0001.0A782F26.66C32DE8.00EC,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7F37216141D;
+	Mon, 19 Aug 2024 13:34:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1724067299;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=N15B/fpX6Wf+7yRZPzvZUR8uMg/qc8/OqC4E1tAFR00=;
+	b=DhE9D1D86sGzuRlnxoWc/CkbXtKJg/quYOSybQDXoNb+1ImLjY3dRftM/jvjKQf/sDbPDn
+	upnezyp4nwym3XJqZ+Wz1N+cm+1jGSJDUffMG1ZcO3csVno9mWsNc0nK3VO731x8IZSJ3r
+	Ehw6juC4OqHuurHQHzx5/ZCgGpE2/aGKpLX0TNyuzMjhA6Hk+IYCt8mTNXlFOF6IJijX/4
+	JbUkZ122zTgx/v4oaSpoEi1kh0MdyfcDIPFSFydoaESNvigoSbZKdjE3KYjd6lK/RY/xip
+	uTbJUMrFDYZrb05ssp14HWlXuPvefUi8AefGAeiXM4TCjfqVTl40VFirND5Qcw==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>
+Cc: Markus Niebel <Markus.Niebel@ew.tq-group.com>, "linux@ew.tq-group.com" <linux@ew.tq-group.com>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 06/14] arm64: dts: freescale: imx93-tqma9352-mba93xxla: improve pad configuration
+Date: Mon, 19 Aug 2024 13:34:58 +0200
+Message-ID: <2197430.irdbgypaU6@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <PAXPR04MB84593B8DF03B5CFA7CA2D29F88B22@PAXPR04MB8459.eurprd04.prod.outlook.com>
+References: <20240724125901.1391698-1-alexander.stein@ew.tq-group.com> <20240724125901.1391698-7-alexander.stein@ew.tq-group.com> <PAXPR04MB84593B8DF03B5CFA7CA2D29F88B22@PAXPR04MB8459.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87o75s2hxa.fsf@mail.lhotse>
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: R8VUjQv28xiQn-SzJOjpJVh2xfSErgDy
-X-Proofpoint-GUID: Fexqrs0yQr5cj37s8xkX5FhhOebrt9J9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-19_10,2024-08-19_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_spam_definite policy=outbound score=100 bulkscore=0
- mlxscore=100 clxscore=1015 priorityscore=1501 mlxlogscore=-999
- adultscore=0 phishscore=0 impostorscore=0 suspectscore=0 spamscore=100
- lowpriorityscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2407110000 definitions=main-2408190077
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Michael,
+Hi Peng,
 
-On 2024/08/17 08:59 AM, Michael Ellerman wrote:
-> Amit Machhiwal <amachhiw@linux.ibm.com> writes:
-> > On 2024/08/15 01:20 PM, Michael Ellerman wrote:
-> >> Bjorn Helgaas <helgaas@kernel.org> writes:
-> >> > On Sat, Aug 03, 2024 at 12:03:25AM +0530, Amit Machhiwal wrote:
-> >> >> With CONFIG_PCI_DYNAMIC_OF_NODES [1], a hot-plug and hot-unplug sequence
-> >> >> of a PCI device attached to a PCI-bridge causes following kernel Oops on
-> >> >> a pseries KVM guest:
-> >> >
-> >> > What is unique about pseries here?  There's nothing specific to
-> >> > pseries in the patch, so I would expect this to be a generic problem
-> >> > on any arch.
-> >> >
-> >> >>  RTAS: event: 2, Type: Hotplug Event (229), Severity: 1
-> >> >>  Kernel attempted to read user page (10ec00000048) - exploit attempt? (uid: 0)
-> >> >>  BUG: Unable to handle kernel data access on read at 0x10ec00000048
-> >> >
-> >> > Weird address.  I would expect NULL or something.  Where did this
-> >> > non-NULL pointer come from?
-> >> 
-> >> It originally comes from np->data, which is supposed to be an
-> >> of_changeset.
-> >> 
-> >> The powerpc code also uses np->data for the struct pci_dn pointer, see
-> >> pci_add_device_node_info().
-> >> 
-> >> I wonder if that's why it's non-NULL?
-> >
-> > I'm also looking into the code to figure out where's that value coming from. I
-> > will update as soon as I get there.
-> 
-> Thanks.
->  
-> >> Amit, do we have exact steps to reproduce this? I poked around a bit but
-> >> couldn't get it to trigger.
-> >
-> > Sure, below are the steps:
-> >
-> > 1. Set CONFIG_PCI_DYNAMIC_OF_NODES=y in the kernel config and compile (Fedora
-> >    has it disabled in it's distro config, Ubuntu has it enabled but will have it
-> >    disabled in the next update)
-> >
-> > 2. If you are using Fedora cloud images, make sure you've these packages
-> >    installed:
-> >     $ rpm -qa | grep -e 'ppc64-diag\|powerpc-utils'
-> >     powerpc-utils-core-1.3.11-6.fc40.ppc64le
-> >     powerpc-utils-1.3.11-6.fc40.ppc64le
-> >     ppc64-diag-rtas-2.7.9-6.fc40.ppc64le
-> >     ppc64-diag-2.7.9-6.fc40.ppc64le
-> >
-> > 3. Hotplug a pci device as follows:
-> >     virsh attach-interface <domain_name> bridge --source virbr0
-> 
-> I don't use virsh :)
+thanks for the review.
 
-No worries. Fortunately, we do have a way to do it with qemu monitor.
+Am Donnerstag, 1. August 2024, 05:04:49 CEST schrieb Peng Fan:
+> > Subject: [PATCH 06/14] arm64: dts: freescale: imx93-tqma9352-
+> > mba93xxla: improve pad configuration
+> >=20
+> > From: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+> >=20
+> > - disable PU/PD if already done with external resistors
+> > - do not configure Schmitt Trigger for outputs
+> > - do not configure DSE / FSEL for inputs
+> > - add missing pad groups
+> > - assign muxed GPIO pads for X1 to gpio2 node
+> >=20
+> > Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > ---
+> >  .../freescale/imx93-tqma9352-mba93xxla.dts    | 237 ++++++++++++----
+> > --
+> >  1 file changed, 164 insertions(+), 73 deletions(-)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/freescale/imx93-tqma9352-
+> > mba93xxla.dts b/arch/arm64/boot/dts/freescale/imx93-tqma9352-
+> > mba93xxla.dts
+> > index e2ee9f5a042c..c663b6585c3a 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dts
+> > +++ b/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dts
+> > @@ -222,6 +222,11 @@ rtc-irq-hog {
+> >  	};
+> >  };
+> >=20
+> > +&gpio2 {
+> > +	pinctrl-names =3D "default";
+> > +	pinctrl-0 =3D <&pinctrl_gpio2>;
+>=20
+> I am not sure this is correct,  what are this used for?
 
-> 
-> Any idea how to do it with just qemu monitor commands?
-> 
+This is for general GPIOs usable from userspace. I'll add a new patch for
+adding gpio-line-names, so it should be clear.
 
-1. Boot the guest with the below included in the qemu cmdline:
+> And this is new, not pad improvement.
 
-    -netdev bridge,id=<net_name>,br=virbr0,helper=/usr/libexec/qemu-bridge-helper
+Okay, I'll separate the changes from adding new/missing ones.
 
-2. Once the guest boots, run the below command on qemu monitor to hot-plug a pci
-   device:
+> I would prefer the other improvement part merged
+> with patch 2.=20
 
-    device_add rtl8139,netdev=<net_name>,mac=52:54:00:88:31:28,id=<net_id>
+Patch 2 already got merged, but despite that this patch is for the mainboard
+while patch is addressing the module only.
 
-    dmesg
-    =====
-    [  116.968210] pci 0000:00:01.0: [10ec:8139] type 00 class 0x020000 conventional PCI endpoint
-    [  116.969260] pci 0000:00:01.0: BAR 0 [io  0x10000-0x100ff]
-    [  116.969904] pci 0000:00:01.0: BAR 1 [mem 0x00000000-0x000000ff]
-    [  116.970745] pci 0000:00:01.0: ROM [mem 0x00000000-0x0003ffff pref]
-    [  116.971456] pci 0000:00:01.0: No hypervisor support for SR-IOV on this device, IOV BARs disabled.
-    [  116.972583] pci 0000:00:01.0: Adding to iommu group 0
-    [  116.978466] pci 0000:00:01.0: ROM [mem 0x200080080000-0x2000800bffff pref]: assigned
-    [  116.979347] pci 0000:00:01.0: BAR 0 [io  0x10400-0x104ff]: assigned
-    [  116.980063] pci 0000:00:01.0: BAR 1 [mem 0x200080001000-0x2000800010ff]: assigned
-    [  117.017187] 8139cp: 8139cp: 10/100 PCI Ethernet driver v1.3 (Mar 22, 2004)
-    [  117.018577] 8139cp 0000:00:01.0: enabling device (0000 -> 0003)
-    [  117.025414] 8139cp 0000:00:01.0 eth1: RTL-8139C+ at 0x00000000fbf09e59, 52:54:00:88:31:28, IRQ 26
-    [  117.051028] 8139too: 8139too Fast Ethernet driver 0.9.28
-    [  117.076577] 8139cp 0000:00:01.0 eth1: link up, 100Mbps, full-duplex, lpa 0x05E1
+> > +};
+> > +
+> >  &gpio3 {
+> >  	ethphy-eqos-irq-hog {
+> >  		gpio-hog;
+> > @@ -509,25 +514,39 @@ &usdhc2 {
+> >  };
+> >=20
+> >  &iomuxc {
+> > +	pinctrl_afe: afegrp {
+>=20
+> no users?
 
-3. Try hot-unplug of the device to recreate the kernel Oops.
+There is no driver yet, but the pinctrl settings can still be created
+meanwhile.
 
-    device_del <net_id>
+Thanks and best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-Thanks,
-Amit
 
-> cheers
 
