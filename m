@@ -1,183 +1,183 @@
-Return-Path: <devicetree+bounces-94824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BE24956CAE
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 16:07:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FE86956CCC
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 16:12:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F4AC1C20F2C
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 14:07:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBF25281AE0
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 14:12:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A20DD16C879;
-	Mon, 19 Aug 2024 14:07:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9196B16CD2B;
+	Mon, 19 Aug 2024 14:11:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="XoECn+5a"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="drZtc2Oy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC261166F21;
-	Mon, 19 Aug 2024 14:07:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724076456; cv=pass; b=alc6YR1Xy91SOVF4Zo6Ht3HRz6TmsuhNvrYP6OgvcmMpZXgE+G95VSGV6gDxLmbE/XB3WIW1sigQJHSsRmxm+ideEL88lu0ycdh0V17I7I0FsQlw0KfrSkbPierNPqtfTqE+IABrGasj3EnI/d58KFdFPN3gKwlFu0l6WhsvsiA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724076456; c=relaxed/simple;
-	bh=gmUPssrIfJo7m2PHNU2wOtBCulFEX6sMYjGfbbajZJY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KhZzrNpzcUZzBadBZbOow1nYNwjZ/8uSJ8EOzCBN115QbHhAsqoxORcDiDZxmGujnAhMRyUbiyX3IQaEroQr3+U+vgeo/owoKlZ+aJEmTehTFQtbpi5jC+SlDw8ZSVpSB9FsK8LdApMoWuVYd9h/Upg0BO9OH4f9FbPIHHQpRyw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=XoECn+5a; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-Delivered-To: kernel@collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1724076419; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=KFcBHaTHpEoAOvPDekVVbOVDYrcbpTePmOuzBmIUQMVGE99DllJ134ePJ4eaFXeSpQ7FfmvGBHVj2TiwxkUdoPN2xwkewqIZxdQTJ5WNBSxBlTwD1x9iNNyENagASrY+kX1zphmOQw1CxLq4c54ihi+EzFqh+x4JYcMTeGvhzCU=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1724076419; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=ZkV3lCqrhCL/CEHyK/B3/ruXUMXYJqM7j2j33wHPH7Y=; 
-	b=OB8YJp7mDp1naTGor1Y9XuwAWslUbAoC5jSC0YopnC9fY+aasCJwfneU6++FOBwYxd/SMffAdL2A7K0OmAhbiTDu9GmzQjFC8yK8Eg6vLkIUzH45fPiLKk1YSGk6qTY1C4uqXyz+9CQy/0qgVwJ906zITTUG/brnUctHylGy6tM=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
-	dmarc=pass header.from=<detlev.casanova@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724076419;
-	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=ZkV3lCqrhCL/CEHyK/B3/ruXUMXYJqM7j2j33wHPH7Y=;
-	b=XoECn+5ajwSz41GDT1zGVJA0lMOdtpxgBxr36oMfTdnkREm/BbUkzdYHXd4DvIy1
-	trOao3WT3jh8czfmuvkE+vpgSZKhJ+rRx5SVave+P5Jn+iaEb7pHsTfN7q9kLFLE5wn
-	jYd7koXzjlU5EP8ZN8IpSehrNtugsFCERWO1X3wk=
-Received: by mx.zohomail.com with SMTPS id 1724076416454854.9649861700929;
-	Mon, 19 Aug 2024 07:06:56 -0700 (PDT)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, Philipp Zabel <p.zabel@pengutronix.de>,
- Elaine Zhang <zhangqing@rock-chips.com>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, kernel@collabora.com,
- Sugar Zhang <sugar.zhang@rock-chips.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: clock, reset: Add support for rk3576
-Date: Mon, 19 Aug 2024 10:08:31 -0400
-Message-ID: <5018731.31r3eYUQgx@trenzalore>
-In-Reply-To: <20240815-tassel-whacking-a460ee2ebd41@spud>
-References:
- <20240814222159.2598-1-detlev.casanova@collabora.com>
- <20240814222159.2598-2-detlev.casanova@collabora.com>
- <20240815-tassel-whacking-a460ee2ebd41@spud>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CC4416CD05
+	for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 14:11:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.177
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724076715; cv=none; b=M4a4dwBovHzdDh2LoVzeSlRRTFnT6R3IEzay9kD7Sr6f2GoXVgAH9ih2VxxtRUDERV8tZWIrGHFQijLeuN+jUm/MA3AFzGSXDuWch7cTF+c0Qcj43w5UuitmzIqhU3/p0gsTCeQ+XgsrVQYoFICg4lrNtUYup35lBRa669y3scA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724076715; c=relaxed/simple;
+	bh=tB4PDDkW81CD/s79vLo1AJEusz61GZ1uoE/0QuJSDOk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Yxn0HbAZkY5OSquBTC5Zam+GRab5TKuuamxXQIEoRDrc0n7Ls48U5mBqmgMa9BTM75atjxCJWHCJJ/9Lks/FVZ4/WJ360srGG7pABqKljdHg8uMLDHkaaIwBzN7f7uPY9IWWYfOz4IO4HT2IlMVsTtFP3lfplQdocNdjnGfZebs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=drZtc2Oy; arc=none smtp.client-ip=209.85.160.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-454b12cc82cso13817711cf.1
+        for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 07:11:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1724076711; x=1724681511; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=evP3x4C+fRIeDF7JfvlYtCwz/QjijRArOrvvuEB+piA=;
+        b=drZtc2Oyb7n/kZmX3gqpj6rLi+cenM1O/iZVSCg7uFMlkm9L61loTX/k57yiGnm77I
+         0vr9eYUz7ro8vgy8ZReha+4evzKHHOvqkmZhUtgIgtjfCq3PgZgFS3wRA6teT5YMWrCn
+         jJTiJCL0S1Jq5IlxpSO3+e/8RNHH9qzOqlJv8pETsPusZ/4WWxv6pnsEEQ6z5Nf4aFw4
+         z/cqIrV5X35fl5Wycxq+zZ8ZyB/gjI7aoybj2hfR7rC5CFwmLnTyp13rELIUJmktD31r
+         nqw/XXMQSKpMjWXKG2ID6EuvXhqsByjQ5VFtPBuULZzxMRL741tFDu0Dhb5VaIXyK1e4
+         ckBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724076711; x=1724681511;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=evP3x4C+fRIeDF7JfvlYtCwz/QjijRArOrvvuEB+piA=;
+        b=G/NEK+SEeWlP0rpnKMjftcTqD7gr5ld1cDm0D0SIIFBH/iYDk5kAy1sW9X0NO7V3z0
+         vgQyOinPoxQfINM7sMWYNp4oe+w0E+xAts+N4jtEWVR5KlD80pkVcoBSW2BsGBG9sr55
+         RBN6nbCYKM4qbUp4uxBm2/i9huT2+KnluTGjtxF+QXXeidzt87rp8leWFAI20qqVIQQq
+         YQ7uzs5MJkpw9Pe/o56G3u8JKcMWbCdwiEQCj9ybc3hO3BEQr65EYDEOLH4h6xCvcDos
+         wCe38/TKw9kp/OJ1OuFSrG+z/7YVquzL7F5J2G+eU3glb5wIDNzjzqQAqL2oVTbMvo+y
+         1vWg==
+X-Forwarded-Encrypted: i=1; AJvYcCX+2E6Tx8MTy9RdKv6ZeZkFlB4oZqwtOEH4Znyp72yTAveQB3WgEPb6Ui7BYItW3F8Wv/sudscvEpYQnTUuZ0eNgQMg1PUwle1nVA==
+X-Gm-Message-State: AOJu0YybiTLVLPhTPb/zEA+5gf87vn+4oC6sR+5Nq4wQLOBeQhTXicSy
+	3yYDoDzE2n3aS8cJrTgYxnuACS9tw8FFUhyuWi1M8zIV/jjFpitNDWWeKGstk4A=
+X-Google-Smtp-Source: AGHT+IH11j5ljDHQiPGDFjO8eAoF+5qTzbeZIySkNqlpz9g3PB17Frcm6NCKtRTZS0aq6PrTS47cQA==
+X-Received: by 2002:ac8:45ce:0:b0:453:7706:759a with SMTP id d75a77b69052e-4537706a18dmr98282571cf.3.1724076710842;
+        Mon, 19 Aug 2024 07:11:50 -0700 (PDT)
+Received: from [127.0.1.1] (d24-150-219-207.home.cgocable.net. [24.150.219.207])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-454c0186bf4sm17630871cf.83.2024.08.19.07.11.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Aug 2024 07:11:50 -0700 (PDT)
+From: Trevor Gamblin <tgamblin@baylibre.com>
+Subject: [PATCH v3 0/3] iio: adc: add new ad7625 driver
+Date: Mon, 19 Aug 2024 10:11:42 -0400
+Message-Id: <20240819-ad7625_r1-v3-0-75d5217c76b5@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="utf-8"
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJ5Sw2YC/13M0QqCMBTG8VeRXbfYZnOzq94jIo56lgfKxRYjE
+ d+9KUTS5Xc4/9/EIgbCyI7FxAImiuSHPMpdwdoehhty6vJmSqiDMKXg0JlK6WuQvBKdNAjK1tq
+ y/P8M6Oi9WudL3j3Flw/jSie5XL+K3ChJ8oxKdOg0KGjqUwPjnZqA+9Y/2AIl9YutqLexyrGzG
+ g20tpRa/MXzPH8AABwNluIAAAA=
+To: Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+ David Lechner <dlechner@baylibre.com>, 
+ Uwe Kleine-Konig <u.kleine-koenig@baylibre.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
+ Trevor Gamblin <tgamblin@baylibre.com>
+X-Mailer: b4 0.14.1
 
-Hi Conor,
+This series adds a new driver for the Analog Devices Inc. AD7625,
+AD7626, AD7960, and AD7961. These chips are part of a family of
+LVDS-based SAR ADCs. The initial driver implementation does not support
+the devices' self-clocked mode, although that can be added later.
 
-On Thursday, 15 August 2024 11:07:46 EDT Conor Dooley wrote:
-> On Wed, Aug 14, 2024 at 06:19:22PM -0400, Detlev Casanova wrote:
-> > Add clock and reset ID defines for rk3576.
-> > 
-> > Compared to the downstream bindings written by Elaine, this uses
-> > continous gapless IDs starting at 0. Thus all numbers are
-> > different between downstream and upstream, but names are kept
-> > exactly the same.
-> > 
-> > Also add documentation for the rk3576 CRU core.
-> > 
-> > Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> > Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
-> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> > ---
-> > 
-> >  .../bindings/clock/rockchip,rk3576-cru.yaml   |  64 ++
-> >  .../dt-bindings/clock/rockchip,rk3576-cru.h   | 592 ++++++++++++++++++
-> >  .../dt-bindings/reset/rockchip,rk3576-cru.h   | 564 +++++++++++++++++
-> >  3 files changed, 1220 insertions(+)
-> >  create mode 100644
-> >  Documentation/devicetree/bindings/clock/rockchip,rk3576-cru.yaml create
-> >  mode 100644 include/dt-bindings/clock/rockchip,rk3576-cru.h create mode
-> >  100644 include/dt-bindings/reset/rockchip,rk3576-cru.h> 
-> > diff --git
-> > a/Documentation/devicetree/bindings/clock/rockchip,rk3576-cru.yaml
-> > b/Documentation/devicetree/bindings/clock/rockchip,rk3576-cru.yaml new
-> > file mode 100644
-> > index 0000000000000..d69985e6fa0ce
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/rockchip,rk3576-cru.yaml
-> > @@ -0,0 +1,64 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/rockchip,rk3576-cru.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Rockchip rk3576 Family Clock and Reset Control Module
-> > +
-> > +maintainers:
-> > +  - Elaine Zhang <zhangqing@rock-chips.com>
-> > +  - Heiko Stuebner <heiko@sntech.de>
-> > +  - Detlev Casanova <detlev.casanova@collabora.com>
-> > +
-> > +description:
-> > +  The RK3576 clock controller generates the clock and also implements a
-> > reset +  controller for SoC peripherals. For example it provides
-> > SCLK_UART2 and +  PCLK_UART2, as well as SRST_P_UART2 and SRST_S_UART2
-> > for the second UART +  module.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: rockchip,rk3576-cru
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  "#clock-cells":
-> > +    const: 1
-> > +
-> > +  "#reset-cells":
-> > +    const: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 2
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: xin24m
-> > +      - const: xin32k
-> > +
-> > +  rockchip,grf:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: >
-> > +      phandle to the syscon managing the "general register files". It is
-> > used +      for GRF muxes, if missing any muxes present in the GRF will
-> > not be +      available.
-> 
-> Two questions on this property:
-> - you only support one soc, why is this optional?
+The devices make use of two offset PWM signals, one to trigger
+conversions and the other as a burst signal for transferring data to the
+host. These rely on the new PWM waveform functionality being
+reviewed in [1] and also available at [2].
 
-It is optional because only used for some specific clocks. The SoC can still be 
-used without this, but some devices might not work (Not tested but USB PHYs 
-might not be working without the GRF)
-This is also set as optional in similar rockchip CRU bindings (rk3588).
+This work is being done by BayLibre and on behalf of Analog Devices
+Inc., hence the maintainers are @analog.com.
 
-> - why can't you look it up by compatible?
+Special thanks to David Lechner for his guidance and reviews.
 
-These bindings are specific to one compatible only. It is very similar to 
-rk3588 but it looks like all rockchip CRU driver has its own yaml file, so I 
-followed that trend instead of merging with the rk3588 CRU bindings.
+[1]: https://lore.kernel.org/linux-pwm/cover.1722261050.git.u.kleine-koenig@baylibre.com
+[2]: https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git/log/?h=pwm/chardev
 
-Regards,
-Detlev.
+Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
+---
+Changes in v3:
+- Link to v2: https://lore.kernel.org/r/20240809-ad7625_r1-v2-0-f85e7ac83150@baylibre.com
+  
+  [PATCH 1/3]
+  - Add gpio bindings header, en0-gpios and en1-gpios to binding example
+  - Remove unnecessary comments
 
+  [PATCH 2/3]
+  - No change
 
+  [PATCH 3/3]
+  - No change
+
+Changes in v2:
+- Link to v1 (marked as RFC): https://lore.kernel.org/r/20240731-ad7625_r1-v1-0-a1efef5a2ab9@baylibre.com
+- Include link to required PWM patch series in cover letter (missing before)
+- Include new link to the pwm/chardev branch of Uwe's kernel tree
+  
+  [PATCH 1/3]
+  - Rework dt bindings to be compliant using make dt_binding_check
+  - Add "adi,no-dco" flag to address indication of how DCO lines are
+    configured
+  - Fix binding patch message
+  - Remove chip packaging info from binding description
+  - Move comments around to be clearer
+
+  [PATCH 2/3]
+  - Remove ad7625_pwm_disable(), call pwm_disable() directly
+  - Add ad7625_buffer_preenable() and ad7625_buffer_postdisable()
+    functions
+  - Add devm_ad7625_regulator_setup() function, move all regulator logic
+    to it, consolidate the comment blocks related to it above
+  - Add have_refin flag in ad7625_state struct
+  - Add pwm_waveform structs to ad7625_state struct for storing
+    requested waveform characteristics
+  - Refactor ad7625_set_sampling_freq() to set the pwm_waveform struct
+    values in ad7625_state, limiting PWM enable/disable to
+    preenable/postdisable functions
+  - Remove redundant dev_err_probe() after devm_ad7625_pwm_get()
+  - Use device_property_read_bool() instead of device_property_present()
+  - General alignment and line wrapping fixes
+
+  [PATCH 3/3]
+  - No change
+
+---
+Trevor Gamblin (3):
+      dt-bindings: iio: adc: add AD762x/AD796x ADCs
+      iio: adc: ad7625: add driver
+      docs: iio: new docs for ad7625 driver
+
+ .../devicetree/bindings/iio/adc/adi,ad7625.yaml    | 176 ++++++
+ Documentation/iio/ad7625.rst                       |  91 +++
+ MAINTAINERS                                        |  11 +
+ drivers/iio/adc/Kconfig                            |  15 +
+ drivers/iio/adc/Makefile                           |   1 +
+ drivers/iio/adc/ad7625.c                           | 688 +++++++++++++++++++++
+ 6 files changed, 982 insertions(+)
+---
+base-commit: ac6a258892793f0a255fe7084ec2b612131c67fc
+change-id: 20240730-ad7625_r1-60d17ea28958
+
+Best regards,
+-- 
+Trevor Gamblin <tgamblin@baylibre.com>
 
 
