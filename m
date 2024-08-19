@@ -1,66 +1,64 @@
-Return-Path: <devicetree+bounces-94867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7415D957081
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 18:37:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8297957088
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 18:39:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7233AB279E5
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 16:35:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 25CB71C23113
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 16:39:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44CE5178376;
-	Mon, 19 Aug 2024 16:34:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 903B516C867;
+	Mon, 19 Aug 2024 16:39:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZemkRePn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CEaAHZcP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A85E175D53;
-	Mon, 19 Aug 2024 16:34:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C98C32C8B;
+	Mon, 19 Aug 2024 16:39:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724085261; cv=none; b=NBf5iQ6t1IxP98LI4I/puhheny5We+Vh100NJ0U1usNiFfXFhFe+cm0d7YjA4u6Cb7koO7ImTVgOPKT+lWravasKPY5fV7udIcEzP6lfhPP+gCJyx0fBZlAA6pWqBNPkKFa9auLeG1nhmNPxcPlt3pJlpvadBMgSpT+SYYYJZSw=
+	t=1724085581; cv=none; b=kKH/miNnJWO6j0PkFA8m4UngNRv3vpvVQWdecOmgPl5s/SB+raEVvlGfxn5cHpL4/lBbI7obT87RuHFDcS+rRUYt3nKWLieOgOr4IZhOtoZv0/njg9bn80SYjV2BcdpCckbnvT1M1uahqmQ7Ko6WQGX+uzloAWRpRw1nCsYOVR0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724085261; c=relaxed/simple;
-	bh=gd0XwIlIyEwVbHTi1dPq1iCsJvX+UHnxyvuzIYrvEMU=;
+	s=arc-20240116; t=1724085581; c=relaxed/simple;
+	bh=IqgSEG3y/Kwh9+Hi5mZhe/UmOhmq/rH8CACS2ah6luE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BnKCbR303SiX0XPmwwOX55iMo/H5jYP/22lbEq8wNI5SKhOvNdf14/4H+vXrySiwwE275calNuHYEkgUhuILFAGg8OdbUCAxT8fsQiqvk0lMqV7QptEuzWfenSxhREkPxOySs7VJW+SbBjZAPaDZuf6B2Pivnqxq8vky2HSyxK8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZemkRePn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DA25C32782;
-	Mon, 19 Aug 2024 16:34:17 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=kA+JXsboZ8sjezR4EsJRtzYscsjWdpyUyuBx9snwnYhA2baNbgtVGJg4tFWI4KxEa8qtMYHVvADLQv5lJu+bU5u/d6aUPNwM0mssp55+QWw9dZmR86GUuQjoYOfmmZ43BsVoQGHfbOwz2nkviZWkbMt0j2RvXR2V+V5hW10/ekY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CEaAHZcP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D39B7C32782;
+	Mon, 19 Aug 2024 16:39:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724085260;
-	bh=gd0XwIlIyEwVbHTi1dPq1iCsJvX+UHnxyvuzIYrvEMU=;
+	s=k20201202; t=1724085580;
+	bh=IqgSEG3y/Kwh9+Hi5mZhe/UmOhmq/rH8CACS2ah6luE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZemkRePn2DCO6oIPLfT7UAZPavHAnvjo7WEy6DDDdUZw8tuZRjpTOyO3ccSeydCUW
-	 VcKCVgrmzuAUI9YO7qLEY+LGCiKRQkB9He7EchhuHQlBQfH97ICr6MsJSCHZcAdWvw
-	 I/olZsC8DdCKpO6gVfwxj3ySns4wrvFtIzXdbwnO2IsAI+oHJxLJ/bYMKBXonKA4iP
-	 ZAMrLxgsUILmJR4aMcHPNO4XSfFVZc/v6tHclvXNT/hoEPrEsV/rE2Tv9fB9ol419J
-	 Q/PSNn+IQRsB4K7J/Kinr9y12MEKgFOKUGBstUkWyr4EIuCaIguHg6jqXxBtoUjOEa
-	 wjgUoLRBWWunw==
-Date: Mon, 19 Aug 2024 17:34:15 +0100
+	b=CEaAHZcPYeFIflj0At10WYgr4IVsMonnR5ksRr13R35+Ez5wFdHYPmyaM18vk7SIM
+	 E71E1rd5oykVcg/zGWkuN7jx7IcziCn+oBiy1kxf4GDByeSizz+9PhxKjh7n3lO/ey
+	 3M9fy+Ir7AgPLb/I1v/fTl76JHmxg4fk43yjYqxKzwX1Dtn9ankOlM+PMEvS5IQECQ
+	 owIbM9ufY7PBw8wj/BG8r9YPFQFzUJ3s/KI68JqMxQgmZyggvHP3vzwnhsibEwYY/w
+	 vWo9pEYT1ScXjBvafgZ9NN3lttJyk8EzsP9rEOO6Zx8srtolFBtlOS2qXTiIJC+58w
+	 QdtO9kzK2QXTg==
+Date: Mon, 19 Aug 2024 17:39:35 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Detlev Casanova <detlev.casanova@collabora.com>
-Cc: linux-kernel@vger.kernel.org,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Elaine Zhang <zhangqing@rock-chips.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, kernel@collabora.com,
-	Sugar Zhang <sugar.zhang@rock-chips.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: clock, reset: Add support for rk3576
-Message-ID: <20240819-pelvis-monetary-211e2294f2f4@spud>
-References: <20240814222159.2598-1-detlev.casanova@collabora.com>
- <20240814222159.2598-2-detlev.casanova@collabora.com>
- <20240815-tassel-whacking-a460ee2ebd41@spud>
- <5018731.31r3eYUQgx@trenzalore>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: claudiu beznea <claudiu.beznea@tuxon.dev>, chris.brandt@renesas.com,
+	andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
+	p.zabel@pengutronix.de, wsa+renesas@sang-engineering.com,
+	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: Re: [PATCH v4 07/11] dt-bindings: i2c: renesas,riic: Document the
+ R9A08G045 support
+Message-ID: <20240819-sizing-devouring-17b74473d1a1@spud>
+References: <20240819102348.1592171-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240819102348.1592171-8-claudiu.beznea.uj@bp.renesas.com>
+ <gxjlmdjicwzlexitsx673beyn7ijuf47637nao2luc5h6h6hvi@qstobttin7dw>
+ <e6377448-9af3-4807-a8fd-197f5b2b4aa4@tuxon.dev>
+ <56204f92-d1d4-4681-8a9d-f28925919ef4@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,139 +66,66 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="n6FCtSpE7Uh9i8vt"
+	protocol="application/pgp-signature"; boundary="VnKoVPdj0kQtiJ5h"
 Content-Disposition: inline
-In-Reply-To: <5018731.31r3eYUQgx@trenzalore>
+In-Reply-To: <56204f92-d1d4-4681-8a9d-f28925919ef4@kernel.org>
 
 
---n6FCtSpE7Uh9i8vt
+--VnKoVPdj0kQtiJ5h
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Aug 19, 2024 at 10:08:31AM -0400, Detlev Casanova wrote:
-> Hi Conor,
->=20
-> On Thursday, 15 August 2024 11:07:46 EDT Conor Dooley wrote:
-> > On Wed, Aug 14, 2024 at 06:19:22PM -0400, Detlev Casanova wrote:
-> > > Add clock and reset ID defines for rk3576.
-> > >=20
-> > > Compared to the downstream bindings written by Elaine, this uses
-> > > continous gapless IDs starting at 0. Thus all numbers are
-> > > different between downstream and upstream, but names are kept
-> > > exactly the same.
-> > >=20
-> > > Also add documentation for the rk3576 CRU core.
-> > >=20
-> > > Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> > > Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
-> > > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> > > ---
-> > >=20
-> > >  .../bindings/clock/rockchip,rk3576-cru.yaml   |  64 ++
-> > >  .../dt-bindings/clock/rockchip,rk3576-cru.h   | 592 ++++++++++++++++=
-++
-> > >  .../dt-bindings/reset/rockchip,rk3576-cru.h   | 564 +++++++++++++++++
-> > >  3 files changed, 1220 insertions(+)
-> > >  create mode 100644
-> > >  Documentation/devicetree/bindings/clock/rockchip,rk3576-cru.yaml cre=
-ate
-> > >  mode 100644 include/dt-bindings/clock/rockchip,rk3576-cru.h create m=
-ode
-> > >  100644 include/dt-bindings/reset/rockchip,rk3576-cru.h>=20
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/clock/rockchip,rk3576-cru.yaml
-> > > b/Documentation/devicetree/bindings/clock/rockchip,rk3576-cru.yaml new
-> > > file mode 100644
-> > > index 0000000000000..d69985e6fa0ce
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/clock/rockchip,rk3576-cru.yaml
-> > > @@ -0,0 +1,64 @@
-> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/clock/rockchip,rk3576-cru.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Rockchip rk3576 Family Clock and Reset Control Module
-> > > +
-> > > +maintainers:
-> > > +  - Elaine Zhang <zhangqing@rock-chips.com>
-> > > +  - Heiko Stuebner <heiko@sntech.de>
-> > > +  - Detlev Casanova <detlev.casanova@collabora.com>
-> > > +
-> > > +description:
-> > > +  The RK3576 clock controller generates the clock and also implement=
-s a
-> > > reset +  controller for SoC peripherals. For example it provides
-> > > SCLK_UART2 and +  PCLK_UART2, as well as SRST_P_UART2 and SRST_S_UART2
-> > > for the second UART +  module.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: rockchip,rk3576-cru
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  "#clock-cells":
-> > > +    const: 1
-> > > +
-> > > +  "#reset-cells":
-> > > +    const: 1
-> > > +
-> > > +  clocks:
-> > > +    maxItems: 2
-> > > +
-> > > +  clock-names:
-> > > +    items:
-> > > +      - const: xin24m
-> > > +      - const: xin32k
-> > > +
-> > > +  rockchip,grf:
-> > > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > > +    description: >
-> > > +      phandle to the syscon managing the "general register files". I=
-t is
-> > > used +      for GRF muxes, if missing any muxes present in the GRF wi=
-ll
-> > > not be +      available.
+On Mon, Aug 19, 2024 at 01:22:39PM +0200, Krzysztof Kozlowski wrote:
+> On 19/08/2024 13:10, claudiu beznea wrote:
 > >=20
-> > Two questions on this property:
-> > - you only support one soc, why is this optional?
->=20
-> It is optional because only used for some specific clocks. The SoC can st=
-ill be=20
-> used without this, but some devices might not work (Not tested but USB PH=
-Ys=20
-> might not be working without the GRF)
-> This is also set as optional in similar rockchip CRU bindings (rk3588).
->=20
-> > - why can't you look it up by compatible?
->=20
-> These bindings are specific to one compatible only. It is very similar to=
-=20
-> rk3588 but it looks like all rockchip CRU driver has its own yaml file, s=
-o I=20
-> followed that trend instead of merging with the rk3588 CRU bindings.
+> >=20
+> > On 19.08.2024 14:05, Krzysztof Kozlowski wrote:
+> >> On Mon, Aug 19, 2024 at 01:23:44PM +0300, Claudiu wrote:
+> >>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >>>
+> >>> Document the Renesas RZ/G3S (R9A08G045) RIIC IP. This is compatible w=
+ith
+> >>> the version available on Renesas RZ/V2H (R9A09G075).
+> >>>
+> >>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >>> ---
+> >>>
+> >>> Changes in v4:
+> >>> - added comment near the fallback for RZ/G3S; because of this
+> >>>   dropped Conor's tag
+> >>
+> >> That's not a reason to request a re-review.
 
-I don't think you've answered the question I am asking. Why can you not
-look up the syscon by the /syscon/'s compatible in the clock driver, and
-thus remove the property from here?
+FWIW, I don't care about how many binding patches I do or do not get
+credit for reviewing. Feel free to give a tag yourself Krzysztof in the
+future if you come across these situations and I'll happily hit ctrl+d
+and remove the thread from my mailbox rather than reply :)
 
-Thanks,
+> >=20
+> > Sorry for that, I wasn't aware of the procedure for this on bindings.
+>=20
+> There is no difference. Please read carefully submitting patches,
+> including the chapter about tags.
+
+Yeah, I don't think this patch is materially different on those
+grounds...
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
 Conor.
 
---n6FCtSpE7Uh9i8vt
+--VnKoVPdj0kQtiJ5h
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZsN0BwAKCRB4tDGHoIJi
-0iYXAQDAm/y+dzUTli+bib6dXnLBthHX7v21Tc7mhhY+48ZfYQD9GCaRaMsJHCfV
-Z41SWteQOCY6BLIRilKvteLShnxHogI=
-=7mM6
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZsN1RwAKCRB4tDGHoIJi
+0j2FAQCYZwdZmkdYZ+TmKGJ16Div0eK93INBZozZ973iYJ2a9gD+P9GAiYE2F469
+4ZwvdHMO19vqrDyeNw6aL12viw6umw8=
+=n8Zf
 -----END PGP SIGNATURE-----
 
---n6FCtSpE7Uh9i8vt--
+--VnKoVPdj0kQtiJ5h--
 
