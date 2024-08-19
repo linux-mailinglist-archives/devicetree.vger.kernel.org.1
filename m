@@ -1,116 +1,111 @@
-Return-Path: <devicetree+bounces-94887-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 019F8957163
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 19:03:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB31A95718D
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 19:08:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B00C4284169
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 17:03:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81DCE1F23755
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 17:08:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB7A34965C;
-	Mon, 19 Aug 2024 17:02:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C55013C3F2;
+	Mon, 19 Aug 2024 17:08:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nj1CWxvl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MGuiYdlZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A74508BFC
-	for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 17:02:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 491928BFC;
+	Mon, 19 Aug 2024 17:08:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724086965; cv=none; b=RQEGGv7hz73YGpjpZCbxzo/bMWbJNt7Pwqg3IZ5sAf1/I7N5QELaTKNKjJ5nbEFMCMUPcLHbNa+bE025uTKIZ0U4WREqs+3STFR9V3RsYvKjcRWEPXnyss+UfBWuXCFEm6cQ4b+5RJCXKOx1MnNe8FCp6vY+ChQY9iyeUTMEgPI=
+	t=1724087317; cv=none; b=Akt6NJ+suW170dCO1pM+lIkyLuSCNwd3ycy+CD0O2xcq3eEhL9Kbphn58MR3tyjwQeSpYCkk0LDQsjZZzp/YembGple7fg2jZ4nrWp2cNKrrFn2Ia58wbxfG+z1eYNH0e3OmZhMYZ/WixODbYy6gUWDgjMMnjrJL3JA+Yo5QHj0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724086965; c=relaxed/simple;
-	bh=Q1xW/0nBXIW/86VsGilfh+HMuH2E4QdrIJgAob+KTVE=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=BkiL/YuMMKz8c2HgPk5j9Sl8f06tXLa5ll+2NiJlnQwSdFPDyIn6CRbEhEtntIxr59F+uQzSPVbWJwLg4tjuOwj7tx9SRS798TlPMMxoj7VNFp8W1q4DN3G6/uFL/mwzRKkCFSkKcs518eQmzRbxWETGtLIelnkpa1ojuDLy+8Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nj1CWxvl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB0B9C32782;
-	Mon, 19 Aug 2024 17:02:44 +0000 (UTC)
+	s=arc-20240116; t=1724087317; c=relaxed/simple;
+	bh=E3wx3Yy8f4Z4HsNkio0m66ed4QzhHvCCsBlgSiuE7yA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sF2/+Ie3RivGU6TAiFr8sESiWgEtAcmuKNu4dumYzsP97RDU7d1yK+K2oAjoLMgJZTTmVzl+aELGot9nYq60Jyd++Qqqd/c25KM3+CRLRdSHIdBYQKoTes0qYKSAguAavRdpCTLyU6jI7sOpcGu6Dq3hlc2sDTRMGjzlQRF1G1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MGuiYdlZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 351FDC32782;
+	Mon, 19 Aug 2024 17:08:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724086965;
-	bh=Q1xW/0nBXIW/86VsGilfh+HMuH2E4QdrIJgAob+KTVE=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=nj1CWxvlBRYiNVii5vPO/kdnZO/7ga67Q5mk00xptcXTV6SPxYeQpyScNFEED+DA/
-	 81xXlYENgmyUK73KHwv4Org1LvOO5z/muerXrHc4zLDKdF8mYy6ENq0uhT7dRmUsQh
-	 cPgPT3bFVidZ4WmLtMU5wMRXyZzyL2osU1dgTbRoEjz9Gw9z073XxlVsMvIvjRh5K5
-	 w6QScWrHXc+d+Jj9bA6tjcpVMaOvAv3TNXVV3LJDUKHby2NSAN6SgtWfNPLYieyEDp
-	 hrF6khnPUGgKDFzicM4qbEyVQ+V8cDW6X5r4ib92mI87pnFVFpjlNOIynv/te1y0Mu
-	 fZd0kJ/GoiObQ==
-Date: Mon, 19 Aug 2024 11:02:43 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1724087316;
+	bh=E3wx3Yy8f4Z4HsNkio0m66ed4QzhHvCCsBlgSiuE7yA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MGuiYdlZpf/fS6Lsr3MsXPxoJoBAsh4wRG0kt/2k3f5Xnkz+VKP0FYzfDv4mrqJZ+
+	 Z6tHbi2sUCd6PKoznrsqe2PUuFTBxGqDkcI2z93joXi248VOOujU1LsBWID6N4sbTD
+	 jUKLM+CUIRcM1r9vE3WlMGK39nDOTEZx8nIDcblJtK3+vRV+x8zyWPQqGvgNkCaL7i
+	 ve/X3CgTr6mPe5hJ9+QAhRiZFQxT0GtgN6mxR2UtV7mKQ4qKywm30KZWXixt69UTUS
+	 bq10T4HkhCPYL82xFoaW9UGv49fCBOtb2ECdItVxeL0GjKzo3Q25z5enR3DgN5tn77
+	 jt2b1vOwB5sYQ==
+Date: Mon, 19 Aug 2024 18:08:30 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Serge Semin <fancer.lancer@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Charles Keepax <ckeepax@opensource.cirrus.com>,
+	Richard Fitzgerald <rf@opensource.cirrus.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Magnus Damm <magnus.damm@gmail.com>, patches@opensource.cirrus.com,
+	Elaine Zhang <zhangqing@rock-chips.com>,
+	Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
+	linux-mips@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH 5/5] dt-bindings: clock: st,stm32mp1-rcc: add top-level
+ constraints
+Message-ID: <20240819-gatherer-sedan-154904ce49ba@spud>
+References: <20240818173014.122073-1-krzysztof.kozlowski@linaro.org>
+ <20240818173014.122073-5-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: FUKAUMI Naoki <naoki@radxa.com>
-Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
- krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de
-In-Reply-To: <20240816213429.1093-1-naoki@radxa.com>
-References: <20240816213429.1093-1-naoki@radxa.com>
-Message-Id: <172408433165.1619643.7928785825448507704.robh@kernel.org>
-Subject: Re: [PATCH v5 1/2] dt-bindings: arm: rockchip: add support for
- Radxa ROCK Pi E v3.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="rQtkFboImljYNJPX"
+Content-Disposition: inline
+In-Reply-To: <20240818173014.122073-5-krzysztof.kozlowski@linaro.org>
 
 
-On Sat, 17 Aug 2024 06:34:28 +0900, FUKAUMI Naoki wrote:
-> Radxa ROCK Pi E v3.0 is a compact networking SBC[1] using the Rockchip
-> RK3328 chip.
-> 
-> [1] https://radxa.com/products/rockpi/pie
-> 
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-> ---
-> Changes in v5:
-> - revert compatible string
-> - describe rockchip.yaml properly
-> Changes in v4:
-> - update compatible string for OpenWrt
-> - drop A-b tag
-> Changes in v3:
-> - collect A-b tag
-> Changes in v2:
-> - fix typo in commit message
-> - add missing --- in commit message
-> - add new section instead of new item in rockchip.yaml
-> ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
+--rQtkFboImljYNJPX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Sun, Aug 18, 2024 at 07:30:14PM +0200, Krzysztof Kozlowski wrote:
+> Properties with variable number of items per each device are expected to
+> have widest constraints in top-level "properties:" block and further
+> customized (narrowed) in "if:then:".  Add missing top-level constraints
+> for clocks and clock-names.
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+--rQtkFboImljYNJPX
+Content-Type: application/pgp-signature; name="signature.asc"
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+-----BEGIN PGP SIGNATURE-----
 
-  pip3 install dtschema --upgrade
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZsN8DQAKCRB4tDGHoIJi
+0pVLAQDwyIKwfsPuyqXb02vbHEEbL8TGRHM/QQvfFPhvZCI9zAEA71idxnNe3Jq5
+wxYq+g9QkUAnqtmBwUD3Hm7yuVfTDgs=
+=1VCV
+-----END PGP SIGNATURE-----
 
-
-New warnings running 'make CHECK_DTBS=y rockchip/rk3328-rock-pi-e-v3.dtb rockchip/rk3328-rock-pi-e.dtb' for 20240816213429.1093-1-naoki@radxa.com:
-
-arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dtb: hdmi@ff3c0000: interrupts: [[0, 35, 4], [0, 71, 4]] is too long
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-hdmi.yaml#
-arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dtb: /phy@ff430000: failed to match any schema with compatible: ['rockchip,rk3328-hdmi-phy']
-arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dtb: /clock-controller@ff440000: failed to match any schema with compatible: ['rockchip,rk3328-cru', 'rockchip,cru', 'syscon']
-arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e-v3.dtb: /clock-controller@ff440000: failed to match any schema with compatible: ['rockchip,rk3328-cru', 'rockchip,cru', 'syscon']
-
-
-
-
-
+--rQtkFboImljYNJPX--
 
