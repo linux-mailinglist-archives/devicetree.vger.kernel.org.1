@@ -1,136 +1,183 @@
-Return-Path: <devicetree+bounces-94820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97FC0956C5C
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 15:42:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB3F0956C7D
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 15:59:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35F74B2352D
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 13:42:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDB5A1C210E0
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 13:59:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C62BF16C6A2;
-	Mon, 19 Aug 2024 13:42:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="2LEim/Y0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C7D016C842;
+	Mon, 19 Aug 2024 13:59:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C09CF16C438;
-	Mon, 19 Aug 2024 13:42:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CCB51BDCF;
+	Mon, 19 Aug 2024 13:58:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724074950; cv=none; b=PxkMeM1KuILHSJ+k1QBv5DMhJF/RXXgXMIOFHYHMd60qjMAnH7ligbcXrrjsHRgmvqL7V3sExPFqKIVSoY1YB/IOZuReXnaHNaeg4nIEYQFxy0Bai4QzBneg+YCJcn6HTme8SHMtu+FzeOlfTVlzSiQXQthYytx2x+QHu/1AiJE=
+	t=1724075940; cv=none; b=hDAxLWVxsQsmekUVYKQMY/1Tq0wL7+fuEyhdsz7xFdw5fGBjYR15OQTLeQDUMLcXEM6UcwSkZ3YXtfjQEwj3R9o7H1QgHQey0K3Tmm1IsjW5/NEOgEqUhfN3cuNF+7XwZduRw7hcAVDUvz9U/q1fKgf5rqe2Bo/YbReAQDAionY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724074950; c=relaxed/simple;
-	bh=xdq0mAE8Ba0fmk6rNvkOjgWo+w0dnu+VNJwVS6SS2l8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=LiXwHx1UUoe1C2ehh+hhK/YnKqiZK114YyiaAL4Co/WIaVy+9gMFfNPNaKob3Jy1IRezGOUNzwd4vO14kSohOoFmVjzELJxq7rnG4EMG04sZqEoQwsiEaiQq4SuHZiWTcUyF7QweceVs+fj7Hvh64aUX5KYQJERDvI4FO5Azcmg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=2LEim/Y0; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47J8N2dQ014235;
-	Mon, 19 Aug 2024 15:41:45 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	bQulpxG1VnLqgrCD3WCcMJwDbL8UJbzPwnhyTZrwwt8=; b=2LEim/Y0kyl6Pi9c
-	IqYr2SLsPKLLWnPxWH6m6RvE+DrYzvl+EjT3Pnlwg8/3zpMmSb0k3lmAKyHx49N2
-	KlWr3TofL5NDt+lm1d72dyIgoh1DGpPcltVRFstrPmX/hCDsh9eXTQhH8pyzLa2Q
-	qePnzdn74bWMpB1aUZpPRkP8DY88ExqINm+rXJYDitlto03z/fIojx/mydKysonQ
-	Ug37CYDrDYALBP4gvRch4PCI97Q8Izd0cRx15XPKFxN9a1lsCV6lB/hNUY+b1tJ2
-	ix2nWTTLCGgeyLpybXwrojMhV8J1fL65DlYQ7qT9tLyIryw5TPG1Een9ll6539WH
-	JXtf5w==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 412h9fppv2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 19 Aug 2024 15:41:45 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 3C9D94002D;
-	Mon, 19 Aug 2024 15:41:40 +0200 (CEST)
-Received: from Webmail-eu.st.com (eqndag1node5.st.com [10.75.129.134])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6B1ED26FD11;
-	Mon, 19 Aug 2024 15:40:50 +0200 (CEST)
-Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE5.st.com
- (10.75.129.134) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Mon, 19 Aug
- 2024 15:40:50 +0200
-Received: from [10.48.86.222] (10.48.86.222) by SAFDAG1NODE1.st.com
- (10.75.90.17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Mon, 19 Aug
- 2024 15:40:49 +0200
-Message-ID: <9dc935e0-a980-41a0-b4bb-ae54453bd3a3@foss.st.com>
-Date: Mon, 19 Aug 2024 15:40:08 +0200
+	s=arc-20240116; t=1724075940; c=relaxed/simple;
+	bh=nThcJ6TwlO3hmTw8F29f+VnLPMO0aRRuwMRWx2Vi2ak=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jyANIGchdiO6twMt1n/DTqtY/VmiPMH7WWH46RWvuq0pDL49J1lX4sDBY5+ZtZMAOYYFniMLAMc9yNLihINTobLx1kdOpkfEi+Mtzt9m5yz2mFMqHOpHI6ReYbOFmLSaibkvtDMHesitto6boA90wsGu5qmHuJvg2iERvs1bK38=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-6aab656687cso33142637b3.1;
+        Mon, 19 Aug 2024 06:58:57 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724075936; x=1724680736;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2YlyH90hAS3XvB8g9oyaNdjrvTWCtFfarjprnORBxjE=;
+        b=E4IH5yB+FK+ljnA2cL51qAX9UiAjC1SXiey0yCRepRNuIjhoTwCq8dfvBQl5/enbWz
+         wdzyr/7oM09atcztltWvN6VIeeimzthKtNY07x6Rvv/IOCP3Ev3nukXjtBmsKjLC5rHS
+         e/iKbdNtU9y2Dlx1I6DhS04NoqGqUGHK1tExd0LVTTX++/iOd2XTeEC7S8i5ne8cLLcU
+         6dEdUXEbn7+6suwtf8RQKb6NSwBoy8FM/u2hWkSyssjQjfSJlVCQtL+9QmWK4kPDGdFB
+         rhs6bwFtQsiXTSmtROzlG2TtMdbEpi9GdqupVhtQ4rm9q3AAiQEfe32rnm3VXLWSP46d
+         lihA==
+X-Forwarded-Encrypted: i=1; AJvYcCWxurx2+O0j5UJhpORm5BZ5rlkDlFPA3AsUgRfKKVfRtvCEK8xBOt7YDRZ78D/0MKP/0a0WU43sMXmXFOaPEgO3xeNehxDRHFvVnNrzPf/aEhqnEw8B3hQ4Rw7V5z3tuXeGCs3MZU5Tzqcyb0bh8PtTZN3gFjg3Mdf+nNyloRX3Yk7P5qnnf9O4zJfJ
+X-Gm-Message-State: AOJu0Ywaf3ALt4RuFMpKRKIocxDdFfb8syGjzyFe6FUdY6T40CJ5QiQc
+	vyWd3SgAu/ZxxlQLaiXTnkOOiXDaASZ4eWCA2iZ7qZ7TeZqRPmSUcW/0P5YL
+X-Google-Smtp-Source: AGHT+IFumlAs3XEqA8NU8hFKtXAmE+UH+vggeNpsCQNtRtuuXywnOjxsu1RrYeYOc4h+k7LIpXyHfA==
+X-Received: by 2002:a05:690c:498a:b0:6ac:de95:8675 with SMTP id 00721157ae682-6af20087039mr121977157b3.24.1724075935742;
+        Mon, 19 Aug 2024 06:58:55 -0700 (PDT)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6af99f9df9csm15954037b3.45.2024.08.19.06.58.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Aug 2024 06:58:55 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-6aab656687cso33142077b3.1;
+        Mon, 19 Aug 2024 06:58:55 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXjmg5Qb2HxRPpRcIZzcv5/dPeViJa22FroBZoaluj5KKY8xwhHh8n4uSnWOuramnzdwF/NnsbjCkiruysQ6eFKYCtA8eS2lnn2knoMSe4mdSkuDTABXk5res9hzATFPYmbSSD5ixd5vmxcghv9xLMqUhtuIDyebn1yBVooHi/AeMTCpW4jbG1ordZ2
+X-Received: by 2002:a05:690c:2906:b0:6a9:5953:a659 with SMTP id
+ 00721157ae682-6b1f1d10ae2mr60563827b3.18.1724075934800; Mon, 19 Aug 2024
+ 06:58:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: iio: st,stm32-adc: add top-level constraints
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Jonathan Cameron
-	<jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        "Alexandre Torgue" <alexandre.torgue@foss.st.com>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20240818172951.121983-1-krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-From: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-In-Reply-To: <20240818172951.121983-1-krzysztof.kozlowski@linaro.org>
+References: <20240811204955.270231-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240811204955.270231-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <TY3PR01MB11346E95ED1171818488EFEFA86852@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <CA+V-a8sR1Lu1FYMQbDXzzi19ShF-RLkwirF-51aWp1bjwG8LXw@mail.gmail.com>
+In-Reply-To: <CA+V-a8sR1Lu1FYMQbDXzzi19ShF-RLkwirF-51aWp1bjwG8LXw@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 19 Aug 2024 15:58:43 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUw7ZLvtbmTN=g-Xh3RLWSVH3U0VpbehREyNcYypHnDsQ@mail.gmail.com>
+Message-ID: <CAMuHMdUw7ZLvtbmTN=g-Xh3RLWSVH3U0VpbehREyNcYypHnDsQ@mail.gmail.com>
+Subject: Re: [PATCH v2 6/8] arm64: dts: renesas: r9a09g057: Add WDT0-WDT3 nodes
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SAFDAG1NODE1.st.com
- (10.75.90.17)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-19_12,2024-08-19_01,2024-05-17_01
+Content-Transfer-Encoding: quoted-printable
 
+Hi Prabhakar,
 
-On 8/18/24 19:29, Krzysztof Kozlowski wrote:
-> Properties with variable number of items per each device are expected to
-> have widest constraints in top-level "properties:" block and further
-> customized (narrowed) in "if:then:".  Add missing top-level constraints
-> for clock-names.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  Documentation/devicetree/bindings/iio/adc/st,stm32-adc.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/st,stm32-adc.yaml b/Documentation/devicetree/bindings/iio/adc/st,stm32-adc.yaml
-> index ec34c48d4878..ef9dcc365eab 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/st,stm32-adc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/st,stm32-adc.yaml
-> @@ -54,7 +54,9 @@ properties:
->            It's not present on stm32f4.
->            It's required on stm32h7 and stm32mp1.
->  
-> -  clock-names: true
-> +  clock-names:
-> +    minItems: 1
-> +    maxItems: 2
->  
->    st,max-clk-rate-hz:
->      description:
+On Mon, Aug 12, 2024 at 2:32=E2=80=AFPM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+> On Mon, Aug 12, 2024 at 1:25=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.=
+com> wrote:
+> > > -----Original Message-----
+> > > From: Prabhakar <prabhakar.csengg@gmail.com>
+> > > Sent: Sunday, August 11, 2024 9:50 PM
+> > > Subject: [PATCH v2 6/8] arm64: dts: renesas: r9a09g057: Add WDT0-WDT3=
+ nodes
+> > >
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >
+> > > Add WDT0-WDT3 nodes to RZ/V2H(P) ("R9A09G057") SoC DTSI.
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
+>
+> > > ---
+> > > v1->v2
+> > > - New patch
+> > > ---
+> > >  arch/arm64/boot/dts/renesas/r9a09g057.dtsi | 44 ++++++++++++++++++++=
+++
+> > >  1 file changed, 44 insertions(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi b/arch/arm64/=
+boot/dts/renesas/r9a09g057.dtsi
+> > > index 435b1f4e7d38..7f4e8ad9b0a5 100644
+> > > --- a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
+> > > +++ b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
+> > > @@ -184,6 +184,17 @@ scif: serial@11c01400 {
+> > >                       status =3D "disabled";
+> > >               };
+> > >
+> > > +             wdt0: watchdog@11c00400 {
+> > > +                     compatible =3D "renesas,r9a09g057-wdt";
+> > > +                     reg =3D <0 0x11c00400 0 0x400>;
+> > > +                     clocks =3D <&cpg CPG_MOD 75>,
+> > > +                              <&cpg CPG_MOD 76>;
+> > > +                     clock-names =3D "pclk", "oscclk";
+> > > +                     resets =3D <&cpg 117>;
+> > > +                     power-domains =3D <&cpg>;
+> > > +                     status =3D "disabled";
+> > > +             };
+> > > +
+> > >               ostm4: timer@12c00000 {
+> > >                       compatible =3D "renesas,r9a09g057-ostm", "renes=
+as,ostm";
+> > >                       reg =3D <0x0 0x12c00000 0x0 0x1000>;
+> > > @@ -224,6 +235,28 @@ ostm7: timer@12c03000 {
+> > >                       status =3D "disabled";
+> > >               };
+> > >
+> > > +             wdt2: watchdog@13000000 {
+> > > +                     compatible =3D "renesas,r9a09g057-wdt";
+> > > +                     reg =3D <0 0x13000000 0 0x400>;
+> > > +                     clocks =3D <&cpg CPG_MOD 79>,
+> > > +                              <&cpg CPG_MOD 80>;
+> > > +                     clock-names =3D "pclk", "oscclk";
+> > > +                     resets =3D <&cpg 119>;
+> > > +                     power-domains =3D <&cpg>;
+> > > +                     status =3D "disabled";
+> > > +             };
+> >
+> > I guess same group(all wdt together) arranged together?? Not sure.
+> >
+> I think Geert prefers it to be sorted based on unit address. So I'll
+> let Geert make a decision on this (and the rest of the similar patches
+> where nodes are sorted based on unit address and not grouped based on
+> IP).
 
-Hi Krzysztof,
+Sorted based on unit-address, but keep all nodes of the same type together.
+I.e.:
+    wdt0: watchdog@11c00400 { ... };
+    wdt2: watchdog@13000000 { ... };
+    wdt3: watchdog@13000400 { ... };
+    wdt1: watchdog@14400000 { ... };
 
-You can add my:
-Reviewed-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Thanks!
 
-Best Regards,
-Thanks,
-Fabrice
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
