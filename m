@@ -1,132 +1,127 @@
-Return-Path: <devicetree+bounces-94817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F7CF956C13
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 15:31:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B34A956C4A
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 15:38:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 820D31C2328C
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 13:31:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2586B1F22777
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 13:38:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31219184101;
-	Mon, 19 Aug 2024 13:27:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3268B16C42C;
+	Mon, 19 Aug 2024 13:38:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NcKCEon0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZLMeI2yc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2D6C16D338;
-	Mon, 19 Aug 2024 13:27:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A89D16B74D;
+	Mon, 19 Aug 2024 13:38:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724074052; cv=none; b=lqMBv7xI1miZbSCeaL3+YXHdUj6AJSGq/cW3zBBYhvrGitb1zSN+UHf8F5uEaOePwoyC3FQMnG8RqRDaoiETmaP2mNh1XbjZSe+dmDSn5cVeXQNoQIuXh5QbVZaE1j6LkJ0jnDCnWms3WCSM0RvVTwFXbtf59s66/YeSrzMGzOQ=
+	t=1724074724; cv=none; b=EqQhtxT+sHmv1/nMbyDfiLexOBf7C4ICTa4GoJ9Jm97sU74ykV9OEE2cGG3uvC6Heni0iBbANFfFvt0HyJSoj/whdprypD5/0NdgSnhhTdhkerz6j/HJALqlV9296kjKOmuVmfAavLWABoG6SPNFTTrWUh3aU4aqX/5AVQcT4G4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724074052; c=relaxed/simple;
-	bh=zgzzTwzV0BQY6hxtHWFGekrmc1vx8F7yvRK80HBJQrQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZINxj6uJsJ60lf7+wWUfO0bDla8oGhiNUuZmTjalh+WiRGOXdKAfcK1Wt0CHR7WOMXNzCl0N5fG87xK6OU8V71EwkH/EZDot4esiMyxBkkzgr9+WGyJpujlsfk2nVVQ8r8PSA9QssrOBWJttWw197p0p3iBv0nqdWT1zKQDRFZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NcKCEon0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 553EEC4AF0F;
-	Mon, 19 Aug 2024 13:27:25 +0000 (UTC)
+	s=arc-20240116; t=1724074724; c=relaxed/simple;
+	bh=HnXHpBWJd9U3kd3NxwXtSvzJXtDDSPMfs14A0MtrVYM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hFJdknAeck/31fsukV7wX9iZXsoew190a0GO6fRuT7Lc9NN8tm/GSlcaT95wQwtS33nyB2jWxTsvoYOWl/UoTZEk/9Faq+qOKffDozO0Un0Q9n80icNItdwmw0tZrdj5FF6SeBT+RwCQ2dN2JL5AXoTUWJyUxYfmC29rDIwONGc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZLMeI2yc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C8FDC4AF10;
+	Mon, 19 Aug 2024 13:38:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724074051;
-	bh=zgzzTwzV0BQY6hxtHWFGekrmc1vx8F7yvRK80HBJQrQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NcKCEon0okn3rFKqjw1KT+EdjKM9uNNBqtsORdLntcwecBj9BUCQdwpKIdu7Cjs4o
-	 vMLd35t7x3feSipMIKbLDHd7YWQLqIivMqAunxzVib4+86J1w6GWEEzupwjcTNgs9V
-	 LrOmwSG4AIY5XEq4ZdPOAy+wcGuluRvnBzhAnol6VCc3Y/PvPuXhf4muXpBUHs6kfK
-	 lGr/t8dvyzH5H4WrG7pIqJxvbmbM0H33wo7vKjtQzYQT7FTd2sQfGY0UB29ysdbial
-	 VAEZrisslXPLoaekPRXBKSq6vLD4vQexdSZ8HBvPNp4aMEibMBmkZScZ71RNaWM0CQ
-	 vVj6KGIE2cC2g==
-Message-ID: <e481e29c-6904-43e9-8148-402b267ecc9e@kernel.org>
-Date: Mon, 19 Aug 2024 15:27:22 +0200
+	s=k20201202; t=1724074723;
+	bh=HnXHpBWJd9U3kd3NxwXtSvzJXtDDSPMfs14A0MtrVYM=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=ZLMeI2yciU1w5rR1VogeDAC7sDNpYgWowCrd0sanjrciwnzGUMB5fVEsC2VJocG4O
+	 4BH5/klMMGTj4eDhfvNzXwMsa1CW/WsdD2Bo0OjX5HH3BG4X0PvITRubRPDmSz7sAL
+	 wqVf+NQ++vO7yeXpAjkmToVDbHajmK4oKYQli4RiVviLx8HGyjifxN+ngmwMteetbx
+	 NewD8eAI7Z175LYGgeXzuGr1imTSwg4qYsEsNh3orjo3O6Fp3Q1qV7bBgG4wiD/Nj6
+	 o2Ym3/Mv7g8484QiLuH5F6P2E4EwAQtxBmplhoA6gW9lB8WZmVb8xF8PbwqqWgK21G
+	 BFRiTB5UAVO3g==
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2f035ae0fd1so48732901fa.2;
+        Mon, 19 Aug 2024 06:38:43 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXeaZuGlR8JaCZ8X1aQpKxZfvT9TJPleo9a05V6UIvgDBM/IIso/kwYcnhi9bPc1smTG1pPhh6XLWbEurYtn9emye5Q5oJifoQ56teLSv9+Nu4TBMsfNpGh1vGupktRRYj2/9Iy5rGkUg==
+X-Gm-Message-State: AOJu0Yyh9KHvMHFSYV9yPl03sJ2FXwpYtu7qy2mKU90unI4zRV95o3Ex
+	XTF07ZlnL4CIrRoZNwSpPPfWj5/yfA/nlrA37K2EH2stq2M3jf2pLNFjpfHiKHucXi6S7kWqpdF
+	5UeDBrZb2VNA7Ub1jDK7dcdPkBA==
+X-Google-Smtp-Source: AGHT+IGa3K9gt89RK6o4xZ8EoS40LEXM1QdCH0OX9oHmervlw6KfmM/3z5RbDfsnlV0DTeLX2ktRdryZFtLoXNizcHE=
+X-Received: by 2002:a05:6512:6cc:b0:52c:952a:67da with SMTP id
+ 2adb3069b0e04-5331c6e400fmr7761393e87.55.1724074721988; Mon, 19 Aug 2024
+ 06:38:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/3] OF support for Surface System Aggregator Module
-To: Hans de Goede <hdegoede@redhat.com>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Len Brown <lenb@kernel.org>, Maximilian Luz <luzmaximilian@gmail.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
- platform-driver-x86@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <quic_kdybcio@quicinc.com>,
- Krzysztof Kozlowski <krzk@kernel.org>
-References: <20240814-topic-sam-v3-0-a84588aad233@quicinc.com>
- <1edadffb-67d9-476e-b0f7-7f3fc34e9592@redhat.com>
-Content-Language: en-US
-From: Konrad Dybcio <konradybcio@kernel.org>
-In-Reply-To: <1edadffb-67d9-476e-b0f7-7f3fc34e9592@redhat.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <Zr3X1RoQs7ElTnlJ@standask-GA-A55M-S2HP> <20240815140046.GA1603296-robh@kernel.org>
+ <Zr4Sze8ea3q4d+Xk@standask-GA-A55M-S2HP>
+In-Reply-To: <Zr4Sze8ea3q4d+Xk@standask-GA-A55M-S2HP>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 19 Aug 2024 07:38:29 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKZEAOgEacGmfoJeuNpTpy9oXnG1ghJhAZP8Gkp700ynQ@mail.gmail.com>
+Message-ID: <CAL_JsqKZEAOgEacGmfoJeuNpTpy9oXnG1ghJhAZP8Gkp700ynQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mfd: sprd,sc2731: convert to YAML
+To: Stanislav Jakubek <stano.jakubek@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>, 
+	Baolin Wang <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 19.08.2024 1:57 PM, Hans de Goede wrote:
-> Hi,
-> 
-> On 8/14/24 12:27 PM, Konrad Dybcio wrote:
->> Wire up OF support for SSAM drivers, to use with Surface Laptop 7 and
->> other Qualcomm-based devices.
->>
->> Patch 3 references compatible strings introduced in [1]
->>
->> [1] https://lore.kernel.org/linux-arm-msm/20240809-topic-sl7-v1-1-2090433d8dfc@quicinc.com/T/#u
->>
->> Signed-off-by: Konrad Dybcio <quic_kdybcio@quicinc.com>
-> 
-> Thank you for your patch-series, I've applied the series to my
-> review-hans branch:
-> https://git.kernel.org/pub/scm/linux/kernel/git/pdx86/platform-drivers-x86.git/log/?h=review-hans
-> 
-> I did notice the following compiler warning when test building:
-> 
-> drivers/platform/surface/surface_aggregator_registry.c:278:36: warning: ‘ssam_node_group_sl7’ defined but not used [-Wunused-variable]
->   278 | static const struct software_node *ssam_node_group_sl7[] = {
->       |                                    ^~~~~~~~~~~~~~~~~~~
-> 
-> One way to fix this would be add #ifdef CONFIG_OF around the definition
-> of ssam_node_group_sl7, but then future devicetree based surface devices
-> would need more #ifdef-s so instead I've solved it by squashing in this fix:
-> 
-> diff --git a/drivers/platform/surface/surface_aggregator_registry.c b/drivers/platform/surface/surface_aggregator_registry.c
-> index 495cb4300617..ac96e883cb57 100644
-> --- a/drivers/platform/surface/surface_aggregator_registry.c
-> +++ b/drivers/platform/surface/surface_aggregator_registry.c
-> @@ -415,14 +415,12 @@ static const struct acpi_device_id ssam_platform_hub_acpi_match[] = {
->  };
->  MODULE_DEVICE_TABLE(acpi, ssam_platform_hub_acpi_match);
->  
-> -#ifdef CONFIG_OF
-> -static const struct of_device_id ssam_platform_hub_of_match[] = {
-> +static const struct of_device_id ssam_platform_hub_of_match[] __maybe_unused = {
->  	/* Surface Laptop 7 */
->  	{ .compatible = "microsoft,romulus13", (void *)ssam_node_group_sl7 },
->  	{ .compatible = "microsoft,romulus15", (void *)ssam_node_group_sl7 },
->  	{ },
->  };
-> -#endif
->  
->  static int ssam_platform_hub_probe(struct platform_device *pdev)
->  {
-> 
-> Once I've run some tests on this branch the patches there will be
-> added to the platform-drivers-x86/for-next branch and eventually
-> will be included in the pdx86 pull-request to Linus for the next
-> merge-window.
+On Thu, Aug 15, 2024 at 8:38=E2=80=AFAM Stanislav Jakubek
+<stano.jakubek@gmail.com> wrote:
+>
+> Hi Rob,
+>
+> [skip]
+>
+> > > ---
+> > > Depends on:
+> > >   - eFuse YAML conversion: https://lore.kernel.org/lkml/9fba73ce66f1f=
+3b7b2a8f46e7c21f60cff5a85f0.1721199034.git.stano.jakubek@gmail.com/
+> > >   - RTC YAML conversion: https://lore.kernel.org/lkml/ZrBzmQI0IAL7LI3=
+e@standask-GA-A55M-S2HP/
+> >
+> > These either have to be sent as 1 series for 1 maintainer to apply (Lee=
+)
+> > or you'll have to wait a cycle for the dependencies.
+>
+> I've had this patch sitting on my harddrive for over a month now.
+> Both of the dependencies have been sitting on the mailing lists
+> pretty much unchanged for about a month as well...
+> Also, there are technically more dependencies, but they're in linux-next
+> already, so I didn't include them here.
 
-Thanks for pointing this out. Your fix seems to be the best solution
-I can think of, so I'm all for it
+From who's tree? That affects who can apply this as well. I guess
+those are other child nodes.
 
-Konrad
+> Just wanted to get this out to get some feedback (and hope that it would
+> move the dependencies along).
+
+And now you have.
+
+>
+> [skip]
+>
+> > The preference is one complete example here and drop any partial
+> > examples of the child nodes in the child node schemas.
+>
+> I can add a more complete example here, sure.
+> But I don't understand the point of removing the examples in child node
+> bindings. Seems to me like all that would do is provide less documentatio=
+n.
+
+It's not less, it's just 1 copy instead of 2 (or more). The problem
+typically (in the old bindings) is that the parent node is shown, but
+is incomplete which is a problem once the schemas check the examples.
+And if some of the child nodes are required by the schema, then every
+child schema ends up with a complete example of the MFD. And then when
+we have to fix something later, there's more places to go fix it.
+
+Rob
 
