@@ -1,160 +1,200 @@
-Return-Path: <devicetree+bounces-94844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F936956E1D
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 17:02:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F973956E43
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 17:09:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 446BD1C21408
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 15:02:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B54431C22122
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 15:09:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C60517554A;
-	Mon, 19 Aug 2024 15:02:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1DD8176AA3;
+	Mon, 19 Aug 2024 15:07:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="BjYcs34J"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cwU7ib2z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E3231741F8
-	for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 15:02:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2803A176231;
+	Mon, 19 Aug 2024 15:07:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724079741; cv=none; b=Z0Yi6BM7mBWgFQjDQdDh0L6LiNEF1+3SyOIxr8jePbpe6WMWce6R3uvlGkiri6C2wG3VcCbPDtVCCRu+V+Us1ftXrhRbmemphChnYiLr091w63vvJrxsthheUylBozeiLRKJ61xNmc/WVDTNKoYfMemY83d1lt2lsXyfSBZpw34=
+	t=1724080074; cv=none; b=fcMCwxNeUs4asWf+uGGyHQTptiTJjjS4sT4iqIF0aRMdkMnA/Omqp4iH2jlGVJK//z3wP/x1+NaZE17+LmdRpBGSHJga6AexsM8FLqJE/VENbY5V+gjbSlPS4yZnBQEwN+pv7yRjO3usG84LyTbtNsnJHJRYU/yrYRHY6Jt5C10=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724079741; c=relaxed/simple;
-	bh=EN08TFaSVBCQMLBeFx4mFOBoH9BoUxUimX0KlSPHLS0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kjTqAKG3FAY4LyHbh5HBrHxFEWjCXVph1t8lCuomP5xu8dlBfCLqNKeKCXOdKUM0tdyROUQte3kpzNySU1irZu6Dx1X9DvDGNy88uXb2sQ9zO58SRnYKljtnDCR8HCWFwprlvpcnPyuhJ4L8rSVtiAy/THIbg/h14EgDJuQGn9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=BjYcs34J; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-371b97cfd6fso975118f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 08:02:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1724079737; x=1724684537; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bUK8OL34DJRMcxB19xg1k7/qsStJR02DDbFs+v32ruE=;
-        b=BjYcs34JwFjBVBVxdJtj2JKBTwZp04kUNQfvWKbfYQisPeiD8CjU6r+0RUnJ1GQHb1
-         73pO65Lqk/DFy6wCUouxYNfkYv02f5z9G5jyFfjl4Y/YFdhaNP3NwcvFguiuQ2R6IATr
-         QG5v0c4rrfCvk1PXfuI0RE017WoNkuwZ7v4osqF/ETYjn2QPKJ9dO332Oue46f0cLtbm
-         f4D4K3IWca7YHd4qNLxejFFyYRG2sOStCQPEujbxJzTduSYVMG29GGSxHcrtkjTrH4ZY
-         IpUQ5rxqJUxbzTzKrTmf5Dbpsw7M1kUf2SnHg5CjyCq1bZC6Q0cxbFEd2i0zafFapsxY
-         c5jw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724079737; x=1724684537;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bUK8OL34DJRMcxB19xg1k7/qsStJR02DDbFs+v32ruE=;
-        b=APinYe0rqHSGQz5gZnTRfwhKZeqsRlD6tIHEaoEK4fhhCexKn6RczPp15BdRXHc+CT
-         mYu+YiJ+LTmrYNMxJsitV8cdDwIlsuiEFFSJk3H2MWg1nV4QrRycm3ktppWvifCspes+
-         qUaS1mKma9T4qCR5kt6zdHI9oowp77fQAM1j1aKufBHSiuwsY1Xps+jazN4IsUwIf6K4
-         T9CGu57qDFet+LEcNqHUzDEwVen9yujOVp+YoI3ZnQ3pVEjSik0KEhjlCgpmcIP+mQBg
-         KUmKhUooq+2k+KYRUokYOHHM2x8RV+iS5rqSmjYTm4NJlLTHYUNBSilQV1/fjjjjpYpa
-         7z8w==
-X-Forwarded-Encrypted: i=1; AJvYcCVR9VM0ShZmSTcVUZi9YFEtOJrpELpPr1Zq5Nmpbp0xE19sB2SDtLvm8vqdvQ1Ld2ePCE/yrZb7/sB392IfdjI/J/9LDs64nJmbyw==
-X-Gm-Message-State: AOJu0Yz9IZJmZLMdQIbKoCmZuuWiiMd5b55MokLtcOwyT0iCQklI+n6y
-	5MbxpniAEcR1CMtfr0ODH7udgvGqpNAk9LXP59jazYZAOHTHyodF5kPw+mvUjSw=
-X-Google-Smtp-Source: AGHT+IHoBqukazpQ2b+gLTUJRvOUgCeOQ4+kudIq0jjRNmYddBHniXchx8b++5+6dBkpqdwg2at2Cg==
-X-Received: by 2002:a5d:5e0f:0:b0:367:4d9d:56a5 with SMTP id ffacd0b85a97d-371983d5ea0mr5461777f8f.44.1724079737278;
-        Mon, 19 Aug 2024 08:02:17 -0700 (PDT)
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3718983a2d7sm10875557f8f.10.2024.08.19.08.02.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Aug 2024 08:02:16 -0700 (PDT)
-Message-ID: <67f9a762-6d14-4557-b1f6-22aabb33f927@freebox.fr>
-Date: Mon, 19 Aug 2024 17:02:16 +0200
+	s=arc-20240116; t=1724080074; c=relaxed/simple;
+	bh=PsSb9lq5VWjaEqxKE/Tf9owkyuT4Q/NptnHcgWMV01M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=twOQG3ByfqBU5AEZZexYV15+/KAqwFHGATPu+XLwhA3YjCtttr1+6OGW2XIJKnlTSDJ/bb+wUrePos9pbXaqug6DNgpEZltdaYwCQWJ2EWiVTYWs7JReuFQqgJ+AWQdPsFxmCd/Jr+5b/jWHwSA2hXXtNIFDNel4BYcs+K1oWzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cwU7ib2z; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1724080071; x=1755616071;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=PsSb9lq5VWjaEqxKE/Tf9owkyuT4Q/NptnHcgWMV01M=;
+  b=cwU7ib2zd5/pNkZTehwTRUcyKy2nTqYI7HBwlhiSeZnZj6s70aBG5J60
+   X3x7bWVHsq+T718bG9+UDCk5+tpAfAGkXlYHbKfMCFcP0cHi9dTVtpHX7
+   lQVzh63/0bcAbr09MkbULXrhPLv70Z2bQrVZ3bzWx/HoAxuRs4VPq+yk4
+   5NOnsj1kNI4eCkOD4BuPh9i3TlZCJnlCVi2sJM6nJZ758VpR9vnh7gBwl
+   wSV+i+5joC37OiBH/NsnYbA0GjCnuBMMUW1J1et3ULoUfh8FH9+OeR19c
+   obLvKh9HBaeIADBzi+U41E+aLDRvzDC/DwNF33YxkfOz63pnMuxnzN6sc
+   w==;
+X-CSE-ConnectionGUID: f2/RYm43TUaw9TySej4oqw==
+X-CSE-MsgGUID: Y5cbajTjT3a1v+dcjOTvqw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="22476578"
+X-IronPort-AV: E=Sophos;i="6.10,159,1719903600"; 
+   d="scan'208";a="22476578"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Aug 2024 08:07:50 -0700
+X-CSE-ConnectionGUID: hCz563YERMGML/DfO+9aZw==
+X-CSE-MsgGUID: uh77pYOQSRm/ZFVkuvCdRQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,159,1719903600"; 
+   d="scan'208";a="83606348"
+Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
+  by fmviesa002.fm.intel.com with ESMTP; 19 Aug 2024 08:07:48 -0700
+Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sg3yz-00096Q-1w;
+	Mon, 19 Aug 2024 15:07:45 +0000
+Date: Mon, 19 Aug 2024 23:07:19 +0800
+From: kernel test robot <lkp@intel.com>
+To: Alexandru Ardelean <aardelean@baylibre.com>, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, jic23@kernel.org,
+	krzk+dt@kernel.org, robh@kernel.org, lars@metafoo.de,
+	michael.hennerich@analog.com, gstols@baylibre.com,
+	Alexandru Ardelean <aardelean@baylibre.com>
+Subject: Re: [PATCH 7/7] iio: adc: ad7606: add support for AD7606C-{16,18}
+ parts
+Message-ID: <202408192209.IrTzVL49-lkp@intel.com>
+References: <20240819064721.91494-8-aardelean@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm-smmu: Add
- qcom,last-ctx-bank-reserved
-To: Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>
-Cc: Rob Clark <robdclark@gmail.com>, Will Deacon <will@kernel.org>,
- Joerg Roedel <joro@8bytes.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, iommu@lists.linux.dev,
- linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Arnaud Vrac <avrac@freebox.fr>,
- Pierre-Hugues Husson <phhusson@freebox.fr>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Caleb Connolly <caleb.connolly@linaro.org>
-References: <20240814-smmu-v1-0-3d6c27027d5b@freebox.fr>
- <20240814-smmu-v1-1-3d6c27027d5b@freebox.fr>
- <20240818152515.GA104481-robh@kernel.org>
- <30489eee-075b-461b-ab43-c8807d667630@freebox.fr>
- <17893776-9666-4bbe-b5fc-c3fe977d0337@arm.com>
-Content-Language: en-US
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <17893776-9666-4bbe-b5fc-c3fe977d0337@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240819064721.91494-8-aardelean@baylibre.com>
 
-On 19/08/2024 14:57, Robin Murphy wrote:
+Hi Alexandru,
 
-> Luckily, in this case it seems straightforward enough to be able to see 
-> that if we have a "qcom,msm8996-smmu-v2" with 13 context banks then we 
-> should just treat it as if it has 12 - it's also notable that it only 
-> reports NUMSMRG=12, so we couldn't use more than that many S1 context 
-> banks at once anyway.
+kernel test robot noticed the following build warnings:
 
-This is what the hypervisor reports:
+[auto build test WARNING on jic23-iio/togreg]
+[cannot apply to linus/master v6.11-rc4 next-20240819]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-[    2.550974] arm-smmu 5100000.iommu: probing hardware configuration...
-[    2.557309] arm-smmu 5100000.iommu: SMMUv2 with:
-[    2.563815] arm-smmu 5100000.iommu:  stage 1 translation
-[    2.568494] arm-smmu 5100000.iommu:  address translation ops
-[    2.573791] arm-smmu 5100000.iommu:  non-coherent table walk
-[    2.579434] arm-smmu 5100000.iommu:  (IDR0.CTTW overridden by FW configuration)
-[    2.585088] arm-smmu 5100000.iommu:  stream matching with 12 register groups
-[    2.592132] arm-smmu 5100000.iommu:  13 context banks (0 stage-2 only)
-[    2.619316] arm-smmu 5100000.iommu:  Supported page sizes: 0x63315000
-[    2.626225] arm-smmu 5100000.iommu:  Stage-1: 36-bit VA -> 36-bit IPA
-[    2.632645] arm-smmu 5100000.iommu:  preserved 0 boot mappings
+url:    https://github.com/intel-lab-lkp/linux/commits/Alexandru-Ardelean/iio-adc-ad7606-add-bits-parameter-to-channels-macros/20240819-145028
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/20240819064721.91494-8-aardelean%40baylibre.com
+patch subject: [PATCH 7/7] iio: adc: ad7606: add support for AD7606C-{16,18} parts
+config: i386-buildonly-randconfig-001-20240819 (https://download.01.org/0day-ci/archive/20240819/202408192209.IrTzVL49-lkp@intel.com/config)
+compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240819/202408192209.IrTzVL49-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408192209.IrTzVL49-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/iio/adc/ad7606.c:796:6: warning: variable 'ret' set but not used [-Wunused-but-set-variable]
+     796 |         int ret, ch;
+         |             ^
+   1 warning generated.
 
 
-smmu->num_mapping_groups = 12
-smmu->num_context_banks  = 13
+vim +/ret +796 drivers/iio/adc/ad7606.c
 
+94168a5789874a Alexandru Ardelean 2024-08-19  790  
+94168a5789874a Alexandru Ardelean 2024-08-19  791  static int ad7606_sw_mode_setup(struct iio_dev *indio_dev, unsigned int id)
+b5d2c422286d62 Alexandru Ardelean 2024-08-19  792  {
+36b63bb57295f7 Alexandru Ardelean 2024-08-19  793  	unsigned int num_channels = indio_dev->num_channels - 1;
+b5d2c422286d62 Alexandru Ardelean 2024-08-19  794  	struct ad7606_state *st = iio_priv(indio_dev);
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  795  	unsigned int *scale_avail_show, num_scales_avail_show;
+09d11fa081ef17 Alexandru Ardelean 2024-08-19 @796  	int ret, ch;
+b5d2c422286d62 Alexandru Ardelean 2024-08-19  797  
+b5d2c422286d62 Alexandru Ardelean 2024-08-19  798  	if (!st->bops->sw_mode_config)
+b5d2c422286d62 Alexandru Ardelean 2024-08-19  799  		return 0;
+b5d2c422286d62 Alexandru Ardelean 2024-08-19  800  
+b5d2c422286d62 Alexandru Ardelean 2024-08-19  801  	st->sw_mode_en = device_property_present(st->dev, "adi,sw-mode");
+b5d2c422286d62 Alexandru Ardelean 2024-08-19  802  	if (!st->sw_mode_en)
+b5d2c422286d62 Alexandru Ardelean 2024-08-19  803  		return 0;
+b5d2c422286d62 Alexandru Ardelean 2024-08-19  804  
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  805  	indio_dev->info = &ad7606_info_sw_mode;
+b5d2c422286d62 Alexandru Ardelean 2024-08-19  806  
+94168a5789874a Alexandru Ardelean 2024-08-19  807  	switch (id) {
+94168a5789874a Alexandru Ardelean 2024-08-19  808  	case ID_AD7606C_18:
+94168a5789874a Alexandru Ardelean 2024-08-19  809  		num_scales_avail_show = num_channels;
+94168a5789874a Alexandru Ardelean 2024-08-19  810  		ret = ad7606c_sw_mode_setup_channels(indio_dev,
+94168a5789874a Alexandru Ardelean 2024-08-19  811  						     ad7606c_18_chan_setup);
+94168a5789874a Alexandru Ardelean 2024-08-19  812  		break;
+94168a5789874a Alexandru Ardelean 2024-08-19  813  	case ID_AD7606C_16:
+94168a5789874a Alexandru Ardelean 2024-08-19  814  		num_scales_avail_show = num_channels;
+94168a5789874a Alexandru Ardelean 2024-08-19  815  		ret = ad7606c_sw_mode_setup_channels(indio_dev,
+94168a5789874a Alexandru Ardelean 2024-08-19  816  						     ad7606c_16_chan_setup);
+94168a5789874a Alexandru Ardelean 2024-08-19  817  		break;
+94168a5789874a Alexandru Ardelean 2024-08-19  818  	default:
+94168a5789874a Alexandru Ardelean 2024-08-19  819  		num_scales_avail_show = 1;
+94168a5789874a Alexandru Ardelean 2024-08-19  820  
+b5d2c422286d62 Alexandru Ardelean 2024-08-19  821  		/* Scale of 0.076293 is only available in sw mode */
+b5d2c422286d62 Alexandru Ardelean 2024-08-19  822  		/* After reset, in software mode, ±10 V is set by default */
+36b63bb57295f7 Alexandru Ardelean 2024-08-19  823  		for (ch = 0; ch < num_channels; ch++) {
+36b63bb57295f7 Alexandru Ardelean 2024-08-19  824  			struct ad7606_chan_scale *cs = &st->chan_scales[ch];
+36b63bb57295f7 Alexandru Ardelean 2024-08-19  825  
+36b63bb57295f7 Alexandru Ardelean 2024-08-19  826  			cs->scale_avail = ad7616_sw_scale_avail;
+36b63bb57295f7 Alexandru Ardelean 2024-08-19  827  			cs->num_scales = ARRAY_SIZE(ad7616_sw_scale_avail);
+36b63bb57295f7 Alexandru Ardelean 2024-08-19  828  			cs->range = 2;
+36b63bb57295f7 Alexandru Ardelean 2024-08-19  829  		}
+b5d2c422286d62 Alexandru Ardelean 2024-08-19  830  
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  831  		ret = st->bops->sw_mode_config(indio_dev);
+94168a5789874a Alexandru Ardelean 2024-08-19  832  		break;
+94168a5789874a Alexandru Ardelean 2024-08-19  833  	}
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  834  
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  835  	for (ch = 0; ch < num_channels; ch++) {
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  836  		struct ad7606_chan_scale *cs;
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  837  		int i;
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  838  
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  839  		/* AD7606C supports different scales per channel */
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  840  		cs = &st->chan_scales[ch];
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  841  
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  842  		if (num_scales_avail_show == 1 && ch > 0) {
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  843  			cs->scale_avail_show = scale_avail_show;
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  844  			continue;
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  845  		}
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  846  
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  847  		scale_avail_show = devm_kcalloc(st->dev, cs->num_scales * 2,
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  848  						sizeof(*scale_avail_show),
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  849  						GFP_KERNEL);
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  850  		if (!scale_avail_show)
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  851  			return -ENOMEM;
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  852  
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  853  		/* Generate a scale_avail list for showing to userspace */
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  854  		for (i = 0; i < cs->num_scales; i++) {
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  855  			scale_avail_show[i * 2] = 0;
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  856  			scale_avail_show[i * 2 + 1] = cs->scale_avail[i];
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  857  		}
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  858  
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  859  		cs->scale_avail_show = scale_avail_show;
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  860  	}
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  861  
+09d11fa081ef17 Alexandru Ardelean 2024-08-19  862  	return 0;
+b5d2c422286d62 Alexandru Ardelean 2024-08-19  863  }
+b5d2c422286d62 Alexandru Ardelean 2024-08-19  864  
 
-Are you saying that
-
-	smmu->num_context_banks > smmu->num_mapping_groups
-
-does not make sense?
-
-
-Would a well-placed
-
-	if (smmu->num_context_banks > smmu->num_mapping_groups)
-		smmu->num_context_banks = smmu->num_mapping_groups;
-
-be a proper work-around?
-
-(Probably in qcom_smmu_cfg_probe() so as to not interfere with other platforms.)
-
-
-Maybe to limit the side effects even more:
-
-	if (of_device_is_compatible(smmu->dev->of_node, "qcom,msm8998-smmu-v2") &&
-		smmu->num_context_banks > smmu->num_mapping_groups))
-		smmu->num_context_banks = smmu->num_mapping_groups;
-
-
-Neither work-around would require changing the binding.
-
-Is either work-around acceptable, Robin?
-
-Regards
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
