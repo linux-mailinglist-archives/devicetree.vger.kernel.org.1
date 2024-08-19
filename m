@@ -1,84 +1,75 @@
-Return-Path: <devicetree+bounces-94856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DEDE956F36
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 17:49:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 834B6956F3E
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 17:50:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04F38284627
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 15:49:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B50281C22B46
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 15:50:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BA1A86AFA;
-	Mon, 19 Aug 2024 15:49:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CD6912B176;
+	Mon, 19 Aug 2024 15:50:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eqG64uGi"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="4lNnUPRx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81AA63BBF2;
-	Mon, 19 Aug 2024 15:49:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BFD44964D;
+	Mon, 19 Aug 2024 15:50:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724082555; cv=none; b=oAJB37RqevmAqLfXqoQNIWDE/qnTpQECjYOSNs6vh+VOm5MUseYUYwLgazlFMAFDdQlLVtisccOsgh3XgHxjh6dUEieXtPsm7xx8bav6CPNHDp7nGDJXeahhmG5v8MWmiZQeBiODsyptQvgHw7YuJT1AIzpbko91ORsRsfUuyk8=
+	t=1724082629; cv=none; b=ER+0Vk2F92cL0tHYTYKn3vs2CqF6VWL7WzWhzor2XqfwuOwKLwgAeJePzqx7lO5DKFyIJmzeRCse78nNaxS4NyVExAgL5ZFqj7ec47YNRw/n4wJBlco7jeuarYjk9HvbSs6QnPVffcGvsDRSYVlE1dy1Xsx+V/BLz9U5LQGA3fo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724082555; c=relaxed/simple;
-	bh=fyyjBZF2oTWVnLLBDD6Q09Azx4KL9wSZUi8MT6p9g/Y=;
+	s=arc-20240116; t=1724082629; c=relaxed/simple;
+	bh=AF7Ie2vA0zKLOZBuUow20YfIWSKgaodPRlDeEpmodfI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sNiCZ4HzgdIdLSzXN2Vku/W494gXFM1b8OnLk/wqM4qwqHESIrzBphr8w0qMCyHOayvvEYxzXFDLV4EeCDCbUwVDPPcnzMY1MFU8A7nGGGvBPWIbJXxQZcTRSCqFJARgRe4jA0tkGAp28iAKCJ+NJjl/ztq9JxXPN3lD4HwnMjs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eqG64uGi; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-201cd78c6a3so34406635ad.1;
-        Mon, 19 Aug 2024 08:49:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724082554; x=1724687354; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=CSLcyqFQ3EMWy37KrwIoFJyqnZnAuoV7z3EUYygVqD8=;
-        b=eqG64uGi+Syv1Qv2ylK0M4z+MpoVlQxkCnApP4Vo7wyTPphFweZW2P5NLiK3W5VFbF
-         0qsBmVzlxqwmYpq3SHi4L1sUQ3ZjDhlB2cH9aJ+v8FBqReK+NUCPrlsc6Fzu0aU9zFln
-         u0H23YQuFo4Immxpu6NqKNVffq2b19A4ar/JG6n0s1w43+Ig7tt3I+AXZk+IIz7t8Zvj
-         6g22moYnk/CiM+O00oLVXsJ3WlnHj58SN94LJ+aepaUTbkMt3DuJZ10rbKkFYJuaJNah
-         zsoz6FO99FAxRkL0zgvrFR03gwjWywe8WQtrdg8HX1gl+aNDhxbnDnscMr/YS7/8qbid
-         3rNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724082554; x=1724687354;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CSLcyqFQ3EMWy37KrwIoFJyqnZnAuoV7z3EUYygVqD8=;
-        b=rE/u16rwBYYBkBOaKMI8DR3M73ey8J4TazULCm39+0zhjvk0GPxuAA5IhITZatROmA
-         VlGuPXzp/lDOHO6t+K6fbRXjNuR000n6M+KCYk7RXANDvsN2+B8SH7hGBO4ntZrEoFCK
-         YXwGN9BoPmXls3sTkXbLGiNPE/hlwVEBPW/kl+MTiAXJhv8p7oi2+XAX05QFUBtmU0NV
-         8wyjE9kiRN145IZ/WITYvDpqUng3S+HgxcjJUHQ9SOPboqihlNAzELtCLP+oYLapAsoz
-         /iopQY/RhbyynjKbndy1Eh48cSwJQDZhv8NxtRDA9bVyORncZq2OX+mHxDgRSu2vDXY4
-         YMDA==
-X-Forwarded-Encrypted: i=1; AJvYcCVoquPA/aaKiGobzWt6zZowy23S7cEm7rawvuuHf6hsPoJ/NgpcG94inrsCyNLw4bx8K0CGOqoPBqWPoPTAI8Gr2eeAyvTaWFs1iicZSEzk2juQ0mr0gMKmuKL0LvKFSZSvNELz24lgNh+GJH4VI4/EuNlI3pyE48QjffFyARVQGlbJTWdmKmmT/kLry2wnveywPLEDPW+XtQ3hwTehus3FgpCrZvizRsk=
-X-Gm-Message-State: AOJu0YzrBKURwMWqzH5Y1tXKlw72gM8ubSuRTLNgR3KZC5FlclueWMgQ
-	TxMOnY1HjIq07dyQxnq1m5Pd6XDqavh1gs+MtLuafIy59eLqswpSNBv7Lg==
-X-Google-Smtp-Source: AGHT+IEU9Es4Ml341v7O0mbmgFiXC/PhOCgXS75ZkA/SB7UZuypVK5RcoYwAPwcMAnMi1qk6M4kD+w==
-X-Received: by 2002:a17:903:228a:b0:1fd:a942:1558 with SMTP id d9443c01a7336-20203f329a2mr180311055ad.40.1724082553437;
-        Mon, 19 Aug 2024 08:49:13 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:f80c:1483:bced:7f88])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-201f038b401sm63783585ad.213.2024.08.19.08.49.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Aug 2024 08:49:13 -0700 (PDT)
-Date: Mon, 19 Aug 2024 08:49:10 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Arnd Bergmann <arnd@arndb.de>, Mark Brown <broonie@kernel.org>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, patches@opensource.cirrus.com
-Subject: Re: [PATCH 09/14] dt-bindings: input: samsung,s3c6410-keypad:
- introduce compact binding
-Message-ID: <ZsNpdhKlLYegkosN@google.com>
-References: <20240819045813.2154642-1-dmitry.torokhov@gmail.com>
- <20240819045813.2154642-10-dmitry.torokhov@gmail.com>
- <dbs44pwxfhsnmdzsd32mp7rlhq6w5fanu5bakuisxmyz2ehbtd@cdfr26oicjll>
+	 Content-Type:Content-Disposition:In-Reply-To; b=h10AdBKp8pWlZvVJfZOM77UMcwc24ID6EoG28drFikxzxJjfRGLR+tdru9WYM4h4gvFGhqId+NWxPN06FKEeDBoEe8xIraY3UIaSR4whO40vA4rs4OirBUsbZF0ET+D9awBIBP9AXtLDHc4TZEw8MN3k4lLMr6jz4qbu+aamt0s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=4lNnUPRx; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=yy/PrdZKYJ86mJeO7sXTSgOh3UITg8REGzRP4f6IK+s=; b=4lNnUPRxzIbW61EXMPmdi8iURk
+	jhGF2mI7N3qVUn+Xr4uhbder/6ZuxDUF91O63R47oxSJVvXvzpwmV8dTHRv1l6z7uagPiC6fymWXw
+	mtx2FPn8m5oAObTkmu+kPoh9944GxxGo67vcbYyPFnq4tdjeQ7yy3P3sYj+r0LQxwRfc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1sg4dq-00582r-N5; Mon, 19 Aug 2024 17:49:58 +0200
+Date: Mon, 19 Aug 2024 17:49:58 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-stm32@st-md-mailman.stormreply.com" <linux-stm32@st-md-mailman.stormreply.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+	dl-S32 <S32@nxp.com>
+Subject: Re: [PATCH v2 4/7] net: phy: add helper for mapping RGMII link speed
+ to clock rate
+Message-ID: <d2e32a56-3020-47ac-beef-3449053c5d4c@lunn.ch>
+References: <AM9PR04MB85062E3A66BA92EF8D996513E2832@AM9PR04MB8506.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,106 +78,61 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <dbs44pwxfhsnmdzsd32mp7rlhq6w5fanu5bakuisxmyz2ehbtd@cdfr26oicjll>
+In-Reply-To: <AM9PR04MB85062E3A66BA92EF8D996513E2832@AM9PR04MB8506.eurprd04.prod.outlook.com>
 
-On Mon, Aug 19, 2024 at 03:02:07PM +0200, Krzysztof Kozlowski wrote:
-> On Sun, Aug 18, 2024 at 09:58:06PM -0700, Dmitry Torokhov wrote:
-> > The binding with a sub-node per each key is very verbose and is hard to
-> > use with static device properties. Allow standard matrix keymap binding
-> > in addition to the verbose one.
-> > 
-> > Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> > ---
-> >  .../input/samsung,s3c6410-keypad.yaml         | 57 ++++++++++++++++++-
-> >  1 file changed, 54 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/input/samsung,s3c6410-keypad.yaml b/Documentation/devicetree/bindings/input/samsung,s3c6410-keypad.yaml
-> > index a53569aa0ee7..28a318a0ff7e 100644
-> > --- a/Documentation/devicetree/bindings/input/samsung,s3c6410-keypad.yaml
-> > +++ b/Documentation/devicetree/bindings/input/samsung,s3c6410-keypad.yaml
-> > @@ -16,6 +16,10 @@ description:
-> >  maintainers:
-> >    - Krzysztof Kozlowski <krzk@kernel.org>
-> >  
-> > +allOf:
-> > +  - $ref: input.yaml#
-> > +  - $ref: matrix-keymap.yaml#
-> > +
-> >  properties:
-> >    compatible:
-> >      enum:
-> > @@ -37,6 +41,10 @@ properties:
-> >  
-> >    wakeup-source: true
-> >  
-> > +  keypad,num-columns: true
-> > +  keypad,num-rows: true
-> > +  linux,keymap: true
-> > +
-> >    linux,input-no-autorepeat:
-> >      type: boolean
-> >      description:
-> > @@ -81,12 +89,33 @@ patternProperties:
-> >        - keypad,row
-> >        - linux,code
-> >  
-> > +dependencies:
-> > +  linux,keymap:
-> > +    required:
+On Sun, Aug 18, 2024 at 09:50:46PM +0000, Jan Petrous (OSS) wrote:
+> The helper rgmii_clock() implemented Russel's hint during stmmac
+> glue driver review:
 > 
-> Why "required" keyword? The dependencies should have just list of
-> properties. See example-schema.
-
-OK, changed this to
-
-dependencies:
-  linux,keymap: [ "keypad,num-columns", "keypad,num-rows" ]
-  
+> ---
+> We seem to have multiple cases of very similar logic in lots of stmmac
+> platform drivers, and I think it's about time we said no more to this.
+> So, what I think we should do is as follows:
 > 
-> > +      - keypad,num-columns
-> > +      - keypad,num-rows
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> >    - interrupts
-> > -  - samsung,keypad-num-columns
-> > -  - samsung,keypad-num-rows
-> > +
-> > +if:
+> add the following helper - either in stmmac, or more generically
+> (phylib? - in which case its name will need changing.)
 > 
-> put allOf: here and this within allOf, so you the "if" could grow in the
-> future.
+> static long stmmac_get_rgmii_clock(int speed)
+> {
+> 	switch (speed) {
+> 	case SPEED_10:
+> 		return 2500000;
+> 
+> 	case SPEED_100:
+> 		return 25000000;
+> 
+> 	case SPEED_1000:
+> 		return 125000000;
+> 
+> 	default:
+> 		return -ENVAL;
+> 	}
+> }
+> 
+> Then, this can become:
+> 
+> 	long tx_clk_rate;
+> 
+> 	...
+> 
+> 	tx_clk_rate = stmmac_get_rgmii_clock(speed);
+> 	if (tx_clk_rate < 0) {
+> 		dev_err(gmac->dev, "Unsupported/Invalid speed: %d\n", speed);
+> 		return;
+> 	}
+> 
+> 	ret = clk_set_rate(gmac->tx_clk, tx_clk_rate);
+> ---
+> 
+> Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
 
-Hmm, there is already "allOf" at the beginning of the file, so adding
-another one results in complaints about duplicate "allOf". I can move it
-all to the top, like this:
+This Signed-off-by: needs to be above the first ---, otherwise it gets
+discard.
 
-allOf:
-  - $ref: input.yaml#
-  - $ref: matrix-keymap.yaml#
-  - if:
-      required:
-        - linux,keymap
-    then:
-      properties:
-        samsung,keypad-num-columns: false
-        samsung,keypad-num-rows: false
-      patternProperties:
-        '^key-[0-9a-z]+$': false
-    else:
-      properties:
-        keypad,num-columns: false
-        keypad,num-rows: false
-      required:
-        - samsung,keypad-num-columns
-        - samsung,keypad-num-rows
+When you repost, please do try to get threading correct.
 
-Is this OK? I don't quite like that "tweaks" are listed before main
-body of properties.
+    Andrew
 
-Thanks.
-
--- 
-Dmitry
+---
+pw-bot: cr
 
