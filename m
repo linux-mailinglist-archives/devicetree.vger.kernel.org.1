@@ -1,154 +1,129 @@
-Return-Path: <devicetree+bounces-94762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94763-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C994F9568F5
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 13:06:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F93A956902
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 13:09:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0479B1C2181E
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 11:06:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC9991F2274F
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 11:09:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EEDC16848B;
-	Mon, 19 Aug 2024 11:05:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34F15165F14;
+	Mon, 19 Aug 2024 11:09:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jsuMToZs"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="g3f1krpU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81276166F3F
-	for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 11:05:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 539842209F
+	for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 11:09:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724065545; cv=none; b=U5AIpelu0O7kTWzBwW5Y1WmpF3u72OLV7tAGSyX4Oc5VDXdqVuGizcISxqTeH8/ZObFfOnRNJv2ZIcfA7+i57IyzcGgDuFHiJVmW4ZVxKp302YcoNNeOPF2byP/Nw2Y9Rpv9HIOP3MC8LmFShKXfuHzrcw+OLaQSki1WlH6wEE8=
+	t=1724065754; cv=none; b=TVRrat26bm3cpfwj98YhGdIuPE52LBJtEq93P4ITo5l6yx7lL5EpgqVV7y8oW5je1tHToJvUzp28Lb0VHAlu2wCV4W5ouJDA2/6YnnlorinUcP2vq0FUqrGf2napMfUFo+ZLurwyfhBlkKARaPw21cu/cuqHsb6hifYaGylwUDI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724065545; c=relaxed/simple;
-	bh=Wmie4vQi8khalYM7ZEpgB85aomp+ZymWSL1n7Y0jJpU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Hu4W9gqQKBOaPVuEdVrkMHiMJNqy/fdvmi5kw/PWlTOz+MWLqE3NIQ+H/MxjIQvkMA+3lILg9To57hI5VnWto1MPNHqadTlr/okvbJrBF3tigJo12LRKUTb4Sn4m1KrGOvRcVIgi1Ihti+EHEM4O/9jxeS8pYyvbQCYO99R6R6Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jsuMToZs; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5bf01bdaff0so488689a12.3
-        for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 04:05:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724065542; x=1724670342; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=V/RN4zc1ht84kYj1RU0w9c6wanQUgBuvrRTNuKSSkaE=;
-        b=jsuMToZsoI7wVex+TiKt7wmaowtVk7838ebfJlNvtvGo8IGw5dbwiIVb5znVUZZFc8
-         iRPl5uuCeV62uVBDKaKljvXaAPBbN5Cm7oeVJYmIAW5H5nJAcj2Yb0vQv8XAIzVZuZ8Q
-         6/M4kEjn6KH873Azjy+D3Fe7wxg682boTGKY8wEjIvl1lXNfrfEH2WDc24UCwriq816a
-         G5U+tEKIs7D+MMRx8OMNcfeGQ3OPyms9rTKG92x1E8kxzIhaLANI+vRQKPYHb4JyRNAh
-         3rvpeywdEgRAdLfJHVddD+7bCDjLgxD2tdT25HPdGZW6Yg9xzawErjkjVisMVtEgfFHd
-         U6Wg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724065542; x=1724670342;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=V/RN4zc1ht84kYj1RU0w9c6wanQUgBuvrRTNuKSSkaE=;
-        b=QYYP7ROKPn+lOt8OtYjBhBPvlnCXzsMW1d8W0VxI/tfrYlhKEa41oz6ZTlHRPXMCSw
-         7fTGCkBoWzPPwvD/3KC7haKf5m/F6uLax4A2S82LcGRcPgLWNe3GbttUZHD2hzVjhhzP
-         f+/ByGDqAk3Ux6UBP4G3mndD86hRME7IYlxp2PHdbYxVuR9inUu/akzuF0lW+MY4eaZK
-         K0yQTGM7zpXL9wYpiJ+MT+GfSoOSEhoTy/dRuH3INcVknWYPlr6e1tn/JZi7htNk52Ch
-         akLunpfnUulAeYbLs+uDw1E4bEWfV/8AotWmCyx2m+ODPQqFLouXBiIN8wPZGz4p26dO
-         +Pyw==
-X-Forwarded-Encrypted: i=1; AJvYcCV+IiB7t1JdnSVZz7DcCIO1n517AnhHtCkIloN0A2DCohxjNpcb+WNlVKPPTcJh5zBFC3JlqoPJLzCO+XVbxw5arlqwfY/oa9ADAw==
-X-Gm-Message-State: AOJu0Yw5d0FYpPi4FTr3weVMVcL7O0XEoDspIqFs2LYRsLjEjSSmhUf0
-	MOxdvvtb49BsUzzsrzljGynZJPbiip4Sl8+4wYTx0q0VhHAR5WFe7BFboDalaZc=
-X-Google-Smtp-Source: AGHT+IHT4bsLbT2dy0r3Y23x2E40yvN/740yv6qZY4TwLwzbeopKnDHxvHh0ETWqYmTl4tCW5nTkdg==
-X-Received: by 2002:a05:6402:909:b0:5bb:9afd:8d05 with SMTP id 4fb4d7f45d1cf-5beca8c8457mr6625653a12.24.1724065541733;
-        Mon, 19 Aug 2024 04:05:41 -0700 (PDT)
-Received: from [192.168.0.25] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5bebbde48fdsm5376711a12.28.2024.08.19.04.05.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Aug 2024 04:05:41 -0700 (PDT)
-Message-ID: <eba83b14-e704-464a-b4c4-19322e70d177@linaro.org>
-Date: Mon, 19 Aug 2024 12:05:40 +0100
+	s=arc-20240116; t=1724065754; c=relaxed/simple;
+	bh=EfVb4mXGL2tfcZQNgdqivZJw6gXbQlFFEZ1NTBQnbWE=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=HniUYwacDuk3TxF3F60X1IIpsmVK62IZUWlz992LsweFzZmE+mMoZ6S1CGAkrZOpevACfjgBhzfN3iGHGtnrQ8PPgHVJmleegqxjAYQgJqDiYQGwabMrHZwhogW7jubco6OsAvuERKRskjYlUth8lTzDHOGEAvw8VPEMq8OHGg8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=g3f1krpU; arc=none smtp.client-ip=91.26.50.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+	q=dns/txt; i=@phytec.de; t=1724065747; x=1726657747;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=EfVb4mXGL2tfcZQNgdqivZJw6gXbQlFFEZ1NTBQnbWE=;
+	b=g3f1krpUHNOdwTVWtbI0tLSOBAUPAXfpnEng297BDEJCCWvEVWfOJj5fN3bSlhOZ
+	kQ+S8QHo6aySQyExqH+BnjvrIYoOPn55XlpNLGdv7Ox/V01KUMTm/qhlPhBAWlM5
+	oT1j7rcTQLBF9/yUe0UviVXzyWU2e6vRXci0jU84I/E=;
+X-AuditID: ac14000a-03e52700000021bc-6b-66c327d209f9
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(Client did not present a certificate)
+	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 25.48.08636.2D723C66; Mon, 19 Aug 2024 13:09:06 +0200 (CEST)
+Received: from Berlix.phytec.de (172.25.0.12) by Berlix.phytec.de
+ (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Mon, 19 Aug
+ 2024 13:09:06 +0200
+Received: from Berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4]) by
+ berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4%4]) with mapi id 15.01.2507.006;
+ Mon, 19 Aug 2024 13:09:06 +0200
+From: Teresa Remmet <T.Remmet@phytec.de>
+To: Yannic Moog <Y.Moog@phytec.de>, "kernel@pengutronix.de"
+	<kernel@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "robh@kernel.org"
+	<robh@kernel.org>, "shawnguo@kernel.org" <shawnguo@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>
+CC: PHYTEC Upstream <upstream@lists.phytec.de>, "imx@lists.linux.dev"
+	<imx@lists.linux.dev>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>
+Subject: Re: [Upstream] [PATCH 1/3] arm64: dts: imx8mp-phyboard-pollux: add
+ rtc aux-voltage-chargeable
+Thread-Topic: [Upstream] [PATCH 1/3] arm64: dts: imx8mp-phyboard-pollux: add
+ rtc aux-voltage-chargeable
+Thread-Index: AQHa7iwpZbf+09+33UOYETN7kQcH67IuUooA
+Date: Mon, 19 Aug 2024 11:09:06 +0000
+Message-ID: <9d06065202dee9139d6680de6d14989befc36332.camel@phytec.de>
+References: <20240814-b4-phytec_imx8m_rtc_updates-v1-0-10f1afc1b3ad@phytec.de>
+	 <20240814-b4-phytec_imx8m_rtc_updates-v1-1-10f1afc1b3ad@phytec.de>
+In-Reply-To: <20240814-b4-phytec_imx8m_rtc_updates-v1-1-10f1afc1b3ad@phytec.de>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <9F50232424730843AF8F501295BB208A@phytec.de>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 13/13] media: qcom: camss: Add support for VFE hardware
- version Titan 780
-To: Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- kernel@quicinc.com, Yongsheng Li <quic_yon@quicinc.com>
-References: <20240812144131.369378-1-quic_depengs@quicinc.com>
- <20240812144131.369378-14-quic_depengs@quicinc.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20240812144131.369378-14-quic_depengs@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrKIsWRmVeSWpSXmKPExsWyRpKBR/ey+uE0g8VXWSzW7D3HZDH/yDlW
+	i4dX/S1m3mtls1g1dSeLxctZ99gsNj2+xmpxedccNov/e3awW/zdvonF4sUWcYvud+oOPB47
+	Z91l99i0qpPNY/OSeo8Xm2cyevR3t7B69P818Pi8SS6APYrLJiU1J7MstUjfLoErY+bFe4wF
+	C/gq3l/+yNzA+IG3i5GTQ0LAROLH4T5mEFtIYAmTxNQpCV2MXED2fUaJq5c3MkIkNjBKXG43
+	ArHZBDQkXp7oZgIpEhF4yiTxv62RHcRhFljDJPF79k02kCphgQyJD6evgo0VEciUOLWmkw3C
+	NpL4v38PE4jNIqAqseLedLAaXgE3if+rLzJBrJ7CKLFg0hVWkASngL/Eq4fTwJoZBWQlNmw4
+	D9bALCAusenZd1aIHwQkluyBiEsIiEq8fPwPKi4vceLWNKChHED1mhLrd+lDtFpI/F2+AWqM
+	osSU7ofsEDcISpyc+YRlAqP4LCQbZiF0z0LSPQtJ9ywk3QsYWVcxCuVmJmenFmVm6xVkVJak
+	JuulpG5iBEW9CAPXDsa+OR6HGJk4GA8xSnAwK4nwdr88mCbEm5JYWZValB9fVJqTWnyIUZqD
+	RUmcd3VHcKqQQHpiSWp2ampBahFMlomDU6qB0Xd67DpLkSOaL8O2NjWKL29dHsG7/GScw66N
+	a7IO7J1R1/GFa7bJ7Pb0lATN6UymL9qf3b0mv04q823s1x/1fbMb2RmzeX89KEy0YFZXbpT7
+	6rb23qfPW6LOmyt/q/86gSfgXbpmyJoHsZx3V/R7936S7V4vGctYYahtFse8e8q5dUZOqTpZ
+	SizFGYmGWsxFxYkAGUKt5ugCAAA=
 
-On 12/08/2024 15:41, Depeng Shao wrote:
-> +#define VFE_BUS_WM_CFG(n)		(BUS_REG_BASE + 0x200 + (n) * 0x100)
-
-<snip>
-
-> +#define RDI_WM(n)			((vfe_is_lite(vfe) ? 0x0 : 0x17) + (n))
-> +
-> +static void vfe_wm_start(struct vfe_device *vfe, u8 wm, struct vfe_line *line)
-> +{
-> +	struct v4l2_pix_format_mplane *pix =
-> +		&line->video_out.active_fmt.fmt.pix_mp;
-> +
-> +	wm = RDI_WM(wm); /* map to actual WM used (from wm=RDI index) */
-
-OK so one more point here.
-
-The non-lite VFE has I think in the case of sm8550 twenty seven 
-different bus clients.
-
-The above code takes a given index - take the example of index 0 meaning 
-RDI0 and
-
-1. Determines if is_lite() is true deriving a jump of 0 or 0x17
-2. Uses this index as a further offset to functions such as
-    VFE_BUS_WM_CFG(n)
-3. In no way articulates which bus client is which.
-
-So for a non lite case -> RDI0 is bus client # 23
-
-The code we have for CAMSS just assumes RDI is the only client we are 
-programming - which I'm not proposing to change for now, however the 
-code is very not obvious in what it is doing here.
-
-This BTW isn't a criticism of what you've done here but, even though I 
-have access to the registers in front of me, I had to spend about 30 
-minutes looking up and verifying these offsets.
-
-That's not sustainable.
-
-Could you please add a comment which details what each index relates to.
-
-/*
-  * Bus client mapping
-  *
-  * 0 = VID_Y ?
-  * 1 = VID_C
-  * .. etc
-  * .. etc
-  * 23 = RDI0
-  * 24 = RDI1
-  */
-
-I'll try to apply a similar level of index documentation for existing 
-upstream submissions so that working out client mappings is less tedious 
-and will be requiring these mappings for new VFE silicon enabling code 
-upstream.
-
----
-bod
+QW0gTWl0dHdvY2gsIGRlbSAxNC4wOC4yMDI0IHVtIDExOjI2ICswMjAwIHNjaHJpZWIgWWFubmlj
+IE1vb2c6DQo+IHBoeWJvYXJkLXBvbGx1eCBoYXMgYSBjaGFyZ2FibGUgY2FwYWNpdG9yIHBvcHVs
+YXRlZCwgcnRjIHN1cHBvcnRzDQo+IGNoYXJnaW5nIGl0LiBBZGQgcHJvcGVydHkgaW5kaWNhdGlu
+ZyB0aGlzLg0KPiANCj4gU2lnbmVkLW9mZi1ieTogWWFubmljIE1vb2cgPHkubW9vZ0BwaHl0ZWMu
+ZGU+DQoNClJldmlld2VkLWJ5OiBUZXJlc2EgUmVtbWV0IDx0LnJlbW1ldEBwaHl0ZWMuZGU+DQoN
+Cj4gLS0tDQo+IMKgYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1wLXBoeWJvYXJk
+LXBvbGx1eC1yZGsuZHRzIHwgMSArDQo+IMKgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCsp
+DQo+IA0KPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1w
+LXBoeWJvYXJkLXBvbGx1eC0NCj4gcmRrLmR0cyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNj
+YWxlL2lteDhtcC1waHlib2FyZC1wb2xsdXgtDQo+IHJkay5kdHMNCj4gaW5kZXggMzQyNzkzNmY5
+MDQ1Li42MzQ3YjQ2OWZjOTkgMTAwNjQ0DQo+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJl
+ZXNjYWxlL2lteDhtcC1waHlib2FyZC1wb2xsdXgtcmRrLmR0cw0KPiArKysgYi9hcmNoL2FybTY0
+L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bXAtcGh5Ym9hcmQtcG9sbHV4LXJkay5kdHMNCj4gQEAg
+LTIyMiw2ICsyMjIsNyBAQCAmcnYzMDI4IHsNCj4gwqDCoMKgwqDCoMKgwqDCoHBpbmN0cmwtMCA9
+IDwmcGluY3RybF9ydGM+Ow0KPiDCoMKgwqDCoMKgwqDCoMKgaW50ZXJydXB0LXBhcmVudCA9IDwm
+Z3BpbzQ+Ow0KPiDCoMKgwqDCoMKgwqDCoMKgaW50ZXJydXB0cyA9IDwxOSBJUlFfVFlQRV9MRVZF
+TF9MT1c+Ow0KPiArwqDCoMKgwqDCoMKgwqBhdXgtdm9sdGFnZS1jaGFyZ2VhYmxlID0gPDE+Ow0K
+PiDCoMKgwqDCoMKgwqDCoMKgd2FrZXVwLXNvdXJjZTsNCj4gwqDCoMKgwqDCoMKgwqDCoHRyaWNr
+bGUtcmVzaXN0b3Itb2htcyA9IDwzMDAwPjsNCj4gwqB9Ow0KPiANCg0KLS0gDQpQSFlURUMgTWVz
+c3RlY2huaWsgR21iSCB8IEJhcmNlbG9uYS1BbGxlZSAxIHwgNTUxMjkgTWFpbnosIEdlcm1hbnkN
+Cg0KR2VzY2jDpGZ0c2bDvGhyZXI6IERpcGwuLUluZy4gTWljaGFlbCBNaXRlemtpLCBEaXBsLi1J
+bmcuIEJvZG8gSHViZXIsDQpEaXBsLi1JbmcuIChGSCkgTWFya3VzIExpY2tlcyB8IEhhbmRlbHNy
+ZWdpc3RlciBNYWlueiBIUkIgNDY1NiB8DQpGaW5hbnphbXQgTWFpbnogfCBTdC5Oci4gMjY2NTAw
+NjA4LCBERSAxNDkwNTk4NTUNCg==
 
