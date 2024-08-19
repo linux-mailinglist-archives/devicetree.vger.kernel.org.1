@@ -1,130 +1,105 @@
-Return-Path: <devicetree+bounces-94957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FC19957518
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 21:57:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B5A895752E
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 22:02:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B11E1F21B89
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 19:57:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5799F282BB3
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 20:02:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 736461DC48D;
-	Mon, 19 Aug 2024 19:57:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B24D1DD386;
+	Mon, 19 Aug 2024 20:01:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XIiuMDV2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MiF7NgUV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43C65145341;
-	Mon, 19 Aug 2024 19:57:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28DBD18E0E;
+	Mon, 19 Aug 2024 20:01:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724097458; cv=none; b=ZfTykfWMmCMPEvBSKDtHppn5bQ5WBQf0n/fNjN1IRFqrS26RGJKGb10qBU8iKvjdBAJTCXWfWhrHLWRs9xEi607Gzw1PrHEE4OdxL7vlGaiJR/SAUYWwoMvFTaw62FabzCsN8B9nzCpNYdBD3rRVViJMbk1tfATOxL6udf4fCMI=
+	t=1724097713; cv=none; b=QaXp3kchnh71qgZ1yKSjx9FjWgoCgTZKzsMB2aWufi0Mz3bWMvdYiDiMS8jeODQa2X/iHkX9xu6vw4mIGg6pzHZepWRt+lIrR55xicmTDngltJYU13yFL7j8p4DK8oIPl3inKNnglMy9kU/dWyaTBE79IqpNo0346KZxNK8TqOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724097458; c=relaxed/simple;
-	bh=o9c1U16L6BWRdGUxdeRkdSFg3xGErH8DzHZesBXqXVw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eWJGEGDCZSmXD5eYfBaxFz5KBpGx+C5Zo4pEkj3fEf3dsbB8yHwN0qDQtJckP99eKgkW87NPJfumtM2f+gxHfGaco/tDGtEuM2tEJTqtG+ExF0jEgEBkZa697fvRXH3tiEecse3md/PkafFKlFztLXpEa6yKZKdsVx6NoPEDItI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XIiuMDV2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C568EC4AF0E;
-	Mon, 19 Aug 2024 19:57:34 +0000 (UTC)
+	s=arc-20240116; t=1724097713; c=relaxed/simple;
+	bh=cQ6g4a/1LpaHo3vPps6+GLDoNWMa1bo5/161BzfrKHM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OSWZmwooYV+kxNgZXBTTAvZM/M10JnhGKLgYARYbICanPSmmjNlw51I/+qF+YMF59Qxipi9UFX/WDwiMVQzcfw4enREnzEZhRyIZW7dKs6RnDIgcy6boNJDfacSSwhm1mCfF02iTpuSacRFx3VJZKsbSgqxVD9ChBBgTnzaTBjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MiF7NgUV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFF0AC32782;
+	Mon, 19 Aug 2024 20:01:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724097457;
-	bh=o9c1U16L6BWRdGUxdeRkdSFg3xGErH8DzHZesBXqXVw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XIiuMDV2/Wa6u4uiogOuu97J/FOfeafsxtcmdaeHEbabivSOBAziHDmxxvCFUwfvm
-	 xxgcE9YZo4oA/d/NVlUPlRjH7iWV6mMtrrZrTPNMqqk+LP4p/DoRRFZBV/I3fQI6Fu
-	 +BIJCiSY2g0rsB2glia4pLvLh5Z0mXUuYG1vg69F3Zc9iXvnDZ20TT4n1fl3rTv06h
-	 ogXXWM3tXiYldVhQZ8/Aij/poe98QZ5nR075nIsu+tf18656BLw8TZ71uheGGBZWXB
-	 XIreMmoM4vTexAZsZoDainkHmeeEPJxO7BqdSr3DtB2cQwn3pv+06y8LOcjCd2sDYJ
-	 AJKrzy4hx0Ehg==
-Message-ID: <739ddc2f-2758-4e34-af94-55a15e63b8ad@kernel.org>
-Date: Mon, 19 Aug 2024 21:57:32 +0200
+	s=k20201202; t=1724097712;
+	bh=cQ6g4a/1LpaHo3vPps6+GLDoNWMa1bo5/161BzfrKHM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MiF7NgUVWwLGLycQcERo9lzJhXfqxkaZKoOjK1Q1nNvne3gQ+r2EnYeDHGrv/8qaZ
+	 9bie6bhk20wB50TBj2yQibfvBvSCNtby7xuDJu85p86JFipdNcHYzXPI2bqDClAGqj
+	 ILNKuqIM36ZzZKiMFkd3Gvh2c1Dp2KpcaqS+w4uDzD/57fVX2kFdXaZnKM6uBhxnkW
+	 gk7TVQqbEXxgoELcQ0NM9AaLI9pA5dD/ICnwlXfUWXri+WtY/+0Tcp02wZ1K2bgjgo
+	 9qS8ljvu/3+Yj5WggfW6j8c0TEfTO5XvWEiR7VjEh+K9i04f0ZJQEjpYSY0lrFXB9k
+	 3kS7Ah5/asfEw==
+Date: Mon, 19 Aug 2024 22:01:47 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
+	claudiu beznea <claudiu.beznea@tuxon.dev>, chris.brandt@renesas.com, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com, 
+	p.zabel@pengutronix.de, wsa+renesas@sang-engineering.com, 
+	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: Re: [PATCH v4 07/11] dt-bindings: i2c: renesas,riic: Document the
+ R9A08G045 support
+Message-ID: <k77hjljb26vc42jq3vqhjettq46atokyduwmb4qacwg63hpuca@6haxozdz2riv>
+References: <20240819102348.1592171-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240819102348.1592171-8-claudiu.beznea.uj@bp.renesas.com>
+ <gxjlmdjicwzlexitsx673beyn7ijuf47637nao2luc5h6h6hvi@qstobttin7dw>
+ <e6377448-9af3-4807-a8fd-197f5b2b4aa4@tuxon.dev>
+ <56204f92-d1d4-4681-8a9d-f28925919ef4@kernel.org>
+ <20240819-sizing-devouring-17b74473d1a1@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/1] dt-binding: memory-controllers: fsl,ifc: add
- compatible string fsl,ifc-nand
-To: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Michael Walle <mwalle@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>,
- "open list:MEMORY CONTROLLER DRIVERS" <linux-kernel@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>
-Cc: imx@lists.linux.dev
-References: <20240814212958.4047882-1-Frank.Li@nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240814212958.4047882-1-Frank.Li@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240819-sizing-devouring-17b74473d1a1@spud>
 
-On 14/08/2024 23:29, Frank Li wrote:
-> ifc can connect nor, nand and fpag. Add child node "nand@" under fsl,ifc
-> and compatible string "fsl,ifc-nand" when ifc connect to nand flash.
+Hi,
+
+On Mon, Aug 19, 2024 at 05:39:35PM GMT, Conor Dooley wrote:
+> On Mon, Aug 19, 2024 at 01:22:39PM +0200, Krzysztof Kozlowski wrote:
+> > On 19/08/2024 13:10, claudiu beznea wrote:
+> > > On 19.08.2024 14:05, Krzysztof Kozlowski wrote:
+> > >> On Mon, Aug 19, 2024 at 01:23:44PM +0300, Claudiu wrote:
+> > >>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> > >>>
+> > >>> Document the Renesas RZ/G3S (R9A08G045) RIIC IP. This is compatible with
+> > >>> the version available on Renesas RZ/V2H (R9A09G075).
+> > >>>
+> > >>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> > >>> ---
+> > >>>
+> > >>> Changes in v4:
+> > >>> - added comment near the fallback for RZ/G3S; because of this
+> > >>>   dropped Conor's tag
+> > >>
+> > >> That's not a reason to request a re-review.
 > 
-> Fix below warning:
-> arch/arm64/boot/dts/freescale/fsl-ls1043a-qds.dtb: /soc/memory-controller@1530000/nand@1,0:
-> 	failed to match any schema with compatible: ['fsl,ifc-nand']
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> Change from v1 to v2
-> - add address-cells and size-cells
+> FWIW, I don't care about how many binding patches I do or do not get
+> credit for reviewing. Feel free to give a tag yourself Krzysztof in the
+> future if you come across these situations and I'll happily hit ctrl+d
+> and remove the thread from my mailbox rather than reply :)
 
-... and since you are resending, subject prefix is dt-bindings.
+I'm OK with third parties tags as long as the person is Cc'ed and
+it happens in the mailing list.
 
-Best regards,
-Krzysztof
+It's not unusual and I check they really happened, anyway.
 
+Thanks,
+Andi
 
