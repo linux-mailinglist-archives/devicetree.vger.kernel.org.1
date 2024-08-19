@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-94759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE7A19568D1
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 12:58:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2669C9568DC
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 13:00:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1599F1C21647
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 10:58:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D02FA281391
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 11:00:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91DFC165EFB;
-	Mon, 19 Aug 2024 10:58:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C83016630E;
+	Mon, 19 Aug 2024 11:00:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nEyzZSTl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SUJoPjQx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FDEF165EEF;
-	Mon, 19 Aug 2024 10:58:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5171F1662FD;
+	Mon, 19 Aug 2024 11:00:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724065091; cv=none; b=Vt0EhNP1kmtjkrLhd+h97L2lOcryUOFea3BU85sNbHuAvleW8LI+akb0zILbjBo++PJCdm/aFjWTP2ujmeXn/ay1kOtdAdLNLl/k3BYi3JjlTbnLR5PLUa2TFRza2dw+N1vfvWdTLuxY8mJjobHdPIeY/yrmCvoPdddjwieeWx0=
+	t=1724065221; cv=none; b=VunjOFTJ4K74zx70EK156QShp1sjVz13kEtfnle5+NQHN5MJlr47ym40pS4DatRQQuka+dAbX+YKYBOL6OeyKpN1+XQ8W8Mmpfc0o3Q6s3BhXmMESY87V75EGnMl+iR4RC28cbZhhudH+BppO5dXMAZheO7ZBt/aOAXsgK0smKk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724065091; c=relaxed/simple;
-	bh=4TQQVrkVHquYmKLsb4I0TcnG9bKRaxsMqcUjQcP05C4=;
+	s=arc-20240116; t=1724065221; c=relaxed/simple;
+	bh=XBHMEEhPwfwJ6wJsTcFGmgfYvxnXBbLVl1ivyet5cGc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NHEArPzmqJiWXCcMhtTIo8B92Tfm43Oo2LWxfoc6geD5s7twKTPrsXcAEGiZuHlfF3kvIRTh6QoERp5YfQPRfSu3A58tyPM44MD6+4H+9wasC5zm83uTV7u+5DpNkdt1um1wcnBGoSTPcrSLQav6pJCJ5K4w4hw5D13an7WBgRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nEyzZSTl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DCCBC32782;
-	Mon, 19 Aug 2024 10:58:06 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=A3brgPOeszwW6AhVPJbn54UCDxXHyqAzgvHsA/ifmTsqFxPScxKGuFFjq6aiijquf1xlZ3Y9rk22MwA0eIj7foFd//eTL5Lrc73yNfnzYJzaeA0NBKM4nLFDsuSHpXPdrEAlGvFfo8kIxVIRDw7Gm1v3ccNzr6FolvtFga6/1cI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SUJoPjQx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58FFFC4AF0C;
+	Mon, 19 Aug 2024 11:00:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724065091;
-	bh=4TQQVrkVHquYmKLsb4I0TcnG9bKRaxsMqcUjQcP05C4=;
+	s=k20201202; t=1724065220;
+	bh=XBHMEEhPwfwJ6wJsTcFGmgfYvxnXBbLVl1ivyet5cGc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nEyzZSTlAZdJeXJK9wqYqm9iZP3LJIpzihFLT9K2kZR39VGJYJkV6ML4FBopUhw5K
-	 ZUrz+JiXf3yTQDZGUuYoIOEkGzQeBaDBTXMOoARjPY/qLdFQPiaOkb14bXw76+pOV+
-	 dDd0vO+eEKI9ubD9idFncrOEixw0oOeVu8xcdFBkihJ/oiuAXERzKQb7ta3NAynTsU
-	 I/vu0mwk1hczxW0g0OQUKveu1PjaUEmj3BqSvQ0IavpKGGyOSUrwFzujV3j9L6ZWhl
-	 QZw1QrnKj2Y96CttQX1gMS2TDWE3NY4Ly/Hfv+prmLBJBMGSZLPZoaJGh1oqkeAdI0
-	 QhwhPIJB98LcA==
-Message-ID: <91acd654-6e79-4239-a7f1-99e49a3c0a7d@kernel.org>
-Date: Mon, 19 Aug 2024 12:58:03 +0200
+	b=SUJoPjQxJkRWQDMdbqsd8ljreSfbs4lLEHRNErvO2OGQb6MYc9hvSstcGaR7Ih75I
+	 1ghZ+Ztz2eyERrQve6KZTnO5jXonKCuPpHjEgVD2isH9MmMUMAB0Y+psA1rAI6dJzv
+	 6iCxl7WiYYu1P+830qHbNz+UoqE0zbPe56O/VUGbDbOOwMfkY1b1YdmVHu37yvV3Mn
+	 Bwg5PJkOKuyIpVnWMsiquBUzTjo7ZZkcKhcZq2C/VYDi/KUk1erKrc+bkMgvg/d1Sv
+	 vtccfdM0a8obf9+ELr4gVjUJLVFn0CKbXmE3C+JzXrYKhINTOtUWKbT1JuO9ftXMSu
+	 HdiWT9BhcCczA==
+Message-ID: <9fce86a4-fadd-43cc-ab99-8524a6396d1e@kernel.org>
+Date: Mon, 19 Aug 2024 13:00:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: dsa: add none to
- dsa-tag-protocol enum
-To: vtpieter@gmail.com, Andrew Lunn <andrew@lunn.ch>,
- Florian Fainelli <f.fainelli@gmail.com>, Vladimir Oltean
- <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: sa8775p-ride: Add QCS9100
+ compatible
+To: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>,
+ Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Tengfei Fan <quic_tengfan@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Pieter Van Trappen <pieter.van.trappen@cern.ch>, netdev@vger.kernel.org,
+Cc: kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240819101238.1570176-1-vtpieter@gmail.com>
-Content-Language: en-US
+References: <20240806-add_qcs9100_soc_id-v1-0-04d14081f304@quicinc.com>
+ <20240806-add_qcs9100_soc_id-v1-4-04d14081f304@quicinc.com>
+ <90eae361-7d5d-440f-a85d-dfd81b384fe7@kernel.org>
+ <4a350e94-3c95-48e1-9ea8-ced483c1aa45@quicinc.com>
+ <14ec06bd-0c27-4930-8bce-d3f5b68067ed@kernel.org>
+ <ace5b3e1-f4a2-4c04-821a-e797d0f55cae@quicinc.com>
+ <9323127a-e6b5-4835-afa0-4ce0086fd9d1@kernel.org>
+ <0d1c44b9-3d5f-4d93-af64-1756e52f4fe3@quicinc.com>
+ <47c966c7-8736-44a2-8ec7-4d7989efa9cd@kernel.org>
+ <72b2d710-a7cb-45cf-9dad-e9fbd876697b@quicinc.com>
+ <d9060b49-66fe-4001-86cd-dda5e213e454@kernel.org>
+ <2229cc1a-0fa0-4291-874e-43b31f82ef50@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -106,43 +117,45 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240819101238.1570176-1-vtpieter@gmail.com>
+In-Reply-To: <2229cc1a-0fa0-4291-874e-43b31f82ef50@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/08/2024 12:12, vtpieter@gmail.com wrote:
-> From: Pieter Van Trappen <pieter.van.trappen@cern.ch>
+On 13/08/2024 10:59, Aiqun Yu (Maria) wrote:
+>>>>>> Does "new board" mean that "old board" disappears? No users to care
+>>>>>> about it? Or just the existing board is being changed (like new revision)?
+>>>>>
+>>>>> We will support both boards. Sa8775p-ride board with sa8775p chipset and
+>>>>> sa8775p-ride board with qcs9100 chipset. Both of them can be used for
+>>>>> development.
+>>>>
+>>>> Patch does something else then - changes compatibles for the existing
+>>>> (old) board.
+>>>
+>>> Can you educate us the right way to add the qcs9100 SoC support in 
+>>> sa8775p-ride board? We don't want to duplicate whole device tree file 
+>>> since all the hardwares are same except the SoC, so we add qcs9100 SoC 
+>>> compatible to sa8775p-ride board and still keep sa8775p SoC compatible.
+>>
+>> Split board DTS into shared DTSI (just don't forget about proper
+>> -M/-C/-B arguments for format-patch) and include it in relevant boards.
+>> You also need new SoC DTSI. This will be unusual code, but it matches
+>> what you want to achieve.
 > 
-> This allows the switch to disable tagging all together, for the use
-> case of an unmanaged switch for example.
+> If we create two additional DTSs, a total of four DTBs will be generated.
+> Should we update the current board DTSs (sa8775p-ride-r3.dts and
+> sa8775p-ride.dts) to support the pin-to-pin compatible QCS9100 and
+> SA8775p SoCs?
+
+I don't know, I don't have such device. Decision should be based on real
+life, real events happening, real products, not on feelings.
+
 > 
-> Signed-off-by: Pieter Van Trappen <pieter.van.trappen@cern.ch>
-> ---
+> Considering the higher usage of QCS9100 boards in IoT compared to
+> SA8775p in automotive for these DTBs, perhaps we should prioritize the
+> 'qcom,qcs9100' compatibility before 'qcom,sa8775p'.
 
-I think this is v2 or v3. Please provide changelog under --- (or in
-cover letter but there is no cover letter here).
-
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
----
-
-<form letter>
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-</form letter>
+Prioritize in what way? What does it mean?
 
 Best regards,
 Krzysztof
