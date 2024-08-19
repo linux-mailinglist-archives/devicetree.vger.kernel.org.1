@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-94758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94759-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A386B956899
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 12:34:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE7A19568D1
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 12:58:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D502E1C213C7
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 10:34:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1599F1C21647
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 10:58:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDBFC15B995;
-	Mon, 19 Aug 2024 10:34:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91DFC165EFB;
+	Mon, 19 Aug 2024 10:58:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dVka9NEM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nEyzZSTl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A27F114B087;
-	Mon, 19 Aug 2024 10:34:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FDEF165EEF;
+	Mon, 19 Aug 2024 10:58:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724063677; cv=none; b=bTMgjYdcAgJ3/vH4LF/74136L/605tcVCW/wTDhnProZKrZyhegBm8Qg795FmbIPvBQp7PwV2p7jiuvujneO0+tpi42yLI78dBkYqYfh3AGB8+f5A1taRuXRBsPKsSMAgEgDFQ4L37ydNggbqUOINiKFhAc7CunQbNvwlVS935Y=
+	t=1724065091; cv=none; b=Vt0EhNP1kmtjkrLhd+h97L2lOcryUOFea3BU85sNbHuAvleW8LI+akb0zILbjBo++PJCdm/aFjWTP2ujmeXn/ay1kOtdAdLNLl/k3BYi3JjlTbnLR5PLUa2TFRza2dw+N1vfvWdTLuxY8mJjobHdPIeY/yrmCvoPdddjwieeWx0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724063677; c=relaxed/simple;
-	bh=B8neqfiznvbT3QpR6KsYs6uOapIkixbQvBjyhNbgyV4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=f61U6S1rvdieJ8nrUpWRiXLC+PXFPDozYjmzR7oAinN5uKJoM3AY/o1oTumPvSetb6NwCLaE7AUEQaJCJnTMVMLxeQossWbaILvz/AUVSu8QtGxz1jSsyPw3lAnES5sOYfAi5yLDbdkKSHCaHbJ9AxdTeAQj9cZvlRz1Q3L39SI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dVka9NEM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64D5CC32782;
-	Mon, 19 Aug 2024 10:34:32 +0000 (UTC)
+	s=arc-20240116; t=1724065091; c=relaxed/simple;
+	bh=4TQQVrkVHquYmKLsb4I0TcnG9bKRaxsMqcUjQcP05C4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NHEArPzmqJiWXCcMhtTIo8B92Tfm43Oo2LWxfoc6geD5s7twKTPrsXcAEGiZuHlfF3kvIRTh6QoERp5YfQPRfSu3A58tyPM44MD6+4H+9wasC5zm83uTV7u+5DpNkdt1um1wcnBGoSTPcrSLQav6pJCJ5K4w4hw5D13an7WBgRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nEyzZSTl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DCCBC32782;
+	Mon, 19 Aug 2024 10:58:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724063677;
-	bh=B8neqfiznvbT3QpR6KsYs6uOapIkixbQvBjyhNbgyV4=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=dVka9NEMq9+cQFSw4ywIT2j54DqM7G28A0YczFIprPzXJBuOtxGg5jA+gJlIrFRDG
-	 4Ean1rw8Uemc/1qent+fLoCb/+/1DokLhN/W0G/CB2h3myQkdx20/aKEroRmbThHh6
-	 5C1wsOxZbwQo+Gn2qPqDFqGAndrjQcqctrMU1Q8YoZyZOXCRjrH7JfmIDBH9WHeyRj
-	 E7roCElA9fyiz3gn+UPNqJP/cGRV2NnQ1yCmGzdzDsI6eLzr1GpAg3ZInf3kgtGeHB
-	 OtVxeLI9iODEiAaWDC7EB/eIpmZOmjlR3ceM7IqJU1iWxXKQx4NRICZqhPHZmgpMgT
-	 nWztHeGj+da7A==
-Message-ID: <7237aa34-9821-4ba7-a45b-3b1d598bc282@kernel.org>
-Date: Mon, 19 Aug 2024 12:34:30 +0200
+	s=k20201202; t=1724065091;
+	bh=4TQQVrkVHquYmKLsb4I0TcnG9bKRaxsMqcUjQcP05C4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=nEyzZSTlAZdJeXJK9wqYqm9iZP3LJIpzihFLT9K2kZR39VGJYJkV6ML4FBopUhw5K
+	 ZUrz+JiXf3yTQDZGUuYoIOEkGzQeBaDBTXMOoARjPY/qLdFQPiaOkb14bXw76+pOV+
+	 dDd0vO+eEKI9ubD9idFncrOEixw0oOeVu8xcdFBkihJ/oiuAXERzKQb7ta3NAynTsU
+	 I/vu0mwk1hczxW0g0OQUKveu1PjaUEmj3BqSvQ0IavpKGGyOSUrwFzujV3j9L6ZWhl
+	 QZw1QrnKj2Y96CttQX1gMS2TDWE3NY4Ly/Hfv+prmLBJBMGSZLPZoaJGh1oqkeAdI0
+	 QhwhPIJB98LcA==
+Message-ID: <91acd654-6e79-4239-a7f1-99e49a3c0a7d@kernel.org>
+Date: Mon, 19 Aug 2024 12:58:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 1/3] dt-bindings: i2c: aspeed: support for
- AST2600-i2cv2
-To: Ryan Chen <ryan_chen@aspeedtech.com>, brendan.higgins@linux.dev,
- benh@kernel.crashing.org, joel@jms.id.au, andi.shyti@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andrew@codeconstruct.com.au, p.zabel@pengutronix.de,
- andriy.shevchenko@linux.intel.com, linux-i2c@vger.kernel.org,
- openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org
-References: <20240819092850.1590758-1-ryan_chen@aspeedtech.com>
- <20240819092850.1590758-2-ryan_chen@aspeedtech.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH net-next 1/2] dt-bindings: net: dsa: add none to
+ dsa-tag-protocol enum
+To: vtpieter@gmail.com, Andrew Lunn <andrew@lunn.ch>,
+ Florian Fainelli <f.fainelli@gmail.com>, Vladimir Oltean
+ <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Pieter Van Trappen <pieter.van.trappen@cern.ch>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240819101238.1570176-1-vtpieter@gmail.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -107,23 +106,43 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240819092850.1590758-2-ryan_chen@aspeedtech.com>
+In-Reply-To: <20240819101238.1570176-1-vtpieter@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/08/2024 11:28, Ryan Chen wrote:
-> Add ast2600-i2cv2 compatible and aspeed,global-regs, aspeed,enable-dma
-> and description for ast2600-i2cv2.
+On 19/08/2024 12:12, vtpieter@gmail.com wrote:
+> From: Pieter Van Trappen <pieter.van.trappen@cern.ch>
 > 
-> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
-> Reviewed-by: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> This allows the switch to disable tagging all together, for the use
+> case of an unmanaged switch for example.
+> 
+> Signed-off-by: Pieter Van Trappen <pieter.van.trappen@cern.ch>
+> ---
 
-?!?
+I think this is v2 or v3. Please provide changelog under --- (or in
+cover letter but there is no cover letter here).
 
-What happened here? Why are you amending tags?!? That's not allowed. You
-cannot change received tags, change people names or their data! And how
-is it even possible, srsly, how do you even work with git? Git would
-never do it, so you had to do it on purpose via some weird workflow.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+---
+
+<form letter>
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+</form letter>
 
 Best regards,
 Krzysztof
