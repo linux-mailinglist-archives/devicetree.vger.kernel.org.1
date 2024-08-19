@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-94854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15A24956F24
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 17:45:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB62C956F2F
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 17:48:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 936481F23811
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 15:45:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F01DE1C22E55
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 15:48:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E2ED13B590;
-	Mon, 19 Aug 2024 15:44:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6444612EBD6;
+	Mon, 19 Aug 2024 15:47:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HmKg9cc+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JgiWBYzf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AEE413699A
-	for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 15:44:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27E8243AB9
+	for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 15:47:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724082290; cv=none; b=uN/i2u7ffu1GThMP5ArCMsPyKaZGfEfk+cQcPlYHC3CuKMglKsujUPU7dDCy7bxB73zGG3nGMJ1FoI3msuCM+Pbs8rdTQcezRvstt3DAW8QdJGwSUuAUWDdOVJWb0hDLJ60VTJE5RGGwM0RiQDiHe1JgYoxYLzmidnbq8ZvagAs=
+	t=1724082477; cv=none; b=Hx+UAHxcCSXAv4cAK58iOEbLk5TSlvih+eB90N+a5RPbRsbNv0TKWSA/8Px7PZJbDbORhyRpUlzg65MPZ6MGbibKEhvt/P0YjhA1Dg/K7rSi6MVnuL/hJhWBhwXMa/cO0Qxe0dkt/5FiIqxIu3U3mNrCVwZjHd+LX+GIWQozT/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724082290; c=relaxed/simple;
-	bh=6J3NY+yiGfB0B9Iq6BPUd0a1ijAjJ5rX/IOkG9xyLx4=;
+	s=arc-20240116; t=1724082477; c=relaxed/simple;
+	bh=RnB7uC0DrNOkONHOzL3Y/VKrCqYbIEqs+KHDXCKiwds=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=KHu4Vc2bacf6WAuGiiNPzSbAHvEEBp09unRq+8gmTcrJHzqHmLbHnv0siFLrDBBE0XMsd+aF+qL5xI3atciPGot8hRbOEN9XTBB9x/xEFl++U6xCBt1MryiPj/N72SMiUBvM7fh4qvOLcyHa1b2CgyU5u0aR5iIGrTdFEtbjtKo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HmKg9cc+; arc=none smtp.client-ip=209.85.128.45
+	 In-Reply-To:Content-Type; b=G2+9qumruGplxsVdbOWEKpLvQFcqVAHUTFe3Jo4tLEIve3YlUXYq7E80MPTq23rGrAnle5mI24L9gvJWxDOHNk7yn+7od/hDkhcEV4rmw4rcbxyHdrjvyYXoQcVKeHPh68o6uc1yWZx/mirSlx6jy3e+n4B1VFQ6PYb/fUtDMFo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JgiWBYzf; arc=none smtp.client-ip=209.85.128.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-42803bbf842so49392895e9.1
-        for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 08:44:48 -0700 (PDT)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-429d2d7be1eso23471495e9.1
+        for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 08:47:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724082287; x=1724687087; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1724082472; x=1724687272; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=F/Xv3nsXv1q5PkoN52h1MNaEjHJHTbvi1agF5Quui2E=;
-        b=HmKg9cc+vd4jMwfjE2HIRybf9CyhK431pEImHKVKC3sUmBL4RDTzRc3PoRmW3FUzA4
-         9QYu4btrLmHU67rNM0p2l5jrqc7JPDDX+HdeC9dtJWa4AujLIwEA0EKRpdzVe326PqIF
-         Ygccz4C/G2Qrmv0W6mQOHUwBgGxBOwNYBnJw8PpBmO01oLcYaws15EHHB0CEZ/PfFJnJ
-         xapPdxnq4YJGelJcQdEkoqva5Es8h8LBxF8flO8py/cwxcLw38zGISGDXbLWvO2CFanx
-         dIYN3YdyTO1oUBFQfoWP3lr0Pm4dbbWANdLLsNzac/4+YqRqzw+e6jnUpUKcKgAyYE9x
-         Ge0Q==
+        bh=kIt2br96mdLhWBp6JP0ipSVmrTaKgcGBYASdKyRKabE=;
+        b=JgiWBYzfJwjjjY2oc/h2IwyTd+DO/+Y7m2p5+rgN/z1cA8FbaijDyUeJa2tQ1TR19K
+         5VNPwF8+ZZwGMXRHceMCgB/9/GtbArcyDLWJcAqYlMfBUr9rWp4Gpn6SysVFM7qnreot
+         rhegwsSHHFBR7GoWNKO/eBxj4TshddfCJa8S6JrHXAhRwftobhXbL8F6D29n18ykzs4o
+         R7qaSPp2PimzdIi/pQkg+Uj4riGvxUN0NHGh6xOEpziLrIzU4Glxd8P1sMNeJEUxCFUl
+         H2MnbZWHH1aIgq/DKqMDScXBbaKEeO2eBMBDgZjhTKCl42sTrnp5fbKIszuqYhcy78DR
+         84QQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724082287; x=1724687087;
+        d=1e100.net; s=20230601; t=1724082472; x=1724687272;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=F/Xv3nsXv1q5PkoN52h1MNaEjHJHTbvi1agF5Quui2E=;
-        b=PmGMR+GOaAlePl5DV5P5Uzgf8Co/bgO0k16Tf6dSu2lZfSFprP+gLkamM6IcwixCP+
-         Y2rFphuALnYT1ZajR2k6FCELXXlnv5ABMIBApD46fvLUtEqIATs0lq3PNxwYI+qIlPV+
-         mKU3333Wy5GNyQ2jRRBpYX2OonMPAcyQ1CgIvUojYNveQj7xrYgHf2nR1sJySeEKQipl
-         VACl6cz1rLrLftmEdiDrL1hsYRBpe0/xWF2jlo7QbnspTzDZeLKJriHWiSIn8fwpB0mw
-         izVFcX7GumuC3k3Og8eGJ5tMwiz5lwRA8fKxWrjHZ7I2aJaFF3TgZwoBL8dyOSYXRZU1
-         xWoA==
-X-Forwarded-Encrypted: i=1; AJvYcCXDB9+MB3oKF/EYn8d9HoK8B6998Y3q1c3jzCZkRprDO4b/Ahfe7a9f2P2xZiXNmM1b1pWEe97QuK8ck2rt1JIbQ+2/+riGVtL2+g==
-X-Gm-Message-State: AOJu0YwYc0SmBJ0p0qRbNb4fefP6vpOngH6jICmim+PiP1GHmHLzlVdl
-	87Q5uFORdeu+POgeq5+S9/yGrU48OAnU6XF8tzUr3VomjIU0Y/ttLfdEUrOnsKk=
-X-Google-Smtp-Source: AGHT+IFtqV44TIzMSE3Q3kv+DMpp1U5YgbWjzJtplQ+IL3GZrmMRvPaNOyZaUH4FhSsLRESzsHarrw==
-X-Received: by 2002:a05:600c:4f12:b0:426:545b:ec00 with SMTP id 5b1f17b1804b1-429ed7b7860mr91644775e9.19.1724082286959;
-        Mon, 19 Aug 2024 08:44:46 -0700 (PDT)
+        bh=kIt2br96mdLhWBp6JP0ipSVmrTaKgcGBYASdKyRKabE=;
+        b=T9oMXSPs9xEnFnq5snSCXABJ3eEk4qU+bZRiFIHJBo/NFszNOQimBYJtXjTtRvyWIf
+         kgXSt8ZQIn+a3iJ/3lz9ADog4y04GZibJjQkAm1l0IRYK7xAKFTG9+nBIvMKfNeh+pgf
+         2fR/btSk4GwDWVTNl+Jk5RNW18BjU6PzRpyILQxhomK/9Cj6xp9p76hUbNNMDrthOxws
+         duP3x2mHy5UoJLjg+hW+IJ6vWNOBazi4pr16RubY8tF9a6Ds5pBVoSmM+oAbXNmBrQ7m
+         /Z5X1u4VBY7zcUNsjmbN/w/T6imqf/mBJxX+gWNAxQs2xmyzPSwcGDvDskS5U5ezSwSB
+         db6w==
+X-Forwarded-Encrypted: i=1; AJvYcCXkeG1cfQVT5bjtPcAfPPGcy8fzbCFnSkurvvG/eaf6LlqKSn01+uccDcF6E87CFeXijRj8mSc0Wm1zoZlRI4EusvoN2nMOahrRnA==
+X-Gm-Message-State: AOJu0YzpiGZrZc89wzoX++jXSc4MXThLL0FpUkpFenqmVl2Sjb+5b9O6
+	T5xOsonFRRu5O9uODIN7qux5vlRQPiozuIAHppmAIsl7PWEQe/jrzcfQC3kiBpU=
+X-Google-Smtp-Source: AGHT+IHpqK5ydGJiaG8Tsb6JQ3a0Hg0XUq0yQbn0YLAqxKvXRrWxX6h8gI/Czs5mZegJOJge3Dlqnw==
+X-Received: by 2002:a05:600c:3b8c:b0:428:9a1:f226 with SMTP id 5b1f17b1804b1-42ab54ca592mr370515e9.1.1724082472005;
+        Mon, 19 Aug 2024 08:47:52 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:f54e:4b0a:5175:5727? ([2a01:e0a:982:cbb0:f54e:4b0a:5175:5727])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3718983a184sm10810121f8f.14.2024.08.19.08.44.45
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429ed650903sm114237705e9.18.2024.08.19.08.47.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Aug 2024 08:44:46 -0700 (PDT)
-Message-ID: <0df40f72-f1d5-4049-a6e5-04d973c7a0c7@linaro.org>
-Date: Mon, 19 Aug 2024 17:44:45 +0200
+        Mon, 19 Aug 2024 08:47:51 -0700 (PDT)
+Message-ID: <e1b8756c-7b0a-4042-b1ba-24d3bcf1dad3@linaro.org>
+Date: Mon, 19 Aug 2024 17:47:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,22 +78,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
+From: Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 1/2] drm/panel: jd9365da: Move "exit sleep mode" and
- "set display on" cmds
-To: Doug Anderson <dianders@chromium.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>
-Cc: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- hsinyi@google.com, airlied@gmail.com, daniel@ffwll.ch, jagan@edgeble.ai,
- dmitry.baryshkov@linaro.org, jani.nikula@linux.intel.com,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240807100429.13260-1-lvzhaoxiong@huaqin.corp-partner.google.com>
- <20240807100429.13260-2-lvzhaoxiong@huaqin.corp-partner.google.com>
- <1518bded-72d8-4ed0-a63f-3dd21473b23b@quicinc.com>
- <CAD=FV=UfE99Q1aQfPk61WzqK+kbMd-htWstjWUqgCvK1fqfWPw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] drm/panel: simple: add Innolux G070ACE-LH3 LVDS
+ display support
+To: Steffen Trumtrar <s.trumtrar@pengutronix.de>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@pengutronix.de
+References: <20240729-b4-v6-10-topic-innolux-v2-0-27d32c766ce5@pengutronix.de>
+ <20240729-b4-v6-10-topic-innolux-v2-2-27d32c766ce5@pengutronix.de>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -120,71 +119,74 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <CAD=FV=UfE99Q1aQfPk61WzqK+kbMd-htWstjWUqgCvK1fqfWPw@mail.gmail.com>
+In-Reply-To: <20240729-b4-v6-10-topic-innolux-v2-2-27d32c766ce5@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 12/08/2024 17:45, Doug Anderson wrote:
-> Jessica,
+On 29/07/2024 09:02, Steffen Trumtrar wrote:
+> The G070ACE-LH3 is a 7" TFT Color LCD module with WLED backlight.
 > 
-> On Thu, Aug 8, 2024 at 3:56 PM Jessica Zhang <quic_jesszhan@quicinc.com> wrote:
->>
->>
->>
->> On 8/7/2024 3:04 AM, Zhaoxiong Lv wrote:
->>> Move the "exit sleep mode" and "set display on" command from
->>> enable() to init() function.
->>>
->>> As mentioned in the patch:
->>> https://lore.kernel.org/all/20240624141926.5250-2-lvzhaoxiong@huaqin.corp-partner.google.com/
->>>
->>> The Mediatek Soc DSI host has different modes in prepare() and
->>> enable() functions, prepare() is in LP mode and enable() is in
->>> HS mode. Since the "exit sleep mode" and "set display on"
->>> command must also be sent in LP mode, so we also move "exit
->>> sleep mode" and "set display on" command to the init() function.
->>>
->>> We have no other actions in the enable() function after moves
->>> "exit sleep mode" and "set display on", and we checked the call
->>> of the enable() function during the "startup" process. It seems
->>> that only one judgment was made in drm_panel_enabel(). If the
->>> panel does not define enable(), the judgment will skip the
->>> enable() and continue execution. This does not seem to have
->>> any other effect, and we found that some drivers also seem
->>> to have no enable() function added, for example:
->>> panel-asus-z00t-tm5p5-n35596 / panel-boe-himax8279d...
->>> In addition, we briefly tested the kingdisplay_kd101ne3 panel and
->>> melfas_lmfbx101117480 panel, and it seems that there is no garbage
->>> on the panel, so we delete enable() function.
->>>
->>> After moving the "exit sleep mode" and "set display on" command
->>> to the init() function, we no longer need additional delay
->>> judgment, so we delete variables "exit_sleep_to_display_on_delay_ms"
->>> and "display_on_delay_ms".
->>>
->>> Reviewed-by: Douglas Anderson <dianders@chromium.org>
->>> Signed-off-by: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
->>
->> Acked-by: Jessica Zhang <quic_jesszhan@quicinc.com>
+> https://www.data-modul.com/sites/default/files/products/G070ACE-LH3-specification-12058417.pdf
 > 
-> Does this Ack mean you're confident enough about this patch that we
-> should go ahead and merge it, or do you think we should wait on
-> anything else (like Neil getting a chance to look at it)? As I
-> mentioned in my reply to the cover letter [1] the patches look OK to
-> me but I still don't consider myself to have a wonderful understanding
-> of the intricacies of MIPI DSI. If you think this is OK from a MIPI
-> DSI point of view then we can land it...
+> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+> ---
+>   drivers/gpu/drm/panel/panel-simple.c | 35 +++++++++++++++++++++++++++++++++++
+>   1 file changed, 35 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+> index dcb6d0b6ced06..d3200dd035662 100644
+> --- a/drivers/gpu/drm/panel/panel-simple.c
+> +++ b/drivers/gpu/drm/panel/panel-simple.c
+> @@ -2509,6 +2509,38 @@ static const struct panel_desc innolux_g070y2_l01 = {
+>   	.connector_type = DRM_MODE_CONNECTOR_LVDS,
+>   };
+>   
+> +static const struct display_timing innolux_g070ace_lh3_timing = {
+> +	.pixelclock = { 25200000, 25400000, 35700000 },
+> +	.hactive = { 800, 800, 800 },
+> +	.hfront_porch = { 30, 32, 87 },
+> +	.hback_porch = { 29, 31, 86 },
+> +	.hsync_len = { 1, 1, 1 },
+> +	.vactive = { 480, 480, 480 },
+> +	.vfront_porch = { 4, 5, 65 },
+> +	.vback_porch = { 3, 4, 65 },
+> +	.vsync_len = { 1, 1, 1 },
+> +	.flags = DISPLAY_FLAGS_DE_HIGH,
+> +};
+> +
+> +static const struct panel_desc innolux_g070ace_lh3 = {
+> +	.timings = &innolux_g070ace_lh3_timing,
+> +	.num_timings = 1,
+> +	.bpc = 8,
+> +	.size = {
+> +		.width = 152,
+> +		.height = 91,
+> +	},
+> +	.delay = {
+> +		.prepare = 10,
+> +		.enable = 450,
+> +		.disable = 200,
+> +		.unprepare = 510,
+> +	},
+> +	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,
+> +	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
+> +	.connector_type = DRM_MODE_CONNECTOR_LVDS,
+> +};
+> +
+>   static const struct drm_display_mode innolux_g070y2_t02_mode = {
+>   	.clock = 33333,
+>   	.hdisplay = 800,
+> @@ -4599,6 +4631,9 @@ static const struct of_device_id platform_of_match[] = {
+>   	}, {
+>   		.compatible = "innolux,g070ace-l01",
+>   		.data = &innolux_g070ace_l01,
+> +	}, {
+> +		.compatible = "innolux,g070ace-lh3",
+> +		.data = &innolux_g070ace_lh3,
+>   	}, {
+>   		.compatible = "innolux,g070y2-l01",
+>   		.data = &innolux_g070y2_l01,
+> 
 
-I don't have an advanced MIPI DSI knowledge, but they simple remove unneeded
-sleeps between dcs commands, so if they are confident they can be removed I agree...
-
-Neil
-
-> 
-> [1] https://lore.kernel.org/r/CAD=FV=WCw6pAump-PUFCW0cgbRY+5_2tPNLe=hN3-dnXD=B6MA@mail.gmail.com
-> 
-> Thanks!
-> 
-> -Doug
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
