@@ -1,218 +1,172 @@
-Return-Path: <devicetree+bounces-94827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4306956CD3
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 16:12:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78F03956CF0
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 16:15:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 149711C2156C
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 14:12:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F11B1F247E7
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 14:15:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C564516D4C9;
-	Mon, 19 Aug 2024 14:11:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E104B16C878;
+	Mon, 19 Aug 2024 14:15:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="aQWOEsnR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VuXgYYXg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C434E16CD12
-	for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 14:11:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF04416B399;
+	Mon, 19 Aug 2024 14:15:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724076717; cv=none; b=N4tG8qvDix90uebUnCiHkKPNZZQEIssE4k6Mgx44QLZ2WNVoR683VYJlBeJPXh3nykKTD8oH/U1tH0AtijZW6q64NMHV7/mQd7l4C/qYE129iVbzFLYQxFHaRlOmp7cVIFrOTIwyJek4ZSfHuPgopPJbbkzDegvRhI3dn5IeoLQ=
+	t=1724076948; cv=none; b=Nzz+q4matUnuB+fw6zaLNDK+vDAvcBBu+E0hTcVdMJWPQEzZPA3nY8WlWUZAICzjG1bpuJs9hj0Xudrog/dcqjIZ4Vn+NxsBnr5Lp8Kx0bPf8Z/g6gLwxkmcvaWhkN3HPO4I8lPOI2Q77AO+aHOo4DkdfOBPlDNOxSmcZuo/soM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724076717; c=relaxed/simple;
-	bh=GKmFo3bmFk2IVwRE7ksCrTnyul2s0DsTqMziI0uIR6M=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=U6/E+BCt3lRbMvc2YAk6Fr/cRsGeyVLZhuaTf5FjJBvmR4cXLNHOYZoTBF8yAfSbh0mwzFVTDT0A/CPBM+LlEJRqkQuMOLFhv8gE6gFwhHl9rYABQ7hJSkzVq8gAUin9PvoMSY4CUG7/s7Ehv/QCdJljrC8EVNodHF8LCcdLQ9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=aQWOEsnR; arc=none smtp.client-ip=209.85.210.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-709428a9469so2813807a34.3
-        for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 07:11:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1724076715; x=1724681515; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/5uzNUVmRh9vWTdDmOIKmWFbEDxFk4bBzY+xGs2C1kM=;
-        b=aQWOEsnRVgx4NUH/d82ZLeikFMG8N6Vx0BIJui0g596QAoWdC3Ls/iwpTAKU2bSmYW
-         my3cHwGuPpD2pBbuZtX2UFdt8M2LnBk0Ljjh9/6OFJP9ggK3j9jjhSL/BNYEEfU1wWwX
-         6NHXesHxeQPyU0Vl4WOyfkPHPGUwwIxCEAnoAATuGUdBcyhqg9wKcJACe6rbByQUPhWW
-         /vfMex1RTYMT2qCHnJKZaJZi2YM2NzKUcB4ybV/NzyX+uFBuY/xuFQeItptLYVABi4tH
-         kTWjcfh/QZUqH69O/kiW3JrImpMGqPO8yYW98ZUnDE/PYR+eLmEdOnN0ZSdCWIMs2MDl
-         UG4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724076715; x=1724681515;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/5uzNUVmRh9vWTdDmOIKmWFbEDxFk4bBzY+xGs2C1kM=;
-        b=Dl9yeqLZj3JigdGoaE/CjMonNLdw9+bPag+s0qcyDAo/m9+J8uuaigife3hLg3NjhC
-         BeyE0scWcjONcb2RrX0XrfZ9zmAqUuhUK4B0nbKghcqCOzYwx4WjCTvdVer3iEuS6bHk
-         48fMEOjqZzS9tvNTjHOOhdb+GPsyqX4+E5KUjE/4894hGF0nawOJeOEIciPJBOtoEL5m
-         gNDoVCqtKh8xGZTCotHWtjDMi+j9NAMsfc2ZCWkQihg7Dhf8DwF2zvQO4nqmUDJBHuJi
-         u14kWUt2op5JdaYhh1aS3Xp0SLMRKs/6sq1LSHQ1SPWp6iMoTVxYIej6dkN4GVRVMwWW
-         1poQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUUq7Ou4NMQBOWzXCCFf5uoK/kUSfdolrY1+WbjcNMXIkfvvMyhhwgOnvZTKRYKW9BTskYn+lXuiT2zhittKLOP/F/fANj+BkNqnQ==
-X-Gm-Message-State: AOJu0YydrJDiNG27bav5RpS2SNlIblv2p6WinXx9MpQB2iMDNASrGMTo
-	INR+7Nf808+d/wy6OcfreJVTRUYHculnD79+YwV16RRdY2MP9tssBNxGtuuW//g=
-X-Google-Smtp-Source: AGHT+IEIDxFNslUnjaNjQfcTGoFfsRx/9iiQtZEblfA8o9JXy5NKux1Ci5S8rTzmYKFjgqPFesW3cQ==
-X-Received: by 2002:a05:6830:92a:b0:703:6434:aba8 with SMTP id 46e09a7af769-70cac7c6020mr13267546a34.0.1724076714622;
-        Mon, 19 Aug 2024 07:11:54 -0700 (PDT)
-Received: from [127.0.1.1] (d24-150-219-207.home.cgocable.net. [24.150.219.207])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-454c0186bf4sm17630871cf.83.2024.08.19.07.11.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Aug 2024 07:11:54 -0700 (PDT)
-From: Trevor Gamblin <tgamblin@baylibre.com>
-Date: Mon, 19 Aug 2024 10:11:45 -0400
-Subject: [PATCH v3 3/3] docs: iio: new docs for ad7625 driver
+	s=arc-20240116; t=1724076948; c=relaxed/simple;
+	bh=MOZaGaCqrP4GQgWZMCVI3+A5OoGRB7tPix85SODkMRk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iZdZOBy8CINU3yLdvnocWCvR1V9acIcU2+PP+x5/2BFfHvFBFjy9Ywd5AZdiyqEMUSO4PyrV5XsesiOgMo35TEQUnkfrpywQ3YkM/2319v5iE68wHOu3WSMeqx8HEAt+DiqnekkdpJfXDkWVT4EscS9eF2FFZVOJhV5+nhCBg1A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VuXgYYXg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B00FEC32782;
+	Mon, 19 Aug 2024 14:15:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724076948;
+	bh=MOZaGaCqrP4GQgWZMCVI3+A5OoGRB7tPix85SODkMRk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VuXgYYXgjSynhcIUVRd88Vn8jb8VQEyEpu3wrHMFIdS239qr5Kr4EPkq3nBmuubZ2
+	 F0ZMxLbQJ6lq1zx8jK2Dr5ST9EpXYGenQL7ZXBJEt8RT/E+lkrcbk08kqTw6pzw8LP
+	 hbapYLR4Llew6HLwls8GwWLejwgSGVwbplzcqIaVvsN7wDC4qLHXI2/DJj34ZpEFlG
+	 VtY0m+TN7BGYGB3L1nhXvSnSRt2GzIBD4Vfiewa7SuH8WPo94qdsuy1YnSaQHTiFTb
+	 TdUa6+F0N5tADiLkoseiIFZt45WEDiTSkGsxJMKUpbubRLni8aC+sCz17UU04A6RSo
+	 Opt5qE3otX9wg==
+Date: Mon, 19 Aug 2024 15:15:41 +0100
+From: Simon Horman <horms@kernel.org>
+To: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Vinod Koul <vkoul@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-stm32@st-md-mailman.stormreply.com" <linux-stm32@st-md-mailman.stormreply.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+	dl-S32 <S32@nxp.com>
+Subject: Re: [PATCH v2 4/7] net: phy: add helper for mapping RGMII link speed
+ to clock rate
+Message-ID: <20240819141541.GE11472@kernel.org>
+References: <AM9PR04MB85062E3A66BA92EF8D996513E2832@AM9PR04MB8506.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240819-ad7625_r1-v3-3-75d5217c76b5@baylibre.com>
-References: <20240819-ad7625_r1-v3-0-75d5217c76b5@baylibre.com>
-In-Reply-To: <20240819-ad7625_r1-v3-0-75d5217c76b5@baylibre.com>
-To: Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
- David Lechner <dlechner@baylibre.com>, 
- Uwe Kleine-Konig <u.kleine-koenig@baylibre.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
- Trevor Gamblin <tgamblin@baylibre.com>
-X-Mailer: b4 0.14.1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <AM9PR04MB85062E3A66BA92EF8D996513E2832@AM9PR04MB8506.eurprd04.prod.outlook.com>
 
-Add documentation for the AD7625/AD7626/AD7960/AD7961 ADCs.
+On Sun, Aug 18, 2024 at 09:50:46PM +0000, Jan Petrous (OSS) wrote:
+> The helper rgmii_clock() implemented Russel's hint during stmmac
+> glue driver review:
+> 
+> ---
+> We seem to have multiple cases of very similar logic in lots of stmmac
+> platform drivers, and I think it's about time we said no more to this.
+> So, what I think we should do is as follows:
+> 
+> add the following helper - either in stmmac, or more generically
+> (phylib? - in which case its name will need changing.)
+> 
+> static long stmmac_get_rgmii_clock(int speed)
+> {
+> 	switch (speed) {
+> 	case SPEED_10:
+> 		return 2500000;
+> 
+> 	case SPEED_100:
+> 		return 25000000;
+> 
+> 	case SPEED_1000:
+> 		return 125000000;
+> 
+> 	default:
+> 		return -ENVAL;
+> 	}
+> }
+> 
+> Then, this can become:
+> 
+> 	long tx_clk_rate;
+> 
+> 	...
+> 
+> 	tx_clk_rate = stmmac_get_rgmii_clock(speed);
+> 	if (tx_clk_rate < 0) {
+> 		dev_err(gmac->dev, "Unsupported/Invalid speed: %d\n", speed);
+> 		return;
+> 	}
+> 
+> 	ret = clk_set_rate(gmac->tx_clk, tx_clk_rate);
+> ---
+> 
+> Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
+> ---
+>  include/linux/phy.h | 21 +++++++++++++++++++++
+>  1 file changed, 21 insertions(+)
+> 
+> diff --git a/include/linux/phy.h b/include/linux/phy.h
+> index 6b7d40d49129..bb797364d91c 100644
+> --- a/include/linux/phy.h
+> +++ b/include/linux/phy.h
+> @@ -298,6 +298,27 @@ static inline const char *phy_modes(phy_interface_t interface)
+>  	}
+>  }
+>  
+> +/**
+> + * rgmi_clock - map link speed to the clock rate
 
-Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
----
- Documentation/iio/ad7625.rst | 91 ++++++++++++++++++++++++++++++++++++++++++++
- MAINTAINERS                  |  1 +
- 2 files changed, 92 insertions(+)
+nit: rgmii_clock
 
-diff --git a/Documentation/iio/ad7625.rst b/Documentation/iio/ad7625.rst
-new file mode 100644
-index 000000000000..61761e3b75c3
---- /dev/null
-+++ b/Documentation/iio/ad7625.rst
-@@ -0,0 +1,91 @@
-+.. SPDX-License-Identifier: GPL-2.0-only
-+
-+====================
-+AD7625 driver
-+====================
-+
-+ADC driver for Analog Devices Inc. AD7625, AD7626, AD7960, and AD7961
-+devices. The module name is ``ad7625``.
-+
-+Supported devices
-+=================
-+
-+The following chips are supported by this driver:
-+
-+* `AD7625 <https://www.analog.com/AD7625>`_
-+* `AD7626 <https://www.analog.com/AD7626>`_
-+* `AD7960 <https://www.analog.com/AD7960>`_
-+* `AD7961 <https://www.analog.com/AD7961>`_
-+
-+The driver requires use of the Pulsar LVDS HDL project:
-+
-+* `Pulsar LVDS HDL <http://analogdevicesinc.github.io/hdl/projects/pulsar_lvds/index.html>`_
-+
-+To trigger conversions and enable subsequent data transfer, the devices
-+require coupled PWM signals with a phase offset.
-+
-+Supported features
-+==================
-+
-+Conversion control modes
-+------------------------
-+
-+The driver currently supports one of two possible LVDS conversion control methods.
-+
-+Echoed-Clock interface mode
-+^^^^^^^^^^^^^^^^^^^^^^^^^^^
-+
-+.. code-block::
-+
-+                                                +----------------+
-+                     +xxxxxxxxxxxxxxxxxxxxxxxxxx| CNV            |
-+                     X                          |                |
-+                     v                          |    HOST        |
-+          +----------------------------+        |                |
-+          |      CNV+/CNV-   DCO+/DCO- |xxxxxxx>| CLK_IN         |
-+          |                            |        |                |
-+          |                            |        |                |
-+          |       AD7625         D+/D- |xxxxxxx>| DATA_IN        |
-+          |                            |        |                |
-+          |                            |        |                |
-+          |                  CLK+/CLK- |<xxxxxxx| CLK & CLK_GATE |
-+          +----------------------------+        |                |
-+                                                +----------------+
-+
-+Reference voltage
-+-----------------
-+
-+Three possible reference voltage sources are supported:
-+
-+- Internal reference (only available on AD7625 and AD7626)
-+- External reference and internal buffer
-+- External reference
-+
-+The source is determined by the device tree. If ``ref-supply`` is present, then
-+the external reference is used. If ``refin-supply`` is present, then the internal
-+buffer is used. If neither is present, then the internal reference is used.
-+
-+Unimplemented features
-+----------------------
-+
-+- Self-clocked mode
-+
-+
-+Device attributes
-+=================
-+
-+The AD762x is a fully-differential ADC and has the following attributes:
-+
-++---------------------------------------+--------------------------------------------------------------+
-+| Attribute                             | Description                                                  |
-++=======================================+==============================================================+
-+| ``scale``                             | Scale factor to convert raw value from buffered reads to mV. |
-++---------------------------------------+--------------------------------------------------------------+
-+
-+
-+Device buffers
-+==============
-+
-+This driver supports IIO triggered buffers.
-+
-+See :doc:`iio_devbuf` for more information.
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a90972e1c5c5..97c9b03e1cf0 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1268,6 +1268,7 @@ S:	Supported
- W:	https://ez.analog.com/linux-software-drivers
- W:	http://analogdevicesinc.github.io/hdl/projects/pulsar_lvds/index.html
- F:	Documentation/devicetree/bindings/iio/adc/adi,ad7625.yaml
-+F:	Documentation/iio/ad7625.rst
- F:	drivers/iio/adc/ad7625.c
- 
- ANALOG DEVICES INC AD7768-1 DRIVER
+     Flagged by ./scripts/kernel-doc -none
 
--- 
-2.39.2
-
+> + * @speed: link speed value
+> + *
+> + * Description: maps RGMII supported link speeds
+> + * into the clock rates.
+> + */
+> +static inline long rgmii_clock(int speed)
+> +{
+> +	switch (speed) {
+> +	case SPEED_10:
+> +		return 2500000;
+> +	case SPEED_100:
+> +		return 25000000;
+> +	case SPEED_1000:
+> +		return 125000000;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+>  #define PHY_INIT_TIMEOUT	100000
+>  #define PHY_FORCE_TIMEOUT	10
+>  
+> -- 
+> 2.46.0
+> 
+> 
 
