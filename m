@@ -1,82 +1,195 @@
-Return-Path: <devicetree+bounces-94936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94937-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 744FF957279
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 19:54:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F334E957286
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 19:57:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F3DA1F226AC
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 17:54:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3265D1C2302D
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 17:57:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30AE3188CB5;
-	Mon, 19 Aug 2024 17:54:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76941188CAF;
+	Mon, 19 Aug 2024 17:57:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="trpWJTcC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YmlUf+5y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E98D7188CA6;
-	Mon, 19 Aug 2024 17:54:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 030DA16CD0C;
+	Mon, 19 Aug 2024 17:57:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724090048; cv=none; b=S8Ql5O1qxXabWdqE+1boNK/hRnL6/3v8abz526Ucgo6Ig6/QriL8nu2PGp1kgUjpNv18zrbedMUInvmqbEynvsuTMeHBtw2WH6cxxpWW4FAausXVZKYFQqWP3+/clc5w/lBHe6P3PDqMtUfNmm/CMxtyHiTfHnfDqseGqFSNTZM=
+	t=1724090229; cv=none; b=hqik7ehfoDOdQrQBsvAqkaPoiKDfEUKPQmnnWrE/kxcwqZja8xRGo++wjOU1tBbms6BG3k2ID3IrR4MojYy3jq0dsEqFaTp5Vy+dSUEeKZr1PYoC+88gSWG+3Jtvj5ozYq7L2v8Mvo5S0BNVAa0weZ/yFBCdSZ1Yn+/VE8rT+8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724090048; c=relaxed/simple;
-	bh=8odx4X5D2SFdjugxFVJo6SjM2zgE6t7oK75eXwrN3Ig=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lerSZQ6nrnGmCdKP28sgnNDs3diPLKcbDrprf6h+3jrDI5SrKanfofE7sW1zdkH0ZJpTU91hTPJXCnLrQbvN3uDITb/6b67m7BhOhp/XDDbO0nNu6/XRtmc5pXZ+rzBNrPYP5Dfknp96K6fmUSvtyoY6kTCFQpR1x/GykXsvtJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=trpWJTcC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CD72C32782;
-	Mon, 19 Aug 2024 17:54:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724090047;
-	bh=8odx4X5D2SFdjugxFVJo6SjM2zgE6t7oK75eXwrN3Ig=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=trpWJTcCf51eZAs5Gv8M5fNbjgmFW3YxIv4QetdEPp0QUH9wyUQBQtwGrMQF+6i6Z
-	 zjwNoKt72Oy4SOofDgz9f7xr13DqE0HpU8hRB20Q6ENkXoF1+ZaKa+uxGekAWDXTQ8
-	 DMyiSOhKzH9RHAbwnLX5xFG/7FKsyyhZlrZLjVULMMdNL9kgjM21Tik267CCMMpxJQ
-	 nUnz8/gOJz+mL7khv7NopOSUw8/XjLf8UCBMUdrNaxBp77HfT+lsriYP6BSXdgniiI
-	 B/HdAWvakOtCSFYAzFaE1fgY6fVQbujwz2drWesYp5hhT/2XJJ1QYcxjNRPQvLupoZ
-	 24ediDPapvdTg==
-Date: Mon, 19 Aug 2024 11:54:05 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-mmc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mmc: renesas,sdhi: add top-level constraints
-Message-ID: <172409004503.1749989.12220375558549016614.robh@kernel.org>
-References: <20240818172923.121867-1-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1724090229; c=relaxed/simple;
+	bh=ElElpE5RI1lH2dckfWn+mTh2+L8kYUvgE3xhIammmVg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GfkwxJG8ulfaKpxir1KFvlzbBijF6Wo28f1aUZPEE/PN61L/+HTzN9tCj7F8cmaPSoEenM8Ej+0g1rQyv/NI0GSO64E8LWr8BB/o4efS/pjxaM0bF0lQ1anAVzaT8QP91C5hD46YgzI/b5pRWmtjXTFgh49GBZ3rxCHL/0OzN84=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YmlUf+5y; arc=none smtp.client-ip=209.85.216.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-2d3da6d3f22so2952559a91.0;
+        Mon, 19 Aug 2024 10:57:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724090227; x=1724695027; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cuuVS1ITiXegZviCSVA69/H214SGYPE8ceZUaExnSkA=;
+        b=YmlUf+5ysG8CE/xT3SCKuCFw7/A8CbyqtfUVpGCNzJVNMwo3PVnkCHME5pDYvTSXyO
+         STeeOic3iyUwtMI3DBMsoOWt68lDEAffLRWKA5bodLxQJPbAReOHxKvRlKY86JYhZd8m
+         k5McfB1+Ub7ujFDKjkY7RIpt6Zhei1Mj8PUCfGWJa8EI3yjoZKQj4nmnZZh3u77rtadY
+         wbvPTSpTvupYO25ZjYkialo76aDr9SZ2XrWkEFVONTg8gwWcc8p/pgM1JiNOHHgYlrYe
+         FPi7jsRc8x0UJcARTQxViSZa8D4qJFLrKoda0iOJY09NVkSaSkHRcDKw7/ayYLgx4RDT
+         aj1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724090227; x=1724695027;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cuuVS1ITiXegZviCSVA69/H214SGYPE8ceZUaExnSkA=;
+        b=nI1O8vQ6c6I3djOifgw8uoEWIBUvnj4ZQuyARTdLYhyZKAfzyWQPb8soLa310qhGNt
+         yQcfpCEvSqcst8oenTp6oPUErnnFY38EA9bQL4K5J+p1IP+UL3wABZEMSdDQqZmPeTc7
+         kyJP64RXhdkLTMC5G77ATg4PCzMl4m1ItZO7CrA7181s4hyuU1PGXhOz0QGi1sOzum3l
+         4ByNxEfY0pD+Vav56wIH9vZYp+le0Lz73XM2VIgNd6K2B+kD4pjFXxup8nMb0UvIcIIy
+         dKy3UfJ206ZjU+5zccNYgtAFJt5PvLB18uyGcyDh3ZmTYUF9Uih7gFYWCVGdQmc8nAJd
+         xQFg==
+X-Forwarded-Encrypted: i=1; AJvYcCUjsiV5PVXnrpYbDlXb8gTzfYNHs05sx85jNr2xlJEx6gBf5+PBULFmgjy4LEHnWVK8sgPED5eJz03g1o0/clGwM1AkkQZ2Yq7BhyFp451ZXelcWwKG9dQRcS86PGakJ3noFsQNrvN/dQ==
+X-Gm-Message-State: AOJu0YyWURloeTUhtEytmuikZZlOZ2vwpi5Svjxh8vZRfumUA0sfiHe4
+	ZqlC4rhmbcByyY5E4Fnrzkg0aF986Le4HP0jYURBVXB+7Jae9I/M08snvQ/4P41PZUvNfeytVpl
+	7o4/WilfPQooSipnA6qetH74SqHQ=
+X-Google-Smtp-Source: AGHT+IGbaJamB1WMkYOQP8y5T/PYjNZENVTB6C6IJlDHm2P8ZbvZAYpVTPylR32B0EEeQ7iuqG6aNEVdXU3TCrMt3ZQ=
+X-Received: by 2002:a17:90b:1247:b0:2cd:5d13:40ba with SMTP id
+ 98e67ed59e1d1-2d3dffc8f3bmr12871217a91.14.1724090227028; Mon, 19 Aug 2024
+ 10:57:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240818172923.121867-1-krzysztof.kozlowski@linaro.org>
+References: <20240819-imx_warning-v2-0-4c428bd11160@nxp.com>
+ <20240819-imx_warning-v2-12-4c428bd11160@nxp.com> <CAOMZO5C_uvmuf-+QGH4E2X=Jei81a--N5wC83V-URPkXj-q7hw@mail.gmail.com>
+In-Reply-To: <CAOMZO5C_uvmuf-+QGH4E2X=Jei81a--N5wC83V-URPkXj-q7hw@mail.gmail.com>
+From: Adam Ford <aford173@gmail.com>
+Date: Mon, 19 Aug 2024 12:56:55 -0500
+Message-ID: <CAHCN7xKYZDZdaQ7Noe1TrcDt-E5cU=kdnmkn7EBvBFRapvCApQ@mail.gmail.com>
+Subject: Re: [PATCH v2 12/12] arm64: dts: imx8mm-beacon-kit: add DVDD-supply
+ and DOVDD-supply
+To: Fabio Estevam <festevam@gmail.com>
+Cc: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Gregor Herburger <gregor.herburger@ew.tq-group.com>, 
+	Alexander Stein <alexander.stein@ew.tq-group.com>, devicetree@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux@ew.tq-group.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Aug 19, 2024 at 12:24=E2=80=AFPM Fabio Estevam <festevam@gmail.com>=
+ wrote:
+>
+> Adding Adam.
+>
+> On Mon, Aug 19, 2024 at 2:03=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote=
+:
+> >
+> > According to binding doc, DVDD-supply and DOVDD-supply is required
+> > properties. Add these to fix below warning:
+> > arch/arm64/boot/dts/freescale/imx8mm-beacon-kit.dtb: camera@10: 'DVDD-s=
+upply' is a required proper
+> >
+> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+
+Thanks for doing that!
 
 
-On Sun, 18 Aug 2024 19:29:23 +0200, Krzysztof Kozlowski wrote:
-> Properties with variable number of items per each device are expected to
-> have widest constraints in top-level "properties:" block and further
-> customized (narrowed) in "if:then:".  Add missing top-level constraints
-> for clocks.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
-> 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by:  Adam Ford <aford173@gmail.com>
 
+> > ---
+> >  .../boot/dts/freescale/imx8mm-beacon-baseboard.dtsi      | 16 ++++++++=
+++++++++
+> >  .../boot/dts/freescale/imx8mn-beacon-baseboard.dtsi      | 16 ++++++++=
+++++++++
+> >  2 files changed, 32 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi=
+ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
+> > index 6086dae2e5fbe..ea1d5b9c6bae0 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
+> > @@ -56,6 +56,20 @@ pcie0_refclk_gated:  pcie0-refclk-gated {
+> >                 enable-gpios =3D <&pca6416_1 2 GPIO_ACTIVE_LOW>;
+> >         };
+> >
+> > +       reg_1v5: regulator-1v5 {
+> > +               compatible =3D "regulator-fixed";
+> > +               regulator-name =3D "1V5";
+> > +               regulator-min-microvolt =3D <1500000>;
+> > +               regulator-max-microvolt =3D <1500000>;
+> > +       };
+> > +
+> > +       reg_1v8: regulator-1v8 {
+> > +               compatible =3D "regulator-fixed";
+> > +               regulator-name =3D "1V8";
+> > +               regulator-min-microvolt =3D <1800000>;
+> > +               regulator-max-microvolt =3D <1800000>;
+> > +       };
+> > +
+> >         reg_audio: regulator-audio {
+> >                 compatible =3D "regulator-fixed";
+> >                 regulator-name =3D "3v3_aud";
+> > @@ -187,6 +201,8 @@ camera@10 {
+> >                 assigned-clock-parents =3D <&clk IMX8MM_CLK_24M>;
+> >                 assigned-clock-rates =3D <24000000>;
+> >                 AVDD-supply =3D <&reg_camera>;  /* 2.8v */
+> > +               DVDD-supply =3D <&reg_1v5>;
+> > +               DOVDD-supply =3D <&reg_1v8>;
+> >                 powerdown-gpios =3D <&gpio1 7 GPIO_ACTIVE_HIGH>;
+> >                 reset-gpios =3D <&gpio1 6 GPIO_ACTIVE_LOW>;
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mn-beacon-baseboard.dtsi=
+ b/arch/arm64/boot/dts/freescale/imx8mn-beacon-baseboard.dtsi
+> > index 20018ee2c803e..77d14ea459e57 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mn-beacon-baseboard.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mn-beacon-baseboard.dtsi
+> > @@ -40,6 +40,20 @@ led-3 {
+> >                 };
+> >         };
+> >
+> > +       reg_1v5: regulator-1v5 {
+> > +               compatible =3D "regulator-fixed";
+> > +               regulator-name =3D "1V5";
+> > +               regulator-min-microvolt =3D <1500000>;
+> > +               regulator-max-microvolt =3D <1500000>;
+> > +       };
+> > +
+> > +       reg_1v8: regulator-1v8 {
+> > +               compatible =3D "regulator-fixed";
+> > +               regulator-name =3D "1V8";
+> > +               regulator-min-microvolt =3D <1800000>;
+> > +               regulator-max-microvolt =3D <1800000>;
+> > +       };
+> > +
+> >         reg_audio: regulator-audio {
+> >                 compatible =3D "regulator-fixed";
+> >                 regulator-name =3D "3v3_aud";
+> > @@ -158,6 +172,8 @@ camera@10 {
+> >                 assigned-clock-parents =3D <&clk IMX8MN_CLK_24M>;
+> >                 assigned-clock-rates =3D <24000000>;
+> >                 AVDD-supply =3D <&reg_camera>;  /* 2.8v */
+> > +               DVDD-supply =3D <&reg_1v5>;
+> > +               DOVDD-supply =3D <&reg_1v8>;
+> >                 powerdown-gpios =3D <&gpio1 7 GPIO_ACTIVE_HIGH>;
+> >                 reset-gpios =3D <&gpio1 6 GPIO_ACTIVE_LOW>;
+> >
+> >
+> > --
+> > 2.34.1
+> >
 
