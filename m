@@ -1,193 +1,146 @@
-Return-Path: <devicetree+bounces-94732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6298995671F
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 11:33:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 437E4956739
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 11:39:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87B131C21A22
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 09:33:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 763491C2189E
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 09:39:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5467815ECCD;
-	Mon, 19 Aug 2024 09:32:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 770F015C151;
+	Mon, 19 Aug 2024 09:39:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="K0jhXwOw"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YeJjk0sh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D08615B57A
-	for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 09:32:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DE6D140E50;
+	Mon, 19 Aug 2024 09:39:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724059956; cv=none; b=QlDxt0j2/ZTE3L4fv/eAp8f37IdFByUsF8rrEvxEkceDHilYXhF3JPmDAAypiYwdKrX+QUJt+AAMA+tFZNAAcTOD2VFUb576cwM4LWpURyPwiufJktDSajDne/+hnd7uJxK2iiMOS3cdJQcNSQxqkUv3JomYzBiTdyzI15c9h/A=
+	t=1724060391; cv=none; b=e58/CZ+YEQTi5AWH9DxaIddDTvaZ/hIPpZ9aGel8IVmMA0lVnpsUfqO51lBpJW04tzY6CmbVTOSNQXPraFcq1yQgyhu1KdgIDF4VXkWWI05bBEh4DoY4Wriknk1beeDD4YoPoYmIdhJFYAr/8MmpJnmZUFt5JjxJ2DHE0FKgWH4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724059956; c=relaxed/simple;
-	bh=y8FykAMCJQYb6V318MYDx5Syo5CHN0Ic/kpPbjonFI4=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=SQ5qGYSMozyOG0/ZETpP2/qFnteJEUevFrEX0Dvle4h9Cuqt1xZEXhNxF+HDP4mS3kVU+KGOYAZjyPDUsh2GF2phA3/IX5n385stHS6oErS65Ze6han+gSCzxj+qxIUbm5M6o7GsSgUDSGuvV7rDHRorJyEduNUTewMhb3zGedk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=K0jhXwOw; arc=none smtp.client-ip=203.254.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas1p1.samsung.com (unknown [182.195.41.45])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20240819093230epoutp042178a400fd30462ce4e86fab0d31c8c5~tF2Pf0CxS2760827608epoutp04d
-	for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 09:32:30 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20240819093230epoutp042178a400fd30462ce4e86fab0d31c8c5~tF2Pf0CxS2760827608epoutp04d
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1724059950;
-	bh=v6JcaDQvF7fnOy6LUz32eC5Yk1ca9Qh8Q9FuzWwFM5A=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=K0jhXwOwpazrnl9sBoQLSX9oPY574vci3DlgUrrL6qMVNclDH/87K77xV95ZtW4fw
-	 NljgZ/Py7n7aQd9E9mVyxGFHZkIZ6UcMpJZkDeubDWQdHK1DePqEyYvrjjnB4pYSum
-	 weMJ98JmWgFwbtU3LQCttVWCS8HhM/BXegPmeEl4=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-	epcas1p1.samsung.com (KnoxPortal) with ESMTP id
-	20240819093229epcas1p11822c9de1b260023e3c5f23e0e8eb1bf~tF2Ox9MSR1392813928epcas1p1_;
-	Mon, 19 Aug 2024 09:32:29 +0000 (GMT)
-Received: from epsmges1p1.samsung.com (unknown [182.195.38.232]) by
-	epsnrtp3.localdomain (Postfix) with ESMTP id 4WnS702pgCz4x9Pt; Mon, 19 Aug
-	2024 09:32:28 +0000 (GMT)
-Received: from epcas1p2.samsung.com ( [182.195.41.46]) by
-	epsmges1p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	28.C9.09734.C2113C66; Mon, 19 Aug 2024 18:32:28 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas1p3.samsung.com (KnoxPortal) with ESMTPA id
-	20240819093227epcas1p3b744262db1ccf2d8735bdb0824b281e0~tF2NbIpXW0813608136epcas1p3B;
-	Mon, 19 Aug 2024 09:32:27 +0000 (GMT)
-Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20240819093227epsmtrp2ab990302a791842a0208ad6eaa05aaf9~tF2NaQfJk2819928199epsmtrp2j;
-	Mon, 19 Aug 2024 09:32:27 +0000 (GMT)
-X-AuditID: b6c32a35-babff70000002606-94-66c3112cf518
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	37.BE.08456.B2113C66; Mon, 19 Aug 2024 18:32:27 +0900 (KST)
-Received: from [10.113.111.204] (unknown [10.113.111.204]) by
-	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20240819093227epsmtip164fcf2177353f5dc2e1e9f1eb6794b88~tF2NCe3at0330503305epsmtip1d;
-	Mon, 19 Aug 2024 09:32:27 +0000 (GMT)
-Message-ID: <7f77dcc41173f2a20a0264b6242ecdac6ea85ad9.camel@samsung.com>
-Subject: Re: [PATCH v6 4/4] clk: samsung: add top clock support for
- ExynosAuto v920 SoC
-From: Kwanghoon Son <k.son@samsung.com>
-To: Sunyeal Hong <sunyeal.hong@samsung.com>, Krzysztof Kozlowski
-	<krzk@kernel.org>, Sylwester Nawrocki <s.nawrocki@samsung.com>, Chanwoo Choi
-	<cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, Michael
-	Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob
-	Herring <robh@kernel.org>,  Conor Dooley <conor+dt@kernel.org>
-Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Date: Mon, 19 Aug 2024 18:32:27 +0900
-In-Reply-To: <20240819052416.2258976-5-sunyeal.hong@samsung.com>
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1724060391; c=relaxed/simple;
+	bh=sdmUcFtODGAvYu5cPefrXyqjQBQ1q32m3g8CCade5p4=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=CAejUn5RgSwrwk7rumeWmITQhW2vxFDpHgO9B6CyNdc9jMJKYkYy8O18R1y0SpY4AE3Y5KwHGf0ujQiEgGm3oxJMoyyTlhslV9Jo6tkkfiG/oqSLr2rGMPVLEYgE0Z/KM3Mti8KZ7ELeQwdqWilDc1t2sbEcWnf1uhB1SMccm80=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YeJjk0sh; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47J9deVi054268;
+	Mon, 19 Aug 2024 04:39:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1724060380;
+	bh=lUqPLq8CAGLQB9y55KXemaCm/GMfG44CURi+0vrgves=;
+	h=From:Subject:Date:To:CC;
+	b=YeJjk0shHKCHKvGVnVETRw7AWVkVR11tXef/FRtQwZ6yluCn4JfJkMnh+cU04wOhJ
+	 q1RHuYzlILc++aeg0KKi/iIjla0WfJJkW90q5r7Qmf0bM2lhu1S6z4dX/rlZhC/H3k
+	 x84MM/Sb94Y+mjslGQjV3oPqraJM75/E92UkN8xI=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47J9deo0015739
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 19 Aug 2024 04:39:40 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 19
+ Aug 2024 04:39:40 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 19 Aug 2024 04:39:40 -0500
+Received: from [127.0.1.1] (uda0497581.dhcp.ti.com [10.24.68.185])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47J9daOC082967;
+	Mon, 19 Aug 2024 04:39:36 -0500
+From: Manorit Chawdhry <m-chawdhry@ti.com>
+Subject: [PATCH v4 0/5] Introduce J742S2 SoC and EVM
+Date: Mon, 19 Aug 2024 15:09:34 +0530
+Message-ID: <20240819-b4-upstream-j742s2-v4-0-f2284f6f771d@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrAJsWRmVeSWpSXmKPExsWy7bCmnq6O4OE0gxW3BCwezNvGZrFm7zkm
-	i+tfnrNazD9yjtXi/PkN7BabHl9jtfjYc4/V4vKuOWwWM87vY7K4eMrV4v+eHewWh9+0s1r8
-	u7aRxaJp2XomBz6P9zda2T02repk89i8pN6jb8sqRo/Pm+QCWKOybTJSE1NSixRS85LzUzLz
-	0m2VvIPjneNNzQwMdQ0tLcyVFPISc1NtlVx8AnTdMnOA7lRSKEvMKQUKBSQWFyvp29kU5ZeW
-	pCpk5BeX2CqlFqTkFJgW6BUn5haX5qXr5aWWWBkaGBiZAhUmZGc0TJ7NUtAgXDGz7RVTA+NR
-	gS5GTg4JAROJJ88PsHYxcnEICexglLjedYMNJCEk8IlRYv+leojEN0aJ1o7z7DAd599+YYRI
-	7GWU+DRhOhOE855R4s/8R6wgVbwCHhLn/n5hArGFBSIlni64wQxiswmoSyxpW8sO0iAi8IxJ
-	4tSjT2DLmQWWMkpMunINbDmLgKpE6+nXLF2MHBycAg4SvxuSQMLMAtoSyxa+BhskKiAv0fDw
-	BDPEMkGJkzOfsIDMkRBYyyFxZ8tmVohbXSSe7b8JZQtLvDq+BeoHKYnP7/ayQdjZEkc/wtgl
-	EtdnLYKqN5bYv3QyE8gNzAKaEut36UPcwCfx7msPK0hYQoBXoqNNCMKUl7jVWQ7RKCpx5ulH
-	Noiwh8SNldDQPcko8aN9D9sERvlZSJ6ZheSBWQi7FjAyr2IUSy0ozk1PLTYsMIRHanJ+7iZG
-	cFLVMt3BOPHtB71DjEwcjIcYJTiYlUR4u18eTBPiTUmsrEotyo8vKs1JLT7EaAoM0YnMUqLJ
-	+cC0nlcSb2hiaWBiZmRsYmFoZqgkznvmSlmqkEB6YklqdmpqQWoRTB8TB6dUA5OPV79AxgLx
-	QGPLK9t5Fv8LPrqsYcaZWzPvrz/Ne3b6qsxd6rpzskr7Rd3fiFzNbLrQs0Lx7v8rYXq1PEUt
-	+ydtT7r/oLT69gmzho6AH0+tDv76dbleUe7TuqnXr762yu9c/iKvuGTthecJnA2XzY4KvxGS
-	OnBaW8476dCVTX4ai8+E3Jia/2SSucZWDqb5CgrXK7gyZ/Kd9J9S8sHR69Esnl/XHF7qT6nf
-	ccpDPexL5F8GyxnK5cKt172ecMd6dyusvf3E/MzxvDMHp63bq7helb/O8J/Z5XurXji0Gj78
-	xH+rnT1pXX7X5ovrt/9+q7Bakrv5Bb/JSa3Dv3ZvyDhq/Gj9pn/iUpf+mZpOZZvUrsRSnJFo
-	qMVcVJwIANh0wh0zBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrPLMWRmVeSWpSXmKPExsWy7bCSnK624OE0g81L1S0ezNvGZrFm7zkm
-	i+tfnrNazD9yjtXi/PkN7BabHl9jtfjYc4/V4vKuOWwWM87vY7K4eMrV4v+eHewWh9+0s1r8
-	u7aRxaJp2XomBz6P9zda2T02repk89i8pN6jb8sqRo/Pm+QCWKO4bFJSczLLUov07RK4MnYf
-	/8NW0CtU0b96K2sD4z7+LkZODgkBE4nzb78wdjFycQgJ7GaUODbhNjtEQlSi43IjUIIDyBaW
-	OHy4GKLmLaPE3gcHGEFqeAU8JM79/cIEYgsLREo8XXCDGcRmE1CXWNK2lh2kQUTgBZPE/yfL
-	WEESzALLGCUW32cBsVkEVCVaT79mAVnAKeAg8bshCSQsJHCaUWLTZxWIck2J1u2/2SFsbYll
-	C1+DzRcVkJdoeHiCGeIGQYmTM5+wTGAUnIWkZRaSlllIyhYwMq9ilEwtKM5Nzy02LDDKSy3X
-	K07MLS7NS9dLzs/dxAiOIy2tHYx7Vn3QO8TIxMF4iFGCg1lJhLf75cE0Id6UxMqq1KL8+KLS
-	nNTiQ4zSHCxK4rzfXvemCAmkJ5akZqemFqQWwWSZODilGpgk/7h/ZLm+VOfglWVdUexrE1b5
-	nUtw3KaxI1dnc/UjqYzrkkIras+6/5doFJl//XgtS7hfcO3tzRcNnspxOfBaPLRglCvkcbmr
-	P0lw/un32XkaC4M5mhV+e78qPHXDyKjpx8t/VUZzYmNUb/Hqvetu55q3XuRQaMCf332Kj0Ty
-	nniI7kjj2+DlLqB5W32v9E2hrM63EzyUf9/3Mlz3IP0lt4G47Vyd+PpLZsbTdrxdtcN3lpjM
-	jPZ4EWOOI27H+J9xxwrmO52aauUqaf9le6NI1K27xQp+4s7/Nny6cCy3/Htpo3q4/Rymlm8e
-	YgwsT6fPVztw6oZY5HUuzkcp0WdvzJ4zu+VDZMW9jRJ3i5VYijMSDbWYi4oTAbPsFi0SAwAA
-X-CMS-MailID: 20240819093227epcas1p3b744262db1ccf2d8735bdb0824b281e0
-X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20240819052422epcas2p258a29e773ebdd60573078c21f7a7da12
-References: <20240819052416.2258976-1-sunyeal.hong@samsung.com>
-	<CGME20240819052422epcas2p258a29e773ebdd60573078c21f7a7da12@epcas2p2.samsung.com>
-	<20240819052416.2258976-5-sunyeal.hong@samsung.com>
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANYSw2YC/22OzQ6CMBAGX8X07JruUn7qyfcwHgosUhPAtNhoD
+ O9uwcRgwnE2mfn2LTw7y14cd2/hOFhvhz6C2u9E1Zr+ymDryIIkKZmRhFLB4+5Hx6aDW67IE+S
+ lyVKSGtNUiijeHTf2uUTPl8it9ePgXstGwPn6zeWIW7mAgFCUmhVWWDQaT6M9VEMn5laglZ9sv
+ hMIJGSG66bQhGlW/fnJ2t/eT6Jfm7zhxBjNWv78aZo+S881NTEBAAA=
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Udit Kumar <u-kumar1@ti.com>,
+        Neha Malcom
+ Francis <n-francis@ti.com>,
+        Aniket Limaye <a-limaye@ti.com>, Beleswar Padhi
+	<b-padhi@ti.com>,
+        Manorit Chawdhry <m-chawdhry@ti.com>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1724060376; l=2140;
+ i=m-chawdhry@ti.com; s=20231127; h=from:subject:message-id;
+ bh=sdmUcFtODGAvYu5cPefrXyqjQBQ1q32m3g8CCade5p4=;
+ b=zz8M4bz/omi+ud2CoftGiJ37vmE6QRnuSCz7irOiZAVuFXLsHqFE0rdwt/3c1+4wwW2eca80B
+ q4cdV6TK9ntA0BxzI2ltEoGMMgtQWKXE5JIcJUoFLpx0lBEUZWV7aCf
+X-Developer-Key: i=m-chawdhry@ti.com; a=ed25519;
+ pk=fsr6Tm39TvsTgfyfFQLk+nnqIz2sBA1PthfqqfiiYSs=
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Mon, 2024-08-19 at 14:24 +0900, Sunyeal Hong wrote:
-> This adds support for CMU_TOP which generates clocks for all the
-> function blocks such as CORE, HSI0/1/2, PERIC0/1 and so on. For
-> CMU_TOP, PLL_SHARED0,1,2,3,4 and 5 will be the sources of this block
-> and they will generate bus clocks.
->=20
-> Signed-off-by: Sunyeal Hong <sunyeal.hong=40samsung.com>
-> ---
->  drivers/clk/samsung/Makefile             =7C    1 +
->  drivers/clk/samsung/clk-exynosautov920.c =7C 1173 ++++++++++++++++++++++
->  2 files changed, 1174 insertions(+)
->  create mode 100644 drivers/clk/samsung/clk-exynosautov920.c
->=20
-> diff --git a/drivers/clk/samsung/Makefile b/drivers/clk/samsung/Makefile
-> index 3056944a5a54..f1ba48758c78 100644
-> --- a/drivers/clk/samsung/Makefile
-> +++ b/drivers/clk/samsung/Makefile
-> =40=40 -21,6 +21,7 =40=40 obj-=24(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+=3D cl=
-k-exynos7.o
->  obj-=24(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+=3D clk-exynos7885.o
->  obj-=24(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+=3D clk-exynos850.o
->  obj-=24(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+=3D clk-exynosautov9.o
-> +obj-=24(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+=3D clk-exynosautov920.o
->  obj-=24(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+=3D clk-gs101.o
->  obj-=24(CONFIG_S3C64XX_COMMON_CLK)	+=3D clk-s3c64xx.o
->  obj-=24(CONFIG_S5PV210_COMMON_CLK)	+=3D clk-s5pv210.o clk-s5pv210-audss.=
-o
-> diff --git a/drivers/clk/samsung/clk-exynosautov920.c b/drivers/clk/samsu=
-ng/clk-exynosautov920.c
-> new file mode 100644
-> index 000000000000..c17d25e3c9a0
-> --- /dev/null
-> +++ b/drivers/clk/samsung/clk-exynosautov920.c
+The series adds support for J742S2 family of SoCs. Also adds J742S2 EVM
+Support and re-uses most of the stuff from the superset device J784s4.
 
-=5Bsnip=5D
+It initially cleans up the J784s4 SoC files so that they can be
+re-usable for j742s2 by introducing -common files. Next it cleans up the
+EVM files for j784s4 in a similar way and then goes about adding the
+support for j742s2.
 
-> +=7D;
-> +
-> +static const struct samsung_cmu_info peric0_cmu_info __initconst =3D =7B
-> +	.mux_clks		=3D peric0_mux_clks,
-> +	.nr_mux_clks		=3D ARRAY_SIZE(peric0_mux_clks),
-> +	.div_clks		=3D peric0_div_clks,
-> +	.nr_div_clks		=3D ARRAY_SIZE(peric0_div_clks),
-> +	.nr_clk_ids		=3D CLKS_NR_PERIC0,
-> +	.clk_regs		=3D peric0_clk_regs,
-> +	.nr_clk_regs		=3D ARRAY_SIZE(peric0_clk_regs),
-> +	.clk_name		=3D =22dout_clkcmu_peric0_noc=22,
+Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
+---
+Changes in v4:
+* Nishanth
+- Update pcie and serdes related changes.
+- Update devicetree ordering for nodes in j784s4 and j742s2.
+- Squash the commits and update the description.
+- Link to v3: https://lore.kernel.org/r/20240731-b4-upstream-j742s2-v3-0-da7fe3aa9e90@ti.com
 
-same question.
-Isn't it =22noc=22?
-https://lore.kernel.org/linux-samsung-soc/58dfae564a4a624e464c7803a309f1f07=
-b5ae83d.camel=40samsung.com/
+---
+Manorit Chawdhry (5):
+      arm64: dts: ti: Refactor J784s4 SoC files to a common file
+      arm64: dts: ti: Refactor J784s4-evm to a common file
+      dt-bindings: arm: ti: Add bindings for J742S2 SoCs and Boards
+      arm64: dts: ti: Introduce J742S2 SoC family
+      arm64: dts: ti: Add support for J742S2 EVM board
 
-In my case(autov9),=C2=A0if=20put=20wrong=20clk_name=20dmesg=20will=20show=
-=20that,=0D=0Aexynos_arm64_register_cmu:=20could=20not=20enable=20bus=20clo=
-ck=20...;=20err=20=3D=20-2=0D=0A=0D=0AKwang.=0D=0A=0D=0A=0D=0A
+ Documentation/devicetree/bindings/arm/ti/k3.yaml   |    6 +
+ arch/arm64/boot/dts/ti/Makefile                    |    4 +
+ arch/arm64/boot/dts/ti/k3-j742s2-evm.dts           |   26 +
+ arch/arm64/boot/dts/ti/k3-j742s2-main.dtsi         |   45 +
+ arch/arm64/boot/dts/ti/k3-j742s2.dtsi              |   98 +
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts           | 1426 +---------
+ .../arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi |  150 ++
+ .../boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi   | 1436 ++++++++++
+ .../boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi  | 2667 ++++++++++++++++++
+ ...tsi => k3-j784s4-j742s2-mcu-wakeup-common.dtsi} |    2 +-
+ ...l.dtsi => k3-j784s4-j742s2-thermal-common.dtsi} |    0
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi         | 2847 +-------------------
+ arch/arm64/boot/dts/ti/k3-j784s4.dtsi              |  135 +-
+ 13 files changed, 4532 insertions(+), 4310 deletions(-)
+---
+base-commit: 367b5c3d53e57d51a5878816804652963da90950
+change-id: 20240620-b4-upstream-j742s2-7ba652091550
+
+Best regards,
+-- 
+Manorit Chawdhry <m-chawdhry@ti.com>
+
 
