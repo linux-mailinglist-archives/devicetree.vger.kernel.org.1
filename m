@@ -1,210 +1,146 @@
-Return-Path: <devicetree+bounces-94706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-94707-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5227956582
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 10:24:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E666F9565A6
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 10:32:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61452282FD3
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 08:24:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7378B2844F9
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2024 08:32:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9346D15B0FD;
-	Mon, 19 Aug 2024 08:24:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 019EE14A61A;
+	Mon, 19 Aug 2024 08:32:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Qheoh0jr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF5B4158538;
-	Mon, 19 Aug 2024 08:24:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CADF4C125;
+	Mon, 19 Aug 2024 08:32:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724055865; cv=none; b=fGbxPOVeHNQMFSJ/IAYDKJVorzD2FTwSNaoqurQeSXDAQH3ypEDTECkVuBAhoq7IlZwR3zKkqVmyZ5kcrYveFsGo9FGa9p6IWBTQLG9sUAADunQhP8EysGn7vtb+4bItJTSaCFUqqlnw5yfrXcVo7qshA7Z3o7b0BAWXYs3LJDA=
+	t=1724056371; cv=none; b=ctR6ADsq7PRn7v6QmceGQzY33LiTAoBDW9tiUQkUNsnJlW5DlQotHIk83/eczGRnWb3YYsbfSgYuWsdmFkYpAPqN32Ox1pbGbra59kQiZPgnqj5xkMkrxzEtlQew3MO7xp7oDIFXrHulbLYJfKN6iKztURHbxUyTkp/MLYsKyPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724055865; c=relaxed/simple;
-	bh=/Mu2Fxp3HAfnm01QnvBGwhr+2bpInI9/rue80SauDuk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TCVZxwer23c09vEnh4MmjJmu0WqoWk8fxwx8W3oyF3v/pz4g/g7vGLarWEKCYyySsh+eZM91qYD2slAnOVHAAa6wcbLmKnNUGQUHC64Oi3wpypY1Zw4PtVCVfs+7J2y3QgcLQ01lyV0z8E3GVxNQU/pHCLe8LUXm3XqsbWtjW3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-428163f7635so35308805e9.2;
-        Mon, 19 Aug 2024 01:24:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724055862; x=1724660662;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=L0eCcNffw7KnF9YgXX3UKwNuk5QFOegAlk5VPZFJsEM=;
-        b=vNHXheDqSuKUxu7UskrFtvHuXq6jp/mh1NuhDmxoTwVWGzdCgaF26TVMiBx4nSBGUv
-         jLE35oDVohfMvtsZ8Hl/lO/cmDHb4h70HdG0H7ZCiktoICvMKkInkWqKtu/K6u6ttVoN
-         egY1bldEARcckUGM5a9FYGKoMLLKvCkboB4Ttb49ZKni4mFE6COJmOvHCKeaeClXzZ+h
-         oWUxMhcnlw+xjzp470CqmJ1WUuTePaBMGhhY55fbkRy7x3SqumylVkfUAot5gt269U9a
-         LeQJ9e0tkoaI+PhOpe/YzKE1jXp0JTYDuT7mlDGmdkOE3gj3b0HntWIVKiTO7FwfSNgx
-         Dm6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUKc5nMCgtHqvILMvNKcp628ptu7eQB8TcUJ979EwzyVZFDyl9wkRm6BMxz5xgJxOA+iwA6icoB67eBpkM+wGhZiMq0r3DrbOUhgh9rF25kCiV3keoNTnWfsRKTzxDFuPzs/L7THZIpecreJbCShgSQvsHm3bUedFxwPySrIr8eWZWF5s9f
-X-Gm-Message-State: AOJu0YyZReoFFbYSqDprsI0T0mIEMZTngpd6dKKEPXXYIOb3h6JfRpxX
-	t1jE+5sh8ZFPJKKYVf/fTBGnUDPtZGvDdEeHWjL/iRh0HvTqSbB77Afryw==
-X-Google-Smtp-Source: AGHT+IH7mpE5mezXCGqwhTCXdlU32Io00+sJo7Wg82P1kgrhRFRqhvNEluxZz/pLolJcGdWRdb8zgA==
-X-Received: by 2002:a05:600c:1c25:b0:429:a0d:b710 with SMTP id 5b1f17b1804b1-429ed79c76fmr61970335e9.12.1724055861594;
-        Mon, 19 Aug 2024 01:24:21 -0700 (PDT)
-Received: from krzk-bin ([178.197.215.209])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-429ded72524sm157543425e9.34.2024.08.19.01.24.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Aug 2024 01:24:20 -0700 (PDT)
-Date: Mon, 19 Aug 2024 10:24:17 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jammy Huang <jammy_huang@aspeedtech.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, eajames@linux.ibm.com, 
-	mchehab@kernel.org, joel@jms.id.au, andrew@aj.id.au, hverkuil@xs4all.nl, 
-	pmenzel@molgen.mpg.de, krzk+dt@kernel.org, devicetree@vger.kernel.org, 
-	linux-media@vger.kernel.org, openbmc@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: arm: aspeed: Add aspeed,video binding
-Message-ID: <nnjcjt2kuplsy5bbxujuubkn2xdtpifjeiqt5qfvktdmaorzuz@x444p5ezcoch>
-References: <20240819080859.1304671-1-jammy_huang@aspeedtech.com>
- <20240819080859.1304671-2-jammy_huang@aspeedtech.com>
+	s=arc-20240116; t=1724056371; c=relaxed/simple;
+	bh=ZIYg7RLH1+uZnk0IZRJZ10c2hHQsYwb+IZKGRmNbBi4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=oBzCaWGaT7i1D27pmLN2uT2KuiXAdjgyboP24Lm5uwB73lCc4jDx8FcAbVI6q+AiejY/g3efacs1EvEvP9FtOpSMvS+nl/jefSytI0rBXxP15ucTLk6HgUlB3ks9EppRHyU3+nF87FEN2M4OukF+ew1gei0uZfWoD6+64oLmBks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Qheoh0jr; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47J8WbTS085474;
+	Mon, 19 Aug 2024 03:32:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1724056357;
+	bh=7iEMJxVgqEWFaX/As9NKzd3hIp1ICaM4bk9aNoBrD80=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=Qheoh0jrH1RmQ5TvN9yRyarDXGOlMZrkvrDZyA09M/Pf9X1MbiIKWrSIwioRbHNfb
+	 gFT/rr5WPiLwiBtvsWiNjd1QagmjtQ8I0e8HHmns1L/ofKTgtRZnBI3I7Gu+BeVQCg
+	 KSW0Go6u3MjfAHK7yl10XpdJpGivPIVTja/d7qGs=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47J8WbVa039098
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 19 Aug 2024 03:32:37 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 19
+ Aug 2024 03:32:36 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 19 Aug 2024 03:32:36 -0500
+Received: from [172.24.227.94] (uda0132425.dhcp.ti.com [172.24.227.94])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47J8WWjI119145;
+	Mon, 19 Aug 2024 03:32:32 -0500
+Message-ID: <e5140426-7e69-41b0-858f-16f83eed871a@ti.com>
+Date: Mon, 19 Aug 2024 14:02:31 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240819080859.1304671-2-jammy_huang@aspeedtech.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 3/9] remoteproc: k3-m4: Add a remoteproc driver for
+ M4F subsystem
+To: Mathieu Poirier <mathieu.poirier@linaro.org>, Andrew Davis <afd@ti.com>
+CC: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>,
+        Hari Nagalla <hnagalla@ti.com>, <linux-remoteproc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20240802152109.137243-1-afd@ti.com>
+ <20240802152109.137243-4-afd@ti.com> <Zr4w8Vj0mVo5sBsJ@p14s>
+ <Zr9j5HBjRqqRIoaD@p14s>
+Content-Language: en-US
+From: Vignesh Raghavendra <vigneshr@ti.com>
+In-Reply-To: <Zr9j5HBjRqqRIoaD@p14s>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Mon, Aug 19, 2024 at 04:08:58PM +0800, Jammy Huang wrote:
-> The Video Engine block in ASPEED Silicon SoCs is responsible for video
-> compressions with a wide range of video quality and compression
-> ratio options. It can capture and compress video data from digital or
-> analog sources.
+[...]
+
+Hi Mathieu
+
+On 16/08/24 20:06, Mathieu Poirier wrote:
+>>> +/*
+>>> + * Attach to a running M4 remote processor (IPC-only mode)
+>>> + *
+>>> + * The remote processor is already booted, so there is no need to issue any
+>>> + * TI-SCI commands to boot the M4 core. This callback is used only in IPC-only
+>>> + * mode.
+>>> + */
+>>> +static int k3_m4_rproc_attach(struct rproc *rproc)
+>>> +{
+>>> +	struct k3_m4_rproc *kproc = rproc->priv;
+>>> +	int ret;
+>>> +
+>>> +	ret = k3_m4_rproc_ping_mbox(kproc);
+>>> +	if (ret)
+>>> +		return ret;
+>>> +
+>>> +	return 0;
+>>> +}
+>>> +
+>>> +/*
+>>> + * Detach from a running M4 remote processor (IPC-only mode)
+>>> + *
+>>> + * This rproc detach callback performs the opposite operation to attach
+>>> + * callback, the M4 core is not stopped and will be left to continue to
+>>> + * run its booted firmware. This callback is invoked only in IPC-only mode.
+>>> + */
+>>> +static int k3_m4_rproc_detach(struct rproc *rproc)
+>>> +{
+>>> +	return 0;
+>>> +}
+>> Please remove.
+> Forget this comment since it would cause an error in __rproc_detach().  
 > 
-> Signed-off-by: Jammy Huang <jammy_huang@aspeedtech.com>
-> ---
->  .../bindings/arm/aspeed/aspeed,video.yaml     | 81 +++++++++++++++++++
+>> Other than the above I'm good with this driver.  That said I can't move forward
+>> without a nod from the DT crew.  I also noticed a fair amount of code
+>> duplication with the k3_r5 and k3_dsp drivers.  Dealing with that should not be
+>> part of the current work but will need to be done before another k3 driver can
+>> be merged.
+>>
 
-Why are you adding duplicated binding? Please read the first comments -
-you need to first convert TXT to DT schema. Then you add new properties
-in a new patch.
+> The above still apply though.
 
->  1 file changed, 81 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/aspeed/aspeed,video.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed,video.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed,video.yaml
-> new file mode 100644
-> index 000000000000..bef7bd2f310a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed,video.yaml
-
-Filename matching compatible.
-
-> @@ -0,0 +1,81 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/aspeed/aspeed,video.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ASPEED Video Engine
-
-ASPEED or Aspeed?
-
-> +
-> +maintainers:
-> +  - Eddie James <eajames@linux.ibm.com>
-> +  - Jammy Huang <jammy_huang@aspeedtech.com>
-> +
-> +description: |
-
-Drop |
-
-> +  The ASPEED video engine can be configured to capture and compress video
-> +  data from digital or analog sources.
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      pattern: "^aspeed,ast[0-9]+-video-engine$"
-> +  required:
-> +    - compatible
-
-Drop entire select. No clue what is this.
-
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - description: Preferred naming style for compatibles of video components
-> +        pattern: "^aspeed,ast[0-9]+-video-engine$"
-
-???
-
-No, drop.
-
-> +
-> +      - enum:
-> +          - aspeed,ast2400-video-engine
-> +          - aspeed,ast2500-video-engine
-> +          - aspeed,ast2600-video-engine
-> +
-> +  reg:
-> +    minItems: 1
-
-No, maxItems.
-
-> +
-> +  clocks:
-> +    minItems: 2
-
-No. maxItems.
-
-> +
-> +  clock-names:
-> +    items:
-> +      - const: vclk
-> +      - const: eclk
-> +
-> +  interrupts:
-> +    minItems: 1
-
-maxItems
-
-> +
-> +  aspeed,scu:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: |
-> +      Specifies the scu node that is needed if video wants to capture
-> +      from sources other than Host VGA.
-> +
-> +  aspeed,gfx:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: |
-> +      Specifies the Soc Display(gfx) node that needs to be queried to get
-> +      related information if video wants to use gfx as capture source.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +
-> +additionalProperties: true
-
-NAK, this cannot be true. Where do you see any device binding having it
-true?
+Me or Nishanth will pick up the SoC DT patches via TI SoC tree, once the
+driver patches are merged. Feel free to ignore those but queue
+dt-bindings (already has DT maintainers ack) and driver patches via
+rproc tree.
 
 
-> +
-> +examples:
-> +  - |
-> +    video: video@1e700000 {
-
-Drop unused label
-
-> +          	compatible = "aspeed,ast2600-video-engine";
-
-Fix indentation, this is supposed 4 spaces.
+-- 
+Regards
+Vignesh
 
