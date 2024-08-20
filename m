@@ -1,163 +1,205 @@
-Return-Path: <devicetree+bounces-95283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C49E9958ADD
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 17:14:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40603958AE5
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 17:15:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A0421F24D1F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 15:14:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C1BAAB23C0A
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 15:15:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B0021922E4;
-	Tue, 20 Aug 2024 15:14:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CD00191F89;
+	Tue, 20 Aug 2024 15:15:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="hs3bidrT"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BK4ZBdPs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C9D318EFC9;
-	Tue, 20 Aug 2024 15:14:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F299E28FA;
+	Tue, 20 Aug 2024 15:15:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724166861; cv=none; b=Q76dH/mz/52KHB2icfxxVP0lapQjT97WH5x07363QZrt6tbwUFV0SBS5fdP1xJJUtxqP40AcA3K7jTc8LxraA+hTrtQ2bOyhQ7Yj6j2ERwh2yTBy969cdR0E5I2+CfbE/OKr3zB67sBK3JfrV6s2l6yaxJyNgb/xVN2SkhJhTVc=
+	t=1724166949; cv=none; b=NanRKvxkQQ+HplIaDb602MrGDAY4zNSdVXuzEIP9/t+VMmZZEyNrQfBEJ8YslgJo2qyBRwAND97EgQ0LDaDRMYe8KLqP9iyit5XrRFrBgdMvCQ3CnQqF+91cdZcOxgeNe7wcwa29GgCaczT1KW/RAKh/AQtLZG5C6jvJbeuyTsY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724166861; c=relaxed/simple;
-	bh=HEp2O9Yg+xFVobpRrcPzfJ17tFgUBl3wrHGCOvMurYY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q9Cia/EwPmrCFVj+7/pqRPoP5eFSjUmhLO+agMKXLAcCVzbnBpsZFSPSSqDpDWFtHeFnB25CyyI7dRXv0YDWoPjnAzZxRa++4DIiyCK9whqhyzMqtvNuxTyDxFn1wNqyMVaeMmk45hfqoEkYGUIBGnF/VTX+7AVIn2udtjXcWzg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=hs3bidrT; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=Mj0xb+mKKtlxydaY/lPIxOqJwc7T/yLIdICGlctTCsA=; b=hs3bidrTIdT3d9wsjsAk5IF+tP
-	EhBSP23m2Zp5+ctd2b+yclSD9n2h/JqDGHeXAjvdLUnhRbi15qMm5yNb7m8b6ZCEdDQQpZD1TnIm0
-	3KVPjhWYJFxfsO+eljPP2JOZVPYWTGDDYrMFFJRrPcq24qC9f4TtL8K0Ypiqj9MRIjBg=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sgQYY-005Ew0-6K; Tue, 20 Aug 2024 17:13:58 +0200
-Date: Tue, 20 Aug 2024 17:13:58 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Andrea della Porta <andrea.porta@suse.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
-	Lee Jones <lee@kernel.org>, Stefan Wahren <wahrenst@gmx.net>
-Subject: Re: [PATCH 10/11] net: macb: Add support for RP1's MACB variant
-Message-ID: <c33fe03d-2097-4d26-b3db-8a3d6c793cd1@lunn.ch>
-References: <cover.1724159867.git.andrea.porta@suse.com>
- <775000dfb3a35bc691010072942253cb022750e1.1724159867.git.andrea.porta@suse.com>
+	s=arc-20240116; t=1724166949; c=relaxed/simple;
+	bh=Czkch0QZhrBqNyJDK3eZz7h/cbxIvAw7XyBBjXxkk5o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=c8JS8IRJYBwhviN+sgl1BVqKyj4dtTjS2cnpd95lP/L8Fvu2Hfalg8S1GWv5w2kxwCy0a+UTHp1Fla82ASmuatZ9u/VPPhYlomi0OHoqRteskpzHPMdEn8Ai6LDD7CXTCgElPuKzCMTlQ7aVinEDfJWl+XM2bpDLqGV7x5aOaCE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BK4ZBdPs; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47KFFedL012733;
+	Tue, 20 Aug 2024 10:15:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1724166940;
+	bh=CxhzBf5ybGwVcXuCz/a38jlcbZPaO/ysMzhyekGIWLc=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=BK4ZBdPsHeMLIYURstzM5Z3RfWTKff+TLfvD445wm/ACLyeBzWtGy2uz0PmdeDlkU
+	 NYmvEa6+G+Y0Lcq7LhdZVy5bPj9KuV1v2fAbs8Q3AAnkBYWfa1x5YLeB/o5Q8I5mb+
+	 4tJ+2V4WGGRkeMT+s6QTjtQCyFVN6FTYNpUJIX9g=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47KFFeWb016067
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 20 Aug 2024 10:15:40 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 20
+ Aug 2024 10:15:40 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 20 Aug 2024 10:15:40 -0500
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47KFFdll050707;
+	Tue, 20 Aug 2024 10:15:39 -0500
+Message-ID: <1809eef3-7308-4ec5-9a31-6ae8ca1c8a57@ti.com>
+Date: Tue, 20 Aug 2024 10:15:39 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <775000dfb3a35bc691010072942253cb022750e1.1724159867.git.andrea.porta@suse.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 4/4] arm64: dts: ti: k3-am62a7-sk: Enable ipc with
+ remote proc nodes
+To: Hari Nagalla <hnagalla@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <nm@ti.com>, <bb@ti.com>
+CC: <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+References: <20240820104034.15607-1-hnagalla@ti.com>
+ <20240820104034.15607-5-hnagalla@ti.com>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20240820104034.15607-5-hnagalla@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-> +static unsigned int txdelay = 35;
-> +module_param(txdelay, uint, 0644);
+On 8/20/24 5:40 AM, Hari Nagalla wrote:
+> From: Devarsh Thakkar <devarsht@ti.com>
+> 
+> Reserve memory for remote rpoc IPC and bind the mailbox assignments
 
-Networking does not like module parameters.
+s/remote rpoc/Remoteproc
 
-This is also unused in this patch! So i suggest you just delete it.
-
+> for each remote proc. Two memory regions are reserved for each
+> remote processor. The first region of 1MB of memory is used for Vring
+> shared buffers and the second region is used as external memory to the
+> remote processor, resource table and as tracebuffer.
+> 
+> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+> ---
+>   arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 68 +++++++++++++++++++++++++
+>   1 file changed, 68 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+> index 67faf46d7a35..fb350b578899 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+> @@ -61,11 +61,40 @@ secure_ddr: optee@9e800000 {
+>   			no-map;
+>   		};
+>   
+> +		wkup_r5fss0_core0_dma_memory_region: r5f-dma-memory@9c800000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x00 0x9c800000 0x00 0x100000>;
+> +			no-map;
+> +		};
 > +
->  /* This structure is only used for MACB on SiFive FU540 devices */
->  struct sifive_fu540_macb_mgmt {
->  	void __iomem *reg;
-> @@ -334,7 +337,7 @@ static int macb_mdio_wait_for_idle(struct macb *bp)
->  	u32 val;
->  
->  	return readx_poll_timeout(MACB_READ_NSR, bp, val, val & MACB_BIT(IDLE),
-> -				  1, MACB_MDIO_TIMEOUT);
-> +				  100, MACB_MDIO_TIMEOUT);
->  }
-  
-Please take this patch out of the series, and break it up. This is one
-patch, with a good explanation why you need 1->100.
+>   		wkup_r5fss0_core0_memory_region: r5f-dma-memory@9c900000 {
+>   			compatible = "shared-dma-pool";
+>   			reg = <0x00 0x9c900000 0x00 0x01e00000>;
+>   			no-map;
+>   		};
 
->  static int macb_mdio_read_c22(struct mii_bus *bus, int mii_id, int regnum)
-> @@ -493,6 +496,19 @@ static int macb_mdio_write_c45(struct mii_bus *bus, int mii_id,
->  	return status;
->  }
->  
-> +static int macb_mdio_reset(struct mii_bus *bus)
-> +{
-> +	struct macb *bp = bus->priv;
+newline
+
+> +		mcu_r5fss0_core0_dma_memory_region: r5f-dma-memory@9b800000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x00 0x9b800000 0x00 0x100000>;
+> +			no-map;
+> +		};
 > +
-> +	if (bp->phy_reset_gpio) {
-> +		gpiod_set_value_cansleep(bp->phy_reset_gpio, 1);
-> +		msleep(bp->phy_reset_ms);
-> +		gpiod_set_value_cansleep(bp->phy_reset_gpio, 0);
-> +	}
+> +		mcu_r5fss0_core0_memory_region: r5f-dma-memory@9b900000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x00 0x9b900000 0x00 0x0f00000>;
+> +			no-map;
+> +		};
 > +
-> +	return 0;
-> +}
+> +		c7x_0_dma_memory_region: c7x-dma-memory@99800000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x00 0x99800000 0x00 0x100000>;
+> +			no-map;
+> +		};
 > +
->  static void macb_init_buffers(struct macb *bp)
->  {
->  	struct macb_queue *queue;
-> @@ -969,6 +985,7 @@ static int macb_mii_init(struct macb *bp)
->  	bp->mii_bus->write = &macb_mdio_write_c22;
->  	bp->mii_bus->read_c45 = &macb_mdio_read_c45;
->  	bp->mii_bus->write_c45 = &macb_mdio_write_c45;
-> +	bp->mii_bus->reset = &macb_mdio_reset;
+> +		c7x_0_memory_region: c7x-memory@99900000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x00 0x99900000 0x00 0x01f00000>;
+> +			no-map;
+> +		};
+>   	};
+>   
+>   	vmain_pd: regulator-0 {
+> @@ -728,3 +757,42 @@ dpi1_out: endpoint {
+>   		};
+>   	};
+>   };
+> +
+> +&mailbox0_cluster0 {
+> +	mbox_r5_0: mbox-r5-0 {
+> +		ti,mbox-rx = <0 0 0>;
+> +		ti,mbox-tx = <1 0 0>;
+> +	};
+> +};
+> +
+> +&mailbox0_cluster1 {
+> +	mbox_c7x_0: mbox-c7x-0 {
+> +		ti,mbox-rx = <0 0 0>;
+> +		ti,mbox-tx = <1 0 0>;
+> +	};
+> +};
+> +
+> +&mailbox0_cluster2 {
+> +	mbox_mcu_r5_0: mbox-mcu-r5-0 {
+> +		ti,mbox-rx = <0 0 0>;
+> +		ti,mbox-tx = <1 0 0>;
+> +	};
+> +};
+> +
+> +&c7x_0 {
 
-This is one patch.
+These nodes are incomplete before this point and should have
+been disabled when you added them in the dtsi, set their status
+to "okay" here.
 
->  	snprintf(bp->mii_bus->id, MII_BUS_ID_SIZE, "%s-%x",
->  		 bp->pdev->name, bp->pdev->id);
->  	bp->mii_bus->priv = bp;
-> @@ -1640,6 +1657,11 @@ static int macb_rx(struct macb_queue *queue, struct napi_struct *napi,
->  
->  		macb_init_rx_ring(queue);
->  		queue_writel(queue, RBQP, queue->rx_ring_dma);
-> +#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
-> +		if (bp->hw_dma_cap & HW_DMA_CAP_64B)
-> +			macb_writel(bp, RBQPH,
-> +				    upper_32_bits(queue->rx_ring_dma));
-> +#endif
+> +	mboxes = <&mailbox0_cluster1>, <&mbox_c7x_0>;
 
-How does this affect a disto kernel? Do you actually need the #ifdef?
-What does bp->hw_dma_cap contain when CONFIG_ARCH_DMA_ADDR_T_64BIT is
-not defined?
+Should be one item:
 
-Again, this should be a patch of its own, with a good commit message.
+mboxes = <&mailbox0_cluster1 &mbox_c7x_0>;
 
-Interrupt coalescing should be a patch of its own, etc.
+Andrew
 
-    Andrew
-
----
-pw-bot: cr
+> +	memory-region = <&c7x_0_dma_memory_region>,
+> +			<&c7x_0_memory_region>;
+> +};
+> +
+> +&wkup_r5fss0_core0 {
+> +	mboxes = <&mailbox0_cluster0>, <&mbox_r5_0>;
+> +	memory-region = <&wkup_r5fss0_core0_dma_memory_region>,
+> +		<&wkup_r5fss0_core0_memory_region>;
+> +};
+> +
+> +&mcu_r5fss0_core0 {
+> +	mboxes = <&mailbox0_cluster2>, <&mbox_mcu_r5_0>;
+> +	memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
+> +			<&mcu_r5fss0_core0_memory_region>;
+> +};
 
