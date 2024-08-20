@@ -1,212 +1,274 @@
-Return-Path: <devicetree+bounces-95345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95346-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDB46958EDF
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 21:55:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97A7D958F10
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 22:13:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85FD3285046
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 19:55:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F0FF1F2346D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 20:13:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59E8915C147;
-	Tue, 20 Aug 2024 19:55:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F08571B86FC;
+	Tue, 20 Aug 2024 20:13:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qse4Bbdn"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b="ZAZDoM7S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20D5B1547D1;
-	Tue, 20 Aug 2024 19:55:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724183706; cv=none; b=iCwxeNhwCOitIS6SBuz6O1JUAsdL3btb3yuYvmxfIT/lxs7J4e7X/CSrIH7MQvrkJsPJb3TdHWQwBuJx9UV07xzRjZmj5qwyrUOp6cYLSsDxQ2MEXNoB9BBe+SwWJKS3yTVDUu02a5dimJLEMZGFiuDFUUwxG1yWQ5sxniJeXI0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724183706; c=relaxed/simple;
-	bh=N4Qq3iZWY8eQWm64J0ShcQ1nb3n6BnqGNeWNK07Ou6c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GzVXAHFMNNhr/t09uU5vw/5iX6D+w+8MeLPa+dgzSU0EPDLa2C6FJz4zoeMEtpCwPIOP9gnJofCcDO4vjkHzibbLRG4qEdBPE14YCsXMKmXh94VucVxx/toIuMNJ0ncL4JsXHwoQ4AXjXMWivffqqZsfB9jDuaKTKblgMcezC1Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qse4Bbdn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D184C4AF09;
-	Tue, 20 Aug 2024 19:55:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724183705;
-	bh=N4Qq3iZWY8eQWm64J0ShcQ1nb3n6BnqGNeWNK07Ou6c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qse4Bbdn4CILpo8kSdpDhIVH5hyMQmN2mI+8r3HO7bdyvBwgDYfwsUR4jVDme/YRv
-	 9yX5MfX0HQczTGhI5Vfmp7XYUcoClfamYpBVATdYq0U+4Jd2qQ1UpHHUtKxf70JNDG
-	 eIZMQd/MW9tbA/hwrQ2S600Ecw859wEcShC1bQhGH1t+EiQM6UcP8f6oIn1lbtqzT/
-	 v/Qd2gqWdDOhyHLtDYJ/l5Pi05ZcVh0n2HaDqAlwAPtqrKeHsBBXX7QMrlbCwYRMYP
-	 Qg3LsTRNZ1HVlcU0y+Alxfa5Mo4+xC8WZbLV7UELB0blzSMVRnq/09Xw7sBrDx5JpN
-	 5JFEr5uVR/lGA==
-Date: Tue, 20 Aug 2024 14:55:02 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Marc Gonzalez <mgonzalez@freebox.fr>
-Cc: Rob Clark <robdclark@gmail.com>, Will Deacon <will@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, iommu@lists.linux.dev, 
-	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Konrad Dybcio <konradybcio@kernel.org>, Arnaud Vrac <avrac@freebox.fr>, 
-	Pierre-Hugues Husson <phhusson@freebox.fr>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	Caleb Connolly <caleb.connolly@linaro.org>
-Subject: Re: [PATCH v3] iommu/arm-smmu-qcom: hide last LPASS SMMU context
- bank from linux
-Message-ID: <hilrqug7akx3d4g5mh76swu37ywlkxlbnurc5mzz5yva43uiek@kpurwhc6uu6w>
-References: <20240820-smmu-v3-1-2f71483b00ec@freebox.fr>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3414F18E37E;
+	Tue, 20 Aug 2024 20:13:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724184825; cv=pass; b=U9JDqqh4IzBfgRE2Ph07Xv0qUchyPL0BHedtFRCmqBS99wfDUkOsb7BjlTM5zCrEi/a82T8RopQkREssFCtDW5CRAUvS63nWLrV/9Ru5cuTz/eog4Y+hf/6XtjnFS1C7AvMzcj9zBUIqBeEZYrL1lociHEHnqfetSfoc5lgUgyg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724184825; c=relaxed/simple;
+	bh=/pAnKCaBEl0IAb/k4wHlEvwgqsezQYdCofnMqyT2o0k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IfvavZFr7d/iAtCRLXdzsPbFTGoz5GkijqyFDpphKRzn+AkjcpR9SmCTvuzzlqvs5QReob3YM0eoT0XqN5xByCcMotzpWQUdEynHGPQBTE9kbR10T5cqmhV4NRvt4ll6Ka55lBBiTZX2sU32s0DYqaaX7wucF5XfQ5G1NHIJtk0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b=ZAZDoM7S; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Delivered-To: kernel@collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1724184774; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=ZVs+Y9v8iAgb8VsZIuQbX9CKKvM/WebS7It5W1Ho1YArMkK/7OU7tHahr7Gy8BvkzFS5erhqgP4DqhtQm4vodpeXAhSkBt3VoQkMIGi3YxtBl+hroSz7M74hyrogpZvp3h7lxrRjg4xNMS6y4qB3QG0xTbAzVyQS/w3UApKQ/YI=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1724184774; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=p0PPqUn4kE/vLjURk0V8qJ4L1ZY+zB4xXma6zSgEFDc=; 
+	b=PcMYEwtN2wWhL9IRg6dc8Z4PhSKnf6ze0IUH+pLssssBbH+S5dTzQf1gnzpw7cidaEXVmOon1um13lfCfXSKPTrrpiCV11uLw62vK4tb5hyyfaqEL80geaRXyLgz5sl5ywP66648i8YbKMUWtRzgtp5MGuUEXrV0yntPSgh5n+U=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=cristian.ciocaltea@collabora.com;
+	dmarc=pass header.from=<cristian.ciocaltea@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724184774;
+	s=zohomail; d=collabora.com; i=cristian.ciocaltea@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=p0PPqUn4kE/vLjURk0V8qJ4L1ZY+zB4xXma6zSgEFDc=;
+	b=ZAZDoM7Snoj+I4FvzpMR7qp1MbyJMsw+ORUDyyaJgj2ceUTUMXo9AnNynOmpD6OQ
+	WTqo1wokrXPM+w+S+PzFDXlJsd28tLH0BQ0DkgiBFS99nysRk0Z+8sAwPrJIaijEATP
+	tkSZ3KFmA1dwdDYiVAvUrRVEYe5LAZCGPh5bmbGs=
+Received: by mx.zohomail.com with SMTPS id 172418477226432.528614268436854;
+	Tue, 20 Aug 2024 13:12:52 -0700 (PDT)
+Message-ID: <038073d0-d4b9-4938-9a51-ea2aeb4530f6@collabora.com>
+Date: Tue, 20 Aug 2024 23:12:45 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240820-smmu-v3-1-2f71483b00ec@freebox.fr>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/4] dt-bindings: display: rockchip: Add schema for
+ RK3588 HDMI TX Controller
+To: Conor Dooley <conor@kernel.org>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>,
+ Luis de Arquer <ldearquer@gmail.com>
+References: <20240819-b4-rk3588-bridge-upstream-v4-0-6417c72a2749@collabora.com>
+ <20240819-b4-rk3588-bridge-upstream-v4-3-6417c72a2749@collabora.com>
+ <20240819-bobbing-purplish-99e48baa2304@spud>
+ <ec84bc0b-c4c2-4735-9f34-52bc3a852aaf@collabora.com>
+ <20240820-tropics-hunchback-6fdcd0b37f91@spud>
+Content-Language: en-US
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <20240820-tropics-hunchback-6fdcd0b37f91@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 
-On Tue, Aug 20, 2024 at 03:27:19PM GMT, Marc Gonzalez wrote:
-> On qcom msm8998, writing to the last context bank of lpass_q6_smmu
-> (base address 0x05100000) produces a system freeze & reboot.
+On 8/20/24 7:14 PM, Conor Dooley wrote:
+> On Tue, Aug 20, 2024 at 03:37:44PM +0300, Cristian Ciocaltea wrote:
+>> On 8/19/24 7:53 PM, Conor Dooley wrote:
+>>> On Mon, Aug 19, 2024 at 01:29:30AM +0300, Cristian Ciocaltea wrote:
+>>>> Rockchip RK3588 SoC integrates the Synopsys DesignWare HDMI 2.1
+>>>> Quad-Pixel (QP) TX controller IP.
+>>>>
+>>>> Since this is a new IP block, quite different from those used in the
+>>>> previous generations of Rockchip SoCs, add a dedicated binding file.
+>>>>
+>>>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>>>> ---
+>>>>  .../display/rockchip/rockchip,dw-hdmi-qp.yaml      | 170 +++++++++++++++++++++
+>>>>  1 file changed, 170 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi-qp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi-qp.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..de470923d823
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi-qp.yaml
+>>>
+>>> Filename matching the compatible please.
+>>
+>> RK3588 happens to be the first Rockchip SoC using the QP TX controller, but
+>> more are expected to come, e.g. RK3576.  Should we add 'rk3588-' to the
+>> filename and let it being dropped when the 2nd SoC is added?
 > 
-> The hardware/hypervisor reports 13 context banks for the LPASS SMMU
-> on msm8998, but only the first 12 are accessible...
-> Override the number of context banks
+> Yes to the former, no to the latter.
 > 
-> [    2.546101] arm-smmu 5100000.iommu: probing hardware configuration...
-> [    2.552439] arm-smmu 5100000.iommu: SMMUv2 with:
-> [    2.558945] arm-smmu 5100000.iommu: 	stage 1 translation
-> [    2.563627] arm-smmu 5100000.iommu: 	address translation ops
-> [    2.568923] arm-smmu 5100000.iommu: 	non-coherent table walk
-> [    2.574566] arm-smmu 5100000.iommu: 	(IDR0.CTTW overridden by FW configuration)
-> [    2.580220] arm-smmu 5100000.iommu: 	stream matching with 12 register groups
-> [    2.587263] arm-smmu 5100000.iommu: 	13 context banks (0 stage-2 only)
-> [    2.614447] arm-smmu 5100000.iommu: 	Supported page sizes: 0x63315000
-> [    2.621358] arm-smmu 5100000.iommu: 	Stage-1: 36-bit VA -> 36-bit IPA
-> [    2.627772] arm-smmu 5100000.iommu: 	preserved 0 boot mappings
+>>
+>>>> @@ -0,0 +1,170 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-hdmi-qp.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Rockchip DW HDMI QP TX Encoder
+>>>> +
+>>>> +maintainers:
+>>>> +  - Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>>>> +
+>>>> +description:
+>>>> +  Rockchip RK3588 SoC integrates the Synopsys DesignWare HDMI QP TX controller
+>>>> +  IP and a HDMI/eDP TX Combo PHY based on a Samsung IP block.
+>>>> +
+>>>> +allOf:
+>>>> +  - $ref: /schemas/display/bridge/synopsys,dw-hdmi-qp.yaml#
+>>>> +  - $ref: /schemas/sound/dai-common.yaml#
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    enum:
+>>>> +      - rockchip,rk3588-dw-hdmi-qp
+>>>> +
+>>>> +  clocks:
+>>>> +    minItems: 4
+>>>> +    items:
+>>>> +      - {}
+>>>> +      - {}
+>>>> +      - {}
+>>>> +      - {}
+>>>
+>>> Why have you chosen to do things like this?  I find it makes things less
+>>> clear than reiterating the names of the required clocks.
+>>
+>> I've just followed the approach used in rockchip,dw-hdmi.yaml.  Personally,
+>> I preferred this for making a clear distinction between common and custom
+>> items, in addition to reducing content dupplication. 
+>>
+>> If readability is more important/desired, I will expand the items.  For
+>> consistency, I assume clock-names, interrupts and interrupt-names below
+>> should be treated similarly.
 > 
-> Specifically, the crashes occur here:
-> 
-> 	qsmmu->bypass_cbndx = smmu->num_context_banks - 1;
-> 	arm_smmu_cb_write(smmu, qsmmu->bypass_cbndx, ARM_SMMU_CB_SCTLR, 0);
-> 
-> and here:
-> 
-> 	arm_smmu_write_context_bank(smmu, i);
-> 	arm_smmu_cb_write(smmu, i, ARM_SMMU_CB_FSR, ARM_SMMU_CB_FSR_FAULT);
-> 
-> It is likely that FW reserves the last context bank for its own use,
-> thus a simple work-around is: DON'T USE IT in Linux.
-> 
-> If we decrease the number of context banks, last one will be "hidden".
-> 
-> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+> I don't feel particularly strongly here FWIW. If you chose to do it, do
+> it for all properties, yes.
 
-Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+I'll leave it as is, if you don't mind.
 
-Regards,
-Bjorn
+>>>> +      # The next clocks are optional, but shall be specified in this
+>>>> +      # order when present.
+>>>> +      - description: TMDS/FRL link clock
+>>>> +      - description: Video datapath clock
+>>>
+>>> I don't get what you mean by optional. You have one SoC, either they are
+>>> or are not connected, unless there's multiple instances of this IP block
+>>> on the SoC and some do and some do not have these clocks?
+>>> Ditto for the interrupts.
+>>
+>> They were handled as such in vendor tree, probably assuming other SoC
+>> variants might not need them.  I agree it doesn't make sense to have them
+>> optional at this point.  Will fix this in the next revision.
+>>
+>>>> +
+>>>> +  clock-names:
+>>>> +    minItems: 4
+>>>> +    items:
+>>>> +      - {}
+>>>> +      - {}
+>>>> +      - {}
+>>>> +      - {}
+>>>> +      - enum: [hdp, hclk_vo1]
+>>>> +      - const: hclk_vo1
+>>>> +
+>>>> +  interrupts:
+>>>> +    items:
+>>>> +      - {}
+>>>> +      - {}
+>>>> +      - {}
+>>>> +      - {}
+>>>> +      - description: HPD interrupt
+>>>> +
+>>>> +  interrupt-names:
+>>>> +    items:
+>>>> +      - {}
+>>>> +      - {}
+>>>> +      - {}
+>>>> +      - {}
+>>>> +      - const: hpd
+>>>> +
+>>>> +  phys:
+>>>> +    maxItems: 1
+>>>> +    description: The HDMI/eDP PHY.
+>>>> +
+>>>> +  phy-names:
+>>>> +    const: hdmi
+>>>> +
+>>>> +  power-domains:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  resets:
+>>>> +    minItems: 2
+>>>> +    maxItems: 2
+>>>> +
+>>>> +  reset-names:
+>>>> +    items:
+>>>> +      - const: ref
+>>>> +      - const: hdp
+>>>> +
+>>>> +  "#sound-dai-cells":
+>>>> +    const: 0
+>>>> +
+>>>> +  rockchip,grf:
+>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>>> +    description:
+>>>> +      Most HDMI QP related data is accessed through SYS GRF regs.
+>>>> +
+>>>> +  rockchip,vo1-grf:
+>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>>> +    description:
+>>>> +      Additional HDMI QP related data is accessed through VO1 GRF regs.
+>>>
+>>> Why are these required? What prevents you looking up the syscons by
+>>> compatible?
+>>
+>> That is for getting the proper instance:
+> 
+> Ah, that makes sense. I am, however, curious why these have the same
+> compatible when they have different sized regions allocated to them.
 
-> ---
-> Changes in v3:
-> - Use very specific test (hack) to avoid changing the binding (Bjorn)
-> - Link to v2: https://lore.kernel.org/r/20240819-smmu-v1-0-bce6e4738825@freebox.fr
-> 
-> Changes in v2:
-> - Use the compatible prop instead of a specific prop to trigger work-around (Bjorn & Caleb)
-> - Add qcom,msm8998-lpass-smmu compatible string
-> - Link to v1: https://lore.kernel.org/r/20240814-smmu-v1-0-3d6c27027d5b@freebox.fr
-> 
-> On qcom msm8998, writing to the last context bank of lpass_q6_smmu
-> (base address 0x05100000) produces a system freeze & reboot.
-> 
-> The hardware/hypervisor reports 13 context banks for the LPASS SMMU
-> on msm8998, but only the first 12 are accessible...
-> Override the number of context banks
-> 
-> [    2.546101] arm-smmu 5100000.iommu: probing hardware configuration...
-> [    2.552439] arm-smmu 5100000.iommu: SMMUv2 with:
-> [    2.558945] arm-smmu 5100000.iommu: 	stage 1 translation
-> [    2.563627] arm-smmu 5100000.iommu: 	address translation ops
-> [    2.568923] arm-smmu 5100000.iommu: 	non-coherent table walk
-> [    2.574566] arm-smmu 5100000.iommu: 	(IDR0.CTTW overridden by FW configuration)
-> [    2.580220] arm-smmu 5100000.iommu: 	stream matching with 12 register groups
-> [    2.587263] arm-smmu 5100000.iommu: 	13 context banks (0 stage-2 only)
-> [    2.614447] arm-smmu 5100000.iommu: 	Supported page sizes: 0x63315000
-> [    2.621358] arm-smmu 5100000.iommu: 	Stage-1: 36-bit VA -> 36-bit IPA
-> [    2.627772] arm-smmu 5100000.iommu: 	preserved 0 boot mappings
-> 
-> Specifically, here:
-> 
-> 	qsmmu->bypass_cbndx = smmu->num_context_banks - 1;
-> 	arm_smmu_cb_write(smmu, qsmmu->bypass_cbndx, ARM_SMMU_CB_SCTLR, 0);
-> 
-> and here:
-> 
-> 	arm_smmu_write_context_bank(smmu, i);
-> 	arm_smmu_cb_write(smmu, i, ARM_SMMU_CB_FSR, ARM_SMMU_CB_FSR_FAULT);
-> 
-> It is likely that FW reserves the last context bank for its own use,
-> thus a simple work-around would be: DON'T USE IT in Linux.
-> 
-> For reference, the lpass_q6_smmu node looks like this:
-> 
-> 	lpass_q6_smmu: iommu@5100000 {
-> 		compatible = "qcom,msm8998-smmu-v2", "qcom,smmu-v2";
-> 		reg = <0x05100000 0x40000>;
-> 		clocks = <&gcc HLOS1_VOTE_LPASS_ADSP_SMMU_CLK>;
-> 		clock-names = "iface";
-> 
-> 		#global-interrupts = <0>;
-> 		#iommu-cells = <1>;
-> 		interrupts =
-> 			<GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>,
-> 			<GIC_SPI 393 IRQ_TYPE_LEVEL_HIGH>,
-> 			<GIC_SPI 394 IRQ_TYPE_LEVEL_HIGH>,
-> 			<GIC_SPI 395 IRQ_TYPE_LEVEL_HIGH>,
-> 			<GIC_SPI 396 IRQ_TYPE_LEVEL_HIGH>,
-> 			<GIC_SPI 397 IRQ_TYPE_LEVEL_HIGH>,
-> 			<GIC_SPI 398 IRQ_TYPE_LEVEL_HIGH>,
-> 			<GIC_SPI 399 IRQ_TYPE_LEVEL_HIGH>,
-> 			<GIC_SPI 400 IRQ_TYPE_LEVEL_HIGH>,
-> 			<GIC_SPI 401 IRQ_TYPE_LEVEL_HIGH>,
-> 			<GIC_SPI 402 IRQ_TYPE_LEVEL_HIGH>,
-> 			<GIC_SPI 403 IRQ_TYPE_LEVEL_HIGH>,
-> 			<GIC_SPI 137 IRQ_TYPE_LEVEL_HIGH>;
-> 
-> power-domains = <&gcc LPASS_ADSP_GDSC>;
-> 		status = "disabled";
-> 	};
-> ---
->  drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-> index 7e65189ca7b8c..625db1d00fe5e 100644
-> --- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-> @@ -282,6 +282,13 @@ static int qcom_smmu_cfg_probe(struct arm_smmu_device *smmu)
->  	u32 smr;
->  	int i;
->  
-> +	/*
-> +	 * MSM8998 LPASS SMMU reports 13 context banks, but accessing
-> +	 * the last context bank crashes the system.
-> +	 */
-> +	if (of_device_is_compatible(smmu->dev->of_node, "qcom,msm8998-smmu-v2") && smmu->num_context_banks == 13)
-> +		smmu->num_context_banks = 12;
-> +
->  	/*
->  	 * Some platforms support more than the Arm SMMU architected maximum of
->  	 * 128 stream matching groups. For unknown reasons, the additional
-> 
-> ---
-> base-commit: 96a96aed6bb75b5c212f233b6c059a9354cdeebe
-> change-id: 20240814-smmu-d572c1a16aac
-> 
-> Best regards,
-> -- 
-> Marc Gonzalez <mgonzalez@freebox.fr>
-> 
+Good question, didn't notice.  I've just checked the TRM and, in both
+cases, the maximum register offset is within the 0x100 range.  Presumably
+this is nothing but an inconsistency, as the syscons have been added in
+separate commits.
+
+>> 	vo0_grf: syscon@fd5a6000 {
+>> 		compatible = "rockchip,rk3588-vo-grf", "syscon";
+>> 		reg = <0x0 0xfd5a6000 0x0 0x2000>;
+>> 		clocks = <&cru PCLK_VO0GRF>;
+>> 	};
+>>
+>> 	vo1_grf: syscon@fd5a8000 {
+>> 		compatible = "rockchip,rk3588-vo-grf", "syscon";
+>> 		reg = <0x0 0xfd5a8000 0x0 0x100>;
+>> 		clocks = <&cru PCLK_VO1GRF>;
+>> 	};
+>>
+>> Thanks for reviewing,
+>> Cristian
 
