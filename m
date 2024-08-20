@@ -1,157 +1,114 @@
-Return-Path: <devicetree+bounces-95315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D464958D0A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 19:18:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D025D958D13
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 19:19:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B02F61C21FDF
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 17:18:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BECE285EFC
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 17:19:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A5F71C0DCE;
-	Tue, 20 Aug 2024 17:18:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBE151BC080;
+	Tue, 20 Aug 2024 17:19:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XDGJSjkp"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="TnrEFjCC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE9F11B9B41;
-	Tue, 20 Aug 2024 17:17:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0868118A928
+	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 17:19:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724174280; cv=none; b=W8hEFuV3u5VPKB2rTv3b9Y2Pgu4HW0OusYmmmSo69FtOEBwoUvBK6cUBREyTErmvbCoeY1jRxmT4T+tARkJNEj3mFLmY0u8AKNRuAw4oA2GKMkUVuSeqKQ5um3r3ZMfAi3TiQHthrIW/XzXAqnW/VB35NQmqo6vN4F31rXlv0vw=
+	t=1724174365; cv=none; b=WfAr3VgMps1IWVn5r2Gvigfs+srX6n1xk3QsjPIQlW5vUgwQxiLuXt1xxKt0iNVs1r1SqSItZhpd6DXVuK1R7WhY5R/O2+YFtb4qWFCasOi8x/2DWyEMa3p9Z/H0l4ZGjRoiUbq4yNd6rvl//2Y1WbAK/jreHnK0HdG6x5F1No0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724174280; c=relaxed/simple;
-	bh=OxdLYrw3Fv4z03xq74l/9FObGzEEUxYeWrEJIG/DXRY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TzHFFzaQpfJ4HTCvgGTll15xMA6rli1UY9yXRh/04DsvKw0h+OcBKbMjcwo3jGJZOUEo2oqfrQM9JqlC7fWB88n9durW0o0UhBLowFtnZ8gmlloTfNc+ZGGJK6Ov3XoLWJy83pKoUMH6QXOsUEWcV+cSZPBAG9TzDsE7dOzDq6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XDGJSjkp; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1724174279; x=1755710279;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=OxdLYrw3Fv4z03xq74l/9FObGzEEUxYeWrEJIG/DXRY=;
-  b=XDGJSjkpHrVg3kbWNEivfPy5XXlReVRJaeoWkblEdCHcmf0IMH+4ewUd
-   tnhdK2sQL3qac/6MEXPJAX+j55cw8J2+uNZIT4Vl1LSSkyemo8OYXbgU7
-   7Ma+Qqvc280N0tq9NVBrayFUqSfgDWmgTDua+SY93cnrgEzW2xN4c/07T
-   hEyyKpeAgKgt3f2kxPLV3ysugmczFw4BWr1N4uRFhurdUXwzAWmteOzPX
-   OURbVb7TbySFp1H5aB7vcrq1G8KlkXQss1/f6GnvMU7U33XrmQ9x13nGX
-   kqgF5EpxNvRskOoX0eJs65cyt/hpRnxAJwwT5URnlFdtY48XElVAdlm/A
-   Q==;
-X-CSE-ConnectionGUID: Ac8cRQKTSOWcSHSD+OfcbA==
-X-CSE-MsgGUID: 3zX+d2YXT4GBw3BuxOUNkA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="39949998"
-X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; 
-   d="scan'208";a="39949998"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Aug 2024 10:17:58 -0700
-X-CSE-ConnectionGUID: xJWUE69HSnCyTK9IAsxu8w==
-X-CSE-MsgGUID: WQyr+7NyRB+hSvQh/sg7og==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,162,1719903600"; 
-   d="scan'208";a="64998703"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Aug 2024 10:17:50 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1sgSUM-0000000HNmN-3fcK;
-	Tue, 20 Aug 2024 20:17:46 +0300
-Date: Tue, 20 Aug 2024 20:17:46 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Stephen Boyd <swboyd@chromium.org>
-Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
-	patches@lists.linux.dev, devicetree@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Pin-yen Lin <treapking@chromium.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Benson Leung <bleung@chromium.org>,
-	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
-	David Airlie <airlied@gmail.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	dri-devel@lists.freedesktop.org,
-	Guenter Roeck <groeck@chromium.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Lee Jones <lee@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Prashant Malani <pmalani@chromium.org>,
-	Robert Foss <rfoss@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Tzung-Bi Shih <tzungbi@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Daniel Scally <djrscally@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Ivan Orlov <ivan.orlov0322@gmail.com>, linux-acpi@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	"Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Vinod Koul <vkoul@kernel.org>
-Subject: Re: [PATCH v3 02/17] drm/bridge: Verify lane assignment is going to
- work during atomic_check
-Message-ID: <ZsTPuvoTIFVFHw6o@smile.fi.intel.com>
-References: <20240819223834.2049862-1-swboyd@chromium.org>
- <20240819223834.2049862-3-swboyd@chromium.org>
- <ZsRrWfoPPVGC4Dqy@smile.fi.intel.com>
- <CAE-0n536OWtoOoRSM=6u=wA75A+0WtBktiY=6Y6VjKKTQWPcNw@mail.gmail.com>
+	s=arc-20240116; t=1724174365; c=relaxed/simple;
+	bh=f2BbHSTTA7R5FuseVuUWZQUx64iouUehZmPyL6EwSss=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=BGAyOHo4ZtgIKostoxvXk/hPVx2puO1+r8zCTS8Op1gqc8v/Rzf/jl8NWCk8EsFTIBTa1vWkDyQH9oTnFhyvTlFY4tXfAZQur15N8M487NmlqliHWdZ4WtDzcrdx5gqqNPdsvbyAwlcgvi/FMFHtDkjnnfBYYnbGbbLqxTdbH70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=TnrEFjCC; arc=none smtp.client-ip=91.26.50.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+	q=dns/txt; i=@phytec.de; t=1724174355; x=1726766355;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=f2BbHSTTA7R5FuseVuUWZQUx64iouUehZmPyL6EwSss=;
+	b=TnrEFjCCye0wIEqJbxlmBzfrglroa5tMhkJ4dLvGxsBQPPnOjt7UOWIX8cMQZcrO
+	lUUp+Ue1/4SKCdKE2aiafdNJWyphWNYfep4y/9U1uTARofjBVfk50wOJUcKkNpVI
+	9jz9ofMof9Vfs7SgedgWznLffrzLV7dnRUQmYOGHHNY=;
+X-AuditID: ac14000a-03e52700000021bc-15-66c4d0138a9a
+Received: from florix.phytec.de (Unknown_Domain [172.25.0.13])
+	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(Client did not present a certificate)
+	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 6F.60.08636.310D4C66; Tue, 20 Aug 2024 19:19:15 +0200 (CEST)
+Received: from llp-varakala.phytec.de (172.25.0.11) by Florix.phytec.de
+ (172.25.0.13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Tue, 20 Aug
+ 2024 19:19:15 +0200
+From: Yashwanth Varakala <y.varakala@phytec.de>
+To: <shawnguo@kernel.org>, <s.hauer@pengutronix.de>, <kernel@pengutronix.de>,
+	<festevam@gmail.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>
+CC: <imx@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<upstream@lists.phytec.de>, <y.varakala@phytec.de>
+Subject: [PATCH v2 0/3] Add overlays for imx8mp
+Date: Tue, 20 Aug 2024 19:18:45 +0200
+Message-ID: <20240820171848.177926-1-y.varakala@phytec.de>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAE-0n536OWtoOoRSM=6u=wA75A+0WtBktiY=6Y6VjKKTQWPcNw@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: Florix.phytec.de (172.25.0.13) To Florix.phytec.de
+ (172.25.0.13)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrFLMWRmVeSWpSXmKPExsWyRpKBV1f4wpE0g0NrdCzW7D3HZDH/yDlW
+	i4dX/S1m3mtls1g1dSeLxctZ99gsNj2+xmpxedccNov/e3awW/zdvonF4sUWcYvud+oOPB47
+	Z91l99i0qpPNY/OSeo8Xm2cyevR3t7B69P818Pi8SS6APYrLJiU1J7MstUjfLoErY8+z0oIt
+	HBWnZ5xmbGCcx97FyMkhIWAi8XfbUiCbi0NIYAmTxOUfnawQzlNGiV+NP5hBqtgE9CVWrFsE
+	lhARWMYo8e10NwuIwyywnVHixMR3TCBVwkBVG6+9BbNZBFQlbn47CNbNK2Al8fAbRFxCQF5i
+	/8GzUHFBiZMzn7CA2MxA8eats5khbAmJgy9egNlCAooS7x92sMP0Tjv3mhnCDpWYv+Y7+wRG
+	gVlIRs1CMmoWklELGJlXMQrlZiZnpxZlZusVZFSWpCbrpaRuYgTFhwgD1w7GvjkehxiZOBgP
+	MUpwMCuJ8Ha/PJgmxJuSWFmVWpQfX1Sak1p8iFGag0VJnHd1R3CqkEB6YklqdmpqQWoRTJaJ
+	g1OqgdFqntvXkLMluvMv9rKrTNrFUV0baLNB/Dlr2uu/m2sX/n/NP2Vb2t1e667zSw2Vve06
+	Lyy69+Z6iPvpO7l+nPfPCZudcXX8znLEqI7dw+sJ196n5fd/HVje8Gzu0VMJNjsTnl245Py7
+	WVmykWnOHYablrN374+smpyh8feX6ozolOKomYt3bRFUYinOSDTUYi4qTgQAo+GUDn0CAAA=
 
-On Tue, Aug 20, 2024 at 10:12:55AM -0700, Stephen Boyd wrote:
-> Quoting Andy Shevchenko (2024-08-20 03:09:29)
-> > On Mon, Aug 19, 2024 at 03:38:16PM -0700, Stephen Boyd wrote:
+Add no-rtc, no-spi flash, remoteproc overlays for the imx8mp
+and Update Makefile.
 
-...
+Link to v1:
+https://lore.kernel.org/all/20240725094457.37739-2-y.varakala@phytec.de/
 
-> > Yeah, I really think that the appearance of this thousandth time in the Git
-> > history has almost no value and just pollutes the commit message makes it not
-> > very well readable. The only outcome is exercising the compression algo used
-> > by Git.
-> 
-> I'll leave the decision up to the maintainers.
+This patch series is dependent on this no-eth overlay patch:
+https://lore.kernel.org/all/20240710-bspimx8m-3180-v3-1-8ef55381172c@phytec.de/
 
-Sure!
+Regards,
+yashwanth.
 
-...
+Yashwanth Varakala (3):
+  arm64: dts: freescale: imx8mp-phycore: Add no-rtc overlay
+  arm64: boot: dts: freescale: Add no-spiflash overlay
+  arm64: dts: Add phyBOARD-Pollux dtso for rpmsg
 
-> > > +     /*
-> > > +      * Ensure this bridge is aware that the next bridge wants to
-> > > +      * reassign lanes.
-> > > +      */
-> > > +     for (i = 0; i < num_input_lanes; i++)
-> > > +             if (i != input_lanes[i].logical && !num_output_lanes)
-> > > +                     return -ENOTSUPP;
-> >
-> > Besides missing {} this code is internal to the Linux kernel. Is it okay?
-> 
-> ENOTSUPP is used by select_bus_fmt_recursive() so I simply followed that
-> style.
-
-Okay, just be aware of that side effect of that code, also checkpatch may
-complain (however it might be false positive).
+ arch/arm64/boot/dts/freescale/Makefile        |  6 ++
+ .../dts/freescale/imx8mp-phycore-no-rtc.dtso  | 12 ++++
+ .../freescale/imx8mp-phycore-no-spiflash.dtso | 16 ++++++
+ .../dts/freescale/imx8mp-phycore-rpmsg.dtso   | 55 +++++++++++++++++++
+ 4 files changed, 89 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-phycore-no-rtc.dtso
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-phycore-no-spiflash.dtso
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-phycore-rpmsg.dtso
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.34.1
 
 
