@@ -1,74 +1,66 @@
-Return-Path: <devicetree+bounces-95310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95311-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 274BA958C82
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 18:42:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20562958C90
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 18:45:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 915D6B210D5
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 16:42:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52D751C21C82
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 16:45:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DB871B86F1;
-	Tue, 20 Aug 2024 16:42:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 798931BC066;
+	Tue, 20 Aug 2024 16:45:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oJt0DoJy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dlEUuVk8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B9E018C92C;
-	Tue, 20 Aug 2024 16:42:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4762C1BBBE4;
+	Tue, 20 Aug 2024 16:45:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724172141; cv=none; b=ZRP+7T7adBmoeZfP1CzdyDLbsWGLTRLPMMR6LHvrMJcp2jIFStR9EUaX+nawHz/+I7BcnzK5jNWGZM3uWBGvUB3GCBUh/Iw3MDuAqJV7yu3iWqoq+2CdfJOX3xScoWrQbVZGXhwW0f+u5vPcd3A/BT3yvs1o0uWNAVmGAPiNWdo=
+	t=1724172303; cv=none; b=n2SI4vRqnfFMcSb6VG3mttVEcV+lG5aaC5TiIOxpD8Lb0IqbgEjBiErmQOUUmCUo+FE9HpaUtmjS4V9PosfgvwibH6ynPhsktfGa8SRMGwGvedYAJ3xKn7riY7Wb+CF9GnTcrGX51pNJNGHh9lsvkepmvHvO3C4Ku7IWXzatR08=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724172141; c=relaxed/simple;
-	bh=sdAcQwOaXWXKLtRmNTbqfHXhoFfXI/j3eIOc/WaewSA=;
+	s=arc-20240116; t=1724172303; c=relaxed/simple;
+	bh=ho6JjNvEWuP+RY0IE/9AanBGhiT9wEqvz0ePooctFh8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k8js26F/pMsbuygwswZOBcfj58vT4e1ysNEPMAYjcz74UWFs9nCRBTxHlSOQAu2cOZp+o7FIz+TJM5UPklWUUSR9PMivfxFpS5GWst1HCqQij4/YG4tCgLVzGiB9nfvNx4qdEuOlWH7Fi4+z3HM32ZCappysKf/vlHN2yNMwXsU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oJt0DoJy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBDD9C4AF60;
-	Tue, 20 Aug 2024 16:42:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=gVgoWhQoovfiApHXsMeUHTvrI67ByWc1CMMvIijasGna4Sdb0N4WcFLQOmfyKKcjHFaZ4x4aKeZbKiuPOLzjq0pq+z4sKjCaaBHSsDQrk2Z97rM/intPC3kOMtGsMy56p31pW+K1hwnVvVip+BIz/nrI6oj4fIlcouD1huHUxU8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dlEUuVk8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBB2FC4AF0B;
+	Tue, 20 Aug 2024 16:44:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724172139;
-	bh=sdAcQwOaXWXKLtRmNTbqfHXhoFfXI/j3eIOc/WaewSA=;
+	s=k20201202; t=1724172303;
+	bh=ho6JjNvEWuP+RY0IE/9AanBGhiT9wEqvz0ePooctFh8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oJt0DoJyvzXw780huXW00DpsfVtjUmG4t0IyBqCD6PLjg4hifTkikh1R6+7NrJBhR
-	 T64DDjPlw+P97zLarW882gu1krW29tGBNvBP/PWPmKUP8RN+fxCg7BkXFBzp9hyKV/
-	 BSrvNn5wmGF4uR8AUjT9xjgqrOQWKtt7hMb+I/6M6psreBJuPOjY6WC2KWueXjL4YE
-	 SrLOpDpx9ZM6bNwbJdQTrCPQxXC+gsEzLhiXHpaY49wVxbs4KQOOfKfr3ApXXJwaf0
-	 sQ9hzGEnPcXHlg6+dFla6w5CBBD32h63XVR1W/2TYDoZTYXAAR0y2IdvL12ITRr7bk
-	 iXthrwpi4hUYw==
-Date: Tue, 20 Aug 2024 17:42:12 +0100
+	b=dlEUuVk8K602CDJGNrteapJppPpyHPEnqiANWmQH2veRVn6NztdMZjuN6WvwznFGr
+	 zDG6+xOqv7Pqt7ghohnjBT5k4GPhhFPcQI6P9p0lfdoCFBkWbDzNMoDWMWnsBh9SbP
+	 DZqft6bGQ5I7YUm1kRg7t5/bFaCEoa+7J8vQY9GonAt7Pw5I4TOMIl5wkCo68AMHE6
+	 5lbx+KhK/obomN73kG/L/YingDlCyNhuJRrMe5b61uh+epiFaba05Opdask0+0bF1H
+	 cxg44OOBBTL1au/h3A/E4zqFu913DquVunsb82w9esDg1ZZ/gY66hbqAZM5X9w+63z
+	 Ha/foAvvOseMA==
+Date: Tue, 20 Aug 2024 17:44:57 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Jisheng Zhang <jszhang@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	Guo Ren <guoren@kernel.org>, Evan Green <evan@rivosinc.com>,
-	Andy Chiu <andy.chiu@sifive.com>,
-	Jessica Clarke <jrtc27@jrtc27.com>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Heiko Stuebner <heiko@sntech.de>
-Subject: Re: [PATCH v9 00/13] riscv: Add support for xtheadvector
-Message-ID: <20240820-computer-viewable-eef06bef1bea@spud>
-References: <20240806-xtheadvector-v9-0-62a56d2da5d0@rivosinc.com>
- <20240809-slapping-graph-461287bac506@spud>
- <ZrqsqsCtKwfG4Q5B@ghost>
- <20240813-strode-revival-07b8556a8bfe@spud>
- <ZsPP4GMwPVBfq+fL@ghost>
+To: claudiu beznea <claudiu.beznea@tuxon.dev>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, chris.brandt@renesas.com,
+	andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
+	p.zabel@pengutronix.de, wsa+renesas@sang-engineering.com,
+	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: Re: [PATCH v4 07/11] dt-bindings: i2c: renesas,riic: Document the
+ R9A08G045 support
+Message-ID: <20240820-skinning-submersed-855e69f5e3bc@spud>
+References: <20240819102348.1592171-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240819102348.1592171-8-claudiu.beznea.uj@bp.renesas.com>
+ <gxjlmdjicwzlexitsx673beyn7ijuf47637nao2luc5h6h6hvi@qstobttin7dw>
+ <e6377448-9af3-4807-a8fd-197f5b2b4aa4@tuxon.dev>
+ <56204f92-d1d4-4681-8a9d-f28925919ef4@kernel.org>
+ <20240819-sizing-devouring-17b74473d1a1@spud>
+ <709ddcee-637d-49d3-915b-0872b3c67f30@tuxon.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,81 +68,67 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="t0GCzoRN/+6zEXXN"
+	protocol="application/pgp-signature"; boundary="1gDvInbFoz39wjDu"
 Content-Disposition: inline
-In-Reply-To: <ZsPP4GMwPVBfq+fL@ghost>
+In-Reply-To: <709ddcee-637d-49d3-915b-0872b3c67f30@tuxon.dev>
 
 
---t0GCzoRN/+6zEXXN
+--1gDvInbFoz39wjDu
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Aug 19, 2024 at 04:06:08PM -0700, Charlie Jenkins wrote:
-> On Tue, Aug 13, 2024 at 04:55:27PM +0100, Conor Dooley wrote:
-> > On Mon, Aug 12, 2024 at 05:45:30PM -0700, Charlie Jenkins wrote:
-> > > On Fri, Aug 09, 2024 at 11:31:15PM +0100, Conor Dooley wrote:
-> > > > On Tue, Aug 06, 2024 at 05:31:36PM -0700, Charlie Jenkins wrote:
-> > > > > xtheadvector is a custom extension that is based upon riscv vector
-> > > > > version 0.7.1 [1]. All of the vector routines have been modified =
-to
-> > > > > support this alternative vector version based upon whether xthead=
-vector
-> > > > > was determined to be supported at boot.
-> > > > >=20
-> > > > > vlenb is not supported on the existing xtheadvector hardware, so a
-> > > > > devicetree property thead,vlenb is added to provide the vlenb to =
-Linux.
-> > > > >=20
-> > > > > There is a new hwprobe key RISCV_HWPROBE_KEY_VENDOR_EXT_THEAD_0 t=
-hat is
-> > > > > used to request which thead vendor extensions are supported on the
-> > > > > current platform. This allows future vendors to allocate hwprobe =
-keys
-> > > > > for their vendor.
-> > > > >=20
-> > > > > Support for xtheadvector is also added to the vector kselftests.
-> > > >=20
-> > > > So uh, since noone seems to have brought it up, in the light of the=
- issues
-> > > > with thead's vector implementation, (https://ghostwriteattack.com/)=
- do we
-> > > > want to enable it at all?
-> > >=20
-> > > I can make it clear in the kconfig that xtheadvector is succeptible to
-> > > this attack and that it should be enabled with caution. I think we
-> > > should let people that understand the risk to enable it.
-> >=20
-> > I think the clearest way might be "depends on BROKEN"?
+On Tue, Aug 20, 2024 at 10:45:43AM +0300, claudiu beznea wrote:
 >=20
-> Sorry for the delay, I am not sure if BROKEN is the best way of doing
-> this. There is the generic CPU_MITIGATIONS config that I think we should
-> use to handle this at boot time. This would allow generic kernels to be
-> used on the platform, but a kernel config of "mitigations=3Doff" would
-> allow xtheadvector to be enabled. I'll look into this a bit more and
-> send out a patch. Palmer merged a patch into for-next to enable
-> GENERIC_CPU_VULNERABILITIES for riscv so I will add ghostwrite there
-> as well.
+>=20
+> On 19.08.2024 19:39, Conor Dooley wrote:
+> > On Mon, Aug 19, 2024 at 01:22:39PM +0200, Krzysztof Kozlowski wrote:
+> >> On 19/08/2024 13:10, claudiu beznea wrote:
+> >>>
+> >>>
+> >>> On 19.08.2024 14:05, Krzysztof Kozlowski wrote:
+> >>>> On Mon, Aug 19, 2024 at 01:23:44PM +0300, Claudiu wrote:
+> >>>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >>>>>
+> >>>>> Document the Renesas RZ/G3S (R9A08G045) RIIC IP. This is compatible=
+ with
+> >>>>> the version available on Renesas RZ/V2H (R9A09G075).
+> >>>>>
+> >>>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >>>>> ---
+> >>>>>
+> >>>>> Changes in v4:
+> >>>>> - added comment near the fallback for RZ/G3S; because of this
+> >>>>>   dropped Conor's tag
+> >>>>
+> >>>> That's not a reason to request a re-review.
+> >=20
+> > FWIW, I don't care about how many binding patches I do or do not get
+> > credit for reviewing.=20
+>=20
+> I had no intention to drop your credit for reviewing this. In the past I
 
-Palmer also pointed out to me last week that not all implementations of
-xtheadvector actually have the flaw, so it makes sense to not depend on
-BROKEN. We should figure out exactly which CPUs are and are not
-vulnerable (Guo Ren hopefully will know) and permit enabling it without
-"mitagations=3Doff" on the CPUs that are not vulnerable.
+That comment was meant for Krzysztof, so that he wouldn't feel like he
+should avoid acking so that I could re-ack in similar situations in the
+future.
 
-Thanks,
-Conor.
+> went though situations where reviewer complained due to keeping the tag a=
+nd
+> doing very simple adjustment on the next version. I dropped your tag to
+> avoid that situation here too and mentioned it in the change log.
 
---t0GCzoRN/+6zEXXN
+Ye, I did note that you'd not dropped it confusingly :)
+
+--1gDvInbFoz39wjDu
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZsTHZAAKCRB4tDGHoIJi
-0iQaAQCwGmipLGnRD4s+x/LBC6nmlI/0+Dt9WrwL3fRDmnQB0gD/W6WolEvdmFdM
-5PFKmr6VraPXpNU9m8waceXzejLcRgs=
-=gadf
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZsTICQAKCRB4tDGHoIJi
+0umDAP98mMrlkJcnJlOU7ydEwjrI6uMCdk1ivrabenaRSFg/4wEAmHFDk5RqGg/m
+htTGLITqSN6O52orO7nzj3xxLdB5VAI=
+=byR0
 -----END PGP SIGNATURE-----
 
---t0GCzoRN/+6zEXXN--
+--1gDvInbFoz39wjDu--
 
