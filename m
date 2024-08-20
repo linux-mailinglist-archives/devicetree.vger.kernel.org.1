@@ -1,236 +1,191 @@
-Return-Path: <devicetree+bounces-95329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84CB5958DD2
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 20:11:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EED7958DE0
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 20:19:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CCB11B21E38
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 18:11:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62ECC1C21838
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 18:19:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC7B21C0DFE;
-	Tue, 20 Aug 2024 18:11:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 449231BE228;
+	Tue, 20 Aug 2024 18:19:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="gs2VAzjJ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lqHXDsSj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2044.outbound.protection.outlook.com [40.107.241.44])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76C341B9B32;
-	Tue, 20 Aug 2024 18:11:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.241.44
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724177498; cv=fail; b=YLCHrSYzlOBKNqlrOj5g0RqHbslWAZ4KAVNL6NpxgXQ/wEHTa1ZIxjXWSutAVlfum98wCYjcEJ4rgAB468vwbAoTE+/lAa+NPfFDqLana0V3ke1ZVruTUodw/1/0FJUUGBqmF94ldNzAq6zYiipnCrOnDPCDteStfmZqu3BAako=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724177498; c=relaxed/simple;
-	bh=JK6j9890H5mF+MJpfratEe8G9PLez6ZCYKaFiEWMktk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=Q8lYNzxp5Y99o4Ei+W9l7ONAGTTpbEghxwsjEbehiCIenp3hYD7wGQjFgwAGgdvE0QoFMCjaS6+JQjZ0uk4krAuujSgI2cIq48btk55a2WhZyOVhpzlzuTgo6miaHny1bzlx7C/AU8DG9oxIGoybBmHCCTnHi/K1D06VVqwISVg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=gs2VAzjJ; arc=fail smtp.client-ip=40.107.241.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aMxUaHdwgbj6XlRjfQU7QtJo36OXPMdz3N7vqIBjbtHHcBx0qSD5s/Md7QxCJy3nQBQ8K/SMPUm3AgfoDELdpyhZNj9VNRewf6KvPucgHb4ezFts5f+mbU65FOSZod6tzkqh2aZlp7ExYdIoa84ZycbSxh4TcFNlMz5li/QtGICXmOKLHgqgakzM6hcv88COEdv6HDey06ka/fuaNK98ME6W9EyymsobHnlIi63n4Ox/nZXkcr/GxZsvOQbnxXyI/zOXYXt1Nf2Y8uOTKaudSC/g5I8utJnnolz1T/prWW/br8TFbmXU0mPuMAQnCdTXC4Ravll6VkoU1iNdTOs++w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OeHeS+45fKHXjJb1yX4w7T5er3Nq2rUYRw7xbSXd+dk=;
- b=Fd0rxNHzBh4nfKRRTkZ/FZ/cGt4bM14FzwRF0mWYH9XEmYmcvXM31Md+Rtw/rXuz310g1aKQnXFduzbX8eZj93kovFsqISo76bN7Yl5BW3mXLsbW+UuCqpEuoXw6foXUrZJR1M5eqFavTi9wgCNl7MbkzCO68rqwzUAk6LA8Ugil4mM2y2246Cy4iVaQR3GGzwJrGkz1vEuD/d47O2pxtNwKM9lmZVUoEvJoPHN/DIm7NP3Ml1YMGYvu1O2AjX+7J55ZUm0XUACQaVLiXevMU8xRvNtexc3WFCYAg/0MdPwYNYrFi6L3x1g7xHSCG+1OG+ylFdfe99yF9oTv9bV9tA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OeHeS+45fKHXjJb1yX4w7T5er3Nq2rUYRw7xbSXd+dk=;
- b=gs2VAzjJf4EjL4oVNyFHqVDv0nlpKOaOWpUuNTE6y7PQIjF6IKpTcbj/md76whJBzLmjWMlngpPhhNJ2M21KD2fSKLcbg0K2+qWwaeuQsYm0x3cjq90W0ZgJp+mWoT0FhOArtujnPFlhrDsfD0uBiQm/7vnGc2RW6Gk++gvcdoe2MnIPZTaXo4p72gV2gfuGwKzBCOX/sdChTcb7zUVkPHulxFK6ZoYmUQv/N0V74nAZip8jABt2Y94yPQN/jnyxzONQ7QxfQD1Vx63JZYpZ0ctI5HteSZ5S9vVkoukQT+sbfZceGTdVsBYTkKyMwPTqjoi+IKgFTEPobavi0WFrxA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AM0PR04MB7059.eurprd04.prod.outlook.com (2603:10a6:208:192::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.25; Tue, 20 Aug
- 2024 18:11:33 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%3]) with mapi id 15.20.7875.019; Tue, 20 Aug 2024
- 18:11:33 +0000
-Date: Tue, 20 Aug 2024 14:11:26 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Walle <mwalle@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	"open list:MEMORY CONTROLLER DRIVERS" <linux-kernel@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	imx@lists.linux.dev
-Subject: Re: [PATCH v2 1/1] dt-binding: memory-controllers: fsl,ifc: add
- compatible string fsl,ifc-nand
-Message-ID: <ZsTcTt3Fu9ttcoYw@lizhi-Precision-Tower-5810>
-References: <20240814212958.4047882-1-Frank.Li@nxp.com>
- <20240818153914.GA120816-robh@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240818153914.GA120816-robh@kernel.org>
-X-ClientProxiedBy: SJ0PR13CA0085.namprd13.prod.outlook.com
- (2603:10b6:a03:2c4::30) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3987D1990B5;
+	Tue, 20 Aug 2024 18:19:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724177957; cv=none; b=XDEWzi6eZFBETDkh1X5CiHHevJUkD73qqKrzdpBbHWZY8hlAW5lzL0o+6lHoT3hXdpOEYj4N3pRtm1cvcirpfPaSMTl2wpKajGq+4v1cDjdViSkN06XiHtM6v2tTmtplC+P0xEU2lbN0QaEw3vplLpg7pZm2LT1Si4+dykaINa0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724177957; c=relaxed/simple;
+	bh=j39p8v3Kemq1L00i10J4aauTEUR68m7EeDEctPrI3WU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Ln8qCeCL5hfNChbEbMABnnqrRm+aIrkj5T2C7IXcQiZL8JdMrGRTRNgPfWmgjWsPNJ3/dFdWjILK3dNSsK6ZKW9ZFRqOgROpgyQK/6y+uSWolIPUNvMi2UrYe0iGTY+6WX9YLAlLARS15vVDmq5+pLnRDE4zYOOz0hG8mtoyKSg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=lqHXDsSj; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47KEhB2H022324;
+	Tue, 20 Aug 2024 18:18:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	j39p8v3Kemq1L00i10J4aauTEUR68m7EeDEctPrI3WU=; b=lqHXDsSjqyfYdNzw
+	NYjBORsCyc/5LiAxJkqJp28M9V+iLKY9ZRIMCpjVnrqI2HmFWZ0lzoeDcBQnH/6+
+	azU2SnDvGNZFNrxoC0mly4GJd2R4oGVrGHxOQuZ2SL5uMyQieT1Riab99VZnABbY
+	l/Rwj3kVj22kx7kZWwIbFCmkjodVfEKTDK1yt1ZX+f+WMISpa+1/kMoOKuQ7RKri
+	wGs6g2gLgEBZKx64ON+yYzZnPIuyaArNAJPQpFUAlbA7JG/eyXV18n/jHRC0FaSY
+	H/kN4UD7sSElwIc68vS//hKhcN4Fan5M/8ey12GyTWOsHbLPxFFE55XI16+OzWFJ
+	kzSPbA==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 414pdm9uqt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 20 Aug 2024 18:18:21 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47KIIJR3018538
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 20 Aug 2024 18:18:19 GMT
+Received: from [10.110.70.123] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 20 Aug
+ 2024 11:18:18 -0700
+Message-ID: <638d5561-4fa0-4e14-a852-9905956445e4@quicinc.com>
+Date: Tue, 20 Aug 2024 11:18:18 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM0PR04MB7059:EE_
-X-MS-Office365-Filtering-Correlation-Id: c349eb68-fabe-4b37-ccb9-08dcc1438602
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|52116014|376014|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Uu2E6svknJvXvhzqt+ZGfR+w2H5Db2C/Ld7whrLTK7zXRyV4a285I1ZFA1CH?=
- =?us-ascii?Q?/b2f+pNu5HUFR6WhjLouAIU1yChmmbBFJJGJDrm0pzKcW+ZGflK3Y4w8lCy2?=
- =?us-ascii?Q?hKrxfoL+b2SsCiJvUVgBR89L3VmGrYXgAdMnQAuESeaBO/DjqfUvBlvYizZY?=
- =?us-ascii?Q?76sxhOY1ussWwPFv8Wr3bJzaShvtwbhf3uRRefZYFxNSqH2FwnX7uD8ddJgY?=
- =?us-ascii?Q?Uxd0y9CCQ8DEC4vDoFzeL/XcuZQONO6F8gGBtVu8srswWr9Hndm0xif7D8kl?=
- =?us-ascii?Q?y8VGi94vzwVdPPm48m52AhWVuhsmkRUVnzz6/VMys4OHPYZMO+j2xSTknYyt?=
- =?us-ascii?Q?NCpl2DS/D6WtFxr3268P4SPKGw5agS/D4ZSMxjitfnBO2Qua3ypMEKx62Fsg?=
- =?us-ascii?Q?cQv+UgWSaEm3rxCCq9Ay5A/JbA8WeIvXmoASQBd/4yLBi5kYxiHjs8+smB7n?=
- =?us-ascii?Q?UAeUTkuWKzjWUkkO4hiPMcvrMQQPDOmEWFQjG/66oX5HfPbLxnQbyFpkkAMq?=
- =?us-ascii?Q?rUGn76wgQ3yYEat20kf8VHpgR3I3Ungk6qspw41dQapOgRcijpXR5DT2ZNC+?=
- =?us-ascii?Q?8vLAwRJWcl1ITyhQnw/mFbe0Trki/As979Duhvf6CLigoxQlhPDo0x7rMz+E?=
- =?us-ascii?Q?Vp3Bgk0PRVlOaeJ19/zt+AzQnDknmzZShx7RovLlpgwDIGtw3eGdCBajDvrW?=
- =?us-ascii?Q?9Af9Q5ulnz52DSRBirF09NkZ+0aDyMthr0NYoWzdcjzpB5RAY68YJGqEVnTP?=
- =?us-ascii?Q?C676sCK2S2ImH5Bm9KmmFGeqDIybpXp+BqPSAVRdKWBzneg8DhuciajogZ8s?=
- =?us-ascii?Q?bhFClx/R/kl1LHI7AZM3+8AbT0pkUd7dgWt3qx2LS6z/JZbncLkdGEN43EMc?=
- =?us-ascii?Q?i8Djo6ljhk4VZj3EB2nrYaf4YDN+6kb27OT02wvfbJAumpztyw8dFge7wyWK?=
- =?us-ascii?Q?4PNyOEhJFIlSVaZRr3ENKeK+h9GpmnywMupLstUN/1fpTImG+5BiAroWd4cX?=
- =?us-ascii?Q?QQsUCXmcT5Xbg9KZ2mEWinCKkLcruPzzl0eS3aOujZk9IAS1hwGadMVX9zV1?=
- =?us-ascii?Q?08peObaRJaJQu6MkNTxX4Xrl0kKGGGdF8qlZOHDTBUn8OuXnEVe8/qabiVJv?=
- =?us-ascii?Q?uB32yZhW2+xsTZC40CBcEOwnYv+k84oSMDrtE/V83wbbhzl16P7psiRh7gTX?=
- =?us-ascii?Q?fL3bYxi3gQZFewNKmAW6M8BRteH/Xj5Bp4kBH7eoGqbk0cJG/6vb8ILqZa32?=
- =?us-ascii?Q?wDbjagB4BMBQa+XHHDa3GTG9dSc6vFJAcKq/oGO3N7ZKQcAw+skpGKHakepO?=
- =?us-ascii?Q?0kmtMgOO41pHHbubOjgTPbG4pkyK9XDmmpIa4u1qAkLInzLGGJyhfIKWc41h?=
- =?us-ascii?Q?2j6ADlwkHYLCSyzvSyRJl5t4UgorbCi4t17bsoKl6Cz4a4WvTA=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(376014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?gOi6/Qy+XT71EH3JRdds3xdbgEm4uP/UNbZA3g/g7GGR5YueJ7N/qA+vxg8j?=
- =?us-ascii?Q?+GBhlZPYiH/Mv04UQQsCmGSbHAJAsagRE5TH21DUQxUqS1hWzOW7ZrqZp3e7?=
- =?us-ascii?Q?AtBSotv/5Clra8ht4H6vNUJQuP8sZbqHgQZhIdoTObAbGT5iQwqF3F3BQoXB?=
- =?us-ascii?Q?du67jwfOsiRpzkP25oES1NertPsjcw0DabK4MjHVKfaIYcOxUEd/UvREIPM9?=
- =?us-ascii?Q?W3kWaAZO0FoOfh5/wzGQs5e93HRKmNSQ/4AUg+JRgmfzIr7HRsvjaicz1E9n?=
- =?us-ascii?Q?0VVwRCWwK1luFRMZn73ZDMLvBTRNg45B4ojGBVt1g9hZROTvYRQL0wSYIKP+?=
- =?us-ascii?Q?WrDFl/fxY5rNJWPa6u363h+4Gx6EsvUNYWDt6g7dy74bvwI/KFzixDRD7r7Y?=
- =?us-ascii?Q?8Nrn3dDUShCab0xzrUtwwRfXxucZycy3JTYxOSOYkqRXjuLU6FhzFcStQ8T9?=
- =?us-ascii?Q?7/FZCzk+dhy+ICMJaWy9rhF++kzteT6bNlFiB5HDiykBwBpAYPDmA7u9hct1?=
- =?us-ascii?Q?1lJi2XsGxAJCp2mnntEWdgKK3HIDdi9rZ3j87yRERbv9NfTuKqgy4PvciqL3?=
- =?us-ascii?Q?jYuxcmBQHm+fgvb4tY+wPnzD5CkArB2xZa3f/7SA6TT6r9GH1jNtVL9fsTYb?=
- =?us-ascii?Q?L6GdWg1WClQZjTfGMLwW189NK98z3lNqGB5dRPEwJ6MzSU+qus+NVjhjccq/?=
- =?us-ascii?Q?BkuCK3udvoPrBmaDLG9+1XTFJobp1WSo50/I2HNmgh5ZpAtMlb+ADnhqcyWq?=
- =?us-ascii?Q?hET+6+DvLUlobJ7EtPGosNFLS2Pqln7I5ByKvgYHuAAxgWgeGVbh8EPFMJHd?=
- =?us-ascii?Q?b32pv0TzBj4D8wVYhxb0ATl5rUw0s2Q0jjIHMlq1wgiFc0tAeacjxIinuyAQ?=
- =?us-ascii?Q?/rmt7DPBLc3KqNJIIBR5i63upift7e9sOoodRiFJ3gIkHit0BlUSDq0ZlZgX?=
- =?us-ascii?Q?D9EVdlvEfEsncULBmrgAxj3Wte0mIw9lxGFeGiplOu1u2o3V4sfseFQUtNzb?=
- =?us-ascii?Q?c203tdllCes5G3vTPxk8q2yK8XhU/+ZGYQPktFgMpC3ezW1ibsb+Xk0dmUDd?=
- =?us-ascii?Q?HqYC8hAG45f8dHd6hDSYlbkwBAdnvtGc128oJJ0H6cXI0x7jsv0HBPzt+Tjl?=
- =?us-ascii?Q?UsOCtMp/vfpy4LUQEDwRaEf8vnGC2UGjZ6QZp3k/PBqDUAIEQU9caRBQEL67?=
- =?us-ascii?Q?PFRx9kwZ/WGAfcZh7orb1yco2i3V+9TIPmUiwk+LHLB6+BRX2Z4ItjROvyUE?=
- =?us-ascii?Q?HpdvFjYWx5konbxsxB73zXSAZjJuJawl6gstnn4hcI1ho70F76HcPeqRXaaZ?=
- =?us-ascii?Q?9DweCKEUVmYbtKyU8h8KG30ywv0Trk16XBFIP858FaOT1JCCs/HnMtd4GxKX?=
- =?us-ascii?Q?MCsDDiooE0jOQ3x4NHqndbfI8LQ7y/9EsRLy8UWzyWjrLupRNs/F0265q+GE?=
- =?us-ascii?Q?Qf8A9YfDcw4Py0boZPF7Cflw+cn6DAMtZPxw4valOcVxq/u3gUy9qeZEydet?=
- =?us-ascii?Q?50x6OTJh8exc5N+RvFRk+bjW+jnPXt2Ue8GGwpzsN9GB+ineLTXOq0kx6SSS?=
- =?us-ascii?Q?lYAKJGiVUSAaKx5VbY4=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c349eb68-fabe-4b37-ccb9-08dcc1438602
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2024 18:11:33.6393
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GoLYOkFnCORRaI2QUydwfDlgGHd/wlPupS8ryYwxFRTINc1tbpNdrnQD1/xUKx5jW0oAF5D4z5kUDocuNQw6nA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB7059
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v24 05/34] usb: host: xhci-mem: Cleanup pending secondary
+ event ring events
+To: =?UTF-8?Q?Amadeusz_S=C5=82awi=C5=84ski?=
+	<amadeuszx.slawinski@linux.intel.com>,
+        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
+        <broonie@kernel.org>, <lgirdwood@gmail.com>, <krzk+dt@kernel.org>,
+        <Thinh.Nguyen@synopsys.com>, <bgoswami@quicinc.com>, <tiwai@suse.com>,
+        <gregkh@linuxfoundation.org>, <robh@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>
+References: <20240801011730.4797-1-quic_wcheng@quicinc.com>
+ <20240801011730.4797-6-quic_wcheng@quicinc.com>
+ <b8e67410-49a0-4ee8-a0a5-4b7ba03483c8@linux.intel.com>
+Content-Language: en-US
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <b8e67410-49a0-4ee8-a0a5-4b7ba03483c8@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: UWkYDDgbhQPhqEUQs4fcxqcxFpTWYE2z
+X-Proofpoint-ORIG-GUID: UWkYDDgbhQPhqEUQs4fcxqcxFpTWYE2z
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-20_14,2024-08-19_03,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 spamscore=0
+ suspectscore=0 malwarescore=0 phishscore=0 priorityscore=1501 mlxscore=0
+ impostorscore=0 bulkscore=0 lowpriorityscore=0 adultscore=0 clxscore=1015
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
+ definitions=main-2408200136
 
-On Sun, Aug 18, 2024 at 09:39:14AM -0600, Rob Herring wrote:
-> On Wed, Aug 14, 2024 at 05:29:57PM -0400, Frank Li wrote:
-> > ifc can connect nor, nand and fpag. Add child node "nand@" under fsl,ifc
-> > and compatible string "fsl,ifc-nand" when ifc connect to nand flash.
-> >
-> > Fix below warning:
-> > arch/arm64/boot/dts/freescale/fsl-ls1043a-qds.dtb: /soc/memory-controller@1530000/nand@1,0:
-> > 	failed to match any schema with compatible: ['fsl,ifc-nand']
-> >
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > ---
-> > Change from v1 to v2
-> > - add address-cells and size-cells
-> > ---
-> >  .../memory-controllers/fsl/fsl,ifc.yaml       | 21 +++++++++++++++++++
-> >  1 file changed, 21 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/memory-controllers/fsl/fsl,ifc.yaml b/Documentation/devicetree/bindings/memory-controllers/fsl/fsl,ifc.yaml
-> > index d1c3421bee107..c12bb7f51db62 100644
-> > --- a/Documentation/devicetree/bindings/memory-controllers/fsl/fsl,ifc.yaml
-> > +++ b/Documentation/devicetree/bindings/memory-controllers/fsl/fsl,ifc.yaml
-> > @@ -58,6 +58,27 @@ properties:
-> >        access window as configured.
-> >
-> >  patternProperties:
-> > +  "^nand@[a-f0-9]+(,[a-f0-9]+)+$":
-> > +    type: object
-> > +    properties:
-> > +      compatible:
-> > +        const: fsl,ifc-nand
-> > +
-> > +      reg:
-> > +        maxItems: 1
-> > +
-> > +      "#address-cells":
-> > +        const: 1
-> > +
-> > +      "#size-cells":
-> > +        const: 1
+Hi Amadeusz,
+
+On 8/6/2024 7:50 AM, Amadeusz Sławiński wrote:
+> On 8/1/2024 3:17 AM, Wesley Cheng wrote:
+>> As part of xHCI bus suspend, the XHCI is halted.  However, if there are
 >
-> These only apply to child nodes, but you've disabled any child nodes.
-
-I will add mtd partition for it.
-
+> XHCI -> xHCI
 >
-> > +
-> > +    required:
-> > +      - compatible
-> > +      - reg
-> > +
-> > +    additionalProperties: false
+Got it.
+>> pending events in the secondary event ring, it is observed that the xHCI
+>> controller stops responding to further commands upon host or device
+>> initiated bus resume.  Iterate through all pending events and update the
+>> dequeue pointer to the beginning of the event ring.
+>>
+>> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+>> ---
+>>   drivers/usb/host/xhci-mem.c  |  7 ++++++-
+>>   drivers/usb/host/xhci-ring.c | 33 ++++++++++++++++++++++++++++++++-
+>>   drivers/usb/host/xhci.c      |  2 +-
+>>   drivers/usb/host/xhci.h      |  6 ++++++
+>>   4 files changed, 45 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/usb/host/xhci-mem.c b/drivers/usb/host/xhci-mem.c
+>> index 2ca5937b73f4..60dfc59260d8 100644
+>> --- a/drivers/usb/host/xhci-mem.c
+>> +++ b/drivers/usb/host/xhci-mem.c
+>> @@ -1816,7 +1816,7 @@ xhci_remove_interrupter(struct xhci_hcd *xhci, struct xhci_interrupter *ir)
+>>           tmp &= ERST_SIZE_MASK;
+>>           writel(tmp, &ir->ir_set->erst_size);
+>>   -        xhci_write_64(xhci, ERST_EHB, &ir->ir_set->erst_dequeue);
+>> +        xhci_update_erst_dequeue(xhci, ir, true);
+>>       }
+>>   }
+>>   @@ -1859,6 +1859,11 @@ void xhci_remove_secondary_interrupter(struct usb_hcd *hcd, struct xhci_interrup
+>>           return;
+>>       }
+>>   +    /*
+>> +     * Cleanup secondary interrupter to ensure there are no pending events.
+>> +     * This also updates event ring dequeue pointer back to the start.
+>> +     */
+>> +    xhci_skip_sec_intr_events(xhci, ir->event_ring, ir);
+>>       intr_num = ir->intr_num;
+>>         xhci_remove_interrupter(xhci, ir);
+>> diff --git a/drivers/usb/host/xhci-ring.c b/drivers/usb/host/xhci-ring.c
+>> index 80dca780317a..a012ddf94fb5 100644
+>> --- a/drivers/usb/host/xhci-ring.c
+>> +++ b/drivers/usb/host/xhci-ring.c
+>> @@ -3012,7 +3012,7 @@ static int xhci_handle_event_trb(struct xhci_hcd *xhci, struct xhci_interrupter
+>>    * - When all events have finished
+>>    * - To avoid "Event Ring Full Error" condition
+>>    */
+>> -static void xhci_update_erst_dequeue(struct xhci_hcd *xhci,
+>> +void xhci_update_erst_dequeue(struct xhci_hcd *xhci,
+>>                        struct xhci_interrupter *ir,
+>>                        bool clear_ehb)
+>>   {
+>> @@ -3112,6 +3112,37 @@ static int xhci_handle_events(struct xhci_hcd *xhci, struct xhci_interrupter *ir
+>>       return 0;
+>>   }
+>>   +/*
+>> + * Move the event ring dequeue pointer to skip events kept in the secondary
+>> + * event ring.  This is used to ensure that pending events in the ring are
+>> + * acknowledged, so the XHCI HCD can properly enter suspend/resume.  The
 >
-> You could minimally make this 'type: object' instead of false.
-
-Sorry, I have not understood your means. I already set nand@*** as object.
-
-nand@[a-f0-9]+(,[a-f0-9]+)+$":
-  type: object
-
+> XHCI -> xHCI
 >
-> Or does this follow the nand controller and chip bindings? May not being
-> older binding.
-
-I check if-nand driver, which have not parse other nand controller's
-property yet.
-
-
-Frank
+Will fix.
+>> + * secondary ring is typically maintained by an external component.
+>> + */
+>> +void xhci_skip_sec_intr_events(struct xhci_hcd *xhci,
+>> +    struct xhci_ring *ring,    struct xhci_interrupter *ir)
+>> +{
+>> +    union xhci_trb *current_trb;
+>> +    u64 erdp_reg;
+>> +    dma_addr_t deq;
+>> +
+>> +    /* disable irq, ack pending interrupt and ack all pending events */
+>> +    xhci_disable_interrupter(ir);
 >
-> > +
-> >    "^.*@[a-f0-9]+(,[a-f0-9]+)+$":
-> >      type: object
-> >      description: |
-> > --
-> > 2.34.1
-> >
+> That seems like a bit weird place to disable interrupter? Perhaps suspend and resume functions should be updated to handle more interrupters instead?
+>
+At least in the current implementation that we have, during cases where autosuspend is enabled, we obviously have to ensure that the audio offload path is fully stopped before we can have the HCD suspend the bus.  We don't want to run into a situation where the audio DSP is trying to execute audio transfers over the link while we're suspending.  So in short, the xhci_skip_sec_intr_events() is currently only used for cases where we are cleaning up the secondary interrupter. (due to the stopping of the audio offload session)  This will ensure that if the audio DSP didn't clean up the event ring properly, we'll just skip the pending events, since they will be stale once the audio stream is restarted at a later time.
+
+Thanks
+
+Wesley Cheng
+
 
