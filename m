@@ -1,193 +1,174 @@
-Return-Path: <devicetree+bounces-95027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAA9D957BD8
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 05:17:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A6C1957BE8
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 05:26:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7415D1F22D5C
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 03:17:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA6D01F2383C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 03:26:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0AAA3A1BA;
-	Tue, 20 Aug 2024 03:16:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CF914962C;
+	Tue, 20 Aug 2024 03:26:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="mQE1fc+W"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="S3hDBGLv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 272BC2A8C1
-	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 03:16:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18F8B481CE;
+	Tue, 20 Aug 2024 03:26:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724123816; cv=none; b=e9z0B5be4Abdapw0Acof4egdhly08FdczVTyFUch8CM070TrNozaDGBfVBmPTFvElvjnhJRoC9kBXIjnEobsi5W0ljBlmHmNlFwdvDOQp8G4+ir/e04o1KliVgnv9RbZRNMw/HI7rjeEHE1HwXeVf16kwwV8HAwDw0QfgIcQ99k=
+	t=1724124383; cv=none; b=oJ6k0pKNxXwLaIvlhYijIJag9xXx59V6ZD4wZ3o+gbm1v/6jQgQyUgIJB762oZr5vI4S125C60ys1BGOUd7cuJlS13ZrhuKFsFiHsJx0ZL4bIJ8cIKp5AKWZipgPdsor86+C5ShOq3Ei9RarlAYMNkp6YTj5DxZnT+u4Yoq+sYY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724123816; c=relaxed/simple;
-	bh=7OS5U6hUroRgy2oQ+7zl1P3imxQtugoQ87EKZwryMJQ=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=WgDhmpV+EC10TMuFMtScTqgitEDtbSnEOXdwfj18F7AKmsAq7ka5g57zuA+qE4gqbT7YyxQEXGnjpqRuMQ+EZxWB39aiK1PiKGehxyM0xweHjHgu7n/Mb9W2WxWKzyW8a1mwd+wXQ448GUV2KeO18wAR7MzzF0RjzW0l9FxEMxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=mQE1fc+W; arc=none smtp.client-ip=203.254.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20240820031647epoutp04bcc2678d36ee8be361e2922197353c03~tUXfPLD8z3089530895epoutp04U
-	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 03:16:47 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20240820031647epoutp04bcc2678d36ee8be361e2922197353c03~tUXfPLD8z3089530895epoutp04U
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1724123807;
-	bh=4L3WgD3UaaixdH74TH6NcTMHweQB4Wz7DCYygO4wg3E=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=mQE1fc+WIIMI6yMAxe7AeKBIcnj/9uVKMLiQV6pt3JzhsuwmVyuwWFCW/ymJWD+DH
-	 Yle8MLA/WQM+Q1VfaFblBQyuGlJqj/k8R1vZRD+zyBpwN4A4492KWtJ04XL0gA+FEE
-	 C94lf0w9NrNJoS+pqSCB9beHygQyf5eCzdkONdag=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTP id
-	20240820031646epcas5p23da09078ad3ab137795789e29de5c881~tUXetoElL0938909389epcas5p2I;
-	Tue, 20 Aug 2024 03:16:46 +0000 (GMT)
-Received: from epsmges5p1new.samsung.com (unknown [182.195.38.175]) by
-	epsnrtp2.localdomain (Postfix) with ESMTP id 4Wnvl10tQvz4x9Q3; Tue, 20 Aug
-	2024 03:16:45 +0000 (GMT)
-Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
-	epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	ED.09.09640.C9A04C66; Tue, 20 Aug 2024 12:16:44 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-	20240820031644epcas5p28483b55967b4fb740717562413dfd717~tUXcuTORG0938809388epcas5p2C;
-	Tue, 20 Aug 2024 03:16:44 +0000 (GMT)
-Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20240820031644epsmtrp29518d7e78973d4e573e3b44c1f3e81e9~tUXctTMfR1384113841epsmtrp28;
-	Tue, 20 Aug 2024 03:16:44 +0000 (GMT)
-X-AuditID: b6c32a49-a57ff700000025a8-fb-66c40a9c0b74
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	C5.14.19367.C9A04C66; Tue, 20 Aug 2024 12:16:44 +0900 (KST)
-Received: from INBRO002756 (unknown [107.122.12.5]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20240820031642epsmtip237268865e08a0ca495abb30bcd4ddb6a~tUXactUZO2417724177epsmtip2F;
-	Tue, 20 Aug 2024 03:16:42 +0000 (GMT)
-From: "Alim Akhtar" <alim.akhtar@samsung.com>
-To: "'Sunyeal Hong'" <sunyeal.hong@samsung.com>, "'Krzysztof Kozlowski'"
-	<krzk@kernel.org>, "'Sylwester Nawrocki'" <s.nawrocki@samsung.com>,
-	"'Chanwoo Choi'" <cw00.choi@samsung.com>, "'Michael Turquette'"
-	<mturquette@baylibre.com>, "'Stephen Boyd'" <sboyd@kernel.org>, "'Rob
- Herring'" <robh@kernel.org>, "'Conor Dooley'" <conor+dt@kernel.org>
-Cc: <linux-samsung-soc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-In-Reply-To: <20240819052416.2258976-2-sunyeal.hong@samsung.com>
-Subject: RE: [PATCH v6 1/4] dt-bindings: clock: add ExynosAuto v920 SoC CMU
- bindings
-Date: Tue, 20 Aug 2024 08:46:40 +0530
-Message-ID: <02ab01daf2af$62450520$26cf0f60$@samsung.com>
+	s=arc-20240116; t=1724124383; c=relaxed/simple;
+	bh=KE/PULkJsZKFrnjGgWeIrSqHAyb40nU3jcf8fplExkQ=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=h0IqND8cv1LMIPfbhSrFVU6ZDGxNYbmOtLI0MtXCer7qLBoQWk+xEzjlfziZeed9ywW/32dvjRxp6PO6i+r4QYVHZgIzkFh38qLXoANqvAKHx9/3MtC04OtGUSV8Lg9mnzpb3uykuxc/hcj0CC49jCHnRcVYuYGNN+zACv6MRdI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=S3hDBGLv; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQLQL30DU0UysUOS1ES52gTWByyh0gIaeEiEAf2S/v2wJD72QA==
-Content-Language: en-us
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrGJsWRmVeSWpSXmKPExsWy7bCmpu4criNpBrvf2Fis2XuOyeL6l+es
-	FvOPnGO1OH9+A7vFpsfXWC0+9txjtbi8aw6bxYzz+5gsLp5ytfi/Zwe7xeE37awW/65tZLFo
-	WraeyYHX4/2NVnaPTas62Tw2L6n36NuyitHj8ya5ANaobJuM1MSU1CKF1Lzk/JTMvHRbJe/g
-	eOd4UzMDQ11DSwtzJYW8xNxUWyUXnwBdt8wcoBOVFMoSc0qBQgGJxcVK+nY2RfmlJakKGfnF
-	JbZKqQUpOQUmBXrFibnFpXnpenmpJVaGBgZGpkCFCdkZH1qOsxQs4KtYtugfYwPjG+4uRk4O
-	CQETib07djF3MXJxCAnsZpT49XA2K4TziVFi4+EHbHDO+cZHbDAtbx7vYgGxhQR2MkosuxUE
-	UfSCUWLKsw9gRWwCuhI7FreB2SIC95gkPu41ByliFljHKLF55hF2kASngIPEne3nmboYOTiE
-	BcIkJnzTAwmzCKhKzJr3FayEV8BS4urZS8wQtqDEyZlPwBYzC8hLbH87hxniIAWJn0+XsULs
-	cpLY9baBFaJGXOLlUZBVXEA1ezgklu7bC/WBi8Trt62MELawxKvjW9ghbCmJz+9garIljl+c
-	BWVXSHS3foSqsZfY+egmC8jNzAKaEut36UPs4pPo/f0E7BUJAV6JjjYhiGpVieZ3V1kgbGmJ
-	id3drBC2h8Tq3j9MExgVZyH5bBaSz2Yh+WAWwrIFjCyrGCVTC4pz01OLTQsM81LL4fGdnJ+7
-	iRGcgLU8dzDeffBB7xAjEwfjIUYJDmYlEd7ulwfThHhTEiurUovy44tKc1KLDzGaAoN7IrOU
-	aHI+MAfklcQbmlgamJiZmZlYGpsZKonzvm6dmyIkkJ5YkpqdmlqQWgTTx8TBKdXAZDktUPCU
-	6vFytpn2vPUvPt1ILNqwL6z8ar9ERvUx2a7klTvlRN4oX7eyTjvycOWL+62mH+30fiuZf4z1
-	u3BvtbOteMH67WuDU6K0T1i9EBGV9NcoXvy498vtP1WsF+6cm7dJbsZ+LYGv9+7nb1m0Mpsr
-	NffkMj6J12vjPD1NDBr2rhPNWP/nurzJ1BIv9Q/ySrX75iVxFs893h/5ocrkuR5TiXzPV97p
-	olJ+P/OmWE62NdjNyJCSHbaQV0x/U4zIY6vn6Q7vvyV0NsqKxE0ODb6lW25Ve1+RN0yr84BI
-	eLKPV6v16epf8uvXX53B82/C3vsKD22mJwvxzH+huct70fbjm/ae/VqfWvRq2QYtJZbijERD
-	Leai4kQArij6JkkEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprDIsWRmVeSWpSXmKPExsWy7bCSvO4criNpBi/75SzW7D3HZHH9y3NW
-	i/lHzrFanD+/gd1i0+NrrBYfe+6xWlzeNYfNYsb5fUwWF0+5Wvzfs4Pd4vCbdlaLf9c2slg0
-	LVvP5MDr8f5GK7vHplWdbB6bl9R79G1ZxejxeZNcAGsUl01Kak5mWWqRvl0CV8aHluMsBQv4
-	KpYt+sfYwPiGu4uRk0NCwETizeNdLF2MXBxCAtsZJab8OcUIkZCWuL5xAjuELSyx8t9zMFtI
-	4BmjxL+fiiA2m4CuxI7FbWwgtojAEyaJrYejQQYxC2xilDi3+yYbxNSjjBLLpn9mBqniFHCQ
-	uLP9PBOILSwQIjHt0R4wm0VAVWLWvK9gG3gFLCWunr3EDGELSpyc+YQFxGYW0JZ4evMplC0v
-	sf3tHGaI6xQkfj5dxgpxhZPErrcNrBA14hIvjx5hn8AoPAvJqFlIRs1CMmoWkpYFjCyrGEVT
-	C4pz03OTCwz1ihNzi0vz0vWS83M3MYIjUCtoB+Oy9X/1DjEycTAeYpTgYFYS4e1+eTBNiDcl
-	sbIqtSg/vqg0J7X4EKM0B4uSOK9yTmeKkEB6YklqdmpqQWoRTJaJg1OqgYmzokLRqHjayq8P
-	BV40ln6reWrwWnqO7S9lw6dLNwkyrvl9iLGubHIpt8eHhZM3ejqbMJxq139+6tw6l/k1W/IX
-	PIsUjL2168LKBt3stBPHY+VqjAIdnNjVF9YZpfYLC6X32s6/Ku5vYmQ1+dtvZs1/xfemm+R/
-	vGnOoHPhy8btjeoL/GNEZx6fa56XK9r80XJeY0TpjAezegTPziu00VvXHLpcQyxmv37NoWUO
-	hx6EiOZ6OujF/8wvbljZuOFCRKO25JLC+5aGT2fNsbSxud52V5Lpa/oLWV+FLKYlkZIH315T
-	DFfsvtO5pLa/rNPLU5jT9rXsfT/e/C3Cr/abZ6elXc7UYq15LjstNmiaEktxRqKhFnNRcSIA
-	EpgMOi8DAAA=
-X-CMS-MailID: 20240820031644epcas5p28483b55967b4fb740717562413dfd717
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20240819052422epcas2p4db394defd5f298658f7841af3649ac6f
-References: <20240819052416.2258976-1-sunyeal.hong@samsung.com>
-	<CGME20240819052422epcas2p4db394defd5f298658f7841af3649ac6f@epcas2p4.samsung.com>
-	<20240819052416.2258976-2-sunyeal.hong@samsung.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1724124377;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=emZjidsQEPIpW+TQw3p+hYsmcENgp0Z3u/QNNP8WrEA=;
+	b=S3hDBGLvWkRgUwq01kVm2Qbh70Ui1A4q0GC9d/lu/xMJgx0L6DvgqNH8NysWDgIDiLUyjA
+	zX8rztTIj9px4oSnXwl4it4kSa2PNOleesZfCBQOjEXV3I6L/CBd7kEHvYpErJZHHdI/gI
+	8upN0DvTku2eOVy530tx+iBQXYCJU0I38brGykFlbCpvb1LDJz3ns1mLnTaz5R6FgcPOpK
+	pdxXBaaViZkBHjJTV87R3B21fgto3FwLfySbHgITxIyM50RSHkjwDT4vTLjHlIJ9mQ3DDY
+	ZGwrsEcH2E6zDkTbxImUzRHAvIFtDwWmWY2PEw9u/0Qr0dGD49Yuoiizaau/zw==
+Date: Tue, 20 Aug 2024 05:26:15 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: Icenowy Zheng <uwu@icenowy.me>, linux-sunxi@lists.linux.dev,
+ wens@csie.org, jernej.skrabec@gmail.com, samuel@sholland.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-kernel@vger.kernel.org, wenst@chromium.org, broonie@kernel.org
+Subject: Re: [PATCH] arm64: dts: allwinner: Add GPU thermal trips to the SoC
+ dtsi for A64
+In-Reply-To: <d8584ac7-5576-4f26-8bc8-1ecbb4bd4611@linaro.org>
+References: <a17e0df64c5b976b47f19c5a29c02759cd9e5b8c.1723427375.git.dsimic@manjaro.org>
+ <24406e36f6facd93e798113303e22925b0a2dcc1.camel@icenowy.me>
+ <25b65e9ef1cae59a8366532cc8db576b@manjaro.org>
+ <d8584ac7-5576-4f26-8bc8-1ecbb4bd4611@linaro.org>
+Message-ID: <124e8c2a984d3c2775264fae85cd41b7@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hi Sunyeal,
+Hello Daniel,
 
-> -----Original Message-----
-> From: Sunyeal Hong <sunyeal.hong@samsung.com>
-> Sent: Monday, August 19, 2024 10:54 AM
-> To: Krzysztof Kozlowski <krzk@kernel.org>; Sylwester Nawrocki
-> <s.nawrocki@samsung.com>; Chanwoo Choi <cw00.choi@samsung.com>;
-> Alim Akhtar <alim.akhtar@samsung.com>; Michael Turquette
-> <mturquette@baylibre.com>; Stephen Boyd <sboyd@kernel.org>; Rob
-> Herring <robh@kernel.org>; Conor Dooley <conor+dt@kernel.org>
-> Cc: linux-samsung-soc@vger.kernel.org; linux-clk@vger.kernel.org;
-> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
-> kernel@vger.kernel.org; Sunyeal Hong <sunyeal.hong@samsung.com>
-> Subject: [PATCH v6 1/4] dt-bindings: clock: add ExynosAuto v920 SoC CMU
-> bindings
+On 2024-08-19 17:42, Daniel Lezcano wrote:
+> On 12/08/2024 04:46, Dragan Simic wrote:
+>> On 2024-08-12 04:40, Icenowy Zheng wrote:
+>>> 在 2024-08-12星期一的 04:00 +0200，Dragan Simic写道：
+>>>> Add thermal trips for the two GPU thermal sensors found in the
+>>>> Allwinner A64.
+>>>> There's only one GPU OPP defined since the commit 1428f0c19f9c
+>>>> ("arm64: dts:
+>>>> allwinner: a64: Run GPU at 432 MHz"), so defining only the critical
+>>>> thermal
+>>>> trips makes sense for the A64's two GPU thermal zones.
+>>>> 
+>>>> Having these critical thermal trips defined ensures that no hot 
+>>>> spots
+>>>> develop
+>>>> inside the SoC die that exceed the maximum junction temperature.
+>>>> That might
+>>>> have been possible before, although quite unlikely, because the CPU
+>>>> and GPU
+>>>> portions of the SoC are packed closely inside the SoC, so the
+>>>> overheating GPU
+>>>> would inevitably result in the heat soaking into the CPU portion of
+>>>> the SoC,
+>>>> causing the CPU thermal sensor to return high readings and trigger
+>>>> the CPU
+>>>> critical thermal trips.  However, it's better not to rely on the 
+>>>> heat
+>>>> soak
+>>>> and have the critical GPU thermal trips properly defined instead.
+>>>> 
+>>>> While there, remove a few spotted comments that are rather 
+>>>> redundant,
+>>>> because
+>>>> it's pretty much obvious what units are used in those places.
+>>> 
+>>> This should be another individual patch, I think.
+>> 
+>> Perhaps, which I already thought about, but it might also be best
+>> to simply drop the removal of those redundant comments entirely.
+>> Let's also see what will other people say.
+>> 
+>>>> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+>>>> ---
+>>>>  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 22 
+>>>> ++++++++++++++---
+>>>> --  1 file changed, 16 insertions(+), 6 deletions(-)
+>>>> 
+>>>> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+>>>> b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+>>>> index e868ca5ae753..bc5d3a2e6c98 100644
+>>>> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+>>>> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+>>>> @@ -212,7 +212,6 @@ timer {
+>>>> 
+>>>>         thermal-zones {
+>>>>                 cpu_thermal: cpu0-thermal {
+>>>> -                       /* milliseconds */
+>>> 
+>>> The unit of a 0 isn't not so obvious I think, so I suggest to keep
+>>> this.
+>> 
+>> Quite frankly, I think it should be obvious to anyone tackling
+>> the thermal zones and trips.
 > 
-> Add dt-schema for ExynosAuto v920 SoC clock controller.
-> Add device tree clock binding definitions for below CMU blocks.
+> You can remove also polling-delay-passive and  polling-passive when
+> they are equal to zero. If they are absent they will be set to zero by
+> default.
+
+Good point, thanks!  Though, I'd rather leave those "... = <0>;"
+removals for a small follow-up series, because those changes touch
+more actual code than just the comments, so it's better to keep them
+as separate changes for easier bisection later, if it's ever needed.
+Hopefully never. :)
+
+I just made a note for myself to create and submit those follow-up
+cleanup patches later, for all affected Allwinner and Rockchip SoC
+dtsi files.
+
+> That said, I take the opportunity to spot some inconsistency in this
+> DT not related to this change.
 > 
-> - CMU_TOP
-> - CMU_PERIC0
-> 
-Do update the commit message to match with the changes in this patch
-Thanks
+> 1. There is a passive trip point and one cooling device mapped to it.
+> With a polling-delay-passive=0, the mitigation will fail
 
-> Signed-off-by: Sunyeal Hong <sunyeal.hong@samsung.com>
-> ---
->  .../clock/samsung,exynosautov920-clock.yaml   | 197 ++++++++++++++++++
->  .../clock/samsung,exynosautov920.h            | 191 +++++++++++++++++
->  2 files changed, 388 insertions(+)
->  create mode 100644
-> Documentation/devicetree/bindings/clock/samsung,exynosautov920-
-> clock.yaml
->  create mode 100644 include/dt-bindings/clock/samsung,exynosautov920.h
-> 
-[snip]
+Huh, how is the CPU throttling working then?  Thanks for pointing it
+out, I'll address this issue in the follow-up patches.
 
-> diff --git
-> 
-> +      - samsung,exynosautov920-cmu-top
-> +      - samsung,exynosautov920-cmu-peric0
-> +      - samsung,exynosautov920-cmu-peric1
-> +      - samsung,exynosautov920-cmu-misc
-> +      - samsung,exynosautov920-cmu-hsi0
-> +      - samsung,exynosautov920-cmu-hsi1
-> +
-[snip]
+> 2. There is a second mapping for the hot trip point. That does not
+> make sense, it is not possible because there is no mitigation for
+> 'hot' and 'critical' trip points.
 
-> +#endif /* _DT_BINDINGS_CLOCK_EXYNOSAUTOV920_H */
-> --
-> 2.45.2
+Yup, I see no special handling of tz->ops.hot, so having the hot trip
+point makes no sense.  Thanks again for pointing it out, I'll address
+this issue in the follow-up patches as well.
 
-
+I'll send the v2 soon, as a small patch series, and I'll send a few
+follow-up patches later.
 
