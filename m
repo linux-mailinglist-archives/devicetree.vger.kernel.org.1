@@ -1,63 +1,76 @@
-Return-Path: <devicetree+bounces-95284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40603958AE5
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 17:15:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCC88958AFF
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 17:20:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C1BAAB23C0A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 15:15:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B4F31F21AA2
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 15:20:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CD00191F89;
-	Tue, 20 Aug 2024 15:15:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D7341946A1;
+	Tue, 20 Aug 2024 15:19:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BK4ZBdPs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="G7Ep+/UP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F299E28FA;
-	Tue, 20 Aug 2024 15:15:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52AD01922E0
+	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 15:19:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724166949; cv=none; b=NanRKvxkQQ+HplIaDb602MrGDAY4zNSdVXuzEIP9/t+VMmZZEyNrQfBEJ8YslgJo2qyBRwAND97EgQ0LDaDRMYe8KLqP9iyit5XrRFrBgdMvCQ3CnQqF+91cdZcOxgeNe7wcwa29GgCaczT1KW/RAKh/AQtLZG5C6jvJbeuyTsY=
+	t=1724167173; cv=none; b=dWm4P0x/DIbDS5UBXPaKaNHZeRVdhb3QvL+xuTnYx2SvbK+MpLBR834myYEyupyaOZ49wOmrFkYp7I3HMMnq+qJ+nhetXIp5taaGoGZC1nS/NGODzfm0rvDrnMGtyQk8LmyFXxqBBPrb8IJmwrkYfFQ0YfjLPEMRGuE7oK/5oyg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724166949; c=relaxed/simple;
-	bh=Czkch0QZhrBqNyJDK3eZz7h/cbxIvAw7XyBBjXxkk5o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=c8JS8IRJYBwhviN+sgl1BVqKyj4dtTjS2cnpd95lP/L8Fvu2Hfalg8S1GWv5w2kxwCy0a+UTHp1Fla82ASmuatZ9u/VPPhYlomi0OHoqRteskpzHPMdEn8Ai6LDD7CXTCgElPuKzCMTlQ7aVinEDfJWl+XM2bpDLqGV7x5aOaCE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BK4ZBdPs; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47KFFedL012733;
-	Tue, 20 Aug 2024 10:15:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1724166940;
-	bh=CxhzBf5ybGwVcXuCz/a38jlcbZPaO/ysMzhyekGIWLc=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=BK4ZBdPsHeMLIYURstzM5Z3RfWTKff+TLfvD445wm/ACLyeBzWtGy2uz0PmdeDlkU
-	 NYmvEa6+G+Y0Lcq7LhdZVy5bPj9KuV1v2fAbs8Q3AAnkBYWfa1x5YLeB/o5Q8I5mb+
-	 4tJ+2V4WGGRkeMT+s6QTjtQCyFVN6FTYNpUJIX9g=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47KFFeWb016067
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 20 Aug 2024 10:15:40 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 20
- Aug 2024 10:15:40 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 20 Aug 2024 10:15:40 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47KFFdll050707;
-	Tue, 20 Aug 2024 10:15:39 -0500
-Message-ID: <1809eef3-7308-4ec5-9a31-6ae8ca1c8a57@ti.com>
-Date: Tue, 20 Aug 2024 10:15:39 -0500
+	s=arc-20240116; t=1724167173; c=relaxed/simple;
+	bh=M0lZ2DP22jfNN/C5aYt03sGQdVfogxyFNLx82l+fY0c=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=qpS7VhRzhKc9GfHNUCpZArr3KICocD/gNgAE3HxqoRiZ4v+IK+Bi9nEJvG64Qi7U7+fLLgawJ8afEnlpEKLFvSuMMxeWCczTQEiIIELebKNOjc23Yi2PhF2zh34WYSLpn10e6LG/S/ej0WI5cZjB5nyxtxcrcmS9JF9HfbtTKRM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=G7Ep+/UP; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3718706cf8aso3510124f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 08:19:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1724167169; x=1724771969; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CO8k7gPS3ah2eo5Hppz8CJu9bMQrSC7MJe+A3wiVe2c=;
+        b=G7Ep+/UPqFGChHWe5R/+Lv9j0L7cTLk+AaknRoV0IuiCBrc9rDkv+hmm/HlqLcMZ/U
+         0IE7EMcTezUxzXD7jCvQSH3F9BUOBAuS0x0tqp1424IFYXa++G405jD5dSKX/1TOxtct
+         o3jARo4739hgpCQE4eS8wv1kcWOJEufpNGQNyEl3JUZn/KOBnhStJZWP80YgBHZlcAk5
+         hmtz43BomHh2TYJLV2S7sj1rcs9DUqk3OfoVrITt2k2+AS+52FYjushq/cFfhEiF4DiO
+         RJSsvMI+0wrrY9Qy8RgGnuq4uZyutJyp4ybOxSNzOr6xRpLNokLDKxQ9HktSwU+M8O+e
+         5VjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724167169; x=1724771969;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=CO8k7gPS3ah2eo5Hppz8CJu9bMQrSC7MJe+A3wiVe2c=;
+        b=FR5Mcj/C8skHUz+ISaPNvPKG+/Va9m0RQ/+fZMub5ZYuzztbUXhkBJOym2JVpKte3T
+         RGSwJ/UicZCkCd+9EfBTU4ftFAGt8w37zM/gSLWIJNQdvWg9zl92redSgCwWNrL/U+Ai
+         xTNSi71AD4B20VcXd6oy65lYpa3uGOWpNaSZTs8onaB4ED28XzL5ZCJewimLesA+hT6P
+         VhNA+AcMpmrJfd1C1s2e66ZywCyDrC118uDhsfttB2DmM6WfWz1CLDOzVIbjR0JUfmnY
+         Lnyge5ME1IIYUnRP+iGyPBO14xtQ5qCZE0GPoy4bXayhLq65RnJ9urH6mlJIIQsNP5UH
+         +vfw==
+X-Forwarded-Encrypted: i=1; AJvYcCXP6Na9otVbHhiTRDfdegEsM1HFa+nox/qfDmxVMy3wszv9WxamgeTZtJFNjhr7RPO7Pa0io4xMrL8d@vger.kernel.org
+X-Gm-Message-State: AOJu0YxU6bBJ0ia8hc1bkR6rj/epfjrOLU2C80ZP1oDmNWUnVKE9ZjXE
+	8h8Pa52HAh1DMBqnQYSbsf547n9pkv9s0kcxm0pKe+L+MjLD3TaZBeda++uNx2E=
+X-Google-Smtp-Source: AGHT+IFZv8g2osJqh6CIrgVGdxVcFJ776Ad1FAr/yJHw+toA0eOs6k0PzTFvoLjLqRM1QHuSjRpBag==
+X-Received: by 2002:adf:a39a:0:b0:368:c6ff:dc94 with SMTP id ffacd0b85a97d-3719465a9fdmr8495859f8f.32.1724167168984;
+        Tue, 20 Aug 2024 08:19:28 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:ebdf:8de4:37af:6aad? ([2a01:e0a:982:cbb0:ebdf:8de4:37af:6aad])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429ed785708sm145468595e9.37.2024.08.20.08.19.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Aug 2024 08:19:28 -0700 (PDT)
+Message-ID: <6e535895-6a06-42f8-abf3-e3b7472c97e0@linaro.org>
+Date: Tue, 20 Aug 2024 17:19:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,141 +78,190 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/4] arm64: dts: ti: k3-am62a7-sk: Enable ipc with
- remote proc nodes
-To: Hari Nagalla <hnagalla@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <nm@ti.com>, <bb@ti.com>
-CC: <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-References: <20240820104034.15607-1-hnagalla@ti.com>
- <20240820104034.15607-5-hnagalla@ti.com>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20240820104034.15607-5-hnagalla@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v9 00/23] Support more Amlogic SoC families in crypto
+ driver
+To: Alexey Romanov <avromanov@salutedevices.com>, clabbe@baylibre.com,
+ herbert@gondor.apana.org.au, davem@davemloft.net, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com, vadim.fedorenko@linux.dev
+Cc: linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, kernel@salutedevices.com
+References: <20240820145623.3500864-1-avromanov@salutedevices.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20240820145623.3500864-1-avromanov@salutedevices.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 8/20/24 5:40 AM, Hari Nagalla wrote:
-> From: Devarsh Thakkar <devarsht@ti.com>
+Hi,
+
+On 20/08/2024 16:56, Alexey Romanov wrote:
+> Hello!
 > 
-> Reserve memory for remote rpoc IPC and bind the mailbox assignments
-
-s/remote rpoc/Remoteproc
-
-> for each remote proc. Two memory regions are reserved for each
-> remote processor. The first region of 1MB of memory is used for Vring
-> shared buffers and the second region is used as external memory to the
-> remote processor, resource table and as tracebuffer.
+> This patchset expand the funcionality of the Amlogic
+> crypto driver by adding support for more SoC families:
+> AXG, G12A, G12B, SM1, A1, S4.
 > 
-> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
-> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+> Also specify and enable crypto node in device tree
+> for reference Amlogic devices.
+> 
+> Tested on GXL, AXG, G12A/B, SM1, A1 and S4 devices via
+> custom tests [1] and tcrypt module.
+
+On which tree did you base yourself ? It fails to apply patch 20 on next-20240820 and 6.11-rc4
+
+Neil
+
+> 
 > ---
->   arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 68 +++++++++++++++++++++++++
->   1 file changed, 68 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-> index 67faf46d7a35..fb350b578899 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-> @@ -61,11 +61,40 @@ secure_ddr: optee@9e800000 {
->   			no-map;
->   		};
->   
-> +		wkup_r5fss0_core0_dma_memory_region: r5f-dma-memory@9c800000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0x9c800000 0x00 0x100000>;
-> +			no-map;
-> +		};
-> +
->   		wkup_r5fss0_core0_memory_region: r5f-dma-memory@9c900000 {
->   			compatible = "shared-dma-pool";
->   			reg = <0x00 0x9c900000 0x00 0x01e00000>;
->   			no-map;
->   		};
+> Changes V1 -> V2 [2]:
+> 
+> - Rebased over linux-next.
+> - Adjusted device tree bindings description.
+> - A1 and S4 dts use their own compatible, which is a G12 fallback.
+> 
+> Changes V2 -> V3 [3]:
+> 
+> - Fix errors in dt-bindings and device tree.
+> - Add new field in platform data, which determines
+> whether clock controller should be used for crypto IP.
+> - Place back MODULE_DEVICE_TABLE.
+> - Correct commit messages.
+> 
+> Changes V3 -> V4 [4]:
+> 
+> - Update dt-bindings as per Krzysztof Kozlowski comments.
+> - Fix bisection: get rid of compiler errors in some patches.
+> 
+> Changes V4 -> V5 [5]:
+> 
+> - Tested on GXL board:
+>    1. Fix panic detected by Corentin Labbe [6].
+>    2. Disable hasher backend for GXL: in its current realization
+>       is doesn't work. And there are no examples or docs in the
+>       vendor SDK.
+> - Fix AES-CTR realization: legacy boards (gxl, g12, axg) requires
+>    inversion of the keyiv at keys setup stage.
+> - A1 now uses its own compatible string.
+> - S4 uses A1 compatible as fallback.
+> - Code fixes based on comments Neil Atrmstrong and Rob Herring.
+> - Style fixes (set correct indentations)
+> 
+> Changes V5 -> V6 [7]:
+> 
+> - Fix DMA sync warning reported by Corentin Labbe [8].
+> - Remove CLK input from driver. Remove clk definition
+>    and second interrput line from crypto node inside GXL dtsi.
+> 
+> Changes V6 -> V7 [9]:
+> 
+> - Fix dt-schema: power domain now required only for A1.
+> - Use crypto_skcipher_ctx_dma() helper for cipher instead of
+>    ____cacheline_aligned.
+> - Add import/export functions for hasher.
+> - Fix commit message for patch 17, acorrding to discussion [10].
+> 
+> Changes V7 -> V8 [11]:
+> 
+> - Test patchset with CONFIG_CRYPTO_MANAGER_EXTRA_TESTS: fix some bugs
+>    in hasher logic.
+> - Use crypto crypto_ahash_ctx_dma in hasher code.
+> - Correct clock definition: clk81 is required for all SoC's.
+> - Add fixed-clock (clk81) definition for A1/S4.
+> - Add information (in commit messages) why different compatibles are used.
+> 
+> Changes V8 -> V9 [12]:
+> 
+> - Remove required field clk-names from dt-schema according to Rob Herring
+> recommendation [13].
+> - Fix commit order: all dt-bindings schema commits now located earlier
+> than any changes in device tree.
+> - Fix typos and add more clarifications in dt-schema patches.
+> 
+> Links:
+>    - [1] https://gist.github.com/mRrvz/3fb8943a7487ab7b943ec140706995e7
+>    - [2] https://lore.kernel.org/all/20240110201216.18016-1-avromanov@salutedevices.com/
+>    - [3] https://lore.kernel.org/all/20240123165831.970023-1-avromanov@salutedevices.com/
+>    - [4] https://lore.kernel.org/all/20240205155521.1795552-1-avromanov@salutedevices.com/
+>    - [5] https://lore.kernel.org/all/20240212135108.549755-1-avromanov@salutedevices.com/
+>    - [6] https://lore.kernel.org/all/ZcsYaPIUrBSg8iXu@Red/
+>    - [7] https://lore.kernel.org/all/20240301132936.621238-1-avromanov@salutedevices.com/
+>    - [8] https://lore.kernel.org/all/Zf1BAlYtiwPOG-Os@Red/
+>    - [9] https://lore.kernel.org/all/20240326153219.2915080-1-avromanov@salutedevices.com/
+>    - [10] https://lore.kernel.org/all/20240329-dotted-illusive-9f0593805a05@wendy/
+>    - [11] https://lore.kernel.org/all/20240411133832.2896463-1-avromanov@salutedevices.com/
+>    - [12] https://lore.kernel.org/all/20240607141242.2616580-1-avromanov@salutedevices.com/
+>    - [13] https://lore.kernel.org/all/20240610222827.GA3166929-robh@kernel.org/
+> 
+> Alexey Romanov (23):
+>    drivers: crypto: meson: don't hardcode IRQ count
+>    drviers: crypto: meson: add platform data
+>    drivers: crypto: meson: remove clock input
+>    drivers: crypto: meson: add MMIO helpers
+>    drivers: crypto: meson: move get_engine_number()
+>    drivers: crypto: meson: drop status field from meson_flow
+>    drivers: crypto: meson: move algs definition and cipher API to
+>      cipher.c
+>    drivers: crypto: meson: cleanup defines
+>    drivers: crypto: meson: process more than MAXDESCS descriptors
+>    drivers: crypto: meson: avoid kzalloc in engine thread
+>    drivers: crypto: meson: introduce hasher
+>    drivers: crypto: meson: add support for AES-CTR
+>    drivers: crypto: meson: use fallback for 192-bit keys
+>    drivers: crypto: meson: add support for G12-series
+>    drivers: crypto: meson: add support for AXG-series
+>    drivers: crypto: meson: add support for A1-series
+>    dt-bindings: crypto: meson: correct clk and remove second interrupt
+>      line
+>    dt-bindings: crypto: meson: support new SoC's
+>    arch: arm64: dts: meson: gxl: correct crypto node definition
+>    arch: arm64: dts: meson: a1: add crypto node
+>    arch: arm64: dts: meson: s4: add crypto node
+>    arch: arm64: dts: meson: g12: add crypto node
+>    arch: arm64: dts: meson: axg: add crypto node
+> 
+>   .../bindings/crypto/amlogic,gxl-crypto.yaml   |  32 +-
+>   arch/arm64/boot/dts/amlogic/meson-a1.dtsi     |  14 +
+>   arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |   7 +
+>   .../boot/dts/amlogic/meson-g12-common.dtsi    |   7 +
+>   arch/arm64/boot/dts/amlogic/meson-gxl.dtsi    |   6 +-
+>   arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |  13 +
+>   drivers/crypto/amlogic/Makefile               |   2 +-
+>   drivers/crypto/amlogic/amlogic-gxl-cipher.c   | 632 ++++++++++++------
+>   drivers/crypto/amlogic/amlogic-gxl-core.c     | 292 ++++----
+>   drivers/crypto/amlogic/amlogic-gxl-hasher.c   | 507 ++++++++++++++
+>   drivers/crypto/amlogic/amlogic-gxl.h          | 118 +++-
+>   11 files changed, 1269 insertions(+), 361 deletions(-)
+>   create mode 100644 drivers/crypto/amlogic/amlogic-gxl-hasher.c
+> 
 
-newline
-
-> +		mcu_r5fss0_core0_dma_memory_region: r5f-dma-memory@9b800000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0x9b800000 0x00 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		mcu_r5fss0_core0_memory_region: r5f-dma-memory@9b900000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0x9b900000 0x00 0x0f00000>;
-> +			no-map;
-> +		};
-> +
-> +		c7x_0_dma_memory_region: c7x-dma-memory@99800000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0x99800000 0x00 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		c7x_0_memory_region: c7x-memory@99900000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x00 0x99900000 0x00 0x01f00000>;
-> +			no-map;
-> +		};
->   	};
->   
->   	vmain_pd: regulator-0 {
-> @@ -728,3 +757,42 @@ dpi1_out: endpoint {
->   		};
->   	};
->   };
-> +
-> +&mailbox0_cluster0 {
-> +	mbox_r5_0: mbox-r5-0 {
-> +		ti,mbox-rx = <0 0 0>;
-> +		ti,mbox-tx = <1 0 0>;
-> +	};
-> +};
-> +
-> +&mailbox0_cluster1 {
-> +	mbox_c7x_0: mbox-c7x-0 {
-> +		ti,mbox-rx = <0 0 0>;
-> +		ti,mbox-tx = <1 0 0>;
-> +	};
-> +};
-> +
-> +&mailbox0_cluster2 {
-> +	mbox_mcu_r5_0: mbox-mcu-r5-0 {
-> +		ti,mbox-rx = <0 0 0>;
-> +		ti,mbox-tx = <1 0 0>;
-> +	};
-> +};
-> +
-> +&c7x_0 {
-
-These nodes are incomplete before this point and should have
-been disabled when you added them in the dtsi, set their status
-to "okay" here.
-
-> +	mboxes = <&mailbox0_cluster1>, <&mbox_c7x_0>;
-
-Should be one item:
-
-mboxes = <&mailbox0_cluster1 &mbox_c7x_0>;
-
-Andrew
-
-> +	memory-region = <&c7x_0_dma_memory_region>,
-> +			<&c7x_0_memory_region>;
-> +};
-> +
-> +&wkup_r5fss0_core0 {
-> +	mboxes = <&mailbox0_cluster0>, <&mbox_r5_0>;
-> +	memory-region = <&wkup_r5fss0_core0_dma_memory_region>,
-> +		<&wkup_r5fss0_core0_memory_region>;
-> +};
-> +
-> +&mcu_r5fss0_core0 {
-> +	mboxes = <&mailbox0_cluster2>, <&mbox_mcu_r5_0>;
-> +	memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
-> +			<&mcu_r5fss0_core0_memory_region>;
-> +};
 
