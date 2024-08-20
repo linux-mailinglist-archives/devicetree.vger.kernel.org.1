@@ -1,179 +1,151 @@
-Return-Path: <devicetree+bounces-95069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76350957F3E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 09:20:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F451957F83
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 09:25:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9AC131C23BC3
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 07:20:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E05B2B24FC2
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 07:25:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94B2916C68F;
-	Tue, 20 Aug 2024 07:20:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D70B18005B;
+	Tue, 20 Aug 2024 07:25:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="co/4brcW"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="NcdUsqbl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9739B16B391;
-	Tue, 20 Aug 2024 07:20:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A54D516D33D
+	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 07:25:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724138427; cv=none; b=JPULxgGtiPxCkxoSRg66v7BvhkJVrH1ia+vZe60R+ZbuH9rtZoqQctlDCsSFdyb0dmIls9HUxhFjc6kPH9n1npKG8YiGhMGAm5DMgLbv5+MYPXK+AT7TNgU5L/jq7kqGco/wFD8DEnkknSeNQjaJ4lN9nOgfd5Kl5gPPTVumPzQ=
+	t=1724138709; cv=none; b=Lfkkk7Pqpk2mn0Dq9amC23wJeAGT08AMHfjyp/rtE6QPJU4p/EAWYMrSpf06HYRL/c587lLJ8/kugrKFSav2Hkq980HC6WcnatpjW+1QSEeUJGKdIF5VKXEL2d/MpQ0fBLfyflW4AEwwLLMITnWuinEby7wLvoq1OWJj6QzTS1g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724138427; c=relaxed/simple;
-	bh=glSoSr9Tbk75LSg/tAu/FUEqzBhmne/ozkkwbAinyf8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TYFar4XM1hp0KY/lKzluwUG7We/rDkEi3d3JBvrxPEX6O8MsCG9L0GfWESxdXGlkrbXxESNbcuYmdaRMcKFqJVy9uZkplNbxuHU2+6nugQ1/ZOhn9yVJ35qrfMVlWpiLNNPindp6XwD0zn+aKIwS28RURBc3+VnjBlXpY2XYWQk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=co/4brcW; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1724138426; x=1755674426;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=glSoSr9Tbk75LSg/tAu/FUEqzBhmne/ozkkwbAinyf8=;
-  b=co/4brcWXYsggOAu0GvotVTt/ldKgv2yZPb24y95oYTngrYanezawbJ4
-   i2SEOP2bE1EgbMUagp75u2WqNoitzmGhKzAeWX5UijxcJ/Ncgyh/CUE5m
-   t2MPWQ7gh8zws8zY3GkZgI2fHs7UVKMJmCDTJYdIKJoogl6g4UgL+GzSR
-   /ScKiR5Ovp3tPc5mKjOW8w5CIMGlyR0wamlXI76oCxd4S07TuAHfT28VM
-   LS4nD/LORRyXV1Oh4SdwYSuKCjimjQ6L7+g2RVsInZLfy4KWnlRiYQD+8
-   uiwRcykKwXjhFWjr+xF9+m8gge6Ah8A9iBpoCfIPap9Cj8E4JKDX/g3aF
-   Q==;
-X-CSE-ConnectionGUID: LS0/4hiGQpqKsY/l8U9EQA==
-X-CSE-MsgGUID: uM8dzDQcRQ+wRioEhuJ8xw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="21959435"
-X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; 
-   d="scan'208";a="21959435"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Aug 2024 00:20:25 -0700
-X-CSE-ConnectionGUID: G3BqePshRN6O0pokLE5trg==
-X-CSE-MsgGUID: 4xIVrBGcRKGl8FyWoZMX6g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; 
-   d="scan'208";a="61400408"
-Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
-  by orviesa008.jf.intel.com with ESMTP; 20 Aug 2024 00:20:20 -0700
-Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sgJAA-0009q6-1M;
-	Tue, 20 Aug 2024 07:20:18 +0000
-Date: Tue, 20 Aug 2024 15:19:38 +0800
-From: kernel test robot <lkp@intel.com>
-To: Trevor Gamblin <tgamblin@baylibre.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	David Lechner <dlechner@baylibre.com>,
-	Uwe Kleine-Konig <u.kleine-koenig@baylibre.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, Trevor Gamblin <tgamblin@baylibre.com>
-Subject: Re: [PATCH v3 2/3] iio: adc: ad7625: add driver
-Message-ID: <202408201520.lFtco3eF-lkp@intel.com>
-References: <20240819-ad7625_r1-v3-2-75d5217c76b5@baylibre.com>
+	s=arc-20240116; t=1724138709; c=relaxed/simple;
+	bh=dgqu4JYBQj2QnVeSbZK0OLE8UCJZ7xEm/wPtjtV1EH4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JnXXjEWd3MzMyYusy8HjaE52GQatNR1tgzI146UJ2OKx6QrGl7N0qE3hpZLAmUCPXU5hCPKg1/qiGCUhi1iubyLhUjM/uHPCai8l9OSOP92DmNLPoBdz0eWebLRb3aUXKEyYK0NMJexcCqArH4OZd0/PaxgHe+fVZg+UDGr5tzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=NcdUsqbl; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2f3b8eb3df5so51978031fa.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 00:25:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1724138704; x=1724743504; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KY+Pn7UxCWwux6Nl2NUqCDNWg2E6CQrceaqKs6911ps=;
+        b=NcdUsqblH5apsH4vsbX0zy/PenbHRfhF2aQRPp5SXI4EVc6Ju1N/eCcybzg4R+vQxz
+         HRpP7t7spq/b5O8wWy/BU9R3Iim2y7LdF1dCd19tJZqFw03Qhxhk6zIoeQv9MSJSIJFt
+         7RzMHLWF28hHUxdscfRx/jAi3CxvdLjB4mF1s8Txmw6wtyNxyud57WHtralQ+/lDE/r/
+         FevvXmXGHgh+pqTdEl4SB+gYUOmktDy0KwWWz3evMkyyw+JLRbdNSJRHVkbbeOzFhuUs
+         JyrMKbQkcb3QN5+WnXXMxjUBplg8C44ge+/YYLWmeNMGjyi5FdGxABeZrx8yOBUhFtGU
+         09dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724138704; x=1724743504;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KY+Pn7UxCWwux6Nl2NUqCDNWg2E6CQrceaqKs6911ps=;
+        b=jGLjlFuouSZzurUkSGtFpj5Fio59h16QcO38dN9rVi3o3Bwd6hovjIIpe20Hp9ytXJ
+         qsrx333jF2MV+DzlhtnN+aYDYdED8Uam2TdDP4VMABd/tQ5dxfFYdeYX24Di35Gq7vdF
+         sVEpUjGgVcghjYxtRUCvUCWKWHQMDqJg3iQAVuK3r7zdcYUABA+V/tsgG+0poeSw4Fn5
+         CpwBIT6IkN116vhdyCFK5gx7/9EYcAu86cPlOqoWjpKrGs7S3vDdXPvz09tHR9fMlilZ
+         a1UlM46ZMw238oYggyxzHFaxUMViVlX8ABd33tLkzgrDFFVMsGSJqLKk3DVA5ZXuB2A1
+         rwQw==
+X-Forwarded-Encrypted: i=1; AJvYcCVfPgNaz1SID7HTqQ/n9gSwVVbpgBOLcChyGVQX25yBXdjhZ2VvrCtEHYC4KaaTwq3El5hiC8dfJhXUjIcAxnYJwL7EKtfevdLw1A==
+X-Gm-Message-State: AOJu0YyaYaXv6Wgbp7fBI5z7+ok76DeXZc6QAX90dcjSKrGhVGziaWxM
+	EMtoFN6UIg21AFWJAQ4OsufU/1Ej2QJgyh2UhBk8aNit/MsJFc29myFMwZjm4jE=
+X-Google-Smtp-Source: AGHT+IGTPNA2s+cNW2f69+8kmFELCsr7npIzZBbuC3yWFsocerzVeG9BMezpjpbwoOvRtOjCVaH9Zw==
+X-Received: by 2002:a05:651c:b06:b0:2f3:f1a7:9813 with SMTP id 38308e7fff4ca-2f3f1a79bf2mr1817831fa.43.1724138704232;
+        Tue, 20 Aug 2024 00:25:04 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.177])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5bf0b0cc99fsm684362a12.49.2024.08.20.00.25.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Aug 2024 00:25:03 -0700 (PDT)
+Message-ID: <c9a466cc-97b5-465e-8420-ce69f307b362@tuxon.dev>
+Date: Tue, 20 Aug 2024 10:25:01 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240819-ad7625_r1-v3-2-75d5217c76b5@baylibre.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 05/11] i2c: riic: Add suspend/resume support
+Content-Language: en-US
+To: Andi Shyti <andi.shyti@kernel.org>
+Cc: chris.brandt@renesas.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
+ p.zabel@pengutronix.de, wsa+renesas@sang-engineering.com,
+ linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20240819102348.1592171-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240819102348.1592171-6-claudiu.beznea.uj@bp.renesas.com>
+ <ajj4fwoob5wq5guktq2b54h55fn5qlcakiybq6pk3xagiops7d@abpwevzemidy>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <ajj4fwoob5wq5guktq2b54h55fn5qlcakiybq6pk3xagiops7d@abpwevzemidy>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Trevor,
+Hi, Andi,
 
-kernel test robot noticed the following build errors:
+On 19.08.2024 22:37, Andi Shyti wrote:
+> Hi Claudiu,
+> 
+> On Mon, Aug 19, 2024 at 01:23:42PM GMT, Claudiu wrote:
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>
+>> Add suspend/resume support for the RIIC driver. This is necessary for the
+>> Renesas RZ/G3S SoC which support suspend to deep sleep state where power
+>> to most of the SoC components is turned off. As a result the I2C controller
+>> needs to be reconfigured after suspend/resume. For this, the reset line
+>> was stored in the driver private data structure as well as i2c timings.
+>> The reset line and I2C timings are necessary to re-initialize the
+>> controller after resume.
+>>
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> 
+> This patch doesn't have tags, so I'll add mine :-)
+> 
+> Reviewed-by: Andi Shyti <andi.shyti@kernel.org> 
+> 
+> Just one thing, though...
+> 
+> ...
+> 
+>> +static int riic_i2c_resume(struct device *dev)
+>> +{
+>> +	struct riic_dev *riic = dev_get_drvdata(dev);
+>> +	int ret;
+>> +
+>> +	ret = reset_control_deassert(riic->rstc);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = riic_init_hw(riic);
+>> +	if (ret) {
+>> +		reset_control_assert(riic->rstc);
+>> +		return ret;
+> 
+> Can I add a comment here saying:
+> 
+> 	/*
+> 	 * Since the driver remains loaded after resume,
+> 	 * we want the reset line to be asserted.
+> 	 */
 
-[auto build test ERROR on ac6a258892793f0a255fe7084ec2b612131c67fc]
+Sure, thank you!
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Trevor-Gamblin/dt-bindings-iio-adc-add-AD762x-AD796x-ADCs/20240819-221425
-base:   ac6a258892793f0a255fe7084ec2b612131c67fc
-patch link:    https://lore.kernel.org/r/20240819-ad7625_r1-v3-2-75d5217c76b5%40baylibre.com
-patch subject: [PATCH v3 2/3] iio: adc: ad7625: add driver
-config: alpha-randconfig-r132-20240820 (https://download.01.org/0day-ci/archive/20240820/202408201520.lFtco3eF-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 13.3.0
-reproduce: (https://download.01.org/0day-ci/archive/20240820/202408201520.lFtco3eF-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408201520.lFtco3eF-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/iio/adc/ad7625.c: In function 'ad7625_set_sampling_freq':
->> drivers/iio/adc/ad7625.c:191:15: error: implicit declaration of function 'pwm_round_waveform_might_sleep' [-Werror=implicit-function-declaration]
-     191 |         ret = pwm_round_waveform_might_sleep(st->cnv_pwm, &cnv_wf);
-         |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/iio/adc/ad7625.c: In function 'ad7625_buffer_preenable':
->> drivers/iio/adc/ad7625.c:420:15: error: implicit declaration of function 'pwm_set_waveform_might_sleep' [-Werror=implicit-function-declaration]
-     420 |         ret = pwm_set_waveform_might_sleep(st->cnv_pwm, &st->cnv_wf, false);
-         |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   cc1: some warnings being treated as errors
-
-
-vim +/pwm_round_waveform_might_sleep +191 drivers/iio/adc/ad7625.c
-
-   175	
-   176	static int ad7625_set_sampling_freq(struct ad7625_state *st, int freq)
-   177	{
-   178		u64 target;
-   179		struct pwm_waveform clk_gate_wf = { }, cnv_wf = { };
-   180		int ret;
-   181	
-   182		target = DIV_ROUND_UP_ULL(NSEC_PER_SEC, freq);
-   183		cnv_wf.period_length_ns = clamp(target, 100, 10 * KILO);
-   184	
-   185		/*
-   186		 * Use the maximum conversion time t_CNVH from the datasheet as
-   187		 * the duty_cycle for ref_clk, cnv, and clk_gate
-   188		 */
-   189		cnv_wf.duty_length_ns = st->info->timing_spec->conv_high_ns;
-   190	
- > 191		ret = pwm_round_waveform_might_sleep(st->cnv_pwm, &cnv_wf);
-   192		if (ret)
-   193			return ret;
-   194	
-   195		/*
-   196		 * Set up the burst signal for transferring data. period and
-   197		 * offset should mirror the CNV signal
-   198		 */
-   199		clk_gate_wf.period_length_ns = cnv_wf.period_length_ns;
-   200	
-   201		clk_gate_wf.duty_length_ns = DIV_ROUND_UP_ULL((u64)NSEC_PER_SEC *
-   202			st->info->chan_spec.scan_type.realbits,
-   203			st->ref_clk_rate_hz);
-   204	
-   205		/* max t_MSB from datasheet */
-   206		clk_gate_wf.duty_offset_ns = st->info->timing_spec->conv_msb_ns;
-   207	
-   208		ret = pwm_round_waveform_might_sleep(st->clk_gate_pwm, &clk_gate_wf);
-   209		if (ret)
-   210			return ret;
-   211	
-   212		st->cnv_wf = cnv_wf;
-   213		st->clk_gate_wf = clk_gate_wf;
-   214	
-   215		/* TODO: Add a rounding API for PWMs that can simplify this */
-   216		target = DIV_ROUND_CLOSEST_ULL(st->ref_clk_rate_hz, freq);
-   217		st->sampling_freq_hz = DIV_ROUND_CLOSEST_ULL(st->ref_clk_rate_hz,
-   218							     target);
-   219	
-   220		return 0;
-   221	}
-   222	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> 	reset_control_assert(riic->rstc);
+> 
+> Unless I missed the point :-)
+> 
+> Thanks,
+> Andi
 
