@@ -1,128 +1,108 @@
-Return-Path: <devicetree+bounces-95119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B0D0958218
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 11:25:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4B80958226
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 11:27:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 083FA284C88
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 09:25:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E27C1F23FC7
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 09:27:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B79DF18C008;
-	Tue, 20 Aug 2024 09:25:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E53E618B496;
+	Tue, 20 Aug 2024 09:26:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nudKvcqn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from albert.telenet-ops.be (albert.telenet-ops.be [195.130.137.90])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1316C18B48A
-	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 09:25:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.137.90
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0B5418A6C6;
+	Tue, 20 Aug 2024 09:26:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724145905; cv=none; b=nMOxTm1dVlW7gUA4CnE8zaGCTT9LpjL+MaITOlTfF5W7pv3otk5nVKqV3v8GZrOxupJZBrBu4tFqvqBxJw2xLVJZ8XnY7N2rJ7BxO+5OGFaagGcIZ8M68QS1PiVe+Q+ogiGZTMGE6PNWZppIj4snIA2Wy3l7R8J5J5mMICOVPFY=
+	t=1724146019; cv=none; b=Lx86GYzNGcmY8NyrMl/uU70Z+xze6iz4/sd1935HZbLqr8JNREFvkoZQEnQjysIx+pyWTpwjATZ4S6dUtuFaJh4CzNIVA/Mj0e23MPGk4VZmJIooelrlnE1pbjpzzVg0MCzVyx3Rx9iQwfZbcQh3CeFQrJlxuK36v586UR/Na8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724145905; c=relaxed/simple;
-	bh=3FiOCf8fm0kY9F5zQd4hyuzaEe7QA8k0TgU05oRkPe8=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=HyVpgitT3Ps0OaoXTPi6dOuSJ9phCB1Mt1BGP+HCJYR6AZAuJCNHf2rg/HH953mKuVQIbcxg11UiRO58jFSEyX/c82IBtBfRTzkNpEht+eGzIsRR+7yl/RAWf7+KJegKbBvAEWJVThDIy+LbBEDORQUvrhZ8scwL9qL92lNATU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.137.90
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:a2e4:464c:5828:2da3])
-	by albert.telenet-ops.be with bizsmtp
-	id 29Qt2D00E2WQTnu069QtqJ; Tue, 20 Aug 2024 11:24:54 +0200
-Received: from geert (helo=localhost)
-	by ramsan.of.borg with local-esmtp (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1sgL6j-000Mcf-AO;
-	Tue, 20 Aug 2024 11:24:53 +0200
-Date: Tue, 20 Aug 2024 11:24:53 +0200 (CEST)
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-To: Pavitrakumar M <pavitrakumarm@vayavyalabs.com>
-cc: herbert@gondor.apana.org.au, linux-crypto@vger.kernel.org, 
-    Ruud.Derwig@synopsys.com, manjunath.hadli@vayavyalabs.com, 
-    bhoomikak@vayavyalabs.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 6/7] Add SPAcc dts overlay
-In-Reply-To: <20240618042750.485720-7-pavitrakumarm@vayavyalabs.com>
-Message-ID: <d430d47b-b8c6-69f8-3f2c-eeed78b583dc@linux-m68k.org>
-References: <20240618042750.485720-1-pavitrakumarm@vayavyalabs.com> <20240618042750.485720-7-pavitrakumarm@vayavyalabs.com>
+	s=arc-20240116; t=1724146019; c=relaxed/simple;
+	bh=kop63EL7ROeC8ZjTSa24ig982G1wGzEfLfTlKCt7Yi4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=n5xCQUBZfBw0JBZu3pUzi4HMmR8JPD82UWh5KUUuVtX8c+dxNz0te1htOz+mxDjTkEqr0j8jQvWCy/Ao7U7KvKNdBrVYgVCtatd17oJIyfXrGOEERfiUrYfX6uPOP9oM6bfZIgncO7Dkkonb0GFyh+Z6oudoObY7MMNBmKpOVWw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nudKvcqn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CB9EC4AF09;
+	Tue, 20 Aug 2024 09:26:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724146019;
+	bh=kop63EL7ROeC8ZjTSa24ig982G1wGzEfLfTlKCt7Yi4=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=nudKvcqne9ZjBJo4UMhBnSm609IPW3AJvJbqzsheWiBYJgWyLB4HxpsiYJ7PYFwBt
+	 7qd7ENiCdoE15TqP10U3wXrG0qsTzJZKPK1npVHVXjmoQiLm5OpFB8+hbrL1Z+Schk
+	 5E0pUVnuEkZjHwqQ1UuwWD2NSaDJpp4Gd3Kn0LP1AQXvoSxsXm1eivAE2CP1bK1I0G
+	 9IYVG/XnRCMZzfLkovP1aqf8r3th+rUePiaRY4AOaI6mmEkkvAZ1MthIuPqhd1q5zB
+	 LWotEWjJtQW5yLYrMSVu8uXhz7Af5rnUKcckqPY0+o7zk4Fu+8gzGhXYdDCWVxEOi3
+	 qbj5NlXWwQV8w==
+Message-ID: <aeab1421-6171-40ec-8133-51734da6640e@kernel.org>
+Date: Tue, 20 Aug 2024 11:26:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/5] arm64: dts: qcom: sdm670: add camcc
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Richard Acayan <mailingradian@gmail.com>,
+ Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-media@vger.kernel.org
+References: <20240819221051.31489-7-mailingradian@gmail.com>
+ <20240819221051.31489-11-mailingradian@gmail.com>
+ <7d26a62b-b898-4737-bd53-f49821e3b471@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konradybcio@kernel.org>
+In-Reply-To: <7d26a62b-b898-4737-bd53-f49821e3b471@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
- 	Hi Pavitrakumar,
+On 20.08.2024 11:23 AM, Vladimir Zapolskiy wrote:
+> On 8/20/24 01:10, Richard Acayan wrote:
+>> The camera clock controller on SDM670 controls the clocks that drive the
+>> camera subsystem. The clocks are the same as on SDM845. Add the camera
+>> clock controller for SDM670.
+>>
+>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sdm670.dtsi | 10 ++++++++++
+>>   1 file changed, 10 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/qcom/sdm670.dtsi
+>> index 187c6698835d..ba93cef33dbb 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
+>> @@ -1400,6 +1400,16 @@ spmi_bus: spmi@c440000 {
+>>               #interrupt-cells = <4>;
+>>           };
+>>   +        camcc: clock-controller@ad00000 {
+>> +            compatible = "qcom,sdm845-camcc";
+> 
+> Here it's wrong, and the compatible property value shall contain
+> "qcom,sdm670-camcc", probably it could contain both values though.
+> 
+> It may require to add a new compatible to dt documentation and,
+> if needed, to the corresponding clock driver.
 
-CC devicetree
++1, even if the blocks are physically the same, please add a SoC-specific
+compatible (with a fallback to 845 if that's the case) just in case there
+are some implementation problems only concerning this instance
 
-On Tue, 18 Jun 2024, Pavitrakumar M wrote:
-> Signed-off-by: Manjunath Hadli <manjunath.hadli@vayavyalabs.com>
-> Signed-off-by: Pavitrakumar M <pavitrakumarm@vayavyalabs.com>
-> Acked-by: Ruud Derwig <Ruud.Derwig@synopsys.com>
-
-Thanks for your patch!
-
-Please provide a patch description.
-The one-line summary is also not very informative and lacks a suitable prefix.
-
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/xilinx/snps-dwc-spacc.dtso
-> @@ -0,0 +1,35 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * dts file for Synopsys DWC SPAcc
-> + *
-> + * (C) Copyright 2024 Synopsys
-> + *
-> + * Ruud Derwig <Ruud.Derwig@synopsys.com>
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +/ {
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	fragment@0 {
-> +		target = <&amba>;
-> +
-> +		overlay1: __overlay__ {
-
-Please use sugar syntax.  See e.g. commit db2f3762d609318e ("of:
-convert unittest overlay devicetree source to sugar syntax").
-
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +
-> +			dwc_spacc: spacc@400000000 {
-> +				compatible = "snps-dwc-spacc";
-
-Where can we find the DT bindings?
-
-> +				reg = /bits/ 64 <0x400000000 0x3FFFF>;
-> +				interrupts = <0 89 4>;
-> +				interrupt-parent = <&gic>;
-> +				clock-names = "ref_clk";
-> +				spacc_priority = <0>;
-> +				spacc_index = <0>;
-> +			};
-> +		};
-> +	};
-> +};
-
-Gr{oetje,eeting}s,
-
- 						Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
- 							    -- Linus Torvalds
+Konrad
 
