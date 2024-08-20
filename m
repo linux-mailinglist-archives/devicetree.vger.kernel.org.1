@@ -1,70 +1,69 @@
-Return-Path: <devicetree+bounces-95195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28DED9585BF
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 13:25:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66D439585CA
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 13:28:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4238283397
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 11:25:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 966BF1C24293
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 11:28:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FA9518DF9F;
-	Tue, 20 Aug 2024 11:25:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19FDE18E054;
+	Tue, 20 Aug 2024 11:28:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2A1B18CC1A;
-	Tue, 20 Aug 2024 11:25:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF2D318CC00;
+	Tue, 20 Aug 2024 11:27:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724153111; cv=none; b=AP1ftCn3LZtjZWOPp2k48cJzQyiuJloL9TzoeWXeIKovVDiYKD3BocZnzjgYF3dIenw+/5K7NB+H2RMHHoSnlOpeX6R6z1VybFG84Yr998kAIdZiPnZ1bwHysH489tkZ/opmPlw6nunLHaiEmU8kQuNbdkFQK65BEpzBKnqh/mQ=
+	t=1724153280; cv=none; b=Lxc/Y/gSrQw75xoT9u3MdQsERFJO/gW3sK7GX3AVcRpE+KQCEOZDcJ34UFG8LUuaFZSgJZSs6Zs3ijtTcxu//SB4+d5tD77O5/dMp1mKNGLMON0IO65qLlYolHRWA+2shB2Bxs6KesY578Zdi6YbL9+pQIEKMJ29I4l9L7yYmjY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724153111; c=relaxed/simple;
-	bh=gjCYzcqyuRHXpIrLSf/3XlCVJMmVcwuGMwedyFnywfg=;
+	s=arc-20240116; t=1724153280; c=relaxed/simple;
+	bh=kxkNIlKTbbf5LYAvFtvHUZQ4o+3AlflRZEjAQQUgBmk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W1+P1hKRk9PsuNI+VTKkrOzzdhr36ChOQSCbrdTvfVdhoScE+uIxisB6J8KrdNd7Bdd5AvpB6d0cqQ1mIpIo8nuJN2qTncKxBhYCHBIh9+zO1sWVV5iY5oTzq3rRTZzkhk0lawLMf0Rhu+9q70rPRw55tHDzeq3fivHm0C/l0iQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.53
+	 Content-Type:Content-Disposition:In-Reply-To; b=hTeuOkMIdewbtoei+9BkIBz86qJtmNivWhcqeAHAzKuUd7+fdn9AqXag4g4aMmEcEdLpkZqDMhiNVwT3Z4lvQylDa8tCl/3fLCwU2FRypjbAvU/PUaQxqyM0aqbcU6JPoiEr+maSUUnpZS2WQJwyCn4ucSO8vZbtpYgNLP/WreI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-6bf75ed0e0eso27815236d6.1;
-        Tue, 20 Aug 2024 04:25:09 -0700 (PDT)
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-37196681d3bso2673463f8f.3;
+        Tue, 20 Aug 2024 04:27:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724153108; x=1724757908;
+        d=1e100.net; s=20230601; t=1724153275; x=1724758075;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wsya9Zu/RasxujU7u7STxlhKAW9hbTP1IVYkuBBPCtE=;
-        b=UmpfJR3mZvgPB2fuWpYgesCK/epKqPvlnoKmlYvl3e9lKg8uBl8mnMzOx8RWtyMqs9
-         ablmwscCOppz+Cb+v+OhXrwjsdWTUvFLtkgIFSBtrAEPA5Lu8/DIYcITn8g+8QXQDJT2
-         Xlxsf8/2jVc6KS+BSYOqWDvwL0qy/oNtzJZxbRaIMtwOCShXWcEMGC0CeF8VXtWiFRTp
-         pKm7xJ0a26ie0hZz2cLk8TLtOMETOoFcUbdJIgHWvlmOhiGu/59FSohoiHO0UOr86lY1
-         rYNPjJM17bi7R6jbqIdoFUtl5vK8WWccC66WGgoKNbrN5tZMufJBj2ZkEJ0pbfr0ozZS
-         b0Eg==
-X-Forwarded-Encrypted: i=1; AJvYcCUCeLcj9+vLlYQ/Zwmy5XkT6+dS/bZ8+3jHzTdvy5rjYA3tgAI6M9bGPPdl5COCyNv/H3LH9A4IzEL0FpN4sQ==@vger.kernel.org, AJvYcCUl4fGYl9XuakQJwmi1Mz7dLmlLOLh29LRT2dmx0MguWGyHHPxygT/Eg1lPoFpsgZYga/5NeUTOwwpB/rmW@vger.kernel.org, AJvYcCV2/x5F4J3lfwFxALPh4VKJHuECJUkfpxdF3lmgK73mXVeFfXEaU3OaS8zaugey1LFPhfE4p9Aprg7i@vger.kernel.org, AJvYcCVWqV9Emq4QeF3i84VZGNfpb9rxoC3dYHeAZ7M4sLJPSyULIdDOq7KWjmSIvbpnsj3a7lIiFyci7d4fLBagC6phMw==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz+gKv1vbFd2wiIkF+y3ooYqguvrhhwxQluGxZWPS+Z9sAnEqtk
-	/QPPoZsEm6uz7BQ0NUIwebZlxO6tiqA8lQ7qUdTutHWfxtpnFi5URFfhJBz/
-X-Google-Smtp-Source: AGHT+IEzCEAgN24aSwEHhv9LZ4/HTaQFSwHcVZ3FCi2xK/t+E69+kjzqK5UsacVPhzvaC55O3ixglQ==
-X-Received: by 2002:a05:6214:4a07:b0:6bf:745e:d48e with SMTP id 6a1803df08f44-6bf7ce67f9dmr184877126d6.51.1724153108513;
-        Tue, 20 Aug 2024 04:25:08 -0700 (PDT)
+        bh=bwO5zmlyTts2R3hD8kDJpY5JPORTb+evazmHWAEiBRA=;
+        b=sX0Lf/3hNA1sPQ1b8noHmIe6QQd5pDMpHQo/ctDwP5VRXTmqsp/QVvjs4miTnS1s0c
+         FNzy/dHSe1dFFXIp/SnBw8RSkD5fSnsH2UFSqZBSQd7nGrjRS7VDN36tUhhjVYAnZGF+
+         3V8UcCNJD3BurQ8vimhenQLCMcpDxE/sUTBwdbSnEpYC+yFRki1JDBZ1iydSfbTPoYfw
+         Rfr9vKVIGc++l99YjVdFhCqDSe0VMhO8lnTQZwwy75XxFjy+AMINkNgFqbGC3mAIoy40
+         /KIQO1+Pr4CowsYYc/eg8KAWCiO5kWslORU2dbr4lp97G6sXw5MuWW13bu2UynkYIPFG
+         C6Yg==
+X-Forwarded-Encrypted: i=1; AJvYcCUfnmQ2J5Qfu0/19GSNhu1eqeNNM6q09jj19glyrd4imMfjo961xGfHqODJ049NZlyJp0T3lpWQlyt0vZ0xIJcNxlTZHZvW2DJh/nGhjznAW6443ZrRKoxr1oT64wdTH1au/XYuTYKPCBcS
+X-Gm-Message-State: AOJu0Yz2SgqNuoDcWdKPNz/H6gFcEbaGNckTjg1TRlSKk4ISD7JK4zKj
+	7xpc04U5Zu0iPLRQpZ6ZalH0BD9dqKgh4/kfim3/D5Xbk+hgVT5B
+X-Google-Smtp-Source: AGHT+IG2rDlkuGVefnnHq/7qnkUTqjqn6xXXHLqUGu2Nni013rybNQdMNlIZiITetwIcDm/A6J7i9Q==
+X-Received: by 2002:adf:a39a:0:b0:371:79f2:3d5c with SMTP id ffacd0b85a97d-3719465360cmr9314993f8f.31.1724153274516;
+        Tue, 20 Aug 2024 04:27:54 -0700 (PDT)
 Received: from krzk-bin ([178.197.215.209])
-        by smtp.googlemail.com with ESMTPSA id 6a1803df08f44-6bf6fe06feasm51356136d6.40.2024.08.20.04.25.06
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-429ded7cfc6sm195655675e9.42.2024.08.20.04.27.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Aug 2024 04:25:07 -0700 (PDT)
-Date: Tue, 20 Aug 2024 13:25:04 +0200
+        Tue, 20 Aug 2024 04:27:53 -0700 (PDT)
+Date: Tue, 20 Aug 2024 13:27:51 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
-Cc: andersson@kernel.org, krzk+dt@kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, quic_viswanat@quicinc.com, quic_mmanikan@quicinc.com, 
-	quic_varada@quicinc.com, quic_srichara@quicinc.com
-Subject: Re: [PATCH 2/2] remoteproc: qcom: add hexagon based WCSS secure PIL
- driver
-Message-ID: <4y37wrg7gi3unpqw5ukgd6jrwuqmuofcabhmtwzlgfpgtiighw@74abrhmpzktv>
-References: <20240820085517.435566-1-quic_gokulsri@quicinc.com>
- <20240820085517.435566-3-quic_gokulsri@quicinc.com>
+To: Arend van Spriel <arend.vanspriel@broadcom.com>
+Cc: Kalle Valo <kvalo@kernel.org>, Hector Martin <marcan@marcan.st>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, linux-wireless@vger.kernel.org, 
+	brcm80211@lists.linux.dev, asahi@lists.linux.dev
+Subject: Re: [PATCH 1/2] dt-bindings: wireless: restore constraint for
+ brcm,bcm4329-fmac compatible property
+Message-ID: <mbvhz3wosnykejgs65es2sfedxoevysbqu3jxmpgdze2b2tl6o@grx4mxas2bmf>
+References: <20240820101216.355012-1-arend.vanspriel@broadcom.com>
+ <20240820101216.355012-2-arend.vanspriel@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,143 +72,74 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240820085517.435566-3-quic_gokulsri@quicinc.com>
+In-Reply-To: <20240820101216.355012-2-arend.vanspriel@broadcom.com>
 
-On Tue, Aug 20, 2024 at 02:25:15PM +0530, Gokul Sriram Palanisamy wrote:
-> From: Vignesh Viswanathan <quic_viswanat@quicinc.com>
+On Tue, Aug 20, 2024 at 12:12:15PM +0200, Arend van Spriel wrote:
+> When extending the bindings for Apple PCIe devices the compatible property
+> specification was changed. However, it was changed such that for these
+> devices it was no longer necessary to have "brcm,bcm4329-fmac" listed as
+> string in the compatible list property as it was before that extension.
+
+Apart that this was never tested... That statement is not true. Look at
+"fixed" commit - it is not doing like that at all.
+
+I don't understand the reasoning.
+
+> This patch restores that constraint.
 > 
-> Add support to bring up hexagon based WCSS secure PIL remoteproc.
-> IPQ5332, IPQ9574 supports secure PIL remoteproc.
+> Fixes: e2e37224e8b3 ("dt-bindings: net: bcm4329-fmac: Add Apple properties & chips")
+> Signed-off-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+> ---
+>  .../net/wireless/brcm,bcm4329-fmac.yaml       | 19 ++++++++++---------
+>  1 file changed, 10 insertions(+), 9 deletions(-)
 > 
-> Signed-off-by: Vignesh Viswanathan <quic_viswanat@quicinc.com>
-> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
-> +static int wcss_sec_dump_segments(struct rproc *rproc,
-> +				  const struct firmware *fw)
-> +{
-> +	struct device *dev = rproc->dev.parent;
-> +	struct reserved_mem *rmem = NULL;
-> +	struct device_node *node;
-> +	int num_segs, index = 0;
-> +	int ret;
-> +
-> +	/* Parse through additional reserved memory regions for the rproc
-> +	 * and add them to the coredump segments
-> +	 */
-> +	num_segs = of_count_phandle_with_args(dev->of_node,
-> +					      "memory-region", NULL);
-> +	while (index < num_segs) {
-> +		node = of_parse_phandle(dev->of_node,
-> +					"memory-region", index);
-> +		if (!node)
-> +			return -EINVAL;
-> +
-> +		rmem = of_reserved_mem_lookup(node);
-> +		if (!rmem) {
-> +			dev_err(dev, "unable to acquire memory-region index %d num_segs %d\n",
-> +				index, num_segs);
+> diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+> index e564f20d8f41..47f90446322f 100644
+> --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Broadcom BCM4329 family fullmac wireless SDIO/PCIE devices
+>  
+>  maintainers:
+> -  - Arend van Spriel <arend@broadcom.com>
+> +  - Arend van Spriel <arend.vanspriel@broadcom.com>
+>  
+>  description:
+>    The Broadcom Single chip MAC part for the BCM4329 family and
+> @@ -27,7 +27,6 @@ properties:
+>                - brcm,bcm4341b0-fmac
+>                - brcm,bcm4341b4-fmac
+>                - brcm,bcm4341b5-fmac
+> -              - brcm,bcm4329-fmac
+>                - brcm,bcm4330-fmac
+>                - brcm,bcm4334-fmac
+>                - brcm,bcm43340-fmac
+> @@ -46,13 +45,15 @@ properties:
+>                - cypress,cyw43012-fmac
+>                - infineon,cyw43439-fmac
+>            - const: brcm,bcm4329-fmac
+> -      - enum:
+> -          - brcm,bcm4329-fmac
+> -          - pci14e4,43dc  # BCM4355
+> -          - pci14e4,4464  # BCM4364
+> -          - pci14e4,4488  # BCM4377
+> -          - pci14e4,4425  # BCM4378
+> -          - pci14e4,4433  # BCM4387
+> +    - items:
+> +          - enum:
+> +              - pci14e4,43dc  # BCM4355
+> +              - pci14e4,4464  # BCM4364
+> +              - pci14e4,4488  # BCM4377
+> +              - pci14e4,4425  # BCM4378
+> +              - pci14e4,4433  # BCM4387
+> +          - const: brcm,bcm4329-fmac
+> +    - const: brcm,bcm4329-fmac
 
-Leaking refcnt.
+And this does not make sense... You claim that some constrained was
+droppped and you re-add it, but in fact you still add the same code as
+it was before.
 
-> +			return -EINVAL;
-> +		}
-> +
-> +		of_node_put(node);
-> +
-> +		dev_dbg(dev, "Adding segment 0x%pa size 0x%pa",
-> +			&rmem->base, &rmem->size);
-> +		ret = rproc_coredump_add_custom_segment(rproc,
-> +							rmem->base,
-> +							rmem->size,
-> +							wcss_sec_copy_segment,
-> +							NULL);
-> +		if (ret)
-> +			return ret;
-> +
-> +		index++;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct rproc_ops wcss_sec_ops = {
-> +	.start = wcss_sec_start,
-> +	.stop = wcss_sec_stop,
-> +	.da_to_va = wcss_sec_da_to_va,
-> +	.load = wcss_sec_load,
-> +	.get_boot_addr = rproc_elf_get_boot_addr,
-> +	.panic = wcss_sec_panic,
-> +	.parse_fw = wcss_sec_dump_segments,
-> +};
-> +
-> +static int wcss_sec_alloc_memory_region(struct wcss_sec *wcss)
-> +{
-> +	struct reserved_mem *rmem = NULL;
-> +	struct device_node *node;
-> +	struct device *dev = wcss->dev;
-> +
-> +	node = of_parse_phandle(dev->of_node, "memory-region", 0);
-> +	if (node) {
-> +		rmem = of_reserved_mem_lookup(node);
-> +	} else {
-
-No, that's over complicated.
-
-Just if (!node) { error handling }.
-
-> +		dev_err(dev, "can't find phandle memory-region\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	of_node_put(node);
-> +
-> +	if (!rmem) {
-> +		dev_err(dev, "unable to acquire memory-region\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	wcss->mem_phys = rmem->base;
-> +	wcss->mem_reloc = rmem->base;
-> +	wcss->mem_size = rmem->size;
-> +	wcss->mem_region = devm_ioremap_wc(dev, wcss->mem_phys, wcss->mem_size);
-> +	if (!wcss->mem_region) {
-> +		dev_err(dev, "unable to map memory region: %pa+%pa\n",
-> +			&rmem->base, &rmem->size);
-> +		return -ENOMEM;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-
-...
-
-> +static int wcss_sec_ipq5332_init_clk(struct wcss_sec *wcss)
-> +{
-> +	int ret;
-> +	struct device *dev = wcss->dev;
-> +
-> +	wcss->im_sleep = devm_clk_get(wcss->dev, "im_sleep");
-> +	if (IS_ERR(wcss->im_sleep)) {
-> +		ret = PTR_ERR(wcss->im_sleep);
-> +		if (ret != -EPROBE_DEFER)
-> +			dev_err(dev, "failed to get im_sleep clock");
-
-Syntax is return dev_err_probe.
-
-> +		return ret;
-> +	}
-> +
-> +	ret = clk_prepare_enable(wcss->im_sleep);
-> +	if (ret) {
-> +		dev_err(dev, "could not enable im_sleep clk\n");
-> +		return ret;
-
-Just use devm_clk_get_enabled.
-
-> +	}
-> +
-> +	return 0;
+NAK.
 
 Best regards,
 Krzysztof
