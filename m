@@ -1,194 +1,212 @@
-Return-Path: <devicetree+bounces-95344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 706AB958EA7
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 21:36:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDB46958EDF
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 21:55:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0BA3AB22291
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 19:36:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85FD3285046
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 19:55:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0481514B94A;
-	Tue, 20 Aug 2024 19:36:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59E8915C147;
+	Tue, 20 Aug 2024 19:55:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="J8iBb94f"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qse4Bbdn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47B7618E344;
-	Tue, 20 Aug 2024 19:36:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20D5B1547D1;
+	Tue, 20 Aug 2024 19:55:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724182573; cv=none; b=lNJIskxpU+BgqQ4sm9+ZgwA34HbmOI2TZka5Ciub6LVKHHI4dKs0UnQSxketlC47byPGc3n9Xc+/m7ODlXTc6wLOjApS6s2Yjyf7KCoSWlx4NkPxoWubLRC4Vxx7AYFa0p0ffQZ4/ghclKt+ZicI7C2/F0+JMXxuhHq+/WGykX8=
+	t=1724183706; cv=none; b=iCwxeNhwCOitIS6SBuz6O1JUAsdL3btb3yuYvmxfIT/lxs7J4e7X/CSrIH7MQvrkJsPJb3TdHWQwBuJx9UV07xzRjZmj5qwyrUOp6cYLSsDxQ2MEXNoB9BBe+SwWJKS3yTVDUu02a5dimJLEMZGFiuDFUUwxG1yWQ5sxniJeXI0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724182573; c=relaxed/simple;
-	bh=cOiekeev6rboGHHqGdqb1WjVCCU0ERSHU0V1gtQo2cE=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ON01p9YR8dBjNMlatcJvfWKMgiMFlhcWz2hrOhVPK1iUYddYRoB2AIifSGPshUpis/mpskHVKxPE2UnG6pkRfZJCwQU5HcvGrTbWc5Vc0b2/AS5Z31SBlvEvKQSZb1E8AYmw6CUG3T0VX/jtwlBVngVIn5Zph2/ytH2z42Y7exg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=J8iBb94f; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47KJYLdd070049;
-	Tue, 20 Aug 2024 14:34:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1724182461;
-	bh=7VxsXiOBuB77K83K09T3n0c3TQYauUlHJkmNSsCfAR8=;
-	h=From:To:CC:Subject:Date;
-	b=J8iBb94fPEKjb9BzSGIWxKVAF4S2D/JdhOIafVPyBu0BR577ez1y3ToHA9It8ujCF
-	 7/pF3r7VDp4vLe70htFsViF2dD7BV3ydU1ACuPf9IXcYWKBjEoE9zYiRQJJipCFz0d
-	 wxhjC5pNFsdyP+n0pHVqvNQse2N2iHiIlTM4FcqY=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47KJYLDF055960
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 20 Aug 2024 14:34:21 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 20
- Aug 2024 14:34:20 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 20 Aug 2024 14:34:20 -0500
-Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47KJYKNW081261;
-	Tue, 20 Aug 2024 14:34:20 -0500
-From: Judith Mendez <jm@ti.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Jan Kiszka
-	<jan.kiszka@siemens.com>,
-        Bhavya Kapoor <b-kapoor@ti.com>
-Subject: [PATCH] arm64: dts: k3-am654-idk: Add Support for MCAN
-Date: Tue, 20 Aug 2024 14:34:20 -0500
-Message-ID: <20240820193420.29184-1-jm@ti.com>
-X-Mailer: git-send-email 2.46.0
+	s=arc-20240116; t=1724183706; c=relaxed/simple;
+	bh=N4Qq3iZWY8eQWm64J0ShcQ1nb3n6BnqGNeWNK07Ou6c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GzVXAHFMNNhr/t09uU5vw/5iX6D+w+8MeLPa+dgzSU0EPDLa2C6FJz4zoeMEtpCwPIOP9gnJofCcDO4vjkHzibbLRG4qEdBPE14YCsXMKmXh94VucVxx/toIuMNJ0ncL4JsXHwoQ4AXjXMWivffqqZsfB9jDuaKTKblgMcezC1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qse4Bbdn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D184C4AF09;
+	Tue, 20 Aug 2024 19:55:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724183705;
+	bh=N4Qq3iZWY8eQWm64J0ShcQ1nb3n6BnqGNeWNK07Ou6c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qse4Bbdn4CILpo8kSdpDhIVH5hyMQmN2mI+8r3HO7bdyvBwgDYfwsUR4jVDme/YRv
+	 9yX5MfX0HQczTGhI5Vfmp7XYUcoClfamYpBVATdYq0U+4Jd2qQ1UpHHUtKxf70JNDG
+	 eIZMQd/MW9tbA/hwrQ2S600Ecw859wEcShC1bQhGH1t+EiQM6UcP8f6oIn1lbtqzT/
+	 v/Qd2gqWdDOhyHLtDYJ/l5Pi05ZcVh0n2HaDqAlwAPtqrKeHsBBXX7QMrlbCwYRMYP
+	 Qg3LsTRNZ1HVlcU0y+Alxfa5Mo4+xC8WZbLV7UELB0blzSMVRnq/09Xw7sBrDx5JpN
+	 5JFEr5uVR/lGA==
+Date: Tue, 20 Aug 2024 14:55:02 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Marc Gonzalez <mgonzalez@freebox.fr>
+Cc: Rob Clark <robdclark@gmail.com>, Will Deacon <will@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, iommu@lists.linux.dev, 
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Konrad Dybcio <konradybcio@kernel.org>, Arnaud Vrac <avrac@freebox.fr>, 
+	Pierre-Hugues Husson <phhusson@freebox.fr>, Marijn Suijten <marijn.suijten@somainline.org>, 
+	Caleb Connolly <caleb.connolly@linaro.org>
+Subject: Re: [PATCH v3] iommu/arm-smmu-qcom: hide last LPASS SMMU context
+ bank from linux
+Message-ID: <hilrqug7akx3d4g5mh76swu37ywlkxlbnurc5mzz5yva43uiek@kpurwhc6uu6w>
+References: <20240820-smmu-v3-1-2f71483b00ec@freebox.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240820-smmu-v3-1-2f71483b00ec@freebox.fr>
 
-From: Faiz Abbas <faiz_abbas@ti.com>
+On Tue, Aug 20, 2024 at 03:27:19PM GMT, Marc Gonzalez wrote:
+> On qcom msm8998, writing to the last context bank of lpass_q6_smmu
+> (base address 0x05100000) produces a system freeze & reboot.
+> 
+> The hardware/hypervisor reports 13 context banks for the LPASS SMMU
+> on msm8998, but only the first 12 are accessible...
+> Override the number of context banks
+> 
+> [    2.546101] arm-smmu 5100000.iommu: probing hardware configuration...
+> [    2.552439] arm-smmu 5100000.iommu: SMMUv2 with:
+> [    2.558945] arm-smmu 5100000.iommu: 	stage 1 translation
+> [    2.563627] arm-smmu 5100000.iommu: 	address translation ops
+> [    2.568923] arm-smmu 5100000.iommu: 	non-coherent table walk
+> [    2.574566] arm-smmu 5100000.iommu: 	(IDR0.CTTW overridden by FW configuration)
+> [    2.580220] arm-smmu 5100000.iommu: 	stream matching with 12 register groups
+> [    2.587263] arm-smmu 5100000.iommu: 	13 context banks (0 stage-2 only)
+> [    2.614447] arm-smmu 5100000.iommu: 	Supported page sizes: 0x63315000
+> [    2.621358] arm-smmu 5100000.iommu: 	Stage-1: 36-bit VA -> 36-bit IPA
+> [    2.627772] arm-smmu 5100000.iommu: 	preserved 0 boot mappings
+> 
+> Specifically, the crashes occur here:
+> 
+> 	qsmmu->bypass_cbndx = smmu->num_context_banks - 1;
+> 	arm_smmu_cb_write(smmu, qsmmu->bypass_cbndx, ARM_SMMU_CB_SCTLR, 0);
+> 
+> and here:
+> 
+> 	arm_smmu_write_context_bank(smmu, i);
+> 	arm_smmu_cb_write(smmu, i, ARM_SMMU_CB_FSR, ARM_SMMU_CB_FSR_FAULT);
+> 
+> It is likely that FW reserves the last context bank for its own use,
+> thus a simple work-around is: DON'T USE IT in Linux.
+> 
+> If we decrease the number of context banks, last one will be "hidden".
+> 
+> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
 
-There are two MCAN instances present on the am65x SoC [0].
-Since there are two CAN transceivers on the IDK application
-board for AM654 EVM [1], enable m_can0 and m_can1, add the
-two corresponding CAN transceiver nodes, and set a maximum
-data rate of 5 Mbps.
+Reviewed-by: Bjorn Andersson <andersson@kernel.org>
 
-[0] https://www.ti.com/lit/ds/symlink/am6548.pdf
-[1] https://www.ti.com/lit/zip/sprr382
+Regards,
+Bjorn
 
-Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
-Signed-off-by: Judith Mendez <jm@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am654-idk.dtso | 61 ++++++++++++++++++++++++
- 1 file changed, 61 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-idk.dtso b/arch/arm64/boot/dts/ti/k3-am654-idk.dtso
-index 8bdb87fcbde00..39c96b7961881 100644
---- a/arch/arm64/boot/dts/ti/k3-am654-idk.dtso
-+++ b/arch/arm64/boot/dts/ti/k3-am654-idk.dtso
-@@ -8,6 +8,7 @@
- /dts-v1/;
- /plugin/;
- 
-+#include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/net/ti-dp83867.h>
- #include "k3-pinctrl.h"
- 
-@@ -154,6 +155,24 @@ icssg1_emac1: port@1 {
- 			};
- 		};
- 	};
-+
-+	transceiver1: can-phy0 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&mcan0_gpio_pins_default>;
-+		standby-gpios = <&main_gpio1 47 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	transceiver2: can-phy1 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&mcan1_gpio_pins_default>;
-+		standby-gpios = <&main_gpio1 67 GPIO_ACTIVE_LOW>;
-+	};
- };
- 
- &main_pmx0 {
-@@ -243,6 +262,34 @@ icssg1_iep0_pins_default: icssg1-iep0-default-pins {
- 			AM65X_IOPAD(0x012c, PIN_INPUT, 2) /* (AG26) PRG1_PRU0_GPO19.PRG1_IEP0_EDC_SYNC_OUT0 */
- 		>;
- 	};
-+
-+	mcan0_gpio_pins_default: mcan0-gpio-default-pins {
-+		pinctrl-single,pins = <
-+			AM65X_IOPAD(0x023c, PIN_INPUT, 7) /* (V25) PRG0_PRU0_GPIO18:GPIO1_47 */
-+		>;
-+	};
-+
-+	mcan1_gpio_pins_default: mcan1-gpio-default-pins {
-+		pinctrl-single,pins = <
-+			AM65X_IOPAD(0x028c, PIN_INPUT, 7) /* (Y26) PRG0_PRU1_GPIO18.GPIO1_67 */
-+		>;
-+	};
-+};
-+
-+&wkup_pmx0 {
-+	mcu_mcan0_pins_default: mcu-mcan0-default-pins {
-+		pinctrl-single,pins = <
-+			AM65X_WKUP_IOPAD(0x00ac, PIN_INPUT_PULLUP, 0) /* (W2) MCU_MCAN0_RX */
-+			AM65X_WKUP_IOPAD(0x00a8, PIN_OUTPUT_PULLUP, 0) /* (W1) MCU_MCAN0_TX */
-+		>;
-+	};
-+
-+	mcu_mcan1_pins_default: mcu-mcan1-default-pins {
-+		pinctrl-single,pins = <
-+			AM65X_WKUP_IOPAD(0x00c4, PIN_INPUT_PULLUP, 1) /* (AD3) WKUP_GPIO0_5.MCU_MCAN1_RX */
-+			AM65X_WKUP_IOPAD(0x00c0, PIN_OUTPUT_PULLUP, 1) /* (AC3) WKUP_GPIO0_4.MCU_MCAN1_TX */
-+		>;
-+	};
- };
- 
- &icssg0_mdio {
-@@ -294,3 +341,17 @@ &icssg1_iep0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&icssg1_iep0_pins_default>;
- };
-+
-+&m_can0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_mcan0_pins_default>;
-+	phys = <&transceiver1>;
-+};
-+
-+&m_can1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_mcan1_pins_default>;
-+	phys = <&transceiver2>;
-+};
-
-base-commit: e3cce1229c34b5c28f103361c4d6b3ef17302d5d
--- 
-2.46.0
-
+> ---
+> Changes in v3:
+> - Use very specific test (hack) to avoid changing the binding (Bjorn)
+> - Link to v2: https://lore.kernel.org/r/20240819-smmu-v1-0-bce6e4738825@freebox.fr
+> 
+> Changes in v2:
+> - Use the compatible prop instead of a specific prop to trigger work-around (Bjorn & Caleb)
+> - Add qcom,msm8998-lpass-smmu compatible string
+> - Link to v1: https://lore.kernel.org/r/20240814-smmu-v1-0-3d6c27027d5b@freebox.fr
+> 
+> On qcom msm8998, writing to the last context bank of lpass_q6_smmu
+> (base address 0x05100000) produces a system freeze & reboot.
+> 
+> The hardware/hypervisor reports 13 context banks for the LPASS SMMU
+> on msm8998, but only the first 12 are accessible...
+> Override the number of context banks
+> 
+> [    2.546101] arm-smmu 5100000.iommu: probing hardware configuration...
+> [    2.552439] arm-smmu 5100000.iommu: SMMUv2 with:
+> [    2.558945] arm-smmu 5100000.iommu: 	stage 1 translation
+> [    2.563627] arm-smmu 5100000.iommu: 	address translation ops
+> [    2.568923] arm-smmu 5100000.iommu: 	non-coherent table walk
+> [    2.574566] arm-smmu 5100000.iommu: 	(IDR0.CTTW overridden by FW configuration)
+> [    2.580220] arm-smmu 5100000.iommu: 	stream matching with 12 register groups
+> [    2.587263] arm-smmu 5100000.iommu: 	13 context banks (0 stage-2 only)
+> [    2.614447] arm-smmu 5100000.iommu: 	Supported page sizes: 0x63315000
+> [    2.621358] arm-smmu 5100000.iommu: 	Stage-1: 36-bit VA -> 36-bit IPA
+> [    2.627772] arm-smmu 5100000.iommu: 	preserved 0 boot mappings
+> 
+> Specifically, here:
+> 
+> 	qsmmu->bypass_cbndx = smmu->num_context_banks - 1;
+> 	arm_smmu_cb_write(smmu, qsmmu->bypass_cbndx, ARM_SMMU_CB_SCTLR, 0);
+> 
+> and here:
+> 
+> 	arm_smmu_write_context_bank(smmu, i);
+> 	arm_smmu_cb_write(smmu, i, ARM_SMMU_CB_FSR, ARM_SMMU_CB_FSR_FAULT);
+> 
+> It is likely that FW reserves the last context bank for its own use,
+> thus a simple work-around would be: DON'T USE IT in Linux.
+> 
+> For reference, the lpass_q6_smmu node looks like this:
+> 
+> 	lpass_q6_smmu: iommu@5100000 {
+> 		compatible = "qcom,msm8998-smmu-v2", "qcom,smmu-v2";
+> 		reg = <0x05100000 0x40000>;
+> 		clocks = <&gcc HLOS1_VOTE_LPASS_ADSP_SMMU_CLK>;
+> 		clock-names = "iface";
+> 
+> 		#global-interrupts = <0>;
+> 		#iommu-cells = <1>;
+> 		interrupts =
+> 			<GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>,
+> 			<GIC_SPI 393 IRQ_TYPE_LEVEL_HIGH>,
+> 			<GIC_SPI 394 IRQ_TYPE_LEVEL_HIGH>,
+> 			<GIC_SPI 395 IRQ_TYPE_LEVEL_HIGH>,
+> 			<GIC_SPI 396 IRQ_TYPE_LEVEL_HIGH>,
+> 			<GIC_SPI 397 IRQ_TYPE_LEVEL_HIGH>,
+> 			<GIC_SPI 398 IRQ_TYPE_LEVEL_HIGH>,
+> 			<GIC_SPI 399 IRQ_TYPE_LEVEL_HIGH>,
+> 			<GIC_SPI 400 IRQ_TYPE_LEVEL_HIGH>,
+> 			<GIC_SPI 401 IRQ_TYPE_LEVEL_HIGH>,
+> 			<GIC_SPI 402 IRQ_TYPE_LEVEL_HIGH>,
+> 			<GIC_SPI 403 IRQ_TYPE_LEVEL_HIGH>,
+> 			<GIC_SPI 137 IRQ_TYPE_LEVEL_HIGH>;
+> 
+> power-domains = <&gcc LPASS_ADSP_GDSC>;
+> 		status = "disabled";
+> 	};
+> ---
+>  drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> index 7e65189ca7b8c..625db1d00fe5e 100644
+> --- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> @@ -282,6 +282,13 @@ static int qcom_smmu_cfg_probe(struct arm_smmu_device *smmu)
+>  	u32 smr;
+>  	int i;
+>  
+> +	/*
+> +	 * MSM8998 LPASS SMMU reports 13 context banks, but accessing
+> +	 * the last context bank crashes the system.
+> +	 */
+> +	if (of_device_is_compatible(smmu->dev->of_node, "qcom,msm8998-smmu-v2") && smmu->num_context_banks == 13)
+> +		smmu->num_context_banks = 12;
+> +
+>  	/*
+>  	 * Some platforms support more than the Arm SMMU architected maximum of
+>  	 * 128 stream matching groups. For unknown reasons, the additional
+> 
+> ---
+> base-commit: 96a96aed6bb75b5c212f233b6c059a9354cdeebe
+> change-id: 20240814-smmu-d572c1a16aac
+> 
+> Best regards,
+> -- 
+> Marc Gonzalez <mgonzalez@freebox.fr>
+> 
 
