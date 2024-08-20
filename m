@@ -1,158 +1,154 @@
-Return-Path: <devicetree+bounces-95056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95057-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A56E957DF0
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 08:18:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73675957DF5
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 08:19:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A596D1C23758
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 06:18:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F057284029
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 06:19:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45D9916A39E;
-	Tue, 20 Aug 2024 06:18:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 579FE16A952;
+	Tue, 20 Aug 2024 06:19:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lg3FyyE7"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="l3z+AbXr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 151E7168483;
-	Tue, 20 Aug 2024 06:18:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 874562A1B2;
+	Tue, 20 Aug 2024 06:19:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724134694; cv=none; b=MYkYCZOw+2uOZpQ0GYyrViGvnECHPzkAZugPWbcJVr5TTyLWK/0PMEIJrTk8cEj+Jncekb7Ee5CYYKlBPlMWumLn8IHYWRbO2YFPmpvhGIqOxHW7dXXT7oWO5A1sn12LCGtBqtOo0s43g8ECB/940a+YkYLhBVuKtELTXWmJjXE=
+	t=1724134774; cv=none; b=sW5grpOeOYD7O386YxV5D8u28DkijXlii6iYy8LsuWk14EohHb+b5K7Vez5DLpQz3DOqYoGXOh/G40ukghqQhMIEzkr948kEwdlAhgYzyqpOw+rN50REPOlreLczcXn61nGJM1v+brZse2ly6hyEoz6TwQ8WnMXbTi2sPojw/2c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724134694; c=relaxed/simple;
-	bh=2ld+05bMtWwSaARnx/cBZ7TxRoE95XhOYpBHNxdKANg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=N7YABNuhWG2uKkj9w7BsxJ32KawipzUver8CIUevE6kZO9zwRlr9f5YJ83wRzIaLZhH21HL1fbXMDJlf0ewENJUjxBP0pbP7fMnuTy+ydPdicoPwUObQTZ0xp7FS9LysbgX53Vq2XPFgdyJ7pGb5naFhCV2NmsS/F1RFulFY/gg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lg3FyyE7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 878B5C4AF09;
-	Tue, 20 Aug 2024 06:18:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724134693;
-	bh=2ld+05bMtWwSaARnx/cBZ7TxRoE95XhOYpBHNxdKANg=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=Lg3FyyE7wLzG34UcAeZQ/BCCeVdeXbnl18wQeF+r19ZOWF1fCwLjrqn0/ClnGjFCk
-	 oE7miulYoF4+pe7MIw1fZpn/AxiHSCQaaKU2hSkJT4IhvfBX69HUjPkn27gruNyi5x
-	 1T/IKfeT8RxyAEfIIpdafdeEe95Xt3Osnik07bM8eyvUiaG7x3ivxxjlqyMQ31cb59
-	 v6avvwK9HDUiEeVHxgOoczysW9aGBypJI4j/G39PmRWpW4WG+IsJWQ6sgGwOFjTEx6
-	 qa7oFZMVAnoFNbmB3vc/NcTr2xnTGCvNiDOy6VnCxemkgsNL65XLstx/rbmPrm6KEY
-	 3n9BPKkyP8hKw==
-Message-ID: <46a9280d-f4ef-4cfb-83a3-3744e04721f3@kernel.org>
-Date: Tue, 20 Aug 2024 08:18:06 +0200
+	s=arc-20240116; t=1724134774; c=relaxed/simple;
+	bh=qbLTJSAjd2i5MbXaaXESgl/A7y4ae0phkjCMfbjlFKI=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CsuDRkZXb2yTt1wVQv8shhRxX2KsG+42tIIML9TeSEXQzGtYmtPYkMLjWtVqMjDOKO0x6RrYCaWyrzrPVcmtMKq6+1w9Yjd29SfUjHsOmwFH1v4xX2JYbQNYeZ4lNnD5PT/Ie2X+eP3NPuUxqWZ5rs6WGcyA7envlzpdiHuXLRc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=l3z+AbXr; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47K026Cv015828;
+	Tue, 20 Aug 2024 06:19:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=qbLTJSAjd2i5MbXaaXESgl/A
+	7y4ae0phkjCMfbjlFKI=; b=l3z+AbXrHLD9815V2NftGAMqv/B+veGAuF/ex7SD
+	PPD+S37RO8tULO8kNH0EwbNsBgd3gP55Aub7I8u3DxniiKXAAyIh6q7vzrfvDsKH
+	Hfpe1SegTfzCNUwcWFf9KEFX5KaeoUYtFoEE6yJZ2C0INYfPm1NZ2O1m+QiHXhmz
+	IYjnOldISuGMJGfPwSR+mOzEJIdFahC5tj61Y3hoYmbXuCDtrvmuwCoh+Hz2Y1JV
+	0Vvsr+rn/tD2nHQiO2jDk1AKCkjSgJ+e4JujRbbt1Rd5YVkYeRbIkntQFS3obBCB
+	4KvFfYaLT5mLlSdTMiaC+uB1xWB9aNnbE4xWfWD1nARKqQ==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 412m876nvk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 20 Aug 2024 06:19:16 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47K6JE73027670
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 20 Aug 2024 06:19:14 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 19 Aug 2024 23:19:07 -0700
+Date: Tue, 20 Aug 2024 11:49:03 +0530
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>
+CC: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>, <ilia.lin@kernel.org>,
+        <rafael@kernel.org>, <viresh.kumar@linaro.org>,
+        <quic_sibis@quicinc.com>, <quic_rjendra@quicinc.com>,
+        <danila@jiaxyga.com>, <neil.armstrong@linaro.org>,
+        <otto.pflueger@abscue.de>, <abel.vesa@linaro.org>, <luca@z3ntu.xyz>,
+        <geert+renesas@glider.be>, <stephan.gerhold@kernkonzept.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>,
+        Praveenkumar I
+	<quic_ipkumar@quicinc.com>
+Subject: Re: [PATCH v6 5/9] pmdomain: qcom: rpmpd: Add IPQ9574 power domains
+Message-ID: <ZsQ1V/qusOz6uctA@hu-varada-blr.qualcomm.com>
+References: <20240710061102.1323550-1-quic_varada@quicinc.com>
+ <20240710061102.1323550-6-quic_varada@quicinc.com>
+ <d454e01f-3d6b-4a02-87cf-3d289bc6957c@linaro.org>
+ <ZpeLYG6vegJYZ5Rs@hu-varada-blr.qualcomm.com>
+ <ZqCD3xtkLHbw9BHN@hu-varada-blr.qualcomm.com>
+ <iy3l3ybmvllqxtyqq7fifiokxaaedrs22davveel4ikjoqivdm@dinswoc52qpz>
+ <CAPDyKFoSK4_gRtOY2_pZhT7AytZ4qpZpRTzg5cOrqJj7A22b6A@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 1/3] dt-bindings: i2c: aspeed: support for
- AST2600-i2cv2
-To: Ryan Chen <ryan_chen@aspeedtech.com>,
- "brendan.higgins@linux.dev" <brendan.higgins@linux.dev>,
- "benh@kernel.crashing.org" <benh@kernel.crashing.org>,
- "joel@jms.id.au" <joel@jms.id.au>,
- "andi.shyti@kernel.org" <andi.shyti@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
- "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
- "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20240819092850.1590758-1-ryan_chen@aspeedtech.com>
- <20240819092850.1590758-2-ryan_chen@aspeedtech.com>
- <7237aa34-9821-4ba7-a45b-3b1d598bc282@kernel.org>
- <OS8PR06MB75418A2ACA6693A8163F19E8F28D2@OS8PR06MB7541.apcprd06.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <OS8PR06MB75418A2ACA6693A8163F19E8F28D2@OS8PR06MB7541.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFoSK4_gRtOY2_pZhT7AytZ4qpZpRTzg5cOrqJj7A22b6A@mail.gmail.com>
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: MweU2tGZChrAwiTpkRejd55buTB5loI-
+X-Proofpoint-ORIG-GUID: MweU2tGZChrAwiTpkRejd55buTB5loI-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-19_16,2024-08-19_03,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
+ mlxlogscore=581 priorityscore=1501 adultscore=0 lowpriorityscore=0
+ clxscore=1011 bulkscore=0 suspectscore=0 spamscore=0 impostorscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2408200045
 
-On 20/08/2024 03:29, Ryan Chen wrote:
->> Subject: Re: [PATCH v13 1/3] dt-bindings: i2c: aspeed: support for
->> AST2600-i2cv2
->>
->> On 19/08/2024 11:28, Ryan Chen wrote:
->>> Add ast2600-i2cv2 compatible and aspeed,global-regs, aspeed,enable-dma
->>> and description for ast2600-i2cv2.
->>>
->>> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
->>> Reviewed-by: Krzysztof Kozlowski <krzk+dt@kernel.org>
->>
->> ?!?
->>
->> What happened here? Why are you amending tags?!? That's not allowed. You
->> cannot change received tags, change people names or their data! And how is it
->> even possible, srsly, how do you even work with git? Git would never do it, so
->> you had to do it on purpose via some weird workflow.
->>
-> Sorry, I don't know Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> is you or not.
-> Or should I still keep Krzysztof Kozlowski <krzk+dt@kernel.org>?
-> 
-> https://patches.linaro.org/project/linux-i2c/patch/20230415012848.1777768-2-ryan_chen@aspeedtech.com/
+On Mon, Aug 05, 2024 at 12:32:34PM +0200, Ulf Hansson wrote:
+> On Wed, 24 Jul 2024 at 19:26, Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
+> >
+> > On Wed, Jul 24, 2024 at 10:02:31AM GMT, Varadarajan Narayanan wrote:
+> > > On Wed, Jul 17, 2024 at 02:44:08PM +0530, Varadarajan Narayanan wrote:
+> > > > On Tue, Jul 16, 2024 at 02:15:12PM +0200, Konrad Dybcio wrote:
+> > > > > On 10.07.2024 8:10 AM, Varadarajan Narayanan wrote:
+> > > > > > From: Praveenkumar I <quic_ipkumar@quicinc.com>
+> > > > > >
+> > > > > > Add the APC power domain definitions used in IPQ9574.
+> > > > > >
+> > > > > > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > > > > Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> > > > > > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> > > > > > ---
+> > > > >
+> > > > > Could you please confirm [1]?
+> > > > >
+> > > > > Konrad
+> > > > >
+> > > > > [1] https://lore.kernel.org/linux-arm-msm/57dadb35-5dde-4127-87aa-962613730336@linaro.org/
+> > > >
+> > > > The author is off for a few days. Will get back to you once he is in.
+> > >
+> > > Have responded to that query. Please see https://lore.kernel.org/linux-arm-msm/ZqCCpf1FwLWulSgr@hu-varada-blr.qualcomm.com/
+> >
+> > If it responds to voltage values, please model it as a regulator rather
+> > than a power domain.
+>
+> Just wanted to give my brief opinion around this too.
+>
+> I agree that it seems to make sense to model it as a regulator, but
+> that doesn't necessarily mean that we shouldn't model it as a
+> power-domain too.
+>
+> If it is a power-domain it should be modelled like that - and then the
+> power-domain provider should be assigned as the consumer of that
+> regulator.
 
-Here is the tag you received. You added it in v12.
+Have posted V7 (without modelling as power-domain).
+Please review.
 
-Why did you change the tag suddenly to something else?
-
-Do you understand that you are not allowed to change people tags? I have
-doubts if you ask about people's identities, which is entirely irrelevant.
-
-Best regards,
-Krzysztof
-
+Thanks
+Varada
 
