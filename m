@@ -1,97 +1,106 @@
-Return-Path: <devicetree+bounces-95200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0340E9585DA
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 13:30:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8292D9585E9
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 13:34:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 32E7D1C24508
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 11:30:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FEF52823DD
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 11:34:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C59118D63B;
-	Tue, 20 Aug 2024 11:30:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE92018E05C;
+	Tue, 20 Aug 2024 11:34:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n3z7TcFI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AADB11CAAF;
-	Tue, 20 Aug 2024 11:30:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A81E118DF9F;
+	Tue, 20 Aug 2024 11:34:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724153432; cv=none; b=hMMhcpmLZpRsHVqBvS3I2xSOnna0BGQIXsd6dvbbGEzcaXj+VpNn4HpsYOkzsRJsytlPjS4SoNxcpTPCjx+yN3wE8dKPGkxPaPfvPDC3i+K35FTCntUVC1jVEVSOskqul9fQz8r5+6x29x4vhY0Y7532DnWyG5LNvJco6xqgfZA=
+	t=1724153680; cv=none; b=YyMbPt8B8sTkKkLPkLfPCwfxwIUBGzMyeXjYxNmBt87JRaVZh4HI+B5z0us39XlryuS/WVdfNZWEXqSiaPtH/mA7+M5yoyP5UsPju43R7SDe65YJwYB0qmo4D5/JvQrAqHwrmE9abgvrWbqSDLCJAuW0//sO1klCMUgT2id0fJA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724153432; c=relaxed/simple;
-	bh=LwNxyJ8nRP2FJc1MWTutiqa/SpX3rNJs78aYCROn9FE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=je3ekqp1/VKFEPudxesiR0xIQ9Jj2G2lTHGpEbbLCkmxZPw43u3MHrNFTPpewiImOnRAJxbVYmgqO1/0NpR8Wx+fpYyHj05VytpEKJjfxDKGiDg52ZfLH/6eGRPYSveqY5vOUEgehf3T0h/SwMRSfdQqQO+LmjQI1BqrdQCbTBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a83562f9be9so486756466b.0;
-        Tue, 20 Aug 2024 04:30:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724153429; x=1724758229;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hSdQn5lqHbb7x/BQkgHUJ4Z5p0Igia2Fda+/Marx+2w=;
-        b=IsN55myBIFVS3LzhYMq6KezxF41wgeNR7P2HAF7q2jYHYBXopDByOBTGfGWGKgmfjl
-         qBHkOfYNYTcBeliohuy0pNbw/DWUvUHlpmYE9WyXN+/RGsQvfbq5SQ/cVqqrMUQ65hMt
-         U7LabDnLq9Opcq1Vrl2lLIARaPreZj6YXz1ALta2zz+7EEYgoR3z71oA/38DMm8rPJUv
-         wC44ZDgyUoSjoaina1ZGUuuMSO9p9pY4xZ7QlcFihd06jqhTP5lBMccB6Jr8TGJWkVLH
-         qDARcv8fymd/79gnWlzCL6TlMXR2zMEuq4kF+Rg5YF1yKdckmZG4fgCRN8UZX1jf//Tt
-         qWAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXNRP+PJ32TrM+ZrcJmqnLa7Syobk8U9iG9VeBaUIyaBhqflbYbSFV4VyhKBRabEEUcsQAOHHVwpjmVBGLtv+ElurkxvKoUZpvIvqAyLm+RpRa/11P0a3TG8hDl+XUXtFVfLpZ+vWdqGO3S
-X-Gm-Message-State: AOJu0YxYGtiXhQ9r3+foqh0YFSwUWm2rApSCn6QpoaBhBhy00ZLfMXUs
-	r7XWN7qPs0BfG7qEuHcdmtu7KA1G1fI5vaH8+tCwpEFtHF3gsTDA
-X-Google-Smtp-Source: AGHT+IFbS8TXkzjdmPgjYCIQx78qrEAP1lLMjYhcuqC0ZBklgV483mYM3zGpVoQdO8IekiLHD9sdLA==
-X-Received: by 2002:a17:907:7f26:b0:a7d:e5b1:bf65 with SMTP id a640c23a62f3a-a8392930dc2mr886533166b.21.1724153428783;
-        Tue, 20 Aug 2024 04:30:28 -0700 (PDT)
-Received: from krzk-bin ([178.197.215.209])
-        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-a838396d5eesm749316166b.225.2024.08.20.04.30.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Aug 2024 04:30:26 -0700 (PDT)
-Date: Tue, 20 Aug 2024 13:30:24 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Arend van Spriel <arend.vanspriel@broadcom.com>
-Cc: Kalle Valo <kvalo@kernel.org>, Hector Martin <marcan@marcan.st>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, linux-wireless@vger.kernel.org, 
-	brcm80211@lists.linux.dev, asahi@lists.linux.dev
-Subject: Re: [PATCH 2/2] arm64: boot: apple: fixup wifi device specification
-Message-ID: <2mqpwbn2je526zs6joxgcsue7r73ttpms72dntkup7hg7jkmmx@3lnsea5le5ya>
-References: <20240820101216.355012-1-arend.vanspriel@broadcom.com>
- <20240820101216.355012-3-arend.vanspriel@broadcom.com>
+	s=arc-20240116; t=1724153680; c=relaxed/simple;
+	bh=ANtOJyH0JV4o+Vunwy/aTAJ4hHjalojLyLOaxtkYHnM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hLjIBXJ9a2ORSYy169+q/DLfKQiXBjoXHU8q0pIK9ZP7y9rUYSdNruAQkVfzAdXGjGdlf675QxzeqsvGkkbXTiSkStZrcD8S3ZaCBuq0z8fqSxSnz1dVrHVC74aJBe1TRXJ5sUzrcJxRSZuF2JEfOtXcYlGFeBgni8UAk1Y6FlY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n3z7TcFI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEFC5C4AF0B;
+	Tue, 20 Aug 2024 11:34:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724153680;
+	bh=ANtOJyH0JV4o+Vunwy/aTAJ4hHjalojLyLOaxtkYHnM=;
+	h=From:Subject:Date:To:Cc:From;
+	b=n3z7TcFIHPL8iXLzTlpTVWyhqqVoiF9iQqDZYpnVXsKMfCECigZ7bv+l+0N6aHuV3
+	 a08JM+h0lfPfQFXO03a/B0nPpDhG3PRxs6MvNXXxEO4QkJTbCGugRxb20Zsc1swGtP
+	 igW4d8mu38ZEg1J4UNnmPQJ3HyJ07lkynfG5GRrQL9xJVJg8EddNyV5J2U9dGryQzp
+	 UOuFSeLHq7tKnLnnJBtRXn1nAN+nmg9rucjqrZ/hHZ+QNGEM6I/SZLHO5c0PDdJvMc
+	 1slCSmIbvDmSgA3HiIDU8fKfygzeWJZsps6JmxamMf/by60J/bWgVEcxL7LxeZxGUa
+	 2SY/y8dGmqUrw==
+From: Konrad Dybcio <konradybcio@kernel.org>
+Subject: [PATCH v2 0/2] X1E80100 multiport USB controller
+Date: Tue, 20 Aug 2024 13:34:21 +0200
+Message-Id: <20240820-topic-h_mp-v2-0-d88518066372@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240820101216.355012-3-arend.vanspriel@broadcom.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAD1/xGYC/23MQQ7CIBCF4as0sxZDaWnAlfcwjTFTKrMoUKhE0
+ 3B3sWuX/0vet0MykUyCS7NDNJkSeVdDnBpA+3BPw2iqDYKLniuu2eYDIbP3JTApVKcnpXvZcai
+ HEM1M7wO7jbUtpc3Hz2Hn9rf+ZXLLOOtQzv2g5DBM6rq+CMnhGf0CYynlCxPz35+mAAAA
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Krishna Kurapati <quic_kriskura@quicinc.com>, 
+ Konrad Dybcio <quic_kdybcio@quicinc.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1724153674; l=945;
+ i=quic_kdybcio@quicinc.com; s=20230215; h=from:subject:message-id;
+ bh=ANtOJyH0JV4o+Vunwy/aTAJ4hHjalojLyLOaxtkYHnM=;
+ b=K3bAl5PJMv9ZN1iDgh7XLgtzoKbG9FJwTpjVu9oR3uuopmboqbu44hYSdEiIEy921RhSlf1Sh
+ uMg/YJP73GhAZP7wbIVr4j2Kp9xysicOPA3rt1ccglXDyhtBX/B8NlU
+X-Developer-Key: i=quic_kdybcio@quicinc.com; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-On Tue, Aug 20, 2024 at 12:12:16PM +0200, Arend van Spriel wrote:
-> Align with the corrected device tree bindings in brcm,bcm4329-fmac.yaml
-> which imposes a constraint that the compatible should have the string
-> "brcm,bcm4329-fmac".
+This series configures the multiport USB controller on X Elite. No
+driver changes seem necessary, tested on the Surface Laptop 7.
 
-Additionally, please explain why do you think these devices are compatible and
-also how this change affects working. Considering that previously these
-devices were not matched by brcmf_of_probe() and now they will, this is
-significant change.
+Signed-off-by: Konrad Dybcio <quic_kdybcio@quicinc.com>
+---
+Changes in v2:
+- Work around git pulling incorrect author address from mailmap (base
+  commit in the cover letter is now screwed)
+- Pick up tags
+- Link to v1: https://lore.kernel.org/r/20240809-topic-h_mp-v1-0-3c5f468566d8@quicinc.com
 
-> 
-> Fixes: e2e37224e8b3 ("dt-bindings: net: bcm4329-fmac: Add Apple properties & chips")
+---
+Konrad Dybcio (2):
+      dt-bindings: usb: qcom,dwc3: Document X1E80100 MP controller
+      arm64: dts: qcom: x1e80100: Add USB Multiport controller
 
-No, no bug to fix. Previous code was intentional. If you claim there is
-a bug, please explain what exactly is being fixed.
-
-> Signed-off-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+ .../devicetree/bindings/usb/qcom,dwc3.yaml         |   3 +
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi             | 170 +++++++++++++++++++++
+ 2 files changed, 173 insertions(+)
+---
+base-commit: 96ecf94c28e732cd5f576ed0906398cf0b1a67a6
+change-id: 20240809-topic-h_mp-52839d894530
 
 Best regards,
-Krzysztof
+-- 
+Konrad Dybcio <quic_kdybcio@quicinc.com>
 
 
