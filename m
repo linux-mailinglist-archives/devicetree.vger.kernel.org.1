@@ -1,120 +1,211 @@
-Return-Path: <devicetree+bounces-95127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ACBF9582CC
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 11:38:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 840AE9582DE
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 11:40:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B88461C24426
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 09:38:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 400692822AD
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 09:40:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F8B118C348;
-	Tue, 20 Aug 2024 09:37:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ALSiNT2y"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3111018C34F;
+	Tue, 20 Aug 2024 09:38:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from michel.telenet-ops.be (michel.telenet-ops.be [195.130.137.88])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F89718C332;
-	Tue, 20 Aug 2024 09:37:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5223418C32B
+	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 09:38:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.137.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724146631; cv=none; b=ODxFQv1QS5icp41YZSxRL6i8gmZovxZsKBere8MwK5MrAcHThJgPi4mbYJmIksDwMaa2IgimOQ581SITe109DgNTrpW5SyDoqmBTzuvGNVu/lQ3aMoYslexlG1tgpaAI9IOFpcPcpRfIK/CwCiprbJYCKp5B4zpr7mG5HH2/dfU=
+	t=1724146726; cv=none; b=m4biLTXnu4h4wALjuDasdHNh6X7Vfc4Lgkm8xTrI3wHlu0jbOZ47YHgrOwOhr+aPhAhGOuhKmSFWYkcMnMcEAgsFqcv4igT2t2k1nsa7cT6VWAF+jlO5Dd7x9EncK2YHvDpV8fNecNX0/udEeeHK2bt2ybuhxfD5PozRhNezQW8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724146631; c=relaxed/simple;
-	bh=27VQnEMdnqOcGlF7LNJhoGhfIvxG5khxXm1G5k4+TBs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sZKIB7a3dWwhJe7uMbYmSmYPFLLmaIqxtnyjq9jQeJp+yMd0Jt0cPSBSYwR+k2kVqTlLyZP0vB7tOw66+6Wa+h6IYTcov2fhISN+dej2PxYannOVD3waPJV1qFi07U9UrkH5+S/8PBb972B8mKp9BLUnelF5QwoeYvmRpS72+QU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ALSiNT2y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE989C4AF0F;
-	Tue, 20 Aug 2024 09:37:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724146631;
-	bh=27VQnEMdnqOcGlF7LNJhoGhfIvxG5khxXm1G5k4+TBs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ALSiNT2yd7HBz2jpgfAZUiv/N9akqjpIfqYDV2dGBAQxcGOvvtNzRQw/6ZGrTz+7n
-	 od3kHyuyX1kOEGTcaPT5TBPArVDBKT2OAm/BaNLKVmpYkoBFHidxSRVXawekbFZpJv
-	 zXtPypbCl/B2PA1Xp/d1hFS+PHO2+AmFL3ycIO8Q47dFIc0Gd+DWH8MYUeLjU6fhD5
-	 kA2+Yfz5UOIJcK09FP4b+aSPlaqt/MeORAPj/8L9MZiyRXWwPovpTuiuf1yvMG38QM
-	 LcjfZwayQWMBxQ+awv7SpTKVAqBzlig1Wk1dAVwbyS/VPh+hU7Pen00cVkbw1q35d7
-	 jsBuwuX10CFHg==
-Message-ID: <f608289a-3e84-4ef4-8ced-2c615a67dd55@kernel.org>
-Date: Tue, 20 Aug 2024 11:37:04 +0200
+	s=arc-20240116; t=1724146726; c=relaxed/simple;
+	bh=paWZtgBvhp7Vcd9o1gKj5AoPY5sacgrHwJDRltdRJuo=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=R3C81XkDwkh4K8VcckhGetk+c5NSDFG4b/sh8eSjvkfF+H2Ps/ruHn1Eb+4ABdSh6H0g3eAa0XlmPu0bo9/uJiHtwem/7hMDW6H8aA+j9WxuU8iDp8xQbTbb7pZ9PqPXhkLY+Vzz2GKxMt3QKI+1NUJKee2NGAHjQt+xS5+m0wA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.137.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:a2e4:464c:5828:2da3])
+	by michel.telenet-ops.be with bizsmtp
+	id 29eg2D0062WQTnu069egcj; Tue, 20 Aug 2024 11:38:41 +0200
+Received: from geert (helo=localhost)
+	by ramsan.of.borg with local-esmtp (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1sgLK4-000Mdw-0L;
+	Tue, 20 Aug 2024 11:38:40 +0200
+Date: Tue, 20 Aug 2024 11:38:39 +0200 (CEST)
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+To: Pavitrakumar M <pavitrakumarm@vayavyalabs.com>
+cc: herbert@gondor.apana.org.au, linux-crypto@vger.kernel.org, 
+    Ruud.Derwig@synopsys.com, manjunath.hadli@vayavyalabs.com, 
+    bhoomikak@vayavyalabs.com, shwetar <shwetar@vayavyalabs.com>, 
+    Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+    Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/7] Add SPAcc Skcipher support
+In-Reply-To: <20240618042750.485720-2-pavitrakumarm@vayavyalabs.com>
+Message-ID: <41ed1cd-1c1a-c38-5032-a997cd13179@linux-m68k.org>
+References: <20240618042750.485720-1-pavitrakumarm@vayavyalabs.com> <20240618042750.485720-2-pavitrakumarm@vayavyalabs.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/8] ASoC: qcom: apq8016_sbc.c: Add Quinary support
-To: Adam Skladowski <a39.skl@gmail.com>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Banajit Goswami <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Stephan Gerhold <stephan@gerhold.net>
-Cc: alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
- linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Vladimir Lypak <vladimir.lypak@gmail.com>
-References: <20240731-msm8953-msm8976-asoc-v3-0-163f23c3a28d@gmail.com>
- <20240731-msm8953-msm8976-asoc-v3-1-163f23c3a28d@gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konradybcio@kernel.org>
-In-Reply-To: <20240731-msm8953-msm8976-asoc-v3-1-163f23c3a28d@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=US-ASCII; format=flowed
 
-On 31.07.2024 5:25 PM, Adam Skladowski wrote:
-> From: Vladimir Lypak <vladimir.lypak@gmail.com>
-> 
-> Add support for configuring Quinary Mi2S interface
-> it will be used on MSM8953 and MSM8976 platform.
-> 
-> Signed-off-by: Vladimir Lypak <vladimir.lypak@gmail.com>
-> [Adam: Split from MSM8953 support patch,add msg]
-> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
-> ---
->  sound/soc/qcom/apq8016_sbc.c | 17 ++++++++++++++++-
->  1 file changed, 16 insertions(+), 1 deletion(-)
-> 
-> diff --git a/sound/soc/qcom/apq8016_sbc.c b/sound/soc/qcom/apq8016_sbc.c
-> index 3023cf180a75..5a29adbd3f82 100644
-> --- a/sound/soc/qcom/apq8016_sbc.c
-> +++ b/sound/soc/qcom/apq8016_sbc.c
-> @@ -20,12 +20,13 @@
->  #include "common.h"
->  #include "qdsp6/q6afe.h"
->  
-> -#define MI2S_COUNT  (MI2S_QUATERNARY + 1)
-> +#define MI2S_COUNT  (MI2S_QUINARY + 1)
->  
->  struct apq8016_sbc_data {
->  	struct snd_soc_card card;
->  	void __iomem *mic_iomux;
->  	void __iomem *spkr_iomux;
-> +	void __iomem *quin_iomux;
->  	struct snd_soc_jack jack;
->  	bool jack_setup;
->  	int mi2s_clk_count[MI2S_COUNT];
-> @@ -86,6 +87,12 @@ static int apq8016_dai_init(struct snd_soc_pcm_runtime *rtd, int mi2s)
->  			SPKR_CTL_TLMM_DATA1_EN | SPKR_CTL_TLMM_WS_OUT_SEL_SEC |
->  			SPKR_CTL_TLMM_WS_EN_SEL_SEC, pdata->spkr_iomux);
->  		break;
-> +	case MI2S_QUINARY:
-> +		/* Configure Quinary MI2S */
-> +		if (!pdata->quin_iomux)
-> +			return -ENOENT;
-> +		writel(readl(pdata->quin_iomux) | 0x01, pdata->quin_iomux);
+ 	Hi Pavitrakumar,
 
-I'm nitpicking, but 0x01 here is BIT(0)
+CC devicetree
 
-Acked-by: Konrad Dybcio <konradybcio@kernel.org>
+On Tue, 18 Jun 2024, Pavitrakumar M wrote:
+> Signed-off-by: shwetar <shwetar@vayavyalabs.com>
+> Signed-off-by: Pavitrakumar M <pavitrakumarm@vayavyalabs.com>
+> Acked-by: Ruud Derwig <Ruud.Derwig@synopsys.com>
 
-Konrad
+Thanks for your patch, which is now commit fc61c658c94cb740 ("crypto:
+spacc - Enable Driver compilation in crypto Kconfig and Makefile")
+in crypto/master.
+
+> --- /dev/null
+> +++ b/drivers/crypto/dwc-spacc/spacc_core.c
+> +int spacc_probe(struct platform_device *pdev,
+> +		const struct of_device_id snps_spacc_id[])
+
+There should not be a need to pass snps_spacc_id[] around.
+
+> +{
+> +	int spacc_idx = -1;
+> +	struct resource *mem;
+> +	int spacc_endian = 0;
+> +	void __iomem *baseaddr;
+> +	struct pdu_info   info;
+> +	int spacc_priority = -1;
+> +	struct spacc_priv *priv;
+> +	int x = 0, err, oldmode, irq_num;
+> +	const struct of_device_id *match, *id;
+> +	u64 oldtimer = 100000, timer = 100000;
+> +
+> +	if (pdev->dev.of_node) {
+> +		id = of_match_node(snps_spacc_id, pdev->dev.of_node);
+> +		if (!id) {
+> +			dev_err(&pdev->dev, "DT node did not match\n");
+> +			return -EINVAL;
+> +		}
+> +	}
+
+This check is not needed.
+
+> +
+> +	/* Initialize DDT DMA pools based on this device's resources */
+> +	if (pdu_mem_init(&pdev->dev)) {
+> +		dev_err(&pdev->dev, "Could not initialize DMA pools\n");
+> +		return -ENOMEM;
+> +	}
+> +
+> +	match = of_match_device(of_match_ptr(snps_spacc_id), &pdev->dev);
+> +	if (!match) {
+> +		dev_err(&pdev->dev, "SPAcc dtb missing");
+> +		return -ENODEV;
+> +	}
+
+This check is also not needed.
+Besides, in case of an error, you leak the ddt mem pool.
+
+> +
+> +	mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	if (!mem) {
+> +		dev_err(&pdev->dev, "no memory resource for spacc\n");
+> +		err = -ENXIO;
+> +		goto free_ddt_mem_pool;
+> +	}
+> +
+> +	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv) {
+> +		err = -ENOMEM;
+> +		goto free_ddt_mem_pool;
+> +	}
+> +
+> +	/* Read spacc priority and index and save inside priv.spacc.config */
+> +	if (of_property_read_u32(pdev->dev.of_node, "spacc_priority",
+
+Please no underscores in DT properties.
+
+> +				 &spacc_priority)) {
+> +		dev_err(&pdev->dev, "No vspacc priority specified\n");
+> +		err = -EINVAL;
+> +		goto free_ddt_mem_pool;
+> +	}
+> +
+> +	if (spacc_priority < 0 && spacc_priority > VSPACC_PRIORITY_MAX) {
+> +		dev_err(&pdev->dev, "Invalid vspacc priority\n");
+> +		err = -EINVAL;
+> +		goto free_ddt_mem_pool;
+> +	}
+> +	priv->spacc.config.priority = spacc_priority;
+> +
+> +	if (of_property_read_u32(pdev->dev.of_node, "spacc_index",
+> +				 &spacc_idx)) {
+> +		dev_err(&pdev->dev, "No vspacc index specified\n");
+> +		err = -EINVAL;
+> +		goto free_ddt_mem_pool;
+> +	}
+> +	priv->spacc.config.idx = spacc_idx;
+> +
+> +	if (of_property_read_u32(pdev->dev.of_node, "spacc_endian",
+
+Please use the standard big-endian / little-endian properties.
+
+> +				 &spacc_endian)) {
+> +		dev_dbg(&pdev->dev, "No spacc_endian specified\n");
+> +		dev_dbg(&pdev->dev, "Default spacc Endianness (0==little)\n");
+> +		spacc_endian = 0;
+> +	}
+> +	priv->spacc.config.spacc_endian = spacc_endian;
+> +
+> +	if (of_property_read_u64(pdev->dev.of_node, "oldtimer",
+> +				 &oldtimer)) {
+> +		dev_dbg(&pdev->dev, "No oldtimer specified\n");
+> +		dev_dbg(&pdev->dev, "Default oldtimer (100000)\n");
+> +		oldtimer = 100000;
+> +	}
+> +	priv->spacc.config.oldtimer = oldtimer;
+> +
+> +	if (of_property_read_u64(pdev->dev.of_node, "timer", &timer)) {
+> +		dev_dbg(&pdev->dev, "No timer specified\n");
+> +		dev_dbg(&pdev->dev, "Default timer (100000)\n");
+> +		timer = 100000;
+> +	}
+> +	priv->spacc.config.timer = timer;
+
+This device lacks DT binding documentation.
+
+> +static struct platform_driver spacc_driver = {
+> +	.probe  = spacc_crypto_probe,
+> +	.remove = spacc_crypto_remove,
+> +	.driver = {
+> +		.name  = "spacc",
+> +		.of_match_table = of_match_ptr(snps_spacc_id),
+
+Please drop the of_match_ptr(), as your driver requires DT to function.
+
+> +		.owner = THIS_MODULE,
+> +	},
+> +};
+
+I didn't review the rest.
+
+Gr{oetje,eeting}s,
+
+ 						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+ 							    -- Linus Torvalds
 
