@@ -1,66 +1,68 @@
-Return-Path: <devicetree+bounces-95151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 050D69583C7
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 12:12:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FF549583C9
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 12:12:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A771B281D7B
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 10:12:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6ABE01C245CC
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 10:12:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE48A18CBFE;
-	Tue, 20 Aug 2024 10:12:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AA0A18DF78;
+	Tue, 20 Aug 2024 10:12:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="OrWgyEQi"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="g93AtGvW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3768A18D649
-	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 10:12:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 267C718D647
+	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 10:12:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724148748; cv=none; b=s6LdCGnbPN0rKOnxsEY0Jmn3DHghkHWTnbsGkgtSrlancWXGy+apUx5hlhTTGj0U2sAplr78Y/ar6/nbqypqGLlDiqGewBolOZ7btxXKIUQ+Fr1eyFVWw7YnuF93vas/EpQwaEWcKwPGU4/NoHYRBpRwQm+ap1TRjWBaNnAptj8=
+	t=1724148751; cv=none; b=LbDO8bcH20USpsdQrD437IsEr+TLPIcvqtvNntbzQtIybwmkxEPCRkVIm4xhmiV05HaG952ETyahK/2hhfd+hwZR4vAhpgYoZapZr2oGGIoP1tn5OBUddHdUt0rh6BHs125VCoKU6lET//qFpKOnWP12lC6/lyIQhccku8zkIOw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724148748; c=relaxed/simple;
-	bh=rAQMs2nUAujqv3seBbUaUiGHZmRef0b6WBseJYrS+iU=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=efX/bc7uGwWHzbu44obI6oK4MoXBxE1SjVluW7ot/IOyUDf/ZBS7NIoda65gJJXDK7tbGIKeFK2c4j2SRfFSrWZHSWlUZZ1dOkOa0OUWpcc/t+sMyF5LvTFDBhmsgQdy73+UVvE5/nDCYqZ/aA/dSi24sWHrWk7V8Nc2YBikUyg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=OrWgyEQi; arc=none smtp.client-ip=209.85.210.170
+	s=arc-20240116; t=1724148751; c=relaxed/simple;
+	bh=VewtWXS49rpJWHjz1uJir39tVL9jfwaiGXaUkx0zaPI=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=YJANtkJ2aTzRGYQDPI2BlKLkhjlM7f3sMLtbGWeSA9aO9yVry2hLxhkxfwgYIEcXdxnbgcTxsMcal6v8Q9YWPwF313jIGDuV5E2Ju05F4gRItdA4E0FVLGpftYDINdJsGb/J988lhmCb7s/F7fvOqCiCFVTs5lnKr2dMjZgn0wY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=g93AtGvW; arc=none smtp.client-ip=209.85.210.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-710dc3015bfso3584974b3a.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 03:12:27 -0700 (PDT)
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-7106cf5771bso4312337b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 03:12:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1724148746; x=1724753546; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q8mNuHffrbuK1rugdn6v3Dt73nbw6yd9qMrSFwaRLs8=;
-        b=OrWgyEQiY3FpDGs0HFMY8Mvid4pf/uiWKLbbueUrm7qctiWkOVaX55fnScqSdkDAzg
-         pQGxn69HvFzZZH6Nyc3SD7K1+jUGIgCZ/XlYxB4rrzUARBdmC6IVzdXMXMok5T+jIYMm
-         NCdBcuX0xgQm6Vo2WqgovxddfjqyHJ+ZLGWuw=
+        d=broadcom.com; s=google; t=1724148749; x=1724753549; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8kIAhfjDAT0axAt0+BwPuqQ3ky4+ehVgWPUi5t/CRCY=;
+        b=g93AtGvW8/VZO6aNeqrOG+t08+BT6XpfXmcfyOtfT8+A5Lj/owgyDI6xwI6cZ56NkL
+         9UazQ+aDYC8XXsYnLg6Qva+NepMBg2BN9X3COQHIUdWTHmJ6h1aOBc8/g2AptahG8hCu
+         vO5IH5IF/1OT53Y7A1fGdJQvX0FeHQNiCYIV4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724148746; x=1724753546;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Q8mNuHffrbuK1rugdn6v3Dt73nbw6yd9qMrSFwaRLs8=;
-        b=LGkOwA2BWrhRma6eHgAYcyHIeZhkFhq+sCqxJOjObZBMWvWjU1ZRzlj3NS5N6YtTWv
-         aoD161zzU8r0EhWVGZl2DJ0w43m3HWUrh/VVGE+5pADt2dJq+MXE+JsEIrdhSxibgzyk
-         yqEsYA3Ot3lL65Tj8Rpp7BKA55nJMVFVscEnrCuz84EITYSg18N+Sq3/6HT0Rw4gmZSh
-         AjOlZyVKyRhQN9dGmQ6HAbg5sC6jeoeStYllrRE5yQ/PnYJmBCo7WR4Gd2Yr47M8LKI1
-         72+/vHMEJ4Xh3SHeprBBisS7hlZ+gIziwOcMz1TZ2S82bpKPhuR6KSoBUrS4w1fTt9WS
-         42Rg==
-X-Gm-Message-State: AOJu0Yy0zjYSzQwoNdPHg4zeUS8Pczq9hMhNgf+em8kSQlCMt4nvI15l
-	WosN6P5FP+GgUSSU+pNlgir2aGOrW/fb7hukN70iB39VdIfs53qwqiLcpvIDiw==
-X-Google-Smtp-Source: AGHT+IGVNRr4ycH9yeIC9iSR/lf8TJNHBQHMKw/kpMSfpHTduTtii93oIx25NUBCshqrvVaygPL04g==
-X-Received: by 2002:a05:6a20:9150:b0:1c6:8c89:88c9 with SMTP id adf61e73a8af0-1cac714ed81mr3404416637.18.1724148746291;
-        Tue, 20 Aug 2024 03:12:26 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1724148749; x=1724753549;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8kIAhfjDAT0axAt0+BwPuqQ3ky4+ehVgWPUi5t/CRCY=;
+        b=aSPmeOaRbbg5CsJSxzcF0vKvdS+Z083+uSaWa59LOWmmNFoze7pRNNdH5SFdLE4zcc
+         YqZnxt9rOfH4TDW1XOxKshcELgDzMDVuYxiRmO51DMtWJ702qZBPapk/lBM4ims+2k0O
+         CbKH5Zp9EAMpcCSJ9SAieiShC6D8Z3Q+luQbr0UdXBcw3xQdnyhtEVHMlfofv7lp3YIA
+         6+8jAdSD9sHkzkV14/dxaqxPQKidXvKPbafrJsScKDvERl5p+5c2gvBpStTZRXKwhx7Z
+         WhDMLY6tKqBYUdSffirUbJzRwTNmRinZKPMcTyMfvMkIhz9J3C9/zRBVLAJlNwzYQPy9
+         B6Jw==
+X-Gm-Message-State: AOJu0YzYOzl8I+3Z1Blep3OKypdiLFsNmPiDawrQ2a0AkqMen+9qpPQc
+	+wKXoGfMnYjCmrI+mOdtgwDg3Ir5pkEh7TkkSaCgpCqBNkv95ufG2qEI+PU3pA==
+X-Google-Smtp-Source: AGHT+IFn+Oek7Agv106ZiUW5dAmUwXfOggJfDPRWsSst4ULyviFLXwjGXgAlAEpvMq4hMh5bAPWL7w==
+X-Received: by 2002:a05:6a21:318b:b0:1c6:fbc4:7a02 with SMTP id adf61e73a8af0-1c905060b59mr14542718637.44.1724148749225;
+        Tue, 20 Aug 2024 03:12:29 -0700 (PDT)
 Received: from bld-bun-02.bun.broadcom.net ([192.19.176.227])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-713f3c35cf0sm3111052b3a.173.2024.08.20.03.12.23
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-713f3c35cf0sm3111052b3a.173.2024.08.20.03.12.26
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 20 Aug 2024 03:12:25 -0700 (PDT)
+        Tue, 20 Aug 2024 03:12:28 -0700 (PDT)
 From: Arend van Spriel <arend.vanspriel@broadcom.com>
 To: Kalle Valo <kvalo@kernel.org>,
 	Hector Martin <marcan@marcan.st>,
@@ -70,10 +72,12 @@ Cc: devicetree@vger.kernel.org,
 	brcm80211@lists.linux.dev,
 	asahi@lists.linux.dev,
 	Arend van Spriel <arend.vanspriel@broadcom.com>
-Subject: [PATCH 0/2] dt-bindings fixup for brcm,bcm4329-fmac.yaml
-Date: Tue, 20 Aug 2024 12:12:14 +0200
-Message-Id: <20240820101216.355012-1-arend.vanspriel@broadcom.com>
+Subject: [PATCH 1/2] dt-bindings: wireless: restore constraint for brcm,bcm4329-fmac compatible property
+Date: Tue, 20 Aug 2024 12:12:15 +0200
+Message-Id: <20240820101216.355012-2-arend.vanspriel@broadcom.com>
 X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20240820101216.355012-1-arend.vanspriel@broadcom.com>
+References: <20240820101216.355012-1-arend.vanspriel@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,31 +86,63 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Fix to restore the constraint in the json-schema that was lost when
-support for the Apple PCIe devices was added in e2e37224e8b3
-("dt-bindings: net: bcm4329-fmac: Add Apple properties & chips").
-Not sure if the rule of separate patches is the easiest to get
-this fixed. If one patch is preferred I can respin.
+When extending the bindings for Apple PCIe devices the compatible property
+specification was changed. However, it was changed such that for these
+devices it was no longer necessary to have "brcm,bcm4329-fmac" listed as
+string in the compatible list property as it was before that extension.
+This patch restores that constraint.
 
-The patches are based on main branch of the wireless-next repository.
-
-Regards,
-Arend
-
-Arend van Spriel (2):
-  dt-bindings: wireless: restore constraint for brcm,bcm4329-fmac
-    compatible property
-  arm64: boot: apple: fixup wifi device specification
-
+Fixes: e2e37224e8b3 ("dt-bindings: net: bcm4329-fmac: Add Apple properties & chips")
+Signed-off-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+---
  .../net/wireless/brcm,bcm4329-fmac.yaml       | 19 ++++++++++---------
- arch/arm64/boot/dts/apple/t8103-jxxx.dtsi     |  2 +-
- arch/arm64/boot/dts/apple/t8112-j413.dts      |  2 +-
- arch/arm64/boot/dts/apple/t8112-j493.dts      |  2 +-
- 4 files changed, 13 insertions(+), 12 deletions(-)
+ 1 file changed, 10 insertions(+), 9 deletions(-)
 
-
-base-commit: daaf0dd0398d5e93b7304f35184ca182ed583681
---
+diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+index e564f20d8f41..47f90446322f 100644
+--- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Broadcom BCM4329 family fullmac wireless SDIO/PCIE devices
+ 
+ maintainers:
+-  - Arend van Spriel <arend@broadcom.com>
++  - Arend van Spriel <arend.vanspriel@broadcom.com>
+ 
+ description:
+   The Broadcom Single chip MAC part for the BCM4329 family and
+@@ -27,7 +27,6 @@ properties:
+               - brcm,bcm4341b0-fmac
+               - brcm,bcm4341b4-fmac
+               - brcm,bcm4341b5-fmac
+-              - brcm,bcm4329-fmac
+               - brcm,bcm4330-fmac
+               - brcm,bcm4334-fmac
+               - brcm,bcm43340-fmac
+@@ -46,13 +45,15 @@ properties:
+               - cypress,cyw43012-fmac
+               - infineon,cyw43439-fmac
+           - const: brcm,bcm4329-fmac
+-      - enum:
+-          - brcm,bcm4329-fmac
+-          - pci14e4,43dc  # BCM4355
+-          - pci14e4,4464  # BCM4364
+-          - pci14e4,4488  # BCM4377
+-          - pci14e4,4425  # BCM4378
+-          - pci14e4,4433  # BCM4387
++    - items:
++          - enum:
++              - pci14e4,43dc  # BCM4355
++              - pci14e4,4464  # BCM4364
++              - pci14e4,4488  # BCM4377
++              - pci14e4,4425  # BCM4378
++              - pci14e4,4433  # BCM4387
++          - const: brcm,bcm4329-fmac
++    - const: brcm,bcm4329-fmac
+ 
+   reg:
+     description: SDIO function number for the device (for most cases
+-- 
 2.32.0
 
 
