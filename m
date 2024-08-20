@@ -1,108 +1,101 @@
-Return-Path: <devicetree+bounces-95120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4B80958226
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 11:27:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D7FA958236
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 11:29:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E27C1F23FC7
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 09:27:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1AA761F24302
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 09:29:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E53E618B496;
-	Tue, 20 Aug 2024 09:26:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nudKvcqn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E568D18C037;
+	Tue, 20 Aug 2024 09:29:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from weierstrass.telenet-ops.be (weierstrass.telenet-ops.be [195.130.137.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0B5418A6C6;
-	Tue, 20 Aug 2024 09:26:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B010618C027
+	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 09:29:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.137.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724146019; cv=none; b=Lx86GYzNGcmY8NyrMl/uU70Z+xze6iz4/sd1935HZbLqr8JNREFvkoZQEnQjysIx+pyWTpwjATZ4S6dUtuFaJh4CzNIVA/Mj0e23MPGk4VZmJIooelrlnE1pbjpzzVg0MCzVyx3Rx9iQwfZbcQh3CeFQrJlxuK36v586UR/Na8c=
+	t=1724146154; cv=none; b=W1MblbAcW/pZq4+rQKx0w1SZNCrGfWy86pYaW2FBFaGNF4LcAJL2C1absobu2Ewi8T/4ULHUrs5lwtP9PDfJen5/d+SE7V32niqmYY9Gom1HIWHGpxE9nkQc4vPnE0PLBVgheRnarYPjwfrFtN6IHLDBOO1QztgaaZH+rGlomxM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724146019; c=relaxed/simple;
-	bh=kop63EL7ROeC8ZjTSa24ig982G1wGzEfLfTlKCt7Yi4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=n5xCQUBZfBw0JBZu3pUzi4HMmR8JPD82UWh5KUUuVtX8c+dxNz0te1htOz+mxDjTkEqr0j8jQvWCy/Ao7U7KvKNdBrVYgVCtatd17oJIyfXrGOEERfiUrYfX6uPOP9oM6bfZIgncO7Dkkonb0GFyh+Z6oudoObY7MMNBmKpOVWw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nudKvcqn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CB9EC4AF09;
-	Tue, 20 Aug 2024 09:26:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724146019;
-	bh=kop63EL7ROeC8ZjTSa24ig982G1wGzEfLfTlKCt7Yi4=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=nudKvcqne9ZjBJo4UMhBnSm609IPW3AJvJbqzsheWiBYJgWyLB4HxpsiYJ7PYFwBt
-	 7qd7ENiCdoE15TqP10U3wXrG0qsTzJZKPK1npVHVXjmoQiLm5OpFB8+hbrL1Z+Schk
-	 5E0pUVnuEkZjHwqQ1UuwWD2NSaDJpp4Gd3Kn0LP1AQXvoSxsXm1eivAE2CP1bK1I0G
-	 9IYVG/XnRCMZzfLkovP1aqf8r3th+rUePiaRY4AOaI6mmEkkvAZ1MthIuPqhd1q5zB
-	 LWotEWjJtQW5yLYrMSVu8uXhz7Af5rnUKcckqPY0+o7zk4Fu+8gzGhXYdDCWVxEOi3
-	 qbj5NlXWwQV8w==
-Message-ID: <aeab1421-6171-40ec-8133-51734da6640e@kernel.org>
-Date: Tue, 20 Aug 2024 11:26:51 +0200
+	s=arc-20240116; t=1724146154; c=relaxed/simple;
+	bh=1p3JZfIy57+yQxzEAuW3lsEC0DcOCf65qWJ1CHrK5V4=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=XLgSPzCxB4Y3HoA1BGrtq1V+mR8g8SAwHqhM7AaGC45O69hLn7X9fXtlnwEK6c/YhMS4VdcKf10+/AIh2T3CBpI8KooFg+uybELh2d9FSpX4AYbRnMRAb0sfWmT17cFlyo+j5Dvzc5HyIOg+2ZHJcRhrbXBxWVn+UCNgW34HtdM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.137.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
+	by weierstrass.telenet-ops.be (Postfix) with ESMTPS id 4Wp40d3qDmz4xtBN
+	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 11:29:05 +0200 (CEST)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:a2e4:464c:5828:2da3])
+	by michel.telenet-ops.be with bizsmtp
+	id 29Ux2D0092WQTnu069Uxui; Tue, 20 Aug 2024 11:28:58 +0200
+Received: from geert (helo=localhost)
+	by ramsan.of.borg with local-esmtp (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1sgLAf-000Md9-4T;
+	Tue, 20 Aug 2024 11:28:57 +0200
+Date: Tue, 20 Aug 2024 11:28:57 +0200 (CEST)
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+To: Pavitrakumar M <pavitrakumarm@vayavyalabs.com>
+cc: herbert@gondor.apana.org.au, linux-crypto@vger.kernel.org, 
+    Ruud.Derwig@synopsys.com, manjunath.hadli@vayavyalabs.com, 
+    bhoomikak@vayavyalabs.com, Rob Herring <robh@kernel.org>, 
+    Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+    Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 0/7] Add SPAcc Crypto Driver Support
+In-Reply-To: <20240618042750.485720-1-pavitrakumarm@vayavyalabs.com>
+Message-ID: <2c9014b3-efd-101d-6fe5-4d436059c9@linux-m68k.org>
+References: <20240618042750.485720-1-pavitrakumarm@vayavyalabs.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/5] arm64: dts: qcom: sdm670: add camcc
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Richard Acayan <mailingradian@gmail.com>,
- Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-media@vger.kernel.org
-References: <20240819221051.31489-7-mailingradian@gmail.com>
- <20240819221051.31489-11-mailingradian@gmail.com>
- <7d26a62b-b898-4737-bd53-f49821e3b471@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konradybcio@kernel.org>
-In-Reply-To: <7d26a62b-b898-4737-bd53-f49821e3b471@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII; format=flowed
 
-On 20.08.2024 11:23 AM, Vladimir Zapolskiy wrote:
-> On 8/20/24 01:10, Richard Acayan wrote:
->> The camera clock controller on SDM670 controls the clocks that drive the
->> camera subsystem. The clocks are the same as on SDM845. Add the camera
->> clock controller for SDM670.
->>
->> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sdm670.dtsi | 10 ++++++++++
->>   1 file changed, 10 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/qcom/sdm670.dtsi
->> index 187c6698835d..ba93cef33dbb 100644
->> --- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
->> @@ -1400,6 +1400,16 @@ spmi_bus: spmi@c440000 {
->>               #interrupt-cells = <4>;
->>           };
->>   +        camcc: clock-controller@ad00000 {
->> +            compatible = "qcom,sdm845-camcc";
-> 
-> Here it's wrong, and the compatible property value shall contain
-> "qcom,sdm670-camcc", probably it could contain both values though.
-> 
-> It may require to add a new compatible to dt documentation and,
-> if needed, to the corresponding clock driver.
+ 	Hi Pavitrakumar,
 
-+1, even if the blocks are physically the same, please add a SoC-specific
-compatible (with a fallback to 845 if that's the case) just in case there
-are some implementation problems only concerning this instance
+CC devicetree
 
-Konrad
+On Tue, 18 Jun 2024, Pavitrakumar M wrote:
+> Add the driver for SPAcc(Security Protocol Accelerator), which is a
+> crypto acceleration IP from Synopsys. The SPAcc supports many cipher,
+> hash, aead algorithms and various modes.The driver currently supports
+> below,
+
+[...]
+
+> Pavitrakumar M (7):
+>  Add SPAcc Skcipher support
+>  Enable SPAcc AUTODETECT
+>  Add SPAcc ahash support
+>  Add SPAcc aead support
+>  Add SPAcc Kconfig and Makefile
+>  Add SPAcc dts overlay
+>  Enable Driver compilation in crypto Kconfig and Makefile
+
+Thanks for your series, of which all but the dts patches have been
+applied to the crypto tree (commits fc61c658c94cb740 ("crypto: spacc -
+Enable Driver compilation in crypto Kconfig and Makefile") and before).
+
+This driver uses device tree, but lacks DT bindings, which are a
+requirement for new DT drivers.  So please provide DT bindings.
+
+Gr{oetje,eeting}s,
+
+ 						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+ 							    -- Linus Torvalds
 
