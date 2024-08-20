@@ -1,97 +1,223 @@
-Return-Path: <devicetree+bounces-95094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF4239580AF
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 10:18:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 634DC95811B
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 10:37:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BD762856B7
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 08:18:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8CF811C20BAB
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 08:37:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E621C18A926;
-	Tue, 20 Aug 2024 08:17:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A53BD18A6C2;
+	Tue, 20 Aug 2024 08:37:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="AaO9QP+O"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="RhMOgmVL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8EA818A6BC
-	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 08:17:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6A9B18E342;
+	Tue, 20 Aug 2024 08:37:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724141868; cv=none; b=WMU1kuHoSl0exmKVUyPHF8urg6Lz7m1ZCksd+ApAVQJkQ4RzfdUq3TXHaEq/CGkkRbJsFgxupQ3Knt93NpvwlL4LyAe7IW2DjkZsSU2m5ft7dzre1qfaoQV/04tpJdjKR4JhKIQBtBUxtWnX3Q/XJj0QbcDNdizjRGm2jYBC3Rc=
+	t=1724143042; cv=none; b=Ho9DmYrqoUDZkYsXKdQ5rtfno6/K9kCOrejKLD9BnCc9kkcM28Kvmi/cp+KebLGZxjLs8mULqZo8G6ZJNFdaL6EQxFbNEaT76m2kqapteRjKGtXQdg01SId8QZKg60qH5Lqj7LAlZhm1rgZpyakf9fhzLVpbz/VechKsRwoXa2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724141868; c=relaxed/simple;
-	bh=IVTP/toLg2yh+Q9s92uZK4xzlEisMXLaxoaU3yPoRHE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hpjH9MQCE1bXhW9cvue1yTcWlwD79QPTcFvWsjSEx40BBMh3do7K/j5N06dl7ErqEnj/MXXo6BEiAnbTPWScP/7J/BawDLsVahZ8q4k0qBxXlYpoocxCZJix+ghmplyEPIVCs25QqSc3223NOe0qLCJ+QqgYlm3sJZX7hrDbT5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=AaO9QP+O; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-52f00ad303aso6760538e87.2
-        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 01:17:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1724141864; x=1724746664; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IVTP/toLg2yh+Q9s92uZK4xzlEisMXLaxoaU3yPoRHE=;
-        b=AaO9QP+OYxqoJjVhB/+v0LeienhEZbYzBDDlCJxMC9faeJJPFZb0Wdepc/ElKO2Ho6
-         vC91nSdbSj7sxFEuE38i4USQAcr69mc1mCG79Jw7JTXzGBbo/qNcDZTTN5nuUJk+uiP3
-         V4mUDRAxb+8hHY1pgUSaFCXSrqPX3SZT5taZg5k7vfTuTs9bO6mzvjA2VOkyteueUxn2
-         EFzi21Hqiq+luBgfce31QOVVCOfZiCAx0wdpSTMQ9HNTqJYdc/yUsG5cUAo0pM0ww8HD
-         rizr7OUQR88KKJUPW/o4+QRQlHFmxuuO7YjNkcVwhhd9nlo3S7L7Ni7kimJgEAZ+MPSB
-         SUKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724141864; x=1724746664;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IVTP/toLg2yh+Q9s92uZK4xzlEisMXLaxoaU3yPoRHE=;
-        b=aLnucKyy6B+zavfz5q8/w48mKsyLHxR6TdEPKjtvU7MaHN2t1/U9DDu81NAUWVenHN
-         EjQG4NT3X8EYapA1ygvp8dKAigwtgm6zKavV7fX8rqE/yN3zTfbKH9jSO2x2MfblOlMs
-         B0RCz73u+sYIyJOput6mkqQt6vMVzltwJ9rCB1toHIlgNyjOZCK+vjE+4WMop8IU1UF8
-         T+h5uQ6WxyyQYFUyodEubLQGYtJkoebNZ6EOhKQRe/gHjJ81XnCGv6ngJjBcdUW0oekq
-         uVTl2Go/ZoqOoX6PNnzA13onoaNtcmD47enMAmbwjp3ZVmddna14LwzjbRxG47XFJbLI
-         Dq5w==
-X-Forwarded-Encrypted: i=1; AJvYcCUZov1sw4MJM4pLytdXtR50nugTto/g4sGGA374AatMrdlgW4XC21jJ8PYcCjmuct54u3qPKH5e2W74uRKlN7/v8b+4dnXVWg4G9Q==
-X-Gm-Message-State: AOJu0Yz2D94HooYOep8ROgl1oiu83hcVm6UXFScM94X/VPV58csWXKdw
-	PMJXqLNkj/7m8Ty/nLPKm8hOjXSttRJ2N4W7XNCu06v8VWnwVtXh5hIcZra8+3v6qsjQwf29K2n
-	8LIogCpQB9zxgCyArxsTmbtfRLaFX0CQwjzxUWg==
-X-Google-Smtp-Source: AGHT+IFbDdTiw6Uk9S88S7dbr6cMRoYSFc48iuM3jxrmJUMbQvuz5tHkvlmpLI49vLNz6wM1Mmx8F8SVj9rCoaZGQ6c=
-X-Received: by 2002:a05:6512:ad2:b0:52c:de29:9ff with SMTP id
- 2adb3069b0e04-5331c692a14mr9702714e87.2.1724141863245; Tue, 20 Aug 2024
- 01:17:43 -0700 (PDT)
+	s=arc-20240116; t=1724143042; c=relaxed/simple;
+	bh=jhuHOkbZr/nS0ttotBq7H9QyyCuY5ssWy0mXwk53M5o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fnbJJ7xxreeb68Ff3Kf8k8+kTm6ySovjp2PDdSRS4VU5SQxkAkuEDk6706bwmNOYDWTJ+bwLEdpVFpnuP39NQu4KPQJy4TqihAOQllg6rpuejQOeF5cHw449zqrmKa1SuHH5sSlKteMhhrkFZjxq8MWN36NDwdHhFIfgrM7p5K8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=RhMOgmVL; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1AB444CC;
+	Tue, 20 Aug 2024 10:36:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1724142970;
+	bh=jhuHOkbZr/nS0ttotBq7H9QyyCuY5ssWy0mXwk53M5o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RhMOgmVLwFkHOUdUUoetl3XULAnXTeF5RyetPdiJs09Ps/L0D33IWfE62KhovqT48
+	 cS3/rEA+UxaGwMT7810f3Ii2wK9DrKHP3H0ztZ7y51ql0p2vCch66qwbKhp601JYg4
+	 3WIo+YnVBQYr8R+GpX3GWoyyBAEEboS1CWBYRTzY=
+Date: Tue, 20 Aug 2024 11:36:44 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	"biju.das.au" <biju.das.au@gmail.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: display: renesas,rzg2l-du: Document
+ RZ/G2UL DU bindings
+Message-ID: <20240820083644.GE24895@pendragon.ideasonboard.com>
+References: <20240805155242.151661-1-biju.das.jz@bp.renesas.com>
+ <20240805155242.151661-2-biju.das.jz@bp.renesas.com>
+ <20240813163220.GA1164014-robh@kernel.org>
+ <20240813193913.GH24634@pendragon.ideasonboard.com>
+ <TY3PR01MB11346EC4C14C99A1771DE9A6C868C2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <TY3PR01MB11346FE2410784131B61DF0E1868D2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240819045052.2405511-1-quic_lxu5@quicinc.com>
-In-Reply-To: <20240819045052.2405511-1-quic_lxu5@quicinc.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Tue, 20 Aug 2024 10:17:32 +0200
-Message-ID: <CAMRc=MfuW1T_dA-JdybqpYzEVY1KXmNdPsuB6J6gJ_3Gp+2jMQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: qcom: sa8775p: Add ADSP and CDSP0 fastrpc nodes
-To: Ling Xu <quic_lxu5@quicinc.com>
-Cc: andersson@kernel.org, konrad.dybcio@linaro.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, quic_kuiw@quicinc.com, 
-	quic_ekangupt@quicinc.com, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <TY3PR01MB11346FE2410784131B61DF0E1868D2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 
-On Mon, Aug 19, 2024 at 6:51=E2=80=AFAM Ling Xu <quic_lxu5@quicinc.com> wro=
-te:
->
-> Add ADSP and CDSP0 fastrpc nodes.
->
-> Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
-> ---
+On Tue, Aug 20, 2024 at 06:42:48AM +0000, Biju Das wrote:
+> Hi Rob and all,
+> 
+> > -----Original Message-----
+> > From: Biju Das
+> > Sent: Monday, August 19, 2024 1:37 PM
+> > Subject: RE: [PATCH v3 1/4] dt-bindings: display: renesas,rzg2l-du: Document RZ/G2UL DU bindings
+> > 
+> > Hi Laurent and Rob,
+> > 
+> > Thanks for the feedback
+> > 
+> > > -----Original Message-----
+> > > From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > Sent: Tuesday, August 13, 2024 8:39 PM
+> > > Subject: Re: [PATCH v3 1/4] dt-bindings: display: renesas,rzg2l-du:
+> > > Document RZ/G2UL DU bindings
+> > >
+> > > Hi Rob,
+> > >
+> > > On Tue, Aug 13, 2024 at 10:32:20AM -0600, Rob Herring wrote:
+> > > > On Mon, Aug 05, 2024 at 04:52:35PM +0100, Biju Das wrote:
+> > > > > Document DU found in RZ/G2UL SoC. The DU block is identical to
+> > > > > RZ/G2L SoC, but has only DPI interface.
+> > > > >
+> > > > > While at it, add missing required property port@1 for RZ/G2L and
+> > > > > RZ/V2L SoCs. Currently there is no user for the DPI interface and
+> > > > > hence there won't be any ABI breakage for adding port@1 as
+> > > > > required property for RZ/G2L and RZ/V2L SoCs.
+> > > > >
+> > > > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > > > ---
+> > > > > v2->v3:
+> > > > >  * Replaced ports->port property for RZ/G2UL as it supports only DPI.
+> > > > >    and retained ports property for RZ/{G2L,V2L} as it supports both DSI
+> > > > >    and DPI output interface.
+> > > >
+> > > > Why? Having port and ports is just a needless complication.
+> > >
+> > > I agree that making the ports node mandatory, even when the device has
+> > > a single port, will simplify the bindings. In hindsight we should never have made ports optional,
+> > but that can't be changed.
+> > >
+> > > > >  * Added missing blank line before example.
+> > > > >  * Dropped tags from Conor and Geert as there are new changes.
+> > > > > v1->v2:
+> > > > >  * Updated commit description related to non ABI breakage.
+> > > > >  * Added Ack from Conor.
+> > > > > ---
+> > > > >  .../bindings/display/renesas,rzg2l-du.yaml    | 35 +++++++++++++++++--
+> > > > >  1 file changed, 32 insertions(+), 3 deletions(-)
+> > > > >
+> > > > > diff --git
+> > > > > a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+> > > > > b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+> > > > > index 08e5b9478051..ca01bf26c4c0 100644
+> > > > > ---
+> > > > > a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.y
+> > > > > +++ am
+> > > > > +++ l
+> > > > > @@ -18,6 +18,7 @@ properties:
+> > > > >    compatible:
+> > > > >      oneOf:
+> > > > >        - enum:
+> > > > > +          - renesas,r9a07g043u-du # RZ/G2UL
+> > > > >            - renesas,r9a07g044-du # RZ/G2{L,LC}
+> > > > >        - items:
+> > > > >            - enum:
+> > > > > @@ -60,8 +61,9 @@ properties:
+> > > > >          $ref: /schemas/graph.yaml#/properties/port
+> > > > >          unevaluatedProperties: false
+> > > > >
+> > > > > -    required:
+> > > > > -      - port@0
+> > > > > +  port:
+> > > > > +    $ref: /schemas/graph.yaml#/properties/port
+> > > > > +    description: Connection to the DU output video port.
+> > > > >
+> > > > >      unevaluatedProperties: false
+> > > > >
+> > > > > @@ -83,11 +85,38 @@ required:
+> > > > >    - clock-names
+> > > > >    - resets
+> > > > >    - power-domains
+> > > > > -  - ports
+> > > > >    - renesas,vsps
+> > > > >
+> > > > >  additionalProperties: false
+> > > > >
+> > > > > +allOf:
+> > > > > +  - if:
+> > > > > +      properties:
+> > > > > +        compatible:
+> > > > > +          contains:
+> > > > > +            const: renesas,r9a07g043u-du
+> > > > > +    then:
+> > > > > +      properties:
+> > > > > +        port:
+> > > > > +          description: DPI
+> > > >
+> > > > This is equivalent to 'port@0'. IMO, this case should have a 'port@1'
+> > > > node so that DPI interface is *always* the same port.
+> > >
+> > > That's what Biju did in the previous version, and I recommended to
+> > > number the ports based on hardware indices, not types. Mapping port
+> > > numbers to the hardware documentation makes it more consistent for DT
+> > > writers, makes the logic simpler to understand (in my opinion, based
+> > > on my experience with the R-Car
+> > > DU) on the driver side, but most importantly, type-based numbering
+> > > wouldn't scale as SoCs could have multiple ports of the same type
+> > > (we've seen that happening with R-Car).
+> > 
+> > OK, I will send bindings based on hardware indices.
+> 
+> I get a warning, if I use ports and port@0 for single port. I don't
+> see this warning if I use ports and port@1
+> 
+> arch/arm64/boot/dts/renesas/r9a07g043u.dtsi:169.9-178.5: Warning (graph_child_address): /soc/display@10890000/ports: graph node has single child node 'port@0', #address-cells/#size-cells are not necessary
+> 
+> Can we fix the dt-schema to getting consistent results for single port
+> usage involving ports?
 
-Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+I would like that too.
+
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,r9a07g043u-du
+> +    then:
+> +      properties:
+> +        ports:
+> +          properties:
+> +            port@0:
+> +              description: DPI
+> +
+> +          required:
+> +            - port@0
+
+-- 
+Regards,
+
+Laurent Pinchart
 
