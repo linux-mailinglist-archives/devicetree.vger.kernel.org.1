@@ -1,154 +1,307 @@
-Return-Path: <devicetree+bounces-95087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95088-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0AA9958070
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 10:03:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7590895807A
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 10:05:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C2692843C3
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 08:03:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E59C61F21B27
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 08:05:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABA09189912;
-	Tue, 20 Aug 2024 08:03:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A479B189F39;
+	Tue, 20 Aug 2024 08:05:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="a9AzR7td"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="bMZ6OD+0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41E0B4F5FB;
-	Tue, 20 Aug 2024 08:03:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 753E0188CD6
+	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 08:05:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724141013; cv=none; b=llTyEqBVuXV0aetpi50l0vYYK2jV+J430sKDZ4B11Aeozoucn601rL2sVjHfPMD7Bviu9g1UOZWNJg8wvxw+faEB0ezpsgJYGz1fUXIyL0ookKVNBn99eq++7B3waoX4sdjZaB4P3X7V4W6yhCHJX0bKCnO5Qy5yUvR1gTvw5tg=
+	t=1724141121; cv=none; b=Zx4/c2cOpNI/NDpjm1zU5o3Q0UzXw+L9VyfoIg5mX6Z9gXHh94vyD8ZryiaiOLV89uepOVNYSLLrWW5hp0/hxCCUxMOyF+Hr5prpkswyPzgaiMqzmTqqswOE/n8Y2eRTasRkcU53KivcO1c0Br4sHjluUFKYROag5qoX6VvQAP0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724141013; c=relaxed/simple;
-	bh=ehM0NKwiBkTIIUiFMDl0KPxkSLKa1rAvt/NK3ByI314=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fTx2LAqMvhph0eaJ+7QxVkUgaUqrRhdbZAIDtREw4/6eJUqiaEwuSeimjgr+u7TO/h6q126DhKnnDDksFnfE8qOY3IbvVpOc/Z0B+NZN26X+d3loJXeiFrQPF3jGaKRe2w237THTVq1n/DDKIxy/C06smJGXbq+7OOkbWkv2P+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=a9AzR7td; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1724141010; x=1755677010;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ehM0NKwiBkTIIUiFMDl0KPxkSLKa1rAvt/NK3ByI314=;
-  b=a9AzR7tdlfrJlARSCJZ0E056gIPSIsmIFz+45OSGo00ATlKAA8XaWsiz
-   4U2ISANt8+pELRJtUkGtkur6MWx8y8MfEhDsUsu1PJkiEgiAQnfE40i/G
-   O526lSZF0zWHBmgALZo6vUltowhcLE46PVcbWYPs14DVV9tiZeB75Mz20
-   t//7HPDB1cV9j7VEuThL6GEPtvyevxOTMql7DRY7tutxovVARSbebHsm5
-   gFtCBjpreLk0aAVj+tgeaH0Ore6bZjUFFunSBRIqZYm+BY41AmzlSLFjc
-   IIB7xYtOP25QxIs7ZcQj2X/RkHz25dkmec+bNS7GdVz6T70mF8a1fgXT/
-   Q==;
-X-CSE-ConnectionGUID: Wv2ErQGSThinIZ8vVLd5gQ==
-X-CSE-MsgGUID: 44ANQ70ATaa42uNy/V/0Ew==
-X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="33845021"
-X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; 
-   d="scan'208";a="33845021"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Aug 2024 01:03:29 -0700
-X-CSE-ConnectionGUID: d4QBBVZ/Si+EYhPrzZwcng==
-X-CSE-MsgGUID: fwAHWuJaTW64gjlfkMyo/Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; 
-   d="scan'208";a="60624946"
-Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
-  by orviesa009.jf.intel.com with ESMTP; 20 Aug 2024 01:03:22 -0700
-Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sgJpo-0009se-0L;
-	Tue, 20 Aug 2024 08:03:20 +0000
-Date: Tue, 20 Aug 2024 16:02:51 +0800
-From: kernel test robot <lkp@intel.com>
-To: Stephen Boyd <swboyd@chromium.org>, chrome-platform@lists.linux.dev
-Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
-	patches@lists.linux.dev, devicetree@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Pin-yen Lin <treapking@chromium.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Benson Leung <bleung@chromium.org>,
-	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
-	David Airlie <airlied@gmail.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	dri-devel@lists.freedesktop.org,
-	Guenter Roeck <groeck@chromium.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Lee Jones <lee@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Prashant Malani <pmalani@chromium.org>,
-	Robert Foss <rfoss@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Tzung-Bi Shih <tzungbi@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Daniel Scally <djrscally@gmail.com>
-Subject: Re: [PATCH v3 07/17] drm/bridge: dp_typec: Support USB Type-C
- orientation
-Message-ID: <202408201530.jPGxBSCk-lkp@intel.com>
-References: <20240819223834.2049862-8-swboyd@chromium.org>
+	s=arc-20240116; t=1724141121; c=relaxed/simple;
+	bh=ze1Bef1k460f/MyM5J2XB/cu4iMMNDPwANG5OWEMAT0=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=Ti5FtBcMj/I+iLjGVESH0oDmb0uCHA2MkB69p7qBOUKFOxVbzw19UWwdlewaXqZfq/TZZVpG3YI99qdfWVBq7eFBtQOcm0ropWpp7Tfd6NJqFgTTyktY/AEufUbQKl6KBXL3YfHHF78/TONX8wUqrQGi07Mhp95uSQVhl/h1QCg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=bMZ6OD+0; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20240820080516epoutp0161684c729ede5fe93307ccc53a9abece~tYTXlCWvx0514805148epoutp01B
+	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 08:05:16 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20240820080516epoutp0161684c729ede5fe93307ccc53a9abece~tYTXlCWvx0514805148epoutp01B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1724141116;
+	bh=kVG01Wa5EXAa3H2AZMsSEWsg04emWgbC2f9DmyYU8IQ=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=bMZ6OD+0WbvU4BwgvtqLdvJY2xVY/4F1q3qZS9HI3Iej0gzRmf4OQSkr/Ui3shcjx
+	 NLj6K3C9bw+AFfMC3zp48qCrTmW/Joi/ayGOAK1F0O6qzPi+r/L0NWRosNV9CjBAEg
+	 06356ZtJy/Exk3RxvKsf0nTn6Ks1eUuF28mjTb38=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTP id
+	20240820080516epcas2p1e5e7654158c85dba2fdc6b50ae8d6f8f~tYTXKewMb1706817068epcas2p1E;
+	Tue, 20 Aug 2024 08:05:16 +0000 (GMT)
+Received: from epsmges2p3.samsung.com (unknown [182.195.36.92]) by
+	epsnrtp2.localdomain (Postfix) with ESMTP id 4Wp27v2Ds0z4x9Px; Tue, 20 Aug
+	2024 08:05:15 +0000 (GMT)
+Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
+	epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
+	85.96.10012.B3E44C66; Tue, 20 Aug 2024 17:05:15 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
+	20240820080514epcas2p438abbbe16c8cd38d44667c97f71d4cd7~tYTV_5kK91182611826epcas2p4I;
+	Tue, 20 Aug 2024 08:05:14 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20240820080514epsmtrp21651568bb4504fb5c43cbef3dd5ce15e~tYTV95fF31783117831epsmtrp2X;
+	Tue, 20 Aug 2024 08:05:14 +0000 (GMT)
+X-AuditID: b6c32a47-ea1fa7000000271c-86-66c44e3b18c9
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	60.A3.08964.A3E44C66; Tue, 20 Aug 2024 17:05:14 +0900 (KST)
+Received: from KORCO118965 (unknown [10.229.18.201]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20240820080514epsmtip2c19824ba993b283089636413fd7a3418~tYTVqiEKD0550205502epsmtip2Y;
+	Tue, 20 Aug 2024 08:05:14 +0000 (GMT)
+From: "sunyeal.hong" <sunyeal.hong@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Sylwester Nawrocki'"
+	<s.nawrocki@samsung.com>, "'Chanwoo Choi'" <cw00.choi@samsung.com>, "'Alim
+ Akhtar'" <alim.akhtar@samsung.com>, "'Michael Turquette'"
+	<mturquette@baylibre.com>, "'Stephen Boyd'" <sboyd@kernel.org>, "'Rob
+ Herring'" <robh@kernel.org>, "'Conor Dooley'" <conor+dt@kernel.org>
+Cc: <linux-samsung-soc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, "'Kwanghoon Son'" <k.son@samsung.com>,
+	"'Krzysztof	Kozlowski'" <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240820074514.3123767-2-sunyeal.hong@samsung.com>
+Subject: RE: [PATCH v7 1/5] clk: samsung: exynosautov9: add dpum clock
+ support
+Date: Tue, 20 Aug 2024 17:05:14 +0900
+Message-ID: <08f101daf2d7$afd0ad30$0f720790$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240819223834.2049862-8-swboyd@chromium.org>
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: ko
+Thread-Index: AQKrMICelBUPPtumeu1u6GDrTK3MsAGiEL2DAV7kiHmwd0ZHUA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrEJsWRmVeSWpSXmKPExsWy7bCmha6135E0g4972SwezNvGZrFm7zkm
+	i+tfnrNazD9yjtWid81VJovz5zewW+x9vZXdYtPja6wWH3vusVpc3jWHzWLG+X1MFhdPuVr8
+	37OD3eLwm3ZWi3/XNrI48Hu8v9HK7rFpVSebx51re9g8Ni+p9+jbsorR4/MmuQC2qGybjNTE
+	lNQihdS85PyUzLx0WyXv4HjneFMzA0NdQ0sLcyWFvMTcVFslF58AXbfMHKCLlRTKEnNKgUIB
+	icXFSvp2NkX5pSWpChn5xSW2SqkFKTkF5gV6xYm5xaV56Xp5qSVWhgYGRqZAhQnZGaunbGIr
+	eGVU8ft6QQPjFO0uRg4OCQETiVMrq7oYuTiEBHYwSvTu2cEI4XxilNgy5SszhPMNyLkxjbWL
+	kROs40/Hc1aIxF5GiQs9F9khnJeMEtuvfGADqWIT0JdY3X2bDSQhInCHSeLy9DdgVcwCE5kk
+	TqzYzgxSxSngINE88TTYXGGBAImlk3aygNgsAqoSV54sBqvhFbCU2Lh0LguELShxcuYTMJtZ
+	QF5i+9s5zBA3KUj8fLqMFSIuIjG7sw0sLiLgJLHl6ikWkMUSAlc4JK7OX8gM8baLxJquQIhe
+	YYlXx7ewQ9hSEp/f7WWDsPMlJl9/ywTR28Aoce1fN9Qye4lFZ36yg8xhFtCUWL9LH2KkssSR
+	W1Cn8Ul0HP7LDhHmlehoE4JoVJP4dOUy1BAZiWMnnjFPYFSaheSxWUgem4XkmVkIuxYwsqxi
+	FEstKM5NTy02KjCGR3Zyfu4mRnBi1nLfwTjj7Qe9Q4xMHIyHGCU4mJVEeLtfHkwT4k1JrKxK
+	LcqPLyrNSS0+xGgKDOqJzFKiyfnA3JBXEm9oYmlgYmZmaG5kamCuJM57r3VuipBAemJJanZq
+	akFqEUwfEwenVAPTnA6ZPefvvZC5uaK8h2HCH/5MnVbZNaFFOsbJmRnK06TutaSHGx+z3rpZ
+	+aL0zoYH54weBaSGbbc32r22vMvEv17yWtpJg8hl9uunCd59mBKpfk/2mbnrGhntvS4uorxC
+	X/iOHKrT31Vx4fLTCToOse5uDacjGOrSZhbwzXJvTpywlCei4f1jAb37vDqHjdc2u01Z9e7H
+	Mw2r3/v8ZCqVXheuybRcHXxZMCMo6OhvGa9lz/5rB7V9P3N0z2OBN4uOztzM6npp/oy/AkrC
+	2/bHXQpWk1174QGj22zWoiitP/8UTxrtu8Opk8L/7Phb07zDTqumscgYqGbv+nd7aq5R+7Mt
+	1z/obZ+gvnkvu4mTEktxRqKhFnNRcSIAV53g2VUEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrPIsWRmVeSWpSXmKPExsWy7bCSvK6V35E0g0UrFSwezNvGZrFm7zkm
+	i+tfnrNazD9yjtWid81VJovz5zewW+x9vZXdYtPja6wWH3vusVpc3jWHzWLG+X1MFhdPuVr8
+	37OD3eLwm3ZWi3/XNrI48Hu8v9HK7rFpVSebx51re9g8Ni+p9+jbsorR4/MmuQC2KC6blNSc
+	zLLUIn27BK6M1VM2sRW8Mqr4fb2ggXGKdhcjJ4eEgInEn47nrCC2kMBuRonrq7Qg4jISGxv+
+	s0PYwhL3W44A1XAB1TxnlHi19z4zSIJNQF9idfdtNpCEiMAjJonpRz6xgzjMAtOZJOY0zWaG
+	aDnKKLHl3ESwHZwCDhLNE0+D2cICfhJHW6aC7WARUJW48mQx2FheAUuJjUvnskDYghInZz4B
+	s5kFtCV6H7YyQtjyEtvfzmGGuE9B4ufTZawQcRGJ2Z1tYHERASeJLVdPsUxgFJ6FZNQsJKNm
+	IRk1C0n7AkaWVYySqQXFuem5xYYFhnmp5XrFibnFpXnpesn5uZsYwXGqpbmDcfuqD3qHGJk4
+	GA8xSnAwK4nwdr88mCbEm5JYWZValB9fVJqTWnyIUZqDRUmcV/xFb4qQQHpiSWp2ampBahFM
+	lomDU6qBSTfpzLJJH9KjbH7vDt2gPaf2epa62c2DhRUm2cKZRoYn1U6rsfitTUgx+LBUM2Ge
+	pfP2PdOfP86fNe8oMwvzs4s8ksU7y1QW3VsX+/ndg4CNLgZSbBtU7JmW6564L3juzsyFTwN2
+	nvwR+qKGvWvOqsALt87+ssnKs22MeCDSwJkaHBm751pN1kLf+60bjY5Ovhv+lPnMrtbMX413
+	Zx9/tK9PXin7crDOWRa993bFf+9M+mRlYnmw8OiSXl3ZFdfT2+zCn8yx+rr+n6R1XaGnR8iu
+	f8GfBQ0X792x0fKzhcH+49Y/3TanNt26uzDzuN1il4zYrYLdGS2Wh849S1NYNUHvlx7vWq++
+	NNmlaUx/2JRYijMSDbWYi4oTAX3VbjhCAwAA
+X-CMS-MailID: 20240820080514epcas2p438abbbe16c8cd38d44667c97f71d4cd7
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20240820074519epcas2p2d44214309359b0b1927947f7d52d4f89
+References: <20240820074514.3123767-1-sunyeal.hong@samsung.com>
+	<CGME20240820074519epcas2p2d44214309359b0b1927947f7d52d4f89@epcas2p2.samsung.com>
+	<20240820074514.3123767-2-sunyeal.hong@samsung.com>
 
-Hi Stephen,
+Hello All,
 
-kernel test robot noticed the following build warnings:
+Some incorrect patches were included. I will re-upload it to v8.
 
-[auto build test WARNING on 8400291e289ee6b2bf9779ff1c83a291501f017b]
+Best Regards,
+sunyeal
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Stephen-Boyd/drm-atomic-helper-Introduce-lane-remapping-support-to-bridges/20240820-064107
-base:   8400291e289ee6b2bf9779ff1c83a291501f017b
-patch link:    https://lore.kernel.org/r/20240819223834.2049862-8-swboyd%40chromium.org
-patch subject: [PATCH v3 07/17] drm/bridge: dp_typec: Support USB Type-C orientation
-config: arc-allyesconfig (https://download.01.org/0day-ci/archive/20240820/202408201530.jPGxBSCk-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240820/202408201530.jPGxBSCk-lkp@intel.com/reproduce)
+> -----Original Message-----
+> From: Sunyeal Hong <sunyeal.hong@samsung.com>
+> Sent: Tuesday, August 20, 2024 4:45 PM
+> To: Krzysztof Kozlowski <krzk@kernel.org>; Sylwester Nawrocki
+> <s.nawrocki@samsung.com>; Chanwoo Choi <cw00.choi@samsung.com>; Alim
+> Akhtar <alim.akhtar@samsung.com>; Michael Turquette
+> <mturquette@baylibre.com>; Stephen Boyd <sboyd@kernel.org>; Rob Herring
+> <robh@kernel.org>; Conor Dooley <conor+dt@kernel.org>
+> Cc: linux-samsung-soc@vger.kernel.org; linux-clk@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> kernel@vger.kernel.org; Kwanghoon Son <k.son@samsung.com>; Krzysztof
+> Kozlowski <krzysztof.kozlowski@linaro.org>
+> Subject: [PATCH v7 1/5] clk: samsung: exynosautov9: add dpum clock support
+> 
+> From: Kwanghoon Son <k.son@samsung.com>
+> 
+> Add dpum clock for exynosautov9.
+> 
+> Signed-off-by: Kwanghoon Son <k.son@samsung.com>
+> Link: https://lore.kernel.org/r/20240809-clk_dpum-v3-3-
+> 359decc30fe2@samsung.com
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  drivers/clk/samsung/clk-exynosautov9.c | 83 ++++++++++++++++++++++++++
+>  1 file changed, 83 insertions(+)
+> 
+> diff --git a/drivers/clk/samsung/clk-exynosautov9.c
+> b/drivers/clk/samsung/clk-exynosautov9.c
+> index f04bacacab2c..5971e680e566 100644
+> --- a/drivers/clk/samsung/clk-exynosautov9.c
+> +++ b/drivers/clk/samsung/clk-exynosautov9.c
+> @@ -20,6 +20,7 @@
+>  #define CLKS_NR_TOP			(GOUT_CLKCMU_PERIS_BUS + 1)
+>  #define CLKS_NR_BUSMC			(CLK_GOUT_BUSMC_SPDMA_PCLK + 1)
+>  #define CLKS_NR_CORE			(CLK_GOUT_CORE_CMU_CORE_PCLK + 1)
+> +#define CLKS_NR_DPUM			(CLK_GOUT_DPUM_SYSMMU_D3_CLK + 1)
+>  #define CLKS_NR_FSYS0			(CLK_GOUT_FSYS0_PCIE_GEN3B_4L_CLK
+> + 1)
+>  #define CLKS_NR_FSYS1			(CLK_GOUT_FSYS1_USB30_1_ACLK + 1)
+>  #define CLKS_NR_FSYS2			(CLK_GOUT_FSYS2_UFS_EMBD1_UNIPRO +
+> 1)
+> @@ -1076,6 +1077,85 @@ static const struct samsung_cmu_info core_cmu_info
+> __initconst = {
+>  	.clk_name		= "dout_clkcmu_core_bus",
+>  };
+> 
+> +/* ---- CMU_DPUM
+> +---------------------------------------------------------- */
+> +
+> +/* Register Offset definitions for CMU_DPUM (0x18c00000) */
+> +#define PLL_CON0_MUX_CLKCMU_DPUM_BUS_USER				0x0600
+> +#define CLK_CON_DIV_DIV_CLK_DPUM_BUSP					0x1800
+> +#define CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DECON
+> 	0x202c
+> +#define CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DMA
+> 	0x2030
+> +#define CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DPP
+> 	0x2034
+> +#define CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D0_DPUM_IPCLKPORT_CLK_S1
+> 	0x207c
+> +#define CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D1_DPUM_IPCLKPORT_CLK_S1
+> 	0x2084
+> +#define CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D2_DPUM_IPCLKPORT_CLK_S1
+> 	0x208c
+> +#define CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D3_DPUM_IPCLKPORT_CLK_S1
+> 	0x2094
+> +
+> +static const unsigned long dpum_clk_regs[] __initconst = {
+> +	PLL_CON0_MUX_CLKCMU_DPUM_BUS_USER,
+> +	CLK_CON_DIV_DIV_CLK_DPUM_BUSP,
+> +	CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DECON,
+> +	CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DMA,
+> +	CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DPP,
+> +	CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D0_DPUM_IPCLKPORT_CLK_S1,
+> +	CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D1_DPUM_IPCLKPORT_CLK_S1,
+> +	CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D2_DPUM_IPCLKPORT_CLK_S1,
+> +	CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D3_DPUM_IPCLKPORT_CLK_S1,
+> +};
+> +
+> +PNAME(mout_dpum_bus_user_p) = { "oscclk", "dout_clkcmu_dpum_bus" };
+> +
+> +static const struct samsung_mux_clock dpum_mux_clks[] __initconst = {
+> +	MUX(CLK_MOUT_DPUM_BUS_USER, "mout_dpum_bus_user",
+> +	    mout_dpum_bus_user_p, PLL_CON0_MUX_CLKCMU_DPUM_BUS_USER, 4,
+> 1), };
+> +
+> +static const struct samsung_div_clock dpum_div_clks[] __initconst = {
+> +	DIV(CLK_DOUT_DPUM_BUSP, "dout_dpum_busp", "mout_dpum_bus_user",
+> +	    CLK_CON_DIV_DIV_CLK_DPUM_BUSP, 0, 3), };
+> +
+> +static const struct samsung_gate_clock dpum_gate_clks[] __initconst = {
+> +	GATE(CLK_GOUT_DPUM_ACLK_DECON, "gout_dpum_decon_aclk",
+> +	     "mout_dpum_bus_user",
+> +	     CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DECON, 21,
+> +	     0, 0),
+> +	GATE(CLK_GOUT_DPUM_ACLK_DMA, "gout_dpum_dma_aclk",
+> "mout_dpum_bus_user",
+> +	     CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DMA, 21,
+> +	     0, 0),
+> +	GATE(CLK_GOUT_DPUM_ACLK_DPP, "gout_dpum_dpp_aclk",
+> "mout_dpum_bus_user",
+> +	     CLK_CON_GAT_GOUT_BLK_DPUM_UID_DPUM_IPCLKPORT_ACLK_DPP, 21,
+> +	     0, 0),
+> +	GATE(CLK_GOUT_DPUM_SYSMMU_D0_CLK, "gout_dpum_sysmmu_d0_clk",
+> +	     "mout_dpum_bus_user",
+> +	     CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D0_DPUM_IPCLKPORT_CLK_S1,
+> 21,
+> +	     0, 0),
+> +	GATE(CLK_GOUT_DPUM_SYSMMU_D1_CLK, "gout_dpum_sysmmu_d1_clk",
+> +	     "mout_dpum_bus_user",
+> +	     CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D1_DPUM_IPCLKPORT_CLK_S1,
+> 21,
+> +	     0, 0),
+> +	GATE(CLK_GOUT_DPUM_SYSMMU_D2_CLK, "gout_dpum_sysmmu_d2_clk",
+> +	     "mout_dpum_bus_user",
+> +	     CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D2_DPUM_IPCLKPORT_CLK_S1,
+> 21,
+> +	     0, 0),
+> +	GATE(CLK_GOUT_DPUM_SYSMMU_D3_CLK, "gout_dpum_sysmmu_d3_clk",
+> +	     "mout_dpum_bus_user",
+> +	     CLK_CON_GAT_GOUT_BLK_DPUM_UID_SYSMMU_D3_DPUM_IPCLKPORT_CLK_S1,
+> 21,
+> +	     0, 0),
+> +};
+> +
+> +static const struct samsung_cmu_info dpum_cmu_info __initconst = {
+> +	.mux_clks		= dpum_mux_clks,
+> +	.nr_mux_clks		= ARRAY_SIZE(dpum_mux_clks),
+> +	.div_clks		= dpum_div_clks,
+> +	.nr_div_clks		= ARRAY_SIZE(dpum_div_clks),
+> +	.gate_clks		= dpum_gate_clks,
+> +	.nr_gate_clks		= ARRAY_SIZE(dpum_gate_clks),
+> +	.nr_clk_ids		= CLKS_NR_DPUM,
+> +	.clk_regs		= dpum_clk_regs,
+> +	.nr_clk_regs		= ARRAY_SIZE(dpum_clk_regs),
+> +	.clk_name		= "bus",
+> +};
+> +
+>  /* ---- CMU_FSYS0 -------------------------------------------------------
+> --- */
+> 
+>  /* Register Offset definitions for CMU_FSYS2 (0x17700000) */ @@ -2085,6
+> +2165,9 @@ static const struct of_device_id exynosautov9_cmu_of_match[] =
+> {
+>  	}, {
+>  		.compatible = "samsung,exynosautov9-cmu-core",
+>  		.data = &core_cmu_info,
+> +	}, {
+> +		.compatible = "samsung,exynosautov9-cmu-dpum",
+> +		.data = &dpum_cmu_info,
+>  	}, {
+>  		.compatible = "samsung,exynosautov9-cmu-fsys0",
+>  		.data = &fsys0_cmu_info,
+> --
+> 2.45.2
+> 
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408201530.jPGxBSCk-lkp@intel.com/
 
-All warnings (new ones prefixed by >>):
-
->> drivers/gpu/drm/bridge/aux-hpd-bridge.c:60: warning: Function parameter or struct member 'orientation_switch' not described in 'drm_dp_typec_bridge_typec_port'
-
-
-vim +60 drivers/gpu/drm/bridge/aux-hpd-bridge.c
-
-c77d47cea15ad1 Stephen Boyd 2024-08-19  46  
-c77d47cea15ad1 Stephen Boyd 2024-08-19  47  /**
-c77d47cea15ad1 Stephen Boyd 2024-08-19  48   * struct drm_dp_typec_bridge_typec_port - USB type-c port associated with DP bridge
-c77d47cea15ad1 Stephen Boyd 2024-08-19  49   * @lane_mapping: Physical (array index) to logical (array value) USB type-C lane mapping
-9edcc62024ff61 Stephen Boyd 2024-08-19  50   * @orientation: Orientation of USB type-c port
-c77d47cea15ad1 Stephen Boyd 2024-08-19  51   * @mode_switch: DP altmode switch
-c77d47cea15ad1 Stephen Boyd 2024-08-19  52   * @typec_data: Back pointer to type-c bridge data
-c77d47cea15ad1 Stephen Boyd 2024-08-19  53   */
-c77d47cea15ad1 Stephen Boyd 2024-08-19  54  struct drm_dp_typec_bridge_typec_port {
-c77d47cea15ad1 Stephen Boyd 2024-08-19  55  	u32 lane_mapping[NUM_USB_SS];
-9edcc62024ff61 Stephen Boyd 2024-08-19  56  	enum typec_orientation orientation;
-c77d47cea15ad1 Stephen Boyd 2024-08-19  57  	struct typec_mux_dev *mode_switch;
-9edcc62024ff61 Stephen Boyd 2024-08-19  58  	struct typec_switch_dev *orientation_switch;
-c77d47cea15ad1 Stephen Boyd 2024-08-19  59  	struct drm_dp_typec_bridge_data *typec_data;
-c77d47cea15ad1 Stephen Boyd 2024-08-19 @60  };
-c77d47cea15ad1 Stephen Boyd 2024-08-19  61  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
