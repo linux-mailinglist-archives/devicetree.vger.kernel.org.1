@@ -1,94 +1,120 @@
-Return-Path: <devicetree+bounces-95190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BAD6958575
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 13:10:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 007D195857B
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 13:13:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AFBE6284989
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 11:10:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7527F283661
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 11:13:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2391418E056;
-	Tue, 20 Aug 2024 11:10:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1591F18E04F;
+	Tue, 20 Aug 2024 11:13:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uNprruVp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7383118D63E;
-	Tue, 20 Aug 2024 11:10:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D774518E048;
+	Tue, 20 Aug 2024 11:13:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724152226; cv=none; b=VWdsvrAgYYB6m92ksA+VZGKIfJpMhSKbzASKEllNn1gTtZQdkjXuMqBHhaur+g5waUbow60l5FfFRGeJl7lAJhiFsjmUGsmZIJTt7ZR8CHKcEqa643MxRhk1iNfiUoMNt5UI9tYy4Ly1Scmzx/XJo0R9umjR3B/CU9jgHUjaT/k=
+	t=1724152385; cv=none; b=ejcgveEz7ivmhQyKOTC2/2wEJHfkLq116USNovBqYByDZYk9mm5CiqEWBiFta6zX45GxlVIAJpSSx7skD2Mnzp97j4G+Osvi74F0I1/ei4i8h8hAUZuGVS5NJ8P6QDpXoSHyaAMWDVTE7v7kIP9PmQY+9tP9hs5II3NQSPuAs6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724152226; c=relaxed/simple;
-	bh=hjQhT/qUKcPqbMV1YGAkqUAI41RaU4lOS+ZPTQ/daVc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GHbACf0r04dWmsz67olRLT7akuRdvrTMvxR0RmGlFyT23HxHUreqC91iS8s2WrtW0fQBDrBkB4CmU9OdIbWv5IxjBLqgwo27SLpIR135nJWgJUqAULtlUKnvthgUPiiWtiIHkiqtTpfh6MmEkqQoK7CywvCQGPdQf+gH6fcddYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-42816ca797fso43936855e9.2;
-        Tue, 20 Aug 2024 04:10:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724152219; x=1724757019;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fInxDh63lUo1pJrQRWGa0VqFjDqKSYMTvciu7osvTj0=;
-        b=eZcWgK6VHPaiEC+B7URewa9o1nH1drFdl38t9iEUSRME0aIplEaXV551SgT1dAvCdp
-         PpcVxQZCVoaGpayRDeZR2swySezWpoR1zlt1rUaG6ZPt+jkL4TWos2rG/4EqXEQic1O7
-         nDoAvnjkEufSMICjisKjbiha42p6n+QbWUffml40C5lOwO3A9zSFsOUtXgQhQzn/bGjP
-         EXQUcHnfyiRXAwIQ9idgyX43YZNUjcxfI3QUL2xwjZOr8n+wle+fDoyd9XFzAD7N9SS5
-         H3bv9w9FTrkJnwSgYSsKHVFIbC2nIz9/IpKmrn2MpH/yqwctnNFxe5caKuFIiZELEk2E
-         AYfA==
-X-Forwarded-Encrypted: i=1; AJvYcCUzkBHcsSzbPN5CDsSWYlnEV90pIDXS9u/lzZrXCUriYeKuHUfC5CmpLnvPvDG33Yc3QFU694Wo7hCF@vger.kernel.org, AJvYcCXRZ0eC+ReyPS1V6MohwwKESgfEeWhI1y7KeSV/YvIPNesIptSm/8PUvSrSegCsvWy0+NqojniCa5AVns3e@vger.kernel.org
-X-Gm-Message-State: AOJu0YxpUyN1r1g7F6w72X04gq5Vz68z6g4dxRLmEstemVVJEZWdSYLL
-	kuKkXEQEr/CYvXFVEt6TYwqeGu2exHyfTcczGycSGTYbFFN1soy7
-X-Google-Smtp-Source: AGHT+IFKueD4kujwz2iAYYiHm0x6pXa7zOH0dqc0XttMsjnIJ4KVsIzJEoUzeluMlqGg4HQjTlqfbg==
-X-Received: by 2002:a05:600c:1d07:b0:426:5f02:7b05 with SMTP id 5b1f17b1804b1-429ed7a6156mr84932665e9.2.1724152218409;
-        Tue, 20 Aug 2024 04:10:18 -0700 (PDT)
-Received: from krzk-bin ([178.197.215.209])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-429ed784726sm139348495e9.35.2024.08.20.04.10.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Aug 2024 04:10:17 -0700 (PDT)
-Date: Tue, 20 Aug 2024 13:10:14 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Rohit Agarwal <rohiagar@chromium.org>
-Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com, 
-	daniel@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, ck.hu@mediatek.com, 
-	jitao.shi@mediatek.com, dri-devel@lists.freedesktop.org, 
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/3] dt-bindings: display: mediatek: dpi: Add power
- domains
-Message-ID: <b5wtwpkwgg3tbwya6zllmymaaf2qvnyfbspkynr2ruzncej2ql@qloslxfinvos>
-References: <20240820080659.2136906-1-rohiagar@chromium.org>
- <20240820080659.2136906-2-rohiagar@chromium.org>
+	s=arc-20240116; t=1724152385; c=relaxed/simple;
+	bh=1zbN2sNRtfPRGWcjxVwDgWYDBk9g6pO9DkhmuXEJIJ0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nBC5dcEhXW4Li4SjfmFBb2031pft/LroxuCGrdPekcqwvqDB8+so4aKsg3rbh6V6jdL+hZxzYsBBmgT3RMASQbHBooO9V7nS3/n2Bb0DQssW6ErDmGauelp9emBGNltGFv6JAdOQMDJkSBzcgjccwUvH5gjDBFrpMr3UUJBpdrY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uNprruVp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A640EC4AF0F;
+	Tue, 20 Aug 2024 11:13:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724152384;
+	bh=1zbN2sNRtfPRGWcjxVwDgWYDBk9g6pO9DkhmuXEJIJ0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=uNprruVpQlH0SZga+pnYL3gZGQiKxOIHWEGabjDKpKl9mLLlBUiRgU1LJKJ8Bgx2v
+	 HKkUz8qe2GI1XzRxYXjoVby3/0OVsNdnSxZNpc5LDijBHk2WocaUgaubPqdLVznGSF
+	 qZNvH0uKaafn3EftbmXCaeWpKK6iW+t6XwpwXD64EFXQ6Hj6IQ79eLm+Z0UKbhDA2f
+	 /7GsJAgE+l+N4WehhvePUGXTtenkWji9gzT20AJtaH52kdJDrbqJ2fGWWNb1k2Z/K2
+	 Ka6MXNP4lFLvwvvCj9hXIVHX8wP+wYeoNow2n5zd87qlkrN1SYgkYqYTRRsbzWbWBe
+	 m9/Ox1KIJnR/g==
+Message-ID: <4d1c0d17-20b8-4989-9757-61031e9f03a4@kernel.org>
+Date: Tue, 20 Aug 2024 13:12:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240820080659.2136906-2-rohiagar@chromium.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/4] Add new driver for WCSS secure PIL loading
+To: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>,
+ andersson@kernel.org, krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: quic_viswanat@quicinc.com, quic_mmanikan@quicinc.com,
+ quic_varada@quicinc.com, quic_srichara@quicinc.com
+References: <20240820085517.435566-1-quic_gokulsri@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240820085517.435566-1-quic_gokulsri@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Aug 20, 2024 at 08:06:57AM +0000, Rohit Agarwal wrote:
-> Add power domain binding to the mediatek DPI controller.
+On 20/08/2024 10:55, Gokul Sriram Palanisamy wrote:
+> This series depends on q6 clock removal series [1].
 
-Why? Who needs it? Why all devices suddenly have it (IOW, why is it not
-constrained anyhow per variant)?
+How? So this cannot be tested and merged?
 
-> 
-> Signed-off-by: Rohit Agarwal <rohiagar@chromium.org>
-> ---
->  .../devicetree/bindings/display/mediatek/mediatek,dpi.yaml     | 3 +++
->  1 file changed, 3 insertions(+)
+That's second patchset to day with some totally bogus dependencies.
+People, stop it.
+
 
 Best regards,
 Krzysztof
