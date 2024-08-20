@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-95285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCC88958AFF
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 17:20:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFF2E958B05
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 17:21:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B4F31F21AA2
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 15:20:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78F7E282D84
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 15:21:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D7341946A1;
-	Tue, 20 Aug 2024 15:19:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 756B81922FF;
+	Tue, 20 Aug 2024 15:21:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="G7Ep+/UP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TlNMxw/0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52AD01922E0
-	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 15:19:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A399518EFC9
+	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 15:21:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724167173; cv=none; b=dWm4P0x/DIbDS5UBXPaKaNHZeRVdhb3QvL+xuTnYx2SvbK+MpLBR834myYEyupyaOZ49wOmrFkYp7I3HMMnq+qJ+nhetXIp5taaGoGZC1nS/NGODzfm0rvDrnMGtyQk8LmyFXxqBBPrb8IJmwrkYfFQ0YfjLPEMRGuE7oK/5oyg=
+	t=1724167270; cv=none; b=to+zVBw7cY3Xebm61zwlOUCr+cFJ25rI5OAWe88B7aN7avmKNbrFWGgOVEWaGcQRENaneR8ChPto5qAbbKQduVy7H/Z9fqCkMlHpLUo6MAxSB+B+qyQrwkQvh5sCuyuypNOfA7OMVjEVN9pn1N7IoqPM0IMWceWnzkY3yZXZ9Z4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724167173; c=relaxed/simple;
-	bh=M0lZ2DP22jfNN/C5aYt03sGQdVfogxyFNLx82l+fY0c=;
+	s=arc-20240116; t=1724167270; c=relaxed/simple;
+	bh=JNJbdZjtdi/ZRIagFhoJGMlZsaqDrIwuXJ3+vWJkqds=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=qpS7VhRzhKc9GfHNUCpZArr3KICocD/gNgAE3HxqoRiZ4v+IK+Bi9nEJvG64Qi7U7+fLLgawJ8afEnlpEKLFvSuMMxeWCczTQEiIIELebKNOjc23Yi2PhF2zh34WYSLpn10e6LG/S/ej0WI5cZjB5nyxtxcrcmS9JF9HfbtTKRM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=G7Ep+/UP; arc=none smtp.client-ip=209.85.221.42
+	 In-Reply-To:Content-Type; b=r2eO1Z1kQsjdLwahz3kpHm9pOyjePjJA4fT4owmIAXd2lN5RH58YIZZWGan7mSfS1nY+Miyswz+icmrlCCrFLCrFETpyA7kwxb+X1msCXSn8yONn/nR18RS0b9iq24g2fHw3irf9gnwgAA6Xi5RoBf/Wjph/lkfIXE/xdg5iTfk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TlNMxw/0; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3718706cf8aso3510124f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 08:19:31 -0700 (PDT)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4280bca3960so49708335e9.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 08:21:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724167169; x=1724771969; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1724167266; x=1724772066; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=CO8k7gPS3ah2eo5Hppz8CJu9bMQrSC7MJe+A3wiVe2c=;
-        b=G7Ep+/UPqFGChHWe5R/+Lv9j0L7cTLk+AaknRoV0IuiCBrc9rDkv+hmm/HlqLcMZ/U
-         0IE7EMcTezUxzXD7jCvQSH3F9BUOBAuS0x0tqp1424IFYXa++G405jD5dSKX/1TOxtct
-         o3jARo4739hgpCQE4eS8wv1kcWOJEufpNGQNyEl3JUZn/KOBnhStJZWP80YgBHZlcAk5
-         hmtz43BomHh2TYJLV2S7sj1rcs9DUqk3OfoVrITt2k2+AS+52FYjushq/cFfhEiF4DiO
-         RJSsvMI+0wrrY9Qy8RgGnuq4uZyutJyp4ybOxSNzOr6xRpLNokLDKxQ9HktSwU+M8O+e
-         5VjA==
+        bh=y2tA9LFggrWKbk/UOWjvTfxL+YIz6Gz6PVWFmL4uSdM=;
+        b=TlNMxw/02h8AEmvS9U+hB1Zx9yegxYHeXhNAvUt/lN6z7bJV0U0veX9c490Sp1bb5s
+         JwlVN+w1V3NWFnXOXvojRj6B2CzRsMOFwlreZWeqlnLAThqiiOXVQV813Z/JPk19accd
+         nCgBPQwGhCO82PONWQC19LvbO8n8brUwaxvZJsrBE1fn3Ajy1ZQzkBVuxQLNNfh1v8Zi
+         mZtcAkJ4CibreRchHC3XITQxNHNoxOqRLIuX3Vvunx0b6DN0GHIPQrYHvBgBSRFBFnLH
+         vT6MT6LwH1HwFNGrztTX2oHUM3hBY8olhNHT84Aa544ZGAFmdEWMESsCITt8y9MP9DGw
+         xAQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724167169; x=1724771969;
+        d=1e100.net; s=20230601; t=1724167266; x=1724772066;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=CO8k7gPS3ah2eo5Hppz8CJu9bMQrSC7MJe+A3wiVe2c=;
-        b=FR5Mcj/C8skHUz+ISaPNvPKG+/Va9m0RQ/+fZMub5ZYuzztbUXhkBJOym2JVpKte3T
-         RGSwJ/UicZCkCd+9EfBTU4ftFAGt8w37zM/gSLWIJNQdvWg9zl92redSgCwWNrL/U+Ai
-         xTNSi71AD4B20VcXd6oy65lYpa3uGOWpNaSZTs8onaB4ED28XzL5ZCJewimLesA+hT6P
-         VhNA+AcMpmrJfd1C1s2e66ZywCyDrC118uDhsfttB2DmM6WfWz1CLDOzVIbjR0JUfmnY
-         Lnyge5ME1IIYUnRP+iGyPBO14xtQ5qCZE0GPoy4bXayhLq65RnJ9urH6mlJIIQsNP5UH
-         +vfw==
-X-Forwarded-Encrypted: i=1; AJvYcCXP6Na9otVbHhiTRDfdegEsM1HFa+nox/qfDmxVMy3wszv9WxamgeTZtJFNjhr7RPO7Pa0io4xMrL8d@vger.kernel.org
-X-Gm-Message-State: AOJu0YxU6bBJ0ia8hc1bkR6rj/epfjrOLU2C80ZP1oDmNWUnVKE9ZjXE
-	8h8Pa52HAh1DMBqnQYSbsf547n9pkv9s0kcxm0pKe+L+MjLD3TaZBeda++uNx2E=
-X-Google-Smtp-Source: AGHT+IFZv8g2osJqh6CIrgVGdxVcFJ776Ad1FAr/yJHw+toA0eOs6k0PzTFvoLjLqRM1QHuSjRpBag==
-X-Received: by 2002:adf:a39a:0:b0:368:c6ff:dc94 with SMTP id ffacd0b85a97d-3719465a9fdmr8495859f8f.32.1724167168984;
-        Tue, 20 Aug 2024 08:19:28 -0700 (PDT)
+        bh=y2tA9LFggrWKbk/UOWjvTfxL+YIz6Gz6PVWFmL4uSdM=;
+        b=OnVgFPTPYRwn9wEIM2PaXePHtM9VQ2CxszBfi8P8KVw/nydJKB8NDIlwwfT3tQsRis
+         lYwrZLPAR0+IbogseYqEPr9GO/hPZ+zy5X1E3a+Hy0NomTDwoWnzx6sxI024kjotKmxx
+         OtHo4S4RNLZX60RVVFoKCz2+TvA3OTTCI24xF6eYsvYQiWWkSD8NkwcnCKGB6zUqlNUH
+         K5ZVWJdKoF6G+HPBSftH3tRbaf19RXg0BfsF+PIxAiHePdnSj7fSR3dNbBfszLn6pe7r
+         Yr5UCSjNT/f5xf+QlTFj9bQz5KqvVvew/gYXybQa5CxBAz58WwcsRTXxGZRmfFGVtuQr
+         6kfA==
+X-Forwarded-Encrypted: i=1; AJvYcCWqT43AztVSclMv+ZAYrucwpB+B2Gx7SV7+FXdNkFQAFugJ8E9KfvZy/miRrO0IzVFd8aOlaErZlD7qDdMzUUGJ3UJsdSRoUQKSDg==
+X-Gm-Message-State: AOJu0YxllB267O7ntIHuUpsnLvAnhSUOfn7OuYq4nljvjoRJtuwK+u12
+	ca6S3EzX4MWdcG5vdAMYSSDeTf+5RWTvzM9eV7fDPiFb2Mp4heWnoaV9pY5K6AI=
+X-Google-Smtp-Source: AGHT+IHemxa2nbJj0/NmVNVEo98bhoLj2Z9iunPvs/ge3ntFX1BaT6XiDKT3esr37y+beieHG5VurQ==
+X-Received: by 2002:a05:600c:19c9:b0:428:151b:e8e with SMTP id 5b1f17b1804b1-429ed79c7a5mr104493115e9.10.1724167265459;
+        Tue, 20 Aug 2024 08:21:05 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:ebdf:8de4:37af:6aad? ([2a01:e0a:982:cbb0:ebdf:8de4:37af:6aad])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429ed785708sm145468595e9.37.2024.08.20.08.19.27
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-429ded28cdasm196927895e9.16.2024.08.20.08.21.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Aug 2024 08:19:28 -0700 (PDT)
-Message-ID: <6e535895-6a06-42f8-abf3-e3b7472c97e0@linaro.org>
-Date: Tue, 20 Aug 2024 17:19:27 +0200
+        Tue, 20 Aug 2024 08:21:04 -0700 (PDT)
+Message-ID: <50004796-8229-4d4a-b7bf-11d27c90518b@linaro.org>
+Date: Tue, 20 Aug 2024 17:21:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,19 +78,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
+From: Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v9 00/23] Support more Amlogic SoC families in crypto
- driver
-To: Alexey Romanov <avromanov@salutedevices.com>, clabbe@baylibre.com,
- herbert@gondor.apana.org.au, davem@davemloft.net, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com, vadim.fedorenko@linux.dev
-Cc: linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, kernel@salutedevices.com
-References: <20240820145623.3500864-1-avromanov@salutedevices.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: amlogic: add C3 AW419 board
+To: xianwei.zhao@amlogic.com, Jerome Brunet <jbrunet@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chuan Liu <chuan.liu@amlogic.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240820-c3_add_node-v2-0-8fd3f06b7bce@amlogic.com>
+ <20240820-c3_add_node-v2-3-8fd3f06b7bce@amlogic.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -117,151 +120,304 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20240820145623.3500864-1-avromanov@salutedevices.com>
+In-Reply-To: <20240820-c3_add_node-v2-3-8fd3f06b7bce@amlogic.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi,
-
-On 20/08/2024 16:56, Alexey Romanov wrote:
-> Hello!
+On 20/08/2024 11:41, Xianwei Zhao via B4 Relay wrote:
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > 
-> This patchset expand the funcionality of the Amlogic
-> crypto driver by adding support for more SoC families:
-> AXG, G12A, G12B, SM1, A1, S4.
+> Add Amlogic C3 C308L AW419 board. The corresponding binding
+> has been applied, therefore, this series does not need to
+> add a binding corresponding to the AW419 board.
 > 
-> Also specify and enable crypto node in device tree
-> for reference Amlogic devices.
-> 
-> Tested on GXL, AXG, G12A/B, SM1, A1 and S4 devices via
-> custom tests [1] and tcrypt module.
-
-On which tree did you base yourself ? It fails to apply patch 20 on next-20240820 and 6.11-rc4
-
-Neil
-
-> 
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
+>   arch/arm64/boot/dts/amlogic/Makefile               |   1 +
+>   .../boot/dts/amlogic/amlogic-c3-c308l-aw419.dts    | 262 +++++++++++++++++++++
+>   2 files changed, 263 insertions(+)
 > 
-> Changes V1 -> V2 [2]:
-> 
-> - Rebased over linux-next.
-> - Adjusted device tree bindings description.
-> - A1 and S4 dts use their own compatible, which is a G12 fallback.
-> 
-> Changes V2 -> V3 [3]:
-> 
-> - Fix errors in dt-bindings and device tree.
-> - Add new field in platform data, which determines
-> whether clock controller should be used for crypto IP.
-> - Place back MODULE_DEVICE_TABLE.
-> - Correct commit messages.
-> 
-> Changes V3 -> V4 [4]:
-> 
-> - Update dt-bindings as per Krzysztof Kozlowski comments.
-> - Fix bisection: get rid of compiler errors in some patches.
-> 
-> Changes V4 -> V5 [5]:
-> 
-> - Tested on GXL board:
->    1. Fix panic detected by Corentin Labbe [6].
->    2. Disable hasher backend for GXL: in its current realization
->       is doesn't work. And there are no examples or docs in the
->       vendor SDK.
-> - Fix AES-CTR realization: legacy boards (gxl, g12, axg) requires
->    inversion of the keyiv at keys setup stage.
-> - A1 now uses its own compatible string.
-> - S4 uses A1 compatible as fallback.
-> - Code fixes based on comments Neil Atrmstrong and Rob Herring.
-> - Style fixes (set correct indentations)
-> 
-> Changes V5 -> V6 [7]:
-> 
-> - Fix DMA sync warning reported by Corentin Labbe [8].
-> - Remove CLK input from driver. Remove clk definition
->    and second interrput line from crypto node inside GXL dtsi.
-> 
-> Changes V6 -> V7 [9]:
-> 
-> - Fix dt-schema: power domain now required only for A1.
-> - Use crypto_skcipher_ctx_dma() helper for cipher instead of
->    ____cacheline_aligned.
-> - Add import/export functions for hasher.
-> - Fix commit message for patch 17, acorrding to discussion [10].
-> 
-> Changes V7 -> V8 [11]:
-> 
-> - Test patchset with CONFIG_CRYPTO_MANAGER_EXTRA_TESTS: fix some bugs
->    in hasher logic.
-> - Use crypto crypto_ahash_ctx_dma in hasher code.
-> - Correct clock definition: clk81 is required for all SoC's.
-> - Add fixed-clock (clk81) definition for A1/S4.
-> - Add information (in commit messages) why different compatibles are used.
-> 
-> Changes V8 -> V9 [12]:
-> 
-> - Remove required field clk-names from dt-schema according to Rob Herring
-> recommendation [13].
-> - Fix commit order: all dt-bindings schema commits now located earlier
-> than any changes in device tree.
-> - Fix typos and add more clarifications in dt-schema patches.
-> 
-> Links:
->    - [1] https://gist.github.com/mRrvz/3fb8943a7487ab7b943ec140706995e7
->    - [2] https://lore.kernel.org/all/20240110201216.18016-1-avromanov@salutedevices.com/
->    - [3] https://lore.kernel.org/all/20240123165831.970023-1-avromanov@salutedevices.com/
->    - [4] https://lore.kernel.org/all/20240205155521.1795552-1-avromanov@salutedevices.com/
->    - [5] https://lore.kernel.org/all/20240212135108.549755-1-avromanov@salutedevices.com/
->    - [6] https://lore.kernel.org/all/ZcsYaPIUrBSg8iXu@Red/
->    - [7] https://lore.kernel.org/all/20240301132936.621238-1-avromanov@salutedevices.com/
->    - [8] https://lore.kernel.org/all/Zf1BAlYtiwPOG-Os@Red/
->    - [9] https://lore.kernel.org/all/20240326153219.2915080-1-avromanov@salutedevices.com/
->    - [10] https://lore.kernel.org/all/20240329-dotted-illusive-9f0593805a05@wendy/
->    - [11] https://lore.kernel.org/all/20240411133832.2896463-1-avromanov@salutedevices.com/
->    - [12] https://lore.kernel.org/all/20240607141242.2616580-1-avromanov@salutedevices.com/
->    - [13] https://lore.kernel.org/all/20240610222827.GA3166929-robh@kernel.org/
-> 
-> Alexey Romanov (23):
->    drivers: crypto: meson: don't hardcode IRQ count
->    drviers: crypto: meson: add platform data
->    drivers: crypto: meson: remove clock input
->    drivers: crypto: meson: add MMIO helpers
->    drivers: crypto: meson: move get_engine_number()
->    drivers: crypto: meson: drop status field from meson_flow
->    drivers: crypto: meson: move algs definition and cipher API to
->      cipher.c
->    drivers: crypto: meson: cleanup defines
->    drivers: crypto: meson: process more than MAXDESCS descriptors
->    drivers: crypto: meson: avoid kzalloc in engine thread
->    drivers: crypto: meson: introduce hasher
->    drivers: crypto: meson: add support for AES-CTR
->    drivers: crypto: meson: use fallback for 192-bit keys
->    drivers: crypto: meson: add support for G12-series
->    drivers: crypto: meson: add support for AXG-series
->    drivers: crypto: meson: add support for A1-series
->    dt-bindings: crypto: meson: correct clk and remove second interrupt
->      line
->    dt-bindings: crypto: meson: support new SoC's
->    arch: arm64: dts: meson: gxl: correct crypto node definition
->    arch: arm64: dts: meson: a1: add crypto node
->    arch: arm64: dts: meson: s4: add crypto node
->    arch: arm64: dts: meson: g12: add crypto node
->    arch: arm64: dts: meson: axg: add crypto node
-> 
->   .../bindings/crypto/amlogic,gxl-crypto.yaml   |  32 +-
->   arch/arm64/boot/dts/amlogic/meson-a1.dtsi     |  14 +
->   arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |   7 +
->   .../boot/dts/amlogic/meson-g12-common.dtsi    |   7 +
->   arch/arm64/boot/dts/amlogic/meson-gxl.dtsi    |   6 +-
->   arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |  13 +
->   drivers/crypto/amlogic/Makefile               |   2 +-
->   drivers/crypto/amlogic/amlogic-gxl-cipher.c   | 632 ++++++++++++------
->   drivers/crypto/amlogic/amlogic-gxl-core.c     | 292 ++++----
->   drivers/crypto/amlogic/amlogic-gxl-hasher.c   | 507 ++++++++++++++
->   drivers/crypto/amlogic/amlogic-gxl.h          | 118 +++-
->   11 files changed, 1269 insertions(+), 361 deletions(-)
->   create mode 100644 drivers/crypto/amlogic/amlogic-gxl-hasher.c
+> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+> index 29417f04f886..2fbda8419c65 100644
+> --- a/arch/arm64/boot/dts/amlogic/Makefile
+> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+> @@ -2,6 +2,7 @@
+>   dtb-$(CONFIG_ARCH_MESON) += amlogic-a4-a113l2-ba400.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += amlogic-a5-a113x2-av400.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c308l-aw419.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-an400.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-khadas-vim4.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts b/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts
+> new file mode 100644
+> index 000000000000..4477a2659e27
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3-c308l-aw419.dts
+> @@ -0,0 +1,262 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "amlogic-c3.dtsi"
+> +
+> +/ {
+> +	model = "Amlogic C308l aw419 Development Board";
+> +	compatible = "amlogic,aw419", "amlogic,c3";
+> +	interrupt-parent = <&gic>;
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	aliases {
+> +		serial0 = &uart_b;
+> +		spi0 = &spifc;
+> +	};
+> +
+> +	memory@0 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x0 0x0 0x80000000>;
+> +	};
+> +
+> +	reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		/* 9 MiB reserved for ARM Trusted Firmware */
+> +		secmon_reserved: secmon@7f00000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x0 0x07f00000 0x0 0x900000>;
+> +			no-map;
+> +		};
+> +	};
+> +
+> +	main_12v: regulator-main-12v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "12V";
+> +		regulator-min-microvolt = <12000000>;
+> +		regulator-max-microvolt = <12000000>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vcc_5v: regulator-vcc-5v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VCC5V";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		vin-supply = <&main_12v>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vddq: regulator-vddq {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VDDQ";
+> +		regulator-min-microvolt = <1200000>;
+> +		regulator-max-microvolt = <1200000>;
+> +		vin-supply = <&main_12v>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vddao_3v3: regulator-vddao-3v3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VDDAO3V3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&main_12v>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vddao_1v8: regulator-vddao-1v8 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VDDAO1V8";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		vin-supply = <&vddao_3v3>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
+> +
+> +	ddr4_2v5: regulator-ddr4-2v5 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "DDR4_2V5";
+> +		regulator-min-microvolt = <2500000>;
+> +		regulator-max-microvolt = <2500000>;
+> +		vin-supply = <&vddao_3v3>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vcc_3v3: regulator-vcc-3v3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VCC3V3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&vddao_3v3>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vcc_1v8: regulator-vcc-1v8 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VCC1V8";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		vin-supply = <&vcc_3v3>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vdd_1v8: regulator-vdd-1v8 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VDD1V8_BOOT";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		vin-supply = <&vcc_3v3>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vddio_b: regulator-vddio-3v3-b {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VDDIO_B";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&vcc_3v3>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
+> +
+> +	sdcard: regulator-sdcard {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "SDCARD_POWER";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&vddao_3v3>;
+> +		gpio = <&gpio GPIOA_4 GPIO_ACTIVE_LOW>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
+> +};
+> +
+> +&uart_b {
+> +	status = "okay";
+> +};
+> +
+> +&nand {
+> +	status = "okay";
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	pinctrl-0 = <&nand_pins>;
+> +	pinctrl-names = "default";
+> +
+> +	nand@0 {
+> +		reg = <0>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		nand-on-flash-bbt;
+> +
+> +		partition@0 {
+> +			label = "boot";
+> +			reg = <0x0 0x00200000>;
+> +		};
+> +		partition@200000 {
+> +			label = "env";
+> +			reg = <0x00200000 0x00400000>;
+> +		};
+> +		partition@600000 {
+> +			label = "system";
+> +			reg = <0x00600000 0x00a00000>;
+> +		};
+> +		partition@1000000 {
+> +			label = "rootfs";
+> +			reg = <0x01000000 0x03000000>;
+> +		};
+> +		partition@4000000 {
+> +			label = "media";
+> +			reg = <0x04000000 0x8000000>;
+> +		};
+> +	};
+> +};
+> +
+> +&ethmac {
+> +	status = "okay";
+> +	phy-handle = <&internal_ephy>;
+> +	phy-mode = "rmii";
+> +};
+> +
+> +&spifc {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	pinctrl-0 = <&spifc_pins>;
+> +	pinctrl-names = "default";
+> +
+> +	nand@0 {
+> +		compatible = "spi-nand";
+> +		reg = <0>;
+> +		spi-max-frequency = <83000000>;
+> +		spi-tx-bus-width = <4>;
+> +		spi-rx-bus-width = <4>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		status = "disabled";
+> +
+> +		partitions {
+> +			compatible = "fixed-partitions";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +
+> +			partition@0 {
+> +				label = "boot";
+> +				reg = <0 0x200000>;
+> +			};
+> +
+> +			partition@200000 {
+> +				label = "env";
+> +				reg = <0x200000 0x400000>;
+> +			};
+> +
+> +			partition@600000 {
+> +				label = "system";
+> +				reg = <0x600000 0xa00000>;
+> +			};
+> +
+> +			partition@1000000 {
+> +				label = "rootfs";
+> +				reg = <0x1000000 0x3000000>;
+> +			};
+> +
+> +			partition@4000000 {
+> +				label = "data";
+> +				reg = <0x4000000 0x8000000>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&sd {
+> +	status = "okay";
+> +	pinctrl-0 = <&sdcard_pins>;
+> +	pinctrl-1 = <&sdcard_clk_gate_pins>;
+> +	pinctrl-names = "default","clk-gate";
+> +
+> +	bus-width = <4>;
+> +	cap-sd-highspeed;
+> +	max-frequency = <50000000>;
+> +	disable-wp;
+> +
+> +	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
+> +	vmmc-supply = <&sdcard>;
+> +	vqmmc-supply = <&sdcard>;
+> +};
 > 
 
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
