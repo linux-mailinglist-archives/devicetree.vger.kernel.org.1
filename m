@@ -1,137 +1,235 @@
-Return-Path: <devicetree+bounces-95297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D55F9958B64
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 17:33:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 272C9958B70
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 17:36:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5E159B24D5E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 15:33:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 70E67B20C68
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 15:36:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58C9E18FDAB;
-	Tue, 20 Aug 2024 15:33:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16064193097;
+	Tue, 20 Aug 2024 15:36:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="t2rcW0Bk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SO18IOyX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91B2943179
-	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 15:33:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D475818FDAB;
+	Tue, 20 Aug 2024 15:36:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724167991; cv=none; b=D7ilM1eD0mqHQE+nYT79AxR24cs3aASpp++uXNL4yFA53rmLI3FAjbFw3BYB/WDHde8ItpRk6THdUs0Y2xa4EqD2Z9xhNmnEqYWasw3Z1IBZcsLf48kRD3GKD8kZ9qfG59Y6u3StHfj1aWFMo9KjTxNBLf9cJxgqWqnK2QtaWfY=
+	t=1724168194; cv=none; b=ZbSyvY4B7GJ/ZGjEX1LWk8GkIi4m6ZfTz1Ast3gwmRWJ5Z0dNCCMP8KV1yRfO0cgKzqRuY0bcga/KL6sIrwqIBbTtiP16vSiX9uZqAKWzxIJIvE4/w4K7QWuADTcQd1HRhMh3PshBZ2HHaajBzMEvHe9+tquoA6yVghqvY0xGjE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724167991; c=relaxed/simple;
-	bh=+OaBQfutS39xGSin3zGP1Qk7YgYb1VUUXjVp4qNqfSc=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=S8Y4Ut8H6XKBJD5WDoOc7Br6SV5G3OIm+sjy4FHEotQQ55D9pS6q9lZd5t1RHYLCn620wsiZs4c2TEJgn5COBoXS8DmzoZ2Bl++VtB10SUGkIuTYl70Hr7ZAaIpog7s75QlCZZVXOgTQfhnV3cRK7+VRbFNkVjUgxPvXr8Iv9Sk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=t2rcW0Bk; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4281faefea9so45051945e9.2
-        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 08:33:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724167988; x=1724772788; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wuviY/QQQrSO9+Z2BJ5lMr1fzmIzONdeW1It0su3NKk=;
-        b=t2rcW0BkOajWycxuzQ0P8jp2+e6XeGWDz4r7YcJmG5EQF6cULEZLEMWwS1+B1Diy2Y
-         yLbA6ilvtscu70c9ZgOv9DV31CGwwOtV/LXWA2E8n5oUk2xcy/vwBdRi95sDwtJ2I8lh
-         5bYw0qwr0MvLzi4vGHdZDDMW3gk6jHt+hAD77p0/vwMpnVj7zXl3THE2yuJ6qy9DRFsa
-         1ycDWp7Au7b9GAENwVrbMzFXbN6UTtLG5n2uCZI3AaJGBtTsCOD2MVK+0vXpu4GF1hfc
-         I5MIalWRP7k8JtxhRGilNtC9lClseC793uiBM4Lrq2E8c2ov8tU1YRAhIrxdPbxeVYa0
-         982Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724167988; x=1724772788;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wuviY/QQQrSO9+Z2BJ5lMr1fzmIzONdeW1It0su3NKk=;
-        b=BCGy6YznnvBqlN+9HZ+d6Cy7NXkkqDo9beHgwiH1HCIdmwSDFrEAGL+Ovl9fXBNJJ5
-         B2np3CLFpui+fpNNZRf5D19AGVyu3ou6/IiKy7k0DLxorovevd0tvDYWaWtZXXQkuJIz
-         bkZ9ZA5O04WTnoA9x5ifFJPnF4ojGF2jP4hV4O+mb+5KNaHpSMlLX5AKWhJc8FGdkv4b
-         x4rcLWII40HdYzAhPhHfBYnnzkMABsfcqlb0FM0psXGI4OxQokESwP3BLlk9tMtNj+nI
-         FFha8YrLkWCafTXqtWXDPMetIqCFIZnElvkWNkN9hiF2F26gkqqjadhq9FZS5/WYgRew
-         3SBQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWUlcIt1RZD4CagfMh0VD4Amv2HtfWx+6x3ZjsVLzr9BSgjPUxV/Qx+qMGHX1tfougccILHKbQgOwcV@vger.kernel.org
-X-Gm-Message-State: AOJu0YxVGw6HXEdY8s2bpHktbzCJQ9hfYE48ssC2IEOv4ADErja3dvJP
-	th6dQCvOzXwdh8b6Wg6bmRm4OuEP9fY360aK+0l64XqUFjnUpmuws1zq+jtgnWo=
-X-Google-Smtp-Source: AGHT+IE777Bx6pTopHtMljghqFepuFOm8sSMWy9wA6vpKgN4DJRs3RE0ahQDEyikg2nfhn/BYaFEsw==
-X-Received: by 2002:a5d:50c8:0:b0:368:6ab:ba69 with SMTP id ffacd0b85a97d-37194651b3amr10028009f8f.28.1724167987318;
-        Tue, 20 Aug 2024 08:33:07 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-371898aac62sm13311675f8f.101.2024.08.20.08.33.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Aug 2024 08:33:06 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Kevin Hilman <khilman@baylibre.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Conor Dooley <conor.dooley@microchip.com>
-In-Reply-To: <20240719-soc_info-v3-0-020a3b687c0c@amlogic.com>
-References: <20240719-soc_info-v3-0-020a3b687c0c@amlogic.com>
-Subject: Re: (subset) [PATCH v3 0/6] Add new Amlogic SoCs info defines.
-Message-Id: <172416798625.3053719.9732912917440614135.b4-ty@linaro.org>
-Date: Tue, 20 Aug 2024 17:33:06 +0200
+	s=arc-20240116; t=1724168194; c=relaxed/simple;
+	bh=//L2My3Xu7jix4e3xSRB1Agqzokv5wZYx6F2RIQLhBY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=d3Mill6GoCpLJ5j8GeD/odfTj6b05aB3VI9SaA6CHUEPt9/a1cKsJT1htmZ5GFBC2HQ1hD+CAkJJq1o/N+5qCkaN8IfzIVnHy6Q77JBOXoIviA+/mYFZPO5NVFGGkIWaE/Y9f6da3682Xb5VguCWYCwFbbStyKkrwW6RzhYEGaE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SO18IOyX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5909C4AF0C;
+	Tue, 20 Aug 2024 15:36:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724168191;
+	bh=//L2My3Xu7jix4e3xSRB1Agqzokv5wZYx6F2RIQLhBY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=SO18IOyXzcyclVdGaO89sf5tH9ASPFYjNIpXrY+u4PCOtORP4M8NcB/j/vBzacykw
+	 n5YraaXu4GZss8hOAV5oJS6/+IXWuKLgRW5dFMEQBFxAApxIv/5qRTn1edPBofRvdC
+	 2z8H1p9TureKYjsk9nReLl9DyeVNhz/XVl/XOCQbHDqiO7bo9rFN0DL+Iszp5UzdU5
+	 Xhz+dcR7nDAbso/UknMxiHVIO/M+oHuq+MYyrPJQfprzWslggvNC7G0GPAnzzk8WSZ
+	 gIGI29npWtn2SyXR0xdSah11+Pyu1O+7s0gFPQ7LWjc5bBZXbYwoA6FDRvAnZBWWj5
+	 CF14jwXsXCI4A==
+Message-ID: <0b639d04-af33-44b0-a556-40decff683c5@kernel.org>
+Date: Tue, 20 Aug 2024 17:36:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: wireless: restore constraint for
+ brcm,bcm4329-fmac compatible property
+To: Arend van Spriel <arend.vanspriel@broadcom.com>
+Cc: Kalle Valo <kvalo@kernel.org>, Hector Martin <marcan@marcan.st>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-wireless@vger.kernel.org, brcm80211@lists.linux.dev,
+ asahi@lists.linux.dev
+References: <20240820101216.355012-1-arend.vanspriel@broadcom.com>
+ <20240820101216.355012-2-arend.vanspriel@broadcom.com>
+ <mbvhz3wosnykejgs65es2sfedxoevysbqu3jxmpgdze2b2tl6o@grx4mxas2bmf>
+ <7881c303-bef1-403a-aa70-30d33558f57f@kernel.org>
+ <6777d425-b27f-43d0-ba81-b36ac0b8f929@broadcom.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <6777d425-b27f-43d0-ba81-b36ac0b8f929@broadcom.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.0
 
-Hi,
-
-On Fri, 19 Jul 2024 16:08:08 +0800, Xianwei Zhao wrote:
-> Add more Amlogic SoCs info defines, include S4, C3
-> T7, A4, A5.
+On 20/08/2024 14:50, Arend van Spriel wrote:
+> On 8/20/2024 1:39 PM, Krzysztof Kozlowski wrote:
+>> On 20/08/2024 13:27, Krzysztof Kozlowski wrote:
+>>> On Tue, Aug 20, 2024 at 12:12:15PM +0200, Arend van Spriel wrote:
+>>>> When extending the bindings for Apple PCIe devices the compatible property
+>>>> specification was changed. However, it was changed such that for these
+>>>> devices it was no longer necessary to have "brcm,bcm4329-fmac" listed as
+>>>> string in the compatible list property as it was before that extension.
+>>>
+>>> Apart that this was never tested... That statement is not true. Look at
+>>> "fixed" commit - it is not doing like that at all.
+>>>
+>>> I don't understand the reasoning.
+>>>
+>>>> This patch restores that constraint.
+>>>>
+>>>> Fixes: e2e37224e8b3 ("dt-bindings: net: bcm4329-fmac: Add Apple properties & chips")
+>>>> Signed-off-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+>>>> ---
+>>>>   .../net/wireless/brcm,bcm4329-fmac.yaml       | 19 ++++++++++---------
+>>>>   1 file changed, 10 insertions(+), 9 deletions(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+>>>> index e564f20d8f41..47f90446322f 100644
+>>>> --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+>>>> +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+>>>> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>   title: Broadcom BCM4329 family fullmac wireless SDIO/PCIE devices
+>>>>   
+>>>>   maintainers:
+>>>> -  - Arend van Spriel <arend@broadcom.com>
+>>>> +  - Arend van Spriel <arend.vanspriel@broadcom.com>
+>>>>   
+>>>>   description:
+>>>>     The Broadcom Single chip MAC part for the BCM4329 family and
+>>>> @@ -27,7 +27,6 @@ properties:
+>>>>                 - brcm,bcm4341b0-fmac
+>>>>                 - brcm,bcm4341b4-fmac
+>>>>                 - brcm,bcm4341b5-fmac
+>>>> -              - brcm,bcm4329-fmac
+>>>>                 - brcm,bcm4330-fmac
+>>>>                 - brcm,bcm4334-fmac
+>>>>                 - brcm,bcm43340-fmac
+>>>> @@ -46,13 +45,15 @@ properties:
+>>>>                 - cypress,cyw43012-fmac
+>>>>                 - infineon,cyw43439-fmac
+>>>>             - const: brcm,bcm4329-fmac
+>>>> -      - enum:
+>>>> -          - brcm,bcm4329-fmac
+>>>> -          - pci14e4,43dc  # BCM4355
+>>>> -          - pci14e4,4464  # BCM4364
+>>>> -          - pci14e4,4488  # BCM4377
+>>>> -          - pci14e4,4425  # BCM4378
+>>>> -          - pci14e4,4433  # BCM4387
+>>>> +    - items:
+>>>> +          - enum:
+>>>> +              - pci14e4,43dc  # BCM4355
+>>>> +              - pci14e4,4464  # BCM4364
+>>>> +              - pci14e4,4488  # BCM4377
+>>>> +              - pci14e4,4425  # BCM4378
+>>>> +              - pci14e4,4433  # BCM4387
+>>>> +          - const: brcm,bcm4329-fmac
+>>>> +    - const: brcm,bcm4329-fmac
+>>>
+>>> And this does not make sense... You claim that some constrained was
+>>> droppped and you re-add it, but in fact you still add the same code as
+>>> it was before.
+>>>
+>>> NAK.
+>>
+>> Ah, the last "const" actually makes sense, I missed that.
+>>
+>> Commit still however lacks rationale why these devices are compatible.
+>> Plus existing rationale that e2e37224e8b3 changed something is entirely
+>> WRONG. It changed nothing. ZERO. It only added new devices, which was
+>> claimed are not compatible with brcm,bcm4329-fmac.
 > 
+> So is that claim true? What does it mean that these new devices are not 
+> compatible. If they are they should be in a separate binding or the 
+
+Whether binding is separate or not, is just way of organizing things.
+
+> applicable properties for these devices should be made conditional.
+
+Could be if they are not applicable.
+
 > 
+>> Now if you claim that original commit which said "these devices are not
+>> compatible with brcm,bcm4329-fmac", then please provide arguments, not
+>> just say "other commit did something". It did nothing...
+> 
+> Not entirely true. Indeed new devices were added for which no 
+> "brcm,bcm4329-fmac" string is required in the compatible property. Also 
+> the commit added new properties for these new devices. Now in my opinion 
+> a driver should not use these properties without a "compatible" check. 
+> Hope we can agree to that. However, the driver patch for supporting the 
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.12/arm64-dt)
+Sorry, I don't follow. Why the driver would need to check for compatible?
 
-[3/6] arm64: dts: amlogic: s4: add ao secure node
-      https://git.kernel.org/amlogic/c/4b26afe7d216183bcb2b1aa2c0096cafdf7a9ea2
-[4/6] arm64: dts: amlogic: c3: add ao secure node
-      https://git.kernel.org/amlogic/c/84ed73ee34d152032633e540f159c482ede4c10b
-[5/6] arm64: dts: amlogic: t7: add ao secure node
-      https://git.kernel.org/amlogic/c/4c23177c51884f5307e67875b1dc87d98543be7a
-[6/6] arm64: dts: amlogic: a4: add ao secure node
-      https://git.kernel.org/amlogic/c/b2d7fd0ecb292e77a2d04cb6836c909cb6b6655b
+> binding change does no such thing. So if we leave the binding as it 
+> currently is the driver will have to check if compatible has any of the 
+> listed PCI IDs before processing the properties. As all properties old
 
-These changes has been applied on the intermediate git tree [1].
+Why driver needs to check it? Are these properties not valid?
 
-The v6.12/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
+> and new are marked as optional I can not come up with an argument that 
+> these new devices are *not* compatible with brcm,bcm4329-fmac.
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
+Compatibility is expressed by implementing same programming interfasce
+(or its subset) thus being able to bind via fallback and correctly
+operate in given SW.
 
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
+I don't know whether that's the case here, so rephrasing my earlier
+comments - the commit msg should focus on this aspect and tell that
+devices are fully compatible, thus they should use fallback.
 
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
+Quick look at drivers told me that not - they are not compatible...
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
+Best regards,
+Krzysztof
 
 
