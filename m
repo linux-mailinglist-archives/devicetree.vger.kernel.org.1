@@ -1,146 +1,212 @@
-Return-Path: <devicetree+bounces-95247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F50F9589EC
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 16:45:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFAA69589F5
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 16:46:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 979AFB238A1
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 14:45:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF69D1C214DD
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 14:46:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DB0C19412C;
-	Tue, 20 Aug 2024 14:38:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E714D19596F;
+	Tue, 20 Aug 2024 14:39:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HXVPtgty"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="H5CXhVJ2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11012051.outbound.protection.outlook.com [52.101.66.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A21F7191F72;
-	Tue, 20 Aug 2024 14:38:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724164715; cv=none; b=mkVqWbdpWRFM9HiSLuENbLWd/ENOLMCPt9asMMD4dE/6AN6BcV4jl1y8g4mg5IfsbNGCzt7kfEdVgd3W0JcyXjg3cF2KJ2fp+glDWlvEOXEcPsv9kQLDbX27INeRZ+83gly3moT0Gw7EN89oUeuMa7qeTmjZk32ldZ1BkicSTI8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724164715; c=relaxed/simple;
-	bh=o+e6mZf6wtIb/qdtsdAqCEiKnYEcfJt0EJnolihIkt4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Jc/beLByZ5Nh1UXGxT9JbQg98qK8B4fsvTa9gTFHKPALTo1EACF8gJH6EklcnS7SD8j55cBbsxLWtbm7uwDU9qC8XCMYvGJUiA9mvMFYz4f+EO6qjsGWkDBoaiQ/5CCRqejASGYNJrj0WaepALh8Sdm/d5bL0ftvA9dN5Px7IbM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HXVPtgty; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2f3f07ac2dcso7330291fa.2;
-        Tue, 20 Aug 2024 07:38:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724164712; x=1724769512; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Rt9Va+56pU7ZDhXb7NcEk5Z+FfkmKspU+Icin+0hIu4=;
-        b=HXVPtgtyfhxONT/+PUO3PrM/gYe7pHh7NlTrPveihy0r5/UbKSMCNViRd5W5fN+DsF
-         pQxRyIfggWiTVrlAJcm1KN86VuQ6sSvfu3PFOlyNG0sEve7oyYCQGT9oqP9Z3Us0Zxql
-         pY7PwaSA5cQBzBgUQBUzTfIZpV9mqay3M27h3TFgjCqOJxGP/zO2jtPbJZlmqtQiKcIn
-         kfnhQvqSQzQ5o8eIZvdxdr7luVowTOubLUKtpjHNXxlOI5kqqHGzIIQABolWLFZqPGfR
-         nA1D+RzeeBKl+j4ZbJzVwHJbKmJaHypauOW+C/8ITyjUDPoXvupjjxtgAYDxABLH+bVW
-         qMDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724164712; x=1724769512;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Rt9Va+56pU7ZDhXb7NcEk5Z+FfkmKspU+Icin+0hIu4=;
-        b=ssiWqDKJPIkY+Zzm0J49z7mtruNFui7qkM+HsK2eJ/Iv7eNZ5cDqhJ81he+8OQaPhS
-         ti8lbsmP8Jx+HDeCfLO82wYE8lLEy28AlTYqjBtXBVkdbt8geoDIzM2QSUIgm/HQVHTr
-         Vy/BqScyytnvv8WKRMR/jqa+WbJWEVB1SQs9CJ42j10q+cf7prtDEtDxcRFZ0P87sS7u
-         RXLZPF6HE55d3H94GC41UsiSQuAJb36go2Ux9uk4W5VC3kbUGOPXsF+Z7ODrBXnFBTu3
-         Ax2Arv0DMtmT3GmQk7W6f87gi6OIs8YJYvFMpYkNfE2e1w5kWZq5bhSzQyxyQH6wh5yT
-         InEw==
-X-Forwarded-Encrypted: i=1; AJvYcCUO4/jdEJ41hc/khGtpZnjtf54mEgIfcGNyyRpujjWizyVHIYeo2u9QLeTGhOLbNIAuf7tPSDzePF2RJLpKikG4H0saXMZkSCCBL7HA
-X-Gm-Message-State: AOJu0Yz4l0O78ANQE4gAbMY34eARa1JY5ZD1eYEuv2CJ9zeNbfzIbhts
-	9QcgUj+sR5hlIgEJ8dZlnzrVkI2YCNH5Cx9M06w8i8GBarMgmOcp
-X-Google-Smtp-Source: AGHT+IEPjYZZ2oXKTRwJNy0PcSnF6FIti7QGrLcbGHfPwDUeSiz8QXt8FWcfj96E0QZoSJs4Ih5dNg==
-X-Received: by 2002:a2e:4e01:0:b0:2ee:974c:596f with SMTP id 38308e7fff4ca-2f3be5bfe54mr98249601fa.28.1724164711158;
-        Tue, 20 Aug 2024 07:38:31 -0700 (PDT)
-Received: from tablet.my.domain (ip-37-248-154-163.multi.internet.cyfrowypolsat.pl. [37.248.154.163])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5bebbde3edfsm6807548a12.29.2024.08.20.07.38.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Aug 2024 07:38:30 -0700 (PDT)
-From: Artur Weber <aweber.kernel@gmail.com>
-Date: Tue, 20 Aug 2024 16:38:14 +0200
-Subject: [PATCH] ARM: dts: broadcom: bcm2166x-common: Increase apps bus
- size to fit BCM21664 GIC
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3841191F60;
+	Tue, 20 Aug 2024 14:39:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.51
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724164774; cv=fail; b=RQ3YGpe7qTdaEfANb8cidvZKm0FV/TJpGYazvzIlcQ2VtGK78awpPVvrcvTNT1ZaxL7m1wuEigbf5XfS79edrx60kb7CNtZBAUYUXIZ8MZ2AGzr5o7n9h2zDtsJ7qsFO1PX86dNBwpelxHh1pNgjoNrPcIiZBDNj4agukM+ZuoM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724164774; c=relaxed/simple;
+	bh=xU0t4H8Csh0ruSUzggi+mgAfsJx37b398RCpA3BVx98=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=L6cr+qEZTE2dmploh2S4Q2e6z/ZPANkJgfP9VnpVjZv1lygNo7c2x7/LEeo5GE/QaXEIOuMLpDDtDPwnH3ZPcGRicf5Nhw72BjAERWhOY5d8zfPPB69XxNRZYRVN1TredL6GYeN6ktinKy8NfFg5pAdAJgHUBB/QXwfVqfuLA8Q=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=H5CXhVJ2; arc=fail smtp.client-ip=52.101.66.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rxZed9gEYv7+riGUAsz6V3GRxiFyxTF8XIXBiDLSwxnnNXLV6Qe6KALefoO3qYILKMA0O7e1ufdxx9iqW8Ejjbry7ckiJuTSDIKfWzAYIA4vN796mpYXS1dQDTaPmPkwPVdCksaPm0CRIjHpUmtdPm+6EBA/AHf/+ijR/JeZBAhSq036lCXBZDJGa0hYFu1pCc9b4rkV9XfiGkUPMwxQmQtFoKwDoRV6kQVLl4i/DAOah46/R68lNAq05b0HROvwGRTcU39jKohQalDBKryzpBaUVXBjXVqErWbyUZ999QYLwDoY0kp2PPmCzQIWD8I6Hbw/rzQcCmPC2w0wHsJZsw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CDsr8v+Beyti+1EoNjUT6eY0aOr0NYx7EcHq8Quj3QM=;
+ b=ndXAa4NW39N5QMH5CETbyxJPBCGO3ESUa1cK4iuDe6EipE+Tq0yAdPhLMRx9WuDy1+Qrl1SAXPMXVsHNrDD3Yz1Z07/ZKRA0gDlzAQ5MdYUh+laUBDzd8jg9gPv+qzra+QrTmSXRkvBKArRRK9rRvyyGZtmHzEHPxcVaDAMdCOZhGDrKoaH4tXOtqwoHgI1OZDZ7VX6C+hAKWusZ2bqNYhssWWUTVqlJVgj5p8Lql/BnWGmJvUONVYf0Gd+kLtjEUkrGHmdZ8u/eBl3KSoLcM9MgWmr32WhTrsD4bZy7YZ7jlQBq+Ryrfmtzr4xd+bQjmQwdFyzuntJJRckj7xN48g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CDsr8v+Beyti+1EoNjUT6eY0aOr0NYx7EcHq8Quj3QM=;
+ b=H5CXhVJ2/WDPnjvP77tT6T0lRhsqfMH6hsHUn3oZdjG/wrNQJVSR0Jbd7V8AQKJrL5FojwuOPkCMK0ILW/c17/r/sBMA1Z1y0kCxED4qjEeD170MC8snbQLKeZWQNtYTD3QJ8mhI9hwPaHT3IX0FR9qG/DCme0f8UZD2oWH7Z4qV7/sSiexGNUkavLpc+l0793KvZpvwDLcaBCu6SSCL/GFWl9xk4kUPL/Y9Y3JOW9IswUehCH4nBY4d2H+UKtFkprkr1JMMjWqcUnDk5U20g+RTgDtos9xQ4JJ4qm1iiCdGFdnXaA7I6LMCFyYTghSTPq7d68+8y5qULBmz3FRVVw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AS8PR04MB7910.eurprd04.prod.outlook.com (2603:10a6:20b:288::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.21; Tue, 20 Aug
+ 2024 14:39:29 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%3]) with mapi id 15.20.7875.019; Tue, 20 Aug 2024
+ 14:39:28 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+	MyungJoo Ham <myungjoo.ham@samsung.com>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-kernel@vger.kernel.org (open list:NXP PTN5150A CC LOGIC AND EXTCON DRIVER),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+Cc: imx@lists.linux.dev
+Subject: [PATCH v4 1/1] dt-bindings: extcon: ptn5150: add child node port
+Date: Tue, 20 Aug 2024 10:39:11 -0400
+Message-Id: <20240820143911.444048-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR05CA0046.namprd05.prod.outlook.com
+ (2603:10b6:a03:33f::21) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240820-bcm2166x-apps-bus-fix-v1-1-0478a3227e86@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAFWqxGYC/x2MywqAIBAAfyX23IJJiPQr0cHHWnvIxKUIon9PO
- s7AzANClUlg6h6odLHwkRsMfQdhc3kl5NgYtNKjslqhD7sejLnRlSLoT8HENyqKIXlHNgYPrS2
- Vmv6/8/K+H6rJ1thnAAAA
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- ~postmarketos/upstreaming@lists.sr.ht, 
- Artur Weber <aweber.kernel@gmail.com>
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1268;
- i=aweber.kernel@gmail.com; h=from:subject:message-id;
- bh=o+e6mZf6wtIb/qdtsdAqCEiKnYEcfJt0EJnolihIkt4=;
- b=owEBbQKS/ZANAwAKAbO7+KEToFFoAcsmYgBmxKpklbjLa0VDiwZb6ueoWUyzT9lHqNQUauloz
- Tflf/1SHjKJAjMEAAEKAB0WIQTmYwAOrB3szWrSiQ2zu/ihE6BRaAUCZsSqZAAKCRCzu/ihE6BR
- aLqhD/9qV8z9JmtZVKFrDv5tJYwO8Nf4+jrzeFXthIM43Ownc+LbR+C5o9tRQ9liW0CXoMRV36h
- LFnHqE+/JG80DyTrpseSnstFctKFRHse33KfLy8NeORok0HvAUQ/nzdjgRRKEXKWUPsN8rkRnne
- I4M2OGd6a4R4zuGpDhAwop9zJsRJmiEz3ocid9MLK05wIa/VwGt4kOxNvebMNjWdVvkZwDw1ebz
- ocU/J18QD2KUOeIqrpUR2Via85E6Que0kYfinVHqW0p0VA98rRlFBueWtIB2zAqUeLeYwsLhjIl
- uytwYFJRKtW5j6/S7Brx7y/MwG+LLODADwXCyLYTtjwpJiA8RghNDzDj+R9ajyskUDGDbqAjeFf
- hgJtVgkY0FCMx2Ot8S1HWiDcZD6pQLAT/rfeLQqiBh6xmpymHhzOuRzTZ2yzUc8rh5OOR7sDeQP
- 26N1vYekWXbuNLmAWJtLsoEX8JJB6J+gOIODKm9SmbIJse5TqqZxouIXOfxF2+venYv2nUVjn8F
- /E2DycZ40FWVMIVzc+ACvdtUgyEruAHjlh1TzZuHxJATaF93xdo1PzftnYOfDnWrBr7R0tjDlQ1
- l0taln6xwSTZp+vIvSp5w+D2ml3tAwtduuwiTvkfSZzLctlbxB/hiYg9+SXJKLG7moKpQf373Xq
- wLvhhWRI3WL7ZPQ==
-X-Developer-Key: i=aweber.kernel@gmail.com; a=openpgp;
- fpr=E663000EAC1DECCD6AD2890DB3BBF8A113A05168
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB7910:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5cc49473-d631-45d6-c05c-08dcc125e52e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|376014|1800799024|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?yhimVCkmagEXf5xGLU0rQuCKnZiEtCCe+g1fyS2QBHZixS16/MznDLPYE0JB?=
+ =?us-ascii?Q?yx6SWejwt7vAcW/TRs0oVBBYiyHkxyifAjNP2TEmu1WbhuxU9y+2lFY3mf4C?=
+ =?us-ascii?Q?lLUFof6AzW5gJ6xmzYa4rnFkT5rFCfxotNQ5e4rt/jwfvxc9dUwYuSBXSwxO?=
+ =?us-ascii?Q?ZX7N6FXiX0aCUeQC4gj3VzEyilNw0IGxRlVsQINgVsb6yXaAX1HjJKXfVaNn?=
+ =?us-ascii?Q?XXBQfu76UndIFg6fE+dV9pxSbSSKBisjdIeZB5JO4idE39fJ3mKsuRgtxAc/?=
+ =?us-ascii?Q?+H6DBTK3s/S1Ns5FvFvVAgb/uGbf2geLLO8s0sMNJJlBu71bEnD0ihWQSv/t?=
+ =?us-ascii?Q?DjPqwtc3YzTxt1FpG4O6iQbKg2pVXKg6jyqxry8Qenm8cvaUh/dM9TrMRdVB?=
+ =?us-ascii?Q?1imKfMHWK63NUMT4W3JEFd/5bTrpScODIOXJjAlPcyXw3TI3vo1xKEEgQ2sq?=
+ =?us-ascii?Q?kkZ+9p3awVnR/AIaBxCCzBXSGX7PDYVscZCfjBuaQ5cNncGHohBxhxpembUG?=
+ =?us-ascii?Q?9jylEL5Peny1lXQ9uBPcuVoQ0I3rsh7MCuk5r1M9xSYZ+yED9NXgLAVvGJhJ?=
+ =?us-ascii?Q?sawIZTtt03bRbo+QOBIL8k4Hej+V77xJf51Zmx8GJo2nJ5McVzVaiXu5nF0r?=
+ =?us-ascii?Q?9M14umh+BEaskhMGz6TPlVvVlGl9s3OVA/RgYPbYejulq8uDdTkfY9G4wxmt?=
+ =?us-ascii?Q?AYNjLWVpl0fvROqs8Soy8SJiE8hp2hKS/ouvf+prWTMqk9kD4S6S2MxCdyWU?=
+ =?us-ascii?Q?KCxt0Acmnl8PdDFdDV+IjFoM4cGyXa1yi2qnEus4RvtZxWoa0tbVrSZsUMx2?=
+ =?us-ascii?Q?0LHGvZGmXwOBYysPInP8TRwTidja+o0LmW5VZrQolF3KJprzB2HJq20h6jyK?=
+ =?us-ascii?Q?a+qtkXc2Um/ifupXQu8J16iIxRxIZIbB1GU2v3NiKv4f7nRdL6vrDgOqswRw?=
+ =?us-ascii?Q?mt4GKp33Lf8/Oe3eCSFCEpXWN6cB178RKuLfJ3t9jQ7HGy94vU4xXlgtgwR3?=
+ =?us-ascii?Q?d9KWOOAK4K06inmg4AzfrxLRnZwifTnSlbtzrcltzvKZ2YUAJ5sE8zL6RvxH?=
+ =?us-ascii?Q?1byS53M2U9iGWeumZFmUBwy1R6q1lHvKIU/pmj0uWj5dHUWKDS+LBElliZKo?=
+ =?us-ascii?Q?7jfTMEuTzIa4N1fRGcQgrwLE+r7E0ElQPeusYCFpSB1ZtzY453dPkXDzR+rS?=
+ =?us-ascii?Q?PCFaY+qMZtWJs8wWy0U0sadzUQqdc2WfIBBn0YyhrlzIv2bTdFclahJrRs6K?=
+ =?us-ascii?Q?6HZevqpY93RjBf6KAGgxiSS3YVCmZxH+j/dJ/LuAxsreCNuRjW00obcD7YXV?=
+ =?us-ascii?Q?mll3SMxQ6hHce8mIX8z3znXMDdAIXfV57r7NSlwiFb9IfiNS91fBxL1Tht3m?=
+ =?us-ascii?Q?QC2gklY=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(52116014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?qyHw3vT7zVUTKknIgeDzfCzHNx+ElXJZrLoE2whOcIAIRf+t6oD9aPrH0ph/?=
+ =?us-ascii?Q?xTBP0G1PFC2VhT8MZS95v4M37F6UUYz41PmAThK4uZ71+tx0xt5+pYMccbdu?=
+ =?us-ascii?Q?4oGr9NHHjoJ8bdqh7tgS9IrYUIt26iOCyRRsUga1BeJKaoU+C3JtDe7qFs1s?=
+ =?us-ascii?Q?0JlxqAvh8dn3U4Ld6Q6l8DFQBPujNT5so7TOjZ7Fg5iZt+VxsT1S7xY2lSKP?=
+ =?us-ascii?Q?uNZyKOjdSG6Z/DHG0p4nEi7KqMLWvYy3RCbFqjCF9wXTQArmc2mUjf2gf8DF?=
+ =?us-ascii?Q?M6bBeVRXh5a7PV3Ti72QbxOembnapNSniHAAKXhd9ROlFKikI3JqYygU2yoy?=
+ =?us-ascii?Q?7QxoMCxp8Qc1geII5jEfTk0JwxMknC0RaZA3vK+3JHhNo2cXxZg2rZA0uLuF?=
+ =?us-ascii?Q?bhU/OR62NR03rNHy+41TPugxKFOO7UUprEWq9EPJQge2QroD2PCnzIZyvk6M?=
+ =?us-ascii?Q?8agRFCXOOUoU2Xr0JXA7wrtcaFIDm6eqHkZg7ufalgABb5VtIIICv7Pfctw+?=
+ =?us-ascii?Q?lkJfWyVfTlJgvJ7k1GfCzE4pvXKHa0kvtbUYGCkM697HpbZtDSvuoSQ7vndZ?=
+ =?us-ascii?Q?opuBFob8TqQKR4WjV7arJyGgxiLp22uxAgYNq5KQJzHNYz5W1wsavtcPEYfy?=
+ =?us-ascii?Q?AEBfiNZcL8mtiuMTNJPGR9BzPRpYXkBx+PuVemoJf8OQZdaPspAwHJd7ffto?=
+ =?us-ascii?Q?Qv9Hwl1i9jGfmxngEExMDv+TbEPWKwuif+/uCdb9jI97MZycBSurLsqxgYgK?=
+ =?us-ascii?Q?umItuJiPiEbOqgfNiIO3x2Rg8UD8HL/Oy4LkI7+MvfGAboa2ozUi6wGU2/Fm?=
+ =?us-ascii?Q?WSZUrHS403YE1OHRb5zch739lz87mexsJrOu/l8uFdd+S+c5XCZpGGYH2SCS?=
+ =?us-ascii?Q?Ekbdjxuv0aYg3sgsRmu1r5c5fKvojrmdsZVmvpY2JHPjSGNIGmgN8+T90PpG?=
+ =?us-ascii?Q?zfi0f+tNj43lMkyzf8CWAvP+3EjOV7IOoobt4j7RIN/871N/bqPhYk/+GYMz?=
+ =?us-ascii?Q?jLextTuiQeyujNUMiNjBUlB8OrTVqFV945+B7fHThaAVf0m3Qu2OccBvC0D1?=
+ =?us-ascii?Q?H38IYMojq9xJDgMBA88+VBRZYa7nTvpxdOv1Y0vjYVrT650HU0wPjtE0nBZK?=
+ =?us-ascii?Q?K2zNRHpmIBw9FQSBMGvlFRwUciOgwwWr8lFKUw90tXK5paUrUADey+57OI8s?=
+ =?us-ascii?Q?hiMHNmMC1jvUuXMDXoZK5gbxIwWpTgG3Cq7zCgSP/2KkpiHA0/wZMKy1zUea?=
+ =?us-ascii?Q?e0+OjrD/hhHzMytmBC6P6HOrkHwdwb1yNZoBb6t4TxoqJ1qBRbsgm6YdCoKr?=
+ =?us-ascii?Q?zJEmOGDwTjj/tHXofR3IsjI+d2K0Dcj/6Lb+FAUOOFYVobEybzHPYx4nFb3f?=
+ =?us-ascii?Q?pVaRtr6fNnKVJkG72vneJmgYrrLPVWIDnciH3QFDJyLTd6MRDejma1kPra7r?=
+ =?us-ascii?Q?YqGDAyr6tC6ByTF15S8AY5UrtREm5PqiUrE1HHKlZ1USL6k4MHwNerbhSQy2?=
+ =?us-ascii?Q?VZzYQ0IxZs5wIBwAhOV8WIMBKD0g0oqlbgihgYHnzmjkt6hupYaE7yskjxyz?=
+ =?us-ascii?Q?wV81EXCYzyXZdinTM11JZLJLHwy565HhXvm0GC7w?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5cc49473-d631-45d6-c05c-08dcc125e52e
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2024 14:39:28.4415
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6paQVgccKj+toUu7WmsGXMyGm3B+1KC9YIs6Tix+7/iUcjxWLJAFRr4xfXUDRDWSrcntwgHFUkf28qh9vd5u+w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7910
 
-The BCM21664 GIC sits at a higher address than the apps bus currently
-allows. This is because the apps bus was inherited from the BCM23550
-DTSI, where the GIC sits at an earlier address in memory, and the DTSI
-wasn't updated to match.
+Add child node 'port' to allow connect to usb controller to do role-switch
+if id pin of ptn5150 have not connected to chip's usb ID function pin.
 
-Increase the size of the apps bus to allow the BCM21664 GIC to work.
+Fix below warning:
+arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dtb: typec@3d: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
+        from schema $id: http://devicetree.org/schemas/extcon/extcon-ptn5150.yaml
 
-Fixes: a5d0d4a7bab5 ("ARM: dts: bcm-mobile: Split out nodes used by both BCM21664 and BCM23550")
-Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
 ---
- arch/arm/boot/dts/broadcom/bcm2166x-common.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Change from v3 to v4
+- remove extra empty line
+- fix Indentation in example
+Change from v2 to v3
+- only add port to existed example.
+Change from v1 to v2
+- add example for id pin have not connect to main chip's id example.
+- commit 095b96b2b fix "port" warning, but add new warning "connector" is
+not exist. And follow commit revert this change.
+690085d866f08 Revert "arm64: dts: imx8mn-var-som-symphony: Describe the USB-C connector
+- I have not board in hand to debug why "connector" is not work.
+---
+ .../devicetree/bindings/extcon/extcon-ptn5150.yaml    | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/arch/arm/boot/dts/broadcom/bcm2166x-common.dtsi b/arch/arm/boot/dts/broadcom/bcm2166x-common.dtsi
-index 049e18b61ccd..87180b7fd695 100644
---- a/arch/arm/boot/dts/broadcom/bcm2166x-common.dtsi
-+++ b/arch/arm/boot/dts/broadcom/bcm2166x-common.dtsi
-@@ -135,7 +135,7 @@ bsc4: i2c@1c000 {
- 	/* Apps bus */
- 	apps: apps-bus@3e300000 {
- 		compatible = "simple-bus";
--		ranges = <0 0x3e300000 0x01b77000>;
-+		ranges = <0 0x3e300000 0x01c02000>;
- 		#address-cells = <1>;
- 		#size-cells = <1>;
+diff --git a/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml b/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
+index d5cfa32ea52dd..072b3c0c5fd03 100644
+--- a/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
++++ b/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
+@@ -37,6 +37,11 @@ properties:
+       GPIO pin (output) used to control VBUS. If skipped, no such control
+       takes place.
  
-
----
-base-commit: 44ccb92bc64a6f92666e69c7c30e5713758641e2
-change-id: 20240820-bcm2166x-apps-bus-fix-0edcfbae8dcb
-
-Best regards,
++  port:
++    $ref: /schemas/graph.yaml#/properties/port
++    description:
++      A port node to link the usb controller for the dual role switch.
++
+ required:
+   - compatible
+   - interrupts
+@@ -58,5 +63,11 @@ examples:
+             interrupt-parent = <&msmgpio>;
+             interrupts = <78 IRQ_TYPE_LEVEL_HIGH>;
+             vbus-gpios = <&msmgpio 148 GPIO_ACTIVE_HIGH>;
++
++            port {
++                endpoint {
++                    remote-endpoint = <&usb1_drd_sw>;
++                };
++            };
+         };
+     };
 -- 
-Artur Weber <aweber.kernel@gmail.com>
+2.34.1
 
 
