@@ -1,313 +1,241 @@
-Return-Path: <devicetree+bounces-95034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45B5B957C6F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 06:34:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB9E0957C8C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 06:52:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69A061C23E26
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 04:34:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F1C3284CBA
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 04:52:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0B0852F88;
-	Tue, 20 Aug 2024 04:34:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4311C41C71;
+	Tue, 20 Aug 2024 04:52:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="KEvV0/lv"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ZLHZl2WJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYVP286CU001.outbound.protection.outlook.com (mail-japaneastazon11011037.outbound.protection.outlook.com [52.101.125.37])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80BBE28371;
-	Tue, 20 Aug 2024 04:34:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.125.37
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724128448; cv=fail; b=sCKKjhSt0+b94JN5Xgi+E/WrmJRn6UnXFk7aGlfc8u7qC3IdOaHavhYnQxMBBw9a04lRKUBli5RL+wQUBpvC0ti23hEOLixRqt5TdEL2gTFOqcoNdpybjWdpcLe0eXSpfVJiqhv0+qcEI5D2aavd2RBX6aglOamCI60J3+8lzec=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724128448; c=relaxed/simple;
-	bh=dLJN0J5kWLJKotoWolnIDOGoleNQvR8GoB796rJjFI0=;
-	h=Message-ID:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 Date:MIME-Version; b=RKiOcik7gC3PH+E2XbEQBI5CkvAUXr7x5rjFggI9nySx9AGmQkP4XKsQ74Z7hJc2e28V3oZpC6cfF/a7rNoDdgbtr5z7cL142BTR3e8uFjAYv9oBMap/jO1ckqGLnVOtWyJRH8bQSzv+dmNzkj5KJEFd7Q8n8chZJISTZWeANN4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=KEvV0/lv; arc=fail smtp.client-ip=52.101.125.37
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=a6+QU58+fQxqfqwSXwsibb2ap3SeWqnXZJYSP8O5frnJzo2LE7+uAD1IGiZBm36M7bfzADnAfKUquvCGPKVlH1MpUb+rAh2OI6FM8zM847vEmXXOWg2D0c8ISHObbpO1hJLN+jJr+CBubZ7CBJzEmdw3d68D/tWgb2DPC64RA2DebPnj6/1XU+EHrqP6gjSYKNxBd4ekEiw8x+toYjH1H/z/M3pvsunDfNssf/jdQYZM96WiYDP5gW0/Ns+g/ft8IHwiYCCntxpw8Tvt2Q1QIMK17WvtwXXv64cEwRBSzx4+EF+tLpU/o8CTjLmUEk+5DXqcbTbUTMQyKTw7ncuKKA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DzljShvW8eEQCPSoi7jJ9KA6lkwk0x3PHF6FTdth6NU=;
- b=dwj30I2k1N1OpLIwtXG/8gPYncRJWY0RHZHPIXyn/T1muwpu1XuoKFCLfdWj+HhthR5eQMR1CV/HhiyNM4hwQ7B1PZdLOCvpQmEsc5bZNXwdjvjyw6R1O1MdlyTF7+cdaHewTMfdCT/byMWsNCDI2eJ5qp5aR0//MykakmIZMKqyo6omW9iCQ81MpDwm51YvcCSF2vJRHaRUrFsOWWf7vjiOXOaf2khTdhYKbmnX/yOgSmzeb69JkfHNmpxmr+aI4ghEoxXrmBBkzh4fYsOdbcLnLRGcM7WhVVy1Uhc+OsGI/EqQJn92blvScOYxkjI5Tfj2QLPALVkplcwCJvWHgw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DzljShvW8eEQCPSoi7jJ9KA6lkwk0x3PHF6FTdth6NU=;
- b=KEvV0/lvdWyNdRJIZk/00BSHtpX2yqS0CxXwFTki4v1ZQsgrBYiVvUNZANUFOjy7QYUPRjGrHGJwyjajjAOEkDnfU1aotOLXl5B/1vaMJcKayIUKuCsiSJI0IpZGavZ/b2sjUfKQ3hKf+cyOmO6x25oHfgmLZCXW3F4SBhH6+ak=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11) by TYWPR01MB11706.jpnprd01.prod.outlook.com
- (2603:1096:400:400::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.20; Tue, 20 Aug
- 2024 04:34:02 +0000
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11%5]) with mapi id 15.20.7875.016; Tue, 20 Aug 2024
- 04:34:02 +0000
-Message-ID: <87y14r6cee.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>,
-	David Airlie <airlied@gmail.com>,
-	Helge Deller <deller@gmx.de>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Mark Brown <broonie@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Michal Simek <michal.simek@amd.com>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Takashi Iwai <tiwai@suse.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-fbdev@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	linux-omap@vger.kernel.org,
-	linux-sound@vger.kernel.org
-Subject: Re: [PATCH 1/9] of: property: add of_graph_get_next_port()
-In-Reply-To: <7b5db9c1-5cba-48c8-ae77-f224b7b4834f@ideasonboard.com>
-References: <87mslqw8mj.wl-kuninori.morimoto.gx@renesas.com>
-	<87le1aw8lw.wl-kuninori.morimoto.gx@renesas.com>
-	<ca216286-b09a-4faf-8221-c88c21f4de0c@ideasonboard.com>
-	<87a5hm8n0k.wl-kuninori.morimoto.gx@renesas.com>
-	<7b5db9c1-5cba-48c8-ae77-f224b7b4834f@ideasonboard.com>
-User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date: Tue, 20 Aug 2024 04:34:01 +0000
-X-ClientProxiedBy: TYCP286CA0083.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:2b3::11) To TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9A9CE541
+	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 04:52:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724129526; cv=none; b=Pk4GBKG9OXAZUHWkfRx/IMgAhBna0SZM9ZNs5dLZOW9C9JJs7aJZIk0isVjXotlFdILAlZeDlQXWaIR44pPS5L2pSahN+e8BRTlxVIg5gYKka6D6PO+Q4BX96YicZglheYiVPtzsoNEeBUtu/w0vjtnKXuZM/jRFwGDrN7fZDiA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724129526; c=relaxed/simple;
+	bh=vgJixcmKlQG9wiiDjOIwc6NXFfh6n3GbjwmB9KxV4tw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jNusq3TLTz0dpBg3fITMHHThyYTT6YMnUK0yRmpsfK2Y8R5o1/W0WBQGubbDl4BLSkSzh8eyR6KW3cTYsZfra42eXeG+y2hhijpYZNtThdMk/UE6hfGDpoNktgNyktlu5By5QHdY1erpdf11gDxDGTRHMN0+AXU7D3dSx7XWXmc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ZLHZl2WJ; arc=none smtp.client-ip=209.85.221.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-4f891629db7so284212e0c.1
+        for <devicetree@vger.kernel.org>; Mon, 19 Aug 2024 21:52:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1724129522; x=1724734322; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=B8BpmzVy7XYFzXeTAR5DMGDZBV2YBdqr31NxhMlCmgg=;
+        b=ZLHZl2WJfIoE68VDUbEjQaM3g1skcmW15swN6OMwAHQoE+fQlZIC60yJLAlHnBlgVW
+         Z5y+6KB4o371eRFs8gfFvtqYXfwg9+UD4Ui1axdbQbRCHSjcsCmdLKkUFB/GBTVHE9Lh
+         ZONtwRHfQi4n/i5SaNZFx2esQBLMvtZUo4+s3lNSrvU2bHDku/ZuMGjCdwMtqz9kKplA
+         hQ4qLryfzxag9HNwp4qUdJJ2kT9T0yeMANeR7s2mEib38dwfq82+vGjV1IlZmeLoahwH
+         rcBdVnP2Zx7/8hzbsQyXYYp6GuwhP5guWM48x2JlEef1rv70BrXXf3WPOw7bTEGlC4K1
+         Z4yA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724129522; x=1724734322;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=B8BpmzVy7XYFzXeTAR5DMGDZBV2YBdqr31NxhMlCmgg=;
+        b=Uh9VyYG3XdeLcPaeZvgLuGq1osV+Y3OHc44vYrANHsfLhqJcOdndoQxMevmudXoWI2
+         LLBjJTIQQQRpEZQR0SanLe3tYJNrvdDbbLAtiIpFIBem4J22nAgRsX6bvxm5iCKtVcYQ
+         TA9+U+ZqcVkdMr5blaegrMXkjoOGdp06Tj/ArwTspHwUgErZY710bhfeDTW2VLgu979U
+         CrmB+xpyLTioOL1PZzjXy1LGIdqMIm6UyX6crFmCwtrWKuRmjtMi5V1WzZAO7gygT70S
+         PqssCNOPlLYmxdhRoZVEcWFWRCUj/h3IM4CZaQoIgBz5GwBdFl7vc64vxCoSFPJY4C3L
+         q0og==
+X-Forwarded-Encrypted: i=1; AJvYcCXzYWet2ATlG1/BX8a5efFnqjQ42RdLZsxPjsLTFdzzY7LxD0+Ds/Txw0i161A66eLP0d/rDzkk+/OB@vger.kernel.org
+X-Gm-Message-State: AOJu0YwEWdgL1weuDiNyPwB3kj5v9mCJer5y/RRO4TCSxQJin+rp/KwF
+	b/x3DRIYcT6DhhGfPnj67VwGzufYKWpZ89UVdTiHSNbT9lDo/qpFzSmrMOwmOKQGcoM0boDTvt7
+	um6FPRwo2yigA74DcKtA21mntxeF7nIUeBvRkwA==
+X-Google-Smtp-Source: AGHT+IHRNMlAc+3b2zOEVl0CWenlMGtMA9VWeNmdCt1kdoHU/yqUSWTUPZ59MH32P7fA5l6lPhdus9TRxDF1NIn3WdU=
+X-Received: by 2002:a05:6122:2502:b0:4f6:b094:8095 with SMTP id
+ 71dfb90a1353d-4fc6c9e122emr9052758e0c.2.1724129522360; Mon, 19 Aug 2024
+ 21:52:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TYWPR01MB11706:EE_
-X-MS-Office365-Filtering-Correlation-Id: dfa7cf4f-2096-42d5-f1ad-08dcc0d15121
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|376014|7416014|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?qoMIsxPTA1OG/BX+7l0iXVxdz2E+0vh3Vv4/j/EESZlntQHPhlc3oQgXKmve?=
- =?us-ascii?Q?zrivDTook7+DNoLL6cpndfpwuk/pY94D02QNfMmt9B6PO5tnAhRGg6WHt7G5?=
- =?us-ascii?Q?nKAKHy3zyb7AEpdJXlcH5xpL9rFZZRNcf1KCsdv2WfocWJLmZatyJE7QJwix?=
- =?us-ascii?Q?cF/tn2h/QtAmTS44/alPtdsgULbrHgrbcAm4M5Luwe1Sxh511cSNllacr8+c?=
- =?us-ascii?Q?ntDNRepYw3r1L3vIjT/sI6mLJc56XDUXaZCi6r2Pww8sWMJPElgH+hFcxfym?=
- =?us-ascii?Q?UqpoWKro267Vjh2rDI9L17Vrn8RZVWFqT60RVuI2a3cN4Wcn73m4hYBgxV3K?=
- =?us-ascii?Q?KwjXaHBFI575KDGt6GE6K+ePHm3TGJ4j0Z3TppKlkoBNIzs20QXfktZHXRST?=
- =?us-ascii?Q?Y0p/s9AdwpCtTXk06+MtP7bMi2yM7ihNr196c61HU9a/7oPNHENj9sgIzhhP?=
- =?us-ascii?Q?UFIHG6wYlFKcIjWJuBfQiuNb25V/W1f3+P9LFdm7H+lPCT4ebLiisJLDxELT?=
- =?us-ascii?Q?CGsHu1MEsOxfnb9v5KGVTWE6LUnXzp9+jmjJpPJW/6/j5sq4aRyBEWxUCSBq?=
- =?us-ascii?Q?USuNXgNwNwQpy1wWvRCxz5duN89MkpoxNE4HmCDIUlEd/oMsPL1qMFhmISD5?=
- =?us-ascii?Q?aIlXXkaLL1fV4RmlnqC95GaofafwlidBXOyB4L7IgUQQFKdg7wZPWA8gnbjl?=
- =?us-ascii?Q?Xxg8lwmWAyxJT34sAjQHPsQoiNcEh0tl/Q0bnyke1IOwHvzVvUfAC5hTtNHy?=
- =?us-ascii?Q?ehrlGmvPay4JPvlB1vm5HdrXYqMECdr9jUH+pHr1XnehbAtKiinCRGcAwmXS?=
- =?us-ascii?Q?5K2dx2O+l0KKc1ogyVa1GtaNVW7dCO79iuYGChynJVnxKxoCVBl4C19Lq77f?=
- =?us-ascii?Q?XIrVJ2DnWARA+lyxSVyA49vpz039LSjKUAAVVNEyOAlZv06tjxyt0h34xgOO?=
- =?us-ascii?Q?KHOvfWjLHuVnQpT9GMlXKE550bbDY9EYEGL7zXxr0GBLqk3T6a34zJQ9axzx?=
- =?us-ascii?Q?UFn1EBHXgM5OGt2lPT4WBBZC8p02B2BkR4NkMUDb9PEGjYn/+ioXB++IhDJs?=
- =?us-ascii?Q?mL02kjTt1BLY/T7tdTunX/Zr3NcdjhOKFvWUUZxkH7pgfGku3+IZbJw/lecC?=
- =?us-ascii?Q?bgWko2oQJjw6Rut8Hci58B6swV5B9nLfTb2yz52G/sqEWalRfUX1qnk7soxp?=
- =?us-ascii?Q?8kaRGDWCxDY5wUll/dkT4MmNqNXOjgmEazxMvd16pXI73dy5MYJim7QWtfF6?=
- =?us-ascii?Q?/HRn1K745SAz67tUwWFrjYvuNr1X3NbIvI0uuX8lZ+Yp+bPeYE5J7J7/+NrX?=
- =?us-ascii?Q?ABBEwT9rOg9rms2/I9AFS3Z6TLBVlOi9T0WZiV0N4pdlt/7XDHDGY6WL3lGz?=
- =?us-ascii?Q?TgQO0TCAskG426xONg5vbhm3dinFrH9gTE3V5A8pzkC5O6OlVQ=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(52116014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?gqSROLsJ5wpk9rP2Yjd+YBsaLX3Jw7/5MXbIB++vQLf9ipq+288olCbxx0II?=
- =?us-ascii?Q?oFv+nsRRU87j7m68YfWggTiyvvI3AQPn4d9/QYpw1QMnTtpbZpZ//AF03hOC?=
- =?us-ascii?Q?y1Gs7BLUdaarE3GuJLsOBlZ0Sg2Na+xzaEtbczAVwe5g/GvIPq3cXq2jl0st?=
- =?us-ascii?Q?tBuFwV1qRd4WgxxvG1nsy7adpRaCsIxzG9RPL5xH3G5W2IcWSFhp2NEP8Lmm?=
- =?us-ascii?Q?4/owUJQhP7eqIWyunXsTC75KVPXLVZz17hPRvWzjpxxpb/5by7d6AmaaBrKe?=
- =?us-ascii?Q?H+Tlhp8AJoQ/EC8z4y6Aa2/8SbhStXOOVBKtXO4ldQT/nrHv32h+LyckKZvi?=
- =?us-ascii?Q?xZ7+3RqCWbu7IerujmpvWklZ7Rr4sQEArXfPj4n07aAWUyHh2vUxfC+aDd9Y?=
- =?us-ascii?Q?jcDWArj52/hjraprrwLwAs4mNbZG2II2+/lnsER3GR13jNuhMBASizk3Kabt?=
- =?us-ascii?Q?aP2VmtO/FxtKE6iTEBCBGaw00e9dzynhZMuQeiNsIS8N6r5Bwhk2dHKH/Bd7?=
- =?us-ascii?Q?alzHOQMkMhV+OmeF4nB7KCS0QkXFRMJbfg3vMwO7/Q83X8EwtSXNN6eD8m7V?=
- =?us-ascii?Q?R26rAdR1/pfDb1+kptIAIguuzAcpOUGYLpI2FZGHAvnDbQUlOHzMYbDSCSfE?=
- =?us-ascii?Q?fMu7EhoJgGeKoACxkNnNtSVjTnE6eR3xGgGsOD9v8GBPYlxqmVPKm2Lq+q7g?=
- =?us-ascii?Q?cDkUnaoXEONJJQHBej/78NFVzuN2QpniFPH8Btbckde4u+KA88z4ru6ihcvm?=
- =?us-ascii?Q?BFTa/d5L3S2FwhIY7pNDSKrugi14GZX/pn9ptYjFHfLLC1QgtIaScrb0In5D?=
- =?us-ascii?Q?FR9XG04cW9jurKCw8ePW60yCBgqGz2k0x0iTrFb2kahHMSvgIEvcFJNJTKh2?=
- =?us-ascii?Q?3T92/UUDUHpYU/wTf+xUgAzNqI+hAIhaj1fF+3kPTDJl4zxF9LTEzdqHaQz8?=
- =?us-ascii?Q?qJ16ykt+666n0qRIjcKTwVQcH809xkG8aLHWa5xB3QBM5SeEz6SU8Oz0UozZ?=
- =?us-ascii?Q?WjZSzAGoBCkoBL4JMqmhkZ9UWcl9wdSlX+asU6t4Fv64iTR23IRDQdjyOxT+?=
- =?us-ascii?Q?CjWn5SnpS3PPlh1Pr6n/SoRWZcZmbe/yAF2w9q1/gIrITyTehumLTwRCYJjR?=
- =?us-ascii?Q?iV7LZWrG5ZNY16vtX188I9McBjSr7zhXLIcNmCJpfRNQtUUCVOF5jao3bfKS?=
- =?us-ascii?Q?MYGjdlMfXmdbeVgVHTZau2SM0j3IJxItDpk+NUqvILtidu+h25izZsvH1P2+?=
- =?us-ascii?Q?uMpE7on8tk8FQecsIcN4D1xyeRuG/cMlk3GZxOkvbHZorzd4W7edIvRojtUV?=
- =?us-ascii?Q?U1pwRaTZU5gflMdiW7FGLYn2G8iHCaBU8sm6tstFL38oNjfIqCfLWB7CMVCz?=
- =?us-ascii?Q?aJ/siBPVW56KJgZFdBT0T+/Mql8ZEoNd9T3WVUnEguxFeNBbTzPvfTQ1ZGOZ?=
- =?us-ascii?Q?ZOgJqu+zAN8A6dbpuoZI2J66hlAIvkxNtJTx4q+2SP1u+l+GWFJhhoSFGgEk?=
- =?us-ascii?Q?83GhmgIPcnJdHc12TmGW/PD7XcvLdXeJnY8XHvsozWGyMg5M75lMU2FoG7Zw?=
- =?us-ascii?Q?CYxqKKQCVQxtQ4JBMhjmWO6dbBuYaOaXXmuUeONiXiZJQ74Pwh2beffZjswF?=
- =?us-ascii?Q?SICiTm+0ePuD7r1ZUOxjCNg=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dfa7cf4f-2096-42d5-f1ad-08dcc0d15121
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2024 04:34:02.2783
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ixNdywT8ALMNLXcW2tySoDe6mPiG/Tvpw4hvg70OwJYEZDIBNoWudvJeesDG1qbrHxQltEYHZZVabA+uFxI5evL6t1+IQrGQ7ijyNzbmDrB0MDlmBCTRhlKyU1qOUdL+
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB11706
+References: <20240819064721.91494-1-aardelean@baylibre.com>
+ <20240819064721.91494-7-aardelean@baylibre.com> <zuvwoy5wtdel7qgkz6wa6valwjwajpwoqnizyoooiawghrxvc3@cuoswu32h4fl>
+In-Reply-To: <zuvwoy5wtdel7qgkz6wa6valwjwajpwoqnizyoooiawghrxvc3@cuoswu32h4fl>
+From: Alexandru Ardelean <aardelean@baylibre.com>
+Date: Tue, 20 Aug 2024 07:51:50 +0300
+Message-ID: <CA+GgBR_V8r0Vz1PeKxwD6ovwHXxGM6=Z6XVd03ehokT5C3zjnQ@mail.gmail.com>
+Subject: Re: [PATCH 6/7] dt-bindings: iio: adc: add adi,ad7606c-{16,18}
+ compatible strings
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, jic23@kernel.org, krzk+dt@kernel.org, 
+	robh@kernel.org, lars@metafoo.de, michael.hennerich@analog.com, 
+	gstols@baylibre.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, Aug 19, 2024 at 4:09=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On Mon, Aug 19, 2024 at 09:47:16AM +0300, Alexandru Ardelean wrote:
+> > The driver will support the AD7606C-16 and AD7606C-18.
+> > This change adds the compatible strings for these devices.
+> >
+> > The AD7606C-16,18 channels also support these (individually configurabl=
+e)
+> > types of channels:
+> >  - bipolar single-ended
+> >  - unipolar single-ended
+> >  - bipolar differential
+> >
+> > This DT adds support for 'channel@X' nodes'
+>
+> I don't understand this sentence, suggest to drop it.
 
-Hi Tomi
+Huh?
+I guess I'm developing more ADHD, where I forget to finish sentences(?)
 
-Thank you for the feedback, and sorry for my late responce.
-I was under Summer Vacation
+>
+>
+> >
+> > Signed-off-by: Alexandru Ardelean <aardelean@baylibre.com>
+> > ---
+> >  .../bindings/iio/adc/adi,ad7606.yaml          | 83 +++++++++++++++++++
+> >  1 file changed, 83 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml =
+b/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
+> > index 69408cae3db9..f9e177de3f8c 100644
+> > --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
+> > @@ -14,6 +14,8 @@ description: |
+> >    https://www.analog.com/media/en/technical-documentation/data-sheets/=
+AD7605-4.pdf
+> >    https://www.analog.com/media/en/technical-documentation/data-sheets/=
+ad7606_7606-6_7606-4.pdf
+> >    https://www.analog.com/media/en/technical-documentation/data-sheets/=
+AD7606B.pdf
+> > +  https://www.analog.com/media/en/technical-documentation/data-sheets/=
+ad7606c-16.pdf
+> > +  https://www.analog.com/media/en/technical-documentation/data-sheets/=
+ad7606c-18.pdf
+> >    https://www.analog.com/media/en/technical-documentation/data-sheets/=
+AD7616.pdf
+> >
+> >  properties:
+> > @@ -24,6 +26,8 @@ properties:
+> >        - adi,ad7606-6
+> >        - adi,ad7606-8  # Referred to as AD7606 (without -8) in the data=
+sheet
+> >        - adi,ad7606b
+> > +      - adi,ad7606c-16
+> > +      - adi,ad7606c-18
+> >        - adi,ad7616
+> >
+> >    reg:
+> > @@ -114,6 +118,30 @@ properties:
+> >        assumed that the pins are hardwired to VDD.
+> >      type: boolean
+> >
+> > +patternProperties:
+> > +  "^channel@([0-9a-f])$":
+>
+> [0-7]
+>
+> > +    type: object
+> > +    $ref: adc.yaml
+> > +    unevaluatedProperties: false
+> > +
+> > +    properties:
+> > +      reg:
+> > +        description: The channel number.
+> > +        minimum: 0
+> > +        maximum: 7
+> > +
+> > +      diff-channel:
+> > +        description: Channel is bipolar differential.
+>
+> There is diff-channels property, why do we need one more?
 
-> If we have this, of_graph_get_next_ports() returns the ports@0, and that 
-> makes sense:
-> 
-> parent {
-> 	ports@0 {
-> 		port@0 { };
-> 	};
-> };
-> 
-> If we have this, of_graph_get_next_ports() returns the parent, and 
-> that's a bit surprising, but I can see the need, and it just needs to be 
-> documented:
-> 
-> parent {
-> 	port { };
-> };
+Yeah, I wanted to use that.
+Maybe I will try another spin at that.
+The thing with "diff-channels" is that it requires 2 ints.
+So,  diff-channels =3D <0 0>.
+To use it here, a rule would need to be put in place where  "reg =3D=3D
+diff-channels[0] && reg =3D=3D diff-channels[1]".
+That also works from my side.
+Part of the reason for this patchset, was to also get some feedback
+(if this is the correct direction).
 
-Thank you for understanding the situation
+>
+> > +        type: boolean
+> > +
+> > +      bipolar:
+> > +        description: |
+> > +          Channel is bipolar single-ended. If 'diff-channel' is set, t=
+hen
+> > +          the value of this property will be ignored.
+>
+> Then provide here allOf:if:then which makes it false if diff-channel(s)
+> is present. And then drop entire property, because you duplicate what's
+> in adc.yaml.
 
-> But if we have this, does it make sense that of_graph_get_next_ports() 
-> returns the parent, or should it return NULL:
-> 
-> parent {
-> 	/* No ports or port */
-> };
+Ack.
 
-Yeah, it should return NULL in this case.
+>
+>
+> > +        type: boolean
+>
+> Blank line.
+>
+> > +    required:
+> > +      - reg
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> > @@ -170,6 +198,21 @@ allOf:
+> >          adi,conversion-start-gpios:
+> >            maxItems: 1
+> >
+> > +  - if:
+> > +      not:
+> > +        properties:
+> > +          compatible:
+> > +            contains:
+> > +              enum:
+> > +                - adi,ad7606c-16
+> > +                - adi,ad7606c-18
+> > +    then:
+> > +      patternProperties:
+> > +        "^channel@([0-9a-f])$":
+> > +          properties:
+> > +            diff-channels: false
+> > +            bipolar: true
+>
+> ? Drop, no clue what you want to say here. But more important, you are
+> now adding channels to other variants. Split your commit between new
+> device and new properties for existing devices.
 
->  > 	port = of_graph_get_next_port(parent, NULL); // (A)
->  > 	port = of_graph_get_next_port(parent, port); // (B)
->  > 	port = of_graph_get_next_port(parent, port); // NULl
-> 
-> it does not feel right. Why does of_graph_get_next_port() return only 
-> the ports of ports@0? I think it should either return nothing, as there 
-> are no 'port' nodes in the parent, or it should return all the port 
-> nodes from all the ports nodes.
+Ack.
+Will do that.
 
-As you also mentioned, having "ports" node is optional, and maybe this is
-the reason you feel uncomfortable on current code, and I can agree about
-it.
-
-If the driver needs to care about multi "ports", it is obvious that the
-driver cares "ports" node.
-
-My opinion is because having "ports" is optional, we want to handle
-"port" with/without "ports" by same function, especially if it doesn't
-need to care about multi "ports".
-
-I think your opinion (= "port" nodes strictly only in the given parent
-node) means driver need to care both with/without "ports" node, but the
-code will be pointlessly complex if it doesn't need to care multi "ports".
-
-> bus {
-> 	/* our display device */
-> 	display {
-> 		port { };
-> 	};
-> 
-> 	/* some odd ports device */
-> 	ports {
-> 	};
-> };
-> 
-> and you use of_graph_get_next_ports() for display, you'll end up getting 
-> the 'ports' node.
-
-This is interesting sample, but feels a little forced.
-If you need to handle display::port, you call
-
-	port = of_graph_get_next_port(display, NULL);
-
-Indeed we will get "ports" node if it calls of_graph_get_next_ports(),
-but it needs to use unrelated parameters, I think ?
-
-	ports = of_graph_get_next_ports(bus, display);
-
-> > 	parent {
-> > 		ports@0 {
-> > 			port@0 { };
-> > 			port@1 { };
-> > 		};
-> > 		ports@1 {
-> > 			port@0 { };
-> > 		};
-> > 	};
-> > 
-> > 	of_graph_get_port_count(parent); // 2 = number of ports@0
-> 
-> I think the above is a bit surprising, and in my opinion points that 
-> there is a problem. Why does using 'parent' equate to only using 
-> 'ports@0'? Again, I would expect either to get 0 (as there are no 'port' 
-> nodes in parent, or 3.
-
-This feature is for the driver which *doesn't* need to care about "ports".
-
-	/* CASE1 */
-	parent {
-		port {...};
-	};
-
-	/* CASE2 */
-	parent {
-		ports {
-			port {...};
-		};
-	};
-
-both case (CASE1/2), we can use
-
-	of_graph_get_port_count(parent);
-
-If the driver need to care multi ports, it should use such code, IMO.
-
-	nr = 0;
-	for_each_of_graph_ports(parent, ports) {
-		nr += of_graph_get_port_count(ports);
-
-But of course we can handle it in v2 patch.
-
-	/* of_graph_get_port_count() cares multi ports inside */
-	of_graph_get_port_count(parent);
-
-Thank you for your help !!
-
-Best regards
----
-Kuninori Morimoto
+>
+>
+> Best regards,
+> Krzysztof
+>
 
