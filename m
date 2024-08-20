@@ -1,183 +1,219 @@
-Return-Path: <devicetree+bounces-95617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26CE295A432
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 19:56:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5A9795A46B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 20:09:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D256828287A
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 17:56:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 374D31F228C7
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 18:09:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA9481B2EF1;
-	Wed, 21 Aug 2024 17:56:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE0601B3B06;
+	Wed, 21 Aug 2024 18:09:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OL4lhw/O"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nK9AoIy2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2536913E40F;
-	Wed, 21 Aug 2024 17:56:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC5B61494D1;
+	Wed, 21 Aug 2024 18:09:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724262970; cv=none; b=YH8qRPrKW33IjSEOZNYK/3rpHKDuoDkd3QhXPK355oltYERXvh0zxLF+2o8Wd0xjiG+AmVN1s0WmrgBc8PiuE/bnWaRWMXMI7l2RjcgDMMyWZIsJxFZWnugS6awqDJtq1ukNqGvWjLjKV2V8slgWi2PN2/ZjJYwwyE2/ngdNp8Q=
+	t=1724263763; cv=none; b=Uiozq5oOlAVljA3RbJd76gy375Ct8l72XXt26Qc8OT7lLPpPtOXGI8i9EaEpXTi+WRNGGkWwG8c4AazAzp4kKH7GN8YSPcFhKfAe+mZSgyvyzePIsaDhpqFujZJhAis52drJxu6w0yUDoN0XCb9oOwvAEK8CUMhZx0pH8MHOSWo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724262970; c=relaxed/simple;
-	bh=5rjtecgTLe61TDiP1Qutb2BjskSqEw4NOTWaKKSmqGM=;
-	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=FZD/LmgcOJuqa3mpRGqsvwKe/FwFtOO2urcOY5NO05rpMDx2VImnRnEAC6UXZJTIbqhtyOF/XuN3BIh7FPtDQFuhGHxRW+kbcnP5xG0ylwMg8luyakf4xONvWqEc7O41qs5iGhNjCX3jWrRxMHyUEjjQmfAAtNXzhhtcuPNVpZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OL4lhw/O; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1724262969; x=1755798969;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=5rjtecgTLe61TDiP1Qutb2BjskSqEw4NOTWaKKSmqGM=;
-  b=OL4lhw/OnISWTZlinPzoIeCPfiywumClGGBgQNNTeZM1ko0YwHRRfzpA
-   9jsDZKy3gnWa+9Zq+56WObMUIMnX2Iu51AbUd+OuBLNuBGRGYQHa/hoUL
-   Z/i/6dVt+NFYsVwqqV5ZxM6JI2v8VixtlpzxKRVG28k6Rf9k+A75j5zGB
-   4fJ6IPehSV3kXyFQIs7S2KPHvB0JutTqsm2I7BDCGqk+ycBr68Uu2A8BN
-   Gz92kjUHzFv3Xv9ym/5zyVuVxXcwm74xoN3arm0jBdq8KU1KPUYJRVKaU
-   fEeYX7kxIy3xxeXGnxIgoyeAo4cOqHoYLiMdHK6jtEyV6P88J0UZfJor6
-   A==;
-X-CSE-ConnectionGUID: XdMFfh6hTpuCWxqamMZLEQ==
-X-CSE-MsgGUID: 4SpYaQTNRGinUYpB5aB8lQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11171"; a="48035548"
-X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; 
-   d="scan'208";a="48035548"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Aug 2024 10:52:20 -0700
-X-CSE-ConnectionGUID: ojB2pnmJT526RXpL0G9esA==
-X-CSE-MsgGUID: vzwY+38oRJ6Z3u7wngf2QA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; 
-   d="scan'208";a="65369743"
-Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost) ([10.245.245.181])
-  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Aug 2024 10:52:16 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Wed, 21 Aug 2024 20:52:13 +0300 (EEST)
-To: Bjorn Helgaas <helgaas@kernel.org>
-cc: daire.mcnamara@microchip.com, linux-pci@vger.kernel.org, 
-    devicetree@vger.kernel.org, conor.dooley@microchip.com, 
-    lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, bhelgaas@google.com, 
-    LKML <linux-kernel@vger.kernel.org>, linux-riscv@lists.infradead.org, 
-    krzk+dt@kernel.org, conor+dt@kernel.org
-Subject: Re: [PATCH v8 1/3] PCI: microchip: Fix outbound address translation
- tables
-In-Reply-To: <20240821170330.GA256147@bhelgaas>
-Message-ID: <62e20d95-1ab8-dbc2-41c6-21ca48d56c6f@linux.intel.com>
-References: <20240821170330.GA256147@bhelgaas>
+	s=arc-20240116; t=1724263763; c=relaxed/simple;
+	bh=6RUWiLswkU4+N/s6gxHNbPztJbiSeibiIMt0ZhSB/II=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CcVuwvxnbB/YxM71hNp3SY9FVdKjrBeEyqjf3LDHXs4BNSyIT5AoRK/IYnvWUxFY/iNMMxOYw3OTYJFcH+IZVbn2YCl8KmHOI8v45nYAaWkA9VDYKFJhlUrnXeUO9iOLsd1TwVLlUyGM9UAkomVzh7a+8a6/If3xFz21/6CpYVc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nK9AoIy2; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-427fc97a88cso59236905e9.0;
+        Wed, 21 Aug 2024 11:09:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724263760; x=1724868560; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=RbJQfh8oH+/6H+RAIJN5JcyecchC2478JTd/lzRXn+8=;
+        b=nK9AoIy2VNoGXWiRZwKFxp9aPFHI2hYBv+cxO9xUXDNy7XvgISUa0JkUDILYzuAdpQ
+         2/Vyx5ZGm4dJk4AEWp2T7GbpcQl1PI0RCJERu6z05EhYcoqY/T16egJYWZ1mpMps7NOK
+         vq73xd/uV5ZslmtlPB6cRg9zuAbDEYi9mDz5e01lbnsDx4+IjU78kRCq3GbZ1eXDWXoa
+         2mCJaec7IdqleD2FCszihjPpfQGX0q0/qKja7RGnIjm/8siKdfMUQ9fOFTxqdiVHyTgg
+         Bdeoz+UUM01MoBRub7Z+oow2dosLd3AHzUbBe0ZE3xSew2wUaCj340arXm8H1OUVBi4s
+         Yy9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724263760; x=1724868560;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RbJQfh8oH+/6H+RAIJN5JcyecchC2478JTd/lzRXn+8=;
+        b=qs/BWoBz8Cf2znWf91IJwaUxrXhsy37HERg0VjHm9eQtgpyJQdqjXTqZ0BQhLj4t5x
+         lyuIPTnbcEFqzfa9iGzl2cs9XyzQTHfTt7u+lvVPUB3EsQc194I5v+RJnJhmFxLfITYv
+         XX+PNqC+hx8gSh/Fy72vAiEfks68oR8p70MANEGis9x7IL732AeQoEZk9vM75t1jnDRi
+         0u90e3taHDJ6HokW7dhC0epwAWN6l2HYA0tBV/lRB8Sjumge06Dv9Qy6S2Zy8NqSQrKF
+         ZOjBWdgCJwRkQp+ZlbiabjdsyHwVvhc/nWOf/u3F5jQT5CrTJk3iteaSp8CpEY39TAgM
+         MXUw==
+X-Forwarded-Encrypted: i=1; AJvYcCV4uYQT/HA1JDhRO5YzGya1MeKpx4L/7RcV+zHjRNJ/ro/xhPJW2/N6sLXCjOpQ4fVbdzt2Dp8fjo6L@vger.kernel.org, AJvYcCWJXb6nuaWEfblhzuHuo0Dvzd6Utq0zkaRrCP6enSdBPgQ3tTaQ6cOY0ML55QPaks2VoO8gWKYzX457@vger.kernel.org, AJvYcCXQvq8gDUsrzZHB4QQHe3oY60MDnxkALK8J9QDSKHqOKN2E0sarGc3WCu4AmNFjpnObNSXBG9tMuU8nBoXL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yygvgdve+LAVSR2ivG/fBXU5D/NxjizpbFzBf0MnvXCNH+1IB8+
+	RTD8E5ltCX/hVrpFVgQG5tQ9EZbpLfgAOQXfoL92lfGCesUHvGqj
+X-Google-Smtp-Source: AGHT+IHlmPMhYFA/1JwECTX9lRz4YGienXe2XSehw/xBGz/6Mtvd7mIdvA1vsaht0gA/54QHizdnxQ==
+X-Received: by 2002:a05:6000:c52:b0:36d:2941:d531 with SMTP id ffacd0b85a97d-372fd7013a0mr1846525f8f.44.1724263759586;
+        Wed, 21 Aug 2024 11:09:19 -0700 (PDT)
+Received: from Ansuel-XPS. (host-87-1-209-141.retail.telecomitalia.it. [87.1.209.141])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-371898aab44sm16293072f8f.91.2024.08.21.11.09.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Aug 2024 11:09:19 -0700 (PDT)
+Message-ID: <66c62d4f.df0a0220.3305f1.f86c@mx.google.com>
+X-Google-Original-Message-ID: <ZsUTX0MBt07_EKPA@Ansuel-XPS.>
+Date: Wed, 21 Aug 2024 00:06:23 +0200
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Joern Engel <joern@lazybastard.org>,
+	Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@kernel.dk>,
+	Christoph Hellwig <hch@lst.de>, Sagi Grimberg <sagi@grimberg.me>,
+	Saravana Kannan <saravanak@google.com>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Florian Fainelli <f.fainelli@gmail.com>, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mtd@lists.infradead.org, linux-nvme@lists.infradead.org
+Subject: Re: [PATCH v4 3/7] dt-bindings: mmc: add property for partitions
+ node in mmc-card node
+References: <20240809172106.25892-1-ansuelsmth@gmail.com>
+ <20240809172106.25892-4-ansuelsmth@gmail.com>
+ <20240813200734.GA1659224-robh@kernel.org>
+ <66c5b8ec.5d0a0220.11ef1f.b572@mx.google.com>
+ <CAPDyKFq0cR10d1jUc5gnoUR5P=cbDEZy2iA-HOq9oNcWZevbDg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFq0cR10d1jUc5gnoUR5P=cbDEZy2iA-HOq9oNcWZevbDg@mail.gmail.com>
 
-On Wed, 21 Aug 2024, Bjorn Helgaas wrote:
-
-> On Wed, Aug 21, 2024 at 02:02:15PM +0100, daire.mcnamara@microchip.com wrote:
-> > From: Daire McNamara <daire.mcnamara@microchip.com>
-> > 
-> > On Microchip PolarFire SoC (MPFS) the PCIe Root Port can be behind one of
-> > three general-purpose Fabric Interface Controller (FIC) buses that
-> > encapsulate an AXI-M interface. That FIC is responsible for managing
-> > the translations of the upper 32-bits of the AXI-M address. On MPFS,
-> > the Root Port driver needs to take account of that outbound address
-> > translation done by the parent FIC bus before setting up its own
-> > outbound address translation tables.  In all cases on MPFS,
-> > the remaining outbound address translation tables are 32-bit only.
-> > 
-> > Limit the outbound address translation tables to 32-bit only.
-> > 
-> > This necessitates changing a size_t in mc_pcie_setup_window
-> > to a u64 to avoid a compile error on 32-bit platforms.
+On Wed, Aug 21, 2024 at 03:14:29PM +0200, Ulf Hansson wrote:
+> On Wed, 21 Aug 2024 at 11:52, Christian Marangi <ansuelsmth@gmail.com> wrote:
+> >
+> > On Tue, Aug 13, 2024 at 02:07:34PM -0600, Rob Herring wrote:
+> > > On Fri, Aug 09, 2024 at 07:21:01PM +0200, Christian Marangi wrote:
+> > > > Add property for defining partitions node in mmc-card node to define
+> > > > partitions in DT by the use of the block2mtd module to use block
+> > > > devices as MTD.
+> > >
+> > > You justified patch 1 saying eMMC already supported this, but then here
+> > > you add support.
+> > >
+> > > Both are a NAK for me as both already have a way to describe partitions
+> > > with GPT.
+> > >
+> >
+> > I think this got a bit confused and hope we can find a way to add
+> > support for this.
+> >
+> > What is "already supported" is assigning an OF node so driver can
+> > reference it. This patch was just adding the nodes in the schema to say
+> > that partitions can be defined.
+> >
+> > I think what is not clear is that block devices might be used as raw
+> > devices without a partition table defined in the device. In such case
+> > it's the kernel that define a fixed partition table.
+> >
+> > One example is [1] where the partition table is provided by cmdline.
+> > Similar to cmdlinepart MTD parser.
+> >
+> > The use of block2mtd is just to make use of the MTD parser system.
+> >
+> > Considering
+> > - eMMC is soldered to the device (no dynamic scan)
+> > - cmdline might be not tunable and hardcoding it might also be
+> >   problematic (as some cmdline needs to be used)
+> > - concept of fixed partition for block device is already a thing and
+> >   used a lot (android AFAIK)
 > 
-> I don't see this size_t change in this patch.  Add "()" after function
-> name if there's a relevant function here.
-
-It looks that change was still present in v7 but also "u64" is not correct 
-either because it was changed to resource_size_t.
-
-> > Fixes: 6f15a9c9f941 ("PCI: microchip: Add Microchip Polarfire PCIe controller driver")
-> > Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > Reviewed-by: Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>
-> > ---
-> >  .../pci/controller/plda/pcie-microchip-host.c | 30 ++++++++++++++++---
-> >  1 file changed, 26 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c b/drivers/pci/controller/plda/pcie-microchip-host.c
-> > index 48f60a04b740..da766de347bd 100644
-> > --- a/drivers/pci/controller/plda/pcie-microchip-host.c
-> > +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
-> > @@ -21,6 +21,8 @@
-> >  #include "../../pci.h"
-> >  #include "pcie-plda.h"
-> >  
-> > +#define MC_OUTBOUND_TRANS_TBL_MASK		GENMASK(31, 0)
-> > +
-> >  /* PCIe Bridge Phy and Controller Phy offsets */
-> >  #define MC_PCIE1_BRIDGE_ADDR			0x00008000u
-> >  #define MC_PCIE1_CTRL_ADDR			0x0000a000u
-> > @@ -612,6 +614,27 @@ static void mc_disable_interrupts(struct mc_pcie *port)
-> >  	writel_relaxed(GENMASK(31, 0), bridge_base_addr + ISTATUS_HOST);
-> >  }
-> >  
-> > +int mc_pcie_setup_iomems(struct pci_host_bridge *bridge,
-> > +			   struct plda_pcie_rp *port)
-> > +{
-> > +	void __iomem *bridge_base_addr = port->bridge_addr;
-> > +	struct resource_entry *entry;
-> > +	u64 pci_addr;
-> > +	u32 index = 1;
-> > +
-> > +	resource_list_for_each_entry(entry, &bridge->windows) {
-> > +		if (resource_type(entry->res) == IORESOURCE_MEM) {
-> > +			pci_addr = entry->res->start - entry->offset;
-> > +			plda_pcie_setup_window(bridge_base_addr, index,
-> > +					       entry->res->start & MC_OUTBOUND_TRANS_TBL_MASK,
-> > +					       pci_addr, resource_size(entry->res));
-> > +			index++;
-> > +		}
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  static int mc_platform_init(struct pci_config_window *cfg)
-> >  {
-> >  	struct device *dev = cfg->parent;
-> > @@ -622,15 +645,14 @@ static int mc_platform_init(struct pci_config_window *cfg)
-> >  	int ret;
-> >  
-> >  	/* Configure address translation table 0 for PCIe config space */
-> > -	plda_pcie_setup_window(bridge_base_addr, 0, cfg->res.start,
-> > -			       cfg->res.start,
-> > -			       resource_size(&cfg->res));
-> > +	plda_pcie_setup_window(bridge_base_addr, 0, cfg->res.start & MC_OUTBOUND_TRANS_TBL_MASK,
-> > +			       0, resource_size(&cfg->res));
-> >  
-> >  	/* Need some fixups in config space */
-> >  	mc_pcie_enable_msi(port, cfg->win);
-> >  
-> >  	/* Configure non-config space outbound ranges */
-> > -	ret = plda_pcie_setup_iomems(bridge, &port->plda);
-> > +	ret = mc_pcie_setup_iomems(bridge, &port->plda);
-> >  	if (ret)
-> >  		return ret;
-> >  
-> > -- 
-> > 2.34.1
-> > 
+> Sorry for sidestepping your discussion, but I just wanted to add a few comments.
 > 
+> It's not clear to me why we need something different than what we
+> already have today.
+
+It's really adding a missing feature. We have cmdline but we don't have
+DT. And in emebedded many times cmdline can't be changed.
+
+> 
+> If it's a partuuid/uuid/label or a fixed block-partition from the
+> command line, we still need to know what partition we shall use for
+> what. So why is this problem different from how we manage filesystem
+> mounts, for example?
+
+In the context of eMMC there isn't any partition table and the cmdline
+is hardcoded by the bootloader. The cmdline might provide the root
+partition to use but doesn't declare the partition table (with cmdline)
+
+And the bootloader with the hardcoded cmdline might provide a different
+root partition in dual-boot-partition implementation on switching the
+boot partition. (this is used a lot with bootloader using a env variable
+and a different cmdline passed based on the variable to signal what
+partition to use for root)
+
+> 
+> >
+> > I think it should be acceptable to introduce in DT support for defining
+> > fixed partition for block devices and some kind of parser system similar
+> > to MTD. What do you think? Would this be more acceptable? Idea is to
+> > just have a DT schema that makes use of the values that can be set in
+> > [1].
+> 
+> In DT we can describe that there is an eMMC card soldered to the
+> board, because it's a description of the HW. But describing what
+> stored inside the eMMC-flash doesn't belong in DT.
+> 
+
+Why? This conflicts with how it's done on MTD. Also consider the fact
+that eMMC might contain calibration partition used for NVMEM.
+
+Describing fixed partition on a soldered eMMC that the bootloader
+expects at a fixed offset and won't ever change (or it will result in a
+brick) sounds like describing the HW to me. (it's the same principle of
+MTD just applied to block devices)
+
+(I know it sound strange as block devices are expected to have a
+partition table in MBR or GPT but reality is that it's not always the
+case)
+
+> >
+> > Hope we can find a solution to this, I'm totally OK for dropping NVMe as
+> > I understand it's PCIe stuff and very dynamic but OEM are making lots of
+> > use of eMMC and are starting to use these strange way (block2mtd) as we
+> > currently don't give a proper and easy solution for the task.
+> 
+> I certainly appreciate that you are trying to solve the fragmentation
+> issue around this, but it looks like we need a different approach than
+> using DT to describe partitions.
+> 
+
+Well it's either DT that can be tweaked and is part of the image or
+cmdline that have tons of limitation due to bootloader having fun
+hardcoding it or also actually requiring the bootloader cmdline and
+adding overlay on it. Honestly as I said adding DT support is really
+compleating the feature of the cmdline implementation.
+
+> >
+> > [1] https://github.com/torvalds/linux/blob/master/Documentation/block/cmdline-partition.rst
+> >
+> 
+> Kind regards
+> Uffe
 
 -- 
- i.
-
+	Ansuel
 
