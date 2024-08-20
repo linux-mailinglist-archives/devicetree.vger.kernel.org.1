@@ -1,166 +1,146 @@
-Return-Path: <devicetree+bounces-95246-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95247-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1684F9589C6
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 16:39:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F50F9589EC
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 16:45:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C4B91F234AC
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 14:39:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 979AFB238A1
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 14:45:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D15E9198A0F;
-	Tue, 20 Aug 2024 14:36:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DB0C19412C;
+	Tue, 20 Aug 2024 14:38:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="YSLifkqK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HXVPtgty"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB46E194AE8
-	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 14:36:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A21F7191F72;
+	Tue, 20 Aug 2024 14:38:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724164591; cv=none; b=AAgQoJybM02dc95yw7pwJqEvb223WYsu5EJrqKmPEnROogDtYuXKKYnpQXNKfVdZIkXJ42cKmsXkIgjShasqaeYCuEjcL8HJzAE/CNR0WvsJLz8piInTPN42aT8O2Jk36PFAzuhfBUC51+lKqaBFKCL1YZgVvME9wrd9hTcEmYc=
+	t=1724164715; cv=none; b=mkVqWbdpWRFM9HiSLuENbLWd/ENOLMCPt9asMMD4dE/6AN6BcV4jl1y8g4mg5IfsbNGCzt7kfEdVgd3W0JcyXjg3cF2KJ2fp+glDWlvEOXEcPsv9kQLDbX27INeRZ+83gly3moT0Gw7EN89oUeuMa7qeTmjZk32ldZ1BkicSTI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724164591; c=relaxed/simple;
-	bh=rqRJWAybH0BXIttqUWZDoJAhQfObjtFcdpdNsbc6tZ4=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=hpjg65HTxgxopEfUpCFxtJH6pjBZfiFaJW3fGvtjo2meecbfbrrqjM+9CrWxt9T9Bkd1q7FzzgyH6P3RR0cr2oWc6ayZuD+eIFJn1tSGbC3AKN4HpiF1vxPNFGqfjmIXzrP13w+sfT72iikapZWskVyceVNqlijpzUf+IsSn5yI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=YSLifkqK; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a7a843bef98so624123466b.2
-        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 07:36:26 -0700 (PDT)
+	s=arc-20240116; t=1724164715; c=relaxed/simple;
+	bh=o+e6mZf6wtIb/qdtsdAqCEiKnYEcfJt0EJnolihIkt4=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Jc/beLByZ5Nh1UXGxT9JbQg98qK8B4fsvTa9gTFHKPALTo1EACF8gJH6EklcnS7SD8j55cBbsxLWtbm7uwDU9qC8XCMYvGJUiA9mvMFYz4f+EO6qjsGWkDBoaiQ/5CCRqejASGYNJrj0WaepALh8Sdm/d5bL0ftvA9dN5Px7IbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HXVPtgty; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2f3f07ac2dcso7330291fa.2;
+        Tue, 20 Aug 2024 07:38:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1724164585; x=1724769385; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=o2Xgg30vYhCxJ1eXmEmY/H80RrAwzg/J7u+AAMEQheA=;
-        b=YSLifkqKVWA/KeHBbfhq2pmwmCTWDyKL5wW3WBSQ2dQMOmWS34QncqhmMKat7cxWd9
-         5/WCyReOBCqMDfnPs1hzQU9k3ddmOp8Nerb+y6IJr2CbettwzfbSdC41Hr8/lr7isGgK
-         DtdVWqy/YG/UGMMbAzEbVEZFhmfm5KEQfkjQydFQOMBRWPgqA9eNuXU94lX1lUoFnN+5
-         KUhjbVHCNHCquCMJ+AjDGlKGdBrxbQVyHXbc2gdtkWiyH0GsiXwSgBj6lqbvXc9uLiD9
-         bMyIx0hMoAlez93553EMQ2emwSLH+zk81fj/0Pv0hNb6gIdiNIlhU3jLkwBcyRXWhi3k
-         Qrcw==
+        d=gmail.com; s=20230601; t=1724164712; x=1724769512; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Rt9Va+56pU7ZDhXb7NcEk5Z+FfkmKspU+Icin+0hIu4=;
+        b=HXVPtgtyfhxONT/+PUO3PrM/gYe7pHh7NlTrPveihy0r5/UbKSMCNViRd5W5fN+DsF
+         pQxRyIfggWiTVrlAJcm1KN86VuQ6sSvfu3PFOlyNG0sEve7oyYCQGT9oqP9Z3Us0Zxql
+         pY7PwaSA5cQBzBgUQBUzTfIZpV9mqay3M27h3TFgjCqOJxGP/zO2jtPbJZlmqtQiKcIn
+         kfnhQvqSQzQ5o8eIZvdxdr7luVowTOubLUKtpjHNXxlOI5kqqHGzIIQABolWLFZqPGfR
+         nA1D+RzeeBKl+j4ZbJzVwHJbKmJaHypauOW+C/8ITyjUDPoXvupjjxtgAYDxABLH+bVW
+         qMDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724164585; x=1724769385;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=o2Xgg30vYhCxJ1eXmEmY/H80RrAwzg/J7u+AAMEQheA=;
-        b=kgmanscNDPxm0bD85mmwHs8d+cSArXrEPA0nSVbdCSGrJXZ9SgTq34KWizo18kLg7G
-         WaB/8BHhqYd3SVA4ZB575jh6NYeXPZygvz9w2jL7Pw4iEkdd5t4dAWG+IGgjjKJEgdVO
-         tSVTe0edLpGg7w9PMo9OcUfXtbgftALcq6yQkLkHDN6GuKI2JFQosGd5gTkccah/uVaf
-         2opoNeZLlGwv2S2a3FYgULLRz17ZCJvawlPJywGodnt8Plb/rEu0rwIUYUC1kV/18tAu
-         dOQk0igvgLl11GNhp/NSNruJkJIYqcY5xa21c59MsuAkCMkd0SEZbBnPtY1uUM5Vi+qs
-         6LXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV1vw6n1spRzU3eMfBip0MRo9CRUq9R2gfzIDprYXOLD1+YBUbcPsanKxEbAbM3wG5CYDKnSm7Vuokl@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPyO8yXhYEwZYt+zJf5DzcW5lj5N7u+DHP/RSVlLZuvm6qk06V
-	3JvW6tywkzkeg5psO4qBE4YG4yhpqp1p4Ng2TpFDU5buw0I9DuUTgdPfhOfAxXQ=
-X-Google-Smtp-Source: AGHT+IHHwb3kDEyWmIFiefIJfKoeZp5N9YbDUkPf5M8lEPY+UbF5lCIpL7IY1EOzpJk/o4jN7+373w==
-X-Received: by 2002:a17:907:f164:b0:a77:dbf0:d22 with SMTP id a640c23a62f3a-a8392a4b5e8mr1083160066b.65.1724164584705;
-        Tue, 20 Aug 2024 07:36:24 -0700 (PDT)
-Received: from localhost ([87.13.33.30])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a83838cfb18sm771023766b.60.2024.08.20.07.36.23
+        d=1e100.net; s=20230601; t=1724164712; x=1724769512;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Rt9Va+56pU7ZDhXb7NcEk5Z+FfkmKspU+Icin+0hIu4=;
+        b=ssiWqDKJPIkY+Zzm0J49z7mtruNFui7qkM+HsK2eJ/Iv7eNZ5cDqhJ81he+8OQaPhS
+         ti8lbsmP8Jx+HDeCfLO82wYE8lLEy28AlTYqjBtXBVkdbt8geoDIzM2QSUIgm/HQVHTr
+         Vy/BqScyytnvv8WKRMR/jqa+WbJWEVB1SQs9CJ42j10q+cf7prtDEtDxcRFZ0P87sS7u
+         RXLZPF6HE55d3H94GC41UsiSQuAJb36go2Ux9uk4W5VC3kbUGOPXsF+Z7ODrBXnFBTu3
+         Ax2Arv0DMtmT3GmQk7W6f87gi6OIs8YJYvFMpYkNfE2e1w5kWZq5bhSzQyxyQH6wh5yT
+         InEw==
+X-Forwarded-Encrypted: i=1; AJvYcCUO4/jdEJ41hc/khGtpZnjtf54mEgIfcGNyyRpujjWizyVHIYeo2u9QLeTGhOLbNIAuf7tPSDzePF2RJLpKikG4H0saXMZkSCCBL7HA
+X-Gm-Message-State: AOJu0Yz4l0O78ANQE4gAbMY34eARa1JY5ZD1eYEuv2CJ9zeNbfzIbhts
+	9QcgUj+sR5hlIgEJ8dZlnzrVkI2YCNH5Cx9M06w8i8GBarMgmOcp
+X-Google-Smtp-Source: AGHT+IEPjYZZ2oXKTRwJNy0PcSnF6FIti7QGrLcbGHfPwDUeSiz8QXt8FWcfj96E0QZoSJs4Ih5dNg==
+X-Received: by 2002:a2e:4e01:0:b0:2ee:974c:596f with SMTP id 38308e7fff4ca-2f3be5bfe54mr98249601fa.28.1724164711158;
+        Tue, 20 Aug 2024 07:38:31 -0700 (PDT)
+Received: from tablet.my.domain (ip-37-248-154-163.multi.internet.cyfrowypolsat.pl. [37.248.154.163])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5bebbde3edfsm6807548a12.29.2024.08.20.07.38.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Aug 2024 07:36:24 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-To: Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	netdev@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-arch@vger.kernel.org,
-	Lee Jones <lee@kernel.org>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Stefan Wahren <wahrenst@gmx.net>
-Subject: [PATCH 11/11] arm64: dts: rp1: Add support for MACB contained in RP1
-Date: Tue, 20 Aug 2024 16:36:13 +0200
-Message-ID: <a3fde99c2e522ef1fbf4e4bb125bc1d97a715eaf.1724159867.git.andrea.porta@suse.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <cover.1724159867.git.andrea.porta@suse.com>
-References: <cover.1724159867.git.andrea.porta@suse.com>
+        Tue, 20 Aug 2024 07:38:30 -0700 (PDT)
+From: Artur Weber <aweber.kernel@gmail.com>
+Date: Tue, 20 Aug 2024 16:38:14 +0200
+Subject: [PATCH] ARM: dts: broadcom: bcm2166x-common: Increase apps bus
+ size to fit BCM21664 GIC
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240820-bcm2166x-apps-bus-fix-v1-1-0478a3227e86@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAFWqxGYC/x2MywqAIBAAfyX23IJJiPQr0cHHWnvIxKUIon9PO
+ s7AzANClUlg6h6odLHwkRsMfQdhc3kl5NgYtNKjslqhD7sejLnRlSLoT8HENyqKIXlHNgYPrS2
+ Vmv6/8/K+H6rJ1thnAAAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ ~postmarketos/upstreaming@lists.sr.ht, 
+ Artur Weber <aweber.kernel@gmail.com>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1268;
+ i=aweber.kernel@gmail.com; h=from:subject:message-id;
+ bh=o+e6mZf6wtIb/qdtsdAqCEiKnYEcfJt0EJnolihIkt4=;
+ b=owEBbQKS/ZANAwAKAbO7+KEToFFoAcsmYgBmxKpklbjLa0VDiwZb6ueoWUyzT9lHqNQUauloz
+ Tflf/1SHjKJAjMEAAEKAB0WIQTmYwAOrB3szWrSiQ2zu/ihE6BRaAUCZsSqZAAKCRCzu/ihE6BR
+ aLqhD/9qV8z9JmtZVKFrDv5tJYwO8Nf4+jrzeFXthIM43Ownc+LbR+C5o9tRQ9liW0CXoMRV36h
+ LFnHqE+/JG80DyTrpseSnstFctKFRHse33KfLy8NeORok0HvAUQ/nzdjgRRKEXKWUPsN8rkRnne
+ I4M2OGd6a4R4zuGpDhAwop9zJsRJmiEz3ocid9MLK05wIa/VwGt4kOxNvebMNjWdVvkZwDw1ebz
+ ocU/J18QD2KUOeIqrpUR2Via85E6Que0kYfinVHqW0p0VA98rRlFBueWtIB2zAqUeLeYwsLhjIl
+ uytwYFJRKtW5j6/S7Brx7y/MwG+LLODADwXCyLYTtjwpJiA8RghNDzDj+R9ajyskUDGDbqAjeFf
+ hgJtVgkY0FCMx2Ot8S1HWiDcZD6pQLAT/rfeLQqiBh6xmpymHhzOuRzTZ2yzUc8rh5OOR7sDeQP
+ 26N1vYekWXbuNLmAWJtLsoEX8JJB6J+gOIODKm9SmbIJse5TqqZxouIXOfxF2+venYv2nUVjn8F
+ /E2DycZ40FWVMIVzc+ACvdtUgyEruAHjlh1TzZuHxJATaF93xdo1PzftnYOfDnWrBr7R0tjDlQ1
+ l0taln6xwSTZp+vIvSp5w+D2ml3tAwtduuwiTvkfSZzLctlbxB/hiYg9+SXJKLG7moKpQf373Xq
+ wLvhhWRI3WL7ZPQ==
+X-Developer-Key: i=aweber.kernel@gmail.com; a=openpgp;
+ fpr=E663000EAC1DECCD6AD2890DB3BBF8A113A05168
 
-RaspberryPi RP1 is multi function PCI endpoint device that
-exposes several subperipherals via PCI BAR.
-Add an ethernet node for Cadence MACB to the RP1 dtso
+The BCM21664 GIC sits at a higher address than the apps bus currently
+allows. This is because the apps bus was inherited from the BCM23550
+DTSI, where the GIC sits at an earlier address in memory, and the DTSI
+wasn't updated to match.
 
-Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+Increase the size of the apps bus to allow the BCM21664 GIC to work.
+
+Fixes: a5d0d4a7bab5 ("ARM: dts: bcm-mobile: Split out nodes used by both BCM21664 and BCM23550")
+Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
 ---
- arch/arm64/boot/dts/broadcom/rp1.dtso | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+ arch/arm/boot/dts/broadcom/bcm2166x-common.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/broadcom/rp1.dtso b/arch/arm64/boot/dts/broadcom/rp1.dtso
-index d80178a278ee..b40e203c28d5 100644
---- a/arch/arm64/boot/dts/broadcom/rp1.dtso
-+++ b/arch/arm64/boot/dts/broadcom/rp1.dtso
-@@ -78,6 +78,29 @@ rp1_clocks: clocks@c040018000 {
- 							       <50000000>;   // RP1_CLK_ETH_TSU
- 				};
+diff --git a/arch/arm/boot/dts/broadcom/bcm2166x-common.dtsi b/arch/arm/boot/dts/broadcom/bcm2166x-common.dtsi
+index 049e18b61ccd..87180b7fd695 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2166x-common.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm2166x-common.dtsi
+@@ -135,7 +135,7 @@ bsc4: i2c@1c000 {
+ 	/* Apps bus */
+ 	apps: apps-bus@3e300000 {
+ 		compatible = "simple-bus";
+-		ranges = <0 0x3e300000 0x01b77000>;
++		ranges = <0 0x3e300000 0x01c02000>;
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
  
-+				rp1_eth: ethernet@c040100000 {
-+					reg = <0xc0 0x40100000  0x0 0x4000>;
-+					compatible = "cdns,macb";
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					interrupts = <RP1_INT_ETH IRQ_TYPE_LEVEL_HIGH>;
-+					clocks = <&macb_pclk &macb_hclk &rp1_clocks RP1_CLK_ETH_TSU>;
-+					clock-names = "pclk", "hclk", "tsu_clk";
-+					phy-mode = "rgmii-id";
-+					cdns,aw2w-max-pipe = /bits/ 8 <8>;
-+					cdns,ar2r-max-pipe = /bits/ 8 <8>;
-+					cdns,use-aw2b-fill;
-+					local-mac-address = [00 00 00 00 00 00];
-+					phy-handle = <&phy1>;
-+					phy-reset-gpios = <&rp1_gpio 32 GPIO_ACTIVE_LOW>;
-+					phy-reset-duration = <5>;
-+
-+					phy1: ethernet-phy@1 {
-+						reg = <0x1>;
-+						brcm,powerdown-enable;
-+					};
-+				};
-+
- 				rp1_gpio: pinctrl@c0400d0000 {
- 					reg = <0xc0 0x400d0000  0x0 0xc000>,
- 					      <0xc0 0x400e0000  0x0 0xc000>,
+
+---
+base-commit: 44ccb92bc64a6f92666e69c7c30e5713758641e2
+change-id: 20240820-bcm2166x-apps-bus-fix-0edcfbae8dcb
+
+Best regards,
 -- 
-2.35.3
+Artur Weber <aweber.kernel@gmail.com>
 
 
