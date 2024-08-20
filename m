@@ -1,207 +1,230 @@
-Return-Path: <devicetree+bounces-95251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D7C7958A2D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 16:53:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D67F958AA3
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 17:03:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D02E21F21816
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 14:53:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4FD8F28536C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 15:03:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E69C319146E;
-	Tue, 20 Aug 2024 14:53:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 995A1192B79;
+	Tue, 20 Aug 2024 15:02:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="JZhehBWe"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="MD/4Gnrv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FFB12745C
-	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 14:53:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91D39191F60;
+	Tue, 20 Aug 2024 15:02:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724165612; cv=none; b=hL6FDXAHPm49yq/02y/Ac4wp1fUBL+62cIWkvVFXqVf9XCUGs9yJpkGv4jQNIexU1LaA5rgFW3dw9v/yQ5fwudbwQmJ6WtSbqZd/GY1Jcl0g60Qlqj9Uz8jOG248bWB9FPXmCBkcDyiXMiYVKoVt0un30/waqLHJ+ACnkU2aihk=
+	t=1724166150; cv=none; b=FiiFU4ZAQB0FM/xAcRREGgOWz9OYz6Y+OQ757jFYH5iJcvXd7ahWZbGur4rqRzNjkybkpTRXfVd0Off+4gnvZTgAklMERqI7f1tDVTIjP3B6yGsWjOK+iIPFpx9JqqzRugpjOjCXNy10T7dnDee42yRa02jlqkkUTpFbLfr7L5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724165612; c=relaxed/simple;
-	bh=owuVia3Ec8hS4Tzg0YSGZnP3tTpMNFwhZ9EjmnZfm+c=;
-	h=From:To:CC:Date:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=dHn49NaKSu0woW8m18yzQT3K7I9H/Grr6wW+ceyc3eFPcXapEX4lXcxQLIeKHXrCTOuIpJIPeWYf+GVfe/Iksk12K/3fVmA1CviumyVpogtDNbXWK5eXrPiW6pyNFPhoxCqi1NJ7XGmazt1L8CoIDN7Yscbqi86/KlBckT7LjQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=JZhehBWe; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a7d26c2297eso640698466b.2
-        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 07:53:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1724165609; x=1724770409; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:subject:user-agent
-         :references:in-reply-to:message-id:date:cc:to:from:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6lean+ba5I8okfjRQmm7UZf9YwlE6ssXVcZQnVO7azw=;
-        b=JZhehBWeUCBqPmNJwQ61jtiZ8IrFpOiW26V8D/WEpBuUFlsjEr9HNQXK27M+ytUSKd
-         159XO7hGdrcLOHFWArbKgdLGxGk0Hg0RtczfZT13Gq2/rHfAAHR+Z9CTxfUDtPbps7Ti
-         CZL7Hzz+fbY7qe+psDAesnp3bTCqVkZd2kyWM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724165609; x=1724770409;
-        h=content-transfer-encoding:mime-version:subject:user-agent
-         :references:in-reply-to:message-id:date:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6lean+ba5I8okfjRQmm7UZf9YwlE6ssXVcZQnVO7azw=;
-        b=HqTeN57LTQY7qGsbstCbe7NM38YmoPa3s3kb2KSI5XlXmx6lqE7gUBji/ywdjoezN7
-         Ohl1ASWEAsBAn6nTrr+YR+vbxzuTJQK0FuDIxdYxO5ZMZNnbFbQ8TfWtILH2Qu6GLm2/
-         tWOpcAd9kXgJvCIrnBHsxQeZPUuUGyZwx+Zkwrg92HI6or67o/RrPnrnhu8r2hJBNImY
-         mjhzXwpf8qWpxV2/xqia1NRvsTOuXtKX51ky+ok3AHbfdlIyLzl0oaWzGWBzXZDAp0Pr
-         gEhOLGc/sejRdEvx1kW93fpWxFxf5G9OBEB3EfRLz/G9CMuaOeUT+2Znreu/JOiKWGQr
-         MkYQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVHTwXb2I1EwNjj6n7qrVAzR3km2+vyD4N0hqnR8G60WwrNS80OFAIcD8C8sbfnbctQKZJ5bl5ZxZPw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+sR5qWHSJALrpCWw0I/D2fwBTqceAP+oS81BRXwCgWwwciiKE
-	H/GUJxbIMZfpUgpjSMAiWvTe4K5toOHEpX9j2wmaPAaMs/Xo7WVp7gGW/MnBkg==
-X-Google-Smtp-Source: AGHT+IFX/h/PLBfDZU8MSLKQU8nyhQrbufsrivLrvdyUAmZSegFOoBiDC+LSNAKDzv39f6JQD1gdSg==
-X-Received: by 2002:a17:907:da0:b0:a77:db34:42ca with SMTP id a640c23a62f3a-a8392a03bb6mr1038816866b.49.1724165608691;
-        Tue, 20 Aug 2024 07:53:28 -0700 (PDT)
-Received: from [192.168.178.38] (f215227.upc-f.chello.nl. [80.56.215.227])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a83839356e2sm767430566b.105.2024.08.20.07.53.28
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 20 Aug 2024 07:53:28 -0700 (PDT)
-From: Arend Van Spriel <arend.vanspriel@broadcom.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Kalle Valo <kvalo@kernel.org>, Hector Martin <marcan@marcan.st>, Krzysztof Kozlowski <krzk+dt@kernel.org>, <devicetree@vger.kernel.org>, <linux-wireless@vger.kernel.org>, <brcm80211@lists.linux.dev>, <asahi@lists.linux.dev>
-Date: Tue, 20 Aug 2024 16:53:28 +0200
-Message-ID: <19170474e58.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
-In-Reply-To: <6777d425-b27f-43d0-ba81-b36ac0b8f929@broadcom.com>
-References: <20240820101216.355012-1-arend.vanspriel@broadcom.com>
- <20240820101216.355012-2-arend.vanspriel@broadcom.com>
- <mbvhz3wosnykejgs65es2sfedxoevysbqu3jxmpgdze2b2tl6o@grx4mxas2bmf>
- <7881c303-bef1-403a-aa70-30d33558f57f@kernel.org>
- <6777d425-b27f-43d0-ba81-b36ac0b8f929@broadcom.com>
-User-Agent: AquaMail/1.51.5 (build: 105105504)
-Subject: Re: [PATCH 1/2] dt-bindings: wireless: restore constraint for brcm,bcm4329-fmac compatible property
+	s=arc-20240116; t=1724166150; c=relaxed/simple;
+	bh=Pn5Be2dh0+czNJ0r2kXuL6VCoqseYLZz15AvC634pGY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gPEloUCZ6m5cO5faiLdPR5U+Ex5ksdPPvUYhTvM3Z8RFk+0OmEfjhJi6CrypGMH2wEj8WrXTg8UmbwJzl/a6ryQfGDzdDZ22GBPT5Ka2jShSyAiqTuwFZHF5Xd1gUTHV5JRbQL5tzM6RtkhECNa7EX3joInALN/NPRlhwrtho5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=s2b.tech; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=MD/4Gnrv; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=s2b.tech
+Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id E4D3E120013;
+	Tue, 20 Aug 2024 17:56:48 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru E4D3E120013
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1724165808;
+	bh=MrVtz0e/hcb5PS4asT0CJG1SO1SVV/nNa9m/pnKuUpU=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=MD/4GnrvAamoZR3TkwORfL5p2owAfIhFf/wQ/Z1/hP2LHcTP67awyEXx6v8NCnWpW
+	 Gbd74JTRYL7trfSfHpOmaO2NOluAURy4uWmukpNnaN7mQlyVPotn03smq7TmsSA4Cx
+	 qnyEZLjmLGQoRI8vpjfj66WC0rEB8vALu2nclKKFW+/otu31UdH89KdXJA5n2EUzWe
+	 3c/TGcE40xarTKFDauz8QkNHrXRuu/fccwzWftQ0DFthwhA1QtajCtGYlF6eE0XnIO
+	 pP419djA87fuLzchSX8RTGKy4h8uuPUt0ZX8CDoQDic7moZawmYBSxQw6GCZfVoIWE
+	 ettpPiSO2D4Dg==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Tue, 20 Aug 2024 17:56:48 +0300 (MSK)
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: <neil.armstrong@linaro.org>, <clabbe@baylibre.com>,
+	<herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <vadim.fedorenko@linux.dev>
+CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, Alexey
+ Romanov <avromanov@salutedevices.com>
+Subject: [PATCH v9 00/23] Support more Amlogic SoC families in crypto driver
+Date: Tue, 20 Aug 2024 17:56:00 +0300
+Message-ID: <20240820145623.3500864-1-avromanov@salutedevices.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; format=flowed; charset="us-ascii"
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: p-i-exch-a-m1.sberdevices.ru (172.24.196.116) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 187181 [Aug 20 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.4
+X-KSMG-AntiSpam-Envelope-From: avromanov@s2b.tech
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 27 0.3.27 71302da218a62dcd84ac43314e19b5cc6b38e0b6, {Tracking_smtp_not_equal_from}, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;s2b.tech:7.1.1;gist.github.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1;salutedevices.com:7.1.1;lore.kernel.org:7.1.1, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, FromAlignment: n
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/08/20 14:24:00
+X-KSMG-LinksScanning: Clean, bases: 2024/08/20 14:24:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/08/20 03:45:00 #26365304
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-On August 20, 2024 2:50:24 PM Arend van Spriel 
-<arend.vanspriel@broadcom.com> wrote:
+Hello!
 
-> On 8/20/2024 1:39 PM, Krzysztof Kozlowski wrote:
->> On 20/08/2024 13:27, Krzysztof Kozlowski wrote:
->>> On Tue, Aug 20, 2024 at 12:12:15PM +0200, Arend van Spriel wrote:
->>>> When extending the bindings for Apple PCIe devices the compatible property
->>>> specification was changed. However, it was changed such that for these
->>>> devices it was no longer necessary to have "brcm,bcm4329-fmac" listed as
->>>> string in the compatible list property as it was before that extension.
->>>
->>> Apart that this was never tested... That statement is not true. Look at
->>> "fixed" commit - it is not doing like that at all.
->>>
->>> I don't understand the reasoning.
->>>
->>>> This patch restores that constraint.
->>>>
->>>> Fixes: e2e37224e8b3 ("dt-bindings: net: bcm4329-fmac: Add Apple properties 
->>>> & chips")
->>>> Signed-off-by: Arend van Spriel <arend.vanspriel@broadcom.com>
->>>> ---
->>>> .../net/wireless/brcm,bcm4329-fmac.yaml       | 19 ++++++++++---------
->>>> 1 file changed, 10 insertions(+), 9 deletions(-)
->>>>
->>>> diff --git 
->>>> a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml 
->>>> b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
->>>> index e564f20d8f41..47f90446322f 100644
->>>> --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
->>>> +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
->>>> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> title: Broadcom BCM4329 family fullmac wireless SDIO/PCIE devices
->>>>
->>>> maintainers:
->>>> -  - Arend van Spriel <arend@broadcom.com>
->>>> +  - Arend van Spriel <arend.vanspriel@broadcom.com>
->>>>
->>>> description:
->>>> The Broadcom Single chip MAC part for the BCM4329 family and
->>>> @@ -27,7 +27,6 @@ properties:
->>>>          - brcm,bcm4341b0-fmac
->>>>          - brcm,bcm4341b4-fmac
->>>>          - brcm,bcm4341b5-fmac
->>>> -              - brcm,bcm4329-fmac
->>>>          - brcm,bcm4330-fmac
->>>>          - brcm,bcm4334-fmac
->>>>          - brcm,bcm43340-fmac
->>>> @@ -46,13 +45,15 @@ properties:
->>>>          - cypress,cyw43012-fmac
->>>>          - infineon,cyw43439-fmac
->>>>      - const: brcm,bcm4329-fmac
->>>> -      - enum:
->>>> -          - brcm,bcm4329-fmac
->>>> -          - pci14e4,43dc  # BCM4355
->>>> -          - pci14e4,4464  # BCM4364
->>>> -          - pci14e4,4488  # BCM4377
->>>> -          - pci14e4,4425  # BCM4378
->>>> -          - pci14e4,4433  # BCM4387
->>>> +    - items:
->>>> +          - enum:
->>>> +              - pci14e4,43dc  # BCM4355
->>>> +              - pci14e4,4464  # BCM4364
->>>> +              - pci14e4,4488  # BCM4377
->>>> +              - pci14e4,4425  # BCM4378
->>>> +              - pci14e4,4433  # BCM4387
->>>> +          - const: brcm,bcm4329-fmac
->>>> +    - const: brcm,bcm4329-fmac
->>>
->>> And this does not make sense... You claim that some constrained was
->>> droppped and you re-add it, but in fact you still add the same code as
->>> it was before.
->>>
->>> NAK.
->>
->> Ah, the last "const" actually makes sense, I missed that.
->>
->> Commit still however lacks rationale why these devices are compatible.
->> Plus existing rationale that e2e37224e8b3 changed something is entirely
->> WRONG. It changed nothing. ZERO. It only added new devices, which was
->> claimed are not compatible with brcm,bcm4329-fmac.
->
-> So is that claim true? What does it mean that these new devices are not
-> compatible. If they are they should be in a separate binding or the
-> applicable properties for these devices should be made conditional.
->
->> Now if you claim that original commit which said "these devices are not
->> compatible with brcm,bcm4329-fmac", then please provide arguments, not
->> just say "other commit did something". It did nothing...
->
-> Not entirely true. Indeed new devices were added for which no
-> "brcm,bcm4329-fmac" string is required in the compatible property. Also
-> the commit added new properties for these new devices. Now in my opinion
-> a driver should not use these properties without a "compatible" check.
-> Hope we can agree to that. However, the driver patch for supporting the
-> binding change does no such thing. So if we leave the binding as it
-> currently is the driver will have to check if compatible has any of the
-> listed PCI IDs before processing the properties. As all properties old
-> and new are marked as optional I can not come up with an argument that
-> these new devices are *not* compatible with brcm,bcm4329-fmac.
+This patchset expand the funcionality of the Amlogic
+crypto driver by adding support for more SoC families:
+AXG, G12A, G12B, SM1, A1, S4.
 
-Looking at the commit in patchwork I see no claim in the commit message 
-that the new devices are not compatible. The patch even adds enum with the 
-PCI IDs *and* brcm,bcm4329-fmac. It is anyone's guess what the intent was 
-for doing that. My take is that this was a mistake worth fixing.
+Also specify and enable crypto node in device tree
+for reference Amlogic devices.
 
-Regards,
-Arend
+Tested on GXL, AXG, G12A/B, SM1, A1 and S4 devices via
+custom tests [1] and tcrypt module.
 
->
-> Regards,
-> Arend
->
->> Best regards,
->> Krzysztof
+---
 
+Changes V1 -> V2 [2]:
 
+- Rebased over linux-next.
+- Adjusted device tree bindings description.
+- A1 and S4 dts use their own compatible, which is a G12 fallback.
+
+Changes V2 -> V3 [3]:
+
+- Fix errors in dt-bindings and device tree.
+- Add new field in platform data, which determines
+whether clock controller should be used for crypto IP.
+- Place back MODULE_DEVICE_TABLE.
+- Correct commit messages.
+
+Changes V3 -> V4 [4]:
+
+- Update dt-bindings as per Krzysztof Kozlowski comments.
+- Fix bisection: get rid of compiler errors in some patches.
+
+Changes V4 -> V5 [5]:
+
+- Tested on GXL board:
+  1. Fix panic detected by Corentin Labbe [6].
+  2. Disable hasher backend for GXL: in its current realization
+     is doesn't work. And there are no examples or docs in the
+     vendor SDK.
+- Fix AES-CTR realization: legacy boards (gxl, g12, axg) requires
+  inversion of the keyiv at keys setup stage.
+- A1 now uses its own compatible string.
+- S4 uses A1 compatible as fallback.
+- Code fixes based on comments Neil Atrmstrong and Rob Herring.
+- Style fixes (set correct indentations)
+
+Changes V5 -> V6 [7]:
+
+- Fix DMA sync warning reported by Corentin Labbe [8].
+- Remove CLK input from driver. Remove clk definition
+  and second interrput line from crypto node inside GXL dtsi.
+
+Changes V6 -> V7 [9]:
+
+- Fix dt-schema: power domain now required only for A1.
+- Use crypto_skcipher_ctx_dma() helper for cipher instead of
+  ____cacheline_aligned.
+- Add import/export functions for hasher.
+- Fix commit message for patch 17, acorrding to discussion [10].
+
+Changes V7 -> V8 [11]:
+
+- Test patchset with CONFIG_CRYPTO_MANAGER_EXTRA_TESTS: fix some bugs
+  in hasher logic.
+- Use crypto crypto_ahash_ctx_dma in hasher code.
+- Correct clock definition: clk81 is required for all SoC's.
+- Add fixed-clock (clk81) definition for A1/S4.
+- Add information (in commit messages) why different compatibles are used.
+
+Changes V8 -> V9 [12]:
+
+- Remove required field clk-names from dt-schema according to Rob Herring
+recommendation [13].
+- Fix commit order: all dt-bindings schema commits now located earlier
+than any changes in device tree.
+- Fix typos and add more clarifications in dt-schema patches.
+
+Links:
+  - [1] https://gist.github.com/mRrvz/3fb8943a7487ab7b943ec140706995e7
+  - [2] https://lore.kernel.org/all/20240110201216.18016-1-avromanov@salutedevices.com/
+  - [3] https://lore.kernel.org/all/20240123165831.970023-1-avromanov@salutedevices.com/
+  - [4] https://lore.kernel.org/all/20240205155521.1795552-1-avromanov@salutedevices.com/
+  - [5] https://lore.kernel.org/all/20240212135108.549755-1-avromanov@salutedevices.com/
+  - [6] https://lore.kernel.org/all/ZcsYaPIUrBSg8iXu@Red/
+  - [7] https://lore.kernel.org/all/20240301132936.621238-1-avromanov@salutedevices.com/
+  - [8] https://lore.kernel.org/all/Zf1BAlYtiwPOG-Os@Red/
+  - [9] https://lore.kernel.org/all/20240326153219.2915080-1-avromanov@salutedevices.com/
+  - [10] https://lore.kernel.org/all/20240329-dotted-illusive-9f0593805a05@wendy/
+  - [11] https://lore.kernel.org/all/20240411133832.2896463-1-avromanov@salutedevices.com/
+  - [12] https://lore.kernel.org/all/20240607141242.2616580-1-avromanov@salutedevices.com/
+  - [13] https://lore.kernel.org/all/20240610222827.GA3166929-robh@kernel.org/
+
+Alexey Romanov (23):
+  drivers: crypto: meson: don't hardcode IRQ count
+  drviers: crypto: meson: add platform data
+  drivers: crypto: meson: remove clock input
+  drivers: crypto: meson: add MMIO helpers
+  drivers: crypto: meson: move get_engine_number()
+  drivers: crypto: meson: drop status field from meson_flow
+  drivers: crypto: meson: move algs definition and cipher API to
+    cipher.c
+  drivers: crypto: meson: cleanup defines
+  drivers: crypto: meson: process more than MAXDESCS descriptors
+  drivers: crypto: meson: avoid kzalloc in engine thread
+  drivers: crypto: meson: introduce hasher
+  drivers: crypto: meson: add support for AES-CTR
+  drivers: crypto: meson: use fallback for 192-bit keys
+  drivers: crypto: meson: add support for G12-series
+  drivers: crypto: meson: add support for AXG-series
+  drivers: crypto: meson: add support for A1-series
+  dt-bindings: crypto: meson: correct clk and remove second interrupt
+    line
+  dt-bindings: crypto: meson: support new SoC's
+  arch: arm64: dts: meson: gxl: correct crypto node definition
+  arch: arm64: dts: meson: a1: add crypto node
+  arch: arm64: dts: meson: s4: add crypto node
+  arch: arm64: dts: meson: g12: add crypto node
+  arch: arm64: dts: meson: axg: add crypto node
+
+ .../bindings/crypto/amlogic,gxl-crypto.yaml   |  32 +-
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi     |  14 +
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |   7 +
+ .../boot/dts/amlogic/meson-g12-common.dtsi    |   7 +
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi    |   6 +-
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |  13 +
+ drivers/crypto/amlogic/Makefile               |   2 +-
+ drivers/crypto/amlogic/amlogic-gxl-cipher.c   | 632 ++++++++++++------
+ drivers/crypto/amlogic/amlogic-gxl-core.c     | 292 ++++----
+ drivers/crypto/amlogic/amlogic-gxl-hasher.c   | 507 ++++++++++++++
+ drivers/crypto/amlogic/amlogic-gxl.h          | 118 +++-
+ 11 files changed, 1269 insertions(+), 361 deletions(-)
+ create mode 100644 drivers/crypto/amlogic/amlogic-gxl-hasher.c
+
+-- 
+2.34.1
 
 
