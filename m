@@ -1,199 +1,148 @@
-Return-Path: <devicetree+bounces-95017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D27B957A90
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 02:46:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC54C957A94
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 02:48:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ECF211F23B84
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 00:46:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5610F1F2354C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 00:48:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13AC55234;
-	Tue, 20 Aug 2024 00:46:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A2917483;
+	Tue, 20 Aug 2024 00:48:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="mN3V//KB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KmEVsdRH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7474B28F7;
-	Tue, 20 Aug 2024 00:46:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81CA3A92D;
+	Tue, 20 Aug 2024 00:48:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724114807; cv=none; b=SDVwxzjJgDGXTO0FNmtYS2kSBWIMZtX/AL/lJ9mVJVj1ZGAOP4pu5SqMriQHHc5FItBhTctaz82LM1pmtjs/eh+WIn9AnY+Lpv9dnBX6BC6jVuAHiLih5wxuENU9m5RRBaVGtstWG8FSLk1NaGD1TqJIGjGfr3+EDUfNgSbobB4=
+	t=1724114930; cv=none; b=rocjG5TsGhH0/KHC4CS0br7hyTcEcOdyZLipb9c9O8nxag+cV6CL/u1x2GuaxkPaLYfvZZ5YSCvf6c/NAV2t07oxBPs5hW02jkQJO/hFeqWrE89kvnaSOhL/fYm8l5l5UYBnhvIjQLGBi7BlW/WFSQjd1vQhtgVVlyUKsLRB16o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724114807; c=relaxed/simple;
-	bh=ydMPJXWc+4mN/5YqZSgXd1nsM2YsWEVgelc+2JMc2jU=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=o0d3JdX4UOSQTpvagtBkpNOLwnQpe3A2kZ9shBwpjk99JzLfTMefyLny0gmVOZhL6k7kxTTd5c2Ujr8bUoPLnx70V1M/bBfnIoHsX938pyXNvjhlxF5BBCQYhYHZsCei7sIdF2OxWVGF4No+lhklvvt3rkxqozOgS0zdO6jFSFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=mN3V//KB; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+	s=arc-20240116; t=1724114930; c=relaxed/simple;
+	bh=S1yD5jjtloQRCRz1+d0jr0pqgFXrBjkSHQAMv9YOMiA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=smPT4vgowuXDwaUfrzw2PF+X2g104MEo/fAbo1beKb8THsZsqwC1byCu/k3n+Fg+c8XWRRRLKboplI4BMxcQ0uwUXEHiiEDuAawbsGQVzl0uIR+Z0qMV7p4DSXWr3q18atwerKJg2Bs5xNpdmO/yIztavJJSCLvoMzB9zDJslsg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KmEVsdRH; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a7d89bb07e7so524641966b.3;
+        Mon, 19 Aug 2024 17:48:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1724114795;
-	bh=VztiBRbygHwYDHzQLX/sFAU+p1PMMXCRuAONMaebNSM=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=mN3V//KBwJs/nv5+Hjs8ob0frnNNWB/TfsJWVXHZRZwentWdco/b7jhrK/Bn2RmGr
-	 Z5ybwCTdeiTgd7tZ2UM44tr9EbnxQo80V4fV04rHpjmv1ynBTi/XTePCGVt8kGFK3y
-	 rbXp7UEWU1qwrFTDq4qnSRzsOZVTUdaJ/5x7FHVpVgSmIDC4VzmzJ2OLXwhND9vAjO
-	 +V/zqc7vNVC0L5dt5PC6JDcmZoSxwfiHZMUSa1QuSDZhkaHeg8r3+XN2vlD53E+Nwm
-	 M2xzTrrnhgmZ1+EV+gUpGgHwicdtjL/j4/n2+R4noJRfaHhw3Perc++M9Zb9DDkctd
-	 bjjw0EQN0h64A==
-Received: from [192.168.68.112] (ppp118-210-94-119.adl-adc-lon-bras32.tpg.internode.on.net [118.210.94.119])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 574D364B84;
-	Tue, 20 Aug 2024 08:46:32 +0800 (AWST)
-Message-ID: <64d13efd3119429ed876ad7ea499cff62e100fb9.camel@codeconstruct.com.au>
-Subject: Re: [PATCH 1/4] dt-bindings: mfd: aspeed: support for AST2700
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Ryan Chen <ryan_chen@aspeedtech.com>, Rob Herring <robh@kernel.org>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, "linux-aspeed@lists.ozlabs.org"
- <linux-aspeed@lists.ozlabs.org>, Stephen Boyd <sboyd@kernel.org>, Michael
- Turquette <mturquette@baylibre.com>, Lee Jones <lee@kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Krzysztof
- Kozlowski <krzk@kernel.org>,  Philipp Zabel <p.zabel@pengutronix.de>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, "linux-clk@vger.kernel.org"
- <linux-clk@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>
-Date: Tue, 20 Aug 2024 10:16:30 +0930
-In-Reply-To: <OS8PR06MB7541C54CA074410C50BA419AF28C2@OS8PR06MB7541.apcprd06.prod.outlook.com>
-References: <20240808075937.2756733-1-ryan_chen@aspeedtech.com>
-	 <20240808075937.2756733-2-ryan_chen@aspeedtech.com>
-	 <2f27285e-6aa5-4e42-b361-224d8d164113@kernel.org>
-	 <OS8PR06MB75416FAD2A1A16E7BE2D255DF2BA2@OS8PR06MB7541.apcprd06.prod.outlook.com>
-	 <10809e91-31be-4110-86c1-1e1ccb05b664@kernel.org>
-	 <OS8PR06MB7541F4F740FDB17F50EBCACBF2BA2@OS8PR06MB7541.apcprd06.prod.outlook.com>
-	 <20240813191454.GA1570645-robh@kernel.org>
-	 <OS8PR06MB7541BB03AEE90B090AB990B3F2872@OS8PR06MB7541.apcprd06.prod.outlook.com>
-	 <7e1dc98e0f69a095a8f7725b742df3c8d8436a67.camel@codeconstruct.com.au>
-	 <OS8PR06MB754121818B9431941C18E09DF2802@OS8PR06MB7541.apcprd06.prod.outlook.com>
-	 <OS8PR06MB7541C54CA074410C50BA419AF28C2@OS8PR06MB7541.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+        d=gmail.com; s=20230601; t=1724114927; x=1724719727; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Aak847kfGgqL39Kc/QBpkJh3q9r3EfbJoDakBsppDnM=;
+        b=KmEVsdRHGlghGxICz21Zjrwi4eq1M80N2cOEcxNYV5G67bK8vifjZpJ4Ol23IhvMko
+         LoQQXnvl28CrnauUHyxv382nlW1m5FsTJCahU/+W1w87FxX319r6WaHrrlB0cP33it6N
+         hhFtfUD/Rcrkov/A9nuMUwTEPfp0VVd+nOzXeJERhIlM8bHwf0BX1kvbC5quM1yTbXfm
+         dSj7jS5yfWAiw9nKP9e5eQBDKmMl6xG5+48AKCUFvm3TXn8s3ajWXTAnMQSOkhPnvolE
+         eXFVyIRnaBpjJq3HTBNtQE4LRz6k+5XJWc7wBAnElDwTyDm+/QLLe2qcCC0CBHE3sIhH
+         bbUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724114927; x=1724719727;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Aak847kfGgqL39Kc/QBpkJh3q9r3EfbJoDakBsppDnM=;
+        b=lOziogqXz05WQHnSKXkH/6qEeFRTUNPmVQduSJ12WKfrpR/BrUamwYzRsQDLoIFXHP
+         UzYKb3mciqXfifQuLr2zLH7wReExdrWWlBEdvllLSYgnHe9K7R0HbBt6RdDAV/lHGpDe
+         q+9ECFq7hhoFpjp9Y9ozSk0+YN9RzEKXsPFYCv4ijuyuQtmEESXVHm1Jh0UjM5fxfnhV
+         nhUh00tOKI15roCJjR9/X3hfCtdNYmcwMkgvu/Ahjh+YYxy9LbT5h9xiZEV0if7sRo6T
+         laC7jV0zsXLdZpEF1ihzuc2MkpOz7ZKNZn5NOdK516wAbMs0ZgC8QCimDktdkYT8dX5G
+         WKhg==
+X-Forwarded-Encrypted: i=1; AJvYcCUHBcmlXikwcbfTq4Bzhhh5+52FuISesBbni2T06uEg5KhegpxA0iSaiZ9MzYRIWo4HDR3znVJnhnucO5V9@vger.kernel.org, AJvYcCUnkpOM8LNxcbkYuQeleySdGv8swvW6BBO/QIkAWVne63Elp9DYEeOJrWO/cQwar90fb99ALQ3xbf73hlP0@vger.kernel.org, AJvYcCUsygNu3QTAXLzCXXnUgHsj8oMnCKDV+n6XQu3WnMtB/ft5RgwgMtuNQcR4fEFUaEAVrDjIyQRP@vger.kernel.org, AJvYcCW4qS5PU+OtM4zE94GG6N4jgZXsRBXP/89ViXuvePsyBx0AIeV464WQ+vwSkffurnZrHnmfzSCLmRMKTF1VEKab@vger.kernel.org, AJvYcCXYwnUyOeYRf4+KkCbAq2xJeIG8cKJ8kL8SjD2SBy8FFXwInT3t2dPdSqeJpmbm1VLEWzM+fDb6Ixg=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYnC0db6pLpcZLJs6s9i6WvwOo9//gQ0PHLiwWbtkBRxGiTuQ0
+	4XwWRs8xYrIcWidy75dCC5Zm5Oo301UNVa8xc8SNjcJMaPvt5pGA
+X-Google-Smtp-Source: AGHT+IEUbNzyKkL8AD794LCfaPtnP6kDKp9OUrsiw25fkzayVlzgeUWcLK6D0mUSHIMPsExRLInG/g==
+X-Received: by 2002:a17:907:f169:b0:a7a:acae:3420 with SMTP id a640c23a62f3a-a8392a11c05mr869163566b.49.1724114926168;
+        Mon, 19 Aug 2024 17:48:46 -0700 (PDT)
+Received: from [192.168.105.194] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a83839344b5sm696714266b.118.2024.08.19.17.48.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Aug 2024 17:48:45 -0700 (PDT)
+Message-ID: <90a95443-65c5-44e8-8737-26145cda1e35@gmail.com>
+Date: Tue, 20 Aug 2024 02:48:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 08/11] arm64: dts: qcom: Add SM7325 device tree
+To: Danila Tikhonov <danila@jiaxyga.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
+ konradybcio@kernel.org, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, rafael@kernel.org,
+ viresh.kumar@linaro.org, kees@kernel.org, tony.luck@intel.com,
+ gpiccoli@igalia.com, ulf.hansson@linaro.org, andre.przywara@arm.com,
+ quic_rjendra@quicinc.com, davidwronek@gmail.com, neil.armstrong@linaro.org,
+ heiko.stuebner@cherry.de, rafal@milecki.pl, macromorgan@hotmail.com,
+ linus.walleij@linaro.org, lpieralisi@kernel.org,
+ dmitry.baryshkov@linaro.org, fekz115@gmail.com
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-hardening@vger.kernel.org
+References: <20240808184048.63030-1-danila@jiaxyga.com>
+ <20240808184048.63030-9-danila@jiaxyga.com>
+Content-Language: en-US
+From: Konrad Dybcio <konradybcio@gmail.com>
+In-Reply-To: <20240808184048.63030-9-danila@jiaxyga.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, 2024-08-19 at 03:05 +0000, Ryan Chen wrote:
-> > > Subject: Re: [PATCH 1/4] dt-bindings: mfd: aspeed: support for
-> > > AST2700
-> > >=20
-> > > On Wed, 2024-08-14 at 06:35 +0000, Ryan Chen wrote:
-> > > > > Subject: Re: [PATCH 1/4] dt-bindings: mfd: aspeed: support
-> > > > > for
-> > > > > AST2700
-> > > > >=20
-> > > > > On Fri, Aug 09, 2024 at 06:10:22AM +0000, Ryan Chen wrote:
-> > > > > > > Subject: Re: [PATCH 1/4] dt-bindings: mfd: aspeed:
-> > > > > > > support for
-> > > > > > > AST2700
-> > > > > > >=20
-> > > > > > > On 09/08/2024 07:55, Ryan Chen wrote:
-> > > > > > > > > Subject: Re: [PATCH 1/4] dt-bindings: mfd: aspeed:
-> > > > > > > > > support
-> > > > > > > > > for
-> > > > > > > > > AST2700
-> > > > > > > > >=20
-> > > > > > > > > On 08/08/2024 09:59, Ryan Chen wrote:
-> > > > > > > > > > Add compatible support for AST2700 clk, reset,
-> > > > > > > > > > pinctrl,
-> > > > > > > > > > silicon-id and example for AST2700 scu.
-> > > > > > > > > >=20
-> > > > > > > > > > Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
-> > > > > > > > > > ---
-> > > > > > > > > > =C2=A0.../bindings/mfd/aspeed,ast2x00-scu.yaml      | 3=
-1
-> > > > > > > > > +++++++++++++++++--
-> > > > > > > > > > =C2=A01 file changed, 29 insertions(+), 2 deletions(-)
-> > > > > > > > > >=20
-> > > > > > > > > > diff --git
-> > > > > > > > > > a/Documentation/devicetree/bindings/mfd/aspeed,ast2
-> > > > > > > > > > x00-
-> > > > > > > > > > scu.yaml
-> > > > > > > > > > b/Documentation/devicetree/bindings/mfd/aspeed,ast2
-> > > > > > > > > > x00-
-> > > > > > > > > > scu.yaml
-> > > > > > > > > > index 86ee69c0f45b..c0965f08ae8c 100644
-> > > > > > > > > > ---
-> > > > > > > > > > a/Documentation/devicetree/bindings/mfd/aspeed,ast2
-> > > > > > > > > > x00-
-> > > > > > > > > > scu.yaml
-> > > > > > > > > > +++
-> > > > > > > > > > b/Documentation/devicetree/bindings/mfd/aspeed,ast2
-> > > > > > > > > > x00-
-> > > > > > > > > > scu.y
-> > > > > > > > > > +++ aml
-> > > > > > > > > > @@ -21,6 +21,8 @@ properties:
-> > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0- aspeed,ast2400-scu
-> > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0- aspeed,ast2500-scu
-> > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0- aspeed,ast2600-scu
-> > > > > > > > > > +          - aspeed,ast2700-scu0
-> > > > > > > > > > +          - aspeed,ast2700-scu1
-> > > > > > > > >=20
-> > > > > > > > > What are the differences between these two?
-> > > > > > > >=20
-> > > > > > > > The next [PATCH 4/4] is scu driver that include
-> > > > > > > > ast2700-scu0
-> > > > > > > > and
-> > > > > > > > ast2700-scu1 CLK_OF_DECLARE_DRIVER(ast2700_soc0,
-> > > > > > > > "aspeed,ast2700-scu0", ast2700_soc0_clk_init);
-> > > > > > > > CLK_OF_DECLARE_DRIVER(ast2700_soc1, "aspeed,ast2700-
-> > > > > > > > scu1",
-> > > > > > > > ast2700_soc1_clk_init);
-> > > > > > >=20
-> > > > > > > What are hardware differences? Entirely different
-> > > > > > > devices?
-> > > > > >=20
-> > > > > > AST2700 have two soc die connected each other.
-> > > > > > Each soc die have it own scu, so the naming is ast2700-scu0
-> > > > > > for
-> > > > > > soc0,
-> > > > > another is ast2700-scu1 for soc1.
-> > > > >=20
-> > > > > Didn't I see in another patch one die is cpu and one is io?
-> > > > > Use
-> > > > > those in the compatible rather than 0 and 1 if so.
-> > > > >=20
-> > > > Sorry, I want to align with our datasheet description.
-> > > > It will but scu0 and scu1 register setting.
-> > >=20
-> > > Can we document that relationship in the binding? Rob's
-> > > suggestion
-> > > seems more descriptive.
-> > Hello,
-> > 	Do you want me document it in yaml file or just in commit
-> > message?
->=20
-> Hello Rob, Andrew,
-> 	I will add in yaml file in description. Like following.
->=20
-> description:
-> =C2=A0=C2=A0The Aspeed System Control Unit manages the global behaviour o=
-f the
-> SoC,
-> =C2=A0=C2=A0configuring elements such as clocks, pinmux, and reset.
-> +  In AST2700, it has two soc combination. Each soc include its own
-> scu register control.
-> +  ast2700-scu0 for soc0, ast2700-scu1 for soc1.
->=20
-> Is that will be better way ?
+On 8.08.2024 8:40 PM, Danila Tikhonov wrote:
+> From: Eugene Lepshy <fekz115@gmail.com>
+> 
+> The Snapdragon 778G (SM7325) / 778G+ (SM7325-AE) / 782G (SM7325-AF)
+> is software-wise very similar to the Snapdragon 7c+ Gen 3 (SC7280).
+> 
+> It uses the Kryo670.
+> 
+> Signed-off-by: Eugene Lepshy <fekz115@gmail.com>
+> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm7325.dtsi | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sm7325.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm7325.dtsi b/arch/arm64/boot/dts/qcom/sm7325.dtsi
+> new file mode 100644
+> index 000000000000..5b4574484412
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sm7325.dtsi
+> @@ -0,0 +1,17 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2024, Eugene Lepshy <fekz115@gmail.com>
+> + * Copyright (c) 2024, Danila Tikhonov <danila@jiaxyga.com>
+> + */
+> +
+> +#include "sc7280.dtsi"
+> +
+> +/* SM7325 uses Kryo 670 */
+> +&CPU0 { compatible = "qcom,kryo670"; };
+> +&CPU1 { compatible = "qcom,kryo670"; };
+> +&CPU2 { compatible = "qcom,kryo670"; };
+> +&CPU3 { compatible = "qcom,kryo670"; };
+> +&CPU4 { compatible = "qcom,kryo670"; };
+> +&CPU5 { compatible = "qcom,kryo670"; };
+> +&CPU6 { compatible = "qcom,kryo670"; };
+> +&CPU7 { compatible = "qcom,kryo670"; };
 
-What Rob is suggesting is to add the compatibles "aspeed,ast2700-scu-
-cpu" and "aspeed,ast2700-scu-io", and then in the description say
-something like:
+This is a meaningless marketing name. As you mentioned in your
+reply, cpu0-3 and cpu4-7 are wholly different (maybe cpu7 even
+has a different MIDR part num?), we should do something about it :/
 
-   The AST2700 integrates both a CPU and an IO die, each with their own
-   SCU. The "aspeed,ast2700-scu-cpu" and "aspeed,ast2700-scu-io"
-   compatibles correspond to SCU0 and SCU1 respectively.
+Please post the output of `dmesg | grep "Booted secondary processor"`
 
-Andrew
+Konrad
 
