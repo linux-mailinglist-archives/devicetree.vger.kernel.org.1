@@ -1,52 +1,74 @@
-Return-Path: <devicetree+bounces-95303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BB42958C1D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 18:21:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CEB6958C3A
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 18:33:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC7841F22BCE
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 16:21:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AD8F9B2284C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 16:32:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FDE41A7048;
-	Tue, 20 Aug 2024 16:21:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCA6B195F17;
+	Tue, 20 Aug 2024 16:32:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Izyxd3Jl"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hkzI96iX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD3D8194145;
-	Tue, 20 Aug 2024 16:21:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ADA6191F89;
+	Tue, 20 Aug 2024 16:32:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724170880; cv=none; b=d5kIId9HnCf2B0fKadUJdSQUEhhUvGCC0NtsVE+b7EyEhs95HdsFhtX0CKYFE1fg8wAlAzbRuUSsIQs0sxKGp+o+vxqdNnPxCBmzYd9/HXAd5QCCPce7HiB2mVujFzdRzkOglCzI6lvofwtCLeHZ1n+EO1SOerfKuKawSYB8B6M=
+	t=1724171572; cv=none; b=Ot+GvVW9U7FI6n2asqef8k/S6q9I78T/YN34i281CsPBwxLiMHQPvRUWJpShNdL1fifh/6u+ehdOQLW7phuoFpWDYu8ua/lkbFQAfe1JrPd9OFM1jTqz6lVdj+Lrj6k3BGauZNItLpmAqQf25Pj7DYqyKOxaQa51SB+gDJEbOrg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724170880; c=relaxed/simple;
-	bh=xNL5RGtLNIhabs4Hd3NAa0FXp9Ud+N33ySeuzPmNO/Q=;
+	s=arc-20240116; t=1724171572; c=relaxed/simple;
+	bh=O8qFZaGvqO4gJGf+nVQzubDqK1EVzkzGvzJHxYEJH8A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LokMgbVrqiRtz2o7jPa+DCtDmRAHYUfyehUzqFRgF87MKeBAIK0fCaCDZqWN+12tdBgMfGa2eWdHY6CHzADx8MEBKZfiw4dSx/jWhrJ0jwtbCn9skFwrKG3/oQisTHsLejQR8LXXd7zcgdeqNfuSTjepmNLX1YIUs3xoc/aid+0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Izyxd3Jl; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B0F0FC0009;
-	Tue, 20 Aug 2024 16:21:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1724170869;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=uKCyGXB2y2Cdc43x8y99O9EX9a/Mff/KPXgIgmFwkX4=;
-	b=Izyxd3JlQY3bI7qjYRGGRzXKzEjqIXWUTA8SwOGLeXBsWJ9bflw1XafR+AC3k8ODhhiI1O
-	ZagoBAbsc0ixWaEUayWT4rJJrL0oHuggwExnbhpVXF5mVtampLNhrjhGX2SZTj59cz+GUa
-	I87ta0Cp5NVMQrmcKglNF2zoyzlwITAyYkrDMlO4V6CD/d0nMFbKGtLklNrgYwZqxud+gJ
-	zJTHLC2mVHl7iV4sKUHjsSSAGbrpSfcvDeKxK1FVkCJa6HcseWP5cRvbzM+Du+JqiGCjQg
-	aBm/VIg+Fu89whSIm4a3whCGPxh4nszuZamznzowxyQefb+pDGOEtvBDjkGZrw==
-Message-ID: <89aabfbe-79bf-4da7-be44-b6cbd92b72a9@bootlin.com>
-Date: Tue, 20 Aug 2024 18:21:07 +0200
+	 In-Reply-To:Content-Type; b=Zi2mIGdawRC2Wc7yNsjsdDXS5qbPmL2Qj/dVrd2XMEX/PR+B6hlJQqZsyOW9cB/8vYaoM8ZtTzEtIMmSekCA0u0XKKW6cOCCNb0xd6pFfJqQb14T5Y8L0/4M6Q7HHFZ8fdb8tGXYBk2tjAj3fH498cYW4WT8LERMpdbYHKLbb54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hkzI96iX; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-533462b9428so609823e87.3;
+        Tue, 20 Aug 2024 09:32:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724171569; x=1724776369; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=363+gipGC9vmsEozTeDnxllkuHgKhHHWE4afpUQLjho=;
+        b=hkzI96iXAlUtyG8sMTG0rX49rY/lcjNEN8JgYDUi8C/J+u6PIC3hrbcckn69hUSFS1
+         /m9EOxsXjfSJSQoV6ea3Eaay+Mqpjr55edpLA7WdZOQMlp3r2qoaaJQh7Z6N+CzXIPok
+         U8E8ddpAzRAouYmRnc4yTlsF+UKmVns6CoO82wlZxJuzrCU5573LZTQKf/40aI5RaBgc
+         7/RUwDzT6gSEQsug35FTiX0L8WBhF1jjOX9HYIUVHVpaxwcCwZ69TilXDSloHBvxE0xV
+         wjQqtTDlo/XI/IVGUnLXgSSYjsn5Pag8aTz/57oCc3d5RWfV1Y+dhHn3YlZFRbahENYU
+         vRLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724171569; x=1724776369;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=363+gipGC9vmsEozTeDnxllkuHgKhHHWE4afpUQLjho=;
+        b=xUsIfWmcX82lEY02DkZv+/WBMK9v5jerSJc2poE4+485MlwmaGRp1cuihDLPB1mezo
+         0EPIzYYmShxiRq/Ieo67Rg8+/t6ZQlaQePrVf4fs4ZJ4B39j3M6m/lpL1Sh/D8J/vBaO
+         FiN6rXrTLGr19qaZB/JKrU+bAGqdJ7kLmBlo3g4CU5vee1Ax11inpzVSAw9BJqY1jgCI
+         a20Wf9xhROaD5QskTcl+/OzICoE6M96I8x7ZgOtpoN5hx8iwcx6AA5hQN0kMItrbSbnk
+         dwc1dZALnzPk6mzWtMAVaZ/HS+OwqQSMpMQpflOnFwJUXlvktJ1qQQnH9/MxSGi2gn7j
+         FQKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVwt+Fd2frxTPLY0JbdKOB31Yw2hXLTlGLvA58jInpP4zMSMXR8S/tIl0ne3wc/LI3SagNBATeIV28rJfg=@vger.kernel.org, AJvYcCWJ5piDPMcMmaqPsXk6x7sBtKsAArCeqEJV/VVeOiy8jnEvNHDYf+qY3ICaincnLQ/SNPJpSZwSrr/TJwU=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxH/KgWYWtbpYSszsAHMEYF7bYMkYohCMoOB8weehUvXUIur3yy
+	3ant7bN0De2Et3M4J/WeqSSG3kPNPRJ3o3CggyB/ckHtg/oEbJdpjUHkafFg
+X-Google-Smtp-Source: AGHT+IHpGVGaIp/enXPq/mJKZh5E50KP3m3ArWyFfTb9ZUy1OTzZPj1Tt/VRJwshWfV90tZQqmmtyg==
+X-Received: by 2002:a05:6512:2346:b0:530:ad8d:dcdb with SMTP id 2adb3069b0e04-5331c6a1931mr14207385e87.19.1724171567748;
+        Tue, 20 Aug 2024 09:32:47 -0700 (PDT)
+Received: from [192.168.1.101] ([212.106.161.95])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-533457e2ec6sm86793e87.174.2024.08.20.09.32.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Aug 2024 09:32:46 -0700 (PDT)
+Message-ID: <e544466f-8c9c-441a-a209-bda0b47aeb7d@gmail.com>
+Date: Tue, 20 Aug 2024 18:32:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,149 +76,56 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: iio: adc: sophgo,cv18xx-saradc.yaml:
- Add Sophgo CV18XX SARADC binding
-To: Conor Dooley <conor@kernel.org>
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 0/2] arm64: tegra: add wp-gpio to P2957 board
+To: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
- Inochi Amaoto <inochiama@outlook.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20240812-sg2002-adc-v4-0-599bdb67592f@bootlin.com>
- <20240812-sg2002-adc-v4-1-599bdb67592f@bootlin.com>
- <20240812-unwary-mongrel-9f6758bf624c@spud>
-Content-Language: en-US
-From: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-In-Reply-To: <20240812-unwary-mongrel-9f6758bf624c@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: thomas.bonnefille@bootlin.com
+ <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>
+Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240815-tx1_sdmmc-v1-0-7856ac25a204@tecnico.ulisboa.pt>
+Content-Language: en-US, pl-PL
+From: Tomasz Maciej Nowak <tmn505@gmail.com>
+In-Reply-To: <20240815-tx1_sdmmc-v1-0-7856ac25a204@tecnico.ulisboa.pt>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hello Conor,
 
-On 8/12/24 5:53 PM, Conor Dooley wrote:
-> On Mon, Aug 12, 2024 at 05:00:55PM +0200, Thomas Bonnefille wrote:
->> The Sophgo SARADC is a Successive Approximation ADC that can be found in
->> the Sophgo SoC.
->>
->> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
->> ---
->>   .../bindings/iio/adc/sophgo,cv18xx-saradc.yaml     | 85 ++++++++++++++++++++++
->>   1 file changed, 85 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml
->> new file mode 100644
->> index 000000000000..846590808e5f
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/iio/adc/sophgo,cv18xx-saradc.yaml
->> @@ -0,0 +1,85 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/iio/adc/sophgo,cv18xx-saradc.yaml#
+W dniu 15.08.2024 o 17:50, Diogo Ivo pisze:
+> Define the wp-gpio for the P2597 board.
 > 
-> Filename matching the compatible please.
+> For this, patch 1 fixes the assignment of the vmmc supply's gpio that
+> was incorrectly assigned to the wp-gpio of the external slot.
 > 
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title:
->> +  Sophgo CV18XX SoC series 3 channels Successive Approximation Analog to
->> +  Digital Converters
->> +
->> +maintainers:
->> +  - Thomas Bonnefille <thomas.bonnefille@bootlin.com>
->> +
->> +description:
->> +  Datasheet at https://github.com/sophgo/sophgo-doc/releases
->> +
->> +properties:
->> +  compatible:
->> +    const: sophgo,cv1800b-saradc
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  '#address-cells':
->> +    const: 1
->> +
->> +  '#size-cells':
->> +    const: 0
->> +
->> +patternProperties:
->> +  "^channel@[0-3]+$":
->> +    $ref: adc.yaml
->> +
->> +    description: |
+> Patch 2 adds the definition of the wp-gpio.
 > 
-> This | is not required.
-> 
->> +      Represents the channels of the ADC.
->> +
->> +    properties:
->> +      reg:
->> +        description: |
->> +          The channel number. It can have up to 3 channels numbered from 0 to 2.
->> +        items:
->> +          - minimum: 0
->> +            maximum: 2
-> 
-> Is this sufficient to limit the number of channels to 3? Aren't you relying
-> on the unique unit addresses warning in dtc to limit it, rather than
-> actually limiting with min/maxItems?
-> 
-It seems like I can't use min/maxItems on this property. I think that it 
-is using size-cells + address-cells to deduce that the number of items 
-should be equal to 1.
-Looking at the dtschema repository it seems to be the case in reg.yaml 
-with address-cells/size-cells = 2/2, 1/1 and 2/1.
-If I try to use maxItems here :
+> Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+> ---
+> Diogo Ivo (2):
+>       arm64: tegra: Fix gpio for P2597 vmmc regulator
+>       arm64: tegra: Add wp-gpio for P2597's external card slot
 
-     properties:
-       reg:
-         maxItems: 1
-         items:
-           - minimum: 0
-             maximum: 2
+Hi,
+for both patches
+Tested-by: Tomasz Maciej Nowak <tmn505@gmail.com>
 
-I get this strange error message from `make dt_binding_check`:
+PS
+I case You wish to save some digging for other features I enabled BT+WiFi, PWM-FAN
+and power sensors in this tree: https://github.com/tmn505/linux/tree/jetson-tx1
+For passing MAC addresses for BT+WiFi from cboot provided dtb check this U-Boot
+tree: https://github.com/tmn505/u-boot/tree/jetson-tx1
 
-DTEX 
-Documentation/devicetree/bindings/iio/adc/sophgo,cv1800b-saradc.example.dts
-/home/thomas/linux/Documentation/devicetree/bindings/iio/adc/sophgo,cv1800b-saradc.yaml: 
-patternProperties:^channel@[0-2]+$:properties:reg: {'maxItems': 1, 
-'items': [{'minimum': 0, 'maximum': 2}]} should not be valid under 
-{'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-/home/thomas/linux/Documentation/devicetree/bindings/iio/adc/sophgo,cv1800b-saradc.yaml: 
-patternProperties:^channel@[0-2]+$:properties:reg: 'anyOf' conditional 
-failed, one must be fixed:
-	'items' is not one of ['maxItems', 'description', 'deprecated']
-		hint: Only "maxItems" is required for a single entry if there are no 
-constraints defined for the values.
-	'maxItems' is not one of ['description', 'deprecated', 'const', 'enum', 
-'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
-	'items' is not one of ['description', 'deprecated', 'const', 'enum', 
-'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
-	1 is less than the minimum of 2
-		hint: Arrays must be described with a combination of 
-minItems/maxItems/items
-	hint: cell array properties must define how many entries and what the 
-entries are when there is more than one entry.
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+> 
+>  arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> ---
+> base-commit: 1fb918967b56df3262ee984175816f0acb310501
+> change-id: 20240815-tx1_sdmmc-311e4802c843
+> 
+> Best regards,
 
-Isn't it okay to just use minimum and maximum and rely on 
-address-cells/size-cells for the number of items allowed ?
+Regards
+
+-- 
+TMN
 
