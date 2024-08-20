@@ -1,78 +1,80 @@
-Return-Path: <devicetree+bounces-95301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82C0F958C01
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 18:14:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C8A4958C15
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 18:19:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EBC391F232F0
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 16:14:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A200B223BA
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 16:19:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 985D7191F89;
-	Tue, 20 Aug 2024 16:14:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8584E191477;
+	Tue, 20 Aug 2024 16:19:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DwZ905sq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tobTzhPs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EEA01B3F33;
-	Tue, 20 Aug 2024 16:14:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4223B16C68F;
+	Tue, 20 Aug 2024 16:19:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724170475; cv=none; b=oFK97aed5I8LBIh25OMaisYgsAomqHs/H99UzelD3XCXh51DHooIBtrccuf3E/DpewRLlge5KcCPnkiahRP8wpaAuxVngyIhFnW32h/n9+PRsDT4XpWr9EnqJWDSdfl8S0jlgs5IdG+Sbg1I8GJ/M4I7DC3bpHRpBwwNRjum5cE=
+	t=1724170752; cv=none; b=BUdHU4Sy5Ddnk7Ktv30/9Z8BjlS41DPY+5Gk7JkFjISqeCsolh8Aa7uaMLpXqr3Dxle5oxlEPugEiCz2M8rC77/Teqy1/WIecJBWZfcCFMH3XY036pe1AnDjxnvyjYmy8uKo/RQPYDRyAUQAzz8YltR9QGlXT890bpOVk8125dg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724170475; c=relaxed/simple;
-	bh=dpdsDm+bLI5JQDul4V/gUcZOykImVDR9fxONqr/1ozA=;
+	s=arc-20240116; t=1724170752; c=relaxed/simple;
+	bh=pOzWwlq758NDy7hCtoqxqNAZPS9J0GrazJ338IMw0qs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uvu7HrlMnnMUb6ijp/rUPmghrrl/JKhaNt6IpOhJNljj6FqrU/BsGeJAHyJTi6r7WMpbbPdnC/7s+Lt9BpfFPGf24bfI8q/FEZql9awHP4A5F/Ux/pRS/Ho78bbPZv52KaBnhgqIABwjbu1fOtYA7vTfvaU4jSBUb9sAyqMiZWU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DwZ905sq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC941C4AF0F;
-	Tue, 20 Aug 2024 16:14:29 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=R04OhIIcewHskoMHjZqEIruXXhIh58CPcBJix8/y7Wyyyehh0BdSe3DvsAu29Fpp6iG55BGCR1oTcgKbuAIudpxUf/Qkdw4N9Xppu6Hv9w4P231Wq1HpIeFRZi6DvBiYZHUgqpB5guZZnPeIMBRxaoXQDBIM1ZWwBkYP01d3AVU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tobTzhPs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8ACF3C4AF15;
+	Tue, 20 Aug 2024 16:19:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724170475;
-	bh=dpdsDm+bLI5JQDul4V/gUcZOykImVDR9fxONqr/1ozA=;
+	s=k20201202; t=1724170751;
+	bh=pOzWwlq758NDy7hCtoqxqNAZPS9J0GrazJ338IMw0qs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DwZ905sqtX/74jPtmeqSSunbpwyzbbzZZ8kGXXBKCzKzcCnndUKMQnonufnWBz4oX
-	 KBmh8vENLBl76NV/tfxMEebtnE/WWYmJGTvlAjPz4XP7zEmDC4upBaqr9KG+h6NaHp
-	 0CierElW5i5I7eobDRTJNUzEWT9zFAReBSEG8V+KUIHpg6DxWE2e/mw/80Oi/cJa9N
-	 QMdzQeEK6jCtUzjxrYaP8FRp8/qNzEYOUntYvF4lZZh15hQtZE6vx5sD/mXYhOpVel
-	 G/Ci72mT1xEWFGwGIg7+4qlDv1LyQ4sufEQERdeGi/HXo8geBx9ItnCjdcYaUp3ePG
-	 KwPc5PZn7SVFw==
-Date: Tue, 20 Aug 2024 17:14:27 +0100
+	b=tobTzhPsSnwT3P4c4pzo3kzTaRfVFg/MedD0Pm8AJD1KmiiAucdwWbKSKvypkN092
+	 zOYLTz6mYHOCx4Y6L4zv0vT+Y8p+rFirikrKds4HgAQYY9j0jTbQ5OWO3JBsdKCI9p
+	 WyzdXM1Rcn/ojqcVgi1QYK+GPC2x32qRo+WXXbCRXUgLtoRnLTMvR6zQ7vnEK0pMpY
+	 7hB1zUWHzzt99r1z9eEkBJICbnZVIlkBd+A8OYPvmwnD3l93Bit19TdI1ZSFLTE+Ur
+	 6rRMN7IwyqxdQFPuT/WL1XNr++trxxSuebVDGasvwE+ruQ4lfyGogd4EYQlnBXf6J2
+	 KO01dBGnogsAg==
+Date: Tue, 20 Aug 2024 17:19:02 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Sandy Huang <hjc@rock-chips.com>,
-	Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-	Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>,
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Mark Yao <markyao0591@gmail.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-	kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>,
-	Luis de Arquer <ldearquer@gmail.com>
-Subject: Re: [PATCH v4 3/4] dt-bindings: display: rockchip: Add schema for
- RK3588 HDMI TX Controller
-Message-ID: <20240820-tropics-hunchback-6fdcd0b37f91@spud>
-References: <20240819-b4-rk3588-bridge-upstream-v4-0-6417c72a2749@collabora.com>
- <20240819-b4-rk3588-bridge-upstream-v4-3-6417c72a2749@collabora.com>
- <20240819-bobbing-purplish-99e48baa2304@spud>
- <ec84bc0b-c4c2-4735-9f34-52bc3a852aaf@collabora.com>
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
+	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Stefan Wahren <wahrenst@gmx.net>
+Subject: Re: [PATCH 01/11] dt-bindings: clock: Add RaspberryPi RP1 clock
+ bindings
+Message-ID: <20240820-baritone-delegate-5711f7a0bc76@spud>
+References: <cover.1724159867.git.andrea.porta@suse.com>
+ <8d7dd7ca5da41f2a96e3ef4e2e3f29fd0d71906a.1724159867.git.andrea.porta@suse.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,207 +82,245 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="WIjEHvGhr8+cRBp+"
+	protocol="application/pgp-signature"; boundary="044jvUAtXTI8rtBJ"
 Content-Disposition: inline
-In-Reply-To: <ec84bc0b-c4c2-4735-9f34-52bc3a852aaf@collabora.com>
+In-Reply-To: <8d7dd7ca5da41f2a96e3ef4e2e3f29fd0d71906a.1724159867.git.andrea.porta@suse.com>
 
 
---WIjEHvGhr8+cRBp+
+--044jvUAtXTI8rtBJ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 20, 2024 at 03:37:44PM +0300, Cristian Ciocaltea wrote:
-> On 8/19/24 7:53 PM, Conor Dooley wrote:
-> > On Mon, Aug 19, 2024 at 01:29:30AM +0300, Cristian Ciocaltea wrote:
-> >> Rockchip RK3588 SoC integrates the Synopsys DesignWare HDMI 2.1
-> >> Quad-Pixel (QP) TX controller IP.
-> >>
-> >> Since this is a new IP block, quite different from those used in the
-> >> previous generations of Rockchip SoCs, add a dedicated binding file.
-> >>
-> >> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> >> ---
-> >>  .../display/rockchip/rockchip,dw-hdmi-qp.yaml      | 170 ++++++++++++=
-+++++++++
-> >>  1 file changed, 170 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockch=
-ip,dw-hdmi-qp.yaml b/Documentation/devicetree/bindings/display/rockchip/roc=
-kchip,dw-hdmi-qp.yaml
-> >> new file mode 100644
-> >> index 000000000000..de470923d823
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-h=
-dmi-qp.yaml
-> >=20
-> > Filename matching the compatible please.
+On Tue, Aug 20, 2024 at 04:36:03PM +0200, Andrea della Porta wrote:
+> Add device tree bindings for the clock generator found in RP1 multi
+> function device, and relative entries in MAINTAINERS file.
 >=20
-> RK3588 happens to be the first Rockchip SoC using the QP TX controller, b=
-ut
-> more are expected to come, e.g. RK3576.  Should we add 'rk3588-' to the
-> filename and let it being dropped when the 2nd SoC is added?
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> ---
+>  .../clock/raspberrypi,rp1-clocks.yaml         | 87 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 ++
+>  include/dt-bindings/clock/rp1.h               | 56 ++++++++++++
+>  3 files changed, 149 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/raspberrypi,r=
+p1-clocks.yaml
+>  create mode 100644 include/dt-bindings/clock/rp1.h
+>=20
+> diff --git a/Documentation/devicetree/bindings/clock/raspberrypi,rp1-cloc=
+ks.yaml b/Documentation/devicetree/bindings/clock/raspberrypi,rp1-clocks.ya=
+ml
+> new file mode 100644
+> index 000000000000..b27db86d0572
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/raspberrypi,rp1-clocks.yaml
+> @@ -0,0 +1,87 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/raspberrypi,rp1-clocks.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: RaspberryPi RP1 clock generator
+> +
+> +maintainers:
+> +  - Andrea della Porta <andrea.porta@suse.com>
+> +
+> +description: |
+> +  The RP1 contains a clock generator designed as three PLLs (CORE, AUDIO,
+> +  VIDEO), and each PLL output can be programmed though dividers to gener=
+ate
+> +  the clocks to drive the sub-peripherals embedded inside the chipset.
+> +
+> +  Link to datasheet:
+> +  https://datasheets.raspberrypi.com/rp1/rp1-peripherals.pdf
+> +
+> +properties:
+> +  compatible:
+> +    const: raspberrypi,rp1-clocks
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    description:
+> +      The index in the assigned-clocks is mapped to the output clock as =
+per
+> +      definitions in dt-bindings/clock/rp1.h.
+> +    const: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#clock-cells'
+> +  - clocks
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/rp1.h>
+> +
+> +    rp1 {
+> +        #address-cells =3D <2>;
+> +        #size-cells =3D <2>;
+> +
+> +        rp1_clocks: clocks@18000 {
 
-Yes to the former, no to the latter.
+The unit address does not match the reg property. I'm surprised that
+dtc doesn't complain about that.
 
->=20
-> >> @@ -0,0 +1,170 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-hdmi-=
-qp.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: Rockchip DW HDMI QP TX Encoder
-> >> +
-> >> +maintainers:
-> >> +  - Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> >> +
-> >> +description:
-> >> +  Rockchip RK3588 SoC integrates the Synopsys DesignWare HDMI QP TX c=
-ontroller
-> >> +  IP and a HDMI/eDP TX Combo PHY based on a Samsung IP block.
-> >> +
-> >> +allOf:
-> >> +  - $ref: /schemas/display/bridge/synopsys,dw-hdmi-qp.yaml#
-> >> +  - $ref: /schemas/sound/dai-common.yaml#
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    enum:
-> >> +      - rockchip,rk3588-dw-hdmi-qp
-> >> +
-> >> +  clocks:
-> >> +    minItems: 4
-> >> +    items:
-> >> +      - {}
-> >> +      - {}
-> >> +      - {}
-> >> +      - {}
-> >=20
-> > Why have you chosen to do things like this?  I find it makes things less
-> > clear than reiterating the names of the required clocks.
->=20
-> I've just followed the approach used in rockchip,dw-hdmi.yaml.  Personall=
-y,
-> I preferred this for making a clear distinction between common and custom
-> items, in addition to reducing content dupplication.=20
->=20
-> If readability is more important/desired, I will expand the items.  For
-> consistency, I assume clock-names, interrupts and interrupt-names below
-> should be treated similarly.
+> +            compatible =3D "raspberrypi,rp1-clocks";
+> +            reg =3D <0xc0 0x40018000 0x0 0x10038>;
 
-I don't feel particularly strongly here FWIW. If you chose to do it, do
-it for all properties, yes.
+This is a rather oddly specific size. It leads me to wonder if this
+region is inside some sort of syscon area?
 
-> >> +      # The next clocks are optional, but shall be specified in this
-> >> +      # order when present.
-> >> +      - description: TMDS/FRL link clock
-> >> +      - description: Video datapath clock
-> >=20
-> > I don't get what you mean by optional. You have one SoC, either they are
-> > or are not connected, unless there's multiple instances of this IP block
-> > on the SoC and some do and some do not have these clocks?
-> > Ditto for the interrupts.
->=20
-> They were handled as such in vendor tree, probably assuming other SoC
-> variants might not need them.  I agree it doesn't make sense to have them
-> optional at this point.  Will fix this in the next revision.
->=20
-> >> +
-> >> +  clock-names:
-> >> +    minItems: 4
-> >> +    items:
-> >> +      - {}
-> >> +      - {}
-> >> +      - {}
-> >> +      - {}
-> >> +      - enum: [hdp, hclk_vo1]
-> >> +      - const: hclk_vo1
-> >> +
-> >> +  interrupts:
-> >> +    items:
-> >> +      - {}
-> >> +      - {}
-> >> +      - {}
-> >> +      - {}
-> >> +      - description: HPD interrupt
-> >> +
-> >> +  interrupt-names:
-> >> +    items:
-> >> +      - {}
-> >> +      - {}
-> >> +      - {}
-> >> +      - {}
-> >> +      - const: hpd
-> >> +
-> >> +  phys:
-> >> +    maxItems: 1
-> >> +    description: The HDMI/eDP PHY.
-> >> +
-> >> +  phy-names:
-> >> +    const: hdmi
-> >> +
-> >> +  power-domains:
-> >> +    maxItems: 1
-> >> +
-> >> +  resets:
-> >> +    minItems: 2
-> >> +    maxItems: 2
-> >> +
-> >> +  reset-names:
-> >> +    items:
-> >> +      - const: ref
-> >> +      - const: hdp
-> >> +
-> >> +  "#sound-dai-cells":
-> >> +    const: 0
-> >> +
-> >> +  rockchip,grf:
-> >> +    $ref: /schemas/types.yaml#/definitions/phandle
-> >> +    description:
-> >> +      Most HDMI QP related data is accessed through SYS GRF regs.
-> >> +
-> >> +  rockchip,vo1-grf:
-> >> +    $ref: /schemas/types.yaml#/definitions/phandle
-> >> +    description:
-> >> +      Additional HDMI QP related data is accessed through VO1 GRF reg=
-s.
-> >=20
-> > Why are these required? What prevents you looking up the syscons by
-> > compatible?
->=20
-> That is for getting the proper instance:
+> +            #clock-cells =3D <1>;
+> +            clocks =3D <&clk_xosc>;
+> +
+> +            assigned-clocks =3D <&rp1_clocks RP1_PLL_SYS_CORE>,
 
-Ah, that makes sense. I am, however, curious why these have the same
-compatible when they have different sized regions allocated to them.
+FWIW, I don't think any of these assigned clocks are helpful for the
+example. That said, why do you need to configure all of these assigned
+clocks via devicetree when this node is the provider of them?
 
-> 	vo0_grf: syscon@fd5a6000 {
-> 		compatible =3D "rockchip,rk3588-vo-grf", "syscon";
-> 		reg =3D <0x0 0xfd5a6000 0x0 0x2000>;
-> 		clocks =3D <&cru PCLK_VO0GRF>;
-> 	};
->=20
-> 	vo1_grf: syscon@fd5a8000 {
-> 		compatible =3D "rockchip,rk3588-vo-grf", "syscon";
-> 		reg =3D <0x0 0xfd5a8000 0x0 0x100>;
-> 		clocks =3D <&cru PCLK_VO1GRF>;
-> 	};
->=20
-> Thanks for reviewing,
-> Cristian
+> +                              <&rp1_clocks RP1_PLL_AUDIO_CORE>,
+> +                              /* RP1_PLL_VIDEO_CORE and dividers are now=
+ managed by VEC,DPI drivers */
 
---WIjEHvGhr8+cRBp+
+Comments like this also do not seem relevant to the binding.
+
+
+Cheers,
+Conor.
+
+
+> +                              <&rp1_clocks RP1_PLL_SYS>,
+> +                              <&rp1_clocks RP1_PLL_SYS_SEC>,
+> +                              <&rp1_clocks RP1_PLL_AUDIO>,
+> +                              <&rp1_clocks RP1_PLL_AUDIO_SEC>,
+> +                              <&rp1_clocks RP1_CLK_SYS>,
+> +                              <&rp1_clocks RP1_PLL_SYS_PRI_PH>,
+> +                              /* RP1_CLK_SLOW_SYS is used for the freque=
+ncy counter (FC0) */
+> +                              <&rp1_clocks RP1_CLK_SLOW_SYS>,
+> +                              <&rp1_clocks RP1_CLK_SDIO_TIMER>,
+> +                              <&rp1_clocks RP1_CLK_SDIO_ALT_SRC>,
+> +                              <&rp1_clocks RP1_CLK_ETH_TSU>;
+> +
+> +            assigned-clock-rates =3D <1000000000>, // RP1_PLL_SYS_CORE
+> +                                   <1536000000>, // RP1_PLL_AUDIO_CORE
+> +                                   <200000000>,  // RP1_PLL_SYS
+> +                                   <125000000>,  // RP1_PLL_SYS_SEC
+> +                                   <61440000>,   // RP1_PLL_AUDIO
+> +                                   <192000000>,  // RP1_PLL_AUDIO_SEC
+> +                                   <200000000>,  // RP1_CLK_SYS
+> +                                   <100000000>,  // RP1_PLL_SYS_PRI_PH
+> +                                   /* Must match the XOSC frequency */
+> +                                   <50000000>, // RP1_CLK_SLOW_SYS
+> +                                   <1000000>, // RP1_CLK_SDIO_TIMER
+> +                                   <200000000>, // RP1_CLK_SDIO_ALT_SRC
+> +                                   <50000000>; // RP1_CLK_ETH_TSU
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 42decde38320..6e7db9bce278 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -19116,6 +19116,12 @@ F:	Documentation/devicetree/bindings/media/raspb=
+errypi,pispbe.yaml
+>  F:	drivers/media/platform/raspberrypi/pisp_be/
+>  F:	include/uapi/linux/media/raspberrypi/
+> =20
+> +RASPBERRY PI RP1 PCI DRIVER
+> +M:	Andrea della Porta <andrea.porta@suse.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/clock/raspberrypi,rp1-clocks.yaml
+> +F:	include/dt-bindings/clock/rp1.h
+> +
+>  RC-CORE / LIRC FRAMEWORK
+>  M:	Sean Young <sean@mess.org>
+>  L:	linux-media@vger.kernel.org
+> diff --git a/include/dt-bindings/clock/rp1.h b/include/dt-bindings/clock/=
+rp1.h
+> new file mode 100644
+> index 000000000000..1ed67b8a5229
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/rp1.h
+> @@ -0,0 +1,56 @@
+> +/* SPDX-License-Identifier: GPL-2.0 OR MIT */
+> +/*
+> + * Copyright (C) 2021 Raspberry Pi Ltd.
+> + */
+> +
+> +#define RP1_PLL_SYS_CORE		0
+> +#define RP1_PLL_AUDIO_CORE		1
+> +#define RP1_PLL_VIDEO_CORE		2
+> +
+> +#define RP1_PLL_SYS			3
+> +#define RP1_PLL_AUDIO			4
+> +#define RP1_PLL_VIDEO			5
+> +
+> +#define RP1_PLL_SYS_PRI_PH		6
+> +#define RP1_PLL_SYS_SEC_PH		7
+> +#define RP1_PLL_AUDIO_PRI_PH		8
+> +
+> +#define RP1_PLL_SYS_SEC			9
+> +#define RP1_PLL_AUDIO_SEC		10
+> +#define RP1_PLL_VIDEO_SEC		11
+> +
+> +#define RP1_CLK_SYS			12
+> +#define RP1_CLK_SLOW_SYS		13
+> +#define RP1_CLK_DMA			14
+> +#define RP1_CLK_UART			15
+> +#define RP1_CLK_ETH			16
+> +#define RP1_CLK_PWM0			17
+> +#define RP1_CLK_PWM1			18
+> +#define RP1_CLK_AUDIO_IN		19
+> +#define RP1_CLK_AUDIO_OUT		20
+> +#define RP1_CLK_I2S			21
+> +#define RP1_CLK_MIPI0_CFG		22
+> +#define RP1_CLK_MIPI1_CFG		23
+> +#define RP1_CLK_PCIE_AUX		24
+> +#define RP1_CLK_USBH0_MICROFRAME	25
+> +#define RP1_CLK_USBH1_MICROFRAME	26
+> +#define RP1_CLK_USBH0_SUSPEND		27
+> +#define RP1_CLK_USBH1_SUSPEND		28
+> +#define RP1_CLK_ETH_TSU			29
+> +#define RP1_CLK_ADC			30
+> +#define RP1_CLK_SDIO_TIMER		31
+> +#define RP1_CLK_SDIO_ALT_SRC		32
+> +#define RP1_CLK_GP0			33
+> +#define RP1_CLK_GP1			34
+> +#define RP1_CLK_GP2			35
+> +#define RP1_CLK_GP3			36
+> +#define RP1_CLK_GP4			37
+> +#define RP1_CLK_GP5			38
+> +#define RP1_CLK_VEC			39
+> +#define RP1_CLK_DPI			40
+> +#define RP1_CLK_MIPI0_DPI		41
+> +#define RP1_CLK_MIPI1_DPI		42
+> +
+> +/* Extra PLL output channels - RP1B0 only */
+> +#define RP1_PLL_VIDEO_PRI_PH		43
+> +#define RP1_PLL_AUDIO_TERN		44
+> --=20
+> 2.35.3
+>=20
+
+--044jvUAtXTI8rtBJ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZsTA4wAKCRB4tDGHoIJi
-0nV8AP96gaUNJensDkrW5IXMKbs1E7j8608g8NJuWpUI2Z0BFwEApF0W+cODYufQ
-cQcnuTAOqAcS/MvN8IuqYHrI+fzo8A4=
-=xCAE
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZsTB9gAKCRB4tDGHoIJi
+0hdEAQDmLFxE5g1AcfR7ObteXxBVesin0HSMEH3qgvXnimSDngEA1MMPFeXt983K
+4vCKIAC+wEmRMiAoUhwYVOlp+zLDVgE=
+=Vq3Z
 -----END PGP SIGNATURE-----
 
---WIjEHvGhr8+cRBp+--
+--044jvUAtXTI8rtBJ--
 
