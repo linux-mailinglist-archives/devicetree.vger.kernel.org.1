@@ -1,247 +1,165 @@
-Return-Path: <devicetree+bounces-95067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 754B1957EE3
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 09:02:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D304957EFB
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 09:06:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A7D60B21D45
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 07:02:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA7951F23722
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 07:06:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78CC8158541;
-	Tue, 20 Aug 2024 07:02:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E9CE1898FE;
+	Tue, 20 Aug 2024 07:06:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="HWC5TqqG"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="vNPXR8Eq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-23.smtpout.orange.fr [80.12.242.23])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A936D18E34A;
-	Tue, 20 Aug 2024 07:02:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.23
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C692176249;
+	Tue, 20 Aug 2024 07:06:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724137348; cv=none; b=oDauW6q9BWkP8GnqCkKWhb+qDOYiIp6fCTivqgHEZ8XS7/8/kpP9nkyMLmwYvS7bm+io+7IgXwUxDeq7xdRBX1HL3/I5378LkliAqKhQ7vjOaJ7ymKDeSSnUJ0ku9de32YNreqNV/8+LPniTgah4E+kuXt8+fEAAdFvfQklCS4c=
+	t=1724137582; cv=none; b=S+00OjEpN+VyM/bHEKFzaTuB60bpp60UCfwbZgvPj8HWAg9z2SB6oBcSK5Rr5jXs/Pz1xA8L2lV3f90K4Ztx73qGb27jaKuCqL53p82a8BDem3zIAywZuKaYU0R1JOZOLhWsdsTs72jb6Zwqp4Zx8NtKF8QD3EOJvq38AVoVvOI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724137348; c=relaxed/simple;
-	bh=pEqZefNwYrtwPD2Vgm5ifCB5qJbWjPqIOiDxdLfMtns=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=e2xuOTIXjA4lSqaYzD75jlKfGZq5DSTcSHZwFK62RwM9AKbpheyh/l0CAMMwzHPFwdFC0o4PNC9o0yz5RMmAl7lQBw+aYxhkoxINH5q3rZdbW+9sTyOdK057C29J59YYf/xffKeWu6iF58ydGV/C8CQg8hDWUSeUY0P5L6AKrwk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=HWC5TqqG; arc=none smtp.client-ip=80.12.242.23
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [192.168.1.37] ([90.11.132.44])
-	by smtp.orange.fr with ESMTPA
-	id gIjssdXOQTL2BgIjssJOaf; Tue, 20 Aug 2024 08:53:11 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1724136791;
-	bh=r+NEjsLvfF0LYn/90F9XiGHWYEhepMWCgKxGhwj1wdQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=HWC5TqqGMbfqd/RxPAp3dLknUiYiw5OHnFMUtVCk+zjfsf7TLfNk4GAF+Yqh33zgD
-	 ABe09WU7orCmhnw4lAR32QCYY7CS3XcEH/ArUofyV10ZysQ600p8TC9kMNi9hS0eon
-	 /AAbxrC6b5oCxpJRVF7oFJ+K3kxlw44r1Gnxa9/MsuKbcMeGqymJFOrL6dlsDHS0U5
-	 sTkVKc0R5KYufZ0Po9Q8rNQfd3wOm2tEUrrqF6KUxa/ToO8yEArm4DPDFbqhJ8Lis8
-	 f8aqxfbJO43mV8J+FHs+tD5DHv6EQw9EXEDZHy07BNivdn/tRg9XhgedSRvkem5DvF
-	 5chNGqbO88lXw==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Tue, 20 Aug 2024 08:53:11 +0200
-X-ME-IP: 90.11.132.44
-Message-ID: <3c8359ae-9a12-41c8-9799-86de9024fcd4@wanadoo.fr>
-Date: Tue, 20 Aug 2024 08:53:07 +0200
+	s=arc-20240116; t=1724137582; c=relaxed/simple;
+	bh=Fe+rWJrb0SPEzQOf/GnltZmSNDX6SEOvMnvp2CEWjyE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=snsbPKuU4cYtFH6qH9yuJdMTeO3nwJOiVqmSploI+84Be8Ucb3BBwQh19/z4mQi/3FWtTeOCteKnxnTmmqjS7A+dt360kHkbOVmbfcaZBbBoa9Q07bWmfmjrYU6l1PLOspu2B3l6lYt2leoqPuLF83JXUbqx1kE1Hj38T2dRyxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=vNPXR8Eq; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47K76AbS045227;
+	Tue, 20 Aug 2024 02:06:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1724137570;
+	bh=+4l8TGmHjp7lAUWWLu9C17ULqkfasvc5VTXMnL3774s=;
+	h=From:To:CC:Subject:Date;
+	b=vNPXR8EqzK/77Xw/Ks33BZLI/Xsb5ZXnoPhdd47Lf9uwDGu8jyPTVyvv2yq6uxYld
+	 NHcF6m3I/4L4ZkM5HZalJjUC4D4jOMo94n3vKubY/k3d7s7ApFSiodyAJ3UEbwxqn1
+	 D2yfnX7C0L3tiY3x1Cas8t4X0qAJr+TvZ7HVsjP8=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47K76AoZ022563
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 20 Aug 2024 02:06:10 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 20
+ Aug 2024 02:06:10 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 20 Aug 2024 02:06:10 -0500
+Received: from localhost ([10.249.128.135])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47K7681C015213;
+	Tue, 20 Aug 2024 02:06:09 -0500
+From: Bhavya Kapoor <b-kapoor@ti.com>
+To: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <b-kapoor@ti.com>
+Subject: [PATCH] arm64: dts: ti: Add PWM and ECAP overlay for J722S-EVM
+Date: Tue, 20 Aug 2024 12:36:07 +0530
+Message-ID: <20240820070607.30628-1-b-kapoor@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND PATCH v4 2/2] drm/tiny: Add driver for Sharp Memory LCD
-To: lanzano.alex@gmail.com
-Cc: airlied@gmail.com, christophe.jaillet@wanadoo.fr, conor+dt@kernel.org,
- daniel@ffwll.ch, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, krzk+dt@kernel.org,
- linux-kernel@vger.kernel.org, maarten.lankhorst@linux.intel.com,
- mehdi.djait@bootlin.com, mripard@kernel.org, robh@kernel.org,
- tzimmermann@suse.de
-References: <20240819214943.1610691-1-lanzano.alex@gmail.com>
- <20240819214943.1610691-3-lanzano.alex@gmail.com>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20240819214943.1610691-3-lanzano.alex@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Le 19/08/2024 à 23:49, Alex Lanzano a écrit :
-> Add support for the monochrome Sharp Memory LCDs.
+The J722S-EVM has 3 PWM outputs and 1 ECAP output routed
+to the J28 connector. This overlay will set the appropriate
+pinmux and enable PWM and ECAP on the pins.
 
-Hi,
+Currently enabled PWM output on J28: 29, 31, 33 pins
+and ECAP output on J28: 32 pin
 
-a few nitpick below, should thre be a v5.
+Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+---
+ arch/arm64/boot/dts/ti/Makefile              |  1 +
+ arch/arm64/boot/dts/ti/k3-j722s-evm-pwm.dtso | 53 ++++++++++++++++++++
+ 2 files changed, 54 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j722s-evm-pwm.dtso
 
-...
-
-> +struct sharp_memory_device {
-> +	struct drm_device drm;
-> +	struct spi_device *spi;
-> +
-> +	const struct drm_display_mode *mode;
-> +
-> +	struct drm_crtc crtc;
-> +	struct drm_plane plane;
-> +	struct drm_encoder encoder;
-> +	struct drm_connector connector;
-> +
-> +	struct gpio_desc *enable_gpio;
-> +
-> +	struct task_struct *sw_vcom_signal;
-> +	struct pwm_device *pwm_vcom_signal;
-> +
-> +	enum sharp_memory_vcom_mode vcom_mode;
-> +	u8 vcom;
-> +
-> +	u32 pitch;
-> +	u32 tx_buffer_size;
-> +	u8 *tx_buffer;
-> +
-> +	/* When vcom_mode == "software" a kthread is used to
-> +	 * periodically send a 'maintain display' message over
-> +	 * spi. This mutex ensures tx_buffer access and spi bus
-> +	 * usage is synchronized in this case
-
-This comment could take only 3 lines and still be with < 80 lines.
-A dot could also be added at the end of the 2nd sentence.
-
-> +	 */
-> +	struct mutex tx_mutex;
-> +};
-
-...
-
-> +static int sharp_memory_probe(struct spi_device *spi)
-> +{
-> +	int ret;
-> +	struct device *dev;
-> +	struct sharp_memory_device *smd;
-> +	struct drm_device *drm;
-> +	const char *vcom_mode_str;
-> +
-> +	ret = spi_setup(spi);
-> +	if (ret < 0)
-> +		return dev_err_probe(&spi->dev, ret, "Failed to setup spi device\n");
-> +
-> +	dev = &spi->dev;
-
-If done earlier (when dev is declared?), it could already be used in the 
-dev_err_probe() just above?
-
-> +	if (!dev->coherent_dma_mask) {
-> +		ret = dma_coerce_mask_and_coherent(dev, DMA_BIT_MASK(32));
-> +		if (ret)
-> +			return dev_err_probe(dev, ret, "Failed to set dma mask\n");
-> +	}
-> +
-> +	smd = devm_drm_dev_alloc(dev, &sharp_memory_drm_driver,
-> +				 struct sharp_memory_device, drm);
-> +	if (!smd)
-> +		return -ENOMEM;
-> +
-> +	spi_set_drvdata(spi, smd);
-> +
-> +	smd->spi = spi;
-> +	drm = &smd->drm;
-> +	ret = drmm_mode_config_init(drm);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to initialize drm config\n");
-> +
-> +	smd->enable_gpio = devm_gpiod_get_optional(dev, "enable", GPIOD_OUT_HIGH);
-> +	if (!smd->enable_gpio)
-> +		dev_warn(dev, "Enable gpio not defined\n");
-> +
-> +	/*
-> +	 * VCOM is a signal that prevents DC bias from being built up in
-> +	 * the panel resulting in pixels being forever stuck in one state.
-> +	 *
-> +	 * This driver supports three different methods to generate this
-> +	 * signal depending on EXTMODE pin:
-> +	 *
-> +	 * software (EXTMODE = L) - This mode uses a kthread to
-> +	 * periodically send a "maintain display" message to the display,
-> +	 * toggling the vcom bit on and off with each message
-> +	 *
-> +	 * external (EXTMODE = H) - This mode relies on an external
-> +	 * clock to generate the signal on the EXTCOMM pin
-> +	 *
-> +	 * pwm (EXTMODE = H) - This mode uses a pwm device to generate
-> +	 * the signal on the EXTCOMM pin
-> +	 *
-> +	 */
-> +	if (device_property_read_string(&spi->dev, "sharp,vcom-mode", &vcom_mode_str))
-
-just dev?
-
-> +		return dev_err_probe(dev, -EINVAL,
-> +				     "Unable to find sharp,vcom-mode node in device tree\n");
-> +
-> +	if (!strcmp("software", vcom_mode_str)) {
-> +		smd->vcom_mode = SHARP_MEMORY_SOFTWARE_VCOM;
-> +
-> +	} else if (!strcmp("external", vcom_mode_str)) {
-> +		smd->vcom_mode = SHARP_MEMORY_EXTERNAL_VCOM;
-> +
-> +	} else if (!strcmp("pwm", vcom_mode_str)) {
-> +		smd->vcom_mode = SHARP_MEMORY_PWM_VCOM;
-> +		ret = sharp_memory_init_pwm_vcom_signal(smd);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret,
-> +					     "Failed to initialize external COM signal\n");
-> +	} else {
-> +		return dev_err_probe(dev, -EINVAL, "Invalid value set for vcom-mode\n");
-> +	}
-> +
-> +	drm->mode_config.funcs = &sharp_memory_mode_config_funcs;
-> +	smd->mode = spi_get_device_match_data(spi);
-> +
-> +	smd->pitch = (SHARP_ADDR_PERIOD + smd->mode->hdisplay + SHARP_DUMMY_PERIOD) / 8;
-> +	smd->tx_buffer_size = (SHARP_MODE_PERIOD +
-> +			       (SHARP_ADDR_PERIOD + (smd->mode->hdisplay) + SHARP_DUMMY_PERIOD) *
-> +			       smd->mode->vdisplay) / 8;
-> +
-> +	smd->tx_buffer = devm_kzalloc(&spi->dev, smd->tx_buffer_size, GFP_KERNEL);
-
-Just dev?
-
-> +	if (!smd->tx_buffer)
-> +		return -ENOMEM;
-> +
-> +	mutex_init(&smd->tx_mutex);
-> +
-> +	drm->mode_config.min_width = smd->mode->hdisplay;
-> +	drm->mode_config.max_width = smd->mode->hdisplay;
-> +	drm->mode_config.min_height = smd->mode->vdisplay;
-> +	drm->mode_config.max_height = smd->mode->vdisplay;
-> +
-> +	ret = sharp_memory_pipe_init(drm, smd, sharp_memory_formats,
-> +				     ARRAY_SIZE(sharp_memory_formats),
-> +				     NULL);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to initialize display pipeline.\n");
-> +
-> +	drm_plane_enable_fb_damage_clips(&smd->plane);
-> +	drm_mode_config_reset(drm);
-> +
-> +	ret = drm_dev_register(drm, 0);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to register drm device.\n");
-> +
-> +	drm_fbdev_dma_setup(drm, 0);
-> +
-> +	return 0;
-> +}
-
-...
-
-CJ
+diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+index e20b27ddf901..61d51284dcba 100644
+--- a/arch/arm64/boot/dts/ti/Makefile
++++ b/arch/arm64/boot/dts/ti/Makefile
+@@ -111,6 +111,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-pcie1-ep.dtbo
+ 
+ # Boards with J722s SoC
+ dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm.dtb
++dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm-pwm.dtbo
+ 
+ # Boards with J784s4 SoC
+ dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
+diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm-pwm.dtso b/arch/arm64/boot/dts/ti/k3-j722s-evm-pwm.dtso
+new file mode 100644
+index 000000000000..f6d1f072b140
+--- /dev/null
++++ b/arch/arm64/boot/dts/ti/k3-j722s-evm-pwm.dtso
+@@ -0,0 +1,53 @@
++// SPDX-License-Identifier: GPL-2.0
++/**
++ * DT Overlay for enabling PWM output on User Expansion header on J722S-EVM
++ *
++ * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
++ */
++
++/dts-v1/;
++/plugin/;
++
++#include <dt-bindings/gpio/gpio.h>
++#include "k3-pinctrl.h"
++
++&main_pmx0 {
++
++	main_epwm0_pins_default: main-epwm0-default-pins {
++		pinctrl-single,pins = <
++			J722S_IOPAD(0x01b4, PIN_OUTPUT, 2) /* (B20) EHRPWM0_A */
++		>;
++	};
++
++	main_epwm1_pins_default: main-epwm1-default-pins {
++		pinctrl-single,pins = <
++			J722S_IOPAD(0x01bc, PIN_OUTPUT, 2) /* (D20) EHRPWM1_A */
++			J722S_IOPAD(0x01c0, PIN_OUTPUT, 2) /* (E19) EHRPWM1_B */
++		>;
++	};
++
++	main_ecap0_pins_default: main-ecap0-default-pins {
++		pinctrl-single,pins = <
++			J722S_IOPAD(0x01b8, PIN_OUTPUT, 3) /* (C20) ECAP0_IN_APWM_OUT */
++		>;
++	};
++};
++
++&epwm0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_epwm0_pins_default>;
++	status = "okay";
++};
++
++&epwm1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_epwm1_pins_default>;
++	status = "okay";
++};
++
++&ecap0 {
++	/* ECAP in APWM mode */
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_ecap0_pins_default>;
++	status = "okay";
++};
+-- 
+2.34.1
 
 
