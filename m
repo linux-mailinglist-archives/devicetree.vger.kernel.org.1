@@ -1,150 +1,313 @@
-Return-Path: <devicetree+bounces-95033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 554AF957C61
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 06:26:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45B5B957C6F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 06:34:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE0BA1F22730
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 04:26:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69A061C23E26
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 04:34:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EA5050284;
-	Tue, 20 Aug 2024 04:26:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0B0852F88;
+	Tue, 20 Aug 2024 04:34:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iBrG3K7A"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="KEvV0/lv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from TYVP286CU001.outbound.protection.outlook.com (mail-japaneastazon11011037.outbound.protection.outlook.com [52.101.125.37])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 351C02F5E;
-	Tue, 20 Aug 2024 04:26:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724127985; cv=none; b=S39Hg/+GGjl1lE4H3tjBezQ+x6d3CxXp+YMcIACj/Qg7FbLodNsf19zityygV1WREfU6WxNHT3A9lL1DpGEuldknfGaj/ZsHPjd5J7S76n+31Du0o31TMZEY7Q5w8U/Uxy57iuge8ZDMnaEcYIq/34iVIdj/RL1YcEzQJegARnU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724127985; c=relaxed/simple;
-	bh=EPhEMjY7bJqv3OgXaq6MdbBJoS9xZMpbdW6dSGjRQqs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SxQ4ti0gkbGNlBYArUZ87jH2locsFnSkVyunEw+8zIQJdiwxrAzSTMa3XfhLjf71jXLoBWo7sge/28Ouhz9KVIrVtFlNyRzC6WtQ5/RKg/jutXjvXuHdeM3POKaFOiZTe4Wz+TIZQ4roJnJkDOYtDLIsuzLyP5ZQ75tkzt5+1cU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iBrG3K7A; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1724127982; x=1755663982;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=EPhEMjY7bJqv3OgXaq6MdbBJoS9xZMpbdW6dSGjRQqs=;
-  b=iBrG3K7A5D1E/CklMiQ12vUS7a5QE8cGpQ8TxvNnXfZrwt9uwZSVhvw3
-   OEWDv50s1idnyfRXGr8yGc7Fu9gQCyznYsEH2YZn18YjNkFn17C8RRaae
-   oWu8IUl8/sC0F+lHS5NCEbzSaIFR+81Agug/MPUobtmKEdsM5fc3Uajdz
-   MXE/OvMW5RzIx72DrCcr30lV2CUbKhKthaKcd0iPzzZ6Dl2QbE/GRyaLh
-   1gCfRCFNWcmrP46jJoFjLf/nSLpF7vci76mbFmYuTVbbGYq8Kfc4aeM5F
-   gsnzwX8NpKTA59D/PF8Q3ADMkNK3NtnxuwVVzN+ZhqOXH0bt+BDYDhQkg
-   g==;
-X-CSE-ConnectionGUID: OKITTNVIQXKCvtCu1q9+PA==
-X-CSE-MsgGUID: ZZBWsr05QAaBfy9R7dhq1w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="22543924"
-X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; 
-   d="scan'208";a="22543924"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Aug 2024 21:26:21 -0700
-X-CSE-ConnectionGUID: 5fcy/7axQQSIx4VehcG9EA==
-X-CSE-MsgGUID: fXqC33NVTqWsQaFZeFxYKA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; 
-   d="scan'208";a="60284429"
-Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
-  by fmviesa007.fm.intel.com with ESMTP; 19 Aug 2024 21:26:15 -0700
-Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sgGRh-0009iQ-1k;
-	Tue, 20 Aug 2024 04:26:13 +0000
-Date: Tue, 20 Aug 2024 12:25:45 +0800
-From: kernel test robot <lkp@intel.com>
-To: Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-	quentin.schulz@free-electrons.com, mripard@kernel.org,
-	tgamblin@baylibre.com, aidanmacdonald.0x0@gmail.com,
-	u.kleine-koenig@pengutronix.de, lee@kernel.org, samuel@sholland.org,
-	jernej.skrabec@gmail.com, sre@kernel.org, wens@csie.org,
-	conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
-	lars@metafoo.de, jic23@kernel.org, jonathan.cameron@huawei.com,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Philippe Simons <simons.philippe@gmail.com>
-Subject: Re: [PATCH V3 14/15] power: supply: axp20x_battery: add support for
- AXP717
-Message-ID: <202408201228.Hee4eSYl-lkp@intel.com>
-References: <20240819164619.556309-15-macroalpha82@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80BBE28371;
+	Tue, 20 Aug 2024 04:34:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.125.37
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724128448; cv=fail; b=sCKKjhSt0+b94JN5Xgi+E/WrmJRn6UnXFk7aGlfc8u7qC3IdOaHavhYnQxMBBw9a04lRKUBli5RL+wQUBpvC0ti23hEOLixRqt5TdEL2gTFOqcoNdpybjWdpcLe0eXSpfVJiqhv0+qcEI5D2aavd2RBX6aglOamCI60J3+8lzec=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724128448; c=relaxed/simple;
+	bh=dLJN0J5kWLJKotoWolnIDOGoleNQvR8GoB796rJjFI0=;
+	h=Message-ID:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 Date:MIME-Version; b=RKiOcik7gC3PH+E2XbEQBI5CkvAUXr7x5rjFggI9nySx9AGmQkP4XKsQ74Z7hJc2e28V3oZpC6cfF/a7rNoDdgbtr5z7cL142BTR3e8uFjAYv9oBMap/jO1ckqGLnVOtWyJRH8bQSzv+dmNzkj5KJEFd7Q8n8chZJISTZWeANN4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=KEvV0/lv; arc=fail smtp.client-ip=52.101.125.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=a6+QU58+fQxqfqwSXwsibb2ap3SeWqnXZJYSP8O5frnJzo2LE7+uAD1IGiZBm36M7bfzADnAfKUquvCGPKVlH1MpUb+rAh2OI6FM8zM847vEmXXOWg2D0c8ISHObbpO1hJLN+jJr+CBubZ7CBJzEmdw3d68D/tWgb2DPC64RA2DebPnj6/1XU+EHrqP6gjSYKNxBd4ekEiw8x+toYjH1H/z/M3pvsunDfNssf/jdQYZM96WiYDP5gW0/Ns+g/ft8IHwiYCCntxpw8Tvt2Q1QIMK17WvtwXXv64cEwRBSzx4+EF+tLpU/o8CTjLmUEk+5DXqcbTbUTMQyKTw7ncuKKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DzljShvW8eEQCPSoi7jJ9KA6lkwk0x3PHF6FTdth6NU=;
+ b=dwj30I2k1N1OpLIwtXG/8gPYncRJWY0RHZHPIXyn/T1muwpu1XuoKFCLfdWj+HhthR5eQMR1CV/HhiyNM4hwQ7B1PZdLOCvpQmEsc5bZNXwdjvjyw6R1O1MdlyTF7+cdaHewTMfdCT/byMWsNCDI2eJ5qp5aR0//MykakmIZMKqyo6omW9iCQ81MpDwm51YvcCSF2vJRHaRUrFsOWWf7vjiOXOaf2khTdhYKbmnX/yOgSmzeb69JkfHNmpxmr+aI4ghEoxXrmBBkzh4fYsOdbcLnLRGcM7WhVVy1Uhc+OsGI/EqQJn92blvScOYxkjI5Tfj2QLPALVkplcwCJvWHgw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DzljShvW8eEQCPSoi7jJ9KA6lkwk0x3PHF6FTdth6NU=;
+ b=KEvV0/lvdWyNdRJIZk/00BSHtpX2yqS0CxXwFTki4v1ZQsgrBYiVvUNZANUFOjy7QYUPRjGrHGJwyjajjAOEkDnfU1aotOLXl5B/1vaMJcKayIUKuCsiSJI0IpZGavZ/b2sjUfKQ3hKf+cyOmO6x25oHfgmLZCXW3F4SBhH6+ak=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by TYWPR01MB11706.jpnprd01.prod.outlook.com
+ (2603:1096:400:400::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.20; Tue, 20 Aug
+ 2024 04:34:02 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11%5]) with mapi id 15.20.7875.016; Tue, 20 Aug 2024
+ 04:34:02 +0000
+Message-ID: <87y14r6cee.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>,
+	David Airlie <airlied@gmail.com>,
+	Helge Deller <deller@gmx.de>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Mark Brown <broonie@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Michal Simek <michal.simek@amd.com>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Takashi Iwai <tiwai@suse.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-fbdev@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-omap@vger.kernel.org,
+	linux-sound@vger.kernel.org
+Subject: Re: [PATCH 1/9] of: property: add of_graph_get_next_port()
+In-Reply-To: <7b5db9c1-5cba-48c8-ae77-f224b7b4834f@ideasonboard.com>
+References: <87mslqw8mj.wl-kuninori.morimoto.gx@renesas.com>
+	<87le1aw8lw.wl-kuninori.morimoto.gx@renesas.com>
+	<ca216286-b09a-4faf-8221-c88c21f4de0c@ideasonboard.com>
+	<87a5hm8n0k.wl-kuninori.morimoto.gx@renesas.com>
+	<7b5db9c1-5cba-48c8-ae77-f224b7b4834f@ideasonboard.com>
+User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date: Tue, 20 Aug 2024 04:34:01 +0000
+X-ClientProxiedBy: TYCP286CA0083.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:2b3::11) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240819164619.556309-15-macroalpha82@gmail.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TYWPR01MB11706:EE_
+X-MS-Office365-Filtering-Correlation-Id: dfa7cf4f-2096-42d5-f1ad-08dcc0d15121
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|376014|7416014|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?qoMIsxPTA1OG/BX+7l0iXVxdz2E+0vh3Vv4/j/EESZlntQHPhlc3oQgXKmve?=
+ =?us-ascii?Q?zrivDTook7+DNoLL6cpndfpwuk/pY94D02QNfMmt9B6PO5tnAhRGg6WHt7G5?=
+ =?us-ascii?Q?nKAKHy3zyb7AEpdJXlcH5xpL9rFZZRNcf1KCsdv2WfocWJLmZatyJE7QJwix?=
+ =?us-ascii?Q?cF/tn2h/QtAmTS44/alPtdsgULbrHgrbcAm4M5Luwe1Sxh511cSNllacr8+c?=
+ =?us-ascii?Q?ntDNRepYw3r1L3vIjT/sI6mLJc56XDUXaZCi6r2Pww8sWMJPElgH+hFcxfym?=
+ =?us-ascii?Q?UqpoWKro267Vjh2rDI9L17Vrn8RZVWFqT60RVuI2a3cN4Wcn73m4hYBgxV3K?=
+ =?us-ascii?Q?KwjXaHBFI575KDGt6GE6K+ePHm3TGJ4j0Z3TppKlkoBNIzs20QXfktZHXRST?=
+ =?us-ascii?Q?Y0p/s9AdwpCtTXk06+MtP7bMi2yM7ihNr196c61HU9a/7oPNHENj9sgIzhhP?=
+ =?us-ascii?Q?UFIHG6wYlFKcIjWJuBfQiuNb25V/W1f3+P9LFdm7H+lPCT4ebLiisJLDxELT?=
+ =?us-ascii?Q?CGsHu1MEsOxfnb9v5KGVTWE6LUnXzp9+jmjJpPJW/6/j5sq4aRyBEWxUCSBq?=
+ =?us-ascii?Q?USuNXgNwNwQpy1wWvRCxz5duN89MkpoxNE4HmCDIUlEd/oMsPL1qMFhmISD5?=
+ =?us-ascii?Q?aIlXXkaLL1fV4RmlnqC95GaofafwlidBXOyB4L7IgUQQFKdg7wZPWA8gnbjl?=
+ =?us-ascii?Q?Xxg8lwmWAyxJT34sAjQHPsQoiNcEh0tl/Q0bnyke1IOwHvzVvUfAC5hTtNHy?=
+ =?us-ascii?Q?ehrlGmvPay4JPvlB1vm5HdrXYqMECdr9jUH+pHr1XnehbAtKiinCRGcAwmXS?=
+ =?us-ascii?Q?5K2dx2O+l0KKc1ogyVa1GtaNVW7dCO79iuYGChynJVnxKxoCVBl4C19Lq77f?=
+ =?us-ascii?Q?XIrVJ2DnWARA+lyxSVyA49vpz039LSjKUAAVVNEyOAlZv06tjxyt0h34xgOO?=
+ =?us-ascii?Q?KHOvfWjLHuVnQpT9GMlXKE550bbDY9EYEGL7zXxr0GBLqk3T6a34zJQ9axzx?=
+ =?us-ascii?Q?UFn1EBHXgM5OGt2lPT4WBBZC8p02B2BkR4NkMUDb9PEGjYn/+ioXB++IhDJs?=
+ =?us-ascii?Q?mL02kjTt1BLY/T7tdTunX/Zr3NcdjhOKFvWUUZxkH7pgfGku3+IZbJw/lecC?=
+ =?us-ascii?Q?bgWko2oQJjw6Rut8Hci58B6swV5B9nLfTb2yz52G/sqEWalRfUX1qnk7soxp?=
+ =?us-ascii?Q?8kaRGDWCxDY5wUll/dkT4MmNqNXOjgmEazxMvd16pXI73dy5MYJim7QWtfF6?=
+ =?us-ascii?Q?/HRn1K745SAz67tUwWFrjYvuNr1X3NbIvI0uuX8lZ+Yp+bPeYE5J7J7/+NrX?=
+ =?us-ascii?Q?ABBEwT9rOg9rms2/I9AFS3Z6TLBVlOi9T0WZiV0N4pdlt/7XDHDGY6WL3lGz?=
+ =?us-ascii?Q?TgQO0TCAskG426xONg5vbhm3dinFrH9gTE3V5A8pzkC5O6OlVQ=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(52116014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?gqSROLsJ5wpk9rP2Yjd+YBsaLX3Jw7/5MXbIB++vQLf9ipq+288olCbxx0II?=
+ =?us-ascii?Q?oFv+nsRRU87j7m68YfWggTiyvvI3AQPn4d9/QYpw1QMnTtpbZpZ//AF03hOC?=
+ =?us-ascii?Q?y1Gs7BLUdaarE3GuJLsOBlZ0Sg2Na+xzaEtbczAVwe5g/GvIPq3cXq2jl0st?=
+ =?us-ascii?Q?tBuFwV1qRd4WgxxvG1nsy7adpRaCsIxzG9RPL5xH3G5W2IcWSFhp2NEP8Lmm?=
+ =?us-ascii?Q?4/owUJQhP7eqIWyunXsTC75KVPXLVZz17hPRvWzjpxxpb/5by7d6AmaaBrKe?=
+ =?us-ascii?Q?H+Tlhp8AJoQ/EC8z4y6Aa2/8SbhStXOOVBKtXO4ldQT/nrHv32h+LyckKZvi?=
+ =?us-ascii?Q?xZ7+3RqCWbu7IerujmpvWklZ7Rr4sQEArXfPj4n07aAWUyHh2vUxfC+aDd9Y?=
+ =?us-ascii?Q?jcDWArj52/hjraprrwLwAs4mNbZG2II2+/lnsER3GR13jNuhMBASizk3Kabt?=
+ =?us-ascii?Q?aP2VmtO/FxtKE6iTEBCBGaw00e9dzynhZMuQeiNsIS8N6r5Bwhk2dHKH/Bd7?=
+ =?us-ascii?Q?alzHOQMkMhV+OmeF4nB7KCS0QkXFRMJbfg3vMwO7/Q83X8EwtSXNN6eD8m7V?=
+ =?us-ascii?Q?R26rAdR1/pfDb1+kptIAIguuzAcpOUGYLpI2FZGHAvnDbQUlOHzMYbDSCSfE?=
+ =?us-ascii?Q?fMu7EhoJgGeKoACxkNnNtSVjTnE6eR3xGgGsOD9v8GBPYlxqmVPKm2Lq+q7g?=
+ =?us-ascii?Q?cDkUnaoXEONJJQHBej/78NFVzuN2QpniFPH8Btbckde4u+KA88z4ru6ihcvm?=
+ =?us-ascii?Q?BFTa/d5L3S2FwhIY7pNDSKrugi14GZX/pn9ptYjFHfLLC1QgtIaScrb0In5D?=
+ =?us-ascii?Q?FR9XG04cW9jurKCw8ePW60yCBgqGz2k0x0iTrFb2kahHMSvgIEvcFJNJTKh2?=
+ =?us-ascii?Q?3T92/UUDUHpYU/wTf+xUgAzNqI+hAIhaj1fF+3kPTDJl4zxF9LTEzdqHaQz8?=
+ =?us-ascii?Q?qJ16ykt+666n0qRIjcKTwVQcH809xkG8aLHWa5xB3QBM5SeEz6SU8Oz0UozZ?=
+ =?us-ascii?Q?WjZSzAGoBCkoBL4JMqmhkZ9UWcl9wdSlX+asU6t4Fv64iTR23IRDQdjyOxT+?=
+ =?us-ascii?Q?CjWn5SnpS3PPlh1Pr6n/SoRWZcZmbe/yAF2w9q1/gIrITyTehumLTwRCYJjR?=
+ =?us-ascii?Q?iV7LZWrG5ZNY16vtX188I9McBjSr7zhXLIcNmCJpfRNQtUUCVOF5jao3bfKS?=
+ =?us-ascii?Q?MYGjdlMfXmdbeVgVHTZau2SM0j3IJxItDpk+NUqvILtidu+h25izZsvH1P2+?=
+ =?us-ascii?Q?uMpE7on8tk8FQecsIcN4D1xyeRuG/cMlk3GZxOkvbHZorzd4W7edIvRojtUV?=
+ =?us-ascii?Q?U1pwRaTZU5gflMdiW7FGLYn2G8iHCaBU8sm6tstFL38oNjfIqCfLWB7CMVCz?=
+ =?us-ascii?Q?aJ/siBPVW56KJgZFdBT0T+/Mql8ZEoNd9T3WVUnEguxFeNBbTzPvfTQ1ZGOZ?=
+ =?us-ascii?Q?ZOgJqu+zAN8A6dbpuoZI2J66hlAIvkxNtJTx4q+2SP1u+l+GWFJhhoSFGgEk?=
+ =?us-ascii?Q?83GhmgIPcnJdHc12TmGW/PD7XcvLdXeJnY8XHvsozWGyMg5M75lMU2FoG7Zw?=
+ =?us-ascii?Q?CYxqKKQCVQxtQ4JBMhjmWO6dbBuYaOaXXmuUeONiXiZJQ74Pwh2beffZjswF?=
+ =?us-ascii?Q?SICiTm+0ePuD7r1ZUOxjCNg=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dfa7cf4f-2096-42d5-f1ad-08dcc0d15121
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2024 04:34:02.2783
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ixNdywT8ALMNLXcW2tySoDe6mPiG/Tvpw4hvg70OwJYEZDIBNoWudvJeesDG1qbrHxQltEYHZZVabA+uFxI5evL6t1+IQrGQ7ijyNzbmDrB0MDlmBCTRhlKyU1qOUdL+
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB11706
 
-Hi Chris,
 
-kernel test robot noticed the following build errors:
+Hi Tomi
 
-[auto build test ERROR on sre-power-supply/for-next]
-[also build test ERROR on jic23-iio/togreg lee-mfd/for-mfd-next linus/master v6.11-rc4 next-20240819]
-[cannot apply to lee-mfd/for-mfd-fixes]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Thank you for the feedback, and sorry for my late responce.
+I was under Summer Vacation
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Chris-Morgan/iio-adc-axp20x_adc-Add-adc_en1-and-adc_en1-to-axp_data/20240820-005144
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/sre/linux-power-supply.git for-next
-patch link:    https://lore.kernel.org/r/20240819164619.556309-15-macroalpha82%40gmail.com
-patch subject: [PATCH V3 14/15] power: supply: axp20x_battery: add support for AXP717
-config: i386-buildonly-randconfig-005-20240820 (https://download.01.org/0day-ci/archive/20240820/202408201228.Hee4eSYl-lkp@intel.com/config)
-compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240820/202408201228.Hee4eSYl-lkp@intel.com/reproduce)
+> If we have this, of_graph_get_next_ports() returns the ports@0, and that 
+> makes sense:
+> 
+> parent {
+> 	ports@0 {
+> 		port@0 { };
+> 	};
+> };
+> 
+> If we have this, of_graph_get_next_ports() returns the parent, and 
+> that's a bit surprising, but I can see the need, and it just needs to be 
+> documented:
+> 
+> parent {
+> 	port { };
+> };
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408201228.Hee4eSYl-lkp@intel.com/
+Thank you for understanding the situation
 
-All errors (new ones prefixed by >>):
+> But if we have this, does it make sense that of_graph_get_next_ports() 
+> returns the parent, or should it return NULL:
+> 
+> parent {
+> 	/* No ports or port */
+> };
 
->> drivers/power/supply/axp20x_battery.c:266:9: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     266 |         *val = FIELD_GET(AXP717_ICC_CHARGER_LIM_MASK, *val) *
-         |                ^
-   drivers/power/supply/axp20x_battery.c:439:17: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     439 |                 val->intval = FIELD_GET(AXP717_PWR_OP_BATT_PRESENT, reg);
-         |                               ^
-   2 errors generated.
+Yeah, it should return NULL in this case.
 
+>  > 	port = of_graph_get_next_port(parent, NULL); // (A)
+>  > 	port = of_graph_get_next_port(parent, port); // (B)
+>  > 	port = of_graph_get_next_port(parent, port); // NULl
+> 
+> it does not feel right. Why does of_graph_get_next_port() return only 
+> the ports of ports@0? I think it should either return nothing, as there 
+> are no 'port' nodes in the parent, or it should return all the port 
+> nodes from all the ports nodes.
 
-vim +/FIELD_GET +266 drivers/power/supply/axp20x_battery.c
+As you also mentioned, having "ports" node is optional, and maybe this is
+the reason you feel uncomfortable on current code, and I can agree about
+it.
 
-   256	
-   257	static int axp717_get_constant_charge_current(struct axp20x_batt_ps *axp,
-   258						      int *val)
-   259	{
-   260		int ret;
-   261	
-   262		ret = regmap_read(axp->regmap, AXP717_ICC_CHG_SET, val);
-   263		if (ret)
-   264			return ret;
-   265	
- > 266		*val = FIELD_GET(AXP717_ICC_CHARGER_LIM_MASK, *val) *
-   267			axp->data->ccc_scale;
-   268	
-   269		return 0;
-   270	}
-   271	
+If the driver needs to care about multi "ports", it is obvious that the
+driver cares "ports" node.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+My opinion is because having "ports" is optional, we want to handle
+"port" with/without "ports" by same function, especially if it doesn't
+need to care about multi "ports".
+
+I think your opinion (= "port" nodes strictly only in the given parent
+node) means driver need to care both with/without "ports" node, but the
+code will be pointlessly complex if it doesn't need to care multi "ports".
+
+> bus {
+> 	/* our display device */
+> 	display {
+> 		port { };
+> 	};
+> 
+> 	/* some odd ports device */
+> 	ports {
+> 	};
+> };
+> 
+> and you use of_graph_get_next_ports() for display, you'll end up getting 
+> the 'ports' node.
+
+This is interesting sample, but feels a little forced.
+If you need to handle display::port, you call
+
+	port = of_graph_get_next_port(display, NULL);
+
+Indeed we will get "ports" node if it calls of_graph_get_next_ports(),
+but it needs to use unrelated parameters, I think ?
+
+	ports = of_graph_get_next_ports(bus, display);
+
+> > 	parent {
+> > 		ports@0 {
+> > 			port@0 { };
+> > 			port@1 { };
+> > 		};
+> > 		ports@1 {
+> > 			port@0 { };
+> > 		};
+> > 	};
+> > 
+> > 	of_graph_get_port_count(parent); // 2 = number of ports@0
+> 
+> I think the above is a bit surprising, and in my opinion points that 
+> there is a problem. Why does using 'parent' equate to only using 
+> 'ports@0'? Again, I would expect either to get 0 (as there are no 'port' 
+> nodes in parent, or 3.
+
+This feature is for the driver which *doesn't* need to care about "ports".
+
+	/* CASE1 */
+	parent {
+		port {...};
+	};
+
+	/* CASE2 */
+	parent {
+		ports {
+			port {...};
+		};
+	};
+
+both case (CASE1/2), we can use
+
+	of_graph_get_port_count(parent);
+
+If the driver need to care multi ports, it should use such code, IMO.
+
+	nr = 0;
+	for_each_of_graph_ports(parent, ports) {
+		nr += of_graph_get_port_count(ports);
+
+But of course we can handle it in v2 patch.
+
+	/* of_graph_get_port_count() cares multi ports inside */
+	of_graph_get_port_count(parent);
+
+Thank you for your help !!
+
+Best regards
+---
+Kuninori Morimoto
 
