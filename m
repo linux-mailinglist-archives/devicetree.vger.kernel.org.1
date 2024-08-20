@@ -1,268 +1,246 @@
-Return-Path: <devicetree+bounces-95137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAFB595833F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 11:53:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D3C2958344
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 11:54:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4859C1F228B9
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 09:53:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C90E3285F23
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 09:54:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 909B818C03E;
-	Tue, 20 Aug 2024 09:53:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94B1118C32B;
+	Tue, 20 Aug 2024 09:54:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="FXiWg5gW"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="TH9hBdqM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E156718B473
-	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 09:53:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1707B18A95A
+	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 09:54:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724147631; cv=none; b=YXgk9Oz6IyYmayGqRX4jXwpZHj0Ij9beOI9YK+eqjhfB15Ojb0++mvlC2jVDyR3Rd/oHL3NHsap4Km9ps7oon8LXMZR3YvnNJQLJj5MreU0xK5iff4ls/Sx8mW9G1QJ3+bPA+ZtfYyQSwVtglqZSCPOERdAurZlqpAUY8jVgMS4=
+	t=1724147675; cv=none; b=KAou0uNqNdyd7mskHSKiHsbGwoDDqdx0UNyEGVX+yssVmesCcqjpJP6VMIvs3caifdApj7xe3wIlZ0Cvq9HLURbQod+pxPpel+QfaFSwGo5+WCSgrmFchWi7IPOo1IFXcABDzfel+v9vcxL7G2I4uICOaIJvyOko/WUM3eqkxlQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724147631; c=relaxed/simple;
-	bh=GxrtDuKtTT6pJGqk4JbG235dT4xixJ7axY2q2KnwnpU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NRL5Uvtxaw0b+ZbgZeOpSgtsDrK32WgrerMuxEMsq0dBNz56pCDWw1vMqk8ZTUiTEOP9XKIZa2HB/khXcE9Ok/j3D5BKGXdUYSxdXtXMS77giftP3t3FEBkhH3gp1cMC2tFza52V+ey2IvcEdrQ+xoYMvk7+bQ72/zoLqGAewow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=FXiWg5gW; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-202089e57d8so23632425ad.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 02:53:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1724147629; x=1724752429; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=JrZv66ypySBbkjGBJqR1EJvhupMwP+pmcQpQ47+M+9Y=;
-        b=FXiWg5gW/G6UonZeCMGwDuZTKo4uEtKYmrIdfJuZboNsBI7nifKt33VvQokcBfOpyG
-         fucMUC0GngsnT6J4YpU4Dft9P3waH9K4FWVliAZhRRkcbpeqNZJFM4z6IXWfY8Z3v9ck
-         IHh3ElETgEY6yaLpu9khTs23L+qsJ010gqZ7E=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724147629; x=1724752429;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JrZv66ypySBbkjGBJqR1EJvhupMwP+pmcQpQ47+M+9Y=;
-        b=XG053Hjyjt48Mlrq8PryYKkLt0O997n2gYp5RVYRoXvFfz+GLX+f5r92TgReDVHUBc
-         TnQdk35Dv+uY/NMS0vyAMmBvBpffbUAsmtadRGu3j7stJmxm3hAw60QyohPECgXCmCvQ
-         n1VW6cSGaSPvqJPI0KUxyGnCnOaSU4wHRrEpfeVxqrY+RfFAKjSYtRS6qZXeRJzQvpBV
-         h/tNUcEL/h/+54GeVOEOC8EPn41s281PnZgIl/hwCQlihAtaTQut+gmJTV/GsFXpmIFi
-         WXpuQiVr355hLtjgQFRs18wXLv8HrmDO5F1VnJKJrnerV6Xt2asceMuvEWN0CLzEdVpR
-         VMAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXJHmdpg7xNzYl9SvGWdrYXdpRUO1dcZ9LU3XaPTfAAUP6QK33UHF+9clAFhgziyT+R2Y0oLHWIS6HG@vger.kernel.org
-X-Gm-Message-State: AOJu0YxE0SeAYZdzd+QI4TE5feqrhjWGCZClrb3I3rqtdFlzikyNWBfV
-	aom5ZKxlK2JUdUE7SfeHc/ouY/vemB2Gue87/w59dkN8gQDSdIMuEr+3ceXH9A==
-X-Google-Smtp-Source: AGHT+IF9dVDhLgmVd2fwVFFWmxIJ70NtaZMWP9SUcwSh2q1d0OqobzkgL6YHM4o8P1aQbGHfymYCJA==
-X-Received: by 2002:a17:902:f68a:b0:1f9:e2c0:d962 with SMTP id d9443c01a7336-2025f1d09d3mr40897905ad.31.1724147628827;
-        Tue, 20 Aug 2024 02:53:48 -0700 (PDT)
-Received: from [10.176.68.61] ([192.19.176.250])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7c6b63694a1sm8802517a12.92.2024.08.20.02.53.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Aug 2024 02:53:48 -0700 (PDT)
-Message-ID: <7c2c6d22-399b-42e7-8ac7-098f036e9e81@broadcom.com>
-Date: Tue, 20 Aug 2024 11:53:41 +0200
+	s=arc-20240116; t=1724147675; c=relaxed/simple;
+	bh=rsAFr7H/IgzWK005p8Im9Bg0e7SRSmrhtoNnVFssAAs=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:MIME-Version:
+	 Content-Type:References; b=gQSqAnGIsLvPkkCZ3cIwvlQ7i6PBXoSC1Igcd2k2fXKjUlN44luoMUecfShTPYEeTZWoBYHtCifiMWWd/2QSq5DBYASTiSVo/JUVqh7NyTsyKOrV7Uc+SLWE2t8sXXGFnb4M870SyizDL3uO7KhEQekET0NPROLR4iDuwf2WFpc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=TH9hBdqM; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas1p4.samsung.com (unknown [182.195.41.48])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20240820095429epoutp033904a1ca33a06e0b8177a1c86601b602~tZyvBnkRi1398513985epoutp03M
+	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 09:54:29 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20240820095429epoutp033904a1ca33a06e0b8177a1c86601b602~tZyvBnkRi1398513985epoutp03M
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1724147670;
+	bh=AFLXNiVwSlYr3aTYFcpsOpXcL/LT46RkPbGiq8ZtSDc=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=TH9hBdqM1nsH9XeApvz8B11n2nJq9PifiE09HgBULRDUb6OVDW1p3L8QB6edHwnnL
+	 ToZNH4eVtxUEB5vOjO8iEOL4If6oH+xmBbR33Tz4ysCWcRuEmaslkHenzJMYR3SXyo
+	 tCcl9TXt8l7XjXH4wWmsnJDB1y99xACKdfPQhndc=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+	epcas1p3.samsung.com (KnoxPortal) with ESMTP id
+	20240820095429epcas1p3074a30dfec74590d4890ae1aefad0ff2~tZyumP3CH0244302443epcas1p3I;
+	Tue, 20 Aug 2024 09:54:29 +0000 (GMT)
+Received: from epsmgec1p1-new.samsung.com (unknown [182.195.38.236]) by
+	epsnrtp3.localdomain (Postfix) with ESMTP id 4Wp4Yw3pqQz4x9Pp; Tue, 20 Aug
+	2024 09:54:28 +0000 (GMT)
+Received: from epcas1p1.samsung.com ( [182.195.41.45]) by
+	epsmgec1p1-new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	14.46.19509.4D764C66; Tue, 20 Aug 2024 18:54:28 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas1p3.samsung.com (KnoxPortal) with ESMTPA id
+	20240820095428epcas1p316c9a28149258d0681423e5c60b0f4d1~tZytR_cHK2288622886epcas1p3m;
+	Tue, 20 Aug 2024 09:54:28 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20240820095428epsmtrp292e56f1500bda6727c3feccb317c3d30~tZytQ-FKh1423114231epsmtrp2Y;
+	Tue, 20 Aug 2024 09:54:28 +0000 (GMT)
+X-AuditID: b6c32a4c-10bff70000004c35-2d-66c467d4fb98
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	BD.80.08456.3D764C66; Tue, 20 Aug 2024 18:54:27 +0900 (KST)
+Received: from [10.113.111.204] (unknown [10.113.111.204]) by
+	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20240820095427epsmtip1be4bb3580c5be0cdad9e09c1388fa0b6~tZys7v3Au2079020790epsmtip1M;
+	Tue, 20 Aug 2024 09:54:27 +0000 (GMT)
+Message-ID: <9ee0efad7a27202e6b830996b5ee661a2d350b84.camel@samsung.com>
+Subject: Re: [PATCH v6 4/4] clk: samsung: add top clock support for
+ ExynosAuto v920 SoC
+From: Kwanghoon Son <k.son@samsung.com>
+To: "sunyeal.hong" <sunyeal.hong@samsung.com>, 'Krzysztof Kozlowski'
+	<krzk@kernel.org>, 'Sylwester Nawrocki' <s.nawrocki@samsung.com>, 'Chanwoo
+	Choi' <cw00.choi@samsung.com>, 'Alim Akhtar' <alim.akhtar@samsung.com>,
+	'Michael Turquette' <mturquette@baylibre.com>, 'Stephen Boyd'
+	<sboyd@kernel.org>, 'Rob Herring' <robh@kernel.org>, 'Conor Dooley'
+	<conor+dt@kernel.org>
+Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Date: Tue, 20 Aug 2024 18:54:27 +0900
+In-Reply-To: <087401daf2a3$4ae602f0$e0b208d0$@samsung.com>
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 0/4] Add AP6275P wireless support
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: jacobe.zang@wesion.com, bhelgaas@google.com,
- brcm80211-dev-list.pdl@broadcom.com, brcm80211@lists.linux.dev,
- christophe.jaillet@wanadoo.fr, conor+dt@kernel.org, davem@davemloft.net,
- devicetree@vger.kernel.org, duoming@zju.edu.cn, edumazet@google.com,
- gregkh@linuxfoundation.org, krzk+dt@kernel.org, kuba@kernel.org,
- kvalo@kernel.org, linux-kernel@vger.kernel.org,
- linux-wireless@vger.kernel.org, megi@xff.cz, minipli@grsecurity.net,
- netdev@vger.kernel.org, pabeni@redhat.com, robh@kernel.org,
- saikrishnag@marvell.com, stern@rowland.harvard.edu, yajun.deng@linux.dev
-References: <uzmj5w6byisfguatjyy2ibo6zbn7w52bg2abgf7egych7usv6j@ec4xdmaofach>
- <67d67f15-4631-44ba-bc05-c8da6a1af1bf@broadcom.com>
- <xc5226th2sifhop3gnwnziok4lfl5s6yqbxq6wx4vygnuf4via@4475aaonnmaz>
-Content-Language: en-US
-From: Arend van Spriel <arend.vanspriel@broadcom.com>
-Autocrypt: addr=arend.vanspriel@broadcom.com; keydata=
- xsFNBGP96SABEACfErEjSRi7TA1ttHYaUM3GuirbgqrNvQ41UJs1ag1T0TeyINqG+s6aFuO8
- evRHRnyAqTjMQoo4tkfy21XQX/OsBlgvMeNzfs6jnVwlCVrhqPkX5g5GaXJnO3c4AvXHyWik
- SOd8nOIwt9MNfGn99tkRAmmsLaMiVLzYfg+n3kNDsqgylcSahbd+gVMq+32q8QA+L1B9tAkM
- UccmSXuhilER70gFMJeM9ZQwD/WPOQ2jHpd0hDVoQsTbBxZZnr2GSjSNr7r5ilGV7a3uaRUU
- HLWPOuGUngSktUTpjwgGYZ87Edp+BpxO62h0aKMyjzWNTkt6UVnMPOwvb70hNA2v58Pt4kHh
- 8ApHky6IepI6SOCcMpUEHQuoKxTMw/pzmlb4A8PY//Xu/SJF8xpkpWPVcQxNTqkjbpazOUw3
- 12u4EK1lzwH7wjnhM3Fs5aNBgyg+STS1VWIwoXJ7Q2Z51odh0XecsjL8EkHbp9qHdRvZQmMu
- Ns8lBPBkzpS7y2Q6Sp7DcRvDfQQxPrE2sKxKLZVGcRYAD90r7NANryRA/i+785MSPUNSTWK3
- MGZ3Xv3fY7phISvYAklVn/tYRh88Zthf6iDuq86m5mr+qOO8s1JnCz6uxd/SSWLVOWov9Gx3
- uClOYpVsUSu3utTta3XVcKVMWG/M+dWkbdt2KES2cv4P5twxyQARAQABzS9BcmVuZCB2YW4g
- U3ByaWVsIDxhcmVuZC52YW5zcHJpZWxAYnJvYWRjb20uY29tPsLBhwQTAQgAMRYhBLX1Z69w
- T4l/vfdb0pZ6NOIYA/1RBQJj/ek9AhsDBAsJCAcFFQgJCgsFFgIDAQAACgkQlno04hgD/VGw
- 8A//VEoGTamfCks+a12yFtT1d/GjDdf3i9agKMk3esn08JwjJ96x9OFFl2vFaQCSiefeXITR
- K4T/yT+n/IXntVWT3pOBfb343cAPjpaZvBMh8p32z3CuV1H0Y+753HX7gdWTEojGWaWmKkZh
- w3nGoRZQEeAcwcF3gMNwsM5Gemj7aInIhRLUeoKh/0yV85lNE1D7JkyNheQ+v91DWVj5/a9X
- 7kiL18fH1iC9kvP3lq5VE54okpGqUj5KE5pmHNFBp7HZO3EXFAd3Zxm9ol5ic9tggY0oET28
- ucARi1wXLD/oCf1R9sAoWfSTnvOcJjG+kUwK7T+ZHTF8YZ4GAT3k5EwZ2Mk3+Rt62R81gzRF
- A6+zsewqdymbpwgyPDKcJ8YUHbqvspMQnPTmXNk+7p7fXReVPOYFtzzfBGSCByIkh1bB45jO
- +TM5ZbMmhsUbqA0dFT5JMHjJIaGmcw21ocgBcLsJ730fbLP/L08udgWHywPoq7Ja7lj5W0io
- ZDLz5uQ6CEER6wzD07vZwSl/NokljVexnOrwbR3wIhdr6B0Hc/0Bh7T8gpeM+QcK6EwJBG7A
- xCHLEacOuKo4jinf94YQrOEMnOmvucuQRm9CIwZrQ69Mg6rLn32pA4cK4XWQN1N3wQXnRUnb
- MTymLAoxE4MInhDVsZCtIDFxMVvBUgZiZZszN33OwU0EY/3pIgEQAN35Ii1Hn90ghm/qlvz/
- L+wFi3PTQ90V6UKPv5Q5hq+1BtLA6aj2qmdFBO9lgO9AbzHo8Eizrgtxp41GkKTgHuYChijI
- kdhTVPm+Pv44N/3uHUeFhN3wQ3sTs1ZT/0HhwXt8JvjqbhvtNmoGosZvpUCTwiyM1VBF/ICT
- ltzFmXd5z7sEuDyZcz9Q1t1Bb2cmbhp3eIgLmVA4Lc9ZS3sK1UMgSDwaR4KYBhF0OKMC1OH8
- M5jfcPHR8OLTLIM/Thw0YIUiYfj6lWwWkb82qa4IQvIEmz0LwvHkaLU1TCXbehO0pLWB9HnK
- r3nofx5oMfhu+cMa5C6g3fBB8Z43mDi2m/xM6p5c3q/EybOxBzhujeKN7smBTlkvAdwQfvuD
- jKr9lvrC2oKIjcsO+MxSGY4zRU0WKr4KD720PV2DCn54ZcOxOkOGR624d5bhDbjw1l2r+89V
- WLRLirBZn7VmWHSdfq5Xl9CyHT1uY6X9FRr3sWde9kA/C7Z2tqy0MevXAz+MtavOJb9XDUlI
- 7Bm0OPe5BTIuhtLvVZiW4ivT2LJOpkokLy2K852u32Z1QlOYjsbimf77avcrLBplvms0D7j6
- OaKOq503UKfcSZo3lF70J5UtJfXy64noI4oyVNl1b+egkV2iSXifTGGzOjt50/efgm1bKNkX
- iCVOYt9sGTrVhiX1ABEBAAHCwXYEGAEIACAWIQS19WevcE+Jf733W9KWejTiGAP9UQUCY/3p
- PgIbDAAKCRCWejTiGAP9UaC/EACZvViKrMkFooyACGaukqIo/s94sGuqxj308NbZ4g5jgy/T
- +lYBzlurnFmIbJESFOEq0MBZorozDGk+/p8pfAh4S868i1HFeLivVIujkcL6unG1UYEnnJI9
- uSwUbEqgA8vwdUPEGewYkPH6AaQoh1DdYGOleQqDq1Mo62xu+bKstYHpArzT2islvLdrBtjD
- MEzYThskDgDUk/aGPgtPlU9mB7IiBnQcqbS/V5f01ZicI1esy9ywnlWdZCHy36uTUfacshpz
- LsTCSKICXRotA0p6ZiCQloW7uRH28JFDBEbIOgAcuXGojqYx5vSM6o+03W9UjKkBGYFCqjIy
- Ku843p86Ky4JBs5dAXN7msLGLhAhtiVx8ymeoLGMoYoxqIoqVNaovvH9y1ZHGqS/IYXWf+jE
- H4MX7ucv4N8RcsoMGzXyi4UbBjxgljAhTYs+c5YOkbXfkRqXQeECOuQ4prsc6/zxGJf7MlPy
- NKowQLrlMBGXT4NnRNV0+yHmusXPOPIqQCKEtbWSx9s2slQxmXukPYvLnuRJqkPkvrTgjn5d
- eSE0Dkhni4292/Nn/TnZf5mxCNWH1p3dz/vrT6EIYk2GSJgCLoTkCcqaM6+5E4IwgYOq3UYu
- AAgeEbPV1QeTVAPrntrLb0t0U5vdwG7Xl40baV9OydTv7ghjYZU349w1d5mdxg==
-In-Reply-To: <xc5226th2sifhop3gnwnziok4lfl5s6yqbxq6wx4vygnuf4via@4475aaonnmaz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrKJsWRmVeSWpSXmKPExsWy7bCmru6V9CNpBuuPSVo8mLeNzWLN3nNM
+	Fte/PGe1mH/kHKvF+fMb2C02Pb7GavGx5x6rxeVdc9gsZpzfx2Rx8ZSrxf89O9gtDr9pZ7X4
+	d20ji0XTsvVMDnwe72+0sntsWtXJ5rF5Sb1H35ZVjB6fN8kFsEZl22SkJqakFimk5iXnp2Tm
+	pdsqeQfHO8ebmhkY6hpaWpgrKeQl5qbaKrn4BOi6ZeYA3amkUJaYUwoUCkgsLlbSt7Mpyi8t
+	SVXIyC8usVVKLUjJKTAt0CtOzC0uzUvXy0stsTI0MDAyBSpMyM5YNXsia8E3uYpr+xtYGxgv
+	SnYxcnJICJhI7F3YzdrFyMUhJLCHUaL533so5xOjxKIrJ5ggnG+MEk33m9hhWma1XWKGSOxl
+	lDje9oMZJCEk8J5RYlVLKojNK+Ah0X3sCBOILSwQKfF0wQ2wGjYBdYklbWvZQZpFBH4ySTza
+	dxxsH7PAUkaJSVeusYFUsQioSiy/tIcVxOYUsJJY19cAFmcW0JZYtvA12CRRAXmJhocnmCG2
+	CUqcnPmEBWSQhMAWDol1LeugbnWRONixlgnCFpZ4dXwLVFxK4vO7vWwQdrbE0Y8wdonE9VmL
+	WCFsY4n9SycD9XIALdaUWL9LH+IGPol3X3tYQcISArwSHW1CEKa8xK3OcohGUYkzTz+yQYQ9
+	JG6shIboDiaJy69vMU1glJ+F5JlZSB6YhbBrASPzKkap1ILi3PTUZMMCQ9281HJ4zCbn525i
+	BKdXLZ8djN/X/9U7xMjEwXiIUYKDWUmEt/vlwTQh3pTEyqrUovz4otKc1OJDjKbAYJ3ILCWa
+	nA9M8Hkl8YYmlgYmZkbGJhaGZoZK4rxnrpSlCgmkJ5akZqemFqQWwfQxcXBKNTA1ZKX8+WRX
+	fmnf7JjyL+Ky3WsUjy3zDr4Z//akWxmz7Es+J3Hjss/sNRcZjhjWvClY2MlbfOH8TI9Lu097
+	7I+J/fvqScmaeNU4Rht9KT7d31Ydz0T5gxuWCbDoeu8NKXddy2dzv9C1rvNUvMzrL66Hb19Z
+	XZrM7se2vEGzewaz08+ofw6FLY4dXr0s2Yz/fW7c7fx+Q0YlJ3SlTILKOZYU5ZjuXecC6noW
+	RJT/UFFxX8fvtutSNWPxA/4ysfX81y9a3nka86w2OD6hgOHDN/HnGzwupe/L5Npu/+jns28x
+	0gUpy58w3at8yrZua2Q9t2jGAb4XftV2DTvtNUQnv/j45mKDwo9PKbcnFJyeqsRSnJFoqMVc
+	VJwIAOXV1t44BAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpkkeLIzCtJLcpLzFFi42LZdlhJTvdy+pE0g+d/LCwezNvGZrFm7zkm
+	i+tfnrNazD9yjtXi/PkN7BabHl9jtfjYc4/V4vKuOWwWM87vY7K4eMrV4v+eHewWh9+0s1r8
+	u7aRxaJp2XomBz6P9zda2T02repk89i8pN6jb8sqRo/Pm+QCWKO4bFJSczLLUov07RK4Mq6+
+	vsNY0C9XMXvyHdYGxg8SXYycHBICJhKz2i4xdzFycQgJ7GaUeLT0JRtEQlSi43IjYxcjB5At
+	LHH4cDFEzVtGiaZX68FqeAU8JLqPHWECsYUFIiWeLrjBDGKzCahLLGlbyw7SICLwk0li66E2
+	sCJmgWWMEovvs4DYLAKqEssv7WEFsTkFrCTW9TWwQWzYwySxafcGVogGTYnW7b/ZIWxtiWUL
+	X4NtEBWQl2h4eIIZ4gpBiZMzn7BMYBSchaRlFpKWWUjKFjAyr2KUTC0ozk3PLTYsMMpLLdcr
+	TswtLs1L10vOz93ECI4lLa0djHtWfdA7xMjEwXiIUYKDWUmEt/vlwTQh3pTEyqrUovz4otKc
+	1OJDjNIcLErivN9e96YICaQnlqRmp6YWpBbBZJk4OKUamE6LvuZamfaxYt2KLMFUg1y/fqM4
+	Xa9NCVvmB0sxXm9hTs6Z1s30OPHFS6EbAlO7JQOKdq8pYnppNHX7YvflGs8i/MNyKxfpz/iX
+	mzF5Lv+RsJf/3t2qrVoy6/3JQ99MxbbVfv29mNH3RF58QNrnxYk3H/R49965cOnwLqdcXxP7
+	vY+amb8f7bvy5Zrn8yPrBKY4uwuVRDQkyhx5Gms/M1Cpe8VqrdCoD9+O7Jy/pUysluvbjov9
+	W6fsyX81/6bWp491pgJLvec6r3zj6Kt/wvTrE//pFi3dLKfrKorU49ONC4XWrLaySNn/snLK
+	YSXuZOVLLbdYHgZkODzzfr/da5Xhzid5LEaJV3MFt6zaGKDEUpyRaKjFXFScCAC+KVHWFAMA
+	AA==
+X-CMS-MailID: 20240820095428epcas1p316c9a28149258d0681423e5c60b0f4d1
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20240819052422epcas2p258a29e773ebdd60573078c21f7a7da12
+References: <20240819052416.2258976-1-sunyeal.hong@samsung.com>
+	<CGME20240819052422epcas2p258a29e773ebdd60573078c21f7a7da12@epcas2p2.samsung.com>
+	<20240819052416.2258976-5-sunyeal.hong@samsung.com>
+	<7f77dcc41173f2a20a0264b6242ecdac6ea85ad9.camel@samsung.com>
+	<087401daf2a3$4ae602f0$e0b208d0$@samsung.com>
 
-On 8/19/2024 10:33 PM, Sebastian Reichel wrote:
-> Hello,
-> 
-> On Mon, Aug 19, 2024 at 09:35:12PM GMT, Arend van Spriel wrote:
->> On 8/19/2024 6:42 PM, Sebastian Reichel wrote:
->>> I tested this on RK3588 EVB1 and the driver is working fine. The DT
->>> bindings are not correct, though:
->>>
->>> linux/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dtb: wifi@0,0:
->>> compatible: 'oneOf' conditional failed, one must be fixed:
->>>
->>> ['pci14e4,449d', 'brcm,bcm4329-fmac'] is too long
->>> 'pci14e4,449d' is not one of ['brcm,bcm43143-fmac', 'brcm,bcm4341b0-fmac',
->>> 'brcm,bcm4341b4-fmac', 'brcm,bcm4341b5-fmac', 'brcm,bcm4329-fmac',
->>> 'brcm,bcm4330-fmac', 'brcm,bcm4334-fmac', 'brcm,bcm43340-fmac',
->>> 'brcm,bcm4335-fmac', 'brcm,bcm43362-fmac', 'brcm,bcm4339-fmac',
->>> 'brcm,bcm43430a0-fmac', 'brcm,bcm43430a1-fmac', 'brcm,bcm43455-fmac',
->>> 'brcm,bcm43456-fmac', 'brcm,bcm4354-fmac', 'brcm,bcm4356-fmac',
->>> 'brcm,bcm4359-fmac', 'brcm,bcm4366-fmac', 'cypress,cyw4373-fmac',
->>> 'cypress,cyw43012-fmac', 'infineon,cyw43439-fmac']
->>> from schema $id: http://devicetree.org/schemas/net/wireless/brcm,bcm4329-fmac.yaml#
->>>
->>> It's easy to see the problem in the binding. It does not expect a
->>> fallback string after the PCI ID based compatible. Either the
->>> pci14e4,449d entry must be added to the first enum in the binding,
->>> which has the fallback compatible, or the fallback compatible
->>> should not be added to DTS.
->>
->> Never understood why we ended up with such a large list. When the binding
->> was introduced there was one compatible, ie. brcm,bcm4329-fmac. People
->> wanted all the other flavors because it described a specific wifi chip and
->> no other reason whatsoever. The PCI ID based compatible do obfuscate that
->> info so those are even less useful in my opinion.
->>
->>> If the fallback compatible is missing in DTS, the compatible check in
->>> brcmf_of_probe() fails and the lpo clock is not requested resulting
->>> in the firmware startup failing. So that would require further
->>> driver changes.
->>
->> Right. The text based bindings file in 5.12 kernel clearly says:
->>
->> Required properties:
->>
->>   - compatible : Should be "brcm,bcm4329-fmac".
->>
->> In 5.13 kernel this was replaced by the json-schema yaml file. The PCI ID
->> based enum which was added later does also list brcm,bcm4329-fmac so why
->> does that not work for the compatible list ['pci14e4,449d',
->> 'brcm,bcm4329-fmac']? Looking at the compatible property in yaml which I
->> stripped a bit for brevity:
->>
->> properties:
->>    compatible:
->>      oneOf:
->>        - items:
->>            - enum:
->>                - brcm,bcm43143-fmac
->>                - brcm,bcm4329-fmac
->>                - infineon,cyw43439-fmac
->>            - const: brcm,bcm4329-fmac
->>        - enum:
->>            - brcm,bcm4329-fmac
->>            - pci14e4,43dc  # BCM4355
->>            - pci14e4,4464  # BCM4364
->>            - pci14e4,4488  # BCM4377
->>            - pci14e4,4425  # BCM4378
->>            - pci14e4,4433  # BCM4387
->>
->> So how should I read this. Searching for some sort of syntax description I
->> found [1] which has an example schema with description that has a similarly
->> complicated compatible property. From that I think the above should be
->> changed to:
->>
->>   properties:
->>     compatible:
->>       oneOf:
->>         - items:
->>             - enum:
->>                 - brcm,bcm43143-fmac
->> -              - brcm,bcm4329-fmac
->>                 - infineon,cyw43439-fmac
->>             - const: brcm,bcm4329-fmac
->> +      - items:
->>             - enum:
->> -              - brcm,bcm4329-fmac
->>                 - pci14e4,43dc  # BCM4355
->>                 - pci14e4,4464  # BCM4364
->>                 - pci14e4,4488  # BCM4377
->>                 - pci14e4,4425  # BCM4378
->>                 - pci14e4,4433  # BCM4387
->> +          - const: brcm,bcm4329-fmac
->> +      - const: brcm,bcm4329-fmac
->>
->> This poses a constraint in which the last string in the compatible list is
->> always 'brcm,bcm4329-fmac' even if it is the only string. At least that is
->> my understanding so if my understanding is wrong feel free to correct me on
->> this.
->>
->> [1] https://docs.kernel.org/devicetree/bindings/writing-schema.html
-> 
-> Your proposed change should work as you describe. But it will result
-> in DT check errors for some Apple devices, which followed the
-> current binding and do not have the "brcm,bcm4329-fmac" fallback
-> compatible:
-> 
-> $ git grep -E "(pci14e4,43dc)|(pci14e4,4464)|(pci14e4,4488)|(pci14e4,4425)|(pci14e4,4433)" arch/
-> arch/arm64/boot/dts/apple/t8103-jxxx.dtsi:           compatible = "pci14e4,4425";
-> arch/arm64/boot/dts/apple/t8112-j413.dts:            compatible = "pci14e4,4433";
-> arch/arm64/boot/dts/apple/t8112-j493.dts:            compatible = "pci14e4,4425";
+On Tue, 2024-08-20 at 10:50 +0900, sunyeal.hong wrote:
+> Hello Kwanghoon,
+>=20
+> > -----Original Message-----
+> > From: Kwanghoon Son <k.son=40samsung.com>
+> > Sent: Monday, August 19, 2024 6:32 PM
+> > To: Sunyeal Hong <sunyeal.hong=40samsung.com>; Krzysztof Kozlowski
+> > <krzk=40kernel.org>; Sylwester Nawrocki <s.nawrocki=40samsung.com>; Cha=
+nwoo
+> > Choi <cw00.choi=40samsung.com>; Alim Akhtar <alim.akhtar=40samsung.com>=
+;
+> > Michael Turquette <mturquette=40baylibre.com>; Stephen Boyd
+> > <sboyd=40kernel.org>; Rob Herring <robh=40kernel.org>; Conor Dooley
+> > <conor+dt=40kernel.org>
+> > Cc: linux-samsung-soc=40vger.kernel.org; linux-clk=40vger.kernel.org;
+> > devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; l=
+inux-
+> > kernel=40vger.kernel.org
+> > Subject: Re: =5BPATCH v6 4/4=5D clk: samsung: add top clock support for
+> > ExynosAuto v920 SoC
+> >=20
+> > On Mon, 2024-08-19 at 14:24 +0900, Sunyeal Hong wrote:
+> > > This adds support for CMU_TOP which generates clocks for all the
+> > > function blocks such as CORE, HSI0/1/2, PERIC0/1 and so on. For
+> > > CMU_TOP, PLL_SHARED0,1,2,3,4 and 5 will be the sources of this block
+> > > and they will generate bus clocks.
+> > >=20
+> > > Signed-off-by: Sunyeal Hong <sunyeal.hong=40samsung.com>
+> > > ---
+> > >  drivers/clk/samsung/Makefile             =7C    1 +
+> > >  drivers/clk/samsung/clk-exynosautov920.c =7C 1173
+> > > ++++++++++++++++++++++
+> > >  2 files changed, 1174 insertions(+)
+> > >  create mode 100644 drivers/clk/samsung/clk-exynosautov920.c
+> > >=20
+> > > diff --git a/drivers/clk/samsung/Makefile
+> > > b/drivers/clk/samsung/Makefile index 3056944a5a54..f1ba48758c78 10064=
+4
+> > > --- a/drivers/clk/samsung/Makefile
+> > > +++ b/drivers/clk/samsung/Makefile
+> > > =40=40 -21,6 +21,7 =40=40 obj-=24(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+=
+=3D clk-
+> > exynos7.o
+> > >  obj-=24(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+=3D clk-exynos7885.o
+> > >  obj-=24(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+=3D clk-exynos850.o
+> > >  obj-=24(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+=3D clk-exynosautov9.o
+> > > +obj-=24(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+=3D clk-exynosautov920.o
+> > >  obj-=24(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+=3D clk-gs101.o
+> > >  obj-=24(CONFIG_S3C64XX_COMMON_CLK)	+=3D clk-s3c64xx.o
+> > >  obj-=24(CONFIG_S5PV210_COMMON_CLK)	+=3D clk-s5pv210.o clk-s5pv210-
+> > audss.o
+> > > diff --git a/drivers/clk/samsung/clk-exynosautov920.c
+> > > b/drivers/clk/samsung/clk-exynosautov920.c
+> > > new file mode 100644
+> > > index 000000000000..c17d25e3c9a0
+> > > --- /dev/null
+> > > +++ b/drivers/clk/samsung/clk-exynosautov920.c
+> >=20
+> > =5Bsnip=5D
+> >=20
+> > > +=7D;
+> > > +
+> > > +static const struct samsung_cmu_info peric0_cmu_info __initconst =3D=
+ =7B
+> > > +	.mux_clks		=3D peric0_mux_clks,
+> > > +	.nr_mux_clks		=3D ARRAY_SIZE(peric0_mux_clks),
+> > > +	.div_clks		=3D peric0_div_clks,
+> > > +	.nr_div_clks		=3D ARRAY_SIZE(peric0_div_clks),
+> > > +	.nr_clk_ids		=3D CLKS_NR_PERIC0,
+> > > +	.clk_regs		=3D peric0_clk_regs,
+> > > +	.nr_clk_regs		=3D ARRAY_SIZE(peric0_clk_regs),
+> > > +	.clk_name		=3D =22dout_clkcmu_peric0_noc=22,
+> >=20
+> > same question.
+> > Isn't it =22noc=22?
+> > https://lore.kernel.org/linux-samsung-
+> > soc/58dfae564a4a624e464c7803a309f1f07b5ae83d.camel=40samsung.com/
+> >=20
+> > In my case(autov9), if put wrong clk_name dmesg will show that,
+> > exynos_arm64_register_cmu: could not enable bus clock ...; err =3D -2
+> >=20
+> > Kwang.
+> >=20
+> >=20
+>=20
+> clk_name follows the guide document provided by hw. v9 is bus, but v920 u=
+ses noc.
 
-> I guess patch 3/4 from this series will also introduce some
-> regressions for these devices by moving the check. What is the
-> purpose of the compatible check in brcmf_of_probe() in the first
-> place? Can it just be dropped?
-> 
-> I see it was introduced 10 years ago in 61f663dfc1a09, probably to
-> avoid a spurious error message for systems not having the IRQ
-> described in DT? The current code exits quietly when none of the
-> optional resources are defined.
+What I mean,
 
-It was introduced simply because the compatible property has a meaning 
-that goes beyond informational. It is a claim that the properties of the 
-node comply to the bindings specification. I would really want to keep 
-the sanity check event though all properties are optional. The 
-constraint keeps the compatible matching in the driver relatively simple.
+.clk_name		=3D =22dout_clkcmu_peric0_noc=22, // wrong
+.clk_name		=3D =22noc=22, // correct
 
-Regards,
-Arend
+Because there is no clock-names =22dout_clkcmu_peric0_noc=22 in
+exynos/exynosautov920.dtsi.
+
+But if you tested your patch and working fine, ignore my comment.
+
+Kwang.
+
+>=20
+> Best Regards,
+> sunyeal
+>=20
+
 
