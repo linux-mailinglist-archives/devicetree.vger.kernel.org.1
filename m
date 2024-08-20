@@ -1,165 +1,179 @@
-Return-Path: <devicetree+bounces-95068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D304957EFB
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 09:06:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76350957F3E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 09:20:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA7951F23722
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 07:06:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9AC131C23BC3
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 07:20:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E9CE1898FE;
-	Tue, 20 Aug 2024 07:06:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94B2916C68F;
+	Tue, 20 Aug 2024 07:20:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="vNPXR8Eq"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="co/4brcW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C692176249;
-	Tue, 20 Aug 2024 07:06:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9739B16B391;
+	Tue, 20 Aug 2024 07:20:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724137582; cv=none; b=S+00OjEpN+VyM/bHEKFzaTuB60bpp60UCfwbZgvPj8HWAg9z2SB6oBcSK5Rr5jXs/Pz1xA8L2lV3f90K4Ztx73qGb27jaKuCqL53p82a8BDem3zIAywZuKaYU0R1JOZOLhWsdsTs72jb6Zwqp4Zx8NtKF8QD3EOJvq38AVoVvOI=
+	t=1724138427; cv=none; b=JPULxgGtiPxCkxoSRg66v7BvhkJVrH1ia+vZe60R+ZbuH9rtZoqQctlDCsSFdyb0dmIls9HUxhFjc6kPH9n1npKG8YiGhMGAm5DMgLbv5+MYPXK+AT7TNgU5L/jq7kqGco/wFD8DEnkknSeNQjaJ4lN9nOgfd5Kl5gPPTVumPzQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724137582; c=relaxed/simple;
-	bh=Fe+rWJrb0SPEzQOf/GnltZmSNDX6SEOvMnvp2CEWjyE=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=snsbPKuU4cYtFH6qH9yuJdMTeO3nwJOiVqmSploI+84Be8Ucb3BBwQh19/z4mQi/3FWtTeOCteKnxnTmmqjS7A+dt360kHkbOVmbfcaZBbBoa9Q07bWmfmjrYU6l1PLOspu2B3l6lYt2leoqPuLF83JXUbqx1kE1Hj38T2dRyxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=vNPXR8Eq; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47K76AbS045227;
-	Tue, 20 Aug 2024 02:06:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1724137570;
-	bh=+4l8TGmHjp7lAUWWLu9C17ULqkfasvc5VTXMnL3774s=;
-	h=From:To:CC:Subject:Date;
-	b=vNPXR8EqzK/77Xw/Ks33BZLI/Xsb5ZXnoPhdd47Lf9uwDGu8jyPTVyvv2yq6uxYld
-	 NHcF6m3I/4L4ZkM5HZalJjUC4D4jOMo94n3vKubY/k3d7s7ApFSiodyAJ3UEbwxqn1
-	 D2yfnX7C0L3tiY3x1Cas8t4X0qAJr+TvZ7HVsjP8=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47K76AoZ022563
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 20 Aug 2024 02:06:10 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 20
- Aug 2024 02:06:10 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 20 Aug 2024 02:06:10 -0500
-Received: from localhost ([10.249.128.135])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47K7681C015213;
-	Tue, 20 Aug 2024 02:06:09 -0500
-From: Bhavya Kapoor <b-kapoor@ti.com>
-To: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <b-kapoor@ti.com>
-Subject: [PATCH] arm64: dts: ti: Add PWM and ECAP overlay for J722S-EVM
-Date: Tue, 20 Aug 2024 12:36:07 +0530
-Message-ID: <20240820070607.30628-1-b-kapoor@ti.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1724138427; c=relaxed/simple;
+	bh=glSoSr9Tbk75LSg/tAu/FUEqzBhmne/ozkkwbAinyf8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TYFar4XM1hp0KY/lKzluwUG7We/rDkEi3d3JBvrxPEX6O8MsCG9L0GfWESxdXGlkrbXxESNbcuYmdaRMcKFqJVy9uZkplNbxuHU2+6nugQ1/ZOhn9yVJ35qrfMVlWpiLNNPindp6XwD0zn+aKIwS28RURBc3+VnjBlXpY2XYWQk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=co/4brcW; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1724138426; x=1755674426;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=glSoSr9Tbk75LSg/tAu/FUEqzBhmne/ozkkwbAinyf8=;
+  b=co/4brcWXYsggOAu0GvotVTt/ldKgv2yZPb24y95oYTngrYanezawbJ4
+   i2SEOP2bE1EgbMUagp75u2WqNoitzmGhKzAeWX5UijxcJ/Ncgyh/CUE5m
+   t2MPWQ7gh8zws8zY3GkZgI2fHs7UVKMJmCDTJYdIKJoogl6g4UgL+GzSR
+   /ScKiR5Ovp3tPc5mKjOW8w5CIMGlyR0wamlXI76oCxd4S07TuAHfT28VM
+   LS4nD/LORRyXV1Oh4SdwYSuKCjimjQ6L7+g2RVsInZLfy4KWnlRiYQD+8
+   uiwRcykKwXjhFWjr+xF9+m8gge6Ah8A9iBpoCfIPap9Cj8E4JKDX/g3aF
+   Q==;
+X-CSE-ConnectionGUID: LS0/4hiGQpqKsY/l8U9EQA==
+X-CSE-MsgGUID: uM8dzDQcRQ+wRioEhuJ8xw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="21959435"
+X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; 
+   d="scan'208";a="21959435"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Aug 2024 00:20:25 -0700
+X-CSE-ConnectionGUID: G3BqePshRN6O0pokLE5trg==
+X-CSE-MsgGUID: 4xIVrBGcRKGl8FyWoZMX6g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; 
+   d="scan'208";a="61400408"
+Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
+  by orviesa008.jf.intel.com with ESMTP; 20 Aug 2024 00:20:20 -0700
+Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sgJAA-0009q6-1M;
+	Tue, 20 Aug 2024 07:20:18 +0000
+Date: Tue, 20 Aug 2024 15:19:38 +0800
+From: kernel test robot <lkp@intel.com>
+To: Trevor Gamblin <tgamblin@baylibre.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	David Lechner <dlechner@baylibre.com>,
+	Uwe Kleine-Konig <u.kleine-koenig@baylibre.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, Trevor Gamblin <tgamblin@baylibre.com>
+Subject: Re: [PATCH v3 2/3] iio: adc: ad7625: add driver
+Message-ID: <202408201520.lFtco3eF-lkp@intel.com>
+References: <20240819-ad7625_r1-v3-2-75d5217c76b5@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240819-ad7625_r1-v3-2-75d5217c76b5@baylibre.com>
 
-The J722S-EVM has 3 PWM outputs and 1 ECAP output routed
-to the J28 connector. This overlay will set the appropriate
-pinmux and enable PWM and ECAP on the pins.
+Hi Trevor,
 
-Currently enabled PWM output on J28: 29, 31, 33 pins
-and ECAP output on J28: 32 pin
+kernel test robot noticed the following build errors:
 
-Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
----
- arch/arm64/boot/dts/ti/Makefile              |  1 +
- arch/arm64/boot/dts/ti/k3-j722s-evm-pwm.dtso | 53 ++++++++++++++++++++
- 2 files changed, 54 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j722s-evm-pwm.dtso
+[auto build test ERROR on ac6a258892793f0a255fe7084ec2b612131c67fc]
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index e20b27ddf901..61d51284dcba 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -111,6 +111,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-pcie1-ep.dtbo
- 
- # Boards with J722s SoC
- dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm-pwm.dtbo
- 
- # Boards with J784s4 SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-j722s-evm-pwm.dtso b/arch/arm64/boot/dts/ti/k3-j722s-evm-pwm.dtso
-new file mode 100644
-index 000000000000..f6d1f072b140
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-j722s-evm-pwm.dtso
-@@ -0,0 +1,53 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/**
-+ * DT Overlay for enabling PWM output on User Expansion header on J722S-EVM
-+ *
-+ * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include "k3-pinctrl.h"
-+
-+&main_pmx0 {
-+
-+	main_epwm0_pins_default: main-epwm0-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x01b4, PIN_OUTPUT, 2) /* (B20) EHRPWM0_A */
-+		>;
-+	};
-+
-+	main_epwm1_pins_default: main-epwm1-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x01bc, PIN_OUTPUT, 2) /* (D20) EHRPWM1_A */
-+			J722S_IOPAD(0x01c0, PIN_OUTPUT, 2) /* (E19) EHRPWM1_B */
-+		>;
-+	};
-+
-+	main_ecap0_pins_default: main-ecap0-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x01b8, PIN_OUTPUT, 3) /* (C20) ECAP0_IN_APWM_OUT */
-+		>;
-+	};
-+};
-+
-+&epwm0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_epwm0_pins_default>;
-+	status = "okay";
-+};
-+
-+&epwm1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_epwm1_pins_default>;
-+	status = "okay";
-+};
-+
-+&ecap0 {
-+	/* ECAP in APWM mode */
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_ecap0_pins_default>;
-+	status = "okay";
-+};
+url:    https://github.com/intel-lab-lkp/linux/commits/Trevor-Gamblin/dt-bindings-iio-adc-add-AD762x-AD796x-ADCs/20240819-221425
+base:   ac6a258892793f0a255fe7084ec2b612131c67fc
+patch link:    https://lore.kernel.org/r/20240819-ad7625_r1-v3-2-75d5217c76b5%40baylibre.com
+patch subject: [PATCH v3 2/3] iio: adc: ad7625: add driver
+config: alpha-randconfig-r132-20240820 (https://download.01.org/0day-ci/archive/20240820/202408201520.lFtco3eF-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 13.3.0
+reproduce: (https://download.01.org/0day-ci/archive/20240820/202408201520.lFtco3eF-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408201520.lFtco3eF-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/iio/adc/ad7625.c: In function 'ad7625_set_sampling_freq':
+>> drivers/iio/adc/ad7625.c:191:15: error: implicit declaration of function 'pwm_round_waveform_might_sleep' [-Werror=implicit-function-declaration]
+     191 |         ret = pwm_round_waveform_might_sleep(st->cnv_pwm, &cnv_wf);
+         |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/iio/adc/ad7625.c: In function 'ad7625_buffer_preenable':
+>> drivers/iio/adc/ad7625.c:420:15: error: implicit declaration of function 'pwm_set_waveform_might_sleep' [-Werror=implicit-function-declaration]
+     420 |         ret = pwm_set_waveform_might_sleep(st->cnv_pwm, &st->cnv_wf, false);
+         |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   cc1: some warnings being treated as errors
+
+
+vim +/pwm_round_waveform_might_sleep +191 drivers/iio/adc/ad7625.c
+
+   175	
+   176	static int ad7625_set_sampling_freq(struct ad7625_state *st, int freq)
+   177	{
+   178		u64 target;
+   179		struct pwm_waveform clk_gate_wf = { }, cnv_wf = { };
+   180		int ret;
+   181	
+   182		target = DIV_ROUND_UP_ULL(NSEC_PER_SEC, freq);
+   183		cnv_wf.period_length_ns = clamp(target, 100, 10 * KILO);
+   184	
+   185		/*
+   186		 * Use the maximum conversion time t_CNVH from the datasheet as
+   187		 * the duty_cycle for ref_clk, cnv, and clk_gate
+   188		 */
+   189		cnv_wf.duty_length_ns = st->info->timing_spec->conv_high_ns;
+   190	
+ > 191		ret = pwm_round_waveform_might_sleep(st->cnv_pwm, &cnv_wf);
+   192		if (ret)
+   193			return ret;
+   194	
+   195		/*
+   196		 * Set up the burst signal for transferring data. period and
+   197		 * offset should mirror the CNV signal
+   198		 */
+   199		clk_gate_wf.period_length_ns = cnv_wf.period_length_ns;
+   200	
+   201		clk_gate_wf.duty_length_ns = DIV_ROUND_UP_ULL((u64)NSEC_PER_SEC *
+   202			st->info->chan_spec.scan_type.realbits,
+   203			st->ref_clk_rate_hz);
+   204	
+   205		/* max t_MSB from datasheet */
+   206		clk_gate_wf.duty_offset_ns = st->info->timing_spec->conv_msb_ns;
+   207	
+   208		ret = pwm_round_waveform_might_sleep(st->clk_gate_pwm, &clk_gate_wf);
+   209		if (ret)
+   210			return ret;
+   211	
+   212		st->cnv_wf = cnv_wf;
+   213		st->clk_gate_wf = clk_gate_wf;
+   214	
+   215		/* TODO: Add a rounding API for PWMs that can simplify this */
+   216		target = DIV_ROUND_CLOSEST_ULL(st->ref_clk_rate_hz, freq);
+   217		st->sampling_freq_hz = DIV_ROUND_CLOSEST_ULL(st->ref_clk_rate_hz,
+   218							     target);
+   219	
+   220		return 0;
+   221	}
+   222	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
