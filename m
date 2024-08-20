@@ -1,126 +1,119 @@
-Return-Path: <devicetree+bounces-95274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E25C2958A89
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 17:01:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78269958AAA
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 17:04:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 495F4B237C6
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 15:01:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 32745286BF7
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 15:04:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DF621BF312;
-	Tue, 20 Aug 2024 14:57:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43BAB1922CB;
+	Tue, 20 Aug 2024 15:02:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="sYyVFZuo"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="afxMd8+w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A304B1B9B5C;
-	Tue, 20 Aug 2024 14:57:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3577F1917E3;
+	Tue, 20 Aug 2024 15:02:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724165839; cv=none; b=YhZqAAx+2BHfNfMUaBvprVjMnmrxMGgMLaWRY/V0LwAIuauxNTxdVkJclOtGt7icSxHshmlEN/xl4em3ETQC5c728X8PQAXK1ybWWnEWCYwskgL9s3gQkJp188LqTB1eVc0D3uA5wLNmuPTkaPxYO6jjGHE79+dQHK9W++rsWsg=
+	t=1724166162; cv=none; b=LGMDu926/Xn8Ke+q4XcI7OqxNv+oOuOzH2Lu23xJ7iw9VGtyx5EFdhuAbTW0zIK/bzFkS8fWWgZXyrNcRT4w6lB0yrpmpTUGTUmnPPd4Ofv76I7i56opeXZLEmlLEjP4kowGR5c+j3LKTZNvwhv0ugsb/jPDGHMHgYJZDejCthI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724165839; c=relaxed/simple;
-	bh=g1KEfugpU8j7Y7iUQcuArgkr2PxWdb3Wwh1aNBxpvwk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=teOr+YRbP657WHaRYsBVT2jTgB4Hgha64AGrUL2IxUo3qGgDh3XKjg5KwTS+t3Zi3hUSt0l2nZ5sYyraFfqb+UUKT7Rn3SgmLDuxSfnAB1wGVVI1pHO0wH6n2eBS97au2/cef5XRJXYP9sEUsRNilW9uBDYP0KKR8ldC+SojQL8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=s2b.tech; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=sYyVFZuo; arc=none smtp.client-ip=45.89.224.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=s2b.tech
-Received: from p-infra-ksmg-sc-msk02.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id A6BA5120016;
-	Tue, 20 Aug 2024 17:57:15 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru A6BA5120016
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1724165835;
-	bh=VAgeotiUlCydTwldbqg7VhyzODf4pRKb+hVoBlsA2DE=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=sYyVFZuogn/1yCmZKnNAvCMzE2izy0Z0nLEUIPtAo9cxwWv8dubOijBWUoueoKRIQ
-	 Muwxm32vxli9lJVh3HAaOdg/d3QUDgrWrdPbgWBDpEvf24IQTEXcSNOb/1MfVYCpE+
-	 wfhRGuZISGNW7xDgXV40nUTr9OqBGVi3YAO5ohG18j/R6beuCbIqy4b8+Xoeplz0GY
-	 f+6wxeg/R79ejds1QRCs1W04ATfsmyBXLCZmcGpdLu2BcKbNp2pGulfHKS+OxrKM32
-	 3azCzAgVBcGNRBsg90b9Xht30ehcxbL9LkUm9eb/xixB7lidh2YCNwLPyfv4DFdzNF
-	 XS/Z/tigW/DGQ==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Tue, 20 Aug 2024 17:57:15 +0300 (MSK)
-From: Alexey Romanov <avromanov@salutedevices.com>
-To: <neil.armstrong@linaro.org>, <clabbe@baylibre.com>,
-	<herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
-	<martin.blumenstingl@googlemail.com>, <vadim.fedorenko@linux.dev>
-CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, Alexey
- Romanov <avromanov@salutedevices.com>
-Subject: [PATCH v9 23/23] arch: arm64: dts: meson: axg: add crypto node
-Date: Tue, 20 Aug 2024 17:56:23 +0300
-Message-ID: <20240820145623.3500864-24-avromanov@salutedevices.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240820145623.3500864-1-avromanov@salutedevices.com>
-References: <20240820145623.3500864-1-avromanov@salutedevices.com>
+	s=arc-20240116; t=1724166162; c=relaxed/simple;
+	bh=8dEYB5HfPydA6/v/WOHRd3YOWXi2J8wwcSC1dx66SmA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=OSFpDgK0/5twaspq+Pdhb/xn3SSvit3vMTOC2I9ndEwlV9GsmHR3iBivq4fPvijXi16lFkRRy5UaRh6qWO+zxkx6bS8ufldb1d/1C/8L0XbVJlTlsF+nqL+k5UCYFebKZ25lKEAlBTInQ/vyzUNi0fWOUh9Lx6TIAkZvkOhv4cg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=afxMd8+w; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47KF2WC2009433;
+	Tue, 20 Aug 2024 10:02:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1724166152;
+	bh=nwrUwUhK4mB5TX05uAd+w+1d62N97DyJG/CwLmMVxWA=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=afxMd8+w/BG/CBFIXP6lw9kjJyE/UBpTR6iBftoD5CyxpKav6kzpKTAQAn6p3TeQr
+	 JHAnoBzE2YUJ0GNqCRWsxfV/EIY2HcG58AHRE6l+oDU2WbEjn7XZmcbRt/qPAYWFuX
+	 vVnYTYKQnbivZlmEMiQoHritMupjX+8eOheUeDFo=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47KF2WJc027682
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 20 Aug 2024 10:02:32 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 20
+ Aug 2024 10:02:32 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 20 Aug 2024 10:02:32 -0500
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47KF2WD0008473;
+	Tue, 20 Aug 2024 10:02:32 -0500
+Message-ID: <f4fba140-347d-443d-bb18-9080535b0913@ti.com>
+Date: Tue, 20 Aug 2024 10:02:31 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: p-i-exch-a-m1.sberdevices.ru (172.24.196.116) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 187181 [Aug 20 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.4
-X-KSMG-AntiSpam-Envelope-From: avromanov@s2b.tech
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 27 0.3.27 71302da218a62dcd84ac43314e19b5cc6b38e0b6, {Tracking_smtp_not_equal_from}, {Tracking_from_domain_doesnt_match_to}, s2b.tech:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;salutedevices.com:7.1.1, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, FromAlignment: n
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/08/20 03:45:00 #26365304
-X-KSMG-AntiVirus-Status: Clean, skipped
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/4] arm64: dts: k3-am62a-main: Add C7xv device node
+To: Hari Nagalla <hnagalla@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <nm@ti.com>, <bb@ti.com>
+CC: <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+References: <20240820104034.15607-1-hnagalla@ti.com>
+ <20240820104034.15607-2-hnagalla@ti.com>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20240820104034.15607-2-hnagalla@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-This patch adds a crypto node declaration. With the
-Amlogic crypto driver we can use HW implementation
-of SHA1/224/256 and AES algo.
+On 8/20/24 5:40 AM, Hari Nagalla wrote:
+> From: Jai Luthra <j-luthra@ti.com>
+> 
+> AM62A SoCs have a C7xv DSP subsystem with Analytics engine capability.
+> This subsystem is intended for deep learning purposes. Define the
+> device node for C7xv DSP.
+> 
+> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+> ---
 
-Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
----
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+Reviewed-by: Andrew Davis <afd@ti.com>
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index 6d12b760b90f..a29a73c50856 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -294,6 +294,13 @@ ethmac: ethernet@ff3f0000 {
- 			status = "disabled";
- 		};
- 
-+		crypto: crypto@ff63e000 {
-+			compatible = "amlogic,axg-crypto";
-+			reg = <0x0 0xff63e000 0x0 0x48>;
-+			interrupts = <GIC_SPI 180 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&clkc CLKID_CLK81>;
-+		};
-+
- 		pcie_phy: phy@ff644000 {
- 			compatible = "amlogic,axg-pcie-phy";
- 			reg = <0x0 0xff644000 0x0 0x1c>;
--- 
-2.34.1
-
+>   arch/arm64/boot/dts/ti/k3-am62a-main.dtsi | 11 +++++++++++
+>   1 file changed, 11 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+> index 916fcf3cc57d..818005b8954d 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+> @@ -1088,4 +1088,15 @@ vpu: video-codec@30210000 {
+>   		clocks = <&k3_clks 204 2>;
+>   		power-domains = <&k3_pds 204 TI_SCI_PD_EXCLUSIVE>;
+>   	};
+> +
+> +	c7x_0: dsp@7e000000 {
+> +		compatible = "ti,am62a-c7xv-dsp";
+> +		reg = <0x00 0x7e000000 0x00 0x00100000>;
+> +		reg-names = "l2sram";
+> +		ti,sci = <&dmsc>;
+> +		ti,sci-dev-id = <208>;
+> +		ti,sci-proc-ids = <0x04 0xff>;
+> +		resets = <&k3_reset 208 1>;
+> +		firmware-name = "am62a-c71_0-fw";
+> +	};
+>   };
 
