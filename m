@@ -1,233 +1,360 @@
-Return-Path: <devicetree+bounces-95334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0525958E0E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 20:31:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BD86958E23
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 20:36:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0172E1C21DD1
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 18:31:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 831831F23A2D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 18:36:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62D0714B971;
-	Tue, 20 Aug 2024 18:31:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AFE014A0A3;
+	Tue, 20 Aug 2024 18:36:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="XG/5LE3T"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="fT9iczDi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11011071.outbound.protection.outlook.com [52.101.65.71])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F37714B962
-	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 18:31:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724178697; cv=none; b=PtFsQOWlTs5tLWXNa7WqicskTQ3Z4E78M1C+9JrbKGg35Y3hjpHbEUxm5QvxiL8hAl76VCb/2BcZbjV407He1KfUeBG3/27zKmBqjKf6FYLJQndR/1yZ1k/bJG1DSf6TiFiDPfpLDLdV/G0iizzxTqOG8FzV4ZKRoj07T3tXDR8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724178697; c=relaxed/simple;
-	bh=XSYdjKiKvyThLATmIh9N2JQAPLRS7wiEijXbWwiDs/M=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BN3gZVO9cn+XayOX7rbNVywE3scuCXwkNCP4JtyB7tRwnoBtsI4jCKjRqMmJfwWvT2UqTvH2xYzoeWaWlUX4VhjLoTNRlyruDaoD/o5hn96I0h1pFuJ+mSX/9gwcw4VO/f9lYVdLL0JDtnNWErX2wZgY9QS++KoadYU6/ekAHT8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=XG/5LE3T; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a7aada2358fso1073191166b.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 11:31:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1724178693; x=1724783493; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:date:from:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=C07kwkQPZHrXmRCk/7LVIjuwNmyBogh+obKLGkkmYFE=;
-        b=XG/5LE3T3o+gzqyCCzm34nba+qmCfXalrQDA360AoPJk3mlkvXoCh6/QfeZvip7m88
-         mjk3ucHDwb1pAgb+EPb5v+NwSsgFfp+LTToHWPRvGmwFGhvSKgH6uKsBqTSHIcq7ayfe
-         igGCVo7l+Anll1eM0oRtiUphZEDoR+Sfvkjr7iCAN4UCUx7MlAUSS1Ogur2VJ3W9YkXg
-         rtoaO1gBhVsVxBa3dMTKrMgQ7EwAJDPFJPhjFa5I97vK/G9xcmb35+CrJ9aJ/gqkTBWF
-         O6g9ox9cp3GKkztqS2IAN3YAPU5DLU1qODsl1PoGrL1fZ+bCdUMj0TPUOTv3TRdDIgx9
-         CLKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724178693; x=1724783493;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:date:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=C07kwkQPZHrXmRCk/7LVIjuwNmyBogh+obKLGkkmYFE=;
-        b=m3H+Ui2b4l9/rlhpGGa4oUaixdtZk1eYLVA1gO3JCiPkkqskPhMAwQWol5EFxKcQk4
-         2mngB+UpUrvqXiKNibkzn89MK3jZdi0FxOp+73mWeumDVE90r+D7bYXuogLSEm8odU81
-         iS79VchEQI8IyZJT3kLTvKbSqT8pt0DYMYzFgeDYxDmaLsf39BUtAp9Rhs8C1SnvHqyD
-         yV4kvKgHMY98/FyqH80MCr0itefvAMBRhiGULjhTUySTA6NBZ2E04g4cmkaCEV6g6XqA
-         hGljkTfsHJumVAm+tk38JFbGAz0OkCX4vjpIOOEP4T7i5zcRFMHZa8wYgQ1AtczCKd+0
-         wv7w==
-X-Forwarded-Encrypted: i=1; AJvYcCWuvLSobcYJUyj8KkT9x7cFJmIOjlMvL7GB16kp3meXS/Z/hEMKoV4nYIkDjfov/TTKoGwPTgBSgk0f@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYN+dGuGMGJq9quRt37mEA8Xdn6vLqobANiXq4VgXmkFGCs7rf
-	mUsRBnm2UvAyCHZ4Z43GUQD57G658144olfH+6CK52IQa+x7QjtGyUb2X+0EtLY=
-X-Google-Smtp-Source: AGHT+IGOs6VYvfV4LBlh3n6XPG9LIKhdxKViotPxcCB+fUrUkrU6+w914efXSB1ZJv8NT+vGMTojLg==
-X-Received: by 2002:a17:907:1b13:b0:a86:6a9a:d719 with SMTP id a640c23a62f3a-a866a9adcddmr29207866b.29.1724178693023;
-        Tue, 20 Aug 2024 11:31:33 -0700 (PDT)
-Received: from localhost ([87.13.33.30])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a838396940fsm796113566b.189.2024.08.20.11.31.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Aug 2024 11:31:32 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Tue, 20 Aug 2024 20:31:38 +0200
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 153921494CC;
+	Tue, 20 Aug 2024 18:36:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.71
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724178967; cv=fail; b=iYNL3MGGGllMuN9ilEW7NZyIjpavbtNzM6C2TF8uWM1wprt1UbydHmhyyg5q/4otRgjQrjGcraJmRgSNe6/hrxyFO0RhXYjwJxfdFPnYIROgtjE79GdAxgAp0FhH05J58ivdBBBTC6LjKgxraLIQ3zYD4aAw5S5Y0VlwZULnP6c=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724178967; c=relaxed/simple;
+	bh=VIoTaj0CIz6FTuXJerOboN7LhEAHycUF2+FALh6odsY=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=kyDMl9Kd9Zxo5NwSqlqnBi/nYy7MgshAJmKKJRyLBGtkaCtQ8Mfcuuev+vbfs46ZmwWSJEPy1vI0gBPDxKZRhG5xpVMPytXPoUfvN5rfr1Elextgng1tdzETidnUwgERRPJMwrC+GlbfHaOzaUCUvR/a8e/rksShusz7wD8QcQY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=fT9iczDi; arc=fail smtp.client-ip=52.101.65.71
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=HsdstoWSQHZ2jpgjOz+QEcbrHZdE5ufwlXjIEIoKD1BJdI2y8quO3CMKk070wHJghqOjCwSVtDjwSc9NnbxMQ5AhVKdePvazb7TT6CI0gFoJ1orTYQqb7v1XAKMeClHzQFYOOuT4wQsOfkrE/FUFX4fcgCC6djr4uXghVcYkrT/muMcgoua+M1jKcVoHxqO5sHu7ZrKO5SkMBzORI6ZsuGEU1sSyFzU8TZXF/YRTtq2bV/n8M1AeaAYgBq6BT/cFbLFMQzb1AryNj36g61A5rt5dvVmXiqDIOI+38g5RahkqKg1yJuoT0VyRmWv+so9nZ8UpWeO+6GQsG7aY+A/cJg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9LK7rQNbPykyxBG24SQDavzwQWjZyaB+adJRWA2plW4=;
+ b=mvmzZ4602HwaVPigTrkrQuvAZoNPJBNBcz+EpKl7mJ4bYDbMmT0ezLDPcqTRHQv9suuA3FQuGZOAxDTcK0NXMHCmLenEIbSXI0olJ0u33RWv+CbI8R7Khcxz098sACUsuiO0sntOP/Aq+QKpmcXNZiUI67STL3Frchfc8FOe1/RcTUQeM+CF6SWNDQ+dFv2AS4hpBHKvaN9F3ErhYCiOFDgQXwqZ3Rj+3BaLLyHqYS7O4v98SIb8jn4F+sI89NP6bN3+chXvUgGMofLKhAr+arrr+O3kJIzexgVnitLe/sbOGmXDmE6ZLEBGp+jH+AAz7sk2JyLDKbPv6MiGQQFIDQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9LK7rQNbPykyxBG24SQDavzwQWjZyaB+adJRWA2plW4=;
+ b=fT9iczDi/+w++W7WL/sm6nWESV2cqOCjqqu9N5B5uHVkdJqb0YR3NhfIEkP9lA0M0QkYbcQDSvjq7u27+8vCDQw5c5E1RMTlzr7rD6alkW5A1f/cel6amOxNsmtBracJXHPY7dBkB4yNAnBoDbbYf+zBlTE4uyDIVtnEamudDDBFEZCymeqCzFIgAaitjhKmtr3z2vMhPIvcGF3Vkay4CpYbpZZ5MWvCFF8Kluc+KmiBCot09baqlnOHPZtLC2w2RKAgEZ+BLg87PG5v3O2Uuz568TU2LQGuZUZFxOh7GEJys4To1ou4VOy8HTBeHM1RzifB3oTplG0X+YezbnnTmQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by VI2PR04MB10713.eurprd04.prod.outlook.com (2603:10a6:800:275::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.21; Tue, 20 Aug
+ 2024 18:36:00 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%3]) with mapi id 15.20.7875.019; Tue, 20 Aug 2024
+ 18:36:00 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Pavel Machek <pavel@ucw.cz>,
+	Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
-	Lee Jones <lee@kernel.org>, Stefan Wahren <wahrenst@gmx.net>
-Subject: Re: [PATCH 10/11] net: macb: Add support for RP1's MACB variant
-Message-ID: <ZsThCh45-WX_TDmP@apocalypse>
-Mail-Followup-To: Andrew Lunn <andrew@lunn.ch>,
-	Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
-	Lee Jones <lee@kernel.org>, Stefan Wahren <wahrenst@gmx.net>
-References: <cover.1724159867.git.andrea.porta@suse.com>
- <775000dfb3a35bc691010072942253cb022750e1.1724159867.git.andrea.porta@suse.com>
- <c33fe03d-2097-4d26-b3db-8a3d6c793cd1@lunn.ch>
+	Dan Murphy <dmurphy@ti.com>,
+	linux-leds@vger.kernel.org (open list:LED SUBSYSTEM),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH v2 1/1] dt-bindings: leds: convert leds-lm3692x to yaml format
+Date: Tue, 20 Aug 2024 14:35:43 -0400
+Message-Id: <20240820183544.496419-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR03CA0095.namprd03.prod.outlook.com
+ (2603:10b6:a03:333::10) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c33fe03d-2097-4d26-b3db-8a3d6c793cd1@lunn.ch>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VI2PR04MB10713:EE_
+X-MS-Office365-Filtering-Correlation-Id: 50f51671-a8b5-46aa-8359-08dcc146f025
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|366016|7416014|376014|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?8ftSRZoKOSbTBZ6Cl+LMeH+oCaYdeqr7kBFmehZ/57CayKb3vrva9w98aD0s?=
+ =?us-ascii?Q?3GUQuDOlbJL9Hmd+zIyJGx3aDhBHpAUlWoved5XT7xZ0LUqJB/KFR0znqusQ?=
+ =?us-ascii?Q?GKGVHaD49emD4st5ECceYlNYGJahp7jSyb4ShmZWkaCrKq6uGA4BVMKd9Pz2?=
+ =?us-ascii?Q?YjV9NXCSEV2uN9xHYH8hZL5J1MgHaN7X+Mb3gvQ2ZXlORjfsjbuhmJji4LdU?=
+ =?us-ascii?Q?B9wKOtq+D3tqkphF9UWaFAF+/vBEi+NiMWUpYoTLXY6lA/Gcn8VmgzoQiGL7?=
+ =?us-ascii?Q?Ck86wge0YcxBsHcWOYj9DYBOTT9Df52VYFph5gx52TJInZfLMudbptK8eKqM?=
+ =?us-ascii?Q?yNf+jf/Bg1jD3eNB3AMGHMTKX84EeiGUsfk2Dj66JVJSJJx1cP62q+ggKgdz?=
+ =?us-ascii?Q?V6FnLWpdnq92RRQLfys96KxNz+TR8t71c1JwXiG2UHQ58gpYfyXVxsYHGgJJ?=
+ =?us-ascii?Q?zXwRCex4/xaTRpU8qQCy7eGIZA3KsAVftIY9dEFGMCT+giSFlbrf043bl0+Z?=
+ =?us-ascii?Q?Fq7OgBmbl0K1rDgLxI21VGwQOuDe++yJGum3F5iMJOs3wOo8z9K99sD+GrA5?=
+ =?us-ascii?Q?jezCbAz/VuocE5fPtI1wsLtjdPJ4CIDe4XoVNC7WwPfaCxQiKEAxJOb+XyWg?=
+ =?us-ascii?Q?Uqf0JtaCQo/yg+Eml4l05F9GAssIIMaocn/CUbh6SdYxTTs/RKUPw1YBAFp5?=
+ =?us-ascii?Q?gMeqpVKGWMBqytxEE/cECQ04X2hDqcw2csEbUCGHast7y+DMVfaV+FGNREKT?=
+ =?us-ascii?Q?5kdl6REN2a3nLRFqzEa3eU4hSSBUIkkTYkMOqFQ/1ogKbSfRgRns/qVpM5yz?=
+ =?us-ascii?Q?cD+mbN5YCuoKHNJppIFyMebWwNaPdnOamXZx+eax1iP8sd6jeJ7izvmj04NQ?=
+ =?us-ascii?Q?WZUgbJMjC4gh4LOYjXpUGU1RhxaxgJogZSbcG0q2bH9Wz9hsd+TA6v7E0zo4?=
+ =?us-ascii?Q?2hM3KeC4lkJ3sCDdF8w+2osJCI9u1Uvr1PZv1i1fcJD+6AVPdIhQTYdzvyF4?=
+ =?us-ascii?Q?WVKDGWoZha9GNLN3VRg/t+ce9fr7j2JvzGfU21VULmLahzfteQWLTQbQ+LmZ?=
+ =?us-ascii?Q?ohCRkkQwuI9So+5uKJBUGRjFRITf+WNXL5pYBpgIruBl1CbRFDSyZh8fZAOc?=
+ =?us-ascii?Q?SC9wlQxjQL0EwVyh0hCmgvjzGMJUI7UIuzMrtKJnuOITFgH10qEmCdrSBPha?=
+ =?us-ascii?Q?EK/1L1vZ+FVUSSbxKauUDQv3KdKZRwo0/fdlt0kN+btILcStacq3erMqmt0+?=
+ =?us-ascii?Q?LcTEIc8Bu3K4eF10G9O1tAtC5CIFrVr0rOYbYgkvJQ8mQVLPigQaqJz7457j?=
+ =?us-ascii?Q?AfG8MNbA+QQ/Pe4SeDaLm/yJa5RTsilsg9pP3JMriwRnJwgktDUzU8Y5ZG+C?=
+ =?us-ascii?Q?R0eOSOA=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(366016)(7416014)(376014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?ZWvT/mzQvyG42B6G1Lk3sWGLYA1I8LpZjm3jvxn/se4OHnLfh5ogZtuZ9w17?=
+ =?us-ascii?Q?1KObIKj3eIbmmT94aYmcHXLKkgyJE4UsuppVOWQhDNOuaO1BE4S9iqz2jepJ?=
+ =?us-ascii?Q?vxkAifxc1M/UXcaf/tRyr2MYgL4kyAyXbLCbTKQS6g0RxJyPQUq5bMNnjPN3?=
+ =?us-ascii?Q?xYVevTSQrRdzdaUhOLuy4doVCrYUxSh3gUKtcc/c+nz9ELdng1MTOgeDJYv3?=
+ =?us-ascii?Q?+FtgYobkguxkyL19h+ghVW1bMkbg2IXZMoPV4LFh3Ivs8U9qEqkIL1QcQ8fF?=
+ =?us-ascii?Q?sh5YJWvaNoh8khBFGHvVnXEAOdc2BQTGib538N4IcvGhoWtsAEjcQcg12hMA?=
+ =?us-ascii?Q?OqKC0yPCz2dbD9y86PC/B8jiHb4u87VZ0vvOCqSQLIqN0/zCujIHCcQOlSJQ?=
+ =?us-ascii?Q?V+DdhkZRysKmgdcASJ1DAUpj1yLieISyDdSMUaYh+Jf2zphRqlsY9o8/BaOx?=
+ =?us-ascii?Q?RT3wC4D+S0zLZOphx2R9kluIq6jjmZfQmXMmcKyaX8HV02/vsZfRCRx2lPpZ?=
+ =?us-ascii?Q?3hLW55Y+kwyDl1BmolOsF9b/VWoD6BQbX4Uoj8/+x/m5DPCzw2DQWadhFhOx?=
+ =?us-ascii?Q?mbVnzkocGFiQUpUp+vWlcbuCjmphPtcn8JcXQGMDJp+IYUvST0+nzTETkofD?=
+ =?us-ascii?Q?kaWPDA6QMbVYObYgqtwVhSvKDGkVpDoQIm9Yi55KmjPBuH8TaxRDQ9l6gY+X?=
+ =?us-ascii?Q?iLl+riUG/8smtJiVgUuX6eoCvtd80khQc+q80YaBnE87/ebuwRZgXJl4uF5m?=
+ =?us-ascii?Q?badxP42QaW5fosvCsh3LVtfWV+9bXi1xlxuunvkCNVJTsT7YsZ6sTHbhh9v9?=
+ =?us-ascii?Q?8+XUsHstxp1FJ7BUoNLSwNJVMAZ8GQ4cIffLmPuTx/Trl/Hgftxf5k5kZMES?=
+ =?us-ascii?Q?0Samxkk3ECaiWuEdIiLn1QXWItUIGy6OnNW26+XjRtCAl4SUkBY+hO33PByP?=
+ =?us-ascii?Q?u8fckZX3geolBKxJ02KcYIC/nTXyAKHD3YuBdK2ycjdxeXYWW4f1pGC+/Gab?=
+ =?us-ascii?Q?9QzKAVREO3g73x0N/Wh5WysRkknSvNfOC2NSC0r2sqL4O0QEFSBLOrI2kguU?=
+ =?us-ascii?Q?R03oM3+UKlIjVf551QAkKWwWxl/lFWbBW6jT4X3OnFk8ygdWEwe5KXggNE6k?=
+ =?us-ascii?Q?dX2jZMZ6gvGqRe/HPwNKij/7ufd58l1HUu4ejN8F0ur1c7jE2mTv1gfkm5Qh?=
+ =?us-ascii?Q?twAxoG/Rm5XLvrBgOkByWsWU25G0tfyr2Bban/V5uTAx9yglRChYm3oq8V5o?=
+ =?us-ascii?Q?rBazOaXb0t4/+oMYMdgRrH/vFEuSgA+226ysGoAiMbFChSftMbGuSuwuFSKI?=
+ =?us-ascii?Q?td+9npRwT2cX1sqi/QGIEwFcWNLCdK8d/FnO7lDRkAGQZI+5sIBDSqbC2QI4?=
+ =?us-ascii?Q?6XppI1Yv8JuzSOVqQtCluVBbyb7itNvE4QWu0T+jCsg6jUIJcabpPOlnkqe6?=
+ =?us-ascii?Q?SeLHGb9UZ9dseJAGGo3pKZ8nzJ2qmU+/YPBachnRWjnw5EmdoBqur0S5vUkG?=
+ =?us-ascii?Q?Q7J1Gx5cMsS2x6KPEPVYIcAhZaMK1sEPcPxX5jDiJfEzC7i+OC9MIYGUkoau?=
+ =?us-ascii?Q?VPQ6OIWhEJ+9+STHmYvis+XY/nWuGyxVMuwgaWDa?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 50f51671-a8b5-46aa-8359-08dcc146f025
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2024 18:36:00.1751
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: P6iC7MAmRSXQRs+z4U7K6vIjIWl2GrlkwK4+YiBmSJBgliQ5Mqy0ktVPFphsaifFUpqpthD/btkcFB/0B8MgCw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI2PR04MB10713
 
-Hi Andrew,
+Convert binding doc leds-lm3592x to yaml format.
+Additional change
+- Add ref to common.yaml for child node
+- Add i2c node at example
 
-On 17:13 Tue 20 Aug     , Andrew Lunn wrote:
-> > +static unsigned int txdelay = 35;
-> > +module_param(txdelay, uint, 0644);
-> 
-> Networking does not like module parameters.
-> 
-> This is also unused in this patch! So i suggest you just delete it.
-> 
-> > +
-> >  /* This structure is only used for MACB on SiFive FU540 devices */
-> >  struct sifive_fu540_macb_mgmt {
-> >  	void __iomem *reg;
-> > @@ -334,7 +337,7 @@ static int macb_mdio_wait_for_idle(struct macb *bp)
-> >  	u32 val;
-> >  
-> >  	return readx_poll_timeout(MACB_READ_NSR, bp, val, val & MACB_BIT(IDLE),
-> > -				  1, MACB_MDIO_TIMEOUT);
-> > +				  100, MACB_MDIO_TIMEOUT);
-> >  }
->   
-> Please take this patch out of the series, and break it up. This is one
-> patch, with a good explanation why you need 1->100.
-> 
-> >  static int macb_mdio_read_c22(struct mii_bus *bus, int mii_id, int regnum)
-> > @@ -493,6 +496,19 @@ static int macb_mdio_write_c45(struct mii_bus *bus, int mii_id,
-> >  	return status;
-> >  }
-> >  
-> > +static int macb_mdio_reset(struct mii_bus *bus)
-> > +{
-> > +	struct macb *bp = bus->priv;
-> > +
-> > +	if (bp->phy_reset_gpio) {
-> > +		gpiod_set_value_cansleep(bp->phy_reset_gpio, 1);
-> > +		msleep(bp->phy_reset_ms);
-> > +		gpiod_set_value_cansleep(bp->phy_reset_gpio, 0);
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  static void macb_init_buffers(struct macb *bp)
-> >  {
-> >  	struct macb_queue *queue;
-> > @@ -969,6 +985,7 @@ static int macb_mii_init(struct macb *bp)
-> >  	bp->mii_bus->write = &macb_mdio_write_c22;
-> >  	bp->mii_bus->read_c45 = &macb_mdio_read_c45;
-> >  	bp->mii_bus->write_c45 = &macb_mdio_write_c45;
-> > +	bp->mii_bus->reset = &macb_mdio_reset;
-> 
-> This is one patch.
-> 
-> >  	snprintf(bp->mii_bus->id, MII_BUS_ID_SIZE, "%s-%x",
-> >  		 bp->pdev->name, bp->pdev->id);
-> >  	bp->mii_bus->priv = bp;
-> > @@ -1640,6 +1657,11 @@ static int macb_rx(struct macb_queue *queue, struct napi_struct *napi,
-> >  
-> >  		macb_init_rx_ring(queue);
-> >  		queue_writel(queue, RBQP, queue->rx_ring_dma);
-> > +#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
-> > +		if (bp->hw_dma_cap & HW_DMA_CAP_64B)
-> > +			macb_writel(bp, RBQPH,
-> > +				    upper_32_bits(queue->rx_ring_dma));
-> > +#endif
-> 
-> How does this affect a disto kernel? Do you actually need the #ifdef?
-> What does bp->hw_dma_cap contain when CONFIG_ARCH_DMA_ADDR_T_64BIT is
-> not defined?
-> 
-> Again, this should be a patch of its own, with a good commit message.
-> 
-> Interrupt coalescing should be a patch of its own, etc.
-> 
->     Andrew
->
+Fix below warning:
+arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dtb: /soc@0/bus@30800000/i2c@30a40000/backlight@36:
+	failed to match any schema with compatible: ['ti,lm36922']
 
-Thanks for the feedback, I agree on all the observations. Please do note
-however that, as mentioned in the cover letter, this patch is not intended
-to be included upstream and is provided just as a quick way for anyone
-interested in testing the RP1 functionality using the Ethernet MAC. 
-As such, this patch has not been polished nor splitted into manageable bits.
-Ii'm taknge note of your comments however and will come back to them in a
-future patch that deals specifically with macb.
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+Change from v1 to v2
+- fix dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/leds/ti.lm36922.example.dtb: /example-0/i2c/led-controller@36: failed to match any schema with compatible: ['ti,lm3692x']
+---
+ .../devicetree/bindings/leds/leds-lm3692x.txt |  65 ------------
+ .../devicetree/bindings/leds/ti.lm36922.yaml  | 100 ++++++++++++++++++
+ 2 files changed, 100 insertions(+), 65 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/leds/leds-lm3692x.txt
+ create mode 100644 Documentation/devicetree/bindings/leds/ti.lm36922.yaml
 
-Many thanks,
-Andrea
- 
-> ---
-> pw-bot: cr
+diff --git a/Documentation/devicetree/bindings/leds/leds-lm3692x.txt b/Documentation/devicetree/bindings/leds/leds-lm3692x.txt
+deleted file mode 100644
+index b1103d961d6ca..0000000000000
+--- a/Documentation/devicetree/bindings/leds/leds-lm3692x.txt
++++ /dev/null
+@@ -1,65 +0,0 @@
+-* Texas Instruments - LM3692x Highly Efficient White LED Driver
+-
+-The LM3692x is an ultra-compact, highly efficient,
+-white-LED driver designed for LCD display backlighting.
+-
+-The main difference between the LM36922 and LM36923 is the number of
+-LED strings it supports.  The LM36922 supports two strings while the LM36923
+-supports three strings.
+-
+-Required properties:
+-	- compatible:
+-		"ti,lm36922"
+-		"ti,lm36923"
+-	- reg :  I2C slave address
+-	- #address-cells : 1
+-	- #size-cells : 0
+-
+-Optional properties:
+-	- enable-gpios : gpio pin to enable/disable the device.
+-	- vled-supply : LED supply
+-	- ti,ovp-microvolt: Overvoltage protection in
+-	    micro-volt, can be 17000000, 21000000, 25000000 or
+-	    29000000. If ti,ovp-microvolt is not specified it
+-	    defaults to 29000000.
+-
+-Required child properties:
+-	- reg : 0 - Will enable all LED sync paths
+-		1 - Will enable the LED1 sync
+-		2 - Will enable the LED2 sync
+-		3 - Will enable the LED3 sync (LM36923 only)
+-
+-Optional child properties:
+-	- function : see Documentation/devicetree/bindings/leds/common.txt
+-	- color : see Documentation/devicetree/bindings/leds/common.txt
+-	- label : see Documentation/devicetree/bindings/leds/common.txt (deprecated)
+-	- linux,default-trigger :
+-	   see Documentation/devicetree/bindings/leds/common.txt
+-	- led-max-microamp :
+-	   see Documentation/devicetree/bindings/leds/common.txt
+-
+-Example:
+-
+-#include <dt-bindings/leds/common.h>
+-
+-led-controller@36 {
+-	compatible = "ti,lm3692x";
+-	reg = <0x36>;
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-
+-	enable-gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
+-	vled-supply = <&vbatt>;
+-	ti,ovp-microvolt = <29000000>;
+-
+-	led@0 {
+-		reg = <0>;
+-		function = LED_FUNCTION_BACKLIGHT;
+-		color = <LED_COLOR_ID_WHITE>;
+-		linux,default-trigger = "backlight";
+-		led-max-microamp = <20000>;
+-	};
+-}
+-
+-For more product information please see the link below:
+-https://www.ti.com/lit/ds/snvsa29/snvsa29.pdf
+diff --git a/Documentation/devicetree/bindings/leds/ti.lm36922.yaml b/Documentation/devicetree/bindings/leds/ti.lm36922.yaml
+new file mode 100644
+index 0000000000000..ac98547b78bd2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/ti.lm36922.yaml
+@@ -0,0 +1,100 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/ti.lm36922.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments - LM3692x Highly Efficient White LED Driver
++
++maintainers:
++  - Dan Murphy <dmurphy@ti.com>
++
++description: |
++  The LM3692x is an ultra-compact, highly efficient,
++  white-LED driver designed for LCD display backlighting.
++
++  The main difference between the LM36922 and LM36923 is the number of
++  LED strings it supports. The LM36922 supports two strings while the LM36923
++  supports three strings.
++
++  For more product information please see the link below:
++  https://www.ti.com/lit/ds/snvsa29/snvsa29.pdf
++
++properties:
++  compatible:
++    enum:
++      - ti,lm36922
++      - ti,lm36923
++
++  reg:
++    maxItems: 1
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++  enable-gpios:
++    description: gpio pin to enable/disable the device.
++
++  vled-supply:
++    description: LED supply
++
++  ti,ovp-microvolt:
++    description: Overvoltage protection.
++    default: 29000000
++    enum: [17000000, 21000000, 25000000, 29000000]
++
++patternProperties:
++  '^led@[0-9a-f]+$':
++    type: object
++    $ref: common.yaml
++    properties:
++      reg:
++        enum: [0, 1, 2, 3]
++        description: |
++          0 - Will enable all LED sync paths
++          1 - Will enable the LED1 sync
++          2 - Will enable the LED2 sync
++          3 - Will enable the LED3 sync (LM36923 only)
++
++    unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++  - "#address-cells"
++  - "#size-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/leds/common.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        led-controller@36 {
++            compatible = "ti,lm36922";
++            reg = <0x36>;
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            enable-gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
++            vled-supply = <&vbatt>;
++            ti,ovp-microvolt = <29000000>;
++
++            led@0 {
++                reg = <0>;
++                function = LED_FUNCTION_BACKLIGHT;
++                color = <LED_COLOR_ID_WHITE>;
++                linux,default-trigger = "backlight";
++                led-max-microamp = <20000>;
++            };
++        };
++    };
++
+-- 
+2.34.1
+
 
