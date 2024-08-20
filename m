@@ -1,187 +1,212 @@
-Return-Path: <devicetree+bounces-95339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00F60958E56
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 21:00:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D54B5958E60
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 21:01:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 682041F21E45
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 19:00:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05AB91C20916
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 19:01:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 648DE14C5A3;
-	Tue, 20 Aug 2024 19:00:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFC461547F7;
+	Tue, 20 Aug 2024 19:01:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="ZVAxr0jN"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="CxBmRopl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2059.outbound.protection.outlook.com [40.107.22.59])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8454618E359;
-	Tue, 20 Aug 2024 19:00:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.59
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724180435; cv=fail; b=a53+GWFPc+XPIahTCZGfhclivldn+3VDPQhYREsBYXj6Nco4TnLUIgoaPqxVxVl8vAd4FB/jgbEuD1/fPPwmVIXtEhbBMyUW6i60fSSjSvYh31NDr1At8kYxwizDVZSGMf9r1iG7SqzTjXe/Sd/aM4ijLZCg3vAC+wKfOEZ6awc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724180435; c=relaxed/simple;
-	bh=f2x8DE1elpHQpMXDAcorj9SKa91MDmsokH+pRbFJrUo=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=NrmVPg+nYP3ZCrnGijLfkP/DhLPbwZzUxTjjzil95Tf1Wt/MU/JAj+VWflPnt3h4NZGsuKWHTHtqL3SBzX73+YdvwJmCCGC83axfsoJX4371JmnGdgigPnSVBMgFS2gC837AMNaBhh8+u5gaHwb3FCATwH1TOZuc8mjRXqkDTOo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=ZVAxr0jN; arc=fail smtp.client-ip=40.107.22.59
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=okusF7X8OvfU6axhFEorzFw0soHrmTZmer9b9kdVWGt0mYGUMk//s3GrAGjpPk7lv/FdovjMToY6hPaixu3wAju577ZTwWvlk5ZZYH00W46OtgEXp+tOvLcAhtAiVTzXPDha9S8vaolY+QhvzaejW1qsYzleyB+JoxIlq3oyGyTXBbqMu1vAjWMhkl//UBTfIeRgvmacHTPKTn/Rs6urytZwPrNFF2FDkxJDWed+cLVe6kmxQ18ctcQUVw3YIdSLtGgCY3WnPHL41MZo343VWfXGtLDkL294UH8lpXiAhjCo/7sz3xnVwJTrajZqf1WLyW5B252kJsPV5RRLKB3elg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8zELuV6Eg056v2Jzypry+neHQTEiWCA/yZftqWA54dE=;
- b=p3tHl9doIjrMc3b0mZoEfzTYMYOshtbo9GYhVxRvzidujLzVicn3keUoUWygWLL/n0iMfCIBUHbsY5fO+utD8CSfF23ogpn+ZbiRUlHj3y05viiVx20vs0/COddXdaI1hLT0xeLpqPyyLuTUXLZAQZquXUlZyyUsKlBW0eYWl/fHcXwnY+DVJOLMME1QeHlyUPhm+PAZ3oEM2X4LB8keaBn7KzrAKpcZ90YH3S3+K0OL0EVLHdnNX0QbsgRSBKZ/HH1hdkDaRrTtsb8/MvwDQPS/80f5ZvrEVj5dc1iVFjyxRdkrfprYIVCucKxtFS8fX8YJ9Pq5ENs9YewJVKOKRQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8zELuV6Eg056v2Jzypry+neHQTEiWCA/yZftqWA54dE=;
- b=ZVAxr0jN9IZP/5yFL22tbDwKCkqUmBIuWV9rfxZRPYXdMx9k+uj+V0oXHodA75qPKJK+5wNpCcW/EAYHAN82s4EMlGscEglzV/XKgxAf8CpW4X2Jc/sJY9RLRaOIqRvk7Lum+BmzOjwyMM7VeRv1lah3KVZ8O3o8wr9Zl5r1A4ucFA7Rr5oCRhZ62AyQIL4XFJd6p6N/t70t2A97R9Ee1VFfzps2qJgQGVDhILpUw459JxIliNUxjDfyFU/Sr3P+YKdENJ5AkwzruROWWKZ/cxloisIih3jhof0M1+bRZUGcmnKdvtMF3cQ8tOn8F/TTPaLqTUX+TRbL6VEUsWyqXQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PA1PR04MB10844.eurprd04.prod.outlook.com (2603:10a6:102:493::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.21; Tue, 20 Aug
- 2024 19:00:30 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%3]) with mapi id 15.20.7875.019; Tue, 20 Aug 2024
- 19:00:30 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: robh@kernel.org
-Cc: Frank.Li@nxp.com,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	krzk+dt@kernel.org,
-	laurentiu.tudor@nxp.com,
-	linux-kernel@vger.kernel.org,
-	stuyoder@gmail.com
-Subject: [PATCH 1/1] MAINTAINERS: misc: update fsl,qoriq-mc.txt to fsl,qoriq-mc.yaml
-Date: Tue, 20 Aug 2024 15:00:15 -0400
-Message-Id: <20240820190015.499641-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0040.namprd03.prod.outlook.com
- (2603:10b6:a03:33e::15) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CBF814F9E2
+	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 19:01:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724180492; cv=none; b=QC863wI0d+4HaVFOjrA0y+R9SMCrg2L08+gWt0WT/aprYWncGeu597gkBodjaZ98K5qjWKBCoIk9gs3sgC3PFpzbJLUOu6zmB/RgyaV8s0x06eN6bkVUUf8PYyOFOCb2knQM4PNe2WycIz3JspIQSCviV4TGnFhVClftpopH1mQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724180492; c=relaxed/simple;
+	bh=LZ61oFlwwOA5SOCf/4Aknoa0YLK63ylHcCkOx6J5Dqc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=D5AHJJI7UrmgDsgF3cvcxKpXpLX9f6/838GAWIiQpna9zVZEsmNYlVojkDJqeAMMPGX7Zth/qOkSQ3jopYwSuO6WPlg3MAm+dgjbzBhGer8hSpzoKJvmZ5cKF9K41+DM5vrdJZvmzVtzDL9uRbVCRYyjenQTOxxsha02eNDX6d0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=CxBmRopl; arc=none smtp.client-ip=209.85.210.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-714184b23d1so593345b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 12:01:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1724180491; x=1724785291; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=/GXVV8vGgDiGW+Au9FKghqgppxt1zc+wtm71jNfzmTY=;
+        b=CxBmRopliEM7d6AoZlNivWUyf9ljT/yOpWHShtSkyeYQFhGWqiyJZTF5nGJBXNTWJV
+         MeTE7bIu2J69eUPsDDFMqsQLkS+NipoEMzEwLKo3SOh5xB/NZCD4bE5jTIcW8ngwopPM
+         3uAFQYa671ub7Vt/X3SMwE+OvprFWUMCsblt4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724180491; x=1724785291;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/GXVV8vGgDiGW+Au9FKghqgppxt1zc+wtm71jNfzmTY=;
+        b=PVJuBrEqIPYcV3anMndh3TraTlCdpsEvB/l7o7x4N9FWAafP2rldTF30ti7zFV42Qj
+         i8i41H1pEScA7DCiQsmk6+1EI7CeuoAFgUFE9t5UWOjHZst+IkL6Jq3DHRY3li5Kw33L
+         q7bzNJVy5FfxG6TIJg/NF0MuN5f8NzE3JTeAkSh9wulgsmKqtm7DwxWSlLUmZuwtDO6X
+         3WK+ii7K4DW3WDiBWl46f2uWrheFScOxwhQ1GvbfM2ZcDNR6guXYTtFtGtU/5ffRbmJd
+         PFXn6V6iUbfcZwnukVXQEze1jYhzePpAyXCaYeTktKGZ0Eii9yLU7pGwmlYvxA0oVJv5
+         jvYQ==
+X-Gm-Message-State: AOJu0YzoDf7er3zpZaBeLGpni3aGvCq4/eahZ+y10v/I3grMauHoilZD
+	MVAd3hJjrfFbIoPoGTegLEPxiIUXApJDvWHU2/OdAWDRV79Gge8dMHNiT6Iz5SLwFD7de/SeJ3R
+	75g==
+X-Google-Smtp-Source: AGHT+IHnt8qqe8p2DJgZM1UHp2Lm2a7xFiysezzy6ZQ85kzTXKnGTVMg3NMFBzWe3jTAGKoN/bzSPQ==
+X-Received: by 2002:a05:6300:41:b0:1c4:8da5:21a4 with SMTP id adf61e73a8af0-1cad81a7279mr349945637.41.1724180490264;
+        Tue, 20 Aug 2024 12:01:30 -0700 (PDT)
+Received: from [192.168.178.137] (f215227.upc-f.chello.nl. [80.56.215.227])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7c6b6356baesm8314317a12.68.2024.08.20.12.01.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Aug 2024 12:01:29 -0700 (PDT)
+Message-ID: <998a465f-2b55-48bd-b588-b7775309e055@broadcom.com>
+Date: Tue, 20 Aug 2024 21:01:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA1PR04MB10844:EE_
-X-MS-Office365-Filtering-Correlation-Id: eac89d25-ab3c-439d-1866-08dcc14a5ca7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|52116014|376014|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?CwfEkFF4sqr+xIitdU3XGXx0ZOHL6WRuTiEM4AUESPd9LL3pY44vMzb2JyOD?=
- =?us-ascii?Q?+fBn4R9UXtNUSUDSOpjhqWUuNiXumkY6OXEwuj/Jv46ZtENi7z2g7ytSc18b?=
- =?us-ascii?Q?wgM27pnAqiXtu/5xyNUtxGWsI5ytJ5nxb2KVHMUk30vNTIakCja0CrUwaGpM?=
- =?us-ascii?Q?DYe88KiUJz07Kab+XHt2QrKbYiiFUPnUFFYRCqs3TtPUEosPjjOhEjHlqtrh?=
- =?us-ascii?Q?7jCcxDrQfNiCC0guAIpXJ2uWkNsfGhBWGoQfu4fDxEWCNSjMPKY0Fnx0FJwc?=
- =?us-ascii?Q?/bZkTG2xe5n+MvSA1DhoqteqBbTNI8W2YeLRmui2H4LFA4dx8jGwcoFvsuSL?=
- =?us-ascii?Q?TchK3j+Uotwn6xmFczndQcCe6LpRQjtPAQgT1r9eGtcNACr0tYIzlXEKdZaw?=
- =?us-ascii?Q?Hr+e5jGDpxvBHgMAHNMa8tg69wPP9spaL0s0UZUtyfD8p/c1x/jZEV9+yzcE?=
- =?us-ascii?Q?BH3gW8tRuO1T7io5NvjDoVMe3+IumRLhNXjDAOWI5BiLzzULQ8olAdvm6+UN?=
- =?us-ascii?Q?2P8ukl9uQ9tszC8kxqZvoRVkUL0SRqknGOzVF2YwwHHEyISww2oyE1O0ghEI?=
- =?us-ascii?Q?bwCATb8xkJWBLZrrXieybWrKXcs4qoHbb2l6acKmDYy4DPkZiMq17tHcwTph?=
- =?us-ascii?Q?P5r+JXsCkbRYpYwWr95UQ6UFhZ/JXZKOwuxGwVeBtPuVgxZ/swvtxUejIRBV?=
- =?us-ascii?Q?XLZA/UoaQnlQUko+TLqr40LPuEGtOSukcasxvMR7+M2PX5rxXr7wZX68wG58?=
- =?us-ascii?Q?4WFPQ5vMKY/QtsHD0kD3DFo61jM+3kpCHTM2H0JtdmT9R5gY0xg5dTJBkptN?=
- =?us-ascii?Q?W+/eGiood4AS0V9ayJn0nzO7WxE3vSV2rYV7fOhJ85iUjBhi9FrC8JKlwSaL?=
- =?us-ascii?Q?romqYqyjWgG54YaLasMZ6IxbaPJYVW6BGlD8x1Pn7mLv/LtQQUSXBxY9eJpA?=
- =?us-ascii?Q?i1U4Cs0DOadRxnro3bkPYUAmvA9Uh1jc6ivqpjW4L279czCwyz9HF7WdEpXM?=
- =?us-ascii?Q?0BfC0T7svr0D4MCh6dH6LwSiEfnmGpfZhL8fgJifYiq8N1O8V8QcPOg1vV35?=
- =?us-ascii?Q?dO9DArXV7bTVgiAeH9GRkw0s0fiVF4zfPApl4ciT4eV6lnBxzGctRDF+bute?=
- =?us-ascii?Q?l57FSme2bO+FT/hhO03F4uMEu7P5Y5fk4uoQ9hnkwbF5ugggaC3IXcM2fVw5?=
- =?us-ascii?Q?GSoC+rQ+iVRaLRJA3f0NhXsNbOfUa8bCIQbzQdjnhqvQMyp19mrYfzwQASPh?=
- =?us-ascii?Q?uBTGUG0HxOoGRCaVJyWGM1s0kGsLLg7OCwFUlZvHdGSgW35vwno80bXMrn6L?=
- =?us-ascii?Q?8rlqRKX5lb8igQ5DejHQSYj+/aJO+c56gU+LopD21lVL8LxsjMmDJXMWWDhh?=
- =?us-ascii?Q?u02sXf35eRuXqjwk43i0RLjEzrnlips9j1Sz/wcLUbMSt5l22Q=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(376014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?bzF1eap7Rq9DeutnvGwvHuZQmKJc1jgAk8DimegenzJOCEuo7b/ma3OARQNP?=
- =?us-ascii?Q?ECU4zeN1wAPrdmZ9cE/SywcyZC+j3htzzNEa3ugiXMdceaNBnWkFmrmCwWXs?=
- =?us-ascii?Q?VSaU+y5j/vRSY8/NAI7g+1nxEWUwbUvq4dzmQFOHgf3UDlaN6SVTTxdFVE7S?=
- =?us-ascii?Q?ePaMJO2LhBhhw00h9a14SiQ6KQOdr1L3whp/0YkpNf3TMyFLL8lZX7Bc2D3A?=
- =?us-ascii?Q?YnpzGjPYb56zrVcE68uafhRAu9mSJiEYxJMFvGYl0h7RPk39gp03sCSGrr+F?=
- =?us-ascii?Q?1xooPTH59eKW0WdeOuc/gKOOU4MltKXbyaDyxTBvHsmOdh/5/4xK7Byh0wud?=
- =?us-ascii?Q?zge+KlyElJDKhz6E0gJ8Tv7WPeYT9npurRYD/7GfPx0LQEkGBiJgK5DQZ+Bv?=
- =?us-ascii?Q?vKM+jtJqSqOZrgT5AOrqKHQeoWx8XjM5BaattIXy78Ob7Jt39B8j88Ke1d/T?=
- =?us-ascii?Q?DOPEsWXfWLoyC5xJvI7JD13PVw5Eifv6+QPDTgBEx2tNLqvBtvwTd3Yp6AHZ?=
- =?us-ascii?Q?6B+n0vryvvOAMAYmTTBBTj3bPVjG0KTqRMeJrFEZNllYJOJl261ECUDak6sP?=
- =?us-ascii?Q?Wy6huAmi/vBAL++9RVfyAPJfpuT1aGFBPLiwZo0qbFtXt2zhEY2gCaMGPuKB?=
- =?us-ascii?Q?GCwypUiDdxR5T0aLjSejaiQUqDlfFMx5DGOCYtwHWcIo3IDKIp/hLKV25dX4?=
- =?us-ascii?Q?yjunCYc59L+vOR5f6r0ZnJK28VWyZsYG0oVDDOEZWA7rFZCk133Ox/HwruMQ?=
- =?us-ascii?Q?YV9mfl+aSmfNoT9TbFY1T+X2FIf4f7VaXhnvt+y0u2padUSyMzhHeqNkm3Fe?=
- =?us-ascii?Q?P0O8LzNi0DIlhNVMgbaSjwPd27fcOx8K2kyE+RvpY97N/KuUiLBtsucHYXs8?=
- =?us-ascii?Q?2F8EeuzFxrpvm5A7Hj8G3ZVeg5lQ5HNXdvgqcLVxHmneiwoPmX2FxWyhPPab?=
- =?us-ascii?Q?V5ju2V/so+ydQPw+WCZTmF27whoAF74SVcPCz3R8TLEufH55wzbvfDych2ih?=
- =?us-ascii?Q?D+rD0KwMdlQ34k9J0uijOgRRDHFTqHFLAw4P5fREmx4+czY0s0BZ3LtIPRtK?=
- =?us-ascii?Q?hI2K7hmrfEai0p1fY4QCt0pLfzFYIqHfXZHOa9KPL1EPo5FpkOJRNJ+3UB3q?=
- =?us-ascii?Q?7KkCVib0EQ+z2gJUcqvCGbfAh5+5k+BBMMvwZ2JQpVieXOPfu2GmvlGTn8fK?=
- =?us-ascii?Q?OTF+04Pzz/SEx3Jg5ieIA+QRtIJ1P6GVKBQWHSsYbYwiI4Tg4ZYF7l1gTbC/?=
- =?us-ascii?Q?WYLZC+AFYkGzt5xnHIc+cbeMOUsDRp7OGTj48kF/ovqDUTQqMTay8qu0Kjke?=
- =?us-ascii?Q?dyR63Yut54mA1fXLnquG3Wf/MrZd3ICfN6a/Mk5dXU9Hwko4gKG4WrR9hAyu?=
- =?us-ascii?Q?643VBAPJWsYLTxr/ozSA2p5sNZDlOMCOVQNZwZ8nNdPTCZTOpn05n4YTLFU0?=
- =?us-ascii?Q?/TUUU2OUZUPAMEozFX0DYm1NX0Mc3I4AParPpXSCAbqRBdl3GYCVwzof1YO+?=
- =?us-ascii?Q?OXWHIdWIrSuwTWKVHoZP5pvMWKXpIkzgXEGA8TG/qdWBff6ipeZ8eeo0Fye8?=
- =?us-ascii?Q?mCH7ycWe8+axkyuCDvigyn090AxwN2JWp7BLCjFo?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: eac89d25-ab3c-439d-1866-08dcc14a5ca7
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2024 19:00:30.8687
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hW3+SjOENg8dacd/A+0qIc4kT8r/73Tw0On9H9gRAbubFoxddOyq98whloRfY3+ErQL5ITBhLHQWS+oXfJKItg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB10844
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: wireless: restore constraint for
+ brcm,bcm4329-fmac compatible property
+To: Krzysztof Kozlowski <krzk@kernel.org>, "Rob Herring (Arm)"
+ <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ linux-wireless@vger.kernel.org, Kalle Valo <kvalo@kernel.org>,
+ brcm80211@lists.linux.dev, asahi@lists.linux.dev,
+ Hector Martin <marcan@marcan.st>
+References: <20240820101216.355012-1-arend.vanspriel@broadcom.com>
+ <20240820101216.355012-2-arend.vanspriel@broadcom.com>
+ <172415246911.849656.16484336903356408566.robh@kernel.org>
+ <7a5e37f0-4830-43f8-84c9-62b6614efaca@broadcom.com>
+ <8d74380c-0090-4209-963e-e7dde57c4235@kernel.org>
+Content-Language: en-US
+From: Arend van Spriel <arend.vanspriel@broadcom.com>
+Autocrypt: addr=arend.vanspriel@broadcom.com; keydata=
+ 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
+In-Reply-To: <8d74380c-0090-4209-963e-e7dde57c4235@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Fix below refcheckdocs check error
-  MAINTAINERS: Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
+On 8/20/2024 1:50 PM, Krzysztof Kozlowski wrote:
+> On 20/08/2024 13:43, Arend van Spriel wrote:
+>> On 8/20/2024 1:14 PM, Rob Herring (Arm) wrote:
+>>>
+>>> On Tue, 20 Aug 2024 12:12:15 +0200, Arend van Spriel wrote:
+>>>> When extending the bindings for Apple PCIe devices the compatible property
+>>>> specification was changed. However, it was changed such that for these
+>>>> devices it was no longer necessary to have "brcm,bcm4329-fmac" listed as
+>>>> string in the compatible list property as it was before that extension.
+>>>> This patch restores that constraint.
+>>>>
+>>>> Fixes: e2e37224e8b3 ("dt-bindings: net: bcm4329-fmac: Add Apple properties & chips")
+>>>> Signed-off-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+>>>> ---
+>>>>    .../net/wireless/brcm,bcm4329-fmac.yaml       | 19 ++++++++++---------
+>>>>    1 file changed, 10 insertions(+), 9 deletions(-)
+>>>>
+>>>
+>>> My bot found errors running 'make dt_binding_check' on your patch:
+>>>
+>>> yamllint warnings/errors:
+>>> ./Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml:48:5: [error] syntax error: expected <block end>, but found '-' (syntax)
+>>>
+>>> dtschema/dtc warnings/errors:
+>>> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml: ignoring, error parsing file
+>>> ./Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml:48:5: did not find expected key
+>>> Documentation/devicetree/bindings/mmc/mmc-controller.example.dtb: /example-0/mmc@1c12000/wifi@1: failed to match any schema with compatible: ['brcm,bcm4329-fmac']
+>>> make[2]: *** Deleting file 'Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.example.dts'
+>>> Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml:48:5: did not find expected key
+>>> make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.example.dts] Error 1
+>>> make[2]: *** Waiting for unfinished jobs....
+>>> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1432: dt_binding_check] Error 2
+>>> make: *** [Makefile:224: __sub-make] Error 2
+>>>
+>>> doc reference errors (make refcheckdocs):
+>>>
+>>> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240820101216.355012-2-arend.vanspriel@broadcom.com
+>>>
+>>> The base for the series is generally the latest rc1. A different dependency
+>>> should be noted in *this* patch.
+>>>
+>>> If you already ran 'make dt_binding_check' and didn't see the above
+>>> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+>>> date:
+>>>
+>>> pip3 install dtschema --upgrade
+>>>
+>>> Please check and re-submit after running the above command yourself. Note
+>>> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+>>> your schema. However, it must be unset to test all examples with your schema.
+>>
+>> Thanks, Rob
+>>
+>> I will have to setup my environment for that. Will take a while to get
+>> it all working.
+> 
+> It's just two commands:
+> pip install
+> or pix install if you use newer Ubuntu (no magic here, just like every
+> other Python package)
+> 
+> and then `make dt_bindings_check`, optionally with arguments. There is
+> no environment needed, you can do all this in the same place you build
+> and test kernel changes.
 
-Add nxp mailist: imx@lists.linux.dev.
+I could install dtschema, but I had to manually create the console 
+scripts listed in entry_points.txt. Now I was able to run 
+dt_bindings_check. It took me a while to interpret the error message, 
+but it boiled down to indentation errors. After fixing it 
+dt_binding_check target completes succesfully.
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- MAINTAINERS | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 3fbee89eaecf6..d174cc3ae4347 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18765,9 +18765,10 @@ QORIQ DPAA2 FSL-MC BUS DRIVER
- M:	Stuart Yoder <stuyoder@gmail.com>
- M:	Laurentiu Tudor <laurentiu.tudor@nxp.com>
- L:	linux-kernel@vger.kernel.org
-+L:	imx@lists.linux.dev
- S:	Maintained
- F:	Documentation/ABI/stable/sysfs-bus-fsl-mc
--F:	Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
-+F:	Documentation/devicetree/bindings/misc/fsl,qoriq-mc.yaml
- F:	Documentation/networking/device_drivers/ethernet/freescale/dpaa2/overview.rst
- F:	drivers/bus/fsl-mc/
- F:	include/uapi/linux/fsl_mc.h
--- 
-2.34.1
-
+Regards,
+Arend
 
