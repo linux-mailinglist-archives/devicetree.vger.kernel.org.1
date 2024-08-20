@@ -1,72 +1,48 @@
-Return-Path: <devicetree+bounces-95340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D54B5958E60
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 21:01:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC3A0958E82
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 21:19:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05AB91C20916
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 19:01:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3DC928451F
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 19:19:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFC461547F7;
-	Tue, 20 Aug 2024 19:01:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76F9C1547C9;
+	Tue, 20 Aug 2024 19:19:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="CxBmRopl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DGeksdpW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CBF814F9E2
-	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 19:01:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43F39149C4F;
+	Tue, 20 Aug 2024 19:19:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724180492; cv=none; b=QC863wI0d+4HaVFOjrA0y+R9SMCrg2L08+gWt0WT/aprYWncGeu597gkBodjaZ98K5qjWKBCoIk9gs3sgC3PFpzbJLUOu6zmB/RgyaV8s0x06eN6bkVUUf8PYyOFOCb2knQM4PNe2WycIz3JspIQSCviV4TGnFhVClftpopH1mQ=
+	t=1724181577; cv=none; b=TEeWBiNTznn4DlFD9MIjaZXlRui8byl0AHudiE+F/HdnmHfM5CqpD7yg9pW34OgiUHZARkenJo/zEXnbSLaAe2ZRKvoa7zTYQmBA8M2E6kb7dpyyacJdPefcDemJrb+ijg9DIdMwRtqcPiNRe+TUkeXl1Mj9Acox+dRlJuLBw+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724180492; c=relaxed/simple;
-	bh=LZ61oFlwwOA5SOCf/4Aknoa0YLK63ylHcCkOx6J5Dqc=;
+	s=arc-20240116; t=1724181577; c=relaxed/simple;
+	bh=RmGcxW3LOlrMeL/m6yokO6bOc5amCC+GM7pwxxxaMRY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=D5AHJJI7UrmgDsgF3cvcxKpXpLX9f6/838GAWIiQpna9zVZEsmNYlVojkDJqeAMMPGX7Zth/qOkSQ3jopYwSuO6WPlg3MAm+dgjbzBhGer8hSpzoKJvmZ5cKF9K41+DM5vrdJZvmzVtzDL9uRbVCRYyjenQTOxxsha02eNDX6d0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=CxBmRopl; arc=none smtp.client-ip=209.85.210.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-714184b23d1so593345b3a.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 12:01:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1724180491; x=1724785291; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=/GXVV8vGgDiGW+Au9FKghqgppxt1zc+wtm71jNfzmTY=;
-        b=CxBmRopliEM7d6AoZlNivWUyf9ljT/yOpWHShtSkyeYQFhGWqiyJZTF5nGJBXNTWJV
-         MeTE7bIu2J69eUPsDDFMqsQLkS+NipoEMzEwLKo3SOh5xB/NZCD4bE5jTIcW8ngwopPM
-         3uAFQYa671ub7Vt/X3SMwE+OvprFWUMCsblt4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724180491; x=1724785291;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/GXVV8vGgDiGW+Au9FKghqgppxt1zc+wtm71jNfzmTY=;
-        b=PVJuBrEqIPYcV3anMndh3TraTlCdpsEvB/l7o7x4N9FWAafP2rldTF30ti7zFV42Qj
-         i8i41H1pEScA7DCiQsmk6+1EI7CeuoAFgUFE9t5UWOjHZst+IkL6Jq3DHRY3li5Kw33L
-         q7bzNJVy5FfxG6TIJg/NF0MuN5f8NzE3JTeAkSh9wulgsmKqtm7DwxWSlLUmZuwtDO6X
-         3WK+ii7K4DW3WDiBWl46f2uWrheFScOxwhQ1GvbfM2ZcDNR6guXYTtFtGtU/5ffRbmJd
-         PFXn6V6iUbfcZwnukVXQEze1jYhzePpAyXCaYeTktKGZ0Eii9yLU7pGwmlYvxA0oVJv5
-         jvYQ==
-X-Gm-Message-State: AOJu0YzoDf7er3zpZaBeLGpni3aGvCq4/eahZ+y10v/I3grMauHoilZD
-	MVAd3hJjrfFbIoPoGTegLEPxiIUXApJDvWHU2/OdAWDRV79Gge8dMHNiT6Iz5SLwFD7de/SeJ3R
-	75g==
-X-Google-Smtp-Source: AGHT+IHnt8qqe8p2DJgZM1UHp2Lm2a7xFiysezzy6ZQ85kzTXKnGTVMg3NMFBzWe3jTAGKoN/bzSPQ==
-X-Received: by 2002:a05:6300:41:b0:1c4:8da5:21a4 with SMTP id adf61e73a8af0-1cad81a7279mr349945637.41.1724180490264;
-        Tue, 20 Aug 2024 12:01:30 -0700 (PDT)
-Received: from [192.168.178.137] (f215227.upc-f.chello.nl. [80.56.215.227])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7c6b6356baesm8314317a12.68.2024.08.20.12.01.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Aug 2024 12:01:29 -0700 (PDT)
-Message-ID: <998a465f-2b55-48bd-b588-b7775309e055@broadcom.com>
-Date: Tue, 20 Aug 2024 21:01:22 +0200
+	 In-Reply-To:Content-Type; b=BLoECivVYexqenVPkR7bMZ99VtLV2umpXIaWJqEkhIgoyzGfhJYdsIMuvUyvjxDQoUgwzP6fhB7GiGfx7UEOpzCLJG3Y+2wGZWS0MWvsAQToVMEiQKhboYaJxNx0fMZJOE27DO7+jXraD75k8YB1qniusHwDeO3h/2NpYzg4uv4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DGeksdpW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C248EC4AF0B;
+	Tue, 20 Aug 2024 19:19:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724181576;
+	bh=RmGcxW3LOlrMeL/m6yokO6bOc5amCC+GM7pwxxxaMRY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=DGeksdpW5zPhgcy8CdXTTEXPiepI1YDObSkTjvfFpkgNEPb3gt7j62q6LitcMjZ1l
+	 xfzxUDG0KyzrEQu5OJmGlI9xiYT8fScDIpkfe6mXgFhtvD/aRvl35FJzY3BrCRR7qf
+	 KFB+0umrG9oRuGPaCtRHjykpD84nKWnZvcxIAxY89zwwZ/e2Ji7GMrJW3URfIdmN/K
+	 Td9+ca0BdvC5W6yO+ZBPQS9LRx4nQs0W8eN86APtfgQgqmo3q1SbFhruTCp6iJ29J+
+	 VtuhpITXii79w4cWiQWIFt+jsjGDjNo3aqPzSSbB2FJExNAru7poZUIcFTXp3Yvc+M
+	 8tsOYWhdcYp8A==
+Message-ID: <e663d19a-0ad1-4dfc-903b-ff2012796d84@kernel.org>
+Date: Tue, 20 Aug 2024 21:19:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,139 +50,59 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: wireless: restore constraint for
- brcm,bcm4329-fmac compatible property
-To: Krzysztof Kozlowski <krzk@kernel.org>, "Rob Herring (Arm)"
- <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- linux-wireless@vger.kernel.org, Kalle Valo <kvalo@kernel.org>,
- brcm80211@lists.linux.dev, asahi@lists.linux.dev,
- Hector Martin <marcan@marcan.st>
-References: <20240820101216.355012-1-arend.vanspriel@broadcom.com>
- <20240820101216.355012-2-arend.vanspriel@broadcom.com>
- <172415246911.849656.16484336903356408566.robh@kernel.org>
- <7a5e37f0-4830-43f8-84c9-62b6614efaca@broadcom.com>
- <8d74380c-0090-4209-963e-e7dde57c4235@kernel.org>
+Subject: Re: [PATCH v1 1/3] dt-bindings: soc: qcom: eud: Update compatible
+ strings for eud
+To: Melody Olvera <quic_molvera@quicinc.com>,
+ Trilok Soni <quic_tsoni@quicinc.com>, Konrad Dybcio
+ <konradybcio@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+ Elson Serrao <quic_eserrao@quicinc.com>
+Cc: cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-usb@vger.kernel.org
+References: <20240807183205.803847-1-quic_molvera@quicinc.com>
+ <20240807183205.803847-2-quic_molvera@quicinc.com>
+ <dfb1ac84-f011-45ea-9fb1-b8c6bc36cabc@kernel.org>
+ <46d0627d-877b-41f3-83f6-4c33b562f460@quicinc.com>
+ <0ebb1ca3-722d-422f-9f71-fcc61c3470b0@kernel.org>
+ <2b118a49-2229-4346-ab21-0aa5377d7a4e@kernel.org>
+ <8bb412f8-4fe1-40ca-8414-bb77c66899ae@quicinc.com>
+ <0eca6755-a2ec-404f-b98c-ee6c9f6fb55f@gmail.com>
+ <f8caa9aa-7fc4-4d42-9011-21ca40eb106d@quicinc.com>
+ <81ec34a6-8627-4a59-8fc7-87eee4625b2d@quicinc.com>
 Content-Language: en-US
-From: Arend van Spriel <arend.vanspriel@broadcom.com>
-Autocrypt: addr=arend.vanspriel@broadcom.com; keydata=
- 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
-In-Reply-To: <8d74380c-0090-4209-963e-e7dde57c4235@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Konrad Dybcio <konradybcio@kernel.org>
+In-Reply-To: <81ec34a6-8627-4a59-8fc7-87eee4625b2d@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 8/20/2024 1:50 PM, Krzysztof Kozlowski wrote:
-> On 20/08/2024 13:43, Arend van Spriel wrote:
->> On 8/20/2024 1:14 PM, Rob Herring (Arm) wrote:
->>>
->>> On Tue, 20 Aug 2024 12:12:15 +0200, Arend van Spriel wrote:
->>>> When extending the bindings for Apple PCIe devices the compatible property
->>>> specification was changed. However, it was changed such that for these
->>>> devices it was no longer necessary to have "brcm,bcm4329-fmac" listed as
->>>> string in the compatible list property as it was before that extension.
->>>> This patch restores that constraint.
->>>>
->>>> Fixes: e2e37224e8b3 ("dt-bindings: net: bcm4329-fmac: Add Apple properties & chips")
->>>> Signed-off-by: Arend van Spriel <arend.vanspriel@broadcom.com>
->>>> ---
->>>>    .../net/wireless/brcm,bcm4329-fmac.yaml       | 19 ++++++++++---------
->>>>    1 file changed, 10 insertions(+), 9 deletions(-)
->>>>
->>>
->>> My bot found errors running 'make dt_binding_check' on your patch:
->>>
->>> yamllint warnings/errors:
->>> ./Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml:48:5: [error] syntax error: expected <block end>, but found '-' (syntax)
->>>
->>> dtschema/dtc warnings/errors:
->>> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml: ignoring, error parsing file
->>> ./Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml:48:5: did not find expected key
->>> Documentation/devicetree/bindings/mmc/mmc-controller.example.dtb: /example-0/mmc@1c12000/wifi@1: failed to match any schema with compatible: ['brcm,bcm4329-fmac']
->>> make[2]: *** Deleting file 'Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.example.dts'
->>> Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml:48:5: did not find expected key
->>> make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.example.dts] Error 1
->>> make[2]: *** Waiting for unfinished jobs....
->>> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1432: dt_binding_check] Error 2
->>> make: *** [Makefile:224: __sub-make] Error 2
->>>
->>> doc reference errors (make refcheckdocs):
->>>
->>> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240820101216.355012-2-arend.vanspriel@broadcom.com
->>>
->>> The base for the series is generally the latest rc1. A different dependency
->>> should be noted in *this* patch.
->>>
->>> If you already ran 'make dt_binding_check' and didn't see the above
->>> error(s), then make sure 'yamllint' is installed and dt-schema is up to
->>> date:
->>>
->>> pip3 install dtschema --upgrade
->>>
->>> Please check and re-submit after running the above command yourself. Note
->>> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
->>> your schema. However, it must be unset to test all examples with your schema.
->>
->> Thanks, Rob
->>
->> I will have to setup my environment for that. Will take a while to get
->> it all working.
+On 20.08.2024 8:21 PM, Melody Olvera wrote:
 > 
-> It's just two commands:
-> pip install
-> or pix install if you use newer Ubuntu (no magic here, just like every
-> other Python package)
 > 
-> and then `make dt_bindings_check`, optionally with arguments. There is
-> no environment needed, you can do all this in the same place you build
-> and test kernel changes.
+> On 8/14/2024 3:09 PM, Trilok Soni wrote:
+>> On 8/14/2024 1:25 PM, Konrad Dybcio wrote:
+>>>> Unfortunately, no. We considered several options, but none guarantee that we will avoid
+>>>> a crash if we try non-securely. The secure call also won't give a specific error if it fails either
+>>>> (for security reasons) so we can't know if a secure access failed because it's supposed to be
+>>>> accessed non-securely or for another reason; hence this approach. If there's
+>>>> another way to achieve this functionality that might be better, I'm all ears.
+>>> Can we read some fuse values and decide based on that?
+>> In most of the cases, these fuse values are not allowed to be read
+>> from the Linux, so that will be another problem. Melody can check
+>> if there is any fuse values around here and possible to read them
+>> through Linux.
+>>
+> 
+> I double-checked, but there really isn't any kind of fuse or anything we can read to determine
+> how we need to access these registers. I remembered checking before authoring these patches,
+> but I wanted to just make sure before responding here.
 
-I could install dtschema, but I had to manually create the console 
-scripts listed in entry_points.txt. Now I was able to run 
-dt_bindings_check. It took me a while to interpret the error message, 
-but it boiled down to indentation errors. After fixing it 
-dt_binding_check target completes succesfully.
+Well in that case I suppose a new compatible / property (please voice
+your opinion Krzysztof) is necessary after all.. Thanks for making sure
 
-Regards,
-Arend
+Konrad
 
