@@ -1,84 +1,86 @@
-Return-Path: <devicetree+bounces-95295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B26E958B59
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 17:31:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AF71958B5B
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 17:31:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD64D2830C1
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 15:31:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 100791F23B7E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 15:31:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 762761B3F08;
-	Tue, 20 Aug 2024 15:30:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24017192B6F;
+	Tue, 20 Aug 2024 15:31:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EskbHmWs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kMseZZUb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97EB61ABEA9
-	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 15:30:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D0A3192B9F
+	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 15:30:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724167847; cv=none; b=iir4Kcaah7zhhZo6seYErd5jN0/VYwX+lEElEN92uEIScW6vMTgKPnc3hYZvUsMmdkpBJhvuxm5lLdJQy1IZtTr89Qc5uI2Vc9dwMmZyHl9poAxHX8yj88ON7Gx50qb5d3y7CD+Q5FtxmQpvw7Ukd5tS/NXRlLK2ygigfYbYHPw=
+	t=1724167861; cv=none; b=AxMkBMn7ZtGVrVa1qWXI/LoDIgMqzEvIr51Q+dIdWbZ6aiR+gRoCgQcZKXb/b8+D8aAfS/Y2gBBlw1r9pSJD5VvnX8KcAPNMmKh5yyQ0fj463tRwxE5B+tfF4tmbMSab6fgtPocS0SAwqwmy9lrVLQlT0FucZoui2cLfwRzaQIs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724167847; c=relaxed/simple;
-	bh=AAiMpzsbM2U/IlshdBpUK4vufmXmmQFTMfrQDfydLFc=;
+	s=arc-20240116; t=1724167861; c=relaxed/simple;
+	bh=sXFLJlA8D2vcoNyOpTJqQiUl4iEBMJKfR/Do1ZTd10I=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=a4/48o+1MtZVDa2+0ufeKFNHJCwoM+j6P1kumOuFG3qNVsyEelETplOOiTViBnc9Tt8Qg1VyyCqod1OTCSFo90w0GlXk8qiiwa/4zBxeU+VoCccNrktIqoljyPh61yrFJIRxL2fXLf+QVyRfBpHrkGeTo1nsvmd4h0DwadK6gHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EskbHmWs; arc=none smtp.client-ip=209.85.221.52
+	 MIME-Version:Content-Type; b=s44u9o7mTQaaSAMD+7yIR5n1EMOd8/zMpxRD3GTf+5AiXBSZ5yOBkkB9uv5XJPd+l9f2aUY/cz6UjtHaVIM9m7rzT+9+2M/6Re5C4tw+k/ywnNorj+mMEVIavdWLuy+A7Muh/cuYHiKqgR9KyWWfkHgp5zzpvRDVzPE0tAUGo04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kMseZZUb; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-371893dd249so3040322f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 08:30:45 -0700 (PDT)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-429e29933aaso43808455e9.0
+        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 08:30:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724167844; x=1724772644; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1724167858; x=1724772658; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=3Qhgrtf6I3bZZq2qO8Kt7JLM5yKHi5OzFhJIAV+fYUc=;
-        b=EskbHmWs/y1mwk8LvJSiWS7gDVMymj0qsKqLUMo7jY4X3QOjcfe0i1GHrNf2esVKPr
-         Se2Q9xBYSvJapl2JIJe7lO+J/qucdC+h/8cabpvPxtgvrqyPE+lvOrdG+x6U6fA3esHV
-         +r1OWHysgMYz7dY+m4/ukjM3UUnsrem/PrTk3rkBtEecEBkvxfIWE1dGxJYSIddoppas
-         O3g0+yGTuhOySk++5spTHRxeRBJIwsSikyE6Ez8Fcf/Db+97JjwvQztY2tdMlB22sR0n
-         Mwx4bleMaz7J+XAGG0da8BDpW7q0Cwhg/UgDLi8WiYYQ+jLFBtURWvaW0OCP7fyNCZ62
-         wqFA==
+        bh=3Ur/Vav4aBUf1Kq1Kuvd977BxSeEb3EWBoV9+RH1igk=;
+        b=kMseZZUbyPwx1WS5QSMch1hMGtFiEXmPpsDDTvZ9Bp6Y1fP6TG7pSRPZdehtPxKGZS
+         M1dynJDv+jS1mkQ1VFssqZkxqPq6YrqubP6vkWUguaUZbbkgDA9iaYN1FfNHNo3xA7TW
+         O5tsZ9A9bcQLuKHd+LNDwz7sbfQQPWdFv0gThF3tHxvhmLpYfByCOgRovnatoKLIiBl+
+         rXEPcyDmNLbrfbXEq5R8MlWjZuf+ygVhtFf6V9136Zl0IEB3DAfbk74v9SjSG6aVoVHo
+         HBx/b9Eee/ggOUosXacnvyhD+EFcIh/38NUB7Q1u2JfzkKxgfmuFClC3v2qm5te5Goqt
+         rKAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724167844; x=1724772644;
+        d=1e100.net; s=20230601; t=1724167858; x=1724772658;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=3Qhgrtf6I3bZZq2qO8Kt7JLM5yKHi5OzFhJIAV+fYUc=;
-        b=ozyyK2JbhR1BbXlJhTrZekDGYB57uegsD196T6Db8gpMfdrHl9OXKwGgt2ebllXWlI
-         cetXjkM701vepYSdW+L+yQUuWfbYd9JkmoCmkylYsdSUo8M3sLEppEXvT/ljELWGyVuy
-         ea8wwSfn1at6N+IKAETTjAWg9Gkx56IqBN/nHceij3gqzSUeFJMowEusE9yIT/SKgVv+
-         HU3IgremZ8E4m+W+l+ICTz67lQqHiCinbnlvaQP5Kp5u5Sxla+7npxa69bPuCD7D+6VW
-         LdtfD/H1/ICMrQHQJAzXO1U+20bj6QRu5lyWCenceLSMFfVtJBz0ufoyviL1VctziBfe
-         2p3Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUkK4/OG6A9537J5KJTJqzXlwQgVO9LZpXcEdrrBA+z84pzGA2yNvV38kfPRhuxCN0ylL63HcWe5lntZKeuCuFib/88BXN6HTc5Iw==
-X-Gm-Message-State: AOJu0YxdEygkWRFFkqpJ/01bZW9pjBy2QlZN4JZx85zlfjA4V7UFUJO5
-	LyaJY9nqDN01XDSYJenwquJOzI3ofOlRmYDVrbG49wFjHW4xOKEyuQ9Ep5qEKhY=
-X-Google-Smtp-Source: AGHT+IHTy1L6M6bWuRv0bAMNMMxtANlI7zoSxkKwUl3KIWs98yZHIQ9y4X0KPyFbQw6o9GPoRQ+qJw==
-X-Received: by 2002:a5d:6d05:0:b0:371:c51a:3b2a with SMTP id ffacd0b85a97d-371c5fa669cmr2038166f8f.4.1724167843430;
-        Tue, 20 Aug 2024 08:30:43 -0700 (PDT)
+        bh=3Ur/Vav4aBUf1Kq1Kuvd977BxSeEb3EWBoV9+RH1igk=;
+        b=PgNGABRfSrpqhM27v339/I3LJiQ/F1gIngQ28g0P6JrpENZq0dbNOMQ4uuoz40SeN7
+         v/5BdvPM0yY1e5aZKfybSRr9dfSEyp3qZ+eBh28+ZE1wajV1bH2FXEXv21gxws2eh2Uw
+         59jX7NEsO6ISli4zUs1UNwyU42+E6JM/Y7UKjM/CKBlW1e7q3UuBqIdyl2ieauyVoDC+
+         U5QMlem9eYanEyOQXFXMX7LzOO0/ht88D8PIIkwHXyS7gYBol66+xkFMyjMiDp+vEvMx
+         h+hxekdZb9sfzjMzeiD4vTKnpcihLR+FsI/YzVxeQGgy0aH4E4YqSorrHkAG+sG5ikNt
+         bpLw==
+X-Forwarded-Encrypted: i=1; AJvYcCUCY8uLPLpSicVi9vcpvSqJ9seYW80nWk/OF0wLVMnPFEBRbkOGYzSGoVw7Z4InNG0ZtNZPfsoBkKTdUXkBxj6tJ6qfeCWvQHjiyw==
+X-Gm-Message-State: AOJu0YzgS/Yyzu8Pk4SYUS/NLUn2M0aSGTKp4KviZXu7f5Wmb6Kk7gyT
+	mmcoK269TlNBJmsexSaZHrEEMnbACcDdcjPn7dPyGBUwfaqGucFudQUgHO2lVks=
+X-Google-Smtp-Source: AGHT+IHWMUD27wprJqfh0nu5mP583FCFaAbKyLfpBAtWWwZSc+ciqzZ5wNroIC1wy29Wu3Iqbqy2fA==
+X-Received: by 2002:adf:f0c6:0:b0:368:5a8c:580b with SMTP id ffacd0b85a97d-3719444b2d0mr10387185f8f.19.1724167857172;
+        Tue, 20 Aug 2024 08:30:57 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3718983a311sm13439160f8f.23.2024.08.20.08.30.42
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3718983a311sm13439592f8f.23.2024.08.20.08.30.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Aug 2024 08:30:42 -0700 (PDT)
+        Tue, 20 Aug 2024 08:30:56 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-To: FUKAUMI Naoki <naoki@radxa.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- khilman@baylibre.com, jbrunet@baylibre.com, 
- martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org, 
- linux-amlogic@lists.infradead.org
-In-Reply-To: <20240712215111.687478-1-naoki@radxa.com>
-References: <20240712215111.687478-1-naoki@radxa.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: amlogic: add support for
- Radxa ZERO 2 Pro
-Message-Id: <172416784208.3050902.355272849812987526.b4-ty@linaro.org>
-Date: Tue, 20 Aug 2024 17:30:42 +0200
+To: Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Conor Dooley <conor.dooley@microchip.com>
+In-Reply-To: <20240719-soc_info-v3-0-020a3b687c0c@amlogic.com>
+References: <20240719-soc_info-v3-0-020a3b687c0c@amlogic.com>
+Subject: Re: (subset) [PATCH v3 0/6] Add new Amlogic SoCs info defines.
+Message-Id: <172416785609.3051192.670388660690339577.b4-ty@linaro.org>
+Date: Tue, 20 Aug 2024 17:30:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,24 +93,22 @@ X-Mailer: b4 0.14.0
 
 Hi,
 
-On Sat, 13 Jul 2024 06:51:10 +0900, FUKAUMI Naoki wrote:
-> Radxa ZERO 2 Pro is a ultra tiny high performance SBC[1] using the
-> Amlogic A311D chip.
-> 
-> [1] https://radxa.com/products/zeros/zero2pro
+On Fri, 19 Jul 2024 16:08:08 +0800, Xianwei Zhao wrote:
+> Add more Amlogic SoCs info defines, include S4, C3
+> T7, A4, A5.
 > 
 > 
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.12/arm64-dt)
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.12/drivers)
 
-[1/2] dt-bindings: arm: amlogic: add support for Radxa ZERO 2 Pro
-      https://git.kernel.org/amlogic/c/8f97ee0c9f5c6fc250847d7492875a6d7152ba68
-[2/2] arm64: dts: amlogic: add support for Radxa ZERO 2 Pro
-      https://git.kernel.org/amlogic/c/69591796c5d585816a306134f6d565cf19da575e
+[1/6] dt-bindings: arm: amlogic: meson-gx-ao-secure: support more SoCs
+      https://git.kernel.org/amlogic/c/dde3c64013035c9d6f0a5d0fd894a7a7e03c79ea
+[2/6] soc: amlogic: meson-gx-socinfo: add new SoCs id
+      https://git.kernel.org/amlogic/c/009ff80bfaec1aa3fa48bbe5e2903c95931a6f37
 
 These changes has been applied on the intermediate git tree [1].
 
-The v6.12/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+The v6.12/drivers branch will then be sent via a formal Pull Request to the Linux SoC maintainers
 for inclusion in their intermediate git branches in order to be sent to Linus during
 the next merge window, or sooner if it's a set of fixes.
 
