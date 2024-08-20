@@ -1,73 +1,86 @@
-Return-Path: <devicetree+bounces-95107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B4B095817E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 10:57:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEB929581C7
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 11:15:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B9A41C22BCF
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 08:57:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0EB0C1C232B1
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 09:15:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5B5518C911;
-	Tue, 20 Aug 2024 08:55:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 466AA18C00B;
+	Tue, 20 Aug 2024 09:15:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="EbVIKxNC"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="CIwkCeck"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DE0618C008;
-	Tue, 20 Aug 2024 08:55:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7F1418B472
+	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 09:15:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724144153; cv=none; b=h9D+8tgkVD4CipxGVdgZUkN+pvZD6N5JmCAw8tQw34ECWqS1Hwcom9+X5xPGT6xECwD8KpX4uiFpCiRoHlDd2GmqVmRti84yGV5zDhSu6GSg5RWgYydeMTeix8DGO7/J3akgic8Qz1DX8Q6HN1R1gB2bnP4d0vM3jjZt9RZ/hfs=
+	t=1724145311; cv=none; b=qh848MO/xAGYy1oJ9sKL2uZNl8wQH5/IgxmTenHnR5Vk8oKYcQ/SxM6Y0grak6Bb47bvkS1eYvaXbRDNMYN4lBPdCEm26guQbOGcgGrIHmZcYpKm5jCZCNILBSsG3I8281FiY/m95G9frpt88hlqTCv49nJVerU79gC9t5BstaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724144153; c=relaxed/simple;
-	bh=p6RrIwUv9oUO0LXkOHLYgBNDtYgOQ6SQo6I232Kf4Tw=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=a29sODtDJTA7T65qlvIgpW6JDwF7j7C2sgJ9VzB26tXD/qQiwjY7xup2BgS9134/0hSzaAyZgfyrcuXMiUfyNBGLy/F54a9A4RC5XSEvtwTu/ANsrMNoIEHRm7R6DwJvmLi2UHAyxrTEsrMoDFvjHpUmzkNMRzbMwiqzYI3xTxA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=EbVIKxNC; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47K0jErR007676;
-	Tue, 20 Aug 2024 08:55:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	wKPzeumnjVrEqeLQeu1GWxPuF4isjCmEp8H9bKK7VQE=; b=EbVIKxNCso7BxoFV
-	88uGmJwU/T5tbYHZ5MhfoyTdltm886iqZI9K2XoQSHIEyZ7yzvc/QlVWV7rdVI7X
-	pGMdOFUdwr3Z9iZfCW2/iThJZ/uZfjA3k1jLltGX7EnBas44XJZIqgHsDN5LzPeg
-	sPwMEU/nggl6epSG54Yy75/IaJVxZ9gnzJ/1gWKdMoos4UELynm6XvbzTB116NW2
-	Zrojwhy4T83Ea5AQ29thqr4+QYdwefCOVrkFxTkfLkPGYt7rz3rpvohLVvoVnQM1
-	oPxoAGYuk64+8msZ5srQSq3zo18T/wd+2tobUfXAaneAoo6Z+4Zf9O3kzukqf/mH
-	NWP20g==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 412mmepxwb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 20 Aug 2024 08:55:49 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47K8tnnQ002488
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 20 Aug 2024 08:55:49 GMT
-Received: from hu-gokulsri-blr.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 20 Aug 2024 01:55:45 -0700
-From: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
-To: <andersson@kernel.org>, <krzk+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <quic_viswanat@quicinc.com>, <quic_mmanikan@quicinc.com>,
-        <quic_varada@quicinc.com>, <quic_srichara@quicinc.com>
-Subject: [PATCH 4/4] arm64: dts: qcom: ipq9574: add nodes to bring up q6
-Date: Tue, 20 Aug 2024 14:25:17 +0530
-Message-ID: <20240820085517.435566-5-quic_gokulsri@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240820085517.435566-1-quic_gokulsri@quicinc.com>
-References: <20240820085517.435566-1-quic_gokulsri@quicinc.com>
+	s=arc-20240116; t=1724145311; c=relaxed/simple;
+	bh=gQFr0R2yJPrE1ig/JI/igkinoJMAVaZ4XV7epIl71f8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 References; b=BXSUOOYp96VQKS8waWeaeIEi9+Sx7h5MrqBW0TV/BGwVDJV+sJdJmb0Xs+8663w+geCe4BEnxb3vtZi8fsXxBqPWySQCJO3A/td/zdV1VNK6rhv9m4UMFoD91w4hOXuJ6M86Rk/SzduEXrzxWpileqtJt/8+DxBhf6hUg4dB1y4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=CIwkCeck; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20240820091505epoutp02eb923e1df50d0169384391f9d557ff76~tZQVQoPG23147831478epoutp022
+	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 09:15:05 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20240820091505epoutp02eb923e1df50d0169384391f9d557ff76~tZQVQoPG23147831478epoutp022
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1724145305;
+	bh=8tMkLzhylaiHCBUalOueN3x9TqC6MrJUi++AmTMJENg=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=CIwkCeck5XX/kMgc/A15PjTJ+Ad/ZsI/AuS0NDWgyCgcmQ6Es4KAT7bbWMACE9sa3
+	 deb0zDBtCzocqaBhVUS9tOQRBR7Bo/lMgMQh7DWxEUUjMUC+ZJ0od7wdUJ8ZJD7n0v
+	 dNp/L1V/iXdtNa2E6J5jC/VSatKDxa/uUmuUWDX8=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+	epcas2p2.samsung.com (KnoxPortal) with ESMTP id
+	20240820091505epcas2p2ca02bbf3b726b577fbc17936ba1fc77e~tZQUunUEs2152021520epcas2p2z;
+	Tue, 20 Aug 2024 09:15:05 +0000 (GMT)
+Received: from epsmgec2p1.samsung.com (unknown [182.195.36.68]) by
+	epsnrtp2.localdomain (Postfix) with ESMTP id 4Wp3hS6dSMz4x9Q1; Tue, 20 Aug
+	2024 09:15:04 +0000 (GMT)
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+	epsmgec2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	D8.31.08901.89E54C66; Tue, 20 Aug 2024 18:15:04 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
+	20240820091504epcas2p4b492128d21e5f12cdc084995059c6502~tZQT_RghH0982509825epcas2p4i;
+	Tue, 20 Aug 2024 09:15:04 +0000 (GMT)
+Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20240820091504epsmtrp1361a1f5dc3c860bb8a045fb3b1b623cd~tZQT9Y0Fm2606226062epsmtrp11;
+	Tue, 20 Aug 2024 09:15:04 +0000 (GMT)
+X-AuditID: b6c32a43-a0fff700000022c5-ee-66c45e984513
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	59.7F.07567.89E54C66; Tue, 20 Aug 2024 18:15:04 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.60]) by
+	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20240820091504epsmtip1768782e35c659e603dd865e7177d4a83~tZQTyTqtp3093730937epsmtip1T;
+	Tue, 20 Aug 2024 09:15:04 +0000 (GMT)
+From: Sunyeal Hong <sunyeal.hong@samsung.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Sylwester Nawrocki
+	<s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar
+	<alim.akhtar@samsung.com>, Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>
+Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Sunyeal Hong <sunyeal.hong@samsung.com>
+Subject: [PATCH v8 0/4] initial clock support for exynosauto v920 SoC
+Date: Tue, 20 Aug 2024 18:14:56 +0900
+Message-ID: <20240820091501.3395841-1-sunyeal.hong@samsung.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,114 +88,107 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: DIoCZaqxP9zoyNZ08hCr_tKZn9vH8HzV
-X-Proofpoint-ORIG-GUID: DIoCZaqxP9zoyNZ08hCr_tKZn9vH8HzV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-19_16,2024-08-19_03,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 clxscore=1015
- mlxlogscore=688 priorityscore=1501 bulkscore=0 impostorscore=0
- adultscore=0 mlxscore=0 malwarescore=0 lowpriorityscore=0 spamscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408200065
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprPJsWRmVeSWpSXmKPExsWy7bCmqe6MuCNpBmsfGFk8mLeNzWLN3nNM
+	Fte/PGe1mH/kHKvF+fMb2C02Pb7GavGx5x6rxeVdc9gsZpzfx2Rx8ZSrxf89O9gtDr9pZ7X4
+	d20ji0XTsvVMDnwe72+0sntsWtXJ5rF5Sb1H35ZVjB6fN8kFsEZl22SkJqakFimk5iXnp2Tm
+	pdsqeQfHO8ebmhkY6hpaWpgrKeQl5qbaKrn4BOi6ZeYA3amkUJaYUwoUCkgsLlbSt7Mpyi8t
+	SVXIyC8usVVKLUjJKTAv0CtOzC0uzUvXy0stsTI0MDAyBSpMyM7o3biFseA9f8WzKw4NjBt5
+	uhg5OSQETCRW3ZvG3MXIxSEksINR4mzTSnYI5xOjxPJrX6Ey3xgl+ne/Y4FpubZhLiuILSSw
+	l1Fi1hRtiKKPjBJn5r1n6mLk4GAT0JX4888BJC4isIdJYsv5JUwgDrPAWUaJu3MWsIN0Cwu4
+	Slw+so4ZxGYRUJXo+rSWEcTmFbCXOHqyhxlim7zExTXP2SDighInZz4Bu4IZKN68dTbYeRIC
+	rRwSh65dBNssIeAicfk2K0SvsMSr41vYIWwpiZf9bVB2vsTk62+ZIHobGCWu/euGWmYvsejM
+	T3aQOcwCmhLrd+lDjFSWOHILai2fRMfhv+wQYV6JjjYhiEY1iU9XLkMNkZE4duIZlO0hMevw
+	RGhYxUpsaLzDMoFRfhaSZ2YheWYWwt4FjMyrGMVSC4pz01OTjQoM4XGanJ+7iRGcUrWcdzBe
+	mf9P7xAjEwfjIUYJDmYlEd7ulwfThHhTEiurUovy44tKc1KLDzGaAoN3IrOUaHI+MKnnlcQb
+	mlgamJiZGZobmRqYK4nz3mudmyIkkJ5YkpqdmlqQWgTTx8TBKdXAtMnBmeNPZfXrXl27zQwt
+	ly9WBIjYJK/XnNjQYJPs1nJw4cV9u9vUnp/gmPxC0jjh5iy1vJe/TqXsMr92dO2N+wEtBfsd
+	DvJJTw0qWHNLolG5dvfibSIXlrGotT3vEsxL/xz+jv9OR1AaR71qukrwjEWG5h43Q/Je6nyJ
+	6z64w89T9G4b11OGmivlvx8wXf3Z1Gi3dkdv1rSKKzefxj6bMje4+J8jD2Pq9TMh95bwmy/2
+	M7uYycv+f17o2dunykLfXPJYyWSuULxgq9O+k4udDJYGxV2r6i34mfjmacoKk/lxO26VMP1R
+	Yo1VYxZtk1386NfhKMOLTN0OrCu2P+k55mlw/omD0LW5fjNs/pYaKLEUZyQaajEXFScCADFO
+	z4YyBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrPLMWRmVeSWpSXmKPExsWy7bCSnO6MuCNpBtd+iFs8mLeNzWLN3nNM
+	Fte/PGe1mH/kHKvF+fMb2C02Pb7GavGx5x6rxeVdc9gsZpzfx2Rx8ZSrxf89O9gtDr9pZ7X4
+	d20ji0XTsvVMDnwe72+0sntsWtXJ5rF5Sb1H35ZVjB6fN8kFsEZx2aSk5mSWpRbp2yVwZfRu
+	3MJY8J6/4tkVhwbGjTxdjJwcEgImEtc2zGUFsYUEdjNKvF/GBhGXkdjY8J8dwhaWuN9yBKiG
+	C6jmPaPE7L47zF2MHBxsAroSf/45gMRFBA4xSUz8/JQFxGEWuMwocezuZGaQbmEBV4nLR9aB
+	2SwCqhJdn9Yygti8AvYSR0/2MENskJe4uOY5G0RcUOLkzCcsIDYzULx562zmCYx8s5CkZiFJ
+	LWBkWsUomVpQnJuem2xYYJiXWq5XnJhbXJqXrpecn7uJERzmWho7GO/N/6d3iJGJg/EQowQH
+	s5IIb/fLg2lCvCmJlVWpRfnxRaU5qcWHGKU5WJTEeQ1nzE4REkhPLEnNTk0tSC2CyTJxcEo1
+	MCXLi08TLTQIkptYd199S/3/u6cdtjpVLgzcpP1pzbV7H3rMGC6XWvnfVb05/e3zbT39Ju9O
+	yW4QCbSzdBAzXHAq6Jam/gLhyW6ZPeubT9l7z/V+wqc2tVf/v0SvbIvOJn4/tr1LEl6wTVpY
+	u2lD2Eu/n9EHvwlve/Zg86I6ptJ1Yo6+szfZTCleP2dV/60koekpjJvqlNkWPPnInHvVp3XS
+	89/bS0/lnKxle3NRrS/7yZLVp97tWXv2tv2RngXvqr4Jnz2c4vZOn/ch8+dzR99cTlq7ntPc
+	IsfpcYTqeV1FqXKv4EU5j7O2zvvNM9HjcsG7vIrFuiITlMT2Bcf9WnJVnvl0RoHdhIqeAIN3
+	NbuVWIozEg21mIuKEwEcRHiF4gIAAA==
+X-CMS-MailID: 20240820091504epcas2p4b492128d21e5f12cdc084995059c6502
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20240820091504epcas2p4b492128d21e5f12cdc084995059c6502
+References: <CGME20240820091504epcas2p4b492128d21e5f12cdc084995059c6502@epcas2p4.samsung.com>
 
-From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+This patchset adds initial clock driver support for Exynos Auto v920 SoC.
+This driver uses HW Auto Clock gating. So all gate clocks did not register.
 
-Enable nodes required for q6 remoteproc bring up.
+Below CMU blocks are supported in this patchset and remains will be
+implemented later.
 
-Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
----
- arch/arm64/boot/dts/qcom/ipq9574.dtsi | 58 +++++++++++++++++++++++++++
- 1 file changed, 58 insertions(+)
+- CMU_TOP
+- CMU_PERIC0/1
+- CMU_MISC
+- CMU_HSI0/1
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-index 48dfafea46a7..bca3a50d21d7 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-@@ -213,6 +213,11 @@ smem@4aa00000 {
- 			hwlocks = <&tcsr_mutex 3>;
- 			no-map;
- 		};
-+
-+		q6_region: wcnss@4ab00000 {
-+			reg = <0x0 0x4ab00000 0x0 0x2b00000>;
-+			no-map;
-+		};
- 	};
- 
- 	soc: soc@0 {
-@@ -756,6 +761,35 @@ frame@b128000 {
- 				status = "disabled";
- 			};
- 		};
-+
-+		q6v5_wcss: remoteproc@cd00000 {
-+			compatible = "qcom,ipq9574-wcss-sec-pil";
-+			reg = <0x0cd00000 0x4040>;
-+			firmware-name = "ath11k/IPQ9574/hw1.0/q6_fw.mdt";
-+			interrupts-extended = <&intc GIC_SPI 325 IRQ_TYPE_EDGE_RISING>,
-+					      <&wcss_smp2p_in 0 IRQ_TYPE_NONE>,
-+					      <&wcss_smp2p_in 1 IRQ_TYPE_NONE>,
-+					      <&wcss_smp2p_in 2 IRQ_TYPE_NONE>,
-+					      <&wcss_smp2p_in 3 IRQ_TYPE_NONE>;
-+			interrupt-names = "wdog",
-+					  "fatal",
-+					  "ready",
-+					  "handover",
-+					  "stop-ack";
-+
-+			qcom,smem-states = <&wcss_smp2p_out 0>,
-+					   <&wcss_smp2p_out 1>;
-+			qcom,smem-state-names = "shutdown",
-+						"stop";
-+			memory-region = <&q6_region>;
-+
-+			glink-edge {
-+				interrupts = <GIC_SPI 321 IRQ_TYPE_EDGE_RISING>;
-+				label = "rtr";
-+				qcom,remote-pid = <1>;
-+				mboxes = <&apcs_glb 8>;
-+			};
-+		};
- 	};
- 
- 	thermal-zones {
-@@ -987,4 +1021,28 @@ timer {
- 			     <GIC_PPI 4 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
- 			     <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
- 	};
-+
-+	wcss: wcss-smp2p {
-+		compatible = "qcom,smp2p";
-+		qcom,smem = <435>, <428>;
-+
-+		interrupt-parent = <&intc>;
-+		interrupts = <GIC_SPI 322 IRQ_TYPE_EDGE_RISING>;
-+
-+		mboxes = <&apcs_glb 9>;
-+
-+		qcom,local-pid = <0>;
-+		qcom,remote-pid = <1>;
-+
-+		wcss_smp2p_out: master-kernel {
-+			qcom,entry-name = "master-kernel";
-+			#qcom,smem-state-cells = <1>;
-+		};
-+
-+		wcss_smp2p_in: slave-kernel {
-+			qcom,entry-name = "slave-kernel";
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
- };
+Changes in v8:
+ - Resend it because v7 includes other SoC patches
+
+Changes in v7:
+ - Combine duplicate clock description
+
+Changes in v6:
+ - Add peric1, mis and hsi0/1 in the bindings document
+
+Changes in v5:
+ - Change CMU_TOP odd numbering
+ - Move the descriptions and names common clocks properties
+
+Changes in v4:
+ - Change PLL_531x fdiv type and mask bit
+ - Change PLL_531x mdiv type
+
+Changes in v3:
+ - Change SoC name from Exynos Auto to ExynosAuto
+ - Change the makefile order to the bottom of exynosautov9
+ - Add PLL_531x formula for integer PLL
+
+Changes in v2:
+ - Fix typo from v209 to v920
+ - Change USI clock to appropriate
+ - Merge headers into binding patches
+ - Change clock-name to the recommended name
+
+Sunyeal Hong (4):
+  dt-bindings: clock: add ExynosAuto v920 SoC CMU bindings
+  arm64: dts: exynos: add initial CMU clock nodes in ExynosAuto v920
+  clk: samsung: clk-pll: Add support for pll_531x
+  clk: samsung: add top clock support for ExynosAuto v920 SoC
+
+ .../clock/samsung,exynosautov920-clock.yaml   |  162 +++
+ .../arm64/boot/dts/exynos/exynosautov920.dtsi |   40 +-
+ drivers/clk/samsung/Makefile                  |    1 +
+ drivers/clk/samsung/clk-exynosautov920.c      | 1173 +++++++++++++++++
+ drivers/clk/samsung/clk-pll.c                 |   44 +
+ drivers/clk/samsung/clk-pll.h                 |    1 +
+ .../clock/samsung,exynosautov920.h            |  191 +++
+ 7 files changed, 1599 insertions(+), 13 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/samsung,exynosautov920-clock.yaml
+ create mode 100644 drivers/clk/samsung/clk-exynosautov920.c
+ create mode 100644 include/dt-bindings/clock/samsung,exynosautov920.h
+
 -- 
-2.34.1
+2.45.2
 
 
