@@ -1,185 +1,144 @@
-Return-Path: <devicetree+bounces-95319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6ED5958D1A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 19:20:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BE3A958D1D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 19:20:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B202B22391
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 17:20:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5B13285F4B
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 17:20:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 122CF1C57A4;
-	Tue, 20 Aug 2024 17:19:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDC4A1C3789;
+	Tue, 20 Aug 2024 17:19:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="nPzowpGQ"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="f05BM5sL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ED541C4635
-	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 17:19:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED95E1BF31F
+	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 17:19:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724174372; cv=none; b=QbVlezbuNw2uOU0i8EkiC6J/YSRFCfJfrU0RGskhojQ7IY1raO2sdF1Yy/nBR0EMdxxjN1E6ZlsPGYhePXmHGZ3ml3HsZcwSDdkig7VtWjovJWzjIGMpJq5hqca1Lb8C5qgta3ZOoBRR2XQdZ/da6dyoRF6+ZK6nNzJz2RtP60I=
+	t=1724174391; cv=none; b=UuqqwnWGhP0ACObGGvtikKvpHP0S/76VG4UoFBGS4kwY0bjPx9I2RVVljmxnF6gqP8GZlgXlMjRg94U4iArfQHjh5tgUSko6dDmIk31d6zgI784xvABn6U6C/rmbAu4drqBo+65jU8Ckl+9JBddvlhIdhX9RB8XhIvBWWwdPKcs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724174372; c=relaxed/simple;
-	bh=RPF2mQ37nvJ3f8062+c/Prugaw2ureejisesb3lQUkE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=S5J40bN6zey+z0THO9QZOqMGG5IIO++BD/NjYLZ2rCntOFgpknw/0gMTyesCaTHgiuyH3UrLWfFw77OjHAjlDUlRAoTZsqf3i8gc8tgsXUYPlqqZkU4IAA1MEHmZqualtJj2Z0zPQ+rRN6Wb9ub3Ew+aKCwh0pZKimhroiPZcqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=nPzowpGQ; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1724174356; x=1726766356;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=RPF2mQ37nvJ3f8062+c/Prugaw2ureejisesb3lQUkE=;
-	b=nPzowpGQTzm8rtQhaRrU4Uy0ZGAllmLTWuBVtft82YnQ+OCNsVe7TzVGYsFW1qwo
-	yUJdqNQm7qIJt6tzEyIb8fpxNBHk+GP3skQ/j+2f5+RCzJWBrkWU9/Ajqll9d4ZQ
-	mo7u7Y0vAhdvlgWKuVe3dxmq7lTVAaotJJNX584RqFk=;
-X-AuditID: ac14000a-03251700000021bc-18-66c4d014acc3
-Received: from florix.phytec.de (Unknown_Domain [172.25.0.13])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id D1.70.08636.410D4C66; Tue, 20 Aug 2024 19:19:16 +0200 (CEST)
-Received: from llp-varakala.phytec.de (172.25.0.11) by Florix.phytec.de
- (172.25.0.13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Tue, 20 Aug
- 2024 19:19:15 +0200
-From: Yashwanth Varakala <y.varakala@phytec.de>
-To: <shawnguo@kernel.org>, <s.hauer@pengutronix.de>, <kernel@pengutronix.de>,
-	<festevam@gmail.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-CC: <imx@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<upstream@lists.phytec.de>, <y.varakala@phytec.de>
-Subject: [PATCH v2 3/3] arm64: dts: Add phyBOARD-Pollux dtso for rpmsg
-Date: Tue, 20 Aug 2024 19:18:48 +0200
-Message-ID: <20240820171848.177926-4-y.varakala@phytec.de>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240820171848.177926-1-y.varakala@phytec.de>
-References: <20240820171848.177926-1-y.varakala@phytec.de>
+	s=arc-20240116; t=1724174391; c=relaxed/simple;
+	bh=iDraRUjl5oL1xgN68Huw+NH/26MmOw5WLPqUrN6J8gU=;
+	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kwQdd0Umlg1IY+SM0WyId35jbXdTTaHCvU+k7m3RN0HxoYtZr0G2TR1kHcWADBBUxMmnHhDdCPvxpSD4zDd8RUU6hN102lj6dREcR6shY5D0dzQucOEJLx10O8y+NnSuvbmEgEZqPkHMY6u+Yc757XzwC6TxxxkWRa+fUkvZZRg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=f05BM5sL; arc=none smtp.client-ip=209.85.222.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-7a1d81dc0beso381433185a.2
+        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 10:19:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1724174389; x=1724779189; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TiyLbBScoOEAyh1b94eZlYoF11C+Y/bEKpA+kMzIp/4=;
+        b=f05BM5sLouj6DITyoyLhldpLXgcY/W5wtdqk33z9CH++3YW7A4x2V2GGDfVrioB6M2
+         EnkPgQAh09KIoZtD2Qiy/XCu1tFQ9qmmgwi+h+zZERCiowbCq14EqddOHAHEffWgWLHP
+         Hap23Jcnq9cQKrjjdpy3AdpUWVeMzLlmW5sws=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724174389; x=1724779189;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TiyLbBScoOEAyh1b94eZlYoF11C+Y/bEKpA+kMzIp/4=;
+        b=wjpClsl30tkilw4JK3YjIf2hJEBH0Ug/sLt8FXTnhBsdYZQl7E7HA7+FDe24oKTrY1
+         v0K6pwRA3lAISrAVn1BkUer7otlIbN/5baF5CmfTw3GKYI0cUaGWSSefU35sTtm+5kAB
+         cY6fduU4wwQOwR3D0cGfwOZtMnTxCAfs94vy/Q9jUZtAeJGYqYBRNmiAr2N7EbT0wkK3
+         FiRfroGg8+4rFAcVo67tWAiB9xntawIzk3alcB8WAHAzPwQR76lIjiG1ntBlABo4OPO+
+         GEp89fLsLNzP7FB/3KuoFfDwhcQW7QjjSpmS3q5qpx+6sJylG4uhzVSC+j/6dVlrmZeR
+         4Zgw==
+X-Forwarded-Encrypted: i=1; AJvYcCUc6v2y4uBAHmQXC/smsknuGoE2c8UEglsX1kCXqSa0wpEKQPysY/mNwvaDCsiREIAv2wl7JVtpuWX+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzlmXh8XcrWRnGMK/X6p+9F2lB0rNSaTj63l/D3oTNN+U8q3xlv
+	UzQrmipxTA505bCczg73TVt0Mn0j59JBHKUapjHsVoKib4VAQL3QpfLiv/OrcAX6HWf15xIaIPH
+	9DAa2DrCbmlarKuyKxd4xTIHBlbzwztCNKuMA
+X-Google-Smtp-Source: AGHT+IGvb1y8J9GbBVxSnRA9EXCz4Y2dTYC1BxL8SdlIGlM8BUVy3xXqhZZEkOLtGvt/v6Ls5degXKbKQR8XD+zhGss=
+X-Received: by 2002:a05:620a:2943:b0:7a3:49dd:2002 with SMTP id
+ af79cd13be357-7a5069d5c63mr1695634285a.55.1724174388818; Tue, 20 Aug 2024
+ 10:19:48 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 20 Aug 2024 10:19:48 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: Florix.phytec.de (172.25.0.13) To Florix.phytec.de
- (172.25.0.13)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpikeLIzCtJLcpLzFFi42JZI8nAqyty4UiawYVHfBZr9p5jsph/5Byr
-	xcOr/hYz77WyWayaupPF4uWse2wWmx5fY7W4vGsOm8X/PTvYLf5u38Ri8WKLuEX3O3UHHo+d
-	s+6ye2xa1cnmsXlJvceLzTMZPfq7W1g9+v8aeHzeJBfAHsVlk5Kak1mWWqRvl8CV0d31gbVg
-	hWTF/DWdTA2M+0W7GDk5JARMJP7c2cnUxcjFISSwhEmiu7OZHcJ5yijxq/EHM0gVm4C+xIp1
-	i1hBEiICyxglvp3uZgFxmAW2M0qcmPiOCaRKWMBN4vyuHewgNouAqsSc+1/BbF4BK4lN838y
-	QeyTl9h/8CzQVA4OTgFriVU/M0DCQkAl+1fvYIQoF5Q4OfMJC4jNDFTevHU2M4QtIXHwxQtm
-	iHpFifcPO9hhRk4795oZwg6VmL/mO/sERqFZSEbNQjJqFpJRCxiZVzEK5WYmZ6cWZWbrFWRU
-	lqQm66WkbmIExZMIA9cOxr45HocYmTgYDzFKcDArifB2vzyYJsSbklhZlVqUH19UmpNafIhR
-	moNFSZx3dUdwqpBAemJJanZqakFqEUyWiYNTqoHRwmXZprcXnm6/3lLg/0Lwd4bnx6pyL92S
-	mVn/X1xT3FNruCrejePFtzVaWQxHzUI7+K7F1gU9m7i71Pl1PotEl/nTwtigR9JS7f4iqfPz
-	axa2VfI/NjStq2GwUnom/LpAWcqzztsk9tCiXwL5DxPWftv0XWX/S9bZFnN+7l1w+626y3XF
-	MmMlluKMREMt5qLiRAAuPywalQIAAA==
+In-Reply-To: <ZsTPeEsS1m4Y8imq@smile.fi.intel.com>
+References: <20240819223834.2049862-1-swboyd@chromium.org> <20240819223834.2049862-6-swboyd@chromium.org>
+ <ZsRs6d6uOMb4DqQQ@smile.fi.intel.com> <CAE-0n52O01UgrDT2=-JJpZj39BOJNyyQC4w_pgDUmKDmcN=8Yw@mail.gmail.com>
+ <ZsTPeEsS1m4Y8imq@smile.fi.intel.com>
+From: Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date: Tue, 20 Aug 2024 10:19:48 -0700
+Message-ID: <CAE-0n52FSUFictNQ9kotgFAZPYnJpy+3Ad__QeUN+EiJuBWGwQ@mail.gmail.com>
+Subject: Re: [PATCH v3 05/17] usb: typec: Add device managed typec_switch_register()
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	patches@lists.linux.dev, devicetree@vger.kernel.org, 
+	Douglas Anderson <dianders@chromium.org>, Pin-yen Lin <treapking@chromium.org>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Benson Leung <bleung@chromium.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, dri-devel@lists.freedesktop.org, 
+	Guenter Roeck <groeck@chromium.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Lee Jones <lee@kernel.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Prashant Malani <pmalani@chromium.org>, 
+	Robert Foss <rfoss@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Tzung-Bi Shih <tzungbi@kernel.org>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Daniel Scally <djrscally@gmail.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Ivan Orlov <ivan.orlov0322@gmail.com>, 
+	linux-acpi@vger.kernel.org, linux-usb@vger.kernel.org, 
+	Mika Westerberg <mika.westerberg@linux.intel.com>, 
+	"Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Vinod Koul <vkoul@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Adds a devicetree containing reserved memory regions used for intercore
-communication between A53 and M7 cores.
+Quoting Andy Shevchenko (2024-08-20 10:16:40)
+> On Tue, Aug 20, 2024 at 10:01:07AM -0700, Stephen Boyd wrote:
+> > Quoting Andy Shevchenko (2024-08-20 03:16:09)
+> > > On Mon, Aug 19, 2024 at 03:38:19PM -0700, Stephen Boyd wrote:
+> > > > +     ptr = devres_alloc(devm_typec_switch_unregister, sizeof(*ptr), GFP_KERNEL);
+> > > > +     if (!ptr)
+> > > > +             return ERR_PTR(-ENOMEM);
+> > > > +
+> > > > +     switch_dev = typec_switch_register(parent ,desc);
+>
+> (Side note: wrong location of the white space)
 
-Signed-off-by: Yashwanth Varakala <y.varakala@phytec.de>
----
-Changes in v2:
-- Updated license.
-- Updated devicetree properties.
-- Replaced imx8mp-cm7 with core-m7 node name.
-- Updated reserved-memory node unit addresses in ascending order.
+Thanks.
 
- arch/arm64/boot/dts/freescale/Makefile        |  2 +
- .../dts/freescale/imx8mp-phycore-rpmsg.dtso   | 55 +++++++++++++++++++
- 2 files changed, 57 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-phycore-rpmsg.dtso
+>
+> > > > +     if (!IS_ERR(switch_dev)) {
+>
+> (Side note: positive conditional is okay)
+>
+> > > > +             *ptr = switch_dev;
+> > > > +             devres_add(parent, ptr);
+> > > > +     } else {
+> > > > +             devres_free(ptr);
+> > > > +     }
+> > >
+> > > devm_add_action_or_reset() ?
+> >
+> > No. We don't want to call the 'action' devm_typec_switch_unregister()
+> > when it fails because that would unregister a switch that has never been
+> > registered.
+>
+> Hmm... With devm_add_action_or_reset() we first do things and then try to add
+> them to the managed resources. In that case it won't be like you described.
+>
+> What do I miss?
+>
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index dedea4b5c319..80cc87d50301 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -177,9 +177,11 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
- imx8mp-phyboard-pollux-rdk-no-eth-dtbs += imx8mp-phyboard-pollux-rdk.dtb imx8mp-phycore-no-eth.dtbo
- imx8mp-phyboard-pollux-rdk-no-rtc-dtbs += imx8mp-phyboard-pollux-rdk.dtb imx8mp-phycore-no-rtc.dtbo
- imx8mp-phyboard-pollux-rdk-no-spiflash-dtbs += imx8mp-phyboard-pollux-rdk.dtb imx8mp-phycore-no-spiflash.dtbo
-+imx8mp-phyboard-pollux-rdk-rpmsg-dtbs += imx8mp-phyboard-pollux-rdk.dtb imx8mp-phycore-rpmsg.dtbo
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk-no-eth.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk-no-rtc.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk-no-spiflash.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk-rpmsg.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-hdmi.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-lt6.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-mi1010ait-1cp1.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phycore-rpmsg.dtso b/arch/arm64/boot/dts/freescale/imx8mp-phycore-rpmsg.dtso
-new file mode 100644
-index 000000000000..f9fba558dcb0
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-phycore-rpmsg.dtso
-@@ -0,0 +1,55 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright (C) 2024 PHYTEC Messtechnik GmbH
-+ * Author: Dominik Haller <d.haller@phytec.de>
-+ * 	   Cem Tenruh <c.tenruh@phytec.de>
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/clock/imx8mp-clock.h>
-+
-+&{/} {
-+	core-m7 {
-+		compatible = "fsl,imx8mn-cm7";
-+		clocks = <&clk IMX8MP_CLK_M7_DIV>;
-+		mboxes = <&mu 0 1>,
-+			<&mu 1 1>,
-+			<&mu 3 1>;
-+		mbox-names = "tx", "rx", "rxdb";
-+		memory-region = <&vdevbuffer>, <&vdev0vring0>, <&vdev0vring1>, <&rsc_table>;
-+	};
-+
-+	reserved-memory {
-+		ranges;
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+
-+		vdev0vring0: vdev0vring0@55000000 {
-+			no-map;
-+			reg = <0 0x55000000 0 0x8000>;
-+		};
-+
-+		vdev0vring1: vdev0vring1@55008000 {
-+			no-map;
-+			reg = <0 0x55008000 0 0x8000>;
-+		};
-+
-+		rsc_table: rsc-table@550ff000 {
-+			no-map;
-+			reg = <0 0x550ff000 0 0x1000>;
-+		};
-+
-+		vdevbuffer: vdevbuffer@55400000 {
-+			compatible = "shared-dma-pool";
-+			no-map;
-+			reg = <0 0x55400000 0 0x100000>;
-+		};
-+
-+		m7_reserved: m7@80000000 {
-+			no-map;
-+			reg = <0 0x80000000 0 0x1000000>;
-+		};
-+	};
-+};
--- 
-2.34.1
-
+I believe you've missed that this is a wrapper around struct device and
+the error path is different (put_device() vs. device_unregister()).
 
