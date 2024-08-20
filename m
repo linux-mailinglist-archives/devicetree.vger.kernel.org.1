@@ -1,149 +1,136 @@
-Return-Path: <devicetree+bounces-95156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CD3C9583E8
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 12:16:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1E059583F1
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 12:16:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E0AA1C20F13
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 10:16:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DCA201C247AF
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 10:16:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41FDE18C356;
-	Tue, 20 Aug 2024 10:16:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F32518C351;
+	Tue, 20 Aug 2024 10:16:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Nvl2RVmV"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="NiyHc3gs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B593C158DC4;
-	Tue, 20 Aug 2024 10:16:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EF7918D644
+	for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 10:16:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724148984; cv=none; b=nVIZrroFlznyo1lw6uvwzFExjDbE9WOKfFLMY01zPZQyiyEa5xQV9xHcSgRP2wRmJOX+/U3LoFc67CMnUiUVr0DlzVXOha8+p5n14y+JcQyh8wC0r2OMnpw0OuyLVQYGV3RfbEL4VLxSrcpazv4DBplMiurUTqwl0QmTjC5lWRQ=
+	t=1724149008; cv=none; b=JxM1cp3PBybfy4cuxggTXfOy6IY7EuF9aYwdX6ipA5MHGRvMQd4u2wEr94BK9n72CnwRIOMnUZoyVxw5kt0VU4wcngqY1F0iabr8RIEQCClMDzwSeJwX3UTvGif6UHU+HahxWnEueP2PpzZKQyjxB3u09WiGGi1yRIqMOjljA/0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724148984; c=relaxed/simple;
-	bh=WT51twTaR9ldXwxgDFR3gWRncIayJMQMu6eY6+ge2zQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=osT2K+7liSVHgPtJLOTwPr10ojOazFnxsr4ZKxxGdOb8IjGhyoxakmOd7uj4tqYTdyodt/12VeT/aqJoqziHxGhrpRPHozded5srelqqYjHNZ3SFL43tsH+T+Eam07ogHA7sVQv7mnp4KGFtkRNugAeO5yP8tF0I5OV6RZGtSA8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Nvl2RVmV; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1724148983; x=1755684983;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=WT51twTaR9ldXwxgDFR3gWRncIayJMQMu6eY6+ge2zQ=;
-  b=Nvl2RVmVsn5N0kahmq96uNkx710bxmdoVh96NXurNwYEX+fg+lFcLPFE
-   dFtJakC+UaJ58xSn/2k1RSuElJdt+A7q5fD0iMH3nXac7eeZxuSsuImqK
-   7AbMRnaGmonNNErQecZ9HS76q+z38ci/9uebrqN9mugpM/46SLI60g2LH
-   IOLKGYhjsg1KAbCRVMOGsWLjyoH2Wqa0kSkI8H3ZBH8BziEi8je+SAHsN
-   imUG2I6IK8Ow34Op3Vb+1TIsxjcRupnCMPUmB6s0nF1Ap3h/gtUOTH+67
-   VvapNzPvSbQeGLKOs4dRpfUB320sayia0QqJ7B+EKTZBMpuFdudMq1EbY
-   g==;
-X-CSE-ConnectionGUID: EsTXAV58TNm9P5c+4toUmg==
-X-CSE-MsgGUID: HRuXbNlKQ7GJTZzWCdkytQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11169"; a="47833056"
-X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; 
-   d="scan'208";a="47833056"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Aug 2024 03:16:22 -0700
-X-CSE-ConnectionGUID: /kffWbRHSBaK1HncF991ag==
-X-CSE-MsgGUID: mDUg9YbGQk+CBo7MXYrpGg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,161,1719903600"; 
-   d="scan'208";a="91402041"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Aug 2024 03:16:13 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1sgLuL-0000000HGD8-4AYP;
-	Tue, 20 Aug 2024 13:16:09 +0300
-Date: Tue, 20 Aug 2024 13:16:09 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Stephen Boyd <swboyd@chromium.org>
-Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
-	patches@lists.linux.dev, devicetree@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Pin-yen Lin <treapking@chromium.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Benson Leung <bleung@chromium.org>,
-	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
-	David Airlie <airlied@gmail.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	dri-devel@lists.freedesktop.org,
-	Guenter Roeck <groeck@chromium.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Lee Jones <lee@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Prashant Malani <pmalani@chromium.org>,
-	Robert Foss <rfoss@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Tzung-Bi Shih <tzungbi@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Daniel Scally <djrscally@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Ivan Orlov <ivan.orlov0322@gmail.com>, linux-acpi@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	"Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Vinod Koul <vkoul@kernel.org>
-Subject: Re: [PATCH v3 05/17] usb: typec: Add device managed
- typec_switch_register()
-Message-ID: <ZsRs6d6uOMb4DqQQ@smile.fi.intel.com>
-References: <20240819223834.2049862-1-swboyd@chromium.org>
- <20240819223834.2049862-6-swboyd@chromium.org>
+	s=arc-20240116; t=1724149008; c=relaxed/simple;
+	bh=TqRjFWkKbWeEkGzEJaqHB/W+KKXTwGUJgPmIKjqEgeI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ajG832IHfCCofUKhE4FQqSwz4XSG7G0tFH0J+2k12rNPyQ4JOAlS1IT0uKJDTSZTS7jstWQIfX9ne3TuzYkVuIWatktwrvszsGbOfakjs5dNutCHYibU0SRCiWxBQOzD8EoW9tfzIe/8b1d3MpILy5xaPchqeijn6VAkVAQo1eE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=NiyHc3gs; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a8643235f99so116220066b.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 03:16:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1724149005; x=1724753805; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fUgvdkKemsynJw871Va8xFCJPoIgK/+NkAwAS5w3iD4=;
+        b=NiyHc3gsseKQH7eI2t8a/4IaoStNIzdMgpTm/uKYaxaibPwT2VYgxdsnMjXY3HgT0a
+         P9VuLOnxwmCqGEqCnL052SYDm1kXoFsQ0FASq9jHRIPl3Yeq6YFfvno8kD7QQPiZt6dz
+         KGq0GmMs9hwI9IRO5A6m77+4SBO8ymGs4P3PyZI6u3UD28wfPIAlLCZNGvmiU1r7ABbZ
+         S8u8B1ryQ6HjR7k04PGAz3lsBVpHUd25r0815xa48Q9X5mjU8VACwdi08L9rZ/KzoX/l
+         z+o9jQp2cMAS9T6MocOYfVtohTGEQc4Xoob9DjIdsipgUu4nN7M5G2kkbhLd3teQMcdj
+         rWVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724149005; x=1724753805;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fUgvdkKemsynJw871Va8xFCJPoIgK/+NkAwAS5w3iD4=;
+        b=EYIrjSTUJi6ovbveDYThxga5zKMQdNLcpKmwTIx9vXmkRfxD2IYx1Maj6yxOpkHge4
+         jkHoGDvcKrDR2Dx3fs5DkG6k2B4/Fn75s3SsXIjNiZ5j2NmuOMEC7Vl9uPSImC6s7q7q
+         MsmPCHpV6fUgkF5bD+rr8fvNJ01AAh0aTVCTBeuYTo9sgrMZrH5pTfOpfPERakobjZrA
+         pEomhqokWLTZJAWeZ7vNdqF7AmFJEXMFEsTaphRINnBNwmDnal97fv6mIykciXiOK6Y6
+         ScstcnS9QMNdSQeasq0vey89GCPMZ624LXsBNx4h6s5b9gPq+GF3jIV71b01BrHU9GBC
+         Y0Dw==
+X-Forwarded-Encrypted: i=1; AJvYcCX+GMMYbl+DNm3T1ymfbkyaej4GqCrFhxJocV+EFnCKGgwB9P/O/8t8uRxRZd8uTc4nkmNxWdn3V17Y@vger.kernel.org
+X-Gm-Message-State: AOJu0YyaotgJSBV/i7ALLRE9oID1iVwlJqWUZ5sg70m0YrzaMFdGLYZK
+	K1VvVF8LwHvSFxs+CFl02hnp4xFmeQ9oYnqa5mjsBfOJ5i+Fkv8TjgRZTyYtE4w=
+X-Google-Smtp-Source: AGHT+IEHAOpi6gAtu1Bdiww8ysONKnU4SlvU51Tmtq6mrQBDcD9AG75eGftS0eZMJPQuXiI1ekXrsw==
+X-Received: by 2002:a17:907:97d2:b0:a77:cdaa:88a3 with SMTP id a640c23a62f3a-a86479e45efmr127114366b.27.1724149004495;
+        Tue, 20 Aug 2024 03:16:44 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.177])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a83838d023dsm736934766b.64.2024.08.20.03.16.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Aug 2024 03:16:44 -0700 (PDT)
+Message-ID: <2fc8ea3c-9074-4291-8355-4b646f51d0e9@tuxon.dev>
+Date: Tue, 20 Aug 2024 13:16:42 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240819223834.2049862-6-swboyd@chromium.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 00/11] i2c: riic: Add support for Renesas RZ/G3S
+Content-Language: en-US
+To: Andi Shyti <andi.shyti@kernel.org>
+Cc: chris.brandt@renesas.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
+ p.zabel@pengutronix.de, wsa+renesas@sang-engineering.com,
+ linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20240819102348.1592171-1-claudiu.beznea.uj@bp.renesas.com>
+ <gc3fqib4iflzmwu2wv33436anbrfywxoj5p7ah3m67sqp3u4h4@2ttbj7kgmjyx>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <gc3fqib4iflzmwu2wv33436anbrfywxoj5p7ah3m67sqp3u4h4@2ttbj7kgmjyx>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Aug 19, 2024 at 03:38:19PM -0700, Stephen Boyd wrote:
-> Simplify driver error paths by adding devm_typec_switch_register() which
-> will unregister the typec switch when the parent device is unbound.
+Hi, Andi,
 
-> Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: <linux-usb@vger.kernel.org>
-> Cc: Pin-yen Lin <treapking@chromium.org>
+On 19.08.2024 23:23, Andi Shyti wrote:
+> Hi Claudiu,
+> 
+>> Claudiu Beznea (11):
+>>   i2c: riic: Use temporary variable for struct device
+>>   i2c: riic: Call pm_runtime_get_sync() when need to access registers
+>>   i2c: riic: Use pm_runtime_resume_and_get()
+>>   i2c: riic: Enable runtime PM autosuspend support
+>>   i2c: riic: Add suspend/resume support
+>>   i2c: riic: Define individual arrays to describe the register offsets
+>>   dt-bindings: i2c: renesas,riic: Document the R9A08G045 support
+> 
+> Looks good until here, do you want me to apply these first 7
+> patches to unburden you a bit?
 
-As per previous patches.
+I already prepared the new set. I will send a new version containing
+everything.
 
-...
+> 
+> Unless Geert has some notes on patch 6.
+> 
+>>   i2c: riic: Add support for fast mode plus
+> 
+> Small things here
+> 
+>>   arm64: dts: renesas: r9a08g045: Add I2C nodes
+>>   arm64: dts: renesas: rzg3s-smarc: Enable i2c0 node
+>>   arm64: dts: renesas: rzg3s-smarc-som: Enable i2c1 node
+> 
+> I'd like someone to ack here.
 
-> +	ptr = devres_alloc(devm_typec_switch_unregister, sizeof(*ptr), GFP_KERNEL);
-> +	if (!ptr)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	switch_dev = typec_switch_register(parent ,desc);
-> +	if (!IS_ERR(switch_dev)) {
-> +		*ptr = switch_dev;
-> +		devres_add(parent, ptr);
-> +	} else {
-> +		devres_free(ptr);
-> +	}
+Usually, these are picked by Geert.
 
-devm_add_action_or_reset() ?
+Thank you,
+Claudiu Beznea
 
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> 
+> Thanks,
+> Andi
 
