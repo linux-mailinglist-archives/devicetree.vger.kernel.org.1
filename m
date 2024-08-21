@@ -1,48 +1,74 @@
-Return-Path: <devicetree+bounces-95411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A213C9596A1
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 10:35:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43AB69596CA
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 10:45:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E80F9282CF9
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 08:35:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 769571C2148E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 08:45:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2072B4D8CB;
-	Wed, 21 Aug 2024 08:02:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AA511BAEE4;
+	Wed, 21 Aug 2024 08:15:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fy4WIQqz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BI1/cM83"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E10531A4AA4;
-	Wed, 21 Aug 2024 08:02:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31ADD19995F
+	for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 08:15:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724227353; cv=none; b=ZtWIYxEU6uChURP7J/o8IoKYMM5gJjNOCW0gFDEedz3evcpXgbKrnggJjyl67YMbnvDmTFsjAakKE0fRwqAVV2thPD/+PKkPmnU9X9Q3nR7OTuO6PyabRx3Okyj8/s9VbzrRAWaYmFkRFIrwmgYxpCyWPl6o2Ex/x4/PHlCo6Xs=
+	t=1724228116; cv=none; b=BjRhNwVEn4Q0tJWp8w7bppQjI4I9tG/H6HkBE+Cyc4QIj8Yq+g3fgtUMLMrfFSW7RUWQrKfJuADnARIbRTibWNOVXLAqgRrI9Zykpu/aaWnGdVce0Cp9Y5A5yJsUKH1ngHHHwdObiyuZ90d03tyZqAg7mpGL4dDm7D5Dbjv0swc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724227353; c=relaxed/simple;
-	bh=57FVmjY15X4+hH0dOdsQhV3PIudgNWOIg+Aw6gE7aiI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KjjtluwqsOmJOi9hNGWY3vW3GQjN5KCzsVMQ171mPVNv0zz/Beb1PuxsYnK9EFmqeDCazHWdzK1SYSYYIKSwg5VVt6s6eLGjHtp0eGHpNyF0bjUjTw3OLNx4tSACz3on6JHyhwQ5YKr9aoAej7El5YXLKE8ZwtaG9ZwJIuqRv3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fy4WIQqz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C8AEC32782;
-	Wed, 21 Aug 2024 08:02:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724227352;
-	bh=57FVmjY15X4+hH0dOdsQhV3PIudgNWOIg+Aw6gE7aiI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Fy4WIQqzIu9WsEGiQqjg2nSu4H38w9PSZ9pFuAds0L/6z+Tzsp6OaVdQxxCzARqqQ
-	 OCqtnQ4nGXP/ZT8lRHp4xPC4PZqeJa4wsrZiuFoXJ7woO3cpYqmpCuBTWHQqIwm4eT
-	 XJyUPB2tlPJWzpwUCOdGQ5hKLaamlSEXjLFGLIAd+40iiNkQ8eIv7PNPjTfXmds/ax
-	 D06FOceRZwYbTocqNJd0hDtho9gfpHFb4bQuZoJXprYChMvBFWJ68HIfM85h1h6OhN
-	 zx4ZnUHSDDj3rxnFS+eiHxRE+bnTYWOu2HaxF8PUbANh5dM2LjrEJ5NuMOssf4IPXM
-	 cAWJwg79PoFSQ==
-Message-ID: <8a729db0-f587-42b6-8003-789091986324@kernel.org>
-Date: Wed, 21 Aug 2024 10:02:27 +0200
+	s=arc-20240116; t=1724228116; c=relaxed/simple;
+	bh=XE0jZaV1bsQLFaKIGXsuasTneDpL4Wem+LHKumho12g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=gPEy2sy4oKZsi4di4beWNqqgo6WkLDMOVc02w5qzRMvcw4EB2dYa0LOtGQFcI1eI3U78QLJ77YZ3gf1D3WTDX0EwmMdogBhpG5uA7FFmLGf/6VJQNQhGJ0htDYnNbPQR70fOV8pmEYd9Inlx9HZIDahWHffOgdMZJrO2X76kQvg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BI1/cM83; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2f3fd60259dso39521fa.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 01:15:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1724228111; x=1724832911; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qLQxZaDHXJrPQN9Tiz5uh2v94UZex1BBfH/Lta1m/ek=;
+        b=BI1/cM83y3el+icqDJ3ixTrQeY3yxevpMIQg8KJFyhrEhRS2EZS8ww/TvwpA+UbfCn
+         PvL0U2NisS2QhIuP4LeSBUNKfXsqgSnmHGLFcNKVVs93U5thiaXK7ivQqhqNCO1gS7bJ
+         xJg7wRenSjEcWrzdKhLgUIVSFIk2GemVdnHeYOrkY7SnZD+SfdbkJP7yQyklvGDeK17l
+         Lj8yWmy4EFmpN4I81rWTrcSzZpJLttlBoHp3kBhVjttH0hr4qZthXuZLYvyX3lTQb4uC
+         ioo4EOWJPzuFYur0tBx/nIdZVnZZLveAmB+3mhSNLKqhifsk4XodocAGJ+/s97bNS+Xa
+         v3QQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724228111; x=1724832911;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qLQxZaDHXJrPQN9Tiz5uh2v94UZex1BBfH/Lta1m/ek=;
+        b=q+9cRClxlFUZoGRr8KqrFUwtMz1r8n6HhnDOBOtOP0Psv2PgXcEK2TLv+gqlkAN7De
+         r53WD7k3E33j+TspNSfyeFftUMEOFpmHaUy7uwT2LyWWnnKDq6IsFkwfjLsIvvlGcWPd
+         5XMUpd40AiowjmEvfXyOue7uhl5a4hqH9TNKCSkFRyjEOjamve16/bPouaQBIuNHiVu3
+         BIQpsgXkzsabeEjUpDiDdiVu+f1DiDvQ2uSmzWjKxoymbhEP0zo7hMZ9yelYdC6eW7KV
+         LurqK4AE6EqB+ghPLcL1Nh+1HtCEeNQbouwR6ka66pncp1iCvdLLV6zyyG/VL0cbvpdO
+         dYTw==
+X-Forwarded-Encrypted: i=1; AJvYcCUtre6aIhvErx4IO8/WkrXpCilopGKDoXEcejd91u5lHBZAvaqNR9rRdMkZn/1lQ/0gqZXLkIcIVXNH@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw0WKUzJ0VEY7VfCBEn0Az3HEBhQDhhUWENXAY9m8+Y9PUg+GUO
+	OR8CAkBPUkve31WWYrAt/qAxg1MMwmx7hdYiI/2WGI4tc4lLOpqJ0IQXWIYb5Ws=
+X-Google-Smtp-Source: AGHT+IHwGVModb5n3Ag7Lp6ROvPNQaj3qlVCWPrtnMJLfrMtrIhJSpR/hueQce6mez3z/hc9UVwrGQ==
+X-Received: by 2002:a05:651c:212a:b0:2f0:1a95:7102 with SMTP id 38308e7fff4ca-2f3f894b8camr4547341fa.6.1724228111050;
+        Wed, 21 Aug 2024 01:15:11 -0700 (PDT)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f3b774969asm20014121fa.131.2024.08.21.01.15.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Aug 2024 01:15:10 -0700 (PDT)
+Message-ID: <b4b9bdd6-75a3-4b37-987d-a4125babb783@linaro.org>
+Date: Wed, 21 Aug 2024 11:15:09 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,128 +76,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 4/4] clk: samsung: add top clock support for ExynosAuto
- v920 SoC
-To: "sunyeal.hong" <sunyeal.hong@samsung.com>,
- 'Kwanghoon Son' <k.son@samsung.com>,
- 'Sylwester Nawrocki' <s.nawrocki@samsung.com>,
- 'Chanwoo Choi' <cw00.choi@samsung.com>,
- 'Alim Akhtar' <alim.akhtar@samsung.com>,
- 'Michael Turquette' <mturquette@baylibre.com>,
- 'Stephen Boyd' <sboyd@kernel.org>, 'Rob Herring' <robh@kernel.org>,
- 'Conor Dooley' <conor+dt@kernel.org>
-Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240819052416.2258976-1-sunyeal.hong@samsung.com>
- <CGME20240819052422epcas2p258a29e773ebdd60573078c21f7a7da12@epcas2p2.samsung.com>
- <20240819052416.2258976-5-sunyeal.hong@samsung.com>
- <7f77dcc41173f2a20a0264b6242ecdac6ea85ad9.camel@samsung.com>
- <087401daf2a3$4ae602f0$e0b208d0$@samsung.com>
- <9ee0efad7a27202e6b830996b5ee661a2d350b84.camel@samsung.com>
- <0a0101daf371$0f2025b0$2d607110$@samsung.com>
- <76a46e34-fc22-477d-a2e6-4767e65a73c4@kernel.org>
- <0a7b01daf398$9465d090$bd3171b0$@samsung.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v3 3/5] media: qcom: camss: add support for SDM670 camss
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <0a7b01daf398$9465d090$bd3171b0$@samsung.com>
-Content-Type: text/plain; charset=UTF-8
+To: Richard Acayan <mailingradian@gmail.com>,
+ Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-media@vger.kernel.org
+References: <20240819221051.31489-7-mailingradian@gmail.com>
+ <20240819221051.31489-10-mailingradian@gmail.com>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20240819221051.31489-10-mailingradian@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 21/08/2024 09:06, sunyeal.hong wrote:
->>>>>>> +	.clk_name		= "dout_clkcmu_peric0_noc",
->>>>>>
->>>>>> same question.
->>>>>> Isn't it "noc"?
->>>>>> https://lore.kernel.org/linux-samsung-
->>>>>> soc/58dfae564a4a624e464c7803a309f1f07b5ae83d.camel@samsung.com/
->>>>>>
->>>>>> In my case(autov9), if put wrong clk_name dmesg will show that,
->>>>>> exynos_arm64_register_cmu: could not enable bus clock ...; err = -2
->>>>>>
->>>>>> Kwang.
->>>>>>
->>>>>>
->>>>>
->>>>> clk_name follows the guide document provided by hw. v9 is bus, but
->>>>> v920
->>>> uses noc.
->>>>
->>>> What I mean,
->>>>
->>>> .clk_name		= "dout_clkcmu_peric0_noc", // wrong
->>>> .clk_name		= "noc", // correct
->>>>
->>>> Because there is no clock-names "dout_clkcmu_peric0_noc" in
->>>> exynos/exynosautov920.dtsi.
->>>>
->>>
->>> The clk_name written here has nothing to do with the device tree. Please
->> look at the code carefully.
->>
->> Hm? I see in the code clearly:
->>
->> 	clk_get(dev, cmu->clk_name);
->>
->> Where cmu is the discussed struct.
->>
->> If you claim it does not have anything to do with DT, then what is it for?
->>
->> Best regards,
->> Krzysztof
+On 8/20/24 01:10, Richard Acayan wrote:
+> The camera subsystem for the SDM670 the same as on SDM845 except with
+> 3 CSIPHY ports instead of 4. Add support for the SDM670 camera
+> subsystem.
 > 
-> In general, clk_get is used via the clk_name declared in the DT.
-> 
-> However, the question asked here is the parent clock name of peric0_noc, so it is unrelated to the device tree.
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
 
-No. The question was about clk_name entry in cmu info used directly for
-clk_get.
+Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 
-
-Best regards,
-Krzysztof
-
+--
+Best wishes,
+Vladimir
 
