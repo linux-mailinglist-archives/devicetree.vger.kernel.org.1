@@ -1,171 +1,455 @@
-Return-Path: <devicetree+bounces-95597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B25795A275
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 18:09:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93BE795A28B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 18:13:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4C271F2169F
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 16:09:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1682C1F2153D
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 16:13:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDCB614D45E;
-	Wed, 21 Aug 2024 16:09:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82A3114E2C1;
+	Wed, 21 Aug 2024 16:13:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="T8DWJv+e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WdGOvond"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D161A13AA2F;
-	Wed, 21 Aug 2024 16:09:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 538C313B28D;
+	Wed, 21 Aug 2024 16:12:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724256547; cv=none; b=QvZ+c7ovHkKyfUnjrIr1Rny7goQHp0LtSA4VZFUnYrtHn2C5NEcgvwhoBsCshqAlg+7tJOZUzLYU3hAmCW5PgeM6s1+xceGhA+1V/K33nD6HTpTvMXoQ83G8zNUia13BLWLTDsE1WBZstTN7eH9ABY0OSEVlF9DFGEQNKh9CJXY=
+	t=1724256780; cv=none; b=ZZZE/M5TGG1WpNaf7io75fqmdKcJ0hRWAOQIXIdYzxK/XSYy0UBjohvCdcI8JbMonvi9+pfptdqtE1P+Tbwpyh0zD6KHLMeSlLRpJaHVldP07j4h6dHmBCNorXxlb7U0u/CGOtGQitUVsAmhQbFQKJ6BtEx2ZDo1R6NmIP2Teeg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724256547; c=relaxed/simple;
-	bh=DoNWiefNwlabTvrMKvLcoTr9m81BJcqm9zmd/I1QTjQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=RExOeUT9pwfB+jBMNy0DuwlodS9rH9fqdnHIbabelFEFO3ro56PRcTIgpFOOUuWSC0LBhdATrybNKm+kvYX+hBnSTyG9VJGb+TqSgGXO3DQvWNnfR3x9RTR3WEMhHRyB1QnhHXAVyec9dDvnd8/Q9hMmhX/BAowg7kqCiOuFdCU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=T8DWJv+e; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47LEQuNU018964;
-	Wed, 21 Aug 2024 16:08:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	070i+fXfB+k/jMoONG0/PCDJnuCkejFp1EIr7Bg8A78=; b=T8DWJv+e5NlgPupx
-	FhbrcB1sElckLLHYD6WO8F+CikbfYAmMVTyrH1tCVeoR9Sc2v0z9SlL6gPLy7ENX
-	IrCB9QSue9SMA9zKE+nW0RNM2u/m7VQzoqRKXg6D3nsASpUWSdDZWcvYr2x3x+ta
-	el6hh+4mnB+wM6K/0RxrNGBHz+VYXg0LYyem4Y6xG6sIWEhtMEpTWLNlVLVbztdm
-	jA5B5JdgeGvrA1vIvjFAunj5ZXuhggv4+p5QQYOA4cT2o9y8NAU4tVwKznOoxnev
-	4s5g6SRd5WDGCvSWOJAuMrPFx6cvFDE9P1mu9kvV6T2N1iZWfFeaTFZhdgFQkHGE
-	fulsRQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 415bkw9udf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Aug 2024 16:08:54 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47LG8rCx006912
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Aug 2024 16:08:53 GMT
-Received: from [10.253.73.208] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 21 Aug
- 2024 09:08:48 -0700
-Message-ID: <51198961-2e09-4d0e-8bf3-907c81597724@quicinc.com>
-Date: Thu, 22 Aug 2024 00:08:46 +0800
+	s=arc-20240116; t=1724256780; c=relaxed/simple;
+	bh=Flc3xbOyZEOgbPFXhXlvBwVlAGJrm2mYMm8ucdPm/xU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=akLHo76f81dGhBUcTmhaYJywRMvtAGpsF8PebGnEMlA6xavmw4LunHUTzltBEz0RX9k3YubDM/DoqPP6sHXgUhvdeW954P0bXkaqWFFReOtclmzyvH44moWCF2ai+bWJgxg8VerJZb8jJ8wF3Rl5Tf0fFvF7pnmKUga6eXP5skk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WdGOvond; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFDEDC32786;
+	Wed, 21 Aug 2024 16:12:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724256779;
+	bh=Flc3xbOyZEOgbPFXhXlvBwVlAGJrm2mYMm8ucdPm/xU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WdGOvondpt9OBELJ5oRMPbgeR7j9EAmtqpseYb448Ex+iLf8u+j3oJVIKh/uKC9Q+
+	 1McHcxJlnMGDLm7uhZSQWmdfVHHmY9g0pS8zqiztjlU9yN3D2e53whfG8RZcdLEF22
+	 MkVSRnzDDXeCQlbtQgxQjVrMY6DO8WGu1pUuaFY8uI4+EJZ4fXzIJtEZV6KzJxp2D9
+	 K9qFfWQK8+8NfT/GoNMYRyRPZWmzFS7o9augM8r0z3xvLad8mUeaBK1T17lXXxXsah
+	 XfRZOqHIwZcTahIyvfAvNKNvfEnrfF+EfEOKaQ/MbYHwOU65bhkdWLITcuNmWJUziN
+	 9X35K1WZU0SmQ==
+Date: Wed, 21 Aug 2024 17:12:52 +0100
+From: Lee Jones <lee@kernel.org>
+To: Stephen Boyd <swboyd@chromium.org>
+Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
+	patches@lists.linux.dev, devicetree@vger.kernel.org,
+	Douglas Anderson <dianders@chromium.org>,
+	Pin-yen Lin <treapking@chromium.org>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Benson Leung <bleung@chromium.org>,
+	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
+	David Airlie <airlied@gmail.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	dri-devel@lists.freedesktop.org,
+	Guenter Roeck <groeck@chromium.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Prashant Malani <pmalani@chromium.org>,
+	Robert Foss <rfoss@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Tzung-Bi Shih <tzungbi@kernel.org>
+Subject: Re: [PATCH v2 07/11] dt-bindings: chrome: Add ports to
+ google,cros-ec-typec for DP altmode
+Message-ID: <20240821161252.GD6858@google.com>
+References: <20240815003417.1175506-1-swboyd@chromium.org>
+ <20240815003417.1175506-8-swboyd@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: clock: qcom: Add CMN PLL clock
- controller for IPQ SoC
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon
-	<will@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <quic_kkumarcs@quicinc.com>,
-        <quic_suruchia@quicinc.com>, <quic_pavir@quicinc.com>,
-        <quic_linchen@quicinc.com>, <quic_leiwei@quicinc.com>,
-        <bartosz.golaszewski@linaro.org>, <srinivas.kandagatla@linaro.org>
-References: <20240820-qcom_ipq_cmnpll-v2-0-b000dd335280@quicinc.com>
- <20240820-qcom_ipq_cmnpll-v2-1-b000dd335280@quicinc.com>
- <krbpzjccn6xvnpfsa7eeeowmtjuuw4yp72qqqbeq2icxrqvdo4@x6pawrcctyd3>
-Content-Language: en-US
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <krbpzjccn6xvnpfsa7eeeowmtjuuw4yp72qqqbeq2icxrqvdo4@x6pawrcctyd3>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 2iMXRdIuxfm8eaKS-xL521JlwKOQsPqB
-X-Proofpoint-GUID: 2iMXRdIuxfm8eaKS-xL521JlwKOQsPqB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-21_11,2024-08-19_03,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
- mlxscore=0 mlxlogscore=999 bulkscore=0 malwarescore=0 priorityscore=1501
- adultscore=0 phishscore=0 impostorscore=0 lowpriorityscore=0 clxscore=1015
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
- definitions=main-2408210118
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240815003417.1175506-8-swboyd@chromium.org>
 
+On Wed, 14 Aug 2024, Stephen Boyd wrote:
 
-
-On 8/21/2024 4:33 PM, Krzysztof Kozlowski wrote:
-> On Tue, Aug 20, 2024 at 10:02:42PM +0800, Luo Jie wrote:
->> The CMN PLL controller provides clocks to networking hardware blocks
->> on Qualcomm IPQ9574 SoC. It receives input clock from the on-chip Wi-Fi,
->> and produces output clocks at fixed rates. These output rates are
->> predetermined, and are unrelated to the input clock rate. The output
->> clocks are supplied to the Ethernet hardware such as PPE (packet
->> process engine) and the externally connected switch or PHY device.
->>
->> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
->> ---
->>   .../bindings/clock/qcom,ipq9574-cmn-pll.yaml       | 70 ++++++++++++++++++++++
->>   include/dt-bindings/clock/qcom,ipq-cmn-pll.h       | 15 +++++
->>   2 files changed, 85 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/clock/qcom,ipq9574-cmn-pll.yaml b/Documentation/devicetree/bindings/clock/qcom,ipq9574-cmn-pll.yaml
->> new file mode 100644
->> index 000000000000..7ad04b58a698
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/clock/qcom,ipq9574-cmn-pll.yaml
->> @@ -0,0 +1,70 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/clock/qcom,ipq9574-cmn-pll.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm CMN PLL Clock Controller on IPQ SoC
->> +
->> +maintainers:
->> +  - Bjorn Andersson <andersson@kernel.org>
->> +  - Luo Jie <quic_luoj@quicinc.com>
->> +
->> +description:
->> +  The CMN PLL clock controller expects a reference input clock.
+> Add a DT graph binding to google,cros-ec-typec so that it can combine
+> DisplayPort (DP) and USB SuperSpeed (SS) data into a USB type-c endpoint
+> that is connected to the usb-c-connector node's SS endpoint. This also
+> allows us to connect the DP and USB nodes in the graph to the USB type-c
+> connectors, providing the full picture of the USB type-c data flows in
+> the system.
 > 
-> You did not explain what is CMN. Is this some sort of acronym?
-
-CMN is short form for 'common'. Since it is referred to as 'CMN'
-PLL in the hardware programming guides, we wanted the driver name
-to include it as well. The description can be updated as below to
-clarify the name and purpose of this hardware block. Hope this is
-fine.
-
-"The CMN PLL clock controller expects a reference input clock
-from the on-board Wi-Fi, and supplies a number of fixed rate
-output clocks to the Ethernet devices including PPE (packet
-process engine) and the connected switch or PHY device. The
-CMN (or 'common') PLL's only function is to enable clocks to
-Ethernet hardware used with the IPQ SoC and does not include
-any other function."
-
+> Allow there to be multiple typec nodes underneath the EC node so that
+> one DT graph exists per DP bridge. The EC is actually controlling TCPCs
+> and redrivers that combine the DP and USB signals together so this more
+> accurately reflects the hardware design without introducing yet another
+> DT node underneath the EC for USB type-c.
 > 
-> Best regards,
-> Krzysztof
+> If the type-c ports are being shared between a single DP controller then
+> the ports need to know about each other and determine a policy to drive
+> DP to one type-c port. If the type-c ports each have their own dedicated
+> DP controller then they're able to operate independently and enter/exit
+> DP altmode independently as well. We can't connect the DP controller's
+> endpoint to one usb-c-connector port@1 endpoint and the USB controller's
+> endpoint to another usb-c-connector port@1 endpoint either because the
+> DP muxing case would have DP connected to two usb-c-connector endpoints
+> which the graph binding doesn't support.
 > 
+> Therefore, one typec node is required per the capabilities of the type-c
+> port(s) being managed. This also lets us indicate which type-c ports the
+> DP controller is wired to. For example, if DP was connected to ports 0
+> and 2, while port 1 was connected to another DP controller we wouldn't
+> be able to implement that without having some other DT property to
+> indicate which output ports are connected to the DP endpoint.
+> 
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Lee Jones <lee@kernel.org>
+> Cc: Benson Leung <bleung@chromium.org>
+> Cc: Guenter Roeck <groeck@chromium.org>
+> Cc: Prashant Malani <pmalani@chromium.org>
+> Cc: Tzung-Bi Shih <tzungbi@kernel.org>
+> Cc: <devicetree@vger.kernel.org>
+> Cc: <chrome-platform@lists.linux.dev>
+> Cc: Pin-yen Lin <treapking@chromium.org>
+> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+
+Needs to be accompanied by a DT review:
+
+Acked-by: Lee Jones <lee@kernel.org>
+
+> ---
+>  .../bindings/chrome/google,cros-ec-typec.yaml | 260 ++++++++++++++++++
+>  .../bindings/mfd/google,cros-ec.yaml          |   7 +-
+>  2 files changed, 264 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/chrome/google,cros-ec-typec.yaml b/Documentation/devicetree/bindings/chrome/google,cros-ec-typec.yaml
+> index 9f9816fbecbc..1238adfbea21 100644
+> --- a/Documentation/devicetree/bindings/chrome/google,cros-ec-typec.yaml
+> +++ b/Documentation/devicetree/bindings/chrome/google,cros-ec-typec.yaml
+> @@ -26,6 +26,137 @@ properties:
+>    '#size-cells':
+>      const: 0
+>  
+> +  mux-gpios:
+> +    description: GPIOs indicating which way the DP mux is steered
+> +    maxItems: 1
+> +
+> +  no-hpd:
+> +    description: Indicates this endpoint doesn't signal HPD for DisplayPort
+> +    type: boolean
+> +
+> +  orientation:
+> +    description:
+> +      Indicates this endpoint assigns lanes based on altmode and
+> +      type-c port orientation
+> +    type: boolean
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        description:
+> +          Input port to receive DisplayPort (DP) data
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          endpoint@0:
+> +            $ref: /schemas/graph.yaml#/$defs/endpoint-base
+> +            description: DisplayPort data for the type-c port(s)
+> +            unevaluatedProperties: false
+> +            properties:
+> +              data-lanes:
+> +                $ref: /schemas/types.yaml#/definitions/uint32-array
+> +                description: |
+> +                  An array of physical DP data lane indexes
+> +                  - 0 is DP ML0 lane
+> +                  - 1 is DP ML1 lane
+> +                  - 2 is DP ML2 lane
+> +                  - 3 is DP ML3 lane
+> +                oneOf:
+> +                  - items:
+> +                      - const: 0
+> +                      - const: 1
+> +                  - items:
+> +                      - const: 0
+> +                      - const: 1
+> +                      - const: 2
+> +                      - const: 3
+> +
+> +        required:
+> +          - endpoint@0
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description:
+> +          Input port to receive USB SuperSpeed (SS) data
+> +        patternProperties:
+> +          "^endpoint@([0-8])$":
+> +            $ref: /schemas/graph.yaml#/properties/endpoint
+> +
+> +        anyOf:
+> +          - required:
+> +              - endpoint@0
+> +          - required:
+> +              - endpoint@1
+> +          - required:
+> +              - endpoint@2
+> +          - required:
+> +              - endpoint@3
+> +          - required:
+> +              - endpoint@4
+> +          - required:
+> +              - endpoint@5
+> +          - required:
+> +              - endpoint@6
+> +          - required:
+> +              - endpoint@7
+> +          - required:
+> +              - endpoint@8
+> +
+> +      port@2:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: Output ports for combined DP and USB SS data
+> +        patternProperties:
+> +          "^endpoint@([0-8])$":
+> +            $ref: /schemas/graph.yaml#/$defs/endpoint-base
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              data-lanes:
+> +                $ref: /schemas/types.yaml#/definitions/uint32-array
+> +                description: |
+> +                  An array of physical USB Type-C data lane indexes.
+> +                  - 0 is SSRX1 lane
+> +                  - 1 is SSTX1 lane
+> +                  - 2 is SSTX2 lane
+> +                  - 3 is SSRX2 lane
+> +                minItems: 4
+> +                maxItems: 4
+> +                items:
+> +                  maximum: 3
+> +
+> +        anyOf:
+> +          - required:
+> +              - endpoint@0
+> +          - required:
+> +              - endpoint@1
+> +          - required:
+> +              - endpoint@2
+> +          - required:
+> +              - endpoint@3
+> +          - required:
+> +              - endpoint@4
+> +          - required:
+> +              - endpoint@5
+> +          - required:
+> +              - endpoint@6
+> +          - required:
+> +              - endpoint@7
+> +          - required:
+> +              - endpoint@8
+> +
+> +    required:
+> +      - port@2
+> +    anyOf:
+> +      - required:
+> +          - port@0
+> +      - required:
+> +          - port@1
+> +
+>  patternProperties:
+>    '^connector@[0-9a-f]+$':
+>      $ref: /schemas/connector/usb-connector.yaml#
+> @@ -35,6 +166,38 @@ patternProperties:
+>  required:
+>    - compatible
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        no-hpd: true
+> +      required:
+> +        - no-hpd
+> +    then:
+> +      properties:
+> +        ports:
+> +          required:
+> +            - port@0
+> +  - if:
+> +      properties:
+> +        mux-gpios: true
+> +      required:
+> +        - mux-gpios
+> +    then:
+> +      properties:
+> +        ports:
+> +          required:
+> +            - port@0
+> +  - if:
+> +      properties:
+> +        orientation: true
+> +      required:
+> +        - orientation
+> +    then:
+> +      properties:
+> +        ports:
+> +          required:
+> +            - port@0
+> +
+>  additionalProperties: false
+>  
+>  examples:
+> @@ -60,6 +223,103 @@ examples:
+>              power-role = "dual";
+>              data-role = "dual";
+>              try-power-role = "source";
+> +
+> +            ports {
+> +              #address-cells = <1>;
+> +              #size-cells = <0>;
+> +
+> +              port@0 {
+> +                reg = <0>;
+> +                usb_c0_hs: endpoint {
+> +                  remote-endpoint = <&usb_hub_dfp3_hs>;
+> +                };
+> +              };
+> +
+> +              port@1 {
+> +                reg = <1>;
+> +                usb_c0_ss: endpoint {
+> +                  remote-endpoint = <&cros_typec_c0_ss>;
+> +                };
+> +              };
+> +            };
+> +          };
+> +
+> +          connector@1 {
+> +            compatible = "usb-c-connector";
+> +            reg = <1>;
+> +            power-role = "dual";
+> +            data-role = "dual";
+> +            try-power-role = "source";
+> +
+> +            ports {
+> +              #address-cells = <1>;
+> +              #size-cells = <0>;
+> +
+> +              port@0 {
+> +                reg = <0>;
+> +                usb_c1_hs: endpoint {
+> +                  remote-endpoint = <&usb_hub_dfp2_hs>;
+> +                };
+> +              };
+> +
+> +              port@1 {
+> +                reg = <1>;
+> +                usb_c1_ss: endpoint {
+> +                  remote-endpoint = <&cros_typec_c1_ss>;
+> +                };
+> +              };
+> +            };
+> +          };
+> +
+> +          ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            port@0 {
+> +              reg = <0>;
+> +              #address-cells = <1>;
+> +              #size-cells = <0>;
+> +
+> +              dp_in: endpoint@0 {
+> +                reg = <0>;
+> +                remote-endpoint = <&dp_phy>;
+> +                data-lanes = <0 1>;
+> +              };
+> +            };
+> +
+> +            port@1 {
+> +              reg = <1>;
+> +              #address-cells = <1>;
+> +              #size-cells = <0>;
+> +
+> +              usb_in_0: endpoint@0 {
+> +                reg = <0>;
+> +                remote-endpoint = <&usb_ss_0_out>;
+> +              };
+> +
+> +              usb_in_1: endpoint@1 {
+> +                reg = <1>;
+> +                remote-endpoint = <&usb_ss_1_out>;
+> +              };
+> +            };
+> +
+> +            port@2 {
+> +              reg = <2>;
+> +              #address-cells = <1>;
+> +              #size-cells = <0>;
+> +
+> +              cros_typec_c0_ss: endpoint@0 {
+> +                reg = <0>;
+> +                remote-endpoint = <&usb_c0_ss>;
+> +                data-lanes = <0 1 2 3>;
+> +              };
+> +
+> +              cros_typec_c1_ss: endpoint@1 {
+> +                reg = <1>;
+> +                remote-endpoint = <&usb_c1_ss>;
+> +                data-lanes = <2 3 0 1>;
+> +              };
+> +            };
+>            };
+>          };
+>        };
+> diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> index aac8819bd00b..c860eb7ed3f5 100644
+> --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> @@ -98,9 +98,6 @@ properties:
+>  
+>    gpio-controller: true
+>  
+> -  typec:
+> -    $ref: /schemas/chrome/google,cros-ec-typec.yaml#
+> -
+>    ec-pwm:
+>      $ref: /schemas/pwm/google,cros-ec-pwm.yaml#
+>      deprecated: true
+> @@ -166,6 +163,10 @@ patternProperties:
+>      type: object
+>      $ref: /schemas/extcon/extcon-usbc-cros-ec.yaml#
+>  
+> +  "^typec(-[0-9])*$":
+> +    type: object
+> +    $ref: /schemas/chrome/google,cros-ec-typec.yaml#
+> +
+>  required:
+>    - compatible
+>  
+> -- 
+> https://chromeos.dev
 > 
 
+-- 
+Lee Jones [李琼斯]
 
