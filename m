@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-95456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E19F9598BD
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 12:59:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34C049598D7
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 13:01:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CFAFE1F21419
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 10:59:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF7BB281C22
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 11:01:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85A381EA3D8;
-	Wed, 21 Aug 2024 09:28:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8A2D1EED0A;
+	Wed, 21 Aug 2024 09:29:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ah8ubr/K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="orW9uc8f"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C89E1EA3D5;
-	Wed, 21 Aug 2024 09:28:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EA1B1EED07;
+	Wed, 21 Aug 2024 09:29:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724232506; cv=none; b=DkdDHiYkdKVypHJdF0CDxL1v6Qk0D/JClmiAUWJHDk4h0qvIi2a7eQbOuJmUkRP2BP99dJ0gzubttTk557ooX/KRVhPlfvOVdoA2lse9jTQIGvphmH0lpII/M9SauCM06Qh3WNb9qKGuSBdHVW6omCio0LBNKiFWI9wKAK8xIH0=
+	t=1724232592; cv=none; b=sMkcINgi1VUm8zapc1BaHxCXb1h0Et93i7SAGkGjVpZ/vBgSjLPktvQW4AjCbC3AW1eidocUeTXw7BzGU0EkBbwDySyycCpKIbm2GDe4+l7KU+YxeZQ7oYqV0ewquceY27b66lA5R9w8kSyI/j4mzhqZhNFSOrkCEpkiS7nMXIY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724232506; c=relaxed/simple;
-	bh=ItVGHob9yaezB9AMwEPoRTuUCqFh3psdSDoQ8c5xl8c=;
+	s=arc-20240116; t=1724232592; c=relaxed/simple;
+	bh=57xa6s32Ejckrcu1ZZVs/ds7fUKs3ZrLwFJ2FrfXvls=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ngr3aJbJKq3PSd8y9Neo8UptYRvSFweOzh9B6thzY+HCUinERHS1QtoRPc2Zml0nDt70F9ogTdIVK6PXLqB3igVLnwLRAkQuaWmJaq3GpGdiU0wIpQu5wrIhRLoOBgtvo4slm4sf0+k3oJl0AtHNbFG8N156FTv+FiUh9Xfearg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ah8ubr/K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDE8AC32782;
-	Wed, 21 Aug 2024 09:28:20 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=C9qwam8lgZmWW1vk5EicUBfvUP9mfDnma2m7hhJ/6zd3YVAYTl7VGGAx+sQzigVkOAWcILQ728np+sgZG2hgGpC1ms4QNZluVAsvFdhjcji/RIrESI7u0klgtKPk99FRAGt/rj8yvoel261y7URkUZWR28Zhl8F8aRbwD1jPe4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=orW9uc8f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1126BC32782;
+	Wed, 21 Aug 2024 09:29:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724232506;
-	bh=ItVGHob9yaezB9AMwEPoRTuUCqFh3psdSDoQ8c5xl8c=;
+	s=k20201202; t=1724232592;
+	bh=57xa6s32Ejckrcu1ZZVs/ds7fUKs3ZrLwFJ2FrfXvls=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ah8ubr/KkxgT5x/UknGoDrfE8Q/2nshNR61RNCmxHkHC5w9vnxA9QPNAd4w47x+cd
-	 f1Q2SvG89keJ9Ofm/2s0mcK2aDGm+5rs3uj8cE0HK03nCkawHgvgBAEypbh8viFOCP
-	 GvFt3b/+G7nN9RhYdT7oPNu2aGjJgGlCOHk7pw+eqXOxjBkMENjpbCziRr7UkOjMZK
-	 yesCs0F+RT775yxwqVeGDlZATTPeseyzEsYAMnG0wst6Du8PS73dQ4PlXIt5jhpYKa
-	 lA2L3hBMgZvdAVjFfHzEOClQ9z7YWrEnUhJMUwlceYWzWCZnzXFO9peKCAN5W9EkEf
-	 hCaYAFlKmO1Jg==
-Message-ID: <1160a651-b758-4aa2-ab13-599df8518914@kernel.org>
-Date: Wed, 21 Aug 2024 11:28:17 +0200
+	b=orW9uc8fl36zfMBG8j0teAt8NbpEKaG0RmFlThTOR6XYt20Ar8Sv7rgZu0q1ijTVy
+	 Oje0PirkTYTWeVHhoGUUj9YLbiR7nSyvpdeVc6YbYNxZEhcQ3e65YEmDPGRANEiFH0
+	 I4GPMvmbAMnpZx01r3+zbbpqvTgy4P0NhIZrHdIKpMUAIK1edjCR1e3MwCOUuyWQWi
+	 o08ujnfvkCjiJz9vM0yde/rYppwH300gV5su95dbg+90m1bR1N0Yk7fYGZg7UrGbrU
+	 eeno57rr6WKyLBJvz/qx57ByVAb0tV6a8eDhBmXSFWXTWJadgBx2XClm/tuWp5ax84
+	 +cw/tBdu4pC/A==
+Message-ID: <415a27c7-dfdf-4cc5-9aaa-1681dd32ddcb@kernel.org>
+Date: Wed, 21 Aug 2024 11:29:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: memory: mediatek: Add mt8188 SMI reset
- control binding
-To: "friday.yang" <friday.yang@mediatek.com>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Yong Wu <yong.wu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20240821082845.11792-1-friday.yang@mediatek.com>
- <20240821082845.11792-2-friday.yang@mediatek.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: display: mediatek: dpi: Add power
+ domains
+To: Rohit Agarwal <rohiagar@chromium.org>, chunkuang.hu@kernel.org,
+ p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
+ ck.hu@mediatek.com, jitao.shi@mediatek.com
+Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240821092659.1226250-1-rohiagar@chromium.org>
+ <20240821092659.1226250-2-rohiagar@chromium.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,25 +108,57 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240821082845.11792-2-friday.yang@mediatek.com>
+In-Reply-To: <20240821092659.1226250-2-rohiagar@chromium.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/08/2024 10:26, friday.yang wrote:
-> To support SMI clamp and reset operation in genpd callback, add
-> SMI LARB reset register offset and mask related information in
-> the bindings. Add index in mt8188-resets.h to query the register
-> offset and mask in the SMI reset control driver.
+On 21/08/2024 11:26, Rohit Agarwal wrote:
+> Add power domain binding to the mediatek DPI controller
+> for MT8186.
+> Also, add power domain binding for other SoCs like
+> MT6795 and MT8173 that already had power domain property.
 > 
-> Signed-off-by: friday.yang <friday.yang@mediatek.com>
+> Signed-off-by: Rohit Agarwal <rohiagar@chromium.org>
 > ---
->  .../bindings/reset/mediatek,smi-reset.yaml    | 46 +++++++++++++++++++
->  include/dt-bindings/reset/mt8188-resets.h     | 11 +++++
+>  .../display/mediatek/mediatek,dpi.yaml        | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+> index 5ca7679d5427..864b781fdcea 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+> @@ -62,6 +62,8 @@ properties:
+>        - const: default
+>        - const: sleep
+>  
+> +  power-domains: true
 
-Also, your patches did not reach DT patchwork, so something is odd.
-Maybe they got flagged as spam? Please investigate with your IT
-department. In case it keeps missing patchwork, they won't be tested by
-automation and I will generally ignore them (not apply). :(
+Missing maxItems. I don't get why did you change this...
+
+> +
+>    port:
+>      $ref: /schemas/graph.yaml#/properties/port
+>      description:
+> @@ -76,6 +78,23 @@ required:
+>    - clock-names
+>    - port
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - mediatek,mt6795-dpi
+> +              - mediatek,mt8173-dpi
+> +              - mediatek,mt8186-dpi
+> +    then:
+> +      properties:
+> +        power-domains:
+> +          maxItems: 1
+
+This part can be dropped. Just disallow it for other devices.
+
 
 Best regards,
 Krzysztof
