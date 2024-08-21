@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-95437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95438-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2C7D959818
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 12:45:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BD94959820
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 12:46:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75DA81F22FB9
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 10:45:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0D691C21A91
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 10:46:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B71F19992C;
-	Wed, 21 Aug 2024 08:54:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDBA31D67B7;
+	Wed, 21 Aug 2024 08:56:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ctXqYmIl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Uc6YNO8G"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E71C3165F11;
-	Wed, 21 Aug 2024 08:54:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C191D1D67B3;
+	Wed, 21 Aug 2024 08:56:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724230448; cv=none; b=A9bklOanUsjQdDuq+IWM6bTdV+NBzDzFwoYehOd+jEhbiNndeQJen57J5+PUIuGgEoxHB0VcoAXayJMe6qtQkk4pfA1wyYFnpyteF7SzNw2C7uMoDzrILmXeDN6ZlPnmY7eEkUyjsMAbeueT47HBUNrIYsVlBlJwCq8cuTXaqws=
+	t=1724230562; cv=none; b=IxRaT1jnA33fqWxWSAkoUC9h3e9p4sOWfZQqau9AhadrqsakWqYsj+X1KgLX1xKgl3VV1IbAqEvv7eEGbhVaggPaTXvNPqogCe/5Wyad7Hn4IGVa8U4lr0M2csuor6L2PznKs36j8/UxUf1Tf0CSSzSWurZWF4NlHfQHC+5h/Cs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724230448; c=relaxed/simple;
-	bh=Y+eJljn9xBsa8R24aSF2p1FC43PzKpXyMx19kU3l9T8=;
+	s=arc-20240116; t=1724230562; c=relaxed/simple;
+	bh=BKWK/MIr7vovdnFd09Ogcsd1XHNLtj7+YWELK1bYOvo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cRemTHDIC0eRaVHzHjAqM1C1DPKc5Y1gHsLPos3D8z+4Vso0P0BH6bKwgHHK2TavaGQZAimlUaFWB3tO1y12rTPkHu7WtYue9BNR4E/rNDf127Wi7DagdAvz3Okx0jwNTyB3ge0Z9yED2PpaP4UVaFnwmmKV95Firww9x4D6YAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ctXqYmIl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B97FAC32782;
-	Wed, 21 Aug 2024 08:54:02 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=WbuUGlXp+j7aw+Bk18h1nZnXDg+Yafc2HXyktlGxDSo4vJwtQIxqyq0tmJ0qLB8wS6DXw5SjUqMXfl1Zx9Ln4OK2UxE6MWysU1kjvBXe8ZMOT0TsRZLVZ9joKj/2hOGVR3z1YQh1yAN5Ln/a+nHvT39IKtVY/b6yWFWimC+C9DI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Uc6YNO8G; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB305C32782;
+	Wed, 21 Aug 2024 08:55:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724230447;
-	bh=Y+eJljn9xBsa8R24aSF2p1FC43PzKpXyMx19kU3l9T8=;
+	s=k20201202; t=1724230561;
+	bh=BKWK/MIr7vovdnFd09Ogcsd1XHNLtj7+YWELK1bYOvo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ctXqYmIlus/wkj6Ecc0/o9UtDdD9Fm5FOvK5y0VA15wZ3yHGVK3f3SPFY64ZwCfRD
-	 /z9k2F0WROeY9eahWsz+f7u7M6QHbIyOAmuTprLftA2x0dunHmgVfz2l22uf0DCsi8
-	 oGucBnpXgDE/Ts/45wGw3gENBLKGsE/nXmg43eOwHQGZ3sacZHx35D14o05WDWrHJR
-	 sF62BrB8KEaIpgYTgbxRAwAFZ3SEsy5+86wkjRqlfQUb5E77ShQz81ob77jWUNTzLc
-	 M1ZPtuqUhonUKtMRIYNmmAld++j+uQGSgL7qPRnJygDB3H1Yc80YmIkjqat10cPhYu
-	 Xc6SzyoWG/1Dg==
-Message-ID: <ef942c52-9a07-4f32-92b8-cd96021ac451@kernel.org>
-Date: Wed, 21 Aug 2024 10:54:00 +0200
+	b=Uc6YNO8GsFYtYyRSgRKVPMKezIl7MwSF/x0g5jixCwxcSI0agxtLk2U9Ce2hpT3l1
+	 WNsfF90X22S0F6cjgqlkbb6osSnUOtTnn1bLOG/yLSYoOsRaW4PS6Mf6WYyaAzi1sm
+	 DR/Ij4Z+kpE/Rq+rZKbw8NXGFUwLOizonbfCo5ctNgxWv0ZAM1Uk3PS3R5bdKrDV+k
+	 AVM7WG+4GlTB1OLVXkIk/C4qQ7yiLrLvWOweZROYcb/NBbLPLHgT3OIA6BOzEfKBcc
+	 Gk6j2xxSDZ1FGUFva8qHGBIWC4fuob5jFwHrc5JWXmO2mpm1+H5VxSitWJ7w6NMzFl
+	 l2b7EY52NBe7A==
+Message-ID: <3b31bf46-c5c0-41c9-bb4d-3ba9f64a5d1c@kernel.org>
+Date: Wed, 21 Aug 2024 10:55:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,8 +50,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: memory: mediatek: Add mt8188 SMI reset
- control binding
+Subject: Re: [PATCH 2/4] dt-bindings: memory: mediatek: Add smi-sub-common
+ property for reset
 To: "friday.yang" <friday.yang@mediatek.com>, Rob Herring <robh@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
  <matthias.bgg@gmail.com>,
@@ -61,7 +61,7 @@ Cc: Yong Wu <yong.wu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  Project_Global_Chrome_Upstream_Group@mediatek.com
 References: <20240821082845.11792-1-friday.yang@mediatek.com>
- <20240821082845.11792-2-friday.yang@mediatek.com>
+ <20240821082845.11792-3-friday.yang@mediatek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,98 +107,102 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240821082845.11792-2-friday.yang@mediatek.com>
+In-Reply-To: <20240821082845.11792-3-friday.yang@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 21/08/2024 10:26, friday.yang wrote:
-> To support SMI clamp and reset operation in genpd callback, add
-> SMI LARB reset register offset and mask related information in
-> the bindings. Add index in mt8188-resets.h to query the register
-> offset and mask in the SMI reset control driver.
+> On the MediaTek platform, some SMI LARBs are directly linked to SMI
+> common. While some SMI LARBs are linked to SMI sub common, then SMI
+> sub common is linked to SMI common. Add 'mediatek,smi-sub-comm' and
+> 'mediatek,smi-sub-comm-in-portid' properties here. The SMI reset
+> driver could query which port of the SMI sub common the current LARB
+> is linked to through the two properties. The hardware block diagram
+> could be described as below.
+> 
+>              SMI Common(Smart Multimedia Interface Common)
+>                  |
+>          +----------------+-------
+>          |                |
+>          |                |
+>          |                |
+>          |                |
+>          |                |
+>        larb0       SMI Sub Common
+>                    |      |     |
+>                   larb1  larb2 larb3
 > 
 > Signed-off-by: friday.yang <friday.yang@mediatek.com>
-
-User proper full name instead of login.
-
-
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
-
 > ---
->  .../bindings/reset/mediatek,smi-reset.yaml    | 46 +++++++++++++++++++
->  include/dt-bindings/reset/mt8188-resets.h     | 11 +++++
->  2 files changed, 57 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/reset/mediatek,smi-reset.yaml
+>  .../mediatek,smi-common.yaml                  |  2 ++
+>  .../memory-controllers/mediatek,smi-larb.yaml | 22 +++++++++++++++++++
+>  2 files changed, 24 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/reset/mediatek,smi-reset.yaml b/Documentation/devicetree/bindings/reset/mediatek,smi-reset.yaml
-> new file mode 100644
-> index 000000000000..66ac121d2396
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/reset/mediatek,smi-reset.yaml
-> @@ -0,0 +1,46 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (c) 2024 MediaTek Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/reset/mediatek,smi-reset.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek SMI Reset Controller
-> +
-> +maintainers:
-> +  - Friday Yang <friday.yang@mediatek.com>
-> +
-> +description: |
-> +  This reset controller node is used to perform reset management
-> +  of SMI larbs on MediaTek platform. It is used to implement various
-> +  reset functions required when SMI larbs apply clamp operation.
-> +
-> +  For list of all valid reset indices see
-> +    <dt-bindings/reset/mt8188-resets.h> for MT8188.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,smi-reset-mt8188
-
-Wrong placement of soc. It's mediatek,mt8189-whatever
-
-> +
-> +  "#reset-cells":
-> +    const: 1
-> +
-> +  mediatek,larb-rst-syscon:
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
+> index 2f36ac23604c..4392d349878c 100644
+> --- a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
+> +++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
+> @@ -39,6 +39,7 @@ properties:
+>            - mediatek,mt8186-smi-common
+>            - mediatek,mt8188-smi-common-vdo
+>            - mediatek,mt8188-smi-common-vpp
+> +          - mediatek,mt8188-smi-sub-common
+>            - mediatek,mt8192-smi-common
+>            - mediatek,mt8195-smi-common-vdo
+>            - mediatek,mt8195-smi-common-vpp
+> @@ -107,6 +108,7 @@ allOf:
+>          compatible:
+>            contains:
+>              enum:
+> +              - mediatek,mt8188-smi-sub-common
+>                - mediatek,mt8195-smi-sub-common
+>      then:
+>        required:
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
+> index 2381660b324c..5f162bb360db 100644
+> --- a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
+> +++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
+> @@ -69,6 +69,16 @@ properties:
+>      description: the hardware id of this larb. It's only required when this
+>        hardware id is not consecutive from its M4U point of view.
+>  
+> +  mediatek,smi-sub-comm:
 > +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: phandle of the SMI larb's reset controller syscon.
+> +    description: a phandle of smi_sub_common that the larb is linked to.
 
-Explain what is it used for.
+Why do you have to smi phandle properties per each node?
 
 > +
-> +required:
-> +  - compatible
-> +  - "#reset-cells"
-> +  - mediatek,larb-rst-syscon
+> +  mediatek,smi-sub-comm-in-portid:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0
+> +    maximum: 7
+> +    description: which port of smi_sub_common that the larb is linked to.
+
+Merge it into phandle.
+
 > +
-> +additionalProperties: false
+>  required:
+>    - compatible
+>    - reg
+> @@ -125,6 +135,18 @@ allOf:
+>        required:
+>          - mediatek,larb-id
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - mediatek,mt8188-smi-larb
 > +
-> +examples:
-> +  - |
-> +    imgsys1_dip_top_rst: reset-controller {
+> +    then:
+> +      required:
+> +        - mediatek,smi-sub-comm
+> +        - mediatek,smi-sub-comm-in-portid
+> +
 
-Drop label
-
-> +          compatible = "mediatek,smi-reset-mt8188";
-
-Use 4 spaces for example indentation.
-
-> +          #reset-cells = <1>;
-> +          mediatek,larb-rst-syscon = <&imgsys1_dip_top>;
-> +    };
-
+and add it to the example (since you claim it is valid for every device).
 
 Best regards,
 Krzysztof
