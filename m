@@ -1,190 +1,260 @@
-Return-Path: <devicetree+bounces-95607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E7B495A305
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 18:41:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0D6595A33A
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 18:55:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F3F5F1F22D7E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 16:41:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 647501F22DA1
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 16:55:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40D5A15886A;
-	Wed, 21 Aug 2024 16:41:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C91B81AF4CC;
+	Wed, 21 Aug 2024 16:55:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lKQinKob"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UWI3DEoY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABB93152199;
-	Wed, 21 Aug 2024 16:41:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8816A139597;
+	Wed, 21 Aug 2024 16:55:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724258463; cv=none; b=PJir2uYCsQJ6D6+7C57lwV44jP1CCEJTzfBWiwRV4H/AJbnmxrrQ3THXGUa1IkMLGO9+eS4Nd6q+beImIj8pUfeA7lNP+wM93PIqbE1kEZfvYJUtiS/RBzaE80gdruAOy46kbE3xywzIznReXq19ZlTQVIN3NQLC23TD4DgojdE=
+	t=1724259343; cv=none; b=q/kozjv73DoFoERTAtmZA3ZfkI97oQP4000lym4G0Q+q2noj30Vcq8XLBc3vEBjL8VPUGkt1f89RtvBrWJ7LV8OxvhjpeiU2uBr0Q5j46Jdy6HUugHL138t00l2xk3XuhpG2ZIwQOFJusUcZT4SFRUrdSGdp2DjRjRBW0hDQ5L8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724258463; c=relaxed/simple;
-	bh=gKoteVLKI8ai33j8oxVFeL6d5ggtKS/ReU8r+qC1D4U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=nrOBhmMhZnvOBg5thtdKu0mxraDyUICihNjK1OIAfNFnBhTErIcHt/MQyWoQBr8gggrjGsGIHZmHFetmPtdZCTSykp1fJcEIIVcZw9hxmSHLgdSI0lpv2RasX0SGkV9Rn46FfFoE+6DjzjRK/t9VUTmPu/tmLcEItCH0s1D5AFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=lKQinKob; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47L80RVJ001800;
-	Wed, 21 Aug 2024 16:40:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	t7yuid+f1cRo2jgQ7k++sxtPewWLQLpXVG8YsnFjlFE=; b=lKQinKob7XQHut4F
-	nLaCGClupoG3OuzxpNwr/7qb0oDQyweqJoDfIOjwUiS2AQQGayA1lpnxfK2LPwA+
-	WWd0SJOfyRxSU0vr3FTpHmMlTOudFzoBoSUOoWvGi2nLrx8KlniWmJUvJHhy9w4B
-	B95nV6Bd6zp+aaRR3Y+Q2LUxk/UiMW0y+K30qCuS8SKaj0d5yDPeXzM5WN9rz05V
-	ZzVNMo4AZvSVALR+Wj3jWPEQrOmpvFfWQIaHxq1HKdj07Fvj7AOsAAWyGwM481GM
-	GakK8NqsVY2dvKB0homNsKJ9okH3Vu+pcXdzSOXAm4gMkkbjMxraMlu8eNA+ZgnA
-	4EqGMA==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 414uh8v7qw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Aug 2024 16:40:52 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47LGeqX8027390
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Aug 2024 16:40:52 GMT
-Received: from [10.216.59.247] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 21 Aug
- 2024 09:40:42 -0700
-Message-ID: <e4b2f28e-bc5c-ea93-c264-2b8608c4eab4@quicinc.com>
-Date: Wed, 21 Aug 2024 22:10:39 +0530
+	s=arc-20240116; t=1724259343; c=relaxed/simple;
+	bh=8v5Y7+Bdr6Vrg6fg/jjVkWGIt4zD/dKPaTA7XMhn+n8=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=DDzX0n+gBUyN6os7wqTGj43wtMx+q9CyBFXx4OkBgK+seH7L2ZPjkhqX3JYUKxfhP9MQJxrl8R0CvDnVncO1UaWuNLCdPDS0Mrl4lTElDmPJGSkPpKC+pdCZcvvDdWc1VmzehQrWqnp8t414wouWsgplg1acOO1frTk0PXKgQYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UWI3DEoY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10041C32786;
+	Wed, 21 Aug 2024 16:55:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724259343;
+	bh=8v5Y7+Bdr6Vrg6fg/jjVkWGIt4zD/dKPaTA7XMhn+n8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=UWI3DEoYXhlo5tEJ8+b6j2jglrtnyX7EMyzxBQALxCZIKK3Vv0INTGGsDg0AIv69+
+	 dgiGf1Ndqkr6QIBOzlmEBV2saM1kC/PTaM2XyM1owiQqsS3DmG5j7ptA+pt6yZn0rT
+	 bVQWFDEHzMQc/KqhtAKT+P2IYSaiwR3ritbtAxsLsU9KiSsFA479LcSG/bspzSQlnL
+	 bQ23dcB92e9qtISrNTjWVChljaVmucocnYAFGkViVKxHEVMhyT8L5xb7rPvVD2RPSC
+	 4Z+oJgI0Mzw41s+SeDEFxx3HsPTyi1kEsW+9eV/s4/h8WQV98g0lwy0pZxbI1dCYJg
+	 9Y92grUkNfw5w==
+Date: Wed, 21 Aug 2024 11:55:41 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
+	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Stefan Wahren <wahrenst@gmx.net>
+Subject: Re: [PATCH 08/11] misc: rp1: RaspberryPi RP1 misc driver
+Message-ID: <20240821165541.GA254124@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v2 04/16] crypto: qce - Add support for crypto address
- read
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>, <vkoul@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <andersson@kernel.org>, <konradybcio@kernel.org>,
-        <thara.gopinath@gmail.com>, <herbert@gondor.apana.org.au>,
-        <davem@davemloft.net>, <gustavoars@kernel.org>,
-        <u.kleine-koenig@pengutronix.de>, <kees@kernel.org>,
-        <agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-crypto@vger.kernel.org>
-CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>,
-        <quic_utiwari@quicinc.com>
-References: <20240815085725.2740390-1-quic_mdalam@quicinc.com>
- <20240815085725.2740390-5-quic_mdalam@quicinc.com>
- <72cef34a-acb0-4278-984c-dadd53817b5d@kernel.org>
-From: Md Sadre Alam <quic_mdalam@quicinc.com>
-In-Reply-To: <72cef34a-acb0-4278-984c-dadd53817b5d@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 8tTv8B-W85oluN-RjR-db7q61EWWNiIN
-X-Proofpoint-ORIG-GUID: 8tTv8B-W85oluN-RjR-db7q61EWWNiIN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-21_11,2024-08-19_03,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- lowpriorityscore=0 impostorscore=0 mlxscore=0 spamscore=0 phishscore=0
- mlxlogscore=999 bulkscore=0 malwarescore=0 priorityscore=1501
- clxscore=1015 suspectscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2407110000 definitions=main-2408210122
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5954e4dccc0e158cf434d2c281ad57120538409b.1724159867.git.andrea.porta@suse.com>
 
+On Tue, Aug 20, 2024 at 04:36:10PM +0200, Andrea della Porta wrote:
+> The RaspberryPi RP1 is ia PCI multi function device containing
 
+s/ia/a/
 
-On 8/17/2024 2:40 PM, Krzysztof Kozlowski wrote:
-> On 15/08/2024 10:57, Md Sadre Alam wrote:
->> Get crypto base address from DT. This will use for
->> command descriptor support for crypto register r/w
->> via BAM/DMA
-> 
-> All your commit messages are oddly wrapped. This does not make reading
-> it easy...
-> 
->>
->> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
->> ---
->> Change in [v2]
->>
->> * Addressed all comments from v1
->>
->> Change in [v1]
->>
->> * Added support to read crypto base address from dt
->>
->>   drivers/crypto/qce/core.c | 13 ++++++++++++-
->>   drivers/crypto/qce/core.h |  1 +
->>   2 files changed, 13 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
->> index 28b5fd823827..9b23a948078a 100644
->> --- a/drivers/crypto/qce/core.c
->> +++ b/drivers/crypto/qce/core.c
->> @@ -192,6 +192,7 @@ static int qce_crypto_probe(struct platform_device *pdev)
->>   {
->>   	struct device *dev = &pdev->dev;
->>   	struct qce_device *qce;
->> +	struct resource *res;
->>   	int ret;
->>   
->>   	qce = devm_kzalloc(dev, sizeof(*qce), GFP_KERNEL);
->> @@ -201,10 +202,16 @@ static int qce_crypto_probe(struct platform_device *pdev)
->>   	qce->dev = dev;
->>   	platform_set_drvdata(pdev, qce);
->>   
->> -	qce->base = devm_platform_ioremap_resource(pdev, 0);
->> +	qce->base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
->>   	if (IS_ERR(qce->base))
->>   		return PTR_ERR(qce->base);
->>   
->> +	qce->base_dma = dma_map_resource(dev, res->start,
->> +					 resource_size(res),
->> +					 DMA_BIDIRECTIONAL, 0);
->> +	if (dma_mapping_error(dev, qce->base_dma))
->> +		return -ENXIO;
->> +
->>   	ret = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(32));
->>   	if (ret < 0)
->>   		return ret;
-> 
-> And how do you handle error paths?
-   Ok , will fix the error path to cleanup the resources.
-> 
-> 
->> @@ -280,6 +287,7 @@ static int qce_crypto_probe(struct platform_device *pdev)
->>   static void qce_crypto_remove(struct platform_device *pdev)
->>   {
->>   	struct qce_device *qce = platform_get_drvdata(pdev);
->> +	struct resource *res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->>   
->>   	tasklet_kill(&qce->done_tasklet);
->>   	qce_unregister_algs(qce);
->> @@ -287,6 +295,9 @@ static void qce_crypto_remove(struct platform_device *pdev)
->>   	clk_disable_unprepare(qce->bus);
->>   	clk_disable_unprepare(qce->iface);
->>   	clk_disable_unprepare(qce->core);
->> +
->> +	dma_unmap_resource(&pdev->dev, qce->base_dma, resource_size(res),
->> +			   DMA_BIDIRECTIONAL, 0);
-> 
-> If you add code to the remove callback, not adding it to error paths is
-> suspicious by itself...
-   Ok , will fix the error path to cleanup the resources.
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
+> peripherals ranging from Ethernet to USB controller, I2C, SPI
+> and others.
+
+Add blank lines between paragraphs.
+
+> Implement a bare minimum driver to operate the RP1, leveraging
+> actual OF based driver implementations for the on-borad peripherals
+
+s/on-borad/on-board/
+
+> by loading a devicetree overlay during driver probe.
+> The peripherals are accessed by mapping MMIO registers starting
+> from PCI BAR1 region.
+> As a minimum driver, the peripherals will not be added to the
+> dtbo here, but in following patches.
+
+> +config MISC_RP1
+> +        tristate "RaspberryPi RP1 PCIe support"
+> +        depends on PCI && PCI_QUIRKS
+> +        select OF
+> +        select OF_OVERLAY
+> +        select IRQ_DOMAIN
+> +        select PCI_DYNAMIC_OF_NODES
+> +        help
+> +          Support for the RP1 peripheral chip found on Raspberry Pi 5 board.
+> +          This device supports several sub-devices including e.g. Ethernet controller,
+> +          USB controller, I2C, SPI and UART.
+> +          The driver is responsible for enabling the DT node once the PCIe endpoint
+> +          has been configured, and handling interrupts.
+> +          This driver uses an overlay to load other drivers to support for RP1
+> +          internal sub-devices.
+
+s/support for/support/
+
+Add blank lines between paragraphs.  Consider wrapping to fit in 80
+columns.  Current width of 86 seems random.
+
+> diff --git a/drivers/misc/rp1/Makefile b/drivers/misc/rp1/Makefile
+> new file mode 100644
+> index 000000000000..e83854b4ed2c
+> --- /dev/null
+> +++ b/drivers/misc/rp1/Makefile
+> @@ -0,0 +1,3 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +rp1-pci-objs			:= rp1-pci.o rp1-pci.dtbo.o
+> +obj-$(CONFIG_MISC_RP1)		+= rp1-pci.o
+> diff --git a/drivers/misc/rp1/rp1-pci.c b/drivers/misc/rp1/rp1-pci.c
+> new file mode 100644
+> index 000000000000..a6093ba7e19a
+> --- /dev/null
+> +++ b/drivers/misc/rp1/rp1-pci.c
+> @@ -0,0 +1,333 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2018-22 Raspberry Pi Ltd.
+
+s/22/24/ ?
+
+> +#define RP1_B0_CHIP_ID		0x10001927
+> +#define RP1_C0_CHIP_ID		0x20001927
+
+Drop; both unused.
+
+> +#define RP1_PLATFORM_ASIC	BIT(1)
+> +#define RP1_PLATFORM_FPGA	BIT(0)
+
+Drop; both unused.
+
+> +#define RP1_SYSCLK_RATE		200000000
+> +#define RP1_SYSCLK_FPGA_RATE	60000000
+
+Drop; both unused.
+
+> +enum {
+> +	SYSINFO_CHIP_ID_OFFSET	= 0,
+> +	SYSINFO_PLATFORM_OFFSET	= 4,
+> +};
+
+Drop; unused.
+
+> +/* MSIX CFG registers start at 0x8 */
+
+s/MSIX/MSI-X/
+
+> +#define MSIX_CFG_TEST           BIT(1)
+
+Unused.
+
+> +#define INTSTATL		0x108
+> +#define INTSTATH		0x10c
+
+Drop; both unused.
+
+> +static void dump_bar(struct pci_dev *pdev, unsigned int bar)
+> +{
+> +	dev_info(&pdev->dev,
+> +		 "bar%d len 0x%llx, start 0x%llx, end 0x%llx, flags, 0x%lx\n",
+
+%pR does most of this for you.
+
+> +static int rp1_irq_set_type(struct irq_data *irqd, unsigned int type)
+> +{
+> +	struct rp1_dev *rp1 = irqd->domain->host_data;
+> +	unsigned int hwirq = (unsigned int)irqd->hwirq;
+> +	int ret = 0;
+> +
+> +	switch (type) {
+> +	case IRQ_TYPE_LEVEL_HIGH:
+> +		dev_dbg(rp1->dev, "MSIX IACK EN for irq %d\n", hwirq);
+> +		msix_cfg_set(rp1, hwirq, MSIX_CFG_IACK_EN);
+> +		rp1->level_triggered_irq[hwirq] = true;
+> +	break;
+> +	case IRQ_TYPE_EDGE_RISING:
+> +		msix_cfg_clr(rp1, hwirq, MSIX_CFG_IACK_EN);
+> +		rp1->level_triggered_irq[hwirq] = false;
+> +		break;
+> +	default:
+> +		ret = -EINVAL;
+
+If you "return -EINVAL" directly here, I think you can drop "ret" and
+just "return 0" below.
+
+> +		break;
+> +	}
+> +
+> +	return ret;
+> +}
+
+> +static int rp1_irq_xlate(struct irq_domain *d, struct device_node *node,
+> +			 const u32 *intspec, unsigned int intsize,
+> +			 unsigned long *out_hwirq, unsigned int *out_type)
+> +{
+> +	struct rp1_dev *rp1 = d->host_data;
+> +	struct irq_data *pcie_irqd;
+> +	unsigned long hwirq;
+> +	int pcie_irq;
+> +	int ret;
+> +
+> +	ret = irq_domain_xlate_twocell(d, node, intspec, intsize,
+> +				       &hwirq, out_type);
+> +	if (!ret) {
+> +		pcie_irq = pci_irq_vector(rp1->pdev, hwirq);
+> +		pcie_irqd = irq_get_irq_data(pcie_irq);
+> +		rp1->pcie_irqds[hwirq] = pcie_irqd;
+> +		*out_hwirq = hwirq;
+> +	}
+> +
+> +	return ret;
+
+  if (ret)
+    return ret;
+
+  ...
+  return 0;
+
+would make this easier to read and unindent the normal path.
+
+> +	rp1->bar1 = pci_iomap(pdev, 1, 0);
+
+pcim_iomap()
+
+> +	if (!rp1->bar1) {
+> +		dev_err(&pdev->dev, "Cannot map PCI bar\n");
+
+s/bar/BAR/
+
+> +#define PCI_VENDOR_ID_RPI		0x1de4
+> +#define PCI_DEVICE_ID_RP1_C0		0x0001
+
+Device ID should include "RPI" as well.
 
