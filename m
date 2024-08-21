@@ -1,135 +1,139 @@
-Return-Path: <devicetree+bounces-95527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A3B4959A57
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 13:41:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A68AD959A5D
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 13:42:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBF6E1F21FD9
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 11:41:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3945C1F21CD6
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 11:42:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63C201B3B36;
-	Wed, 21 Aug 2024 11:10:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0D5F1CB153;
+	Wed, 21 Aug 2024 11:11:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="jTn8Fevd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GDrrVv0/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 965F01B1D61;
-	Wed, 21 Aug 2024 11:10:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 015BC1CB14D
+	for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 11:11:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724238636; cv=none; b=JHxS6EUK9W/m7iSd9ki9lqPu4FGYUJxnG8cfnoPnKWq7mlF91lxnxtOVpKqeuiESNaiebN5i7aueyYZXlgwunp4Goo7nhOPww2Y/ULgOo/IG2RH6Wqz2IKNi3GiBrqTylXLjrYoKubxLVPFkQetWCTU2fWg0azSosZ05UOkJMVo=
+	t=1724238709; cv=none; b=ZHZPAOWQwpYda96+DUDvpV8vj/jKnjmscNoEXUIwI9fHrWIjPQHlBs/cMTj7k3N6iUbjZ9HzfhSF9wuxpu8jzWJFIcfWRCeISmeq2SBEjoAkkg2kszfHpDQl3rUJIcXXKrTTqYk8N55/ApWDRoybVsnbhJyNdIrxqxQfiY19UJE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724238636; c=relaxed/simple;
-	bh=wtyVza7pPG7HwH8Ffygep8fUL40eT3JGcHBxzpvlNwk=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QqxC2Osr+A1og4jv5CuCOKmEiL3duuAgRH5He6kEaFKvhgVem0KVVz5MAslehQegAxDVEFlGCeBpBFYW0+W+bOo8YK0+gXWZ80TglI5c6a7Atc1N12/kORkaWpg+/oEpH+fkZhnd6Zz25TER1C2kEOHzHXtZi2w5R2a5YJk2NXk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=jTn8Fevd; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47LBASoh097212;
-	Wed, 21 Aug 2024 06:10:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1724238628;
-	bh=T3FjfbTMeOH7tN5HUO7GXQ7+Mttu5fF++DxNH+J9BRc=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=jTn8FevdHtDr+cEBXFR/Q0jWd3HbF6ZYQv3tAj8MX9cU9oPD1PJrJZ1Fb7/4TlP/p
-	 /dLpH/b+LhpoZAvPI+UxNYEgYtB0965s2jCPNJJgmYpEjPaPNMzhm1xy7yiFss1m7S
-	 b3wdxD7SktGoHrvscjlGRRrFqonVUkOpE7FLDDYQ=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47LBASMw081609
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 21 Aug 2024 06:10:28 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 21
- Aug 2024 06:10:27 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 21 Aug 2024 06:10:27 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47LBARSL001818;
-	Wed, 21 Aug 2024 06:10:27 -0500
-Date: Wed, 21 Aug 2024 06:10:27 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Andrew Davis <afd@ti.com>
-CC: Hari Nagalla <hnagalla@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <bb@ti.com>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v4 3/4] arm64: dts: k3-am62a-wakeup: Add R5F device node
-Message-ID: <20240821111027.6kx57jftp67ksx52@boxcar>
-References: <20240820104034.15607-1-hnagalla@ti.com>
- <20240820104034.15607-4-hnagalla@ti.com>
- <b6b341a7-5ee2-4a89-82c6-e863a9556654@ti.com>
+	s=arc-20240116; t=1724238709; c=relaxed/simple;
+	bh=/1nI3ICWn0fLkVjl3gTUoRm1AzqpA9c/IlhVi1HGFZo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hdxnFC5XY59C/JZ4CtXCmbuJQRz9tznnMX1RmujvPTrEbHQLt7Fd9ohozQR9Qi39SsSMpD66MUXclWuxFUrk47M9AbzNAT9p+7IDDNi+tpwy83opZz6sn0PYdfd+SjGJZkQ0T43OvBRu5cQgeMEn8tTxZbv2cO820exLnwCdXow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GDrrVv0/; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2ef247e8479so376471fa.1
+        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 04:11:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1724238706; x=1724843506; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hm2FD4vfYuxmI3ajSYE+P7n9/7DArob3L4cbL1chEQY=;
+        b=GDrrVv0/2NMtvrooakA6Lcuuao3mvGswL41p3f/9RW8f2shZ3iBfLIwYel+PjIy/pN
+         ZBNw7ddE+KdpmNJuq6blLhtBturQu8cqlm8Rr8TEiXlqBDhliYBGKq+p33nQvMJII+L6
+         ZsOAMpeZ6tTUSOVKuIQ3uSmqWQ/lpp+6CnqErzMlG1W1PTCjHF7XVJnxiKBqCLfTGIG4
+         huZUJHWGmDPi07EJheApuTiWkEdzGafEk4seMYXeEw2UgvWwAblgT43LKf2dlMLUn/bz
+         LqrOSY16j0gKPPJ4ua3AUa3t3RHWp1YGxxSEt+zPgEQkRac7bpNk4l1637VJ+vYBTEki
+         PBtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724238706; x=1724843506;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hm2FD4vfYuxmI3ajSYE+P7n9/7DArob3L4cbL1chEQY=;
+        b=BdF2fGZ+mGmo51fLV5tWa27cZa5ZdeyqumQpkhgzmylpDEUm2FcEAaer05DvMcWvBG
+         COGdcRkPZWaCjHVPjp1Sf8Iaa75XXRpzg48LmggRM9dUkw/KO71E2//wWo8QX1GkNqOD
+         o62TeiKZF46/YWdCQWDIaavLojfuyiyMTLBX1jArg/huJQAYzbiVpempcZQDp8lalbIo
+         qndxMJZNdkegZgZYqonBH6Mt47Z+lP4rBIDsGgEAj0G8uPH/zN5ePdIDu79xFO+MRysP
+         A+5+hYtPeDmAWBBzDltEzNv0j7q5fSGkCr/zwj6xWzyR8cLqlnQ5d6wOnwH5r00elkTt
+         SroA==
+X-Forwarded-Encrypted: i=1; AJvYcCVd7OKWwVgYE4tD9dA5sfdmAbhKTIGDLDOwUtvvsWUVdBDZxIESarVkdTOpL7ggRMYCpmYv+JvsLg1T@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/xw96MewtVooVaOmG95UzHdSvVvl5ZrmGbB/WhE4u/9Uin/P+
+	fhYNogF7iBDPHDZU0FolJHoUmm0pFmP/KJEmck46EAgiOHXPLtkd17p7ue68R9I=
+X-Google-Smtp-Source: AGHT+IH/o5QRMw95z/iir/28qSSiOEgLO2pHucvJWk+9LvpI2tg3gyxdDd5JEietZG++Ru5y1vWU9g==
+X-Received: by 2002:a05:651c:221b:b0:2ef:29fc:f950 with SMTP id 38308e7fff4ca-2f3f8b547famr8516971fa.6.1724238705750;
+        Wed, 21 Aug 2024 04:11:45 -0700 (PDT)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f3fbfd0f1bsm879741fa.25.2024.08.21.04.11.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Aug 2024 04:11:45 -0700 (PDT)
+Message-ID: <c501b813-e78a-4fb0-aa7b-a2fbbb90f10d@linaro.org>
+Date: Wed, 21 Aug 2024 14:11:44 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <b6b341a7-5ee2-4a89-82c6-e863a9556654@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 13/13] media: qcom: camss: Add support for VFE hardware
+ version Titan 780
+Content-Language: en-US
+To: Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
+ todor.too@gmail.com, bryan.odonoghue@linaro.org, mchehab@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ kernel@quicinc.com, Yongsheng Li <quic_yon@quicinc.com>
+References: <20240812144131.369378-1-quic_depengs@quicinc.com>
+ <20240812144131.369378-14-quic_depengs@quicinc.com>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20240812144131.369378-14-quic_depengs@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 10:13-20240820, Andrew Davis wrote:
-> On 8/20/24 5:40 AM, Hari Nagalla wrote:
-> > From: Devarsh Thakkar <devarsht@ti.com>
-> > 
-> > AM62A SoCs have a single R5F core in waekup domain. This core is also
-> > used as a device manager for the SoC.
-> > 
-> > Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
-> > Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-> > ---
-> >   arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi | 23 +++++++++++++++++++++
-> >   1 file changed, 23 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
-> > index f5ac101a04df..c4319986e660 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
-> > +++ b/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
-> > @@ -76,6 +76,29 @@ wkup_rti0: watchdog@2b000000 {
-> >   		status = "reserved";
-> >   	};
-> > +	wkup_r5fss0: r5fss@78000000 {
-> > +		compatible = "ti,am62-r5fss";
-> > +		#address-cells = <1>;
-> > +		#size-cells = <1>;
-> > +		ranges = <0x78000000 0x00 0x78000000 0x8000>,
-> > +			 <0x78100000 0x00 0x78100000 0x8000>;
-> > +		power-domains = <&k3_pds 119 TI_SCI_PD_EXCLUSIVE>;
+On 8/12/24 17:41, Depeng Shao wrote:
+> Add support for VFE found on SM8550 (Titan 780). This implementation is
+> based on the titan 480 implementation. It supports the normal and lite
+> VFE.
 > 
-> Need newline here.
-> 
-> > +		wkup_r5fss0_core0: r5f@78000000 {
-> > +			compatible = "ti,am62-r5f";
-> > +			reg = <0x78000000 0x00008000>,
-> > +				<0x78100000 0x00008000>;
-> > +			reg-names = "atcm", "btcm";
-> > +			ti,sci = <&dmsc>;
-> > +			ti,sci-dev-id = <121>;
-> > +			ti,sci-proc-ids = <0x01 0xff>;
-> > +			resets = <&k3_reset 121 1>;
-> > +			firmware-name = "am62-wkup-r5f0_0-fw";
-> 
-> resets and firmware-name should go before vendor specific properties.
+> Co-developed-by: Yongsheng Li <quic_yon@quicinc.com>
+> Signed-off-by: Yongsheng Li <quic_yon@quicinc.com>
+> Signed-off-by: Depeng Shao <quic_depengs@quicinc.com>
+> ---
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst#n117
+<snip>
 
-> 
-> > +			ti,atcm-enable = <1>;
-> > +			ti,btcm-enable = <1>;
-> > +			ti,loczrama = <1>;
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+> +
+> +static void vfe_reg_update(struct vfe_device *vfe, enum vfe_line_id line_id)
+> +{
+> +	int port_id = line_id;
+> +
+> +	/* RUP(register update) registers has beem moved to CSID in Titan 780.
+> +	 * Notify the event of trigger RUP.
+> +	 */
+> +	camss_reg_update(vfe->camss, vfe->id, port_id, false);
+> +}
+> +
+> +static inline void vfe_reg_update_clear(struct vfe_device *vfe,
+> +					enum vfe_line_id line_id)
+> +{
+> +	int port_id = line_id;
+
+Once I said that the comment with a typo can be removed from these two
+functions, however the functions can be removed, since they are trivial,
+use camss_reg_update(vfe->camss, vfe->id, port_id, ...) directly in the code.
+
+> +
+> +	/* RUP(register update) registers has beem moved to CSID in Titan 780.
+> +	 * Notify the event of trigger RUP clear.
+> +	 */
+> +	camss_reg_update(vfe->camss, vfe->id, port_id, true);
+> +}
+> +
+
+
+--
+Best wishes,
+Vladimir
 
