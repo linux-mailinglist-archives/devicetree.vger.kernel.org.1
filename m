@@ -1,153 +1,184 @@
-Return-Path: <devicetree+bounces-95634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3E1195A5F8
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 22:39:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBC3595A622
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 22:52:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 414EB1F22C3F
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 20:39:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F148B2489A
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 20:52:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B7E116F909;
-	Wed, 21 Aug 2024 20:39:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 933AB170A1C;
+	Wed, 21 Aug 2024 20:52:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b="G2Qgbf+f"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="co84FhOn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75F9A1531DA;
-	Wed, 21 Aug 2024 20:38:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724272740; cv=pass; b=Oe18eiwOuu/RZC3vc5+gVua+7yjgvd5DvAyDWsNH9RmxPxh60dVZlnQ2RkF0ojTzSTL6oyIazVCDK+pUV+S7dE15o5dhFQp5zMoR5Ud9JHWshI2wp6NVcB+CNFPZ25Kt2a7EhVOgtYa4IbEBr4I5sHYi9A4VES9CQ3mUB8LGcow=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724272740; c=relaxed/simple;
-	bh=JtWwYyUYRpuWyz3CWJqn7O4nLn6nocm7LJDRY370nMc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G+ceASOBMDC2g8xkVsZSqq4h5DkiN9Exkl6awZj8HzGVxwKHUHs5QpiYkN1to4v3KIU9VrBlPjDPyKu7pL6fLcLWQU90/U/znwHbfqrzO5x60A1W0z7/4HeFeG4gLqvYLUX41htR/F+mXp5BhCRYLbbogDvuUi1ZuIARrc4PRQk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b=G2Qgbf+f; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-Delivered-To: kernel@collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1724272691; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=gkPi36rxlLW4SXhcJ7TsEx9UFal77hztufoJNuKbW34wX4mFQkp1p4dH6/D9xqu+7Qw/ZdwuEmtDlHzaFcNgvic8rEXY2vmMH1T/OwiqCGo6kUSyUPPuTNU9z1L5lwKl4jvUNuHs6wbMV2n9RQoiYpF+HVNHLeqUw+mqDBdYwLI=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1724272691; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=rn/jPcfndwOGlmUfjvgjuRv6xjB54zy9vNZlgxr2C8A=; 
-	b=JO26rMR7n8PfcasVMvM8FQ053kPSaxiuJY/mQkLDo6d1S6USefUkix1DBoCJ1pw7+6otUHRPKzG6JuHpyWDAKtN7YO1iEvcCrClS/I8lT3CCMB6lpzuGcl40gefkhEhBvqIESdkq/iraQQtksHDEIZb4OCO8OlUJTfXkdSNdbZ4=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=cristian.ciocaltea@collabora.com;
-	dmarc=pass header.from=<cristian.ciocaltea@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724272691;
-	s=zohomail; d=collabora.com; i=cristian.ciocaltea@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=rn/jPcfndwOGlmUfjvgjuRv6xjB54zy9vNZlgxr2C8A=;
-	b=G2Qgbf+fYDaUCrzI4JUaB+8dp0zKq0j1FNWUxOb97NABn7Dfz+TuVicqioEEn53s
-	pUGRjYHNRirFC2ehQArQUMdPNlRXgwn1z98fsdkB0lcfGVkpCg93eZCuiGA533w8pG3
-	CWyVVIM7VJ0v2eAFLC+jTO6kioCqH5x7E3wP3A3Q=
-Received: by mx.zohomail.com with SMTPS id 1724272689131684.716009062432;
-	Wed, 21 Aug 2024 13:38:09 -0700 (PDT)
-Message-ID: <5813cea2-4890-4fa9-8826-19be5bf3e161@collabora.com>
-Date: Wed, 21 Aug 2024 23:38:01 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 781D31531C2;
+	Wed, 21 Aug 2024 20:52:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724273524; cv=none; b=kVgjtKDwCJ2kIFNzXqV71DCa5wDpXuFxbVYSAauI0MrBueihR1DK2LD1hXUaq6Kq7GKHAhTdwc8tVlRi0hp6ET+asCGtA9xMtT1n/0bh2BIRH2XKYniACTt5opY+MPv+OI3S/aBHoCZ1UHjK64wImLpaYgPM5PPzpqfmihzEj24=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724273524; c=relaxed/simple;
+	bh=L92fXwzpvfy6V5aVSsrMQYQc8poFWLPSnWtKPdphpC4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z5JWPhL6wXQ2RL0tuYH63Sot8rMx/a+z2vT8sNZKFv04VwAUpgzmFKLa+aL+gazxmmWjMv8s02uEyIgaA0F2lSzHFiB49yJQTst9so2RvQhbYMmJ+BqXpslLeRdaeuMhrOfhA7RiaXTj0KMVX1nLRfJYK0PpAZexfQQfIIbTRKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=co84FhOn; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1724273523; x=1755809523;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=L92fXwzpvfy6V5aVSsrMQYQc8poFWLPSnWtKPdphpC4=;
+  b=co84FhOnZUZpMuNdeKixnwT9hl0AmVxpkHMWZcPp6lvYNwqp2zBrcBZ0
+   ao8G27TKZYk95yzd0J1fFdrHjrgtre9zfVtQwtdN1Cj5IeroeINoxlsMn
+   fcMcx9/+3spUYxjemiaHWPEspZfnD9F2wUfImZ32PWVYbKX50mLaoxUtn
+   o4Kwm8LzKzxFmEKyKX5AlXl/kKbxwr+bb03w+x2q2+2o26pvi+lDh2Sw+
+   mh0uxEcnhhz9wpe7WpKvuUFgiTw3qYhyvHELbtkIPHOcrSfTW2U2WUKJN
+   upW92sff8AIqCwJdOZhPwKd0FDExXCGlDr3zecU0xt7M8LhHwPOqVRctQ
+   g==;
+X-CSE-ConnectionGUID: ILtEsulAQ6+SjW3B+6PFTQ==
+X-CSE-MsgGUID: v+FvMQS+SEa1e6Hn2cSLGA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11171"; a="26410888"
+X-IronPort-AV: E=Sophos;i="6.10,165,1719903600"; 
+   d="scan'208";a="26410888"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Aug 2024 13:52:02 -0700
+X-CSE-ConnectionGUID: U4dPVaJbT0qrJgLGR4NhPQ==
+X-CSE-MsgGUID: APZvwVe7QRWjfRcB7XVWVw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,165,1719903600"; 
+   d="scan'208";a="61209335"
+Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
+  by fmviesa008.fm.intel.com with ESMTP; 21 Aug 2024 13:51:59 -0700
+Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sgsJA-000Bwo-1b;
+	Wed, 21 Aug 2024 20:51:56 +0000
+Date: Thu, 22 Aug 2024 04:51:03 +0800
+From: kernel test robot <lkp@intel.com>
+To: Billy Tsai <billy_tsai@aspeedtech.com>, linus.walleij@linaro.org,
+	brgl@bgdev.pl, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org, BMC-SW@aspeedtech.com
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v1 2/2] gpio: Add G7 Aspeed gpio controller driver
+Message-ID: <202408220439.BUcaNSTv-lkp@intel.com>
+References: <20240821070740.2378602-3-billy_tsai@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/4] dt-bindings: display: rockchip: Add schema for
- RK3588 HDMI TX Controller
-To: Conor Dooley <conor@kernel.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
- <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>,
- Luis de Arquer <ldearquer@gmail.com>
-References: <20240819-b4-rk3588-bridge-upstream-v4-0-6417c72a2749@collabora.com>
- <20240819-b4-rk3588-bridge-upstream-v4-3-6417c72a2749@collabora.com>
- <20240819-bobbing-purplish-99e48baa2304@spud>
- <ec84bc0b-c4c2-4735-9f34-52bc3a852aaf@collabora.com>
- <20240820-tropics-hunchback-6fdcd0b37f91@spud>
- <038073d0-d4b9-4938-9a51-ea2aeb4530f6@collabora.com>
- <20240821-evoke-mop-fb09ceef3597@spud>
-Content-Language: en-US
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <20240821-evoke-mop-fb09ceef3597@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240821070740.2378602-3-billy_tsai@aspeedtech.com>
 
-On 8/21/24 6:07 PM, Conor Dooley wrote:
-> On Tue, Aug 20, 2024 at 11:12:45PM +0300, Cristian Ciocaltea wrote:
->> On 8/20/24 7:14 PM, Conor Dooley wrote:
->>> On Tue, Aug 20, 2024 at 03:37:44PM +0300, Cristian Ciocaltea wrote:
->>>> On 8/19/24 7:53 PM, Conor Dooley wrote:
->>>>> On Mon, Aug 19, 2024 at 01:29:30AM +0300, Cristian Ciocaltea wrote:
->>>>>> +  rockchip,grf:
->>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>>>>> +    description:
->>>>>> +      Most HDMI QP related data is accessed through SYS GRF regs.
->>>>>> +
->>>>>> +  rockchip,vo1-grf:
->>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>>>>> +    description:
->>>>>> +      Additional HDMI QP related data is accessed through VO1 GRF regs.
->>>>>
->>>>> Why are these required? What prevents you looking up the syscons by
->>>>> compatible?
->>>>
->>>> That is for getting the proper instance:
->>>
->>> Ah, that makes sense. I am, however, curious why these have the same
->>> compatible when they have different sized regions allocated to them.
->>
->> Good question, didn't notice.  I've just checked the TRM and, in both
->> cases, the maximum register offset is within the 0x100 range.  Presumably
->> this is nothing but an inconsistency, as the syscons have been added in
->> separate commits.
-> 
-> Is that TRM publicly available? I do find it curious that devices sound
-> like they have different contents have the same compatible. In my view,
-> that is incorrect and they should have unique compatibles if the
-> contents (and therefore the programming model) differs.
+Hi Billy,
 
-Don't know if there's an official location to get it from, but a quick
-search on internet shows a few repos providing them, e.g. [1].
+kernel test robot noticed the following build warnings:
 
-Comparing "6.14 VO0_GRF Register Description" at pg. 777 with "6.15 VO1_GRF
-Register Description" at pg. 786 (from Part1) reveals the layout is mostly
-similar, with a few variations though.
+[auto build test WARNING on brgl/gpio/for-next]
+[also build test WARNING on linus/master v6.11-rc4 next-20240821]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-[1] https://github.com/FanX-Tek/rk3588-TRM-and-Datasheet
+url:    https://github.com/intel-lab-lkp/linux/commits/Billy-Tsai/dt-bindings-gpio-aspeed-ast2400-gpio-Support-ast2700/20240821-150951
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git gpio/for-next
+patch link:    https://lore.kernel.org/r/20240821070740.2378602-3-billy_tsai%40aspeedtech.com
+patch subject: [PATCH v1 2/2] gpio: Add G7 Aspeed gpio controller driver
+config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20240822/202408220439.BUcaNSTv-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 13.3.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240822/202408220439.BUcaNSTv-lkp@intel.com/reproduce)
 
->>
->>>> 	vo0_grf: syscon@fd5a6000 {
->>>> 		compatible = "rockchip,rk3588-vo-grf", "syscon";
->>>> 		reg = <0x0 0xfd5a6000 0x0 0x2000>;
->>>> 		clocks = <&cru PCLK_VO0GRF>;
->>>> 	};
->>>>
->>>> 	vo1_grf: syscon@fd5a8000 {
->>>> 		compatible = "rockchip,rk3588-vo-grf", "syscon";
->>>> 		reg = <0x0 0xfd5a8000 0x0 0x100>;
->>>> 		clocks = <&cru PCLK_VO1GRF>;
->>>> 	};
->
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408220439.BUcaNSTv-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/gpio/gpio-aspeed-g7.c: In function 'aspeed_gpio_g7_request':
+>> drivers/gpio/gpio-aspeed-g7.c:474:48: warning: passing argument 1 of 'pinctrl_gpio_request' makes pointer from integer without a cast [-Wint-conversion]
+     474 |         return pinctrl_gpio_request(chip->base + offset);
+         |                                     ~~~~~~~~~~~^~~~~~~~
+         |                                                |
+         |                                                unsigned int
+   In file included from drivers/gpio/gpio-aspeed-g7.c:16:
+   include/linux/pinctrl/consumer.h:30:44: note: expected 'struct gpio_chip *' but argument is of type 'unsigned int'
+      30 | int pinctrl_gpio_request(struct gpio_chip *gc, unsigned int offset);
+         |                          ~~~~~~~~~~~~~~~~~~^~
+   drivers/gpio/gpio-aspeed-g7.c:474:16: error: too few arguments to function 'pinctrl_gpio_request'
+     474 |         return pinctrl_gpio_request(chip->base + offset);
+         |                ^~~~~~~~~~~~~~~~~~~~
+   include/linux/pinctrl/consumer.h:30:5: note: declared here
+      30 | int pinctrl_gpio_request(struct gpio_chip *gc, unsigned int offset);
+         |     ^~~~~~~~~~~~~~~~~~~~
+   drivers/gpio/gpio-aspeed-g7.c: In function 'aspeed_gpio_g7_free':
+>> drivers/gpio/gpio-aspeed-g7.c:479:38: warning: passing argument 1 of 'pinctrl_gpio_free' makes pointer from integer without a cast [-Wint-conversion]
+     479 |         pinctrl_gpio_free(chip->base + offset);
+         |                           ~~~~~~~~~~~^~~~~~~~
+         |                                      |
+         |                                      unsigned int
+   include/linux/pinctrl/consumer.h:31:42: note: expected 'struct gpio_chip *' but argument is of type 'unsigned int'
+      31 | void pinctrl_gpio_free(struct gpio_chip *gc, unsigned int offset);
+         |                        ~~~~~~~~~~~~~~~~~~^~
+   drivers/gpio/gpio-aspeed-g7.c:479:9: error: too few arguments to function 'pinctrl_gpio_free'
+     479 |         pinctrl_gpio_free(chip->base + offset);
+         |         ^~~~~~~~~~~~~~~~~
+   include/linux/pinctrl/consumer.h:31:6: note: declared here
+      31 | void pinctrl_gpio_free(struct gpio_chip *gc, unsigned int offset);
+         |      ^~~~~~~~~~~~~~~~~
+   drivers/gpio/gpio-aspeed-g7.c: In function 'aspeed_gpio_g7_set_config':
+>> drivers/gpio/gpio-aspeed-g7.c:676:48: warning: passing argument 1 of 'pinctrl_gpio_set_config' makes pointer from integer without a cast [-Wint-conversion]
+     676 |                 return pinctrl_gpio_set_config(offset, config);
+         |                                                ^~~~~~
+         |                                                |
+         |                                                unsigned int
+   include/linux/pinctrl/consumer.h:36:47: note: expected 'struct gpio_chip *' but argument is of type 'unsigned int'
+      36 | int pinctrl_gpio_set_config(struct gpio_chip *gc, unsigned int offset,
+         |                             ~~~~~~~~~~~~~~~~~~^~
+   drivers/gpio/gpio-aspeed-g7.c:676:24: error: too few arguments to function 'pinctrl_gpio_set_config'
+     676 |                 return pinctrl_gpio_set_config(offset, config);
+         |                        ^~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/pinctrl/consumer.h:36:5: note: declared here
+      36 | int pinctrl_gpio_set_config(struct gpio_chip *gc, unsigned int offset,
+         |     ^~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpio/gpio-aspeed-g7.c: In function 'aspeed_gpio_g7_request':
+   drivers/gpio/gpio-aspeed-g7.c:475:1: warning: control reaches end of non-void function [-Wreturn-type]
+     475 | }
+         | ^
+
+
+vim +/pinctrl_gpio_request +474 drivers/gpio/gpio-aspeed-g7.c
+
+   468	
+   469	static int aspeed_gpio_g7_request(struct gpio_chip *chip, unsigned int offset)
+   470	{
+   471		if (!have_gpio(gpiochip_get_data(chip), offset))
+   472			return -ENODEV;
+   473	
+ > 474		return pinctrl_gpio_request(chip->base + offset);
+   475	}
+   476	
+   477	static void aspeed_gpio_g7_free(struct gpio_chip *chip, unsigned int offset)
+   478	{
+ > 479		pinctrl_gpio_free(chip->base + offset);
+   480	}
+   481	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
