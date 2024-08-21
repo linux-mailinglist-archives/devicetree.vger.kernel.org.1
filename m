@@ -1,216 +1,137 @@
-Return-Path: <devicetree+bounces-95449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D45F959853
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 12:50:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 196AC959857
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 12:50:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3564F1F21F98
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 10:50:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 98477B21650
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 10:50:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32A1C1C93AE;
-	Wed, 21 Aug 2024 09:01:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB69D166F2A;
+	Wed, 21 Aug 2024 09:01:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WePKUzf0"
+	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="ac0B0XsL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 086E21C93A9;
-	Wed, 21 Aug 2024 09:01:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBAD01C93D5
+	for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 09:01:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724230865; cv=none; b=Ymog0VzbIhpMwsuyrAS2eTFhuWH9Yc+RSd1t+m7E3cfY+cdtIyzzK58Q94grGOtsJJwF0bBLKVEvTxTWstg6tf8QZlaA9qTbKFtISSMF3sCX6YGQnnA6DpMA9r6Ssd3BbYnsPyRV2SiWcUsfPEwpjWtQppULJA6HCN4z5lG85xA=
+	t=1724230903; cv=none; b=GXovzpKzaN9wz3d8V1j7605L48Ky78Ak6ZZUlrwIQVcacjCUVVARX6GR2iKLSBTqA/7C+OzmXN20XmIPmgqBszgTkX35ZilIHHL+DYjGJCU3AfzNem4NSM6F9wwxU/yQ6dg8igEowKMvGqmp1d1VxBqTNn9ha3+Mub1dVU2ZbEA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724230865; c=relaxed/simple;
-	bh=2G4lmVJYJdg1XmNfOHPJL0lvj+y+GJhPa4tXV1E0Uhg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SwbDdozrOBDEXNZZHq8iydMIN8yQDGF4hSYXUuIhrBhJY1v+MwS0Sd2b/vOyVT7O3BMvyErd9O0nzeXmkf/WZTdkD+IaAqIXXLcnyehDfgyKKbcse1w64JnY0qJHOkuM7BjDzSpY86V/h8nmBLJL9nWdYMk0AVLcCBYbsGDh6po=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WePKUzf0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 329A3C32782;
-	Wed, 21 Aug 2024 09:00:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724230864;
-	bh=2G4lmVJYJdg1XmNfOHPJL0lvj+y+GJhPa4tXV1E0Uhg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WePKUzf0lACwBXiRC3KE9leaJ1UzxoGlncYk3zQ+Ik7kPmEEys8iKwP27dgwZflrd
-	 kYAbvAH5JxGhicx2+OceWCueMxRTDUH8IzdmSMmzhryXEJZ3vH/mLLe/Vbe2JnKVqw
-	 T2tdsri/XMQYAL30kPWDF9tu6PmiNTHxFywF8CQA7kcFII7FF5MnR8s/WdqmM9I73c
-	 bG4jS7yLkd0YIUSjc+aAezvi8LhswvHtjl0CuJL4ZIfHTvRCyrHURT6Y12uappZ5tt
-	 rtl0psDosVhS6i9PaMFSHACuvcfMzo9s6sYnrr9ke8KhaS6SqgPl6ONr7BXtWwr4Hs
-	 JoIl4kCm+jyfw==
-Message-ID: <25b487b7-63e0-402d-a0a2-ed9d03e82630@kernel.org>
-Date: Wed, 21 Aug 2024 11:00:56 +0200
+	s=arc-20240116; t=1724230903; c=relaxed/simple;
+	bh=qlr0Jg++5f/LkhxLKg7lXiarJc8QoHmVDzNz11FDtO4=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=prhz21aE/QbCQtEGxFAtCsrVtZoomEyi1l6EHBGsH3qQp+4xk3uhaJEIyZSMf7FrG8Cc3V6/GlLcKxuzmIJAnJ64JGRVM4x5J1AfL4ICjuRZMTI4Z1fMKsj5DIcVGoR9yQiLrSckMYMSPpQbs2WXACe4ftguHyB9vChXOw10KJg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=ac0B0XsL; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-428e0d18666so51105495e9.3
+        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 02:01:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1724230900; x=1724835700; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BqqM9bltdl7ERWZlDB/xDu0XlTf9F8/Bo40tfa0qccE=;
+        b=ac0B0XsLyvlel4/UXaVeU+pmxKMpciJcLEoFd1Rb/oQuFExrlZ4WmUPm/4VZHv0bVt
+         +OE+jeB0E0Eyd3laWG0O7hukyFR4I51pgMEpVqz+1dOTaWveY0RXN//sC0B4wDkqeM7s
+         juT+Lj3B9VfSKame09J6QyAY8w50cnc9pR9rbrIeErGa7KUzlpwqTIazgb2RNox9OIR6
+         89GVx2WHDl7kmVEMi1pzksCZAo8YhESRuVYBw5RNC8IBAd2GPpWv4U4d8yc9gBusyx/U
+         ftTdYOYWXI9dwILKw2igdr+XlaTSqhox0AC2Z4wPJjjKdrp0x9RjH5+F5ppczjBIN36l
+         z9dQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724230900; x=1724835700;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BqqM9bltdl7ERWZlDB/xDu0XlTf9F8/Bo40tfa0qccE=;
+        b=DVwrh2fMzAgD05lIGOY/dFXQ2p3Mh3aNLAK7m4+AYx2hKbyitjdH6YFZrIWZcVwfCy
+         xreORTocMCjzzphUCGDHTVI7vEkcg680Za7pp7eNyCOTn+2tZL21HIwJFmBhV/LDsXjC
+         erac3bHCUpRnKjBtBhXBgW/KQ/wdjiUFM4mweTWF9SSZJbeYeO1qpdeFvwtFGQzsX0cT
+         OheLiDQBvPvbT5UX1DzVZFAe7D+WmA2lOfY9i99PLGlEaTx6C27TqBkmh9tFsaQxe8Dy
+         WtHK+qwhtmGmE/QiTPsFm4cmy/3adhJLjsEj50SKGEfPjwN75VmlOqyrmiks6r08Z0Tn
+         7SWA==
+X-Forwarded-Encrypted: i=1; AJvYcCW402RKF959kIr23VQXXbX4XYZqdyyDkH5E30cB3UKy2R2R+Qop3gaUDLbHuvSd29wiVVPKCZC/r0Jg@vger.kernel.org
+X-Gm-Message-State: AOJu0YxwswbrC5dZiEJl6yKNDb7wHGEH5c1awzg0sRLXGvCLSwsS9TOA
+	s1Z1pUaTY/aJclrRDP1UcxXwsk9pJalGdJLgvDKeNHI+xh5rZzgIGUeylMHtIaY=
+X-Google-Smtp-Source: AGHT+IFvRpxwoefPfsPJKT7RyLtcLqtQGYbN7c2LTwxuGtgb6LyU4gPYatIPuNkyVwMXdBcT7xS4NA==
+X-Received: by 2002:a05:600c:1d83:b0:428:c0a:27ea with SMTP id 5b1f17b1804b1-42abd212819mr12286595e9.12.1724230899932;
+        Wed, 21 Aug 2024 02:01:39 -0700 (PDT)
+Received: from x1 ([31.217.165.17])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42abed8b86bsm18002035e9.4.2024.08.21.02.01.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Aug 2024 02:01:39 -0700 (PDT)
+Date: Wed, 21 Aug 2024 12:01:37 +0300
+From: Drew Fustini <drew@pdp7.com>
+To: soc@kernel.org
+Cc: Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>,
+	Kanak Shilledar <kanakshilledar@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [GIT PULL] RISC-V T-HEAD Devicetrees for v6.12
+Message-ID: <ZsWs8QiVruMXjzPc@x1>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] memory: mtk-smi: mt8188: Add SMI clamp function
-To: "friday.yang" <friday.yang@mediatek.com>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Yong Wu <yong.wu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20240821082845.11792-1-friday.yang@mediatek.com>
- <20240821082845.11792-4-friday.yang@mediatek.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240821082845.11792-4-friday.yang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 21/08/2024 10:26, friday.yang wrote:
-> In order to avoid handling glitch signal when MTCMOS on/off, SMI need
-> clamp and reset operation. Parse power reset settings for LARBs which
-> need to reset. Register genpd callback for SMI LARBs and apply reset
-> operations in the callback.
-> 
-> Signed-off-by: friday.yang <friday.yang@mediatek.com>
-> ---
->  drivers/memory/mtk-smi.c | 148 ++++++++++++++++++++++++++++++++++++++-
->  1 file changed, 146 insertions(+), 2 deletions(-)
-> 
+Hi Arnd,
 
-...
+Please pull these thead dts changes. I've run W=1 dtbs_check and they
+have been in linux-next since August 9th.
 
-> +
-> +static int mtk_smi_larb_parse_reset_info(struct mtk_smi_larb *larb)
-> +{
-> +	struct device_node *reset_node;
-> +	struct device *dev = larb->dev;
-> +	int ret;
-> +
-> +	/* only larb with "resets" need to get reset setting */
-> +	reset_node = of_parse_phandle(dev->of_node, "resets", 0);
+Thanks,
+Drew
 
-Nope, you do not parse rasets.
+The following changes since commit 8400291e289ee6b2bf9779ff1c83a291501f017b:
 
-> +	if (!reset_node)
-> +		return 0;
-> +	of_node_put(reset_node);
-> +
-> +	larb->rst_con = devm_reset_control_get(dev, "larb_rst");
+  Linux 6.11-rc1 (2024-07-28 14:19:55 -0700)
 
-Where are the bindings? Why do you add undocumented properties? How
-possible this passes dtbs_check???
+are available in the Git repository at:
 
+  https://github.com/pdp7/linux.git tags/thead-dt-for-v6.12
 
-> +	if (IS_ERR(larb->rst_con))
-> +		return dev_err_probe(dev, PTR_ERR(larb->rst_con),
-> +				     "cannot get larb reset controller\n");
-> +
-> +	larb->nb.notifier_call = mtk_smi_genpd_callback;
-> +	ret = dev_pm_genpd_add_notifier(dev, &larb->nb);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to add genpd callback %d\n", ret);
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int mtk_smi_larb_probe(struct platform_device *pdev)
->  {
->  	struct mtk_smi_larb *larb;
-> @@ -538,6 +662,7 @@ static int mtk_smi_larb_probe(struct platform_device *pdev)
->  	if (!larb)
->  		return -ENOMEM;
->  
-> +	larb->dev = dev;
->  	larb->larb_gen = of_device_get_match_data(dev);
->  	larb->base = devm_platform_ioremap_resource(pdev, 0);
->  	if (IS_ERR(larb->base))
-> @@ -554,15 +679,29 @@ static int mtk_smi_larb_probe(struct platform_device *pdev)
->  	if (ret < 0)
->  		return ret;
->  
-> -	pm_runtime_enable(dev);
-> +	/* find sub common to clamp larb for ISP software reset */
-> +	ret = mtk_smi_larb_parse_clamp_info(larb);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to get clamp setting for larb\n");
-> +		goto err_pm_disable;
-> +	}
-> +
-> +	ret = mtk_smi_larb_parse_reset_info(larb);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to get power setting for larb\n");
-> +		goto err_pm_disable;
-> +	}
-> +
->  	platform_set_drvdata(pdev, larb);
->  	ret = component_add(dev, &mtk_smi_larb_component_ops);
->  	if (ret)
->  		goto err_pm_disable;
-> +
-> +	pm_runtime_enable(dev);
-> +
->  	return 0;
->  
->  err_pm_disable:
-> -	pm_runtime_disable(dev);
->  	device_link_remove(dev, larb->smi_common_dev);
+for you to fetch changes up to 2d98fea7491a00dccd61fee019843b262e60f819:
 
-Label asls pm disable. Where is the pm disable?
+  riscv: dts: thead: change TH1520 SPI node to use clock controller (2024-08-08 09:19:46 -0700)
 
->  	return ret;
->  }
-> @@ -686,6 +825,10 @@ static const struct mtk_smi_common_plat mtk_smi_common_mt8188_vpp = {
->  	.init     = mtk_smi_common_mt8195_init,
->  };
+----------------------------------------------------------------
+T-HEAD Devicetrees for v6.12
 
-Best regards,
-Krzysztof
+Add SPI controller node to th1520.dtsi and enable spi0 on the BeagleV
+Ahead and LicheePi 4A.
 
+The TH1520 AP_SYS clock driver landed in v6.11 so convert multiple
+peripherals like mmc and uart from fixed clocks to the clock controller.
+
+All of these patches have been in linux-next since next-20240809.
+
+Signed-off-by: Drew Fustini <drew@pdp7.com>
+
+----------------------------------------------------------------
+Drew Fustini (6):
+      riscv: dts: thead: Add TH1520 AP_SUBSYS clock controller
+      riscv: dts: thead: change TH1520 uart nodes to use clock controller
+      riscv: dts: thead: change TH1520 mmc nodes to use clock controller
+      riscv: dts: thead: update TH1520 dma and timer nodes to use clock controller
+      riscv: dts: thead: add clock to TH1520 gpio nodes
+      riscv: dts: thead: change TH1520 SPI node to use clock controller
+
+Kanak Shilledar (1):
+      riscv: dts: thead: add basic spi node
+
+ arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts | 17 ++---
+ .../boot/dts/thead/th1520-lichee-module-4a.dtsi    | 12 ----
+ arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts  |  5 ++
+ arch/riscv/boot/dts/thead/th1520.dtsi              | 83 ++++++++++++----------
+ 4 files changed, 56 insertions(+), 61 deletions(-)
 
