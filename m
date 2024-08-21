@@ -1,165 +1,178 @@
-Return-Path: <devicetree+bounces-95557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37867959F0A
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 15:49:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2D90959F12
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 15:51:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B96D31F22A4C
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 13:49:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5EB691F225ED
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 13:51:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AAC41AF4DD;
-	Wed, 21 Aug 2024 13:49:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D539F1AF4DE;
+	Wed, 21 Aug 2024 13:51:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NK9LP76a"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="Ta72rAEc";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="RBuQ98Vp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from fhigh7-smtp.messagingengine.com (fhigh7-smtp.messagingengine.com [103.168.172.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8297B1AD5CE;
-	Wed, 21 Aug 2024 13:49:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA59C1AD5DE;
+	Wed, 21 Aug 2024 13:51:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724248195; cv=none; b=ptPWooHwhAi2cx20NCrk3C2KNKkLX6lcMNSffN4T76RqyEmqWdbAMwqMVM5GuIckzfp9+UdF/s0r3SPgxPRk2Yzks//QODp/5btoI0fLr1Ol+SAGKqILRYMhQxX9qTAnTCHMVh4jbTG8EvGCi0eBWWyyEBdYnPFaA8EayTmXVvw=
+	t=1724248269; cv=none; b=bjSqRM+bQQ+MqOiNHmDbZimGtnwn/PDo5gv+qWHFWzoA9adp9KNx+YMvAxO+/Dm+B0WFuYJ6+gIBKS8du2WHRfcMhW7PrxQe5BY8TWJll8fHf9qrT2fCp4f4uYHSgCxbHEgwgsJtbZt1cEjSJF498s1qnBDmIF3FWDOqaFOLvW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724248195; c=relaxed/simple;
-	bh=u4kuJipWD1vmaiNeXqgsS1lktVrwGmZ+cANuZ0l5L24=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YmPoaYPucd7PiU5uLgqtcIq2/arY78corhgXwfDhE9P+4rk/rdDfGb4X8K940Gl8VqVx1t2SuiScmlGJd70vVFy0n9mbJc1My7aBF4Bopv74aG27vdrnjXCFRLxTWy8cVDqjJETOF4TwSF3Axm9VvDnZKmoSeMQnGJPphcBj5RE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NK9LP76a; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1724248194; x=1755784194;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=u4kuJipWD1vmaiNeXqgsS1lktVrwGmZ+cANuZ0l5L24=;
-  b=NK9LP76aoJeILk1Wsr88t/UBlph4vk8/SCNNFLzrjQuI/r3VUFZxeIXb
-   lvCe3XIe+iX6l3LWP4cb53tjDTNkV37qubJYKO+iEqcVk/ZZBIbsqrydl
-   1MbWPZSe9A9wOfuEg6nEbu+8fhm8u+0Pl5PnUHSeC10MwWTds49bNq3X0
-   HVwuLeR8/0uKFqgFtHrVZwQ9DzA3kNSbeZQGk+sPc3F3YUjE1rLuuNqlw
-   n/nS9/4hwlZNYc3fS6CKKnct81B1IXiqJmrjl30VzTytMFfDtsj4ow2BK
-   m1TeZD9R1n5xM9oo7QOIeNUBivuAXIbhMXtj7EnBhNzAxmf9AHmJY1nvv
-   Q==;
-X-CSE-ConnectionGUID: ehxEVG83SJSQk3SstFdWrA==
-X-CSE-MsgGUID: yBeT5vwARhy33QL9ZPIIeQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11171"; a="26476090"
-X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; 
-   d="scan'208";a="26476090"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Aug 2024 06:49:41 -0700
-X-CSE-ConnectionGUID: ElUHF5rxQaav52IEjQTp0Q==
-X-CSE-MsgGUID: 4rqoe0VZTu+IxQcD9Bzf8g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; 
-   d="scan'208";a="61406714"
-Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
-  by orviesa006.jf.intel.com with ESMTP; 21 Aug 2024 06:49:34 -0700
-Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sgliN-000BQI-1L;
-	Wed, 21 Aug 2024 13:49:31 +0000
-Date: Wed, 21 Aug 2024 21:49:12 +0800
-From: kernel test robot <lkp@intel.com>
-To: Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <helgaas@kernel.org>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org
-Subject: Re: [PATCH 08/11] misc: rp1: RaspberryPi RP1 misc driver
-Message-ID: <202408212114.i6MFeKR1-lkp@intel.com>
-References: <5954e4dccc0e158cf434d2c281ad57120538409b.1724159867.git.andrea.porta@suse.com>
+	s=arc-20240116; t=1724248269; c=relaxed/simple;
+	bh=VREe6dmeBlSWDixcHb6rWQ3okpY5wc40Tb/3plHA1kE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=AH97Kj3NtEOXJY90CZKjzMfgx4zaznTMBqg3h99yl48pUEM+T+tyO6vndUldWCypYkLKxTVQshZs8GgE7LT4xL4Bug4n1fUXGpHovC+3RxrPG1GHZkFTxEWbjxS90nE9ygzgcmbQJ8RdC7XVahrf/ECA7HWT1MAiNovfSRN0SkQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=Ta72rAEc; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=RBuQ98Vp; arc=none smtp.client-ip=103.168.172.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
+Received: from phl-compute-04.internal (phl-compute-04.nyi.internal [10.202.2.44])
+	by mailfhigh.nyi.internal (Postfix) with ESMTP id 0B2211151B89;
+	Wed, 21 Aug 2024 09:51:05 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-04.internal (MEProxy); Wed, 21 Aug 2024 09:51:05 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm2; t=1724248265; x=1724334665; bh=bT
+	nHbaMxlSqh0j7gqkS8t5Ui5kNr3bqywopcDANcfpA=; b=Ta72rAEcRqAT8j3v1z
+	bI7xHgypypRLfAmbLODAHVOBO2B5cvi1GkYTVN+Y1fIaAhJWbCuQ/JCdach8/rb1
+	/7EZM3JgCkpdAPgJB9eMKUjYKn+493xmfj573uGeYe1FZkM1q23LTex+Ba21jt0X
+	ulTpKZ4Fr4Kl2nnQKzkmpcIKDFjUrH+gWH3Yy9X7fWGwQ154Abhw9wjWT6MqxGLZ
+	lKX8sEnhuyeSm4suB1Vc3AnWiRcw2JG+tRmxmejxZ/7lOy6cgWmSZQYrmZSZBk9+
+	TZwxwfE7Iw7wKEOn+YH+sdAi/h00xOPkw29IQv2s26lSFhuKTo8m7D6NnyT8bMQO
+	odLQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm1; t=1724248265; x=1724334665; bh=bTnHbaMxlSqh0
+	j7gqkS8t5Ui5kNr3bqywopcDANcfpA=; b=RBuQ98VpGBxJf33RDGY5FxDaraayo
+	Pt2QRtNlJgnRfuDaFXmwmNiltPkWxsWAbxkvcgkJdD89T4joZ+O9inaPBnMTT3Q5
+	d1jHrAP1l1ejBBD82YGxv64/MwyWQAAGs2mRKraUfCyavywlwp2koA7lP36uWvgJ
+	B8H3SqOlL2ZUxXbMXJ3XZGC0uiKgD1KGW75bWxTgNWPFDuM1dpjB5zwgprfEVcY/
+	XBy+TJXLHmNxYayadU94gihQ3Of5DkGH4gTp3ctLCifjtRJWlPejZpRg0XX1VeYf
+	kgbfFosH2vi19TQa10XhnOgB4VMzA2GJ1gfRpc4DGExIXJnrS3m0f0XCA==
+X-ME-Sender: <xms:yPDFZp9iXxkrQiNGFnkgQ1XUf68_cqNttGWOB3fa6szmkAoZdrW2mg>
+    <xme:yPDFZtvzwZRGO-6feaFi3SxQ65dfwKoCRYOeXItrjybi862Krt_j95hl0QcFvJQBj
+    Uswpu_75twWIXVZGRc>
+X-ME-Received: <xmr:yPDFZnDu70aUyfCYprOOLHfGj2o8kTkCbbPpf7h5AcvBB1sI7CTDqCq103mAeuphGr0>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddruddukedgieelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
+    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
+    htshculddquddttddmnecujfgurhephfffufggtgfgkffvvefosehtjeertdertdejnecu
+    hfhrohhmpeflihgrgihunhcujggrnhhguceojhhirgiguhhnrdihrghnghesfhhlhihgoh
+    grthdrtghomheqnecuggftrfgrthhtvghrnhephfffgeejgfejieeugffgudegvdekffev
+    geeuteetgeejveeiteeivedvffehlefgnecuffhomhgrihhnpehkvghrnhgvlhdrohhrgh
+    enucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehjihgr
+    gihunhdrhigrnhhgsehflhihghhorghtrdgtohhmpdhnsggprhgtphhtthhopeekpdhmoh
+    guvgepshhmthhpohhuthdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhr
+    tghpthhtohepvghnkhgvrhgvfihpoheshhhothhmrghilhdrtghomhdprhgtphhtthhope
+    hlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthho
+    pehsrghrrghvrghnrghksehgohhoghhlvgdrtghomhdprhgtphhtthhopehjihgrgihunh
+    drhigrnhhgsehflhihghhorghtrdgtohhmpdhrtghpthhtoheplhhoohhnghgrrhgthhes
+    lhhishhtshdrlhhinhhugidruggvvhdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvh
+    hgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopegthhgvnhhhuhgrtggriheskhgv
+    rhhnvghlrdhorhhg
+X-ME-Proxy: <xmx:yPDFZteRhPhkW_XshafjUYucxvx6h_fFoSbbkjtjtarrh_YoypJe7A>
+    <xmx:yPDFZuMG8QutWk8lZBvTVtuUjr3TEWUs5skEcLkRT3zBjbxbjQgbmQ>
+    <xmx:yPDFZvl8-lUEWtMpxzUf5GfoqTAY7t-SIB0yotBUoxVmT_Qa352B_w>
+    <xmx:yPDFZot9GD40aQ9oinvA1upeq8O6WtHuc54Lz2m4gAlqrWsOzg8wBQ>
+    <xmx:yfDFZvhSNyWGCg8dbYpM3FvjM0wTmKTfwKPYJZzHrZWf6oo_kFuq_B-G>
+Feedback-ID: ifd894703:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 21 Aug 2024 09:51:03 -0400 (EDT)
+From: Jiaxun Yang <jiaxun.yang@flygoat.com>
+Date: Wed, 21 Aug 2024 14:51:02 +0100
+Subject: [PATCH] of_reserved_mem: Save region name string into struct
+ reserved_mem
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5954e4dccc0e158cf434d2c281ad57120538409b.1724159867.git.andrea.porta@suse.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240821-save_resv_name-v1-1-b9c17f103ffb@flygoat.com>
+X-B4-Tracking: v=1; b=H4sIAMXwxWYC/x3MMQqAMBAF0auErQ3oahG8ikiI+tUtjJKFIIh3N
+ 1i+YuYhRRIo9eahhCwqZyxoKkPzHuIGK0sxcc1d7bixGjJ8gmYfwwHbrQyeJ+dcO1GJroRV7n8
+ 4jO/7AbP4YQJgAAAA
+To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ loongarch@lists.linux.dev, chenhuacai@kernel.org, 
+ Kevin Wheatfox <enkerewpo@hotmail.com>, 
+ Jiaxun Yang <jiaxun.yang@flygoat.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1791;
+ i=jiaxun.yang@flygoat.com; h=from:subject:message-id;
+ bh=VREe6dmeBlSWDixcHb6rWQ3okpY5wc40Tb/3plHA1kE=;
+ b=owGbwMvMwCXmXMhTe71c8zDjabUkhrSjH47/E5kuum1qV1Tj95++B9VU3h458TYn7PQkjX7B7
+ 8xNL2fqdpSyMIhxMciKKbKECCj1bWi8uOD6g6w/MHNYmUCGMHBxCsBE3J4yMpw4L7un0uX1vK9/
+ subemqJd23af112jdaktX9Oyfivdn3qMDNe6626zevz6GvvwYNa7bY9n5v68NbnKMtJMJytmb07
+ APg4A
+X-Developer-Key: i=jiaxun.yang@flygoat.com; a=openpgp;
+ fpr=980379BEFEBFBF477EA04EF9C111949073FC0F67
 
-Hi Andrea,
+Previously only a pointer to fdt string pool is saved to struct
+reserved_mem as region name.
 
-kernel test robot noticed the following build errors:
+As on some architectures booting FDT will be wiped at later initialisation
+stages, this is breaking reserved_mem users.
 
-[auto build test ERROR on clk/clk-next]
-[also build test ERROR on robh/for-next char-misc/char-misc-testing char-misc/char-misc-next char-misc/char-misc-linus linus/master v6.11-rc4 next-20240821]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Copy and save the whole string into struct reserved_mem to avoid
+FDT lifecycle problem.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Andrea-della-Porta/dt-bindings-clock-Add-RaspberryPi-RP1-clock-bindings/20240821-023901
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-patch link:    https://lore.kernel.org/r/5954e4dccc0e158cf434d2c281ad57120538409b.1724159867.git.andrea.porta%40suse.com
-patch subject: [PATCH 08/11] misc: rp1: RaspberryPi RP1 misc driver
-config: x86_64-randconfig-r133-20240821 (https://download.01.org/0day-ci/archive/20240821/202408212114.i6MFeKR1-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240821/202408212114.i6MFeKR1-lkp@intel.com/reproduce)
+Reported-by: Kevin Wheatfox <enkerewpo@hotmail.com>
+Closes: https://lore.kernel.org/loongarch/ME4P282MB1397447C3C094554C7AF2E37B58E2@ME4P282MB1397.AUSP282.PROD.OUTLOOK.COM/
+Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+---
+ drivers/of/of_reserved_mem.c    | 2 +-
+ include/linux/of_reserved_mem.h | 4 +++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408212114.i6MFeKR1-lkp@intel.com/
+diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+index 46e1c3fbc769..22841599cd83 100644
+--- a/drivers/of/of_reserved_mem.c
++++ b/drivers/of/of_reserved_mem.c
+@@ -70,7 +70,7 @@ static void __init fdt_reserved_mem_save_node(unsigned long node, const char *un
+ 	}
+ 
+ 	rmem->fdt_node = node;
+-	rmem->name = uname;
++	strscpy(rmem->name, uname, RESERVED_MEM_NAME_LEN);
+ 	rmem->base = base;
+ 	rmem->size = size;
+ 
+diff --git a/include/linux/of_reserved_mem.h b/include/linux/of_reserved_mem.h
+index e338282da652..ed9de36c9cc9 100644
+--- a/include/linux/of_reserved_mem.h
++++ b/include/linux/of_reserved_mem.h
+@@ -8,8 +8,10 @@
+ struct of_phandle_args;
+ struct reserved_mem_ops;
+ 
++#define RESERVED_MEM_NAME_LEN	128
++
+ struct reserved_mem {
+-	const char			*name;
++	char				name[RESERVED_MEM_NAME_LEN];
+ 	unsigned long			fdt_node;
+ 	const struct reserved_mem_ops	*ops;
+ 	phys_addr_t			base;
 
-All errors (new ones prefixed by >>):
+---
+base-commit: bb1b0acdcd66e0d8eedee3570d249e076b89ab32
+change-id: 20240821-save_resv_name-4f2e2cb8883b
 
-   drivers/misc/rp1/rp1-pci.c: In function 'rp1_mask_irq':
->> drivers/misc/rp1/rp1-pci.c:98:9: error: implicit declaration of function 'pci_msi_mask_irq'; did you mean 'pci_msix_free_irq'? [-Werror=implicit-function-declaration]
-      98 |         pci_msi_mask_irq(pcie_irqd);
-         |         ^~~~~~~~~~~~~~~~
-         |         pci_msix_free_irq
-   drivers/misc/rp1/rp1-pci.c: In function 'rp1_unmask_irq':
->> drivers/misc/rp1/rp1-pci.c:106:9: error: implicit declaration of function 'pci_msi_unmask_irq' [-Werror=implicit-function-declaration]
-     106 |         pci_msi_unmask_irq(pcie_irqd);
-         |         ^~~~~~~~~~~~~~~~~~
-   cc1: some warnings being treated as errors
-
-
-vim +98 drivers/misc/rp1/rp1-pci.c
-
-    92	
-    93	static void rp1_mask_irq(struct irq_data *irqd)
-    94	{
-    95		struct rp1_dev *rp1 = irqd->domain->host_data;
-    96		struct irq_data *pcie_irqd = rp1->pcie_irqds[irqd->hwirq];
-    97	
-  > 98		pci_msi_mask_irq(pcie_irqd);
-    99	}
-   100	
-   101	static void rp1_unmask_irq(struct irq_data *irqd)
-   102	{
-   103		struct rp1_dev *rp1 = irqd->domain->host_data;
-   104		struct irq_data *pcie_irqd = rp1->pcie_irqds[irqd->hwirq];
-   105	
- > 106		pci_msi_unmask_irq(pcie_irqd);
-   107	}
-   108	
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Jiaxun Yang <jiaxun.yang@flygoat.com>
+
 
