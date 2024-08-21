@@ -1,184 +1,220 @@
-Return-Path: <devicetree+bounces-95643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F2F695A6CC
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 23:39:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9688F95A70C
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 23:52:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A62FE283C2D
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 21:39:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1BD401F22FCF
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 21:52:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3135A1779BD;
-	Wed, 21 Aug 2024 21:39:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54FEE17A5AA;
+	Wed, 21 Aug 2024 21:51:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="S3++nMM5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ACdG9lpm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B284113A3E8;
-	Wed, 21 Aug 2024 21:39:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F4FC7405A;
+	Wed, 21 Aug 2024 21:51:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724276346; cv=none; b=gkTKZAxsVw0+D9zjNSRsZEiUVHVkpx1B4MHlk1PEMN34ssXnQL2I6bCjJQkJ2PXFticeDB/0PQ1vfcrG6+Ma9NS/HwCh85UKCQ2V1lK1Xz6Ivk0ANg42VeSfDW/bvbD0U8jdMDGyvB3gakiA20z3/DUDO/rwRCtlZpqacZi4vuM=
+	t=1724277117; cv=none; b=XaXZVy0EyxB16ADCtbwqSEv7guuxH4Lpr9dl5WUXM4DZOJr3H/YClB38hWKLeOy+w040qOG9zr2EJWAGCVN6cp6lKM2A6Arzf3BgugSWWwySYM0pv6oS6p6f9PfSnevRHi1wlgrPTeAxsLZVG1IFJlGM4ayOiyuVSQcWh4x0zg8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724276346; c=relaxed/simple;
-	bh=QAeqAvUvhrbxTHHI4KQXAx7QgSWXyZ9qn9Zx2bP21hA=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=PclAnIZPIOElnpnLCcqHvmC3QC4fIt2XOnpO+55sLL+hfz1UgR/sODaTf7gbsaP0bFHoVY0GSWqfGYlO1zzMStDF9wzT2CX4qI/l/Sxmgw0l6h9zYkJcIqp6VXvqtqBXPcLWlWeuZm7jHc05bDDJNernRi8+fy6lLsdUyBSvOxg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=S3++nMM5; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	Message-ID:References:In-Reply-To:Subject:CC:To:From:Date:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=MSF43bIu1gEw1AF3I55gly83QapAUrJr9/SaStsKq/4=; b=S3++nMM5yRgsyDIHX/FfyQrtY+
-	LWD2rS/byAt7A+HSffH4ittnDi2ljMrbZPBscHrcPF77Z+YGyoWSWrfWCwzKRfimOOfrcLdj64xHs
-	jOEagMKvI7PUjQHsgejDWUgqrLx7rWtYS+MXW+6iW+EPp1C6HsfKTzjSmDzqOsKvvGLcu7QVjv7Nu
-	0gxb5/+aC7CpTyFyjmNe7YT5t+mNbVoVBg4hnGpv0owtvkiJR99tm9/f8ggvVEjF5nInmoMuaf4DB
-	HUsCAHpumBTV2Yl+Po0DSvp/XXUh/TMn4fJvXPt1p396/VX2nPrMRtGwJS7XYnhe4zlFBZeQ2a3ek
-	FMV3YUJA==;
-Received: from i53875aca.versanet.de ([83.135.90.202] helo=[127.0.0.1])
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sgt26-0000W5-MN; Wed, 21 Aug 2024 23:38:22 +0200
-Date: Wed, 21 Aug 2024 23:38:24 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Conor Dooley <conor@kernel.org>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-CC: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Sandy Huang <hjc@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>,
- Luis de Arquer <ldearquer@gmail.com>
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v4_3/4=5D_dt-bindings=3A_display=3A_rock?=
- =?US-ASCII?Q?chip=3A_Add_schema_for_RK3588_HDMI_TX_Controller?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20240821-stretch-scam-09d7adc08a4c@spud>
-References: <20240819-b4-rk3588-bridge-upstream-v4-0-6417c72a2749@collabora.com> <20240819-b4-rk3588-bridge-upstream-v4-3-6417c72a2749@collabora.com> <20240819-bobbing-purplish-99e48baa2304@spud> <ec84bc0b-c4c2-4735-9f34-52bc3a852aaf@collabora.com> <20240820-tropics-hunchback-6fdcd0b37f91@spud> <038073d0-d4b9-4938-9a51-ea2aeb4530f6@collabora.com> <20240821-evoke-mop-fb09ceef3597@spud> <5813cea2-4890-4fa9-8826-19be5bf3e161@collabora.com> <20240821-stretch-scam-09d7adc08a4c@spud>
-Message-ID: <7E8109D4-A353-4FE3-9152-3C3C6CB7D634@sntech.de>
+	s=arc-20240116; t=1724277117; c=relaxed/simple;
+	bh=Kt6JI5NWSv6ZkyWAqw9jTVzFCxQpU5lwLImQB0lx8b8=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EbC9kY+G6QgrF9hOUOWXbaiGWRJiGgiZvdddHFrcIsW7lXWTUHCKulRhOxYynwzbtWDayQ2/sotEBmLixwRov6I5ngX83AJvZjF5ktA8sYCE8fYfshHZ7SLJ1qweyN3u9HnuIlq+Audn2pZbTdJQ78zVZR1I7taKoP2GfTEjuoQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ACdG9lpm; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a8666734767so17806366b.1;
+        Wed, 21 Aug 2024 14:51:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724277114; x=1724881914; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mshofXHEuKk3AfsjHmTdYTQY1OTdO7/xqWQ3iRWqk6I=;
+        b=ACdG9lpmJL1VkXRzq9o4g5V1BxJxHKhP6/ildyrSnwkIWPYEXokO0NdUepp4G9rIEt
+         6h/TXNGxmNIUESLzyBe43DCAIDNCoeUx6cFf34O4Sym5ARkkCvISh9+TaiODVjBCWHRx
+         CPIDzfO62OYjaUerwqCM3ZQF/FuUn3QXTyE3i7AwweidDM6xbgVZvHUirNR2GbWUIF48
+         DC/uBoR/R88w+LjRHhWNP9VtWnJQqzScGNzv99ptBzITpLwwGumRaNsGU0SbddLvPOQj
+         1lPBLHT10qA6Dy2/HzrB5H87DESRx/Jyml0PA2BxiISffJiHFNLqtQyTpl/nHQKEI1tZ
+         azdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724277114; x=1724881914;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mshofXHEuKk3AfsjHmTdYTQY1OTdO7/xqWQ3iRWqk6I=;
+        b=qwZCqnbXseh5HHNIycZswa7qz+OqtjgCV7B74e2uj1JJay8bNAineKJlJV+gXBjoob
+         XNUddhk5l/6KotM7GS2BYSejEguN59RUB95OIHd1Ddxwa8sDsHI8YJvg5XeplsUjKa3w
+         oopQXLNOPuJ9I7dJsP6pVArnZrPm5odgSiyZxvKMlPN5bqU15ZzZAqRiWyegOV8k3ccG
+         Qf8p883rjYEYsKz6pxuRWB8M8dZCznihr3ztn6bVzTgTBJFGRvw4bNPkjEVhmuMEH6PK
+         tCK7j7l0CPS9BlP82SxBHjqa4jDuL6G6KgFNxyq8xHzkQgRgNxZDFtceuU0FmOMlNAa2
+         um1g==
+X-Forwarded-Encrypted: i=1; AJvYcCUaQZkvJnNLuWq/NBOgWWmlxOdTwxYz7gkMI965TfrdxkvEbBA2mwdilIoHwhlK+SRmJKij3nMfq4dN@vger.kernel.org, AJvYcCVf6sLk7e/iF18nbzFw3YVrdCXkrXt9tCoL9GDjP7y3LcDX+3GiHTW45CstWBuUEDsuZaJoV/wvA2t2@vger.kernel.org, AJvYcCWygx8Pc+SIPDUuCuOZ0rhJNue3I1xRqNpacwM4ibeHlAEj/p4nIyHEQRmvrmmLSPk7WW/poI7rK0szLFYn@vger.kernel.org
+X-Gm-Message-State: AOJu0YwK5Pfe7HXd622fphMP+z70mNBYfWCiXpQdPl/Ke0slLA1qEE/S
+	jUFJ4ndUOx251RVjtGwZLZ4ynbt2lXNxof4uYh4Vjtq10jiDYImr
+X-Google-Smtp-Source: AGHT+IHizZ5FHVMP1eNGW0+XQx8jDz5+OtFB9DZr3dfKFvQ2X2R5CGRJv3oN+hMFH3GrQTY2FiNuBg==
+X-Received: by 2002:a17:907:2ce3:b0:a80:aefa:14d3 with SMTP id a640c23a62f3a-a866f8b679emr282840966b.63.1724277113186;
+        Wed, 21 Aug 2024 14:51:53 -0700 (PDT)
+Received: from vamoiridPC ([2a04:ee41:82:7577:1594:887e:30dd:c59e])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a868f48a5d0sm14982466b.159.2024.08.21.14.51.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Aug 2024 14:51:52 -0700 (PDT)
+From: Vasileios Amoiridis <vassilisamir@gmail.com>
+X-Google-Original-From: Vasileios Amoiridis <vamoirid@vamoiridPC>
+Date: Wed, 21 Aug 2024 23:51:50 +0200
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Vasileios Amoiridis <vassilisamir@gmail.com>, lars@metafoo.de,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	andriy.shevchenko@linux.intel.com, ang.iglesiasg@gmail.com,
+	linus.walleij@linaro.org, biju.das.jz@bp.renesas.com,
+	javier.carrasco.cruz@gmail.com, semen.protsenko@linaro.org,
+	579lpy@gmail.com, ak@it-klinger.de, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 4/7] iio: pressure: bmp280: Use sleep and forced mode
+ for oneshot captures
+Message-ID: <20240821215150.GA478039@vamoiridPC>
+References: <20240725231039.614536-1-vassilisamir@gmail.com>
+ <20240725231039.614536-5-vassilisamir@gmail.com>
+ <20240728165724.75153d08@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240728165724.75153d08@jic23-huawei>
 
+On Sun, Jul 28, 2024 at 04:57:24PM +0100, Jonathan Cameron wrote:
+> On Fri, 26 Jul 2024 01:10:36 +0200
+> Vasileios Amoiridis <vassilisamir@gmail.com> wrote:
+> 
+> > This commit adds forced mode support in sensors BMP28x, BME28x, BMP3xx
+> > and BMP58x. Sensors BMP18x and BMP085 are old and do not support this
+> > feature so their operation is not affected at all.
+> > 
+> > Essentially, up to now, the rest of the sensors were used in normal mode
+> > all the time. This means that they are continuously doing measurements
+> > even though these measurements are not used. Even though the sensor does
+> > provide PM support, to cover all the possible use cases, the sensor needs
+> > to go into sleep mode and wake up whenever necessary.
+> > 
+> > This commit, adds sleep and forced mode support. Essentially, the sensor
+> > sleeps all the time except for when a measurement is requested. When there
+> > is a request for a measurement, the sensor is put into forced mode, starts
+> > the measurement and after it is done we read the output and we put it again
+> > in sleep mode.
+> > 
+> > For really fast and more deterministic measurements, the triggered buffer
+> > interface can be used, since the sensor is still used in normal mode for
+> > that use case.
+> > 
+> > This commit does not add though support for DEEP STANDBY, Low Power NORMAL
+> > and CONTINUOUS modes, supported only by the BMP58x version.
+> > 
+> > Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
+> One question inline about the corner case of buffered capture in progress
+> when the machine is suspended.  We'd like the device to carry on feeding
+> us data on resume. Does that happen?
+> 
+> Jonathan
+> 
 
+Hi Jonathan,
 
-Am 21=2E August 2024 23:28:55 MESZ schrieb Conor Dooley <conor@kernel=2Eor=
-g>:
->Cristian, Heiko,
->
->On Wed, Aug 21, 2024 at 11:38:01PM +0300, Cristian Ciocaltea wrote:
->> On 8/21/24 6:07 PM, Conor Dooley wrote:
->> > On Tue, Aug 20, 2024 at 11:12:45PM +0300, Cristian Ciocaltea wrote:
->> >> On 8/20/24 7:14 PM, Conor Dooley wrote:
->> >>> On Tue, Aug 20, 2024 at 03:37:44PM +0300, Cristian Ciocaltea wrote:
->> >>>> On 8/19/24 7:53 PM, Conor Dooley wrote:
->> >>>>> On Mon, Aug 19, 2024 at 01:29:30AM +0300, Cristian Ciocaltea wrot=
-e:
->> >>>>>> +  rockchip,grf:
->> >>>>>> +    $ref: /schemas/types=2Eyaml#/definitions/phandle
->> >>>>>> +    description:
->> >>>>>> +      Most HDMI QP related data is accessed through SYS GRF reg=
-s=2E
->> >>>>>> +
->> >>>>>> +  rockchip,vo1-grf:
->> >>>>>> +    $ref: /schemas/types=2Eyaml#/definitions/phandle
->> >>>>>> +    description:
->> >>>>>> +      Additional HDMI QP related data is accessed through VO1 G=
-RF regs=2E
->> >>>>>
->> >>>>> Why are these required? What prevents you looking up the syscons =
-by
->> >>>>> compatible?
->> >>>>
->> >>>> That is for getting the proper instance:
->> >>>
->> >>> Ah, that makes sense=2E I am, however, curious why these have the s=
-ame
->> >>> compatible when they have different sized regions allocated to them=
-=2E
->> >>
->> >> Good question, didn't notice=2E  I've just checked the TRM and, in b=
-oth
->> >> cases, the maximum register offset is within the 0x100 range=2E  Pre=
-sumably
->> >> this is nothing but an inconsistency, as the syscons have been added=
- in
->> >> separate commits=2E
->> >=20
->> > Is that TRM publicly available? I do find it curious that devices sou=
-nd
->> > like they have different contents have the same compatible=2E In my v=
-iew,
->> > that is incorrect and they should have unique compatibles if the
->> > contents (and therefore the programming model) differs=2E
->>=20
->> Don't know if there's an official location to get it from, but a quick
->> search on internet shows a few repos providing them, e=2Eg=2E [1]=2E
->>=20
->> Comparing "6=2E14 VO0_GRF Register Description" at pg=2E 777 with "6=2E=
-15 VO1_GRF
->> Register Description" at pg=2E 786 (from Part1) reveals the layout is m=
-ostly
->> similar, with a few variations though=2E
->
->Page references and everything, thank you very much=2E I don't think thos=
-e
->two GRFs should have the same compatibles, they're, as you say, similar
->but not identical=2E Seems like a bug to me!
->
->Heiko, what do you think?
+This is actually a corner case that I couldn't think of. I will have to think
+it a bit more and come back on that.
 
-Yes, while the register names sound similar, looking at the bit definition=
-s this evening revealed that they handle vastly different settings=2E
+> 
+> >  	.trigger_handler = bmp380_trigger_handler,
+> > @@ -2085,6 +2239,64 @@ static int bmp580_preinit(struct bmp280_data *data)
+> >  	return PTR_ERR_OR_ZERO(devm_nvmem_register(config.dev, &config));
+> >  }
+> >  
+> > +static const u8 bmp580_operation_mode[] = { BMP580_MODE_SLEEP,
+> > +					    BMP580_MODE_FORCED,
+> > +					    BMP580_MODE_NORMAL };
+> > +
+> 
+> 
+> > +
+> > +static int bmp580_wait_conv(struct bmp280_data *data)
+> > +{
+> > +	/*
+> > +	 * Taken from datasheet, Section 2 "Specification, Table 3 "Electrical
+> > +	 * characteristics
+> > +	 */
+> > +	const int time_conv_press[] = { 0, 1050, 1785, 3045, 5670, 10920, 21420,
+> > +					42420, 84420};
+> > +	const int time_conv_temp[] = { 0, 1050, 1105, 1575, 2205, 3465, 6090,
+> > +				       11340, 21840};
+> space before }
+> 
+> Also stick a static in front of them or Colin will ;)
+> Aim being to makes sure they aren't pointlessly allocated on the stack
+> if the compiler doesn't do something clever with them.
+> 
 
-So I guess we should fix the compatibles=2E They are all about graphics st=
-uff and HDMI actually is the first output, so right now WE can at least sti=
-ll claim the no-users joker ;-)
+Ack.
 
+> > +	int meas_time;
+> > +
+> > +	meas_time = 4000 + time_conv_temp[data->oversampling_temp] +
+> > +			   time_conv_press[data->oversampling_press];
+> > +
+> > +	usleep_range(meas_time, meas_time * 12 / 10);
+> > +
+> > +	return 0;
+> > +}
+> >
+> >  
+> > +/* Keep compatibility with future generations of the sensor */
+> > +static int bmp180_set_mode(struct bmp280_data *data, enum bmp280_op_mode mode)
+> > +{
+> > +	return 0;
+> > +}
+> > +
+> > +/* Keep compatibility with future generations of the sensor */
+> > +static int bmp180_wait_conv(struct bmp280_data *data)
+> > +{
+> > +	return 0;
+> > +}
+> > +
+> > +/* Keep compatibility with future generations of the sensor */
+> 
+> What does this comment mean?  I'm in favour of course, but don't understand
+> why it is here and above the stub calls.
+> 
+> 
 
-Heiko
+This is for the bm(p/e)(2/3/5)80 devices which actually use those functions.
+Maybe instead of "future" I should have put "newer".
 
->
->> [1] https://github=2Ecom/FanX-Tek/rk3588-TRM-and-Datasheet
->>=20
->> >>
->> >>>> 	vo0_grf: syscon@fd5a6000 {
->> >>>> 		compatible =3D "rockchip,rk3588-vo-grf", "syscon";
->> >>>> 		reg =3D <0x0 0xfd5a6000 0x0 0x2000>;
->> >>>> 		clocks =3D <&cru PCLK_VO0GRF>;
->> >>>> 	};
->> >>>>
->> >>>> 	vo1_grf: syscon@fd5a8000 {
->> >>>> 		compatible =3D "rockchip,rk3588-vo-grf", "syscon";
->> >>>> 		reg =3D <0x0 0xfd5a8000 0x0 0x100>;
->> >>>> 		clocks =3D <&cru PCLK_VO1GRF>;
->> >>>> 	};
->> >
+> > @@ -2825,6 +3048,9 @@ static int bmp280_runtime_suspend(struct device *dev)
+> >  	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+> >  	struct bmp280_data *data = iio_priv(indio_dev);
+> >  
+> > +	data->chip_info->set_mode(data, BMP280_SLEEP);
+> 
+> What happens if the device is in buffered mode and you suspend?
+> I'd expect to see the power mode stashed somewhere and restored in resume.
+> 
 
---=20
-Diese Nachricht wurde von meinem Android-Ger=C3=A4t mit K-9 Mail gesendet=
-=2E
+As said before, I will investigate it and come back with more info.
+
+Cheers,
+Vasilis
+> > +
+> > +	usleep_range(2500, 3000);
+> >  	return regulator_bulk_disable(BMP280_NUM_SUPPLIES, data->supplies);
+> >  }
+> >  
 
