@@ -1,121 +1,135 @@
-Return-Path: <devicetree+bounces-95526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEFCF959A48
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 13:39:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A3B4959A57
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 13:41:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1DB921C22378
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 11:39:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBF6E1F21FD9
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 11:41:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F1701C86E9;
-	Wed, 21 Aug 2024 11:02:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63C201B3B36;
+	Wed, 21 Aug 2024 11:10:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e5b4TChp"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="jTn8Fevd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDE901B791F;
-	Wed, 21 Aug 2024 11:02:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 965F01B1D61;
+	Wed, 21 Aug 2024 11:10:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724238152; cv=none; b=noidBitPEmZBlTRhAtnX0cfm426jNbyP9SGPaCw3ZFfSk5YhvObE1zvQsqoUr4kySMMqM3UWkbHfi3AeZP9XvJBlmXwsVmUCqVaJD1AMEld2KduUboIdvwNXe/PMFD5jYZZH97Zbmh7tdOoRQflQnhn+KQD0gib6DKjr0IuR2ZI=
+	t=1724238636; cv=none; b=JHxS6EUK9W/m7iSd9ki9lqPu4FGYUJxnG8cfnoPnKWq7mlF91lxnxtOVpKqeuiESNaiebN5i7aueyYZXlgwunp4Goo7nhOPww2Y/ULgOo/IG2RH6Wqz2IKNi3GiBrqTylXLjrYoKubxLVPFkQetWCTU2fWg0azSosZ05UOkJMVo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724238152; c=relaxed/simple;
-	bh=oL0apQfwO/GowPgbcjjEALNj9lR6lpp6lqvX9gU/D1g=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=TDp0Dtn3lwVGIe3kcuA21jw83waySnkDMy1RI9A4KbnGnlo71y5nuCRsXYphb1K9aYclDMco/OtlUIi9nGBMRPVeMIu+gaX0yioyCd6awztfd25POQhhhkiYwkoEpFFbvQN650yC5Rl8108FFqnmNV4M61VHJRV7eb+Rsthjcaw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e5b4TChp; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-53345dcd377so1925896e87.2;
-        Wed, 21 Aug 2024 04:02:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724238149; x=1724842949; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=48VNhxHd3dlbgyZpDomEeFdSD/WONmnc2OyXHZjBz2M=;
-        b=e5b4TChpuNqSBLVM6j150rHB1lsb50P5+jSSKLQh7NhlzYuJI3UkN+k7Z7B5zHAuat
-         509x7DYyoh/N8wPdN4UrmDWTD7PlKTVhkU2ozWflVZHT3IlyB2BuVOqBZf3vRuFJi/SD
-         vfL8RCGA9cMLcoY3QMbCyJaV5bgD9N4l47R9ljp0R6q1rEdEpDHVSLReWdeSX01xMGhn
-         qi7CjYIFm8RKu+LaXHgyMY+vTu0xdRaIgfslHEgaLX4HUB5h99V9t/2Mpa2HkATgCrDD
-         H2tZbAlhGj6RF0x3c6UAo2Xy2A5czNEKN7nbCBFxWuD+I8vJQqIQdtA/5kuO46l7ciM/
-         3OqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724238149; x=1724842949;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=48VNhxHd3dlbgyZpDomEeFdSD/WONmnc2OyXHZjBz2M=;
-        b=DEvIFI5LJz8GnMacmsGa2TCiSHVCcepVA1bruJTUdtXSiW+9xr+T7TLQlbndMgHk5p
-         sKEUvfmtmdYSxt8ByVTb9YSeD1LU8k+v7OA8Iz2/36HZfnDGHC2ACwBXyURR5CJI0NK0
-         uLH9LgxY3CdnkTZpWEwXsOVwltvi7TZB9ztTKEdgzxF0VDVYv78kgatQRcTQvZaGdVuT
-         bUjezj4aN0+83TNxAEDY7alqpKufhxRfuVHdMtGizfy8cWpiISAn+Pi/f9HcrPlPozqn
-         nQjoQufuk2zTP10F2vfhx3My2Hbn8Ri2+dkBrEKFglhDvPwrGHzetuhYG64yJ/TLZW2n
-         NikA==
-X-Forwarded-Encrypted: i=1; AJvYcCULusbQBNVqjc/L/oSetk7BcE3dRpCySYdSELbek7uCyAZvhKVV2LFKI0Hm4xAj9AMSQ9meBpYV2RTk@vger.kernel.org, AJvYcCV2BZXh/SMTKalB6Vef07TGTCv4RWBTwX3LlSY3idfoH8JFwyvkdbf2+KAdVm6d6GFSgy1LcP/F@vger.kernel.org, AJvYcCXxvKoEUgRI1ymEVP/Q+qyt2PEbQXFls/LoSf78gFguvZZw2+avKOLAUyPxI1JRx89HMW4prdtK7AOEXhSX@vger.kernel.org
-X-Gm-Message-State: AOJu0YykEWkP3pP7Z5MKg1Z4wjsv3p1j/QgmWFHER8kpICKGYgqUhoya
-	qzzdMepCB7L0gxQeqiy2ZbPGdOsxaUkNkKteZkCd6XWXdBxpIsmd
-X-Google-Smtp-Source: AGHT+IGxjlmlSKQ9/+92re/HMTFwZmWbjOWsLYGh2baVOkKFR23ifRgfEFcguTFqmpd+2iXPG8qUEg==
-X-Received: by 2002:a05:6512:334f:b0:533:4b38:3983 with SMTP id 2adb3069b0e04-5334b383becmr194675e87.20.1724238148297;
-        Wed, 21 Aug 2024 04:02:28 -0700 (PDT)
-Received: from lapsy144.cern.ch (lapsy144.ipv6.cern.ch. [2001:1458:202:99::100:4b])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a838394647esm890970566b.147.2024.08.21.04.02.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Aug 2024 04:02:27 -0700 (PDT)
-From: vtpieter@gmail.com
-To: pabeni@redhat.com
-Cc: Tristram.Ha@microchip.com,
-	UNGLinuxDriver@microchip.com,
-	andrew@lunn.ch,
-	conor+dt@kernel.org,
-	davem@davemloft.net,
-	devicetree@vger.kernel.org,
-	edumazet@google.com,
-	f.fainelli@gmail.com,
-	krzk+dt@kernel.org,
-	kuba@kernel.org,
-	linux-kernel@vger.kernel.org,
-	marex@denx.de,
-	netdev@vger.kernel.org,
-	o.rempel@pengutronix.de,
-	olteanv@gmail.com,
-	robh@kernel.org,
-	woojung.huh@microchip.com
-Subject: [PATCH net-next v4 2/2] net: dsa: microchip: Add KSZ8895/KSZ8864 switch support
-Date: Wed, 21 Aug 2024 13:02:26 +0200
-Message-ID: <20240821110226.1899167-1-vtpieter@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <584ce622-2acf-4b6f-94e0-17ed38a491b6@redhat.com>
-References: <584ce622-2acf-4b6f-94e0-17ed38a491b6@redhat.com>
+	s=arc-20240116; t=1724238636; c=relaxed/simple;
+	bh=wtyVza7pPG7HwH8Ffygep8fUL40eT3JGcHBxzpvlNwk=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QqxC2Osr+A1og4jv5CuCOKmEiL3duuAgRH5He6kEaFKvhgVem0KVVz5MAslehQegAxDVEFlGCeBpBFYW0+W+bOo8YK0+gXWZ80TglI5c6a7Atc1N12/kORkaWpg+/oEpH+fkZhnd6Zz25TER1C2kEOHzHXtZi2w5R2a5YJk2NXk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=jTn8Fevd; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47LBASoh097212;
+	Wed, 21 Aug 2024 06:10:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1724238628;
+	bh=T3FjfbTMeOH7tN5HUO7GXQ7+Mttu5fF++DxNH+J9BRc=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=jTn8FevdHtDr+cEBXFR/Q0jWd3HbF6ZYQv3tAj8MX9cU9oPD1PJrJZ1Fb7/4TlP/p
+	 /dLpH/b+LhpoZAvPI+UxNYEgYtB0965s2jCPNJJgmYpEjPaPNMzhm1xy7yiFss1m7S
+	 b3wdxD7SktGoHrvscjlGRRrFqonVUkOpE7FLDDYQ=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47LBASMw081609
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 21 Aug 2024 06:10:28 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 21
+ Aug 2024 06:10:27 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 21 Aug 2024 06:10:27 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47LBARSL001818;
+	Wed, 21 Aug 2024 06:10:27 -0500
+Date: Wed, 21 Aug 2024 06:10:27 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Andrew Davis <afd@ti.com>
+CC: Hari Nagalla <hnagalla@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <bb@ti.com>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 3/4] arm64: dts: k3-am62a-wakeup: Add R5F device node
+Message-ID: <20240821111027.6kx57jftp67ksx52@boxcar>
+References: <20240820104034.15607-1-hnagalla@ti.com>
+ <20240820104034.15607-4-hnagalla@ti.com>
+ <b6b341a7-5ee2-4a89-82c6-e863a9556654@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <b6b341a7-5ee2-4a89-82c6-e863a9556654@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Tristram,
+On 10:13-20240820, Andrew Davis wrote:
+> On 8/20/24 5:40 AM, Hari Nagalla wrote:
+> > From: Devarsh Thakkar <devarsht@ti.com>
+> > 
+> > AM62A SoCs have a single R5F core in waekup domain. This core is also
+> > used as a device manager for the SoC.
+> > 
+> > Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+> > Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+> > ---
+> >   arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi | 23 +++++++++++++++++++++
+> >   1 file changed, 23 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
+> > index f5ac101a04df..c4319986e660 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
+> > @@ -76,6 +76,29 @@ wkup_rti0: watchdog@2b000000 {
+> >   		status = "reserved";
+> >   	};
+> > +	wkup_r5fss0: r5fss@78000000 {
+> > +		compatible = "ti,am62-r5fss";
+> > +		#address-cells = <1>;
+> > +		#size-cells = <1>;
+> > +		ranges = <0x78000000 0x00 0x78000000 0x8000>,
+> > +			 <0x78100000 0x00 0x78100000 0x8000>;
+> > +		power-domains = <&k3_pds 119 TI_SCI_PD_EXCLUSIVE>;
+> 
+> Need newline here.
+> 
+> > +		wkup_r5fss0_core0: r5f@78000000 {
+> > +			compatible = "ti,am62-r5f";
+> > +			reg = <0x78000000 0x00008000>,
+> > +				<0x78100000 0x00008000>;
+> > +			reg-names = "atcm", "btcm";
+> > +			ti,sci = <&dmsc>;
+> > +			ti,sci-dev-id = <121>;
+> > +			ti,sci-proc-ids = <0x01 0xff>;
+> > +			resets = <&k3_reset 121 1>;
+> > +			firmware-name = "am62-wkup-r5f0_0-fw";
+> 
+> resets and firmware-name should go before vendor specific properties.
 
-> @@ -325,7 +327,7 @@ void ksz8_r_mib_pkt(struct ksz_device *dev, int port, u16 addr,
->
->  void ksz8_freeze_mib(struct ksz_device *dev, int port, bool freeze)
->  {
-> -	if (ksz_is_ksz88x3(dev))
-> +	if (ksz_is_ksz88x3(dev) || ksz_is_8895_family(dev))
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst#n117
 
-Small comment, would it not be more clear and consistent to introduce
-a new ksz_is_ksz88xx function in ksz_common.h, being ksz_is_ksz88x3 ||
-ksz_is_8895_family?
-
-That would help with the renamed ksz88x3_dev_ops that you will
-encounter when rebasing. In fact, seeing your additions here, I would
-propose to rename this struct to ksz88xx_dev_ops.
-
-Cheers, Pieter
+> 
+> > +			ti,atcm-enable = <1>;
+> > +			ti,btcm-enable = <1>;
+> > +			ti,loczrama = <1>;
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
