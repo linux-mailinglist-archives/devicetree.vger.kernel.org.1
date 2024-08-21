@@ -1,168 +1,153 @@
-Return-Path: <devicetree+bounces-95553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95554-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D64D959E6C
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 15:15:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25145959E7C
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 15:18:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F29881F215D1
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 13:15:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D53A2281C9F
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 13:18:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D995199FC6;
-	Wed, 21 Aug 2024 13:15:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0CF919994D;
+	Wed, 21 Aug 2024 13:18:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WBzpeznu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gt5sU611"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC062199FBD
-	for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 13:15:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A268F188A33;
+	Wed, 21 Aug 2024 13:18:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724246110; cv=none; b=KaPZcZVS0AyUn8QMWjEoKDjMhknmonup/bX17myyqIXn9Gywb7i75DHZspSC9Ra8BRYbUigDDH6JoCi7+bSy4cb/4492iEYM1FwXvaiuMqtCPIbJpK9rSJWuw6OlHUvOU5MjVgVRQkhn87EiyXlPE4Y0nhdLKfT79ihw0dRD0L0=
+	t=1724246286; cv=none; b=jOc8l4I/GUfnFxhMpeDryu5GDu0Fp2h7eRyQOhE478+aUfkBxlBXdwRJSQOz44UYZ2e3/AFIHi1q5byaMcJZyAe9CG+X0pEUs4PBaSYhiXvP4R9MX7XB2p6TraOav4uHiV+HGvOgifzMtV4fNTM8FK+edkgT1k3oeSmmKCb//Yo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724246110; c=relaxed/simple;
-	bh=IkVS+yXH5uK6Jq76r3978Yrciq8PclOcH40H0ePGu2Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Cl2Cz0lY0oBO55j6wD11koEVJCtsl9PIfuHZGYY09RGcKwOD+Y26h9ZFNlzH3RHdSOU1vTfVK41rZdCOtI2pnvY4XEZOT/I8KOdmPswPoA3SV5NcoNwfgydq4CLBx4f+AfPl9WK0vp8yaf0P4agvwtrAtdm9BUbeo+FNEJ/VPK0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WBzpeznu; arc=none smtp.client-ip=209.85.219.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-e1661dcbc2fso1098515276.0
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 06:15:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724246107; x=1724850907; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ND82RYn7MaNSpzb7NAOhxgHIKl6E8lI43wkdqiWtnl8=;
-        b=WBzpeznuXKf/kt8GFDnyng4YUZxyo7nB/UTSrpi0K/KB7NbyjWYZmFuQqrbFEnbyoU
-         F1lr/6WO9rRjPM7r/bDU5Lw/a/bx6x6zFjsOvSMfD/uO1ZYNncmBKPqMlwZzEgdx9hsX
-         O3/VpzgIXPAhd+WjK+NqV+aG/22dHKTdDqf5fX8zpm+Qr9JvsHyIE2OYAPek547/iLhR
-         kJjLQP2bPc98NtFt31cVZWCMlEHASmK9qrvo3sVgDZ9TzP3Sk6uUypIE3/6CY0JFxb2z
-         mHH+zAT7xElNWWWuD1tGv/VRWUIwQfkkhjfxBFXEcm10hIwep+GtWlO9s0XbWLWztKAA
-         pnUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724246107; x=1724850907;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ND82RYn7MaNSpzb7NAOhxgHIKl6E8lI43wkdqiWtnl8=;
-        b=wufaYBuAmPNOaYaY4kGSojhSPUHvRASPA+2sc4jtQzc7Hn7W5/oyB+hBdHD0dgtzEs
-         X9TMiqHM+S0+J7T+VKnW8H2ddCr8UOU+CurhnDkhryQiSB3ci2wUU4+qzs6lDHBuitsX
-         fjmuJhyY3bIQrNnwBBiEyeSfkFgnBFQO/3BYMVUD/Est0vKPI3kun3iLlYGlsIylSkth
-         /mJx9TXfR6wL4L2InSE7bKPEtFUEcR/wP7br5heTej4C/Az9ExiNzRg9b2/Y9u/2CkW7
-         Q41N2dUYPWFwNqgOrcUqWdX0vE32tjZ1seH6nZIa4rIHggvYtsPzKL/a7o8q4Abiu6tj
-         /bLQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWHs+8xheV4O7choQNqWk9ln9kogozChQQ/4BXQoNEHW4vtdYpyZTphhvLLft6t0RXzPWWl8UfCxmfk@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz0WdxddvlsMdsghHzGeIs+VANVNA9vdzltsQ9anSwCWAYzXbT4
-	bBD1KbJ37nVdileBYNS4gPs53TbTs+aHGTDvpoktx7f1AzrqVIFGFeiabR8/ysCdXKmSXzGWIj3
-	xqegKVDDQk5Tqv1rxg1ApCJrubJYoYAn5bj6hPg==
-X-Google-Smtp-Source: AGHT+IHMFrZYqcZ+YKGN6ef7K45igq5+avAhanl2GUzgRB1IEkFvh06daR52Rd2yBylT0BHej583UvwMIolio13isH8=
-X-Received: by 2002:a05:6902:1244:b0:e0e:8319:c6e4 with SMTP id
- 3f1490d57ef6-e16663ec35cmr2880278276.8.1724246106550; Wed, 21 Aug 2024
- 06:15:06 -0700 (PDT)
+	s=arc-20240116; t=1724246286; c=relaxed/simple;
+	bh=4J5Z1SoLstMKvuEFmueN5cD92XhXbF48rhCyXiWqfc8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=n5FWs69e56flx3XlUUxnvB41e7bPd5vI1bKKTEccrSV8205l4Xx3Hy9xdic75KfsqrEwRqyTcJzsESdjAa+9EUPdjSRIU4HgI3w8oAB9ah67MhFxQyVTKFylWyb8kvSXNTVLb7sIsZeqDXxbQpwl2Am+LVB7B/rxu4dgW45Y+Sw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gt5sU611; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D13AC32782;
+	Wed, 21 Aug 2024 13:17:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724246286;
+	bh=4J5Z1SoLstMKvuEFmueN5cD92XhXbF48rhCyXiWqfc8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gt5sU611t1gy+i8JnErfPLmmKuJIbmOK6bDfgnJfFMunesDxEgSJWKQHJH7HorUt2
+	 KWMOlcQ2O1Y2uFn29Q9JrGDY84kKO6op6X2DWdH0So1eEgpqTG1GhN4NgBAPFFYjR3
+	 6iQ8eTcht9a9xvQEVwWrUygQ9Gc7PxiX1Zd3Cm8WKs8qT7kAKv90AZ4QRmEnyxazHL
+	 Mo5+8Rox6+uBq9xMTj6WH7xnRuesauC+3GrfvSULC9u/Vm/wW431RGkU17h/qsRTI0
+	 GoXlW0w4qVTdOb4tgA679+OVfJJO9DHJuJiU8Cx2HwVAKabf9gbL6BvtxF+vMe/BTP
+	 CrKWiO7SWrtqw==
+Date: Wed, 21 Aug 2024 14:17:57 +0100
+From: Simon Horman <horms@kernel.org>
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
+	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Stefan Wahren <wahrenst@gmx.net>
+Subject: Re: [PATCH 06/11] clk: rp1: Add support for clocks provided by RP1
+Message-ID: <20240821131757.GB6387@kernel.org>
+References: <cover.1724159867.git.andrea.porta@suse.com>
+ <a378cc652b7e92b4022141dd2f20711e1771eb72.1724159867.git.andrea.porta@suse.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240809172106.25892-1-ansuelsmth@gmail.com> <20240809172106.25892-4-ansuelsmth@gmail.com>
- <20240813200734.GA1659224-robh@kernel.org> <66c5b8ec.5d0a0220.11ef1f.b572@mx.google.com>
-In-Reply-To: <66c5b8ec.5d0a0220.11ef1f.b572@mx.google.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 21 Aug 2024 15:14:29 +0200
-Message-ID: <CAPDyKFq0cR10d1jUc5gnoUR5P=cbDEZy2iA-HOq9oNcWZevbDg@mail.gmail.com>
-Subject: Re: [PATCH v4 3/7] dt-bindings: mmc: add property for partitions node
- in mmc-card node
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Joern Engel <joern@lazybastard.org>, 
-	Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@kernel.dk>, Christoph Hellwig <hch@lst.de>, 
-	Sagi Grimberg <sagi@grimberg.me>, Saravana Kannan <saravanak@google.com>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	Florian Fainelli <f.fainelli@gmail.com>, linux-mmc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-mtd@lists.infradead.org, linux-nvme@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a378cc652b7e92b4022141dd2f20711e1771eb72.1724159867.git.andrea.porta@suse.com>
 
-On Wed, 21 Aug 2024 at 11:52, Christian Marangi <ansuelsmth@gmail.com> wrote:
->
-> On Tue, Aug 13, 2024 at 02:07:34PM -0600, Rob Herring wrote:
-> > On Fri, Aug 09, 2024 at 07:21:01PM +0200, Christian Marangi wrote:
-> > > Add property for defining partitions node in mmc-card node to define
-> > > partitions in DT by the use of the block2mtd module to use block
-> > > devices as MTD.
-> >
-> > You justified patch 1 saying eMMC already supported this, but then here
-> > you add support.
-> >
-> > Both are a NAK for me as both already have a way to describe partitions
-> > with GPT.
-> >
->
-> I think this got a bit confused and hope we can find a way to add
-> support for this.
->
-> What is "already supported" is assigning an OF node so driver can
-> reference it. This patch was just adding the nodes in the schema to say
-> that partitions can be defined.
->
-> I think what is not clear is that block devices might be used as raw
-> devices without a partition table defined in the device. In such case
-> it's the kernel that define a fixed partition table.
->
-> One example is [1] where the partition table is provided by cmdline.
-> Similar to cmdlinepart MTD parser.
->
-> The use of block2mtd is just to make use of the MTD parser system.
->
-> Considering
-> - eMMC is soldered to the device (no dynamic scan)
-> - cmdline might be not tunable and hardcoding it might also be
->   problematic (as some cmdline needs to be used)
-> - concept of fixed partition for block device is already a thing and
->   used a lot (android AFAIK)
+On Tue, Aug 20, 2024 at 04:36:08PM +0200, Andrea della Porta wrote:
+> RaspberryPi RP1 is an MFD providing, among other peripherals, several
+> clock generators and PLLs that drives the sub-peripherals.
+> Add the driver to support the clock providers.
+> 
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
 
-Sorry for sidestepping your discussion, but I just wanted to add a few comments.
+...
 
-It's not clear to me why we need something different than what we
-already have today.
+> diff --git a/drivers/clk/clk-rp1.c b/drivers/clk/clk-rp1.c
+> new file mode 100644
+> index 000000000000..d18e711c0623
+> --- /dev/null
+> +++ b/drivers/clk/clk-rp1.c
+> @@ -0,0 +1,1655 @@
+> +// SPDX-License-Identifier: GPL
 
-If it's a partuuid/uuid/label or a fixed block-partition from the
-command line, we still need to know what partition we shall use for
-what. So why is this problem different from how we manage filesystem
-mounts, for example?
+checkpatch says:
 
->
-> I think it should be acceptable to introduce in DT support for defining
-> fixed partition for block devices and some kind of parser system similar
-> to MTD. What do you think? Would this be more acceptable? Idea is to
-> just have a DT schema that makes use of the values that can be set in
-> [1].
+WARNING: 'SPDX-License-Identifier: GPL' is not supported in LICENSES/...
 
-In DT we can describe that there is an eMMC card soldered to the
-board, because it's a description of the HW. But describing what
-stored inside the eMMC-flash doesn't belong in DT.
+...
 
->
-> Hope we can find a solution to this, I'm totally OK for dropping NVMe as
-> I understand it's PCIe stuff and very dynamic but OEM are making lots of
-> use of eMMC and are starting to use these strange way (block2mtd) as we
-> currently don't give a proper and easy solution for the task.
+> +static int rp1_clock_set_parent(struct clk_hw *hw, u8 index)
+> +{
+> +	struct rp1_clock *clock = container_of(hw, struct rp1_clock, hw);
+> +	struct rp1_clockman *clockman = clock->clockman;
+> +	const struct rp1_clock_data *data = clock->data;
+> +	u32 ctrl, sel;
+> +
+> +	spin_lock(&clockman->regs_lock);
+> +	ctrl = clockman_read(clockman, data->ctrl_reg);
+> +
+> +	if (index >= data->num_std_parents) {
+> +		/* This is an aux source request */
+> +		if (index >= data->num_std_parents + data->num_aux_parents)
 
-I certainly appreciate that you are trying to solve the fragmentation
-issue around this, but it looks like we need a different approach than
-using DT to describe partitions.
+It looks like &clockman->regs_lock needs to be unlocked here.
 
->
-> [1] https://github.com/torvalds/linux/blob/master/Documentation/block/cmdline-partition.rst
->
+Flagged by Smatch, Sparse. and Coccinelle.
 
-Kind regards
-Uffe
+> +			return -EINVAL;
+> +
+> +		/* Select parent from aux list */
+> +		ctrl = set_register_field(ctrl, index - data->num_std_parents,
+> +					  CLK_CTRL_AUXSRC_MASK,
+> +					  CLK_CTRL_AUXSRC_SHIFT);
+> +		/* Set src to aux list */
+> +		ctrl = set_register_field(ctrl, AUX_SEL, data->clk_src_mask,
+> +					  CLK_CTRL_SRC_SHIFT);
+> +	} else {
+> +		ctrl = set_register_field(ctrl, index, data->clk_src_mask,
+> +					  CLK_CTRL_SRC_SHIFT);
+> +	}
+> +
+> +	clockman_write(clockman, data->ctrl_reg, ctrl);
+> +	spin_unlock(&clockman->regs_lock);
+> +
+> +	sel = rp1_clock_get_parent(hw);
+> +	WARN(sel != index, "(%s): Parent index req %u returned back %u\n",
+> +	     data->name, index, sel);
+> +
+> +	return 0;
+> +}
+
+...
 
