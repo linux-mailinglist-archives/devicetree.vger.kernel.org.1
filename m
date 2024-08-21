@@ -1,158 +1,228 @@
-Return-Path: <devicetree+bounces-95589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B4C595A152
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 17:25:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4FEE95A165
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 17:29:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 021581F23385
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 15:25:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 614391F21A21
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 15:29:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE06014D2B4;
-	Wed, 21 Aug 2024 15:24:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F9D214AD2D;
+	Wed, 21 Aug 2024 15:29:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TtZjkQ1J"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YEp3HXma"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACFD014A4EA;
-	Wed, 21 Aug 2024 15:24:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 331BB364D6;
+	Wed, 21 Aug 2024 15:29:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724253883; cv=none; b=CLOukCxOROp0r+CkMiyGqBAQIhMiGa8Q+ZUgCqOgRdOkMjAfT4qTtGQDaDLL2laxbKcQs2qfXDFSdT4Z9InjWJwoxzvZVa0s5bElxZum6tcbOmSQRuFbKOoIeykOL3IAP90szW/R2RKUY39/IGrtO9pK/249+BHoNNqqmMgZCQc=
+	t=1724254188; cv=none; b=C69EolP9ZUEPwBhEz4KKJ5Rbimnr4aWi6FDhSXI9pE5eoabN89/gROnNLJf4N8/A0oj8IQfKl0GyeSBQZHXc+Jy9Bc1/kZNUCfcixvEjHUozkLpeed484a8BkxMK1mo+awTrOlVmMFsef//3Y/ot8eCV3wJ2XKx7Z/wAxCcyOu4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724253883; c=relaxed/simple;
-	bh=1ZjtB2qfgq/kDPmIlWye3dfIwc8C55gZjyVxcfwSetA=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=A103vzlgwJlPw7BDmsJpRrrOpgTe8UdNr7sNemR23iJflgsLzjSt4Ho9kSX8alzayWBvSx9ptasOHmR9PwtgI4TfAKgSkFxqOmhyyfpM1aSSjNHjZXeXIAl+CNT3huGkfuW1FO69yXrNvr9005zye4XHhvOs0hbjnOKgHYQlw0g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TtZjkQ1J; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F6A2C32786;
-	Wed, 21 Aug 2024 15:24:43 +0000 (UTC)
+	s=arc-20240116; t=1724254188; c=relaxed/simple;
+	bh=kM9T4AHZ6ULY3dqDxLeHx/n7GocYC9a1Ufp84n6ZZaw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LVqPL6c6UzOuzw8SiA7N/6aueRO02IgNMJRPQQxxbAFAWYX2mM8JLG2pA9aK7q8aq+Qu671U7Eo6AqlIXZuiXaUSzfkMKHVqiPazFpYNareOLc6TrcBlhRcawoOIJVNoN0iYErrjo00e4MaoonOAJVQxElLZs4p9525v917hEao=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YEp3HXma; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC82AC32781;
+	Wed, 21 Aug 2024 15:29:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724253883;
-	bh=1ZjtB2qfgq/kDPmIlWye3dfIwc8C55gZjyVxcfwSetA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=TtZjkQ1JoqTb6Y/uUb/+73JdcHZH9WrH/IHzsTJfRG26ORrRRXSHBUa3Ueb/e9SOb
-	 k+YJ0KHOXTGtYG5oazohYwVwQQK3KDEf/71BUc7OXOdTJlVctngwIuzs1C7lde3MAJ
-	 pOkDSlsc+fkPkwpLUeIcPRhz8rIzG5YpUUSjE4eFZTv5Ru4EgJPTmgquBbi2iVyxUh
-	 C9U5Ua+xUG0hSc+Wj/prm44j9A3uSlbySmXCbjYORNrb9ll2z/NTmnAWCB0ivJqWDj
-	 SwHlMZ5c2nYJuioTX1efrHNcneRaN9R8CdTYDaqgpWaDSBzN320A/M3P/+osCa1kUz
-	 7lcpXCYz5QVmQ==
-Date: Wed, 21 Aug 2024 10:24:41 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Andrea della Porta <andrea.porta@suse.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=k20201202; t=1724254188;
+	bh=kM9T4AHZ6ULY3dqDxLeHx/n7GocYC9a1Ufp84n6ZZaw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YEp3HXmak6uLH3Lkeuss+9978yCSxp+iL8YP1A/WdsOpOnEJIsN8SyqO1zf4fmKr1
+	 lWJ3RhRbBWp9XHsaUlOvFLLCuGVN1b96sA/uPDsZgr1gj6VWa037dc3+X3GRRh/5xk
+	 181EvCpLAb2BL4PP3k79713Fe4r8i0aZIQKcg234XRRoRNmPqP4awDmS7QokTE4F9z
+	 IFzR7eb35H8mRSoVnu65UYtzBIWjIgWe7iFWFz2g/bn5Z/NGAIP27QLYjdXNciDRjn
+	 FkLgt2VlCOFJIrXYVAXVSu/UANkv2xDH+zej4mlQECPD75KHYNM7rG/VaD3rgqx7ud
+	 AIfgOcBvBOiFw==
+Date: Wed, 21 Aug 2024 16:29:42 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
-	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Stefan Wahren <wahrenst@gmx.net>
-Subject: Re: [PATCH 03/11] PCI: of_property: Sanitize 32 bit PCI address
- parsed from DT
-Message-ID: <20240821152441.GA222583@bhelgaas>
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v4 1/3] dt-bindings: iio: adc: sophgo,cv18xx-saradc.yaml:
+ Add Sophgo CV18XX SARADC binding
+Message-ID: <20240821-unholy-statutory-7aa884ebf857@spud>
+References: <20240812-sg2002-adc-v4-0-599bdb67592f@bootlin.com>
+ <20240812-sg2002-adc-v4-1-599bdb67592f@bootlin.com>
+ <20240812-unwary-mongrel-9f6758bf624c@spud>
+ <89aabfbe-79bf-4da7-be44-b6cbd92b72a9@bootlin.com>
+ <20240820-borough-latch-17d785301aef@spud>
+ <20240821094150.5787905b@xps-13>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Tue/8AFCKfIOWTNr"
 Content-Disposition: inline
-In-Reply-To: <8b4fa91380fc4754ea80f47330c613e4f6b6592c.1724159867.git.andrea.porta@suse.com>
+In-Reply-To: <20240821094150.5787905b@xps-13>
 
-On Tue, Aug 20, 2024 at 04:36:05PM +0200, Andrea della Porta wrote:
-> The of_pci_set_address() function parse devicetree PCI range specifier
 
-s/parse/parses/ ? 
+--Tue/8AFCKfIOWTNr
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> assuming the address is 'sanitized' at the origin, i.e. without checking
-> whether the incoming address is 32 or 64 bit has specified in the flags.
-> In this way an address with no OF_PCI_ADDR_SPACE_MEM64 set in the flagss
+On Wed, Aug 21, 2024 at 09:41:50AM +0200, Miquel Raynal wrote:
+> > > > > +      Represents the channels of the ADC.
+> > > > > +
+> > > > > +    properties:
+> > > > > +      reg:
+> > > > > +        description: |
+> > > > > +          The channel number. It can have up to 3 channels numbe=
+red from 0 to 2.
+> > > > > +        items:
+> > > > > +          - minimum: 0
+> > > > > +            maximum: 2 =20
+> > > >=20
+> > > > Is this sufficient to limit the number of channels to 3? Aren't you=
+ relying
+> > > > on the unique unit addresses warning in dtc to limit it, rather than
+> > > > actually limiting with min/maxItems?
+> > > >  =20
+> > > It seems like I can't use min/maxItems on this property. I think that=
+ it is
+> > > using size-cells + address-cells to deduce that the number of items s=
+hould
+> > > be equal to 1. =20
+>=20
+> Looking at dt-schema, I couldn't personally understand from where did
+> the error messages reported by Thomas came from. There are clear
 
-s/flagss/flags/
+I think the complaints are on a more meta level than that. He provided
+an items list
+     properties:
+       reg:
+         maxItems: 1
+         items:
+           - minimum: 0
+             maximum: 2
+but this list only has one entry as there's one -. The first complaint
+=66rom dt_binding_check is that having maxItems is not needed with an
+items list, because the items list contains the maximum number of
+elements.
 
-> could leak through and the upper 32 bits of the address will be set too,
-> and this violates the PCI specs stating that ion 32 bit address the upper
+The second one comes from cell.yaml:
+https://github.com/devicetree-org/dt-schema/blob/main/dtschema/meta-schemas=
+/cell.yaml
 
-s/ion/in/
+It either allows a single item, with maxItems: 1 or multiple items, in
+which case maxitems must be greater than 1. That's where the "anyOf
+conditonal failed" and "1 is less than the minimum of 2" stuff comes
+=66rom.
 
-> bit should be zero.
+I hope that helps?
 
-I don't understand this code, so I'm probably missing something.  It
-looks like the interesting path here is:
+> constraints over minItems/maxItems regarding the use of {#address-cells,
+> #sizez-cells} being {1, 1}, {2, 2} and {2, 1} (in reg.yaml), but nothing
+> explicit regarding the other situations, namely {1, 0} in this case
+> which enforces maxItems to 1 is not clearly stated in any of the core
+> yaml files. Any idea where to look at? Although, I'm convinced there is
+> something defined because renaming the property from 'reg' to 'foo'
+> silences these warnings.
+>=20
+> > I think I was mistaken in talking about mix/max items here. I had the
+> > right idea, but mentioned an incorrect solution - sorry about that. I
+> > wasn't talking about the number of elements in the reg property, what I
+> > meant was limiting the number of channel nodes in the first place -
+> > something which min/maxItems cannot do. As examples of the problem I was
+> > thinking of, see the below two examples:
+> >=20
+> >     adc@30f0000 {
+> >         compatible =3D "sophgo,cv1800b-saradc";
+> >         reg =3D <0x030f0000 0x1000>;
+> >         clocks =3D <&clk CLK_SARADC>;
+> >         interrupts =3D <100 IRQ_TYPE_LEVEL_HIGH>;
+> >         #address-cells =3D <1>;
+> >         #size-cells =3D <0>;
+> >=20
+> >         channel@0 {
+> >             reg =3D <0>;
+> >         };
+> >         channel@2 {
+> >             reg =3D <2>;
+> >         };
+> >         channel@22 {
+> >             reg =3D <2>;
+> >         };
+> >     };
+> >=20
+> >     adc@30f0000 {
+> >         compatible =3D "sophgo,cv1800b-saradc";
+> >         reg =3D <0x030f0000 0x1000>;
+> >         clocks =3D <&clk CLK_SARADC>;
+> >         interrupts =3D <100 IRQ_TYPE_LEVEL_HIGH>;
+> >         #address-cells =3D <1>;
+> >         #size-cells =3D <0>;
+> >=20
+> >         channel@0 {
+> >             reg =3D <0>;
+> >         };
+> >         channel@2 {
+> >             reg =3D <2>;
+> >         };
+> >         channel@22 {
+> >             reg =3D <2>;
+> >         };
 
-  of_pci_prop_ranges
-    res = &pdev->resource[...];
-    for (j = 0; j < num; j++) {
-      val64 = res[j].start;
-      of_pci_set_address(..., val64, 0, flags, false);
- +      if (OF_PCI_ADDR_SPACE_MEM64)
- +        prop[1] = upper_32_bits(val64);
- +      else
- +        prop[1] = 0;
+I noticed that I pasted two of the same example. I must have just
+yoinked the latter to a vim buffer rather than to my clipboard. At least
+it didn't matter in the end.
 
-OF_PCI_ADDR_SPACE_MEM64 tells us about the size of the PCI bus
-address, but the address (val64) is a CPU physical address, not a PCI
-bus address, so I don't understand why of_pci_set_address() should use
-OF_PCI_ADDR_SPACE_MEM64 to clear part of the CPU address.
+Cheers,
+Conor.
 
-Add blank lines between paragraphs.
+> >     };
+> >=20
+> > The solution is simple, remove the + from the regex. Sorry for sending
+> > you on the wrong track Thomas.
+>=20
+> Ah! Thanks Conor for the details, now it makes full sense :-) BTW Thomas
+> the regex is
+>=20
+> 	^channel@[0-3]+$
+>=20
+> and I guess it should instead be
+>=20
+> 	^channel@[0-2]$
+>                     ^
+>=20
+> in order to fully match the real indexing constraints you're enforcing
+> with minimum/maximum.
+>=20
+> Thanks,
+> Miqu=E8l
 
-> This could cause mapping translation mismatch on PCI devices (e.g. RP1)
-> that are expected to be addressed with a 64 bit address while advertising
-> a 32 bit address in the PCI config region.
-> Add a check in of_pci_set_address() to set upper 32 bits to zero in case
-> the address has no 64 bit flag set.
+--Tue/8AFCKfIOWTNr
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Is this an indication of a DT error?  Have you seen this cause a
-problem?  If so, what does it look like to a user?  I.e., how could a
-user find this patch if they saw a problem?
+-----BEGIN PGP SIGNATURE-----
 
-> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> ---
->  drivers/pci/of_property.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/of_property.c b/drivers/pci/of_property.c
-> index 5a0b98e69795..77865facdb4a 100644
-> --- a/drivers/pci/of_property.c
-> +++ b/drivers/pci/of_property.c
-> @@ -60,7 +60,10 @@ static void of_pci_set_address(struct pci_dev *pdev, u32 *prop, u64 addr,
->  	prop[0] |= flags | reg_num;
->  	if (!reloc) {
->  		prop[0] |= OF_PCI_ADDR_FIELD_NONRELOC;
-> -		prop[1] = upper_32_bits(addr);
-> +		if (FIELD_GET(OF_PCI_ADDR_FIELD_SS, flags) == OF_PCI_ADDR_SPACE_MEM64)
-> +			prop[1] = upper_32_bits(addr);
-> +		else
-> +			prop[1] = 0;
->  		prop[2] = lower_32_bits(addr);
->  	}
->  }
-> -- 
-> 2.35.3
-> 
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZsYH5gAKCRB4tDGHoIJi
+0qwgAP9DK5VMEgFavpXECmhFBfncT7lIUlxJBxj6s5zdF7kQnQD/Sw2qGwYA2V9y
+v3kct0e0cmDF19Qfeha3fH3QXcYq6QQ=
+=9e4E
+-----END PGP SIGNATURE-----
+
+--Tue/8AFCKfIOWTNr--
 
