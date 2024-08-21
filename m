@@ -1,173 +1,133 @@
-Return-Path: <devicetree+bounces-95363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA17A95914B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 01:41:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 573D49591AF
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 02:16:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 472081F232D5
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2024 23:41:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AF69BB212F3
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 00:16:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 350231C8FB9;
-	Tue, 20 Aug 2024 23:41:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DEAA2905;
+	Wed, 21 Aug 2024 00:16:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="S87Sj045"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X8KQlM1S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 701E714A4F0;
-	Tue, 20 Aug 2024 23:41:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 011DC17F7;
+	Wed, 21 Aug 2024 00:16:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724197299; cv=none; b=VA/nMYT9VGWPwss2l7/T7z7WwkN+IIatJoj7b6hN8ELuYlzvwyU4yp6+x9Xbv29vlGaepAqOPlM0PD8je1QIzZJrO0OPrKKp68tpMsydYQCxeE0NGZxDZG4P7jK6cx7qEPW3l5EotzaiHTbQ2jblZT70+dEgJRXXgfD/LC7+Gl8=
+	t=1724199381; cv=none; b=f2xfdj4Bg7SM9tPnbp37vApn7FkNxEr2DNQUPDmPNwBO7cqzkqEtTwf+nUdzrLvVtKAl8McdDe4rWsleqZPB7NOr6/moH5addWJ0HAvOm18KNwIEuks3gsTS4Dqbul19WEHtNCFxiwkRpaC6Mr1gg1SAnJbpg4gyfQ8LRMelhR0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724197299; c=relaxed/simple;
-	bh=Oz4ictvZa/glJJtpD3FaAHLOq4xAQvkCo3lPcmuXIXc=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
-	 In-Reply-To:Content-Type; b=QQwBOu5ZYNYW9E+7otlrWd6WNFVFfoSWdnR5nChDqZE6HpthdX5959ufmK7KjadDOCnCuXPRAT0Zn2C1lqRg+6ZlpLPMYquW/QAaCLTzaBrKwb5GYuFhvdIPMJLoH0527lAukstKNOt4e0bWLoTADWSAAkGb6ZaXtao3igDLIuU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=S87Sj045; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47KG3tSU026084;
-	Tue, 20 Aug 2024 23:38:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	N2xSHxx/O1IBD0VFXMURcOHZcfL9/KRzxqHJdamFR6E=; b=S87Sj045LK14QvkR
-	87oyKdX0PA02Tl+lnuUD20KN8C3v8sP/bJwqMRWeSSFHTR8ESbKHgIAt9iFm5oU6
-	h/p4o0VisAKXFZCfaoDYt3n8nEYghAtZkPLYSbJEH1WRmrKABYI7lghQyVa4WbQs
-	Dya4kFb5QCf8QW+hFS/4jsUuG38a0LVKCgJ0Hxky7/xqu9Gax/mZe3iRtWkIrWOA
-	7zV448qd9W+SKs1wZhSpjmjrjRzNh0L+N0GSYBnmrUPDkgh6gAVi3nJr/FKFomqp
-	dy/5W8g+0s+rBdDacKuJgq4VbkqejVy24LKnfN7jnIAj/5skB6Om2CTeJ6gikLE5
-	GjIJNg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 414xb9gw5x-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 20 Aug 2024 23:38:25 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47KNcOpI017411
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 20 Aug 2024 23:38:24 GMT
-Received: from [10.110.70.123] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 20 Aug
- 2024 16:38:23 -0700
-Message-ID: <56ebd11e-9522-406b-9ca4-5e284eaac409@quicinc.com>
-Date: Tue, 20 Aug 2024 16:38:23 -0700
+	s=arc-20240116; t=1724199381; c=relaxed/simple;
+	bh=//umJAjmzAHbb4srtnO6p7v3lXCw1BpKooPGruKj3YA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YyIRIbwqzI/yXN6NhJxL5k/K0yWWKNNfl1WFH7tuNBaLaa5t3q9z4tuz9hoI6sVKnWQvR6Tgd/Q0rl/R8a7p6FZZFv9uHstPLh/I1eSevg2BdtJkRSMqjklvPdsd0Rb9O0/Kv0Ve5VERxMA4QemL+ZCUtjok2ztOdQ3fWjuMPC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X8KQlM1S; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D40DC4AF0B;
+	Wed, 21 Aug 2024 00:16:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724199380;
+	bh=//umJAjmzAHbb4srtnO6p7v3lXCw1BpKooPGruKj3YA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=X8KQlM1SytAKYaLYGKjUz1REIaj2OSxhUitYLdZDhbSPUm+zX/n9d16vFT2QAuH+t
+	 gRVIKK+04YVkR6EPmSuh0C6nOhanaGhRH0wIWK4naUn2w1uZl8uwHWI3y2mssctyjl
+	 0frL43b32OAch2HL/8vT8AD+BpumetAHSJPiJ/WMT4RR9Qc2idkWKBT82xQcfgaPIm
+	 q/VC4vMsptGQhU0h7I2LgO61rK80P5F0B0tguEZC8SIfByjBsVZmPGPfkG3ZAn+S0S
+	 Y9hgUuLVMsBU/bK7a4OHKAWCAgtfwoB+yNoxm4PHjV43MFU/C3auVSDpM4VgrsFPnR
+	 su1kG3ad1mLCw==
+Date: Tue, 20 Aug 2024 19:16:18 -0500
+From: Rob Herring <robh@kernel.org>
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
+	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Stefan Wahren <wahrenst@gmx.net>
+Subject: Re: [PATCH 04/11] of: address: Preserve the flags portion on 1:1
+ dma-ranges mapping
+Message-ID: <20240821001618.GA2309328-robh@kernel.org>
+References: <cover.1724159867.git.andrea.porta@suse.com>
+ <5ca13a5b01c6c737f07416be53eb05b32811da21.1724159867.git.andrea.porta@suse.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v24 29/34] ALSA: usb-audio: qcom: Add USB offload route
- kcontrol
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
-        <broonie@kernel.org>, <lgirdwood@gmail.com>, <krzk+dt@kernel.org>,
-        <Thinh.Nguyen@synopsys.com>, <bgoswami@quicinc.com>, <tiwai@suse.com>,
-        <gregkh@linuxfoundation.org>, <robh@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>
-References: <20240801011730.4797-1-quic_wcheng@quicinc.com>
- <20240801011730.4797-30-quic_wcheng@quicinc.com>
- <4d5fe3f8-d7ba-4647-8dd7-22656ec2fde5@linux.intel.com>
- <58043166-c494-42db-b7d3-575991e43e8b@quicinc.com>
- <f507a228-4865-4df5-9215-bc59e330a82f@linux.intel.com>
- <88d5ed6f-1429-4381-8014-d5824ec7866e@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <88d5ed6f-1429-4381-8014-d5824ec7866e@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ST7IiTIh_vJ13SBgn85S-sPx1NsnI_FY
-X-Proofpoint-ORIG-GUID: ST7IiTIh_vJ13SBgn85S-sPx1NsnI_FY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-20_17,2024-08-19_03,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 phishscore=0
- impostorscore=0 lowpriorityscore=0 bulkscore=0 mlxscore=0 malwarescore=0
- priorityscore=1501 adultscore=0 suspectscore=0 mlxlogscore=985 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
- definitions=main-2408200173
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5ca13a5b01c6c737f07416be53eb05b32811da21.1724159867.git.andrea.porta@suse.com>
 
-Hi Pierre,
+On Tue, Aug 20, 2024 at 04:36:06PM +0200, Andrea della Porta wrote:
+> A missing or empty dma-ranges in a DT node implies a 1:1 mapping for dma
+> translations. In this specific case, rhe current behaviour is to zero out
 
-On 8/20/2024 10:37 AM, Wesley Cheng wrote:
-> Hi Pierre,
->
-> On 8/19/2024 11:39 PM, Pierre-Louis Bossart wrote:
->>>>> +/**
->>>>> + * snd_usb_offload_create_ctl() - Add USB offload bounded mixer
->>>>> + * @chip - USB SND chip device
->>>>> + *
->>>>> + * Creates a sound control for a USB audio device, so that applications can
->>>>> + * query for if there is an available USB audio offload path, and which
->>>>> + * card is managing it.
->>>>> + */
->>>>> +int snd_usb_offload_create_ctl(struct snd_usb_audio *chip)
->>>>> +{
->>>>> +	struct usb_device *udev = chip->dev;
->>>>> +	struct snd_kcontrol_new *chip_kctl;
->>>>> +	struct snd_usb_stream *as;
->>>>> +	char ctl_name[37];
->>>>> +	int ret;
->>>>> +
->>>>> +	list_for_each_entry(as, &chip->pcm_list, list) {
->>>>> +		chip_kctl = &snd_usb_offload_mapped_ctl;
->>>>> +		chip_kctl->count = 1;
->>>>> +		/*
->>>>> +		 * Store the associated USB SND card number and PCM index for
->>>>> +		 * the kctl.
->>>>> +		 */
->>>>> +		chip_kctl->private_value = as->pcm_index |
->>>>> +					  chip->card->number << 16;
->>>>> +		sprintf(ctl_name, "USB Offload Playback Route PCM#%d",
->>>>> +			as->pcm_index);
->>>>> +		chip_kctl->name = ctl_name;
->>>>> +		ret = snd_ctl_add(chip->card, snd_ctl_new1(chip_kctl,
->>>>> +				  udev->bus->sysdev));
->>>>> +		if (ret < 0)
->>>>> +			break;
->>>>> +	}
->>>>> +
->>>>> +	return ret;
->>> Hi Pierre,
->>>> None of this looks Qualcomm-specific, shouldn't this be part of the
->>>> soc_usb framework instead of being added in the qcom/ stuff?
->>> Started working on this particular comment, and there are some things that needs to be considered if we moved this into SOC USB:
->>>
->>> 1.  We do save the reference to the USB BE DAI link within the USB DT node, which can be fetched/referenced based on sysdev.  However, I'm not sure if everyone would potentially follow that way.
->>>
->>> 2.  I tried a few implementations of adding a new SOC USB API, and the argument list was a bit long, because I didn't want to directly reference the usb_chip.
->>>
->>> Sorry for the delay, but I wanted to give a good stab at implementing this before bringing up the implications.  It is possible, but definitely not as clean as how we have it now IMO.
->> My comment was only referring to the location of the code, it's now in
->> sound/usb/qcom/mixer_usb_offload.c but does not contain anything
->> specific to Qualcomm. I was not asking for any encapsulation inside of
->> soc-usb, I was only suggesting a move of the code to a shared helper
->> library so that this code can be reused as is and not duplicated if the
->> QCOM parts are not compiled in.
-> Ah, great, thanks for the clarification.  Let me take a look with that perspective.
->
-Going back on the history behind moving it into qcom/ was based off feedback that Takashi pointed out in v14[1].  It was mainly due to the fact that we would be adding another hard dependency between USB SND and the offloading components.  Hence the reason for moving it to within the QCOM offloading package. 
+typo
 
-Thanks
+> the entire specifier so that the translation could be carried on as an
+> offset from zero.  This includes address specifier that has flags (e.g.
+> PCI ranges).
+> Once the flags portion has been zeroed, the translation chain is broken
+> since the mapping functions will check the upcoming address specifier
 
-Wesley Cheng
+What does "upcoming address" mean?
 
-[1]: https://lore.kernel.org/linux-usb/87y1bt2acg.wl-tiwai@suse.de/
+> against mismatching flags, always failing the 1:1 mapping and its entire
+> purpose of always succeeding.
+> Set to zero only the address portion while passing the flags through.
 
+Can you point me to what the failing DT looks like. I'm puzzled how 
+things would have worked for anyone.
+
+
+> 
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> ---
+>  drivers/of/address.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/of/address.c b/drivers/of/address.c
+> index d669ce25b5f9..5a6d55a67aa8 100644
+> --- a/drivers/of/address.c
+> +++ b/drivers/of/address.c
+> @@ -443,7 +443,8 @@ static int of_translate_one(struct device_node *parent, struct of_bus *bus,
+>  	}
+>  	if (ranges == NULL || rlen == 0) {
+>  		offset = of_read_number(addr, na);
+> -		memset(addr, 0, pna * 4);
+> +		/* copy the address while preserving the flags */
+> +		memset(addr + pbus->flag_cells, 0, (pna - pbus->flag_cells) * 4);
+>  		pr_debug("empty ranges; 1:1 translation\n");
+>  		goto finish;
+>  	}
+> -- 
+> 2.35.3
+> 
 
