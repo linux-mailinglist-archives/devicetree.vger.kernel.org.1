@@ -1,156 +1,366 @@
-Return-Path: <devicetree+bounces-95387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F3149593F1
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 07:16:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AA30959418
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 07:34:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8D3B1F22771
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 05:16:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33574284392
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 05:34:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EE4015FCED;
-	Wed, 21 Aug 2024 05:16:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72B67F4F1;
+	Wed, 21 Aug 2024 05:34:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pmU9hxl5"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="1YDhg97x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2064.outbound.protection.outlook.com [40.107.236.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41F6F1537D1;
-	Wed, 21 Aug 2024 05:16:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724217407; cv=none; b=JGNwoFLE8DQjGSr8ulfArUv/VbuolUZ796WvhXbn3H/is1h4AkWEEhK8A2lXsJT4qekGYDLh4LTR0mSek9va+UWJpCr8Fo2j1in77dz7KZq7vpRjKyL7zcHUCBPbcfAdGBnsPTHLL2n6bUvqxH5gSgF8rf2HJNjGIdkPfMYMwUM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724217407; c=relaxed/simple;
-	bh=ZZXp028kuznJ40MHUeSJt4Qcm9NAbrJnKp1wijan5lw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=cRMid9wv7qiyODG9enoEPb9aQwMf0N/LmdFDNODQeD8ckpRNOOq5BFucZerBoC8S3gNCYi8nABUSSXY1xOrxGqKBcBudQjXkZR4jH985HdiHPYagqUDqOm/lknbn0x539BjHPcw0qXfCCjN0Ss/+9XYCMHX/kTNETYZZmCKiNww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pmU9hxl5; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47L5AQT6022670;
-	Wed, 21 Aug 2024 05:16:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	1mpMc7tEgd9LCX6iqpPcU8hX1X+O3hBWQ6RVnA+nEWs=; b=pmU9hxl5TNCPmcZH
-	Kn6SLir45a5KfH9MgsdaLZ9Riy3H4tmvq36bV8eWnIwdkSlGvBjFakLT1crmXYfs
-	LKhvZRUmKIQSVbPeQoUknqY8fJlQuxhf7DEMwvGPtPLMmlZ6sOR5ppUtKiYiQfV0
-	3uOdLAyyrynCz3oy+iGL5SI+vSYnPE4fw0rUQBDPixQbCruc8UVnpObLmNlMAvgW
-	rzxfbsoDsju76kXp+gxxNYE3uJWPPAE7kQxAwgrrPFnsgg9LFA1HuXASkNGba3Mc
-	9qShuDfqP88ICXlROhjIQBTWwrqz750JB7dafsyw6sv3UpJi81CnJfSZ8Yb7vUT/
-	q777/A==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 414pdmb1bc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Aug 2024 05:16:35 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47L5GYBf026977
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Aug 2024 05:16:34 GMT
-Received: from [10.151.37.94] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 20 Aug
- 2024 22:16:27 -0700
-Message-ID: <ef8b3a3d-5791-f5c5-4362-7e2f87d726d0@quicinc.com>
-Date: Wed, 21 Aug 2024 10:46:24 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7994979D1;
+	Wed, 21 Aug 2024 05:34:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.236.64
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724218460; cv=fail; b=feSW4Ei9wjzC5VdtfnLyURf3WalCCU5pQPgV2UG2d3LaeKxexiGgOt70ZVpX7nmLcruSofrlpfPenRpsSjX2Er6bttejuktTs2kYQ7PuWMR+ygvPcj3Zx+ZzStunjj+hKi0Haro/p1T4mX68nN5Oei4Vx6uDsn7RTF7tBIt68II=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724218460; c=relaxed/simple;
+	bh=qyebF4nw36iPXPg+YPvlIU1TKEfbXHQ9WxeTsBdPiXA=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=C1N4OPZvUfu5ICLFqGhVRZzwJu8j3lLJyRFQ7z058VKfhV4mnplmeG9tQefG2SZ5ca/e+xuZyk+5Ld+Ggs3n4geL3a1FnLcMRENXIbUP8F0u5igV3z1ZpFHi463J2bnaOLEHz9q5iUjrrZ2pJzPOWSi9uYBnhX0AfJOTa3axIPI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=1YDhg97x; arc=fail smtp.client-ip=40.107.236.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=PXlAhk0r316y28jptNagV+B9zJNE7281X7Ie/gFnhUxSelIUeqQ+GBnbLu+1f/Pfk9aqrV89szRiw5qKP0vnALnUBZm0c0szTPnRFbtL1MCH2lxEehuXiK+VRKPNDkQZUeVf8OjZroAqY9sdxir1FN7QNZ9Q923LEiYxLoiJSreAU5FEssd57PyR4FNHe5bBOhJcwo/qgfiKeTjVUiv3JneDjmBd2fiCvHCZfyNFVDx+hBaqXTIWilQPMtH4/Wwql4Kw9CXJGspipTOgUfM9fMiTjNzx5ODE0vCTLJowOnMdI6BEezGEEqoRPCoBZB7imM7g9lb4CjSQ0DM4p83MJA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+VCjjhRYl+cex8qmh/i52ElTNI4p/8K/Bu5NsCPVB+8=;
+ b=lyJ7Rx51lBvgQRaRaw9afkRmScUODUq7Lcvss4jRd80Wi+0Rj6/6ZxT4qJCEuRFjeH4UUMppG58mIhWVY2MMFnU1dW+Ck9O/cQsGHhmQAa61xBasO2Zz30424ucK1O7tx3t0uSQpxtzwkqwnc09k0t8vqWQ/HBuApozcqKPM1DDSjhR+uv2mnm1RFujKciKaDbHN6Bv7A5Odc0BRGMIJROpjvOdtT64F3nS25wjrRmooRtmTa8tH2D76K1ZR2B3w6PvdCa+qxKN2yO2Zbeus0HQGNymfVJAcM9dxFnt/DhUXYkPP/lZ21ZUdPAfiS1Ebgwb8eClxrhoSYPx747+r4A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+VCjjhRYl+cex8qmh/i52ElTNI4p/8K/Bu5NsCPVB+8=;
+ b=1YDhg97xpTdFrdGcEg3hKy0szqc/YDk6PEJ7qlD8OiIcPFmOX06hodNvOQU246g5o/hafL+sHb6hdbHakWG3G5dm2TzZKrzG6o0juBL3K9JCmpDYcFgMSrfrtFfzjAN35hi31CX16LL3PyBnR97EyN6lcSOIqSX+7jH63h6bCms=
+Received: from SN7PR12MB7201.namprd12.prod.outlook.com (2603:10b6:806:2a8::22)
+ by PH0PR12MB7983.namprd12.prod.outlook.com (2603:10b6:510:28e::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.18; Wed, 21 Aug
+ 2024 05:34:12 +0000
+Received: from SN7PR12MB7201.namprd12.prod.outlook.com
+ ([fe80::b25:4657:e9:cbc3]) by SN7PR12MB7201.namprd12.prod.outlook.com
+ ([fe80::b25:4657:e9:cbc3%7]) with mapi id 15.20.7875.018; Wed, 21 Aug 2024
+ 05:34:12 +0000
+From: "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>
+To: "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>,
+	"bhelgaas@google.com" <bhelgaas@google.com>, "lpieralisi@kernel.org"
+	<lpieralisi@kernel.org>, "kw@linux.com" <kw@linux.com>, "robh@kernel.org"
+	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "linux-pci@vger.kernel.org"
+	<linux-pci@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+CC: "Simek, Michal" <michal.simek@amd.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH v4 2/2] PCI: xilinx-xdma: Add Xilinx QDMA Root Port driver
+Thread-Topic: [PATCH v4 2/2] PCI: xilinx-xdma: Add Xilinx QDMA Root Port
+ driver
+Thread-Index: AQHa65WTirLKPezFCEeaPEvmYIB3ZLIxQDKg
+Date: Wed, 21 Aug 2024 05:34:11 +0000
+Message-ID:
+ <SN7PR12MB7201A15E2FB9B8A9E8E6BAA98B8E2@SN7PR12MB7201.namprd12.prod.outlook.com>
+References: <20240811022345.1178203-1-thippesw@amd.com>
+ <20240811022345.1178203-3-thippesw@amd.com>
+In-Reply-To: <20240811022345.1178203-3-thippesw@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SN7PR12MB7201:EE_|PH0PR12MB7983:EE_
+x-ms-office365-filtering-correlation-id: e0ec9bcb-a9d3-49ff-6540-08dcc1a2e325
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|366016|376014|7416014|38070700018|921020;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?vcK4imBM3JAc0XrCmZ4QkVOHmSgQZh9kWlz87fhXksL55IeIKf5m7GlJ1OxF?=
+ =?us-ascii?Q?zsChF+nd0Z2y1F5r4SFIstgOdnz2xXeCMUqeNyNqwYo9hTFPZi0/oYiEqG+9?=
+ =?us-ascii?Q?iUSCflJtX5ooYqAdaLxfDkXsaE7mvE+bCZnU5j2EYUegexvWC2G7OJSKFibQ?=
+ =?us-ascii?Q?0e1yEoHVCfh6r8xp5iGGDnUph/hlTF0JXOxbzR6mg6KLwcA5pxR6U+DNNDdJ?=
+ =?us-ascii?Q?vvx9IdmId0MMLdGxu0Y+9SC02zSwHHZNY91wjYdgk/cjh5/0gzI6/5Mhv5QA?=
+ =?us-ascii?Q?4AUWdbg7fA6qKRPL0W1G5hkCbLAvSJGp937BpuBsvyevikkCrYAICNOxEuxu?=
+ =?us-ascii?Q?2FIPUBFY7Tw3eTkpnXkwnVqdpZ9SWuT5vNrkugxZ0RAqboh7pitkthBNglUt?=
+ =?us-ascii?Q?LK5Ali7eG+HPUZv/PzwlCT6E52O+p3KeLgFbg4LJHKHO1K6DTRuEAQ6nhy8p?=
+ =?us-ascii?Q?7gaDOHwaGpijKQcqbnmobn9ji8WqkBc/tQmummv1mTWp+aAhKqWBE2K5EGGn?=
+ =?us-ascii?Q?+O3FDnKSUfHAW1Woaj69R/1IXfa6IFET8Oip7ajC32cOm2W/fMOxk6JPElEi?=
+ =?us-ascii?Q?HD8UC7Ecg79kOyPuN9Fu+cBIP5x6fKzechOpI5Qfb7kxGxdNIo/Pi/7yL6Cy?=
+ =?us-ascii?Q?6ovBeQWRmQC4C+SdiKFdlEsduJh7uO8bQ581N5eqonSkGrSFFwUUs+AkTVkL?=
+ =?us-ascii?Q?PxmPUmKaNTglyViQ3sutQR/2V9dt+/x+pVNNSqFrSRUnzPsCmj5Xrk8c4WEr?=
+ =?us-ascii?Q?9VlTKiZL5fyYfEsIcdoE2FouqPar2k94LFHS6gXLZ2oercJ1R6FIdzIpeQpH?=
+ =?us-ascii?Q?gWS8nIuvKWtdssoLyZ/mSmNmLyfsFwHYJyTdbLDiFk1EC5g2vE2hWSRptFwM?=
+ =?us-ascii?Q?SwIt6CstlSTBWHdBiXSiPEYxLETjoS2P2MowzMq4sf/9r4A5Ck+tF/IlOGJZ?=
+ =?us-ascii?Q?mJT1S/SlCJVWz/KLt/+xdDKKeM852EmTamNpncqnGbkD0wcB/lMTAeHNql/L?=
+ =?us-ascii?Q?OPlZ+d0yhb6xcGlXLdJTm5N5ykJlNSUE+/jOGD1NljC0TrCwxfZzOTRdASvZ?=
+ =?us-ascii?Q?sHLiwIHce1TrC9Vm+argPElknvRjjDOnu3r2/XuASz6nZn1Iq31HZRxvXaM0?=
+ =?us-ascii?Q?iIvA4PMSYYj5IuGXTAaMA50SV192AGWnintV4GcgtyYeTRi90ICCBs4gRUAT?=
+ =?us-ascii?Q?O/GCG1fLAdVH6vJ026eAMPopDK6fDYuzz6IXkEjZXsUTgoONF4uW/UZTKiC5?=
+ =?us-ascii?Q?SWC6U6zYZ1//K9h82+VwkJEVxwFVyue0OWarX2BzpLtYOKO8+J8GMLk2uuYU?=
+ =?us-ascii?Q?UD+6Yd1iInROxr39dCNW94IOwRh0msnHGjWeU/QIfTm2ALfSz30EWZgMX3fa?=
+ =?us-ascii?Q?kNfC9eDT6kg/7U6VL2P6solpDH9wmRaqkZA4HTYNgikb+1peBFACrFuft8KP?=
+ =?us-ascii?Q?iPNEfMtYgh4=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN7PR12MB7201.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(38070700018)(921020);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?fYiiE/qFfeysQhvHjiF7eUOBGdasy3X9qIKn4fqTatOHPIqHbl2KOYY9Ti7d?=
+ =?us-ascii?Q?JytnbWGrIZ/Z6vlVAid9rFtZ7ECUV/L+um7uNg+lBbwfAUv6pjpwprOyZsIg?=
+ =?us-ascii?Q?8AkronkelrW8zbLI5e28VDAaHi2j6T/2OhQkulzuf4xVfxJDrdbOenInbEQp?=
+ =?us-ascii?Q?whsq6aTqfyaErTtWXOzvDoO0mrCPNUgGyvUxqzNm75aBXJR2BK/7F7BKoADc?=
+ =?us-ascii?Q?0xaGknVWUtT5a1+HBmHRomxjpjfghOyZNbN7AoOA/WoeW2LgeGxfZf+kpo2O?=
+ =?us-ascii?Q?ZhXRb7XwKei1RHkI1JFjNud/Z9amKPZ/v6LcZ28AJgj6eFChed6Ay8GnJiUz?=
+ =?us-ascii?Q?I9lqN8+EpcqJejayBmudNkbAG1qXjN91yJPvEWbrzCKVt4CqCg1ow6JVe0Tq?=
+ =?us-ascii?Q?sM1WV+OCHn2NceK9XTWW68JplnOvfXBmCUnC+nMX40LrPJimG7NquXBmPgtu?=
+ =?us-ascii?Q?bM9D3MFgNEE4IbE9inAbUMbLOpaDnfVmZLQ1R2ambGr4wNUaQN9dcFqDu04m?=
+ =?us-ascii?Q?hrAIBF1HpPdBYTpj+0BBSgpnkbU3F7I/t2T1LwyL72Jqu8HBzhpvZWa7C8rm?=
+ =?us-ascii?Q?hQ6jBeF1pZUegcRIP0TAT7g5EBCWLbW1JOZP8yQyLgF0AAa5B/OZLz2RI8nu?=
+ =?us-ascii?Q?QALUR6hO+bjARS5wqRdS80dzHFTQ4J9OmX4FCGHe52/CbJdRI0kYnuYhFnAB?=
+ =?us-ascii?Q?XGK++5LP0bgzvS0cTWz3ooDDidiuiOTLmeacuD7T2CJkb1P77gl//fZCYFOe?=
+ =?us-ascii?Q?Sqs/3CRyUzTKXevWN3kjVQIBmt0TcxOTdx5hZVCa5PVD/SgpHDih2Hpn/ant?=
+ =?us-ascii?Q?XvpvVa3Nr20eQTXZEYUfypY1jyvsrR5BPQx7Q5VXHRbKLLTwX9K5CbOiM06j?=
+ =?us-ascii?Q?V4gdsCV4Gwlpzzmk7xRafIPN16x9Llt43Cr3iY+Ibyp5VRiGf/PE2ybpv6Gp?=
+ =?us-ascii?Q?eIoxp9bISxAemGhLmEemTWVTvMmSm3PX+oG/7ZpSz/Bn95gjOi9oMgFJmO3L?=
+ =?us-ascii?Q?/uhTVitiYlHEBBlUq/wu4QZnbID9WtkvwW4PEMfr5DmBs//yfLLvhgK+RW3I?=
+ =?us-ascii?Q?L+tYLPry2rmWZkl9gLlhrY+DFxIrYo2jmXrsoz829BmR8HX/2YJjigCinzU8?=
+ =?us-ascii?Q?FBbKNdla/M94dG8Vfc+oTbHM0YrLKRfJYdTIGyy9N2etOqtQYbiTwdixRLKY?=
+ =?us-ascii?Q?urY3mDAOgoHPjnUFiJQxiLcpixwqeREO8PJ4oj3fvh8/wwtQKqfddjJsTQd4?=
+ =?us-ascii?Q?vHL/49CPpd43ayezCAP2nZfevIms0ifFkmlGTnRRSe/IkrMgpEXM1vbZ5zOy?=
+ =?us-ascii?Q?VM3BwOjEy2hC7rWA196Z+AvmaB5ql13jiKlOGvgV4uOtppG+ASfsHMpqrOsj?=
+ =?us-ascii?Q?VCu8N0ycgWTVTukHHC0qqX8363L9OQEB/D81b0kYIkbbdeeEvR0mJb5M1S0T?=
+ =?us-ascii?Q?fj2aqAAoqGUZZeZEmbvWPoR6KZmczKJ+Ym6dMTsyYDsjGkFkhw6SSq/LhSFR?=
+ =?us-ascii?Q?cHoKvGjfoErL6Rwtd1iVz0cAKj0xhn1wEKes2RaOtGZJr6S9WgbnTCH/LU3L?=
+ =?us-ascii?Q?bEgDEPTtNPo9MmeoeZI=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v2 14/16] arm64: dts: qcom: ipq9574: enable bam pipe
- locking/unlocking
-Content-Language: en-US
-To: Bjorn Andersson <andersson@kernel.org>
-CC: <vkoul@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <konradybcio@kernel.org>,
-        <thara.gopinath@gmail.com>, <herbert@gondor.apana.org.au>,
-        <davem@davemloft.net>, <gustavoars@kernel.org>,
-        <u.kleine-koenig@pengutronix.de>, <kees@kernel.org>,
-        <agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
-        <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>,
-        <quic_utiwari@quicinc.com>
-References: <20240815085725.2740390-1-quic_mdalam@quicinc.com>
- <20240815085725.2740390-15-quic_mdalam@quicinc.com>
- <lr53irikxjjoiks2utckyt5bsflxm52r2nlospkv3id6qwkfih@pycrjkeibx4g>
-From: Md Sadre Alam <quic_mdalam@quicinc.com>
-In-Reply-To: <lr53irikxjjoiks2utckyt5bsflxm52r2nlospkv3id6qwkfih@pycrjkeibx4g>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: KN-cptjYjujvWk4URMmF6hvTYq_beEY-
-X-Proofpoint-ORIG-GUID: KN-cptjYjujvWk4URMmF6hvTYq_beEY-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-21_05,2024-08-19_03,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 spamscore=0
- suspectscore=0 malwarescore=0 phishscore=0 priorityscore=1501 mlxscore=0
- impostorscore=0 bulkscore=0 lowpriorityscore=0 adultscore=0 clxscore=1015
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
- definitions=main-2408210036
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB7201.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e0ec9bcb-a9d3-49ff-6540-08dcc1a2e325
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Aug 2024 05:34:11.9297
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: kbA1WraMzeKT4r1i2OEKukL2lsPkFj5mB0J6i3wbTd5X9u8kVQWPmTdHrsARMZj0fyBIW5LznNZnY00wQSTmpg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7983
 
+Hi Bjorn,
 
+Can you please update this patch.
 
-On 8/16/2024 10:10 PM, Bjorn Andersson wrote:
-> On Thu, Aug 15, 2024 at 02:27:23PM GMT, Md Sadre Alam wrote:
->> enable bam pipe locking/unlocking for ipq9507 SoC.
-> 
-> Note that the commit messages for the other non-dts commits will not
-> show up in the git history for this file. So, please follow
-> https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
-> and give some indication of "problem description", to give future
-> readers an idea why this is here.
-   Ok
-> 
->>
->> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
->> ---
->>
->> Change in [v2]
->>
->> * enabled locking/unlocking support for ipq9574
->>
->> Change in [v1]
->>
->> * This patch was not included in [v1]
->>
->>   arch/arm64/boot/dts/qcom/ipq9574.dtsi | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> index 48dfafea46a7..dacaec62ec39 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> @@ -262,6 +262,7 @@ cryptobam: dma-controller@704000 {
->>   			#dma-cells = <1>;
->>   			qcom,ee = <1>;
->>   			qcom,controlled-remotely;
->> +			qcom,bam_pipe_lock;
-> 
-> Per the question before about what does this actually lock. Is this a
-> property of the BAM controller, or the crypto channel?
-   This is the property of BAM controller.
-> 
-> Regards,
-> Bjorn
-> 
->>   		};
->>   
->>   		crypto: crypto@73a000 {
->> -- 
->> 2.34.1
->>
+Regards,
+Thippeswamy H
+
+> -----Original Message-----
+> From: Thippeswamy Havalige <thippesw@amd.com>
+> Sent: Sunday, August 11, 2024 7:54 AM
+> To: bhelgaas@google.com; lpieralisi@kernel.org; kw@linux.com;
+> robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org; linux-
+> pci@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org
+> Cc: Simek, Michal <michal.simek@amd.com>; linux-arm-
+> kernel@lists.infradead.org; Havalige, Thippeswamy
+> <thippeswamy.havalige@amd.com>
+> Subject: [PATCH v4 2/2] PCI: xilinx-xdma: Add Xilinx QDMA Root Port drive=
+r
+>=20
+> Add support for Xilinx QDMA Soft IP core as Root Port.
+>=20
+> The Versal Prime devices support QDMA soft IP module in programmable
+> logic.
+>=20
+> The integrated QDMA Soft IP block has integrated bridge function that can
+> act as PCIe Root Port.
+>=20
+> Signed-off-by: Thippeswamy Havalige <thippesw@amd.com>
+> ---
+>  drivers/pci/controller/pcie-xilinx-dma-pl.c | 54 ++++++++++++++++++++-
+>  1 file changed, 53 insertions(+), 1 deletion(-)
+> ---
+> changes in v4:
+> - none
+>=20
+> changes in v3:
+> - Modify macro value to lower case.
+> - Change return type based QDMA compatible.
+>=20
+> changes in v2:
+> - Add description for struct pl_dma_pcie
+> ---
+> diff --git a/drivers/pci/controller/pcie-xilinx-dma-pl.c
+> b/drivers/pci/controller/pcie-xilinx-dma-pl.c
+> index 5be5dfd8398f..1ea6a1d265bb 100644
+> --- a/drivers/pci/controller/pcie-xilinx-dma-pl.c
+> +++ b/drivers/pci/controller/pcie-xilinx-dma-pl.c
+> @@ -13,6 +13,7 @@
+>  #include <linux/msi.h>
+>  #include <linux/of_address.h>
+>  #include <linux/of_pci.h>
+> +#include <linux/of_platform.h>
+>=20
+>  #include "../pci.h"
+>  #include "pcie-xilinx-common.h"
+> @@ -71,10 +72,24 @@
+>=20
+>  /* Phy Status/Control Register definitions */
+>  #define XILINX_PCIE_DMA_REG_PSCR_LNKUP	BIT(11)
+> +#define QDMA_BRIDGE_BASE_OFF		0xcd8
+>=20
+>  /* Number of MSI IRQs */
+>  #define XILINX_NUM_MSI_IRQS	64
+>=20
+> +enum xilinx_pl_dma_version {
+> +	XDMA,
+> +	QDMA,
+> +};
+> +
+> +/**
+> + * struct xilinx_pl_dma_variant - PL DMA PCIe variant information
+> + * @version: DMA version
+> + */
+> +struct xilinx_pl_dma_variant {
+> +	enum xilinx_pl_dma_version version;
+> +};
+> +
+>  struct xilinx_msi {
+>  	struct irq_domain	*msi_domain;
+>  	unsigned long		*bitmap;
+> @@ -88,6 +103,7 @@ struct xilinx_msi {
+>   * struct pl_dma_pcie - PCIe port information
+>   * @dev: Device pointer
+>   * @reg_base: IO Mapped Register Base
+> + * @cfg_base: IO Mapped Configuration Base
+>   * @irq: Interrupt number
+>   * @cfg: Holds mappings of config space window
+>   * @phys_reg_base: Physical address of reg base
+> @@ -97,10 +113,12 @@ struct xilinx_msi {
+>   * @msi: MSI information
+>   * @intx_irq: INTx error interrupt number
+>   * @lock: Lock protecting shared register access
+> + * @variant: PL DMA PCIe version check pointer
+>   */
+>  struct pl_dma_pcie {
+>  	struct device			*dev;
+>  	void __iomem			*reg_base;
+> +	void __iomem			*cfg_base;
+>  	int				irq;
+>  	struct pci_config_window	*cfg;
+>  	phys_addr_t			phys_reg_base;
+> @@ -110,16 +128,23 @@ struct pl_dma_pcie {
+>  	struct xilinx_msi		msi;
+>  	int				intx_irq;
+>  	raw_spinlock_t			lock;
+> +	const struct xilinx_pl_dma_variant   *variant;
+>  };
+>=20
+>  static inline u32 pcie_read(struct pl_dma_pcie *port, u32 reg)
+>  {
+> +	if (port->variant->version =3D=3D QDMA)
+> +		return readl(port->reg_base + reg +
+> QDMA_BRIDGE_BASE_OFF);
+> +
+>  	return readl(port->reg_base + reg);
+>  }
+>=20
+>  static inline void pcie_write(struct pl_dma_pcie *port, u32 val, u32 reg=
+)
+>  {
+> -	writel(val, port->reg_base + reg);
+> +	if (port->variant->version =3D=3D QDMA)
+> +		writel(val, port->reg_base + reg +
+> QDMA_BRIDGE_BASE_OFF);
+> +	else
+> +		writel(val, port->reg_base + reg);
+>  }
+>=20
+>  static inline bool xilinx_pl_dma_pcie_link_up(struct pl_dma_pcie *port)
+> @@ -173,6 +198,9 @@ static void __iomem
+> *xilinx_pl_dma_pcie_map_bus(struct pci_bus *bus,
+>  	if (!xilinx_pl_dma_pcie_valid_device(bus, devfn))
+>  		return NULL;
+>=20
+> +	if (port->variant->version =3D=3D QDMA)
+> +		return port->cfg_base + PCIE_ECAM_OFFSET(bus->number,
+> devfn, where);
+> +
+>  	return port->reg_base + PCIE_ECAM_OFFSET(bus->number, devfn,
+> where);
+>  }
+>=20
+> @@ -731,6 +759,15 @@ static int xilinx_pl_dma_pcie_parse_dt(struct
+> pl_dma_pcie *port,
+>=20
+>  	port->reg_base =3D port->cfg->win;
+>=20
+> +	if (port->variant->version =3D=3D QDMA) {
+> +		port->cfg_base =3D port->cfg->win;
+> +		res =3D platform_get_resource_byname(pdev,
+> IORESOURCE_MEM, "breg");
+> +		port->reg_base =3D devm_ioremap_resource(dev, res);
+> +		if (IS_ERR(port->reg_base))
+> +			return PTR_ERR(port->reg_base);
+> +		port->phys_reg_base =3D res->start;
+> +	}
+> +
+>  	err =3D xilinx_request_msi_irq(port);
+>  	if (err) {
+>  		pci_ecam_free(port->cfg);
+> @@ -760,6 +797,8 @@ static int xilinx_pl_dma_pcie_probe(struct
+> platform_device *pdev)
+>  	if (!bus)
+>  		return -ENODEV;
+>=20
+> +	port->variant =3D of_device_get_match_data(dev);
+> +
+>  	err =3D xilinx_pl_dma_pcie_parse_dt(port, bus->res);
+>  	if (err) {
+>  		dev_err(dev, "Parsing DT failed\n");
+> @@ -791,9 +830,22 @@ static int xilinx_pl_dma_pcie_probe(struct
+> platform_device *pdev)
+>  	return err;
+>  }
+>=20
+> +static const struct xilinx_pl_dma_variant xdma_host =3D {
+> +	.version =3D XDMA,
+> +};
+> +
+> +static const struct xilinx_pl_dma_variant qdma_host =3D {
+> +	.version =3D QDMA,
+> +};
+> +
+>  static const struct of_device_id xilinx_pl_dma_pcie_of_match[] =3D {
+>  	{
+>  		.compatible =3D "xlnx,xdma-host-3.00",
+> +		.data =3D &xdma_host,
+> +	},
+> +	{
+> +		.compatible =3D "xlnx,qdma-host-3.00",
+> +		.data =3D &qdma_host,
+>  	},
+>  	{}
+>  };
+> --
+> 2.34.1
+
 
