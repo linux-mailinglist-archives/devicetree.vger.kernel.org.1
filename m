@@ -1,237 +1,241 @@
-Return-Path: <devicetree+bounces-95458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB05A9598DE
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 13:02:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7C3A9598FB
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 13:05:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF1CE1C21597
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 11:02:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F21B284298
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 11:05:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 816411F3745;
-	Wed, 21 Aug 2024 09:30:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD7C51CDA23;
+	Wed, 21 Aug 2024 09:41:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="lufqcsL1"
+	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="vIzvA6ZK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from HK2PR02CU002.outbound.protection.outlook.com (mail-eastasiaazon11010024.outbound.protection.outlook.com [52.101.128.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A1031F3741
-	for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 09:30:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724232650; cv=none; b=VzquhbrBaVVajWMPPn4NFFZEy2cqloMWobFGLpWoPOTuTkqKEv2GHMrsULckMF9cXpkUEcfMwpiVQZ8MDEMrT+lqqQS3sSNggfMWTeBxDxSdgMeZ+PgqEVEoW5umxHMENjg0CCVzxwyToMm41zFCOJwBzG5KpOliCV3n8npq8fI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724232650; c=relaxed/simple;
-	bh=2PuRZJKFX+8h0wsjkRdFM+YPsqggo8jMLYDszFQP/bc=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=nT9Ymzh1ThJyATLF3QYCvRuuh8k1aLO/wAi450FAWW1+xxzJVTQPlWvwX5Hc8c+T8VEtjrtbdW+85esvOWvlk8FZeX2YXwwxNdRyhwuVCmiAQXgbHawSbvMHc7VmyKIKPm8zphv65fCK52ryZMwUneYZJ2Jr0ltVgoNDX7J5UwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=lufqcsL1; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20240821093040epoutp03eec5d6373da2ce40b4a42a59621e31c2~ttHOJy2mI1858418584epoutp03N
-	for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 09:30:40 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20240821093040epoutp03eec5d6373da2ce40b4a42a59621e31c2~ttHOJy2mI1858418584epoutp03N
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1724232640;
-	bh=CxHZ2IhgFN32ZaNM/qm3PeYWoU6m4YH2ghNdcMmsBoA=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=lufqcsL17OHpldqG8bD85whP1L2G6GFvjQR9g6qb36N3S4gHNrzkbVovRrAZ5OG89
-	 5X8JY5wCieY3qPQx/5ovWmuZhdajOyrd99oWeL6LkNAgSk7RHs9/Ew961fK2lWE346
-	 9W3/EtABNRrMeuVdcrEdeMhhqHm3X1QBWU2j7ptg=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-	epcas2p2.samsung.com (KnoxPortal) with ESMTP id
-	20240821093040epcas2p245fb6cafe86a41e66bc39e4b00f42d7c~ttHNw_NZL2681226812epcas2p2P;
-	Wed, 21 Aug 2024 09:30:40 +0000 (GMT)
-Received: from epsmges2p1.samsung.com (unknown [182.195.36.68]) by
-	epsnrtp3.localdomain (Postfix) with ESMTP id 4Wpgzz59MTz4x9Pp; Wed, 21 Aug
-	2024 09:30:39 +0000 (GMT)
-Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
-	epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	39.C9.10431.FB3B5C66; Wed, 21 Aug 2024 18:30:39 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
-	20240821093039epcas2p390bf443819db218a0a94b424fece7961~ttHMxiScs1394613946epcas2p3q;
-	Wed, 21 Aug 2024 09:30:39 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20240821093039epsmtrp28b101ad940a3d663af57ea05db3a209b~ttHMwixhX0970509705epsmtrp2J;
-	Wed, 21 Aug 2024 09:30:39 +0000 (GMT)
-X-AuditID: b6c32a45-da1ff700000028bf-d7-66c5b3bf6441
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	89.D2.08964.EB3B5C66; Wed, 21 Aug 2024 18:30:38 +0900 (KST)
-Received: from KORCO118965 (unknown [10.229.18.201]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20240821093038epsmtip201075943f081dfbd771ba19e1ed25993~ttHMehQTc2427824278epsmtip2U;
-	Wed, 21 Aug 2024 09:30:38 +0000 (GMT)
-From: "sunyeal.hong" <sunyeal.hong@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Kwanghoon Son'"
-	<k.son@samsung.com>, "'Sylwester Nawrocki'" <s.nawrocki@samsung.com>,
-	"'Chanwoo	Choi'" <cw00.choi@samsung.com>, "'Alim Akhtar'"
-	<alim.akhtar@samsung.com>, "'Michael Turquette'" <mturquette@baylibre.com>,
-	"'Stephen Boyd'" <sboyd@kernel.org>, "'Rob Herring'" <robh@kernel.org>,
-	"'Conor Dooley'" <conor+dt@kernel.org>
-Cc: <linux-samsung-soc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-In-Reply-To: <8a729db0-f587-42b6-8003-789091986324@kernel.org>
-Subject: RE: [PATCH v6 4/4] clk: samsung: add top clock support for
- ExynosAuto v920 SoC
-Date: Wed, 21 Aug 2024 18:30:38 +0900
-Message-ID: <0aa001daf3ac$c8a5bb40$59f131c0$@samsung.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D747F1CDA02;
+	Wed, 21 Aug 2024 09:41:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.128.24
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724233282; cv=fail; b=X/po2UGLfZzZf6uD2x/QVdMvKmH8kuFnFohZukNWetMHv6rXkh82Pmrne1OizhovhtEpYw9XxAq94ptFxWtMjWDqwpsiRcdSP5Uj+I4eMw/dJBDL3HVkWSQYAYHjsikUE6MPBqybkYvg1++NRYUJ3O665xwJC59QlE6Pk2cUAss=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724233282; c=relaxed/simple;
+	bh=vYjzz1aYfBH2mFL4yevU0XB2bNSidM/xuT65NQvJtTA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=cu6xUbxC+Fyfmzddxr1KzR7AYL58RSnS183PzLe4WrCbkG/N6v4kW4s4zK9caLn3gvON55rEmAG9nPKvKEgUYpFrflVYE09jQPudbOOcSAbJN50YYAuQ0uuLVVOAZEV76ptjSk0F/QyWflB/F31gilqxNRO1N2CvNSgoOWxrhSo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=vIzvA6ZK; arc=fail smtp.client-ip=52.101.128.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=axUtb/Jfxm3B+PF2vXAqB6LKHk+LJ/7BeLZt6maiul1q0YQSOWHfPrUPzerqw4QBQxTgoyd48eYXzAqgQrj0fanZ5JMXFjqpKL4+I9o049O7PdMhnQ1uoWhYhLHym1UUKCf/q2cC4rgJR+yKw5qowXqPaeWFxGVUAz+KZzdPOz+0fpS7JxtQtGfTyxAvtrWHNul7xMWx/lmof1J+tFDAFg6GVlD2gahgTrilCcpwkEZI441ROwsF3/4QgI935+VXSNMBr/AMTmuLojZXlh4PF0gB9fW8XjNi6iMA+6CAJ9+fk4ZT7kDdN/7UytB4GLI32P7zFlZI5WzURUf0b4F6lQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=djWCQoHVCoKcuHjbZqQuK0GFNl1DzKJBRGUo0YAeUQk=;
+ b=coXjJ67uW16ob0MrcVRC6ZexHwugnY1xta4QcXC4l+LcnGXIfsfeLxCKblR/hrLNrNZKdanwIjoSd7eRVa6riV3hegpN8EWKge8NWlGBB9bMBwnzHu8jhAqZHt4wfFnOPVMCL3jV/qJE0xezYalVhVOFztT+sEker2MPde51VScEB9ahw6WtqXInG/MivdjrhdMl/kZoSqHxckQYrIJDM1ZUUC5qr0XlV8i51I0sdPoh8skzUA7rxmkPSGkl8TWutvqmesrg94zs33NPaTZAGTzBzfqL5Axx8EoElTqqxIxGFHQbMwHIiRvnz0+BUKAmifYh+aWWuWFrkNRw7CmDzg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=djWCQoHVCoKcuHjbZqQuK0GFNl1DzKJBRGUo0YAeUQk=;
+ b=vIzvA6ZKEVaO/auT4HbqlIpWpRVeAjlbwTrZJ/GjuBHBlFutBebw2A3dvByU5U0gWqtR35j3wbelRxjJfgfkl2ZEHweVCZipK3PPy1R33jXzghvBYrMMWR+ZXhtYpUS3FbTKLKv18AhlMPte9L+CgSEHfzh0X8NtHXgZKa64KiAQQCdskk6cBTWS2JQ4bulBJBTNg+A3FogE7C/uwd9sqbXEbwWZHmdBtRBYthTVtIh312bYi86ZTEzIrvpMjcNhWsb7QxlVhqR3jbukWXI5nK9qPQcZh9w06JB2XvxNx5sqdA673ArIFRyi06YyTBwUeqVebGh6h67BzMJs9xQeoQ==
+Received: from SI2PR02CA0036.apcprd02.prod.outlook.com (2603:1096:4:195::15)
+ by JH0PR04MB7976.apcprd04.prod.outlook.com (2603:1096:990:95::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.25; Wed, 21 Aug
+ 2024 09:41:13 +0000
+Received: from SG2PEPF000B66CB.apcprd03.prod.outlook.com
+ (2603:1096:4:195:cafe::e0) by SI2PR02CA0036.outlook.office365.com
+ (2603:1096:4:195::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.25 via Frontend
+ Transport; Wed, 21 Aug 2024 09:41:13 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ SG2PEPF000B66CB.mail.protection.outlook.com (10.167.240.24) with Microsoft
+ SMTP Server id 15.20.7897.11 via Frontend Transport; Wed, 21 Aug 2024
+ 09:41:12 +0000
+From: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+To: patrick@stwcx.xyz
+Cc: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v13 00/29]  Add i2c-mux and eeprom devices for Meta Yosemite 4
+Date: Wed, 21 Aug 2024 17:40:11 +0800
+Message-Id: <20240821094043.4126132-1-Delphine_CC_Chiu@wiwynn.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: ko
-Thread-Index: AQLQL30DU0UysUOS1ES52gTWByyh0gCAc2uXAiz2ascBkCr+LgIuZJbKAN2O2QABhTlqKwKclZoJAbQXYwQCPTKgC6/ME8mA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrJJsWRmVeSWpSXmKPExsWy7bCmhe7+zUfTDJ71q1s8mLeNzWLN3nNM
-	Fte/PGe1mH/kHKtF75qrTBbnz29gt9j0+Bqrxceee6wWl3fNYbOYcX4fk8XFU64W//fsYLc4
-	/Kad1eLftY0sDnwe72+0sntsWtXJ5rF5Sb1H35ZVjB6fN8kFsEZl22SkJqakFimk5iXnp2Tm
-	pdsqeQfHO8ebmhkY6hpaWpgrKeQl5qbaKrn4BOi6ZeYA3amkUJaYUwoUCkgsLlbSt7Mpyi8t
-	SVXIyC8usVVKLUjJKTAv0CtOzC0uzUvXy0stsTI0MDAyBSpMyM64ufgxS8E/kYqna64wNjD2
-	CHYxcnJICJhIvL3yjBXEFhLYwSjx5WF4FyMXkP2JUeLa0xVMEM43RokZ7SuZYDp+ndzDCJHY
-	yyjRMmsZM4TzklGi5/s9dpAqNgF9idXdt9lAEiICrcwSB588ZwFxmAXWMUpsnnkErIpTwE6i
-	bW8bI4gtLBApcXE/hM0ioCrR9+8fmM0rYClxZ0sfC4QtKHFy5hMwm1lAW2LZwtfMEDcpSPx8
-	uowVIi4iMbuzDSwuIpAn8WfxDbAnJAROcEjM3nsNKMEB5LhI/NorCtErLPHq+BZ2CFtK4vO7
-	vWwQdr7E5OtvoXobgKHxrxtqmb3EojM/2UHmMAtoSqzfpQ8xUlniyC2o0/gkOg7/ZYcI80p0
-	tAlBNKpJfLpyGWqIjMSxE8+YJzAqzULy2Cwkj81C8swshF0LGFlWMYqlFhTnpqcWGxUYwmM7
-	OT93EyM4DWu57mCc/PaD3iFGJg7GQ4wSHMxKIrzdLw+mCfGmJFZWpRblxxeV5qQWH2I0BQb1
-	RGYp0eR8YCbIK4k3NLE0MDEzMzQ3MjUwVxLnvdc6N0VIID2xJDU7NbUgtQimj4mDU6qBSa3D
-	yue2YnGv/bfnKi0CG29MOvXq2ZfOG6+fzFPlX8oUHBlaFxnQbcPme7CR58Jv++9vK7vefnx1
-	2yuv2X7at9U9mcePTpqy0+ngSWXzixfyddR7ftUw/vixImfuXav28rakt+HrVPx8Z6oLCx34
-	kPdApn/x+2mrjMpWNUj/L2fYt+ahRdzx1syq7sMXNbkm7GWq+lV39L9QK+/ej5t2LKx4fuGt
-	3Sk5jb/Hkp8u9H64OOIoy8vsNtczRyS2dZdf3LC5RbHszvmK+08PrZJtmz7xRbGaTyD3hFNV
-	YW6Ni9do19g92LRNXtSjKU2j7M+Cv593rGU5+1NN7LRXYJDpjb2X93xRZcjWiVU0u3V82QQl
-	luKMREMt5qLiRAB29iPoTAQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrGIsWRmVeSWpSXmKPExsWy7bCSvO7+zUfTDCYqWTyYt43NYs3ec0wW
-	1788Z7WYf+Qcq0XvmqtMFufPb2C32PT4GqvFx557rBaXd81hs5hxfh+TxcVTrhb/9+xgtzj8
-	pp3V4t+1jSwOfB7vb7Sye2xa1cnmsXlJvUffllWMHp83yQWwRnHZpKTmZJalFunbJXBlLH25
-	mbHgkkjFpVOz2BsYbwh0MXJySAiYSPw6uYexi5GLQ0hgN6PE6ed/GCESMhIbG/6zQ9jCEvdb
-	jrBCFD1nlGjqesMKkmAT0JdY3X2bDSQhItDNLPFo7S4mEIdZYBOjxLndN9kgWtaySPy4sZYN
-	pIVTwE6ibW8b2A5hgXCJ01uOMoPYLAKqEn3//oHFeQUsJe5s6WOBsAUlTs58AmYzC2hL9D5s
-	ZYSxly18zQxxn4LEz6fLWCHiIhKzO9vA4iICeRJ/Ft9gmsAoPAvJqFlIRs1CMmoWkvYFjCyr
-	GCVTC4pz03OLDQsM81LL9YoTc4tL89L1kvNzNzGCo1JLcwfj9lUf9A4xMnEwHmKU4GBWEuHt
-	fnkwTYg3JbGyKrUoP76oNCe1+BCjNAeLkjiv+IveFCGB9MSS1OzU1ILUIpgsEwenVAPTtLWF
-	G6RDNLdOU56hXHlikkeI27KA85b7arb0B60zX5X0NKFZV8A+89qD4/ITJZYKuN2c1KHlXzfD
-	+oytxZxpCjtZlgpmKcevErFlrv9udjWOs+mkXWne8Qur/poy3rpstGda7Af9vtbefQ6iRvNO
-	H798Zcvetaf7nx+xebX0Ww+PWbfSprp2+0Jz3oh0l5wIzXVKwm8X7ve+EV/8XnHKJTeTawvk
-	ch9Kl/dlTGlI8c9RNbppc3fyudhX7/W+r19Q9MPj6Kk/Hs83dM7eq2E8wfEZU/H5fyLZb2Nf
-	bJyzs5avyMtw5yzZ98LPL8z73eJrbRK/ti763MJU3lXvdu7KOzS1SepoXM6lFWu1S689UmIp
-	zkg01GIuKk4EALsYRJQ5AwAA
-X-CMS-MailID: 20240821093039epcas2p390bf443819db218a0a94b424fece7961
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20240819052422epcas2p258a29e773ebdd60573078c21f7a7da12
-References: <20240819052416.2258976-1-sunyeal.hong@samsung.com>
-	<CGME20240819052422epcas2p258a29e773ebdd60573078c21f7a7da12@epcas2p2.samsung.com>
-	<20240819052416.2258976-5-sunyeal.hong@samsung.com>
-	<7f77dcc41173f2a20a0264b6242ecdac6ea85ad9.camel@samsung.com>
-	<087401daf2a3$4ae602f0$e0b208d0$@samsung.com>
-	<9ee0efad7a27202e6b830996b5ee661a2d350b84.camel@samsung.com>
-	<0a0101daf371$0f2025b0$2d607110$@samsung.com>
-	<76a46e34-fc22-477d-a2e6-4767e65a73c4@kernel.org>
-	<0a7b01daf398$9465d090$bd3171b0$@samsung.com>
-	<8a729db0-f587-42b6-8003-789091986324@kernel.org>
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CB:EE_|JH0PR04MB7976:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: ea3194f7-99fa-4232-446b-08dcc1c56564
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|36860700013|1800799024|7416014|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?yewKOnJVxie+XVPsWy93hqW0zHM04yN/L0uqOt8ZqAGdJzdr3BxmaJ1b/XhW?=
+ =?us-ascii?Q?gNQFfd1quHw1W+OjaGK7vRROI3M+vLyTmLy955h+VZzhbPNpqrWfqhFVKeSR?=
+ =?us-ascii?Q?3itCLbt7t06UmFy1h3gHqB16+VcV0A+PGN2HsiCJjcl5BuVs6+TelEdbIL7m?=
+ =?us-ascii?Q?9HGLVCqVi/vVUj9UBU0fUR3iYmzSElpTfBe73w2pSlYjnvZlHzk5BAhNpopD?=
+ =?us-ascii?Q?JhFvpg//TRuMrlxetnpFV+AoH71tXkqUTHNs1xMDZgDccDThjcSxuxRUe29r?=
+ =?us-ascii?Q?BSTAtYISKyz26PIDxcwcgkvK7kzvgpxYnM2CYETULOcPVl+/8206P3FMomWW?=
+ =?us-ascii?Q?kMAMrEWs7juxxqfMeZPv8TI+KSnLq/CWqDG0STisGtuAgI17UMMRAv+Ns/5A?=
+ =?us-ascii?Q?Zl1kRdmbi5RRZ/woqDpAH77Gvj57FYXETnw3hPp5U9gadi1zFKx3MLIB1yDO?=
+ =?us-ascii?Q?vxR2TfYMQS8+o8TEQMe7yljcBahWoSy351EM28gNkfTd/dxuCh2ikZ/SvLam?=
+ =?us-ascii?Q?Q3/iFA7Lkgr7xaQauouuLSvsb38/r3C4i1U+z//qbMRnwu+o4KWL//chmXX9?=
+ =?us-ascii?Q?ZMi5BRByciivB0j6cYN1PHL3oYS+Tyn+m+7VEJKD4uHK6f3//v02CMZSdNI0?=
+ =?us-ascii?Q?Rju2JyLjG5v8pzpkQWX9IEeCWzIXS8nyYBgi7IbLUYfEJQXG4dxR5lVGBPqq?=
+ =?us-ascii?Q?oJD67Ae6+0y62ZCUdFySOsikCC7FYe2Nt/9IvVTx2S2TdXVVBpSjHlZUGLIw?=
+ =?us-ascii?Q?mn83mUmYzuWqBwi8eiB6Zk1Ug9KFITY3CbJjdOE2N6uDqZklgc0VZaMNwk50?=
+ =?us-ascii?Q?j77fWLKKD7pECd/X6p79sMNPZqsSu2PMZUN3vhtU86HgIAFO+/T2CVeFBmp9?=
+ =?us-ascii?Q?SAAQ8n6Nj/8AikL1IsnBwntGTH9ITilhvrDDpHM0w3YemZgijCwie2G4ATf+?=
+ =?us-ascii?Q?1SdZ7TeR/bq50SXAtAfqb+KDVbhXsWeqRsFCAFatxwkjxT2uJD//okyuatYz?=
+ =?us-ascii?Q?t2h8c2AfxehD+MHovndxCHuaq5vQ+DGXx+yyR8GOzzZb5dRG25AOfDx+50vi?=
+ =?us-ascii?Q?gJesyFd98pBRSQ0wYJ7PFO4ifjPBjGXIt9BbewkqOzdftVpZ6LA1nvy/BqUT?=
+ =?us-ascii?Q?/+fbsKw+zbtqhBqnEHr/9vk9VEYZzgNuHK8Smo9xf7uelv5AjXF9PN8xEHXl?=
+ =?us-ascii?Q?ZhPXlkf4UExkD6lRe7yH3pqLUM3HFoX054pcudzzkBOaY+bxpPurcP6OgI2k?=
+ =?us-ascii?Q?1NDAKZ7tOvN7tI5exc7eV7yQdj16fM+lFms7psW/kpufy5aIUmsRqO2UW60C?=
+ =?us-ascii?Q?kebIxBwkg39NvnNXjulfpV14MKN1ULKZHm+az9Wap3A45XyBhVcWBUZ9trgk?=
+ =?us-ascii?Q?nW2FB7bnWUUb16R+RvqE8WuX0mCcc8kd6iyK5DTYOZyA9A3UJHYEkCuvHyfU?=
+ =?us-ascii?Q?qPlDqaQSER+hU6zYU7zw8S1WrUgkCpCm?=
+X-Forefront-Antispam-Report:
+	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230040)(376014)(36860700013)(1800799024)(7416014)(82310400026);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2024 09:41:12.6993
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ea3194f7-99fa-4232-446b-08dcc1c56564
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SG2PEPF000B66CB.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR04MB7976
 
-Hello Krzysztof,
+Changelog:
+  - v13
+    - Add RTQ6056-support-on-bus-11 
+  - v12
+    - Fix GPIO linename typo and add missing GPIO pin initial state.
+  - v11
+    - Revise all GPIO line name with bottom line
+  - v10
+    - adjust mgm cpld ioexp bus
+    - add GPIOO7 name
+    - remove mctp driver
+  - v9
+    - add XDP710 support
+    - add RTQ6056 support
+    - add MP5990 support
+  - v8
+    - add fan led config
+  - v7
+    - Revise pca9506 i2c address
+  - v6
+    - Revise i2c duty-cycle for meeting 400khz spec
+  - v5
+    - Support medusa board adc sensors
+    - support NIC eeprom
+  - v4
+    - Re-format gpio linename
+    - Revise i2c device node names
+    - Split patches by logic changes
+  - v3
+    - Correct patch for revising gpio name
+  - v2
+    - Revise mx31790 fan tach config
+    - Add mctp config for NIC
+    - Support mux to cpld
+    - Revise gpio name
+  - v1
+    - Add gpio and eeprom behind i2c-mux
+    - Remove redundant idle-state setting for i2c-mux
+    - Enable adc 15, wdt2,spi gpio for yosemite4 use
+    - Revise quad mode to dual mode to avoid WP pin influnece the SPI
+    - Revise power sensor adm1281 for yosemite4 schematic change
+    - Add gpio pca9506 I/O expander for yosemite4 use
+    - remove space for adm1272 compatible
+    - enable interrupt setting for pca9555
+    - add eeprom for yosemite4 medusa board/BSM use
+    - remove temperature sensor for yosemite4 schematic change
+    - add power sensor for power module reading
+    - Revise adc128d818 adc mode for yosemite4 schematic change
+    - Revise ina233 for yosemite4 schematic change
+    - Remove idle state setting for yosemite4 NIC connection
+    - Initialize bmc gpio state
+    - Revise mx31790 fan tach config
+    - Add mctp config for NIC
+    - Support mux to cpld
+    - Revise gpio name
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk=40kernel.org>
-> Sent: Wednesday, August 21, 2024 5:02 PM
-> To: sunyeal.hong <sunyeal.hong=40samsung.com>; 'Kwanghoon Son'
-> <k.son=40samsung.com>; 'Sylwester Nawrocki' <s.nawrocki=40samsung.com>;
-> 'Chanwoo Choi' <cw00.choi=40samsung.com>; 'Alim Akhtar'
-> <alim.akhtar=40samsung.com>; 'Michael Turquette' <mturquette=40baylibre.c=
-om>;
-> 'Stephen Boyd' <sboyd=40kernel.org>; 'Rob Herring' <robh=40kernel.org>; '=
-Conor
-> Dooley' <conor+dt=40kernel.org>
-> Cc: linux-samsung-soc=40vger.kernel.org; linux-clk=40vger.kernel.org;
-> devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; lin=
-ux-
-> kernel=40vger.kernel.org
-> Subject: Re: =5BPATCH v6 4/4=5D clk: samsung: add top clock support for
-> ExynosAuto v920 SoC
->=20
-> On 21/08/2024 09:06, sunyeal.hong wrote:
-> >>>>>>> +	.clk_name		=3D =22dout_clkcmu_peric0_noc=22,
-> >>>>>>
-> >>>>>> same question.
-> >>>>>> Isn't it =22noc=22?
-> >>>>>> https://lore.kernel.org/linux-samsung-
-> >>>>>> soc/58dfae564a4a624e464c7803a309f1f07b5ae83d.camel=40samsung.com/
-> >>>>>>
-> >>>>>> In my case(autov9), if put wrong clk_name dmesg will show that,
-> >>>>>> exynos_arm64_register_cmu: could not enable bus clock ...; err =3D
-> >>>>>> -2
-> >>>>>>
-> >>>>>> Kwang.
-> >>>>>>
-> >>>>>>
-> >>>>>
-> >>>>> clk_name follows the guide document provided by hw. v9 is bus, but
-> >>>>> v920
-> >>>> uses noc.
-> >>>>
-> >>>> What I mean,
-> >>>>
-> >>>> .clk_name		=3D =22dout_clkcmu_peric0_noc=22, // wrong
-> >>>> .clk_name		=3D =22noc=22, // correct
-> >>>>
-> >>>> Because there is no clock-names =22dout_clkcmu_peric0_noc=22 in
-> >>>> exynos/exynosautov920.dtsi.
-> >>>>
-> >>>
-> >>> The clk_name written here has nothing to do with the device tree.
-> >>> Please
-> >> look at the code carefully.
-> >>
-> >> Hm? I see in the code clearly:
-> >>
-> >> 	clk_get(dev, cmu->clk_name);
-> >>
-> >> Where cmu is the discussed struct.
-> >>
-> >> If you claim it does not have anything to do with DT, then what is it
-> for?
-> >>
-> >> Best regards,
-> >> Krzysztof
-> >
-> > In general, clk_get is used via the clk_name declared in the DT.
-> >
-> > However, the question asked here is the parent clock name of peric0_noc=
-,
-> so it is unrelated to the device tree.
->=20
-> No. The question was about clk_name entry in cmu info used directly for
-> clk_get.
->=20
+Delphine CC Chiu (28):
+  ARM: dts: aspeed: yosemite4: Revise i2c-mux devices
+  ARM: dts: aspeed: yosemite4: Enable adc15
+  ARM: dts: aspeed: yosemite4: Enable spi-gpio setting
+  ARM: dts: aspeed: yosemite4: Enable watchdog2
+  ARM: dts: aspeed: yosemite4: Revise quad mode to dual mode
+  ARM: dts: aspeed: yosemite4: Revise power sensor adm1281 for schematic
+    change
+  ARM: dts: aspeed: yosemite4: Add gpio pca9506
+  ARM: dts: aspeed: yosemite4: Remove space for adm1272 compatible
+  ARM: dts: aspeed: yosemite4: Enable interrupt setting for pca9555
+  ARM: dts: aspeed: yosemite4: Add power sensor for power module reading
+  ARM: dts: aspeed: yosemite4: Add eeprom for yosemite4 use
+  ARM: dts: aspeed: yosemite4: Remove temperature sensor for yosemite4
+    schematic change
+  ARM: dts: aspeed: yosemite4: Revise adc128d818 adc mode for yosemite4
+    schematic change
+  ARM: dts: aspeed: yosemite4: Revise ina233 config for yosemite4
+    schematic change
+  ARM: dts: aspeed: yosemite4: Remove idle state setting for yosemite4
+    NIC connection
+  ARM: dts: aspeed: yosemite4: Initialize bmc gpio state
+  ARM: dts: aspeed: yosemite4: Revise mx31790 fan tach config
+  ARM: dts: aspeed: yosemite4: add mctp config for NIC
+  ARM: dts: aspeed: yosemite4: support mux to cpld
+  ARM: dts: aspeed: yosemite4: support medusa board adc sensors
+  ARM: dts: aspeed: yosemite4: support NIC eeprom
+  ARM: dts: aspeed: yosemite4: Revise i2c duty-cycle
+  ARM: dts: aspeed: yosemite4: add fan led config
+  ARM: dts: aspeed: yosemite4: add XDP710
+  ARM: dts: aspeed: yosemite4: add RTQ6056 support
+  ARM: dts: aspeed: yosemite4: add MP5990 support
+  ARM: dts: aspeed: yosemite4: Adjust ioexp bus and remove mctp driver
+  ARM: dts: aspeed: yosemite4: fix GPIO linename typo
 
-I have verified that peric0 has a dev parameter and that it should use a cl=
-k_name that matches the clock-names declared in the device tree. I will upd=
-ate the patch with a fix.
+Ian-I-Chien (1):
+  ARM: dts: aspeed: yosemitet4: add RTQ6056 support on 11 (0x41).
 
-Best Regards,
-sunyeal
+ .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 1749 ++++++++++++++++-
+ 1 file changed, 1653 insertions(+), 96 deletions(-)
 
->=20
-> Best regards,
-> Krzysztof
->=20
-
+-- 
+2.25.1
 
 
