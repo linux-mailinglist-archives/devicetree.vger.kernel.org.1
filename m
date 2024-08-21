@@ -1,901 +1,289 @@
-Return-Path: <devicetree+bounces-95393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD9FA9594E8
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 08:43:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2877B9594F3
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 08:46:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 746E2288CB2
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 06:43:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D11B1C21CDA
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 06:46:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4760B1C7B98;
-	Wed, 21 Aug 2024 06:43:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0E821DF678;
+	Wed, 21 Aug 2024 06:46:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="SjSD0rs3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PeGnfjBt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2137.outbound.protection.outlook.com [40.107.215.137])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4182E1B9B41;
-	Wed, 21 Aug 2024 06:43:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.215.137
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724222597; cv=fail; b=EgiT6yGDMSYz/TZIy5Vevh1wUlqJ/44bUkq+6/vSoXNjb0//MvABliMGKx2KzqVPMt3gaFHXPgJehgw9IhIlv7SH2Erus74SOxE9/6/m4wQ/XeQYjHkikTcVOFrrM5MLZKEf+vjWF/9TYZILKlE1N3l3IRCgQYzXbDHYYxB1VzE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724222597; c=relaxed/simple;
-	bh=iN2Va8jJMTWdHDIwPjGH/cBsvUqYpapHdpvjSlML9lA=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=mZIOj1j+/C/th62jrnW7qGdNI21VcOrfVllNj8nrn0xeLvNiUYLp5832ld/7kIr3nitlYe2wKrrujz8ybOC9ZJZeAdGZ19rZuURBUgHPP5gIZCcEFVLSrWn7E6EwIlnEsA9aWSvJIHdTAZUhwSs1Afm39nsArhZMXZNTQtsYjYk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=SjSD0rs3; arc=fail smtp.client-ip=40.107.215.137
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=foCj/OZwUYWwXROG9aNfrMCn6+U9s2yG1UhYynEatRd6t8ioG4TDayFa8mJAH0Dhb9TZKRI22oNvZdGiSKoquxjHcODWDhqp4cvkbYGvQdDJd0J8Nc3qYvT8URVvDBCcpV/17sYJbQVlz5RaMWBcDDsEF+GD/Oz6bOmgMIzrDZy/SHYJf5+V4qwaDydyAmNP91NMmPYTtFsfowAgQxhfxFXZYKLP/hwjcXEuD8q2YC1838yHGUx+rD3UPantauDtcZbkysJDYGdN9p8/Cx+SDFCpb7EZjBwcQS7jTDKKs46I/f5WmSMX4us/lAwEHSOPYOeRtf2QShR+PXmNwwb4Zg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2SPQ+3n18x7So4leCZ6YRnLDfjAm4p/Z9L0+cp9tJCs=;
- b=TiRWUuuIX0kmkrU/uEnAoeZ+3TL4bdIzKH0+J6sLBGgraWWAEou6HfUwoT6gbyiRCSEc9FdarGwjTFam7abgQkg500+PObzA73bro5ShEmwtuIGImpuVqVj7L372ff7HRRpNCQq2oxME/pQsLuolvN79PzPv50RZkKAyR62Woi212Kc0MsZJH/TfghKCjzRkl9V3lKMiy8CBXPOQLf7I+NvLL7PS/NYnSDVk+xWSChuL2OgM2/BsVqU9nL4cy27g4I8LcZwN4FlbqIfP3Zuu2aD8WLSBAYps8zam7pvbxtcyQ2ONVhzKA8lbixc2Xa++348cWgH8UJ7TEsnp3h55Xg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2SPQ+3n18x7So4leCZ6YRnLDfjAm4p/Z9L0+cp9tJCs=;
- b=SjSD0rs3nOH7WpxwxCdKIWIvCcC91tbhL2QtOWnvAV5RDkXeNA2nloo7/f7m5hod55yYLdltuwq79dnSTWjXhC+z7SCSKLwb+Zei5m41Ml1mdWcegRIiFU1tTHzOTp1FnSUMrdmDEt1wxR4+RT+NtQd+/3GwS9HvP+AD85lNeGrboetIyx0tQHytEd0BB2w3Moxvz1W7Ut1Pypj5pl0UAXYbeEyTO+/dPVBg3u3cnoFkfXGyDpbn21xXLdk5pkt6AH29AE/rvUnknWWenWFRkoisKgdN24woTIyaYIu5+JKE0dJNHaqa1Gwg0mj6CUTdEaXydz0SOZ9Y6ONTRUZpXQ==
-Received: from OS8PR06MB7541.apcprd06.prod.outlook.com (2603:1096:604:2b1::11)
- by SI2PR06MB5387.apcprd06.prod.outlook.com (2603:1096:4:1ee::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.25; Wed, 21 Aug
- 2024 06:43:02 +0000
-Received: from OS8PR06MB7541.apcprd06.prod.outlook.com
- ([fe80::9f51:f68d:b2db:da11]) by OS8PR06MB7541.apcprd06.prod.outlook.com
- ([fe80::9f51:f68d:b2db:da11%5]) with mapi id 15.20.7875.019; Wed, 21 Aug 2024
- 06:43:01 +0000
-From: Ryan Chen <ryan_chen@aspeedtech.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-CC: "brendan.higgins@linux.dev" <brendan.higgins@linux.dev>,
-	"benh@kernel.crashing.org" <benh@kernel.crashing.org>, "joel@jms.id.au"
-	<joel@jms.id.au>, "andi.shyti@kernel.org" <andi.shyti@kernel.org>,
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
-	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-	"openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
-	<linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v13 2/3] i2c: aspeed: support AST2600 i2c new register
- mode driver
-Thread-Topic: [PATCH v13 2/3] i2c: aspeed: support AST2600 i2c new register
- mode driver
-Thread-Index: AQHa8ho4oLFWUX2yC0qHT9Kfp3UIaLIuoMcAgAJo7hA=
-Date: Wed, 21 Aug 2024 06:43:01 +0000
-Message-ID:
- <OS8PR06MB7541EE5BA5B400445FE0295EF28E2@OS8PR06MB7541.apcprd06.prod.outlook.com>
-References: <20240819092850.1590758-1-ryan_chen@aspeedtech.com>
- <20240819092850.1590758-3-ryan_chen@aspeedtech.com>
- <ZsNT7LPZ7-szrgBJ@smile.fi.intel.com>
-In-Reply-To: <ZsNT7LPZ7-szrgBJ@smile.fi.intel.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: OS8PR06MB7541:EE_|SI2PR06MB5387:EE_
-x-ms-office365-filtering-correlation-id: f1c0e400-1cbe-4f25-814f-08dcc1ac8089
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|1800799024|7416014|376014|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?ZMgWviHoI/jRflilPBCj6cxeNv8e3gwZZembe9Vy3OzeEPkiiRwUT8Pbo+y6?=
- =?us-ascii?Q?Z920XZT60p6SazaEHNZL4V2bTjeSfl6o49WaYDUDB/jQiH6CtuzaV4VvNSVg?=
- =?us-ascii?Q?7JaTT2psjCDTOIeFCR9J7dyKAWLkmG9yhJYCuVd8tIobxcievcl6PaLI7cx6?=
- =?us-ascii?Q?Q3KypDdsf8ZPmvkldQHqXfyiKa194cF5L9eB9p129pzR8BPgk2pK6mVoEOzu?=
- =?us-ascii?Q?cOSHg77NjGuiRZEJNlncUcosCem+sr5Ze7Rw2F1zgZK5Ia6geVOnmBn1IbDe?=
- =?us-ascii?Q?fpnFwZlI6fuEPPK8oxXdNZh1SkS/0WSOzVVjAg1wNzc+Yw3JZq9eaSH2zyAX?=
- =?us-ascii?Q?s0ZmeoKOxoax2hEJ/DER1KhmCSXJBn3r6oWhBKuzjDAtgnGH1qwSNuPlo+gU?=
- =?us-ascii?Q?GQCeZ/QZgc8LzDF4AHeqBKBCuwn1I4AGcdayp6F1aRHq2TMhACna4fXVRUbk?=
- =?us-ascii?Q?aY5pZVskW04f7Gkces+WVxuhNGwDU46GA5crcBREn++dO39tzaXbBaRyawFX?=
- =?us-ascii?Q?/UBi0bxN/YEkDoNMLR8+R70TGyvYj4ypcBwt6eBsST4yaNxenwiwJ9EvZ5nP?=
- =?us-ascii?Q?msSBc/pOfVTGrBPUScNlR/0Ymk71EfEiL1BMQJunF/L6vmI/eynqoyvvYMwo?=
- =?us-ascii?Q?Xd94TTWfunAGqVULyUNeHnViqrpyykEcglni+blJe4L7CB/0iLUCHv1sbqVf?=
- =?us-ascii?Q?zU3RjCwbrpmMy/3ZkkeDrTTInHOuQYr2RpPWEdVtjeBkwbqJq9aJRT9v2HSK?=
- =?us-ascii?Q?oJmG+egoe+3OEPqQBVtU/3u1R5Ru64ZoCljZM7rRsvG0TQvtDxFvZWOJJwPU?=
- =?us-ascii?Q?DOKso+FZbQvfuMIzOdlbkgQFS5C4atDgZopFT9KqW9cg7d6uPBv4ERHJkUKJ?=
- =?us-ascii?Q?spB5Rnb7u0kGVaIbUtxhjfI3b08GAopSIDHwWmAVBMqr1HUE0nR5xHidd8tJ?=
- =?us-ascii?Q?KrpFbNFFdZ4sw4xOfwYEQHJAjeUE7VeAKhNyIpoPp3jN1ax2NhugHGoAM0yA?=
- =?us-ascii?Q?FSU+FWB4aRQEzcKHiiWOPEWRV/Igo3NdUv7xHRZ56BRkG/PizUfMOvC8Ckry?=
- =?us-ascii?Q?GkZz/dTq8TV9kPuzafLTkdieMSav+xdmqXwFNxI/3y/Co47knrB+8S7MurtU?=
- =?us-ascii?Q?xo8EviJH7xxjDTK5XniZzgfu5TbsrKL1hLXo+FV3R/E89sD+Q9tRK3sl+JaH?=
- =?us-ascii?Q?A3amMDHXjjL5AucoJZ7MFIgXfBTdC8RiYdqf52uepl3YETLifIHT41VoGKqp?=
- =?us-ascii?Q?xADYbjjrQNatx8SaJWL0z8oGfALFMPG9lK3Ns0DZgQn52MZ7d64uHpKqTS1/?=
- =?us-ascii?Q?VPEtHfae/oZyLAJzspxwxA4lnZkTOMb8A75KtVdjkZ8WXycu1hfH3H+oYmJ2?=
- =?us-ascii?Q?N5whKxkivHalSRo9aqa7GzuFAeg+hNt3kUJ2tEJyhp6sFg9Kjw=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS8PR06MB7541.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?rMipE9pxcMTKN7E1KbjHi1eSMl14V7ZHy4RGZyk3Xdfz223ay/gOR3xB3IIF?=
- =?us-ascii?Q?cmnYIOkQdU+5takVY+D75NMoHEjEjvrCQA6JJ+OJ3s+l/LQ+LOMpPRz8IpNQ?=
- =?us-ascii?Q?7W9mlr4rEEEeXpLMqIZcFmQ1LYxW9C/3qIYWD3Tvvxhtxs0wvWbCqPYhefHO?=
- =?us-ascii?Q?bYckr5owI//ayP3WToKOKGMsX7IsY9HaKAh0UjuUV+rtUl1VJPF+FGk2fzN2?=
- =?us-ascii?Q?1pKsuUnYLHyL6EoLNzPCk9SDmvJvJpYoBxIvnafMlgzfgPuXqT5rBAUWdNd8?=
- =?us-ascii?Q?FRT977Z9U8K74IiZH11xd1RtxlmiOEFxVtSqJ5R1LNZLXRQgOCAXD6JVEvPE?=
- =?us-ascii?Q?Pe4xQe5tlpLwpXxdT4j3McXZ4Ubq4Q+oJoWE/5720DIN58RC5gyhFY+HWuQO?=
- =?us-ascii?Q?0Hs2xBWVXAEjo/CTd1WW0AQECXnDvqwf57Rhj7ZE79lott8Y7+DEnpH5i1rl?=
- =?us-ascii?Q?V9rXuOZXGQF9qxe14Gev1jBHO86vLBHERfoW4kQxeJ00MLleAIT4HDSpZQJk?=
- =?us-ascii?Q?K3HLpFdyvctpF44LAihfGvmUjvdykWwEWE8I38EQzAni6nWFvhGXR2Uwkj5F?=
- =?us-ascii?Q?FsBqmIfqDBR/BZUTNxpZUNJnmaRxUoPvzjWWqaZIv4hEyFTvQt9rXsuUaZ01?=
- =?us-ascii?Q?rFyfQxlTkOEngX1mcu8b3WHxdaLOGGIdZekqx3BuKFi1R4g0FL7YJp/2Pdgb?=
- =?us-ascii?Q?OfdzR5UPB4d+ZfhuVP6ENmJYFnSFY0LrULt85KAlVIA2zmmoSfewOkU5JFfO?=
- =?us-ascii?Q?qt7WXV990susGDIeNw7+xO4zcmdJdVuPN5QDrSeJbxh+XjVu2QbMAjh6qelA?=
- =?us-ascii?Q?4qEuBFqrZWWbBz9EqOVdObyn3px5ATGAouVJSG9c/AWuipOhUK/DKS/3S7Ot?=
- =?us-ascii?Q?nVx/IIWmGT0I9atbBWYttnlIMyv4NJtZxoWnzGwyqJJ4nePkFb3yAoqbUM1u?=
- =?us-ascii?Q?7niuNjJ/5oVMq7g4bNAKfTEyiAaVLvYyBZbSsHANFr7Q2OGNYFowSSJqgUoe?=
- =?us-ascii?Q?LfOT3ALFGVYK6B46VrwFM2TVZ48adQiScFJFsX5sca/Gr5Z20nuB4vQoemll?=
- =?us-ascii?Q?4hNo4F/o4jniwuWq2NIOegPLckN9g71sxwc+NkQ/ksMP9+VhIxzG0IXn+k9b?=
- =?us-ascii?Q?TrLT3TPNZcFwjKcH2HhfW4aWkxk9tO3QYuUQiMItcS7Tqh1oVXxDeWJP/mdf?=
- =?us-ascii?Q?y38YpCTovlGi5jI3PeDFMLgvBNj6QQnk6P/M/un9HwjJgxbIi3na7KWKV7qN?=
- =?us-ascii?Q?aU8+DYYeyDg7N7HINFyDyj4Xk8rihgokBBVB8krXsaiIJxQ+qKNwy+xhHVZU?=
- =?us-ascii?Q?idzmXseeB3brD/n5En8IVved0kO/hfcYWisloKEBaWEkMWLoANHrllzdUPFF?=
- =?us-ascii?Q?+SgvYSi4XT4xJksCmeXoiUQ01KFH6wifmAGI0Xp1sJcU6Jo+rmfTknJRxize?=
- =?us-ascii?Q?faD1Sj3Bue1W3zTuCxLjtGZvuKocoLuH9CtXcxS6p/poKM4v5mz5K7fhji4D?=
- =?us-ascii?Q?6mxrUIHSPObyZ0Le4St78TMbJA7an8VdAveHj1gUYVoSfcP4X2XaO/kNDRsG?=
- =?us-ascii?Q?aZGAOyXKe9WQoR4uu87YffYdKXzRaddlzGTDT3P5?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67CC81DD39D;
+	Wed, 21 Aug 2024 06:46:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724222793; cv=none; b=lXPn9D0SVOOPlk5UCJKKCMOjm2X+sm5abFw4iVxejrCplLC5fdafs07RCQJ7I1uk3O0TMReWkMDdyB7okdvFPJHfYuRyVRYMcy5hvexoqNPliSoIdvjRCFkU3eKAG9IasIcn01LxHO25DfWWqht6YMkpqQNK637GBNEW3g2rIHI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724222793; c=relaxed/simple;
+	bh=17IzyzXdxtDfZym3lISmj6YUwJQbWja38DH227XK31I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DHsrQSacZgrGxIXCcx3xT9yrlkbRnVqmVx/h+hkBg0O4h40ZWBOKmRJW2C46c+2Jo62sLe/r0y0NAAVUvMqZknN/zIqZXNDLYwWPoTnJZmTmmRlrcCPZT/qhsvITkhewTpZ1rEgBmBMNdmsBxb5PLxeSyip6hsr6WIgP+O0dh2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PeGnfjBt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 639B3C32782;
+	Wed, 21 Aug 2024 06:46:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724222792;
+	bh=17IzyzXdxtDfZym3lISmj6YUwJQbWja38DH227XK31I=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PeGnfjBt4SUEhM5GIhCjKsLxxH3BeLTUzDy1UFKKQd41ZrL3lEWcAtH+RCB9KbwY+
+	 xblKkVs6AIsVtUiG4G+me9cCy79Wca50RIOyOwthUctjSht0vWbNw7j4tkwG58fl+m
+	 7uWzw7kr7WXO+dwYG4xUQlh5LjGZxKdLPrGCFr0H6rZkbhpRO060vcBfLqstIPF3FO
+	 NfY+x8bTqgJmsfzBIN8b+0TaWgI8V12uOatppXx5AlYO7JUvcC33Wjklb6hOodSUu3
+	 ZkL6aZaVisL3bVFGMCAif/qUb4XIVQWxhbBmcYwL5yxSs4YZxOvCaDB8CSbOabTacL
+	 GvgfHmtiyBQ/w==
+Message-ID: <931f4acc-6fb5-4f0d-9e37-b945de2e7349@kernel.org>
+Date: Wed, 21 Aug 2024 08:46:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS8PR06MB7541.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f1c0e400-1cbe-4f25-814f-08dcc1ac8089
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Aug 2024 06:43:01.4374
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: MaSxIdcgdYqGgkdI5WtMycgZsg1a8tKr+cjAWNBjQIB0CFeaHmovJUPLljialCTSRLNzEKUBGeZDZ/AyQYXElW9TVhBDZ88C/3csp1IH8ew=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR06MB5387
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: wireless: restore constraint for
+ brcm,bcm4329-fmac compatible property
+To: Arend van Spriel <arend.vanspriel@broadcom.com>
+Cc: Kalle Valo <kvalo@kernel.org>, Hector Martin <marcan@marcan.st>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-wireless@vger.kernel.org, brcm80211@lists.linux.dev,
+ asahi@lists.linux.dev
+References: <20240820101216.355012-1-arend.vanspriel@broadcom.com>
+ <20240820101216.355012-2-arend.vanspriel@broadcom.com>
+ <mbvhz3wosnykejgs65es2sfedxoevysbqu3jxmpgdze2b2tl6o@grx4mxas2bmf>
+ <7881c303-bef1-403a-aa70-30d33558f57f@kernel.org>
+ <6777d425-b27f-43d0-ba81-b36ac0b8f929@broadcom.com>
+ <0b639d04-af33-44b0-a556-40decff683c5@kernel.org>
+ <3ed394a3-2b5e-4096-b090-c805657585a3@kernel.org>
+ <f7c17dff-fd64-4769-9fc4-7ff929a2c5d8@broadcom.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <f7c17dff-fd64-4769-9fc4-7ff929a2c5d8@broadcom.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-> Subject: Re: [PATCH v13 2/3] i2c: aspeed: support AST2600 i2c new registe=
-r
-> mode driver
->=20
-> On Mon, Aug 19, 2024 at 05:28:49PM +0800, Ryan Chen wrote:
-> > Add i2c new register mode driver to support AST2600 i2c new register
-> > mode. AST2600 i2c controller have legacy and new register mode. The
-> > new register mode have global register support 4 base clock for scl
-> > clock selection, and new clock divider mode. The new register mode
-> > have separate register set to control i2c master and slave. This patch
-> > is for i2c master mode driver.
->=20
-> ...
->=20
-> > +struct ast2600_i2c_bus {
->=20
-> Have you run `pahole` to be sure the layout is optimal?
+On 20/08/2024 21:29, Arend van Spriel wrote:
+> On August 20, 2024 5:51:03 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> 
+>> On 20/08/2024 17:36, Krzysztof Kozlowski wrote:
+>>> On 20/08/2024 14:50, Arend van Spriel wrote:
+>>>> On 8/20/2024 1:39 PM, Krzysztof Kozlowski wrote:
+>>>>> On 20/08/2024 13:27, Krzysztof Kozlowski wrote:
+>>>>>> On Tue, Aug 20, 2024 at 12:12:15PM +0200, Arend van Spriel wrote:
+>>>>>>> When extending the bindings for Apple PCIe devices the compatible property
+>>>>>>> specification was changed. However, it was changed such that for these
+>>>>>>> devices it was no longer necessary to have "brcm,bcm4329-fmac" listed as
+>>>>>>> string in the compatible list property as it was before that extension.
+>>>>>>
+>>>>>> Apart that this was never tested... That statement is not true. Look at
+>>>>>> "fixed" commit - it is not doing like that at all.
+>>>>>>
+>>>>>> I don't understand the reasoning.
+>>>>>>
+>>>>>>> This patch restores that constraint.
+>>>>>>>
+>>>>>>> Fixes: e2e37224e8b3 ("dt-bindings: net: bcm4329-fmac: Add Apple properties 
+>>>>>>> & chips")
+>>>>>>> Signed-off-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+>>>>>>> ---
+>>>>>>> .../net/wireless/brcm,bcm4329-fmac.yaml       | 19 ++++++++++---------
+>>>>>>> 1 file changed, 10 insertions(+), 9 deletions(-)
+>>>>>>>
+>>>>>>> diff --git 
+>>>>>>> a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml 
+>>>>>>> b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+>>>>>>> index e564f20d8f41..47f90446322f 100644
+>>>>>>> --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+>>>>>>> +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fmac.yaml
+>>>>>>> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>>>> title: Broadcom BCM4329 family fullmac wireless SDIO/PCIE devices
+>>>>>>>
+>>>>>>> maintainers:
+>>>>>>> -  - Arend van Spriel <arend@broadcom.com>
+>>>>>>> +  - Arend van Spriel <arend.vanspriel@broadcom.com>
+>>>>>>>
+>>>>>>> description:
+>>>>>>> The Broadcom Single chip MAC part for the BCM4329 family and
+>>>>>>> @@ -27,7 +27,6 @@ properties:
+>>>>>>>            - brcm,bcm4341b0-fmac
+>>>>>>>            - brcm,bcm4341b4-fmac
+>>>>>>>            - brcm,bcm4341b5-fmac
+>>>>>>> -              - brcm,bcm4329-fmac
+>>>>>>>            - brcm,bcm4330-fmac
+>>>>>>>            - brcm,bcm4334-fmac
+>>>>>>>            - brcm,bcm43340-fmac
+>>>>>>> @@ -46,13 +45,15 @@ properties:
+>>>>>>>            - cypress,cyw43012-fmac
+>>>>>>>            - infineon,cyw43439-fmac
+>>>>>>>        - const: brcm,bcm4329-fmac
+>>>>>>> -      - enum:
+>>>>>>> -          - brcm,bcm4329-fmac
+>>>>>>> -          - pci14e4,43dc  # BCM4355
+>>>>>>> -          - pci14e4,4464  # BCM4364
+>>>>>>> -          - pci14e4,4488  # BCM4377
+>>>>>>> -          - pci14e4,4425  # BCM4378
+>>>>>>> -          - pci14e4,4433  # BCM4387
+>>>>>>> +    - items:
+>>>>>>> +          - enum:
+>>>>>>> +              - pci14e4,43dc  # BCM4355
+>>>>>>> +              - pci14e4,4464  # BCM4364
+>>>>>>> +              - pci14e4,4488  # BCM4377
+>>>>>>> +              - pci14e4,4425  # BCM4378
+>>>>>>> +              - pci14e4,4433  # BCM4387
+>>>>>>> +          - const: brcm,bcm4329-fmac
+>>>>>>> +    - const: brcm,bcm4329-fmac
+>>>>>>
+>>>>>> And this does not make sense... You claim that some constrained was
+>>>>>> droppped and you re-add it, but in fact you still add the same code as
+>>>>>> it was before.
+>>>>>>
+>>>>>> NAK.
+>>>>>
+>>>>> Ah, the last "const" actually makes sense, I missed that.
+>>>>>
+>>>>> Commit still however lacks rationale why these devices are compatible.
+>>>>> Plus existing rationale that e2e37224e8b3 changed something is entirely
+>>>>> WRONG. It changed nothing. ZERO. It only added new devices, which was
+>>>>> claimed are not compatible with brcm,bcm4329-fmac.
+>>>>
+>>>> So is that claim true? What does it mean that these new devices are not
+>>>> compatible. If they are they should be in a separate binding or the
+>>>
+>>> Whether binding is separate or not, is just way of organizing things.
+>>>
+>>>> applicable properties for these devices should be made conditional.
+>>>
+>>> Could be if they are not applicable.
+>>>
+>>>>
+>>>>> Now if you claim that original commit which said "these devices are not
+>>>>> compatible with brcm,bcm4329-fmac", then please provide arguments, not
+>>>>> just say "other commit did something". It did nothing...
+>>>>
+>>>> Not entirely true. Indeed new devices were added for which no
+>>>> "brcm,bcm4329-fmac" string is required in the compatible property. Also
+>>>> the commit added new properties for these new devices. Now in my opinion
+>>>> a driver should not use these properties without a "compatible" check.
+>>>> Hope we can agree to that. However, the driver patch for supporting the
+>>>
+>>> Sorry, I don't follow. Why the driver would need to check for compatible?
+>>>
+>>>> binding change does no such thing. So if we leave the binding as it
+>>>> currently is the driver will have to check if compatible has any of the
+>>>> listed PCI IDs before processing the properties. As all properties old
+>>>
+>>> Why driver needs to check it? Are these properties not valid?
+> 
+> How would the driver know other than the compatible property? The node 
+> with properties is delivered by the bus driver. If that comes with 
+> guarantees about validity than that's great.
 
-It will replace by following.
-struct ast2600_i2c_bus {
-	struct i2c_adapter	adap;
-	struct device		*dev;
-	void __iomem		*reg_base;
-	struct regmap		*global_regs;
-	struct reset_control	*rst;
-	struct clk		*clk;
-	struct i2c_timings	timing_info;
-	struct completion	cmd_complete;
-	struct i2c_client	*ara;
-	struct i2c_msg		*msgs;
-	u8			*master_safe_buf;
-	dma_addr_t		master_dma_addr;
-	u32			apb_clk;
-	u32			timeout;
-	int			irq;
-	int			cmd_err;
-	int			msgs_index;
-	int			msgs_count;
-	int			master_xfer_cnt;
-	size_t			buf_index;
-	size_t			buf_size;
-	enum xfer_mode		mode;
-	bool			alert_enable;
-	bool			multi_master;
-	/* Buffer mode */
-	void __iomem		*buf_base;
-	struct i2c_smbus_alert_setup	alert_data;
-};
+I still do not follow what is the problem being addressed by driver
+needing to check.
 
->=20
-> > +	struct i2c_adapter		adap;
-> > +	struct device			*dev;
-> > +	void __iomem			*reg_base;
-> > +	struct regmap			*global_regs;
-> > +	struct reset_control		*rst;
-> > +	int				irq;
-> > +	enum xfer_mode			mode;
-> > +	struct clk			*clk;
-> > +	u32				apb_clk;
-> > +	struct i2c_timings		timing_info;
-> > +	u32				timeout;
-> > +	/* smbus alert */
-> > +	bool			alert_enable;
-> > +	struct i2c_smbus_alert_setup	alert_data;
-> > +	struct i2c_client		*ara;
-> > +	/* Multi-master */
-> > +	bool				multi_master;
-> > +	/* master structure */
-> > +	int				cmd_err;
-> > +	struct completion		cmd_complete;
-> > +	struct i2c_msg			*msgs;
-> > +	size_t				buf_index;
-> > +	/* cur xfer msgs index*/
-> > +	int				msgs_index;
-> > +	int				msgs_count;
-> > +	u8				*master_safe_buf;
-> > +	dma_addr_t			master_dma_addr;
-> > +	/*total xfer count */
-> > +	int				master_xfer_cnt;
-> > +	/* Buffer mode */
-> > +	void __iomem			*buf_base;
-> > +	size_t				buf_size;
-> > +};
->=20
-> ...
->=20
-> > +static u32 ast2600_select_i2c_clock(struct ast2600_i2c_bus *i2c_bus)
-> > +{
-> > +	unsigned long base_clk[16];
-> > +	int baseclk_idx;
-> > +	u32 clk_div_reg;
-> > +	u32 scl_low;
-> > +	u32 scl_high;
-> > +	int divisor;
-> > +	u32 data;
-> > +
-> > +	regmap_read(i2c_bus->global_regs, AST2600_I2CG_CLK_DIV_CTRL,
-> > +&clk_div_reg);
-> > +
-> > +	for (int i =3D 0; i < 16; i++) {
->=20
-> unsigned int
-> ARRAY_SIZE(base_clk) // Will need array_size.h
+> 
+>>>
+>>>
+>>>> and new are marked as optional I can not come up with an argument that
+>>>> these new devices are *not* compatible with brcm,bcm4329-fmac.
+>>>
+>>> Compatibility is expressed by implementing same programming interfasce
+>>> (or its subset) thus being able to bind via fallback and correctly
+>>> operate in given SW.
+> 
+> This exactly what I mean to say (and apparently fail to do so ;-s ).
+> 
+>>> I don't know whether that's the case here, so rephrasing my earlier
+>>> comments - the commit msg should focus on this aspect and tell that
+>>> devices are fully compatible, thus they should use fallback.
+>>>
+>>> Quick look at drivers told me that not - they are not compatible...
+> 
+> Okay. That puts use in different corner of the arena. Can you elaborate 
+> how you come to that assessment? Is that based on the fact that some of 
+> the properties are SDIO-only?
 
-Will update to for (int i =3D 0; i < ARRAY_SIZE(base_clk); i++)
-And add include array_size.h
->=20
->=20
-> > +		if (i =3D=3D 0)
-> > +			base_clk[i] =3D i2c_bus->apb_clk;
-> > +		else if ((i > 0) || (i < 5))
-> > +			base_clk[i] =3D (i2c_bus->apb_clk * 2) /
-> > +				(((clk_div_reg >> ((i - 1) * 8)) & GENMASK(7, 0)) + 2);
-> > +		else
-> > +			base_clk[i] =3D base_clk[4] / (1 << (i - 5));
->=20
-> This is the same as
->=20
-> 		if (i =3D=3D 0)
-> 			base_clk[i] =3D i2c_bus->apb_clk;
-> 		else if (i < 5)
-> 			base_clk[i] =3D (i2c_bus->apb_clk * 2) /
-> 				      (((clk_div_reg / BIT((i - 1) * 8)) & GENMASK(7, 0)) +
-> 2);
-> 		else
-> 			base_clk[i] =3D base_clk[4] / BIT(i - 5);
->=20
-> Alternatively
->=20
-> 		if (i =3D=3D 0)
-> 			base_clk[i] =3D i2c_bus->apb_clk;
-> 		else if (i < 5)
-> 			base_clk[i] =3D (i2c_bus->apb_clk * 2) /
-> 				      (((clk_div_reg >> ((i - 1) * 8)) & GENMASK(7, 0)) + 2);
-> 		else
-> 			base_clk[i] =3D base_clk[4] >> (i - 5);
->=20
+The simplest: because they do not use the same match/bind code. Plus PCI
+devices never used half of brcmf_of_probe(). Although that's more of a
+reason these are significantly different.
 
-Will take the for better understand.
-	if (i =3D=3D 0)
-			base_clk[i] =3D i2c_bus->apb_clk;
-		else if (i < 5)
-			base_clk[i] =3D (i2c_bus->apb_clk * 2) /
-				      (((clk_div_reg >> ((i - 1) * 8)) & GENMASK(7, 0)) + 2);
-		else
-			base_clk[i] =3D base_clk[4] >> (i - 5);
+> 
+>>>
+>> Another thing is that calling SDIO and PCI devices compatible is quite a
+>> stretch... Clearly hardware-wise they are very different and Linux does
+>> not use the same interfaces to match/bind them.
+> 
+> These are wifi devices which hardware-wise are 95% the same. If you find 
+> the block diagram with IP cores for these devices (enough google results 
+> to find some) you can see they sometimes even have both PCI and SDIO 
+> block on-chip although only one is used so they can be considered 100% 
+> the same. In both cases the bus driver will attach the DT node to the 
+> binding device.
 
-> > +
-> > +		if ((base_clk[i] / i2c_bus->timing_info.bus_freq_hz) <=3D 32) {
-> > +			baseclk_idx =3D i;
-> > +			divisor =3D DIV_ROUND_UP(base_clk[i],
-> i2c_bus->timing_info.bus_freq_hz);
-> > +			break;
-> > +		}
-> > +	}
->=20
-> > +	baseclk_idx =3D min(baseclk_idx, 15);
->=20
-> If the last conditional inside the loop is never true, you are going to u=
-se\ a
-> garbage here.
+I understand they are similar, but it does not matter if that is 95% or
+even 99% if the interface is different. Linux cannot use these devices
+through the same interface. However if you claim it can, then please
+write appropriate commit msg.
 
-I will give initial int baseclk_idx =3D 0; in function begin.
->=20
-> > +	divisor =3D min(divisor, 32);
->=20
-> Ditto.
+My entire objection hare started not because I believe these are not
+compatible (although based on different buses I believe they are not
+compatible), but because the argument was about that other commit. That
+argument is not correct to make the change. Correct argument to make the
+change could be: These devices are compatible, because of foo and bar.
 
-I will give u32 divisor =3D 32; in function begin.
->=20
-> > +	scl_low =3D min(divisor * 9 / 16 - 1, 15);
->=20
-> Missing minmax.h in the inclusion block.
-Will add.
->=20
-> > +	scl_high =3D (divisor - scl_low - 2) & GENMASK(3, 0);
-> > +	data =3D (scl_high - 1) << 20 | scl_high << 16 | scl_low << 12 | base=
-clk_idx;
-> > +	if (i2c_bus->timeout) {
-> > +		data |=3D AST2600_I2CC_TOUTBASECLK(AST_I2C_TIMEOUT_CLK);
-> > +		data |=3D AST2600_I2CC_TTIMEOUT(i2c_bus->timeout);
-> > +	}
-> > +
-> > +	return data;
-> > +}
->=20
-> ...
->=20
-> > +static u8 ast2600_i2c_recover_bus(struct ast2600_i2c_bus *i2c_bus) {
-> > +	u32 state =3D readl(i2c_bus->reg_base + AST2600_I2CC_STS_AND_BUFF);
-> > +	int ret =3D 0;
-> > +	u32 ctrl;
-> > +	int r;
-> > +
-> > +	dev_dbg(i2c_bus->dev, "%d-bus recovery bus [%x]\n",
-> > +i2c_bus->adap.nr, state);
-> > +
-> > +	ctrl =3D readl(i2c_bus->reg_base + AST2600_I2CC_FUN_CTRL);
-> > +
-> > +	/* Disable master/slave mode */
-> > +	writel(ctrl & ~(AST2600_I2CC_MASTER_EN | AST2600_I2CC_SLAVE_EN),
-> > +	       i2c_bus->reg_base + AST2600_I2CC_FUN_CTRL);
-> > +
-> > +	/* Enable master mode only */
-> > +	writel(readl(i2c_bus->reg_base + AST2600_I2CC_FUN_CTRL) |
-> AST2600_I2CC_MASTER_EN,
-> > +	       i2c_bus->reg_base + AST2600_I2CC_FUN_CTRL);
-> > +
-> > +	reinit_completion(&i2c_bus->cmd_complete);
-> > +	i2c_bus->cmd_err =3D 0;
-> > +
-> > +	/* Check 0x14's SDA and SCL status */
-> > +	state =3D readl(i2c_bus->reg_base + AST2600_I2CC_STS_AND_BUFF);
-> > +	if (!(state & AST2600_I2CC_SDA_LINE_STS) && (state &
-> AST2600_I2CC_SCL_LINE_STS)) {
-> > +		writel(AST2600_I2CM_RECOVER_CMD_EN, i2c_bus->reg_base +
-> AST2600_I2CM_CMD_STS);
-> > +		r =3D wait_for_completion_timeout(&i2c_bus->cmd_complete,
-> i2c_bus->adap.timeout);
-> > +		if (r =3D=3D 0) {
-> > +			dev_dbg(i2c_bus->dev, "recovery timed out\n");
-> > +			ret =3D -ETIMEDOUT;
-> > +		} else {
-> > +			if (i2c_bus->cmd_err) {
-> > +				dev_dbg(i2c_bus->dev, "recovery error\n");
-> > +				ret =3D -EPROTO;
-> > +			}
-> > +		}
-> > +	}
->=20
-> ret is set but maybe overridden.
->=20
-
-If will modify by following.
-		if (r =3D=3D 0) {
-			dev_dbg(i2c_bus->dev, "recovery timed out\n");
-			ret =3D -ETIMEDOUT;
-		} else if (i2c_bus->cmd_err) {
-			dev_dbg(i2c_bus->dev, "recovery error\n");
-			ret =3D -EPROTO;
-		}
-If no error keep ret =3D 0;
-
-> > +	/* Recovery done */
->=20
-> Even if it fails above?
-
-This will keep check the bus status, if bus busy, will give ret =3D -EPROTO=
-;
-
->=20
-> > +	state =3D readl(i2c_bus->reg_base + AST2600_I2CC_STS_AND_BUFF);
-> > +	if (state & AST2600_I2CC_BUS_BUSY_STS) {
-> > +		dev_dbg(i2c_bus->dev, "Can't recover bus [%x]\n", state);
-> > +		ret =3D -EPROTO;
-> > +	}
-> > +
-> > +	/* restore original master/slave setting */
-> > +	writel(ctrl, i2c_bus->reg_base + AST2600_I2CC_FUN_CTRL);
-> > +	return ret;
-> > +}
->=20
-> ...
->=20
-> > +static int ast2600_i2c_setup_dma_tx(u32 cmd, struct ast2600_i2c_bus
-> > +*i2c_bus) {
-> > +	struct i2c_msg *msg =3D &i2c_bus->msgs[i2c_bus->msgs_index];
-> > +	int xfer_len;
-> > +
-> > +	cmd |=3D AST2600_I2CM_PKT_EN;
-> > +	xfer_len =3D msg->len - i2c_bus->master_xfer_cnt;
-> > +	if (xfer_len > AST2600_I2C_DMA_SIZE) {
-> > +		xfer_len =3D AST2600_I2C_DMA_SIZE;
->=20
-> > +	} else {
-> > +		if (i2c_bus->msgs_index + 1 =3D=3D i2c_bus->msgs_count)
->=20
-> 	else if (...)
-
-Will update to else if(...).
->=20
-> > +			cmd |=3D AST2600_I2CM_STOP_CMD;
-> > +	}
-> > +
-> > +	if (cmd & AST2600_I2CM_START_CMD) {
-> > +		cmd |=3D AST2600_I2CM_PKT_ADDR(msg->addr);
-> > +		i2c_bus->master_safe_buf =3D i2c_get_dma_safe_msg_buf(msg, 1);
-> > +		if (!i2c_bus->master_safe_buf)
-> > +			return -ENOMEM;
-> > +		i2c_bus->master_dma_addr =3D
-> > +			dma_map_single(i2c_bus->dev, i2c_bus->master_safe_buf,
-> > +				       msg->len, DMA_TO_DEVICE);
->=20
-> > +		if (dma_mapping_error(i2c_bus->dev, i2c_bus->master_dma_addr))
-> {
-> > +			i2c_put_dma_safe_msg_buf(i2c_bus->master_safe_buf, msg,
-> false);
-> > +			i2c_bus->master_safe_buf =3D NULL;
->=20
-> > +			return -ENOMEM;
->=20
-> Why is the dma_mapping_error() returned error code shadowed?
-
-Sorry, please point me why you are think it is shadowed?
-As I know dma_mapping_error() will return 0 or -ENOMEM. So I check if it is=
- !=3D0.
-Than return -ENOMEM.=20
->=20
-> > +		}
-> > +	}
-> > +
-> > +	if (xfer_len) {
-> > +		cmd |=3D AST2600_I2CM_TX_DMA_EN | AST2600_I2CM_TX_CMD;
-> > +		writel(AST2600_I2CM_SET_TX_DMA_LEN(xfer_len - 1),
-> > +		       i2c_bus->reg_base + AST2600_I2CM_DMA_LEN);
-> > +		writel(i2c_bus->master_dma_addr + i2c_bus->master_xfer_cnt,
-> > +		       i2c_bus->reg_base + AST2600_I2CM_TX_DMA);
-> > +	}
-> > +
-> > +	writel(cmd, i2c_bus->reg_base + AST2600_I2CM_CMD_STS);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int ast2600_i2c_setup_buff_tx(u32 cmd, struct ast2600_i2c_bus
-> > +*i2c_bus) {
-> > +	struct i2c_msg *msg =3D &i2c_bus->msgs[i2c_bus->msgs_index];
-> > +	u32 wbuf_dword;
-> > +	int xfer_len;
-> > +	u8 wbuf[4];
->=20
-> > +	int i;
->=20
-> Why signed?
-
-Because it is for xfer len plus, also align with xfer_len and master_xfer_c=
-nt in struct i2c_bus struct.
-
->=20
-> > +	cmd |=3D AST2600_I2CM_PKT_EN;
-> > +	xfer_len =3D msg->len - i2c_bus->master_xfer_cnt;
-> > +	if (xfer_len > i2c_bus->buf_size) {
-> > +		xfer_len =3D i2c_bus->buf_size;
->=20
-> > +	} else {
-> > +		if (i2c_bus->msgs_index + 1 =3D=3D i2c_bus->msgs_count)
->=20
-> 	else if (...)
-
-Will update else if (...).
->=20
-> > +			cmd |=3D AST2600_I2CM_STOP_CMD;
-> > +	}
-> > +
-> > +	if (cmd & AST2600_I2CM_START_CMD)
-> > +		cmd |=3D AST2600_I2CM_PKT_ADDR(msg->addr);
-> > +
-> > +	if (xfer_len) {
-> > +		cmd |=3D AST2600_I2CM_TX_BUFF_EN | AST2600_I2CM_TX_CMD;
->=20
-> > +		/*
-> > +		 * The controller's buffer register supports dword writes only.
-> > +		 * Therefore, write dwords to the buffer register in a 4-byte aligne=
-d,
-> > +		 * and write the remaining unaligned data at the end.
-> > +		 */
-> > +		for (i =3D 0; i < xfer_len; i++) {
-> > +			wbuf[i % 4] =3D msg->buf[i2c_bus->master_xfer_cnt + i];
-> > +			if ((i % 4) =3D=3D 3 || i =3D=3D xfer_len - 1) {
-> > +				wbuf_dword =3D get_unaligned_le32(wbuf);
-> > +				writel(wbuf_dword, i2c_bus->buf_base + i - (i % 4));
-> > +			}
-> > +		}
->=20
-> This is overcomplicated and can be simplified.
-> Why you can't perform
->=20
-> 	get_unaligned_leXX(msg->buf[i2c_bus->master_xfer_cnt + i]);
->=20
-> ?
->=20
-> 		for (i =3D 0; i < xfer_len; i +=3D 4) {
-> 			switch (min(xfer_len - i, 4) % 4) {
-> 			case 1:
-> 				wbuf_dword =3D ...;
-> 				writel(wbuf_dword, i2c_bus->buf_base + i);
-> 				break;
-> 			case 2:
-> 				wbuf_dword =3D get_unaligned_le16(...);
-> 				writel(wbuf_dword, i2c_bus->buf_base + i);
-> 				break;
-> 			case 3:
-> 				wbuf_dword =3D get_unaligned_le24(...);
-> 				writel(wbuf_dword, i2c_bus->buf_base + i);
-> 				break;
-> 			default:
-> 				wbuf_dword =3D get_unaligned_le32(...);
-> 				writel(wbuf_dword, i2c_bus->buf_base + i);
-> 				break;
-> 			}
-> 		}
->=20
->=20
-> Now, with this it's can be a helper, with which
->=20
-> 		for (i =3D 0; i < xfer_len; i +=3D 4) {
-> 			switch (min(xfer_len - i, 4) % 4) {
-> 			case 1:
-> 				ast2600_write_data(i2c_bus, i, ...);
-> 				break;
-> 			case 2:
-> 				ast2600_write_data(i2c_bus, i, get_unaligned_le16(...));
-> 				break;
-> 			case 3:
-> 				ast2600_write_data(i2c_bus, i, get_unaligned_le24(...));
-> 				break;
-> 			default:
-> 				ast2600_write_data(i2c_bus, i, get_unaligned_le32(...));
-> 				break;
-> 			}
-> 		}
->=20
-OK, I will modify by this.
-		for (i =3D 0; i < xfer_len; i +=3D 4) {
-			switch (min(xfer_len - i, 4) % 4) {
-			case 1:
-				ast2600_write_data(i2c_bus, i, ...);
-				break;
-			case 2:
-				ast2600_write_data(i2c_bus, i, get_unaligned_le16(...));
-				break;
-			case 3:
-				ast2600_write_data(i2c_bus, i, get_unaligned_le24(...));
-				break;
-			default:
-				ast2600_write_data(i2c_bus, i, get_unaligned_le32(...));
-				break;
-			}
-		}
-
-> > +		writel(AST2600_I2CC_SET_TX_BUF_LEN(xfer_len),
-> > +		       i2c_bus->reg_base + AST2600_I2CC_BUFF_CTRL);
-> > +	}
-> > +
-> > +	writel(cmd, i2c_bus->reg_base + AST2600_I2CM_CMD_STS);
-> > +
-> > +	return 0;
-> > +}
->=20
-> ...
->=20
-> > +static int ast2600_i2c_setup_dma_rx(struct ast2600_i2c_bus *i2c_bus)
-> > +{
-> > +	struct i2c_msg *msg =3D &i2c_bus->msgs[i2c_bus->msgs_index];
-> > +	int xfer_len;
-> > +	u32 cmd;
-> > +
-> > +	cmd =3D AST2600_I2CM_PKT_EN | AST2600_I2CM_PKT_ADDR(msg->addr)
-> |
-> > +	      AST2600_I2CM_START_CMD | AST2600_I2CM_RX_DMA_EN;
-> > +
-> > +	if (msg->flags & I2C_M_RECV_LEN) {
-> > +		xfer_len =3D 1;
->=20
-> > +	} else {
-> > +		if (msg->len > AST2600_I2C_DMA_SIZE) {
->=20
-> 	} else if (...) {
->=20
-Will update to else if (...) {
-> > +			xfer_len =3D AST2600_I2C_DMA_SIZE;
-> > +		} else {
-> > +			xfer_len =3D msg->len;
-> > +			if (i2c_bus->msgs_index + 1 =3D=3D i2c_bus->msgs_count)
-> > +				cmd |=3D MASTER_TRIGGER_LAST_STOP;
-> > +		}
-> > +	}
-> > +	writel(AST2600_I2CM_SET_RX_DMA_LEN(xfer_len - 1),
-> i2c_bus->reg_base + AST2600_I2CM_DMA_LEN);
-> > +	i2c_bus->master_safe_buf =3D i2c_get_dma_safe_msg_buf(msg, 1);
-> > +	if (!i2c_bus->master_safe_buf)
-> > +		return -ENOMEM;
-> > +	i2c_bus->master_dma_addr =3D
-> > +		dma_map_single(i2c_bus->dev, i2c_bus->master_safe_buf, msg->len,
-> DMA_FROM_DEVICE);
-> > +	if (dma_mapping_error(i2c_bus->dev, i2c_bus->master_dma_addr)) {
-> > +		i2c_put_dma_safe_msg_buf(i2c_bus->master_safe_buf, msg, false);
-> > +		i2c_bus->master_safe_buf =3D NULL;
-> > +		return -ENOMEM;
-> > +	}
-> > +	writel(i2c_bus->master_dma_addr, i2c_bus->reg_base +
-> > +AST2600_I2CM_RX_DMA);
-> > +
-> > +	writel(cmd, i2c_bus->reg_base + AST2600_I2CM_CMD_STS);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int ast2600_i2c_setup_buff_rx(struct ast2600_i2c_bus *i2c_bus)
-> > +{
-> > +	struct i2c_msg *msg =3D &i2c_bus->msgs[i2c_bus->msgs_index];
-> > +	int xfer_len;
-> > +	u32 cmd;
-> > +
-> > +	cmd =3D AST2600_I2CM_PKT_EN | AST2600_I2CM_PKT_ADDR(msg->addr)
-> |
-> > +	      AST2600_I2CM_START_CMD | AST2600_I2CM_RX_BUFF_EN;
-> > +
-> > +	if (msg->flags & I2C_M_RECV_LEN) {
-> > +		dev_dbg(i2c_bus->dev, "smbus read\n");
-> > +		xfer_len =3D 1;
->=20
-> > +	} else {
-> > +		if (msg->len > i2c_bus->buf_size) {
->=20
-> 	} else if (...) {
-Will update to else if (...) {
-
->=20
-> > +			xfer_len =3D i2c_bus->buf_size;
-> > +		} else {
-> > +			xfer_len =3D msg->len;
-> > +			if (i2c_bus->msgs_index + 1 =3D=3D i2c_bus->msgs_count)
-> > +				cmd |=3D MASTER_TRIGGER_LAST_STOP;
-> > +		}
-> > +	}
-> > +	writel(AST2600_I2CC_SET_RX_BUF_LEN(xfer_len), i2c_bus->reg_base +
-> > +AST2600_I2CC_BUFF_CTRL);
-> > +
-> > +	writel(cmd, i2c_bus->reg_base + AST2600_I2CM_CMD_STS);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int ast2600_i2c_setup_byte_rx(struct ast2600_i2c_bus *i2c_bus)
-> > +{
-> > +	struct i2c_msg *msg =3D &i2c_bus->msgs[i2c_bus->msgs_index];
-> > +	u32 cmd;
-> > +
-> > +	cmd =3D AST2600_I2CM_PKT_EN | AST2600_I2CM_PKT_ADDR(msg->addr)
-> |
-> > +	      AST2600_I2CM_START_CMD | AST2600_I2CM_RX_CMD;
-> > +
-> > +	if (msg->flags & I2C_M_RECV_LEN) {
-> > +		dev_dbg(i2c_bus->dev, "smbus read\n");
->=20
-> > +	} else {
-> > +		if (i2c_bus->msgs_index + 1 =3D=3D i2c_bus->msgs_count) {
->=20
-> 	} else if (...) {
->=20
-Will update to else if (...) {
-
-> > +			if (msg->len =3D=3D 1)
-> > +				cmd |=3D MASTER_TRIGGER_LAST_STOP;
-> > +		}
-> > +	}
-> > +
-> > +	writel(cmd, i2c_bus->reg_base + AST2600_I2CM_CMD_STS);
-> > +
-> > +	return 0;
-> > +}
->=20
-> ...
->=20
-> > +static int ast2600_i2c_do_start(struct ast2600_i2c_bus *i2c_bus) {
-> > +	struct i2c_msg *msg =3D &i2c_bus->msgs[i2c_bus->msgs_index];
-> > +
-> > +	/* send start */
-> > +	dev_dbg(i2c_bus->dev, "[%d] %sing %d byte%s %s 0x%02x\n",
->=20
-> Drop 'ing', no need to have this in the debug message.
-Will Drop 'ing'
->=20
-> > +		i2c_bus->msgs_index, str_read_write(msg->flags & I2C_M_RD),
-> > +		msg->len, msg->len > 1 ? "s" : "",
->=20
-> str_plural()
-
-Will replace by following.=20
-
-dev_dbg(i2c_bus->dev, "[%d] %s %d byte%s %s 0x%02x\n",
-        i2c_bus->msgs_index, str_read_write(msg->flags & I2C_M_RD),
-        msg->len, str_plural(msg->len),
-
->=20
-> > +		msg->flags & I2C_M_RD ? "from" : "to", msg->addr);
->=20
-> > +	i2c_bus->master_xfer_cnt =3D 0;
-> > +	i2c_bus->buf_index =3D 0;
-> > +
-> > +	if (msg->flags & I2C_M_RD) {
-> > +		if (i2c_bus->mode =3D=3D DMA_MODE)
-> > +			return ast2600_i2c_setup_dma_rx(i2c_bus);
-> > +		else if (i2c_bus->mode =3D=3D BUFF_MODE)
-> > +			return ast2600_i2c_setup_buff_rx(i2c_bus);
-> > +		else
-> > +			return ast2600_i2c_setup_byte_rx(i2c_bus);
-> > +	} else {
-> > +		if (i2c_bus->mode =3D=3D DMA_MODE)
-> > +			return
-> ast2600_i2c_setup_dma_tx(AST2600_I2CM_START_CMD, i2c_bus);
-> > +		else if (i2c_bus->mode =3D=3D BUFF_MODE)
-> > +			return ast2600_i2c_setup_buff_tx(AST2600_I2CM_START_CMD,
-> i2c_bus);
-> > +		else
-> > +			return
-> ast2600_i2c_setup_byte_tx(AST2600_I2CM_START_CMD, i2c_bus);
-> > +	}
-> > +}
->=20
-> ...
->=20
-> > +master_out:
-> > +	if (i2c_bus->mode =3D=3D DMA_MODE) {
-> > +		kfree(i2c_bus->master_safe_buf);
-> > +	    i2c_bus->master_safe_buf =3D NULL;
-> > +	}
->=20
-> Indentation issues.
-
-Will update
->=20
-> > +	return ret;
->=20
-> ...
->=20
->=20
-> > +MODULE_DEVICE_TABLE(of, ast2600_i2c_bus_of_table);
->=20
-> Why do you need this table before _probe()? Isn't the only user is below?
-
-It is for next generation table list. Do you suggest remove it?
-
->=20
-> > +static int ast2600_i2c_probe(struct platform_device *pdev)
->=20
-> ...
->=20
-> > +	i2c_bus->global_regs =3D
-> syscon_regmap_lookup_by_phandle(dev->of_node,
-> > +"aspeed,global-regs");
->=20
-> dev_of_node(dev)
-
-Will update i2c_bus->global_regs =3D syscon_regmap_lookup_by_phandle(dev_of=
-_node(dev), "aspeed,global-regs");
->=20
-
-> > +	if (IS_ERR(i2c_bus->global_regs))
-> > +		return PTR_ERR(i2c_bus->global_regs);
->=20
-> ...
->=20
-> > +	if (device_property_read_bool(&pdev->dev, "aspeed,enable-dma"))
->=20
-> You have 'dev' Why not use it?
-Will update
-	if (device_property_read_bool(dev, "aspeed,enable-dma"))
->=20
-> > +		i2c_bus->mode =3D DMA_MODE;
->=20
-> ...
->=20
-> > +	if (i2c_bus->mode =3D=3D BUFF_MODE) {
-> > +		i2c_bus->buf_base =3D
-> devm_platform_get_and_ioremap_resource(pdev, 1, &res);
-> > +		if (!IS_ERR_OR_NULL(i2c_bus->buf_base))
-> > +			i2c_bus->buf_size =3D resource_size(res) / 2;
-> > +		else
-> > +			i2c_bus->mode =3D BYTE_MODE;
->=20
-> What's wrong with positive conditional? And is it even possible to have N=
-ULL
-> here?
->=20
-Yes, if dtsi fill not following yaml example have reg 1, that will failure =
-at buffer mode.
-And I can swith to byte mode.=20
-
-reg =3D <0x80 0x80>, <0xc00 0x20>;
-> > +	}
->=20
-> ...
->=20
-> > +	strscpy(i2c_bus->adap.name, pdev->name, sizeof(i2c_bus->adap.name));
->=20
-> Use 2-argument strscpy().
-Do you mean strscpy(i2c_bus->adap.name, pdev->name); is acceptable?
->=20
-> ...
->=20
-> > +	i2c_bus->alert_enable =3D device_property_read_bool(dev, "smbus-alert=
-");
-> > +	if (i2c_bus->alert_enable) {
-> > +		i2c_bus->ara =3D i2c_new_smbus_alert_device(&i2c_bus->adap,
-> &i2c_bus->alert_data);
-> > +		if (!i2c_bus->ara)
-> > +			dev_warn(dev, "Failed to register ARA client\n");
-> > +
-> > +		writel(AST2600_I2CM_PKT_DONE | AST2600_I2CM_BUS_RECOVER
-> | AST2600_I2CM_SMBUS_ALT,
-> > +		       i2c_bus->reg_base + AST2600_I2CM_IER);
-> > +	} else {
-> > +		i2c_bus->alert_enable =3D false;
-> > +		/* Set interrupt generation of I2C master controller */
-> > +		writel(AST2600_I2CM_PKT_DONE | AST2600_I2CM_BUS_RECOVER,
-> > +		       i2c_bus->reg_base + AST2600_I2CM_IER);
-> > +	}
->=20
-> I2C core calls i2c_setup_smbus_alert() when registering the adapter. Why =
-do
-> you need to have something special here?
-The ast2600 i2c support smbus alert, and according my reference.
-If enable alert, that will need i2c_new_smbus_alert_device for alert handle=
-r.
-When interrupt coming driver can use this hander to up use i2c_handle_smbus=
-_alert
-And update layer will handle alert.
-Does I mis-understand. If yes, I will remove this in next.
->=20
-> --
-> With Best Regards,
-> Andy Shevchenko
->=20
+Best regards,
+Krzysztof
 
 
