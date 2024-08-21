@@ -1,154 +1,89 @@
-Return-Path: <devicetree+bounces-95576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B01B795A028
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 16:40:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D88595A04A
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 16:46:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E6EFEB24D3B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 14:40:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F8FEB2364E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 14:46:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7038C1B3B03;
-	Wed, 21 Aug 2024 14:39:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4DB81531ED;
+	Wed, 21 Aug 2024 14:46:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="rdL2SywO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f9QFPefq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45E281B2EFA
-	for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 14:39:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72F3C79B84;
+	Wed, 21 Aug 2024 14:46:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724251171; cv=none; b=HSN0FcAFlUvu0AGNFVKYHJKUTnYCzLK4DFQvAqmNlhV7al/2s/CeN3ZozlDC5Ln7/r9T5tzTx67P6I3v9oJYl9ovvut8dZn0Yu1r3Okbh/fE+1WRZXQBwuWLBPBvwMIRfWvubBO1hozYJFRaKl7Z1W6qgHS3oaKbQR1q+lCrfeU=
+	t=1724251610; cv=none; b=WPzMCuI52mCxKXemZglUV5bkYxGWPCfyw+XkEM3ngb7+nmEpDJUIsL/iBjS6zxiBduKOLMwS3OyW3VMtWgLaAe3/yOSefgUl7XG2ND9VwThF4Ryqg9MJ8kkMckD+3WwpRMaqM2eFF8C+BHaNIIqREbCoLCyKMg2PIPa+J9SA/jc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724251171; c=relaxed/simple;
-	bh=rpHc+9JzPatwK2JjLiqQok+PhFNbMwe+450h1ay/W7Q=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=g44RUxm5I9QrsRgTZQGZ4gcaIjQEcNqzdzEDfB4Webvy2tmEuLDKYLIdS8OnX0cTxDXF2sO/nSQ0JPWz4/PjYwNgN7oQgi5HFS5JHefxrVcSYOXsmYcuaVgB90sJqhMZKCJS2GnrMh3WMfmXU/FyOMsz68ECzEaOPf9pXz1mRzE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=rdL2SywO; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1724251610; c=relaxed/simple;
+	bh=D1CyKhPSDb+3GkMmc1F5R+gPmvS8mx6cLnaeWXzRAZM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=JXirJe6DOG5FJDq7b4bwV+/L3W/M2z4Rh1Wp6RKoS4AEpGPsa1HvJU12qEq4t8jEciz+gIPBkPd4T7DIIgR4EYGbjuiHvAGXKZI7U62NvwhUIpJiGfZWDSqw5Fi/QxudqsWtGifeZs4AYLvb6sl+FgAlTZDXR8JItxsQMQH4ix8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f9QFPefq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8795C32781;
+	Wed, 21 Aug 2024 14:46:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724251609;
+	bh=D1CyKhPSDb+3GkMmc1F5R+gPmvS8mx6cLnaeWXzRAZM=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=f9QFPefqDWFtEV19xKfxuojezAXiG0dp4+MXqY8Oy50zoOfefXzsBsAiG/qFo/eOp
+	 Y+EDMiV/w1S/HxNv8rG6WNZdpt2qf0wO5VllY9/tO9H4AQvF75w5wWuc20MKxKG0mh
+	 xWQNz2ULjgMhcT/fxpvZdru4nMQ9m9/ZtYE6fAbKh4Jf9gVgQu3k6HhmmB2uu+kyl9
+	 G94xwDfJiW+KWEsEUOCb81xKyYezqtOHhwshq6ZQvO3Hfmple3j43i4zrLBlBl2LS0
+	 OcV2kD4xJHwOMYT5JRoYce0xB/geAnAaiN9L72EHKAzYFt9dgtNE5jY9ty7+Mu0MWi
+	 lzs9fUYZ8TJqA==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Konrad Dybcio <konradybcio@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+	linux-arm-msm@vger.kernel.org,
+	linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Krishna Kurapati <quic_kriskura@quicinc.com>,
+	Konrad Dybcio <quic_kdybcio@quicinc.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: (subset) [PATCH v2 0/2] X1E80100 multiport USB controller
+Date: Wed, 21 Aug 2024 09:46:41 -0500
+Message-ID: <172425160166.1359444.7745038976494752965.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240820-topic-h_mp-v2-0-d88518066372@quicinc.com>
+References: <20240820-topic-h_mp-v2-0-d88518066372@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1724251165;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=af/USMng0ATq4RdHLWtR6P/XVEHh9dXoWbxHkvOzCjw=;
-	b=rdL2SywOcYjMLgkgvnTBaC/qHQzppS8gH/CDvJWNX6hoJonQ3CqO2NWEzjuJdp8HvRt+gK
-	aOD5r37OpjpzDdtISd4Ul5Vz8Z8VpHzdySqll6/RlmwM/QW3LadAZgqnfGQR8Uqi6jyokD
-	s8Ud71FfKwQo6Ev/3t9XoZBA0CxxAyHzDlsRwbiWEcuceWDkPpJOFmXlHWeQtA+GGtrEx2
-	fAMwH2fh46ku2BmfmZ6W68MZcMCkIDTOzfd3/CcQ/3P0jMBdlM0aH+/zkJzF10Jx+qvQrh
-	HqqnJIxMXu8n4+SZizSXnBh8B/P4QDfUI30SH0NIlRnILN8X6DnBySnMESs0mQ==
-Date: Wed, 21 Aug 2024 16:39:25 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>, Heiko Stuebner
- <heiko@sntech.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- naoki@radxa.com
-Subject: Re: [PATCH v3 2/7] arm64: dts: rockchip: add NanoPC-T6 LTS
-In-Reply-To: <fbdda0b5-a924-48f8-a4d5-6578c2b5d378@kernel.org>
-References: <20240821-friendlyelec-nanopc-t6-lts-v3-0-3ecfa996bbe0@linaro.org>
- <20240821-friendlyelec-nanopc-t6-lts-v3-2-3ecfa996bbe0@linaro.org>
- <fbdda0b5-a924-48f8-a4d5-6578c2b5d378@kernel.org>
-Message-ID: <622eb49ded6ae0a13b318ac0fae21d92@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Hello Krzysztof,
 
-On 2024-08-21 15:13, Krzysztof Kozlowski wrote:
-> On 21/08/2024 12:26, Marcin Juszkiewicz wrote:
->> FriendlyELEC introduced a second version of NanoPC-T6 SBC.
->> 
->> The miniPCIe slot got removed and USB 2.0 configuration has changed.
->> There are two external accessible ports and two ports on the internal
->> header.
->> 
->> There is an on-board USB hub which provides:
->> - one external connector (bottom one)
->> - two internal ports on pin header
->> - one port for m.2 E connector
->> 
->> The top USB 2.0 connector comes directly from the SoC.
->> 
->> Signed-off-by: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
->> ---
->>  arch/arm64/boot/dts/rockchip/Makefile              |  1 +
->>  .../boot/dts/rockchip/rk3588-nanopc-t6-lts.dts     | 61 
->> ++++++++++++++++++++++
->>  2 files changed, 62 insertions(+)
->> 
->> diff --git a/arch/arm64/boot/dts/rockchip/Makefile 
->> b/arch/arm64/boot/dts/rockchip/Makefile
->> index fda1b980eb4b..0f982c741243 100644
->> --- a/arch/arm64/boot/dts/rockchip/Makefile
->> +++ b/arch/arm64/boot/dts/rockchip/Makefile
->> @@ -128,6 +128,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-evb1-v10.dtb
->>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-friendlyelec-cm3588-nas.dtb
->>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar.dtb
->>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-nanopc-t6.dtb
->> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-nanopc-t6-lts.dtb
->>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-ok3588-c.dtb
->>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-orangepi-5-plus.dtb
->>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-quartzpro64.dtb
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6-lts.dts 
->> b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6-lts.dts
->> new file mode 100644
->> index 000000000000..e950e40632cf
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6-lts.dts
->> @@ -0,0 +1,61 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Copyright (c) 2021 Rockchip Electronics Co., Ltd.
->> + * Copyright (c) 2023 Thomas McKahan
->> + * Copyright (c) 2024 Linaro Ltd.
->> + *
->> + */
->> +
->> +/dts-v1/;
->> +
->> +#include "rk3588-nanopc-t6.dts"
+On Tue, 20 Aug 2024 13:34:21 +0200, Konrad Dybcio wrote:
+> This series configures the multiport USB controller on X Elite. No
+> driver changes seem necessary, tested on the Surface Laptop 7.
 > 
-> Do not include DTS files. Please rename board to DTSI (which is for
-> includes) and then include it in respective boards. Remember to 
-> generate
-> patches with proper -M/-B/-C so the rename will be properly recognize.
+> 
 
-This is perhaps a good opportunity to discuss this.  I already saw at
-least half a dozen of instances where a board dts file is included in
-another board dts file that modifies or extends it for another version
-of the same board, or something like that.
+Applied, thanks!
 
-Moreover, we'll most likely have to introduce quite a few new board dts
-files, for board versions that use different type of DRAM and so far 
-were
-handled in U-Boot only. [1]
+[2/2] arm64: dts: qcom: x1e80100: Add USB Multiport controller
+      commit: 5c5edbf46177e6335f2faaa3b68456755bcb9006
 
-Thus, I think this is a good opportunity to conclude what to do there.
-If you insist on converting already existing dts files into dtsi files,
-we'll be introducing much more changes, which I'd be fine with, but I'd
-then also like to convert _all_ existing cases of dts file inclusion 
-into
-proper inclusion of dtsi files, which will result in even more new files
-being introduced, etc.
-
-[1] 
-https://lore.kernel.org/linux-rockchip/172408433165.1619643.7928785825448507704.robh@kernel.org/T/#m52de793f30579a8063f66eb2e64026776da55a66
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
