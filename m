@@ -1,172 +1,170 @@
-Return-Path: <devicetree+bounces-95678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBE9195A871
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 01:41:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D9A295A883
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 01:52:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83BEF2811D3
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 23:41:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 333A6283EA1
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 23:52:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25DED17D35B;
-	Wed, 21 Aug 2024 23:41:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D23C217DE06;
+	Wed, 21 Aug 2024 23:52:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="D4WbdCQ5"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="VbtvZFJi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 651911422A8;
-	Wed, 21 Aug 2024 23:41:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 581B616F0DE;
+	Wed, 21 Aug 2024 23:52:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724283703; cv=none; b=qVq//uTxnfV1nn3UPUwz/VX1XjwBlXw1zTniLmXzz5X85axnvgm9hdoGtQQUTuHJojHAIXHOrlb7QCDjozkFnumdiBz2xycWZ0hLu/21fUvMN9JZs/ua/lBd6avkEHA/2Z9yBPLwxTtVrwlhiuu2vmYiY3610IVbVEu3g7BFI6U=
+	t=1724284331; cv=none; b=aSpbNINeDysLQ2fZlPZtxgWey6ndsR1VCVZD18mfUQXBxLoI7Lovzrnu4JJHua1i/r2+bFStgI+EXVyhat4ev5swObHlHzk4drAOEq6tGD1YxF5BdV+o50wutN6BuxaldvwcdttCcPYvH8djURkzyQ2l/sCJVkKCr8LH4mVDQn0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724283703; c=relaxed/simple;
-	bh=x8Bg94Z2zsdxajcw3hSHGhloSoauODJGqMwgx8Ukg8E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=n+wgL+LE2RLob60hIy3GDmKqErdnfq2OZJz6yTwedvnOMCs1zcxdk04LTL8b9aJMpc2oMeu5BgrCTnN7EytseqUFMOFwWV7glfMnU96FQvtGqw2NXV+ysMSTaCStTexeWiE14VbKbydhyVdvJ5POzy4ozwfoNBbkdzmBZpv7wWE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=D4WbdCQ5; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47LFZ7cl019748;
-	Wed, 21 Aug 2024 23:41:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	0f+/dlZFqwe0oaeG97dCTtX57gT5/oAkzmFEAXls3zA=; b=D4WbdCQ520izKdyA
-	2vgmNaz5BryAXT06IChx3qN2tSeGkJJim//ATBvyEW0l6R2CLrwLYL3HHcOFK5Df
-	ZZATyZKDy0J0DiRvonwUKA6XBpWiD4dqUtss+b05v2exKbTdHME+4nbLS9W7MSWt
-	G/O2E+yfVrCxmOrE+LE+TanAZxYVZsdozML6JYSJpq/xxv3CBWpnrr1suxtK+h7W
-	ixeyVHkwjWlxbLkSv+UmTu3ElQ9FsT6Rfvsc52+mUrm2y7Hc+cM+9954i+oUz75Z
-	r4VYIbnqVl/twhwREXGTgU1NnoBiG927yANNS2zoDUMAfvxSEGZRN5WzMEK8HJPZ
-	tu/YTQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 415bkwaqmm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Aug 2024 23:41:20 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47LNfJCB021976
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Aug 2024 23:41:19 GMT
-Received: from [10.71.109.148] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 21 Aug
- 2024 16:41:16 -0700
-Message-ID: <3e6e8921-6d52-40e2-9124-7ab550566716@quicinc.com>
-Date: Wed, 21 Aug 2024 16:41:10 -0700
+	s=arc-20240116; t=1724284331; c=relaxed/simple;
+	bh=/Z/HwBcsCtywniW/ZzCfaEcLcBT+4xgCHYU82J8sQv8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LQOD+8bbX7VA3Zw7d4aJr/z2K2NRLTS26USXMvfAL/VM1zub/2absl40yciVkv+9Ls8ra1OSPfCJ03ARp1Euy4faz4XslfN4RhBy6EqcqPeTm9qze6SPzTBybhRv6j0HKhryiwXlgTiVWqigpDLL4ErT6v3k2PNB62oQR9gHK4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=VbtvZFJi; arc=none smtp.client-ip=217.70.183.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 0E59640002;
+	Wed, 21 Aug 2024 23:52:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1724284326;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=0HU6Ta0HRhn2z2jojEOSX+U5lajLvD863lfH93hnjsU=;
+	b=VbtvZFJi3StZk7TiRQXTxa1wm4MmfPKHL0/WmMfUgnd49Fp7FopIMAlK2UXxlv/eUEAZx6
+	G6gk53COFJWmQNJRJAHgZ61Fus17tem6M23NMRwLJQt8i+ALVUNqgBlU6F7EYaYZMsHP8E
+	zjdJTCvcqovkCYhr9Q3LDATQrlOIPETV9/3txL9CQ5+Ugg5Anus1/MAOx/yFieYDBvYGea
+	SH9tSE0HZ7ZpETMcv/q0yOoBqxmveYFxZRKKGOdFjDNOY35AD9MtfW6nNvgrdj3OrglYQU
+	32cvapPFuyT+WMBAv/cEm8FAe23ezIoWg9g0SiViWtszE01NzAjvrQE63GfeHw==
+Date: Thu, 22 Aug 2024 01:52:05 +0200
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Alexander Dahl <ada@thorsis.com>
+Cc: linux-clk@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+	Sandeep Sheriker Mallikarjun <sandeepsheriker.mallikarjun@microchip.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2] ARM: dts: microchip: sam9x60: Fix rtc/rtt clocks
+Message-ID: <20240821235205b302068b@mail.local>
+References: <20240820132730.357347-1-ada@thorsis.com>
+ <20240821055136.6858-1-ada@thorsis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/2] of: reserved_mem: Restruture how the reserved
- memory regions are processed
-To: Rob Herring <robh@kernel.org>
-CC: <saravanak@google.com>, <klarasmodin@gmail.com>, <aisheng.dong@nxp.com>,
-        <hch@lst.de>, <m.szyprowski@samsung.com>, <robin.murphy@arm.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <iommu@lists.linux.dev>, <will@kernel.org>, <catalin.marinas@arm.com>,
-        <kernel@quicinc.com>
-References: <20240809184814.2703050-1-quic_obabatun@quicinc.com>
- <20240809184814.2703050-2-quic_obabatun@quicinc.com>
- <CAL_JsqL=Pc7FJJevMskvYYOoYZYCKF+db9C2Y7_cm7DZNyTYPw@mail.gmail.com>
-Content-Language: en-US
-From: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
-In-Reply-To: <CAL_JsqL=Pc7FJJevMskvYYOoYZYCKF+db9C2Y7_cm7DZNyTYPw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 8tpH6n_CHjapxUDiO4aPLEaL2b9qXJqd
-X-Proofpoint-GUID: 8tpH6n_CHjapxUDiO4aPLEaL2b9qXJqd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-21_15,2024-08-19_03,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
- mlxscore=0 mlxlogscore=999 bulkscore=0 malwarescore=0 priorityscore=1501
- adultscore=0 phishscore=0 impostorscore=0 lowpriorityscore=0 clxscore=1015
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2407110000
- definitions=main-2408210171
+In-Reply-To: <20240821055136.6858-1-ada@thorsis.com>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
+On 21/08/2024 07:51:36+0200, Alexander Dahl wrote:
+> The RTC and RTT peripherals use the "timing domain slow clock (TD_SLCK),
+> sourced from the 32.768 kHz crystal oscillator.
+> 
+> (The previously used Monitoring domain slow clock (MD_SLCK) is sourced
+> from an internal RC oscillator which is most probably not precise enough
+> for real time clock purposes.)
+> 
+> Fixes: 1e5f532c2737 ("ARM: dts: at91: sam9x60: add device tree for soc and board")
+> Fixes: 5f6b33f46346 ("ARM: dts: sam9x60: add rtt")
+> Signed-off-by: Alexander Dahl <ada@thorsis.com>
+> ---
+> 
+> Notes:
+>     Picked the wrong patch in the first try.  This v2 one has a slightly
+>     adapted commit message and more context below.
+>     
+>     This obviously requires a 32.768 kHz crystal oscillator to be present,
+>     but the sam9x60.dtsi does contain that, and the clock-controllers
+>     reference that, so I assume it's always present.
 
-On 8/19/2024 3:04 PM, Rob Herring wrote:
-> On Fri, Aug 9, 2024 at 1:48 PM Oreoluwa Babatunde
-> <quic_obabatun@quicinc.com> wrote:
->> Reserved memory regions defined in the devicetree can be broken up into
->> two groups:
->> i) Statically-placed reserved memory regions
->> i.e. regions defined with a static start address and size using the
->>      "reg" property.
->> ii) Dynamically-placed reserved memory regions.
->> i.e. regions defined by specifying an address range where they can be
->>      placed in memory using the "alloc_ranges" and "size" properties.
->>
->> [...]
->>
->> Signed-off-by: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
->> ---
->>  drivers/of/fdt.c             |   5 +-
->>  drivers/of/of_private.h      |   3 +-
->>  drivers/of/of_reserved_mem.c | 172 +++++++++++++++++++++++++----------
->>  3 files changed, 131 insertions(+), 49 deletions(-)
->>
->> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
->> index 68103ad230ee..d4b7aaa70e31 100644
->> --- a/drivers/of/fdt.c
->> +++ b/drivers/of/fdt.c
->> @@ -511,8 +511,6 @@ void __init early_init_fdt_scan_reserved_mem(void)
->>                         break;
->>                 memblock_reserve(base, size);
->>         }
->> -
->> -       fdt_init_reserved_mem();
->>  }
->>
->>  /**
->> @@ -1239,6 +1237,9 @@ void __init unflatten_device_tree(void)
->>         of_alias_scan(early_init_dt_alloc_memory_arch);
->>
->>         unittest_unflatten_overlay_base();
->> +
->> +       /* Save the statically-placed regions in the reserved_mem array */
->> +       fdt_scan_reserved_mem_reg_nodes();
-Hi Rob,
-> I'm still not understanding why the unflatttened API doesn't work
-> here? It was just used in of_alias_scan() above here.
-The main reason why the unflatten_devicetree APIs does not work here is
-because a reference to fdt_node needs to be stored for the reserved
-regions, and it can only be gotten by using the fdt APIs.
+The crystal is optional so this is going to break the boards that don't
+have one. I don't really mind but this should probably be part of the
+commit message.
 
-The fdt_node is needed by rmem_dma_setup(), rmem_cma_setup(), and
-rmem_swiotlb_setup(). All of which are used to configure the reserved
-memory regions during early bootup.
+This makes me realise that we always assumed the RC oscillator was
+running at 32768 while the sam9x60 datasheet refers to it has a 32kHz
+oscillator. However the RTC only has a 32768 divider...
 
-In my previous versions, I replaced fdt_node with device_node in struct
-reserved_mem in order to leverage the unflatten_devicetree APIs, and the
-above functions were being called after the page tables were setup.
+>     
+>     /sys/kernel/debug/clk/clk_summary content excerpt before:
+>     
+>          slow_rc_osc                         1       1        0        32768       93750000   0     50000      Y   deviceless                      no_connection_id
+>             md_slck                          4       4        0        32768       0          0     50000      Y      fffffea8.rtc                    no_connection_id
+>                                                                                                                       fffffe20.rtc                    no_connection_id
+>                                                                                                                       fffffe10.poweroff               no_connection_id
+>                                                                                                                       fffffe00.reset-controller       no_connection_id
+>                                                                                                                       timer@f8008000                  slow_clk
+>                                                                                                                       deviceless                      no_connection_id
+>     …
+>          slow_xtal                           0       0        0        32768       0          0     50000      Y   deviceless                      no_connection_id
+>             slow_osc                         0       0        0        32768       0          0     50000      Y      deviceless                      no_connection_id
+>                td_slck                       0       0        0        32768       0          0     50000      Y         deviceless                      no_connection_id
+>     
+>     And after:
+>     
+>          slow_rc_osc                         1       1        0        32768       93750000   0     50000      Y   deviceless                      no_connection_id
+>             md_slck                          2       2        0        32768       0          0     50000      Y      fffffe10.poweroff               no_connection_id
+>                                                                                                                       fffffe00.reset-controller       no_connection_id
+>                                                                                                                       timer@f8008000                  slow_clk
+>                                                                                                                       deviceless                      no_connection_id
+>     …
+>          slow_xtal                           1       1        0        32768       0          0     50000      Y   deviceless                      no_connection_id
+>             slow_osc                         1       1        0        32768       0          0     50000      Y      deviceless                      no_connection_id
+>                td_slck                       2       2        0        32768       0          0     50000      Y         fffffea8.rtc                    no_connection_id
+>                                                                                                                          fffffe20.rtc                    no_connection_id
+>                                                                                                                          deviceless                      no_connection_id
+> 
+>  arch/arm/boot/dts/microchip/sam9x60.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/microchip/sam9x60.dtsi b/arch/arm/boot/dts/microchip/sam9x60.dtsi
+> index 291540e5d81e..d077afd5024d 100644
+> --- a/arch/arm/boot/dts/microchip/sam9x60.dtsi
+> +++ b/arch/arm/boot/dts/microchip/sam9x60.dtsi
+> @@ -1312,7 +1312,7 @@ rtt: rtc@fffffe20 {
+>  				compatible = "microchip,sam9x60-rtt", "atmel,at91sam9260-rtt";
+>  				reg = <0xfffffe20 0x20>;
+>  				interrupts = <1 IRQ_TYPE_LEVEL_HIGH 7>;
+> -				clocks = <&clk32k 0>;
+> +				clocks = <&clk32k 1>;
+>  			};
+>  
+>  			pit: timer@fffffe40 {
+> @@ -1338,7 +1338,7 @@ rtc: rtc@fffffea8 {
+>  				compatible = "microchip,sam9x60-rtc", "atmel,at91sam9x5-rtc";
+>  				reg = <0xfffffea8 0x100>;
+>  				interrupts = <1 IRQ_TYPE_LEVEL_HIGH 7>;
+> -				clocks = <&clk32k 0>;
+> +				clocks = <&clk32k 1>;
+>  			};
+>  
+>  			watchdog: watchdog@ffffff80 {
+> 
+> base-commit: 47ac09b91befbb6a235ab620c32af719f8208399
+> -- 
+> 2.39.2
+> 
 
-As we found out later, those functions need to be called before the page
-tables are setup in order for the reserved regions to be configured
-correctly[1]. But since the unflatten_devicetree APIs are not available
-before the page tables are setup, I had to switch back to using the
-fdt_node which can only be gotten by using the fdt APIs.
-
-[1] https://lore.kernel.org/all/002b6176-41b3-4888-abb1-978399d108b8@arm.com/
-
-The only way I see that we can avoid using the fdt APIs here is if
-we just don't store an fdt_node reference for the reserved regions
-in resvered_mem.  But I'm not sure if we want to do that.
-> The problem reported is this function uses initial_boot_params, but
-> that's NULL for x86.
-ack
-Thank you,
-Oreoluwa.
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
