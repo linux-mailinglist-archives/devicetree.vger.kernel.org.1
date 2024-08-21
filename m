@@ -1,96 +1,98 @@
-Return-Path: <devicetree+bounces-95524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51293959A2E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 13:37:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D4AB959A4C
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 13:40:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 09BA31F219D6
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 11:37:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B018BB213B1
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 11:38:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BDAE1BAEF4;
-	Wed, 21 Aug 2024 11:00:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43D671C6F76;
+	Wed, 21 Aug 2024 11:02:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b="u967oBSE"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="EoOppzaX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.thorsis.com (mail.thorsis.com [217.92.40.78])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA2751BA286;
-	Wed, 21 Aug 2024 11:00:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.92.40.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B2421C6F6A;
+	Wed, 21 Aug 2024 11:01:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724238002; cv=none; b=NBN1AglqhiF7/sSvH/1VbdO/9wHok9Xwa40gweOoi1pvws0hBkZ9RON5O7mpjah35GIXVV4fU/Rep3nQruHVAVZWdk7elP9d15liuahZdBfitvyLlTKPWAEP5Csi44HJ9eNc8eU6dKwVnf0ILanKm3o1cWRlR6G52CYFe9TD9u0=
+	t=1724238120; cv=none; b=qUhdRV22TBUS8NPnLuJxgEnDVpl0tx5Rimdz0fRv7JnLXG/MJAzrnUAiOwuyI0YssZ1khOHQ4/498T4g+M3YlORyjz8lUfM4J5pbwNmyu6Z5dc4bkg0k7upIA8ElvJtBS+/bZ4VTyOuU9BHAk8nHFxIIAWwc0zVCRLwzR9fdjvs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724238002; c=relaxed/simple;
-	bh=st6qru0aA6v8gy4EaRFbuG3ZJ7Z30JGYCTim6v6PJus=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Bw87kbwTXKifg3OuUHaplFqrBTHY/NTscv8KMLSGuni0DxYFHAk0LSlggKk8BHHHeLf3D4adq7NVYfqmAFHMh9uJktcxX7h/k97JRLNZqjxzmHCeOH1l78EwwEJhijYGbpWE7CEyT+3nVz8ZiLa2B8OYX71bhf9AYdL8BvGymFE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com; spf=pass smtp.mailfrom=thorsis.com; dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b=u967oBSE; arc=none smtp.client-ip=217.92.40.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thorsis.com
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2A25E1483DEE;
-	Wed, 21 Aug 2024 12:59:58 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=dkim;
-	t=1724237998; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=RxP+7FhQ7B7RR8we2m9jYjfDUkGx0+B+yYzfsV/BxBo=;
-	b=u967oBSEa9c1H/goYN6LwJDfcx2Bv3V2fiOhtyYaL4yCT5Wi9smjiEVFExrkMrr9XCMjUS
-	B10dLm2dERlXaQDGpl1wL/+neYKyOD3VJLcd3qexBWzsBmEg+TunZjufbC+Nl1rNCiEc3h
-	QJeE/oPpP/6xTTdtY3aUamR6t3KrvCXj+hxEl9/sD6R+OB7hlq80MVhOG/ao80ObXbp8ad
-	V5YcD2JaR76PTEgPsYU5qhenJZ3lSWYGZMxMuOGJEvv+19C2w5QxnzVMQbwTJgWli5MTj+
-	esSeNjR0qKw2e3iYEipyCOsEbYYv5fD3NF9httW/r/UkwwlCD4d+FJZiIkrUFw==
-From: Alexander Dahl <ada@thorsis.com>
-To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Cc: Christian Melki <christian.melki@t2data.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v1 10/12] ARM: dts: microchip: sam9x60: Add clock properties to OTPC
-Date: Wed, 21 Aug 2024 12:59:41 +0200
-Message-Id: <20240821105943.230281-11-ada@thorsis.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240821105943.230281-1-ada@thorsis.com>
-References: <20240821105943.230281-1-ada@thorsis.com>
+	s=arc-20240116; t=1724238120; c=relaxed/simple;
+	bh=HOHb8KCraPzrbCvJ+E0qTpch9IgPjx/67xFxG7KR/O0=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=X24lnL8GeHvt6MLrx6G4mv5V8A9DwUCW0rY+B2oUYSVNRjaIe4Y7erGm2E1wxkslUjPBLqSwPllTmuS7OdVui8AtlyFskyvvXsTHlQZSEjpkopibiBL/LTMQ33sIbUf0ykcIuYzRxSM04CicgZwQ4LmQ1/TtJpE5vH88vzQD02c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=EoOppzaX; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47LB1nr7095237;
+	Wed, 21 Aug 2024 06:01:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1724238109;
+	bh=047nGRnfjolajDj8O6w/DlUNEueI6Mf8QH2J0scQPjA=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=EoOppzaXD5174Uv37vGhVrmDsXZVPfpg8XCybRe3lP6AwyHb+Du523wwN2ezVAWkI
+	 gfPSdPFkfffJbNkKkFlgrW6bBVjD/9fQr6Py4S71rInkbhY2f3kyEE1BZDkosYIS95
+	 G1jLdhhgXMuAtPRBdylGiBC1eiUZj2N8lzBhkjuM=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47LB1n62002340
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 21 Aug 2024 06:01:49 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 21
+ Aug 2024 06:01:49 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 21 Aug 2024 06:01:49 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47LB1nY1007738;
+	Wed, 21 Aug 2024 06:01:49 -0500
+Date: Wed, 21 Aug 2024 06:01:49 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Judith Mendez <jm@ti.com>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Jan Kiszka
+	<jan.kiszka@siemens.com>,
+        Bhavya Kapoor <b-kapoor@ti.com>
+Subject: Re: [PATCH] arm64: dts: k3-am654-idk: Add Support for MCAN
+Message-ID: <20240821110149.yk3da663fek2a4sy@attitude>
+References: <20240820193420.29184-1-jm@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240820193420.29184-1-jm@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-This will allow to enable the main RC Oscillator from
-nvmem_microchip_otpc driver.
+On 14:34-20240820, Judith Mendez wrote:
+[...]
 
-Signed-off-by: Alexander Dahl <ada@thorsis.com>
----
+> +&m_can1 {
+> +	status = "okay";
 
-Notes:
-    This requires some DT bindings update, right?
-
- arch/arm/boot/dts/microchip/sam9x60.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm/boot/dts/microchip/sam9x60.dtsi b/arch/arm/boot/dts/microchip/sam9x60.dtsi
-index 2159a6817f44..4f0651b8cb60 100644
---- a/arch/arm/boot/dts/microchip/sam9x60.dtsi
-+++ b/arch/arm/boot/dts/microchip/sam9x60.dtsi
-@@ -162,6 +162,8 @@ otpc: efuse@eff00000 {
- 			reg = <0xeff00000 0xec>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-+			clocks = <&pmc PMC_TYPE_CORE 11>;
-+			clock-names = "main_rc_osc";
- 		};
- 
- 		apb {
+NAK!
+	https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst#n117
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mcu_mcan1_pins_default>;
+> +	phys = <&transceiver2>;
 -- 
-2.39.2
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
