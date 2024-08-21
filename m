@@ -1,151 +1,128 @@
-Return-Path: <devicetree+bounces-95613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FB8F95A3A5
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 19:12:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D13495A3AF
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 19:17:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B7A2AB220A0
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 17:12:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2075285531
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 17:17:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 690131B2524;
-	Wed, 21 Aug 2024 17:12:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F35351B2EC8;
+	Wed, 21 Aug 2024 17:17:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="upk5xP46"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qJTLsnpj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D34151B2518
-	for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 17:12:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3A4F1B2EC1;
+	Wed, 21 Aug 2024 17:17:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724260353; cv=none; b=rnkav950tegiZuYER9dUHisWGLf1tzJQQ0xFGjkdE9iDhLf3HdnHSBnCkzllQRn4J9Ma0x/thwf1HoYfakNXVlx6QpNLp8+V15L3d16NvNhc4ktjlUj5rhfX37WPUJpM849doJAl29+kTeRfxyW3bKyzRQj3t4AnNjF4PBWpWd4=
+	t=1724260634; cv=none; b=rMhkqRjXKI0JynYadHBwWvuTdoI3N2snYZhzfuLnM73e3qMaSvnZNDLs1dsFeMLBML4Reoaeg7BHkJ7b/VZi/o705iaGVbuvDs60fjmjILeyRLigQqNZ6Qk9Xs6VLjj0VOjkQjWFm9IS8pY6BNfLlSYe26m7YzQHkuyLkUzCxuk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724260353; c=relaxed/simple;
-	bh=8AMj1gQbdOy6mzRKOvisGTOPkhNd65sI4xgr/VwrPjo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aQ0M43RkL0cBhnMw8PL9KHP7JxbvMQhLluV7meBhK/6o9sSxT5uLi0evYKTUCFQiUu8fGGo8Q2mQn+lPjGOATtM4UcWbOVv4nTLrGLeQVkiGyu+EWLmAbaC8eZz3s5+ABAEDS2RMrzDoI+pYQIrvu4+ct+nw74n4jHI47oR4348=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=upk5xP46; arc=none smtp.client-ip=209.85.210.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-7141285db14so1516003b3a.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 10:12:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724260351; x=1724865151; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=2PGuIX73MOWMnEgrAGHe44EShZU2W6VwRhKHeC2K7JU=;
-        b=upk5xP46OfEFNNtH3SH5yhTKqD57K+7FyHr+IV0pyc6BZcvM+A17QmRF5ESdc8eZOy
-         urpf6pmCGrdNB3DtXMbKpl5nyIbmpCEZ5eeqxV60uXWr8SmH8Bkn5/SdbrwHG8v6ZW5U
-         rP8Rm2Z/arH6YmE6zk0+iKCq26QPe5flVcbPh1dmOB5mjK/VxnhSL88EYbdRCna+DMr2
-         G2vdCvMj9154bHR21mnFQAnVgSmSs4HawEpsbR8/4HUy8UOt8Yfks4nAhtAmgFhfB8fQ
-         PYNCCBemPFSc5jDp9mxYSIz0NoQ20p35Hw8CqecRUZG4rJc9tiwy+UfE8YFNrbs7V0Il
-         H7kA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724260351; x=1724865151;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2PGuIX73MOWMnEgrAGHe44EShZU2W6VwRhKHeC2K7JU=;
-        b=cJRUSTqgFbiqaDO1+1ytagV1b+A4XlpEm46h3eAvIfUIx1wjRAXagmf8XfpuIP9eKU
-         QsNLccDZg7T0DZYCdLmLDtwonYUvvsWBk8HZkJbWQY0ssqAyeyGiN3NGE1suBmhZRETO
-         zJcXzapk0FWcVaYjXz/2tqdKRszs5L61j0rlzkKRK4SGRGnuOTtlwbO6J9/91tSFTydL
-         gWx3RdWA7NbwwyyhearJNcEED2BUmenJBUNAs1YVkQiJXpTRph3SvY2DDrvtSl4Kjtup
-         xbXafD/dwDzyKvlNMN7FeFOHWbcET0mBEoNkFm4p8ZCZEioxH33qFujDRJigShJE4jTw
-         /ELw==
-X-Forwarded-Encrypted: i=1; AJvYcCXoCnV6ljiDIIxKG7jguyOB6h+GwcfbazaU5vE9St40mS/UAsFgE/oYK6fHufxIOwK4rKIbeG7WVuz7@vger.kernel.org
-X-Gm-Message-State: AOJu0YyqeId4wqFX6S32HBhEvYKXrpvgmd4d5NZ6n+/nW45KYl14O8Dh
-	v1SsocpmuCg8tEwbQkLR1gmhPO0iMsQwG6ulbl0IDB4gmlFq7SgoCLPHUg9Rpl0=
-X-Google-Smtp-Source: AGHT+IFahu5nhyR9APNX81eGWYDvWGW2BXzcpC6njxXplKlq16tD6UzEgdsOMomgPVvunvzQIx/1lw==
-X-Received: by 2002:a05:6a20:c916:b0:1c3:b61c:57cb with SMTP id adf61e73a8af0-1cad818adccmr3000160637.53.1724260350919;
-        Wed, 21 Aug 2024 10:12:30 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:167e:272c:2858:d319])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7142e28d8f9sm528460b3a.70.2024.08.21.10.12.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Aug 2024 10:12:30 -0700 (PDT)
-Date: Wed, 21 Aug 2024 11:12:27 -0600
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Andrew Davis <afd@ti.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Hari Nagalla <hnagalla@ti.com>, linux-remoteproc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v11 3/9] remoteproc: k3-m4: Add a remoteproc driver for
- M4F subsystem
-Message-ID: <ZsYf+yR/SWfb97Ya@p14s>
-References: <20240802152109.137243-1-afd@ti.com>
- <20240802152109.137243-4-afd@ti.com>
- <Zr4w8Vj0mVo5sBsJ@p14s>
- <Zr9j5HBjRqqRIoaD@p14s>
- <e5140426-7e69-41b0-858f-16f83eed871a@ti.com>
- <ZsNlic5EbQP2BdFB@p14s>
- <f529c5ef-f61c-4c8b-a589-652aca162f07@kernel.org>
- <98d65c2e-f5a2-4894-b76d-6fa0fb8b6daf@ti.com>
+	s=arc-20240116; t=1724260634; c=relaxed/simple;
+	bh=TyLDjhy0ttfEqSAKwvAE+TyPIIdCunxanaRtbGipG5M=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=ZVjigY9+PzUB3YrL3D+c3tXmj+vJOmeUw1CXLs8f4TYRgZ7QvnQFTX/tAJ+AxMsZgaeFfuGIKLeehqaysoKc58Fwc2qBsrljVaL5EzA+zJ4J2F9wIx8b+m2ChTlWmo5bRPE0kNXtSd/XtJ0kpqRsx0D8yWq78Qlm/ZMEtDPb7gw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qJTLsnpj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB952C4AF13;
+	Wed, 21 Aug 2024 17:17:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724260634;
+	bh=TyLDjhy0ttfEqSAKwvAE+TyPIIdCunxanaRtbGipG5M=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=qJTLsnpjPRqw2Ttkye4zhRT+sOXS+tl57VHKXelnWv3O7OBcK2j5giznTCNDhbh08
+	 p3IeqfBKs7F4uCML5CV6CnX6DHasaRCEu5T4EJ/l0Z7S2OqkNQFbkMIY0vnObJU8mn
+	 YNf8XF8pOJQqpP8tb9+QveomFi/RdyWwIkBPrw50iKGfUyItrnBZFZTP5sp3QJgxke
+	 7/7iVj4GsMlKXWShUb+gUA0Q9rIew6ROkd5K5LSwJGuw2TsfZpya9yRr0Ggj5xCtFI
+	 KyR5dop6W2A8B7veBSpMRvqsVWycCTgMHYnKw5ET2QvqLbvhPhFHqtzWYgS54A4elg
+	 maLXDuhkXoYLA==
+Date: Wed, 21 Aug 2024 12:17:12 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: daire.mcnamara@microchip.com
+Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	conor.dooley@microchip.com, lpieralisi@kernel.org, kw@linux.com,
+	robh@kernel.org, bhelgaas@google.com, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, ilpo.jarvinen@linux.intel.com
+Subject: Re: [PATCH v8 2/3] PCI: microchip: Fix inbound address translation
+ tables
+Message-ID: <20240821171712.GA256242@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <98d65c2e-f5a2-4894-b76d-6fa0fb8b6daf@ti.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240821130217.957424-3-daire.mcnamara@microchip.com>
 
-On Mon, Aug 19, 2024 at 10:54:11AM -0500, Andrew Davis wrote:
-> On 8/19/24 10:39 AM, Krzysztof Kozlowski wrote:
-> > On 19/08/2024 17:32, Mathieu Poirier wrote:
-> > 
-> > > > > > Please remove.
-> > > > > Forget this comment since it would cause an error in __rproc_detach().
-> > > > > 
-> > > > > > Other than the above I'm good with this driver.  That said I can't move forward
-> > > > > > without a nod from the DT crew.  I also noticed a fair amount of code
-> > > > > > duplication with the k3_r5 and k3_dsp drivers.  Dealing with that should not be
-> > > > > > part of the current work but will need to be done before another k3 driver can
-> > > > > > be merged.
-> > > > > > 
-> > > > 
-> > > > > The above still apply though.
-> > > > 
-> > > > Me or Nishanth will pick up the SoC DT patches via TI SoC tree, once the
-> > > > driver patches are merged. Feel free to ignore those but queue
-> > > > dt-bindings (already has DT maintainers ack) and driver patches via
-> > > > rproc tree.
-> > > > 
-> > > 
-> > > Can you provide a link where the DT maintainers have acknowledged the bindings?
-> > 
-> > The reviewed-by tag serves as acknowledgment as well and the binding
-> > patch has it. Conor gave it on some earlier version of the patchset. I
-> > did not check if there were any significant changes in the meantime, though.
-> > 
+On Wed, Aug 21, 2024 at 02:02:16PM +0100, daire.mcnamara@microchip.com wrote:
+> From: Daire McNamara <daire.mcnamara@microchip.com>
 > 
-> Was reviewed in v8:
-> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240424190612.17349-2-afd@ti.com/#3302840
->
-
-I didn't notice Conor had joined the DT crew and as such was expecting something
-from either Rob or Krzysztof.  I am applying this set.
-
-Thanks,
-Mathieu
-
-> If there was any significant changes since I would have dropped the tag.
+> On Microchip PolarFire SoC the PCIe Root Port can be behind one of three
+> general purpose Fabric Interface Controller (FIC) buses that encapsulates
+> an AXI-S bus. Depending on which FIC(s) the Root Port is connected
+> through to CPU space, and what address translation is done by that FIC,
+> the Root Port driver's inbound address translation may vary.
 > 
-> Andrew
+> For all current supported designs and all future expected designs,
+> inbound address translation done by a FIC on PolarFire SoC varies
+> depending on whether PolarFire SoC in operating in coherent DMA mode or
+> noncoherent DMA mode.
+
+s/in operating/is operating/
+
+> The setup of the outbound address translation tables in the Root Port
+> driver only needs to handle these two cases.
 > 
-> > 
-> > Best regards,
-> > Krzysztof
-> > 
+> Setup the inbound address translation tables to one of two address
+> translations, depending on whether the rootport is being used with coherent
+> DMA or noncoherent DMA.
+
+s/rootport/Root Port/ to match above
+
+> +static void mc_pcie_setup_inbound_atr(int window_index, u64 axi_addr, u64 pcie_addr, u64 size)
+
+Most of this file fits in 80 columns, maybe these new decls could, too.
+
+> +static int mc_pcie_setup_inbound_ranges(struct platform_device *pdev, struct mc_pcie *port)
+
+> @@ -525,13 +529,20 @@ void plda_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
+>  	val = upper_32_bits(pci_addr);
+>  	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
+>  	       ATR0_AXI4_SLV0_TRSL_ADDR_UDW);
+> +}
+> +EXPORT_SYMBOL_GPL(plda_pcie_setup_window);
+
+I think the caller that needs this export is in a previous patch?
+
+I wish we didn't need to export symbols like these since they're
+really private to the driver, but I didn't look into the module
+structure here.
+
+Also, I get this error when building after both patch 1/3 and 2/3:
+
+  drivers/pci/controller/plda/pcie-microchip-host.c:617:5: error: no previous prototype for ‘mc_pcie_setup_iomems’ [-Werror=missing-prototypes]
+    617 | int mc_pcie_setup_iomems(struct pci_host_bridge *bridge,
+	|     ^~~~~~~~~~~~~~~~~~~~
+
+> +++ b/drivers/pci/controller/plda/pcie-starfive.c
+> @@ -355,6 +355,11 @@ static int starfive_pcie_host_init(struct plda_pcie_rp *plda)
+>  	 */
+>  	plda_pcie_set_pref_win_64bit(plda);
+>  
+> +	/*
+> +	 * Setup the inbound address translation
+> +	 */
+
+Could be a single-line comment: /* Setup the ... */
+
+> +	plda_pcie_setup_inbound_address_translation(plda);
 
