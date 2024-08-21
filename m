@@ -1,229 +1,112 @@
-Return-Path: <devicetree+bounces-95650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D43095A72A
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 23:54:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 244C395A726
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 23:54:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 452B428260A
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 21:54:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5784B1C22099
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 21:54:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BAD417ADF6;
-	Wed, 21 Aug 2024 21:54:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46A6017A5B2;
+	Wed, 21 Aug 2024 21:54:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TVe3qpBh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VU1C85yw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59420179957
-	for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 21:54:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FAA3179652;
+	Wed, 21 Aug 2024 21:54:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724277274; cv=none; b=cM6OEzClCyO3cG6QazgmqGzhFF/vs7YpMxa/iyqU62aMVlNri+qrnQqHLhGAwlZ66NOhZxlnvKTrCrAWUH14zVST0A2UFE0SyMNfj487uf7FHuX2pR6BdKOOihq5vLd2boLjfYoaPNtd8lVqhprF+oqFCoXyg8BVjY6OvDJDmiM=
+	t=1724277244; cv=none; b=TqHSt9fhkkydNm53TClyyz3O56Z5rj+8MId7raUKQzwDGslcUZegivomBAAk4qvYgdYdKDLUVWZp+85iiP9F5oYPtT66ZyEfOtSRNGVKuiiEsFPhiSi3kSBOj78Kpm48lgV1xEOsZpRAyUkT7LBGCMleOi9sryh1O+IqR2l6qks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724277274; c=relaxed/simple;
-	bh=OWEY/Oe8ge2ZZVlPSGKPWDKhRL3cgLiz+mCQB5vlko8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=J73AS+PWiK+sidXe8nFSSn50zvrWbi8vr+TCLjAin4UZInx+eecJp2Y3TEkXAzfbkXTRdowMgONxEDVVaxGoTQ5vlpoxxWdwV39kXOsjrTHRU7J8tnnIyhHGf9eBTk8Jj6L9scLcO2f2Rk6OBEZDy5JKp2AtHIRFblWne4lfRwk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TVe3qpBh; arc=none smtp.client-ip=209.85.219.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-e1654a42cb8so198108276.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 14:54:32 -0700 (PDT)
+	s=arc-20240116; t=1724277244; c=relaxed/simple;
+	bh=eP6nwvdKLnezrTV/XOYcwEApNIAT6pzmSTMv6dEmkGI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=GBtC/xpUrYnD+wZPHlB2Ze0kwmXfVlXLt+ZkRtPZvhr7O08Wbku+zFiwhavdUClgYg4Jw46G6Nb96mTtDnkw1ztRKoJS6aNgCm8Zkea5FdP1m4yUiIkKdiRREhBxvRPeotw5e1hE63vgZSPJagLOtmxyTQStxGbJ03hpoc+40k8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VU1C85yw; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-533488ffb03so189601e87.3;
+        Wed, 21 Aug 2024 14:54:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724277271; x=1724882071; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qkHIbzE1O2+lqb74KEvCCR6BaqXgelXIBZ+AgizTxyA=;
-        b=TVe3qpBhHS5f8rwa3OT/pfJg7+6r7LxqcP20m1BEnV6S13fb73IoPyFZjvtbpkSEy6
-         /rLRCR3KsMJ9xHBLzhQjSfyFbh2L1ro/x20b8LYD+NsiWy5NJEJQIK+MzfTrWR4BJ2Qj
-         iPx4WfGBKADbQflgjSYYjKYeXup1Tb+4+cHZr/iDB2CxGyewdYK65e+cpskK0Xd0zG6o
-         +lUVn0iKhFELOLbPKcSUyh7DixmgbGmPk6UacI5nyWVvprVgj/I1uIU0BCmWax4AYVX/
-         OZKu05vxjdYiwVPAwl7lsSteoBiO0ftnKti6XqERbP1AB7bmRWl0ecHBI3BGGqz3Ma4R
-         888Q==
+        d=gmail.com; s=20230601; t=1724277241; x=1724882041; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rH+wXupdcEeWDpiy+UjjAtlMKoxWGKFGlfpWTlTHJhQ=;
+        b=VU1C85ywBPCNQ7d3KsoGz3Na4Hbj0jE8aSGyH2xqwRpmbGR1DbWntAUsXcYa6nqG1r
+         gd92xSFkN5Qx0NfSrnl/6cibsci8bb1iX8n3T+nEACAQW56hMatJFMy5E05LMTFWCFTu
+         ZojvrYXDlU/Otc0jVR0baf+HE0IlTeM5/8MY0XIPpf+hP0b1z7/Tnnq6oqFBImR8SaH5
+         1HYnAWf/HrpYhCHWAzOJeJYYBirbPuHH3vfHr0rSPBcHLqEts3o37nKtTq3b3yCwV0sX
+         j+4dxfcpIvYa4L15iJ8PC0E5v0bFw8pJOkr6OIZlF7DquTVBgCo3huER3vGeesBWfHak
+         v9Gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724277271; x=1724882071;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1724277241; x=1724882041;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=qkHIbzE1O2+lqb74KEvCCR6BaqXgelXIBZ+AgizTxyA=;
-        b=GGJ7US9PSE64MWpGBHVM2ihpNi9wVKokh3yy5g+pIXlvlj/eCle26aOG/7PkcXxJOH
-         3F+K/Oom2el9Sg2Ic06p8qZhiBq2TtSkkv9JpTfWW6TnEWsPITfVqOEBzCeef+e+AQ7v
-         nOT4Y0ub79OLq1fF1391lIKJhkGea/SwpdloQVbm0zxZmiB/+crJZbI2bAOOLwyung8b
-         JxVm7N1TWiDfmCoKV7e7zhFuCjwrgQr0nm6CWD5ybY9preuK1hzwj8N3cNaf1dMmWxKS
-         CZdhes5vlq78yoEKq6mZ0oD2Mr4Z3Aopa2N3d07QvBgkLwUlPW6O++tw1xSL36fEZHjj
-         GtJA==
-X-Forwarded-Encrypted: i=1; AJvYcCU26J72eu9Z98HwVTeGR6MkUjygv+hFy2xnmlpL5OvlS7TIco8Lg9G9sR38YwoZuEZiYpy34SmmqmDB@vger.kernel.org
-X-Gm-Message-State: AOJu0YwOQObqbi1HLOFMIlYEhcNFIdg6qxmhOVWZ7KeCk7YpTEHBIWv4
-	zLVi+HrLT6oyJZLkOOtXTEIpwdFchHyjo1oVIdMDxA3IxSnX3k3eXcBSr2qgE/JSOi5/d9RnjDb
-	BEKzypvtnxxcYF2CE7WcA4FaIq2KjrGixfXKp/A==
-X-Google-Smtp-Source: AGHT+IEbLEfHwFyYNcri3t1w7o7tWbS6oBaWx4DQWVSFv0w407zJOJ7W0eTL+KNzshnbYP+06yOh2I/iVUNvpj/p1kQ=
-X-Received: by 2002:a05:6902:1444:b0:e0b:28ce:6156 with SMTP id
- 3f1490d57ef6-e166556617cmr4277142276.55.1724277271228; Wed, 21 Aug 2024
- 14:54:31 -0700 (PDT)
+        bh=rH+wXupdcEeWDpiy+UjjAtlMKoxWGKFGlfpWTlTHJhQ=;
+        b=wzdSeVeCvbuboHG2vwPat5ruTDkCWIRDksI2ZWpyPX1hcBqI1H5gSWg8sAbJdeFmaL
+         5IM9Qeut9VEvseTcF+ehd5YE7vLf7dd1nfSgkuQBG/kjraIhCqlGFFe7cR1pFEgLqe/i
+         Rghgzhbip2Bq/BzJ9lgRZ/nwAPi+fUts/uzfPCaR4uIixNzUPajp//NbAEMWC7xR5UQy
+         yrY6Qeoud4AxJcu0Gjtmth5KcMnF9clavpHLlRM/aIZgr/KeqERQhRV/H5CCDnC9kYwB
+         wUtJOb4EARhAInjC32CDYggBpPl+6Dg3bD19UUAALaZrSEqqOOgIcArpt8bYYvZIv2RG
+         Hq9g==
+X-Forwarded-Encrypted: i=1; AJvYcCVme61hLwDTNNeiW4pgTb2SsGqk1im+rZr4otoA7DC3XOvfdsKP7SQkcrvm8Vqyz20rtNIr5KUY+cKv@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJPDxZTOTVdKuf2IlaUsp/9vTOug/dDpLbqu7Bu+uk+2g8QGsv
+	x3ynFg1Wi9KaiqGRYGMFQOmxV16O5HxWWPHPo1nXQ988MTPItcji
+X-Google-Smtp-Source: AGHT+IGrRtTz0HBNaL45hxVnrFvxPbxlaVFlCrOhpoLUAniDrGhxVMVO4PJzIKURjs9bKHKKp+QjlQ==
+X-Received: by 2002:ac2:4e09:0:b0:530:aa09:b6bf with SMTP id 2adb3069b0e04-5334855d450mr2500693e87.24.1724277239903;
+        Wed, 21 Aug 2024 14:53:59 -0700 (PDT)
+Received: from ilordash-vm.mshome.net (95-26-8-211.broadband.corbina.ru. [95.26.8.211])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5334ea89004sm15623e87.274.2024.08.21.14.53.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Aug 2024 14:53:59 -0700 (PDT)
+From: Ilya Orazov <ilordash02@gmail.com>
+To: Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Aswath Govindraju <a-govindraju@ti.com>
+Cc: linux-can@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Ilya Orazov <ilordash02@gmail.com>
+Subject: [PATCH v3 0/1] dt-bindings: phy: ti,tcan104x-can: Document Microchip
+Date: Thu, 22 Aug 2024 00:53:56 +0300
+Message-Id: <20240821215357.20224-1-ilordash02@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240809172106.25892-1-ansuelsmth@gmail.com> <20240809172106.25892-4-ansuelsmth@gmail.com>
- <20240813200734.GA1659224-robh@kernel.org> <66c5b8ec.5d0a0220.11ef1f.b572@mx.google.com>
- <CAPDyKFq0cR10d1jUc5gnoUR5P=cbDEZy2iA-HOq9oNcWZevbDg@mail.gmail.com> <66c62d4f.df0a0220.3305f1.f86c@mx.google.com>
-In-Reply-To: <66c62d4f.df0a0220.3305f1.f86c@mx.google.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 21 Aug 2024 23:53:54 +0200
-Message-ID: <CAPDyKFpHaWar9Mbdg74CGgrwqkoLwt5HjvVOtUDU+z+sg9aT3g@mail.gmail.com>
-Subject: Re: [PATCH v4 3/7] dt-bindings: mmc: add property for partitions node
- in mmc-card node
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Joern Engel <joern@lazybastard.org>, 
-	Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@kernel.dk>, Christoph Hellwig <hch@lst.de>, 
-	Sagi Grimberg <sagi@grimberg.me>, Saravana Kannan <saravanak@google.com>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	Florian Fainelli <f.fainelli@gmail.com>, linux-mmc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-mtd@lists.infradead.org, linux-nvme@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Wed, 21 Aug 2024 at 20:09, Christian Marangi <ansuelsmth@gmail.com> wrote:
->
-> On Wed, Aug 21, 2024 at 03:14:29PM +0200, Ulf Hansson wrote:
-> > On Wed, 21 Aug 2024 at 11:52, Christian Marangi <ansuelsmth@gmail.com> wrote:
-> > >
-> > > On Tue, Aug 13, 2024 at 02:07:34PM -0600, Rob Herring wrote:
-> > > > On Fri, Aug 09, 2024 at 07:21:01PM +0200, Christian Marangi wrote:
-> > > > > Add property for defining partitions node in mmc-card node to define
-> > > > > partitions in DT by the use of the block2mtd module to use block
-> > > > > devices as MTD.
-> > > >
-> > > > You justified patch 1 saying eMMC already supported this, but then here
-> > > > you add support.
-> > > >
-> > > > Both are a NAK for me as both already have a way to describe partitions
-> > > > with GPT.
-> > > >
-> > >
-> > > I think this got a bit confused and hope we can find a way to add
-> > > support for this.
-> > >
-> > > What is "already supported" is assigning an OF node so driver can
-> > > reference it. This patch was just adding the nodes in the schema to say
-> > > that partitions can be defined.
-> > >
-> > > I think what is not clear is that block devices might be used as raw
-> > > devices without a partition table defined in the device. In such case
-> > > it's the kernel that define a fixed partition table.
-> > >
-> > > One example is [1] where the partition table is provided by cmdline.
-> > > Similar to cmdlinepart MTD parser.
-> > >
-> > > The use of block2mtd is just to make use of the MTD parser system.
-> > >
-> > > Considering
-> > > - eMMC is soldered to the device (no dynamic scan)
-> > > - cmdline might be not tunable and hardcoding it might also be
-> > >   problematic (as some cmdline needs to be used)
-> > > - concept of fixed partition for block device is already a thing and
-> > >   used a lot (android AFAIK)
-> >
-> > Sorry for sidestepping your discussion, but I just wanted to add a few comments.
-> >
-> > It's not clear to me why we need something different than what we
-> > already have today.
->
-> It's really adding a missing feature. We have cmdline but we don't have
-> DT. And in emebedded many times cmdline can't be changed.
->
-> >
-> > If it's a partuuid/uuid/label or a fixed block-partition from the
-> > command line, we still need to know what partition we shall use for
-> > what. So why is this problem different from how we manage filesystem
-> > mounts, for example?
->
-> In the context of eMMC there isn't any partition table and the cmdline
-> is hardcoded by the bootloader. The cmdline might provide the root
-> partition to use but doesn't declare the partition table (with cmdline)
->
-> And the bootloader with the hardcoded cmdline might provide a different
-> root partition in dual-boot-partition implementation on switching the
-> boot partition. (this is used a lot with bootloader using a env variable
-> and a different cmdline passed based on the variable to signal what
-> partition to use for root)
->
-> >
-> > >
-> > > I think it should be acceptable to introduce in DT support for defining
-> > > fixed partition for block devices and some kind of parser system similar
-> > > to MTD. What do you think? Would this be more acceptable? Idea is to
-> > > just have a DT schema that makes use of the values that can be set in
-> > > [1].
-> >
-> > In DT we can describe that there is an eMMC card soldered to the
-> > board, because it's a description of the HW. But describing what
-> > stored inside the eMMC-flash doesn't belong in DT.
-> >
->
-> Why? This conflicts with how it's done on MTD. Also consider the fact
-> that eMMC might contain calibration partition used for NVMEM.
+Hi all,
 
-Because what is stored in the flash (eMMC) can be dynamically updated.
-It's not a description of the HW as such, but I guess it depends on
-how you see it. No matter what, you need to convince the DT
-maintainers that this is the way to do it.
+As suggested in the previous email conversation on this patch, I am
+sending this new version as a standalone email. I hope this approach
+makes it easier to review and keeps the conversation history clearer.
 
-In my opinion, I think it would be better to invest our time to try a
-different path.
+Thank you for your feedback!
 
->
-> Describing fixed partition on a soldered eMMC that the bootloader
-> expects at a fixed offset and won't ever change (or it will result in a
-> brick) sounds like describing the HW to me. (it's the same principle of
-> MTD just applied to block devices)
+Ilya Orazov (1):
+  dt-bindings: phy: ti,tcan104x-can: Document Microchip ATA6561
 
-I guess it's somewhat a greyzone in this kind of case, assuming you
-are referring to a bootloader that is stored in some ROM code that
-can't be updated.
+ .../devicetree/bindings/phy/ti,tcan104x-can.yaml    | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
 
->
-> (I know it sound strange as block devices are expected to have a
-> partition table in MBR or GPT but reality is that it's not always the
-> case)
 
-I fully understand that but there are different ways to deal with that
-too. Maybe enforce to write an MBR/GPT when flashing, assuming it
-doesn't overwrite some data that is needed.
+base-commit: b311c1b497e51a628aa89e7cb954481e5f9dced2
+-- 
+2.34.1
 
-Another option is to let the bootloader parse some platform specific
-data in the flash (unless it's hard coded in there too) and then make
-it update the block-devparts for the kernel command line, for example.
-
->
-> > >
-> > > Hope we can find a solution to this, I'm totally OK for dropping NVMe as
-> > > I understand it's PCIe stuff and very dynamic but OEM are making lots of
-> > > use of eMMC and are starting to use these strange way (block2mtd) as we
-> > > currently don't give a proper and easy solution for the task.
-> >
-> > I certainly appreciate that you are trying to solve the fragmentation
-> > issue around this, but it looks like we need a different approach than
-> > using DT to describe partitions.
-> >
->
-> Well it's either DT that can be tweaked and is part of the image or
-> cmdline that have tons of limitation due to bootloader having fun
-> hardcoding it or also actually requiring the bootloader cmdline and
-> adding overlay on it. Honestly as I said adding DT support is really
-> compleating the feature of the cmdline implementation.
-
-Another option is also to parse the platform specific data in some way
-and create partitions by using initramfs.
-
-Kind regards
-Uffe
 
