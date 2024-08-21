@@ -1,124 +1,111 @@
-Return-Path: <devicetree+bounces-95529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F394959A97
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 13:48:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDD00959AA1
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 13:49:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D1C31C20FAE
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 11:48:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76E781F218FD
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 11:49:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B23C1CE71C;
-	Wed, 21 Aug 2024 11:28:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E3001C1724;
+	Wed, 21 Aug 2024 11:29:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YqJ9SUBb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GXircaAq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F07411CE711;
-	Wed, 21 Aug 2024 11:28:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9F3D1A7AC5
+	for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 11:29:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724239691; cv=none; b=Db3UE99te7XN8EZB4sOiAIT9k26nOn9m3yVGCZK7OaXESfPa1V9HZmwZK/ExWfnkuY2uzqduN0u9oZNI0mR6bmfwOd1Gk7JsFnU5JdvU6APzeVmnRchkrxuBFOZiR+iQruT+1NfUdMKV3uhBZhiJJmG6aTmOLBi+BaNuW5peiTg=
+	t=1724239743; cv=none; b=H3115ksCckoYItBOjnx0fhecg8k67mkDY6DrUZd1M/GW1pheqyOQKedzL07zquVwgxuzIxsHxh8Yc0Av7LirHk47LuRsRNJC7sC23ScptNclBXz/0C7hLrbzg0QB85R+S67eQzWxzoW3Y9ONtMRwmtDTOv/xnyQDE5qFA2r4aHM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724239691; c=relaxed/simple;
-	bh=rsOjgXzxWSfZgIhZgFMdl8mYki910cdB11l6UklY/tQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ghx3HtoylBO8t5rDt8nbGnwOcpB3+CRQins1yy/6UVVwGTu85kAgnxmXp+UG5BmOpbR01DpQ1/pN4wKSPvD1FZFSvYJW4GRyjTH2hEkJgSq/5bPg0zXIne9vELWWhJ42UJX5t3Tg/8uyypU+uANinraYcuj1eXGqUZzUKbueiYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YqJ9SUBb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D998EC32782;
-	Wed, 21 Aug 2024 11:28:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724239690;
-	bh=rsOjgXzxWSfZgIhZgFMdl8mYki910cdB11l6UklY/tQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YqJ9SUBbd46lH+o7RhQyt70u3FnSb9uDe/g3Atz67Yd5mzD6fTxO0pCYoNYxkeO/X
-	 25Ajb0ZY7vcMv2/6EAhhgbZ0gRyacl1O1Nv0223C3Xe1feL21kByuBmKedzVXoppVW
-	 b3lbxd9J9sDBxxp/lcfQ51X4oaadSYK31UwmzufcZWf9VVa47SHf4JlH/2E1N0vXgG
-	 vPsWaL5TNlo5lyzOExjLdDVURbNOG2Nv0+/Ec72xOwtf/ec598FSTVLGIbTQ8D8d7o
-	 lWACxUnvzOQy5MGT3pngjmWg0KmQWTiBNnN5y1HkdqXLGzaf7kFjV4gFdNt52n0CBK
-	 I0CVYZIw4aSXQ==
-Message-ID: <2971669b-48d7-4627-bca2-4e09b9ce3b3a@kernel.org>
-Date: Wed, 21 Aug 2024 13:28:05 +0200
+	s=arc-20240116; t=1724239743; c=relaxed/simple;
+	bh=533wRt7wl8s+Xq1V94rO71Jq/CuUXXPLqXQYc44C2tc=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Jpi/VSadQ+5TdFYtU+X8+H5MvNl6XLkUHetegGXA4nWo8XkSedfY/4v7JMQoNh6PUlHtdCeVWFL0H1axkxs4pDlJCmW6gUmyAa+6saeZCd4mqUrturj/Gx4B0/I9eEspqg0hmQTGq4l805Vfucsv6xmRiTHostpqn9hMawCOYSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GXircaAq; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-371a939dab9so113767f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 04:29:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1724239740; x=1724844540; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LnVkYJTcDOKtCLQwYqRu5j6J/gYl7QtS84vF+23ZA/g=;
+        b=GXircaAq8JrydHyqXWFAaTHZI/GSkQJAh/AJEdWJ42N3RyZZXRQojmka5iWxI4dRjX
+         V0GGdfXQ5nNHbhltxxAhA/hSwQbY9zwrqzY3VkPFUE8BM6BrDqL5ElmAw7jaIQbFCfmA
+         9E+ZFWfDWS4DIiSsUr3kO74IzwhU4YUxWH0ZKn9gHPvED/2DkKnJxCfy3VxaLfHaxKJl
+         avsT2pgHKF9O+EHyqnaXE23lIjtRkjgxT1XcH5HiNGhHu78inwvnNgd/rt9CszCQi/a8
+         jK5ecD4egJ1X3lURSV8GUXwSG5wO39M+FuSQrxnMOOFMkkEvRdVzsCNFTXGSMwp0nMu6
+         /8fA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724239740; x=1724844540;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LnVkYJTcDOKtCLQwYqRu5j6J/gYl7QtS84vF+23ZA/g=;
+        b=t9KdGH7rvo17pf1TWBrfSY97EOJkqYf5yCz+fmn5M9rJzOutSEgBzFwVRPMzpvwnHO
+         fOxZ4zTnkbGT8andhMRBNZ5H8lRbnoTKpv4+00b94dRt/vOGpp4N7L7t8ky7lIAeDPPn
+         ISf9MDr68/9WV2GDo7gWcn0KHW/ld8uuS+2KaaxRzNeaR8y51npveOEigUPZoQopSP5T
+         Amam6rHLH/29xe/ZUR5ji1NSB0P0jmwhFsTLlmXPRk7+2mizde/sTsOieZw5++puTohd
+         uNYqxQHb+ELHds7oEbeggTAaY3egmEHd3aU56BR4Bzs2nQfRnJg7H/Dudi+1lYpVDFQf
+         tsVg==
+X-Gm-Message-State: AOJu0YyYSCAQ2OzXJuPo03Grnd9lZaKQXD1DoFoLEJWkfkX0ZL1xw3mn
+	LQpM4bJ9nSQzmbvfDwxE+l4UeMdLrJuNfcrY1nG4nHk+pjiFi2cSehNujbIzQsU=
+X-Google-Smtp-Source: AGHT+IEAlDPnqiiYjouX6YpiJgvfNheccSjha8iIvn391TYIQoiP3HQ77uaLB0NYQG+2NQDUUUCucg==
+X-Received: by 2002:a5d:6d01:0:b0:35f:2584:76e9 with SMTP id ffacd0b85a97d-372fd584827mr841459f8f.2.1724239740101;
+        Wed, 21 Aug 2024 04:29:00 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.215.209])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37189897926sm15446926f8f.87.2024.08.21.04.28.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Aug 2024 04:28:59 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Kwanghoon Son <k.son@samsung.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20240819-add_sysmmu-v1-1-799c0f3f607f@samsung.com>
+References: <CGME20240819075546epcas1p355a3c85ffcea2c43e8f1b2c69a0f3b4e@epcas1p3.samsung.com>
+ <20240819-add_sysmmu-v1-1-799c0f3f607f@samsung.com>
+Subject: Re: [PATCH] arm64: dts: exynosautov9: Add dpum SysMMU
+Message-Id: <172423973836.252925.2617927566866963313.b4-ty@linaro.org>
+Date: Wed, 21 Aug 2024 13:28:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: exynosautov9: Add dpum SysMMU
-To: Kwanghoon Son <k.son@samsung.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <CGME20240819075546epcas1p355a3c85ffcea2c43e8f1b2c69a0f3b4e@epcas1p3.samsung.com>
- <20240819-add_sysmmu-v1-1-799c0f3f607f@samsung.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240819-add_sysmmu-v1-1-799c0f3f607f@samsung.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.1
 
-On 19/08/2024 09:55, Kwanghoon Son wrote:
+
+On Mon, 19 Aug 2024 16:55:45 +0900, Kwanghoon Son wrote:
 > Add System Memory Management Unit(SysMMU) for dpum also called iommu.
 > 
 > This sysmmu is version 7.4, which has same functionality as exynos850.
 > 
 > DPUM has 4 dma channel, each channel is mapped to one iommu.
 > 
-> Signed-off-by: Kwanghoon Son <k.son@samsung.com>
+> 
+> [...]
 
-And droppped, this does not build.
+Applied, thanks!
+
+[1/1] arm64: dts: exynosautov9: Add dpum SysMMU
+      (no commit info)
 
 Best regards,
-Krzysztof
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
