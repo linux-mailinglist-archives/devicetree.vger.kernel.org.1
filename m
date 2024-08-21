@@ -1,246 +1,132 @@
-Return-Path: <devicetree+bounces-95390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95391-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD4CF95947F
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 08:23:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B1A29594AE
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 08:33:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 955281C21EEB
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 06:23:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4C9C1F24448
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 06:33:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19A8516DC0E;
-	Wed, 21 Aug 2024 06:22:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A81C616DC2D;
+	Wed, 21 Aug 2024 06:32:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qej8SjUZ"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="QqVosuxT";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="nTnSnz19"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA4C61C6B5;
-	Wed, 21 Aug 2024 06:22:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B15EC79CD;
+	Wed, 21 Aug 2024 06:32:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724221377; cv=none; b=daZkagTNw63+do7ew4187ZMKAUgstYwBZCAA5BtMpnZycTN6d+Om0TWpK26DsijQhh/qhMYnboJjdCRGDqiE762KkH/fSM53Npc0rs9bXz7gGGwhH0u05U+T+NMKNI/ax+Oh+hOiBI6Hve7Wav3fOYLHl0cm6rmSvU3x+gD+QsY=
+	t=1724221945; cv=none; b=DtoHw8nmZo8l/Mi5qCa5GXPrkIFlgkIy2uyuVUVMWhSWR69Qi2UEkMUlBt0vOjxsc3Oe23kBlC9jZSylRU/9F2TXmgtSG4llnixL4gCj+qGz7S9HOGxRCTz844+r+spY/EoZz7k6GTFK6a12HC9FXvyJBoT9Oo6QMjBpAAiohyY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724221377; c=relaxed/simple;
-	bh=+Ca8p2IGyH6nc2ZHR6+G2NHhd+A2edfA9Q+GWa4Bv4E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WF/9q9T+O8ss2TU5WsyI6IHw89ZnztdfQZzeONVFMaLjC3z8ueixPQDNNfP7geQh69N6HsU9i+qNvOefmkbHpnVo1gQNS9g4TujAZnPHCO8guEcwaZTMeX2ht29Q6m+rg++Je6NpwTg7VDMfJIk21W4lrrOQS5hUGaCBztXq0Mo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qej8SjUZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C54EC32782;
-	Wed, 21 Aug 2024 06:22:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724221376;
-	bh=+Ca8p2IGyH6nc2ZHR6+G2NHhd+A2edfA9Q+GWa4Bv4E=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Qej8SjUZathbahQzP/xGKitWxeX3KJi2+E1amapV5Zflc3EGm/HNTGOxaETr9FK+W
-	 kvNB+fQcmP1A/ic5Uj42q4Lxs15UFxA6FI0F6t61zi/OxGfQ+dcI8cywB500VrWn9Z
-	 LQMIgPObfn4TGjWlr93WI7haAfyRN7so44dIBvmz83GB/6Xu1a0B5Q/3GgqVcphMuA
-	 sjHMs+gIMAoLlXq++9fspZy5Wz6LHnyQFcjTpdPuYUdXvnYAIgCgCqpH8BjuIIsKPD
-	 zmiyGs017Orb+UYwtf2xzdbSJ6wLR2tmmCgvmbhviNDAT+LKEu3Po4HTYBspQWiepT
-	 IAIuiqH556VSA==
-Message-ID: <76a46e34-fc22-477d-a2e6-4767e65a73c4@kernel.org>
-Date: Wed, 21 Aug 2024 08:22:48 +0200
+	s=arc-20240116; t=1724221945; c=relaxed/simple;
+	bh=ubO7FYYGu3Hp/dnVJdRu7ROouFe6eV53mIzjSwW6CZQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MP8FzdeCr70Jxi+k1ChF2JQ888Aa9fYtgPeIWEIOqWWshz6W+ftOf2gCmKU9Jyd1BraJcCx61sOsturgyCD2vxKGPXIEFPNTyacUicj2USdiFTTQVaqcGQ5/ZhknNG2kopQT2ZtxGQBVHr+YUfqyFzcInKHuVBxGcl1pdqToK/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=QqVosuxT; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=nTnSnz19 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1724221942; x=1755757942;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=4/ehOcDT1TfhJyhpORScIzM0CaaeNczPyVM302So5TI=;
+  b=QqVosuxTRq0JlyBlkX11oahtC9j29rdIEkWh6C1ShxKhEtWrkCcP8BE1
+   TyjrUjLtWYUtcANbUUHp5qPS/r+sxbK6W9hsaH3ATeBn8l4E/Rx9uJtUo
+   ObMzWko4x7a3j7V/SyLdJkkP9J0f4vIh3xU6ndD1w7jaa5ZFWIktYqk8Q
+   8BaAzz+YoS1nkp1PY4sN79Gv1BKMxIZFoAo6d1FscWG9zTBSl+SYp2x42
+   ZjKxN3LPdX2DC0SMWh47zmg0SGoXQRBI9xEhipckvU7wdnrna+nnkSwJU
+   NYFMD2whxwjb7qXjO2+4IdNQtKdViZlzcCWZE99+d3EPJrwxtS6DQ26an
+   g==;
+X-CSE-ConnectionGUID: jYq/U/DzQz2tnwO4WwI6Wg==
+X-CSE-MsgGUID: jcd+9XZYSe2xgqKmArv8Vg==
+X-IronPort-AV: E=Sophos;i="6.10,164,1719871200"; 
+   d="scan'208";a="38503970"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 21 Aug 2024 08:32:13 +0200
+X-CheckPoint: {66C589ED-18-6568578B-E2E34638}
+X-MAIL-CPID: 771695C08205E4FCECCC211BFF4AE35B_3
+X-Control-Analysis: str=0001.0A782F19.66C589ED.011B,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7D24D163E9E;
+	Wed, 21 Aug 2024 08:32:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1724221929;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=4/ehOcDT1TfhJyhpORScIzM0CaaeNczPyVM302So5TI=;
+	b=nTnSnz19vLHbPEireDaDtlEzHdquqGghDGI4f7KavXjgRwzWigHRfHs0UhRtnsAr30ydjU
+	ogrR4qrzuRTHj93/05xMfXWzWzxshs7TscrIm2DtjAtnUKMD2EqoMWhROxgL2a3Yi6cF0w
+	SKCmJPMfQo5udUNXn0Hhap0CDKnzpVDQT8INnpUyBK3uXAg/9c0ZkMU7MtorhA4QeLwffn
+	EUib8jLUG3Uc026ST8cHS+EFMtomVs9DFZyAUofvOOH/aADtNmRleIQFeWE0zu1Ao534Q1
+	UDr+psuNUDE1Vc+1rNmvq8qsZq7AnhBJhjJFPLl62gpK10mXvXP+c/BxSLGjBg==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Subject: Re: [PATCH 1/3] arm64: dts: freescale: imx93-11x11-evk: enable fsl, ext-reset-output for wdog3
+Date: Wed, 21 Aug 2024 08:32:06 +0200
+Message-ID: <2954135.e9J7NaK4W3@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20240820-imx93-wdog-v1-1-5dafda0d4319@nxp.com>
+References: <20240820-imx93-wdog-v1-0-5dafda0d4319@nxp.com> <20240820-imx93-wdog-v1-1-5dafda0d4319@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 4/4] clk: samsung: add top clock support for ExynosAuto
- v920 SoC
-To: "sunyeal.hong" <sunyeal.hong@samsung.com>,
- 'Kwanghoon Son' <k.son@samsung.com>,
- 'Sylwester Nawrocki' <s.nawrocki@samsung.com>,
- 'Chanwoo Choi' <cw00.choi@samsung.com>,
- 'Alim Akhtar' <alim.akhtar@samsung.com>,
- 'Michael Turquette' <mturquette@baylibre.com>,
- 'Stephen Boyd' <sboyd@kernel.org>, 'Rob Herring' <robh@kernel.org>,
- 'Conor Dooley' <conor+dt@kernel.org>
-Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240819052416.2258976-1-sunyeal.hong@samsung.com>
- <CGME20240819052422epcas2p258a29e773ebdd60573078c21f7a7da12@epcas2p2.samsung.com>
- <20240819052416.2258976-5-sunyeal.hong@samsung.com>
- <7f77dcc41173f2a20a0264b6242ecdac6ea85ad9.camel@samsung.com>
- <087401daf2a3$4ae602f0$e0b208d0$@samsung.com>
- <9ee0efad7a27202e6b830996b5ee661a2d350b84.camel@samsung.com>
- <0a0101daf371$0f2025b0$2d607110$@samsung.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <0a0101daf371$0f2025b0$2d607110$@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 21/08/2024 04:23, sunyeal.hong wrote:
-> Hello Kwanghoon,
-> 
->> -----Original Message-----
->> From: Kwanghoon Son <k.son@samsung.com>
->> Sent: Tuesday, August 20, 2024 6:54 PM
->> To: sunyeal.hong <sunyeal.hong@samsung.com>; 'Krzysztof Kozlowski'
->> <krzk@kernel.org>; 'Sylwester Nawrocki' <s.nawrocki@samsung.com>; 'Chanwoo
->> Choi' <cw00.choi@samsung.com>; 'Alim Akhtar' <alim.akhtar@samsung.com>;
->> 'Michael Turquette' <mturquette@baylibre.com>; 'Stephen Boyd'
->> <sboyd@kernel.org>; 'Rob Herring' <robh@kernel.org>; 'Conor Dooley'
->> <conor+dt@kernel.org>
->> Cc: linux-samsung-soc@vger.kernel.org; linux-clk@vger.kernel.org;
->> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
->> kernel@vger.kernel.org
->> Subject: Re: [PATCH v6 4/4] clk: samsung: add top clock support for
->> ExynosAuto v920 SoC
->>
->> On Tue, 2024-08-20 at 10:50 +0900, sunyeal.hong wrote:
->>> Hello Kwanghoon,
->>>
->>>> -----Original Message-----
->>>> From: Kwanghoon Son <k.son@samsung.com>
->>>> Sent: Monday, August 19, 2024 6:32 PM
->>>> To: Sunyeal Hong <sunyeal.hong@samsung.com>; Krzysztof Kozlowski
->>>> <krzk@kernel.org>; Sylwester Nawrocki <s.nawrocki@samsung.com>;
->>>> Chanwoo Choi <cw00.choi@samsung.com>; Alim Akhtar
->>>> <alim.akhtar@samsung.com>; Michael Turquette
->>>> <mturquette@baylibre.com>; Stephen Boyd <sboyd@kernel.org>; Rob
->>>> Herring <robh@kernel.org>; Conor Dooley <conor+dt@kernel.org>
->>>> Cc: linux-samsung-soc@vger.kernel.org; linux-clk@vger.kernel.org;
->>>> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
->>>> linux- kernel@vger.kernel.org
->>>> Subject: Re: [PATCH v6 4/4] clk: samsung: add top clock support for
->>>> ExynosAuto v920 SoC
->>>>
->>>> On Mon, 2024-08-19 at 14:24 +0900, Sunyeal Hong wrote:
->>>>> This adds support for CMU_TOP which generates clocks for all the
->>>>> function blocks such as CORE, HSI0/1/2, PERIC0/1 and so on. For
->>>>> CMU_TOP, PLL_SHARED0,1,2,3,4 and 5 will be the sources of this
->>>>> block and they will generate bus clocks.
->>>>>
->>>>> Signed-off-by: Sunyeal Hong <sunyeal.hong@samsung.com>
->>>>> ---
->>>>>  drivers/clk/samsung/Makefile             |    1 +
->>>>>  drivers/clk/samsung/clk-exynosautov920.c | 1173
->>>>> ++++++++++++++++++++++
->>>>>  2 files changed, 1174 insertions(+)  create mode 100644
->>>>> drivers/clk/samsung/clk-exynosautov920.c
->>>>>
->>>>> diff --git a/drivers/clk/samsung/Makefile
->>>>> b/drivers/clk/samsung/Makefile index 3056944a5a54..f1ba48758c78
->>>>> 100644
->>>>> --- a/drivers/clk/samsung/Makefile
->>>>> +++ b/drivers/clk/samsung/Makefile
->>>>> @@ -21,6 +21,7 @@ obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-
->>>> exynos7.o
->>>>>  obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos7885.o
->>>>>  obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynos850.o
->>>>>  obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynosautov9.o
->>>>> +obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-exynosautov920.o
->>>>>  obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)	+= clk-gs101.o
->>>>>  obj-$(CONFIG_S3C64XX_COMMON_CLK)	+= clk-s3c64xx.o
->>>>>  obj-$(CONFIG_S5PV210_COMMON_CLK)	+= clk-s5pv210.o clk-s5pv210-
->>>> audss.o
->>>>> diff --git a/drivers/clk/samsung/clk-exynosautov920.c
->>>>> b/drivers/clk/samsung/clk-exynosautov920.c
->>>>> new file mode 100644
->>>>> index 000000000000..c17d25e3c9a0
->>>>> --- /dev/null
->>>>> +++ b/drivers/clk/samsung/clk-exynosautov920.c
->>>>
->>>> [snip]
->>>>
->>>>> +};
->>>>> +
->>>>> +static const struct samsung_cmu_info peric0_cmu_info __initconst =
->> {
->>>>> +	.mux_clks		= peric0_mux_clks,
->>>>> +	.nr_mux_clks		= ARRAY_SIZE(peric0_mux_clks),
->>>>> +	.div_clks		= peric0_div_clks,
->>>>> +	.nr_div_clks		= ARRAY_SIZE(peric0_div_clks),
->>>>> +	.nr_clk_ids		= CLKS_NR_PERIC0,
->>>>> +	.clk_regs		= peric0_clk_regs,
->>>>> +	.nr_clk_regs		= ARRAY_SIZE(peric0_clk_regs),
->>>>> +	.clk_name		= "dout_clkcmu_peric0_noc",
->>>>
->>>> same question.
->>>> Isn't it "noc"?
->>>> https://lore.kernel.org/linux-samsung-
->>>> soc/58dfae564a4a624e464c7803a309f1f07b5ae83d.camel@samsung.com/
->>>>
->>>> In my case(autov9), if put wrong clk_name dmesg will show that,
->>>> exynos_arm64_register_cmu: could not enable bus clock ...; err = -2
->>>>
->>>> Kwang.
->>>>
->>>>
->>>
->>> clk_name follows the guide document provided by hw. v9 is bus, but v920
->> uses noc.
->>
->> What I mean,
->>
->> .clk_name		= "dout_clkcmu_peric0_noc", // wrong
->> .clk_name		= "noc", // correct
->>
->> Because there is no clock-names "dout_clkcmu_peric0_noc" in
->> exynos/exynosautov920.dtsi.
->>
-> 
-> The clk_name written here has nothing to do with the device tree. Please look at the code carefully.
+Hi,
 
-Hm? I see in the code clearly:
+Am Dienstag, 20. August 2024, 17:02:39 CEST schrieb Peng Fan (OSS):
+> From: Peng Fan <peng.fan@nxp.com>
+>=20
+> The WDOG_B is connected to external PMIC, so set "fsl,ext-reset-output"
+> to enable triggering PMIC reset.
+>=20
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts b/arch/arm=
+64/boot/dts/freescale/imx93-11x11-evk.dts
+> index 60eb64761392..fb93ae654a2b 100644
+> --- a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
+> @@ -485,6 +485,7 @@ &usdhc2 {
+>  };
+> =20
+>  &wdog3 {
+> +	fsl,ext-reset-output;
 
-	clk_get(dev, cmu->clk_name);
-
-Where cmu is the discussed struct.
-
-If you claim it does not have anything to do with DT, then what is it for?
+The MX93_PAD_WDOG_ANY__WDOG1_WDOG_ANY pinctrl is missing, no?
+Same for the other boards.
 
 Best regards,
-Krzysztof
+Alexander
+
+>  	status =3D "okay";
+>  };
+> =20
+>=20
+>=20
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
