@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-95448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7E6195984A
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 12:49:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D45F959853
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 12:50:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 49F981F21987
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 10:49:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3564F1F21F98
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 10:50:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 879E81E1317;
-	Wed, 21 Aug 2024 08:58:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32A1C1C93AE;
+	Wed, 21 Aug 2024 09:01:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cpS8PVvW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WePKUzf0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DEBB1E12F9;
-	Wed, 21 Aug 2024 08:58:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 086E21C93A9;
+	Wed, 21 Aug 2024 09:01:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724230701; cv=none; b=JJJkNjuV755yQkn5/nrY7AEJYqgUckSr8BxTF18vO3R6/4PCSrtm/urYn4RL28qTckv4UKn7+eF9Z8014lvydWSFU6LDYBUMNyJ/NztbmwD/HhXjUSlOJs458NjU9/14U47FxVxzWbCOJAnmjW5dxX9aa3hYLWS53ABxmHBcfFc=
+	t=1724230865; cv=none; b=Ymog0VzbIhpMwsuyrAS2eTFhuWH9Yc+RSd1t+m7E3cfY+cdtIyzzK58Q94grGOtsJJwF0bBLKVEvTxTWstg6tf8QZlaA9qTbKFtISSMF3sCX6YGQnnA6DpMA9r6Ssd3BbYnsPyRV2SiWcUsfPEwpjWtQppULJA6HCN4z5lG85xA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724230701; c=relaxed/simple;
-	bh=MePTBArkjQEoN9WehrsOLHi51jHZYsDNYgt4wEoIRuY=;
+	s=arc-20240116; t=1724230865; c=relaxed/simple;
+	bh=2G4lmVJYJdg1XmNfOHPJL0lvj+y+GJhPa4tXV1E0Uhg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=D8KHDNe9NI3LEn6diEz8mDIxxTqww6KXOUrwRlD2fvDW/jU4D06ThO5fQ5v2b7HP/8XR8NKAed8peStk5OQd7moSAjUaNQBr3Xa7NibYS4Cp6mzmqwTINnjdsYYJEpPBo+zRx4ftgr95uNd6vuKfcBfBaTp/scJVinO35pzGK3c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cpS8PVvW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E48E2C32782;
-	Wed, 21 Aug 2024 08:58:15 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=SwbDdozrOBDEXNZZHq8iydMIN8yQDGF4hSYXUuIhrBhJY1v+MwS0Sd2b/vOyVT7O3BMvyErd9O0nzeXmkf/WZTdkD+IaAqIXXLcnyehDfgyKKbcse1w64JnY0qJHOkuM7BjDzSpY86V/h8nmBLJL9nWdYMk0AVLcCBYbsGDh6po=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WePKUzf0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 329A3C32782;
+	Wed, 21 Aug 2024 09:00:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724230701;
-	bh=MePTBArkjQEoN9WehrsOLHi51jHZYsDNYgt4wEoIRuY=;
+	s=k20201202; t=1724230864;
+	bh=2G4lmVJYJdg1XmNfOHPJL0lvj+y+GJhPa4tXV1E0Uhg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cpS8PVvWskHnpIayuz42InNni38b8wBoWuN5CGkBBjkZnv+5ZE8LMYqZWcUoSj0VP
-	 8SXQUasKhsnmZb8yriCOwh2wfaAMb6Cj/ulYDE63522Xm5so3ngx9wBQImJk1ZrxIx
-	 vVMEOJFwTz3OxTwqaEApW4RcmwIlgstjpI2hSxP1ZQBjbNutxnsaHKUosZ+NBcyhDK
-	 cl7vNPkKq+nTJZaiycaSvq5n+u0NYTz81rnZ5v9HNEFd2rSrt6ILdybc4felLxJHKd
-	 dW3lRC2fyL4eAl650HE5piDGmAtBpC3JlOnqdx2ovBSl1Zr1kwhUXGj7I4DTwbSkFU
-	 9Ly4GqHO2n+9A==
-Message-ID: <ce9a7ea1-67bc-42b8-836d-11932dcf3790@kernel.org>
-Date: Wed, 21 Aug 2024 10:58:13 +0200
+	b=WePKUzf0lACwBXiRC3KE9leaJ1UzxoGlncYk3zQ+Ik7kPmEEys8iKwP27dgwZflrd
+	 kYAbvAH5JxGhicx2+OceWCueMxRTDUH8IzdmSMmzhryXEJZ3vH/mLLe/Vbe2JnKVqw
+	 T2tdsri/XMQYAL30kPWDF9tu6PmiNTHxFywF8CQA7kcFII7FF5MnR8s/WdqmM9I73c
+	 bG4jS7yLkd0YIUSjc+aAezvi8LhswvHtjl0CuJL4ZIfHTvRCyrHURT6Y12uappZ5tt
+	 rtl0psDosVhS6i9PaMFSHACuvcfMzo9s6sYnrr9ke8KhaS6SqgPl6ONr7BXtWwr4Hs
+	 JoIl4kCm+jyfw==
+Message-ID: <25b487b7-63e0-402d-a0a2-ed9d03e82630@kernel.org>
+Date: Wed, 21 Aug 2024 11:00:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,7 +50,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] reset: mediatek: Add reset control driver for SMI
+Subject: Re: [PATCH 3/4] memory: mtk-smi: mt8188: Add SMI clamp function
 To: "friday.yang" <friday.yang@mediatek.com>, Rob Herring <robh@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
  <matthias.bgg@gmail.com>,
@@ -60,7 +60,7 @@ Cc: Yong Wu <yong.wu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  Project_Global_Chrome_Upstream_Group@mediatek.com
 References: <20240821082845.11792-1-friday.yang@mediatek.com>
- <20240821082845.11792-5-friday.yang@mediatek.com>
+ <20240821082845.11792-4-friday.yang@mediatek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,190 +106,109 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240821082845.11792-5-friday.yang@mediatek.com>
+In-Reply-To: <20240821082845.11792-4-friday.yang@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 21/08/2024 10:26, friday.yang wrote:
-> Add a reset-controller driver for performing reset management of
-> SMI LARBs on MediaTek platform. This driver uses the regmap
-> frameworks to actually implement the various reset functions
-> needed when SMI LARBs apply clamp operations.
-
-How does this depend on memory controller patches? Why is this grouped
-in one patchset?
-
+> In order to avoid handling glitch signal when MTCMOS on/off, SMI need
+> clamp and reset operation. Parse power reset settings for LARBs which
+> need to reset. Register genpd callback for SMI LARBs and apply reset
+> operations in the callback.
 > 
 > Signed-off-by: friday.yang <friday.yang@mediatek.com>
 > ---
->  drivers/reset/Kconfig              |   9 ++
->  drivers/reset/Makefile             |   1 +
->  drivers/reset/reset-mediatek-smi.c | 152 +++++++++++++++++++++++++++++
->  3 files changed, 162 insertions(+)
->  create mode 100644 drivers/reset/reset-mediatek-smi.c
+>  drivers/memory/mtk-smi.c | 148 ++++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 146 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> index 67bce340a87e..e984a5a332f1 100644
-> --- a/drivers/reset/Kconfig
-> +++ b/drivers/reset/Kconfig
-> @@ -154,6 +154,15 @@ config RESET_MESON_AUDIO_ARB
->  	  This enables the reset driver for Audio Memory Arbiter of
->  	  Amlogic's A113 based SoCs
->  
-> +config RESET_MTK_SMI
-> +	bool "MediaTek SMI Reset Driver"
-> +	depends on MTK_SMI
 
-compile test
+...
 
-> +	help
-> +	  This option enables the reset controller driver for MediaTek SMI.
-> +	  This reset driver is responsible for managing the reset signals
-> +	  for SMI larbs. Say Y if you want to control reset signals for
-> +	  MediaTek SMI larbs. Otherwise, say N.
 > +
->  config RESET_NPCM
->  	bool "NPCM BMC Reset Driver" if COMPILE_TEST
->  	default ARCH_NPCM
-> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-> index 27b0bbdfcc04..241777485b40 100644
-> --- a/drivers/reset/Makefile
-> +++ b/drivers/reset/Makefile
-> @@ -22,6 +22,7 @@ obj-$(CONFIG_RESET_LPC18XX) += reset-lpc18xx.o
->  obj-$(CONFIG_RESET_MCHP_SPARX5) += reset-microchip-sparx5.o
->  obj-$(CONFIG_RESET_MESON) += reset-meson.o
->  obj-$(CONFIG_RESET_MESON_AUDIO_ARB) += reset-meson-audio-arb.o
-> +obj-$(CONFIG_RESET_MTK_SMI) += reset-mediatek-smi.o
->  obj-$(CONFIG_RESET_NPCM) += reset-npcm.o
->  obj-$(CONFIG_RESET_NUVOTON_MA35D1) += reset-ma35d1.o
->  obj-$(CONFIG_RESET_PISTACHIO) += reset-pistachio.o
-> diff --git a/drivers/reset/reset-mediatek-smi.c b/drivers/reset/reset-mediatek-smi.c
-> new file mode 100644
-> index 000000000000..ead747e80ad5
-> --- /dev/null
-> +++ b/drivers/reset/reset-mediatek-smi.c
-> @@ -0,0 +1,152 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Reset driver for MediaTek SMI module
-> + *
-> + * Copyright (C) 2024 MediaTek Inc.
-> + */
-> +
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/reset-controller.h>
-> +
-> +#include <dt-bindings/reset/mt8188-resets.h>
-> +
-> +#define to_mtk_smi_reset_data(_rcdev)	\
-> +	container_of(_rcdev, struct mtk_smi_reset_data, rcdev)
-> +
-> +struct mtk_smi_larb_reset {
-> +	unsigned int offset;
-> +	unsigned int value;
-> +};
-> +
-> +static const struct mtk_smi_larb_reset rst_signal_mt8188[] = {
-> +	[MT8188_SMI_RST_LARB10]		= { 0xC, BIT(0) }, /* larb10 */
-> +	[MT8188_SMI_RST_LARB11A]	= { 0xC, BIT(0) }, /* larb11a */
-> +	[MT8188_SMI_RST_LARB11C]	= { 0xC, BIT(0) }, /* larb11c */
-> +	[MT8188_SMI_RST_LARB12]		= { 0xC, BIT(8) }, /* larb12 */
-> +	[MT8188_SMI_RST_LARB11B]	= { 0xC, BIT(0) }, /* larb11b */
-> +	[MT8188_SMI_RST_LARB15]		= { 0xC, BIT(0) }, /* larb15 */
-> +	[MT8188_SMI_RST_LARB16B]	= { 0xA0, BIT(4) }, /* larb16b */
-> +	[MT8188_SMI_RST_LARB17B]	= { 0xA0, BIT(4) }, /* larb17b */
-> +	[MT8188_SMI_RST_LARB16A]	= { 0xA0, BIT(4) }, /* larb16a */
-> +	[MT8188_SMI_RST_LARB17A]	= { 0xA0, BIT(4) }, /* larb17a */
-> +};
-> +
-> +struct mtk_smi_larb_plat {
-> +	const struct mtk_smi_larb_reset		*reset_signal;
-> +	const unsigned int			larb_reset_nr;
-> +};
-> +
-> +struct mtk_smi_reset_data {
-> +	const struct mtk_smi_larb_plat *larb_plat;
-> +	struct reset_controller_dev rcdev;
-> +	struct regmap *regmap;
-> +};
-> +
-> +static const struct mtk_smi_larb_plat mtk_smi_larb_mt8188 = {
-> +	.reset_signal = rst_signal_mt8188,
-> +	.larb_reset_nr = ARRAY_SIZE(rst_signal_mt8188),
-> +};
-> +
-> +static int mtk_smi_larb_reset(struct reset_controller_dev *rcdev, unsigned long id)
+> +static int mtk_smi_larb_parse_reset_info(struct mtk_smi_larb *larb)
 > +{
-> +	struct mtk_smi_reset_data *data = to_mtk_smi_reset_data(rcdev);
-> +	const struct mtk_smi_larb_plat *larb_plat = data->larb_plat;
-> +	const struct mtk_smi_larb_reset *larb_rst = larb_plat->reset_signal + id;
+> +	struct device_node *reset_node;
+> +	struct device *dev = larb->dev;
 > +	int ret;
 > +
-> +	ret = regmap_set_bits(data->regmap, larb_rst->offset, larb_rst->value);
-> +	if (ret)
-> +		return ret;
-> +	ret = regmap_clear_bits(data->regmap, larb_rst->offset, larb_rst->value);
-> +
-> +	return ret;
-> +}
-> +
-> +static int mtk_smi_larb_reset_assert(struct reset_controller_dev *rcdev, unsigned long id)
-> +{
-> +	struct mtk_smi_reset_data *data = to_mtk_smi_reset_data(rcdev);
-> +	const struct mtk_smi_larb_plat *larb_plat = data->larb_plat;
-> +	const struct mtk_smi_larb_reset *larb_rst = larb_plat->reset_signal + id;
-> +	int ret;
-> +
-> +	ret = regmap_set_bits(data->regmap, larb_rst->offset, larb_rst->value);
-> +	if (ret)
-> +		dev_err(rcdev->dev, "[%s] Failed to shutdown larb %d\n", __func__, ret);
-> +
-> +	return ret;
-> +}
-> +
-> +static int mtk_smi_larb_reset_deassert(struct reset_controller_dev *rcdev, unsigned long id)
-> +{
-> +	struct mtk_smi_reset_data *data = to_mtk_smi_reset_data(rcdev);
-> +	const struct mtk_smi_larb_plat *larb_plat = data->larb_plat;
-> +	const struct mtk_smi_larb_reset *larb_rst = larb_plat->reset_signal + id;
-> +	int ret;
-> +
-> +	ret = regmap_clear_bits(data->regmap, larb_rst->offset, larb_rst->value);
-> +	if (ret)
-> +		dev_err(rcdev->dev, "[%s] Failed to reopen larb %d\n", __func__, ret);
-> +
-> +	return ret;
-> +}
-> +
-> +static const struct reset_control_ops mtk_smi_reset_ops = {
-> +	.reset		= mtk_smi_larb_reset,
-> +	.assert		= mtk_smi_larb_reset_assert,
-> +	.deassert	= mtk_smi_larb_reset_deassert,
-> +};
-> +
-> +static int mtk_smi_reset_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	const struct mtk_smi_larb_plat *larb_plat = of_device_get_match_data(dev);
-> +	struct device_node *np = dev->of_node, *reset_node;
-> +	struct mtk_smi_reset_data *data;
-> +	struct regmap *regmap;
-> +
-> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	reset_node = of_parse_phandle(np, "mediatek,larb-rst-syscon", 0);
+> +	/* only larb with "resets" need to get reset setting */
+> +	reset_node = of_parse_phandle(dev->of_node, "resets", 0);
+
+Nope, you do not parse rasets.
+
 > +	if (!reset_node)
+> +		return 0;
+> +	of_node_put(reset_node);
+> +
+> +	larb->rst_con = devm_reset_control_get(dev, "larb_rst");
 
-This looks just wrong. This looks like a child of whatever phandle
-points here.
+Where are the bindings? Why do you add undocumented properties? How
+possible this passes dtbs_check???
 
-Why do you create MMIO-using node as not MMIO?
+
+> +	if (IS_ERR(larb->rst_con))
+> +		return dev_err_probe(dev, PTR_ERR(larb->rst_con),
+> +				     "cannot get larb reset controller\n");
+> +
+> +	larb->nb.notifier_call = mtk_smi_genpd_callback;
+> +	ret = dev_pm_genpd_add_notifier(dev, &larb->nb);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to add genpd callback %d\n", ret);
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static int mtk_smi_larb_probe(struct platform_device *pdev)
+>  {
+>  	struct mtk_smi_larb *larb;
+> @@ -538,6 +662,7 @@ static int mtk_smi_larb_probe(struct platform_device *pdev)
+>  	if (!larb)
+>  		return -ENOMEM;
+>  
+> +	larb->dev = dev;
+>  	larb->larb_gen = of_device_get_match_data(dev);
+>  	larb->base = devm_platform_ioremap_resource(pdev, 0);
+>  	if (IS_ERR(larb->base))
+> @@ -554,15 +679,29 @@ static int mtk_smi_larb_probe(struct platform_device *pdev)
+>  	if (ret < 0)
+>  		return ret;
+>  
+> -	pm_runtime_enable(dev);
+> +	/* find sub common to clamp larb for ISP software reset */
+> +	ret = mtk_smi_larb_parse_clamp_info(larb);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to get clamp setting for larb\n");
+> +		goto err_pm_disable;
+> +	}
+> +
+> +	ret = mtk_smi_larb_parse_reset_info(larb);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to get power setting for larb\n");
+> +		goto err_pm_disable;
+> +	}
+> +
+>  	platform_set_drvdata(pdev, larb);
+>  	ret = component_add(dev, &mtk_smi_larb_component_ops);
+>  	if (ret)
+>  		goto err_pm_disable;
+> +
+> +	pm_runtime_enable(dev);
+> +
+>  	return 0;
+>  
+>  err_pm_disable:
+> -	pm_runtime_disable(dev);
+>  	device_link_remove(dev, larb->smi_common_dev);
+
+Label asls pm disable. Where is the pm disable?
+
+>  	return ret;
+>  }
+> @@ -686,6 +825,10 @@ static const struct mtk_smi_common_plat mtk_smi_common_mt8188_vpp = {
+>  	.init     = mtk_smi_common_mt8195_init,
+>  };
 
 Best regards,
 Krzysztof
