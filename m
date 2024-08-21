@@ -1,173 +1,118 @@
-Return-Path: <devicetree+bounces-95569-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95570-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A026959FD4
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 16:28:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4275B959FDB
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 16:29:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AEEAE1C226A9
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 14:28:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 748281C21E46
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 14:29:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA8011B1D4A;
-	Wed, 21 Aug 2024 14:28:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5AD11B253F;
+	Wed, 21 Aug 2024 14:28:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="S00iSIad"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 712D21B2520
-	for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 14:28:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FE4F1B2538
+	for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 14:28:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724250481; cv=none; b=QrIOO6R/7PbTKmMKmWDpHIhfLfrg9WMw6XU8HebM20qzynLsem9yRJ9NCcDfPsy72c/dVuguQtjUk3avndcoYpgFOoJp+00AT2lr92S2XSyYc9zEWL1NAyx9i24Clf+Ig6BbW+Oip8r3utRjrnQkQF84LCVvF0GVo6Ox5mfc9G4=
+	t=1724250516; cv=none; b=qDKYFdh3TKM9mlmXDaYrT4Xe2Ch+mZ4WoLIq0+AM8NuSWYr6DskUBtVa0NT1hWmD5QYs9xWE+kfXY/e5vHO8znLQSGmh4xopaqTbaBw1897bkI52isXqctt084EkqYv7BHpjLz6Ole+sZruWiRWNqN++WN55srouYDptj+E2sdM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724250481; c=relaxed/simple;
-	bh=+3V3liN9o5xUSGvb4I3hdd3xhlvmE8GVnevNEzazxiI=;
+	s=arc-20240116; t=1724250516; c=relaxed/simple;
+	bh=whWJEhEz/ceBCzVTBacQ5uRoKcxLKWFvP+QauRDZ8oA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dCuHoQG8X++l9SGKsQpCzqumg+o1TS68ibaZ0/x9qtFrsIIIDjw1UgayTSp/m/TJ4oYkNdfoeQtq72ZLosntAaQLR4ABoopGqBjvIKHJD3M+BFdyy1WoTTieG9DjieWcCbjheMZcyOZzg0sJgdzGLX4XcxvMfFUPQaleO/tmZqU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1sgmJP-0000Rx-VA; Wed, 21 Aug 2024 16:27:47 +0200
-Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1sgmJP-0021zk-6L; Wed, 21 Aug 2024 16:27:47 +0200
-Received: from pengutronix.de (pd9e5994e.dip0.t-ipconnect.de [217.229.153.78])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id AED4D322E38;
-	Wed, 21 Aug 2024 14:27:46 +0000 (UTC)
-Date: Wed, 21 Aug 2024 16:27:46 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Tarang Raval <tarang.raval@siliconsignals.io>
-Cc: krzk+dt@kernel.org, festevam@gmail.com, shawnguo@kernel.org, 
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: imx8mm-emtop-baseboard: Add Peripherals
- Support
-Message-ID: <20240821-cute-cougar-of-atheism-3a9121-mkl@pengutronix.de>
-References: <20240821135817.56393-1-tarang.raval@siliconsignals.io>
+	 Content-Type:Content-Disposition:In-Reply-To; b=E88L1B6c0YYskSJFn9pBkHWFOb+Bafv+JbO0No1PrBKWzk14k+cZ5wOQCpE2/zsE66ykSuR2EfJYvtDmxWmvBeP+Okmdhn+O4Y9YqdcnE1wlgyCFNyPddrlQczuY0X9FYAXINnJnbh6m+gCvHSPmpVYlRxoJe5UhGeaA4Uhqf5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=S00iSIad; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-429da8b5feaso74092755e9.2
+        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 07:28:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1724250512; x=1724855312; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=33YdeC3iT8CR+j1SZblDhoqx85c1E/nanH/Mxt/0lc0=;
+        b=S00iSIadWQoRvIh8IOGi1hZa6zCUQE2ituR6ZT/5Fr1LNkVey1w+ttwD/cwj/0TA41
+         HIpqBrxoJrb6xdKffOYuJeQH/g0Bocz0UqdzBkwVvtuEI7dClS4ndVRsrbkPlqqXe7Mz
+         mN6vpSHWcDXs4A1LqlclV9/m0HH5KfxSZJFjGIF+ZN6UVLqW5mTjOSN9YwsMQYDDlhSK
+         bK7kpMddwUtIMP0kMiCX39TTFIV+uWgQ+quVCbNnHXkt2+39PLBQQbN3Ms1+ih6wwd99
+         VR8zlYgKFyal+YCG7tJ13BXefp/Qj88M6tPtAUHKHl+gJjx7P3UKWEsootDxtZ0g0xKH
+         yDxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724250512; x=1724855312;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=33YdeC3iT8CR+j1SZblDhoqx85c1E/nanH/Mxt/0lc0=;
+        b=Xeog9S3QBOD7fGhMygnPzsnBs3IhuJhOweAEST+DVqkSyiTlYW4GUIpF1cOPM/kPdE
+         sBrbKkZRSBF55d39w8TEN6mKoWTIMR7uzLunmqEEIVM1QG8bymW9FBghcHT8bzPudZ/D
+         Qv/ah3ji6kuJolBGA+arKyFtK9pGEgI34XCiS3Oj7+z/tMbK8Kn5f+DWGFHqHnh5eXEY
+         xGHGAw/mWm1riywtM76LhbY5YZ187XSGf6QFTw4bb1g/Es5LEqcwF2qKdkRSO+hkFMMq
+         FSoPqpIeS/il3NUo4yJXsRaGmAx5UbO1gBsRmF2R/ZrkFqqI9Zwr3KL2PYYNX23IUTyr
+         JVRw==
+X-Forwarded-Encrypted: i=1; AJvYcCV9sl+HlbLChahARfTnog3yUuOmBSCxy+aCmL6O2X5wm670dIu2UgQpb+M8vg7vi2R3kvx5jkPXMvBX@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMHVdwDRLgy81iRapPX4m6grjR3Ja9GLkYDMGA+wmor8LJ/hA/
+	VGUeSv+cPiNUdyilNVMiVE5Iu/LFKhc2H7PWI2LNwiWmS+unTxik+8wYFYji4gY=
+X-Google-Smtp-Source: AGHT+IGfr36ocwDwn4or9Mf+dw2bDUy4gQ0Y1c7nRaSul2nHYfbm8Q0aRagSkky5/eY78AVRXeTy4g==
+X-Received: by 2002:a05:600c:198b:b0:426:6fd2:e14b with SMTP id 5b1f17b1804b1-42abd21517amr21696485e9.11.1724250512150;
+        Wed, 21 Aug 2024 07:28:32 -0700 (PDT)
+Received: from localhost (cst2-173-13.cust.vodafone.cz. [31.30.173.13])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42abed8b6a8sm28505615e9.2.2024.08.21.07.28.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Aug 2024 07:28:31 -0700 (PDT)
+Date: Wed, 21 Aug 2024 16:28:30 +0200
+From: Andrew Jones <ajones@ventanamicro.com>
+To: Alexandre Ghiti <alexghiti@rivosinc.com>
+Cc: Jonathan Corbet <corbet@lwn.net>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Andrea Parri <parri.andrea@gmail.com>, 
+	Nathan Chancellor <nathan@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
+	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>, 
+	Boqun Feng <boqun.feng@gmail.com>, Arnd Bergmann <arnd@arndb.de>, 
+	Leonardo Bras <leobras@redhat.com>, Guo Ren <guoren@kernel.org>, linux-doc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-arch@vger.kernel.org, Guo Ren <guoren@linux.alibaba.com>
+Subject: Re: [PATCH v5 09/13] asm-generic: ticket-lock: Reuse arch_spinlock_t
+ of qspinlock
+Message-ID: <20240821-e350a1485008ee3263fae985@orel>
+References: <20240818063538.6651-1-alexghiti@rivosinc.com>
+ <20240818063538.6651-10-alexghiti@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="s4574m763spmal7o"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240821135817.56393-1-tarang.raval@siliconsignals.io>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20240818063538.6651-10-alexghiti@rivosinc.com>
 
-
---s4574m763spmal7o
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On 21.08.2024 19:28:17, Tarang Raval wrote:
-> Add following peripherals support for the Emtop i.MX8M Mini Baseboard
->=20
->     * Wi-Fi
->     * Audio
->     * SD card
->     * RTC
->     * CAN bus
->     * USB OTG
->=20
-> Signed-off-by: Tarang Raval <tarang.raval@siliconsignals.io>
+On Sun, Aug 18, 2024 at 08:35:34AM GMT, Alexandre Ghiti wrote:
+> From: Guo Ren <guoren@linux.alibaba.com>
+> 
+> The arch_spinlock_t of qspinlock has contained the atomic_t val, which
+> satisfies the ticket-lock requirement. Thus, unify the arch_spinlock_t
+> into qspinlock_types.h. This is the preparation for the next combo
+> spinlock.
+> 
+> Reviewed-by: Leonardo Bras <leobras@redhat.com>
+> Suggested-by: Arnd Bergmann <arnd@arndb.de>
+> Link: https://lore.kernel.org/linux-riscv/CAK8P3a2rnz9mQqhN6-e0CGUUv9rntRELFdxt_weiD7FxH7fkfQ@mail.gmail.com/
+> Signed-off-by: Guo Ren <guoren@kernel.org>
+> Signed-off-by: Guo Ren <guoren@linux.alibaba.com>
+> Acked-by: Peter Zijlstra (Intel) <peterz@infradead.org>
 > ---
->=20
-> Changes in v2:
->=20
-> 1. Updated the node name and pinctrl name
-> 2. Removed the 'regulators' container
-> 3. Removed a stray blank line
-> 4. Removed non-existent properties
-> 5. Removed unused node and pinctrl
->    - modem-reset
->    - pinctrl_uart1
-> 6. Defined the CAN transceiver reset GPIO separately
-> ---
->  .../dts/freescale/imx8mm-emtop-baseboard.dts  | 323 ++++++++++++++++++
->  1 file changed, 323 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-emtop-baseboard.dts b/a=
-rch/arm64/boot/dts/freescale/imx8mm-emtop-baseboard.dts
-> index 7d2cb74c64ee..322338e626ce 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-emtop-baseboard.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-emtop-baseboard.dts
-> @@ -11,6 +11,113 @@ / {
+>  include/asm-generic/spinlock.h       | 14 +++++++-------
+>  include/asm-generic/spinlock_types.h | 12 ++----------
+>  2 files changed, 9 insertions(+), 17 deletions(-)
+>
 
-[...]
-
-> +	can-control {
-> +	        pinctrl-names =3D "default";
-> +	        pinctrl-0 =3D <&pinctrl_cancontrol>;
-> +	        reset-gpios =3D <&gpio1 15 GPIO_ACTIVE_HIGH>;
-
-I don't see a compatible here.
-
-[...]
-
-> +/* CAN BUS */
-> +&ecspi2 {
-> +        pinctrl-names =3D "default";
-> +        pinctrl-0 =3D <&pinctrl_ecspi2>;
-> +        status =3D "okay";
-> +
-> +        can: can@0 {
-> +                compatible =3D "microchip,mcp2515";
-> +                pinctrl-names =3D "default";
-> +                pinctrl-0 =3D <&pinctrl_canbus>;
-> +                reg =3D <0>;
-> +                clocks =3D <&osc_can>;
-> +                interrupt-parent =3D <&gpio1>;
-> +                interrupts =3D <14 IRQ_TYPE_EDGE_FALLING>;
-
-Don't use edge triggered interrupts, use level triggered ones.
-
-> +                spi-max-frequency =3D <10000000>;
-> +        };
->  };
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---s4574m763spmal7o
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmbF+V8ACgkQKDiiPnot
-vG84dQf+NtKb5I7wO4FQLgmJn0O4ZzCjW1wMRLwLjXI61NhTFnmVfovpUvSS3Qgi
-HdRM+0sXZjI+jAHAt6QaklRaPydz+jEZA15VOp3q1mEb6W39BWWT86fKC7X935jn
-uXcDYFqPPSOUy/0oP19hm1tiopSItsDFqpqrYHiF20mfw5Zb8wUJWFLsh91FjQCU
-MxN1xFeI5+yOTCUtpA3cUH9qGKucHlvCtxenlzUWjzP2731IXZCh+VLYftPASC5W
-eiSHyjAGsWN4ELWPjS2ezfmDIPSz2MbBeNzh+0gKRM6H/j/Z96QqivJCmmymrOvA
-dWtK4N3yrCLC4OmXBr7+pcgO4HEgIQ==
-=JMKz
------END PGP SIGNATURE-----
-
---s4574m763spmal7o--
+Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
 
