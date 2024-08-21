@@ -1,152 +1,134 @@
-Return-Path: <devicetree+bounces-95418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4D8C95974D
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 11:43:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFA6C959767
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 11:53:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7A091C216B8
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 09:43:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E62C61F21D01
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 09:53:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05C0A1CDFBC;
-	Wed, 21 Aug 2024 08:25:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CB731CEADB;
+	Wed, 21 Aug 2024 08:29:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DhLGASOm"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="NpNDCJ6T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 300F71CDFB3;
-	Wed, 21 Aug 2024 08:25:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B1C21CEAD5;
+	Wed, 21 Aug 2024 08:28:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724228715; cv=none; b=I5HZcM34HjXacwdBKrWS87j+pwb1QMOOkATo2443h07BzY0q+0R7B7H5UXz8qsONk1jSu73bALMkqZkhpY6kC0nfOOr1h+JXmbXEB3HZas1VEBktHNcV+UYJ5LrngVPjLTs9Iy5dkHspIRxv2rCbfkUEWPz2wHUmUQ/ofSeVJ6g=
+	t=1724228940; cv=none; b=tv+dGhvzoBRpvCEfZ/eRC+Zuk1Tv7rQK4ePv5zTlPOyxg5LphpJDCzHgGX8NINR7vsPSbHYSl+AqDNbDApN/zoWYOONrGhv8Sjyg2cr04AyhX/qxxFCP4qmD1jLj8bE+6cKElzEGJlMShPdlunyGPdtUaZA/smXgfrg6GRNicIs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724228715; c=relaxed/simple;
-	bh=ksEwtx6MK1MO29JZVBLTZ/zuhbAx+9T13AxqU65ha+I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=mZjprMh2fH7z5T6Y56wP2AdNcq+3YusY1kBEtHEtPE4k5EXgspsZ78jkt4Yu/ITR3VqKcJdnKRLe6w9uT48AlILPNPLUa7BOVmkexppu+QYv+fY0PMzxw4fX8s3HjQkLGn4ZzUfP7CcxPqNN+5ajAH96PDGJuB6cr0HTcSvj+f8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=DhLGASOm; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47L65Ta8024473;
-	Wed, 21 Aug 2024 08:25:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	tQFN63z5zVyACKkqiHRlSRLD7DQ1AMvOTunOX5dSs54=; b=DhLGASOmP/sYoKFz
-	CUeQdo+LMppl2Otp48CfFzrrXb1EAqdDrZlyFT1iWhEHbPbULFwLpM2X8r5+lL9K
-	5tUGkhpJkON76rOQeS+SC9RjxWImdJ3LTZJ5as3tu67ac0m2q/bA7PwYRyf7jPp/
-	WsHnH8lNYZ64/ASnd/kVlUvaWXHJQFKyRODqViwqV1owQ2+8pp6dlqTEypu9yw+S
-	F+Ar3tygRhZ4T+n9AijnSVImVU7KLrKHWRJ4r4Lc6hb7nkDyocsuJhXGoa1/u97l
-	VIPPFl8MrEDGsEfEITnGR+NV2MSgmKp6uNiMatW4ybZ9HYhcSqyfmeRzWgsQjyQr
-	Mv3ZBA==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 414pdmus3j-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Aug 2024 08:25:07 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47L8P5j5025859
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Aug 2024 08:25:05 GMT
-Received: from [10.216.8.12] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 21 Aug
- 2024 01:25:00 -0700
-Message-ID: <6016f2ec-6918-471c-a8dc-0aa98fc2b824@quicinc.com>
-Date: Wed, 21 Aug 2024 13:54:57 +0530
+	s=arc-20240116; t=1724228940; c=relaxed/simple;
+	bh=VxOzlUYauVhbVHBSbPfYpLFqSQ+zTMay4dd2Nw7tFXU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=QZ6QRw/GzXhxICoLdz1En0OeNmy/cMI0Xna4+TTKLlnLqwPPnJ0zKuIjn6KXM4HV8pCmZcHUWh9gtWjZz/uRdVQ8K0qpgvNUyYP5Eqw6uaKCBBFJnGJ8/Xr+TvRlgIzSiGpfJNDu6yevxzJmEOn57igxiSPikzLtV6DYATE7QT8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=NpNDCJ6T; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 6364ad5c5f9711ef8593d301e5c8a9c0-20240821
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=Tfvrvcu6RP0eyXcpdgDoO9aUBkQLTiA9tNk3AuOteYE=;
+	b=NpNDCJ6TeOrQ6ob9e6NG5fX5nALXRFHZqFoT9yH+Cyehb1PdWjVhC4Z0nUvf8cNznm8KNsYmHoVwipUJA6kNYxaxR2A4sno6xnPxwA4o+yV6x3iBn5oDz5b6GRz6mQvRWjDXefZaFoNjiRbRObzSlIM/56ccyYZKlOoiNJJKMFw=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:bbd8c93e-7dd0-4e69-a1b0-43a4f61ec940,IP:0,U
+	RL:0,TC:0,Content:-20,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-20
+X-CID-META: VersionHash:6dc6a47,CLOUDID:e08df1ce-7921-4900-88a1-3aef019a55ce,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:1,EDM:-3,IP:nil,U
+	RL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: 6364ad5c5f9711ef8593d301e5c8a9c0-20240821
+Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw01.mediatek.com
+	(envelope-from <friday.yang@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1341116; Wed, 21 Aug 2024 16:28:48 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 21 Aug 2024 16:28:47 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Wed, 21 Aug 2024 16:28:46 +0800
+From: friday.yang <friday.yang@mediatek.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>
+CC: Yong Wu <yong.wu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+	Friday Yang <friday.yang@mediatek.com>, <linux-mediatek@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH 0/4] Add SMI clamp and reset
+Date: Wed, 21 Aug 2024 16:26:48 +0800
+Message-ID: <20240821082845.11792-1-friday.yang@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] clk: qcom: Add support for Global Clock Controller on
- QCS8300
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        "Ajit
- Pandey" <quic_ajipan@quicinc.com>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        Satya Priya Kakitapalli
-	<quic_skakitap@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <netdev@vger.kernel.org>
-References: <20240820-qcs8300-gcc-v1-0-d81720517a82@quicinc.com>
- <20240820-qcs8300-gcc-v1-2-d81720517a82@quicinc.com>
- <a7afdd6d-47a1-41c7-8a0d-27919cf5af90@lunn.ch>
-Content-Language: en-US
-From: Imran Shaik <quic_imrashai@quicinc.com>
-In-Reply-To: <a7afdd6d-47a1-41c7-8a0d-27919cf5af90@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 90ASgeUzY0yu7HUlsbJzQvY0H5JxiK8b
-X-Proofpoint-GUID: 90ASgeUzY0yu7HUlsbJzQvY0H5JxiK8b
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-21_07,2024-08-19_03,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
- lowpriorityscore=0 adultscore=0 mlxlogscore=999 bulkscore=0 mlxscore=0
- priorityscore=1501 malwarescore=0 suspectscore=0 clxscore=1011
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408210060
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--7.945500-8.000000
+X-TMASE-MatchedRID: VM+0CAai3W23D+jgn28P5kLcvIIgiVuN9pLnYtQ99xJh2fnHe1cil/Ds
+	kP9n+KGGhKaZgkam63X6BsxBntd8/69VPpt+QVb+QpxiLlDD9FWZ2scyRQcer19eTSR8I6duVkP
+	jnlLOkq2MVdvRiR/Be0ixezJGk2ozwuTfHDVJ/15VTfJWlqPdDEyQ5fRSh265NSweOixQAJJHdE
+	c8dOyw1Vl+Hk3Iw2bEgDLqnrRlXrYbaLjLw/bFed0H8LFZNFG73Yq8RVaZivWLgpbqFBoHY1+gu
+	K2n/tPR07d2g0qCMsnZWKG32TjC/QGeyeOvBlDN
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--7.945500-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP: 45E3677124D75BD3EF1299E16BE0A636DF103054266AA26AA09BEE43E120A57C2000:8
 
+Based on tag: next-20240821, linux-next/master
 
+Refer to the discussion in the following link:
+https://lore.kernel.org/all/CAFGrd9qZhObQXvm2_abqaX83xMLqxjQETB2=wXpobDWU1CnvkA@mail.gmail.com/
+https://lore.kernel.org/all/CAPDyKFpokXV2gJDgowbixTvOH_5VL3B5H8eyhP+KJ5Fasm2rFg@mail.gmail.com/
+SMI clamp and reset operations should be implemented in SMI driver
+instead of PM driver.
 
-On 8/20/2024 7:36 PM, Andrew Lunn wrote:
->> +static int gcc_qcs8300_probe(struct platform_device *pdev)
->> +{
->> +	struct regmap *regmap;
->> +	int ret;
->> +
->> +	regmap = qcom_cc_map(pdev, &gcc_qcs8300_desc);
->> +	if (IS_ERR(regmap))
->> +		return PTR_ERR(regmap);
->> +
->> +	ret = qcom_cc_register_rcg_dfs(regmap, gcc_dfs_clocks,
->> +				       ARRAY_SIZE(gcc_dfs_clocks));
->> +	if (ret)
->> +		return ret;
->> +
->> +	/* Keep some clocks always enabled */
->> +	qcom_branch_set_clk_en(regmap, 0x32004); /* GCC_CAMERA_AHB_CLK */
->> +	qcom_branch_set_clk_en(regmap, 0x32020); /* GCC_CAMERA_XO_CLK */
-> 
-> It would be good to document why. Why does the camera driver not
-> enable the clock when it loads?
-> 
->> +	qcom_branch_set_clk_en(regmap, 0x33004); /* GCC_DISP_AHB_CLK */
->> +	qcom_branch_set_clk_en(regmap, 0x33018); /* GCC_DISP_XO_CLK */
->> +	qcom_branch_set_clk_en(regmap, 0x7d004); /* GCC_GPU_CFG_AHB_CLK */
->> +	qcom_branch_set_clk_en(regmap, 0x34004); /* GCC_VIDEO_AHB_CLK */
->> +	qcom_branch_set_clk_en(regmap, 0x34024); /* GCC_VIDEO_XO_CLK */
-> 
-> Why cannot the display driver enable the clock when it loads?
-> 
+When we enable/disable power domain, the SMI LARBs linked to this power
+domain could be affected by the bus glitch. To avoid this issue, SMI
+need to apply clamp and reset opereations.
 
-These clocks require for DISPCC and CAMCC drivers for register access, 
-hence kept enabled at GCC driver probe. The same approach is followed 
-for all the targets.
+These patches mainly add these functions:
+1) Register genpd callback for SMI LARBs and handle this power domain
+   status change into SMI driver.
+2) Add SMI reset control driver to implement SMI reset opereations.
+3) Add bindings for describing the reset control regmap and SMI Sub Common.
 
-Thanks,
-Imran
-> 	Andrew
+friday.yang (4):
+  dt-bindings: memory: mediatek: Add mt8188 SMI reset control binding
+  dt-bindings: memory: mediatek: Add smi-sub-common property for reset
+  memory: mtk-smi: mt8188: Add SMI clamp function
+  reset: mediatek: Add reset control driver for SMI
+
+ .../mediatek,smi-common.yaml                  |   2 +
+ .../memory-controllers/mediatek,smi-larb.yaml |  22 +++
+ .../bindings/reset/mediatek,smi-reset.yaml    |  46 ++++++
+ drivers/memory/mtk-smi.c                      | 148 ++++++++++++++++-
+ drivers/reset/Kconfig                         |   9 ++
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-mediatek-smi.c            | 152 ++++++++++++++++++
+ include/dt-bindings/reset/mt8188-resets.h     |  11 ++
+ 8 files changed, 389 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/reset/mediatek,smi-reset.yaml
+ create mode 100644 drivers/reset/reset-mediatek-smi.c
+
+--
+2.46.0
+
 
