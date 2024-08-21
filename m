@@ -1,332 +1,159 @@
-Return-Path: <devicetree+bounces-95518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15AEB9599F1
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 13:31:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B5A1959A1C
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 13:35:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A76B1C20E19
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 11:31:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E8941C226CE
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 11:35:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C07E01531EA;
-	Wed, 21 Aug 2024 10:40:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B762C1B5326;
+	Wed, 21 Aug 2024 10:59:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="n+GM/MJY"
+	dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b="DPAVs4OC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.thorsis.com (mail.thorsis.com [217.92.40.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A24C41D1300
-	for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 10:40:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D9051B530C;
+	Wed, 21 Aug 2024 10:59:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.92.40.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724236819; cv=none; b=kXh9S+pz4x+WhIDB3VNiWrzrYjJpsAsjx9ed+as/r/ormHqu1fvODVl1gOBSMGHZvk/gOghLpdEbFSTK5DtJ3BG4/Ud8xEcmoXxNtvtoM/PCZTcg83pU4qopW+UcJ71wE8WTKgvGEMzaL7trKsjCD6ZvXPaxav7Ti1zRLM6XKzQ=
+	t=1724237996; cv=none; b=fJ1yI4+OUY3qG0Off0f/5XW3e/Ril03JArmXcBD3fUcEyS9iY2sbSxkcJF14+gsb901CMcJv8Vu/sCVcPmYxmgVi17/qiCsfHJEpDaE4NG1akjDG1I8wvopJFdUPCTmpMvGFobkajiE5qbWYxmQeDP7E9mzJfGvqWRyZ7cVU+7s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724236819; c=relaxed/simple;
-	bh=XbQqdlw1XAuWNC706qvw25yoxbybOdDlECQ0raBaDDc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=LZ2V7hLXisZR+mV8Xlc6/AlfOxhXCKPXCYs6OJ19Vb/Ppx9Sr5bNrWUzfISicpgc+K3ysT0p35A1tg0uAZVueeUqy3X7a1QjvAcpObCvTu4lY8FRHkPYw1sMMuBFsSijBHR0B5hjNujirtFO80PpG/EVo+cGtJ42FlSIlkZ8wYg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=n+GM/MJY; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-52efcbfacb9so122211e87.2
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 03:40:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724236816; x=1724841616; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/++U4mPKnj6MNxdEJdX+/2RmhuDG+i6GAU351H972u0=;
-        b=n+GM/MJYsq5TYwFaI9FjVDthIRKjbu9Y4qu8SIvdv/ylWODtp0m+0LZCl9gZQGflvZ
-         yLteycnGPbgwGOy4szK8aSad2FuCDRv/ePfL3QU/B0zH1y3utX6BRU+e1NJ0jvIKIDLv
-         3lRbU/xgGw6iLFLgRsGOn36NvE5xy2bpH4l3yt/loC25whBatTD+CFE5EEJBWQVpbccd
-         ng8sKvFPJoco5legH6pJ/HqzqDnK3mYam12fnXyf35v4mSzHuYTZEEJEy4BvfOIxtVMj
-         y2tI/BCBet15VvcMvCIA0UpPVWRTglBy1fkWcAdnIub4uJ2eL6u0+aW/YroK647+bAfK
-         eSaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724236816; x=1724841616;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/++U4mPKnj6MNxdEJdX+/2RmhuDG+i6GAU351H972u0=;
-        b=kM+MoLYVkO39dij/1Zh1dVdIEYhmYrs7zcAJwXxWhp1kQvQsihwZcxJLW61O/3pMex
-         eBWvLt2Ov5mTePXVl+KAyS2pr2OBRkHiunwaEdrCsWrZS0ErsVkmrpGCo42FaURNdxj1
-         8p+vjJHzzvx7EohTOQSns8mv7OFD6LJHKfMpvL2hqQ3fRsuTAY/T2RPGJ9cDCcEu9Cnf
-         nl6YcE/Y14uxlADjQ96vsVvieTeUaO6pquqZf9m5FL8/1Rz+9oiwbLd7xdDUjBNGNmy1
-         eQewoABiwOfcswpzhBEjUautNFaI20hiHnDiuV9U36suchi1Sjo9cl+mHMyhF0s4ukrD
-         WsmA==
-X-Forwarded-Encrypted: i=1; AJvYcCVTZK7/LQ4/PKZxraRVEiOXCGhMjq1iZoLkFJFHKgXrAy9ZR6viN6+K2fhJ6JYOQbfFToAB9Hb9Ug9H@vger.kernel.org
-X-Gm-Message-State: AOJu0YydP2CnzPZYtw9LDHvHN+I6OHBUMJEnP4dj1AMn0a+QekXuCZAV
-	f/Dluiw4iVjZHyA5hIGSHkCE1Xru0I7kErUEY5HjV125+5/+152lBDmpHcEYt7c=
-X-Google-Smtp-Source: AGHT+IHdsvjRE9NR9oXgkNXV2Nf56EI6s0ucaafCJRRoKC2w3PKQdDgkYE8Gpv/GKMcKhJgeYCIFfg==
-X-Received: by 2002:a05:6512:2251:b0:533:793:e3d9 with SMTP id 2adb3069b0e04-533485503b4mr556626e87.2.1724236815479;
-        Wed, 21 Aug 2024 03:40:15 -0700 (PDT)
-Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-533433475f4sm373561e87.247.2024.08.21.03.40.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Aug 2024 03:40:15 -0700 (PDT)
-Message-ID: <40cd7a52-1c60-40dc-aee6-730b5247b216@linaro.org>
-Date: Wed, 21 Aug 2024 13:40:14 +0300
+	s=arc-20240116; t=1724237996; c=relaxed/simple;
+	bh=sdR2FdzL3GEuwsSugw3gtJ3FEQzpbQ2pP0td5fvUOYk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=M/iK//HUDqiBgnveQyq1xgDvsr45IQKnB55Zj6MuoR9bG8UEtW6gXxzZI4Cii/uRG7KKRxxrNRRp0Q/LLb4ShD9N6SwiWzSz0SegTv7wL/7VoY0u+i1IBRaHC7PcB5fVCYMKQzM7d2zq8Y9+aNl/Fkcgev1PriWpeKwJ8Vp47Jk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com; spf=pass smtp.mailfrom=thorsis.com; dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b=DPAVs4OC; arc=none smtp.client-ip=217.92.40.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thorsis.com
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9EDF81483DED;
+	Wed, 21 Aug 2024 12:59:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=dkim;
+	t=1724237990; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=GQKlVPzitG3/Y0AW44WM1THcHTkHaH0mCBA5mVPTsDU=;
+	b=DPAVs4OC32jMj2qSWcPms3XieM3u/BHRr4nRemoURWmwlke5t8FhB/f8Q7sQ52oDfuGZE7
+	q29FwYAUQxWSQ7ntVFzevL4DWfZkh0ACw+OZ+PJkKTeRvSXdnevwH/badcjXX8njR+5EMe
+	onppQDNL04Da5Wkqdx5qtHG9ig6AtHtpJo6UUrF55ObQl9GFP59eBJ/Vy0Q0za8+a/LKI6
+	E+yMk8GdZgc60rKsw6NkBHkjbnUlNCpXdyCtzD1SCHK6Y53mmwhdmmTENjcGvlDmruy2Jd
+	PZ9UPqKlVlMViVFjJKhaNfQIT3Eu50MF3Xh40z9nmtr6gkFZRWgbUELFccptIA==
+From: Alexander Dahl <ada@thorsis.com>
+To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Cc: Christian Melki <christian.melki@t2data.com>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Subject: [PATCH v1 00/12] Microchip OTPC driver on SAM9X60 exposing UIDxR as additional nvmem device
+Date: Wed, 21 Aug 2024 12:59:31 +0200
+Message-Id: <20240821105943.230281-1-ada@thorsis.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/5] arm64: dts: qcom: sdm670: add camss and cci
-Content-Language: en-US
-To: Richard Acayan <mailingradian@gmail.com>,
- Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-media@vger.kernel.org
-References: <20240819221051.31489-7-mailingradian@gmail.com>
- <20240819221051.31489-12-mailingradian@gmail.com>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20240819221051.31489-12-mailingradian@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 8/20/24 01:10, Richard Acayan wrote:
-> Add the camera subsystem and CCI used to interface with cameras on the
-> Snapdragon 670.
-> 
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> ---
->   arch/arm64/boot/dts/qcom/sdm670.dtsi | 188 +++++++++++++++++++++++++++
->   1 file changed, 188 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-> index ba93cef33dbb..37bc4fa04286 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-> @@ -6,6 +6,7 @@
->    * Copyright (c) 2022, Richard Acayan. All rights reserved.
->    */
->   
-> +#include <dt-bindings/clock/qcom,camcc-sdm845.h>
->   #include <dt-bindings/clock/qcom,dispcc-sdm845.h>
->   #include <dt-bindings/clock/qcom,gcc-sdm845.h>
->   #include <dt-bindings/clock/qcom,rpmh.h>
-> @@ -1168,6 +1169,34 @@ tlmm: pinctrl@3400000 {
->   			gpio-ranges = <&tlmm 0 0 151>;
->   			wakeup-parent = <&pdc>;
->   
-> +			cci0_default: cci0-default-state {
-> +				pins = "gpio17", "gpio18";
-> +				function = "cci_i2c";
-> +				drive-strength = <2>;
-> +				bias-pull-up;
-> +			};
-> +
-> +			cci0_sleep: cci0-sleep-state {
-> +				pins = "gpio17", "gpio18";
-> +				function = "cci_i2c";
-> +				drive-strength = <2>;
-> +				bias-pull-down;
-> +			};
-> +
-> +			cci1_default: cci1-default-state {
-> +				pins = "gpio19", "gpio20";
-> +				function = "cci_i2c";
-> +				drive-strength = <2>;
-> +				bias-pull-up;
-> +			};
-> +
-> +			cci1_sleep: cci1-sleep-state {
-> +				pins = "gpio19", "gpio20";
-> +				function = "cci_i2c";
-> +				drive-strength = <2>;
-> +				bias-pull-down;
-> +			};
-> +
->   			qup_i2c0_default: qup-i2c0-default-state {
->   				pins = "gpio0", "gpio1";
->   				function = "qup0";
-> @@ -1400,6 +1429,165 @@ spmi_bus: spmi@c440000 {
->   			#interrupt-cells = <4>;
->   		};
->   
-> +		cci: cci@ac4a000 {
-> +			compatible = "qcom,sdm670-cci", "qcom,msm8996-cci";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			reg = <0 0x0ac4a000 0 0x4000>;
-> +			interrupts = <GIC_SPI 460 IRQ_TYPE_EDGE_RISING>;
-> +			power-domains = <&camcc TITAN_TOP_GDSC>;
-> +
-> +			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-> +				 <&camcc CAM_CC_SOC_AHB_CLK>,
-> +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-> +				 <&camcc CAM_CC_CCI_CLK>;
-> +			clock-names = "camnoc_axi",
-> +				      "soc_ahb",
-> +				      "cpas_ahb",
-> +				      "cci";
-> +
-> +			assigned-clocks = <&camcc CAM_CC_CCI_CLK>;
-> +			assigned-clock-rates = <37500000>;
+Hei hei,
 
-Please remove assigned-clocks and assigned-clock-rates properties.
+on a custom sam9x60 based board we want to access a unique ID of the
+SoC.  Microchip sam-ba has a command 'readuniqueid' which returns the
+content of the OTPC Product UID x Register in that case.
 
-> +
-> +			pinctrl-names = "default", "sleep";
-> +			pinctrl-0 = <&cci0_default &cci1_default>;
-> +			pinctrl-1 = <&cci0_sleep &cci1_sleep>;
-> +
-> +			status = "disabled";
-> +
-> +			cci_i2c0: i2c-bus@0 {
-> +				reg = <0>;
-> +				clock-frequency = <1000000>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +
-> +			cci_i2c1: i2c-bus@1 {
-> +				reg = <1>;
-> +				clock-frequency = <1000000>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +		};
-> +
-> +		camss: camera-controller@ac65000 {
-> +			compatible = "qcom,sdm670-camss";
-> +			reg = <0 0x0ac65000 0 0x1000>,
-> +			      <0 0x0ac66000 0 0x1000>,
-> +			      <0 0x0ac67000 0 0x1000>,
-> +			      <0 0x0acaf000 0 0x4000>,
-> +			      <0 0x0acb3000 0 0x1000>,
-> +			      <0 0x0acb6000 0 0x4000>,
-> +			      <0 0x0acba000 0 0x1000>,
-> +			      <0 0x0acc4000 0 0x4000>,
-> +			      <0 0x0acc8000 0 0x1000>;
-> +			reg-names = "csiphy0",
-> +				    "csiphy1",
-> +				    "csiphy2",
-> +				    "vfe0",
-> +				    "csid0",
-> +				    "vfe1",
-> +				    "csid1",
-> +				    "vfe_lite",
-> +				    "csid2";
-> +
-> +			interrupts = <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 477 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "csid0",
-> +					  "csid1",
-> +					  "csid2",
-> +					  "csiphy0",
-> +					  "csiphy1",
-> +					  "csiphy2",
-> +					  "vfe0",
-> +					  "vfe1",
-> +					  "vfe_lite";
-> +
-> +			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-> +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-> +				 <&camcc CAM_CC_IFE_0_CSID_CLK>,
-> +				 <&camcc CAM_CC_IFE_1_CSID_CLK>,
-> +				 <&camcc CAM_CC_IFE_LITE_CSID_CLK>,
-> +				 <&camcc CAM_CC_CSIPHY0_CLK>,
-> +				 <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
-> +				 <&camcc CAM_CC_CSIPHY1_CLK>,
-> +				 <&camcc CAM_CC_CSI1PHYTIMER_CLK>,
-> +				 <&camcc CAM_CC_CSIPHY2_CLK>,
-> +				 <&camcc CAM_CC_CSI2PHYTIMER_CLK>,
-> +				 <&gcc GCC_CAMERA_AHB_CLK>,
-> +				 <&gcc GCC_CAMERA_AXI_CLK>,
-> +				 <&camcc CAM_CC_SOC_AHB_CLK>,
+(On different boards with a SAMA5D2 we use the Serial Number x Register
+exposed through the atmel soc driver.  Those registers are not present
+in the SAM9X60 series, but only for SAMA5D2/SAMA5D4 AFAIK.)
 
-Please put two &gcc and "soc_ahb" clock sources on top, it will
-require a change in dt bindings documentation also.
+There is a driver for the OTPC of the SAMA7G5 and after comparing
+register layouts it seems that one is almost identical to the one used
+by SAM9X60.  Currently that driver has no support for the UIDx
+registers, but I suppose it would be the right place to implement it,
+because the registers are within the OTPC register address offsets.
 
-> +				 <&camcc CAM_CC_IFE_0_AXI_CLK>,
-> +				 <&camcc CAM_CC_IFE_0_CLK>,
-> +				 <&camcc CAM_CC_IFE_0_CPHY_RX_CLK>,
-> +				 <&camcc CAM_CC_IFE_1_AXI_CLK>,
-> +				 <&camcc CAM_CC_IFE_1_CLK>,
-> +				 <&camcc CAM_CC_IFE_1_CPHY_RX_CLK>,
-> +				 <&camcc CAM_CC_IFE_LITE_CLK>,
-> +				 <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>;
-> +			clock-names = "camnoc_axi",
-> +				      "cpas_ahb",
-> +				      "csi0",
-> +				      "csi1",
-> +				      "csi2",
-> +				      "csiphy0",
-> +				      "csiphy0_timer",
-> +				      "csiphy1",
-> +				      "csiphy1_timer",
-> +				      "csiphy2",
-> +				      "csiphy2_timer",
-> +				      "gcc_camera_ahb",
-> +				      "gcc_camera_axi",
-> +				      "soc_ahb",
-> +				      "vfe0_axi",
-> +				      "vfe0",
-> +				      "vfe0_cphy_rx",
-> +				      "vfe1_axi",
-> +				      "vfe1",
-> +				      "vfe1_cphy_rx",
-> +				      "vfe_lite",
-> +				      "vfe_lite_cphy_rx";
-> +
-> +			iommus = <&apps_smmu 0x808 0x0>,
-> +				 <&apps_smmu 0x810 0x8>,
-> +				 <&apps_smmu 0xc08 0x0>,
-> +				 <&apps_smmu 0xc10 0x8>;
-> +
-> +			power-domains = <&camcc IFE_0_GDSC>,
-> +					<&camcc IFE_1_GDSC>,
-> +					<&camcc TITAN_TOP_GDSC>;
-> +			power-domain-names = "ife0",
-> +					     "ife1",
-> +					     "top";
-> +
-> +			status = "disabled";
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				camss_port0: port@0 {
-> +					reg = <0>;
-> +				};
-> +
-> +				camss_port1: port@1 {
-> +					reg = <1>;
-> +				};
-> +
-> +				camss_port2: port@2 {
-> +					reg = <2>;
-> +				};
-> +			};
-> +		};
-> +
->   		camcc: clock-controller@ad00000 {
->   			compatible = "qcom,sdm845-camcc";
->   			reg = <0 0x0ad00000 0 0x10000>;
+The patch series starts with fixups for the current driver.  It then
+adds the necessary pieces to DT and driver to work on SAM9X60 in
+general.  Later support for enabling the main RC oscillator is added,
+which is required on SAM9X60 for the OTPC to work.  The last patch adds
+an additional nvmem device for the UIDx registers.
 
---
-Best wishes,
-Vladimir
+This v1 of the series was _not_ tested on SAMA7G5, because I don't have
+such a board for testing.  Actually I don't know if the main_rc_osc
+clock is required on SAMA7G5 too, and if yes how to handle that with
+regard to the different clock ids.  If someone could test on SAMA7G5
+and/or help me sorting out the core clock id things, that would be
+highly appreciated.
+
+Also I assume some more devicetree and/or sysfs documentation is
+necessary.  If someone could point me what's exactly required, this
+would be very helpful for me.  You see I expect at least another version
+v2 of the series. ;-)
+
+Maybe some files having that "sama7g5" should be renamed, because that
+DT binding is used for more SoCs now and deserves a more generic name?
+Thinking of these for example:
+
+- Documentation/devicetree/bindings/nvmem/microchip,sama7g5-otpc.yaml
+- include/dt-bindings/nvmem/microchip,sama7g5-otpc.h
+
+Are there other SoCs than SAMA7G5 and SAM9X60 using the same OTPC?
+
+Last question: Should the UID be added to the device entropy pool with
+add_device_randomness() as done in the SAMA5D2 sfr driver?
+
+I sent an RFC patch on this topic earlier this year, you'll find the
+link below as a reference to the discussion.  The patch itself was
+trivial and not meant for applying as is anyways, so I decided to not
+write a full changelog from RFC to v1.
+
+Last not least, special thanks to Christian Melki on IRC, who wrote and
+tested parts of this, and was very kind and helpful in discussing the
+topic several times in the past months.
+
+Christian, if you feel there's credit missing, just point me where to
+add Co-developed-by and I'll happily do that for v2.
+
+Greets
+Alex
+
+(series based on v6.11-rc4)
+
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-clk@vger.kernel.org
+Link: https://lore.kernel.org/all/20240412140802.1571935-2-ada@thorsis.com/
+
+Alexander Dahl (12):
+  nvmem: microchip-otpc: Avoid writing a write-only register
+  nvmem: microchip-otpc: Fix swapped 'sleep' and 'timeout' parameters
+  dt-bindings: nvmem: microchip-otpc: Add compatible for SAM9X60
+  nvmem: microchip-otpc: Add SAM9X60 support
+  ARM: dts: microchip: sam9x60: Add OTPC node
+  ARM: dts: microchip: sam9x60_curiosity: Enable OTP Controller
+  nvmem: microchip-otpc: Add missing register definitions
+  nvmem: microchip-otpc: Add warnings for bad OTPC conditions on probe
+  clk: at91: sam9x60: Allow enabling main_rc_osc through DT
+  ARM: dts: microchip: sam9x60: Add clock properties to OTPC
+  nvmem: microchip-otpc: Enable main RC oscillator clock
+  nvmem: microchip-otpc: Expose UID registers as 2nd nvmem device
+
+ .../nvmem/microchip,sama7g5-otpc.yaml         |  1 +
+ .../dts/microchip/at91-sam9x60_curiosity.dts  |  4 +
+ arch/arm/boot/dts/microchip/sam9x60.dtsi      | 10 +++
+ drivers/clk/at91/sam9x60.c                    |  3 +-
+ drivers/nvmem/microchip-otpc.c                | 86 ++++++++++++++++++-
+ include/dt-bindings/clock/at91.h              |  1 +
+ 6 files changed, 100 insertions(+), 5 deletions(-)
+
+
+base-commit: 47ac09b91befbb6a235ab620c32af719f8208399
+-- 
+2.39.2
+
 
