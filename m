@@ -1,195 +1,186 @@
-Return-Path: <devicetree+bounces-95628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D33B95A535
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 21:22:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CC4195A58B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 21:54:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 980CD1C21849
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 19:22:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 27D041C203AD
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 19:54:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BEEA16D9C2;
-	Wed, 21 Aug 2024 19:21:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FFB116EC1B;
+	Wed, 21 Aug 2024 19:54:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="n4FCOV4x"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Z8TzT3kq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2059.outbound.protection.outlook.com [40.107.105.59])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8850879CD;
-	Wed, 21 Aug 2024 19:21:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724268119; cv=none; b=tSlytF0yGbO/rWspGpIq/DVmU+er2XK0u39RPrbzCgT0C2R0/aOVJ6dIUWQ2a/HOGGZECJ/nCIGkOB0V+fKWv5bmXcAZ6mY0hWvVZNj4JkMq2dBfiWoGDvuANX6VB1dS/fU59giCR7sqhgKSjZpAwndgvvXuuz58VRnaSc4KgUs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724268119; c=relaxed/simple;
-	bh=qmXL/sbe8gh31UrF/74eBGgG/9WwYKl1q8qHI7W83pU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=nHY7+2B6QRDqoEzIZ+1m99FMlfG4EyyPdiSUFGcfGxxm5l6r/EScydORCX+GU17CWIjJ9rYxGm1LaIYDmAGPDr74GAclPC5dElKSPGQfgiSYzUdbNMrduCDrH8VG7ICSa/ec5LorxD4vlu8Qrcc3z53fnxBAlx/dN8NhH45SQFk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=n4FCOV4x; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47LD8CI4013010;
-	Wed, 21 Aug 2024 19:21:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	9IeoT+nBRM0LBhs2H011zrEWCmbgYexhNOYy2/7m0ac=; b=n4FCOV4xeqR3TFbE
-	W1uYTqj8TGw57a4uTiuc5WuyplInh6mA8RYu8JC08BadQ+GPhhHh6W6og2El4+6w
-	1k2Nzgd6XuGrn4QWMoE31JEojVg8bswRgzn3/dXHWyI8hp0P8qLqCG0OIIPLYIJi
-	AKN5BX0XRIMFqtfc9ib0NXD18hRTluLVHDbuSlzs52LyvIgLZbUi+9HNXegOGnru
-	YMgf3mrOb9BZKIY/huC7LXyJDteyJk+3ZO+sRv6BQNflBvcpItprrox/9qoG9Ydv
-	4w5ncRavE9E8rexAgA5Wu0O9exWtQrvSeU7xXTpsQUAlHq/nlcJR2/S4rbzswgd0
-	x47ALw==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 414pe5nqjk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Aug 2024 19:21:24 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47LJLMd1009134
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 Aug 2024 19:21:22 GMT
-Received: from [10.71.114.155] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 21 Aug
- 2024 12:21:21 -0700
-Message-ID: <ca38ba10-2700-4b61-8f6d-55809f9e151e@quicinc.com>
-Date: Wed, 21 Aug 2024 12:21:20 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0975A137745;
+	Wed, 21 Aug 2024 19:54:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.105.59
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724270081; cv=fail; b=ddW4QulwYeIA7EOucqMjLZUlhU/EMsjqNKGDRYOGwFU2drIHzsu338hpHvNrZdhOUPM9w89mzRLN9BEOmjcONgsLXH1Q/6al2UVwRcexEGVMlbSqV8KKoiqfefbXcgjUr25Qz5kJ5aU6S7GAu24EP8RyLy+9Q8R7Wx4MTHpQJWo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724270081; c=relaxed/simple;
+	bh=YNWUNbEqQP/+d1xIm+T7JYlhMpkMyZKGlYjFFsOW6nI=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=XZn4gydTwBS4qHnKnoHH+QcIEUCdQGwA2yWA3rrHnPaYIfXa3JrfLF1i59O2X2qx+JtVu1bgxmkU8JNWJYGAOlglgkQ8Ekuu1tp5ikVIyM34/Jz21tf4CRTlHYo6vZRL3hsur28uHnyEF53MkjFrFQCQbJO0iDTNhC+n0QQCXVE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Z8TzT3kq; arc=fail smtp.client-ip=40.107.105.59
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=HUwCBdx+7jTq4VkpOOxTFmfueT7YuXJ0wUS1J8WrsElj4hJWT86javvI3aTM8/F5O9oBPBkcmyimpNXOJyqxMJx7e6i0AtoFF3qOqImGI58TKMkV9Bn74wAA1g0clKk73D6x61i79ITupLGkSR9XLiMZoNHQDGsSsBl5yY1UcpLMukW2Mgs+uuuKkmpXashyOxEHlTgg171vUCC6ht7BsPf/L9/3mKVojFDH2to1eAja+B4U477JPKsuTB+U1Sk0cDyTWRznV16CLi1Mcd+qdENFeMPZOYiT1beDCJRzMaX+kbtuMeubFkXXbZ2kUgNP8fI+k0Zd5aKPfPIgSAk3Mw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sXPu4iuoyvubmSQ0rIDKVrEZR5ROy2M4fK6tAy8BsiA=;
+ b=tZWSG0fMO8ERNEJORwMSC+nXLX067Gqi9lrki047qfM2EKuoFdli3FEsDlquAneY4MvXz42ktuYqRiqvPCqydYWB8qBMfMSJBGcbsoSInmPDz1slvMMCsYXnxKdKhYTnrmvmGxqcbVCdtfKTxIIS6wSoTFGkVxuZb19TezQT2o0+OzH/8AlMZ5/70yFFxsJsQjR1tEY9u8B8NqUSpwBgI5E9O2g5ftxsEbjmZB/j8QkkX2zYhsoMxwWxcvs6GA0opkVr/DyHaveS1CpEvydQBiubk6c/uimehLFzuQMU3tn2z6uj49s4HDap7+Rmv25gVtxyQuhtd+icAEAM37Ftew==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sXPu4iuoyvubmSQ0rIDKVrEZR5ROy2M4fK6tAy8BsiA=;
+ b=Z8TzT3kqWzYcwCHlnB03UVxtYSqCBeMiZmqaTHZ6XplLbc5WGCOpAOVdW/o21nnUxSlC1lpLL42Nn6W2f+wDvkxqyjTU8AQHe6WA0CMosi+/QFEylZEJXBovMyQuEcxgpcYg7Qso3tfPslq90QAv4SpSavq2IUcpbj/GIFoQ7Jt6/GI9wv+DsCV9uywwkg+834ISCMxvZ8A1XEanzoUtKoaPSMG/P2AQSWxe4A2ymr4TN8dYapC6Pf+s3lF+UItWEsU/AU4EyZNyalD9ZdOjS/APeLfRRZePLYJYFJJRIcEUg0h3K/ktGuG8uYg9k5a0U2z6ICawPJE3Qa+JnYeTCg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by VI0PR04MB10320.eurprd04.prod.outlook.com (2603:10a6:800:21a::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.21; Wed, 21 Aug
+ 2024 19:54:35 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%3]) with mapi id 15.20.7875.019; Wed, 21 Aug 2024
+ 19:54:35 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Walle <michael@walle.cc>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH v2 1/1] dt-bindings: nvmem: sfp: add ref to nvmem-deprecated-cells.yaml
+Date: Wed, 21 Aug 2024 15:54:19 -0400
+Message-Id: <20240821195419.581889-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BY5PR03CA0010.namprd03.prod.outlook.com
+ (2603:10b6:a03:1e0::20) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v24 29/34] ALSA: usb-audio: qcom: Add USB offload route
- kcontrol
-To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
-        <broonie@kernel.org>, <lgirdwood@gmail.com>, <krzk+dt@kernel.org>,
-        <Thinh.Nguyen@synopsys.com>, <bgoswami@quicinc.com>, <tiwai@suse.com>,
-        <gregkh@linuxfoundation.org>, <robh@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>
-References: <20240801011730.4797-1-quic_wcheng@quicinc.com>
- <20240801011730.4797-30-quic_wcheng@quicinc.com>
- <4d5fe3f8-d7ba-4647-8dd7-22656ec2fde5@linux.intel.com>
- <58043166-c494-42db-b7d3-575991e43e8b@quicinc.com>
- <f507a228-4865-4df5-9215-bc59e330a82f@linux.intel.com>
- <88d5ed6f-1429-4381-8014-d5824ec7866e@quicinc.com>
- <56ebd11e-9522-406b-9ca4-5e284eaac409@quicinc.com>
- <7b3421f5-8d57-4138-9456-1bf0eb4662c0@linux.intel.com>
-Content-Language: en-US
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <7b3421f5-8d57-4138-9456-1bf0eb4662c0@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Xg0AxG_ydxq1eaLQt4O5ZcoXgQ8dk4is
-X-Proofpoint-GUID: Xg0AxG_ydxq1eaLQt4O5ZcoXgQ8dk4is
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-21_13,2024-08-19_03,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
- mlxscore=0 lowpriorityscore=0 adultscore=0 priorityscore=1501
- impostorscore=0 clxscore=1015 spamscore=0 mlxlogscore=999 phishscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2408210142
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VI0PR04MB10320:EE_
+X-MS-Office365-Filtering-Correlation-Id: 24b049ff-6de7-4c7c-c6ca-08dcc21b14f6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|376014|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?74nXzdE8tIqFic9iSyvMWvmTig78wdNF537C1QfZojbQn7gxGr54BhPv6OSs?=
+ =?us-ascii?Q?NDi4cogm+GaMbrfOW6OQJhMOoVlKt7sd6mH4nn2LdOvLne5lgLqR8knnbBZh?=
+ =?us-ascii?Q?5XPk4mttDxc+XggA+U4DSartakA8YhA5oHD7RqmsC7Ljnz52WMXqbrZUwV7c?=
+ =?us-ascii?Q?7nfIc5r8zNscvKJn3TFsoMEk0CuXRoCvDizyExQQ1jdXUxxiyFwQdfbMPYpd?=
+ =?us-ascii?Q?hLXwdoPToLIbX0RTsTs7rZAX0W3oMSAmoeGa0ryLbX5fzvHVy1g7us6s4ojF?=
+ =?us-ascii?Q?UAZJdFqeCFVz7LNkS48ayRy24R1YLCU3jjQmQpoF0+PjcQHLQOFH10hbz565?=
+ =?us-ascii?Q?Xe+p0GPYoMqzpp8lktHstC+C5G0mFcpFMv6omAw/za8levQ1fyY+ETi9dk2t?=
+ =?us-ascii?Q?/la3gFqYqSSKmsDTg8OBZMNp1y9Ta9KSBKSA+/kEErxScRZmV03/4tSfS5yW?=
+ =?us-ascii?Q?qUaF45w2oltTqn6UInB60VXIr4w3cE6HpBl3OQoaaysE04Xnt7KxYkNYHoGe?=
+ =?us-ascii?Q?LM2sfPgLOtzGV62BlEyPbmzbdIkZqzdKOMemTWEgxkoa+14o9D4hUJ5u0vJY?=
+ =?us-ascii?Q?DI1Spwllreq9TopiFlIXHOJbPYLH7RBRSm/8KDDwAsK3AmbidXRF6ImDfM/P?=
+ =?us-ascii?Q?kpM4Ysy/88Ksws7DdDPRQVHXXnw+1BK3cGA/KxwHRFdZPw5b5+uZNN2daf2e?=
+ =?us-ascii?Q?m/1R3nch1TI4VU52ZVuJTjJExj/StqWDsAmc6hkGXnfmhraha1wn9bu37EHe?=
+ =?us-ascii?Q?DdiuOzOtVisd2ieWnrtMU+a4iQmJ3R+S1KTi2Vj1EPeSPWByAcnySWe4nZOe?=
+ =?us-ascii?Q?TST/0ken0QjbWikFzHL2LwiYnbK0Is0IYP0/FfqyaCzV3K/UjaZlpcTD0Dpv?=
+ =?us-ascii?Q?ywrjePBFgTPo64ECZUsuo8f1dZig+zgMkO3460fAO1xIBf4s/Wi9q2CyWZtb?=
+ =?us-ascii?Q?qzHHNHaW+VP036/tXM8uoPJdstLJPExbuV/XCGG9Y97rh5Wu7H4EmAZaN6vm?=
+ =?us-ascii?Q?lh3xSiR2UKr8Mcg4WU1j4Cx5x8K+TSZo87F8YIgmbqAr8IzK54y5WGtRyXvf?=
+ =?us-ascii?Q?ICnQ4da5DTFjy2JQyT6pyqGFEsllao+NOkDNFOqMM3lZJfIu5MqTxy8pm84E?=
+ =?us-ascii?Q?4+3ZGf8Ve23cj1wfdM5h3O+a15rwNtHE2K8csmyYRXfHSWac024mT6DmmVaU?=
+ =?us-ascii?Q?IARIPp0TirE3bmt4bJNZJxSkgk4PNoHkV2DNmpgN2+ZlfCyq03GLE5+Fj+5u?=
+ =?us-ascii?Q?lAdoJ0nMAzHrydFAao1/FH/mMZJGLcnKqsC8gHNhDpai+DIxkucFlO1JBt5G?=
+ =?us-ascii?Q?JTVA0xbMbOUkWy+lGjM+Z93+RpmnT9m8M5LxICRtTitKqDwo8amW5pOMPQ7t?=
+ =?us-ascii?Q?GA7JMvtKjPzFmHdLqKQWm5Nrzz7/pxcCfNACH/7lcrRJhUAqPg=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(52116014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?tiEyiUvfW3tKqG/DSui1j8nmZpiV5LOU7HaspzN0Y+GkiDsAuLrKlbRoMznj?=
+ =?us-ascii?Q?4pdodDTCe5ydpVQUuSpMthhU40GaX/+2zUvfxsi7D+0k8z4BqdIRRwxJjBzP?=
+ =?us-ascii?Q?YFghmH6NBKFO0BYiFKwFlWqlYWxbH1P7sPyriw503hW1Oa5KRebz47bmYqBz?=
+ =?us-ascii?Q?yuG1oKejtbqFyCJTRpRs/9FRKathyM+dnq4g/aprUREGhb4yy2XVBW++cITv?=
+ =?us-ascii?Q?dpfHMmohMbBxivUZPeD4PtvNukd+pKbCeS/GmV+SicaXOU7DuP0BjnCA0EeR?=
+ =?us-ascii?Q?LwFwFbwlq70TBHLeBi2BEdVn6BTrCJZ8rMBp+7YXCkQfa8BbUhXcFT/27yee?=
+ =?us-ascii?Q?wjYpc+3NakdEqW1QIHlUATVnDVo5Bd01lq+KHysjgEn359dBWl20w0ylTxOD?=
+ =?us-ascii?Q?krdMlphocrV84IACtz3pwWYgE7FHgDvT9usm0iRe2BRooNi0ffxvfdxT4/rU?=
+ =?us-ascii?Q?UofDTCecbbjgT631S/clUi6Gz1+Ef+3+KK+MyIVI8XGR1uidQ+Y2pkg6uiq1?=
+ =?us-ascii?Q?WALAQlGSp6VKOUPlmYRxX3zyD/+bigrkHJU0QARSvhSsrd5B4DiTyIteTlSS?=
+ =?us-ascii?Q?9zej79uiMEgXXaLYWL79HuWmPPn6zviehszYLoNIz4BE7BJ4nCMio6uLXcGP?=
+ =?us-ascii?Q?IWLx1XLqbFgqX3DzjCYmSUhX1iEvZUHhCjPfA/KpHaTuoG3g12l860br3dOg?=
+ =?us-ascii?Q?U4X2oi7o82mpVPmeTCTW8YG1BTSQ/sRXRIFNKwJleVpe9zDpxW+RDw5cxc/Y?=
+ =?us-ascii?Q?QNeuAwJPLXmFqaV7bw0Y8rNKiTcBQJlNjBhcnq/HIY6C1cSepUNrpUMcZRPM?=
+ =?us-ascii?Q?xCVEutqFCXb6854bM5dx8aMOYgKEexDEDVGqULZ9mdkzozFPXZ1gmBYiHR4H?=
+ =?us-ascii?Q?6DwmpKdBc8LPF7c+1jxC2tPOV2VLkh8M40FrnVb1KFKgKwgUOEqE813GIYgH?=
+ =?us-ascii?Q?k/n1cY6OOjO9Gi4nflLfGxS6h2K4/K6YIzBrCAmSJo3jW96BRRmzr+yF2C36?=
+ =?us-ascii?Q?Bg710z6iJ89MTXGuT1sPPBK9oGhyQ/XahFJam/o1eLz+hK1IP1+NsOvuum6y?=
+ =?us-ascii?Q?kl6H0M76Rs6lom6CAeYeXMdiujDVIXavhDlrAFjTgiJ1SzNW3BdXNxmkB7LI?=
+ =?us-ascii?Q?NREIcC1Io8UjpK78sJPHmqbbsWnEEBTFdzUvGw1dft4IAVN89GRe69mhQ+d4?=
+ =?us-ascii?Q?9thv1mwihc7x2p8yr8uzJs+r387rHkkc3jvK9gpvxS5CR4HTFut3OcLsKHma?=
+ =?us-ascii?Q?BhvkBQTFomztzuz1Iu4CZ0LOvIOjvT1ShVX584KEaJV95rkXWwCqVZYYXz/b?=
+ =?us-ascii?Q?obKmoHcT/+EIi2P9bnf3urOZRCehzYDlhsPH4UyNJ9oQ3TXL+VS4gRhggmDa?=
+ =?us-ascii?Q?6SVOcKpSGdLASgI0vZ8duHsZyMmms8+N6SwWbFFf9k3hsneIRT0xgI2U4TeP?=
+ =?us-ascii?Q?y2ypmvgrgsuMT0nTWq+I9jFa4Y1wNf2KO71X/j9p17/rGwW8msw9ThO5ayxM?=
+ =?us-ascii?Q?4L/gbkhs3fRcA2DEwwp8NuJZHZC8cEXP3bmDzDGOjCXB2H0t0oqTpS1e8/ib?=
+ =?us-ascii?Q?zLC/fPAmuIVWIlcE3fvCOKG2q0Zeysuw8jRhAlXb?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 24b049ff-6de7-4c7c-c6ca-08dcc21b14f6
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2024 19:54:35.4036
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2Xa0u1eUNMhjezTTEr9GTq0xN5AiZb79/FGvuxu8rFgOfUgTbeq4qQvJnPvldc6yVj170XQmN++os0TOYpfQig==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10320
 
+Add ref nvmem-deprecated-cells.yaml to support old style binding.
 
-On 8/21/2024 12:02 AM, Pierre-Louis Bossart wrote:
->
->
->>>>>>> +/**
->>>>>>> + * snd_usb_offload_create_ctl() - Add USB offload bounded mixer
->>>>>>> + * @chip - USB SND chip device
->>>>>>> + *
->>>>>>> + * Creates a sound control for a USB audio device, so that applications can
->>>>>>> + * query for if there is an available USB audio offload path, and which
->>>>>>> + * card is managing it.
->>>>>>> + */
->>>>>>> +int snd_usb_offload_create_ctl(struct snd_usb_audio *chip)
->>>>>>> +{
->>>>>>> +	struct usb_device *udev = chip->dev;
->>>>>>> +	struct snd_kcontrol_new *chip_kctl;
->>>>>>> +	struct snd_usb_stream *as;
->>>>>>> +	char ctl_name[37];
->>>>>>> +	int ret;
->>>>>>> +
->>>>>>> +	list_for_each_entry(as, &chip->pcm_list, list) {
->>>>>>> +		chip_kctl = &snd_usb_offload_mapped_ctl;
->>>>>>> +		chip_kctl->count = 1;
->>>>>>> +		/*
->>>>>>> +		 * Store the associated USB SND card number and PCM index for
->>>>>>> +		 * the kctl.
->>>>>>> +		 */
->>>>>>> +		chip_kctl->private_value = as->pcm_index |
->>>>>>> +					  chip->card->number << 16;
->>>>>>> +		sprintf(ctl_name, "USB Offload Playback Route PCM#%d",
->>>>>>> +			as->pcm_index);
->>>>>>> +		chip_kctl->name = ctl_name;
->>>>>>> +		ret = snd_ctl_add(chip->card, snd_ctl_new1(chip_kctl,
->>>>>>> +				  udev->bus->sysdev));
->>>>>>> +		if (ret < 0)
->>>>>>> +			break;
->>>>>>> +	}
->>>>>>> +
->>>>>>> +	return ret;
->>>>> Hi Pierre,
->>>>>> None of this looks Qualcomm-specific, shouldn't this be part of the
->>>>>> soc_usb framework instead of being added in the qcom/ stuff?
->>>>> Started working on this particular comment, and there are some things that needs to be considered if we moved this into SOC USB:
->>>>>
->>>>> 1.  We do save the reference to the USB BE DAI link within the USB DT node, which can be fetched/referenced based on sysdev.  However, I'm not sure if everyone would potentially follow that way.
->>>>>
->>>>> 2.  I tried a few implementations of adding a new SOC USB API, and the argument list was a bit long, because I didn't want to directly reference the usb_chip.
->>>>>
->>>>> Sorry for the delay, but I wanted to give a good stab at implementing this before bringing up the implications.  It is possible, but definitely not as clean as how we have it now IMO.
->>>> My comment was only referring to the location of the code, it's now in
->>>> sound/usb/qcom/mixer_usb_offload.c but does not contain anything
->>>> specific to Qualcomm. I was not asking for any encapsulation inside of
->>>> soc-usb, I was only suggesting a move of the code to a shared helper
->>>> library so that this code can be reused as is and not duplicated if the
->>>> QCOM parts are not compiled in.
->>> Ah, great, thanks for the clarification.  Let me take a look with that perspective.
->>>
->> Going back on the history behind moving it into qcom/ was based off feedback that Takashi pointed out in v14[1].  It was mainly due to the fact that we would be adding another hard dependency between USB SND and the offloading components.  Hence the reason for moving it to within the QCOM offloading package. 
->>
->> Thanks
->>
->> Wesley Cheng
->>
->> [1]: https://lore.kernel.org/linux-usb/87y1bt2acg.wl-tiwai@suse.de/
-> I don't see anything wrong with the initial proposal
->
->
->  +config SND_USB_OFFLOAD_MIXER
->  +	bool
->  +
->   config SND_USB_AUDIO_QMI
->   	tristate "Qualcomm Audio Offload driver"
->   	depends on QCOM_QMI_HELPERS && SND_USB_AUDIO && USB_XHCI_SIDEBAND
->   	select SND_PCM
->  +	select SND_USB_OFFLOAD_MIXER
->
->
-> That would allows the SND_USB_OFFLOAD_MIXER to be build as a module, and
-> it would allow other non-QCON solutions to use the module.
-> Maybe just make it a tristate?
+Fix below CHECK_DTBS warning.
+efuse@1e80000: Unevaluated properties are not allowed ('unique-id@1c' was unexpected)
 
-I think the main concern was that in the initial suggestion, I made it as part of usb-snd-audio and the call to create the kcontrol was made in the main USB SND mixer driver.  Maybe in the new proposal, we'll just have it as its own independent module and allow for other vendors to use the same (kcontrol creation done by vendor USB offload driver)?  Takashi, would this be acceptable?
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+change from v1 to v2
+- ref to nvmem-deprecated-cells.yaml
+v1: https://lore.kernel.org/imx/20240621165637.2283864-1-Frank.Li@nxp.com/
+---
+ Documentation/devicetree/bindings/nvmem/fsl,layerscape-sfp.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Thanks
-
-Wesley Cheng
+diff --git a/Documentation/devicetree/bindings/nvmem/fsl,layerscape-sfp.yaml b/Documentation/devicetree/bindings/nvmem/fsl,layerscape-sfp.yaml
+index 70fb2ad251037..1b20b49eee792 100644
+--- a/Documentation/devicetree/bindings/nvmem/fsl,layerscape-sfp.yaml
++++ b/Documentation/devicetree/bindings/nvmem/fsl,layerscape-sfp.yaml
+@@ -15,6 +15,7 @@ description: |
+ 
+ allOf:
+   - $ref: nvmem.yaml#
++  - $ref: nvmem-deprecated-cells.yaml
+ 
+ properties:
+   compatible:
+-- 
+2.34.1
 
 
