@@ -1,130 +1,153 @@
-Return-Path: <devicetree+bounces-95633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96B3495A5CA
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 22:26:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3E1195A5F8
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 22:39:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9EEA1C21533
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 20:26:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 414EB1F22C3F
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 20:39:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DBBC16FF2A;
-	Wed, 21 Aug 2024 20:26:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B7E116F909;
+	Wed, 21 Aug 2024 20:39:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gmvOeEnw"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b="G2Qgbf+f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E54E728DCB;
-	Wed, 21 Aug 2024 20:26:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724271976; cv=none; b=Hq+M8kNivQjbnux3uYfXwcE4WMjvNio4OZ2C9dhtOMLvxjI/HaQ4trvBNSagPfRfix3yBpjgqDZrJ5cu2nEnNfxEN4EAz194VPRtAB3d3BQ7duv3jh/goZdwnlxL260yWTE2fQ7ddE4K8YGVbHzO0buFbKr3Dx+vsl2x9TBbsS4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724271976; c=relaxed/simple;
-	bh=KZFoIuBUAwRsEE9EPLeC3SQ7BG3/6K63CDdgv2nlwKw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OYZz6hNei3iyO126Zf6lmKAiMWg9R59QIiKt68g2yezzLu7HS9gASQnFwPKkMF/ckrgGsWTSh7Mnfz01xodf68bWPUZ1V8YvsZLiF8+YsIf2AVGT52wgDka2Pt6C698J4Sw4aSDYaxXhbhBjBT8ReBySB22KMGkFvHeeob+E+uY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gmvOeEnw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 929CFC32781;
-	Wed, 21 Aug 2024 20:26:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724271975;
-	bh=KZFoIuBUAwRsEE9EPLeC3SQ7BG3/6K63CDdgv2nlwKw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=gmvOeEnwljbsiucDHUL3T8XfEaD4nQRYqXD0IGMR8ZluLJ//VEfCh8yYji8neYl+f
-	 sNWa3hYpgjMbw/32lHAYUNm3WYrQYvoHgE2BNRquloZ2UXrQq/lnmAc7NBvNYqxsn7
-	 o7LlXRzC2GrMulmX8mpk1TA0qQiMRmyyhD2W8v/eKP5EhUMdzYQo8fvMrQQTi5ld5R
-	 Zz5GggXs9CzlNlkfUONfzRO7kFjh5ia8p2tQtPZYVczhQ6Wf+9c1ltWe77Pg5X5TqN
-	 EGcVPrnrxsBM7YlxiJtIMPCod12GdjqTWnXe7yDkllrQ5vCOlDOL0ZTFk+2+2PXtWw
-	 K+10uYCUzdFeg==
-Date: Wed, 21 Aug 2024 21:26:06 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Alexandru Ardelean <aardelean@baylibre.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- krzk+dt@kernel.org, robh@kernel.org, lars@metafoo.de,
- michael.hennerich@analog.com, gstols@baylibre.com
-Subject: Re: [PATCH 6/7] dt-bindings: iio: adc: add adi,ad7606c-{16,18}
- compatible strings
-Message-ID: <20240821212606.6981eae1@jic23-huawei>
-In-Reply-To: <CA+GgBR_V8r0Vz1PeKxwD6ovwHXxGM6=Z6XVd03ehokT5C3zjnQ@mail.gmail.com>
-References: <20240819064721.91494-1-aardelean@baylibre.com>
-	<20240819064721.91494-7-aardelean@baylibre.com>
-	<zuvwoy5wtdel7qgkz6wa6valwjwajpwoqnizyoooiawghrxvc3@cuoswu32h4fl>
-	<CA+GgBR_V8r0Vz1PeKxwD6ovwHXxGM6=Z6XVd03ehokT5C3zjnQ@mail.gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75F9A1531DA;
+	Wed, 21 Aug 2024 20:38:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724272740; cv=pass; b=Oe18eiwOuu/RZC3vc5+gVua+7yjgvd5DvAyDWsNH9RmxPxh60dVZlnQ2RkF0ojTzSTL6oyIazVCDK+pUV+S7dE15o5dhFQp5zMoR5Ud9JHWshI2wp6NVcB+CNFPZ25Kt2a7EhVOgtYa4IbEBr4I5sHYi9A4VES9CQ3mUB8LGcow=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724272740; c=relaxed/simple;
+	bh=JtWwYyUYRpuWyz3CWJqn7O4nLn6nocm7LJDRY370nMc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=G+ceASOBMDC2g8xkVsZSqq4h5DkiN9Exkl6awZj8HzGVxwKHUHs5QpiYkN1to4v3KIU9VrBlPjDPyKu7pL6fLcLWQU90/U/znwHbfqrzO5x60A1W0z7/4HeFeG4gLqvYLUX41htR/F+mXp5BhCRYLbbogDvuUi1ZuIARrc4PRQk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b=G2Qgbf+f; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Delivered-To: kernel@collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1724272691; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=gkPi36rxlLW4SXhcJ7TsEx9UFal77hztufoJNuKbW34wX4mFQkp1p4dH6/D9xqu+7Qw/ZdwuEmtDlHzaFcNgvic8rEXY2vmMH1T/OwiqCGo6kUSyUPPuTNU9z1L5lwKl4jvUNuHs6wbMV2n9RQoiYpF+HVNHLeqUw+mqDBdYwLI=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1724272691; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=rn/jPcfndwOGlmUfjvgjuRv6xjB54zy9vNZlgxr2C8A=; 
+	b=JO26rMR7n8PfcasVMvM8FQ053kPSaxiuJY/mQkLDo6d1S6USefUkix1DBoCJ1pw7+6otUHRPKzG6JuHpyWDAKtN7YO1iEvcCrClS/I8lT3CCMB6lpzuGcl40gefkhEhBvqIESdkq/iraQQtksHDEIZb4OCO8OlUJTfXkdSNdbZ4=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=cristian.ciocaltea@collabora.com;
+	dmarc=pass header.from=<cristian.ciocaltea@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724272691;
+	s=zohomail; d=collabora.com; i=cristian.ciocaltea@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=rn/jPcfndwOGlmUfjvgjuRv6xjB54zy9vNZlgxr2C8A=;
+	b=G2Qgbf+fYDaUCrzI4JUaB+8dp0zKq0j1FNWUxOb97NABn7Dfz+TuVicqioEEn53s
+	pUGRjYHNRirFC2ehQArQUMdPNlRXgwn1z98fsdkB0lcfGVkpCg93eZCuiGA533w8pG3
+	CWyVVIM7VJ0v2eAFLC+jTO6kioCqH5x7E3wP3A3Q=
+Received: by mx.zohomail.com with SMTPS id 1724272689131684.716009062432;
+	Wed, 21 Aug 2024 13:38:09 -0700 (PDT)
+Message-ID: <5813cea2-4890-4fa9-8826-19be5bf3e161@collabora.com>
+Date: Wed, 21 Aug 2024 23:38:01 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/4] dt-bindings: display: rockchip: Add schema for
+ RK3588 HDMI TX Controller
+To: Conor Dooley <conor@kernel.org>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>,
+ Luis de Arquer <ldearquer@gmail.com>
+References: <20240819-b4-rk3588-bridge-upstream-v4-0-6417c72a2749@collabora.com>
+ <20240819-b4-rk3588-bridge-upstream-v4-3-6417c72a2749@collabora.com>
+ <20240819-bobbing-purplish-99e48baa2304@spud>
+ <ec84bc0b-c4c2-4735-9f34-52bc3a852aaf@collabora.com>
+ <20240820-tropics-hunchback-6fdcd0b37f91@spud>
+ <038073d0-d4b9-4938-9a51-ea2aeb4530f6@collabora.com>
+ <20240821-evoke-mop-fb09ceef3597@spud>
+Content-Language: en-US
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <20240821-evoke-mop-fb09ceef3597@spud>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 
-
-> > > +    type: object
-> > > +    $ref: adc.yaml
-> > > +    unevaluatedProperties: false
-> > > +
-> > > +    properties:
-> > > +      reg:
-> > > +        description: The channel number.
-> > > +        minimum: 0
-> > > +        maximum: 7
-> > > +
-> > > +      diff-channel:
-> > > +        description: Channel is bipolar differential.  
-> >
-> > There is diff-channels property, why do we need one more?  
+On 8/21/24 6:07 PM, Conor Dooley wrote:
+> On Tue, Aug 20, 2024 at 11:12:45PM +0300, Cristian Ciocaltea wrote:
+>> On 8/20/24 7:14 PM, Conor Dooley wrote:
+>>> On Tue, Aug 20, 2024 at 03:37:44PM +0300, Cristian Ciocaltea wrote:
+>>>> On 8/19/24 7:53 PM, Conor Dooley wrote:
+>>>>> On Mon, Aug 19, 2024 at 01:29:30AM +0300, Cristian Ciocaltea wrote:
+>>>>>> +  rockchip,grf:
+>>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>>>>> +    description:
+>>>>>> +      Most HDMI QP related data is accessed through SYS GRF regs.
+>>>>>> +
+>>>>>> +  rockchip,vo1-grf:
+>>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>>>>> +    description:
+>>>>>> +      Additional HDMI QP related data is accessed through VO1 GRF regs.
+>>>>>
+>>>>> Why are these required? What prevents you looking up the syscons by
+>>>>> compatible?
+>>>>
+>>>> That is for getting the proper instance:
+>>>
+>>> Ah, that makes sense. I am, however, curious why these have the same
+>>> compatible when they have different sized regions allocated to them.
+>>
+>> Good question, didn't notice.  I've just checked the TRM and, in both
+>> cases, the maximum register offset is within the 0x100 range.  Presumably
+>> this is nothing but an inconsistency, as the syscons have been added in
+>> separate commits.
 > 
-> Yeah, I wanted to use that.
-> Maybe I will try another spin at that.
-> The thing with "diff-channels" is that it requires 2 ints.
-> So,  diff-channels = <0 0>.
-> To use it here, a rule would need to be put in place where  "reg ==
-> diff-channels[0] && reg == diff-channels[1]".
-> That also works from my side.
-> Part of the reason for this patchset, was to also get some feedback
-> (if this is the correct direction).
-> 
-So I 'think' this is a datasheet matching thing.
-In many cases, even for strictly differential devices, the pin
-naming allows for a clear A - B channel description. Here
-in the non differential modes, the negative pins are effectively
-not used (from a really quick look at the datasheet)
+> Is that TRM publicly available? I do find it curious that devices sound
+> like they have different contents have the same compatible. In my view,
+> that is incorrect and they should have unique compatibles if the
+> contents (and therefore the programming model) differs.
 
-So we 'could' introduce magic channels (give them high numbers) for
-the negative ends. I think we may want to do that for the
-userspace ABI (0-0 on the few times it has come up has been a
-calibration / self check mode not what you have here - it
-wires the actual inputs together).  Alternative is just present
-them as a simple voltage and don't worry about the differential aspect
-as it's not hugely different to bipolar (where the zero level is
-effectively the negative input of a differential ADC.
+Don't know if there's an official location to get it from, but a quick
+search on internet shows a few repos providing them, e.g. [1].
 
-For the binding I'm fine with the binding using A, A as you suggest
-with an update to adc.yaml to cover this corner.
+Comparing "6.14 VO0_GRF Register Description" at pg. 777 with "6.15 VO1_GRF
+Register Description" at pg. 786 (from Part1) reveals the layout is mostly
+similar, with a few variations though.
 
-We never (I think) have bindings for the self check case where the input
-is wired to both sides. It's just a mode that is applied to
-any inputs that are wired. 
+[1] https://github.com/FanX-Tek/rk3588-TRM-and-Datasheet
 
-> >  
-> > > +        type: boolean
-> > > +
-> > > +      bipolar:
-> > > +        description: |
-> > > +          Channel is bipolar single-ended. If 'diff-channel' is set, then
-> > > +          the value of this property will be ignored.  
-> >
-> > Then provide here allOf:if:then which makes it false if diff-channel(s)
-> > is present. And then drop entire property, because you duplicate what's
-> > in adc.yaml.  
-> 
-> Ack.
+>>
+>>>> 	vo0_grf: syscon@fd5a6000 {
+>>>> 		compatible = "rockchip,rk3588-vo-grf", "syscon";
+>>>> 		reg = <0x0 0xfd5a6000 0x0 0x2000>;
+>>>> 		clocks = <&cru PCLK_VO0GRF>;
+>>>> 	};
+>>>>
+>>>> 	vo1_grf: syscon@fd5a8000 {
+>>>> 		compatible = "rockchip,rk3588-vo-grf", "syscon";
+>>>> 		reg = <0x0 0xfd5a8000 0x0 0x100>;
+>>>> 		clocks = <&cru PCLK_VO1GRF>;
+>>>> 	};
+>
 
