@@ -1,151 +1,133 @@
-Return-Path: <devicetree+bounces-95455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E5D19598B7
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 12:58:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E19F9598BD
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 12:59:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C10561F22FC9
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 10:58:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CFAFE1F21419
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 10:59:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 768711CCEED;
-	Wed, 21 Aug 2024 09:27:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85A381EA3D8;
+	Wed, 21 Aug 2024 09:28:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Cy0aKsfP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ah8ubr/K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AD461CCEF0
-	for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 09:27:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C89E1EA3D5;
+	Wed, 21 Aug 2024 09:28:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724232451; cv=none; b=NdLC4/ZHix1/+MZfa3ML8yOFz5o19F91ESBkMcuM85b/SmCJwhmqz1ZLI9NKKVRCFbYNMQ5TWDe6PN5wvO/EI2TgxhrC5BPQ7XN+v3vkC6RnLFzbVI3QXwaVcEc7eqTc11565WbXlK6E3zUVly9BvvmJAG7kReQ2z/r5D6USk0Q=
+	t=1724232506; cv=none; b=DkdDHiYkdKVypHJdF0CDxL1v6Qk0D/JClmiAUWJHDk4h0qvIi2a7eQbOuJmUkRP2BP99dJ0gzubttTk557ooX/KRVhPlfvOVdoA2lse9jTQIGvphmH0lpII/M9SauCM06Qh3WNb9qKGuSBdHVW6omCio0LBNKiFWI9wKAK8xIH0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724232451; c=relaxed/simple;
-	bh=VEcYQT5x3766vS7r2HfAiZ5/A6Vg6Iz4KN2/9kJJTGM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ITt9yX0wcJdxuUqfPeZlHLDJ2PEjpseDku1iIWg97hMzdiaL0Fwl5uCmjoay2dcnyRZHm1ANTFyOTuCOBFrpQ3uWK2vr0l6yR+BLVq+2MXKXhfbrAQATNDHHesPXnqCxg4JJ2VB67nUJnI3ARkR4iecVwz25YPL3oix6eaggGOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Cy0aKsfP; arc=none smtp.client-ip=209.85.210.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-714262f1bb4so327729b3a.3
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 02:27:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1724232449; x=1724837249; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VF9PjinJER9wjMA+9D6wXT2j5101Rcr5iAVO00wcnuk=;
-        b=Cy0aKsfPo5mt8KGq8R1/sOOOos9ZqPyWvgFGvPht+SJpk6kN6WLd8xIa7reIybMPiB
-         G2H5vInD67KoW+ZibLPw3/KlVPPIYI0T7RfE28ircMQDM8r+WejpUkizeRyMZDqxv0wt
-         pLagjySAkJlpd5nnJZJ/b0ZMRM0eDrNEyBeeQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724232449; x=1724837249;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VF9PjinJER9wjMA+9D6wXT2j5101Rcr5iAVO00wcnuk=;
-        b=UV+mbQYEVBr6pNtatBmMuZSLT12fY79REAhgs6ElloiUmI/r4Q9bsugVmQG4tDnG9l
-         Dd3rR/ZDaogSMpeOMoxDHEXq5UBRwaKfhnslfP5Hdv36p55yPYVarnYPZLbiB6jVNZC8
-         2Hx4M9mzm1/Bc4UV3TIEufn6eYexyrNgC6fAv6Ofshe6IxsiDtvXK5B99qGoOvhIDxab
-         og04UYmUpMDe3B5mlGH4irS8yzemM4PBvZZ1lgGtveJRdnEL+tbn3gdt0heklfJLBXSZ
-         +843pZBkjWIW8iO5JrN6nbXFDgAbNZsMhkYsDlamAnjemnBJWUv8b958L/IYO+zLg9vS
-         fU0Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUZaQHbb2OjMFkAAwlw2v514WrPInpSxa+eOFzWyFHL1Xq7/jf4xfzY1bkoTBPRSIEpNr7VFDON1QqD@vger.kernel.org
-X-Gm-Message-State: AOJu0YxbM+TnBKaOH4ILwC6fQVu9wGGrHGEPZpJc9DrYK2u0M9Dh7YhT
-	YY3L8fqlcV3HwgI9ViESJpQCliXyYohBC9x0q7QA55/XX6GpxoP/aFCfRgy+HmOcdoGzcWuOkEg
-	=
-X-Google-Smtp-Source: AGHT+IFnfIrNiUomfEp1ttryB9uQgWfxL55rhoeddUhSzpcz4uk60NiwIgmgyqLVCB/iQ59t6moGxQ==
-X-Received: by 2002:a05:6a20:4392:b0:1c4:b302:ad14 with SMTP id adf61e73a8af0-1cad8160aa4mr2007740637.24.1724232449282;
-        Wed, 21 Aug 2024 02:27:29 -0700 (PDT)
-Received: from localhost (185.174.143.34.bc.googleusercontent.com. [34.143.174.185])
-        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-201f0300844sm89985195ad.47.2024.08.21.02.27.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Aug 2024 02:27:29 -0700 (PDT)
-From: Rohit Agarwal <rohiagar@chromium.org>
-To: chunkuang.hu@kernel.org,
-	p.zabel@pengutronix.de,
-	airlied@gmail.com,
-	daniel@ffwll.ch,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	ck.hu@mediatek.com,
-	jitao.shi@mediatek.com
-Cc: dri-devel@lists.freedesktop.org,
-	linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Rohit Agarwal <rohiagar@chromium.org>
-Subject: [PATCH v2 3/3] arm64: dts: mediatek: mt8186: Add svs node
-Date: Wed, 21 Aug 2024 09:26:59 +0000
-Message-ID: <20240821092659.1226250-4-rohiagar@chromium.org>
-X-Mailer: git-send-email 2.46.0.295.g3b9ea8a38a-goog
-In-Reply-To: <20240821092659.1226250-1-rohiagar@chromium.org>
-References: <20240821092659.1226250-1-rohiagar@chromium.org>
+	s=arc-20240116; t=1724232506; c=relaxed/simple;
+	bh=ItVGHob9yaezB9AMwEPoRTuUCqFh3psdSDoQ8c5xl8c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ngr3aJbJKq3PSd8y9Neo8UptYRvSFweOzh9B6thzY+HCUinERHS1QtoRPc2Zml0nDt70F9ogTdIVK6PXLqB3igVLnwLRAkQuaWmJaq3GpGdiU0wIpQu5wrIhRLoOBgtvo4slm4sf0+k3oJl0AtHNbFG8N156FTv+FiUh9Xfearg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ah8ubr/K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDE8AC32782;
+	Wed, 21 Aug 2024 09:28:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724232506;
+	bh=ItVGHob9yaezB9AMwEPoRTuUCqFh3psdSDoQ8c5xl8c=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Ah8ubr/KkxgT5x/UknGoDrfE8Q/2nshNR61RNCmxHkHC5w9vnxA9QPNAd4w47x+cd
+	 f1Q2SvG89keJ9Ofm/2s0mcK2aDGm+5rs3uj8cE0HK03nCkawHgvgBAEypbh8viFOCP
+	 GvFt3b/+G7nN9RhYdT7oPNu2aGjJgGlCOHk7pw+eqXOxjBkMENjpbCziRr7UkOjMZK
+	 yesCs0F+RT775yxwqVeGDlZATTPeseyzEsYAMnG0wst6Du8PS73dQ4PlXIt5jhpYKa
+	 lA2L3hBMgZvdAVjFfHzEOClQ9z7YWrEnUhJMUwlceYWzWCZnzXFO9peKCAN5W9EkEf
+	 hCaYAFlKmO1Jg==
+Message-ID: <1160a651-b758-4aa2-ab13-599df8518914@kernel.org>
+Date: Wed, 21 Aug 2024 11:28:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] dt-bindings: memory: mediatek: Add mt8188 SMI reset
+ control binding
+To: "friday.yang" <friday.yang@mediatek.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Yong Wu <yong.wu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20240821082845.11792-1-friday.yang@mediatek.com>
+ <20240821082845.11792-2-friday.yang@mediatek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240821082845.11792-2-friday.yang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add clock/irq/efuse setting in svs nodes for mt8186 SoC.
+On 21/08/2024 10:26, friday.yang wrote:
+> To support SMI clamp and reset operation in genpd callback, add
+> SMI LARB reset register offset and mask related information in
+> the bindings. Add index in mt8188-resets.h to query the register
+> offset and mask in the SMI reset control driver.
+> 
+> Signed-off-by: friday.yang <friday.yang@mediatek.com>
+> ---
+>  .../bindings/reset/mediatek,smi-reset.yaml    | 46 +++++++++++++++++++
+>  include/dt-bindings/reset/mt8188-resets.h     | 11 +++++
 
-Signed-off-by: Rohit Agarwal <rohiagar@chromium.org>
----
- arch/arm64/boot/dts/mediatek/mt8186.dtsi | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+Also, your patches did not reach DT patchwork, so something is odd.
+Maybe they got flagged as spam? Please investigate with your IT
+department. In case it keeps missing patchwork, they won't be tested by
+automation and I will generally ignore them (not apply). :(
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-index e27c69ec8bdd..a51f3d8ce745 100644
---- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-@@ -1361,6 +1361,18 @@ spi0: spi@1100a000 {
- 			status = "disabled";
- 		};
- 
-+		svs: svs@1100b000 {
-+			compatible = "mediatek,mt8186-svs";
-+			reg = <0 0x1100b000 0 0x400>;
-+			interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&infracfg_ao CLK_INFRA_AO_THERM>;
-+			clock-names = "main";
-+			nvmem-cells = <&svs_calibration>, <&lvts_e_data1>;
-+			nvmem-cell-names = "svs-calibration-data", "t-calibration-data";
-+			resets = <&infracfg_ao MT8186_INFRA_PTP_CTRL_RST>;
-+			reset-names = "svs_rst";
-+		};
-+
- 		pwm0: pwm@1100e000 {
- 			compatible = "mediatek,mt8186-disp-pwm", "mediatek,mt8183-disp-pwm";
- 			reg = <0 0x1100e000 0 0x1000>;
-@@ -1676,6 +1688,14 @@ efuse: efuse@11cb0000 {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 
-+			lvts_e_data1: data@1cc {
-+				reg = <0x1cc 0x14>;
-+			};
-+
-+			svs_calibration: calib@550 {
-+				reg = <0x550 0x50>;
-+			};
-+
- 			gpu_speedbin: gpu-speedbin@59c {
- 				reg = <0x59c 0x4>;
- 				bits = <0 3>;
--- 
-2.46.0.295.g3b9ea8a38a-goog
+Best regards,
+Krzysztof
 
 
