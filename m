@@ -1,134 +1,90 @@
-Return-Path: <devicetree+bounces-95399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0949D95950A
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 08:49:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A80BB95951B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 08:52:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C2D61C22628
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 06:49:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D7E51F21CD2
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 06:52:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F28317E01A;
-	Wed, 21 Aug 2024 06:48:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A939185B56;
+	Wed, 21 Aug 2024 06:52:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kv7Cd3JK"
+	dkim=pass (1024-bit key) header.d=xry111.site header.i=@xry111.site header.b="jrqukcAu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from xry111.site (xry111.site [89.208.246.23])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14F0217E004;
-	Wed, 21 Aug 2024 06:48:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEF47185B4C;
+	Wed, 21 Aug 2024 06:51:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.208.246.23
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724222932; cv=none; b=nFl/f+S5YZVXSsTG0YXHucyirzg5SdioRWLMdHcmKCJeivMP4QJvbMrsAVGHZ61C+T2qwPiORQD48Pl/0+O3Gaob9JT+qncCjwchpdc4Ukyc0oqTFREnDOVkyVC5m6Sj/NKPmgLSiAtjqQbUBa+CyIPsc4n0LaVIii9Cs98isSo=
+	t=1724223120; cv=none; b=n6H4UB/w3LP+qKGHWZSQdizsGP+ynh3vAOk1w2RhGfGhpV2f2EmXII5euhT5z5p/bDpzcys/ZNyGkmwdZVdrRVD1M1HhFHaF1ltw+7TmWmzCCOH73OXRKyOf22xu82lYv/BXzEPCI/BpYDHMGAlnDDey31TQgDSrlm6xy6u4rwM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724222932; c=relaxed/simple;
-	bh=0/KRyANKUF8eJpm9kpyavQgXgai9aYL+fCertJIqr7A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dUm0AqTNK8X6Zixs4F/S+yg1s328xRBxRO9YhAsiWafw59/xT544u6HHR4uGZLCmROougd8mrcY2DmhCvWABbiFRENc8TBbQmnHMg9V2UwbRIcNVSZBnU9hqDsgbuJCAmAteOwnBJ7kdMISm/GO5DvsQG2ZwkApa5uyf+nJ+7HQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kv7Cd3JK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C5CEC4AF0C;
-	Wed, 21 Aug 2024 06:48:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724222931;
-	bh=0/KRyANKUF8eJpm9kpyavQgXgai9aYL+fCertJIqr7A=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Kv7Cd3JKq6c1V2apdJ0WfzxUgnZumresEw8/aSUIg+xFI93gQXKxOZ9S+DJEq43N7
-	 jaVwPmoJRg8XfUCbPcJl92NCdBFQgqqKbPOEiL8d4MUJmT/XnNIs5urKXi6YHOgra9
-	 fXbjt7CsadCL/9eRHTNjp11lP36meTb6dqiker5J0QGuj+vg5vbdPVGbpTx2GiB1ed
-	 G4EU8GN/4/s3h9TF5AdUXSQaPUMHrAII3VFGmxpVhmHufegOsfue/c8uSsjq6wui4y
-	 f1t/KJ+j5SsaYmCROzj9rsSiGvXE8solwfXJkHhVKh3ZU6bth/vRh/jKfw5YjT6n2Y
-	 HQELQN2gc8bqA==
-Message-ID: <c8ed627e-42fd-4cd9-b9e4-a97177ef3ef0@kernel.org>
-Date: Wed, 21 Aug 2024 08:48:41 +0200
+	s=arc-20240116; t=1724223120; c=relaxed/simple;
+	bh=dBMwlGrF9h7B+c2j38R2xQRIALuQBmQbPQ1UzDOGe6I=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=uW9y4o9yb6FPeE0GIl0VfvRMy7P2hy7gEqRf0UBRby9TrG4GEvwUVYShd95ng7MXaF7Qu5jyTQLYlKvZphLC24CATMAbbOedIL25XnnPTaMUkvqTFXlWEGcPP3us8ABZhOaW++WAWyBH0aN0On486qdt7TDHs4FVCjcZmbKBcss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=xry111.site; spf=pass smtp.mailfrom=xry111.site; dkim=pass (1024-bit key) header.d=xry111.site header.i=@xry111.site header.b=jrqukcAu; arc=none smtp.client-ip=89.208.246.23
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=xry111.site
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xry111.site
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xry111.site;
+	s=default; t=1724223109;
+	bh=dBMwlGrF9h7B+c2j38R2xQRIALuQBmQbPQ1UzDOGe6I=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=jrqukcAu5JIaBYH68uL1xX6JFLAeY1kPKfis+yQZTVchgzRlZN42+S45aS64Zp5sG
+	 rV11E05hVhr5nZS32Pni/LxjKRZXASOdkVXAoN43ehandJEFLdeEIOaWNjD007DAx0
+	 3ZgiAQrrojgBYbWDJnybo7oY7IHMFJMWJUYWxRcg=
+Received: from [127.0.0.1] (unknown [IPv6:2001:470:683e::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature ECDSA (P-384) server-digest SHA384)
+	(Client did not present a certificate)
+	(Authenticated sender: xry111@xry111.site)
+	by xry111.site (Postfix) with ESMTPSA id 5BEF966F26;
+	Wed, 21 Aug 2024 02:51:47 -0400 (EDT)
+Message-ID: <85d64a341fa0d2dd57ed1078b694effc90b2e33e.camel@xry111.site>
+Subject: Re: [PATCH v1 1/2] Loongarch: EDAC driver for loongson memory
+ controller
+From: Xi Ruoyao <xry111@xry111.site>
+To: Zhao Qunqin <zhaoqunqin@loongson.cn>, chenhuacai@kernel.org, 
+	kernel@xen0n.name, bp@alien8.de, tony.luck@intel.com, james.morse@arm.com, 
+	mchehab@kernel.org, rric@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org
+Cc: loongarch@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	linux-edac@vger.kernel.org, devicetree@vger.kernel.org
+Date: Wed, 21 Aug 2024 14:51:45 +0800
+In-Reply-To: <20240821064728.8642-2-zhaoqunqin@loongson.cn>
+References: <20240821064728.8642-1-zhaoqunqin@loongson.cn>
+	 <20240821064728.8642-2-zhaoqunqin@loongson.cn>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: display: mediatek: dpi: Add power
- domains
-To: Rohit Agarwal <rohiagar@chromium.org>
-Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com,
- daniel@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com, ck.hu@mediatek.com,
- jitao.shi@mediatek.com, dri-devel@lists.freedesktop.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20240820080659.2136906-1-rohiagar@chromium.org>
- <20240820080659.2136906-2-rohiagar@chromium.org>
- <b5wtwpkwgg3tbwya6zllmymaaf2qvnyfbspkynr2ruzncej2ql@qloslxfinvos>
- <1899ea6f-b734-4748-aa00-d7049d553994@chromium.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <1899ea6f-b734-4748-aa00-d7049d553994@chromium.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 20/08/2024 14:18, Rohit Agarwal wrote:
-> 
-> On 20/08/24 4:40 PM, Krzysztof Kozlowski wrote:
->> On Tue, Aug 20, 2024 at 08:06:57AM +0000, Rohit Agarwal wrote:
->>> Add power domain binding to the mediatek DPI controller.
->> Why? Who needs it? Why all devices suddenly have it (IOW, why is it not
->> constrained anyhow per variant)?
->>
-> Ok, my intent was to introduce only for this particular variant.
-> Let me constrain it to this particular compatible.
+On Wed, 2024-08-21 at 14:47 +0800, Zhao Qunqin wrote:
+> --- a/arch/loongarch/Kconfig
+> +++ b/arch/loongarch/Kconfig
+> @@ -179,6 +179,8 @@ config LOONGARCH
+> =C2=A0	select PCI_QUIRKS
+> =C2=A0	select PERF_USE_VMALLOC
+> =C2=A0	select RTC_LIB
+> +	select EDAC_SUPPORT
+> +	select EDAC
 
-Then add property in top-level properties and in if:then: disallow it
-for older devices.
+This line looks incorrect.  It's forcing the users to enable EDAC even
+if they don't need it (for example using a non-ECC memory).
 
-Best regards,
-Krzysztof
+And no other arch does this.
 
+--=20
+Xi Ruoyao <xry111@xry111.site>
+School of Aerospace Science and Technology, Xidian University
 
