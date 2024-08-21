@@ -1,128 +1,106 @@
-Return-Path: <devicetree+bounces-95614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D13495A3AF
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 19:17:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1782A95A3D3
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 19:24:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2075285531
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 17:17:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7A080B20D0E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 17:24:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F35351B2EC8;
-	Wed, 21 Aug 2024 17:17:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E5AE1B252B;
+	Wed, 21 Aug 2024 17:24:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qJTLsnpj"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="lLAMoL3w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3A4F1B2EC1;
-	Wed, 21 Aug 2024 17:17:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E543E1494D1;
+	Wed, 21 Aug 2024 17:24:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724260634; cv=none; b=rMhkqRjXKI0JynYadHBwWvuTdoI3N2snYZhzfuLnM73e3qMaSvnZNDLs1dsFeMLBML4Reoaeg7BHkJ7b/VZi/o705iaGVbuvDs60fjmjILeyRLigQqNZ6Qk9Xs6VLjj0VOjkQjWFm9IS8pY6BNfLlSYe26m7YzQHkuyLkUzCxuk=
+	t=1724261076; cv=none; b=c0cXBOWsb2UXuKRX+GYfqXWu4QxUg4n+7k3CDAiJE4lmUc0JhzwSPPruXe2jwqjzqbPgRI32QUFxlla+ywMqF6apjtD9lqZd6lCIe/Ts9BPXKoLEcGVnHvH0VmuHwHjSIs6D72pWu2NA+2pd9Sa+pXLb8xLOgwtxiYYiUkL77D0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724260634; c=relaxed/simple;
-	bh=TyLDjhy0ttfEqSAKwvAE+TyPIIdCunxanaRtbGipG5M=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=ZVjigY9+PzUB3YrL3D+c3tXmj+vJOmeUw1CXLs8f4TYRgZ7QvnQFTX/tAJ+AxMsZgaeFfuGIKLeehqaysoKc58Fwc2qBsrljVaL5EzA+zJ4J2F9wIx8b+m2ChTlWmo5bRPE0kNXtSd/XtJ0kpqRsx0D8yWq78Qlm/ZMEtDPb7gw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qJTLsnpj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB952C4AF13;
-	Wed, 21 Aug 2024 17:17:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724260634;
-	bh=TyLDjhy0ttfEqSAKwvAE+TyPIIdCunxanaRtbGipG5M=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=qJTLsnpjPRqw2Ttkye4zhRT+sOXS+tl57VHKXelnWv3O7OBcK2j5giznTCNDhbh08
-	 p3IeqfBKs7F4uCML5CV6CnX6DHasaRCEu5T4EJ/l0Z7S2OqkNQFbkMIY0vnObJU8mn
-	 YNf8XF8pOJQqpP8tb9+QveomFi/RdyWwIkBPrw50iKGfUyItrnBZFZTP5sp3QJgxke
-	 7/7iVj4GsMlKXWShUb+gUA0Q9rIew6ROkd5K5LSwJGuw2TsfZpya9yRr0Ggj5xCtFI
-	 KyR5dop6W2A8B7veBSpMRvqsVWycCTgMHYnKw5ET2QvqLbvhPhFHqtzWYgS54A4elg
-	 maLXDuhkXoYLA==
-Date: Wed, 21 Aug 2024 12:17:12 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: daire.mcnamara@microchip.com
-Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	conor.dooley@microchip.com, lpieralisi@kernel.org, kw@linux.com,
-	robh@kernel.org, bhelgaas@google.com, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, ilpo.jarvinen@linux.intel.com
-Subject: Re: [PATCH v8 2/3] PCI: microchip: Fix inbound address translation
- tables
-Message-ID: <20240821171712.GA256242@bhelgaas>
+	s=arc-20240116; t=1724261076; c=relaxed/simple;
+	bh=H7HWs2F0AUAuFfUx9gmUQwZMuy9PXh3K7F9aCWky72I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=fyPfATymrlcmDwIITYx8cF4yw0GYzT8cFC1tZbu1CwlXnD1nCamHMWw1+l1YfMD7NyWZLSemxeSRhCgZ6hSUoiE2QsaDYGoEBoe70Q2QEXrwgDXvCIPasjUu7CkFGdjNuqcfjZSgfr/BjIf8BBfYU96X6YoxWrpyvcwxAbfYAJ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=lLAMoL3w; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47LHONMN014431;
+	Wed, 21 Aug 2024 12:24:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1724261063;
+	bh=oQGkPxqOsFa04DuZjGzKWhjD4u7KkH85pN8rbcge43Y=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=lLAMoL3wrXTTaioWoKLJq5SihztW6QW63jh5oeGt+IhAZOuiZSfKvI5Jz1SXnbyil
+	 dm+CZp/NUhfSpWR0JQsmn8ZZp6o5BF913cAbjS7xQvshODTfs20rNDq4HqP6f2MuH8
+	 qdBGjV+TP0Vaqk8+QU1SSQqeDZqHSYxliovQJ6Mg=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47LHON75001371
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 21 Aug 2024 12:24:23 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 21
+ Aug 2024 12:24:23 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 21 Aug 2024 12:24:23 -0500
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47LHONFG049791;
+	Wed, 21 Aug 2024 12:24:23 -0500
+Message-ID: <23ac28aa-cd6e-41e3-ba26-d0a4c02d12fa@ti.com>
+Date: Wed, 21 Aug 2024 12:24:23 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240821130217.957424-3-daire.mcnamara@microchip.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: k3-am654-idk: Add Support for MCAN
+To: Nishanth Menon <nm@ti.com>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Jan Kiszka
+	<jan.kiszka@siemens.com>,
+        Bhavya Kapoor <b-kapoor@ti.com>
+References: <20240820193420.29184-1-jm@ti.com>
+ <20240821110149.yk3da663fek2a4sy@attitude>
+Content-Language: en-US
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <20240821110149.yk3da663fek2a4sy@attitude>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Wed, Aug 21, 2024 at 02:02:16PM +0100, daire.mcnamara@microchip.com wrote:
-> From: Daire McNamara <daire.mcnamara@microchip.com>
+Hi Nishanth,
+
+On 8/21/24 6:01 AM, Nishanth Menon wrote:
+> On 14:34-20240820, Judith Mendez wrote:
+> [...]
 > 
-> On Microchip PolarFire SoC the PCIe Root Port can be behind one of three
-> general purpose Fabric Interface Controller (FIC) buses that encapsulates
-> an AXI-S bus. Depending on which FIC(s) the Root Port is connected
-> through to CPU space, and what address translation is done by that FIC,
-> the Root Port driver's inbound address translation may vary.
+>> +&m_can1 {
+>> +	status = "okay";
 > 
-> For all current supported designs and all future expected designs,
-> inbound address translation done by a FIC on PolarFire SoC varies
-> depending on whether PolarFire SoC in operating in coherent DMA mode or
-> noncoherent DMA mode.
+> NAK!
+> 	https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst#n117
 
-s/in operating/is operating/
+Will fix in v2, thanks.
+~ Judith
 
-> The setup of the outbound address translation tables in the Root Port
-> driver only needs to handle these two cases.
-> 
-> Setup the inbound address translation tables to one of two address
-> translations, depending on whether the rootport is being used with coherent
-> DMA or noncoherent DMA.
 
-s/rootport/Root Port/ to match above
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&mcu_mcan1_pins_default>;
+>> +	phys = <&transceiver2>;
 
-> +static void mc_pcie_setup_inbound_atr(int window_index, u64 axi_addr, u64 pcie_addr, u64 size)
-
-Most of this file fits in 80 columns, maybe these new decls could, too.
-
-> +static int mc_pcie_setup_inbound_ranges(struct platform_device *pdev, struct mc_pcie *port)
-
-> @@ -525,13 +529,20 @@ void plda_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
->  	val = upper_32_bits(pci_addr);
->  	writel(val, bridge_base_addr + (index * ATR_ENTRY_SIZE) +
->  	       ATR0_AXI4_SLV0_TRSL_ADDR_UDW);
-> +}
-> +EXPORT_SYMBOL_GPL(plda_pcie_setup_window);
-
-I think the caller that needs this export is in a previous patch?
-
-I wish we didn't need to export symbols like these since they're
-really private to the driver, but I didn't look into the module
-structure here.
-
-Also, I get this error when building after both patch 1/3 and 2/3:
-
-  drivers/pci/controller/plda/pcie-microchip-host.c:617:5: error: no previous prototype for ‘mc_pcie_setup_iomems’ [-Werror=missing-prototypes]
-    617 | int mc_pcie_setup_iomems(struct pci_host_bridge *bridge,
-	|     ^~~~~~~~~~~~~~~~~~~~
-
-> +++ b/drivers/pci/controller/plda/pcie-starfive.c
-> @@ -355,6 +355,11 @@ static int starfive_pcie_host_init(struct plda_pcie_rp *plda)
->  	 */
->  	plda_pcie_set_pref_win_64bit(plda);
->  
-> +	/*
-> +	 * Setup the inbound address translation
-> +	 */
-
-Could be a single-line comment: /* Setup the ... */
-
-> +	plda_pcie_setup_inbound_address_translation(plda);
 
