@@ -1,80 +1,100 @@
-Return-Path: <devicetree+bounces-95450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 196AC959857
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 12:50:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3D2D9598A6
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 12:57:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 98477B21650
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 10:50:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E1BFC1C21488
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 10:57:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB69D166F2A;
-	Wed, 21 Aug 2024 09:01:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDB3E1E3034;
+	Wed, 21 Aug 2024 09:23:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="ac0B0XsL"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FIq/czgs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBAD01C93D5
-	for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 09:01:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF11F1CBEAD;
+	Wed, 21 Aug 2024 09:23:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724230903; cv=none; b=GXovzpKzaN9wz3d8V1j7605L48Ky78Ak6ZZUlrwIQVcacjCUVVARX6GR2iKLSBTqA/7C+OzmXN20XmIPmgqBszgTkX35ZilIHHL+DYjGJCU3AfzNem4NSM6F9wwxU/yQ6dg8igEowKMvGqmp1d1VxBqTNn9ha3+Mub1dVU2ZbEA=
+	t=1724232214; cv=none; b=dWpgxjWZindRdIhOPcFq8CVnKbxAee62j6qRWUQ2PkMYRQ9u1EwmavQMBs0SC2HnTB/1oKT/N5PIYxd7NJkjvDlOMDrf8CLoJAgYZJ4liq5nu8NZ0Mmy/0HuhcxHs6hyhWQUoKX+ub2cTy3LsEczwdQpTRK9ihlEDtnCDm1zMgA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724230903; c=relaxed/simple;
-	bh=qlr0Jg++5f/LkhxLKg7lXiarJc8QoHmVDzNz11FDtO4=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=prhz21aE/QbCQtEGxFAtCsrVtZoomEyi1l6EHBGsH3qQp+4xk3uhaJEIyZSMf7FrG8Cc3V6/GlLcKxuzmIJAnJ64JGRVM4x5J1AfL4ICjuRZMTI4Z1fMKsj5DIcVGoR9yQiLrSckMYMSPpQbs2WXACe4ftguHyB9vChXOw10KJg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=ac0B0XsL; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-428e0d18666so51105495e9.3
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 02:01:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1724230900; x=1724835700; darn=vger.kernel.org;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BqqM9bltdl7ERWZlDB/xDu0XlTf9F8/Bo40tfa0qccE=;
-        b=ac0B0XsLyvlel4/UXaVeU+pmxKMpciJcLEoFd1Rb/oQuFExrlZ4WmUPm/4VZHv0bVt
-         +OE+jeB0E0Eyd3laWG0O7hukyFR4I51pgMEpVqz+1dOTaWveY0RXN//sC0B4wDkqeM7s
-         juT+Lj3B9VfSKame09J6QyAY8w50cnc9pR9rbrIeErGa7KUzlpwqTIazgb2RNox9OIR6
-         89GVx2WHDl7kmVEMi1pzksCZAo8YhESRuVYBw5RNC8IBAd2GPpWv4U4d8yc9gBusyx/U
-         ftTdYOYWXI9dwILKw2igdr+XlaTSqhox0AC2Z4wPJjjKdrp0x9RjH5+F5ppczjBIN36l
-         z9dQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724230900; x=1724835700;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BqqM9bltdl7ERWZlDB/xDu0XlTf9F8/Bo40tfa0qccE=;
-        b=DVwrh2fMzAgD05lIGOY/dFXQ2p3Mh3aNLAK7m4+AYx2hKbyitjdH6YFZrIWZcVwfCy
-         xreORTocMCjzzphUCGDHTVI7vEkcg680Za7pp7eNyCOTn+2tZL21HIwJFmBhV/LDsXjC
-         erac3bHCUpRnKjBtBhXBgW/KQ/wdjiUFM4mweTWF9SSZJbeYeO1qpdeFvwtFGQzsX0cT
-         OheLiDQBvPvbT5UX1DzVZFAe7D+WmA2lOfY9i99PLGlEaTx6C27TqBkmh9tFsaQxe8Dy
-         WtHK+qwhtmGmE/QiTPsFm4cmy/3adhJLjsEj50SKGEfPjwN75VmlOqyrmiks6r08Z0Tn
-         7SWA==
-X-Forwarded-Encrypted: i=1; AJvYcCW402RKF959kIr23VQXXbX4XYZqdyyDkH5E30cB3UKy2R2R+Qop3gaUDLbHuvSd29wiVVPKCZC/r0Jg@vger.kernel.org
-X-Gm-Message-State: AOJu0YxwswbrC5dZiEJl6yKNDb7wHGEH5c1awzg0sRLXGvCLSwsS9TOA
-	s1Z1pUaTY/aJclrRDP1UcxXwsk9pJalGdJLgvDKeNHI+xh5rZzgIGUeylMHtIaY=
-X-Google-Smtp-Source: AGHT+IFvRpxwoefPfsPJKT7RyLtcLqtQGYbN7c2LTwxuGtgb6LyU4gPYatIPuNkyVwMXdBcT7xS4NA==
-X-Received: by 2002:a05:600c:1d83:b0:428:c0a:27ea with SMTP id 5b1f17b1804b1-42abd212819mr12286595e9.12.1724230899932;
-        Wed, 21 Aug 2024 02:01:39 -0700 (PDT)
-Received: from x1 ([31.217.165.17])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42abed8b86bsm18002035e9.4.2024.08.21.02.01.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Aug 2024 02:01:39 -0700 (PDT)
-Date: Wed, 21 Aug 2024 12:01:37 +0300
-From: Drew Fustini <drew@pdp7.com>
-To: soc@kernel.org
-Cc: Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>,
-	Kanak Shilledar <kanakshilledar@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [GIT PULL] RISC-V T-HEAD Devicetrees for v6.12
-Message-ID: <ZsWs8QiVruMXjzPc@x1>
+	s=arc-20240116; t=1724232214; c=relaxed/simple;
+	bh=t/CSQvrauuMm+CtOl+ntlCgIHDDtGtHS2ZDMZbNdyCw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ml92B5lK6gDLOXFl2bzoipYEmJtB8STHLWk6l/vlBMpgO/MOFCrSvysmOI6RADnZdVkz2ybM3dRKJ8LHeWgmNo14q7J8j7cHkx6yEVLAnHArLX0Qc1hR1ZWjSLZWZ1xZBETjd4UisrqperLy+2hek6a22Z/kzDnA4K+IsAeMrHk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FIq/czgs; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1724232212; x=1755768212;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=t/CSQvrauuMm+CtOl+ntlCgIHDDtGtHS2ZDMZbNdyCw=;
+  b=FIq/czgsZW0BAKYkCNwGas3HzgNxtkBD26c/TXqAp2CBvTf9lhrkHfeT
+   uBfigJjOMgLjoCriCoUxac3smtjLnT3FYN4oK4Jt/HhEg6U4D+zfQK32T
+   Ekxj+51f9YJL9OIsuzQ98ReQOEksgwfaLbcanrUqK8idfOnpYNGKBa3nS
+   R1t8L9dzY8FyDOXzeUmBHNclllwBJlIB+gHe5xnrhOHboeamJe+rTGUCa
+   Oq4O1Ja2QlBj9lRwaR/WRs6vDW0O+XNWIklbZOmQtdnHndRDcKy8CDwM6
+   zs/NLnL1F/ki5vguA43HbXdixFiaAD+8NvK4q0yHWP+MeFldDNc70iA3U
+   g==;
+X-CSE-ConnectionGUID: Ex2hzCZ5QYG8zzERjAjZeQ==
+X-CSE-MsgGUID: U7AWMTtUSCKngkaRPvSGpQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="40037663"
+X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; 
+   d="scan'208";a="40037663"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Aug 2024 02:23:31 -0700
+X-CSE-ConnectionGUID: siL8DPxaQxKhLChs3QZt+g==
+X-CSE-MsgGUID: RbN4J6lASDiEeCMso/RH+g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; 
+   d="scan'208";a="61570021"
+Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
+  by orviesa007.jf.intel.com with ESMTP; 21 Aug 2024 02:23:25 -0700
+Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sghYm-000B9u-35;
+	Wed, 21 Aug 2024 09:23:20 +0000
+Date: Wed, 21 Aug 2024 17:22:30 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <helgaas@kernel.org>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org
+Cc: Paul Gazzillo <paul@pgazz.com>,
+	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+	oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org
+Subject: Re: [PATCH 07/11] pinctrl: rp1: Implement RaspberryPi RP1 gpio
+ support
+Message-ID: <202408211702.1WVqlgTb-lkp@intel.com>
+References: <eb39a5f3cefff2a1240a18a255dac090af16f223.1724159867.git.andrea.porta@suse.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,55 +103,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <eb39a5f3cefff2a1240a18a255dac090af16f223.1724159867.git.andrea.porta@suse.com>
 
-Hi Arnd,
+Hi Andrea,
 
-Please pull these thead dts changes. I've run W=1 dtbs_check and they
-have been in linux-next since August 9th.
+kernel test robot noticed the following build warnings:
 
-Thanks,
-Drew
+[auto build test WARNING on clk/clk-next]
+[also build test WARNING on robh/for-next char-misc/char-misc-testing char-misc/char-misc-next char-misc/char-misc-linus linus/master v6.11-rc4 next-20240821]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-The following changes since commit 8400291e289ee6b2bf9779ff1c83a291501f017b:
+url:    https://github.com/intel-lab-lkp/linux/commits/Andrea-della-Porta/dt-bindings-clock-Add-RaspberryPi-RP1-clock-bindings/20240821-023901
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
+patch link:    https://lore.kernel.org/r/eb39a5f3cefff2a1240a18a255dac090af16f223.1724159867.git.andrea.porta%40suse.com
+patch subject: [PATCH 07/11] pinctrl: rp1: Implement RaspberryPi RP1 gpio support
+config: nios2-kismet-CONFIG_GPIOLIB_IRQCHIP-CONFIG_PINCTRL_RP1-0-0 (https://download.01.org/0day-ci/archive/20240821/202408211702.1WVqlgTb-lkp@intel.com/config)
+reproduce: (https://download.01.org/0day-ci/archive/20240821/202408211702.1WVqlgTb-lkp@intel.com/reproduce)
 
-  Linux 6.11-rc1 (2024-07-28 14:19:55 -0700)
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202408211702.1WVqlgTb-lkp@intel.com/
 
-are available in the Git repository at:
+kismet warnings: (new ones prefixed by >>)
+>> kismet: WARNING: unmet direct dependencies detected for GPIOLIB_IRQCHIP when selected by PINCTRL_RP1
+   WARNING: unmet direct dependencies detected for GPIOLIB_IRQCHIP
+     Depends on [n]: GPIOLIB [=n]
+     Selected by [y]:
+     - PINCTRL_RP1 [=y] && PINCTRL [=y]
 
-  https://github.com/pdp7/linux.git tags/thead-dt-for-v6.12
-
-for you to fetch changes up to 2d98fea7491a00dccd61fee019843b262e60f819:
-
-  riscv: dts: thead: change TH1520 SPI node to use clock controller (2024-08-08 09:19:46 -0700)
-
-----------------------------------------------------------------
-T-HEAD Devicetrees for v6.12
-
-Add SPI controller node to th1520.dtsi and enable spi0 on the BeagleV
-Ahead and LicheePi 4A.
-
-The TH1520 AP_SYS clock driver landed in v6.11 so convert multiple
-peripherals like mmc and uart from fixed clocks to the clock controller.
-
-All of these patches have been in linux-next since next-20240809.
-
-Signed-off-by: Drew Fustini <drew@pdp7.com>
-
-----------------------------------------------------------------
-Drew Fustini (6):
-      riscv: dts: thead: Add TH1520 AP_SUBSYS clock controller
-      riscv: dts: thead: change TH1520 uart nodes to use clock controller
-      riscv: dts: thead: change TH1520 mmc nodes to use clock controller
-      riscv: dts: thead: update TH1520 dma and timer nodes to use clock controller
-      riscv: dts: thead: add clock to TH1520 gpio nodes
-      riscv: dts: thead: change TH1520 SPI node to use clock controller
-
-Kanak Shilledar (1):
-      riscv: dts: thead: add basic spi node
-
- arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts | 17 ++---
- .../boot/dts/thead/th1520-lichee-module-4a.dtsi    | 12 ----
- arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts  |  5 ++
- arch/riscv/boot/dts/thead/th1520.dtsi              | 83 ++++++++++++----------
- 4 files changed, 56 insertions(+), 61 deletions(-)
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
