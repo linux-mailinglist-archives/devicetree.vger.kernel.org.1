@@ -1,134 +1,150 @@
-Return-Path: <devicetree+bounces-95381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F25089593A7
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 06:29:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B64D09593AD
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 06:39:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8BFD3B20ECD
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 04:28:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4AB8BB21C67
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 04:39:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D952158529;
-	Wed, 21 Aug 2024 04:28:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F3C5158522;
+	Wed, 21 Aug 2024 04:39:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="IGXPgDQE"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SFlLuMoI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C48F03D8E
-	for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 04:28:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 395352595;
+	Wed, 21 Aug 2024 04:39:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724214535; cv=none; b=TNhCo10S49cKTfLd21di3heFZSUQYPCJ64L2uHn7qMLJPvcMJH9oY+0ha9o2HVivOSvzP5EWEkVkC+HC+rdrNsfHUe4s8oXCJ2vVdyEtwDvYvfOuxllM3p+wZkUaEUjk76VshHFGE1id5Og8UXZMb4Mrhu2Y3zxCcm7W2uLfOGg=
+	t=1724215186; cv=none; b=fRXEwcrTGhL/ycm6n0pVb1CCZnrYOcoh1deq2+QJ7XYMcuRxC6kecc3ypMshLUwLMKbyAiYuLdxw++ZKyb+wOagpcxDlUYBGmxOWCReeWJO0USyq/QvUc6PXGSpkLon7pMtMZeo08tKsiqJIqVWqfZQra32s6afxDN4Z2sFJHZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724214535; c=relaxed/simple;
-	bh=sbYXK+0vPI8Bhkp+0jm/br7/Rhw0yjMsC3ImDA4sgyM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dReEhtbi6iRXQaiFc+/M1V1U6wM0jvdxBp+AVbufsBjt8xTqbQM896+y1yIwG0Vtn9Kd3PL8KodsbzcOmAyx+g/Gb3Cq6941MK5mpYLlUenE/iOwu8IVTKMFjWWZwxoQVmEDIZyHZ3Pi4tX9W8NVKFnXtLy4dFTUA/0lvJKQg/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=IGXPgDQE; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-20208830de8so38575095ad.1
-        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2024 21:28:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1724214533; x=1724819333; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=oL35AxGZkldIWibynmnAKaJ2u5VoZnYoTxaz2S8FjO8=;
-        b=IGXPgDQETZCh+HYds+EdSIdPvQ8/p1vBC6Q7F4YJpfG71k/ZHYIVAAWtMnOTgNj74K
-         BUJlNfcfknDohGaNnJok5t5NfMymEiL9EnBR72S/vR95eb2wdn0y6IrAyQkqQP6AvsYQ
-         B/OD6U15Ro0ywGEI9oxfpEf//vMfZWBBpHC0k=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724214533; x=1724819333;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oL35AxGZkldIWibynmnAKaJ2u5VoZnYoTxaz2S8FjO8=;
-        b=UtLhiu86g0mwTKRFpRRdzFu1sSI/aY1AX4Hb6HWkPtepr9MarPYHgf4YB1paL8gjkk
-         uhz3wXD9y6rQOfy5YAfrvRAUUO+5c4Op5HF3Q/V01f3qe9wkvrd+2FXp6ci+TwvqAwb1
-         pfFRwnB7f2SUhjpv6wqIUfS7MGNsX/Xn0iHS9dy2tC832JyplPct36VYOlxMqM3dfjZl
-         P2IO6OX3ef/PB75w3wR1yGpSEt5eXEJXUeyztNgB96/b2RHxXc6cTdHmVz4aX1ASBLbj
-         EygFTkJT3wtDkVaZIPVq9jbAedP2yR7BQSQwgJE/fkejJ9W1gAW0jNDNhoJZCsUDZko3
-         BSqg==
-X-Forwarded-Encrypted: i=1; AJvYcCV1yB7J14N7+Ob90wLxEH+aCtM7q/lAB757nt2QxKue20nqpsEFEV4ktmcG3s3HIFTmybgzYJo10zO/@vger.kernel.org
-X-Gm-Message-State: AOJu0YzvoGl3eopDMKSx2OpWkSHPqX97EU2eHrHUZv4VmlU0tOLtFFkB
-	0OG/gE/sLkTwq7juI0MbZ2EA/fw2aui+LZ1kSUAgKaggf6SYiCOw8aJhrrJl/w==
-X-Google-Smtp-Source: AGHT+IGkQFvAxR6OHQmrEF1NWLA3JRjVj9a5qfWqVB0iBHec1ZP8Pwv8bCGoy0noetly9gAjy0fz3w==
-X-Received: by 2002:a17:902:6903:b0:202:1fe:bd0a with SMTP id d9443c01a7336-2036807428amr9688345ad.46.1724214533083;
-        Tue, 20 Aug 2024 21:28:53 -0700 (PDT)
-Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:8d56:286b:9a9c:b7d0])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-201f0375acasm85652345ad.161.2024.08.20.21.28.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Aug 2024 21:28:52 -0700 (PDT)
-From: Chen-Yu Tsai <wenst@chromium.org>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Stephen Boyd <swboyd@chromium.org>,
-	Pin-yen Lin <treapking@chromium.org>,
-	Alper Nebi Yasak <alpernebiyasak@gmail.com>,
-	stable@vger.kernel.org
-Subject: [PATCH] arm64: dts: mediatek: mt8186-corsola: Disable DPI display interface
-Date: Wed, 21 Aug 2024 12:28:34 +0800
-Message-ID: <20240821042836.2631815-1-wenst@chromium.org>
-X-Mailer: git-send-email 2.46.0.184.g6999bdac58-goog
+	s=arc-20240116; t=1724215186; c=relaxed/simple;
+	bh=iblUkJxanWGILUKaRtQu5idozKXjAqVYHifOo13K5MQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=gn783G+XGo+L7z5e3OIwY14AVzVOlNn9P0gBzV74IbT7b6tYhpLPAHJOfSvzl6e0bvcTzWpNcPaUtDR321ZeQClA/go3I8pAy3I9dfFO+eC/GmPF+2zQBz4lS1a2YxqQqYqgy1T0/DJdkzWG3voNBRWQQBn/pVO9JpQ9brdPNIs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SFlLuMoI; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47KCq6FM012303;
+	Wed, 21 Aug 2024 04:39:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	XhTx2fIZlXWfUT9RtsgapcfXkgnD78yN9Y4uwLvc6LY=; b=SFlLuMoIcMrN0B3+
+	akbPCFU0vYc2TbEl69ZYJtoneCjrEWMM4IJkKZ2Ypcy3Mgw77JW0fG6elmpI22aa
+	rF21luPBpps+ywo9mUeweJv7eKCG6ceOqIaFWywBUyqOrBMPviR5iq15+OMEIeld
+	gw90UbCcX+gTNziAZ7ON8N5MqDY06JDIBOpelEw9tHwaR2Vl7/QrIk1VqRaNczsg
+	GTrDpy4Mrvxd4sDmYJYFps+qQhBIfd6tR/5S8IgkWmH3bNW6o14A0W/FeMXCXfr0
+	O97dV1QSI8od/+07aefqEDnw7K/upr4JTGvhii+NW8nzqfj5MxgjHz3hcqMTqjqF
+	byoOvg==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 414uh8svm7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 21 Aug 2024 04:39:39 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47L4dcQo022094
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 21 Aug 2024 04:39:38 GMT
+Received: from [10.216.8.12] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 20 Aug
+ 2024 21:39:33 -0700
+Message-ID: <7ca8aec5-b330-4ece-a0b3-895f3a1f6ba2@quicinc.com>
+Date: Wed, 21 Aug 2024 10:09:30 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/2] clk: qcom: Add support for GCC on QCS8300
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>,
+        "Ajit
+ Pandey" <quic_ajipan@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        Satya Priya Kakitapalli
+	<quic_skakitap@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <netdev@vger.kernel.org>
+References: <20240820-qcs8300-gcc-v1-0-d81720517a82@quicinc.com>
+ <c1dd239f-7b07-4a98-a346-2b6b525dafc4@kernel.org>
+ <5011eeb2-61e3-495a-85b3-e7c608340a82@quicinc.com>
+ <c6t35o5pnqw25x6gho725qvpgyr6bl2xkpsurq4jtjgii2v5mq@mvdl64azwpz4>
+Content-Language: en-US
+From: Imran Shaik <quic_imrashai@quicinc.com>
+In-Reply-To: <c6t35o5pnqw25x6gho725qvpgyr6bl2xkpsurq4jtjgii2v5mq@mvdl64azwpz4>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: oyLPIS4XooWMu4DNQKunDuYvxqga7tQC
+X-Proofpoint-ORIG-GUID: oyLPIS4XooWMu4DNQKunDuYvxqga7tQC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-08-21_04,2024-08-19_03,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
+ lowpriorityscore=0 impostorscore=0 mlxscore=0 spamscore=0 phishscore=0
+ mlxlogscore=999 bulkscore=0 malwarescore=0 priorityscore=1501
+ clxscore=1015 suspectscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2407110000 definitions=main-2408210031
 
-The DPI display interface feeds the external display pipeline. However
-the pipeline representation is currently incomplete. Efforts are still
-under way to come up with a way to represent the "creative" repurposing
-of the DP bridge chip's internal output mux, which is meant to support
-USB type-C orientation changes, to output to one of two type-C ports.
 
-Until that is finalized, the external display can't be fully described,
-and thus won't work. Even worse, the half complete graph potentially
-confuses the OS, breaking the internal display as well.
 
-Disable the external display interface across the whole Corsola family
-until the DP / USB Type-C muxing graph binding is ready.
+On 8/20/2024 4:32 PM, Krzysztof Kozlowski wrote:
+> On Tue, Aug 20, 2024 at 03:38:39PM +0530, Imran Shaik wrote:
+>>
+>>
+>> On 8/20/2024 3:27 PM, Krzysztof Kozlowski wrote:
+>>> On 20/08/2024 11:36, Imran Shaik wrote:
+>>>> This series adds the dt-bindings and driver support for GCC on QCS8300 platform.
+>>>>
+>>>> Please note that this series is dependent on [1] which adds support
+>>>> for QCS8275/QCS8300 SoC ID.
+>>>>
+>>>> [1] https://lore.kernel.org/all/20240814072806.4107079-1-quic_jingyw@quicinc.com/
+>>>
+>>> How do the depend? What is exactly the dependency?
+>>>
+>>> If so this cannot be merged...
+>>>
+>>
+>> They are not functionally dependent, but we want to ensure the base QCS8300
+>> changes to merge first and then our GCC changes. Hence added the dependency.
+> 
+> This does not work like that, these are different trees, even if they go
+> via Bjorn.
+> 
+> Why do you insist on some specific workflow, different than every
+> upstreaming process? What is so special here?
+> 
+> If you keep insisting, I will keep disagreeing, because it is not
+> justified and just complicates things unnecessarily.
 
-Reported-by: Alper Nebi Yasak <alpernebiyasak@gmail.com>
-Closes: https://lore.kernel.org/linux-mediatek/38a703a9-6efb-456a-a248-1dd3687e526d@gmail.com/
-Fixes: 8855d01fb81f ("arm64: dts: mediatek: Add MT8186 Krabby platform based Tentacruel / Tentacool")
-Cc: <stable@vger.kernel.org>
-Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
----
-Stephen has recently posted the "platform/chrome: Add DT USB/DP
-muxing/topology support" patch series, which is now up to v3 [1].
-More work based on this series is needed for the DP bridge drivers.
+My bad, there is no dependency for clock tree actually, just wanted to 
+provide the info that these GCC changes are for the newly defined SoC in 
+the given series link. I will drop the dependency tag in the next series.
 
-[1] https://lore.kernel.org/dri-devel/20240819223834.2049862-1-swboyd@chromium.org/
----
- arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-index 0c4a26117428..682c6ad2574d 100644
---- a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-@@ -353,7 +353,8 @@ &dpi {
- 	pinctrl-names = "default", "sleep";
- 	pinctrl-0 = <&dpi_pins_default>;
- 	pinctrl-1 = <&dpi_pins_sleep>;
--	status = "okay";
-+	/* TODO Re-enable after DP to Type-C port muxing can be described */
-+	status = "disabled";
- };
- 
- &dpi_out {
--- 
-2.46.0.184.g6999bdac58-goog
-
+Thanks,
+Imran
 
