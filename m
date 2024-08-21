@@ -1,184 +1,264 @@
-Return-Path: <devicetree+bounces-95535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D576959B00
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 13:59:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44175959B09
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 14:00:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A21B81C229A5
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 11:59:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C91E61F211D9
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 12:00:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13C931D12FF;
-	Wed, 21 Aug 2024 11:51:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F65117A590;
+	Wed, 21 Aug 2024 11:54:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="fAGHkkGK";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="YuNf+M55"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="C9uPqKBH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout3-smtp.messagingengine.com (fout3-smtp.messagingengine.com [103.168.172.146])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99C4A1D12E6;
-	Wed, 21 Aug 2024 11:51:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.146
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17B4349659;
+	Wed, 21 Aug 2024 11:54:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724241100; cv=none; b=Bwpjk5fS9FZHJI5TwaXVQO8Q830fciea2LTKgukUZOuj1oaR5SGgu6FgQC29RXty7tsILhchv6yuWQfHSJ3XZSoZLrzkered004W3esZi5bs2JGL9Ns8thezTDJypgk1dRA9o+v/RcaaOjHJrUEElT2hihNdzTGSgxda/3qWxo0=
+	t=1724241245; cv=none; b=qRmogQLmLiLxDfeTLqTaa9IPe4Fmm26sw1r7/a6BWUtpXSWHNkhQWcOe4ASgY/TFA7SPwUHq+nrN0IyZVo9E35pq2W6UkW1hVBLyNQyGIifYWJknxhJM39s8gSfiTFRkf5T7ccnRzN+if0LRb/l1RfbNNT+1YLOaFiLr7N7HDPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724241100; c=relaxed/simple;
-	bh=0UK31o1lPTclQh4XjmuhN4ibwaeePcy96OGXKKxnS84=;
+	s=arc-20240116; t=1724241245; c=relaxed/simple;
+	bh=sjdPydC3mw3cQ0ag9TWeR/G//kheaveQbBW+JwadEik=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HeCpwgHX2Spp8JlJ5dig98R5jrleBSDVQVLvkD2S2KIhsZRciChOVLrte4b83lFPY/hf14dQyIEjbXZs5NjX63NL6mFPNivzQ2aRwzr4CHaExGEuR+vHWEq9b4LEZOXoiz8qA3aL6ypw4SIFIjF3FGCQ4Sx9+o5YA+D2p/FGRJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=fAGHkkGK; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=YuNf+M55; arc=none smtp.client-ip=103.168.172.146
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from phl-compute-04.internal (phl-compute-04.nyi.internal [10.202.2.44])
-	by mailfout.nyi.internal (Postfix) with ESMTP id 61E4B138FFBD;
-	Wed, 21 Aug 2024 07:51:35 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-04.internal (MEProxy); Wed, 21 Aug 2024 07:51:35 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm3; t=1724241095;
-	 x=1724327495; bh=StJwzV3uCLvKYfEuI2zCRuLS4R5ndcSpt0JLtJRrcGI=; b=
-	fAGHkkGKJcDqWX7ov9ROzG6Dwu7XKoyXSV4Tp+7liPQ1R8OH7Q7fNiLP+5h5wern
-	PhX4myMc8s71RlOIdW/NZocGmgWOad2cHmvuktAJUAIQ7E4SttK0GlDnHHo/Eg9W
-	GqvP1sNVEXsOQx0qiT80Qhiw7tm08t5+FptbvTKTRWO0MLrpzGi9VQGqJz65EO5+
-	xneDVrvnu7ckO/reGlsZisdr6kBjF6DjgogsyWKX4Hf+P8W4xcgkv6/vGJtHMS5S
-	EkJ0G7WF/qgb0eTNj7iLgyVghgalxFDPXPqE0c1u1mPL2cXCfhFhcisF4dGuWng1
-	TP1HY+srKNd/oncZrQRqig==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1724241095; x=
-	1724327495; bh=StJwzV3uCLvKYfEuI2zCRuLS4R5ndcSpt0JLtJRrcGI=; b=Y
-	uNf+M55WhIWCo6kpLRYXHcndkzx4C/3+zX0katlL4juFAAiSLJk0FI4iIzV4cIJK
-	0dDn+E9Aojl8Hy2oK2CmM1BzrbI/LO4ZhCkOnOVeencBzhj1OYsN3ZiS2V99Bg+M
-	IkWGNza1dN1TSD+xFMEeGF83oJK3UVzsu+jKtlGM8h3SkDRNvu+3LonXXu/NyOKZ
-	VqcGgxTtnAcn0rSu6ypcx8ObMgWaF4Cddseg0uQQsFgXumt8ptFKnRnc49HVDcm9
-	8hw4igpKJSaQ46IKO8OOITLrA23P1iVRP5KWvZ4FrvM/RQcEFWJzYHcs6qkWX87j
-	Vkj/qvAW0iPTKk8D5IsYA==
-X-ME-Sender: <xms:x9TFZhzEILsgrmZLDrOABeMguED0yg1RPWVs-oUcLCo2hPNZ5YwRwQ>
-    <xme:x9TFZhTE6naaEeH8ZvoplTKpwfI51VgpHy-2nF5oFPBKIRVVKbh8AfOFkGASyCMqb
-    d2ORFT8Io0jstgm4bg>
-X-ME-Received: <xmr:x9TFZrXM75_KqKt8q1ji4AjsJTCiPP1CFGp2QA6nF-VuAR-DkWDuxJHj8NpcXaYLrw-Qh7h_wkCJILnE_3GoCQjfKl30zGHaGw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddruddukedggeehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdej
-    necuhfhrohhmpefpihhklhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhoug
-    gvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrght
-    thgvrhhnpeffkefgudekgefhhfejtedviedtgeetieekffeiudfhgeevteejvedtffdvke
-    fftdenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivgep
-    tdenucfrrghrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhsohguvghrlhhunhguod
-    hrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvgdpnhgspghrtghpthhtohepuddupdhm
-    ohguvgepshhmthhpohhuthdprhgtphhtthhopehgvggvrhhtsehlihhnuhigqdhmieekkh
-    drohhrghdprhgtphhtthhopehmtghhvghhrggssehkvghrnhgvlhdrohhrghdprhgtphht
-    thhopehlrghurhgvnhhtrdhpihhntghhrghrthesihguvggrshhonhgsohgrrhgurdgtoh
-    hmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhii
-    hihsiihtohhfrdhkohiilhhofihskhhiodgutheslhhinhgrrhhordhorhhgpdhrtghpth
-    htoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehgvggvrhht
-    odhrvghnvghsrghssehglhhiuggvrhdrsggvpdhrtghpthhtoheplhhinhhugidqmhgvug
-    hirgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvihgtvghtrhgv
-    vgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
-X-ME-Proxy: <xmx:x9TFZjgzxHzdubc8H678Fy4clI8mdnZmeHtFgtD-kxYBsBtNykVB4A>
-    <xmx:x9TFZjDjcWluRve_X2X7J7kmc_ShDAduin1GUxEk4BqG3lKAv_1CwQ>
-    <xmx:x9TFZsJ3wcge_oI2dyq1gZkr7znRdTYzP7FC4jxuf_FIlnxb3djNGA>
-    <xmx:x9TFZiDbbWHrpAXkDo-7O-3D6jJGHFiZ1Wxhc8fHXOG9oWCwSMbNvQ>
-    <xmx:x9TFZgL_jL5DbnAopho9GTRZu9fsaOQvwgcLcqRNISHpkeDMgz-aJUFm>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 21 Aug 2024 07:51:34 -0400 (EDT)
-Date: Wed, 21 Aug 2024 13:51:32 +0200
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, helpdesk <helpdesk@kernel.org>
-Subject: Re: [PATCH v5 0/6] rcar-vin: Add support for R-Car V4M
-Message-ID: <20240821115132.GA901567@ragnatech.se>
-References: <20240704161620.1425409-1-niklas.soderlund+renesas@ragnatech.se>
- <CAMuHMdUjSquBji5+UVACLaWdMhbq5EEkiUANc9LeR5d_1BvkFw@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=reFYocWIxUKEFf/7KW6xYzfL8ntTD2eM1sQ63rjuHaJN/B6pepQ+pbtP0IPytTxBemWJgFasY87WE2s/QD5BAlEP0F5T2xWftdKuUDVEkaxlZj4ADo7pTLiLXzvixXZM5Zr2F9T9jprc9CJhJXHYAMaUpxWPEno++la+MJlBra0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=C9uPqKBH; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1724241243; x=1755777243;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=sjdPydC3mw3cQ0ag9TWeR/G//kheaveQbBW+JwadEik=;
+  b=C9uPqKBHtXVihomT9gL7MqUZaeK6YlmrAjQiu0OJ5akZejmu2k9xKZ8S
+   6YA7sPcm9N6UhLWx2JedCvwPLVf0crNEgHKSxpwqrb4SQvLqUveRYd6Ju
+   zPLRC0Elq0ZwNkmSb8nf95YVOF7hZQebkgSs/ABRmxs6+grx/X6JVRGzH
+   AVu+c4nrVcckldH7VGeDj2jH7kZvrRB9I5H2gKK3Y/iXR3hZclDbJ7PMH
+   TgwakbuLbjg/sr7eM4VeblaCriqQosI9Z6ZUuSmw92BHK68OpM8oQdxZa
+   j5W8JqtJWb5Mi2ZqtBeC5QAObTS9BJv2tt3+l2SzbvJfdmAHUEVrarW4d
+   A==;
+X-CSE-ConnectionGUID: sS0pt5NFSeip2SopXkUQ1Q==
+X-CSE-MsgGUID: 2FuzKtExQ8GOR40iUj4MUA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11170"; a="22757630"
+X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; 
+   d="scan'208";a="22757630"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Aug 2024 04:54:03 -0700
+X-CSE-ConnectionGUID: za5Q+RdERouf6WLiIWTu2w==
+X-CSE-MsgGUID: UG05ftq5TpqZ4AU0mZJdtA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,164,1719903600"; 
+   d="scan'208";a="61047373"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Aug 2024 04:53:59 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1sgjuW-000000003L9-03HD;
+	Wed, 21 Aug 2024 14:53:56 +0300
+Date: Wed, 21 Aug 2024 14:53:55 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Ryan Chen <ryan_chen@aspeedtech.com>
+Cc: "brendan.higgins@linux.dev" <brendan.higgins@linux.dev>,
+	"benh@kernel.crashing.org" <benh@kernel.crashing.org>,
+	"joel@jms.id.au" <joel@jms.id.au>,
+	"andi.shyti@kernel.org" <andi.shyti@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
+	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+	"openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v13 2/3] i2c: aspeed: support AST2600 i2c new register
+ mode driver
+Message-ID: <ZsXVU2qy0GIANFrc@smile.fi.intel.com>
+References: <20240819092850.1590758-1-ryan_chen@aspeedtech.com>
+ <20240819092850.1590758-3-ryan_chen@aspeedtech.com>
+ <ZsNT7LPZ7-szrgBJ@smile.fi.intel.com>
+ <OS8PR06MB7541EE5BA5B400445FE0295EF28E2@OS8PR06MB7541.apcprd06.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdUjSquBji5+UVACLaWdMhbq5EEkiUANc9LeR5d_1BvkFw@mail.gmail.com>
+In-Reply-To: <OS8PR06MB7541EE5BA5B400445FE0295EF28E2@OS8PR06MB7541.apcprd06.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Hello,
+On Wed, Aug 21, 2024 at 06:43:01AM +0000, Ryan Chen wrote:
+> > On Mon, Aug 19, 2024 at 05:28:49PM +0800, Ryan Chen wrote:
 
-On 2024-08-20 09:34:55 +0200, Geert Uytterhoeven wrote:
-> On Thu, Jul 4, 2024 at 6:16 PM Niklas Söderlund
-> <niklas.soderlund+renesas@ragnatech.se> wrote:
-> > This series adds bindings and support to rcar-vin for R-Car V4M by the
-> > means of adding a Gen4 family fallback compatible.
-> >
-> > Previous versions of this series added V4M support like done for VIN
-> > since the first Gen3 device, by the use of only a single SoC specific
-> > compatible value. This was done as in Gen3 almost every new device
-> > differed from the others and a family fallback was not very useful.
-> >
-> > For the Gen4 devices with a video capture pipeline currently documented
-> > the VIN instances are very similar and a family fallback can be used.
-> > This however requires updating existing DTS files to add this new family
-> > fallback. This is done in a backward compatible way and the driver
-> > retains the compatible values.
-> >
-> > See individual patches for changes since previous versions.
-> >
-> > Niklas Söderlund (6):
-> >   dt-bindings: media: renesas,vin: Add Gen4 family fallback
-> >   arm64: dts: renesas: r8a779g0: Add family fallback for VIN IP
-> >   arm64: dts: renesas: r8a779a0: Add family fallback for VIN IP
-> >   media: rcar-vin: Add family compatible for R-Car Gen4 family
-> >   dt-bindings: media: renesas,vin: Add binding for V4M
-> >   arm64: dts: renesas: r8a779h0: Add family fallback for VIN IP
+...
+
+> > > +	/* Check 0x14's SDA and SCL status */
+> > > +	state = readl(i2c_bus->reg_base + AST2600_I2CC_STS_AND_BUFF);
+> > > +	if (!(state & AST2600_I2CC_SDA_LINE_STS) && (state &
+> > AST2600_I2CC_SCL_LINE_STS)) {
+> > > +		writel(AST2600_I2CM_RECOVER_CMD_EN, i2c_bus->reg_base +
+> > AST2600_I2CM_CMD_STS);
+> > > +		r = wait_for_completion_timeout(&i2c_bus->cmd_complete,
+> > i2c_bus->adap.timeout);
+> > > +		if (r == 0) {
+> > > +			dev_dbg(i2c_bus->dev, "recovery timed out\n");
+> > > +			ret = -ETIMEDOUT;
+> > > +		} else {
+> > > +			if (i2c_bus->cmd_err) {
+> > > +				dev_dbg(i2c_bus->dev, "recovery error\n");
+> > > +				ret = -EPROTO;
+> > > +			}
+> > > +		}
+> > > +	}
+> > 
+> > ret is set but maybe overridden.
 > 
-> Any chance the media parts can be accepted, so I can take the DTS
-> patches through the Renesas tree?
+> If will modify by following.
+> 		if (r == 0) {
+> 			dev_dbg(i2c_bus->dev, "recovery timed out\n");
+> 			ret = -ETIMEDOUT;
+> 		} else if (i2c_bus->cmd_err) {
+> 			dev_dbg(i2c_bus->dev, "recovery error\n");
+> 			ret = -EPROTO;
+> 		}
+> If no error keep ret = 0;
 
-I would be happy to have some feedback on the media parts as well as I 
-will need to send a very similar series for the rcar-isp driver to add a 
-family fallback for Gen4. But I have hold of on posting them until I 
-knew this is the correct path forward.
+It doesn't change the behaviour. Still ret can be overridden below...
 
+> > > +	/* Recovery done */
+> > 
+> > Even if it fails above?
 > 
-> BTW, running b4 seems to add two bogus Acked-by tags from Conor:
+> This will keep check the bus status, if bus busy, will give ret = -EPROTO;
 > 
-> $ b4 am 20240704161620.1425409-3-niklas.soderlund+renesas@ragnatech.se
-> Analyzing 7 messages in the thread
-> Analyzing 14 code-review messages
-> Checking attestation on all messages, may take a moment...
-> ---
->   ✗ [PATCH v5 1/6] dt-bindings: media: renesas,vin: Add Gen4 family fallback
->   ✗ [PATCH v5 2/6] arm64: dts: renesas: r8a779g0: Add family fallback for VIN IP
->     + Acked-by: Conor Dooley <conor.dooley@microchip.com> (✓ DKIM/kernel.org)
->   ✗ [PATCH v5 3/6] arm64: dts: renesas: r8a779a0: Add family fallback for VIN IP
->   ✗ [PATCH v5 4/6] media: rcar-vin: Add family compatible for R-Car Gen4 family
->   ✗ [PATCH v5 5/6] dt-bindings: media: renesas,vin: Add binding for V4M
->   ✗ [PATCH v5 6/6] arm64: dts: renesas: r8a779h0: Add family fallback for VIN IP
->     + Acked-by: Conor Dooley <conor.dooley@microchip.com> (✓ DKIM/kernel.org)
-> 
-> I cannot find these Acks in my inbox or on lore.
-> What's happening?
+> > > +	state = readl(i2c_bus->reg_base + AST2600_I2CC_STS_AND_BUFF);
+> > > +	if (state & AST2600_I2CC_BUS_BUSY_STS) {
+> > > +		dev_dbg(i2c_bus->dev, "Can't recover bus [%x]\n", state);
+> > > +		ret = -EPROTO;
 
-No idea, I can't find any Acks from Conner in my inbox neither. Both 
-patches in question where new in v4 of the series.
+...here.
+
+> > > +	}
+> > > +
+> > > +	/* restore original master/slave setting */
+> > > +	writel(ctrl, i2c_bus->reg_base + AST2600_I2CC_FUN_CTRL);
+> > > +	return ret;
+
+...
+
+
+> > > +		i2c_bus->master_dma_addr =
+> > > +			dma_map_single(i2c_bus->dev, i2c_bus->master_safe_buf,
+> > > +				       msg->len, DMA_TO_DEVICE);
+> > 
+> > > +		if (dma_mapping_error(i2c_bus->dev, i2c_bus->master_dma_addr))
+> > {
+> > > +			i2c_put_dma_safe_msg_buf(i2c_bus->master_safe_buf, msg,
+> > false);
+> > > +			i2c_bus->master_safe_buf = NULL;
+> > 
+> > > +			return -ENOMEM;
+> > 
+> > Why is the dma_mapping_error() returned error code shadowed?
+> 
+> Sorry, please point me why you are think it is shadowed?
+> As I know dma_mapping_error() will return 0 or -ENOMEM. So I check if it is !=0.
+> Than return -ENOMEM. 
+
+First of all, it is a bad style to rely on the implementation details where
+it's not crucial. Second, today it may return only ENOMEM, tomorrow it can
+return a different code or codes. And in general, one should not shadow an
+error code without justification.
+
+> > > +		}
+
+...
+
+> > > +MODULE_DEVICE_TABLE(of, ast2600_i2c_bus_of_table);
+> > 
+> > Why do you need this table before _probe()? Isn't the only user is below?
+> 
+> It is for next generation table list. Do you suggest remove it?
+
+My question was regarding to the location of this table in the code, that's it,
+no other implications.
+
+...
+
+> > > +	if (i2c_bus->mode == BUFF_MODE) {
+> > > +		i2c_bus->buf_base =
+> > devm_platform_get_and_ioremap_resource(pdev, 1, &res);
+> > > +		if (!IS_ERR_OR_NULL(i2c_bus->buf_base))
+> > > +			i2c_bus->buf_size = resource_size(res) / 2;
+> > > +		else
+> > > +			i2c_bus->mode = BYTE_MODE;
+> > 
+> > What's wrong with positive conditional? And is it even possible to have NULL
+> > here?
+> > 
+> Yes, if dtsi fill not following yaml example have reg 1, that will failure at buffer mode.
+> And I can swith to byte mode. 
+> 
+> reg = <0x80 0x80>, <0xc00 0x20>;
+
+I was asking about if (!IS_ERR_OR_NULL(...)) line:
+1) Why 'if (!foo) {} else {}' instead of 'if (foo) {} else {}'?
+2) Why _NULL?
+
+> > > +	}
+
+...
+
+> > > +	strscpy(i2c_bus->adap.name, pdev->name, sizeof(i2c_bus->adap.name));
+> > 
+> > Use 2-argument strscpy().
+> Do you mean strscpy(i2c_bus->adap.name, pdev->name); is acceptable?
+
+Yes. And not only acceptable but robust for the copying to the [string] arrays.
+
+...
+
+> > > +	i2c_bus->alert_enable = device_property_read_bool(dev, "smbus-alert");
+> > > +	if (i2c_bus->alert_enable) {
+> > > +		i2c_bus->ara = i2c_new_smbus_alert_device(&i2c_bus->adap,
+> > &i2c_bus->alert_data);
+> > > +		if (!i2c_bus->ara)
+> > > +			dev_warn(dev, "Failed to register ARA client\n");
+> > > +
+> > > +		writel(AST2600_I2CM_PKT_DONE | AST2600_I2CM_BUS_RECOVER
+> > | AST2600_I2CM_SMBUS_ALT,
+> > > +		       i2c_bus->reg_base + AST2600_I2CM_IER);
+> > > +	} else {
+> > > +		i2c_bus->alert_enable = false;
+> > > +		/* Set interrupt generation of I2C master controller */
+> > > +		writel(AST2600_I2CM_PKT_DONE | AST2600_I2CM_BUS_RECOVER,
+> > > +		       i2c_bus->reg_base + AST2600_I2CM_IER);
+> > > +	}
+> > 
+> > I2C core calls i2c_setup_smbus_alert() when registering the adapter. Why do
+> > you need to have something special here?
+> The ast2600 i2c support smbus alert, and according my reference.
+> If enable alert, that will need i2c_new_smbus_alert_device for alert handler.
+> When interrupt coming driver can use this hander to up use i2c_handle_smbus_alert
+> And update layer will handle alert.
+> Does I mis-understand. If yes, I will remove this in next.
+
+Have you seen i2c_new_smbus_alert_device() ?
 
 -- 
-Kind Regards,
-Niklas Söderlund
+With Best Regards,
+Andy Shevchenko
+
+
 
