@@ -1,209 +1,196 @@
-Return-Path: <devicetree+bounces-95672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 085C095A81B
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 01:23:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71B2995A83A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 01:28:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE46B28130D
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 23:23:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D7FA1C21F7D
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2024 23:28:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52159170A1A;
-	Wed, 21 Aug 2024 23:23:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AC2C17DFFE;
+	Wed, 21 Aug 2024 23:27:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b="altrLWij"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="ZcsiOPCq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C7D31494AD;
-	Wed, 21 Aug 2024 23:23:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724282594; cv=pass; b=VWHEqgzMZfboIQ4AwrchKJujQdjoNe+OLviUNFqqeIB0x+G8EC23ftY6Yw6vuFW23M3FlscNVX+dXRJmCg0gNABTJPGVJZugh+6fKw02wBsoPFGeXuw8LiHBAbhTrzH+OPuCh45Jm/QixWdv51gnSTxSoqVS3zhl9cAOao8NMGs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724282594; c=relaxed/simple;
-	bh=iKpiD52l3KlHflPkTDvBVBMOZo7fhbwgZ0OAJKfV2F8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JNtRkuXT8SoCxPakgouPw7suytL2jy+P73KEQY79ojE/f0jCGVS/lh1n45gARKPIIbMIt2wAMRhFZitA/SFGs7olD0LSd21hM/X8dJfAMmqnhBijaMqR9HlvrTN3pysxrdtp+kUhiB5fJaWNrG65YlPeUdKCZeinph+83CplxVY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b=altrLWij; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-Delivered-To: kernel@collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1724282547; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=Z1kZ70M4AQmqO7ocFJ25E+U8KlGI+1YGZQuOSHbE+herSdaGkz/f7z4/tC0fl0o39rhCteScmhgD7aUvAtKwNB1ANnoewVtYnDkg6YatHgzcCMr+LRIvsa1TMYSYNTXacAfOTpfOiMILUqnPK/+dpje8ZSHKw5+mB97nlHaxb68=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1724282547; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=+ZBYReoU+D/75zzzqj2C41bM7dDfvJWCGG/dMUABDks=; 
-	b=Z8xZ7vC82HSlrjbUdckzLb5Eo4EQr/TrWO1AjJlThgkyVRdWPK2koaU8j0UY8lfQamXDs1pdJJY9Z6cM6a39jxaP2M5qhmJ1pvkMUFAhh6ifAU/fa5whmVCEbA/O/PHehiunIfBpDHn2L02X7ibO6weWaQz/c/gQ9tGM3o4sYVs=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=cristian.ciocaltea@collabora.com;
-	dmarc=pass header.from=<cristian.ciocaltea@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724282547;
-	s=zohomail; d=collabora.com; i=cristian.ciocaltea@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=+ZBYReoU+D/75zzzqj2C41bM7dDfvJWCGG/dMUABDks=;
-	b=altrLWijDDpGZiuNratl8pK6bSmLCgb+5lDP011AAJS5Y88O4stCpBrk6zFZ5Pqo
-	8w5SyYzOeXGSrGzG3CeqWtE8pmhKp9azUpZPp4pdcnC3KuGcExyokfhR5L1GFPF1tb3
-	/xD2fMYdnontTLWsU+iQlBpCnXh5WKBHpB6cbheY=
-Received: by mx.zohomail.com with SMTPS id 1724282544339506.061756257801;
-	Wed, 21 Aug 2024 16:22:24 -0700 (PDT)
-Message-ID: <2085e998-a453-4893-9e80-3be68b0fb13d@collabora.com>
-Date: Thu, 22 Aug 2024 02:22:16 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 417A6183CAA
+	for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 23:27:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724282827; cv=none; b=Qq0sW6s4AfeyLv955DKiSgHOLbvt5+8gR43jyJFY9bhnPUxC7oyHPrGyBYkpzRuSf2WzSJiQgs3blCvrL1+heyd916HsEo1imiXI6YZHVSQ19OB3wLvjYM+2/y/yUWDFl7DmgO2vcw19Zs7g2v/3KtZod15ou40NckRvFHjDCOA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724282827; c=relaxed/simple;
+	bh=V6EfJdV8XY0qKgNr+X/hW0XUTNebiXWJsSp8YPMg6Fw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 References; b=RAUrDe6H6g/tcZWupVsGIq0J/Z2skTtyXxo3bU/5GoiTx1zdGI3GaxtLCz7yrzrF9bb5PAlaqhkVOIEPwdge+wK33xvYjD4IvuP/0JN+tORlEJkGbgONpH/w2Wvu2zcJ5u4GdhdojigKyn6AEakNfeg6GAjX/1kMGu9kdENw6RI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=ZcsiOPCq; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20240821232657epoutp012cbc754f1ae8cd5a7b114c3580fa6f34~t4hY_cQn82963029630epoutp01_
+	for <devicetree@vger.kernel.org>; Wed, 21 Aug 2024 23:26:57 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20240821232657epoutp012cbc754f1ae8cd5a7b114c3580fa6f34~t4hY_cQn82963029630epoutp01_
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1724282817;
+	bh=5KJLYwAJevQB/2Q++XZPLB1XPTDUsIWY7J6aokkLmow=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=ZcsiOPCqaoPWLswEMMAK21dVsyJof2pjqq+OvRRPrmqs8LXZnJQpJqjRtuTOFytaa
+	 /n1Et/M39MuEUbYwOllyMkr5zqHKJTQd7dIZeD0fw6/n+R/C8MSBbPIJb5nyKgkK67
+	 KElPutneFz/lBXw0pskiNbGV0JjPLFkQOsShj0y8=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTP id
+	20240821232656epcas2p1926b9ded936e2b0fe31d23c1b08ccfab~t4hYaz4bh2086820868epcas2p1Y;
+	Wed, 21 Aug 2024 23:26:56 +0000 (GMT)
+Received: from epsmgec2p1.samsung.com (unknown [182.195.36.89]) by
+	epsnrtp3.localdomain (Postfix) with ESMTP id 4Wq2Xw44Gfz4x9Pw; Wed, 21 Aug
+	2024 23:26:56 +0000 (GMT)
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+	epsmgec2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	DF.85.08901.0C776C66; Thu, 22 Aug 2024 08:26:56 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
+	20240821232656epcas2p2596e2a1f31bf02084d9e4cd0fc80ce14~t4hXorD6X1271312713epcas2p2O;
+	Wed, 21 Aug 2024 23:26:56 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20240821232656epsmtrp2ab74761ca3e6afbadc73b940dca89e8f~t4hXm6ZPg2801228012epsmtrp2Q;
+	Wed, 21 Aug 2024 23:26:56 +0000 (GMT)
+X-AuditID: b6c32a43-a61b8700000022c5-17-66c677c017ff
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	E2.85.08964.FB776C66; Thu, 22 Aug 2024 08:26:55 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.60]) by
+	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20240821232655epsmtip20fff5940c20a57b135d2ea2cb6cd1078~t4hXXWSgE2250822508epsmtip2Q;
+	Wed, 21 Aug 2024 23:26:55 +0000 (GMT)
+From: Sunyeal Hong <sunyeal.hong@samsung.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Sylwester Nawrocki
+	<s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar
+	<alim.akhtar@samsung.com>, Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>
+Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Sunyeal Hong <sunyeal.hong@samsung.com>
+Subject: [PATCH v9 0/4] initial clock support for exynosauto v920 SoC
+Date: Thu, 22 Aug 2024 08:26:48 +0900
+Message-ID: <20240821232652.1077701-1-sunyeal.hong@samsung.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/4] dt-bindings: display: rockchip: Add schema for
- RK3588 HDMI TX Controller
-To: Heiko Stuebner <heiko@sntech.de>, Conor Dooley <conor@kernel.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Sandy Huang <hjc@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>,
- Luis de Arquer <ldearquer@gmail.com>
-References: <20240819-b4-rk3588-bridge-upstream-v4-0-6417c72a2749@collabora.com>
- <20240819-b4-rk3588-bridge-upstream-v4-3-6417c72a2749@collabora.com>
- <20240819-bobbing-purplish-99e48baa2304@spud>
- <ec84bc0b-c4c2-4735-9f34-52bc3a852aaf@collabora.com>
- <20240820-tropics-hunchback-6fdcd0b37f91@spud>
- <038073d0-d4b9-4938-9a51-ea2aeb4530f6@collabora.com>
- <20240821-evoke-mop-fb09ceef3597@spud>
- <5813cea2-4890-4fa9-8826-19be5bf3e161@collabora.com>
- <20240821-stretch-scam-09d7adc08a4c@spud>
- <7E8109D4-A353-4FE3-9152-3C3C6CB7D634@sntech.de>
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Content-Language: en-US
-In-Reply-To: <7E8109D4-A353-4FE3-9152-3C3C6CB7D634@sntech.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprPJsWRmVeSWpSXmKPExsWy7bCmqe6B8mNpBr8PyFo8mLeNzWLN3nNM
+	Fte/PGe1mH/kHKvF+fMb2C02Pb7GavGx5x6rxeVdc9gsZpzfx2Rx8ZSrxf89O9gtDr9pZ7X4
+	d20ji0XTsvVMDnwe72+0sntsWtXJ5rF5Sb1H35ZVjB6fN8kFsEZl22SkJqakFimk5iXnp2Tm
+	pdsqeQfHO8ebmhkY6hpaWpgrKeQl5qbaKrn4BOi6ZeYA3amkUJaYUwoUCkgsLlbSt7Mpyi8t
+	SVXIyC8usVVKLUjJKTAv0CtOzC0uzUvXy0stsTI0MDAyBSpMyM7Yt8ig4IRAxbH2rawNjN94
+	uhg5OSQETCRezb/B0sXIxSEksINRYuXVn8wgCSGBT4wSnZOkIOxvjBLrm0VhGv6d3MIM0bCX
+	UWJDy3pGCOcjo8SBeQeAHA4ONgFdiT//HEDiIgJ7mCS2nF/CBOIwC5xllLg7ZwE7yChhAVeJ
+	82fmsILYLAKqEhPv3mcBsXkF7CU2NPxmg1gnL3FxzXM2iLigxMmZT8BqmIHizVtng50hIdDK
+	ITHh9AkmiAYXiZurP7BC2MISr45vYYewpSQ+v9sLNTRfYvL1t0wQzQ2MEtf+dTNDJOwlFp35
+	yQ7yArOApsT6XfogpoSAssSRW1B7+SQ6Dv9lhwjzSnS0CUE0qkl8unIZaoiMxLETz6BsD4mV
+	fcugIRorcaD7NesERvlZSL6ZheSbWQh7FzAyr2IUSy0ozk1PTTYqMITHaXJ+7iZGcErVct7B
+	eGX+P71DjEwcjIcYJTiYlUR4k+4dTRPiTUmsrEotyo8vKs1JLT7EaAoM34nMUqLJ+cCknlcS
+	b2hiaWBiZmZobmRqYK4kznuvdW6KkEB6YklqdmpqQWoRTB8TB6dUA9Nl03o7+Ql/vT/Mf7Fo
+	xUnVY49mv5uWmapgmhy93jrERWFmS+aH8vlzmERO3q01a9qy9HfuURfV9oVKHg/l+x+aLT0Q
+	9cbI8lDzw46N7OtDJsucEbnWVfGJp6vulcXZp2HsKleyVUJOfAw0i3lxN2Bt3J+wuG+XLq44
+	dttANICv9YyTuNG/hmwpactpSyQd6oIkZIpUtlxd9/dYsUKq8ew3W69vFhWdLd8i7L6164bR
+	y4ki8pyVf2YvfnZNaJk9F+v+jADumCe3Etu+vKyc1HjEseVp0Yycb1VdyR/rXSYmrrbIVJI4
+	WX3hn6d2+rrQR03Fb6IDHzrMcj8uJVTupq/itPTK/ZKy39vdeBhDNiixFGckGmoxFxUnAgD+
+	Ip3iMgQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrALMWRmVeSWpSXmKPExsWy7bCSvO7+8mNpBj+vWlo8mLeNzWLN3nNM
+	Fte/PGe1mH/kHKvF+fMb2C02Pb7GavGx5x6rxeVdc9gsZpzfx2Rx8ZSrxf89O9gtDr9pZ7X4
+	d20ji0XTsvVMDnwe72+0sntsWtXJ5rF5Sb1H35ZVjB6fN8kFsEZx2aSk5mSWpRbp2yVwZexb
+	ZFBwQqDiWPtW1gbGbzxdjJwcEgImEv9ObmHuYuTiEBLYzSgxcfdnRoiEjMTGhv/sELawxP2W
+	I6wQRe8ZJf52fGbpYuTgYBPQlfjzzwEkLiJwiEli4uenLCAOs8BlRoljdyczg3QLC7hKnD8z
+	hxXEZhFQlZh49z4LiM0rYC+xoeE3G8QGeYmLa56zQcQFJU7OfAJWwwwUb946m3kCI98sJKlZ
+	SFILGJlWMUqmFhTnpucWGxYY5qWW6xUn5haX5qXrJefnbmIEB7qW5g7G7as+6B1iZOJgPMQo
+	wcGsJMKbdO9omhBvSmJlVWpRfnxRaU5q8SFGaQ4WJXFe8Re9KUIC6YklqdmpqQWpRTBZJg5O
+	qQYmxrj0xFlPW/UO2auXrG5f+92uIPZRqlFOzZxzm29PSJJPSjR5HtMUFande9L+7wRLtpLM
+	uvufpF+FlNsHR1XdTTtf32/PIq92TJ/v09LwBW6qC/pTLmtP3n5u3bO3+k9/XkzaZHwo78gj
+	qXU746838L4UfTnXX2XDIzepF8qWr1JXTj/SP/Hoh4yznb21E7Y9fKRwo0hnpdLCjqyI+Ws3
+	7H9bqptmn7yXM658q8y+N8H35i95pftpPzcDe9K8D03MNSWOziI/GiW707IaEv6WRFmxSwpt
+	m/puYd/UlRqX5G3mzvuR9YTzInPMzMl/81vvPAjU+WseKTfxBselGQ8nis3epR5xnLF44Sf/
+	NVnFSizFGYmGWsxFxYkASz73ieMCAAA=
+X-CMS-MailID: 20240821232656epcas2p2596e2a1f31bf02084d9e4cd0fc80ce14
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20240821232656epcas2p2596e2a1f31bf02084d9e4cd0fc80ce14
+References: <CGME20240821232656epcas2p2596e2a1f31bf02084d9e4cd0fc80ce14@epcas2p2.samsung.com>
 
-On 8/22/24 12:38 AM, Heiko Stuebner wrote:
-> 
-> 
-> Am 21. August 2024 23:28:55 MESZ schrieb Conor Dooley <conor@kernel.org>:
->> Cristian, Heiko,
->>
->> On Wed, Aug 21, 2024 at 11:38:01PM +0300, Cristian Ciocaltea wrote:
->>> On 8/21/24 6:07 PM, Conor Dooley wrote:
->>>> On Tue, Aug 20, 2024 at 11:12:45PM +0300, Cristian Ciocaltea wrote:
->>>>> On 8/20/24 7:14 PM, Conor Dooley wrote:
->>>>>> On Tue, Aug 20, 2024 at 03:37:44PM +0300, Cristian Ciocaltea wrote:
->>>>>>> On 8/19/24 7:53 PM, Conor Dooley wrote:
->>>>>>>> On Mon, Aug 19, 2024 at 01:29:30AM +0300, Cristian Ciocaltea wrote:
->>>>>>>>> +  rockchip,grf:
->>>>>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>>>>>>>> +    description:
->>>>>>>>> +      Most HDMI QP related data is accessed through SYS GRF regs.
->>>>>>>>> +
->>>>>>>>> +  rockchip,vo1-grf:
->>>>>>>>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>>>>>>>> +    description:
->>>>>>>>> +      Additional HDMI QP related data is accessed through VO1 GRF regs.
->>>>>>>>
->>>>>>>> Why are these required? What prevents you looking up the syscons by
->>>>>>>> compatible?
->>>>>>>
->>>>>>> That is for getting the proper instance:
->>>>>>
->>>>>> Ah, that makes sense. I am, however, curious why these have the same
->>>>>> compatible when they have different sized regions allocated to them.
->>>>>
->>>>> Good question, didn't notice.  I've just checked the TRM and, in both
->>>>> cases, the maximum register offset is within the 0x100 range.  Presumably
->>>>> this is nothing but an inconsistency, as the syscons have been added in
->>>>> separate commits.
->>>>
->>>> Is that TRM publicly available? I do find it curious that devices sound
->>>> like they have different contents have the same compatible. In my view,
->>>> that is incorrect and they should have unique compatibles if the
->>>> contents (and therefore the programming model) differs.
->>>
->>> Don't know if there's an official location to get it from, but a quick
->>> search on internet shows a few repos providing them, e.g. [1].
->>>
->>> Comparing "6.14 VO0_GRF Register Description" at pg. 777 with "6.15 VO1_GRF
->>> Register Description" at pg. 786 (from Part1) reveals the layout is mostly
->>> similar, with a few variations though.
->>
->> Page references and everything, thank you very much. I don't think those
->> two GRFs should have the same compatibles, they're, as you say, similar
->> but not identical. Seems like a bug to me!
->>
->> Heiko, what do you think?
-> 
-> Yes, while the register names sound similar, looking at the bit
-> definitions this evening revealed that they handle vastly different
-> settings.
-> 
-> So I guess we should fix the compatibles. They are all about graphics
-> stuff and HDMI actually is the first output, so right now WE can at least
-> still claim the no-users joker ;-)
+This patchset adds initial clock driver support for Exynos Auto v920 SoC.
+This driver uses HW Auto Clock gating. So all gate clocks did not register.
 
-I couldn't find any driver doing a lookup for them by compatible, so I
-think it's fine to fix them - should we go for "rockchip,rk3588-vo0-grf" and
-"rockchip,rk3588-vo1-grf", respectively?
+Below CMU blocks are supported in this patchset and remains will be implemented later.
 
-vo0_grf seems to be used by the usbdp phy nodes:
+- CMU_TOP
+- CMU_PERIC0/1
+- CMU_MISC
+- CMU_HSI0/1
 
-    usbdp_phy0: phy@fed80000 {
-        compatible = "rockchip,rk3588-usbdp-phy";
-        [...]
-        rockchip,vo-grf = <&vo0_grf>;
-        [...]
+Changes in v9:
+ - Modify the parent clock name of peric0_cmu to match the device tree
 
-Same for "usbdp_phy1: phy@fed90000".
+Changes in v8:
+ - Resend it because v7 includes other SoC patches
 
-While vo1_grf is present in:
+Changes in v7:
+ - Combine duplicate clock description
 
-    vop: vop@fdd90000 {
-        compatible = "rockchip,rk3588-vop";
-        [...]
-        rockchip,vo1-grf = <&vo1_grf>;
-        [...]
+Changes in v6:
+ - Add peric1, mis and hsi0/1 in the bindings document
 
-I guess it's too late to drop them while updating the related drivers
-accordingly, hence I wonder if we should keep using the phandles for this
-HDMI thing as well, for consistency reasons.
+Changes in v5:
+ - Change CMU_TOP odd numbering
+ - Move the descriptions and names common clocks properties
 
-Thanks,
-Cristian
+Changes in v4:
+ - Change PLL_531x fdiv type and mask bit
+ - Change PLL_531x mdiv type
 
-> Heiko
-> 
->>
->>> [1] https://github.com/FanX-Tek/rk3588-TRM-and-Datasheet
->>>
->>>>>
->>>>>>> 	vo0_grf: syscon@fd5a6000 {
->>>>>>> 		compatible = "rockchip,rk3588-vo-grf", "syscon";
->>>>>>> 		reg = <0x0 0xfd5a6000 0x0 0x2000>;
->>>>>>> 		clocks = <&cru PCLK_VO0GRF>;
->>>>>>> 	};
->>>>>>>
->>>>>>> 	vo1_grf: syscon@fd5a8000 {
->>>>>>> 		compatible = "rockchip,rk3588-vo-grf", "syscon";
->>>>>>> 		reg = <0x0 0xfd5a8000 0x0 0x100>;
->>>>>>> 		clocks = <&cru PCLK_VO1GRF>;
->>>>>>> 	};
->>>>
-> 
+Changes in v3:
+ - Change SoC name from Exynos Auto to ExynosAuto
+ - Change the makefile order to the bottom of exynosautov9
+ - Add PLL_531x formula for integer PLL
+
+Changes in v2:
+ - Fix typo from v209 to v920
+ - Change USI clock to appropriate
+ - Merge headers into binding patches
+ - Change clock-name to the recommended name
+
+Sunyeal Hong (4):
+  dt-bindings: clock: add ExynosAuto v920 SoC CMU bindings
+  arm64: dts: exynos: add initial CMU clock nodes in ExynosAuto v920
+  clk: samsung: clk-pll: Add support for pll_531x
+  clk: samsung: add top clock support for ExynosAuto v920 SoC
+
+ .../clock/samsung,exynosautov920-clock.yaml   |  162 +++
+ .../arm64/boot/dts/exynos/exynosautov920.dtsi |   40 +-
+ drivers/clk/samsung/Makefile                  |    1 +
+ drivers/clk/samsung/clk-exynosautov920.c      | 1173 +++++++++++++++++
+ drivers/clk/samsung/clk-pll.c                 |   44 +
+ drivers/clk/samsung/clk-pll.h                 |    1 +
+ .../clock/samsung,exynosautov920.h            |  191 +++
+ 7 files changed, 1599 insertions(+), 13 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/samsung,exynosautov920-clock.yaml
+ create mode 100644 drivers/clk/samsung/clk-exynosautov920.c
+ create mode 100644 include/dt-bindings/clock/samsung,exynosautov920.h
+
+-- 
+2.45.2
+
 
