@@ -1,87 +1,121 @@
-Return-Path: <devicetree+bounces-95844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2FAA95B7C6
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 15:58:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8204695B7CE
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 15:59:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F160E1C23D39
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 13:58:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B15C61C23F16
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 13:59:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 221491CBE87;
-	Thu, 22 Aug 2024 13:56:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ipZpBq3t"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E9B81CC892;
+	Thu, 22 Aug 2024 13:56:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E06861CB136;
-	Thu, 22 Aug 2024 13:56:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9A9E1CC8B6;
+	Thu, 22 Aug 2024 13:56:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724334975; cv=none; b=WCu7E1hZG07Oi5vzLCdIQdIHUhdmT1kTsFtigJr6vBM6dl4y1xODliTmHWChxD5JWj2iQQ6MMXk50MPjgUC7UDhayOnmWJds/qCYrJYUf97riXjOWsiWk9jKUv6xujicQXjU7HpJgAATtix8WMRhSaWExbvjBScSOVFvHC3fgwY=
+	t=1724335019; cv=none; b=RCjK2a+tw1Cb42ODO4tEKQWlTPDmSP5QdZBIAhj0GPHv1Omzq/AdsYI62kG/CSlJOJtm9QA2yQ8SMHIUAWffyyqplXKzTnyjwcTSwHMjW0U35UW3/tlpL+HEfCMRrswp9SyawLx6JJyTyP/a8AKFQWFMVYRQSuXb9dwuMLOxUa0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724334975; c=relaxed/simple;
-	bh=83y5mAvMFwb/52T/dC15P2ISdACxMzr45hpeGSISWD8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=MkHjyEvfhtcZgA8JJiuJD9l+muc5E3Tw+Xc839zNAwmQW8rvc4EZKmWN3gOOFv0skgnd0G9K63XnDgeLGcv641lZwAp3hREVON+V4yy+DD09scseTqEf925xo69klCEh8xi3mvKup9EF2rv1wVwZmLw1gaixM1PtcirjR3TGdhU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ipZpBq3t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61420C32782;
-	Thu, 22 Aug 2024 13:56:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724334974;
-	bh=83y5mAvMFwb/52T/dC15P2ISdACxMzr45hpeGSISWD8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=ipZpBq3tm2GQv9RGU3hlSvWehe61/Q77a7ysRbHQN5spD04G3ghAj1boBChAgppr7
-	 JvfbzIje+j7tPsQyZ0SUGuPww2IjGFp2MSlhw5PMtYdhY5KrOmDfj3R0+YKBs+d1NC
-	 1EnuvPbEfU1dmlJFkAxRP+QP4vXpltAcUQ2HXEY7cWcq0zqBRaUcZxRKVog8wcNOVo
-	 saeo1bs4dQMuJ3pdI/Kg5VigfYuKoPDK0P5USfy1K+ELmrrG+4uLCblE2K0mBdezb9
-	 powIMiXoDHV+TBtG4LcgEMyhIzRFP9J+tquRJV8i5ytMdDfCTXJzED9oKmcWttDUNd
-	 rn4cu2TND8P+A==
-From: Lee Jones <lee@kernel.org>
-To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Dan Murphy <dmurphy@ti.com>, 
- linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>
-Cc: imx@lists.linux.dev
-In-Reply-To: <20240821222001.591111-1-Frank.Li@nxp.com>
-References: <20240821222001.591111-1-Frank.Li@nxp.com>
-Subject: Re: (subset) [PATCH v3 1/1] dt-bindings: leds: convert
- leds-lm3692x to yaml format
-Message-Id: <172433497215.1336217.1502532437864116817.b4-ty@kernel.org>
-Date: Thu, 22 Aug 2024 14:56:12 +0100
+	s=arc-20240116; t=1724335019; c=relaxed/simple;
+	bh=y2NXUkyC4MnG3RtLIalqyshDZ4CtN1eyDWcP1JHSfgA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=i1ZewSI9MVFB4F3PV+O3+nIH3UR/TemOrHDVpKLTUoslnK0Gb4j7IqJKNrutoSll3WiuHK3o7b2/V5blGmx3yq9TXFx60uq2d4ffiXjLV5BAWUagVFZEH9aD8cDMG8psDV+e54/a+DiT3jbXd0sUKMbUmeMVjSt+RthvEftXHfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e116ec43a4aso959426276.0;
+        Thu, 22 Aug 2024 06:56:57 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724335016; x=1724939816;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7ytMkPQTJJYRxn+j5gkRUGKU7llpfgAiAs0z5sajtyE=;
+        b=NRBQ2AGwQSvgv4wXqTIJjzF+vidOo45oMmm13KxRq1Yu6iPwlE/P+zEEbDCj8HZhg0
+         BjYy7/0bwxZwmiRwNq3g/0ChiN45OV2z5/P4QrdBFMPZqQEnTzSfAZJ447Wo+DJZY8pB
+         iHCjOCuM29kMlWLptglS+tS11bU10J8f/KBXBIgM+EY6Yb7d9WeKqJI1PhZmtMDjx/pq
+         IG5Gz8ZLcFY9RF8tNwAqpYpozK9l7xtMjUonX8U7OclGwCoEQfILE5IK5pY4Cf6PhcEg
+         xvj+z4LY+c54MZ3q1D6E8nFOJGdESIsTyTlUems4HFS5SElMTPLK69D/Gg5Ayz6+OegV
+         1UDw==
+X-Forwarded-Encrypted: i=1; AJvYcCVRPy7DX10n4eaJJnaLJs2iPKkz6bJ57NmzQpPh487r4w0OQke1K8lEMTI9x08/HEBll7oj+fvLfm6AEcjximzcfhU=@vger.kernel.org, AJvYcCWrTJFhoICOCfyFEPe0WqePXpdfgIKL6hf0xMLEt5O0SaGpVqL9/uVB/Ti2tT2UDNU90vhY1AWiavUX@vger.kernel.org
+X-Gm-Message-State: AOJu0YzzfwKAKIFABEfOKmteMZe6l6yIViH33uVK/5Z408MQu1+117eL
+	eMnMBKCG+oUlXaDk9JNmIps77KwCifG2avovKixIzlQ9z7s6O8BgwN9SFhcK
+X-Google-Smtp-Source: AGHT+IH6zxJ09PD8B/vahveB0E1zyFRLYiiBWpvYSfRCNpWuXO1MdT2oux5Axzncj4WxW758vc02ig==
+X-Received: by 2002:a05:6902:2405:b0:e0b:b85b:b8c3 with SMTP id 3f1490d57ef6-e16664a5285mr5745221276.39.1724335016077;
+        Thu, 22 Aug 2024 06:56:56 -0700 (PDT)
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com. [209.85.128.172])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e178e4638d0sm279295276.17.2024.08.22.06.56.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Aug 2024 06:56:55 -0700 (PDT)
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-6c0ac97232bso7460987b3.1;
+        Thu, 22 Aug 2024 06:56:55 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVH1iH47G4A1gs7ZtaxEhIcpkTk2+G8498Nj8uekbjllZVmMJaH4mCWwMUCmGZyTdHKH4TTjfbPNlm1KOai1cBzGYg=@vger.kernel.org, AJvYcCWnOBajQPCEii8/pT7RfiB+UyFz3OY0VEQ4YXTzZpRg+KFsSmi3QoeBNPBs6aNJBjKgxFTJrPWeIrEH@vger.kernel.org
+X-Received: by 2002:a05:690c:fca:b0:646:fe8e:f03b with SMTP id
+ 00721157ae682-6c0faba08f7mr67090137b3.2.1724335015679; Thu, 22 Aug 2024
+ 06:56:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.13.0
+References: <20240704152610.1345709-1-niklas.soderlund+renesas@ragnatech.se>
+ <CAMuHMdUZAVAkPVus2T_O3sWT7f1PciRYjxm6ecLy0QUyh50OEw@mail.gmail.com> <d1b36858-da21-4e2a-bc54-175524a7d3b4@denx.de>
+In-Reply-To: <d1b36858-da21-4e2a-bc54-175524a7d3b4@denx.de>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 22 Aug 2024 15:56:44 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXRhUr1My-w0+hoAhQKgOq9iwecjow4iZTh82ED5DEfdA@mail.gmail.com>
+Message-ID: <CAMuHMdXRhUr1My-w0+hoAhQKgOq9iwecjow4iZTh82ED5DEfdA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: white-hawk-cpu: Move avb0 reset gpio
+ to mdio node
+To: Marek Vasut <marex@denx.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, 
+	=?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 21 Aug 2024 18:20:00 -0400, Frank Li wrote:
-> Convert binding doc leds-lm3592x to yaml format.
-> Additional change:
-> - Add ref to common.yaml for child node.
-> - Add i2c node at example.
-> 
-> Fix below warning:
-> arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dtb: /soc@0/bus@30800000/i2c@30a40000/backlight@36:
-> 	failed to match any schema with compatible: ['ti,lm36922']
-> 
-> [...]
+Hi Marek,
 
-Applied, thanks!
+On Fri, Aug 2, 2024 at 7:16=E2=80=AFPM Marek Vasut <marex@denx.de> wrote:
+> On 8/2/24 10:33 AM, Geert Uytterhoeven wrote:
+> > What is your stance on this?
 
-[1/1] dt-bindings: leds: convert leds-lm3692x to yaml format
-      commit: e5ae4083d32d9ba196c7452814bed5e5aa0731ec
+> > On Thu, Jul 4, 2024 at 5:26=E2=80=AFPM Niklas S=C3=B6derlund
+> > <niklas.soderlund+renesas@ragnatech.se> wrote:
+> >> When creating a dedicated mdio node to describe the bus the gpio reset
+> >> property was erroneously left in the phy node. The reason for adding
+> >> mdio nodes on WhiteHawk was to ensure the PHYs where reset before they
+> >> were probed, keeping the property in the phy node prevented this.
+>
+> If the PHYs should be reset before they are probed, that is something
+> the PHY driver should take care of, right ? The PHY driver can bind to
+> the PHY via compatible string. Does the PHY driver not reset the PHYs ?
 
---
-Lee Jones [李琼斯]
+AFAIK, there is no requirement to reset the PHY before it is probed.
+However, the reset signal may be in asserted state when the PHY is
+probed (e.g. after unbind from the Ethernet driver, or during kexec).
+Identifying the PHY by reading the ID register requires deasserting
+the reset first.
 
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
