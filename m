@@ -1,166 +1,196 @@
-Return-Path: <devicetree+bounces-95892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D380295BB7C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 18:14:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2CB795BBA3
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 18:19:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DD8E285D29
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 16:14:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D951B2A6D2
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 16:14:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB0641CCEEB;
-	Thu, 22 Aug 2024 16:13:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23E3C1CCED8;
+	Thu, 22 Aug 2024 16:14:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="VxAe4pnu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZkvMUXwx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01olkn2056.outbound.protection.outlook.com [40.92.52.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AF0B2D03B;
-	Thu, 22 Aug 2024 16:13:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.52.56
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724343233; cv=fail; b=cLz+73kyulz+8pFB0Lwrk/SBer0NzO0zRSvSiiQV/SqlJS+vyqxvHoZ71pYU0vb4awhnvvZp+0PIAZc9k7hLT0DRvfNcEYgQPNfDtw9pBeKhoYjnh5jcF6hOwCV4xVogst+S6gSyXwtx93g39jCJ/crIJjw31ZqLUf/0Pw21Vfk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724343233; c=relaxed/simple;
-	bh=8nWGpfUQV0/SMeZyqmpITLuBEAX3yerDmqrFzW3xolI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=CS3/q8vVXifku+F/Z8RHLQEJNK/5CVWeYYzZch6f/9e7E/DuU5IDVzqE/i8HjQCWTqoqckQ7VnsdKM2kdeQ93pgvCJIKwrwmykuEgXCpk+4cvgkyIgNT6CRAl8weSj3bJG0m+O86wNvIB1CHO9x5eFRzjvAkxjQ0PKn6S/1EZZc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=VxAe4pnu; arc=fail smtp.client-ip=40.92.52.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VPfU4A/5E7LMYSeUm7Dg4baAaDC4o1q5GdAexFN+DK1hOhp1c80vW/9BDVaMWFx9DFIyHzNrxMGT2B5ONUduk/4laCk+CqU5k7xxYB0PracrW0uGqfR6tsmd7EKFD5GnINf4P0arHHE0+8u7ZJydvzK/MUua8YLRK9VVYyISkvutBotRUs2lY/chncy7jxtDOV5pgghW9uuhB5hSuab7EkigNat3dgxoQs16p+9vNHySXRMnGCHT8xJLn2aBpkrb+nPDmBXdKR9yEA+6NSJJ0+GO17CnrbiiHhe7Q0XRGkcM7xivuBbtULtZMvU6dbRg2ZKN2CRguvw4fk3Ic8ruUg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8nWGpfUQV0/SMeZyqmpITLuBEAX3yerDmqrFzW3xolI=;
- b=GRQiCvlnoGJg+f+b2qtoBeggjFZQEzqqIPQKysnfAfGjrhyNqpkmwvMVqefmBbXbxsDTNy9JXVkpAwo1w+oGKNjt0XE6oytPe6im6SPtQQt65xWCtXbV2+WERfGomvpmfrmMV4faEnOQNW7cqw+78YepPlRFQAiG8r45/CvzHu43MUKynhq42lNUf2rllw5nH/5mXAMmDOGFoNMuFmMcDpVKc0YB2MAgbbbhM4f+rSEEtaJSiWV3t14ftbKNSbWhUMAR16PqAxy+wPWa/K8Mhp1mN9Zm09aKB70v1ZazhaClOfKBsDhN0f9xxwuVV3u8uD+yBQIn7smf+hq9/hlFTA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8nWGpfUQV0/SMeZyqmpITLuBEAX3yerDmqrFzW3xolI=;
- b=VxAe4pnuHArL9vtbZayl/bTKIt8KnCE0vK7al3uQ7UVDfYOPh2G8TwGsUZ+4L1w4tw1GC14LPFU7FOQ5+eGBNJoQ1JxS3h5cerUT9v+MOsmZXnFJ0yjsKtSygwtUAqCf+ru3YKETpd+yZCT6VlLhF3xpRXB2aT7Gx53J6uCN6QI535iEfiopmGX139Cgc0fbiQboBg1zi6TZeaEOrjnFZsSPlJBO8FwFGmJFhf/Or1wAPXsVATmCK3/CTzq1J3JiJYfFf3trEpvrqGjxTcW7WxeBNCADz7XE/FNyCvvi4U6Lc65ddq6JkP/UFf2ho6+Xc0NrZgL6gNLj9Q8KqrzP7A==
-Received: from TYZPR01MB5556.apcprd01.prod.exchangelabs.com
- (2603:1096:400:363::9) by SEYPR01MB5363.apcprd01.prod.exchangelabs.com
- (2603:1096:101:d1::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7875.20; Thu, 22 Aug
- 2024 16:13:42 +0000
-Received: from TYZPR01MB5556.apcprd01.prod.exchangelabs.com
- ([fe80::3641:305b:41e2:6094]) by TYZPR01MB5556.apcprd01.prod.exchangelabs.com
- ([fe80::3641:305b:41e2:6094%3]) with mapi id 15.20.7875.019; Thu, 22 Aug 2024
- 16:13:42 +0000
-From: Ziyang Huang <hzyitc@outlook.com>
-To: krzk@kernel.org
-Cc: andersson@kernel.org,
-	bartosz.golaszewski@linaro.org,
-	catalin.marinas@arm.com,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	konradybcio@kernel.org,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	mturquette@baylibre.com,
-	quic_kkumarcs@quicinc.com,
-	quic_leiwei@quicinc.com,
-	quic_linchen@quicinc.com,
-	quic_luoj@quicinc.com,
-	quic_pavir@quicinc.com,
-	quic_suruchia@quicinc.com,
-	robh@kernel.org,
-	sboyd@kernel.org,
-	srinivas.kandagatla@linaro.org,
-	will@kernel.org,
-	Ziyang Huang <hzyitc@outlook.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: clock: qcom: Add CMN PLL clock controller for IPQ SoC
-Date: Fri, 23 Aug 2024 00:12:56 +0800
-Message-ID:
- <TYZPR01MB5556648ABB617F62EF865A61C98F2@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <be2eae05-6deb-49fb-94ce-cb5e3a5bd1ba@kernel.org>
-References: <be2eae05-6deb-49fb-94ce-cb5e3a5bd1ba@kernel.org>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [qjrQirH2e0MraYDqBhVXehUdI0vDS0gj]
-X-ClientProxiedBy: SG2PR02CA0088.apcprd02.prod.outlook.com
- (2603:1096:4:90::28) To TYZPR01MB5556.apcprd01.prod.exchangelabs.com
- (2603:1096:400:363::9)
-X-Microsoft-Original-Message-ID: <20240822161256.5599-1-hzyitc@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA8D21CCEC2;
+	Thu, 22 Aug 2024 16:14:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724343252; cv=none; b=u/MS2qJ1u6HbcLG1zGnOvnXDdBRzAnoUYTD3gy1dfn9zC09TBlIqeU8gG4uOMHmjpVlxTtSloy/hNxlCoklOd7FCSJwWU5Qif9U+3WE3hkFEiIobL8HvW8Y+b47cE1nPOBSOhsY0O7aTpyRH2ql8XREI449Fb0/V2G4jPhHsuhU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724343252; c=relaxed/simple;
+	bh=vJBuL2L7n5w/avABxl53Lo0I7jmSTtK6MiCSsu4B+m4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HDxksFgQGNJn3qY/VduxyR6AkSqlYvBde4u0jQPa+fhDmGgQXelMyN9NSZKmKB8/jswyoCwKYqvGmMjvVD1ZNZdJrBum76APaNKCMq4uewZXGiDTXd0koYsAJP7S7IUYcwQV28fkWvrapSEuPTE6+CjUF71StbTL6jT9GDZ+R54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZkvMUXwx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79FB6C32782;
+	Thu, 22 Aug 2024 16:14:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724343251;
+	bh=vJBuL2L7n5w/avABxl53Lo0I7jmSTtK6MiCSsu4B+m4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZkvMUXwxEQA91o7CEOpB5EOZL3pdspEjmL+OjzFSAOkWgB+7ZvB3AZiAYf5/rEuoP
+	 6BXeg0FiDixhm+UyZ2+XZDWHhDCPkJdYS0OTjazTR3ULBnYLz0LcU6GHoXhxX0/0bj
+	 ORonL+TpBzy5qrMuKRJBweo6t59gRsW7/nL0X8mxsKkfWunnY1hMeNqilSTE2ftKkr
+	 n4+hUkE+zPkQUsqqVZ4YBpZkjUbYXOgd4RNhmTp+eL30fubz49FvZdmb6z8GY/aSoo
+	 KChGm/rwEg1SnJirBn97BmkNnktVF3t0VFxGM61uL7MUq9G1mwUpHjpzuzmEkmJdrc
+	 ocZheuTc+JwNQ==
+Date: Thu, 22 Aug 2024 17:14:06 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Wei Fang <wei.fang@nxp.com>
+Cc: "davem@davemloft.net" <davem@davemloft.net>,
+	"edumazet@google.com" <edumazet@google.com>,
+	"kuba@kernel.org" <kuba@kernel.org>,
+	"pabeni@redhat.com" <pabeni@redhat.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"andrew@lunn.ch" <andrew@lunn.ch>,
+	"f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+	"hkallweit1@gmail.com" <hkallweit1@gmail.com>,
+	"linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+	"Andrei Botila (OSS)" <andrei.botila@oss.nxp.com>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 net-next 2/3] net: phy: tja11xx: replace
+ "nxp,rmii-refclk-in" with "nxp,phy-output-refclk"
+Message-ID: <20240822-passerby-cupcake-a8d43f391820@spud>
+References: <20240822013721.203161-1-wei.fang@nxp.com>
+ <20240822013721.203161-3-wei.fang@nxp.com>
+ <20240822-headed-sworn-877211c3931f@spud>
+ <PAXPR04MB85107F19C846ABDB74849086888F2@PAXPR04MB8510.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR01MB5556:EE_|SEYPR01MB5363:EE_
-X-MS-Office365-Filtering-Correlation-Id: 757ec19f-0924-446a-ba02-08dcc2c56324
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|19110799003|461199028|15080799003|8060799006|5072599009|3412199025|440099028|1710799026;
-X-Microsoft-Antispam-Message-Info:
-	1TOtJKT0HXC+JmWDnuXgOm2pTye8EXawE0SUG5caIdBkOcQ23+tm1vLLN21+N5WFX4FULRPmmk4Li03OBB1QHjCt2DRDe/sSBsT0ch7XW3iqKOblFzqCS0s0klaJqvtKy5E+tB5yaYg9nx0Q0ir/aL1xPxNleVLJAK/Jsw3vLuOfUpqf6FYsFxyKgYdiOWtpFN2FR5eT7s6RHPemk0vofn4ywdXN6qY9IJNkctaJEjYtSC7uqt7MDsclBIF68SeNGayIOrNva6pIuZpB4mFFtO/KDi8zLLADUU8vWXwIICBtnp4BlEVZvVLeQ3TiNUX7dxHQZLqP3UeEiJgS9FBTd13OTI824dNFm8gTDmIus1hTlyZAvRlBWKzoDRdtM/MnKXiHdRuo/y2/nXsFcKR3yzWppCF3YfEsx3Kvn+k/MG7yzk1xOZzxEN/qux58Fa3Vpu8bMR5zWRyOYze/9w1xUKTY3dj+Z9wv37tlAD6kq7mvRwx65VBT2EoX2V3ougPUYkVYzJu/f7eDHIQFMFw9L8Nuw+poYdXqg6MO7F+3CCoOQMDs+IEDGdv099F3ZJNCOq/UaONmz3kqyCTFB9yy4tr0HqCqLtjlCbqfV39+VEELuOrAdO+Cp4JTf6S+w5PdV6LzNleVZMUUgLsmEjsLgbHjpDucyxOnYR8WSQA1dzliZAzhnPwcBe5y3mnrYiZfH5iEp/XM8T2itiY77b+5/hrTUQqDv3t7/7qy1Sir6QCOov9A67/vKN+M0ArlnLJonSkooLasWMVuLLZ2KYSTANWO20uMxjPdOnHFhzWXpew=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?7WoYvHks4OP4Dcqw0fLLEMsCHFBEMR+48K5s+4TnjSwwJVcPBBu3gaUTmkED?=
- =?us-ascii?Q?o59D9b/XBpbvifR6/eLaTrpzQfXjfYGVJuHpVbenNYiMX5HT2fCnkzz4QGwT?=
- =?us-ascii?Q?/SwipoKUo1cZjiufHR0aAL2vXY7lci2/cTYjbeomWOfEwdNaYPLqxQ1Df2qn?=
- =?us-ascii?Q?CNuRIBnzQPvSbmK2h9w31vtkX6WXCme8ZLs1AyZiLB34KKzv9RmcjJgV5mAG?=
- =?us-ascii?Q?GmMQZaFI7QoAo5OnndAnk68qoWAPzrg7Bt7p6EGHOKdaFPbZezJbFlPI1dFV?=
- =?us-ascii?Q?EvHx3/LMc6Kekio2NK+59zl6ZRd8tUNd9eEF9wpdU4XwF4LlOP6dJzGStQmJ?=
- =?us-ascii?Q?rQSOWTZitwUScGjONknSHjk7WPAjVMIckVtdAtbHdoNCcjEzx1pMQBlmh+3c?=
- =?us-ascii?Q?7jFQ0pH6vz+Xp5DUHF9lVRE2YixbEa16GA8E+B5RSjRUWROHFP0DSuqfbEEV?=
- =?us-ascii?Q?6e+FxInusL70+t2Fq19PqbuCQdvyet2wGY7ENLTDsAbdVDRkJfSi324Up7c9?=
- =?us-ascii?Q?iMUaC2CcTVQcYz21Fdew/YPGdix+2KOgtpbSpTX0Fzbx9eZxKY9vIxcDSfgv?=
- =?us-ascii?Q?ENPByiwDrucO92yQnCIkjXDzSgE2F7TgMU4UdTeBEO0vYTMuc1nIBOnCDZSy?=
- =?us-ascii?Q?0oW2cQaFgsIcg/fgGKtlo0veoZeGIuNn5zvpd67TL6PmbaXgA2LYxj7WS4cQ?=
- =?us-ascii?Q?nXZS759LxZd5717NwCbFt2UCOh7X4ySOcn+ATT52uJVG4ln+d6JvpGW9fNy7?=
- =?us-ascii?Q?QgoMQUs/jovQDMztlmaMCbXNrYVxeZeSIYGaqooUqohJdoUYo6Oq0oYpeB8h?=
- =?us-ascii?Q?jVOJ9WjnczxyEgLbSkr5Vd0bOpPEBXH5cU60Kmu4J9icKm+MHPgJIEVtIAc+?=
- =?us-ascii?Q?on1f7kKUrbBALfLw2Ud7wU8lDyU2OQpy3WZ7IyUfmT4/gDg35h6hz+QXvb1o?=
- =?us-ascii?Q?SEgQXmZEAi2oPZqjqw2gJE8iAYV62qXg3q6LfXkPr2qo8JRGlf1l4tDRqDLp?=
- =?us-ascii?Q?B7+6y4paHg0bKUcnEA7KVPQF/B88+n6rk3Fs7/TEj5NirT7muh/GM77iZni7?=
- =?us-ascii?Q?wC8zM+Po0eSLeUF7/Cpjaq47xbwuKrLbdbsTdr6RHoSl0zBqh6op61Rjc3G0?=
- =?us-ascii?Q?m/eZsrxlolpYwcVJPwcvE843STjVx/8cn9S8yxblfPtFh6pMF1hcFFOBoB9k?=
- =?us-ascii?Q?3UKooNBdPOBJ5offzYZnio/EnOLnQ5ZNTBet0JLOc7GHqkaXKfj+vaLEFqU?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 757ec19f-0924-446a-ba02-08dcc2c56324
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR01MB5556.apcprd01.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2024 16:13:41.0532
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR01MB5363
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="XXhCYX8L+V1oR2ZQ"
+Content-Disposition: inline
+In-Reply-To: <PAXPR04MB85107F19C846ABDB74849086888F2@PAXPR04MB8510.eurprd04.prod.outlook.com>
 
-> Yes, I double checked again with our hardware team and the
-> documentation. CMN is just a short form of "common" with no additional
-> information in the guide.
 
-Hi luo jie,
+--XXhCYX8L+V1oR2ZQ
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I'm a free developer who was trying to add the ethernet support for
-IPQ5018[1]. And I'm also trying to write the same driver in the V2 patch.
+On Thu, Aug 22, 2024 at 09:37:11AM +0000, Wei Fang wrote:
+> > -----Original Message-----
+> > From: Conor Dooley <conor@kernel.org>
+> > Sent: 2024=E5=B9=B48=E6=9C=8822=E6=97=A5 16:47
+> > To: Wei Fang <wei.fang@nxp.com>
+> > Cc: davem@davemloft.net; edumazet@google.com; kuba@kernel.org;
+> > pabeni@redhat.com; robh@kernel.org; krzk+dt@kernel.org;
+> > conor+dt@kernel.org; andrew@lunn.ch; f.fainelli@gmail.com;
+> > hkallweit1@gmail.com; linux@armlinux.org.uk; Andrei Botila (OSS)
+> > <andrei.botila@oss.nxp.com>; netdev@vger.kernel.org;
+> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
+> > Subject: Re: [PATCH v2 net-next 2/3] net: phy: tja11xx: replace
+> > "nxp,rmii-refclk-in" with "nxp,phy-output-refclk"
+> >=20
+> > On Thu, Aug 22, 2024 at 09:37:20AM +0800, Wei Fang wrote:
+> > > As the new property "nxp,phy-output-refclk" is added to instead of the
+> > > "nxp,rmii-refclk-in" property, so replace the "nxp,rmii-refclk-in"
+> > > property used in the driver with the "nxp,reverse-mode" property and
+> > > make slight modifications.
+> >=20
+> > Can you explain what makes this backwards compatible please?
+> >=20
+> It does not backward compatible, the related PHY nodes in DTS also
+> need to be updated. I have not seen "nxp,rmii-refclk-in" used in the
+> upstream.
 
-When I was trying to write this driver, I was also confused about the
-'CMN' whcih I can't find any description.
+Since you have switched the polarity, devicestrees that contain
+"nxp,rmii-refclk-in" would actually not need an update to preserve
+functionality. However...
 
-But finally in WiFI documents, I found the same word explained as
-'Component'. There may be different. But I think this is a better
-explanation than 'common'. So I named this driver to
-QCOM_ETH_CMN (Qualcomm Ethernet Component Driver).
+> For nodes that do not use " nxp,rmii-refclk-in", they need
+> to be updated, but unfortunately I cannot confirm which DTS use
+> TJA11XX PHY, and there may be no relevant nodes in upstream DTS.
 
-Hope this can help something.
+=2E..as you say here, all tja11xx phy nodes that do not have the property
+would need to be updated to retain functionality. Given you can't even
+determine which devicetrees would need to be updated, I'm going to have
+to NAK this change as an unnecessary ABI break.
 
-[1] https://lore.kernel.org/all/TYZPR01MB55563BD6A2B78402E4BB44D4C9762@TYZPR01MB5556.apcprd01.prod.exchangelabs.com/
+Thanks,
+Conor.
+
+>=20
+> > >
+> > > Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> > > ---
+> > > V2 changes:
+> > > 1. Changed the property name.
+> > > ---
+> > >  drivers/net/phy/nxp-tja11xx.c | 13 ++++++-------
+> > >  1 file changed, 6 insertions(+), 7 deletions(-)
+> > >
+> > > diff --git a/drivers/net/phy/nxp-tja11xx.c
+> > > b/drivers/net/phy/nxp-tja11xx.c index 2c263ae44b4f..7aa0599c38c3
+> > > 100644
+> > > --- a/drivers/net/phy/nxp-tja11xx.c
+> > > +++ b/drivers/net/phy/nxp-tja11xx.c
+> > > @@ -78,8 +78,7 @@
+> > >  #define MII_COMMCFG			27
+> > >  #define MII_COMMCFG_AUTO_OP		BIT(15)
+> > >
+> > > -/* Configure REF_CLK as input in RMII mode */
+> > > -#define TJA110X_RMII_MODE_REFCLK_IN       BIT(0)
+> > > +#define TJA11XX_REVERSE_MODE		BIT(0)
+> > >
+> > >  struct tja11xx_priv {
+> > >  	char		*hwmon_name;
+> > > @@ -274,10 +273,10 @@ static int tja11xx_get_interface_mode(struct
+> > phy_device *phydev)
+> > >  		mii_mode =3D MII_CFG1_REVMII_MODE;
+> > >  		break;
+> > >  	case PHY_INTERFACE_MODE_RMII:
+> > > -		if (priv->flags & TJA110X_RMII_MODE_REFCLK_IN)
+> > > -			mii_mode =3D MII_CFG1_RMII_MODE_REFCLK_IN;
+> > > -		else
+> > > +		if (priv->flags & TJA11XX_REVERSE_MODE)
+> > >  			mii_mode =3D MII_CFG1_RMII_MODE_REFCLK_OUT;
+> > > +		else
+> > > +			mii_mode =3D MII_CFG1_RMII_MODE_REFCLK_IN;
+> > >  		break;
+> > >  	default:
+> > >  		return -EINVAL;
+> > > @@ -517,8 +516,8 @@ static int tja11xx_parse_dt(struct phy_device
+> > *phydev)
+> > >  	if (!IS_ENABLED(CONFIG_OF_MDIO))
+> > >  		return 0;
+> > >
+> > > -	if (of_property_read_bool(node, "nxp,rmii-refclk-in"))
+> > > -		priv->flags |=3D TJA110X_RMII_MODE_REFCLK_IN;
+> > > +	if (of_property_read_bool(node, "nxp,phy-output-refclk"))
+> > > +		priv->flags |=3D TJA11XX_REVERSE_MODE;
+> > >
+> > >  	return 0;
+> > >  }
+> > > --
+> > > 2.34.1
+> > >
+
+--XXhCYX8L+V1oR2ZQ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZsdjzgAKCRB4tDGHoIJi
+0tuuAPsFBFv/feOfZpvEiCFO0QwcR+wcGtRCxFYB+5Rlo9Bh0wEA6RKSo6nTh+Zg
+Ph2MWQK6BPCaE6PnC35trZ2VnYS97Q0=
+=Ze8R
+-----END PGP SIGNATURE-----
+
+--XXhCYX8L+V1oR2ZQ--
 
