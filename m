@@ -1,154 +1,344 @@
-Return-Path: <devicetree+bounces-95859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43DBC95B921
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 16:56:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F159C95B983
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 17:12:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0216D2866EB
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 14:56:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7FF2F1F23458
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 15:12:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85C5F1CC172;
-	Thu, 22 Aug 2024 14:56:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 093D01CCB20;
+	Thu, 22 Aug 2024 15:12:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vaq7bSKm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zGdf6yYy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59AC21CB329;
-	Thu, 22 Aug 2024 14:56:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE0941CC8B0
+	for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 15:12:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724338601; cv=none; b=ZfuTiujoeJ+jmjAlQlaRqP2TfIXThLmKCLq13AIvkIe7LeFYwPkQgL+6igtSG38BZZF72yeGtyTAOmqr3g3DKVoOph7flES78OOBFuNlAm1q7aNaukvaWi0/D/WPo0WaNW+SugFug/ofO9gi048QDhnBQkZ8Q4QBRRyYTKiADKU=
+	t=1724339533; cv=none; b=OzSI6TsQ+U2DwsqVeuClNkR9LLcExoABcveHkVfwwhAS0xMbbMv164fhMUKLwerrRZqklmoFSqYi0jx5e5fY/KK4TB+m847knzEV7HAxq4u9p9TypivDjk2oYkqw8zyKqrwfMaFputnK60QA9Inx2IpKWoaEkSrJ3SAf6jSnqHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724338601; c=relaxed/simple;
-	bh=87KazmTizy+D2FCRp2hvoGuNOtRKG5QCAnV7hmXvxyc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gLCKve21Mcc1FSoPHTxWrKYadMQuPvKh+dS2AvrxbLiWxFh/waQX1GAjFFLUCOYy5PCY/Ji/TtvEMnj07yEhhlseCRYuPQYtHcE4qcAnjmZBKOnZswN1+5rN0TRweO/MJkucQReiHnRcyK6mxpQ+QljHfiWNpVb4R43KJDm8iUM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vaq7bSKm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE213C32782;
-	Thu, 22 Aug 2024 14:56:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724338600;
-	bh=87KazmTizy+D2FCRp2hvoGuNOtRKG5QCAnV7hmXvxyc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Vaq7bSKmJavpaAg8Uq1GyXe5lufWVlKPiaiKefuOBgbCYjf0K2WBUEAjVF6iRo4fa
-	 PS+vdYEU8kfuBmiFna7kvL+/KWDkL9yBXR87nc5l1b12PUrRziMZPtR5lGEdV96Ue5
-	 PRVTjXxvdaPW2yoKftm7/Qpzwd7QIUNaK/jNiuLeWIn1nGsvsMizOrtG2Cawrp49/6
-	 nF1SGI1fD6JpqobgV6ZMB/u9vnlM0SHkSd/9PqCZWkEzg1frDTaec9/XgOAMwK50kC
-	 v/w4GUfoidW2yM0fUrb5zkAk1ltQqMKeyEpwEG6moAqBMouOVklGu776hEWeFv744I
-	 Hu4hUuUTWN4dA==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1sh9Ey-0000000015Y-3cRZ;
-	Thu, 22 Aug 2024 16:56:45 +0200
-Date: Thu, 22 Aug 2024 16:56:44 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH 1/3] arm64: dts: qcom: sc8280xp-crd: enable wifi
-Message-ID: <ZsdRrHK7kCYs7MJF@hovoldconsulting.com>
-References: <20240813190639.154983-1-brgl@bgdev.pl>
- <20240813190639.154983-2-brgl@bgdev.pl>
+	s=arc-20240116; t=1724339533; c=relaxed/simple;
+	bh=gA6H6vFpf7GM6RrL4t5PzyVE3XI+sqGxTDadnkAmLK0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IbVcQxqt6uBeTHiC8MZRzOuSmqeJelMj3AVoiwpktsBWvPZzEfXsQS68a90P4hwHtF9MZlcWO8fD3krRk5SPIEkAln9As3/9SQDVQs4xrCM6O80EvWlWqOO0dz3KkkWboe/4o45oRvbHhLcDIr3alNm8zKyJW19qgWnYke/0w0U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zGdf6yYy; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2f3eabcd293so10881201fa.2
+        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 08:12:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1724339530; x=1724944330; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5TWv+mzh3DTgixeu4UaNi8undy9enZO8UogSQ6mlVfs=;
+        b=zGdf6yYyhWuLYz8bb9LlU5Vv3EFwSC+WiSvJG/XTN1IxtjSRD570rzFgtnV4W4mqou
+         w5YPL+VWQaJCMmiq9ink5NBXJ0jek/EEdbFx/lUxgXYpxdLLBHzXmxjv+O9TGPrRDko4
+         3pgQaDsL7X/8Nll/akQePjaRxLRnrYHfHKzyOd6TAdhhpCVY4gkslBRsxbHRCCrXGoHQ
+         NyZ9+IxnwQWGHVyJjoE3tCrYcHuVSbrcBYsLfnZM0nuBMlzliTj5bTZx2V9YdBOQ1HCD
+         N1SEDGSriG4wJW8XG+O4AFVZUwk74RzqMJ3F8272DYyAl3yfrEhpu/Cy3lsAxW/fc1rr
+         xj1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724339530; x=1724944330;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5TWv+mzh3DTgixeu4UaNi8undy9enZO8UogSQ6mlVfs=;
+        b=XohQsjHyIKCHpCAds5MsRy53D3LondOo9DzoFiEBMP/YiG4zEY9mOotmsizZFmu4Kp
+         RIFyoiKLyT6OAKejlhDoDdRXp1HLXdN4KGVmZZmjgusWRr2I2PbVfqMyfjDHfgt+7gdL
+         SGB+xb7YVeo6oaWJRbdPL1at6mA+kOuDLOgkfOLU9oMTR7loo+z0FIj868SfY6VKsbU3
+         ZsE+b1yBr9tBP8flxIM6bvYbDWg2YG6cC7Mm4bJtpMyLbJ8ShFEH6aHap7ov1Egr6nIj
+         3dYM0qzObi5a7eIIlNQo11oLzSIAZR5Ti3yPsbW+HDvI85YwBtPNxon0GVV74pyzzCLG
+         eXuA==
+X-Forwarded-Encrypted: i=1; AJvYcCV5Q4rIorgpmUk1a31g3PKUBNgvXx8UmTNmbtHFrPOnKKRgzSFBXARPC1pwVY+oAwHWccKDisykNwjJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzEXrjqXZ04XqVnJJadsaINMxjLhOWbEFfxAwEza/GLgBjLua85
+	+nKo7tXdE4v07ctMlFSZ9WDzXLNa9cMAN+xdPHQep+tjw/5fCoyNOpOt6yPZPgnEPfWxBjN2lwo
+	0jjZ+hwb+F2+dHTXP82i5YKZsEOsHKJtMHTswVA==
+X-Google-Smtp-Source: AGHT+IFiLmEsOvYvdr3VyiyqB861aTavzd4tiwin4hjTDIgK3KZVq4VStdlXBdk3Plh+1gYEh1qgoVqRfz/lcHt5430=
+X-Received: by 2002:a05:651c:1547:b0:2ef:2b38:879c with SMTP id
+ 38308e7fff4ca-2f405c7c266mr14899621fa.3.1724339529793; Thu, 22 Aug 2024
+ 08:12:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240813190639.154983-2-brgl@bgdev.pl>
+References: <20240515112308.10171-1-yong.wu@mediatek.com> <20240515112308.10171-8-yong.wu@mediatek.com>
+In-Reply-To: <20240515112308.10171-8-yong.wu@mediatek.com>
+From: Jens Wiklander <jens.wiklander@linaro.org>
+Date: Thu, 22 Aug 2024 17:11:57 +0200
+Message-ID: <CAHUa44GHtEGsXagwLLAix7HxpjZt45rsZkWCb4i0LUmr54Xjqg@mail.gmail.com>
+Subject: Re: [PATCH v5 7/9] dma-buf: heaps: restricted_heap: Add MediaTek
+ restricted heap and heap_init
+To: Yong Wu <yong.wu@mediatek.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, christian.koenig@amd.com, 
+	Sumit Semwal <sumit.semwal@linaro.org>, Andrew Morton <akpm@linux-foundation.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
+	John Stultz <jstultz@google.com>, tjmercier@google.com, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	Robin Murphy <robin.murphy@arm.com>, Vijayanand Jitta <quic_vjitta@quicinc.com>, 
+	Joakim Bech <joakim.bech@linaro.org>, Jeffrey Kardatzke <jkardatzke@google.com>, 
+	Pavel Machek <pavel@ucw.cz>, Simon Ser <contact@emersion.fr>, Pekka Paalanen <ppaalanen@gmail.com>, 
+	willy@infradead.org, Logan Gunthorpe <logang@deltatee.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	jianjiao.zeng@mediatek.com, kuohong.wang@mediatek.com, 
+	youlin.pei@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 13, 2024 at 09:06:36PM +0200, Bartosz Golaszewski wrote:
-> From: Konrad Dybcio <konradybcio@kernel.org>
-> 
-> Add nodes for the WCN6855 PMU, the WLAN module and relevant regulators
-> and pin functions to enable wifi support on sc8280xp-crd.
-
-What are you guys smoking? The Wi-Fi has been enabled on the CRD since
-6.2 and commit d907fe5acbf1 ("arm64: dts: qcom: sc8280xp-crd: enable
-WiFi controller").
-
-> Signed-off-by: Konrad Dybcio <konradybcio@kernel.org>
-> [Bartosz:
->   - write the commit message,
->   - rebase Konrad's commit,
->   - fix one of the supplies' name]
-> Co-developed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On Wed, May 15, 2024 at 1:25=E2=80=AFPM Yong Wu <yong.wu@mediatek.com> wrot=
+e:
+>
+> Add a MediaTek restricted heap which uses TEE service call to restrict
+> buffer. Currently this restricted heap is NULL, Prepare for the later
+> patch. Mainly there are two changes:
+> a) Add a heap_init ops since TEE probe late than restricted heap, thus
+>    initialize the heap when we require the buffer the first time.
+> b) Add a priv_data for each heap, like the special data used by MTK
+>    (such as "TEE session") can be placed in priv_data.
+>
+> Currently our heap depends on CMA which could only be bool, thus
+> depend on "TEE=3Dy".
+>
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
 > ---
->  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts | 112 ++++++++++++++++++++++
->  1 file changed, 112 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> index 6020582b0a59..57efeefbc89e 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> @@ -177,6 +177,17 @@ vreg_misc_3p3: regulator-misc-3p3 {
->  		regulator-always-on;
->  	};
->  
-> +	vreg_s10b: regulator-s10b {
-> +		compatible = "regulator-fixed";
-
-I don't think this is a fixed regulator.
-
+>  drivers/dma-buf/heaps/Kconfig               |   7 ++
+>  drivers/dma-buf/heaps/Makefile              |   1 +
+>  drivers/dma-buf/heaps/restricted_heap.c     |  11 ++
+>  drivers/dma-buf/heaps/restricted_heap.h     |   2 +
+>  drivers/dma-buf/heaps/restricted_heap_mtk.c | 115 ++++++++++++++++++++
+>  5 files changed, 136 insertions(+)
+>  create mode 100644 drivers/dma-buf/heaps/restricted_heap_mtk.c
+>
+> diff --git a/drivers/dma-buf/heaps/Kconfig b/drivers/dma-buf/heaps/Kconfi=
+g
+> index e54506f480ea..84f748fb2856 100644
+> --- a/drivers/dma-buf/heaps/Kconfig
+> +++ b/drivers/dma-buf/heaps/Kconfig
+> @@ -21,3 +21,10 @@ config DMABUF_HEAPS_RESTRICTED
+>           heap is to manage buffers that are inaccessible to the kernel a=
+nd user space.
+>           There may be several ways to restrict it, for example it may be=
+ encrypted or
+>           protected by a TEE or hypervisor. If in doubt, say N.
 > +
-> +		regulator-name = "VREG_S10B";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
+> +config DMABUF_HEAPS_RESTRICTED_MTK
+> +       bool "MediaTek DMA-BUF Restricted Heap"
+> +       depends on DMABUF_HEAPS_RESTRICTED && TEE=3Dy
+> +       help
+> +         Enable restricted dma-buf heaps for MediaTek platform. This hea=
+p is backed by
+> +         TEE client interfaces. If in doubt, say N.
+> diff --git a/drivers/dma-buf/heaps/Makefile b/drivers/dma-buf/heaps/Makef=
+ile
+> index a2437c1817e2..0028aa9d875f 100644
+> --- a/drivers/dma-buf/heaps/Makefile
+> +++ b/drivers/dma-buf/heaps/Makefile
+> @@ -1,4 +1,5 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  obj-$(CONFIG_DMABUF_HEAPS_CMA)         +=3D cma_heap.o
+>  obj-$(CONFIG_DMABUF_HEAPS_RESTRICTED)  +=3D restricted_heap.o
+> +obj-$(CONFIG_DMABUF_HEAPS_RESTRICTED_MTK)      +=3D restricted_heap_mtk.=
+o
+>  obj-$(CONFIG_DMABUF_HEAPS_SYSTEM)      +=3D system_heap.o
+> diff --git a/drivers/dma-buf/heaps/restricted_heap.c b/drivers/dma-buf/he=
+aps/restricted_heap.c
+> index 4e45d46a6467..8bc8a5e3f969 100644
+> --- a/drivers/dma-buf/heaps/restricted_heap.c
+> +++ b/drivers/dma-buf/heaps/restricted_heap.c
+> @@ -151,11 +151,22 @@ restricted_heap_allocate(struct dma_heap *heap, uns=
+igned long size,
+>                          unsigned long fd_flags, unsigned long heap_flags=
+)
+>  {
+>         struct restricted_heap *rheap =3D dma_heap_get_drvdata(heap);
+> +       const struct restricted_heap_ops *ops =3D rheap->ops;
+>         struct restricted_buffer *restricted_buf;
+>         DEFINE_DMA_BUF_EXPORT_INFO(exp_info);
+>         struct dma_buf *dmabuf;
+>         int ret;
+>
+> +       /*
+> +        * In some implements, TEE is required to protect buffer. However=
+ TEE probe
+> +        * may be late, Thus heap_init is performed when the first buffer=
+ is requested.
+> +        */
+> +       if (ops->heap_init) {
+> +               ret =3D ops->heap_init(rheap);
+> +               if (ret)
+> +                       return ERR_PTR(ret);
+> +       }
 > +
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
+>         restricted_buf =3D kzalloc(sizeof(*restricted_buf), GFP_KERNEL);
+>         if (!restricted_buf)
+>                 return ERR_PTR(-ENOMEM);
+> diff --git a/drivers/dma-buf/heaps/restricted_heap.h b/drivers/dma-buf/he=
+aps/restricted_heap.h
+> index 6d9599a4a34e..2a33a1c7a48b 100644
+> --- a/drivers/dma-buf/heaps/restricted_heap.h
+> +++ b/drivers/dma-buf/heaps/restricted_heap.h
+> @@ -19,6 +19,8 @@ struct restricted_heap {
+>         const char              *name;
+>
+>         const struct restricted_heap_ops *ops;
 > +
->  	vreg_wlan: regulator-wlan {
->  		compatible = "regulator-fixed";
->  
- 
-> +&pcie4_port0 {
-> +	wifi@0 {
-> +		compatible = "pci17cb,1103";
-> +		reg = <0x10000 0x0 0x0 0x0 0x0>;
+> +       void                    *priv_data;
+>  };
+>
+>  struct restricted_heap_ops {
+> diff --git a/drivers/dma-buf/heaps/restricted_heap_mtk.c b/drivers/dma-bu=
+f/heaps/restricted_heap_mtk.c
+> new file mode 100644
+> index 000000000000..52e805eb9858
+> --- /dev/null
+> +++ b/drivers/dma-buf/heaps/restricted_heap_mtk.c
+> @@ -0,0 +1,115 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * DMABUF restricted heap exporter for MediaTek
+> + *
+> + * Copyright (C) 2024 MediaTek Inc.
+> + */
+> +#define pr_fmt(fmt)     "rheap_mtk: " fmt
 > +
-> +		vddrfacmn-supply = <&vreg_pmu_rfa_cmn_0p8>;
-> +		vddaon-supply = <&vreg_pmu_aon_0p8>;
-> +		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-> +		vddwlmx-supply = <&vreg_pmu_wlmx_0p8>;
-> +		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
-> +		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
-> +		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-> +		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-> +		vddrfa1p8-supply = <&vreg_pmu_rfa_1p7>;
+> +#include <linux/dma-buf.h>
+> +#include <linux/err.h>
+> +#include <linux/module.h>
+> +#include <linux/slab.h>
+> +#include <linux/tee_drv.h>
+> +#include <linux/uuid.h>
 > +
-> +		qcom,ath11k-calibration-variant = "LE_X13S";
+> +#include "restricted_heap.h"
+> +
+> +#define TZ_TA_MEM_UUID_MTK             "4477588a-8476-11e2-ad15-e41f1390=
+d676"
+> +
+> +#define TEE_PARAM_NUM                  4
+> +
+> +enum mtk_secure_mem_type {
+> +       /*
+> +        * MediaTek static chunk memory carved out for TrustZone. The mem=
+ory
+> +        * management is inside the TEE.
+> +        */
+> +       MTK_SECURE_MEMORY_TYPE_CM_TZ    =3D 1,
+> +};
+> +
+> +struct mtk_restricted_heap_data {
+> +       struct tee_context      *tee_ctx;
+> +       u32                     tee_session;
+> +
+> +       const enum mtk_secure_mem_type mem_type;
+> +
+> +};
+> +
+> +static int mtk_tee_ctx_match(struct tee_ioctl_version_data *ver, const v=
+oid *data)
+> +{
+> +       return ver->impl_id =3D=3D TEE_IMPL_ID_OPTEE;
+> +}
+> +
+> +static int mtk_tee_session_init(struct mtk_restricted_heap_data *data)
+> +{
+> +       struct tee_param t_param[TEE_PARAM_NUM] =3D {0};
+> +       struct tee_ioctl_open_session_arg arg =3D {0};
+> +       uuid_t ta_mem_uuid;
+> +       int ret;
+> +
+> +       data->tee_ctx =3D tee_client_open_context(NULL, mtk_tee_ctx_match=
+, NULL, NULL);
+> +       if (IS_ERR(data->tee_ctx)) {
+> +               pr_err_once("%s: open context failed, ret=3D%ld\n", __fun=
+c__,
+> +                           PTR_ERR(data->tee_ctx));
+> +               return -ENODEV;
+> +       }
+> +
+> +       arg.num_params =3D TEE_PARAM_NUM;
+> +       arg.clnt_login =3D TEE_IOCTL_LOGIN_PUBLIC;
+> +       ret =3D uuid_parse(TZ_TA_MEM_UUID_MTK, &ta_mem_uuid);
+> +       if (ret)
+> +               goto close_context;
+> +       memcpy(&arg.uuid, &ta_mem_uuid.b, sizeof(ta_mem_uuid));
+> +
+> +       ret =3D tee_client_open_session(data->tee_ctx, &arg, t_param);
+> +       if (ret < 0 || arg.ret) {
+> +               pr_err_once("%s: open session failed, ret=3D%d:%d\n",
+> +                           __func__, ret, arg.ret);
+> +               ret =3D -EINVAL;
+> +               goto close_context;
+> +       }
+> +       data->tee_session =3D arg.session;
+> +       return 0;
+> +
+> +close_context:
+> +       tee_client_close_context(data->tee_ctx);
 
-This is not the right calibration variant either. In fact, Qualcomm has
-not yet released any calibration data for this CRD yet:
+There's a
+data->tee_ctx =3D NULL;
+missing here.
 
-	https://bugzilla.kernel.org/show_bug.cgi?id=216036
+Cheers,
+Jens
 
-I use a patch like this locally, but we shouldn't merge this upstream.
- 
-> +	wlan_en: wlan-en-state {
-> +		pins = "gpio134";
-> +		function = "gpio";
-> +		drive-strength = <8>;
-
-Why increase the drive strength?
-
-> +		bias-pull-down;
-> +	};
-
-Johan
+> +       return ret;
+> +}
+> +
+> +static int mtk_restricted_heap_init(struct restricted_heap *rheap)
+> +{
+> +       struct mtk_restricted_heap_data *data =3D rheap->priv_data;
+> +
+> +       if (!data->tee_ctx)
+> +               return mtk_tee_session_init(data);
+> +       return 0;
+> +}
+> +
+> +static const struct restricted_heap_ops mtk_restricted_heap_ops =3D {
+> +       .heap_init              =3D mtk_restricted_heap_init,
+> +};
+> +
+> +static struct mtk_restricted_heap_data mtk_restricted_heap_data =3D {
+> +       .mem_type               =3D MTK_SECURE_MEMORY_TYPE_CM_TZ,
+> +};
+> +
+> +static struct restricted_heap mtk_restricted_heaps[] =3D {
+> +       {
+> +               .name           =3D "restricted_mtk_cm",
+> +               .ops            =3D &mtk_restricted_heap_ops,
+> +               .priv_data      =3D &mtk_restricted_heap_data,
+> +       },
+> +};
+> +
+> +static int mtk_restricted_heap_initialize(void)
+> +{
+> +       struct restricted_heap *rheap =3D mtk_restricted_heaps;
+> +       unsigned int i;
+> +
+> +       for (i =3D 0; i < ARRAY_SIZE(mtk_restricted_heaps); i++, rheap++)
+> +               restricted_heap_add(rheap);
+> +       return 0;
+> +}
+> +module_init(mtk_restricted_heap_initialize);
+> +MODULE_DESCRIPTION("MediaTek Restricted Heap Driver");
+> +MODULE_LICENSE("GPL");
+> --
+> 2.25.1
+>
+>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 
