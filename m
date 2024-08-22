@@ -1,122 +1,106 @@
-Return-Path: <devicetree+bounces-95729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CF3595AF3C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 09:26:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5069995AF7D
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 09:41:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A9F0284277
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 07:26:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 818FE1C215C4
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 07:41:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED22781732;
-	Thu, 22 Aug 2024 07:26:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE1E71537A3;
+	Thu, 22 Aug 2024 07:41:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aWxzIZ+0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1277642A9B;
-	Thu, 22 Aug 2024 07:26:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.249.212.189
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F5221531C0;
+	Thu, 22 Aug 2024 07:41:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724311609; cv=none; b=Yt9f1ORFbaS80qI3dZTZRnbvMJW0bS1GdyPQFyWrdrUCOSJQeUeACFYObaA4Z8p4UeOFaxfig+Zgfwgedmvz+Rw6cD3/fyDCmkE+I7q86ez8tIArWhuNDtVhqXXj8Uay2XFz6MJkVILGnmmONTz7SGN0Gl/6+Q1TmDKab+FsA+o=
+	t=1724312513; cv=none; b=eW7992OzbqiTd2ImfBd2F0o4v41zFvi2Pj9t75Ex5TE9ucVqWrGG88qruWb5tnR5pF3neZtncuL00hS1coAP3ybL3a20RC6r8OSuJJJdVHXjNnUZVHX0HnaXvvpCsjQ9qJlgut7loOc7eYDwxaKQDbwBQ1ZxMIT/ScxYWbGt7Fo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724311609; c=relaxed/simple;
-	bh=9Bx+mlTFJh7CVQogVmIRk06zCokEZG5UXiMI/hIhcH4=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=DftD7qYyniAmytFjYKkMqijwYpbnQ8eBjfiXuVjqZ9ICwdzgdAcNV8o/o4115sihdEe8kauYKJ8kkrxlPEq86Sa1xdbIkMfKfCfrOlQ8rIGqfhbk47mhJQf2haDaP5nAW8AEl5PC6/sYWfR+cWOKyP2tIwx8B6i8b4lSznzk9Oo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=45.249.212.189
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.19.163.48])
-	by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4WqF552k97z69MB;
-	Thu, 22 Aug 2024 15:22:01 +0800 (CST)
-Received: from kwepemh500013.china.huawei.com (unknown [7.202.181.146])
-	by mail.maildlp.com (Postfix) with ESMTPS id 678E918009B;
-	Thu, 22 Aug 2024 15:26:44 +0800 (CST)
-Received: from huawei.com (10.90.53.73) by kwepemh500013.china.huawei.com
- (7.202.181.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Thu, 22 Aug
- 2024 15:26:43 +0800
-From: Jinjie Ruan <ruanjinjie@huawei.com>
-To: <robh@kernel.org>, <saravanak@google.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-CC: <ruanjinjie@huawei.com>
-Subject: [PATCH -next] of/platform: Simplify with scoped for each OF child
-Date: Thu, 22 Aug 2024 15:34:17 +0800
-Message-ID: <20240822073417.3582286-1-ruanjinjie@huawei.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1724312513; c=relaxed/simple;
+	bh=5WCyoZZ1u5HCel8M4KWf0FwvGgNtE6rKDEdZns4j3Uo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nmf4SEg4J3xs2Z4jIG40DIWzMMvuIv45gwmih26wOOrWWDlYZXkB8gUgWg/XAlNKGs/OyGD1tNVIY3Sm0XvX8/RPMuXW7lEaRtUHZeZe1BlQJxd9BEA6oHLVgC8Wj8bruVOd0GwHdJc42KQ8SAcQI//z3GFCw+JwT2YcWgYDwQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aWxzIZ+0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC43CC4AF09;
+	Thu, 22 Aug 2024 07:41:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724312513;
+	bh=5WCyoZZ1u5HCel8M4KWf0FwvGgNtE6rKDEdZns4j3Uo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aWxzIZ+0DS9/P7XsFM2wVLC2XP8F5S+5+Ac2BIBXv99iL78O8vMRoj3WiPIraQZ7b
+	 en9FeH7PV72OHF2Oa29oMSm2J1w0ToN2jl20r2JSFSljAKQpYpRWaTJmKOs7NR1cav
+	 m++rILEEuXC2zpFhjKXWQvy9MBW2f1wyTTyniAY+sjvHzlR//1k/3u0OtgwOujXaTV
+	 Grz5ev3aOVBjbn1qkkUPw1TXz4iGUSb8nKdj6XYG1kmTZT7qLDBQDbagcx3NJiiS04
+	 JkKYz/XSf6Y2x3BZXF7t5bD1E02xGtZVh2K4ty9SSS9pnf1hotGoAHwYw3iOwyjjMu
+	 iWzI6rRsSMXbw==
+Date: Thu, 22 Aug 2024 09:41:45 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Mao Jinlong <quic_jinlmao@quicinc.com>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, 
+	Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@arm.com>, 
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>, Andy Gross <agross@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: Add qcom,qmi-id for remote etm
+Message-ID: <x45dqaramqjwqjmwf5fbagzsrzb4f4qaohpaaohrdfjkmq2oil@x3sz4jeqnmj5>
+References: <20240822064122.5231-1-quic_jinlmao@quicinc.com>
+ <20240822064122.5231-2-quic_jinlmao@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
- kwepemh500013.china.huawei.com (7.202.181.146)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240822064122.5231-2-quic_jinlmao@quicinc.com>
 
-Use scoped for_each_child_of_node_scoped() when iterating over device
-nodes to make code a bit simpler.
+On Wed, Aug 21, 2024 at 11:41:18PM -0700, Mao Jinlong wrote:
+> qcom,qmi-id is the instance id used by qmi API to communicate with
+> remote processor.
+> 
+> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+> ---
+>  .../bindings/arm/qcom,coresight-remote-etm.yaml        | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml
+> index 4fd5752978cd..27e5f18bfedf 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml
+> @@ -20,6 +20,13 @@ properties:
+>    compatible:
+>      const: qcom,coresight-remote-etm
+>  
+> +  qcom,qmi-id:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      This id is used by qmi API to communicate with remote processor for
+> +      enabling and disabling remote etm. Each processor has its unique instance
+> +      id.
+> +
+>    out-ports:
+>      $ref: /schemas/graph.yaml#/properties/ports
+>      additionalProperties: false
+> @@ -31,6 +38,7 @@ properties:
+>  
+>  required:
+>    - compatible
+> +  - qcom,qmi-id
 
-Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
----
- drivers/of/platform.c | 14 ++++----------
- 1 file changed, 4 insertions(+), 10 deletions(-)
+That's an ABI break.
 
-diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-index 86be4dfb9323..ebc8f0359a95 100644
---- a/drivers/of/platform.c
-+++ b/drivers/of/platform.c
-@@ -338,7 +338,6 @@ static int of_platform_bus_create(struct device_node *bus,
- 				  struct device *parent, bool strict)
- {
- 	const struct of_dev_auxdata *auxdata;
--	struct device_node *child;
- 	struct platform_device *dev;
- 	const char *bus_id = NULL;
- 	void *platform_data = NULL;
-@@ -382,13 +381,11 @@ static int of_platform_bus_create(struct device_node *bus,
- 	if (!dev || !of_match_node(matches, bus))
- 		return 0;
- 
--	for_each_child_of_node(bus, child) {
-+	for_each_child_of_node_scoped(bus, child) {
- 		pr_debug("   create child: %pOF\n", child);
- 		rc = of_platform_bus_create(child, matches, lookup, &dev->dev, strict);
--		if (rc) {
--			of_node_put(child);
-+		if (rc)
- 			break;
--		}
- 	}
- 	of_node_set_flag(bus, OF_POPULATED_BUS);
- 	return rc;
-@@ -459,7 +456,6 @@ int of_platform_populate(struct device_node *root,
- 			const struct of_dev_auxdata *lookup,
- 			struct device *parent)
- {
--	struct device_node *child;
- 	int rc = 0;
- 
- 	root = root ? of_node_get(root) : of_find_node_by_path("/");
-@@ -470,12 +466,10 @@ int of_platform_populate(struct device_node *root,
- 	pr_debug(" starting at: %pOF\n", root);
- 
- 	device_links_supplier_sync_state_pause();
--	for_each_child_of_node(root, child) {
-+	for_each_child_of_node_scoped(root, child) {
- 		rc = of_platform_bus_create(child, matches, lookup, parent, true);
--		if (rc) {
--			of_node_put(child);
-+		if (rc)
- 			break;
--		}
- 	}
- 	device_links_supplier_sync_state_resume();
- 
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
