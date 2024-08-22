@@ -1,133 +1,118 @@
-Return-Path: <devicetree+bounces-95918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEA4895BDB5
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 19:48:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF3A395BDFD
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 20:07:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 39870B24DF6
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 17:48:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08B501C22493
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 18:07:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 608A11CF28E;
-	Thu, 22 Aug 2024 17:48:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F22D31CFEC7;
+	Thu, 22 Aug 2024 18:07:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="QXo0LcLW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hrDeP3FJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2FA91C9DFF
-	for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 17:48:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9263C1CFEAC;
+	Thu, 22 Aug 2024 18:07:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724348890; cv=none; b=N5l44oYdRf1auEoCT10pqjea0gzHlkPeyVEnyipW2UQPOitNL/xA1SKObakkHaJUl63yVXkUy+p9KLxF/LnLUb7ICGWFaUx1Lsc3mOJO+9ITComoqyl1I4i4GCP//pE82vCIvxXjaaF1zsLPCpOgheo/h0nLJGNZP5SUuzDhyNM=
+	t=1724350062; cv=none; b=ACErRbXOIIri3VAF/8J/YwBYz3QdrXrKP0NkawQkP310/WS0RW4MLS98dTtfLkLZPmq4KOwLoKD6nhuzBrT6ZO0Mn8l+bofFzxOC81FZebBuGQF5kunf3r216mYCHrFWCN5eppA5Gtt+E/SjYjO86NK5RUDtgJiy74tn7DrjQO0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724348890; c=relaxed/simple;
-	bh=oomnAfwkIIwMwMnJdWOjdg3zgHFTrar5w2PFkUayNGw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CDauPLQHr9l+/uCKGtoB8oBgv8COoWFk38HcH8u/XrDaFqSaWZjb2Wm+iXSl2ksFe9pUMuKSkZsAed+/fI/0a93kRHwunISH/g6brKSx620M05ZNDPWLKb1IuyL5+pzRQ6mJUxczgbN4I5IC00I8eLJ8+w7A6Keb1bZGyi45jRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=QXo0LcLW; arc=none smtp.client-ip=209.85.222.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-7a1dac7f0b7so66465785a.0
-        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 10:48:08 -0700 (PDT)
+	s=arc-20240116; t=1724350062; c=relaxed/simple;
+	bh=pcBIeK4mcDPFBDjl4/lQsKOvSfla45+WspiEGxXvkn0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=c0Z2uUFBlm/9KbOoANn9veR5tMhcTSOstcSkET5ukg1CAS20/WUWm8QWIhq+G86Rm+7eVgOEAWtGGJi6x3n0sa3oa1Na5mtB7AkWGSErVVa3RTgF4WBW7uIyxglwfsXUZNxcYol4j7i860rlDc5IozB+6+q+j4A+zyooxI8kL7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hrDeP3FJ; arc=none smtp.client-ip=209.85.216.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2d3c99033d6so893438a91.0;
+        Thu, 22 Aug 2024 11:07:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1724348888; x=1724953688; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=C6QLFS/223EGiUxs5tjmNPrl8Nvfi/fSGuus5YjHYKc=;
-        b=QXo0LcLW09iymWoMYYPldWh6ZLq2evuhgdOGaPrjW813kMnXkwOwY60v5wHSpFm4am
-         DHGE0acCYcXVjcOPxP3g/KrXuWZM923AfNX0SfkX66u3N8TRGw3hWHzKWowySvWw/3jY
-         gixthQI+7bZFryyk1g3nhs9+yDtxuCAHs5G2ZQD7B/mNK7eRU3FFdLmzKGCRGSN/jmH3
-         gDvCN5tCbGw+SoBA3nfwli6qccpvQa0XluEFUKycudH3evTc/ReiUoX7BvhmCiJNuX3R
-         otb2BInmaZmysJQ/Lt0gnxKpQroVtdj6nNTJb5KrH0aw82oSOThbNNvP2UbXYC8GPPDT
-         UFmA==
+        d=gmail.com; s=20230601; t=1724350061; x=1724954861; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=GQybDFmkYIn6xZ+90bRuYKiZGiAETXvH8v85EQgpozk=;
+        b=hrDeP3FJB5ia7ym+qbUApZIpZWIly2Ruo/9VsY/pZQF/HPILKywYGmeSYLYrZOYvpX
+         Y4MqjYP5RCAN9Dt1tSK/gSwe+cfoqGh7hxfaf1H1HuhbVcwgX393V1V1kFpFbYPJIrS9
+         vjDEN1miASJN+Oqh7GDqW8/18XavQDx3gMuAu/OPAfjgrToRUzKLbCxNSfujsyiqw6Q6
+         gmX1au0/pcYKp3jr0F+MPM2GvrHnyj6MINhCZLRz4RbNmq9ddsZmp6EkY1lhiEdMGe2C
+         OSW253zZjmEAch7Acjlp7E3XUZVJM/abHLP/8oN5yv2mVtspS3Ba8Jt6VWQ3h6IOIU2j
+         sppw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724348888; x=1724953688;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=C6QLFS/223EGiUxs5tjmNPrl8Nvfi/fSGuus5YjHYKc=;
-        b=WzaLO4+0EhOIkFiau4LuuqNGh36Dse81lryW9jJQ2tD/ZcEsZvEiKRxW8KlR8Tvmkl
-         TPcC+350YrYNZ6HfCCSSYi029JcNrZ7EO1WpKaK5ujrh6H0vg2UXzvTE1Rmg0r2mqjM7
-         gn3ip3jSIfJwBQwpjK1AtA3I7cycqYBA8Kl21JSIlmNT1wGSHCXWqZ9d+RBU6shWBws7
-         Y+ltPUeZ2C4ujfMOHpuJFl11M5+mlF22Kkv2NmmPhUZfzajUELeWp6rVNji9RxMkEAGj
-         KgdIfCFvd/ryIjO7kH8fxx5kYWn5X9tK8Usg6CRD0P4HhzLRc3Onu9U72lOxLjYfRa4L
-         s5eg==
-X-Forwarded-Encrypted: i=1; AJvYcCVttOVXjC2LtctbYgOHgH3J9KsaOcb2HBRbib9e6Bh+8WgXP/ia5SXjjCtn3BpcDeMkSZ0FkZtKw6P3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+PCPKhJzWIVTvqJLh6iqUB6MePcZnh2KWBkNuwwWQ7i384ayy
-	SbLxhmQuF7+v3TJMHdwV0AuuIqWHIWrJq+Du5ws/qwaidNP7zkGb6feD8lzl7W8uTXFt+IwGIB9
-	WYwKdAGi5svsiAVY7/6iZXfHLSKGPWodZEI2O
-X-Google-Smtp-Source: AGHT+IFGwUrobsK5fHxOpalWNdc1NoJwlmN9E5WaHLuT0VfpNOVU/eY0hrZCRXlucXyDgVbOqJoLAPunNzn8LMHOYzE=
-X-Received: by 2002:a05:6214:5c02:b0:6b7:abe7:5665 with SMTP id
- 6a1803df08f44-6c1567d96c5mr64521926d6.22.1724348887318; Thu, 22 Aug 2024
- 10:48:07 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1724350061; x=1724954861;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GQybDFmkYIn6xZ+90bRuYKiZGiAETXvH8v85EQgpozk=;
+        b=MbJvY2amcakA+wA1049hpOHkeQ0f6ehqg0+GuxKBAsuDTFWBfrNqaxZzsDBIvzb8AE
+         fwXWvyoc5jrCCwc/u/qlxzyCKZB8K4DCViQ8mTD/ffpjhqSsrrMqIMWZhIJDVGKpd4is
+         qx2VYkQNYqmSi+JbwqYEHvMN3xCFOPhNnSKxtJ+fIcCA6ioqv6oohxodLtB1LX7PHBQR
+         uACgYC67KSu5wvzAa/l1qhpmngkOl6zYDTYWqQn9UCnk/kXvoFi4bSsLT/1Fmh4nKgsi
+         3NwZN0VtMDE0rMZC7h8BpTRTP9GN7wnE+bvqaqCm+b6ZdBRPDUfee5EQLJjmW9S1MEy1
+         8DpA==
+X-Forwarded-Encrypted: i=1; AJvYcCU3KjUUxLE1NEC1CM4+G6CRvjaAcdMJUhWo8w7d65PzALd3jmqbdyKURj8dv3ThoFTrKpxNV+Jz2daQDQ/qLjpI8OI=@vger.kernel.org, AJvYcCUOVSVzNZiNssMcNauaNKDCTXCERv9GPBCQDn80GHoKLTTJlP60kGkn74YxDd0b5xRjWi1OlhThXqIIKWBl@vger.kernel.org, AJvYcCWjPgFHu4WimnLCIGNC5kvQMh30ri51NrIRopX/SR84mioJq628S2ofL/Pg02QNlAy1IoD2GSkNAL40@vger.kernel.org, AJvYcCXAw8r0SZ693VwCmBr8fpPfv0dzLuugnpYDF64SrKtR3IquEUeRTDeSaTrPkg8jUxv6Nd3TT9wls04PBTE=@vger.kernel.org
+X-Gm-Message-State: AOJu0YziE7t895Nb2aUcIy9Vq9iKTikjgvGAZC/F6om9O6MBFpfvgOqu
+	9PR0eIvlJ6Uh5XUIeRQ95b84omune3ZgR/sWLvHy2pPmWLBkAW/s
+X-Google-Smtp-Source: AGHT+IHBi4GxWgUXMcq98eVE29iY0upag5vzbbKCImIrJyIAQdIDDT41hS5m+8Vv4xn3Pcuv4QSJjA==
+X-Received: by 2002:a17:90b:1d8d:b0:2cd:40ef:4764 with SMTP id 98e67ed59e1d1-2d5e99ebb94mr7480722a91.17.1724350060624;
+        Thu, 22 Aug 2024 11:07:40 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:ccdb:6951:7a5:be1b])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2d5eb8d235esm4544510a91.6.2024.08.22.11.07.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Aug 2024 11:07:40 -0700 (PDT)
+Date: Thu, 22 Aug 2024 11:07:37 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Arnd Bergmann <arnd@arndb.de>, Mark Brown <broonie@kernel.org>,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, patches@opensource.cirrus.com
+Subject: Re: [PATCH 06/14] Input: samsung-keypad - use guard notation to
+ acquire mutex
+Message-ID: <Zsd-aVM6504L_hqi@google.com>
+References: <20240819045813.2154642-1-dmitry.torokhov@gmail.com>
+ <20240819045813.2154642-7-dmitry.torokhov@gmail.com>
+ <e6xkutxnpu7acvm5qfyyces4estm4ihc3rzczqpnxrbrkptdm2@6lwrlssvtt3v>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240722073136.8123-1-lvzhaoxiong@huaqin.corp-partner.google.com>
-In-Reply-To: <20240722073136.8123-1-lvzhaoxiong@huaqin.corp-partner.google.com>
-From: Doug Anderson <dianders@google.com>
-Date: Thu, 22 Aug 2024 10:47:53 -0700
-Message-ID: <CAD=FV=V8ivgWn5krEYzt5C4aiHMMK07mtMVwJaCeSQHG6ZscSg@mail.gmail.com>
-Subject: Re: [PATCH v4 0/2] Add Add elan-ekth6a12nay on the basis of elan-ekth6915
-To: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>, jikos@kernel.org, 
-	bentiss@kernel.org
-Cc: dmitry.torokhov@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linus.walleij@linaro.org, hsinyi@google.com, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e6xkutxnpu7acvm5qfyyces4estm4ihc3rzczqpnxrbrkptdm2@6lwrlssvtt3v>
 
-Jiri / Ben,
+On Thu, Aug 22, 2024 at 05:48:33PM +0200, Krzysztof Kozlowski wrote:
+> On Sun, Aug 18, 2024 at 09:58:03PM -0700, Dmitry Torokhov wrote:
+> > Guard notation is more compact and ensures that the mutex will be
+> > released when control leaves the function.
+> > 
+> > Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> > ---
+> >  drivers/input/keyboard/samsung-keypad.c | 8 ++------
+> >  1 file changed, 2 insertions(+), 6 deletions(-)
+> > 
+> 
+> You need to include cleanup.h (unless some other patch already did it
+> and I missed it?)
 
-On Mon, Jul 22, 2024 at 12:31=E2=80=AFAM Zhaoxiong Lv
-<lvzhaoxiong@huaqin.corp-partner.google.com> wrote:
->
-> Elan-ekth6a12nay requires reset to pull down time greater than 10ms,
-> so the configuration post_power_delay_ms is 10, and the chipset
-> initial time is required to be greater than 300ms, so the
-> post_gpio_reset_on_delay_ms is set to 300.
->
-> The Elan-ekth6a12nay touch screen chip same as Elan-eKTH6915 controller
-> has a reset gpio. The difference is that they have different
-> post_power_delay_ms.
->
-> Changes between V4 and V3:
-> - PATCH 1/2: Combine the 2 const into an enum.
-> - PATCH 2/2: No changes.
-> - Link to v3: https://lore.kernel.org/all/20240716082851.18173-1-lvzhaoxi=
-ong@huaqin.corp-partner.google.com/
->
-> Changes between V3 and V2:
-> - PATCH 1/2: "ekth6915" isn't a fallback, modify it.
-> - PATCH 2/2: No changes.
-> - Link to v2: https://lore.kernel.org/all/20240715073159.25064-1-lvzhaoxi=
-ong@huaqin.corp-partner.google.com/
->
-> Changes between V2 and V1:
-> - PATCH 1/2: Respin the series on top of v6.10.
-> - PATCH 2/2: No changes.
-> - Link to v1: https://lore.kernel.org/all/20240704085555.11204-1-lvzhaoxi=
-ong@huaqin.corp-partner.google.com/
->
-> Zhaoxiong Lv (2):
->   dt-bindings: HID: i2c-hid: elan: Introduce Elan ekth6a12nay
->   HID: i2c-hid: elan: Add elan-ekth6a12nay timing
->
->  .../devicetree/bindings/input/elan,ekth6915.yaml          | 4 +++-
->  drivers/hid/i2c-hid/i2c-hid-of-elan.c                     | 8 ++++++++
->  2 files changed, 11 insertions(+), 1 deletion(-)
+Guard for mutexes defined in mutex.h which is pulled in indirectly, and
+cleanup.h is included there.
 
-I think this series is ready for you to merge at your leisure. If
-there's anything blocking it then please yell. Thanks! :-)
+If we want to list all the headers that we need instead of relying on
+indirect inclusions I think we need a separate patch. But even then I
+wonder if things like cleanup.h should be included by drivers
+directly...
 
--Doug
+Thanks.
+
+-- 
+Dmitry
 
