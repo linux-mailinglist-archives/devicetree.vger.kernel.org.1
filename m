@@ -1,577 +1,210 @@
-Return-Path: <devicetree+bounces-95910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC60D95BCB9
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 19:06:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C46CF95BCE7
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 19:16:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1967E1C2301C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 17:06:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 56877B2D2F0
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 17:06:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 861651CEAA8;
-	Thu, 22 Aug 2024 17:05:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EE5C1CFEB7;
+	Thu, 22 Aug 2024 17:05:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YtLh63y3"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="TeCERhWd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11013040.outbound.protection.outlook.com [52.101.67.40])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EB6F282FC;
-	Thu, 22 Aug 2024 17:05:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.181
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724346305; cv=none; b=l6KOqxyWobqbcvCcXc97OBjKqqKeKJaJWDzcy5G/bk1Qyf0U3rgE9coQFW/ciMULDMECpOq7kBRvPh9Xxz+6OQEirKqfKbr6LJNZN/EgItfrmuusQpThbXHGzts37MoUkj73CF9lVYThWVQuiOPYlUjKtAPWUCIvRiCqGYGNdf0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724346305; c=relaxed/simple;
-	bh=gl1Yoj8AA4SBnOssog75sIL0Smi4pZaHF2B2vRPyMv8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=dTkPfw3RoASBc9dulFNAJYVY6q2C17DS/njikKTOLYc5cuRAFBBS30Zv4qrQeUtsMUYSvL/0Zw+Syoxdy2ncSSHTPSjmXAXtDW4Yf7xjIHosIIA/rvT2vVJNT4AvFmgzd5obtbcf7RV9gX8VXMsWEdovlkZdLDliGO9N+J9x/H0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YtLh63y3; arc=none smtp.client-ip=209.85.166.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f181.google.com with SMTP id e9e14a558f8ab-39d3b31e577so4690485ab.1;
-        Thu, 22 Aug 2024 10:05:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724346302; x=1724951102; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/qTXhGjMmwxWpwz6d19noF20DlRTBm2mJicmzVE3kNQ=;
-        b=YtLh63y3BJiW25pAIdE1++auimFR8ta/6zrXR0t1HBzZQJlhPCmb4sQ46O821DS3EU
-         0s7wk3QBOTeHdefmW5m7kSkyP3M7FTHLoQ2cAXf3/Qdk8QLqQqSofz0tzMWnaH4d24Ze
-         74BILGquHqOjytrx9c0oppLPAj7xLp8ou8Egv3aERn/zigZsT/2abP04Ro4B7D509hY7
-         EbjFA5Rbxx71E4GCoYe+mQ4TI6ueYskZ+I+W7dwUTRSssDfsjnwzt/ORUBz6hyFRI2FP
-         64u1VsYgLumZnL575Q+fiAURNAFx4h0RqKkmvZkld/M6LcnwRJ3Q8THIRb7SlgC3ENhT
-         YMrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724346302; x=1724951102;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/qTXhGjMmwxWpwz6d19noF20DlRTBm2mJicmzVE3kNQ=;
-        b=Mz219DzdcEWf+eM1FP8Yd1ooOicHoGdjeJlITwapLP8BNdq58zdj/PaT2oKMZQbTaQ
-         /lwzplN9WSFEBBPBTE6wHj0L6z2khW1UOTphKlgEpPm3p2RrGk0BdBCaGO0OfIdrAOnW
-         OPviYyrQbmWdjqCM8vb31AyGYQrKNcUoU8QYpdMYDfMc6Pv3sDPVZfFTNqZj7BbQdE8U
-         vFXP5LUa4LHWfxWDteil3tl2l1CPQXR9dS4ulluvAKEr9krJl3vVnYmr1LflEoabxHvb
-         qNpQOMAtL7NZqcyU4N/Jmx+SjMq2DUYZG7YQI9yZNTTT7bJ10uf0ZtMTBeqJHSZc+c3/
-         SDFQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVp0nYvAWewxJXIoCd+j8P6N1fN3W+p0H7dBxfY2+W5mQMQaD2RifCFAALSCvvjkWo/OJOBtuyV5+CJjSqa@vger.kernel.org, AJvYcCXIijXpCKmZQkoh408y0mJlE11ecMMqYZ2BVGSsywbowz3Pj8s6iyG2Mi00i+AylZYraM3Ff/kBhK7r@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgKQFK+Zu5fmXSmt/AOt0nx9IUCABvZz4jWKAbuz2MqGOgBUKO
-	W//nmuG6H3talMio+mApsTtqXp3IdmLtE8/zsTn0XeFg8sqLdOqk
-X-Google-Smtp-Source: AGHT+IFyGnjvfsNpBwaTHHv3wdAPHFCEOrHAYal0ivsJWjwPvOytoJhASqX5RTdgU9P2rEFSrMjm1Q==
-X-Received: by 2002:a05:6e02:1646:b0:39d:22ab:9b26 with SMTP id e9e14a558f8ab-39d6c344e6dmr72757365ab.4.1724346302353;
-        Thu, 22 Aug 2024 10:05:02 -0700 (PDT)
-Received: from hestia.. (216-71-44-235-dynamic.midco.net. [216.71.44.235])
-        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-39d73e68e60sm7677125ab.5.2024.08.22.10.05.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Aug 2024 10:05:01 -0700 (PDT)
-From: Robert Nelson <robertcnelson@gmail.com>
-To: linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Robert Nelson <robertcnelson@gmail.com>,
-	Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BF261CFEA3;
+	Thu, 22 Aug 2024 17:05:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.67.40
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724346320; cv=fail; b=ilWkz64+fZ7HCtjmoWPLMyKYCMeU7kxvwjBEZly0BZHPhzGWwkWHfpurDbOmle0sd4gWkYIaKoZaCHKj9KEyfL7jJRswE/LSISwm/Kpwrb8q8DCo3ND6rmTZzxwsynm3gr6j0dhCFgmXlSFCMSlV3U+53zSu2Ll0VHr0VwKVk28=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724346320; c=relaxed/simple;
+	bh=wdtrEhtk3HntFydLDwPFXTW1QfvO1ieMTexVzCBH4BQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=NINkaf0ER1KIHlKc6675kVpxDQH/AfIyGD9Q+vCrXqnDnXjTxU6I4oRiHULWGau7UzGKY0MNYcsshIT+W5ldz4rhNEYtxsViUzKezLXL0jsnaW+2eSAZs+yyATRqAHhe03p2zacal3oBlKY8i8HMeZXQGgFZhZb5McRENLJhahc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=TeCERhWd; arc=fail smtp.client-ip=52.101.67.40
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=vzqeMqF+VfY78Xb2k5D093l6cLQF7xt3LtFXNY9KXJenlBV3JXGmJ/pIHHdh2E5DX1mLXJdZnJmVoWiNSd+WCq+ONfTtHfv/r7Tag9/DQsVXyb7CVkTRX6x8jQCBrlP4+AKzI0+myKnFfxW4NfhSmqTZM80RQtb5qZid37mbwv2pj6e8dAnNEh023GXavyLDgzw1Fr1upM40ARyJeIG/vFKUYC7QQ+g6XejZdK0nQpPfED/PvMe+JvF5EpiohRZiKc1pwLcp6nv/C3inBohF+sdNAOmI4JQYePXPp6F0Gyo778O2ejW76tvKRGcGZZNU8R7ETTLqGII8Z7j8j0KAYA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dzDF6CGz7+iqRT0yIyf8ZZOwofwcRUaNSZsO9rL8kR8=;
+ b=w745S/1PTi4uPG1m0Je3fBS1TyKSYWJ9Taydb5WKSVxedr+a8rRhwPztjnkVKnT8BXkmMgvkyN4F+iQNZ4DPDBl+C0EzM9IyL0GJ3hS7v1AaCI+C1vH95QKgPDBUV9w759ALOcUTWybQ0lfKuPORUreLI3CX8v6tt71fccT5OIam/KdiM98jLwC+YifDHYfHVFY0+AhzWkM+A/vNDa6f+jLcahOn+kCtR6SlrbqOOLz/oj1Y3x/cBvJJ4UiCH51CZIQEV/Hhxibql3NfLdJo1zxQP/Hx01ugrf3C4MTO/LR9xFtDzy882XzrdRqMY7UaqyWM3jRC89mIa6uztaRUqw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dzDF6CGz7+iqRT0yIyf8ZZOwofwcRUaNSZsO9rL8kR8=;
+ b=TeCERhWdP9J1ojaZPO80ItSGHQyx7vv9YyDxFTcUuW1psPxWHwc4orEpZ3YT5sBdDFc/5vEF0P/ndEV8V54/sNoBx284MsHBmsxFAqggU0dROFxO0GUKWkAx4s/LjL2hXHgK+9+M6KgdlU1JbI69Mg03QlLuSto2GGC/zJ9m6rpJkAPD58WPXUgo3ZzhgjuTSl+11czb32CHf2T0wIqoPNe8kS4GNoBpTXVNm4UAh86uLayRM9AJvxNNPNHAxf9RttFvgWsvWvRsKNrE9A50r1MnrFAKdgPTJNAAQMZo8N9zgv/JwOF73kJJAMITl+HwH6X9swjAR3BFlzNR3tvZ+A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AM9PR04MB8876.eurprd04.prod.outlook.com (2603:10a6:20b:40b::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7897.19; Thu, 22 Aug
+ 2024 17:05:15 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%3]) with mapi id 15.20.7875.019; Thu, 22 Aug 2024
+ 17:05:15 +0000
+Date: Thu, 22 Aug 2024 13:05:07 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Krzysztof =?utf-8?B?V2lsY3p5xYRza2kgIDxrd0BsaW51eC5jb20+O0Jqb3I=?=
+	=?utf-8?Q?n?= Helgaas <bhelgaas@google.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Nishanth Menon <nm@ti.com>,
-	Andrew Davis <afd@ti.com>,
-	Jai Luthra <j-luthra@ti.com>,
-	Roger Quadros <rogerq@kernel.org>,
-	Siddharth Vadapalli <s-vadapalli@ti.com>,
-	Jared McArthur <j-mcarthur@ti.com>,
-	Jason Kridner <jkridner@beagleboard.org>,
-	Deepak Khatri <lorforlinux@beagleboard.org>,
-	Drew Fustini <drew@beagleboard.org>
-Subject: [PATCH v3 2/2] arm64: dts: ti: Add k3-am67a-beagley-ai
-Date: Thu, 22 Aug 2024 12:04:40 -0500
-Message-Id: <20240822170440.265055-2-robertcnelson@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240822170440.265055-1-robertcnelson@gmail.com>
-References: <20240822170440.265055-1-robertcnelson@gmail.com>
+	"open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" <linux-pci@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH v3 1/1] dt-bindings: PCI: layerscape-pci: Fix property
+ 'fsl,pcie-scfg' type
+Message-ID: <Zsdvw0RpFmNxJt/H@lizhi-Precision-Tower-5810>
+References: <20240701221612.2112668-1-Frank.Li@nxp.com>
+ <CAL_JsqJYN62GO_e_+vrCdF3C9g+72qhPgzMrrXGtDJfd1rRZhw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqJYN62GO_e_+vrCdF3C9g+72qhPgzMrrXGtDJfd1rRZhw@mail.gmail.com>
+X-ClientProxiedBy: BYAPR04CA0033.namprd04.prod.outlook.com
+ (2603:10b6:a03:40::46) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM9PR04MB8876:EE_
+X-MS-Office365-Filtering-Correlation-Id: 565731cd-05c8-4321-4844-08dcc2cc97cb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|376014|1800799024|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?SUY3YXlESWpiYUZOQXQvcUNkbFdNR0YzdWgvWW1ncmVvdEkzbXJwSGY4RUYz?=
+ =?utf-8?B?WkFiMGQzRUdvSmpMOGNmMFZmdUFWWjVNYmpVMmJla1BscU0vWVF5eEVhTFVW?=
+ =?utf-8?B?N1ZBNXZuS3M4MWJQR3BXNm9PbkdsLy95Vy9rMDV0Vnd3M0dDMGtTSXo1bFVH?=
+ =?utf-8?B?N1UrelBydWlCOUw3NkIyUFRwMlJZNFFVMHR3blJOeWFmdGVSSWJXS0twTExZ?=
+ =?utf-8?B?MU0vN1Nxby95SlNaSXFqS3RRQ3lhMERuVzJ2dWFObzVIVFRLME02eTNqekZY?=
+ =?utf-8?B?SS9qaDRxWWxMNkhxcmdZVnBwbXBlUnM3TTVJT3R2b0VKUkRnMVpCcTB5U1VR?=
+ =?utf-8?B?MkJyVXN0WDVvRnF5RFVoU2lOWndhNWsycXEwTzN3OFU4MFcwN1p3cDZxRHRF?=
+ =?utf-8?B?RGVkWXJtOHd4RXN4UTdyNVZ3MU54T1hDdlJkTSt3V1BmZklqRVZIbm9WR2VE?=
+ =?utf-8?B?aVg4NUkvQndLMHhEajBzWDh3N1ZNSmR6UmkvRm44VkZRNW5JK0pKY2xxS0th?=
+ =?utf-8?B?NnVnYkJDUTJHM0N5TlF0TTJ0U2Fua1FKTURmRXNXTld1QUFvbkhkQ0Z2VFN5?=
+ =?utf-8?B?cVdGSXQyN0luYkppc3ZxWFZQZlI1WU5MaXF5MnI5SGVOVDFFcm51MnlYNUxk?=
+ =?utf-8?B?dkp2ZmJHNzh5My9BV2g4UXNYZk5GaHk3QVZld0YyN3lIM3RuVk1JclBaSTRY?=
+ =?utf-8?B?S1ZjYUYrVVd0YjJHZW5UVnF1eHljNlRsZjh3aHpuNkRjVXFaeEYxZG8xWlor?=
+ =?utf-8?B?eVpMejVGNWNjb0EyQWk5bXFjYXRiVUZ6eUQ5TGtsL2krS0RTa0Q3bXowbUJC?=
+ =?utf-8?B?SDByQ3JudFlvMkZsbU1kYnZaeDZrVFQ3ckFhanZpRzlzUWtGS2RVNGh4YU9z?=
+ =?utf-8?B?S0FOd1lEQmd5QlB4VDRKd1FPV2lLdHAwREdIRGN2anBKb0RaL1V1NlVXZTli?=
+ =?utf-8?B?djJQWEZtekY0cGtLZzhNUTVEZDAvL0dhR3IvdnhqYU9tMzJWQ3FOZkdubnNQ?=
+ =?utf-8?B?MDNBZ0VCQUhPSndtMHhFMklUbWpMMnJyL1hxYlhIblloRGl1aHFMZW9HaHBY?=
+ =?utf-8?B?VGNZcE9EWklUemdmNnhjVGgxdjVOTThTVmpQQ3Jodk43Z0xSeUZHcThYRHpy?=
+ =?utf-8?B?M3B6U3dvUG80cHBPZFhRNUJRL0dnOTNmN0cvYi9BSUFPc0JHVzgxSC8zak9W?=
+ =?utf-8?B?b1FkNERNK0lCTTE1Vzh1elZNVGVTWXZoNHEzYkUwcWd2Zkh6emU0dGEvK2tl?=
+ =?utf-8?B?ek5zdkxONW9BbnZSeTlpT0xSSzMyaTU5eEhLM2FQdDRXdWJzRGYyNmtVcnZw?=
+ =?utf-8?B?UFpLL1A3RVpZYzNBVHJmbk9TOCtRRDBRMitMYXhPWS84dHZlazB6ZFYrT1FY?=
+ =?utf-8?B?K3oyMzBjbTNEUStwRitpVW5UYUI5bEM0bGVmVVVoRGh3NUhPR1h2V2FKNXgz?=
+ =?utf-8?B?Q2d1bVp2SVhlU3lRdlZGbFBFY2U4ZnVBcGVPaVFpYnlwcjB3NmlFWmhrMlFq?=
+ =?utf-8?B?M3RLR3JZUjZrNGF0QWM0OE1UalFVdFZaZFltMzA3dnB1bG4vbjhJM0hvTXpD?=
+ =?utf-8?B?UlphdEdCcXpBQ1RRaVBrRUhjeEVyUTNFRHVLMno2NVhObFhKeHd5UjIwL1No?=
+ =?utf-8?B?YVU3L2d6emkrR2RPK1RmQUN1dW5leXNyNnlIYzhIVmthOXZBNjJPckd2WG5a?=
+ =?utf-8?B?NzlyTVlSMTJVUnJEWDAzNUJyYkNIbDh5WHNidTRuenUrdmI1aU1Sc2dkYm9N?=
+ =?utf-8?B?UTRDcGJ0Y2Q0cVpzQXhrYUV3SnVKcGFGYnNleFlkZWd3cEgrZXY1anpxenhZ?=
+ =?utf-8?Q?8U0xmRv1P+F8hXk4mUKY5iWl/QKH2PsI+o0tc=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(52116014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?WmNBT3Z4citCRkU5RFBuZ2xOQXVrZmo5Q1dSV2NiRmpnTm1qUnNBSSsxZUpH?=
+ =?utf-8?B?RjYzbWVFbjJrS0IrOERZWlFLV1dKbjQ2TWo1ZXR2YWtpVVpqRHBoQ3Frem1a?=
+ =?utf-8?B?bm8zdVZsZE5JZUtUSWNLVXZvTzZ5YnZmOU5FR0NwbzdzdGQ4bVpFc3E0b1dV?=
+ =?utf-8?B?S0tzUGo5SzM0amR6YmJMUUtqNHZ6UnNNdUtRYThXYjlWalYvVFhFQiszbUR2?=
+ =?utf-8?B?RjdBMkI5NGltV3ZOMmRBc3c2ZUZHTW1lcVNYUUlSOElNZmZmOFB2QTFyWCs3?=
+ =?utf-8?B?UmtVajNoT2t1bWRRU29lS0VTMU5mVkRkcm9BNFlFWHMwWStZcGZGUVBSRURB?=
+ =?utf-8?B?SlVOSnJKSENvbTdyWG5SMi9pSE1mSStXTGxJYWdBZ1IvbzdjOS80RnNuV1Bx?=
+ =?utf-8?B?Q1JxMWhXWnFUMFZteVNZMzJNTTYvbUc1WWhOZXp2TzRUTTY0bXpWdUx0MnVY?=
+ =?utf-8?B?a01PTjh1VGtGcTNPMWkzWWhXMXRZQWo2S2dOVkZPaTJEbGplb1JtRE1UTGZo?=
+ =?utf-8?B?bjJQR0hHMkg4bmh1U1NoL0FoK25UelN6MXdnblB3Y3VuaXdVRzlkazJidHcr?=
+ =?utf-8?B?NlBPTjZ2N0pXUnlYUkgyamVHVlRCRHNSdnZscHdCSi9NQUNxdU9UUG4zUUFa?=
+ =?utf-8?B?UFlIUUZwQnZxU09LR2NoZ2VZV3Y4ZGNPeTA2cDM3QitkVndGN0xhMWlWQTUy?=
+ =?utf-8?B?TlNYMWpxSllCK3hIWDZjaldkcEhVSjkvc1RRSGQzc3VTSzFKK1dBNS9YMXQ0?=
+ =?utf-8?B?bnpBOXRON0ZaWlBSMWVZeUtTQndmSmdZNFFCLzhDS0JCbWdUOGp5b05qMkMz?=
+ =?utf-8?B?d2toMGF1TGp4ZkIyOENjS1E3YjhmQlRlQ3lpSkpaOWNLVmg2aUJXK1gxZEc2?=
+ =?utf-8?B?L3VTdjFqV0JPZk1EUUxkaHhqWnNUdFRzL2dFWjlnL01adFAvQmZxdmRZRXRH?=
+ =?utf-8?B?VDBQV3FuNXdUT21pdEVVZzBFdVlKbzYzRjVDR0ZPdnF2d2hRL2ZlTmJ4STcr?=
+ =?utf-8?B?MWxvUTFqTzdDOHduL3NidjMvZWFkam1QRWd3a3VhT1pCTHhmcTM5NkQ2RzU4?=
+ =?utf-8?B?YmlMZ0d1eU53NkF0MUNESGhLTGlSZU5lY1JQVFBnRzFqTHRiMis4cWNwQzZl?=
+ =?utf-8?B?QkQzMDZsc01PcldUNG5pVy80TUJlNWJUMGF0bmlINUo3RTRvL3daSUcvSFNM?=
+ =?utf-8?B?NlBkMFpwa1dHamtTK1hTVGtFYk5Rc2w3NHQ1bEFCNEdRZ2pWRCtselN3YkxI?=
+ =?utf-8?B?RlRyRXNTMHIvNnMwS1ZrQUhOSy9ranRoRFVUTm9jdXkvUDQrZHlCUXVQOEht?=
+ =?utf-8?B?YlVnemp3SWNKNzd2REZPRkltdGhhNHBFSXJaYjVQU0tPb3JqU1R3Ni9jSFRX?=
+ =?utf-8?B?R3d6U3FJMnZNWm03SitvQ1VJYWZTR2tUczA3ZHFnYjI3NVBEakUvOXZMZW1k?=
+ =?utf-8?B?NGNVOXlUeGlaeE9VdmVpWXRNZXg1VklkVTlIdFFLVnpRU3Z3T2dNcWxNc1Ax?=
+ =?utf-8?B?aGd6T1JxVDB3SEo3ZFVBRE1YNytBb3FMZ2E1WkQxV29sQUVjTnJ1eE02WGJa?=
+ =?utf-8?B?TjNBV3cxbldOQnFUcy9hU0g0Z2s3SU5HNlk4SVBDL1BseGV2TlNSRmd0d1ZG?=
+ =?utf-8?B?UCtaTlowSXVqSzJ4MGJ0dDUyQy94elRSSmNuTVIrZ0tTbGxoNlRNRk14QVZY?=
+ =?utf-8?B?ZlJ6c3RPeGsyelhpcFlNMkZHWVd6K2NSaklYNDl3TGsyYzdHWHd1K2ZpUVc3?=
+ =?utf-8?B?NjY3K0ZZWGsvelAxNDhoallzWlBGMkNYTDJEUHdCZnJXRDJ2cXJlVDlscm1T?=
+ =?utf-8?B?NUlZcEJzR2Y5NU41MVVnSnFtZUlEdzZTU2ZwL0hoNjYrZStvd1Rpc0VJWXpm?=
+ =?utf-8?B?MXhOM2tFVzdTaWRPNldaUmJlRjV2VWU4MFRxRTR4azNUQzVpcGFlSmVTdmYx?=
+ =?utf-8?B?eU9hUFVURC9CS1JkT042bXNGY3JaOFlMNXJvd1lzdEZOSXlwWk41U0pYL24v?=
+ =?utf-8?B?RlFNZ0lCQVJkcjh6NEpybHJWOU56cVMvWWpXcWU1aXQzZjRvOFNSeTZJNVhW?=
+ =?utf-8?B?dk1UNDVIK011MWRBTThVMEVZNnJhU0JxYmhaM0hJem93Vmt2eDhqY2pvVXAx?=
+ =?utf-8?Q?89CuDXpY23jqqjXjFIJJ1hEfY?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 565731cd-05c8-4321-4844-08dcc2cc97cb
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2024 17:05:15.6989
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CmKfTI/ozxy/T0gTVfyK1EYQlVFIEc7zoNo9thz5b0G78dTten5XwxciiEYXqgSubgfVvYQl5LQ7dKRG/KPyFA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8876
 
-BeagleBoard.org BeagleY-AI is an easy to use, affordable open source
-hardware single board computer based on the Texas Instruments AM67A,
-which features a quad-core 64-bit Arm CPU subsystem, 2 general-purpose
-digital-signal-processors (DSP) and matrix-multiply-accelerators (MMA),
-GPU, vision and deep learning accelerators, and multiple Arm Cortex-R5
-cores for low-power, low-latency GPIO control.
+On Wed, Jul 03, 2024 at 11:27:21AM -0600, Rob Herring wrote:
+> On Mon, Jul 1, 2024 at 4:16 PM Frank Li <Frank.Li@nxp.com> wrote:
+> >
+> > fsl,pcie-scfg actually need an argument when there are more than one PCIe
+> > instances. Change it to phandle-array and use items to describe each field
+> > means.
+> >
+> > Fix below warning.
+> >
+> > arch/arm64/boot/dts/freescale/fsl-ls1043a-rdb.dtb: pcie@3400000: fsl,pcie-scfg:0: [22, 0] is too long
+> >         from schema $id: http://devicetree.org/schemas/pci/fsl,layerscape-pcie.yaml#
+> >
+> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > ---
+> > Change form v2 to v3
+> > - remove minItems because all dts use one argument.
+> > Change from v1 to v2
+> > - update commit message.
+> > ---
+> >  .../devicetree/bindings/pci/fsl,layerscape-pcie.yaml       | 7 ++++++-
+> >  1 file changed, 6 insertions(+), 1 deletion(-)
+>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-https://beagley-ai.org/
-https://openbeagle.org/beagley-ai/beagley-ai
 
-Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
-CC: Rob Herring <robh@kernel.org>
-CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-CC: Conor Dooley <conor+dt@kernel.org>
-CC: Vignesh Raghavendra <vigneshr@ti.com>
-CC: Nishanth Menon <nm@ti.com>
-CC: Andrew Davis <afd@ti.com>
-CC: Jai Luthra <j-luthra@ti.com>
-CC: Roger Quadros <rogerq@kernel.org>
-CC: Siddharth Vadapalli <s-vadapalli@ti.com>
-CC: Jared McArthur <j-mcarthur@ti.com>
-CC: Jason Kridner <jkridner@beagleboard.org>
-CC: Deepak Khatri <lorforlinux@beagleboard.org>
-CC: Drew Fustini <drew@beagleboard.org>
-CC: linux-arm-kernel@lists.infradead.org
-CC: devicetree@vger.kernel.org
-CC: linux-kernel@vger.kernel.org
----
-Changes since v2:
- - added led indictors
- - sdhci1 use MMC1_SDCD.GPIO1_48 for card detect
- - cleaned up order of status = "okay"
- - wkup_i2c0 moved to 100000
- - eeprom added atmel,24c32
- - rtc added dallas,ds1340
- - sdhci1 use ti,fails-without-test-cd
-Changes since v1:
- - fixed incorrect vdd-3v3-sd-pins-default name
- - updated hdmi VDD_1V2 regulator for production pcb
- - switched device tree name from k3-j722s-beagley-ai to k3-am67a-beagley-ai
- - removed cpsw_port2 node
- - enable UHS support for MMCSD
----
- arch/arm64/boot/dts/ti/Makefile               |   1 +
- .../arm64/boot/dts/ti/k3-am67a-beagley-ai.dts | 406 ++++++++++++++++++
- 2 files changed, 407 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dts
+Krzysztof Wilczyński:
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index e20b27ddf901..c89c9b8bab38 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -110,6 +110,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-pcie1-ep.dtbo
- 
- # Boards with J722s SoC
-+dtb-$(CONFIG_ARCH_K3) += k3-am67a-beagley-ai.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm.dtb
- 
- # Boards with J784s4 SoC
-diff --git a/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dts b/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dts
-new file mode 100644
-index 000000000000..c8cbb875d4c7
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dts
-@@ -0,0 +1,406 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/*
-+ * https://beagley-ai.org/
-+ *
-+ * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
-+ * Copyright (C) 2024 Robert Nelson, BeagleBoard.org Foundation
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/net/ti-dp83867.h>
-+#include "k3-j722s.dtsi"
-+
-+/ {
-+	compatible = "beagle,am67a-beagley-ai", "ti,j722s";
-+	model = "BeagleBoard.org BeagleY-AI";
-+
-+	aliases {
-+		serial0 = &wkup_uart0;
-+		serial2 = &main_uart0;
-+		mmc1 = &sdhci1;
-+		rtc0 = &rtc;
-+	};
-+
-+	chosen {
-+		stdout-path = &main_uart0;
-+	};
-+
-+	memory@80000000 {
-+		/* 4G RAM */
-+		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
-+		      <0x00000008 0x80000000 0x00000000 0x80000000>;
-+		device_type = "memory";
-+		bootph-pre-ram;
-+	};
-+
-+	reserved_memory: reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		secure_tfa_ddr: tfa@9e780000 {
-+			reg = <0x00 0x9e780000 0x00 0x80000>;
-+			no-map;
-+		};
-+
-+		secure_ddr: optee@9e800000 {
-+			reg = <0x00 0x9e800000 0x00 0x01800000>;
-+			no-map;
-+		};
-+
-+		wkup_r5fss0_core0_memory_region: r5f-memory@a0100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa0100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+	};
-+
-+	vsys_5v0: regulator-1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		bootph-all;
-+	};
-+
-+	vdd_3v3: regulator-2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vsys_5v0>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vdd_mmc1: regulator-mmc1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_mmc1";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vdd_3v3_sd_pins_default>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		enable-active-high;
-+		gpio = <&main_gpio1 50 GPIO_ACTIVE_HIGH>;
-+		bootph-all;
-+	};
-+
-+	vdd_sd_dv: regulator-TLV71033 {
-+		compatible = "regulator-gpio";
-+		regulator-name = "tlv71033";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vdd_sd_dv_pins_default>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		vin-supply = <&vsys_5v0>;
-+		gpios = <&main_gpio1 49 GPIO_ACTIVE_HIGH>;
-+		states = <1800000 0x0>,
-+			 <3300000 0x1>;
-+		bootph-all;
-+	};
-+
-+	vsys_io_1v8: regulator-vsys-io-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_io_1v8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vsys_io_1v2: regulator-vsys-io-1v2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_io_1v2";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&led_pins_default>;
-+
-+		led-0 {
-+			gpios = <&main_gpio0 11 GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "default-off";
-+			default-state = "off";
-+		};
-+
-+		led-1 {
-+			gpios = <&main_gpio0 12 GPIO_ACTIVE_HIGH>;
-+			function = LED_FUNCTION_HEARTBEAT;
-+			linux,default-trigger = "heartbeat";
-+			default-state = "on";
-+		};
-+	};
-+};
-+
-+&main_pmx0 {
-+
-+	main_i2c0_pins_default: main-i2c0-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x01e0, PIN_INPUT_PULLUP, 0) /* (D23) I2C0_SCL */
-+			J722S_IOPAD(0x01e4, PIN_INPUT_PULLUP, 0) /* (B22) I2C0_SDA */
-+		>;
-+		bootph-all;
-+	};
-+
-+	main_uart0_pins_default: main-uart0-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x01c8, PIN_INPUT, 0)	/* (A22) UART0_RXD */
-+			J722S_IOPAD(0x01cc, PIN_OUTPUT, 0)	/* (B22) UART0_TXD */
-+		>;
-+		bootph-all;
-+	};
-+
-+	vdd_sd_dv_pins_default: vdd-sd-dv-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x0244, PIN_OUTPUT, 7) /* (A24) MMC1_SDWP.GPIO1_49 */
-+		>;
-+		bootph-all;
-+	};
-+
-+	main_mmc1_pins_default: main-mmc1-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x023c, PIN_INPUT, 0) /* (H22) MMC1_CMD */
-+			J722S_IOPAD(0x0234, PIN_OUTPUT, 0) /* (H24) MMC1_CLK */
-+			J722S_IOPAD(0x0230, PIN_INPUT, 0) /* (H23) MMC1_DAT0 */
-+			J722S_IOPAD(0x022c, PIN_INPUT_PULLUP, 0) /* (H20) MMC1_DAT1 */
-+			J722S_IOPAD(0x0228, PIN_INPUT_PULLUP, 0) /* (J23) MMC1_DAT2 */
-+			J722S_IOPAD(0x0224, PIN_INPUT_PULLUP, 0) /* (H25) MMC1_DAT3 */
-+			J722S_IOPAD(0x0240, PIN_INPUT, 7) /* (B24) MMC1_SDCD.GPIO1_48 */
-+		>;
-+		bootph-all;
-+	};
-+
-+	mdio_pins_default: mdio-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x0160, PIN_OUTPUT, 0) /* (AC24) MDIO0_MDC */
-+			J722S_IOPAD(0x015c, PIN_INPUT, 0) /* (AD25) MDIO0_MDIO */
-+		>;
-+	};
-+
-+	rgmii1_pins_default: rgmii1-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x014c, PIN_INPUT, 0) /* (AC25) RGMII1_RD0 */
-+			J722S_IOPAD(0x0150, PIN_INPUT, 0) /* (AD27) RGMII1_RD1 */
-+			J722S_IOPAD(0x0154, PIN_INPUT, 0) /* (AE24) RGMII1_RD2 */
-+			J722S_IOPAD(0x0158, PIN_INPUT, 0) /* (AE26) RGMII1_RD3 */
-+			J722S_IOPAD(0x0148, PIN_INPUT, 0) /* (AE27) RGMII1_RXC */
-+			J722S_IOPAD(0x0144, PIN_INPUT, 0) /* (AD23) RGMII1_RX_CTL */
-+			J722S_IOPAD(0x0134, PIN_OUTPUT, 0) /* (AF27) RGMII1_TD0 */
-+			J722S_IOPAD(0x0138, PIN_OUTPUT, 0) /* (AE23) RGMII1_TD1 */
-+			J722S_IOPAD(0x013c, PIN_OUTPUT, 0) /* (AG25) RGMII1_TD2 */
-+			J722S_IOPAD(0x0140, PIN_OUTPUT, 0) /* (AF24) RGMII1_TD3 */
-+			J722S_IOPAD(0x0130, PIN_OUTPUT, 0) /* (AG26) RGMII1_TXC */
-+			J722S_IOPAD(0x012c, PIN_OUTPUT, 0) /* (AF25) RGMII1_TX_CTL */
-+		>;
-+	};
-+
-+	led_pins_default: led-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x002c, PIN_OUTPUT, 7) /* (K26) OSPI0_CSn0.GPIO0_11 */
-+			J722S_IOPAD(0x0030, PIN_OUTPUT, 7) /* (K23) OSPI0_CSn1.GPIO0_12 */
-+		>;
-+	};
-+
-+	pmic_irq_pins_default: pmic-irq-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x01f4, PIN_INPUT_PULLUP, 0) /* (B23) EXTINTn */
-+		>;
-+	};
-+
-+	vdd_3v3_sd_pins_default: vdd-3v3-sd-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_IOPAD(0x0254, PIN_OUTPUT, 7) /* (E25) USB0_DRVVBUS.GPIO1_50 */
-+		>;
-+	};
-+};
-+
-+&cpsw3g {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rgmii1_pins_default>, <&gbe_pmx_obsclk>;
-+
-+	assigned-clocks = <&k3_clks 227 0>;
-+	assigned-clock-parents = <&k3_clks 227 6>;
-+	status = "okay";
-+};
-+
-+&cpsw3g_mdio {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mdio_pins_default>;
-+	status = "okay";
-+
-+	cpsw3g_phy0: ethernet-phy@0 {
-+		reg = <0>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		ti,min-output-impedance;
-+	};
-+};
-+
-+&cpsw_port1 {
-+	phy-mode = "rgmii-rxid";
-+	phy-handle = <&cpsw3g_phy0>;
-+	status = "okay";
-+};
-+
-+&main_gpio1 {
-+	status = "okay";
-+};
-+
-+&main_uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_uart0_pins_default>;
-+	bootph-all;
-+	status = "okay";
-+};
-+
-+&mcu_pmx0 {
-+
-+	wkup_uart0_pins_default: wkup-uart0-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_MCU_IOPAD(0x02c, PIN_INPUT, 0)	/* (C7) WKUP_UART0_CTSn */
-+			J722S_MCU_IOPAD(0x030, PIN_OUTPUT, 0)	/* (C6) WKUP_UART0_RTSn */
-+			J722S_MCU_IOPAD(0x024, PIN_INPUT, 0)	/* (D8) WKUP_UART0_RXD */
-+			J722S_MCU_IOPAD(0x028, PIN_OUTPUT, 0)	/* (D7) WKUP_UART0_TXD */
-+		>;
-+		bootph-all;
-+	};
-+
-+	wkup_i2c0_pins_default: wkup-i2c0-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_MCU_IOPAD(0x04c, PIN_INPUT_PULLUP, 0)	/* (C7) WKUP_I2C0_SCL */
-+			J722S_MCU_IOPAD(0x050, PIN_INPUT_PULLUP, 0)	/* (C6) WKUP_I2C1_SDA */
-+		>;
-+		bootph-all;
-+	};
-+
-+	gbe_pmx_obsclk: gbe-pmx-obsclk-default-pins {
-+		pinctrl-single,pins = <
-+			J722S_MCU_IOPAD(0x0004, PIN_OUTPUT, 1) /* (A10) MCU_SPI0_CS1.MCU_OBSCLK0 */
-+		>;
-+	};
-+};
-+
-+&wkup_uart0 {
-+	/* WKUP UART0 is used by Device Manager firmware */
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&wkup_uart0_pins_default>;
-+	bootph-all;
-+	status = "reserved";
-+};
-+
-+&wkup_i2c0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&wkup_i2c0_pins_default>;
-+	clock-frequency = <100000>;
-+	bootph-all;
-+	status = "okay";
-+
-+	tps65219: pmic@30 {
-+		compatible = "ti,tps65219";
-+		reg = <0x30>;
-+		buck1-supply = <&vsys_5v0>;
-+		buck2-supply = <&vsys_5v0>;
-+		buck3-supply = <&vsys_5v0>;
-+		ldo1-supply = <&vdd_3v3>;
-+		ldo3-supply = <&vdd_3v3>;
-+		ldo4-supply = <&vdd_3v3>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pmic_irq_pins_default>;
-+		interrupt-parent = <&gic500>;
-+		interrupts = <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-controller;
-+		#interrupt-cells = <1>;
-+
-+		system-power-controller;
-+		ti,power-button;
-+		bootph-all;
-+
-+		regulators {
-+			buck1_reg: buck1 {
-+				regulator-name = "VDD_3V3";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			buck2_reg: buck2 {
-+				regulator-name = "VDD_1V8";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo1_reg: ldo1 {
-+				regulator-name = "VDDSHV5_SDIO";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-allow-bypass;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo2_reg: ldo2 {
-+				regulator-name = "VDD_1V2";
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <1200000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo3_reg: ldo3 {
-+				regulator-name = "VDDA_PHY_1V8";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo4_reg: ldo4 {
-+				regulator-name = "VDDA_PLL_1V8";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+		};
-+	};
-+
-+	eeprom@50 {
-+		compatible = "atmel,24c32";
-+		reg = <0x50>;
-+	};
-+
-+	rtc: rtc@68 {
-+		compatible = "dallas,ds1340";
-+		reg = <0x68>;
-+	};
-+};
-+
-+&sdhci1 {
-+	/* SD/MMC */
-+	vmmc-supply = <&vdd_mmc1>;
-+	vqmmc-supply = <&vdd_sd_dv>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mmc1_pins_default>;
-+	disable-wp;
-+	cd-gpios = <&main_gpio1 48 GPIO_ACTIVE_LOW>;
-+	cd-debounce-delay-ms = <100>;
-+	ti,fails-without-test-cd;
-+	bootph-all;
-+	status = "okay";
-+};
--- 
-2.39.2
+      can you help care about this patch, rob already acked.
 
+Frank
 
