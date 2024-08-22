@@ -1,264 +1,128 @@
-Return-Path: <devicetree+bounces-95792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48F8A95B32C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 12:47:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BFFC95B339
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 12:52:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AB80CB21691
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 10:47:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 323F7B216DA
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 10:52:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15F2017D377;
-	Thu, 22 Aug 2024 10:47:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25CB817F4EC;
+	Thu, 22 Aug 2024 10:52:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lxnHzB6g"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AeYCA8pS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ADFC558BB;
-	Thu, 22 Aug 2024 10:47:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7750B17CA16;
+	Thu, 22 Aug 2024 10:52:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724323658; cv=none; b=aQInq6s7cjqPs1KExfzyODVsKzwEJ+hi791nhda82ucnEw19VYnOdAQvEbopbwk0DSknuxUqGvwdw6ofP6nwkmgpYyuoNXnS5bjZtPQFX26a6+OGJsvWkyxwDB9OkcxMJKxn7XX9ackpYwUr42mul4R1Mn5W22d4s4Rj4o7YLTc=
+	t=1724323964; cv=none; b=GJtLTjRcAGa4jWC1Wz9zl58WmZ0yfSek3jax3CPStgM0r7rHT5/CzNfnJvCAS0fe+9geLoRWtN2mTHznfcELWJjuk6LiRMLvpHp9qMbPGLjlLN9qmPiT3+wuN7enX0eif24wR2XwDJrKR7poDtnlZN0QA4Av9GrXALeLqvknxuA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724323658; c=relaxed/simple;
-	bh=8FE+Slja7T2opibI3fLh7zUjj7kDj46Q+C35YeibAS8=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
-	 In-Reply-To:Content-Type; b=tOCh/vRqjrk37sME3jlAOoBXc/n0waUK4R22UrKqnKofEaGACmuK20dq07g5ffotqO5rkzgSihmKKvGLfYuxsFjTExi53HC28SU5ueRDag6vHGBUTGZp+cYgdkEQVcUPHjkwW9i8KcKp6r9ivzIyeq1Qmln1jdWp6yiTbmwkav4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=lxnHzB6g; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 47MAJ8Yf001040;
-	Thu, 22 Aug 2024 10:47:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	9KwZVggQh6/ZFCFEZQZLa7LN9QDjViyAbeRFxV/gUJY=; b=lxnHzB6g/TfhW7+7
-	eVArbArMRuQKz0Gko29aXOgJtNodIX+7kK014x+q40F/tapCJADPcehxFAmg9eEQ
-	2phidq1YBOzYifEbUCRN3m1Pe3s7YfEHRT2jgUjUoeS2Xz7/cJjtTvAxZmwo3xqg
-	EToUp1+cjjz4YBHwErN40T/e1sSMttRW9t8ZwD9dAJyQxruDNCNeSr9fI1+GSKH3
-	iMn2hE8UdU5pIf+iuMBurF/lVCiOg7cm+yZ6Ft1DrZqIQDif7abIhAGsnWaN8uOk
-	T4xgRjrbYKkREChA7NwKzPbD6FV+lVLk86YdFteoJmRfY/mZOUzY9N8VBcMqQqYk
-	KAWCEA==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 415nrrt28b-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 22 Aug 2024 10:47:33 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 47MAlXLO022093
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 22 Aug 2024 10:47:33 GMT
-Received: from [10.152.201.37] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 22 Aug
- 2024 03:47:29 -0700
-Message-ID: <2b6b43b3-c99b-4aac-b1fb-24f6e5e562ce@quicinc.com>
-Date: Thu, 22 Aug 2024 16:17:25 +0530
+	s=arc-20240116; t=1724323964; c=relaxed/simple;
+	bh=Y8g+1lUqRX0W1fC3xTwgMjUUi1WKPVHiJa71JZRTFqo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=EM+2gF9V8A0rLW6UCzdVHYPr1mmQfPDGIVMPc1bFuz9vh2KvnLgLbLcu+B9kbPttpgUoPoFL45yUqzZIDfWPorYag1YrZBPJG0MxES3yjLrxQV8IyRC7caFp9MSHPbuF4IWx1P//n3XzEmtE5a5f1MTlSq6VAQA+T/pzJ7lWfUA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AeYCA8pS; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2f43de7ad5eso2225001fa.1;
+        Thu, 22 Aug 2024 03:52:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724323960; x=1724928760; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=DxWPUFOwZqCM5Kx8t3Y3dLzbYEJ4j8qYd64u0k3UgAI=;
+        b=AeYCA8pSoVDvhc9T2yagYdAdR6azb71HVotfI9Lfy22EGfn7X+47mOOvTqnlwf9lQT
+         GLx5vzZU54Ue3iLhs2+C6bflLcYyvlGj4qaZis5zObfk3v1uDy7E6rgAW9bLWakhc9pL
+         zh3zDj680ri+dAx5nlZ7ycFUaPKUFvGvhYnANqBZU264iHLy9SrZvsP5++FhTGvsWkLd
+         te+HPg1adrFveC1s/ByflRM9BlYhoXmx/7dhlMy8hOJ+Lbv92P7ZXqgTEyTDK4i80WoP
+         4MpGDzptFwIcZQ9OV2jFskmOFWceOoFt9Lh4PTJP8jnQ+qAGyW6rtmN+mOIfPYwdrRCK
+         dCKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724323960; x=1724928760;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DxWPUFOwZqCM5Kx8t3Y3dLzbYEJ4j8qYd64u0k3UgAI=;
+        b=kpzYiSqg/bgeFU3mogxgEvTCgWZQKfHioZll/bi9SQzT9UZnVz53Kg05U2L0MPNk4O
+         RwmeGMo+GnN38PkPu7LuNk8On0blYTxZkKEgiHTtyLa7CX4dRjmg1q4HZ1vUZ/GBa7Eb
+         dm/n93vjpHtgQvHfKg4STzSQ5Iau0CA2ykY+agAwS/NfCi+JE7V5olcrh6INSct86mtS
+         N6v+vpY6tnjp6oG0kLywB4jaInXXdJqd8UIzq9jyckKjOSWUT6IIblxw2IxSFeg9CkVg
+         vLcrJ5YDzmijAOFqtlWq0Q7MAg0DizwmDunxnBRqkARVT43KvEVgrVNyWKfTAHsJAl3W
+         jT5w==
+X-Forwarded-Encrypted: i=1; AJvYcCUpox9kt8waXso920yiJsufHq07+VTPKMZWQfkFTQh/z7QFBJBJnM+yt/zO9X4yikUMWhVwy/UwgGjf@vger.kernel.org
+X-Gm-Message-State: AOJu0YycDczm2+/khhBEjq2VJy5Z4e5on/4vgSVOtEgCHrrhh5VlTAB8
+	c8pvpBetRn3kdMmbfPZ3ii6luf1jiy1soRrSKbXwtU9syeBM7LZJ
+X-Google-Smtp-Source: AGHT+IFL5+T2KdDfE/H1idX5/DG/etl+eJ+S4fyildCMF78SV1DFt2sCcYtkbFL82gnNt1ofEt9fpA==
+X-Received: by 2002:a2e:8450:0:b0:2f3:cbc3:b093 with SMTP id 38308e7fff4ca-2f3f8b57b41mr27764931fa.43.1724323959744;
+        Thu, 22 Aug 2024 03:52:39 -0700 (PDT)
+Received: from ilordash-vm.mshome.net (95-26-8-211.broadband.corbina.ru. [95.26.8.211])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f4047a4f59sm1886261fa.13.2024.08.22.03.52.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Aug 2024 03:52:39 -0700 (PDT)
+From: Ilya Orazov <ilordash02@gmail.com>
+To: Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Aswath Govindraju <a-govindraju@ti.com>
+Cc: linux-can@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Ilya Orazov <ilordash02@gmail.com>
+Subject: [PATCH v4 0/1] dt-bindings: phy: ti,tcan104x-can: Document Microchip
+Date: Thu, 22 Aug 2024 13:52:37 +0300
+Message-Id: <20240822105238.213019-1-ilordash02@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Gokul Sriram P <quic_gokulsri@quicinc.com>
-Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: qcom: document hexagon based
- WCSS secure PIL
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-	<q@krzk-bin.smtp.subspace.kernel.org>
-CC: <andersson@kernel.org>, <krzk+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_viswanat@quicinc.com>, <quic_mmanikan@quicinc.com>,
-        <quic_varada@quicinc.com>, <quic_srichara@quicinc.com>
-References: <20240820085517.435566-1-quic_gokulsri@quicinc.com>
- <20240820085517.435566-2-quic_gokulsri@quicinc.com>
- <ticwyyycqlk2uqpiqckoqqnapqatw74s6f6tjqmmyt2d6siqqt@xxe2qdtr4c2c>
-Content-Language: en-US
-In-Reply-To: <ticwyyycqlk2uqpiqckoqqnapqatw74s6f6tjqmmyt2d6siqqt@xxe2qdtr4c2c>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: z5L7TtWNtUYYUZB1Jw_vRjI0AjdX2aQN
-X-Proofpoint-GUID: z5L7TtWNtUYYUZB1Jw_vRjI0AjdX2aQN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-08-22_03,2024-08-22_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxlogscore=999
- bulkscore=0 lowpriorityscore=0 mlxscore=0 phishscore=0 malwarescore=0
- suspectscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2407110000 definitions=main-2408220080
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Hi,
+
+In this v4, I addressed Krzysztof's comments and incorporated the changelog
+and tag received from Conor.
+
+v3:
+https://lore.kernel.org/r/20240808191735.1483572-1-ilordash02@gmail.com/
+
+v2:
+https://lore.kernel.org/r/20240807180210.1334724-1-ilordash02@gmail.com/
+
+v1:
+https://lore.kernel.org/r/20240718210322.37492-1-ilordash02@gmail.com/
+
+First of all, I want to apologize for the silly mistakes in my patch
+preparation. I wasn’t aware of the need to include the changelog and
+received tags in new versions. This is my first patch in the kernel,
+and I am very excited about it. I am eager to gain experience in working
+on FOSS.
+
+I greatly appreciate all your feedback, and I will do my best to address
+and fix any issues.
+
+Ilya Orazov (1):
+  dt-bindings: phy: ti,tcan104x-can: Document Microchip ATA6561
+
+ .../devicetree/bindings/phy/ti,tcan104x-can.yaml    | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
 
 
-On 8/20/2024 4:50 PM, Krzysztof Kozlowski wrote:
-> On Tue, Aug 20, 2024 at 02:25:14PM +0530, Gokul Sriram Palanisamy wrote:
->> From: Manikanta Mylavarapu<quic_mmanikan@quicinc.com>
->>
->> Add new binding document for hexagon based WCSS secure PIL remoteproc.
->> IPQ5332, IPQ9574 follows secure PIL remoteproc.
->>
->> Signed-off-by: Manikanta Mylavarapu<quic_mmanikan@quicinc.com>
->> Signed-off-by: Gokul Sriram Palanisamy<quic_gokulsri@quicinc.com>
->> ---
->>   .../remoteproc/qcom,wcss-sec-pil.yaml         | 125 ++++++++++++++++++
->>   1 file changed, 125 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,wcss-sec-pil.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,wcss-sec-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,wcss-sec-pil.yaml
->> new file mode 100644
->> index 000000000000..c69401b6cec1
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,wcss-sec-pil.yaml
->> @@ -0,0 +1,125 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id:http://devicetree.org/schemas/remoteproc/qcom,wcss-sec-pil.yaml#
->> +$schema:http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm WCSS Secure Peripheral Image Loader
-> ...
->
->> +
->> +maintainers:
->> +  - Manikanta Mylavarapu<quic_mmanikan@quicinc.com>
->> +
->> +description:
->> +  WCSS Secure Peripheral Image Loader loads firmware and power up QDSP6
-> What is WCSS? Don't add random acronyms without any explanation.
+base-commit: 872cf28b8df9c5c3a1e71a88ee750df7c2513971
+-- 
+2.34.1
 
-WCSS/WCNSS - Wireless Connectivity subsystem.
-
-will update.
-
->> +  remoteproc's on the Qualcomm IPQ9574, IPQ5332 SoC.
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - qcom,ipq5332-wcss-sec-pil
->> +      - qcom,ipq9574-wcss-sec-pil
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  firmware-name:
->> +    $ref: /schemas/types.yaml#/definitions/string
->> +    description: Firmware name for the Hexagon core
-> No, look how other bindings are doing it.
->
-> It looks like you develop patches on some old kernel, so please start
-> from scratch on newest kernel.
-will update.
->> +
->> +  interrupts:
->> +    items:
->> +      - description: Watchdog interrupt
->> +      - description: Fatal interrupt
->> +      - description: Ready interrupt
->> +      - description: Handover interrupt
->> +      - description: Stop acknowledge interrupt
->> +
->> +  interrupt-names:
->> +    items:
->> +      - const: wdog
->> +      - const: fatal
->> +      - const: ready
->> +      - const: handover
->> +      - const: stop-ack
->> +
->> +  clocks:
->> +    items:
->> +      - description: IM SLEEP clock
-> What is IM? Explain all acronyms.
->
-> What is SLEEP?
-
-IM_SLEEP_CLK - Internal Module sleep clock needed for Q6 reset.
-
-SLEEP is not an acronym here.
-
->> +
->> +  clock-names:
->> +    items:
->> +      - const: im_sleep
-> sleep? Are there different sleep clocks here?
-
-We have different branches of sleep clk each enabled separately.
-
-im_sleep is one of those branches that q6 uses.
-
->> +
->> +  qcom,smem-states:
->> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->> +    description: States used by the AP to signal the remote processor
->> +    items:
->> +      - description: Shutdown Q6
->> +      - description: Stop Q6
->> +
-> Do not introduce other order. First stop, then shutdown.
-will update
->> +  qcom,smem-state-names:
->> +    description:
->> +      Names of the states used by the AP to signal the remote processor
->> +    items:
->> +      - const: shutdown
->> +      - const: stop
-> The same.
-will update.
->> +
->> +  memory-region:
->> +    items:
->> +      - description: Q6 reserved region
->> +
->> +  glink-edge:
->> +    $ref: /schemas/remoteproc/qcom,glink-edge.yaml#
->> +    description:
->> +      Qualcomm G-Link subnode which represents communication edge, channels
->> +      and devices related to the Modem.
->> +    unevaluatedProperties: false
->> +
->> +required:
->> +  - compatible
->> +  - firmware-name
->> +  - reg
->> +  - interrupts
->> +  - interrupt-names
->> +  - qcom,smem-states
->> +  - qcom,smem-state-names
->> +  - memory-region
-> Keep the same order as in properties.
-ok.
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    #include <dt-bindings/clock/qcom,ipq5332-gcc.h>
->> +    q6v5_wcss: remoteproc@d100000 {
-> Drop unused label.
-
-ok.
-
-Regards,
-
-Gokul
-
->> +      compatible = "qcom,ipq5332-wcss-sec-pil";
->> +      reg = <0xd100000 0x4040>;
->> +      firmware-name = "ath12k/IPQ5332/hw1.0/q6_fw0.mdt";
->> +      interrupts-extended = <&intc GIC_SPI 291 IRQ_TYPE_EDGE_RISING>,
->> +                            <&wcss_smp2p_in 0 IRQ_TYPE_NONE>,
->> +                            <&wcss_smp2p_in 1 IRQ_TYPE_NONE>,
-> Best regards,
-> Krzysztof
->
 
