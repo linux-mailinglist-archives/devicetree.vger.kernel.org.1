@@ -1,125 +1,150 @@
-Return-Path: <devicetree+bounces-95836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95837-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87F4895B6FC
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 15:39:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A08695B713
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 15:47:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31D2B1F217AB
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 13:39:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 314E2281236
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 13:47:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC8E01CB315;
-	Thu, 22 Aug 2024 13:39:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB2631CB31F;
+	Thu, 22 Aug 2024 13:47:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E6FxQOIP"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="INGK0nNU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B50A01E50B;
-	Thu, 22 Aug 2024 13:39:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68DE21E87B;
+	Thu, 22 Aug 2024 13:47:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724333969; cv=none; b=Ck7+H04FnkdhuFLzybUNMZ4dVDiC2j2Ma3XsqHodPqrcsOWubCf/GxUGDk0ECa29VQ2CH3SAT3is8QxVrYekzrcCRER/VrUhC3DoYP5rxiRbxPZGWmMnZIzHnVwdLoMielbc2J+jVh3zuNYE2ywbMvJsklabS2yHPh5+SlWkG2Y=
+	t=1724334463; cv=none; b=hEV3/ZHA3eQVQtpgcWG2jvS7iRKgI/Rm0V8mBZcjR3tbUtbSw9+P+tkJG8IG039Uj/lEICPuE/XqNhe1KDPNIWNBirS70sQLx5M2gixv4yFB/gAMZgSQm1W6Lw9uFmwDCTtXI23kmp9YnEJaEdCFFweg++llLyNPDzuhGnKl/3A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724333969; c=relaxed/simple;
-	bh=6IIgjYTrddV1aSYFQjhcxaP8pZ0PWHR+oYTSh+0LoJA=;
+	s=arc-20240116; t=1724334463; c=relaxed/simple;
+	bh=gERz56/N7TCq6I811PLRHpo7iVU0CMV6axNB79Zx+8Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cWuyG2UND/oeEHIiLe5ZO9qhQvZ+sk6xPBhOpVWNzeu1E1OuzTU2uqatDFpHfY56/ke1FTx96ECKe4cTOGr4/ZT5p2IF0KFrXzDROdOVsv5yb8B8FIlcCVZcP3cbpk9SWOP6iklhXg2qmvRig8QaNfA5GYadWiSUcHJLEe5QIxU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E6FxQOIP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4C55C32782;
-	Thu, 22 Aug 2024 13:39:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724333969;
-	bh=6IIgjYTrddV1aSYFQjhcxaP8pZ0PWHR+oYTSh+0LoJA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=E6FxQOIPbB4y+ZT4Jd2c2fZQdQwaYSbO/3tC015s0JhzWXjq6o3MFf4MPGkgh1cTa
-	 iixXW4+KAn9Fix+9gHXTRdd7sTLdRdg2FUxC9lbo+cwfaq5WnTZ5fR5YelQ5nUKHAk
-	 vg5p6yyxsv4IsVwDBWtSxFDP0Bsssfqr9yrDokWhQyGvEi0hDC7coA2Dj1rj+O/KVu
-	 p+dYeapau7QsNqr85TJ41UZeRuw2QdYZpHg0mrlOJv6MML2w1wconUqdKuZZawyXKL
-	 vqWS6DxC2ZIjaSr+dWf29zPlMZ582Ty+wfsV/EZGbQ1AgNFTJ9f9JSaqHD2+CtNIQV
-	 1riDeHM5HcV4w==
-Date: Thu, 22 Aug 2024 14:39:20 +0100
-From: Lee Jones <lee@kernel.org>
-To: Stephen Boyd <swboyd@chromium.org>
-Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
-	patches@lists.linux.dev, devicetree@vger.kernel.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=iowsDCD/qU4B1cUGHsdotZCLVk7lJsvXruHnD4skrvUn80qaEebOEXqsMOL9gVD/EJjpK6ola4+cMNoL5BSG6oblipXoFYKe1+h5PnMv9dnJ6Jxek/Ez1ZcfjCfsCiF+8PnzcFlDxZyfNKwbYZ8iHnXSIgYgVCvETa23dQ2aQIY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=INGK0nNU; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1724334463; x=1755870463;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=gERz56/N7TCq6I811PLRHpo7iVU0CMV6axNB79Zx+8Y=;
+  b=INGK0nNUOoWqpvN31n15YwcrJRuUhl9+Rbf+999Vv2emnTaCiPPqIxzz
+   cV0hnwiKVQZYgg/x0pUh8mV6JgobDMZaBAvoE64DuNKWTBwTZPqoPyiW5
+   8nFvPmDZu4z7ewO1M6iLqKOKPXqCMF6+l6Y+92JjQF8TYaDXs11R0xhew
+   zBhtjyjOPop+06lB8bHpQbjMgWH3YvL5XPzLrJLhq533mT/FEX6L5FVJ+
+   jA+N7GriZCp7ORdMuKp68pm/poM+ba6uXiHs6gsS23SWdX0PHCvNdq+FH
+   faFyyps+59hZfg/suVcj2rPfrHx/z69men3EyrMWfakbosO6uYloY5cNQ
+   w==;
+X-CSE-ConnectionGUID: xRa17gSHRU+matFfzcH+cQ==
+X-CSE-MsgGUID: mHNTbX5eSkWBUt2M7OTqlg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11172"; a="22903154"
+X-IronPort-AV: E=Sophos;i="6.10,167,1719903600"; 
+   d="scan'208";a="22903154"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Aug 2024 06:47:42 -0700
+X-CSE-ConnectionGUID: 6BZ2mrHpTuKonItbJ9JQUw==
+X-CSE-MsgGUID: Qmx3MU8CSxO5tx3hGOy4kQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,167,1719903600"; 
+   d="scan'208";a="66132920"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Aug 2024 06:47:37 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1sh8A2-00000000T7v-0IEx;
+	Thu, 22 Aug 2024 16:47:34 +0300
+Date: Thu, 22 Aug 2024 16:47:33 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Wolfram Sang <wsa@kernel.org>, Benson Leung <bleung@chromium.org>,
+	Tzung-Bi Shih <tzungbi@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
 	Douglas Anderson <dianders@chromium.org>,
-	Pin-yen Lin <treapking@chromium.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Benson Leung <bleung@chromium.org>,
-	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
-	David Airlie <airlied@gmail.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	dri-devel@lists.freedesktop.org,
-	Guenter Roeck <groeck@chromium.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Prashant Malani <pmalani@chromium.org>,
-	Robert Foss <rfoss@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Tzung-Bi Shih <tzungbi@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Daniel Scally <djrscally@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Ivan Orlov <ivan.orlov0322@gmail.com>, linux-acpi@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	"Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v3 13/17] dt-bindings: Move google,cros-ec-typec binding
- to usb
-Message-ID: <20240822133920.GK6858@google.com>
-References: <20240819223834.2049862-1-swboyd@chromium.org>
- <20240819223834.2049862-14-swboyd@chromium.org>
+	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+	linux-i2c@vger.kernel.org
+Subject: Re: [PATCH v5 02/10] regulator: Move OF-specific regulator lookup
+ code to of_regulator.c
+Message-ID: <ZsdBddTDuvNasHNq@smile.fi.intel.com>
+References: <20240822092006.3134096-1-wenst@chromium.org>
+ <20240822092006.3134096-3-wenst@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240819223834.2049862-14-swboyd@chromium.org>
+In-Reply-To: <20240822092006.3134096-3-wenst@chromium.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Mon, 19 Aug 2024, Stephen Boyd wrote:
-
-> This binding is about USB type-c control. Move the binding to the usb
-> directory as it's a better home than chrome.
+On Thu, Aug 22, 2024 at 05:19:55PM +0800, Chen-Yu Tsai wrote:
+> There's still a bit of OF-specific code in the regulator device lookup
+> function.
 > 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Lee Jones <lee@kernel.org>
-> Cc: Benson Leung <bleung@chromium.org>
-> Cc: Guenter Roeck <groeck@chromium.org>
-> Cc: Prashant Malani <pmalani@chromium.org>
-> Cc: Tzung-Bi Shih <tzungbi@kernel.org>
-> Cc: <devicetree@vger.kernel.org>
-> Cc: <chrome-platform@lists.linux.dev>
-> Cc: Pin-yen Lin <treapking@chromium.org>
-> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> ---
->  Documentation/devicetree/bindings/mfd/google,cros-ec.yaml     | 2 +-
->  .../bindings/{chrome => usb}/google,cros-ec-typec.yaml        | 4 ++--
->  2 files changed, 3 insertions(+), 3 deletions(-)
->  rename Documentation/devicetree/bindings/{chrome => usb}/google,cros-ec-typec.yaml (90%)
+> Move those bits of code over to of_regulator.c, and create a new
+> function of_regulator_dev_lookup() to encapsulate the code moved out of
+> regulator_dev_lookup().
+> 
+> Also mark of_find_regulator_by_node() as static, since there are no
+> other users in other compile units.
+> 
+> There are no functional changes.
 
-Acked-by: Lee Jones <lee@kernel.org>
+...
+
+> +/**
+> + * of_get_child_regulator - get a child regulator device node
+> + * based on supply name
+> + * @parent: Parent device node
+> + * @prop_name: Combination regulator supply name and "-supply"
+> + *
+> + * Traverse all child nodes.
+> + * Extract the child regulator device node corresponding to the supply name.
+> + * returns the device node corresponding to the regulator if found, else
+> + * returns NULL.
+
+At the same time you may fix kernel-doc warnings (no "Return" section) in these
+three (on your wish you may fix others in a separate change, but it's not
+related to this series).
+
+> + */
+
+...
+
+> +/** of_regulator_dev_lookup - lookup a regulator device with device tree only
+
+Something went wrong with the indentation.
+
+> + * @dev: Device pointer for regulator supply lookup.
+> + * @supply: Supply name or regulator ID.
+> + *
+> + * If successful, returns a struct regulator_dev that corresponds to the name
+> + * @supply and with the embedded struct device refcount incremented by one.
+> + * The refcount must be dropped by calling put_device().
+> + * On failure one of the following ERR-PTR-encoded values is returned:
+> + * -ENODEV if lookup fails permanently, -EPROBE_DEFER if lookup could succeed
+> + * in the future.
+> + */
 
 -- 
-Lee Jones [李琼斯]
+With Best Regards,
+Andy Shevchenko
+
+
 
