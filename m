@@ -1,59 +1,52 @@
-Return-Path: <devicetree+bounces-95810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D603995B47D
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 14:01:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1CA495B4B8
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 14:10:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91042285ADD
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 12:01:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 358AF1F20EFF
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 12:10:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEA491C9DD8;
-	Thu, 22 Aug 2024 12:00:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66B751C93DC;
+	Thu, 22 Aug 2024 12:10:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b="kLm4xLi+"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="p1EE1/Sx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 038D91C93D4;
-	Thu, 22 Aug 2024 12:00:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724328042; cv=pass; b=dqumT+ASXgKT/73yIhy+cLv/j8b2isO3o6gNuktm2DdkAkFZ2TPhIUz2rHpGV5zaGpmKWuuARDL8tTslyyXmSxkZkHFubSYB8EXeuIpjm2wGk95mR5J4tV7EuOH+o99VAdtLqwYylYOB1e/Wsm3ehphdqqbc64RN+CRFCtu+qI0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724328042; c=relaxed/simple;
-	bh=MpIPxydMpUibOkHL/3TmV96QliUHMrs2kls043oQ2ys=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78E871C93C9;
+	Thu, 22 Aug 2024 12:10:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724328636; cv=none; b=GuXvv4NeM40IsNCV/m973JrDMkYTrecQYWRwqIYUZQM6hzC/83iVSIBF7u/xB0HJGD20+ZsEnO/Rq7z38aHWjNvC4RFriIieye65Jx4/9a1g/+9StDDJbROEzz8/Me0cJGOf+rf/cvmP7mcayFWAX7LWYBsc7lUQyvLeUUhjYL4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724328636; c=relaxed/simple;
+	bh=Eqs5aJUrX030Wb7akJ+hJ7s+60DDzMm03GCV8YQDW8A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kBUW6aGSkL/qQ5lSf3tcRLDYzkcfAM2/xukgmuB1JjISOBvqppIy5vrl5q4zkMg4q7S7HUFw7jKnGurEwd5bte/+2aBRSEfZYxESkHvqXmyReT7eyAmbNXBN28ZfLeDRqa7FqxmhdO27PRDT5GQj/8F2UEcQvuE1aIhvFzXdQno=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b=kLm4xLi+; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-Delivered-To: kernel@collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1724327993; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=XmF4CXboFiO0+JxNj3/cf0PjAv48HwLyHaKFrCVFTibeaW6ClWVClgwFJNkyr1YVd8YPmyUoViDaa7zh6AWjZtR5ULvxvYxkyYAdTzRulKEkcppWq721rQLqfClGJKu1+jdWSR9avsY1oSnAtgaTaYe8qRF/oeKFEFs+CBS01Xk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1724327993; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=F7zXwtoEV0ZT7LXN9/C4cFaG6cOzhkCyUyT3udVmG6k=; 
-	b=Uq987caBLPycf+3ikEuo2XWI45j2KHLZxpL5iHsWzlsTvj9xzE3x4i2Cblkp9et4JbT0W+B3HtYZJ38u1QZu75YrEgt+x3EMBV4vnT+/6XYZXTl7fupVQbsAw+XTSrjhK+bc4qfxYDAXbmlVBoIZiTIhPkZ5qvyx0M0GfybU0Ew=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=cristian.ciocaltea@collabora.com;
-	dmarc=pass header.from=<cristian.ciocaltea@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724327993;
-	s=zohomail; d=collabora.com; i=cristian.ciocaltea@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=F7zXwtoEV0ZT7LXN9/C4cFaG6cOzhkCyUyT3udVmG6k=;
-	b=kLm4xLi+CrDZ55gPpQ35KdlJ2sruQr5As9Lq9/k0KKBeZ2+s3XgjQUyD4AzgZBa+
-	FlSpAO6esGIWCKKuGZRq0PMt7De22C1SvUN75e5nyQcurvZg3RX+18C6qDHpDRY0mT2
-	cgqCQJt0l5d0j9amgxgPLv/CH2MDbzgcYX8Ytt/A=
-Received: by mx.zohomail.com with SMTPS id 1724327990696635.433469686591;
-	Thu, 22 Aug 2024 04:59:50 -0700 (PDT)
-Message-ID: <7fc8cbc3-43d0-43d2-9272-350ac556e2b2@collabora.com>
-Date: Thu, 22 Aug 2024 14:59:43 +0300
+	 In-Reply-To:Content-Type; b=d4tl2xyh9Wc5VuW/p+zHpQpppGu0cRYPskYeUeZv7/Lc9d1jkIj3HVUoEJ50hw1c40unJ0HBb8lTTsCF3adC+KLiqy5bhR/0c+d/fguho36LFMjCXawPamnO5YzMiDgnWgCq8IaNb6Bg8Q6u1ebGABRbz2PQII4AHGov1PFzul4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=p1EE1/Sx; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 5AD4D1C0006;
+	Thu, 22 Aug 2024 12:10:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1724328626;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=IA2jpiRqv2jkOr6vAQ5LkEUg6XJ95e5T7MH6yDvbU/o=;
+	b=p1EE1/SxXmWpsoKR0zk9qAucc7Ze7gcXR8RUxXr6Hxl9R0esEDJl95DnHk56A+0NhxUAyQ
+	GVod+0YXGXa0ezKJnoXB3ryRltWy1xxIqft07OF4YAV9HlO/8B6EUBf/5mUKVtDTeAd/Zg
+	jCIzzcI6gQigSFua2753+gtBq+tszc+WUwwF2iIG9/M/xqKXXD/rQvSvMDSwwrUOJHeJUe
+	r65E/bPYq36O3fCH7Zg1Bh7rNY15nX2r1eH/OqikGC19GY90DXBZ2rMUdf7nW48fY95St5
+	XzRDWTuQRGgLtb3I2wg98uDoXuqOPvVc2l8rA9i6hCDrd3ImgDwQxd6HusN7tA==
+Message-ID: <bbaf1b15-2d0e-4699-91cc-17fa7a18559b@bootlin.com>
+Date: Thu, 22 Aug 2024 14:10:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,57 +54,260 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/4] dt-bindings: display: rockchip: Add schema for
- RK3588 HDMI TX Controller
-To: Conor Dooley <conor@kernel.org>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
- <heiko@sntech.de>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Sandy Huang <hjc@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>,
- Luis de Arquer <ldearquer@gmail.com>
-References: <20240819-b4-rk3588-bridge-upstream-v4-0-6417c72a2749@collabora.com>
- <7E8109D4-A353-4FE3-9152-3C3C6CB7D634@sntech.de>
- <2085e998-a453-4893-9e80-3be68b0fb13d@collabora.com>
- <4167579.6PsWsQAL7t@diego> <20240822-pushchair-premises-f4055779216a@spud>
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Subject: Re: [PATCH 2/2] wifi: wilc1000: Add WILC3000 support
+To: Marek Vasut <marex@denx.de>, linux-wireless@vger.kernel.org
+Cc: Ajay Singh <ajay.kathat@microchip.com>,
+ "David S. Miller" <davem@davemloft.net>,
+ Adham Abozaeid <adham.abozaeid@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
+ <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20240821184356.163816-1-marex@denx.de>
+ <20240821184356.163816-2-marex@denx.de>
+From: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>
 Content-Language: en-US
-In-Reply-To: <20240822-pushchair-premises-f4055779216a@spud>
+In-Reply-To: <20240821184356.163816-2-marex@denx.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+X-GND-Sasl: alexis.lothore@bootlin.com
 
-On 8/22/24 11:41 AM, Conor Dooley wrote:
-> On Thu, Aug 22, 2024 at 09:01:34AM +0200, Heiko Stübner wrote:
->> @Conor: just for me, did some shift happen in our understanding of dt-
->> best-practices in terms of syscon via phandle vs. syscon via compatible?
->>
->> Because Rockchip boards are referencing their GRFs via phandes forever
->> but similar to the soc vs non-soc node thing, I'd like to stay on top of
->> best-practices ;-)
-> 
-> If IP blocks, and thus drivers, are going to be reused between devices,
-> using the phandles makes sense given that it is unlikely that syscon
-> nodes can make use of fallback compatibles due to bits within that "glue"
-> changing between devices. It also makes sense when there are multiple
-> instances of an IP on the device, which need to use different syscons.
-> My goal is to ask people why they are using these type of syscons
-> phandle properties, cos often they are not required at all - for example
-> with clocks where you effectively need a whole new driver for every
-> single soc and having a phandle property buys you nothing.
+Hello Marek,
 
-That would be also the case for this HDMI controller - need to check the
-specs for the newer RK3576 SoC, but I expect the syscons would be quite
-different when compared to RK3588, hence we should keep making use of
-the phandles.
+I was coincidentally working on adding wilc3000 support upstream too. My work is
+also based on downstream tree, so my comments will likely reflect the reworks I
+was doing or intended to do.
+For the record, I have some wilc1000 and wilc3000 modules, in both  sdio and spi
+setups.
+
+On 8/21/24 20:42, Marek Vasut wrote:
+> From: Ajay Singh <ajay.kathat@microchip.com>
+
+[...]
+
+>  	if (!resume) {
+> -		ret = wilc_sdio_read_reg(wilc, WILC_CHIPID, &chipid);
+> -		if (ret) {
+> -			dev_err(&func->dev, "Fail cmd read chip id...\n");
+> +		chipid = wilc_get_chipid(wilc, true);
+> +		if (is_wilc3000(chipid)) {
+> +			wilc->chip = WILC_3000;
+> +		} else if (is_wilc1000(chipid)) {
+> +			wilc->chip = WILC_1000;
+> +		} else {
+> +			dev_err(&func->dev, "Unsupported chipid: %x\n", chipid);
+>  			return ret;
+>  		}
+
+I wonder if this additional enum (enum wilc_chip_type)  is really useful. We
+already store the raw chipid, which just needs to be masked to know about the
+device type. We should likely store one or the other but not both, otherwise we
+may just risk to create desync without really saving useful info.
+
+Also, this change makes wilc1000-sdio failing to build as module (missing symbol
+export on wilc_get_chipid)
+
+[...]
+
+> -	/* select VMM table 0 */
+> -	if (val & SEL_VMM_TBL0)
+> -		reg |= BIT(5);
+> -	/* select VMM table 1 */
+> -	if (val & SEL_VMM_TBL1)
+> -		reg |= BIT(6);
+> -	/* enable VMM */
+> -	if (val & EN_VMM)
+> -		reg |= BIT(7);
+> +	if (wilc->chip == WILC_1000) {
+
+wilc1000 should likely remain the default/fallback ?
+
+[...]
+
+> @@ -1232,10 +1234,7 @@ static int wilc_validate_chipid(struct wilc *wilc)
+>  		dev_err(&spi->dev, "Fail cmd read chip id...\n");
+>  		return ret;
+>  	}
+> -	if (!is_wilc1000(chipid)) {
+> -		dev_err(&spi->dev, "Unknown chip id 0x%x\n", chipid);
+> -		return -ENODEV;
+> -	}
+> +
+
+Instead of dropping any filtering (and then making the function name become
+irrelevant), why not ensuring that it is at least either a wilc1000 or a wilc3000 ?
+
+>  	return 0;
+>  }
+>  
+> diff --git a/drivers/net/wireless/microchip/wilc1000/wlan.c b/drivers/net/wireless/microchip/wilc1000/wlan.c
+> index 533939e71534a..a7cc8c0ea5de4 100644
+> --- a/drivers/net/wireless/microchip/wilc1000/wlan.c
+> +++ b/drivers/net/wireless/microchip/wilc1000/wlan.c
+> @@ -555,7 +555,7 @@ static struct rxq_entry_t *wilc_wlan_rxq_remove(struct wilc *wilc)
+>  	return rqe;
+>  }
+
+[...]
+
+> +static int chip_allow_sleep_wilc3000(struct wilc *wilc)
+> +{
+> +	u32 reg = 0;
+> +	int ret;
+> +	const struct wilc_hif_func *hif_func = wilc->hif_func;
+> +
+> +	if (wilc->io_type == WILC_HIF_SDIO) {
+> +		ret = hif_func->hif_read_reg(wilc, WILC_SDIO_WAKEUP_REG, &reg);
+> +		if (ret)
+> +			return ret;
+> +		ret = hif_func->hif_write_reg(wilc, WILC_SDIO_WAKEUP_REG,
+> +					      reg & ~WILC_SDIO_WAKEUP_BIT);
+> +		if (ret)
+> +			return ret;
+> +	} else {
+> +		ret = hif_func->hif_read_reg(wilc, WILC_SPI_WAKEUP_REG, &reg);
+> +		if (ret)
+> +			return ret;
+> +		ret = hif_func->hif_write_reg(wilc, WILC_SPI_WAKEUP_REG,
+> +					      reg & ~WILC_SPI_WAKEUP_BIT);
+> +		if (ret)
+> +			return ret;
+>  	}
+> +	return 0;
+> +}
+> +
+> +void chip_allow_sleep(struct wilc *wilc)
+> +{
+> +	if (wilc->chip == WILC_1000)
+> +		chip_allow_sleep_wilc1000(wilc);
+> +	else
+> +		chip_allow_sleep_wilc3000(wilc);
+>  }
+>  EXPORT_SYMBOL_GPL(chip_allow_sleep);
+>  
+> -void chip_wakeup(struct wilc *wilc)
+> +static void chip_wakeup_wilc1000(struct wilc *wilc)
+>  {
+>  	u32 ret = 0;
+>  	u32 clk_status_val = 0, trials = 0;
+> @@ -627,15 +662,15 @@ void chip_wakeup(struct wilc *wilc)
+>  	if (wilc->io_type == WILC_HIF_SDIO) {
+>  		wakeup_reg = WILC_SDIO_WAKEUP_REG;
+>  		wakeup_bit = WILC_SDIO_WAKEUP_BIT;
+> -		clk_status_reg = WILC_SDIO_CLK_STATUS_REG;
+> -		clk_status_bit = WILC_SDIO_CLK_STATUS_BIT;
+> +		clk_status_reg = WILC1000_SDIO_CLK_STATUS_REG;
+> +		clk_status_bit = WILC1000_SDIO_CLK_STATUS_BIT;
+>  		from_host_to_fw_reg = WILC_SDIO_HOST_TO_FW_REG;
+>  		from_host_to_fw_bit = WILC_SDIO_HOST_TO_FW_BIT;
+>  	} else {
+>  		wakeup_reg = WILC_SPI_WAKEUP_REG;
+>  		wakeup_bit = WILC_SPI_WAKEUP_BIT;
+> -		clk_status_reg = WILC_SPI_CLK_STATUS_REG;
+> -		clk_status_bit = WILC_SPI_CLK_STATUS_BIT;
+> +		clk_status_reg = WILC1000_SPI_CLK_STATUS_REG;
+> +		clk_status_bit = WILC1000_SPI_CLK_STATUS_BIT;
+>  		from_host_to_fw_reg = WILC_SPI_HOST_TO_FW_REG;
+>  		from_host_to_fw_bit = WILC_SPI_HOST_TO_FW_BIT;
+>  	}
+> @@ -674,12 +709,80 @@ void chip_wakeup(struct wilc *wilc)
+>  	if (wilc->io_type == WILC_HIF_SPI)
+>  		wilc->hif_func->hif_reset(wilc);
+>  }
+> +
+> +static void chip_wakeup_wilc3000(struct wilc *wilc)
+> +{
+> +	u32 wakeup_reg_val, clk_status_reg_val, trials = 0;
+> +	u32 wakeup_reg, wakeup_bit;
+> +	u32 clk_status_reg, clk_status_bit;
+> +	int wake_seq_trials = 5;
+> +	const struct wilc_hif_func *hif_func = wilc->hif_func;
+> +
+> +	if (wilc->io_type == WILC_HIF_SDIO) {
+> +		wakeup_reg = WILC_SDIO_WAKEUP_REG;
+> +		wakeup_bit = WILC_SDIO_WAKEUP_BIT;
+> +		clk_status_reg = WILC3000_SDIO_CLK_STATUS_REG;
+> +		clk_status_bit = WILC3000_SDIO_CLK_STATUS_BIT;
+> +	} else {
+> +		wakeup_reg = WILC_SPI_WAKEUP_REG;
+> +		wakeup_bit = WILC_SPI_WAKEUP_BIT;
+> +		clk_status_reg = WILC3000_SPI_CLK_STATUS_REG;
+> +		clk_status_bit = WILC3000_SPI_CLK_STATUS_BIT;
+> +	}
+> +
+> +	hif_func->hif_read_reg(wilc, wakeup_reg, &wakeup_reg_val);
+> +	do {
+> +		hif_func->hif_write_reg(wilc, wakeup_reg, wakeup_reg_val |
+> +							  wakeup_bit);
+> +		/* Check the clock status */
+> +		hif_func->hif_read_reg(wilc, clk_status_reg,
+> +				       &clk_status_reg_val);
+> +
+> +		/* In case of clocks off, wait 1ms, and check it again.
+> +		 * if still off, wait for another 1ms, for a total wait of 3ms.
+> +		 * If still off, redo the wake up sequence
+> +		 */
+> +		while ((clk_status_reg_val & clk_status_bit) == 0 &&
+> +		       (++trials % 4) != 0) {
+> +			/* Wait for the chip to stabilize*/
+> +			usleep_range(1000, 1100);
+> +
+> +			/* Make sure chip is awake. This is an extra step that
+> +			 * can be removed later to avoid the bus access
+> +			 * overhead
+> +			 */
+> +			hif_func->hif_read_reg(wilc, clk_status_reg,
+> +					       &clk_status_reg_val);
+> +		}
+> +		/* in case of failure, Reset the wakeup bit to introduce a new
+> +		 * edge on the next loop
+> +		 */
+> +		if ((clk_status_reg_val & clk_status_bit) == 0) {
+> +			hif_func->hif_write_reg(wilc, wakeup_reg,
+> +						wakeup_reg_val & (~wakeup_bit));
+> +			/* added wait before wakeup sequence retry */
+> +			usleep_range(200, 300);
+> +		}
+> +	} while ((clk_status_reg_val & clk_status_bit) == 0 && wake_seq_trials-- > 0);
+> +	if (!wake_seq_trials)
+> +		dev_err(wilc->dev, "clocks still OFF. Wake up failed\n");
+> +}
+> +
+> +void chip_wakeup(struct wilc *wilc)
+> +{
+> +	if (wilc->chip == WILC_1000)
+> +		chip_wakeup_wilc1000(wilc);
+> +	else
+> +		chip_wakeup_wilc3000(wilc);
+> +}
+>  EXPORT_SYMBOL_GPL(chip_wakeup);
+
+This new support makes a few places in wlan.c, netdev.c and in bus files
+(sdio.c, spi.c) install (sometimes big) branches on the device type (chip init,
+sleep, wakeup, read interrupt, clear interrupt, txq handling, etc), because the
+registers are different, the masks are different, the number of involved
+registers may not be the same, wilc3000 may need more operations to perform the
+same thing... I feel like it will make it harder in the long run to maintain the
+driver, especially if some new variants are added later. Those branches tend to
+show that some operations in those files are too specific to the targeted
+device. I was examining the possibility to start creating device-type specific
+files (wilc1000.c, wilc3000.c) and move those operations as "device-specific"
+ops. Then wlan/netdev would call those chip-specific ops, which in turn may call
+the hif_func ops. It may need some rework in the bus files to fit this new
+hierarchy, but it may allow to keep netdev and wlan unaware of the device type,
+and since wilc3000 has bluetooth, it may also make it easier to introduce the
+corresponding support later. What do you think about it ? Ajay, any opinion on
+this ?
+
+Thanks,
+
+Alexis
+
+-- 
+Alexis Lothoré, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
