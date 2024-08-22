@@ -1,89 +1,65 @@
-Return-Path: <devicetree+bounces-95719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C06D95AE0B
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 08:52:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CA9695AE17
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 08:53:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 94624B21804
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 06:52:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A5BBE1F21D47
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 06:53:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8167152E1C;
-	Thu, 22 Aug 2024 06:52:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F271F16F0DC;
+	Thu, 22 Aug 2024 06:52:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JcZQelw1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tWkts7xk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43DC514E2D4;
-	Thu, 22 Aug 2024 06:51:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9F5016DEAA;
+	Thu, 22 Aug 2024 06:52:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724309521; cv=none; b=EfPJ5dfGrFb02qwDkBmjqtnMDln6Bptnm8hQi6JaW7ezrZrRetWf5+Xa+pbbPrgM1wY+RtwXNjdpQVeKuU8Xd+Dz2C0zQjFrxtWUcs+XykQOlcrJzD93ehlcnpqTn895goFymBj6cGa3CbCiZAq6R/gypv3ngNrPTa2/zM53rrw=
+	t=1724309555; cv=none; b=YgrjApLrcw7abIQdMJibI+j1jzwHdkv1OJ4cEpnAbvhTiwFRMaMPU6HNbOuua7lmpAMAnzVYWFhK1sai7tC1ymWpabMGtWzOy0PC01/dSAt/w70yP3iseSpwVamGWQSQ5kbj/5YYvwu1RCqGpcH3vGWji3ZylkhvvreffI9kuAc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724309521; c=relaxed/simple;
-	bh=e501kEiNqiZZzJQ3GqU/FHgxQXDWv6I7kR2Zf+I0Iuo=;
+	s=arc-20240116; t=1724309555; c=relaxed/simple;
+	bh=jPUvdvkGKFGooNnKnoXnqLj1ZDfeQBnfC0I5fLQ9kBs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DHiUOixRSI7l0YmMqHrquSXqct6feyqpwOLcDwHOy4YMEcgkCXnwnD8WSxQGMtDStDGmjfJe+Rgp0SXju1IYkXxdlmcbJS2XvsgYbXrSMgx5bscfZbGCLwSgAcDHusEalXp7QjqJqpNwZueZv/FddKIUCZDsMppRfkPBsyLKg3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JcZQelw1; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1724309520; x=1755845520;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=e501kEiNqiZZzJQ3GqU/FHgxQXDWv6I7kR2Zf+I0Iuo=;
-  b=JcZQelw1CtSvjouAr5P80Y7SB1r2krUM1GKfn2oYz6z71hDQG3nk5V3P
-   fnz7clHDRmZVOFDRDndmmbvaUVjT3ncR8WbEAMK05B61JGPtoCNi2UAbH
-   hRlD3naMMyD0iBMErjmijZScLcy+Tucyn1Bqy85O3RzoNJWDzmx9p5qm0
-   36C0RZLd6x053rkZGKf5zgOGdDSm4eKO5KfQPbhi3uRZNzKstgRvVWdQn
-   a+m1KuVs+PPlb9jLhKX+XfJ8WHMDpbnaIzPIgk9UobumeTc+aeV88K33G
-   1VwE3uJqJ1XJoZ8OfVkND3iMuGlXrGaMHjjf79EbOPMjYhC5g0KCRQIt5
-   A==;
-X-CSE-ConnectionGUID: GHn7RPzkSOWi606/XEf+bw==
-X-CSE-MsgGUID: oc16rxKxQmWGrevBOn+uiA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11171"; a="34087997"
-X-IronPort-AV: E=Sophos;i="6.10,166,1719903600"; 
-   d="scan'208";a="34087997"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Aug 2024 23:51:58 -0700
-X-CSE-ConnectionGUID: ZDUJXdY4R/6A2T/GAN1RVg==
-X-CSE-MsgGUID: KNPutsCyS5KvnBYqRnqL7w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,166,1719903600"; 
-   d="scan'208";a="66227345"
-Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
-  by orviesa005.jf.intel.com with ESMTP; 21 Aug 2024 23:51:55 -0700
-Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sh1fj-000CUG-1W;
-	Thu, 22 Aug 2024 06:51:51 +0000
-Date: Thu, 22 Aug 2024 14:51:32 +0800
-From: kernel test robot <lkp@intel.com>
-To: Daniel Golle <daniel@makrotopia.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=lbLiw6tGdkAnDxxf5i4I2W0OCqvv6kJAUTtjFOi4JDfElSTVI1ShfTaCGSDyk7OjrrO0BPkBe0DmMp3pbmWyzaG/NMuThgAiJaK7AKWu/+u5EYdx6/f4yvKwkfkz+m+7ZqmrBp32x5M51/53e5KQfNLsdyZ1ggzP7ogshr/ISX4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tWkts7xk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A838C4AF0B;
+	Thu, 22 Aug 2024 06:52:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724309555;
+	bh=jPUvdvkGKFGooNnKnoXnqLj1ZDfeQBnfC0I5fLQ9kBs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tWkts7xkPfhmOH6jQABhroZB1EQKq8un0Um8qz+BBiMVKwUZmuhxgHJXMyDed+3ju
+	 1Sk6K/7w+WcDWaOUQ8oXlcyVERkQnRjWM/dfQyGDQysQxg51MP+LxUvJYg4XxBsOTJ
+	 kdKNgRDYF+LepLTVOIF8LS2IdWs8B0xrCJPfTvVmnQL+llQJEWXj081ej3HpHrFTVq
+	 Ojq1FzVJt5zNuqtiwcSc4y9qG1YkcKytPKkqGcr73v2cHcPj8kwf5vYRdwGDdw9uxg
+	 8PS8pjQ8UULSerHqOodH8lV5TE187lXBlCAlZuXT9loOFvHp3y8VBHQggsNSsFLpr/
+	 /2HPfqKP7f/YA==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1sh1gU-000000004sN-3zO1;
+	Thu, 22 Aug 2024 08:52:39 +0200
+Date: Thu, 22 Aug 2024 08:52:38 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Robert Marko <robimarko@gmail.com>,
-	Chad Monroe <chad.monroe@adtran.com>,
-	John Crispin <john@phrozen.org>, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org
-Subject: Re: [PATCH net-next 2/2] net: phy: aquantia: allow forcing order of
- MDI pairs
-Message-ID: <202408221406.WtGcNGxX-lkp@intel.com>
-References: <ed46220cc4c52d630fc481c8148fc749242c368d.1724244281.git.daniel@makrotopia.org>
+Subject: Re: [PATCH v2 2/2] phy: qcom: qmp-pcie: Add Gen4 4-lanes mode for
+ X1E80100
+Message-ID: <ZsbgNmHYj3jE9CpO@hovoldconsulting.com>
+References: <20240821-x1e80100-phy-add-gen4x4-v2-0-c34db42230e9@linaro.org>
+ <20240821-x1e80100-phy-add-gen4x4-v2-2-c34db42230e9@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,63 +68,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ed46220cc4c52d630fc481c8148fc749242c368d.1724244281.git.daniel@makrotopia.org>
+In-Reply-To: <20240821-x1e80100-phy-add-gen4x4-v2-2-c34db42230e9@linaro.org>
 
-Hi Daniel,
+On Wed, Aug 21, 2024 at 11:39:01AM +0300, Abel Vesa wrote:
+> The sixth PCIe controller on X1E80100 can be used in either
+> 4-lanes mode or 2-lanes mode. Add the configuration and compatible
+> for the 4-lane mode.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+>  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 42 ++++++++++++++++++++++++++++++++
+>  1 file changed, 42 insertions(+)
+> 
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> index a7e2ce0c500d..df1ebc19c117 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> @@ -1266,6 +1266,10 @@ static const struct qmp_phy_init_tbl x1e80100_qmp_gen4x2_pcie_ln_shrd_tbl[] = {
+>  	QMP_PHY_INIT_CFG(QSERDES_V6_LN_SHRD_RX_SUMMER_CAL_SPD_MODE, 0x5b),
+>  };
+>  
+> +static const struct qmp_phy_init_tbl x1e80100_qmp_gen4x4_pcie_serdes_4ln_tbl[] = {
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_BIAS_EN_CLK_BUFLR_EN, 0x1c),
+> +};
 
-kernel test robot noticed the following build warnings:
+Nit: This is a serdes subtable (override) so should go under the serdes
+table above (not ln_shrd).
 
-[auto build test WARNING on net-next/main]
+Looks good otherwise:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Daniel-Golle/net-phy-aquantia-allow-forcing-order-of-MDI-pairs/20240821-210717
-base:   net-next/main
-patch link:    https://lore.kernel.org/r/ed46220cc4c52d630fc481c8148fc749242c368d.1724244281.git.daniel%40makrotopia.org
-patch subject: [PATCH net-next 2/2] net: phy: aquantia: allow forcing order of MDI pairs
-config: x86_64-randconfig-123-20240822 (https://download.01.org/0day-ci/archive/20240822/202408221406.WtGcNGxX-lkp@intel.com/config)
-compiler: clang version 18.1.5 (https://github.com/llvm/llvm-project 617a15a9eac96088ae5e9134248d8236e34b91b1)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240822/202408221406.WtGcNGxX-lkp@intel.com/reproduce)
+Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408221406.WtGcNGxX-lkp@intel.com/
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/net/phy/aquantia/aquantia_main.c:483:5: sparse: sparse: symbol 'aqr107_config_mdi' was not declared. Should it be static?
-   drivers/net/phy/aquantia/aquantia_main.c: note: in included file (through include/linux/mmzone.h, include/linux/gfp.h, include/linux/umh.h, include/linux/kmod.h, ...):
-   include/linux/page-flags.h:235:46: sparse: sparse: self-comparison always evaluates to false
-   include/linux/page-flags.h:235:46: sparse: sparse: self-comparison always evaluates to false
-
-vim +/aqr107_config_mdi +483 drivers/net/phy/aquantia/aquantia_main.c
-
-   482	
- > 483	int aqr107_config_mdi(struct phy_device *phydev)
-   484	{
-   485		struct device_node *np = phydev->mdio.dev.of_node;
-   486		bool force_normal, force_reverse;
-   487	
-   488		force_normal = of_property_read_bool(np, "marvell,force-mdi-order-normal");
-   489		force_reverse = of_property_read_bool(np, "marvell,force-mdi-order-reverse");
-   490	
-   491		if (force_normal && force_reverse)
-   492			return -EINVAL;
-   493	
-   494		if (force_normal)
-   495			return phy_modify_mmd(phydev, MDIO_MMD_PMAPMD, PMAPMD_RSVD_VEND_PROV,
-   496					      PMAPMD_RSVD_VEND_PROV_MDI_CONF,
-   497					      PMAPMD_RSVD_VEND_PROV_MDI_FORCE);
-   498	
-   499		if (force_reverse)
-   500			return phy_modify_mmd(phydev, MDIO_MMD_PMAPMD, PMAPMD_RSVD_VEND_PROV,
-   501					      PMAPMD_RSVD_VEND_PROV_MDI_CONF,
-   502					      PMAPMD_RSVD_VEND_PROV_MDI_REVERSE |
-   503					      PMAPMD_RSVD_VEND_PROV_MDI_FORCE);
-   504	
-   505		return 0;
-   506	}
-   507	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Johan
 
