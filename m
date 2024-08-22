@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-95779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1327295B25F
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 11:52:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32DA595B26E
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 11:55:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0189281200
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 09:52:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DDFFD280F4B
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 09:55:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C263217DFFA;
-	Thu, 22 Aug 2024 09:52:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1354C175D3F;
+	Thu, 22 Aug 2024 09:55:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Dh6KNaeU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eXX4zrl5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 857E51CF8B;
-	Thu, 22 Aug 2024 09:52:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9E6313A3F2;
+	Thu, 22 Aug 2024 09:55:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724320363; cv=none; b=feGPHwNkF/YC9CVGRi/JCrjJhzB+UR0zenCul7612lfw6yVwp4TqJwP9Qc9T6EzHsewZ3Y+BThqIKuhkBsHNH76Ivwqj3Ik/9pPBXSf+UkVrhSzlHu/PSlxMCmorgEPhwK35kIIqGtV2P3lGNUe2oJKQGj4jJUH291HmLGdja98=
+	t=1724320552; cv=none; b=lq7jN414Uvi9wDFn8kF5LaUGWYS32B6GXEOUkPkHG9VpisWHcgHh/ZJtlq3s0uxM0f3OKEJJsqgqDpTeF08t2i9WNe3ZOyQ6ZqVpFdy5Qn7Q0ejGxug6xUpA5RCemR111GYzkSVAaQlMCXL/HbrZiuGI1Noq74UEz7ToNXCiR1w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724320363; c=relaxed/simple;
-	bh=c17xwt2hmAnmUIH5Ljz9mvg5PeMzUgVb+UvId+Q5omE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=s4kvtF9RHAkzl7scisDz3fw329/B977jaEpXxDtvbNeisR91gUz602FdojhcaoW1Mdwo3aWvcIj0tPD+NZQJnzm8tI+gqiTUNtlSAWGVrmtGHD1Ah5lpKHScV1F0uFq+hYfe2X/XE11C30hfG4urNewM0KefPmlH2eZKDTfoZoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dh6KNaeU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FD3FC32782;
-	Thu, 22 Aug 2024 09:52:30 +0000 (UTC)
+	s=arc-20240116; t=1724320552; c=relaxed/simple;
+	bh=ViprO3gDNUk5DkzxK1abOXekExxNqv0cNOF2GS0EpfY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pFr3DCoecXI5blEpVE+6upXEjFvCNmATIXXL+wy2/U3mtxvrDldVL9HRhXXxxde8H76y+uPiZkXUq+bivkmEq9YxDmtekx8hjYhkFZeLZzQqayQIS4o+E2832ggbSjYWMX/JCvqmXVBy0d/vVUXCoBNF4oqzzlpprMHQg9eLZo8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eXX4zrl5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CB23C4AF0B;
+	Thu, 22 Aug 2024 09:55:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724320363;
-	bh=c17xwt2hmAnmUIH5Ljz9mvg5PeMzUgVb+UvId+Q5omE=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=Dh6KNaeUzxmRVg7H844ll/9gV0K5AJ0t5YTRulJK0DHthiuskwp0Xji1RGhzUl9RI
-	 Pbl0rvajBzESq3wAweIoplTEB2dDL5l+rMIX58hedNDeXXarVuD0wazrEPaazFGJRZ
-	 V2GTTUjHP2iEIQeVhj5+nsr5UQa2XfaUFbIzaBkFO+iGphCcjiGNTAA7WkexFqQiLJ
-	 OhsVONI9C6Xn0Zr2juRhiMG5p89NyYLGlvKbrs/yn/4aaZD67RdnKATh+xT60aaY18
-	 jtcvohHkhEox+Eoz9RKRz+kqSAKya0TDBVdu/tzDdSsp/1780JAyTGQN0GI9ePVMcH
-	 mPf1RkMZxHpeQ==
-Message-ID: <399ff156-ffc9-4d50-8e5f-a86dc82da2fa@kernel.org>
-Date: Thu, 22 Aug 2024 11:52:27 +0200
+	s=k20201202; t=1724320551;
+	bh=ViprO3gDNUk5DkzxK1abOXekExxNqv0cNOF2GS0EpfY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=eXX4zrl5CG3va68oJotDM7mvlxscrCBWAJHr0N0p8cerBsLP2xtPJDVvCByoSCZNx
+	 ddQJOdm8PTr3AaqXZ2QIN2ogY5D644w4y7kYaqN28Y19khGFFXm9ieo+zEwVZb0WNg
+	 vbwYTR+XORD6OOJtMNB76oT+RO2Q71ClGrofQOks5/T06m7LtJJAuNosWhsK7r/vMJ
+	 lNaJ/mrDAaz4doAqVDv9YzFpdizVdNvhKsYTeg8MsjbT9FBev4ye/tFG1NKA7GdTD6
+	 LZ6oOu+gOIIRQ0RvV/jHDgf3w1MGfLBo4orMCobVmLFdmqQVwNZJsXqrg9zakmfJI4
+	 5ilHwwy1yZEdA==
+Message-ID: <89690fa9-fb7f-4f9f-aeac-0f8cb22572a3@kernel.org>
+Date: Thu, 22 Aug 2024 11:55:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,36 +50,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/11] dt-bindings: clock: Add RaspberryPi RP1 clock
- bindings
-To: Conor Dooley <conor@kernel.org>,
- Andrea della Porta <andrea.porta@suse.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v3 3/5] dt-bindings: arm: Add Coresight TMC Control Unit
+ hardware
+To: JieGan <quic_jiegan@quicinc.com>
+Cc: Rob Herring <robh@kernel.org>, Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
- <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Saravana Kannan <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
- netdev@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-arch@vger.kernel.org, Lee Jones <lee@kernel.org>,
- Andrew Lunn <andrew@lunn.ch>, Stefan Wahren <wahrenst@gmx.net>
-References: <cover.1724159867.git.andrea.porta@suse.com>
- <8d7dd7ca5da41f2a96e3ef4e2e3f29fd0d71906a.1724159867.git.andrea.porta@suse.com>
- <20240820-baritone-delegate-5711f7a0bc76@spud> <ZsTfoC3aKLdmFPCL@apocalypse>
- <20240821-exception-nearby-5adeaaf0178b@spud> <ZscGdxgoNJrifSgk@apocalypse>
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Jinlong Mao <quic_jinlmao@quicinc.com>, coresight@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+ Tao Zhang <quic_taozha@quicinc.com>, Song Chai <quic_songchai@quicinc.com>,
+ linux-arm-msm@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
+References: <20240812024141.2867655-1-quic_jiegan@quicinc.com>
+ <20240812024141.2867655-4-quic_jiegan@quicinc.com>
+ <20240818142834.GA27754-robh@kernel.org>
+ <ZsKkm/Pz0GYtH2Gl@jiegan-gv.ap.qualcomm.com>
+ <9d9704ed-6ef8-4920-9874-29e0a815e2ba@kernel.org>
+ <ZsMHnKKvOey4SA1O@jiegan-gv.ap.qualcomm.com>
+ <d117e157-f2e2-4e17-bbe4-b84001eae1bb@kernel.org>
+ <ZsQ5aMkXnyX9mumz@jiegan-gv.ap.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -125,166 +120,139 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ZscGdxgoNJrifSgk@apocalypse>
+In-Reply-To: <ZsQ5aMkXnyX9mumz@jiegan-gv.ap.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 22/08/2024 11:35, Andrea della Porta wrote:
-> Hi Conor,
-> 
-> On 12:46 Wed 21 Aug     , Conor Dooley wrote:
->> On Tue, Aug 20, 2024 at 08:25:36PM +0200, Andrea della Porta wrote:
->>> Hi Conor,
+On 20/08/2024 08:36, JieGan wrote:
+> On Mon, Aug 19, 2024 at 11:51:41AM +0200, Krzysztof Kozlowski wrote:
+>> On 19/08/2024 10:51, JieGan wrote:
+>>> On Mon, Aug 19, 2024 at 08:25:33AM +0200, Krzysztof Kozlowski wrote:
+>>>> On 19/08/2024 03:49, JieGan wrote:
+>>>>> On Sun, Aug 18, 2024 at 08:28:34AM -0600, Rob Herring wrote:
+>>>>>> On Mon, Aug 12, 2024 at 10:41:39AM +0800, Jie Gan wrote:
+>>>>>>> Add binding file to specify how to define a Coresight TMC
+>>>>>>> Control Unit device in device tree.
+>>>>>>>
+>>>>>>> It is responsible for controlling the data filter function
+>>>>>>> based on the source device's Trace ID for TMC ETR device.
+>>>>>>> The trace data with that Trace id can get into ETR's buffer
+>>>>>>> while other trace data gets ignored.
+>>>>>>>
+>>>>>>> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
+>>>>>>> ---
+>>>>>>>  .../bindings/arm/qcom,coresight-ctcu.yaml     | 79 +++++++++++++++++++
+>>>>>>>  1 file changed, 79 insertions(+)
+>>>>>>>  create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml
+>>>>>>>
+>>>>>>> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml
+>>>>>>> new file mode 100644
+>>>>>>> index 000000000000..7a9580007942
+>>>>>>> --- /dev/null
+>>>>>>> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml
+>>>>>>> @@ -0,0 +1,79 @@
+>>>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>>>> +%YAML 1.2
+>>>>>>> +---
+>>>>>>> +$id: http://devicetree.org/schemas/arm/qcom,coresight-ctcu.yaml#
+>>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>>>> +
+>>>>>>> +title: CoreSight TMC Control Unit
+>>>>>>> +
+>>>>>>> +maintainers:
+>>>>>>> +  - Yuanfang Zhang <quic_yuanfang@quicinc.com>
+>>>>>>> +  - Mao Jinlong <quic_jinlmao@quicinc.com>
+>>>>>>> +  - Jie Gan <quic_jiegan@quicinc.com>
+>>>>>>> +
+>>>>>>> +description:
+>>>>>>> +  The Coresight TMC Control unit controls various Coresight behaviors.
+>>>>>>> +  It works as a helper device when connected to TMC ETR device.
+>>>>>>> +  It is responsible for controlling the data filter function based on
+>>>>>>> +  the source device's Trace ID for TMC ETR device. The trace data with
+>>>>>>> +  that Trace id can get into ETR's buffer while other trace data gets
+>>>>>>> +  ignored.
+>>>>>>
+>>>>>> Nowhere is TMC defined.
+>>>>> The Coresight TMC control unit(CTCU) connected to Coresight TMC device via replicator and
+>>>>> works as a helper device to TMC device.
+>>>>
+>>>> Did you understand the feedback or just responding with whatever to get
+>>>> rid of reviewers?
 >>>
->>> On 17:19 Tue 20 Aug     , Conor Dooley wrote:
->>>> On Tue, Aug 20, 2024 at 04:36:03PM +0200, Andrea della Porta wrote:
->>>>> Add device tree bindings for the clock generator found in RP1 multi
->>>>> function device, and relative entries in MAINTAINERS file.
+>>> Sorry for the insufficient clarity in my response, I am just misunderstood the feedback and try
+>>> to explain the relationship between TMC and CTCU device.
+>>>
+>>> I will add the TMC description to explain what TMC is as shown below:
+>>> The Trace Memory Controller(TMC) is used for Embedded Trace Buffer(ETB), Embedded Trace FIFO(ETF)
+>>> and Embedded Trace Router(ETR) configurations. The configuration mode (ETB, ETF, ETR) is
+>>> discovered at boot time when the device is probed.
+>>
+>> Thanks.
+>>
+>>>
+>>>>
 >>>>>
->>>>> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
->>>>> ---
->>>>>  .../clock/raspberrypi,rp1-clocks.yaml         | 87 +++++++++++++++++++
->>>>>  MAINTAINERS                                   |  6 ++
->>>>>  include/dt-bindings/clock/rp1.h               | 56 ++++++++++++
->>>>>  3 files changed, 149 insertions(+)
->>>>>  create mode 100644 Documentation/devicetree/bindings/clock/raspberrypi,rp1-clocks.yaml
->>>>>  create mode 100644 include/dt-bindings/clock/rp1.h
+>>>>> The in-ports listed below illustrate their connection to TMC devices.
 >>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/clock/raspberrypi,rp1-clocks.yaml b/Documentation/devicetree/bindings/clock/raspberrypi,rp1-clocks.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..b27db86d0572
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/clock/raspberrypi,rp1-clocks.yaml
->>>>> @@ -0,0 +1,87 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: http://devicetree.org/schemas/clock/raspberrypi,rp1-clocks.yaml#
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: RaspberryPi RP1 clock generator
->>>>> +
->>>>> +maintainers:
->>>>> +  - Andrea della Porta <andrea.porta@suse.com>
->>>>> +
->>>>> +description: |
->>>>> +  The RP1 contains a clock generator designed as three PLLs (CORE, AUDIO,
->>>>> +  VIDEO), and each PLL output can be programmed though dividers to generate
->>>>> +  the clocks to drive the sub-peripherals embedded inside the chipset.
->>>>> +
->>>>> +  Link to datasheet:
->>>>> +  https://datasheets.raspberrypi.com/rp1/rp1-peripherals.pdf
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    const: raspberrypi,rp1-clocks
->>>>> +
->>>>> +  reg:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  '#clock-cells':
->>>>> +    description:
->>>>> +      The index in the assigned-clocks is mapped to the output clock as per
->>>>> +      definitions in dt-bindings/clock/rp1.h.
->>>>> +    const: 1
->>>>> +
->>>>> +  clocks:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +required:
->>>>> +  - compatible
->>>>> +  - reg
->>>>> +  - '#clock-cells'
->>>>> +  - clocks
->>>>> +
->>>>> +additionalProperties: false
->>>>> +
->>>>> +examples:
->>>>> +  - |
->>>>> +    #include <dt-bindings/clock/rp1.h>
->>>>> +
->>>>> +    rp1 {
->>>>> +        #address-cells = <2>;
->>>>> +        #size-cells = <2>;
->>>>> +
->>>>> +        rp1_clocks: clocks@18000 {
+>>>>>>
+>>>>>>> +
+>>>>>>> +properties:
+>>>>>>> +  compatible:
+>>>>>>> +    enum:
+>>>>>>> +      - qcom,sa8775p-ctcu
+>>>>>>> +
+>>>>>>> +  reg:
+>>>>>>> +    maxItems: 1
+>>>>>>> +
+>>>>>>> +  clocks:
+>>>>>>> +    maxItems: 1
+>>>>>>> +
+>>>>>>> +  clock-names:
+>>>>>>> +    items:
+>>>>>>> +      - const: apb
+>>>>>>> +
+>>>>>>> +  in-ports:
+>>>>>>
+>>>>>> Use 'ports' unless you have both in and out ports.
+>>>>> The ‘in-ports’ and ‘out-ports’ properties will be parsed by ‘of_coresight_get_port_parent’
+>>>>> and their relationships to other devices will be stored in the coresight_platform_data structure.
+>>>>>
+>>>>> for example:
+>>>>> struct coresight_platform_data {
+>>>>> 	int nr_inconns;
+>>>>> 	int nr_outconns;
+>>>>> 	struct coresight_connection **out_conns;
+>>>>> 	struct coresight_connection **in_conns;
+>>>>> };
+>>>>>
+>>>>> https://elixir.bootlin.com/linux/v6.11-rc4/source/drivers/hwtracing/coresight/coresight-platform.c#L147
 >>>>
->>>> The unit address does not match the reg property. I'm surprised that
->>>> dtc doesn't complain about that.
+>>>> and? If you respond with some unrelated argument, we will respond with
+>>>> the same: Use 'ports' unless you have both in and out ports.
 >>>
->>> Agreed. I'll update the address with the reg value in the next release
+>>> Sorry for the insufficient response.
 >>>
->>>>
->>>>> +            compatible = "raspberrypi,rp1-clocks";
->>>>> +            reg = <0xc0 0x40018000 0x0 0x10038>;
->>>>
->>>> This is a rather oddly specific size. It leads me to wonder if this
->>>> region is inside some sort of syscon area?
+>>> The Coresight driver prefers using ‘in-ports’ and ‘out-ports’ instead of the ‘ports’ property, as each
+>>> Coresight component needs to specify its input and output directions.
 >>>
->>> >From downstream source code and RP1 datasheet it seems that the last addressable
->>> register is at 0xc040028014 while the range exposed through teh devicetree ends
->>> up at 0xc040028038, so it seems more of a little safe margin. I wouldn't say it
->>> is a syscon area since those register are quite specific for video clock
->>> generation and not to be intended to be shared among different peripherals.
->>> Anyway, the next register aperture is at 0xc040030000 so I would say we can 
->>> extend the clock mapped register like the following:
+>>> The Coresight system operates by integrating all Coresight components and construting its data flow path
+>>> based on the defined directions. 
 >>>
->>> reg = <0xc0 0x40018000 0x0 0x18000>;
->>>
->>> if you think it is more readable.
+>>> Consequently, the data flow direction cannot be determined when utilizing the ‘ports’ property in the
+>>> Coresight system.
 >>
->> I don't care
-> 
-> Ack.
-> 
->>>>> +            #clock-cells = <1>;
->>>>> +            clocks = <&clk_xosc>;
->>>>> +
->>>>> +            assigned-clocks = <&rp1_clocks RP1_PLL_SYS_CORE>,
->>>
->>>> FWIW, I don't think any of these assigned clocks are helpful for the
->>>> example. That said, why do you need to configure all of these assigned
->>>> clocks via devicetree when this node is the provider of them?
->>>
->>> Not sure to understand what you mean here, the example is there just to
->>> show how to compile the dt node, maybe you're referring to the fact that
->>> the consumer should setup the clock freq?
+>> It can be determined. Driver knows that there are only in-ports, so you
+>> cannot have here other direction. Maybe the drivers have somehow this
+>> hard-coded? But that's a bit annoying limitation.
 >>
->> I suppose, yeah. I don't think a particular configuration is relevant
->> for the example binding, but simultaneously don't get why you are
->> assigning the rate for clocks used by audio devices or ethernet in the
->> clock provider node.
->>
+> In Coresight platform driver, the of_coresight_get_port_parent function is used to retrieve the parent of the 'ports' node.
+> The function is specifically hard-coded to recognize 'in-ports' and 'out-ports'. I think that's the limitation for
+> 'ports' property.
 > 
-> Honestly I don't have a strong preference here, I can manage to do some tests
-> moving the clock rate settings inside the consumer nodes but I kinda like
-> the curernt idea of a centralized node where clocks are setup beforehand.
-> In RP1 the clock generator and peripherals such as ethernet are all on-board
-> and cannot be rewired in any other way so the devices are not standalone
-> consumer in their own right (such it would be an ethernet chip wired to an
-> external CPU). But of course this is debatable, on the other hand the current
-> approach of provider/consumer is of course very clean. I'm just wondering
-> wthether you think I should take action on this or we can leave it as it is.
-> Please see also below.
-> 
->>> Consider that the rp1-clocks
->>> is coupled to the peripherals contained in the same RP1 chip so there is
->>> not much point in letting the peripherals set the clock to their leisure.
->>
->> How is that any different to the many other SoCs in the kernel?
-> 
-> In fact, it isn't. Please take a look at:
->  
-> arch/arm/boot/dts/st/stm32mp15xx-dhcom-som.dtsi
-> arch/arm/boot/dts/ti/omap/omap44xx-clocks.dtsi
-> arch/arm/boot/dts/ti/omap/dra7xx-clocks.dtsi
-> arch/arm/boot/dts/nxp/imx/imx7d-zii-rpu2.dts
-> 
-> and probably many others... they use the same approach, so I assumed it is at
-> least reasonable to assign the clock rate this way.
+> https://elixir.bootlin.com/linux/v6.11-rc4/source/drivers/hwtracing/coresight/coresight-platform.c#L147
 
-Please do not bring some ancient DTS, not really worked on, as example.
-stm32 could is moderately recent but dra and omap are not.
+That's a limitation of coresight platform driver, not bindings. Fix your
+drivers.
 
 Best regards,
 Krzysztof
