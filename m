@@ -1,242 +1,338 @@
-Return-Path: <devicetree+bounces-95680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBF9B95A891
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 02:08:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB76A95A8D0
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 02:26:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 41A541C2167D
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 00:08:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 250E828263B
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 00:26:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B895A38;
-	Thu, 22 Aug 2024 00:08:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DABBF8F5A;
+	Thu, 22 Aug 2024 00:26:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="S6CjJRkX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dcrOz4t/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B3DEA3D;
-	Thu, 22 Aug 2024 00:08:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E4325661;
+	Thu, 22 Aug 2024 00:26:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724285291; cv=none; b=XhgiFLaY5LauY0UH6TEwy0xS6WJviUWEvL2vpB/KrFCYt3BdhY7N1vyKFY2X9yjMhXBkGCQhSTXqX7rq7gnZcLghPtnlw7iMU8CEOHvMFLx2E+UmPjtweKDiRcZffk/s2Gmt6Sh7dnwSLuksDhH+MxqFUbf0AJafgsw8yi8jvds=
+	t=1724286389; cv=none; b=peVgQCdelgmes5Y8XBtFxcPvLotEs+yzSi2Gdh6v+WS65zcT//Ch6xgrulkn9XX72yKmFlJD98tDRpHTda14p6ehsF8iRBlzXgCs87Reqympx+ZcyvMYhNSmGO2taLl4iJIwn9RGCOiWtAIlZjUx3nyoQUARTYvwoPB2vkn8C/Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724285291; c=relaxed/simple;
-	bh=vgfOndwrjlpq8T9jckd7c4m1f+9iW2L/9WwWjTdusj0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q3LqrLDrI2sxYmeTXwWIpHX68mRgcKeOvQFn5lJ1USuaGKpiPSGxEyaR5bj58+4pH3NEhduq8t5Y1WRGZO5AZLMdyajEmHnZIMwJBu/6IWda/l++Rj50MY2tRhWZJ/Uad4ZWo4g9AxQSykOPXVYnqb1XHhXRCskjXzs71avDFu4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=S6CjJRkX; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1724285289; x=1755821289;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=vgfOndwrjlpq8T9jckd7c4m1f+9iW2L/9WwWjTdusj0=;
-  b=S6CjJRkXw4AwC4v3aAg+4H/FVac3iNs9XSkUa2rAy0F1eUS100+tnG0G
-   NsHlVHSW4/Y7jgriFYPitwz8fPHRz6uFuaslpARo9xTCcIAYX760WVbqI
-   NgWAH0PKf0Kce9r3kCnQ4MwI4Z5PEASwHjimxu6raYqVB/1JyoS+w2RXf
-   aL15N8Ow3sP2oWcyc+JXjZYEQxzuIUCGr/e3+Z7qRuSF9f0yzpuXQ4DLT
-   PafrFGvDILPaEK1t+dDxVmn/fRmbHPzeSU6NlmBwFlD/MsSUHKgyn8umJ
-   RSue/7yloLWehmSIT8RLwsAM3umu+lB+ce3OI+zFC7ztqvRCn5P01FLAj
-   w==;
-X-CSE-ConnectionGUID: eqD65my9Tcq29KqaCO0ZuQ==
-X-CSE-MsgGUID: veKfKSiOQACdMFc0CgB+Bg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11171"; a="22842930"
-X-IronPort-AV: E=Sophos;i="6.10,165,1719903600"; 
-   d="scan'208";a="22842930"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Aug 2024 17:08:08 -0700
-X-CSE-ConnectionGUID: LZBuqbL4RZiT/6eseKCY6A==
-X-CSE-MsgGUID: 6EjppWBSQliFO65ITpIXsw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,165,1719903600"; 
-   d="scan'208";a="84433107"
-Received: from lkp-server01.sh.intel.com (HELO 9a732dc145d3) ([10.239.97.150])
-  by fmviesa002.fm.intel.com with ESMTP; 21 Aug 2024 17:08:05 -0700
-Received: from kbuild by 9a732dc145d3 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sgvMx-000C4S-0O;
-	Thu, 22 Aug 2024 00:08:03 +0000
-Date: Thu, 22 Aug 2024 08:07:07 +0800
-From: kernel test robot <lkp@intel.com>
-To: Zhao Qunqin <zhaoqunqin@loongson.cn>, chenhuacai@kernel.org,
-	kernel@xen0n.name, bp@alien8.de, tony.luck@intel.com,
-	james.morse@arm.com, mchehab@kernel.org, rric@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, loongarch@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-edac@vger.kernel.org,
-	devicetree@vger.kernel.org, zhaoqunqin <zhaoqunqin@loongson.cn>
-Subject: Re: [PATCH v1 1/2] Loongarch: EDAC driver for loongson memory
- controller
-Message-ID: <202408220634.Irq2TUcL-lkp@intel.com>
-References: <20240821064728.8642-2-zhaoqunqin@loongson.cn>
+	s=arc-20240116; t=1724286389; c=relaxed/simple;
+	bh=sbaExOJNUa3u/kFBfMA5JdWqNWYBSpyn5r+f72RsFoY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=j8m3AmsbGQpGSs6amRnhCuEUqHwR3t4QvrLp0wbT/lbOd+6bhcGxxlcL391jrbE2sRA2BxmODTbQ3H1+zt3uI+Ncn39ThuP6qUiFjgxm7kZ2uocXmSsj7VfQcKBgTYm0z2rm4ZeETzQUwYXE7LWmSt/SRUDE9cJ+udyXUECAiJY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dcrOz4t/; arc=none smtp.client-ip=209.85.128.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-6b4432b541aso2773857b3.1;
+        Wed, 21 Aug 2024 17:26:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1724286387; x=1724891187; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yygxy+SswvTalGTzXLF9xOU7VfSvEWj/WAnP+sa6pLQ=;
+        b=dcrOz4t/Jfo68vkwaSVWoyjAE1Bt+9sSrTXFcB06HS9obfAw+AXB1oqepwPBcvY+fh
+         KtnBU5VldGU6N6gKYaNA5nmQMrX3uWd6SoaQygtdaSbdwaOBZT1h6eyzdcy1qgpTmiA7
+         E/gUZCp68kY2c7bwze1V9UcsQqQfT0LnNtfWsAWBA+/E1pboN27S343D3ZBHD5vcNg/9
+         m0OldVpWLVZCypZxQ+9SVQHne+rnSnxQQ+dC0axVFKVKijV7voJ//DxDek3GOMnxX0bz
+         Z10hSff0eEoH0ijmKPUTuJltioNVjOer5Kd1HXtCbi62X/PcnrOx/J/qQYvZUb/l7ih2
+         Y/rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724286387; x=1724891187;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yygxy+SswvTalGTzXLF9xOU7VfSvEWj/WAnP+sa6pLQ=;
+        b=FIF1OSFYzYGW8eoDqLjoNeDsnDTOljOEPS80ttD2rzXsbngNazM1rAkMKR+l1POEB2
+         b7Ue7dn6RGe2iweym1vBaXFUAUHqj+qxk7SvI9pDrD+Dd6jz48movsDHCYa8cG4DSJDe
+         w4eAlA1Iryj0SVxw1aqxqUV7QBQyG9T3q6tpTQQ0twPk7fNX26XemkNUxdmU/RkR031u
+         K2c6l5mw5EgD8de0qip4lhaOQaqAzTHKt/uUT+EmWKjIVahgjuH3oCYeq2IngOdGJ/zJ
+         QEWzm6eAe8vKk+M5tae0nr+EZbATqU6pBKojMn9CIo1BMMT4ktcXCqgQ1jSpkfjWGXrT
+         St8g==
+X-Forwarded-Encrypted: i=1; AJvYcCV50EUDiJgATwsQy/uQVAuzZRpG45Q3kxLq/7K0GsAgtPs/9nSzncJOLRts6luJu6lpUZg83Uf3fPjYTJATz28=@vger.kernel.org, AJvYcCXuVY5H+UotNFk8cz0nKt/XhZt6TOp0kGSLvcOsxHQdEov/GeO7YeHeVIlQ7083Q5JtosxF491z8h4j@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYzJUYWyTjudU8MjzqC3nURn3RGxJPG45qnJCLrorZTe/mHI/S
+	xGoZiIWm+KBcqWUMitpOPsC9vGd4IBA5IcgStnzC4SMB6GnzSJRm2HO8fZP7D5HM86IMveNzIkR
+	1Ab2lvaOwffL0EBlkkBvJkdSdY/s=
+X-Google-Smtp-Source: AGHT+IFHWv8m2dGCwdLvgaOkJlgTnvi/SA3k6TMvgah+tUzw9I7WiOv51zfqWgdB3bIHvytzPn4RPv0uIDiv6SkBxIM=
+X-Received: by 2002:a05:690c:288f:b0:62a:530:472f with SMTP id
+ 00721157ae682-6c09fa8b1b1mr43824207b3.32.1724286386825; Wed, 21 Aug 2024
+ 17:26:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240821064728.8642-2-zhaoqunqin@loongson.cn>
+References: <20240820101216.355012-1-arend.vanspriel@broadcom.com>
+ <20240820101216.355012-2-arend.vanspriel@broadcom.com> <mbvhz3wosnykejgs65es2sfedxoevysbqu3jxmpgdze2b2tl6o@grx4mxas2bmf>
+ <7881c303-bef1-403a-aa70-30d33558f57f@kernel.org> <6777d425-b27f-43d0-ba81-b36ac0b8f929@broadcom.com>
+ <0b639d04-af33-44b0-a556-40decff683c5@kernel.org> <3ed394a3-2b5e-4096-b090-c805657585a3@kernel.org>
+ <f7c17dff-fd64-4769-9fc4-7ff929a2c5d8@broadcom.com> <931f4acc-6fb5-4f0d-9e37-b945de2e7349@kernel.org>
+In-Reply-To: <931f4acc-6fb5-4f0d-9e37-b945de2e7349@kernel.org>
+From: Julian Calaby <julian.calaby@gmail.com>
+Date: Thu, 22 Aug 2024 10:26:15 +1000
+Message-ID: <CAGRGNgWeuJ4Y4AwvDQWw9nZ=tVCsaqVnmeyD+ywT4c4+LmmXCw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: wireless: restore constraint for
+ brcm,bcm4329-fmac compatible property
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Arend van Spriel <arend.vanspriel@broadcom.com>, Kalle Valo <kvalo@kernel.org>, 
+	Hector Martin <marcan@marcan.st>, Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-wireless@vger.kernel.org, brcm80211@lists.linux.dev, 
+	asahi@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Zhao,
+Hi Krzysztof, Arend,
 
-kernel test robot noticed the following build errors:
+On Wed, Aug 21, 2024 at 4:46=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 20/08/2024 21:29, Arend van Spriel wrote:
+> > On August 20, 2024 5:51:03 PM Krzysztof Kozlowski <krzk@kernel.org> wro=
+te:
+> >
+> >> On 20/08/2024 17:36, Krzysztof Kozlowski wrote:
+> >>> On 20/08/2024 14:50, Arend van Spriel wrote:
+> >>>> On 8/20/2024 1:39 PM, Krzysztof Kozlowski wrote:
+> >>>>> On 20/08/2024 13:27, Krzysztof Kozlowski wrote:
+> >>>>>> On Tue, Aug 20, 2024 at 12:12:15PM +0200, Arend van Spriel wrote:
+> >>>>>>> When extending the bindings for Apple PCIe devices the compatible=
+ property
+> >>>>>>> specification was changed. However, it was changed such that for =
+these
+> >>>>>>> devices it was no longer necessary to have "brcm,bcm4329-fmac" li=
+sted as
+> >>>>>>> string in the compatible list property as it was before that exte=
+nsion.
+> >>>>>>
+> >>>>>> Apart that this was never tested... That statement is not true. Lo=
+ok at
+> >>>>>> "fixed" commit - it is not doing like that at all.
+> >>>>>>
+> >>>>>> I don't understand the reasoning.
+> >>>>>>
+> >>>>>>> This patch restores that constraint.
+> >>>>>>>
+> >>>>>>> Fixes: e2e37224e8b3 ("dt-bindings: net: bcm4329-fmac: Add Apple p=
+roperties
+> >>>>>>> & chips")
+> >>>>>>> Signed-off-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+> >>>>>>> ---
+> >>>>>>> .../net/wireless/brcm,bcm4329-fmac.yaml       | 19 ++++++++++----=
+-----
+> >>>>>>> 1 file changed, 10 insertions(+), 9 deletions(-)
+> >>>>>>>
+> >>>>>>> diff --git
+> >>>>>>> a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fma=
+c.yaml
+> >>>>>>> b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329-fma=
+c.yaml
+> >>>>>>> index e564f20d8f41..47f90446322f 100644
+> >>>>>>> --- a/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329=
+-fmac.yaml
+> >>>>>>> +++ b/Documentation/devicetree/bindings/net/wireless/brcm,bcm4329=
+-fmac.yaml
+> >>>>>>> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.=
+yaml#
+> >>>>>>> title: Broadcom BCM4329 family fullmac wireless SDIO/PCIE devices
+> >>>>>>>
+> >>>>>>> maintainers:
+> >>>>>>> -  - Arend van Spriel <arend@broadcom.com>
+> >>>>>>> +  - Arend van Spriel <arend.vanspriel@broadcom.com>
+> >>>>>>>
+> >>>>>>> description:
+> >>>>>>> The Broadcom Single chip MAC part for the BCM4329 family and
+> >>>>>>> @@ -27,7 +27,6 @@ properties:
+> >>>>>>>            - brcm,bcm4341b0-fmac
+> >>>>>>>            - brcm,bcm4341b4-fmac
+> >>>>>>>            - brcm,bcm4341b5-fmac
+> >>>>>>> -              - brcm,bcm4329-fmac
+> >>>>>>>            - brcm,bcm4330-fmac
+> >>>>>>>            - brcm,bcm4334-fmac
+> >>>>>>>            - brcm,bcm43340-fmac
+> >>>>>>> @@ -46,13 +45,15 @@ properties:
+> >>>>>>>            - cypress,cyw43012-fmac
+> >>>>>>>            - infineon,cyw43439-fmac
+> >>>>>>>        - const: brcm,bcm4329-fmac
+> >>>>>>> -      - enum:
+> >>>>>>> -          - brcm,bcm4329-fmac
+> >>>>>>> -          - pci14e4,43dc  # BCM4355
+> >>>>>>> -          - pci14e4,4464  # BCM4364
+> >>>>>>> -          - pci14e4,4488  # BCM4377
+> >>>>>>> -          - pci14e4,4425  # BCM4378
+> >>>>>>> -          - pci14e4,4433  # BCM4387
+> >>>>>>> +    - items:
+> >>>>>>> +          - enum:
+> >>>>>>> +              - pci14e4,43dc  # BCM4355
+> >>>>>>> +              - pci14e4,4464  # BCM4364
+> >>>>>>> +              - pci14e4,4488  # BCM4377
+> >>>>>>> +              - pci14e4,4425  # BCM4378
+> >>>>>>> +              - pci14e4,4433  # BCM4387
+> >>>>>>> +          - const: brcm,bcm4329-fmac
+> >>>>>>> +    - const: brcm,bcm4329-fmac
+> >>>>>>
+> >>>>>> And this does not make sense... You claim that some constrained wa=
+s
+> >>>>>> droppped and you re-add it, but in fact you still add the same cod=
+e as
+> >>>>>> it was before.
+> >>>>>>
+> >>>>>> NAK.
+> >>>>>
+> >>>>> Ah, the last "const" actually makes sense, I missed that.
+> >>>>>
+> >>>>> Commit still however lacks rationale why these devices are compatib=
+le.
+> >>>>> Plus existing rationale that e2e37224e8b3 changed something is enti=
+rely
+> >>>>> WRONG. It changed nothing. ZERO. It only added new devices, which w=
+as
+> >>>>> claimed are not compatible with brcm,bcm4329-fmac.
+> >>>>
+> >>>> So is that claim true? What does it mean that these new devices are =
+not
+> >>>> compatible. If they are they should be in a separate binding or the
+> >>>
+> >>> Whether binding is separate or not, is just way of organizing things.
+> >>>
+> >>>> applicable properties for these devices should be made conditional.
+> >>>
+> >>> Could be if they are not applicable.
+> >>>
+> >>>>
+> >>>>> Now if you claim that original commit which said "these devices are=
+ not
+> >>>>> compatible with brcm,bcm4329-fmac", then please provide arguments, =
+not
+> >>>>> just say "other commit did something". It did nothing...
+> >>>>
+> >>>> Not entirely true. Indeed new devices were added for which no
+> >>>> "brcm,bcm4329-fmac" string is required in the compatible property. A=
+lso
+> >>>> the commit added new properties for these new devices. Now in my opi=
+nion
+> >>>> a driver should not use these properties without a "compatible" chec=
+k.
+> >>>> Hope we can agree to that. However, the driver patch for supporting =
+the
+> >>>
+> >>> Sorry, I don't follow. Why the driver would need to check for compati=
+ble?
+> >>>
+> >>>> binding change does no such thing. So if we leave the binding as it
+> >>>> currently is the driver will have to check if compatible has any of =
+the
+> >>>> listed PCI IDs before processing the properties. As all properties o=
+ld
+> >>>
+> >>> Why driver needs to check it? Are these properties not valid?
+> >
+> > How would the driver know other than the compatible property? The node
+> > with properties is delivered by the bus driver. If that comes with
+> > guarantees about validity than that's great.
+>
+> I still do not follow what is the problem being addressed by driver
+> needing to check.
+>
+> >
+> >>>
+> >>>
+> >>>> and new are marked as optional I can not come up with an argument th=
+at
+> >>>> these new devices are *not* compatible with brcm,bcm4329-fmac.
+> >>>
+> >>> Compatibility is expressed by implementing same programming interfasc=
+e
+> >>> (or its subset) thus being able to bind via fallback and correctly
+> >>> operate in given SW.
+> >
+> > This exactly what I mean to say (and apparently fail to do so ;-s ).
+> >
+> >>> I don't know whether that's the case here, so rephrasing my earlier
+> >>> comments - the commit msg should focus on this aspect and tell that
+> >>> devices are fully compatible, thus they should use fallback.
+> >>>
+> >>> Quick look at drivers told me that not - they are not compatible...
+> >
+> > Okay. That puts use in different corner of the arena. Can you elaborate
+> > how you come to that assessment? Is that based on the fact that some of
+> > the properties are SDIO-only?
+>
+> The simplest: because they do not use the same match/bind code. Plus PCI
+> devices never used half of brcmf_of_probe(). Although that's more of a
+> reason these are significantly different.
+>
+> >
+> >>>
+> >> Another thing is that calling SDIO and PCI devices compatible is quite=
+ a
+> >> stretch... Clearly hardware-wise they are very different and Linux doe=
+s
+> >> not use the same interfaces to match/bind them.
+> >
+> > These are wifi devices which hardware-wise are 95% the same. If you fin=
+d
+> > the block diagram with IP cores for these devices (enough google result=
+s
+> > to find some) you can see they sometimes even have both PCI and SDIO
+> > block on-chip although only one is used so they can be considered 100%
+> > the same. In both cases the bus driver will attach the DT node to the
+> > binding device.
+>
+> I understand they are similar, but it does not matter if that is 95% or
+> even 99% if the interface is different. Linux cannot use these devices
+> through the same interface. However if you claim it can, then please
+> write appropriate commit msg.
+>
+> My entire objection hare started not because I believe these are not
+> compatible (although based on different buses I believe they are not
+> compatible), but because the argument was about that other commit. That
+> argument is not correct to make the change. Correct argument to make the
+> change could be: These devices are compatible, because of foo and bar.
 
-[auto build test ERROR on ras/edac-for-next]
-[also build test ERROR on robh/for-next linus/master v6.11-rc4 next-20240821]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+A way to put it might be something like:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Zhao-Qunqin/Loongarch-EDAC-driver-for-loongson-memory-controller/20240821-145127
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/ras/ras.git edac-for-next
-patch link:    https://lore.kernel.org/r/20240821064728.8642-2-zhaoqunqin%40loongson.cn
-patch subject: [PATCH v1 1/2] Loongarch: EDAC driver for loongson memory controller
-config: loongarch-allmodconfig (https://download.01.org/0day-ci/archive/20240822/202408220634.Irq2TUcL-lkp@intel.com/config)
-compiler: loongarch64-linux-gcc (GCC) 14.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240822/202408220634.Irq2TUcL-lkp@intel.com/reproduce)
+Almost all Broadcom wireless chipsets, some Broadcom ethernet chipsets
+and most Broadcom-derived Infineon and Cypress wireless chipsets share
+the same rough layout:
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202408220634.Irq2TUcL-lkp@intel.com/
+System bus -> bus glue logic -> internal bus -> RF chipset(s)
 
-All errors (new ones prefixed by >>):
+Previous generations had separate drivers for the bus glue logic and
+then probed the internal bus for the RF chipset(s), however in the
+current generation that separation is mostly just a historical
+artifact and abstraction layer.
 
-   drivers/edac/loongson_edac.c: In function 'get_dimm_config':
->> drivers/edac/loongson_edac.c:90:16: error: implicit declaration of function 'EDAC_DIMM_PTR' [-Wimplicit-function-declaration]
-      90 |         dimm = EDAC_DIMM_PTR(mci->layers, mci->dimms, mci->n_layers,
-         |                ^~~~~~~~~~~~~
->> drivers/edac/loongson_edac.c:90:14: error: assignment to 'struct dimm_info *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-      90 |         dimm = EDAC_DIMM_PTR(mci->layers, mci->dimms, mci->n_layers,
-         |              ^
-   drivers/edac/loongson_edac.c: At top level:
->> drivers/edac/loongson_edac.c:181:27: error: initialization of 'void (*)(struct platform_device *)' from incompatible pointer type 'int (*)(struct platform_device *)' [-Wincompatible-pointer-types]
-     181 |         .remove         = loongson_edac_remove,
-         |                           ^~~~~~~~~~~~~~~~~~~~
-   drivers/edac/loongson_edac.c:181:27: note: (near initialization for 'loongson_edac_driver.<anonymous>.remove')
+The firmwares for all WiFi chipsets in this generation also provide
+fundamentally identical interfaces with any differences either probed
+at runtime or derived from data in the firmware. As such, once the
+glue logic is abstracted away, all chipsets of this generation are
+fundamentally identical from a software perspective. Therefore the
+only data needed to use one of these chipsets is the type of bus to
+select the glue logic driver and the firmware to load which is derived
+from the vendor and product IDs.
+
+The only real hardware differences between different chipsets are that
+some have external interrupt lines or additional clocks and I'm not
+sure if hooking those up is actually mandatory.
+
+Thanks,
+
+Julian Calaby
 
 
-vim +/EDAC_DIMM_PTR +90 drivers/edac/loongson_edac.c
 
-    80	
-    81	static int get_dimm_config(struct mem_ctl_info *mci)
-    82	{
-    83		u32 size, npages;
-    84		struct dimm_info *dimm;
-    85	
-    86		/* size not used */
-    87		size = -1;
-    88		npages = MiB_TO_PAGES(size);
-    89	
-  > 90		dimm = EDAC_DIMM_PTR(mci->layers, mci->dimms, mci->n_layers,
-    91				0, 0, 0);
-    92		dimm->nr_pages = npages;
-    93		snprintf(dimm->label, sizeof(dimm->label),
-    94				"MC#%uChannel#%u_DIMM#%u",
-    95				mci->mc_idx, 0, 0);
-    96		dimm->grain = 8;
-    97	
-    98		return 0;
-    99	}
-   100	
-   101	static void loongson_pvt_init(struct mem_ctl_info *mci, u64 *vbase)
-   102	{
-   103		struct loongson_edac_pvt *pvt = mci->pvt_info;
-   104	
-   105		pvt->ecc_base = vbase;
-   106		pvt->last_ce_count = loongson_read_ecc(mci);
-   107	}
-   108	
-   109	static int loongson_edac_probe(struct platform_device *pdev)
-   110	{
-   111		struct resource *rs;
-   112		struct mem_ctl_info *mci;
-   113		struct edac_mc_layer layers[2];
-   114		struct loongson_edac_pvt *pvt;
-   115		u64 *vbase = NULL;
-   116	
-   117		rs = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-   118		if (!rs)
-   119			return -EINVAL;
-   120		if (rs->start) {
-   121			vbase = devm_ioremap(&pdev->dev, rs->start, resource_size(rs));
-   122			if (!vbase)
-   123				return -ENOMEM;
-   124		}
-   125	
-   126		/* allocate a new MC control structure */
-   127		layers[0].type = EDAC_MC_LAYER_CHANNEL;
-   128		layers[0].size = 1;
-   129		layers[0].is_virt_csrow = false;
-   130		layers[1].type = EDAC_MC_LAYER_SLOT;
-   131		layers[1].size = 1;
-   132		layers[1].is_virt_csrow = true;
-   133		mci = edac_mc_alloc(0, ARRAY_SIZE(layers), layers, sizeof(*pvt));
-   134		if (mci == NULL)
-   135			return -ENOMEM;
-   136	
-   137		edac_dbg(0, "MC: mci = %p\n", mci);
-   138	
-   139		mci->mc_idx = idx++;
-   140		mci->mtype_cap = MEM_FLAG_RDDR4;
-   141		mci->edac_ctl_cap = EDAC_FLAG_NONE;
-   142		mci->edac_cap = EDAC_FLAG_NONE;
-   143		mci->mod_name = "loongson_edac.c";
-   144		mci->ctl_name = "loongson_edac_ctl";
-   145		mci->dev_name = "loongson_edac_dev";
-   146		mci->ctl_page_to_phys = NULL;
-   147		mci->pdev = &pdev->dev;
-   148		mci->error_desc.grain = 8;
-   149		/* Set the function pointer to an actual operation function */
-   150		mci->edac_check = loongson_edac_check;
-   151	
-   152		loongson_pvt_init(mci, vbase);
-   153		get_dimm_config(mci);
-   154	
-   155		if (edac_mc_add_mc(mci)) {
-   156			edac_dbg(0, "MC: failed edac_mc_add_mc()\n");
-   157			edac_mc_free(mci);
-   158		}
-   159		return 0;
-   160	}
-   161	
-   162	static int loongson_edac_remove(struct platform_device *pdev)
-   163	{
-   164		struct mem_ctl_info *mci = edac_mc_del_mc(&pdev->dev);
-   165	
-   166		if (mci) {
-   167			edac_mc_free(mci);
-   168			return 0;
-   169		}
-   170		return -ENODEV;
-   171	}
-   172	
-   173	static const struct of_device_id loongson_edac_of_match[] = {
-   174		{ .compatible = "loongson,ls-mc-edac", },
-   175		{}
-   176	};
-   177	MODULE_DEVICE_TABLE(of, loongson_edac_of_match);
-   178	
-   179	static struct platform_driver loongson_edac_driver = {
-   180		.probe		= loongson_edac_probe,
- > 181		.remove		= loongson_edac_remove,
-   182		.driver		= {
-   183			.name	= "ls-mc-edac",
-   184			.owner = THIS_MODULE,
-   185			.of_match_table = loongson_edac_of_match,
-   186		},
-   187	};
-   188	
+--
+Julian Calaby
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Email: julian.calaby@gmail.com
+Profile: http://www.google.com/profiles/julian.calaby/
 
