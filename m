@@ -1,115 +1,168 @@
-Return-Path: <devicetree+bounces-95856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D381D95B8A1
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 16:37:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68FFC95B8D6
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 16:46:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91243283FF7
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 14:37:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26917283C29
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 14:46:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C22891CC150;
-	Thu, 22 Aug 2024 14:37:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCA871CC179;
+	Thu, 22 Aug 2024 14:45:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ctOmC7Y9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vf/9Nta3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DAA21CBEB8;
-	Thu, 22 Aug 2024 14:37:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A06351CC173;
+	Thu, 22 Aug 2024 14:45:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724337434; cv=none; b=YkbbjtZ3cyemqz5Hse/+rpKP2ddrm5PekYgvbzwo7IvDa3ugAizzJUf/g2AmckbK4bGWPTN7rCXRRXU9gDY6VFdX1DQvg233m+F2rZBCztNYA2OBEGYBo/nK3g6QkRUobs6LlrBOolXnZLEzCvmrxkWmt8S5b4laM+HEu8HF+U4=
+	t=1724337959; cv=none; b=mfYoygfjtriW1Twb9Xho9zpD+PMD8wnf53/duAkztki5QQn2sWRuU5HStAb+Vhbvsx3E6GnifVPmeTd3cdi80s6lZK7PsGtHJkpuub3JokybyG94tM5+947J4G/UbxNerE+jXyZD1wG6lNOV4yoHBhR1/0bNMehtEPf9+DNtwOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724337434; c=relaxed/simple;
-	bh=ZkpJaD0BSKB4PQoNUPxvvmFUzWqr/hvDqpY1MhGCy+0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=faJyZ6h31GaFoU1CAN6zSc0d5iG1n6wvNw+lknGLsQINBDQOo53wMr8tcmhOiIO8VAmEAkZYbzB98mNeCzLbAufvezXLpTg9H2Ornq0hv2hLDqazOePbBMa0EYxVGnt9X7CuMAM397GCaiJWoJw4JHOGO50vNkhhgcNGmrcIeKA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ctOmC7Y9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72AA8C32782;
-	Thu, 22 Aug 2024 14:37:07 +0000 (UTC)
+	s=arc-20240116; t=1724337959; c=relaxed/simple;
+	bh=x0e29J9g52f8NEmIe2hsAYq/rb04QNT+gdvduOEJ1Wc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sKHLvZW4LqiI92TUB9NcPcspkUuwMHqukX4VARl+KVuEDdsXbZ0v75CQfDs0wqVYLulhhnuNtPzyQq8D/3+QB3I6l+pKM5XnFint/Y2Gx/60M5TcgWqOKQYxOvQtWDAlOHD//cvHhXgBkM0dUUQxfv7CuDp8xdc9Jr011y9E8Xw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vf/9Nta3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 690B1C32782;
+	Thu, 22 Aug 2024 14:45:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724337434;
-	bh=ZkpJaD0BSKB4PQoNUPxvvmFUzWqr/hvDqpY1MhGCy+0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ctOmC7Y9I5pctjwa+bfvcuJQnPKxeiOldkSiZey7L8AQjTgSHSocZlA+zCq72uwB3
-	 LWVTnaND1yi3ccNgiiz9wrc3Cals3TBSy4p7BVwYX94vzhmWuOJzOP3jmenujcCNcS
-	 bW5GDiO9y7HxNnxU5wTD9Dn/akgxr6wDJaGfWz0YZ3L12Hl+VyO7DwR2FVy+V8+pLs
-	 9P4wbYXFM3++q8YqIGml3T1hkx8NQfayBQw3YkMI4GniXfzrHxowf/b6Lci3uYP1Mh
-	 dw+8t2cS+cRA4FyWfmgXtOO3RiS5Gfx7MvRajOXarKVShQF4RViDrSa5HuO1tMNfId
-	 i19liD/cvcqFg==
-Date: Thu, 22 Aug 2024 22:37:05 +0800
-From: Tzung-Bi Shih <tzungbi@kernel.org>
-To: Stephen Boyd <swboyd@chromium.org>
-Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
-	patches@lists.linux.dev, devicetree@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Pin-yen Lin <treapking@chromium.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Benson Leung <bleung@chromium.org>,
-	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
-	David Airlie <airlied@gmail.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	dri-devel@lists.freedesktop.org,
-	Guenter Roeck <groeck@chromium.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Lee Jones <lee@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Prashant Malani <pmalani@chromium.org>,
-	Robert Foss <rfoss@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Daniel Scally <djrscally@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Ivan Orlov <ivan.orlov0322@gmail.com>, linux-acpi@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	"Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Vinod Koul <vkoul@kernel.org>
-Subject: Re: [PATCH v3 16/17] platform/chrome: cros_ec_typec: Support DP
- muxing
-Message-ID: <ZsdNEWX-eeLiokZl@tzungbi-laptop>
-References: <20240819223834.2049862-1-swboyd@chromium.org>
- <20240819223834.2049862-17-swboyd@chromium.org>
+	s=k20201202; t=1724337959;
+	bh=x0e29J9g52f8NEmIe2hsAYq/rb04QNT+gdvduOEJ1Wc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Vf/9Nta37Ucz9t7QAy2ohdXznWnvO3b6dts/6ERC3dR035ogV9Y5RsDeXVtjRctCA
+	 IfpvZ3/+iB0dL99vJ6uJvJ8Aei8S4V1erVBv97vduuCek7VO8U1YHdcEc1aYhklvX8
+	 E1s88DDeuqZL1wn+wNwEUfNnygTT3zOTfJiWomEyljPSh3kvWXuLYfelSCUKTL1MpG
+	 Bahm/K6E5OsEyxZXOqt3QGbPEMi9hb0i8rPxpWtJMsUk6H1eeqENbzQcUbsSbgoOpP
+	 g0ERss+Qc9+8TMBaA6RSFldaL/NbuyVnius+b5Il7SH/60xm6fCfGtzm9QloLctvjH
+	 ghJbWyo+nlPVw==
+Message-ID: <b4b96be5-fad6-458c-a236-9b6761eac968@kernel.org>
+Date: Thu, 22 Aug 2024 23:45:56 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240819223834.2049862-17-swboyd@chromium.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] dt-bindings: extcon: convert extcon-usb-gpio.txt to
+ yaml format
+To: Frank Li <Frank.Li@nxp.com>, MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,
+ "open list:EXTERNAL CONNECTOR SUBSYSTEM (EXTCON)"
+ <linux-kernel@vger.kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>
+Cc: imx@lists.linux.dev
+References: <20240812201754.3830198-1-Frank.Li@nxp.com>
+From: Chanwoo Choi <chanwoo@kernel.org>
+Content-Language: en-US
+In-Reply-To: <20240812201754.3830198-1-Frank.Li@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, Aug 19, 2024 at 03:38:30PM -0700, Stephen Boyd wrote:
-> @@ -671,6 +674,20 @@ static int cros_typec_configure_mux(struct cros_typec_data *typec, int port_num,
->  	if (port->mux_flags == resp.flags && port->role == pd_ctrl->role)
->  		return 0;
->  
-> +	dp_enabled = resp.flags & USB_PD_MUX_DP_ENABLED;
-> +	hpd_asserted = resp.flags & USB_PD_MUX_HPD_LVL;
-> +	/*
-> +	 * Assume the first port to have HPD asserted is the one muxed to DP
-> +	 * (i.e. active_port). When there's only one port this delays setting
-> +	 * the active_port until HPD is asserted, but before that the
-> +	 * drm_connector looks disconnected so active_port doesn't need to be
-> +	 * set.
-> +	 */
-> +	if (dp_bridge && hpd_asserted && !dp_bridge->active_port)
-> +		dp_bridge->active_port = port;
+24. 8. 13. 05:17에 Frank Li 이(가) 쓴 글:
+> Convert binding doc extcon-usb-gpio.txt to yaml format to fix below
+> warning:
+> arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dtb: /extcon-usb0:
+>     failed to match any schema with compatible: ['linux,extcon-usb-gpio']
+> 
+> Additional change:
+> - rename id-gpio to id-gpios
+> - rename vbus-gpio to vbus-gpios
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  .../bindings/extcon/extcon-usb-gpio.txt       | 21 ----------
+>  .../extcon/linux,extcon-usb-gpio.yaml         | 38 +++++++++++++++++++
+>  2 files changed, 38 insertions(+), 21 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/extcon/extcon-usb-gpio.txt
+>  create mode 100644 Documentation/devicetree/bindings/extcon/linux,extcon-usb-gpio.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.txt b/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.txt
+> deleted file mode 100644
+> index dfc14f71e81fb..0000000000000
+> --- a/Documentation/devicetree/bindings/extcon/extcon-usb-gpio.txt
+> +++ /dev/null
+> @@ -1,21 +0,0 @@
+> -USB GPIO Extcon device
+> -
+> -This is a virtual device used to generate USB cable states from the USB ID pin
+> -connected to a GPIO pin.
+> -
+> -Required properties:
+> -- compatible: Should be "linux,extcon-usb-gpio"
+> -
+> -Either one of id-gpio or vbus-gpio must be present. Both can be present as well.
+> -- id-gpio: gpio for USB ID pin. See gpio binding.
+> -- vbus-gpio: gpio for USB VBUS pin.
+> -
+> -Example: Examples of extcon-usb-gpio node in dra7-evm.dts as listed below:
+> -	extcon_usb1 {
+> -		compatible = "linux,extcon-usb-gpio";
+> -		id-gpio = <&gpio6 1 GPIO_ACTIVE_HIGH>;
+> -	}
+> -
+> -	&omap_dwc3_1 {
+> -		extcon = <&extcon_usb1>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/extcon/linux,extcon-usb-gpio.yaml b/Documentation/devicetree/bindings/extcon/linux,extcon-usb-gpio.yaml
+> new file mode 100644
+> index 0000000000000..1caf58c297d34
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/extcon/linux,extcon-usb-gpio.yaml
+> @@ -0,0 +1,38 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/extcon/linux,extcon-usb-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	is_active_port = !dp_bridge || dp_bridge->active_port == port;
+> +title: USB GPIO Extcon device
+> +
+> +maintainers:
+> +  - Frank Li <Frank.Li@nxp.com>
+> +
+> +description:
+> +  This is a virtual device used to generate USB cable states from the USB ID pin
+> +  connected to a GPIO pin.
+> +
+> +properties:
+> +  compatible:
+> +    const: linux,extcon-usb-gpio
+> +
+> +  id-gpios:
+> +    description: gpio for USB ID pin. See gpio binding.
+> +  vbus-gpios:
+> +    description: gpio for USB VBUS pin.
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    extcon_usb1 {
+> +        compatible = "linux,extcon-usb-gpio";
+> +        id-gpios = <&gpio6 1 GPIO_ACTIVE_HIGH>;
+> +    };
+> +
 
-Why `!dp_bridge`?  When will `dp_bridge` be NULL?
+Applied it. Thanks.
+
+-- 
+Best Regards,
+Samsung Electronics
+Chanwoo Choi
+
 
