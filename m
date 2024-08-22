@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-95801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46E6C95B3CB
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 13:29:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B16595B3D0
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 13:29:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0ED8281AE7
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 11:29:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA637281BC2
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 11:29:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 725AF1C93C7;
-	Thu, 22 Aug 2024 11:28:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC3001C93B8;
+	Thu, 22 Aug 2024 11:29:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m5S7dntk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o3yDF96F"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D8CF1C93A6;
-	Thu, 22 Aug 2024 11:28:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90C0E1C6F7B;
+	Thu, 22 Aug 2024 11:29:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724326132; cv=none; b=OswGFUSAjv126Zhn94gx9vUOa9nEd08Szo9Dmw9IhQXKOLUzTt1hH1Rz5SGEq3GWRcxIS2BEn5VN8Bkk/m+EC1FB7dvYnN0ON7aZ/+Okp6gbXGNBwCYFIuR/UdiBAK2/PwvCVE678Soi7nfFgfMt3rPzdIMW4ii2MDZihQdA/tE=
+	t=1724326183; cv=none; b=QN2rZUEiF5UzBiHKwC3drJTzTh5z7785PEYVYA7BBSVmlmmgG9j0lCscaHh9Q4ORMGzLKP7q6eG/4diz/X9gU1z4U0I8gubG/d9CB+OtCvVDp5T4F5TzG7Yg2P5JaiLmeOnp+IfdLPpgIm/yBM2IcXFk1lBV9yMjJoAOjXFei44=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724326132; c=relaxed/simple;
-	bh=5hbZSENnRd7z98/NMEpOsFqrQH6Pepm32EMOy9lVhqo=;
+	s=arc-20240116; t=1724326183; c=relaxed/simple;
+	bh=q6UIfNHozIo9lEeHbj8R4JHekY2b0yfbW64o+5TUkZY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bzdnjWMswkGION09BSSIz9Q+3C6eJZlU59ldBer4aZxS/FtdQRGx0rTHPGmF18t5tSuPMxFVl5CASLthM0NYdLhL3q6CIYbievbknCMnthNtxjJ4b4eRUSELbIf5GLOBh6de2zO2RGezNmoOV6dYFZsA8Xq74pG6mc5uomgVlf0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m5S7dntk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07BC3C32782;
-	Thu, 22 Aug 2024 11:28:46 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=LRLCU487KkThMXpEOFfNSFjUItrywoowvenhFacnTbEaZ5QPn60fhRHwClXEerMjJVt5nbXOooHVy4rZo9JF1yOi0dg+aalGRzl/tHOBfo/7FR2dpzQUAYTST3bIJyXDhEo/uneZYvegb6zzOX6UI5GWLHFJSGYyKNb61dIVf7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o3yDF96F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F0DEC32782;
+	Thu, 22 Aug 2024 11:29:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724326131;
-	bh=5hbZSENnRd7z98/NMEpOsFqrQH6Pepm32EMOy9lVhqo=;
+	s=k20201202; t=1724326183;
+	bh=q6UIfNHozIo9lEeHbj8R4JHekY2b0yfbW64o+5TUkZY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=m5S7dntkbMQAo+QlAfo8AxJJ1mFq1/Y4WygNHaSBUTD/3jD7plytcoT/iQHfr7d44
-	 gu9ySOv16hraDtejVnKehXq6hpWmWz3EcF9/ohf4zVKflqWwdVPWPobG0VuobEKeIU
-	 xBoTaPwa0RObN+GVlTk3nufqXZwOsE27S7LboAKXbEsB02OSJZD/N8zAQ3EZ6uWr1B
-	 QK+xhaSsgRkdpD1mdK3QSbQ5/tN1mo4h9CUgUaaOaRZy/26DlJL1txgyXKnde5OLDf
-	 CEbxotQ+SFBB6G859sviYiYNUxfLorUWoINNts79AJdhqyAsLDl0Iby7P0oNv6h3xX
-	 E9RzH+aVwvCjg==
-Message-ID: <2b5105c6-ccc1-47fb-b22c-010537f39681@kernel.org>
-Date: Thu, 22 Aug 2024 13:28:44 +0200
+	b=o3yDF96FpD5ELAgrOaIwPW62mW7Ko6AaQmsBoJrGSOZHoAhaIvQf89uV1PloObtX9
+	 2trP5mpwciCzyhyQpwds6H/TG5FKOhpaKsBqRA9C9JrXv9sEH9Y51Aem5uDirebuK5
+	 764pEesFS5FDgJpO4XuyuQUpivDHT57xfNykDRK1OJPFwG3Zgouuwx2c0dnF4KzwbP
+	 kZvtHy55Fb4k7Q/2VyC5cEq0Ggj/gwDVQYRo1/mmqJKQHjV3+DQHOqwBeolCF5c3YS
+	 xk06cSHF8IhY1XylqaU7SJR3PRW80lNP2PH8aI0TfcWiBI/inRF35B5IHRIUoF8CYK
+	 H0kylfDl8mUEg==
+Message-ID: <42f29ba8-e341-474e-9e2a-59f55850803a@kernel.org>
+Date: Thu, 22 Aug 2024 14:29:34 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,85 +50,132 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/4] Add new driver for WCSS secure PIL loading
-To: Gokul Sriram P <quic_gokulsri@quicinc.com>, andersson@kernel.org,
- krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org,
- linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: quic_viswanat@quicinc.com, quic_mmanikan@quicinc.com,
- quic_varada@quicinc.com, quic_srichara@quicinc.com
-References: <20240820085517.435566-1-quic_gokulsri@quicinc.com>
- <4d1c0d17-20b8-4989-9757-61031e9f03a4@kernel.org>
- <807c9315-bf88-4a0a-9632-2ce471b329b6@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH net-next v6 2/2] net: ti: icssg-prueth: Add support for PA
+ Stats
+To: MD Danish Anwar <danishanwar@ti.com>, Suman Anna <s-anna@ti.com>,
+ Sai Krishna <saikrishnag@marvell.com>, Jan Kiszka <jan.kiszka@siemens.com>,
+ Dan Carpenter <dan.carpenter@linaro.org>, Diogo Ivo <diogo.ivo@siemens.com>,
+ Kory Maincent <kory.maincent@bootlin.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+ Simon Horman <horms@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Jakub Kicinski <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ "David S. Miller" <davem@davemloft.net>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Santosh Shilimkar <ssantosh@kernel.org>, Nishanth Menon <nm@ti.com>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ srk@ti.com, Vignesh Raghavendra <vigneshr@ti.com>
+References: <20240820091657.4068304-1-danishanwar@ti.com>
+ <20240820091657.4068304-3-danishanwar@ti.com>
+ <03172556-8661-4804-8a3b-0252d91fdf46@kernel.org>
+ <79dfc7d2-d738-4899-aadf-a6b4df338c23@ti.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <807c9315-bf88-4a0a-9632-2ce471b329b6@quicinc.com>
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <79dfc7d2-d738-4899-aadf-a6b4df338c23@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/08/2024 12:43, Gokul Sriram P wrote:
+
+
+On 22/08/2024 08:28, MD Danish Anwar wrote:
 > 
-> On 8/20/2024 4:42 PM, Krzysztof Kozlowski wrote:
->> On 20/08/2024 10:55, Gokul Sriram Palanisamy wrote:
->>> This series depends on q6 clock removal series [1].
->> How? So this cannot be tested and merged?
 > 
-> Yes. Though TrustZone enables these clocks, since Linux Kernel will 
-> consider these clock as unused.
-> These clock will be disabled so we cannot bring Q6 out of reset. So we 
-> have the dependency set.
-> I posted this as a separate series because [1] 'remove unnecessary q6 
-> clocks' series was already reviewed for some
-> versions.
+> On 21/08/24 6:05 pm, Roger Quadros wrote:
+>>
+>>
+>> On 20/08/2024 12:16, MD Danish Anwar wrote:
+>>> Add support for dumping PA stats registers via ethtool.
+>>> Firmware maintained stats are stored at PA Stats registers.
+>>> Also modify emac_get_strings() API to use ethtool_puts().
+>>>
+>>> This commit also renames the array icssg_all_stats to icssg_mii_g_rt_stats
+>>> and creates a new array named icssg_all_pa_stats for PA Stats.
+>>>
+>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>>> ---
+> 
+> [ ... ]
+> 
+>>> +
+>>>  #define ICSSG_STATS(field, stats_type)			\
+>>>  {							\
+>>>  	#field,						\
+>>> @@ -84,13 +98,24 @@ struct miig_stats_regs {
+>>>  	stats_type					\
+>>>  }
+>>>  
+>>> +#define ICSSG_PA_STATS(field)			\
+>>> +{						\
+>>> +	#field,					\
+>>> +	offsetof(struct pa_stats_regs, field),	\
+>>> +}
+>>> +
+>>>  struct icssg_stats {
+>>
+>> icssg_mii_stats?
+>>
+> 
+> Sure Roger. I will name it icssg_miig_stats to be consistent with
+> 'struct miig_stats_regs'
+> 
+>>>  	char name[ETH_GSTRING_LEN];
+>>>  	u32 offset;
+>>>  	bool standard_stats;
+>>>  };
+>>>  
+>>> -static const struct icssg_stats icssg_all_stats[] = {
+>>> +struct icssg_pa_stats {
+>>> +	char name[ETH_GSTRING_LEN];
+>>> +	u32 offset;
+>>> +};
+>>> +
+>>> +static const struct icssg_stats icssg_mii_g_rt_stats[] = {
+>>
+>> icssg_all_mii_stats? to be consistend with the newly added
+>> icssg_pa_stats and icssg_all_pa_stats.
+>>
+>> Could you please group all mii_stats data strucutres and arrays together
+>> followed by pa_stats data structures and arrays?
+>>
+> 
+> Sure Roger, I will group all mii stats related data structures and
+> pa_stats related data structures together.
+> 
+> The sequence and naming will be something like this,
+> 
+> struct miig_stats_regs
+> #define ICSSG_MIIG_STATS(field, stats_type)
+> struct icssg_miig_stats
+> static const struct icssg_miig_stats icssg_all_miig_stats[]
+> 
+> struct pa_stats_regs
+> #define ICSSG_PA_STATS(field)
+> struct icssg_pa_stats
+> static const struct icssg_pa_stats icssg_all_pa_stats[]
+> 
+> Let me know if this looks ok to you.
 
-This is not a dependency in the kernel workflow. Nothing gets broken,
-nothing stops this patch from merging. Your remark is confusing and will
-either start questions or prevent applying the patchset.
+This is good. Thanks!
 
-Best regards,
-Krzysztof
+> 
+>>>  	/* Rx */
+>>>  	ICSSG_STATS(rx_packets, true),
+>>>  	ICSSG_STATS(rx_broadcast_frames, false),
+>>> @@ -155,4 +180,11 @@ static const struct icssg_stats icssg_all_stats[] = {
+>>>  	ICSSG_STATS(tx_bytes, true),t
+>>>  };
+>>>  
+>>> +static const struct icssg_pa_stats icssg_all_pa_stats[] = > +	ICSSG_PA_STATS(fw_rx_cnt),
+>>> +	ICSSG_PA_STATS(fw_tx_cnt),
+>>> +	ICSSG_PA_STATS(fw_tx_pre_overflow),
+>>> +	ICSSG_PA_STATS(fw_tx_exp_overflow),
+>>> +};
+>>> +
+>>>  #endif /* __NET_TI_ICSSG_STATS_H */
+>>
+> 
 
+-- 
+cheers,
+-roger
 
