@@ -1,118 +1,113 @@
-Return-Path: <devicetree+bounces-95919-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95920-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF3A395BDFD
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 20:07:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8916495BE34
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 20:25:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08B501C22493
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 18:07:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FDF72863DE
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 18:25:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F22D31CFEC7;
-	Thu, 22 Aug 2024 18:07:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E26E21CF2BC;
+	Thu, 22 Aug 2024 18:25:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hrDeP3FJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hp6PetVH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9263C1CFEAC;
-	Thu, 22 Aug 2024 18:07:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADABC2AE77;
+	Thu, 22 Aug 2024 18:25:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724350062; cv=none; b=ACErRbXOIIri3VAF/8J/YwBYz3QdrXrKP0NkawQkP310/WS0RW4MLS98dTtfLkLZPmq4KOwLoKD6nhuzBrT6ZO0Mn8l+bofFzxOC81FZebBuGQF5kunf3r216mYCHrFWCN5eppA5Gtt+E/SjYjO86NK5RUDtgJiy74tn7DrjQO0=
+	t=1724351123; cv=none; b=MS28EHAuZdsJEaUscrmEvOqQcmeO3Ilu5BWDbu7wQLe7VfEYKXslrvmgvH56QFYEhHSVMmZF+wuTmu1hvNnYWEXzr1yu1A5H3OrQPhgVFTWMbdtlq3Vdh9Z+G6CDIM009TU18c83lbWOMIncqeMqyFiOM2WaQZaw2WyMZZ8V3ug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724350062; c=relaxed/simple;
-	bh=pcBIeK4mcDPFBDjl4/lQsKOvSfla45+WspiEGxXvkn0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c0Z2uUFBlm/9KbOoANn9veR5tMhcTSOstcSkET5ukg1CAS20/WUWm8QWIhq+G86Rm+7eVgOEAWtGGJi6x3n0sa3oa1Na5mtB7AkWGSErVVa3RTgF4WBW7uIyxglwfsXUZNxcYol4j7i860rlDc5IozB+6+q+j4A+zyooxI8kL7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hrDeP3FJ; arc=none smtp.client-ip=209.85.216.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2d3c99033d6so893438a91.0;
-        Thu, 22 Aug 2024 11:07:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1724350061; x=1724954861; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=GQybDFmkYIn6xZ+90bRuYKiZGiAETXvH8v85EQgpozk=;
-        b=hrDeP3FJB5ia7ym+qbUApZIpZWIly2Ruo/9VsY/pZQF/HPILKywYGmeSYLYrZOYvpX
-         Y4MqjYP5RCAN9Dt1tSK/gSwe+cfoqGh7hxfaf1H1HuhbVcwgX393V1V1kFpFbYPJIrS9
-         vjDEN1miASJN+Oqh7GDqW8/18XavQDx3gMuAu/OPAfjgrToRUzKLbCxNSfujsyiqw6Q6
-         gmX1au0/pcYKp3jr0F+MPM2GvrHnyj6MINhCZLRz4RbNmq9ddsZmp6EkY1lhiEdMGe2C
-         OSW253zZjmEAch7Acjlp7E3XUZVJM/abHLP/8oN5yv2mVtspS3Ba8Jt6VWQ3h6IOIU2j
-         sppw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724350061; x=1724954861;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GQybDFmkYIn6xZ+90bRuYKiZGiAETXvH8v85EQgpozk=;
-        b=MbJvY2amcakA+wA1049hpOHkeQ0f6ehqg0+GuxKBAsuDTFWBfrNqaxZzsDBIvzb8AE
-         fwXWvyoc5jrCCwc/u/qlxzyCKZB8K4DCViQ8mTD/ffpjhqSsrrMqIMWZhIJDVGKpd4is
-         qx2VYkQNYqmSi+JbwqYEHvMN3xCFOPhNnSKxtJ+fIcCA6ioqv6oohxodLtB1LX7PHBQR
-         uACgYC67KSu5wvzAa/l1qhpmngkOl6zYDTYWqQn9UCnk/kXvoFi4bSsLT/1Fmh4nKgsi
-         3NwZN0VtMDE0rMZC7h8BpTRTP9GN7wnE+bvqaqCm+b6ZdBRPDUfee5EQLJjmW9S1MEy1
-         8DpA==
-X-Forwarded-Encrypted: i=1; AJvYcCU3KjUUxLE1NEC1CM4+G6CRvjaAcdMJUhWo8w7d65PzALd3jmqbdyKURj8dv3ThoFTrKpxNV+Jz2daQDQ/qLjpI8OI=@vger.kernel.org, AJvYcCUOVSVzNZiNssMcNauaNKDCTXCERv9GPBCQDn80GHoKLTTJlP60kGkn74YxDd0b5xRjWi1OlhThXqIIKWBl@vger.kernel.org, AJvYcCWjPgFHu4WimnLCIGNC5kvQMh30ri51NrIRopX/SR84mioJq628S2ofL/Pg02QNlAy1IoD2GSkNAL40@vger.kernel.org, AJvYcCXAw8r0SZ693VwCmBr8fpPfv0dzLuugnpYDF64SrKtR3IquEUeRTDeSaTrPkg8jUxv6Nd3TT9wls04PBTE=@vger.kernel.org
-X-Gm-Message-State: AOJu0YziE7t895Nb2aUcIy9Vq9iKTikjgvGAZC/F6om9O6MBFpfvgOqu
-	9PR0eIvlJ6Uh5XUIeRQ95b84omune3ZgR/sWLvHy2pPmWLBkAW/s
-X-Google-Smtp-Source: AGHT+IHBi4GxWgUXMcq98eVE29iY0upag5vzbbKCImIrJyIAQdIDDT41hS5m+8Vv4xn3Pcuv4QSJjA==
-X-Received: by 2002:a17:90b:1d8d:b0:2cd:40ef:4764 with SMTP id 98e67ed59e1d1-2d5e99ebb94mr7480722a91.17.1724350060624;
-        Thu, 22 Aug 2024 11:07:40 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:ccdb:6951:7a5:be1b])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2d5eb8d235esm4544510a91.6.2024.08.22.11.07.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Aug 2024 11:07:40 -0700 (PDT)
-Date: Thu, 22 Aug 2024 11:07:37 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Arnd Bergmann <arnd@arndb.de>, Mark Brown <broonie@kernel.org>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, patches@opensource.cirrus.com
-Subject: Re: [PATCH 06/14] Input: samsung-keypad - use guard notation to
- acquire mutex
-Message-ID: <Zsd-aVM6504L_hqi@google.com>
-References: <20240819045813.2154642-1-dmitry.torokhov@gmail.com>
- <20240819045813.2154642-7-dmitry.torokhov@gmail.com>
- <e6xkutxnpu7acvm5qfyyces4estm4ihc3rzczqpnxrbrkptdm2@6lwrlssvtt3v>
+	s=arc-20240116; t=1724351123; c=relaxed/simple;
+	bh=d5SxwQXp9IhK4Vqaj8bbSuKXGNiP1rcA5S9sV1iqwyM=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=jmG56IrgSeSIuJ1PfG+U+IXWN104CpjmliybWhl9og4jKGGSA8095Dzke60789vL+URsaai6ARBS/DbqszeHuZOILCeJMrrAZQU0odZvZklBX7zF5ZfJi0SmaXfmyygBYoeb1WElzjwQ80emQlxx5ymi+q5nhqUXZVsWJXxerkg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hp6PetVH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEDC9C32782;
+	Thu, 22 Aug 2024 18:25:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724351123;
+	bh=d5SxwQXp9IhK4Vqaj8bbSuKXGNiP1rcA5S9sV1iqwyM=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=hp6PetVHW09spfI6vqrH0HD/2lrD3vzayiGkJ4liiE6JmEOhI5KDDdt/w1Y7vUUeD
+	 TlqM+WZgoY+fw+9pX6RGLCAGL9MHBK1N2Nm/boHbeDc8X0FJ7KFxsAp9Ts8+87+lhr
+	 z9isTyFZ6fZoUGTyFWL+d/4mQq16nRNjJ7y6baIUe8OUIwpHB5v+T8PkwPtBJuUn1N
+	 A3fkAEMHIcitbnuvG5o4LXPf7TKbgTTDWqJpGz5LXiHTU8i44pL90oYXbtCuHRHDfl
+	 jE9fE3jPZMcz8lx+RxGpdhLx4oq+uJGdWSdb+zzrnVJFwB846kBF3BSFZeT6erIUE2
+	 Oz62C8couXaTQ==
+Date: Thu, 22 Aug 2024 13:25:21 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e6xkutxnpu7acvm5qfyyces4estm4ihc3rzczqpnxrbrkptdm2@6lwrlssvtt3v>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+Cc: robin.murphy@arm.com, devicetree@vger.kernel.org, 
+ Hugues.KambaMpiana@arm.com, linux-kernel@vger.kernel.org, 
+ liviu.dudau@arm.com, Adam.Johnston@arm.com, mathieu.poirier@linaro.org, 
+ sudeep.holla@arm.com, Drew.Reed@arm.com, linux-remoteproc@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, conor+dt@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, lpieralisi@kernel.org, 
+ andersson@kernel.org
+In-Reply-To: <20240822170951.339492-2-abdellatif.elkhlifi@arm.com>
+References: <CANLsYkwOrtXxObL5MKf30OrUYB_uT=DnGEXUtfjH503r_LyMQA@mail.gmail.com>
+ <20240822170951.339492-1-abdellatif.elkhlifi@arm.com>
+ <20240822170951.339492-2-abdellatif.elkhlifi@arm.com>
+Message-Id: <172435112119.3486691.3093277909404901548.robh@kernel.org>
+Subject: Re: [PATCH v2 1/5] dt-bindings: remoteproc: sse710: Add the
+ External Systems remote processors
 
-On Thu, Aug 22, 2024 at 05:48:33PM +0200, Krzysztof Kozlowski wrote:
-> On Sun, Aug 18, 2024 at 09:58:03PM -0700, Dmitry Torokhov wrote:
-> > Guard notation is more compact and ensures that the mutex will be
-> > released when control leaves the function.
-> > 
-> > Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> > ---
-> >  drivers/input/keyboard/samsung-keypad.c | 8 ++------
-> >  1 file changed, 2 insertions(+), 6 deletions(-)
-> > 
+
+On Thu, 22 Aug 2024 18:09:47 +0100, Abdellatif El Khlifi wrote:
+> Add devicetree binding schema for the External Systems remote processors
 > 
-> You need to include cleanup.h (unless some other patch already did it
-> and I missed it?)
+> The External Systems remote processors are provided on the Corstone-1000
+> IoT Reference Design Platform via the SSE-710 subsystem.
+> 
+> For more details about the External Systems, please see Corstone SSE-710
+> subsystem features [1].
+> 
+> [1]: https://developer.arm.com/documentation/102360/0000/Overview-of-Corstone-1000/Corstone-SSE-710-subsystem-features
+> 
+> Signed-off-by: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+> ---
+>  .../remoteproc/arm,sse710-extsys.yaml         | 90 +++++++++++++++++++
+>  1 file changed, 90 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/arm,sse710-extsys.yaml
+> 
 
-Guard for mutexes defined in mutex.h which is pulled in indirectly, and
-cleanup.h is included there.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-If we want to list all the headers that we need instead of relying on
-indirect inclusions I think we need a separate patch. But even then I
-wonder if things like cleanup.h should be included by drivers
-directly...
+yamllint warnings/errors:
 
-Thanks.
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/remoteproc/arm,sse710-extsys.example.dtb: /example-0/syscon@1a010000: failed to match any schema with compatible: ['arm,sse710-host-base-sysctrl', 'simple-mfd', 'syscon']
 
--- 
-Dmitry
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240822170951.339492-2-abdellatif.elkhlifi@arm.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
