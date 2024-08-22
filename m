@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-95875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9969595BA5E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 17:32:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F26AF95BA61
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 17:32:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52131286527
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 15:32:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E1541F224DC
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 15:32:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA83F1D0DCD;
-	Thu, 22 Aug 2024 15:28:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA6C31D0DD9;
+	Thu, 22 Aug 2024 15:28:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="lSC0pPIt"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="EjQNyK6u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBEE41D048F
-	for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 15:28:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED07D1D04AB
+	for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 15:28:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724340525; cv=none; b=qwOy4OQwy47Ru123uWHkwLy5EXTar6iizPWnjF6yhklg2uTByRF8QakcJKDGc2KFDSZ+65SigjaVifA0mexoV++OVk/naHz+jiZulpQSV0xwLSu4lvE8WqPI9c5Tuhc7XYRlcegs3WtpBYdv2PqqLU2fLELcZM9eblRya0TqJS8=
+	t=1724340526; cv=none; b=cmwRYPoHmbxokbjQWsyDgcWfBWfV2bzACijmNriTly6rrKtw1CmYwr580oPfidjB9HvPbcdImGmrckNjN+FPUDzX1K99iK3aLl6ZyQAuefooXa+s2gXSsUWMzWIP1nrM9777/2+rtLoeWbZ7Pb876ShjQxf0rBJMKfFRc9r2uKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724340525; c=relaxed/simple;
-	bh=qfMyBWF/BL7cu1fLu2yMExkkMJ+Iv5WKiP7iKrRAAGk=;
+	s=arc-20240116; t=1724340526; c=relaxed/simple;
+	bh=Fdk5QGcF0Of61Ef45y7VdXpM+rCxir0BEowLZBYRpu0=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=n1npJO0mxBb8wKHYgHxZja7Bx6I/dY2zfa0igCVDDM4wYU53gwR9CWBtFIBl1nUTtW3+saM7Xt6IHjzaDxpS39veKFc4GsA0QFch1lC7L/beXayBPK3mqrVmP5adkYzuZGwQfK+ho2mWYi3/rwUZR8mKeSwgi4WHEbiV8t2kb/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=lSC0pPIt; arc=none smtp.client-ip=209.85.218.52
+	 MIME-Version; b=VB5r3ClvXZxds6AZ4QmiuLXRfh1h10ojzTT1JYBuQCBGs2tjSabUODnDxPIjwTR6r9zevidPQJiGOe3U8cRZYdXQbekjpyxogQHtZ55IbPZ/QVXiNeOTF3gbwmANDWYvfhcVaj+va7zSpMJX3x54evKU98o7iGA+WreZnwHf/wE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=EjQNyK6u; arc=none smtp.client-ip=209.85.218.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a8684c31c60so121164266b.3
-        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 08:28:42 -0700 (PDT)
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a7a9cf7d3f3so140599766b.1
+        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 08:28:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1724340521; x=1724945321; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1724340523; x=1724945323; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=XSWof3eimbYWdm3Zde2Iz4BDEJwC1Ylc5fdAQ7iNZKY=;
-        b=lSC0pPItQ1mmbd/o/QKaAbzFexzBwZt/gpoSig4MEDA4mHOPelhwzMiF/rZuoZInu/
-         VBmHIcOAZuBPYPociUCPZ6/i7ddtKNX9wDIlf60CRd0/o2UD5NIFX8FeBseGM/bFzcq2
-         JZhSDAJNyfZP6dq9l39kgZg+aF08Vps8GNna4ZLCpuX21L3Nkzuq5/EGNLoKMjFs0kPp
-         JdXpg5t4kTjozpqV3botNWvrNDrSihivB48ih82yxvFYvD00NQ/DCIxaifF5s61+OFVB
-         VRKjzGxHaUxqJS5eazktQEb/1jl4E9KpvgEahhoq/0eUjAAFhLgyr4LzKkVWByARNMq7
-         /NSg==
+        bh=AWNzbrWT4cjZwlbw/B+Ku5dXdfTILO3SL/AQs9G2I5o=;
+        b=EjQNyK6uwTm57ffpzmcg2r9a+thZq4TEOL6Cf3vcKF/Ent6/ZvZvJkbkvnHWh61d1N
+         K3NbO/SiWFsTG9+8pz5Jx/H+BKw7ft4qq1kJBUmnoXql7waQYC8zUX1FkHFPk22KttV8
+         OzUpEw2SdwTJBEgQUm/shuAFN2onvEwRQNwtSr2aVwDJOdSnGyKeBf5K/MJwzswxN+LH
+         0BrAaOj3sLKZ2tCEKZEwIiIZOqdpRQbJQeJ9MQ36xaCKTJShpemhUz7lsa4WJCA9521U
+         esrrbHLwdXTxpkfO7dmG9skkMyAQxC2Je2atdaqNiprxy5IG+TIjfTyHNCjhwgqcqvoH
+         dxTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724340521; x=1724945321;
+        d=1e100.net; s=20230601; t=1724340523; x=1724945323;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=XSWof3eimbYWdm3Zde2Iz4BDEJwC1Ylc5fdAQ7iNZKY=;
-        b=dMtNVBdQy8PPOV8AKIJc2E7APtT/iwjDtYxwhgpeqhVfB44HXyNjTEQs//93TRjLZ8
-         tQakzIBNMfbB9rw+PLHHYCCe3gxVDobO21lmN/6XqkzLJ6/yTtL02Hq8yvFma0meDNdp
-         AcTjS0aFAluso9m3HGrWoGNgc1RvxPLT9OMpTzCyK8zmLJOrQfVRyeQZJayOt1D+c1Ze
-         r2sU3fNQS9a3mJvBYBsr6xt11P30h6OVvQDxuMYP03a9ccpWvrvIBWn761cKm5joFexp
-         2UMB2WNBM2AWm4lcWraAAmtHZh5e8QnBxgOWApmyIfDH4RX8TrFvFHs03he/tavRxexV
-         jSxw==
-X-Forwarded-Encrypted: i=1; AJvYcCUEujZEfxqzdsPJi2ShmbJFd/x11YyMvxf3aZQwjnbgtLNFJidHEJDcfPAgVZsaWHKX7Yqge7rbM0UH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxzscq0YgR5W0rB3U8RiaquHFQ6EbBiTjboGtAhjUIoeyVUKNqq
-	M0a4F3nn+vkfVtY61XxKPIBhrB9vZ8++Gtjx9td2GhL7hF0wfvabH4d5sDaONyk=
-X-Google-Smtp-Source: AGHT+IEBQZ1FZ/LXCGsRTtDo2mrL6RRIsqfYVgMxLk7cvYuAGygDFmxNvFc2QDySBzsJWYCvzMOvmg==
-X-Received: by 2002:a17:907:7214:b0:a86:82e2:8c64 with SMTP id a640c23a62f3a-a8691b5c943mr185347366b.35.1724340521191;
-        Thu, 22 Aug 2024 08:28:41 -0700 (PDT)
+        bh=AWNzbrWT4cjZwlbw/B+Ku5dXdfTILO3SL/AQs9G2I5o=;
+        b=t62jamaQu9wvAFr8r+8ElAjmSHK6efzaEr+JerYL72j9OsmjnqbkXJqE3bJ3HCa7g2
+         8SfjHTnO6Nk60MRjAPksVPSsFMWxS1y5Bg5pcuYdsoHM88u82DEJ3jZbHYfTZylE2yDq
+         kAwW2YcKgP1K3BFB9Zyyxu0gSnLw8JpSVAK8A3HXUrPf9/9k07XxvQzXifJkSBtrkZG2
+         TkUoVs0Bqdf/RFNb+zqQ6ObJ21TYafTYHdTUVyiKKpChCrNMZ3KOF93cA0Pvb+EQIwpO
+         sYEInPV4DZrj/9ill2cUWMMN+4MNRvZ3bjq5FrP5/HIg8v2C7Mb0DeOb6cWJqqtIMKvV
+         WgYg==
+X-Forwarded-Encrypted: i=1; AJvYcCVy+DIzJfXpk6/q0y9E9oibOqoofTfQKabjIRehpQaAJiAbQXzzLtDWz2pSBm3qqSy1BjUeFXZQ+HC6@vger.kernel.org
+X-Gm-Message-State: AOJu0YzF9Vl4zxJoskNMkUdnaKwrqLWvnCrlGfVAX4kvpdTzVuNM5pmL
+	nrTO+f3c8h2s/vyoBFRFUZJjkUa5GA5D2ZvN0X/B1g7kYrJndi6X/ZcmxcWVkEM=
+X-Google-Smtp-Source: AGHT+IHil/3QLm3fW6hjS77rGDv48oy9/7q2NQAgMRaJIdEszcJA4lXA3RSoaEhwajY77aZMJWnb/Q==
+X-Received: by 2002:a17:906:7313:b0:a86:700f:93c1 with SMTP id a640c23a62f3a-a86700fb357mr451883866b.60.1724340523183;
+        Thu, 22 Aug 2024 08:28:43 -0700 (PDT)
 Received: from claudiu-X670E-Pro-RS.. ([82.78.167.177])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a868f484dc5sm134189166b.171.2024.08.22.08.28.39
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a868f484dc5sm134189166b.171.2024.08.22.08.28.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Aug 2024 08:28:40 -0700 (PDT)
+        Thu, 22 Aug 2024 08:28:42 -0700 (PDT)
 From: Claudiu <claudiu.beznea@tuxon.dev>
 X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
 To: vkoul@kernel.org,
@@ -93,9 +93,9 @@ Cc: linux-phy@lists.infradead.org,
 	linux-pm@vger.kernel.org,
 	claudiu.beznea@tuxon.dev,
 	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH 12/16] phy: renesas: rcar-gen3-usb2: Add support for the RZ/G3S SoC
-Date: Thu, 22 Aug 2024 18:27:57 +0300
-Message-Id: <20240822152801.602318-13-claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH 13/16] arm64: dts: renesas: Add #reset-cells to system controller node
+Date: Thu, 22 Aug 2024 18:27:58 +0300
+Message-Id: <20240822152801.602318-14-claudiu.beznea.uj@bp.renesas.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com>
 References: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com>
@@ -109,43 +109,26 @@ Content-Transfer-Encoding: 8bit
 
 From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Add support for the Renesas RZ/G3S SoC. The support is similar with the
-rest of RZ/G2 devices with the except that the RZ/G3S needs bus
-initialization due to hardware limitation.
+System controller on RZ/G3S can act as a reset controller. Add #reset-cells
+for it.
 
 Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 ---
- drivers/phy/renesas/phy-rcar-gen3-usb2.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ arch/arm64/boot/dts/renesas/r9a08g045.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/phy/renesas/phy-rcar-gen3-usb2.c b/drivers/phy/renesas/phy-rcar-gen3-usb2.c
-index cf4299cea579..58e123305152 100644
---- a/drivers/phy/renesas/phy-rcar-gen3-usb2.c
-+++ b/drivers/phy/renesas/phy-rcar-gen3-usb2.c
-@@ -583,6 +583,12 @@ static const struct rcar_gen3_phy_drv_data rz_g2l_phy_usb2_data = {
- 	.no_adp_ctrl = true,
- };
+diff --git a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi b/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
+index 0d5c47a65e46..cd7cefdb2bab 100644
+--- a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
+@@ -91,6 +91,7 @@ sysc: system-controller@11020000 {
+ 				     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "lpm_int", "ca55stbydone_int",
+ 					  "cm33stbyr_int", "ca55_deny";
++			#reset-cells = <1>;
+ 			status = "disabled";
+ 		};
  
-+static const struct rcar_gen3_phy_drv_data rz_g3s_phy_usb2_data = {
-+	.phy_usb2_ops = &rcar_gen3_phy_usb2_ops,
-+	.no_adp_ctrl = true,
-+	.init_bus = true,
-+};
-+
- static const struct of_device_id rcar_gen3_phy_usb2_match_table[] = {
- 	{
- 		.compatible = "renesas,usb2-phy-r8a77470",
-@@ -604,6 +610,10 @@ static const struct of_device_id rcar_gen3_phy_usb2_match_table[] = {
- 		.compatible = "renesas,rzg2l-usb2-phy",
- 		.data = &rz_g2l_phy_usb2_data,
- 	},
-+	{
-+		.compatible = "renesas,usb2-phy-r9a08g045",
-+		.data = &rz_g3s_phy_usb2_data,
-+	},
- 	{
- 		.compatible = "renesas,rcar-gen3-usb2-phy",
- 		.data = &rcar_gen3_phy_usb2_data,
 -- 
 2.39.2
 
