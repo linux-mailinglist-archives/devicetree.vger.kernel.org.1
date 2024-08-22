@@ -1,113 +1,132 @@
-Return-Path: <devicetree+bounces-95824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB16395B5E0
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 15:04:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 262D895B693
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 15:27:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 58C3BB225E3
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 13:04:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 55B0F1C2316D
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 13:27:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E88741C9DDB;
-	Thu, 22 Aug 2024 13:04:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 185D61CBEA1;
+	Thu, 22 Aug 2024 13:27:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="NtUxmpci"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ygVBahdR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ED05181310;
-	Thu, 22 Aug 2024 13:04:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 846661CBE96
+	for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 13:27:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724331891; cv=none; b=L/lBdHaDBewFvw8xCh6F7pnDNYn83FZmYC4dwiFnUTtJ56zhiv/UsWgelsunPqxUJ4ZBM5RzKkVtOpoqAsw3gKoKbpoJ2tlItdLtcpgzgifERdqMQxynJpb8nvElTduXjL2QM6y0mpFssrNx7+9XaafQuEK0Uq/UQIUlRQocB4E=
+	t=1724333235; cv=none; b=XDNEYYESD2Hmfz/nTIoQjpbLQe9I7syIT7xUcEadykaPdz90XyPNDtDEDddR/pRVcYEuSHYTFQTO44hWfmyyzF7NONbCIbnlEVn+1zrOBPubE9xBr8Ohk/Oa2b+wqBoDisndbhBGaYBpY+iyIdQWibEpAsiXmiA8uTd2ib/SX6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724331891; c=relaxed/simple;
-	bh=+VGKhjgsEZE4sCJ69JLJrAJccMxpl+39tmJWKUMFlWc=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KYZxAEvO1xMpdw/loyDqBGSX8PRTZ/J17/Z1q4UdEIFOOPcZk638VYySZz2OleyypRgVIQIOyXE6wGmTRAVx6Mx246iOOlTpAFC3Bonz/LrZdQ7vz7RQkBUHkK1m3FRuRSPTxNUurc6wOQ182PbUe/Z/7607A2yOLKvfRGho8T8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=NtUxmpci; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:To:From:Date:From:Sender:Reply-To:Subject:Date:
-	Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=7KkZEy7FtBrCs9x5HPBYk6bPtUT9ztwHglddJCkvJ2Y=; b=NtUxmpcity96kEKIhSEKwWz6Gr
-	HoPF8rO/tmSoTMeNNUitgojvekZYepkU2iq9M86hkk141y7ViQU7JTFpjYBWUeSnyOXKh8Ps1p1n/
-	KIzg7COmE2G/lBb1WIg45MsIa2bpDlrhGC9MUoE099qHtFebFOLsUxJRT+/m1Lhsyh1c=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sh7U9-005QKl-Ah; Thu, 22 Aug 2024 15:04:17 +0200
-Date: Thu, 22 Aug 2024 15:04:17 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-	Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1724333235; c=relaxed/simple;
+	bh=mmPcytjB8m6exAvgg/oZ+VjBw5w/3yH5XfcO1PfEurs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=SlJ5GmaXpky4w9iZ/E7GfwdbT8OfeySLIc+sjJx2/ldBUd+YO8y4V2WOqCucryoaAc+cQ0sr7vVDvMiQckDkn5FAAqNgkjIYfiwyQYQjRV371vmzuU3Efmav3wddF2nVipJzwxHp/sWZSb+56+9iAVjyilDj5RSEGJpV8KlJ/ww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ygVBahdR; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3718ea278a8so143092f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 06:27:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1724333232; x=1724938032; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=heGIarr05MZ0K7mmp6CHQvn8aVfPPIQkNf3ZJw1FViw=;
+        b=ygVBahdRZrMMH078Cx/+YPBzs7VsrQ5/y9GrsF76ck7YDWbs4boVqT7Xl55J+qOZG6
+         Wza9kBLB5KLt1Y+p21AQP+o+aoW2OwfHJ4/pBsTd7Y2usqfIN6tozFDzaBpdjg4WZSE8
+         GwoWIG0oyezZqg19Uk9AQ2lpUdWHXqHzekohjabE5ZTBJyXoP/xH6IIa8Kvm42d4J1wE
+         otk1r0ZH9WEf0N6IWxyHjD58wtV4kJx0/SzjCGjnlywd2dnvQ+325A7GCLMwKOZNaFCY
+         ku9O5LeKqJ5J1J2RXZribDEBwCAP+ww/xUAiwjHpKa300mZ1dass6NcPLe5OCGQbXqo6
+         FudA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724333232; x=1724938032;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=heGIarr05MZ0K7mmp6CHQvn8aVfPPIQkNf3ZJw1FViw=;
+        b=D56YPHkjpOuz1VEV0euXgkME2wYyR+GqKyp/6bVYaEwM/u8u0Szx38mPA3yH4cNILB
+         1iZYNuEcgaZtyfLrEUJuogEV/Kvy40k5I+mVic7HC2UYnGY0pRLivBo2tLBFna1UFZ1t
+         FZTZlT5+ti8eYzskOjK5jcxr4QudQUSFBcuTo+rnUXICz0OCbnBD0X/eyH3smBhFGepR
+         edDUxnLEs1ft42x8p5WYOuM8MSKpqaRq663RJ0WFdwt+Bg/hpNotRAGC+K7bIEcp7bLS
+         u1UFWpRhz/0Fe3bl5kMYh/Bi3KdWRPPMXqdJFb0nZIFgMDs9TqSbp3W9dJ4YiMzh22/U
+         K0sg==
+X-Forwarded-Encrypted: i=1; AJvYcCV0LM2SLS+w0fgFSJEauE5wZYV52sJ6wFIC/osrJid2yLID6dnFfhVX8xQ9WAwoX8dyFyHiADBsU6hm@vger.kernel.org
+X-Gm-Message-State: AOJu0YzaHTFhZAwKw3M+he7pRapa0N0wkLHymbd7NmUKYfYXOy/hEodr
+	DUiRaeZj3cnKITKw7b9f4NRvk2p6dtPZoCaumSuikL9FOkaBgquEvF4aC2fcSqM=
+X-Google-Smtp-Source: AGHT+IHnNSVQHM2d9IRfmql1uFIKdsWiicdATDg1EWg6EFTqcFXlV2endQY0D9GvUsxJ5J4dgUJ6zQ==
+X-Received: by 2002:a5d:6d89:0:b0:364:8215:7142 with SMTP id ffacd0b85a97d-372fd584d52mr2486942f8f.1.1724333231717;
+        Thu, 22 Aug 2024 06:27:11 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.222.82])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3730810fb6bsm1703531f8f.21.2024.08.22.06.27.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Aug 2024 06:27:11 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Brendan Higgins <brendan.higgins@linux.dev>,
+	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
-	Lee Jones <lee@kernel.org>, Stefan Wahren <wahrenst@gmx.net>
-Subject: Re: [PATCH 00/11] Add support for RaspberryPi RP1 PCI device using a
- DT overlay
-Message-ID: <45a41ed9-2e42-4fd5-a1d5-35de93ce0512@lunn.ch>
-References: <cover.1724159867.git.andrea.porta@suse.com>
- <14990d25-40a2-46c0-bf94-25800f379a30@kernel.org>
- <Zsb_ZeczWd-gQ5po@apocalypse>
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Rayn Chen <rayn_chen@aspeedtech.com>,
+	linux-i2c@vger.kernel.org,
+	openbmc@lists.ozlabs.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: i2c: aspeed: drop redundant multi-master
+Date: Thu, 22 Aug 2024 15:27:08 +0200
+Message-ID: <20240822132708.51884-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zsb_ZeczWd-gQ5po@apocalypse>
+Content-Transfer-Encoding: 8bit
 
-> WARNING: ENOTSUPP is not a SUSV4 error code, prefer EOPNOTSUPP
-> #673: FILE: drivers/pinctrl/pinctrl-rp1.c:600:
-> +                               return -ENOTSUPP;
-> 
-> This I must investigate: I've already tried to fix it before sending the patchset
-> but for some reason it wouldn't work, so I planned to fix it in the upcoming 
-> releases.
+'multi-master' property is defined by core i2c-controller schema in
+dtschema package, so binding which references it and has
+unevaluatedProperties:false, does not need to mention it.  It is
+completely redundant here.
 
-ENOTSUPP is an NFS error. It should not be used outside for NFS. You
-want EOPNOTSUPP.
+Suggested-by: Andi Shyti <andi.shyti@kernel.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+---
+
+Reference:
+https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/i2c/i2c-controller.yaml#L114
+---
+ Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml | 5 -----
+ 1 file changed, 5 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml b/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
+index 6df27b47b922..5b9bd2feda3b 100644
+--- a/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
++++ b/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
+@@ -44,11 +44,6 @@ properties:
+     description: frequency of the bus clock in Hz defaults to 100 kHz when not
+       specified
  
-> WARNING: externs should be avoided in .c files
-> #331: FILE: drivers/misc/rp1/rp1-pci.c:58:
-> +extern char __dtbo_rp1_pci_begin[];
-> 
-> True, but in this case we don't have a symbol that should be exported to other
-> translation units, it just needs to be referenced inside the driver and
-> consumed locally. Hence it would be better to place the extern in .c file.
- 
-Did you try making it static.
+-  multi-master:
+-    type: boolean
+-    description:
+-      states that there is another master active on this bus
+-
+ required:
+   - reg
+   - compatible
+-- 
+2.43.0
 
-	Andrew
 
