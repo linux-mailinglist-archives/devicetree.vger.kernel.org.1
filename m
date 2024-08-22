@@ -1,124 +1,165 @@
-Return-Path: <devicetree+bounces-95807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37D0195B423
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 13:46:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2740595B43F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 13:51:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9D565B20E13
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 11:46:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA8BB1F23B2A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 11:51:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2434F1C93B8;
-	Thu, 22 Aug 2024 11:46:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85A411C9437;
+	Thu, 22 Aug 2024 11:50:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 424BB17B4E2
-	for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 11:46:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A92A91C9428;
+	Thu, 22 Aug 2024 11:50:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724327212; cv=none; b=RL9tN1ijTxuWtugBepecssZjrkoJzLBsnhNeLxTNOvKZxiQIcxCdOjVbVWmMSYIjWXJNdzELa3bqIRP/YXiL58mUKe+UW1usVC+z6JjHUdtU5NIlejF7/ZEZ5UONM+E9LpW0Nz0CMOlqObPpGcKBrqy/2pUI6hsG75bsniW0bOo=
+	t=1724327427; cv=none; b=ZIJM0bv41TaNTDwQgmFb7pptNdXQ5W3fNOOw9MSdPhF6gnBxC+fCijoSQEGaq5oY6EXsKIl99QOhICg0DwPQA9tOKe+1aAzxAa2nLRa29DiCON8LWiwGRto4iT166ni3gv9ObDUNfbmi5EZBcU1DJ96cCSpcxPnyYkJLcyDZb6I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724327212; c=relaxed/simple;
-	bh=l6ecc7k+H9AK9KqihjUpo4KZB0Ulf8mRorDzf9vpmMo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IGm9HqUNSCZhmjiIYcc3POyyO1xu/6naJZ7/VQQwYoTkziSE80ujz8kRI8KOJAlTfH9pdPKX+38mjOysFw4fd6El9CJwV1q1NYApR+iYCf3q5w8XxO3Pjq5ju0gobii8jwkp5mhV54UvEL37EocIrxV6jWyYicgZSyBSpqq8wDI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1sh6Gx-0003Ir-Nj; Thu, 22 Aug 2024 13:46:35 +0200
-Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1sh6Gw-002Erz-V5; Thu, 22 Aug 2024 13:46:35 +0200
-Received: from pengutronix.de (pd9e5994e.dip0.t-ipconnect.de [217.229.153.78])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 88AB9324912;
-	Thu, 22 Aug 2024 11:46:34 +0000 (UTC)
-Date: Thu, 22 Aug 2024 13:46:34 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Tarang Raval <tarang.raval@siliconsignals.io>
-Cc: "krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
-	"festevam@gmail.com" <festevam@gmail.com>, "shawnguo@kernel.org" <shawnguo@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] arm64: dts: imx8mm-emtop-baseboard: Add Peripherals
- Support
-Message-ID: <20240822-calm-dinosaur-of-music-33db22-mkl@pengutronix.de>
-References: <20240821135817.56393-1-tarang.raval@siliconsignals.io>
- <20240821-cute-cougar-of-atheism-3a9121-mkl@pengutronix.de>
- <PN3P287MB18298292CD27FD9D8365C9178B8F2@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
- <20240822-holistic-fearless-bloodhound-e9095e-mkl@pengutronix.de>
- <PN3P287MB1829953DB0BBC5423672FF728B8F2@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
+	s=arc-20240116; t=1724327427; c=relaxed/simple;
+	bh=XXKGzE7Rd62JJickoifzIAp34sE8kiiPeOtfKnQBOws=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=VxHCQAkhobLmI2n/MouPuWP9OaEAyZnjWmVPJJfttDjOWwOJKzq9lj+dPEKotKnh0m/4ftv8htj0lQC/gXXhWaXTmPCrCsPcEdgesafRCWfDbyMK/jDReL7TYF/+qSA29wN2oC3R3ZKy7NNoVy5WBMxCcY3q4EMKailrH6S3LkQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8B53ADA7;
+	Thu, 22 Aug 2024 04:50:50 -0700 (PDT)
+Received: from [10.57.71.237] (unknown [10.57.71.237])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E29023F66E;
+	Thu, 22 Aug 2024 04:50:21 -0700 (PDT)
+Message-ID: <53ec46af-3438-44e0-82b2-9432fc7f0fcb@arm.com>
+Date: Thu, 22 Aug 2024 12:50:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="xdfjacdwgthgcqr5"
-Content-Disposition: inline
-In-Reply-To: <PN3P287MB1829953DB0BBC5423672FF728B8F2@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: arm:
+ qcom,coresight-static-replicator: Add property for source filtering
+Content-Language: en-GB
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Tao Zhang <quic_taozha@quicinc.com>, Mike Leach <mike.leach@linaro.org>,
+ James Clark <james.clark@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Leo Yan <leo.yan@linux.dev>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20240821031348.6837-1-quic_taozha@quicinc.com>
+ <20240821031348.6837-2-quic_taozha@quicinc.com>
+ <a01d2f2f-d963-4eb1-98ee-3dc6f86c9397@arm.com>
+ <xmijaayxveghxx76nnudo5mlpxv6tpxvooiox7wj2jyojf3xpe@ntm67lxikfop>
+ <44e2617c-62b0-436f-ac6a-0bd3e3855473@arm.com>
+In-Reply-To: <44e2617c-62b0-436f-ac6a-0bd3e3855473@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+On 22/08/2024 11:34, Suzuki K Poulose wrote:
+> On 22/08/2024 08:08, Krzysztof Kozlowski wrote:
+>> On Wed, Aug 21, 2024 at 11:38:55AM +0100, Suzuki K Poulose wrote:
+>>> On 21/08/2024 04:13, Tao Zhang wrote:
+>>>> The is some "magic" hard coded filtering in the replicators,
+>>>> which only passes through trace from a particular "source". Add
+>>>> a new property "filter-src" to label a phandle to the coresight
+>>>> trace source device matching the hard coded filtering for the port.
+>>>
+>>> Minor nit: Please do not use abbreviate "source" in the bindings.
+>>> I am not an expert on other changes below and will leave it to
+>>> Rob/Krzysztof to comment.
+>>>
+>>> Rob, Krzysztof,
+>>>
+>>> We need someway to "link" (add a phandle) from a "port". The patch below
+>>> is extending "standard" port to add a phandle. Please let us know if
+>>> there is a better way.
+>>>
+>>> e.g.:
+>>>
+>>> filters = list of tuples of port, phandle. ?
+>>>
+>>> e.g.:
+>>>
+>>> filters = < 0, <&tpdm_video>,
+>>>              1, <&tpdm_mdss>
+>>>        >
+>>>
+>>
+>> Current solution feels like band-aid - what if next time you need some
+>> second filter? Or "wall"? Or whatever? Next property?
+> 
+> 
+> 
+>>
+>> Isn't filter just one endpoint in the graph?
+>>
+>> A <--> filter <--> B
+> 
+> To be more precise, "Filter" is a "port (p0, p1, p2 below)" (among a
+> multi output ports).
+> 
+> For clearer example:
+> 
+> A0 <--> .. <--> ..\                  p0  / --> Filtered for (A1) <--> B1
+> A1 <--> .. <--> .. - < L(filters>    p1  - --> Filtered for (A2) <--> B2
+> A2 <--> .. <--> ../                  p2  \ --> Unfiltered        <--> B0
+> 
+> 
+> 
+>> Instead of
+>>
+>> A <----through-filter----> B?
+> 
+> The problem is we need to know the components in the path from A0 to X
+> through, (Not just A0 and L). And also we need to know "which port (p0 
+> vs p1 vs p2)" does the traffic take from a source (A0/A1/A2) out of the
+> link "L".
+> 
+> So ideally, we need a way to tie p0 -> A1, p1 -> A2.
+> 
+> would we need something else in the future ? I don't know for sure.
+> People could design their own things ;-). But this was the first time
+> ever in the last 12yrs since we supported coresight in the kernel.
+> (there is always a first time).
+> 
+> Fundamentally, the "ports" cannot have additional properties today.
+> Not sure if there are other usecases (I don't see why). So, we have
+> to manually extend like above, which I think is not nice.
+
+Replying to the other thread [0], made me realize that the above is not
+true. Indeed it is possible to add properties for endpoints, e.g:
+
+e.g.: media/video-interfaces.yaml
+
+So extending the endpoint node is indeed acceptable (unlike I thought).
+May be the we it is achieved in this patch is making it look otherwise.
+
+Suzuki
+[0] https://lkml.kernel.org/r/4b51d5a9-3706-4630-83c1-01b01354d9a4@arm.com
 
 
---xdfjacdwgthgcqr5
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On 22.08.2024 11:42:07, Tarang Raval wrote:
-> The CAN chip on the Kontron i.MX8M Mini Baseboard is the MCP2515, the
-> same as ours, and they also use edge triggering. You can see the patch
-> in the link below
->=20
-> link : https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.gi=
-t/commit/?id=3D8668d8b2e67fe7cf65f02becd5d67c0636689e82=20
+> 
+> Happy to proceed with anything that seems acceptable for you folks.
+> 
+> Suzuki
+> 
+> 
+> 
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> 
 
-That's also not optimal.
-
-Better, use a level triggered IRQ instead.
-
-regards,
-Mac
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---xdfjacdwgthgcqr5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmbHJRcACgkQKDiiPnot
-vG9y6wf/YvbHfD7rRV1bCuy5qKAbuuXQm06MfZYrDoVuKD6daQdC/sWkC0f9X61K
-ESB/Dk0cKi9prGGELn4+ZeR168ln3trEBZXTP6jTiv98YoVto1DrFSpUFbKVpyqD
-kbpV42pXp2ytm92rNiuXRYCrbVJ4Gy2JfNpvCXPb7OkskB/SCT1EWnXiIiL/oHgx
-qa3iMKrzaNkC9G041ujM7PNB+iyygQfuj/Jia4F+nyytgMsW5NtLdIbe1Pr4EBhK
-ugVH4lUFLupawEtJzCTMzb2yuSwxa6+vdkJqnn3FLkASMLIjL74RHlwzP5vk2CPH
-9KsWnR620D4AAnLsaIYIHLEIXZR+kQ==
-=Gxuc
------END PGP SIGNATURE-----
-
---xdfjacdwgthgcqr5--
 
