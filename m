@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-95803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3598495B3DE
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 13:31:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F36BD95B40C
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 13:41:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E163A282152
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 11:31:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BB091C22613
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 11:41:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A03631C8FC9;
-	Thu, 22 Aug 2024 11:31:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFC7E1C93CE;
+	Thu, 22 Aug 2024 11:41:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oe3Tqtkg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lFToW+5i"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7022C17DE06;
-	Thu, 22 Aug 2024 11:31:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C310117A584;
+	Thu, 22 Aug 2024 11:41:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724326267; cv=none; b=e44tpfd+3fmnKxQ8u9Qx8OKlUF+cmyx60vXoDXR8laYx3JpL1oyN4vai7QGc495xT/x8g1vUIcIS1FNDyK/rJixGSjciZtB19iiMCjeySK/zO3VpTSVPG3KwUC/hdDR5X7yN0B0l9WwZgi4x5DzUg2MwHa2iZ6Y2HaaqTLwOUS0=
+	t=1724326871; cv=none; b=cWdTMUg+IDUdj+ptvw6NvWHYW4Nix+MDcGYNqbMNmbP61huCNIKUEgcWABtHFgSRRlIveoF1n4r3ao8PMtudaohKt2CUnqlz4moNpP9EtIngR6dSgYPbUdwXpu/lGL7ATKuOZIAZhODR1cJKP8mddkvuQxYJKt27KZT/1Eu1ADc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724326267; c=relaxed/simple;
-	bh=gDbTL4GZRvQeDgNI3gcM09/p4LhAfcobcN6NTa3ZLBk=;
+	s=arc-20240116; t=1724326871; c=relaxed/simple;
+	bh=7bkCARdi1VmnQkUmpWAJUfPzTKWAbsevARXH+QvJhck=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rxU139VIFBBLLfgT1QNf7RoCun7NK2tKPyo0fhxTn2MdFKc03Jmwvi3kWn8NViTywDn3VCoVHcM3T4OtIqfzIxRYyPWKzo0OOVBMwQ7HWVgH5SKRWptnnaANdgzhKnijcAiFrFtLJ5ypQ+9B7LedjiV0uTYmsm5hqvAavRCaVks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oe3Tqtkg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30E87C32782;
-	Thu, 22 Aug 2024 11:31:01 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=igEGT8fUJ04oqmQanK70zTLbljp/XFA3OE8+vh/mQT6ipZ5nFWQqpFveglf4xdielvmQldY8d1AORftFN3f6yrwcWyZ8DUEIBYT19P5iznSFcKU/YfihtyJCn4VgRZnUqJr2zLLTdDnX5/bYB2lhUcIkAYc1IeWAdrQNohBLo0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lFToW+5i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4751C32782;
+	Thu, 22 Aug 2024 11:41:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724326267;
-	bh=gDbTL4GZRvQeDgNI3gcM09/p4LhAfcobcN6NTa3ZLBk=;
+	s=k20201202; t=1724326871;
+	bh=7bkCARdi1VmnQkUmpWAJUfPzTKWAbsevARXH+QvJhck=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oe3Tqtkg1IlHXhjmboLrWfO1WBSTFiwjBK9XuytGxkdmGjMAuGKZTq6MYcfkVzigh
-	 BFwraNixJP8gULzt85oN9y6+JZcmBgzYTd0tkZIK+UDB+xNehayYFP/qh9fh9Lfntp
-	 t0Y/o/r9JQi51HK3/+JLqVcNkDpKNfc/Uoj1Jz1PUhSUaCy9uuCQ3izys63VOro0iC
-	 R22dOUDsuM+8fYhRL9UDbPxBtoul99TbdlI7+wtZ/OSPVMgzJaf15vZRQ6ab11wWEE
-	 qPwaSWz16jUSe9inDqrUVB7WGSwJoCUvMBVCNAgw9USgFYUeFVglhXtZImYxG667HF
-	 CmtE95KYH1NFA==
-Message-ID: <7b8f488a-deac-4089-be7a-c0d76afca0fa@kernel.org>
-Date: Thu, 22 Aug 2024 13:30:58 +0200
+	b=lFToW+5ibhCK9zVfe4kzGVgGoX7fCpft0SB6/H/FQzi0vu0O5/HsWxC9Eb+IKRXlJ
+	 hDR+iNIE9C5p5VeDWmiSFN4lTFluJDgMByCIUyEDKfO15aY3ltiptJYMxz0kpcsxB/
+	 G6UGlWlXHpotzfWMaGr4cpnDSVa0vXDRSvK9wM1iBcukffSc2QlT8HUKCVaZkKGSSV
+	 YmvkkAhfT/WoJsVc303u9QkhhJnOmHoq2PBBpcBd/VOi/K66b3c+6KQUduoWsjzzNU
+	 AT4xFJ+evj+/GFGdcBaJ10+mORRwoNpnchZDm17EtxPiCO7RL4Lv1t6/zAW7MwhWI9
+	 elweLubsVZkRg==
+Message-ID: <b95e461b-d3aa-41e4-bf93-f14f853f3f03@kernel.org>
+Date: Thu, 22 Aug 2024 13:41:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: qcom: document hexagon based
- WCSS secure PIL
-To: Gokul Sriram P <quic_gokulsri@quicinc.com>,
-	q@krzk-bin.smtp.subspace.kernel.org
-Cc: andersson@kernel.org, krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org,
- linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, quic_viswanat@quicinc.com,
- quic_mmanikan@quicinc.com, quic_varada@quicinc.com, quic_srichara@quicinc.com
-References: <20240820085517.435566-1-quic_gokulsri@quicinc.com>
- <20240820085517.435566-2-quic_gokulsri@quicinc.com>
- <ticwyyycqlk2uqpiqckoqqnapqatw74s6f6tjqmmyt2d6siqqt@xxe2qdtr4c2c>
- <2b6b43b3-c99b-4aac-b1fb-24f6e5e562ce@quicinc.com>
+Subject: Re: [PATCH v2 3/6] dt-bindings: phy: mxs-usb-phy: add nxp,sim
+ property
+To: Xu Yang <xu.yang_2@nxp.com>, vkoul@kernel.org, kishon@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+ festevam@gmail.com, gregkh@linuxfoundation.org, peter.chen@kernel.org,
+ herve.codina@bootlin.com
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-usb@vger.kernel.org, jun.li@nxp.com
+References: <20240726113207.3393247-1-xu.yang_2@nxp.com>
+ <20240726113207.3393247-3-xu.yang_2@nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,58 +107,18 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <2b6b43b3-c99b-4aac-b1fb-24f6e5e562ce@quicinc.com>
+In-Reply-To: <20240726113207.3393247-3-xu.yang_2@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/08/2024 12:47, Gokul Sriram P wrote:
->>> +
->>> +  interrupts:
->>> +    items:
->>> +      - description: Watchdog interrupt
->>> +      - description: Fatal interrupt
->>> +      - description: Ready interrupt
->>> +      - description: Handover interrupt
->>> +      - description: Stop acknowledge interrupt
->>> +
->>> +  interrupt-names:
->>> +    items:
->>> +      - const: wdog
->>> +      - const: fatal
->>> +      - const: ready
->>> +      - const: handover
->>> +      - const: stop-ack
->>> +
->>> +  clocks:
->>> +    items:
->>> +      - description: IM SLEEP clock
->> What is IM? Explain all acronyms.
->>
->> What is SLEEP?
+On 26/07/2024 13:32, Xu Yang wrote:
+> i.MX7ULP need properly set System Integration Module(SIM) module to make
+> usb wakeup work well. This will add a "nxp,sim" property.
 > 
-> IM_SLEEP_CLK - Internal Module sleep clock needed for Q6 reset.
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 > 
-> SLEEP is not an acronym here.
 
-Then probably you mean "Internal sleep", although "internal" is also
-confusing. Devices do not receive as input something which is internal
-to them.
-
-> 
->>> +
->>> +  clock-names:
->>> +    items:
->>> +      - const: im_sleep
->> sleep? Are there different sleep clocks here?
-> 
-> We have different branches of sleep clk each enabled separately.
-> 
-> im_sleep is one of those branches that q6 uses.
-
-So this device misses other branches? Then provide them. Otherwise it is
-just "sleep".
-
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
