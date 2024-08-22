@@ -1,232 +1,124 @@
-Return-Path: <devicetree+bounces-95894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F44995BBC0
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 18:23:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 926C395BBCA
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 18:23:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44044281D4D
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 16:23:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A800284DCF
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 16:23:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51F331CCEC8;
-	Thu, 22 Aug 2024 16:23:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NHkvnzvX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBBD01CCB42;
+	Thu, 22 Aug 2024 16:23:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05348282FC;
-	Thu, 22 Aug 2024 16:23:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C337A282FC;
+	Thu, 22 Aug 2024 16:23:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724343792; cv=none; b=UMdsxxKIgfEwAR/rY3tTUIAKp6F8WtN5BfkRJJrWx6yxf1XWAHyimQKrCRWAJh0P2cxU7lbzcrPHaqk47NG3RO3WBstDrwJNBVBOyvPS8+pry9ICzTXu4QlzgZ/8dgPoH14S+p1e9b2xVf3TuInoaLcjk1Iw8TOgpao87O0mJQg=
+	t=1724343812; cv=none; b=KJ0Dah9XxyOZt/tYtDDDN2rMzmntlA54SUdSGL4y6lro05EY+OqNQElbpO9adEnfiiFKxwTjJnMM1Cu24uy6jv4QVjfgj9Pn6PqNIYHYBm5oGaBxdpBOtUZqYjklJmG2BtR7greeycvCphBDkKtykbcevPLfbU1jTwIOu1zGieI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724343792; c=relaxed/simple;
-	bh=43L7DnNwf5PKhCn45ifgPN7YWE34/X02RDZibv66tIU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q5rR223E0ZvdW1Fyvhr18jhEa66QZF/Tpdhl52ga2GaCM96In6gN2J29Q3mG3i0tB/yfklXoIMbdvH2fECyf10jvUHONL6mNhP+YdcNFsoVmZmpZ4PStgKA1kYmHMO/TPi67xEcj4Z6KA0Mk7TC692WE1VjimwGG6jqOII9CtEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NHkvnzvX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26FF9C4AF16;
-	Thu, 22 Aug 2024 16:23:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1724343791;
-	bh=43L7DnNwf5PKhCn45ifgPN7YWE34/X02RDZibv66tIU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NHkvnzvXwnE6uzWrZj3r8QS7huQYHl6lQUYwWj4Ch6u/DQaoBdkprt3nE9whm0XSC
-	 JWfdoCkn9uQ738thQ7Mf/GZEsOdygoyA+HjgYQ0h26/08YxBQuRIt1bED2mvFsLWA2
-	 scH8G+pyi8FaQ7GdKEkbagnrT6FWj73l8KtMriASbVskJTkAYw1F6FsW/RWTbIHvPe
-	 SXq1hj00pqD/luPofnGZmKPkEliydpp3cN1c6VdnGZcx0rKHA4Ur2p/H7lvE0EHVrR
-	 fqKFZmx0krWiok3jMAx+j3eBlhzlsKJY8zkTwnfAH5mKumXoQXrX/8svvLsQtysEbO
-	 Qckd+tLlb+xUw==
-Date: Thu, 22 Aug 2024 17:23:02 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1724343812; c=relaxed/simple;
+	bh=lcFmbUPx2tkQ/EAlCHVuMsSc00wtfebwPvgI7oOZSvw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=d8toac1hi4S7vc86vL6v/UvwMo+x1M7P1LC66xsmqEqon1aSoYpY/eYtueuocA+dWnBiXwxCqxLLfrWgQRkwpRXUiq6B0J7aGUTElw/q4XYWsD5F65mUXcGXyPIeg6mMv22UFkFISYsuGb7sf6orxyU3e3MEqODJY9MqXoioEBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-IronPort-AV: E=Sophos;i="6.10,167,1719846000"; 
+   d="scan'208";a="220284611"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 23 Aug 2024 01:23:28 +0900
+Received: from localhost.localdomain (unknown [10.226.92.15])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 403FC4007CF2;
+	Fri, 23 Aug 2024 01:23:23 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
-	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Stefan Wahren <wahrenst@gmx.net>
-Subject: Re: [PATCH 01/11] dt-bindings: clock: Add RaspberryPi RP1 clock
- bindings
-Message-ID: <20240822-refutable-railroad-a3f111ab1e3f@spud>
-References: <cover.1724159867.git.andrea.porta@suse.com>
- <8d7dd7ca5da41f2a96e3ef4e2e3f29fd0d71906a.1724159867.git.andrea.porta@suse.com>
- <20240820-baritone-delegate-5711f7a0bc76@spud>
- <ZsTfoC3aKLdmFPCL@apocalypse>
- <20240821-exception-nearby-5adeaaf0178b@spud>
- <ZscGdxgoNJrifSgk@apocalypse>
- <399ff156-ffc9-4d50-8e5f-a86dc82da2fa@kernel.org>
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	dri-devel@lists.freedesktop.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v4 0/4] Add support for RZ/G2UL Display Unit
+Date: Thu, 22 Aug 2024 17:23:13 +0100
+Message-ID: <20240822162320.5084-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="MUECiN+fSdL5Fn4Y"
-Content-Disposition: inline
-In-Reply-To: <399ff156-ffc9-4d50-8e5f-a86dc82da2fa@kernel.org>
+Content-Transfer-Encoding: 8bit
 
+This patch series aims to add support for RZ/G2UL DU.
 
---MUECiN+fSdL5Fn4Y
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The LCD controller is composed of Frame Compression Processor (FCPVD),
+Video Signal Processor (VSPD), and Display Unit (DU).
 
-On Thu, Aug 22, 2024 at 11:52:27AM +0200, Krzysztof Kozlowski wrote:
+The output of LCDC is connected display parallel interface (DPI) and
+supports a maximum resolution of WXGA along with 2 RPFs to support the
+blending of two picture layers and raster operations (ROPs)
 
-> >>>>> +examples:
-> >>>>> +  - |
-> >>>>> +    #include <dt-bindings/clock/rp1.h>
-> >>>>> +
-> >>>>> +    rp1 {
-> >>>>> +        #address-cells =3D <2>;
-> >>>>> +        #size-cells =3D <2>;
-> >>>>> +
-> >>>>> +        rp1_clocks: clocks@18000 {
-> >>>>
-> >>>> The unit address does not match the reg property. I'm surprised that
-> >>>> dtc doesn't complain about that.
-> >>>
-> >>> Agreed. I'll update the address with the reg value in the next release
-> >>>
-> >>>>
-> >>>>> +            compatible =3D "raspberrypi,rp1-clocks";
-> >>>>> +            reg =3D <0xc0 0x40018000 0x0 0x10038>;
-> >>>>
-> >>>> This is a rather oddly specific size. It leads me to wonder if this
-> >>>> region is inside some sort of syscon area?
-> >>>
-> >>> >From downstream source code and RP1 datasheet it seems that the last=
- addressable
-> >>> register is at 0xc040028014 while the range exposed through teh devic=
-etree ends
-> >>> up at 0xc040028038, so it seems more of a little safe margin. I would=
-n't say it
-> >>> is a syscon area since those register are quite specific for video cl=
-ock
-> >>> generation and not to be intended to be shared among different periph=
-erals.
-> >>> Anyway, the next register aperture is at 0xc040030000 so I would say =
-we can=20
-> >>> extend the clock mapped register like the following:
-> >>>
-> >>> reg =3D <0xc0 0x40018000 0x0 0x18000>;
-> >>>
-> >>> if you think it is more readable.
-> >>
-> >> I don't care
-> >=20
-> > Ack.
-> >=20
-> >>>>> +            #clock-cells =3D <1>;
-> >>>>> +            clocks =3D <&clk_xosc>;
-> >>>>> +
-> >>>>> +            assigned-clocks =3D <&rp1_clocks RP1_PLL_SYS_CORE>,
-> >>>
-> >>>> FWIW, I don't think any of these assigned clocks are helpful for the
-> >>>> example. That said, why do you need to configure all of these assign=
-ed
-> >>>> clocks via devicetree when this node is the provider of them?
-> >>>
-> >>> Not sure to understand what you mean here, the example is there just =
-to
-> >>> show how to compile the dt node, maybe you're referring to the fact t=
-hat
-> >>> the consumer should setup the clock freq?
-> >>
-> >> I suppose, yeah. I don't think a particular configuration is relevant
-> >> for the example binding, but simultaneously don't get why you are
-> >> assigning the rate for clocks used by audio devices or ethernet in the
-> >> clock provider node.
-> >>
-> >=20
-> > Honestly I don't have a strong preference here, I can manage to do some=
- tests
-> > moving the clock rate settings inside the consumer nodes but I kinda li=
-ke
-> > the curernt idea of a centralized node where clocks are setup beforehan=
-d.
-> > In RP1 the clock generator and peripherals such as ethernet are all on-=
-board
-> > and cannot be rewired in any other way so the devices are not standalone
-> > consumer in their own right (such it would be an ethernet chip wired to=
- an
-> > external CPU). But of course this is debatable, on the other hand the c=
-urrent
-> > approach of provider/consumer is of course very clean. I'm just wonderi=
-ng
-> > wthether you think I should take action on this or we can leave it as i=
-t is.
-> > Please see also below.
-> >=20
-> >>> Consider that the rp1-clocks
-> >>> is coupled to the peripherals contained in the same RP1 chip so there=
- is
-> >>> not much point in letting the peripherals set the clock to their leis=
-ure.
-> >>
-> >> How is that any different to the many other SoCs in the kernel?
-> >=20
-> > In fact, it isn't. Please take a look at:
-> > =20
-> > arch/arm/boot/dts/st/stm32mp15xx-dhcom-som.dtsi
-> > arch/arm/boot/dts/ti/omap/omap44xx-clocks.dtsi
-> > arch/arm/boot/dts/ti/omap/dra7xx-clocks.dtsi
-> > arch/arm/boot/dts/nxp/imx/imx7d-zii-rpu2.dts
-> >=20
-> > and probably many others... they use the same approach, so I assumed it=
- is at
-> > least reasonable to assign the clock rate this way.
->=20
-> Please do not bring some ancient DTS, not really worked on, as example.
-> stm32 could is moderately recent but dra and omap are not.
+It is similar to LCDC IP on RZ/G2L SoCs, but does not have DSI interface.
 
-Right, there may be some examples like this, but there are many many
-other SoCs where clocks are also not re-wireable, that do not. To me
-this line of argument is akin to the clock driver calling enable on all
-of the clocks because "all of the peripherals are always on the SoC".
-The peripheral is the actual consumer of the clock that quote-unquote
-wants the particular rate, not the clock provider, so having the rate
-assignments in the consumers is the only thing that makes sense to me.
+v3->v4:
+ * Restored the ports property for RZ/G2UL and described port@0 for the
+   DPI interface in bindings patch.
+ * Restored tags from Geert and Conor as the change is trivial
+   (Replaced port 1->0 from v2).
+ * Used "&" instead of "==" in rzg2l_du_start_stop() for scalability.
+ * Restored port variable in struct rzg2l_du_output_routing
+ * Updated rzg2l_du_encoders_init() to handle port based on hardware indices.
+ * Restored ports property in du node and used port@0 for connected
+   DPI interface.
+v2->v3:
+ * Split patch series based on subsystem from DU patch series [1].
+ * Replaced ports->port property for RZ/G2UL as it supports only DPI
+   and retained ports property for RZ/{G2L,V2L} as it supports both DSI
+   and DPI output interface.
+ * Added missing blank line before example.
+ * Dropped tags from Conor and Geert as there are new changes in bindings
+ * Avoided the line break in rzg2l_du_start_stop() for rstate.
+ * Replaced port->du_output in  struct rzg2l_du_output_routing and
+   dropped using the port number to indicate the output type in
+   rzg2l_du_encoders_init().
+ * Updated rzg2l_du_r9a07g043u_info and rzg2l_du_r9a07g044_info.
 
+ [1] https://lore.kernel.org/all/20240709135152.185042-1-biju.das.jz@bp.renesas.com/
+v1->v2:
+ * Updated cover letter header "DU IP->Display Unit".
+ * Updated commit description related to non ABI breakage for patch#3.
+ * Added Ack from Conor for binding patches.
 
+Biju Das (4):
+  dt-bindings: display: renesas,rzg2l-du: Document RZ/G2UL DU bindings
+  drm: renesas: rz-du: Add RZ/G2UL DU Support
+  arm64: dts: renesas: r9a07g043u: Add DU node
+  arm64: dts: renesas: r9a07g043u11-smarc: Enable DU
 
---MUECiN+fSdL5Fn4Y
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../bindings/display/renesas,rzg2l-du.yaml    |  32 ++++-
+ arch/arm64/boot/dts/renesas/r9a07g043u.dtsi   |  25 ++++
+ .../boot/dts/renesas/r9a07g043u11-smarc.dts   | 111 ++++++++++++++++++
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_crtc.c |   8 +-
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c  |  11 ++
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c  |   3 +-
+ 6 files changed, 185 insertions(+), 5 deletions(-)
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.43.0
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZsdl5gAKCRB4tDGHoIJi
-0qOXAQD5rgYw5/X4Ja91lG6uIEE1SemLGNR402ItvyyoKoxd1wEAwHPc8uJHiM0U
-N6HspNFbOaRmU2j/vypiAMrlT9GH6A0=
-=ar8E
------END PGP SIGNATURE-----
-
---MUECiN+fSdL5Fn4Y--
 
