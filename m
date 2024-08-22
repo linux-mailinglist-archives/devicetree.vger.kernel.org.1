@@ -1,40 +1,59 @@
-Return-Path: <devicetree+bounces-95808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2740595B43F
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 13:51:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D603995B47D
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 14:01:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA8BB1F23B2A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 11:51:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91042285ADD
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 12:01:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85A411C9437;
-	Thu, 22 Aug 2024 11:50:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEA491C9DD8;
+	Thu, 22 Aug 2024 12:00:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b="kLm4xLi+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A92A91C9428;
-	Thu, 22 Aug 2024 11:50:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724327427; cv=none; b=ZIJM0bv41TaNTDwQgmFb7pptNdXQ5W3fNOOw9MSdPhF6gnBxC+fCijoSQEGaq5oY6EXsKIl99QOhICg0DwPQA9tOKe+1aAzxAa2nLRa29DiCON8LWiwGRto4iT166ni3gv9ObDUNfbmi5EZBcU1DJ96cCSpcxPnyYkJLcyDZb6I=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724327427; c=relaxed/simple;
-	bh=XXKGzE7Rd62JJickoifzIAp34sE8kiiPeOtfKnQBOws=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=VxHCQAkhobLmI2n/MouPuWP9OaEAyZnjWmVPJJfttDjOWwOJKzq9lj+dPEKotKnh0m/4ftv8htj0lQC/gXXhWaXTmPCrCsPcEdgesafRCWfDbyMK/jDReL7TYF/+qSA29wN2oC3R3ZKy7NNoVy5WBMxCcY3q4EMKailrH6S3LkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8B53ADA7;
-	Thu, 22 Aug 2024 04:50:50 -0700 (PDT)
-Received: from [10.57.71.237] (unknown [10.57.71.237])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E29023F66E;
-	Thu, 22 Aug 2024 04:50:21 -0700 (PDT)
-Message-ID: <53ec46af-3438-44e0-82b2-9432fc7f0fcb@arm.com>
-Date: Thu, 22 Aug 2024 12:50:19 +0100
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 038D91C93D4;
+	Thu, 22 Aug 2024 12:00:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724328042; cv=pass; b=dqumT+ASXgKT/73yIhy+cLv/j8b2isO3o6gNuktm2DdkAkFZ2TPhIUz2rHpGV5zaGpmKWuuARDL8tTslyyXmSxkZkHFubSYB8EXeuIpjm2wGk95mR5J4tV7EuOH+o99VAdtLqwYylYOB1e/Wsm3ehphdqqbc64RN+CRFCtu+qI0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724328042; c=relaxed/simple;
+	bh=MpIPxydMpUibOkHL/3TmV96QliUHMrs2kls043oQ2ys=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kBUW6aGSkL/qQ5lSf3tcRLDYzkcfAM2/xukgmuB1JjISOBvqppIy5vrl5q4zkMg4q7S7HUFw7jKnGurEwd5bte/+2aBRSEfZYxESkHvqXmyReT7eyAmbNXBN28ZfLeDRqa7FqxmhdO27PRDT5GQj/8F2UEcQvuE1aIhvFzXdQno=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=cristian.ciocaltea@collabora.com header.b=kLm4xLi+; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Delivered-To: kernel@collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1724327993; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=XmF4CXboFiO0+JxNj3/cf0PjAv48HwLyHaKFrCVFTibeaW6ClWVClgwFJNkyr1YVd8YPmyUoViDaa7zh6AWjZtR5ULvxvYxkyYAdTzRulKEkcppWq721rQLqfClGJKu1+jdWSR9avsY1oSnAtgaTaYe8qRF/oeKFEFs+CBS01Xk=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1724327993; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=F7zXwtoEV0ZT7LXN9/C4cFaG6cOzhkCyUyT3udVmG6k=; 
+	b=Uq987caBLPycf+3ikEuo2XWI45j2KHLZxpL5iHsWzlsTvj9xzE3x4i2Cblkp9et4JbT0W+B3HtYZJ38u1QZu75YrEgt+x3EMBV4vnT+/6XYZXTl7fupVQbsAw+XTSrjhK+bc4qfxYDAXbmlVBoIZiTIhPkZ5qvyx0M0GfybU0Ew=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=cristian.ciocaltea@collabora.com;
+	dmarc=pass header.from=<cristian.ciocaltea@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724327993;
+	s=zohomail; d=collabora.com; i=cristian.ciocaltea@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=F7zXwtoEV0ZT7LXN9/C4cFaG6cOzhkCyUyT3udVmG6k=;
+	b=kLm4xLi+CrDZ55gPpQ35KdlJ2sruQr5As9Lq9/k0KKBeZ2+s3XgjQUyD4AzgZBa+
+	FlSpAO6esGIWCKKuGZRq0PMt7De22C1SvUN75e5nyQcurvZg3RX+18C6qDHpDRY0mT2
+	cgqCQJt0l5d0j9amgxgPLv/CH2MDbzgcYX8Ytt/A=
+Received: by mx.zohomail.com with SMTPS id 1724327990696635.433469686591;
+	Thu, 22 Aug 2024 04:59:50 -0700 (PDT)
+Message-ID: <7fc8cbc3-43d0-43d2-9272-350ac556e2b2@collabora.com>
+Date: Thu, 22 Aug 2024 14:59:43 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,124 +61,57 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: arm:
- qcom,coresight-static-replicator: Add property for source filtering
-Content-Language: en-GB
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Tao Zhang <quic_taozha@quicinc.com>, Mike Leach <mike.leach@linaro.org>,
- James Clark <james.clark@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>,
- Leo Yan <leo.yan@linux.dev>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-msm@vger.kernel.org
-References: <20240821031348.6837-1-quic_taozha@quicinc.com>
- <20240821031348.6837-2-quic_taozha@quicinc.com>
- <a01d2f2f-d963-4eb1-98ee-3dc6f86c9397@arm.com>
- <xmijaayxveghxx76nnudo5mlpxv6tpxvooiox7wj2jyojf3xpe@ntm67lxikfop>
- <44e2617c-62b0-436f-ac6a-0bd3e3855473@arm.com>
-In-Reply-To: <44e2617c-62b0-436f-ac6a-0bd3e3855473@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH v4 3/4] dt-bindings: display: rockchip: Add schema for
+ RK3588 HDMI TX Controller
+To: Conor Dooley <conor@kernel.org>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Sandy Huang <hjc@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>,
+ Luis de Arquer <ldearquer@gmail.com>
+References: <20240819-b4-rk3588-bridge-upstream-v4-0-6417c72a2749@collabora.com>
+ <7E8109D4-A353-4FE3-9152-3C3C6CB7D634@sntech.de>
+ <2085e998-a453-4893-9e80-3be68b0fb13d@collabora.com>
+ <4167579.6PsWsQAL7t@diego> <20240822-pushchair-premises-f4055779216a@spud>
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240822-pushchair-premises-f4055779216a@spud>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 
-On 22/08/2024 11:34, Suzuki K Poulose wrote:
-> On 22/08/2024 08:08, Krzysztof Kozlowski wrote:
->> On Wed, Aug 21, 2024 at 11:38:55AM +0100, Suzuki K Poulose wrote:
->>> On 21/08/2024 04:13, Tao Zhang wrote:
->>>> The is some "magic" hard coded filtering in the replicators,
->>>> which only passes through trace from a particular "source". Add
->>>> a new property "filter-src" to label a phandle to the coresight
->>>> trace source device matching the hard coded filtering for the port.
->>>
->>> Minor nit: Please do not use abbreviate "source" in the bindings.
->>> I am not an expert on other changes below and will leave it to
->>> Rob/Krzysztof to comment.
->>>
->>> Rob, Krzysztof,
->>>
->>> We need someway to "link" (add a phandle) from a "port". The patch below
->>> is extending "standard" port to add a phandle. Please let us know if
->>> there is a better way.
->>>
->>> e.g.:
->>>
->>> filters = list of tuples of port, phandle. ?
->>>
->>> e.g.:
->>>
->>> filters = < 0, <&tpdm_video>,
->>>              1, <&tpdm_mdss>
->>>        >
->>>
+On 8/22/24 11:41 AM, Conor Dooley wrote:
+> On Thu, Aug 22, 2024 at 09:01:34AM +0200, Heiko Stübner wrote:
+>> @Conor: just for me, did some shift happen in our understanding of dt-
+>> best-practices in terms of syscon via phandle vs. syscon via compatible?
 >>
->> Current solution feels like band-aid - what if next time you need some
->> second filter? Or "wall"? Or whatever? Next property?
+>> Because Rockchip boards are referencing their GRFs via phandes forever
+>> but similar to the soc vs non-soc node thing, I'd like to stay on top of
+>> best-practices ;-)
 > 
-> 
-> 
->>
->> Isn't filter just one endpoint in the graph?
->>
->> A <--> filter <--> B
-> 
-> To be more precise, "Filter" is a "port (p0, p1, p2 below)" (among a
-> multi output ports).
-> 
-> For clearer example:
-> 
-> A0 <--> .. <--> ..\                  p0  / --> Filtered for (A1) <--> B1
-> A1 <--> .. <--> .. - < L(filters>    p1  - --> Filtered for (A2) <--> B2
-> A2 <--> .. <--> ../                  p2  \ --> Unfiltered        <--> B0
-> 
-> 
-> 
->> Instead of
->>
->> A <----through-filter----> B?
-> 
-> The problem is we need to know the components in the path from A0 to X
-> through, (Not just A0 and L). And also we need to know "which port (p0 
-> vs p1 vs p2)" does the traffic take from a source (A0/A1/A2) out of the
-> link "L".
-> 
-> So ideally, we need a way to tie p0 -> A1, p1 -> A2.
-> 
-> would we need something else in the future ? I don't know for sure.
-> People could design their own things ;-). But this was the first time
-> ever in the last 12yrs since we supported coresight in the kernel.
-> (there is always a first time).
-> 
-> Fundamentally, the "ports" cannot have additional properties today.
-> Not sure if there are other usecases (I don't see why). So, we have
-> to manually extend like above, which I think is not nice.
+> If IP blocks, and thus drivers, are going to be reused between devices,
+> using the phandles makes sense given that it is unlikely that syscon
+> nodes can make use of fallback compatibles due to bits within that "glue"
+> changing between devices. It also makes sense when there are multiple
+> instances of an IP on the device, which need to use different syscons.
+> My goal is to ask people why they are using these type of syscons
+> phandle properties, cos often they are not required at all - for example
+> with clocks where you effectively need a whole new driver for every
+> single soc and having a phandle property buys you nothing.
 
-Replying to the other thread [0], made me realize that the above is not
-true. Indeed it is possible to add properties for endpoints, e.g:
-
-e.g.: media/video-interfaces.yaml
-
-So extending the endpoint node is indeed acceptable (unlike I thought).
-May be the we it is achieved in this patch is making it look otherwise.
-
-Suzuki
-[0] https://lkml.kernel.org/r/4b51d5a9-3706-4630-83c1-01b01354d9a4@arm.com
-
-
-
-> 
-> Happy to proceed with anything that seems acceptable for you folks.
-> 
-> Suzuki
-> 
-> 
-> 
->>
->> Best regards,
->> Krzysztof
->>
-> 
-
+That would be also the case for this HDMI controller - need to check the
+specs for the newer RK3576 SoC, but I expect the syscons would be quite
+different when compared to RK3588, hence we should keep making use of
+the phandles.
 
