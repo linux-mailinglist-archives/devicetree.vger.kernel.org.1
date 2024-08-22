@@ -1,141 +1,185 @@
-Return-Path: <devicetree+bounces-95747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5136995B0EE
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 10:53:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C90895B0F9
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 10:56:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF9BB1F26992
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 08:53:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ADB411F21317
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 08:56:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 802DA16DEDF;
-	Thu, 22 Aug 2024 08:52:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E684516EBE6;
+	Thu, 22 Aug 2024 08:56:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="i7uUTlCD"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="W/rX2xh5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FCB81CF8B;
-	Thu, 22 Aug 2024 08:52:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50F4116DEDF
+	for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 08:56:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724316776; cv=none; b=d3BKsXTkz4W2UPxpl9g8ZxnHwOCGj+YHPRXbggnItKe7aI7egEm/bEMe7kv4tFGlSti0YR+vCJO8XoeJxbnm8AiM9GRUI8hFVKPSjR3d47+hyTE0kHqg4tf098UVnSfpt9KZNMTgyyTyRmzGpkYEUF5a6X3shYU01ZCv01SQsSc=
+	t=1724316972; cv=none; b=pVtDzHa5lSPMGCTGC+wW7wz/XNDoR8C8f8YLtJZHl1+gGGiCFJ2vXBfONeEKcdtjxHziHCvIkK5wvwmzKecDT6JNMyV4Y18F5XyOyK+Ndth746o5Q/UbvS87isK6wD7XjQVIZdf1hUEUnA5OaT+zJavmrHD5/b8lW+DD0gYDeIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724316776; c=relaxed/simple;
-	bh=/fECh7ipAai6eCx1RusnLoT6gkdwRDlMT8OybqpP7jo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dJjJRaJhPCpJ5qRz14VUmeeKBkXqcPj8BQPeGfbV7wSZT0XXky+OwYX3Ra0/KwSGZiA9CIAhgbJLhuv3aIcqmFCE+CNi54aOi9VfN2rhpN09Al6plKBPAUbGZxqvgI57k3gHkyjt31fZMmXv3JwCVQz81MYQ8CbGTeQ2thuDL1g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=i7uUTlCD; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 2E82640014;
-	Thu, 22 Aug 2024 08:52:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1724316771;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=7UIGzrVaAQPnYlVfpyNoYN2nYYqPJiVh7oMdysgcqNU=;
-	b=i7uUTlCDY8YsUUZ29X9DOU5fWK/bhszXgWeO6WruYIikgph+s9xbgkwZovwoqXkPZrcUjV
-	gWHBRw8LP7eeMPVL3rAbAmaevFhCJ8fWboLzIrVM03CwV5hp5ohhIM7qJuuIuuyUS/XBQi
-	an6YctOHY6YyEkox7+7u84nnsV/i+UZ9HovjLh/CG+f5xjMdL844pm0qbaNHKhArzz2bom
-	Nn7nY0Ihc3xVwUDV3OYmQKdkwHvEH3j/3d7OUBQblE/bAJO1g6+XrX4ZHadiFZV3QVfulH
-	xKnrDsbGSCAZm8OYq/TSibGYG+akOpMxizy62KrOg66O1+m2H/oKuFE6+CJopg==
-Date: Thu, 22 Aug 2024 10:52:49 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Thomas Bonnefille <thomas.bonnefille@bootlin.com>, Jonathan Cameron
- <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto
- <inochiama@outlook.com>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
- Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: iio: adc:
- sophgo,cv18xx-saradc.yaml: Add Sophgo CV18XX SARADC binding
-Message-ID: <20240822105249.0fd64d67@xps-13>
-In-Reply-To: <20240821-unholy-statutory-7aa884ebf857@spud>
-References: <20240812-sg2002-adc-v4-0-599bdb67592f@bootlin.com>
-	<20240812-sg2002-adc-v4-1-599bdb67592f@bootlin.com>
-	<20240812-unwary-mongrel-9f6758bf624c@spud>
-	<89aabfbe-79bf-4da7-be44-b6cbd92b72a9@bootlin.com>
-	<20240820-borough-latch-17d785301aef@spud>
-	<20240821094150.5787905b@xps-13>
-	<20240821-unholy-statutory-7aa884ebf857@spud>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1724316972; c=relaxed/simple;
+	bh=O1pQwnaWg5sUqXX8CzuAzgqRy6GU/4AsC8173KSiKpQ=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:MIME-Version:
+	 Content-Type:References; b=E1mSSNFbSBIVZECIiJATSkkIf8WRR240rPUMvVUaVmwbrPQfHOHgeitiynvfjtmRGvooef8m6IVTZodxV57GH0McUI8GqSdsN2RC9ICBVrDQqdaFJ3oKNlSOWwhJ20YBz6aPBjxsxTx5s8X7QnBAaY7wPvPWLyUy8ThzqIsEIvs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=W/rX2xh5; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas1p3.samsung.com (unknown [182.195.41.47])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20240822085607epoutp01cbf62a4f5edb7ad35f8cf8ddaad241b7~uASVhTk3-2554525545epoutp01L
+	for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 08:56:07 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20240822085607epoutp01cbf62a4f5edb7ad35f8cf8ddaad241b7~uASVhTk3-2554525545epoutp01L
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1724316967;
+	bh=y/skavvxnDPteOq4BgTyYlmkQ68yu5OQBExQtCpU2yE=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=W/rX2xh5ZlL5qyDDSvmgRcQOK3PQwYCcEXq8MgdHMppwb/Vj1rCuveLICw/BvLqO8
+	 bih4TaBVEWqPLFqqLT/gJkGYhXfVrVlEWsEycYHnLYcwqSuHtnDureJ2NNXiAsLiM3
+	 M3FnujSa50FWXX9oT/luvxX8woqfFAN29UpDyT8c=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+	epcas1p3.samsung.com (KnoxPortal) with ESMTP id
+	20240822085606epcas1p3e42b01e08d14e06b7eb6efc73d8e0340~uASVF9dfZ3077130771epcas1p3P;
+	Thu, 22 Aug 2024 08:56:06 +0000 (GMT)
+Received: from epsmgec1p1.samsung.com (unknown [182.195.36.132]) by
+	epsnrtp2.localdomain (Postfix) with ESMTP id 4WqH9d6k6Yz4x9Q1; Thu, 22 Aug
+	2024 08:56:05 +0000 (GMT)
+Received: from epcas1p4.samsung.com ( [182.195.41.48]) by
+	epsmgec1p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	C4.FD.09623.52DF6C66; Thu, 22 Aug 2024 17:56:05 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20240822085605epcas1p12604f5cc1c5df81b2098376b2dcbe766~uAST4dCCo1705917059epcas1p1N;
+	Thu, 22 Aug 2024 08:56:05 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20240822085605epsmtrp1517a92241050b7dacf88910603787fd5~uAST3jSnt3046430464epsmtrp1P;
+	Thu, 22 Aug 2024 08:56:05 +0000 (GMT)
+X-AuditID: b6c32a36-ef9ff70000002597-72-66c6fd255bd6
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	DD.45.08964.52DF6C66; Thu, 22 Aug 2024 17:56:05 +0900 (KST)
+Received: from [10.113.111.204] (unknown [10.113.111.204]) by
+	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20240822085605epsmtip21d724b3f95bcac81a650a1f729e6a31b~uASTloKNJ1033910339epsmtip2T;
+	Thu, 22 Aug 2024 08:56:05 +0000 (GMT)
+Message-ID: <08b3d20ccd34aabd59b22e2095412f43370e23b6.camel@samsung.com>
+Subject: Re: [PATCH] arm64: dts: exynosautov9: Add dpum SysMMU
+From: Kwanghoon Son <k.son@samsung.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Thu, 22 Aug 2024 17:56:04 +0900
+In-Reply-To: <2e38f14b-41f4-401f-915e-fe3a4c1bfbe8@linaro.org>
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupgk+LIzCtJLcpLzFFi42LZdljTQFf177E0g1c7TS0ezNvGZrFm7zkm
+	i/lHzrFavJx1j81i7+ut7BabHl9jtbi8aw6bxYzz+5gs/u/Zwe7A6bFpVSebx51re9g8Ni+p
+	9+jbsorR4/MmuQDWqGybjNTElNQihdS85PyUzLx0WyXv4HjneFMzA0NdQ0sLcyWFvMTcVFsl
+	F58AXbfMHKB7lBTKEnNKgUIBicXFSvp2NkX5pSWpChn5xSW2SqkFKTkFpgV6xYm5xaV56Xp5
+	qSVWhgYGRqZAhQnZGYf/tbAXfOWuWLV+HVsD42TOLkZODgkBE4m2vWcYuxi5OIQEdjBK/Jg1
+	nxXC+cQo8WdJFytIlZDAN0aJR828MB37Hv9hgyjayyjRf2sFM0TRe0aJGUtVQWxeAQ+Jqbdn
+	sYDYwgJ2EjdvnwWz2QTUJZa0rWUHaRYRuMAoMXvRC7DdzALtjBKn5txgB6liEVCVePm2FWgF
+	BwcnUPejFV4gYWYBbYllC1+DLRMVkJdoeHiCGWKZoMTJmU9YQOZICPRySKxZDNILcqqLxOH3
+	a1ggbGGJV8e3sEPYUhIv+9ug7GyJox/3QtWXSFyftYgVwjaW2L90MhPIDcwCmhLrd+lD3MAn
+	8e5rDytIWEKAV6KjTQjClJe41VkO0SgqcebpR6iBHhKXFu2Fhu53Jonu6ZNZJjDKz0LyzSwk
+	H8xCWLaAkXkVo1hqQXFuemqxYYERPFKT83M3MYKTpJbZDsZJbz/oHWJk4mA8xCjBwawkwpt0
+	72iaEG9KYmVValF+fFFpTmrxIUZTYJBOZJYSTc4Hpum8knhDE0sDEzMjYxMLQzNDJXHeM1fK
+	UoUE0hNLUrNTUwtSi2D6mDg4pRqYfPNCu7TfyngxmsWlfy5bM2v+L3F7xZsmtvp76yaUHnvw
+	1HqL3G7VGX1HQkzmn/gnx7pjTbT+Y25Dd237+o8r1k+V2n6tbq69L5fap/Zt67yMZ04MSvvl
+	7X/3V4voqQe5S9XDG/SlT+ifXnz5jrObQEmhhVTA+b91945r2zQ55b9IkdT0tP7rM3H+8idH
+	Yu1Yz6/vfbrz4ROJXo7uq6wuL6qvSE+fxpQxhyfJ29ro+5vVkz9P6FE53Hl731Pn9u+yz0xL
+	+/tlKvgquvzS6+3k15V+Oet5RubrnmwezdVr1a9t22XqJPBP9of3+72r7yrrKp/72TifKf70
+	LGX9vYf5cqISnxw/vO7Bjt+zimbnKrEUZyQaajEXFScCAM0M7E0bBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrJLMWRmVeSWpSXmKPExsWy7bCSvK7q32NpBjNnS1s8mLeNzWLN3nNM
+	FvOPnGO1eDnrHpvF3tdb2S02Pb7GanF51xw2ixnn9zFZ/N+zg92B02PTqk42jzvX9rB5bF5S
+	79G3ZRWjx+dNcgGsUVw2Kak5mWWpRfp2CVwZ+7qesxS85K7Yc7aBtYGxnbOLkZNDQsBEYt/j
+	P2xdjFwcQgK7GSUuT3nBBpEQlei43MjYxcgBZAtLHD5cDFHzllHizN+f7CA1vAIeElNvz2IB
+	sYUF7CRu3j4LZrMJqEssaVvLDtIgInCJUeLVwlNMIA6zQAejxPVn38A2sAioSrx828oGsoET
+	qPvRCi+IDf+ZJO5tPwi2gVlAU6J1+28oW1ti2cLXzCC2qIC8RMPDE8wQVwhKnJz5hGUCo+As
+	JC2zkLTMQlK2gJF5FaNkakFxbnpusWGBYV5quV5xYm5xaV66XnJ+7iZGcGxoae5g3L7qg94h
+	RiYOxkOMEhzMSiK8SfeOpgnxpiRWVqUW5ccXleakFh9ilOZgURLnFX/RmyIkkJ5YkpqdmlqQ
+	WgSTZeLglGpgqnpkrNXpfJhvyo7Xt06ZrNDzrJuZYnR03s7LIrX6O3KW1m/o2/r+RRyPwKYf
+	v+KWRsatu1go/sMyoGMZn9T7dNY1ihcjjjHcW7/6x2N3npyvwoFpCX0B/VEO08oZ3/L/2mby
+	u0GYp8BYKzzejoEnOKFDf8Wi3fpp2Vfik96+9Crk9uffdHF950SXa19Z5NcE2021mxPgnFJj
+	rbxp7/MW75ibZyMmTfkhUlHCzmMYK+aSIeGhK7r2/BXLq/PW+W8432b+LcN9guo5AfsJBf6P
+	84Ie8atVhMidW7hd5cL5b4fFpb6JHr1loc1zLLjj+aJXgqxpzSIvl0gpTf6fwP9vaufLK6my
+	xf+FA5/ssrqvxFKckWioxVxUnAgAuXymhPwCAAA=
+X-CMS-MailID: 20240822085605epcas1p12604f5cc1c5df81b2098376b2dcbe766
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20240819075546epcas1p355a3c85ffcea2c43e8f1b2c69a0f3b4e
+References: <CGME20240819075546epcas1p355a3c85ffcea2c43e8f1b2c69a0f3b4e@epcas1p3.samsung.com>
+	<20240819-add_sysmmu-v1-1-799c0f3f607f@samsung.com>
+	<172423973836.252925.2617927566866963313.b4-ty@linaro.org>
+	<754863f6-0fc3-4223-940a-4ca33bfbe633@linaro.org>
+	<62304fa0bdbc76cb006927b6d40c670c4843f83f.camel@samsung.com>
+	<2e38f14b-41f4-401f-915e-fe3a4c1bfbe8@linaro.org>
 
-Hi Conor,
-
-conor@kernel.org wrote on Wed, 21 Aug 2024 16:29:42 +0100:
-
-> On Wed, Aug 21, 2024 at 09:41:50AM +0200, Miquel Raynal wrote:
-> > > > > > +      Represents the channels of the ADC.
-> > > > > > +
-> > > > > > +    properties:
-> > > > > > +      reg:
-> > > > > > +        description: |
-> > > > > > +          The channel number. It can have up to 3 channels num=
-bered from 0 to 2.
-> > > > > > +        items:
-> > > > > > +          - minimum: 0
-> > > > > > +            maximum: 2   =20
+On Thu, 2024-08-22 at 08:21 +0200, Krzysztof Kozlowski wrote:
+> On 22/08/2024 04:16, Kwanghoon Son wrote:
+> > On Wed, 2024-08-21 at 13:29 +0200, Krzysztof Kozlowski wrote:
+> > > On 21/08/2024 13:28, Krzysztof Kozlowski wrote:
+> > > >=20
+> > > > On Mon, 19 Aug 2024 16:55:45 +0900, Kwanghoon Son wrote:
+> > > > > Add System Memory Management Unit(SysMMU) for dpum also called io=
+mmu.
 > > > > >=20
-> > > > > Is this sufficient to limit the number of channels to 3? Aren't y=
-ou relying
-> > > > > on the unique unit addresses warning in dtc to limit it, rather t=
-han
-> > > > > actually limiting with min/maxItems?
-> > > > >    =20
-> > > > It seems like I can't use min/maxItems on this property. I think th=
-at it is
-> > > > using size-cells + address-cells to deduce that the number of items=
- should
-> > > > be equal to 1.   =20
+> > > > > This sysmmu is version 7.4, which has same functionality as exyno=
+s850.
+> > > > >=20
+> > > > > DPUM has 4 dma channel, each channel is mapped to one iommu.
+> > > > >=20
+> > > > >=20
+> > > > > =5B...=5D
+> > > >=20
+> > > > Applied, thanks=21
+> > > >=20
+> > > > =5B1/1=5D arm64: dts: exynosautov9: Add dpum SysMMU
+> > > >       (no commit info)
+> > >=20
+> > > I should reply here - unapplied. Does not build.
+> > >=20
+> > > Best regards,
+> > > Krzysztof
+> > >=20
 > >=20
-> > Looking at dt-schema, I couldn't personally understand from where did
-> > the error messages reported by Thomas came from. There are clear =20
+> > I apologize for the inconvenience.
+> >=20
+> > This should come after
+> > https://lore.kernel.org/linux-samsung-soc/20240809-clk_dpum-v3-0-359dec=
+c30fe2=40samsung.com/
+> > patch (already merged in next) as 'next'.
+> >=20
+> > Would it be okay to you if I write 'next' on title and required patch
+> > in cover-letter? or anything more make you more easy to review.
 >=20
-> I think the complaints are on a more meta level than that. He provided
-> an items list
->      properties:
->        reg:
->          maxItems: 1
->          items:
->            - minimum: 0
->              maximum: 2
-> but this list only has one entry as there's one -. The first complaint
-> from dt_binding_check is that having maxItems is not needed with an
-> items list, because the items list contains the maximum number of
-> elements.
+> 'next' has no meaning. It is impossible to apply patches on next.
 >=20
-> The second one comes from cell.yaml:
-> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/meta-schem=
-as/cell.yaml
+> You should document the dependency in changelog or cover letter.
 >=20
-> It either allows a single item, with maxItems: 1 or multiple items, in
-> which case maxitems must be greater than 1. That's where the "anyOf
-> conditonal failed" and "1 is less than the minimum of 2" stuff comes
-> from.
+> Best regards,
+> Krzysztof
 >=20
-> I hope that helps?
 
-Ah yeah, makes sense. Thanks a lot for your feedback!
+Thanks, I'll follow guide when send v2.
 
-Miqu=C3=A8l
+Kwang.
+
 
