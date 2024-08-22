@@ -1,274 +1,143 @@
-Return-Path: <devicetree+bounces-95929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD93995BF11
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 21:43:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BD8F95BF1F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 21:51:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94BAC283B2E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 19:43:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D68ED1F22542
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 19:51:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49FF61D0498;
-	Thu, 22 Aug 2024 19:43:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D00E1D04A1;
+	Thu, 22 Aug 2024 19:50:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ugkuuewD"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="eTpeRTTz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EC0E28EA
-	for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 19:43:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.43
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724355824; cv=none; b=MbAV7PrlKBCVZFH9kex+FQoWCNhOB8jD3dZLZBUl6vcRoYsenQLrz5ci8j2mzUJCwkkNUEruM6UgRTEYdUdbj7RuLhYHh/aCPw7tL9Msj9v7DoOgbx1Zoz4Di3NZ24sjWOoThgH7c8VzUzivp9anhZ+MfR9owR7GHHYgXqYOQOQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724355824; c=relaxed/simple;
-	bh=RP4y+/7MM9jSz5HZCZkGA8wnBwm/mXV7qSW3J20gAiU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=piXXSvR6OCPnCl5whWgW3UtWFRQillcvKS+8eAU8asvNYMnEQ3M6oDp8+J8xy14ujaaaNWVWzIRgs5U+ELz1OKPsx4YF+vAuZF6k4yzfDNnighyQhPFwCfh7Kx9uIZ4jgODor48uNCoeZyjVH8xoYGoqfHzaCxtaxLEghcVXBW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ugkuuewD; arc=none smtp.client-ip=209.85.160.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-26fde6117cfso845427fac.1
-        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 12:43:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1724355821; x=1724960621; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zrphh2W/kycmfZ/8VneCtdGx+CrSEXJ4tVn5Mz1GwDo=;
-        b=ugkuuewDBWHFuKLobPJ5q8tDJYA+DDHH3sjpjho/bF1Z1KPnpYa7feaPYu/oBxupQ+
-         rKyA493K7AH2nWcg1xh2HvXfwNlgHaVJAQrhqT7JUruWKlsS9LLKSCiGlYwSY5m6NsIF
-         WYVeG1lwoJZQWKuSvKn4A2ML1/pmGACE7lUe5M7DTKf2+cgX5yx78cp3kHSaqUkqFwf2
-         lzzLl3n3jvse/uuFThRqFCGIzP1GqoneGPNaooaYqo5fa3FW1g/JkECDhgV29qsqIF0T
-         nYTj0jP79sqCszhLk6aA0arGXUfxQyqGD/jgS3Vzr2wFeAr+kkhLokG8htkX8EfSbOeD
-         hAjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724355821; x=1724960621;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zrphh2W/kycmfZ/8VneCtdGx+CrSEXJ4tVn5Mz1GwDo=;
-        b=MxTkYXKOXGISm+KdF3olX7D9gLXI6J0AnA8sc1UCt9mjZ3pukhGTPUmIJx3an2KO1r
-         SBcnCCIqDPI88TXh9ZxCTPNXE6GeqoPESGgOSJ37s7WClwFqXzSA1+yR3DUozjk15O3J
-         JdKf1k5/8BlXpynNL9K3Fo0Je9sF2HUOL7k7fJJqciDnnESgB3/55fI94Ca1PZCNRmg8
-         L0MAxWbuvV0fPztvv8wWSrU6VLoC24IdeiHbEpEDt1ZoImkj8Nx9xJQYoofGGVki1BKX
-         smezMEwrQnh5kvH6P21eqbe1IYa8CJDFUS7DcSzXPEc45Fj+0us8psmrigesKX1Sm3dW
-         T4dg==
-X-Forwarded-Encrypted: i=1; AJvYcCUt43RKwFGJaCgCf+LkQ1kAQjoSwVBCTMwLJZHQ7STlyEFaeX9kTfHi41cLM7TWVqBzjKqFI7DyomJA@vger.kernel.org
-X-Gm-Message-State: AOJu0YyM2i2sXbP2AsmW0bm+OfqTyVQQN4r3Z+TRdlJIs9FmAbIDixrU
-	e4L7ygVeI/cl6/rDw5zoJp2F07c2/hIrGVHmxcmd/frcmnr2u3U4TJnbF7eCkvg=
-X-Google-Smtp-Source: AGHT+IGe2irDfM2bs6E4ggVjVcIPPoXUbqTchSMChCsaSe9hLazbwWqlCJ5t9m9HeiEyM6ANkykcRQ==
-X-Received: by 2002:a05:6870:1614:b0:25c:b3c9:ecda with SMTP id 586e51a60fabf-2738be3ae43mr7375252fac.38.1724355821576;
-        Thu, 22 Aug 2024 12:43:41 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-273cebc59a3sm510786fac.55.2024.08.22.12.43.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Aug 2024 12:43:41 -0700 (PDT)
-Message-ID: <98c34122-6077-4d2c-835c-12e479d90730@baylibre.com>
-Date: Thu, 22 Aug 2024 14:43:40 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09E6617588;
+	Thu, 22 Aug 2024 19:50:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724356256; cv=pass; b=d0gpkdf2bHsmFSvUTPu/Vb5ptZIqW0pdFRw9zumijCGtpm7G5UusRQiLXyQNZlcWSy1gii+7Jh8ArMcWzXcrwRgH9r1ThjjcPpaFLrm/as7bWe5uTz8ec+HhlK5cQKFekpyLAKaYCg3NyOlUv77KfGHe2GZTl8gsNAiOn4pgGBg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724356256; c=relaxed/simple;
+	bh=z71gBKiCb5HNwrr7nqwryFAYX1D1UkbjJF9w3qhEPsU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=FiRFPHRf5KlbuEaUVM6FeJRx5DerRa+NyNwmh6L+cHLyT8n89EYFXMeWungJo7aC8E1T6oq72l3VZj72/PtERJKEPHP6w/b27rdaAP4JsBjKAfEV+UOG1kgntzoKgR2J7mRwGC+WOfNMkxT/2FzKkQgGzdu+h2FnII6jnjPLlSo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=eTpeRTTz; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Delivered-To: detlev.casanova@collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1724356228; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=E41yLdpZ+X5SnFdkNfrcl7f8jySEoAsAfCRDiNbZbVbNyMrNT+volmD1StncEwRskKETGn0QuPb3bqwJXgJJdqRszmxdLELOneG7QFH0fJzOjn5vdrxiyCznIO9mG9q6AD6wOaI0L5LWiXb6GG0fCvlnRm7M5EV/Rk8IqGRNzm8=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1724356228; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=Mb1fbrEw+bwWMVwy9MvhckXYVriHPI7yDfsI9liML/w=; 
+	b=YYwqR67K/sinkUlIMzVPVUTrV4RmsaRu72ZxTb1CP6TLn3WqgTfTxaTFTbO5txV1QXjRJNdaMrmfmzT82Wmd6BVxFc5Cpgu1sI/clb4Dk0MZcv/T3zJln9s8CEfuuU9UKmMZEreFtrSAnho+9NwElqPSmz22UVVFd7TCT4TLCgA=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
+	dmarc=pass header.from=<detlev.casanova@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724356228;
+	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=Mb1fbrEw+bwWMVwy9MvhckXYVriHPI7yDfsI9liML/w=;
+	b=eTpeRTTzrVfAcr60NE2GH5TAMPg1PgTFrlQopLiyTkawNcwZXLnx+f4dUd9D8pxW
+	pLrkguv3hoqistyXH3aAbgryboFtMhebeHVYpIafivX4/NqkKf3d89Ec/4qYc48ry85
+	kBlT/P5BvbsCqw9hy3MmWbRKTnAFklvlRL8AKvgA=
+Received: by mx.zohomail.com with SMTPS id 1724356227134647.7294909083045;
+	Thu, 22 Aug 2024 12:50:27 -0700 (PDT)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: linux-kernel@vger.kernel.org
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Elaine Zhang <zhangqing@rock-chips.com>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	kernel@collabora.com
+Subject: [PATCH v6 0/3] Add CRU support for rk3576 SoC
+Date: Thu, 22 Aug 2024 15:49:31 -0400
+Message-ID: <20240822194956.918527-1-detlev.casanova@collabora.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/6] docs: iio: ad4030: add documentation
-To: Esteban Blanc <eblanc@baylibre.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
- Jonathan Corbet <corbet@lwn.net>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20240822-eblanc-ad4630_v1-v1-0-5c68f3327fdd@baylibre.com>
- <20240822-eblanc-ad4630_v1-v1-6-5c68f3327fdd@baylibre.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20240822-eblanc-ad4630_v1-v1-6-5c68f3327fdd@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 
-On 8/22/24 7:45 AM, Esteban Blanc wrote:
-> This adds a new page to document how to use the ad4030 ADC driver
-> 
-> Signed-off-by: Esteban Blanc <eblanc@baylibre.com>
-> ---
->  Documentation/iio/ad4030.rst | 129 +++++++++++++++++++++++++++++++++++++++++++
->  Documentation/iio/index.rst  |   1 +
->  MAINTAINERS                  |   1 +
->  3 files changed, 131 insertions(+)
-> 
-> diff --git a/Documentation/iio/ad4030.rst b/Documentation/iio/ad4030.rst
-> new file mode 100644
-> index 000000000000..56e0ba58b127
-> --- /dev/null
-> +++ b/Documentation/iio/ad4030.rst
-> @@ -0,0 +1,129 @@
-> +.. SPDX-License-Identifier: GPL-2.0-only
-> +
-> +=============
-> +AD4030 driver
-> +=============
-> +
-> +ADC driver for Analog Devices Inc. AD4030 and similar devices. The module name
-> +is ``ad4030``.
-> +
-> +
-> +Supported devices
-> +=================
-> +
-> +The following chips are supported by this driver:
-> +
-> +* `AD4030-24 <https://www.analog.com/AD4030-24>`_
-> +* `AD4630-16 <https://www.analog.com/AD4630-16>`_
-> +* `AD4630-24 <https://www.analog.com/AD4630-24>`_
-> +* `AD4632-16 <https://www.analog.com/AD4632-16>`_
-> +* `AD4632-24 <https://www.analog.com/AD4632-24>`_
-> +
-> +IIO channels
-> +============
-> +
-> +Each "device" channel as described in the datasheet is split in 2 IIO channels,
-> +in the following order:
-> +
-> +- One channel for the differential data
-> +- One channel for the common byte.
-> +
-> +Supported features
-> +==================
-> +
-> +SPI wiring modes
-> +----------------
-> +
-> +The driver currently supports the following SPI wiring configurations:
-> +
-> +One lane mode
-> +^^^^^^^^^^^^^
-> +
-> +In this mode, each channel has its own SDO line to send the conversion results.
-> +At the moment this mode can only be used on AD4030 which has one channel so only
-> +one SDO line is used.
-> +
-> +.. code-block::
-> +
-> +    +-------------+         +-------------+
-> +    |     ADC     |         |     HOST    |
-> +    |             |         |             |
-> +    |         CNV |<--------| CNV         |
-> +    |          CS |<--------| CS          |
-> +    |         SDI |<--------| SDO         |
-> +    |        SDO0 |-------->| SDI         |
-> +    |        SCLK |<--------| SCLK        |
-> +    +-------------+         +-------------+
-> +
-> +Interleaved mode
-> +^^^^^^^^^^^^^^^^
-> +
-> +In this mode, both channels conversion results are bit interleaved one SDO line.
-> +As such the wiring is the same as `One lane mode`.
-> +
-> +SPI Clock mode
-> +--------------
-> +
-> +Only the SPI clocking mode is supported.
-> +
-> +Output modes
-> +------------
-> +
-> +There is more exposed IIO channels than channels as describe in the devices
-> +datasheet. This is due to the `Differential data + 8-bit common-mode` encoding
-> +2 types of information in one conversion result. As such a "device" channel
-> +provides 2 IIO channels, one for the differential data and one for the common
-> +byte.
-> +
-> +Differential data
-> +^^^^^^^^^^^^^^^^^
-> +
-> +This mode is selected when:
-> +
-> +- Only differential channels are selected
-> +- Oversampling attribute is set to 1
-> +
-> +Differential data + common-mode
-> +^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> +
-> +This mode is selected when:
-> +
-> +- Differential and common-mode channels are selected
-> +- Oversampling attribute is set to 1
-> +
-> +For the 24-bits chips, this mode is also available with 16-bits differential
-> +data but is not selectable yet.
-> +
-> +Averaged differential data
-> +^^^^^^^^^^^^^^^^^^^^^^^^^^
-> +
-> +This mode is selected when:
-> +
-> +- Only differential channels are selected
-> +- Oversampling attribute is greater than 1
-> +
+Add support for clocks and resets on the rk3576.
+Patches from downstream have been squashed and rebased.
 
-Worth mentioning calibration (gain/offset) feature?
+The resets have been renumbered without gaps and their actual register/bit
+information is set in rst-rk3576.c as it has been done for rk3588.
 
-> +Reference voltage
-> +-----------------
-> +
-> +The chip supports an external reference voltage via the ``REF`` input or an
-> +internal buffered reference voltage via the ``REFIN`` input. The driver looks
-> +at the device tree to determine which is being used. If ``ref-supply`` is
-> +present, then the external reference voltage is used and the internal buffer is
-> +disabled. If ``refin-supply`` is present, then the internal buffered reference
-> +voltage is used.
-> +
-> +Reset
-> +-----
-> +
-> +Both hardware and software reset are supported. The driver looks first at the
-> +device tree to see if the `reset-gpio` is populated. If not present, the driver
-> +will fallback to a software reset by wiring to the device's registers.
-> +
-> +Unimplemented features
-> +----------------------
-> +
-> +- ``BUSY`` indication
-> +- Additional wiring modes
-> +- Additional clock modes
-> +- Differential data 16-bits + common-mode for 24-bits chips
+Also add the pll_rk3588_ddr pll type that is used by the ppll clock.
 
-- overrange event
-- test patterns
+Changes since v5:
+- Use mandatory syscon lookup instead of optional grf phandle
+- Add pll_rk3588_ddr type to always have correct rate values
 
-> +
-> diff --git a/Documentation/iio/index.rst b/Documentation/iio/index.rst
-> index dfcf9618568a..61faf3a60da6 100644
-> --- a/Documentation/iio/index.rst
-> +++ b/Documentation/iio/index.rst
-> @@ -19,6 +19,7 @@ Industrial I/O Kernel Drivers
->     :maxdepth: 1
->  
->     ad4000
-> +   ad4030
->     ad4695
->     ad7380
->     ad7944
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 6a5a0e7b7a51..4a076a48648a 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -420,6 +420,7 @@ R:	Esteban Blanc <eblanc@baylibre.com>
->  S:	Supported
->  W:	https://ez.analog.com/linux-software-drivers
->  F:	Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
-> +F:	Documentation/iio/ad4030.c
->  F:	drivers/iio/adc/ad4030.c
->  
->  AD5110 ANALOG DEVICES DIGITAL POTENTIOMETERS DRIVER
-> 
+Changes since v4:
+- Fix commit message with idx starting at 0
+- Stash all bindings commits
+- Cleanup example and add me as maintainer
+
+Changes since v3:
+- Add missing include in bindings
+
+Changes since v2:
+- Renumber IDs from 0
+- Commit clock header with clock bindings
+- Add missing resets on sub-cores
+- Add redundant fields in bindings
+
+Changes since v1:
+- Remove reset defines that are probably out of the main core
+- Separate resets and clocks bindings
+- Renumber the resets without gaps
+
+Detlev.
+
+
+Detlev Casanova (1):
+  dt-bindings: clock, reset: Add support for rk3576
+
+Elaine Zhang (2):
+  clk: rockchip: Add new pll type pll_rk3588_ddr
+  clk: rockchip: Add clock controller for the RK3576
+
+ .../bindings/clock/rockchip,rk3576-cru.yaml   |   56 +
+ drivers/clk/rockchip/Kconfig                  |    7 +
+ drivers/clk/rockchip/Makefile                 |    1 +
+ drivers/clk/rockchip/clk-pll.c                |    6 +-
+ drivers/clk/rockchip/clk-rk3576.c             | 1829 +++++++++++++++++
+ drivers/clk/rockchip/clk.h                    |   54 +
+ drivers/clk/rockchip/rst-rk3576.c             |  652 ++++++
+ .../dt-bindings/clock/rockchip,rk3576-cru.h   |  592 ++++++
+ .../dt-bindings/reset/rockchip,rk3576-cru.h   |  564 +++++
+ 9 files changed, 3760 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3576-cru.yaml
+ create mode 100644 drivers/clk/rockchip/clk-rk3576.c
+ create mode 100644 drivers/clk/rockchip/rst-rk3576.c
+ create mode 100644 include/dt-bindings/clock/rockchip,rk3576-cru.h
+ create mode 100644 include/dt-bindings/reset/rockchip,rk3576-cru.h
+
+-- 
+2.46.0
 
 
