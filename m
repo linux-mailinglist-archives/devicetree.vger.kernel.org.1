@@ -1,49 +1,50 @@
-Return-Path: <devicetree+bounces-95727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59A5595AF2D
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 09:23:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8604395AF2F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 09:24:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CA911B25A85
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 07:23:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B8F641C22B5D
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 07:24:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B78117D377;
-	Thu, 22 Aug 2024 07:19:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A27D717DFFB;
+	Thu, 22 Aug 2024 07:20:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+Received: from szxga04-in.huawei.com (szxga04-in.huawei.com [45.249.212.190])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5FAB1684AE
-	for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 07:19:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.249.212.188
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0E7617DFF5;
+	Thu, 22 Aug 2024 07:20:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.249.212.190
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724311148; cv=none; b=lGdZ0Dsky13G0p8vA05O4R9B69Ro8WG1kFQhUoQ803WeyvEU75LT1wW+t6iIKAE3F1qAmq+5GUj6E5lXbAgQg/9llPuZEL8nbK9Ez4xHOIlgbZlAZDoNkYXB5l108Dyfk5zfz43mv7XR22qaIO2FKWuFSn3DiKAdE3UCVhV6xHo=
+	t=1724311202; cv=none; b=JD6pdqe/2F/dDbk0p69iOTM4ed66/0sI413cO5yZlD2EIH6QU4RcyuxRY/AOeVsf8ff9WQhipqjcutFsSjTlqYta+6b+Sua8CPXBiUQ8us3e56rkeA38JWO2x1CWLX22lVw7dGE90WkgAmN1jXhYv+Tk7NKVc3s7FDAk7B3j1bU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724311148; c=relaxed/simple;
-	bh=Xays7bld+bCbbiXsEDuwx1Ur7OWw3FT7eghZQVYCbwI=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=REmbwcGwAZWCzG48MWEpiElxjlPD4kbTraFYZw9pUIK09vTZc0OepcYG0Eg0i1wjYVql009ZNNCrkCR8sOnA3LQ3Zqm0pcTzKsni4J5JIrwG5RZ3KZE1oZAstYQuqnubUj5k0eAq4HH/ZgyqfDLCezVQFFFZIhKqRbSxH5GyBaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=45.249.212.188
+	s=arc-20240116; t=1724311202; c=relaxed/simple;
+	bh=rOvd85FI7PCMs5Ot0GiMcBg5jGcZBE+fM0C9/VVTsLQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=dwrU65eMLUu4dl73AzqIFV7nSPJz0ax22JAAbdcY71MTuKmPtozLF6m3dM6LXgk19MO10MpuXpaU4zcG6sjg7LxUPR+NFk7zAc23LimKRqQbkw174d67YQWye2NHEJQjC84Q59ny4a/dlAwkC/zQ6wp9iIm1329sVTxzW5VEA0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=45.249.212.190
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.19.163.48])
-	by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4WqDzH0MffzhY3M;
-	Thu, 22 Aug 2024 15:16:59 +0800 (CST)
+Received: from mail.maildlp.com (unknown [172.19.163.44])
+	by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4WqF2f448Cz2CnDN;
+	Thu, 22 Aug 2024 15:19:54 +0800 (CST)
 Received: from kwepemh500013.china.huawei.com (unknown [7.202.181.146])
-	by mail.maildlp.com (Postfix) with ESMTPS id 06A6F18009B;
-	Thu, 22 Aug 2024 15:19:00 +0800 (CST)
+	by mail.maildlp.com (Postfix) with ESMTPS id F07411400FD;
+	Thu, 22 Aug 2024 15:19:57 +0800 (CST)
 Received: from huawei.com (10.90.53.73) by kwepemh500013.china.huawei.com
  (7.202.181.146) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Thu, 22 Aug
- 2024 15:18:59 +0800
+ 2024 15:19:57 +0800
 From: Jinjie Ruan <ruanjinjie@huawei.com>
-To: <robh@kernel.org>, <saravanak@google.com>, <devicetree@vger.kernel.org>
+To: <robh@kernel.org>, <saravanak@google.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
 CC: <ruanjinjie@huawei.com>
-Subject: [PATCH -next] of: resolver: Simplify with scoped for each OF child loop
-Date: Thu, 22 Aug 2024 15:26:29 +0800
-Message-ID: <20240822072629.3549426-1-ruanjinjie@huawei.com>
+Subject: [PATCH -next] of: overlay: Simplify with scoped for each OF child loop
+Date: Thu, 22 Aug 2024 15:27:24 +0800
+Message-ID: <20240822072724.3549631-1-ruanjinjie@huawei.com>
 X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -53,7 +54,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
+X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
  kwepemh500013.china.huawei.com (7.202.181.146)
 
 Use scoped for_each_child_of_node_scoped() when iterating over device
@@ -61,47 +62,50 @@ nodes to make code a bit simpler.
 
 Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
 ---
- drivers/of/resolver.c | 12 ++++--------
- 1 file changed, 4 insertions(+), 8 deletions(-)
+ drivers/of/overlay.c | 12 +++---------
+ 1 file changed, 3 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/of/resolver.c b/drivers/of/resolver.c
-index 2780928764a4..5cf96776dd7d 100644
---- a/drivers/of/resolver.c
-+++ b/drivers/of/resolver.c
-@@ -150,7 +150,7 @@ static int node_name_cmp(const struct device_node *dn1,
- static int adjust_local_phandle_references(struct device_node *local_fixups,
- 		struct device_node *overlay, int phandle_delta)
+diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+index 4d861a75d694..cbdecccca097 100644
+--- a/drivers/of/overlay.c
++++ b/drivers/of/overlay.c
+@@ -472,7 +472,6 @@ static int add_changeset_node(struct overlay_changeset *ovcs,
+ static int build_changeset_next_level(struct overlay_changeset *ovcs,
+ 		struct target *target, const struct device_node *overlay_node)
  {
--	struct device_node *child, *overlay_child;
-+	struct device_node *overlay_child;
- 	struct property *prop_fix, *prop;
- 	int err, i, count;
- 	unsigned int off;
-@@ -194,7 +194,7 @@ static int adjust_local_phandle_references(struct device_node *local_fixups,
- 	 * The roots of the subtrees are the overlay's __local_fixups__ node
- 	 * and the overlay's root node.
- 	 */
--	for_each_child_of_node(local_fixups, child) {
-+	for_each_child_of_node_scoped(local_fixups, child) {
+-	struct device_node *child;
+ 	struct property *prop;
+ 	int ret;
  
- 		for_each_child_of_node(overlay, overlay_child)
- 			if (!node_name_cmp(child, overlay_child)) {
-@@ -202,17 +202,13 @@ static int adjust_local_phandle_references(struct device_node *local_fixups,
- 				break;
- 			}
+@@ -485,12 +484,11 @@ static int build_changeset_next_level(struct overlay_changeset *ovcs,
+ 		}
+ 	}
  
--		if (!overlay_child) {
+-	for_each_child_of_node(overlay_node, child) {
++	for_each_child_of_node_scoped(overlay_node, child) {
+ 		ret = add_changeset_node(ovcs, target, child);
+ 		if (ret) {
+ 			pr_debug("Failed to apply node @%pOF/%pOFn, err=%d\n",
+ 				 target->np, child, ret);
 -			of_node_put(child);
-+		if (!overlay_child)
- 			return -EINVAL;
--		}
+ 			return ret;
+ 		}
+ 	}
+@@ -1078,16 +1076,12 @@ EXPORT_SYMBOL_GPL(of_overlay_fdt_apply);
+  */
+ static int find_node(struct device_node *tree, struct device_node *np)
+ {
+-	struct device_node *child;
+-
+ 	if (tree == np)
+ 		return 1;
  
- 		err = adjust_local_phandle_references(child, overlay_child,
- 				phandle_delta);
--		if (err) {
+-	for_each_child_of_node(tree, child) {
+-		if (find_node(child, np)) {
 -			of_node_put(child);
-+		if (err)
- 			return err;
++	for_each_child_of_node_scoped(tree, child) {
++		if (find_node(child, np))
+ 			return 1;
 -		}
  	}
  
