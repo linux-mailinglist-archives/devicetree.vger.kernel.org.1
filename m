@@ -1,106 +1,90 @@
-Return-Path: <devicetree+bounces-95734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CECD95AFB7
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 09:55:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 342D195AFC6
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 09:59:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD7D21C22B8C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 07:55:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6FE9284414
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 07:59:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9FCC16F8E9;
-	Thu, 22 Aug 2024 07:55:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B27E16DEB1;
+	Thu, 22 Aug 2024 07:59:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NuyW0vVy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S8+yh6yP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09996167265
-	for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 07:55:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB87E16DC15;
+	Thu, 22 Aug 2024 07:59:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724313314; cv=none; b=S9EQxZmZqODtk/NPARXiIENGThvRGHawDsu6cL/q3vRliynC9K6IlVlexEiCZ4CqeJW8vkOahHMNMLuh1bcXlKf8M5bPDbE2BPYSvVb98tCr/93cFupCSqptizUEmdck2jjETpy93K2s7QL033H22o3zuCh+1GvSmmwcc9zS3rk=
+	t=1724313577; cv=none; b=P3j2WlL6wWybFjtiiM/wfq39yk84bCIm1VUMH42vYIve0Rqn7XexT7VHRuiJESjX3KCpVU4GeCb4KinYi1N5LxJyK6F8XARdfW0QKkpU8kzF4YLAHN5ly3bk3Wxa5y8jr4Mevfe0ttZPAA9wtQuH2DtVYeFN7TZZqWWFtAsJ5J8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724313314; c=relaxed/simple;
-	bh=JxTH1JUcwUj5tXsh2vU9YAtTfgnOREw24cwYEjA42Sc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G19P3nIx++E6z1Z4K54VnQIxgQW1/Du9rFm6YKGT3s2m4zElRjKp6DKrjXBr3YPt2ZaWiYurhEBeEz9StvyyELMoUUiZbn0c+r5TVXVi71tjv3E7m9YomLU3opn4GBMfYVq7bVeio/lJo3mGnElcImSDdeJfybcYob59n1m/lCM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NuyW0vVy; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5bf01bdaff0so699701a12.3
-        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 00:55:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1724313311; x=1724918111; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=WEMxkmps5fBhkkA4iUgysD4v8ZU5plsG8cGD1Rw+ymM=;
-        b=NuyW0vVy4WUHyM2LWQJcRjUoRefv2T3YLVVHMnsx7FGzEGxyXIPvvBS3yHGzwloqqx
-         JM/mp1MSZ1mSW4h76voOSfuef9scCA2JY7MUsOicuCWo4zNEwe6R0lmnSMhaE8PnZouZ
-         Wq+E/kOn9qLvZmqQ3ZUjcPJ/f22SOxsI/f2emoUsjlZz4PWnfmjJPkjktQUIt0Wata6/
-         k7gdb0p5yaZ52FLMysL2al64bTAAFmRPmA27fOp+LqjOUg18Mvb/BTu28OzFw5GqnV+4
-         xy/4gfb8SNAytT/R+5If3SGLY00v414EtamHhOWiEj182tc8j9qypY7ZdVdHmhCDCTRS
-         Ob0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724313311; x=1724918111;
-        h=content-transfer-encoding:in-reply-to:organization:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WEMxkmps5fBhkkA4iUgysD4v8ZU5plsG8cGD1Rw+ymM=;
-        b=jckQiN8W2/+kYwfcPB+HNOGcSBp4u+p79SSnUliunBOtMpttSnw7nA+ngu4vH/7iSy
-         Bw70mm/gH6j9XLXjKxfHSV5HSVLvjqc3FL86okhD0neJZMhf+GkAvQzYD70rSpQwAzU2
-         qN7vHLnz8B8DKzKjl4BYxzpS0SxjTtUignC86HeYIYeVJlRTzsBWh68LeJsRj7bKu5av
-         emrGx0gq+eHnJAfsYL3APIAIwLal54ukFAK/J5zb1r6XMGkVRv5D/obE3VaoFknD86AF
-         ooUNEt11dvw4vbja/ib4kbLRHTRM4CNzMvhGLp1P3H1C1SjpTirekQ6fCcipYB6fsR6A
-         fAAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVLOEjmeHG3rFx1YzJnz/+zT2mwn9AcOc0d2rrF9cgpvvRnV6Jer1ihuj3jgzBCf4rRTsEjuc2JKP3E@vger.kernel.org
-X-Gm-Message-State: AOJu0YxnPfR+9ntDp/Oy+TGp8Ufr1aiarJmORAnzPjV2h1C8PV1VS1Bt
-	lN88S1A/5uI0CyMqDdLBAISsWOfP0bmKxUHqUdU8S81KieLOJYXUy8vOkTLslKE=
-X-Google-Smtp-Source: AGHT+IH2Ql1jTj7O3GI+6Z3dMnyxGKEgZvEtWtmE5cMBZeecWfk/Hl74tjT/kz3MaQurQFNlT0Q1ew==
-X-Received: by 2002:a05:6402:34c4:b0:5a7:464a:abd with SMTP id 4fb4d7f45d1cf-5c0792947b1mr557111a12.30.1724313310527;
-        Thu, 22 Aug 2024 00:55:10 -0700 (PDT)
-Received: from [192.168.200.25] (79.186.29.241.ipv4.supernova.orange.pl. [79.186.29.241])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c04a3c9dcesm576492a12.30.2024.08.22.00.55.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Aug 2024 00:55:09 -0700 (PDT)
-Message-ID: <24d01601-99e8-4d61-8024-530244bd78f5@linaro.org>
-Date: Thu, 22 Aug 2024 09:55:07 +0200
+	s=arc-20240116; t=1724313577; c=relaxed/simple;
+	bh=RYUJXFHMwWOGiIu4bdUc7sNiib6veLbjl54CFkPTusM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VX3swm3ze3Sc4emUMbsMfnYUKxz5Jb/ZiwnJ7eO8SX/KYt6/WBxiJSUNhZAnKIPBEuM8tjEVh/YSJcakYu31FS6+va1RfDbgR7xrcoYy51SuIYyB1fF8J8chv+o24MkihhV3AvlVAsRIaaU/JEXNAL+KWXd9KiMvF7snrOwABvQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S8+yh6yP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF079C4AF09;
+	Thu, 22 Aug 2024 07:59:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1724313577;
+	bh=RYUJXFHMwWOGiIu4bdUc7sNiib6veLbjl54CFkPTusM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=S8+yh6yPts3jDToMQfi0amHJEvv5QhVfDFuNPKk9eUBKSxrfdS3c4SPT+KkTDKtaD
+	 Wgt3TdL0Ft/my0XdKjXWeW2ckqUDzSLAVgnnCpdNqxu14M8q+AgvFtFQngQC8p6C2S
+	 zkbh5x/7Z9srUKZOEBRUUt6h8jaWtkQZVPOwdD6qLcn9wRjTJKqHp/AH6NjxC4UDpe
+	 NZLHQ9PeNKERVK51absSTQCJcRZbE36uZaOOkE5FoD9ZwA2C2xVlJ0mwcCdj6zc6UQ
+	 ijrtzIgEs2ZHaVgsp3ow4a4vIwrRazUmB6bV6ACOJu9aCoQpPgfC/lvD3uiKhbdQBg
+	 IVxQooqgbl5gA==
+Date: Thu, 22 Aug 2024 09:59:29 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Luo Jie <quic_luoj@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, quic_kkumarcs@quicinc.com, quic_suruchia@quicinc.com, 
+	quic_pavir@quicinc.com, quic_linchen@quicinc.com, quic_leiwei@quicinc.com, 
+	bartosz.golaszewski@linaro.org, srinivas.kandagatla@linaro.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: clock: qcom: Add CMN PLL clock
+ controller for IPQ SoC
+Message-ID: <gnf37fpnqihv4z3qq3jkrqaokapj5lgtgoonnhagjlua4js5kl@pn7y53pqmddf>
+References: <20240820-qcom_ipq_cmnpll-v2-0-b000dd335280@quicinc.com>
+ <20240820-qcom_ipq_cmnpll-v2-1-b000dd335280@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/7] arm64: dts: rockchip: add NanoPC-T6 LTS
-To: Krzysztof Kozlowski <krzk@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-References: <20240821-friendlyelec-nanopc-t6-lts-v3-0-3ecfa996bbe0@linaro.org>
- <20240821-friendlyelec-nanopc-t6-lts-v3-2-3ecfa996bbe0@linaro.org>
- <fbdda0b5-a924-48f8-a4d5-6578c2b5d378@kernel.org>
-From: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
-Content-Language: pl-PL, en-GB
-Organization: Linaro
-In-Reply-To: <fbdda0b5-a924-48f8-a4d5-6578c2b5d378@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240820-qcom_ipq_cmnpll-v2-1-b000dd335280@quicinc.com>
 
-On 21.08.2024 15:13, Krzysztof Kozlowski wrote:
->> +#include "rk3588-nanopc-t6.dts"
-> Do not include DTS files. Please rename board to DTSI (which is for
-> includes) and then include it in respective boards. Remember to generate
-> patches with proper -M/-B/-C so the rename will be properly recognize.
+On Tue, Aug 20, 2024 at 10:02:42PM +0800, Luo Jie wrote:
+> The CMN PLL controller provides clocks to networking hardware blocks
+> on Qualcomm IPQ9574 SoC. It receives input clock from the on-chip Wi-Fi,
+> and produces output clocks at fixed rates. These output rates are
+> predetermined, and are unrelated to the input clock rate. The output
+> clocks are supplied to the Ethernet hardware such as PPE (packet
+> process engine) and the externally connected switch or PHY device.
+> 
+> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+> ---
+>  .../bindings/clock/qcom,ipq9574-cmn-pll.yaml       | 70 ++++++++++++++++++++++
+>  include/dt-bindings/clock/qcom,ipq-cmn-pll.h       | 15 +++++
+>  2 files changed, 85 insertions(+)
 
-Thanks, done that locally for v4 series (will wait with sending to 
-gather feedback on v3 one first).
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-This way NanoPC-T6 has 4g_lte_pwren and NanoPC-T6 LTS has 
-usb_host20_pwren defined separately in their own dts files.
+Best regards,
+Krzysztof
+
 
