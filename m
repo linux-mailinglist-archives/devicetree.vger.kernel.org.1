@@ -1,110 +1,151 @@
-Return-Path: <devicetree+bounces-95861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72EAC95BA05
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 17:26:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC92295BA0A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 17:26:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 319D3284957
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 15:26:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D85191C21223
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 15:26:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46E791CB146;
-	Thu, 22 Aug 2024 15:25:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=collabora.com header.i=nfraprado@collabora.com header.b="g51d7RqD"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 624CE1CB15E;
+	Thu, 22 Aug 2024 15:26:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B6D22C87C;
-	Thu, 22 Aug 2024 15:25:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724340356; cv=fail; b=eoRrhxed09lmh3Xha0HExHYxlk+0+DBOr61oWaGc1j3wYkt007KtPL8pjkc5TcZhhXEw68ZzCovPJTFANEb7/i+G6oNSlZ9s6XzMQN1ZYnt2tHshmPYl+2QX7PPT2UF4T2AvUiIC/+2ZDQAoMG+N96Wqyz+E1cWahtzByrtIGD0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724340356; c=relaxed/simple;
-	bh=GQX/ybtanwy/zCKjsP6vimBs4eLzBliTPuRthVsxJ4w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=poVzxyEe2LTsyECkwnZ69/JLDT+yG5eLRU5yfXqbbxXvx4KW49wxkGznQQhS2Kuw2AWtgVpcqQjk7lIMd7tTM0HQFipwpu1dPH/C/BM2GoNqbmtTgBzDPUCpu/ufhig6jLXtVbsQW1tiLOcqD/SKj93EypHN9oE+ohpNXA7hiho=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=fail (1024-bit key) header.d=collabora.com header.i=nfraprado@collabora.com header.b=g51d7RqD reason="signature verification failed"; arc=fail smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-Delivered-To: angelogioacchino.delregno@collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1724340346; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=ZVIKW3D0jI3pXHiDjuzF/3Qsfrel7O10ClTVWiviaT+b5ntpoipxlCU5mPIuGoEVV3miX18qoHEtmCm2rdUtvHQ3c9NdgrmqpRJ0CyAl+6HAUxdv1e1dkPiC7p4SRgyo6Ab5qP0IcDv6isu4bqiuczNdr+mKk988amSpZo0UFY4=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1724340346; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=tblG4DXojNvd/Q9ZZ/KwVJ2+BRO+sDaWRSrrd7xNqI8=; 
-	b=XUF4RV9FP4IRDS5Z+tmMg0rjTbsXiXjcr+bIuvJDGKzZl1bLNUUGGffCB5EBA3V6960sP0WDQInxdud4ag87ryD845+s/WjJLoaHwvL3Xha2qZv10ISdI8AIxylalSZZTLCWs7CZN7K7R836P+LkN7mmhR8iI2lAiciL9wp1diY=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nfraprado@collabora.com;
-	dmarc=pass header.from=<nfraprado@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1724340346;
-	s=zohomail; d=collabora.com; i=nfraprado@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:Content-Transfer-Encoding:In-Reply-To:Message-Id:Reply-To;
-	bh=tblG4DXojNvd/Q9ZZ/KwVJ2+BRO+sDaWRSrrd7xNqI8=;
-	b=g51d7RqD0veQjp5+KVKELwE+jm750mEPW6lk9pQPkDI/tNQWRXDwApIv3YMtlNT0
-	atmq+fEVY6o9uDAjHtvmS9QpmHBG/utJlrJJbdz7kYqeoEI1u4tjR53AoAqYTRC9Lyn
-	EGaKf/GVoT3MvcRwnNCAsWvZLPMUesJ2w/BHPU8Q=
-Received: by mx.zohomail.com with SMTPS id 1724340344652491.77049766479;
-	Thu, 22 Aug 2024 08:25:44 -0700 (PDT)
-Date: Thu, 22 Aug 2024 11:25:42 -0400
-From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Stephen Boyd <swboyd@chromium.org>,
-	Pin-yen Lin <treapking@chromium.org>,
-	Alper Nebi Yasak <alpernebiyasak@gmail.com>, stable@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8186-corsola: Disable DPI
- display interface
-Message-ID: <00aaa8ff-1344-48dd-b0cb-5e8f4518ff6b@notapiano>
-References: <20240821042836.2631815-1-wenst@chromium.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35ACA2C87C;
+	Thu, 22 Aug 2024 15:26:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1724340371; cv=none; b=oRBqYH5fZoLeJGysb8hw06/D7N1jhRqU5tz30XgTlCpOvrlctwXhUbdtgpPnEPWCBRh/2SRU0aNF00R0RVvxHXZ6/tCfZddj0TZdCtKwPxdbRnWfjgQM799fe8xLi96vsS7O8RI1zUlRVkeAjYNQV18kZJ1TtN61K0Pp85xWPpo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1724340371; c=relaxed/simple;
+	bh=m1+rWWJ7yV3CU0sWqRP7z6pUkhu2qCM85IhYkydvA1M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GkKC3EKJK/wDf3BkJ/31Z0ruNefMBKahbYiJBobAL+oY/6pC7V37G9TtjcGoun1v38hHW1hEproZHDL1HwUXjHQ02DrAk13hJmHjnVyhc2eRTeGFBGm0zQ2BtCMeR1MuDZsw1yYGUw0WMPCSkbWrA402rg+urg4J0rsBgKJZn9I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-6b8d96aa4c3so8696117b3.1;
+        Thu, 22 Aug 2024 08:26:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1724340368; x=1724945168;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=191j81Yd6sne0wYFlddNBd2+LA1E+9DzGpITjvADgxQ=;
+        b=mS64VZsjilDy3P+QCnLGGH5bJ5N8RkqTk5j77YP7h7bsXCQJH8joWDwF8g3gDiLjPl
+         MrnoylMllMOFcUEcXdSSqYu83JnLFTQNo/vDGVsCMeMXRK7g563E3Q1TwUPJrS0TaM/5
+         wV7e8Gg7zdZSUfC7YQx99GnTdPa/4a2TtkB52BEgMaAqwRX/dwsFmvZpuUINB0NmLGVb
+         5xoSwqDX/dWaxOrEhWfy0+dQEIL/pcO65nMcf+Q1LovolJRP0qxcRqffZz6SabOa2U6A
+         6634qgT7r75MpfpvNs+GSxv7k+H60cbEV/NVvBs5ZmuU1AmQwB9xhhkOtnbVktK5IcA/
+         +qag==
+X-Forwarded-Encrypted: i=1; AJvYcCUOYAUYxZtnZvo/8WprnZsfAjwlEEmkwbqGio5ILwAQ+q1Ai51dpSCItyudr4UubJ0MHy3HXwN6ZojO@vger.kernel.org, AJvYcCXhFloS3BhotqMQHnd+tZjVmxS7Iw118J84j1LUzBynkRfZNzObCFe2oWbN6HKloQ8VBQFImhzVKjd6F2H62+N7mhQ=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyGyHsJU3gowS59Mrf0wqIRDi4ptZc96pQ6qDu/sr0cuXEXl7Kn
+	2kvwUqQ1uz3PzDpkbxbePYrGrloOf3AN6Bp/8P8XlMBdhFjy9rDupnqeI2wk
+X-Google-Smtp-Source: AGHT+IHpmN9/V/4fyu9+q1Y0MOhizRuL2+Tqs+HnAwPzSl2Jrtdt/Wcm5AYxRYmC8TsEvokwwg8zdw==
+X-Received: by 2002:a05:690c:f94:b0:66b:8443:e843 with SMTP id 00721157ae682-6c09c1c01c4mr83249627b3.7.1724340367850;
+        Thu, 22 Aug 2024 08:26:07 -0700 (PDT)
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com. [209.85.128.173])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6c39e500a79sm2433567b3.137.2024.08.22.08.26.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Aug 2024 08:26:07 -0700 (PDT)
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-6c130ffa0adso11157787b3.3;
+        Thu, 22 Aug 2024 08:26:07 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWHzTD+qaz5eNMfS1Q1IKtdjESXc3yGyRinc5iunNKC7v0+dQZWTqDrg18ZCB2xAqZ7ixtgSlqCyw8OEQBKViMvSVw=@vger.kernel.org, AJvYcCXrZQ9/tDUqECeelkv0p4dskIE3XspIoQDuQCF1rJU/8Pd4R4LWwDiSm+lhzE6T6eI0Ij1uwhp4+Yd6@vger.kernel.org
+X-Received: by 2002:a05:690c:5292:b0:6b2:28c3:b706 with SMTP id
+ 00721157ae682-6c0a0ae87a9mr59467997b3.34.1724340367154; Thu, 22 Aug 2024
+ 08:26:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240821042836.2631815-1-wenst@chromium.org>
-X-ZohoMailClient: External
+References: <20240701145012.2342868-1-niklas.soderlund+renesas@ragnatech.se> <20240701145012.2342868-3-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20240701145012.2342868-3-niklas.soderlund+renesas@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 22 Aug 2024 17:25:53 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXctKKr2dKfH5Y=K=LCjkSdZ-ydxq54NVtObvd571SuPw@mail.gmail.com>
+Message-ID: <CAMuHMdXctKKr2dKfH5Y=K=LCjkSdZ-ydxq54NVtObvd571SuPw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] arm64: dts: renesas: white-hawk-single: Wire-up
+ Ethernet TSN
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Aug 21, 2024 at 12:28:34PM +0800, Chen-Yu Tsai wrote:
-> The DPI display interface feeds the external display pipeline. However
-> the pipeline representation is currently incomplete. Efforts are still
-> under way to come up with a way to represent the "creative" repurposing
-> of the DP bridge chip's internal output mux, which is meant to support
-> USB type-C orientation changes, to output to one of two type-C ports.
-> 
-> Until that is finalized, the external display can't be fully described,
-> and thus won't work. Even worse, the half complete graph potentially
-> confuses the OS, breaking the internal display as well.
-> 
-> Disable the external display interface across the whole Corsola family
-> until the DP / USB Type-C muxing graph binding is ready.
-> 
-> Reported-by: Alper Nebi Yasak <alpernebiyasak@gmail.com>
-> Closes: https://lore.kernel.org/linux-mediatek/38a703a9-6efb-456a-a248-1dd3687e526d@gmail.com/
-> Fixes: 8855d01fb81f ("arm64: dts: mediatek: Add MT8186 Krabby platform based Tentacruel / Tentacool")
-> Cc: <stable@vger.kernel.org>
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+Hi Niklas,
 
-Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+On Mon, Jul 1, 2024 at 4:50=E2=80=AFPM Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> On the V4H White-Hawk Single board as oppose to the Quad board the
+> Ethernet TSN is wired up to a PHY (Marvel 88Q2110/QFN40). Wire up the
+> connection and enable the TSN0.
+>
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
 
-Would be good to have Alper verify that with this change the internal display
-works again in their specific setup, although this change seems reasonable to me
-either way.
+Thanks for your patch!
 
-Thanks,
-Nícolas
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.12.
+
+> --- a/arch/arm64/boot/dts/renesas/r8a779g2-white-hawk-single.dts
+> +++ b/arch/arm64/boot/dts/renesas/r8a779g2-white-hawk-single.dts
+> @@ -24,3 +24,54 @@ &hscif0_pins {
+>         groups =3D "hscif0_data", "hscif0_ctrl";
+>         function =3D "hscif0";
+>  };
+> +
+> +&pfc {
+> +       tsn0_pins: tsn0 {
+> +               mux {
+> +                       groups =3D "tsn0_link", "tsn0_mdio", "tsn0_rgmii"=
+,
+> +                                "tsn0_txcrefclk";
+> +                       function =3D "tsn0";
+> +               };
+> +
+> +               mdio {
+> +                       groups =3D "tsn0_mdio";
+> +                       drive-strength =3D <24>;
+> +                       bias-disable;
+> +               };
+> +
+> +               rgmii {
+> +                       groups =3D "tsn0_rgmii";
+> +                       drive-strength =3D <24>;
+> +                       bias-disable;
+> +               };
+> +
+> +               link {
+> +                       groups =3D "tsn0_link";
+> +                       bias-disable;
+> +               };
+
+If you don't mind, I'll move the "link" node before the "mdio" node while
+applying, to match the (alphabetical) order in mux/groups.
+
+> +       };
+> +};
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
