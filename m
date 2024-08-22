@@ -1,191 +1,108 @@
-Return-Path: <devicetree+bounces-95765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-95766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63E6295B184
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 11:24:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2748D95B1AC
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 11:30:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 853661C21CDD
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 09:24:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6BCA2896B5
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2024 09:30:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1457A1865F3;
-	Thu, 22 Aug 2024 09:20:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF1C017DFF1;
+	Thu, 22 Aug 2024 09:30:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="n0CPqB4X"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="WUHSRTlD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E8C61865E6
-	for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 09:20:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2953C17DE15;
+	Thu, 22 Aug 2024 09:30:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1724318459; cv=none; b=tI/GBpAPSbBPZH0JhbZURt5VhITBL5cUWIw+6rBw/v+qXywis8qwaxwzXTIKbGsMWpF6L0EbGIIqnoDMoj6oKhwjKvSkVPQXLMc04AuikywKy+J0S4O36TE4AZWRGK61lB4nAWkZ+7mur1P+iWu1E8pSIe1vXLDABweRgguFyBY=
+	t=1724319006; cv=none; b=nH4q1PAAbAoLRQQhQIW2FMbYbNqAze3nDUjsh5eV8Ke0RTVD6iVQUETLjHMpntoV43bXUE811DFpsKP41s9CqptsTA3vjA5eFs3ltBBr5A23NMbOG1oxJqPnvsZZ5O/XyCg/mdcgNjP1k/jkM0Knvu0nu/aeeJ7xNMfCwhiItto=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1724318459; c=relaxed/simple;
-	bh=KPKZx+o2UwLiNaiDemeY/MCCfCJXoZ6VeunQ3tP7UxE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=PXkMJh9nTzwGEXveJ10v7cCwhqwrAVWR7gvzk7GvxFEfqC0CHawZ6yUsrK+XNDSN/ejYfs2/EEZ47id6l62WVMOgMyP+aoz1th059OPsZechyQLea1rIOw0FWOHnYoa/YwCJOGKVRLr5L5cfsPP51/mWQmNAI34efORQWZKxgks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=n0CPqB4X; arc=none smtp.client-ip=209.85.215.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-7b594936e9bso431621a12.1
-        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2024 02:20:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1724318457; x=1724923257; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=b0ZXsCUO90vlD45ZJO1I+QT/1oidv8iaRsna2l2Dubk=;
-        b=n0CPqB4Xuvhg7W13cy97dJnxh0HwAyaWacv3xLpLC2/r5kr5P1l5iLCavXUhIIEB1I
-         twt9Nao6GLLHerKxIYfFzFUneIdbZX+Ut5Lqc+yS18po3ldEKV/e9jEe9z55HqV4fbVp
-         UmBU7pr8ttSOrBwUXW+tRlj/inWDn+cWUHRpU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1724318457; x=1724923257;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=b0ZXsCUO90vlD45ZJO1I+QT/1oidv8iaRsna2l2Dubk=;
-        b=Vi1TyVrPVqKouymRT8WB/Kc0sBVwlU03MA6kECQ3udcWQNtLJ7YO/QlWFnSmpDhiCk
-         gN7zB0TrOnN2PnQgqVTT7ItRaTtoKdZm2R0Q/fevD4iaHcuZ29ZCzn7eyyZ3CFgtqV9V
-         6wXNlrhMdbsqIE5rRcjp0/qrh7v6O7VOlF+JOdaLu9/Z3ISjA839PkApbLSXJQcS0Y3F
-         1GK0RVDgBuLr3NXuyCL156Hgsdyw2/jsQabDydAMs0W8c2W5ZapmalThgLdtcVlVaOpE
-         oO9TgUGJfrjxBfm2yZysOi8uK+GfDPQMEBwMhlXYz8+PxuCjaKePKJhg6tdoklBTITxM
-         7fyg==
-X-Forwarded-Encrypted: i=1; AJvYcCXb4Hb4VHxd8nyi7yQHJkJdU+dOkUEM5EgCLF/JQUPviWL6arw8kwogeXVdXdj3akqP0C5a9MvGeODf@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFYZ0aYFitgQy9YL6rQd+wbJC7dPQQ3qc43Qgf3+rsBB3DwDo/
-	4M/OsTN9ws8l23JFOqq3Lnu6sT66f7Z42zRUejzwmhr0bs1ZvgcoUE5W6rhcdg==
-X-Google-Smtp-Source: AGHT+IGopbbojtmE4fS/IUOg0cpO0JEZHF2VnB3L6eDK3aI3tJHchVj0lRN1Md7MFI5PPKTGcEf3AQ==
-X-Received: by 2002:a05:6a20:2d26:b0:1c6:fb07:381e with SMTP id adf61e73a8af0-1cad8180a2amr6660606637.44.1724318456919;
-        Thu, 22 Aug 2024 02:20:56 -0700 (PDT)
-Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:8470:6a67:8877:ce2c])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71434335e69sm951398b3a.194.2024.08.22.02.20.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Aug 2024 02:20:56 -0700 (PDT)
-From: Chen-Yu Tsai <wenst@chromium.org>
-To: Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Wolfram Sang <wsa@kernel.org>,
-	Benson Leung <bleung@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>,
-	Mark Brown <broonie@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
-	chrome-platform@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Johan Hovold <johan@kernel.org>,
-	Jiri Kosina <jikos@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	linux-i2c@vger.kernel.org
-Subject: [PATCH v5 10/10] arm64: dts: mediatek: mt8173-elm-hana: Mark touchscreens and trackpads as fail
-Date: Thu, 22 Aug 2024 17:20:03 +0800
-Message-ID: <20240822092006.3134096-11-wenst@chromium.org>
-X-Mailer: git-send-email 2.46.0.184.g6999bdac58-goog
-In-Reply-To: <20240822092006.3134096-1-wenst@chromium.org>
-References: <20240822092006.3134096-1-wenst@chromium.org>
+	s=arc-20240116; t=1724319006; c=relaxed/simple;
+	bh=vE635Lc5z/M9QvXv2NOjlajuF+PEmMNNp1qCXCumk7A=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=U3JqLZXdfVF3ZM0abEaKu//g8t0fqGLgVdd3TZAKBNKAsXnVFRxm8QJXUrXLC0DD0KckHJaAedPj3PsOUqcWhuzgBMLHk8pW+UhZXHbNrIjHG/XPH8IUoD+mo8OJRA0boDIAXO3iHK0EGLOKOfdIk0vTT0dftJy/g1rMGeyzDBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=WUHSRTlD; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 47M9Tt89125905;
+	Thu, 22 Aug 2024 04:29:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1724318995;
+	bh=rmp36PZnOmxESdDClRtEZdeR5WRdLWua1AMScdftLvM=;
+	h=From:To:CC:Subject:Date;
+	b=WUHSRTlDHRdeXqOnBohHX/ZcrMWV7A12O6iiP484ven2nYamILpZjX1BzxeHOaC9M
+	 NcmTLLhr0SuPWGqAxLElDVgpSSHAxjlHBqyp3bFqBhLzAiA47i4DIZICpBaIEPttyS
+	 izfxth8nX3yU1VLSs66hZsU3uuy7QhNfJ2lGXpfU=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 47M9TtSw010775
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 22 Aug 2024 04:29:55 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 22
+ Aug 2024 04:29:55 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 22 Aug 2024 04:29:55 -0500
+Received: from localhost ([10.249.48.175])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 47M9TtJh044820;
+	Thu, 22 Aug 2024 04:29:55 -0500
+From: Hari Nagalla <hnagalla@ti.com>
+To: <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <nm@ti.com>, <bb@ti.com>, <afd@ti.com>
+CC: <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH v5 0/4] Add R5F and C7x DSP nodes for AM62a SoC
+Date: Thu, 22 Aug 2024 04:29:51 -0500
+Message-ID: <20240822092955.22037-1-hnagalla@ti.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Instead of having them all available, mark them all as "fail-needs-probe"
-and have the implementation try to probe which one is present.
+This patch series adds R5F and C7x dsp processor nodes and shared
+memory based Virtio/IPC configuration for AM62A SoC.
 
-Also remove the shared resource workaround by moving the pinctrl entry
-for the trackpad interrupt line back into the individual trackpad nodes.
+changes in v5:
+*) Reordered Remoteproc device node properties to list reset, firmware
+   properties before vendor specific properties.
+*) Remote the SRAM node from patch2, as it can be used by other
+   components and is not specific to this patchset.
+*) Added new lines between sub nodes as needed.
 
-Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
----
-Changes since v4:
-- Rebased
+v4: https://lore.kernel.org/all/20240820104034.15607-1-hnagalla@ti.com/ 
 
-Changes since v3:
-- Also remove second source workaround, i.e. move the interrupt line
-  pinctrl entry from the i2c node back to the components.
+Devarsh Thakkar (2):
+  arm64: dts: k3-am62a-wakeup: Add R5F device node
+  arm64: dts: ti: k3-am62a7-sk: Enable ipc with Remoteproc nodes
 
-Changes since v2:
-- Drop class from status
----
- arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi | 13 +++++++++++++
- arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi      |  4 ++--
- 2 files changed, 15 insertions(+), 2 deletions(-)
+Hari Nagalla (1):
+  arm64: dts: k3-am62a-mcu: Add R5F Remoteproc node
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
-index 8d1cbc92bce3..251e084bf7de 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
-@@ -14,6 +14,7 @@ touchscreen2: touchscreen@34 {
- 		compatible = "melfas,mip4_ts";
- 		reg = <0x34>;
- 		interrupts-extended = <&pio 88 IRQ_TYPE_LEVEL_LOW>;
-+		status = "fail-needs-probe";
- 	};
- 
- 	/*
-@@ -26,6 +27,7 @@ touchscreen3: touchscreen@20 {
- 		reg = <0x20>;
- 		hid-descr-addr = <0x0020>;
- 		interrupts-extended = <&pio 88 IRQ_TYPE_LEVEL_LOW>;
-+		status = "fail-needs-probe";
- 	};
- 
- 	/* Lenovo Ideapad C330 uses G2Touch touchscreen as a 2nd source touchscreen */
-@@ -47,9 +49,12 @@ &i2c4 {
- 	trackpad2: trackpad@2c {
- 		compatible = "hid-over-i2c";
- 		interrupts-extended = <&pio 117 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&trackpad_irq>;
- 		reg = <0x2c>;
- 		hid-descr-addr = <0x0020>;
- 		wakeup-source;
-+		status = "fail-needs-probe";
- 	};
- };
- 
-@@ -74,3 +79,11 @@ pins_wp {
- 		};
- 	};
- };
-+
-+&touchscreen {
-+	status = "fail-needs-probe";
-+};
-+
-+&trackpad {
-+	status = "fail-needs-probe";
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-index b4d85147b77b..eee64461421f 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-@@ -358,12 +358,12 @@ touchscreen: touchscreen@10 {
- &i2c4 {
- 	clock-frequency = <400000>;
- 	status = "okay";
--	pinctrl-names = "default";
--	pinctrl-0 = <&trackpad_irq>;
- 
- 	trackpad: trackpad@15 {
- 		compatible = "elan,ekth3000";
- 		interrupts-extended = <&pio 117 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&trackpad_irq>;
- 		reg = <0x15>;
- 		vcc-supply = <&mt6397_vgp6_reg>;
- 		wakeup-source;
+Jai Luthra (1):
+  arm64: dts: k3-am62a-main: Add C7xv device node
+
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi   | 12 ++++
+ arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi    | 25 ++++++++
+ arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi | 24 +++++++
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts     | 71 +++++++++++++++++++++
+ 4 files changed, 132 insertions(+)
+
 -- 
-2.46.0.184.g6999bdac58-goog
+2.34.1
 
 
